@@ -4,67 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5598CD8CA8
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 13:54:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA536CD98CE
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 14:08:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6835110F531;
-	Fri, 12 Jun 2026 13:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C2A10EA15;
+	Fri, 12 Jun 2026 14:08:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IwA3Vtka";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eIicbK+6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C66C10F531;
- Fri, 12 Jun 2026 13:54:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9524210EA15
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 14:08:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781272470; x=1812808470;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=x0WBenL+tYyEWxbwyAiUMsF2Sul7xYWiNZv7X+Mi0zg=;
- b=IwA3Vtka3Nru8qDFotg72QmkOEBvakfsVveFqrGBcnBbbeltG8I5Zqc4
- Nq5Zg/lzXOx8CgW8YSb/UUytoleLcIrlspI9FkPobs36cjcFyIkvaXFfB
- IYFYNPKha4TN/ga+6v+XB5oK3HV6xrYAIT3lb8SCKuhfzs5obnfoaqhO3
- U64+sjkaJGCAIW7/VHKnlQtZMyD023WLD9RsDV4NIGXsg+xR1EgCNBqYa
- tzY+o6XuJrxBpGcgQVvsrJgFinJAjqFOdhcgNKj/LWg3RsCIH9qUOGXdm
- LkVdYWEMvWPk/aEhqzfihwVjT+lgcf303aoT6yBAtorAnkKjCR3pgS4vz A==;
-X-CSE-ConnectionGUID: NwgQK1G4Q6O1FVfFW7GcBw==
-X-CSE-MsgGUID: QpVLjpgySNiC7IbAfx8Usg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="82163324"
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="82163324"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 06:54:30 -0700
-X-CSE-ConnectionGUID: QJv0tLjURmi95u1C2Gmu3w==
-X-CSE-MsgGUID: VqeW38znQPysJkw45T3XMw==
+ t=1781273323; x=1812809323;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WPX/FLWOvYNYOUZepbMJDiRbIeMNPIP+/UY+OkONcUw=;
+ b=eIicbK+6UDnw5OdcRzK5XjjN/LojsFXElgeQpGRBOVXaba9lackTuou3
+ 8JRfR5feWR2sE6nETzD7Red4odk8JK6u1v7rvw2c7p/xzdwNv10CUbsSC
+ Zbu7BtNtT3kruTV3mKz14RYjPOEJlpmHdp5JI3LlcDqf7P84NqT2wdWOX
+ ql2vWdPdWade02a1Rnq3wuSBkczfwzoGOZtyYeOztUoj+QRGwedclDdF3
+ GNR2D0K2OrvyRwu+ow5dBZc+tWLUkbDwJ4S34H8WJalu9UoqYzDNJlpeR
+ 2kN5MRWLyH3Iq87aMemQBfRCkOivvh06aLYE+tiJOPq2BtBXOrCg5IoXJ A==;
+X-CSE-ConnectionGUID: At7d3kloRGOd3FdIYA6jAg==
+X-CSE-MsgGUID: 7FSB57dGRnuRFuWjgSAqFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="107536826"
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="107536826"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 07:08:43 -0700
+X-CSE-ConnectionGUID: 1UJ0trfkTm6ycfBSdDSxJA==
+X-CSE-MsgGUID: 72U0oMjLSIqBczzWZidMPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="242446604"
-Received: from slindbla-desk.ger.corp.intel.com (HELO fedora) ([10.245.245.68])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 06:54:26 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- John Falkowski <john.falkowski@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lahtinen Joonas <joonas.lahtinen@linux.intel.com>,
- David Howells <dhowells@redhat.com>,
- Christian Brauner <brauner@kernel.org>, Kees Cook <kees@kernel.org>,
- Davidlohr Bueso <dave@stgolabs.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, LMKL <linux-kernel@vger.kernel.org>
-Subject: [PATCH 4/4] drm/xe: Add watch_queue-based device event notification
-Date: Fri, 12 Jun 2026 15:53:40 +0200
-Message-ID: <20260612135340.116100-5-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260612135340.116100-1-thomas.hellstrom@linux.intel.com>
-References: <20260612135340.116100-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="244408011"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 07:08:43 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 12 Jun 2026 07:08:42 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 12 Jun 2026 07:08:42 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.70) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 12 Jun 2026 07:08:41 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MNuy1ON0bpKK+EstdZexgJlNk5vz0WsbEmYhjKYxqI8xM2dRm4CxhQCvbR8jUghIbaBg0GDWHVhUUqz6PrstGr0y5kV2aKTPgHpUGhICW8KyT75GsW2lvUoiPDp8XeYxMRMAr+g7LpOLTrOOcSbaGhS8bE+Ox7Kt8ZgdPo7jrkKrBFzzHUXsaQYK615C8H5NIbx7Z32LyGdXYdT86g1iU3D/KefFTScQrU+rv8F1JouGnJK7BRM2ogibdZL6NNEsoIKM+ZoHYNbzbpTzH5i9RZNlsWXPfLIK9g5C80hU2Lpo3SUtbsNXxtprhZHExjqOf/lHyxodw3JhJhOAx32R4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=55/MOzEwZa+RT7Nl5iCPZK7L6PCSLXip24su50UhbvE=;
+ b=v5R5sJOi36Dd7MccWJugFHoRm1aLWZgbeOl/AyF++J6iJBN/KASbfrdWV6i9TWsoSYuWnUcV/Yc+jYMleQF0em3GTdSx7jZ5k7YddnOR3Mbubwmx1+1xzTOk9jL489wV3BWa3k9h9XhO4W0fF1YawXJKem/WyRJf8RVErcpTSayCKDvpqNNqYZNyFbqxlWBQ67xL6BMDKbZE/Md3w1dg97k4pZ9j+FAfiK4hvRpuh5UGR7PbHtyvWMFsEorJwjjVLVH12g7zxUkcg4KxklrfvMVuv+XPRtzEpK1JOat+sOZxwtZbmEMEMcuqUgLqOUa4SG7PRPn9tOlh7XkSLEXWyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by MW4PR11MB6738.namprd11.prod.outlook.com (2603:10b6:303:20c::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.14; Fri, 12 Jun
+ 2026 14:08:32 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.21.0092.011; Fri, 12 Jun 2026
+ 14:08:32 +0000
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/xe3p_lpg: Add missing references to workarounds
+In-Reply-To: <20260611211106.GI6214@mdroper-desk1.amr.corp.intel.com>
+References: <20260610-add-missing-wa-references-v1-1-0947577238bf@intel.com>
+ <20260611211106.GI6214@mdroper-desk1.amr.corp.intel.com>
+Date: Fri, 12 Jun 2026 11:08:28 -0300
+Message-ID: <87mrwz97hf.fsf@intel.com>
+Content-Type: text/plain
+X-ClientProxiedBy: BY1P220CA0049.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:59e::15) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|MW4PR11MB6738:EE_
+X-MS-Office365-Filtering-Correlation-Id: f7133285-014c-436c-2b34-08dec88c1625
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|23010399003|376014|1800799024|56012099006|4143699003|11063799006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: hqHPe0L9LJR+6UYHYnxByhAKT3eKEhUg52PvLOOs+k8cCrEp4n83oELn67eE/xGTsawCQKqYLJemfnheELjem/X5Rgm13UINcLB3CeSHqSlmMEA8PMAcUiqpcYaQlooWjVCGnyvGkROW1BVTengtsNBDg/l6ALL4D+F2BTGS3Tb1udXFV3/wf0EkpyjlCrpBrfMvDUmcwYob+w+WcDS0/7u8NEnu1Rp3Ibq6wm3Elx9WKyyCbId5Cf/iUsy9vm7KOduWkYQwuJST9g/uZWYWzhnci3zWzDzICskN8hQY1KroDSAm6hkK0wj4wlFsJM2ZvYnuYTtkOB1IOwSFSPoJQW7IL0kFGwhOAzFKL+RcZ/ARtyJn3g6S0bJAFMfbWU8AahS15HPWMUDLK4IF1V5/FfK33Q//0SANjbAev5J0qOEaR2X5Qpx0kmJ01ziDHcUpETM+kF3EI7+mTUyiL/W5CkZvDj+CDm5EOkINx0eBkualXl0vgCr9DDsfgfsfu/Flhs5zk62yIk2KgvfIdZrOi3tWEh5HL2Jh3ZItFtN49KLhuKWjwms64veaVw8mFNIvbvA4g6bxhd1+RwtgPSUYyYWdRbDzlBz+L/7bpOyr5mqqhAdCYRAogcctc1zXwimn0OuHGAcCSq7XftyEhxBisUTLX/XDXZhEsLr7nQ0cY9uNzEEFJNSRkqXuUiSvbWrV
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(56012099006)(4143699003)(11063799006)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2OLioQjhzNg5nZlBIQotLtuLWet/WROiSm+0Cf0D6R7XACtpMjyD6HESfQ0d?=
+ =?us-ascii?Q?3El0RFCyRIOoPL4HAV2ZG88nVkJn0wAZjaEBnIeBoPp9EfXM0Bb2Imp1rtKo?=
+ =?us-ascii?Q?6rwO5FOfKaZUDjZDYjM+tYe1GxTg+009LEVeOGeJJpxU85fatNmh8DikTj9+?=
+ =?us-ascii?Q?X/sNYwh73xfLz9Tz+GGvBd1GqpEVPL47Yo9vWUGBNpsLzsZk+SXzoNTtC4Ii?=
+ =?us-ascii?Q?AO8IgwlN60XV5pSivk+kwROoHFvREHVeGmLYhhYZMkl+r4+xcdEaNHdOLqy6?=
+ =?us-ascii?Q?m5MmJ0YasiYZjQP+fdZZT5FCp2ei9ZfdAZ2lkfZuWHg0ZqAHkEEnjdXKJu1w?=
+ =?us-ascii?Q?7WNOHEUTDqaGxY3Mw+OvUAyTZ+p3XkIFz7Q3/8xMaz6Xt1+QJxLobN8oFDk+?=
+ =?us-ascii?Q?g9bwZBLqFondA+jX8Bisdbq3Ga2XHYXMZu3/9MeRVu7h3huHpkYZG8wUyxyb?=
+ =?us-ascii?Q?M1xpUc45VuaVqucF5uY2vvKu0xOhf7tECdqlFThyQELX0a815EuI7amq8Fx0?=
+ =?us-ascii?Q?zRFSw6Wdgr5Br8sU6VwkD8NEOiKW7g7o9/F4ishTdhuMUQior1Vij1g2d8qR?=
+ =?us-ascii?Q?whXyxC0XdshfEQqvg4IXw/m/+te+Q+1uUpH1oVSae7qExF8JxyzZsmP7dpkD?=
+ =?us-ascii?Q?R1fCgp6W2msvH9dFBGawE44oPMj3Lk5cEN8NGshx6A1Wjr+ziNfajW2Vwi8K?=
+ =?us-ascii?Q?iqIz6JJpstxd+HgjQf/20Sbp+n3kvqsS5VmiD0tyRKhC+LHshY0cRZjrz0KT?=
+ =?us-ascii?Q?dhYCXCs8w9gObuaSfeFx1iWdobwzKQhx+jYvsrCM2oguS+vWQkn530l0APN+?=
+ =?us-ascii?Q?Kvu0tzemv2BOtIQcPe1KPDeivE6WBF98Q/f1iQxS7w19gYrZErpzS/+QW60H?=
+ =?us-ascii?Q?Gz+zAKC/BTOnBmUt9Z/6skiL+F8A3pL49dPXFKo85t0mUIIx/7VlYwfReM4L?=
+ =?us-ascii?Q?fkqRErl9Cy17ZVUDHP5e8uD5m+uetdZQgnWjFbN6u9ekdUEQQvlimb3NAI99?=
+ =?us-ascii?Q?34ej58pCEZwcWM9VAL9KNqD/VNuWXF/ph1JyV0yVIGIBKiMa0LUZCqe/LG5Q?=
+ =?us-ascii?Q?FUx0eRLI9Yx0l/kb60r6dych8YEgx8j6wCEuhT6MAX7yN8z3u0m78RbYgGIk?=
+ =?us-ascii?Q?Ff9Z62BzRm7FLnkjfBsSzK5mpdl0+J0eIqdugOnShw9jWKJ16Ox/nSDTYHFJ?=
+ =?us-ascii?Q?s1a5SoE6pCIYmi49fX6pTuSM0/w3Vzf5SesqH4jkKt2cqCs30nnuM9LljARy?=
+ =?us-ascii?Q?8meYSWbtlAoFGzcY0no5kYSAY2p3Sm9ao6S+dU+NSf8tm9h3u9KNRJSmRtKa?=
+ =?us-ascii?Q?QVAv9w6FW5LAu4VOmBlTiIGUa2Zm9skt584njtO2v+H6T2HjofxDwBJxtLk1?=
+ =?us-ascii?Q?IVs7vZoBkrdj/15TvCotjQUY/rK2uaMG3BuHf2lZ+kqAmjr9RNTUWBzanzv/?=
+ =?us-ascii?Q?VlUP9NIYM1N3eoRCIajokZyOV/IeecApBJyQkiQuIC++oonJL5sSD2DMhicx?=
+ =?us-ascii?Q?g0SuOFsjze5ZA4nJ2nyJbJcYkwZIoODjnSgdvNtUCxuhL2X5iOhlFL+EnVdS?=
+ =?us-ascii?Q?sZ7FBZecOJvCHPp0Hyg7FIEwGUWofsdGGVM4bmsfadtg/V1EiRxIqI9zh+Hf?=
+ =?us-ascii?Q?hJpwBXCDh4E3T6I6zbPswwEeBPyoVv9d6wiU+mmZzc0Ee6dISoPI+9QHZwZw?=
+ =?us-ascii?Q?j4whaAfFIA6CPY61poBDvp8a4YEpxWJlMVuB8dRZMY45tlJXydBiTj32G8BT?=
+ =?us-ascii?Q?cpkDJr1ZMw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: b7T5L+OX+fgkzAw7Ilj4FpHqga5xutRtgVY/7zbY5c8bulYp2AaodzNlDUuebGSwybuijAoy2H4TFsqvSJa+CIGLWhZPHvnoohf5138dg2eNuGmqKMNaCpH+mCpCIbtJTurm4GPWOekabYGxIwwLclLdfYWiEOUkstUE68OWnOe3+Z00hO3yeoSGCOBSQfT1mAugOoBAdViEcRfgL4nYoQoRCN7dgmD8uaZyWRHR16Fi71/S1P/XrHDkdhjU1izd09tv9S5gFNFUsM26tjd0kzmCJbhK5+yBHp1c2JTu+y52hOg6E9VyPdbJac/7nB3pJBl/vqREf3GqwCmROfVJrw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7133285-014c-436c-2b34-08dec88c1625
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 14:08:32.7132 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fsE0DKZI9UZ1gqObVgJQVPamz3pp+ZT3jPbP53XA3AmgdpUmJOFR80erRswDjPdrG8Saa12rmXEwQc7W6PzTJw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6738
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,491 +156,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a watch_queue notification channel tied to struct xe_file so that
-userspace can subscribe to asynchronous GPU device events via the
-general kernel notification mechanism.
+Matt Roper <matthew.d.roper@intel.com> writes:
 
-Introduce DRM_IOCTL_XE_WATCH_QUEUE to let userspace subscribe a
-notification pipe (opened with pipe2(O_NOTIFICATION_PIPE)) to the device
-event stream.  Embed the watch_id field (0-255) in the WATCH_INFO_ID
-field of every notification, allowing multiple watches to share a single
-pipe and be told apart by the reader.
+> On Wed, Jun 10, 2026 at 06:20:47PM -0300, Gustavo Sousa wrote:
+>> Sometimes the same workaround implementation ends up being the
+>> recommended fix different hardware issues, which are tracked by
+>> different workaround lineage numbers.
+>> 
+>> Some of the Xe3p_LPG workarounds got "dismissed" because the
+>> implementations were already in the driver, however for a different
+>> lineage number.
+>> 
+>> Even though the implementation for workaround #A is already present in
+>> the driver for workaround #B, it is still important to reference #A in
+>> the driver for tracking purposes.  Without such a reference, we risk
+>> dropping the workaround implementation if, for some reason in the
+>> future, we decide that #B is not necessary anymore while #A is still
+>> required.
+>> 
+>> As such, add the missing references for Xe3p_LPG.
+>> 
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Deliver notifications as struct drm_xe_watch_notification records, with
-type always set to WATCH_TYPE_DRM_XE_NOTIFY and subtype drawn from enum
-drm_xe_watch_event.  Define DRM_XE_WATCH_EVENT_VM_ERR as the first
-event, posted by the preempt-rebind worker when a VM encounters an
-unrecoverable error.  Expose xe_watch_queue_post_vm_err_event() as the
-in-kernel posting API.
+Applied to drm-xe-next. Thanks for the review!
 
-Add event definitions in a separate uapi header, <drm/xe_drm_events.h>.
-The main reason is that the header needs to include <linux/watch_queue.h>
-which in turn includes <linux/fcntl.h> which may conflict with the
-system <fcntl.h>. Hence user-space must pay special attention when
-including this file.
+--
+Gustavo Sousa
 
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- MAINTAINERS                          |   1 +
- drivers/gpu/drm/xe/Kconfig           |   1 +
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/xe_device.c       |   7 ++
- drivers/gpu/drm/xe/xe_device_types.h |   6 ++
- drivers/gpu/drm/xe/xe_vm.c           |   4 +
- drivers/gpu/drm/xe/xe_vm_types.h     |   2 +
- drivers/gpu/drm/xe/xe_watch_queue.c  | 111 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_watch_queue.h  |  20 +++++
- include/uapi/drm/xe_drm.h            |  45 +++++++++++
- include/uapi/drm/xe_drm_events.h     |  62 +++++++++++++++
- 11 files changed, 260 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_watch_queue.c
- create mode 100644 drivers/gpu/drm/xe/xe_watch_queue.h
- create mode 100644 include/uapi/drm/xe_drm_events.h
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8c0d9965c636..b7e02cfa692b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12900,6 +12900,7 @@ F:	Documentation/gpu/xe/
- F:	drivers/gpu/drm/xe/
- F:	include/drm/intel/
- F:	include/uapi/drm/xe_drm.h
-+F:	include/uapi/drm/xe_drm_events.h
- 
- INTEL ELKHART LAKE PSE I/O DRIVER
- M:	Raag Jadav <raag.jadav@intel.com>
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 4d7dcaff2b91..dbdc2fb49c53 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -25,6 +25,7 @@ config DRM_XE
- 	select DRM_MIPI_DSI
- 	select RELAY
- 	select IRQ_WORK
-+	select WATCH_QUEUE
- 	# xe depends on ACPI_VIDEO when ACPI is enabled
- 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
- 	select BACKLIGHT_CLASS_DEVICE if ACPI
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 8e7b146880f4..fc8b4023a044 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -150,6 +150,7 @@ xe-y += xe_bb.o \
- 	xe_vsec.o \
- 	xe_wa.o \
- 	xe_wait_user_fence.o \
-+	xe_watch_queue.o \
- 	xe_wopcm.o
- 
- xe-$(CONFIG_I2C)	+= xe_i2c.o
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 867d7c55dc03..788ef2fbd6e5 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -9,6 +9,7 @@
- #include <linux/delay.h>
- #include <linux/fault-inject.h>
- #include <linux/units.h>
-+#include <linux/watch_queue.h>
- 
- #include <drm/drm_client.h>
- #include <drm/drm_gem_ttm_helper.h>
-@@ -77,6 +78,7 @@
- #include "xe_vsec.h"
- #include "xe_wait_user_fence.h"
- #include "xe_wa.h"
-+#include "xe_watch_queue.h"
- 
- #include <generated/xe_device_wa_oob.h>
- #include <generated/xe_wa_oob.h>
-@@ -112,6 +114,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- 	file->driver_priv = xef;
- 	kref_init(&xef->refcount);
- 
-+	init_watch_list(&xef->watch_list, NULL);
-+
- 	task = get_pid_task(rcu_access_pointer(file->pid), PIDTYPE_PID);
- 	if (task) {
- 		xef->process_name = kstrdup(task->comm, GFP_KERNEL);
-@@ -126,6 +130,8 @@ static void xe_file_destroy(struct kref *ref)
- {
- 	struct xe_file *xef = container_of(ref, struct xe_file, refcount);
- 
-+	remove_watch_from_object(&xef->watch_list, NULL, 0, true);
-+
- 	xa_destroy(&xef->exec_queue.xa);
- 	mutex_destroy(&xef->exec_queue.lock);
- 	xa_destroy(&xef->vm.xa);
-@@ -216,6 +222,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_VM_GET_PROPERTY, xe_vm_get_property_ioctl,
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_VM_RESTART, xe_vm_restart_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_WATCH_QUEUE, xe_watch_queue_ioctl, DRM_RENDER_ALLOW),
- };
- 
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 32dd2ffbc796..ca726ada30a7 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -11,6 +11,7 @@
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
- #include <drm/ttm/ttm_device.h>
-+#include <linux/watch_queue.h>
- 
- #include "xe_devcoredump_types.h"
- #include "xe_drm_ras_types.h"
-@@ -632,6 +633,11 @@ struct xe_file {
- 
- 	/** @refcount: ref count of this xe file */
- 	struct kref refcount;
-+
-+#ifdef CONFIG_WATCH_QUEUE
-+	/** @watch_list: per-file notification source for device events */
-+	struct watch_list watch_list;
-+#endif
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index b69a2e5bd9c9..232de0d948d2 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -13,6 +13,7 @@
- #include <drm/drm_print.h>
- #include <drm/ttm/ttm_tt.h>
- #include <uapi/drm/xe_drm.h>
-+#include <uapi/drm/xe_drm_events.h>
- #include <linux/ascii85.h>
- #include <linux/delay.h>
- #include <linux/kthread.h>
-@@ -45,6 +46,7 @@
- #include "xe_trace_bo.h"
- #include "xe_vm_madvise.h"
- #include "xe_wa.h"
-+#include "xe_watch_queue.h"
- 
- #ifdef CONFIG_FAULT_INJECTION
- static DECLARE_FAULT_ATTR(rebind_enospc);
-@@ -584,6 +586,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 	}
- 
- 	if (err) {
-+		xe_watch_queue_post_vm_err_event(vm->xef, vm->id, err);
- 		if ((err == -ENOMEM || err == -ENOSPC) && xe_vm_is_restartable(vm)) {
- 			vm->preempt.rebind_deactivated = true;
- 			drm_dbg(&vm->xe->drm, "Rebind deactivated VM on error %pe\n",
-@@ -2229,6 +2232,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	if (err)
- 		goto err_close_and_put;
- 
-+	vm->id = id;
- 	args->vm_id = id;
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 7d295c3b8456..19a673099588 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -407,6 +407,8 @@ struct xe_vm {
- 	bool batch_invalidate_tlb;
- 	/** @xef: Xe file handle for tracking this VM's drm client */
- 	struct xe_file *xef;
-+	/** @id: The id of the VM in the VM table of @xef. */
-+	u32 id;
- };
- 
- /** struct xe_vma_op_map - VMA map operation */
-diff --git a/drivers/gpu/drm/xe/xe_watch_queue.c b/drivers/gpu/drm/xe/xe_watch_queue.c
-new file mode 100644
-index 000000000000..32763591075b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_watch_queue.c
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <linux/slab.h>
-+#include <linux/timekeeping.h>
-+#include <linux/watch_queue.h>
-+
-+#include <uapi/drm/xe_drm.h>
-+#include <uapi/drm/xe_drm_events.h>
-+
-+#include "xe_device.h"
-+#include "xe_device_types.h"
-+#include "xe_macros.h"
-+#include "xe_watch_queue.h"
-+
-+/**
-+ * struct xe_watch_notification_vm_err - kernel-side VM error event notification
-+ * @base: common watch notification header; type is %WATCH_TYPE_DRM_XE_NOTIFY,
-+ *        subtype is %DRM_XE_WATCH_EVENT_VM_ERR
-+ * @vm_id: ID of the VM that hit error
-+ * @error_code: error code describing the error condition (negative errno)
-+ * @timestamp_ns: CLOCK_MONOTONIC timestamp in nanoseconds at the point the
-+ *                error was detected
-+ *
-+ * Layout mirrors &struct drm_xe_watch_notification_vm_err.
-+ */
-+struct xe_watch_notification_vm_err {
-+	struct watch_notification base;
-+	u32 vm_id;
-+	s32 error_code;
-+	u64 timestamp_ns;
-+};
-+
-+/**
-+ * xe_watch_queue_ioctl() - Subscribe a pipe to per-file device event notifications
-+ * @dev: DRM device
-+ * @data: pointer to &struct drm_xe_watch_queue from userspace
-+ * @file: DRM file handle of the subscribing process
-+ *
-+ * Subscribes a notification pipe to receive Xe device events for the calling
-+ * process's file handle.  Only events scoped to this file (e.g. VM error on a
-+ * VM owned by this file) are delivered.  The pipe must have been opened with
-+ * O_NOTIFICATION_PIPE and sized with %IOC_WATCH_QUEUE_SET_SIZE before calling
-+ * this IOCTL.
-+ *
-+ * Return: 0 on success, negative errno on failure.
-+ */
-+int xe_watch_queue_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-+{
-+	struct xe_file *xef = file->driver_priv;
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct drm_xe_watch_queue *args = data;
-+	struct watch_queue *wqueue;
-+	struct watch *watch;
-+	int ret;
-+
-+	if (XE_IOCTL_DBG(xe, args->flags || args->pad))
-+		return -EINVAL;
-+	if (XE_IOCTL_DBG(xe, args->watch_id > 0xff))
-+		return -EINVAL;
-+
-+	wqueue = get_watch_queue(args->fd);
-+	if (XE_IOCTL_DBG(xe, IS_ERR(wqueue)))
-+		return PTR_ERR(wqueue);
-+
-+	watch = kzalloc_obj(*watch, GFP_KERNEL | __GFP_ACCOUNT);
-+	if (XE_IOCTL_DBG(xe, !watch)) {
-+		ret = -ENOMEM;
-+		goto out_put_queue;
-+	}
-+
-+	init_watch(watch, wqueue);
-+	watch->id = 0;
-+	watch->info_id = (u32)args->watch_id << WATCH_INFO_ID__SHIFT;
-+
-+	ret = add_watch_to_object(watch, &xef->watch_list);
-+	if (XE_IOCTL_DBG(xe, ret))
-+		kfree(watch);
-+
-+out_put_queue:
-+	put_watch_queue(wqueue);
-+	return ret;
-+}
-+
-+/**
-+ * xe_watch_queue_post_vm_err_event() - Post a VM error event
-+ * @xef: xe file handle that owns the VM
-+ * @vm_id: userspace ID of the VM that hit error
-+ * @error_code: error code describing the error condition (negative errno)
-+ *
-+ * Posts a %DRM_XE_WATCH_EVENT_VM_ERR notification carrying @vm_id and
-+ * @error_code to every pipe that @xef has subscribed via
-+ * %DRM_IOCTL_XE_WATCH_QUEUE.  Only the owning process is notified,
-+ * preventing information leaks to other clients.
-+ */
-+void xe_watch_queue_post_vm_err_event(struct xe_file *xef, u32 vm_id,
-+				      int error_code)
-+{
-+	struct xe_watch_notification_vm_err n = {};
-+
-+	n.base.type    = WATCH_TYPE_DRM_XE_NOTIFY;
-+	n.base.subtype = DRM_XE_WATCH_EVENT_VM_ERR;
-+	n.base.info    = watch_sizeof(struct xe_watch_notification_vm_err);
-+	n.vm_id        = vm_id;
-+	n.error_code   = error_code;
-+	n.timestamp_ns = ktime_get_ns();
-+
-+	post_watch_notification(&xef->watch_list, &n.base, current_cred(), 0);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_watch_queue.h b/drivers/gpu/drm/xe/xe_watch_queue.h
-new file mode 100644
-index 000000000000..ad199ee68205
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_watch_queue.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_WATCH_QUEUE_H_
-+#define _XE_WATCH_QUEUE_H_
-+
-+#include <linux/types.h>
-+
-+struct drm_device;
-+struct drm_file;
-+struct xe_file;
-+
-+int xe_watch_queue_ioctl(struct drm_device *dev, void *data,
-+			 struct drm_file *file);
-+void xe_watch_queue_post_vm_err_event(struct xe_file *xef, u32 vm_id,
-+				      int error_code);
-+
-+#endif /* _XE_WATCH_QUEUE_H_ */
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 8d5e3f06b8d4..0083dd712f7e 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -86,6 +86,7 @@ extern "C" {
-  *  - &DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY
-  *  - &DRM_IOCTL_XE_VM_GET_PROPERTY
-  *  - &DRM_IOCTL_XE_VM_RESTART
-+ *  - &DRM_IOCTL_XE_WATCH_QUEUE
-  */
- 
- /*
-@@ -112,6 +113,7 @@ extern "C" {
- #define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0e
- #define DRM_XE_VM_GET_PROPERTY		0x0f
- #define DRM_XE_VM_RESTART		0x10
-+#define DRM_XE_WATCH_QUEUE		0x11
- 
- /* Must be kept compact -- no holes */
- 
-@@ -132,6 +134,7 @@ extern "C" {
- #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
- #define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
- #define DRM_IOCTL_XE_VM_RESTART			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_RESTART, struct drm_xe_vm_restart)
-+#define DRM_IOCTL_XE_WATCH_QUEUE		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_WATCH_QUEUE, struct drm_xe_watch_queue)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -2653,6 +2656,48 @@ enum drm_xe_ras_error_component {
- 	[DRM_XE_RAS_ERR_COMP_SOC_INTERNAL] = "soc-internal"		\
- }
- 
-+/**
-+ * DOC: DRM_XE_WATCH_QUEUE
-+ *
-+ * Subscribe a notification pipe to receive device events for the calling
-+ * process's DRM file handle.  Events are scoped to the subscribing file:
-+ * only events that belong to that file (for example, VM error on a VM created
-+ * through the same file) are delivered, preventing information leaks between
-+ * processes sharing the same GPU device.
-+ *
-+ * The pipe must first be opened with O_NOTIFICATION_PIPE (i.e. O_EXCL passed
-+ * to pipe2()) and sized via %IOC_WATCH_QUEUE_SET_SIZE before subscribing.
-+ *
-+ * Events are delivered as notification records read from the pipe.  The
-+ * @watch_id field is embedded in the notification info field and can be used
-+ * to distinguish multiple watches sharing a pipe.
-+ *
-+ * Currently defined event subtypes:
-+ *  - %DRM_XE_WATCH_EVENT_VM_ERR - a VM owned by this file has encountered an error
-+ */
-+
-+/**
-+ * struct drm_xe_watch_queue - subscribe to device event notifications
-+ *
-+ * Used with %DRM_IOCTL_XE_WATCH_QUEUE.  Notifications are scoped to the
-+ * DRM file handle used to issue this IOCTL.
-+ */
-+struct drm_xe_watch_queue {
-+	/** @fd: file descriptor of pipe opened with O_NOTIFICATION_PIPE */
-+	__u32 fd;
-+
-+	/**
-+	 * @watch_id: identifier (0–255) embedded in the watch notification
-+	 * info field; allows multiplexing several watches on one pipe
-+	 */
-+	__u32 watch_id;
-+
-+	/** @flags: must be zero */
-+	__u32 flags;
-+
-+	/** @pad: reserved, must be zero */
-+	__u32 pad;
-+};
- #if defined(__cplusplus)
- }
- #endif
-diff --git a/include/uapi/drm/xe_drm_events.h b/include/uapi/drm/xe_drm_events.h
-new file mode 100644
-index 000000000000..6cc7528bfb9b
---- /dev/null
-+++ b/include/uapi/drm/xe_drm_events.h
-@@ -0,0 +1,62 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _UAPI_XE_DRM_EVENTS_H_
-+#define _UAPI_XE_DRM_EVENTS_H_
-+
-+#include <linux/types.h>
-+#include <linux/watch_queue.h>
-+
-+#if defined(__cplusplus)
-+extern "C" {
-+#endif
-+
-+/**
-+ * enum drm_xe_watch_event - Xe device watch event subtypes
-+ *
-+ * Subtypes for notifications delivered via %WATCH_TYPE_DRM_XE_NOTIFY when
-+ * reading from a pipe subscribed with %DRM_IOCTL_XE_WATCH_QUEUE.
-+ */
-+enum drm_xe_watch_event {
-+	/**
-+	 * @DRM_XE_WATCH_EVENT_VM_ERR: a VM has encountered an error.
-+	 *
-+	 * Indicates that a fatal or resource error occurred within the given
-+	 * VM.  The vm_id of the affected VM is carried in the
-+	 * @drm_xe_watch_notification_vm_err::vm_id field of the extended
-+	 * notification record.
-+	 */
-+	DRM_XE_WATCH_EVENT_VM_ERR = 0,
-+};
-+
-+/**
-+ * struct drm_xe_watch_notification_vm_err - VM error event notification
-+ *
-+ * Notification record delivered for %DRM_XE_WATCH_EVENT_VM_ERR.
-+ * The record type is always %WATCH_TYPE_DRM_XE_NOTIFY and the subtype is
-+ * %DRM_XE_WATCH_EVENT_VM_ERR.
-+ */
-+struct drm_xe_watch_notification_vm_err {
-+	/** @base: common watch notification header */
-+	struct watch_notification base;
-+
-+	/** @vm_id: ID of the VM that encountered an error */
-+	__u32 vm_id;
-+
-+	/** @error_code: error code describing the error condition (negative errno) */
-+	__s32 error_code;
-+
-+	/**
-+	 * @timestamp_ns: CLOCK_MONOTONIC timestamp in nanoseconds at the
-+	 * point the error was detected
-+	 */
-+	__u64 timestamp_ns;
-+};
-+
-+#if defined(__cplusplus)
-+}
-+#endif
-+
-+#endif /* _UAPI_XE_DRM_EVENTS_H_ */
--- 
-2.54.0
-
+>
+>> ---
+>> Note: I realized this while reviewing the workaround database for
+>> Xe3p_LPG against our current driver code.  There could be more cases
+>> for other IPs.
+>> ---
+>>  drivers/gpu/drm/xe/xe_wa.c | 6 +++---
+>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+>> index 635d5461f712..139434946f8f 100644
+>> --- a/drivers/gpu/drm/xe/xe_wa.c
+>> +++ b/drivers/gpu/drm/xe/xe_wa.c
+>> @@ -293,7 +293,7 @@ VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was = XE_RTP_TABLE_SR(
+>>  	  XE_RTP_ACTIONS(SET(MMIOATSREQLIMIT_GAM_WALK_3D,
+>>  			     DIS_ATS_WRONLY_PG))
+>>  	},
+>> -	{ XE_RTP_NAME("14026144927, 16029437861"),
+>> +	{ XE_RTP_NAME("14026144927, 16029437861, 14026127056"),
+>>  	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)),
+>>  	  XE_RTP_ACTIONS(SET(L3SQCREG2, L3_SQ_DISABLE_COAMA_2WAY_COH |
+>>  			     L3_SQ_DISABLE_COAMA))
+>> @@ -587,12 +587,12 @@ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
+>>  
+>>  	/* Xe3p_LPG*/
+>>  
+>> -	{ XE_RTP_NAME("22021149932"),
+>> +	{ XE_RTP_NAME("22021149932, 14026290593"),
+>>  	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0),
+>>  		       FUNC(xe_rtp_match_first_render_or_compute)),
+>>  	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, SAMPLER_LD_LSC_DISABLE))
+>>  	},
+>> -	{ XE_RTP_NAME("14025676848"),
+>> +	{ XE_RTP_NAME("14025676848, 14026270459"),
+>>  	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0),
+>>  		       FUNC(xe_rtp_match_first_render_or_compute)),
+>>  	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, LSCFE_SAME_ADDRESS_ATOMICS_COALESCING_DISABLE))
+>> 
+>> ---
+>> base-commit: 10db0c83b0ccc3211990b54235475abb9d383851
+>> change-id: 20260610-add-missing-wa-references-c58331fb7e55
+>> 
+>> Best regards,
+>> --  
+>> Gustavo Sousa <gustavo.sousa@intel.com>
+>> 
+>
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
