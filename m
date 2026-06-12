@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 685FFCD98CC
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 04:06:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D92ACD8CA8
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 04:13:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0956A10E925;
-	Fri, 12 Jun 2026 04:06:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bNyyt42X";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83DB310E597;
- Fri, 12 Jun 2026 04:06:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781237173; x=1812773173;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=g69ZryowtDUXO1TZ+BQdITMO8BLQPhpUeOZQ16u2qhI=;
- b=bNyyt42XPst2/a8HOJtTdRS6tqxEGBy0H2FR6gL8bgk75yEvYnoInGzf
- W/4VnOxvE5ieIqoQBiBurEmVmZmeuCEQu7okAnJWX7k3+PHGD5NYwZb7N
- 6d+0HnEOG1rlneRYaxbaZRPo9FLrySWODwu3LiHRzJkIaZoL6VXCmTlOM
- cBP/Udjs0o5KaYFiSG29dHIxfU/SJvh0ILebtNlCskvhSNKnJMGt7Yk8n
- wZ0qi/jfNDVonOtLe9eVc5kPrZ95uHW1v5wMN9Vyp47B1AGPKVvO468VW
- ts5QEDL6pIJ89SdDLOwIYNj/6s5tomY/V64Cnr5ftMjz155nZ6SKaXzd2 Q==;
-X-CSE-ConnectionGUID: E2N8hiKHTqSN7muMXia0Ww==
-X-CSE-MsgGUID: 5znsCwmeTvS7HlQkmVWTDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="93555703"
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="93555703"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 21:06:10 -0700
-X-CSE-ConnectionGUID: PPba/vuUSceESqZYdUt2FQ==
-X-CSE-MsgGUID: JxYbCjspS5ei0lt14rNMqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="276902801"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 21:06:08 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, animesh.manna@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915/alpm: Move the check for PSR and Fixed RR in
- compute_config_late
-Date: Fri, 12 Jun 2026 09:18:27 +0530
-Message-ID: <20260612034827.1528743-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379DC10F229;
+	Fri, 12 Jun 2026 04:13:50 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54C4110E92D;
+ Fri, 12 Jun 2026 04:13:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7493835137053480102=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_make_CTX=5FTIMEST?=
+ =?utf-8?q?AMP_TOCTOU-safe_and_handle_sentinels?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gajendra Uttamchand" <gajendra.uttamchand@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Jun 2026 04:13:49 -0000
+Message-ID: <178123762934.71849.15658330051089796565@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260612032745.179673-4-gajendra.uttamchand@intel.com>
+In-Reply-To: <20260612032745.179673-4-gajendra.uttamchand@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With optimized guardband, we need to take into account LOBF requirements
-via intel_alpm_lobf_min_guardband().
+--===============7493835137053480102==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Currently, we set has_lobf based not only on whether it is supported, but
-also on whether PSR/fixed RR are ON. Since these features can switch ON and
-OFF seamlessly, this may cause LOBF to change, resulting in a change in
-guardband requirements, and eventually to a full modeset.
+== Series Details ==
 
-To avoid this, always account for LOBF if it is supported, in the
-encoder->compute_config() stage. For this, allow has_lobf to be set
-irrespective of PSR/Fixed RR. Later, in the encoder->compute_config_late()
-stage, use the PSR/Fixed RR checks to set has_lobf to the final value.
+Series: drm/xe: make CTX_TIMESTAMP TOCTOU-safe and handle sentinels
+URL   : https://patchwork.freedesktop.org/series/168394/
+State : success
 
-Move the PSR/Fixed RR checks from intel_alpm_lobf_compute_config() to
-intel_alpm_lobf_compute_config_late(), where we already account for other
-LOBF constraints.
+== Summary ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+CI Bug Log - changes from xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8_BAT -> xe-pw-168394v1_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index c6963ea420cc..b7cab744d0ea 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -291,6 +291,12 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
- 	if (!crtc_state->has_lobf)
- 		return;
- 
-+	if (crtc_state->has_psr)
-+		return;
-+
-+	if (!intel_vrr_is_fixed_rr(crtc_state))
-+		return;
-+
- 	if (!intel_alpm_lobf_is_window1_sufficient(crtc_state)) {
- 		crtc_state->has_lobf = false;
- 		return;
-@@ -343,11 +349,7 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 	if (!intel_dp->as_sdp_supported)
- 		return;
- 
--	if (crtc_state->has_psr)
--		return;
--
--	if (!intel_vrr_always_use_vrr_tg(display) ||
--	    !intel_vrr_is_fixed_rr(crtc_state))
-+	if (!intel_vrr_always_use_vrr_tg(display))
- 		return;
- 
- 	if (!(intel_alpm_aux_wake_supported(intel_dp) ||
--- 
-2.45.2
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8 -> xe-pw-168394v1
+
+  IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8: d931e7b381f9d86766f3a971a9376e4312745af8
+  xe-pw-168394v1: 168394v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v1/index.html
+
+--===============7493835137053480102==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: make CTX_TIMESTAMP TOCTOU-safe and handle sentinels</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168394/">https://patchwork.freedesktop.org/series/168394/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8_BAT -&gt; xe-pw-168394v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8 -&gt; xe-pw-168394v1</li>
+</ul>
+<p>IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8: d931e7b381f9d86766f3a971a9376e4312745af8<br />
+  xe-pw-168394v1: 168394v1</p>
+
+</body>
+</html>
+
+--===============7493835137053480102==--
