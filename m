@@ -4,154 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F61CD98CE
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 16:32:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D118DCD98CE
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 16:35:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 256B110EAA1;
-	Fri, 12 Jun 2026 16:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3E110EAA1;
+	Fri, 12 Jun 2026 16:35:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BIphAXyi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hw4qJtyD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 364FF10EAA1;
- Fri, 12 Jun 2026 16:32:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE85E10EAA1
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 16:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781281965; x=1812817965;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=fLZwlvUm9FJa8ziy2HjPC4Rd3gktLvhyFsyE5Tu+eO8=;
- b=BIphAXyi6DRpXPAAXluDV429U1vj/McuIWITRV7U6vZvcGlE7IbbYKcE
- gHP8UTx/0i1SAQqetDsBKxHvMH+E7sXwc/20xwBCfAWQoje963SJYLoVJ
- 1JVbloR8+p/inXDLrUXbknYINHkT9B8+mn+VFmZ3VzfTkF99MfxnuciG8
- zebmfvPE/PGMNhFyDnaMxU2szcWtxcg0Vh75IzBWxnQFU6WRNiNzdZhw6
- 0VhBoQadAV6tN6Cc0AUhNCL+3vK2MWQksi+PpVbKN/m2Za08BfBiLAW03
- gB25lj0fnQ0XxxcDcYNDzxSoqwZerGHEjLKxlEsVdDtYz1CXtsiEFtlwm g==;
-X-CSE-ConnectionGUID: Y/+Nh55rT6qwqNr9KDjKWg==
-X-CSE-MsgGUID: XLcIqwiiQFeLSs4Wekfc6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="82305739"
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="82305739"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 09:32:45 -0700
-X-CSE-ConnectionGUID: TUUbB3eZSRWw8c1LUuXrnA==
-X-CSE-MsgGUID: kb1PgLKKSX+vO7U4C7jwGQ==
+ t=1781282149; x=1812818149;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=CmYqYkhQpT2uVl7unsD/sl7YGuDuvIZ8feQRXcWzREA=;
+ b=hw4qJtyDinGliDchAeKxztNrceeuXFYFelOn5ZrSRDhULvF2fLIaFHJE
+ uBX2CC9Wnw6Eu9+BFEltJfl47oeyeERHgBc/PgxQ6T6CSWNO/Ko/0FEs/
+ olpUSns7bcGTZchrZB0oJsR1i4n7Fbdn4nN7ORmg4qkEljfDzZ1aV9oAZ
+ Dy/B/c8vT9tOt5N2F6nR0osV04Fq7lITJ4q/OZGfLMXMb08N8wzBZd83U
+ mMSDQiCg3KbGy++O0FcCaZpwGIoOylMR+U55Rlqmx3Zviugbyl45q89+b
+ Fwr9C9ykf6Gweb4dzsVliPxnJJFhk+5qM3dbrCBt9Jxgk9xa0bOPA+5pr A==;
+X-CSE-ConnectionGUID: 5i/q3SOTSZ+66t7rV+0adQ==
+X-CSE-MsgGUID: 7+qSkSJ9TROhaV52v2ifng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="93229261"
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="93229261"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 09:35:48 -0700
+X-CSE-ConnectionGUID: B3in1DXRSHihQHPXEVj44w==
+X-CSE-MsgGUID: nOnUmk+3QEmk9tjpvlsEtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="245751149"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 09:32:44 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 09:35:48 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 12 Jun 2026 09:35:47 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 12 Jun 2026 09:32:43 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 12 Jun 2026 09:35:47 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.41) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 12 Jun 2026 09:32:43 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.52) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 12 Jun 2026 09:32:42 -0700
+ 15.2.2562.37; Fri, 12 Jun 2026 09:35:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mjDHBsyCyUeJDPkZ33hCMOKGPR62MlVkfSSiSafIH1YRryVxl8BK2Ah9m/KRHLxb8dfIvZB8lQWdtUmJheGHnQ++rx0y0VnzU5Zq+12CXAMMKmM5mmk8VGNx3sUWK7fUhFSks1AVqt5yf9JXThafeXXNEBLG869gp9tb8cOeZ51Lx1P7N/0pohJFZmXNgfTCEo7Po/7uSCEhesdp2awu11rFL0v32q6cmlJ1vkKwyx47SHgntGKu4WUpMalzaVCHbFuQKlQmCeRNZTht/y3eQ56Nv9b/5Jg18TC5tvLBLsa1bSarPaA4LbiT/BwThaknpaqnNH6eW0mzja6lFd2OqQ==
+ b=VciJ7sdHQWyht/n3AOrHhDoPaByGT+7JU8ZAyy2ocfF000hHFtpMuGktJbdUdHNWX2CdPxN4KVgxY7J8iig7OPeSti5xUJ58o1lOYT1xN6T97exJk09fx/XzaxbMOULxDeZQ3t2Bq6xCm9coZJ1pLbvJYeNa126kTCDBz78R73UC30D2CanMIzTeIwh17V44vbEFT0GopndV6qLvxy7S+32bpPgEnxkYaEmlO/I0q8KyRRK2rHrAYK0SHN/8FZlQHq+9jkTaLgrogJBGXbLVBwbLmR9O/u83MrLmXKnSlsHBaQxVcSpI5/SPzWR6VQCQkxTeTxMEntPS5emlpIbcOQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y59Jahga/PKwFJLwoBH1cZhOeW9ZgVLEaAU/vEXH4Bs=;
- b=glok0c85MYgfy0A/bDDlFC5TAphXbqgKhHYr8JE5d1R6IdsEA7rVzZ9frd/o9M5hY3RpTC9DUi8gyFlrVb9z8/IHD0xtYtUsNJcb+CaDeUs8QPNEcLMF50nN90jMdfeKD8z70H79FarBiFIJ/f6Vv4bnFABCUjMBnXYXH91kvRPh7DRa8mDpbCxw5nDH3ooYsQUW8y9MQn+PTsA3JqnFa1IGmAXfHgPZBKcjDBvrzhDkpjlw6Y07BwIvnf3yTA8Hf9H4hy1cqFPuUui1b8UQfLATYNrMIKrBkDVWFRh65BA5EqRpRA27CfSisEYHjOSBsJP6udihGz+vqcBM29yl3A==
+ bh=WdwunQdqKGNe/X2Fc/30XOrzfg7Byd46UEe1/DmDXWk=;
+ b=b5X0Vl8Jr6j0NeKIOAET+ZC5tDjcJqxfAGzdsCzFOXPu6tmOnNu1sbSUU/sBT5FvnZB9EacuKgksIYz+ZVeX25czKiTHVPPf/sBxnPUZs5ZPTobDUiTfcQVhIWgQ6smikU46nAN59MnI47RY4I9xgRxf/Bkl47Cj6B6ORiEibY6dayHDjVJ15fm8RQ+67/kq1FilviVAbRxeyHZQ6ptQ0YSNDZXZMQJmaXR9T3sB2zT5HPWz8ItiI5xW8vK8iRT2CdDRAwkpEPsWCSn59BmWKr4juctN0Ak/6yQW8gdQIjJnIyLyNGaY5QMNlydmZt+8TRuwqsq44uju5C58RlWYgw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
- by IA1PR11MB8149.namprd11.prod.outlook.com (2603:10b6:208:447::7)
+Received: from PH8PR11MB8040.namprd11.prod.outlook.com (2603:10b6:510:238::11)
+ by IA0PR11MB8378.namprd11.prod.outlook.com (2603:10b6:208:48e::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Fri, 12 Jun
- 2026 16:32:40 +0000
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0092.017; Fri, 12 Jun 2026
- 16:32:40 +0000
-Date: Fri, 12 Jun 2026 19:32:33 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>, Ville
- =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Chaitanya Kumar
- Borah <chaitanya.kumar.borah@intel.com>, Nicolas Frattaroli
- <nicolas.frattaroli@collabora.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH 1/3] drm/i915/dp: Prefer DSC over a 6 bpc uncompressed
- output
-Message-ID: <aiw0oaqf6Obrg054@ideak-desk.lan>
-References: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
- <20260610174413.5881-2-alexander.kaplan@sms-medipool.de>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260610174413.5881-2-alexander.kaplan@sms-medipool.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GV3PEPF0001DC25.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::10f) To IA3PR11MB9273.namprd11.prod.outlook.com
- (2603:10b6:208:573::17)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|IA1PR11MB8149:EE_
-X-MS-Office365-Filtering-Correlation-Id: c8aeb8a3-8ca5-4f16-2184-08dec8a03862
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|23010399003|1800799024|18002099003|3023799007|4143699003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: iiUJKRCL4wmeRnu78UyXybpawYe8fqh+p8cJsjCYZSEvPTh2wexPbmiVzHZUi7NAukqgMFujW6tTGrWGF5PAcYBNawLAfC31ccHBLs9kRGNpJbpanhWmDZ4p+gHhxmvF+pgMFwxwdTDeHruOnFJXu7oNW8MO++J0mPyZRpoY7Mpz61n4oQz6JTtWtuyMquyyGlSPnUhgjFgaii/dKohZemG/pEf3L1bioJLXpI2VxZFjM6EX8mhMqOaajyJZqEZuWCCi3/hod/ko+jcY6MdAycD7iAgz51Rme1DbzJvgq7XjFIh7CTsAChCpwywtViRT+h8qiODxTDzH0zqpAZCuMLun2AlgA5aoJEoEVT+cOKG3hDStXCVOA2KI3jQ1STI/tuOR4vP2+A0oc21UlZHxGxpC60fUzwR5VzNIf2YAgMNR/SQImLNrYCGqiXIK3vvft7T5Jeq6n5g3BWJOpgapobPF3fh+nXFBG2v8+Mw7Cky/CN8U04f8VIddIcSpwI8Pm95CRupJnhYMZF32M1bARDg3jfLSjTGxDbEo5e53sfBJoUcVTTJ1hR2MRB2OemPpzC1d3ekg5XbWu7fr2Z975ysDYmot5xvJVSnx3ZXKZ7pv+SEbNK59nhyz2NVAB1555ElbFvP8Tb34H5JgvliUS4y8u7OE92SH+SM1cNav6OredKAYjbg6/C9qmBx3Efyt
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(18002099003)(3023799007)(4143699003)(22082099003)(11063799006)(56012099006);
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.18; Fri, 12 Jun
+ 2026 16:35:41 +0000
+Received: from PH8PR11MB8040.namprd11.prod.outlook.com
+ ([fe80::89bf:2274:1371:50c5]) by PH8PR11MB8040.namprd11.prod.outlook.com
+ ([fe80::89bf:2274:1371:50c5%5]) with mapi id 15.21.0092.011; Fri, 12 Jun 2026
+ 16:35:40 +0000
+From: "Yao, Jia" <jia.yao@intel.com>
+To: "Brost, Matthew" <matthew.brost@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Wang, X" <x.wang@intel.com>
+Subject: RE: [PATCH] drm/xe: Disable scheduling early on FD close to avoid CAT
+ error cascade
+Thread-Topic: [PATCH] drm/xe: Disable scheduling early on FD close to avoid
+ CAT error cascade
+Thread-Index: AQHc+iOUnHoYz4J17U2ldRFxAArnerY7HZLw
+Date: Fri, 12 Jun 2026 16:35:40 +0000
+Message-ID: <PH8PR11MB80406CC88853B0C439BBFADEF4182@PH8PR11MB8040.namprd11.prod.outlook.com>
+References: <20260612042548.3740605-1-matthew.brost@intel.com>
+In-Reply-To: <20260612042548.3740605-1-matthew.brost@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH8PR11MB8040:EE_|IA0PR11MB8378:EE_
+x-ms-office365-filtering-correlation-id: ab07f898-78a3-4f10-46e8-08dec8a0a43c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|42112799006|366016|23010399003|38070700021|22082099003|18002099003|6133799003|56012099006|11063799006;
+x-microsoft-antispam-message-info: 3+T1OILBdVrHilazvTfpEdw6VWC5AErT7kZ36dNw3kkiowHQ+nblEvUsS8mAAed0BGRPZ88FyYxPg0vRODIxfr5A5oRfwBbmPQJo5P1zNFQkUqIRS5ID3BonCzuM10hnSXtEz0T7dOcJDSkibyuCE2GXQk8y/Gcy962LsoARnpIw68EXoqu15taOOs6fZa95YDh/od5SGceOcWi4Aykw6TWiOaT2UipwKShVF23XsljTzWCTJCD4HIAH3s81AwYKpxlt6hsl5OV2nIUjBS3Ira3QOvaQeEJ98WTfimKysPD/NkgTwhIE4PE6yEa7mphnIc3w/uZcS8UPCfQc4BYNcAP8REwgnsQGC/r9H5v8r266elNw8wnVmElh6dsPKbwR6E5v28QNs/UgAuXMrd7zFNGBCPuD8Fdko31Lm7/rn4wjo5JU2LSwo/5eXmtqs/eyJkiiOKivxUO1N1UPANLtgTJIjoCq8bCLfa0HwSIUNIEKdf7vswYsxbuZZLexOEPNdCB7kgPxeHWyrvoyAQykb6f0NadLtZY90O9I9zPSGJv0++8IULhaVqZXnyeBO7PWvdWVcc5zb9S4pZ75k/uU3FS2xCNZNTr4xrkm2JdntyZxayBLAVEup7DfvfXtc77FJEsK5H/+ezcDMPCNJ0ymXajE+aPGKbRQ1eR0HJ9KjTTK5Wv5fZuNOKsxp9ndxFAC+aIrqnZlHGYqEX7cv5r1o6kbYR/fEXyfyr5fqoLRHs6ZA4imZfb+wJ3acHBjuYGb
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8040.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(42112799006)(366016)(23010399003)(38070700021)(22082099003)(18002099003)(6133799003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?9FHUi498F+ASbS8cvjDVe5BlNcDEVn6Q9YXCH4BCPnS9BtYZOcgfY4F/8r?=
- =?iso-8859-1?Q?0zxHKaoON6bqy4gc3o4llGlfX/BaBFOzOKOI3ScITjyfKJ91hD7hZNbdKr?=
- =?iso-8859-1?Q?wt7PLsniA4/KlENoc/uajVNjVFR6FEKiBglcpCKrcwCORiGC6J89CBZieH?=
- =?iso-8859-1?Q?zjQKIUvg+ul8koRmXHgYKwzoVlbPzOlEFWv3o2m6zaMx+57sAFh0QyfKoB?=
- =?iso-8859-1?Q?f0sCM12PnNFnVRAlwyEnek7kxhWdnqj2wQKdF0Qw0CgJPd9ANwSKFxzhQ/?=
- =?iso-8859-1?Q?NWOX4xl2mdYpf8hNpEhjQBgMY5PAaK0HjD95ozpFnQVPGqXC10h6Z24HYX?=
- =?iso-8859-1?Q?etUrnQdY78XASFquZsDtD707Oxg2xGbwWyTcVmTPmMyfA0ZpkbfzXykDhR?=
- =?iso-8859-1?Q?RfbcZ+C1pqeD6s+PbTNv4M7JcTfzK5FmIpg8/Zwr8rzFi5wRD7UnfhZq9u?=
- =?iso-8859-1?Q?GMFcqs7VfRW0AGUogD7qsC3qz0tFoxHby/qFemceX2p7YOca22Ap9e6/OC?=
- =?iso-8859-1?Q?bK31KqiQOsoOMqtb0N8HeLv+RMoWBiK22UFkymN9di3/4CogW1JpCf3yu0?=
- =?iso-8859-1?Q?kgD44MOCBSxv+0CmvImNu3a2QAKgG5ZhI8eg16khWRggUUQ8spN6eb2tgi?=
- =?iso-8859-1?Q?/R3gLT8M1rxsDIosAyJc+4iWf+G8G7TFhpmjLGf6NtvTxDpbXAhnju8w5U?=
- =?iso-8859-1?Q?jIK/HxBBkRSN6iImf+lcrMwJjSfircBrdR9Lecuh8hDow1XOHzqrRW4F97?=
- =?iso-8859-1?Q?hHGDTXLj/6sAOlY82zt0YqX/+1X3XTFRT2pzyMmQA5e7hjcSxGDx8Qaqh6?=
- =?iso-8859-1?Q?4wnMcQQJAlzZL49E7agtQx5AVEA1sKPjrf52BTLSoyHGI4PIz5nc7yPx1t?=
- =?iso-8859-1?Q?p/7C9X142whRAtxkZW05sU4BKMtfoJ34aPwvt0SXpmkeAPnS98hGCgpWLs?=
- =?iso-8859-1?Q?0dlhbHpWeY/lgbMsHrVjHbxsG/h3KkgPsbz7rZqZ21VFseH/0ChM9QKHUk?=
- =?iso-8859-1?Q?MAm2woBEGQf6Glm2Apmji28I5w8rPuR74lgGb+7x7usu6LwaVuohIIhpER?=
- =?iso-8859-1?Q?suhX8mhMs48Rd1z79rzE2nMXh1/vLhBqCIlMIonIrU7Lj26i2VQwdn9WYb?=
- =?iso-8859-1?Q?b+QFXKntKpxD8a2XUo0anspIJ838Z4JLbULFRlySYZhVImNEyTYHWk1EX2?=
- =?iso-8859-1?Q?xl+uFuy9QqvbmM6PPFOQV30JmTdPeSsNm9gtMKTz8yIF9EzrrOP+lBLd9c?=
- =?iso-8859-1?Q?XW16uDLUnKrKxKzwUvmriZ8MPJjPhRgzwZdT8n04nz+7jY2Gt/c57ta5yj?=
- =?iso-8859-1?Q?8N/HY3/PKKIWMitHwdYggn7Lw3n3XA+Krs3Basl3yFRCOQD4Rj+OVSooGt?=
- =?iso-8859-1?Q?crxDbp+eiYY/2RhAJ+m7FeR+wKP+rBj00oMK34bab7efVYnwTdU3LoM1MH?=
- =?iso-8859-1?Q?B78vqcq/ba8swGfvWZwytHaOPHV0paoyzNniVx2YSqVVanEEuRRy0ygorL?=
- =?iso-8859-1?Q?h8yZjlCWS5df/Na1B9O1BhYxtgnAE4MMV02JjtTsIoeE2d/+03KkhOXHN2?=
- =?iso-8859-1?Q?7/YbCLrCghSSfTEpmi5am2cRTq81HREqrL7xVTc14ZeqP6xEYXY4y0e4Yj?=
- =?iso-8859-1?Q?VAOOpmNWJMdlmOb6AwP515FJu8c/6jJxT97vAZrc7rUhvl3z2qxQTkC8GU?=
- =?iso-8859-1?Q?3U7h255+0bIe9Ih+KiPK3t+lVy+woUyzBKWdhafDyH7/PdOpejaRk0ZtjM?=
- =?iso-8859-1?Q?q6JlxHRrQMgD1Ti0Ro+YSJuY/eKNtfO1IxpNUgHBPIycGs4eYIK9ui8DpZ?=
- =?iso-8859-1?Q?InxpOJ1rng=3D=3D?=
-X-Exchange-RoutingPolicyChecked: qUtGFapabjGY3KJvS1DahRuh/KNF/onPuLtcK7EkjL2JLIvQgSGLTo5o1locjdk+wySz7qPf1WdMJejwkrZykYUqu9+6B27xGUNdFlVXT5K9PAD+05FnfaYTptuQgik8UnkOSGwnyupoWygnTBST7cEugBiPM0f+OLkppfQgAWQuHh7UaR1TvW0wmc2mZMj+Y7SE+LOwDQpDRaueHa03sBitEoiGWDupspnO/Z2sERg0L9fW3a5/X2tw92x+EYVWb2HZ2+U4OR+ppEF2x8orTJ0hm12k2NR5hu8auutNX7wOm6qKQTLBOhu38YGRpL8TdOVcWIJZlrBvw0PU8CKdJg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8aeb8a3-8ca5-4f16-2184-08dec8a03862
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UNRntxvtdlfxit/f6BaXUBHEx3MkaW2VueVCbOb1eyHcTZGtgbWpo1HXF/wN?=
+ =?us-ascii?Q?Q9YVzVxBleDKZVh1wML+LLwpzlWa0Q6EwEotiMQlWuvMxsOSLxGHKWoKGCtO?=
+ =?us-ascii?Q?fsuSRvkdZ+0AIu1iZJLw8Z+5cj8ap/3K7MmiJwAXgyScNK176Eccw2OZ9kgQ?=
+ =?us-ascii?Q?ldu6RTy99uPH7zfbEkdbWWVa1tUIW212BzIxly32Ep/YhSFf0T8KWQ0tEI0T?=
+ =?us-ascii?Q?VXmNfkGqZIA2gHZRxqAcAfWXO6HCo2R0a8eF3ub4BRw3tFEIQ3ziGxtoYi0P?=
+ =?us-ascii?Q?z4CtCUu7g9zjlvQiy/Dy8SvSVFHCHEAFhP1VgFWj9x5ehx19TkSEJzKPul5a?=
+ =?us-ascii?Q?uhF4xFCCJghUZBs2BrkFUTaVr35Oq/h+c2lBSslJTPxqIxtR6Zf4zeXiGGO/?=
+ =?us-ascii?Q?m8QWQ3Hv0AjmymSiIaxhMYUerM7AV+pr/4/mUp+IbVZUmUDWHqHo/CMDNiII?=
+ =?us-ascii?Q?4aygj1mh5f5HOCB7YbNOIaxf8PYTBWuPxrlVsb5iK7LCnV7kyUVXkphha2VL?=
+ =?us-ascii?Q?kqtrr+gEAbADidTeYjzKzjMXdVG6cnN96EbMa4IJK9ZHdLIrESAhhVESP2qj?=
+ =?us-ascii?Q?QKP48xoORu/QvqLRVf2++m0hQpbH3rgYZOT49jG/fWNS+9BgW4UC3gr/gwa2?=
+ =?us-ascii?Q?ZL/Bzd1JMndRAFhshFgowe9ClEXsSR9ZXjvQQSzXKDZllg9MXkFRpzq+cmrT?=
+ =?us-ascii?Q?xFgci3jL9w5mZ2UmhXhXPSyr3EV3lCqSRGpiqgR7lHCCycDA7sYp997BtJAY?=
+ =?us-ascii?Q?SXO5tEGvONF5XXxBKR7pOVBVFckL0J4+MyNlmYu64tDSSTxuranS3onREVl6?=
+ =?us-ascii?Q?HS09DRsV/NW9lmAREK5QYhsmL0Tl9WZVyl/520bLjI44P8P4DVlHPt+SGJh4?=
+ =?us-ascii?Q?ly/Xcc4fhYr6SAtsjqr3QhtHAtDQJ8kgTscmGiIAXfkycDtayExAi3/nuEsG?=
+ =?us-ascii?Q?4f5TpvQs3G5jgFbMPjSpW0pyfAbrVQI8PzSEQdPdexq1Rq7MK7iwf2sHmKND?=
+ =?us-ascii?Q?Cg/8Umbv6QgpJdMrp5tw7DWqJrNvwYlB42ez/XSQuD+dRqCVMkUmupJSKr5e?=
+ =?us-ascii?Q?zt9XdBKne0ZVhZ0Vk9vPLHbefBSr3iw1MuLiJqAX/ICizWkXQerPHJzgcGJt?=
+ =?us-ascii?Q?Ku/h//vt3LPqAUKOPTT1XX2x65tp+lANZ12BFq9JOCuPnaK+BBkmlhDi94Y/?=
+ =?us-ascii?Q?Qe1j+gWqWbrNd5xG8hRNJj7uKSts9Szx/fpgGIDfZYLSe2Eg2eLW1PW6b1/i?=
+ =?us-ascii?Q?erbXSVxy2vNI7UTyT6Qb1XZqKlhDGI3BwjJvz907PPkHXUG8N/MvOZ+rQvwN?=
+ =?us-ascii?Q?P6NiGbwvKxAZBFfs0UOxtMGMJDOjcx4rSo7mDzDNlMk8E8FazfzDx2coVzcK?=
+ =?us-ascii?Q?U4kYM7Mgxh1BmE6m9HUBtK6965nSj3+oCPHBqhqyrtsVY+CSVl09/AeSSFU1?=
+ =?us-ascii?Q?zCQViXhPfxvsDvOsMTmPialvQwcK4ew/TCQwuVaEpUvDwcH0+TJwfP/RBEGe?=
+ =?us-ascii?Q?R4toBZWZdo76Apkg0JbKywLIw9esj6UAFyNty+HZRyo70RRHJFuaa28kvqMO?=
+ =?us-ascii?Q?0xBWdgZqZXqbXH5tSKKR8TL2IEUbO0qVqzg75DOdEXOnS66XshSSAwGg8qDM?=
+ =?us-ascii?Q?mLqvMf11cBBk0hDsYx8vYRtvXaPnNodZca2mBdbnYCzXgwWCxjMZvoxQg+2A?=
+ =?us-ascii?Q?d2S+vIj/eqbTBYOeWSTIrJi9Zi99QogR/mZioEC62ZgVlz9+?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: Rc/KTTPE1lgFMVs8WwATgXfg+gB3JZyCmHW/oa55o6rse3U0B5eGBssKet22VUI9p+6/az95MME7hoH7sqqbD9fzCooVxxZvfT01AGl4VME14tJdXmn8Ipt3fkrClgGFm+GnAoKBMJabzaTZuTNtyc6+wHmc0WzhLEEOqJ3f2zwRp5vB8UFp4yWy3bJIujw8NBqrRFV3VnXa1Pypxwynqey9ywq5VFe/TjK8ZA/WY8sMJghfW3Xg3LrkhT25iaTpJ3LncO/Nlm2QBvOoXbkarYocRiaYhyVPBQVmjo+41Kf1XhZRBjUvgxNZOCw4Qg42jBm2wYJtld0CuWviqPP5Gw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 16:32:40.1149 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gBxecpLCT2QHO0kkc1EsAcRnkrMB6L3JeC/p88VJbth8JmHDATo449yjXxLcd1F+4RGkSiZXsh4vGWORDWgd4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8149
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8040.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab07f898-78a3-4f10-46e8-08dec8a0a43c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2026 16:35:40.8354 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: r4A0buiiAxBVfmBjohXWbKiu7vnoyKQW+0geifV8KK8DpP0HLGWW9FITH35xMk9I3HhwlyNcMbhQaDKobnHX7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8378
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,95 +157,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 10, 2026 at 07:44:11PM +0200, Alexander Kaplan wrote:
-> For modes which fit through the link uncompressed only with a 6 bpc
-> pipe BPP, the link config currently selects 6 bpc with dithering even
-> if the sink supports DSC.
-> DSC with an at least 8 bpc input provides a better output quality
-> than a dithered 6 bpc output, so prefer it, following the pattern
-> commit ba49a4643cf5 ("drm/i915/dp: Set min_bpp limit to 30 in HDR
-> mode") uses for HDR: keep the uncompressed minimum pipe BPP at 8 bpc
-> if the sink supports DSC, making the uncompressed link config fail
-> for such modes and the mode fall back to DSC.
-> As there, if the DSC computation fails, the mode falls back to YCbCr
-> 4:2:0 where supported, or gets rejected.
-> 
-> Besides the output quality, some sinks can't even display a 6 bpc
-> stream at high pixel clocks.
-> Synaptics VMM PCON based DP to HDMI 2.1 adapters from two device
-> families (branch device IDs SYNAq and SYNAa) output corrupted FRL
-> timings for an uncompressed RGB 6 bpc 4k120 (1188 MHz) stream,
-> resulting in a black screen, while the same mode works with DSC
-> (12 bpc input) and 6 bpc works at lower pixel clocks.
-> Windows and macOS drive 4k120 on these devices only via DSC.
-> 
-> A lower bpc limit explicitly requested via the max bpc connector
-> property is still honored.
-> This keeps the current uAPI behavior (exercised by IGT kms_dither)
-> and provides an escape hatch for sinks with a broken DSC
-> implementation.
-> Sinks without DSC support keep falling back to 6 bpc.
-> 
-> Tested on PTL (xe) with the above PCONs and an LG OLED G4.
-> 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+This patch can extremely reduce the possibility of CAT error.
+
+Tested-by: Jia Yao <jia.yao@intel.com>
+
+> -----Original Message-----
+> From: Brost, Matthew <matthew.brost@intel.com>
+> Sent: Thursday, June 11, 2026 9:26 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Wang, X <x.wang@intel.com>; Yao, Jia <jia.yao@intel.com>
+> Subject: [PATCH] drm/xe: Disable scheduling early on FD close to avoid CA=
+T
+> error cascade
+>=20
+> When an FD is closed with many exec queues, teardown relies on the TDR
+> path to clean up scheduling. However, the TDR handling is serialized (i.e=
+., only
+> one exec queue is processed at a time), which can make it too slow compar=
+ed
+> to GuC scheduling activity.
+>=20
+> In this window, GuC may continue to schedule contexts backed by invalid
+> page tables, leading to a cascade of CAT errors and repeated engine reset=
+s.
+> This significantly increases recovery time and can degrade system stabili=
+ty.
+>=20
+> To mitigate this, eagerly disable scheduling by sending a self-message ou=
+tside
+> of the TDR path. This prevents further scheduling of invalid contexts and
+> avoids the CAT error/reset cascade.
+>=20
+> This change improves robustness and reduces recovery latency in multiple
+> queue teardown scenarios.
+>=20
+> Cc: Wang Xin <x.wang@intel.com>
+> Cc: Jia Yao <jia.yao@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 85d3aa3b9894..13cfccf60490 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2839,6 +2839,18 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
->  								     crtc_state)));
->  	}
->  
-> +	/*
-> +	 * Prefer DSC with an at least 8 bpc input over a dithered 6 bpc
-> +	 * uncompressed output, by failing the uncompressed link config for
-> +	 * modes which would fit only with a 6 bpc pipe BPP. Honor a lower
-> +	 * limit set via the max bpc connector property.
-> +	 */
-> +	if (!dsc &&
-> +	    intel_dp_supports_dsc(intel_dp, connector, crtc_state) &&
-> +	    limits->pipe.max_bpp >= 24 &&
-> +	    crtc_state->pipe_bpp >= 24)
-> +		limits->pipe.min_bpp = max(limits->pipe.min_bpp, 24);
-
-So, this would be a generalization for/instead of the HDR logic above
-using a intel_dp_in_hdr_mode() ? 30 : 24 limit (which would also apply a
-lower max-bpc limit for HDR as well).
-
-Agree that DSC vs. dithering would probably produce a better image.
-
-There could be other reasons to prefer DSC, like a more finegrained BW
-allocation on MST links. But there are also reasons to prefer non-DSC
-mode like power saving (no need to enable either a DSC encoder in the
-source or a DSC decoder downstream), or reliability issues related to
-DSC.
-
-There's been a lot of talk internally about the above aspects and how to
-handle them in a way suitable in all scenarios. Hence, I'm not sure if
-adding more policies to the driver like the above bpp limit/DSC
-preference is too ad-hoc/early or not at this point. At some point we
-will need a better logic for sure to decide between DSC or non-DSC, but
-that could be based on userspace tunable knobs for instance. Maybe
-someone else could also weigh in on this.
-
+>  drivers/gpu/drm/xe/xe_guc_submit.c | 32
+> ++++++++++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
+> b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index e82018445b7c..1625d3cd03fc 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1872,11 +1872,23 @@ static void
+> __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
+>  	kfree(msg);
+>  }
+>=20
+> +static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg)
+> +{
+> +	struct xe_exec_queue *q =3D msg->private_data;
+> +	struct xe_exec_queue *primary =3D
+> xe_exec_queue_multi_queue_primary(q);
 > +
->  	if (limits->pipe.min_bpp <= 0 ||
->  	    limits->pipe.min_bpp > limits->pipe.max_bpp) {
->  		drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s] Invalid pipe bpp range: %d-%d\n",
-> -- 
-> 2.54.0
-> 
-> 
+> +	if (exec_queue_enabled(primary))
+> +		disable_scheduling(primary, true);
+> +
+> +	kfree(msg);
+> +}
+> +
+>  #define CLEANUP				1	/* Non-zero values to
+> catch uninitialized msg */
+>  #define SET_SCHED_PROPS			2
+>  #define SUSPEND				3
+>  #define RESUME				4
+>  #define SET_MULTI_QUEUE_PRIORITY	5
+> +#define KILL				6
+>  #define OPCODE_MASK	0xf
+>  #define MSG_LOCKED	BIT(8)
+>  #define MSG_HEAD	BIT(9)
+> @@ -1903,6 +1915,9 @@ static void guc_exec_queue_process_msg(struct
+> xe_sched_msg *msg)
+>  	case SET_MULTI_QUEUE_PRIORITY:
+>=20
+> 	__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
+>  		break;
+> +	case KILL:
+> +		__guc_exec_queue_process_msg_kill(msg);
+> +		break;
+>  	default:
+>  		XE_WARN_ON("Unknown message type");
+>  	}
+> @@ -2014,12 +2029,29 @@ static int guc_exec_queue_init(struct
+> xe_exec_queue *q)
+>=20
+>  	return err;
+>  }
+> +static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct
+> xe_sched_msg *msg,
+> +				   u32 opcode);
+>=20
+>  static void guc_exec_queue_kill(struct xe_exec_queue *q)  {
+> +	struct xe_sched_msg *msg;
+> +
+>  	trace_xe_exec_queue_kill(q);
+>  	set_exec_queue_killed(q);
+>  	__suspend_fence_signal(q);
+> +
+> +	/*
+> +	 * We eagerly send a message to ourselves to disable scheduling, as
+> the
+> +	 * TDR is serialized (i.e., only one exec queue is processed at a time)=
+.
+> +	 * If an FD is closed with many exec queues, the TDR can be slower
+> than
+> +	 * the GuC scheduling contexts with invalid page tables, creating a
+> +	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
+> +	 * this by immediately disabling scheduling outside of the TDR.
+> +	 */
+> +	msg =3D kmalloc_obj(*msg);
+> +	if (msg)	/* Not fatal if malloc fails */
+> +		guc_exec_queue_add_msg(q, msg, KILL);
+> +
+>  	xe_guc_exec_queue_trigger_cleanup(q);
+>  }
+>=20
+> --
+> 2.34.1
+
