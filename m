@@ -4,146 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDF94CD98CE
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 17:15:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57B40CD98CE
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 17:15:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 727BF10EAEC;
-	Fri, 12 Jun 2026 17:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E365D10EAEC;
+	Fri, 12 Jun 2026 17:15:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LwyqE2i/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KIAacJR+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CADA10EAEC
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 17:15:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6528710EAEC
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 17:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781284505; x=1812820505;
- h=date:from:to:cc:subject:message-id:references:
+ t=1781284553; x=1812820553;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:mime-version;
- bh=ys2jooq4fxILEk484GP8ENrAh84huLYDOHFwc/GP1r0=;
- b=LwyqE2i/vQMj4yLZp7Scd5HBKRjMzZYeUAhzYEefYPmL0oktC1SNjL5V
- cWBfIWo2z9dvfh/15c4pR4sKAceSLyxEeh5LgbDdY3HeJN46TuOgGMXq5
- Rl7ba61VC7PaGTwKj1yhSAjY3+Qac/GhWv5eRBQSoodA4vp40z5Mw6yHa
- DTPgaOku5fhyRuGX/3GqnQdMNhBozmkqu0AkxcrVbeMwvuuW/biF/WJkI
- hPLd3A3plzZkRwgNvvgHZoYS8vlXaddyTGdfTqkFRh0a/o4jl0tLdBhsE
- 4/SyD5D/kb28fLJJpuPRYqD6OnmbRs+u1HYepjLQAsVDXj5AWB3XhBscG w==;
-X-CSE-ConnectionGUID: QL5l0w+CTdiHfsyGrelnEg==
-X-CSE-MsgGUID: SChFixWKRHKfoqUc71P2gg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="85964281"
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="85964281"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ bh=5GPvG9JE8fCCXUEGndgdPysI3Vtliou+CDf5UDjAbEc=;
+ b=KIAacJR+0k1AZObSQJTe3iZFdMvCbt2PwXmNmGOSmZcha82RDp8Jnyuw
+ ydU+ibunAHKjgidgaBpS0+Hn/3oLoakALsXmvDnW8dNQTdJydwKoPhhje
+ WHFSkMSg9bmLHKx9QoIW5CqFiLZDqRutD/Kk7+pskBt5J5FdrBR6wTcrd
+ NMT/4G1g6SnkY1Tf0hnQ+6ArJ7bxFLu6geBoX+MtFGB53mKWrwum3sonq
+ YEOz/RpVZzsK4SQ8Cd/sJsvsKMOsLdbPL+Z8L7rxV5Z+pR6nwUZu8Foqp
+ YBefJr7XCe4hjBBFmSN1/bHIUYtVCdfxAbpt8IygDii0LCF3AECOr0EO3 Q==;
+X-CSE-ConnectionGUID: rJeVb+CqQb+LfivHPXaX2w==
+X-CSE-MsgGUID: LEkFj1U+QU6Rji3kQdMHew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="85964430"
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208,217";a="85964430"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 10:14:50 -0700
-X-CSE-ConnectionGUID: 5D9MmTxIS8WtqRMv9z7L9g==
-X-CSE-MsgGUID: SeIBBZ2DRCS5nl0LSBtw5w==
+ 12 Jun 2026 10:15:52 -0700
+X-CSE-ConnectionGUID: oq5+2Q5RSaaUb20L/b0CeQ==
+X-CSE-MsgGUID: VVUs3g7GQAuPlDmrOT9tEg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="270534550"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 10:14:48 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; 
+ d="scan'208,217";a="245966636"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 10:15:52 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 12 Jun 2026 10:14:47 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Fri, 12 Jun 2026 10:15:51 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 12 Jun 2026 10:14:47 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.56) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 12 Jun 2026 10:15:51 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.47) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 12 Jun 2026 10:14:47 -0700
+ 15.2.2562.37; Fri, 12 Jun 2026 10:15:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SsnKuXNEFWnMLWcopnKbBWU3RrsraGGmIsCYkTVSgbcKOVqvW7WOgN+jRGzTz2tpfIKwA6LRpPyCSMkMQpSh20QfJCmt6JvKZOZ38DPzlXZY1qE10eiZ3gy9iEu8LWbS43POccxYoPE+InG6Bz4FJbp18lbL2T+INsmQ/vZ+BqqVtgYlfL+5hN/wf5SBkXW+NrXOlxcpbwk1S4Tk63j0dTZVN0Me+CJ1FoG36GRUDEQyeM9brRnUPWVBGMFdpg/iijKGAPTh+d9gbqc98kqw+CSsKj0ZcrcCfHWc539S9Ueemasn1XS80u4pQr/LCceOuL1tMTSShv30sUlGtVu9Kw==
+ b=sVADJx/uPZu3swMSG8hzcbM+QvyWRbI5yeorIRjgfjsaFVZATvs6BUvM3dNnVyZVpET/VlZwwFfOfmxAgP/wsrPX0Z8DGGKJtwr8s2Opb6DnpeO2R8GFaD/3NeeJxzA/OuwjIxRIV18YDGCQ8MV8Cm8ap9+F8jlQ4IIPk54OKaECFrJMyhIY12ICoOmtm4NvRXwrOPS83V1KRJ23NyhQZvC7PFiZndirOCx1+WLPtAjKd+Dzcu5bCZzreALDziGL/UAUkDmFdgRE3c9ut3KflBdd1XlcSve3h3YUFTcrk/8uPlfsmD8uwllXWNuzSoyq1ujYPhBaHPHORS5GcIOXZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pt49xzziqNjD9SUYnKz3wqEnOUxEStdbgKs7aA/HJJ0=;
- b=akBmjxlYeJtVWnUzsKKsPXkBx8JLESs25WoGHB26upiDT26loSgRsZrP+30NqY6bkRR4nnIanluDyNb4vooyhN55u8xotrMNRe22M55wWa4gSa6IFvQUX49a7zaS711+E5rXlvY1biUsxBDkstHnRah7SbFmePSeRah7z5INubrYACWUaF0z+g/Q/vldmMqQYIydFbppXJXPRAQgSxtNniej4280BRffmjfjqarlGENb0Q+y/hBmylY/BE3Kuna9/vGg3zQb1BGSV1jF3WILI/7HwdWyVtMkMnxC5aTqOlLw++zuS2km5i8xf5aLnD43Oup/mlclpVyZkha+PBM6Kw==
+ bh=vwdtViqSIlecsj5NOjqFsCZnE9UhxXei/2oqR4iOX90=;
+ b=YVfwycwuxlJW0QOf71OtPD85NbMv9bSLJWqifq09EGSd2/pu6v7WJOX4b942+zDcRsIhlSq174sBwW4Z2YJLRHT4ncMneF+dTBKJdtE4X9eoT+uxnUFweY3Jkhyib05hWaIkQ0tWUIWVLFpvs+M3xd08ImsGrLATnsXN7kDJ4zM5TyvvBOcXeg67cTISkXn/bJ9LsPKDQ3D2ZlA1qxo2lTJZJyP7XgAMIQ6bKu51YxXG0M/lT7ZDvAyxyyZvoQnnQzrWzJs6J1Wgs3amGt+U38efx2F+ey066y+YntfEuHnXEElY6PwGc2aVtn+3L/PlbEZcSeHi67/HZazXw5Wpog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CO1PR11MB4866.namprd11.prod.outlook.com (2603:10b6:303:91::16)
+Received: from CH0PR11MB5249.namprd11.prod.outlook.com (2603:10b6:610:e0::17)
+ by BY1PR11MB8078.namprd11.prod.outlook.com (2603:10b6:a03:52a::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.14; Fri, 12 Jun
- 2026 17:14:45 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0113.013; Fri, 12 Jun 2026
- 17:14:45 +0000
-Date: Fri, 12 Jun 2026 10:14:42 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Yao, Jia" <jia.yao@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Wang, 
- X" <x.wang@intel.com>
-Subject: Re: [PATCH] drm/xe: Disable scheduling early on FD close to avoid
- CAT error cascade
-Message-ID: <aiw+giECCoOotsyI@gsse-cloud1.jf.intel.com>
-References: <20260612042548.3740605-1-matthew.brost@intel.com>
- <PH8PR11MB80406CC88853B0C439BBFADEF4182@PH8PR11MB8040.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <PH8PR11MB80406CC88853B0C439BBFADEF4182@PH8PR11MB8040.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MW4PR04CA0227.namprd04.prod.outlook.com
- (2603:10b6:303:87::22) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ 2026 17:15:48 +0000
+Received: from CH0PR11MB5249.namprd11.prod.outlook.com
+ ([fe80::a665:5444:d558:23c3]) by CH0PR11MB5249.namprd11.prod.outlook.com
+ ([fe80::a665:5444:d558:23c3%5]) with mapi id 15.21.0113.013; Fri, 12 Jun 2026
+ 17:15:48 +0000
+Content-Type: multipart/alternative;
+ boundary="------------z0mrvNAzo3XOOlKETV1fSCEu"
+Message-ID: <ae7610c9-1d03-4731-bb04-a1bcffaa2dbf@intel.com>
+Date: Fri, 12 Jun 2026 22:45:39 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] drm/xe/debugfs: Add debugfs for pcode information
+To: Matt Roper <matthew.d.roper@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
+ <raag.jadav@intel.com>, <riana.tauro@intel.com>, <soham.purkait@intel.com>,
+ <michael.j.ruhl@intel.com>
+References: <20260611165607.3653019-1-karthik.poosa@intel.com>
+ <20260611165607.3653019-3-karthik.poosa@intel.com>
+ <20260611205807.GH6214@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: "Poosa, Karthik" <karthik.poosa@intel.com>
+In-Reply-To: <20260611205807.GH6214@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: MA5P287CA0163.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ba::11) To CH0PR11MB5249.namprd11.prod.outlook.com
+ (2603:10b6:610:e0::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CO1PR11MB4866:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee9aebc5-737d-453d-8371-08dec8a6196c
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5249:EE_|BY1PR11MB8078:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d415ff3-b6bd-4bb4-a30d-08dec8a63ee4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|18002099003|22082099003|6133799003|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: 8i2c2ZmY7l4g93wxea70oS+IHaxZfklrmLzYxAWAFfZFfhU/mb+x+T5h2xbcv/JZTb9ZjNY02bkhdBe3feWF91NS7IZ3FBzZRp28BctqUTppY5ltA4GZr5/ZzeAjwUEsRiABxuh4hNu0y8UwJKhSDRzQJmbm5FtURw+t79sPrfG1PChZ46xGjWXBh3KpIu6kJZBXBL76xbL6BzUCKlqM+38W3CG2+SehDu6+GuHx9AZLx8ig70qTOrA9Yw06+eALvDrPwLIqlQFh0u1sh3YO9KPCjT+mf+tBL8h8uxHMAB7gjfB22yXjgK2ZIXz/PVCrUErpizi7n8TlHQ788Sq+alr6OX4auRBuYsrRRB122+AtoiY1q5BEPME2iVScboILQlYwg2a8dGytQdrAUby9r/+ejfpqJmYXNifQKS4HLr8KPGCdidFk/6bbA78uKAym7egWw9PzLmZ019dkkBA7NFT31qNbTGPSZG4HE9wQepOIzju1COGn+uySsH1Jv6h+fvQhpmGiF1SFDJ+4Z2Zm9nJrkiLiQTA1/hcpBt7bSoMqT7JNGAY3MNy22VhC82q4GbpzKOMQA0zvvhqEM3NZYzimfTIjOMpKrO+05r6ze40jbF+R9cOifi7aCLL3Mmndw0q4rGPzCb6fu/9SyuJCu3Dl+OU+0OpVCTV40zJfrMRCGXxyP95HzIhe5qkIC/M6
+ ARA:13230040|366016|1800799024|376014|23010399003|18002099003|22082099003|56012099006|11063799006|6133799003|4143699003|5023799004|8096899003;
+X-Microsoft-Antispam-Message-Info: COyv6OIeSAuHGb4+bbXar35Zsnz/tp4kRLcL1LaDO4bE2e+Yf/C24BWemrr89Fot046f7X+0JKRNUtooc5dNMjF0wi7yL3TXi2hWF9nIxOQIkjjdVeNclAP916/8Cy5ToCwAqdQhr7NyNVjeRRU6z0EA9cGgCbAXO9YOBMFImFpRJdolESDKH6cAX8dBANlH8pBrSOMCE773GxFvyjTjijmx0hJCyZlOPRO8psGGM6eMDaauEbLh5asTAXIyi+gXKYaRQPDqz3DzZ18wAIPD/xvWqvR/nORFGOashyBwVE4ymETaGEr/QCjfpS/ywXZ0o7R7SAPMQ5UJU6Cm36mqqPs7433fdwrm/OCbeYvSXc/JWGXXmi6iwdFdTbUFJvnrqXaVX/SOVJY+IUDh6hvGBLy4ZGTRx2pvaHbckhINukASxUgU64sZ2cHRtWct5mndW9twkU3d3kJmDghNNwGOYYTHepYXRTEMIzhPSHxAdNGyYWeLfITiZpN1Han1rCOFhrWGgoqzzwIKtbUf7/7ORHBt3gEQGEyq0kH8iLMfQ+KJGQfNUnlg0HwF5VE9U4qNpRMcFYVjLCrp2eah6UthqZe8NQfUe/TLGaF4oo85HQT3miQinvMZhFofB5W51/IdAiZKvtDFuWfCz53EVG640yAFw2FPItGKc5NLOntnxwy+jjM3JFGLwql6mKG3br7c
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(18002099003)(22082099003)(6133799003)(11063799006)(4143699003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5249.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003)(4143699003)(5023799004)(8096899003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pa13vcrS/o1nfQHRCo8Ve6hz0FvhLex+Djt61ACBiVd5E9lHEzqnqVd9mBjT?=
- =?us-ascii?Q?dT/9wnchpZAXlBfwNrEI/Uk+tlPrnF+/LVxEpK+7/6QhNGxGy+9tHbozm2cE?=
- =?us-ascii?Q?q4CbkkIX4u1uvTkvtIYruk/krNzqvl+a1TsZ5YkwK64UpNnnd031eSeMr2fY?=
- =?us-ascii?Q?z2tAUgqwFsXuEPfwISyDVPgT06D5eQ8YNscmgoiEsHnbe/kCBFDJaLtBeDX2?=
- =?us-ascii?Q?xXTTwC9RDUjSJAtcQAtClVLE5yne7SZUPH3jEU/PFyj5plmVxNPV1u63rlW5?=
- =?us-ascii?Q?vdvlwUnBtfw2Spi6jKTLFm0qCSVkBTXin/JH4qIWr/w4aVArXp9PtYJ9RREV?=
- =?us-ascii?Q?DYWIAXAD7BwJHamuf+kuC4F34Uqt85dnhIVaPALT7KqAVvyP/PNqa2xt5TRa?=
- =?us-ascii?Q?HQ9B5HVDIPS5e34XoznNl3S8YPcWLYvcaWNe+tMLQKW9oYLVBwxGWLQ2/IVg?=
- =?us-ascii?Q?CMf//hjOKiECMbWKAHJxPlnqhetYPQxL3fmAh1Pn3ldtlyZwDSfTHQ+RwzJr?=
- =?us-ascii?Q?Z6QtxqU4jhtuE4SWq+D9p7AeUIhojdXhtYDhc/XeUURx/F+3faaf0kMJKCd1?=
- =?us-ascii?Q?vx7+u+Xv/u3JmomOIiw7Az9WJ2ifaOxPtqgONs1SuwNpeBcf8gI86k2EULwk?=
- =?us-ascii?Q?sTxRyTUXDtWHjc+au/2QP0kszgnKrctLqyHfwm++iJODeXhqjSef0K8QFeXw?=
- =?us-ascii?Q?nBWXyls9v02vKIW1rGyIX8EcD5PC3PbbKUmzGIIjDoLR/yS+7phkjQRENHPp?=
- =?us-ascii?Q?xWMka4G4qBzCnuLj66vYlthXEqTMAEJVN+d7q1zjUffISaELlao44s7Zf2lS?=
- =?us-ascii?Q?M+5UCm6hTVE4gvHmeeaoKDHTKUH40YXYbx9KoXE/OjnLhBfXb9nxcnQfZzSM?=
- =?us-ascii?Q?EptmWHvSt1COvE+6U43DE88qo91ftnv9Vs5etKaHNwEC5tf4s4ULOvuIW6b9?=
- =?us-ascii?Q?+IQe8Vwbu+xIxp8YIOXnyIMjTmZT6/WmH1Zmfs9/g+/tM+i9zcY61ObQSwO8?=
- =?us-ascii?Q?OoCD47OVijA3FN2Y7v/5REQ/L8T51OE49s8x1KGOvhPetV777TwZHWyI7X5x?=
- =?us-ascii?Q?Gzd7W05vTZVuxh0dyhRPVIDfexPQOJ8Se+JnaHd9Ip4FQgKd7IoEyyOOnFvO?=
- =?us-ascii?Q?eRUs0sNWEAgdJ9MeUG1W+bTshX1hzbljgFN9IvUTRdh2L8+RJhxznwb4lOkY?=
- =?us-ascii?Q?aF0VEjwyEq3D+YFIQWZLBL9Pwbz6uB+rSbcLINv2YoRflInVcE8eb/3nmtFi?=
- =?us-ascii?Q?z0SZfQ637xOKlUSo4JlegAJ53rDWzfSNuarXnjnnkCVtJbvYvSvIDRVDokkG?=
- =?us-ascii?Q?U38oMQteiodzWEfuzcnSGh0g6ULpsmp/lloSxXN31OLKkljU5i5Ou6Tg7A+j?=
- =?us-ascii?Q?PyaNETDQWqS09mB5jjUepYJg7Nyb4c85vdY0Gxhakdu3EZXbC4Meb7A1hkC+?=
- =?us-ascii?Q?L1ZiTyFQ/HnmVrJOjduekOO4OqRYWxpvarVjfjJtmgi0o6lLfshP4jIAqjVY?=
- =?us-ascii?Q?rBttrQolLpy1CfVh4YVHrp3D7S2uI3S+MbImgycFmYFPOKHcHP97mk+UQpTr?=
- =?us-ascii?Q?yxQjzL46McebkQ1k37iLJw6KiiWD/dcnoAQsQWCSGUhBqcrlcapdKXkpP6Yw?=
- =?us-ascii?Q?/sWeqIYC6kOCYAgKL7OOEgbVedLt5/ePiCWJThW80PFJXIVuqOl4UfpKgIti?=
- =?us-ascii?Q?SesQoLNo79NLDVgnNn/HQGrom153avGtm7ZV193XmNkqCAyrzkntk+o6scbN?=
- =?us-ascii?Q?OFWM4+R2ZQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: sMMrjRNOtyV4Z+9vqXnZSMkrBBNQKHoSnVBMZBQZjI3v/t1resdZ6mB/+GXItP8fGxqVcPvu54AzSPw+r0lUsGpWdecI7S2JR8bXfZfj+pB7oqyfFpYQpVLspnj9CT6U6zIprgGtSW70G38T45NTl2d+873VUYa6BXNg7nVZVrK3oHczXui44CT/h6tiPzSoxL1QHF5fSK+bvsziSyh0YiEA81tJ6RokiiP16BAVDR9XW30eqfLsoKNVSvtc9jUOQd/gWBi1G1taw4w3kC9ab3yTVz7XQ3VAUw3VgMlx+rqMKKii7Y/lbdFX7BYrPDdCZYLAL0kQLha6BYHvu2phpw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee9aebc5-737d-453d-8371-08dec8a6196c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?elpBTGYyZDZxcS8yMUt0ekVZOFB1MGxSa252UjU2VzFLMi9kUzRsaTgrYVJ1?=
+ =?utf-8?B?N0I2TDVKanE2SFhrRURaZ0kyNWpEMXEzOGhVdlFRVlA5bm5IZmlyWGo3MUo5?=
+ =?utf-8?B?RU1rd3IzNmpSdWR0UlVrREpxeEhLZDhCTHhZVEwxVHVhQ1RzY2hSM0JyM2Nk?=
+ =?utf-8?B?bnlCaUxiWFZSbXdzdm9Hb0NkVUF6SHBmcW9qQVR2R0VoNS92RnhFTUtOeUY1?=
+ =?utf-8?B?QkhRVXVGZ2lIaWg5N3lBN09McVRqTUVoVktvYnZmanlaeGM1L1lCdE1lRGxx?=
+ =?utf-8?B?L2lRaWMvRUZ4NVhpbHBjU3dSUHluY2k1YXFCdUpTNHlJUnRTNHM0SENyS21Q?=
+ =?utf-8?B?emwzL2NMU0JlK0k2VlRSQkE1ZzlVVTdvdGlLWGU0QTRrZHRBU1R4bHhCWElE?=
+ =?utf-8?B?dEl4ZHRrVFk2TnNkK08yK0Ryd3dLRzQ5aTdUMVA4dk5OV1oxOW1pMFhrZ3Ey?=
+ =?utf-8?B?SFdPVm5id2hZTWIzb1luU0pmclJ5bFhjTERXdE9RVG1hRmJrK0lQbGFuNmFM?=
+ =?utf-8?B?K3B6bzVUNVorTHZwYXh2L3hTTXlmbFZ2Tks1QkJIVm1IenpicDVlSGIzdm85?=
+ =?utf-8?B?NDZqVzJLTndieVYyVFB1V0cxYlo3MG5LYzZyQ0VLUW0wYmdmZzdCYlVnM1Q3?=
+ =?utf-8?B?L25EcmZyWkdHRlZybk9KaFh6d0dJLzFiVE5VWHd6RUsrZWxjQlAvT3pXMWdl?=
+ =?utf-8?B?V3lUb0IwTWpDNHV1eVJCV3N5QWQ3N3BwQllxVEprbEJCM2o2a05RWWIxOFMr?=
+ =?utf-8?B?T3N5QXpyQkUyUG5WNnRsa2Juc3Y1bEZ3VXMrdHRVbklqV3M1QS9FVFJKeWw4?=
+ =?utf-8?B?QmExclVjRzd6c3d2RG5oSXRzQ3BxRk9VY1NtcnVCWVk0d2Z1N3lWTTlvY2Ey?=
+ =?utf-8?B?K3lKTk1ISkdLREpMNW5nNVFOU3p0eXFoNm15YW1TcWpNKzIzWWtDOUR1bGhN?=
+ =?utf-8?B?aUtsL2VsL2dBdkp5bU95dmMvL25kaE14eXJ6RmJMM1IvMWZyYWk0eW5MaHpD?=
+ =?utf-8?B?MXdhOHd0dFlUZW4xb3laZDBnaFV5V29LRis5cnZTUWFMUzBYVHQwa253eDlY?=
+ =?utf-8?B?RG9qSERkMWdkVUlpVS9WbzE3QnRmaWZ3TXdZQnJhOTU3ZGhuMFNBdGtnVk9s?=
+ =?utf-8?B?Q0dEbFRuK1c3T0ZwNFF4OWZGdW1tL3BzRzhqZUFXZWpKYW94OTVQYndDdW9F?=
+ =?utf-8?B?RUNRWWI2THJlYUJ6dDBnUXFNTFFGRWZkUzkrOGYvWG81bHEyVVdQTWJVbnFE?=
+ =?utf-8?B?TWhaMEZ4OTh3K1hTc2ZRanlyN0ovdjFHZWRMOEp1Nk1TeGIvcWhLOG15dEYy?=
+ =?utf-8?B?eTI2RWliS24wV0dhY3RjWHMxZ2txcDZHckx6cFBSTG5wM1lqS0tGc2pobFg4?=
+ =?utf-8?B?cFphd05PWStKdFdYSVQ4M1YrN2Z2ZmpWVjdUU2NuWXpML2hjMnowWnNadFhI?=
+ =?utf-8?B?T3RNNHRSRTc0VG9OajdHcm51T0tuR2MwdTdaM01vNytUdGtUK2VyNXVaNlhP?=
+ =?utf-8?B?UWFEVUFSa0VZakNxblA2RlZSWUxQcEVCdDdGRk9zRVJjbm0wV1FVY2dGdmdi?=
+ =?utf-8?B?MXJCbFRuQmlZSytaRkRNajgrQkRRQlZEVm5MczJaTEtkVmF2SUVnbVdJdW85?=
+ =?utf-8?B?bnM3ZTdPV2R6WGErRnVVckdKZGxzVHZBalJWQTVxUFRQWXlpaEp4YXJnL3V1?=
+ =?utf-8?B?TWRVajd3dldjSkFaWjd5N0lRYnEzUGtPTlloWlYzelJYL01MUDEvMFV2b01a?=
+ =?utf-8?B?VkxuM2N2R25NdkkrVlVaM0VpMXFkU0FCemxoOVNxWkpoMXpoQkRkZ2RuY2NE?=
+ =?utf-8?B?QVlETmZlS0prVFBGT3p6dVJ2K0djNysrcUNxVVV3UUFiQjU4WmZ4TTIxNVNp?=
+ =?utf-8?B?TE9xV1RteXVpS25FcXBOZ25wbUFMaDU5VTJPZ0NJT1NFMFI2OGVXU1d4a0tF?=
+ =?utf-8?B?SVhLN1NXVTBHakJIb2xHMENkQkVCY1ZjMGc5U2N2NDQxdGZPalVnc0hMT0px?=
+ =?utf-8?B?Y2VjYVRWZUFBRFRwREZKYUtXd21XU0poY0hzWFRMM202OVRhaGtVcUt2NE1h?=
+ =?utf-8?B?cDU0NnpOL1JtR1FXUmJXOHFjZGwzWEh5cUNjZnNISHJsNVZEbFpRVnVJdmZo?=
+ =?utf-8?B?bU83U2RjQW0rYml0YjRIME0xNld3b3d2aUpFK0RMMVU5RTU1eVJubEM1QTMv?=
+ =?utf-8?B?eThOK1BJcEtxQ2d5V1Q1L05kQ2s1M2d5d25XcWRXM2dROCt1bmtTYzBPOVpW?=
+ =?utf-8?B?THg3UFFlVWh6L0w4VTY2ZkZRSXpWbEsvUHp1YVVrQmlNd2FiUEMwQ3A3ZS9H?=
+ =?utf-8?B?V1k1UFhpTVFuTTVjUFZkdGdhSFMwT0F1SWVUZy9aSHBqQkhIbmpvQT09?=
+X-Exchange-RoutingPolicyChecked: l7aHsdDqXT0E7KS0MtTITwPMMflx4eFTiiC+Tzv6FY/yKuwt+OT5ndzIB7y1V+gdJZE3/g+hPetNX4k+2Tfvx5CEdLm3cfiD9CpwPpKp72yd7+iPNmndjJ+CMcuEcBXeddVriTRHYh5NSlDaJVyzGJqaYUZ9GN/aVMezX9Qaj1nm3OM8x4eO2YH9OvSneBnz1Hb8V4XppKpA23BWnLBztfIfWRZn+4jecRUDkmiVFXFHlv8MGQBRNddq5Z4aSTWLzWxKxWon6/2mOy3JsdINk5zDvY2Zl/fYZHnFfzixmCRCAxywyrgGbeKpTG8EY0lpJX3bQY9/gWoNWLipuVdfyA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d415ff3-b6bd-4bb4-a30d-08dec8a63ee4
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5249.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 17:14:45.1158 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 17:15:48.2869 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: imHq7c2LDBlnEqXLr6bp9kKW+mWhGl+Y2OGKP/TKp8ip3yC8LfiDtXE5v6IftsDTgoHjhmkHNq4BeXVWXpP4Yw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4866
+X-MS-Exchange-CrossTenant-UserPrincipalName: QrCT5FR+d9/ZYyE85ZJwgZm/hJX46FNyxAZBovdbBIOaixGUAktb6jj0FEgNq7ieuW5Fb3j2+8JSFw5viCNkgg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8078
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,126 +173,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 12, 2026 at 10:35:40AM -0600, Yao, Jia wrote:
-> This patch can extremely reduce the possibility of CAT error.
-> 
-> Tested-by: Jia Yao <jia.yao@intel.com>
-> 
+--------------z0mrvNAzo3XOOlKETV1fSCEu
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks, this version still has a few issues which CI / sashiko flagged
-which I need to close on.
 
-Matt
+On 12-06-2026 02:28, Matt Roper wrote:
+> On Thu, Jun 11, 2026 at 10:26:07PM +0530, Karthik Poosa wrote:
+>> Introduce a pcode_info debugfs entry to report pcode details.
+>> This initial implementation exposes the pcode version.
+>> This can aid debugging when the pcode version is needed.
+>>
+>> v2:
+>>   - Enable the debugfs only for supported platforms. (Micheal Ruhl)
+>>
+>> v3:
+>>   - Move the platform check out of this patch, as it is not relevant here.
+>>     This patch solely enables debugfs; debugfs creation will be determined
+>>     based on the return value of get_pcode_version. (Karthik)
+>>
+>> Signed-off-by: Karthik Poosa<karthik.poosa@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_debugfs.c | 19 +++++++++++++++++++
+>>   1 file changed, 19 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+>> index 22b471303984..65049916e42c 100644
+>> --- a/drivers/gpu/drm/xe/xe_debugfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
+>> @@ -31,6 +31,7 @@
+>>   #include "xe_tile_debugfs.h"
+>>   #include "xe_vsec.h"
+>>   #include "xe_wa.h"
+>> +#include "xe_pcode.h"
+>>   
+>>   #ifdef CONFIG_DRM_XE_DEBUG
+>>   #include "xe_bo_evict.h"
+>> @@ -161,6 +162,23 @@ static int workaround_info(struct seq_file *m, void *data)
+>>   	return 0;
+>>   }
+>>   
+>> +static int pcode_info(struct seq_file *m, void *data)
+>> +{
+>> +	struct xe_device *xe = node_to_xe(m->private);
+>> +	struct drm_printer p = drm_seq_file_printer(m);
+>> +	struct pcode_version version;
+>> +	int ret = 0;
+>> +
+>> +	ret = get_pcode_version(xe, &version);
+>> +	if (ret) {
+>> +		drm_warn(&xe->drm, "couldn't read pcode version ret %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +	drm_printf(&p, "pcode version: %d.%d.%d\n", version.major,
+>> +		   version.minor, version.engg);
+>> +	return 0;
+>> +}
+>> +
+>>   static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+>>   {
+>>   	struct xe_device *xe;
+>> @@ -219,6 +237,7 @@ static const struct drm_info_list debugfs_list[] = {
+> Based on the CI results it doesn't look like we can access the register
+> on SR-IOV VFs, so this debugfs is only relevant to the PF.  We probably
+> need to add a pf-only list of debugfs files, similar to what we have in
+> the GT debugfs code.
+>
+>
+> Matt
+Looks like that other debugfs components are already handling this.
+Adding a VF check in pcode_info() should suffice here.
+>
+>>   	{"info", info, 0},
+>>   	{ .name = "sriov_info", .show = sriov_info, },
+>>   	{ .name = "workarounds", .show = workaround_info, },
+>> +	{ .name = "pcode_info", .show = pcode_info, },
+>>   };
+>>   
+>>   static const struct drm_info_list debugfs_residencies[] = {
+>> -- 
+>> 2.25.1
+>>
+--------------z0mrvNAzo3XOOlKETV1fSCEu
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> > -----Original Message-----
-> > From: Brost, Matthew <matthew.brost@intel.com>
-> > Sent: Thursday, June 11, 2026 9:26 PM
-> > To: intel-xe@lists.freedesktop.org
-> > Cc: Wang, X <x.wang@intel.com>; Yao, Jia <jia.yao@intel.com>
-> > Subject: [PATCH] drm/xe: Disable scheduling early on FD close to avoid CAT
-> > error cascade
-> > 
-> > When an FD is closed with many exec queues, teardown relies on the TDR
-> > path to clean up scheduling. However, the TDR handling is serialized (i.e., only
-> > one exec queue is processed at a time), which can make it too slow compared
-> > to GuC scheduling activity.
-> > 
-> > In this window, GuC may continue to schedule contexts backed by invalid
-> > page tables, leading to a cascade of CAT errors and repeated engine resets.
-> > This significantly increases recovery time and can degrade system stability.
-> > 
-> > To mitigate this, eagerly disable scheduling by sending a self-message outside
-> > of the TDR path. This prevents further scheduling of invalid contexts and
-> > avoids the CAT error/reset cascade.
-> > 
-> > This change improves robustness and reduces recovery latency in multiple
-> > queue teardown scenarios.
-> > 
-> > Cc: Wang Xin <x.wang@intel.com>
-> > Cc: Jia Yao <jia.yao@intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_guc_submit.c | 32
-> > ++++++++++++++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index e82018445b7c..1625d3cd03fc 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -1872,11 +1872,23 @@ static void
-> > __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
-> >  	kfree(msg);
-> >  }
-> > 
-> > +static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg)
-> > +{
-> > +	struct xe_exec_queue *q = msg->private_data;
-> > +	struct xe_exec_queue *primary =
-> > xe_exec_queue_multi_queue_primary(q);
-> > +
-> > +	if (exec_queue_enabled(primary))
-> > +		disable_scheduling(primary, true);
-> > +
-> > +	kfree(msg);
-> > +}
-> > +
-> >  #define CLEANUP				1	/* Non-zero values to
-> > catch uninitialized msg */
-> >  #define SET_SCHED_PROPS			2
-> >  #define SUSPEND				3
-> >  #define RESUME				4
-> >  #define SET_MULTI_QUEUE_PRIORITY	5
-> > +#define KILL				6
-> >  #define OPCODE_MASK	0xf
-> >  #define MSG_LOCKED	BIT(8)
-> >  #define MSG_HEAD	BIT(9)
-> > @@ -1903,6 +1915,9 @@ static void guc_exec_queue_process_msg(struct
-> > xe_sched_msg *msg)
-> >  	case SET_MULTI_QUEUE_PRIORITY:
-> > 
-> > 	__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
-> >  		break;
-> > +	case KILL:
-> > +		__guc_exec_queue_process_msg_kill(msg);
-> > +		break;
-> >  	default:
-> >  		XE_WARN_ON("Unknown message type");
-> >  	}
-> > @@ -2014,12 +2029,29 @@ static int guc_exec_queue_init(struct
-> > xe_exec_queue *q)
-> > 
-> >  	return err;
-> >  }
-> > +static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct
-> > xe_sched_msg *msg,
-> > +				   u32 opcode);
-> > 
-> >  static void guc_exec_queue_kill(struct xe_exec_queue *q)  {
-> > +	struct xe_sched_msg *msg;
-> > +
-> >  	trace_xe_exec_queue_kill(q);
-> >  	set_exec_queue_killed(q);
-> >  	__suspend_fence_signal(q);
-> > +
-> > +	/*
-> > +	 * We eagerly send a message to ourselves to disable scheduling, as
-> > the
-> > +	 * TDR is serialized (i.e., only one exec queue is processed at a time).
-> > +	 * If an FD is closed with many exec queues, the TDR can be slower
-> > than
-> > +	 * the GuC scheduling contexts with invalid page tables, creating a
-> > +	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
-> > +	 * this by immediately disabling scheduling outside of the TDR.
-> > +	 */
-> > +	msg = kmalloc_obj(*msg);
-> > +	if (msg)	/* Not fatal if malloc fails */
-> > +		guc_exec_queue_add_msg(q, msg, KILL);
-> > +
-> >  	xe_guc_exec_queue_trigger_cleanup(q);
-> >  }
-> > 
-> > --
-> > 2.34.1
-> 
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 12-06-2026 02:28, Matt Roper wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20260611205807.GH6214@mdroper-desk1.amr.corp.intel.com">
+      <pre wrap="" class="moz-quote-pre">On Thu, Jun 11, 2026 at 10:26:07PM +0530, Karthik Poosa wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Introduce a pcode_info debugfs entry to report pcode details.
+This initial implementation exposes the pcode version.
+This can aid debugging when the pcode version is needed.
+
+v2:
+ - Enable the debugfs only for supported platforms. (Micheal Ruhl)
+
+v3:
+ - Move the platform check out of this patch, as it is not relevant here.
+   This patch solely enables debugfs; debugfs creation will be determined
+   based on the return value of get_pcode_version. (Karthik)
+
+Signed-off-by: Karthik Poosa <a class="moz-txt-link-rfc2396E" href="mailto:karthik.poosa@intel.com">&lt;karthik.poosa@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_debugfs.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 22b471303984..65049916e42c 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -31,6 +31,7 @@
+ #include &quot;xe_tile_debugfs.h&quot;
+ #include &quot;xe_vsec.h&quot;
+ #include &quot;xe_wa.h&quot;
++#include &quot;xe_pcode.h&quot;
+ 
+ #ifdef CONFIG_DRM_XE_DEBUG
+ #include &quot;xe_bo_evict.h&quot;
+@@ -161,6 +162,23 @@ static int workaround_info(struct seq_file *m, void *data)
+ 	return 0;
+ }
+ 
++static int pcode_info(struct seq_file *m, void *data)
++{
++	struct xe_device *xe = node_to_xe(m-&gt;private);
++	struct drm_printer p = drm_seq_file_printer(m);
++	struct pcode_version version;
++	int ret = 0;
++
++	ret = get_pcode_version(xe, &amp;version);
++	if (ret) {
++		drm_warn(&amp;xe-&gt;drm, &quot;couldn't read pcode version ret %d\n&quot;, ret);
++		return ret;
++	}
++	drm_printf(&amp;p, &quot;pcode version: %d.%d.%d\n&quot;, version.major,
++		   version.minor, version.engg);
++	return 0;
++}
++
+ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+ {
+ 	struct xe_device *xe;
+@@ -219,6 +237,7 @@ static const struct drm_info_list debugfs_list[] = {
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Based on the CI results it doesn't look like we can access the register
+on SR-IOV VFs, so this debugfs is only relevant to the PF.  We probably
+need to add a pf-only list of debugfs files, similar to what we have in
+the GT debugfs code.
+
+
+Matt</pre>
+    </blockquote>
+    <style>a {
+    text-decoration: none;
+    color: #464feb;
+}tr th, tr td {
+    border: 1px solid #e6e6e6;
+}tr th {
+    background-color: #f5f5f5;
+}</style>
+    <div style="font-family:'Segoe UI';font-size:14px;font-style:normal;font-weight:400;line-height:20px">Looks
+      like that other debugfs components are already handling this.<br>
+      Adding a VF check in pcode_info() should suffice here.</div>
+    <blockquote type="cite" cite="mid:20260611205807.GH6214@mdroper-desk1.amr.corp.intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> 	{&quot;info&quot;, info, 0},
+ 	{ .name = &quot;sriov_info&quot;, .show = sriov_info, },
+ 	{ .name = &quot;workarounds&quot;, .show = workaround_info, },
++	{ .name = &quot;pcode_info&quot;, .show = pcode_info, },
+ };
+ 
+ static const struct drm_info_list debugfs_residencies[] = {
+-- 
+2.25.1
+
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------z0mrvNAzo3XOOlKETV1fSCEu--
