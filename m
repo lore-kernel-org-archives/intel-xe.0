@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A21F0CD8CA8
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 06:18:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80014CD8CA8
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 06:18:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE2510F26E;
-	Fri, 12 Jun 2026 06:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B2A10F26E;
+	Fri, 12 Jun 2026 06:18:36 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4730D10F26E;
- Fri, 12 Jun 2026 06:18:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0070881192801003078=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34CB210F26E;
+ Fri, 12 Jun 2026 06:18:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Deactive/Reactivate_Panel_r?=
- =?utf-8?q?eplay_on_errors?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C1/2=5D_drm/xe=3A_Handle_unprocessed_messages_in_guc=5Fexec=5F?=
+ =?utf-8?q?queue=5Ffini?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Jun 2026 06:18:11 -0000
-Message-ID: <178124509128.72090.7848057747521699760@6beec6c84f66>
+Date: Fri, 12 Jun 2026 06:18:35 -0000
+Message-ID: <178124511521.72090.6340511376047042205@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260612053249.246878-1-jouni.hogander@intel.com>
-In-Reply-To: <20260612053249.246878-1-jouni.hogander@intel.com>
+References: <20260612060120.3795183-1-matthew.brost@intel.com>
+In-Reply-To: <20260612060120.3795183-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +41,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0070881192801003078==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Deactive/Reactivate Panel replay on errors
-URL   : https://patchwork.freedesktop.org/series/168400/
-State : success
+Series: series starting with [v2,1/2] drm/xe: Handle unprocessed messages in guc_exec_queue_fini
+URL   : https://patchwork.freedesktop.org/series/168404/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4_BAT -> xe-pw-168400v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4a2c55108ac3db1fed23953c8d8fffe802a88c1a
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Thu Jun 11 23:01:20 2026 -0700
 
-Summary
--------
+    drm/xe: Disable scheduling early on FD close to avoid CAT error cascade
+    
+    When an FD is closed with many exec queues, teardown relies on the TDR
+    path to clean up scheduling. However, the TDR handling is serialized
+    (i.e., only one exec queue is processed at a time), which can make it
+    too slow compared to GuC scheduling activity.
+    
+    In this window, GuC may continue to schedule contexts backed by
+    invalid page tables, leading to a cascade of CAT errors and repeated
+    engine resets. This significantly increases recovery time and can
+    degrade system stability.
+    
+    To mitigate this, eagerly disable scheduling by sending a self-message
+    outside of the TDR path. This prevents further scheduling of invalid
+    contexts and avoids the CAT error/reset cascade.
+    
+    This change improves robustness and reduces recovery latency in
+    multiple queue teardown scenarios.
+    
+    Cc: Wang Xin <x.wang@intel.com>
+    Cc: Jia Yao <jia.yao@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 9ce63e3d9903982c053b125686abcb7a84357ed4 drm-intel
+e5e0da48ec9d drm/xe: Handle unprocessed messages in guc_exec_queue_fini
+-:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#16: 
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Fixes: 71e7d7e81d6a ("drm/xe/multi_queue: Add support for multi queue dynamic priority change")
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4 -> xe-pw-168400v1
-
-  IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4: 9ce63e3d9903982c053b125686abcb7a84357ed4
-  xe-pw-168400v1: 168400v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168400v1/index.html
-
---===============0070881192801003078==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
+4a2c55108ac3 drm/xe: Disable scheduling early on FD close to avoid CAT error cascade
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Deactive/Reactivate Panel replay on errors</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168400/">https://patchwork.freedesktop.org/series/168400/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168400v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168400v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4_BAT -&gt; xe-pw-168400v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4 -&gt; xe-pw-168400v1</li>
-</ul>
-<p>IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4: 9ce63e3d9903982c053b125686abcb7a84357ed4<br />
-  xe-pw-168400v1: 168400v1</p>
-
-</body>
-</html>
-
---===============0070881192801003078==--
