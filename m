@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2857BCD8CA8
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 05:34:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12446CD8CA8
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 05:39:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDBD510E93D;
-	Fri, 12 Jun 2026 05:34:06 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FED310E932;
- Fri, 12 Jun 2026 05:34:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0798863313991818013=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A014810E932;
+	Fri, 12 Jun 2026 05:39:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGpPLnCN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 299CE10E932;
+ Fri, 12 Jun 2026 05:39:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781242769; x=1812778769;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NTMYRLGOnhlZda0PWvAF1h4vYt6Pne6nod1mMMhI+zY=;
+ b=jGpPLnCNhOumNRcXugtpYZxBDH9gFVcWQspYumTLkkMV6cq654wEtmw+
+ FswJxbgokAgqnDLxgqOpvLveGN5RWq5l4DNTTl2nytFkuydxhrdTUIWxj
+ cnM/L7rFub0A+EjOL9Sc+PV3IcAS+/JAA+elx/sIRBzDJyMTGLQqnp9Qu
+ XMMNfgRI+chmfvumIUroOMFHvGrfhPza7L8eBbzyVg6Crd6LlUrRkozD4
+ A8w8bUp2zzraa2x3KNb+uDZj2YL5+5aLr+CoUGYnQWgkxUnWkowyccjqv
+ oMmkMBM7b/BzXD2mVTwLEBiC+X0go8o2vw7JWU3vQVKbpwzN5o4RgwHtD g==;
+X-CSE-ConnectionGUID: rfarA8N/SSWZbUXTYWwUPQ==
+X-CSE-MsgGUID: oZLKDAVPSSCSsf0xVNSiDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85699613"
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="85699613"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 22:39:29 -0700
+X-CSE-ConnectionGUID: hCNmWx87QU6koPuFoWgSsA==
+X-CSE-MsgGUID: TP/9GXy4TSW5sQvhfmtmmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="251814072"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.89])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 22:39:27 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 0/3] Deactive/Reactivate Panel replay on errors
+Date: Fri, 12 Jun 2026 08:38:53 +0300
+Message-ID: <20260612053853.247705-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260612053249.246878-1-jouni.hogander@intel.com>
+References: <20260612053249.246878-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Disable_schedulin?=
- =?utf-8?q?g_early_on_FD_close_to_avoid_CAT_error_cascade?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Jun 2026 05:34:06 -0000
-Message-ID: <178124244644.72040.12691415869247442078@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260612042548.3740605-1-matthew.brost@intel.com>
-In-Reply-To: <20260612042548.3740605-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,183 +67,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0798863313991818013==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+DP2.1 specification says:
 
-== Series Details ==
+"The DP Source device shall retransmit an active video image after
+detecting any PR error status bits set in the PANEL REPLAY ERROR STATUS
+register (DPCD 02020h) unless the DP Source device is already updating an
+entire active video image."
 
-Series: drm/xe: Disable scheduling early on FD close to avoid CAT error cascade
-URL   : https://patchwork.freedesktop.org/series/168398/
-State : failure
+This patch set is implementing deactivation/activation of Panel Replay
+on errors. Also ALPM error handling for eDP Panel Replay is added.
 
-== Summary ==
+Jouni Högander (3):
+  drm/i915/psr: Split intel_psr_short_pulse
+  drm/i915/psr: Detect possible ALPM errors on Panel Replay as well
+  drm/i915/psr: Perform Panel Replay exit/activate on errors reported by
+    sink
 
-CI Bug Log - changes from xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8_BAT -> xe-pw-168398v1_BAT
-====================================================
+ drivers/gpu/drm/i915/display/intel_psr.c | 99 +++++++++++++++++-------
+ 1 file changed, 69 insertions(+), 30 deletions(-)
 
-Summary
--------
+-- 
+2.43.0
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-168398v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-168398v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-168398v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-atsm-2:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-168398v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-vm:         [PASS][3] -> [ABORT][4] ([Intel XE#8007])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html
-    - bat-ptl-2:          [PASS][5] -> [ABORT][6] ([Intel XE#8007])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-bmg-2:          [PASS][7] -> [ABORT][8] ([Intel XE#8007])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-wcl-1:          [PASS][9] -> [ABORT][10] ([Intel XE#8007])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html
-    - bat-ptl-1:          [PASS][11] -> [ABORT][12] ([Intel XE#8007])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html
-    - bat-ptl-vm:         [PASS][13] -> [ABORT][14] ([Intel XE#8007])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-ptl-vm/igt@core_hotunplug@unbind-rebind.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-ptl-vm/igt@core_hotunplug@unbind-rebind.html
-    - bat-wcl-2:          [PASS][15] -> [ABORT][16] ([Intel XE#8007])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-
-
-Build changes
--------------
-
-  * Linux: xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8 -> xe-pw-168398v1
-
-  IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8: d931e7b381f9d86766f3a971a9376e4312745af8
-  xe-pw-168398v1: 168398v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/index.html
-
---===============0798863313991818013==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Disable scheduling early on FD close to avoid CAT error cascade</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168398/">https://patchwork.freedesktop.org/series/168398/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8_BAT -&gt; xe-pw-168398v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-168398v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-168398v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-168398v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-168398v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-ptl-vm/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-ptl-vm/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168398v1/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8 -&gt; xe-pw-168398v1</li>
-</ul>
-<p>IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5245-d931e7b381f9d86766f3a971a9376e4312745af8: d931e7b381f9d86766f3a971a9376e4312745af8<br />
-  xe-pw-168398v1: 168398v1</p>
-
-</body>
-</html>
-
---===============0798863313991818013==--
