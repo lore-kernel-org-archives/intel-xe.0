@@ -4,144 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D029FCD98CE
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 21:25:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FEABCD98CF
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 21:30:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B3E810EB78;
-	Fri, 12 Jun 2026 21:25:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27A5310EB78;
+	Fri, 12 Jun 2026 21:30:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PXnUMj/R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lv6m0Y/v";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1790110EB78
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 21:25:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 051D810EB78
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 21:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781299549; x=1812835549;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=1Dnj9J2SoJN3aQGylwtM6RM58+Phwhs8z71XhGxvbFQ=;
- b=PXnUMj/RHx4rDOyAPiBeu563qQj8CEPnK+YWUDLv6L/DE6hJnfQsYeuA
- HiVqN6Vvm9PZ0TUZvkVaX1HszpZmCzSb0QyZf647puZlbvEos4W9GyiL/
- cpvIHT0ZFSEQ4eik1Gn4VWcxTouNY08GBipMF1cgh5VTHP1lG4s1H+nBu
- VUAsJuct1YFuUb+rOgFEjSjsKwN+Ar4gxI4aBn80dmByR11k3jyC+skZG
- /b9YuVAqO5MmD93CJF2Xbkqq9B2ZlFLGZR5xfNw9csMHXTnNoVUJH57KW
- k5n7E//du8FenJiiBsbCkCyAMwQu4aG2GwS9M94EHDk/qphvCViQrUQOU w==;
-X-CSE-ConnectionGUID: WEiuRJKYSJyUBuNdQw0wuA==
-X-CSE-MsgGUID: hmgQngYHSFetLM2mwMnwrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="82045488"
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="82045488"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 14:25:49 -0700
-X-CSE-ConnectionGUID: HEJvyo1yRlGmb635MGy/2w==
-X-CSE-MsgGUID: FsPqBalySCi1id2hO0kQ6Q==
+ t=1781299823; x=1812835823;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=u0gW10q5K3H1G88sX8Lhqa5Ze2/4HqUoBlFkXB/jqO4=;
+ b=Lv6m0Y/vIbGHIVAzuPkXhRG7/L719JhfFrJxwM87x7b397yDqgLQtwe+
+ spXycll38mocl6brMcooSfT5gw1od/Hd8zW+MDgPkE1LhU1llqntv2biS
+ BYZMwn2VAGeMaiUBUszOUwzaf45En5Rx0ikL4Lw9IBvlHrhh1cMOIU3YV
+ Gyzn5OuXDenVukoFefF2qhVx8ivnb+40Jvpr4jIX7ATLPg16EgGpGZcPf
+ o+HhvCK/cPZICAEdoBpYZGPNiPJqeYoSpF1Rw8+kVL+S7j/0IWQIb1+d1
+ qlF55jB7CfewAXpa4Nc+F7euW/W000Nx7thUvqPLJuFzz/D/NV4aCL2XG Q==;
+X-CSE-ConnectionGUID: Tm0LixFvR+asSUxRJBNJyw==
+X-CSE-MsgGUID: O2VZQIEvQqa6ruhPYen/cA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="99716375"
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="99716375"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 14:30:23 -0700
+X-CSE-ConnectionGUID: uya1T8cQRb+hN7Seb8zqqA==
+X-CSE-MsgGUID: rEL9S0wUTyq4AfZwZwSV7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="246945778"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 14:25:49 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="243995440"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 14:30:22 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 12 Jun 2026 14:25:48 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Fri, 12 Jun 2026 14:30:22 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 12 Jun 2026 14:25:48 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.65) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 12 Jun 2026 14:30:22 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.22) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 12 Jun 2026 14:25:48 -0700
+ 15.2.2562.37; Fri, 12 Jun 2026 14:30:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=r+9mYMjID/C3jL74fyl6zT95AVurWejKLQ6IDR2DKGjmgLk/LBVaSiPqZPAUrbE4SBlelqbNhkJCU4lZUJwLv0sv53hIPn52qTBeDoR9etdjq/GYQDnrQTQS7HK5DP4hztSYkkplJa0Zr+ob2oYmrhyVEX63U0moIxge3A2wfbaLy5cF3I870XkHVjJrcU839W9UwGCJO0Nfcfy0oOy/8kIJvDc1DMxHxXf47oJb+U/dtNNPCjGzkcB5DuwLaF+uXrc35N3sokV5Qt5lVgqq7Mt1sI7LqiDDFsKH7qYcSQ+M0+HjpWdW1sVZSm7H2BZjGmpz4LOM6ws9zZ2GBd9lww==
+ b=TF99bi7Nl+dr9vlGkmxP8l7efSMmu0jDJn0dQy0AnznDSehnPOm/d1lmjbEfj8gIV9hIitbPx2FedguJoLxXZALk9LwC1QUUpsDX9jKZJYF41W6CsiQC9JxOp7m6gVnSifRECXkPzmX+ayOk2S6UoeD0BdNGcI1MCc2P/C8akvQFTJkE+m3sFSJ7GLQBJijDOgwBm98cp8ZPmRiOLLwgsvqdXxnew9uKcXzUiipRNieMjXlXx0FLNZ5FBvx2MfRuQx2JyLJKaRQMDOvltLN3q4nkXuqx+CoBK2QgUDX8ze7LPkI545+2/stgXm9X2Clw9FKwySmTMrC7X7/YAkV5LA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sqFIERJP0zPPjZU3SbxkuDZih8ZsMqi5GwCuBSGneJ0=;
- b=N1FUq2Fq4P8b5rUiITGRTKstsNCdVx32MkH86rfNAvw63LTXTOhHek5d7F81ZEWkyp5Unpi2WCzufmOyqq22aiPegLAEawbF56Uf1PgqRzUZb1lAEVar7hsY8PO8VTGaujN/SLU+U+qOzVQOQH+QBEXRGD4zDNJt2BC6XcgdtaOmwJ1MWJNN8vaGfCzN1G4VL/3avmV/oOQbiYXQXb7szPBgWpUaHcBdNyr9WKodjM3tp/rDqh7+soNXlvWTVv1rSc5xGjvJdy4D6xQrJyc2VO0aepbhb+PVU4fh2HAul5k8ya+1ig4E0LCkeYMEfDLpcGYn8zHdvlfr/nq6rYKPZw==
+ bh=5G/HA9zsGU3kFxT5jl5d05KvTf9hVKJePIr2pE2hRT8=;
+ b=ThI+N1JqhvXMmlM3tRQnJy6v0CkUL+jDwPpwZEmSM3gNq87HCKAdeIeQgpfzYkhBb6JL3qIg6pIlGTzZzLOclOS4nkdMu5F8KVCA4SS1w4hLxjGxpUSsRGqGt1YRKXhkwKxud63ArxATB7XOJtd07Lwj4WZD7r6gTLoJET44X37OGrcdfrR+v0Qa037da1m1AlqxZ4i89u8Q4QhXZlBd2n2Bczwdik3ZnGv1Ur+ox1toa6o+U10+ambPjpvttvwe84sOQ+x3wvXyR1GiYUf7tgERVVgvgKyIiVypVlIrls2yvVey7kj73k/lWC+6AB6gOyUgiGqb/OGdFe3ILWg3cg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SA3PR11MB7528.namprd11.prod.outlook.com (2603:10b6:806:317::22) with
+Received: from SA3PR11MB8046.namprd11.prod.outlook.com (2603:10b6:806:2fb::22)
+ by CY8PR11MB7136.namprd11.prod.outlook.com (2603:10b6:930:60::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.18; Fri, 12 Jun
- 2026 21:25:45 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.21.0113.013; Fri, 12 Jun 2026
- 21:25:45 +0000
-Date: Fri, 12 Jun 2026 14:25:43 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Harish Chegondi <harish.chegondi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/1] drm/xe/eustall: Add workaround 14027094826 to
- graphics IP 35.11
-Message-ID: <20260612212543.GJ6214@mdroper-desk1.amr.corp.intel.com>
-References: <04a98a6d8566eabd96fbaa23cbc8545841863a8c.1781220263.git.harish.chegondi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <04a98a6d8566eabd96fbaa23cbc8545841863a8c.1781220263.git.harish.chegondi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0059.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::34) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA3PR11MB7528:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c265ba6-5785-4142-aaf7-08dec8c92a15
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: TXYDV9X/E0v6GEfau83qeF3barRmvEHau2qpa2izmSOycKnOiVLrFODo/4wLzsdJdenqPZpOKjvKY5COVkCLHdRFOsfBVBFvs9i2BLFNH4miYyL1QAzolV5D52S+3GUmOua0zNOui9sIp+ZUg337+MPsQKFZjPtKdjeii/I+6DNfWI51lhXpCIbuMXAKhb1LTWIcDLIBb+M7VAFP6hYGsErw+LFqJ8ZjPoh3oQBjFaY4XdKWdZnQkTdZdEAYdMd9P3Gl7t0GSFV8drTER0sVDT9qczCDYHQIG8Ymfw+qji+KtYOhFgDGbz5bMC41Z1NOygegU9nWsJSQzI51OADo0QwiU6UxhcRz1OfYK/82hReuqtkSgAG+vxWw7WF7mNcp+KXy2cUOgq0yO7YxRypkY2lEDfUj2lGD/o1pxWTTT4lUT+nHz6ZkQEIS3EPoWbQ4aXYnNH90YvLHa6bXbkUmewNrScE4gbNVrUR1hhdvYqkTUG08TPeT1LiWl/bhJZg3xijYbPVjEuw0D21NTWlU3iKTK9rhnyVVRKPfiA9QIBPToVBmM8sQuD8+bEPNSNmF0oc1UeAtwIysa2GB9Uv7dEO2oJvWkAWKBgaqdflM2tMXR4PB/L4L7dvg1QiLYm7iH7aEjPSdej3FkFVHJ7Nw/NQKVsOb0Zc3KH0MkSf+vSXjUWvJZpWh9l0yGfrzMRtY
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(56012099006)(11063799006)(22082099003)(18002099003);
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.14; Fri, 12 Jun
+ 2026 21:30:19 +0000
+Received: from SA3PR11MB8046.namprd11.prod.outlook.com
+ ([fe80::87cd:16d5:8dbe:2286]) by SA3PR11MB8046.namprd11.prod.outlook.com
+ ([fe80::87cd:16d5:8dbe:2286%4]) with mapi id 15.21.0113.013; Fri, 12 Jun 2026
+ 21:30:19 +0000
+From: "Wang, X" <x.wang@intel.com>
+To: "Brost, Matthew" <matthew.brost@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v2 2/2] drm/xe: Disable scheduling early on FD close to
+ avoid CAT error cascade
+Thread-Topic: [PATCH v2 2/2] drm/xe: Disable scheduling early on FD close to
+ avoid CAT error cascade
+Thread-Index: AQHc+jDx4LNh9MotF066RMmK1AZx/LY7b/4Q
+Date: Fri, 12 Jun 2026 21:30:19 +0000
+Message-ID: <SA3PR11MB8046A95D156D3F2AA3018E6F86182@SA3PR11MB8046.namprd11.prod.outlook.com>
+References: <20260612060120.3795183-1-matthew.brost@intel.com>
+ <20260612060120.3795183-2-matthew.brost@intel.com>
+In-Reply-To: <20260612060120.3795183-2-matthew.brost@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA3PR11MB8046:EE_|CY8PR11MB7136:EE_
+x-ms-office365-filtering-correlation-id: dca33990-12cc-4f8d-8c0a-08dec8c9cd79
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|366016|376014|10070799003|1800799024|42112799006|11063799006|6133799003|4143699003|56012099006|22082099003|38070700021|18002099003;
+x-microsoft-antispam-message-info: CCG8/ssnuo9asc+tFRdGhdIKx8LKjOpVlvhrpbytO1vjLuXAlR5cyUqOy+LyhU7LuntRge/zlsSyDVi1G28l87QowPLy0A55Rf3A+bHMAI4hNzGIFBlfaD6EjxRxhlDjq5cmD3M3SXeD6sq1yeVntV5I60FH5YwivY9DssRafkmGcwmHRf29L36nGZvVpEd7g/fELfyw41wTTSoA1kOXs8ot4FOfenoTWoJSexXIsgYZ5AtWopqy1ktFptEKCkc/IrytzzRJXczrGmottp7/p49BRJpPnYX0HMqYAJ2VKAASfc0uDPQXlAcvPHAmbxtntojD8Q9mSXP79HZ0KWmJpavB37urmnzR4oB7dvGDwxh6kbN+CcBJQxtjwoRhek68ZZzFv6WlihV8h6tcq27Zkr0X5ZM3chg1X1JVObDVC7MgCz7PT1VB/L8l8hzRVBzWvtMo+9tMSZs+uiRABq979+saE574x4KrC5PSPRJj65rO10VxUeOaj3fMZoJS2OnvGL8kdReKQfTlPmbcip4HCgQOGfaQG/jUjizB+FM+dMob2dPlQcdebHXDfLfSuki8a+scngn8Pda9u9t6HyZqU1aWqewinco6FvQOUnZiz7lo8M1B6LxeUzXZjgDl9GRIsWniN3aawIFaewiva/TKP/WBWJeVKgRebehcGFgJWw8pW3DXTO++dzE5mLvlsLAS5wMkounWETYGKAZe/XHLbFtk/A8MZfCxDZMieACbkj4W+QISTqUo3GCBA3cEOy6l
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA3PR11MB8046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(10070799003)(1800799024)(42112799006)(11063799006)(6133799003)(4143699003)(56012099006)(22082099003)(38070700021)(18002099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OWalPANPF2jBf9z3dmd3xVPdJxiyEml9oTg+nnq5Da/JUla5zvuyTw8VCTww?=
- =?us-ascii?Q?lSMDfwBjauSm5SnXWqafZaZ7rzPlXzrz0gY+vCmwJ6KYgGHxd9/dlGjHnxdA?=
- =?us-ascii?Q?kiDBo+SR2JEv5IcEde8pWa7153RFi2bu6yJbMFSAac2bWPBwKuW0KaoXanMm?=
- =?us-ascii?Q?mc0/eR39YDz/08hP4VwmafqI32832/gXExh+7mNUv0H9bBMi4YldYHYGbACs?=
- =?us-ascii?Q?yrvH80Ec8sHqKX/Jsp1xWxSZXD1A5/h4Vx83KEzW+04rxXzwVCpirJ0TeeNf?=
- =?us-ascii?Q?NaOZMgq9iwwN56bds0FQXcyqKiyYLxF10eKcTmr1yjod2TTW3RKnjBp1+Vmt?=
- =?us-ascii?Q?zGYa1QOEd0XcaascMQ/VsucLiGRkYacqBGhQ5giJEnZhcLC5/PyRmdHOJuZ9?=
- =?us-ascii?Q?kHQR0Q9rHbWksFBZq4tmP5otaoXWa2nlMClVqdRVvAIWZDppxFL+Kl0Wqxf9?=
- =?us-ascii?Q?GUCAddh4wPB010hjG94F0P9O5vkcMsM7isp1fbkOAk6IfGla14t9d3/w2GQv?=
- =?us-ascii?Q?HE9lr3OLbBQs0Vp5NeFY7mfFG/cNY5riyl5NVSzokM412ivJ04EeyWmLENb/?=
- =?us-ascii?Q?wQQwCkwY9qytsdD1vfD05XVIx2dNWhjYoeQQ9yvTRdQ7jipJWeBkl24OkP4A?=
- =?us-ascii?Q?ofqhDiz63lQ2NL+wgOinW0sNxJlv6wxv/1gB7v9B/0LZ6l+senF3v7YVeZHM?=
- =?us-ascii?Q?HluDwmPyE2vliRyTWYfyhS7gXyW7azeikENFZ2NTcbmxnkwZsNnMyxjzXxW1?=
- =?us-ascii?Q?qDBlhMsI8QPefy1sAx51LrnomwEJKow3s82QfWMvmcnHIp6ASvVPIT4EURVN?=
- =?us-ascii?Q?/cjj1jwOKdnb1hm9ICTBRmnwmOjMLtfhv1Nn7qSlJRnq6KxSRBj7PooQABsw?=
- =?us-ascii?Q?x5M2EsDLSZUif2YCCbgz8jbdgWwwW5Dhmx/k+UwHU1IcSmuv/RG8hJyfslHX?=
- =?us-ascii?Q?Mov3tJvxln46nJ7sMnJyT7YA4Z6w8EVKme9g4Xocl+wtt2EOh8EV43BgNEEx?=
- =?us-ascii?Q?ifBqib7jaJWKva4BbIyQpzP9wMemKRP7n8Yo/OGbWQ0j3jf/kXW85U57o7ie?=
- =?us-ascii?Q?ZF3Xv/ciB1K18mGYxlYSzzrLDGbufoOhauWmivXbNjGUuuAwmDYG52rMwxHs?=
- =?us-ascii?Q?rZpXKbljfswjpZ9zyst7REGshZOPL+ngwbyIWoRIpgF2k36ybfmNmi2KL4Nq?=
- =?us-ascii?Q?QcbJAx0A+F6/zfx7DilTwITIbTlFYSI9N6pcShZZVRK9RWicTA/jj7og6GgO?=
- =?us-ascii?Q?aGVcMQklWJNXgyIBNvlGwS37vR9VWhlXzGhCJQlOMYSLekP+kAgJyOARpEMc?=
- =?us-ascii?Q?Lqg7Z8/3HTQhKI5lnlQW8tRcw8KAaO/S/5y+z8nfVMt6/QwcIUSGzcOfjbcp?=
- =?us-ascii?Q?/PyrIDI9XAW4wBF20/hW0txagbq7IONriFIQblRKHmSW44e7F0qNyQE5503d?=
- =?us-ascii?Q?w7C59SfaPRtMs78iOZdKnYiRy+d4j54bWsfR4pt9CadW8WEcxQvgUBGvBHMI?=
- =?us-ascii?Q?zYZWnd104+jNMfMBPY81V24/MAVAZvVyR094PRfwmChCYJ8uYlBFx6ob2ZUB?=
- =?us-ascii?Q?O4rOlOVAp7YqPw/Z2Jw6TT9FSqYJW8p5bweNqowAXdt/ZpF4QPaS4OXKqdrI?=
- =?us-ascii?Q?+pJYJzWiib9zWRsopOgJfmZmSoK8ekBR9x1zPhp8eC1A6Utqr3XGTY6PLf+3?=
- =?us-ascii?Q?8TaNFc+nZq3LweDy8fCxdrRXMl7RJhzc/9gE7iGMVldrLP5qqIxdVu9sXiw2?=
- =?us-ascii?Q?q/TZR8e+InmGgEx3xNvWAgIj6NaGRXM=3D?=
-X-Exchange-RoutingPolicyChecked: Y5k8SrmdwF53UdG0hY5hsggb372nhaBtLGypMocU6FjmEm1EaRUWu67AKJ3bsVjap/M3BwIruHuDpLWZdK3f1t4o9dUDAEAgDudUbpc0ja2e1t7u7j+KvJpNj3hguIYpGUUBGg4Ln0nxN+IsC/+r7AshDIiFS+62eme+jWY4o+/wN5v2fK865W+IMGnT8pmn8pEushXxQGz6brbnDOJtf8nIdRY4ELEFOHQt8BUk1/4g5scbqJyNn1PmOwuEjGycr1XT4WsQGMQ8CDSdZBJ0ca91LqY9XUjM7soagvoFSZUsvs0DVcT+xRct6+PNhcZtFrllK6uVQManoq62eAd+/w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c265ba6-5785-4142-aaf7-08dec8c92a15
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?W04Z+LwW0A10+JpaboCk8hjHMvxJRCZSAH35b55/gL6qjg28mH281FdVyrVR?=
+ =?us-ascii?Q?hiXG4n8sI4oVHJPcherPjhYj0nw8lorSVk3vfH9pf+MtKXPJGAQ2l12Iz3uP?=
+ =?us-ascii?Q?eOyJfoLJN1QGWyWcutgVYa2/yZYoFGt0x2bPf0/+ugRGt8g36v4eZCB5j1ek?=
+ =?us-ascii?Q?vyba0m3ej2moq+CRysbNQ6ElFqx7cutbUBpqFaWYv0q3c8G6Q0j9WE4ffWqJ?=
+ =?us-ascii?Q?rgpdqHPq2l6Nh1jduZK0FJk+9+26unZxyhTBzAIpag/hBvRmcA4H57ihPuY0?=
+ =?us-ascii?Q?5icZtGJLq6ld0VSS1C79p26uM2nHi+0TmdlJlxJ2au+z7MC1wCKD/CwT20vK?=
+ =?us-ascii?Q?UKtIsEy7iQklNMdzCZd3eAHgTqhsoblj2aUzVzlZ8bsXzutAooVcUf1jyxZl?=
+ =?us-ascii?Q?pf1/U4fH4/PA4U/R4m6cRRsznEKohA7/CFMjX9uSgDr6XuiDlLQvKWwpwFyH?=
+ =?us-ascii?Q?is+RRIKNje9SecFfcwskQZdV0N3qGGQLlk8GVYEfiivy+GUW3i9QtjrEfqkz?=
+ =?us-ascii?Q?eNGGDdz0r1P9PoHEdm2fmZcY2e9I9XcFkGWRBdryLM95L4ejUgfGBbpGwEmA?=
+ =?us-ascii?Q?Jlz5nAcxx+03uA+uwYkO5qFOIlMdFqOM96YyVdyTiiUekwz2TTt9lHGzT9Nq?=
+ =?us-ascii?Q?yqU7jvsA4LmYKzDz+ixl5PhbJUEN8+vHnkpI7mkEU1GIBVGsluJ561SncNc2?=
+ =?us-ascii?Q?iTlRlmVcNCXEsZCvNsVYyHb8W8GaCgo0sT7KFUwY5Yqk5QZJGPgHCa8op4ke?=
+ =?us-ascii?Q?HSHLAeBUofQQLruBKfxIBMoNhJUPdP2JEhZsFVFZSEn3M2qVeuIX0iVfJWWk?=
+ =?us-ascii?Q?j6WfrH/zhsJy59gZKLFBw/Ka5Syu4fRwvJlIFw4n2aoP+s4x/9NFrA+Vbxhs?=
+ =?us-ascii?Q?SXsv9AKpTvszxuLlt3eTciJS/UcYiNgf99gIoh5Htl5ZeXveBM/GKizyifiI?=
+ =?us-ascii?Q?Ck5+vawHWYgO0sAOnLCFoei3cRElY8Ex4IH/+HqlcERPLHQUPdFG7Wc7OtfJ?=
+ =?us-ascii?Q?2L9XJ+1fWDxtK7HAPAOF9I1jlEU16nyVa0uB+Myw9VKk4krKbiH6F6URJRqZ?=
+ =?us-ascii?Q?SgawPaEaAVOHbxTexlryC56jcw9/W6Fz6/YapbZzuft1ezD6vLMxwKxdlOUz?=
+ =?us-ascii?Q?6WSS4g3cRrNMAoesnOVDd6ZmUzgnS+m45XqsXCWU2qKn5Ywg74bSkxVmsr26?=
+ =?us-ascii?Q?Lh8BNpdFmt5nVaZ5Xo6b/6MVxPE60AyZRHwx1rCUfNwSM9d6r0wcbg+BaR/J?=
+ =?us-ascii?Q?9ROlLZupwW90zuO3NWEfHdh0L3kX7C+iIchP4/l9EfrvRVU7KT9FgTtNNb8J?=
+ =?us-ascii?Q?uzSzdFAiqwSxx8424/8+lV0I7dVlAFm+4Zs4cgp1wWzhVpndUwZ4+p6teS6t?=
+ =?us-ascii?Q?4tnOjwfkYucyzKCdJhcopVoqyoCaB9ymIZCJRY342i1qucFkeKAypXLl+PCV?=
+ =?us-ascii?Q?zzcFrBINDB6DAYBGhYJZWNYrn/1My+r0vx7Mz1x9qiegM/8B3Px4OppJH+9c?=
+ =?us-ascii?Q?PjSNEEQ/5WktHj8TpBby/U7KWMBbvazHh82uK2Uo72MR1iimTeoC6/YtlfGe?=
+ =?us-ascii?Q?E0Thj/D0fGzcwKjWExYiHK86t2YBuV5ecyJsS2aGVr/t6Q5hxh60pfCZ/YN7?=
+ =?us-ascii?Q?Azq20gBUCaCjcAirL8Z5zGzZpb78fWKyJF1pc2qBo/j+f3+qJEOzGq0OZAgg?=
+ =?us-ascii?Q?Y5NGsU5PMn4Y82qWtF80awsdA/GE1vRtwLt6LUrayuefXbb3DNSRrhOHOncC?=
+ =?us-ascii?Q?ZFRtyTq3EJKBWiXFv9WCKYr9iiW3WKxArVfm8guoIUT+q5XQ9t52?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: OYAY2FPi/qyUUYvmvgMlzRtUoMKC0bQvAPjFvVULwJa3fRlBEK2xhbo7vQ7Fq4CKxPUSw+0+01dcLRo+4DZOA8knrwjBe1O+htn2+OFcI4lFGD7duEumAH/Ds1DH1CD4UtLuG2K7ewdaD07vPBI8/gaeRKUlJIkIYOvWhJfbi9Hqxs0a/7qvwsWSSNAozlM22sziULyCY3mmfWeMZ7CL+asV2rnBhSUimXj5RFlhFblQkXQ6N06YNtXaHqMwbyw/qcPMiMr/tEna6hXaPw5dmdhwmKJr5hxzyHL2lQv5DiIMNfM0Z2eFBChT3W2QFbUroc29noWf6IdPYp0g31ZIaw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 21:25:45.5160 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0Arp9fxtNbjLYlC0TlNd9yFZ1mV4nf8wagOsb/ogkvqAaVNYiWvKJ9fyNisFYoTWf/o3o00Pfo2oct3eLAtv7lG6As9vcD7UgB7ki0dpVLk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7528
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB8046.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dca33990-12cc-4f8d-8c0a-08dec8c9cd79
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2026 21:30:19.4439 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2Kkzu2HXNGRW9lDQtRvPIw78cbf4AqAdKICymDvpqeWh37KDsL1ecejdz2EVXeiaCkZzQYrvSF/nidBM91M9KQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7136
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,215 +162,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 11, 2026 at 04:34:27PM -0700, Harish Chegondi wrote:
-> Before enabling EU stall sampling, write 0x20 to the SWF scratch pad
-> register. When the firmware sees this register set to 0x20,
-> it applies its part of the workaround and sets the scratch pad register
-> to 0x60.
-> 
-> Before disabling EU stall sampling, write 0x40 to the SWF scratch pad
-> register. When the firmware sees this register set to 0x40, it reverts
-> its part of the workaround and sets the scratch pad
-> register to 0.
-> 
-> Bspec update for the SWF scratch pad register is still pending, but has
-> been confirmed offline with the firmware team.
 
-I think the key point we should try to get across in the commit message
-is that a firmware component, not the driver, is responsible for the
-actual implementation of this workaround, but that firmware needs the
-driver to notify it whenever EU stall sampling is being enabled/disabled
-so that it can do the necessary actions on its side.  A specific
-register is being used to communicate requests/acks about the
-enable/disable status between Xe <-> firmware.
 
-Hmm, what's actually documented in the workaround database right now
-says that the Xe <-> firmware communication is supposed to happen on
-register EUSTALL5 (i.e., 0x53c[9:3]), not the scratchpad register we're
-using here.  Is the workaround database's description outdated?
-
-> 
-> Bspec: 53188
-> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> -----Original Message-----
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
+> Matthew Brost
+> Sent: Thursday, June 11, 2026 23:01
+> To: intel-xe@lists.freedesktop.org
+> Subject: [PATCH v2 2/2] drm/xe: Disable scheduling early on FD close to a=
+void
+> CAT error cascade
+>=20
+> When an FD is closed with many exec queues, teardown relies on the TDR
+> path to clean up scheduling. However, the TDR handling is serialized (i.e=
+., only
+> one exec queue is processed at a time), which can make it too slow compar=
+ed
+> to GuC scheduling activity.
+>=20
+> In this window, GuC may continue to schedule contexts backed by invalid
+> page tables, leading to a cascade of CAT errors and repeated engine reset=
+s.
+> This significantly increases recovery time and can degrade system stabili=
+ty.
+>=20
+> To mitigate this, eagerly disable scheduling by sending a self-message ou=
+tside
+> of the TDR path. This prevents further scheduling of invalid contexts and
+> avoids the CAT error/reset cascade.
+>=20
+> This change improves robustness and reduces recovery latency in multiple
+> queue teardown scenarios.
+>=20
+> Cc: Wang Xin <x.wang@intel.com>
+> Cc: Jia Yao <jia.yao@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>=20
 > ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 ++
->  drivers/gpu/drm/xe/xe_eu_stall.c     | 46 ++++++++++++++++++++++++++--
->  drivers/gpu/drm/xe/xe_wa_oob.rules   |  1 +
->  3 files changed, 47 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 08251c7a1a4b..b86050503c4e 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -616,6 +616,9 @@
->  #define   CCS_MODE_CSLICE(cslice, ccs) \
->  	((ccs) << ((cslice) * CCS_MODE_CSLICE_WIDTH))
->  
-> +#define SWF_SCRATCHPAD				XE_REG(0x4f000)
-> +#define   POISON_SUPP_MASK			REG_GENMASK(6, 5)
+> v2:
+>  - Fix checkpatch warning (CI)
+>  - Cleanup lost kill messages on wedge corner (sashiko)
+> ---
+Reviewed-by: Xin Wang <x.wang@intel.com>
+
+Nit: my name should be "Xin Wang" in the Cc tag.
+
+I reproduced the CAT error by running 10 concurrent instances of
+xe_exec_reset --run-subtest cm-close-fd (with the wait_gt_idle removed).
+The dmesg shows page faults at 0x1a0000 (the test BO address) from
+vecs/vcs engines immediately after fd close, confirming GuC is still
+scheduling against already-cleared page tables.
+
+This patch reduces the race window significantly. However, since
+disable_scheduling() sends an async GuC CT message, a narrow window
+remains where GuC may schedule before receiving the disable. A complete
+fix would require synchronously waiting for GuC to confirm scheduling
+is stopped before xe_pt_clear(). That said, this is a clear improvement
+and worth merging.
+
+
+>  drivers/gpu/drm/xe/xe_guc_submit.c | 34
+> ++++++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
+> b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index acf3600a7602..57899128cdc3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1881,11 +1881,23 @@ static void
+> __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
+>  	kfree(msg);
+>  }
+>=20
+> +static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg)
+> +{
+> +	struct xe_exec_queue *q =3D msg->private_data;
+> +	struct xe_exec_queue *primary =3D
+> xe_exec_queue_multi_queue_primary(q);
 > +
->  #define FORCEWAKE_ACK_GT			XE_REG(0x130044)
->  
->  /* Applicable for all FORCEWAKE_DOMAIN and FORCEWAKE_ACK_DOMAIN regs */
-> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> index d37770c58c5d..4d0f97ca4cdb 100644
-> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> @@ -7,6 +7,7 @@
->  #include <linux/fs.h>
->  #include <linux/poll.h>
->  #include <linux/types.h>
-> +#include <linux/iopoll.h>
->  
->  #include <drm/drm_drv.h>
->  #include <generated/xe_wa_oob.h>
-> @@ -20,6 +21,7 @@
->  #include "xe_gt_printk.h"
->  #include "xe_gt_topology.h"
->  #include "xe_macros.h"
-> +#include "xe_mmio.h"
->  #include "xe_observation.h"
->  #include "xe_pm.h"
->  #include "xe_trace.h"
-> @@ -682,7 +684,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
->  	struct per_xecore_buf *xecore_buf;
->  	struct xe_gt *gt = stream->gt;
->  	u16 group, instance;
-> -	int xecore;
-> +	int xecore, ret = 0;
->  
->  	/* Take runtime pm ref and forcewake to disable RC6 */
->  	xe_pm_runtime_get(gt_to_xe(gt));
-> @@ -693,6 +695,26 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
->  		return -ETIMEDOUT;
+> +	if (exec_queue_enabled(primary))
+> +		disable_scheduling(primary, true);
+> +
+> +	kfree(msg);
+> +}
+> +
+>  #define CLEANUP				1	/* Non-zero values to
+> catch uninitialized msg */
+>  #define SET_SCHED_PROPS			2
+>  #define SUSPEND				3
+>  #define RESUME				4
+>  #define SET_MULTI_QUEUE_PRIORITY	5
+> +#define KILL				6
+>  #define OPCODE_MASK	0xf
+>  #define MSG_LOCKED	BIT(8)
+>  #define MSG_HEAD	BIT(9)
+> @@ -1897,6 +1909,7 @@ static void
+> guc_exec_queue_handle_unprocessed_msg(struct xe_sched_msg *msg)
+>  	switch (msg->opcode) {
+>  	case SET_SCHED_PROPS:
+>  	case SET_MULTI_QUEUE_PRIORITY:
+> +	case KILL:
+>  		kfree(msg);
+>  		break;
 >  	}
->  
-> +	if (XE_GT_WA(gt, 14027094826)) {
-
-It looks like the actual workaround number (i.e., the lineage ID that
-stays constant across all releases a workaround may apply to) is
-14027054324.  So we should be referring to this as Wa_14027054324, not
-Wa_14027094826.
-
-
-> +		/**
-
-A "/**" signifies the start of a kerneldoc block and this isn't
-kerneldoc, just a regular C comment.  Same for the next one below.
-
-> +		 * Writing 0x20 to SWF register will signal the firmware to suppress
-> +		 * poison propagation.
-> +		 */
-> +		xe_mmio_write32(&gt->mmio, SWF_SCRATCHPAD, 0x20);
-> +		/**
-> +		 * Firmware will write 0x60 to SWF after suppressing poison propagation.
-> +		 * Wait until the SWF value turns 0x60 before enabling EU stall sampling.
-> +		 */
-> +		ret = read_poll_timeout(xe_mmio_read32, reg_value,
-> +					(reg_value & POISON_SUPP_MASK) == 0x60,
-
-We don't really need any mention of "poison" in either the comments or
-#define's since that isn't relevant to what we're implementing here.
-We're just conveying EUstall's enable/disable status to the firmware
-(and waiting to get an ack back); whatever steps the firmware takes to
-actually implement the workaround is outside the scope of the Xe driver
-and trying to reference them here just causes ambiguity and confusion.
-
-> +					1000, 1000000, true, &gt->mmio, SWF_SCRATCHPAD);
-
-As noted above, the workaround database is mentioning a different
-register (and bitfield) than we're working with.  But even if we assume
-that the information there is out of date, we still need to make sure
-we're handling our reads and writes in a consistent manner.  The write
-above seems to be assuming that this communication is the only thing
-this register is being used for (so it's fine to just write a 0x20 which
-will wipe all other register bits back to 0), but the read seems to be
-assuming that other bits _are_ being used for other purposes and it's
-masking the value to just extract two specific bits.  We should clarify
-which is the case.  If this workaround's communication channel isn't the
-exclusive owner of this register, then we probably need to be doing a
-RMW of the register (and maybe also ensuring that we aren't racing with
-other register updates somehow?).
-
-We should also probably #define the 0x20 / 0x40 / 0x60 / 0x0 magic
-numbers with names like {REQ,ACK}_EUSTALL_{ENABLE,DISABLE}.
-
-
-
-Matt
-
-> +		if (ret) {
-> +			xe_gt_err(gt, "Time out while firmware is disabling poison propagation\n");
-> +			xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
-> +			xe_pm_runtime_put(gt_to_xe(gt));
-> +			return ret;
-> +		}
-> +	}
->  	if (XE_GT_WA(gt, 22016596838))
->  		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
->  					  REG_MASKED_FIELD_ENABLE(DISABLE_DOP_GATING));
-> @@ -730,7 +752,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
->  	reg_value |= XEHPC_EUSTALL_BASE_ENABLE_SAMPLING;
->  	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
->  
-> -	return 0;
-> +	return ret;
+> @@ -1926,6 +1939,9 @@ static void guc_exec_queue_process_msg(struct
+> xe_sched_msg *msg)
+>  	case SET_MULTI_QUEUE_PRIORITY:
+>=20
+> 	__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
+>  		break;
+> +	case KILL:
+> +		__guc_exec_queue_process_msg_kill(msg);
+> +		break;
+>  	default:
+>  		XE_WARN_ON("Unknown message type");
+>  	}
+> @@ -2038,11 +2054,29 @@ static int guc_exec_queue_init(struct
+> xe_exec_queue *q)
+>  	return err;
 >  }
->  
->  static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
-> @@ -840,6 +862,8 @@ static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
->  static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
->  {
->  	struct xe_gt *gt = stream->gt;
-> +	u32 reg_value;
-> +	int ret = 0;
->  
->  	if (!stream->enabled)
->  		return 0;
-> @@ -853,11 +877,27 @@ static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
->  	if (XE_GT_WA(gt, 22016596838))
->  		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
->  					  REG_MASKED_FIELD_DISABLE(DISABLE_DOP_GATING));
-> +	if (XE_GT_WA(gt, 14027094826)) {
-> +		/**
-> +		 * Writing 0x40 to SWF register will signal the firmware to enable
-> +		 * poison propagation.
-> +		 */
-> +		xe_mmio_write32(&gt->mmio, SWF_SCRATCHPAD, 0x40);
-> +		/**
-> +		 * Firmware will write 0 to SWF after enabling poison propagation.
-> +		 * Wait until the SWF register value turns 0.
-> +		 */
-> +		ret = read_poll_timeout(xe_mmio_read32, reg_value,
-> +					(reg_value & POISON_SUPP_MASK) == 0,
-> +					1000, 1000000, true, &gt->mmio, SWF_SCRATCHPAD);
-> +		if (ret)
-> +			xe_gt_err(gt, "Time out while firmware is enabling poison propagation\n");
-> +	}
->  
->  	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
->  	xe_pm_runtime_put(gt_to_xe(gt));
->  
-> -	return 0;
-> +	return ret;
+>=20
+> +static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct
+> xe_sched_msg *msg,
+> +				   u32 opcode);
+> +
+>  static void guc_exec_queue_kill(struct xe_exec_queue *q)  {
+> +	struct xe_sched_msg *msg;
+> +
+>  	trace_xe_exec_queue_kill(q);
+>  	set_exec_queue_killed(q);
+>  	__suspend_fence_signal(q);
+> +
+> +	/*
+> +	 * We eagerly send a message to ourselves to disable scheduling, as
+> the
+> +	 * TDR is serialized (i.e., only one exec queue is processed at a time)=
+.
+> +	 * If an FD is closed with many exec queues, the TDR can be slower
+> than
+> +	 * the GuC scheduling contexts with invalid page tables, creating a
+> +	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
+> +	 * this by immediately disabling scheduling outside of the TDR.
+> +	 */
+> +	msg =3D kmalloc_obj(*msg);
+> +	if (msg)	/* Not fatal if malloc fails */
+> +		guc_exec_queue_add_msg(q, msg, KILL);
+> +
+>  	xe_guc_exec_queue_trigger_cleanup(q);
 >  }
->  
->  static long xe_eu_stall_stream_ioctl_locked(struct xe_eu_stall_data_stream *stream,
-> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> index f8a185103b80..293aa83feca7 100644
-> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> @@ -65,3 +65,4 @@
->  
->  14025883347	MEDIA_VERSION_RANGE(1301, 3503)
->  		GRAPHICS_VERSION_RANGE(2004, 3005)
-> +14027094826	GRAPHICS_VERSION(3511)
-> -- 
-> 2.43.0
-> 
+>=20
+> --
+> 2.34.1
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
