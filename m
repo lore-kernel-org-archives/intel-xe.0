@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4B45CD98CE
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 22:20:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB2E3CD98CE
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 22:44:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E1B710E5D4;
-	Fri, 12 Jun 2026 22:20:53 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E343B10E5C6;
- Fri, 12 Jun 2026 22:20:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3650007656081626502=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC6510E33A;
+	Fri, 12 Jun 2026 22:44:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lndx1+Il";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93EFB10E33A
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 22:44:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781304291; x=1812840291;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6V1RsRx5su7xgAjl1cQSAsT48ByIPCzSY6yVorFX6Hg=;
+ b=Lndx1+Il3UOvo4UQymoK77+xkx9HICAWrAztLx2EFht0rWISOwsJsOpi
+ q2F9MVySOfxR/Oz81c8rSc9zRCAk/yc7zqe0vceK/F8F04PFFxVIo+KS+
+ HJ7/Zptq4b3gZFmV/Zb8mAx4dRxmf6d1YJUmdP++sDMkirBefXZc1feIY
+ 24nDUX3nd49a0V5rjN0QPMu673hDODSVm+aFBEXVcdUphmnc4GzhfoH7d
+ BToTuVvVKf+6Ry+Gqhcm/0hoQcV/hKDkrMNa0JAmKxjOqWte7auwTu3mq
+ bxOIp4+UsI+LvD3ewN2EnPxT7YokmRd7g4Lkt8ibHAGkyLJDu+3oVzHtI w==;
+X-CSE-ConnectionGUID: miXrltsvSOiT51JHO2dWgQ==
+X-CSE-MsgGUID: fyH/kFnKSvK+c2k2TaxBsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="81887920"
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="81887920"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 15:44:50 -0700
+X-CSE-ConnectionGUID: TxxkWhluSoixMLqcBYOrIw==
+X-CSE-MsgGUID: Hxd1/82WSb+UHnM/X6Z88g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="248824289"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.20])
+ by fmviesa004.fm.intel.com with ESMTP; 12 Jun 2026 15:44:49 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v2 1/1] drm/xe/guc: Handle GuC local uncorrectable error
+ notifications
+Date: Fri, 12 Jun 2026 18:44:47 -0400
+Message-Id: <20260612224447.184636-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Suppress_Memo?=
- =?utf-8?q?ry_CAT_error_messages_on_race_condition?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Jun 2026 22:20:52 -0000
-Message-ID: <178130285290.75133.4055126574592165578@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260612205317.269228-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20260612205317.269228-1-jonathan.cavitt@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +61,245 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3650007656081626502==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add support for the GuC uncorrectable local error G2H notification and
+opt in to the feature when the submission ABI exposes it.
 
-== Series Details ==
+When the notification targets a known exec queue, treat it like an
+engine reset request and route it through the existing timeout cleanup
+path. This keeps the queue teardown, pending job cancellation and error
+capture in one place instead of open-coding a parallel recovery flow.
 
-Series: drm/xe/guc: Suppress Memory CAT error messages on race condition
-URL   : https://patchwork.freedesktop.org/series/168463/
-State : success
+The timeout worker also needs to cope with this externally triggered
+reset path. Keep permanent or wedged queue destruction asynchronous when
+the timeout path is already running from a scheduler worker.
 
-== Summary ==
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+History:
+v2: Opt in for Xe3p only, excluding media GTs on NovaLake-P which don't support the feature
+    Remove timeout bypass, which is outside the scope of this patch and can be added separately
+---
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |  1 +
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h    |  8 ++++
+ drivers/gpu/drm/xe/xe_guc.c              |  9 ++++
+ drivers/gpu/drm/xe/xe_guc_ct.c           |  3 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 56 +++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.h       |  1 +
+ drivers/gpu/drm/xe/xe_trace.h            |  5 +++
+ 7 files changed, 82 insertions(+), 1 deletion(-)
 
-CI Bug Log - changes from xe-5249-71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59_BAT -> xe-pw-168463v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index 83a6e7794982..f5c9b37038d4 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -152,6 +152,7 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
+ 	XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
+ 	XE_GUC_ACTION_ACCESS_COUNTER_NOTIFY = 0x6004,
++	XE_GUC_ACTION_NOTIFY_UNCORRECTABLE_LOCAL_ERROR = 0x6005,
+ 	XE_GUC_ACTION_TLB_INVALIDATION = 0x7000,
+ 	XE_GUC_ACTION_TLB_INVALIDATION_DONE = 0x7001,
+ 	XE_GUC_ACTION_TLB_INVALIDATION_ALL = 0x7002,
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 644f5a4226d7..5c428f02a642 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -154,6 +154,11 @@ enum  {
+  *      (instead of waiting the full timeslice duration). The bit is instead set
+  *      to one if a single context is queued on the engine, to avoid it being
+  *      switched out if there isn't another context that can run in its place.
++ *
++ * _`GUC_KLV_OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION` : 0x4004
++ *      This flag will enable notification from GuC to KMD via G2H message
++ *      GUC_ACTION_GUC2HOST_NOTIFY_UNCORRECTABLE_LOCAL_ERROR upon receiving the
++ *      same interrupt from the CS.
+  */
+ 
+ #define GUC_KLV_OPT_IN_FEATURE_EXT_CAT_ERR_TYPE_KEY 0x4001
+@@ -162,6 +167,9 @@ enum  {
+ #define GUC_KLV_OPT_IN_FEATURE_DYNAMIC_INHIBIT_CONTEXT_SWITCH_KEY 0x4003
+ #define GUC_KLV_OPT_IN_FEATURE_DYNAMIC_INHIBIT_CONTEXT_SWITCH_LEN 0u
+ 
++#define GUC_KLV_OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION_KEY 0x4004
++#define GUC_KLV_OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION_LEN 0u
++
+ /**
+  * DOC: GuC Scheduling Policies KLVs
+  *
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4023700ff2a9..3b3c6c450062 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -12,6 +12,7 @@
+ 
+ #include "abi/guc_actions_abi.h"
+ #include "abi/guc_errors_abi.h"
++#include "abi/guc_klvs_abi.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_gtt_defs.h"
+ #include "regs/xe_guc_regs.h"
+@@ -641,6 +642,14 @@ int xe_guc_opt_in_features_enable(struct xe_guc *guc)
+ 	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 7, 0))
+ 		klvs[count++] = PREP_GUC_KLV_TAG(OPT_IN_FEATURE_EXT_CAT_ERR_TYPE);
+ 
++	/*
++	 * The uncorrectable local error notification opt-in was added in
++	 * GuC v70.38.0, which maps to compatibility version v1.18.0.
++	 */
++	if (GRAPHICS_VER(xe) >= 35 && GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 18, 0) &&
++	    !(xe->info.platform == XE_NOVALAKE_P && xe_gt_is_media_type(guc_to_gt(guc))))
++		klvs[count++] = PREP_GUC_KLV_TAG(OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION);
++
+ 	if (supports_dynamic_ics(guc))
+ 		klvs[count++] = PREP_GUC_KLV_TAG(OPT_IN_FEATURE_DYNAMIC_INHIBIT_CONTEXT_SWITCH);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 21e0dad9a481..fe6a55fe7fb5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1661,6 +1661,9 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = xe_guc_exec_queue_memory_cat_error_handler(guc, payload,
+ 								 adj_len);
+ 		break;
++	case XE_GUC_ACTION_NOTIFY_UNCORRECTABLE_LOCAL_ERROR:
++		ret = xe_guc_uncorrectable_error_handler(guc, payload, adj_len);
++		break;
+ 	case XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC:
+ 		ret = xe_guc_pagefault_handler(guc, payload, adj_len);
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b29cc08e6291..2840ab0bcd09 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -9,6 +9,7 @@
+ #include <linux/bitmap.h>
+ #include <linux/circ_buf.h>
+ #include <linux/dma-fence-array.h>
++#include <linux/workqueue.h>
+ 
+ #include <drm/drm_managed.h>
+ 
+@@ -71,6 +72,7 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define EXEC_QUEUE_STATE_WEDGED			(1 << 8)
+ #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
+ #define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 10)
++#define EXEC_QUEUE_STATE_UNCORRECTABLE_ERROR	(1 << 11)
+ 
+ static bool exec_queue_registered(struct xe_exec_queue *q)
+ {
+@@ -217,6 +219,11 @@ static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
+ 	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
+ }
+ 
++static void set_exec_queue_uncorrectable_error(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_UNCORRECTABLE_ERROR, &q->guc->state);
++}
++
+ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ {
+ 	return (atomic_read(&q->guc->state) &
+@@ -1697,6 +1704,19 @@ static void __guc_exec_queue_destroy_async(struct work_struct *w)
+ 	xe_exec_queue_fini(q);
+ }
+ 
++static bool guc_exec_queue_in_sched_worker(struct xe_exec_queue *q)
++{
++	struct work_struct *work = current_work();
++
++	if (!work)
++		return false;
++
++	return work == &q->guc->sched.base.work_run_job ||
++		work == &q->guc->sched.base.work_free_job ||
++		work == &q->guc->sched.base.work_tdr.work ||
++		work == &q->guc->sched.work_process_msg;
++}
++
+ static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+@@ -1705,7 +1725,8 @@ static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
+ 	INIT_WORK(&q->guc->destroy_async, __guc_exec_queue_destroy_async);
+ 
+ 	/* We must block on kernel engines so slabs are empty on driver unload */
+-	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT || exec_queue_wedged(q))
++	if ((q->flags & EXEC_QUEUE_FLAG_PERMANENT || exec_queue_wedged(q)) &&
++	    !guc_exec_queue_in_sched_worker(q))
+ 		__guc_exec_queue_destroy_async(&q->guc->destroy_async);
+ 	else
+ 		queue_work(xe->destroy_wq, &q->guc->destroy_async);
+@@ -2997,6 +3018,39 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 	return 0;
+ }
+ 
++int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 len)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_exec_queue *q;
++	u32 guc_id;
++
++	if (unlikely(!len || len > 2))
++		return -EPROTO;
++
++	guc_id = msg[0];
++
++	if (guc_id == GUC_ID_UNKNOWN) {
++		xe_gt_err(gt, "GuC: Uncorrectable local error! guc_id=%d\n", guc_id);
++		return 0;
++	}
++
++	q = g2h_exec_queue_lookup(guc, guc_id);
++	if (unlikely(!q))
++		return -EPROTO;
++
++	xe_gt_err(gt,
++		  "GuC: Uncorrectable local error! guc_id=%d class=%s, logical_mask=0x%x",
++		  guc_id, xe_hw_engine_class_to_str(q->class), q->logical_mask);
++
++	trace_xe_guc_uncorrectable_error(q);
++	set_exec_queue_uncorrectable_error(q);
++
++	if (guc_to_xe(guc)->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
++		xe_guc_exec_queue_reset_trigger_cleanup(q);
++
++	return 0;
++}
++
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index b3839a90c142..ccade320dc69 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -34,6 +34,7 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 					       u32 len);
++int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 750fa32c13b2..2fe8f89a1e34 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -213,6 +213,11 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_memory_cat_error,
+ 	     TP_ARGS(q)
+ );
+ 
++DEFINE_EVENT(xe_exec_queue, xe_guc_uncorrectable_error,
++	     TP_PROTO(struct xe_exec_queue *q),
++	     TP_ARGS(q)
++);
++
+ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_cgp_context_error,
+ 	     TP_PROTO(struct xe_exec_queue *q),
+ 	     TP_ARGS(q)
+-- 
+2.34.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5249-71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59 -> xe-pw-168463v1
-
-  IGT_8962: 8962
-  xe-5249-71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59: 71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59
-  xe-pw-168463v1: 168463v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168463v1/index.html
-
---===============3650007656081626502==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Suppress Memory CAT error messages on race condition</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168463/">https://patchwork.freedesktop.org/series/168463/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168463v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168463v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5249-71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59_BAT -&gt; xe-pw-168463v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5249-71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59 -&gt; xe-pw-168463v1</li>
-</ul>
-<p>IGT_8962: 8962<br />
-  xe-5249-71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59: 71bba5fe5cc7c5af204d4f5f472e6d5c1cb73c59<br />
-  xe-pw-168463v1: 168463v1</p>
-
-</body>
-</html>
-
---===============3650007656081626502==--
