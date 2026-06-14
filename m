@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6A00CD8CA8
-	for <intel-xe@archiver.kernel.org>; Sun, 14 Jun 2026 21:19:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA6E5CD98C5
+	for <intel-xe@archiver.kernel.org>; Sun, 14 Jun 2026 21:20:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5D410E127;
-	Sun, 14 Jun 2026 21:19:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 837DA10E130;
+	Sun, 14 Jun 2026 21:20:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EX8N4IQK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MTU2c/s2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9557810E127
- for <intel-xe@lists.freedesktop.org>; Sun, 14 Jun 2026 21:19:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17B4010E127
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 Jun 2026 21:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1781471996; x=1813007996;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WJNYXhoJO2LPD54JkSTzBBjq4bmmJlejWqacZxu62d4=;
- b=EX8N4IQKwrlNDBPis9fuyQa8NtpDK4qtIlnnS82ZOtkf7l+m8g9cCQME
- nEPfYqD85mpk1xC6If2oyweMCNXRbR+ErUyU905FwT7/bV8gwxoai1Y7z
- WldbuBfxzaz+QhOGGpH/9Ur4bM1nM2ZkoPH/l8d3rks970DNx9tqIua6l
- f+e25fM/YDMd/upGLictn4cA+KRO9RVEFD3phemfMxlwmZXMljsO7bYCH
- K7c+lpMgSLY/SzE/US7jDu2GdmyuFOWKtufZXmK8S6y8HHUOc5u3y3PrK
- YQweryXKlKaQwssVoTut5AXeYvp6AIllJbordaHuV1mojlFHOSUpahU0b g==;
-X-CSE-ConnectionGUID: lxJrBI7uT4GNq8+1ataNaA==
-X-CSE-MsgGUID: 8HHAw7tyTU+LLR40qkanDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="92776314"
-X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; d="scan'208";a="92776314"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DOQiRkmRkvxJQ0AFy51ZtivOWfJMKBnOZczOBnWGCXU=;
+ b=MTU2c/s2caHa7m5SQXrWFaDx71s3EGalG2gKCxPB60qKmjpNAV9NIeP3
+ EhOi/z5OwRNauoBDiufd48H6Qe8ZQGhyol6Zg7Mw/BUlUZQJ/4Tz4Man+
+ 8pjfbF2denEpbZNJfq7bCV/lZBsb5ZgdhpmwUxdoH295pTqitQl3IITXw
+ t8g311fB6hj0F9h+Wph48urMHO8COcK3lS5+bWtKylvjWJuLcOe8T9ewy
+ xXETpmvpsNcmbyFU59ScTX8Sv2+w/VqXQLnzuUx9nVO70F6mQ9zhbXVKn
+ FaBikUvOd1gOQ4RmIpZSB8ovIC80PfTVFQnwhPC2kjUEbNGTcUKfM7uax g==;
+X-CSE-ConnectionGUID: EACNldKcSpiaPU7kJuc2jQ==
+X-CSE-MsgGUID: dz4WDHnkRM+1vrGo5FPwIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="92776312"
+X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; d="scan'208";a="92776312"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2026 14:19:55 -0700
-X-CSE-ConnectionGUID: eA1ATKVuSh2tbJzFgTYIHQ==
-X-CSE-MsgGUID: bUTICDPJQLOOO79lUKzCaA==
+X-CSE-ConnectionGUID: JCra4g1CS7uWnjdQtCs+Fw==
+X-CSE-MsgGUID: SiUmF/R0TpyKRc/HUFMduQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; d="scan'208";a="246412295"
+X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; d="scan'208";a="246412289"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2026 14:19:56 -0700
+ 14 Jun 2026 14:19:55 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	thomas.hellstrom@linux.intel.com
-Subject: [PATCH 2/2] drm/xe/multi_queue: preempt primary on queue group suspend
-Date: Sun, 14 Jun 2026 14:19:41 -0700
-Message-ID: <20260614211944.1268917-6-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 0/2] drm/xe: Reference count exec queue suspend/resume
+Date: Sun, 14 Jun 2026 14:19:39 -0700
+Message-ID: <20260614211944.1268917-4-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260614211944.1268917-4-niranjana.vishwanathapura@intel.com>
-References: <20260614211944.1268917-4-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,268 +66,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In a multi-queue group only the group's primary queue interfaces with
-GuC for scheduling; suspend/resume of secondary queues is handled
-internally and is not forwarded to GuC. As a result, suspending a
-secondary queue alone (e.g. on its preempt fence signalling) does not
-disable the primary's GuC context, so in-flight GPU work of the group
-is not actually preempted.
+Add a reference count to exec queue suspend/resume operations
+so that exec queue is suspended/resumed only once when there are
+concurrent suspend/resume calls.
 
-Make a secondary queue suspend/resume like any other queue, driven by
-its own xe_guc_exec_queue.suspend_count, and additionally forward the
-suspend/resume to the primary so the GPU is actually preempted. The
-forward is gated on the secondary's own 0->1 / 1->0 suspend_count
-transition, so each group member contributes exactly one suspend
-reference to the primary: the primary keeps its GuC context disabled
-until every member that suspended it has resumed, including across the
-resume-all-queues-each-rebind-cycle behavior. group->suspend_lock makes
-the secondary transition and the primary forward atomic, and a member
-leaving while still suspended (queue teardown) drops its reference on
-the primary.
+In multi-queue case, as only primary queue interfaces with GuC
+for suspend/resume operation of the entire group, forward the
+suspend/resume operation of secondary queues to the primary
+queue of the group.
 
-Assisted-by: Github-Copilot:Claude-opus-4.8
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c       |   1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h |   6 +
- drivers/gpu/drm/xe/xe_guc_submit.c       | 153 ++++++++++++++++++++---
- 3 files changed, 143 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 1b5ca3ce578a..df95855a3d61 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -842,6 +842,7 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
- 	group->primary = q;
- 	group->cgp_bo = bo;
- 	INIT_LIST_HEAD(&group->list);
-+	spin_lock_init(&group->suspend_lock);
- 	xa_init_flags(&group->xa, XA_FLAGS_ALLOC1);
- 	mutex_init(&group->list_lock);
- 	q->multi_queue.group = group;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index d27ce24daae5..7723e98690fb 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -62,6 +62,12 @@ struct xe_exec_queue_group {
- 	struct list_head list;
- 	/** @list_lock: Secondary queue list lock */
- 	struct mutex list_lock;
-+	/**
-+	 * @suspend_lock: Makes a secondary's suspend/resume and its forwarding
-+	 * to the primary atomic. Nested outside of the queue's message lock
-+	 * (@xe_guc_exec_queue.sched.msg_lock).
-+	 */
-+	spinlock_t suspend_lock;
- 	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
- 	bool sync_pending;
- 	/** @banned: Group banned */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 8803e70ae4fc..bb78a05f5c24 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1681,11 +1681,24 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	return DRM_GPU_SCHED_STAT_NO_HANG;
- }
- 
-+static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue *q);
-+
- static void guc_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	struct xe_guc_exec_queue *ge = q->guc;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 
-+	/*
-+	 * A secondary can leave the group while still preempt suspended (e.g.
-+	 * xe_vm_remove_compute_exec_queue() forces its preempt fence to signal,
-+	 * which suspends it). It holds one forwarded suspend reference on the
-+	 * primary, so drop it and resume the primary if it was the last member
-+	 * that had it suspended. Primaries forward to nobody, so they don't need
-+	 * this.
-+	 */
-+	if (xe_exec_queue_is_multi_queue_secondary(q))
-+		guc_exec_queue_multi_queue_drop_suspend(q);
-+
- 	if (xe_exec_queue_is_multi_queue_secondary(q)) {
- 		struct xe_exec_queue_group *group = q->multi_queue.group;
- 
-@@ -2163,17 +2176,22 @@ static int guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
- 	return 0;
- }
- 
--static int guc_exec_queue_suspend(struct xe_exec_queue *q)
-+/*
-+ * Core suspend: take a suspend reference on @q and, on the first reference,
-+ * disable its GuC context so the GPU is actually preempted. Caller must have
-+ * ensured @q is not killed/banned/wedged. Returns true if this was the first
-+ * suspend reference (the 0->1 transition).
-+ */
-+static bool __guc_exec_queue_suspend(struct xe_exec_queue *q)
- {
- 	struct xe_guc_exec_queue *ge = q->guc;
- 	struct xe_gpu_scheduler *sched = &ge->sched;
- 	struct xe_sched_msg *msg = ge->static_msgs + STATIC_MSG_SUSPEND;
--
--	if (exec_queue_killed_or_banned_or_wedged(q))
--		return -EINVAL;
-+	bool first;
- 
- 	xe_sched_msg_lock(sched);
--	if (++ge->suspend_count == 1) {
-+	first = (++ge->suspend_count == 1);
-+	if (first) {
- 		bool added = guc_exec_queue_try_add_msg(q, msg, SUSPEND);
- 
- 		/* slot must be free at 0->1 */
-@@ -2182,6 +2200,68 @@ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
- 	}
- 	xe_sched_msg_unlock(sched);
- 
-+	return first;
-+}
-+
-+/*
-+ * Core resume: drop a suspend reference on @q and, on the last reference,
-+ * re-enable its GuC context. Returns true if this dropped the last suspend
-+ * reference (the 1->0 transition).
-+ */
-+static bool __guc_exec_queue_resume(struct xe_exec_queue *q)
-+{
-+	struct xe_guc_exec_queue *ge = q->guc;
-+	struct xe_gpu_scheduler *sched = &ge->sched;
-+	struct xe_sched_msg *msg = ge->static_msgs + STATIC_MSG_RESUME;
-+	struct xe_guc *guc = exec_queue_to_guc(q);
-+	bool last;
-+
-+	xe_sched_msg_lock(sched);
-+	xe_gt_assert(guc_to_gt(guc), !ge->suspend_pending);
-+	xe_gt_assert(guc_to_gt(guc), ge->suspend_count > 0);
-+	last = (--ge->suspend_count == 0);
-+	if (last) {
-+		bool added = guc_exec_queue_try_add_msg(q, msg, RESUME);
-+
-+		/* slot must be free at 1->0 */
-+		xe_gt_assert(guc_to_gt(guc), added);
-+	}
-+	xe_sched_msg_unlock(sched);
-+
-+	return last;
-+}
-+
-+static int guc_exec_queue_suspend(struct xe_exec_queue *q)
-+{
-+	if (exec_queue_killed_or_banned_or_wedged(q))
-+		return -EINVAL;
-+
-+	/*
-+	 * Non-multi-queue queues and multi-queue primaries suspend themselves
-+	 * directly: their own msg_lock makes the suspend_count 0->1 transition
-+	 * and the suspend_pending update atomic, so no group level serialization
-+	 * is needed.
-+	 */
-+	if (!xe_exec_queue_is_multi_queue_secondary(q)) {
-+		__guc_exec_queue_suspend(q);
-+		return 0;
-+	}
-+
-+	/*
-+	 * A secondary doesn't interface with GuC: suspend it like any other
-+	 * queue (its own suspend_count drives its internally handled scheduler
-+	 * state) and, only on its own 0->1 transition, forward the suspend to the
-+	 * primary so the GPU is actually preempted. Hold @suspend_lock so that
-+	 * observing the secondary's transition and forwarding it to the primary
-+	 * happen atomically; this keeps the primary's refcount paired with member
-+	 * transitions even if the same secondary is suspended and resumed
-+	 * concurrently across rebind cycles.
-+	 */
-+	scoped_guard(spinlock, &q->multi_queue.group->suspend_lock) {
-+		if (__guc_exec_queue_suspend(q))
-+			__guc_exec_queue_suspend(xe_exec_queue_multi_queue_primary(q));
-+	}
-+
- 	return 0;
- }
- 
-@@ -2191,6 +2271,14 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
- 	struct xe_device *xe = guc_to_xe(guc);
- 	int ret;
- 
-+	/*
-+	 * In multi-queue mode the primary owns the GuC scheduling context for
-+	 * the whole group, so wait on the primary's suspend to complete. All
-+	 * group members share the same GuC/device, so guc, xe and timeout above
-+	 * are computed from @q directly.
-+	 */
-+	q = xe_exec_queue_multi_queue_primary(q);
-+
- 	/*
- 	 * Likely don't need to check exec_queue_killed() as we clear
- 	 * suspend_pending upon kill but to be paranoid but races in which
-@@ -2230,21 +2318,52 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
- 
- static void guc_exec_queue_resume(struct xe_exec_queue *q)
- {
--	struct xe_guc_exec_queue *ge = q->guc;
--	struct xe_gpu_scheduler *sched = &ge->sched;
--	struct xe_sched_msg *msg = ge->static_msgs + STATIC_MSG_RESUME;
--	struct xe_guc *guc = exec_queue_to_guc(q);
-+	/*
-+	 * Non-multi-queue queues and multi-queue primaries resume themselves
-+	 * directly; their own msg_lock is sufficient.
-+	 */
-+	if (!xe_exec_queue_is_multi_queue_secondary(q)) {
-+		__guc_exec_queue_resume(q);
-+		return;
-+	}
- 
--	xe_sched_msg_lock(sched);
--	xe_gt_assert(guc_to_gt(guc), !ge->suspend_pending);
--	xe_gt_assert(guc_to_gt(guc), ge->suspend_count > 0);
--	if (--ge->suspend_count == 0) {
--		bool added = guc_exec_queue_try_add_msg(q, msg, RESUME);
-+	/*
-+	 * Mirror of guc_exec_queue_suspend(): resume the secondary like any
-+	 * other queue and, only on its own 1->0 transition, forward the resume
-+	 * to the primary so the primary's GuC context is re-enabled once the
-+	 * last member that suspended it resumes. @suspend_lock keeps the
-+	 * secondary transition and the primary forward atomic.
-+	 */
-+	scoped_guard(spinlock, &q->multi_queue.group->suspend_lock) {
-+		if (__guc_exec_queue_resume(q))
-+			__guc_exec_queue_resume(xe_exec_queue_multi_queue_primary(q));
-+	}
-+}
- 
--		/* slot must be free at 1->0 */
--		xe_gt_assert(guc_to_gt(guc), added);
-+/*
-+ * Drop a leaving secondary's forwarded suspend reference on the primary and
-+ * resume the primary if this was the last member that had it suspended.
-+ * See guc_exec_queue_fini().
-+ */
-+static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue *q)
-+{
-+	scoped_guard(spinlock, &q->multi_queue.group->suspend_lock) {
-+		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
-+
-+		/*
-+		 * A suspended secondary holds exactly one suspend reference on the
-+		 * primary (forwarded on its 0->1 transition). If it leaves while
-+		 * still suspended, release that reference so the primary is not
-+		 * kept disabled forever.
-+		 */
-+		if (!READ_ONCE(q->guc->suspend_count))
-+			break;
-+
-+		if (exec_queue_killed_or_banned_or_wedged(primary))
-+			break;
-+
-+		__guc_exec_queue_resume(primary);
- 	}
--	xe_sched_msg_unlock(sched);
- }
- 
- static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+Niranjana Vishwanathapura (1):
+  drm/xe/multi_queue: preempt primary on queue group suspend
+
+Thomas Hellström (1):
+  drm/xe/guc: Add suspend refcount to exec queue ops
+
+ drivers/gpu/drm/xe/xe_exec_queue.c           |   1 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h     |   6 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   7 +
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 159 +++++++++++++++++--
+ 4 files changed, 159 insertions(+), 14 deletions(-)
+
 -- 
 2.43.0
 
