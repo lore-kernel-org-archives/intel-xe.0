@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 166DDCD98E3
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:12:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BC76CD98DA
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:12:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F7910E5DC;
-	Mon, 15 Jun 2026 18:12:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C075B10E5CA;
+	Mon, 15 Jun 2026 18:12:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UtP69wHO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cVBuJ04k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F25A10E5C8;
- Mon, 15 Jun 2026 18:12:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0717E10E5DD;
+ Mon, 15 Jun 2026 18:12:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781547169; x=1813083169;
+ t=1781547174; x=1813083174;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QwyElgpPz/+3n7d+DASS44nDju8kxwArtwObCxdFDgQ=;
- b=UtP69wHOSYa8aL2IrAHKfcVmduMdh+lgmymVZG3B81PtddP1qbd6sPbF
- v465xKRPGrtE07EuJqXXfxggAzzRastTnKbKaD48los02+KES+oiK6T+n
- 6+1ViCb8F8pXstYbA2MMXfN9+TG4gPx6pmW9iUNSttTx57z5+7/vupTUI
- O8pVjmSqba+pZhZRaHZKWN6vWqPP0sEWpaU16ILRCQQWyWmE9QQWaWgpx
- W8yhZlVZ9HcVymIkKYw1r/WVKRXPBke3rlf6epU4lkV8PSUZ0zfVEYQo2
- mFIZl2imuJ5LsKLYefP6SsjU0qMTTm2zNzMkg3eJ5NyXEej8wMP/EODeU A==;
-X-CSE-ConnectionGUID: kVPKJFGIRiewmNc0BRmcnA==
-X-CSE-MsgGUID: PI7MesQOT5ChIOGklxh9rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="104968169"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104968169"
+ bh=WpNovZ1FcJaMFjWfuZJJvBrW5UpEFTYafB6AJ0ms2Ds=;
+ b=cVBuJ04kUBHU00dMnNEWXuzngUO6jiJo/W1xGxaFxygXrOetaN+Xpasy
+ tPKbWl5oAthLmFYKevSaCAtbh4oNojKcevtdkhp9CQ8vrQ24w/HQvlj0p
+ Cz9XQidgifVEEo9rgXNZebYTaYZkPsZVvYg/AigJ7mpa/zzgziPdS+4Bt
+ 5IUTgx57bS5QKU4pB47sFPR/PcEkfNJmjqJ6A/0/iX0nTXW0lom0UMd5J
+ mFphYyh/xtQXKBldU1EDkWkWJo0ktROCvRygVFYcjIL8Of57uFBh4qQEX
+ EJRde5SbisQNJYQeEiG4XzpQxeAs7JobndwBQfaq+2lwlMrXymjQbr9/P w==;
+X-CSE-ConnectionGUID: CRJmNJw6Tpe2kCbPJGVsMA==
+X-CSE-MsgGUID: jVxPDtFDQWWA1nJ7uNYGsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="104968201"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104968201"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:12:49 -0700
-X-CSE-ConnectionGUID: CfCtMqkWQAO3IDWdXrUhgA==
-X-CSE-MsgGUID: WNQl9ejLRPOXysowvj29Zg==
+ 15 Jun 2026 11:12:52 -0700
+X-CSE-ConnectionGUID: PG5OqSHTTYuUf/bnyB2sng==
+X-CSE-MsgGUID: k5cRm3Z3RNuDA80Ks0jlcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="251833801"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="251833827"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 11:12:48 -0700
+ by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 11:12:51 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v8 5/7] drm/i915: override Snps's VS/PE when requested
-Date: Mon, 15 Jun 2026 20:12:05 +0200
-Message-ID: <20260615181207.1033389-6-michal.grzelak@intel.com>
+Subject: [PATCH v8 7/7] drm/i915/bios: remove VS/PE-O warning
+Date: Mon, 15 Jun 2026 20:12:07 +0200
+Message-ID: <20260615181207.1033389-8-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260615181207.1033389-1-michal.grzelak@intel.com>
 References: <20260615181207.1033389-1-michal.grzelak@intel.com>
@@ -71,233 +71,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add accessor function for Snps to read requested table from VBT #57.
-Parse the requested table and transform data into port's buffer.
-
-Choose appropriate accessor function in intel_ddi_buf_trans_get() based
-on display version and PHY type.
-
-For C20, use 6th table if encoder supports DP 2.0 or higher. Otherwise
-use 5th table for DP.
-
-For C20, tables 1-4 are not used at all and are most likely to be
-zeroed. 5th table is used for any mode below DP 2.0 (exclusive). 6th
-table is used for any mode above DP 2.0 (inclusive).
-
-For C10, use 2nd table for external DP if encoder supports any mode
-beyond or including HBR2. Use 1st table if external DP encoder supports
-anything lower than HBR2. For eDP, use 4th table if encoder supports
-HBR3. Otherwise use 3rd table for eDP.
-
-For C10, 1st table is used for external DP with modes below HBR2
-(exclusive). 1st table is also used as a fallback for non-DPs. 2nd
-table is used for external DP with modes higher than HBR2 (inclusive).
-3rd table is used for eDP with modes lower than HBR3 (exclusive). 4th
-table is used for eDP with modes higher than HBR3 (inclusive).
-
-Indices for other tables have not yet been observed to be used as of
-now.
-
-There are no changes to intel_ddi_dp_level() since selection of correct
-row of intel_ddi_buf_trans_entry is same as when no override request has
-been done.
-
-v7->v8
-- remove comments (Suraj)
-- add check for LT (Suraj)
-
-v6->v7
-- handle VS/PE-O's VBT details in intel_bios_* functions (Jani)
-- remove vspeo's cast to (void *) (Jani)
-- check devdata->vspeo if VS/PE-O was requested
-- call encoder->get_buf_trans() once (Jani)
-- return NULL from intel_bios_get_* when using default (Jani)
-- validate VS/PE-O in intel_bios.c (Jani)
-- inline mtl_{c10,c20}_get_vspeo_buf_trans()
-- remove temporarily LT
-
-v4->v5
-- blend index computation with table parsing
-- remove enums entirely
-- change funcs prefix from snps_ to mtl_ (Suraj)
-- add spaces around operators (Suraj)
-- remove spaces after type casting (Suraj)
-- remove INTEL_DISPLAY_STATE_WARN (Suraj)
-
-v3->v4
-- stick to solely changing VBT data into current structures (Jani)
-- move iterator declaration to declaration block (Suraj)
-
-v2->v3
-- remove unnecessary braces from if block (Suraj)
-- return -EINVAL instead of -1 (Suraj)
+There is not much use of warning when port asks to override default
+VS/PE since it is already logged. Remove drm_WARN() and child_device
+from print_ddi_port() since drm_WARN() was the only user of it.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     | 98 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_bios.h     |  7 ++
- .../drm/i915/display/intel_ddi_buf_trans.c    | 21 ++++
- 3 files changed, 126 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 9 ---------
+ 1 file changed, 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 3d8864374caca..aa46c63c4f10f 100644
+index 1841e82cd0a58..6e374be6d5186 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3861,6 +3861,104 @@ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devda
- 	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
+@@ -2770,7 +2770,6 @@ static bool is_port_valid(struct intel_display *display, enum port port)
+ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ {
+ 	struct intel_display *display = devdata->display;
+-	const struct child_device_config *child = &devdata->child;
+ 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
+ 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
+ 	enum port port;
+@@ -2843,14 +2842,6 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ 		drm_dbg_kms(display->drm,
+ 			    "Port %c VBT DP max link rate: %d\n",
+ 			    port_name(port), dp_max_link_rate);
+-
+-	/*
+-	 * FIXME need to implement support for VBT
+-	 * vswing/preemph tables should this ever trigger.
+-	 */
+-	drm_WARN(display->drm, child->use_vbt_vswing,
+-		 "Port %c asks to use VBT vswing/preemph tables\n",
+-		 port_name(port));
  }
  
-+static bool
-+validate_vspeo(const struct intel_bios_encoder_data *devdata, bool has_dp)
-+{
-+	struct intel_ddi_buf_trans *vspeo;
-+
-+	if (!devdata)
-+		return false;
-+
-+	vspeo = devdata->vspeo;
-+	if (!vspeo)
-+		return false;
-+
-+	if (!has_dp)
-+		return false;
-+
-+	return true;
-+}
-+
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_c20_vspeo(const struct intel_bios_encoder_data *devdata,
-+			 bool has_dp, bool is_uhbr)
-+{
-+	struct intel_display *display;
-+	union intel_ddi_buf_trans_entry *entries;
-+	int num_columns, num_rows, level, idx;
-+	struct intel_ddi_buf_trans *vspeo;
-+	const u32 *tables;
-+	size_t offset = 0;
-+
-+	if (!validate_vspeo(devdata, has_dp))
-+		return NULL;
-+
-+	display = devdata->display;
-+	entries = (void *)vspeo->entries;
-+	tables = display->vbt.vspeo.tables;
-+	num_columns = display->vbt.vspeo.num_columns;
-+	num_rows = display->vbt.vspeo.num_rows;
-+	idx = is_uhbr ? 5 : 4;
-+
-+	offset += idx * num_rows * num_columns;
-+
-+	for (level = 0; level < num_rows; level++) {
-+		u32 vswing = tables[offset];
-+		u32 pre_cursor = tables[offset + 1];
-+		u32 post_cursor = tables[offset + 2];
-+
-+		entries[level].snps.vswing = vswing;
-+		entries[level].snps.pre_cursor = pre_cursor;
-+		entries[level].snps.post_cursor = post_cursor;
-+
-+		offset += num_columns;
-+	}
-+
-+	return vspeo;
-+}
-+
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_c10_vspeo(const struct intel_bios_encoder_data *devdata,
-+			 bool has_dp, int port_clock, bool has_edp)
-+{
-+	struct intel_display *display;
-+	union intel_ddi_buf_trans_entry *entries;
-+	int num_columns, num_rows, level, idx;
-+	struct intel_ddi_buf_trans *vspeo;
-+	const u32 *tables;
-+	size_t offset = 0;
-+
-+	if (!validate_vspeo(devdata, has_dp))
-+		return NULL;
-+
-+	display = devdata->display;
-+	vspeo = devdata->vspeo;
-+	entries = (void *)vspeo->entries;
-+	tables = display->vbt.vspeo.tables;
-+	num_columns = display->vbt.vspeo.num_columns;
-+	num_rows = display->vbt.vspeo.num_rows;
-+
-+	idx = port_clock > 270000 ? 1 : 0;
-+	if (has_edp)
-+		idx = port_clock > 540000 ? 3 : 2;
-+
-+	offset += idx * num_rows * num_columns;
-+
-+	for (level = 0; level < num_rows; level++) {
-+		u32 vswing = tables[offset];
-+		u32 pre_cursor = tables[offset + 1];
-+		u32 post_cursor = tables[offset + 2];
-+
-+		entries[level].snps.vswing = vswing;
-+		entries[level].snps.pre_cursor = pre_cursor;
-+		entries[level].snps.post_cursor = post_cursor;
-+
-+		offset += num_columns;
-+	}
-+
-+	return vspeo;
-+}
-+
- bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
- {
- 	return devdata->display->vbt.version >= 264 &&
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 7a50a272cd27d..49acf8c405e2b 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -73,6 +73,13 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- const struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct intel_display *display, enum port port);
- 
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_c20_vspeo(const struct intel_bios_encoder_data *devdata,
-+			 bool has_dp, bool is_uhbr);
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_c10_vspeo(const struct intel_bios_encoder_data *devdata,
-+			 bool has_dp, int port_clock, bool has_edp);
-+
- bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_hdmi(const struct intel_bios_encoder_data *devdata);
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 4cd1e4d76c7af..26070a1d4ae5d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1857,5 +1857,26 @@ const struct intel_ddi_buf_trans *intel_ddi_buf_trans_get(struct intel_encoder *
- 							  const struct intel_crtc_state *crtc_state,
- 							  int *n_entries)
- {
-+	struct intel_display *display = to_intel_display(encoder);
-+	const struct intel_bios_encoder_data *devdata = encoder->devdata;
-+	const struct intel_ddi_buf_trans *buf_trans = NULL;
-+	bool has_edp, has_dp, is_uhbr;
-+	int port_clock;
-+
-+	has_edp = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP);
-+	has_dp = intel_crtc_has_dp_encoder(crtc_state);
-+	is_uhbr = intel_dp_is_uhbr(crtc_state);
-+	port_clock = crtc_state->port_clock;
-+
-+	if (!HAS_LT_PHY(display) && DISPLAY_VER(display) >= 14) {
-+		if (intel_encoder_is_c10phy(encoder))
-+			buf_trans = intel_bios_get_c10_vspeo(devdata, has_dp, port_clock, has_edp);
-+		else
-+			buf_trans = intel_bios_get_c20_vspeo(devdata, has_dp, is_uhbr);
-+	}
-+
-+	if (buf_trans)
-+		return intel_get_buf_trans(buf_trans, n_entries);
-+
- 	return encoder->get_buf_trans(encoder, crtc_state, n_entries);
- }
+ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
 -- 
 2.45.2
 
