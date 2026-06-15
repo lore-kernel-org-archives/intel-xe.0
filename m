@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 045DECD98E3
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 22:42:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 031C3CD98CE
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 23:02:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB5A810E6F1;
-	Mon, 15 Jun 2026 22:42:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YxfjIlhm";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 348A310E68A
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Jun 2026 22:42:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781563353; x=1813099353;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=1MS/YyAUdd4d1rnESQnfeZTckcs0UtDRqZzt/3kxJ2E=;
- b=YxfjIlhmI2kQ5h/ZRocGwB251ivD8Rn0xcU8OdYZHjOIc8zRe/w/NQtm
- wLU6REzX32cbVgHEUmbxU2Z2MDSHIKULwi5n93JsUZapm3x205GArZAOb
- 8lThgQx3/jwJ67B8+sbL0awA63nBYWlOQBFOmwqzEjKpR5x/plx+jHyGq
- nTpkha8R1YoI4rZ/LXA8Opvs9EuWKXJ1ZKoZG0CXC96gbJeIBesFNMAYD
- ox68HefC6CeyYQdbRmdY0SnJpdKj7AXqTCh89zN+C9zDuSLpZH3l5FkML
- KCneziGt3fH0PEewEid8vKOytPKEbaKT0eGQ7UXtQV+3t0wmsCF7HbJzE A==;
-X-CSE-ConnectionGUID: kgYXTpk4R2Sz5ToVaZ1E8A==
-X-CSE-MsgGUID: DVFm716CQZ2l4wzGVWrEXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82513160"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="82513160"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 15:42:32 -0700
-X-CSE-ConnectionGUID: zDs28r72QK+ngAg23S8t2g==
-X-CSE-MsgGUID: bt/vf5HaTQmZqZ0gtwbtKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="247676806"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 15:42:31 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 9/9] drm/xe/rtp: Ensure locking/ref counting for OA
- whitelists
-Date: Mon, 15 Jun 2026 15:42:27 -0700
-Message-ID: <20260615224227.34880-10-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260615224227.34880-1-ashutosh.dixit@intel.com>
-References: <20260615224227.34880-1-ashutosh.dixit@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFB6F10E53C;
+	Mon, 15 Jun 2026 23:02:03 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB27D10E53C;
+ Mon, 15 Jun 2026 23:02:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4745448089485750719=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_reduce_?=
+ =?utf-8?q?the_pm_demand_peak_bw_based_on_display_data_rate_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Jun 2026 23:02:02 -0000
+Message-ID: <178156452276.81567.957459999384846170@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260615203355.218578-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20260615203355.218578-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,62 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since multiple OA streams might be open in parallel on a gt, ensure that
-proper locking is in place. Also ensure that OA registers are whitelisted
-when the first OA stream is open and de-whitelisted after the last OA
-stream is closed.
+--===============4745448089485750719==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/xe/xe_oa_types.h      | 3 +++
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 9 +++++++++
- 2 files changed, 12 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 3d9ec8490899c..e876e9be92ba5 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -126,6 +126,9 @@ struct xe_oa_gt {
- 
- 	/** @oa_unit: array of oa_units */
- 	struct xe_oa_unit *oa_unit;
-+
-+	/** @whitelist_count: number of open streams for which oa registers are whitelisted */
-+	u32 whitelist_count;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index b2e7aabd19d79..3d9e3daab01a7 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -255,6 +255,10 @@ void xe_reg_whitelist_oa_regs(struct xe_gt *gt)
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
- 
-+	lockdep_assert_held(&gt->oa.gt_lock);
-+	if (gt->oa.whitelist_count++)
-+		return;
-+
- 	for_each_hw_engine(hwe, gt, id)
- 		__whitelist_oa_regs(hwe, true);
- }
-@@ -270,6 +274,11 @@ void xe_reg_dewhitelist_oa_regs(struct xe_gt *gt)
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
- 
-+	lockdep_assert_held(&gt->oa.gt_lock);
-+	xe_assert(gt_to_xe(gt), gt->oa.whitelist_count);
-+	if (--gt->oa.whitelist_count)
-+		return;
-+
- 	for_each_hw_engine(hwe, gt, id)
- 		__whitelist_oa_regs(hwe, false);
- }
--- 
-2.54.0
+Series: drm/i915/display: reduce the pm demand peak bw based on display data rate (rev2)
+URL   : https://patchwork.freedesktop.org/series/166316/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360_BAT -> xe-pw-166316v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8963 -> IGT_8964
+  * Linux: xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360 -> xe-pw-166316v2
+
+  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8964: 8964
+  xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360: 0984dfdee2a4f9e1922fe919a6b469e115e23360
+  xe-pw-166316v2: 166316v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166316v2/index.html
+
+--===============4745448089485750719==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: reduce the pm demand peak bw based on display data rate (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166316/">https://patchwork.freedesktop.org/series/166316/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166316v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166316v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360_BAT -&gt; xe-pw-166316v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8963 -&gt; IGT_8964</li>
+<li>Linux: xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360 -&gt; xe-pw-166316v2</li>
+</ul>
+<p>IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8964: 8964<br />
+  xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360: 0984dfdee2a4f9e1922fe919a6b469e115e23360<br />
+  xe-pw-166316v2: 166316v2</p>
+
+</body>
+</html>
+
+--===============4745448089485750719==--
