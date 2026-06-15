@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BC76CD98DA
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:12:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A31CFCD98C5
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:18:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C075B10E5CA;
-	Mon, 15 Jun 2026 18:12:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cVBuJ04k";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0717E10E5DD;
- Mon, 15 Jun 2026 18:12:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781547174; x=1813083174;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WpNovZ1FcJaMFjWfuZJJvBrW5UpEFTYafB6AJ0ms2Ds=;
- b=cVBuJ04kUBHU00dMnNEWXuzngUO6jiJo/W1xGxaFxygXrOetaN+Xpasy
- tPKbWl5oAthLmFYKevSaCAtbh4oNojKcevtdkhp9CQ8vrQ24w/HQvlj0p
- Cz9XQidgifVEEo9rgXNZebYTaYZkPsZVvYg/AigJ7mpa/zzgziPdS+4Bt
- 5IUTgx57bS5QKU4pB47sFPR/PcEkfNJmjqJ6A/0/iX0nTXW0lom0UMd5J
- mFphYyh/xtQXKBldU1EDkWkWJo0ktROCvRygVFYcjIL8Of57uFBh4qQEX
- EJRde5SbisQNJYQeEiG4XzpQxeAs7JobndwBQfaq+2lwlMrXymjQbr9/P w==;
-X-CSE-ConnectionGUID: CRJmNJw6Tpe2kCbPJGVsMA==
-X-CSE-MsgGUID: jVxPDtFDQWWA1nJ7uNYGsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="104968201"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104968201"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:12:52 -0700
-X-CSE-ConnectionGUID: PG5OqSHTTYuUf/bnyB2sng==
-X-CSE-MsgGUID: k5cRm3Z3RNuDA80Ks0jlcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="251833827"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 11:12:51 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v8 7/7] drm/i915/bios: remove VS/PE-O warning
-Date: Mon, 15 Jun 2026 20:12:07 +0200
-Message-ID: <20260615181207.1033389-8-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260615181207.1033389-1-michal.grzelak@intel.com>
-References: <20260615181207.1033389-1-michal.grzelak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E8D710E5E8;
+	Mon, 15 Jun 2026 18:18:07 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE87F10E5CF;
+ Mon, 15 Jun 2026 18:18:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Vswing_/_Pre-emphasis_Ove?=
+ =?utf-8?q?rride_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Jun 2026 18:18:06 -0000
+Message-ID: <178154748670.79171.1549225670967554747@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260615181207.1033389-1-michal.grzelak@intel.com>
+In-Reply-To: <20260615181207.1033389-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,46 +36,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is not much use of warning when port asks to override default
-VS/PE since it is already logged. Remove drm_WARN() and child_device
-from print_ddi_port() since drm_WARN() was the only user of it.
+== Series Details ==
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 9 ---------
- 1 file changed, 9 deletions(-)
+Series: Vswing / Pre-emphasis Override (rev3)
+URL   : https://patchwork.freedesktop.org/series/167570/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 1841e82cd0a58..6e374be6d5186 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2770,7 +2770,6 @@ static bool is_port_valid(struct intel_display *display, enum port port)
- static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- {
- 	struct intel_display *display = devdata->display;
--	const struct child_device_config *child = &devdata->child;
- 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
- 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
- 	enum port port;
-@@ -2843,14 +2842,6 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- 		drm_dbg_kms(display->drm,
- 			    "Port %c VBT DP max link rate: %d\n",
- 			    port_name(port), dp_max_link_rate);
--
--	/*
--	 * FIXME need to implement support for VBT
--	 * vswing/preemph tables should this ever trigger.
--	 */
--	drm_WARN(display->drm, child->use_vbt_vswing,
--		 "Port %c asks to use VBT vswing/preemph tables\n",
--		 port_name(port));
- }
- 
- static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
--- 
-2.45.2
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 19f7b19c7658758c214a8778e1b3001a091814d1
+Author: Michał Grzelak <michal.grzelak@intel.com>
+Date:   Mon Jun 15 20:12:07 2026 +0200
+
+    drm/i915/bios: remove VS/PE-O warning
+    
+    There is not much use of warning when port asks to override default
+    VS/PE since it is already logged. Remove drm_WARN() and child_device
+    from print_ddi_port() since drm_WARN() was the only user of it.
+    
+    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 0984dfdee2a4f9e1922fe919a6b469e115e23360 drm-intel
+dfbd4c2d8fc3 drm/i915/bios: search for VBT #57 by default
+6f21da446673 drm/i915/bios: store VBT #57's metadata in intel_vbt_data
+90fd0085ea06 drm/i915/bios: print VS/PE-O port info
+359f6833e0e9 drm/i915/bios: de/allocate VS/PE-O buffer for each port
+d23a7da5a925 drm/i915: override Snps's VS/PE when requested
+1486432a93e3 drm/i915: override Combo's VS/PE when requested
+-:195: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#195: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1879:
++								   has_edp && use_edp_low_vswing(encoder));
+
+-:197: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#197: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1881:
++			buf_trans = intel_bios_get_ehl_combo_vspeo(devdata, has_dp, port_clock, has_edp);
+
+total: 0 errors, 2 warnings, 0 checks, 128 lines checked
+19f7b19c7658 drm/i915/bios: remove VS/PE-O warning
+
 
