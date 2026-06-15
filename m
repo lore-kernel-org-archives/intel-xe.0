@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AFAFCD98E8
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:19:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D9DACD98CE
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:19:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B06E910E695;
-	Mon, 15 Jun 2026 20:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3FAC10E699;
+	Mon, 15 Jun 2026 20:18:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="DvQSe4Un";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="VO0ufo7k";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA8210E68E;
- Mon, 15 Jun 2026 20:18:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF63E10E673;
+ Mon, 15 Jun 2026 20:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1781554729;
- bh=rFyIJr/5ItYxtHFx9GPLcQKPSSM1zAWX5HycYL8oBWU=;
+ s=default; t=1781554725;
+ bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DvQSe4UngBVkaI4HZIErFo+CqL+MdGbwYGsLYwZehMs+C7LTq33oxmgYqY2i6PFUL
- D+Y9HE/AmGqTBHa0N6zIxcCyyKx+rPPckNiHpXaLDmyxKDxNJwuuMDqmxYIDkliqx7
- Qd4bN60cDGTv28lGv5l1qMkC6SZkcqnHIaXQfiY8E2hJNvR+iq6ks/3VpHzpnbXTFi
- XckfE/jBrPH6+pFznkX/Eym4Sw2j0Cd/mdYEZloLqwCDbsMMbl1v1km1bhhlsKH6/O
- eWHzIMDg0N2qznT2QpDvQXw8m+G+Ponp7vkVFkSKWpxLCO09ESUPw1bI/DzYEx6AlZ
- KT0wKiY9R0fBg==
+ b=VO0ufo7kyoUMDPb5P9F6S0Ce3o2aFMF/26qJYjSQ5PXgw5C2aDCDaHPlIbnOiuQG6
+ hNwoyEw4IZX5VXVTusBXj922G0UEhiu4hRGlclUHT5nXVdmy9Aa4nPyVMLKUu5jIAC
+ 3s10FzXgKUh4gFV/zARD/4XlwVUY8aAz54CPRgPy+HTLcRyRUthaVz9GYaEc4pq40B
+ /NqY2sJCn/br+tgKjKjly7IJI+vId8qw2rqvlUyXJSbtHyE1K+E/3y0Q3rUeto2Ut2
+ 28zL3rCVtcRAXLxZcJwMXslHFXWJedUEiP/dX7JNzfyvuLlPR2Hqo9dNiHE3iyUJbJ
+ MXKpat+V3HrDA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 27/27] drm/xe/display: Prefer not to allocate a
- framebuffers in stolen memory
-Date: Mon, 15 Jun 2026 22:18:45 +0200
-Message-ID: <20260615201846.307297-28-dev@lankhorst.se>
+Subject: [PATCH v8 21/27] drm/i915: Use sleeping selftests for igt_atomic on
+ PREEMPT_RT
+Date: Mon, 15 Jun 2026 22:18:39 +0200
+Message-ID: <20260615201846.307297-22-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
 References: <20260615201846.307297-1-dev@lankhorst.se>
@@ -53,69 +53,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For the same reasons as using stolen memory for DPT, it's also a bad
-idea for framebuffers. Allocate new framebuffers always in system memory
-when we don't inherit them, and prohibit inheriting stolen framebuffers
-when CONFIG_PREEMPT_RT is enabled.
+This makes the i915 selftests slightly happier, especially
+related to GPU reset.
+
+I believe this may be a better approach than trying to convert
+uncore->lock to raw_spinlock
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_display_bo.c | 35 +++++-----------------
- 1 file changed, 7 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
-index 7fbac223b0977..5b54d247cb212 100644
---- a/drivers/gpu/drm/xe/display/xe_display_bo.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-@@ -127,7 +127,7 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
- 	if (!stolen)
- 		return false;
+diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+index fb506b6990956..8ae39cf570b76 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
++++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+@@ -39,7 +39,14 @@ static void __hardirq_end(void)
+ 	local_irq_enable();
+ }
  
--	if (IS_DGFX(xe))
-+	if (IS_DGFX(xe) || IS_ENABLED(CONFIG_PREEMPT_RT))
- 		return false;
- 
- 	if (XE_DEVICE_WA(xe, 22019338487_display))
-@@ -146,33 +146,12 @@ static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device *drm,
- 	struct xe_device *xe = to_xe_device(drm);
- 	struct xe_bo *obj;
- 
--	obj = ERR_PTR(-ENODEV);
--
--	if (xe_display_bo_fbdev_prefer_stolen(xe, size)) {
--		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
--						size,
--						ttm_bo_type_kernel,
--						XE_BO_FLAG_FORCE_WC |
--						XE_BO_FLAG_STOLEN |
--						XE_BO_FLAG_GGTT,
--						false);
--		if (!IS_ERR(obj))
--			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
--		else
--			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
--	} else {
--		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not preferred.\n");
--	}
--
--	if (IS_ERR(obj)) {
--		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
--						ttm_bo_type_kernel,
--						XE_BO_FLAG_FORCE_WC |
--						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
--						XE_BO_FLAG_GGTT,
--						false);
--	}
--
-+	obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
-+					ttm_bo_type_kernel,
-+					XE_BO_FLAG_FORCE_WC |
-+					XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-+					XE_BO_FLAG_GGTT,
-+					false);
- 	if (IS_ERR(obj)) {
- 		drm_err(&xe->drm, "failed to allocate framebuffer (%pe)\n", obj);
- 		return ERR_PTR(-ENOMEM);
++static void __maybe_unused __nop(void)
++{}
++
+ const struct igt_atomic_section igt_atomic_phases[] = {
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	{ "sleeping", __nop, __nop },
++	{ },
++#endif
+ 	{ "preempt", __preempt_begin, __preempt_end },
+ 	{ "softirq", __softirq_begin, __softirq_end },
+ 	{ "hardirq", __hardirq_begin, __hardirq_end },
 -- 
 2.53.0
 
