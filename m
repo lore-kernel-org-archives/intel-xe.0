@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B777CD98DA
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:48:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F58CD98DA
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:48:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA7210E5E0;
-	Mon, 15 Jun 2026 18:48:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8DFB10E5DF;
+	Mon, 15 Jun 2026 18:48:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8rUQvO5";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lZ1Sg/Kt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40CFB10E5DC;
- Mon, 15 Jun 2026 18:48:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9070710E5DF;
+ Mon, 15 Jun 2026 18:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781549307; x=1813085307;
+ t=1781549311; x=1813085311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pJHcaR2xjnkzAlRLUHYKAczvFdOD6ScyoSjwfW3SEws=;
- b=Q8rUQvO5zQfR0chU0WbY60TfJWyAVyZR6bMlVnuncj2QTZRLy5brMwJT
- Lpjv28Mcz7CjnpCoCSAEVjQSky1XGCQ24bqtC8aSWTtZYV3xUtGhUCUUb
- 39Sv+urjAbEWySA+F0q6p6frweeMUOli09LCuhSq2dO4ZarUFTCZt1aHI
- MUWHF9owU0ncooLTJMsKZENMumF0/QWQXGuaVw2IuLqtZYDifr60QqoD2
- W3EjS3r18jz1JkdUPqXIz8/IUixdnIWzWHV+a9mDwG9Pq49qeJnyAowWp
- tgDoITZqoVysV5gmKkOilqzOW3KuLu08gzIgaCxx2HM5Eh/X3eoaeW0vY Q==;
-X-CSE-ConnectionGUID: n4ZS/AbgRu2iX1J7NVR+SA==
-X-CSE-MsgGUID: zQdWwlRSQt2FusiTh7ISCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81438588"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="81438588"
+ bh=nYoMSBXc4f6Yi2tVMFpU4FW2nvHHHfCWbcnHBzIcqWw=;
+ b=lZ1Sg/Ktg9Vrk5OpKmLRbqFp3hn50MTzkOxkiSTpf2z0ikUqU4KhQyea
+ DtGYfICYdmK4HpDFb/ZkcuhtAEhZRjpmsTfvznRwyIqAJn1YEPDbBvsGP
+ 7bPORDgJm0guP6eiXvXQ5sAODH2MkxTxq2No1B3NNPtrUoNNkJENKpbly
+ 3q9Yvr/HpiY9StLx8Yei/FZG18c4EEJnmAECP7hbUBIIGg9H/iDIuX9vF
+ 2WlvCvcLeoueQexCTn90kbHJ8qaL9tTZn/VvYHjYMy1jg80Ok3F85Mgd8
+ ZsCjF6akVCDTYmucrKwpAzuyOEleSCKygCa67rWNr/QX3F+JhodOikIiJ w==;
+X-CSE-ConnectionGUID: KKxi/RJTQA6QTQ4qpFSiZQ==
+X-CSE-MsgGUID: Vy/CtXL8T0SUUyJTrHmR8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81438590"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="81438590"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:48:27 -0700
-X-CSE-ConnectionGUID: h8Hf4baqRq+nQOf+x5Hm7g==
-X-CSE-MsgGUID: CSwKxECISXCV37vUF50a6A==
+ 15 Jun 2026 11:48:31 -0700
+X-CSE-ConnectionGUID: KZh6stEBR3GwWwfxM2UHtQ==
+X-CSE-MsgGUID: GtQLkYI9RKea3bUgle6W1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="247628611"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="247628625"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.28])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:48:26 -0700
+ 15 Jun 2026 11:48:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 4/6] drm/xe/display: change order of
- intel_display_driver_remove_{nogem, noirq}() calls
-Date: Mon, 15 Jun 2026 21:48:01 +0300
-Message-ID: <afb11c4e11cc4d946f0360aaad1664d004a93f41.1781549229.git.jani.nikula@intel.com>
+Subject: [PATCH 5/6] drm/{i915,
+ xe}: move opregion cleanup to intel_display_driver_remove_nogem()
+Date: Mon, 15 Jun 2026 21:48:02 +0300
+Message-ID: <8ccd49a5945e0560ba22079d686db1268e8e9f7f.1781549229.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1781549229.git.jani.nikula@intel.com>
 References: <cover.1781549229.git.jani.nikula@intel.com>
@@ -71,30 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The display driver init and cleanup calls are slightly asymmetric. The
-cleanup order should be intel_display_driver_remove_noirq() and
-intel_display_driver_remove_nogem(), not the other way around. This is
-also what i915 does. Follow suit in xe.
+The intel_opregion_cleanup() call should really be in display. Move it
+at the end of intel_display_driver_probe_noirq().
+
+For xe, this is a completely non-functional change now that the
+noirq/nogem cleanup calls are in the right order.
+
+For i915, this only changes the relative order of
+intel_opregion_cleanup() and i915_perf_fini(), which should be of no
+consequence.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+ drivers/gpu/drm/i915/i915_driver.c                  | 3 ---
+ drivers/gpu/drm/xe/display/xe_display.c             | 1 -
+ 3 files changed, 2 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 15a61f171d73..a1c91fbf737c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -662,6 +662,8 @@ void intel_display_driver_remove_nogem(struct intel_display *display)
+ 	intel_display_power_driver_remove(display);
+ 
+ 	intel_bios_driver_remove(display);
++
++	intel_opregion_cleanup(display);
+ }
+ 
+ void intel_display_driver_unregister(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 05fdcba7b2dc..68ab96b8195b 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -586,13 +586,10 @@ ALLOW_ERROR_INJECTION(i915_driver_hw_probe, ERRNO);
+  */
+ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
+ {
+-	struct intel_display *display = dev_priv->display;
+ 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+ 
+ 	i915_perf_fini(dev_priv);
+ 
+-	intel_opregion_cleanup(display);
+-
+ 	pci_disable_msi(pdev);
+ }
+ 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 4a621779fc53..0d93784754c1 100644
+index 0d93784754c1..8be3e600838b 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -82,8 +82,8 @@ static void xe_display_fini_early(void *arg)
- 		return;
- 
+@@ -84,7 +84,6 @@ static void xe_display_fini_early(void *arg)
  	intel_hpd_cancel_work(display);
--	intel_display_driver_remove_nogem(display);
  	intel_display_driver_remove_noirq(display);
-+	intel_display_driver_remove_nogem(display);
- 	intel_opregion_cleanup(display);
+ 	intel_display_driver_remove_nogem(display);
+-	intel_opregion_cleanup(display);
  	intel_display_power_cleanup(display);
  }
+ 
 -- 
 2.47.3
 
