@@ -4,39 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D9DACD98CE
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:19:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3C7FCD98CE
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:28:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3FAC10E699;
-	Mon, 15 Jun 2026 20:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B60BE10E63C;
+	Mon, 15 Jun 2026 20:28:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="VO0ufo7k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eoMDFJQn";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF63E10E673;
- Mon, 15 Jun 2026 20:18:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1781554725;
- bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=VO0ufo7kyoUMDPb5P9F6S0Ce3o2aFMF/26qJYjSQ5PXgw5C2aDCDaHPlIbnOiuQG6
- hNwoyEw4IZX5VXVTusBXj922G0UEhiu4hRGlclUHT5nXVdmy9Aa4nPyVMLKUu5jIAC
- 3s10FzXgKUh4gFV/zARD/4XlwVUY8aAz54CPRgPy+HTLcRyRUthaVz9GYaEc4pq40B
- /NqY2sJCn/br+tgKjKjly7IJI+vId8qw2rqvlUyXJSbtHyE1K+E/3y0Q3rUeto2Ut2
- 28zL3rCVtcRAXLxZcJwMXslHFXWJedUEiP/dX7JNzfyvuLlPR2Hqo9dNiHE3iyUJbJ
- MXKpat+V3HrDA==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 21/27] drm/i915: Use sleeping selftests for igt_atomic on
- PREEMPT_RT
-Date: Mon, 15 Jun 2026 22:18:39 +0200
-Message-ID: <20260615201846.307297-22-dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC67210E63C
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Jun 2026 20:28:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781555283; x=1813091283;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VVOPfdOzw+WLAwIVpGwAslJd/Kjt0L1/vUvlFu0jd6s=;
+ b=eoMDFJQnn0YG6IwFvJ/xI/AtWEa3aLT1MNcDeY7trRb2LHsZKeq9F+1V
+ YchQpwmVgQt5ZjC8GDJDXbsC1XaJyRek+cdruU2dIuSdZkTlYOnq1ncKI
+ 71Ve5cWrhd76nHOJwvlzvGD6xKEDTpRZ5uktWLYhdqEUitEVWM3FUf8rP
+ HxElY1s4lwtyw1i3y+cahDZN386MTQg57PizCpLVwiViLgFXhYI8m7Q16
+ k//N7A1/sJ5/AgcakiJiBlktr1KUvBAiu+DosM4pVuhuBg5SFf08BmqtD
+ WH/YPIDGomBmeUMBkTTcNvIgR7u36d6qSmWlWxCX83C72Ug2H3xPBAGWw g==;
+X-CSE-ConnectionGUID: jMjvZ9rGRiGgFm9NnFjt/w==
+X-CSE-MsgGUID: FMFJrbOpRJu/1Ev4psXuCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="92867653"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="92867653"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 13:28:02 -0700
+X-CSE-ConnectionGUID: TVnd4PFxQUqoAw/DratTUQ==
+X-CSE-MsgGUID: jDSeL0dySUafX7AwzlfFxQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="241198348"
+Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 13:28:00 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
+ stuart.summers@intel.com, niranjana.vishwanathapura@intel.com
+Subject: [PATCH] drm/xe/guc: Downgrade Memory CAT error message
+Date: Tue, 16 Jun 2026 04:27:57 +0800
+Message-ID: <20260615202757.607703-1-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
-References: <20260615201846.307297-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -53,36 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This makes the i915 selftests slightly happier, especially
-related to GPU reset.
+Memory CAT errors aren't any more serious than the other kinds of CAT
+errors the xe_guc_exec_queue_memory_cat_error_handler function can
+report, yet they are logged at error level while all other reports are
+logged at info level.  Downgrade the report from xe_gt_err_ratelimited
+to xe_gt_info, bringing it in line with the other reports.
 
-I believe this may be a better approach than trying to convert
-uncore->lock to raw_spinlock
-
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
-index fb506b6990956..8ae39cf570b76 100644
---- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
-@@ -39,7 +39,14 @@ static void __hardirq_end(void)
- 	local_irq_enable();
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index cfbfb8d40708e..a81ea3e3cc73e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3166,7 +3166,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 		 * GuC uses GUC_ID_UNKNOWN if it can not map the CAT fault to any PF/VF
+ 		 * context. In such case only PF will be notified about that fault.
+ 		 */
+-		xe_gt_err_ratelimited(gt, "Memory CAT error reported by GuC!\n");
++		xe_gt_info(gt, "Memory CAT error reported by GuC!\n");
+ 		return 0;
+ 	}
  
-+static void __maybe_unused __nop(void)
-+{}
-+
- const struct igt_atomic_section igt_atomic_phases[] = {
-+#if IS_ENABLED(CONFIG_PREEMPT_RT)
-+	{ "sleeping", __nop, __nop },
-+	{ },
-+#endif
- 	{ "preempt", __preempt_begin, __preempt_end },
- 	{ "softirq", __softirq_begin, __softirq_end },
- 	{ "hardirq", __hardirq_begin, __hardirq_end },
 -- 
 2.53.0
 
