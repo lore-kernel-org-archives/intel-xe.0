@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8888CD98DA
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:12:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEFB1CD98E2
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:12:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 936AA10E59A;
-	Mon, 15 Jun 2026 18:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C19210E5AF;
+	Mon, 15 Jun 2026 18:12:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PfNgiJBp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GWJPZci6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD34F10E59A;
- Mon, 15 Jun 2026 18:12:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC3110E5AD;
+ Mon, 15 Jun 2026 18:12:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781547160; x=1813083160;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SzCqjC5YQNy746HgRxHmPnncSPiP80wlM+cmeUfm7nw=;
- b=PfNgiJBpT0RIKAmMAh2vFsBT9vXp0MWMZ3kUtydejUZELliZ5XMYIx23
- tB4/wPCZaJBdnfthX+D2nv7TLUbILxTJC55yDj7MJGvfQYezUMpD83z/8
- PHY1DoDeMu/kIuW/mi8DTsNTVK92AFW3OHpTvE7yTRiC6jqMwb1HTY6nk
- w4Gz+2k/kucABZp7MyJ3xZM4DbvAnSPjz6wxaaXQ32zoZ20WF7OaJXi0l
- qwPg8FWe/pxbgey82SNeUPGzDWR0yBmcfwD6y7sjV/zA4EOPa8UgLn0Kp
- Vu6c1Bsehv9lmxSkUtUZXNgAYUL00wYXDsKR4oOFZh6cohsuTJ+dk5bt2 w==;
-X-CSE-ConnectionGUID: U7CTVD9fRoqOAXjxivf4Jg==
-X-CSE-MsgGUID: Wu5lBmV/Sre5LSDi0WHm2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="104968128"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104968128"
+ t=1781547162; x=1813083162;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3gWu2vDsQ1naJIKWR1uyALRmMQNIADWvFoP9ZODmf5w=;
+ b=GWJPZci6wBBopQC9O8QX7QBym1lfF44m8GImkwOApHgfizU1PzHFrGNI
+ Sw4ZavcdT63jcYlOyd3apB6esDaVQFkr+y7KFFDHBDlhTf2dANN8olYNm
+ LigCSNKx15J20zLFHHTXqy/ud7lY383uThdcn8dpm6tQi/TCB+V3LrnmI
+ qecp+pZ/Ht/3iEQZnuT2KYmFA1/6dESfLVSd4xhSBjh+jnGgv92jhJJ+y
+ UfamQLll4vPjLWjFf3TIhGXKu+9EGA8zf1Yq+mpJyGJ/GY5VVa5TjjOOD
+ jlqor8eTls6lk3ThkuXVBZg/aOnM50jd3FC6Quk+nY5yxoTa9QfvzUPWR g==;
+X-CSE-ConnectionGUID: k7x8TBA0RMqy+OOAf/GYQw==
+X-CSE-MsgGUID: iymZZqeFQFCjLSxQC6qUnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="104968130"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104968130"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:12:40 -0700
-X-CSE-ConnectionGUID: lg9T2dbAS/qErVgvNK79bg==
-X-CSE-MsgGUID: 3r2CIWj1ShSoCvf7ThdtRw==
+ 15 Jun 2026 11:12:42 -0700
+X-CSE-ConnectionGUID: QDeGNBFXSPyqHr8Qt4xlDA==
+X-CSE-MsgGUID: YPL4u3L2T4+7/u90BKRVXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="251833761"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="251833770"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 11:12:38 -0700
+ by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 11:12:40 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v8 0/7] Vswing / Pre-emphasis Override
-Date: Mon, 15 Jun 2026 20:12:00 +0200
-Message-ID: <20260615181207.1033389-1-michal.grzelak@intel.com>
+Subject: [PATCH v8 1/7] drm/i915/bios: search for VBT #57 by default
+Date: Mon, 15 Jun 2026 20:12:01 +0200
+Message-ID: <20260615181207.1033389-2-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260615181207.1033389-1-michal.grzelak@intel.com>
+References: <20260615181207.1033389-1-michal.grzelak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
@@ -69,195 +71,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Next version of [1]. Corresponding IGT v3 is at [2].
+Start searching for Vswing / Preemphasis Override Block during VBT
+parsing at init_bdb_blocks().
 
-Apparently in previous version I included enabling patch for LT; this
-time it should be better.
-
-Booted & loaded custom VBT#57 on PTL. Used VBT#57 decoded by [2]:
-
-Block 57 min size 2 less than block size 1154
-BDB block 57 (1154 bytes, min 2 bytes) - Vswing Preemph:
-        Number of vswing tables: 6
-        Number of columns: 3
-        Number of rows: 16
-        PHY type: Cx0
-        Vswing Table #1 (C10: DP 1.4 RBR/HBR; C20: UNUSED):
-                Preset #01: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #02: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #03: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #04: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #05: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #06: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #07: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #08: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #09: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #10: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-        Vswing Table #2 (C10: DP 1.4 HBR2/HBR3; C20: UNUSED):
-                Preset #01: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #02: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #03: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #04: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #05: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #06: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #07: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #08: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #09: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #10: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-        Vswing Table #3 (C10: eDP non-HBR3; C20: UNUSED):
-                Preset #01: vswing: 0x0000001a, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #02: vswing: 0x00000021, pre-cursor: 0x00000000, post-cursor: 0x00000006
-                Preset #03: vswing: 0x00000026, pre-cursor: 0x00000000, post-cursor: 0x0000000b
-                Preset #04: vswing: 0x0000002b, pre-cursor: 0x00000000, post-cursor: 0x00000013
-                Preset #05: vswing: 0x00000027, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #06: vswing: 0x0000002d, pre-cursor: 0x00000000, post-cursor: 0x00000007
-                Preset #07: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x0000000d
-                Preset #08: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #09: vswing: 0x00000037, pre-cursor: 0x00000000, post-cursor: 0x00000007
-                Preset #10: vswing: 0x0000003e, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-        Vswing Table #4 (C10: eDP HBR3; C20: UNUSED):
-                Preset #01: vswing: 0x0000001a, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #02: vswing: 0x00000021, pre-cursor: 0x00000000, post-cursor: 0x00000006
-                Preset #03: vswing: 0x00000026, pre-cursor: 0x00000000, post-cursor: 0x0000000b
-                Preset #04: vswing: 0x0000002b, pre-cursor: 0x00000000, post-cursor: 0x00000013
-                Preset #05: vswing: 0x00000027, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #06: vswing: 0x0000002d, pre-cursor: 0x00000000, post-cursor: 0x00000007
-                Preset #07: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x0000000d
-                Preset #08: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #09: vswing: 0x00000037, pre-cursor: 0x00000000, post-cursor: 0x00000007
-                Preset #10: vswing: 0x0000003e, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-        Vswing Table #5 (C10: UNUSED; C20: DP 1.4):
-                Preset #01: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #02: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #03: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #04: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #05: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #06: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #07: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #08: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #09: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #10: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
-        Vswing Table #6 (C10: UNUSED; C20: DP 2.X):
-                Preset #01: vswing: 0x00000030, pre-cursor: 0x00000000, post-cursor: 0x00000000
-                Preset #02: vswing: 0x0000002b, pre-cursor: 0x00000000, post-cursor: 0x00000005
-                Preset #03: vswing: 0x00000028, pre-cursor: 0x00000000, post-cursor: 0x00000008
-                Preset #04: vswing: 0x00000025, pre-cursor: 0x00000000, post-cursor: 0x0000000b
-                Preset #05: vswing: 0x00000021, pre-cursor: 0x00000000, post-cursor: 0x0000000f
-                Preset #06: vswing: 0x0000002e, pre-cursor: 0x00000002, post-cursor: 0x00000000
-                Preset #07: vswing: 0x0000002a, pre-cursor: 0x00000002, post-cursor: 0x00000004
-                Preset #08: vswing: 0x00000026, pre-cursor: 0x00000002, post-cursor: 0x00000008
-                Preset #09: vswing: 0x00000023, pre-cursor: 0x00000002, post-cursor: 0x0000000b
-                Preset #10: vswing: 0x00000021, pre-cursor: 0x00000002, post-cursor: 0x0000000d
-                Preset #11: vswing: 0x0000002c, pre-cursor: 0x00000004, post-cursor: 0x00000000
-                Preset #12: vswing: 0x00000028, pre-cursor: 0x00000004, post-cursor: 0x00000004
-                Preset #13: vswing: 0x00000025, pre-cursor: 0x00000004, post-cursor: 0x00000007
-                Preset #14: vswing: 0x00000021, pre-cursor: 0x00000004, post-cursor: 0x0000000b
-                Preset #15: vswing: 0x00000028, pre-cursor: 0x00000008, post-cursor: 0x00000000
-                Preset #16: vswing: 0x0000001e, pre-cursor: 0x00000002, post-cursor: 0x00000002
-
-
-[1] https://lore.kernel.org/intel-gfx/20260608192821.3414590-1-michal.grzelak@intel.com/
-[2] https://lore.kernel.org/igt-dev/20260615093137.681050-1-michal.grzelak@intel.com/ 
-
-BR,
-Michał
-
----
-Changelog:
-v7->v8
-- remove comments (Suraj)
-- add check for LT (Suraj)
+Check for failure since pre-ICL GOPs do not contain the block. Check
+also if VBT version is appropriately up-to-date.
 
 v6->v7
-- parse VBT#57 before blocks dependant on child device list (Jani)
-- expand VS/PE-O acronym in debug logging (Jani)
-- handle VS/PE-O's VBT details in intel_bios_* functions (Jani)
-- remove vspeo's cast to (void *) (Jani)
-- check devdata->vspeo if VS/PE-O was requested
-- call encoder->get_buf_trans() once (Jani)
-- return NULL from intel_bios_get_* when using default (Jani)
-- validate VS/PE-O in intel_bios.c (Jani)
-- inline *_get_vspeo_buf_trans()
-- remove temporarily LT
-
-v5->v6
-- check if devdata is not NULL
-- add Bspec (Suraj)
-- remove drm_WARN_ONCE (Suraj)
-- pass default VS/PE tables to LT's BIOS accessor (Suraj)
-- set txswing & _level from default VS/PE tables (Suraj)
-- add helper checking if VS/PE-O has been allocated (Suraj)
-
-v4->v5
-- set devdata->vspeo->num_entries in intel_bios.c
-- add if-ladder instead of function pointer
-- blend index computation with table parsing
-- remove WARN and debug messages
-- remove enums entirely
-- add spaces around operators (Suraj)
-- remove spaces after type casting (Suraj)
-- remove INTEL_DISPLAY_STATE_WARN (Suraj)
-- change funcs prefix from snps_ to mtl_ (Suraj)
+- parse VBT#57 before blocks dependent on child device list (Jani)
+- remove debug message (Suraj)
 
 v3->v4
 - add Bspec (Suraj)
-- remove unnecessary init of VS/PE-O metadata (Suraj)
-- add helper for computing number of rows (Suraj)
-- fix num_rows's type (Jani, Suraj)
-- declare num_rows (Suraj)
-- change debug message when requesting VS/PE-O (Suraj)
-- stick to solely changing VBT data into current structures (Jani)
-- move iterator declaration to declaration block (Suraj)
 
-v2->v3
-- remove unnecessary braces from if block (Suraj)
-- return -EINVAL instead of -1 (Suraj)
+Bspec: 32063
+Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Michał Grzelak (7):
-  drm/i915/bios: search for VBT #57 by default
-  drm/i915/bios: store VBT #57's metadata in intel_vbt_data
-  drm/i915/bios: print VS/PE-O port info
-  drm/i915/bios: de/allocate VS/PE-O buffer for each port
-  drm/i915: override Snps's VS/PE when requested
-  drm/i915: override Combo's VS/PE when requested
-  drm/i915/bios: remove VS/PE-O warning
-
- drivers/gpu/drm/i915/display/intel_bios.c     | 275 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_bios.h     |  14 +
- .../drm/i915/display/intel_ddi_buf_trans.c    |  27 ++
- .../gpu/drm/i915/display/intel_display_core.h |   7 +
- 4 files changed, 314 insertions(+), 9 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index b6fe87c29aa7c..0c7385a3bb75a 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -200,6 +200,8 @@ static const struct {
+ 	  .min_size = sizeof(struct bdb_mipi_sequence) },
+ 	{ .section_id = BDB_COMPRESSION_PARAMETERS,
+ 	  .min_size = sizeof(struct bdb_compression_parameters), },
++	{ .section_id = BDB_VSWING_PREEMPH,
++	  .min_size = sizeof(struct bdb_vswing_preemph), },
+ 	{ .section_id = BDB_GENERIC_DTD,
+ 	  .min_size = sizeof(struct bdb_generic_dtd), },
+ };
+@@ -2183,6 +2185,21 @@ parse_compression_parameters(struct intel_display *display)
+ 	}
+ }
+ 
++static void
++parse_vswing_preemph_override(struct intel_display *display)
++{
++	const struct bdb_vswing_preemph *block;
++
++	if (display->vbt.version < 218)
++		return;
++
++	block = bdb_find_section(display, BDB_VSWING_PREEMPH);
++
++	/* pre-ICL GOPs don't have VBT #57 */
++	if (!block)
++		return;
++}
++
+ static u8 translate_iboost(struct intel_display *display, u8 val)
+ {
+ 	static const u8 mapping[] = { 1, 3, 7 }; /* See VBT spec */
+@@ -3271,6 +3288,7 @@ void intel_bios_init(struct intel_display *display)
+ 	parse_general_features(display);
+ 	parse_general_definitions(display);
+ 	parse_driver_features(display);
++	parse_vswing_preemph_override(display);
+ 
+ 	/* Depends on child device list */
+ 	parse_compression_parameters(display);
 -- 
 2.45.2
 
