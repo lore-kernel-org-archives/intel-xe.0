@@ -4,53 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F8FDCD98CF
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:35:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59C41CD98CF
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:48:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE98510E5C8;
-	Mon, 15 Jun 2026 18:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED23810E1BD;
+	Mon, 15 Jun 2026 18:48:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L9BXk2qX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n1uykYWx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9D110E5C7;
- Mon, 15 Jun 2026 18:35:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0A9210E1BD;
+ Mon, 15 Jun 2026 18:48:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781548502; x=1813084502;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=tIqShrw2AkycU/sBpl7flrPkPK1aeu0qDk1kf7bzwmA=;
- b=L9BXk2qXMmhLSeLe5l/4/N1IiBt6aSV06nKNSPY+EwmZBZyb/py5Djis
- BdcVcdSuJbi1QeitHl7GvdoYWKi8fC6O8nVNR2Rva47MrQH6JzFPI9fke
- 0Quj4MV7QmfBZvc/7eRiLhzJ+Q5er1AQlkstBof2Bg709oPBjZVFtEX1s
- Qrm1oOAExIXwjYaVxntRFE4pG0Co9ABjmPNSnId7bHt4+2BtbW2hN2Lyh
- tG+Ce08MSrNbrqxDgMaI2L+EumZJUd2Lxs9t5GSAkJcREgIL809/624aj
- PwsWaRRmir+8tndL2qygRTP1YsJuapt+0GsI9ANPStIC4zj910eA0kjdZ w==;
-X-CSE-ConnectionGUID: 6vBEIikcQc68UTz4HBQnDA==
-X-CSE-MsgGUID: uncW8eMyQcCXHHt8GS99Qw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="104970331"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104970331"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:35:02 -0700
-X-CSE-ConnectionGUID: YXNJd21GTBqg5tx1zV9SPA==
-X-CSE-MsgGUID: cFRSDmr9SCK2/n4gdasV6A==
+ t=1781549290; x=1813085290;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FHVqlD8oJyNk3ZNQE/w6rN5fB+A/5nVj5DFgl8lg8JU=;
+ b=n1uykYWxhTZjyBKgbvxzUpkJc+b7wcB4RQfv1lcnQrVGSJiwTDM2U6yL
+ Tkyt2MJRqRn34wUjCXZxY0MQZijq3/2Y7JCWOg/e7bH3UJUGKVWaQlPKW
+ h04KBJvRi5NzbFdSIGE2ca0aehMPLwaYZIOItePJFc1BGpC5oyHGB0Gw2
+ THVKBuGCGkGRNYaF3x/7XdbgjA8f0nSIRd8bDCgzMW81u4pOP5V1Oh/Ch
+ Inso/piez0J6vIHHa7IVYMNG7hSyYzSWJupAkWoXfeNL1/rVsReZkY5oH
+ MQLkF0Vk+jyeZSjxi8p4/006YzFvEpz9/awewDwMXtYYoZPPQQQA7Z2OX w==;
+X-CSE-ConnectionGUID: hi2rUe/cRs22aZjaqBVE/Q==
+X-CSE-MsgGUID: pQj0Mi/8TNaENiGzZfu7og==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81438578"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="81438578"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 11:48:09 -0700
+X-CSE-ConnectionGUID: oLXvBbUbTteJ2A/qktMIQw==
+X-CSE-MsgGUID: EcYXha4pQY6gvdnxwk4Rng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="246650222"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:35:01 -0700
-Date: Mon, 15 Jun 2026 20:34:59 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/intel: drop driver include from mchbar_regs.h
-In-Reply-To: <20260615152837.1898991-1-jani.nikula@intel.com>
-Message-ID: <4c103455-61fe-eaa7-b5d0-72414ae4995e@intel.com>
-References: <20260615152837.1898991-1-jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="247628538"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.28])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 11:48:08 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/6] drm/{i915,
+ xe}: display probe/remove cleanup and unification
+Date: Mon, 15 Jun 2026 21:47:57 +0300
+Message-ID: <cover.1781549229.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-542677916-1781548501=:605841"
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,21 +69,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Small incremental steps towards unifying i915 and xe display probe and
+remove.
 
---8323329-542677916-1781548501=:605841
-Content-Type: text/plain; format=flowed; charset=ISO-8859-2
-Content-Transfer-Encoding: 8BIT
+Jani Nikula (6):
+  drm/i915: move intel_display_device_probe() call a level higher
+  drm/i915: remove superfluous checks for pdev->msi_enabled
+  drm/{i915,xe}: move opregion/dram/bw init to
+    intel_display_driver_probe_noirq()
+  drm/xe/display: change order of
+    intel_display_driver_remove_{nogem,noirq}() calls
+  drm/{i915,xe}: move opregion cleanup to
+    intel_display_driver_remove_nogem()
+  drm/{i915,xe}: move intel_hpd_cancel_work() to
+    intel_display_driver_remove_noirq()
 
-On Mon, 15 Jun 2026, Jani Nikula wrote:
-> Headers under include/ aren't supposed to try to include headers from
-> driver directories, such as i915_reg_defs.h. Remove it.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+ .../drm/i915/display/intel_display_driver.c   | 21 +++++++-
+ drivers/gpu/drm/i915/i915_driver.c            | 49 +++++--------------
+ drivers/gpu/drm/xe/display/xe_display.c       | 24 ++-------
+ 3 files changed, 36 insertions(+), 58 deletions(-)
 
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
+-- 
+2.47.3
 
-BR,
-Micha³
---8323329-542677916-1781548501=:605841--
