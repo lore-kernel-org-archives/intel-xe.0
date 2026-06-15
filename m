@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CEB9CD98DA
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:34:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 672B0CD98E0
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:34:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E29E710E6B7;
-	Mon, 15 Jun 2026 20:34:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E17410E6B4;
+	Mon, 15 Jun 2026 20:34:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GdTAAu5w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TybUQCo8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7371210E6B8;
- Mon, 15 Jun 2026 20:34:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C18C10E6BC;
+ Mon, 15 Jun 2026 20:34:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781555669; x=1813091669;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GXBlTB94iNpg80zI9aMV/bKiv+HFaRY0WDLps2B0QJw=;
- b=GdTAAu5wOHsm4qgzgJEVfWB4z7XVCl/jIzSOdARGUXtJXFYLU5bLTYtw
- ogSPuIgBWvWZJA+RUOdF9vuTmmQqzLNgNIJO1PTQHnc9IGZOq5KOfzNGN
- WmmXbynUkKIPDjscZ4J0ioHaqn5DWjnQ423017xZWKyUwMuTU4+3uA9ln
- Q+/ntrsdlTL2bqWE5xumRTCLGzoWWQ5XTG9xvqFdsFDcWCz2jdAdPIVfY
- vodtrXBQMQAUR8RxWu7kqxogulM33f0dbshac069Nxr+exR+Sv6iKkFAu
- IKtRVr5bMaJCnmAwFCgFXNXFxFAnQjScpv+FSHTOAUay/TMzEah3pEn/W w==;
-X-CSE-ConnectionGUID: RE1naTOYTFGkIVvtOFlKgQ==
-X-CSE-MsgGUID: eOd7Aec1RNCWjhukXs2+/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694625"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694625"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ t=1781555678; x=1813091678;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=e/B6ji1DVkHXGZy02cVsS/qw2i0spTSskAQm6qNxOSs=;
+ b=TybUQCo8xqY+D1qpGyIVNdcBA3rPypAJaRnaNY94KPMfQpKNQhAgxBPD
+ ow1idpXjnSb5VsMi5WKC1lLEeWSA4FDZSbU+gyM7OQOF4GOvQCyFHT56/
+ SH+r2Q29+wrAPcPe8n+2FmxZcONJCewIZrvX5fv5E25QRKAs5LY3QRU5U
+ LmEgsEwIprzZS+b9JW67ghAquhMZVD8c9bjGvmVXwi1JSeB+B/1xcni48
+ N7EejW4O2zcfkeGlv15ECFjvkNuYTM27lW9ruFtIbnJkuFfmLLmrj49Wz
+ jdq808mu2SX7ODP1yaxsB1x8r7rJ9TVa7kOY/XieOo9ptvFuPaDTJZens g==;
+X-CSE-ConnectionGUID: A241j06AS4SqYQ9W7Zll8Q==
+X-CSE-MsgGUID: TpGNnSa8Tf6JIvUoPdd2ug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694671"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694671"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 13:34:29 -0700
-X-CSE-ConnectionGUID: Ikvpyh3NSUK6bRpxmTtz2A==
-X-CSE-MsgGUID: zk0UCazNTYuLLO6kWlbDOA==
+ 15 Jun 2026 13:34:38 -0700
+X-CSE-ConnectionGUID: F1lRP4QBREGl2MHTuNZBaQ==
+X-CSE-MsgGUID: NLzO2aVwToeapkBgI/IjZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="252538630"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO
- vgovind2-mobl4.intel.com) ([10.245.245.246])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 13:34:27 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v3 7/7] drm/i915/bw: introduce the peak bandwidth threshold
-Date: Mon, 15 Jun 2026 23:33:55 +0300
-Message-ID: <20260615203355.218578-8-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260615203355.218578-1-vinod.govindapillai@intel.com>
-References: <20260615203355.218578-1-vinod.govindapillai@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="244672539"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.28])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 13:34:36 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 3/4] drm/xe/display: separate d3cold handling from
+ xe_display_pm_runtime_suspend_late()
+In-Reply-To: <ajBb9sgCnlh22eY_@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo
-Content-Transfer-Encoding: 8bit
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cover.1781527161.git.jani.nikula@intel.com>
+ <83b257cac313967d4344185669187dc7140049f4.1781527161.git.jani.nikula@intel.com>
+ <ajBb9sgCnlh22eY_@intel.com>
+Date: Mon, 15 Jun 2026 23:34:34 +0300
+Message-ID: <9845ff6706dd137390b5474af1358dfc6bbed501@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,101 +73,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Xe3+, the SoC can lower the fabric frequency when the display
-needs less bandwidth than the minimum GV point. This threshold is
-defined as 20 GB/s. The driver can choose to request this threshold
-when the required data rate falls below it.
+On Mon, 15 Jun 2026, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Jun 15, 2026 at 03:40:47PM +0300, Jani Nikula wrote:
+>> Make the special d3cold paths completely separate from the rest of the
+>> runtime pm calls.
+>>=20
+>> The intel_dmc_wl_flush_release_work() call right after
+>> xe_display_pm_suspend_late() might be completely redundant, but this
+>> avoids any functional changes.
+>>=20
+>> Wiggle the comment while at it. It gets duplicated for now, but this
+>> will be addressed in the follow-up.
+>>=20
+>> v2: Update comments
+>>=20
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Acked-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/display/xe_display.c | 12 ++++++------
+>>  1 file changed, 6 insertions(+), 6 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/x=
+e/display/xe_display.c
+>> index 493e9e09b6c9..bdafc010fae1 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> @@ -389,14 +389,14 @@ void xe_display_pm_runtime_suspend_late(struct xe_=
+device *xe)
+>>  	if (!xe->info.probe_display)
+>>  		return;
+>>=20=20
+>> -	if (xe->d3cold.allowed)
+>> +	if (xe->d3cold.allowed) {
+>>  		xe_display_pm_suspend_late(xe);
+>> +		/* Ensure the wakelock release work gets flushed */
+>> +		intel_dmc_wl_flush_release_work(display);
+>> +		return;
+>> +	}
+>>=20=20
+>> -	/*
+>> -	 * If xe_display_pm_suspend_late() is not called, it is likely
+>> -	 * that we will be on dynamic DC states with DMC wakelock enabled. We
+>> -	 * need to flush the release work in that case.
+>> -	 */
+>> +	/* Ensure the wakelock release work gets flushed */
+>>  	intel_dmc_wl_flush_release_work(display);
+>
+> In the next patch you end up removing this entirely, so I'm wondering
+> why this patch simply doesn't remove this and move it to the d3cold only?!
+>
+> I mean, I saw you replace that by the new runtime_ calls that does the
+> power_disable, but I don't see that calling the flush, so why simply not
+> remove now on this patch and make that next one only adding that runtime =
+call
+> here?
 
-Add an extra QGV entry, with both peak bw and derated bw set to
-20 GB/s, to the bandwidth info when all of the following hold:
-1. The platform is Xe3+.
-2. There is at least one existing QGV point.
-3. The number of QGV points is below 8 (the maximum).
+I believe the flush is *deep* down the call path there.
 
-Once a plane group is found, the driver iterates over all QGV points
-in that group to find the best match for the required data rate. If
-the required data rate is below 20 GB/s, it selects the peak bw from
-this new QGV point (20 GB/s).
+>
+> But well, this patch itself is not wrong and it does what it tells and
+> you are transparently telling this is for ne follow up work. So,
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-v2: add the peak bandwidth threshold as an additional QGV entry
+Thanks!
 
-Bspec: 68880
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c       | 33 +++++++++++++++++++
- .../drm/i915/display/intel_display_device.h   |  1 +
- 2 files changed, 34 insertions(+)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index db2ee9de5eec..71aa9a6928db 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -52,6 +52,8 @@ struct intel_qgv_point {
- 
- #define DEPROGBWPCLIMIT		60
- 
-+#define PEAK_BW_THRESHOLD	20000
-+
- struct intel_psf_gv_point {
- 	u8 clk; /* clock in multiples of 16.6666 MHz */
- };
-@@ -601,6 +603,34 @@ static int tgl_peakbw(int num_channels, int channel_width, int dclk)
- 	return num_channels * (channel_width / 8) * dclk;
- }
- 
-+static void xe3_add_peakbw_threshold(struct intel_display *display)
-+{
-+	u8 qgv_points = display->bw.num_qgv_points;
-+
-+	if (!HAS_PEAK_BW_THRESHOLD(display))
-+		return;
-+
-+	if (qgv_points >= I915_NUM_QGV_POINTS) {
-+		drm_warn(display->drm, "Maximum QGV points reached. Ignore the peak bw threshold\n");
-+		return;
-+	}
-+
-+	if (qgv_points <= 1) {
-+		drm_warn(display->drm, "SAGV not supported. Ignore the peak bw threshold\n");
-+		return;
-+	}
-+
-+	display->bw.num_qgv_points++;
-+
-+	display->bw.peakbw[qgv_points] = PEAK_BW_THRESHOLD;
-+
-+	for (int i = 0; i < ARRAY_SIZE(display->bw.max); i++)
-+		display->bw.max[i].deratedbw[qgv_points] = PEAK_BW_THRESHOLD;
-+
-+	drm_dbg_kms(display->drm, "An extra QGV point %d added for Peak bw threshod of %d\n",
-+		    qgv_points, PEAK_BW_THRESHOLD);
-+}
-+
- static int tgl_get_bw_info(struct intel_display *display,
- 			   const struct dram_info *dram_info,
- 			   const struct intel_soc_bw_params *soc_bw_params,
-@@ -695,6 +725,9 @@ static int tgl_get_bw_info(struct intel_display *display,
- 		drm_dbg_kms(display->drm, "QGV %d: peakbw=%u\n", i, display->bw.peakbw[i]);
- 	}
- 
-+	/* For xe3 cases add an extra qgv point for Peak bw threshold */
-+	xe3_add_peakbw_threshold(display);
-+
- 	for (i = 0; i < qi.num_psf_points; i++) {
- 		const struct intel_psf_gv_point *sp = &qi.psf_points[i];
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 13e93a4b4f5f..1360a16edbc1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -191,6 +191,7 @@ struct intel_display_platforms {
- #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
- #define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
- #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
-+#define HAS_PEAK_BW_THRESHOLD(__display)	(DISPLAY_VER(__display) >= 30)
- #define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >= 12)
- #define HAS_PIXEL_NORMALIZER(__display)	(DISPLAY_VER(__display) >= 35)
- #define HAS_PMDEMAND(__display)		(DISPLAY_VER(__display) >= 14)
--- 
-2.43.0
+>
+>>  }
+>>=20=20
+>> --=20
+>> 2.47.3
+>>=20
 
+--=20
+Jani Nikula, Intel
