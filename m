@@ -4,39 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92075CD98EE
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:19:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4061CD98F5
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:19:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5BDE10E682;
-	Mon, 15 Jun 2026 20:18:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D88910E68A;
+	Mon, 15 Jun 2026 20:18:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="R5b/df5L";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Rci3VHpa";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 278EF10E657;
- Mon, 15 Jun 2026 20:18:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 032FF10E682;
+ Mon, 15 Jun 2026 20:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1781554721;
- bh=Q8sFpW0LaWK/Smzuxt/7dTEculaPVCfQO31xaLLhI2w=;
+ s=default; t=1781554726;
+ bh=/Fm27havni7MNlmsXqPxuEk9ti8anXosMDlKd+HcKVc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=R5b/df5Lbj2BiU4aUP9DpIojQF0gkgN2IoT6PegA3ftTRZp4ViNL1Zl9japV7BDbS
- 6UUC6koDjg0YEaW5dLQY9wmdij+FokxeuD680ftq3BQxk8IlnpjAS7bRJwKaah6+aa
- 6MsewC6cGQYNwbSLLGwmFVPQ1ktDmrUhefL0mRM+mmouIu/McpCO9l1vcE4fGqOfMZ
- pIo/UFALDBC8XX9tyQt6mnnvorhF9bdfNaFdx2VDLd2TFiHpDRt+K8iui6LQ0jWvO9
- Vf7P/TDSU7RxO0tAWU4ynpyJAMYUC/ecmFMtuEDfVBx8rZILzzEpMP3ZAV880eCTAG
- d21SA+SyNxp2A==
+ b=Rci3VHpaTFaPvxPUSKRvdMqrwaUFfWdrltZYwsuE8l+teXxrO+lijPL3XqkpQzz2p
+ t2CkZZpjTlcYTmAo96j/8T1H94J7hrnNDPJcTLfD8nbzCkIZM4XS8ct605r31yVvj4
+ RAowckRwyRaIPPGABbmyRy73xfTpAzGV3JnamtSB0F+25NhCd5fWoXMHPqeC14N6ZP
+ YkraVpJRHH+xIfp5Z2py+uxaLzX6LoOuiKhV9s4Xe14kV46ovXdq/OJZmSHSJy2jFG
+ m4awEzoi0oqlyfKcGYuUhl394Far5cDg0mTwpcTyALD/l591WeeAwYkacmaRMJ/FEa
+ RwA4DJ4VtatRg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <williams@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 15/27] drm/i915/gt: Use spin_lock_irq() instead of
- local_irq_disable() + spin_lock()
-Date: Mon, 15 Jun 2026 22:18:33 +0200
-Message-ID: <20260615201846.307297-16-dev@lankhorst.se>
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v8 23/27] PREEMPT_RT injection
+Date: Mon, 15 Jun 2026 22:18:41 +0200
+Message-ID: <20260615201846.307297-24-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
 References: <20260615201846.307297-1-dev@lankhorst.se>
@@ -56,94 +52,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-execlists_dequeue() is invoked from a function which uses
-local_irq_disable() to disable interrupts so the spin_lock() behaves
-like spin_lock_irq().
-This breaks PREEMPT_RT because local_irq_disable() + spin_lock() is not
-the same as spin_lock_irq().
-
-execlists_dequeue_irq() and execlists_dequeue() has each one caller
-only. If intel_engine_cs::active::lock is acquired and released with the
-_irq suffix then it behaves almost as if execlists_dequeue() would be
-invoked with disabled interrupts. The difference is the last part of the
-function which is then invoked with enabled interrupts.
-I can't tell if this makes a difference. From looking at it, it might
-work to move the last unlock at the end of the function as I didn't find
-anything that would acquire the lock again.
-
-Reported-by: Clark Williams <williams@redhat.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- .../drm/i915/gt/intel_execlists_submission.c    | 17 +++++------------
- 1 file changed, 5 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
+ drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
+ kernel/Kconfig.preempt             |  4 ++--
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 1359fc9cb88ef..e11db81dca9c5 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1300,7 +1300,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * and context switches) submission.
- 	 */
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 52a3a59b4ba2c..5977d0b262b85 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
  
--	spin_lock(&sched_engine->lock);
-+	spin_lock_irq(&sched_engine->lock);
+ 	  If in doubt, say "N".
  
- 	/*
- 	 * If the queue is higher priority than the last
-@@ -1400,7 +1400,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				 * Even if ELSP[1] is occupied and not worthy
- 				 * of timeslices, our queue might be.
- 				 */
--				spin_unlock(&sched_engine->lock);
-+				spin_unlock_irq(&sched_engine->lock);
- 				return;
- 			}
- 		}
-@@ -1426,7 +1426,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 		if (last && !can_merge_rq(last, rq)) {
- 			spin_unlock(&ve->base.sched_engine->lock);
--			spin_unlock(&engine->sched_engine->lock);
-+			spin_unlock_irq(&engine->sched_engine->lock);
- 			return; /* leave this for another sibling */
- 		}
- 
-@@ -1588,7 +1588,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 */
- 	sched_engine->queue_priority_hint = queue_prio(sched_engine);
- 	i915_sched_engine_reset_on_empty(sched_engine);
--	spin_unlock(&sched_engine->lock);
-+	spin_unlock_irq(&sched_engine->lock);
- 
- 	/*
- 	 * We can skip poking the HW if we ended up with exactly the same set
-@@ -1614,13 +1614,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	}
- }
- 
--static void execlists_dequeue_irq(struct intel_engine_cs *engine)
--{
--	local_irq_disable(); /* Suspend interrupts across request submission */
--	execlists_dequeue(engine);
--	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
--}
+-config DRM_I915_DEBUG_VBLANK_EVADE
+-	bool "Enable extra debug warnings for vblank evasion"
+-	depends on DRM_I915
+-	default n
+-	help
+-	  Choose this option to turn on extra debug warnings for the
+-	  vblank evade mechanism. This gives a warning every time the
+-	  the deadline allotted for the vblank evade critical section
+-	  is exceeded, even if there isn't an actual risk of missing
+-	  the vblank.
 -
- static void clear_ports(struct i915_request **ports, int count)
- {
- 	memset_p((void **)ports, NULL, count);
-@@ -2475,7 +2468,7 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
- 	}
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_I915_DEBUG_RUNTIME_PM
+ 	bool "Enable extra state checking for runtime PM"
+ 	depends on DRM_I915
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 01227c77f6d70..1d5f11c6e88f3 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
  
- 	if (!engine->execlists.pending[0]) {
--		execlists_dequeue_irq(engine);
-+		execlists_dequeue(engine);
- 		start_timeslice(engine);
- 	}
+ 	  If in doubt, say "N".
  
++config DRM_I915_DEBUG_VBLANK_EVADE
++        def_bool y
++        depends on DRM_XE
++
++
+ config DRM_XE_DEBUG_VM
+ 	bool "Enable extra VM debugging info"
+ 	default n
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index 88c594c6d7fcd..11bec9be95405 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -90,9 +90,9 @@ config PREEMPT_LAZY
+ endchoice
+ 
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.53.0
 
