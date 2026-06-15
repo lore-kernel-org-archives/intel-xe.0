@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEB80CD98C5
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 12:41:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3A15CD98DE
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 12:41:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6928010E3EB;
-	Mon, 15 Jun 2026 12:41:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE2010E3E7;
+	Mon, 15 Jun 2026 12:41:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lznLds6d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MW9IrZOy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1BE10E3E6;
- Mon, 15 Jun 2026 12:41:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3EF10E3E7;
+ Mon, 15 Jun 2026 12:41:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781527265; x=1813063265;
+ t=1781527269; x=1813063269;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QQavlzvniH0hESeUB5NzPrEma51L/E+ywjMm0tJ/CY4=;
- b=lznLds6d8brZWej/THMSTsZsYqn91byKzSJs7YBgqZ2vKW5b4Zcr2tz1
- gyBzCzRjSObU26wanbdEBGcXFYAsgus+ikjyQazztJ2D0Zi9u66vUmwf7
- AYt9yy88yLwpQzFB1+vu3sbtexHlPoPf4Pr4KAqgRSRpjFhrZ1oIofBnt
- cTCuNBzR8jzEFG6vgj2hK9gL8t29HGTlJFKpbJ9WFj2lSPEfzKxERaksy
- RK7Bxe4Uic0gEKNRG62Q9LWh0fCYkmVc7JYp+ehw+E6CtcQ8hT3kOpv+X
- wvBzRSjigcWv2T42P2S42Kr4Dz3TJaZiWeU1KWtk7IYvRFhlBaavO8NRo g==;
-X-CSE-ConnectionGUID: rZtDqYu1SqaTqlbgFMQD5w==
-X-CSE-MsgGUID: RRep7lXaRCC7v939IWEtQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="86165476"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="86165476"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 05:41:05 -0700
-X-CSE-ConnectionGUID: a+G60Zs4Q9qLBP/SWK4OFw==
-X-CSE-MsgGUID: Ju87UpnDTvKcRF1gA39E/g==
+ bh=7Kbjphpql+ThHpQe7/5Q4sIwV9BLYwxbr3qobSFsoG0=;
+ b=MW9IrZOy8S/ST0KXOU+TXo6rxwIwJLx4Q/mM5m9mdTV5bCCceJAffYe5
+ 5mKtfy7Q77X20DPmGbDe+CXlYLpt6waLCy0H5D2PwUrbkCy3xMRvkQsQS
+ Myy5meRU9Pj6OMFhabTQcuL8GzBh1gwLWjJGTysvuU/rPTtnpSAz8/k+w
+ YhcZN4HJfHhBqWoyysULO4YsreHZ5H+D+p7x+KVoHO79trTfzEWL0n+uo
+ PAenWnhdShmIsga+ULYnpl6Y2DoFbDgog4vYtbNnKllcIllnjDXyhTAV5
+ ewCcGPxb7i+GPz0iaZ2QkDVOflW1wzfetQ0K8JXbFD4IDtrgW/usrE/8q Q==;
+X-CSE-ConnectionGUID: xkbqcgp5T2S0k0ywsnyd4g==
+X-CSE-MsgGUID: 2+jjYfkRTSyCgh1boU6Zng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="104935009"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104935009"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 05:41:09 -0700
+X-CSE-ConnectionGUID: PXDQYm8yQ+29PdW11sqNzA==
+X-CSE-MsgGUID: nE9r74bBQkm20yIBDZ8ZCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="285573439"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="246349851"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.28])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 05:41:02 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 05:41:07 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 2/4] drm/{i915,
- xe}: add new intel_display_driver_runtime_pm_{enable, disable}()
-Date: Mon, 15 Jun 2026 15:40:46 +0300
-Message-ID: <9a3ab94dda708f809bfbdfbc9034a2d718885f1e.1781527161.git.jani.nikula@intel.com>
+Subject: [PATCH 3/4] drm/xe/display: separate d3cold handling from
+ xe_display_pm_runtime_suspend_late()
+Date: Mon, 15 Jun 2026 15:40:47 +0300
+Message-ID: <83b257cac313967d4344185669187dc7140049f4.1781527161.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1781527161.git.jani.nikula@intel.com>
 References: <cover.1781527161.git.jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
@@ -72,122 +73,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new high-level functions intel_display_driver_runtime_pm_enable()
-and intel_display_driver_runtime_pm_disable() to abstract the low-level
-functions intel_display_power_enable() and
-intel_display_power_disable(), respectively.
+Make the special d3cold paths completely separate from the rest of the
+runtime pm calls.
 
-The asymmetry in the "runtime pm enable/disable" and "pm runtime
-suspend/etc" naming is intentional, with the latter intended to be
-called from the PM hooks.
+The intel_dmc_wl_flush_release_work() call right after
+xe_display_pm_suspend_late() might be completely redundant, but this
+avoids any functional changes.
+
+Wiggle the comment while at it. It gets duplicated for now, but this
+will be addressed in the follow-up.
+
+v2: Update comments
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Suggested-by: Ville Syrjala <ville.syrjala@linux.intel.com>
+Acked-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_display_driver.h |  3 +++
- drivers/gpu/drm/i915/i915_driver.c                  |  4 ++--
- drivers/gpu/drm/xe/display/xe_display.c             |  8 ++++----
- 4 files changed, 19 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 67f416070fe0..a11186be9756 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -869,6 +869,16 @@ void intel_display_driver_pm_resume(struct intel_display *display)
- 	intel_display_power_enable(display);
- }
- 
-+void intel_display_driver_runtime_pm_enable(struct intel_display *display)
-+{
-+	intel_display_power_enable(display);
-+}
-+
-+void intel_display_driver_runtime_pm_disable(struct intel_display *display)
-+{
-+	intel_display_power_disable(display);
-+}
-+
- void intel_display_driver_pm_runtime_suspend(struct intel_display *display)
- {
- 	intel_display_power_runtime_suspend(display);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index 1b494337d629..1ae2ad7e95f6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -43,6 +43,9 @@ void intel_display_driver_suspend_access(struct intel_display *display);
- void intel_display_driver_resume_access(struct intel_display *display);
- bool intel_display_driver_check_access(struct intel_display *display);
- 
-+void intel_display_driver_runtime_pm_enable(struct intel_display *display);
-+void intel_display_driver_runtime_pm_disable(struct intel_display *display);
-+
- void intel_display_driver_pm_runtime_suspend(struct intel_display *display);
- void intel_display_driver_pm_runtime_suspend_late(struct intel_display *display);
- void intel_display_driver_pm_runtime_resume_early(struct intel_display *display);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 01aaa66e7cab..4d01168d37cf 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -659,7 +659,7 @@ static int i915_driver_register(struct drm_i915_private *dev_priv)
- 
- 	intel_display_driver_register(display);
- 
--	intel_display_power_enable(display);
-+	intel_display_driver_runtime_pm_enable(display);
- 	intel_runtime_pm_enable(&dev_priv->runtime_pm);
- 
- 	if (i915_switcheroo_register(dev_priv))
-@@ -681,7 +681,7 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
- 	i915_switcheroo_unregister(dev_priv);
- 
- 	intel_runtime_pm_disable(&dev_priv->runtime_pm);
--	intel_display_power_disable(display);
-+	intel_display_driver_runtime_pm_disable(display);
- 
- 	intel_display_driver_unregister(display);
- 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index a5768736dbbc..493e9e09b6c9 100644
+index 493e9e09b6c9..bdafc010fae1 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -176,7 +176,7 @@ void xe_display_register(struct xe_device *xe)
- 		return;
- 
- 	intel_display_driver_register(display);
--	intel_display_power_enable(display);
-+	intel_display_driver_runtime_pm_enable(display);
- }
- 
- void xe_display_unregister(struct xe_device *xe)
-@@ -186,7 +186,7 @@ void xe_display_unregister(struct xe_device *xe)
+@@ -389,14 +389,14 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
  	if (!xe->info.probe_display)
  		return;
  
--	intel_display_power_disable(display);
-+	intel_display_driver_runtime_pm_disable(display);
- 	intel_display_driver_unregister(display);
+-	if (xe->d3cold.allowed)
++	if (xe->d3cold.allowed) {
+ 		xe_display_pm_suspend_late(xe);
++		/* Ensure the wakelock release work gets flushed */
++		intel_dmc_wl_flush_release_work(display);
++		return;
++	}
+ 
+-	/*
+-	 * If xe_display_pm_suspend_late() is not called, it is likely
+-	 * that we will be on dynamic DC states with DMC wakelock enabled. We
+-	 * need to flush the release work in that case.
+-	 */
++	/* Ensure the wakelock release work gets flushed */
+ 	intel_dmc_wl_flush_release_work(display);
  }
  
-@@ -331,7 +331,7 @@ static void xe_display_enable_d3cold(struct xe_device *xe)
- 	 * We do a lot of poking in a lot of registers, make sure they work
- 	 * properly.
- 	 */
--	intel_display_power_disable(display);
-+	intel_display_driver_runtime_pm_disable(display);
- 
- 	intel_display_flush_cleanup_work(display);
- 
-@@ -364,7 +364,7 @@ static void xe_display_disable_d3cold(struct xe_device *xe)
- 
- 	intel_opregion_resume(display);
- 
--	intel_display_power_enable(display);
-+	intel_display_driver_runtime_pm_enable(display);
- }
- 
- void xe_display_pm_runtime_suspend(struct xe_device *xe)
 -- 
 2.47.3
 
