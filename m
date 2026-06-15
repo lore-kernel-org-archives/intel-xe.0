@@ -4,158 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40918CD98C5
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 06:11:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB95ECD98CE
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 06:19:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E443310E1CB;
-	Mon, 15 Jun 2026 06:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF0A10E1D1;
+	Mon, 15 Jun 2026 06:19:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nuS4KuLw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6Kf/CVf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA44C10E1CA;
- Mon, 15 Jun 2026 06:11:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 461CC10E1CE
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Jun 2026 06:19:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781503891; x=1813039891;
+ t=1781504357; x=1813040357;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=JEDGxNJlL17RdIBPx2wgG4qfu5zInGFtv+LBkZ6Rm1o=;
- b=nuS4KuLwgw5rkzGBttqhiRecaPRUsDDESVnJXB7BMof9iJ2j8WoSb/Xn
- EkeoS1k+vkwWwjaC4EwgKuy6wOp9kdGdTHLlOFyBmSoLypOi154PSnTyR
- vcI5Rwi9/gGsC2gkkl/hWJ9TMYcbI5Uj2yKvItkZoQAQj7ZJf9p7nxqw+
- T5gGCpm0bOKo7a3apS1ntGRTdM0DfGwtl96vlGZwWiLTzHTFyAZ0Gxx5M
- fbfXFFUMpTvM1oFLdlQsKd2v0bDggK57Ib4D0X4hZxN0rod7hd4M5j3OM
- 3xzANOgXfDcPoLz1VxVCSboA06I5SybVip6fZHrNOytJg8suVgMK5dQdq Q==;
-X-CSE-ConnectionGUID: 1391JBF7QWabzpfUyfS++A==
-X-CSE-MsgGUID: QXaKkvOFSGyxDHLJ4Iz91Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="99812634"
-X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; d="scan'208";a="99812634"
+ in-reply-to:mime-version;
+ bh=2vEiBK7npG/WCowRr1z2J1Z6zeca8IQgHEkcDQ64U5A=;
+ b=T6Kf/CVfd9UgSUBzXWOKm2Vyq0KvQq9poES89iBY9Evj+DFLV2dZqxm3
+ HOT49ezoolkZjRhw1BRgRDcZFg3t97HU2gi1o7XOjO9x6cqTxUeiHRXTi
+ GSReb0IX3djD+UrwLIEe+7W6aE94QgYJv7F300fw+dB5tsliiHRdONGx/
+ HJ4jUoJYMB6t6jFUvZFO834DHX8/qFhefhYE8XgdN+fjue3b3C2GrbnLJ
+ 7Y0J4bWqeGIUjP3N6yNenx9viS28zfDjeA3Ak3KzyLGGX2tOEIR8swemW
+ 5lwELaRTefVxA8h8y9CkVAMV+16EIuQDjwG5B9MsyoxayRtCbQdpM7u2O Q==;
+X-CSE-ConnectionGUID: xIvCHRkjReOyPHFOX1Z8HQ==
+X-CSE-MsgGUID: DWpL+d5FTnmN6m4OWiuhlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="86136255"
+X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; d="scan'208,217";a="86136255"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2026 23:11:29 -0700
-X-CSE-ConnectionGUID: 22Ms9DXITyahUl7Z9uQUwg==
-X-CSE-MsgGUID: KAQ9S6wfRoawU+BBbSC0qA==
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2026 23:19:16 -0700
+X-CSE-ConnectionGUID: NdyRObsvQt6vd+shwmBFzA==
+X-CSE-MsgGUID: oh+4h2rmTDegkN/pzGW+/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; d="scan'208";a="243228932"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+X-IronPort-AV: E=Sophos;i="6.24,205,1774335600"; 
+ d="scan'208,217";a="243230194"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2026 23:11:29 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ 14 Jun 2026 23:19:16 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Sun, 14 Jun 2026 23:19:15 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Sun, 14 Jun 2026 23:11:28 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Sun, 14 Jun 2026 23:19:15 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.65) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Sun, 14 Jun 2026 23:11:28 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.39) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Sun, 14 Jun 2026 23:11:28 -0700
+ 15.2.2562.37; Sun, 14 Jun 2026 23:19:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SWFl0jiHd6qTsiBBVeALvE3ocKnZuQE8sxcXrQZACp4Y4evDxQ1n/HvmCuRe88tGzZyaZ+EfVcSZooJe1ftsQJuBfWXlN26M1IYAxhfGm/F5Og/BsXAnhQBipQnsNhLbvXjwNupAYiHJQPveUGdDo6eAqfIoNJv+uaOaBhfgxqUsSXX/xWfqIKzVNF3jVm2ENL4WbbLQ2co2hxDVZS7EGMt84Xl7qfYVdQI2elShPx/uTHA/1tzKghzbrG93/R+A7RZ0a1kOSvt8l2lqvBqihU8k50lV3t2jA0cSM0yPBsqT7o9yZ4mYiPjbZCdODOWEytL72elOb/846w2nPyhiCA==
+ b=dg+QgTyxH0JClZ4Xgf6kqKA34PC+jymdaTX+tdz29rJRGgRTovPtN94/AFyJPZRUrK5pb6UoG0yG+M8LGSyB03P5a6YFUr8p3gmAngnbt9FZ4gihkOunILxrQ1YrXf/I2P375NGYvd9oOA6BKkPCwq+z8gIhw7le2Wulwc7n6oP+k0dCWKUmsgVRyna6tUpxDa46hCJTen0xKnx4+nqVivixEj9hDjsliO/1a8P2cqjwQOXrVUeIA7ViOBylBQMR7HCztd7W0cUQQLu8brIpXOLV9zhv2zy5fQ+rmYZo2Dx8KvTbCosyafx/0qkuEhg6shm+WlW3WRxKGWLkstbFJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1sVJzrJgccOaj3vMuYzyJhTIgx8xY+4Ppie48TaClPg=;
- b=A8MJYGL5YdC0ILnp2PGRpJMgIrH2MOe5BlGOFev6rGKV9TKmUZzkjwi0j2LCGUV8FtHWc8cmXxl0Wgn01z3nut5iZnaUr2XTw/UblObpG/BWf/kFwbdmyl83NSTwm8w1FGAH6bl974h85P7adV6UvYJ7QivYK6IZZE2mf4/vGtgBVsCoLPx/MyzJU9JcURpxYIwBs275e/uN4Fwxmse9l8nuU8+TSogn25XZUk55E6RGR8EkWFdsSEc21LA7RFzxZsJvm6RkIt5x0yXeXrt1lMx7ooosNrPzxyNcQFQlSdHvHxnyTo4Fr8hTULlSffL8V2L554KsgmF+XYGtCYDjEw==
+ bh=DIaZp+/1iEqQkhSpShNUZy4YECOdq91cPskRZDHp6xM=;
+ b=qHReh5Jucry2KNDCrq/iguzdQULlKhQ+wOAHiBSUc6QpFXtUr9CkMzVml7bS26fjmODwLEGI1IzFB4UMsVtgB0Ye69Ov0QmJBKI534CWPjnulqiK6AI4s/pdxRwRRQkW3hZoQm0nVCCDquAoq0n+io0wXHNQQtugH0O76uZ4ZKqVbnKX6by/r6Hv1RfpywWSMYgzQP5cdyXGWloUwqN6QJivpWCx+l4LZu2LwRnE0O7viD2Nkoj7nge7xopFqBVPe1ETU48Q/nk/HODv4A6KU3t2I9MHvhRgg+5YXH4/Uk6tlTNpIPvygVKDGBLr/DGNijOxIJ0yj1GVcAccxRpLUA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB7639.namprd11.prod.outlook.com (2603:10b6:806:32a::14)
- by IA1PR11MB7367.namprd11.prod.outlook.com (2603:10b6:208:421::18)
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
+ by BL1PR11MB5286.namprd11.prod.outlook.com (2603:10b6:208:312::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Mon, 15 Jun
- 2026 06:11:25 +0000
-Received: from SN7PR11MB7639.namprd11.prod.outlook.com
- ([fe80::1d9f:d286:449a:a8b9]) by SN7PR11MB7639.namprd11.prod.outlook.com
- ([fe80::1d9f:d286:449a:a8b9%4]) with mapi id 15.21.0092.006; Mon, 15 Jun 2026
- 06:11:25 +0000
-Message-ID: <9ce24ff5-efab-4089-92d7-709862d68e6d@intel.com>
-Date: Mon, 15 Jun 2026 11:41:17 +0530
+ 2026 06:19:11 +0000
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8%3]) with mapi id 15.21.0113.015; Mon, 15 Jun 2026
+ 06:19:11 +0000
+Content-Type: multipart/alternative;
+ boundary="------------KzxkkVZ4UMfwz0Ec8CLm06Cy"
+Message-ID: <b6e5dd3b-8890-4bc0-bf38-b399e5cff586@intel.com>
+Date: Mon, 15 Jun 2026 11:49:05 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/15] xhci: dbc: serialize enabling and disabling dbc
-To: Mathias Nyman <mathias.nyman@linux.intel.com>, <gregkh@linuxfoundation.org>
-CC: <linux-usb@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, <ravitejax.veesam@intel.com>
-References: <20260603091132.1110849-1-mathias.nyman@linux.intel.com>
- <20260603091132.1110849-9-mathias.nyman@linux.intel.com>
-Content-Language: en-GB
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260603091132.1110849-9-mathias.nyman@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0012.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::11) To SN7PR11MB7639.namprd11.prod.outlook.com
- (2603:10b6:806:32a::14)
+Subject: Re: [PATCH] drm/xe/hwmon: handle CRI+ power interval encoding
+To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
+ <raag.jadav@intel.com>, <riana.tauro@intel.com>
+References: <20260605093527.2257977-1-karthik.poosa@intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20260605093527.2257977-1-karthik.poosa@intel.com>
+X-ClientProxiedBy: MA5P287CA0111.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b5::6) To LV0PR11MB9792.namprd11.prod.outlook.com
+ (2603:10b6:408:385::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB7639:EE_|IA1PR11MB7367:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1a60a8cd-6d3a-418a-dadd-08decaa4ee3d
+X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|BL1PR11MB5286:EE_
+X-MS-Office365-Filtering-Correlation-Id: aca3cc8a-7864-481f-9fcb-08decaa603d7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|13003099007|18002099003|22082099003|4143699003|6133799003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: REi8qfSR2OGWovAvv4dIZ654cLwYTLviKy73W0cuwfeoGeiTDd5LORX1fHui5BtuZPFVWj8Wyjd9qM/hYweowLivDIxZvtRo1C7W8MdHm4dAkw7svPT4dxUGPJHMSgdF8qoaO9SymfQrPdeWwZ2PZ8kYSYHexmQsw06TrX8QGeDUI0PBH+M+sm0W5t5uXtHrvhR9IJ60syOOB1STRuBjVrz5izxLEYI46DnX0iycJ92J2tZZy1zeapsC17WN4v1KoYUaUf1lKkNh8RB0LZCNRi+3792HjLCY4KHeQ8QLGScOurUHYIig7/QCpV8eYX5SbzoDvV6dok8C8MSao3JeF8NPH3DFMeMWZAfe80ylCGavcFCVKNdVrw9q8JxxcJKPK5/1eIPE8UCR+XHy49b9T2Go21WT3hQhIiA+nQDu2bL7yx+fUPhAvO3U4I2pKeheVKag+29Ize1ajD7wvgPx2y+68Qp770whmpc4TajhEpQKl6YAA6UbhVIt8w/L8WU+37HOgGOGhez1h82E/jWLTv/H1dU7emrGGkWk9cv2yRDbxiXL1LuFfoGBUfI6ZuFBNvIA9JwirlodNphEjGnNMKieq6kOCc0lq6iZZb4yG8RogxQaQH/Stjbwx7/SQG+QfQdRwv6YwdIO3wlUwCwe/w==
+ ARA:13230040|376014|366016|23010399003|1800799024|8096899003|56012099006|11063799006|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: FDsBjEijO8mKIQZvHHJcvVsi3rT12WfI6JbhlbgMMLFZqehAMw3VCPumBUCe1f1SRRXcVKd2JLe01e6YOenQxz67oOHISDZvTNItk35QbxeCR7uDdqTQkLiJpiRC+vvpRTBN1CVID+rqwcb1g/pPxV7G1voVcymJ8YggHc3MHquvhsYIxwwgMWHW5PoRMEP7i49HPuEndqTynkf//QA6VZ4ftZ2UcUw1zCOGGjA8OmVBgcoFZjXAqot5uWTcFqNsp/SJvJHZzUMhCAqi0D80deRQet0liio3sOZZmARXuhK/0pr/g+MJi7UC9xnX/u86lImzYFJfS1Pdi89Bh6z2k6mMwY3/PuRH1Z81QC/UemzbezDccm/+1rgM7ClJ0bVsQP0lYk4MJ3zhxmOCfDUNS7tNjbduCFXUvVtUYg49IB0nJ03j+aIT9tEWyL9ZHUBGIPeu9LvUcuQ4rtlqElJq7cjQKp5j/dvJLaEf4Qz29VlXa/lnha9qOCl5Szxpb5XNU8byFu7VjhzR0YNIXknEVXKTBFnXMCBYyQhJqxC9p2Zg+RxttQu3G8wg1BmnQekhRevAV1hbK49J9I3iUuu6CVXetBQWVuGYuiR/rlX/12qe0X5i/plJPWd2isnd0qtTPBlvBJ71uNd0keNbCSyn6GUJR14aZB95nAFUX29XSrKUeuEOITFYHxTP0OssziEd
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB7639.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(13003099007)(18002099003)(22082099003)(4143699003)(6133799003)(56012099006)(11063799006);
+ IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(8096899003)(56012099006)(11063799006)(6133799003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V200Q0o5NThnSXRWVnBPbVUvS3c1TGdtc0RwQ2F0UW5wYStTeWp2MmQzV0hl?=
- =?utf-8?B?c2dnekdGZ3pETE95bzBqVkplWDQyNk9QZmNRdWtZRGlTSG5TK2MvTGJYeWc1?=
- =?utf-8?B?SDcwU0dmY1N0VEUvVzkwZkRIaXZoRXBTSTZ3NGcyVGRWdW51OXZzWHFLUEwr?=
- =?utf-8?B?bW9QRDBBeHhRUmFBZlFSZXpEMFBaMmxBWkhqby9kdTFGUVZDVTlkUUM4T3h6?=
- =?utf-8?B?ZE5xOHg5ZUpDM3JWV2x2NTlXbXlNeHpIUVBnUlVQNHJwZXhXb3NwMmIxc3ht?=
- =?utf-8?B?bGtVbGlFZGc4bzl4eThtMCsvNjJzNVU5T1V3NUJZMUdzaFdEclVnUjZWY1VL?=
- =?utf-8?B?a3NKN0Y2M1hTSDFXTEhoTGRrcUpWNWtmWWhOMHFJMlB5b2o3Ty9nY0xQWXo0?=
- =?utf-8?B?alJrVFMwU0FvWXVGb0VKQjRFYmcyR2pYeWlENkZxbmgxUi9RSEZtK3FEWlha?=
- =?utf-8?B?N3VBaCt0VVZhblV2L3AxeVJKT3k1emQ5SXR3ekV6bExFZk5nMkVRR1U3VWlt?=
- =?utf-8?B?QzJRNVgzbkpJaFljM3hkVm5VWHFHQldQeUNHWllLejQvR20zakdJK3hOQ20x?=
- =?utf-8?B?QlFoWmltVGtvazVDL0duQjd5SklsZ25VQlUzQWoyOVZEMEhoKzIyTjRIL0VY?=
- =?utf-8?B?R3dDeHNXR202UzBoVjNadHlkekF4VTlSM2Z6RU9DRzhDNEJDYXdBOFlQcTNY?=
- =?utf-8?B?Z1lkYjFMKy9zM0NOL2FKS2xsOHp2UzEzaldhTytLMjJPK3kwVjVhYk1aL3gv?=
- =?utf-8?B?N1BHcGZINDlPNzJCQXBZb1UvR3dtbjZEUmFobHcvaDYxdHdPQ1FiUkd0cG9B?=
- =?utf-8?B?b0dIQVhQNGxBS2xOd3g5MnFxUG9GaG5EUDdhdUZja2tLOVBBbUxPcjhxa01Y?=
- =?utf-8?B?UXJoaU1tNlZ0WmZvclMzcGNEZi85ZU9oR0c4RjAwVmptcy9RNW5URndrdkZQ?=
- =?utf-8?B?cElnZWhlKy9RZUhqSTQyS21PN1A0elp6U1ZUT09PbndiMXdDTkJZZVphMll3?=
- =?utf-8?B?M29lNXNjQVNhamFCYmRoTHNuOU5odzhkR1JHU3hZa2syRVhIeDlCVTcweDAx?=
- =?utf-8?B?WGdHYWpyVkppNmRzZ1MzdVBkSGRTRHU3MktrNGpPN1haYm82cVJJdVJKRkVq?=
- =?utf-8?B?VnJIVmpMVGNQZVJ0MmVDU2FaRUdmM1QxUjQyS1QxejZCK1REQVdEbmpRS3lO?=
- =?utf-8?B?QVhSRGNDdUxUTlQ0VWVNTmt5RDQ1ZFA5Z3hDWXNJVFFjRzhhVzRvc3l3REZ1?=
- =?utf-8?B?Q0laSUh3YW9sYmhFN1ZGaXhZSXBCR2ZiOXhGbzhrU0NHYXYrcGVRSG12SVpu?=
- =?utf-8?B?ejJCeGhpbWFWcE5KR3g3OTB0SkNGWlh6ZDNPSlNjU1YyRk1aNVhCNlA3M0xp?=
- =?utf-8?B?SWxIbVJHdmpsYThIMnBLZGozdFA3MklGZmtzWmxhSWJYWDExcFoyblBhMWFE?=
- =?utf-8?B?S2hzbGpUWmlodDkxWGJjNnRIWkF4UlUrZXoyUDNyTHI1VzBQOWllc0FtVDRW?=
- =?utf-8?B?a0dwZWJBeGdRYTF0UlBKM21td0tiYVEyZ2VUT0cxWGx0SjFRai9vTXRITVFs?=
- =?utf-8?B?TU5yTndCbTNXbXVhZUZJa0tCRXNndVZleUVkRXdGQjg0aGVmUEwxZGlPeVJh?=
- =?utf-8?B?cXhmcmd6dThrbFBMVE5KcTVORzlsNlBNMkJkSDVZbnFjMllSUXp2WXBNbUJB?=
- =?utf-8?B?enFmcGFERk5qZ0V3N2hxcG5ZWjNndGxaaFB2UDV5R1VMRG1JUDR0WXc5eFpF?=
- =?utf-8?B?akdycFRrYnU3TzdFNVg2emNSSmQ5Zk1odmg4SEdPTjhmTUU3aU1PL00zSVhL?=
- =?utf-8?B?aXZyaEwxS2hQc09teTh5MGRxUE1zT1JTYlQ5YUxFMlgzQXQxNDhiSlVkWDJC?=
- =?utf-8?B?WUJEdzZRTDJpc2JYancrWTNmek9Zcy9Bb04weW9sSWVzVm5scmMxaWhLeWRP?=
- =?utf-8?B?NHFMUURIU0xzellzUEx2aUdvbHFnM3Rub0xsUjU3QmxPTU83WTVFRGIvdzlY?=
- =?utf-8?B?dGFnRGt0bHRCWGhTR2wyaXNYUDg1ZHdQUjdtVVNaczM5dUdlVGlHd1hLaTk5?=
- =?utf-8?B?ZUl3djMvdzh0VGtmL3p5eEJETDBYWTVOV29CTEdPN0hhSzdLb21lMS9pWHg4?=
- =?utf-8?B?S3haSWFnZTNGVmNURVlwYjRReXZITzVhbHJuazJaTzBSbUQzYjgwcE5oZEEv?=
- =?utf-8?B?NHQyWTlNYUJVeWQ4SzNWTVZDWW1SQVU1TWRUYkhXUitMUXBCWEFGUzVzdmFQ?=
- =?utf-8?B?TjVpd25EZEYxWExkTDN1V3Y1d3F4STRDYTVEblhaeG9FbEJYV0FRLzg0dGlS?=
- =?utf-8?B?RitzanNoMSt2MllJQ3VCMzYyOTJRUXJZVHVXZVdRTktzejJXVGR4anF4UDhS?=
- =?utf-8?Q?P1xTrgnWweHMahfQ=3D?=
-X-Exchange-RoutingPolicyChecked: AgoI4vMdLxw34FbW/SVmaKaKkaxy2q7djzlV4qz+xpwbkrbrOi/s+GlZVuHxlf0MaU5w5ngK16zz4VXBYV1l57PG0q1+rZqA7G/gCXLUpWu3uSGwzmRzvJf+85PWrwn0X2ErJk2fisV16MFI54OsKNHVnPmeZDukhpxFMobAaJVYhtl6PZ8OPr779whORdWbHcpiNc6B6ufiwMGi8csLKk6P+t4vOPuryZo24BhH/lBxUDStUYIWJ6YkrAXc/iggliTvm7Bq56euvw06iH39jekxnVDDPeit/Yh1BDwAUK1TV5DhHoxy5WinHMDxlDybg8gv/rWD4IH8W6SprerUKg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a60a8cd-6d3a-418a-dadd-08decaa4ee3d
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7639.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V0JURzFRdVl0RUF4R21TV2pOWHE5YmlSNTZFbzdpNFV1WUE4RFZzR0Z6NHlv?=
+ =?utf-8?B?YUJGMHZkQUZNQlZZdisyKzF3a2xTZnFrYlRaM2ROSmEyVCtNbU1yRHBVTW5H?=
+ =?utf-8?B?b0RqU09LY1haczV0Nk44Tzk2KysxNE5XaG50aEhVdGJZU2pvR2VSNzBvSEsy?=
+ =?utf-8?B?SW9pcUlJSktWam1SZGNYUU5RNXR0Q1c2RmpuYkd6ZXl4RE1wMCtFWEJKK2tT?=
+ =?utf-8?B?dXJQaTlvODA4UEVXTXhVVmtabzRubktPYnBZc1UwMFgwWWluZ0tkcUdDQkFu?=
+ =?utf-8?B?ZWsrRTV2UUFMT24xWXFqd1pwR0VtbEt6WVlQK2hzd3NFeC9vN09tUm1ib1c2?=
+ =?utf-8?B?NFM5SGFEWHJVdzZJd0szQWx5UHJyZGNpWjB5eDZ1cjd2MHhkbVBLOGo4WHBn?=
+ =?utf-8?B?WVVtTWU1SFpyMW5pYm02Y1hxM3JRMnBMbkRoVkNha1ZQQ3hmaG4yODVOWUxo?=
+ =?utf-8?B?elQzYmtXNmdvN08vaVQ0MmtFZ2Q2RFV4K1BJTThNdUJQQVdCUVdtSFhlU2Rp?=
+ =?utf-8?B?cUQ4bHNTdVBoL1IxbSt0Vi93alJadVJZL0g4a2NtQVovWWJWdmtXTjNnM2xW?=
+ =?utf-8?B?UnF1WXhYVERXQUJScDl0UE83Zkt3QVZDbDB4aEFNSm1BQTZYUlZvV3dSSlpW?=
+ =?utf-8?B?QU9QNVZ2YXNDU2xpb0dNTW9PTE14VTdqVXhRTjlubGN3SDZVSHFLOUZUTHpR?=
+ =?utf-8?B?NnFDek1HK1l2dVhnL0t0RmlFRVdoT3gxQXNqWUo4QlZ1UTZWK0g1S3VINU05?=
+ =?utf-8?B?bysyYm9nQUtXTnBjejJKcTdYNWExcVV6eFQ5UW10dHRCRWFiVGdtUGhySTRX?=
+ =?utf-8?B?NTJMenNBYnY2K3RrODVvUkQ0WFF2c0lPd1k1V1RKc0xmaUptWko0a3RsRWtC?=
+ =?utf-8?B?aEVsUUliN29WYzhyM04xTjRQdGQrWnNpU1NDQ042cFljYVBBMnQ3bUlFZTZO?=
+ =?utf-8?B?emVvM0I2NnNWTnN1Q0daREZHbm5tVElSVU0xdDFmREp1WThGOW5OSDFucDdV?=
+ =?utf-8?B?ZHVIWGJGeEEyMjEzV0kwYkx3elVhRldZeWw2YlFYWjBKZzBqeGVQaDN2M2ti?=
+ =?utf-8?B?Nk5oMmVyU0dNcmQ2ZmJ2bnNzL2w2KzdLWUZNVlRKbkI1c3BKL285cWh0QXZt?=
+ =?utf-8?B?S3JlQjh1bHJ2K2xoMDNYUmtzVGNxaTdHN0dzSXNKbVRoZWRCUm5uNG5sZnAz?=
+ =?utf-8?B?SEV5Mkpzam5KcHR4V2dxOEs0dDdCaExZL3FQMGU4SkRuTTVUNGg3YWRuS1Jl?=
+ =?utf-8?B?Q2wvMGkrWVNENzU1YjhUVnh5YUxlTWh5dmJ5S1d2Tld6SlBScUhwMi9kazVn?=
+ =?utf-8?B?VDViUFpSMlZjbkpXYzlSSlF4QkMxUnZranVTZDFjcUhTK3J4N0tzY1l5Sjh0?=
+ =?utf-8?B?dW5zalFsUGxWaTU0UDkwZGxZeXduN2NhU3ZldlhpQjd0V3FpbElmN3Y1Y3Y4?=
+ =?utf-8?B?U2NJaFJoR3dqZjFXa0ZvVGthN1NMUHhkMGVOQi9CbXdXNUp6ak1HWVpzZzFL?=
+ =?utf-8?B?a2FLKzF0cVFUVy9COWEvdUp6NWVWSEhsNzRaMk4rWWtVdVNEVTFiNkhOU3BV?=
+ =?utf-8?B?N3JhYVNKRVI2aTlqWnNFR2twLytZTVJUVXFVeTBxREs3RG95LzUrdFVFbXBw?=
+ =?utf-8?B?SHNGZy9nMWZwc1VxMzhyYUdsZTZkZ1VZRXpVd3FqZmF4THU1cmZ3YXZ2TTNj?=
+ =?utf-8?B?Z01rYVRUQ3F1RHI1VjlLNlhCQVJvYnA3dkV1bnc1eVJQaXdJaDdMbXpwYnBJ?=
+ =?utf-8?B?ZXZ4M3ppZkZuL2lPRTRyVnBNbUxXU1laUHhwaGRRYnRLU2YxaWowYnhNWnF2?=
+ =?utf-8?B?UStSUGVMQzVlTWNXTE85alV2Q1hBWmoyRnpCK3Yra2pMZFVmMVFDSDJFWE5q?=
+ =?utf-8?B?YkYwZW4wcUNTUFlVQTVIaVowcEdkREIxczREc2xJYWtrU3RjREplOWhmeG83?=
+ =?utf-8?B?cnJMRDRucGRZcGFIMDRyV29adXJEMXJiK0hlQUVFTE1vbDc4eldvUkNhRVVo?=
+ =?utf-8?B?WFFhU2gzYTZBNUx4T3ROY0o1bG55cVNNanVaa2o2UWgxV2dib2RJdmVvaDhl?=
+ =?utf-8?B?dE1vYllzRnU3Nmw2SWthNHdKVGhlaXpwU0ZqSUk5Y3E0Vjd4TnIzYzlyaW5j?=
+ =?utf-8?B?eWp0YS9yODMxVDI3VXYrWm5CU1h5YXBhMWw4d0hocWdKNU5PMXlRMFFLMElV?=
+ =?utf-8?B?UWp1MWsyRjFSV3U5L2hJZlIxeDV2VGIrNkNLRFNsNE90WXhoNHVwTzFvZmJ3?=
+ =?utf-8?B?TFJnZmQ5dVkzNVZBUzJFd00xUWM3Vjg5Qkp5N3VyR0taMEZmekVEcEw2NXF3?=
+ =?utf-8?B?RkJkbysrTDV2R3h4UGIyNXhneWYrNGpZSzhqSEhkY2VJaUp0eEpXUT09?=
+X-Exchange-RoutingPolicyChecked: Y+J4y4UXWIkHiq4a0ZfE/LO+KXafHLpwWkItfraAtU9L+cGm3xkPCgsYaQ/umuIKEIzcH+UT16oMk0J997ikBQ9qr50kljBDDZe+kNuK8KCpV1rNE4mmFlgDGUymvyT+byuFgiW7IO+aWe38eFO3jXco4q0ukwkAvjY+GVGhpOPtSkEbOIza0BCbKvan0FcDTOjGsCAMK89dXwqKbjkYRByPN/+CHuGk6DncMSfKPkR3McTNCtiT/BVXmU3SyeDJiSaW1jXToU143TmAH0Xl/AHzkE2Dk63kefga0dZCyh2ZvYVXGVUFWjJad4e1uGCBb6Amnm3HuMx/fZ15927f+Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: aca3cc8a-7864-481f-9fcb-08decaa603d7
+X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2026 06:11:25.6800 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2026 06:19:11.1751 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Hv4Rc1Py1spmTLRtFBTvTO3G17ZbR9+Ut9EHfdmtUk2k8GFThyMMyRwW2VvZF7Z2OL/jQOHWMHD8VTQLLqTJPi0B1oxhZtbVhcFVP8d9FDI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7367
+X-MS-Exchange-CrossTenant-UserPrincipalName: PrV2+H9FGVbogUkL4Ss7BlKdd8M2E1PrNNUeICkvB514ztbotTWJKqWi0vU7kJv4oln7edaBreb5/5rP3TxvPw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5286
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,418 +169,280 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------KzxkkVZ4UMfwz0Ec8CLm06Cy
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello Mathias,
 
-On 6/3/2026 2:41 PM, Mathias Nyman wrote:
-> DbC can be enabled and disabled via sysfs, serialize those
-> with a mutex to make sure everything is done in the correct
-> order.
-> 
-> remove xhci_do_dbc_stop() and integrate the register write and
-> dbc->state setting into xhci_do_stop()
-> 
-
-This patch seems to cause a regression in our CI. [1]
-
-We could not revert the patch because of merge conflicts but resetting 
-to the parent commit seems to heal the issue.
-
-Could you please check why the patch causes this regression and provide
-a fix if necessary?
-
-==
-Chaitanya
-
-[1] 
-https://intel-gfx-ci.01.org/tree/xe-linux-next/xe-linux-next-20260611/bat-lnl-2/boot0.txt
-
-Bisect log:
-
-git bisect start
-# status: waiting for both good and bad commits
-# good: [382f7d3b4c9740ac06199207796ed9b71582c7c5] Merge remote-tracking 
-branch 'regulator/for-7.2' into regulator-next
-git bisect good 382f7d3b4c9740ac06199207796ed9b71582c7c5
-# status: waiting for bad commit, 1 good commit known
-# bad: [49e02880ec0a8c378e811bc9d85da188d7c6204c] Add linux-next 
-specific files for 20260609
-git bisect bad 49e02880ec0a8c378e811bc9d85da188d7c6204c
-# skip: [821165b2f4b76644407d4e5284d9c41363e7caec] Merge branch 'master' 
-of 
-https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
-git bisect skip 821165b2f4b76644407d4e5284d9c41363e7caec
-# good: [5c65b96b549ea2dcfde497436bf9e048deb87758] Bluetooth: hci_sync: 
-reject oversized Broadcast Announcement prepend
-git bisect good 5c65b96b549ea2dcfde497436bf9e048deb87758
-# good: [c17dfc8bb0b61ed36b984449eae8f246878052eb] m68k: coldfire: 
-select legacy gpiolib interface for mcfqspi
-git bisect good c17dfc8bb0b61ed36b984449eae8f246878052eb
-# good: [28db4b2625174a47b3f6b79d996b0804aaae8ab2] wifi: iwlwifi: mld: 
-fix NAN max channel switch time unit
-git bisect good 28db4b2625174a47b3f6b79d996b0804aaae8ab2
-# skip: [4fdfc0229a10464e8b2a4a56d9aeec8a4057a424] Merge branch 
-'spi-nor/next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git
-git bisect skip 4fdfc0229a10464e8b2a4a56d9aeec8a4057a424
-# good: [ce0e10c130c30ad480d83b32d8508183113d585e] staging: rtl8723bs: 
-move constant to right side of test in comparison
-git bisect good ce0e10c130c30ad480d83b32d8508183113d585e
-# skip: [9755c6cf85febe7756c6dddb6405b16bb393783c] Merge branch 
-'nand/next' of https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git
-git bisect skip 9755c6cf85febe7756c6dddb6405b16bb393783c
-# good: [fe017012c5825f22bd856249e4f3cf57e31027b8] Merge tag 
-'drm-intel-gt-next-2026-05-29' of 
-https://gitlab.freedesktop.org/drm/i915/kernel into drm-next
-git bisect good fe017012c5825f22bd856249e4f3cf57e31027b8
-# skip: [ff34647c5266a05cbd0a4807cb0333b3a3856194] Merge branch 'main' 
-of https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
-git bisect skip ff34647c5266a05cbd0a4807cb0333b3a3856194
-# good: [1389ab9bf9f627d4daed86f492091b00f110aa86] PCI: loongson: Do not 
-ignore downstream devices on external bridges
-git bisect good 1389ab9bf9f627d4daed86f492091b00f110aa86
-# good: [fb1758e74b8061aacfbce7bbb7a7cc650537e167] crypto: ccp - Do not 
-initialize SNP for SEV ioctls
-git bisect good fb1758e74b8061aacfbce7bbb7a7cc650537e167
-# good: [79e33ddc62c03cce6c29f0792454e1d618228acf] Merge patch series 
-"cleanup block-style layouts exports"
-git bisect good 79e33ddc62c03cce6c29f0792454e1d618228acf
-# good: [ddf9d68a368d8cae5510923a99bd2d9a7275a091] media: i2c: adv7604: 
-Add range checks for chip info
-git bisect good ddf9d68a368d8cae5510923a99bd2d9a7275a091
-# good: [764f409b840ab400253215e765a72b903feb6afd] phy: qcom-qmp: Use 
-explicit QSERDES COM v2 register definitions
-git bisect good 764f409b840ab400253215e765a72b903feb6afd
-# good: [b5b481063f5a68ef8361ba025bf655fc451f5d93] arm64: dts: amlogic: 
-meson-gxl-s905d-phicomm-n1: add bluetooth node
-git bisect good b5b481063f5a68ef8361ba025bf655fc451f5d93
-# good: [057bb70f531c3e33c18c067716f39f8413b252aa] RDMA/uverbs: Push out 
-CQ buffer umem processing into a helper
-git bisect good 057bb70f531c3e33c18c067716f39f8413b252aa
-# good: [6e302107d9c9fcfee48db57b175e82de39301645] can: virtio: Fix 
-comment in UAPI header
-git bisect good 6e302107d9c9fcfee48db57b175e82de39301645
-# good: [95937cbb6d51e0c6f8ac937bd043fb3b442391ec] arm64: dts: mediatek: 
-mt8192-asurada: Fix SPI-NOR flash compatible
-git bisect good 95937cbb6d51e0c6f8ac937bd043fb3b442391ec
-# good: [52ae64602394bc9a8e7b67f5e4e70c56e31699a7] phy: 
-phy-can-transceiver: Drop unused include
-git bisect good 52ae64602394bc9a8e7b67f5e4e70c56e31699a7
-# good: [d8eb890079d19e4b5ac8073038c4fea006992e00] media: rockchip: rga: 
-use card type to specify rga type
-git bisect good d8eb890079d19e4b5ac8073038c4fea006992e00
-# skip: [0f8575ca3a10c62d352be357c54d949b9d181fcd] Merge branch 
-'for-next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git
-git bisect skip 0f8575ca3a10c62d352be357c54d949b9d181fcd
-# good: [fc13a4b9b9c8cb0b8e5ba54b21712d00f810496c] firmware: samsung: 
-acpm: Add devm_acpm_get_by_phandle helper
-git bisect good fc13a4b9b9c8cb0b8e5ba54b21712d00f810496c
-# good: [91f5d698478f3d07230cf9ca4dfaf67e0316a53d] cpufreq: governor: 
-Fix data races on per-CPU idle/nice baselines
-git bisect good 91f5d698478f3d07230cf9ca4dfaf67e0316a53d
-# good: [106ce4a01c179b8de664767cf5c7367210b66dba] dt-bindings: net: 
-starfive,jh7110-dwmac: Remove jh8100
-git bisect good 106ce4a01c179b8de664767cf5c7367210b66dba
-# good: [a1b94131042930114d0257c44362ee16bca18f4a] dt-bindings: 
-firmware: qcom,scm: Document SCM for Nord SoC
-git bisect good a1b94131042930114d0257c44362ee16bca18f4a
-# good: [1b203f7677100fa761f87641f35e72fe4e31a429] Merge branch 
-'net-mdio-realtek-rtl9300-refactor-initialization-and-port-lookup'
-git bisect good 1b203f7677100fa761f87641f35e72fe4e31a429
-# skip: [534ed190a0f1997553d0ee91403b361134f23f9d] Merge branch 
-'for-next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git
-git bisect skip 534ed190a0f1997553d0ee91403b361134f23f9d
-# good: [b2362b824f977a0a08f8d16c36510cabd6f58ce8] iio: light: vcnl4000: 
-drop enum id table in favor of chip structs
-git bisect good b2362b824f977a0a08f8d16c36510cabd6f58ce8
-# good: [9893f32976b5dd8ca6ed43a97794531d8d49981e] staging: rtl8723bs: 
-fix unbalanced braces in 3 files
-git bisect good 9893f32976b5dd8ca6ed43a97794531d8d49981e
-# good: [deb02080ca5d3f015cf71e56067a39ef2f141998] drm/amdgpu/userq: 
-remove amdgpu_userq_create/destroy_object wrapper
-git bisect good deb02080ca5d3f015cf71e56067a39ef2f141998
-# good: [4503ca234c1c5995609f77ce41e66d0f8e08cbfd] arm64: dts: 
-imx91-11x11-evk: add reset gpios for ethernet PHYs
-git bisect good 4503ca234c1c5995609f77ce41e66d0f8e08cbfd
-# good: [650fd10092529ca2dea85cb39b35a995808fd6dd] Bluetooth: l2cap: fix 
-MPS check in l2cap_ecred_reconf_req
-git bisect good 650fd10092529ca2dea85cb39b35a995808fd6dd
-# good: [a4c6d5d146157228bc03429cf7926d8a14072c84] gpu: nova-core: 
-enable GA100
-git bisect good a4c6d5d146157228bc03429cf7926d8a14072c84
-# good: [859e49597088b445173ed45cf4c4a44aff5e3f5a] perf callchain: Don't 
-pass evsel and sample
-git bisect good 859e49597088b445173ed45cf4c4a44aff5e3f5a
-# good: [8bdb0b3830eaf588fcd7c76c1893d05d871600d2] usb: typec: 
-intel_pmc_mux: combine kzalloc + kcalloc
-git bisect good 8bdb0b3830eaf588fcd7c76c1893d05d871600d2
-# good: [3b0ed04bc852887a9164e1bbf521652e8ef3eb92] fbdev: s3fb: fix 
-potential memory leak in s3_pci_probe()
-git bisect good 3b0ed04bc852887a9164e1bbf521652e8ef3eb92
-# good: [d8a4cef90b1a4ae9196a5bfba683eb9a0c75acdc] clk: spacemit: k3: 
-Switch to pll2_d6 as parent for PCIe clock
-git bisect good d8a4cef90b1a4ae9196a5bfba683eb9a0c75acdc
-# good: [b008ad40670b67e1cf6cfaa0692d830fc70dd94a] arm64: dts: renesas: 
-salvator-common: Rename clk-multiplier to clock-controller
-git bisect good b008ad40670b67e1cf6cfaa0692d830fc70dd94a
-# good: [206bb143689e493a7ebb0f2259e462c35125a89a] gpu: nova-core: 
-Blackwell: compute PMU-reserved framebuffer size
-git bisect good 206bb143689e493a7ebb0f2259e462c35125a89a
-# bad: [c029eea1cd96fa3653b4461c0ca7d5a360ead289] Merge branch 
-'tty-next' of https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git
-git bisect bad c029eea1cd96fa3653b4461c0ca7d5a360ead289
-# skip: [611be4400f3b3a82f864749ead45c32e16d34833] Merge branch 'next' 
-of https://git.kernel.org/pub/scm/linux/kernel/git/ulfh/linux-pm.git
-git bisect skip 611be4400f3b3a82f864749ead45c32e16d34833
-# good: [09d555136e011b7a083f1f7b40b86b6894e94a3f] Bluetooth: btrtl: fix 
-RTL8761B/BU broken LE extended scan
-git bisect good 09d555136e011b7a083f1f7b40b86b6894e94a3f
-# good: [48b68337bf6523f16b2afbb0d3e059eb211e3c85] firewire: core: 
-append _auto suffix for non-once iso resource operations
-git bisect good 48b68337bf6523f16b2afbb0d3e059eb211e3c85
-# good: [552ad802cad94bd759f85c170d07cc53f7d5deb9] Merge branch 
-'bpf-extend-btf-uapi-vlen-kinds-to-use-unused-bits'
-git bisect good 552ad802cad94bd759f85c170d07cc53f7d5deb9
-# skip: [956fef287b67de54fd2c863f1452e7e64fbe2fa3] Merge branch 
-'devfreq-next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git
-git bisect skip 956fef287b67de54fd2c863f1452e7e64fbe2fa3
-# good: [e6eff926482d0f6ebe038a15348158682f5711a0] buffer: Remove 
-mark_buffer_async_write()
-git bisect good e6eff926482d0f6ebe038a15348158682f5711a0
-# good: [b7b0f9bb1acc4e8f7becbd39aaa1db1c0539da87] ASoC: cs35l56: 
-Replace open-coded SoundWire regmap with generic regmap-sdw
-git bisect good b7b0f9bb1acc4e8f7becbd39aaa1db1c0539da87
-# skip: [7cceaa0da03cbd23e4831511a5e813ca7ead8bce] Merge branch 
-'linux-next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git
-git bisect skip 7cceaa0da03cbd23e4831511a5e813ca7ead8bce
-# good: [19f5e1ab965ab995794ea43866ae78fb02b381b0] Merge branch 
-'for-linux-next' of https://gitlab.freedesktop.org/drm/i915/kernel.git
-git bisect good 19f5e1ab965ab995794ea43866ae78fb02b381b0
-# good: [957d69dbe13b4c5452374f58859a179e9297ae32] Merge branch 
-'for-next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git
-git bisect good 957d69dbe13b4c5452374f58859a179e9297ae32
-# good: [74edfb4e12192b69c463bd9c3761ef753cee27d2] Merge branch 'next' 
-of git://git.kernel.org/pub/scm/virt/kvm/kvm.git
-git bisect good 74edfb4e12192b69c463bd9c3761ef753cee27d2
-# good: [be8c98cace3802ed8cb5f5a6fce0587db6349aea] Merge branch 
-'for-next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/tj/sched_ext.git
-git bisect good be8c98cace3802ed8cb5f5a6fce0587db6349aea
-# good: [927ff9df74b956bdccc8e9ac94ef483251cb484b] Merge branch 
-'driver-core-next' of 
-https://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core.git
-git bisect good 927ff9df74b956bdccc8e9ac94ef483251cb484b
-# bad: [bc35c68502637e8be9f03033a52b9cf086d7cc36] Merge branch 
-'usb-next' of https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
-git bisect bad bc35c68502637e8be9f03033a52b9cf086d7cc36
-# good: [7fd6fb1fe40b992b2c39c3f586624ad93ee66c22] dt-bindings: usb: 
-ci-hdrc-usb2: allow up to 3 clocks for qcom,ci-hdrc
-git bisect good 7fd6fb1fe40b992b2c39c3f586624ad93ee66c22
-# good: [22d91cef94b5b86cff0d68ebfce7741740672704] usb: cdnsp: Add 
-support for device-only configuration
-git bisect good 22d91cef94b5b86cff0d68ebfce7741740672704
-# bad: [520058b73ba336380ecf7ea412263de9a7573df8] xhci: dbc: serialize 
-enabling and disabling dbc
-git bisect bad 520058b73ba336380ecf7ea412263de9a7573df8
-# good: [d20405dcdfb616cbae5c3e17e790a969ea03469d] usb: xhci: Remove 
-skip_isoc_td()
-git bisect good d20405dcdfb616cbae5c3e17e790a969ea03469d
-# good: [e765ab012f73717238c95ab9c34bfc3c767fa48c] usb: xhci: Improve 
-Soft Retries after short transfers
-git bisect good e765ab012f73717238c95ab9c34bfc3c767fa48c
-# good: [dc2ff8ba9b9093eb0564407e46e71520b054fc85] xhci: dbc: Fix sysfs 
-ABI Documentation for xhci dbc states
-git bisect good dc2ff8ba9b9093eb0564407e46e71520b054fc85
-# first bad commit: [520058b73ba336380ecf7ea412263de9a7573df8] xhci: 
-dbc: serialize enabling and disabling dbc
-
-> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+On 05-06-2026 15:05, Karthik Poosa wrote:
+> On CRI and newer platforms, the power-limit interval encoding is changed
+> from the legacy 1.x * 2^y format to a U5.2 value in milliseconds.
+> Update the interval calculation accordingly for CRI and future platforms.
+>
+> Signed-off-by: Karthik Poosa<karthik.poosa@intel.com>
 > ---
->   drivers/usb/host/xhci-dbgcap.c | 66 ++++++++++++++++++++--------------
->   drivers/usb/host/xhci-dbgcap.h |  1 +
->   2 files changed, 40 insertions(+), 27 deletions(-)
-> 
-> diff --git a/drivers/usb/host/xhci-dbgcap.c b/drivers/usb/host/xhci-dbgcap.c
-> index 6a9f73fecb73..49ae546c4103 100644
-> --- a/drivers/usb/host/xhci-dbgcap.c
-> +++ b/drivers/usb/host/xhci-dbgcap.c
-> @@ -661,17 +661,6 @@ static int xhci_do_dbc_start(struct xhci_dbc *dbc)
->   	return 0;
->   }
+>   drivers/gpu/drm/xe/xe_hwmon.c | 84 ++++++++++++++++++++++-------------
+>   1 file changed, 53 insertions(+), 31 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index de3f2aeffc3f..4038e1da2e71 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -575,23 +575,34 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
 >   
-> -static int xhci_do_dbc_stop(struct xhci_dbc *dbc)
-> -{
-> -	if (dbc->state == DS_DISABLED)
-> -		return -EINVAL;
-> -
-> -	writel(0, &dbc->regs->control);
-> -	dbc->state = DS_DISABLED;
-> -
-> -	return 0;
-> -}
-> -
->   static int xhci_dbc_start(struct xhci_dbc *dbc)
->   {
->   	int			ret;
-> @@ -683,29 +672,37 @@ static int xhci_dbc_start(struct xhci_dbc *dbc)
+>   	mutex_unlock(&hwmon->hwmon_lock);
 >   
->   	spin_lock_irqsave(&dbc->lock, flags);
->   	ret = xhci_do_dbc_start(dbc);
-> +	if (ret)
-> +		goto err_unlock;
-> +
->   	spin_unlock_irqrestore(&dbc->lock, flags);
->   
-> -	if (ret) {
-> -		pm_runtime_put(dbc->dev); /* note this was self.controller */
-> -		return ret;
-> -	}
-> +	mod_delayed_work(system_percpu_wq, &dbc->event_work,
-> +			 msecs_to_jiffies(dbc->poll_interval));
->   
-> -	return mod_delayed_work(system_percpu_wq, &dbc->event_work,
-> -				msecs_to_jiffies(dbc->poll_interval));
-> +	return 0;
-> +
-> +err_unlock:
-> +
-> +	spin_unlock_irqrestore(&dbc->lock, flags);
-> +	pm_runtime_put(dbc->dev); /* note this was self.controller */
-> +
-> +	return ret;
->   }
->   
->   static void xhci_dbc_stop(struct xhci_dbc *dbc)
->   {
-> -	int ret;
->   	unsigned long		flags;
->   
->   	WARN_ON(!dbc);
->   
-> +	spin_lock(&dbc->lock);
-> +
->   	switch (dbc->state) {
->   	case DS_DISABLED:
-> +		spin_unlock(&dbc->lock);
->   		return;
->   	case DS_CONFIGURED:
-> -		spin_lock(&dbc->lock);
->   		xhci_dbc_flush_requests(dbc);
->   		spin_unlock(&dbc->lock);
->   
-> @@ -713,19 +710,20 @@ static void xhci_dbc_stop(struct xhci_dbc *dbc)
->   			dbc->driver->disconnect(dbc);
->   		break;
->   	default:
-> +		spin_unlock(&dbc->lock);
->   		break;
->   	}
->   
->   	cancel_delayed_work_sync(&dbc->event_work);
->   
->   	spin_lock_irqsave(&dbc->lock, flags);
-> -	ret = xhci_do_dbc_stop(dbc);
-> +	writel(0, &dbc->regs->control);
-> +	dbc->state = DS_DISABLED;
->   	spin_unlock_irqrestore(&dbc->lock, flags);
-> -	if (ret)
-> -		return;
->   
->   	xhci_dbc_mem_cleanup(dbc);
-> -	pm_runtime_put_sync(dbc->dev); /* note, was self.controller */
-> +
-> +	pm_runtime_put(dbc->dev); /* note, was self.controller */
->   }
->   
->   static void
-> @@ -1072,12 +1070,17 @@ static ssize_t dbc_store(struct device *dev,
->   	xhci = hcd_to_xhci(dev_get_drvdata(dev));
->   	dbc = xhci->dbc;
->   
-> -	if (sysfs_streq(buf, "enable"))
-> +	if (sysfs_streq(buf, "enable")) {
-> +		mutex_lock(&dbc->enable_mutex);
->   		xhci_dbc_start(dbc);
-> -	else if (sysfs_streq(buf, "disable"))
-> +		mutex_unlock(&dbc->enable_mutex);
-> +	} else if (sysfs_streq(buf, "disable")) {
-> +		mutex_lock(&dbc->enable_mutex);
->   		xhci_dbc_stop(dbc);
-> -	else
-> +		mutex_unlock(&dbc->enable_mutex);
+> -	x = REG_FIELD_GET(PWR_LIM_TIME_X, reg_val);
+> -	y = REG_FIELD_GET(PWR_LIM_TIME_Y, reg_val);
+> +	if (hwmon->xe->info.platform >= XE_CRESCENTISLAND) {
+> +		/**
+> +		 * On CRI and newer platforms, the interval encoding changed.
+> +		 * The value is now stored directly in milliseconds as U5.2,
+> +		 * replacing the older 1.x * 2^y representation.
+> +		 * Bits [6:2] hold the integer part and bits [1:0] the fraction,
+> +		 * so convert to milliseconds by shifting the field right by 2.
+> +		 */
+> +		out = (u64)(REG_FIELD_GET(PWR_LIM_TIME, reg_val) >> 2);
+This truncates the fractional part (u5.2). Is that intentional?
+
+Thanks,
+Badal
 > +	} else {
->   		return -EINVAL;
+> +		x = REG_FIELD_GET(PWR_LIM_TIME_X, reg_val);
+> +		y = REG_FIELD_GET(PWR_LIM_TIME_Y, reg_val);
+>   
+> -	/*
+> -	 * tau = (1 + (x / 4)) * power(2,y), x = bits(23:22), y = bits(21:17)
+> -	 *     = (4 | x) << (y - 2)
+> -	 *
+> -	 * Here (y - 2) ensures a 1.x fixed point representation of 1.x
+> -	 * As x is 2 bits so 1.x can be 1.0, 1.25, 1.50, 1.75
+> -	 *
+> -	 * As y can be < 2, we compute tau4 = (4 | x) << y
+> -	 * and then add 2 when doing the final right shift to account for units
+> -	 */
+> -	tau4 = (u64)((1 << x_w) | x) << y;
+> +		/*
+> +		 * tau = (1 + (x / 4)) * power(2,y), x = bits(23:22), y = bits(21:17)
+> +		 *     = (4 | x) << (y - 2)
+> +		 *
+> +		 * Here (y - 2) ensures a 1.x fixed point representation of 1.x
+> +		 * As x is 2 bits so 1.x can be 1.0, 1.25, 1.50, 1.75
+> +		 *
+> +		 * As y can be < 2, we compute tau4 = (4 | x) << y
+> +		 * and then add 2 when doing the final right shift to account for units
+> +		 */
+> +		tau4 = (u64)((1 << x_w) | x) << y;
+>   
+> -	/* val in hwmon interface units (millisec) */
+> -	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+> +		/* val in hwmon interface units (millisec) */
+> +		out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
 > +	}
 >   
->   	return count;
+>   	return sysfs_emit(buf, "%llu\n", out);
 >   }
-> @@ -1443,6 +1446,7 @@ xhci_alloc_dbc(struct device *dev, void __iomem *base, const struct dbc_driver *
+> @@ -637,24 +648,35 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+>   	if (val > max_win)
+>   		return -EINVAL;
 >   
->   	INIT_DELAYED_WORK(&dbc->event_work, xhci_dbc_handle_events);
->   	spin_lock_init(&dbc->lock);
-> +	mutex_init(&dbc->enable_mutex);
->   
->   	ret = sysfs_create_groups(&dev->kobj, dbc_dev_groups);
->   	if (ret)
-> @@ -1460,8 +1464,9 @@ void xhci_dbc_remove(struct xhci_dbc *dbc)
->   	if (!dbc)
->   		return;
->   	/* stop hw, stop wq and call dbc->ops->stop() */
-> +	mutex_lock(&dbc->enable_mutex);
->   	xhci_dbc_stop(dbc);
+> -	/* val in hw units */
+> -	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME) + 1;
 > -
-> +	mutex_unlock(&dbc->enable_mutex);
->   	/* remove sysfs files */
->   	sysfs_remove_groups(&dbc->dev->kobj, dbc_dev_groups);
->   
-> @@ -1514,6 +1519,8 @@ int xhci_dbc_suspend(struct xhci_hcd *xhci)
->   	if (!dbc)
->   		return 0;
->   
-> +	mutex_lock(&dbc->enable_mutex);
+> -	/*
+> -	 * Convert val to 1.x * power(2,y)
+> -	 * y = ilog2(val)
+> -	 * x = (val - (1 << y)) >> (y - 2)
+> -	 */
+> -	if (!val) {
+> -		y = 0;
+> -		x = 0;
+> +	if (hwmon->xe->info.platform >= XE_CRESCENTISLAND) {
+> +		/**
+> +		 * On CRI and newer platforms, the interval encoding changed.
+> +		 * The value is now stored directly in milliseconds as U5.2,
+> +		 * replacing the older 1.x * 2^y representation.
+> +		 * Bits [6:2] hold the integer part and bits [1:0] the fraction,so
+> +		 * convert from milliseconds by shifting the value left by 2 to fit into the field.
+> +		 */
+> +		rxy = REG_FIELD_PREP(PWR_LIM_TIME, (val << 2));
+>   	} else {
+> -		y = ilog2(val);
+> -		x = (val - (1ul << y)) << x_w >> y;
+> -	}
+> +		/* val in hw units */
+> +		val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME) + 1;
 > +
->   	switch (dbc->state) {
->   	case DS_ENABLED:
->   	case DS_CONNECTED:
-> @@ -1525,6 +1532,7 @@ int xhci_dbc_suspend(struct xhci_hcd *xhci)
->   	}
+> +		/*
+> +		 * Convert val to 1.x * power(2,y)
+> +		 * y = ilog2(val)
+> +		 * x = (val - (1 << y)) >> (y - 2)
+> +		 */
+> +		if (!val) {
+> +			y = 0;
+> +			x = 0;
+> +		} else {
+> +			y = ilog2(val);
+> +			x = (val - (1ul << y)) << x_w >> y;
+> +		}
 >   
->   	xhci_dbc_stop(dbc);
-> +	mutex_unlock(&dbc->enable_mutex);
+> -	rxy = REG_FIELD_PREP(PWR_LIM_TIME_X, x) |
+> -			       REG_FIELD_PREP(PWR_LIM_TIME_Y, y);
+> +		rxy = REG_FIELD_PREP(PWR_LIM_TIME_X, x) |
+> +				       REG_FIELD_PREP(PWR_LIM_TIME_Y, y);
+> +	}
 >   
->   	return 0;
->   }
-> @@ -1537,11 +1545,15 @@ int xhci_dbc_resume(struct xhci_hcd *xhci)
->   	if (!dbc)
->   		return 0;
+>   	guard(xe_pm_runtime)(hwmon->xe);
 >   
-> +	mutex_lock(&dbc->enable_mutex);
-> +
->   	if (dbc->resume_required) {
->   		dbc->resume_required = 0;
->   		xhci_dbc_start(dbc);
->   	}
->   
-> +	mutex_unlock(&dbc->enable_mutex);
-> +
->   	return ret;
->   }
->   #endif /* CONFIG_PM */
-> diff --git a/drivers/usb/host/xhci-dbgcap.h b/drivers/usb/host/xhci-dbgcap.h
-> index 20ae4e7617f2..f4c0169a1b4d 100644
-> --- a/drivers/usb/host/xhci-dbgcap.h
-> +++ b/drivers/usb/host/xhci-dbgcap.h
-> @@ -140,6 +140,7 @@ struct dbc_driver {
->   
->   struct xhci_dbc {
->   	spinlock_t			lock;		/* device access */
-> +	struct mutex			enable_mutex;
->   	struct device			*dev;
->   	struct xhci_hcd			*xhci;
->   	struct dbc_regs __iomem		*regs;
+--------------KzxkkVZ4UMfwz0Ec8CLm06Cy
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 05-06-2026 15:05, Karthik Poosa
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20260605093527.2257977-1-karthik.poosa@intel.com">
+      <pre wrap="" class="moz-quote-pre">On CRI and newer platforms, the power-limit interval encoding is changed
+from the legacy 1.x * 2^y format to a U5.2 value in milliseconds.
+Update the interval calculation accordingly for CRI and future platforms.
+
+Signed-off-by: Karthik Poosa <a class="moz-txt-link-rfc2396E" href="mailto:karthik.poosa@intel.com">&lt;karthik.poosa@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 84 ++++++++++++++++++++++-------------
+ 1 file changed, 53 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index de3f2aeffc3f..4038e1da2e71 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -575,23 +575,34 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+ 
+ 	mutex_unlock(&amp;hwmon-&gt;hwmon_lock);
+ 
+-	x = REG_FIELD_GET(PWR_LIM_TIME_X, reg_val);
+-	y = REG_FIELD_GET(PWR_LIM_TIME_Y, reg_val);
++	if (hwmon-&gt;xe-&gt;info.platform &gt;= XE_CRESCENTISLAND) {
++		/**
++		 * On CRI and newer platforms, the interval encoding changed.
++		 * The value is now stored directly in milliseconds as U5.2,
++		 * replacing the older 1.x * 2^y representation.
++		 * Bits [6:2] hold the integer part and bits [1:0] the fraction,
++		 * so convert to milliseconds by shifting the field right by 2.
++		 */
++		out = (u64)(REG_FIELD_GET(PWR_LIM_TIME, reg_val) &gt;&gt; 2);</pre>
+    </blockquote>
+    <style>a {
+    text-decoration: none;
+    color: #464feb;
+}tr th, tr td {
+    border: 1px solid #e6e6e6;
+}tr th {
+    background-color: #f5f5f5;
+}</style>
+    <div style="font-family:'Segoe UI';font-size:14px;font-style:normal;font-weight:400;line-height:20px">This
+      truncates the fractional part (u5.2). Is that intentional?<br>
+      <br>
+    </div>
+    <div style="font-family:'Segoe UI';font-size:14px;font-style:normal;font-weight:400;line-height:20px">Thanks,<br>
+      Badal</div>
+    <blockquote type="cite" cite="mid:20260605093527.2257977-1-karthik.poosa@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++	} else {
++		x = REG_FIELD_GET(PWR_LIM_TIME_X, reg_val);
++		y = REG_FIELD_GET(PWR_LIM_TIME_Y, reg_val);
+ 
+-	/*
+-	 * tau = (1 + (x / 4)) * power(2,y), x = bits(23:22), y = bits(21:17)
+-	 *     = (4 | x) &lt;&lt; (y - 2)
+-	 *
+-	 * Here (y - 2) ensures a 1.x fixed point representation of 1.x
+-	 * As x is 2 bits so 1.x can be 1.0, 1.25, 1.50, 1.75
+-	 *
+-	 * As y can be &lt; 2, we compute tau4 = (4 | x) &lt;&lt; y
+-	 * and then add 2 when doing the final right shift to account for units
+-	 */
+-	tau4 = (u64)((1 &lt;&lt; x_w) | x) &lt;&lt; y;
++		/*
++		 * tau = (1 + (x / 4)) * power(2,y), x = bits(23:22), y = bits(21:17)
++		 *     = (4 | x) &lt;&lt; (y - 2)
++		 *
++		 * Here (y - 2) ensures a 1.x fixed point representation of 1.x
++		 * As x is 2 bits so 1.x can be 1.0, 1.25, 1.50, 1.75
++		 *
++		 * As y can be &lt; 2, we compute tau4 = (4 | x) &lt;&lt; y
++		 * and then add 2 when doing the final right shift to account for units
++		 */
++		tau4 = (u64)((1 &lt;&lt; x_w) | x) &lt;&lt; y;
+ 
+-	/* val in hwmon interface units (millisec) */
+-	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon-&gt;scl_shift_time + x_w);
++		/* val in hwmon interface units (millisec) */
++		out = mul_u64_u32_shr(tau4, SF_TIME, hwmon-&gt;scl_shift_time + x_w);
++	}
+ 
+ 	return sysfs_emit(buf, &quot;%llu\n&quot;, out);
+ }
+@@ -637,24 +648,35 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ 	if (val &gt; max_win)
+ 		return -EINVAL;
+ 
+-	/* val in hw units */
+-	val = DIV_ROUND_CLOSEST_ULL((u64)val &lt;&lt; hwmon-&gt;scl_shift_time, SF_TIME) + 1;
+-
+-	/*
+-	 * Convert val to 1.x * power(2,y)
+-	 * y = ilog2(val)
+-	 * x = (val - (1 &lt;&lt; y)) &gt;&gt; (y - 2)
+-	 */
+-	if (!val) {
+-		y = 0;
+-		x = 0;
++	if (hwmon-&gt;xe-&gt;info.platform &gt;= XE_CRESCENTISLAND) {
++		/**
++		 * On CRI and newer platforms, the interval encoding changed.
++		 * The value is now stored directly in milliseconds as U5.2,
++		 * replacing the older 1.x * 2^y representation.
++		 * Bits [6:2] hold the integer part and bits [1:0] the fraction,so
++		 * convert from milliseconds by shifting the value left by 2 to fit into the field.
++		 */
++		rxy = REG_FIELD_PREP(PWR_LIM_TIME, (val &lt;&lt; 2));
+ 	} else {
+-		y = ilog2(val);
+-		x = (val - (1ul &lt;&lt; y)) &lt;&lt; x_w &gt;&gt; y;
+-	}
++		/* val in hw units */
++		val = DIV_ROUND_CLOSEST_ULL((u64)val &lt;&lt; hwmon-&gt;scl_shift_time, SF_TIME) + 1;
++
++		/*
++		 * Convert val to 1.x * power(2,y)
++		 * y = ilog2(val)
++		 * x = (val - (1 &lt;&lt; y)) &gt;&gt; (y - 2)
++		 */
++		if (!val) {
++			y = 0;
++			x = 0;
++		} else {
++			y = ilog2(val);
++			x = (val - (1ul &lt;&lt; y)) &lt;&lt; x_w &gt;&gt; y;
++		}
+ 
+-	rxy = REG_FIELD_PREP(PWR_LIM_TIME_X, x) |
+-			       REG_FIELD_PREP(PWR_LIM_TIME_Y, y);
++		rxy = REG_FIELD_PREP(PWR_LIM_TIME_X, x) |
++				       REG_FIELD_PREP(PWR_LIM_TIME_Y, y);
++	}
+ 
+ 	guard(xe_pm_runtime)(hwmon-&gt;xe);
+ 
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------KzxkkVZ4UMfwz0Ec8CLm06Cy--
