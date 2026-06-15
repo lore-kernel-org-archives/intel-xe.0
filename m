@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2F70CD98E0
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:34:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CEB9CD98DA
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:34:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A807A10E6B5;
-	Mon, 15 Jun 2026 20:34:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E29E710E6B7;
+	Mon, 15 Jun 2026 20:34:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DJoW0IJn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GdTAAu5w";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6936910E69E;
- Mon, 15 Jun 2026 20:34:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7371210E6B8;
+ Mon, 15 Jun 2026 20:34:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781555666; x=1813091666;
+ t=1781555669; x=1813091669;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GRiIaPdv51kL4tXXaVO8iy7dsTFFqKPi6J+qMjRXRSE=;
- b=DJoW0IJn70ivCnd4L8Xo4UNRhibqQxxhUhYLsfFyUKwesLjOiXp+MLVP
- 39pq+iVdNBE2xMkQWnE8wgPgT30DvNgpDBUZTdNp4R+W4dzueZQ3RQrgG
- KokCQ6r+s9oLnXAmRnfgK8uR0e/lQvNKkM0dc8gNVqAnx083cf5mb6rHJ
- MTlXP62K8vR+bCJXVZu1Uw9H8m7HUU/QvTOZDM9LkS4EbkTMmh31X0zNT
- CtljkMeMSJC7gCRsROaF9tUgOnS1K14sKgh6FguPiJ4GB1hlOAHVgzKiR
- NmJru3FyF/YU1zklfBWrejqJ4kd+kNu4RCjIjOacc2zYlqBb8a4NViue/ g==;
-X-CSE-ConnectionGUID: GKUWkGeKRy2xy1as0CNgpQ==
-X-CSE-MsgGUID: 9xfzkcp8Q/eSGdVXqsoOWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694609"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694609"
+ bh=GXBlTB94iNpg80zI9aMV/bKiv+HFaRY0WDLps2B0QJw=;
+ b=GdTAAu5wOHsm4qgzgJEVfWB4z7XVCl/jIzSOdARGUXtJXFYLU5bLTYtw
+ ogSPuIgBWvWZJA+RUOdF9vuTmmQqzLNgNIJO1PTQHnc9IGZOq5KOfzNGN
+ WmmXbynUkKIPDjscZ4J0ioHaqn5DWjnQ423017xZWKyUwMuTU4+3uA9ln
+ Q+/ntrsdlTL2bqWE5xumRTCLGzoWWQ5XTG9xvqFdsFDcWCz2jdAdPIVfY
+ vodtrXBQMQAUR8RxWu7kqxogulM33f0dbshac069Nxr+exR+Sv6iKkFAu
+ IKtRVr5bMaJCnmAwFCgFXNXFxFAnQjScpv+FSHTOAUay/TMzEah3pEn/W w==;
+X-CSE-ConnectionGUID: RE1naTOYTFGkIVvtOFlKgQ==
+X-CSE-MsgGUID: eOd7Aec1RNCWjhukXs2+/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694625"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694625"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 13:34:26 -0700
-X-CSE-ConnectionGUID: UmJch4LxQ62qYrcIhfXyFQ==
-X-CSE-MsgGUID: g8W619jyQD6qLCieDfMSTQ==
+ 15 Jun 2026 13:34:29 -0700
+X-CSE-ConnectionGUID: Ikvpyh3NSUK6bRpxmTtz2A==
+X-CSE-MsgGUID: zk0UCazNTYuLLO6kWlbDOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="252538603"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="252538630"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.246])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 13:34:24 -0700
+ 15 Jun 2026 13:34:27 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v3 6/7] drm/i915/bw: avoid replicating the
- update_sagv_status() calls
-Date: Mon, 15 Jun 2026 23:33:54 +0300
-Message-ID: <20260615203355.218578-7-vinod.govindapillai@intel.com>
+Subject: [PATCH v3 7/7] drm/i915/bw: introduce the peak bandwidth threshold
+Date: Mon, 15 Jun 2026 23:33:55 +0300
+Message-ID: <20260615203355.218578-8-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260615203355.218578-1-vinod.govindapillai@intel.com>
 References: <20260615203355.218578-1-vinod.govindapillai@intel.com>
@@ -72,63 +71,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that sgav status update is consolidated, need to update the
-sagv status based on the number of QGV points only once after
-bw info initialization is done.
+On Xe3+, the SoC can lower the fabric frequency when the display
+needs less bandwidth than the minimum GV point. This threshold is
+defined as 20 GB/s. The driver can choose to request this threshold
+when the required data rate falls below it.
 
+Add an extra QGV entry, with both peak bw and derated bw set to
+20 GB/s, to the bandwidth info when all of the following hold:
+1. The platform is Xe3+.
+2. There is at least one existing QGV point.
+3. The number of QGV points is below 8 (the maximum).
+
+Once a plane group is found, the driver iterates over all QGV points
+in that group to find the best match for the required data rate. If
+the required data rate is below 20 GB/s, it selects the peak bw from
+this new QGV point (20 GB/s).
+
+v2: add the peak bandwidth threshold as an additional QGV entry
+
+Bspec: 68880
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c       | 33 +++++++++++++++++++
+ .../drm/i915/display/intel_display_device.h   |  1 +
+ 2 files changed, 34 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 0d89f64db848..db2ee9de5eec 100644
+index db2ee9de5eec..71aa9a6928db 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -593,8 +593,6 @@ static int icl_get_bw_info(struct intel_display *display,
- 		}
- 	}
+@@ -52,6 +52,8 @@ struct intel_qgv_point {
  
--	update_sagv_status(display, display->bw.num_qgv_points);
--
- 	return 0;
- }
+ #define DEPROGBWPCLIMIT		60
  
-@@ -705,8 +703,6 @@ static int tgl_get_bw_info(struct intel_display *display,
- 		drm_dbg_kms(display->drm, "PSF GV %d: bw=%u\n", i, display->bw.psf_bw[i]);
- 	}
- 
--	update_sagv_status(display, display->bw.num_qgv_points);
--
- 	return 0;
- }
- 
-@@ -726,8 +722,6 @@ static void dg2_get_bw_info(struct intel_display *display)
- 	/* Bandwidth does not depend on # of planes; set all groups the same */
- 	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
- 		display->bw.max[i] = display->bw.max[0];
--
--	update_sagv_status(display, display->bw.num_qgv_points);
- }
- 
- static int xe2_hpd_get_bw_info(struct intel_display *display,
-@@ -775,7 +769,6 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
- 	 * battery and plugged-in operation.
- 	 */
- 	drm_WARN_ON(display->drm, qi.num_qgv_points != 2);
--	update_sagv_status(display, display->bw.num_qgv_points);
- 
- 	return 0;
- }
-@@ -876,6 +869,8 @@ void intel_bw_init_hw(struct intel_display *display)
- 	} else if (DISPLAY_VER(display) == 11) {
- 		icl_get_bw_info(display, dram_info, soc_bw_params, display_bw_params);
- 	}
++#define PEAK_BW_THRESHOLD	20000
 +
-+	update_sagv_status(display, display->bw.num_qgv_points);
+ struct intel_psf_gv_point {
+ 	u8 clk; /* clock in multiples of 16.6666 MHz */
+ };
+@@ -601,6 +603,34 @@ static int tgl_peakbw(int num_channels, int channel_width, int dclk)
+ 	return num_channels * (channel_width / 8) * dclk;
  }
  
- static unsigned int intel_bw_num_active_planes(struct intel_display *display,
++static void xe3_add_peakbw_threshold(struct intel_display *display)
++{
++	u8 qgv_points = display->bw.num_qgv_points;
++
++	if (!HAS_PEAK_BW_THRESHOLD(display))
++		return;
++
++	if (qgv_points >= I915_NUM_QGV_POINTS) {
++		drm_warn(display->drm, "Maximum QGV points reached. Ignore the peak bw threshold\n");
++		return;
++	}
++
++	if (qgv_points <= 1) {
++		drm_warn(display->drm, "SAGV not supported. Ignore the peak bw threshold\n");
++		return;
++	}
++
++	display->bw.num_qgv_points++;
++
++	display->bw.peakbw[qgv_points] = PEAK_BW_THRESHOLD;
++
++	for (int i = 0; i < ARRAY_SIZE(display->bw.max); i++)
++		display->bw.max[i].deratedbw[qgv_points] = PEAK_BW_THRESHOLD;
++
++	drm_dbg_kms(display->drm, "An extra QGV point %d added for Peak bw threshod of %d\n",
++		    qgv_points, PEAK_BW_THRESHOLD);
++}
++
+ static int tgl_get_bw_info(struct intel_display *display,
+ 			   const struct dram_info *dram_info,
+ 			   const struct intel_soc_bw_params *soc_bw_params,
+@@ -695,6 +725,9 @@ static int tgl_get_bw_info(struct intel_display *display,
+ 		drm_dbg_kms(display->drm, "QGV %d: peakbw=%u\n", i, display->bw.peakbw[i]);
+ 	}
+ 
++	/* For xe3 cases add an extra qgv point for Peak bw threshold */
++	xe3_add_peakbw_threshold(display);
++
+ 	for (i = 0; i < qi.num_psf_points; i++) {
+ 		const struct intel_psf_gv_point *sp = &qi.psf_points[i];
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 13e93a4b4f5f..1360a16edbc1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -191,6 +191,7 @@ struct intel_display_platforms {
+ #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
+ #define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
+ #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
++#define HAS_PEAK_BW_THRESHOLD(__display)	(DISPLAY_VER(__display) >= 30)
+ #define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >= 12)
+ #define HAS_PIXEL_NORMALIZER(__display)	(DISPLAY_VER(__display) >= 35)
+ #define HAS_PMDEMAND(__display)		(DISPLAY_VER(__display) >= 14)
 -- 
 2.43.0
 
