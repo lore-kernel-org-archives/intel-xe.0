@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0761CD98C5
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 13:34:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C7F6CD98C5
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 13:35:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9247D10E447;
-	Mon, 15 Jun 2026 13:34:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F75D10E45D;
+	Mon, 15 Jun 2026 13:35:17 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4457510E42C;
- Mon, 15 Jun 2026 13:34:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBC0910E451;
+ Mon, 15 Jun 2026 13:35:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/dsi=3A?=
- =?utf-8?q?_fix_i2c_adapter_reference_leak_in_i2c=5Fadapter=5Flookup=28=29?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe/pf=3A_re?=
+ =?utf-8?q?move_code_guarded_by_nonexistent_config_option?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ma Ke" <make_ruc2021@163.com>
+To: "Ethan Nelson-Moore" <enelsonmoore@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Jun 2026 13:34:22 -0000
-Message-ID: <178153046227.78267.10005505086631344366@6beec6c84f66>
+Date: Mon, 15 Jun 2026 13:35:15 -0000
+Message-ID: <178153051581.79171.13463451954042028283@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260614142250.2001136-1-make_ruc2021@163.com>
-In-Reply-To: <20260614142250.2001136-1-make_ruc2021@163.com>
+References: <20260613233915.162661-1-enelsonmoore@gmail.com>
+In-Reply-To: <20260613233915.162661-1-enelsonmoore@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,15 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/dsi: fix i2c adapter reference leak in i2c_adapter_lookup()
-URL   : https://patchwork.freedesktop.org/series/168521/
+Series: drm/xe/pf: remove code guarded by nonexistent config option
+URL   : https://patchwork.freedesktop.org/series/168522/
 State : failure
 
 == Summary ==
 
-Series author address 'make_ruc2021@163.com' is not on the allowlist, which prevents CI from being automatically triggered.
+Series author address 'enelsonmoore@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1190262/ (on master)
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1190263/ (on master)
 
 
