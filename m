@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF728CD98ED
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:18:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15F0BCD98CE
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 20:18:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EEE710E660;
-	Mon, 15 Jun 2026 20:18:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 739D410E655;
+	Mon, 15 Jun 2026 20:18:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="AHtLXfE5";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="AGnJ5kJk";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12C7510E651;
- Mon, 15 Jun 2026 20:18:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 977BD10E636;
+ Mon, 15 Jun 2026 20:18:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1781554718;
- bh=ALbia/61W347pafx6roK8tZ0v9st1/H0ivVM62ph0GU=;
+ s=default; t=1781554716;
+ bh=xF/Z0Myz+A8ZRO9Nq1ZV67SO0YqRqvq7QO8j8B3ElGg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=AHtLXfE5MQXVUUTt6HroEJsIv2G4EGEJkN7VUIgdL662ashAEeq5/gYkzsIjs0ceH
- Fx2xZJokA5tcRxErWKZTmgqVv7ad+cwpdkE9aSUCyNmhoIW5TaCPy3jLfeRVRXpcKC
- gncrnaxmadWLbEPDTg4+vW//d7/Ns8lxrpNuV9ReV3utD1/dtqlZORPw8giJS6hWrF
- HXGBuCbGIdYFq3S3ueQcadHdpCBoYP45gXbKwcxFVhNtFPGwEnWNvT36PXA9NKenJ2
- 1742bqFv2iWry6xmE5/20e3hEs5VXlLxdS4ypRQZ0nkSuSRI+LnHGNQMFtn2fL4uNM
- EucDRCvrGqP/A==
+ b=AGnJ5kJkMafZV7peQQ+SOR7yV1iNEmOsv06CyIoYoeQpySSVwbpce+Ho/gwFiStlm
+ 04wAwZL4bn8EDjfMUeGhG5bpAfpAnYSReyJtU4gk/9DoLNNvLMEcIRqgjn1iuh71Fd
+ eH1NH9KvlrAyXcwBur8v9cZz9AEQCsd5wFcFSlFGN3I0otDx2XpTstyYvD20EzqxtF
+ t2Wz98nkwpxaeS/5aTbbfoJh3vxH/XrmbCHxg75/WLL80Cs/NrkoUXwFAYP8OgFVsk
+ haccvJ5Iy6DkBfKQZd3fyAIFq81LmVJ310cVha3natnbMn+RGluAnC5Y4O0ALXhgJ1
+ tnc+UHJgcbCKg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 10/27] drm/i915/display: Do not take uncore lock in
- i915_get_vblank_counter
-Date: Mon, 15 Jun 2026 22:18:28 +0200
-Message-ID: <20260615201846.307297-11-dev@lankhorst.se>
+Subject: [PATCH v8 06/27] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+Date: Mon, 15 Jun 2026 22:18:24 +0200
+Message-ID: <20260615201846.307297-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
 References: <20260615201846.307297-1-dev@lankhorst.se>
@@ -53,124 +53,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This fixes a lockdep splat that occurs in the code that should be run
-with interrupts disabled. The uncore and DMC locks should not be taken
-and released repeatedly in a timing sensitive path.
+finish_wait() may take a lock, which means that it can take any amount
+of time. On PREEMPT-RT we should not be taking any lock after disabling
+preemption, so ensure that the completion is done before disabling
+interrupts.
+
+This also has the benefit of making vblank evasion more deterministic,
+by performing the final vblank check after all locking is done.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_de.h       |  8 ++++++
- drivers/gpu/drm/i915/display/intel_vblank.c   |  4 +--
- drivers/gpu/drm/i915/intel_uncore.h           | 26 +++++++++++++------
- .../drm/xe/compat-i915-headers/intel_uncore.h |  7 +++++
- 4 files changed, 35 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c | 30 +++++++++------------
+ drivers/gpu/drm/i915/display/intel_vblank.h |  1 +
+ 3 files changed, 15 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 1029790194296..497a308322847 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -65,6 +65,14 @@ intel_de_read64_2x32(struct intel_display *display, intel_reg_t reg)
- 	return (u64)upper << 32 | lower;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 34a159f7c9a43..8218938985b41 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -734,7 +734,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	enum pipe pipe = crtc->pipe;
+-	int scanline_end = intel_get_crtc_scanline(crtc);
++	int scanline_end = __intel_get_crtc_scanline(crtc);
+ 	u32 end_vbl_count = intel_crtc_get_vblank_counter(crtc);
+ 	ktime_t end_vbl_time = ktime_get();
  
-+static inline u64
-+intel_de_read64_2x32_fw(struct intel_display *display,
-+			i915_reg_t lower_reg, i915_reg_t upper_reg)
-+{
-+	return intel_uncore_read64_2x32_fw(__to_uncore(display),
-+					   lower_reg, upper_reg);
-+}
-+
- static inline void
- intel_de_posting_read(struct intel_display *display, intel_reg_t reg)
- {
 diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index c0cc0a4c25dbe..5ca22899055d7 100644
+index 28d81199792ef..ca08059e088ea 100644
 --- a/drivers/gpu/drm/i915/display/intel_vblank.c
 +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -109,8 +109,8 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
- 	 * we get a low value that's stable across two reads of the high
- 	 * register.
- 	 */
--	frame = intel_de_read64_2x32_volatile(display, PIPEFRAMEPIXEL(display, pipe),
--					      PIPEFRAME(display, pipe));
-+	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
-+				        PIPEFRAME(display, pipe));
- 
- 	pixel = frame & PIPE_PIXEL_MASK;
- 	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index fafc2ca9a2376..507398a562649 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -449,13 +449,28 @@ static inline void intel_uncore_rmw_fw(struct intel_uncore *uncore,
- 		intel_uncore_write_fw(uncore, reg, val);
+@@ -241,7 +241,7 @@ int intel_crtc_scanline_offset(const struct intel_crtc_state *crtc_state)
+  * intel_de_read_fw(), only for fast reads of display block, no need for
+  * forcewake etc.
+  */
+-static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
++int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(&crtc->base);
+@@ -732,6 +732,16 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+ 		evade->min -= vblank_delay;
  }
  
-+static inline u64
-+intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
-+			    i915_reg_t lower_reg, i915_reg_t upper_reg)
++static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline, bool unlocked)
 +{
-+	u32 upper, lower, old_upper, loop = 0;
-+	upper = intel_uncore_read_fw(uncore, upper_reg);
-+	do {
-+		old_upper = upper;
-+		lower = intel_uncore_read_fw(uncore, lower_reg);
-+		upper = intel_uncore_read_fw(uncore, upper_reg);
-+	} while (upper != old_upper && loop++ < 2);
++	if (unlocked)
++		*scanline = intel_get_crtc_scanline(evade->crtc);
++	else
++		*scanline = __intel_get_crtc_scanline(evade->crtc);
 +
-+	return (u64)upper << 32 | lower;
++	return *scanline < evade->min || *scanline > evade->max;
 +}
 +
- static inline u64
- intel_uncore_read64_2x32(struct intel_uncore *uncore,
- 			 i915_reg_t lower_reg, i915_reg_t upper_reg)
+ /* must be called with vblank interrupt already enabled! */
+ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
  {
--	u32 upper, lower, old_upper, loop = 0;
- 	enum forcewake_domains fw_domains;
- 	unsigned long flags;
-+	u64 ret;
+@@ -739,24 +749,12 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	long timeout = msecs_to_jiffies_timeout(1);
+ 	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
+-	DEFINE_WAIT(wait);
+ 	int scanline;
  
- 	fw_domains = intel_uncore_forcewake_for_reg(uncore, lower_reg,
- 						    FW_REG_READ);
-@@ -466,17 +481,12 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
- 	spin_lock_irqsave(&uncore->lock, flags);
- 	intel_uncore_forcewake_get__locked(uncore, fw_domains);
+ 	if (evade->min <= 0 || evade->max <= 0)
+ 		return 0;
  
--	upper = intel_uncore_read_fw(uncore, upper_reg);
--	do {
--		old_upper = upper;
--		lower = intel_uncore_read_fw(uncore, lower_reg);
--		upper = intel_uncore_read_fw(uncore, upper_reg);
--	} while (upper != old_upper && loop++ < 2);
-+	ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+-	for (;;) {
+-		/*
+-		 * prepare_to_wait() has a memory barrier, which guarantees
+-		 * other CPUs can see the task state update by the time we
+-		 * read the scanline.
+-		 */
+-		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
+-
+-		scanline = intel_get_crtc_scanline(crtc);
+-		if (scanline < evade->min || scanline > evade->max)
+-			break;
+-
++	while (!scanline_in_safe_range(evade, &scanline, false)) {
+ 		if (!timeout) {
+ 			drm_dbg_kms(display->drm,
+ 				    "Potential atomic update failure on pipe %c\n",
+@@ -766,13 +764,11 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
  
- 	intel_uncore_forcewake_put__locked(uncore, fw_domains);
- 	spin_unlock_irqrestore(&uncore->lock, flags);
+ 		local_irq_enable();
  
--	return (u64)upper << 32 | lower;
-+	return ret;
- }
+-		timeout = schedule_timeout(timeout);
++		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline, true), timeout);
  
- static inline int intel_uncore_write_and_verify(struct intel_uncore *uncore,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-index 08d7ab9336725..764bc94044537 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-@@ -74,6 +74,13 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
- 	return (u64)upper << 32 | lower;
- }
+ 		local_irq_disable();
+ 	}
  
-+static inline u64
-+intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
-+			    i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
-+{
-+	return intel_uncore_read64_2x32(uncore, i915_lower_reg, i915_upper_reg);
-+}
-+
- static inline void intel_uncore_posting_read(struct intel_uncore *uncore,
- 					     i915_reg_t i915_reg)
- {
+-	finish_wait(wq, &wait);
+-
+ 	/*
+ 	 * On VLV/CHV DSI the scanline counter would appear to
+ 	 * increment approx. 1/3 of a scanline before start of vblank.
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
+index 98d04cacd65f8..aa1974400e9fc 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.h
++++ b/drivers/gpu/drm/i915/display/intel_vblank.h
+@@ -38,6 +38,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
+ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+ 				     ktime_t *vblank_time, bool in_vblank_irq);
+ int intel_get_crtc_scanline(struct intel_crtc *crtc);
++int __intel_get_crtc_scanline(struct intel_crtc *crtc);
+ void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *crtc);
+ void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crtc);
+ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
 -- 
 2.53.0
 
