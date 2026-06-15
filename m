@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 242A3CD98DA
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:57:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F13FCD98CF
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 18:58:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D48A110E5E0;
-	Mon, 15 Jun 2026 18:57:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="i+44SHLS";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA3510E5E0;
- Mon, 15 Jun 2026 18:57:08 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 38306600AB;
- Mon, 15 Jun 2026 18:57:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B149D1F000E9;
- Mon, 15 Jun 2026 18:57:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1781549826;
- bh=ZkxUGDLSZMr0Dq+DdzIPtXTXVSaYiY2WHl9OHQk/HmE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=i+44SHLSEjFboHQKldJvgVHf3fFqesutTGQKBKUoBaYf1PDwTRUkh2KCBbfiv/zxK
- AHpovUOYmMej8NestBeihJK5CrLS5z7Hbvwf2Of7QJjOK4OxZokXnmRA73OfXZFZAn
- zdKEoHoe6a87h8z8m5TuXlcVyhmvLeMTAqSWmn5NjhSpJnBXUR32tU15ovJ5Bj/OXc
- 8g1oze2ON0nj84ddT6EiR8PjTYFECnDbTWQA60ql8B4kdR38mVdBh5ej7Kfj+/6GO8
- iVlzkdwBGzWKAGCJ4MeDNp2MKoqtAIWvXoY3pt6YTKAE3kd6Qlra7H+r4/Tu+eEHVg
- yjEBRjBz88cPQ==
-Date: Mon, 15 Jun 2026 08:57:06 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Natalie Vock <natalie.vock@gmx.de>,
- Johannes Weiner <hannes@cmpxchg.org>,
- Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>,
- cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/6] [PATCH v6 0/6] Add reclaim to the dmem cgroup
- controller
-Message-ID: <ajBLAsNoKesXmFcs@slm.duckdns.org>
-References: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
- <ajBJU-Jp2QVy14qt@slm.duckdns.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63B6910E5EB;
+	Mon, 15 Jun 2026 18:58:02 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5BEB10E5E0;
+ Mon, 15 Jun 2026 18:58:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2168359240163640218=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ajBJU-Jp2QVy14qt@slm.duckdns.org>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Vswing_/_Pre-emphasis_Overr?=
+ =?utf-8?q?ide_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Jun 2026 18:58:01 -0000
+Message-ID: <178154988180.79279.5737728219704808873@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260615181207.1033389-1-michal.grzelak@intel.com>
+In-Reply-To: <20260615181207.1033389-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,30 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 15, 2026 at 08:49:55AM -1000, Tejun Heo wrote:
-> The canonical behavior for cgroup2 would be not failing the write at all
-> even when the usage can't be brought down below the new max. Updating the
-> target configuration and tracking the current usage are separate operations.
-> The former should just set max and trigger reclaim and a writer should not
-> assume that a successful write indicates that the usage is below the written
-> max value.
+--===============2168359240163640218==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Sent too early. One of the reasons is that cgroup is hierarchical and there
-can be multiple delegation layers and if you tie application of configuration
-to immediate enforcement, some hierarchical control actions become racy and
-awkward.
+== Series Details ==
 
-Here's an example: Imagine a system agent trying to lower usage in a subtree
-which contains multiple delegated containers. If max can be set below what
-reclaim can achieve immediately, it can just set the max and if the usage is
-still too high, can go around and e.g. kill some of the containers. If max
-write fails, it'd have to kill and then try again and inbetween someone else
-might push up the usage.
+Series: Vswing / Pre-emphasis Override (rev3)
+URL   : https://patchwork.freedesktop.org/series/167570/
+State : success
 
-Thanks.
+== Summary ==
 
--- 
-tejun
+CI Bug Log - changes from xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360_BAT -> xe-pw-167570v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8963 -> IGT_8964
+  * Linux: xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360 -> xe-pw-167570v3
+
+  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8964: 8964
+  xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360: 0984dfdee2a4f9e1922fe919a6b469e115e23360
+  xe-pw-167570v3: 167570v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v3/index.html
+
+--===============2168359240163640218==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Vswing / Pre-emphasis Override (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167570/">https://patchwork.freedesktop.org/series/167570/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360_BAT -&gt; xe-pw-167570v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8963 -&gt; IGT_8964</li>
+<li>Linux: xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360 -&gt; xe-pw-167570v3</li>
+</ul>
+<p>IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8964: 8964<br />
+  xe-5260-0984dfdee2a4f9e1922fe919a6b469e115e23360: 0984dfdee2a4f9e1922fe919a6b469e115e23360<br />
+  xe-pw-167570v3: 167570v3</p>
+
+</body>
+</html>
+
+--===============2168359240163640218==--
