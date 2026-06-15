@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30857CD98DE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A5D2CD98E5
 	for <intel-xe@archiver.kernel.org>; Mon, 15 Jun 2026 22:42:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD38710E54A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E062910E68A;
 	Mon, 15 Jun 2026 22:42:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cbjm5CTq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bH69m3KU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C77C610E54A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9F4410E539
  for <intel-xe@lists.freedesktop.org>; Mon, 15 Jun 2026 22:42:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1781563353; x=1813099353;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=il5gB8qTzD6fMRjdxBEGarAimY241lAezTcwdBNNIVM=;
- b=Cbjm5CTqC/yO01Ma4H7xOjO/D7aS9Mt7SBgYSdGWySzDTMhyweFcoue8
- wMycX+PVVWb4pf/3natYEkxGV9L+zu7kEdeGh0LqFWxNgkwUBZ35hfDnq
- 3gAc9vSm8z9ZX2nvklb0J0eeRK2Ac7kZ/lxUAgyw1npKkJkzk7Yuixuuu
- r2GQX+dygrnwN/BIcUVevDQYr/D4lo/KjXE2tzl6ORyT/TE2yWkIq2Prl
- sauV3oTumnJXZZmAfUwTtPNPol8N4YwfgrYTRIP1vU4yWobS/HcOVLBfa
- T2mSeWBft6obsIEnOsee+a428su7nZplBKR0nDtg/Pw8L9x951CJbTgjg A==;
-X-CSE-ConnectionGUID: ck3WTB68Qh2jsw/gdDi8Ww==
-X-CSE-MsgGUID: fgEWGCXEQta8iQjWlnqGEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82513155"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="82513155"
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZyibhVa/ThGkJW9OQDdVWoi0le4+RnYBZEBRJgUNVLg=;
+ b=bH69m3KUD+PnYqpDRXt4IRaRLffL/7MqTXRM7bU7n0JajUizpDqLaEaT
+ OgeC26iHGNpvvamXJtGhgy0cuRQK2yyndJceJOYeJcnFYYgg3rYrhH/6Q
+ MtWKODFqtHswCyw4CvJPDDSh2H4Oo21m4x8Tpp3pvTQuKxGSOJ8n4OBkT
+ 4wnRSRcScPSWlsCUI2Z9dnYil8OS/3ApcMucWciaAJvpW1j/BBok1Jjry
+ hFbAehrhHol/i9ZZsvXsKHkVJAuGxWFRnO5SCJW5yPAepgFTiqKrg9Aln
+ ferDRw/usmSIkZXxVvohcUQuuGwNr52rTeVbfQEoPdE/Er7EDfWqbtPWc Q==;
+X-CSE-ConnectionGUID: wBWSN9Y1SsGGubJMXsFozg==
+X-CSE-MsgGUID: u4HHyGGxRmenaSn3doAXAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82513151"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="82513151"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Jun 2026 15:42:32 -0700
-X-CSE-ConnectionGUID: RS4suKy2RZioyLn764c4sA==
-X-CSE-MsgGUID: NYVsb56FQ8GhiX6EEAalNQ==
+X-CSE-ConnectionGUID: 1S3/F81LSUGpnBtt7YQWnA==
+X-CSE-MsgGUID: thBtUMBPT1yHbDDBO/GCNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="247676801"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="247676797"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Jun 2026 15:42:31 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 4/9] drm/xe/rtp: Generalize whitelist_apply_to_hwe
-Date: Mon, 15 Jun 2026 15:42:22 -0700
-Message-ID: <20260615224227.34880-5-ashutosh.dixit@intel.com>
+Subject: [PATCH v3 0/9] Don't whitelist OA registers unconditionally
+Date: Mon, 15 Jun 2026 15:42:18 -0700
+Message-ID: <20260615224227.34880-1-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260615224227.34880-1-ashutosh.dixit@intel.com>
-References: <20260615224227.34880-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,61 +63,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Generalize whitelist_apply_to_hwe to construct both non-OA and OA
-whitelist nonpriv registers.
+Whitelisting OA registers unconditionally is a security violation. In this
+series we resolve this issue as follows:
 
-v2: Rename slot_in arg of whitelist_apply_to_hwe to first_slot
+* Set the 'deny' bit (bit 30) for all OA registers, ensuring OA registers
+  are not whitelisted by default after probe/reset/restart
+* Reset the 'deny' bit when an OA stream is opened and certain conditions
+  are met, whitelisting OA registers only for the duration when OA streams
+  are open for a gt
+* Set the 'deny' bit again, when OA streams are closed
+* To manage this scheme, separate out OA whitelists from non-OA whitelists
+  (into separate save-restore lists)
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+v2: Address code review from Umesh. Patches changed in v2 have changelog
+    appended to commit message
+v3: Minor change to Patch 3
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index b5ae7d26e5ba3..e9d0a0b82527d 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -161,9 +161,10 @@ static const struct xe_rtp_table_sr oa_whitelist = XE_RTP_TABLE_SR(
- 	},
- );
- 
--static int whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
-+static int whitelist_apply_to_hwe(struct xe_hw_engine *hwe, struct xe_reg_sr *in,
-+				  struct xe_reg_sr *out, int first_slot)
- {
--	struct xe_reg_sr *sr = &hwe->reg_whitelist;
-+	struct xe_reg_sr *sr = in;
- 	struct xe_reg_sr_entry *entry;
- 	struct drm_printer p;
- 	unsigned long reg;
-@@ -172,7 +173,7 @@ static int whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
- 	xe_gt_dbg(hwe->gt, "Add %s whitelist to engine\n", sr->name);
- 	p = xe_gt_dbg_printer(hwe->gt);
- 
--	slot = 0;
-+	slot = first_slot;
- 	xa_for_each(&sr->xa, reg, entry) {
- 		struct xe_reg_sr_entry hwe_entry = {
- 			.reg = RING_FORCE_TO_NONPRIV(hwe->mmio_base, slot),
-@@ -189,7 +190,7 @@ static int whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
- 		}
- 
- 		xe_reg_whitelist_print_entry(&p, 0, reg, entry);
--		xe_reg_sr_add(&hwe->reg_sr, &hwe_entry, hwe->gt);
-+		xe_reg_sr_add(out, &hwe_entry, hwe->gt);
- 
- 		slot++;
- 	}
-@@ -211,7 +212,7 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
- 	int first_oa_slot;
- 
- 	xe_rtp_process_to_sr(&ctx, &register_whitelist, &hwe->reg_whitelist, false);
--	first_oa_slot = whitelist_apply_to_hwe(hwe);
-+	first_oa_slot = whitelist_apply_to_hwe(hwe, &hwe->reg_whitelist, &hwe->reg_sr, 0);
- 
- 	xe_rtp_process_to_sr(&ctx, &oa_whitelist, &hwe->oa_whitelist, false);
- }
+Ashutosh Dixit (9):
+  drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA whitelists
+  drm/xe/rtp: Maintain OA whitelists separately
+  drm/xe/rtp: Keep track of non-OA nonpriv slots
+  drm/xe/rtp: Generalize whitelist_apply_to_hwe
+  drm/xe/rtp: Save OA nonpriv registers to register save/restore lists
+  drm/xe/rtp: Toggle 'deny' bit to (de-)whitelist OA regs
+  drm/xe/rtp: (De-)whitelist OA registers for all hwe's for a gt
+  drm/xe/oa: (De-)whitelist OA registers on OA stream open/release
+  drm/xe/rtp: Ensure locking/ref counting for OA whitelists
+
+ drivers/gpu/drm/xe/xe_gt_debugfs.c      |  4 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c       |  2 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h |  8 +++
+ drivers/gpu/drm/xe/xe_oa.c              |  7 ++
+ drivers/gpu/drm/xe/xe_oa_types.h        |  3 +
+ drivers/gpu/drm/xe/xe_reg_whitelist.c   | 93 ++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_reg_whitelist.h   |  4 ++
+ 7 files changed, 112 insertions(+), 9 deletions(-)
+
 -- 
 2.54.0
 
