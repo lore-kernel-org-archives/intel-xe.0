@@ -4,52 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE0FCD98DA
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 09:37:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90C0DCD98DA
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 09:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA6310E9C5;
-	Tue, 16 Jun 2026 09:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 429A710E99E;
+	Tue, 16 Jun 2026 09:41:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gx7WunI6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eAPLlaYa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE79710E99F;
- Tue, 16 Jun 2026 09:37:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23B2410E99E;
+ Tue, 16 Jun 2026 09:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781602671; x=1813138671;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3X+gc7y4iBGyBoLjKwB2nGly1YebL8MguN9JQX/qRbY=;
- b=gx7WunI6uZIhKorCVrxhH3hzxdUIHoOzaeesVRQaQwhfemM2vSIDsOKT
- ZxBlgHhJRQxZApF9wr6JzZImwopp5c4IvTPXIqoqFPhhXlWLnc8/T3+po
- 5xtf0jG86xhtL3zYx2x9dLbiI3XuBPHRwusM8U7Ji/w70tIx3o+kXQON6
- fdWymNKqp5Sgtj8MfVDw9YfIErB4Swei9yIPqJJ8pkDZOozsUQlBX93kH
- wdPlHa0P6FNacxr2OuH9rtyCfrC1n/rL6Y2CmcTNJ0ee/0t4gdO7Y+9x4
- kSI9MyWmBMp0gCZMn2CVU9j4WYvNKft4G2M/uAkZh1JWX1MDl7CfxK2Fd Q==;
-X-CSE-ConnectionGUID: s8zA7lGSQEG/vzQ544GzRQ==
-X-CSE-MsgGUID: Dj4K+fAFRD2gqzsgG3VRwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82262483"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="82262483"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 02:37:51 -0700
-X-CSE-ConnectionGUID: 9rfmbq1ZQXmpac7uaq9JkQ==
-X-CSE-MsgGUID: 1SeNnT3OQeWo953KkicXLQ==
+ t=1781602881; x=1813138881;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6rB2N++QnF7JTGORtVke61SAOuu1kszVTJ+rWarYgM8=;
+ b=eAPLlaYaaU80e0Mt9fmlQwwRZ5Gku+D2oUcf+KJXTAqWfqwH4GLyoQIG
+ 7KhOdiynaaDxuz+8dSqDbb4b7UNtEYZ9ZnxDkNPbjKOpvwtUyUwOBrD6J
+ CDkNr8Q6rgZRa3CXRRvoKqOIItZ3Gd+gvjXETyniJTC6hanIPxxCLfP7C
+ Rsh51Xkutr8CO7jrfO/OiRyteDldW+M06xeUduSPg1nO1YeOYrthJKqe6
+ WDE2W6KZMm59N3GiytqMlY2TRBTODhAQMAe4o1X93NnAjWXuC26c1uPXX
+ XdjzNa1Ja1iNdyVFYM0BE7Rndkdumanb7pybjUnTPxocES5UFnUexUD77 g==;
+X-CSE-ConnectionGUID: 3Snm6dK3R/SWzLc+/rNySA==
+X-CSE-MsgGUID: RxKBzIkxRjujEp4PDXmCdw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="69908024"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="69908024"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 02:41:20 -0700
+X-CSE-ConnectionGUID: AnrLxaW9TzuUK3u43KSRLQ==
+X-CSE-MsgGUID: M1WMwv/PSYC4Tunnc2YqKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="243351335"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa006.fm.intel.com with ESMTP; 16 Jun 2026 02:37:49 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH] drm/i915/backlight: Set brightness to 0 on disable
-Date: Tue, 16 Jun 2026 15:06:36 +0530
-Message-Id: <20260616093636.2334540-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="251644879"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa003.jf.intel.com with ESMTP; 16 Jun 2026 02:41:10 -0700
+Received: by black.igk.intel.com (Postfix, from userid 1003)
+ id AD51695; Tue, 16 Jun 2026 11:41:08 +0200 (CEST)
+Date: Tue, 16 Jun 2026 11:41:08 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Johan Hovold <johan@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Lee Jones <lee@kernel.org>,
+ Mark Brown <broonie@opensource.wolfsonmicro.com>,
+ Thierry Reding <thierry.reding@avionic-design.de>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Srinivas Kandagatla <srini@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Doug Berger <opendmb@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Peter Chen <peter.chen@kernel.org>,
+ Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ driver-core@lists.linux.dev, devicetree@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+ iommu@lists.linux.dev, linux-pm@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH 08/23] driver core: platform: provide
+ platform_device_set_of_node_from_dev()
+Message-ID: <ajEaNFhntZTS-w3e@black.igk.intel.com>
+References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
+ <20260521-pdev-fwnode-ref-v1-8-88c324a1b8d2@oss.qualcomm.com>
+ <ah9O15bMlAYgSlHx@ashevche-desk.local>
+ <aiK-EXwp_xhcbty9@hovoldconsulting.com>
+ <aiLi0KZskrCyEYO5@ashevche-desk.local>
+ <aiZpJkQBXg2pcczy@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aiZpJkQBXg2pcczy@hovoldconsulting.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +119,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On backlight disable for AUX based panels set the brightness to 0 before
-disabling the backlight. PWM based backlight also does set the
-brightness to 0 before disable.
+On Mon, Jun 08, 2026 at 09:03:02AM +0200, Johan Hovold wrote:
+> On Fri, Jun 05, 2026 at 05:53:04PM +0300, Andy Shevchenko wrote:
+> > On Fri, Jun 05, 2026 at 02:16:17PM +0200, Johan Hovold wrote:
+> > > On Wed, Jun 03, 2026 at 12:44:55AM +0300, Andy Shevchenko wrote:
+> > > > On Thu, May 21, 2026 at 10:36:31AM +0200, Bartosz Golaszewski wrote:
+> > > > > Provide a platform-specific variant of device_set_of_node_from_dev(). In
+> > > > > addition to bumping the reference count of the OF node being assigned,
+> > > > > it also assigns the fwnode of the platform device.
+> > > > 
+> > > > Can we rather investigate the way how to make that of node reuse thingy
+> > > > (which is used solely by pin control) differently and then drop this confusing
+> > > > device_set_of_node_from_dev() call altogether?
+> > > 
+> > > No, that call is needed. See commit 4e75e1d7dac9 ("driver core: add
+> > > helper to reuse a device-tree node") for details.
+> > 
+> > Bart fixes the problem with the platform driver. At the result this will be
+> > the only device_set_node() + 'reused = true'.  As for 'reused' flag, the need
+> > is only for pinmux/pin control stuff.
+> 
+> And any other resource which may (eventually) be claimed by driver core
+> or bus code.
+> 
+> > The question here is if there is a better
+> > way to make that 'reused' be done automatically without need of setting some
+> > flag explicitly.
+> 
+> That's not really relevant to the series at hand.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+It's not, but it's relevant in a long-term for understanding how we can get
+this done in a better way.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index a8d56ebf06a2..e4ce39c1eebb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -355,9 +355,14 @@ intel_dp_aux_hdr_disable_backlight(const struct drm_connector_state *conn_state,
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct intel_panel *panel = &connector->panel;
- 
--	/* Nothing to do for AUX based backlight controls */
--	if (panel->backlight.edp.intel_cap.sdr_uses_aux)
-+	/*
-+	 * Drive the DPCD brightness to 0 before tearing down the link / power
-+	 * sequencer so the panel can blank emission gracefully.
-+	 */
-+	if (panel->backlight.edp.intel_cap.sdr_uses_aux) {
-+		intel_dp_aux_hdr_set_aux_backlight(conn_state, 0);
- 		return;
-+	}
- 
- 	/* Note we want the actual pwm_level to be 0, regardless of pwm_min */
- 	panel->backlight.pwm_funcs->disable(conn_state, intel_backlight_invert_pwm_level(connector, 0));
-@@ -519,6 +524,12 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
- 	struct intel_panel *panel = &connector->panel;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
- 
-+	/*
-+	 * Drive the DPCD brightness register to 0 before clearing BL_ENABLE or
-+	 * dropping the panel power.
-+	 */
-+	drm_edp_backlight_set_level(&intel_dp->aux, &panel->backlight.edp.vesa.info, 0);
-+
- 	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
- 
- 	if (!(panel->backlight.edp.vesa.info.aux_enable ||
+> If this is something we want to merge then you need to continue setting
+> the flag in order not to cause regressions.
+
+Yes, that's how it's now.
+
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
