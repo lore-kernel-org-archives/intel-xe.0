@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 433DCCD8CA8
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 07:07:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFD38CD98D2
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 07:26:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E25EB10E851;
-	Tue, 16 Jun 2026 07:07:43 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5AF410E851;
- Tue, 16 Jun 2026 07:07:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4142679623586991297=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 506FF10E88A;
+	Tue, 16 Jun 2026 07:26:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="IBm4jAtU";
+	dkim-atps=neutral
+X-Greylist: delayed 346 seconds by postgrey-1.36 at gabe;
+ Tue, 16 Jun 2026 07:26:56 UTC
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3A810E87F;
+ Tue, 16 Jun 2026 07:26:56 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4gfdh31D4Vz9tHd;
+ Tue, 16 Jun 2026 09:21:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1781594467;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=nE49FpUiAmb6Y1+uDOtAxVOfoHmPp7grMB2vEXcHP7o=;
+ b=IBm4jAtUKL94H7E36joCasUHmklSeL1XNau1vJ5p2jmHbYFkU5biiKY3rSXAmVxn6HK+lC
+ 2nvGFHadlN6TSdESs7oTKScOM0yxYTnUewIAn2d6KNpoKMjvi5tWymIAn4xHQmp/SwPOxu
+ RI0l/b/dInBK2tT+tar01OwMGezYnM1OyLVpuZB8kjzHk/Bi+0OxAYYpAyaC62pXHTSvN+
+ PhzJdExNkVCtoX/uCrItTcYDbnyHkDHbJUhL4bAcxou925ZMOYw5cjo4v8xI8aSLta7Pko
+ 52bgJcluHnSOpbcoaCbaESEizRCVPYnB4VHOn3xAF8T1X4MFeuIoEiwSs5GX0g==
+Message-ID: <18f0c14b-f973-4e1a-948b-5274cc36895c@mailbox.org>
+Date: Tue, 16 Jun 2026 09:21:01 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Unify_fec_enable/disable_ac?=
- =?utf-8?q?ross_the_mst_streams?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 16 Jun 2026 07:07:42 -0000
-Message-ID: <178159366273.82425.9890364660298955861@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260616-fec-v2-0-49a22680138c@intel.com>
-In-Reply-To: <20260616-fec-v2-0-49a22680138c@intel.com>
+Subject: Re: [PATCH 0/4] drm/i915: Work harder to enable VRR based refresh
+ rate changes on eDP
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, wayland-devel@lists.freedesktop.org
+References: <20260612144203.31715-1-ville.syrjala@linux.intel.com>
+ <3d441831-71bc-49fd-823f-3af443e55b20@mailbox.org>
+ <31da350f-adfc-4b2c-a7c5-5ed884ffd9ca@mailbox.org>
+ <ai_40qUa-MVdbOEf@intel.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <ai_40qUa-MVdbOEf@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: sbdbgcpnh31xpk64ojmys9mx1u8b6r3n
+X-MBO-RS-ID: 92707d3f935cd46cae9
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +65,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4142679623586991297==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 6/15/26 15:06, Ville Syrjälä wrote:
+> 
+> What we're doing here is selecting the actual timings to drive an internal laptop 
+> panel, given some random cooked up modeline from userspace.
 
-== Series Details ==
-
-Series: Unify fec enable/disable across the mst streams
-URL   : https://patchwork.freedesktop.org/series/168569/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7_BAT -> xe-pw-168569v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-168569v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [ABORT][1] ([Intel XE#8007] / [Intel XE#8023]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168569v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+How can user space know what cooked-up modes it can (not) expect to work with this?
 
 
-Build changes
--------------
+> We pick the actual mode from the set of "fixed modes" (ie. the modes
+> that the panel/system itself has reported as supported via
+> EDID/VBT/ACPI/etc.). For non-VRR panels we just pick the fixed mode
+> whose refresh rate is closest to the user specified mode, and reject
+> the commit if it's not close enough (<= 1 Hz).
 
-  * IGT: IGT_8964 -> IGT_8965
-  * Linux: xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7 -> xe-pw-168569v1
-
-  IGT_8964: 8964
-  IGT_8965: 8965
-  xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7
-  xe-pw-168569v1: 168569v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168569v1/index.html
-
---===============4142679623586991297==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Can't programming different mode timings result in the panel blanking intermittently?
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Unify fec enable/disable across the mst streams</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168569/">https://patchwork.freedesktop.org/series/168569/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168569v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168569v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7_BAT -&gt; xe-pw-168569v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-168569v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168569v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8964 -&gt; IGT_8965</li>
-<li>Linux: xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7 -&gt; xe-pw-168569v1</li>
-</ul>
-<p>IGT_8964: 8964<br />
-  IGT_8965: 8965<br />
-  xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7<br />
-  xe-pw-168569v1: 168569v1</p>
-
-</body>
-</html>
-
---===============4142679623586991297==--
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
