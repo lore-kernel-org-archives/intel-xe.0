@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FEDCD98EC
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 12:46:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D189CD98F3
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 12:46:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3348A10EB4D;
-	Tue, 16 Jun 2026 12:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 164ED10EB50;
+	Tue, 16 Jun 2026 12:46:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dXVTkpEM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zy5YCJ0W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4361310EB48;
- Tue, 16 Jun 2026 12:46:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4DB10EB4D;
+ Tue, 16 Jun 2026 12:46:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781613962; x=1813149962;
+ t=1781613965; x=1813149965;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=NB3WQUet3X+mh5mP+5jZAfT8Td0seTZu1G6HX+tr5V0=;
- b=dXVTkpEMtLMhsXRCRhpSU9rrX3QIYZ0W9mjrVFiNpQCIH2G6aTyNyGcL
- w7s1ET1thPssoRLqFTJfP5rlZvPMfvAsjQ2bh/jGN3FKiTyipqEKe2am5
- HFKICOUJmu64J1u2TG24chb7oydoliepmyTGC5JyZccPZkyqgD3l/clYn
- T+IRPhx7sc22RrvWznMJAtLeCS2TgD4/hM2TrxEv+CL5wLc+EX624yotA
- 896/JMdZH5mJE+6730IUKmGRdX4dB37LOjCYPQCYkhmoOQSa/k5mSeKaK
- iDqnThpMj62667TSo1VV7oc3cboapFm51hgd3eMfZ+xPf9hpJFjXnia7a Q==;
-X-CSE-ConnectionGUID: HnIrU74VTj2+0LhR4Pw5Ig==
-X-CSE-MsgGUID: ffAGWeKpS0SBqiLT1e+xmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513293"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513293"
+ bh=5rznq9EXAqzc9VppiHbKqUT1xdqMKZI4Uwmn1qtCFZk=;
+ b=Zy5YCJ0WqEJesZHQ2mAVCEf2Vxn5V2QpO9LYwRgLuplWBjUXPeoEkxSF
+ RoIO75YKkpkDa59FavyCdoXNB1xW5Lg3ihBMqAid8mA/SD51kN/bEOHrL
+ AtcS7a5nyHkM/yXr00ZIWXDoEhjI8I+y6gl+q5+SR/BmZcwBWvD3a9wpf
+ i5vzmvjK8f2u5yCOQarplwb1zeNbvrlz4KIYjzU289cFD9BDQ5fqLYsoj
+ 3Ia9fFQwgt9rujNPlQcF/6i4q/sGTd10TyXbyYODihFxJRuVD5cUWvQvN
+ /Agn8v3rNBU3qlIeJNBs3oVVaS0JvlLUVJ7X1EQMYtKzeunwwiKkUw00P w==;
+X-CSE-ConnectionGUID: pOKGrwjTR/OCgwS7DrUF9Q==
+X-CSE-MsgGUID: XzkJ223vQuGCd+xTzHJcxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513296"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513296"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:46:02 -0700
-X-CSE-ConnectionGUID: hH5oC2wCQ4iFLbfsCf6Prg==
-X-CSE-MsgGUID: y2fUjwPXR8y7wUCI65npCw==
+ 16 Jun 2026 05:46:04 -0700
+X-CSE-ConnectionGUID: kBC/kEBvSXmHRtkpTIf46Q==
+X-CSE-MsgGUID: V6kjjT8NTwytxkr42k5b4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876394"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876405"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:46:01 -0700
+ 16 Jun 2026 05:46:03 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v4 35/39] drm/i915/display: Add helper to enable DC counter
-Date: Tue, 16 Jun 2026 18:14:11 +0530
-Message-ID: <20260616124416.2442161-36-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v4 37/39] drm/i915/display: Guard CMTG function calls
+Date: Tue, 16 Jun 2026 18:14:13 +0530
+Message-ID: <20260616124416.2442161-38-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -66,76 +66,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe3lpd_enable_dc_count() to enable the DC_COUNT_EN register.
-Also define DC_STATE_DC3CO_RESIDENCY to read DC3CO residency.
-Needed to retrieve DC residency for DC3CO.
+Check if DC3CO is allowed before calling CMTG
+functions in intel_atomic_commit_tail() as CMTG is only used
+by DC3CO DC state.
 
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_display_power_well.h | 1 +
- drivers/gpu/drm/i915/display/intel_display_regs.h       | 5 +++++
- drivers/gpu/drm/i915/display/intel_dmc.c                | 3 +++
- 4 files changed, 14 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 9c8ea14a5cff..4f7144d72dc6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -866,6 +866,11 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
- 	power_domains->dc_state = val & mask;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index ddcf2d2054b7..3b17ce669ac5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7579,10 +7579,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	/* FIXME probably need to sequence this properly */
+ 	intel_program_dpkgc_latency(state);
  
-+void xe3lpd_enable_dc_count(struct intel_display *display)
-+{
-+	intel_de_write(display, DC_COUNT_EN, DC_COUNT_EN_COUNTER_ENABLE);
-+}
-+
- static void assert_can_enable_dc3co(struct intel_display *display)
- {
- 	drm_WARN_ONCE(display->drm,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-index 8f5524da2d06..0ce64b894436 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-@@ -159,6 +159,7 @@ void gen9_set_dc_state(struct intel_display *display, u32 state);
- void gen9_disable_dc_states(struct intel_display *display);
- void bxt_enable_dc9(struct intel_display *display);
- void bxt_disable_dc9(struct intel_display *display);
-+void xe3lpd_enable_dc_count(struct intel_display *display);
+-	/*
+-	 * TODO: DC3co entry condition need to be checked before calling CMTG functions.
+-	 */
+-	intel_cmtg_program(state);
++	if (intel_display_power_dc3co_allowed(display))
++		intel_cmtg_program(state);
  
- extern const struct i915_power_well_ops i9xx_always_on_power_well_ops;
- extern const struct i915_power_well_ops chv_pipe_power_well_ops;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 2255d9d31ca4..329909e3f70a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -3086,6 +3086,11 @@ enum skl_power_gate {
- #define  DC_STATE_DEBUG_MASK_CORES	(1 << 0)
- #define  DC_STATE_DEBUG_MASK_MEMORY_UP	(1 << 1)
- 
-+#define DC_COUNT_EN			_MMIO(0x457B4)
-+#define DC_COUNT_EN_COUNTER_ENABLE	REG_BIT(31)
-+
-+#define DC_STATE_DC3CO_RESIDENCY	_MMIO(0x457B8)
-+
- #define D_COMP_BDW			_MMIO(0x138144)
- 
- /* Pipe WM_LINETIME - watermark line time */
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 4785001644f5..a133785c815b 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -941,6 +941,9 @@ void intel_dmc_load_program(struct intel_display *display)
- 
- 	gen9_set_dc_state_debugmask(display);
- 
-+	if (DISPLAY_VER(display) >= 35)
-+		xe3lpd_enable_dc_count(display);
-+
- 	pipedmc_clock_gating_wa(display, false);
- }
+ 	intel_wait_for_vblank_workers(state);
  
 -- 
 2.43.0
