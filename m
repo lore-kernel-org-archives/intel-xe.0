@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91746CD98DA
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 08:27:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D724CD98DA
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 08:33:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC8610E8E3;
-	Tue, 16 Jun 2026 08:27:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n10vVfMV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4079610E8E3;
- Tue, 16 Jun 2026 08:27:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781598420; x=1813134420;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=eOw38dv2Hetor3ltlCEI2Zu4vXjQUHSYkNoAvXoD1fQ=;
- b=n10vVfMVWWqyVXVszDKc37Eb0fBAkrJHJ6pb7cs/PDlXtPk9XwUnPMRu
- U0QJOHYOUgN4Y4WKf2Qd2LwcsJk9it9Hw7t/qHs37z0b+wwhrv8U+o3Yu
- fjILu0r0QMGsUdV599NdqPU74IgZCC6GgsrNAHEIPbf+wLgJiNVdw9dvo
- SPcfkky5yeAjoGtU1csHbks8bQdecOpnDg598XS8SM7IHqjVCP1uCZJ9C
- 7yG3NFeWP2kc1Y0fsT2mIf83Hc6440BvRcKzUNZ2EBzZLIVJ7J7MAxltz
- dheit1rBApwq6iboUF+csD6WU2I+cpGkyhZSosHmDXmcFgEzUqTFh4ceW w==;
-X-CSE-ConnectionGUID: lhvTn85uTjG7cGFx4iyKEA==
-X-CSE-MsgGUID: AAMCwA6YS0CsWX4nwjn6cA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82553565"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="82553565"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 01:27:00 -0700
-X-CSE-ConnectionGUID: ht1CckIySe6IirMlbwG10g==
-X-CSE-MsgGUID: JOTEvOOiSby49Hzdd3IVZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="252834050"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 01:26:59 -0700
-Date: Tue, 16 Jun 2026 10:26:57 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6/6] drm/i915/cdclk: Use the TGL+ CD2x pipe select bits
- also on ICL
-In-Reply-To: <20260612173653.7830-7-ville.syrjala@linux.intel.com>
-Message-ID: <cd373ac6-04aa-3fe0-bb67-a25c906ea5f2@intel.com>
-References: <20260612173653.7830-1-ville.syrjala@linux.intel.com>
- <20260612173653.7830-7-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E552A10E8EE;
+	Tue, 16 Jun 2026 08:33:02 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E0C910E8EE;
+ Tue, 16 Jun 2026 08:33:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6371243960564193331=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-1027462808-1781597092=:605841"
-Content-ID: <24fd9430-260b-f415-ab01-2bdb5f283384@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Program?=
+ =?utf-8?q?_TRANS=5FVTOTAL_from_mode_vtotal?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Jun 2026 08:33:01 -0000
+Message-ID: <178159878131.83026.14090523799788897168@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260616073805.779362-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20260616073805.779362-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,32 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============6371243960564193331==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323329-1027462808-1781597092=:605841
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <79089290-afa6-4954-0637-e5055fd94884@intel.com>
+== Series Details ==
 
-On Fri, 12 Jun 2026, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> Turns out both CDCLK_CTL pipe select 0b110 (what Bspec lists for
-> pipe C on ICL) and 0b100 (what BSpec lists for pipe C on TGL+)
-> actually select pipe C on ICL. So we can get rid of the weird
-> ICL special case and just use the simpler TGL+ definition of
-> the pipe select bits.
->
-> This was reverse engineered with a hacked up intel_display_poller.
->
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/i915/display: Program TRANS_VTOTAL from mode vtotal
+URL   : https://patchwork.freedesktop.org/series/168577/
+State : success
 
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
+== Summary ==
 
-BR,
-Micha³
---8323329-1027462808-1781597092=:605841--
+CI Bug Log - changes from xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7_BAT -> xe-pw-168577v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-168577v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_dma_buf:
+    - bat-bmg-vm:         [ABORT][1] ([Intel XE#8007] / [Intel XE#8023]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168577v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8964 -> IGT_8965
+  * Linux: xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7 -> xe-pw-168577v1
+
+  IGT_8964: 8964
+  IGT_8965: 8965
+  xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7
+  xe-pw-168577v1: 168577v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168577v1/index.html
+
+--===============6371243960564193331==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Program TRANS_VTOTAL from mode vtotal</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168577/">https://patchwork.freedesktop.org/series/168577/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168577v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168577v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7_BAT -&gt; xe-pw-168577v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-168577v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_dma_buf:<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168577v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8964 -&gt; IGT_8965</li>
+<li>Linux: xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7 -&gt; xe-pw-168577v1</li>
+</ul>
+<p>IGT_8964: 8964<br />
+  IGT_8965: 8965<br />
+  xe-5261-c585a0a7e48a48aca80f7c0acb7294c7bf301bb7: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7<br />
+  xe-pw-168577v1: 168577v1</p>
+
+</body>
+</html>
+
+--===============6371243960564193331==--
