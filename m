@@ -4,144 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 627FECD98D2
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 20:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE0E0CD98D2
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 20:40:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E835F10E292;
-	Tue, 16 Jun 2026 20:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF9110E292;
+	Tue, 16 Jun 2026 20:40:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b+AGqQhY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCLBORNA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41A1E10E292
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Jun 2026 20:25:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB85310E292
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Jun 2026 20:40:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781641519; x=1813177519;
+ t=1781642445; x=1813178445;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=aVrVjo6PauZAz0pD5PnwSAA0VZk80aPOD+f7zJXBoIE=;
- b=b+AGqQhYN5sbEeT8K4gV1iRd2eP6xHejeRRHdUgF3kJv/z3xcCQ73COJ
- +YblXAvpRaa7WF4VBBaJFakQvrEeNeiWwV3bOgcVnGMd2B7t94yUyTT76
- eN71IXow5EegXWaqMaDUMhMIogvBLcSsa4IyFnWFi1xR601W5QGtS9LHJ
- 0UDPgmULTWOErO98E2NHjqlT+saykq6WRTKHj9GFiWLWkmN17ngh1y41F
- dmHG0qzP4DzE8digRXB2KZsca7wxT/Bss8QtqdqKeYHPlkyDHDZwOqPt5
- n1L31mBA1VhZU5WfALBOe4PEHrDvc2+KpiQpyebG+yeHg5KaCYfYgimMJ Q==;
-X-CSE-ConnectionGUID: 1lTzzEuDRquhIOgwJIDbww==
-X-CSE-MsgGUID: ymFu8PsIQ4KRMy5wO3dVHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="92745724"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="92745724"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 13:25:19 -0700
-X-CSE-ConnectionGUID: U75bDPdXSK+a2UptRLkgKw==
-X-CSE-MsgGUID: EpXBDjJhSV2/ogkd7o9USw==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=OWPrdJdfbn0PqzhuId/kS3z4/t/q2dNVTGr/aLrBSrg=;
+ b=HCLBORNA+xaOOpbqnlPu1Ba+lJop2u84i5RNstEtvnmHD0Hwx7KN9fcg
+ iuozEtk+KHQvHQRHwNzZhThYaeWK39+z3kO19+z0h9G7mHed8oN0eCbin
+ XWJk9r2jsOYabpP0sH2vx8RsbTPVYDSjqNOukqGBYZw2OjzHjF0BmY+xX
+ IeDchvC31H6FpLZ2Cw7R7jytWhuM/4tBF3bON40g/8q0p719odMOXBulQ
+ xrm8EMnC1GaHB7RDgheVzkk0tYC98IN9CzTIqFpNxjopRNnJywgmExV8w
+ CJQobd5hp/q4Di1jO9x07+6Pdg2kiUJow0pGtZNCcQVFGEeDOzGRZMp2Q A==;
+X-CSE-ConnectionGUID: JaeqKciYRtmNOjYLxtJqcA==
+X-CSE-MsgGUID: ahPSlRtZRRGTZBAtHvLoFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82491572"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="82491572"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 13:40:44 -0700
+X-CSE-ConnectionGUID: HSZmt4ALTLWIJD6ijuUHNA==
+X-CSE-MsgGUID: Ah0bWHEbQdemmYIPuaj2Fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="271946829"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 13:25:18 -0700
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="247960915"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 13:40:44 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 16 Jun 2026 13:40:43 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 16 Jun 2026 13:25:18 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 16 Jun 2026 13:40:43 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.62) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 16 Jun 2026 13:25:18 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.42) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 16 Jun 2026 13:25:18 -0700
+ 15.2.2562.37; Tue, 16 Jun 2026 13:40:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=K+L8bS+QrSUudmfP8sokInBtcK0N/iwICl+ws9MCQjIPjWO5lNDuWkETEGiB2r/oY/HWm7WPEZ9QxlsjW6boVrm40zUKC2oWu9k6fBh7yabwu3C/LRa2mAld9PHNJ8FXRLg+6dw+rg1wDOFCcUhd0Ux66IoAGPo/iW/TnwBOdBNn8nxVzypgbrRKPjlSyU8CbgwYXqv5Qp+pfRo9clnKESaVuhDopT68CVlrEsxicFp1WXyYjGLwrot90tvQGRkmaMSKRjIf0BYTkCQOE+KNxwHWIzhGt99mby800PIHKe2s8BuTNOrz2QWiFpWrlxeDS+Vh0tb1uwVmP6GsBkOxGQ==
+ b=J7gKWnRqyb1Tdr9GE5m0Kw/bDUJsFW5yW2l9UEhX6XN48XyJ8i8WdfN/mWPZOOB5CoPaQ12Lah4wgSAth5nUGh+5mIfOt9eN03tu/0o1Ke739ndUSEua9Q6fW2qjmU5/rux1HD8COwA19sYmioB/sO+3jc0R6NcghNUn6ZJ0clFUQBwQ8biUOMW9fcXsp6GuwnAs/Stp2Yye7Yjd+Feps2krh32nXvMmn8mnN7DTm0iZM+hnU+w+jJ5c/DxKY/USuknn69QvcnJk7+MWCliN2YLm/oGW2fJon0Q9Sw8LelRhj+ZvPaLFeruV3F7LTeD/AV9pWsVYpG6HzFjpuZsTCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4d9GavkLc1FEKskVKzE7CXFgC58lEhagsHR8HEAvrzA=;
- b=ilqjS3qidgObLQHaGX4Xp/IIr5owNKJhs41nQQ+BURcoDjK8TTc0TvYZIuWdK8JRurSUk1OvVuK4lWJ55pfNkk8zHlxCS/5WePIYKyo+8G4YHSWiZV3tOip1hSDJXWauqm0PZOH+jPMWBm8Jaf8wPuVYvWLYzJcJAxucAZf44YuIDgIlGmjEE06i0Pn96xWqj2MqwQhfxTOxs93kTJnaz8SZmkXcYVxDR9bLBHbG8c2Q+BdF6MXVmxNNGj9TZfzYS4jxouDvq1bY0bVzCu5sT1FySptiC9jasLYNUBbZErxej3LJvpT4LHvvWa1i7w0ej8+mqYR/75YxfZGJdIzMVg==
+ bh=pQMRTLpQUOM26i5OE+ohFFrBm4lk1LI8sxSOEKwbuYg=;
+ b=odEoJtlZTJVYkCyvI9r6IpZs07Us8jhnN2/325Ep9YrwSsgIxPHm2iA174khb9GRX1txk55/Dvmp8sJ0inXrtdDR9x/rzl7AM+UknfclnO2hlgRIptbtgmyKsorZYRM156iT6H7F1QPq9m3GBsmGdfJKsfnhdZ6uy8f+lVo/XX35p+CxMI0EpA0033rhxuTx7tIoORa/EpzUbclPPydWNlh0Asxg8KNMrCxH3vhgsZ83C1GBCjOpS6Hl8y5H/gYZ0sfUlySFl8E6Ir14bDsVy7q6H90bYohsKMQvNuhsX4cX4rvSSo+d3KhjTMMEcLxyBwH+QIuxol3ujSdo0M2QGw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
- by SJ0PR11MB6717.namprd11.prod.outlook.com (2603:10b6:a03:44f::9)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by MW4PR11MB7162.namprd11.prod.outlook.com (2603:10b6:303:212::8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Tue, 16 Jun
- 2026 20:25:10 +0000
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc%4]) with mapi id 15.21.0113.015; Tue, 16 Jun 2026
- 20:25:10 +0000
-Date: Tue, 16 Jun 2026 13:25:08 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
+ 2026 20:40:41 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0113.015; Tue, 16 Jun 2026
+ 20:40:41 +0000
+Date: Tue, 16 Jun 2026 13:40:38 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
 Subject: Re: [PATCH v4] drm/xe: Disable scheduling early on FD close to avoid
  CAT error cascade
-Message-ID: <ajGxJEYsYwseO_Oh@nvishwa1-desk>
+Message-ID: <ajG0xutNYUxTC+k7@gsse-cloud1.jf.intel.com>
 References: <20260613013859.3886196-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ <ajGxJEYsYwseO_Oh@nvishwa1-desk>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260613013859.3886196-1-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0254.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::19) To BL3PR11MB6410.namprd11.prod.outlook.com
- (2603:10b6:208:3b9::15)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ajGxJEYsYwseO_Oh@nvishwa1-desk>
+X-ClientProxiedBy: MW4PR03CA0289.namprd03.prod.outlook.com
+ (2603:10b6:303:b5::24) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|SJ0PR11MB6717:EE_
-X-MS-Office365-Filtering-Correlation-Id: 927ca830-1996-4960-f479-08decbe55d3a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW4PR11MB7162:EE_
+X-MS-Office365-Filtering-Correlation-Id: f2f8b670-f10d-4e9f-1eb6-08decbe787c7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|22082099003|18002099003|11063799006|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: 1WLqyKKdRTljdSoxlKNWG9pl2vEB9EkhZexl5zDqoE0wmhXB2zJt5S62PljJlMuA3Kx3h2GiO/DsqdyovHV4V8QKZZs9MxrbabcnO/LFB3kpqFrKFNShSdFKKSHYKbiooA3eHex75/LT//JxXOA4f2UCl84osU96Ilw0fZp+SXzGfqglU908x4vNqPDAVNJZktU3U3wsz7aXjx/CPJ95Z1pPjnzGHd97skKLhTWou/AsO1uiJ2NWSSHi/37pCMmnNE9jxo1/LMFG6g7Jv4SRl09qCmiltvPDnen4QLhoB2/MM8obPTyVbkXAKS04f17YJYCLQArjcltGFFpEX/i0BqjtoIY3ZUGq1oFODQb8B0j87R1q4RR9PZXm9qMc93CrJu5eiDCFhmNjnHCEgt/vdDFfE4JR0PnZykUtRQyJ7rDRYG9f1MsehA1AJmOSli/BkSgNOrWZWqeP3CNUCf8SPPNipdmS+FJLGPe5uXMUqRFiOp2qDqXwE4UszYmwaAvkD9wlT2swb1LRqqqpGD7fIckE6c3RzRw91INuCI10z7sqiW56s5I8fAppAmMexwu0vKCgzU7yvTOT7eoMRjyHYFJAPKdoKtxxPPd6eqDh064c8dSGRdo6SkG0/7iCSew4RjQhPxKQc3ayoyn3SolhaX2z1Pg3EdGsheTi8eUkZzW+jdWSnv3C2Ioj8n/SNRkh
+ ARA:13230040|1800799024|366016|23010399003|376014|6133799003|18002099003|22082099003|11063799006|56012099006|4143699003;
+X-Microsoft-Antispam-Message-Info: EgACjIsGxATUJW4e4ANarIjRDyOSKuJhp4Ibvu7A3g0z2acwymVL6AhBCxtLgdHCMdyl3OO8iGPCfd2YtHNKZz0MPyvorjlsD/7xuzG2JiDqFhjyRwaVSBaMTguPXobGlRdBETquGbs8Ct2odSbSmY8XZwzOYPpAv2PYxvGbhu4JXvcjiWxNvBidUwI+KCdliAiSJtIpxF4zgJ0OIC93iSfUI0DaATIENChjXRKJ1alL/hgD622V6Ed3xBIXjuMA64XtPYqNfak8OyRKr0jur7VyHO1NXqKtMOWJbIHXQJ3uuse8DXtROxdSftPPk+7bZIPFOQjHgWXWY5ubQlLcx1IqWNo/ieelWe8EYDsJggUhRj9Sqjp2un1skzy91Fyw5lB0TObit+Wmce8McfShXMEbHsXCjTNJq2StPfK7kexhea5/vBhQmvCcK/8yFE7Y/Dh3Aog+ouMxfOrfCuxaZYG9YnLi6Fnxd0GYl6T89eiKpT3lSZHLOlsO6Tyg6x28OxYSBfH3zZy0WlhAXAUEBA39QQ77u5ZCYyOtqwmCgu9XDUFnqy8P/9ONiiIr87/QhyOgnmv/QDYJ8myGmPJ8gIeh9k/0DnaWTbrRZbGgLU4lajPtH3d9520TPSYCRwS9mKb9C4SHRS+gizhlm57xicjC2HvM6RiFRJzBYahZo+/qTBJhe77zJCkUteDzFckz
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(22082099003)(18002099003)(11063799006)(56012099006)(6133799003);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?At0lTEDTt3sIKFkyYOPihIJI48hrVsJ6fK7PCknaUhE8oyTjHA5d78p4zX0u?=
- =?us-ascii?Q?Lct3UboDwvvyxp5Bkm2GkvamLQqnYGU3bVIx9qD9PjESZ1ahdSMxgo6GsTd9?=
- =?us-ascii?Q?OnXyvU/qCYI4vZZ7YwR/raPa2DHwHTdrFXsV7hjGFp1ekNXC7uFK2NNnb9WZ?=
- =?us-ascii?Q?LS5GIGnC4FlM9Ee1CCjcuDh2lB8pcbdWkexStvolV1p1tcHg/Iivg3/1O/lR?=
- =?us-ascii?Q?R6QDLXos22XWyduvH9WiU5za2QXKLJvQNiRKjPsagAA4Mq9KnWaBL/YinpT2?=
- =?us-ascii?Q?VKIoXnv5B/bg1rz9N3NWFCJXD+ubhwFb+VfYB6PggFE0h8k675sPcPYfhvdY?=
- =?us-ascii?Q?OnU/fpJacHf/h8PZhIw7qUenIr8v4CKfQiqtqtiYJCENDCTQUZ5qfD8Dbld/?=
- =?us-ascii?Q?sR0U3LSultzFbRiow5j+tv1V3kHwpa0ujIgxw62qxYzo0WlMwROuo7ogenNc?=
- =?us-ascii?Q?qb5tIIyrTKXSKp0aEPLSneOavo7hWljaKalRShoGS+F18sP/sarRqlq/d5xG?=
- =?us-ascii?Q?XjW47W9cl9YoT95Q2moyZhrvihPUG8X2AT83Qs8jARkJvpxx2Pz/0elOjTMd?=
- =?us-ascii?Q?n2gCKnk32vKtK9HcdHzvgthYQEcUAc1kR709MAIg+3EtAEGuYlVpNZiL7VH7?=
- =?us-ascii?Q?5K3B2UKidDMycsQ+xm3gHvWlx+IMLn+2dlgmh94Yl8ir3IxbSStd0nQCqnEU?=
- =?us-ascii?Q?nM/+MbIVnHAOR+NtGO4zP1bNAOtDrp2JDzow8R/jRV8dtzFXgeuN5KJmmea6?=
- =?us-ascii?Q?mAcbeQEZwOU19XyYFx3t2cw6kPkv4mr2zaugY0nhqIBkv4gghnxBkPctqHOA?=
- =?us-ascii?Q?MfGBWIhndv3b/ak8S6RkQuqH768kaHCdJYmRSVaZDttI/MDuSy11Umk+zojb?=
- =?us-ascii?Q?1NmeBZSfWGodUQV3IJmItbjh7dFNRa4K0BRHcoUgA3LDtrc8bhcgL4ntk/YV?=
- =?us-ascii?Q?YlaM/Gh8/di/iY1iDqatAePsAuF7NmKf6GlYGOFjkZGHq21vk46ndCGcFSYJ?=
- =?us-ascii?Q?ZDTqGAJqHXLOMJNzvXf8fBSMj+v3fKwoBvoe+9Cv1iVVvl4+4A/KuIWBoosn?=
- =?us-ascii?Q?1Mm+B6wK7sm7MbRCYt8v6P2g2gKeBxJcU/W4gwKtzcmfIcS0UoGspD//qA8A?=
- =?us-ascii?Q?2KL6IpWvLx5xB8rfibjmEpnyRgqshgPi3ahIPqOurop/g8/kxdMu2D+b93EY?=
- =?us-ascii?Q?XDVm9Mig7aSs0yQvEKjq0a/UXNgUsrTuCJcOaLsvsmudX0BCESFq+MeLaJPw?=
- =?us-ascii?Q?Zznzw0oKB4KaMkgkGQ/rDw5E1sjTgsKDe7SvNdqGzyUJxM2fdkilARKDDwTe?=
- =?us-ascii?Q?bc2KiCHltExI2vYigaOfa9e6lV4igxSZDFNUJ1vIq6xdmeOWUxEbQdHd6uN4?=
- =?us-ascii?Q?BzQU7+he3VftZ3QQKpdEnw0bR9Udak8UXzctsK98BfxTlo2BJB8AIiMMuj8X?=
- =?us-ascii?Q?ATKrOh4M0WzvemamzIDVW4NQVqZLimcxuocq4kgq5pIKFg+HK4bfWyiv2quf?=
- =?us-ascii?Q?tBYeI8l0nHawrSpbjJfB2VjfAkZ/RYuPQ//28Pb7FkpfaQ2EWBvueDGrINK2?=
- =?us-ascii?Q?t0vFZvjVH4g3ltge9YF64rXmaJDWqM3xtkgLxyncOLzYRqIj+CBzRGJF0MYD?=
- =?us-ascii?Q?blzoKiMn3liv2VET2qeE5cgH047OsYd94vRdJo5wYIjnIQtP0vhKf8V/QhIy?=
- =?us-ascii?Q?A0udLOT5jvxBxARhZg5RPPSqhqEM7eIBVIAgmTAH3MTGbU4pjtKzNFmtTi/P?=
- =?us-ascii?Q?fUPhUMxgzSDiv8fElR2nZLAmERjNb24Qm+TTdUFvOf9fCTPfdMRE?=
-X-Exchange-RoutingPolicyChecked: pzO9gWm5s0JVy3Xt9PWPYTCCKpvNcRRndNLQSeQSkMvJ1nbipi0GHaJgKz0OwjZojb6SOXyKpWEFLoIfmCk1aS1l1b3HnnQzwQHungx9pLfR+jI7YwqP6WJHn0wH8srfj+MQg536ZFdmi8XZM7Ymj259Dhsqr5603cyj2w69Y1ctYcIFO46KTzisIUzxW9zVqovW5cyixaqrg3DRUIWV4EfspXRkieCbzCdjqju60TNLIC8jnP0yH0zS8A23/4Wj3pTgOOLT6oYVm6/ItZvZj7RDJl+jFvOBaGf37YVSkqMODGfJ9ksXiCuS5IpsQR4PTnU/AeYKsFfFgA7h8f++dw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 927ca830-1996-4960-f479-08decbe55d3a
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aFM2N2x4Z0NTV3E4Mk1EQy9XaHAzRnFKTlhBTHlnTnJhSTlXSkJiTG9acVp0?=
+ =?utf-8?B?TTRnMDg0STVyVWZFMGlrVURINFRaencvek5VRDlkSkRVazJIOFVJVkljVUk5?=
+ =?utf-8?B?cG9vbUpVb1I0cHZPSkVGLytEbEJHRzNlRGZiL1ZmRjYyTU9CUnB1M0oxajVQ?=
+ =?utf-8?B?dXVRM2oxRlRhQWNjTThLR1RnTFRZbFQyNU5NbThLeUw3WlpsNmwwV3M5WWhj?=
+ =?utf-8?B?VzJTL3VQTTB2SzN2ZFdvdnBqanpIZXJZOXdnbkgzNFRmMTNZVjZ1ZGNWUkVx?=
+ =?utf-8?B?VkM5NzR4L2cyRU5wNEp0WXhVdUtIVmNMRWRaSi85REZmd01yN0tEUzJxV0FH?=
+ =?utf-8?B?MTJXSzJ2NTRJdFhXR2gvSFQ1WGh3WC9qb2dwQ2JBRlE5M29vNVZwZUNTY2hq?=
+ =?utf-8?B?eDMrWHdqOG5vQ1NpTjl5YjFUZnU2c1NOWFlyUHBnOXE4S3czNjg3WmFGYlhm?=
+ =?utf-8?B?U1dSc2wrSENybnFzZmo3ZDhrUU5xZ1E4clpmU1g3bnFFUmMyZGt0UXQ5eEJY?=
+ =?utf-8?B?RnViSFRNN1FCbHJjc2dOUlJFTFRsV3g0ZEVEWkNHUzQwa0R5Y3IyVEhjSEpx?=
+ =?utf-8?B?dS91ZFNWOVdUNkk3aFpFMjV6ZjhuaStoS0h2eitaQjVoUXMzTnI0UytMUlpW?=
+ =?utf-8?B?SFZhWjdMS1dpa2c4a1ZnaUJCa0xud1YyenRGY2xHc2gzbXdTSFZUR3NaYVR5?=
+ =?utf-8?B?VDE3NVdLWTNWcENlSytCTWVrOUpLOWs3WGpKL0JrbkQ2UXFmSjd6N05hQVBY?=
+ =?utf-8?B?RjZ5Y3dRTUdRWDRGSkw4RjBzbXFpR2RVNmpjWU9vdlYrRkN3L3FGdkkyR0tP?=
+ =?utf-8?B?cS95cXlEYUtvNGRndkpraXVTa042YU9VSUJLSWFTN2phVll3Y21DQmxSNFgz?=
+ =?utf-8?B?OUxWNDIydzcrR25kNU9vbWpqa1FZQ1N3dlQxRThtYXVDM2kyTS85U1NuNWlI?=
+ =?utf-8?B?RE1ZSW1IYzdNN0dJYjBEUitFTFFyK21ZZTE4czVvaFNCakM2NG9tOG5tcnRt?=
+ =?utf-8?B?RFQvM3BPOGxNcloxK0Z6dmlWTXdnQWI3YUFSTmJYbWd5YTZZdnZTQU4ycloy?=
+ =?utf-8?B?d0p1SmhaQkZEbE1FSmNRT1ErTUlJQ1lLUS9aSjFIbm9SY3RkTU1jWGdkOW9i?=
+ =?utf-8?B?RUkxNXptYlJtQ3pURjVhamFuNllQdmJBNGpxZUlDTUI5YmdHbTgwOVUyTnJm?=
+ =?utf-8?B?aHU4Vlg5VWoyYXc0cE4xM0dZUU84WlJPZmcyNE9aQ3Q5WHdUeHBES3kxandU?=
+ =?utf-8?B?YTBLSmQvNW02bmxzYmZwcWdwd0pTSi9XVTF2UzBQTGNTZmU1c3NtL29CZzdp?=
+ =?utf-8?B?aW91bi85ellqd1dRQTYyNDU4ZFRWc1ZLTEFYc0cwWTNyOGlGMkxMbzRsd2tl?=
+ =?utf-8?B?SlBiOUpOZFM5SVAzNTZaV2l5VDh5bHltaXFyNXZaMTM3c0RUeTB1VzVEd3lt?=
+ =?utf-8?B?bys4OGZSUEV6Nm1wUUZIVXBQS1FDWVV1bXl4Y3QyaVgrSmU3QnVxOVRreHZa?=
+ =?utf-8?B?b05RR0llUzJYRmxoejl1N1RRdTdhQktmb0RIYjlWeWtoc2dwRFU0RzM1NEJ4?=
+ =?utf-8?B?QzVkR2JZWENUU3RBZTVRUktUdGl0SGdqaW0vTjB1cUsxaktPNTFUUitUNHdu?=
+ =?utf-8?B?RDJRSEZobjkzU2NJNW5CM2ZEb2RHUzExME15cFBZa2hOWW1Heko3Q0lXeXRv?=
+ =?utf-8?B?OUs4UGQyRCtvQU9uVjFzV0NKaW9ROThHd1JhZStmMEYrdi9BZEtmVGhXMXlo?=
+ =?utf-8?B?US9iMFZTdDFlMFJVekZONlhGcGRPalhNRVg5SC9lWWE3SWxBZ20wUmtqYlBk?=
+ =?utf-8?B?NS9QTzVRcVZVVVU5ZkVNV0wvOEEvNGFOQlNBeUtHOHFBRlhCUERBQVM1SjF5?=
+ =?utf-8?B?Y0RuSVlkSDJkWVNIN1NpNnJIdmlMY1RuVDNDZTRFNHA2bzkvOGNWcGtDQXBT?=
+ =?utf-8?B?Qy9JRG5UZDlPQ0ZnUVNNMWR6NnVWK25Ec0tYdGs4ZEdQdzJqRUxOVXlYcGw0?=
+ =?utf-8?B?UERxRUhnTHUySlN0UmEyYmhjT3o3YUtRc0ROMDNHSGVUT3FTTDkyZS92bEtS?=
+ =?utf-8?B?WWNtQmVBb0Q1YnlqMEZMVzhmb080ayt6TVVkc1dOY0xTeTFraGN1ckJEd1k3?=
+ =?utf-8?B?bzFDbDg2R2tjWkpEbmdoRnVpTFhRaHpPWjIxbHJMSTBJcWZEb3NvYkNSTmcr?=
+ =?utf-8?B?NTdJdEduem1sUFhuMmJhMXhjT1dWc1JoUUtZOU5CWEorZHlyNVoyN2kxMk9k?=
+ =?utf-8?B?YS94b0VLS05ORytoRXEvOVErWGV6dE1Ld1puZGpkL3NqL3JuZGtlQkhZQzBu?=
+ =?utf-8?B?ZUxud056RG9GeGtMVkFOdGFOZUtpVUY0SG5uYmpHdjdFclZubnBnOFpLcmk3?=
+ =?utf-8?Q?u1f6r3srp4euSfHE=3D?=
+X-Exchange-RoutingPolicyChecked: mWG0WPKhPhU8XnrjhiNZ3VMZVATF9eVSRWA6vXlGWL+W+xnDakE3o5yTViXlBnVGsWcgfJnk5i8sve/d+UDsNyOCXnniT83f0ej6qvzB7qLtG09/5E24ZmdQcikcmDUZZmwMU9QDgknCzCarzHxNEXuxXBuAPlckJ/0UHjG4DGNO31U+/EOgP6XWDfrjbmXVzCnftwcg293dmFNDfDYyYFLW+nQmb1wbBioI1+Qa1KehUcQsXV0PUf/oFswICscvUJL46coP+XdGjecam/6gkbjG6p5mKIk2ZVtg9WMsA5CSKlN/r8dgKdrq2BNTqI5Y8dUys1sR/ICduLGbqHtDag==
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2f8b670-f10d-4e9f-1eb6-08decbe787c7
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2026 20:25:10.6695 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2026 20:40:41.1115 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VX+p3WW8ZlBpR5SpqvGIi22Ib9TnXmxMbc9LeAxLMVnCjiksUeyOtOpgnpn/iuNKHkU0G0XFGzh+zZf4iRA69e2zP7bReq2R/WxkzOZ/iOms+aY+mbD2cyriG97qfLyv
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6717
+X-MS-Exchange-CrossTenant-UserPrincipalName: vK7Dnv66j7/CVS6oxVYFTBcD9ggb8hd00WeAAxwZMApGhwUZeOEM4i/IiCr55QxotDqz+9MpblwPWltHZDteaw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7162
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,159 +169,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 12, 2026 at 06:38:59PM -0700, Matthew Brost wrote:
->When an FD is closed with many exec queues, teardown relies on the TDR
->path to clean up scheduling. However, the TDR handling is serialized
->(i.e., only one exec queue is processed at a time), which can make it
->too slow compared to GuC scheduling activity.
->
->In this window, GuC may continue to schedule contexts backed by
->invalid page tables, leading to a cascade of CAT errors and repeated
->engine resets. This significantly increases recovery time and can
->degrade system stability.
->
->To mitigate this, eagerly disable scheduling by sending a self-message
->outside of the TDR path. This prevents further scheduling of invalid
->contexts and avoids the CAT error/reset cascade.
->
->This change improves robustness and reduces recovery latency in
->multiple queue teardown scenarios.
->
->Cc: Wang Xin <x.wang@intel.com>
->Cc: Jia Yao <jia.yao@intel.com>
->Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->Tested-by: Jia Yao <jia.yao@intel.com>
->
->---
->v3:
-> - Make kill message static tomake reclaim safe (CI)
-> - Do not issue kill messages for queue which bypass cleanup messages
->   (sashiko)
->v4:
-> - Add missing message lock
->---
-> drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  2 +-
-> drivers/gpu/drm/xe/xe_guc_submit.c           | 44 ++++++++++++++++++--
-> 2 files changed, 42 insertions(+), 4 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
->index e5e53b421f29..247947fd357f 100644
->--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
->+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
->@@ -31,7 +31,7 @@ struct xe_guc_exec_queue {
-> 	 * a message needs to sent through the GPU scheduler but memory
-> 	 * allocations are not allowed.
-> 	 */
->-#define MAX_STATIC_MSG_TYPE	3
->+#define MAX_STATIC_MSG_TYPE	4
-> 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
-> 	/** @destroy_async: do final destroy async from this worker */
-> 	struct work_struct destroy_async;
->diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->index afe5d99cdd8b..5ec1dca0324c 100644
->--- a/drivers/gpu/drm/xe/xe_guc_submit.c
->+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->@@ -1875,11 +1875,21 @@ static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
-> 	kfree(msg);
-> }
->
->+static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg)
->+{
->+	struct xe_exec_queue *q = msg->private_data;
->+	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
->+
->+	if (exec_queue_enabled(primary))
->+		disable_scheduling(primary, true);
+On Tue, Jun 16, 2026 at 01:25:08PM -0700, Niranjana Vishwanathapura wrote:
+> On Fri, Jun 12, 2026 at 06:38:59PM -0700, Matthew Brost wrote:
+> > When an FD is closed with many exec queues, teardown relies on the TDR
+> > path to clean up scheduling. However, the TDR handling is serialized
+> > (i.e., only one exec queue is processed at a time), which can make it
+> > too slow compared to GuC scheduling activity.
+> > 
+> > In this window, GuC may continue to schedule contexts backed by
+> > invalid page tables, leading to a cascade of CAT errors and repeated
+> > engine resets. This significantly increases recovery time and can
+> > degrade system stability.
+> > 
+> > To mitigate this, eagerly disable scheduling by sending a self-message
+> > outside of the TDR path. This prevents further scheduling of invalid
+> > contexts and avoids the CAT error/reset cascade.
+> > 
+> > This change improves robustness and reduces recovery latency in
+> > multiple queue teardown scenarios.
+> > 
+> > Cc: Wang Xin <x.wang@intel.com>
+> > Cc: Jia Yao <jia.yao@intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > Tested-by: Jia Yao <jia.yao@intel.com>
+> > 
+> > ---
+> > v3:
+> > - Make kill message static tomake reclaim safe (CI)
+> > - Do not issue kill messages for queue which bypass cleanup messages
+> >   (sashiko)
+> > v4:
+> > - Add missing message lock
+> > ---
+> > drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  2 +-
+> > drivers/gpu/drm/xe/xe_guc_submit.c           | 44 ++++++++++++++++++--
+> > 2 files changed, 42 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> > index e5e53b421f29..247947fd357f 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> > @@ -31,7 +31,7 @@ struct xe_guc_exec_queue {
+> > 	 * a message needs to sent through the GPU scheduler but memory
+> > 	 * allocations are not allowed.
+> > 	 */
+> > -#define MAX_STATIC_MSG_TYPE	3
+> > +#define MAX_STATIC_MSG_TYPE	4
+> > 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+> > 	/** @destroy_async: do final destroy async from this worker */
+> > 	struct work_struct destroy_async;
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > index afe5d99cdd8b..5ec1dca0324c 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > @@ -1875,11 +1875,21 @@ static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
+> > 	kfree(msg);
+> > }
+> > 
+> > +static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg)
+> > +{
+> > +	struct xe_exec_queue *q = msg->private_data;
+> > +	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
+> > +
+> > +	if (exec_queue_enabled(primary))
+> > +		disable_scheduling(primary, true);
+> 
+> Can it race against other path that calls disable_scheduling()?
+> Worried that if so, it might hit the below assert in disable_scheduling()
+> xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
+> 
 
-Can it race against other path that calls disable_scheduling()?
-Worried that if so, it might hit the below assert in disable_scheduling()
-xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
+No. The TDR when running stops the queue so it can't thread here.
 
->+}
->+
-> #define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
-> #define SET_SCHED_PROPS			2
-> #define SUSPEND				3
-> #define RESUME				4
-> #define SET_MULTI_QUEUE_PRIORITY	5
->+#define KILL				6
-> #define OPCODE_MASK	0xf
-> #define MSG_LOCKED	BIT(8)
-> #define MSG_HEAD	BIT(9)
->@@ -1906,6 +1916,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
-> 	case SET_MULTI_QUEUE_PRIORITY:
-> 		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
-> 		break;
->+	case KILL:
->+		__guc_exec_queue_process_msg_kill(msg);
->+		break;
-> 	default:
-> 		XE_WARN_ON("Unknown message type");
-> 	}
->@@ -2018,11 +2031,39 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
-> 	return err;
-> }
->
->+static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
->+				       struct xe_sched_msg *msg,
->+				       u32 opcode);
->+
->+#define STATIC_MSG_CLEANUP	0
->+#define STATIC_MSG_SUSPEND	1
->+#define STATIC_MSG_RESUME	2
->+#define STATIC_MSG_KILL		3
-> static void guc_exec_queue_kill(struct xe_exec_queue *q)
-> {
->+	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_KILL;
->+
-> 	trace_xe_exec_queue_kill(q);
-> 	set_exec_queue_killed(q);
-> 	__suspend_fence_signal(q);
->+
->+	/*
->+	 * We eagerly send a message to ourselves to disable scheduling, as the
->+	 * TDR is serialized (i.e., only one exec queue is processed at a time).
->+	 * If an FD is closed with many exec queues, the TDR can be slower than
->+	 * the GuC scheduling contexts with invalid page tables, creating a
->+	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
->+	 * this by immediately disabling scheduling outside of the TDR.
->+	 */
->+	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) &&
->+	    kref_read(&q->refcount) && !exec_queue_wedged(q)) {
->+		struct xe_gpu_scheduler *sched = &q->guc->sched;
->+
->+		xe_sched_msg_lock(sched);
->+		guc_exec_queue_try_add_msg(q, msg, KILL);
->+		xe_sched_msg_unlock(sched);
+Both TDR and CLEANUP message directly wait pending disable to clear.
 
-Given we are adding a message here, do you think it will help if we do
-something like below in xe_file_close()?
+> > +}
+> > +
+> > #define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
+> > #define SET_SCHED_PROPS			2
+> > #define SUSPEND				3
+> > #define RESUME				4
+> > #define SET_MULTI_QUEUE_PRIORITY	5
+> > +#define KILL				6
+> > #define OPCODE_MASK	0xf
+> > #define MSG_LOCKED	BIT(8)
+> > #define MSG_HEAD	BIT(9)
+> > @@ -1906,6 +1916,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+> > 	case SET_MULTI_QUEUE_PRIORITY:
+> > 		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
+> > 		break;
+> > +	case KILL:
+> > +		__guc_exec_queue_process_msg_kill(msg);
+> > +		break;
+> > 	default:
+> > 		XE_WARN_ON("Unknown message type");
+> > 	}
+> > @@ -2018,11 +2031,39 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+> > 	return err;
+> > }
+> > 
+> > +static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+> > +				       struct xe_sched_msg *msg,
+> > +				       u32 opcode);
+> > +
+> > +#define STATIC_MSG_CLEANUP	0
+> > +#define STATIC_MSG_SUSPEND	1
+> > +#define STATIC_MSG_RESUME	2
+> > +#define STATIC_MSG_KILL		3
+> > static void guc_exec_queue_kill(struct xe_exec_queue *q)
+> > {
+> > +	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_KILL;
+> > +
+> > 	trace_xe_exec_queue_kill(q);
+> > 	set_exec_queue_killed(q);
+> > 	__suspend_fence_signal(q);
+> > +
+> > +	/*
+> > +	 * We eagerly send a message to ourselves to disable scheduling, as the
+> > +	 * TDR is serialized (i.e., only one exec queue is processed at a time).
+> > +	 * If an FD is closed with many exec queues, the TDR can be slower than
+> > +	 * the GuC scheduling contexts with invalid page tables, creating a
+> > +	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
+> > +	 * this by immediately disabling scheduling outside of the TDR.
+> > +	 */
+> > +	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) &&
+> > +	    kref_read(&q->refcount) && !exec_queue_wedged(q)) {
+> > +		struct xe_gpu_scheduler *sched = &q->guc->sched;
+> > +
+> > +		xe_sched_msg_lock(sched);
+> > +		guc_exec_queue_try_add_msg(q, msg, KILL);
+> > +		xe_sched_msg_unlock(sched);
+> 
+> Given we are adding a message here, do you think it will help if we do
+> something like below in xe_file_close()?
+> 
+> - xe_exec_queue_kill() all queues
+> - Flush work_process_msg for all queues
 
-- xe_exec_queue_kill() all queues
-- Flush work_process_msg for all queues
-- xe_exec_queue_put() all queues
+After thinking about the above, implementing xe_exec_queue_kill_sync()
+is actually trivial, given that we already have the mechanism to wait on
+pending disable in place.
 
-I know it is not suffecient as GuC may not have processed the messages
-yet. But it is something we can ensure has happened before we release
-queue reference?
+If we go this route, the logic would be:
+for_each_queue
+        xe_exec_queue_kill
 
-Niranjana
+for_each_queue
+        xe_exec_queue_kill_sync
+        xe_exec_queue_put
 
->+	}
->+
-> 	xe_guc_exec_queue_trigger_cleanup(q);
-> }
->
->@@ -2066,9 +2107,6 @@ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
-> 	return true;
-> }
->
->-#define STATIC_MSG_CLEANUP	0
->-#define STATIC_MSG_SUSPEND	1
->-#define STATIC_MSG_RESUME	2
-> static void guc_exec_queue_destroy(struct xe_exec_queue *q)
-> {
-> 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
->-- 
->2.34.1
->
+I think this would make everyone happy, as there has been a lot of
+internal pushback on allowing the device to take CAT errors on FD close.
+In the worst-case scenario, blocking here would be preemption_timeout
+(set to 1 µs) multiplied by the number of physical engine instances, or
+the GuC time to reset a queue multiplied by the number of physical
+engine instances.
+
+My mistake for pushing back so much internally—this seems viable to me,
+as it fits in with concepts that already exist.
+
+I also need to double-check VF migration to ensure I didn’t break
+anything in the patch.
+
+Matt
+
+> - xe_exec_queue_put() all queues
+> 
+> I know it is not suffecient as GuC may not have processed the messages
+> yet. But it is something we can ensure has happened before we release
+> queue reference?
+> 
+> Niranjana
+> 
+> > +	}
+> > +
+> > 	xe_guc_exec_queue_trigger_cleanup(q);
+> > }
+> > 
+> > @@ -2066,9 +2107,6 @@ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+> > 	return true;
+> > }
+> > 
+> > -#define STATIC_MSG_CLEANUP	0
+> > -#define STATIC_MSG_SUSPEND	1
+> > -#define STATIC_MSG_RESUME	2
+> > static void guc_exec_queue_destroy(struct xe_exec_queue *q)
+> > {
+> > 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
+> > -- 
+> > 2.34.1
+> > 
