@@ -4,152 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15B8ACD98E4
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 10:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24A45CD98E4
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 10:07:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C739810EF1D;
-	Wed, 17 Jun 2026 10:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7DDB10EF4A;
+	Wed, 17 Jun 2026 10:06:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YgopQgHK";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YBCNELCM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 479BC10EF0B;
- Wed, 17 Jun 2026 10:05:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781690747; x=1813226747;
- h=date:from:to:cc:subject:message-id:
- content-transfer-encoding:mime-version;
- bh=MBZ/0RRLFE6v/rttOBj9Wcrs0SjZIBJbSBFfhfXwPxI=;
- b=YgopQgHKumTw4RpwAyPzkhPF2HLLvRfUhkJFHUW7DFM45nf1MDfwax1t
- t42b0vOcdF8wQblNKMTbsKKOsCkfqvin61hUOxjfyI03pZE6gVuLkyTZJ
- GlODV5RzLBS59yY06azXVYPoxPAsDVLGBIBsinJTtgcyCpK4lcKEDUD8D
- bs+fNsHsfjXBggldhtCxHrdQiJ0igKXk0DrmL29zVVTxAlRXgpIBgVlRK
- pTRGaHWjuE/EMksNY0MVzh9J+xddSlF7MHCBihQS66w8znTxO3MmVSZDC
- x+ZwnQ+oHtJ3g6FT+o3tkVq1fcuyIIwa+ZEAlsq5uhKS2qbCpdpv2RYW+ A==;
-X-CSE-ConnectionGUID: tptX1+ovT5a6YNfdpN/uFw==
-X-CSE-MsgGUID: hw7HqpptRXKSZI9O62TLFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93592290"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93592290"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 03:05:46 -0700
-X-CSE-ConnectionGUID: 90/caF6PTUC2akugNLNnJA==
-X-CSE-MsgGUID: 5flooBMdT2CV9Jsto2eM+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="286141074"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 03:05:46 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 17 Jun 2026 03:05:45 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 17 Jun 2026 03:05:45 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.34) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 17 Jun 2026 03:05:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QQcSFEU2g+uyN0qgktF8YLMmCjRho6MVS/w7iJr+NW6V/TTcGkqUcmB8+lovQYobQXUiw0vxMrHXCouN8bZ8ttJor+nHirVFFvgyPTbX0BoRan2Nh2fgv1VZYJxqvytxM+vA3QDkwaJ+z9pgdfSQiwAZAHFxj8XPHgSzfgcFBzGHtUNUp2gABnoFoChD9iLsStSc0iC9gRdlk4GaGX5hNhcz164HF82cDf9GgYqFeIzaQ+v7mswWujKFveSRVAAuhdwPfhs/eaEAMTOEn3eoZjrLDGVM0TetGIuBSrOCw9hjNuG+o1wk5I2ROQuxLNIG6dcA8K6zEPhRRzs9R4avyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ht6S3zhIq8FEkRT8zqwOW8wcPKJDGZ/2rrj/XPBmCbQ=;
- b=RXZhlVKKYU/ZMSVfxe74wS+P6O9VqNx+VJVgmrHK64xhJOIu4YxRt+iqOiaslQUkbKp4hphzXozBNOPc998BoD5iNnct650YG3nZmDOCK9mXHDYYOyp+Q2dGB5ddjTGMzLllSf53nYY1hkqCkJmqkpLtau2fasXiR8utgaGPfKaZLxZW8JQDNI4v87zwrUaVANmo3TyRpnA+9yYKsOIde8oy17RFe5Fi6knE5h9v4/Vk1J4GCw6etqDyJGNd3ydbRONRT8JRbXWPPMub4kEKbHy8SxH6o1Pv5PgsuQFk+IRTyJwGr2hkujgDis4pwzDPYn29Cazc0T/SnEDeqmMCEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by PH3PPF1618AF7BB.namprd11.prod.outlook.com (2603:10b6:518:1::d0a)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Wed, 17 Jun
- 2026 10:05:40 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
- 10:05:39 +0000
-Date: Wed, 17 Jun 2026 06:05:34 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
- Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <ajJxbrt3a_USBecY@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0262.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::27) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
+ [209.85.128.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED70010EA25
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Jun 2026 11:10:23 +0000 (UTC)
+Received: by mail-yw1-f173.google.com with SMTP id
+ 00721157ae682-7e2f9471acbso5040117b3.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Jun 2026 04:10:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781608223; cv=none;
+ d=google.com; s=arc-20240605;
+ b=bzvNw4W9qXjTg6VokWyNPJ8vrEZbhLOyugUf4fR6qHRzt8IF4r57u1DeFyyrWMsslf
+ 3I0Z/fdXzci50GOUIJQcZB+k6Q1uk3YWqcNOuut9Wcn+V/lIS3QzUup4wxy/r9zYoSCA
+ JNX4sNfZiJrXl376ryc7INqQ7qOkv1abLCUKRx/OKOCct7piZiQ2Jzd5KsDDtHZaJpze
+ j8ZnaaWiTT96ESg6kqnKIedcmG9TePuBWrth/Esa8hZM+uUZ35uNXsLCPkhpjozIAYjU
+ b19qONIBuuNPHfxmDyYl1LcbDRu3P24gIGnuTYQbdrZTGdRu0ssEI9/71Lalx5pcWVve
+ 4oIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=XnQGf3/5vCqgVWqxY/DGqYxzXTgm/RoqiCdxmqh6DjI=;
+ fh=Q/6JOeLTM0Uce52pgmEocxIXTNEnaAd8dEqAZj7NpqY=;
+ b=iLqh0YfOGRrHNcjntT642sfriPm4Ojr4TXTiXGYGzQst6CMrao2D2pNhKTf4VLuktm
+ mSD5vUYoYiBi1DgTVWZDUk9z0+l8zJ8Zsr3YchFjrmJ3wop2N8Hy4ugsjS8H6S9RTAuQ
+ k8CqNQHxWW1Nf8fCUvwmB+WF8xc/XkkfFjFb6Idt7MCSNukMZZj2mph89Mbw8p+DAlNX
+ 3XkScVCDPQFQTRRan/nv/+w4GgHd/9hnwg+gll3/HG4XCzM9mV/RSt1pVtzXDjPYbkXT
+ mMVJXBg3rywzz8iRJg+kOoXwjBNwgQJPESlo06hWMCQTHRdTYUA3uRxUTpPCPiXc6hLh
+ tCGw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781608223; x=1782213023; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=XnQGf3/5vCqgVWqxY/DGqYxzXTgm/RoqiCdxmqh6DjI=;
+ b=YBCNELCMGkpbaySp97/fGqoguhpdq1WdGOdZN5pEHnjpoDWxTKMSNvPa4xNs8AIWJi
+ uwDawC5rcw0sGBuA8ypNmRcATMa3UGN4UZjQWkQAe1kPj/eODKH2JeaUIOYFf1s5zWNk
+ iSbAYFyWW64StBBU2sLAEoIEF358tZjV6bDI6S9od6UCxZCzh0KF4dLFYxD93ErGfkTW
+ ykKM3TZODeA8lURwqrFYxl8EU1AAGvKwl2m1kfDUfCaHd6LWWWgvw+k3UoGv7MZBTTDS
+ wUHdD9liJamaTvKzExzR/8cclIZMfOZTqloT1S+Ep6vF/34/Cl8pErHVPTDAE2jwJYh8
+ UXAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781608223; x=1782213023;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XnQGf3/5vCqgVWqxY/DGqYxzXTgm/RoqiCdxmqh6DjI=;
+ b=o8vnwdBXZLih+iMruEM9we2pdwzpWVF2uB/aPLVo6ZpGGmSXLZWtvocn+KnDLghYXF
+ ZCkgLU3R6USAGn1LQ3Y89roTsXrtnnQsJ7sBJWhfInjkwCQ4/Q0m00y00cuAP2h0jeYg
+ +WzsQW2vDamsI2K7TKxLDvS8RHMWfWdEqNJjNbC+AeMaoM9ZH5EGMEN+cA1hlfHIdh+a
+ +6tH3HqaSR5mL+AbkITn80cjEFMe3oumsRT5+bhLdHFdhf4I09HOtJShpJm6RK3RLIqg
+ 6r9n2tfeAialMEZmZn7cgtSI4+3PVRTaS104ELLszEGZ/FdjCkGRCoO7taG++SKSvvle
+ VWsw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8F1Q3LUwi34ntioOu+CVCqDzG3WEjhwjQtEsaRxXWxhjeUYwd+VocMEDRfVRVejFGhQymvomAiog==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz8pQxHdKQ/SsungHDhqwiAabmTZgSV5gQQ9Oq2ON0ZxmiInVL6
+ sGse4jr5gDSPS+VlsJZN44cbZUAeurobwoe20HsLD7CFIExbPrNKG+EeCpYQP4al/xcdFibCTYV
+ lHHzspFiaF06Cjbc6hAy9/T4vvrHWU0s=
+X-Gm-Gg: Acq92OFcD0kMahEJJ3nmmqCuSPn6dNyj3stRn2N8UPfRXIYyfBOMuPMTG+42ej7uA+l
+ EcPaL9kZM+XlfluAUxaHwGji+37JE97jgWz4kcDQ4jOOvLY6aAFyIbTa90IVe6g249EwgzmEnf4
+ owgu55CJvCrP9UjqzlvTukg+0qaXCriw3EsEOlu5qUi0sERmgZYbU69iALuwPQFsOutusBeaaYF
+ pQSfrKEhDy7zpT4W5rzT2ONRpd49PpbqbMjil/hQJx+jbTVE0ASzaZhVh1ElC/wCKlQZ5ozHDXm
+ JA95ZJmPGQRBgVyDXZmcD1pLqZFQyGmAM0qNRenA7IBLNhzvTYxazgdKODhKRvk=
+X-Received: by 2002:a05:690c:e3c9:b0:7f0:d73e:99b4 with SMTP id
+ 00721157ae682-7f7b9524a9amr111398567b3.7.1781608222575; Tue, 16 Jun 2026
+ 04:10:22 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|PH3PPF1618AF7BB:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2dbccffc-ea4d-4eaf-fe9a-08decc57fba3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|366016|23010399003|1800799024|56012099006|11063799006|18002099003;
-X-Microsoft-Antispam-Message-Info: 5WQJffnvwTpuJvd7V88eZ9pFixCVD13ulneHlwFAi2PAPmEn3aPOS6ZlyFohg6rc45WhZvsOOOwF3L6jD0XTj2C4qDMV5u2/836a7DpTKoP+wZJVMMxzgjTLLNx2Zc98gzSc2TFHrED4rk1UzenrpsHpP7KCQfWkujNOdqKKYJhT6FUdCpIoCuy/D+McKz0Ydw7SP0IKgco0IHqQuIXXem4agK6hWY1PKBGE9k8qGdiOwcMbuhHobaKS1thfaLbVPBTkUkia6vJbdj12mSPgDoN9xrUqi+HVjamv8C73sjQ3jqoB560Knevoq3uxU/2qSXMDHvJsok1BJBTB9xCf2jNkF02ElVrBpGWDVetStZnnwCAEG1F7CeOqBkeD8dRs28AQOKoVTCHCUpI/83VXRzUWwtmT9q3RhWjS6hu9rD2Mu/PUz7OIGR5/V/2wNrJ56GYjEM7K3s1Z77rWuYJejGYeOtQmJ0/JZcrIvoj8xivrzLuItZNvo+79xagr2pzE2+YXPEO1mLGvflJyPD9D55NHaB/d4cMF50aOBarudyhNqLhZwO8H9pZNnz17C4TiKFR8ELDilTP2vkbH0y0Dtx70fK2WEOx2pdUJr1xaGIQv81g75gv64QznRwsq5ImP42nuYIXt1zhdZw6sVctimA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(366016)(23010399003)(1800799024)(56012099006)(11063799006)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?3MmeGQ4vOIOp7M5o6Hxs4OSO2PDvM7SeRyBtHVzHOkpg13AOTBxTj9LrqR?=
- =?iso-8859-1?Q?YGuKt0f5zeB4upmGeJNiZ2giXtBTtvLAuUDQC6/DqqeEkeW1bPkpjjZ95s?=
- =?iso-8859-1?Q?sIHInY3jkkBtiT5Y9rON+xagw83uRHjxIyxfccsuzcvVNEmuxTqMCw3oDv?=
- =?iso-8859-1?Q?7Ij6qV9TS+wpUaKUzQnLdROrCilUqhW2rVS2+MblJNtGVVVyVqTPQ3C+0/?=
- =?iso-8859-1?Q?ThevA9wb0FCx0jNFDqidXrWs8pL/ETmmI2VwmS0/vBEqURyJ/n9V2wc+rx?=
- =?iso-8859-1?Q?KEYHuoyHziuJZfm6SsHrEtz8Pym3QafZd4+6JspLJWqEhIjOpD17t1Yu9x?=
- =?iso-8859-1?Q?iT+trZvNdy7MNZ2D8gH5GGTl7wgZXskjTs8UXomHIddINN0VEEoebCgp/l?=
- =?iso-8859-1?Q?C6LEHI2vSf7gPSEjLqIH7GdDj5CqHXVf1NAWicshx5OY2Ju8xdOsKbG1eb?=
- =?iso-8859-1?Q?tDu+Jb5519XT4ZIvX+Av62+S11AZ1bxieiNuf41wJc00tS15WRnuGOgAOO?=
- =?iso-8859-1?Q?lj/GBFc4Sr1I2wa+kJlza2kIJDffW4v0keCctBIeLU37sU7JYHUiZn6XAb?=
- =?iso-8859-1?Q?u8JBOrFgn4nrenmU2VDfY3b858MjsPQM9ciJnuInN64E5q3+u+Rg62txGl?=
- =?iso-8859-1?Q?ypHIt1IBfz/XQV0g/4OjPwGnBE+uX2IMIJnNO5xYfhnwdXHdt64iPqr62Q?=
- =?iso-8859-1?Q?wZOuuObjRJ1hpswhkiN1zML35gDtG1594L2s3Lq+LXkqBcu1YLWVRKWOT0?=
- =?iso-8859-1?Q?SI+39jzYqGq11F3PhbNMWdVrEfUpA4Z6I7p2RxWJ8wkDzWoEMLonNr1juN?=
- =?iso-8859-1?Q?kQ+VfDCH55F8juq7DXuD0V4O2ZqDCAw0uINY2qQPcuvDHkenrQnnqRs3jk?=
- =?iso-8859-1?Q?uDEXDt8OrIuQzWkKAJynqgYT6Nzmmch7TwReVg4bMAhvFowhymUWZpn/yb?=
- =?iso-8859-1?Q?hVKH8L3sOIHQUJZIzXF+Xip+vJ4o5+vS/kX45Ajw1xmld/cBeXAIA5HY82?=
- =?iso-8859-1?Q?2Q2W9zmfNb/3F5ZUD3ajizT260LNcThH1xFbpXCueF6EosTn4KVik4oUcI?=
- =?iso-8859-1?Q?OEIeodx2M1WN8ix1MQJUou3wW8VIilUlVHopB1G4c/DdiY55Em6x4q/5gL?=
- =?iso-8859-1?Q?y/Fz2YtM+2m6WstZqAMBDDhSB0cVh5IWu94PlgVb49y3xsll/qg8f4Tfcz?=
- =?iso-8859-1?Q?JZkZqnPq8KJxIc9AxWqVVsuvMhq6ntxKi0nK+s7mXauJPw3er/fQBp+7Bj?=
- =?iso-8859-1?Q?VrO+Ke0bhyg61yyxB2GdEmLD3bjCqz3KR1mImRxdLXSf5MgQ4SUmDaAfiD?=
- =?iso-8859-1?Q?WhgPLwvsYrfEwyw4aDFpwcQY7P3YATF1iqdq0KpkIA5TG186BDNNk1VSU4?=
- =?iso-8859-1?Q?cCmyXbIcOFHm7cKjHlDPt/qsyXeI3VHhooB7ll+wF4dvWN1VVeBGDbl+rV?=
- =?iso-8859-1?Q?1bKRMt3xgkcsKDNQBfEjIr44QyDF0+SECS4va7sW2+PLffTTDJJy58K9gU?=
- =?iso-8859-1?Q?X0Bw6DxX/PNKaevBG/+pZfPRZ/LDLI97obKsVBZWObCokM3e9WyobPudFz?=
- =?iso-8859-1?Q?Zp7FcdUfQQe0UgoCRB4/jP0j5rhoMrDBXAt/KYNw/gl6lt1jicD4eJwsIR?=
- =?iso-8859-1?Q?ben9xb4fR1HdyM9hcCvMXYGhIAWjFkERK5zMVA4TondW1yge2w4PCV5YL1?=
- =?iso-8859-1?Q?b60+ahi61VnPRtpuhsCDBchfmHADjB9pM0fGIyGCPk3WbKcKs6SeyQGV96?=
- =?iso-8859-1?Q?EiUOjzJkeSCJmGuYf1QaA6m76uCofelhNu5szQUDrlwxzugmPH3dIFn4xK?=
- =?iso-8859-1?Q?T5KkKREHbA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: r/+5+spH4QFOb31ILgjjFTql5fyzRJWO8qqqkQLSwUX8A0qx8ThxhckF15CyxZu4Rv6I9WPoEXV/f/fwJkPohc5e6PxXZlV0nM+vySNiaUJofy5HQuqndXWTYa9IouJhpOpsPypqsh46V2uQB1VYBHlTVbSHpl0sKkwqqP16EoVABIsptv2qLfSI5U0y5R2nT4PEuWJ1ShmAKi99ELLD+lgqJ0vnw3iX5crYSV6Y0g5K6yTPu5ejER+G4PPe/izzx4Gwppesfzf4OkT6b1fCuIH4MVHNdABu3RY5vxxKOgMMSnq0lZ0+H+r301jhFEMetoJB0dAVya1g4fgesMvf5g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2dbccffc-ea4d-4eaf-fe9a-08decc57fba3
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 10:05:39.3657 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i0CWBnnRm1vZprXeuJpsb332ehQ07hYKX2fTi4MkLfNzxtI/sthQ1CWYr3OACzAFW41WlIiAScahV0Ne5jdHtg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF1618AF7BB
-X-OriginatorOrg: intel.com
+References: <20260616-fec-v2-0-49a22680138c@intel.com>
+ <9827508667e0b19e939284e7989a47df278667f7@intel.com>
+In-Reply-To: <9827508667e0b19e939284e7989a47df278667f7@intel.com>
+From: Stephen Fuhry <fuhrysteve@gmail.com>
+Date: Tue, 16 Jun 2026 07:10:11 -0400
+X-Gm-Features: AVVi8CfddeaXSDOf8qsmrNlny4rpNYBN6cmdcKLZIMrdtNAAvNLuHoROx0Tuz1w
+Message-ID: <CAEraX5w2fFBkoEzCt3kK+rrWCsDxBtM+AX4=fmDFUAS-vJxMMA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Unify fec enable/disable across the mst streams
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000003c504306545cfd34"
+X-Mailman-Approved-At: Wed, 17 Jun 2026 10:06:59 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,46 +104,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+--0000000000003c504306545cfd34
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Here goes our drm-intel-next-fixes.
+Hi Jani,
 
-I adjusted the tag message to be less bullet and shorter msg as
-requested in the template. I hope this is okay.
+I'm the user who reported the underlying bug -- happy to provide some
+concrete grounding for why the problem is real and the fix is at the
+right level.
 
-Thanks,
-Rodrigo.
+The symptom: replug of a ThinkPad USB-C Dock Gen2 (DP-MST, two
+monitors, DSC+FEC on both) triggers a cascade of ~40 fec_enable
+fastset mismatches in a ~3 second window, forcing repeated full
+modesets that cause a ~2 minute display cycling loop before the
+topology settles. The cascade is visible in dmesg even on a clean
+drm-tip build with no patches applied.
 
-drm-intel-next-fixes-2026-06-17:
-Only a few simple display fixes around DP MST, CRTC color
-state, and PLL sequencing.
-The following changes since commit 52d4ab1ca790a668cc8f2c27017138b1c467168c:
+Arun's analysis is correct. The root cause is exactly the per-port /
+per-stream mismatch he described: when only one MST stream is in the
+atomic commit, intel_pipe_config_compare() computes fec_enable=3Dfalse
+for that stream, but the sibling stream has already enabled FEC at the
+HW level (DP_TP_CTL_FEC_ENABLE is link-wide), so the fastset check
+fails and falls back to a full modeset. That modeset commits one
+stream at a time, perpetuating the mismatch for the other stream on
+the next check, and so on.
 
-  Merge tag 'drm-misc-next-fixes-2026-06-11' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2026-06-13 08:10:38 +1000)
+With both patches applied (tested on 7.0.10 + series/168418), the
+replug is completely clean: zero fec_enable mismatches, no full
+modeset, displays come back in normal hotplug time.
 
-are available in the Git repository at:
+The complexity in the patch comes from the problem itself: FEC
+genuinely is link-wide at HW but per-stream in the driver's state.
+Any fix has to either unify the per-stream state before the fastset
+comparison or avoid comparing the per-stream state for a per-link HW
+bit. The unify approach Arun has here is the most direct way to make
+the driver's state consistent with the hardware's invariant.
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2026-06-17
+Stephen Fuhry
 
-for you to fetch changes up to 062499cc4813b5a3cbed5dd4fbe0177265858450:
+On Tue, Jun 16, 2026 at 4:01=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
+l.com>
+wrote:
 
-  drm/i915/mtl+: Enable PPS before PLL (2026-06-16 13:06:09 -0400)
+> On Tue, 16 Jun 2026, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> > First version of the patch included only one patch i.e the ref count
+> > https://patchwork.freedesktop.org/series/167664/
+> >
+> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > ---
+> > Arun R Murthy (2):
+> >       drm/i915/mst: Unify fec_enable across mst streams
+> >       drm/i915/display: Refcount for fec enable/disable
+> >
+> >  drivers/gpu/drm/i915/display/intel_ddi.c           | 58
+> ++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_ddi.h           |  1 +
+> >  drivers/gpu/drm/i915/display/intel_display_types.h |  3 +
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c        | 70
+> ++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_modeset_setup.c |  6 ++
+> >  5 files changed, 138 insertions(+)
+>
+> Okay, this may seem a bit unfair, since I haven't dug deep into the
+> problem, but I really have a hard time believing this level of
+> complexity is required for FEC.
+>
+>
+> BR,
+> Jani.
+>
+>
+> > ---
+> > base-commit: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7
+> > change-id: 20260616-fec-82a3d27e0f11
+> >
+> > Best regards,
+>
+> --
+> Jani Nikula, Intel
+>
 
-----------------------------------------------------------------
-Only a few simple display fixes around DP MST, CRTC color
-state, and PLL sequencing.
+--0000000000003c504306545cfd34
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-----------------------------------------------------------------
-Guangshuo Li (1):
-      drm/i915: clear CRTC color blob pointers after dropping refs
+<div dir=3D"ltr"><div>Hi Jani,</div><div><br></div><div>I&#39;m the user wh=
+o reported the underlying bug -- happy to provide some</div>concrete ground=
+ing for why the problem is real and the fix is at the<br>right level.<br><b=
+r>The symptom: replug of a ThinkPad USB-C Dock Gen2 (DP-MST, two<br>monitor=
+s, DSC+FEC on both) triggers a cascade of ~40 fec_enable<br>fastset mismatc=
+hes in a ~3 second window, forcing repeated full<br>modesets that cause a ~=
+2 minute display cycling loop before the<br>topology settles. The cascade i=
+s visible in dmesg even on a clean<br>drm-tip build with no patches applied=
+.<br><br>Arun&#39;s analysis is correct. The root cause is exactly the per-=
+port /<br>per-stream mismatch he described: when only one MST stream is in =
+the<br>atomic commit, intel_pipe_config_compare() computes fec_enable=3Dfal=
+se<br>for that stream, but the sibling stream has already enabled FEC at th=
+e<br>HW level (DP_TP_CTL_FEC_ENABLE is link-wide), so the fastset check<br>=
+fails and falls back to a full modeset. That modeset commits one<br>stream =
+at a time, perpetuating the mismatch for the other stream on<br>the next ch=
+eck, and so on.<br><br>With both patches applied (tested on 7.0.10 + series=
+/168418), the<br>replug is completely clean: zero fec_enable mismatches, no=
+ full<br>modeset, displays come back in normal hotplug time.<br><br>The com=
+plexity in the patch comes from the problem itself: FEC<br>genuinely is lin=
+k-wide at HW but per-stream in the driver&#39;s state.<br>Any fix has to ei=
+ther unify the per-stream state before the fastset<br>comparison or avoid c=
+omparing the per-stream state for a per-link HW<br>bit. The unify approach =
+Arun has here is the most direct way to make<br>the driver&#39;s state cons=
+istent with the hardware&#39;s invariant.<br><br>Stephen Fuhry</div><br><di=
+v class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Tue, Jun 16, 2026 at 4:01=E2=80=AFAM Jani Nikula &lt;<a href=3D=
+"mailto:jani.nikula@linux.intel.com">jani.nikula@linux.intel.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Tue, 16 =
+Jun 2026, Arun R Murthy &lt;<a href=3D"mailto:arun.r.murthy@intel.com" targ=
+et=3D"_blank">arun.r.murthy@intel.com</a>&gt; wrote:<br>
+&gt; First version of the patch included only one patch i.e the ref count<b=
+r>
+&gt; <a href=3D"https://patchwork.freedesktop.org/series/167664/" rel=3D"no=
+referrer" target=3D"_blank">https://patchwork.freedesktop.org/series/167664=
+/</a><br>
+&gt;<br>
+&gt; Signed-off-by: Arun R Murthy &lt;<a href=3D"mailto:arun.r.murthy@intel=
+.com" target=3D"_blank">arun.r.murthy@intel.com</a>&gt;<br>
+&gt; ---<br>
+&gt; Arun R Murthy (2):<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0drm/i915/mst: Unify fec_enable across mst st=
+reams<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0drm/i915/display: Refcount for fec enable/di=
+sable<br>
+&gt;<br>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_ddi.c=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0| 58 ++++++++++++++++++<br>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_ddi.h=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0|=C2=A0 1 +<br>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_display_types.h |=C2=A0 3 +<b=
+r>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_dp_mst.c=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 | 70 ++++++++++++++++++++++<br>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_modeset_setup.c |=C2=A0 6 ++<=
+br>
+&gt;=C2=A0 5 files changed, 138 insertions(+)<br>
+<br>
+Okay, this may seem a bit unfair, since I haven&#39;t dug deep into the<br>
+problem, but I really have a hard time believing this level of<br>
+complexity is required for FEC.<br>
+<br>
+<br>
+BR,<br>
+Jani.<br>
+<br>
+<br>
+&gt; ---<br>
+&gt; base-commit: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7<br>
+&gt; change-id: 20260616-fec-82a3d27e0f11<br>
+&gt;<br>
+&gt; Best regards,<br>
+<br>
+-- <br>
+Jani Nikula, Intel<br>
+</blockquote></div>
 
-Imre Deak (1):
-      drm/i915/mtl+: Enable PPS before PLL
-
-Ville Syrjälä (1):
-      drm/i915/mst: Call intel_pfit_compute_config() for sharpness filter
-
- drivers/gpu/drm/i915/display/intel_atomic.c |  6 ++++++
- drivers/gpu/drm/i915/display/intel_ddi.c    | 11 ++++++++---
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 ++++
- 3 files changed, 18 insertions(+), 3 deletions(-)
+--0000000000003c504306545cfd34--
