@@ -4,150 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39984CD98E1
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 09:18:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE0FCD98DA
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 09:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E67E310E98F;
-	Tue, 16 Jun 2026 09:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA6310E9C5;
+	Tue, 16 Jun 2026 09:37:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hIUGCoJF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gx7WunI6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0407C10E98C;
- Tue, 16 Jun 2026 09:18:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE79710E99F;
+ Tue, 16 Jun 2026 09:37:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781601532; x=1813137532;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=mGXipTWn3RPkzZ938NhiPU31Ni31yVbWizITV4ftLzY=;
- b=hIUGCoJFHpEr8iFk8SsdabRJBOoRZy5pgEvtLUd08/JSOyyieCieb+4n
- yPaU2ez3PPxNAx0R4WgGNigzPGJqqoWVCtiYgZTs0bJwv89kB72FLNiTQ
- OAqcWE1CCdOJ+AWuA4A95C4RXa2rsp/cMPLKXpWO4+sZtKX/B2Jo5uIXQ
- /N6uEije+ClhozGQaSq3BS1PreoR4xv3EkmxdU71PzgPoMrcQKOmrJIFL
- mLGMh0z+jkRvncJx3nRyh8InOBzDwna4/gN9UJpcZLN9UkkeD+ECt54B9
- l7dtGINyySgJ/huGv0c6CGHI7cWNt238ANiY63JHmUnzSEmZjEcil5VEt w==;
-X-CSE-ConnectionGUID: FqGR1hXdR0uzqcDKvthtIA==
-X-CSE-MsgGUID: eYUPfU6rSw+hg8ET91qgIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="99934292"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="99934292"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 02:18:51 -0700
-X-CSE-ConnectionGUID: xhJFs9r5QLK/0J1bNb5aHQ==
-X-CSE-MsgGUID: ss3Azs0EQZK6i9VL+fbbgw==
+ t=1781602671; x=1813138671;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3X+gc7y4iBGyBoLjKwB2nGly1YebL8MguN9JQX/qRbY=;
+ b=gx7WunI6uZIhKorCVrxhH3hzxdUIHoOzaeesVRQaQwhfemM2vSIDsOKT
+ ZxBlgHhJRQxZApF9wr6JzZImwopp5c4IvTPXIqoqFPhhXlWLnc8/T3+po
+ 5xtf0jG86xhtL3zYx2x9dLbiI3XuBPHRwusM8U7Ji/w70tIx3o+kXQON6
+ fdWymNKqp5Sgtj8MfVDw9YfIErB4Swei9yIPqJJ8pkDZOozsUQlBX93kH
+ wdPlHa0P6FNacxr2OuH9rtyCfrC1n/rL6Y2CmcTNJ0ee/0t4gdO7Y+9x4
+ kSI9MyWmBMp0gCZMn2CVU9j4WYvNKft4G2M/uAkZh1JWX1MDl7CfxK2Fd Q==;
+X-CSE-ConnectionGUID: s8zA7lGSQEG/vzQ544GzRQ==
+X-CSE-MsgGUID: Dj4K+fAFRD2gqzsgG3VRwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82262483"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="82262483"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 02:37:51 -0700
+X-CSE-ConnectionGUID: 9rfmbq1ZQXmpac7uaq9JkQ==
+X-CSE-MsgGUID: 1SeNnT3OQeWo953KkicXLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="252691909"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 02:18:51 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 16 Jun 2026 02:18:51 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 16 Jun 2026 02:18:51 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.23) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 16 Jun 2026 02:18:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fH7zs9F+FmZrh6DZYBogxZymp5dXfxRXciFC0oPDjwows21K7FHeERaxbNke0iEVWYqCkrMhl1ovaPD+gbsQt1qEZAjMzTPcJGPyVUkf5MzLjaK4GGesRn+YNHHlNHnROjlzv44Gs08nH/L1guLjGCEQdRwRVi3m8xKikPsqIOETo6IkVGDgF0169/7ne9vcRn8yzSmLgXnFOoy86MiR3k8xMswHCvhAZes85R844J0LLUaMWr+hDvSTNaGXtGtc4/Nx9Z6tC+Aw7tlqLncfNGLclSFyhoOeEYiEL++b5p+4m/XNTauyJ3ExKvgORBpV9qXBOwFd3wcxVUw8HdbUwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4bdItzJcpZHCIA6Jq9q+UWyQ1nGZ8utuz1Jo/iUMfPw=;
- b=GY09nbghCQ66TIAUt58z9VxgIZL5a93V08hSHhy7VvuuV2tiCz0TBWJ1kjwiSoAmmKzLITh1hthQmPpj4/HBwaYqMNuOrVycrzaDl5EcazqBnmdKfkWvsm6wRDSKj3nCmJ+f6zcZsKQvmBb+HnjPk7x52PX8GSBX4Yqvw8gyN/QnOSD67u2pJ75RtJnkqnTHGBJC295eV+ixA+VuByQ/KxyILAPmkXx8hbPlFu7K6eZME3PpjzPkkDnZbsskV7mEMlicxpjvHlHl91Vk6t4rFQzISXq4N77A57uupIlhWiSu/74LvPH5bSYgakB0il9f9dlnkXY7Wz+JZhJsYJpBrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by CH3PR11MB7764.namprd11.prod.outlook.com (2603:10b6:610:145::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Tue, 16 Jun
- 2026 09:18:48 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7%2]) with mapi id 15.21.0113.015; Tue, 16 Jun 2026
- 09:18:48 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: Stephen Fuhry <fuhrysteve@gmail.com>
-Subject: RE: [PATCH v2 0/2] Unify fec enable/disable across the mst streams
-Thread-Topic: [PATCH v2 0/2] Unify fec enable/disable across the mst streams
-Thread-Index: AQHc/VfVG8Nh/kcQk0+S0d+CHaI6y7ZA0egAgAATPZA=
-Date: Tue, 16 Jun 2026 09:18:48 +0000
-Message-ID: <IA0PR11MB7307A79EC4257F777C568FD1BAE52@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20260616-fec-v2-0-49a22680138c@intel.com>
- <9827508667e0b19e939284e7989a47df278667f7@intel.com>
-In-Reply-To: <9827508667e0b19e939284e7989a47df278667f7@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|CH3PR11MB7764:EE_
-x-ms-office365-filtering-correlation-id: f8d1df8b-994a-4d9c-769d-08decb884632
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|38070700021|22082099003|18002099003|11063799006|4143699003|56012099006;
-x-microsoft-antispam-message-info: Osg9GkL6hdTdtzy2Xjky2yAZVneO4zjnRtZHBmnd8qsmJstAvfEb5XNfPS2qcHTZptbpchHKZtj4yTz3GBKMNv5Oh0RWbmMOb5t2cwI2W47vIG+Uzjf2FjchcheFtww6rWxLu84OTLM4xSKOYYn0bTCOYE53/1XRjTN20HE9N8zcDsTNQiaP8yJxW+m8V3NODJX/o6JJGdu3AoueRVO3rqlU8RoKUQj5KLxiVnLqpQxM4xe0eex3Oa0rRpNRv9ypdnwbNgfb46jgHplN7QviLOpVjF90UIfGpzgvbbxYtqJxeC+0o4oYaEqex2NG2yEsvjkKsFzxfiXm3QI1wuW7hD5jIVPiNwAjcovRTdbsSvmShyvxcRYFile+Tw/xKB4Ew7nUZ9vdn+aczCtOsXAE7+QpDNZ1J7AE5S2BZz1Vo13snckHCeZOdyMqj/YYFXx8n8PHI1/6cFj/u16nYCrQ+BB0UtZCy2tXvbIoTzw/jj/iQ1+Upt6RQEi342+DJWjz5V/+r7I9FmoQC+OUWrU5UMQJjwDX5GSNWO4z0KnigTymwejY5EITvglZaOoIs53MTcDZPdqbTxyxRUXWxv4kYLx0Y6xYWDu79awVCHdyb19/hrOvRW/ysNaEiIG41Dvah37SgApkp+MavZYkQKSjMpjwn4EB8T7sjQWXDqxmUZqiNmCVyaMEwN04pI4gnbOmXASmZCZxm2utT2VtmBR45w==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(38070700021)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Cw9//gsDqz7Nx0e73czf3ViX6f+/Z8z79xCvhGKseDHBSMur8mmI0WlKUT/+?=
- =?us-ascii?Q?ARCZIjWi6CPcoJ9UsN6eJ1tBq9g6sLhL88RXc177soEXjtT4wCaYFfE51Hlv?=
- =?us-ascii?Q?m3gWv80KC+1wfx+mVrTfAP/QQLWpHFJKLO30oguJ8s7vGJcVAO4eI5alqtDP?=
- =?us-ascii?Q?cAr6WV52z4qAUfpMag8E3ORWQKsOUjCkLK4QmeGRaiSFFozNWVOarOCb9ji7?=
- =?us-ascii?Q?ACj7d5Jji5YtnCurmHqEdfE59JpyhbOYMj/2ttRK4ufZxSIZ9rTfWK0lmC4Q?=
- =?us-ascii?Q?OM45HzMXFp0YId9uEsfiVnzQ71+SRlH2rSA5iri3MqVpFliD7nmaMiKyTybB?=
- =?us-ascii?Q?Um8ts2bev6P+gdp3BMBTEGFgFfE5jPjmk5RATxV9/awbRjvwuobxUbIuiXJL?=
- =?us-ascii?Q?rQj9LxWThAJOI9g9unBdKYe/QCD6tR2Qlfeg5iKoC1Rs72Px/Mc5U1hpI2KF?=
- =?us-ascii?Q?gTHHafbpJbKh1AVvCZs+qBSpI5VaSg5Yz+2rXfnM715nMhf0/IH1ymxhufgY?=
- =?us-ascii?Q?sc/Je+BXD3RteViKuRvIWprnZzI2Yb+VCTVm7LtwD60PJhCCduFSNLIiJCkl?=
- =?us-ascii?Q?2OjQ1GLxJEg+f3wAA2FDx1Z7zZYliQPcu05NGNjQ/prICdq37ByPyLGYLkVH?=
- =?us-ascii?Q?+T8yX+TQuTnSUjPkB0tqtcu3+ZKWZmtD9PAPb5oCcYGln3Ig87CjNOwmoQ3H?=
- =?us-ascii?Q?gwBN+CY1h+HVpLY7VxuU50+gNc+oUmNjegUlg35JEwsNkgpTLQsPql5iYDhU?=
- =?us-ascii?Q?R0tt10HZFH9oIiWRoefMKHWmRSpUfYDSjYfqz0p0EjRgfWB3KT0N00l7sK8M?=
- =?us-ascii?Q?79XJv6A9Fr2iEG4ZjZPHilMD7JBc4YISsUwb+M9/8c5MRAnDKxnRLEK2NN+r?=
- =?us-ascii?Q?sEGky6X4g9hF2q/HOCRDSy2T7/mhJRtMaxJb4PLXS/76dRGIdS6o+Ukr4fHf?=
- =?us-ascii?Q?gzTHkMXYWIWkbd3OyE6i4I9jMCev18HPLLi1rx+NJNPaFhp6QQkgzf1a3Iri?=
- =?us-ascii?Q?2jXpj5XlM8lJiNjxJXVi7IKfIKH2f/LNMGFIDIX79DxUeprWmzwbPyzmnIE9?=
- =?us-ascii?Q?/SwR623seZgpgXx34jZekISbc9YtnJvdivC0mtPZHbXQsfT2mM6o5Vx/+qhT?=
- =?us-ascii?Q?Pn3uADfnHZa1Ixsx6hLEU1+3RYQm5x5TaBb79Mv9SNSWjQctNyiQ+h+XQzsQ?=
- =?us-ascii?Q?SeydA/Fu1gxFK56cg6KYTTp7h+VRHj2MJPtrLaveIB1cRcHmjzbdeEsqml1L?=
- =?us-ascii?Q?HACFiUp8/XJeSilBlcjhrWDn59dxdWwNe6cHjBZJSWsOCKOwL+nijf1j+Ez8?=
- =?us-ascii?Q?X2KVgYGh5x2M0HiEMVL4OuvfWPVvJcm3C6s34AE3wTmKKN7P8ytzJ/t5dvpQ?=
- =?us-ascii?Q?uyHFOSRNolr5NIof0Z//dQTR5vumZrjcW5IiGTtJDGC9qEBKPbUgfc4GSfDf?=
- =?us-ascii?Q?QWv4u9XeR6dICGlB6UoOwg8+EW0DMBOheY84RjDT/EhtmcmM/vjAG35iQZcg?=
- =?us-ascii?Q?3BE0jsxWvof0AwWTeGz2XrPv0EJoZu1R/gtAHu7m46aajXWoXsKPN4t3u025?=
- =?us-ascii?Q?4xOeugO+DoKEbrkZbUcuQ398AQQ4FvHi7DS3tRjlcLuxhaubjsltYufAEHuQ?=
- =?us-ascii?Q?5iedUi3te2cxw6V4dOHGPYmmQg38Y0it7p0VFL2GnkZsc//zHr2UCgWB5oBi?=
- =?us-ascii?Q?bIVcXVLvgcAWTDsKMEABc2z/Xwaj8yl9nJQSRiEbnF0a53E+YEqdCV9PTlwq?=
- =?us-ascii?Q?rj+pRsZ2Sg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="243351335"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa006.fm.intel.com with ESMTP; 16 Jun 2026 02:37:49 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH] drm/i915/backlight: Set brightness to 0 on disable
+Date: Tue, 16 Jun 2026 15:06:36 +0530
+Message-Id: <20260616093636.2334540-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: FtFW8Zn83AXAZKAC2qrxqxdx4W14/VZOdI7rBq5vTOVzAjDZaDD4Ppwc3aQBerTBelmhkdoqGsvWuWt7Dno8ALo2tFmWGEeOR5k/6qfilVD4jkBtigkH1IMgjGiPEom5jFUHxRmMi+gOh7NXb1STwvViZgtbkPb+s0rflyeSciBuWeO7zz/Av9m4Hiy9Eo7S4n8+9DJ3s/TnaMz+WoKdKlwMDI+wg9okVs730wVGLLZp4arQLMHhDGMB8+NfgM6BZVNsLImzdhJ/fJMawA31au+8E9b2LuhGgTLdQBhhrjj8dTfVzclN5z/0su0EA/vSnARoCoMjzQAeKt8d2IbF9Q==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8d1df8b-994a-4d9c-769d-08decb884632
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2026 09:18:48.6745 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RTRQTL9HmrzE7btBjm8RdKMn4LNlGEmnpGvRs2+q0fpSEY+mftoDBoAlIf+8zIBQn9uqg1enSpDjE0xfK2ewyg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7764
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,66 +64,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On backlight disable for AUX based panels set the brightness to 0 before
+disabling the backlight. PWM based backlight also does set the
+brightness to 0 before disable.
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Tuesday, June 16, 2026 1:31 PM
-> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-gfx@lists.freedesktop=
-.org;
-> intel-xe@lists.freedesktop.org
-> Cc: Murthy, Arun R <arun.r.murthy@intel.com>; Stephen Fuhry
-> <fuhrysteve@gmail.com>
-> Subject: Re: [PATCH v2 0/2] Unify fec enable/disable across the mst strea=
-ms
->=20
-> On Tue, 16 Jun 2026, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> > First version of the patch included only one patch i.e the ref count
-> > https://patchwork.freedesktop.org/series/167664/
-> >
-> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > ---
-> > Arun R Murthy (2):
-> >       drm/i915/mst: Unify fec_enable across mst streams
-> >       drm/i915/display: Refcount for fec enable/disable
-> >
-> >  drivers/gpu/drm/i915/display/intel_ddi.c           | 58 ++++++++++++++=
-++++
-> >  drivers/gpu/drm/i915/display/intel_ddi.h           |  1 +
-> >  drivers/gpu/drm/i915/display/intel_display_types.h |  3 +
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c        | 70
-> ++++++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_modeset_setup.c |  6 ++
-> >  5 files changed, 138 insertions(+)
->=20
-> Okay, this may seem a bit unfair, since I haven't dug deep into the probl=
-em, but
-> I really have a hard time believing this level of complexity is required =
-for FEC.
->=20
-The problem is FEC is a link-wide property: DP_TP_CTL_FEC_ENABLE is a per-p=
-ort HW bit, while crtc_state->fec_enable is per-stream.
-So synchronization across the mst stream is required.
-If not with refcount, maybe with get/put which eventually will be a kind of=
- refcount but different name.
-Other alternative can be to add a logic in disble_fec() to check if there a=
-re any fec users within the mst siblings and if not then disable else retur=
-n. But this only change may not help, will have to remove the crtc_state->f=
-ec_enable compare and HW readout as well.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ .../gpu/drm/i915/display/intel_dp_aux_backlight.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-Thanks and Regards,
-Arun R Murthy
--------------------
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index a8d56ebf06a2..e4ce39c1eebb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -355,9 +355,14 @@ intel_dp_aux_hdr_disable_backlight(const struct drm_connector_state *conn_state,
+ 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+ 	struct intel_panel *panel = &connector->panel;
+ 
+-	/* Nothing to do for AUX based backlight controls */
+-	if (panel->backlight.edp.intel_cap.sdr_uses_aux)
++	/*
++	 * Drive the DPCD brightness to 0 before tearing down the link / power
++	 * sequencer so the panel can blank emission gracefully.
++	 */
++	if (panel->backlight.edp.intel_cap.sdr_uses_aux) {
++		intel_dp_aux_hdr_set_aux_backlight(conn_state, 0);
+ 		return;
++	}
+ 
+ 	/* Note we want the actual pwm_level to be 0, regardless of pwm_min */
+ 	panel->backlight.pwm_funcs->disable(conn_state, intel_backlight_invert_pwm_level(connector, 0));
+@@ -519,6 +524,12 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
+ 	struct intel_panel *panel = &connector->panel;
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+ 
++	/*
++	 * Drive the DPCD brightness register to 0 before clearing BL_ENABLE or
++	 * dropping the panel power.
++	 */
++	drm_edp_backlight_set_level(&intel_dp->aux, &panel->backlight.edp.vesa.info, 0);
++
+ 	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
+ 
+ 	if (!(panel->backlight.edp.vesa.info.aux_enable ||
+-- 
+2.25.1
 
->=20
-> BR,
-> Jani.
->=20
->=20
-> > ---
-> > base-commit: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7
-> > change-id: 20260616-fec-82a3d27e0f11
-> >
-> > Best regards,
->=20
-> --
-> Jani Nikula, Intel
