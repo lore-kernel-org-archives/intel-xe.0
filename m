@@ -4,151 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69E35CD98D2
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 05:14:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04AB9CD8CA8
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 05:34:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8E6910E579;
-	Tue, 16 Jun 2026 05:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B563F10E832;
+	Tue, 16 Jun 2026 05:34:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LP2H/D8R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dbkkwlAh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC08D10E579;
- Tue, 16 Jun 2026 05:14:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E69C589130
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Jun 2026 05:34:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781586845; x=1813122845;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=pFCY2Rohx4SYgfw3kogwGIIL34zLeU2gcVvMIdlWtwo=;
- b=LP2H/D8Rl8ifk/m20J6VCU4K9uFVMu7EEsQOuXZBR90ElXYEg2MaSEm1
- 4EcTlgYoI182JeSAoJdXc/WBviQZTbfO4RtsokY79huKiKjFnjK+BWDYK
- MifrCYgQ1ll/tiSXkn3hXkd+iRrdcL/sucoAxzqBRkOwRpEikfeCiUPOt
- f7ASWNfYpeFMtUD3mLwl4YVo+zrXcbUukkGAAedzFpVLWTe3GerkQasyF
- kk+/0pht5mechJ38TfM3rrefb3Gu4zriocMHRrAe1MBuhs4DWjtVL2KUJ
- IstLSCqhvjnMgUb7kctnO2ny4hCmNhaq7ihNqS3pnrRfJlkRj7T1CJ8D/ A==;
-X-CSE-ConnectionGUID: P41sY0UITke0QEOZXQKB5g==
-X-CSE-MsgGUID: PXJSH7GATXKBPCGaqnnoFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93457655"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93457655"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 22:14:05 -0700
-X-CSE-ConnectionGUID: 13WLl/COQ1OUo7Ason3Fjg==
-X-CSE-MsgGUID: CINQoKMsSsOd0J2j6Je02g==
+ t=1781588055; x=1813124055;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eqGmFE5QldGFFMm06DWvLJGT5Zg1gtenDzTEu5N2KYE=;
+ b=dbkkwlAh5Km0rlVmV0GrgYfv9HawCwMF95bn1boydYdMLl+9b3Z1zao2
+ dMCbPaqJH9EITOM0+zKC+PBCqq8eukLrs+iTs6iR2Fu/An7JIsrBG3lnO
+ pi3eXUCGq2yRcRO8DHd/wIBeOrqUCrKreiEH3qG4o25DbzAArWSPGWhuW
+ l31uWK+P9fQqBwyJcV/yQnqc+NOQexxlhSe5qzXvA5QBR2J39c8d4Kr4i
+ 7hyrHGGy1dVattKD0IMm+ZYv9K1UpTWNXqf3vyYVuo/C6cnXX6lTL5QxT
+ I/s1wXmMWN9U40L1UuabQtXjf8Usa4C6n7YiM7Z77JcI6VD7oEea668xs A==;
+X-CSE-ConnectionGUID: O/2dPCgsQvqcW8msUc78RQ==
+X-CSE-MsgGUID: DSaz8llQTSG4F42dXI1tbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="107772867"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="107772867"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 22:34:15 -0700
+X-CSE-ConnectionGUID: U/bLsfjaR8mRpYS3+qQtJg==
+X-CSE-MsgGUID: bvwneUXsRLa4UhwQiQ0JIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="251585035"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 22:14:05 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 15 Jun 2026 22:14:04 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 15 Jun 2026 22:14:04 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.59) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 15 Jun 2026 22:14:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ma34oofl/K0HvIvUxxC6xvWQrIx+CbiRPXT2RZS4L5nIhnd2d0CgdfG7OtdiKCDSPDULzg4Gk1bqE/y2ZSWhO28nfTBEsCJk7KR0NUF7KJqbEayiYL3E2deJchHCWcyuQogJ6m+VLnkqhHSKGrXXoPRxuIYSQxIO+dkgTCSJfhXSCxSnUKaUMdQWaDjMQ29JnR4Zbg7NM6UEYsaeVVKQiwMvhfQ4XzDi6G79P4xrlpefJM1XJ3jKtRiiRKdCir9pLwaFrE/ZDyKKXR7xo8WJJ5uY0xL4aeJvZS7rOuRc4ciHKxaYpT8uFnrvV3QUJr2eItAenV1e8qt2JK44XRxHdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BuF2yPMZMSsgpKVZau3dql+ouZ1m57MBYftnpL675u8=;
- b=Y+8jS4YD8b0GUhEs9KZG8y0CpKpuKfrLOFKIG8GD+YqWFCya6PCIQR7o94hAs7cMtOEbfMurq7TEXwJp5RbAV1NhPVamBYge7HZ0r/498X79ppiduTLzMW0iLjXGBkoSXRUapgLGhk7P09KgVRjenj8a7nplcj5R38AnidFZcgrVqDXpPCt57ZJU3exbzexV8+Z+E2OJH5qa2pNVMtjhmK2A8vKsff55abhJ0xqSE7LqxknSlKBr1KIEz0yAmLa9pt0TVmE5ymVZIObEXPjqhSUPaDDIiJtrHc6YiXDK0BC1Qqx5BuKzFU9FvN1WTCKiU32pxxgBvy19cH5ePB6odw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
- DS7PR11MB7929.namprd11.prod.outlook.com (2603:10b6:8:e5::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.113.18; Tue, 16 Jun 2026 05:13:57 +0000
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb]) by DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb%6]) with mapi id 15.21.0092.011; Tue, 16 Jun 2026
- 05:13:56 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Hogander, Jouni" <jouni.hogander@intel.com>
-Subject: RE: [PATCH] drm/i915/alpm: Move the check for PSR and Fixed RR in
- compute_config_late
-Thread-Topic: [PATCH] drm/i915/alpm: Move the check for PSR and Fixed RR in
- compute_config_late
-Thread-Index: AQHc+iDUb5jTGcA+iE+5SifUu/bcrbZApqLw
-Date: Tue, 16 Jun 2026 05:13:56 +0000
-Message-ID: <DS0PR11MB8049EF25E2D6CE5F09F07455F9E52@DS0PR11MB8049.namprd11.prod.outlook.com>
-References: <20260612034827.1528743-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260612034827.1528743-1-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|DS7PR11MB7929:EE_
-x-ms-office365-filtering-correlation-id: 95bc118b-63ab-43c0-4ea8-08decb661124
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|10070799003|23010399003|1800799024|366016|376014|38070700021|22082099003|18002099003|56012099006|3023799007|11063799006;
-x-microsoft-antispam-message-info: gkqHLByqArBsR5L7a+LnQpdtnHpYB+Wc8F3iiE4qcn3nyrLjaMm1S++QoDp+QcIPyrlqtodMTo6317/+dFQ84ItHYah6m21admOiylgnxTAnRwiIobvwQw5JrJlOmkLkzBk3GKdbraUT6RRcf1mGSGSNJO/BsG0MU5R2CK7cxxyQYH0dh8dTAkZGrzPk9JN4sR/NNU6d3TyqCE0W6vfHKK1jIIEH1mdeMlm/LdB8OcRTFTS6mtodTHPgjKs+RaJ61WwpR2BW2nxen20I/o2TjhNJ2gdrNgxPXscE+Xn3TPEA2his1+yJXjUnmxNiK2KNRESDWrvADAchwS3ZTtWQcA4MRmlFHN2Zngz/rryRhEH9ClIssv3lHwnBK7T2WBNHEfKsxyeQ1paMUB+bH7TH4icuuQG0tUaUqzK3P1UxQv+1gxW84GMWeZ9sw2jcYintqgqCMc31hjjtuPGWG6ld7qr6nnOGJtOlA04TbAateBIy2mVTSxLYFanAgrwdeeW/XM2vny3Ry15J+jpEpFliQ1om5yL2qiy32ZWO+mOKSCKCOdT9XEcC05CpnHieqqRB4qz+Fq5r7YAxW0eyVa+hHt4gsyL2anLBYHsHnAzro9E7mOu1X5uMtRZTOdKWiRqL1zRaVIvySQgbZWvp9NCn/3g4SxgwGTihmk/y6EYZHyizuRO5NLf/wU5nELclmmgO3p5/RsipRHl8v/oJFLG33fRDB9bxOdBlK0q8NLX1hVE=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(23010399003)(1800799024)(366016)(376014)(38070700021)(22082099003)(18002099003)(56012099006)(3023799007)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UA57F6Ir0tg3pXR4RmC4fuDq21LrnfHw5eVwRNQDYCpcvi8/6EDw3bs73G7E?=
- =?us-ascii?Q?enUK1s5y9orCc8nhjrTH9VYI/TupoexiHOkCzeuASITvIMN5L139uDckHT6A?=
- =?us-ascii?Q?As70Q32nb2p9Ng0ZXanW79f9lbPll3EzqB3PNGHzMnsyMJS3TawjcK00KCN3?=
- =?us-ascii?Q?CGcHx8zfYR3aZPyXKSCdg8+5uZERgZv3IIp26jDhGsA89WgjmsguxQCWHv9X?=
- =?us-ascii?Q?E2+gbPmBUdltdvvkYnZ+79tYeWes8HR34X1zRbB0bLO9m1ihFqfrx4dE9dVt?=
- =?us-ascii?Q?eDsrqlTrWrovNg/XKD0oeIj0g40QOveCP/MvudTPJH7XxW0Mq7+P8RFll/Bh?=
- =?us-ascii?Q?1+Q8mdgVHoc4B6pGkaYhELMkHc9uMH3rqRzD8urLz4fB8Ejqx2Pyk1OwqvML?=
- =?us-ascii?Q?Az8mQr56gVrrj4fsCusJ7kcuixWzSH+2Idsha1odPD06775UK1LfJrVnO4M8?=
- =?us-ascii?Q?7SnlmiSOiF3J7ENR4u5MuSR5OkCarq2+LXFZcY7hUC7SO8Ik0X8fiG4E1EtC?=
- =?us-ascii?Q?77krbV8d38I5JeoiOtSMNrYQ2ys0ThI3km2HEsSw7oVn3S5TBrDmVdDjURFI?=
- =?us-ascii?Q?c+A8Rl0gi2Ra/5VKi2TrbwcXQrEl6nBCneDDm+K1wHSiIVdCssEdMF37so+t?=
- =?us-ascii?Q?tPM1HZnJTWAkzconq0VQyN3scPQ8WZ0qBktHwNYUEezfO9pPSt5YkVYZeOCq?=
- =?us-ascii?Q?+WDTD5B8ZLFPVVdno5aN8ykXApD56J3KsqUZ+zECPzu79eE0u8w2PxrM2Xy+?=
- =?us-ascii?Q?2RA6Tf2s9t+GFZ0lnHVlCeuW74380Sh7Nh2LS36zO5uVEXO87CQMr8b6shdk?=
- =?us-ascii?Q?bMPCuGIOeAxPt/m6Qg+2hCzJK2M4R7xWemlDd//0rgzBT28JZ4WZ+B8udGVQ?=
- =?us-ascii?Q?yUtbFaXMNzBDIqOhdKZLBwjj2cjBR+WUBLRQJlNDRZbru1kRKyRfL+WetIbH?=
- =?us-ascii?Q?1qvui37U26Vovlu7AiAnjobrtAny1R9H45ELLToF+6BkRCbUO8lADBtF/PYV?=
- =?us-ascii?Q?KnTA3/FS9AxoN3XpWWFMEW2Dl4UXKnBhgM1MpQExBEqgnQFKPvq7jIvFpCPi?=
- =?us-ascii?Q?BSN7pv2tpi73uqgs6K5t+oQTLA+poqBf0aJV/OIh24Ov5gyTCyJ/0r5b/xTg?=
- =?us-ascii?Q?BBEV6RV5ttyc/Y8RNRHrC5DvjIMusZLOaUFUu6WY6JWkozrJFk/CuAsKITuu?=
- =?us-ascii?Q?QK1UsGPzjNkT7J9s0MVzFKukRrXuLQLrrh4S7OhIF6TMSB10uOwvUnyZc6y3?=
- =?us-ascii?Q?/PSWPlDiiFrsoHqfPgFleOg2zHU+vYwuxojCgCcjj5W42+MlRNjTE9ua1lv3?=
- =?us-ascii?Q?6xELyUD4S+lpMRJxn405vzbwN4QKaMYM3Wi1AoCvwHXFL6nOFMl2EpNc2U0d?=
- =?us-ascii?Q?4vnwyy3X7ZLLwS48TFNe3n86lput0jMBHh0AQT3qn3Obu2s45HwqAAsevK7Z?=
- =?us-ascii?Q?jj9N3xfro4Y+5iSw6lwnicn95+acG1EOz8Eum9UGrSM18bX/al8xM+pc7eET?=
- =?us-ascii?Q?bM29c99DEgRneS5fYyZsis/1W4NLlgP/MMvkuneGSP+TVdcBQBIuI+eGhVfp?=
- =?us-ascii?Q?5Rm69MZmo9o96aJEil9U3BWsbZUVOxFbYArbARAaO+sAYEancAKXN871hwkO?=
- =?us-ascii?Q?0PrVpVxcnwrVVSprTLpRCHiIeCecCk7V3YDcbW/tb+2WhXf6jhpJ4EbdDrQV?=
- =?us-ascii?Q?0+2awTWxIFZ2iGWEGvSNavlr+ChVj1oFuirz/3DHPPVN+FmelBZoSc4Jg1Ma?=
- =?us-ascii?Q?sl+57/UJNx1HvVzdDpSUpljVj4NNZfU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="285784915"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa001.jf.intel.com with ESMTP; 15 Jun 2026 22:34:12 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v8] drm/xe: Consolidate debugfs fault injection functions.
+Date: Tue, 16 Jun 2026 10:59:32 +0530
+Message-ID: <20260616052931.72692-2-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: UPFIAnHOkpj0EkgySSf7xNOOdCjE4wQ8ISMdflXF+HmyGp7JpgQiMdZrz2DXBECgvXZ36KY1Q+cmH8LjDaXP539J7jEud66HNpyfUYYhBXw3stXiCrrfN/rmlmluzgO/4oxJz6ZGSy/HJBCR3gZ+6KZc1erlxPD93nr5hv5fk2MFtY7vz/MCbOwqwRUA7ZT0tkbsKJUkyBOa1YHq1ndb6W0ujC/8zWWhuZMvAuhbzs/aJH07JgOi1tsLtyNFNxYHWcapSfa5+ygi3GVPVdvxwsZ7AIK9Qtw5LHKbI/Eg9gbri3ISAsd4b3mJhPWozLT6LZ3xpqYvSo2Ee3etBeN4lw==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95bc118b-63ab-43c0-4ea8-08decb661124
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2026 05:13:56.7680 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: u+kxLiydw0/7nvKs9TVgbcdUKwp4srh3Oh+it/0Osi441X/sHpLr/YqkbsCTZmpUmrE0WJChGe62hKflfabjRg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7929
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,82 +67,268 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The fault injection code was scattered: the GT reset
+hook lived in xe_gt.h as an inline function with its own global
+variable, the CSC hook had a separate global in xe_hw_error.c with
+an extern declaration, and each was individually registered in
+xe_debugfs.c. Adding a new error type meant editing many files and
+copy-pasting the same boilerplate.
 
+Debugfs interface (under /sys/kernel/debug/dri/0/):
+ - fail_gt_reset         - GT reset failure
+ - inject_csc_hw_error   - CSC firmware error
 
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: Friday, June 12, 2026 9:18 AM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Hogander, Jouni <jouni.hogander@intel.com>; Manna, Animesh
-> <animesh.manna@intel.com>; Nautiyal, Ankit K
-> <ankit.k.nautiyal@intel.com>
-> Subject: [PATCH] drm/i915/alpm: Move the check for PSR and Fixed RR in
-> compute_config_late
->=20
-> With optimized guardband, we need to take into account LOBF requirements
-> via intel_alpm_lobf_min_guardband().
->=20
-> Currently, we set has_lobf based not only on whether it is supported, but
-> also on whether PSR/fixed RR are ON. Since these features can switch ON a=
-nd
-> OFF seamlessly, this may cause LOBF to change, resulting in a change in
-> guardband requirements, and eventually to a full modeset.
->=20
-> To avoid this, always account for LOBF if it is supported, in the
-> encoder->compute_config() stage. For this, allow has_lobf to be set
-> irrespective of PSR/Fixed RR. Later, in the encoder->compute_config_late(=
-)
-> stage, use the PSR/Fixed RR checks to set has_lobf to the final value.
->=20
-> Move the PSR/Fixed RR checks from intel_alpm_lobf_compute_config() to
-> intel_alpm_lobf_compute_config_late(), where we already account for other
-> LOBF constraints.
->=20
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
-> b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index c6963ea420cc..b7cab744d0ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -291,6 +291,12 @@ void intel_alpm_lobf_compute_config_late(struct
-> intel_dp *intel_dp,
->  	if (!crtc_state->has_lobf)
->  		return;
->=20
-> +	if (crtc_state->has_psr)
-> +		return;
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+v2:
+- Add multiple platform support. (Vinay)
+- Handle VF properly.
+- Rename to XE_FAULT_GT_RESET/XE_FAULT_CSC_HW_ERROR and
+  create xe_fault_inject_types.h file including those name.
 
-If has_psr is true we need to reset has_lobf otherwise both flags will be t=
-rue.
+v3:
+- Solved patch apply issue on tip.
 
-> +
-> +	if (!intel_vrr_is_fixed_rr(crtc_state))
-> +		return;
+v4:
+- Add proper header file.
 
-Same for fixed_rr.
+v5:
+- Properly refer FAULT_ATTR_INITIALIZER. (Vinay)
+- Change xe_fault_inject_descs to xe_fault_inject_entry.
+- Change 2025 to 2026.
 
-> +
->  	if (!intel_alpm_lobf_is_window1_sufficient(crtc_state)) {
->  		crtc_state->has_lobf =3D false;
->  		return;
-> @@ -343,11 +349,7 @@ void intel_alpm_lobf_compute_config(struct
-> intel_dp *intel_dp,
->  	if (!intel_dp->as_sdp_supported)
->  		return;
->=20
-> -	if (crtc_state->has_psr)
-> -		return;
-> -
-> -	if (!intel_vrr_always_use_vrr_tg(display) ||
-> -	    !intel_vrr_is_fixed_rr(crtc_state))
-> +	if (!intel_vrr_always_use_vrr_tg(display))
->  		return;
->=20
->  	if (!(intel_alpm_aux_wake_supported(intel_dp) ||
-> --
-> 2.45.2
+v6:
+- Change return comments of xe_fault_inject(). (Riana)
+- Remove full description of xe_fault_inject_debugfs_register().
+
+v7:
+- Move all fault inject helper functions in xe_debugfs.c (Riana)
+- Update commit message.
+
+v8:
+- Assign .attr pointer with DECLARE_FAULT_ATTR macro. (Riana)
+- Remove CONFIG_FAULT_INJECTION block.
+---
+ drivers/gpu/drm/xe/xe_debugfs.c  | 45 +++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_debugfs.h  | 16 ++++++++++++
+ drivers/gpu/drm/xe/xe_gt.c       |  5 ++--
+ drivers/gpu/drm/xe/xe_gt.h       |  8 ------
+ drivers/gpu/drm/xe/xe_hw_error.c | 11 ++------
+ 5 files changed, 63 insertions(+), 22 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 22b471303984..b3899bedf70b 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_debugfs.h"
+ 
++#include <linux/bits.h>
+ #include <linux/debugfs.h>
+ #include <linux/fault-inject.h>
+ #include <linux/string_helpers.h>
+@@ -41,6 +42,46 @@
+ DECLARE_FAULT_ATTR(gt_reset_failure);
+ DECLARE_FAULT_ATTR(inject_csc_hw_error);
+ 
++static struct {
++	const char *name;
++	u32 platforms;
++	bool skip_on_vf;
++	struct fault_attr *attr;
++} xe_fault_inject_entry[XE_FAULT_MAX] = {
++	[XE_FAULT_GT_RESET]	= { .name = "fail_gt_reset",
++				    .attr = &gt_reset_failure },
++	[XE_FAULT_CSC_HW_ERROR]	= { .name = "inject_csc_hw_error",
++				    .platforms = BIT(XE_BATTLEMAGE),
++				    .skip_on_vf = true,
++				    .attr = &inject_csc_hw_error },
++};
++
++bool xe_fault_inject(enum xe_fault_type type)
++{
++	if (type >= XE_FAULT_MAX)
++		return false;
++
++	return should_fail(xe_fault_inject_entry[type].attr, 1);
++}
++
++static void xe_fault_inject_debugfs_register(struct xe_device *xe,
++					     struct dentry *root)
++{
++	int i;
++
++	for (i = 0; i < XE_FAULT_MAX; i++) {
++		if (IS_SRIOV_VF(xe) && xe_fault_inject_entry[i].skip_on_vf)
++			continue;
++
++		if (xe_fault_inject_entry[i].platforms &&
++		    !(xe_fault_inject_entry[i].platforms & BIT(xe->info.platform)))
++			continue;
++
++		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
++					  xe_fault_inject_entry[i].attr);
++	}
++}
++
+ static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+ 				   u32 offset, const char *name, struct drm_printer *p)
+ {
+@@ -563,8 +604,6 @@ void xe_debugfs_register(struct xe_device *xe)
+ 		drm_debugfs_create_files(debugfs_residencies,
+ 					 ARRAY_SIZE(debugfs_residencies),
+ 					 root, minor);
+-		fault_create_debugfs_attr("inject_csc_hw_error", root,
+-					  &inject_csc_hw_error);
+ 	}
+ 
+ 	debugfs_create_file("forcewake_all", 0400, root, xe,
+@@ -610,7 +649,7 @@ void xe_debugfs_register(struct xe_device *xe)
+ 
+ 	xe_psmi_debugfs_register(xe);
+ 
+-	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
++	xe_fault_inject_debugfs_register(xe, root);
+ 
+ 	if (IS_SRIOV_PF(xe))
+ 		xe_sriov_pf_debugfs_register(xe, root);
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
+index 17f4c2f1b5e4..beedc7ebdaaa 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.h
++++ b/drivers/gpu/drm/xe/xe_debugfs.h
+@@ -6,8 +6,24 @@
+ #ifndef _XE_DEBUGFS_H_
+ #define _XE_DEBUGFS_H_
+ 
++#include <linux/types.h>
++
+ struct xe_device;
+ 
++/**
++ * enum xe_fault_type - Fault injection types
++ * @XE_FAULT_GT_RESET: GT reset failure injection
++ * @XE_FAULT_CSC_HW_ERROR: CSC hardware error injection
++ * @XE_FAULT_MAX: Number of fault injection types
++ */
++enum xe_fault_type {
++	XE_FAULT_GT_RESET,
++	XE_FAULT_CSC_HW_ERROR,
++	XE_FAULT_MAX
++};
++
++bool xe_fault_inject(enum xe_fault_type type);
++
+ #ifdef CONFIG_DEBUG_FS
+ void xe_debugfs_register(struct xe_device *xe);
+ #else
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 783eb6d631b5..eda8df8adf11 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -21,6 +21,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "xe_assert.h"
+ #include "xe_bb.h"
++#include "xe_debugfs.h"
+ #include "xe_device.h"
+ #include "xe_eu_stall.h"
+ #include "xe_exec_queue.h"
+@@ -923,7 +924,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 
+ 	xe_gt_info(gt, "reset started\n");
+ 
+-	if (xe_fault_inject_gt_reset()) {
++	if (xe_fault_inject(XE_FAULT_GT_RESET)) {
+ 		err = -ECANCELED;
+ 		goto err_fail;
+ 	}
+@@ -980,7 +981,7 @@ void xe_gt_reset_async(struct xe_gt *gt)
+ 	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
+ 
+ 	/* Don't do a reset while one is already in flight */
+-	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
++	if (!xe_fault_inject(XE_FAULT_GT_RESET) && xe_uc_reset_prepare(&gt->uc))
+ 		return;
+ 
+ 	xe_gt_info(gt, "reset queued\n");
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 4150aa594f05..f8e3ca63aabb 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -6,8 +6,6 @@
+ #ifndef _XE_GT_H_
+ #define _XE_GT_H_
+ 
+-#include <linux/fault-inject.h>
+-
+ #include <drm/drm_util.h>
+ 
+ #include "xe_device.h"
+@@ -38,12 +36,6 @@
+ 	xe_gt_is_media_type(gt_) ? MEDIA_VER(xe) : GRAPHICS_VER(xe); \
+ })
+ 
+-extern struct fault_attr gt_reset_failure;
+-static inline bool xe_fault_inject_gt_reset(void)
+-{
+-	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
+-}
+-
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+ int xe_gt_init_early(struct xe_gt *gt);
+ int xe_gt_init(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+index 4b72959b2276..bdbf87eb743d 100644
+--- a/drivers/gpu/drm/xe/xe_hw_error.c
++++ b/drivers/gpu/drm/xe/xe_hw_error.c
+@@ -4,7 +4,6 @@
+  */
+ 
+ #include <linux/bitmap.h>
+-#include <linux/fault-inject.h>
+ 
+ #include "regs/xe_gsc_regs.h"
+ #include "regs/xe_hw_error_regs.h"
+@@ -12,6 +11,7 @@
+ 
+ #include "xe_device.h"
+ #include "xe_drm_ras.h"
++#include "xe_debugfs.h"
+ #include "xe_hw_error.h"
+ #include "xe_mmio.h"
+ #include "xe_survivability_mode.h"
+@@ -25,8 +25,6 @@
+ 						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
+ 						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
+ 
+-extern struct fault_attr inject_csc_hw_error;
+-
+ static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+ 
+ static const char * const hec_uncorrected_fw_errors[] = {
+@@ -167,11 +165,6 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
+ 						 pvc_master_local_fatal_err_reg : \
+ 						 pvc_master_local_nonfatal_err_reg)
+ 
+-static bool fault_inject_csc_hw_error(void)
+-{
+-	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
+-}
+-
+ static void csc_hw_error_work(struct work_struct *work)
+ {
+ 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
+@@ -507,7 +500,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+ {
+ 	enum hardware_error hw_err;
+ 
+-	if (fault_inject_csc_hw_error())
++	if (xe_fault_inject(XE_FAULT_CSC_HW_ERROR))
+ 		schedule_work(&tile->csc_hw_error_work);
+ 
+ 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
+-- 
+2.34.1
 
