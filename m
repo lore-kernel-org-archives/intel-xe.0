@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20EA5CD98E4
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 17:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 425F3CD98E4
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jun 2026 18:02:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C794010E23D;
-	Tue, 16 Jun 2026 17:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E485D10E825;
+	Tue, 16 Jun 2026 18:02:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cmrzoyDO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P4Y90BdL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2282E10E23D;
- Tue, 16 Jun 2026 17:50:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C10A10E824;
+ Tue, 16 Jun 2026 18:02:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781632209; x=1813168209;
+ t=1781632943; x=1813168943;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=KH/ZEucDCrpz0Zf2Iznw21K1tJ4jPz8wUPsLVBOvh+Q=;
- b=cmrzoyDO7L1xRcj2vltFGfp3gouzPOt2PnjpDpgIIVa4ijF1cVSsollF
- 60FbSisU6jSTAc2auvOwPt8DcHEZ6X260p91TKlMMd3V8shynTTbgwvrj
- eNtcdTLdBj447IEyH2nyLrZ7s1bdWC17TTvxnkcj8wuTD/Tl2BYf/qw72
- xBaK+FrEN8AOR3A7loM02MgZ9NfGKSRG28LDjaM0Bq+Hr4Fk2F1c24fHl
- DnZR0O5s8Z1KRXm8sDgfy0YPjeJbnf4Op/ReicFH/cW34/mVjzipEZwys
- gSkbGn3GzyOuA+/Swhl9fWelsVoG2CQ7qZWs/e9TGMznEQ5en4yd7YLgN A==;
-X-CSE-ConnectionGUID: sxK5eI42Shmr84En3DxtXg==
-X-CSE-MsgGUID: j7gcOyGfTeK57qClmwPHsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="99979342"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="99979342"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 10:50:04 -0700
-X-CSE-ConnectionGUID: h9qeEtz/Tl+lQflFQ8DyFQ==
-X-CSE-MsgGUID: 3OS4RpGRSOOqZG4wdZJ76A==
+ bh=reqSrthhR38b2Nn14AwntR6mR0k+MdKlsn+oQwNcrnc=;
+ b=P4Y90BdLX8sVvTKpX5NbVHNYFNnWeAdXvpLQ0QTQRuwcOGrMj0dywSeI
+ c2Nas1+xXz3ezz4k6ilPRO1puP0gCSczQaUxd5ibYtMIRzp9CrpbZDd9O
+ o6r+JCNt7JfL4aCDkWn09FMEozAGdL5PSXsvI9f6W5kHgWKtjlGWshD+E
+ i1RQOaZpKst/z1JFat9R/zR8crUFehtpV0ZpNKVp9VQZDd6EGXTio0ywR
+ pM1luZ2ZldushlK3KUW+66iu+6E3nawtolqc8GCUnnERBofS2ehFg5s51
+ Y5cAbYy7vYCAyzkc4gaHGUIkGLegdtEn8qiJ2E/klIeEvsdoMoGX3O0g6 A==;
+X-CSE-ConnectionGUID: OgROr0JuSEqr2tQToYkIhg==
+X-CSE-MsgGUID: mzFT69ENTTq6YHZquISoXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="81416837"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81416837"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 11:02:23 -0700
+X-CSE-ConnectionGUID: Ik8osjnETuihhc1Zu99ZCA==
+X-CSE-MsgGUID: tEXFHTIRQvCF/roQyER5TQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="247908592"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="252155685"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.15])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 10:50:01 -0700
-Date: Tue, 16 Jun 2026 20:49:57 +0300
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 11:02:21 -0700
+Date: Tue, 16 Jun 2026 21:02:17 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- ville.syrjala@intel.com, matthew.d.roper@intel.com, shawn.c.lee@intel.com
-Subject: Re: [PATCH] drm/i915/display: update to the BW buddy configuration
-Message-ID: <ajGMxZ5XFzHk7YAQ@intel.com>
-References: <20260616101553.226298-1-vinod.govindapillai@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/2] drm/i915/dsb: Use safe window path when VRR TG is
+ used
+Message-ID: <ajGPqbOB6p3qkdxk@intel.com>
+References: <20260608123711.1121908-1-ankit.k.nautiyal@intel.com>
+ <20260608123711.1121908-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260616101553.226298-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20260608123711.1121908-3-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -72,93 +73,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2026 at 01:15:53PM +0300, Vinod Govindapillai wrote:
-> Bspec has been updated for xe2_lpd+ platforms on how to handle
-> the bw buddy prgramming in case no matching memory configuration
-> is found w.r.t the current page mask table. The recommendation
-> is to keep the default settings for the related registers as it
-> is without explicitly disabling the bw buddy.
+On Mon, Jun 08, 2026 at 06:07:10PM +0530, Ankit Nautiyal wrote:
+> When the VRR timing generator is always used, the hardware behaves
+> as VRR-active regardless of crtc_state->vrr.enable.
 > 
-> Bspec: 68871
-> Suggested-by: Ville Syrjala <ville.syrjala@intel.com>
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> The DSB paths that depend on the VRR safe window therefore need to follow
+> the VRR code paths in that case too:
+> - dsb_chicken(): program the SAFE_WINDOW chicken bits,
+> - intel_dsb_vblank_evade(): use vmin/vmax vblank starts for the
+>   wait window,
+> - intel_dsb_wait_for_delayed_vblank(): wait inside the vmin safe window
+>   before the scanline-based delayed vblank wait.
+> 
+> Introduce helper pre_commit_use_safe_window() and use it in the three sites
+> 
+> v2: Instead of modifying pre_commit_is_vrr_active() use a new helper and
+> use it only in the required places. (Ville).
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  .../drm/i915/display/intel_display_power.c    | 43 +++++++++++++------
->  1 file changed, 30 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dsb.c | 20 ++++++++++++++++----
+>  1 file changed, 16 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 2e51dfcd5dce..dcfd78f48622 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1631,23 +1631,40 @@ static void tgl_bw_buddy_init(struct intel_display *display)
->  		    table[config].type == dram_info->type)
->  			break;
->  
-> +	/*
-> +	 * If we don't recognize the memory configuration, explicitly disable
-> +	 * the address buddy logic in pre-xe2_lpd platforms as it was before.
-> +	 * In xe2_lpd+ cases, page masks must be set to 0 if no matching
-> +	 * configuration is found in the table. So keep the default settings
-> +	 * as it is. By default, BW_BUDDY_CTL bit 31 is 0 (bw buddy enabled)
-> +	 * and BW_BUDDY_PAGE_MASK is 0x0
-
-This seems to mostly just repeat what the code already says.
-
-> +	 *
-> +	 * TODO: Revisit the buddy page masks table when bspec updates the
-> +	 * table with the correct number of channels for each dram type.
-> +	 */
-
-That TODO is unrelated to the changes here, and also seems misplaced.
-
->  	if (table[config].page_mask == 0) {
->  		drm_dbg_kms(display->drm,
->  			    "Unknown memory configuration; disabling address buddy logic.\n");
-> -		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
-> -			intel_de_write(display, BW_BUDDY_CTL(i),
-> -				       BW_BUDDY_DISABLE);
-> -	} else {
-> -		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask)) {
-> -			intel_de_write(display, BW_BUDDY_PAGE_MASK(i),
-> -				       table[config].page_mask);
-> -
-> -			/* Wa_22010178259:tgl,dg1,rkl,adl-s */
-> -			if (intel_display_wa(display, INTEL_DISPLAY_WA_22010178259))
-> -				intel_de_rmw(display, BW_BUDDY_CTL(i),
-> -					     BW_BUDDY_TLB_REQ_TIMER_MASK,
-> -					     BW_BUDDY_TLB_REQ_TIMER(0x8));
-> +
-> +		if (DISPLAY_VER(display) < 20) {
-> +			for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
-> +				intel_de_write(display, BW_BUDDY_CTL(i),
-> +					       BW_BUDDY_DISABLE);
->  		}
-> +
-> +		return;
-> +	}
-> +
-> +	/* We found a matching configuration. Program the BW_BUDDY registers. */
-
-Seems obvious. The comment is redundant.
-
-> +	for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask)) {
-> +		intel_de_write(display, BW_BUDDY_PAGE_MASK(i),
-> +			       table[config].page_mask);
-
-Please split code restructuring from functional changes. This diff
-is too hard to read.
-
-> +
-> +		/* Wa_22010178259:tgl,dg1,rkl,adl-s */
-> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_22010178259))
-> +			intel_de_rmw(display, BW_BUDDY_CTL(i),
-> +				     BW_BUDDY_TLB_REQ_TIMER_MASK,
-> +				     BW_BUDDY_TLB_REQ_TIMER(0x8));
->  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> index 07dd6318d9cc..d1441a86d1cc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -210,6 +210,18 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
+>  	return (scanline + vtotal - intel_crtc_scanline_offset(crtc_state)) % vtotal;
 >  }
 >  
+> +static
+> +bool pre_commit_use_safe_window(struct intel_atomic_state *state,
+> +				struct intel_crtc *crtc)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc->base.dev);
+> +
+> +	if (intel_vrr_always_use_vrr_tg(display))
+> +		return true;
+> +
+> +	return pre_commit_is_vrr_active(state, crtc);
+> +}
+> +
+>  /*
+>   * Bspec suggests that we should always set DSB_SKIP_WAITS_EN. We have approach
+>   * different from what is explained in Bspec on how flip is considered being
+> @@ -229,7 +241,7 @@ static u32 dsb_chicken(struct intel_atomic_state *state,
+>  	u32 chicken = intel_psr_use_trans_push(new_crtc_state) ?
+>  		DSB_SKIP_WAITS_EN : 0;
+>  
+> -	if (pre_commit_is_vrr_active(state, crtc))
+> +	if (pre_commit_use_safe_window(state, crtc))
+>  		chicken |= DSB_CTRL_WAIT_SAFE_WINDOW |
+>  			DSB_CTRL_NO_WAIT_VBLANK |
+>  			DSB_INST_WAIT_SAFE_WINDOW |
+> @@ -759,7 +771,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>  	if (crtc_state->has_psr)
+>  		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT, 0, 0);
+>  
+> -	if (pre_commit_is_vrr_active(state, crtc) && crtc_state->vrr.dc_balance.enable) {
+> +	if (pre_commit_use_safe_window(state, crtc) && crtc_state->vrr.dc_balance.enable) {
+
+This one I think should keep using pre_commit_is_vrr_active().
+
+>  		int vblank_delay = crtc_state->set_context_latency;
+>  		int vmin_vblank_start, vmax_vblank_start;
+>  
+> @@ -788,7 +800,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>  		end = vmax_vblank_start;
+>  		start = end - vblank_delay - latency;
+>  		intel_dsb_wait_scanline_out(state, dsb, start, end);
+> -	} else if (pre_commit_is_vrr_active(state, crtc)) {
+> +	} else if (pre_commit_use_safe_window(state, crtc)) {
+>  		int vblank_delay = crtc_state->set_context_latency;
+>  
+>  		end = intel_vrr_vmin_vblank_start(crtc_state);
+
+This will now emit two WAIT_DSL commands, which may be a bit confusing.
+Might be better to add a completely separate branch to the if ladder
+for this situation. And for consistency it should perhaps use
+intel_mode_vblank_start() rather than intel_vrr_*_vblank_start()
+since we're dealing with fixed refresh rate timings here.
+
+> @@ -891,7 +903,7 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
+>  		&crtc_state->hw.adjusted_mode;
+>  	int wait_scanlines;
+>  
+> -	if (pre_commit_is_vrr_active(state, crtc)) {
+> +	if (pre_commit_use_safe_window(state, crtc)) {
+>  		/*
+>  		 * If the push happened before the vmin decision boundary
+>  		 * we don't know how far we are from the undelayed vblank.
 > -- 
-> 2.43.0
+> 2.45.2
 
 -- 
 Ville Syrjälä
