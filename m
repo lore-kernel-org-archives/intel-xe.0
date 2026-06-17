@@ -4,153 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E43BBCD98E1
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 05:13:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27FE7CD98EE
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 05:16:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 835F810EDF1;
-	Wed, 17 Jun 2026 05:13:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FA84RXkF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA19510EDEB;
- Wed, 17 Jun 2026 05:13:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781673189; x=1813209189;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=vbBCkQuLstAwDvHwnB1Ygx1oquDTpSxzDfLU0DSQHZY=;
- b=FA84RXkFGqHlcm5Kyy4ikawMtOjzt647gSCDoPFn9QkvE7UP+gRBtVH6
- zUwJw/a0TecUzuxeUyLf40x1BtIv+TQBvrTS7K7jt01YwzWInmXmdnsrE
- jcvVzYZrC+DT/DUrfaBxranD+HDZGB30sDuoqGG+F9e1st/iSS45LlZFJ
- fETqjRSG5l5mJulE8DRII3pHgjRZVlcnrsYHgngezLJat1vi3m3H0dIRh
- nyZjDXhUjAskAUW2/OKoJgpCZ4HKBkt5sUrUS+M9SPFgpRBhaxkWU+7gK
- p9mhXMmFdVNKRm1AQ20NoAXOEFK9TNBoWZ+bAyu9bdvLeLAzmHY0yzYfU A==;
-X-CSE-ConnectionGUID: BlS1hl7oRxyppA976z/WQg==
-X-CSE-MsgGUID: OS3KgZ1+Tj6+NimhIhjiuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82467079"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82467079"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 22:13:09 -0700
-X-CSE-ConnectionGUID: Mpm787wQSJmPNE9Uo5UhOw==
-X-CSE-MsgGUID: r+B0d9euTceJYnYiA8dt2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="286075952"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 22:13:09 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 16 Jun 2026 22:13:08 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 16 Jun 2026 22:13:08 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.22) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 16 Jun 2026 22:13:08 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SgFxfi7qcZ3dGDSh0IuDk7vlw+K6zVuiFauOhzZaP7HmAvRbeCRGCyh2kyljQGHIVmMeOS8k4pS1Cx/qtfNKybHpAnG+vrWnD8NtB3O4UuyHfXSiVLZlkzmi+52Jfi3c4avTM1VguBcjmis8v6yUn7CiOBuiOqbZuW/5jNGKB1lHs2DkvowwuTMx/hsu5B5dhoAYN2nRphYlbx2Mjx1tr7iY29ASWLlwqwje0SbdYnx3xfYGn4cxcvIXXack7pRLIAw82Q87NlyF0Wz3Vl6KAKPCqPmnUU5W/TRBbBVnFxwlg0wzFcNK5rU8+rFvNGF7iTv+Pkz5qg+nqcJgiEuvdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k6oARt6uXf3LhEQbHDQTPc28VNVemT+gh7emGoZsnSU=;
- b=kfE+ff4CVxVx6T/xjjjgp0QP8/fi6dcyE0U0gkQv98raXYdgqgWzvxdYMaJjByI+49CZIsAuqMV5C39bYnoegzIIlRFlllOi6KF3vTA6YPT2t5cC8LQCTMhJB2jwhZyKLF6PN9DOESCzGO1OoJTTLX0FKovZeFYfqZrGCxff3cWVI0TYDt8ljyNpePZwD/wmkaYLG4PiX3bD1lu5HbiMxWmk8qHtG0RQr2ktVv5t2D8zD8ri3c1FPzx40Y+22Y2zX9VFnlivDwTHRSIYsjlOz+PBggRkhFrG7UmB8/6miBsREsJ77YIfA2Pp29JZV+xZ1jwpaH3uGTe+oGqamTP75Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
- by PH0PR11MB5189.namprd11.prod.outlook.com (2603:10b6:510:3d::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Wed, 17 Jun
- 2026 05:13:06 +0000
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::5a70:4005:6905:8e31]) by IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::5a70:4005:6905:8e31%7]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
- 05:13:06 +0000
-From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Kandpal, Suraj"
- <suraj.kandpal@intel.com>
-Subject: RE: [PATCH] drm/i915/cx0: Remove unnecessary hdmi link rate function
- declaration
-Thread-Topic: [PATCH] drm/i915/cx0: Remove unnecessary hdmi link rate function
- declaration
-Thread-Index: AQHc/hBrB/tAG7lmIk+Pzoo0VE3VnrZCM2eQ
-Date: Wed, 17 Jun 2026 05:13:06 +0000
-Message-ID: <IA1PR11MB634877D379DD67C9CE0ED9DAB2E42@IA1PR11MB6348.namprd11.prod.outlook.com>
-References: <20260617041807.162927-1-suraj.kandpal@intel.com>
-In-Reply-To: <20260617041807.162927-1-suraj.kandpal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|PH0PR11MB5189:EE_
-x-ms-office365-filtering-correlation-id: de29b99d-a956-45f7-3089-08decc2f1d58
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|10070799003|56012099006|11063799006|22082099003|38070700021|18002099003;
-x-microsoft-antispam-message-info: F3Kuk+LkqMTBiXiYwljsAEHYshyXiGSjefEWxE9Z9HAWrhNBIKJlyXYlNEMaSzA8y4ux9vnDXEO4+TFTS+TFUSD5IlkgBZOqWSXjLbKq4cnw3z6pi8jUD+K6srQ2ETkePZJu84QUqXIb/yzPAZGo82qFMO1eXxx+wwsPkjtWMf3Z3gLMxqe2Fep6GFPhwIovaJSTaALgxeyUCIlD74d3N3abJlpkVecb/hGOlXPTtbIhSxlR4HWhTHlBajZqkVu83Oa9i90XtGvGpvoik35yTRmRpTq2m0+vEcvjK8eW6azUqWbwrTlGn2BEIWgC66LqgT+8tWf3JWk7N/sqlrLQSSBTy+Ulxbd9scz42JTch1UwmUwXRSrqggeBcnZLxcw9kjd1dO9wT7UbHjWr8DDDOKRTlL7YPwXJvEXtTx+WHEh3Mk5PdM/Rim/Bu/khxbaBxg1xGxq0NORzfl0w3sVLVttvyHcnY5nb5RJjd4f98z5BdOcksJ01/0kkbgHxFduK6LE/txQeG59VJuBs2M/aXTLbwbVn8J7WKJJzyqMSwW/ZqwC2WqmK9r6M9IQogIhwVvaappzRUv1LtH6YbjwA5jZHpr0QN2iFKYYYvoqfpw8g4O/+47Kg7kJ2iamgtq0/XjA4K20Uhycyk1Y8X29tfmY5fr8t7FPmnWkNCajE6IZDQGMWPdFB/4ETiJJ3zNJ+AR2ZalFilIM6iS5618lXPe5Dbww7AV3y54r5rkXVbR4=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(10070799003)(56012099006)(11063799006)(22082099003)(38070700021)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nCE+7bartErYIBQUwQyY4upGb0Rvbi68Iac06XuTYgGgFkJnqMkzLdeeYWN7?=
- =?us-ascii?Q?odahsW4/AyWxZhLJJ8QJTr4lLx8NO7ltOSzExrVVvAMYknZqnR9wZeHCAQ+q?=
- =?us-ascii?Q?A7AU1QSMEFOIkC5zT3GspAVjbOVFGjqN4kM7qdg6rCOrAtFBKTDAQoq+IvK0?=
- =?us-ascii?Q?Bn5G0cstqgzfClgbNK2OlcZb+++hv3TfU/QsjdZFF+dc20T1TSQ2MZGoz+re?=
- =?us-ascii?Q?hdl6A9vZSKjWjqftpBS+7wx9HzU5FomRkurdO1IaHMInk1Xs5AQpC2xvgXiR?=
- =?us-ascii?Q?pqn+6DGZuZ6iKdvB7f6nKlQbEJLADRLBfRHM0lv01uN2NMyo0IePy7DOZQ5J?=
- =?us-ascii?Q?UON+gO2v2AV0m+wgSi4nCLMZ6c4RjHtMLng04L+HaAs72mMcvItB5721iX9R?=
- =?us-ascii?Q?lUt9TrbwyqiBhYIf8vPsgfwJz5R7LZ9a1R5MvhVjMPqwqhslqJvV369yvtAO?=
- =?us-ascii?Q?THHNmkO1lqyQiB+RRSq+dSUkbiU03VaecyT4H+5QOkpPUYB3INR93DmL8O0t?=
- =?us-ascii?Q?IcmiuXWSMQepWAIjh297JgVG1DCIJK5HvIiZgPwFtQqZW8/ULNWSN4ieQdnh?=
- =?us-ascii?Q?qdTpAuqSmrGSeJHvnmInCidHxmqpNdeAe5LfC3E3KQLUizaHcq2drm2bXMNm?=
- =?us-ascii?Q?JcffWxbivKvz5VyZBj0tAz41aeCiKlfnlsnqJCSj3RO2UJlKmLJ5T+WhwmxF?=
- =?us-ascii?Q?d/robTFCtn7XuYEwOEHpl5ZcVC8IFegn073iMA/7u6p4efGjJrNhyd09PH8i?=
- =?us-ascii?Q?8O2m1SMOeGAqsDISz1EZQibsFMzv2OiYTz+umaoxduJ1jYgtrkR1aw2QLOPx?=
- =?us-ascii?Q?CojYQ/Xfod8LTmir7XF7CPmFrvCpLurqhxpcVj5RpnrGlAa1U+VYIP7CVXxA?=
- =?us-ascii?Q?TxmvpAASGbOZR4w+tWnZ/8lPlXPYwWN3Bt568sPba3DzkuGCKjbjJ6E+jROl?=
- =?us-ascii?Q?LZmuCMdqowvPTr+JGeE6sjVZoHet5Yni6gDxXVdH9MityIFKfR6fYs7GttR7?=
- =?us-ascii?Q?KP4j+qqkJN+eGXwFln6pfv04cAJzDIbSyvw7JvYKgpEiORSA7+O0q7lDCSs+?=
- =?us-ascii?Q?2fTKqr619N7tNggilj69URAxAcNSbDiodaRiNfQJzAehB6bviYVz2M5XriyD?=
- =?us-ascii?Q?oEYP94HvaDKJsZrZ1LILzjBvnGNBeoUlLo9rqvgNIjDOHJ4Fi7FsX8ufxKIT?=
- =?us-ascii?Q?1P5ioXsS59TC8N/F6QezSduSKZ0sZTe+aDRyjlQh0BU8VOy7sL3deh02Yp/7?=
- =?us-ascii?Q?YiP+Hhk3ieekn7Y/azJT5nZqNOyNOXyAcKmcbA2JEax+2d4tOTb8IcvP9Pcc?=
- =?us-ascii?Q?DSyyTokpPpD30NltFOiT70Hcf9LJwadvlhoM3C9xHaCfWLW2V06BxE8OvpUT?=
- =?us-ascii?Q?driEVqDrRklKeZXk/kEBZ+R3PM/wu11XCEYuDwELbWGc1bCu9TQ/h4P1duWm?=
- =?us-ascii?Q?2TrEzlKcAr+wMDZkioyTjF/N0CZb/IVp0qKitgntpYQNol2qsr/3pu7kFj5n?=
- =?us-ascii?Q?6oYmvBBxFi1Xe6CT2fHO9FoF9jP2fxexJFl2QIljSD99lJ0IraFa5gxkvuHY?=
- =?us-ascii?Q?hLO1mDzMfzabL9OKes+KzuwXbh5CdRsb6ql+eoCNc7X2dZsWTUd1mmJrDABs?=
- =?us-ascii?Q?K3LJPMyoWRzu3IyH0w7fPTpg9MnRtFcpJJT/5MkyoF+yTTjbUFEQgwFNij71?=
- =?us-ascii?Q?RK1BQga/U7wVxwhw0V1k5/U0UczKHL0unR4LbXJGoWb+J/N02D5m0tEAlhza?=
- =?us-ascii?Q?IJwD93Pg0aGx5fhyiuBh/gA1eZ1S40IMo5Pk8jDYNoa24r/lQElZ9zGOkm2A?=
-x-ms-exchange-antispam-messagedata-1: amUN282iqIo829nONN6HOkXI/YmzuQGvRQ0=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id C50A610EDF1;
+	Wed, 17 Jun 2026 05:16:50 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48AE910E2BA;
+ Wed, 17 Jun 2026 05:16:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2864459897353711103=="
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: L6iMOFNGL0tXwZkYPJp+W6Gp702UEWRv9Xn3NFqygN8ysrbxNmokYLsVeLtXnq5APfPzxHJqTSC7yZV+ylnHHvUp0hDyFJJxKHm6ulH8XhhYZ5FARiJCHYAY8PFzncxRTFpl57PJoYxir/QS1ohq3kafv6a5x7Zx9wJeI87QDQP2wOE7Hp7Aa5PJIXVGP4C25Kemx139Mgeq/PBTPF2r88veWhrjtIIdw+TUoep+ECaA9/IDuQGNTQKOe0s7lqWY92DdWr8jugXjRwBscyHlE+3Pv08wiuEVrXExf24yzB/EWycpVPf+vVtBKdkmKY1dNXeHuw8PsoWuDVAHWegdqA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: de29b99d-a956-45f7-3089-08decc2f1d58
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jun 2026 05:13:06.0471 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3hEM8z8amHEjM4byikQ8PjPI4947y0aWkOTezFklnllDasmB+y9fAWozmHekMDF5UuodCZ7kblkYdyTOdBuN3sjAWKulyXJ/zqa+l5bPvRbsZxSk1L30GQtLh5JNz3Uo
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5189
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_mm=2C_drm/xe=3A_Avoid_recla?=
+ =?utf-8?q?im/eviction_loops_under_fragmentation?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Jun 2026 05:16:50 -0000
+Message-ID: <178167341029.87418.5025525592883460649@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260617032218.1165929-1-matthew.brost@intel.com>
+In-Reply-To: <20260617032218.1165929-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,50 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2864459897353711103==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: mm, drm/xe: Avoid reclaim/eviction loops under fragmentation
+URL   : https://patchwork.freedesktop.org/series/168651/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5269-29ea43790111df065ed84e6cb076c64322c306f1_BAT -> xe-pw-168651v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-168651v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-bmg-2:          [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5269-29ea43790111df065ed84e6cb076c64322c306f1/bat-bmg-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168651v1/bat-bmg-2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
 
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Su=
-raj
-> Kandpal
-> Sent: 17 June 2026 09:48
-> To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Kandpal, Suraj
-> <suraj.kandpal@intel.com>
-> Subject: [PATCH] drm/i915/cx0: Remove unnecessary hdmi link rate function
-> declaration
->=20
-> intel_cx0_phy_check_hdmi_link_rate is not used by anyone but is still
-> declared. Remove it.
->=20
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.h | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> index 1428e7a5a318..95c20eb4b4b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> @@ -60,7 +60,6 @@ void intel_cx0_phy_set_signal_levels(struct
-> intel_encoder *encoder,
->  				     const struct intel_crtc_state *crtc_state);
-> void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
->  					 u8 lane_mask, u8 state);
-> -int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int cloc=
-k);
+Build changes
+-------------
 
-Changes LGTM.
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+  * IGT: IGT_8966 -> IGT_8967
+  * Linux: xe-5269-29ea43790111df065ed84e6cb076c64322c306f1 -> xe-pw-168651v1
 
-> void intel_cx0_setup_powerdown(struct intel_encoder *encoder);  bool
-> intel_cx0_is_hdmi_frl(u32 clock);
->  u8 intel_cx0_read(struct intel_encoder *encoder, u8 lane_mask, u16 addr)=
-;
-> --
-> 2.34.1
+  IGT_8966: 9b33225c761bfe8c8c266bc56558d75c700029fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8967: 46e60a541c8ce6e4e0046bb68fc577c4b502e5f2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5269-29ea43790111df065ed84e6cb076c64322c306f1: 29ea43790111df065ed84e6cb076c64322c306f1
+  xe-pw-168651v1: 168651v1
 
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168651v1/index.html
+
+--===============2864459897353711103==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>mm, drm/xe: Avoid reclaim/eviction loops under fragmentation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168651/">https://patchwork.freedesktop.org/series/168651/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168651v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168651v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5269-29ea43790111df065ed84e6cb076c64322c306f1_BAT -&gt; xe-pw-168651v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-168651v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5269-29ea43790111df065ed84e6cb076c64322c306f1/bat-bmg-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168651v1/bat-bmg-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8966 -&gt; IGT_8967</li>
+<li>Linux: xe-5269-29ea43790111df065ed84e6cb076c64322c306f1 -&gt; xe-pw-168651v1</li>
+</ul>
+<p>IGT_8966: 9b33225c761bfe8c8c266bc56558d75c700029fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8967: 46e60a541c8ce6e4e0046bb68fc577c4b502e5f2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5269-29ea43790111df065ed84e6cb076c64322c306f1: 29ea43790111df065ed84e6cb076c64322c306f1<br />
+  xe-pw-168651v1: 168651v1</p>
+
+</body>
+</html>
+
+--===============2864459897353711103==--
