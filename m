@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAD34CD98F0
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:56:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E715DCD98F0
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:57:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E83710E9CE;
-	Wed, 17 Jun 2026 11:56:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FFA210E9CE;
+	Wed, 17 Jun 2026 11:57:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QxENDEmF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UZQPZodf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FED610E9CE
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 11:56:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21FAE10E9CE;
+ Wed, 17 Jun 2026 11:57:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781697401; x=1813233401;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WTA8AjLV+h8ltCAoEY9jG1UGssmrVwDBGIGFRFg2u20=;
- b=QxENDEmF6M07xbK4suDM2HHHdZFKNXCbHvZYh3zrCEVlSQ8oE33vUdF/
- w3gMxdLa3eIU8z+hr5C8RDEF2PiGXRkPdLVHiL80Khq4J1gcsfRd6WS+v
- BL29vfenySv5jSHO/SSHBh9mQxopjBNvZjaq2UURekPRSLmFyLIuMx/2D
- 1aO6+laLYZ2RxVNp2/nkQPnHpuDFyghEz2VMkf6fOXtwlwSZUpHmn9GxL
- cduEHGLU2MqbqVr3PgKg6QHpubQfcffpSHpaxWZxcWsPyCKHrDPNLRlQc
- Y6HAv8YkgJncTdIVF6oAa+8FSphuyV5QIfbQhGUwsuOXco9ub5Zr3G1pQ Q==;
-X-CSE-ConnectionGUID: WDbu3EEuS8aEKVdXizz6hQ==
-X-CSE-MsgGUID: 5lzfRwsUQ/GTk8mSksBsqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93973982"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93973982"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 04:56:41 -0700
-X-CSE-ConnectionGUID: zkjCBRR+TSqT2mgHhHrbCw==
-X-CSE-MsgGUID: MshCcUxUTkq58v3Yag4lZw==
+ t=1781697471; x=1813233471;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=t1GrKbvIR05HFSeZZH4HCy8usY+1MD09U5YamK2wSb4=;
+ b=UZQPZodfT7s6PQ+l5d/vYcDehZRkMNgZjK1uahiu1hTpHj5nnvZ4hY2G
+ tS87LvcmpUy0RYlgD5OVXU7OAY6Bhlw2gSqKq2Xled9zETy9Ur1ipxXSh
+ LEsLr360vx7sLFP5pJHk6tmHNUD69jxglyNpLhJBOtcjzfmyDVgkgmDL7
+ 4pNod4Pjm9qXJZf9VcUeGoA5kKfffg0VuXQpf4t/3J3alXkN30LV2Mt0a
+ 8xP/LlKC3FMIIyLSAvVUmkjAQn3/9x+ObY3cRIKiqq/AyH2PLWtPWvNhF
+ 0i2dh6WesuXPcODKWLFXN9cmi4i3GWS2e3FfBlsyJ1QBojsXxp+cUTpPY w==;
+X-CSE-ConnectionGUID: x1mpcSPLSkOlphrx34HPdw==
+X-CSE-MsgGUID: guWkPCz7Syuf37j4+ewPSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82388685"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82388685"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:57:50 -0700
+X-CSE-ConnectionGUID: 5rrDdqjySlmfpxq/dniaHQ==
+X-CSE-MsgGUID: djK4hXv2ToS2K9oMzNFUvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="251951031"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 04:56:39 -0700
-Date: Wed, 17 Jun 2026 13:56:36 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>
-Subject: Re: [PATCH] drm/xe: Move drm_client_dev_suspend/resume outside pm
- block signalling
-Message-ID: <ajKLdJIoHYBCIMiz@black.igk.intel.com>
-References: <20260617082104.610620-2-tejas.upadhyay@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="245665267"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.158])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:57:48 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ chaitanya.kumar.borah@intel.com
+Subject: Re: [PATCH v2 01/11] drm/i915/vrr: add per-CRTC vrr/cmrr debugfs
+ control
+In-Reply-To: <20260616144233.832276-2-mitulkumar.ajitkumar.golani@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260616144233.832276-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20260616144233.832276-2-mitulkumar.ajitkumar.golani@intel.com>
+Date: Wed, 17 Jun 2026 14:57:45 +0300
+Message-ID: <12bffed11c82910035b1e5469d2a10e3515d07ca@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260617082104.610620-2-tejas.upadhyay@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,42 +72,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 17, 2026 at 01:51:05PM +0530, Tejas Upadhyay wrote:
-> A circular locking dependency is reported between xe_pm_block_map and
-> dev->clientlist_mutex:
-> 
->   &dev->clientlist_mutex --> &vm->lock --> xe_pm_block_map --> &dev->clientlist_mutex
-> 
-> The dependency chain is:
-> 1. xe_pm_suspend() calls xe_pm_block_begin_signalling(), then
->    xe_display_pm_suspend() which calls drm_client_dev_suspend()
->    acquiring clientlist_mutex. (xe_pm_block_map -> clientlist_mutex)
-> 
-> 2. drm_client_dev_unregister() -> drm_file_free() -> xe_file_close() ->
->    prelim_xe_eudebug_file_close() acquires discovery_lock.
->    (clientlist_mutex -> discovery_lock)
-> 
-> 3. xe_vm_close_and_put() acquires vm->lock under discovery_lock.
->    (discovery_lock -> vm->lock)
-> 
-> 4. xe_exec_ioctl() holds vm->lock and calls xe_pm_block_on_suspend()
->    which waits on xe_pm_block_map. (vm->lock -> xe_pm_block_map)
-> 
-> Fix this by moving drm_client_dev_suspend() before
-> xe_pm_block_begin_signalling() in xe_pm_suspend(), and
-> drm_client_dev_resume() after xe_pm_block_end_signalling() in
-> xe_pm_resume(). This breaks the xe_pm_block_map -> clientlist_mutex
-> edge in the dependency chain.
-> 
-> The drm_client_dev_suspend/resume calls are safe to move because they
-> only blank/unblank the fbdev console and don't depend on display power
-> state or any operations within the block signalling scope.
+On Tue, 16 Jun 2026, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
+> Add a per-CRTC debugfs entry 'vrr/cmrr' and a debugfs file
+> (numerator/denominator) that indicates user intended target
+> refresh rate and video mode requirement.
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  |   2 +
+>  .../drm/i915/display/intel_display_types.h    |   5 +
+>  drivers/gpu/drm/i915/display/intel_vrr.c      | 105 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.h      |   2 +
+>  4 files changed, 114 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 08004c1ba03f..1ce6e73ec83c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -48,6 +48,7 @@
+>  #include "intel_psr.h"
+>  #include "intel_psr_regs.h"
+>  #include "intel_vdsc.h"
+> +#include "intel_vrr.h"
+>  #include "intel_wm.h"
+>  #include "intel_tc.h"
+>  
+> @@ -1393,6 +1394,7 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
+>  	intel_drrs_crtc_debugfs_add(crtc);
+>  	intel_fbc_crtc_debugfs_add(crtc);
+>  	hsw_ips_crtc_debugfs_add(crtc);
+> +	intel_vrr_crtc_debugfs_add(crtc);
+>  
+>  	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
+>  			    &i915_current_bpc_fops);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 6cd102a3b610..897a1ffd7b79 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1545,6 +1545,11 @@ struct intel_crtc {
+> +
+> +	if (*numerator == 0)
+> +		return -EINVAL;
+> +
+> +	if (*denominator != 1000 && *denominator != 1001)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int intel_vrr_cmrr_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_crtc *crtc = m->private;
+> +
+> +	seq_printf(m, "%u/%u\n", crtc->cmrr.numerator, crtc->cmrr.denominator);
+> +
+> +	return 0;
+> +}
+> +
+> +static int intel_vrr_cmrr_open(struct inode *inode, struct file *file)
+> +{
+> +	return single_open(file, intel_vrr_cmrr_show, inode->i_private);
+> +}
+> +
+> +static ssize_t intel_vrr_cmrr_write(struct file *file, const char __user *ubuf,
+> +				    size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct intel_crtc *crtc = m->private;
+> +	u32 numerator, denominator;
+> +	char kbuf[32];
+> +	int ret;
+> +
+> +	if (len >= sizeof(kbuf))
+> +		return -EINVAL;
+> +
+> +	if (copy_from_user(kbuf, ubuf, len))
+> +		return -EFAULT;
+> +
+> +	kbuf[len] = '\0';
+> +
+> +	ret = cmrr_parse_ratio(kbuf, &numerator, &denominator);
+> +	if (ret)
+> +		return ret;
+> +
+> +	crtc->cmrr.numerator = numerator;
+> +	crtc->cmrr.denominator = denominator;
+> +
+> +	return len;
+> +}
+> +
+> +static const struct file_operations intel_vrr_cmrr_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = intel_vrr_cmrr_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +	.write = intel_vrr_cmrr_write,
+> +};
+> +
+> +void intel_vrr_crtc_debugfs_add(struct intel_crtc *crtc)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc);
+> +	struct dentry *vrr_dir;
+> +
+> +	if (!HAS_VRR(display))
+> +		return;
+> +
+> +	vrr_dir = debugfs_create_dir("vrr", crtc->base.debugfs_entry);
 
-Other folks already have interesting comments but just FYI:
-We'd want to make sure fbdev is not left blank on suspend/resume failure
-so the user atleast have an opportunity to see the failure and possibly
-add to the bug report.
+Please give rationale for adding a directory.
 
-You can refer to the comment above xe_display_pm_resume().
+Driver specific debugfs files should have a prefix. Using just "vrr"
+blocks using it as a generic drm debugfs file. Please let's use "intel_"
+going forward (instead of "i915_" that we've had before xe).
 
-Raag
+> +
+> +	if (HAS_CMRR(display))
+> +		debugfs_create_file("cmrr", 0600, vrr_dir, crtc,
+> +				    &intel_vrr_cmrr_fops);
+> +}
+> +
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> index 55e9c429f579..19c7990be1b2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> @@ -56,4 +56,6 @@ int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_sta
+>  int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
+>  int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
+>  
+> +void intel_vrr_crtc_debugfs_add(struct intel_crtc *crtc);
+> +
+>  #endif /* __INTEL_VRR_H__ */
+
+-- 
+Jani Nikula, Intel
