@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19A39CD98E4
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 14:56:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27B8ACD98E2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 15:14:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F7510EA4C;
-	Wed, 17 Jun 2026 14:56:18 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 142EA10EA4C;
- Wed, 17 Jun 2026 14:56:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4132735734862086270=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC954891A3;
+	Wed, 17 Jun 2026 15:14:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TFfiV5H9";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 018CE891A3
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 15:14:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781709276; x=1813245276;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FBh9QudtVW48UUeNFn0b7AVZtQ4CIKMsk8iMZREBssA=;
+ b=TFfiV5H9xwfMN3DHvllYFMkt+yQu6j/Rzye9SUR6qrs/tERGuSyMsKMG
+ 8PQglTDHOLBbaJqiF/IxbAJb32RvNl/NCRvVagKCBynnZ5YgrRHERI5O7
+ Q0NbZlsZVgeIRx+1d4OLL8ojPNrSYUkubNSeCPF4n+tjr1zpgTaOx9Je6
+ rUqkEamJ+yAeiTE5loun0sMQaDqbiIdg18ga+X8ENyKhNKAnQgL8XuZeY
+ mR+miggE0SxX2+Eu2wNw6WWZo8ZzI/ha8718MT0+BliYStQTVTABVbA+o
+ K8MIRlyHC53ioeeiW4UDM2oFnJqlkAIS3GPYPj0/A5RwYloExIvR4bSkk w==;
+X-CSE-ConnectionGUID: PocrSOXsShmkycnJSpMP5g==
+X-CSE-MsgGUID: saUhJ0bNSFWGNlavFUKLvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93880479"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93880479"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 08:14:35 -0700
+X-CSE-ConnectionGUID: G8IQNQB3RA6P455POdj7rQ==
+X-CSE-MsgGUID: VKmBnod1Sf6aaPtHBKtncA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="247209426"
+Received: from hanvin-mobl3.amr.corp.intel.com (HELO josouza-mobl7.intel.com)
+ ([10.124.222.2])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 08:14:34 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH] drm/xe/uapi: Add flag to tell if VM_GET_PROPERTY_FAULTS is
+ supported
+Date: Wed, 17 Jun 2026 08:14:19 -0700
+Message-ID: <20260617151419.101546-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Return_error_on_n?=
- =?utf-8?q?on-migratable_faults_requiring_devmem?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jun 2026 14:56:17 -0000
-Message-ID: <178170817706.90143.14951933623743505808@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260617135101.1245574-1-matthew.brost@intel.com>
-In-Reply-To: <20260617135101.1245574-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4132735734862086270==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Not all Xe versions support this feature and not every device supported by Xe
+supports this feature, so this flag is needed to make UMD's life easier.
 
-== Series Details ==
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_query.c | 2 ++
+ include/uapi/drm/xe_drm.h     | 1 +
+ 2 files changed, 3 insertions(+)
 
-Series: drm/xe: Return error on non-migratable faults requiring devmem
-URL   : https://patchwork.freedesktop.org/series/168716/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index dc975f595368..1a51fc1e0e83 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -359,6 +359,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+ 	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
+ 		xe_exec_queue_device_get_max_priority(xe);
++	config->info[DRM_XE_QUERY_CONFIG_FLAG_HAS_VM_GET_PROPERTY_FAULTS] =
++		xe->info.has_usm;
+ 
+ 	if (copy_to_user(query_ptr, config, size)) {
+ 		kfree(config);
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 48e9f1fdb78d..67b4d371a038 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -434,6 +434,7 @@ struct drm_xe_query_config {
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX	(1 << 4)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT    (1 << 5)
++	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VM_GET_PROPERTY_FAULTS	(1 << 6)
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+-- 
+2.54.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-5273-1f1e03ee0c160129c336e9301aeed557f406153b_BAT -> xe-pw-168716v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5273-1f1e03ee0c160129c336e9301aeed557f406153b -> xe-pw-168716v1
-
-  IGT_8969: 5a8fa64e48c3c30af9afa2824d6adb5ad2bcc5a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5273-1f1e03ee0c160129c336e9301aeed557f406153b: 1f1e03ee0c160129c336e9301aeed557f406153b
-  xe-pw-168716v1: 168716v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168716v1/index.html
-
---===============4132735734862086270==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Return error on non-migratable faults requiring devmem</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168716/">https://patchwork.freedesktop.org/series/168716/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168716v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168716v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5273-1f1e03ee0c160129c336e9301aeed557f406153b_BAT -&gt; xe-pw-168716v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5273-1f1e03ee0c160129c336e9301aeed557f406153b -&gt; xe-pw-168716v1</li>
-</ul>
-<p>IGT_8969: 5a8fa64e48c3c30af9afa2824d6adb5ad2bcc5a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5273-1f1e03ee0c160129c336e9301aeed557f406153b: 1f1e03ee0c160129c336e9301aeed557f406153b<br />
-  xe-pw-168716v1: 168716v1</p>
-
-</body>
-</html>
-
---===============4132735734862086270==--
