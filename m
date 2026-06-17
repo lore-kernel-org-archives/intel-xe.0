@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 986A8CD98F3
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 19:26:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A248CD98F8
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 19:26:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ECDB10F0ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 969A610F0EE;
 	Wed, 17 Jun 2026 19:26:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RyQ0bYwd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gOnlLJEY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B40B10EB0E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E88F10EB0E
  for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 19:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1781724394; x=1813260394;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=eYyGzL0ANiOwq6AmEdFv5Iq27EECT38oJSYs5+x/5O0=;
- b=RyQ0bYwd1Zhp7c+xqOzS+PNG5iTALr0mUAIPAK44Iaj1C6QaZFdJSkIy
- i58jaYRx+sJseHlM9EFn714Yit8/dLQW1UaNnqw257ucO0GRA5iMpX6hd
- yUboOqlXBobx0k4sIeTCqQFFBSn4WdLqjgxsuaqUhDuwLZ6WM+Vc2tieP
- 9k3hgXeCpVgcnEQyHFfk5bx0XHQagqo3CTfAJInyOQUlpEcr5hRfhvNMY
- 3zsshT7hlz7zQHS8mirEzhQ1yBY9s6Cjx78OCa6BQeDaWUoKWS8mAoA7f
- me1pImG27Tyt9MEnZrmppCik3w1TSnGgNAYf76fRMCmphvekwMefQf7JA Q==;
-X-CSE-ConnectionGUID: MdnJP9yJSpG03DHdkNROuQ==
-X-CSE-MsgGUID: svpKEd9KRtK+bjCjEnatXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="105339757"
-X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="105339757"
+ bh=oZi+nC9U4HWBTWDj5POPOVeDhvKRH579qg5c4MVnPq0=;
+ b=gOnlLJEYQnjFuJzF42m4rc46jHyZgoTNrkDq0Je6YztxDQwqPYyEDc7c
+ ZJ5WjxMFFXBMNaU7lDQ8ie4r0zlyL99g4sFUloTq+e35c55Gme2GKvrZM
+ vH7+Tvg2XoulMjnW+PYnMKTQZINHNh1NJnnqITwP7kel0a2PDREqlKX2d
+ 8316rqitiBd024/J+fXIiAPr6uTr3PyQRHzvNBVrVBeTpTSRCfMKx2jgr
+ oKOXd/T95nwnb4nuOUEJVZjfxvF7rQn+qx2pOH/4IlETms/zlqWSRWnYX
+ /hWEk0TAy8GukDDfhRdveAk+4hFY32PkzZydMq0wGbgf/Zb4SqaoXJVs+ Q==;
+X-CSE-ConnectionGUID: d7VHUShkSsygIYdegxMhcw==
+X-CSE-MsgGUID: WOTR78BWRmmWErvoq69DLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="105339759"
+X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="105339759"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2026 12:25:47 -0700
-X-CSE-ConnectionGUID: ZoXkAFwBR1mvlmJZk5kyTg==
-X-CSE-MsgGUID: JX4HkDHLS+mD8yaly85sUQ==
+X-CSE-ConnectionGUID: ef6ZmALPTSGd6yKW7G8ifg==
+X-CSE-MsgGUID: fNd0G/zrQvugNSyrbkcDKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="278347306"
+X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="278347298"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.134])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2026 12:25:44 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Wed, 17 Jun 2026 12:24:47 -0700
-Subject: [PATCH v2 3/5] drm/xe: Move engines' LRC programming RTP table off
- the stack
+Date: Wed, 17 Jun 2026 12:24:46 -0700
+Subject: [PATCH v2 2/5] drm/xe/rtp: Add FIELD_SET_FUNC RTP action
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260617-rtp_with_dynamic_vals-v2-3-3f4cb34c2ea1@intel.com>
+Message-Id: <20260617-rtp_with_dynamic_vals-v2-2-3f4cb34c2ea1@intel.com>
 References: <20260617-rtp_with_dynamic_vals-v2-0-3f4cb34c2ea1@intel.com>
 In-Reply-To: <20260617-rtp_with_dynamic_vals-v2-0-3f4cb34c2ea1@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -57,21 +56,21 @@ Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
  Violet Monti <violet.monti@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3580;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4301;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=eYyGzL0ANiOwq6AmEdFv5Iq27EECT38oJSYs5+x/5O0=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBqMvS3fQQEGj4C0YSV0dD84GOaAAqiT+RmTeBoL
- Zu2WW1BYgCJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCajL0twAKCRBNeSQFyHKQ
- BAeDD/wJknm+WKcGqtDa88zIMYavoX7H9Zn90xYYGp6u6fpmr623LY7J5om9D2G3egmhYBqmkdu
- YvgxiRbE8BYTXmXc3n+JIAs4iRg8V+LAdmA02rBsUWhD9tjQVgoiLpTzw/YC/zpJhhM2BymV4DQ
- UjFNAMHE1K2ClLGHjoH+efCCvAjG7ynWwwZleRtVUY+l1MOiN3VgqMzBWzNL/LREwsDEs3mS2ZD
- jSzY0ECX4PA6Qwz59YSKKCVEaWTGTkKxb+Kv/4Z/UlDhVkCv30X0hGOfJLC9QrHSw63BQ+lstvH
- ixLetihWyrD/oZbRj5HAY6Inpt2owM/5yGpOecOEig/6uW/BnCmIh2skdoggf09aZLGwCSvILt8
- l7zoFmQ+zeIXXqLiG6u6380dFYvRwNguVTSGq+vna/PvsDeo1qMr02ZOE5S/JY2IOzoyaDzhv/B
- m22Mt7sHUloFx/E14DJGw2JrckEuXz2nBoH+Cp+VyFTEmzyhW406tc3GRGX/RVFIaPQZvVt+gWB
- 8Bjq+ZtYzNzcuH2utzgOXfyqfr3S6QDXXC0igAqzur9h7YB3ZUREOBvn1zekfJE3vfyCE41ZmoM
- pvMHwN2YDGuBd0M972RtxJmD3Pe7eiJjbGmM2u4Su1t91hsgcIPkLv4+zWywPikRVhKrlN4biId
- AmH1L6ogZMSn2Mw==
+ bh=oZi+nC9U4HWBTWDj5POPOVeDhvKRH579qg5c4MVnPq0=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBqMvS2DP+Fv5jt4Vrm9jtEJUSTevK4uxapP13K1
+ EwAl5+K9rKJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCajL0tgAKCRBNeSQFyHKQ
+ BLx9EACCGviS2zmriCorO9BHLUhlvC/X63KpmaNnA4oVErm9iOAeR5XSNMr7R4DDiD9LjHlGVDs
+ Zzf5yp9Wwq8yqa2cGmThcbxhMLBjRzGEsHFToOoBQc9sJza/wwa+xolo/D2H+smq/xEcM+6ETHy
+ BGd/ewap9u32RQNOg5jUZMVss4ESYsOgmr9kBRvgDXHwhZdfTWrgutWnCV6sCjpFgxSiSG1dDja
+ kvCMsshGt/YHNAtGgEBOyC8MIdFE6mwg9ar/Kler8Qc7fA3SQht4U+2e/K9HxQUXCaxNVpKb21K
+ O2KY/4yI758uxIksuODuATd8gfVXEEv8fL5eT1RqbEq1Xy9pmXZytJzOy54FKppdD9ySAx5jy/4
+ 7c4xSPBo60ua2c5q7jvVSdazhF9sIj8e01EUFkC1spUHoXM5e5hEfIhPPfBSas1IQyfwg15TwDg
+ JeGy29Y96QnzSH9brJ4zRriCkMVKH7e0m0A0iu1A1VGQlfw6OtccoO19l6bihxMeYkyAwM3MOR4
+ nt0yqmzAEyl57AQAuTvUSpNpBKEZ3kFBs9HfUTyCo1QDNUwcPMv7lrl0A7oPiMw5WvkU/NiPzMd
+ Zwsn0WjrXf2b3i3SVEmB/mhzJx3u7LDmuFCyYxQeYS1amLJFAnAV58rT6d0qdYPQ9OUo9HWJhWD
+ 4JcP+PmiZeDIh9g==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -88,97 +87,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The 'lrc_setup' RTP table was allocated on the stack because it wasn't
-truly constant and needed to calculate the proper value for BLIT_CCTL at
-runtime based on other stack variables.  Using the FIELD_SET_FUNC action
-allows us to make the table itself truly constant and move it off the
-stack; the BLIT_CCTL value is now calculated during RTP table
-processing.
+Most of our RTP programming involves programming constant values into
+register fields.  However there are a few cases (e.g., RING_CMD_CCTL
+programming) that rely on dynamic per-GT or per-engine checks to decide
+what value will be programmed.  Add a FIELD_SET_FUNC RTP action which
+will call the provided function pointer once at RTP processing time to
+determine the appropriate value.
 
 v2:
- - Made table static
+ - Tweak kerneldoc to avoid duplicating explanation from FIELD_SET.
+   (Gustavo)
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 60 ++++++++++++++++++++-------------------
- 1 file changed, 31 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_rtp.c       | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_rtp.h       | 19 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_rtp_types.h | 17 +++++++++++++++--
+ 3 files changed, 42 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 98265293f2dc..603bb197801a 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -337,39 +337,41 @@ static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_device *xe,
- 	return xe_mmio_read32(&hwe->gt->mmio, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
- }
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 83a40e1f9528..6a8d6ea68f25 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -227,17 +227,23 @@ static bool rule_matches(const struct xe_device *xe,
  
-+static u32 blit_cctl_val(struct xe_gt *gt, struct xe_hw_engine *hwe)
-+{
-+	return REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, gt->mocs.uc_index) |
-+		REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, gt->mocs.uc_index);
-+}
-+
-+static const struct xe_rtp_table_sr lrc_setup = XE_RTP_TABLE_SR(
-+	/*
-+	 * Some blitter commands do not have a field for MOCS, those
-+	 * commands will use MOCS index pointed by BLIT_CCTL.
-+	 * BLIT_CCTL registers are needed to be programmed to un-cached.
-+	 */
-+	{ XE_RTP_NAME("BLIT_CCTL_default_MOCS"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1274),
-+		       ENGINE_CLASS(COPY)),
-+	  XE_RTP_ACTIONS(FIELD_SET_FUNC(BLIT_CCTL(0),
-+					BLIT_CCTL_DST_MOCS_MASK |
-+					BLIT_CCTL_SRC_MOCS_MASK,
-+					blit_cctl_val,
-+					XE_RTP_ACTION_FLAG(ENGINE_BASE)))
-+	},
-+	/* Disable WMTP if HW doesn't support it */
-+	{ XE_RTP_NAME("DISABLE_WMTP_ON_UNSUPPORTED_HW"),
-+	  XE_RTP_RULES(FUNC(xe_rtp_cfeg_wmtp_disabled)),
-+	  XE_RTP_ACTIONS(FIELD_SET(CS_CHICKEN1(0),
-+				   PREEMPT_GPGPU_LEVEL_MASK,
-+				   PREEMPT_GPGPU_THREAD_GROUP_LEVEL)),
-+	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE)
-+	},
-+);
-+
- static void
- hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
+ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
+ 			     struct xe_gt *gt,
++			     struct xe_hw_engine *hwe,
+ 			     u32 mmio_base,
+ 			     struct xe_reg_sr *sr)
  {
--	struct xe_gt *gt = hwe->gt;
--	const u8 mocs_write_idx = gt->mocs.uc_index;
--	const u8 mocs_read_idx = gt->mocs.uc_index;
--	u32 blit_cctl_val = REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, mocs_write_idx) |
--			    REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, mocs_read_idx);
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
--	const struct xe_rtp_table_sr lrc_setup = XE_RTP_TABLE_SR(
--		/*
--		 * Some blitter commands do not have a field for MOCS, those
--		 * commands will use MOCS index pointed by BLIT_CCTL.
--		 * BLIT_CCTL registers are needed to be programmed to un-cached.
--		 */
--		{ XE_RTP_NAME("BLIT_CCTL_default_MOCS"),
--		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1274),
--			       ENGINE_CLASS(COPY)),
--		  XE_RTP_ACTIONS(FIELD_SET(BLIT_CCTL(0),
--				 BLIT_CCTL_DST_MOCS_MASK |
--				 BLIT_CCTL_SRC_MOCS_MASK,
--				 blit_cctl_val,
--				 XE_RTP_ACTION_FLAG(ENGINE_BASE)))
--		},
--		/* Disable WMTP if HW doesn't support it */
--		{ XE_RTP_NAME("DISABLE_WMTP_ON_UNSUPPORTED_HW"),
--		  XE_RTP_RULES(FUNC(xe_rtp_cfeg_wmtp_disabled)),
--		  XE_RTP_ACTIONS(FIELD_SET(CS_CHICKEN1(0),
--					   PREEMPT_GPGPU_LEVEL_MASK,
--					   PREEMPT_GPGPU_THREAD_GROUP_LEVEL)),
--		  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE)
--		},
--	);
+ 	struct xe_reg_sr_entry sr_entry = {
+ 		.reg = action->reg,
+ 		.clr_bits = action->clr_bits,
+-		.set_bits = action->set_bits,
+ 		.read_mask = action->read_mask,
+ 	};
  
- 	xe_rtp_process_to_sr(&ctx, &lrc_setup, &hwe->reg_lrc, true);
++	if (action->use_func)
++		sr_entry.set_bits = action->set_func(gt, hwe);
++	else
++		sr_entry.set_bits = action->set_bits;
++
+ 	sr_entry.reg.addr += mmio_base;
++
+ 	xe_reg_sr_add(sr, &sr_entry, gt);
  }
+ 
+@@ -259,7 +265,7 @@ static bool rtp_process_one_sr(const struct xe_rtp_entry_sr *entry,
+ 		else
+ 			mmio_base = 0;
+ 
+-		rtp_add_sr_entry(action, gt, mmio_base, sr);
++		rtp_add_sr_entry(action, gt, hwe, mmio_base, sr);
+ 	}
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 2cc65053cd07..0032f68ea187 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -322,6 +322,25 @@ struct xe_reg_sr;
+ 	  .clr_bits = (mask_bits_), .set_bits = (val_),				\
+ 	  .read_mask = 0, ##__VA_ARGS__ }
+ 
++/**
++ * XE_RTP_ACTION_FIELD_SET_FUNC: Set a bit range to the value returned by a function
++ * @reg_: Register
++ * @mask_bits_: Mask of bits to be changed in the register, forming a field
++ * @func_: Function that returns value to set in the field denoted by @mask_bits_
++ * @...: Additional fields to override in the struct xe_rtp_action entry
++ *
++ * This macro works like XE_RTP_ACTION_FIELD_SET(), except that the
++ * field value is evaluated at the time the RTP table is processed.
++ *
++ * @func_ will only be called a single time, when the RTP table is being
++ * processed.  After processing, the value in the reg_sr entry is fixed and
++ * will not be re-evaluated.
++ */
++#define XE_RTP_ACTION_FIELD_SET_FUNC(reg_, mask_bits_, func_, ...)		\
++	{ .reg = XE_RTP_DROP_CAST(reg_),					\
++	  .clr_bits = mask_bits_, .set_func = func_, .use_func = 1,		\
++	  .read_mask = mask_bits_, ##__VA_ARGS__ }
++
+ /**
+  * XE_RTP_ACTION_WHITELIST - Add register to userspace whitelist
+  * @reg_: Register
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index 1d7c63d0ae94..b78092fa06e0 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -30,8 +30,14 @@ struct xe_rtp_action {
+ 	 */
+ 	u32 clr_bits;
+ 
+-	/** @set_bits: bits to set when updating register */
+-	u32 set_bits;
++	union {
++		/** @set_bits: bits to set when updating register */
++		u32 set_bits;
++
++		/** @set_func: function to provide bits to set when updating register */
++		u32 (*set_func)(struct xe_gt *gt,
++				struct xe_hw_engine *hwe);
++	};
+ 
+ #define XE_RTP_NOCHECK		.read_mask = 0
+ 	/** @read_mask: mask for bits to consider when reading value back */
+@@ -40,6 +46,13 @@ struct xe_rtp_action {
+ #define XE_RTP_ACTION_FLAG_ENGINE_BASE		BIT(0)
+ 	/** @flags: flags to apply on rule evaluation or action */
+ 	u8 flags;
++
++	/**
++	 * @use_func:
++	 *   Internal flag indicating @set_func should be called instead of
++	 *   using @set_bits.
++	 */
++	u8 use_func:1;
+ };
+ 
+ enum {
 
 -- 
 2.54.0
