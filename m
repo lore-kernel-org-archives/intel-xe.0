@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B611CD98F0
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 02:22:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19253CD98F0
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 02:38:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D78B910E902;
-	Wed, 17 Jun 2026 02:22:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f8Yw6qlq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C47B10E902;
- Wed, 17 Jun 2026 02:22:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781662974; x=1813198974;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=45uF6n/VZ+dbGp7B0HwEr/0X+qLKMtsft3m9nq2+/1I=;
- b=f8Yw6qlqX4j5SgdsVm70xdn5YWgkH+viuSQtzEetca47v+sqZSQfxnLB
- vR+Pe9LpgIDIvWdzK4qmiWXh4L5FYX4J93vTQbCrxHIBli7rv7KTDwXOT
- baB4nWhXWQbHsw4WhZl0YOsNsL9eRgUKo5t7PskQmhAyW0WfFgeQG9eu2
- ZT0IJIPZCAQhN34vVd3QDR7DDv09Toa4CiqEWtoLRIPqi4RgbrYPgHMcA
- TnBF4wejeY/AT+rzNbgAAR+PuqJxBsTKPRoK+vQ5duKz6vsCBqInWkYsC
- 3J1uSppFBNACULZH/DRZEdtEfHte7w+vXJYwr2XM8vMa5WtPIg710msQD Q==;
-X-CSE-ConnectionGUID: dGC2vmzOTqu4elF4o4b6zQ==
-X-CSE-MsgGUID: PVihrWF4QkSVt2I2O9ILEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="81576678"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81576678"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 19:22:53 -0700
-X-CSE-ConnectionGUID: c82pWy48T+69qdidkxU0pQ==
-X-CSE-MsgGUID: LuevtLjdQl6zOm7ZGtUlPg==
-X-ExtLoop1: 1
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 19:22:53 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH] drm/ttm/pool: Try harder for beneficial orders
-Date: Tue, 16 Jun 2026 19:22:48 -0700
-Message-Id: <20260617022248.1165101-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCE5A10E904;
+	Wed, 17 Jun 2026 02:38:24 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D0FE10E8D6;
+ Wed, 17 Jun 2026 02:38:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5677684019968806519=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/oa=3A_A_MERTOA_bug-f?=
+ =?utf-8?q?ix_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Jun 2026 02:38:24 -0000
+Message-ID: <178166390429.86642.18233434016942520847@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260617015422.226177-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20260617015422.226177-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,60 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a driver specifies a beneficial order, TTM should make a reasonable
-effort to allocate pages at that order.
+--===============5677684019968806519==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Use __GFP_RETRY_MAYFAIL instead of __GFP_NORETRY when allocating at the
-beneficial order. This allows reclaim to try harder before falling back to
-smaller orders, at the cost of longer allocation setup time.
+== Series Details ==
 
-That tradeoff is acceptable for beneficial-order allocations: higher-order
-backing pages can improve TLB hit rates and reduce the number of TLB
-invalidations needed when moving memory.
+Series: drm/xe/oa: A MERTOA bug-fix (rev2)
+URL   : https://patchwork.freedesktop.org/series/167787/
+State : success
 
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+== Summary ==
 
----
+CI Bug Log - changes from xe-5269-29ea43790111df065ed84e6cb076c64322c306f1_BAT -> xe-pw-167787v2_BAT
+====================================================
 
-Together with other Xe/core shrinker changes currently under development,
-this change significantly improved performance under memory fragmentation
-on PTL. In 3DMark Wild Life Extreme, performance improved by up to 120%
-compared to the baseline fragmented-memory case. GravityMark also showed
-approximately a 20% improvement under similar conditions.
----
- drivers/gpu/drm/ttm/ttm_pool.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 9f0ab99eb289..682ae4f40424 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -168,6 +168,11 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
- 	if (order && beneficial_order && order != beneficial_order)
- 		gfp_flags &= ~__GFP_RECLAIM;
- 
-+	if (beneficial_order && order == beneficial_order) {
-+		gfp_flags &= ~__GFP_NORETRY;
-+		gfp_flags |= __GFP_RETRY_MAYFAIL;
-+	}
-+
- 	if (!ttm_pool_uses_dma_alloc(pool)) {
- 		p = alloc_pages_node(pool->nid, gfp_flags, order);
- 		if (p) {
--- 
-2.34.1
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-167787v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-bmg-2:          [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5269-29ea43790111df065ed84e6cb076c64322c306f1/bat-bmg-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167787v2/bat-bmg-2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8966 -> IGT_8967
+  * Linux: xe-5269-29ea43790111df065ed84e6cb076c64322c306f1 -> xe-pw-167787v2
+
+  IGT_8966: 9b33225c761bfe8c8c266bc56558d75c700029fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8967: 46e60a541c8ce6e4e0046bb68fc577c4b502e5f2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5269-29ea43790111df065ed84e6cb076c64322c306f1: 29ea43790111df065ed84e6cb076c64322c306f1
+  xe-pw-167787v2: 167787v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167787v2/index.html
+
+--===============5677684019968806519==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/oa: A MERTOA bug-fix (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167787/">https://patchwork.freedesktop.org/series/167787/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167787v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167787v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5269-29ea43790111df065ed84e6cb076c64322c306f1_BAT -&gt; xe-pw-167787v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167787v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5269-29ea43790111df065ed84e6cb076c64322c306f1/bat-bmg-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167787v2/bat-bmg-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8966 -&gt; IGT_8967</li>
+<li>Linux: xe-5269-29ea43790111df065ed84e6cb076c64322c306f1 -&gt; xe-pw-167787v2</li>
+</ul>
+<p>IGT_8966: 9b33225c761bfe8c8c266bc56558d75c700029fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8967: 46e60a541c8ce6e4e0046bb68fc577c4b502e5f2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5269-29ea43790111df065ed84e6cb076c64322c306f1: 29ea43790111df065ed84e6cb076c64322c306f1<br />
+  xe-pw-167787v2: 167787v2</p>
+
+</body>
+</html>
+
+--===============5677684019968806519==--
