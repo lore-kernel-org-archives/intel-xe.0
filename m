@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58D28CD98E4
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 12:54:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 651CDCD98E2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 13:10:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A8428928D;
-	Wed, 17 Jun 2026 12:54:37 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 258A28928D;
- Wed, 17 Jun 2026 12:54:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1027701063722868188=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Improve_wedged_st?=
- =?utf-8?q?ate_management?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B54910E9D9;
+	Wed, 17 Jun 2026 13:10:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BWC1kgqE";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E96710E44F;
+ Wed, 17 Jun 2026 13:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781701856; x=1813237856;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=66DieTQS9SNDa5CIIxxGx6YeLqFgK6xGTk9XIbw4a8k=;
+ b=BWC1kgqE2mqHwbjjBVUfF90j/52wtAaL4VA0/YemTKz2bD6d4W9xHM6Y
+ +2uINqYLjOEWMzsWkCtusOCNX7kS94OBUBu6ZwGmJRlKy/gXlhJnOutsJ
+ pH9mip8XAXYaSOjrQEwNCMZQZhss8ywOOtDm41DEZZVne7ZUOLJbDZLWn
+ 6zutDDxT01upZQ2utaDgdz4btM2l7Hq3MIYn6T5GR9VFAXowyvJ1n1UcQ
+ W68IdNjwGGbQ4V9L6An2xm0cNObpkyIYG0gomIS6kO/bZX/XDfStNSn0G
+ 7Ya+K1YuFUrtVrcef8WcF5qzKcItQR5zMe8BZF00O7DxdOZAyAEn+wRKT A==;
+X-CSE-ConnectionGUID: T41Wo11VQDG6/fXrZuV39Q==
+X-CSE-MsgGUID: ISvGa2rBSBup8tEypZNE1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82394983"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82394983"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 06:10:56 -0700
+X-CSE-ConnectionGUID: /hGKOnHUTAWsPHupERikrw==
+X-CSE-MsgGUID: wHNFH61WTx2rtm2gUcmvKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="247928900"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.158])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 06:10:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jun 2026 12:54:36 -0000
-Message-ID: <178170087614.89425.14304636839416434726@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260617120542.96444-1-raag.jadav@intel.com>
-In-Reply-To: <20260617120542.96444-1-raag.jadav@intel.com>
+Subject: Re: [PATCH 08/14] drm/i915/cdclk: Unify the pcode pre/post notify
+ in bxt_set_cdclk()
+In-Reply-To: <20260610170652.5320-9-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
+ <20260610170652.5320-9-ville.syrjala@linux.intel.com>
+Date: Wed, 17 Jun 2026 16:10:51 +0300
+Message-ID: <83484d329e38dfc0fadeba0d1f08bf3456ea4245@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1027701063722868188==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 10 Jun 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The control flow between the pcode pre and post notifications ibn
 
-== Series Details ==
+*in
 
-Series: drm/xe: Improve wedged state management
-URL   : https://patchwork.freedesktop.org/series/168706/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5272-2c78b42ee6ffe01d609bdf18ece05a5627d0bb25_BAT -> xe-pw-168706v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
-Changes
--------
+> bxt_set_cdclk() is written in two different ways, even though
+> they end up doing the same thing. Unify the code.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 16 ++++++----------
+>  1 file changed, 6 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
+/i915/display/intel_cdclk.c
+> index 659c1c0e3432..09981a112db4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2237,7 +2237,7 @@ static void bxt_set_cdclk(struct intel_display *dis=
+play,
+>  {
+>  	struct intel_cdclk_config mid_cdclk_config;
+>  	int cdclk =3D cdclk_config->cdclk;
+> -	int ret =3D 0;
+> +	int ret;
+>=20=20
+>  	/*
+>  	 * Inform power controller of upcoming frequency change.
+> @@ -2246,7 +2246,7 @@ static void bxt_set_cdclk(struct intel_display *dis=
+play,
+>  	 * this step.
+>  	 */
+>  	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
+> -		; /* NOOP */
+> +		ret =3D 0; /* NOOP */
+>  	else if (DISPLAY_VER(display) >=3D 11)
+>  		ret =3D intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
+>  						 SKL_CDCLK_PREPARE_FOR_CHANGE,
+> @@ -2282,15 +2282,12 @@ static void bxt_set_cdclk(struct intel_display *d=
+isplay,
+>  	if (DISPLAY_VER(display) >=3D 20 && cdclk > display->cdclk.hw.cdclk)
+>  		xe2lpd_mdclk_cdclk_ratio_program(display, cdclk_config);
+>=20=20
+> -	if (DISPLAY_VER(display) >=3D 14)
+> -		/*
+> -		 * NOOP - No Pcode communication needed for
+> -		 * Display versions 14 and beyond
+> -		 */;
+> -	else if (DISPLAY_VER(display) >=3D 11 && !display->platform.dg2)
+> +	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
+> +		ret =3D 0; /* NOOP */
+> +	else if (DISPLAY_VER(display) >=3D 11)
+>  		ret =3D intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
+>  					       cdclk_config->voltage_level);
+> -	if (DISPLAY_VER(display) < 11) {
+> +	else
+>  		/*
+>  		 * The timeout isn't specified, the 2ms used here is based on
+>  		 * experiment.
+> @@ -2300,7 +2297,6 @@ static void bxt_set_cdclk(struct intel_display *dis=
+play,
+>  		ret =3D intel_parent_pcode_write_timeout(display,
+>  						       HSW_PCODE_DE_WRITE_FREQ_REQ,
+>  						       cdclk_config->voltage_level, 2);
+> -	}
+>  	if (ret)
+>  		drm_err(display->drm,
+>  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
 
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5272-2c78b42ee6ffe01d609bdf18ece05a5627d0bb25 -> xe-pw-168706v1
-
-  IGT_8969: 5a8fa64e48c3c30af9afa2824d6adb5ad2bcc5a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5272-2c78b42ee6ffe01d609bdf18ece05a5627d0bb25: 2c78b42ee6ffe01d609bdf18ece05a5627d0bb25
-  xe-pw-168706v1: 168706v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168706v1/index.html
-
---===============1027701063722868188==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Improve wedged state management</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168706/">https://patchwork.freedesktop.org/series/168706/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168706v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168706v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5272-2c78b42ee6ffe01d609bdf18ece05a5627d0bb25_BAT -&gt; xe-pw-168706v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5272-2c78b42ee6ffe01d609bdf18ece05a5627d0bb25 -&gt; xe-pw-168706v1</li>
-</ul>
-<p>IGT_8969: 5a8fa64e48c3c30af9afa2824d6adb5ad2bcc5a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5272-2c78b42ee6ffe01d609bdf18ece05a5627d0bb25: 2c78b42ee6ffe01d609bdf18ece05a5627d0bb25<br />
-  xe-pw-168706v1: 168706v1</p>
-
-</body>
-</html>
-
---===============1027701063722868188==--
+--=20
+Jani Nikula, Intel
