@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22481CD98E4
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAD34CD98F0
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:56:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFFE510EFB4;
-	Wed, 17 Jun 2026 11:38:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E83710E9CE;
+	Wed, 17 Jun 2026 11:56:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dzAaN8YX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QxENDEmF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F9DD10EFB4;
- Wed, 17 Jun 2026 11:38:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FED610E9CE
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 11:56:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781696300; x=1813232300;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=1U9KKPgGmyjcqMbOe5Px70RiIF+afP1QiBox3D0vvxI=;
- b=dzAaN8YXuqU7GRhc+uVBFd6IviemKqM8kc1kmPVJ+OystFiRDPSA1lI/
- GxyB+mF3vTaCFnruOKg2yZwWirp6CXQaXxplnNVJjzD0DSPvpyhMmwOH1
- xe7nw7PM4CRvfWF9trt25uR3RDqJ0OMfVxk0KjeIn84GJOsf6Ca5VNurZ
- TcykwPSDCqA81rnJVeM+NGTTe8CK/KGIOFSnCsPTnI7Y23lpJiNzFVbdV
- IhXSZU+wHgtpIBsB3goPMV42NdupRbpAp/hZYZ2YIkwTrqVERsMjNzsuL
- R5Rc0Rshjb0lovRaExcLpX6D7TBAIsw6u5C/wCHr2uo5UgXp5IDL1L5DZ A==;
-X-CSE-ConnectionGUID: BBpHRK6xTAKy90RsOFT1AA==
-X-CSE-MsgGUID: IWvpcR3GRJabeZj4XycqnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="99898372"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="99898372"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 04:38:20 -0700
-X-CSE-ConnectionGUID: 5LRS2+tnSEKCFI+wYxS6OA==
-X-CSE-MsgGUID: uZ9icDdpRjaEznkloO3ApQ==
+ t=1781697401; x=1813233401;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=WTA8AjLV+h8ltCAoEY9jG1UGssmrVwDBGIGFRFg2u20=;
+ b=QxENDEmF6M07xbK4suDM2HHHdZFKNXCbHvZYh3zrCEVlSQ8oE33vUdF/
+ w3gMxdLa3eIU8z+hr5C8RDEF2PiGXRkPdLVHiL80Khq4J1gcsfRd6WS+v
+ BL29vfenySv5jSHO/SSHBh9mQxopjBNvZjaq2UURekPRSLmFyLIuMx/2D
+ 1aO6+laLYZ2RxVNp2/nkQPnHpuDFyghEz2VMkf6fOXtwlwSZUpHmn9GxL
+ cduEHGLU2MqbqVr3PgKg6QHpubQfcffpSHpaxWZxcWsPyCKHrDPNLRlQc
+ Y6HAv8YkgJncTdIVF6oAa+8FSphuyV5QIfbQhGUwsuOXco9ub5Zr3G1pQ Q==;
+X-CSE-ConnectionGUID: WDbu3EEuS8aEKVdXizz6hQ==
+X-CSE-MsgGUID: 5lzfRwsUQ/GTk8mSksBsqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93973982"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93973982"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:56:41 -0700
+X-CSE-ConnectionGUID: zkjCBRR+TSqT2mgHhHrbCw==
+X-CSE-MsgGUID: MshCcUxUTkq58v3Yag4lZw==
 X-ExtLoop1: 1
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.158])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 04:38:18 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ville.syrjala@linux.intel.com,
- matthew.d.roper@intel.com, shawn.c.lee@intel.com
-Subject: Re: [PATCH v2] drm/i915/display: update to the BW buddy configuration
-In-Reply-To: <20260616184131.295013-1-vinod.govindapillai@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260616184131.295013-1-vinod.govindapillai@intel.com>
-Date: Wed, 17 Jun 2026 14:38:15 +0300
-Message-ID: <4abfacf0bf38d230f5b5ed6236d2f28cd9a77f3e@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="251951031"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:56:39 -0700
+Date: Wed, 17 Jun 2026 13:56:36 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: Re: [PATCH] drm/xe: Move drm_client_dev_suspend/resume outside pm
+ block signalling
+Message-ID: <ajKLdJIoHYBCIMiz@black.igk.intel.com>
+References: <20260617082104.610620-2-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260617082104.610620-2-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,48 +68,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 16 Jun 2026, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> Bspec has been updated for xe2_lpd+ platforms on how to handle
-> the bw buddy prgramming in case no matching memory configuration
-> is found w.r.t the current page mask table. The recommendation
-> is to keep the default settings for the related registers as it
-> is without explicitly disabling the bw buddy.
->
-> v2: removed extra explanation
->
-> Bspec: 68871
-> Suggested-by: Ville Syrjala <ville.syrjala@intel.com>
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 2e51dfcd5dce..3d348c5decee 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1634,9 +1634,12 @@ static void tgl_bw_buddy_init(struct intel_display *display)
->  	if (table[config].page_mask == 0) {
->  		drm_dbg_kms(display->drm,
->  			    "Unknown memory configuration; disabling address buddy logic.\n");
+On Wed, Jun 17, 2026 at 01:51:05PM +0530, Tejas Upadhyay wrote:
+> A circular locking dependency is reported between xe_pm_block_map and
+> dev->clientlist_mutex:
+> 
+>   &dev->clientlist_mutex --> &vm->lock --> xe_pm_block_map --> &dev->clientlist_mutex
+> 
+> The dependency chain is:
+> 1. xe_pm_suspend() calls xe_pm_block_begin_signalling(), then
+>    xe_display_pm_suspend() which calls drm_client_dev_suspend()
+>    acquiring clientlist_mutex. (xe_pm_block_map -> clientlist_mutex)
+> 
+> 2. drm_client_dev_unregister() -> drm_file_free() -> xe_file_close() ->
+>    prelim_xe_eudebug_file_close() acquires discovery_lock.
+>    (clientlist_mutex -> discovery_lock)
+> 
+> 3. xe_vm_close_and_put() acquires vm->lock under discovery_lock.
+>    (discovery_lock -> vm->lock)
+> 
+> 4. xe_exec_ioctl() holds vm->lock and calls xe_pm_block_on_suspend()
+>    which waits on xe_pm_block_map. (vm->lock -> xe_pm_block_map)
+> 
+> Fix this by moving drm_client_dev_suspend() before
+> xe_pm_block_begin_signalling() in xe_pm_suspend(), and
+> drm_client_dev_resume() after xe_pm_block_end_signalling() in
+> xe_pm_resume(). This breaks the xe_pm_block_map -> clientlist_mutex
+> edge in the dependency chain.
+> 
+> The drm_client_dev_suspend/resume calls are safe to move because they
+> only blank/unblank the fbdev console and don't depend on display power
+> state or any operations within the block signalling scope.
 
-The debug logging becomes misleading for display >= 20.
+Other folks already have interesting comments but just FYI:
+We'd want to make sure fbdev is not left blank on suspend/resume failure
+so the user atleast have an opportunity to see the failure and possibly
+add to the bug report.
 
-BR,
-Jani.
+You can refer to the comment above xe_display_pm_resume().
 
-> -		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
-> -			intel_de_write(display, BW_BUDDY_CTL(i),
-> -				       BW_BUDDY_DISABLE);
-> +
-> +		if (DISPLAY_VER(display) < 20) {
-> +			for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
-> +				intel_de_write(display, BW_BUDDY_CTL(i),
-> +					       BW_BUDDY_DISABLE);
-> +		}
->  	} else {
->  		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask)) {
->  			intel_de_write(display, BW_BUDDY_PAGE_MASK(i),
-
--- 
-Jani Nikula, Intel
+Raag
