@@ -4,87 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C1D3CD98F0
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 20:41:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DA0DCD98ED
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 21:09:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4343B10EB0D;
-	Wed, 17 Jun 2026 20:41:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAC3F10EB4A;
+	Wed, 17 Jun 2026 21:09:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="dXV79D8i";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="b18YDWA+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B+MFHJ4H";
 	dkim-atps=neutral
-X-Greylist: delayed 654 seconds by postgrey-1.36 at gabe;
- Wed, 17 Jun 2026 20:41:05 UTC
-Received: from fhigh-b8-smtp.messagingengine.com
- (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82D2310EB0D
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 20:41:05 +0000 (UTC)
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
- by mailfhigh.stl.internal (Postfix) with ESMTP id 166057A0149;
- Wed, 17 Jun 2026 16:30:11 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-05.internal (MEProxy); Wed, 17 Jun 2026 16:30:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1781728210;
- x=1781814610; bh=nQ3cOxa4IJfVezEa2HBSlbxmNTUbGLfjuqtIqDIYaPY=; b=
- dXV79D8iR1N7Oz3hZHjLyALnv2m91IqsiutxsvSOT8NSGpdNM80MUFuF7hDFn+f2
- Z+twpvAKB5/fJMAuBiHDW87W9aGv85W5n4h967KI1gqVTpYQ8hiEWT2+OLQm0shO
- /w/M7wRHmCBAd1TzCTsEx9RXKS83b5EO/DxEpRhkWHK4+/o9NqDsGdC+qUP+RyjF
- vTrL5XOSftyqcGwu5I7rHe4vh4cx6OP3LoHUXak5GpJ+3ylCaGaGyVnDHQtHrl4f
- dPNc1qEg2cpwDgYdApyZyslxWyzLUMnrWf2R5+NBMlkN3yJep4QUSDi3WbYycZ6/
- BokFWCvn9NprgoDRuGhtCQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
- 1781728210; x=1781814610; bh=nQ3cOxa4IJfVezEa2HBSlbxmNTUbGLfjuqt
- IqDIYaPY=; b=b18YDWA+PQqYgAvCvvqoVjKnBy1OzHeDl6D3i4K8VscgDZvGVKt
- yJjnRTaqX27TD6e8DzqEOLxS0GWMyRj4EyJF7YUKzzeoMfISmxUt7Q8zd01JzzTh
- W7YCNYwkIQ22xh/jfoM4a5BdomNsOs6HKMMylSuNU+XeGbt1TXGR/JZS8E4rm0OI
- dlluGsCaHocfdfa9W0yLaiyStflVyXAG7oAmeuRoj5XPnpqnpGNUpb18b1X3L7xG
- TStaVkuFHslZUguYw5lk5CC467Ie3wukq4OPznpQsMuTl7uGkLtXkxAiNSItopmM
- AjmNoMCqkEs1ShlLy6J93pVbrmzDXOktyFw==
-X-ME-Sender: <xms:0gMzao4ToFfZoiigwY430LkL3FU8hsut6O5eu_qVbiKDwEleQpuLlA>
- <xme:0gMzahprbDR_QR3CiG4gtt1CR2_gkZM6_-NE2sHj_UBHevLGfSW_ck94ZO8AEfa-0
- 00aq_zsD6SMUFX46Owu20Y4dCBrDrtwTKMBEnQIxDJ5hT4DoA>
-X-ME-Received: <xmr:0gMzaqhxvGzMANtJyPoB-McDODMT-DwYLGv9r8ORyaWAu-yuqIToI2YAKBUR392EDpEe0ibqQKYbZ6mG5zI3d56OL0px1di7SD4>
-X-ME-Proxy-Cause: dmFkZTFwBnQPaP9WPTtPaROfPtnBHMTyhvNJw2ar9oD2/Ek+QDJEzCKFDOCZD8BOvSXawW
- DamGfv5dofJDwPTbAaoDsgol/BYmKaFsXyYvhe0IbrpIBG0C33baNrPSnB1HeVKaw4kl+O
- LRffK/Lq2QoOt/UN6X/RMRdF0D6ZmWwdHuo9613C+/bJ/zsgahmOIwiEf69OZQOuVPvJf1
- q3nT0+B+zfBZonxT1uQi4aydeCvlOWUIsqwoUXZtmaK0UNi6NMxJRpszlgtU97jTrWGm7n
- E9xiFVusiamKS+Ai4JVZdpv1Y+AziiggvGZM6U2vtXYPWS4dCMyjzmZCiVPM8/zvjXLZoK
- u+6iEC8LmXfV6YAWuRPfNw0loRodA0cK7Ok5v505BoCInycga3GIZm4BTVy7OI1KEPsYGX
- gcU4sM5w3LbpEnbT/fDd71uYvjwx4wNQjaRbdWwGYMKnmn1Gt6eSsyEsLezecavPgozoKg
- bNXE5N/3cRHtT4tOkNGLvLddqtsj2/7vP3H1qFcMv51h29VvEorEEJ17CfV6/jBpX0KhTj
- awYBwQ2PcF6/N//WMnwmxn3h9RpPU05yXuRgXHwEukCrRaH0k1u3O2LPI1zttXdq/bvg0Q
- Q30wuzSU4z4Yi3TA/C+DROwYP9kMMRsF4sYkqW28h4mKo7q32U1awqjthGlg
-X-ME-Proxy: <xmx:0gMzarLVyhtKwl26p_RCB72FYJu5K1aKQWULjXbVxkiAV3yf5dFFzw>
- <xmx:0gMzaqDyRdvfgNGY5Vn07eZhHGTKFSIg3vUXCboIRYK6BvME5qduhA>
- <xmx:0gMzarjOcgMCrj6oGhitgp4pgPEmUxKJPx_ARfLnDEmfw8j94cok8g>
- <xmx:0gMzailiJS1iouK4XqospJ6Hc8AVvubtfo8DnBvg25jTL6zmFW09BQ>
- <xmx:0gMzavC3QsWzAOZr6Jy4gcaqjrK3dGUiOCG0WC4vha4z_d8ZbSFyHdgC>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 17 Jun 2026 16:30:09 -0400 (EDT)
-Date: Wed, 17 Jun 2026 22:30:08 +0200
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>, intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
-Message-ID: <ajMD0Jsml3ytlWOY@mail-itl>
-References: <aYtznP_tT6xNPwf-@mail-itl> <aY3ttvtxGCPTNgsj@Mac.lan>
- <aY58-gyarcVoBS2a@mail-itl> <aZ3KoSlIzru0Uumu@mail-itl>
- <aaVyKFaCSuhJufW2@mail-itl>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="uNgrZ1r0QgDtWsL3"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B241E10EB4A
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 21:09:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781730586; x=1813266586;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=3GfMIcZxh8o+r82Y+Y//hME2y5v4lTXs4NjnOmcdQD8=;
+ b=B+MFHJ4HcBGH+mhjTKr7Igv9i77U41ZVVBR9jvQeboe7u0DEMkeadDwa
+ oZnG2imBWsip79WxxmthqLHr0GboHEwlBsFCa5fW6+bCNpDj9kDjxfO5a
+ i87aAgWKR4QZoYre8PVWWYTHR9s4hc71DL+oojHBPEA5C87g8eK9/UeQX
+ hgdGNA0DoIKkN+uuxMsbbCV12ozXZOklzZHQfcGyX/82+FG+1vpY47o+q
+ K4TmOsWzWWUA3pkPFMsR5oEuRcqU5W4poRs8vcTnpNq4ui9lU4h7OEHJh
+ HTYx89SS1jkVUg19aWJZ0BUc+gm/O+SvVsDe/9ENxvdF/6x371VItzvR1 w==;
+X-CSE-ConnectionGUID: vFsmWNEyTTqK4BqBKgSeug==
+X-CSE-MsgGUID: kmvw176ARCOZn0uIcsn9zQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="85105286"
+X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="85105286"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 14:09:46 -0700
+X-CSE-ConnectionGUID: J0G8FcMdQzieD7jVqaDv7A==
+X-CSE-MsgGUID: Ny5SQH28QWe0lB3InTJgMA==
+X-ExtLoop1: 1
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 14:09:46 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 17 Jun 2026 14:09:45 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 17 Jun 2026 14:09:45 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.42) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 17 Jun 2026 14:09:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ojfb9MiHSjEfbQuH2Q9c8E9ZatwHP2cca0nytP/waVlUQ+Q8duq+JnI+gzMTESgTv1MPAGFCOzw5xuj0Gpi1+1yAoLcRXrDF+SL+T1fAHGwSFtmjtt+aNM8Qj0eU+jouvjEeWWOWOq0JKoN4XwZ5/DwD7EqJEZO/lUbnXfvLz/ZwBH8FGuT3s2+mdObBUASq8Yw8PrqRDh0s/q12vW+WSEJncRFqdaIgSAxYCRtEvDsLko7KtAswzjkb3BBUGCynEJnL2GjyRyo+nmNNLNDjfKjIGXQFBEqRqhUQTRkDSEc6ACUXhvF9N1ZG9lCuEAajqiYxR9Yr/UTWMAcobX9GjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kY1QYVbNkA+/YZJXDg3rn214ufcTSPZo3lCTEBkxhIA=;
+ b=MTeaLisceuNiZZKyhUN7ltSYUHJKGYbhVJImkguGcNvcYfGOe5GrIuT148cnQ9qlY2sRLFcnrvj1ewKkCB/wt9cVQsuhDd4eB0zPq3wjN0/RkZ5UGNrrGhCVFalrvZd/L4+lzNE8oMrP+lsZXyzSbp58gWPBl5ywox1fje1dzoCmE/wDGuT0JEEi7u3fWWSFhZ/Om9P6DVAyVtG7zpSlPfA6ahsphGW3KFTH2yZk2gSFjUoZyZnTHTmW96Rgu7PjO3u0L5Brn5i0WXXT0tn7C4G3BEe2xZhXXjVEf9zMKpe0olxIjW6NdiRAy9Q84HMW1HOeJIyyROk1vcc2Bk3QaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by MN2PR11MB4744.namprd11.prod.outlook.com (2603:10b6:208:263::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Wed, 17 Jun
+ 2026 21:09:43 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
+ 21:09:43 +0000
+Date: Wed, 17 Jun 2026 14:09:41 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Subject: Re: =?utf-8?B?4pyXIFhlLkNJLkJBVDogZmFpbHVy?= =?utf-8?Q?e?= for Move
+ RTP tables for engine init off the stack (rev2)
+Message-ID: <20260617210941.GO6214@mdroper-desk1.amr.corp.intel.com>
+References: <20260617-rtp_with_dynamic_vals-v2-0-3f4cb34c2ea1@intel.com>
+ <178172710845.91018.7661611226855697648@6beec6c84f66>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <aaVyKFaCSuhJufW2@mail-itl>
+In-Reply-To: <178172710845.91018.7661611226855697648@6beec6c84f66>
+X-ClientProxiedBy: SJ0PR13CA0021.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::26) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|MN2PR11MB4744:EE_
+X-MS-Office365-Filtering-Correlation-Id: 562b08ad-d258-43d8-34a7-08deccb4c0e7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|376014|1800799024|4143699003|56012099006|11063799006|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: t2MyzxEdPAqnbdJSjNtoLyKV+D0zZKtbSvSIPAZdfTDipjaUJt9QsTko+AtG4aYnyszHeSt8HwN+9+ItKlIucOm3qxg6eAM4IjQEtkfIVTXAhNde/cmPjddOCN/scU/i9OhEjBF2JR9U+u11+0v03+JHVzxV/moaXklJWWVo+yaEWY5cU/3fZ9Yml6r+iiPO6kjDNd5L5UXAuaoLoRAnN3eqkU8fNIFsvtlpmrRQnG8HyCJA3gIl/+hN5UuLOV/nv5YgFtELwQZox123HzjikfQreUyKdREjNuO/Lloi8x4kcr23do9YAfv89O+8sFR+w+dCGSAuVWcyH19h/EiiHRz10LL3NtP9LaFRKPuWwbVH+13perW+7QV4tZCQxyBi529B5eimegSNbczhQfsQOXTPogzdQKSSRptlNdsYnIAYDlapii11BSS7AHEnqtlMchJKrk64xox2ioxEqsBQSqUzKQ1eYF0S1LhG822ilAWqdvw9R98sEEl24awHqj9yA+IFPCEm906rlcJ9iC043b73qlxiuZjB1dhjrRFsf9CJvsPZRCIuNjNbkKwa20GyZE/F556VqpCQqGvZ1UHH7Ye3q8XXo2bnVoroAGE09/iyfhZJDVHWcOxfk49EUeV9IUhqtytKVu0HOsD5A+SeeQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(4143699003)(56012099006)(11063799006)(6133799003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?16RsRVPgzl/5Bj42gXHoT6Sr9fD7vUEgaFKG1bPVN2bn/tOrWFLQkxORC5JA?=
+ =?us-ascii?Q?WT4bcJrJYGTSJE9y3vSX2FnOmy7wvxTpauWZO22uPKnjk42k/wl6tXCTAEj5?=
+ =?us-ascii?Q?ZOv7MsIVbif6+qDAFxqi7Agw4EweGMK1/9rekUD16OvBIDEyLiJFzentmTHI?=
+ =?us-ascii?Q?PCNGs4ZuD1+EPy86vHp6D7PmGoH0s9K0E9bueFYUuAHUkd8G/P1Mw2XAgvmn?=
+ =?us-ascii?Q?NDLOFRjqrNyZ10EGc6Yy1iVZe6mLhfIKrV7NyFGVUYPuYcIBFJds7+/oXzj6?=
+ =?us-ascii?Q?eFH2gDht1GkL+GPkm4ZNdc+ZKfX6ItraW9X88+1KjCm8LHXHV+fNrf2+TcQC?=
+ =?us-ascii?Q?NIoEj59PY+FtQ7ZtFPwGs/7l17qX4Epogz6zoEjpS9ewi1COFlhA5Su0k9V/?=
+ =?us-ascii?Q?rDLQq+6xu9Oc01/P7idZQ4rt1yZ6DR5snOdyg+XItkKUw+VAKr9M9x4LQwM2?=
+ =?us-ascii?Q?aXEox/7zZpNFVy3HYwUQmkQfb7OnNMf0uyEqCJwhNddYVqQbe2pi4KvxX3AE?=
+ =?us-ascii?Q?FvZAfVlZL01kkWWxR28fdbxP+Pllk2rQRDXa4cRpY4B6E0jodR22pzCrK79j?=
+ =?us-ascii?Q?peSwgreQZXSkw/Jli4H0pKAEUHucAmAatUv/mpTadMG6ks5oRErCpJMeqNi8?=
+ =?us-ascii?Q?UuUj+hcJAsZjLS8aUPo16hNto+eJf6mnhXGId4rqR9vcXoRndspOipc2sWcB?=
+ =?us-ascii?Q?XJCxnbxTQdscsZxWeItPi5ZzSSWyji2Os0BdskW3EHwFeeyEsgxUq8V7VcbD?=
+ =?us-ascii?Q?XDilpEtS7A3WXtGnRcXnTqQWepX3Ootrhw1+i8+2Cbt8OuZoLpkHvQ/DchLY?=
+ =?us-ascii?Q?ZBtSyiCE493mBaMTjmRWZN2l7slodObputY7AiV0Lema8MUBZpIoxCbEoP9t?=
+ =?us-ascii?Q?BkMnkjD9/3LJSKwhqvPWHe72Qesa/EjDWrl97OLnnSXmtUx8hPmBvdZt+Jv5?=
+ =?us-ascii?Q?HclszBKlJvfV/T+bWjf/o5/ZxGHDDRz+OM5JTvnHlUbBKzL9n9jhg9KNGJGJ?=
+ =?us-ascii?Q?eyfBYLfIX7l9K7O6Qk64j6fXBkEFkgXKfc6etjcYDpzTEz+/pMIuelel92NM?=
+ =?us-ascii?Q?9Nkv9hfy8SRQkrr1zGBuYtdv/XYrlMDRZom/LJZLrZY2lnU47xoRIBJOQUmJ?=
+ =?us-ascii?Q?JeNlqsLBxDOgBoNSWztFvHCIh0xKCk0kWJAPaBGhqd8HaZDinC0Yf1JQN/Rc?=
+ =?us-ascii?Q?C/sqR7EEfhOdV9cZ+V7TyHq+OtkcFGFUpBoIp3/spFIdLTFJF1EN9JvVDaNp?=
+ =?us-ascii?Q?WWtgkau4r/n1VfPPHynLW73OWAXNAvPvVPfHrAZ6p4DMHgxjPr+W+6QLZfSo?=
+ =?us-ascii?Q?h0RcjIMTGGQsbiSvuaM+rWIAZdtKmu5899K2aZL9O/L8oEdd+HcJ38AzsJRa?=
+ =?us-ascii?Q?foSCgJ0GZZ4WGm9wkwPh+TIvT9Sl1nz5L9NQCboQrX7BbZ9QQv8SregnKIXo?=
+ =?us-ascii?Q?x86+1IY7IWdF2YkAJ7j05drUz/MGwQOAXibV0xSptmDbPosEgPIw34kvdm4R?=
+ =?us-ascii?Q?eFO3O+LfetQ4eKdtUIQLVE3obM08fHRB/mhJo8zPkSW7++8kTolrL//VfkkS?=
+ =?us-ascii?Q?ymwnsz1uca16V/SFy3nLdMcx6XC7qfboO2aD6GJICgQLQlzaAFvZIcVwcHaq?=
+ =?us-ascii?Q?8X0Oe2Y95rRz0yMywlPKlUFoG7M1s3rbvbOVNoYZSx9m58j2gLjDADJV5x3J?=
+ =?us-ascii?Q?BLwdOKms+JyNRlrD31zqXZ4C8HepSFvooEKDPwLiwHgRP1cME5uyuLx1an/h?=
+ =?us-ascii?Q?vFJjkc+SSHtrch6+mIVIt1pslAExVS8=3D?=
+X-Exchange-RoutingPolicyChecked: d9wEbQ1aDCerfnsUjjb2e7SOas+/wchAjQRdoS51w3fxQm/5F6k7OBbac1GarwaqJHVTV0Zi+5VLuIaF7940fggHG6nhPo/spADaoLRbOpDJnydKeEiO/m28f+BiYNopgUqf4zlh605moAodtZKQcOBmiURRLA4suWVd5QQe75koQpkYOdfu/VfVy3zMMPldPyb6DqWY6ctE+0qUc/++5yBfR4jPtuR4D5sGTFBp6LUNX548Ewi9cKw9vqRAyu0W//6OX9jzyYkC6pH68YcPjUwDczlXesyMQIyn93KdeOLH7Oi6+yiSy0Xt4ez29ykeXw411SejNE2nxS4sVKbA/w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 562b08ad-d258-43d8-34a7-08deccb4c0e7
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 21:09:43.7333 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3g1+u5bNJtixexl9/y3D/bejoERPBSm7dQEZ7yu36Molrzgj5Xp5b6CyBudJ0TcgxhaJgZ0xV6w8CcgwMeQ6+IRzuFe/iMjVdZg2zW7rD1U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4744
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,188 +155,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Jun 17, 2026 at 08:11:48PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: Move RTP tables for engine init off the stack (rev2)
+> URL   : https://patchwork.freedesktop.org/series/168630/
+> State : failure
+> 
+> == Summary ==
+> 
+> ERROR: The runconfig 'xe-5274-f7cb2873b7430d84afd4ad4e4771d3f8ad03fbf9_BAT' does not exist in the database
 
---uNgrZ1r0QgDtWsL3
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 17 Jun 2026 22:30:08 +0200
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>,
-	intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
+Seems that the CI system lost its "good" results and can't do
+comparisons now to detect possible regressions.
 
-On Mon, Mar 02, 2026 at 12:19:04PM +0100, Marek Marczykowski-G=C3=B3recki w=
-rote:
-> On Tue, Feb 24, 2026 at 04:58:25PM +0100, Marek Marczykowski-G=C3=B3recki=
- wrote:
-> > On Fri, Feb 13, 2026 at 02:23:06AM +0100, Marek Marczykowski-G=C3=B3rec=
-ki wrote:
-> > > On Thu, Feb 12, 2026 at 04:11:50PM +0100, Roger Pau Monn=C3=A9 wrote:
-> > > > On Tue, Feb 10, 2026 at 07:06:20PM +0100, Marek Marczykowski-G=C3=
-=B3recki wrote:
-> > > > > Hi,
-> > > > >=20
-> > > > > Recently I started testing compatibility with Intel Lunar Lake. T=
-his is
-> > > > > the first one that uses "xe" instead of "i915" Linux driver for i=
-GPU.
-> > > > > I test it with Qubes OS 4.3, which uses Xen 4.19.4 and PV dom0 ru=
-nning
-> > > > > Linux 6.17.9 in this test.
-> > > >=20
-> > > > Not sure it's going to help a lot, but does using a PVH dom0 make a=
-ny
-> > > > difference?
-> > >=20
-> > > Ok, now with the correct Xen version, it's better with PVH dom0. At
-> > > least on the login screen and few applications (from both dom0 and do=
-mU)
-> > > I don't see the glitches anymore. I can't do a full test, because PCI
-> > > passthrough doesn't seem to work with PVH dom0 on Xen 4.19 - and I ne=
-ed
-> > > it to start most VMs.
-> > >=20
-> > > So, if the above test is representative, it's only about PV dom0.
-> >=20
-> > Some further observations:
-> >=20
-> > 1. My initial impression that Xen 4.17.6 is not affected is false.
-> > Apparently I got lucky and didn't waited long enough for glitches to
-> > appear. Unfortunately this means I have no way to bisect this...
-> >=20
-> > 1a. Updated test procedure - either:
-> >   - start Qubes OS in full (including default system domUs) and try to
-> >     open an app in one of them (for example file manager or pdf viewer)
-> >   - start Linux up to lightdm login page, log in, log out, click on a
-> >     few lightdm menus (session type selector, poewroff menu etc)
-> >=20
-> > The second version works even if toolstack version in dom0 doesn't match
-> > Xen version. If no glitches are observed after doing either of those
-> > procedures, assume it's good.
-> >=20
-> > 2. Xen staging is affected too. As well as Xen staging-4.19 without
-> > any qubes patches.
-> >=20
-> > 3. After enabling CONFIG_DEBUG in Xen, the xe.ko fails to load firmware:
-> >=20
-> >     xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from xe/lnl_g=
-uc_70.bin version 70.53.0
-> >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status =3D =
-0x40000056, time =3D 0ms, freq =3D 1850MHz (req 1850MHz), done =3D -1
-> >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status: Res=
-et =3D 0, BootROM =3D 0x2B, UKernel =3D 0x00, MIA =3D 0x00, Auth =3D 0x01
-> >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: firmware production part=
- check failure
-> >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: Failed to initialize uC =
-(-EPROTO)
-> >     xe 0000:00:02.0: probe with driver xe failed with error -71
-> >=20
-> > CONFIG_DEBUG is the only change between "xe.ko loads fine but there are
-> > glitches later on" and "xe.ko fails to load at all". Full console logs:
-> > https://gist.github.com/marmarek/47b5e62a2cdbae6678c2aecc5283cd3f, there
-> > are 3 files:
-> >   - CONFIG_DEBUG=3Dn
-> >   - CONFIG_DEBUG=3Dy
-> >   - CONFIG_DEBUG=3Dy + iommu=3Ddebug
-> >=20
-> > 4. Updating to Linux 7.0-rc1 doesn't help, for example:
-> > https://openqa.qubes-os.org/tests/168119#step/desktop_linux_manager_cre=
-ate_qube/11
-> >=20
-> > Generally, it does feel like a bug in xe.ko, but I can't exclude some i=
-ssue
-> > on Xen side too (especially given point 3 above).
->=20
-> After waiting some time (Linux 6.19.5 this time), Xen CONFIG_DEBUG=3Dn, I=
- get some timeout messages:
->=20
->     [    8.122120] xe 0000:00:02.0: [drm] [ENCODER:204:DDI A/PHY A] faile=
-d to retrieve link info, disabling eDP
->     [    8.148476] xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware =
-=66rom xe/lnl_guc_70.bin version 70.53.0
->     [    8.803845] xe 0000:00:02.0: [drm] Tile0: GT0: ccs1 fused off
->     [    8.804208] xe 0000:00:02.0: [drm] Tile0: GT0: ccs2 fused off
->     [    8.804556] xe 0000:00:02.0: [drm] Tile0: GT0: ccs3 fused off
->     [    8.822426] xe 0000:00:02.0: [drm] Tile0: GT1: Using GuC firmware =
-=66rom xe/lnl_guc_70.bin version 70.53.0
->     [    8.827140] xe 0000:00:02.0: [drm] Tile0: GT1: Using HuC firmware =
-=66rom xe/lnl_huc.bin version 9.4.13
->     [    8.829478] xe 0000:00:02.0: [drm] Tile0: GT1: Using GSC firmware =
-=66rom xe/lnl_gsc_1.bin version 104.0.5.1429
->     [    8.852923] xe 0000:00:02.0: [drm] Tile0: GT1: vcs1 fused off
->     [    8.853513] xe 0000:00:02.0: [drm] Tile0: GT1: vcs2 fused off
->     [    8.854090] xe 0000:00:02.0: [drm] Tile0: GT1: vcs3 fused off
->     [    8.854706] xe 0000:00:02.0: [drm] Tile0: GT1: vcs4 fused off
->     [    8.855310] xe 0000:00:02.0: [drm] Tile0: GT1: vcs5 fused off
->     [    8.855904] xe 0000:00:02.0: [drm] Tile0: GT1: vcs6 fused off
->     [    8.856495] xe 0000:00:02.0: [drm] Tile0: GT1: vcs7 fused off
->     [    8.857079] xe 0000:00:02.0: [drm] Tile0: GT1: vecs1 fused off
->     [    8.857675] xe 0000:00:02.0: [drm] Tile0: GT1: vecs2 fused off
->     [    8.858272] xe 0000:00:02.0: [drm] Tile0: GT1: vecs3 fused off
->     [    8.975881] xe 0000:00:02.0: [drm] Registered 3 planes with drm pa=
-nic
->     [    8.976586] [drm] Initialized xe 1.1.0 for 0000:00:02.0 on minor 0
->     [    8.980882] ACPI: video: Video Device [GFX0] (multi-head: yes  rom=
-: no  post: no)
->     [    9.033754] xe 0000:00:02.0: [drm] Tile0: GT1: found GSC cv104.1.0
->     ...
->     [ 1218.319232] xe 0000:00:02.0: [drm] Tile0: GT0: Engine reset: engin=
-e_class=3Drcs, logical_mask: 0x1, guc_id=3D3
->     [ 1218.319890] xe 0000:00:02.0: [drm] Tile0: GT0: Timedout job: seqno=
-=3D9883, lrc_seqno=3D9883, guc_id=3D3, flags=3D0x0 in Xorg [3245]
->     [ 1218.320736] xe 0000:00:02.0: [drm] Xe device coredump has been cre=
-ated
->     [ 1218.321140] xe 0000:00:02.0: [drm] Check your /sys/class/drm/card0=
-/device/devcoredump/data
->     [ 1222.285626] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_d=
-one timed out
->     [ 1232.525685] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
->     [ 1232.526280] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] commit=
- wait timed out
->     [ 1242.765717] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_d=
-one timed out
->     [ 1253.005696] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
->     [ 1253.006248] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] commit=
- wait timed out
->     [ 1263.245599] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_d=
-one timed out
->=20
-> The glitches appear much earlier, though.
-> Would content of /sys/class/drm/card0/device/devcoredump/data be useful
-> for debugging this?
->=20
-> Full log at https://openqa.qubes-os.org/tests/168813/file/serial0.txt
-> (warning, almost 200MB of those errors...)
+Since v1 of the series passed CI [1], I think we can rely on those
+results to justify merging this.  The changes in v2 were:
 
-The issue still happens with Linux 7.0.12. Current log (quite similar to
-the previous one):
-https://openqa.qubes-os.org/tests/184602/logfile?filename=3Dserial0.txt
+ - Updating kerneldoc (no functional change)
+ - Adding 'static' to some arrays (compile-time change, no runtime
+   impact)
+ - Adding an extra patch at the end with a new kunit test.  CI *did* run
+   kunit successfully on v2 with passing results [2].
 
-Not long after GPU errors, nvme driver fails due to full swiotlb.
+So no changes in v2 that could impact the runtime BAT and FULL results.
+Merging this should also trigger creation of a new baseline build, which
+might be what we need to fix pre-merge CI for other series.
 
-Any ideas?
+Applied to drm-xe-next.  Thanks Gustavo for the reviews.
 
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
 
---uNgrZ1r0QgDtWsL3
-Content-Type: application/pgp-signature; name=signature.asc
+Matt
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmozA88ACgkQ24/THMrX
-1yyq+wf/bEtASp768/AYv+EbDMh+837ZW5p9z2UDro8wq2O7Q3+QcU0X28Vd1uvy
-Bnun06E68x863J5YKsRdUbdIQ5fLXcWphPx5IBMmJYVYWfnnb8EKQxd3WQmwDD8n
-EImFomdtLgBdsLVSZDi5aiIpWXmIAJ3fssOZv0cripsIDHrzNwQ+9M2vO3iIpyLM
-lYR42khFChpiYuiSqjrGe8JhueBldxD3fPAo9FRP0JcEue3+cmgn04FKPo4Jshdh
-J9ppBrthfjQSVxYCnhNMGUEjIE8h0RaqMASKa9ti3NNJ0BtLU+29kUUCOVw7dZY+
-H9QwxAr4ylkktAbK5FkWoEnpQMI6JQ==
-=UgAf
------END PGP SIGNATURE-----
+[1] https://lore.kernel.org/all/178165630296.86642.11835579407959899578@6beec6c84f66/
+[2] https://lore.kernel.org/all/178172480884.91018.6877579933780575711@6beec6c84f66/
 
---uNgrZ1r0QgDtWsL3--
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168630v2/index.html
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
