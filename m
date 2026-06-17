@@ -4,55 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AB8DCD98F1
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 10:07:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15CA5CD98E2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 10:08:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08FD710EF4D;
-	Wed, 17 Jun 2026 10:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1A9910EF4D;
+	Wed, 17 Jun 2026 10:08:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="IKmQ/iPT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c6W95wHZ";
 	dkim-atps=neutral
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C77E910EEC3;
- Wed, 17 Jun 2026 08:38:09 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ggHLQ6XWkz9tg3;
- Wed, 17 Jun 2026 10:38:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1781685486; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=spD7pjCIO/hnKowBxoDw0tQ702lZ3aup/LHEUbJfgM0=;
- b=IKmQ/iPT1RlaFXfDrJ/ESycocbU6Sfz4+BK4GpAZn3JoOKlisRysjWDmkvZQPlFk/96oD4
- cD2fxAHg5dlSEy3RdbXqTSaIQyNQQ6F9/eBu9jPxNELXHrJmW1Qj4cOFRHEYrWZEbslFfr
- +NSVMK/cDQ0Aoee2n1xL3nySoFrz9XNZ4Kn/8TpBj0JB3CxvhJW9aqvdq4II0dD0HKxW33
- zRzWqKmG4unkLMuzrKlpOXJeZTkO6eWdNItAWraLjQnlPv3oFDlebsTpQtI+fjM2+KYLXq
- t7OpmD5/ORVLxRbj2bIkgKKL4bGbV/NiJV2RQLcBb5YTB7B7RxLCPy98HbvBFg==
-Message-ID: <ba8ea856526d54753da68deefe7b77f15c908fa3.camel@mailbox.org>
-Subject: Re: [RFC] drm/sched: Replace completion with a flush
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
- Brost	 <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, 
- amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jun 2026 10:38:01 +0200
-In-Reply-To: <20260611123423.39819-1-tvrtko.ursulin@igalia.com>
-References: <20260611123423.39819-1-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D1FA10EF4D;
+ Wed, 17 Jun 2026 10:08:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781690913; x=1813226913;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=1UVuWZN65ZXDvlehcFYVR6vDGRtNRmRQTsGs42J6kF8=;
+ b=c6W95wHZJM446h/ar6NaF1XsYvqARhoCmO+1+NzTzfGACSw4zN6G4mIq
+ LLCmni7lCwkbwKmqRueOM4s/pf+8QB6x03TdRcCeXx2CjXaDnkvwEYIGX
+ bVCsv4IBf+oYhlq8AsPh+ioiNXiUeCr+yaB1rxzqKagGcMhn+ATghfM0O
+ YyRuw5PFoJdqtj+ibBkOCpN5lj1QuK9bm4jAgS2x/CeRug+hxHHYoUMFm
+ UN4/yT/n2LOdKjsTTfFBCxDunMFBjKB3QqVYd4LUeYrZgOH/YQ7FSdnyO
+ rSQhGcx64ngyp7/jI073ZBysoejU2fKXce1/+ANbVDEJv45hzUSS4ouit Q==;
+X-CSE-ConnectionGUID: 4e4n0MRVSquIS/ZVyUqmsA==
+X-CSE-MsgGUID: f+mK7DE6TF6/Ns/GsjUFHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82378170"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82378170"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 03:08:33 -0700
+X-CSE-ConnectionGUID: C/vjHKf/T6m7TH2TTEAo1Q==
+X-CSE-MsgGUID: GhOigKq7TY+TLEMNnXXE3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="246891738"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 03:08:31 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 17 Jun 2026 03:08:31 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 17 Jun 2026 03:08:31 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.32) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 17 Jun 2026 03:08:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VUdzINxT4jbhAv56YXEDnrfatToPK2J+vlIrcYYsDjI70IivfYuN6A3s/YMolJhwArxLtj02UKPEPo9O4OY42S0gWNBiXtvuyb9Af3WM0RP/oCYv2ulNpoQxul0sExahh0PL7euZW9NWUUFrm1RjxrUBXWV4WgsybPoHoWi8GwLIscaqJ0+Mqq2joU4ZYdpBF2Mz6HmzfMv9poQB9jsGkRfCod3ExaGI20B4U+zkKmtHLH6t5IXt/+HkvtGUvIUbzNfqWOCuGMcUtvdXy1+S3Kal8W1wTHnYt65mAXCOBjDiUnN6Lg3YhdS8foGgzbcS9Swed92QHvfnpT698FpAEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kci687rWVtLpbJrZPBJdv9b3uRhhwzIzykpTjVt9htA=;
+ b=e1kaw4trmI1h17kdKNtrMNqpgfHcw8BursyBz5H1GyI8d4//qjOS1GQbYP/AM8DDMhmRUT7wn9hbS04cbTuZXcIvRsjAh73VobHQ0vNW74gemtJEH2HktHeBUh9MMEH3qOSJoRG3fuDNnOvMPplD7FJIGbqMdrj/W95oItvE2p+Aomr6L7sZzR10j/DJYdrp8bQxVvI2P2nsRrtaXbNbCZBjlNjLHPjfYPD8Q2rLFwZ3oLgbJGaEiMKE4vn0uYj/a7sHgZ3e8DlPvUXWiQHCx8vq+RpTlDAPbn40hdyGgjXAUwB/IQySKAyvGgthxAyTJzl/7/DzknBZ3sg5tH2YPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
+ PH7PR11MB8036.namprd11.prod.outlook.com (2603:10b6:510:248::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Wed, 17 Jun
+ 2026 10:08:28 +0000
+Received: from DS0PR11MB8049.namprd11.prod.outlook.com
+ ([fe80::603c:772d:6793:d4eb]) by DS0PR11MB8049.namprd11.prod.outlook.com
+ ([fe80::603c:772d:6793:d4eb%6]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
+ 10:08:28 +0000
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Shankar, Uma" <uma.shankar@intel.com>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>
+Subject: RE: [PATCH v6 14/16] drm/i915/display: Add DC3CO count and residency
+ in dmc debugfs
+Thread-Topic: [PATCH v6 14/16] drm/i915/display: Add DC3CO count and residency
+ in dmc debugfs
+Thread-Index: AQHc/ayAPKkFzXJ3lUmrVZLOYJjqI7ZChr3g
+Date: Wed, 17 Jun 2026 10:08:28 +0000
+Message-ID: <DS0PR11MB8049318E74A9275F9A58ABE4F9E42@DS0PR11MB8049.namprd11.prod.outlook.com>
+References: <20260616162154.2630995-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260616162154.2630995-15-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260616162154.2630995-15-dibin.moolakadan.subrahmanian@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|PH7PR11MB8036:EE_
+x-ms-office365-filtering-correlation-id: 08cc9a7d-d14f-4ce9-e852-08decc5860cc
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|38070700021|22082099003|18002099003|6133799003|4143699003|56012099006|11063799006;
+x-microsoft-antispam-message-info: 4HcJYKAsS4sKBgfK43Ah34c7Gv19CxB0zlrG/5XoeVFqK3Diz6tHEFOlC6bevG2z0WQ1Q5AOovWCcWUisz51T9AmS89kvREe4xuBdsrrkSGweGRKFwLLB3KO4bHY7nMHrQ8hE5Y60VqQhchRFL27g/5fjP1kR964bzEbg0dbgr0NCooDj+Vr8Ltht2HD52HZw3nvgGd6RyvNpER1Bs4b8rNel8XuZjwzv9zruQ2hDI4Iz23asVGal1/I6DGj7TwtI9Rx9tdYs2yA8CuyRqi0UfIfGCRz2wvAfYFE+e7g3pxLflXi64UdP4ZxBNb59ylBsKYzRD1hDkishDm1fSFJK7+XohOSlF37lqJh74lVIgLChYJPUiV/O0oqCg8n24wZ7nZTnZUmFYTa2tIZHduAmqCOp+55AzpYMg1omaX5FGjTVZPfCCZuYGBnlfqlBQyA+oDjVoYKp2t5fhYR8q8ptH1fahibqIOTglpjgws/9CitgkZEgZ+vgHZBeN2Wq46DUikTNou75Bjl5PjYq7XaGWrhDHV+CrYJ4k/so5Klf+s0ZD3YxFI2oSvWS13s7ytg3NnY/0m3/LVKacAMEc4AsFoOMBn36qLGIX9MeTenaXeICeyT6R6fPU8aBAlylQmaeY8Fg5bhjgh7zV+6X+xXie9kOAqZ7YlQUUVrixFDXcs+fE+0LSRBO+FNZw0CC1oAAlE63ltJ7K+nJ3qbQURF+6pNeQ7PkSc0h4mAwG7vtK/o4KjPSNirwcX7LuzeaR7G
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(38070700021)(22082099003)(18002099003)(6133799003)(4143699003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?mXMzEvJ69CqgMzT1anUatEhbV/5p/o45yf/+mlcdTQtdkE6p3Eak+SrgZbOu?=
+ =?us-ascii?Q?PZ84EPQAt5EWbf/p1tzZn4Je77O0+1FnmKJYHREEcD0pABYVeQIW8Nz2SE6w?=
+ =?us-ascii?Q?JNsM22FF2BqNsP19BTXJNUActt7xR1/S/M4Feb7TdP3wA75hXZl46HV+VUvt?=
+ =?us-ascii?Q?tCKnFqyoVeSRFEtJdVJXRm6vVVs4Bp0nHmrrRLT/AFiPsmGONdFeVTyFqL9T?=
+ =?us-ascii?Q?XJw0wN1tUmycKQM99/9z2OIjyIpkscDOtFaMxpHl0BHTMC97zxk/N9AX6q6t?=
+ =?us-ascii?Q?1aT1wnIVYMcrRWipVxzMulrP2tgfu+fDv57dlM8wS6QoIYGLfLRvyF8AhV18?=
+ =?us-ascii?Q?E5p7/yjjjUvzfGuRSDGiBDma3LdiFziHvZlr+R4KUcpM0U+Z9mCKCyrE/lJx?=
+ =?us-ascii?Q?yQXmgVWuIqqqWTHEyNuIIGYAfKwNAjTveXN7SyeMoJCH8zUj2NIGYof6TfIf?=
+ =?us-ascii?Q?sZJtnmy7OwDLPFPfWqwB2GDM/K6XvTmGbm6SzUwMaPYkMMhlIP62nPeP1Zkz?=
+ =?us-ascii?Q?XL9fGzK1LGjx1C7LH1+oq6ExloTJ/7e9clAv1+wFxYnfw0a5+eTHm8XCmkgR?=
+ =?us-ascii?Q?5aaA8mhJh3pKZ1hd5fHF/d2Q11V8QrVkRliBtiCP1AiMUvNF0YicbgDpQyrI?=
+ =?us-ascii?Q?Q81smO9xSwpTETPBL13eIvStdMLAic9mbpugK9bna4CNkNb187OMKnoschWG?=
+ =?us-ascii?Q?I/zmqTV4KD4wpN5HDnRNUGcJ1nZq76lum0S8BH0VzoQ+FwY/GF71FgsYGkxE?=
+ =?us-ascii?Q?8Wd45secPB3m1iZ85JSbBW7iX7s3I1QgvwNF7RyDA+qahIo2KW/qNQOtjpR5?=
+ =?us-ascii?Q?L436WizFMaDqdcJqhaR0K0j7kbJVDnusuP8gIkNXmbPeB7to0YGIX9DEZxT0?=
+ =?us-ascii?Q?buAkX7zOubs6qUvnYC3JOD/FO4qtbCTGeKDx4pidk6dRO2yTdyOwZU2NRdQy?=
+ =?us-ascii?Q?8RvS+6ZRg/Z0d8bABORJTQceYAT/jFKpk2vrlz7l3Su4W2HcfAovGoopL6WC?=
+ =?us-ascii?Q?5vOJ7bmLqTnVrcNElk7VWlgsPARniGKsKVc0zIJkDhvp+KZOSHsYMtFQA8Bl?=
+ =?us-ascii?Q?0jfSYxjr9tzCeBoNzuF42tKVRR+S2oM7vO+xk4ZsUy4TUWxYSRTAbXkgcAqT?=
+ =?us-ascii?Q?QY0ovJnNm2Qu8qu9dv8DRx7ARKi9u00MtJJBodM6bGisXCkmIndVvv0UEJvE?=
+ =?us-ascii?Q?s8c8OT5r7pY+2qzfcYy2nYTJjh2UrDPzWGZ6Fs7Uq1Sn5GYjr4BtFt3IxsMg?=
+ =?us-ascii?Q?vG6E9qFLdtSs+KT7Po3vL4ZfQZu1NSFOpVVJGUVy9hOEb0QYUP/A/Pmkka8w?=
+ =?us-ascii?Q?eMgkYt7Lvnb0SPrg6lJJfBeqxtSy/hypGd3BsodmsB3qu8RK+7q+yGH5ZRTe?=
+ =?us-ascii?Q?3o6+PoTrOzjxWI7goeNPmPsjbSBXayot5dCVcbHrlb/gR0wP9B11+2m902FF?=
+ =?us-ascii?Q?B7k5QGG9Hdg4OT3+Bd0/nlOV2G01gZgEjRK+z69L1baU2aDtk+gn/x62WPAn?=
+ =?us-ascii?Q?yfbGJ/OWukGttIAkdjvA2qBX5Q9PyzEUJbIPnUX0a14QFiZ/krjI2X3rtYVq?=
+ =?us-ascii?Q?dBMl/vaRuq53n6grQ8dZwXdUr+thFG/1Xj7D43w+Fw6rOjE1kuKQEmb8/q4i?=
+ =?us-ascii?Q?eyfbgsYjuAC3SGDKOCayH9G5g9PCjuwiOEFd8fgVDn12ckrWUiW9MA6nCPSR?=
+ =?us-ascii?Q?jV1DnePl3+vgCJYL8oLyBTOUXOVlW/++TU+0OvGcjTDt8f6U1B7VEfhW/mU/?=
+ =?us-ascii?Q?Kt26HIT22g=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 2c5b219a17c02acc025
-X-MBO-RS-META: e1ogaqb1yr7qkmooe7gtbm1jioff1nt6
-X-Mailman-Approved-At: Wed, 17 Jun 2026 10:06:59 +0000
+X-Exchange-RoutingPolicyChecked: h4WUz1/sN+ueGuDU1Wh9HxjDFXKt5mW4J4LSA8PjJJ2BQ87ceEnvhN2axORSud7ZwmyKyv1TgiXJhidc6TNCJoy4zddxtZ1FbpZ1fQ6mrhoGA1xKZzzDlWdOUH3UbWAZN2GyrfJJeQ0acGIUQro7qlnwt33vcm0XsROsL96E4qMSJemltsDtv7+z9afgluoNMEvqbaX1Ta2obfyxqqgbG3uSbzQ+SEpQJRG/BHjsSWcmgcLR4dVKGZ9F1waViJzH9k2MlaYE/voiiHemxdMDsZl2Ujwa79twmtEysFVj2/dx4U6ZAcCanxA8PTSwQdrP9kc1IQ8X52Yb3GJPDUJDbg==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08cc9a7d-d14f-4ce9-e852-08decc5860cc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jun 2026 10:08:28.5964 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1ZT9lRrUKRVSRjzzeLPHlzEjYDbWlNcLPJcymxxh846hNzD3/78XTGb1qeq8G58z+L7n5SPVYK1leK+fx3zajg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8036
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,155 +162,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-06-11 at 13:34 +0100, Tvrtko Ursulin wrote:
-> Due the scheduler locking design, and the inability to always lock both
-> the entity and the run-queue in the consistent order, a completion exists
-> which effectively marks the entity as in use from a call path which is no=
-t
-> able to lock it.
+
+
+> -----Original Message-----
+> From: Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>
+> Sent: Tuesday, June 16, 2026 9:52 PM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Shankar, Uma <uma.shankar@intel.com>; Manna, Animesh
+> <animesh.manna@intel.com>; jani.nikula@linux.intel.com
+> Subject: [PATCH v6 14/16] drm/i915/display: Add DC3CO count and residency
+> in dmc debugfs
 >=20
-> When entity is selected from the run job worker, its completion is marked
-> as non-idle all until the code is sure it will not be dereferencing it an=
-y
-> more, at which point it signals it as idle, releasing the potential
-> parallel cleanup path.
+> Expose DC3CO count and residency for xe3lp platforms via debugfs.
 >=20
-> We can remove the need for this completion by implementing the identical
-> guarantee by simply flushing the run job work from the cleanup path, afte=
-r
-> having removed the entity from the run queue.
+> Changes in v4:
+> - Keep dc5_reg register initialization to avoid any
+>   invalid access (sashiko)
 >=20
-> We then know that the entity is no longer reachable by the run queue
-> selection logic, so as soon as any pending work is done the cleanup can
-> safely proceed. And because we have marked the entity as stopped, we also
-> know that the entity cannot re-enter the run queue.
+> Changes in v5:
+> - Change XE3P_DMC_DC3CO_COUNT address to lower case (Manna
+> Animesh).
 >=20
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Philipp Stanner <phasta@kernel.org>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
+> Signed-off-by: Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+LGTM.
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+
 > ---
-> "Perfection is achieved, not when there is nothing more to add, but when
-> =C2=A0there is nothing left to take away." - Antoine de Saint-Exup=C3=A9r=
-y
-
-
-Hmm, alright, so the basic trick just seems to be that the workqueue
-implementation already can ensure the synchronization which we manually
-implemented so far through the completion.
-
-
-It's a bit more LOC, and doesn't solve a bug. However, I kind of like
-the idea because it removes a redundant mechanism. Would be cool to
-hear some other opinions, though.
-
-A comment below
-
+>  drivers/gpu/drm/i915/display/intel_dmc.c      | 9 ++++++++-
+>  drivers/gpu/drm/i915/display/intel_dmc_regs.h | 2 ++
+>  2 files changed, 10 insertions(+), 1 deletion(-)
 >=20
-> Lets see what Intel's CI says about this, not to mention our new AI
-> overlords...
-> ---
-> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0 | 25 +++++++++=
-++++++-------
-> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h | 14 ++++++++++--
-> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 2 --
-> =C2=A0drivers/gpu/drm/scheduler/sched_rq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 14 +++++++-----
-> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 9 --------
-> =C2=A05 files changed, 38 insertions(+), 26 deletions(-)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+> b/drivers/gpu/drm/i915/display/intel_dmc.c
+> index a133785c815b..5ffe2b1c3c51 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -1650,7 +1650,14 @@ static int intel_dmc_debugfs_status_show(struct
+> seq_file *m, void *unused)
+>  		   DMC_VERSION_MINOR(dmc->version));
 >=20
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/s=
-cheduler/sched_entity.c
-> index c51101ec70c1..e6f7c2fbefce 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -137,10 +137,6 @@ int drm_sched_entity_init(struct drm_sched_entity *e=
-ntity,
-> =C2=A0	entity->rq =3D &sched_list[0]->rq;
-> =C2=A0	RCU_INIT_POINTER(entity->last_scheduled, NULL);
-> =C2=A0	RB_CLEAR_NODE(&entity->rb_tree_node);
-> -	init_completion(&entity->entity_idle);
-> -
-> -	/* We start in an idle state. */
-> -	complete_all(&entity->entity_idle);
-> =C2=A0
-> =C2=A0	spin_lock_init(&entity->lock);
-> =C2=A0	spsc_queue_init(&entity->job_queue);
-> @@ -276,18 +272,24 @@ static void drm_sched_entity_kill_jobs_cb(struct dm=
-a_fence *f,
-> =C2=A0 */
-> =C2=A0void drm_sched_entity_kill(struct drm_sched_entity *entity)
-> =C2=A0{
-> +	struct drm_gpu_scheduler *sched;
-> =C2=A0	struct drm_sched_job *job;
-> =C2=A0	struct dma_fence *prev;
-> =C2=A0
-> =C2=A0	spin_lock(&entity->lock);
-> =C2=A0	entity->stopped =3D true;
-> -	drm_sched_rq_remove_entity(entity->rq, entity);
-> +	sched =3D drm_sched_rq_remove_entity(entity->rq, entity);
-> =C2=A0	spin_unlock(&entity->lock);
-> =C2=A0
-> -	/* Make sure this entity is not used by the scheduler at the moment */
-> -	wait_for_completion(&entity->entity_idle);
-> +	/*
-> +	 * Make sure this entity is not used by the scheduler at the moment.
-> +	 *
-> +	 * Scheduler is guaranteed to be stable after the entity was stopped an=
-d
-> +	 * removed from the run-queue.
-> +	 */
-> +	if (sched)
-> +		drm_sched_flush_run_work(sched);
-> =C2=A0
-> -	/* The entity is guaranteed to not be used by the scheduler */
-> =C2=A0	prev =3D rcu_dereference_check(entity->last_scheduled, true);
-> =C2=A0	dma_fence_get(prev);
-> =C2=A0	while ((job =3D drm_sched_entity_queue_pop(entity))) {
-> @@ -576,6 +578,13 @@ void drm_sched_entity_select_rq(struct drm_sched_ent=
-ity *entity)
-> =C2=A0		return;
-> =C2=A0
-> =C2=A0	spin_lock(&entity->lock);
+>  	if (DISPLAY_VER(display) >=3D 12) {
+> -		if (display->platform.dgfx || DISPLAY_VER(display) >=3D 14) {
+> +		if (DISPLAY_VER(display) >=3D 35) {
+> +			dc5_reg =3D DG1_DMC_DEBUG_DC5_COUNT;
+> +			seq_printf(m, "DC3CO count: %d\n",
+> +				   intel_de_read(display,
+> XE3P_DMC_DC3CO_COUNT));
 > +
-> +	if (entity->stopped) {
-> +		spin_unlock(&entity->lock);
-> +		return;
+> +			seq_printf(m, "DC3CO residency: %d\n",
+> +				   intel_de_read(display,
+> DC_STATE_DC3CO_RESIDENCY));
+> +		} else if (display->platform.dgfx || DISPLAY_VER(display) >=3D
+> 14) {
+>  			dc5_reg =3D DG1_DMC_DEBUG_DC5_COUNT;
+>  		} else {
+>  			dc5_reg =3D TGL_DMC_DEBUG_DC5_COUNT;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+> b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+> index 38e342b45af0..6b7978fb8986 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+> @@ -531,6 +531,8 @@ enum pipedmc_event_id {
+>  #define TGL_DMC_DEBUG3		_MMIO(0x101090)
+>  #define DG1_DMC_DEBUG3		_MMIO(0x13415c)
+>=20
+> +#define XE3P_DMC_DC3CO_COUNT	_MMIO(0x8f05c)
 > +
-> +	}
+>  #define DMC_WAKELOCK_CFG	_MMIO(0x8F1B0)
+>  #define  DMC_WAKELOCK_CFG_ENABLE REG_BIT(31)
+>  #define DMC_WAKELOCK1_CTL	_MMIO(0x8F140)
+> --
+> 2.43.0
 
-Seems unrelated? Why wasn't this needed semantically before?
-
-> +
-> =C2=A0	sched =3D drm_sched_pick_best(entity->sched_list, entity->num_sche=
-d_list);
-> =C2=A0	rq =3D sched ? &sched->rq : NULL;
-> =C2=A0	if (rq !=3D entity->rq) {
-> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm=
-/scheduler/sched_internal.h
-> index 13ecb771d7a2..80dece3be415 100644
-> --- a/drivers/gpu/drm/scheduler/sched_internal.h
-> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
-> @@ -35,12 +35,22 @@ bool drm_sched_can_queue(struct drm_gpu_scheduler *sc=
-hed,
-> =C2=A0			 struct drm_sched_entity *entity);
-> =C2=A0void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
-> =C2=A0
-> +/**
-> + * drm_sched_flush_run_work - flush the run-job work
-
-In v1, you'd probably want to document what this function typically
-will be used for :)
-
-
-Greetings,
-P.
