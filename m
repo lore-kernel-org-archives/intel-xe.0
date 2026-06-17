@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 651CDCD98E2
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 13:10:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFAE5CD98E2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 13:18:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B54910E9D9;
-	Wed, 17 Jun 2026 13:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72B8210E0D8;
+	Wed, 17 Jun 2026 13:18:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BWC1kgqE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MZgrwehh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E96710E44F;
- Wed, 17 Jun 2026 13:10:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFECF10E0D8;
+ Wed, 17 Jun 2026 13:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781701856; x=1813237856;
+ t=1781702339; x=1813238339;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=66DieTQS9SNDa5CIIxxGx6YeLqFgK6xGTk9XIbw4a8k=;
- b=BWC1kgqE2mqHwbjjBVUfF90j/52wtAaL4VA0/YemTKz2bD6d4W9xHM6Y
- +2uINqYLjOEWMzsWkCtusOCNX7kS94OBUBu6ZwGmJRlKy/gXlhJnOutsJ
- pH9mip8XAXYaSOjrQEwNCMZQZhss8ywOOtDm41DEZZVne7ZUOLJbDZLWn
- 6zutDDxT01upZQ2utaDgdz4btM2l7Hq3MIYn6T5GR9VFAXowyvJ1n1UcQ
- W68IdNjwGGbQ4V9L6An2xm0cNObpkyIYG0gomIS6kO/bZX/XDfStNSn0G
- 7Ya+K1YuFUrtVrcef8WcF5qzKcItQR5zMe8BZF00O7DxdOZAyAEn+wRKT A==;
-X-CSE-ConnectionGUID: T41Wo11VQDG6/fXrZuV39Q==
-X-CSE-MsgGUID: ISvGa2rBSBup8tEypZNE1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82394983"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82394983"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 06:10:56 -0700
-X-CSE-ConnectionGUID: /hGKOnHUTAWsPHupERikrw==
-X-CSE-MsgGUID: wHNFH61WTx2rtm2gUcmvKQ==
+ bh=TB/YOKKLyz8Nn3g5C0h2oZY8H+FqOBrCG8SXugtxkp8=;
+ b=MZgrwehhuiYMGNeBOcoF4ABnENGCx7BOzuTDf2obCoBSHOBHBNlEvc6B
+ 8M3oso9TwBXZMcqbGaBGeAg3FA+dmhJiQMFXTH9WaKHcNmPe1I+bcYBtE
+ m3Dq95teFLRALSeCQdH+XRKuQ0Gv0VZZ5xGgAzrzTw1jgtnpTTZYHWXkS
+ gYhyV7uUEs/+PdNp8avKVQxITC4va2KYReGEiw9KIsKwws709y4OCCP6N
+ cxY0ZQLuWdaApkhABINFoKKYYY8PUVitw8nG68umwOA/U+c2XSbOnn5Ky
+ OyeFZbUZUS8hxXkBq5dWFagT9dMnTUBNmkxsok4ljEphOkxi+uzflXmLc Q==;
+X-CSE-ConnectionGUID: qWzLKU3VR9mV9Lgh5s/YvA==
+X-CSE-MsgGUID: mN8gQVILQqq8blNx0tTSfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="85053381"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="85053381"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 06:18:58 -0700
+X-CSE-ConnectionGUID: sLV+jpOeQlG2P0O2Ifez5A==
+X-CSE-MsgGUID: P4TxI3S/TsmbyC6N6FzBbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="247928900"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="243904070"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.158])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 06:10:54 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 06:18:57 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 08/14] drm/i915/cdclk: Unify the pcode pre/post notify
- in bxt_set_cdclk()
-In-Reply-To: <20260610170652.5320-9-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 13/14] drm/i915/cdclk: Introduce CDCLK .{pre,
+ post}_notify() vfuncs
+In-Reply-To: <20260610170652.5320-14-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
- <20260610170652.5320-9-ville.syrjala@linux.intel.com>
-Date: Wed, 17 Jun 2026 16:10:51 +0300
-Message-ID: <83484d329e38dfc0fadeba0d1f08bf3456ea4245@intel.com>
+ <20260610170652.5320-14-ville.syrjala@linux.intel.com>
+Date: Wed, 17 Jun 2026 16:18:54 +0300
+Message-ID: <fd9d5ed61dc55e9c7f11a42f4dd231babe115c7c@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -75,76 +75,287 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Wed, 10 Jun 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> The control flow between the pcode pre and post notifications ibn
+> Turn the cdclk pcode pre/post notify functiosn into vfuncs.
 
-*in
+*functions
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
-> bxt_set_cdclk() is written in two different ways, even though
-> they end up doing the same thing. Unify the code.
+> Mainly to get rid of the hideous if-ladders in bxt_set_cdclk().
+>
+> DG2 is currently doing its own thing with its pcode notify funcs so
+> can't be converted yet. And MTL+ go via the pmdemand stuff so this
+> is all supposedly handled elsewhere.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 16 ++++++----------
->  1 file changed, 6 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 122 ++++++++++++---------
+>  1 file changed, 73 insertions(+), 49 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
 /i915/display/intel_cdclk.c
-> index 659c1c0e3432..09981a112db4 100644
+> index 749e366e60ab..4154b4888eff 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2237,7 +2237,7 @@ static void bxt_set_cdclk(struct intel_display *dis=
+> @@ -163,6 +163,9 @@ struct intel_cdclk_funcs {
+>  	void (*set_cdclk)(struct intel_display *display,
+>  			  const struct intel_cdclk_config *cdclk_config,
+>  			  enum pipe pipe);
+> +	int (*pre_notify)(struct intel_display *display);
+> +	int (*post_notify)(struct intel_display *display,
+> +			   const struct intel_cdclk_config *cdclk_config);
+>  	int (*modeset_calc_cdclk)(struct intel_atomic_state *state);
+>  	u8 (*calc_voltage_level)(int cdclk);
+>  };
+> @@ -173,6 +176,35 @@ void intel_cdclk_get_cdclk(struct intel_display *dis=
 play,
->  {
->  	struct intel_cdclk_config mid_cdclk_config;
->  	int cdclk =3D cdclk_config->cdclk;
-> -	int ret =3D 0;
-> +	int ret;
+>  	display->cdclk.funcs->get_cdclk(display, cdclk_config);
+>  }
 >=20=20
->  	/*
->  	 * Inform power controller of upcoming frequency change.
-> @@ -2246,7 +2246,7 @@ static void bxt_set_cdclk(struct intel_display *dis=
-play,
->  	 * this step.
->  	 */
->  	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
-> -		; /* NOOP */
-> +		ret =3D 0; /* NOOP */
->  	else if (DISPLAY_VER(display) >=3D 11)
->  		ret =3D intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
->  						 SKL_CDCLK_PREPARE_FOR_CHANGE,
-> @@ -2282,15 +2282,12 @@ static void bxt_set_cdclk(struct intel_display *d=
-isplay,
+> +static int intel_cdclk_pre_notify(struct intel_display *display)
+> +{
+> +	int ret;
+> +
+> +	if (!display->cdclk.funcs->pre_notify)
+> +		return 0;
+> +
+> +	ret =3D display->cdclk.funcs->pre_notify(display);
+> +	if (ret)
+> +		drm_err(display->drm,
+> +			"Failed to inform system about start of CDCLK change (%d)\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static void intel_cdclk_post_notify(struct intel_display *display,
+> +				    const struct intel_cdclk_config *cdclk_config)
+> +{
+> +	int ret;
+> +
+> +	if (!display->cdclk.funcs->post_notify)
+> +		return;
+> +
+> +	ret =3D display->cdclk.funcs->post_notify(display, cdclk_config);
+> +	if (ret)
+> +		drm_err(display->drm,
+> +			"Failed to inform system about end of CDCLK change (%d)\n", ret);
+> +}
+> +
+>  static void intel_cdclk_set_cdclk(struct intel_display *display,
+>  				  const struct intel_cdclk_config *cdclk_config,
+>  				  enum pipe pipe)
+> @@ -901,12 +933,9 @@ static void bdw_set_cdclk(struct intel_display *disp=
+lay,
+>  		     "trying to change cdclk frequency with cdclk not enabled\n"))
+>  		return;
+>=20=20
+> -	ret =3D bdw_cdclk_pcode_pre_notify(display);
+> -	if (ret) {
+> -		drm_err(display->drm,
+> -			"Failed to inform PCODE about start of CDCLK change (%d)\n", ret);
+> +	ret =3D intel_cdclk_pre_notify(display);
+> +	if (ret)
+>  		return;
+> -	}
+>=20=20
+>  	intel_de_rmw(display, LCPLL_CTL,
+>  		     0, LCPLL_CD_SOURCE_FCLK);
+> @@ -931,10 +960,7 @@ static void bdw_set_cdclk(struct intel_display *disp=
+lay,
+>  	if (ret)
+>  		drm_err(display->drm, "Switching back to LCPLL failed\n");
+>=20=20
+> -	ret =3D bdw_cdclk_pcode_post_notify(display, cdclk_config);
+> -	if (ret)
+> -		drm_err(display->drm,
+> -			"Failed to inform PCODE about end of CDCLK change (%d)\n", ret);
+> +	intel_cdclk_post_notify(display, cdclk_config);
+>=20=20
+>  	intel_de_write(display, CDCLK_FREQ,
+>  		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
+> @@ -1205,12 +1231,9 @@ static void skl_set_cdclk(struct intel_display *di=
+splay,
+>  	drm_WARN_ON_ONCE(display->drm,
+>  			 display->platform.skylake && vco =3D=3D 8640000);
+>=20=20
+> -	ret =3D skl_cdclk_pcode_pre_notify(display);
+> -	if (ret) {
+> -		drm_err(display->drm,
+> -			"Failed to inform PCODE about start of CDCLK change (%d)\n", ret);
+> +	ret =3D intel_cdclk_pre_notify(display);
+> +	if (ret)
+>  		return;
+> -	}
+>=20=20
+>  	freq_select =3D skl_cdclk_freq_sel(display, cdclk, vco);
+>=20=20
+> @@ -1247,10 +1270,7 @@ static void skl_set_cdclk(struct intel_display *di=
+splay,
+>  	intel_de_write(display, CDCLK_CTL, cdclk_ctl);
+>  	intel_de_posting_read(display, CDCLK_CTL);
+>=20=20
+> -	ret =3D skl_cdclk_pcode_post_notify(display, cdclk_config);
+> -	if (ret)
+> -		drm_err(display->drm,
+> -			"Failed to inform PCODE about end of CDCLK change (%d)\n", ret);
+> +	intel_cdclk_post_notify(display, cdclk_config);
+>=20=20
+>  	intel_update_cdclk(display);
+>  }
+> @@ -2290,24 +2310,9 @@ static void bxt_set_cdclk(struct intel_display *di=
+splay,
+>  	int cdclk =3D cdclk_config->cdclk;
+>  	int ret;
+>=20=20
+> -	/*
+> -	 * Inform power controller of upcoming frequency change.
+> -	 * Display versions 14 and beyond do not follow the PUnit
+> -	 * mailbox communication, skip
+> -	 * this step.
+> -	 */
+> -	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
+> -		ret =3D 0; /* NOOP */
+> -	else if (DISPLAY_VER(display) >=3D 11)
+> -		ret =3D skl_cdclk_pcode_pre_notify(display);
+> -	else
+> -		ret =3D bxt_cdclk_pcode_pre_notify(display);
+> -
+> -	if (ret) {
+> -		drm_err(display->drm,
+> -			"Failed to inform PCODE about start of CDCLK change (%d)\n", ret);
+> +	ret =3D intel_cdclk_pre_notify(display);
+> +	if (ret)
+>  		return;
+> -	}
+>=20=20
+>  	if (DISPLAY_VER(display) >=3D 20 && cdclk < display->cdclk.hw.cdclk)
+>  		xe2lpd_mdclk_cdclk_ratio_program(display, cdclk_config);
+> @@ -2323,16 +2328,7 @@ static void bxt_set_cdclk(struct intel_display *di=
+splay,
 >  	if (DISPLAY_VER(display) >=3D 20 && cdclk > display->cdclk.hw.cdclk)
 >  		xe2lpd_mdclk_cdclk_ratio_program(display, cdclk_config);
 >=20=20
-> -	if (DISPLAY_VER(display) >=3D 14)
-> -		/*
-> -		 * NOOP - No Pcode communication needed for
-> -		 * Display versions 14 and beyond
-> -		 */;
-> -	else if (DISPLAY_VER(display) >=3D 11 && !display->platform.dg2)
-> +	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
-> +		ret =3D 0; /* NOOP */
-> +	else if (DISPLAY_VER(display) >=3D 11)
->  		ret =3D intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
->  					       cdclk_config->voltage_level);
-> -	if (DISPLAY_VER(display) < 11) {
-> +	else
->  		/*
->  		 * The timeout isn't specified, the 2ms used here is based on
->  		 * experiment.
-> @@ -2300,7 +2297,6 @@ static void bxt_set_cdclk(struct intel_display *dis=
-play,
->  		ret =3D intel_parent_pcode_write_timeout(display,
->  						       HSW_PCODE_DE_WRITE_FREQ_REQ,
->  						       cdclk_config->voltage_level, 2);
-> -	}
->  	if (ret)
->  		drm_err(display->drm,
->  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
+> -	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
+> -		ret =3D 0; /* NOOP */
+> -	else if (DISPLAY_VER(display) >=3D 11)
+> -		ret =3D skl_cdclk_pcode_post_notify(display, cdclk_config);
+> -	else
+> -		ret =3D bxt_cdclk_pcode_post_notify(display, cdclk_config);
+> -
+> -	if (ret)
+> -		drm_err(display->drm,
+> -			"Failed to inform PCODE about end of CDCLK change (%d)\n", ret);
+> +	intel_cdclk_post_notify(display, cdclk_config);
+>=20=20
+>  	intel_update_cdclk(display);
+>=20=20
+> @@ -3929,9 +3925,25 @@ static const struct intel_cdclk_funcs xe3lpd_cdclk=
+_funcs =3D {
+>  	.calc_voltage_level =3D xe3lpd_calc_voltage_level,
+>  };
+>=20=20
+> +static const struct intel_cdclk_funcs mtl_cdclk_funcs =3D {
+> +	.get_cdclk =3D bxt_get_cdclk,
+> +	.set_cdclk =3D bxt_set_cdclk,
+> +	.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk,
+> +	.calc_voltage_level =3D rplu_calc_voltage_level,
+> +};
+> +
+> +static const struct intel_cdclk_funcs dg2_cdclk_funcs =3D {
+> +	.get_cdclk =3D bxt_get_cdclk,
+> +	.set_cdclk =3D bxt_set_cdclk,
+> +	.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk,
+> +	.calc_voltage_level =3D tgl_calc_voltage_level,
+> +};
+> +
+>  static const struct intel_cdclk_funcs rplu_cdclk_funcs =3D {
+>  	.get_cdclk =3D bxt_get_cdclk,
+>  	.set_cdclk =3D bxt_set_cdclk,
+> +	.pre_notify =3D skl_cdclk_pcode_pre_notify,
+> +	.post_notify =3D skl_cdclk_pcode_post_notify,
+>  	.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk,
+>  	.calc_voltage_level =3D rplu_calc_voltage_level,
+>  };
+> @@ -3939,6 +3951,8 @@ static const struct intel_cdclk_funcs rplu_cdclk_fu=
+ncs =3D {
+>  static const struct intel_cdclk_funcs tgl_cdclk_funcs =3D {
+>  	.get_cdclk =3D bxt_get_cdclk,
+>  	.set_cdclk =3D bxt_set_cdclk,
+> +	.pre_notify =3D skl_cdclk_pcode_pre_notify,
+> +	.post_notify =3D skl_cdclk_pcode_post_notify,
+>  	.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk,
+>  	.calc_voltage_level =3D tgl_calc_voltage_level,
+>  };
+> @@ -3946,6 +3960,8 @@ static const struct intel_cdclk_funcs tgl_cdclk_fun=
+cs =3D {
+>  static const struct intel_cdclk_funcs ehl_cdclk_funcs =3D {
+>  	.get_cdclk =3D bxt_get_cdclk,
+>  	.set_cdclk =3D bxt_set_cdclk,
+> +	.pre_notify =3D skl_cdclk_pcode_pre_notify,
+> +	.post_notify =3D skl_cdclk_pcode_post_notify,
+>  	.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk,
+>  	.calc_voltage_level =3D ehl_calc_voltage_level,
+>  };
+> @@ -3953,6 +3969,8 @@ static const struct intel_cdclk_funcs ehl_cdclk_fun=
+cs =3D {
+>  static const struct intel_cdclk_funcs icl_cdclk_funcs =3D {
+>  	.get_cdclk =3D bxt_get_cdclk,
+>  	.set_cdclk =3D bxt_set_cdclk,
+> +	.pre_notify =3D skl_cdclk_pcode_pre_notify,
+> +	.post_notify =3D skl_cdclk_pcode_post_notify,
+>  	.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk,
+>  	.calc_voltage_level =3D icl_calc_voltage_level,
+>  };
+> @@ -3960,6 +3978,8 @@ static const struct intel_cdclk_funcs icl_cdclk_fun=
+cs =3D {
+>  static const struct intel_cdclk_funcs bxt_cdclk_funcs =3D {
+>  	.get_cdclk =3D bxt_get_cdclk,
+>  	.set_cdclk =3D bxt_set_cdclk,
+> +	.pre_notify =3D bxt_cdclk_pcode_pre_notify,
+> +	.post_notify =3D bxt_cdclk_pcode_post_notify,
+>  	.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk,
+>  	.calc_voltage_level =3D bxt_calc_voltage_level,
+>  };
+> @@ -3967,12 +3987,16 @@ static const struct intel_cdclk_funcs bxt_cdclk_f=
+uncs =3D {
+>  static const struct intel_cdclk_funcs skl_cdclk_funcs =3D {
+>  	.get_cdclk =3D skl_get_cdclk,
+>  	.set_cdclk =3D skl_set_cdclk,
+> +	.pre_notify =3D skl_cdclk_pcode_pre_notify,
+> +	.post_notify =3D skl_cdclk_pcode_post_notify,
+>  	.modeset_calc_cdclk =3D skl_modeset_calc_cdclk,
+>  };
+>=20=20
+>  static const struct intel_cdclk_funcs bdw_cdclk_funcs =3D {
+>  	.get_cdclk =3D bdw_get_cdclk,
+>  	.set_cdclk =3D bdw_set_cdclk,
+> +	.pre_notify =3D bdw_cdclk_pcode_pre_notify,
+> +	.post_notify =3D bdw_cdclk_pcode_post_notify,
+>  	.modeset_calc_cdclk =3D bdw_modeset_calc_cdclk,
+>  };
+>=20=20
+> @@ -4078,16 +4102,16 @@ void intel_init_cdclk_hooks(struct intel_display =
+*display)
+>  		display->cdclk.funcs =3D &xe3lpd_cdclk_funcs;
+>  		display->cdclk.table =3D xe3lpd_cdclk_table;
+>  	} else if (DISPLAY_VER(display) >=3D 20) {
+> -		display->cdclk.funcs =3D &rplu_cdclk_funcs;
+> +		display->cdclk.funcs =3D &mtl_cdclk_funcs;
+>  		display->cdclk.table =3D xe2lpd_cdclk_table;
+>  	} else if (DISPLAY_VERx100(display) >=3D 1401) {
+> -		display->cdclk.funcs =3D &rplu_cdclk_funcs;
+> +		display->cdclk.funcs =3D &mtl_cdclk_funcs;
+>  		display->cdclk.table =3D xe2hpd_cdclk_table;
+>  	} else if (DISPLAY_VER(display) >=3D 14) {
+> -		display->cdclk.funcs =3D &rplu_cdclk_funcs;
+> +		display->cdclk.funcs =3D &mtl_cdclk_funcs;
+>  		display->cdclk.table =3D mtl_cdclk_table;
+>  	} else if (display->platform.dg2) {
+> -		display->cdclk.funcs =3D &tgl_cdclk_funcs;
+> +		display->cdclk.funcs =3D &dg2_cdclk_funcs;
+>  		display->cdclk.table =3D dg2_cdclk_table;
+>  	} else if (display->platform.alderlake_p) {
+>  		/* Wa_22011320316:adl-p[a0] */
 
 --=20
 Jani Nikula, Intel
