@@ -4,152 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B9BECD98ED
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 23:25:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D279CD98E4
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 23:30:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 259E710E5C5;
-	Wed, 17 Jun 2026 23:25:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23F3010F15D;
+	Wed, 17 Jun 2026 23:30:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IesvceXF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QFVdfjeR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B8E610E5C5
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 23:25:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24ACC10EBBA;
+ Wed, 17 Jun 2026 23:30:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781738724; x=1813274724;
+ t=1781739018; x=1813275018;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=PUP8Xk+POfnNk2DPSMVRsnCCdejbOoDjfDUaMs34lQQ=;
- b=IesvceXFEXCt/OoQey+0PJ2I5QS78kfpPHQ2rF5XnAJEP2iYflPtU0UM
- nV+GEhe0OcIf0tzw55idWpstHFUbIvC+fPTkZtbmV1XCF+3n3nDBNJ5Vf
- NQjSCak6NA2Zg+Cmi/DlnWispnHCAqo7kYad1gfjjF2B/UFAspuS6RT0c
- Rse0ZnbfZkaD8P3kHub2dFoD+3//a8FD+5I3pIi4v5moDzNzu/Kv6Y8c3
- fKGu0PMp/ss+1Tnp1UiAPWXUvQICAy1VvSR9zEQPEU64S+Fed5dInI5Gc
- iDVyK6GJy+6pBTP6IhnN9E+Cs8JSR3sCiJ3eCb/Ciuq48a+FjX+RM7BNW A==;
-X-CSE-ConnectionGUID: PwZY+FV0Sd+JxGPsFedWOg==
-X-CSE-MsgGUID: bkBxjGkcSKeHEPgamhzjrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="93214574"
-X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="93214574"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 16:25:24 -0700
-X-CSE-ConnectionGUID: +zCGc8uMQyOLj+AjpNldgw==
-X-CSE-MsgGUID: 8fnz0ggISM+3HxF3heEHFw==
+ in-reply-to:mime-version;
+ bh=PNKI7HidkQpKAYFoTo0dvwR9lCZ2xLjWjZkqjQeNHW0=;
+ b=QFVdfjeRmnpBQeda3aHrSPgKB4Cs2tMGLAdMc8/oZ9QB60QDJHVdf7f4
+ nh/RoqmGTuq4rqjq8IrBWLyalv1V9Ue0a+BXY3eSmuT78DTZdWjWE54yQ
+ GQ/VUGJW5FF/C5AA+16yZYOc3rH4n2xEM74GlYG7nB2K01GuLk8j7VbfR
+ vQZfhZsz36yTsd7lwN0DO92VhSpyLvhxnYQ6zGQIvl8v+IWw31gCRGHAx
+ sUhiDtrG6dLWiZj1NW/jt/TdSg7yzrb1DBl7Y+pI4daZ/dV6UJ3drtba5
+ tIh03bCxVJTg844fj54djoSwyOReJgr4duslX6N6o9ALEaBPO35udx2T3 g==;
+X-CSE-ConnectionGUID: IvxriQKyTpq/m1ZdZYxuwQ==
+X-CSE-MsgGUID: f3d7JbkFSiioLxKlacq1eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="86404249"
+X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="86404249"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 16:30:18 -0700
+X-CSE-ConnectionGUID: 8DF8JRb5RIOjN6aOD+/mqg==
+X-CSE-MsgGUID: 6XZaV4dpQSK941JNR3h6yQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="250092492"
+X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="247059115"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 16:25:24 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 16:30:17 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 17 Jun 2026 16:25:23 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 17 Jun 2026 16:30:17 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 17 Jun 2026 16:25:23 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.29) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 17 Jun 2026 16:30:17 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.15) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 17 Jun 2026 16:25:22 -0700
+ 15.2.2562.37; Wed, 17 Jun 2026 16:30:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HDlDXxLDyg6taO52RczRUc/aTCHULCCg4cRmEjYenp4cj79hf1aJAnSm/7FthWRH24/1AKJV9mSdTlKv0FGPRweS7fT6XctBuvR6Mg7CdPPxzmcsP+/N+h2hu6F2DbKVBLBYg/689aar6RPtRJQS6PlZlZl3rnBNh8FBC6xGHUJ1VXy5PIElXcShxUk7B2/gn5BzxCibCgR1ju4ZQ5mKui+czYvokfKgdw+a0GeU3aJMNNmaK6tJdhJQSF9EmpBG3nVE0wB8sRqUTjgt5ku4KwWz3GigU7C63BMncQPow60FF8qI5EpV4PHVhCuhUZel5H3tLP08MVjR3CxmKaxYxQ==
+ b=BEY4BID+aZM09yoyH9j0uhdN/sx6yybieo/eBRigXg2/ARDbI3I48ac8CaAWhZlJ1kiG89Ra5nx1feoJ90E4IBtDNcgO77VjkqKeO3TED77tjyD0So0wj+P3FEu6wfFcIBjfyuwwgHiEQe7QsJA5CkhIPRe4EYZmGGVvyHeUVIclmqtdv8fSzY/F+7HVYQbG8a3wqvOFw0G9RouTThyxcxZyn5Z4Mp+5bW46PjwFX64W/WJ9ZlyKa2SBQjVG0/CHJNn13AqhvVQjxkXr2nCSfWkNRUVARdo/IVLwmVBk/OcchjgZvGcvDtIPlvO30ls5iUcigmkQg3Pd9OkAJ3g80Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BG3A3CkzGTMuen7COKjcQq3v9Bpnh/ScFfSKda4UkQM=;
- b=bJdo9W99fI8PfQUIMSwL/v8bLU6y43gBuZ1GetIEVRoGseIlw1LKuvudAR76hgCs/Hymz8crTij2mR3dhYPGuVoLn/ZbediBGeYklm0ajly4oBBHe1wBnYRJ4N++eTl+NCWWJXqAbtoDr89r3GlfkAtwtIt7HdoTV4FKPK1hwn83CMvsEmRx5Nb7cDEuQAhl9OUxcW0WWjhfcNFtupzy3ilYXDG5KV2JH58rKJy8/iFGm7pYHF95SX32zeWU/L8LS78Ct6b2NRkOQKIjQLwsMLO0RBtCBXNm3yy5HdOf3A6w2n0xAWjN0DSAkEF6zsDFRyVHkX5m3OldPc/Dk3POUA==
+ bh=VxBtj/hqiRmFecxtqyRGvA1Zmsql1bXHs5NjqWmhrIY=;
+ b=Hh0xJAyZwrw3ocu9f37JS21rRrdBwEhbTwArJNi6vOHAvNAF4ertsNDHRObx8Qben7CY+7EX/tX/Ws3ovMaycSErP6nzLrgSlTNyo1O+5cSUAAuQQdGEIoxDhCH/zcm7JmoEgslwb6ygwsWX4BIA33HKy8zX+3MYorwszhlgKADimFHUJFDi8VXSncG/UJIWFIaaOdRd4hI5Zz6g2PXj03n2s773H2qmNU2pdX0zsahvfBhbzzpMLBz7Ld4KVvY3iqIUbtuPMoH3zo9Bu7b8MDWrhDZoE6O2jF6SGceHKtL/C3CoXYdjyI++Rh/mZdXNxy+1FJVacSKx3ZzEOiDlhw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB7200.namprd11.prod.outlook.com (2603:10b6:208:42f::11)
+ by SJ2PR11MB7618.namprd11.prod.outlook.com (2603:10b6:a03:4cc::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Wed, 17 Jun
- 2026 23:25:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Wed, 17 Jun
+ 2026 23:30:13 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
- 23:25:17 +0000
-Date: Wed, 17 Jun 2026 16:25:14 -0700
+ 23:30:12 +0000
+Date: Wed, 17 Jun 2026 16:30:09 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Marek =?iso-8859-1?Q?Marczykowski-G=F3recki?=
- <marmarek@invisiblethingslab.com>
-CC: Roger Pau =?iso-8859-1?Q?Monn=E9?= <roger.pau@citrix.com>, xen-devel
- <xen-devel@lists.xenproject.org>, <intel-xe@lists.freedesktop.org>,
- <jani.nikula@intel.com>
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
-Message-ID: <ajMs2lkXmTppifK7@gsse-cloud1.jf.intel.com>
-References: <aYtznP_tT6xNPwf-@mail-itl> <aY3ttvtxGCPTNgsj@Mac.lan>
- <aY58-gyarcVoBS2a@mail-itl> <aZ3KoSlIzru0Uumu@mail-itl>
- <aaVyKFaCSuhJufW2@mail-itl> <ajMD0Jsml3ytlWOY@mail-itl>
-Content-Type: text/plain; charset="iso-8859-1"
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <saurabhg.gupta@intel.com>,
+ <alex.zuo@intel.com>, <mripard@kernel.org>, <airlied@gmail.com>,
+ <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>,
+ <intel-xe@lists.freedesktop.org>, <Rodrigo.vivi@intel.com>,
+ <maarten.lankhorst@linux.intel.com>, <thomas.hellstrom@linux.intel.com>,
+ <tzimmermann@suse.de>
+Subject: Re: [PATCH v3 0/2] drm/xe/pagefault: Add SRCID to pagefault reporting
+Message-ID: <ajMuAc9qWxnvT7HJ@gsse-cloud1.jf.intel.com>
+References: <20260617181849.769247-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ajMD0Jsml3ytlWOY@mail-itl>
-X-ClientProxiedBy: MW4PR03CA0065.namprd03.prod.outlook.com
- (2603:10b6:303:b6::10) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20260617181849.769247-1-jonathan.cavitt@intel.com>
+X-ClientProxiedBy: MW4PR02CA0016.namprd02.prod.outlook.com
+ (2603:10b6:303:16d::22) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB7200:EE_
-X-MS-Office365-Filtering-Correlation-Id: 61520303-c59a-4b46-ba9b-08deccc7b0f2
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ2PR11MB7618:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2a3d2bc7-43c5-4ad1-065b-08deccc86105
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|56012099006|11063799006|5023799004|6133799003|18002099003|22082099003|3023799007|4143699003;
-X-Microsoft-Antispam-Message-Info: pw/hwjn541NH/hgmDNmpI32jgm33DbA+8xpFUnKHQuRiVxOoBcr4C94jokd/NjKdjr4mnXIh+zFllRJ2nfUW52ZYitCBNDlPiUKy9HYbuGSqTy0x/uBbeeAftfHBPvZiwjI1MMAGGKXpaxYgVHdBONBxKRoqP1vctYhxijT5zCMNJHV1/YycUHED+Qpfe6Bl9aDrXmlIz11hMzcyelgMFqOrGAab4SVkdXV5zLfZdYG7yjlpB0Ldwe99Id+ZnVsncM8XJMzVGQ1DNhy/OX7Q5jvAsB1NQM/3bwrqPnWZOua4g/mgzib3DUnxEBjk09ePhDHbmkSmIdldk38qET9iWAdNyw0y1kNRtiS7EwcMYYx56bWajhjLStNSkhp+j0HhtI+s/83/fTceLO8fzd3r2L7u0SWh7aNKk0a5GrAiHp4WVu5aVQjgOvEmgVuFW6Lq8LESwnLEFpiRDnix6ZWMEiqlr7f6jSF3LXw70t49y8d2M6iagssj+DlQwxwLcT3VG4U8KziFlXdcR+haKmeTcnpGABMUxyO6WbN5YvOk53w04NcEOlLp4rR+KAYxggU8t2mVnq3T/CcgwvrnlmOx44ax8cYrK8qO9bmc824u6Z0j2dLJZaB2g4r0JIogRySwz9vK5jbg2VjsHlYAFDsuuA==
+ ARA:13230040|366016|376014|23010399003|1800799024|22082099003|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: oQUu5yVFWWQ2MGDCJFhrKdUQw3aYJe9q67lO4YLmgraMObSDFUFDC5Z1bw5YGxRSjSFYaJsdSVOu5VD6VRAv5iC8Cm4Zi6/5d/fA6KZw2auiEGtTY9P9DonbTUKZDjo43V0fKPRSg7seTY3cxAyBOt2xrEYHtaCyjMMIh2wVicZsgJdkrKXuRrRJnStHuIZpBon7BUN8LeeCHB7NY8dEm/jaB4uziSdNcStqms7LA0akcKHML/LNyIRiB2ZhqJvFVkM5/Y5HUUOqnqsk58gcmybGVFkjm0zt13plW4z1hhsRhSaXzQKVG8c0Ky/+gHD1oVlUtcyrMR9+SoZ81mLD/IMpYNEbEywRvx5PuKS95/Ku4npA2d3141jbH554EdpW2gxoeaMGUKR6+Vy84Y2mKpeBc9YfkAawXn+gKsxMetV5awfxnSGLE8MuJQMitSaCbmutbG7GfiKvJa6w7KGbnz2H82m+sSOXm3AWzGY6gsP1ssyfJvLFjoUhpz0Hgif4BWasTfP+Jf+l3oPPIDCYWy0nK4t89XkcvtGlwvm61cgspi5od8dW9JqtHEQIOIKo6Ki1J2j8Om8nCzjM2tKYBE2BrKSSqzn5n9XIxSUqVDfJekxJxbJ7n8uX4FFeI1ApZ8t9Z4dIheqBlIGBGpWTJeO2tFDn0YTjk+RN1jifDlHIlZn46/qg1Pp5Wbj0xP0R
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(56012099006)(11063799006)(5023799004)(6133799003)(18002099003)(22082099003)(3023799007)(4143699003);
+ SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(22082099003)(18002099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?lAstnVsl+5iCN9g5Ao5R61mo+mNtgWE0q9W1PcIfFbED/uls/UJQbeneqi?=
- =?iso-8859-1?Q?fEjTB0yMWT0LmMPW2rzhGfE9BQeUKtVCx0j1xGvcoNXAsgvlB8XUhIQDeE?=
- =?iso-8859-1?Q?3A2VauIalTOZqYxrM7PY7i9S/IKdw5awo1srpib2KB659ht1gR4XiVxewU?=
- =?iso-8859-1?Q?K320IMJqy0Mm0FabgIrH2l7jQGt1jRsl/OQTYw6iQng30fGFIeCKg821tG?=
- =?iso-8859-1?Q?XI7cIzB3RW4O0cmaBnSA27zNUs59bsfXkBjgn7QlETdjlzwmPf6oqCJNgH?=
- =?iso-8859-1?Q?m+rKgvMK//yxjNi4nxBXvO0Va+24wz7+Tb/AO568GWuotKg6hmymgwCPGT?=
- =?iso-8859-1?Q?YOi4c4n+24fZRmRAoOkMYG4LDQV40WXWcha+r/iIthnKUROlPi+CYfCDA8?=
- =?iso-8859-1?Q?s12xhk6Gv6L/q820d+z9ZZv3fcoD5sdC4Q7xkXbwsXar4YfZUj3hgNmitX?=
- =?iso-8859-1?Q?WAurjmKG6fMU9v4ZMbPkCHY7a6D6p6zQm+VLhC5+WDpoCtmDM8xyulT6E5?=
- =?iso-8859-1?Q?eIYUSAnW6wO8qFq4usb9ylEZkRSry7OlpL9XMzJ2FPp40/qyQrfgC+nkQh?=
- =?iso-8859-1?Q?Hqjg1RaW/Cz9BwEoVeplU0HQBaLwhlDoDs83bU57UT6D2YjILPyEvtX19e?=
- =?iso-8859-1?Q?1xAUOae/ISP+n7VvJ8dhOBrdtKKe2tiz8Pp3/cU3tiHhJQE+DaoEAxugg3?=
- =?iso-8859-1?Q?pCXAAO/jAk0ku2rEVOoqNYfSMgoxYY0wHaRl0bkeXsaccNnWim1l0of187?=
- =?iso-8859-1?Q?afXze7Q8PsLGtg9d0tRDpZC9P76ycp4cnnzuUh+i4dPPp8MiWJRWJkeVUJ?=
- =?iso-8859-1?Q?hU7TxUxXMnap8yUrAZZJqo2Pk2ScORpwfZk4ogC/jxbEZlLixkTiQjLatW?=
- =?iso-8859-1?Q?RpU88z0rn4YxcddARoGNQ6oCYUTMlYVdjeaSd8oohDbcGVc4F1qoXo4ICj?=
- =?iso-8859-1?Q?nK2tljVde1ZWP/Dv2ovTLbn5v4DizHdn2SIsaAWXbQ+EFRpjPjAnhyNUkc?=
- =?iso-8859-1?Q?H5WGwdyBek4LIBlQgbiVwwXGmvkVyLXy+Zpd3BTpELpKOdE3zu9r7HNToZ?=
- =?iso-8859-1?Q?k2vQxiBIpoNxaq+HWqbdMd1MB8ILKHO4YsuNiExmzxNwWLFSWQmzo5cBWE?=
- =?iso-8859-1?Q?Lzx/aE0DtpiZ7blczNhYcHgUxwpT8TkQpnoIyp6n5AVysAHH2aravJgOj/?=
- =?iso-8859-1?Q?x+zMQaBzbdOY4BZVjac+qKmB49YX6tjG25Jy6XNUpJJDcoqEeclrE3bgfh?=
- =?iso-8859-1?Q?B0efOATR7V2QiEEeJP1EX/4hX0BNW3yDCINrejiPPoMyV24/yTU7Hr+Nv8?=
- =?iso-8859-1?Q?xKsH3232YBUPURrm8UsfHUHB2xnRyeyDNFeKPMZ/ZYnJzUQ2GlFbBaBb/O?=
- =?iso-8859-1?Q?DnpztGggBzRMU9bgGwEuHjr0VJG4BwAsgqt/JQJ1PTX54cNWwQ3lB4fCn3?=
- =?iso-8859-1?Q?SHMrwqGAj+S2KpZQJBicSIpaWRL1NHv2U5uoG4PK3ZLMPXaahvUzfLUjl0?=
- =?iso-8859-1?Q?v7JFDwVGDKB1Taj11Lewej4XjcDTUwnDI1bRijMMXkmkkioDuD7UoSy9l3?=
- =?iso-8859-1?Q?rTaFzbvvi3X7ZvLQ8+nLwyAhzdgcFD08AuH76oAZ2Letgvw+QTl+RlSEIQ?=
- =?iso-8859-1?Q?2upxnmvuUYYK2hkCkOUK38MrgZi4lvTrjMQ23SwSAhS9foYMN/Bqmr9w04?=
- =?iso-8859-1?Q?1kY5lMOkC6pJO68HdeALFl1bDgXyvP9Vb8uPRZDiKrieTu1KI7AywkY1TD?=
- =?iso-8859-1?Q?O46r62CDvQAJMB2e78n6NQBImzo6Aonr/SfR/fC9VBvdGIGpg3jTQu7wdA?=
- =?iso-8859-1?Q?TmwwrWDjUw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: ldPGRdyep0hIlDFA+C4EN5V7KVBz4kJXY+iNHUCODg7cWtN3Q8CGAmZIzYSO1Cx0a3rcYHIXyy3YpQUIwD50sHQ7wRz8+eDT7xhvPvjNE08mIHJVsUwGvo/43yKZRO9Djag5/UcZumWdmgD4XYRhP+jxzockF/R4h/XRraEB5tUfg3U+IcZFNlVK53CYr29oLnKF/cyY1EdC8nkwpx4701KGDe7bvyRZfW5xdU1ZNrnW/lh/faJ2wGGc0FerR1M8FelJXusZy5737x5WyMMikw+R7569lE59R00DgUIpQXPVTsOk+fc3H7rTP6qcJeTYBvrZmmSMuRP5W3yUoIKX2g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61520303-c59a-4b46-ba9b-08deccc7b0f2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rORfZiv62j/JStwnCSxKdxt4yd1ePQa7tZlUa8Fs/YN1ei6zEN4WHDCV8iHc?=
+ =?us-ascii?Q?qPneGUfLhycGWnBJU1FZikt9tQ5ryLWeY7MWfXgLixp3UNZD8PHU3+REnRd3?=
+ =?us-ascii?Q?muF2O5/Rpr2bwTKq71v9GKMTfsn45I/NYW+3MAESPV6neObo+EZQB1T7YrRI?=
+ =?us-ascii?Q?+A5Wk6e1hn/qVeq3hDd/t2YpbWVWhqBeUYxtGxSirg83dupfHkY0qaip6iU1?=
+ =?us-ascii?Q?xuj3gfsto/PYDY0jSC61nja0pGZ2iRbmlqBGO+YicVpt4t8D16B7TtykIHlQ?=
+ =?us-ascii?Q?l/rQMOHpf6nbFNg4zoelPDRWDIJ2SB/PFwaF96HYVXSZFFu103annWny/r8w?=
+ =?us-ascii?Q?CvoTUGVeprclWhmkvnTk4clFtinh+oEKyhwr+KDf9zc6bnDBjdx3z8qcRat0?=
+ =?us-ascii?Q?Bk8y9oRlh5cQf8uyj8YBxXkBlzFi3artok2MKzSWwuT2fAc60YXXldQhbWGT?=
+ =?us-ascii?Q?+gRjFyhJDt8ime9mFs3BRRsyb3Pv7Px3gyffLIhST1osoCkaQHrBpY18ZaJo?=
+ =?us-ascii?Q?7NXArFQZRV6da8PxEOB6utaroDeqtZEl1a+xQsug+3m4I6NrJPWmNKALutAV?=
+ =?us-ascii?Q?FzMdL/OkU/pH1NibDasE+E74WorlXYWdD1bvtjUm4rC68uX1js/5qU8dUlTx?=
+ =?us-ascii?Q?J/sPPK9z2NYaNZVM7ZAAgDdMBndIABnhfNsN+Bqat/mRwZbemXI202KdlA6l?=
+ =?us-ascii?Q?kTkJy8mTorW2zOP1AIyLxHfdUFIKijzw5p+v8vFABFQSSlG6/NJSM1itp6OO?=
+ =?us-ascii?Q?yCktzlMeONlRc8sB7DL0rz9eXFezkLVBkFoY0lPiSoXEGuZVRZ1tbXswBtfz?=
+ =?us-ascii?Q?zwcRQB+gyg3YESWP58rQgWPuf0oVIHoj/wdcsrOXgAmUWpAKF2DCRoPiRue3?=
+ =?us-ascii?Q?g2R2mb7D71iry1A71f9f5z9v0T9r1B8govsrXAQ7XbZE+06PFNXl+wkAJbmT?=
+ =?us-ascii?Q?eHzeto3jtwEKkQZp5RTTlHSILIvC2UkzWYrAQdnigrHony02Go2Bl3KxOdsg?=
+ =?us-ascii?Q?CuIhkmCB6zSvu0F2DJ/pIrOMqwSrt8DAOnOlVF6eWG0qguN5EflYpdHX/zqu?=
+ =?us-ascii?Q?+WM90oCTu9kbCtIHW+2+uNz40v29mcy1LLEVsEd6Zf+9yNGSIgNbzBnMqWNG?=
+ =?us-ascii?Q?pPZgEkIJoQd1OvDa8dptk3Z+sTw4aAtNavXZZKRXE+58E7cCQ3bJXDxxBUQk?=
+ =?us-ascii?Q?2TFMIJnX95YThvLoP1zb+AqxCa98I1W8lFRLJQ5ia+enqowW4d0LFWVxhdJE?=
+ =?us-ascii?Q?pAQ1qGqTyfDbJOBI0IulIiq1uRa6XvtP4JmY6gPUyBtJJHFlw6YtDHRDNZX8?=
+ =?us-ascii?Q?owa7yxd0FkpJ6E2NKZGWaxjaBP4e16anWglXjKtihzFcynL5JLB3/ppppgiA?=
+ =?us-ascii?Q?dA/jGNwaiFHyfw0LBGE43WbNNSLGpx4wqKG4p0VdOWLXjrtUhBm/zN+FTzgT?=
+ =?us-ascii?Q?1VCgfaYF74FIPt7910xMC1uy6ZbSQmPIHhOVc4Fx7CT2taidNEyFWCloiXcH?=
+ =?us-ascii?Q?+W3tK6GxUTUBbnzL1nq5QAOTzrZMffOA/bI3sR1v4q4ww3yCGKZlHGPczB9y?=
+ =?us-ascii?Q?+RhlsnUDBQbwMlinlvP71Qk48ik2gko88iVq54d9FdEix0j2Laud4ho8l4X8?=
+ =?us-ascii?Q?8R7kInS0bxNaPStvSVEUOux2A2rycmco/Lnw7GcYETHNgnIFz73kDyp/01BB?=
+ =?us-ascii?Q?E9ZUEDrIK720F7Ot4PegSSqqoEAnoEedd5ZrMDpqlsg1yhwMg/uSheZXMW/5?=
+ =?us-ascii?Q?pbJLjg+i0g=3D=3D?=
+X-Exchange-RoutingPolicyChecked: YPMQS+mYLq/mkYttVASZ2VcNxkZHxnDHSNsj7Uq9uyD0HyqS0h7G/kZHqzWpGqE+TDMWtvpy4m1DqdIdKYQKGHAfO08Xc5ypiSqENhZdv323TJf92cx2FXVOHcJCve7rz/4N0cTKtGh81rQvIFxZLjlFK8G9ugUwXkJIXEgJz62t3cbIRRcUdE50SiDAC9PiF+oWFvlsy0XPL3OgyRLmlCfB16rb2kt2Rgg2EieNbUaCbfuyWH3qNVjPeazd3ogr/ZKbPH9LfXK8IWD8EOvSGx4BTGWfRM+yjHHAsOBkLWGX3BpDMWXtTJ0evo1G2Xo6YZx/4lR9YCbUw7XHj+vogQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a3d2bc7-43c5-4ad1-065b-08deccc86105
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 23:25:17.4276 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 23:30:12.8904 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +vW9/dQpAScRBISoBNuN63pP1rFHcKScuhNSfwrz/XeNlXZx5FVNurQOWZ96iNk8LO7VNQcWpjW26iIoSj2NkA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7200
+X-MS-Exchange-CrossTenant-UserPrincipalName: W0XmA/regXU3uDMhS7VXN1Srp7pEF60TXyDBiEhnWbMqAoAjdK6HX/B1gjtm8Lu5gUo9QSYfc66F4eyvvmBQlQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7618
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,146 +161,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 17, 2026 at 10:30:08PM +0200, Marek Marczykowski-Górecki wrote:
-> On Mon, Mar 02, 2026 at 12:19:04PM +0100, Marek Marczykowski-Górecki wrote:
-> > On Tue, Feb 24, 2026 at 04:58:25PM +0100, Marek Marczykowski-Górecki wrote:
-> > > On Fri, Feb 13, 2026 at 02:23:06AM +0100, Marek Marczykowski-Górecki wrote:
-> > > > On Thu, Feb 12, 2026 at 04:11:50PM +0100, Roger Pau Monné wrote:
-> > > > > On Tue, Feb 10, 2026 at 07:06:20PM +0100, Marek Marczykowski-Górecki wrote:
-> > > > > > Hi,
-> > > > > > 
-> > > > > > Recently I started testing compatibility with Intel Lunar Lake. This is
-> > > > > > the first one that uses "xe" instead of "i915" Linux driver for iGPU.
-> > > > > > I test it with Qubes OS 4.3, which uses Xen 4.19.4 and PV dom0 running
-> > > > > > Linux 6.17.9 in this test.
-> > > > > 
-> > > > > Not sure it's going to help a lot, but does using a PVH dom0 make any
-> > > > > difference?
-> > > > 
-> > > > Ok, now with the correct Xen version, it's better with PVH dom0. At
-> > > > least on the login screen and few applications (from both dom0 and domU)
-> > > > I don't see the glitches anymore. I can't do a full test, because PCI
-> > > > passthrough doesn't seem to work with PVH dom0 on Xen 4.19 - and I need
-> > > > it to start most VMs.
-> > > > 
-> > > > So, if the above test is representative, it's only about PV dom0.
-> > > 
-> > > Some further observations:
-> > > 
-> > > 1. My initial impression that Xen 4.17.6 is not affected is false.
-> > > Apparently I got lucky and didn't waited long enough for glitches to
-> > > appear. Unfortunately this means I have no way to bisect this...
-> > > 
-> > > 1a. Updated test procedure - either:
-> > >   - start Qubes OS in full (including default system domUs) and try to
-> > >     open an app in one of them (for example file manager or pdf viewer)
-> > >   - start Linux up to lightdm login page, log in, log out, click on a
-> > >     few lightdm menus (session type selector, poewroff menu etc)
-> > > 
-> > > The second version works even if toolstack version in dom0 doesn't match
-> > > Xen version. If no glitches are observed after doing either of those
-> > > procedures, assume it's good.
-> > > 
-> > > 2. Xen staging is affected too. As well as Xen staging-4.19 without
-> > > any qubes patches.
-> > > 
-> > > 3. After enabling CONFIG_DEBUG in Xen, the xe.ko fails to load firmware:
-> > > 
-> > >     xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from xe/lnl_guc_70.bin version 70.53.0
-> > >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status = 0x40000056, time = 0ms, freq = 1850MHz (req 1850MHz), done = -1
-> > >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status: Reset = 0, BootROM = 0x2B, UKernel = 0x00, MIA = 0x00, Auth = 0x01
-> > >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: firmware production part check failure
-> > >     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: Failed to initialize uC (-EPROTO)
-> > >     xe 0000:00:02.0: probe with driver xe failed with error -71
-> > > 
-> > > CONFIG_DEBUG is the only change between "xe.ko loads fine but there are
-> > > glitches later on" and "xe.ko fails to load at all". Full console logs:
-> > > https://gist.github.com/marmarek/47b5e62a2cdbae6678c2aecc5283cd3f, there
-> > > are 3 files:
-> > >   - CONFIG_DEBUG=n
-> > >   - CONFIG_DEBUG=y
-> > >   - CONFIG_DEBUG=y + iommu=debug
-> > > 
-> > > 4. Updating to Linux 7.0-rc1 doesn't help, for example:
-> > > https://openqa.qubes-os.org/tests/168119#step/desktop_linux_manager_create_qube/11
-> > > 
-> > > Generally, it does feel like a bug in xe.ko, but I can't exclude some issue
-> > > on Xen side too (especially given point 3 above).
-> > 
-> > After waiting some time (Linux 6.19.5 this time), Xen CONFIG_DEBUG=n, I get some timeout messages:
-> > 
-> >     [    8.122120] xe 0000:00:02.0: [drm] [ENCODER:204:DDI A/PHY A] failed to retrieve link info, disabling eDP
-> >     [    8.148476] xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from xe/lnl_guc_70.bin version 70.53.0
-> >     [    8.803845] xe 0000:00:02.0: [drm] Tile0: GT0: ccs1 fused off
-> >     [    8.804208] xe 0000:00:02.0: [drm] Tile0: GT0: ccs2 fused off
-> >     [    8.804556] xe 0000:00:02.0: [drm] Tile0: GT0: ccs3 fused off
-> >     [    8.822426] xe 0000:00:02.0: [drm] Tile0: GT1: Using GuC firmware from xe/lnl_guc_70.bin version 70.53.0
-> >     [    8.827140] xe 0000:00:02.0: [drm] Tile0: GT1: Using HuC firmware from xe/lnl_huc.bin version 9.4.13
-> >     [    8.829478] xe 0000:00:02.0: [drm] Tile0: GT1: Using GSC firmware from xe/lnl_gsc_1.bin version 104.0.5.1429
-> >     [    8.852923] xe 0000:00:02.0: [drm] Tile0: GT1: vcs1 fused off
-> >     [    8.853513] xe 0000:00:02.0: [drm] Tile0: GT1: vcs2 fused off
-> >     [    8.854090] xe 0000:00:02.0: [drm] Tile0: GT1: vcs3 fused off
-> >     [    8.854706] xe 0000:00:02.0: [drm] Tile0: GT1: vcs4 fused off
-> >     [    8.855310] xe 0000:00:02.0: [drm] Tile0: GT1: vcs5 fused off
-> >     [    8.855904] xe 0000:00:02.0: [drm] Tile0: GT1: vcs6 fused off
-> >     [    8.856495] xe 0000:00:02.0: [drm] Tile0: GT1: vcs7 fused off
-> >     [    8.857079] xe 0000:00:02.0: [drm] Tile0: GT1: vecs1 fused off
-> >     [    8.857675] xe 0000:00:02.0: [drm] Tile0: GT1: vecs2 fused off
-> >     [    8.858272] xe 0000:00:02.0: [drm] Tile0: GT1: vecs3 fused off
-> >     [    8.975881] xe 0000:00:02.0: [drm] Registered 3 planes with drm panic
-> >     [    8.976586] [drm] Initialized xe 1.1.0 for 0000:00:02.0 on minor 0
-> >     [    8.980882] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
-> >     [    9.033754] xe 0000:00:02.0: [drm] Tile0: GT1: found GSC cv104.1.0
-> >     ...
-> >     [ 1218.319232] xe 0000:00:02.0: [drm] Tile0: GT0: Engine reset: engine_class=rcs, logical_mask: 0x1, guc_id=3
-> >     [ 1218.319890] xe 0000:00:02.0: [drm] Tile0: GT0: Timedout job: seqno=9883, lrc_seqno=9883, guc_id=3, flags=0x0 in Xorg [3245]
-> >     [ 1218.320736] xe 0000:00:02.0: [drm] Xe device coredump has been created
-> >     [ 1218.321140] xe 0000:00:02.0: [drm] Check your /sys/class/drm/card0/device/devcoredump/data
-> >     [ 1222.285626] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_done timed out
-> >     [ 1232.525685] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
-> >     [ 1232.526280] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] commit wait timed out
-> >     [ 1242.765717] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_done timed out
-> >     [ 1253.005696] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
-> >     [ 1253.006248] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] commit wait timed out
-> >     [ 1263.245599] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_done timed out
-> > 
-> > The glitches appear much earlier, though.
-> > Would content of /sys/class/drm/card0/device/devcoredump/data be useful
-> > for debugging this?
+On Thu, Jun 18, 2026 at 02:18:46AM +0800, Jonathan Cavitt wrote:
+> Add SRCID to the xe_pagefault struct, which reports the ID of the
+> faulting hardware unit.  This will be passed on to the
 
-Yes, it would. Jobs hanging can be a bug anywhere in the stack (e.g.,
-Hardware bug, KMD bug, UMD bug, application bug, etc...) but the
-devcoredump would give us some hints.
+So is this the EU ID?
 
-> > 
-> > Full log at https://openqa.qubes-os.org/tests/168813/file/serial0.txt
-> > (warning, almost 200MB of those errors...)
+> xe_vm_get_property_ioctl for reading per-vm faults and will assist in
+> diagnosing pagefaults.
 > 
-> The issue still happens with Linux 7.0.12. Current log (quite similar to
-> the previous one):
-> https://openqa.qubes-os.org/tests/184602/logfile?filename=serial0.txt
 
-Hmm, the 'not started' messages in the dmesg are a bit concerning as
-this really shouldn't be possible to trigger even if user space is doing
-something wrong.
-
-Can you file a gitlab issue against Xe here: https://gitlab.freedesktop.org/drm/xe/kernel/issues/new
-
-TBH, I have no idea if running Xen / Qubes OS + Xe is something anyone
-at Intel has tried out, so please include instructions on to how
-reproduce and we will see in someone on engineering team can take a look
-at this and if issues in Xe KMD exist, try to get these fixed.
+Is anyone asking for this? I'm wondering as this will conflict with one
+of my series that is inflight upstream and believe is merged in some
+internal branches.
 
 Matt
 
+> v2:
+> - Readd pad check, as the pad in the ioctl struct was not changed
+>   (jcavitt)
 > 
-> Not long after GPU errors, nvme driver fails due to full swiotlb.
+> v3:
+> - Rebase
 > 
-> Any ideas?
+> Jonathan Cavitt (2):
+>   drm/xe/pagefault: Add SRCID to pagefault struct
+>   drm/xe/vm: Add srcid to xe_vm_get_property_ioctl fault report
+> 
+>  drivers/gpu/drm/xe/xe_guc_pagefault.c   | 1 +
+>  drivers/gpu/drm/xe/xe_pagefault.c       | 6 ++++--
+>  drivers/gpu/drm/xe/xe_pagefault_types.h | 4 +++-
+>  drivers/gpu/drm/xe/xe_vm.c              | 8 ++++++++
+>  drivers/gpu/drm/xe/xe_vm_types.h        | 2 ++
+>  include/uapi/drm/xe_drm.h               | 4 ++--
+>  6 files changed, 20 insertions(+), 5 deletions(-)
 > 
 > -- 
-> Best Regards,
-> Marek Marczykowski-Górecki
-> Invisible Things Lab
-
-
+> 2.53.0
+> 
