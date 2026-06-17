@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63E26CD98EE
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 06:19:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A25E0CD98E2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 06:26:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1FA910E942;
-	Wed, 17 Jun 2026 06:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 474C910EE12;
+	Wed, 17 Jun 2026 06:26:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h6qu521a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lH7GSFc+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D80C110E2BB;
- Wed, 17 Jun 2026 06:19:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 098C010EE12;
+ Wed, 17 Jun 2026 06:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781677182; x=1813213182;
+ t=1781677615; x=1813213615;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=BgQYrmR+7GcniQAhoX3so0VbrDhC8RCJSeENc8FMxMA=;
- b=h6qu521ad3b/FpfW0x8BQWzziSnE7v0kdTnNreCXeupHe0ezP8xFuK+n
- ztR+9PLIfx3r/Ite0FbDSzdJHVTf116rxnHpZAx6d3U83yJ4Xnwhf0caf
- 1M7jx5pftqW7arHs2hTjdi74CnaPex0Pe6MdWdOQIb6xxS/TRlhxCAn0s
- lbO2VmlqDa6qIBY2rlPv5iz6wIXQidv10w2//oQr3WWHjDKt/6RAGKSK+
- pA2Tv4j3PbJLTzwI70PWtpDZkBUFZAQrxrx2/V4ZA0WuWP104KlPdVKaq
- cxpd+q06TgxVvMeHIynKPfAaSIFGigoLXsylTP6LG23a4htGhlVTYHH9H Q==;
-X-CSE-ConnectionGUID: VXrbn9CyRcSVxEt8V1QDAg==
-X-CSE-MsgGUID: 2vRuwWh5TSGFeB8Ku5IMxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82471802"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82471802"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 23:19:41 -0700
-X-CSE-ConnectionGUID: TcktqaFDSh+9s/CfjFS3Sw==
-X-CSE-MsgGUID: 3T/LFQhuQICRo8MgbNZDTA==
+ bh=zR1nJnoLjqvQrhg/jKxvHUu/vdS1Qm/wTgP/TWCK9pc=;
+ b=lH7GSFc+s7vMlR+SGAYz7367wZZpIr2xbh4+TjVyl7QmUxlqAy++VLZH
+ IZlYN1E0444s9o4I5PE4EgGd5vbWgnEpLSkxEZa0AIlM6rUdptr8f4baG
+ X1eVOoqyFt54IoCZDXaqrD5NPfV8vOLP3URnFCtxXqmemSSpuNQ+zVnNT
+ 2RUf4aJi3SmFsQo1NsEjoywdii3tJQoi2JEYEX6on8HzfRiLNsdLl41kR
+ WPQw/ychuzCiyMVTlTmviWq5caFpc+2See+c3B9kxA2gqZhdPY0zI4Hfo
+ E9sP5BcNTeJ+f7kwdh/yOF0quDQsxKup5mt6nJXRE4IECPFo1NEUgHUGu w==;
+X-CSE-ConnectionGUID: vgtvQi7mQWqwSeigQM4gPw==
+X-CSE-MsgGUID: 1wmdS2ASREeMffk10hv+mQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93029384"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93029384"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 23:26:54 -0700
+X-CSE-ConnectionGUID: CBg9umjjRH2UuKHjDZ2blg==
+X-CSE-MsgGUID: d2f0PuEcTsqvNi3LZ20mtw==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="248059448"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 23:19:37 -0700
-Date: Wed, 17 Jun 2026 08:19:35 +0200
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2026 23:26:51 -0700
+Date: Wed, 17 Jun 2026 08:26:47 +0200
 From: Raag Jadav <raag.jadav@intel.com>
 To: "Tauro, Riana" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -50,15 +51,15 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  dev@lankhorst.se, zachary.mckevitt@oss.qualcomm.com,
  rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
  matthew.d.roper@intel.com, mallesh.koujalagi@intel.com
-Subject: Re: [PATCH v3 1/4] drm/ras: Introduce error threshold
-Message-ID: <ajI8d4FlRH_CtyZV@black.igk.intel.com>
+Subject: Re: [PATCH v3 3/4] drm/xe/ras: Add support for error threshold
+Message-ID: <ajI-JwsLcVWoUiqj@black.igk.intel.com>
 References: <20260604184849.1011985-1-raag.jadav@intel.com>
- <20260604184849.1011985-2-raag.jadav@intel.com>
- <57e1f3a9-14b7-4bec-8765-deb70fe6b636@intel.com>
+ <20260604184849.1011985-4-raag.jadav@intel.com>
+ <4d3720e1-1268-4a17-a8f8-f03e82aa1c5b@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <57e1f3a9-14b7-4bec-8765-deb70fe6b636@intel.com>
+In-Reply-To: <4d3720e1-1268-4a17-a8f8-f03e82aa1c5b@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,28 +74,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 15, 2026 at 02:26:05PM +0530, Tauro, Riana wrote:
+On Mon, Jun 15, 2026 at 01:47:02PM +0530, Tauro, Riana wrote:
 > On 05-06-2026 00:16, Raag Jadav wrote:
-> > Add get-error-threshold and set-error-threshold command support which
-> > allows querying/setting error threshold of the counter. Threshold in RAS
-> > context means the number of errors the hardware is expected to accumulate
-> > before it raises them to software. This is to have a fine grained control
-> > over error notifications that are raised by the hardware.
+> > System controller allows getting/setting per counter threshold, which it
+> > uses to raise error events to the driver. Get/set it using the respective
+> > mailbox command.
 
 ...
 
-> > + *     + The driver can optionally implement query_error_threshold() and
-> > + *       set_error_threshold() callbacks to facilitate getting/setting error
-> > + *       threshold of the counter. Threshold in RAS context means the number of
-> > + *       errors the hardware is expected to accumulate before it raises them to
-> > + *       software. This is to have a fine grained control over error notifications
-> > + *       that are raised by the hardware.
-> > + *     + The driver is responsible for error threshold bounds checking.
+> > +	xe_dbg(xe, "[RAS]: get counter threshold %u for %s %s\n", *threshold,
+> > +	       comp_to_str(counter->common.component), sev_to_str(counter->common.severity));
 > 
-> Can the threshold be set to 0? What should the behaviour be?
+> "get threshold" to be consistent with <operation> <value> <component>
+> <severity>
+> and other prints
 
-Some may want it to be invalid while some may want it to act as a "disable
-notifications" toggle. So it's upto the drivers and their usecases, not for
-us to decide. Will add this.
+I thought "counter threshold" was the correct[1] terminology?
 
 Raag
+
+[1] https://lore.kernel.org/intel-xe/ahgNW0Z9eQmQzGzY@black.igk.intel.com/
