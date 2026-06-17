@@ -4,123 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24C92CD98E2
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 09:57:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15B8ACD98E4
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 10:05:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6CBB10E989;
-	Wed, 17 Jun 2026 09:57:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C739810EF1D;
+	Wed, 17 Jun 2026 10:05:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rTL2xauT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YgopQgHK";
 	dkim-atps=neutral
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012053.outbound.protection.outlook.com [52.101.53.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F99510E989
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 09:57:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 479BC10EF0B;
+ Wed, 17 Jun 2026 10:05:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781690747; x=1813226747;
+ h=date:from:to:cc:subject:message-id:
+ content-transfer-encoding:mime-version;
+ bh=MBZ/0RRLFE6v/rttOBj9Wcrs0SjZIBJbSBFfhfXwPxI=;
+ b=YgopQgHKumTw4RpwAyPzkhPF2HLLvRfUhkJFHUW7DFM45nf1MDfwax1t
+ t42b0vOcdF8wQblNKMTbsKKOsCkfqvin61hUOxjfyI03pZE6gVuLkyTZJ
+ GlODV5RzLBS59yY06azXVYPoxPAsDVLGBIBsinJTtgcyCpK4lcKEDUD8D
+ bs+fNsHsfjXBggldhtCxHrdQiJ0igKXk0DrmL29zVVTxAlRXgpIBgVlRK
+ pTRGaHWjuE/EMksNY0MVzh9J+xddSlF7MHCBihQS66w8znTxO3MmVSZDC
+ x+ZwnQ+oHtJ3g6FT+o3tkVq1fcuyIIwa+ZEAlsq5uhKS2qbCpdpv2RYW+ A==;
+X-CSE-ConnectionGUID: tptX1+ovT5a6YNfdpN/uFw==
+X-CSE-MsgGUID: hw7HqpptRXKSZI9O62TLFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93592290"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93592290"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 03:05:46 -0700
+X-CSE-ConnectionGUID: 90/caF6PTUC2akugNLNnJA==
+X-CSE-MsgGUID: 5flooBMdT2CV9Jsto2eM+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="286141074"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 03:05:46 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 17 Jun 2026 03:05:45 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 17 Jun 2026 03:05:45 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.34) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 17 Jun 2026 03:05:45 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bGumPoxAFpnS7GmZr6bBRx8TYWwCQSTHM2KS/nqVATaUdmOMCG0yF0VEGTuVgbwMb32IRE/HlXnKvTNLHk5kHmLWn/DEOjeTzf/wPDPNB0wnSCu3XIUdXdpcI0mYlADVwk5KBuBccuSt6tgtVLv2IDsULZSQCTVyTbyyo/Q/LHuJ8d8GO/av9hUbB/Vj+tPOuCMeHqBda/xkHAoBye4uyQe0CisTCpvpKO8NzuS0N2MKAuTqV/BBgJV1WgB1D+S2QKPLCrr2T6pR7vrvJnS434FXxxe8Rfy9MJzo14rBQR7D8ptsNRCMGPLCOmjClcjyj3qhuy56i3WpKfIkSl53jQ==
+ b=QQcSFEU2g+uyN0qgktF8YLMmCjRho6MVS/w7iJr+NW6V/TTcGkqUcmB8+lovQYobQXUiw0vxMrHXCouN8bZ8ttJor+nHirVFFvgyPTbX0BoRan2Nh2fgv1VZYJxqvytxM+vA3QDkwaJ+z9pgdfSQiwAZAHFxj8XPHgSzfgcFBzGHtUNUp2gABnoFoChD9iLsStSc0iC9gRdlk4GaGX5hNhcz164HF82cDf9GgYqFeIzaQ+v7mswWujKFveSRVAAuhdwPfhs/eaEAMTOEn3eoZjrLDGVM0TetGIuBSrOCw9hjNuG+o1wk5I2ROQuxLNIG6dcA8K6zEPhRRzs9R4avyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PqTxHy6IyUWWdRuyvS6OagEmJqvjH9vBZGXKpwviap0=;
- b=oyUUBkwYVvvfgTSotAof8pBFjVf/Klfk4ixohgrsZrg9b/YTL7MKFvBYgavxwm1mguvyThGcwpCCQtG8IQmq+LEczp7rRn6YHC0u05BABDc3FWNvUWujBdUb5+q7VDENQsqhnXXvmh94iC9r4h+/pl8waZ/qdCgNvClGgW/NEV9UVaoLgxfAo2vtralYPEQ0C0V2nXs+Z024aqRLhaz62unjpyyQ4awXYHPpIQamQ9rfg4pSdGmzec1AyBTJq+k+GtypKbM96wXV+pvvXCl+VQjn6CjlabDWoGvP+CmXTfnNrVMUpQAGkKW2xi0w0I70nSM8JJCI1UdmaYgMpfuOsQ==
+ bh=ht6S3zhIq8FEkRT8zqwOW8wcPKJDGZ/2rrj/XPBmCbQ=;
+ b=RXZhlVKKYU/ZMSVfxe74wS+P6O9VqNx+VJVgmrHK64xhJOIu4YxRt+iqOiaslQUkbKp4hphzXozBNOPc998BoD5iNnct650YG3nZmDOCK9mXHDYYOyp+Q2dGB5ddjTGMzLllSf53nYY1hkqCkJmqkpLtau2fasXiR8utgaGPfKaZLxZW8JQDNI4v87zwrUaVANmo3TyRpnA+9yYKsOIde8oy17RFe5Fi6knE5h9v4/Vk1J4GCw6etqDyJGNd3ydbRONRT8JRbXWPPMub4kEKbHy8SxH6o1Pv5PgsuQFk+IRTyJwGr2hkujgDis4pwzDPYn29Cazc0T/SnEDeqmMCEQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PqTxHy6IyUWWdRuyvS6OagEmJqvjH9vBZGXKpwviap0=;
- b=rTL2xauTdmQj74kF/vZsA6QJlZfUH0AvAwPEly1cldihN9WXcM25TkGXRPgtWS27gW+h/j4Nj0P9nAix81/AzVM4BvtJnddTa1pf5dwVaHWkk907B+mxuIdDEdw1vTzRrrx7fNaze0XIk+PovSDOWbpRudD3/F7+tFP0CQp6f50=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by BN7PPF3C1137D8A.namprd12.prod.outlook.com
- (2603:10b6:40f:fc02::6cd) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Wed, 17 Jun
- 2026 09:57:41 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
- 09:57:41 +0000
-Message-ID: <6c5c3c43-7f42-41c9-9d59-7109b68831c7@amd.com>
-Date: Wed, 17 Jun 2026 11:57:36 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Create imported sg BO only after dma-buf attach
-To: Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-References: <20260617101654.1989199-2-nitin.r.gote@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260617101654.1989199-2-nitin.r.gote@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0413.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:d0::14) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
+ by PH3PPF1618AF7BB.namprd11.prod.outlook.com (2603:10b6:518:1::d0a)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Wed, 17 Jun
+ 2026 10:05:40 +0000
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
+ 10:05:39 +0000
+Date: Wed, 17 Jun 2026 06:05:34 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
+ Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dim-tools@lists.freedesktop.org>
+Subject: [PULL] drm-intel-next-fixes
+Message-ID: <ajJxbrt3a_USBecY@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0262.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::27) To CO1PR11MB5073.namprd11.prod.outlook.com
+ (2603:10b6:303:92::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BN7PPF3C1137D8A:EE_
-X-MS-Office365-Filtering-Correlation-Id: 21e7fe4a-450c-4fa3-17f7-08decc56deeb
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|PH3PPF1618AF7BB:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2dbccffc-ea4d-4eaf-fe9a-08decc57fba3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|11063799006|56012099006|5023799004|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: YWKaB6du8bxm1zmRmG+XEINsd4hfiz6Z/dewkA8E6qSUKGBeII5Fh/0X6G1VyL2QQF8SxUvLtanswcM51UQvSfjoA7E2oAEhY3bEnIUwUWTR08tQActrLcu1e1/58/I72rkrW2tGEtpcaGdDnuzl73JzyVnuAw8Kxq3DRwD5BO7XYsY3Alr9KHLn/tZxeJAk/9FL7Yf3dnqA/itZja2GIrRg6dBztoZh8RUe2QHXQa7u2NVf7n5ryiYQb9jG/plE3UyDp8CH9eZfYPok4DdcB0Nr8eusqgWKlZX76ByrX6qTcpYipzhMz4jVWen+WADmOOBfxyOTc6No1dVNdt4Q5X/3mJQp9YFgWGOZiqbcHisb8YDw7LwiSnvWFjpD9AwFClDAPggf80qYMZzP6+pIP1NVCZTR8VCz8cfWMBZoMaA89d42HgSu+fA8uzSpFs107E/SBoAo5THBTTVWHeKxY4kOFncYPlqHhm1OkndqwOY729YqKbIvLtmDec/KZsVWd5qXMudsQpZ2Tef0H7RkdzqIienZPIwsKNV910GNUx6XkfB8cBYXBWZOUcHbIc0EL/W6MlaYZrqvkUgqSZPuv9nYwsJ+EvX8FjhUKsRKbHiU0rQec0gTw86F5OOHhTj6YYugdYLzzVzUou+nGpg6Nw==
+ ARA:13230040|7416014|376014|366016|23010399003|1800799024|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: 5WQJffnvwTpuJvd7V88eZ9pFixCVD13ulneHlwFAi2PAPmEn3aPOS6ZlyFohg6rc45WhZvsOOOwF3L6jD0XTj2C4qDMV5u2/836a7DpTKoP+wZJVMMxzgjTLLNx2Zc98gzSc2TFHrED4rk1UzenrpsHpP7KCQfWkujNOdqKKYJhT6FUdCpIoCuy/D+McKz0Ydw7SP0IKgco0IHqQuIXXem4agK6hWY1PKBGE9k8qGdiOwcMbuhHobaKS1thfaLbVPBTkUkia6vJbdj12mSPgDoN9xrUqi+HVjamv8C73sjQ3jqoB560Knevoq3uxU/2qSXMDHvJsok1BJBTB9xCf2jNkF02ElVrBpGWDVetStZnnwCAEG1F7CeOqBkeD8dRs28AQOKoVTCHCUpI/83VXRzUWwtmT9q3RhWjS6hu9rD2Mu/PUz7OIGR5/V/2wNrJ56GYjEM7K3s1Z77rWuYJejGYeOtQmJ0/JZcrIvoj8xivrzLuItZNvo+79xagr2pzE2+YXPEO1mLGvflJyPD9D55NHaB/d4cMF50aOBarudyhNqLhZwO8H9pZNnz17C4TiKFR8ELDilTP2vkbH0y0Dtx70fK2WEOx2pdUJr1xaGIQv81g75gv64QznRwsq5ImP42nuYIXt1zhdZw6sVctimA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(11063799006)(56012099006)(5023799004)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(23010399003)(1800799024)(56012099006)(11063799006)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VXJwd2N6bk5IcllOOGZWdEp0OUI5MTdGN2g0VHNoYlVqNFgwNHloYmlQVDdU?=
- =?utf-8?B?RmZ4N1hNd3BYU1dyQ1dpSG9BWWpLNWNGTDkvbFZIU25XU3lpZ04zZDhPejhu?=
- =?utf-8?B?My84QmdKY1htNmJSYkppdDM0Y3orRmJUNEZLNDlxeExtaml5b1RxSklqOUVP?=
- =?utf-8?B?Z2NLTDlWbVlhdVhFTmIvYUJQa0VDbmU4RTNhb2hEV2hkYkZ5ZG9YUTFmQWxv?=
- =?utf-8?B?ZjJ0eEQ2MUlscjkrenZwdnVXRkFCL2pvaVlzOVQ5U3BYQjRWOFMzQ01lTDBz?=
- =?utf-8?B?S0tjN3ptQ2JLT0hxUEYxMmtNTENRNHpiYk9NSkNYNUlQamhrTmZRWE1nSDBl?=
- =?utf-8?B?VlBnSFdIdllwQkZRTzAwQkJoV1V2N0FKRFhLaWtXQTNqbFp2Z1R1RjVDWGly?=
- =?utf-8?B?RHRDZjdhbFd3dld4aGlKa1FwVUhuYjYvY3U2b0xWYkhCZmNxNlYzR3FLTFZY?=
- =?utf-8?B?RVYxc05qdFlvbTJreStmVHgvRkNtYjg2NnkydU5ieUhCVG5lQ0p6N0RqWnZs?=
- =?utf-8?B?cW5KM2wvLyt2K2hRQ2xveFE5Z000b1lKNFZIQno0dWtSTDNpNU9TZmhaTkV3?=
- =?utf-8?B?RS96bForMUM1dm9ISlFoU1MvWGR1eVFIVjhIVkZNcms0bEdjSXF0MlhET2Jt?=
- =?utf-8?B?bFhPU2dBZjZCSTA0cDhianYvNFZNVGxQclRKNndaT2h5ME5qQlRsc2hQTG4w?=
- =?utf-8?B?MHBPblYyZVFOcUU0ZzJYcCtnazUrZCtpU2h5MXlUYTIyV25HMWNnT1NoQ2pk?=
- =?utf-8?B?OGZMYUU5RmRqaTZaSTBlQ0J4aGdEK1JkcFRteWkwWjJJM1daT0lIdmVoak9X?=
- =?utf-8?B?elVxemI2NHB6RzVTR0MvWEtaZ2dDUTR3M2ZpMkFYd3JXRnZuWG9NdnV4bWhu?=
- =?utf-8?B?ejJGUnFmejBhUEJHang2MjlkRVlMK2VFVkxscVg2Q2NJUlNjcTI5d2pKRGwy?=
- =?utf-8?B?aytWcHlvVWtxcCttdkI1cTQ1L2VRSldLWlBabHIvamM0WlBYNnJqQklkRWJs?=
- =?utf-8?B?WUN5U3lQOGpUdW1Hbk16NVA1WjJvNitXTHVLaWRLZk44NlBDamJiUWFPS1ha?=
- =?utf-8?B?Z3FTYlVVYit5dU8zWlBJVDFRbXlhZzhRUXNiaVlQREUxTkZ0cWlpUXQ3Ly91?=
- =?utf-8?B?REZZY0svd3Q5cnZUQ1Z0cC92aHZMc09WbzNpWkRDWU0rWHFlVkJXTERlY3hi?=
- =?utf-8?B?U1EvRGpDeEJNODJzdkdkNlpHVG8rN2krZFVIQ1ZXa2J5VG9PUU5SNlp1Z2hU?=
- =?utf-8?B?S2Q0K2RCNTFNa1UvZUN1YU9kY2tUNzhxQVI1UDVFMFUvYVdrcFQ0QUR5Wm1M?=
- =?utf-8?B?QVVQcG5yekpxaHNBZDJQV3NLU3VPK3d0Ry9VcmoyeDlEOHBTSU1MdHFGSFh1?=
- =?utf-8?B?SGpiMG14M3lLTmZXOUR1VlJlb2VtMG9FZ2xWd0VVSnhFY25ueEhqSWlFRmZR?=
- =?utf-8?B?aC9iWHNoM0Y3UmV3dkRlY0xqMVJLdU0vQ0JtT2lmNGhDYmh4Zlp5Zkpjd25I?=
- =?utf-8?B?NE1uTUpmcExrTWt2UjBNR0Ywc2poV2xmR1c1KzNTbzQyOE5YOVk4eVB6Ky9v?=
- =?utf-8?B?Q3U3VnpIZUN1MFlsa215b1pyQWUyb0NqQ3ZTaTE3RXFSeHY0K0srdHNMZmFG?=
- =?utf-8?B?Rlc3MlVQS1ptcGFqVTYyUStLUk12K1Y2dlBQOWJycHF4Ni9OZTI5OFgydjJs?=
- =?utf-8?B?WVpRdWcyL0ZSaXZWRk1XaG4zYUhUZG41d29xaDVvODdFeVFLMHFMRDlBbnZU?=
- =?utf-8?B?eHN3cEgrM2NwR1ZYcnhoSlpoWEhKbnh6UTVGMzZTMU03Ujg1Y29aZDFkTjdC?=
- =?utf-8?B?T2l6ZWxrMjdCMlg5QlNrNGFVdE1zZ3pIQlBLVC9wNS93dWJOVFJSWFN2K0RQ?=
- =?utf-8?B?QWpmZkdaV2xJRU9uUzBYOEFRMTVVNk5TMHdmUFI3aFdLQVNDM252SUwvTWI5?=
- =?utf-8?B?N1Y2OGV1ZlVLdnVWbllZNXFQR0hsV2ZuVTJ5VEFPb1JHeGc3d3c2T2dpalFO?=
- =?utf-8?B?cmRYa041SjlJcVU0U1FsREdNRFUxdk1GMkNHN1g4WlZCVkxiZG9TUmxxMGx0?=
- =?utf-8?B?ditFTnFSNjJKblRYR1g1Y1UrL0pFU1RUVXkxTURqYkVwUFdtS0djMlRKVkJs?=
- =?utf-8?B?UnlPMjVtZC95bWhUZnNEK1U1b3FUYlRMM28vOFE1ZWE2dUpDOHYyM3FJUjlV?=
- =?utf-8?B?a1krUEZQVDBSSE5jdEh2ZzVmeUticVVNRDhJS1QwS3RiNERITXZoWVdxUVFw?=
- =?utf-8?B?aFMySEY3OElldkxRNDYxMnN6ZU9wa21ORVI0Yy8wUUpGQlhtQ2k5ZVZOQ3d1?=
- =?utf-8?Q?rAVjgH5SgOB83u2gi4?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21e7fe4a-450c-4fa3-17f7-08decc56deeb
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?3MmeGQ4vOIOp7M5o6Hxs4OSO2PDvM7SeRyBtHVzHOkpg13AOTBxTj9LrqR?=
+ =?iso-8859-1?Q?YGuKt0f5zeB4upmGeJNiZ2giXtBTtvLAuUDQC6/DqqeEkeW1bPkpjjZ95s?=
+ =?iso-8859-1?Q?sIHInY3jkkBtiT5Y9rON+xagw83uRHjxIyxfccsuzcvVNEmuxTqMCw3oDv?=
+ =?iso-8859-1?Q?7Ij6qV9TS+wpUaKUzQnLdROrCilUqhW2rVS2+MblJNtGVVVyVqTPQ3C+0/?=
+ =?iso-8859-1?Q?ThevA9wb0FCx0jNFDqidXrWs8pL/ETmmI2VwmS0/vBEqURyJ/n9V2wc+rx?=
+ =?iso-8859-1?Q?KEYHuoyHziuJZfm6SsHrEtz8Pym3QafZd4+6JspLJWqEhIjOpD17t1Yu9x?=
+ =?iso-8859-1?Q?iT+trZvNdy7MNZ2D8gH5GGTl7wgZXskjTs8UXomHIddINN0VEEoebCgp/l?=
+ =?iso-8859-1?Q?C6LEHI2vSf7gPSEjLqIH7GdDj5CqHXVf1NAWicshx5OY2Ju8xdOsKbG1eb?=
+ =?iso-8859-1?Q?tDu+Jb5519XT4ZIvX+Av62+S11AZ1bxieiNuf41wJc00tS15WRnuGOgAOO?=
+ =?iso-8859-1?Q?lj/GBFc4Sr1I2wa+kJlza2kIJDffW4v0keCctBIeLU37sU7JYHUiZn6XAb?=
+ =?iso-8859-1?Q?u8JBOrFgn4nrenmU2VDfY3b858MjsPQM9ciJnuInN64E5q3+u+Rg62txGl?=
+ =?iso-8859-1?Q?ypHIt1IBfz/XQV0g/4OjPwGnBE+uX2IMIJnNO5xYfhnwdXHdt64iPqr62Q?=
+ =?iso-8859-1?Q?wZOuuObjRJ1hpswhkiN1zML35gDtG1594L2s3Lq+LXkqBcu1YLWVRKWOT0?=
+ =?iso-8859-1?Q?SI+39jzYqGq11F3PhbNMWdVrEfUpA4Z6I7p2RxWJ8wkDzWoEMLonNr1juN?=
+ =?iso-8859-1?Q?kQ+VfDCH55F8juq7DXuD0V4O2ZqDCAw0uINY2qQPcuvDHkenrQnnqRs3jk?=
+ =?iso-8859-1?Q?uDEXDt8OrIuQzWkKAJynqgYT6Nzmmch7TwReVg4bMAhvFowhymUWZpn/yb?=
+ =?iso-8859-1?Q?hVKH8L3sOIHQUJZIzXF+Xip+vJ4o5+vS/kX45Ajw1xmld/cBeXAIA5HY82?=
+ =?iso-8859-1?Q?2Q2W9zmfNb/3F5ZUD3ajizT260LNcThH1xFbpXCueF6EosTn4KVik4oUcI?=
+ =?iso-8859-1?Q?OEIeodx2M1WN8ix1MQJUou3wW8VIilUlVHopB1G4c/DdiY55Em6x4q/5gL?=
+ =?iso-8859-1?Q?y/Fz2YtM+2m6WstZqAMBDDhSB0cVh5IWu94PlgVb49y3xsll/qg8f4Tfcz?=
+ =?iso-8859-1?Q?JZkZqnPq8KJxIc9AxWqVVsuvMhq6ntxKi0nK+s7mXauJPw3er/fQBp+7Bj?=
+ =?iso-8859-1?Q?VrO+Ke0bhyg61yyxB2GdEmLD3bjCqz3KR1mImRxdLXSf5MgQ4SUmDaAfiD?=
+ =?iso-8859-1?Q?WhgPLwvsYrfEwyw4aDFpwcQY7P3YATF1iqdq0KpkIA5TG186BDNNk1VSU4?=
+ =?iso-8859-1?Q?cCmyXbIcOFHm7cKjHlDPt/qsyXeI3VHhooB7ll+wF4dvWN1VVeBGDbl+rV?=
+ =?iso-8859-1?Q?1bKRMt3xgkcsKDNQBfEjIr44QyDF0+SECS4va7sW2+PLffTTDJJy58K9gU?=
+ =?iso-8859-1?Q?X0Bw6DxX/PNKaevBG/+pZfPRZ/LDLI97obKsVBZWObCokM3e9WyobPudFz?=
+ =?iso-8859-1?Q?Zp7FcdUfQQe0UgoCRB4/jP0j5rhoMrDBXAt/KYNw/gl6lt1jicD4eJwsIR?=
+ =?iso-8859-1?Q?ben9xb4fR1HdyM9hcCvMXYGhIAWjFkERK5zMVA4TondW1yge2w4PCV5YL1?=
+ =?iso-8859-1?Q?b60+ahi61VnPRtpuhsCDBchfmHADjB9pM0fGIyGCPk3WbKcKs6SeyQGV96?=
+ =?iso-8859-1?Q?EiUOjzJkeSCJmGuYf1QaA6m76uCofelhNu5szQUDrlwxzugmPH3dIFn4xK?=
+ =?iso-8859-1?Q?T5KkKREHbA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: r/+5+spH4QFOb31ILgjjFTql5fyzRJWO8qqqkQLSwUX8A0qx8ThxhckF15CyxZu4Rv6I9WPoEXV/f/fwJkPohc5e6PxXZlV0nM+vySNiaUJofy5HQuqndXWTYa9IouJhpOpsPypqsh46V2uQB1VYBHlTVbSHpl0sKkwqqP16EoVABIsptv2qLfSI5U0y5R2nT4PEuWJ1ShmAKi99ELLD+lgqJ0vnw3iX5crYSV6Y0g5K6yTPu5ejER+G4PPe/izzx4Gwppesfzf4OkT6b1fCuIH4MVHNdABu3RY5vxxKOgMMSnq0lZ0+H+r301jhFEMetoJB0dAVya1g4fgesMvf5g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2dbccffc-ea4d-4eaf-fe9a-08decc57fba3
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 09:57:41.5228 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 10:05:39.3657 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YiJ421+bNCGd5nxWQmW9Q8E5RxQYaHKwSpwN2d/DShX1Tzpp+Eq6LfuDEckZ/xhf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPF3C1137D8A
+X-MS-Exchange-CrossTenant-UserPrincipalName: i0CWBnnRm1vZprXeuJpsb332ehQ07hYKX2fTi4MkLfNzxtI/sthQ1CWYr3OACzAFW41WlIiAScahV0Ne5jdHtg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF1618AF7BB
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,129 +164,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 6/17/26 12:16, Nitin Gote wrote:
-> xe_dma_buf_create_obj() creates a ttm_bo_type_sg BO whose resv points
-> at the exporter's dma_buf->resv, then dma_buf_dynamic_attach() is
-> called. If the attach fails, no importer attachment exists and xe does
-> not retain a dma-buf reference, yet the BO's resv still points at the
-> exporter's dma_resv. Since sg BO cleanup is deferred,
-> ttm_bo_delayed_delete() may later lock that stale resv and hit a
-> use-after-free.
-> 
-> Fix this by reversing the order: attach first with a NULL importer_priv,
-> then create the BO only after the attach succeeds. The
-> invalidate_mappings callback treats NULL importer_priv as an incomplete
-> import and returns early; at that point no importer BO has been created,
-> so there is nothing to invalidate.
-> 
-> If BO creation fails after attach succeeds, detach and return the error.
-> Since get_dma_buf() is only called after BO creation succeeds, the error
-> paths leave no extra dma-buf reference behind.
-> 
-> Tested with igt@xe_live_ktest@xe_dma_buf_kunit on BMG
-> 
-> v2: (Thomas)
->   - Reworked the fix to avoid creating the imported sg BO before
->     dma_buf_dynamic_attach() succeeds.
->   - Attach with importer_priv == NULL and make invalidate_mappings ignore
->     incomplete imports.
->   - Keep get_dma_buf() after successful BO creation so error paths leave no
->     extra dma-buf reference behind.
-> 
-> Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup path for imported bos")
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
-> Cc: stable@vger.kernel.org # v6.8+
-> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> Cc: Christian Konig <christian.koenig@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_dma_buf.c | 42 +++++++++++++++++++++------------
->  1 file changed, 27 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 8a920e58245c..9fc4c5484519 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -317,10 +317,19 @@ xe_dma_buf_create_obj(struct drm_device *dev, struct dma_buf *dma_buf)
->  
->  static void xe_dma_buf_move_notify(struct dma_buf_attachment *attach)
->  {
-> -	struct drm_gem_object *obj = attach->importer_priv;
-> -	struct xe_bo *bo = gem_to_xe_bo(obj);
-> +	struct drm_gem_object *obj = READ_ONCE(attach->importer_priv);
-> +	struct xe_bo *bo;
->  	struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->  
-> +	/*
-> +	 * The attachment is visible before the imported BO is created.
-> +	 * Until importer_priv is set, there is no importer object to
-> +	 * invalidate.
-> +	 */
-> +	if (!obj)
-> +		return;
-> +
-> +	bo = gem_to_xe_bo(obj);
->  	XE_WARN_ON(xe_bo_evict(bo, exec));
->  }
->  
-> @@ -365,31 +374,34 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
->  		}
->  	}
->  
-> -	/*
-> -	 * This needs to happen before the attach, since it will create a new
-> -	 * attachment for this, and add it to the list of attachments, at which
-> -	 * point it is globally visible, and at any point the export side can
-> -	 * call into on invalidate_mappings callback, which require a working
-> -	 * object.
-> -	 */
-> -	obj = xe_dma_buf_create_obj(dev, dma_buf);
-> -	if (IS_ERR(obj))
-> -		return obj;
-> -
->  	attach_ops = &xe_dma_buf_attach_ops;
->  #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->  	if (test)
->  		attach_ops = test->attach_ops;
->  #endif
->  
-> -	attach = dma_buf_dynamic_attach(dma_buf, dev->dev, attach_ops, obj);
-> +	/*
-> +	 * xe_dma_buf_create_obj() creates a ttm_bo_type_sg BO whose resv points
-> +	 * at dma_buf->resv. Do not create that BO until attach succeeds;
-> +	 * otherwise an attach failure can leave delayed_delete with a stale
-> +	 * exporter resv. Attach with NULL importer_priv first; move_notify
-> +	 * skips incomplete attachments.
-> +	 */
-> +	attach = dma_buf_dynamic_attach(dma_buf, dev->dev, attach_ops, NULL);
->  	if (IS_ERR(attach)) {
-> -		xe_bo_put(gem_to_xe_bo(obj));
->  		return ERR_CAST(attach);
->  	}
->  
-> +	obj = xe_dma_buf_create_obj(dev, dma_buf);
-> +	if (IS_ERR(obj)) {
-> +		dma_buf_detach(dma_buf, attach);
-> +		return obj;
-> +	}
-> +
->  	get_dma_buf(dma_buf);
->  	obj->import_attach = attach;
-> +	WRITE_ONCE(attach->importer_priv, obj);
+Hi Dave and Sima,
 
-The attachment *must* be fully initialized by dma_buf_dynamic_attach() before it becomes visible in the attachment list and the WRITE_ONCE() here is not even remotely the correct memory barrier to do this.
+Here goes our drm-intel-next-fixes.
 
-This is just asking for a race condition which giving the private data as parameter is intended to prevent.
+I adjusted the tag message to be less bullet and shorter msg as
+requested in the template. I hope this is okay.
 
-So as DMA-buf maintainer I have to reject that as incorrect use of the API.
+Thanks,
+Rodrigo.
 
-Regards,
-Christian.
+drm-intel-next-fixes-2026-06-17:
+Only a few simple display fixes around DP MST, CRTC color
+state, and PLL sequencing.
+The following changes since commit 52d4ab1ca790a668cc8f2c27017138b1c467168c:
 
-> +
->  	return obj;
->  }
->  
+  Merge tag 'drm-misc-next-fixes-2026-06-11' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2026-06-13 08:10:38 +1000)
 
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2026-06-17
+
+for you to fetch changes up to 062499cc4813b5a3cbed5dd4fbe0177265858450:
+
+  drm/i915/mtl+: Enable PPS before PLL (2026-06-16 13:06:09 -0400)
+
+----------------------------------------------------------------
+Only a few simple display fixes around DP MST, CRTC color
+state, and PLL sequencing.
+
+----------------------------------------------------------------
+Guangshuo Li (1):
+      drm/i915: clear CRTC color blob pointers after dropping refs
+
+Imre Deak (1):
+      drm/i915/mtl+: Enable PPS before PLL
+
+Ville Syrjälä (1):
+      drm/i915/mst: Call intel_pfit_compute_config() for sharpness filter
+
+ drivers/gpu/drm/i915/display/intel_atomic.c |  6 ++++++
+ drivers/gpu/drm/i915/display/intel_ddi.c    | 11 ++++++++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 ++++
+ 3 files changed, 18 insertions(+), 3 deletions(-)
