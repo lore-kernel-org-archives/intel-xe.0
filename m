@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD7A5CD98F0
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:21:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1362ECD98F0
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:25:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8078110EFAB;
-	Wed, 17 Jun 2026 11:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA8F010EFB4;
+	Wed, 17 Jun 2026 11:25:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b5saqkD3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hTL9LH6Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3680410E9C4;
- Wed, 17 Jun 2026 11:21:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7136710EFB4
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 11:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781695289; x=1813231289;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=tPi/YY4XI5glWepvmBLi0Nv9EYXphd/RdJKzp90WbGI=;
- b=b5saqkD3n+5NjUn7XYu1IoaUhVDadLIywjz8A9SPlVLRZBrXdZXrgJaw
- DCJq5hCj+BZaCVtapazS9iZwcT1b3xbtIk3bBlgUfJ4WOY6aDDFoceuxj
- 20b4n9+ju/m6NYcmvEblgOBVNlThsczdNfmP5Y/2UsX+tGXu+WJiaD1Xa
- /xi0yvJSzAqm2+D229tW7C6R1eT7Tn2BweBx3GbHEDPTHU3Dy6ifxZ6ud
- FwJjDqh7oxtqAyjRTVLKdrPl674S191b9jHXGyDD1//1RBxiorqSOqY6g
- 0/fP1emRCRY55GcihMNE5BALUZ025JeKSnndrUwF2H/fid4QoHeFDYb27 Q==;
-X-CSE-ConnectionGUID: L3JYIzeETbaOivkPBl67rw==
-X-CSE-MsgGUID: t6622wdYQQGf7JSczE0H0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82577243"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82577243"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 04:21:28 -0700
-X-CSE-ConnectionGUID: sL30sF98S1yedT8Chb4VQQ==
-X-CSE-MsgGUID: FQ3c1UBmQZWfoA+1mFLD7w==
+ t=1781695536; x=1813231536;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=1+n/XI5AkGhZQ6au1uNvcN8XWU9ZbUQBJChh5wGCgsc=;
+ b=hTL9LH6YF1wy3wgME8l73Live3fEWXXwnQ603+kN7lx++x8wjoJzPRtv
+ SIWIUspEm7kIwq5ZETc1BOJJKDopus8+38UHF/8xtGvt7PNbzEClO+nBg
+ 9z98N83bfKGXcZLxyZ7V7pBuS5ghDKP1pWd5XBDA6qVVAdkCGw2wvu2Mc
+ dnS7DLm0WTqf0ow8shRIwmbt/11IgDyBvTg41FEO/QcVexgJi75OrrQ5R
+ 9ENlo1/Vz3Zjh/wdEmUoV8GZ8Kcr00xQVmBx1hTGh+/zvBAdW8JnMcMSg
+ l28AxYEi7Xcfz0TOigbS1lmNckoyhuX8h3BiCcKxk3XhFYdpRPC+m7Pi9 Q==;
+X-CSE-ConnectionGUID: dV+pWhHaS+6G/OnEFIxgeQ==
+X-CSE-MsgGUID: uv97qvloQP+BLg6L2m6NVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="92837388"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="92837388"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:25:21 -0700
+X-CSE-ConnectionGUID: izBYLmg7SFe2JJ3vzFi/eQ==
+X-CSE-MsgGUID: GHVmVryJQJeRq6kyrn8G0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="272104368"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 04:21:27 -0700
-Date: Wed, 17 Jun 2026 13:21:24 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org, rodrigo.vivi@intel.com,
- riana.tauro@intel.com, dev@lankhorst.se, airlied@gmail.com,
- simona@ffwll.ch, kuba@kernel.org
-Subject: Re: [PATCH v2 4/4] drm/xe/hw_error: Use HW_ERR prefix in log
-Message-ID: <ajKDNGuBJ9th6-sn@black.igk.intel.com>
-References: <20260523050212.557292-1-raag.jadav@intel.com>
- <20260523050212.557292-5-raag.jadav@intel.com>
- <65752da7-a23d-4495-9863-541bdd3f7888@intel.com>
- <ah16Hfwq7goxBm27@black.igk.intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="252343329"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.245.130])
+ ([10.245.245.130])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:25:20 -0700
+Message-ID: <e8e282bf-c7e5-4fe5-b228-cddcea4f8b35@intel.com>
+Date: Wed, 17 Jun 2026 12:25:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ah16Hfwq7goxBm27@black.igk.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Move drm_client_dev_suspend/resume outside pm
+ block signalling
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>, Raag Jadav <raag.jadav@intel.com>
+References: <20260617082104.610620-2-tejas.upadhyay@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260617082104.610620-2-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,74 +71,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 01, 2026 at 02:25:06PM +0200, Raag Jadav wrote:
-> On Mon, Jun 01, 2026 at 01:13:12PM +0200, Michal Wajdeczko wrote:
-> > On 5/23/2026 7:00 AM, Raag Jadav wrote:
-> > > Hardware errors should be logged with HW_ERR prefix. Make them
-> > > consistent with existing logs.
-> > > 
-> > > Fixes: 01aab7e1c9d4 ("drm/xe/xe_hw_error: Add support for PVC SoC errors")
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_hw_error.c | 12 ++++++------
-> > >  1 file changed, 6 insertions(+), 6 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-> > > index 5135e8e4093f..4b72959b2276 100644
-> > > --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> > > +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> > > @@ -223,9 +223,9 @@ static void log_hw_error(struct xe_tile *tile, const char *name,
-> > >  	struct xe_device *xe = tile_to_xe(tile);
-> > >  
-> > >  	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
-> > > -		drm_warn(&xe->drm, "%s %s detected\n", name, severity_str);
-> > > +		drm_warn(&xe->drm, HW_ERR "%s %s detected\n", name, severity_str);
-> > 
-> > function is per-tile, so shouldn't we use tile-oriented logs instead?
+On 17/06/2026 09:21, Tejas Upadhyay wrote:
+> A circular locking dependency is reported between xe_pm_block_map and
+> dev->clientlist_mutex:
 > 
-> Agree, but then it needs to be done file-wide which I'll pursue once
-> the fix lands and propageted.
+>    &dev->clientlist_mutex --> &vm->lock --> xe_pm_block_map --> &dev->clientlist_mutex
+> 
+> The dependency chain is:
+> 1. xe_pm_suspend() calls xe_pm_block_begin_signalling(), then
+>     xe_display_pm_suspend() which calls drm_client_dev_suspend()
+>     acquiring clientlist_mutex. (xe_pm_block_map -> clientlist_mutex)
+> 
+> 2. drm_client_dev_unregister() -> drm_file_free() -> xe_file_close() ->
+>     prelim_xe_eudebug_file_close() acquires discovery_lock.
+>     (clientlist_mutex -> discovery_lock)
+> 
+> 3. xe_vm_close_and_put() acquires vm->lock under discovery_lock.
+>     (discovery_lock -> vm->lock)
+> 
+> 4. xe_exec_ioctl() holds vm->lock and calls xe_pm_block_on_suspend()
+>     which waits on xe_pm_block_map. (vm->lock -> xe_pm_block_map)
+> 
+> Fix this by moving drm_client_dev_suspend() before
+> xe_pm_block_begin_signalling() in xe_pm_suspend(), and
+> drm_client_dev_resume() after xe_pm_block_end_signalling() in
+> xe_pm_resume(). This breaks the xe_pm_block_map -> clientlist_mutex
+> edge in the dependency chain.
 
-Even better, there's a driver-wide refactor[1] incoming.
+Is this not just hiding the issue from lockdep though? The pm_begin/end 
+are not real locks, they are just there as annotations to teach lockdep 
+about the hidden pm dependencies. For example, any locks you grab in rpm 
+suspend()/resume() you are not allowed to hold when waking the device 
+up, otherwise you can potentially deadlock. So here moving stuff outside 
+the annotations probably doesn't really fix anything, it just hides it 
+from lockdep so it doesn't complain.
 
-Raag
+The above looks like it's complaining that clientlist_mutex is held and 
+indirectly ends up waiting on something pm related, but the pm side 
+itself can also grab that lock? That seems like a legit complaint and 
+should be fixed in the upper layers?
 
-[1] https://patchwork.freedesktop.org/series/168333/
+> 
+> The drm_client_dev_suspend/resume calls are safe to move because they
+> only blank/unblank the fbdev console and don't depend on display power
+> state or any operations within the block signalling scope.
+> 
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Raag Jadav <raag.jadav@intel.com>
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> ---
+>   drivers/gpu/drm/xe/display/xe_display.c | 3 ---
+>   drivers/gpu/drm/xe/xe_pm.c              | 5 +++++
+>   2 files changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 810d93fefcbc..ec65dcbc3fdc 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -304,7 +304,6 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>   	 * properly.
+>   	 */
+>   	intel_display_power_disable(display);
+> -	drm_client_dev_suspend(&xe->drm);
+>   
+>   	if (intel_display_device_present(display)) {
+>   		drm_kms_helper_poll_disable(&xe->drm);
+> @@ -461,8 +460,6 @@ void xe_display_pm_resume(struct xe_device *xe)
+>   
+>   	intel_opregion_resume(display);
+>   
+> -	drm_client_dev_resume(&xe->drm);
+> -
+>   	intel_display_power_enable(display);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index 99562f691080..d00c620d0926 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -10,6 +10,7 @@
+>   #include <linux/suspend.h>
+>   #include <linux/dmi.h>
+>   
+> +#include <drm/drm_client_event.h>
+>   #include <drm/drm_managed.h>
+>   #include <drm/ttm/ttm_placement.h>
+>   
+> @@ -177,6 +178,7 @@ int xe_pm_suspend(struct xe_device *xe)
+>   	int err;
+>   
+>   	drm_dbg(&xe->drm, "Suspending device\n");
+> +	drm_client_dev_suspend(&xe->drm);
+>   	xe_pm_block_begin_signalling();
+>   	trace_xe_pm_suspend(xe, __builtin_return_address(0));
+>   
+> @@ -219,6 +221,7 @@ int xe_pm_suspend(struct xe_device *xe)
+>   err:
+>   	drm_dbg(&xe->drm, "Device suspend failed %d\n", err);
+>   	xe_pm_block_end_signalling();
+> +	drm_client_dev_resume(&xe->drm);
+>   	return err;
+>   }
+>   
+> @@ -292,10 +295,12 @@ int xe_pm_resume(struct xe_device *xe)
+>   
+>   	drm_dbg(&xe->drm, "Device resumed\n");
+>   	xe_pm_block_end_signalling();
+> +	drm_client_dev_resume(&xe->drm);
+>   	return 0;
+>   err:
+>   	drm_dbg(&xe->drm, "Device resume failed %d\n", err);
+>   	xe_pm_block_end_signalling();
+> +	drm_client_dev_resume(&xe->drm);
+>   	return err;
+>   }
+>   
 
-> > 		xe_tile_warn(tile, HW_ERR ...)
-> > 
-> > >  	else
-> > > -		drm_err_ratelimited(&xe->drm, "%s %s detected\n", name, severity_str);
-> > > +		drm_err_ratelimited(&xe->drm, HW_ERR "%s %s detected\n", name, severity_str);
-> > 
-> > 		xe_tile_err_ratelimited(tile, HW_ERR ...)
-> > 
-> > >  }
-> > >  
-> > >  static void log_gt_err(struct xe_tile *tile, const char *name, int i, u32 err,
-> > > @@ -235,10 +235,10 @@ static void log_gt_err(struct xe_tile *tile, const char *name, int i, u32 err,
-> > >  	struct xe_device *xe = tile_to_xe(tile);
-> > >  
-> > >  	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
-> > > -		drm_warn(&xe->drm, "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
-> > > +		drm_warn(&xe->drm, HW_ERR "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
-> > >  			 name, severity_str, i, err);
-> > >  	else
-> > > -		drm_err_ratelimited(&xe->drm, "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
-> > > +		drm_err_ratelimited(&xe->drm, HW_ERR "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
-> > >  				    name, severity_str, i, err);
-> > >  }
-> > >  
-> > > @@ -255,9 +255,9 @@ static void log_soc_error(struct xe_tile *tile, const char * const *reg_info,
-> > >  
-> > >  	if (strcmp(name, "Undefined")) {
-> > >  		if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
-> > > -			drm_warn(&xe->drm, "%s SOC %s detected", name, severity_str);
-> > > +			drm_warn(&xe->drm, HW_ERR "%s SOC %s detected", name, severity_str);
-> > >  		else
-> > > -			drm_err_ratelimited(&xe->drm, "%s SOC %s detected", name, severity_str);
-> > > +			drm_err_ratelimited(&xe->drm, HW_ERR "%s SOC %s detected", name, severity_str);
-> > >  		atomic_inc(&info[index].counter);
-> > >  	}
-> > >  }
-> > 
