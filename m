@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CDF2CD98F1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D88ECD98F0
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 01:54:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B6F910EDB8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1642110EDBA;
 	Wed, 17 Jun 2026 01:54:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EsDhDlc0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cQBWdp7J";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0646B10ED9D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8197210ED62
  for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 01:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781661267; x=1813197267;
+ t=1781661268; x=1813197268;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PWUZB35a/1H9qdKKaXc55ZJX9Gi6i853eV98156IKas=;
- b=EsDhDlc029Cr2nXi5ja9Z3mFQwrScAalR6MsMHCFUritSYlbVy7TO2Za
- q3AHLXDEVqjq/ySNtiyiFNxpXIwj1DiRzUorBKbDywVZjO7Kb+ZA3jhRA
- rvOB022t3J7Hje/QUu4dNSB+Z56BcUNKKyNE3umkZmcviiX8C1U26wufZ
- W+oE9FuIRLxbgKfhJWohjrph0iUKP92ihdxY2D3yVoigWyWu0U3QBqCkB
- CISp0mJ6n0gNNDJ15u4+qJ/S0qhZnoquJI7KxhzXR0AP0I341b23JgpzE
- xQZT8U2UtYCTXQUWK1YKqm1VCOJYQ8fXat0roeC+bGlkpgM4FiACjU81W w==;
-X-CSE-ConnectionGUID: Ft2vav/GRzysUIBiV55/Aw==
-X-CSE-MsgGUID: j8vQhhldSpuuW5eLNI3KBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82456698"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="82456698"
+ bh=mKA0TzIlJf6DBHYYGbBj7QxU8pV1XG2Q62iD9nAXIOM=;
+ b=cQBWdp7JSNDt8tGxFqlaOOO5CYn6zZDrzuKZKYBjkKeNP3Bow1OcYaeO
+ AwVJtuDMv53mTEjTMeour6fqd252qTC0mk2VNE6OhSRTMD/9+7vK9C8Eq
+ yZ07l/JU95b/8FQR5QaYg8Wgb5CQOI934WGFl86xdVdxPp1MI7YCciT49
+ dTHisP062OjNQZ9AiNmOsXa8h8e6pbq/5lNpoBW2d+epWbLd9sLYPkK+9
+ xu7whkcP4bqtEBK5Utyz1daezdVc4lqrG918GdpqOeJosnBpPrsvUePGP
+ kvTwCjX+AwOq9CeI++djdvNzG3ABOKOSpatYJQbnK7sI+gjrK16Pnta9g w==;
+X-CSE-ConnectionGUID: b/g0McxYQMGvvNpqeVl9WA==
+X-CSE-MsgGUID: bqwiehWjQcCfB6CUOTukLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82456696"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="82456696"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jun 2026 18:54:26 -0700
-X-CSE-ConnectionGUID: DcWafrsmSy6pM9iCUcng5g==
-X-CSE-MsgGUID: 2oaOfnrjS4COGNx+3Nx2Vg==
+X-CSE-ConnectionGUID: bMQw/9dhSbi6Nt8cUsKDKw==
+X-CSE-MsgGUID: /3hSc9/2TIGyQ+eIw1GdhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="246801635"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="246801629"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jun 2026 18:54:26 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH v2 3/4] drm/xe/oa: Provide OA status through status ioctl for
- mmap interface
-Date: Tue, 16 Jun 2026 18:54:21 -0700
-Message-ID: <20260617015422.226177-4-ashutosh.dixit@intel.com>
+Subject: [PATCH v2 1/4] drm/xe/oa: Rename last argument of
+ WHITELIST_OA_MMIO_TRG
+Date: Tue, 16 Jun 2026 18:54:19 -0700
+Message-ID: <20260617015422.226177-2-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260617015422.226177-1-ashutosh.dixit@intel.com>
 References: <20260617015422.226177-1-ashutosh.dixit@intel.com>
@@ -67,55 +67,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When only the OA mmap interface is in use, OA status can be provided
-through the status ioctl. This enables us to stop whitelisting the OA
-status register, thereby saving one nonpriv slot per OA unit.
+OA head pointer registers are not used by UMD's and do not need to be
+whitelisted, the last argument of WHITELIST_OA_MMIO_TRG is actually used
+for whitelisting tail pointer and OA buffer registers. Rename the argument
+to tail_buf to reflect this. OA head pointer is sometimes provided to the
+WHITELIST_OA_MMIO_TRG to have the correct register offset alignment (16)
+for RING_FORCE_TO_NONPRIV_RANGE_4.
 
+Fixes: ed455775c5a6 ("drm/xe/rtp: Refactor OAG MMIO trigger register whitelisting")
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c       | 7 +++++++
- drivers/gpu/drm/xe/xe_oa_types.h | 3 +++
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 9fbd21b0ef974..985be10855c33 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -544,6 +544,7 @@ static int __xe_oa_read(struct xe_oa_stream *stream, char __user *buf,
- 	/* Only clear our bits to avoid side-effects */
- 	stream->oa_status = xe_mmio_rmw32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
- 					  OASTATUS_RELEVANT_BITS, 0);
-+	stream->oa_status_read = true;
- 	/*
- 	 * Signal to userspace that there is non-zero OA status to read via
- 	 * @DRM_XE_OBSERVATION_IOCTL_STATUS observation stream fd ioctl
-@@ -1603,6 +1604,12 @@ static long xe_oa_status_locked(struct xe_oa_stream *stream, unsigned long arg)
- 	struct drm_xe_oa_stream_status status = {};
- 	void __user *uaddr = (void __user *)arg;
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 2e84b1c49f374..a17ebacc1455b 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -104,10 +104,10 @@ static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+ 				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
+ 	},
  
-+	/* Provide oa_status through the status ioctl, when only mmap() interface is used */
-+	if (!stream->oa_status_read)
-+		stream->oa_status = xe_mmio_rmw32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
-+						  OASTATUS_RELEVANT_BITS, 0);
-+	stream->oa_status_read = false;
-+
- 	/* Map from register to uapi bits */
- 	if (stream->oa_status & OASTATUS_REPORT_LOST)
- 		status.oa_status |= DRM_XE_OASTATUS_REPORT_LOST;
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 3d9ec8490899c..a84456540a13c 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -244,6 +244,9 @@ struct xe_oa_stream {
- 	/** @oa_status: temporary storage for oa_status register value */
- 	u32 oa_status;
+-#define WHITELIST_OA_MMIO_TRG(trg, status, head) \
++#define WHITELIST_OA_MMIO_TRG(trg, status, tail_buf) \
+ 	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
+ 	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
+-	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
++	WHITELIST(tail_buf, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
  
-+	/** @oa_status_read: true when read() interface is used to read oa_status */
-+	bool oa_status_read;
-+
- 	/** @no_preempt: Whether preemption and timeslicing is disabled for stream exec_q */
- 	u32 no_preempt;
- 
+ #define WHITELIST_OAG_MMIO_TRG \
+ 	WHITELIST_OA_MMIO_TRG(OAG_MMIOTRIGGER, OAG_OASTATUS, OAG_OAHEADPTR)
 -- 
 2.54.0
 
