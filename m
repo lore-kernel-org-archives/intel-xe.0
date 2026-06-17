@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52BD9CD98E2
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 15:15:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4558CD98E4
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 15:20:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2A410F02A;
-	Wed, 17 Jun 2026 15:15:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="SnQCGLuL";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A37D110F027;
- Wed, 17 Jun 2026 15:15:55 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 06DD160122;
- Wed, 17 Jun 2026 15:15:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 368EC1F00A3A;
- Wed, 17 Jun 2026 15:15:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
- s=korg; t=1781709354;
- bh=PRtwX9XZuKeOePBQ1eaXIZKRl+06gjsxGdVK1OpTJto=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=SnQCGLuLG6CoDNtPjBGeifYyw4Q5oqmW4Wje3sAiyfVUKH81TG114bc1QrLiGivRX
- i6osstjx2OzdrQH8fZuKZEq+j38LZCpiO8ePbHj3Ix+jcdKUkIgDtQ+ydapMv7Qx61
- EpwcnJkvHen2ne2XtH2K5R3ZYJwJDYy1xnBteMsI=
-Date: Wed, 17 Jun 2026 11:15:52 -0400
-From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org, tools@kernel.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 01/14] drm/i915/cdclk: Don't bail if pcode post nofify
- fails
-Message-ID: <20260617-horned-orthodox-zebu-625bcb@meerkat>
-References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
- <20260610170652.5320-2-ville.syrjala@linux.intel.com>
- <511da82834da302ac50a326c082c45f6134b2556@intel.com>
- <8c18eca330bd63182319a18f238e78f1c451ede2@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63FC810F02A;
+	Wed, 17 Jun 2026 15:20:38 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 944B010F02A;
+ Wed, 17 Jun 2026 15:20:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <8c18eca330bd63182319a18f238e78f1c451ede2@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/uapi=3A_Add_flag_t?=
+ =?utf-8?q?o_tell_if_VM=5FGET=5FPROPERTY=5FFAULTS_is_supported?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Jun 2026 15:20:37 -0000
+Message-ID: <178170963760.90143.8918151795559142248@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260617151419.101546-1-jose.souza@intel.com>
+In-Reply-To: <20260617151419.101546-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,28 +36,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 17, 2026 at 04:29:16PM +0300, Jani Nikula wrote:
-> >> We already changed the actual cdclk frequency by the time we do
-> >> the pcode post notify. So skipping the subsequent readout is plain
-> >> wrong.
-> >
-> > Fixes: ?
-> 
-> Turns out posing the question about Fixes: trailer like that leads to b4
-> shazam literally adding that trailer. Please clean them up before
-> pushing!
-> 
-> Cc: tools@k.o and Konstantin, FYI
+== Series Details ==
 
-We now recognize this and properly change this to:
+Series: drm/xe/uapi: Add flag to tell if VM_GET_PROPERTY_FAULTS is supported
+URL   : https://patchwork.freedesktop.org/series/168725/
+State : warning
 
-| Fixes: ¯\_(ツ)_/¯
+== Summary ==
 
-(Just kidding... I'll see if I can clean this up to be more discerning of the
-actual Fixes: format.)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4d7151aa116eb7bcc812c770e790c3d97bb704e6
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Wed Jun 17 08:14:19 2026 -0700
 
-Thanks,
--K
+    drm/xe/uapi: Add flag to tell if VM_GET_PROPERTY_FAULTS is supported
+    
+    Not all Xe versions support this feature and not every device supported by Xe
+    supports this feature, so this flag is needed to make UMD's life easier.
+    
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch f7cb2873b7430d84afd4ad4e4771d3f8ad03fbf9 drm-intel
+4d7151aa116e drm/xe/uapi: Add flag to tell if VM_GET_PROPERTY_FAULTS is supported
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+Not all Xe versions support this feature and not every device supported by Xe
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+
+
