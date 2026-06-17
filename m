@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32497CD98F7
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 19:26:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 986A8CD98F3
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 19:26:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D543D10F0F0;
-	Wed, 17 Jun 2026 19:26:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ECDB10F0ED;
+	Wed, 17 Jun 2026 19:26:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cG6xATPP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RyQ0bYwd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC7710F0EB
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 19:26:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B40B10EB0E
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 19:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781724395; x=1813260395;
+ t=1781724394; x=1813260394;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=OMg1F7aAeOGjvfaetV+w4wrNI7F2tR/faeq1eh95+Ok=;
- b=cG6xATPPAq4krQ89GJSJHi6bJRQsiXOg3LBlLQUIekeMkZqgGMIEJLfm
- hu8CS7jQ6FFLhzE4q1OFzqsCXNiZNwiOi7GoMfamTrUd3hk6W5azyzCDJ
- CEEVwgfORgC847ZxPNxjyt3UUHK3WyS3gmkcbsUj4mjQihgYf/jFeOGqw
- 4K0qm9BLZRZYfGn1wK3MZJFhkH+mzOwOvOy/k3G8I+tZcvgjkfP0X1dYU
- bjvTp/r0oDrrBiqaP9a5f3zxUrk7dSDJoOf/FaRkdJ18AzTUJBai4efiS
- eINU1o0lpNzuPvo7hjHwYm7lGdyQDTGjrLA42OSE1ysn9XnlMJomZb9B3 g==;
-X-CSE-ConnectionGUID: qND+Gj25SdywD8Fng8E3zA==
-X-CSE-MsgGUID: PL1WJkRaQJGwQYENjiwhjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="105339758"
-X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="105339758"
+ bh=eYyGzL0ANiOwq6AmEdFv5Iq27EECT38oJSYs5+x/5O0=;
+ b=RyQ0bYwd1Zhp7c+xqOzS+PNG5iTALr0mUAIPAK44Iaj1C6QaZFdJSkIy
+ i58jaYRx+sJseHlM9EFn714Yit8/dLQW1UaNnqw257ucO0GRA5iMpX6hd
+ yUboOqlXBobx0k4sIeTCqQFFBSn4WdLqjgxsuaqUhDuwLZ6WM+Vc2tieP
+ 9k3hgXeCpVgcnEQyHFfk5bx0XHQagqo3CTfAJInyOQUlpEcr5hRfhvNMY
+ 3zsshT7hlz7zQHS8mirEzhQ1yBY9s6Cjx78OCa6BQeDaWUoKWS8mAoA7f
+ me1pImG27Tyt9MEnZrmppCik3w1TSnGgNAYf76fRMCmphvekwMefQf7JA Q==;
+X-CSE-ConnectionGUID: MdnJP9yJSpG03DHdkNROuQ==
+X-CSE-MsgGUID: svpKEd9KRtK+bjCjEnatXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="105339757"
+X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="105339757"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2026 12:25:47 -0700
-X-CSE-ConnectionGUID: TZmPkc3bQoympMfn18EzMQ==
-X-CSE-MsgGUID: UZELwzCXSeaQ0r8bB1scfA==
+X-CSE-ConnectionGUID: ZoXkAFwBR1mvlmJZk5kyTg==
+X-CSE-MsgGUID: JX4HkDHLS+mD8yaly85sUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="278347310"
+X-IronPort-AV: E=Sophos;i="6.24,210,1774335600"; d="scan'208";a="278347306"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.134])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2026 12:25:44 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Wed, 17 Jun 2026 12:24:49 -0700
-Subject: [PATCH v2 5/5] drm/xe/rtp: Add kunit tests to exercise
- FIELD_SET_FUNC action
+Date: Wed, 17 Jun 2026 12:24:47 -0700
+Subject: [PATCH v2 3/5] drm/xe: Move engines' LRC programming RTP table off
+ the stack
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260617-rtp_with_dynamic_vals-v2-5-3f4cb34c2ea1@intel.com>
+Message-Id: <20260617-rtp_with_dynamic_vals-v2-3-3f4cb34c2ea1@intel.com>
 References: <20260617-rtp_with_dynamic_vals-v2-0-3f4cb34c2ea1@intel.com>
 In-Reply-To: <20260617-rtp_with_dynamic_vals-v2-0-3f4cb34c2ea1@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -57,21 +57,21 @@ Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
  Violet Monti <violet.monti@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2995;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3580;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=OMg1F7aAeOGjvfaetV+w4wrNI7F2tR/faeq1eh95+Ok=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBqMvS3SGtvk20FfetxE/kpAgRJxgNic+ka1miSO
- uym9eQPFKWJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCajL0twAKCRBNeSQFyHKQ
- BMNAD/91szlYoELbneinWYVHZYOv9+FPd80W/4b4hFU0DPNTOmekZkkLhCkR06jYqa/sN5oe0sh
- eiLsPA2f0sfZNaRjZya0mYExF+wc8TqlJepm6JH2doqjRaUqYADI4tkJAsYpbIOKAaqMY9yYblz
- rHap9iP8sqXzWoala7qx1LlYbWufDAkXf1zHdlanUqQe4XWeDzOUISvKZUzS9dwUZRI66+sJ2ZF
- 2zwUJ0FKQNnW4bRhaOKH7nyD6FGd1DtbrC1QwfWWdUfmZU8MZIJAFuloYCojVxWTJKMVMf8Nwt7
- aAu2rUiZhmXa/TyTYeS8mzekTYOyjt05wL7W6SJ/cgNnOO8phwL798RSkJYc/CMv5ksy1hfEhwC
- JZcjcd0g60XOUKEmSoJNqLwuHSntHxfwvngExV9OcoPSytjqtJSOvXMLqgHaQ/2APbTGrj5TWuQ
- 5tqqJKoSwmpR117V9U4svpVOmxfPdhoJvyhQuKNxEwxiEvuVpHrwdAt97i9zGM4EFIJMtaXE5rC
- rfySwUkoU3ilhBj4rj4S9IyWoeLmQpDeeREGJOmvH2YSjjCeqN/wjUo6+07JYKwv6IHtGRwDVKB
- hLp2+cRYWIzCp/ikzLCneX8BztWX/uvUXnH8/Ku5T4f06EU2jJCfigwexrJWlPyqicKaObhQycZ
- UxGNh/WZJ/PIR8Q==
+ bh=eYyGzL0ANiOwq6AmEdFv5Iq27EECT38oJSYs5+x/5O0=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBqMvS3fQQEGj4C0YSV0dD84GOaAAqiT+RmTeBoL
+ Zu2WW1BYgCJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCajL0twAKCRBNeSQFyHKQ
+ BAeDD/wJknm+WKcGqtDa88zIMYavoX7H9Zn90xYYGp6u6fpmr623LY7J5om9D2G3egmhYBqmkdu
+ YvgxiRbE8BYTXmXc3n+JIAs4iRg8V+LAdmA02rBsUWhD9tjQVgoiLpTzw/YC/zpJhhM2BymV4DQ
+ UjFNAMHE1K2ClLGHjoH+efCCvAjG7ynWwwZleRtVUY+l1MOiN3VgqMzBWzNL/LREwsDEs3mS2ZD
+ jSzY0ECX4PA6Qwz59YSKKCVEaWTGTkKxb+Kv/4Z/UlDhVkCv30X0hGOfJLC9QrHSw63BQ+lstvH
+ ixLetihWyrD/oZbRj5HAY6Inpt2owM/5yGpOecOEig/6uW/BnCmIh2skdoggf09aZLGwCSvILt8
+ l7zoFmQ+zeIXXqLiG6u6380dFYvRwNguVTSGq+vna/PvsDeo1qMr02ZOE5S/JY2IOzoyaDzhv/B
+ m22Mt7sHUloFx/E14DJGw2JrckEuXz2nBoH+Cp+VyFTEmzyhW406tc3GRGX/RVFIaPQZvVt+gWB
+ 8Bjq+ZtYzNzcuH2utzgOXfyqfr3S6QDXXC0igAqzur9h7YB3ZUREOBvn1zekfJE3vfyCE41ZmoM
+ pvMHwN2YDGuBd0M972RtxJmD3Pe7eiJjbGmM2u4Su1t91hsgcIPkLv4+zWywPikRVhKrlN4biId
+ AmH1L6ogZMSn2Mw==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -88,94 +88,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a couple additional tests to the RTP kunit suite that ensure
-FIELD_SET_FUNC() actions are evaluated properly and the values properly
-consolidate/conflict with values coming from other literal SET/FIELD_SET
-rules.
+The 'lrc_setup' RTP table was allocated on the stack because it wasn't
+truly constant and needed to calculate the proper value for BLIT_CCTL at
+runtime based on other stack variables.  Using the FIELD_SET_FUNC action
+allows us to make the table itself truly constant and move it off the
+stack; the BLIT_CCTL value is now calculated during RTP table
+processing.
 
-Suggested-by: Gustavo Sousa <gustavo.sousa@intel.com>
+v2:
+ - Made table static
+
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 52 ++++++++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 60 ++++++++++++++++++++-------------------
+ 1 file changed, 31 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index 3d0688d058d9..367811621880 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -280,6 +280,11 @@ static void xe_rtp_rules_tests(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, err, param->expected_err);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 98265293f2dc..603bb197801a 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -337,39 +337,41 @@ static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_device *xe,
+ 	return xe_mmio_read32(&hwe->gt->mmio, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
  }
  
-+static u32 bits_2_3_set(struct xe_gt *gt, struct xe_hw_engine *hwe)
++static u32 blit_cctl_val(struct xe_gt *gt, struct xe_hw_engine *hwe)
 +{
-+	return REG_BIT(2) | REG_BIT(3);
++	return REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, gt->mocs.uc_index) |
++		REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, gt->mocs.uc_index);
 +}
 +
- static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
- 	{
- 		.name = "coalesce-same-reg",
-@@ -300,6 +305,29 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
- 			},
- 		),
- 	},
-+	{
-+		.name = "coalesce-same-reg-literal-and-func",
-+		.expected_reg = REGULAR_REG1,
-+		.expected_set_bits = REG_BIT(0) | REG_BIT(1) | REG_BIT(2) | REG_BIT(3),
-+		.expected_clr_bits = REG_BIT(0) | REG_BIT(1) | REG_BIT(2) | REG_BIT(3),
-+		.expected_active = BIT(0) | BIT(1),
-+		.expected_count_sr_entries = 1,
-+		/* Different bits on the same register: create a single entry */
-+		.table = XE_RTP_TABLE_SR(
-+			{ XE_RTP_NAME("basic-1"),
-+			  XE_RTP_RULES(FUNC(match_yes)),
-+			  XE_RTP_ACTIONS(FIELD_SET(REGULAR_REG1,
-+						   REG_BIT(0) | REG_BIT(1),
-+						   REG_BIT(0) | REG_BIT(1)))
-+			},
-+			{ XE_RTP_NAME("basic-2"),
-+			  XE_RTP_RULES(FUNC(match_yes)),
-+			  XE_RTP_ACTIONS(FIELD_SET_FUNC(REGULAR_REG1,
-+							REG_BIT(2) | REG_BIT(3),
-+							bits_2_3_set))
-+			},
-+		),
++static const struct xe_rtp_table_sr lrc_setup = XE_RTP_TABLE_SR(
++	/*
++	 * Some blitter commands do not have a field for MOCS, those
++	 * commands will use MOCS index pointed by BLIT_CCTL.
++	 * BLIT_CCTL registers are needed to be programmed to un-cached.
++	 */
++	{ XE_RTP_NAME("BLIT_CCTL_default_MOCS"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1274),
++		       ENGINE_CLASS(COPY)),
++	  XE_RTP_ACTIONS(FIELD_SET_FUNC(BLIT_CCTL(0),
++					BLIT_CCTL_DST_MOCS_MASK |
++					BLIT_CCTL_SRC_MOCS_MASK,
++					blit_cctl_val,
++					XE_RTP_ACTION_FLAG(ENGINE_BASE)))
 +	},
- 	{
- 		.name = "no-match-no-add",
- 		.expected_reg = REGULAR_REG1,
-@@ -417,6 +445,30 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
- 			},
- 		),
- 	},
-+	{
-+		.name = "conflict-not-disjoint-literal-and-func",
-+		.expected_reg = REGULAR_REG1,
-+		.expected_set_bits = REG_BIT(1) | REG_BIT(2),
-+		.expected_clr_bits = REG_BIT(1) | REG_BIT(2),
-+		.expected_active = BIT(0) | BIT(1),
-+		.expected_count_sr_entries = 1,
-+		.expected_sr_errors = 1,
-+		.table = XE_RTP_TABLE_SR(
-+			{ XE_RTP_NAME("basic-1"),
-+			  XE_RTP_RULES(FUNC(match_yes)),
-+			  XE_RTP_ACTIONS(FIELD_SET(REGULAR_REG1,
-+						   REG_BIT(1) | REG_BIT(2),
-+						   REG_BIT(1) | REG_BIT(2)))
-+			},
-+			/* drop: bits are not disjoint with previous entries */
-+			{ XE_RTP_NAME("basic-2"),
-+			  XE_RTP_RULES(FUNC(match_yes)),
-+			  XE_RTP_ACTIONS(FIELD_SET_FUNC(REGULAR_REG1,
-+							REG_BIT(2) | REG_BIT(3),
-+							bits_2_3_set))
-+			},
-+		),
++	/* Disable WMTP if HW doesn't support it */
++	{ XE_RTP_NAME("DISABLE_WMTP_ON_UNSUPPORTED_HW"),
++	  XE_RTP_RULES(FUNC(xe_rtp_cfeg_wmtp_disabled)),
++	  XE_RTP_ACTIONS(FIELD_SET(CS_CHICKEN1(0),
++				   PREEMPT_GPGPU_LEVEL_MASK,
++				   PREEMPT_GPGPU_THREAD_GROUP_LEVEL)),
++	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE)
 +	},
- 	{
- 		.name = "conflict-reg-type",
- 		.expected_reg = REGULAR_REG1,
++);
++
+ static void
+ hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
+ {
+-	struct xe_gt *gt = hwe->gt;
+-	const u8 mocs_write_idx = gt->mocs.uc_index;
+-	const u8 mocs_read_idx = gt->mocs.uc_index;
+-	u32 blit_cctl_val = REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, mocs_write_idx) |
+-			    REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, mocs_read_idx);
+ 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
+-	const struct xe_rtp_table_sr lrc_setup = XE_RTP_TABLE_SR(
+-		/*
+-		 * Some blitter commands do not have a field for MOCS, those
+-		 * commands will use MOCS index pointed by BLIT_CCTL.
+-		 * BLIT_CCTL registers are needed to be programmed to un-cached.
+-		 */
+-		{ XE_RTP_NAME("BLIT_CCTL_default_MOCS"),
+-		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1274),
+-			       ENGINE_CLASS(COPY)),
+-		  XE_RTP_ACTIONS(FIELD_SET(BLIT_CCTL(0),
+-				 BLIT_CCTL_DST_MOCS_MASK |
+-				 BLIT_CCTL_SRC_MOCS_MASK,
+-				 blit_cctl_val,
+-				 XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+-		},
+-		/* Disable WMTP if HW doesn't support it */
+-		{ XE_RTP_NAME("DISABLE_WMTP_ON_UNSUPPORTED_HW"),
+-		  XE_RTP_RULES(FUNC(xe_rtp_cfeg_wmtp_disabled)),
+-		  XE_RTP_ACTIONS(FIELD_SET(CS_CHICKEN1(0),
+-					   PREEMPT_GPGPU_LEVEL_MASK,
+-					   PREEMPT_GPGPU_THREAD_GROUP_LEVEL)),
+-		  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE)
+-		},
+-	);
+ 
+ 	xe_rtp_process_to_sr(&ctx, &lrc_setup, &hwe->reg_lrc, true);
+ }
 
 -- 
 2.54.0
