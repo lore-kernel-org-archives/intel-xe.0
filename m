@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2A28CD98E2
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:11:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CEEECD98E4
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 11:12:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B400B10EFB3;
-	Wed, 17 Jun 2026 11:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F99510EFB3;
+	Wed, 17 Jun 2026 11:12:00 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B808B10EFB3;
- Wed, 17 Jun 2026 11:11:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F84A10EFB3;
+ Wed, 17 Jun 2026 11:11:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Structured_RAS_?=
- =?utf-8?q?error_logging_infrastructure_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Structured_RAS_error?=
+ =?utf-8?q?_logging_infrastructure_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jun 2026 11:11:17 -0000
-Message-ID: <178169467775.89426.8499248721568565006@6beec6c84f66>
+Date: Wed, 17 Jun 2026 11:11:59 -0000
+Message-ID: <178169471938.89426.15814202535236662356@6beec6c84f66>
 X-Patchwork-Hint: ignore
 References: <20260617104711.79646-5-mallesh.koujalagi@intel.com>
 In-Reply-To: <20260617104711.79646-5-mallesh.koujalagi@intel.com>
@@ -44,44 +44,32 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Structured RAS error logging infrastructure (rev3)
 URL   : https://patchwork.freedesktop.org/series/168333/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 6df66520c1d16299c9345600a09b22c984143055
-Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Date:   Wed Jun 17 16:17:15 2026 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[11:11:18] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[11:11:23] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+ERROR:root:/usr/bin/ld: drivers/gpu/drm/xe/xe_ras_log.o: in function `__xe_ras_log':
+xe_ras_log.c:(.text+0xe0): undefined reference to `cper_severity_str'
+/usr/bin/ld: xe_ras_log.c:(.text+0x102): undefined reference to `cper_severity_str'
+collect2: error: ld returned 1 exit status
+make[3]: *** [../scripts/Makefile.vmlinux:72: vmlinux.unstripped] Error 1
+make[2]: *** [/kernel/Makefile:1338: vmlinux] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe: use XE_RAS_WEDGED macro in xe_device_declare_wedged
-    
-    Replace the open-coded drm_err() call with XE_RAS_WEDGED()
-    macro so that wedge events are reported through the unified
-    RAS/SIG logging path with a consistent format, CPER severity,
-    and errno.
-    
-    Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-+ /mt/dim checkpatch 1f1e03ee0c160129c336e9301aeed557f406153b drm-intel
-f4f11020d39d drm/xe: Add error Signature IDs for RAS logging
--:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#13: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 29 lines checked
-c994e6fd52f4 drm/xe: Add RAS logging helpers
--:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#28: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 178 lines checked
-6df66520c1d1 drm/xe: use XE_RAS_WEDGED macro in xe_device_declare_wedged
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
