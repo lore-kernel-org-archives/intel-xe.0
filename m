@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EB9FCD98F0
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 12:02:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE533CD98E4
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jun 2026 12:09:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E73A010EFC5;
-	Wed, 17 Jun 2026 12:02:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 747E110E455;
+	Wed, 17 Jun 2026 12:09:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="edvUs0vO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LiDpDK9t";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B26210EFC4;
- Wed, 17 Jun 2026 12:02:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BF2610E455
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jun 2026 12:09:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781697732; x=1813233732;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=yAOxGXLXmJMYKomRLizEw+Y1KXkFOcli9SxtHdRiHl8=;
- b=edvUs0vOhOznL9+wUa5kIWTK1KGlM+4DDqV9Gv8lb4bu1+EO7o6W9lpG
- 17/WZfvOkd2UD4s6cmDktceo2HH2Ol4ukfYHMrd1qO2L4WNXT7mSgl4lM
- 7RCMxNO5fxpVw/kbnBw6C2g6wIHDRU51NRMo8dO3g/7y+MBniQ6fSif8S
- 1qlCKmNfEFdhodSlQAhj4hZBEshIiWqXUiypzHgiC8J4WSTIYMXqZmrgc
- Ejamu8E9IDAIB1uBFjsWzkLe+cOnQfdIislJ2bkQki/CdJdOkeF2qi60G
- ckiOEhgk+Eh7TFH4IZ0Rex974ELizydI3aTKi5ZsbHiQzhB/QPUZgN9mX Q==;
-X-CSE-ConnectionGUID: yZ0Zb+PZTCCSZqg6g8xePA==
-X-CSE-MsgGUID: XAtGB45lSOikL/1h2V88mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93056050"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93056050"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 05:02:11 -0700
-X-CSE-ConnectionGUID: 4tdUHfVJSquGUx59ydoiZQ==
-X-CSE-MsgGUID: h72hqDOLQba0Hzuq5o5pKQ==
+ t=1781698163; x=1813234163;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rrhfSNhktCP11SaemT0MPc3w1NjwegeOI+3bKPFDnm8=;
+ b=LiDpDK9tYoYf8Oa4eskOtPNwjobk9hFpCIM2uwuWj+W8791NGhHgIQSw
+ ERGH+UEplX8mzwhGvSmcgqLBUr+IBliOsABcvoCPlnwz4EkTRW+00y0TD
+ TndOBOKTD9BhpNYRj6HvNcBhUlQvaqSR2t059rn9l8ciFHo1tqDqiddM6
+ N1d8+FQpCgik2kMOheJ6kI6boYrcQTiiazIpCUjcZInLr4CihOJuTCdLL
+ CwneTX8k7C0Z+PNDVjkprn53Qwv1y7E6kfeujcYKH/E+u0b6aU+8Zgzgk
+ /theNElHywXBC6yrntKX1sA3c5hCm/LKsOZTQK130cSYuHufzLtb02Hp1 Q==;
+X-CSE-ConnectionGUID: s8cQUR9TThy1ZkI0s2PRPw==
+X-CSE-MsgGUID: /YqD7Gp+Tqi7rqyyk+DnpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="86328130"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="86328130"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 05:09:23 -0700
+X-CSE-ConnectionGUID: zvJMC7d+QIqFyrYpuUFPig==
+X-CSE-MsgGUID: uvrv1f3rQkyDj2LPzqXKLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="241692208"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.158])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 05:02:09 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- chaitanya.kumar.borah@intel.com
-Subject: Re: [PATCH v2 06/11] drm/i915/display: Move CMRR crtc_state members
- under VRR
-In-Reply-To: <20260616144233.832276-7-mitulkumar.ajitkumar.golani@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260616144233.832276-1-mitulkumar.ajitkumar.golani@intel.com>
- <20260616144233.832276-7-mitulkumar.ajitkumar.golani@intel.com>
-Date: Wed, 17 Jun 2026 15:02:07 +0300
-Message-ID: <896f5a67813c2f7a9cdbd84832b523cee1a849e0@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="253008801"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa005.jf.intel.com with ESMTP; 17 Jun 2026 05:09:20 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ mallesh.koujalagi@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe: Improve wedged state management
+Date: Wed, 17 Jun 2026 17:33:45 +0530
+Message-ID: <20260617120542.96444-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,159 +65,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 16 Jun 2026, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
-> Move CMRR crtc state members under VRR infrastructure as
-> it is enabled during fix refresh rate  VRR timing generator
-> is enabled.
->
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->  .../drm/i915/display/intel_crtc_state_dump.c  |  4 ++--
->  drivers/gpu/drm/i915/display/intel_display.c  |  4 ++--
->  .../drm/i915/display/intel_display_types.h    |  5 ++++
->  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
->  drivers/gpu/drm/i915/display/intel_vrr.c      | 24 +++++++++----------
->  5 files changed, 22 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> index 3a530be64e40..ea337efbe524 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> @@ -312,9 +312,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
->  		   pipe_config->vrr.dc_balance.max_decrease,
->  		   pipe_config->vrr.dc_balance.vblank_target);
->  	drm_printf(&p, "cmrr: %s, video mode: %s, cmrr_m: %llu, cmrr_n: %llu\n",
-> -		   str_yes_no(pipe_config->cmrr.enable),
-> +		   str_yes_no(pipe_config->vrr.cmrr.enable),
->  		   str_yes_no(crtc->cmrr.video_mode),
-> -		   pipe_config->cmrr.cmrr_m, pipe_config->cmrr.cmrr_n);
-> +		   pipe_config->vrr.cmrr.cmrr_m, pipe_config->vrr.cmrr.cmrr_n);
->  
->  	drm_printf(&p, "requested mode: " DRM_MODE_FMT "\n",
->  		   DRM_MODE_ARG(&pipe_config->hw.mode));
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index e76aa6c8dab6..e067d484858f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -949,8 +949,8 @@ static bool vrr_params_changed(const struct intel_crtc_state *old_crtc_state,
->  static bool cmrr_params_changed(const struct intel_crtc_state *old_crtc_state,
->  				const struct intel_crtc_state *new_crtc_state)
->  {
-> -	return old_crtc_state->cmrr.cmrr_m != new_crtc_state->cmrr.cmrr_m ||
-> -		old_crtc_state->cmrr.cmrr_n != new_crtc_state->cmrr.cmrr_n;
-> +	return old_crtc_state->vrr.cmrr.cmrr_m != new_crtc_state->vrr.cmrr.cmrr_m ||
-> +		old_crtc_state->vrr.cmrr.cmrr_n != new_crtc_state->vrr.cmrr.cmrr_n;
->  }
->  
->  static bool intel_crtc_vrr_enabling(struct intel_atomic_state *state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 39e11362630c..6096ad02ae45 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1400,6 +1400,11 @@ struct intel_crtc_state {
->  			u16 max_increase, max_decrease;
->  			u16 vblank_target;
->  		} dc_balance;
-> +
-> +		struct {
-> +			bool enable;
-> +			u64 cmrr_n, cmrr_m;
-> +		} cmrr;
+Currently, wedged state is serving a single usecase where the device is
+permanently declared wedged, but this doesn't allow any wedged state
+management for runtime usecases. In preparation of usecases which require
+to facilitate temporary device wedging, convert wedged.flag to wedged.ref
+which serves as a driver internal refcount for wedged state and blocks
+critical path execution during device lifetime. While at it, introduce
+wedged.perm which signifies permanent device wedging and operates
+independent of the refcount allowing relevant cleanup action on unwind
+path.
 
-You're leaving the dupes behind?
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+Split from FLR series[1].
 
->  	} vrr;
->  
->  	/* Content Match Refresh Rate state */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 3569e61e7fee..a9054b07d9c7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3230,7 +3230,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
->  	as_sdp->revision = 0x2;
->  	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
->  
-> -	if (crtc_state->cmrr.enable) {
-> +	if (crtc_state->vrr.cmrr.enable) {
->  		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
->  		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
->  		as_sdp->target_rr_divider = true;
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index c979950d32cb..83f25184c66c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -53,7 +53,7 @@ static bool intel_crtc_cmrr_enabling(struct intel_atomic_state *state,
->  		return false;
->  
->  	return is_enabling(cmrr.enable, old_crtc_state, new_crtc_state) ||
-> -		(new_crtc_state->cmrr.enable);
-> +		(new_crtc_state->vrr.cmrr.enable);
->  }
->  
->  static bool intel_crtc_cmrr_disabling(struct intel_atomic_state *state,
-> @@ -68,7 +68,7 @@ static bool intel_crtc_cmrr_disabling(struct intel_atomic_state *state,
->  		return false;
->  
->  	return is_disabling(cmrr.enable, old_crtc_state, new_crtc_state) ||
-> -			(old_crtc_state->cmrr.enable);
-> +			(old_crtc_state->vrr.cmrr.enable);
->  }
->  
->  bool intel_vrr_is_capable(struct intel_connector *connector)
-> @@ -276,11 +276,11 @@ intel_vrr_cmrr_compute_config(struct intel_crtc_state *crtc_state)
->  	 * is tracked in HW.
->  	 */
->  
-> -	crtc_state->cmrr.cmrr_n =
-> +	crtc_state->vrr.cmrr.cmrr_n =
->  		mul_u32_u32(requested_refresh_rate * adjusted_mode->crtc_htotal,
->  			    multiplier_m);
->  	adjusted_pixel_rate = mul_u32_u32(adjusted_mode->crtc_clock, 1000) * multiplier_n;
-> -	crtc_state->cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->cmrr.cmrr_n);
-> +	crtc_state->vrr.cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->vrr.cmrr.cmrr_n);
->  
->  	return;
->  }
-> @@ -875,13 +875,13 @@ intel_vrr_enable_cmrr(const struct intel_crtc_state *crtc_state)
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  
->  	intel_de_write(display, TRANS_CMRR_M_HI(display, cpu_transcoder),
-> -		       upper_32_bits(crtc_state->cmrr.cmrr_m));
-> +		       upper_32_bits(crtc_state->vrr.cmrr.cmrr_m));
->  	intel_de_write(display, TRANS_CMRR_M_LO(display, cpu_transcoder),
-> -		       lower_32_bits(crtc_state->cmrr.cmrr_m));
-> +		       lower_32_bits(crtc_state->vrr.cmrr.cmrr_m));
->  	intel_de_write(display, TRANS_CMRR_N_HI(display, cpu_transcoder),
-> -		       upper_32_bits(crtc_state->cmrr.cmrr_n));
-> +		       upper_32_bits(crtc_state->vrr.cmrr.cmrr_n));
->  	intel_de_write(display, TRANS_CMRR_N_LO(display, cpu_transcoder),
-> -		       lower_32_bits(crtc_state->cmrr.cmrr_n));
-> +		       lower_32_bits(crtc_state->vrr.cmrr.cmrr_n));
->  }
->  
->  static void
-> @@ -1038,7 +1038,7 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
->  	intel_vrr_enable_dc_balancing(crtc_state);
->  
->  	if (!intel_vrr_always_use_vrr_tg(display))
-> -		intel_vrr_tg_enable(crtc_state, crtc_state->cmrr.enable);
-> +		intel_vrr_tg_enable(crtc_state, crtc_state->vrr.cmrr.enable);
->  }
->  
->  void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
-> @@ -1140,10 +1140,10 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  	trans_vrr_ctl = intel_de_read(display,
->  				      TRANS_VRR_CTL(display, cpu_transcoder));
->  
-> -	if (crtc_state->cmrr.enable) {
-> -		crtc_state->cmrr.cmrr_n =
-> +	if (crtc_state->vrr.cmrr.enable) {
-> +		crtc_state->vrr.cmrr.cmrr_n =
->  			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder));
-> -		crtc_state->cmrr.cmrr_m =
-> +		crtc_state->vrr.cmrr.cmrr_m =
->  			intel_de_read64_2x32(display, TRANS_CMRR_M_LO(display, cpu_transcoder));
->  	}
+[1] https://lore.kernel.org/intel-xe/20260603101814.916948-9-raag.jadav@intel.com/
+---
+ drivers/gpu/drm/xe/xe_device.c       |  5 +++--
+ drivers/gpu/drm/xe/xe_device.h       | 18 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_device_types.h |  6 ++++--
+ 3 files changed, 24 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ef730f2bdf32..00ade433a23b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -916,7 +916,7 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 
+-	if (atomic_read(&xe->wedged.flag))
++	if (atomic_read(&xe->wedged.perm))
+ 		xe_pm_runtime_put(xe);
+ }
+ 
+@@ -1421,7 +1421,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 		return;
+ 	}
+ 
+-	if (!atomic_xchg(&xe->wedged.flag, 1)) {
++	if (!atomic_xchg(&xe->wedged.perm, 1)) {
++		xe_device_wedged_get(xe);
+ 		xe->needs_flr_on_fini = true;
+ 		xe_pm_runtime_get_noresume(xe);
+ 		drm_err(&xe->drm,
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 975768a6a9c8..1aea83e3517c 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -192,9 +192,25 @@ bool xe_device_is_l2_flush_optimized(struct xe_device *xe);
+ void xe_device_td_flush(struct xe_device *xe);
+ void xe_device_l2_flush(struct xe_device *xe);
+ 
++static inline void xe_device_wedged_get(struct xe_device *xe)
++{
++	int ref;
++
++	ref = atomic_inc_return(&xe->wedged.ref);
++	xe_assert(xe, ref > 0);
++}
++
++static inline void xe_device_wedged_put(struct xe_device *xe)
++{
++	int ref;
++
++	ref = atomic_dec_return(&xe->wedged.ref);
++	xe_assert(xe, ref >= 0);
++}
++
+ static inline bool xe_device_wedged(struct xe_device *xe)
+ {
+-	return atomic_read(&xe->wedged.flag);
++	return atomic_read(&xe->wedged.ref);
+ }
+ 
+ void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 32dd2ffbc796..f13e0fb2f18e 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -485,8 +485,10 @@ struct xe_device {
+ 
+ 	/** @wedged: Struct to control Wedged States and mode */
+ 	struct {
+-		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
+-		atomic_t flag;
++		/** @wedged.perm: Permanently wedged, needs cleanup on fini */
++		atomic_t perm;
++		/** @wedged.ref: Refcount for wedged device, blocks critical path execution */
++		atomic_t ref;
+ 		/** @wedged.mode: Mode controlled by kernel parameter and debugfs */
+ 		enum xe_wedged_mode mode;
+ 		/** @wedged.method: Recovery method to be sent in the drm device wedged uevent */
 -- 
-Jani Nikula, Intel
+2.43.0
+
