@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5015CD98F2
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jun 2026 14:26:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 457D7CD98F2
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jun 2026 14:57:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8517C10F31B;
-	Thu, 18 Jun 2026 14:26:43 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A593710F153;
- Thu, 18 Jun 2026 14:26:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8027313022886085358=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0302210E3E1;
+	Thu, 18 Jun 2026 14:57:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gHalZeqj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EE1110E3E1;
+ Thu, 18 Jun 2026 14:57:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781794654; x=1813330654;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=ZFTGpat0Sy5HaxBwd2Chgnur0Vft/874r36EjVBOitI=;
+ b=gHalZeqjUAJ/s/MbscrwC+DeKu2TaEfgFI4pRO1VMTTE9oLDu2pVuoi1
+ v98rMVSEuva7+Pn8lFawLnAb8b2yihodMjFJ89yFCI3+ZFS1OT6PBI0hF
+ FKubt24Fq60mOIdiFT6LKI02vIaoXWO1idK7P/hXUeDhfD50qyMCgXovj
+ jIuMOn/aZRs9rSYBKx1y+4ygOQiGCJoctm0ls6gF9V8QnLOr0AGbDIt9W
+ pvls22Y6klzPb5pXE0BHysRQ0D4M0yhuddGVYr9l64o/GN2zogW2DXr/q
+ boe/yIvKkwoH6GUPteS5fMuXaMUA8AKmsceN3EXkXZlx1s967nPWHtcXk g==;
+X-CSE-ConnectionGUID: 078SDg0fTdiMK7mrDSJvCA==
+X-CSE-MsgGUID: v+sEznmJQzOnw8ABsCzXDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="100044791"
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="100044791"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2026 07:57:33 -0700
+X-CSE-ConnectionGUID: VJlIeHSLTY+ME0i39De8+g==
+X-CSE-MsgGUID: BS3a/Z7bQYe0O9A+84066g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="242008081"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.2])
+ by fmviesa009-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 07:57:31 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>, Nemesa Garg
+ <nemesa.garg@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 1/3] drm/i915/scaler: remove unused plane_state argument
+In-Reply-To: <20260615190839.1219417-2-michal.grzelak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260615190839.1219417-1-michal.grzelak@intel.com>
+ <20260615190839.1219417-2-michal.grzelak@intel.com>
+Date: Thu, 18 Jun 2026 17:57:28 +0300
+Message-ID: <d6d73f9dd4e17f6cf7e1c4dc59b3f27e3836801a@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/ttm=3A_rename_ttm=5Fpla?=
- =?utf-8?q?ce=3A=3Afpfn/lpfn_to_param1/param2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Jun 2026 14:26:41 -0000
-Message-ID: <178179280167.93646.8924457673723101412@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260618133908.2761908-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20260618133908.2761908-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8027313022886085358==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 15 Jun 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
+> intel_allocate_scaler() no longer uses plane_state since condition
+> containing it has been removed while adding scaler_has_casf(). Remove
+> plane_state as well.
+>
+> Cc: Nemesa Garg <nemesa.garg@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Fixes: 17d70a0760f2 ("drm/i915/casf: Extract scaler_has_casf()")
 
-== Series Details ==
+The Fixes: trailer basically means there's an actual bug in that commit
+that needs fixing, and the fix needs to go where that commit goes,
+including stable backports, etc.
 
-Series: drm/ttm: rename ttm_place::fpfn/lpfn to param1/param2
-URL   : https://patchwork.freedesktop.org/series/168792/
-State : success
+This is not the case here. This is an improvement, but there's no bug
+that gets fixed.
 
-== Summary ==
+(The trailer can be removed while applying.)
 
-CI Bug Log - changes from xe-5279-042740faed137b53caa019b765fb327aaf703ca7_BAT -> xe-pw-168792v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
-Changes
--------
+> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index 7994b983d509d..4b456924fdef3 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -334,7 +334,6 @@ static bool scaler_has_casf(struct intel_display *dis=
+play, int scaler_id)
+>=20=20
+>  static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_=
+state,
+>  				 struct intel_crtc *crtc,
+> -				 struct intel_plane_state *plane_state,
+>  				 bool casf_scaler)
+>  {
+>  	struct intel_display *display =3D to_intel_display(crtc);
+> @@ -406,7 +405,7 @@ static int intel_atomic_setup_scaler(struct intel_crt=
+c_state *crtc_state,
+>  	int vscale =3D 0;
+>=20=20
+>  	if (*scaler_id < 0)
+> -		*scaler_id =3D intel_allocate_scaler(scaler_state, crtc, plane_state, =
+casf_scaler);
+> +		*scaler_id =3D intel_allocate_scaler(scaler_state, crtc, casf_scaler);
+>=20=20
+>  	if (drm_WARN(display->drm, *scaler_id < 0,
+>  		     "Cannot find scaler for %s:%d\n", name, idx))
 
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5279-042740faed137b53caa019b765fb327aaf703ca7 -> xe-pw-168792v1
-
-  IGT_8973: 8973
-  xe-5279-042740faed137b53caa019b765fb327aaf703ca7: 042740faed137b53caa019b765fb327aaf703ca7
-  xe-pw-168792v1: 168792v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168792v1/index.html
-
---===============8027313022886085358==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: rename ttm_place::fpfn/lpfn to param1/param2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168792/">https://patchwork.freedesktop.org/series/168792/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168792v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168792v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5279-042740faed137b53caa019b765fb327aaf703ca7_BAT -&gt; xe-pw-168792v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5279-042740faed137b53caa019b765fb327aaf703ca7 -&gt; xe-pw-168792v1</li>
-</ul>
-<p>IGT_8973: 8973<br />
-  xe-5279-042740faed137b53caa019b765fb327aaf703ca7: 042740faed137b53caa019b765fb327aaf703ca7<br />
-  xe-pw-168792v1: 168792v1</p>
-
-</body>
-</html>
-
---===============8027313022886085358==--
+--=20
+Jani Nikula, Intel
