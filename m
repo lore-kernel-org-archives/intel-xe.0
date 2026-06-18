@@ -4,60 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25185CD98F8
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jun 2026 15:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE4B4CD98F2
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jun 2026 15:36:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C81A310F340;
-	Thu, 18 Jun 2026 15:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD1210EDDE;
+	Thu, 18 Jun 2026 15:36:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EqEq+Ock";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNY17NIC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AEBE10F33D;
- Thu, 18 Jun 2026 15:33:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B65C710EDDE
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Jun 2026 15:36:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781796806; x=1813332806;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=elGyxnvITOOKTQ2nWlxEmYGgNJNxqMZfiNPGUKZwrzo=;
- b=EqEq+Ock/0gaXFag4cSQXkiYDrdzv24CRjIp5iKtF1OsAk0xQCBye1gr
- KeoB3UKtzjUdXpchvssH6nTb//q1Kd1yqMqGxh5NbrWgCKz8hR3p6ehMw
- vc6iOwtRDWBg3rLeXdwwqnK+8mLoxow6+g61B1prRTHNvZuWIyvvLiZzq
- TUu1M+JpBEV9rC2Ix5xIQHrx1dIGN9Yc4ey0AZQqgMYvpviSo3vY6+nm7
- C1NQmPPHID/wHWkp+jK0GuFGNY9tS/uGA8rEiQ1EiR+qd4uLcqwM+rbfi
- CtRy5+AtBaY52tUeFEEKFTgEPrKNA5ca0z1lPvcBujuZntNDLZS5bu4dv A==;
-X-CSE-ConnectionGUID: NtmpuN9bQkGBZJuMFPwLOQ==
-X-CSE-MsgGUID: Wkpk+yqYSFqsCoe73kV2qA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="82403599"
-X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="82403599"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2026 08:33:26 -0700
-X-CSE-ConnectionGUID: a26nGEWBQM+Mmzc98B31vA==
-X-CSE-MsgGUID: qN3ypnDpTbqwBwz9bSNXlg==
+ t=1781796974; x=1813332974;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZyTlKnE6uGTjLXbH4mV5UUQrA1/HpqinIMKqZsuohAk=;
+ b=jNY17NICHZCXWKrweryP9AspMnfA4BdMrwsa/inCJAoIOJOueBJbdJHu
+ HaWIyQPMqb7/Kqy9WvC951mP7htBdaUv5a4jblCoMkQ7+IqRpbh8p2uC0
+ kcicO4G6puxjgKFICAJUGOuyqPGaDTFz8LWsdcUnC1uWDdNoxOD3Fn4VZ
+ 7soBQTEknbIQhwP6NCtNyc/Q4Hwk/GSBlVcnJ2vDsD8B6O7v0pCa8IN9A
+ yFX2otATp5QJxtcKotznniaR6LI9w1o4PVCd76g15xrvMJmzY5o3COtum
+ 1hPhXSzPHRaxrAfXnwEXASU6tM4RyuWpiJ7DAbqs57vhBG2m91I/WKvVN Q==;
+X-CSE-ConnectionGUID: kdV18pF7TYelFA/iCA2URg==
+X-CSE-MsgGUID: IB0Gas+ASY2Uq9I5Lq4jJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="94136285"
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="94136285"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2026 08:36:13 -0700
+X-CSE-ConnectionGUID: LWrjz77fQTOXBafi0wphAg==
+X-CSE-MsgGUID: 4Fw2bwFZSPO/ZEqsl+9qXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="244045830"
-Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2026 08:33:22 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- mripard@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- Rodrigo.vivi@intel.com, matthew.brost@intel.com,
- maarten.lankhorst@linux.intel.com, thomas.hellstrom@linux.intel.com,
- tzimmermann@suse.de
-Subject: [PATCH v4 2/2] drm/xe/vm: Add srcid to xe_vm_get_property_ioctl fault
- report
-Date: Thu, 18 Jun 2026 23:33:12 +0800
-Message-ID: <20260618153312.877948-3-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260618153312.877948-1-jonathan.cavitt@intel.com>
-References: <20260618153312.877948-1-jonathan.cavitt@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="253487953"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa005.fm.intel.com with ESMTP; 18 Jun 2026 08:36:12 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, matthew.d.roper@intel.com,
+ mallesh.koujalagi@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v5 0/1] Hardware Error handling for Crescent Island
+Date: Thu, 18 Jun 2026 21:01:25 +0530
+Message-ID: <20260618153209.110899-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,99 +64,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the SRCID of the faulting hardware unit to the return of the
-xe_vm_get_property_ioctl fault report.
+Detailed description in commit message.
 
-v2:
-- Readd pad check, as the pad in the ioctl struct was not changed
-  (jcavitt)
+v2: Explain the usecase (Matt Roper)
+    Allow hardware error routing through debugfs (Mallesh)
 
-v3:
-- Squash SRCID with ASID to keep the struct compact (Matthew)
+v3: Reorder macros (Riana)
+    Squash debugfs patch with routing setup patch (Riana)
+    Fix runtime survivability regression (Riana)
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/xe/xe_vm.c       | 8 ++++++++
- drivers/gpu/drm/xe/xe_vm_types.h | 2 ++
- include/uapi/drm/xe_drm.h        | 4 ++--
- 3 files changed, 12 insertions(+), 2 deletions(-)
+v4: Defeature hardware error handling with system controller 
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 080c2fff0e95..acbfce19b356 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -636,6 +636,7 @@ void xe_vm_add_fault_entry_pf(struct xe_vm *vm, struct xe_pagefault *pf)
- 				  pf->consumer.fault_type_level);
- 	e->fault_level = FIELD_GET(XE_PAGEFAULT_LEVEL_MASK,
- 				   pf->consumer.fault_type_level);
-+	e->srcid = FIELD_GET(XE_PAGEFAULT_SRCID_MASK, pf->consumer.id);
- 
- 	list_add_tail(&e->list, &vm->faults.list);
- 	vm->faults.len++;
-@@ -4108,6 +4109,11 @@ static u8 xe_to_user_fault_level(u8 fault_level)
- 	return fault_level;
- }
- 
-+static u8 xe_to_user_srcid(u8 srcid)
-+{
-+	return srcid;
-+}
-+
- static int fill_faults(struct xe_vm *vm,
- 		       struct drm_xe_vm_get_property *args)
- {
-@@ -4135,6 +4141,8 @@ static int fill_faults(struct xe_vm *vm,
- 		fault_entry.fault_type = xe_to_user_fault_type(entry->fault_type);
- 		fault_entry.fault_level = xe_to_user_fault_level(entry->fault_level);
- 
-+		fault_entry.srcid = xe_to_user_srcid(entry->srcid);
-+
- 		memcpy(&fault_list[i], &fault_entry, entry_size);
- 
- 		i++;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 635ed29b9a69..e8aea75341cc 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -196,6 +196,7 @@ struct xe_device;
-  * @access_type: type of address access that resulted in fault
-  * @fault_type: type of fault reported
-  * @fault_level: fault level of the fault
-+ * @srcid: ID of the faulting hardware unit
-  */
- struct xe_vm_fault_entry {
- 	struct list_head list;
-@@ -204,6 +205,7 @@ struct xe_vm_fault_entry {
- 	u8 access_type;
- 	u8 fault_type;
- 	u8 fault_level;
-+	u8 srcid;
- };
- 
- struct xe_vm {
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 48e9f1fdb78d..2b45b691a032 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1294,8 +1294,8 @@ struct xe_vm_fault {
- #define FAULT_LEVEL_PML4	3
- #define FAULT_LEVEL_PML5	4
- 	__u8 fault_level;
--	/** @pad: MBZ */
--	__u8 pad;
-+	/** @srcid: ID of the faulting hardware unit */
-+	__u8 srcid;
- 	/** @reserved: MBZ */
- 	__u64 reserved[4];
- };
+v5: Add error log (Riana)
+
+Raag Jadav (1):
+  drm/xe/hw_error: Defeature hardware error handling with system
+    controller
+
+ drivers/gpu/drm/xe/xe_hw_error.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
 -- 
-2.53.0
+2.43.0
 
