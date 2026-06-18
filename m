@@ -4,58 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7DFFC43327
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:58:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D8ECC44501
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:58:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C87510EFE9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D826A10EFEB;
 	Wed,  1 Jul 2026 12:58:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RuHCjTgS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XgzIQGYz";
 	dkim-atps=neutral
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012041.outbound.protection.outlook.com
- [40.107.200.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DAB410EF97;
- Wed, 17 Jun 2026 10:36:39 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013041.outbound.protection.outlook.com
+ [40.93.196.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B84510E0FA;
+ Thu, 18 Jun 2026 08:09:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vJqOhobc+kHOpi/ndNNqR+dNTx5U9cLwkoCXrImCef4dKXKiSuaBGSAksad5+yb5gWrheoL3IHewhR5fvHCG1YzF47CszuAiAbjl5NBCeU+wuJK9oVvTobmlz9uxjMJ3oXNbRw7laUQx8mE+l8CkhBE7ltXOksd4sjTVRWDDicFKPezzH6DJwxfcQFsyI3mydt9jn9Oo35bCgOrZYSjoSW5ZqxuDLQl4sTum32VaChHwm2Mb5+jFOIr3dEYzxwcB8RjmcD6VUJbLtLC9Yq2xouEvv10cIp17XtNQTtTOj8Z88PypIinbCQLkK2tgBbX9ebJoWiXKy3R+42b49V3heQ==
+ b=ezDyhXE0n5ViwSQVJ9wwO+wEbyEl5ul3iyl7d/eNxT5DGHBKphN+ChaZJ4GsX+UWwxFpj+CsV6aXSLZemyUX5MjlyK8U/eeLEmxWvXRFBtQZTlaAEz9bf8BmOD+GyptRozG4Tq2LE9I8m9KG66XoC6G9ax7jpNUjvrAIkPwaE/vk0z8VyyY2Qv2MjBelnW3cJPEyquXmq/62iiz51RTPABZCRADNmAho23TnGbZjsVmtji7g+RaTtq2NClxZWGZZAwGb+QF/ZrYvkoTUkuxkJmCXyQr1OqTSqUnF/T0bBx5j/ivLZPueqyQeDwZNWOb1+8UYUJudMRVXYyoo42qEwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mQNcdeBfrcg79Lzn2aSRrJqF6L4p4U71x25rHG8wHgg=;
- b=wN/AerkyJU6oiwHRNQJy8nw++vW0GQ6Fr4wMs7dzxIPdYm9MqMEqsc0gSBWWtRC8RY/fN2PsbcFUEWCEaQVsWYFJ67OsK2C2n5g+saIJo1EXIKv0qUjaSvVxw+6dMJl7oiuwQGaRd5+iBs4Vkm+4xkNOo11o/jUxYrik56mjPj/D4spphUI5dDMMufIzn66urilopn35J9NmEGJyfw0BQ4p8A4SvvrMNThc9UqA7nZGwmNeuR+zvScjKf/ucbaCd/HoqffoBtH9pBWovtklkN4I2XJjcRFeRPR2DmJ+nEAiI9Es5HJNm/qsMAae0NBPZzmhiB+/xJF3OhKp+tKS8og==
+ bh=/zmqj5sw3DwG60cK1xYz9zyknq0wWBbYBc1Pw2WsMBs=;
+ b=qy6jy0484cFjHRHp0Dm6QSeke7yeptxGJkOf0pxwxQ74NQiVhneIHqRhH3djXFWSziVrYGnk1ZSUCiHg3qn/TZSITw49UsYZpKT1rQhPRR7rTN4qNPnDrmqSE235u23bKg3t7joQV1vV5HU+gmKNzrvzXHAJRyqLFb1gnFaUqLbY4VxkdWD2T++/5HY1NWNapOuXOPRZdcEGXZ8qGFJxJ1SrhW36j+Yp9iZGfYhA0/lX6a8xA5JrvnduKzXotx7hPbV8M2StvmCu0+8C4ga++kET9tdFSC6G80GVodHdKOJmrOfyazOddl94EZ3CH1KQuNy7r0AU73AHrt6CKgLQZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=ffwll.ch smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mQNcdeBfrcg79Lzn2aSRrJqF6L4p4U71x25rHG8wHgg=;
- b=RuHCjTgSR32S7C1uUuCQvB37xh5r1ibHCI6wY5uONEj7+ZoBqW/n7jOsvsnVs54TCET48lMCT3Lc7IAMP48d5LzLCnBBZUl5fEaravAjNvC4Gn22ZYPza56qsHG3bv9ZHkQC804tf/1y9dpXvpQgX9POuvNiw+O99F7raet3H14=
-Received: from BLAPR05CA0004.namprd05.prod.outlook.com (2603:10b6:208:36e::8)
- by SJ2PR12MB9116.namprd12.prod.outlook.com (2603:10b6:a03:557::18)
+ bh=/zmqj5sw3DwG60cK1xYz9zyknq0wWBbYBc1Pw2WsMBs=;
+ b=XgzIQGYzXoO4fdc3J/hZLcHq1XxdcLrHgRprhDEmd4tC0HP4xaKXUCtt/4LMxiayjY28JoJfiAWR1/pFG6FiIoQa3Gboe9pJ4dBUQcntZ7couPf5cXALqachgjZJ5vK9l+STOY+hCMTtNdFgb7kZJXKy+Hy5IZBV2mdXae/zMoI=
+Received: from BN0PR08CA0023.namprd08.prod.outlook.com (2603:10b6:408:142::17)
+ by SJ1PR12MB6122.namprd12.prod.outlook.com (2603:10b6:a03:45b::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Wed, 17 Jun
- 2026 10:36:33 +0000
-Received: from BL02EPF0001A106.namprd05.prod.outlook.com
- (2603:10b6:208:36e:cafe::47) by BLAPR05CA0004.outlook.office365.com
- (2603:10b6:208:36e::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.11 via Frontend Transport; Wed,
- 17 Jun 2026 10:36:33 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Thu, 18 Jun
+ 2026 08:09:25 +0000
+Received: from BN1PEPF00004680.namprd03.prod.outlook.com
+ (2603:10b6:408:142:cafe::95) by BN0PR08CA0023.outlook.office365.com
+ (2603:10b6:408:142::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.12 via Frontend Transport; Thu,
+ 18 Jun 2026 08:09:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A106.mail.protection.outlook.com (10.167.241.139) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN1PEPF00004680.mail.protection.outlook.com (10.167.243.85) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Wed, 17 Jun 2026 10:36:33 +0000
-Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 17 Jun
- 2026 05:36:28 -0500
+ 15.21.139.8 via Frontend Transport; Thu, 18 Jun 2026 08:09:25 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 18 Jun
+ 2026 03:09:24 -0500
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 18 Jun
+ 2026 01:09:20 -0700
 From: Honglei Huang <honglei1.huang@amd.com>
 To: <sima@ffwll.ch>, <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
  <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>
@@ -66,44 +70,42 @@ CC: <aliceryhl@google.com>, <Alexander.Deucher@amd.com>,
  <Yiru.Ma@amd.com>, <amd-gfx@lists.freedesktop.org>,
  <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
  <honghuan@amd.com>
-Subject: [PATCH v2 2/5] drm/gpusvm: embed struct drm_device into
- drm_gpusvm_pages
-Date: Wed, 17 Jun 2026 18:35:59 +0800
-Message-ID: <20260617103602.1491609-3-honglei1.huang@amd.com>
+Subject: [PATCH v3 0/5] drm/gpusvm: split MM and device state across
+ gpusvm/range/pages
+Date: Thu, 18 Jun 2026 16:08:57 +0800
+Message-ID: <20260618080902.1527255-1-honglei1.huang@amd.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260617103602.1491609-1-honglei1.huang@amd.com>
-References: <20260617103602.1491609-1-honglei1.huang@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb09.amd.com
+ (10.181.42.218)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A106:EE_|SJ2PR12MB9116:EE_
-X-MS-Office365-Filtering-Correlation-Id: f33c0e48-fc28-4586-543c-08decc5c4d01
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004680:EE_|SJ1PR12MB6122:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88c81cd5-2b56-4d0f-15d8-08decd10e95a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700016|82310400026|23010399003|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: NWtdpU95X0cpsBsFmkcnJaJ7TAL9Vwl729fBUXCoXu2IbMc0RfkttsUlXZPWzb6jQE3yEdyVGpFlMApt+BeYML9XRl4L83h2eC7wCogJeukY0eGkkPzHCIcYlucy3jCkW/xowQspa7Zs00v8NaEgP9Kszvu9t0p7QZP2exSj+jT6tbeeFIgGOKpgO/AUjLi+BePxEAncr2oQ17v8SSC/NP+6co0vGPcuYl+s0aKGpAxsd3litMxAYtjBjkrY0VDooA9Vk9NBLEKVQjNBYATFnVYY2hagvxCxJi95a8Wd4u+6Us+vtJV7kDKDSXSDxRThg1WCukp/NwSzZJs6OeWKU/KOiE80jP5zqChCx8vsoTjz3z+3UVpOZP8kmOFQfnkCCvwWqQAbpPNjcNoc1IL0TLYaSBki106+1Lw0HxdQF6KDgvMDec3aOLuofOjSJQgA7QdMj373eM62Qj1g70m1AxXVbzuIaq5o/pl9nj8RqGEj7W8dLvtezN+2fPN4Gv2UZjWNSpHk5ymJEJBJSUi6ijXVakiO/w7jLJHgOMAhNv1LumDKtSG4SSQXZE6GJ4URo1xcnJCEaHKWZTwg9KmY1bOu5MsNOzmfEHcueKgcb9M5N5tSfnXYngqWjLo/LOFhqsN6vpvXzb12kJleJt62yZehRoeDVzhzEhUWWLMSMU4hQ9KYJDvY397vkjGh/j/E50a2ZI2ibh4c0WOptdDATQt67e2EUuRmhP0rIz87sPA=
+ ARA:13230040|82310400026|22122799003|1800799024|23010399003|376014|36860700016|13003099007|3023799007|11063799006|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: 2kQLV8O8s4dz322b4E4hEIQ6XTfG1t8s4Ux6e18LgEs+I6rSq+VogayTvSHssabL9GG147UWkE6r2J2LTqgHZd3DsYxT+/hY57gMUukTiYPlIzNJa2lAtZeI/55P1tQ2b7nW/bGwA3ChIbCjFcKLZLMfvrWLXp1296kU8eBnp+gPOh8M9sfurzy6CJw9rPcCpdrZp2+oz9MQVmMRnwOvQrK8ORk3IhVipardntn8gntCJXgGtBtElUj4BXRMa0tnTAT+RG19K8TW53Cg+8mOfLpMcCBCT6gJNavPB+kLHMrkU58u8lPLRP2gFGKU0OE0q0PtqNUzMC3vzhZsJ8tbQ4HpGWT/WF/iLkr0C4pEsz/3L9KkHzrmY3E2f6phR4Hj0Cio27p537AbaIsIcaBS/a4OXxBvVYC1pPB1l2LzRmdcy5eGsGQLRlmGau2Yk1+7y3jYK5NGrvgk3gocLc20zjNb1c8UTK9KsUUkOtaUE/cpzg9CygR/Gb0Ns6tgeCRlWnfnu6ygLt4C6JDXxdRaFsuu81QE24ydwbEAO8+XTNFrRmjgKDarSL+Z1CaYw+XlnlNGyAkjQJpAYcVJoyTy7f8Sc0PUVEHehaNXrYQ1WYqBaCSHabwhZpd1qj2UH08Wcu0yB9YGjzwFDrt07EBYgSm8gQiSDofhkfmhOTxQojS4TrGZOMJl8MhYyNmvmyFE
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(23010399003)(56012099006)(11063799006)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(22122799003)(1800799024)(23010399003)(376014)(36860700016)(13003099007)(3023799007)(11063799006)(56012099006)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 7w+U6VTOPlkb1/UEzLMEWgDzLKNAkToc3KoiafxkrNFJFIPlTgfhFm4esIdrVmbmvUj2MZufEaLFwJi9G3jK0mmfH6wh747IIf1h4fo3L004iTIUVSv87S3rW+S8OOFoHWvnpeclSjt3dtYt+T276hPegeILCSBMl6J3Rv9p2DnB11d+7n/Tag0qP0aohdzbs8EbfOCENySKUHLENskNT9X/DP7V41pW//wryzbUrTf4Zyeyp4jMtAhUGiwcPSSa6UoXlBCH4us2Dm3VaF0STFjBzluR8r1HLddyiuAv2a4fAHkEw/XM9FUldUKKi75Zp+ZekIIkBRuyunh4M37nmWnEFM08koghYzeHZZZ6GEb+MNZPLp+ONWKKT0WRtJ0NnrEl0xvkzt4bi9uJROsReybSI8wMcM5n1GKi9L6bCcZyxMzX8kiL1POipKTNIi+Z
+X-MS-Exchange-AntiSpam-MessageData-0: AV3rn1h5Yg36h4lRkXJNompT9tK6ovh6b5jeN997XGEE9O2y/fOgytuHUM/vZhewtP8yvANtifk01GmtoJx/jIjK/2SvKIC+FbIQdO+nHz8nYLIIbqsb/tJ5IAdktdoxdLVY2Nce5orLQNDrp/NVTx9H+f2JVTTlAxD6xZ5+CvXHbhwO6P2uiZSI91sx0ZtHlG5Hmc9BWpAsYTUAEwQ8dIsHS1SkA2nBWkJ8H5j1VxZkaierQuCRAyYdoCEbEUwu55etDfunQtFK9Oyrbp8sSuNQvYS3/FlH0eGKHi2OQIwjJhPIxVBSTUv9KC+Fp46DBdEQEK627DWIg3FkyUZZmBS7yVDyHSC+YZAlyQ7RPaqOXtHEmS6fmGE05rbrgd7TIkxb5Xunqw5EAev7kftMf14MZhLe+m2/kupXR01QM8AFSL6u4rxqcZ9JBMXA8XEJ
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 10:36:33.3818 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f33c0e48-fc28-4586-543c-08decc5c4d01
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2026 08:09:25.0859 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88c81cd5-2b56-4d0f-15d8-08decd10e95a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A106.namprd05.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00004680.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9116
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6122
 X-Mailman-Approved-At: Wed, 01 Jul 2026 12:56:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -121,182 +123,102 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Honglei Huang <honghuan@amd.com>
 
-drm_gpusvm_pages is the layer that actually represents physical
-pages/mappings it owns the dma_addr array, the dma_iova_state...
-With the previous patch, so drm_gpusvm_pages is now strictly about
-physical pages and their DMA view.
+The intent of this series is to make drm_gpusvm more flexible and give
+drivers more freedom over how they assemble the MM related and device
+side operations. It implements the direction Matt suggested in [1]:
+Mirror MR in gitlab: [4]
 
-Since now the drm_gpusvm_pages instance is inherently bound to one
-specific drm_device, make that ownership explicit by giving
-drm_gpusvm_pages its own drm_device handle, and drive all DMA through
-it instead of through the gpusvm:
+  - Move struct drm_gpusvm_pages out of struct drm_gpusvm_range.
+  - Embed a struct drm_device in struct drm_gpusvm_pages and drive all
+    DMA through it.
+  - Drop struct drm_device from struct drm_gpusvm.
+  - Have the driver's range structure embed one or more struct
+    drm_gpusvm_pages in addition to struct drm_gpusvm_range.
+  - Drop the range-based helpers (drm_gpusvm_range_pages_valid,
+    drm_gpusvm_range_get_pages, drm_gpusvm_range_unmap_pages) and update
+    drivers to use the drm_gpusvm_pages helpers instead.
 
-  - Add drm to struct drm_gpusvm_pages and route all DMA in
-    drm_gpusvm_get_pages() / __drm_gpusvm_unmap_pages() through
-    svm_pages->drm instead of gpusvm->drm.
-  - Bind svm_pages->drm where the pages object is initialised
-    (drm_gpusvm_range_alloc() and the xe userptr setup) and require
-    it to be set on entry to drm_gpusvm_get_pages(); the dma device
-    is immutable for the lifetime of the pages instance. A later
-    patch introduces drm_gpusvm_init_pages() to centralise this.
+In essence the series does only two abstractions, plus the xe
+adaptation that follows from them:
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Honglei Huang <honghuan@amd.com>
----
- drivers/gpu/drm/drm_gpusvm.c    | 30 ++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_userptr.c |  2 ++
- include/drm/drm_gpusvm.h        |  2 ++
- 3 files changed, 24 insertions(+), 10 deletions(-)
+  - range vs pages: split drm_gpusvm_range (MM / VA range state) from
+    drm_gpusvm_pages (device physical related), so the two sides can
+    have independent lifetimes and ownership.
+  - drm_gpusvm vs drm_device: make drm_gpusvm pure MM level and push
+    the device side down onto drm_gpusvm_pages, which is where DMA
+    actually happens.
+  - xe is updated to fit the modifications, no functional change
+    intended.
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 6cb38c76dc7..d6407c94cdd 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -641,6 +641,7 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
- 	range->itree.last = ALIGN(fault_addr + 1, chunk_size) - 1;
- 	INIT_LIST_HEAD(&range->entry);
- 	range->pages.notifier_seq = LONG_MAX;
-+	range->pages.drm = gpusvm->drm;
- 	range->flags.migrate_devmem = migrate_devmem ? 1 : 0;
- 
- 	return range;
-@@ -1135,11 +1136,16 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
- 				     unsigned long npages)
- {
- 	struct drm_pagemap *dpagemap = svm_pages->dpagemap;
--	struct device *dev = gpusvm->drm->dev;
-+	struct device *dev;
- 	unsigned long i, j;
- 
- 	lockdep_assert_held(&gpusvm->notifier_lock);
- 
-+	if (!svm_pages->drm)
-+		return;
-+
-+	dev = svm_pages->drm->dev;
-+
- 	if (svm_pages->flags.has_dma_mapping) {
- 		struct drm_gpusvm_pages_flags flags = {
- 			.__flags = svm_pages->flags.__flags,
-@@ -1421,6 +1427,9 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 							   DMA_BIDIRECTIONAL;
- 	struct dma_iova_state *state = &svm_pages->state;
- 
-+	if (!svm_pages->drm)
-+		return -EINVAL;
-+
- retry:
- 	if (time_after(jiffies, timeout))
- 		return -EBUSY;
-@@ -1520,7 +1529,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 
- 				pagemap = page_pgmap(page);
- 				dpagemap = drm_pagemap_page_to_dpagemap(page);
--				if (drm_WARN_ON(gpusvm->drm, !dpagemap)) {
-+				if (drm_WARN_ON(svm_pages->drm, !dpagemap)) {
- 					/*
- 					 * Raced. This is not supposed to happen
- 					 * since hmm_range_fault() should've migrated
-@@ -1532,10 +1541,10 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 			}
- 			svm_pages->dma_addr[j] =
- 				dpagemap->ops->device_map(dpagemap,
--							  gpusvm->drm->dev,
-+							  svm_pages->drm->dev,
- 							  page, order,
- 							  dma_dir);
--			if (dma_mapping_error(gpusvm->drm->dev,
-+			if (dma_mapping_error(svm_pages->drm->dev,
- 					      svm_pages->dma_addr[j].addr)) {
- 				err = -EFAULT;
- 				goto err_unmap;
-@@ -1555,11 +1564,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 			}
- 
- 			if (!i)
--				dma_iova_try_alloc(gpusvm->drm->dev, state,
-+				dma_iova_try_alloc(svm_pages->drm->dev, state,
- 						   0, npages * PAGE_SIZE);
- 
- 			if (dma_use_iova(state)) {
--				err = dma_iova_link(gpusvm->drm->dev, state,
-+				err = dma_iova_link(svm_pages->drm->dev, state,
- 						    hmm_pfn_to_phys(pfns[i]),
- 						    svm_pages->state_offset,
- 						    PAGE_SIZE << order,
-@@ -1570,11 +1579,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 				addr = state->addr + svm_pages->state_offset;
- 				svm_pages->state_offset += PAGE_SIZE << order;
- 			} else {
--				addr = dma_map_page(gpusvm->drm->dev,
-+				addr = dma_map_page(svm_pages->drm->dev,
- 						    page, 0,
- 						    PAGE_SIZE << order,
- 						    dma_dir);
--				if (dma_mapping_error(gpusvm->drm->dev, addr)) {
-+				if (dma_mapping_error(svm_pages->drm->dev, addr)) {
- 					err = -EFAULT;
- 					goto err_unmap;
- 				}
-@@ -1590,7 +1599,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 	}
- 
- 	if (dma_use_iova(state)) {
--		err = dma_iova_sync(gpusvm->drm->dev, state, 0,
-+		err = dma_iova_sync(svm_pages->drm->dev, state, 0,
- 				    svm_pages->state_offset);
- 		if (err)
- 			goto err_unmap;
-@@ -1640,7 +1649,8 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 			       struct drm_gpusvm_range *range,
- 			       const struct drm_gpusvm_ctx *ctx)
- {
--	return drm_gpusvm_get_pages(gpusvm, &range->pages, gpusvm->mm,
-+	return drm_gpusvm_get_pages(gpusvm, &range->pages,
-+				    gpusvm->mm,
- 				    &range->notifier->notifier,
- 				    drm_gpusvm_range_start(range),
- 				    drm_gpusvm_range_end(range), ctx);
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index 6761005c0b9..1b540e62af6 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -390,6 +390,7 @@ int xe_userptr_setup(struct xe_userptr_vma *uvma, unsigned long start,
- 		     unsigned long range)
- {
- 	struct xe_userptr *userptr = &uvma->userptr;
-+	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
- 	int err;
- 
- 	INIT_LIST_HEAD(&userptr->invalidate_link);
-@@ -402,6 +403,7 @@ int xe_userptr_setup(struct xe_userptr_vma *uvma, unsigned long start,
- 		return err;
- 
- 	userptr->pages.notifier_seq = LONG_MAX;
-+	userptr->pages.drm = &vm->xe->drm;
- 
- 	return 0;
- }
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index 251a7266a73..842353afb27 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -129,6 +129,7 @@ struct drm_gpusvm_pages_flags {
- /**
-  * struct drm_gpusvm_pages - Structure representing a GPU SVM mapped pages
-  *
-+ * @drm: The DRM device that owns the dma mappings
-  * @dma_addr: Device address array
-  * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
-  *            Note this is assuming only one drm_pagemap per range is allowed.
-@@ -138,6 +139,7 @@ struct drm_gpusvm_pages_flags {
-  * @flags: Flags for the range; see &struct drm_gpusvm_pages_flags
-  */
- struct drm_gpusvm_pages {
-+	struct drm_device *drm;
- 	struct drm_pagemap_addr *dma_addr;
- 	struct drm_pagemap *dpagemap;
- 	struct dma_iova_state state;
+V3:
+  - Fix a kernel-doc/Sphinx warning from the kernel test robot: use
+    ".. code-block:: c" for the drm_gpusvm_pages example in DOC: overview.
+  - drm_gpusvm_range_set_unmapped(): use WRITE_ONCE() on the whole
+    pages[i].flags.__flags word to pair with the lockless READ_ONCE()
+    readers and avoid a data race.
+  - xe_userptr_setup(): call drm_gpusvm_init_pages() before
+    mmu_interval_notifier_insert() to avoid exposing uninitialized
+    pages.drm to invalidation callbacks.
+  - Fix per commit build of the set_unmapped() pages.
+
+V2:
+  - Followed in Matt's v0 review fixups [2]:
+     - keep unmapped flag in pages structures.
+     - add pages_count to drm_gpusvm_range_set_unmapped() to set the pages
+       unmapped flag, so the framework can check unmapped status in
+       drm_gpusvm_get_pages().
+  - Add drm_gpusvm_init_pages to init the drm_device and sequence number.
+  - Remove drm_device from drm_gpusvm_get_pages() parameters.
+  - Reworked the DOC: overview and usage examples to describe the new
+    model: struct drm_gpusvm_pages, the 1:1 / N:1 driver layouts, and
+    examples that operate on a driver embedded pages object by the
+    drm_gpusvm_pages helpers and etc.
+  - remove WARN_ON_ONCE in __drm_gpusvm_unmap_pages.
+  - Dropped RFC.
+
+Follow-up (not in this series):
+
+  - modify drm_gpusvm_get_pages() to support one time hmm range fault
+    and multi drm device dma mapping.
+  - Add no dma device support for drm_gpusvm_get_pages().
+
+tests:
+AMDGPU:
+  based on amdgpu adaptation patch in [3], but still SVM:DRM = 1:1,
+  1:n is on going needs many modifications and testings.
+
+  Tested on gfx943 (MI300X) and gfx906 (MI60) with XNACK on/off:
+  - KFD test: 95%+ passed.
+  - ROCR test: all passed.
+  - HIP catch test: gfx943 (MI300X): 99% passed.
+                    gfx906 (MI60): 99% passed.
+INTEL XE:
+  Waiting for the xe driver git lab CI result: [4]
+
+links:
+[1] https://lore.kernel.org/amd-gfx/acRgr7QwdULsn6G2@gsse-cloud1/#:~:text=I%20think%20roughly,drm_gpusvm_pages%0A%20%20helpers%20instead.
+[2] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-svn-perf-6-15-2025/-/commit/623f6a50c037d9e44f6c9fbe6859a0ba7ad50177
+[3] https://lore.kernel.org/amd-gfx/20260603065030.2554403-1-honglei1.huang@amd.com/
+[4] https://gitlab.freedesktop.org/drm/xe/kernel/-/merge_requests/360
+
+Honglei Huang (5):
+  drm/gpusvm: split MM state flags out of drm_gpusvm_pages_flags
+  drm/gpusvm: embed struct drm_device into drm_gpusvm_pages
+  drm/xe: have xe_svm_range embed one drm_gpusvm_pages
+  drm/gpusvm: move struct drm_gpusvm_pages out of struct
+    drm_gpusvm_range
+  drm/gpusvm: let the drm_gpusvm core context purely MM level
+
+ drivers/gpu/drm/drm_gpusvm.c    | 230 ++++++++++++++++++--------------
+ drivers/gpu/drm/xe/xe_pt.c      |   2 +-
+ drivers/gpu/drm/xe/xe_svm.c     |  37 +++--
+ drivers/gpu/drm/xe/xe_svm.h     |   8 +-
+ drivers/gpu/drm/xe/xe_userptr.c |   5 +-
+ include/drm/drm_gpusvm.h        |  66 ++++++---
+ 6 files changed, 209 insertions(+), 139 deletions(-)
+
+
+base-commit: b9297d19d9df5d4b6c994648570c5dcd1cac68ff
 -- 
 2.34.1
 
