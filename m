@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF0E0CD98ED
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jun 2026 12:38:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29ED4CD98F2
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jun 2026 12:41:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE2710F2CA;
-	Thu, 18 Jun 2026 12:38:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mSm854sY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E569A10F2CA
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jun 2026 12:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781786321; x=1813322321;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=leFGvgxsWUloAfkucUbRKViS0PSPck15FQ+BhqZWwRo=;
- b=mSm854sYOdVZZG+u4krlf/HJ+fA7CD6X9UrikBNe+mrZXyXOeuxpEu5T
- Mw924eFGcpYflMp0Ku6Jx2qBoH3haESzIW4e2/6fNis8bpoXiieURwiuQ
- +EBgnHlqLbf+z0Fi/Vkr4xWXNDbKDrZtQ4ti+NKw3UcKCvTtgCq+oqvOz
- UDMrXyVC+Bwy46wp+64Yx3X223ADIqw29VYs/FvX913pPA3PIvaznwJAY
- yigdzqXF/f/sKvWVEzpL8Y0Q73v6PeucqIwDiwfYhWz/2XQQU0JVOlXgP
- ttknrPO/ToRCCEbt2hRE6A6PB1L1s3EnilnDvr1fBV58wA5ScimxjWfLQ g==;
-X-CSE-ConnectionGUID: bCwM8IAnSoSvnaBFlxzO7Q==
-X-CSE-MsgGUID: jPNf+Bf/Sm+cHRiuhqkKhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="86531825"
-X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="86531825"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2026 05:38:40 -0700
-X-CSE-ConnectionGUID: pFM6DeArQuWV7haL7NB3+g==
-X-CSE-MsgGUID: N3DvcJNbSeWJZjx3kiN0hw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="252256656"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.2])
- by ORVIESA003-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 05:38:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>, Piotr =?utf-8?Q?Pi=C3=B3rkowski?=
- <piotr.piorkowski@intel.com>, =?utf-8?Q?Micha=C5=82?= Winiarski
- <michal.winiarski@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/xe/pf: Disable display in admin only PF mode
-In-Reply-To: <20260611124206.3742717-1-satyanarayana.k.v.p@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260611124206.3742717-1-satyanarayana.k.v.p@intel.com>
-Date: Thu, 18 Jun 2026 15:38:33 +0300
-Message-ID: <f1e4ae88eb77594097a7c9df11b20f4abf9e1cd9@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1AB010E3EA;
+	Thu, 18 Jun 2026 12:40:59 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6BF110E3EA;
+ Thu, 18 Jun 2026 12:40:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7840112621209715252=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_distinguish_w?=
+ =?utf-8?q?edged_from_recoverable_cancellation?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sk Anirban" <sk.anirban@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Jun 2026 12:40:58 -0000
+Message-ID: <178178645887.93112.8471965044835495934@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260618112528.2354371-4-sk.anirban@intel.com>
+In-Reply-To: <20260618112528.2354371-4-sk.anirban@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,74 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 11 Jun 2026, Satyanarayana K V P <satyanarayana.k.v.p@intel.com> wr=
-ote:
-> Admin-only PF mode does not expose media or 3D execution capabilities
-> to userspace, so display pipelines cannot receive rendered content.
+--===============7840112621209715252==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-That conclusion doesn't ring true to me. There may be other reasons to
-disable display, but that's not it.
+== Series Details ==
 
-> Fixes: d88c4bac8c2a ("drm/xe/pf: Restrict device query responses in admin=
--only PF mode")
->
+Series: drm/xe/guc: distinguish wedged from recoverable cancellation
+URL   : https://patchwork.freedesktop.org/series/168780/
+State : success
 
-Please keep trailers together without newlines in between. See git log
-for examples.
+== Summary ==
 
-BR,
-Jani.
+CI Bug Log - changes from xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e_BAT -> xe-pw-168780v1_BAT
+====================================================
 
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
-> Cc: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c | 2 --
->  drivers/gpu/drm/xe/xe_pci.c    | 4 +++-
->  2 files changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
-e.c
-> index 51e3a2dd7b22..9c02e0e314c7 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -426,7 +426,6 @@ static const struct drm_ioctl_desc xe_ioctls_admin_on=
-ly[] =3D {
->=20=20
->  static const struct drm_driver admin_only_driver =3D {
->  	.driver_features =3D
-> -	    XE_DISPLAY_DRIVER_FEATURES |
->  	    DRIVER_GEM | DRIVER_RENDER,
->  	.open =3D xe_file_open,
->  	.postclose =3D xe_file_close,
-> @@ -438,7 +437,6 @@ static const struct drm_driver admin_only_driver =3D {
->  	.major =3D DRIVER_MAJOR,
->  	.minor =3D DRIVER_MINOR,
->  	.patchlevel =3D DRIVER_PATCHLEVEL,
-> -	XE_DISPLAY_DRIVER_OPS,
->  };
->=20=20
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 78fc2e4dcfc6..6fd882443fa5 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -789,7 +789,9 @@ static int xe_info_init_early(struct xe_device *xe,
->=20=20
->  	xe->info.probe_display =3D IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
->  				 xe_modparam.probe_display &&
-> -				 desc->has_display;
-> +				 desc->has_display &&
-> +				 !xe_device_is_admin_only(xe);
-> +
->  	xe->info.force_execlist =3D xe_modparam.force_execlist;
->=20=20
->  	xe_assert(xe, desc->max_gt_per_tile > 0);
+Summary
+-------
 
---=20
-Jani Nikula, Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-lnl-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-168780v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_dma_buf:
+    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+
+
+Build changes
+-------------
+
+  * Linux: xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e -> xe-pw-168780v1
+
+  IGT_8973: 8973
+  xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e: 0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e
+  xe-pw-168780v1: 168780v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v1/index.html
+
+--===============7840112621209715252==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: distinguish wedged from recoverable cancellation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168780/">https://patchwork.freedesktop.org/series/168780/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e_BAT -&gt; xe-pw-168780v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-lnl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-168780v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_dma_buf:<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e -&gt; xe-pw-168780v1</li>
+</ul>
+<p>IGT_8973: 8973<br />
+  xe-5278-0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e: 0e9939890b0f7e54f1d69774cb4e6fd9d66cb29e<br />
+  xe-pw-168780v1: 168780v1</p>
+
+</body>
+</html>
+
+--===============7840112621209715252==--
