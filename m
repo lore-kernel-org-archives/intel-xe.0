@@ -4,146 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FFE4CD4F26
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jun 2026 13:58:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D2ACD98F2
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jun 2026 13:59:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E427410F601;
-	Fri, 19 Jun 2026 13:58:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E216410E0B8;
+	Fri, 19 Jun 2026 13:59:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mms3kXtI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ks38JK3T";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0B8C10E0BD;
- Fri, 19 Jun 2026 13:58:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB87610E0B8
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Jun 2026 13:59:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781877481; x=1813413481;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=PcHZAxXF3MG60ngm/OPWwiISzzRMonVOU3aUtytvm6U=;
- b=mms3kXtINly3x8wHA7WmHf6aseGjwePc+uCNsuyT9lsiZ7opOWSLO5C1
- hfKOFRXAf327eLBlCmuQz1QnLxp45Kl5QSu9VmHVwV2VIeljwpU1LwSxE
- EEvXNxwfXHFcdukuorltPIWUFK1rwN6K3kR1Xr3Q33e0n+dXhMuPHPGgt
- U8HjJHGrOgiZOrjt8Bd6OXuJbDErLRpnZaY0nnzjLJKcfMcy7NBTO0dTq
- AZv3S+tJPcCBBo42J+xaK5liH3kGilGALfn1icneh/jGxko+mclTa9c4g
- CltCkrLbnRBhx0BWBZ/fJ+J+fIzexBZD9CjQFp0BfQRhvrfPu4Q59K9ny g==;
-X-CSE-ConnectionGUID: efoi/TzSTxuyt3/7F3e2Nw==
-X-CSE-MsgGUID: AArZw3hjRre/Kj5SDzYPQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="82831812"
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="82831812"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2026 06:58:01 -0700
-X-CSE-ConnectionGUID: kTqLXw5YT4GLJk5okGkiAg==
-X-CSE-MsgGUID: mmYkwTYmRMKueWmq3qs0PA==
+ t=1781877577; x=1813413577;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=kGEyuCvkVmIPpDGMn/PsQZYh/PfeEfpoTi7FIkx9kzM=;
+ b=Ks38JK3TZP+bcTXvN52z3jyKrQ8tjt8HIf7N1E5+7vp4FNUlu9mXRnog
+ wiz1jZaO2TNn6ykLXqCRARuqklWy9b9XmMjFt1jjhdTkPazv18UUrA52l
+ Z5nRntEDhEPEdUk43SdD0INwCAcFBxBLa+Ul4q2jX+PGpjbSNUCMGPNL9
+ ov9l7F7WZ+cCSkdJvUW9dKP8hdFkPcQCpgGfIVLaTqPQ7XWUTa8m9nHlW
+ TmnPnyJyS/MbglLZuUWqqJwMZ1396vkf6iUeiQC2s21thToeeajfmDsi9
+ TMNHqt6/C9aYnC4txix3MrSglVsXNXWOpMf+AAocEOBiVUBbkc7FdEpjP g==;
+X-CSE-ConnectionGUID: 1CeI8fckQAWMJ6oSUb2PDA==
+X-CSE-MsgGUID: MzxUNfiRQ3KuSuabJ7njew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="94117978"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="94117978"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 06:59:36 -0700
+X-CSE-ConnectionGUID: dA5ueOinTRupMB67Ij3QNQ==
+X-CSE-MsgGUID: dw2kWOgfTJG6WhMv30Z2Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="252545098"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2026 06:58:00 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="246295530"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 06:59:36 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 19 Jun 2026 06:58:00 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37; Fri, 19 Jun 2026 06:59:35 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 19 Jun 2026 06:58:00 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.69) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 19 Jun 2026 06:59:35 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.60) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 19 Jun 2026 06:57:59 -0700
+ 15.2.2562.37; Fri, 19 Jun 2026 06:59:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a87IrTJF9T8DefXgvEVE0BN15W77ZRREyGVtvoID1zQwii2WNdOp+M+p+tkR5or74anjysbnQlzt+kmaqJCRkVRNH0uXfNhoW4DSZuojXRq75+HB8AKn6kX64FzdeRSKVOqTCDViWuxSnPcUKLn2hYg3yK2HbbvdTRW5n4VZr4BeCFRe9pINE4vMqDpaJsCqu0CibCD132qJZYRBRI+2855LNN/8NgNkzuu5rdmIPTd3bX1rLbaYTRu7B86hpYmncaeueh6HdX6NYBlctN9f3vENFhsQFaHMfY+FYGQjqQJ2OKoQr2YUjpv2kYh6Z+ynigSKoBJgDhnuV8VTcD+8Gg==
+ b=CmxPRexg0EdFyyWNiEx9ujjmkJUOBXUX8fBQsB2z1YttiOVCWdQqXS5nGtocngQKn6kDGoOR/BKJG+us+7SGZkjEjVVojOuc9dtSuA+uPILuvCpsYvMk/Mx0v+C6B/IVSwpt+C/ePRtjAU1vIC0Mq+F5rjppJaK4/kJexG5qRodjtzA8yholSfpOSHLBRmI4YyfJVRjOUj8FNgdARraTmXy+ZlUXclchtqBfZd3nAgo2mwkbyMAs+VsMmWgH2ihA6VwDcWiRWV3iRBOxsbNbpjSeGPhBRgMJ1tj3qgmGkEbJjty3jG/VIXEO/eAaIaR5jUwhBT5Dm6rrAabz/0bmkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iU73CStPDuD34f+LBsKfcX9AlLt6c+sxzNfcW9yQbA0=;
- b=mQGB8yODYjpTE62FMdGgqsPVZnQc+83NRWmnvgj7fFrr2SOR9qxOqPGMWY60c92BNSVXWV4aZod4xXANacnSIT+gIOjLWaEP39TkMGT49VKCYpST6sI5MpbIb8Q1EPrl/Ym4MV5NNpF9Jx/HtNDFpML380v0+VBCAwkky805WRg6VH3lMa9TolDZfCeex60y86lqlJyI3ErH9EdXcflr7tQTae5yY3UsB0FXz+Kn7Q+Ud8k9cu0MHKFbRFLmxbfJW8nJo6IHAGaboii8ERvvQKnna+BavvQy7TQ51bxnXp9U1OmvQ38/xMXWEmIbDc2jz6hJODIIdIkDWYq5cmJV0A==
+ bh=5oBN6Cv+Auas73QXtJfSONV1q5cklM5C76IzMgqJKtk=;
+ b=sDxjXUxFzp+i5ABmF5XwjbXBeU9KF6js0bEjUDazGlHZub7XnGnsi6e1FyJsCftV+i3p41VLvaOHC6TvaqPhsUvK0C0gh2gvVSQetoPCyiH03aMlGaMVojweuxg0kpMXcW8zfVVsZ/ni8BgPWt15GUJDQWnMDsezpXL8cffWQ9ihh8XSzv7EFGg8Ws0MFuCX5hhG+b9cLYiL4qJ9H2nF/14uLwj70hIUfCDpTH31q8WqgnGV5bzgqz7x4XvMXnUezDwOrZo7UrrnhWVl4+RTXM0lAwtAoWxg6IqilKQnGFvHeuIrMKojZG9tk76h9L/C/fDiPiqWQLYTD87rn3MVjA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
- by DM4PR11MB5325.namprd11.prod.outlook.com (2603:10b6:5:390::19) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by IA1PR11MB7890.namprd11.prod.outlook.com (2603:10b6:208:3ff::14)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Fri, 19 Jun
- 2026 13:57:52 +0000
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0113.015; Fri, 19 Jun 2026
- 13:57:52 +0000
-Date: Fri, 19 Jun 2026 16:57:45 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Mika Kahola <mika.kahola@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/4] drm/i915/display: Add DG2 MPLLB DPLL manager support
-Message-ID: <ajVK2b81DUMM_Y9V@ideak-desk.lan>
-References: <20260518103642.3678448-1-mika.kahola@intel.com>
- <20260518103642.3678448-3-mika.kahola@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260518103642.3678448-3-mika.kahola@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GV3PEPF000167F7.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:401::668) To IA3PR11MB9273.namprd11.prod.outlook.com
- (2603:10b6:208:573::17)
+ 2026 13:59:32 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0113.015; Fri, 19 Jun 2026
+ 13:59:32 +0000
+Message-ID: <54016352-a8de-442b-835c-260bf38a944d@intel.com>
+Date: Fri, 19 Jun 2026 15:59:27 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] drm/xe/debugfs: Add debugfs for pcode information
+To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <michael.j.ruhl@intel.com>,
+ <matthew.d.roper@intel.com>, <soham.purkait@intel.com>
+References: <20260619114018.667995-1-karthik.poosa@intel.com>
+ <20260619114018.667995-3-karthik.poosa@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260619114018.667995-3-karthik.poosa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA3PEPF00000524.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d8::66e) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|DM4PR11MB5325:EE_
-X-MS-Office365-Filtering-Correlation-Id: 39fcb088-ba1e-4828-b87c-08dece0ac123
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|IA1PR11MB7890:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1763ea7-9c1a-43ce-705f-08dece0afc95
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|18002099003|22082099003|6133799003|56012099006|11063799006|5023799004|4143699003;
-X-Microsoft-Antispam-Message-Info: 8rZmdQ/ZvbsyXMhcrQKOWt+m2r7pRaW+04rPHXbfl8WSPW88HGoVZ5apbuNx9QyMtwPU8Bnc2qjjykQVEQR2lj6lSb0Z0Iub7VNdXPLry2rdOFx+R93pdI/rRwMEcag4mzudvgeCddUwJoQMwxVK2EbygJ6sda243zPKDzL3y2rCpCFfSb14m5s5VZBp4GaD3c1JBfdv2dVFRsyCrB2OLEElC5lRxdYTbpRVGiRGdJzguSMjqRTsJPKaxIop2sE77mhWgXv31hzT79g0LfF7KdhL806Z4XG8ADvs5XqOwCyrn1jXeQVpQgQt6A+HF+8qE2caOVZ9N6fzD1VJ90NUSsaBzOf9INWAu+X2PyX1gxLBGT4oHi3YQE8uxjC9a6zkXFGtSCrsd5d4jUtsraAS75Gr4ZMFf8DalU3u/q+ah4FAi5WnzfwTf7wX5iA4nz+0jyN/3Z5F5QmrLI1rj6VFT4udMPnYFNBcz7viU1rw3xzZkK3qBhukymu8O2m43VuCv33JahEZPzdJyXnDT/PjMXF9RxXhZMBUP9XTTZe6USMcC3D0qh549VH15UtZzhEzjHOtk+t7u5jmmc95DgMDXrkaYO6S45Hw1ygDhNEcN1BxeHmyhPr+K68Cd/LpcdHiGjXhDU1usSRbRxN9QAtEt54/shM8wCOeAGWvdfrYwVo=
+ ARA:13230040|23010399003|376014|366016|1800799024|56012099006|6133799003|5023799004|11063799006|22082099003|18002099003|4143699003;
+X-Microsoft-Antispam-Message-Info: bqph0EZ0zsv8ZcavdhX/I53ZORfkLMXgj7eWymkfmrpwVYkn/2vUrkN2o76ii4NK9lwWPIuWZVgGeqzkBjVEeuODWsnlT6roNlQGCf4pkghCpqJyHcp3C0iOkbjhNkQbeN9H18N30M8dkaFKtY6vlo1fdxWUhjso+jXaqVfM2LhtF8++GC161fkwCrMiJ0W9VK6Fos3THgzriUtYWI66mNil7w3yCTAp0X7g5dajBR6BUXLwGYNzEZd9lNhZZp7DXixP5ylt595rQVIFHb6LUHJjKVfm+OsnHO8nwAS4woHiS5z748CV5p3uuwn3+0NH5yOe/iWhPZDq+Pvon6/NIQK+9o7KZ/eKKkNSxW5ysuNPw1vZYaqbUnEnj0jJ67j5td0GpduQLwWIbYVudvPYwraR4Z+eZ8nCR7mvy5Sj6/aSNlg/EW1vy0xn1fEnpnqgfDLK49zf2GRiru1L+/iYv+LmcELyaZMg03G/1i9P9M0imX+Q7CRAbyBioBQE1Gq6krlEmRsRw6RrduPU/NJIYWFQuXuf0/8sYDv3fzY+3Sg81Mgb7lpnnnU9rABRACqeOVt0J4Kz4bTWWVPpdhLf+I/LSgi2PdTaklgsG7p+w3XTJnF9vnNkeM8gv2t9qPomQZCSSJE1HSyK/rfCsMEcdNV9tNwCexPmtRcQgrotgZU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(18002099003)(22082099003)(6133799003)(56012099006)(11063799006)(5023799004)(4143699003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(56012099006)(6133799003)(5023799004)(11063799006)(22082099003)(18002099003)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XbkDEh65HD2vXDrSFuSDs4xtqlL5bXtCDwYBRx1YBRn8grLWKMr6qhjI4xvl?=
- =?us-ascii?Q?ch4LFyb6VDU4CfVJeOCQNtupjdY+0bqXnrEr4umbSARvBOVqjfShRH0t5QbN?=
- =?us-ascii?Q?SamFZZOFR41T/9KgC5ta0Wu32MCR6jacBQPFFlALU/XWaZoK5wBzBM9cTETE?=
- =?us-ascii?Q?a+Enwj58fsMhICuSKZAPRYpXKsE3lAL/OAxdvnPoGMl1Lo9dSrIJ7m8GTPvU?=
- =?us-ascii?Q?jp3NtzWmJYD9fUJoE5SziqMbue6ShdmnSuif7UWY+bAUMbMmAShd6Yy2yxiv?=
- =?us-ascii?Q?kU1sKqN44DpZ+1+0l1W2uvXYiZD4R9NlXb0IRDpf6qK74pzkZZRFPDdIZLTa?=
- =?us-ascii?Q?8EQEnI+FzCpURk6GdGhvNmswPOQK56acd5UmQ/l20P0+o8cxS0hnpabi+/BQ?=
- =?us-ascii?Q?Kbb0E+RVm6woghTvW4RdAy5ZP0Eu9Q1PrxB33UBvPcyfeGVdzGYo4N61xxs2?=
- =?us-ascii?Q?OPApYJAqDPqBwgjCvQJr4FbiW7t/q4JyGZaky5OFtMdRYJxYvHlyiCRurCQH?=
- =?us-ascii?Q?jY/QyLsNY6dKgN4XeSIEuWut5s9BYDVIJ2e8+k/VDy0uvU7vsCkxYhmSH/86?=
- =?us-ascii?Q?ErvS9CLRDR/NsEqMQ+ly1SLEsTnIBCyVRmYOd2uySTp/l2C3uEJYsJeTGceM?=
- =?us-ascii?Q?l6aDKwZ6NPKzYevATNw/vo4jbDPSOfsGhd15PVuAq7d/FoGTGRv/LvRCfF/r?=
- =?us-ascii?Q?Ewf4VM9SAv63NCl8+znFhaH7GO8c5C/utWZisvu5OOSKYM5i6az9MRTp6nsZ?=
- =?us-ascii?Q?irhRq6icOONm+YEpA5C2F3+wanioAqAvQu/lqNe8iY29EH3aY2Phsq1fhW+I?=
- =?us-ascii?Q?NuMPsDbuR2LhBliIRIUzF46skOaviXG30jp7TWLHcAqUxo5QLfasjCyZs2kg?=
- =?us-ascii?Q?0j7asBxVxcu1SBQoGKjMTDPD8GyzkTDuIKNS/Dry5V+8sRzrMhqLGrBBuygw?=
- =?us-ascii?Q?ZKYmMJBNSpuhHs/VHh1forYu1x/l1pvsNAnh2ukk0aUKI9ZwCicEPPF+MR8V?=
- =?us-ascii?Q?iuc7bP4cluQzfUD4sWLxroyHhv0pZkXc7H04Q+IJ7QJdybLEcvBRCiKpf7iY?=
- =?us-ascii?Q?6m+/GFPhgudJp1t5dTRJfqosIWislWKB1NoS7NvfTnd3f2+zU1AZFbPGJ9ma?=
- =?us-ascii?Q?wFgDb++L8jYrdddKYAgo4cHkzeP49veqZvhiHiljqUpZpeQMipaZG/hp6K64?=
- =?us-ascii?Q?iWf3617JPXiXjzcvjndnJfFLUq2U3FT4f6ETCKVH3JDRK09S6REAdHOFV/xl?=
- =?us-ascii?Q?3GdX0fR82k61unK8NvdJQ6mU7Z2v3K5xLOi7c803bsoEzBI4v2ahzm/QQJov?=
- =?us-ascii?Q?Bq0hiF26XkT8jND6D83mFF2O2z7rewtW5VqrEfQt1nvEwjQtUm2o/xrQnvTA?=
- =?us-ascii?Q?hNscBxELHaJKrt2fAWnnep+n4gA+nGk5+hFa7s9q/cI/HheoZlP0Jvqn34+G?=
- =?us-ascii?Q?iWl+BfQXFGEdOeE5+HdhWvC70jSYUPAMGhFf1mXpFevyDoQncC6lJLlSS4GO?=
- =?us-ascii?Q?y0qei9H9Am6Zowku8T6d/bTz5yNI31w8rtuasapUX06FJ/2FdhNUC517PF51?=
- =?us-ascii?Q?JomQ7tCYOX/iFgDozbK5t3nHi7aKDgQ+PWGZnvHndL4SBztp0n5t+DIfmj7U?=
- =?us-ascii?Q?dDhxplGUYyMGVY/jE6f8/anACeUK2OACRDxMlg3LEFHMTYZOuuIMX1Ht0Xht?=
- =?us-ascii?Q?qy6v1QBQNg12d9wSFkQZQWJ8oc+sMWOJp3tP5eWkL/iTnYVArRLELH0NhmVw?=
- =?us-ascii?Q?sz0+4YPuDA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: Ty/Lxy8uHPkCBN61OPaNIkPKTta2NkHxaAGTBhJPfDkkEJZ0xTRhjQavfUGSFfuQc0P0c9E8iMU/Sc4SAtK8lxeHnEcgl4LizAvYBnldZFveAbFj9zGPG4x+jtiyPIVFtaPXQH1Zqhd1+gtkhNkybE7KWK4eHcrnaJQETmDQzT34FRRCEEGe4rJChzjeuEAo8swHRihb0rjnoJMtvBl27pZ7hpitxjR5E5OQvQUYKXh1ffreIAZXkY67d3TjNSL8WxWzgWmhyS7UeBdKcO6Z3GusXg4vO2UkSWCt1H03zcWx5ubhf6w+e4lGpQf6ToYH6v3nmbLqp99vu8pR43WdZQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 39fcb088-ba1e-4828-b87c-08dece0ac123
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UGFkbTIreUdCME1xcFN0dWV6WnNVbnQ2WUhLL3ZsYXJMWWgzblNLcTRvVVpy?=
+ =?utf-8?B?YXl4RDhodjl2MEpMcjR1QXUzZENIa1hDWXVGT3V4T1NoUkM0WmFhVlBIOVJk?=
+ =?utf-8?B?TFMxYzJjU2NXSHV0dkgyend1T0dIOU5iekZBQks3Y0U3NWdVR3hDeW1LOVdP?=
+ =?utf-8?B?VzRlVDZ4VW5LTUptS3JIM0dlTWJVa3hkZ1VFazBGQjFOT2ErK2RRTkZzeGd6?=
+ =?utf-8?B?L3d0aXE3YWhZcWk1R2FPYUwxM0E4QnpvZ3poSm9YOWM3YUkzNE5xbUV3aWda?=
+ =?utf-8?B?Z0Z4NWtkVjNzMHE2RWtaZ3I2VDJGRGYybGVxbmJCcmIrNkcxc2VXbktBcy9W?=
+ =?utf-8?B?dlRTUlZtaGIxMTZ0MFJkaDhEUDdpc1FrWHB3dThqUE0yR2lrdXBBT2R3czZP?=
+ =?utf-8?B?Z0RuUjIrMm02RkJEOGl4dUs5WEFJMDArTGZ5VitValNrMXdLNENLd0hTcTJ3?=
+ =?utf-8?B?YTJrWXdtOG9pMXBlTkN4TzdocThWOTJ2ekNtcUdBOVVTd0JvcldnRVlFdmNa?=
+ =?utf-8?B?WkJWL0hBbE9CU1JQQXBaRm5oTWtoeG8xYVRZdUVmcmh1VXpDYTVHVkR4MUZN?=
+ =?utf-8?B?QkRKeVZoNTczSU8ycmttWkl1S0JzMXNJOW1kM1lHYS9HclZsTXBsNUZpMFFr?=
+ =?utf-8?B?UFY1UTllb2pzOFV5bjJvTUI4WTl6RmE5UFJXK0RhWjhDaUVuUDYrSE5PMUxk?=
+ =?utf-8?B?WFVvczRuY0FvTW1Wby9wSkY1MkxVQjEvOExocnBFWE5janRnVTFHTHpsaWFw?=
+ =?utf-8?B?ZU1aQzJMODhpWUJQVDZoZ05na1E1ZldOUHVubTRkQnE0ajVsdnR0T3N5THFp?=
+ =?utf-8?B?S2hEa2JjK0NHcldGdEQ3TFc3MVFVK2hVLzB4WnhRU2paMjcrbmx3VzdDWDB3?=
+ =?utf-8?B?a2dLbVd4eFZLaVVTMWNqazR3cGU1YytoSjhFR1VIaHZVZEtnUFlXMWtRaWJ6?=
+ =?utf-8?B?YzNOWmdINWxramNYMUlhM09qME9HZDQwd011NjdCOFVEa0pLdS90aitiQzVG?=
+ =?utf-8?B?WnVNaXZ3UTlGMy9tbUJ1WWx3UHNDS3MveDRqTG13NjhNeS8rV3BYTThpR0p4?=
+ =?utf-8?B?MXh5eEdKcWxrLzFYVmtFS21WaVJLa0pmRVA3QUwzbk9yenpqNmJ6YVVtRTZF?=
+ =?utf-8?B?QXRTWFoxSjNYYVlBbzVFQ1JTcUZIcEN4L3lrYXRRVUhPd3lONFF0QjM2YmFm?=
+ =?utf-8?B?czZjVXpnSmtCOUxRZ0ZqVFV0djdpVlEreHBWSk94LzVKdHZWN3lmVk5nWEVw?=
+ =?utf-8?B?VURLRklqQU9uUnQ2d09Cdmc5YlZLOEkxK25STUdxWk9iTEFQMlpwNFlPYjQx?=
+ =?utf-8?B?UXg4SHRpcFRDYTYxVTZ1TTR4K1cyL1J6YW5JMityaWpIaWRNbXRBTDlScnk1?=
+ =?utf-8?B?Z3hGc0JTNDZlKzVQNzZKZTBPYTJ3eGtMQWphWjNKcFAwTGRLQUVXa2lqb01t?=
+ =?utf-8?B?bDZLbUd2ZW5VODBzRnRsZ1FrMHIrNUZ1TUxGZFVRbDFQMVQ1M3JzUW9sSmlM?=
+ =?utf-8?B?aXhIVzU2cE1mbVNFNDNmcVk5Unhxc3k2QXc3bTNTVGxPeUhXZk1uVlVLelFs?=
+ =?utf-8?B?TTFLOXhYcXpITnpmYmtLYUYyblNCOGQwSjI2Unkyc2I1bFR2MWduYm50R1Rm?=
+ =?utf-8?B?cWNkbU1YcnpsZk9ldmt5eXdoU29XY0VkNzI2aUlEYXVveE1nbHFIT2ZXYi9w?=
+ =?utf-8?B?cnFCbWtseVRIVnhTZXN6THdNcjJRR1FDRjhjakl1Z3hONDJSdTkzMnFvZEox?=
+ =?utf-8?B?Z0N5VWVVT2JtTzFqcDlGRGdKUUdxWVNVSHhZRGE4bWV1Q0ZxOE4zRElZQTJ6?=
+ =?utf-8?B?dVhLaTF1MzNHUnZDUlJIY09IZ1FPeVVVU1lycVpaOFhJa1hManlLSTdwbzZs?=
+ =?utf-8?B?SUpLWmdDTmJ2KzVyQlZlL2UvbmxhYkpCMUpKMVNGYzAxd0JTeU1uS1JnTmNP?=
+ =?utf-8?B?WHJNTDUvZ2xmUG56V2FaRzV4L3ZzM0pyYTZvalUvd1hBL1FhNCtCbHUycU5L?=
+ =?utf-8?B?M0E2Q25GQzZyNmwwM3RoZ0EydmNUZE5CVjgvdThHUnNqUXNhUTNrQ3l3RnFH?=
+ =?utf-8?B?eDJtK1A0QjNYczJ1ZHRCVlpRODE3RHlRWHo5ZUVrckw4ejRGN0xQVlhzSkZ5?=
+ =?utf-8?B?RXBhaEVWa1dvaDFMenNCdFRJNC84QjlwV2FCODMwT2g1bzBKMk9HOHd6d0Ir?=
+ =?utf-8?B?WXRyOG9ib2RXRlUranova1BlaHFiUURjUGxZcXY4bkcyK2hZcXp6WEpKN0RU?=
+ =?utf-8?B?UmNnSjlLWE5rUE01M3FLbnIzWWZaR2ZXdGttQk1rNm5JMThkcmlkZ1pYUnE4?=
+ =?utf-8?B?aFdqdXVoU2RFNzNqWG1qUGtYOCt0Rk8yclFkQVV6SktrUHpJR2F5eUhIWHFM?=
+ =?utf-8?Q?PB09U/giul4K4SrA=3D?=
+X-Exchange-RoutingPolicyChecked: SG2TbrJTpYw8KrJ2N9uSs4sPaBzzjWbaGekxziTjutoXziG+oS+DVexTJomWf4xgA0b29WFjwdMRy+jCcqdwK5jRFyKOeba6XGwtvTzywTJvXImz1TWuhTy09+QcSwyFpG6E2o13Id/PZzLHpo+D1pYjG2G8rXBHtiG8DLJoCHerSmUu2ekI5Y5bc++pltdz1K4O+5gWHMBoC5MZFAUIvCkNDC/OGqSu6CqQneLzHaUjdJaYPjAf0pt7pnOYdQZIae+A6dkuqzLii5saLslj8kxn5u96UmfSZKo50/sNzUiV8eVIKZMSuBi/Y/8YsZtSQALb4qIgfa/bMzOvGZL/KA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1763ea7-9c1a-43ce-705f-08dece0afc95
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:57:52.0592 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:59:31.7783 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uiRK8yBrgbAywMMJcmUY2MWbQ2B7x5qM2MRMPSu0dvZovumIEiRilRA0FJFpN+Jb8cRVR6mENfhlvcBBVmI1RQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5325
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6Ddrbh3A16xjplp5SA4unEWmKw1uqksey46Rb2MWgk8PuWwtNYLR//Yx/QQL5ieDPagNgJTvoFTM5RtuncTG8vPr0DkUAxITvpdGY7omk0o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7890
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -156,324 +168,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 18, 2026 at 10:36:40AM +0000, Mika Kahola wrote:
-> Add DG2-specific DPLL manager infrastructure for MPLLB-backed port PLLs.
+
+
+On 6/19/2026 1:40 PM, Karthik Poosa wrote:
+> Introduce a pcode_info debugfs entry to report pcode details.
+> This initial implementation exposes the pcode version.
+> This can aid debugging when the pcode version is needed.
 > 
-> Introduce PLL id mapping, DG2-specific DPLL callbacks for
-> enable/disable/readout/frequency calculation, and manager callbacks
-> for compute/get/dump/compare. The platform is not switched over yet.
+> v2:
+>  - Enable the debugfs only for supported platforms. (Micheal Ruhl)
 > 
-> DG2's PLL-to-encoder lookup prefers the active encoder using the PLL,
-> but fall back to a matching encoder for the fixed port-to-PLL mapping
-> when no active user can be identified.
+> v3:
+>  - Move the platform check out of this patch, as it is not relevant here.
+>    This patch solely enables debugfs; debugfs creation will be determined
+>    based on the return value of get_pcode_version. (Karthik)
 > 
-> This keeps the active-user fix for operational paths while allowing
-> readout and verification paths to resolve the PHY even when
-> pll->active_mask does not identify an active user.
+> v4:
+>  - Skip creating debugfs entries for SR-IOV VFs, as this is not
+>    supported. (Matt)
+>  - Reintroduce the platform check during debugfs creation to prevent
+>    creating debugfs on unsupported platforms.
+
+nit: we can keep log under ---
 > 
-> Assisted-by: Copilot:claude-sonnet-4-6
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 227 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  22 ++
->  2 files changed, 249 insertions(+)
+>  drivers/gpu/drm/xe/xe_debugfs.c | 34 +++++++++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index bb487e647f76..c03560532d94 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -42,6 +42,7 @@
->  #include "intel_lt_phy.h"
->  #include "intel_mg_phy_regs.h"
->  #include "intel_pch_refclk.h"
-> +#include "intel_snps_phy.h"
->  #include "intel_tc.h"
+> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+> index 22b471303984..cafe3deb04d5 100644
+> --- a/drivers/gpu/drm/xe/xe_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
+> @@ -31,6 +31,7 @@
+>  #include "xe_tile_debugfs.h"
+>  #include "xe_vsec.h"
+>  #include "xe_wa.h"
+> +#include "xe_pcode.h"
+
+keep includes in alphabetical order
+
 >  
->  /**
-> @@ -4735,6 +4736,232 @@ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
->  	.compare_hw_state = xe3plpd_compare_hw_state,
->  };
+>  #ifdef CONFIG_DRM_XE_DEBUG
+>  #include "xe_bo_evict.h"
+> @@ -161,6 +162,23 @@ static int workaround_info(struct seq_file *m, void *data)
+>  	return 0;
+>  }
 >  
-> +enum intel_dpll_id dg2_port_to_pll_id(enum port port)
+> +static int pcode_info(struct seq_file *m, void *data)
 > +{
-> +	switch (port) {
-> +	case PORT_A:
-> +		return DPLL_ID_DG2_DPLL_A;
-> +	case PORT_B:
-> +		return DPLL_ID_DG2_DPLL_B;
-> +	case PORT_C:
-> +		return DPLL_ID_DG2_DPLL_C;
-> +	case PORT_D_XELPD:
-> +		return DPLL_ID_DG2_DPLL_D;
-> +	case PORT_TC1:
-> +		return DPLL_ID_DG2_DPLL_E;
-> +	default:
-> +		MISSING_CASE(port);
-> +		return DPLL_ID_DG2_DPLL_A;
-> +	}
-> +}
+> +	struct xe_device *xe = node_to_xe(m->private);
+> +	struct drm_printer p = drm_seq_file_printer(m);
+> +	struct pcode_version version;
+> +	int ret = 0;
 > +
-> +static struct intel_encoder *dg2_get_intel_encoder(struct intel_display *display,
-> +						   const struct intel_dpll *pll)
-> +{
-> +	struct intel_encoder *encoder;
-> +	struct intel_encoder *fallback = NULL;
-> +
-> +	for_each_intel_encoder(display->drm, encoder) {
-> +		struct intel_crtc *crtc = to_intel_crtc(encoder->base.crtc);
-> +
-> +		if (dg2_port_to_pll_id(encoder->port) != pll->info->id)
-> +			continue;
-> +
-> +		/*
-> +		 * Multiple encoder objects may exist for the same physical port.
-> +		 * Prefer the encoder that is actively using this PLL.
-> +		 */
-> +		if (crtc && (pll->active_mask & BIT(crtc->pipe)))
-> +			return encoder;
+> +	ret = get_pcode_version(xe, &version);
+> +	if (ret) {
+> +		drm_warn(&xe->drm, "couldn't read pcode version ret %d\n", ret);
 
-This looks wrong. Could you provide the details (i.e. the encoder->type)
-for the encoders you see using the same port?
+do we need this? and get_pcode_version() already prints an error on failure
 
-I suppose it could be MST per-pipe encoders, but in that case it's not
-the per-pipe encoder selected above which should be used for enabling the
-PLL. The PLL is specific to the whole MST link in that case, not to the
-streams/pipes on the link. So the primary encoder should be selected
-above, matching what has been done before. For that you could select an
-encoder only if intel_encoder_is_dig_port(encoder)) is true for it.
+and we already return this error code to the user
 
-> +
-> +		/*
-> +		 * Fall back to a matching encoder so that readout paths can
-> +		 * still resolve the PHY when active_mask does not identify an
-> +		 * active user.
-> +		 */
-> +		if (!fallback)
-> +			fallback = encoder;
-> +	}
-> +
-> +	return fallback;
-> +}
-> +
-> +static void dg2_mpllb_enable(struct intel_display *display,
-> +			     struct intel_dpll *pll,
-> +			     const struct intel_dpll_hw_state *dpll_hw_state)
-> +{
-> +	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-> +
-> +	if (drm_WARN_ON(display->drm, !encoder))
-> +		return;
-> +
-> +	intel_mpllb_enable_phy(encoder, &dpll_hw_state->mpllb);
-> +}
-> +
-> +static void dg2_mpllb_disable(struct intel_display *display,
-> +			      struct intel_dpll *pll)
-> +{
-> +	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-> +
-> +	if (drm_WARN_ON(display->drm, !encoder))
-> +		return;
-> +
-> +	intel_mpllb_disable(encoder);
-> +}
-> +
-> +static bool dg2_mpllb_get_hw_state(struct intel_display *display,
-> +				   struct intel_dpll *pll,
-> +				   struct intel_dpll_hw_state *dpll_hw_state)
-> +{
-> +	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-> +	enum phy phy;
-> +	i915_reg_t enable_reg;
-> +	struct ref_tracker *wakeref;
-> +	bool ret = false;
-> +	u32 val;
-> +
-> +	if (!encoder)
-> +		return false;
-> +
-> +	wakeref = intel_display_power_get_if_enabled(display,
-> +						     POWER_DOMAIN_DISPLAY_CORE);
-> +	if (!wakeref)
-> +		return false;
-> +
-> +	phy = intel_encoder_to_phy(encoder);
-> +	enable_reg = (phy <= PHY_D ? DG2_PLL_ENABLE(phy) : MG_PLL_ENABLE(0));
-> +
-> +	val = intel_de_read(display, enable_reg);
-> +	if (!(val & PLL_ENABLE))
-> +		goto out;
-> +
-> +	intel_mpllb_readout_hw_state(encoder, &dpll_hw_state->mpllb);
-> +	ret = true;
-> +
-> +out:
-> +	intel_display_power_put(display, POWER_DOMAIN_DISPLAY_CORE, wakeref);
-> +	return ret;
-> +}
-> +
-> +static int dg2_mpllb_get_freq(struct intel_display *display,
-> +			      const struct intel_dpll *pll,
-> +			      const struct intel_dpll_hw_state *dpll_hw_state)
-> +{
-> +	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-> +
-> +	if (drm_WARN_ON(display->drm, !encoder))
-> +		return 0;
-> +
-> +	return intel_mpllb_calc_port_clock(encoder, &dpll_hw_state->mpllb);
-> +}
-> +
-> +static const struct intel_dpll_funcs mpllb_pll_funcs = {
-> +	.enable = dg2_mpllb_enable,
-> +	.disable = dg2_mpllb_disable,
-> +	.get_hw_state = dg2_mpllb_get_hw_state,
-> +	.get_freq = dg2_mpllb_get_freq,
-> +};
-> +
-> +static const struct dpll_info dg2_plls[] = {
-> +	{ .name = "MPLLB A", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_A, },
-> +	{ .name = "MPLLB B", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_B, },
-> +	{ .name = "MPLLB C", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_C, },
-> +	{ .name = "MPLLB D", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_D, },
-> +	{ .name = "MPLLB E", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_E, },
-> +	{}
-> +};
-> +
-> +static int dg2_compute_dplls(struct intel_atomic_state *state,
-> +			     struct intel_crtc *crtc,
-> +			     struct intel_encoder *encoder)
-> +{
-> +	struct intel_crtc_state *crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct icl_port_dpll *port_dpll =
-> +		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-> +	int ret;
-> +
-> +	ret = intel_mpllb_calc_state(crtc_state, encoder);
-> +	if (ret)
 > +		return ret;
-> +
-> +	port_dpll->hw_state = crtc_state->dpll_hw_state;
-> +
-> +	/* this is mainly for the fastset check */
-> +	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-> +
-> +	crtc_state->port_clock = intel_mpllb_calc_port_clock(encoder,
-> +							     &port_dpll->hw_state.mpllb);
-> +
+> +	}
+> +	drm_printf(&p, "pcode version: %d.%d.%d\n", version.major,
+> +		   version.minor, version.engg);
+
+use %u
+
 > +	return 0;
 > +}
 > +
-> +static int dg2_get_dplls(struct intel_atomic_state *state,
-> +			 struct intel_crtc *crtc,
-> +			 struct intel_encoder *encoder)
-> +{
-> +	struct intel_crtc_state *crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct icl_port_dpll *port_dpll =
-> +		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-> +	enum intel_dpll_id dpll_id = dg2_port_to_pll_id(encoder->port);
-> +
-> +	port_dpll->pll = intel_find_dpll(state, crtc,
-> +					 &port_dpll->hw_state,
-> +					 BIT(dpll_id));
-> +	if (!port_dpll->pll)
-> +		return -EINVAL;
-> +
-> +	intel_reference_dpll(state, crtc,
-> +			     port_dpll->pll, &port_dpll->hw_state);
-> +
-> +	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-> +
-> +	return 0;
-> +}
-> +
-> +static void dg2_dump_hw_state(struct drm_printer *p,
-> +			      const struct intel_dpll_hw_state *dpll_hw_state)
-> +{
-> +	const struct intel_mpllb_state *hw_state = &dpll_hw_state->mpllb;
-> +
-> +	drm_printf(p, "dpll_hw_state: mpllb_cp: 0x%x, mpllb_div: 0x%x, "
-> +		   "mpllb_div2: 0x%x, mpllb_fracn1: 0x%x, "
-> +		   "mpllb_fracn2: 0x%x, mpllb_sscen: 0x%x, "
-> +		   "mpllb_sscstep: 0x%x, ref_control: 0x%x\n",
-> +		   hw_state->mpllb_cp, hw_state->mpllb_div,
-> +		   hw_state->mpllb_div2, hw_state->mpllb_fracn1,
-> +		   hw_state->mpllb_fracn2, hw_state->mpllb_sscen,
-> +		   hw_state->mpllb_sscstep, hw_state->ref_control);
-> +}
-> +
-> +static bool dg2_compare_hw_state(const struct intel_dpll_hw_state *_a,
-> +				 const struct intel_dpll_hw_state *_b)
-> +{
-> +	const struct intel_mpllb_state *a = &_a->mpllb;
-> +	const struct intel_mpllb_state *b = &_b->mpllb;
-> +
-> +	return a->mpllb_cp == b->mpllb_cp &&
-> +		a->mpllb_div == b->mpllb_div &&
-> +		a->mpllb_div2 == b->mpllb_div2 &&
-> +		a->mpllb_fracn1 == b->mpllb_fracn1 &&
-> +		a->mpllb_fracn2 == b->mpllb_fracn2 &&
-> +		a->mpllb_sscen == b->mpllb_sscen &&
-> +		a->mpllb_sscstep == b->mpllb_sscstep;
-> +}
-> +
-> +__maybe_unused
-> +static const struct intel_dpll_mgr dg2_pll_mgr = {
-> +	.dpll_info = dg2_plls,
-> +	.compute_dplls = dg2_compute_dplls,
-> +	.get_dplls = dg2_get_dplls,
-> +	.put_dplls = icl_put_dplls,
-> +	.update_active_dpll = icl_update_active_dpll,
-> +	.update_ref_clks = icl_update_dpll_ref_clks,
-> +	.dump_hw_state = dg2_dump_hw_state,
-> +	.compare_hw_state = dg2_compare_hw_state,
-> +};
-> +
->  /**
->   * intel_dpll_init - Initialize DPLLs
->   * @display: intel_display device
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index d408ccf6f902..f4b84733a58c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -169,9 +169,31 @@ enum intel_dpll_id {
->  	 * @DPLL_ID_DG1_DPLL3: DG1 combo PHY DPLL3
->  	 */
->  	DPLL_ID_DG1_DPLL3 = 3,
-> +
-> +	/**
-> +	 * @DPLL_ID_DG2_DPLL_A: DG2 port PLL for PHY A (PORT_A)
-> +	 */
-> +	DPLL_ID_DG2_DPLL_A = 0,
-> +	/**
-> +	 * @DPLL_ID_DG2_DPLL_B: DG2 port PLL for PHY B (PORT_B)
-> +	 */
-> +	DPLL_ID_DG2_DPLL_B = 1,
-> +	/**
-> +	 * @DPLL_ID_DG2_DPLL_C: DG2 port PLL for PHY C (PORT_C)
-> +	 */
-> +	DPLL_ID_DG2_DPLL_C = 2,
-> +	/**
-> +	 * @DPLL_ID_DG2_DPLL_D: DG2 port PLL for PHY D (PORT_D_XELPD)
-> +	 */
-> +	DPLL_ID_DG2_DPLL_D = 3,
-> +	/**
-> +	 * @DPLL_ID_DG2_DPLL_E: DG2 port PLL for PHY F (PORT_TC1)
-> +	 */
-> +	DPLL_ID_DG2_DPLL_E = 4,
+>  static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+>  {
+>  	struct xe_device *xe;
+> @@ -221,6 +239,10 @@ static const struct drm_info_list debugfs_list[] = {
+>  	{ .name = "workarounds", .show = workaround_info, },
 >  };
 >  
->  #define I915_NUM_PLLS 9
-> +enum intel_dpll_id dg2_port_to_pll_id(enum port port);
+> +static const struct drm_info_list pcode_info_debugfs[] = {
+> +	{ .name = "pcode_info", .show = pcode_info, },
+> +};
+> +
+>  static const struct drm_info_list debugfs_residencies[] = {
+>  	{ .name = "dgfx_pkg_residencies", .show = dgfx_pkg_residencies_show, },
+>  	{ .name = "dgfx_pcie_link_residencies", .show = dgfx_pcie_link_residencies_show, },
+> @@ -567,6 +589,18 @@ void xe_debugfs_register(struct xe_device *xe)
+>  					  &inject_csc_hw_error);
+>  	}
 >  
->  enum icl_port_dpll_id {
->  	ICL_PORT_DPLL_DEFAULT,
-> -- 
-> 2.43.0
-> 
+> +	/*
+> +	 * Pcode version read from PMT is currently only supported on CRI and BMG platforms in PF
+> +	 * mode, as both platforms support the necessary telemetry read mechanism and have a fixed
+> +	 * PUNIT_VERSION_OFFSET.
+> +	 * Attempting this access on other platforms must be verified before enabling support.
+> +	 */
+> +	if (!IS_SRIOV_VF(xe) &&
+> +	    (xe->info.platform == XE_CRESCENTISLAND || xe->info.platform == XE_BATTLEMAGE))
+
+maybe move this comment/condition to some helper function
+
+	bool has_pcode_version(xe)
+
+> +		drm_debugfs_create_files(pcode_info_debugfs,
+> +					 ARRAY_SIZE(pcode_info_debugfs),
+> +					 root, minor);
+> +
+>  	debugfs_create_file("forcewake_all", 0400, root, xe,
+>  			    &forcewake_all_fops);
+>  
+
