@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACEBFCD98F2
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jun 2026 19:12:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAB6DCD98F2
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jun 2026 19:12:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E4C710E11B;
-	Fri, 19 Jun 2026 19:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8290710E104;
+	Fri, 19 Jun 2026 19:12:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GPGjTdpk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VkI1muqr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC8F510E113
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Jun 2026 19:11:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 680B310E104
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Jun 2026 19:12:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781896318; x=1813432318;
+ t=1781896329; x=1813432329;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=k7GeUb3N4ufHBl8Qp3uTzLv5UDpacvgReQhKpM+qIOA=;
- b=GPGjTdpkzXqD4h/3LjbV3WAOlgzdObFf4OoPICzaj9nRC4eoYixzxMUT
- nhOXQCvK9fLSCzqSKSdayBH70KDLpWhqqmsIgT1qKaRWeA06WA+jRenS8
- aSJ85jBDVU/N6Q7S0HzdaxV7vGswxCXxh4++1Osr1RdTaqvbP/J7l7/Bu
- lYtomCZUqm5zOBEwXqqs/aEvodxwS2ZhIc8/byiAw/ts+vDLakwJQo7ko
- ZAnfksTA+qI5VeOy3RznYi1yJ5ShdiL8BrTGAZxq1e+LXF8UmL0ik+fWL
- 2s8fDknG2L12VYlKY2TYX+MbborUkj25n/JSf5yI/6GjA1qXOSDAwnafW g==;
-X-CSE-ConnectionGUID: SZaovOOcTbqU1k30Co6vgw==
-X-CSE-MsgGUID: ztW8+IKlSQKucWn2aGhpGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11822"; a="86585362"
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="86585362"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2026 12:11:58 -0700
-X-CSE-ConnectionGUID: MM78XadWRuSiADGeQDYxRQ==
-X-CSE-MsgGUID: MS8IAL4dSC2Zyx8avlJfVQ==
+ bh=lyVaGSMUd0HbYYBrHl8JCSrKv2polr2voMRImxH/HSI=;
+ b=VkI1muqrjgEYQuoWfROFuqM1QP05NzSjT+e7ZShFTE35TYXwbT+QZuD6
+ RlhWmEYwCO8noMsscWrreI3BtJP0zm+23VPSchDIAV2Y/tbQdgnEi5pF8
+ wFq9guKmhnrOWGD5Mc+IG0lCEb/TpL1WtJBhxU9S4zkDhMVRhyk2tPeo2
+ Fhlkj38cuNUHdKXlCPAjkXe+70R2Wiz4i1nVCVxv9cPsC9q/x99jTj1j9
+ dIguNzrkaBDhc/ylIApTKsYEcjFOB+rPUvv23pvgo/1fEzlVvXTrx5Bif
+ UQ6EaK3JQH0JTIo6aS+XCYsrWPHGz847YB3sTz5bBsTF3YZ2WUGI6jVHY Q==;
+X-CSE-ConnectionGUID: rDlfpkm/S+KXFEeS2r/TRQ==
+X-CSE-MsgGUID: kIm5cZl0QNKfxx2oCJmeVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11822"; a="82744031"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="82744031"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 12:12:09 -0700
+X-CSE-ConnectionGUID: TBsssJIrTHmjJXs+UsmGGg==
+X-CSE-MsgGUID: 3eks8JxTS5OwYbOZMVs7Dw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="272386597"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2026 12:11:58 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="247553296"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 12:12:09 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 19 Jun 2026 12:11:57 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37; Fri, 19 Jun 2026 12:12:08 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 19 Jun 2026 12:11:57 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.4) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 19 Jun 2026 12:12:08 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.22)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 19 Jun 2026 12:11:57 -0700
+ 15.2.2562.37; Fri, 19 Jun 2026 12:12:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q14is+wBEFv4O2WsJFpuaY7QNNj2mSKce11vnuwjVm544aeqIFSrupwSE7N5Kb0FW+1EH2QhfdPMYMdRuPOQsmN37lJhSFMTBMIAhWsX3NgoydKDC77LqAVRPVN3j25r+bK5zj7cD7iIfCcbu2uHcxnoyzZJGfdPzub71R2yIcklRB3mCtJiRJRdsYvdWkk6KKYPXp7aDWRsA9uLAtKz44OXcva2jSaRDmIHQhdHesL/twkrMkKAqkYk53AvTsYPBjoX78zWJKbJ5IeiK85nsspyi8gslSFvvZpuJvJmzl1WBwaiA0XjB9FBShnhEUQzP6XTncK6MktuQkRDM7bN6A==
+ b=j7GYdQKzk+18QKU83URv+CHVhgLDMiB4H41QLKCpltx4yt6vPSxMlCDhF18COVIJnxTnKeBo/J3PWDcMj57ttrIszFmdbGxxPIT0rcnV/Wy6Ca1iaDNR6G5rSGy7UhhA5YveJuBh28bSHNN9VzWtkWcYetoyyH58Uf3gy9W9D8KVEfolsmXPAM0YkDXqygoYoBAbKmTUx5SQrYEeVDyTyGLF8Ae5dGeDqN2chhqZvE1XPNIkQcBJSkrnbjelbgtTJDUzQ18eJPNkhakgt5G5JinKSFq3j0t6j0rGb53PmPDA9MDtqUHtp31FFCRiXm4DiK4bOaqBYc9gmmJaq8Rh7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wgQ/ITpiqBXRPMumtqNkb+rAdxmoULQKXu/4ESIyaG4=;
- b=lgVMBhYX+TvxdKnDE88o41wE7FEPEJdEYgQ/v5ILZJnino4lKuAtQlGfWyf5WDELQM4so008uZfKdJtq58iXuyT/WxDdMTvRIbRf+F3ZbhnAa1/xrmMexnSlwyJscK9M9wI+10NZ/NSqsM6Nf6wCg9Oq1KaMj9MFNlEkgQd/JGIG6pgBZaWeI00/okqafaCsayHmaH/n8pjaQkJe3HUqMX9KXpE1XshpryKxXTIClcnQVP+Gd+uwxHsk2AuFt5vEu4u9rdeKibDGy9dt3T/Q8SopwTP0jIXcYTGsn8WCQribX5tWe3y04t+nKQ+qSrKZl5JhHWFp0f1j9pdI8IJ1Uw==
+ bh=hCloCLwRA9taEJ3V0VwqYrfQ4/GD2TkXRBnFAplX+V0=;
+ b=ilMb54jHA0hS40ZJ1twBAFr9JRrnOUBHk0Zj/c8WXteVs2ftMtO8XO/wNudCERpkms7XicoWwj2TtLWuczmRWjFLKWR3VCeYKjoZ8DrpErellyTn0KyWmLs797XK8Xxr6fWdfEEZgzrhTbpoHtZQStPYbBbR6X3Wp1K9UXI6K06FUxFt8VTLTuYaWqQWLoWxwgPswZdQZq1q7QZGVT5qRbr07TNfEHNmp7vPyqg7aIdnOPKGfJs2Gieb03id8I7DnOoBSlqR6vaj6isY/mYTUUF65PjTr+EUk/XUrXMeQcIpTNFsDYkDwp9K6v3CboXkz0ifunu6KNVfHLg4jbwQiw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,90 +69,90 @@ Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
  by SJ0PR11MB5867.namprd11.prod.outlook.com (2603:10b6:a03:42a::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Fri, 19 Jun
- 2026 19:11:54 +0000
+ 2026 19:12:03 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%6]) with mapi id 15.21.0113.015; Fri, 19 Jun 2026
- 19:11:54 +0000
+ 19:12:03 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Michal
  Wajdeczko" <michal.wajdeczko@intel.com>
-Subject: [PATCH v1 2/7] drm/xe/guc: Use DB manager to get total number of
- doorbells
-Date: Fri, 19 Jun 2026 21:11:02 +0200
-Message-ID: <20260619191107.2628783-3-piotr.piorkowski@intel.com>
+Subject: [PATCH v1 4/7] drm/xe/guc: Decouple the GuC DB manager from the
+ submission state
+Date: Fri, 19 Jun 2026 21:11:04 +0200
+Message-ID: <20260619191107.2628783-5-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260619191107.2628783-1-piotr.piorkowski@intel.com>
 References: <20260619191107.2628783-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DUZP191CA0012.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:10:4f9::6) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: DUZP191CA0033.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:10:4f8::29) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|SJ0PR11MB5867:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06eb25a2-f5f5-4287-f846-08dece36a003
+X-MS-Office365-Filtering-Correlation-Id: 80326d2c-5c24-4a01-4d6f-08dece36a528
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|1800799024|366016|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: YmL0LZZggkRbhHxo2XML5LpTGXm757TC2jNXkuNk0FdObZjheNrCES2iqoyZt4Q868k1O671wPJZ3YipfsWlmH6zl6xrdBr804E+e8gJSVeKrWhdj5OhccNNvrOY403CaNHOedDZ+QKX88NHgqeio4Te7ZjqoOrVOjvozWb0zqA94Fn/ms7GGN8LAK6L9FnOFTFG22zAh5bz8xw720M6MOawUQWJeJ1N5YSJwlTgW6J5tsO+H5o/yGKf9DIhdiL/kj2xhDK+XcEiY/YKB2ef1rCuJ9N6sFhEzdqX2eYMFMzHQaU1AQIy53IsoOQVu2Q1TVsAOrL2EXOjB6fYiDPnMx+svngyQr3Zkil3Iu92JUKxwle1fPG762PNWh0oIaFXp14eFx2DfHAIlEZibu2BKNrELbZnTRmJPsgv81y4lxJgo3UdD27DYQSY8BQ0praYC/ru5mA18MjkV7J82BM6vYou4n2RHdMuEbKEztUMPZ0hIzqhc1DRIGBulMEz4Oa6cHSETh5FghiVJabjuaVR3ENmO+Lfcne/7JG2aoslmoL0HztDPc9H2/atCF8Jz0fOIxHqV74q5z1NQd9jjaKjNeULN51V6/bjySsy923zmHxRvy8mlC5hKrBJD8c5GMzloD0b3PtKTqpOSto3BAmPsJHlDylnLdNXojwhbLtHvKk=
+ ARA:13230040|376014|23010399003|1800799024|366016|56012099006|11063799006|6133799003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: +Ki1TsluoLv3Qo/18tNhe8tiUiMoVRgo/WgXEi9hd4MfBImZyxszI/akBds1puZ2eLm7a6D8mhn1t1MmCLSvkW5wmnEt4up7IZNVyvTfgHrzxAwK6wslCS9PerB7M6Q8Pc7VY3sJ+CeugAHSvpnxG7rzFSdix3tARjfdZecR3t6sT/CrPpyrGV3o7yUzkNTMNEQZTD1oOOUthFIacIbaolrSIccuES7OXHfOgD4WnJ557ybyzM4TgaSWgWAkCoEC09hqAjRKYAUiQ6VH/NUbmJDwAEIbH8fF3dI5tbPa5458WIxFTmBA40KeUCSvR0NBgWKFQk7W3ZgnrEc3kb7Tm9C9rP+svCWdc/CYNRMYdVWwdQdy3ieT691Mdyw8/b7inNyEe3Xk86eKI8uhehq7bzAIzLkOSMkVos9UongGC1zdCEPqKvg6CdRcDU85C/TsL7aSvmOqFJKQVtKKfRRZc1Z2FZ9RpVfAurfVD8lzrYf0WiNNr+GwvUY6CeG6gRR93KcBYv/tIon8L+9y52pNE9Y+8N5E0giRyfrZr3nIHYo=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(56012099006)(11063799006)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(56012099006)(11063799006)(6133799003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UW9uZkZiNXBVYXM0L2dmWWhjZXA2YlRCTm0zMDlKdUY1NzFrNFVReUdJY0Iv?=
- =?utf-8?B?WXBFKys1NE9FaHFqUXY2ODhGZC83ZVYvTDd6MXVITXlISmlCOTRRQ2dtb1Bu?=
- =?utf-8?B?NU5vUFlwWXBqK0ZIaGFPbExjbWxjTXpURGZEaEVMMTVqcnlzRUp2dGEyeVNh?=
- =?utf-8?B?YU84VlRCdkFER0M1VU1Odmo1VVZWajEzZm1aUFdHc2Rpcm82akdqUXBoWWU3?=
- =?utf-8?B?d2ZtT0pyRW9rV1ZzUkRXanhmWFJoVDNjWEVsK09pT1RhczA1emdYak5YWXBP?=
- =?utf-8?B?RWp6NkRrZVhjVWpIb0NscUtaRVQ4d3hIb3pjd21zaEYvK3ppeEFsVEkxczVD?=
- =?utf-8?B?V3VIYWVWQi9BSmoxWm0xSVRaL293MDBmbkVPL1JXa1VDTmZaTzZGWGtGUW5s?=
- =?utf-8?B?NzNScGluM21oNWk3WjFVT3gyMzdHZTcxL0o4cHNFdmVEWE1mWFNUZ01sUnZ3?=
- =?utf-8?B?ZUdCVDVTcDVSazlHeEd2YmhvbE5URDVxT1hTVy9ZMzVaUnRCYTAwaXBRLzM3?=
- =?utf-8?B?NC9LNFV3SXJ1Zk5tMVZXU3hwOFUrTEp5SVMrc1o2SG52b3FOdHpSdzFkczJv?=
- =?utf-8?B?dTR2blMxR2tEMXN0ZUY2Tlk4RURjK0NyVkw1cFlUenFqeEpPbFFqZTJiSkJ1?=
- =?utf-8?B?SDh2NFJtTU8rVWc1eUlxSTc3NmozcVNEdUtNaUl2RWkrTFk4ejhwekFNY0t6?=
- =?utf-8?B?eGw4WWFwTmhJc2hMbEJUVFJrK3RQYzJBdS9YSkthRXFtdkhIUVZuV3hzZCtK?=
- =?utf-8?B?UnI1dWU2NndneG5va0lhRXBHQ1Q3ZGl1RjZaYTJPbldNUFpiaFg5WUYzWVZC?=
- =?utf-8?B?K25YTGd1eHJBc3Z5ZkVWVmR1ZkI4SVY3K0ZoYUJEeFE0ckhXVTNNM2FGbkI1?=
- =?utf-8?B?YXExT3VmSnJrWlAxR1dNS2RoNmxKcUE3TkJ4endhL1JTdHBtQURvbjNIRnNp?=
- =?utf-8?B?Q3pBYmJjelQzL0FMa254ck9BRHVKSzhLd0RmZlhkVTZsSTRuSTM3YlJzd2dx?=
- =?utf-8?B?SmtHZjhxcHUyYWNMQTAzbDVOa3YvcjFQS1RVSlcyM1lpaCsybGpLT2Q2OEZl?=
- =?utf-8?B?V0swZ2FjcFUzcGF3OCtFZlFRNlA4RTFOcXF6RkJyb0lERU12VXlSZHY2SEZu?=
- =?utf-8?B?Q084eFZjeEJVeW1oWWJBUFQwRi9HQTltN2g3RkM4MENKZmlUYVpWdGpSSVVl?=
- =?utf-8?B?SnRVdDZxNGVrR2lUdFNIYjVHT0ZuSHBwOVpud2lWa2RDa2hXKzZubk5CZWo4?=
- =?utf-8?B?Z2Y0QzBZblEwNm1QT1plTTEySWx3RTJvc3V3eFAvUC9HTWFON3NGNmZYem5j?=
- =?utf-8?B?eEE5SmZZM2pkZEViZTdxbjJtNUk0d01WZWlsbUgrVmlUNnF1eGhsVGFjNnl2?=
- =?utf-8?B?YUx4NmZFVSsrc2xiVTljN0F5NHFkVEsyd2E4aVBRSlRoakswREpWcDN6SUtQ?=
- =?utf-8?B?TGVGK1Jjalo5Sks0emIzaEt5aFlFKzkxWEF6QkZ4L1gyTFJSM1ZUNGpnS1lL?=
- =?utf-8?B?R0FuQ2lRWms1VUZuaDZwa2kybnRTTUZWcEttU05HMzF2a0ltZDVhNHRULzli?=
- =?utf-8?B?WjI0SmJjOHJ6UmdWV0YyNmZ1c291ZDkvV2x1ZGJucklmMTJHdnM3TmFJL0hi?=
- =?utf-8?B?b0I2U3h2S0tFVEU5SXR2QXpWN2x3MU16bnk5anNrcVFLNnFLODk0NlpDR0hI?=
- =?utf-8?B?cmJXcEUrbkc4TzBsclp0WTN4ajAyT3RvdE1SRzM5OXk2RnZ5SHZSK3JoKy95?=
- =?utf-8?B?UUJ6R1V2WmxZTWJiZ014dzViTXRTTnptRlNvOFM5clVlMmhNc0dPOGZHOGVs?=
- =?utf-8?B?VmtPdC9GaTk5ckl3RVczeDIzNURPWjlucGdKRkNEY2JyQkdVOFhlL29CMUx1?=
- =?utf-8?B?eTdmVUJUanlBbmJkNDIvZGR4Q2tXVHVlc01CWjVkeERqWFNFYXg4UmdMdHp4?=
- =?utf-8?B?cE9HeHBlNE41NllXdnRrMmFMQ0NkR3N3aGI0QW9UaXAyZld5bXQ1a0V1WWd4?=
- =?utf-8?B?cVBJQTVLVHZLMzg3WVQxTHBmdW0xNHhOTmFLOUZQR1p0K3ZsSlp4SmtpVmU3?=
- =?utf-8?B?WGFHZkZhL3hkRjZrZHIxK3hXcUtNcHZlS0x6cW5GOWhrUERDYmt5NnF2bnhj?=
- =?utf-8?B?RFEzWHo3dTlxcUo2VUNOLzNmak53UHlVN3FuVjhWaDdWUk5CMWliRWtXSGNE?=
- =?utf-8?B?V0VSWTFRbndjb0dIdzZmbG1kSkUvYVc4U0ZIWVlsSXlTME5VQURVanhXSUx5?=
- =?utf-8?B?blIvRnZLNWNyc3hhNG5YcjQxdGJNUmZ0eWw5TVlZdjdRRzQ2bVowcVVqMkt1?=
- =?utf-8?B?T3dHWTNWeDdsNmE5V0E2SXFjbVV1Q0QvMVVGOVBiRHZOWkNZWVpEVy84UVMx?=
- =?utf-8?Q?J7xbiUheWj4Z3CsE=3D?=
-X-Exchange-RoutingPolicyChecked: YR10CGO7hPCSH2pk4T9GXoWOWUStNTb1GEJa+MovdTgtEJpO9tR22TaFRbkmQ0p4dZYsFZ1kDFHy3tbJl4Cy0cdJVwHuq16AK2Yd6IgOG9gAA/RufeRpdRtMsFKwOrmZ53bjv+9CMUIXJTt5HTAgia3XC9gRO4WH4oe8bfMkXdhQY9gwHsKi4T6QOY7+a6BYCKbo8pFbTnPNNGr1HwcPAjcYJWJ6rAPQNYotR3+4hQF8Ri1q654WaMopymWHcI8pkXQkDtQOv3L9pjRG8sDbRPv3aptBLEJ7RwbP7quTIJIky1USRjD9LYTuB9PE/16aCeYR5UsClicmuUxHrYbcTA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06eb25a2-f5f5-4287-f846-08dece36a003
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVM4eUJmT0pwM2UrdGpSNEx5dktJaEpMOGp5cUdwY2NUNExPYWNMeWE3QnI5?=
+ =?utf-8?B?WFhVbXhYaXphbUlBNDRMMGVMMTVIMDhqRTN1UDZPQ00rL2JDWHV6RmpzbSt5?=
+ =?utf-8?B?RVk1WGR3M0ZEWEZWeTZZa0h1dVhuTUlOakJOc0hCRFg0QWZRb1ZkWmsrU3Ux?=
+ =?utf-8?B?Y2VHMDdYMWwzdUxla0pzSjVTNC80WDIxemYvUVhNTS9UL3N3M0NWR3dsRlBH?=
+ =?utf-8?B?MnRiRDlRWFNITUgzcGR1L3FPb3R2RTh6SHYxaHBJSS9rVVlpL3psZmczQmZv?=
+ =?utf-8?B?YkNzcUFFR1RwbDlKcWxGWWpMcERxczgzSytPRkxoZXlTUk9IbmZLYTNWNGl0?=
+ =?utf-8?B?Q2s5d2tsanZ0bTZneXBNcm9Tcllvc0FLUUdOQXR4MGFZMzc5aWFVSE5kWmpL?=
+ =?utf-8?B?bGJLRnlGMDdxT2h2MnZkZkFRSDArbkp3MXhXREtpVWJVZDNvTzJNSUdPU3cy?=
+ =?utf-8?B?SHd4MFFrRVF5MHZLTzJFcjdtTWZ2b09OQ01qQXF0VTFtSnpBR1BWaDNqOEh2?=
+ =?utf-8?B?a2lhcmoxUlZUMmFKaENMaC8ydmd0M3lMemlyNi9SRGUyWTkvNnJuS2FTZFJY?=
+ =?utf-8?B?cWtkNGIxYXN1MU5GVTdlYnMyeXZ1YVlkV2hwOHdydEQweTd1QjhackwwV2hI?=
+ =?utf-8?B?L2VrYWdjQm91UFphalZiT0lXa3FoWmRvZDh5SmJxTmdVbEVsMVZJM0RjYjg3?=
+ =?utf-8?B?YXM5STBnaTJJT1dmSnFmVEhwbGdoVUFFTXcxY2N0RTVYK1FuczdQRWZnbXdX?=
+ =?utf-8?B?UXJ2MmxVMGd2RHByN2hVZjB1L0dRRUk3QVdKclhYT2NXMkVsK05ZMEF1eWxL?=
+ =?utf-8?B?WnRKeVdqdjFsaC8wREovazJjZ2w4UFZKbzFGc0ZEb25sZzkrcHZXOU5EcDZv?=
+ =?utf-8?B?dlpWeEZyK3dLc1ZXNTBqbzdiMFgyR3BVbHA4OVh5T2pRWDZaNlNoYURTRGto?=
+ =?utf-8?B?N3dVYy8xRGJZbHhiL2JaMmY1c0l5NjloUTBnWEFTeEcrU1ZCckhYc1dpRFU3?=
+ =?utf-8?B?dURUOGUraWR3NjlISXVQY1NuYjZ2U2l4cG9lK3d4SzJMekxPYkNMNFh6NXRZ?=
+ =?utf-8?B?MnJQUFl4cUczSmZzL09DckJ6UVNFWTJ5OE5BdUNaN3N5aWlta2tBZWt5RHlD?=
+ =?utf-8?B?aVY5VDA1YjdMWTBUSGUxbm1ZbnM1S2g0cXE0NjFGVnRZb3ZhKzRtOVZXVFRl?=
+ =?utf-8?B?SWdqT1NDVzVwcGdjdkF2YVJHa3cyUkExTDZsaXhGOUprM0xoM1dkM1c3TGR2?=
+ =?utf-8?B?MkVIRXJ5RG14ci9uYmdpV1FSNGtrdXhUaVpTUnB6ZVZZTE5mSEZocmE2bk1q?=
+ =?utf-8?B?czdGOUdhNTVPR28zRWFTcXdRV05HR2ZWQytsNENVY3gyS1B1dDkvRWZBUG5O?=
+ =?utf-8?B?S1B6QldrNmNHWXVJZjhKVnRDWmxic2xzVUpXTjBoRDBaODVieU01d3crTVhI?=
+ =?utf-8?B?QzhmcUp3WXQ3MzFWSndxZW9CaVR4WXp1dURJbzB4MzFGdnlZTVNFZjE2di9v?=
+ =?utf-8?B?MGczNGhxMVYvWUE5M3k4UDQ2RmRVM2JlbnVIOWJGaGRMZjlnaHY3SWJEZDVW?=
+ =?utf-8?B?NkVvUGVNQThiRkszRFYxNjlxVEpIVUhiUVlMRkhLKzREZi9LeGdIdGovUlE5?=
+ =?utf-8?B?ZHRZUnFlNmpKYWM3ckVnOXJGOFJ5TVlLQVlnZGZyWWo1RUp4M0RUdVY3c0Qw?=
+ =?utf-8?B?bytvQ2V2OE1jeXFTZTF6REYxcUtTNEZhL2MzQWVHMUNIYzk1b0wxOUJTOWhy?=
+ =?utf-8?B?b0VkU1NMZWptdzhEdWllTU00M3hsUzJDZjdqQ3RKOEwzZXVHYldJTUlRQzNj?=
+ =?utf-8?B?V21ORmYxdUhTWTRmV0VuNmpXQW5ZZ2ZST0NXUGdrZFBBbmpRQnV5UHEzaGVn?=
+ =?utf-8?B?UHp4S0VuMHpGcW5tWENqcTU5T1hvUTZybERrbm14YW5rNkdQN1RsdTVjTElj?=
+ =?utf-8?B?bTR4OHk1TVZUaVNaUnVXSHNHMXVCZ29ZQkdCTUVHVGtkcmt6eUlYZHJNU2Vr?=
+ =?utf-8?B?RjZhVlJLME5zWndDOU5yZjlZUkRnQktlN0JKMFBZWC9FUm90SzFyNDd4L2hB?=
+ =?utf-8?B?V0hzWlBHcksxNCs1dkJQdG1QcWJWYXlCK3V2UnAzbUZzZFRNMWx2eVdmRXZO?=
+ =?utf-8?B?UFYrRThIYlhYMHQwd1krZURUeXBIU2ZUOGJhY0N6dS9vSnJCS0hCaEdwUGM3?=
+ =?utf-8?B?WXJkalBlczBhK20rV2NHdno3ank4bDB2UURJelBHQi92QWR0aVZXYUtXekUz?=
+ =?utf-8?B?MDdUbnUrVHFRcHU2eXFJT0o1U1phbXJzbVJEdm9nR2MvWW9UUFpWN1orOGtW?=
+ =?utf-8?B?TmlDTDRSbFJuaTJ5bUJXN1MyTWl3S3owSXkwNzlDVVMwaUZlS0FReFNvNXVy?=
+ =?utf-8?Q?BBqv3wwfwI+0iuoA=3D?=
+X-Exchange-RoutingPolicyChecked: d3UyCoQNQToT2EOThcP2QR5UH6XmWYvw3RpiG9kXTaaeCd3E/4bK5i9xdufw98d/GtnmBwGyB2drI4Pf9WCujcYo3bBwN7226XuqsCK4UGWpA6DpKSC/yLhWHseco9y/YE4j8x4sHRbFnSU7tWI7R8cHOilwUbIw2Ftd4LRT/hnjle8+3nWQqlvD0LGKk4ocbcd+614Oc6LjcW0hwGEvwB9t79R+0KurA42fz46zvILyYBqtAWdN2rbXCDelYC187bREgsWokryiZprJZnZQy1JPtpsYaYMS3tsYfdycekN8X7aG8sS8atbywU2MzNol0oqL1vREV4/Fwxn/mXG6eg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80326d2c-5c24-4a01-4d6f-08dece36a528
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 19:11:54.3350 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 19:12:02.8892 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aLz0euTdaPBaLHTW60w+4QlRP5c0are5TsldWsEMx9YwzeF4hzHCRrhOCbEMtdauMpwS9H8Ps5d2SQrNSBUArbqhDe6SfkAjqU2O2itWOxI=
+X-MS-Exchange-CrossTenant-UserPrincipalName: fkP59IBRTVKooL8zCP3+JFtwLrz72VktLAVqwNZo8S/FbbLQr6FkzYiPwr5YdCwgLoSoGNStLwyh3D+GanSA0gsNNAENXWR7z0e4/WDAeYc=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5867
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -171,97 +171,227 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Add a helper to return the total number of GuC doorbells
-managed by the DB manager and use it instead of the fixed
-GUC_NUM_DOORBELLS constant.
-Update code to use the actual number of available doorbells
-from the DB manager instead of relying on a hardcoded limit.
+Refactor the GuC DB manager to remove its dependency
+on guc->submission_state.
+This allows using the DB manager outside of the GuC submission path as
+a standalone resource pool, which is needed for future patches where
+it will be used as a separate pool of doorbells for SR-IOV VFs
+provisioning.
 
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 10 +++++-----
- drivers/gpu/drm/xe/xe_guc_db_mgr.c         | 11 +++++++++++
- drivers/gpu/drm/xe/xe_guc_db_mgr.h         |  2 ++
- 3 files changed, 18 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c | 20 +++++++++++--------
+ drivers/gpu/drm/xe/xe_guc.c                   |  2 +-
+ drivers/gpu/drm/xe/xe_guc_db_mgr.c            | 17 +++++++++++++---
+ drivers/gpu/drm/xe/xe_guc_db_mgr.h            |  5 ++++-
+ drivers/gpu/drm/xe/xe_guc_types.h             | 20 +++++++++++++++++--
+ 5 files changed, 49 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index aa77bd4cbca3..7292d86a9e8c 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1221,7 +1221,7 @@ static int pf_set_spare_dbs(struct xe_gt *gt, u32 spare)
- 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
+index a87a7b4b040a..95a713f10034 100644
+--- a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
+@@ -15,16 +15,20 @@ static int guc_dbm_test_init(struct kunit *test)
+ 	xe_kunit_helper_xe_device_test_init(test);
+ 	dbm = &xe_device_get_gt(test->priv, 0)->uc.guc.dbm;
  
--	if (spare > GUC_NUM_DOORBELLS)
-+	if (spare > xe_guc_db_mgr_total(&gt->uc.guc.dbm))
- 		return -EINVAL;
- 
- 	if (spare && spare < pf_get_min_spare_dbs(gt))
-@@ -1264,7 +1264,7 @@ static int pf_provision_vf_dbs(struct xe_gt *gt, unsigned int vfid, u32 num_dbs)
- 
- 	xe_gt_assert(gt, vfid);
- 
--	if (num_dbs > GUC_NUM_DOORBELLS)
-+	if (num_dbs > xe_guc_db_mgr_total(&gt->uc.guc.dbm))
- 		return -EINVAL;
- 
- 	if (config->num_dbs) {
-@@ -1404,16 +1404,16 @@ static u32 pf_profile_fair_dbs(struct xe_gt *gt, unsigned int num_vfs)
- 
- 	/* XXX: preliminary */
- 	if (admin_only_pf && num_vfs == 1)
--		return GUC_NUM_DOORBELLS - SZ_16;
-+		return xe_guc_db_mgr_total(&gt->uc.guc.dbm) - SZ_16;
- 
--	return rounddown_pow_of_two(GUC_NUM_DOORBELLS / (num_vfs + 1));
-+	return rounddown_pow_of_two(xe_guc_db_mgr_total(&gt->uc.guc.dbm) / (num_vfs + 1));
- }
- 
- static u32 pf_estimate_fair_dbs(struct xe_gt *gt, unsigned int num_vfs)
- {
- 	struct xe_guc_db_mgr *dbm = &gt->uc.guc.dbm;
- 	u32 spare = pf_get_spare_dbs(gt);
--	u32 fair = (GUC_NUM_DOORBELLS - spare) / num_vfs;
-+	u32 fair = (xe_guc_db_mgr_total(&gt->uc.guc.dbm) - spare) / num_vfs;
- 	int ret;
- 
- 	for (; fair; --fair) {
-diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.c b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-index 6767e8076e6b..697bf8684ebf 100644
---- a/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-@@ -111,6 +111,17 @@ int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count)
+-	mutex_init(dbm_mutex(dbm));
+ 	test->priv = dbm;
  	return 0;
  }
  
-+/**
-+ * xe_guc_db_mgr_total() - Get total number of GuC Doorbells for @dbm instance.
-+ * @dbm: the &xe_guc_db_mgr
-+ *
-+ * Return: total number of GuC Doorbells for @dbm instance.
-+ */
-+unsigned int xe_guc_db_mgr_total(struct xe_guc_db_mgr *dbm)
++static struct xe_guc *test_dbm_to_guc(struct xe_guc_db_mgr *dbm)
 +{
-+	return dbm->count;
++	return container_of(dbm, struct xe_guc, dbm);
 +}
 +
- static int dbm_reserve_chunk_locked(struct xe_guc_db_mgr *dbm,
- 				    unsigned int count, unsigned int spare)
+ static void test_empty(struct kunit *test)
  {
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, 0), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, test_dbm_to_guc(dbm), NULL, 0, 0), 0);
+ 	KUNIT_ASSERT_EQ(test, dbm->count, 0);
+ 
+ 	mutex_lock(dbm_mutex(dbm));
+@@ -38,7 +42,7 @@ static void test_default(struct kunit *test)
+ {
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, test_dbm_to_guc(dbm), NULL, 0, ~0), 0);
+ 	KUNIT_ASSERT_EQ(test, dbm->count, GUC_NUM_DOORBELLS);
+ }
+ 
+@@ -63,7 +67,7 @@ static void test_size(struct kunit *test)
+ 	unsigned int n;
+ 	int id;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, *p), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, test_dbm_to_guc(dbm), NULL, 0, *p), 0);
+ 	KUNIT_ASSERT_EQ(test, dbm->count, *p);
+ 
+ 	mutex_lock(dbm_mutex(dbm));
+@@ -86,7 +90,7 @@ static void test_reuse(struct kunit *test)
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 	unsigned int n;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, *p), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, test_dbm_to_guc(dbm), NULL, 0, *p), 0);
+ 
+ 	mutex_lock(dbm_mutex(dbm));
+ 	for (n = 0; n < *p; n++)
+@@ -115,7 +119,7 @@ static void test_range_overlap(struct kunit *test)
+ 	int id1, id2, id3;
+ 	unsigned int n;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, test_dbm_to_guc(dbm), NULL, 0, ~0), 0);
+ 	KUNIT_ASSERT_LE(test, *p, dbm->count);
+ 
+ 	KUNIT_ASSERT_GE(test, id1 = xe_guc_db_mgr_reserve_range(dbm, *p, 0), 0);
+@@ -152,7 +156,7 @@ static void test_range_compact(struct kunit *test)
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 	unsigned int n;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, test_dbm_to_guc(dbm), NULL, 0, ~0), 0);
+ 	KUNIT_ASSERT_NE(test, *p, 0);
+ 	KUNIT_ASSERT_LE(test, *p, dbm->count);
+ 	if (dbm->count % *p)
+@@ -171,7 +175,7 @@ static void test_range_spare(struct kunit *test)
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 	int id;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, test_dbm_to_guc(dbm), NULL, 0, ~0), 0);
+ 	KUNIT_ASSERT_LE(test, *p, dbm->count);
+ 
+ 	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, *p, dbm->count), 0);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4023700ff2a9..092084b200b9 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -882,7 +882,7 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = xe_guc_db_mgr_init(&guc->dbm, ~0);
++	ret = xe_guc_db_mgr_init(&guc->dbm, guc, &guc->submission_state.lock, ~0);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.c b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
+index 697bf8684ebf..f810692ad8fa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_db_mgr.c
++++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
+@@ -30,7 +30,7 @@
+ 
+ static struct xe_guc *dbm_to_guc(struct xe_guc_db_mgr *dbm)
+ {
+-	return container_of(dbm, struct xe_guc, dbm);
++	return dbm->guc;
+ }
+ 
+ static struct xe_gt *dbm_to_gt(struct xe_guc_db_mgr *dbm)
+@@ -44,7 +44,7 @@ static struct xe_device *dbm_to_xe(struct xe_guc_db_mgr *dbm)
+ }
+ 
+ #define dbm_assert(_dbm, _cond)		xe_gt_assert(dbm_to_gt(_dbm), _cond)
+-#define dbm_mutex(_dbm)			(&dbm_to_guc(_dbm)->submission_state.lock)
++#define dbm_mutex(_dbm)			((_dbm)->lock)
+ 
+ static void dbm_print_locked(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent);
+ 
+@@ -74,6 +74,8 @@ static void __fini_dbm(struct drm_device *drm, void *arg)
+ /**
+  * xe_guc_db_mgr_init() - Initialize GuC Doorbells Manager.
+  * @dbm: the &xe_guc_db_mgr to initialize
++ * @guc: the owning &xe_guc
++ * @lock: mutex protecting this manager, or NULL to use an internal lock
+  * @count: number of doorbells to manage
+  *
+  * The bare-metal or PF driver can pass ~0 as &count to indicate that all
+@@ -84,10 +86,19 @@ static void __fini_dbm(struct drm_device *drm, void *arg)
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count)
++int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, struct xe_guc *guc,
++		       struct mutex *lock, unsigned int count)
+ {
+ 	int ret;
+ 
++	dbm->guc = guc;
++	if (!lock) {
++		mutex_init(&dbm->internal_lock);
++		dbm->lock = &dbm->internal_lock;
++	} else {
++		dbm->lock = lock;
++	}
++
+ 	if (count == ~0)
+ 		count = GUC_NUM_DOORBELLS;
+ 
 diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.h b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
-index c250fa0ca9d6..cbe163fe7ece 100644
+index cbe163fe7ece..e29e318e213b 100644
 --- a/drivers/gpu/drm/xe/xe_guc_db_mgr.h
 +++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
-@@ -11,6 +11,8 @@ struct xe_guc_db_mgr;
+@@ -7,9 +7,12 @@
+ #define _XE_GUC_DB_MGR_H_
  
- int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count);
+ struct drm_printer;
++struct mutex;
++struct xe_guc;
+ struct xe_guc_db_mgr;
  
-+unsigned int xe_guc_db_mgr_total(struct xe_guc_db_mgr *dbm);
+-int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count);
++int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, struct xe_guc *guc,
++		       struct mutex *lock, unsigned int count);
+ 
+ unsigned int xe_guc_db_mgr_total(struct xe_guc_db_mgr *dbm);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+index 0850918c28b0..717cac854724 100644
+--- a/drivers/gpu/drm/xe/xe_guc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_types.h
+@@ -21,17 +21,33 @@
+ #include "xe_guc_relay_types.h"
+ #include "xe_uc_fw_types.h"
+ 
++struct xe_guc;
 +
- int xe_guc_db_mgr_reserve_id_locked(struct xe_guc_db_mgr *dbm);
- void xe_guc_db_mgr_release_id_locked(struct xe_guc_db_mgr *dbm, unsigned int id);
+ /**
+  * struct xe_guc_db_mgr - GuC Doorbells Manager.
+  *
+- * Note: GuC Doorbells Manager is relying on &xe_guc::submission_state.lock
+- * to protect its members.
++ * Note: GuC Doorbells Manager uses the lock supplied at init time to
++ * protect its members. If no lock is supplied (NULL), an internal lock
++ * is initialized and used.
+  */
+ struct xe_guc_db_mgr {
+ 	/** @count: number of doorbells to manage */
+ 	unsigned int count;
+ 	/** @bitmap: bitmap to track allocated doorbells */
+ 	unsigned long *bitmap;
++	/** @guc: back-pointer to the owning &xe_guc, set at init time */
++	struct xe_guc *guc;
++	/**
++	 * @internal_lock: own mutex, used when no external lock is provided at init.
++	 * Do not use directly; always access through @lock.
++	 */
++	struct mutex internal_lock;
++	/**
++	 * @lock: active mutex protecting this manager.
++	 * Points to @internal_lock when initialized without an external lock,
++	 * or to the caller-supplied mutex otherwise.
++	 */
++	struct mutex *lock;
+ };
  
+ struct xe_guc;
 -- 
 2.34.1
 
