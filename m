@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 106D4CD4F26
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jun 2026 10:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A27DCD98F6
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jun 2026 10:47:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C22B010E07E;
-	Fri, 19 Jun 2026 10:30:57 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96D4A10E07E;
- Fri, 19 Jun 2026 10:30:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7025531840935602480=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1791810E067;
+	Fri, 19 Jun 2026 10:47:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EC3MIW9h";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B584910E067
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Jun 2026 10:47:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781866038; x=1813402038;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=xZNGct4ILYbyEENB3d8K+fhf5BIWAch/KEykoxNpDZ8=;
+ b=EC3MIW9hN89fLCN037UFeDyf/hHvWxbtuInqduATGusQ84ysyNL1ZBTN
+ Wzkv/mWFHK4ztDGakwdhUmKpIbSvAM5RcVC296wUJAVOETlCk1dQDnUiW
+ y3XLkruHa1ytuSaOFm3aE4Et2gELALSEukrdl63lHVKWLrxdKBItx+AkF
+ WHrVpFUVWROwSFzDaE0T1F9chMYuALCX/h5DBfT2H+OjKEFhbMRq3fA7A
+ xgdpxjxJWfjkjvwShVG5CZiriIgbBLjrQu4mMO0Onuj5gFIzf8dvZOE1y
+ ygajHeTRMgjo1KyPWtguYU3qPopPw/Chmq5H6CemorzNnqAu3qSY7XY1i w==;
+X-CSE-ConnectionGUID: t7SHFzyaTNW8xtbT4fSr7A==
+X-CSE-MsgGUID: dca/SxWzRv6UHeBajuU/Cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="86626690"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="86626690"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 03:47:17 -0700
+X-CSE-ConnectionGUID: 7MweUAkvQlmXpoeYetnMNA==
+X-CSE-MsgGUID: Irf+6RPtTkO8/I7kduhmCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="247736484"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 03:47:13 -0700
+Date: Fri, 19 Jun 2026 12:47:11 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v8 04/15] drm/xe/xe_pci_error: Implement PCI error
+ recovery callbacks
+Message-ID: <ajUeL4DutqTpg3HS@black.igk.intel.com>
+References: <20260608084700.640376-17-riana.tauro@intel.com>
+ <20260608084700.640376-21-riana.tauro@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/mcr=3A_Prefer_GT-ori?=
- =?utf-8?q?ented_WARN_messages_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Jun 2026 10:30:56 -0000
-Message-ID: <178186505661.95361.11694318445498688951@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260608182829.913-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260608182829.913-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260608084700.640376-21-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,126 +71,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7025531840935602480==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Jun 08, 2026 at 02:17:05PM +0530, Riana Tauro wrote:
+> Add error_detected, mmio_enabled, slot_reset and resume recovery callbacks
+> to handle PCIe Advanced Error Reporting (AER) errors.
+> 
+> For fatal errors, the device is wedged and becomes inaccessible. Return
+> PCI_ERS_RESULT_NEED_RESET from error_detected to request a Secondary
+> Bus Reset (SBR).
+> 
+> For non-fatal errors, return PCI_ERS_RESULT_CAN_RECOVER from
+> error_detected to trigger the mmio_enabled callback. In this callback, the
+> device is queried to determine the error cause and attempt recovery based
+> on the error type.
+> 
+> Once the secondary bus reset(SBR) is completed the slot_reset callback
+> cleanly removes and reprobe the device to restore functionality.
 
-== Series Details ==
+...
 
-Series: drm/xe/mcr: Prefer GT-oriented WARN messages (rev2)
-URL   : https://patchwork.freedesktop.org/series/168111/
-State : success
+> +	/*
+> +	 * Secondary Bus Reset causes all VRAM state to be lost along with
+> +	 * hardware state. As an initial step, re-probe the device to
+> +	 * re-initialize the driver and hardware.
+> +	 * TODO: optimize by re-initializing only the hardware state and re-creating
+> +	 * kernel BOs.
+> +	 */
+> +	pdev->driver->remove(pdev);
 
-== Summary ==
+Curious, how does this effect drm_ras nodes? Do they persist?
+If no, is it reasonable to have them recreated on every single error?
 
-CI Bug Log - changes from xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81_BAT -> xe-pw-168111v2_BAT
-====================================================
+Raag
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 10)
-------------------------------
-
-  Missing    (3): bat-adlp-7 bat-atsm-2 bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-168111v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168111v2/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
-
-
-Build changes
--------------
-
-  * Linux: xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81 -> xe-pw-168111v2
-
-  IGT_8974: 8974
-  xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81: a21fadfbf1d34161adab1c6de52d688fefcefb81
-  xe-pw-168111v2: 168111v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168111v2/index.html
-
---===============7025531840935602480==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/mcr: Prefer GT-oriented WARN messages (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168111/">https://patchwork.freedesktop.org/series/168111/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168111v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168111v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81_BAT -&gt; xe-pw-168111v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 10)</h2>
-<p>Missing    (3): bat-adlp-7 bat-atsm-2 bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-168111v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168111v2/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81 -&gt; xe-pw-168111v2</li>
-</ul>
-<p>IGT_8974: 8974<br />
-  xe-5282-a21fadfbf1d34161adab1c6de52d688fefcefb81: a21fadfbf1d34161adab1c6de52d688fefcefb81<br />
-  xe-pw-168111v2: 168111v2</p>
-
-</body>
-</html>
-
---===============7025531840935602480==--
+> +	if (pdev->driver->probe(pdev, ent))
+> +		return PCI_ERS_RESULT_DISCONNECT;
