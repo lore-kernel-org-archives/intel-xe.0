@@ -4,47 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BE35CDB466
-	for <intel-xe@archiver.kernel.org>; Sun, 21 Jun 2026 04:07:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 016C1CD98F0
+	for <intel-xe@archiver.kernel.org>; Sun, 21 Jun 2026 23:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 163F510E2EB;
-	Sun, 21 Jun 2026 04:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2DF10E0B7;
+	Sun, 21 Jun 2026 23:21:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="hptvdn7h";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gZoeN74r";
 	dkim-atps=neutral
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 768F010E2EB;
- Sun, 21 Jun 2026 04:07:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=XCxSbVufly1F5OgcrC8pX68PnRpg/ZBltK5Fv8aADtc=; b=hptvdn7hAEyqLSSi6UHEbZRFEY
- LxsLkOs05u4riAeR02ItCutTOd6zOyS3H6Fcm2wPyWHifrhGtgqtANxAcOJRKBQFqFoLbtyvjVQCU
- zbD8yoHVPtstUv1nE0n/ujT4Z5voOasbqlJAgJEuw0qUDsG3auFIQ/TRjO0ocGuwEf8Echl79RvOj
- oR8Z2DG0eIRNKZuUdE/b7XxmNLOxvuNy+aFZq1k3+wHNHOvbHo7br+Skz8S36LnSw0/sfz+BDvQYc
- 3pJVpeI+rZQG+rpP7XuH4jWj7bHUqMKBQlOx9toWbyTJ+2fvO1Rn+K/0u0g9XTC2peSFgEvTV4XCe
- Co8bt4cQ==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
- id 1wb9TM-00000003jpw-1ZVX; Sun, 21 Jun 2026 04:07:52 +0000
-Message-ID: <1a20e4bf-fd7f-453e-b7a8-c7feb0b077c6@infradead.org>
-Date: Sat, 20 Jun 2026 21:07:51 -0700
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
+ [209.85.222.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C281D10E0B7
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 Jun 2026 23:21:21 +0000 (UTC)
+Received: by mail-qk1-f177.google.com with SMTP id
+ af79cd13be357-915aa0a9293so516202385a.1
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 Jun 2026 16:21:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782084080; cv=none;
+ d=google.com; s=arc-20240605;
+ b=UCdMh1HgugAAEdaU7qxBKXR29YLcEPmVKqvw0xFj4Ts61CuGcIN1bMpBEQFhmKJPPk
+ L8WD6lT8O9DTUuybPB0OfpqIptdq09HAJ7weUHshZwz3r/tiy/ONrDyAW9TFH0WWgvuS
+ xAaNFkgHmC6ZlbEgl3T9bIkhebVcEDPaDpcXiD6P3DIF+GKg8alNmbjlEeWCh57cPUAN
+ Ab/slk9Flr9riiEAr1IF7uYv2LEgMim0K3mRxE+gES+ica7yDJBSzbpnX1hDrn5ZL9L6
+ MGGfdniFPZ3KR1B0hjf/WUwzBFB1RSy2K2qXFl51L4Q34GhBaLNzJEBU1tCRuUsZW3VL
+ ZJEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=hxi8pAd5fXbOtgwDNhDucP856vxJgDI8S86xqAbImM4=;
+ fh=QPOHx8M/5caK0wLTfLtN6Oy50iKdh17worW9dwBmovs=;
+ b=TnLpuvVdoETWrGaKAiBJ633NIOBXsSWEIH2sasbR34+rxrZON8Q5nEOxqDlR56gVaR
+ sD0xB42pF7Qx7SSt+0CUEMn/7rD44SvD8srKOAf/pXiIMVyjqM/X5gyslir01flwMYn8
+ Mi5CJEw8yz4MdNpsTOlM5vyYy5OL/mXRpgchijMwWeuHS97/64pY5/Rg0MlAT4NLfwG1
+ rfXsag1hXVaDutZDD3KSSN4gZ0fNatGS9s6wtbQz03oNSTm1hK3iFpR8axdfjj020eRS
+ nRLDNAMiuyZ7rffXJW4cN29gELO7RqMduFFBzp9pruyMoRESH7/iinanyKfPmPa1+CT/
+ EemA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782084080; x=1782688880; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=hxi8pAd5fXbOtgwDNhDucP856vxJgDI8S86xqAbImM4=;
+ b=gZoeN74rgR4YH2r/4d9OSEMUnaDsmehqyvAKy6vW5Z9CgPLNkUcLbRGljqjvXpyc6T
+ NicoCOeCUr/euYuCNuG10uAdPS5ZtusMZlr/9fr5K0yKq5TLZ+DKq044iYU9oPVAcnCo
+ wgIcDLhk5GCSY4yHkDlNbMGqO11XUrlH78uiMZVszZ+v65uHHc+BPIdAwRJ0uang25N1
+ qbHzVvpGYAgjjYeddYaPbJlhaLMthd+AtmCZNCZ1OPpckg+5zl2ybfSvEyAWMsKAb9iu
+ sfGu6zVPAovKY5PXfgl7kjpjD9PzQupxJEoj1cryadT7Zgh29LWiaWlrBB0uWSyKmyBH
+ tEjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782084080; x=1782688880;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=hxi8pAd5fXbOtgwDNhDucP856vxJgDI8S86xqAbImM4=;
+ b=QDb0BZR6PN0JAmXgT8kwFpcZbLUI/oD70FsMWJvk4bh+HCKDGjCzW7a2mBaIRbe17Z
+ G3zEGuA3Ic0zwxo0ZxeKszRaQIyw33miCsHMSVLVK23OiC6kLmHSfUaeeCMVtQa6FJZU
+ gb8+nClSHCkLw5DzQyEZoo5M6aKZ7QCiQ6ccnLkIlvL0GEh1Ax2KJX5RPTq+KRGR4/Vu
+ pAXcNN0amshUKhw5TdLJYCvLFGySx+nLeosjFZurUXDpNJtBqgGaw4LLnFE+qffL8n5Q
+ F5j9XimZkHH/9/iamFjpQ70EvZamkUs+NJbAZFUhkF469DpwULtXodrPTLY0sPpxNjBj
+ jfPQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8SVnxvQkHFzlAIz05JbjOvLJfhYLKdswyS5OuOREiqENW1SgVp4lkOuHfSFjIGyN1mvvAsPlv/8Q==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx9Vr8flC74y+sr1YzcCL9voO58HRk3rXZqPSaqLg/vAqUgffDL
+ KmF7SselKaz39s28JIVEC2yLb56UUy4vZrJVz58EPmY+IIViKLGUJOXL/bQaeyIGCaOYwu+C/09
+ g1EcyFmmsMyVWvmQlFe3jw/WV+f2gcb4=
+X-Gm-Gg: AfdE7ckJkBmeHuhbaWMgnpgx6RwJFJFKcbfNgDyrYk+4a7uN1zAjqrOUXAxveA6SBft
+ /7lGMcktOQznW+/m+qbTOd0VEaW/68ewEI7OnqWHP4lkN3Aiyq2uMtwdriKYurQ1aW0rFMtohTY
+ laJCEFMpVdhG5jKEXmLSE9MWcHA3fjFnkpiYVn6B2MS3Rs+Ov5VRjUjeQod7chy0ILXr2AhQzFF
+ EcVaxvGE9wK5GaMZMvaBdnkjKjCAldU+iJaKHIFW67tIOdfatHeAVtv4xKh6VQhuLXErKht3Ebw
+ PPEVpAlocYc9+3UorBuUZ//TAVkctzm7t9lNnrisTzVI8ouJMfiI2ZR45gYvII7/9FZ962MQqJe
+ VPtjW+KNqnZwxFg4=
+X-Received: by 2002:a05:620a:4053:b0:915:5216:e5bf with SMTP id
+ af79cd13be357-9208c625028mr1587487185a.22.1782084080570; Sun, 21 Jun 2026
+ 16:21:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] Documentation: xe_drm: fix chars used for subsection
-To: Rafael Passos <rafael@rcpassos.me>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- skhan@linuxfoundation.org
-References: <20260621030114.963405-1-rafael@rcpassos.me>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20260621030114.963405-1-rafael@rcpassos.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <ajLy2brwvOZEFNNN@gsse-cloud1.jf.intel.com>
+ <ajL++rKbSpYgBRw6@gsse-cloud1.jf.intel.com>
+In-Reply-To: <ajL++rKbSpYgBRw6@gsse-cloud1.jf.intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Mon, 22 Jun 2026 09:21:08 +1000
+X-Gm-Features: AVVi8Cf985BzLxOdD7bf0TqUBm8eXlIQywh3agTZ7zRl3Lbgw2eToWnB5a8jug8
+Message-ID: <CAPM=9tzO2Cg2e5BRQrvwtX08pmaq+hOvBb=BuYWQ0beLyoU5uw@mail.gmail.com>
+Subject: Re: [PULL] drm-xe-next-fixes
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dim-tools@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,64 +115,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 18 Jun 2026 at 06:09, Matthew Brost <matthew.brost@intel.com> wrote=
+:
+>
+> On Wed, Jun 17, 2026 at 12:17:45PM -0700, Matthew Brost wrote:
+> > Hi Dave, Sima,
+> >
+> > Here are drm-xe-next-fixes for 7.2.
+> >
+> > Matt
+> >
+> > drm-xe-next-fixes-2026-06-17:
+> > The following changes since commit 52d4ab1ca790a668cc8f2c27017138b1c467=
+168c:
+> >
+>
+> Rodrigo pointed out that I omitted the summary here...
+>
+> The changes we have are:
+>
+> - Set TTM beneficial order to 9 in Xe
+> - Several error path cleanups
+> - Fix TDR for unstarted jobs on kernel queues
+> - Several TLB invalidation fixes related to suspending LR queues
+> - Some small RAS fixes
+> - Multi-queue suspend fix for LR queues
+> - Revert inclusion of NVL_S firmware
+>
+> I also generated this PR using the following command, though I=E2=80=99m =
+not sure it matters:
+> dim pull-request drm-xe-next-fixes origin/master
+>
+> Rather than:
+> dim pull-request drm-xe-next-fixes drm/drm-next
+>
+> Given these issues, please let me know if a regenerated PR would be prefe=
+rred.
 
+All good, I checked the changes and edited the commit msg to add the change=
+log.
 
-On 6/20/26 8:01 PM, Rafael Passos wrote:
-> Fixes "ERROR: A level 2 section cannot be used here".
-> Equal signs are reserved for document titles.
-> This file docs gets imported by driver-uapi.rst,
-> and the page title is defined the.
-
-                        defined there.
-
-> 
-> 
-> Signed-off-by: Rafael Passos <rafael@rcpassos.me>
-
-LGTM. Thanks.
-
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-Tested-by: Randy Dunlap <rdunlap@infradead.org>
-
-> ---
-> Hi, I send the v1 for this patch only for the linux-doc list.
-> The v2 fixes this, and has improvements to the commit message.
-> Thanks,
-> 
-> Rafael
-> 
->  include/uapi/drm/xe_drm.h | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 48e9f1fdb78d..4dfb30e6c8a8 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -2537,21 +2537,21 @@ struct drm_xe_exec_queue_set_property {
->   * Refer to Documentation/netlink/specs/drm_ras.yaml for complete interface specification.
->   *
->   * Node Registration
-> - * =================
-> + * -----------------
->   *
->   * The driver registers DRM RAS nodes for each error severity level.
->   * enum drm_xe_ras_error_severity defines the node-id, while DRM_XE_RAS_ERROR_SEVERITY_NAMES maps
->   * node-id to node-name.
->   *
->   * Error Classification
-> - * ====================
-> + * --------------------
->   *
->   * Each node contains a list of error counters. Each error is identified by a error-id and
->   * an error-name. enum drm_xe_ras_error_component defines the error-id, while
->   * DRM_XE_RAS_ERROR_COMPONENT_NAMES maps error-id to error-name.
->   *
->   * User Interface
-> - * ==============
-> + * --------------
->   *
->   * To retrieve error values of a error counter, userspace applications should
->   * follow the below steps:
-
--- 
-~Randy
+Dave.
