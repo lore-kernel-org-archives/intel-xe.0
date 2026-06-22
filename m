@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 440EFCDB46F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 16:55:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39E84CDB46F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 17:20:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0402210E344;
-	Mon, 22 Jun 2026 16:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFD0010E79F;
+	Mon, 22 Jun 2026 17:20:46 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79BBA10E344;
- Mon, 22 Jun 2026 16:55:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3491303836337413030=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEB6110E79F;
+ Mon, 22 Jun 2026 17:20:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fmigrate=3A_Fix_?=
- =?utf-8?q?memory_corruption_with_unaligned_dst_in_MEM=5FCOPY_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_cold_reset_reco?=
+ =?utf-8?q?very_method_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jan Maslak" <jan.maslak@intel.com>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Jun 2026 16:55:00 -0000
-Message-ID: <178214730049.102380.15253567704778104278@6beec6c84f66>
+Date: Mon, 22 Jun 2026 17:20:45 -0000
+Message-ID: <178214884577.102379.7975163366010496435@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260622103449.3335928-1-jan.maslak@intel.com>
-In-Reply-To: <20260622103449.3335928-1-jan.maslak@intel.com>
+References: <20260622131458.144873-8-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260622131458.144873-8-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,169 +40,48 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3491303836337413030==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/xe_migrate: Fix memory corruption with unaligned dst in MEM_COPY (rev2)
-URL   : https://patchwork.freedesktop.org/series/167675/
-State : failure
+Series: Introduce cold reset recovery method (rev9)
+URL   : https://patchwork.freedesktop.org/series/163428/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT -> xe-pw-167675v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 403a6fca2ddf190e48f02cc2d4d55e5c003140a7
+Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Date:   Mon Jun 22 18:45:05 2026 +0530
 
-Summary
--------
+    drm/xe/ras: Use fault-inject to trigger punit error handler
+    
+    Use fault-inject framework to trigger punit_error_handler()
+    for testing.
+    
+    Usage:
+      echo 100 > .../inject_punit_error/probability
+      echo 1   > .../inject_punit_error/times
+    
+    Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
++ /mt/dim checkpatch 6583dd200482a34bb17e5dc54551f91f53b79798 drm-intel
+446f28f6ecf4 Introduce Xe Uncorrectable Error Handling
+-:250: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#250: 
+new file mode 100644
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-167675v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-167675v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-167675v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit (NEW):
-    - bat-adlp-7:         NOTRUN -> [SKIP][1]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-    - bat-lnl-2:          NOTRUN -> [SKIP][2]
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-lnl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-    - bat-wcl-2:          NOTRUN -> [SKIP][3]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-wcl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-    - bat-ptl-2:          NOTRUN -> [SKIP][4]
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-ptl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-    - bat-wcl-1:          NOTRUN -> [SKIP][5]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-    - bat-ptl-1:          NOTRUN -> [SKIP][6]
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-ptl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-    - bat-lnl-1:          NOTRUN -> [SKIP][7]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-lnl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-
-  
-New tests
----------
-
-  New tests have been introduced between xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT and xe-pw-167675v2_BAT:
-
-### New IGT tests (1) ###
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
-    - Statuses : 3 pass(s) 7 skip(s)
-    - Exec time: [0.08, 57.00] s
-
-  
+total: 0 errors, 1 warnings, 0 checks, 1200 lines checked
+cbba9802fc7f drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+b624e8063aee drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+5f4cb93d94ce drm/xe: Handle PUNIT errors by requesting cold-reset recovery
+15486edae6dc drm/xe: Suppress Surprise Link Down on device
+403a6fca2ddf drm/xe/ras: Use fault-inject to trigger punit error handler
 
 
-
-Build changes
--------------
-
-  * Linux: xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798 -> xe-pw-167675v2
-
-  IGT_8976: 8976
-  xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798: 6583dd200482a34bb17e5dc54551f91f53b79798
-  xe-pw-167675v2: 167675v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/index.html
-
---===============3491303836337413030==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_migrate: Fix memory corruption with unaligned dst in MEM_COPY (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167675/">https://patchwork.freedesktop.org/series/167675/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT -&gt; xe-pw-167675v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-167675v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-167675v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-167675v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit (NEW):<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
-<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-lnl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-wcl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
-<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-ptl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
-<li>bat-ptl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-ptl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v2/bat-lnl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT and xe-pw-167675v2_BAT:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:<ul>
-<li>Statuses : 3 pass(s) 7 skip(s)</li>
-<li>Exec time: [0.08, 57.00] s</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798 -&gt; xe-pw-167675v2</li>
-</ul>
-<p>IGT_8976: 8976<br />
-  xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798: 6583dd200482a34bb17e5dc54551f91f53b79798<br />
-  xe-pw-167675v2: 167675v2</p>
-
-</body>
-</html>
-
---===============3491303836337413030==--
