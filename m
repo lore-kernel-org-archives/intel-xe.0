@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19771CD98F2
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 15:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C99CCD98F2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 15:39:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C803A10E76B;
-	Mon, 22 Jun 2026 15:35:48 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8838110E76B;
- Mon, 22 Jun 2026 15:35:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3656354255411969449=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1407910E614;
+	Mon, 22 Jun 2026 15:39:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GiUN8j5P";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C84D610E614
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 15:39:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782142776; x=1813678776;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=lM2up0OMUuR2hJmBQ1m8yBs9QJrVsbk2iPaI2GJydgo=;
+ b=GiUN8j5PkRdEiI2V6SZPBNSjovWvFEvRE9xsv60EvHhqyJdgYyfq1DlG
+ Ll+3BusPPJDwNGtTssepJKwIXbL+nLHaCAnajS+MwhdZh5+EKl5UjXbO8
+ R+BwHRQQBKS3wLOz4+XRB/ijUc7h2OmxOzTABlm02v+biqZNpJf66+Hzr
+ SFhtYSzhlp2D/aBsDQnRzB3zDZQurqJCAY0ojliwW8LbhFU672kKlK3Vv
+ aY9AWyPdXH8OwW/V1y5hH3pquqEKuZYU70/T1DIItWpZValJakJalCZlT
+ cr5QKyUJu+a5PclmwIaPrDRLslefn5k+1yllWieMdZlxa627L/tRZCFPG Q==;
+X-CSE-ConnectionGUID: f7if5T6vTCas2K6ZhIDnSw==
+X-CSE-MsgGUID: cD+UYDF6SR2uf9PZCZwqqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="70392713"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="70392713"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 08:39:35 -0700
+X-CSE-ConnectionGUID: BvsPGl0KRNq92e/3pQ6tIg==
+X-CSE-MsgGUID: Mq743uhcS4qGamzBZbAghg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="246334565"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.133])
+ ([10.245.245.133])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 08:39:34 -0700
+Message-ID: <c8d29b22-9d58-4630-add2-28951c681ced@intel.com>
+Date: Mon, 22 Jun 2026 16:39:32 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_drm=5Fras_netlink_error?=
- =?utf-8?q?_event_support_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Jun 2026 15:35:47 -0000
-Message-ID: <178214254755.101522.8735005670594391528@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260622101716.3313496-5-riana.tauro@intel.com>
-In-Reply-To: <20260622101716.3313496-5-riana.tauro@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] drm/xe/mmio: Verify MMIO is available
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260622132342.19600-1-michal.wajdeczko@intel.com>
+ <20260622132342.19600-2-michal.wajdeczko@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260622132342.19600-2-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3656354255411969449==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 22/06/2026 14:23, Michal Wajdeczko wrote:
+> We shouldn't access device registers after the device was unplugged
+> or the MMIO bar (GTTMMADR) was unmapped. Instead of relying on the
+> NPD splat due to zeroed tile->mmio.regs, which might be unreliable
+> anyway as not all xe_mmio structs are using that directly, add an
+> explicit check during all xe_mmio read/write operations to test if
+> xe->mmio.regs are still mapped and safely abort with WARN if not.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
 
-== Series Details ==
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Series: Add drm_ras netlink error event support (rev3)
-URL   : https://patchwork.freedesktop.org/series/166765/
-State : success
+> ---
+> v1: https://patchwork.freedesktop.org/patch/728625/?series=167403&rev=1
+> v2: https://patchwork.freedesktop.org/patch/731360/?series=168108&rev=1
+> v3: use WARN and early abort to avoid Oops (sashiko)
+> ---
+>   drivers/gpu/drm/xe/xe_mmio.c | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 78adb303b663..7e0cefcd16bd 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -17,6 +17,7 @@
+>   #include "xe_device.h"
+>   #include "xe_gt_sriov_vf.h"
+>   #include "xe_sriov.h"
+> +#include "xe_tile_printk.h"
+>   #include "xe_trace.h"
+>   #include "xe_wa.h"
+>   
+> @@ -128,6 +129,11 @@ void xe_mmio_init(struct xe_mmio *mmio, struct xe_tile *tile, void __iomem *ptr,
+>   	mmio->tile = tile;
+>   }
+>   
+> +static bool mmio_available(struct xe_mmio *mmio)
+> +{
+> +	return !xe_tile_WARN_ON_ONCE(mmio->tile, !mmio->tile->xe->mmio.regs);
+> +}
+> +
+>   static void mmio_flush_pending_writes(struct xe_mmio *mmio)
+>   {
+>   #define DUMMY_REG_OFFSET	0x130030
+> @@ -146,6 +152,9 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   	u8 val;
+>   
+> +	if (!mmio_available(mmio))
+> +		return 0;
+> +
+>   	mmio_flush_pending_writes(mmio);
+>   
+>   	val = readb(mmio->regs + addr);
+> @@ -158,6 +167,9 @@ void xe_mmio_write8(struct xe_mmio *mmio, struct xe_reg reg, u8 val)
+>   {
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   
+> +	if (!mmio_available(mmio))
+> +		return;
+> +
+>   	trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+>   
+>   	writeb(val, mmio->regs + addr);
+> @@ -168,6 +180,9 @@ u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   	u16 val;
+>   
+> +	if (!mmio_available(mmio))
+> +		return 0;
+> +
+>   	mmio_flush_pending_writes(mmio);
+>   
+>   	val = readw(mmio->regs + addr);
+> @@ -180,6 +195,9 @@ void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
+>   {
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   
+> +	if (!mmio_available(mmio))
+> +		return;
+> +
+>   	trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+>   
+>   	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
+> @@ -194,6 +212,9 @@ u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   	u32 val;
+>   
+> +	if (!mmio_available(mmio))
+> +		return 0;
+> +
+>   	mmio_flush_pending_writes(mmio);
+>   
+>   	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
 
-== Summary ==
-
-CI Bug Log - changes from xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT -> xe-pw-166765v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798 -> xe-pw-166765v3
-
-  IGT_8976: 8976
-  xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798: 6583dd200482a34bb17e5dc54551f91f53b79798
-  xe-pw-166765v3: 166765v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166765v3/index.html
-
---===============3656354255411969449==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add drm_ras netlink error event support (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166765/">https://patchwork.freedesktop.org/series/166765/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166765v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166765v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT -&gt; xe-pw-166765v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798 -&gt; xe-pw-166765v3</li>
-</ul>
-<p>IGT_8976: 8976<br />
-  xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798: 6583dd200482a34bb17e5dc54551f91f53b79798<br />
-  xe-pw-166765v3: 166765v3</p>
-
-</body>
-</html>
-
---===============3656354255411969449==--
