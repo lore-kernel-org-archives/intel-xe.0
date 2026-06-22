@@ -4,36 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35458CDB481
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26DDECDB47B
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEE9410E81F;
-	Mon, 22 Jun 2026 18:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F88C10E822;
+	Mon, 22 Jun 2026 18:10:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="MiESm6LZ";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="B3ZG+pGM";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA24510E7F4;
- Mon, 22 Jun 2026 18:10:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1BE010E817;
+ Mon, 22 Jun 2026 18:10:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782151839;
- bh=ALbia/61W347pafx6roK8tZ0v9st1/H0ivVM62ph0GU=;
+ s=default; t=1782151849;
+ bh=Smwtu6CwhUCwK5agwnez+Jaqs++M2OVTTW4z7GIcls4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=MiESm6LZ2CfyhiKTVCktAZ1w4uC4x/stYA5Y5NJz/NxIIype3OgpEBxS2JAcfYtBY
- o20dEV/fh1XV75ce5llYkAQ+7T1PhzE82hy7qCg4VO38kYJ+tJiho3R7NAKZmIphYD
- qSz4HUcXslOv2bZTO3bF/i+lEXB0t+xQjOhhR+wlI4h6tj6cCHkw5uOE3myjPPgmK5
- djAwRToxmalIuNjX5Bnm998aWlcUz9SdSFyg+CJsq9ttMlaKZJsSow+34z7ytvs9fU
- zhLI7xbLtMcBgFep1UQn8w/pTaI3m0VhybAADUvaogRlEzE47rYmYmLtJrxGEPR40o
- 2MxS88Tyk83Hw==
+ b=B3ZG+pGMlrMwuQ4xU8fcEk2+3q1Io3U/oALg0AhxBbWkJdDqGI22JaaHBO2s85s7l
+ 4TM21uszb4g2mbyeqSoRMKVMgbGN5/gt9MlfsqNHy8MHxVx5YpxgVgfIS+qxlS5lqv
+ IkLPoztwtuNugdJsVhQ81rMXyfgX9Sa4sdsokqbOqXRakELH/9GRmAHrAo6sV6Z9I+
+ Dtja3DIACwjrqjXlBK4hYn6Drv9t3T1i0FccQ8U4PLmYsRZ0Lh/iae9w3527I+mz1+
+ 4cmJOGSDlpTadAxh85r60iFT4vGZfNzdbsmCytGXM8oqUsJUs8PIb7+N13hH8o9l3E
+ ZzxL5+Ldz49kg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v9 10/30] drm/i915/display: Do not take uncore lock in
- i915_get_vblank_counter
-Date: Mon, 22 Jun 2026 20:10:23 +0200
-Message-ID: <20260622181044.39335-11-dev@lankhorst.se>
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v9 25/30] drm/i915/gt: Add a spinlock to prevent starvation of
+ irq_work.
+Date: Mon, 22 Jun 2026 20:10:38 +0200
+Message-ID: <20260622181044.39335-26-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 References: <20260622181044.39335-1-dev@lankhorst.se>
@@ -53,124 +54,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This fixes a lockdep splat that occurs in the code that should be run
-with interrupts disabled. The uncore and DMC locks should not be taken
-and released repeatedly in a timing sensitive path.
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+
+IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
+and the interrupt will poll on signaler_active while the irq-work can't
+make progress.
+
+Solve this by adding a spinlock to prevent starvation and force
+completion.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_de.h       |  8 ++++++
- drivers/gpu/drm/i915/display/intel_vblank.c   |  4 +--
- drivers/gpu/drm/i915/intel_uncore.h           | 26 +++++++++++++------
- .../drm/xe/compat-i915-headers/intel_uncore.h |  7 +++++
- 4 files changed, 35 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c       | 8 +++++++-
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 1029790194296..497a308322847 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -65,6 +65,14 @@ intel_de_read64_2x32(struct intel_display *display, intel_reg_t reg)
- 	return (u64)upper << 32 | lower;
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index c10ac0ab3bfa8..c2b174bfa1418 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -209,6 +209,7 @@ static void signal_irq_work(struct irq_work *work)
+ 		intel_breadcrumbs_disarm_irq(b);
+ 
+ 	rcu_read_lock();
++	spin_lock(&b->signaler_active_sync);
+ 	atomic_inc(&b->signaler_active);
+ 	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
+ 		struct i915_request *rq;
+@@ -246,6 +247,7 @@ static void signal_irq_work(struct irq_work *work)
+ 		}
+ 	}
+ 	atomic_dec(&b->signaler_active);
++	spin_unlock(&b->signaler_active_sync);
+ 	rcu_read_unlock();
+ 
+ 	llist_for_each_safe(signal, sn, signal) {
+@@ -290,6 +292,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+ 	init_llist_head(&b->signaled_requests);
+ 
+ 	spin_lock_init(&b->irq_lock);
++	spin_lock_init(&b->signaler_active_sync);
+ 	init_irq_work(&b->irq_work, signal_irq_work);
+ 
+ 	b->irq_engine = irq_engine;
+@@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
+ 	if (release)
+ 		intel_context_put(ce);
+ 
+-	while (atomic_read(&b->signaler_active))
++	while (atomic_read(&b->signaler_active)) {
++		spin_lock(&b->signaler_active_sync);
++		spin_unlock(&b->signaler_active_sync);
+ 		cpu_relax();
++	}
  }
  
-+static inline u64
-+intel_de_read64_2x32_fw(struct intel_display *display,
-+			i915_reg_t lower_reg, i915_reg_t upper_reg)
-+{
-+	return intel_uncore_read64_2x32_fw(__to_uncore(display),
-+					   lower_reg, upper_reg);
-+}
-+
- static inline void
- intel_de_posting_read(struct intel_display *display, intel_reg_t reg)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index c0cc0a4c25dbe..5ca22899055d7 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -109,8 +109,8 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
- 	 * we get a low value that's stable across two reads of the high
- 	 * register.
- 	 */
--	frame = intel_de_read64_2x32_volatile(display, PIPEFRAMEPIXEL(display, pipe),
--					      PIPEFRAME(display, pipe));
-+	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
-+				        PIPEFRAME(display, pipe));
+ static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+index bdf09fd67b6e7..28dae32628aab 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+@@ -40,6 +40,7 @@ struct intel_breadcrumbs {
+ 	struct list_head signalers;
+ 	struct llist_head signaled_requests;
+ 	atomic_t signaler_active;
++	spinlock_t signaler_active_sync;
  
- 	pixel = frame & PIPE_PIXEL_MASK;
- 	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index fafc2ca9a2376..507398a562649 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -449,13 +449,28 @@ static inline void intel_uncore_rmw_fw(struct intel_uncore *uncore,
- 		intel_uncore_write_fw(uncore, reg, val);
- }
- 
-+static inline u64
-+intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
-+			    i915_reg_t lower_reg, i915_reg_t upper_reg)
-+{
-+	u32 upper, lower, old_upper, loop = 0;
-+	upper = intel_uncore_read_fw(uncore, upper_reg);
-+	do {
-+		old_upper = upper;
-+		lower = intel_uncore_read_fw(uncore, lower_reg);
-+		upper = intel_uncore_read_fw(uncore, upper_reg);
-+	} while (upper != old_upper && loop++ < 2);
-+
-+	return (u64)upper << 32 | lower;
-+}
-+
- static inline u64
- intel_uncore_read64_2x32(struct intel_uncore *uncore,
- 			 i915_reg_t lower_reg, i915_reg_t upper_reg)
- {
--	u32 upper, lower, old_upper, loop = 0;
- 	enum forcewake_domains fw_domains;
- 	unsigned long flags;
-+	u64 ret;
- 
- 	fw_domains = intel_uncore_forcewake_for_reg(uncore, lower_reg,
- 						    FW_REG_READ);
-@@ -466,17 +481,12 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
- 	spin_lock_irqsave(&uncore->lock, flags);
- 	intel_uncore_forcewake_get__locked(uncore, fw_domains);
- 
--	upper = intel_uncore_read_fw(uncore, upper_reg);
--	do {
--		old_upper = upper;
--		lower = intel_uncore_read_fw(uncore, lower_reg);
--		upper = intel_uncore_read_fw(uncore, upper_reg);
--	} while (upper != old_upper && loop++ < 2);
-+	ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
- 
- 	intel_uncore_forcewake_put__locked(uncore, fw_domains);
- 	spin_unlock_irqrestore(&uncore->lock, flags);
- 
--	return (u64)upper << 32 | lower;
-+	return ret;
- }
- 
- static inline int intel_uncore_write_and_verify(struct intel_uncore *uncore,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-index 08d7ab9336725..764bc94044537 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-@@ -74,6 +74,13 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
- 	return (u64)upper << 32 | lower;
- }
- 
-+static inline u64
-+intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
-+			    i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
-+{
-+	return intel_uncore_read64_2x32(uncore, i915_lower_reg, i915_upper_reg);
-+}
-+
- static inline void intel_uncore_posting_read(struct intel_uncore *uncore,
- 					     i915_reg_t i915_reg)
- {
+ 	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
+ 	struct irq_work irq_work; /* for use from inside irq_lock */
 -- 
 2.53.0
 
