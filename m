@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D4F7CDB46F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD77FCDB476
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7607710E801;
-	Mon, 22 Jun 2026 18:10:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 533BF10E7E8;
+	Mon, 22 Jun 2026 18:10:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="KCqG2GVI";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="EZb6Nw0C";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F5D10E7F0;
- Mon, 22 Jun 2026 18:10:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9869D10E7F7;
+ Mon, 22 Jun 2026 18:10:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782151839;
- bh=07jvFRigIF4c2WP1/tQ0UqgvxYpJAG8Jfl5912+WIUE=;
+ s=default; t=1782151840;
+ bh=GQhxUz+JN+YyJf3pXGopVoWZqYvs/Yb71b7mUuabTSk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KCqG2GVI3BoAST8/HF/tyssQnkYEAMJ48qo0ESxCLEaksY0q+GONeHJVCsgDjS20n
- 5cjrqK37qPw5hnB2u841BEr3fZAeRWyJztulKovnXQyIkmAr20mqrmfqrvSyE/J3ZB
- HAFdiw3eaHo78kJWAT5wYsjryAGqDvHWVvuN6lNW3vZxlZ2XJlqRQ03f3aX2qG49P2
- v//AJUE0g/r245BU6mGdLtIGqJsf1VzHRwPImXda8grGPGhPul3++0kMT2OsAZ8M3g
- 5nxhUOizcyJK5OEdgQ0lo/UAw032ai0Mode0X4dPqdGFMxQYMSbik3AOs2QLjRMnsw
- UrhM0WU/vy3Uw==
+ b=EZb6Nw0C34pLl/Ta46QRVb1r8xwtlSSQFTOvTIDnjgTV3xEt3b4qgTYmmFvMsIb2b
+ m9AOdsALXAIeGcRXmefKXaRBGhFhFtm/z09m5H9oileOrJYtJ0GOiof+TuHApGNlc3
+ R0HfhyNbtAaydjfEPKFNgfgY2esUrWRUlCKWCStLE3XP8K3qvyou46gcrNeyjLcfaS
+ SEwl1P/+Bdnbm3Y3rPgb0N6GbTFtzrRDoAQdv8OCTspUtSZUySAx8rMSDnhArZ0z5M
+ yBp57majRsL24L3LaIJcFWxzClxmeiVGmj6KZKLgiGabX4QjDklLRBEEX4Gt5SMeh0
+ xydAH7gq8Dasw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v9 09/30] drm/i915/display: Make get_vblank_counter use
- intel_de_read_fw()
-Date: Mon, 22 Jun 2026 20:10:22 +0200
-Message-ID: <20260622181044.39335-10-dev@lankhorst.se>
+Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v9 11/30] drm/i915/display: Make icl_dsi_frame_update use _fw
+ too
+Date: Mon, 22 Jun 2026 20:10:24 +0200
+Message-ID: <20260622181044.39335-12-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 References: <20260622181044.39335-1-dev@lankhorst.se>
@@ -53,44 +53,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fixes the following lockdep splat on PREEMPT_RT:
-<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-<3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
-<3> preempt_count: 1, expected: 0
-<3> RCU nest depth: 0, expected: 0
-<4> 11 locks held by xe_module_load/1373:
-<4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
-<4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
-<4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
-<4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
-<4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
-<4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
-<4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
-<4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
-<4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
-<4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
-<4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
-
-This splat will happen otherwise on all tracepoints too, for similar reasons.
+Don't use the dmc lock inside the vblank critical section,
+not even as last call.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 07dca05332e5b..c0cc0a4c25dbe 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -132,7 +132,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
- 	if (!vblank->max_vblank_count)
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index a549f1fac8103..277804638f207 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -242,8 +242,8 @@ void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
+ 	else
+ 		return;
  
--	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
-+	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+-	intel_de_rmw(display, DSI_CMD_FRMCTL(port), 0,
+-		     DSI_FRAME_UPDATE_REQUEST);
++	intel_de_rmw_fw(display, DSI_CMD_FRMCTL(port), 0,
++			DSI_FRAME_UPDATE_REQUEST);
  }
  
- static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
 -- 
 2.53.0
 
