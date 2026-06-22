@@ -4,35 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EFBECDE008
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:11:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F25CDE009
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:11:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8049F10E80F;
-	Mon, 22 Jun 2026 18:10:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09FEE10E834;
+	Mon, 22 Jun 2026 18:10:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="EVZcLcJG";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Bti9F39F";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 426EE10E7F8;
- Mon, 22 Jun 2026 18:10:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52E3210E807;
+ Mon, 22 Jun 2026 18:10:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782151845;
- bh=T/OQGU8prg+GP3iTibN/WUfOED1EMA169ETe4ayUGKY=;
+ s=default; t=1782151847;
+ bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=EVZcLcJG7ATnlltNJSuOReRYVv3gRKdrkhheZro1We1htRNMbGBXZqLUsZY5Jx4cD
- wubUje59hVnvCgDdqXhiEwAp7Qo+9yVABqWuMgN8lY+QqjUnzLZ37JLTTdHJq45T0U
- M8lY100cnubY+oYxCm9aITSHzmkU3CDd3FTN0KhYsj5q5Taq0z8ECCagLoD+wy/2En
- UQMazHPMklmMiP2HFrMJ7nDbfVLcDbgemKFypaq4eURLdNbJC4X2zJwr+fx+2wQseb
- pGpWJLem5wEGYYCafmS7wS0sAyWkV79MsflRMY9oDCYDArytbcbDMYJ+XCFGq6iMIA
- kBIZFsLZxkCdg==
+ b=Bti9F39FKc2fp4SciYOQ5pEicpu7mBTarI6pwwiJWjg6IGN934huYESLnZPP0el4q
+ KSP/YippnBwdMQlJd3RRu2oedSnLE/NpxzgukyzluQY3D4CPP5KnD+InkSA2zSYKtt
+ RQoh8UATfcleoLkO/7XSMC/nAWAbpzTY1ib9sOza1NqUCONRwPTdi5Wj217yUBds/i
+ ZoWa3uBl25x2CAxrd/lvh/z5yjfmr8DdL0YZIgvQzk1rg4qQU8qe7B/3jeLWVNo5ef
+ hD5gePl7kPU1laWwNourJqOCMvEnwYxuDnQi4D0Ly+LAvSFVBSd7ArsGdmYT/cgk0s
+ le8fXbTxTUrYw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v9 18/30] drm/i915/gt: Fix selftests on PREEMPT_RT
-Date: Mon, 22 Jun 2026 20:10:31 +0200
-Message-ID: <20260622181044.39335-19-dev@lankhorst.se>
+Subject: [PATCH v9 21/30] drm/i915: Use sleeping selftests for igt_atomic on
+ PREEMPT_RT
+Date: Mon, 22 Jun 2026 20:10:34 +0200
+Message-ID: <20260622181044.39335-22-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 References: <20260622181044.39335-1-dev@lankhorst.se>
@@ -52,43 +53,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This makes the i915 selftests slightly happier, especially
+related to GPU reset.
+
+I believe this may be a better approach than trying to convert
+uncore->lock to raw_spinlock
+
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-index 10e556a7eac45..c1eff9edd8a5e 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-@@ -277,11 +277,11 @@ static int live_engine_busy_stats(void *arg)
- 		st_engine_heartbeat_disable(engine);
+diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+index fb506b6990956..8ae39cf570b76 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
++++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+@@ -39,7 +39,14 @@ static void __hardirq_end(void)
+ 	local_irq_enable();
+ }
  
- 		ENGINE_TRACE(engine, "measuring idle time\n");
--		preempt_disable();
-+		migrate_disable();
- 		de = intel_engine_get_busy_time(engine, &t[0]);
- 		udelay(100);
- 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
--		preempt_enable();
-+		migrate_enable();
- 		dt = ktime_sub(t[1], t[0]);
- 		if (de < 0 || de > 10) {
- 			pr_err("%s: reported %lldns [%d%%] busyness while sleeping [for %lldns]\n",
-@@ -316,11 +316,11 @@ static int live_engine_busy_stats(void *arg)
- 		}
- 
- 		ENGINE_TRACE(engine, "measuring busy time\n");
--		preempt_disable();
-+		migrate_disable();
- 		de = intel_engine_get_busy_time(engine, &t[0]);
- 		mdelay(100);
- 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
--		preempt_enable();
-+		migrate_enable();
- 		dt = ktime_sub(t[1], t[0]);
- 		if (100 * de < 95 * dt || 95 * de > 100 * dt) {
- 			pr_err("%s: reported %lldns [%d%%] busyness while spinning [for %lldns]\n",
++static void __maybe_unused __nop(void)
++{}
++
+ const struct igt_atomic_section igt_atomic_phases[] = {
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	{ "sleeping", __nop, __nop },
++	{ },
++#endif
+ 	{ "preempt", __preempt_begin, __preempt_end },
+ 	{ "softirq", __softirq_begin, __softirq_end },
+ 	{ "hardirq", __hardirq_begin, __hardirq_end },
 -- 
 2.53.0
 
