@@ -4,61 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39830CDB470
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 10:30:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E37A7CDB46F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 10:35:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E669710E4B8;
-	Mon, 22 Jun 2026 10:30:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9915489220;
+	Mon, 22 Jun 2026 10:35:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f6X3eOsu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h4eUWKXD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28B298989E;
- Mon, 22 Jun 2026 10:30:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7E2F891D1;
+ Mon, 22 Jun 2026 10:35:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782124235; x=1813660235;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=zRe08PDGarrGK1rS5XbKDiCwvzPgMFARTDD9yKpSLqA=;
- b=f6X3eOsuEhToD0xqXquahJVK69GuPjth6X+qtGK5FoBZ/vLDMQjo913w
- 4vyF4YyY/t/ZhPHF974UacQRJ6ESujZ5yL8wJa1oEtlAxjkHFN3VMK0x0
- 3O8PLFNOFWIu+Iuj/m9mhihC8HP8GgpCeoTwPHM5r51+bm/GD+7QhChJz
- uLCo31DPuxRhZBhi8XRnnQMV5F/u4Xw7luHfZ9LLbDhUDok55Yt7FvFe7
- LvQSAzkfJbZ1lIzzgH4JqCkJ3cGsrFwvOR82GUHlF243YJrHR1D2L2aaJ
- n9Lqa8q/K4uLli1QTITbN/JquwmpFeFpcBedPidkuwsOvJQIsk+DHHbDE A==;
-X-CSE-ConnectionGUID: Rrk4lU/QR9OU5taMYpy8yQ==
-X-CSE-MsgGUID: nzzzJQj3QmWTQcHfx9YUgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="82735022"
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="82735022"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 03:30:35 -0700
-X-CSE-ConnectionGUID: qJk5kaPdQ/W8xWa3tB1NUg==
-X-CSE-MsgGUID: 1gXiJV1ES9SJ+MWG3jbnaw==
+ t=1782124507; x=1813660507;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pjfTZzcTUStvvQqwgrC7cuuAhoijNZhSaeOJZbavUTs=;
+ b=h4eUWKXDcz88ZseMjzjrbG59cI6pHHbKTCOmG1UOyCzxuYUMjZaqUpFb
+ bABEItIURfrH9R1W+BE2FcL057JoZYJIGNhsn8ShbRgKsZO4DBT9GDySl
+ 9E9lUDmbob2vWqbHeqvA/3qkV+Cap/2Gzl3sj1ZtR9Gth0CrHayP3uTcb
+ at2roQOObwqAqKpre+hQdNrRVgEcp1dpp53YSpGWntcFjgQcPfHCgm7+x
+ T/YBZvqs6L5Hy32FTRJRIGr4bozsXTTVaVHSX+qqTl7T5O8rSPdKMereF
+ aG7UO/auOZJslYonVuvZpLznR3UTsBbXwjeDsitI9Ed2dw6XmSoECMK0s g==;
+X-CSE-ConnectionGUID: A2MrTQKZTkiMggghjO3iKQ==
+X-CSE-MsgGUID: iSKScEidSaaQV9rmAFbbNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="82891933"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="82891933"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 03:35:06 -0700
+X-CSE-ConnectionGUID: ydbq03IOQ0Os9JyXlrROlw==
+X-CSE-MsgGUID: uOrp8gXvTEyfNhEXjii5SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="249293869"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.245.69])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 03:30:33 -0700
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="244838880"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 03:35:04 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, suraj.kandpal@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH] Revert "drm/i915/psr: Allow SCL=0 on platforms with always-on
+ VRR TG"
+Date: Mon, 22 Jun 2026 15:47:36 +0530
+Message-ID: <20260622101736.2389991-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260617152500.108597-1-jose.souza@intel.com>
-References: <20260617152500.108597-1-jose.souza@intel.com>
-Subject: IOCTL feature detection #2 (Was: Re: [PATCH v2] drm/xe/uapi: Add flag
- to tell if VM_GET_PROPERTY_FAULTS is supported)
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: =?utf-8?q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Simona Vetter <simona@ffwll.ch>
-Date: Mon, 22 Jun 2026 13:30:29 +0300
-Message-ID: <178212422953.110786.15960772731280455512@jlahtine-mobl>
-User-Agent: alot/0.13.dev2+g40c57d620
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,73 +67,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-(+ Sima and dri-devel)
+This reverts commit 4f1cab2e4863d96ce13b8d94151f4848e38c3d5b.
 
-This goes very much against the previously discussed and agreed
-direction[1].
+Allowing SCL=0 on platforms with always-on VRR timing generator is
+causing underruns and other issues on PTL in some cases.
 
-The QUERY style IOCTL (like xe_vm_get_property_ioctl here) were specifically
-designed to have built-in feature-checking to avoid need for anything
-like this check.
+SCL still needs to be non-zero in certain scenarios. Revert for now
+until this is better understood.
 
-Executing the query with size zero would be a pretty much no-overhead
-call (there's one spinlock there) as we can see from the body of
-xe_vm_get_property_helper:
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-	if (!args->size) {
-		args->size =3D size;
-		return 0;
-	}
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 911afb9cb24e..92af21d823a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1405,9 +1405,6 @@ int _intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state
+ 	    needs_panel_replay)
+ 		return 0;
+ 
+-	if (intel_vrr_always_use_vrr_tg(display))
+-		return 0;
+-
+ 	return 1;
+ }
+ 
+-- 
+2.45.2
 
-That trait got added to the QUERY style IOCTLs exactly to address the
-requirement for low-overhead feature checking by Mesa folks back then.
-
-So you execute all the validity checks, but avoid actual data copying.
-
-Quoting Jos=C3=A9 Roberto de Souza (2026-06-17 18:25:00)
-> Not all Xe versions or Xe-supported devices support this feature, so this
-> flag is required to make the UMD's life easier.
->=20
-> v2:
-> - DRM_XE_QUERY_CONFIG_FLAG_HAS_VM_GET_PROPERTY_FAULTS should be set on
-> info[DRM_XE_QUERY_CONFIG_FLAGS].
->=20
-> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_query.c | 4 ++++
->  include/uapi/drm/xe_drm.h     | 1 +
->  2 files changed, 5 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index dc975f595368..f187a264756a 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -354,6 +354,10 @@ static int query_config(struct xe_device *xe, struct=
- drm_xe_device_query *query)
->                 DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX;
->         config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=3D
->                 DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT;
-> +       if (xe->info.has_usm) {
-> +               config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=3D
-> +                       DRM_XE_QUERY_CONFIG_FLAG_HAS_VM_GET_PROPERTY_FAUL=
-TS;
-> +       }
-
-I think it kind of proves the validness of concerns in [1] that the
-has_usm check you add here doesn't have much relevance to the actual
-VM_GET_PROPERTY_FAULTS IOCTL being available or functional.
-
-If you think the VM_GET_PROPERTY_FAULTS should be gated by the has_usm
-condition, then you should have updated the actual IOCTL, no?
-
-The whole point of the original discussions resulting in [1] was that
-it is such an easy error to make the capability flag check and the
-actual IOCTL availability differ that it should be avoided.
-
-The fact that such an error is in this very patch still after reading
-through the original reasoning from Sima kind of underlines why the
-point still stands strongly.
-
-Regards, Joonas
-
-[1] https://www.spinics.net/lists/intel-gfx/msg325342.html
