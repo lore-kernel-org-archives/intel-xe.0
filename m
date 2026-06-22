@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C688CD98F2
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 15:58:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AC1CCDB46F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 15:59:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B9A510E346;
-	Mon, 22 Jun 2026 15:58:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA4010E023;
+	Mon, 22 Jun 2026 15:59:02 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682EC10E778;
- Mon, 22 Jun 2026 15:58:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A92A210E346;
+ Mon, 22 Jun 2026 15:59:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2837984460646198603=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fmigrate=3A_Fi?=
- =?utf-8?q?x_memory_corruption_with_unaligned_dst_in_MEM=5FCOPY_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Revert_=22drm/i915/psr=3A_A?=
+ =?utf-8?q?llow_SCL=3D0_on_platforms_with_always-on_VRR_TG=22?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jan Maslak" <jan.maslak@intel.com>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Jun 2026 15:58:15 -0000
-Message-ID: <178214389542.102379.6138491083563478278@6beec6c84f66>
+Date: Mon, 22 Jun 2026 15:59:01 -0000
+Message-ID: <178214394168.102379.6193280361779145004@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260622103449.3335928-1-jan.maslak@intel.com>
-In-Reply-To: <20260622103449.3335928-1-jan.maslak@intel.com>
+References: <20260622101736.2389991-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260622101736.2389991-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,51 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2837984460646198603==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/xe_migrate: Fix memory corruption with unaligned dst in MEM_COPY (rev2)
-URL   : https://patchwork.freedesktop.org/series/167675/
-State : warning
+Series: Revert "drm/i915/psr: Allow SCL=0 on platforms with always-on VRR TG"
+URL   : https://patchwork.freedesktop.org/series/168926/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 3640ec306ed6e7bd9ed0d3013f8088f5c7274b9d
-Author: Christoph Manszewski <c.manszewski@gmail.com>
-Date:   Mon Jun 22 12:34:49 2026 +0200
+CI Bug Log - changes from xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT -> xe-pw-168926v1_BAT
+====================================================
 
-    drm/xe/tests: Add xe_migrate_access_memory subtest
-    
-    Add a new xe_migrate subtest for vram to sram migration works:
-     - when the dst address is not 4-byte aligned
-     - when the dst address in not 4-byte aligned but the migration size is
-     - when src BO offset is not 4-byte aligned
-    
-    Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-    Signed-off-by: Jan Maslak <jan.maslak@intel.com>
-+ /mt/dim checkpatch 6583dd200482a34bb17e5dc54551f91f53b79798 drm-intel
-d4605c24b4d5 drm/xe/xe_migrate: Align MEM_COPY pitch with destination address
-44f09530bec8 drm/xe/xe_migrate: Fix page tracking in access_memory
-50a2bebaba1c drm/xe/xe_migrate: Optimize unaligned access_memory copies
--:162: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#162: FILE: drivers/gpu/drm/xe/xe_migrate.c:2662:
-+										 XE_CACHELINE_BYTES));
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 160 lines checked
-3640ec306ed6 drm/xe/tests: Add xe_migrate_access_memory subtest
--:111: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#111: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:853:
-+static void access_memory_test_unaligned_bo_offset(struct kunit *test,
-+						    struct xe_migrate *m,
+  **SUCCESS**
 
-total: 0 errors, 0 warnings, 1 checks, 296 lines checked
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798 -> xe-pw-168926v1
+
+  IGT_8976: 8976
+  xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798: 6583dd200482a34bb17e5dc54551f91f53b79798
+  xe-pw-168926v1: 168926v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v1/index.html
+
+--===============2837984460646198603==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Revert &quot;drm/i915/psr: Allow SCL=0 on platforms with always-on VRR TG&quot;</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168926/">https://patchwork.freedesktop.org/series/168926/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798_BAT -&gt; xe-pw-168926v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798 -&gt; xe-pw-168926v1</li>
+</ul>
+<p>IGT_8976: 8976<br />
+  xe-5286-6583dd200482a34bb17e5dc54551f91f53b79798: 6583dd200482a34bb17e5dc54551f91f53b79798<br />
+  xe-pw-168926v1: 168926v1</p>
+
+</body>
+</html>
+
+--===============2837984460646198603==--
