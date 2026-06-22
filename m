@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FFF3CDB46F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 16:00:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 119A8CD98F2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 16:34:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 043FA89622;
-	Mon, 22 Jun 2026 16:00:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I2iG7b/u";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA41389622
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 16:00:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782144046; x=1813680046;
- h=date:from:to:cc:subject:message-id;
- bh=Rj3S2IurMhWJkBc/1OuhNLmkf3/zh+p83x5KrGohcOg=;
- b=I2iG7b/uYFYQlPbNaXokMHwo/KgLZYmlO/Zh+gDjXbrOkIBOcio5kiTV
- 0iVvO5t+Rdb6jGsXVp7zINRRTgYDm6cF2w9KyfDg9Wc+r2ryT67FcdSUH
- nQRooxkrxPV0+cPoKM2B9QAtaGR0PJzppUWspOzoRSzbzoKuF4prj3oKP
- 9vgPyJQjfiWeYz6sLpie2Px3bzJcAKYK9GJyMai76/QHh9hHjs61ZDMSi
- +4yk6G++VeWjKomMS+0OoDLVeBaEWd7vQI/JG6vK0TduE1qr3PIdL7PWB
- qWBhywaBWiPKpF90Ab1CCBZbvg2sh6Av2f5I4is1wAeYSeAdKtdJsC0+T g==;
-X-CSE-ConnectionGUID: ZSHRRr4NTPajOsYj+obZxg==
-X-CSE-MsgGUID: J1mOVKUvQkCBfK6kM4ygMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="82746967"
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="82746967"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 09:00:45 -0700
-X-CSE-ConnectionGUID: 2EKEAeyrStWzfVv0RytZNw==
-X-CSE-MsgGUID: J9sggq/JT2eE934zUiE2sA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="242910539"
-Received: from lkp-server02.sh.intel.com (HELO ea128546eb3d) ([10.239.97.151])
- by fmviesa009.fm.intel.com with ESMTP; 22 Jun 2026 09:00:44 -0700
-Received: from kbuild by ea128546eb3d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wbh4k-000000001S8-0Dec;
- Mon, 22 Jun 2026 16:00:42 +0000
-Date: Tue, 23 Jun 2026 00:00:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C756A10E78D;
+	Mon, 22 Jun 2026 16:34:24 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45D5C10E785;
+ Mon, 22 Jun 2026 16:34:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/i2c=3A_alerts_and_?=
+ =?utf-8?q?controller_enabling_modifications?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- c1a3f611952e80c2fe9ded854bf2c5d56aee697e
-Message-ID: <202606222358.MSQQ9ygB-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Date: Mon, 22 Jun 2026 16:34:24 -0000
+Message-ID: <178214606427.102380.4172414399324656925@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
+In-Reply-To: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,193 +36,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: c1a3f611952e80c2fe9ded854bf2c5d56aee697e  drm/xe/mcr: Prefer GT-oriented WARN messages
+== Series Details ==
 
-elapsed time: 740m
+Series: drm/xe/i2c: alerts and controller enabling modifications
+URL   : https://patchwork.freedesktop.org/series/168930/
+State : warning
 
-configs tested: 171
-configs skipped: 2
+== Summary ==
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6a8e2c0291e1711d9f26e3fa265a7219de42458a
+Author: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Date:   Mon Jun 22 13:47:59 2026 +0200
 
-tested configs:
-alpha                             allnoconfig    gcc-16.1.0
-alpha                            allyesconfig    gcc-16.1.0
-alpha                               defconfig    gcc-16.1.0
-arc                              allmodconfig    clang-23
-arc                               allnoconfig    gcc-16.1.0
-arc                              allyesconfig    clang-23
-arc                                 defconfig    gcc-16.1.0
-arc                   randconfig-001-20260622    gcc-8.5.0
-arc                   randconfig-002-20260622    gcc-8.5.0
-arm                               allnoconfig    gcc-16.1.0
-arm                              allyesconfig    clang-23
-arm                                 defconfig    gcc-16.1.0
-arm                   randconfig-001-20260622    gcc-8.5.0
-arm                   randconfig-002-20260622    gcc-8.5.0
-arm                   randconfig-003-20260622    gcc-8.5.0
-arm                   randconfig-004-20260622    gcc-8.5.0
-arm64                            allmodconfig    clang-23
-arm64                             allnoconfig    gcc-16.1.0
-arm64                               defconfig    gcc-16.1.0
-arm64                 randconfig-001-20260622    gcc-8.5.0
-arm64                 randconfig-002-20260622    gcc-8.5.0
-arm64                 randconfig-003-20260622    gcc-8.5.0
-arm64                 randconfig-004-20260622    gcc-8.5.0
-csky                             allmodconfig    gcc-16.1.0
-csky                              allnoconfig    gcc-16.1.0
-csky                                defconfig    gcc-16.1.0
-csky                  randconfig-001-20260622    gcc-8.5.0
-csky                  randconfig-002-20260622    gcc-8.5.0
-hexagon                          allmodconfig    gcc-16.1.0
-hexagon                           allnoconfig    gcc-16.1.0
-hexagon                             defconfig    gcc-16.1.0
-hexagon               randconfig-001-20260622    gcc-8.5.0
-hexagon               randconfig-002-20260622    gcc-8.5.0
-i386                             allmodconfig    clang-22
-i386                              allnoconfig    gcc-16.1.0
-i386                             allyesconfig    clang-22
-i386        buildonly-randconfig-001-20260622    gcc-14
-i386        buildonly-randconfig-002-20260622    gcc-14
-i386        buildonly-randconfig-003-20260622    gcc-14
-i386        buildonly-randconfig-004-20260622    gcc-14
-i386        buildonly-randconfig-005-20260622    gcc-14
-i386        buildonly-randconfig-006-20260622    gcc-14
-i386                                defconfig    gcc-16.1.0
-i386                  randconfig-001-20260622    clang-22
-i386                  randconfig-002-20260622    clang-22
-i386                  randconfig-003-20260622    clang-22
-i386                  randconfig-004-20260622    clang-22
-i386                  randconfig-005-20260622    clang-22
-i386                  randconfig-006-20260622    clang-22
-i386                  randconfig-007-20260622    clang-22
-i386                  randconfig-011-20260622    gcc-14
-i386                  randconfig-012-20260622    gcc-14
-i386                  randconfig-013-20260622    gcc-14
-i386                  randconfig-014-20260622    gcc-14
-i386                  randconfig-015-20260622    gcc-14
-i386                  randconfig-016-20260622    gcc-14
-i386                  randconfig-017-20260622    gcc-14
-loongarch                        allmodconfig    clang-23
-loongarch                         allnoconfig    gcc-16.1.0
-loongarch                           defconfig    clang-23
-loongarch             randconfig-001-20260622    gcc-8.5.0
-loongarch             randconfig-002-20260622    gcc-8.5.0
-m68k                             allmodconfig    gcc-16.1.0
-m68k                              allnoconfig    gcc-16.1.0
-m68k                             allyesconfig    clang-23
-m68k                                defconfig    clang-23
-microblaze                        allnoconfig    gcc-16.1.0
-microblaze                       allyesconfig    gcc-16.1.0
-microblaze                          defconfig    clang-23
-mips                             allmodconfig    gcc-16.1.0
-mips                              allnoconfig    gcc-16.1.0
-mips                             allyesconfig    gcc-16.1.0
-nios2                            allmodconfig    clang-20
-nios2                             allnoconfig    clang-23
-nios2                               defconfig    clang-23
-nios2                 randconfig-001-20260622    gcc-8.5.0
-nios2                 randconfig-002-20260622    gcc-8.5.0
-openrisc                         allmodconfig    clang-20
-openrisc                          allnoconfig    clang-23
-openrisc                            defconfig    gcc-16.1.0
-parisc                           allmodconfig    gcc-16.1.0
-parisc                            allnoconfig    clang-23
-parisc                           allyesconfig    clang-17
-parisc                              defconfig    gcc-16.1.0
-parisc                randconfig-001-20260622    gcc-14.3.0
-parisc                randconfig-002-20260622    gcc-14.3.0
-parisc64                            defconfig    clang-23
-powerpc                          allmodconfig    gcc-16.1.0
-powerpc                           allnoconfig    clang-23
-powerpc               randconfig-001-20260622    gcc-14.3.0
-powerpc               randconfig-002-20260622    gcc-14.3.0
-powerpc64             randconfig-001-20260622    gcc-14.3.0
-powerpc64             randconfig-002-20260622    gcc-14.3.0
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    clang-23
-riscv                            allyesconfig    clang-23
-riscv                               defconfig    gcc-16.1.0
-s390                             allmodconfig    clang-17
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-16.1.0
-s390                                defconfig    gcc-16.1.0
-sh                               allmodconfig    gcc-16.1.0
-sh                                allnoconfig    clang-23
-sh                               allyesconfig    clang-17
-sh                                  defconfig    gcc-14
-sparc                             allnoconfig    clang-23
-sparc                               defconfig    gcc-16.1.0
-sparc                          randconfig-001    gcc-16.1.0
-sparc                 randconfig-001-20260622    gcc-16.1.0
-sparc                          randconfig-002    gcc-16.1.0
-sparc                 randconfig-002-20260622    gcc-16.1.0
-sparc                       sparc32_defconfig    gcc-16.1.0
-sparc64                          allmodconfig    clang-20
-sparc64                             defconfig    gcc-14
-sparc64                        randconfig-001    gcc-16.1.0
-sparc64               randconfig-001-20260622    gcc-16.1.0
-sparc64                        randconfig-002    gcc-16.1.0
-sparc64               randconfig-002-20260622    gcc-16.1.0
-um                               allmodconfig    clang-17
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-16.1.0
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                             randconfig-001    gcc-16.1.0
-um                    randconfig-001-20260622    gcc-16.1.0
-um                             randconfig-002    gcc-16.1.0
-um                    randconfig-002-20260622    gcc-16.1.0
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-22
-x86_64                            allnoconfig    clang-23
-x86_64                           allyesconfig    clang-22
-x86_64      buildonly-randconfig-001-20260622    clang-22
-x86_64      buildonly-randconfig-002-20260622    clang-22
-x86_64      buildonly-randconfig-003-20260622    clang-22
-x86_64      buildonly-randconfig-004-20260622    clang-22
-x86_64      buildonly-randconfig-005-20260622    clang-22
-x86_64      buildonly-randconfig-006-20260622    clang-22
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-22
-x86_64                randconfig-001-20260622    clang-22
-x86_64                randconfig-002-20260622    clang-22
-x86_64                randconfig-003-20260622    clang-22
-x86_64                randconfig-004-20260622    clang-22
-x86_64                randconfig-005-20260622    clang-22
-x86_64                randconfig-006-20260622    clang-22
-x86_64                randconfig-011-20260622    clang-22
-x86_64                randconfig-012-20260622    clang-22
-x86_64                randconfig-013-20260622    clang-22
-x86_64                randconfig-014-20260622    clang-22
-x86_64                randconfig-015-20260622    clang-22
-x86_64                randconfig-016-20260622    clang-22
-x86_64                randconfig-071-20260622    gcc-14
-x86_64                randconfig-072-20260622    gcc-14
-x86_64                randconfig-073-20260622    gcc-14
-x86_64                randconfig-074-20260622    gcc-14
-x86_64                randconfig-075-20260622    gcc-14
-x86_64                randconfig-076-20260622    gcc-14
-x86_64                               rhel-9.4    clang-22
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-22
-x86_64                    rhel-9.4-kselftests    clang-22
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-22
-xtensa                            allnoconfig    clang-23
-xtensa                           allyesconfig    clang-20
-xtensa                generic_kc705_defconfig    gcc-16.1.0
-xtensa                         randconfig-001    gcc-16.1.0
-xtensa                randconfig-001-20260622    gcc-16.1.0
-xtensa                         randconfig-002    gcc-16.1.0
-xtensa                randconfig-002-20260622    gcc-16.1.0
+    drm/xe/mcu_i2c: Take over control of the controller enabling
+    
+    Some platforms make an assumption that the i2c controller's
+    enabled state indicates also the power state of the
+    controller. This can create a problem when the controller is
+    in disabled state, because the hardware may assume
+    incorrectly that it is then also in low-power state.
+    
+    To fix this, the controller is kept enabled by taking over
+    the IC_ENABLE register. The controller has to be disabled
+    when the configuration is updated and when the target
+    address or the slave address are assigned, so disabling it
+    when IC_CON, IC_TAR or IC_SAR registers are programmed, and
+    then re-enabling it again.
+    
+    Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
++ /mt/dim checkpatch 6583dd200482a34bb17e5dc54551f91f53b79798 drm-intel
+b146b17eb5fc drm/xe/i2c: Handler for SMBus Alerts
+-:9: WARNING:REPEATED_WORD: Possible repeated word: 'device'
+#9: 
+device device for them. The alert device makes sure that
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-:147: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#147: 
+new file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 166 lines checked
+6a8e2c0291e1 drm/xe/mcu_i2c: Take over control of the controller enabling
+
+
