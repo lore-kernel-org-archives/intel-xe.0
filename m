@@ -4,149 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E97F3CDB46F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:21:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BB96CD98F2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:31:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B369A10E7EF;
-	Mon, 22 Jun 2026 18:21:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lCGrHWD9";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D2FF10E7EF
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 18:21:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782152518; x=1813688518;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Lh6qfOGCLV4YxfliCjc12uxZo4QfJaykQ07h5/fGQoA=;
- b=lCGrHWD9o8srVfRGb9088g2M0VSDnLMMe4pXv7UFOhamKug58sYCUpxA
- 05gJ3i6aC7MNF3OlYLCDK5dh16rRnbPES3cZ6zj2fvHpgSQqu62ixrbnG
- E9Nv6hdLkUSbEd1Qmnln6kclupvjk5hhtYOz8cvZsc4fVXd2OEGzB8h1p
- 2tXqpNGx18u/dl0v4a9588YljRjvCELX4PG1BLZXJJcEu1HUGgt2f/GSm
- 95qSEYKjJTEp5AA12CiezpO5TQlT2qSxCs5Y+2fjdAblLiY9yvcyx1TUN
- jsHfxfPn5YTrIPTi8aLsR5jtQaUbJjOmhQTzIZZAZV5cRxlFnvxszBGjf A==;
-X-CSE-ConnectionGUID: 48yZEkqkTL6o+evqoapyUA==
-X-CSE-MsgGUID: G9k50U67QUeUWAksRJ57Rg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="86578056"
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="86578056"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 11:21:57 -0700
-X-CSE-ConnectionGUID: nlMCtKFqTa6d9If9+lltEA==
-X-CSE-MsgGUID: ILQcMYEERTyHHK7PK71X4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="254284475"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 11:21:59 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 22 Jun 2026 11:21:57 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 22 Jun 2026 11:21:57 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.7) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 22 Jun 2026 11:21:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GIMLkAxc6L7gGsTGWGPm7D8uSLPv8OU9ZxWWTeVMx+39TeWFix/hQZHQmijQYWi+Nd3tssTKFDpIlH6gcyXTo3RwTfg1qiuo/YmF7ThylivsHoXjxLP7OPKmum5bhkyuXj7e4vsGs8fNvnzLNoZvHWBctpp+aiKeAPNPyA0EygYYhvsPNBZvtlMCPAsJ6hTxYeh6IKq8NB8fh7B4wd7nBy8eJyQcLNdba4fCMkwH47l/zACdrynuoIjEB4fCnhKJs+a0nmJOJ0mVL6u3PN9t8heiC4rJe49jQQz7oJ8A+5bBar9FRUOnRei+IztRDNxDer43DIzsiORU8VWCJZF1sQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VOqzuC2qJ68slPk0Cnp4LOvmaZoqghDsb4maL3OQnrc=;
- b=J3na80tDquyUnnvX0U5JvzaqlIuv02yLQjc1hobhVSd9RkvQzIb+UPDucuJvfhJ01oj4f4m8qA2ayNptcslAAgIfd6Bze20N5PE2OU0hYZdaUUEWqNch0J95rNX7Pm6H4rt/E5lwqlTQLiZQgxUuPeaJJDKbj+P+T6Mx2cBnYqKOhOP4QI10bMIk5yARkH9KZbjcCxLYVWUdGSLlg9ZrXoTfuErAc6KON9MShB27PVEi/kXIHqmjZvAZ15XZK6bC3QU24TZgISxhmTXLWj0FbxZNEIrUAyjKhTPCFPDa7+madaSqM5GGMSlBYHiWtL6PNTu2uB8viQxOqG/tTBnp5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ2PR11MB8472.namprd11.prod.outlook.com (2603:10b6:a03:574::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Mon, 22 Jun
- 2026 18:21:54 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0139.018; Mon, 22 Jun 2026
- 18:21:54 +0000
-Date: Mon, 22 Jun 2026 11:21:52 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Sk Anirban <sk.anirban@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
- <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
- <mallesh.koujalagi@intel.com>, <vinay.belgaumkar@intel.com>,
- <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH 2/2] drm/xe/guc: fix activity stats error message format
-Message-ID: <ajl9QFaOvdepEzVE@gsse-cloud1.jf.intel.com>
-References: <20260618112528.2354371-4-sk.anirban@intel.com>
- <20260618112528.2354371-6-sk.anirban@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260618112528.2354371-6-sk.anirban@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0222.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::17) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15D6D10E7F7;
+	Mon, 22 Jun 2026 18:31:05 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7616810E7DB;
+ Mon, 22 Jun 2026 18:31:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ2PR11MB8472:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c9db0fa-021a-4ca3-1211-08ded08b2334
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|366016|1800799024|11063799006|56012099006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: qEhNDxHp+XUpoOb03q+sLDLUQeSJ7zBY5Ap4eRZ8EhfF5AIU/TGRBrjPEx6oEb7LhxR7hZ0lFhY3I4SwJroO0iIjiXLP03myIajo9ql9JWOt146kAURtEoexUFtdPS/l6/vwIjfwsah27YD0omsvWf59AJB+3q33YIbEx5+nI9RhGUnS0oDB5AyTjhlJTENHRZoPaujZvtdR+rXZCponeE7H5dxKCTy4dKn4whFF6kg2WJuyr51C9bysSCToNp1yL9bl5NbWHJs2tCNohtYrdZP/bzLNWNHFG5VhzRlv3jKBt9wIp07zts5efCkZMHR4Vs/lxQNAcYep8YLYCVyIyd2zo+oeH1K32yxopbUZtF3ADuP+NmMd85gz6gkDAn4y4DhxqlBwPbK+ehy4I8XAcQWqJMF+ZK4fy3O+qFz6Zl0frp2E3qHl0ZFZ88iqdD1d6C0RqFqrukPMVoHxjK4RGYaW2nhf3Oizg/sUXH75YkNjH4ACdNIPPPXTH65kvyC+CcML8/ongRL2Dj05S97dcWecz7pLYNeZCm0i7iOnny+qmIOhYdZ+fszftsQ/zmYBNNVkeS5sS64MpqQMdN3X2qXd0ETXBYgWNr8j44eZnAffnRWW6dVJSzdkNQk9GXzmKyxDm5GH2JvAX6CJSu3T9pGzwCXgpQV2N21F3vZD9zk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+WqqasVaNX3NmEI9AFuBajrOS6XXTtLIE4YadXSchjGTYeGtanvmGGK/Hdzk?=
- =?us-ascii?Q?akzu1dMVxQ2XgNQ1nny4R10M4689j1cdyiySE6jGPFKU0Mhgpg3EfEY+zttq?=
- =?us-ascii?Q?DXT5YhMlUU/Eda7ruCOnA19AdfwOM2TrgPh1VZAOl60XdheaoMEgJBkkkJ9v?=
- =?us-ascii?Q?F/H+CrnewEo5bFB3xGTkxTf8J0B8rMEKnB1kLuEeYyIzvxvUjGgI9R/x4SE/?=
- =?us-ascii?Q?g+jsGTu7sG7oB6A7UliEIYVmHYi0l/lQW14l3wgZ9PVaWNQfq4lvhdxr0evW?=
- =?us-ascii?Q?O4PPAsRWefLRjYx8CFSAwQl96WFyFY8Db6p0lhhdKGaxKt6qh078iUgz2y7k?=
- =?us-ascii?Q?OJhEQEXNc+BYP9MK5CK8XbWUbC/8deF/WTsZ+oUuMWb+cc0L1d9vOGSwhVtl?=
- =?us-ascii?Q?vBtZsyTmEGhBvZr3AquR8BYMQOGHXeVoN3/zpG/aQ4ajJrg6XX5JmLX7lFWM?=
- =?us-ascii?Q?zww9W+wWoc8wsZ6zbdqAstLP4mpQmk3AOYIrtWarisCWCDTUICNgCxJzF0Vx?=
- =?us-ascii?Q?aw7SDzPMvSYUlqn9btbSOkPnIsh7y2NWhdw38IXzkO8VFyMnzYEGtXg5g0Wa?=
- =?us-ascii?Q?XhijIa/lFHF5Dkpag8oJ3e/k7tqRwLMyrVbwyDQU/TeWbTPQl0t7yHspwR08?=
- =?us-ascii?Q?a+JzR/W5RxstmvF52bJaFAzqtpzUeNg+mlxK2o2U1FsFQossBdizEeRa+nQc?=
- =?us-ascii?Q?UKF7WAy8WJ3SbI4HkaiEFkDMcH9/RNXXUC8JS//q3JOVP8sJrkAwCaREz2oI?=
- =?us-ascii?Q?bfy7Vh/NJd8VhfHwLgKsvqiuA1aA1aM+ila89s4ZF92XJ3gM8YIEbkVkw/bU?=
- =?us-ascii?Q?qcFqVGyBvHtDJJBN9uCDjE52EXef4TRFQVr1p3WzeNBtGVl4cVM3ByjUtIPY?=
- =?us-ascii?Q?/kkIKKcUuONuRYx1/JKUbFG3WQy86KRhaZ6jRzAkta4gh+Fii1I5OwprCYkv?=
- =?us-ascii?Q?+jVzU7zvZXjPC1JOuClW9m7pGy59Olfx4toBvQxRj/kd+jBxyB0DzVF9iDnH?=
- =?us-ascii?Q?eFQoyEngGSiUV9D2CWxiIzzLLNPx096mOveNQm4GA61fie+MdzTbcoS5pjBs?=
- =?us-ascii?Q?uIQgUWpj5Fyg+8kA494JHUx812sVLoGDqTnxCesOLxfwxc3QLNFtHdbZCB6A?=
- =?us-ascii?Q?IH7rBHmebjtPRL4KA8XLPebsQ2V5q7zNMGpm8ffvaewyG0PzL09WQN8Ro9mD?=
- =?us-ascii?Q?QklhlbvR5Pd5g4PZEUE4aTAF6A/Qs1pTtX+OZoiBL34xJ8gglCLYKb4EX0Pd?=
- =?us-ascii?Q?vBLwoVvwfgPfq8+6UnfNIf+Y/yrmcnfxntc7kq/QAybs27Op0y37CZs4ZtRk?=
- =?us-ascii?Q?s5pqSe/OPTzOOC2UTWQQ2mTzeHG2r/8SzGDufFQJQSzxMLstm9F7L70M1GGf?=
- =?us-ascii?Q?ik8jE47MnfOvoPEfyirtv/aHgYXhACJL7WL9iSDO0ImjiPRF3kASPWGNfvpU?=
- =?us-ascii?Q?Z1asiYXITRABxu3scHW9TXrsdn3sqgcG7u6Ur1wZvTo66ni9dH2OMMjSZo/R?=
- =?us-ascii?Q?IG+0r6jIVSdC24lDznPHb7z6dIpJCLmAER3dumKEHVzgaGI+4vgbNXrUpvvn?=
- =?us-ascii?Q?J41Sqzo77hOQ9PHBkpFwqgPhnMVR/OVpg2ab7cTbHNlaB6OYBYpmFu0hPDM8?=
- =?us-ascii?Q?f12YHjbhj6jFbMNR9zDoEIMEQ/rSI2WqzJXkbOY/IfiTAdt2hY90xnLg8Fm7?=
- =?us-ascii?Q?eoa/2A5PibGxyJBzNGDH1Wjk62bWEno10A9Z4brd45o2LaCb4o6o3fXd/9Cw?=
- =?us-ascii?Q?UvDHPfTiaQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: fcR7aa5kkhQSvnhLkYOUvl/ORdi/gJsx85wajitfYuQNitXM140jJybXT/+os83aMgPxrYhIEPCw5JRrbIQj8AWta5ik6WFHxERIOHpp+rqEaCaJx1RAYK85Ipqa1GUyL2ZNwGA9ckZqklOAW9ZWszQlCBE7cB9L0VaNKuPOncT0/hiiAfHIDdFaq9Q6I8ToCOVEu93PNGK5jOJO7Ke4dwx79E0RVwE4gVN4QcjM7EFTxJNINxbPUXcRnmDNzt2/f+7m99Ax/Kj8f0H8d0Bc6t4FoPAt3dKhrx36rY5zvApbcb1NhnFZVQOj08Dp8/O07UojY2BVyigCHG7R6IyjuQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c9db0fa-021a-4ca3-1211-08ded08b2334
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 18:21:54.4402 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: byW2gdXsz96ljKVYh2vzqzpHWBM4qx59skqvj2LzMhKaS9VdtArGTzHOKnDZk4JfqF0Au/ZTK6oUZXR8CfXj6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8472
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_All_p?=
+ =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev17=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Jun 2026 18:31:04 -0000
+Message-ID: <178215306447.102902.17887422568264444677@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260622181044.39335-1-dev@lankhorst.se>
+In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,35 +36,220 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 18, 2026 at 04:55:31PM +0530, Sk Anirban wrote:
-> Use ERR_PTR() to print the error code symbolically.
-> This makes the failure easier to spot from IGT,
-> e.g. when the device is wedged.
-> 
-> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+== Series Details ==
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev17)
+URL   : https://patchwork.freedesktop.org/series/159034/
+State : warning
 
-> ---
->  drivers/gpu/drm/xe/xe_guc_engine_activity.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> index 2b99c1ebdd58..f43ca1c76f75 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> @@ -473,7 +473,7 @@ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
->  
->  	ret = enable_engine_activity_stats(guc);
->  	if (ret)
-> -		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
-> +		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats: %pe\n", ERR_PTR(ret));
->  	else
->  		engine_activity_set_cpu_ts(guc, 0);
->  }
-> -- 
-> 2.43.0
-> 
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b17b8312f8480f730c84ee9b5cd2ff7f76e61d6d
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Mon Jun 22 20:10:43 2026 +0200
+
+    drm/i915/guc: Make timestamp.lock a raw spinlock
+    
+    Because the timestamp.lock is called from the perf lock,
+    it has to be converted to a raw spinlock too.
+    
+    This fixes another splat with a similar trace
+    to the previous commit in perf_pmu.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 6583dd200482a34bb17e5dc54551f91f53b79798 drm-intel
+e5dd91534569 drm/vblank_work: Add methods to schedule vblank_work in 2 stages
+-:116: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#116: FILE: drivers/gpu/drm/drm_vblank_work.c:180:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 166 lines checked
+afaf22c15e7d drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
+4a8b88965a71 drm/intel/display: Make intel_crtc_arm_vblank_event static
+a1d4ab453dc1 drm/intel/display: Convert vblank event handling to 2-stage arming
+-:139: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#139: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:798:
++							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+
+-:142: WARNING:LONG_LINE_COMMENT: line length of 110 exceeds 100 columns
+#142: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:801:
++				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
+
+total: 0 errors, 2 warnings, 0 checks, 120 lines checked
+f4a04566cced drm/i915/display: Move vblank put until after critical section
+8b49018264b1 drm/i915/display: Remove locking from intel_vblank_evade critical section
+-:47: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:735:
++static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline, bool unlocked)
+
+-:91: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#91: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:767:
++		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline, true), timeout);
+
+total: 0 errors, 2 warnings, 0 checks, 78 lines checked
+6acbc891f3b9 drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range too
+c1fe7f147eda drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+
+-:46: WARNING:LINE_SPACING: Missing a blank line after declarations
+#46: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:324:
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_lock_irqsave(&uncore->lock, *flags);
+
+-:53: WARNING:LINE_SPACING: Missing a blank line after declarations
+#53: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:331:
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_unlock_irqrestore(&uncore->lock, flags);
+
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+771a5d3b4dd3 drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+980d68f1d762 drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
+-:43: ERROR:CODE_INDENT: code indent should use tabs where possible
+#43: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
++^I^I^I^I        PIPEFRAME(display, pipe));$
+
+-:43: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#43: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
++	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
++				        PIPEFRAME(display, pipe));
+
+-:60: WARNING:LINE_SPACING: Missing a blank line after declarations
+#60: FILE: drivers/gpu/drm/i915/intel_uncore.h:457:
++	u32 upper, lower, old_upper, loop = 0;
++	upper = intel_uncore_read_fw(uncore, upper_reg);
+
+total: 1 errors, 1 warnings, 1 checks, 85 lines checked
+2701ec414da0 drm/i915/display: Make icl_dsi_frame_update use _fw too
+2f6fedc3d6f6 drm/i915/display: Use intel_de_read/write_fw in colorops
+-:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#123: FILE: drivers/gpu/drm/i915/display/intel_color.c:1054:
++	intel_de_write_fw(display, GAMMA_MODE(crtc->pipe),
+ 		       crtc_state->gamma_mode);
+
+-:143: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 1 checks, 24 lines checked
+a778ed1f7cbf drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:156: ERROR:CODE_INDENT: code indent should use tabs where possible
+#156: FILE: drivers/gpu/drm/i915/display/intel_display.c:2816:
++^I^I          VBLANK_START(crtc_vblank_start - 1) |$
+
+-:156: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#156: FILE: drivers/gpu/drm/i915/display/intel_display.c:2816:
++	intel_de_write_fw(display, TRANS_VBLANK(display, transcoder),
++		          VBLANK_START(crtc_vblank_start - 1) |
+
+-:157: ERROR:CODE_INDENT: code indent should use tabs where possible
+#157: FILE: drivers/gpu/drm/i915/display/intel_display.c:2817:
++^I^I          VBLANK_END(crtc_vblank_end - 1));$
+
+-:238: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 2 errors, 2 warnings, 1 checks, 141 lines checked
+774dac64ae9b drm/i915/display: Make set_pipeconf use the fw variants
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#46: 
+Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+
+-:76: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 3 warnings, 0 checks, 22 lines checked
+065c053546b0 drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
+-:22: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#22: 
+Reported-by: Clark Williams <williams@redhat.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+86bd7f7d6d1d drm/i915: Drop the irqs_disabled() check
+-:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#16: 
+Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+606233f08efc drm/i915/guc: Consider also RCU depth in busy loop.
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+-:27: ERROR:IN_ATOMIC: do not use in_atomic in drivers
+#27: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:365:
++	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+f320ed4b4128 drm/i915/gt: Fix selftests on PREEMPT_RT
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 26 lines checked
+617efdd22616 drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
+-:20: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
++	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
+
+-:20: ERROR:IN_ATOMIC: do not use in_atomic in drivers
+#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
++	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+9cc64593bc9a drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
+b38476053994 drm/i915: Use sleeping selftests for igt_atomic on PREEMPT_RT
+0dcb824df23d Revert "drm/i915: Depend on !PREEMPT_RT."
+4fa7b18c5e16 PREEMPT_RT injection
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+3496a0a5a66c FOR-CI: bump MAX_STACK_TRACE_ENTRIES
+2ce7a0ac606b drm/i915/gt: Add a spinlock to prevent starvation of irq_work.
+-:65: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#65: FILE: drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h:43:
++	spinlock_t signaler_active_sync;
+
+-:68: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Sebastian Andrzej Siewior <bigeasy@linutronix.de>'
+
+total: 1 errors, 0 warnings, 1 checks, 40 lines checked
+2b4e6f336016 drm/xe: Avoid using stolen memory for DPT.
+163d58a8d811 drm/xe/display: Avoid using stolen memory for framebuffer when media gt exists.
+0d8f469c1599 drm/xe/display: Do not allocate into stolen for new framebuffers.
+c679dc67d369 drm/i915/pmu: Convert to raw spinlock
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+<3> [133.631044] BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:176: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 2 warnings, 0 checks, 96 lines checked
+b17b8312f848 drm/i915/guc: Make timestamp.lock a raw spinlock
+
+
