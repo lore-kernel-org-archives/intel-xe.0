@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 553A0CD98F2
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 13:24:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43252CD98F2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 13:34:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DDD810E6D6;
-	Mon, 22 Jun 2026 13:24:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L5+xDCv0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCAD010E6DC
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 13:24:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782134646; x=1813670646;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XE9kuhA4qTg6T9WQgRgF4Dt/WG+wAobThO9LD5cG69E=;
- b=L5+xDCv0oCmvx/JzlakImHh9nPMjCnaIr5W4dxyLQDNuNJcU5dXsHeDd
- 3Cgmci6nDIlASbCFCZZ2fK/4tmcC0vqiGcLeRJljXBI2baqqzgHOI2h6i
- KRXjQc/YXZR8+SujWnWxs60iHcjHIw1/QIobE2FjlXoNSPuAgdC6hzMxS
- LXhh2naGykBn/xJA6bb6LfIR5ZBOgjqGL6x7Vbsi33+MjAj1OgybjTI6b
- olNNXXWsPry/WwLhOBzEnaomZpCXOw0e3+lARePsoqRZR7R5/zD8PnqGw
- 5djOad2xk2mnuaHmWwW8r5wNMTgSvU0gTcNke+KXh8Txt8onVoQr63Kzc g==;
-X-CSE-ConnectionGUID: EQqXgd8/SsCPnsHNcemMhA==
-X-CSE-MsgGUID: q58dXgB+S46IqpKPEcnYkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="93228701"
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="93228701"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 06:24:06 -0700
-X-CSE-ConnectionGUID: PI9NVSlbScmdhK++tgeX7g==
-X-CSE-MsgGUID: as6g1+IJRbCzRMCrwFFdoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="279407195"
-Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.117.247])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 06:24:05 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v3 6/6] drm/xe/mmio: Prefer tile-based WARN message
-Date: Mon, 22 Jun 2026 15:23:42 +0200
-Message-ID: <20260622132342.19600-7-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260622132342.19600-1-michal.wajdeczko@intel.com>
-References: <20260622132342.19600-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB4B10E6F0;
+	Mon, 22 Jun 2026 13:34:44 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9C7D10E6FB;
+ Mon, 22 Jun 2026 13:34:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/vm=3A_Fix_BO_prefe?=
+ =?utf-8?q?tch_with_CONSULT=5FMEM=5FADVISE=5FPREF=5FLOC?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Jun 2026 13:34:42 -0000
+Message-ID: <178213528282.101529.6501436403132206799@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260622082445.1720007-2-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260622082445.1720007-2-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,40 +36,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If 64-bit read operations are unstable, use tile-based WARN message
-to provide more details on which tile this was observed.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_mmio.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Series: drm/xe/vm: Fix BO prefetch with CONSULT_MEM_ADVISE_PREF_LOC
+URL   : https://patchwork.freedesktop.org/series/168913/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 41e6b753634f..7fa18dfcb5a2 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -11,7 +11,6 @@
- #include <linux/pci.h>
- 
- #include <drm/drm_managed.h>
--#include <drm/drm_print.h>
- 
- #include "regs/xe_bars.h"
- #include "xe_device.h"
-@@ -315,8 +314,8 @@ u64 xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg)
- 		oldudw = udw;
- 	}
- 
--	drm_WARN(&mmio->tile->xe->drm, retries == 0,
--		 "64-bit read of %#x did not stabilize\n", reg.addr);
-+	xe_tile_WARN(mmio->tile, retries == 0,
-+		     "MMIO: 64-bit read of %#x did not stabilize\n", reg.addr);
- 
- 	return (u64)udw << 32 | ldw;
- }
--- 
-2.47.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f1d287c0ae8ee1cb2e1430cdb01713006451d8e5
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Mon Jun 22 13:54:46 2026 +0530
+
+    drm/xe/vm: Fix BO prefetch with CONSULT_MEM_ADVISE_PREF_LOC
+    
+    When prefetch region is DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC for a BO VMA,
+    the code used it as an index into region_to_mem_type[], causing an
+    out-of-bounds access since the value is -1.
+    
+    Resolve the preferred location for BO VMAs directly: local VRAM on dGFX
+    (using the BO's tile placement) or system memory on iGPU.
+    
+    Discovered using AI-assisted static analysis confirmed by Intel Product
+    Security.
+    
+    Reported-by: Martin Hodo <martin.hodo@intel.com>
+    Fixes: c1bb69a2e8e2 ("drm/xe/svm: Consult madvise preferred location in prefetch")
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 6583dd200482a34bb17e5dc54551f91f53b79798 drm-intel
+f1d287c0ae8e drm/xe/vm: Fix BO prefetch with CONSULT_MEM_ADVISE_PREF_LOC
+-:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#16: 
+Reported-by: Martin Hodo <martin.hodo@intel.com>
+Fixes: c1bb69a2e8e2 ("drm/xe/svm: Consult madvise preferred location in prefetch")
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+
 
