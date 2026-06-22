@@ -4,37 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26DDECDB47B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 764C9CDE001
 	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F88C10E822;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B07A10E821;
 	Mon, 22 Jun 2026 18:10:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="B3ZG+pGM";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="fdvAMZQR";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1BE010E817;
- Mon, 22 Jun 2026 18:10:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACA6D10E80F;
+ Mon, 22 Jun 2026 18:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782151849;
- bh=Smwtu6CwhUCwK5agwnez+Jaqs++M2OVTTW4z7GIcls4=;
+ s=default; t=1782151848;
+ bh=y7YrR9Jx1PcXUHjRQtEYdpxMBRgSE6y36uz2+nOziO0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=B3ZG+pGMlrMwuQ4xU8fcEk2+3q1Io3U/oALg0AhxBbWkJdDqGI22JaaHBO2s85s7l
- 4TM21uszb4g2mbyeqSoRMKVMgbGN5/gt9MlfsqNHy8MHxVx5YpxgVgfIS+qxlS5lqv
- IkLPoztwtuNugdJsVhQ81rMXyfgX9Sa4sdsokqbOqXRakELH/9GRmAHrAo6sV6Z9I+
- Dtja3DIACwjrqjXlBK4hYn6Drv9t3T1i0FccQ8U4PLmYsRZ0Lh/iae9w3527I+mz1+
- 4cmJOGSDlpTadAxh85r60iFT4vGZfNzdbsmCytGXM8oqUsJUs8PIb7+N13hH8o9l3E
- ZzxL5+Ldz49kg==
+ b=fdvAMZQRy3BkoStbaMbxXr7cncV2mB4onpbhYObVv4JLfdGLsbAKsFU5d/YlZ/bas
+ fnB3BUdkw4bY09Doz+IgLHBS67Nt+GBrK/vUyAoaw5oOhflqlnhgeRGuqBpDOClUi/
+ EFSYKGpngBTCjtAMTwx9C/ESlmE0wcdetGxZEcJEBlrZY4TtruphEc6g3xnq1PHDsl
+ 2nKdQP430hmHmvI0WrO25/zlpPaYewMu6NrcbKiS9vCj+a118Pl9BewkZXGO0VbopU
+ SurVM6qIaq1gLvKfoqkJO95GC4Lk8Pu/9svLNWpe/VRVKAJzaSybQlj+0LYKBncLWc
+ LS61WHVVdjK/Q==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v9 25/30] drm/i915/gt: Add a spinlock to prevent starvation of
- irq_work.
-Date: Mon, 22 Jun 2026 20:10:38 +0200
-Message-ID: <20260622181044.39335-26-dev@lankhorst.se>
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v9 23/30] PREEMPT_RT injection
+Date: Mon, 22 Jun 2026 20:10:36 +0200
+Message-ID: <20260622181044.39335-24-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 References: <20260622181044.39335-1-dev@lankhorst.se>
@@ -54,74 +52,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
-and the interrupt will poll on signaler_active while the irq-work can't
-make progress.
-
-Solve this by adding a spinlock to prevent starvation and force
-completion.
-
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c       | 8 +++++++-
- drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h | 1 +
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ kernel/Kconfig.preempt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index c10ac0ab3bfa8..c2b174bfa1418 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -209,6 +209,7 @@ static void signal_irq_work(struct irq_work *work)
- 		intel_breadcrumbs_disarm_irq(b);
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index 88c594c6d7fcd..11bec9be95405 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -90,9 +90,9 @@ config PREEMPT_LAZY
+ endchoice
  
- 	rcu_read_lock();
-+	spin_lock(&b->signaler_active_sync);
- 	atomic_inc(&b->signaler_active);
- 	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
- 		struct i915_request *rq;
-@@ -246,6 +247,7 @@ static void signal_irq_work(struct irq_work *work)
- 		}
- 	}
- 	atomic_dec(&b->signaler_active);
-+	spin_unlock(&b->signaler_active_sync);
- 	rcu_read_unlock();
- 
- 	llist_for_each_safe(signal, sn, signal) {
-@@ -290,6 +292,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
- 	init_llist_head(&b->signaled_requests);
- 
- 	spin_lock_init(&b->irq_lock);
-+	spin_lock_init(&b->signaler_active_sync);
- 	init_irq_work(&b->irq_work, signal_irq_work);
- 
- 	b->irq_engine = irq_engine;
-@@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
- 	if (release)
- 		intel_context_put(ce);
- 
--	while (atomic_read(&b->signaler_active))
-+	while (atomic_read(&b->signaler_active)) {
-+		spin_lock(&b->signaler_active_sync);
-+		spin_unlock(&b->signaler_active_sync);
- 		cpu_relax();
-+	}
- }
- 
- static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-index bdf09fd67b6e7..28dae32628aab 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-@@ -40,6 +40,7 @@ struct intel_breadcrumbs {
- 	struct list_head signalers;
- 	struct llist_head signaled_requests;
- 	atomic_t signaler_active;
-+	spinlock_t signaler_active_sync;
- 
- 	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
- 	struct irq_work irq_work; /* for use from inside irq_lock */
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.53.0
 
