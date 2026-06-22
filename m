@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DDAACDE00E
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:11:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C313FCD98F2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:11:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC0A310E837;
-	Mon, 22 Jun 2026 18:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B69A610E844;
+	Mon, 22 Jun 2026 18:10:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="JmHWkuNT";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="XkuGsB6W";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBDC410E803;
- Mon, 22 Jun 2026 18:10:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582A810E7BF;
+ Mon, 22 Jun 2026 18:10:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782151845;
- bh=j+kZhrKGeVLe6Kwb9Av2wRwsLfG3GUrsHoYClLpC+34=;
+ s=default; t=1782151851;
+ bh=SrqQAMYrLxDPK7Yj+2MrfgB0HHUwyS8YP/VDKTn/AAY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=JmHWkuNTmlSZdjWJd466xHEXlibHHpd37CEaSImFSmTsyo17YZFcc0ianffUQMao8
- XCSttCTVx3qaSFSXNV7Wdcw5YNNjueE28Sy1Npd3dAPC3mD4BS9uhDdk+IcUZ1eJvH
- PbDyrIswsjhERzXYaFUwSLNntToAudEnF+yHj2+1V0iGUhEIjRwCltzldYol0DUbm3
- lHkFyhpuv60/oJIhs1LtAzkSDJP6bhxcFIx5CVS5XPAsgJtl83CwIZlJ6T6LJMKVGG
- VbIqewwDfaqUg113ZSs4/jqyWyMQzWsWWVLMUFhqhVKqbchiAws7uHUZZe8/DqXFXG
- 1DZ71H0RwmAdQ==
+ b=XkuGsB6WDRiFoHBUCDYG0OqX7HPLUVu8anhudCcLqtv712DgA0TKnN53bgk7pYRmM
+ NXVk2+a4ZKt+gJcz4kjehNpQm/Gnmqb52XUzu4opt9vSWZQuTwSq9/BMlFrbDY7Ss3
+ roYeMtvVDVzlf4t76fGNjnttSHEI0JcJxUZR+X0h4AEQcx4u0UJUg6E2H0C1UVZO/h
+ 0z2qzdmVUhSRYvg6eMUdbZskyybE+kvlUBWbM3PnyGGwgBZovPcgl6yhsOC6POjHG6
+ i4e/KQ7kZwfhifNNj+4AZTARLMd1CZsrKl6IxBp0D7t/jmtaUMKGHSPuk7cH6S76X8
+ fz3WOP5eZaWuA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v9 19/30] drm/i915/gt: Set stop_timeout() correctly on
- PREEMPT-RT
-Date: Mon, 22 Jun 2026 20:10:32 +0200
-Message-ID: <20260622181044.39335-20-dev@lankhorst.se>
+Subject: [PATCH v9 27/30] drm/xe/display: Avoid using stolen memory for
+ framebuffer when media gt exists.
+Date: Mon, 22 Jun 2026 20:10:40 +0200
+Message-ID: <20260622181044.39335-28-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 References: <20260622181044.39335-1-dev@lankhorst.se>
@@ -53,27 +53,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Also check if RCU is disabled for PREEMPT-RT, which is the case when
-local_bh_disable() is called.
+On systems with media GT, extra latency is added when accessing stolen
+memory when the GT is in MC6.
+
+Simply disable allocating stolen memory for framebuffers when media gt
+is found.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_display_bo.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c0fd349a4600c..9dd9665128caa 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1607,7 +1607,7 @@ u64 intel_engine_get_last_batch_head(const struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index 7fbac223b0977..a5080f6540d46 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -130,6 +130,13 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ 	if (IS_DGFX(xe))
+ 		return false;
  
- static unsigned long stop_timeout(const struct intel_engine_cs *engine)
- {
--	if (in_atomic() || irqs_disabled()) /* inside atomic preempt-reset? */
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
- 		return 0;
++	/*
++	 * Avoid stolen memory when the media_gt exists,
++	 * because a lot of latency is added when media gt is in MC6
++	 */
++	if (xe_device_get_root_tile(xe)->media_gt)
++		return false;
++
+ 	if (XE_DEVICE_WA(xe, 22019338487_display))
+ 		return false;
  
- 	/*
 -- 
 2.53.0
 
