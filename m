@@ -4,35 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 418B3CDB479
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E619CDB475
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE0E010E81C;
-	Mon, 22 Jun 2026 18:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFADE10E82B;
+	Mon, 22 Jun 2026 18:10:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ivh03X0l";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="EUKsABNp";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1B7510E812;
- Mon, 22 Jun 2026 18:10:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AF9E10E7F8;
+ Mon, 22 Jun 2026 18:10:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782151850;
- bh=8atRt4B/PXAXgr5z4WvxSpmOYT8k6lDmprmy2FqFD64=;
+ s=default; t=1782151843;
+ bh=Oh1os3TsHNdW2Pq4AI0gYhWG24uRvSoJ0dx3b6zoRio=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ivh03X0lirasaMPbVve/HWBcjpv3+c5PaMbpebrq1NAoW4Ht7JKt5AQjA5n3SCHKy
- rNwf/lNN58jKB5XEaKeEGJs3QrByAZ4zDwqeLtXfQJawxjI9KHWBxtX1H5r/F8Ap/H
- x7HeXHzLF8JKQ9JUHXmJOZia884Rn8pWNNj6Z3tN/po62mDoyVBb3Mw0OFNK8ZjxEx
- 8185uA22tKRLdcmUUPixtpFCwc6AO19Tt7MiWMJ3jmWLgA3o2DotRY7uezQ5fAwhBM
- 8khcZzsEiJP/pR5GEcAXteB5amXN7ClceQfp9bRGipC5TJZQS1Qfuzs5u7PRiGqzaC
- t+zR53qFWZbNQ==
+ b=EUKsABNpzSHggX4npBf2Kgaw2Kt0MJMrABbX4eoNPo3juaMjvL/0D0FSwAag+ncwP
+ 8WHkuugTRlw089aXDCdZqmZ564Kjh2AYIwnZjdDCFZg3isX19WlFLTUlcFiaoHo+uB
+ V4XqS70HxtGspfJD1NVLwpIYo+0VwxKTjybxlnR/CWjzm+21TdI4kcQeW6RCdyPz4F
+ W3oRHucMXSFzs1qe/1yod0muWhyrG+/3eKq6mNzLFnvIPZ49Ah8Ufegt7tx9tOxXGG
+ 7VvjpxJD2SorKxTNGA0TLU/fTLTlNlhydFs1ZMZLsC9DaodkNLfL63WpJhL2ZDjE7Z
+ N1z5RoH7JJVZQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v9 26/30] drm/xe: Avoid using stolen memory for DPT.
-Date: Mon, 22 Jun 2026 20:10:39 +0200
-Message-ID: <20260622181044.39335-27-dev@lankhorst.se>
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v9 16/30] drm/i915: Drop the irqs_disabled() check
+Date: Mon, 22 Jun 2026 20:10:29 +0200
+Message-ID: <20260622181044.39335-17-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 References: <20260622181044.39335-1-dev@lankhorst.se>
@@ -52,61 +55,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On systems with media GT, extra latency is added when accessing stolen
-memory when the GT is in MC6. Since we additionally aren't counting how
-much memory is used for stolen and we could in theory fill up the
-entire stolen area with DPT's, avoid using stolen and only use the
-default memory region.
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
+The !irqs_disabled() check triggers on PREEMPT_RT even with
+i915_sched_engine::lock acquired. The reason is the lock is transformed
+into a sleeping lock on PREEMPT_RT and does not disable interrupts.
+
+There is no need to check for disabled interrupts. The lockdep
+annotation below already check if the lock has been acquired by the
+caller and will yell if the interrupts are not disabled.
+
+Remove the !irqs_disabled() check.
+
+Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 33 +++++++-------------------
- 1 file changed, 8 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index f93c98bec5b5f..86013ef532fd7 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -164,31 +164,14 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
- 		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
- 				 XE_PAGE_SIZE);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index d2c7b1090df08..f66f8efc70629 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -610,7 +610,6 @@ bool __i915_request_submit(struct i915_request *request)
  
--	if (IS_DGFX(xe))
--		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
--						   dpt_size, ~0ull,
--						   ttm_bo_type_kernel,
--						   XE_BO_FLAG_VRAM0 |
--						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
--						   pin_params->alignment, false);
--	else
--		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
--						   dpt_size,  ~0ull,
--						   ttm_bo_type_kernel,
--						   XE_BO_FLAG_STOLEN |
--						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
--						   pin_params->alignment, false);
--	if (IS_ERR(dpt))
--		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
--						   dpt_size,  ~0ull,
--						   ttm_bo_type_kernel,
--						   XE_BO_FLAG_SYSTEM |
--						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE |
--						   XE_BO_FLAG_FORCE_WC,
--						   pin_params->alignment, false);
-+	dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
-+					   dpt_size,  ~0ull,
-+					   ttm_bo_type_kernel,
-+					   XE_BO_FLAG_VRAM_IF_DGFX(tile0) |
-+					   XE_BO_FLAG_GGTT |
-+					   XE_BO_FLAG_PAGETABLE |
-+					   XE_BO_FLAG_FORCE_WC,
-+					   pin_params->alignment, false);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
+ 	RQ_TRACE(request, "\n");
  
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
+ 
+ 	/*
+@@ -719,7 +718,6 @@ void __i915_request_unsubmit(struct i915_request *request)
+ 	 */
+ 	RQ_TRACE(request, "\n");
+ 
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
+ 
+ 	/*
 -- 
 2.53.0
 
