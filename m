@@ -4,103 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 016C1CD98F0
-	for <intel-xe@archiver.kernel.org>; Sun, 21 Jun 2026 23:21:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3692FCD98E4
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 03:54:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2DF10E0B7;
-	Sun, 21 Jun 2026 23:21:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gZoeN74r";
-	dkim-atps=neutral
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
- [209.85.222.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C281D10E0B7
- for <intel-xe@lists.freedesktop.org>; Sun, 21 Jun 2026 23:21:21 +0000 (UTC)
-Received: by mail-qk1-f177.google.com with SMTP id
- af79cd13be357-915aa0a9293so516202385a.1
- for <intel-xe@lists.freedesktop.org>; Sun, 21 Jun 2026 16:21:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782084080; cv=none;
- d=google.com; s=arc-20240605;
- b=UCdMh1HgugAAEdaU7qxBKXR29YLcEPmVKqvw0xFj4Ts61CuGcIN1bMpBEQFhmKJPPk
- L8WD6lT8O9DTUuybPB0OfpqIptdq09HAJ7weUHshZwz3r/tiy/ONrDyAW9TFH0WWgvuS
- xAaNFkgHmC6ZlbEgl3T9bIkhebVcEDPaDpcXiD6P3DIF+GKg8alNmbjlEeWCh57cPUAN
- Ab/slk9Flr9riiEAr1IF7uYv2LEgMim0K3mRxE+gES+ica7yDJBSzbpnX1hDrn5ZL9L6
- MGGfdniFPZ3KR1B0hjf/WUwzBFB1RSy2K2qXFl51L4Q34GhBaLNzJEBU1tCRuUsZW3VL
- ZJEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=hxi8pAd5fXbOtgwDNhDucP856vxJgDI8S86xqAbImM4=;
- fh=QPOHx8M/5caK0wLTfLtN6Oy50iKdh17worW9dwBmovs=;
- b=TnLpuvVdoETWrGaKAiBJ633NIOBXsSWEIH2sasbR34+rxrZON8Q5nEOxqDlR56gVaR
- sD0xB42pF7Qx7SSt+0CUEMn/7rD44SvD8srKOAf/pXiIMVyjqM/X5gyslir01flwMYn8
- Mi5CJEw8yz4MdNpsTOlM5vyYy5OL/mXRpgchijMwWeuHS97/64pY5/Rg0MlAT4NLfwG1
- rfXsag1hXVaDutZDD3KSSN4gZ0fNatGS9s6wtbQz03oNSTm1hK3iFpR8axdfjj020eRS
- nRLDNAMiuyZ7rffXJW4cN29gELO7RqMduFFBzp9pruyMoRESH7/iinanyKfPmPa1+CT/
- EemA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782084080; x=1782688880; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=hxi8pAd5fXbOtgwDNhDucP856vxJgDI8S86xqAbImM4=;
- b=gZoeN74rgR4YH2r/4d9OSEMUnaDsmehqyvAKy6vW5Z9CgPLNkUcLbRGljqjvXpyc6T
- NicoCOeCUr/euYuCNuG10uAdPS5ZtusMZlr/9fr5K0yKq5TLZ+DKq044iYU9oPVAcnCo
- wgIcDLhk5GCSY4yHkDlNbMGqO11XUrlH78uiMZVszZ+v65uHHc+BPIdAwRJ0uang25N1
- qbHzVvpGYAgjjYeddYaPbJlhaLMthd+AtmCZNCZ1OPpckg+5zl2ybfSvEyAWMsKAb9iu
- sfGu6zVPAovKY5PXfgl7kjpjD9PzQupxJEoj1cryadT7Zgh29LWiaWlrBB0uWSyKmyBH
- tEjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782084080; x=1782688880;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=hxi8pAd5fXbOtgwDNhDucP856vxJgDI8S86xqAbImM4=;
- b=QDb0BZR6PN0JAmXgT8kwFpcZbLUI/oD70FsMWJvk4bh+HCKDGjCzW7a2mBaIRbe17Z
- G3zEGuA3Ic0zwxo0ZxeKszRaQIyw33miCsHMSVLVK23OiC6kLmHSfUaeeCMVtQa6FJZU
- gb8+nClSHCkLw5DzQyEZoo5M6aKZ7QCiQ6ccnLkIlvL0GEh1Ax2KJX5RPTq+KRGR4/Vu
- pAXcNN0amshUKhw5TdLJYCvLFGySx+nLeosjFZurUXDpNJtBqgGaw4LLnFE+qffL8n5Q
- F5j9XimZkHH/9/iamFjpQ70EvZamkUs+NJbAZFUhkF469DpwULtXodrPTLY0sPpxNjBj
- jfPQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8SVnxvQkHFzlAIz05JbjOvLJfhYLKdswyS5OuOREiqENW1SgVp4lkOuHfSFjIGyN1mvvAsPlv/8Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx9Vr8flC74y+sr1YzcCL9voO58HRk3rXZqPSaqLg/vAqUgffDL
- KmF7SselKaz39s28JIVEC2yLb56UUy4vZrJVz58EPmY+IIViKLGUJOXL/bQaeyIGCaOYwu+C/09
- g1EcyFmmsMyVWvmQlFe3jw/WV+f2gcb4=
-X-Gm-Gg: AfdE7ckJkBmeHuhbaWMgnpgx6RwJFJFKcbfNgDyrYk+4a7uN1zAjqrOUXAxveA6SBft
- /7lGMcktOQznW+/m+qbTOd0VEaW/68ewEI7OnqWHP4lkN3Aiyq2uMtwdriKYurQ1aW0rFMtohTY
- laJCEFMpVdhG5jKEXmLSE9MWcHA3fjFnkpiYVn6B2MS3Rs+Ov5VRjUjeQod7chy0ILXr2AhQzFF
- EcVaxvGE9wK5GaMZMvaBdnkjKjCAldU+iJaKHIFW67tIOdfatHeAVtv4xKh6VQhuLXErKht3Ebw
- PPEVpAlocYc9+3UorBuUZ//TAVkctzm7t9lNnrisTzVI8ouJMfiI2ZR45gYvII7/9FZ962MQqJe
- VPtjW+KNqnZwxFg4=
-X-Received: by 2002:a05:620a:4053:b0:915:5216:e5bf with SMTP id
- af79cd13be357-9208c625028mr1587487185a.22.1782084080570; Sun, 21 Jun 2026
- 16:21:20 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE9A10E0CA;
+	Mon, 22 Jun 2026 03:54:19 +0000 (UTC)
+X-Greylist: delayed 396 seconds by postgrey-1.36 at gabe;
+ Mon, 22 Jun 2026 03:54:18 UTC
+Received: from mailout1.hostsharing.net (mailout1.hostsharing.net
+ [83.223.95.204])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2998D10E43E
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 03:54:18 +0000 (UTC)
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange x25519 server-signature ECDSA (secp384r1) server-digest SHA384
+ client-signature ECDSA (secp384r1) client-digest SHA384)
+ (Client CN "*.hostsharing.net",
+ Issuer "GlobalSign GCC R6 AlphaSSL CA 2025" (verified OK))
+ by mailout1.hostsharing.net (Postfix) with ESMTPS id 1FDD435B;
+ Mon, 22 Jun 2026 05:47:40 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+ id 0CF686011CD9; Mon, 22 Jun 2026 05:47:40 +0200 (CEST)
+Date: Mon, 22 Jun 2026 05:47:40 +0200
+From: Lukas Wunner <lukas@wunner.de>
+To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, andrealmeid@igalia.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+ tzimmermann@suse.de, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com
+Subject: Re: [PATCH v8 5/6] drm/xe: Suppress Surprise Link Down on device
+Message-ID: <ajiwXJuY0PrGq7Gj@wunner.de>
+References: <20260612080722.26726-8-mallesh.koujalagi@intel.com>
+ <20260612080722.26726-13-mallesh.koujalagi@intel.com>
 MIME-Version: 1.0
-References: <ajLy2brwvOZEFNNN@gsse-cloud1.jf.intel.com>
- <ajL++rKbSpYgBRw6@gsse-cloud1.jf.intel.com>
-In-Reply-To: <ajL++rKbSpYgBRw6@gsse-cloud1.jf.intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Mon, 22 Jun 2026 09:21:08 +1000
-X-Gm-Features: AVVi8Cf985BzLxOdD7bf0TqUBm8eXlIQywh3agTZ7zRl3Lbgw2eToWnB5a8jug8
-Message-ID: <CAPM=9tzO2Cg2e5BRQrvwtX08pmaq+hOvBb=BuYWQ0beLyoU5uw@mail.gmail.com>
-Subject: Re: [PULL] drm-xe-next-fixes
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dim-tools@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260612080722.26726-13-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,44 +57,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 18 Jun 2026 at 06:09, Matthew Brost <matthew.brost@intel.com> wrote=
-:
->
-> On Wed, Jun 17, 2026 at 12:17:45PM -0700, Matthew Brost wrote:
-> > Hi Dave, Sima,
-> >
-> > Here are drm-xe-next-fixes for 7.2.
-> >
-> > Matt
-> >
-> > drm-xe-next-fixes-2026-06-17:
-> > The following changes since commit 52d4ab1ca790a668cc8f2c27017138b1c467=
-168c:
-> >
->
-> Rodrigo pointed out that I omitted the summary here...
->
-> The changes we have are:
->
-> - Set TTM beneficial order to 9 in Xe
-> - Several error path cleanups
-> - Fix TDR for unstarted jobs on kernel queues
-> - Several TLB invalidation fixes related to suspending LR queues
-> - Some small RAS fixes
-> - Multi-queue suspend fix for LR queues
-> - Revert inclusion of NVL_S firmware
->
-> I also generated this PR using the following command, though I=E2=80=99m =
-not sure it matters:
-> dim pull-request drm-xe-next-fixes origin/master
->
-> Rather than:
-> dim pull-request drm-xe-next-fixes drm/drm-next
->
-> Given these issues, please let me know if a regenerated PR would be prefe=
-rred.
+On Fri, Jun 12, 2026 at 01:37:28PM +0530, Mallesh Koujalagi wrote:
+> PUNIT errors can only be recovered using a power-cycle. Xe KMD
+> sends a uevent to notify userspace to trigger a power cycle.
+> On platforms where link drop caused by powering the device off and
+> back on is reported by hardware as a Surprise Link Down (SLD), which
+> AER then escalates as an Uncorrectable Fatal Error. That error fires
+> before the device finishes coming back up and defeats the
+> very recovery we are attempting.
+> 
+> To keep the expected, recovery-induced link drop from being raised as
+> a fatal AER event, mask the Surprise Link Down bit
+> (PCI_ERR_UNC_SURPDN) in the upstream port's AER Uncorrectable Error
+> Mask register before punit_error_handler() requests the cold reset.
 
-All good, I checked the changes and edited the commit msg to add the change=
-log.
+You need to clear the Surprise Down Error Status bit in the
+Uncorrectable Error Status Register after the reset.
 
-Dave.
+You should also unmask the error.
+
+> +	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, &aer_uncorr_mask);
+> +	aer_uncorr_mask |= PCI_ERR_UNC_SURPDN;
+> +	pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, aer_uncorr_mask);
+
+pci_clear_and_set_config_dword()?
+
+OSPM is not supposed to fiddle with AER registers unless it has been
+granted control of those registers through the ACPI _OSC method.
+
+There's a pcie_aer_is_native() helper to skip access to those registers
+but its only visible to the PCI core currently.
+
+Thanks,
+
+Lukas
