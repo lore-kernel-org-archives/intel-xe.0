@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C6A6CDB470
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 13:23:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BEEBCD98F2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 13:24:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37AD10E6D6;
-	Mon, 22 Jun 2026 13:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D0110E6D4;
+	Mon, 22 Jun 2026 13:24:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z75TsC3m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MalqQt+G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A799B10E6D4
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 13:23:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB2CE10E6D4
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 13:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782134637; x=1813670637;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tkXHYS0zcZp7/PxwMn3RlELwGaM19QYTh81YHflXK5M=;
- b=Z75TsC3mAbTqEYE7n37vl5gYZVPKM9FM3zpNOjGC4etX2WNKd4i3H5pZ
- WKZz1p4JpDcCR56NruOBAcFnlkNlOy5fNX3oVYLXhunRbAx+IxapxADS/
- T63//H3HUbes/hzOop5MO4dFftv9KQg+Km73b+wdzZLCQj5zWgjdTy8rb
- ye1KBjAOuoYCM5ZRpLINicFoY5nN1TV7W4fZ/rQvv8jm0XcObEaqY647a
- s/73fQNXbdH2g1OzQPSmwyvvUDWP807h7c8NRiKYsroXaBktA0VU7Ke0k
- RoZBgIYG5EmRkT+6wuNLunGZ/vzAjv70/W/YLoupAAxVg3DytedZ6pSsk A==;
-X-CSE-ConnectionGUID: 7os36m75SMqTkZp5J82xcg==
-X-CSE-MsgGUID: xO3y4Cn0QIKp5H+25MvI4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="93228674"
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="93228674"
+ t=1782134639; x=1813670639;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=CbmEowgZDzXyBXEeSQNZfWrK9T+uJoDRHUGeMi5akUM=;
+ b=MalqQt+GTZ38vBkK9fzdQRsllw8SjxhR/kq6z/nG7kGKM41SRbLNgTyt
+ /RcE53OXojUpntX7uwHqHrOstJD3LYIjARMrZBR4Jojufl9bxEzgb+soo
+ TqoA6YLz9DlBkDoBmoDIGEMKH8FQOxnR5jFS0tTgDl23nfLXLSR7yXlLg
+ CyqQqeYVoQcw+50aM38USMlrpDTa3L7nO7qOigvWteT/wBFdJQKZ/c2lY
+ Rvyw9LvdPUCRZ8w/DKDCo1Ju6oTxFFy0GkHUHW9v4eWDvkyUZ4xCcdIBJ
+ ftoxKl0Kol5qD2YPFv5A0c4BYrZUSQav/yt+7ZI0yj9aLAUju7LaoxV+w A==;
+X-CSE-ConnectionGUID: B00Pu2ApQImRERlG9DaVsA==
+X-CSE-MsgGUID: PlAVwkbBTuuo8tRqB4DjrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="93228675"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="93228675"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 06:23:57 -0700
-X-CSE-ConnectionGUID: PP+dR1zgT8GP1kzm8LkJxQ==
-X-CSE-MsgGUID: 5oCOXVPORTyN5CzYSTzwQg==
+ 22 Jun 2026 06:23:59 -0700
+X-CSE-ConnectionGUID: hy0NPFSuToGiJ/g/Ha8ODQ==
+X-CSE-MsgGUID: mn7rINTUS+ClyApcKLDuxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="279407147"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="279407153"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 06:23:56 -0700
+ 22 Jun 2026 06:23:58 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v3 0/6] drm/xe/mmio: Small improvements
-Date: Mon, 22 Jun 2026 15:23:36 +0200
-Message-ID: <20260622132342.19600-1-michal.wajdeczko@intel.com>
+Subject: [PATCH v3 1/6] drm/xe/mmio: Verify MMIO is available
+Date: Mon, 22 Jun 2026 15:23:37 +0200
+Message-ID: <20260622132342.19600-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260622132342.19600-1-michal.wajdeczko@intel.com>
+References: <20260622132342.19600-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,23 +68,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v1: https://patchwork.freedesktop.org/series/167104/#rev1
-v2: https://patchwork.freedesktop.org/series/168108/#rev1
-v3: apply Sashiko review
+We shouldn't access device registers after the device was unplugged
+or the MMIO bar (GTTMMADR) was unmapped. Instead of relying on the
+NPD splat due to zeroed tile->mmio.regs, which might be unreliable
+anyway as not all xe_mmio structs are using that directly, add an
+explicit check during all xe_mmio read/write operations to test if
+xe->mmio.regs are still mapped and safely abort with WARN if not.
 
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
+---
+v1: https://patchwork.freedesktop.org/patch/728625/?series=167403&rev=1
+v2: https://patchwork.freedesktop.org/patch/731360/?series=168108&rev=1
+v3: use WARN and early abort to avoid Oops (sashiko)
+---
+ drivers/gpu/drm/xe/xe_mmio.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-Michal Wajdeczko (6):
-  drm/xe/mmio: Verify MMIO is available
-  drm/xe/mmio: Map MMIO BAR using managed version of pci_iomap
-  drm/xe/mmio: Add check for minimal BAR size
-  drm/xe/mmio: Drop tiles_fini action
-  drm/xe/mmio: Check MMIO BAR size when initializing tiles
-  drm/xe/mmio: Prefer tile-based WARN message
-
- drivers/gpu/drm/xe/xe_mmio.c | 98 ++++++++++++++++++++++++------------
- 1 file changed, 65 insertions(+), 33 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 78adb303b663..7e0cefcd16bd 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -17,6 +17,7 @@
+ #include "xe_device.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_sriov.h"
++#include "xe_tile_printk.h"
+ #include "xe_trace.h"
+ #include "xe_wa.h"
+ 
+@@ -128,6 +129,11 @@ void xe_mmio_init(struct xe_mmio *mmio, struct xe_tile *tile, void __iomem *ptr,
+ 	mmio->tile = tile;
+ }
+ 
++static bool mmio_available(struct xe_mmio *mmio)
++{
++	return !xe_tile_WARN_ON_ONCE(mmio->tile, !mmio->tile->xe->mmio.regs);
++}
++
+ static void mmio_flush_pending_writes(struct xe_mmio *mmio)
+ {
+ #define DUMMY_REG_OFFSET	0x130030
+@@ -146,6 +152,9 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
+ 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 	u8 val;
+ 
++	if (!mmio_available(mmio))
++		return 0;
++
+ 	mmio_flush_pending_writes(mmio);
+ 
+ 	val = readb(mmio->regs + addr);
+@@ -158,6 +167,9 @@ void xe_mmio_write8(struct xe_mmio *mmio, struct xe_reg reg, u8 val)
+ {
+ 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 
++	if (!mmio_available(mmio))
++		return;
++
+ 	trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+ 
+ 	writeb(val, mmio->regs + addr);
+@@ -168,6 +180,9 @@ u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
+ 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 	u16 val;
+ 
++	if (!mmio_available(mmio))
++		return 0;
++
+ 	mmio_flush_pending_writes(mmio);
+ 
+ 	val = readw(mmio->regs + addr);
+@@ -180,6 +195,9 @@ void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
+ {
+ 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 
++	if (!mmio_available(mmio))
++		return;
++
+ 	trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+ 
+ 	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
+@@ -194,6 +212,9 @@ u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
+ 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 	u32 val;
+ 
++	if (!mmio_available(mmio))
++		return 0;
++
+ 	mmio_flush_pending_writes(mmio);
+ 
+ 	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
 -- 
 2.47.1
 
