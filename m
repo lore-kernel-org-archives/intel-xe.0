@@ -4,55 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52116CDB46B
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 06:59:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5C0FCDB475
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 07:06:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11A8310E4AD;
-	Mon, 22 Jun 2026 06:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5644A10E4D8;
+	Mon, 22 Jun 2026 07:06:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nmUfT1xS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QLhj84k6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B20B10E285
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 06:59:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A2BF10E4D4;
+ Mon, 22 Jun 2026 07:05:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782111595; x=1813647595;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fmo7v1rQJMkQUfakUK8vb0gX7TzD0RTRm5RH6Bo+aD4=;
- b=nmUfT1xSkBonpKEiM/eb7OfpuFQi24WFFiHq9yPriTq4bT+nZ1ExgVGc
- A3QkDSV0JYjTdpVVq4Pz4FOqlk8bnsTFwWXk8adHQ59D/QAoVSXl0PlWG
- eAqQwrcdmsySK8NUyKgpGlTjYIcJHJTmPcHs5uTmtogeuCkTv54ePGl6o
- qS0CD4SKNzzyKy7NMJGCI1VjY6mnDSs6oiqGgTC77iWvGnnjfKhXmgOrZ
- dDdiRKFElNoX7eUiFN3UF348kXvMO6elm/klPfQlCDmfh0SJnRCe5oDeR
- I/eudAgYTJu8nTLCC0rSDSsGS6XrZjQpEZYq1GIC0smLQGyTUZYOZcdK0 A==;
-X-CSE-ConnectionGUID: kkB3vkvbS4u08SB/JYaHoA==
-X-CSE-MsgGUID: GKmeEuIyT8aD18FnMD3neg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="82928766"
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="82928766"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2026 23:59:54 -0700
-X-CSE-ConnectionGUID: wbpbUJNARyuQs/7YkOMqrg==
-X-CSE-MsgGUID: dIhscGB7TG+PdCEOzrNJOg==
+ t=1782111959; x=1813647959;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=r3ReV/7sv+kIalGFEXesr5x+cmsCvGwy2pojHF1KBZ0=;
+ b=QLhj84k66TU11qMj06abHYgpBGsozb5AgMHcUdX1XJk08uYciyNopiKE
+ peRCWLwd3eNlgko26YLt2xwofoPZoH/lya52pS9nRC0W2U5uvOB3Mjez3
+ aAd1YyJcJ3S1CORwAyyRY3aTbTtMNVJ8CzyMb28aqhNbnV0Ax0A5FytSV
+ 1aTE+R7KGoe9siJyTDYlOtcgmkOjW8AR9Y4DWf/fJXprhDR5DtIXZotYW
+ f40XlnihI297O1YItFNVR3Z12LaTLrXD5dnBxFxQLUMjjtxKyb9gL/50U
+ QslMvhz2gqQY2I+joJ4dPUAS/SSi/W5t5fRqh1Yl4bGnEN9acmpfU6U+a Q==;
+X-CSE-ConnectionGUID: J526ntkHRZWf27uEntnknw==
+X-CSE-MsgGUID: G3CrngRxQLqZZ/mcxRBI0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="82703734"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="82703734"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 00:05:58 -0700
+X-CSE-ConnectionGUID: F0sHCg53R5+r8U+Qf2PLIw==
+X-CSE-MsgGUID: eIohqRHqRRanmGZYu8N3TQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="251068221"
-Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by fmviesa004.fm.intel.com with ESMTP; 21 Jun 2026 23:59:45 -0700
-From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com,
- Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH 9/9] drm/xe/tests: add live KUnit coverage for BO page-size
- allocation modes
-Date: Mon, 22 Jun 2026 12:30:31 +0530
-Message-ID: <20260622070031.2445502-10-naresh.kumar.g@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260622070031.2445502-1-naresh.kumar.g@intel.com>
-References: <20260622070031.2445502-1-naresh.kumar.g@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="249251605"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.82])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 00:05:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kory Maincent <kory.maincent@bootlin.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Daniel Stone <daniels@collabora.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Mark Yacoub
+ <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, Manasi Navare
+ <navaremanasi@google.com>, Drew Davenport <ddavenport@google.com>, Louis
+ Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Kory Maincent
+ <kory.maincent@bootlin.com>
+Subject: Re: [PATCH RFC v2 1/4] drm: Introduce DisplayPort connector helpers
+ with link training state
+In-Reply-To: <20260619-feat_link_cap-v2-1-a3dec4c02ad9@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260619-feat_link_cap-v2-0-a3dec4c02ad9@bootlin.com>
+ <20260619-feat_link_cap-v2-1-a3dec4c02ad9@bootlin.com>
+Date: Mon, 22 Jun 2026 10:05:42 +0300
+Message-ID: <e0cbdae76c30b588af9b801d5025628b54a7d15e@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,288 +92,699 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a live KUnit suite to exercise the debug-controlled BO page-size
-allocation modes.
+On Fri, 19 Jun 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
+> Add managed and unmanaged DisplayPort connector initialization helpers,
+> drmm_connector_dp_init() and drm_connector_dp_init_with_ddc(), modeled
+> after the existing HDMI counterpart drmm_connector_hdmi_init().
+>
+> These helpers initialize DP-specific connector state and expose link
+> training capabilities and state to userspace via sysfs attributes under
+> dp_link:
+>
+>   - source_link_rates_caps: Array of source-supported link rates
+>   - source_max_lane_count_caps: Source maximum lane count capability
+>   - source_dsc_caps: Source Display Stream Compression support
+>   - sink_max_link_rate_caps: Sink maximum link rate capability
+>   - sink_max_lane_count_caps: Sink maximum lane count capability
+>   - sink_dsc_caps: Sink DSC support
+>   - cur_link_rate: Current negotiated link rate
+>   - cur_lane_count: Current negotiated lane count
+>   - dsc_en: DSC enabled in current link training
+>   - max_link_rate: Maximum achievable link rate (limited by source/sink)
+>   - max_lane_count: Maximum achievable lane count (limited by source/sink)
+>
+> Link rates are passed by the driver in deca-kbps, following the DRM
+> convention, but exposed to userspace in kbps for clarity.
+>
+> Additional helpers are provided to manage link capabilities and parameters
+> at runtime:
+>   - drm_dp_sink_set_link_caps(): Set sink capabilities after DPCD read
+>   - drm_dp_sink_reset_link_caps(): Reset sink capabilities on disconnect
+>   - drm_dp_set_cur_link_params(): Update current link training parameters
+>   - drm_dp_set_max_link_params(): Update maximum achievable parameters
+>
+> The aim of such development is to guide users to select the most suitable
+> DisplayPort connector for their needs. For example, if you have a USB-C
+> hub with lesser capabilities than your computer=E2=80=99s native DisplayP=
+ort
+> connector (such as HBR2 versus HBR3 support), the system could recommend
+> connecting high-resolution displays directly to the computer=E2=80=99s po=
+rt
+> instead of through the hub to ensure optimal performance.
+>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+>
+> Changes in v2:
+> - Remove voltage swing and pre-emphasis properties
+> - Expose link training state via sysfs dp_link/ group instead of
+>   connector properties
+> - Rename variables from link_train to link as they relate directly to
+>   the link capabilities
+> - Add comprehensive sysfs attributes for both source and sink capabilities
+> - Add separate helpers for managing sink capabilities and for current and
+>   maximum link parameters
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c | 144 ++++++++++++++++++++++++++=
+++++++
+>  drivers/gpu/drm/drm_connector.c         | 122 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/drm_sysfs.c             | 100 ++++++++++++++++++++++
+>  include/drm/display/drm_dp_helper.h     |   7 ++
+>  include/drm/drm_connector.h             | 105 +++++++++++++++++++++++
+>  5 files changed, 478 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/di=
+splay/drm_dp_helper.c
+> index 9c31e14cc413b..bd0e1eb657412 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -4900,3 +4900,147 @@ int drm_dp_max_dprx_data_rate(int max_link_rate, =
+int max_lanes)
+>  				  1000000 * 8);
+>  }
+>  EXPORT_SYMBOL(drm_dp_max_dprx_data_rate);
+> +
+> +static int drm_dp_dpcd_read_link_rate_caps(struct drm_dp_aux *aux)
+> +{
+> +	u8 data;
+> +	int ret;
+> +
+> +	ret =3D drm_dp_dpcd_read_byte(aux, DP_DP13_DPCD_REV + DP_MAIN_LINK_CHAN=
+NEL_CODING, &data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (data & DP_CAP_ANSI_128B132B) {
+> +		ret =3D drm_dp_dpcd_read_byte(aux, DP_128B132B_SUPPORTED_LINK_RATES, &=
+data);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		if (data & DP_UHBR20)
+> +			return 20000000;
+> +		if (data & DP_UHBR13_5)
+> +			return 13500000;
+> +		if (data & DP_UHBR10)
+> +			return 10000000;
+> +	}
+> +
+> +	ret =3D drm_dp_dpcd_read_byte(aux, DP_MAX_LINK_RATE, &data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return data * 270000;
+> +}
 
-The new tests cover forced 2M mode, forced 1G mode, and mixed mode.
-They verify that user BO creation applies the expected NEEDS_* flags,
-that no unexpected page-size flags are added, that min_align matches the
-selected leaf size, and that the resulting resource contains a
-contiguous block large enough for the requested leaf where applicable.
+There are three ways of reporting the sink link rates. DP_MAX_LINK_RATE
+is the only one that reports the maximum. The other two can report any
+rates. The above doesn't handle DP_SUPPORTED_LINK_RATES.
 
-The mixed-mode test also checks repeated allocations across the rotation
-sequence and validates per-BO alignment behavior.
+The drivers need to figure out *all* supported rates. What is the point
+of adding a "helper" that reads these DPCD registers but only reports
+the max rate? Using this will only mean duplicated reads of the
+registers. This may confuse the sinks, as well as the CTS.
 
-Skip unsupported platforms and transient -ENOMEM cases so the tests can
-run in varying live environments without producing false failures
+This is not a good design.
 
-Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_bo.c            | 223 ++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   2 +
- 2 files changed, 225 insertions(+)
+> +
+> +/**
+> + * drm_dp_sink_set_link_caps - Set DisplayPort sink link capabilities
+> + * @connector: DisplayPort connector
+> + * @aux: The DP AUX channel to use
+> + *
+> + * This function sets the DisplayPort sink (monitor) link training capab=
+ilities
+> + * for the given connector. These capabilities are typically read from t=
+he
+> + * sink's DPCD registers during HPD processing.
+> + */
+> +void drm_dp_sink_set_link_caps(struct drm_connector *connector,
+> +			       struct drm_dp_aux *aux)
+> +{
+> +	u32 lane_count, link_rate;
+> +	u8 data;
+> +	int ret;
+> +
+> +	if (!connector)
+> +		return;
+> +
+> +	WARN_ON(!drm_modeset_is_locked(&connector->dev->mode_config.connection_=
+mutex));
+> +
+> +	ret =3D drm_dp_dpcd_read_byte(aux, DP_MAX_LANE_COUNT, &data);
+> +	if (ret < 0)
+> +		return;
+> +
+> +	lane_count =3D data & DP_MAX_LANE_COUNT_MASK;
+> +
+> +	ret =3D drm_dp_dpcd_read_link_rate_caps(aux);
+> +	if (ret < 0)
+> +		return;
+> +
+> +	link_rate =3D ret;
+> +
+> +	ret =3D drm_dp_dpcd_read_byte(aux, DP_DSC_SUPPORT, &data);
+> +	if (ret < 0)
+> +		return;
+> +
+> +	connector->dp.sink_max_lane_count_caps =3D lane_count;
+> +	connector->dp.sink_max_link_rate_caps =3D link_rate;
+> +	connector->dp.sink_dsc_caps =3D ret & DP_DSC_DECOMPRESSION_IS_SUPPORTED;
+> +}
+> +EXPORT_SYMBOL_GPL(drm_dp_sink_set_link_caps);
+> +
+> +/**
+> + * drm_dp_set_cur_link_params - Set current DisplayPort link parameters
+> + * @connector: DisplayPort connector
+> + * @link_rate: Current link rate in deca-kbps
+> + * @lane_count: Current lane count
+> + * @dsc_en: Display Stream Compression enabled
+> + *
+> + * This function sets the current active DisplayPort link parameters aft=
+er
+> + * link training has completed. These parameters represent the actual li=
+nk
+> + * configuration being used for display output.
+> + */
+> +void drm_dp_set_cur_link_params(struct drm_connector *connector,
+> +				u32 link_rate, u32 lane_count, bool dsc_en)
+> +{
+> +	if (!connector)
+> +		return;
+> +
+> +	WARN_ON(!drm_modeset_is_locked(&connector->dev->mode_config.connection_=
+mutex));
+> +
+> +	/* Convert deca-kbps in kbps */
+> +	connector->dp.cur_link_rate =3D link_rate * 10;
+> +	connector->dp.cur_lane_count =3D lane_count;
+> +	connector->dp.dsc_en =3D dsc_en;
+> +}
+> +EXPORT_SYMBOL_GPL(drm_dp_set_cur_link_params);
+> +
+> +/**
+> + * drm_dp_set_max_link_params - Set maximum DisplayPort link parameters
+> + * @connector: DisplayPort connector
+> + * @link_rate: Maximum link rate in kbps
+> + * @lane_count: Maximum lane count
+> + *
+> + * This function sets the maximum achievable DisplayPort link parameters,
+> + * which represent the intersection of source and sink capabilities. The=
+se
+> + * values are the upper bounds for link training attempts.
+> + */
+> +void drm_dp_set_max_link_params(struct drm_connector *connector, u32 lin=
+k_rate,
+> +				u32 lane_count)
+> +{
+> +	if (!connector)
+> +		return;
+> +
+> +	WARN_ON(!drm_modeset_is_locked(&connector->dev->mode_config.connection_=
+mutex));
+> +
+> +	connector->dp.max_link_rate =3D link_rate;
+> +	connector->dp.max_lane_count =3D lane_count;
+> +}
+> +EXPORT_SYMBOL_GPL(drm_dp_set_max_link_params);
+> +
+> +/**
+> + * drm_dp_sink_reset_link_caps - Reset DisplayPort sink capabilities
+> + * @connector: DisplayPort connector
+> + *
+> + * This function resets all DisplayPort sink link capabilities and param=
+eters
+> + * to their default state. This should be called when a sink is disconne=
+cted
+> + * to clear stale capability information.
+> + */
+> +void drm_dp_sink_reset_link_caps(struct drm_connector *connector)
+> +{
+> +	if (!connector)
+> +		return;
+> +
+> +	WARN_ON(!drm_modeset_is_locked(&connector->dev->mode_config.connection_=
+mutex));
+> +
+> +	drm_dp_set_cur_link_params(connector, 0, 0, false);
+> +	drm_dp_set_max_link_params(connector, 0, 0);
+> +	connector->dp.sink_max_link_rate_caps =3D 0;
+> +	connector->dp.sink_max_lane_count_caps =3D 0;
+> +	connector->dp.sink_dsc_caps =3D false;
+> +}
+> +EXPORT_SYMBOL_GPL(drm_dp_sink_reset_link_caps);
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
+tor.c
+> index a5d13b92b665c..259af3240c057 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -489,6 +489,128 @@ int drm_connector_init_with_ddc(struct drm_device *=
+dev,
+>  }
+>  EXPORT_SYMBOL(drm_connector_init_with_ddc);
+>=20=20
+> +static int drm_dp_source_set_link_caps(struct drm_connector *connector,
+> +				       const struct drm_connector_dp_link_caps *link_caps)
+> +{
+> +	u32 *_link_rates;
+> +
+> +	_link_rates =3D devm_kmemdup_array(connector->dev->dev,
+> +					 link_caps->link_rates,
+> +					 link_caps->nlink_rates,
+> +					 sizeof(*link_caps->link_rates),
+> +					 GFP_KERNEL);
+> +	if (!_link_rates)
+> +		return -ENOMEM;
+> +
+> +	for (int i =3D 0; i < link_caps->nlink_rates; i++)
+> +		/* Convert deca-kbps in kbps */
+> +		_link_rates[i] *=3D 10;
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 49c95ed67d7e..7b40be187a0f 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -22,6 +22,214 @@
- #include "xe_pci.h"
- #include "xe_pm.h"
- 
-+struct pagesize_alloc_saved {
-+	enum xe_page_size_alloc_ctrl_mode  mode;
-+	unsigned int cur_index;
-+};
-+
-+static void pagesize_alloc_save(struct xe_device *xe,
-+				struct pagesize_alloc_saved *s)
-+{
-+	s->mode      = xe->page_size_alloc_ctrl.mode;
-+	s->cur_index = xe->page_size_alloc_ctrl.cur_index;
-+}
-+
-+static void pagesize_alloc_restore(struct xe_device *xe,
-+				   struct pagesize_alloc_saved *s)
-+{
-+	xe->page_size_alloc_ctrl.mode      = s->mode;
-+	xe->page_size_alloc_ctrl.cur_index = s->cur_index;
-+}
-+
-+/* Walk the TTM resource and return true if any segment is >= @want. */
-+static bool bo_has_contig_block(struct xe_bo *bo, u64 want)
-+{
-+	struct xe_res_cursor cur;
-+
-+	if (!bo->ttm.resource)
-+		return false;
-+
-+	xe_res_first(bo->ttm.resource, 0, xe_bo_size(bo), &cur);
-+	for (; cur.remaining; xe_res_next(&cur, cur.size))
-+		if (cur.size >= want)
-+			return true;
-+	return false;
-+}
-+
-+/* Map a NEEDS_* flag to the (leaf size, alloc size) the test should use. */
-+struct leaf_info {
-+	u64 leaf;        /* SZ_2M / SZ_1G */
-+	u64 alloc_size;  /* BO size to request */
-+	u32 flag;        /* expected XE_BO_FLAG_NEEDS_* */
-+	const char *name;
-+};
-+
-+static const struct leaf_info leaf_2m = {
-+	.leaf = SZ_2M,
-+	.alloc_size = SZ_2M,
-+	.flag = XE_BO_FLAG_NEEDS_2M,
-+	.name = "2M"
-+};
-+
-+static const struct leaf_info leaf_1g = {
-+	.leaf = SZ_1G,
-+	.alloc_size = SZ_1G,
-+	.flag = XE_BO_FLAG_NEEDS_1G,
-+	.name = "1G"
-+};
-+
-+/*
-+ * Common body for the ONLY_<size> tests.
-+ *
-+ *   1. Skip if platform can't support this leaf size.
-+ *   2. Set mode, allocate one BO.
-+ *   3. Skip on -ENOMEM (environmental: no free contiguous block right now).
-+ *   4. Verify: flag was added, bo->page_alignment matches, buddy gave a contig block.
-+ */
-+static void run_only_leaf(struct kunit *test,
-+			  enum xe_page_size_alloc_ctrl_mode
-+			  mode,
-+			  const struct leaf_info *li)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct pagesize_alloc_saved saved;
-+	struct xe_bo *bo;
-+	struct ttm_buffer_object *ttm_bo;
-+	u32 other_flags;
-+
-+	if (!xe_device_supports_multi_pagesize(xe))
-+		kunit_skip(test, "platform does not support %s leaves", li->name);
-+
-+	pagesize_alloc_save(xe, &saved);
-+	xe->page_size_alloc_ctrl.mode = mode;
-+
-+	bo = xe_bo_create_user(xe, NULL, li->alloc_size,
-+			       DRM_XE_GEM_CPU_CACHING_WC,
-+			       XE_BO_FLAG_VRAM0, NULL);
-+	if (IS_ERR(bo)) {
-+		if (PTR_ERR(bo) == -ENOMEM) {
-+			kunit_skip(test,
-+				   "no contiguous %s VRAM available right now",
-+				   li->name);
-+			goto out;
-+		}
-+		KUNIT_FAIL(test, "%s BO alloc failed: %pe", li->name, bo);
-+		goto out;
-+	}
-+	ttm_bo = &bo->ttm;
-+	/* 1) The mode added the right NEEDS_* flag. */
-+	KUNIT_EXPECT_TRUE_MSG(test, bo->flags & li->flag,
-+			      "%s: flag missing, flags=0x%x",
-+			      li->name, bo->flags);
-+	/* 2) No other NEEDS_* flags accidentally tagged on. */
-+	other_flags = (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M |
-+		       XE_BO_FLAG_NEEDS_1G) & ~li->flag;
-+	KUNIT_EXPECT_FALSE_MSG(test, bo->flags & other_flags,
-+			       "%s: stray flags=0x%x", li->name, bo->flags);
-+	/* 3) Allocator honored the alignment requirement.
-+	 *    bo->page_alignment is stored in 4K pages (alignment = align >> PAGE_SHIFT
-+	 *    in __xe_bo_create_locked), so compare in pages too.
-+	 */
-+	KUNIT_EXPECT_EQ_MSG(test, ttm_bo->page_alignment, li->leaf >> PAGE_SHIFT,
-+			    "%s: page_alignment=%u pages expected=%llu pages",
-+			    li->name, ttm_bo->page_alignment,
-+			    (u64)(li->leaf >> PAGE_SHIFT));
-+	/* 4) Buddy actually returned a contiguous block big enough for the leaf. */
-+	KUNIT_EXPECT_TRUE_MSG(test, bo_has_contig_block(bo, li->leaf),
-+			      "%s: no contiguous %llu-byte block in resource",
-+			      li->name, li->leaf);
-+	xe_bo_put(bo);
-+
-+out:
-+	pagesize_alloc_restore(xe, &saved);
-+}
-+
-+static void xe_bo_page_size_alloc_only_2m(struct kunit *test)
-+{
-+	run_only_leaf(test, XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M, &leaf_2m);
-+}
-+
-+static void xe_bo_page_size_alloc_only_1g(struct kunit *test)
-+{
-+	run_only_leaf(test, XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G, &leaf_1g);
-+}
-+
-+/*
-+ * MIXED: with the Layer-3 (mixed-mode skip) in place, the rotation only
-+ * produces flags whose size the platform supports.  Verify that:
-+ *   - every BO's flag is either 0 (DEFAULT slot) or a NEEDS_* the platform
-+ *     actually advertises support for via xe_device_has_pt_leaf();
-+ *   - at least one of the supported NEEDS_* values actually appears across
-+ *     the 8 iterations (proves the rotation is doing something);
-+ *   - alignment matches the flag when one is set.
-+ */
-+static void xe_bo_page_size_alloc_mixed_8bo(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct pagesize_alloc_saved saved;
-+	struct xe_bo *bos[8] = {};
-+	struct ttm_buffer_object *ttm_bo;
-+	int i, n = ARRAY_SIZE(bos);
-+	static const u32 expect[4] = {
-+		0,
-+		XE_BO_FLAG_NEEDS_64K,
-+		XE_BO_FLAG_NEEDS_2M,
-+		XE_BO_FLAG_NEEDS_1G,
-+	};
-+	static const u64 size_for_slot[4] = {
-+		SZ_4K, SZ_64K, SZ_2M, SZ_1G,
-+	};
-+	static const u64 leaf_for_slot[4] = {
-+		SZ_4K, SZ_64K, SZ_2M, SZ_1G,
-+	};
-+
-+	if (!xe_device_supports_multi_pagesize(xe))
-+		kunit_skip(test, "no large leaf sizes supported on this platform");
-+
-+	pagesize_alloc_save(xe, &saved);
-+	xe->page_size_alloc_ctrl.mode      = XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED;
-+	xe->page_size_alloc_ctrl.cur_index = 0;
-+
-+	for (i = 0; i < n; i++) {
-+		/*
-+		 * Size must cover the largest leaf the rotation might pick on
-+		 * this platform, otherwise __xe_bo_create_locked() rejects the
-+		 * BO with -EINVAL when aligned_size != size for ttm_bo_type_device.
-+		 */
-+		u64 size = size_for_slot[i % 4];
-+		u64 leaf = leaf_for_slot[i % 4];
-+		u32 want = expect[i % 4];
-+
-+		bos[i] = xe_bo_create_user(xe, NULL, size,
-+					   DRM_XE_GEM_CPU_CACHING_WC,
-+					   XE_BO_FLAG_VRAM0, NULL);
-+		if (IS_ERR(bos[i])) {
-+			if (PTR_ERR(bos[i]) == -ENOMEM) {
-+				kunit_info(test, "iter=%d -ENOMEM, skipping", i);
-+				bos[i] = NULL;
-+				continue;
-+			}
-+			KUNIT_FAIL(test, "iter=%d alloc failed: %pe", i, bos[i]);
-+			bos[i] = NULL;
-+			goto cleanup;
-+		}
-+
-+		ttm_bo = &bos[i]->ttm;
-+		if (want)
-+			KUNIT_EXPECT_EQ_MSG(test, ttm_bo->page_alignment,
-+					    leaf >> PAGE_SHIFT,
-+					    "iter=%d want=0x%x page_alignment=%u pages expected=%llu pages",
-+					    i, want, ttm_bo->page_alignment,
-+					    (u64)(leaf >> PAGE_SHIFT));
-+	}
-+
-+cleanup:
-+	for (i = 0; i < n; i++)
-+		if (bos[i])
-+			xe_bo_put(bos[i]);
-+	pagesize_alloc_restore(xe, &saved);
-+}
-+
- static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
- 			    bool clear, u64 get_val, u64 assign_val,
- 			    struct kunit *test, struct drm_exec *exec)
-@@ -609,6 +817,21 @@ static struct kunit_case xe_bo_tests[] = {
- 	{}
- };
- 
-+static struct kunit_case xe_bo_page_size_alloc_cases[] = {
-+	KUNIT_CASE_PARAM(xe_bo_page_size_alloc_only_2m,   xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_bo_page_size_alloc_only_1g,   xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_bo_page_size_alloc_mixed_8bo,   xe_pci_live_device_gen_param),
-+	{}
-+};
-+
-+VISIBLE_IF_KUNIT
-+struct kunit_suite xe_bo_page_size_alloc_suite = {
-+	.name = "xe_bo_page_size_alloc",
-+	.test_cases = xe_bo_page_size_alloc_cases,
-+	.init = xe_kunit_helper_xe_device_live_test_init,
-+};
-+EXPORT_SYMBOL_IF_KUNIT(xe_bo_page_size_alloc_suite);
-+
- VISIBLE_IF_KUNIT
- struct kunit_suite xe_bo_test_suite = {
- 	.name = "xe_bo",
-diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-index c55e46f1ae92..3d48a92e1201 100644
---- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-+++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-@@ -11,6 +11,7 @@ extern struct kunit_suite xe_dma_buf_test_suite;
- extern struct kunit_suite xe_migrate_test_suite;
- extern struct kunit_suite xe_mocs_test_suite;
- extern struct kunit_suite xe_guc_g2g_test_suite;
-+extern struct kunit_suite xe_bo_page_size_alloc_suite;
- 
- kunit_test_suite(xe_bo_test_suite);
- kunit_test_suite(xe_bo_shrink_test_suite);
-@@ -18,6 +19,7 @@ kunit_test_suite(xe_dma_buf_test_suite);
- kunit_test_suite(xe_migrate_test_suite);
- kunit_test_suite(xe_mocs_test_suite);
- kunit_test_suite(xe_guc_g2g_test_suite);
-+kunit_test_suite(xe_bo_page_size_alloc_suite);
- 
- MODULE_AUTHOR("Intel Corporation");
- MODULE_LICENSE("GPL");
--- 
-2.43.0
+Why do you have different rates in different places? Ditch the
+conversions?
 
+> +
+> +	connector->dp.source_link_rates_caps =3D _link_rates;
+> +	connector->dp.source_num_link_rates_caps =3D link_caps->nlink_rates;
+> +	connector->dp.source_max_lane_count_caps =3D link_caps->nlanes;
+> +	connector->dp.source_dsc_caps =3D link_caps->dsc;
+
+Why do you define a struct, and then not use it as a sub-struct in
+connector->dp?
+
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * drmm_connector_dp_init - Init a preallocated DisplayPort connector
+> + * @dev: DRM device
+> + * @connector: A pointer to the DisplayPort connector to init
+> + * @funcs: callbacks for this connector
+> + * @dp_link_caps: DisplayPort link training capabilities. The pointer
+> + *		  is not kept by the DRM core
+> + * @connector_type: user visible type of the connector
+> + * @ddc: optional pointer to the associated ddc adapter
+> + *
+> + * Initialises a preallocated DisplayPort connector. Connectors can be
+> + * subclassed as part of driver connector objects.
+> + *
+> + * Cleanup is automatically handled with a call to
+> + * drm_connector_cleanup() in a DRM-managed action.
+> + *
+> + * The connector structure should be allocated with drmm_kzalloc().
+> + *
+> + * The @drm_connector_funcs.destroy hook must be NULL.
+> + *
+> + * Returns:
+> + * Zero on success, error code on failure.
+> + */
+> +int drmm_connector_dp_init(struct drm_device *dev,
+> +			   struct drm_connector *connector,
+> +			   const struct drm_connector_funcs *funcs,
+> +			   const struct drm_connector_dp_link_caps *dp_link_caps,
+> +			   int connector_type,
+> +			   struct i2c_adapter *ddc)
+> +{
+> +	int ret;
+> +
+> +	if (!(connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort ||
+> +	      connector_type =3D=3D DRM_MODE_CONNECTOR_eDP))
+> +		return -EINVAL;
+> +
+> +	if (!dp_link_caps)
+> +		return -EINVAL;
+> +
+> +	ret =3D drmm_connector_init(dev, connector, funcs, connector_type, ddc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return drm_dp_source_set_link_caps(connector, dp_link_caps);
+> +}
+> +EXPORT_SYMBOL(drmm_connector_dp_init);
+> +
+> +/**
+> + * drm_connector_dp_init_with_ddc - Init a preallocated DisplayPort conn=
+ector
+> + * @dev: DRM device
+> + * @connector: A pointer to the DisplayPort connector to init
+> + * @funcs: callbacks for this connector
+> + * @dp_link_caps: DisplayPort link training capabilities. The pointer
+> + *		  is not kept by the DRM core
+> + * @connector_type: user visible type of the connector
+> + * @ddc: optional pointer to the associated ddc adapter
+> + *
+> + * Initialises a preallocated connector. Connectors should be
+> + * subclassed as part of driver connector objects.
+> + *
+> + * At driver unload time the driver's &drm_connector_funcs.destroy hook
+> + * should call drm_connector_cleanup() and free the connector structure.
+> + * The connector structure should not be allocated with devm_kzalloc().
+> + *
+> + * Ensures that the ddc field of the connector is correctly set.
+> + *
+> + * Note: consider using drmm_connector_dp_init() instead of
+> + * drm_connector_dp_init_with_ddc() to let the DRM managed resource
+> + * infrastructure take care of cleanup and deallocation.
+> + *
+> + * Returns:
+> + * Zero on success, error code on failure.
+> + */
+> +int drm_connector_dp_init_with_ddc(struct drm_device *dev,
+> +				   struct drm_connector *connector,
+> +				   const struct drm_connector_funcs *funcs,
+> +				   const struct drm_connector_dp_link_caps *dp_link_caps,
+> +				   int connector_type,
+> +				   struct i2c_adapter *ddc)
+> +{
+> +	int ret;
+> +
+> +	if (!(connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort ||
+> +	      connector_type =3D=3D DRM_MODE_CONNECTOR_eDP))
+> +		return -EINVAL;
+> +
+> +	if (!dp_link_caps)
+> +		return -EINVAL;
+> +
+> +	ret =3D drm_connector_init_with_ddc(dev, connector, funcs, connector_ty=
+pe, ddc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return drm_dp_source_set_link_caps(connector, dp_link_caps);
+> +}
+> +EXPORT_SYMBOL(drm_connector_dp_init_with_ddc);
+> +
+>  static void drm_connector_cleanup_action(struct drm_device *dev,
+>  					 void *ptr)
+>  {
+> diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
+> index ef4e923a87284..653fecf23d717 100644
+> --- a/drivers/gpu/drm/drm_sysfs.c
+> +++ b/drivers/gpu/drm/drm_sysfs.c
+> @@ -340,6 +340,95 @@ static const struct attribute_group *connector_dev_g=
+roups[] =3D {
+>  	NULL
+>  };
+>=20=20
+> +static ssize_t drm_link_rates_show(u32 num_link_rates, const u32 *link_r=
+ates, char *buf)
+> +{
+> +	int size =3D 0;
+> +
+> +	if (!num_link_rates)
+> +		return 0;
+> +
+> +	size +=3D sysfs_emit_at(buf, size, "%d", link_rates[0]);
+> +	for (int i =3D 1; i < num_link_rates; i++)
+> +		size +=3D sysfs_emit_at(buf, size, " %d", link_rates[i]);
+> +
+> +	size +=3D sysfs_emit_at(buf, size, "\n");
+> +	return size;
+> +}
+> +
+> +static ssize_t source_link_rates_caps_show(struct device *device,
+> +					   struct device_attribute *attr,
+> +					   char *buf)
+> +{
+> +	struct drm_connector *connector =3D to_drm_connector(device);
+> +	ssize_t size;
+> +
+> +	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
+> +	size =3D drm_link_rates_show(connector->dp.source_num_link_rates_caps,
+> +				   connector->dp.source_link_rates_caps, buf);
+> +	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
+> +	return size;
+> +}
+> +
+> +#define DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(_name) \
+> +static ssize_t _name##_show(struct device *device, \
+> +			    struct device_attribute *attr, \
+> +			    char *buf) \
+> +{ \
+> +	struct drm_connector *connector =3D to_drm_connector(device); \
+> +	int ret; \
+> +	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL); \
+> +	if (!connector->dp._name) { \
+> +		drm_modeset_unlock(&connector->dev->mode_config.connection_mutex); \
+> +		return 0; \
+> +	} \
+> +	ret =3D sysfs_emit(buf, "%d\n", connector->dp._name); \
+> +	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex); \
+> +	return ret; \
+> +}
+> +
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(source_max_lane_count_caps);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(source_dsc_caps);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(sink_dsc_caps);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(sink_max_link_rate_caps);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(sink_max_lane_count_caps);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(cur_link_rate);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(cur_lane_count);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(dsc_en);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(max_link_rate);
+> +DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE(max_lane_count);
+> +
+> +static DEVICE_ATTR_RO(source_link_rates_caps);
+> +static DEVICE_ATTR_RO(source_max_lane_count_caps);
+> +static DEVICE_ATTR_RO(source_dsc_caps);
+> +static DEVICE_ATTR_RO(sink_max_link_rate_caps);
+> +static DEVICE_ATTR_RO(sink_max_lane_count_caps);
+> +static DEVICE_ATTR_RO(sink_dsc_caps);
+> +static DEVICE_ATTR_RO(cur_link_rate);
+> +static DEVICE_ATTR_RO(cur_lane_count);
+> +static DEVICE_ATTR_RO(dsc_en);
+> +static DEVICE_ATTR_RO(max_link_rate);
+> +static DEVICE_ATTR_RO(max_lane_count);
+> +
+> +static struct attribute *connector_dp_link_attrs[] =3D {
+> +	&dev_attr_source_link_rates_caps.attr,
+> +	&dev_attr_source_max_lane_count_caps.attr,
+> +	&dev_attr_source_dsc_caps.attr,
+> +	&dev_attr_sink_max_link_rate_caps.attr,
+> +	&dev_attr_sink_max_lane_count_caps.attr,
+> +	&dev_attr_sink_dsc_caps.attr,
+> +	&dev_attr_cur_link_rate.attr,
+> +	&dev_attr_cur_lane_count.attr,
+> +	&dev_attr_dsc_en.attr,
+> +	&dev_attr_max_link_rate.attr,
+> +	&dev_attr_max_lane_count.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group connector_dp_link_group =3D {
+> +	.name =3D "dp_link",
+> +	.attrs =3D connector_dp_link_attrs,
+> +};
+> +
+>  int drm_sysfs_connector_add(struct drm_connector *connector)
+>  {
+>  	struct drm_device *dev =3D connector->dev;
+> @@ -376,6 +465,15 @@ int drm_sysfs_connector_add(struct drm_connector *co=
+nnector)
+>=20=20
+>  	connector->kdev =3D kdev;
+>=20=20
+> +	if (connector->connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort ||
+> +	    connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP) {
+> +		r =3D sysfs_create_group(&connector->kdev->kobj, &connector_dp_link_gr=
+oup);
+> +		if (r) {
+> +			drm_err(dev, "failed to create DP connector sysfs: %d\n", r);
+> +			goto err_dp_sysfs;
+> +		}
+> +	}
+> +
+>  	if (dev_fwnode(kdev)) {
+>  		r =3D component_add(kdev, &typec_connector_ops);
+>  		if (r)
+> @@ -384,6 +482,8 @@ int drm_sysfs_connector_add(struct drm_connector *con=
+nector)
+>=20=20
+>  	return 0;
+>=20=20
+> +err_dp_sysfs:
+> +	device_del(kdev);
+>  err_free:
+>  	put_device(kdev);
+>  	return r;
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/dr=
+m_dp_helper.h
+> index 8c2d77a032f06..e7620ecb2380a 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -1031,4 +1031,11 @@ ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vs=
+c_sdp *vsc, struct dp_sdp *sdp
+>  int drm_dp_link_symbol_cycles(int lane_count, int pixels, int dsc_slice_=
+count,
+>  			      int bpp_x16, int symbol_size, bool is_mst);
+>=20=20
+> +void drm_dp_sink_set_link_caps(struct drm_connector *connector, struct d=
+rm_dp_aux *aux);
+> +void drm_dp_sink_reset_link_caps(struct drm_connector *connector);
+> +void drm_dp_set_cur_link_params(struct drm_connector *connector, u32 lin=
+k_rate,
+> +				u32 lane_count, bool dsc_en);
+> +void drm_dp_set_max_link_params(struct drm_connector *connector, u32 lin=
+k_rate,
+> +				u32 lane_count);
+> +
+>  #endif /* _DRM_DP_HELPER_H_ */
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 529755c2e8620..a08b8e9766abe 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -2003,6 +2003,93 @@ struct drm_connector_cec {
+>  	void *data;
+>  };
+>=20=20
+> +/**
+> + * struct drm_connector_dp_link_caps - DRM DisplayPort link capabilities
+> + */
+> +struct drm_connector_dp_link_caps {
+> +	/**
+> +	 * @nlanes: Maximum number of lanes number supported
+> +	 */
+> +	u8 nlanes;
+> +
+> +	/**
+> +	 * @nlink_rates: Number of link rates supported
+> +	 */
+> +	u32 nlink_rates;
+> +
+> +	/**
+> +	 * @link_rates: Array listing the supported link rates in deca-kbps
+> +	 */
+> +	const u32 *link_rates;
+
+Just make all of the above ints? There's nothing specifically u32 or u8
+about any of them. They're just integers.
+
+> +
+> +	/**
+> +	 * @dsc: Display Stream Compression supported
+> +	 */
+> +	bool dsc;
+> +};
+> +
+> +/**
+> + * struct drm_connector_dp - DRM Connector DisplayPort-related structure
+> + */
+> +struct drm_connector_dp {
+> +	/**
+> +	 * @source_link_rates_caps: Array of supported link rates by the
+> +	 * source in kbps
+> +	 */
+> +	const u32 *source_link_rates_caps;
+> +	/**
+> +	 * @source_num_link_rates_caps: Number of link rates in
+> +	 * @source_link_rates_caps array
+> +	 */
+> +	u32 source_num_link_rates_caps;
+> +	/**
+> +	 * @source_max_lane_count_caps: Maximum number of lanes supported by
+> +	 * the source
+> +	 */
+> +	u32 source_max_lane_count_caps;
+> +	/**
+> +	 * @source_dsc_caps: Display Stream Compression capability of the
+> +	 * source
+> +	 */
+> +	bool source_dsc_caps;
+
+Why doesn't the above use a struct?
+
+> +	/**
+> +	 * @sink_max_link_rate_caps: Maximum link rate supported by the sink
+> +	 * in kbps
+> +	 */
+> +	u32 sink_max_link_rate_caps;
+
+Why all rates for source, but just one rate for sink? Why is it called
+_caps?
+
+
+> +	/**
+> +	 * @sink_max_lane_count_caps: Maximum number of lanes supported by the
+> +	 * sink
+> +	 */
+> +	u32 sink_max_lane_count_caps;
+> +	/**
+> +	 * @sink_dsc_caps: Display Stream Compression capability of the sink
+> +	 */
+> +	bool sink_dsc_caps;
+
+Could use the same struct here.
+
+> +	/**
+> +	 * @cur_link_rate: Current negotiated link rate in kbps
+> +	 */
+> +	u32 cur_link_rate;
+> +	/**
+> +	 * @cur_lane_count: Current negotiated number of lanes
+> +	 */
+> +	u32 cur_lane_count;
+> +	/**
+> +	 * @dsc_en: Display Stream Compression enabled status
+> +	 */
+
+These should be ints.
+
+> +	bool dsc_en;
+> +	/**
+> +	 * @max_link_rate: Maximum achievable link rate considering both
+> +	 * source and sink capabilities in deca-kbps
+> +	 */
+> +	u32 max_link_rate;
+
+IMO this should be an intersection of source and sink rates.
+
+> +	/**
+> +	 * @max_lane_count: Maximum achievable lane count considering both
+> +	 * source and sink capabilities
+> +	 */
+> +	u32 max_lane_count;
+
+These should be ints.
+
+> +};
+> +
+>  /**
+>   * struct drm_connector - central DRM connector control structure
+>   *
+> @@ -2426,6 +2513,11 @@ struct drm_connector {
+>  	 * @cec: CEC-related data.
+>  	 */
+>  	struct drm_connector_cec cec;
+> +
+> +	/**
+> +	 * @dp: DisplayPort-related variable and properties.
+> +	 */
+> +	struct drm_connector_dp dp;
+>  };
+>=20=20
+>  #define obj_to_connector(x) container_of(x, struct drm_connector, base)
+> @@ -2458,6 +2550,19 @@ int drmm_connector_hdmi_init(struct drm_device *de=
+v,
+>  			     struct i2c_adapter *ddc,
+>  			     unsigned long supported_formats,
+>  			     unsigned int max_bpc);
+> +int drm_connector_dp_init_with_ddc(struct drm_device *dev,
+> +				   struct drm_connector *connector,
+> +				   const struct drm_connector_funcs *funcs,
+> +				   const struct drm_connector_dp_link_caps *dp_link_caps,
+> +				   int connector_type,
+> +				   struct i2c_adapter *ddc);
+> +
+> +int drmm_connector_dp_init(struct drm_device *dev,
+> +			   struct drm_connector *connector,
+> +			   const struct drm_connector_funcs *funcs,
+> +			   const struct drm_connector_dp_link_caps *dp_link_caps,
+> +			   int connector_type,
+> +			   struct i2c_adapter *ddc);
+>  void drm_connector_attach_edid_property(struct drm_connector *connector);
+>  int drm_connector_register(struct drm_connector *connector);
+>  int drm_connector_dynamic_register(struct drm_connector *connector);
+
+--=20
+Jani Nikula, Intel
