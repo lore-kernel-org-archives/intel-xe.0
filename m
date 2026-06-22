@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C38F1CDB46F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2043CD98F2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 18:10:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 705C210E819;
-	Mon, 22 Jun 2026 18:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 290CC10E817;
+	Mon, 22 Jun 2026 18:10:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="kCe0lwGr";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jZptyMoP";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0E810E7FE;
- Mon, 22 Jun 2026 18:10:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0C2C10E7F8;
+ Mon, 22 Jun 2026 18:10:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782151842;
- bh=Hc+aGlJupIEh19FIUSU6O+gw2A75/Nj2bkmdrRNCbas=;
+ s=default; t=1782151846;
+ bh=r10AAnKUQPrCjn4nwCrtFvliOfdGv8y4HVOMxu4pQsU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kCe0lwGrzDk4ABq1VVGHmCFkmDjZl0uJ0k7oT3anb3+hLc7ehbFsoXoBdW5RyasYJ
- IDZy3qelZX6HA0evdLVo8Lsqus+wE5RruS8w6715Qxj1U2JO02UBosQZM6BVE5tkFS
- GRLy/bkkfWiHukg9dehUsoZmntFe9KSNFmW754DwCm736KZysh/qOZd9+EZZbtv/mS
- iZpXt1kVrc8RLbrUJj5L/f8Sqbra83udzR+SC/t9MLWoFTV8V4ptqe3QEuiWx5yvHc
- hYNeVE991BvwKLfRx64pv284bBFGTD6MHsFVQJWbZJtuywa8dg3S0M88ifh3uQaOzd
- wpGXtUi+L109Q==
+ b=jZptyMoP/cJOJwQ+W4RmPcTaw7iB3t8chnOYhAtjqnUsn9KbOjI+J3018W8Y2/Tdm
+ t7RUyVQZ+Jg95mg2H2x72fhhgfu88kMCkRfsd1m8AnCwu1scLwnUMuAoLv/enmHlIm
+ Beko5vAnZJp+sXFYSPgCghiYkrzKtqoYrnlBGJ1n+g12wkpfmn9oPvW2EvXavM9Ukr
+ gIEIMkb7o5n8z8lALBIBfYmHsZIH1JbWjPYy8V78TalxqdJcAad7Qq8Sxv2/EJ336z
+ UsCkJ/MWjpNl4Ki0BCqtX0v11lHiYZYmdUISF/X3cC0d63j7D9+5SZX4lETZdRShHl
+ hjvaztl4/Zg5w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH v9 14/30] drm/i915/display: Make set_pipeconf use the fw
- variants
-Date: Mon, 22 Jun 2026 20:10:27 +0200
-Message-ID: <20260622181044.39335-15-dev@lankhorst.se>
+Cc: dri-devel@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v9 20/30] drm/i915/display: Remove uncore lock from
+ vlv_atomic_update_fifo
+Date: Mon, 22 Jun 2026 20:10:33 +0200
+Message-ID: <20260622181044.39335-21-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622181044.39335-1-dev@lankhorst.se>
 References: <20260622181044.39335-1-dev@lankhorst.se>
@@ -53,80 +53,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The calls are used inside the critical section when updating
-the gamma mode, and thus should use the _fw variants to prevent
-locks.
+TODO: Grab uncore lock during entire vblank evasion before disabling
+interrupts, and check what breaks?
 
-Fixes following splat:
-| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-| in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 2115, name: modprobe
-| preempt_count: 0, expected: 0
-| RCU nest depth: 0, expected: 0
-| 4 locks held by modprobe/2115:
-|  #0: ffff99b9425161a0 (&dev->mutex){....}-{4:4}, at: __driver_attach+0xaf/0x1c0
-|  #1: ffffaa224810f6c0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: intel_initial_commit+0x4c/0x200 [i915]
-|  #2: ffffaa224810f6e8 (crtc_ww_class_mutex){+.+.}-{4:4}, at: intel_initial_commit+0x4c/0x200 [i915]
-|  #3: ffff99b94a6c9030 (&uncore->lock){+.+.}-{3:3}, at: gen6_write32+0x50/0x290 [i915]
-| irq event stamp: 513344
-| hardirqs last  enabled at (513343): [<ffffffff8ba8d84c>] _raw_spin_unlock_irqrestore+0x4c/0x60
-| hardirqs last disabled at (513344): [<ffffffffc1543646>] intel_pipe_update_start+0x216/0x2c0 [i915]
-| softirqs last  enabled at (512766): [<ffffffff8af045cf>] __local_bh_enable_ip+0x10f/0x170
-| softirqs last disabled at (512712): [<ffffffffc14dfb6a>] __i915_request_queue+0x3a/0x70 [i915]
-| CPU: 3 UID: 0 PID: 2115 Comm: modprobe Tainted: G        W           6.18.0-rc1+ #17 PREEMPT_{RT,(lazy)}
-| Tainted: [W]=WARN
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, BIOS P2.30 06/29/2012
-| Call Trace:
-|  <TASK>
-|  dump_stack_lvl+0x68/0x90
-|  __might_resched.cold+0xf0/0x12b
-|  rt_spin_lock+0x5f/0x200
-|  gen6_write32+0x50/0x290 [i915]
-|  ilk_set_pipeconf+0x12d/0x230 [i915]
-|  ilk_color_commit_arm+0x2d/0x70 [i915]
-|  intel_update_crtc+0x15b/0x690 [i915]
-|  intel_commit_modeset_enables+0xa6/0xd0 [i915]
-|  intel_atomic_commit_tail+0xd55/0x19a0 [i915]
-|  intel_atomic_commit+0x25d/0x2a0 [i915]
-|  drm_atomic_commit+0xad/0xe0 [drm]
-|  intel_initial_commit+0x16c/0x200 [i915]
-|  intel_display_driver_probe+0x2e/0x80 [i915]
-|  i915_driver_probe+0x791/0xc10 [i915]
-|  i915_pci_probe+0xd7/0x190 [i915]
-
-Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1d36bde149627..55fbd5ff570f7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3030,8 +3030,9 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 86d1c9f7f0ff0..e07303f0b3cc4 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+-	struct intel_uncore *uncore = to_intel_uncore(display->drm);
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	const struct vlv_fifo_state *fifo_state =
+@@ -1892,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	 * intel_pipe_update_start() has already disabled interrupts
+ 	 * for us, so a plain spin_lock() is sufficient here.
+ 	 */
+-	spin_lock(&uncore->lock);
  
- 	val |= TRANSCONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+ 	switch (crtc->pipe) {
+ 	case PIPE_A:
+@@ -1951,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	}
  
--	intel_de_write(display, TRANSCONF(display, cpu_transcoder), val);
--	intel_de_posting_read(display, TRANSCONF(display, cpu_transcoder));
-+	intel_de_write_fw(display, TRANSCONF(display, cpu_transcoder), val);
-+	/* posting read */
-+	intel_de_read_fw(display, TRANSCONF(display, cpu_transcoder));
+ 	intel_de_read_fw(display, DSPARB(display));
+-
+-	spin_unlock(&uncore->lock);
  }
  
- static enum intel_output_format
-@@ -3226,8 +3227,9 @@ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
- 	val |= TRANSCONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
- 	val |= TRANSCONF_MSA_TIMING_DELAY(crtc_state->msa_timing_delay);
- 
--	intel_de_write(display, TRANSCONF(display, cpu_transcoder), val);
--	intel_de_posting_read(display, TRANSCONF(display, cpu_transcoder));
-+	intel_de_write_fw(display, TRANSCONF(display, cpu_transcoder), val);
-+	/* posting read */
-+	intel_de_read_fw(display, TRANSCONF(display, cpu_transcoder));
- }
- 
- static void hsw_set_transconf(const struct intel_crtc_state *crtc_state)
+ #undef VLV_FIFO
 -- 
 2.53.0
 
