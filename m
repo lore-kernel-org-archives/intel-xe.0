@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35B74CDB471
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 06:59:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A3E2CDB46B
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jun 2026 06:59:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBE2210E285;
-	Mon, 22 Jun 2026 06:59:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFE6710E4AD;
+	Mon, 22 Jun 2026 06:59:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZRysP9Bi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d8Myg41u";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20C6C89131
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D087510E285
  for <intel-xe@lists.freedesktop.org>; Mon, 22 Jun 2026 06:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1782111579; x=1813647579;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=08Uqhgqtyn7e5rR5QUGe2ATP4Vd0h6LCrYmkOgKres8=;
- b=ZRysP9Bi5SOLJLf0U9wWrkd/qOb5PVKIJ/oLvWGTDEUP2bML83WbaQRo
- OQqjHpwWy5TGKu00u7JC1CcbYjPxvocG1JLE+nkZQbsJgFly3WC/nzhVo
- Dtxm8/eh04CLoDoIl4v4HwI++Xxf1/nX6bS0SUk4UsIPWteAFvishDDVj
- gjMui7rEFX89MB8B0lTnwRT2eG3osJjUAhQLBWHt6Aq753TG/0NF1Ns/h
- H7tgt1py7sjeWxRhmRk3ACjs1LbnS+VoQgxrivQiKcU4b37GMoPi22K6a
- r/nWF/x7gPHPuTV5n+AViZWUAQpD3aeuTIAVJvdec5XGxLEbWEmGuKrU5 g==;
-X-CSE-ConnectionGUID: b+3gLZa2ST2c97qE/iQrGg==
-X-CSE-MsgGUID: Il56PqzhQRWM3AB5A0Z4Kg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="82928702"
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="82928702"
+ bh=PBcMdylF4GPZlWXHrAXpw1VE1KUartNuMP2ZBBp334g=;
+ b=d8Myg41uZb0rS2scbFXLZT5+8Evt7qPawzH1k5U0gBspZtGltB2qrh+K
+ 6oDTFZHXXNXsAAaEgB3ayW9K74b9PJf3LMsfacHiQivI1Zx5pcu5wArbk
+ KXaDLxKBKLnUDcC83ggelb76qk4wiYwNEoRSqNIQxgOe3QGrpITGOwamk
+ H2PGxzkz7mrJpIZT9CkpjLnoDjzluIquu7MGfWPhFQ+Vh2Ixm0SD5g9Y6
+ LXxrf4YuqRA/hVTTJp3KIdnTsUP3x3NrAozUJ89yhnL/VR1TYJWEBJSJl
+ wBifJ6l3+Umx5ar/GvmKAq2nGe0wHaReeFEpk+I3/BtOV2BF8gQVq77an w==;
+X-CSE-ConnectionGUID: EoWEYxadRGCBK4iwj6H2ZA==
+X-CSE-MsgGUID: Hk4BrMV9TXKKRrjlu7Nfww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="82928728"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="82928728"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2026 23:59:36 -0700
-X-CSE-ConnectionGUID: 236X7gSjQa2jou6OPTsFUA==
-X-CSE-MsgGUID: YnkPyWyOQymeI02jlov8fg==
+ 21 Jun 2026 23:59:38 -0700
+X-CSE-ConnectionGUID: d4aZZzWeRlebqgKvHpIKvA==
+X-CSE-MsgGUID: m2S8Lm60TN2HLhlXbaebWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="251068087"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="251068098"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by fmviesa004.fm.intel.com with ESMTP; 21 Jun 2026 23:59:34 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 21 Jun 2026 23:59:36 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH 1/9] drm/xe: add page size allocation control state to
- xe_device
-Date: Mon, 22 Jun 2026 12:30:23 +0530
-Message-ID: <20260622070031.2445502-2-naresh.kumar.g@intel.com>
+Subject: [PATCH 3/9] drm/xe/debugfs: add page size allocation mode knob
+Date: Mon, 22 Jun 2026 12:30:25 +0530
+Message-ID: <20260622070031.2445502-4-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260622070031.2445502-1-naresh.kumar.g@intel.com>
 References: <20260622070031.2445502-1-naresh.kumar.g@intel.com>
@@ -67,57 +66,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_page_size_alloc_ctrl_mode and add page_size_alloc_ctrl
-state to struct xe_device.
+Expose a debugfs control to override the page-size allocation mode used
+for user BOs.
 
-The new control supports forcing user BO allocations to 2M pages,
-forcing them to 1G pages, or using a mixed round-robin mode across
-4K, 64K, 2M, and 1G page sizes. Track the current mixed-mode index
-in xe_device so allocation policy can be applied consistently.
+The interface allows switching between forced 2M, forced 1G, and mixed
+allocation modes at runtime on platforms that support page-size
+allocation control. This provides a simple way to validate behavior and
+debug page-size-dependent allocation flows.
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/gpu/drm/xe/xe_debugfs.c | 52 +++++++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 32dd2ffbc796..d8b0d4af323e 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -61,6 +61,18 @@ enum xe_wedged_mode {
- 	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 22b471303984..041903836497 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -544,6 +544,55 @@ static const struct file_operations disable_late_binding_fops = {
+ 	.write = disable_late_binding_set,
  };
  
-+/**
-+ * enum xe_page_size_alloc_ctrl_mode - Page size allocation control modes
-+ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M: Force all User BO allocations to 2MB pages
-+ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G: Force all User BO allocations to 1GB pages
-+ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED  : Round-robin, 4k,64K,2M and 1G per BO index
-+ */
-+enum xe_page_size_alloc_ctrl_mode {
-+	XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M = 1,
-+	XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G,
-+	XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED
++static ssize_t page_size_alloc_mode_show(struct file *f, char __user *ubuf,
++					 size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	char buf[32];
++	int len;
++
++	if (!xe_device_supports_multi_pagesize(xe))
++		return -EOPNOTSUPP;
++
++	enum xe_page_size_alloc_ctrl_mode mode =
++		READ_ONCE(xe->page_size_alloc_ctrl.mode);
++	len = scnprintf(buf, sizeof(buf), "%d\n", mode);
++
++	return simple_read_from_buffer(ubuf, size, pos, buf, len);
++}
++
++static ssize_t page_size_alloc_mode_set(struct file *f, const char __user *ubuf,
++					size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	unsigned int val;
++	int ret;
++
++	if (!xe_device_supports_multi_pagesize(xe))
++		return -EOPNOTSUPP;
++
++	ret = kstrtouint_from_user(ubuf, size, 0, &val);
++	if (ret)
++		return ret;
++
++	if (val > XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED)
++		return -EINVAL;
++
++	WRITE_ONCE(xe->page_size_alloc_ctrl.mode,
++		   (enum xe_page_size_alloc_ctrl_mode)val);
++
++	if (val == XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED)
++		WRITE_ONCE(xe->page_size_alloc_ctrl.cur_index, 0);
++
++	return size;
++}
++
++static const struct file_operations page_size_alloc_mode_fops = {
++	.owner = THIS_MODULE,
++	.read = page_size_alloc_mode_show,
++	.write = page_size_alloc_mode_set,
 +};
 +
- #define XE_BO_INVALID_OFFSET	LONG_MAX
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -585,6 +634,9 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	debugfs_create_file("disable_late_binding", 0600, root, xe,
+ 			    &disable_late_binding_fops);
  
- #define GRAPHICS_VER(xe) ((xe)->info.graphics_verx100 / 100)
-@@ -474,6 +486,14 @@ struct xe_device {
- 	/** @late_bind: xe mei late bind interface */
- 	struct xe_late_bind late_bind;
- 
-+	/** @page_size_alloc_ctrl: Struct to control page size allocation mode */
-+	struct {
-+		/** @mode: xe page size allocation control mode */
-+		enum xe_page_size_alloc_ctrl_mode mode;
-+		/** @cur_index: Current index in case of mixed mode */
-+		unsigned int cur_index;
-+	} page_size_alloc_ctrl;
++	debugfs_create_file("page_size_alloc_mode", 0600, root, xe,
++			    &page_size_alloc_mode_fops);
 +
- 	/** @oa: oa observation subsystem */
- 	struct xe_oa oa;
- 
+ 	/*
+ 	 * Don't expose page reclaim configuration file if not supported by the
+ 	 * hardware initially.
 -- 
 2.43.0
 
