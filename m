@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14BE6CDE000
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 22:27:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F0FCCDE003
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 22:27:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF53010ECF9;
-	Tue, 23 Jun 2026 22:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE6210ECFB;
+	Tue, 23 Jun 2026 22:27:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SWw8Klzc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Za8CaOnp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F8D10ECD9;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB2910E197;
  Tue, 23 Jun 2026 22:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1782253660; x=1813789660;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=tBdqYHoMsPYQv0EXEWvOqAIGOtdanMxsbG+Mc/v52gE=;
- b=SWw8Klzc/n7SckKGhif6EY4V1mG9O4ax3mhHCNBD/MtGmx6Ga5atTL1G
- KbQBu6frjWebhheNt/CqkTucySldoSMXBa5LJKaIZUw3H0rG18srvoLkV
- wy0dGwfSZ9vQQQdjwRbOsGR1CLfwmFXk4HltwHkJJpLl6dRTH7xWW17VO
- Ivmw2FKlfen45Gi9+JLhHUDhNdnLeM/xwF9C6oaqjTlN8F8c2E36dR8t8
- MQvs6pZP4IcIUKRf6AVbQdMilIy/D6mvxX9op0sNqoZ0dXzjO1v+Bpb9m
- p87cJc/t6WPIjQMhxj3Q1TDtkZrKnkjjhh0JL6o3QaLRIOcerf3UfchVc Q==;
-X-CSE-ConnectionGUID: 12sRBX5TQqefAvE39675VA==
-X-CSE-MsgGUID: xAK6rJrBRUiRrJtK0cHGsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="83048827"
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="83048827"
+ bh=eA7UcwS/tPXEi4g17NjqAuXREaK17Rz6qCntQABdNyw=;
+ b=Za8CaOnpE6Hkv7qczmOQCEvCg56kDXbvAjTCqoNNGKlr3Cjw12fhN3hf
+ cT2kDG/qB619VJqn3fHozhEfx9D4JL7VltMU2Y01Uw6PoN3ZpIae+3jIB
+ pdwV2iICpwc+fIEcFm9LJ7muop1CS9lc/5iMv7el/MO96Mo5CKNhkVDRG
+ 25laDyzXT4KB+O94KckznmG4ui4tFR/VoWVxC8UBjyvtrkkSEnL+DjmBm
+ f9QPdz7M2f9DjX9xtEF+9UexNoJcKTDL2YDWxymOFF90FqA4n/NZqAXDJ
+ qp7Z6xjDlS2Eq7EF0eN6DwmXURfHoUZGRwX99as4QZnAE7gYAUDLfNRRW A==;
+X-CSE-ConnectionGUID: /EUvsohrRICZbnB7xrcahQ==
+X-CSE-MsgGUID: zVztEST9TEOFU/IkEMtGIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="83048825"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="83048825"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jun 2026 15:27:39 -0700
-X-CSE-ConnectionGUID: 9zVSwDDLQ0OBhiyj+wzWtw==
-X-CSE-MsgGUID: hJNlb8fqTIivCZkZPzd0PA==
+X-CSE-ConnectionGUID: 96D1kBTeRWSUAFp9LzSFVA==
+X-CSE-MsgGUID: IPk1t5EBSSOzvWcESTWn4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="273335807"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="273335805"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jun 2026 15:27:39 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Subject: [RFC PATCH 07/12] drm/xe: Add xe_migrate_copy_defrag() for on-GPU
- defrag copies
-Date: Tue, 23 Jun 2026 15:27:27 -0700
-Message-Id: <20260623222732.360872-8-matthew.brost@intel.com>
+Subject: [RFC PATCH 05/12] drm/xe: Track BOs backed at a sub-optimal page order
+Date: Tue, 23 Jun 2026 15:27:25 -0700
+Message-Id: <20260623222732.360872-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260623222732.360872-1-matthew.brost@intel.com>
 References: <20260623222732.360872-1-matthew.brost@intel.com>
@@ -68,34 +67,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_migrate_copy_defrag(), a copy helper for the upcoming page
-defragmentation path where a single BO has its backing reallocated at a
-more beneficial page order and its contents must be relocated from the
-old pages to the new ones entirely on the GPU.
+Add per-device tracking of BOs whose backing TT pages were allocated
+below the pool's beneficial order, as reported by
+ttm_tt::beneficial_order_failed. These BOs are future candidates for a
+defragmentation pass that reallocates their pages at the beneficial
+order.
 
-The contents are relocated in up to two passes:
+Add a mem.defrag sub-struct (lock, list, atomic count) to struct
+xe_device and a defrag_link to struct xe_bo, initialised at BO create
+and device init. Membership is updated from xe_bo_move() via
+xe_bo_defrag_update(): a BO is added when it is a populated, non-pinned
+ttm_bo_type_device object flagged beneficial_order_failed, and removed
+otherwise. BOs are also removed on pin, on purge, and at destroy.
 
- - Data pass (always): copy the data pages verbatim. The pages are
-   mapped without the compression PAT, so the (possibly compressed)
-   bytes are copied as-is rather than being decompressed and
-   recompressed, and no CCS aux copy is appended.
-
- - CCS pass (need_ccs): copy the CCS aux (compression) state. Both the
-   old and new data pages are mapped with the compression PAT so the
-   copy engine accesses the aux state indirectly, issuing one
-   indirect -> indirect XY_CTRL_SURF_COPY_BLT; the data blit is skipped.
-
-The two passes are issued separately because they require opposite
-compression PAT settings on the data page mappings (cleared for the
-verbatim data copy, set for the indirect CCS access), which a single
-mapping cannot satisfy. Both passes run in order on the same migrate
-queue and are captured by the returned fence.
-
-The source pages are passed explicitly via an sg_table argument (the
-old, still populated backing) since they no longer match the BO's
-current backing. The boolean arguments to __xe_migrate_copy() are folded
-into struct xe_migrate_copy_flags to keep the growing set of copy
-variants readable.
+Only ttm_bo_type_device BOs are tracked.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -113,264 +98,216 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 135 ++++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_migrate.h |   8 ++
- 2 files changed, 127 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c           | 77 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h           |  2 +
+ drivers/gpu/drm/xe/xe_bo_types.h     |  6 +++
+ drivers/gpu/drm/xe/xe_device.c       |  2 +
+ drivers/gpu/drm/xe/xe_device_types.h | 19 +++++++
+ 5 files changed, 106 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 9428dd5e7760..f5585e86fdd9 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -882,13 +882,39 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
- 	return flush_flags;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 4c80bac67622..4acacc50a28f 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -947,6 +947,72 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
+ 	return 0;
  }
  
 +/**
-+ * struct xe_migrate_copy_flags - Flags for __xe_migrate_copy()
-+ * @copy_only_ccs: Only copy the CCS aux state, aliasing the destination data
-+ * mapping to the source (used when the data pages are shared between src/dst).
-+ * @is_vram_resolve: Decompression (VRAM -> system) resolve; always uses the
-+ * compression PAT index for the data copy.
-+ * @defrag_ccs: Defrag move pass that migrates only the CCS aux state between
-+ * two distinct page sets (old @src_sg pages -> new pages). The data blit is
-+ * skipped (the data was copied by the @defrag_copy pass) and both the source
-+ * and destination data pages are mapped with the compression PAT so the aux
-+ * state is copied indirect -> indirect.
-+ * @defrag_copy: Defrag move pass that copies the data pages between two
-+ * distinct page sets (old @src_sg pages -> new pages) without touching the CCS
-+ * aux state. The data pages are mapped without the compression PAT so the
-+ * (possibly compressed) bytes are copied verbatim rather than being
-+ * decompressed and recompressed, and no CCS aux copy is appended; the aux
-+ * state is migrated separately by the @defrag_ccs pass. The two passes need
-+ * opposite compression PAT settings, which is why they cannot be combined.
++ * xe_bo_defrag_init() - Initialize the device defrag BO tracking
++ * @xe: The xe device
++ *
++ * Initialize the list, lock and count used to track BOs whose backing TT
++ * pages were allocated at a sub-optimal order.
 + */
-+struct xe_migrate_copy_flags {
-+	u32 copy_only_ccs : 1;
-+	u32 is_vram_resolve : 1;
-+	u32 defrag_ccs : 1;
-+	u32 defrag_copy : 1;
-+};
++void xe_bo_defrag_init(struct xe_device *xe)
++{
++	spin_lock_init(&xe->mem.defrag.lock);
++	INIT_LIST_HEAD(&xe->mem.defrag.list);
++	atomic_set(&xe->mem.defrag.count, 0);
++}
 +
- static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 					   struct xe_bo *src_bo,
- 					   struct xe_bo *dst_bo,
- 					   struct ttm_resource *src,
- 					   struct ttm_resource *dst,
--					   bool copy_only_ccs,
--					   bool is_vram_resolve)
-+					   struct sg_table *src_sg,
-+					   struct xe_migrate_copy_flags flags)
- {
- 	struct xe_gt *gt = m->tile->primary_gt;
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -905,20 +931,29 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 	bool src_is_vram = mem_type_is_vram(src->mem_type);
- 	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
- 	bool type_device = src_bo->ttm.type == ttm_bo_type_device;
--	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe);
-+	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe) &&
-+		!flags.defrag_copy;
- 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
--		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
--	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
-+		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo) &&
-+		!flags.defrag_copy;
-+	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram) &&
-+		!flags.defrag_ccs && !flags.defrag_copy;
- 
- 	/*
- 	 * For decompression operation, always use the compression PAT index.
- 	 * Otherwise, only use the compression PAT index for device memory
- 	 * when copying from VRAM to system memory.
- 	 */
--	bool use_comp_pat = is_vram_resolve || (type_device &&
-+	bool use_comp_pat = flags.is_vram_resolve || (type_device &&
- 			    xe_device_has_flat_ccs(xe) &&
- 			    GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram);
- 
-+	/*
-+	 * The defrag CCS pass migrates the aux state from the old pages
-+	 * (@src_sg) to the new pages with both sides accessed indirectly, so
-+	 * keep both src_is_pltt and dst_is_pltt set (no direct staging side).
-+	 */
++static void xe_bo_defrag_add(struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
 +
- 	/* Copying CCS between two different BOs is not supported yet. */
- 	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
- 		return ERR_PTR(-EINVAL);
-@@ -927,7 +962,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		return ERR_PTR(-EINVAL);
- 
- 	if (!src_is_vram)
--		xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
-+		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo), 0, size, &src_it);
- 	else
- 		xe_res_first(src, 0, size, &src_it);
- 	if (!dst_is_vram)
-@@ -936,7 +971,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		xe_res_first(dst, 0, size, &dst_it);
- 
- 	if (copy_system_ccs)
--		xe_res_first_sg(xe_bo_sg(src_bo), xe_bo_ccs_pages_start(src_bo),
-+		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo),
-+				xe_bo_ccs_pages_start(src_bo),
- 				PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
- 				&ccs_it);
- 
-@@ -966,7 +1002,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		batch_size += pte_update_size(m, pte_flags, src, &src_it, &src_L0,
- 					      &src_L0_ofs, &src_L0_pt, 0, 0,
- 					      avail_pts);
--		if (copy_only_ccs) {
-+		if (flags.copy_only_ccs) {
- 			dst_L0_ofs = src_L0_ofs;
- 		} else {
- 			pte_flags = dst_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
-@@ -987,7 +1023,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		}
- 
- 		/* Add copy commands size here */
--		batch_size += ((copy_only_ccs) ? 0 : emit_copy_cmd_len(xe)) +
-+		batch_size += ((flags.copy_only_ccs || flags.defrag_ccs) ? 0 : emit_copy_cmd_len(xe)) +
- 			((needs_ccs_emit ? EMIT_COPY_CCS_DW : 0));
- 
- 		bb = xe_bb_new(gt, batch_size, usm);
-@@ -999,13 +1035,15 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
- 			xe_res_next(&src_it, src_L0);
- 		else
--			emit_pte(m, bb, src_L0_pt, src_is_vram, copy_system_ccs || use_comp_pat,
-+			emit_pte(m, bb, src_L0_pt, src_is_vram,
-+				 copy_system_ccs || use_comp_pat || flags.defrag_ccs,
- 				 &src_it, src_L0, src);
- 
- 		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
- 			xe_res_next(&dst_it, src_L0);
--		else if (!copy_only_ccs)
--			emit_pte(m, bb, dst_L0_pt, dst_is_vram, copy_system_ccs,
-+		else if (!flags.copy_only_ccs)
-+			emit_pte(m, bb, dst_L0_pt, dst_is_vram,
-+				 copy_system_ccs || flags.defrag_ccs,
- 				 &dst_it, src_L0, dst);
- 
- 		if (copy_system_ccs)
-@@ -1014,7 +1052,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
- 
--		if (!copy_only_ccs)
-+		if (!flags.copy_only_ccs && !flags.defrag_ccs)
- 			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
- 
- 		if (needs_ccs_emit)
-@@ -1102,7 +1140,69 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct ttm_resource *dst,
- 				  bool copy_only_ccs)
- {
--	return __xe_migrate_copy(m, src_bo, dst_bo, src, dst, copy_only_ccs, false);
-+	return __xe_migrate_copy(m, src_bo, dst_bo, src, dst, NULL,
-+				 (struct xe_migrate_copy_flags) {
-+					 .copy_only_ccs = copy_only_ccs,
-+				 });
++	scoped_guard(spinlock, &xe->mem.defrag.lock) {
++		if (list_empty(&bo->defrag_link)) {
++			list_add_tail(&bo->defrag_link, &xe->mem.defrag.list);
++			atomic_inc(&xe->mem.defrag.count);
++		}
++	}
 +}
 +
 +/**
-+ * xe_migrate_copy_defrag() - Migrate a BO's backing to a reallocated page set.
-+ * @m: The migration context.
-+ * @bo: The buffer object being defragmented. Both @src and @dst belong to @bo.
-+ * @src: The source TTM resource (the old backing).
-+ * @dst: The dst TTM resource (the freshly reallocated backing).
-+ * @src_sg: Scatter-gather table of the source (old) backing pages.
-+ * @need_ccs: Whether the BO has CCS aux state that must be migrated too.
++ * xe_bo_defrag_remove() - Remove a BO from the device defrag list
++ * @bo: The buffer object
 + *
-+ * Used by the defrag path where a single BO has its backing reallocated at a
-+ * more beneficial page order. The contents are relocated from the old pages
-+ * (@src_sg) to the new pages (the BO's current backing) entirely on the GPU,
-+ * in up to two passes:
-+ *
-+ *  - Data pass (always): copy the data pages verbatim. The pages are mapped
-+ *    without the compression PAT, so the (possibly compressed) bytes are copied
-+ *    as-is rather than being decompressed and recompressed, and no CCS aux copy
-+ *    is appended.
-+ *
-+ *  - CCS pass (@need_ccs): copy the CCS aux (compression) state. Both the old
-+ *    and new data pages are mapped with the compression PAT so the copy engine
-+ *    accesses the aux state indirectly, issuing one indirect -> indirect
-+ *    XY_CTRL_SURF_COPY_BLT; the data blit is skipped.
-+ *
-+ * The two passes are issued separately because they require opposite
-+ * compression PAT settings on the data page mappings (cleared for the verbatim
-+ * data copy, set for the indirect CCS access), which a single mapping cannot
-+ * satisfy. Both passes run in order on the same migrate queue.
-+ *
-+ * Return: Pointer to a dma_fence representing the last copy batch, or an error
-+ * pointer on failure.
++ * Remove @bo from the defrag list if present. Safe to call on a BO that is
++ * not currently on the list.
 + */
-+struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
-+					 struct xe_bo *bo,
-+					 struct ttm_resource *src,
-+					 struct ttm_resource *dst,
-+					 struct sg_table *src_sg,
-+					 bool need_ccs)
++void xe_bo_defrag_remove(struct xe_bo *bo)
 +{
-+	struct dma_fence *fence2, *fence =
-+		__xe_migrate_copy(m, bo, bo, src, dst, src_sg,
-+				  (struct xe_migrate_copy_flags) {
-+					 .defrag_copy = true,
-+					 });
++	struct xe_device *xe = xe_bo_device(bo);
 +
-+	if (IS_ERR(fence) || !need_ccs)
-+		return fence;
++	guard(spinlock)(&xe->mem.defrag.lock);
 +
-+	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_sg,
-+				   (struct xe_migrate_copy_flags) {
-+				   .defrag_ccs = true,
-+				   });
-+	if (IS_ERR(fence2))
-+		dma_fence_wait(fence, false);
-+	dma_fence_put(fence);
++	if (!list_empty(&bo->defrag_link)) {
++		list_del_init(&bo->defrag_link);
++		atomic_dec(&xe->mem.defrag.count);
++	}
++}
 +
-+	return fence2;
++/**
++ * xe_bo_defrag_update() - Update defrag list membership for a BO
++ * @bo: The buffer object
++ *
++ * Add @bo to the device defrag list when it has a populated, non-pinned TT of
++ * type ttm_bo_type_device whose pages were allocated at a sub-optimal order
++ * (tt->beneficial_order_failed). Otherwise ensure it is removed from the list.
++ */
++static void xe_bo_defrag_update(struct xe_bo *bo)
++{
++	struct ttm_buffer_object *ttm_bo = &bo->ttm;
++	struct ttm_tt *tt = ttm_bo->ttm;
++
++	if (ttm_bo->type == ttm_bo_type_device && tt &&
++	    ttm_tt_is_populated(tt) && tt->beneficial_order_failed &&
++	    !xe_bo_is_pinned(bo))
++		xe_bo_defrag_add(bo);
++	else
++		xe_bo_defrag_remove(bo);
++}
++
+ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		      struct ttm_operation_ctx *ctx,
+ 		      struct ttm_resource *new_mem,
+@@ -975,6 +1041,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		if (ret)
+ 			return ret;
+ 
++		xe_bo_defrag_remove(bo);
++
+ 		/* Free the unused eviction destination resource */
+ 		ttm_resource_free(ttm_bo, &new_mem);
+ 		return 0;
+@@ -1172,6 +1240,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		xe_tt_unmap_sg(xe, ttm_bo->ttm);
+ 	}
+ 
++	xe_bo_defrag_update(bo);
++
+ 	return ret;
  }
  
- /**
-@@ -1120,7 +1220,10 @@ struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
- 				     struct xe_bo *bo,
- 				     struct ttm_resource *res)
- {
--	return __xe_migrate_copy(m, bo, bo, res, res, false, true);
-+	return __xe_migrate_copy(m, bo, bo, res, res, NULL,
-+				 (struct xe_migrate_copy_flags) {
-+					 .is_vram_resolve = true,
-+				 });
+@@ -1850,6 +1920,8 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 		list_del(&bo->vram_userfault_link);
+ 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
+ 
++	xe_bo_defrag_remove(bo);
++
+ 	kfree(bo);
  }
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 965c45889c72..e4f996942a6d 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -11,6 +11,7 @@
- struct dma_fence;
- struct drm_pagemap_addr;
- struct iosys_map;
-+struct sg_table;
- struct ttm_resource;
+@@ -2355,6 +2427,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	bo->ttm.base.funcs = &xe_gem_object_funcs;
+ 	bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
+ 	INIT_LIST_HEAD(&bo->pinned_link);
++	INIT_LIST_HEAD(&bo->defrag_link);
+ #ifdef CONFIG_PROC_FS
+ 	INIT_LIST_HEAD(&bo->client_link);
+ #endif
+@@ -2961,6 +3034,8 @@ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec)
+ 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+ 		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
  
- struct xe_bo;
-@@ -132,6 +133,13 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct ttm_resource *dst,
- 				  bool copy_only_ccs);
- 
-+struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
-+					 struct xe_bo *bo,
-+					 struct ttm_resource *src,
-+					 struct ttm_resource *dst,
-+					 struct sg_table *src_sg,
-+					 bool need_ccs);
++	xe_bo_defrag_remove(bo);
 +
- struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
- 				     struct xe_bo *bo,
- 				     struct ttm_resource *res);
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+ 	 * we do not need this.
+@@ -3019,6 +3094,8 @@ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec)
+ 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+ 		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
+ 
++	xe_bo_defrag_remove(bo);
++
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+ 	 * we do not need this.
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 6340317f7d2e..6b7c2e99a1d2 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -224,6 +224,8 @@ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec);
+ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec);
+ void xe_bo_unpin_external(struct xe_bo *bo);
+ void xe_bo_unpin(struct xe_bo *bo);
++void xe_bo_defrag_init(struct xe_device *xe);
++void xe_bo_defrag_remove(struct xe_bo *bo);
+ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
+ 		   struct drm_exec *exec);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index fcc63ae3f455..9eea9ab380e5 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -54,6 +54,12 @@ struct xe_bo {
+ 	struct ttm_bo_kmap_obj kmap;
+ 	/** @pinned_link: link to present / evicted list of pinned BO */
+ 	struct list_head pinned_link;
++	/**
++	 * @defrag_link: link into @xe_device.mem.defrag.list for BOs whose
++	 * backing TT pages were allocated at a sub-optimal order. Protected by
++	 * @xe_device.mem.defrag.lock.
++	 */
++	struct list_head defrag_link;
+ #ifdef CONFIG_PROC_FS
+ 	/**
+ 	 * @client: @xe_drm_client which created the bo
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b6e49309a99f..c8c90e9b1bc1 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -577,6 +577,8 @@ int xe_device_init_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	xe_bo_defrag_init(xe);
++
+ 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
+ 						       WQ_MEM_RECLAIM);
+ 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 4e2f115f14e2..fe67b0ad938c 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -281,6 +281,25 @@ struct xe_device {
+ 		struct xe_shrinker *shrinker;
+ 		/** @mem.stolen_mgr: stolen memory manager. */
+ 		struct xe_ttm_stolen_mgr *stolen_mgr;
++		/**
++		 * @mem.defrag: Tracking of BOs whose backing TT pages were
++		 * allocated at a sub-optimal (smaller than beneficial) order.
++		 *
++		 * Such BOs are candidates for a future defragmentation pass that
++		 * tries to reallocate their pages at the device's beneficial
++		 * order. Only ttm_bo_type_device BOs are tracked.
++		 */
++		struct {
++			/** @mem.defrag.lock: Protects @mem.defrag.list. */
++			spinlock_t lock;
++			/** @mem.defrag.list: List of struct xe_bo defrag_link. */
++			struct list_head list;
++			/**
++			 * @mem.defrag.count: Number of BOs currently on
++			 * @mem.defrag.list.
++			 */
++			atomic_t count;
++		} defrag;
+ 	} mem;
+ 
+ 	/** @sriov: device level virtualization data */
 -- 
 2.34.1
 
