@@ -4,62 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66CCECD4F26
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 05:33:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05C78CD98F0
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 05:34:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A36810E94F;
-	Tue, 23 Jun 2026 05:33:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDC0289EF7;
+	Tue, 23 Jun 2026 05:34:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UGWcdCAe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FWGFa8h5";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29B8110E94F;
- Tue, 23 Jun 2026 05:33:12 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 08EC46001D;
- Tue, 23 Jun 2026 05:33:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78CA71F000E9;
- Tue, 23 Jun 2026 05:33:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782192790;
- bh=ZPxkD7F8ITxnRJZO4JYJC0JKAPV/wMzHOr5uq5/AI9E=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=UGWcdCAeFz7KJBjJYTpwOnCdP9C7RdIfgUkijpZS4cldZJ1uBEAWv1SU0KAdfXEj+
- NNEUrmtvicpJSqM5Tn1H/dA7HkP3PVFWB4bhKwoEIc53L+073TWls3WsRZJP1m/P68
- znwOJCpzVWi609urNj5fJLl41YBuTaUzwKqdlPPz5e/HDGZiqv4Oa2RVE5yZ3zON6t
- CR53JGmlOY4BI7A145OsUVG9poe3djGCSCYGS4MHRM7xMOwcwiMEYmIN+jUxg7E3VF
- Cob+HW62CAJ+A0bVghkIrQS7IGF4bbzpXzjWaeGVggTi9c0cTnx01sF4SwAEHmxhpO
- RmhL53NsWzaGQ==
-Date: Tue, 23 Jun 2026 15:32:58 +1000
-From: Dave Chinner <dgc@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Dave Chinner <david@fromorbit.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
- Roman Gushchin <roman.gushchin@linux.dev>,
- Muchun Song <muchun.song@linux.dev>, David Hildenbrand <david@kernel.org>,
- Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Johannes Weiner <hannes@cmpxchg.org>,
- Shakeel Butt <shakeel.butt@linux.dev>,
- Kairui Song <kasong@tencent.com>, Barry Song <baohua@kernel.org>,
- Axel Rasmussen <axelrasmussen@google.com>,
- Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>
-Subject: Re: [PATCH v6 1/2] mm: Introduce opportunistic_compaction concept to
- vmscan and shrinkers
-Message-ID: <ajoaikDrKz7JGr5h@dread>
-References: <20260617032218.1165929-1-matthew.brost@intel.com>
- <20260617032218.1165929-2-matthew.brost@intel.com>
- <ajnA83DxAFqeJ-sv@dread>
- <ajnOvdbT5/J6q3IN@gsse-cloud1.jf.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41DA289EF7;
+ Tue, 23 Jun 2026 05:34:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782192860; x=1813728860;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=VyvbhmS8A1hhPibv5/JrIf/a3tjaOSD+AwW14drRPwQ=;
+ b=FWGFa8h5F1gBPwxYRouaPGcAErIg+f6u8RiSYpYJV4HEer+AcE1Drl9I
+ Ezn+//4gXF8epPS2fo55FbNwQbdbP1PomVA0ji01+E1XdHGF5dO9citPg
+ sYWxcUUwJbZFZ9IqjHAFeQB9506SHTKDHRbp53Ho9bQwZj1khV78ik9UD
+ gKJZ22B0f5LJCeVIvFXQmC+zWf2MUaOol9OyjcH1fKJ6G/SeWM0AGuoSY
+ nVhbt5L4LFhfIcvw6ruzxdUNlSl4DZsWF+D6p2Wi1u2y7x2u+EPZkeJ2h
+ uMUbj7a/wAkuCjAOKnNj8MJukwZJhB3QHalms+0NOjuJ6LPrnxEAsFlLh w==;
+X-CSE-ConnectionGUID: aSIzR63XRMWo4WfU+PjXOQ==
+X-CSE-MsgGUID: HfrpMP/NS1SRyifnGUVtrg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="83117199"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="83117199"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 22:34:20 -0700
+X-CSE-ConnectionGUID: wrPjYAAiR9u3hMIjbG/HcA==
+X-CSE-MsgGUID: kQ/hNK6dRuSqAxD7r7mQOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="243061200"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 22:34:19 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 22 Jun 2026 22:34:19 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 22 Jun 2026 22:34:19 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.50)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 22 Jun 2026 22:34:18 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cWHeguQtGFz2LJvtoCnjt1eh2RM/JKZKbfiaHZIlkgVaCsdL6IclFzgqfoW2owgYPp9tLGg3Nv6s5cOwynwIwscGTDLVT/IdPE/3ya91Edrv3D0XjUx4V6SBxUCSSE6FJC5xaRENtkXbosLmJoArCbqAvPBJhV6UjwM/X6Z8fnHa4Rje1MSDwhnJqPVhHOnO/M/xGOzHbAQhDbp4nZV0UXXY+FgRCKQvllyfbYbdJrIFmJ4hmq3fJlK8TEG4TSiYELl1E6fKjGbTFgN2PJ4315mIJen2/3FfubkSSrrKSD8Q5QJ0QFqVNBQGh4J7XLtOjmAIisX1gB9ZVXXKOQQbnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ln5aX8osTpUcpvWtyHkTEeBHj8ODe5G34yc++HZu8Y4=;
+ b=nEa1efvc9BVp+Wlzxevs452VGEGwzSZKKo90FbJnVNwt78ruR/nJ3SAcc3ce2fn9iOwWvKO5JiTvIfh8XrrKkkP0fgpFbNddxVu4PU0FM8xSRUyAcqGx+AnryxO/cweygY2H4qum1uVixVwAELnbsZCj2HCAdHpQYo2GkBlajEgId3bwMx3l/Ln6kAeHW/koAuLOpFobP1BfGruUshQp8ie/+c8bVcayLrpZmEkm/1wPQsIftAEcZtlRfbeWa310cKmBRbjrdysn1Odjk0+x9bWRGm8YETt1JY7queMyQGrMehhJ8E/CVeM+o3HUOJEWQm5GqzquPlFwmK3tNPnq0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6467.namprd11.prod.outlook.com (2603:10b6:208:3a5::18)
+ by CY8PR11MB6841.namprd11.prod.outlook.com (2603:10b6:930:62::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
+ 2026 05:34:11 +0000
+Received: from IA1PR11MB6467.namprd11.prod.outlook.com
+ ([fe80::7aa6:c6db:3d15:8973]) by IA1PR11MB6467.namprd11.prod.outlook.com
+ ([fe80::7aa6:c6db:3d15:8973%3]) with mapi id 15.21.0139.018; Tue, 23 Jun 2026
+ 05:34:11 +0000
+From: "Garg, Nemesa" <nemesa.garg@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v2 25/28] drm/i915/dp_link_caps: Move max link limits to
+ link_caps
+Thread-Topic: [PATCH v2 25/28] drm/i915/dp_link_caps: Move max link limits to
+ link_caps
+Thread-Index: AQHc/dGnNqzBz18ybUaGf2Ag1YgMmrZLqCrQ
+Date: Tue, 23 Jun 2026 05:34:11 +0000
+Message-ID: <IA1PR11MB646780390BDBC4F45D2A0305E3EE2@IA1PR11MB6467.namprd11.prod.outlook.com>
+References: <20260616200849.3534628-1-imre.deak@intel.com>
+ <20260616200849.3534628-26-imre.deak@intel.com>
+In-Reply-To: <20260616200849.3534628-26-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6467:EE_|CY8PR11MB6841:EE_
+x-ms-office365-filtering-correlation-id: 6256aca2-9ed1-4e2d-9e94-08ded0e90deb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|22082099003|18002099003|38070700021|3023799007|56012099006|11063799006|6133799003|4143699003;
+x-microsoft-antispam-message-info: IZ3ziDHcQaDUP6ECJmdeKzbSKnRz4ISn1qTvB679BVqn3R/zMPropTlEa86nReGlIK7Pt7eVofoPS2t+PnUqsUy7wTw3xDHs6jR2Pi81uJjpegMIQASYYEJibAdxGZxudwKSYDm158MZGpIwXd6sAMN26wkBtIoe1lLljvXhRsbsTXyvZz9aN/KWDPI1M3ItAshEIpLpswAivjCmY/QBIa2koGMM8EJchfsCDY1IHdDxPVyY0LmUF1mJD7neeX+r/8Wuczc5yEjke9O76w8GHkSPr5NNRN5jq2dW05tYXo5wAmXvSRFGdbTvCFd94c7aFth1wL0WIBBsVlOc+l2W4ROGn6CR2CAP5FaRKUM2kGaSYjSv8c0ZPJgyqGkL/5+xGvMEg8PPfyPJ7Dfy+uGWeoxiF0VEQdbGaOsp/hck1gxFyuULguF6lfwh4d+SjgYEjrocSZYmZPAHJZTYNOgIAMtfwdluE2CFE8FhKwLG+xJsvdGxQ+/FctOSa1Nah8ZEogaH7ustiEVj87sj0r9BwLr/ZXsNbdTuCPcqF9Rf0CwORCNHy+Zwhoo9CiiOKYctBJpEhhi/SrmYVP9nKaqH7Eibx6dqu3DErfaYe/bnn+Vo+GtVjQZGqZBYbjWBZBkbx9Uf89jDQFKHI3xOkHergUpJw6hd0NRXvkMMj0fyr5HYqHCI/XrvpYkDGuPWJyT38KTyHA3Ekv1QWtp5SDDEL7DUFFzxGLxHgAAP36QnA2Y=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6467.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(22082099003)(18002099003)(38070700021)(3023799007)(56012099006)(11063799006)(6133799003)(4143699003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hZO8uLYpN4/XUTYVLQVP2+S00rihplhb5c5sae4mebMlKUBAh1Fk2U2Vsmbo?=
+ =?us-ascii?Q?AKfFHfAlLzLI+LXZtPuFuGjr8NZO+5aqgFuCCmGsFprgmNlJ+ZpmQMfXbOV9?=
+ =?us-ascii?Q?wSbhvulHNeZF+p5XVcMgB7ALdaTm+Y/s7m/aQwz5zmdutDKDmLTJ1gPKU7FJ?=
+ =?us-ascii?Q?vVQZm31UqqJsHvMfDMdFbJtnIOnAo8mL6XHLQAh80lYlF3sbbzsyocuDL07j?=
+ =?us-ascii?Q?mXNs90qIR+M09bdFlLesQrUapk4NtTsdxlzCudpyZRDst7w8un5sv0+ids8c?=
+ =?us-ascii?Q?9tT23w51gdhZ2/krcMoYfFPyWh5k/xrBmtgEIvdQYUR4BlPxjgRyE3pNHXXh?=
+ =?us-ascii?Q?zFgM6ZrAjJFdmp+fuyPDrzAZK8OGDgJFes3vcaemjd3gPB2GAt1BbJf/jyTQ?=
+ =?us-ascii?Q?Fu4wnZMWbYVTe44YwtANbScovr6CFquVQqx6dyY7BBiOyc69mGbAPnySufjt?=
+ =?us-ascii?Q?Frj9PFDm9Tyc5gB5iTIQZJ7w+Gp82WCDDq3eHJJ7QqWWNLKjfXXjT287nyuN?=
+ =?us-ascii?Q?P4i62MR+9exyUA0eUcgUNZfM2zBMWAaO1ACdNJAm4UXGkCOMphw8WP5oKvXX?=
+ =?us-ascii?Q?X2DuEU4rKb0aesY5E5iGTzkR392Q0WiSwdJLjlf1ms8Geu787jRNdxXdgVC7?=
+ =?us-ascii?Q?+DDztLA4Xrky6UZrJjAPO4c3Pk66sZbE0wcRSEUr8Y0FWYmQ7/5nOzXEoEDT?=
+ =?us-ascii?Q?wxGhyOuZt0AlsTlhEnE2Vkf3gFRBUAMr1p3oqG/IbV1xoBjQ0xBbfeCOoWeO?=
+ =?us-ascii?Q?tuq9K4SJOasU4xjLAcR+pZtZbBLQZSs5Fa2eIQqBH0iJrpORBLxpwPJJMIlx?=
+ =?us-ascii?Q?UWipS9WmEieqhhwqDRSKmyig/124wX6nEBaDvrqrN3AbaTlxJLnYjJk+0f9l?=
+ =?us-ascii?Q?0TGTJGJ7/VJHt1b4mvCuK/FLKmncF8nElbQp1rU93iyJ9bR6ckgsxEjdSkdN?=
+ =?us-ascii?Q?2UlPPQ7IKGw18UZEHhEg2eCqVFo6nWWgbwPrERDB7eAfGnCwR9SDBuFE//jc?=
+ =?us-ascii?Q?dXG2dS0WSIjj7txAhuMeBxkH9FyuEg/PSywKYww9hz0QbWRfABaYMrmah08V?=
+ =?us-ascii?Q?twzMihaWPAN0bFjIg0vzimtHAM3q9VYa1Cv93h0R0MC1i+l/cDteqW1J/G5O?=
+ =?us-ascii?Q?8e24ts9tPYWJoS6tuGwdF/iVuUtVFGvQmNsifhEXUjWe9wTEnfL9CdHqLNbq?=
+ =?us-ascii?Q?XJGwHtLhBteFDP98MiAqM6nk8dSngYBlGcsEiHq7PIrAGcvbBOeQfogUCZSO?=
+ =?us-ascii?Q?0eX7cWd0sW0hFp2feAyLlQ7VUDvm06aL5YB3rDsSRAQszrye4guZhS+Ueg+u?=
+ =?us-ascii?Q?dCSWHE9wPiCIoWkqJeaGD3U8ofS8AFJa1vwRD7p7/Ey4s3qzgw3EekF8fs7V?=
+ =?us-ascii?Q?vjodxra/0gdScV70ebkY/rKdQKOOQUeFqZ0ACy+bd5v8bTdKYd2NLoAvbdBZ?=
+ =?us-ascii?Q?AlGDFTb4qsLS7FDYNEXH5Sah44j9VkCT7it3EKOSjX7/DI6Etv9GbwQQ+h0h?=
+ =?us-ascii?Q?g0dYZCUgSmb9i/orhpvRv8DC+F/06PxDtrvLiyB3XcnZJGnIdXDTDmxa8Aha?=
+ =?us-ascii?Q?P8q+tIdVgAr6/aAJzi87wXjADntMhx2JxmvML1WOdwXFDPXjddBMAESA/zD9?=
+ =?us-ascii?Q?F517av20qIdFP+oolozjYCJ3RkOLhd2YNA1lxyA3wGyCvahFFQOwQKhxbfmI?=
+ =?us-ascii?Q?ptMFD8SX5sBuvOv8ZffdvgPLXpyJq8KJUbgo/ongoGGmW9KM?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ajnOvdbT5/J6q3IN@gsse-cloud1.jf.intel.com>
+X-Exchange-RoutingPolicyChecked: Z0lBWuZXLhqJfZUrhMtNychvklCenANcSVfI8mDlJ+S9OD9D865ZBeEO/JKQzO+lIzGrBGwEDcrCPrk3p9wuya33HZbhDCnGqEUJXn7foTX7cS7+0GTS39S0zH6BYrbWRHl5SF+HHGKGBpHfP48kEaNdLgtHhdDw/dAARCWtQ4KImfwvuzOq7VUdWIMWW3FW4GxfBg7gsO9V/zdbQCDumSTRigfKlSC4CDGsmYRG2tf7PTnFX822wESkBmhD3NsjWQTF4McLAFivsG0jHyg2PSg+9+uRgNP0juw8ucXG6Vg+SfI3nBOBumec+sf2zJLNM6+oQc5v+65pmsXXENMAjQ==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6467.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6256aca2-9ed1-4e2d-9e94-08ded0e90deb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2026 05:34:11.2188 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: X/Plk2elDfHgEMK/2CWW/HgYQsAa+qSbPDUITozgJdDIn4a/LzwdpE4Uiv6ivVEtwuci1KyF2MnVUiNN3L/eLw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6841
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,420 +162,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 22, 2026 at 05:09:33PM -0700, Matthew Brost wrote:
-> On Tue, Jun 23, 2026 at 09:10:43AM +1000, Dave Chinner wrote:
-> > On Tue, Jun 16, 2026 at 08:22:17PM -0700, Matthew Brost wrote:
-> > > High-order allocations using __GFP_NORETRY or __GFP_RETRY_MAYFAIL
-> > > are often opportunistic attempts to satisfy fragmentation-sensitive
-> > > allocations rather than indications of severe memory pressure. In these
-> > > cases, reclaim may invoke shrinkers that aggressively destroy working
-> > > sets even though reclaim is unlikely to materially improve the
-> > > allocation outcome.
-> > > 
-> > > Some shrinkers manage expensive backing or migration operations where
-> > > reclaim can result in substantial working set disruption despite the
-> > > system having sufficient free memory overall. This is particularly
-> > > visible in fragmentation-heavy workloads where reclaim repeatedly tears
-> > > down active state while kswapd attempts to satisfy higher-order
-> > > allocations.
-> > > 
-> > > Introduce an opportunistic_compaction hint in shrink_control that allows
-> > > kswapd to communicate when reclaim originates from a high-order
-> > > allocation context that may be fragmentation driven rather than true
-> > > memory pressure. Shrinkers may use this hint to avoid destructive
-> > > working set reclaim while still participating normally during order-0
-> > > or stronger reclaim conditions.
-> 
-> Thanks for the input - this is a tough problem.
 
-Yes, that it is.
 
-> > To be honest, this seems like another "push a hint through to the XE
-> > shrinker" mechanism under a different name. You seem so focused on
-> > fixing the XE reproducer that the -systemic problem- that -any-
-> > high-order folio demand causes is not being acknowleged.
-> > 
-> 
-> I'm not exactly sure I agree here. Communicating via __GFP_NORETRY or
-> __GFP_RETRY_MAYFAIL with a higher order implies that the caller can
-> handle higher-order allocation failures, so the shrinker shouldn’t try
-> too hard to obtain a large page (e.g., evict a working set). I agree
-> that Xe is currently the only shrinker making use of this, but other
-> shrinkers could also hook into it. This information simply isn’t
-> available today.
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Im=
+re
+> Deak
+> Sent: Wednesday, June 17, 2026 1:39 AM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Subject: [PATCH v2 25/28] drm/i915/dp_link_caps: Move max link limits to
+> link_caps
+>=20
+> Now that all users access the max link limits via helpers, move tracking =
+of
+> these limits from struct intel_dp to the link_caps state.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  4 ----
+>  .../gpu/drm/i915/display/intel_dp_link_caps.c | 21 ++++++++++++-------
+>  2 files changed, 13 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 19c66b3a81509..8f9c8309b33e6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1837,10 +1837,6 @@ struct intel_dp {
+>  	struct {
+>  		/* TODO: move the rest of link specific fields to here */
+>  		bool active;
+> -		/* Max lane count for the current link */
+> -		int max_lane_count;
+> -		/* Max rate for the current link */
+> -		int max_rate;
+>  		/*
+>  		 * Link parameters for which the MST topology was probed.
+>  		 * Tracking these ensures that the MST path resources are diff
+> --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> index 9b7da5a64ee25..43427e7cf422a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> @@ -46,6 +46,17 @@ struct intel_dp_link_caps {
+>  	 * disconnects.
+>  	 */
+>  	struct intel_dp_link_config forced_params;
+> +
+> +	/*
+> +	 * User set maximum limits. These limits constrain the currently
+> +	 * allowed set of configurations and are not adjusted when sink
+> +	 * capabilities change.
+> +	 *
+> +	 * max_limits.rate/lane_count may come from different allowed
+> +	 * configurations, i.e. the (max_limits.rate, max_limits.lane_count)
+> +	 * tuple itself may not be an allowed configuration.
+> +	 */
+> +	struct intel_dp_link_config max_limits;
+>  };
+>=20
+>  /* Get length of common rates array potentially limited by max_rate. */ =
+@@ -
+> 154,10 +165,7 @@ static int intel_dp_link_config_lane_count(const struct
+> intel_dp_link_config_ent  static void set_max_link_limits_no_update(struc=
+t
+> intel_dp_link_caps *link_caps,
+>  					  const struct intel_dp_link_config
+> *max_link_limits)  {
+> -	struct intel_dp *intel_dp =3D link_caps->dp;
+> -
+> -	intel_dp->link.max_rate =3D max_link_limits->rate;
+> -	intel_dp->link.max_lane_count =3D max_link_limits->lane_count;
+> +	link_caps->max_limits =3D *max_link_limits;
+>  }
+>=20
+>  static void reset_max_link_limits_no_update(struct intel_dp_link_caps
+> *link_caps) @@ -194,10 +202,7 @@ static void
+> reset_max_link_limits_no_update(struct intel_dp_link_caps *link_caps  voi=
+d
+> intel_dp_link_caps_get_max_limits(struct intel_dp_link_caps *link_caps,
+>  				       struct intel_dp_link_config
+> *max_link_limits)  {
+> -	struct intel_dp *intel_dp =3D link_caps->dp;
+> -
+> -	max_link_limits->rate =3D intel_dp->link.max_rate;
+> -	max_link_limits->lane_count =3D intel_dp->link.max_lane_count;
+> +	*max_link_limits =3D link_caps->max_limits;
+>  }
+>=20
+LGTM,
+Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
 
-Right, but "we are doing compaction" isn't information that tells
-the subsystem shrinker what it needs to do. "memory compaction is
-occurring" isn't a well defined action like "count reclaimable
-objects" or "scan N objects and reclaim as many as you can without
-blocking".
+>  /**
+> --
+> 2.49.1
 
-Directed high order object reclaim should be much efficient that
-trying to use general memory pressure to age out enough objects to
-reform contiguous pages. We need to help memory compaction, and we
-can't really do that by layering heuristics over reclaim algorithms
-designed to maintain working sets efficiently.
-
-> > e.g. we use high-order folios extensively in the page cache these
-> > days, and there are -many- cases where memory compaction driven by
-> > high-order demand cause significant performance regressions for page
-> > cache performance. To date, every single person who has wanted to
-> > fix the problem they are seeing has effectively attempted to -turn
-> > off compaction- via GFP flags.
-> 
-> So does that mean they clear __GFP_RECLAIM?
-
-Usually __GFP_DIRECT_RECLAIM, as it's the overhead of direct
-compaction that causes the performance problems.
-
-> That isn't really what in DRM or Xe. In former case we have pools of
-> lower order pages in TTM not in use that can be shrunk, potentially
-> freeing multiple lower orders pages so a higher order page formed, and
-> the later possible BOs (sets of pages) in Xe marked as purgable (not is
-> in working set) which can also be shrunk. Other DRM drivers have purging
-> concepts too.
-> 
-> I’m not very familiar with what other shrinkers or subsystems want, but
-> presumably other shrinkers have pools or caches that aren’t currently in
-> use, where they can say, “OK, I’ll give these pages up for opportunistic
-> compaction, but I won’t give up my working set.” Of course, as mentioned
-> above, if someone else explicitly requests large pages by avoiding
-> __GFP_NORETRY and __GFP_RETRY_MAYFAIL, the shrinker should then give up
-> its working set.
-
-Most caches are slab-based, so there can be 10s of objects with
-different life cycles per page. There is no almost possiblity that
-shrinker reclaim will free pages without substantial
-amounts of the cache being reclaimed.
-
-> > I've even done that myself inside XFS to work around kvmalloc()
-> > issues with a lack of GFP_NOFAIL support and doing costly high order
-> > allocations that fail and trigger compaction before falling back to
-> > vmalloc().  However, these issues have since been fixed in the
-> > kvmalloc() code, such that it now does the right thing for most
-> > calling contexts (i.e. tries high-order kmalloc() without triggering
-> > compaction, then fall back to GFP_NOFAIL vmalloc()). This has made
-> > kvmalloc() more performant and better behaved for -all users-, not
-> > just XFS.
-> > 
-> > This is not sustainable - we need compaction to be robust and
-> > performant in the face of high-order folio demands, regardless of
-> > what subsystem is generating the demand.
-> > 
-> > So with that in mind, let me paraphrase the comment in the second
-> > patch in the Xe shrinker implementation:
-> > 
-> > "Shrinker reclaim is based on implementation specific object sizes
-> > so it is unlikely to ever acheive contiguous page reclaim in a
-> > manner that will measurably improve compaction rates."
-> > 
-> 
-> This might be slightly misworded—what I really mean is that I don’t want
-> to give up my working set for higher-order allocations that are allowed
-> to fail, but I do want to give up my cache.
-
-Right, that's the core of the problem - compaction is the high-order
-reclaim trigger, the existing shrinker infrastructure reclaim is for
-the working-set maintenance reclaim algorithm the subsystem uses..
-
-> > You also say:
-> > 
-> > > No functional changes are introduced for existing shrinkers.
-> > 
-> > Consider how many shrinkable caches the general statement above
-> > applies to, and then think about the fundamental impedence mismatch
-> > between the affected shrinkable caches and what this patch actually
-> > fixes.
-> > 
-> 
-> Yes, as mentioned above, I’m only addressing Xe here, and I agree that
-> this is likely an issue. Do you know of other shrinkers that have pools
-> or caches which can be shrunk under the conditions I’m introducing here,
-> but also have a working set they would prefer not to give up?
-
-The first that comes to mind is the xfs_buf cache. This cache holds
-cached metadata buffers that have different sizes can each contain
-up 64kB of contiguous pages. The allocation algorithm uses
-optimisitic large folios allocation, but if that fails it falls back
-to vmalloc. The working set is maintained by a prioritised
-multi-scan LRU so that more frequently accessed metadata is held
-tighter by the cache than less frequently accessed (e.g. btree roots
-have higher retention priority than the lowest leaves).
-
-It does not currently track buffer objects by size, by if there was
-a benefit to doing so then it could be implemented. I'd much prefer
-to have such tracking separate to the working set maintenance,
-especially as they will likely need some kind of balancing to
-prevent high-order buffers in the working set from being thrashed by
-compaction demand....
-
-I know there are other caches that have variable sized objects, but
-I'd have to go look at the code to referesh my memory of which ones
-they are...
-
-> If so, a
-> link on elixir.bootlin.com would be helpful so I can take a look. I’ll
-> also try to go through other shrinkers myself.
-
-cscope is your friend.
-
-fs/xfs/xfs_buf.c contains the XFS buffer cache and shrinker
-infrastructure, but looking at the code without any understanding of
-the filesystem structures or how it interacts with the other XFS
-shrinkable caches probably isn't as useful as you might think it
-will be. 
-
-> > For example, what happens to slab-based caches if the XE cache is being
-> > excessively reclaimed under high-order page demand? e.g. the slab-based
-> > cache may have tens of objects per page and holds a system-level
-> > performance critical working set of objects. How do these caches
-> > handle the excessive reclaim demand being generated by compaction
-> > thrashing?
-> > 
-> > Yup, they don't.
-> > 
-> 
-> Agree.
-> 
-> > In the case of filesystem caches, the "reclaim and repopulate"
-> > pattern you describe causing the XE perf problems causes internal
-> > slab cache fragmentation. Not only does this not improve compaction
-> > rates, it also results in more memory fragmentation because slab
-> > pages get pinned by a small number of long lived objects and they
-> > won't get freed until the cache is largely emptied.  IOWs, things
-> > get -even worse- from a memory fragmentation POV when compaction
-> > thrashing causes the working set of a high-object-count-per-page
-> > slab cache to thrash....
-> > 
-> 
-> Got a link to the code which you are referring to?
-
-Do a lore search for "dentry cache defragmentation". You should be
-able to find discussions that go back to around 2006 about
-discussions on identry cache fragmentation and approaches like
-slab-page based object reclaim to support internal defragmentation.
-
-The fact that we don't have slab cache defragmentation despite many
-years of people wanting such functionality should tell you how
-complex the problem is.... :/
-
-> That seems like a problem similar to another issue in DRM/Xe. We found
-> that the process of shrinking actually drove fragmentation by splitting
-> folios down to order-0 and then backing pages up one at a time. I have a
-> separate fix in flight for that.
-
-Possibly, though the life cycle differences I'm talking about can be
-a few milliseconds (temporary file) vs weeks (long running database
-instance holding it's table files open the whole time it is
-running).
-
-> Could the filesystem detect these hints and avoid shrinking in a way
-> that causes fragmentation?
-
-Not really. The fragmentation problem is caused by physical object
-placement in the slab pages at allocation time, not the act of
-reclaiming the object.
-
-i.e. we don't know what the expected cache life time of a dentry or
-an inode will be when we allocate it, so it just gets allocated in
-the next free slot in the current partial slab page. When you get a
-mix of dentries that are pinned by open files in long running
-applications and dentries for access-once files in the same page, we
-end up with reclaim freeing all the object slots that contained
-access-once files. However, the pages are still pinned by the
-objects for the open files that are in active use.
-
-IOWs, LRU-based reclaim can free >90% of the objects in a cache that
-held millions of objects with mixed lifetimes and still not free any
-memory at all. There's nothing reclaim can do about it because the
-problem is created at allocation time when lifetime is a complete
-unknown.
-
-> Alternatively, could it perform shrinking in
-> a way that doesn’t shatter folios, or detect long-lived objects so it
-> understands that shrinking isn’t going to help reduce fragmentation?
-
-Referenced filesystem objects are not on the LRUs, so the shrinkers
-aren't even aware of such long lived objects. And, as per the
-"dentry cache defrag" comment above, we can't ask the slab to
-reclaim or move objects because we don't track the owners of
-external references to the objects themselves.
-
-> 
-> > This isn't isolated to individual subsystem thrashing.  If we run a
-> > file-based workload that generates high-order folio demand and hence
-> 
-> What GFP flags are typical used for file-based workloads?
-
-Mostly GFP_KERNEL, with a mix of GFP_NOFS. non-blocking paths also
-tend to add GFP_NOWAITS, and memory reclaim sensitive paths often
-use __GFP_MEMALLOC to prevent reclaim recursion. Some filesystems
-also make extensive use of GFP_NOFAIL (e.g. XFS).
-
-> > compaction (e.g copy tens of GB of files between two XFS, ext4 or
-> > btrfs filesystems), that will -also- trash the Xe working set via
-> > the shrinker being hammered by memory compaction try to free up
-> > contiguous pages for the page cache.
-> >
-> 
-> I could see this.
-> 
-> > Similarly, if we run a Xe workload that generates sustained high
-> > order folio demand, that will trash the working set in the dentry
-> > and inode caches and any other shrinkable slab-based cache.
-> > 
-> 
-> I could also see this but DRM / Xe will set __GFP_NORETRY or
-> __GFP_RETRY_MAYFAIL on higer-orders so those caches should be able to
-> not trash its working set if looked for this hint. 
-
-This relies on all the allocation code everywhere always doing
-exactly the right thing so that memory reclaim "behaves". That is
-what I've been saying is not a sustainable approach - all it takes
-is one allocation or one shrinker not to do the right thing, and
-we've got another mole to whack.  i.e. memory allocation should do
-the right/best thing for the system with default parameters.
-
-> > Hence the abstracted case of the problem we need to solve is this:
-> > shrinker reclaim is based on x-byte objects is extremely unlikely to
-> > acheive contiguous page reclaim in a manner that will measurably
-> > improve compaction rates.
-> > 
-> > This is a problem that has to be addresses by the high level
-> > infrastructure level, not worked around by individual shrinkers.
-> > 
-> > IMO, compaction shouldn't trigger shrinkers unless the shrinkers are
-> > specifically flagged as being able to release contiguous pages of
-> > memory in short order. I don't think there's very many shrinkable
-> > caches that even hold a significant quantity of objects larger than
-> > a single page, so it's clearly questionable as to whether compaction
-> > based reclaim should run shrinker reclaim to begin with.
-> > 
-> 
-> Yes, sort of do this in Xe by changing '->count_objects' based on the
-> hint.
-
-I know. That's the problem - it's relying on the infrastructure
-passing down a specific internal context hint in an existing
-interface so a specific subsystem can work around a specific
-problematic behaviour.
-
-Indeed, for compaction we don't actually care about the count, what
-we largely care about is whether the subsystem has any objects the
-same size or larger than the current compaction demand. Efficient
-object reclaim for compaction has a different control variable set
-(e.g. find objects larger than, objects physically near to, etc),
-and this can't really be properly fitted into the existing
-count/scan shrinker reclaim algorithm.
-
-Hence I think it needs new shrinker methods to implement
-effectively.
-
-> > i.e. a subsystem that can track high order folios in a shrinkable
-> > cache should probably have a "->compaction_scan()" method that is
-> > run directly from compaction context to try to free high order
-> 
-> When you say “compaction context,” which parts of the code are you
-> referring to? I’d like to explore this option, but I need a bit more
-> context.
-
-kcompactd does background compaction, similar to how we have kswapd
-to do background memory reclaim.
-
-Direct compaction (part of direct reclaim) via
-__alloc_pages_direct_compact() that will be called before direct
-memory reclaim in the case of a high-order allocation.
-
-> 
-> > folios. This provides a direct opt-in mechanism for a subsystem, and
-> > it allows subsystems that can track low- and high- order objects
-> > independently to efficiently free objects in a way that will help
-> > improve compaction rates without impacting the entire working set of
-> > objects in the cache.
-> 
-> 
-> Does this help if, for example, the cache is holding onto two order-8
-> folios that could be freed and merged, while the caller really wants an
-> order-9 folio? This seems like a possible scenario in caches and is
-> certainly true in TTM pools.
-
-Depends on how the interface is implemented.
-
-IIUC, the direct compaction code will return a right-sized page
-early if it creates one via compact_zone(). Hence if that path can
-call into shrinkers to do high-order scanning that results in two
-mergable order-8 objects being freed and merged into an order-9
-object that fulfils the compaction requirements, then it will result
-in compaction succeeding where it currently fails.
-
-And I think that kcompactd will run until certain watermarks are
-met, so again having a high-order shrinker that directly impacts the
-high order page watermarks would be much more efficient that trying
-to use general memory pressure to randomly shoot down enough objects
-to reform contiguous pages.
-
-> > IOWs, this patch to inform kswapd about it's trigger (doesn't it
-> > already have a "reason" parameter, though?) is likely a necessary
-> > part of the solution - we don't want kswapd running shrinkers if it
-> > has been triggered to reclaim pages for compaction. This patch would
-> > allows kswapd to elide normal shrinker passes when it has been woken
-> > purely for compaction purposes. Given that the compaction code would
-> > be running the high-order reclaim capable shrinkers itself, this
-> > would avoid trashing the working set of most shrinkable caches -by
-> > default- under high order allocation demand....
-> >
-> 
-> I’m trying to parse this—are you suggesting that, one way or another, we
-> introduce a heuristic where shrinkers can act on a hint (whether it’s
-> what I have here or a new ->compaction_scan() vfunc), and then attempt
-> to fix all shrinkers in this series?
-
-I don't want existing shrinkers to be touched at all.
-
-What I want is for memory reclaim (both direct and kswapd) to elide
-the shrink_slab() calls into shrinkers when memory reclaim is being
-driven by high order allocation failure.
-
-i.e. high-order allocation failure should not generate shrinkable
-cache memory pressure because shrinkable caches in general cannot
-return contiguous memory that will allows compaction to make
-progress. The existing behaviour has more negative affects on system
-performance than positive, so we need a fix for "everyone".
-
-I think we should provide a new opt-in ->compaction_scan() method for
-compaction aware subsystem shrinkers that is run from compact_zone()
-context. This allows subsystems that can manage high order objects
-to optimise the return of high order objects to the free space pool,
-thereby significantly improving the chance for compaction to
-succeed without adversely impacting the rest of the shrinkable
-caches in the system.
-
-Further, we should not kick kswapd because of compaction failures
-because kcompactd will already be running ->compaction_scan()
-capable shrinkers from it's callouts to compact_zone() in the
-background that will do this work as efficiently as possible.
-
-> I’m open to trying to fix other
-> shrinkers as well. Do you have any particular ones in mind? I count
-> around 45 shrinkers in Linux, so it’s unlikely I can fix every single
-> one, though or all shrinkers need to be fixed.
-
-They'd all need to be fixed, which is why I suggested a new method
-to be added. Avoid calling the existing shrinkers in the adverse
-situation, call the new one from the right context where it actually
-benefits compaction and high-order memory allocation.
-
-> On a side note, I just noticed that struct shrinker has count_objects
-> and scan_objects as individual vfuncs rather than using a const struct
-> shrinker_ops *ops. Should we change that? The latter seems cleaner and
-> is typically how things are done in Linux.
-
-We probably should - the current structure is largely historical and
-there's only ever been two methods. If we are adding another method,
-then it would probably make sense to add an external ops structure
-to reduce the memory footprint a little.
-
--Dave.
--- 
-Dave Chinner
-dgc@kernel.org
