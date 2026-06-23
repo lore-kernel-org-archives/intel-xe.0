@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61FE2CDB466
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 00:48:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 745E7CDB466
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 02:10:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C537D10E5D3;
-	Tue, 23 Jun 2026 00:48:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B8D10E32D;
+	Tue, 23 Jun 2026 02:10:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XUGXcFYg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fyIDpNpx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE68D10E5D3
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jun 2026 00:48:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC5F710E32D
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jun 2026 02:10:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782175694; x=1813711694;
+ t=1782180616; x=1813716616;
  h=date:message-id:from:to:subject:in-reply-to:references:
- mime-version; bh=2XdSko8/Zy/d9iMQ7VFvdzW1lwdyhYD1gm2SX8+WC9U=;
- b=XUGXcFYg1KmrX2PJXwS/dWUQMiHRwaNMCCCKoe2BYMFoNRUieUT80s6f
- G4dt/bKp4kVXORaopu0KWBIHWLJyCy6dubzWVxPwCdYUFagAUzJu/p3up
- azMhy006vKz0lrHfyIWNeXautoV9FT1OWRXSRiW+RwCxpOiFgBcrZhOBx
- Y3y8QIycp1ChWON6DTiEpzmVVUZBqU1jGjmegiGGoIwLTY1zhR+oM7llE
- TaVGC1YIVS9upszms1uWnvjocbrANGG/G6ALiKwlyOOZAtUySOP798Efb
- veRnW2uivdv5E5Ax4OoATdAeXNsCJwOSygQpQ+H8L71ZsFAAmjVbajKTh g==;
-X-CSE-ConnectionGUID: S3o30IQyQtid9/YAVOCAbA==
-X-CSE-MsgGUID: 3mw8THMAT52SmFxXfkxezQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="82917022"
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="82917022"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 17:48:14 -0700
-X-CSE-ConnectionGUID: 3/QPhjfYTRa+9AM3H2MlOw==
-X-CSE-MsgGUID: tAQSMJT0T8G+y8yu8/tiow==
+ mime-version; bh=ChDD7P16NPIDu1lWUHUZjZh0imHa5/nIkfe3a3aQNZQ=;
+ b=fyIDpNpxLHtlSy8xpWSnddhzlmeR7JbZ/KbfWgUnUqFWZMkFOogyqFQ6
+ LIi7kn0u+irI7BQysQftOXuLSdUDuo9KjGT2Yw4VVMlrSBE05NBwEW7bc
+ xDSgMOYNRpqZXxHmieYrH3ikcXE+4d2bj+1Dtaj5fon0qnCKWALcuEzhP
+ cPkXVfiqKcrJzzTTFNaXyvnfZDlpyrbVq/2TRVEl4ia/pD8z6FyJ2+A86
+ HriQGcELmSTvldWZxSHbduKipw6cj+J1w+dgK+dpY5SArU9aqlfLb3JhV
+ eO8zmIeW1kVso/d76rJPI52OClenYX69VxvobMIc4w4341cDVg1g1dNnQ Q==;
+X-CSE-ConnectionGUID: ePtHR+gLS9m61T7a6DmAZQ==
+X-CSE-MsgGUID: TjI8JulCS+W1CgJrLBEVMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="82958439"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="82958439"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 19:10:16 -0700
+X-CSE-ConnectionGUID: pRbuG5GASkqENgGhz6uY9Q==
+X-CSE-MsgGUID: hgUPieRmQtWFOkPEc08xBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="245230991"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="253728225"
 Received: from seungmin-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
  ([10.125.65.10])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 17:48:13 -0700
-Date: Mon, 22 Jun 2026 17:48:12 -0700
-Message-ID: <87bjd2ozeb.wl-ashutosh.dixit@intel.com>
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 19:10:15 -0700
+Date: Mon, 22 Jun 2026 19:10:14 -0700
+Message-ID: <87a4smovll.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
+To: <intel-xe@lists.freedesktop.org>
 Subject: Re: [PATCH v3 0/9] Don't whitelist OA registers unconditionally
-In-Reply-To: <20260615224227.34880-1-ashutosh.dixit@intel.com>
+In-Reply-To: <87bjd2ozeb.wl-ashutosh.dixit@intel.com>
 References: <20260615224227.34880-1-ashutosh.dixit@intel.com>
+ <87bjd2ozeb.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -67,49 +68,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 15 Jun 2026 15:42:18 -0700, Ashutosh Dixit wrote:
+On Mon, 22 Jun 2026 17:48:12 -0700, Dixit, Ashutosh wrote:
 >
-> Whitelisting OA registers unconditionally is a security violation. In this
-> series we resolve this issue as follows:
+> On Mon, 15 Jun 2026 15:42:18 -0700, Ashutosh Dixit wrote:
+> >
+> > Whitelisting OA registers unconditionally is a security violation. In this
+> > series we resolve this issue as follows:
+> >
+> > * Set the 'deny' bit (bit 30) for all OA registers, ensuring OA registers
+> >   are not whitelisted by default after probe/reset/restart
+> > * Reset the 'deny' bit when an OA stream is opened and certain conditions
+> >   are met, whitelisting OA registers only for the duration when OA streams
+> >   are open for a gt
+> > * Set the 'deny' bit again, when OA streams are closed
+> > * To manage this scheme, separate out OA whitelists from non-OA whitelists
+> >   (into separate save-restore lists)
+> >
+> > v2: Address code review from Umesh. Patches changed in v2 have changelog
+> >     appended to commit message
+> > v3: Minor change to Patch 3
+> >
+> > Ashutosh Dixit (9):
+> >   drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA whitelists
+> >   drm/xe/rtp: Maintain OA whitelists separately
+> >   drm/xe/rtp: Keep track of non-OA nonpriv slots
+> >   drm/xe/rtp: Generalize whitelist_apply_to_hwe
+> >   drm/xe/rtp: Save OA nonpriv registers to register save/restore lists
+> >   drm/xe/rtp: Toggle 'deny' bit to (de-)whitelist OA regs
+> >   drm/xe/rtp: (De-)whitelist OA registers for all hwe's for a gt
+> >   drm/xe/oa: (De-)whitelist OA registers on OA stream open/release
+> >   drm/xe/rtp: Ensure locking/ref counting for OA whitelists
 >
-> * Set the 'deny' bit (bit 30) for all OA registers, ensuring OA registers
->   are not whitelisted by default after probe/reset/restart
-> * Reset the 'deny' bit when an OA stream is opened and certain conditions
->   are met, whitelisting OA registers only for the duration when OA streams
->   are open for a gt
-> * Set the 'deny' bit again, when OA streams are closed
-> * To manage this scheme, separate out OA whitelists from non-OA whitelists
->   (into separate save-restore lists)
+> I have added the following to all the patches here and merge this series:
 >
-> v2: Address code review from Umesh. Patches changed in v2 have changelog
->     appended to commit message
-> v3: Minor change to Patch 3
->
-> Ashutosh Dixit (9):
->   drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA whitelists
->   drm/xe/rtp: Maintain OA whitelists separately
->   drm/xe/rtp: Keep track of non-OA nonpriv slots
->   drm/xe/rtp: Generalize whitelist_apply_to_hwe
->   drm/xe/rtp: Save OA nonpriv registers to register save/restore lists
->   drm/xe/rtp: Toggle 'deny' bit to (de-)whitelist OA regs
->   drm/xe/rtp: (De-)whitelist OA registers for all hwe's for a gt
->   drm/xe/oa: (De-)whitelist OA registers on OA stream open/release
->   drm/xe/rtp: Ensure locking/ref counting for OA whitelists
+>	Cc: stable@vger.kernel.org # v6.12+
+>	Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-I have added the following to all the patches here and merge this series:
+Sorry I meant:
 
+	Fixes: 828a8eaf37c3 ("drm/xe/oa: Add MMIO trigger support")
 	Cc: stable@vger.kernel.org # v6.12+
-	Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-So the plan is to propagate this series to the previous LTS kernel versions
-too, in order to plug this security violation related to unconditional OA
-register whitelisting.
+>
+> So the plan is to propagate this series to the previous LTS kernel versions
+> too, in order to plug this security violation related to unconditional OA
+> register whitelisting.
+>
+> I am preparing v6.12 and v6.18 stable kernel version series, based on this
+> series. Since these are a bit old, this series needs porting to these old
+> kernel versions. These will be sent after this series reaches Linus'
+> master.
 
-I am preparing v6.12 and v6.18 stable kernel version series, based on this
-series. Since these are a bit old, this series needs porting to these old
-kernel versions. These will be sent after this series reaches Linus'
-master.
+This is needed for patches to be added to stable versions.
 
-Thanks.
---
-Ashutosh
+>
+> Thanks.
+> --
+> Ashutosh
