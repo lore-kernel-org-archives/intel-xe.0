@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82386CDB470
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 17:44:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9949CDB470
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 17:44:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C3E110EC27;
-	Tue, 23 Jun 2026 17:44:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PgJVS6zT";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5742010EC27;
- Tue, 23 Jun 2026 17:44:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=hAGBju10OgBYgAgFcj4hUegXNA4uZMhE2p7sOTTeQgs=; b=PgJVS6zTQO5J81ORv9haF2K23Q
- Ook3ka9/3mzFmPRPVj+fYTVnH5lINNJxeyDGHG0YCFruAyxagp1n+a8Odku2SsWQhEZlYw2VL0di9
- Ml0wGyIaHY8zZtPwBD1MYsOw+WdpQxMbpGtLdqRJHnSJFSzBzMlgbC87SBNXqljhn2xmdXZBt+9GO
- TTEATDAtAo8TR8y/BKENNk5ld0dE67wBSAyFrWzTUO0pHU9sf4ZSYNds4RFgwh2VMVwwzH8xgqUkf
- oB/6k/vBLVCtSNzMMU5RwEIFZIAIOEHTCj0pVoLceKk7RN0vGkC8mNjRHPV+Tk8xk4LkhwE14Y1dE
- sJpWZq0g==;
-Received: from 179-125-64-254-dinamico.pombonet.net.br ([179.125.64.254]
- helo=quatroqueijos.lan) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wc5AM-004HEi-Sy; Tue, 23 Jun 2026 19:44:07 +0200
-From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-To: igt-dev@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>,
- maarten.lankhorst@linux.intel.com,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com,
- Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-Subject: [PATCH i-g-t 7/7] tests/dmem_cgroups: add test for dmem.current
-Date: Tue, 23 Jun 2026 14:43:19 -0300
-Message-ID: <20260623174319.4138648-8-cascardo@igalia.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260623174319.4138648-1-cascardo@igalia.com>
-References: <20260623174319.4138648-1-cascardo@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7FB10EC27;
+	Tue, 23 Jun 2026 17:44:25 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F90310EC27;
+ Tue, 23 Jun 2026 17:44:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0509132664211981941=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pagefault=3A_Add_SRC?=
+ =?utf-8?q?ID_to_pagefault_reporting_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 23 Jun 2026 17:44:24 -0000
+Message-ID: <178223666438.106801.11232087459571797500@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260623164610.1019512-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20260623164610.1019512-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,285 +36,153 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Based on the work of Thomas Hellström to test dmem.max eviction, add a test
-for dmem.current usage after allocations and setting dmem.max.
+--===============0509132664211981941==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Create a dmem cgroup, allocate close to capacity (or at most 4GiB), check
-current usage is within a small slack of the expected allocation.  Then,
-set max to a small value and check allocations and current usage are
-limited to the max set.  Set max to 0, then check no allocations are
-allowed and current usage is also within the slack.  After each allocation,
-release memory and check current usage has gone down.
+== Series Details ==
 
-Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
----
- tests/dmem_cgroups.c | 241 +++++++++++++++++++++++++++++++++++++++++++
- tests/meson.build    |   1 +
- 2 files changed, 242 insertions(+)
- create mode 100644 tests/dmem_cgroups.c
+Series: drm/xe/pagefault: Add SRCID to pagefault reporting (rev5)
+URL   : https://patchwork.freedesktop.org/series/167334/
+State : success
 
-diff --git a/tests/dmem_cgroups.c b/tests/dmem_cgroups.c
-new file mode 100644
-index 000000000000..e7f05e240729
---- /dev/null
-+++ b/tests/dmem_cgroups.c
-@@ -0,0 +1,241 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+/**
-+ * TEST: dmem_cgroups
-+ * DESCRIPTION: Tests exercising the dmem cgroup controller on devices.
-+ * Category: Core
-+ * Mega feature: General Core features
-+ * Sub-category: cgroup
-+ * FUNCTIONALITY: cgroup dmem controller
-+ */
-+
-+#include <errno.h>
-+#include <signal.h>
-+#include <stdatomic.h>
-+#include <stdint.h>
-+#include <stdlib.h>
-+#include <string.h>
-+#include <unistd.h>
-+
-+#include "drmtest.h"
-+#include "igt.h"
-+#include "igt_aux.h"
-+#include "igt_cgroup.h"
-+#include "igt_dmem_driver.h"
-+
-+#define BO_SIZE			SZ_64M
-+#define MAX_LIMIT		((uint64_t)4 * SZ_1G)
-+#define USAGE_SLACK		SZ_4M		/* tolerance above the set max */
-+#define USAGE_POLL_MS		10
-+#define USAGE_DROP_TIMEOUT_MS	1000
-+
-+/**
-+ * SUBTEST: current
-+ * DESCRIPTION:
-+ *  Create a dmem cgroup, allocate close to capacity (or at most 4GiB),
-+ *  check current usage is within a small slack of the expected allocation.
-+ *  Then, set max to a small value and check allocations and current usage
-+ *  are limited to the max set.
-+ *  Set max to 0, then check no allocations are allowed and current usage
-+ *  is also within the slack.
-+ *  After each allocation, release memory and check current usage has gone
-+ *  down.
-+ * REQUIREMENTS: xe or amdgpu device with at least one VRAM region
-+ */
-+
-+static uint64_t wait_for_usage_drop(struct igt_cgroup *cg, const char *region,
-+				    uint64_t limit)
-+{
-+	uint64_t current;
-+	unsigned int elapsed = 0;
-+
-+	do {
-+		igt_cgroup_dmem_get_current(cg, region, &current);
-+		if (current <= limit)
-+			return current;
-+		usleep(USAGE_POLL_MS * 1000);
-+		elapsed += USAGE_POLL_MS;
-+	} while (elapsed < USAGE_DROP_TIMEOUT_MS);
-+
-+	return current;
-+}
-+
-+static int allocate_vram(const struct igt_dmem_driver *drv, void *ctx, int fd, int max_bo, size_t len)
-+{
-+	int n_bo, err = 0;
-+	for (n_bo = 0; n_bo < max_bo; n_bo++) {
-+		err = drv->allocate_vram(ctx, n_bo, len);
-+		if (err)
-+			break;
-+	}
-+	return err ?: n_bo;
-+}
-+
-+static void free_vram(const struct igt_dmem_driver *drv, void *ctx, int max_bo)
-+{
-+	int i;
-+	for (i = 0; i < max_bo; i++)
-+		drv->free_vram(ctx, i);
-+}
-+
-+static void test_current(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv)
-+{
-+	struct igt_cgroup *cg;
-+	void *ctx;
-+	uint64_t current, capacity, cg_max;
-+	int n_bo = 0, max_bo;
-+	int err;
-+
-+	igt_cgroup_dmem_get_capacity(cg_region, &capacity);
-+	igt_require_f(capacity >= 4 * BO_SIZE,
-+		      "VRAM capacity (%"PRIu64" MiB) too small to test\n",
-+		      capacity / SZ_1M);
-+
-+	/*
-+	 * Use up to 4 GiB, or the full capacity if the device has less.
-+	 * Leave one BO_SIZE worth of headroom so the device isn't completely
-+	 * exhausted before the cgroup limit is hit.
-+	 */
-+	cg_max = min(MAX_LIMIT, capacity - BO_SIZE - USAGE_SLACK);
-+	cg_max = ALIGN_DOWN(cg_max, BO_SIZE);
-+
-+	/* Create cgroup and move into it */
-+	cg = igt_cgroup_new("igt_cgroups_test");
-+	igt_cgroup_move_current(cg);
-+
-+	max_bo = cg_max / BO_SIZE;
-+
-+	err = drv->init(&ctx, fd, max_bo);
-+	igt_assert_f(!err, "Failed to initialize driver");
-+
-+	n_bo = allocate_vram(drv, ctx, fd, max_bo, BO_SIZE);
-+	igt_assert_f(n_bo > 0, "failed to allocate VRAM\n");
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < cg_max + USAGE_SLACK && current > cg_max - USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin of allocation (%"PRIu64" MiB)\n",
-+		     current / SZ_1M, cg_max / SZ_1M);
-+
-+	free_vram(drv, ctx, n_bo);
-+	wait_for_usage_drop(cg, cg_region, USAGE_SLACK);
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin (%d MiB)\n",
-+		     current / SZ_1M, USAGE_SLACK / SZ_1M);
-+
-+	igt_cgroup_dmem_set_max(cg, cg_region, 2 * BO_SIZE, false);
-+
-+	n_bo = allocate_vram(drv, ctx, fd, max_bo, BO_SIZE);
-+	igt_assert_f(n_bo > 0, "failed to allocate VRAM\n");
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < 2 * BO_SIZE + USAGE_SLACK && current > 2 * BO_SIZE - USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin of allocation (%"PRIu64" MiB)\n",
-+		     current / SZ_1M, cg_max / SZ_1M);
-+
-+	free_vram(drv, ctx, n_bo);
-+	wait_for_usage_drop(cg, cg_region, USAGE_SLACK);
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin (%d MiB)\n",
-+		     current / SZ_1M, USAGE_SLACK / SZ_1M);
-+
-+	igt_cgroup_dmem_set_max(cg, cg_region, 0, false);
-+
-+	n_bo = allocate_vram(drv, ctx, fd, max_bo, BO_SIZE);
-+	igt_assert_f(n_bo != -ENOMEM, "VRAM allocation succeeded despite max set to 0\n");
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin\n",
-+		     current / SZ_1M);
-+
-+	if (n_bo > 0)
-+		free_vram(drv, ctx, n_bo);
-+	wait_for_usage_drop(cg, cg_region, USAGE_SLACK);
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin (%d MiB)\n",
-+		     current / SZ_1M, USAGE_SLACK / SZ_1M);
-+
-+	drv->deinit(ctx);
-+	igt_cgroup_free(cg);
-+}
-+
-+static const struct {
-+	const char *name;
-+	void (*test_fn)(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv);
-+	unsigned int flags;
-+} subtests[] = {
-+	{ "current", test_current, 0 },
-+	{ }
-+};
-+
-+static const struct {
-+	int driver_flag;
-+	const struct igt_dmem_driver *driver;
-+} drivers[] = {
-+	{ DRIVER_XE, &xe_dmem_driver },
-+	{ DRIVER_AMDGPU, &amdgpu_dmem_driver },
-+	{ },
-+};
-+
-+int igt_main()
-+{
-+	igt_fixture() {
-+		igt_require_f(getuid() == 0, "Test requires root\n");
-+		/* Check dmem cgroup controller is available before doing anything else */
-+		igt_require_f(igt_cgroup_dmem_available(),
-+			      "dmem cgroup controller not available (no cgroup v2 or no registered regions)\n");
-+
-+	}
-+
-+	for (int d = 0; drivers[d].driver; d++) {
-+		igt_subtest_group() {
-+			int fd = -1;
-+			char *cg_region;
-+			igt_fixture() {
-+				fd = drm_open_driver(drivers[d].driver_flag);
-+				igt_require_f(fd >= 0,
-+					"No %s device found, skipping\n",
-+					drivers[d].driver->name);
-+				cg_region = drivers[d].driver->get_region_name(fd);
-+				igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
-+			}
-+
-+			for (int i = 0; subtests[i].name; i++)
-+				igt_subtest_f("%s-%s", drivers[d].driver->name, subtests[i].name)
-+					subtests[i].test_fn(fd, cg_region, subtests[i].flags, drivers[d].driver);
-+
-+			igt_fixture() {
-+				if (fd >= 0)
-+					drm_close_driver(fd);
-+				free(cg_region);
-+			}
-+		}
-+	}
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index 9552a175f825..d5e1130d37b2 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -11,6 +11,7 @@ test_progs = [
- 	'core_sysfs',
- 	'dmabuf',
- 	'dmabuf_sync_file',
-+	'dmem_cgroups',
- 	'device_reset',
- 	'dumb_buffer',
- 	'drm_buddy',
--- 
-2.47.3
+== Summary ==
 
+CI Bug Log - changes from xe-5288-60326b17f877e12846167bf8ef83680b9875218a_BAT -> xe-pw-167334v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-ptl-vm 
+
+New tests
+---------
+
+  New tests have been introduced between xe-5288-60326b17f877e12846167bf8ef83680b9875218a_BAT and xe-pw-167334v5_BAT:
+
+### New IGT tests (1) ###
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1:
+    - Statuses : 2 pass(s)
+    - Exec time: [1.40, 1.49] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-167334v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_dma_buf:
+    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5288-60326b17f877e12846167bf8ef83680b9875218a/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167334v5/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8979 -> IGT_8980
+  * Linux: xe-5288-60326b17f877e12846167bf8ef83680b9875218a -> xe-pw-167334v5
+
+  IGT_8979: 8979
+  IGT_8980: 65d820119e86b017bf801c8f2bb500e557b29d1c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5288-60326b17f877e12846167bf8ef83680b9875218a: 60326b17f877e12846167bf8ef83680b9875218a
+  xe-pw-167334v5: 167334v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167334v5/index.html
+
+--===============0509132664211981941==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pagefault: Add SRCID to pagefault reporting (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167334/">https://patchwork.freedesktop.org/series/167334/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167334v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167334v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5288-60326b17f877e12846167bf8ef83680b9875218a_BAT -&gt; xe-pw-167334v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-ptl-vm </p>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-5288-60326b17f877e12846167bf8ef83680b9875218a_BAT and xe-pw-167334v5_BAT:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1:<ul>
+<li>Statuses : 2 pass(s)</li>
+<li>Exec time: [1.40, 1.49] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167334v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_dma_buf:<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5288-60326b17f877e12846167bf8ef83680b9875218a/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167334v5/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8979 -&gt; IGT_8980</li>
+<li>Linux: xe-5288-60326b17f877e12846167bf8ef83680b9875218a -&gt; xe-pw-167334v5</li>
+</ul>
+<p>IGT_8979: 8979<br />
+  IGT_8980: 65d820119e86b017bf801c8f2bb500e557b29d1c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5288-60326b17f877e12846167bf8ef83680b9875218a: 60326b17f877e12846167bf8ef83680b9875218a<br />
+  xe-pw-167334v5: 167334v5</p>
+
+</body>
+</html>
+
+--===============0509132664211981941==--
