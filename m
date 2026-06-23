@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DC99CDB470
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 10:54:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BCC1CD4F26
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 10:56:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 373BA10EA94;
-	Tue, 23 Jun 2026 10:54:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m/rEn9M7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05DCF10EA93;
- Tue, 23 Jun 2026 10:54:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782212067; x=1813748067;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=3+cV/NKPssPEg2R6Cmh9eMoc75Lw0+c1VYJ0GE5YGWo=;
- b=m/rEn9M78kUV0dnv9lk85HCRMDwBjQ7Jo/zcjoDRIhnkbXXGDI7B30JH
- MD9NuHc+N4jVBhZFy9hfUfWoqoU3mmLlPlGyfLjiM8GBwv+6SECyLhYJb
- cKLM53Zt6rzkOA0tLWsHGQ6B/zkqykA3os85kq3tZNYstawF5/3irmp5Y
- JArRDldUGBAPNE/02B5eqRau/qNkMFMJTTJvVOFKuHNZnf5ds5MYoQhQ+
- xNV6IdPRdibsZgEfkh3o2u+4mKns19t3+6q9bDhDupzJMJ2v3cIAximav
- 5eHh8j8pA1m/JBjfyPhVM2WHjS/dyjA6p3qq55EbUSxxAEf+YPeF9Mtfr Q==;
-X-CSE-ConnectionGUID: DFCgOsedR/aYYq4+k+aT0Q==
-X-CSE-MsgGUID: eWk1qG3KSVSjhZquu81jxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="83140419"
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="83140419"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 03:54:27 -0700
-X-CSE-ConnectionGUID: zJm17iTsSFyKrz3qAwQDfA==
-X-CSE-MsgGUID: BxWKVuh4Ql6siAOUuaYliQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="273183758"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.7])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 03:54:23 -0700
-Date: Tue, 23 Jun 2026 13:54:21 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Raag Jadav <raag.jadav@intel.com>,
- "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] drm/xe/i2c: Handler for SMBus Alerts
-Message-ID: <ajpl3Tv-bCc8kfWG@ashevche-desk.local>
-References: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
- <20260622114759.3464047-2-heikki.krogerus@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F94A10EA96;
+	Tue, 23 Jun 2026 10:56:22 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 295CB10EA96;
+ Tue, 23 Jun 2026 10:56:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260622114759.3464047-2-heikki.krogerus@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_error_threshold?=
+ =?utf-8?q?_to_drm=5Fras_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 23 Jun 2026 10:56:21 -0000
+Message-ID: <178221218116.105421.2032233573419673779@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260623101043.255897-1-raag.jadav@intel.com>
+In-Reply-To: <20260623101043.255897-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,70 +36,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 22, 2026 at 01:47:58PM +0200, Heikki Krogerus wrote:
-> Some devices that are attached to the I2C controller use the
-> SMBus Alert signal for example to inform the host about
-> thermal events, so registering the default SMBus Alert
-> device device for them. The alert device makes sure that
-> the alert is processed and passed to the correct I2C client
-> driver.
+== Series Details ==
 
-...
+Series: Introduce error threshold to drm_ras (rev4)
+URL   : https://patchwork.freedesktop.org/series/165091/
+State : warning
 
-> +	if (i2c->smbus_alert)
+== Summary ==
 
-Unneeded. Also the below incorporates error pointer cases.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0455ef26277e364e46e6c48ceda60e0d4bc1cc0d
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Tue Jun 23 15:39:59 2026 +0530
 
-> +		i2c_unregister_device(i2c->smbus_alert);
-> +
->  	if (!i2c->irqdomain)
->  		return;
+    drm/xe/sysctrl: Reuse xe_sysctrl_create_command()
+    
+    Now that we have a helper to create sysctrl command, reuse it for
+    threshold crossed events.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 60326b17f877e12846167bf8ef83680b9875218a drm-intel
+533a6e1cce29 drm/ras: Cancel and free message on get counter failure
+aedc9c8edeec drm/ras: Introduce error threshold
+-:317: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#317: FILE: drivers/gpu/drm/drm_ras_nl.c:32:
++static const struct nla_policy drm_ras_get_error_threshold_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID + 1] = {
 
-...
+-:323: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#323: FILE: drivers/gpu/drm/drm_ras_nl.c:38:
++static const struct nla_policy drm_ras_set_error_threshold_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_THRESHOLD + 1] = {
 
-> +++ b/drivers/gpu/drm/xe/xe_i2c_smbus.c
-> @@ -0,0 +1,59 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Intel Xe SMBus handling
-> + *
-> + * Copyright (C) 2026 Intel Corporation.
-> + */
-
-+ bits.h // BIT()
-+ err.h // IS_ERR()
-
-> +#include <linux/i2c-smbus.h>
-> +#include <linux/regmap.h>
-> +#include <linux/types.h>
-
-...
-
-> +static struct i2c_smbus_alert_setup xe_i2c_smbus_setup;
-> +
-> +int xe_i2c_register_smbus_alert(struct xe_i2c *i2c)
-> +{
-> +	struct i2c_client *alert;
-> +
-> +	alert = i2c_new_smbus_alert_device(i2c->adapter, &xe_i2c_smbus_setup);
-> +	if (IS_ERR(alert))
-> +		return PTR_ERR(alert);
-> +
-> +	i2c->smbus_alert = alert;
-> +
-> +	return 0;
-> +}
-
-As per above comment, this IS_ERR() is not need, as the removal API is optional-aware.
-OTOH, the other NULL-check in the driver in that case needs to be IS_ERR_OR_NULL().
-
-But I'm not sure if you want to have alert setup to always succeed.
-
--- 
-With Best Regards,
-Andy Shevchenko
+total: 0 errors, 2 warnings, 0 checks, 369 lines checked
+931928eb902f drm/xe/ras: Add support for error threshold
+7205b1a333a9 drm/xe/drm_ras: Wire up error threshold callbacks
+0455ef26277e drm/xe/sysctrl: Reuse xe_sysctrl_create_command()
 
 
