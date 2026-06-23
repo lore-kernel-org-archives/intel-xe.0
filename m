@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D49D1CDE00B
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 22:27:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41928CDE008
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 22:27:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC91210ECF5;
-	Tue, 23 Jun 2026 22:27:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9379E10ECFE;
+	Tue, 23 Jun 2026 22:27:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kpVvYPSV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVBWeL39";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86EAD10ECD9;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45CB310E392;
  Tue, 23 Jun 2026 22:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1782253660; x=1813789660;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=tEJFr2fDjpUfYCgKOOzG+fHo7UeIHO0zx0ZRb9MAMlI=;
- b=kpVvYPSVuwN3SNBjUiQgcfiCJXkMsVuGsHhbV8RqWAX9zR4Nj72CqEh0
- D+0Dm1zvgdc7BHZ+e7bxk1o4bXenOZUMk18hy6K3ZyoV70khUZdLUG8vH
- n49UeZthD77M2z+qSJNtjHMKY6WsBwvAND/9emzEpGhi6SBjMW9wdZEDR
- 85XgzqH0Qgjq7+BOXnDYVF46q9LnWgpu9asMNa/wUN9jSem/syO9/4Yso
- GZY+MgVtdZ9r1YyDZpviWvO8smt0p3XBt+Qj4B3NX1aWcKM3bjOaE4PXo
- Cj+JeGgXiQb6yP/8ZwGdByql7Fj6lYqB5+3aCI51WGn7ZT4DkXsqf0B0J g==;
-X-CSE-ConnectionGUID: +RCVQ+f5SVCSPAFP7TN49g==
-X-CSE-MsgGUID: TWN6x3TmTyStD46b/7H3uQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="83048831"
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="83048831"
+ bh=1K7fKoniaOU3+g5QDc+Q+0D4tOD94D8T/lUmlA5wlPk=;
+ b=eVBWeL39vvJasBv8Q0x5cZTwAi3Dg+hkEJIY5AQq7Wfc4Ft5bF1mpr4c
+ r1UqoxrvM6AFKzQSlaUQ/xM15Hf4vJF6e89SM+0q/hbzW+ntZAoAH4Rqw
+ I9eFCPqgwBRq9MR0SoqCPykTxfj/QairaPo4S/pzXWAxeJPSd7WgPk8/Q
+ uWgevGpFhJyfqdqQZ2neZKp1S0AeArtwYN3qJrWhauDbAvjDj3kP01cf5
+ hnS8t6qH8U4i6CtA+07t949G19TmFSRYSuay2vGOn+y8Zs35ZhMOM3XXx
+ 3Qkv8ZClYwAGjLnR8d5XSbtfjoE00iObOnjDB75pUFJpKw1gBXp7Zw63/ A==;
+X-CSE-ConnectionGUID: 8n8VVBfrT7ycK1eho6GbFg==
+X-CSE-MsgGUID: 08kJvLO/TFehu3tSXIervw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="83048828"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="83048828"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jun 2026 15:27:39 -0700
-X-CSE-ConnectionGUID: Lstpb9x9Sb2JjXjrjraPGg==
-X-CSE-MsgGUID: vyGiZUktR1685xor2skC5g==
+X-CSE-ConnectionGUID: CTuepE6UT3+S6Fh6bKj61Q==
+X-CSE-MsgGUID: HFqwX1zaTpebYmVuMPICnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="273335812"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="273335809"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 15:27:40 -0700
+ 23 Jun 2026 15:27:39 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Subject: [RFC PATCH 11/12] drm/xe: Add DRM_XE_DEBUG_DEFRAG Kconfig option for
- debugging memory fragmentation
-Date: Tue, 23 Jun 2026 15:27:31 -0700
-Message-Id: <20260623222732.360872-12-matthew.brost@intel.com>
+Subject: [RFC PATCH 08/12] drm/xe: Handle defrag moves in xe_bo_move()
+Date: Tue, 23 Jun 2026 15:27:28 -0700
+Message-Id: <20260623222732.360872-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260623222732.360872-1-matthew.brost@intel.com>
 References: <20260623222732.360872-1-matthew.brost@intel.com>
@@ -68,16 +67,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new debug configuration option DRM_XE_DEBUG_DEFRAG that forces
-beneficial_reclaim_backoff when defragmentation is disabled in
-xe_ttm_tt_populate(). This helps force defragmentation to run.
+Teach xe_bo_move() to service a defrag move, where TTM reallocates a
+BO's backing at the device's beneficial order and hands the old, still
+populated tt to the move via the BO's defrag_old_tt.
 
-When enabled, the driver will always set beneficial_reclaim_backoff to
-true for non-defrag allocations, preventing aggressive reclaim attempts
-that could prevent defragmentation from running.
+A defrag move always has existing contents to copy, so force
+move_lacks_source false and fall through the XE_PL_TT -> XE_PL_TT no-op
+shortcut so the copy path runs. The relocation is performed entirely on
+the GPU via xe_migrate_copy_defrag(), reading the old pages from the
+stashed tt's sg table and writing the freshly reallocated backing.
 
-The option depends on EXPERT and is disabled by default, intended only
-for driver developers debugging memory fragmentation issues.
+Both copy passes run in order on the same migrate queue and are captured
+by the returned fence, so the teardown is pipelined via
+ttm_bo_move_accel_cleanup(): the old tt is handed to a ghost object and
+only unpopulated and freed once the fence signals, so the move need not
+block. The VF CCS attach/detach handling is extended to treat a defrag
+move (ctx->defrag) like the XE_PL_SYSTEM <-> XE_PL_TT transitions it
+mirrors.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -92,51 +98,99 @@ Cc: Simona Vetter <simona@ffwll.ch>
 Cc: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Assisted-by: GitHub_Copilot:claude-haiku-4.5
+Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig.debug | 13 +++++++++++++
- drivers/gpu/drm/xe/xe_bo.c       |  3 ++-
- 2 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.c | 42 +++++++++++++++++++++++++++++++++-----
+ 1 file changed, 37 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index 01227c77f6d7..f9cbb58dbcc3 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -102,6 +102,19 @@ config DRM_XE_DEBUG_GUC
- 
-           If in doubt, say "N".
- 
-+config DRM_XE_DEBUG_DEFRAG
-+	bool "Enable extra defragmentation debugging"
-+	depends on EXPERT
-+	default n
-+	help
-+	  Choose this option when debugging memory defragmentation issues.
-+	  Forces beneficial_reclaim_backoff when defrag is disabled to help
-+	  force defragmentation.
-+
-+	  Recommended for driver developers only.
-+
-+	  If in doubt, say "N".
-+
- config DRM_XE_USERPTR_INVAL_INJECT
-        bool "Inject userptr invalidation -EINVAL errors"
-        depends on DRM_GPUSVM
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 1612e4ece1e1..f74fd6f5504a 100644
+index 3c185200419e..04709343518c 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -592,7 +592,8 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+@@ -1084,6 +1084,13 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	move_lacks_source = !old_mem || (handle_system_ccs ? (!bo->ccs_cleared) :
+ 					 (!mem_type_is_vram(old_mem_type) && !tt_has_data));
  
- 		if (ctx->defrag)
- 			ctx->beneficial_reclaim_backoff = false;
--		else if (atomic_read(&xe->mem.defrag.count) >=
-+		else if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_DEFRAG) ||
-+			 atomic_read(&xe->mem.defrag.count) >=
- 			 XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD)
- 			ctx->beneficial_reclaim_backoff = true;
++	/*
++	 * A defrag move always copies the existing contents from the stashed
++	 * old tt into the freshly (re)allocated backing.
++	 */
++	if (ttm_bo->defrag_old_tt)
++		move_lacks_source = false;
++
+ 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+ 		(!ttm && ttm_bo->type == ttm_bo_type_device);
  
+@@ -1120,9 +1127,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	/*
+ 	 * Failed multi-hop where the old_mem is still marked as
+ 	 * TTM_PL_FLAG_TEMPORARY, should just be a dummy move.
++	 *
++	 * For a defrag move the old and new tt differ, so fall through to the
++	 * copy path instead of treating it as a no-op.
+ 	 */
+ 	if (old_mem_type == XE_PL_TT &&
+-	    new_mem->mem_type == XE_PL_TT) {
++	    new_mem->mem_type == XE_PL_TT && !ttm_bo->defrag_old_tt) {
+ 		ttm_bo_move_null(ttm_bo, new_mem);
+ 		goto out;
+ 	}
+@@ -1193,6 +1203,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 			flags |= XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
+ 
+ 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
++	} else if (ttm_bo->defrag_old_tt) {
++		struct xe_ttm_tt *old_xe_tt =
++			container_of(ttm_bo->defrag_old_tt, struct xe_ttm_tt, ttm);
++
++		fence = xe_migrate_copy_defrag(migrate, bo, old_mem, new_mem,
++					       old_xe_tt->sg, handle_system_ccs);
+ 	} else {
+ 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
+ 					handle_system_ccs);
+@@ -1202,7 +1218,23 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		xe_pm_runtime_put(xe);
+ 		goto out;
+ 	}
+-	if (!move_lacks_source) {
++	if (ttm_bo->defrag_old_tt) {
++		/*
++		 * The defrag move relocates the data (and the CCS aux state for
++		 * compressed BOs) from the old backing to the new one entirely
++		 * on the GPU, all captured by @fence. Pipeline the teardown via
++		 * ttm_bo_move_accel_cleanup(): the old tt is handed to a ghost
++		 * object and only unpopulated and freed once @fence signals, so
++		 * the move need not block here.
++		 */
++		ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict,
++						true, new_mem);
++		if (ret) {
++			dma_fence_wait(fence, false);
++			ttm_bo_move_null(ttm_bo, new_mem);
++			ret = 0;
++		}
++	} else if (!move_lacks_source) {
+ 		ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict, true,
+ 						new_mem);
+ 		if (ret) {
+@@ -1229,13 +1261,13 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	 * BBs from BO as it is no longer needed.
+ 	 */
+ 	if (IS_VF_CCS_READY(xe) && old_mem_type == XE_PL_TT &&
+-	    new_mem->mem_type == XE_PL_SYSTEM)
++	    (new_mem->mem_type == XE_PL_SYSTEM || ctx->defrag))
+ 		xe_sriov_vf_ccs_detach_bo(bo);
+ 
+ 	if (IS_VF_CCS_READY(xe) &&
+ 	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
+-	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
+-	    handle_system_ccs)
++	     ((old_mem_type == XE_PL_SYSTEM || ctx->defrag) &&
++	      new_mem->mem_type == XE_PL_TT)) && handle_system_ccs)
+ 		ret = xe_sriov_vf_ccs_attach_bo(bo);
+ 
+ out:
 -- 
 2.34.1
 
