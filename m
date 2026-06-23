@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FE25CDB46F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 10:28:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A63B8CDB46F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 10:29:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20F5A10EA7C;
-	Tue, 23 Jun 2026 10:28:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A95410EA7C;
+	Tue, 23 Jun 2026 10:29:47 +0000 (UTC)
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A5710EA75;
- Tue, 23 Jun 2026 10:28:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11C3110EA7C;
+ Tue, 23 Jun 2026 10:29:46 +0000 (UTC)
 Received: from 87-93-171-105.bb.dnainternet.fi ([87.93.171.105]
  helo=[192.168.101.113])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wbyN4-0000000147G-1TYd; Tue, 23 Jun 2026 13:28:48 +0300
-Message-ID: <db3bb5d5efdeee469b291906a7d686af2eee64de.camel@coelho.fi>
+ id 1wbyNy-0000000147r-3yg3; Tue, 23 Jun 2026 13:29:43 +0300
+Message-ID: <3f6f2db373765845388ca58e7b29be2cb60f7c59.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
  intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jun 2026 13:28:45 +0300
+Date: Tue, 23 Jun 2026 13:29:41 +0300
 In-Reply-To: <20260616200849.3534628-8-imre.deak@intel.com>
 References: <20260616200849.3534628-1-imre.deak@intel.com>
  <20260616200849.3534628-8-imre.deak@intel.com>
@@ -52,6 +52,7 @@ On Tue, 2026-06-16 at 23:08 +0300, Imre Deak wrote:
 > changes.
 >=20
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
@@ -60,7 +61,7 @@ Cheers,
 Luca.
 
 
-> ---
+
 >  .../drm/i915/display/intel_display_debugfs.c  |   2 +
 >  .../gpu/drm/i915/display/intel_dp_link_caps.c | 280 ++++++++++++++++++
 >  .../gpu/drm/i915/display/intel_dp_link_caps.h |   3 +
