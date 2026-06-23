@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6868CCDB470
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 17:43:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69164CD98F2
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 17:43:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DABB10EC2E;
-	Tue, 23 Jun 2026 17:43:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FEDE10EC27;
+	Tue, 23 Jun 2026 17:43:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jPvWVO7t";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="dtqVGPWa";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0F5710EC2E;
- Tue, 23 Jun 2026 17:43:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 730E510EC27;
+ Tue, 23 Jun 2026 17:43:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Ra3ydhhd2svpXcmD3AEJ8DUtgvzZRCOTCSRW5UaRshw=; b=jPvWVO7t7IQcf1J9ayJUT8UstC
- g19VMFQMiWRyQQOrTc3NmFMR1i2JM6u/DEHhu+Gg2e5ziGnTgRNPSUsuHU93W1GHz/NmsJJdKkn3p
- dMshMrPrQgXifakaWNcewrpXOHym/wgCojWdc4V95gRlh6rzkKP4uI9bNHS8ueNRaIuIh9ZnMWCbj
- 8YhrbThdHHHtf8gBIajozp0sB7LGOPpPXdEHpIGORHpsCt911dwkCPxSFazsQWdoMPaBJY5NKO7F1
- 1U56QlEZIakxFEfY4XXIGc9tZIwTa8Kw7MF6h9wVE8juQyUhh2U3NJp+m8FKrMDyNNLRWn8mXcLly
- p+RLeCvw==;
+ bh=4YTsZIaFwU6ZukbX4Jr8mkIV/CwaU7Ymxm/ypzFkYPM=; b=dtqVGPWaEkWVbOj2EfkebuanDW
+ 0IcmKQnsJW9plnJBrOYoAOmaGaWkAdyYBqX/uw+bR6qHuXFETuktb71a6o/h+VZstPaefua9lFh7y
+ RJD9oyHyctcjfE+DsEV/wensmp3Ynb9RsACcEGbYKQrj2ho+86qjKq+hxHlds9EvndqbxQKh4Wsk0
+ VKpOyVrljrU4Ih5h/KJyHN13r7iBhd01RsGD7NKRkjg7tzj8QzXtFHEOecoTBjNlN+P3m6pcOlSRx
+ 3jxiTVKCj/n8ZrBcvO8z+G2833EMura81RST+ZqBO1IzLZPNHHA0CGEF5l07AwE8VlL1x/w7Te0P8
+ tDAmPHSA==;
 Received: from 179-125-64-254-dinamico.pombonet.net.br ([179.125.64.254]
  helo=quatroqueijos.lan) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wc59y-004HEi-KP; Tue, 23 Jun 2026 19:43:43 +0200
+ id 1wc5A8-004HEi-0u; Tue, 23 Jun 2026 19:43:52 +0200
 From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 To: igt-dev@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -43,10 +43,12 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
  Vitaly Prosyak <vitaly.prosyak@amd.com>,
  Natalie Vock <natalie.vock@gmx.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
-Subject: [PATCH i-g-t 2/7] tests/cgroup_dmem: add dmem cgroup controller test
-Date: Tue, 23 Jun 2026 14:43:14 -0300
-Message-ID: <20260623174319.4138648-3-cascardo@igalia.com>
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Subject: [PATCH i-g-t 4/7] lib/xe: Introduce dmem driver and implement Xe
+ support
+Date: Tue, 23 Jun 2026 14:43:16 -0300
+Message-ID: <20260623174319.4138648-5-cascardo@igalia.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260623174319.4138648-1-cascardo@igalia.com>
 References: <20260623174319.4138648-1-cascardo@igalia.com>
@@ -67,136 +69,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+In order to be reuse the same dmem tests with multiple drivers, we need to
+abstract a few operations. That includes getting the region name, and
+allocating and releasing VRAM. As there is some initialization also when
+multiple allocations are done, also provide init and deinit functions.
 
-Add a test that exercises the cgroup v2 dmem controller interface using
-the new igt_cgroup library.
+The Xe implementation is based on the original operations from
+xe_cgroups.c written by Thomas Hellström.
 
-The test uses igt_simple_main and:
-  - Skips if no dmem regions are registered (no cgroup v2 or no
-   dmem-capable device).
-  - Creates a sub-cgroup and moves the test process into it.
-  - Enumerates all registered device memory regions and prints their
-   capacity, system-wide current usage, per-cgroup current usage, and
-   configured min, low and max limits.
-  - Destroys the cgroup on completion.
-
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 ---
- tests/cgroup_dmem.c | 92 +++++++++++++++++++++++++++++++++++++++++++++
- tests/meson.build   |  1 +
- 2 files changed, 93 insertions(+)
- create mode 100644 tests/cgroup_dmem.c
+ lib/igt_dmem_driver.h |  24 +++++++
+ lib/meson.build       |   1 +
+ lib/xe/xe_dmem.c      | 159 ++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 184 insertions(+)
+ create mode 100644 lib/igt_dmem_driver.h
+ create mode 100644 lib/xe/xe_dmem.c
 
-diff --git a/tests/cgroup_dmem.c b/tests/cgroup_dmem.c
+diff --git a/lib/igt_dmem_driver.h b/lib/igt_dmem_driver.h
 new file mode 100644
-index 000000000000..442c965f9bbf
+index 000000000000..2f4a4673ab16
 --- /dev/null
-+++ b/tests/cgroup_dmem.c
-@@ -0,0 +1,92 @@
++++ b/lib/igt_dmem_driver.h
+@@ -0,0 +1,24 @@
 +// SPDX-License-Identifier: MIT
 +/*
-+ * Copyright © 2025 Intel Corporation
++ * Copyright 2026 Valve Corporation
++ * Authors:
++ *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 + */
 +
-+/**
-+ * TEST: cgroup dmem
-+ * Description: Exercises the cgroup v2 dmem controller interface.  Creates a
-+ *              cgroup, moves the process into it, enumerates all dmem regions,
-+ *              prints their capacity, system-wide current usage, per-cgroup
-+ *              current usage and configured limits, then destroys the cgroup.
-+ * Category: Core
-+ * Mega feature: General Core features
-+ * Sub-category: uapi
-+ * Functionality: cgroup
-+ * Feature: dmem
-+ * Test category: uapi
++#ifndef __IGT_DMEM_DRIVER_H__
++#define __IGT_DMEM_DRIVER_H__
++
++#include <stdlib.h>
++
++struct igt_dmem_driver {
++	const char *name;
++	char * (*get_region_name)(int fd);
++	int (*init)(void **ctx, int fd, int max_bo);
++	void (*deinit)(void *ctx);
++	int (*allocate_vram)(void *ctx, int n_bo, size_t len);
++	void (*free_vram)(void *ctx, int n_bo);
++};
++
++extern const struct igt_dmem_driver xe_dmem_driver;
++
++#endif
+diff --git a/lib/meson.build b/lib/meson.build
+index 3aaebc5b1948..cd7a3805accb 100644
+--- a/lib/meson.build
++++ b/lib/meson.build
+@@ -125,6 +125,7 @@ lib_sources = [
+ 	'igt_msm.c',
+ 	'igt_dsc.c',
+ 	'igt_hook.c',
++	'xe/xe_dmem.c',
+ 	'xe/xe_gt.c',
+ 	'xe/xe_ioctl.c',
+ 	'xe/xe_legacy.c',
+diff --git a/lib/xe/xe_dmem.c b/lib/xe/xe_dmem.c
+new file mode 100644
+index 000000000000..b979dfa7f4cf
+--- /dev/null
++++ b/lib/xe/xe_dmem.c
+@@ -0,0 +1,159 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright 2026 Valve Corporation
++ * Authors:
++ *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 + */
 +
-+#include <inttypes.h>
++#include <errno.h>
 +
 +#include "igt.h"
 +#include "igt_cgroup.h"
++#include "igt_dmem_driver.h"
++#include "xe_drm.h"
++#include "xe/xe_ioctl.h"
++#include "xe/xe_query.h"
 +
-+IGT_TEST_DESCRIPTION("Exercises the cgroup v2 dmem controller interface.");
-+
-+static void fmt_bytes(uint64_t v, char *buf, size_t len)
++static char * xe_dmem_get_region_name(int fd)
 +{
-+	if (v == IGT_CGROUP_DMEM_MAX)
-+		snprintf(buf, len, "max");
-+	else
-+		snprintf(buf, len, "%" PRIu64, v);
-+}
++	uint64_t vram_region = 0;
++	uint64_t region;
++	char *cg_region;
 +
-+int igt_simple_main()
-+{
-+	struct igt_cgroup *cg;
-+	const char *region;
-+	char **regions;
-+	uint64_t capacity, sys_current, cg_current, min, low, max;
-+	char cap_s[32], sys_s[32], cg_s[32];
-+	char min_s[32], low_s[32], max_s[32];
-+	int i;
-+
-+	igt_require_f(igt_cgroup_dmem_available(),
-+		      "No dmem regions found; is cgroup v2 with the "
-+		      "dmem controller available?\n");
-+
-+	cg = igt_cgroup_new("igt-cgroup-dmem-test");
-+	igt_assert_f(cg, "Failed to create cgroup\n");
-+
-+	igt_cgroup_move_current(cg);
-+
-+	regions = igt_cgroup_dmem_regions();
-+	igt_assert_f(regions, "Failed to enumerate dmem regions\n");
-+
-+	igt_info("%-40s %16s %16s %16s %16s %16s %16s\n",
-+		 "region", "capacity", "system-current",
-+		 "cgroup-current", "min", "low", "max");
-+	igt_info("%-40s %16s %16s %16s %16s %16s %16s\n",
-+		 "------", "--------", "--------------",
-+		 "--------------", "---", "---", "---");
-+
-+	for (i = 0; regions[i]; i++) {
-+		region = regions[i];
-+
-+		igt_cgroup_dmem_get_capacity(region, &capacity);
-+		fmt_bytes(capacity, cap_s, sizeof(cap_s));
-+
-+		igt_cgroup_dmem_get_system_current(region, &sys_current);
-+		fmt_bytes(sys_current, sys_s, sizeof(sys_s));
-+
-+		igt_cgroup_dmem_get_current(cg, region, &cg_current);
-+		fmt_bytes(cg_current, cg_s, sizeof(cg_s));
-+
-+		igt_cgroup_dmem_get_min(cg, region, &min);
-+		fmt_bytes(min, min_s, sizeof(min_s));
-+
-+		igt_cgroup_dmem_get_low(cg, region, &low);
-+		fmt_bytes(low, low_s, sizeof(low_s));
-+
-+		igt_cgroup_dmem_get_max(cg, region, &max);
-+		fmt_bytes(max, max_s, sizeof(max_s));
-+
-+		igt_info("%-40s %16s %16s %16s %16s %16s %16s\n",
-+			 region, cap_s, sys_s, cg_s,
-+			 min_s, low_s, max_s);
++	/* Find first VRAM region */
++	xe_for_each_mem_region(fd, all_memory_regions(fd), region) {
++		if (xe_region_class(fd, region) == DRM_XE_MEM_REGION_CLASS_VRAM) {
++			vram_region = region;
++			break;
++		}
 +	}
++	if (!vram_region)
++		return NULL;
 +
-+	igt_cgroup_dmem_regions_free(regions);
-+	igt_cgroup_free(cg);
++	cg_region = xe_cgroup_region_name(fd, vram_region);
++
++	return cg_region;
 +}
-diff --git a/tests/meson.build b/tests/meson.build
-index 1beddb457f64..9552a175f825 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -1,4 +1,5 @@
- test_progs = [
-+	'cgroup_dmem',
- 	'core_auth',
- 	'core_debugfs',
- 	'core_getclient',
++
++struct xe_bo {
++	uint32_t handle;
++	uint64_t addr;
++	size_t len;
++};
++
++struct xe_dmem_ctx {
++	int fd;
++	uint32_t vm;
++	struct xe_bo *bos;
++	uint64_t addr;
++	uint64_t vram_region;
++	int max_bo;
++};
++
++#define BIND_BASE		0x100000000ULL	/* 4 GiB VA base */
++
++static int xe_dmem_init(void **ctx, int fd, int max_bo)
++{
++	struct xe_dmem_ctx *xe_ctx;
++	uint64_t region;
++
++	xe_ctx = malloc(sizeof(*xe_ctx));
++	if (!xe_ctx)
++		return -ENOMEM;
++
++	xe_ctx->bos = calloc(max_bo, sizeof(xe_ctx->bos[0]));
++	if (!xe_ctx->bos)
++		goto out;
++	memset(xe_ctx->bos, 0, max_bo * sizeof(xe_ctx->bos[0]));
++	xe_ctx->max_bo = max_bo;
++
++	xe_ctx->vram_region = 0;
++	/* Find first VRAM region */
++	xe_for_each_mem_region(fd, all_memory_regions(fd), region) {
++		if (xe_region_class(fd, region) == DRM_XE_MEM_REGION_CLASS_VRAM) {
++			xe_ctx->vram_region = region;
++			break;
++		}
++	}
++	if (!xe_ctx->vram_region)
++		goto out;
++
++	xe_ctx->addr = BIND_BASE;
++	xe_ctx->fd = fd;
++
++	xe_ctx->vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_LR_MODE, 0);
++
++	*ctx = xe_ctx;
++
++	return 0;
++
++out:
++	if (xe_ctx->bos)
++		free(xe_ctx->bos);
++	free(xe_ctx);
++
++	return -ENOMEM;
++}
++
++static void xe_dmem_deinit(void *ctx)
++{
++	struct xe_dmem_ctx *xe_ctx = ctx;
++
++	xe_vm_destroy(xe_ctx->fd, xe_ctx->vm);
++	free(xe_ctx->bos);
++	free(xe_ctx);
++}
++
++static int xe_dmem_allocate_vram(void *ctx, int n_bo, size_t len)
++{
++	struct xe_dmem_ctx *xe_ctx = ctx;
++	uint32_t handle;
++	int err;
++
++	if (n_bo >= xe_ctx->max_bo)
++		return -ENOMEM;
++
++	err = __xe_bo_create(xe_ctx->fd, 0, len, xe_ctx->vram_region,
++			     DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING,
++			     NULL, &handle);
++	if (err)
++		goto out;
++
++	err = __xe_vm_bind_lr_sync(xe_ctx->fd, xe_ctx->vm, handle, 0,
++				   xe_ctx->addr, len, 0);
++	if (err)
++		goto out;
++
++	xe_ctx->bos[n_bo].handle = handle;
++	xe_ctx->bos[n_bo].len = len;
++	xe_ctx->bos[n_bo].addr = xe_ctx->addr;
++
++	xe_ctx->addr += len;
++
++out:
++	return err;
++}
++
++static void xe_dmem_free_vram(void *ctx, int n_bo)
++{
++	struct xe_dmem_ctx *xe_ctx = ctx;
++	size_t len;
++	if (n_bo >= xe_ctx->max_bo)
++		return;
++	len = xe_ctx->bos[n_bo].len;
++	if (len) {
++		uint64_t addr = xe_ctx->bos[n_bo].addr;
++		xe_vm_unbind_lr_sync(xe_ctx->fd, xe_ctx->vm, 0, addr, len);
++		gem_close(xe_ctx->fd, xe_ctx->bos[n_bo].handle);
++		xe_ctx->bos[n_bo].len = 0;
++	}
++}
++
++const struct igt_dmem_driver xe_dmem_driver = {
++	.name = "xe",
++	.get_region_name = xe_dmem_get_region_name,
++	.init = xe_dmem_init,
++	.deinit = xe_dmem_deinit,
++	.allocate_vram = xe_dmem_allocate_vram,
++	.free_vram = xe_dmem_free_vram,
++};
 -- 
 2.47.3
 
