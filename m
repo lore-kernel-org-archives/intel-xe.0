@@ -4,52 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A27CCD98F2
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 14:05:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62E41CD98F2
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 14:11:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30DD710EB61;
-	Tue, 23 Jun 2026 14:05:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2311910EB6F;
+	Tue, 23 Jun 2026 14:11:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Pg6lS/V3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ntPz6WC+";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 331E010EB61;
- Tue, 23 Jun 2026 14:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=cPto1gQbLg7M3k+7xX6O59xbrykZd5OtITcVmMJ3Cec=; b=Pg6lS/V3IsuxSepj169GX7T98j
- 1Psbyo/R3nwYpgrjQF0/MgFOfbjTt83YkWBdoHefwiMwMNF5dLA3FEftZNzXxPYbdmuVRCdUFPQl8
- I5KrwhXey37SFhmXxlyCGzYctQq3hfFW8r9bb2Frn6LSW3nY1LX8DzXsYayHKMg1TKDeQQHGOrGa+
- fkKoOE6PGDmaj4Oe4vqEfHhRIlhqFRzvhvw/JoHoT2Cdy2+CcXR0riUVIfuw9msgBzeW4xVouc41V
- 7AB7Qu8nD0hbiii+f5kxf0eyiyeZS/gYtLmnN/Sz7IKYlUdFD+x/rSkoqQLChHXd/p0S/TLhVVcog
- zrpbyO8A==;
-Received: from [90.240.106.137] (helo=[192.168.0.116])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wc1kn-004Cxh-1E; Tue, 23 Jun 2026 16:05:29 +0200
-Message-ID: <d505d14d-f62b-4f71-9990-c82411381f48@igalia.com>
-Date: Tue, 23 Jun 2026 15:05:26 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6D810EB6F;
+ Tue, 23 Jun 2026 14:11:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782223896; x=1813759896;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=11fynOCO3xJsZ3xDxrRTzRgw6brIIMigDIteTP/mJGs=;
+ b=ntPz6WC+odfKkqgY8H35B2+i5VRSl0dnjRyn/ZDA1Y1yPMTgsBQOeJDD
+ o/jlqG/est9hiikBXtwrCyNt7IcMQVDPQVFMaZQFaYSXF0MFzapxuEixf
+ Ma8V8L1O+USEZLrQmURT5Myz3dPOGPU2YGLnLJwS+plNmqKSepf2jUxnQ
+ KlAHpCy8aQK55bdBfD250/xmOkVE4MLnVw2DdQ5ddJeXYe9zGKcg8QrNU
+ LsnHY/epFUov3HDmvU39milQ7pCjuKZtkhfpxxeMcb9hcaXRNJK+8UY42
+ yZ21WqDKZtpICWqOw7KiM2vl+kMpfKdbsuRDYUXslSE2Fbp91MloTHTVb A==;
+X-CSE-ConnectionGUID: k9+gugNnRMudsgJ4nYjisA==
+X-CSE-MsgGUID: ZkIlvGxISciU2Mc0sV/GiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82837467"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="82837467"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 07:11:24 -0700
+X-CSE-ConnectionGUID: zVllqhBnQWWQbEDCoHShGw==
+X-CSE-MsgGUID: X7chE6dtQwy+tT5EHwTn+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="253404585"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.67])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 07:11:22 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 5/6] drm/i915/gmbus: Drop the platform suffixes from GMBUS
+ pins
+Date: Tue, 23 Jun 2026 17:11:17 +0300
+Message-ID: <20260623141117.24115-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260623125111.6632-6-ville.syrjala@linux.intel.com>
+References: <20260623125111.6632-6-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] drm/sched: Replace completion with a flush
-To: phasta@kernel.org, dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20260611123423.39819-1-tvrtko.ursulin@igalia.com>
- <ba8ea856526d54753da68deefe7b77f15c908fa3.camel@mailbox.org>
- <fd5e55f6-c6be-48b4-8b87-c3d6d6d0a6ff@igalia.com>
- <e9b876bea7a2ef33d5e4ca103721135400c875be.camel@mailbox.org>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <e9b876bea7a2ef33d5e4ca103721135400c875be.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,116 +71,398 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 23/06/2026 09:48, Philipp Stanner wrote:
-> On Tue, 2026-06-23 at 08:19 +0100, Tvrtko Ursulin wrote:
->> On 17/06/2026 09:38, Philipp Stanner wrote:
->>>> +	/*
->>>> +	 * Make sure this entity is not used by the scheduler at the moment.
->>>> +	 *
->>>> +	 * Scheduler is guaranteed to be stable after the entity was stopped and
->>>> +	 * removed from the run-queue.
->>>> +	 */
->>>> +	if (sched)
->>>> +		drm_sched_flush_run_work(sched);
->>>>    
->>>> -	/* The entity is guaranteed to not be used by the scheduler */
->>>>    	prev = rcu_dereference_check(entity->last_scheduled, true);
->>>>    	dma_fence_get(prev);
->>>>    	while ((job = drm_sched_entity_queue_pop(entity))) {
->>>> @@ -576,6 +578,13 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
->>>>    		return;
->>>>    
->>>>    	spin_lock(&entity->lock);
->>>> +
->>>> +	if (entity->stopped) {
->>>> +		spin_unlock(&entity->lock);
->>>> +		return;
->>>> +
->>>> +	}
->>>
->>> Seems unrelated? Why wasn't this needed semantically before?
->>
->> It solidifies the guarantee drm_sched_entity_kill() expects that the
->> scheduler assigned to an entity cannot change after entity has been stopped.
-> 
-> That in general I like a lot, of course. As you probably know my
-> "dream" for drm_sched is to get rid of as much lockless magic as
-> possible, shown by the entries I've added to Documentation/gpu/todo.rst
-> (on drm-misc-next).
-> 
->>
->> There we have this sequence:
->>
->>     spin_lock(&entity->lock);
->>     entity->stopped = true;
->>     sched = drm_sched_rq_remove_entity(entity->rq, entity);
->>     spin_unlock(&entity->lock);
->>
->>     if (sched)
->>     	drm_sched_flush_run_work(sched);
->>
->> That is, without that check, in theory, an evil driver could race
->> drm_sched_entity_select_rq() (via drm_sched_job_arm()) and
->> drm_sched_entity_kill(). I am not sure if any driver can actually do
->> that at the moment but it felt sensible to express it in code.
-> 
-> The devil is in the "at the moment".
-> 
-> AFAICS and as your explanation sounds, this is an existing problem that
-> is unrelated to the Flush RFC. So I suppose that this should be a
-> separate patch (independent from this one) which precisely focusses on
-> this robustness work.
+The modern GMBUS pin numbers are just a sequential set of
+numbers, so the platform suffixes don't really buy us anything.
+Let's just drop them. We'll keep the _TCx suffixes for pins
+9+ since that's the way they always get used.
 
-Catch is, and why I thought it is justified to do this it in this patch, 
-is because before completion was in the entity so whats happening with 
-entity->rq->sched after entity is stopped was irrelevant. With this 
-patch is it relevant on paper so I considered it prudent to express that 
-in the code as well as the comment.
+v2: Deal with gvt
 
-Acceptable or unacceptable?
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c  | 62 ++++++++++----------
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 68 +++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_gmbus.h | 22 +++----
+ drivers/gpu/drm/i915/display/intel_hdmi.c  | 42 ++++++-------
+ drivers/gpu/drm/i915/gvt/edid.c            | 14 ++---
+ 5 files changed, 104 insertions(+), 104 deletions(-)
 
-> A dedicated patch probably should then be concerned about the 'stopped'
-> bool's synchronization in general and should investigate the lockless
-> check in drm_sched_entity_is_idle(), too. The memory barrier there
-> seems only concerned about the list…
-> 
-> 
->>
->>>> +
->>>>    	sched = drm_sched_pick_best(entity->sched_list, entity->num_sched_list);
->>>>    	rq = sched ? &sched->rq : NULL;
->>>>    	if (rq != entity->rq) {
->>>> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
->>>> index 13ecb771d7a2..80dece3be415 100644
->>>> --- a/drivers/gpu/drm/scheduler/sched_internal.h
->>>> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
->>>> @@ -35,12 +35,22 @@ bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
->>>>    			 struct drm_sched_entity *entity);
->>>>    void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
->>>>    
->>>> +/**
->>>> + * drm_sched_flush_run_work - flush the run-job work
->>>
->>> In v1, you'd probably want to document what this function typically
->>> will be used for :)
->>
->> Well its in the scheduler _internal_ header and I am not sure what to
->> write which will add real value.
->>
->> "Only used to make sure a stopped entity is not in use by the scheduler
->> workers."
-> 
-> I think the magic word that provides value to newbies trying to get
-> familiar with our complex code base is "synchronization".
-> 
-> "A synchronization helper used to make sure that no scheduler worker
-> does access this entity anymore."
-
-Wilco.
-
-Regards,
-
-Tvrtko
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index b6fe87c29aa7..15ebadc72b88 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2197,52 +2197,52 @@ static u8 translate_iboost(struct intel_display *display, u8 val)
+ 
+ static const u8 cnp_ddc_pin_map[] = {
+ 	[0] = 0, /* N/A */
+-	[GMBUS_PIN_1_BXT] = DDC_BUS_DDI_B,
+-	[GMBUS_PIN_2_BXT] = DDC_BUS_DDI_C,
+-	[GMBUS_PIN_4_CNP] = DDC_BUS_DDI_D, /* sic */
+-	[GMBUS_PIN_3_BXT] = DDC_BUS_DDI_F, /* sic */
++	[GMBUS_PIN_1] = DDC_BUS_DDI_B,
++	[GMBUS_PIN_2] = DDC_BUS_DDI_C,
++	[GMBUS_PIN_4] = DDC_BUS_DDI_D, /* sic */
++	[GMBUS_PIN_3] = DDC_BUS_DDI_F, /* sic */
+ };
+ 
+ static const u8 icp_ddc_pin_map[] = {
+-	[GMBUS_PIN_1_BXT] = ICL_DDC_BUS_DDI_A,
+-	[GMBUS_PIN_2_BXT] = ICL_DDC_BUS_DDI_B,
+-	[GMBUS_PIN_3_BXT] = TGL_DDC_BUS_DDI_C,
+-	[GMBUS_PIN_9_TC1_ICP] = ICL_DDC_BUS_PORT_1,
+-	[GMBUS_PIN_10_TC2_ICP] = ICL_DDC_BUS_PORT_2,
+-	[GMBUS_PIN_11_TC3_ICP] = ICL_DDC_BUS_PORT_3,
+-	[GMBUS_PIN_12_TC4_ICP] = ICL_DDC_BUS_PORT_4,
+-	[GMBUS_PIN_13_TC5_TGP] = TGL_DDC_BUS_PORT_5,
+-	[GMBUS_PIN_14_TC6_TGP] = TGL_DDC_BUS_PORT_6,
++	[GMBUS_PIN_1] = ICL_DDC_BUS_DDI_A,
++	[GMBUS_PIN_2] = ICL_DDC_BUS_DDI_B,
++	[GMBUS_PIN_3] = TGL_DDC_BUS_DDI_C,
++	[GMBUS_PIN_9_TC1] = ICL_DDC_BUS_PORT_1,
++	[GMBUS_PIN_10_TC2] = ICL_DDC_BUS_PORT_2,
++	[GMBUS_PIN_11_TC3] = ICL_DDC_BUS_PORT_3,
++	[GMBUS_PIN_12_TC4] = ICL_DDC_BUS_PORT_4,
++	[GMBUS_PIN_13_TC5] = TGL_DDC_BUS_PORT_5,
++	[GMBUS_PIN_14_TC6] = TGL_DDC_BUS_PORT_6,
+ };
+ 
+ static const u8 rkl_pch_tgp_ddc_pin_map[] = {
+-	[GMBUS_PIN_1_BXT] = ICL_DDC_BUS_DDI_A,
+-	[GMBUS_PIN_2_BXT] = ICL_DDC_BUS_DDI_B,
+-	[GMBUS_PIN_9_TC1_ICP] = RKL_DDC_BUS_DDI_D,
+-	[GMBUS_PIN_10_TC2_ICP] = RKL_DDC_BUS_DDI_E,
++	[GMBUS_PIN_1] = ICL_DDC_BUS_DDI_A,
++	[GMBUS_PIN_2] = ICL_DDC_BUS_DDI_B,
++	[GMBUS_PIN_9_TC1] = RKL_DDC_BUS_DDI_D,
++	[GMBUS_PIN_10_TC2] = RKL_DDC_BUS_DDI_E,
+ };
+ 
+ static const u8 adls_ddc_pin_map[] = {
+-	[GMBUS_PIN_1_BXT] = ICL_DDC_BUS_DDI_A,
+-	[GMBUS_PIN_9_TC1_ICP] = ADLS_DDC_BUS_PORT_TC1,
+-	[GMBUS_PIN_10_TC2_ICP] = ADLS_DDC_BUS_PORT_TC2,
+-	[GMBUS_PIN_11_TC3_ICP] = ADLS_DDC_BUS_PORT_TC3,
+-	[GMBUS_PIN_12_TC4_ICP] = ADLS_DDC_BUS_PORT_TC4,
++	[GMBUS_PIN_1] = ICL_DDC_BUS_DDI_A,
++	[GMBUS_PIN_9_TC1] = ADLS_DDC_BUS_PORT_TC1,
++	[GMBUS_PIN_10_TC2] = ADLS_DDC_BUS_PORT_TC2,
++	[GMBUS_PIN_11_TC3] = ADLS_DDC_BUS_PORT_TC3,
++	[GMBUS_PIN_12_TC4] = ADLS_DDC_BUS_PORT_TC4,
+ };
+ 
+ static const u8 gen9bc_tgp_ddc_pin_map[] = {
+-	[GMBUS_PIN_2_BXT] = DDC_BUS_DDI_B,
+-	[GMBUS_PIN_9_TC1_ICP] = DDC_BUS_DDI_C,
+-	[GMBUS_PIN_10_TC2_ICP] = DDC_BUS_DDI_D,
++	[GMBUS_PIN_2] = DDC_BUS_DDI_B,
++	[GMBUS_PIN_9_TC1] = DDC_BUS_DDI_C,
++	[GMBUS_PIN_10_TC2] = DDC_BUS_DDI_D,
+ };
+ 
+ static const u8 adlp_ddc_pin_map[] = {
+-	[GMBUS_PIN_1_BXT] = ICL_DDC_BUS_DDI_A,
+-	[GMBUS_PIN_2_BXT] = ICL_DDC_BUS_DDI_B,
+-	[GMBUS_PIN_9_TC1_ICP] = ADLP_DDC_BUS_PORT_TC1,
+-	[GMBUS_PIN_10_TC2_ICP] = ADLP_DDC_BUS_PORT_TC2,
+-	[GMBUS_PIN_11_TC3_ICP] = ADLP_DDC_BUS_PORT_TC3,
+-	[GMBUS_PIN_12_TC4_ICP] = ADLP_DDC_BUS_PORT_TC4,
++	[GMBUS_PIN_1] = ICL_DDC_BUS_DDI_A,
++	[GMBUS_PIN_2] = ICL_DDC_BUS_DDI_B,
++	[GMBUS_PIN_9_TC1] = ADLP_DDC_BUS_PORT_TC1,
++	[GMBUS_PIN_10_TC2] = ADLP_DDC_BUS_PORT_TC2,
++	[GMBUS_PIN_11_TC3] = ADLP_DDC_BUS_PORT_TC3,
++	[GMBUS_PIN_12_TC4] = ADLP_DDC_BUS_PORT_TC4,
+ };
+ 
+ static u8 map_ddc_pin(struct intel_display *display, u8 vbt_pin)
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index dec0f66f756f..60a70dea5d85 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -105,55 +105,55 @@ static const struct gmbus_pin gmbus_pins_spt[] = {
+ };
+ 
+ static const struct gmbus_pin gmbus_pins_bxt[] = {
+-	[GMBUS_PIN_1_BXT] = { "dpb", GPIO_1 },
+-	[GMBUS_PIN_2_BXT] = { "dpc", GPIO_2 },
+-	[GMBUS_PIN_3_BXT] = { "misc", GPIO_3 },
++	[GMBUS_PIN_1] = { "dpb", GPIO_1 },
++	[GMBUS_PIN_2] = { "dpc", GPIO_2 },
++	[GMBUS_PIN_3] = { "misc", GPIO_3 },
+ };
+ 
+ static const struct gmbus_pin gmbus_pins_cnp[] = {
+-	[GMBUS_PIN_1_BXT] = { "dpb", GPIO_1 },
+-	[GMBUS_PIN_2_BXT] = { "dpc", GPIO_2 },
+-	[GMBUS_PIN_3_BXT] = { "misc", GPIO_3 },
+-	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
++	[GMBUS_PIN_1] = { "dpb", GPIO_1 },
++	[GMBUS_PIN_2] = { "dpc", GPIO_2 },
++	[GMBUS_PIN_3] = { "misc", GPIO_3 },
++	[GMBUS_PIN_4] = { "dpd", GPIO_4 },
+ };
+ 
+ static const struct gmbus_pin gmbus_pins_icp[] = {
+-	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
+-	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
+-	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
+-	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIO_9 },
+-	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIO_10 },
+-	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIO_11 },
+-	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIO_12 },
+-	[GMBUS_PIN_13_TC5_TGP] = { "tc5", GPIO_13 },
+-	[GMBUS_PIN_14_TC6_TGP] = { "tc6", GPIO_14 },
++	[GMBUS_PIN_1] = { "dpa", GPIO_1 },
++	[GMBUS_PIN_2] = { "dpb", GPIO_2 },
++	[GMBUS_PIN_3] = { "dpc", GPIO_3 },
++	[GMBUS_PIN_9_TC1] = { "tc1", GPIO_9 },
++	[GMBUS_PIN_10_TC2] = { "tc2", GPIO_10 },
++	[GMBUS_PIN_11_TC3] = { "tc3", GPIO_11 },
++	[GMBUS_PIN_12_TC4] = { "tc4", GPIO_12 },
++	[GMBUS_PIN_13_TC5] = { "tc5", GPIO_13 },
++	[GMBUS_PIN_14_TC6] = { "tc6", GPIO_14 },
+ };
+ 
+ static const struct gmbus_pin gmbus_pins_dg1[] = {
+-	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
+-	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
+-	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
+-	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
++	[GMBUS_PIN_1] = { "dpa", GPIO_1 },
++	[GMBUS_PIN_2] = { "dpb", GPIO_2 },
++	[GMBUS_PIN_3] = { "dpc", GPIO_3 },
++	[GMBUS_PIN_4] = { "dpd", GPIO_4 },
+ };
+ 
+ static const struct gmbus_pin gmbus_pins_dg2[] = {
+-	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
+-	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
+-	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
+-	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
+-	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIO_9 },
++	[GMBUS_PIN_1] = { "dpa", GPIO_1 },
++	[GMBUS_PIN_2] = { "dpb", GPIO_2 },
++	[GMBUS_PIN_3] = { "dpc", GPIO_3 },
++	[GMBUS_PIN_4] = { "dpd", GPIO_4 },
++	[GMBUS_PIN_9_TC1] = { "tc1", GPIO_9 },
+ };
+ 
+ static const struct gmbus_pin gmbus_pins_mtp[] = {
+-	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
+-	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
+-	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
+-	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
+-	[GMBUS_PIN_5_MTP] = { "dpe", GPIO_5 },
+-	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIO_9 },
+-	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIO_10 },
+-	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIO_11 },
+-	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIO_12 },
++	[GMBUS_PIN_1] = { "dpa", GPIO_1 },
++	[GMBUS_PIN_2] = { "dpb", GPIO_2 },
++	[GMBUS_PIN_3] = { "dpc", GPIO_3 },
++	[GMBUS_PIN_4] = { "dpd", GPIO_4 },
++	[GMBUS_PIN_5] = { "dpe", GPIO_5 },
++	[GMBUS_PIN_9_TC1] = { "tc1", GPIO_9 },
++	[GMBUS_PIN_10_TC2] = { "tc2", GPIO_10 },
++	[GMBUS_PIN_11_TC3] = { "tc3", GPIO_11 },
++	[GMBUS_PIN_12_TC4] = { "tc4", GPIO_12 },
+ };
+ 
+ static const struct gmbus_pin *get_gmbus_pin(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.h b/drivers/gpu/drm/i915/display/intel_gmbus.h
+index 35a200a9efc0..5fdeab1aa794 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.h
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.h
+@@ -20,17 +20,17 @@ struct intel_display;
+ #define GMBUS_PIN_DPB		5 /* SDVO, HDMIB */
+ #define GMBUS_PIN_DPD		6 /* HDMID */
+ #define GMBUS_PIN_RESERVED	7 /* 7 reserved */
+-#define GMBUS_PIN_1_BXT		1 /* BXT+ (atom) and CNP+ (big core) */
+-#define GMBUS_PIN_2_BXT		2
+-#define GMBUS_PIN_3_BXT		3
+-#define GMBUS_PIN_4_CNP		4
+-#define GMBUS_PIN_5_MTP		5
+-#define GMBUS_PIN_9_TC1_ICP	9
+-#define GMBUS_PIN_10_TC2_ICP	10
+-#define GMBUS_PIN_11_TC3_ICP	11
+-#define GMBUS_PIN_12_TC4_ICP	12
+-#define GMBUS_PIN_13_TC5_TGP	13
+-#define GMBUS_PIN_14_TC6_TGP	14
++#define GMBUS_PIN_1		1 /* BXT+ (atom) and CNP+ (big core) */
++#define GMBUS_PIN_2		2
++#define GMBUS_PIN_3		3
++#define GMBUS_PIN_4		4
++#define GMBUS_PIN_5		5
++#define GMBUS_PIN_9_TC1		9 /* ICP+ */
++#define GMBUS_PIN_10_TC2	10
++#define GMBUS_PIN_11_TC3	11
++#define GMBUS_PIN_12_TC4	12
++#define GMBUS_PIN_13_TC5	13
++#define GMBUS_PIN_14_TC6	14
+ 
+ #define GMBUS_NUM_PINS	15 /* including 0 */
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index beca0ff5a5b4..f046918fd4bc 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2825,14 +2825,14 @@ static u8 bxt_encoder_to_ddc_pin(struct intel_encoder *encoder)
+ 
+ 	switch (port) {
+ 	case PORT_B:
+-		ddc_pin = GMBUS_PIN_1_BXT;
++		ddc_pin = GMBUS_PIN_1;
+ 		break;
+ 	case PORT_C:
+-		ddc_pin = GMBUS_PIN_2_BXT;
++		ddc_pin = GMBUS_PIN_2;
+ 		break;
+ 	default:
+ 		MISSING_CASE(port);
+-		ddc_pin = GMBUS_PIN_1_BXT;
++		ddc_pin = GMBUS_PIN_1;
+ 		break;
+ 	}
+ 	return ddc_pin;
+@@ -2845,20 +2845,20 @@ static u8 cnp_encoder_to_ddc_pin(struct intel_encoder *encoder)
+ 
+ 	switch (port) {
+ 	case PORT_B:
+-		ddc_pin = GMBUS_PIN_1_BXT;
++		ddc_pin = GMBUS_PIN_1;
+ 		break;
+ 	case PORT_C:
+-		ddc_pin = GMBUS_PIN_2_BXT;
++		ddc_pin = GMBUS_PIN_2;
+ 		break;
+ 	case PORT_D:
+-		ddc_pin = GMBUS_PIN_4_CNP;
++		ddc_pin = GMBUS_PIN_4;
+ 		break;
+ 	case PORT_F:
+-		ddc_pin = GMBUS_PIN_3_BXT;
++		ddc_pin = GMBUS_PIN_3;
+ 		break;
+ 	default:
+ 		MISSING_CASE(port);
+-		ddc_pin = GMBUS_PIN_1_BXT;
++		ddc_pin = GMBUS_PIN_1;
+ 		break;
+ 	}
+ 	return ddc_pin;
+@@ -2870,12 +2870,12 @@ static u8 icl_encoder_to_ddc_pin(struct intel_encoder *encoder)
+ 	enum port port = encoder->port;
+ 
+ 	if (intel_encoder_is_combo(encoder))
+-		return GMBUS_PIN_1_BXT + port;
++		return GMBUS_PIN_1 + port;
+ 	else if (intel_encoder_is_tc(encoder))
+-		return GMBUS_PIN_9_TC1_ICP + intel_encoder_to_tc(encoder);
++		return GMBUS_PIN_9_TC1 + intel_encoder_to_tc(encoder);
+ 
+ 	drm_WARN(display->drm, 1, "Unknown port:%c\n", port_name(port));
+-	return GMBUS_PIN_2_BXT;
++	return GMBUS_PIN_2;
+ }
+ 
+ static u8 mcc_encoder_to_ddc_pin(struct intel_encoder *encoder)
+@@ -2885,17 +2885,17 @@ static u8 mcc_encoder_to_ddc_pin(struct intel_encoder *encoder)
+ 
+ 	switch (phy) {
+ 	case PHY_A:
+-		ddc_pin = GMBUS_PIN_1_BXT;
++		ddc_pin = GMBUS_PIN_1;
+ 		break;
+ 	case PHY_B:
+-		ddc_pin = GMBUS_PIN_2_BXT;
++		ddc_pin = GMBUS_PIN_2;
+ 		break;
+ 	case PHY_C:
+-		ddc_pin = GMBUS_PIN_9_TC1_ICP;
++		ddc_pin = GMBUS_PIN_9_TC1;
+ 		break;
+ 	default:
+ 		MISSING_CASE(phy);
+-		ddc_pin = GMBUS_PIN_1_BXT;
++		ddc_pin = GMBUS_PIN_1;
+ 		break;
+ 	}
+ 	return ddc_pin;
+@@ -2915,9 +2915,9 @@ static u8 rkl_encoder_to_ddc_pin(struct intel_encoder *encoder)
+ 	 * all outputs.
+ 	 */
+ 	if (INTEL_PCH_TYPE(display) >= PCH_TGP && phy >= PHY_C)
+-		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
++		return GMBUS_PIN_9_TC1 + phy - PHY_C;
+ 
+-	return GMBUS_PIN_1_BXT + phy;
++	return GMBUS_PIN_1 + phy;
+ }
+ 
+ static u8 gen9bc_tgp_encoder_to_ddc_pin(struct intel_encoder *encoder)
+@@ -2934,9 +2934,9 @@ static u8 gen9bc_tgp_encoder_to_ddc_pin(struct intel_encoder *encoder)
+ 	 * all outputs.
+ 	 */
+ 	if (INTEL_PCH_TYPE(display) >= PCH_TGP && phy >= PHY_C)
+-		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
++		return GMBUS_PIN_9_TC1 + phy - PHY_C;
+ 
+-	return GMBUS_PIN_1_BXT + phy;
++	return GMBUS_PIN_1 + phy;
+ }
+ 
+ static u8 dg1_encoder_to_ddc_pin(struct intel_encoder *encoder)
+@@ -2955,9 +2955,9 @@ static u8 adls_encoder_to_ddc_pin(struct intel_encoder *encoder)
+ 	 * except first combo output.
+ 	 */
+ 	if (phy == PHY_A)
+-		return GMBUS_PIN_1_BXT;
++		return GMBUS_PIN_1;
+ 
+-	return GMBUS_PIN_9_TC1_ICP + phy - PHY_B;
++	return GMBUS_PIN_9_TC1 + phy - PHY_B;
+ }
+ 
+ static u8 g4x_encoder_to_ddc_pin(struct intel_encoder *encoder)
+diff --git a/drivers/gpu/drm/i915/gvt/edid.c b/drivers/gpu/drm/i915/gvt/edid.c
+index ca5b54466a65..dc9ef98ff51b 100644
+--- a/drivers/gpu/drm/i915/gvt/edid.c
++++ b/drivers/gpu/drm/i915/gvt/edid.c
+@@ -90,13 +90,13 @@ static inline int cnp_get_port_from_gmbus0(u32 gmbus0)
+ 	int port_select = gmbus0 & _GMBUS_PIN_SEL_MASK;
+ 	int port = -EINVAL;
+ 
+-	if (port_select == GMBUS_PIN_1_BXT)
++	if (port_select == GMBUS_PIN_1)
+ 		port = PORT_B;
+-	else if (port_select == GMBUS_PIN_2_BXT)
++	else if (port_select == GMBUS_PIN_2)
+ 		port = PORT_C;
+-	else if (port_select == GMBUS_PIN_3_BXT)
++	else if (port_select == GMBUS_PIN_3)
+ 		port = PORT_D;
+-	else if (port_select == GMBUS_PIN_4_CNP)
++	else if (port_select == GMBUS_PIN_4)
+ 		port = PORT_E;
+ 	return port;
+ }
+@@ -106,11 +106,11 @@ static inline int bxt_get_port_from_gmbus0(u32 gmbus0)
+ 	int port_select = gmbus0 & _GMBUS_PIN_SEL_MASK;
+ 	int port = -EINVAL;
+ 
+-	if (port_select == GMBUS_PIN_1_BXT)
++	if (port_select == GMBUS_PIN_1)
+ 		port = PORT_B;
+-	else if (port_select == GMBUS_PIN_2_BXT)
++	else if (port_select == GMBUS_PIN_2)
+ 		port = PORT_C;
+-	else if (port_select == GMBUS_PIN_3_BXT)
++	else if (port_select == GMBUS_PIN_3)
+ 		port = PORT_D;
+ 	return port;
+ }
+-- 
+2.53.0
 
