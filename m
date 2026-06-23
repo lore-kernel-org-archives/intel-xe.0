@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D76BECDB471
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 22:27:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3021DCDB47C
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 22:27:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6574D10ECE4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 741B510E392;
 	Tue, 23 Jun 2026 22:27:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wxd8BvNP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l1tG5Ph7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4ACC10E197;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13C7110E197;
  Tue, 23 Jun 2026 22:27:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782253660; x=1813789660;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=lm/Bb7nmtHczumcSk0tMl4LTf8dsHLkA9TM4MwYFy/U=;
- b=Wxd8BvNPzeHzupcJwZcHmwsv0ePtKAOS26cQkVwaPOYiCMPBga+YMIC5
- 4nS5+CYzFwziosV9vEF6Sv91kIAPIa2TVZeGcRWr5wWkbvzon+CcvLDFR
- 6+Ek78QZd8A9MrrQJrgqtbS1QSMt4/8yn1PK+U8PBEPOKmIksWZ74P2gF
- 87cZSQgweo8q/XtoRR9RQCmnlQKdd348DbVVBBDujGfTg3q8hXJ0kTLjx
- mcRTZ7qbtzi60f5z7qhzyq5zphF6nWwikH+y+qu7i7E6S6maheN2mbfBh
- TFLDTE0uQc3Bgh8+h89bDuKLy8LT1VP9MA6yxeu56cD90YEMtmsAfJchE w==;
-X-CSE-ConnectionGUID: dylhNwL0TwCol65ZOKcVug==
-X-CSE-MsgGUID: LdKqsixuTJKEhQQySLKk9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="83048821"
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="83048821"
+ t=1782253659; x=1813789659;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Q7Xj4W/P4LEKPs3wqseTAsQkjJCRgm/z+Jbg3wbVXUk=;
+ b=l1tG5Ph7ZIBLwq7L8BCsn0bUvTTXLplqMBZ5JWYi2r6cnEaZxkrVn4zs
+ t/0DnCek9HEYAPSDxAvHmRfbT1YniTIM6mRZGpBCEjrlq9xITrkYCjUG4
+ 0SYVx0kMuW6T/Xnpw5Fbd8LcDTnEBPlOM91agmWv71XR54uUhKc+lzs6f
+ meEewWS+TWGj3frX8IwHCCdIlucbbqrJDp0U85gZqRPTh8+uXqGM3Jegf
+ XnKmnCZQ4F6vZQM3aWqM4q9fBefx8ttrPDxuYG0zXNjPs6aphbrrDP8Z9
+ 76qB/xuDfotjMyL7ZzW4j35aTSjzX00gVgC4mY9ZD5cC/GpleMYHa0Rxx w==;
+X-CSE-ConnectionGUID: kveynnTpTQSYMmQCZrpzbw==
+X-CSE-MsgGUID: TVJYPoslSEGxbr8xXnMr2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="83048819"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="83048819"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 15:27:39 -0700
-X-CSE-ConnectionGUID: 9lLdUeDcSuinxVHCjoZDfw==
-X-CSE-MsgGUID: MsTnkqbZTC6fSreJDakbqw==
+ 23 Jun 2026 15:27:38 -0700
+X-CSE-ConnectionGUID: 3peGSDhsSVWrJv43AkRP+w==
+X-CSE-MsgGUID: QAyQl5osRBuFxSsvH48GNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="273335801"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="273335799"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 15:27:39 -0700
+ 23 Jun 2026 15:27:38 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Subject: [RFC PATCH 02/12] drm/ttm: Record sub-optimal page order allocations
- in ttm_tt
-Date: Tue, 23 Jun 2026 15:27:22 -0700
-Message-Id: <20260623222732.360872-3-matthew.brost@intel.com>
+Subject: [RFC PATCH 00/12] drm/ttm,
+ drm/xe: Page defragmentation for sub-optimally backed BOs
+Date: Tue, 23 Jun 2026 15:27:20 -0700
+Message-Id: <20260623222732.360872-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260623222732.360872-1-matthew.brost@intel.com>
-References: <20260623222732.360872-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,19 +66,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When __ttm_pool_alloc() fails to allocate a chunk at the device's
-beneficial order and falls back to a smaller order, the object ends up
-backed by a sub-optimal set of pages. Nothing currently records this, so
-a driver has no way to know an object would benefit from being re-backed
-with beneficial-order pages later.
+This series adds a "page defragmentation" mechanism that lets a driver
+re-back a buffer object with higher-order (beneficial-order) pages after
+it was initially allocated with a sub-optimal, lower-order set of pages
+under memory pressure. Long-lived objects that happened to be allocated
+while memory was fragmented otherwise keep their scattered backing
+forever, costing TLB efficiency for the lifetime of the object; this
+series gives them a chance to be promoted back to the device's
+beneficial order once memory is available again.
 
-Add a bool beneficial_order_failed to struct ttm_tt, initialised to
-false in ttm_tt_init_fields() and reset at the start of each fresh
-ttm_pool_alloc(). Set it in __ttm_pool_alloc() when an allocation at
-exactly the beneficial order fails before dropping to a lower order.
+The TTM core grows the generic plumbing (order-failure tracking, a
+defrag move that reallocates a populated BO in place, and a reclaim
+backoff knob), and the Xe driver wires up the policy: it tracks the
+affected BOs on a per-device list and runs a delayed worker that
+periodically tries to defragment them on the GPU.
 
-Drivers can use this hint to queue the buffer object for later
-defragmentation.
+Overview
+========
+
+ttm core
+--------
+ - Record sub-optimal page-order allocations in ttm_tt. ttm_pool_alloc()
+   sets ttm_tt::beneficial_order_failed when it has to fall back below
+   the pool's beneficial order, so drivers can tell which BOs are backed
+   with scattered pages.
+ - Allow backing off reclaim at the beneficial order. A new
+   ttm_operation_ctx::beneficial_reclaim_backoff flag makes the pool skip
+   direct reclaim/compaction (and the __GFP_RETRY_MAYFAIL promotion) for
+   the beneficial order, so a caller that knows beneficial-order
+   allocations are currently failing doesn't burn CPU stalling for a
+   contiguous page that isn't there.
+ - Support defragmentation moves. ttm_operation_ctx::defrag forces a move
+   that reallocates a populated BO's backing in place at the beneficial
+   order, stashing the old, still-populated tt (bo->defrag_old_tt) and
+   handing it to the driver move callback so the contents can be copied
+   from the old pages to the new ones. The move is non-destructive: if
+   beneficial-order pages can't be obtained the attempt aborts immediately
+   and is fully unwound, with the BO restored to its original, still-mapped
+   tt and placement.
+ - Fault injection for beneficial-order allocation failures. A
+   beneficial_order_fault_inject debugfs knob (mirroring
+   backup_fault_inject) forces the beneficial-order allocation to fail, so
+   the tracking and the driver defrag path can be exercised deterministically
+   without driving the system into real fragmentation.
+
+Xe driver
+---------
+ - Track BOs backed at a sub-optimal page order. ttm_bo_type_device BOs
+   resident in XE_PL_TT with beneficial_order_failed set are kept on a
+   per-device list (with an atomic count); membership is updated from the
+   move path and the BO is dropped when pinned.
+ - Back off beneficial-order reclaim under defrag pressure. When enough
+   BOs are already pending defrag, set beneficial_reclaim_backoff so new
+   allocations fall back quickly instead of stalling.
+ - Add xe_migrate_copy_defrag() for on-GPU defrag copies. Relocates a BO's
+   contents from the old pages to the freshly reallocated ones entirely on
+   the GPU, in up to two passes: a verbatim data copy with the compression
+   PAT cleared, then (for compressed BOs) an indirect -> indirect CCS aux
+   copy with the compression PAT set. The two passes are required because
+   the data copy and the indirect CCS access need opposite compression PAT
+   settings on the same page mapping.
+ - Handle defrag moves in xe_bo_move(). Detects bo->defrag_old_tt, runs the
+   GPU copy from the stashed old tt's sg table, and pipelines the teardown
+   via ttm_bo_move_accel_cleanup() so the old backing is unpopulated/freed
+   only once the copy fence signals. The defrag move is fully pipelined with
+   fences: rather than stalling, it inserts the copy into the GPU execution
+   pipeline and lets the BO's normal fence dependencies order it against
+   concurrent work.
+ - Add a page defragmentation worker. A delayed worker walks the per-device
+   list and attempts a defrag move on each BO. It is kicked when the list
+   first becomes non-empty, caps the BOs processed per run
+   (XE_BO_DEFRAG_NUM_BO_LIMIT_PER_WORK) to avoid starving active work,
+   backs off exponentially on failure
+   (XE_BO_DEFRAG_INTERVAL_MS .. XE_BO_DEFRAG_INTERVAL_MAX_MS), and stops
+   once the list drains.
+ - Observability and configuration: defrag GT stats, a DRM_XE_DEBUG_DEFRAG
+   Kconfig option for debug logging, and Kconfig.profile options to tune the
+   defrag thresholds/intervals.
+
+Notes
+=====
+ - This series initially targets system/GTT backing (XE_PL_TT) only. The
+   TTM defrag plumbing is placement-agnostic, so VRAM-backed BOs could be
+   defragmented too with future driver-side work (a VRAM beneficial-order
+   notion and the corresponding migrate paths).
+ - Testing: memory was intentionally fragmented by a separate program at
+   the moment a 3D benchmark launches, combined with the beneficial-order
+   error injection. The benchmark's BOs are initially backed at a
+   sub-optimal order and FPS starts lower; shortly after, the defrag worker
+   kicks in and iteratively migrates the backing to the beneficial order,
+   and FPS climbs to its peak.
+ - The on-GPU two-pass copy, in particular the indirect -> indirect CCS aux
+   copy across two distinct page sets, still wants wider hardware validation.
+ - The TTM defrag move and the Xe policy are deliberately split so the core
+   plumbing can be reviewed independently of the driver's heuristics.
+ - The series without a version of [1] will not break the shrinker feedback
+   loop in Xe
+
+[1] https://patchwork.freedesktop.org/series/168651/
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -95,81 +178,42 @@ Cc: Simona Vetter <simona@ffwll.ch>
 Cc: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/ttm/ttm_pool.c | 11 +++++++++++
- drivers/gpu/drm/ttm/ttm_tt.c   |  1 +
- include/drm/ttm/ttm_tt.h       |  8 ++++++++
- 3 files changed, 20 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 5b95f8f938f7..a1a74ccfcbf0 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -773,6 +773,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
- 			    struct ttm_pool_alloc_state *alloc,
- 			    struct ttm_pool_tt_restore *restore)
- {
-+	const unsigned int beneficial_order = ttm_pool_beneficial_order(pool);
- 	enum ttm_caching page_caching;
- 	gfp_t gfp_flags = GFP_USER;
- 	pgoff_t caching_divide;
-@@ -823,6 +824,15 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
- 		/* If that fails, lower the order if possible and retry. */
- 		if (!p) {
- 			if (order) {
-+				/*
-+				 * Failing to allocate at the device's beneficial
-+				 * order means we are about to back this object
-+				 * with a sub-optimal (smaller order) set of
-+				 * pages. Record it so the driver can later try to
-+				 * defragment the object back to beneficial order.
-+				 */
-+				if (beneficial_order && order == beneficial_order)
-+					tt->beneficial_order_failed = true;
- 				--order;
- 				page_caching = tt->caching;
- 				allow_pools = true;
-@@ -887,6 +897,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
- 	if (WARN_ON(ttm_tt_is_backed_up(tt)))
- 		return -EINVAL;
- 
-+	tt->beneficial_order_failed = false;
- 	ttm_pool_alloc_state_init(tt, &alloc);
- 
- 	return __ttm_pool_alloc(pool, tt, ctx, &alloc, NULL);
-diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-index b645a1818184..27e09a58cf03 100644
---- a/drivers/gpu/drm/ttm/ttm_tt.c
-+++ b/drivers/gpu/drm/ttm/ttm_tt.c
-@@ -164,6 +164,7 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,
- 	ttm->caching = caching;
- 	ttm->restore = NULL;
- 	ttm->backup = NULL;
-+	ttm->beneficial_order_failed = false;
- }
- 
- int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-index 406437ad674b..55202362987a 100644
---- a/include/drm/ttm/ttm_tt.h
-+++ b/include/drm/ttm/ttm_tt.h
-@@ -126,6 +126,14 @@ struct ttm_tt {
- 	enum ttm_caching caching;
- 	/** @restore: Partial restoration from backup state. TTM private */
- 	struct ttm_pool_tt_restore *restore;
-+	/**
-+	 * @beneficial_order_failed: Set by the TTM pool allocator when at least
-+	 * one chunk that could have been allocated at the pool's beneficial
-+	 * order had to fall back to a smaller order. This indicates that a
-+	 * sub-optimal set of pages was chosen for this object, and can be used
-+	 * by drivers to queue the buffer object for later defragmentation.
-+	 */
-+	bool beneficial_order_failed;
- };
- 
- /**
+Matthew Brost (12):
+  drm/ttm/pool: Allow backing off reclaim at the beneficial order
+  drm/ttm: Record sub-optimal page order allocations in ttm_tt
+  drm/ttm: Support defragmentation moves
+  drm/ttm: Add fault injection for beneficial-order allocation failures
+  drm/xe: Track BOs backed at a sub-optimal page order
+  drm/xe: Back off beneficial-order reclaim under defrag pressure
+  drm/xe: Add xe_migrate_copy_defrag() for on-GPU defrag copies
+  drm/xe: Handle defrag moves in xe_bo_move()
+  drm/xe: Add a page defragmentation worker
+  drm/xe: Add defrag GT stats
+  drm/xe: Add DRM_XE_DEBUG_DEFRAG Kconfig option for debugging memory
+    fragmentation
+  drm/xe: Add Kconfig.profile options for BO defrag configuration
+
+ drivers/gpu/drm/ttm/ttm_bo.c           |  83 +++++-
+ drivers/gpu/drm/ttm/ttm_bo_util.c      |  16 +-
+ drivers/gpu/drm/ttm/ttm_pool.c         |  49 +++-
+ drivers/gpu/drm/ttm/ttm_tt.c           |   1 +
+ drivers/gpu/drm/xe/Kconfig.debug       |  13 +
+ drivers/gpu/drm/xe/Kconfig.profile     |  35 +++
+ drivers/gpu/drm/xe/xe_bo.c             | 352 ++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_bo.h             |   2 +
+ drivers/gpu/drm/xe/xe_bo_types.h       |   6 +
+ drivers/gpu/drm/xe/xe_device.c         |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h   |  30 +++
+ drivers/gpu/drm/xe/xe_gt_stats.c       |   3 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h |  10 +
+ drivers/gpu/drm/xe/xe_migrate.c        | 135 ++++++++--
+ drivers/gpu/drm/xe/xe_migrate.h        |   8 +
+ include/drm/ttm/ttm_bo.h               |  23 ++
+ include/drm/ttm/ttm_tt.h               |   8 +
+ 17 files changed, 740 insertions(+), 36 deletions(-)
+
 -- 
 2.34.1
 
