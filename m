@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99B7CCD98F2
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 12:24:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 184F6CDB46F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 12:41:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4192110EAE2;
-	Tue, 23 Jun 2026 12:24:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8AE710EAF8;
+	Tue, 23 Jun 2026 12:41:26 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1203F10EAE2;
- Tue, 23 Jun 2026 12:24:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4636330023297238161=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3762510EAF8;
+ Tue, 23 Jun 2026 12:41:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_error_threshold_t?=
- =?utf-8?q?o_drm=5Fras_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_Work_harder_t?=
+ =?utf-8?q?o_enable_VRR_based_refresh_rate_changes_on_eDP_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jun 2026 12:24:34 -0000
-Message-ID: <178221747406.106003.8534903843340673409@6beec6c84f66>
+Date: Tue, 23 Jun 2026 12:41:26 -0000
+Message-ID: <178221848622.106004.12597625846211355112@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260623101043.255897-1-raag.jadav@intel.com>
-In-Reply-To: <20260623101043.255897-1-raag.jadav@intel.com>
+References: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,113 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4636330023297238161==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introduce error threshold to drm_ras (rev4)
-URL   : https://patchwork.freedesktop.org/series/165091/
-State : success
+Series: drm/i915: Work harder to enable VRR based refresh rate changes on eDP (rev4)
+URL   : https://patchwork.freedesktop.org/series/168442/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5288-60326b17f877e12846167bf8ef83680b9875218a_BAT -> xe-pw-165091v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a1b839f72f83f277f4bc39f58c05f6d647199260
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Tue Jun 23 00:36:02 2026 +0300
 
-Summary
--------
+    drm/i915/panel: Attempt VRR based refresh rate change for !allow_modeset
+    
+    Adjust the panel fixed mode selection algorithm to only consider
+    fixed modes that are "VRR compatible" with the old fixed mode
+    when userspace doesn't want to allow full modesets. This will
+    allow a VRR based refresh rate changes (ie. just a change in
+    the vblank length) via the fastset path.
+    
+    When full modesets are allowed, we still use the original algorithm
+    as that may pick a fixed mode with a more optimal dotclock, potentially
+    leading to reduced power consumption.
+    
+    This approach works as long as userspace does the initial
+    allow_modeset=true commit using the highest refresh rate it will
+    want to use. Subsequent commits with allow_modeset=false can then
+    switch between lower refresh rates without blinks.
+    
+    One remaining hurdle we may need to solve is the guardband length.
+    Assuming the highest refresh rate vblank is too short for
+    intel_vrr_compute_optimized_guardband() the intitial guardband will
+    match the highest refresh rate vblank. A subsequent switch to a lower
+    refresh rate will then recompute the guardband and select a value
+    that is higher (since the vblank will be longer). The mismatch in
+    guardband lengths will prevent the fastset. We may either have to
+    preserve the original (sub-optimal) guardband, or we'll have to
+    revisit the idea of changing the guardband without a full modeset.
+    
+    Note that I'm not 100% happy with this solution because
+    intel_panel_fixed_mode() is no longer fully idempotent, but I wasn't
+    able to come up with anything truly better either :/ The simple
+    solution would be just to always pick the fixed mode with the highest
+    dotclock, but that could lead to increased power consumption even
+    when high refresh rates are never used.
+    
+    Perhaps the proper solution would be to just deprecate this
+    idea of taking in random modes for internal panels and then
+    cooking up a compatible fixed modes. Life would be easier if
+    userspace was required to provide the desired fixed mode directly.
+    But in order to do that we'd need to introduce new uapi properties
+    to control the pfit aspect of this, and we'd probably need a new
+    client cap to select between the old and new userspace behaviour.
+    Something to consider in the future...
+    
+    v2: Rebase due to earlier changes to VRR fixed mode selection
+    
+    Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com> #v1
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch 60326b17f877e12846167bf8ef83680b9875218a drm-intel
+b1a2ac4094b5 drm/i915/panel: Split VRR vs. fixed refresh rate fixed mode selection into separate stages
+5c1f59fe51d2 drm/modes: Add DRM_MODE_MATCH_TIMINGS_VRR
+380d9631ea8c drm/i915: Pass the full atomic state to .compute_config()
+-:174: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#174: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:180:
++	int (*compute_config)(struct intel_atomic_state *,
 
-  **SUCCESS**
+-:174: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#174: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:180:
++	int (*compute_config)(struct intel_atomic_state *,
 
-  No regressions found.
+-:174: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_crtc_state *' should also have an identifier name
+#174: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:180:
++	int (*compute_config)(struct intel_atomic_state *,
 
-  
+-:174: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_connector_state *' should also have an identifier name
+#174: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:180:
++	int (*compute_config)(struct intel_atomic_state *,
 
-Participating hosts (13 -> 13)
-------------------------------
+-:179: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#179: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:184:
++	int (*compute_config_late)(struct intel_atomic_state *,
 
-  No changes in participating hosts
+-:179: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#179: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:184:
++	int (*compute_config_late)(struct intel_atomic_state *,
 
+-:179: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_crtc_state *' should also have an identifier name
+#179: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:184:
++	int (*compute_config_late)(struct intel_atomic_state *,
 
-Changes
--------
+-:179: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_connector_state *' should also have an identifier name
+#179: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:184:
++	int (*compute_config_late)(struct intel_atomic_state *,
 
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5288-60326b17f877e12846167bf8ef83680b9875218a -> xe-pw-165091v4
-
-  IGT_8979: 8979
-  xe-5288-60326b17f877e12846167bf8ef83680b9875218a: 60326b17f877e12846167bf8ef83680b9875218a
-  xe-pw-165091v4: 165091v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165091v4/index.html
-
---===============4636330023297238161==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 8 warnings, 0 checks, 224 lines checked
+a12ea211d172 drm/i915/panel: Adjust intel_panel_compute_config() calling convention
+a1b839f72f83 drm/i915/panel: Attempt VRR based refresh rate change for !allow_modeset
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce error threshold to drm_ras (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165091/">https://patchwork.freedesktop.org/series/165091/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165091v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165091v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5288-60326b17f877e12846167bf8ef83680b9875218a_BAT -&gt; xe-pw-165091v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5288-60326b17f877e12846167bf8ef83680b9875218a -&gt; xe-pw-165091v4</li>
-</ul>
-<p>IGT_8979: 8979<br />
-  xe-5288-60326b17f877e12846167bf8ef83680b9875218a: 60326b17f877e12846167bf8ef83680b9875218a<br />
-  xe-pw-165091v4: 165091v4</p>
-
-</body>
-</html>
-
---===============4636330023297238161==--
