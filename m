@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BCC1CD4F26
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 10:56:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E8A2CD4F26
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 10:57:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F94A10EA96;
-	Tue, 23 Jun 2026 10:56:22 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 295CB10EA96;
- Tue, 23 Jun 2026 10:56:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C725B10EA98;
+	Tue, 23 Jun 2026 10:57:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZyR4Qyk4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 758B010EA96;
+ Tue, 23 Jun 2026 10:56:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782212219; x=1813748219;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=aPIE95mLRe42YcYMyleHpuz76yXdRQVmwRI/yhRFbK8=;
+ b=ZyR4Qyk4GdI2nWro0oqh0D+4+2QSVM6KUZfswaSKu9JMZhXmL4yNvFPP
+ Dt1b6kVr/e9uwg0LFvcnzspMqKrHTPY9VdochqWSs2YDBbMTu1oz3L/k1
+ mYZqkt4/+a59VkG63OHc7VnU/Fn+mctKAf72ob312SEfSg15m5nqDl7FN
+ vVpMJtZpopMh7Fappw2e7p0+Mvm+pXa5C6uoDPP+rfohVajwSMrVQ3bAc
+ 9iSeOuQU9aBNQ9/YKipuwIgo/jloNCdHEEcImwjff7Uih8nuMd/h2L9VF
+ qc066k/1JnopqqmOZIvkYmVLiWfHHvnXDNhna2+7KPh0/ydxhEnfstrSc w==;
+X-CSE-ConnectionGUID: cdT5ptQOSJ2Jw+RJ5ZWJTg==
+X-CSE-MsgGUID: At/gHr/sRFKRNHrTfIq3qA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="81931388"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="81931388"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 03:56:59 -0700
+X-CSE-ConnectionGUID: OTLYXidkQ7aSmp6fk9EOCw==
+X-CSE-MsgGUID: QnFnGt+ZRLmcYl22vHtP8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="248341192"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.7])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 03:56:56 -0700
+Date: Tue, 23 Jun 2026 13:56:53 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Raag Jadav <raag.jadav@intel.com>,
+ "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Riana Tauro <riana.tauro@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] drm/xe/mcu_i2c: Take over control of the
+ controller enabling
+Message-ID: <ajpmdQjArQkhQ8fl@ashevche-desk.local>
+References: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
+ <20260622114759.3464047-3-heikki.krogerus@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_error_threshold?=
- =?utf-8?q?_to_drm=5Fras_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jun 2026 10:56:21 -0000
-Message-ID: <178221218116.105421.2032233573419673779@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260623101043.255897-1-raag.jadav@intel.com>
-In-Reply-To: <20260623101043.255897-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260622114759.3464047-3-heikki.krogerus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,51 +77,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jun 22, 2026 at 01:47:59PM +0200, Heikki Krogerus wrote:
+> Some platforms make an assumption that the i2c controller's
+> enabled state indicates also the power state of the
+> controller. This can create a problem when the controller is
+> in disabled state, because the hardware may assume
+> incorrectly that it is then also in low-power state.
+> 
+> To fix this, the controller is kept enabled by taking over
+> the IC_ENABLE register. The controller has to be disabled
+> when the configuration is updated and when the target
+> address or the slave address are assigned, so disabling it
+> when IC_CON, IC_TAR or IC_SAR registers are programmed, and
+> then re-enabling it again.
 
-Series: Introduce error threshold to drm_ras (rev4)
-URL   : https://patchwork.freedesktop.org/series/165091/
-State : warning
+...
 
-== Summary ==
+> +#define IC_CON				0x00
+> +#define IC_TAR				0x04
+> +#define IC_SAR				0x08
+> +#define IC_ENABLE			0x6c
+> +#define IC_ENABLE_STATUS		0x9c
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 0455ef26277e364e46e6c48ceda60e0d4bc1cc0d
-Author: Raag Jadav <raag.jadav@intel.com>
-Date:   Tue Jun 23 15:39:59 2026 +0530
+Heh, I would like to have a shared header with the registers, but dunno
+if the prons will weight out the cons.
 
-    drm/xe/sysctrl: Reuse xe_sysctrl_create_command()
-    
-    Now that we have a helper to create sysctrl command, reuse it for
-    threshold crossed events.
-    
-    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-+ /mt/dim checkpatch 60326b17f877e12846167bf8ef83680b9875218a drm-intel
-533a6e1cce29 drm/ras: Cancel and free message on get counter failure
-aedc9c8edeec drm/ras: Introduce error threshold
--:317: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#317: FILE: drivers/gpu/drm/drm_ras_nl.c:32:
-+static const struct nla_policy drm_ras_get_error_threshold_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID + 1] = {
+...
 
--:323: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
-#323: FILE: drivers/gpu/drm/drm_ras_nl.c:38:
-+static const struct nla_policy drm_ras_set_error_threshold_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_THRESHOLD + 1] = {
+> +/* See "Disabling DW_apb_i2c" in the DesignWare DW_abp_i2c databook. */
+> +static int xe_i2c_disable(struct xe_i2c *i2c)
+> +{
+> +	int timeout = 100;
+> +	u32 status;
+> +
+> +	do {
+> +		/* Disable.*/
+> +		xe_mmio_rmw32(i2c->mmio, XE_REG(IC_ENABLE + I2C_MEM_SPACE_OFFSET), 1, 0);
+> +
+> +		/* Verify. */
+> +		status = xe_mmio_read32(i2c->mmio, XE_REG(IC_ENABLE_STATUS + I2C_MEM_SPACE_OFFSET));
+> +		if (!(status & 1))
+> +			return 0;
+> +
+> +		/* Repeat. */
+> +		usleep_range(25, 250);
 
-total: 0 errors, 2 warnings, 0 checks, 369 lines checked
-931928eb902f drm/xe/ras: Add support for error threshold
-7205b1a333a9 drm/xe/drm_ras: Wire up error threshold callbacks
-0455ef26277e drm/xe/sysctrl: Reuse xe_sysctrl_create_command()
+fsleep().
+
+> +	} while (timeout--);
+> +
+> +	return -ETIMEDOUT;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
