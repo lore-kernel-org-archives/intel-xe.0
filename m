@@ -4,67 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91925CDB479
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 14:24:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7900ACDB47C
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 14:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3710710EB88;
-	Tue, 23 Jun 2026 14:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29F4A10EB8B;
+	Tue, 23 Jun 2026 14:34:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UPVj0GSo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQMgZsbV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B84F10E8AA;
- Tue, 23 Jun 2026 14:24:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 779B210EB81;
+ Tue, 23 Jun 2026 14:34:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782224690; x=1813760690;
+ t=1782225252; x=1813761252;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1d/k/F79hAz6On8+FkEDdms7dsldm7k5SN2b4acu4yw=;
- b=UPVj0GSouxLlPcaUri6K2RC8MVHsxMd3OXj22FsArS+5c/tqyRpl0s63
- ho/2RgVa+F34Ef+/iLk0k0hmWNuDrbuzCVbrBXumMTBEq+cP8y7srIsR8
- 3n9/ITPSNbqK6PNo0/da6Lj2DOhpZ9oKfp2RfKzW5nA+Y5/YUv0L9ekaF
- +BtA/dOkcszBVnwUFlZXsuYVhjBqf3mmwkSauIvmuFGO9/lxyQRheQ8vk
- CMncfS2tLRdCIHgXvupfQ2R+deO8uCiShrHDcSco2zuRg1FLxFdMN59eR
- VCT5A+kvBqc72QdB2SstjqxSt/xRPrl/XQHpsZUlyT5ATWV+5yX5peXpW Q==;
-X-CSE-ConnectionGUID: UaKB/SIyTxmq/TNXWgjLNQ==
-X-CSE-MsgGUID: E244uHJNRKuWMxisjfzALg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="94461582"
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="94461582"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 07:24:50 -0700
-X-CSE-ConnectionGUID: O2WLQZIjSzOvtxMqlAEsRA==
-X-CSE-MsgGUID: TWr1rZdTSpK8wJPF4KWoIw==
+ mime-version:in-reply-to;
+ bh=vZ9Ueq2wXFM4RPdfadUQVI4GnefEfSs6G+k0W6B2X3c=;
+ b=OQMgZsbVK7dOZWqgeF1lakVWAPpOfMusPhn1cTCVx+tm1xeils4PnKRi
+ dAjMH/0XCukmoO6COzC239LmDFT4StQJKISRA0jlW7uYm0uD0JP0CAXKL
+ d5jff2cpOk4bebEtzOVDK/4291+t7+geUDCfQ97LAU7kHFnx8km7STqbN
+ L2Kv5u+OgZ+fPR+Cteq+9IjfJmc+yvTPg+CBXl2JccQX66T40+DjOViOm
+ qtTrCrES51+C1tKnvkGV+AOLcrFE6rWZiuGzK8jUeGUPe6q+Jr4RmwSOB
+ A3zvCOIiHwJLtKD7bp8xWrvMinsNi8TPh5eth2xqgpXVS6F5ys8Yqip9k w==;
+X-CSE-ConnectionGUID: tcWvXQP0SZ2djrq8S0y21w==
+X-CSE-MsgGUID: HHkSm8rySxGBLOeUS7xK5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="86656736"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="86656736"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 07:34:12 -0700
+X-CSE-ConnectionGUID: uC6Z1sxGSDWvvF2T7tK4Zw==
+X-CSE-MsgGUID: sfSDphYiR06aKAwOflL6jg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="247194458"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.67])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 07:24:47 -0700
-Date: Tue, 23 Jun 2026 17:24:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Gabr=EDel_Arth=FAr_P=E9tursson?=
- <gabriel.petursson@jbtmarel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>
-Subject: Re: [PATCH] drm/i915: Calculate CDCLK on modeset after sanitizing
- pre-os programming
-Message-ID: <ajqXK-fZnty-YGCK@intel.com>
-References: <AM9PR06MB78601E2636164181A4689CC281EF2@AM9PR06MB7860.eurprd06.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="248384070"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 07:34:09 -0700
+Date: Tue, 23 Jun 2026 16:34:06 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Riana Tauro <riana.tauro@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] drm/xe/i2c: Handler for SMBus Alerts
+Message-ID: <ajqZXnaU7709IlzA@black.igk.intel.com>
+References: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
+ <20260622114759.3464047-2-heikki.krogerus@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM9PR06MB78601E2636164181A4689CC281EF2@AM9PR06MB7860.eurprd06.prod.outlook.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260622114759.3464047-2-heikki.krogerus@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,103 +76,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 22, 2026 at 02:52:29PM +0000, Gabríel Arthúr Pétursson wrote:
-> After sanitizing cdclk programming by pre-os, the cdclk frequency is set
-> to the lowest supported setting. After which, modesetting needs to
-> recalculate the appropriate frequency.
-> 
-> When upgrading the kernel, we encountered an issue where we were left
-> with a blank screen at boot on a number of monitors and the following
-> message in dmesg:
-> 
-> 	i915 0000:00:02.0: [drm] *ERROR* CPU pipe A FIFO underrun
-> 
-> Which bisected to these two commits, depending on the exact monitor used
-> during the bisect:
-> 
-> 	ba91b9eecb47 ("drm/i915/cdclk: Decouple cdclk from state->modeset")
-> 	74c31271a1d9 ("drm/i915: Avoid triggering unwanted cdclk changes due to dbuf bandwidth changes")
-> 
-> Although both commits look correct, before they hid the need to explicitly
-> trigger CDCLK recalculation after sanitization.
+On Mon, Jun 22, 2026 at 01:47:58PM +0200, Heikki Krogerus wrote:
+> Some devices that are attached to the I2C controller use the
+> SMBus Alert signal for example to inform the host about
+> thermal events, so registering the default SMBus Alert
+> device device for them. The alert device makes sure that
 
-This smells like the same thing I already fixed with
-commit 3f9de66f8acb ("drm/i915/cdclk: Fix up CDCLK_FREQ_DECIMAL
-without a full PLL re-enable")
+Nit: Duplicate 'device' ;)
 
-Sadly it looks like I forgot to cc:stable it :/
+> the alert is processed and passed to the correct I2C client
+> driver.
 
-Jani, can you pick that up for -fixes and slap a cc:stable on it?
+...
 
-> 
-> Signed-off-by: Gabríel Arthúr Pétursson <gabriel.petursson@jbtmarel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 10 ++++++++--
->  drivers/gpu/drm/i915/display/intel_cdclk.h |  1 +
->  2 files changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index a47736613f6e..5eba50fde396 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1267,6 +1267,8 @@ static void skl_sanitize_cdclk(struct intel_display *display)
->  	display->cdclk.hw.cdclk = 0;
->  	/* force full PLL disable + enable */
->  	display->cdclk.hw.vco = ~0;
-> +	/* modesetting may require another cdclk programming */
-> +	display->cdclk.hw.sanitized = true;
->  }
+> @@ -182,7 +183,10 @@ void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
+>  		return;
 >  
->  static void skl_cdclk_init_hw(struct intel_display *display)
-> @@ -2365,9 +2367,10 @@ static void bxt_sanitize_cdclk(struct intel_display *display)
->  
->  	/* force cdclk programming */
->  	display->cdclk.hw.cdclk = 0;
-> -
->  	/* force full PLL disable + enable */
->  	display->cdclk.hw.vco = ~0;
-> +	/* modesetting may require another cdclk programming */
-> +	display->cdclk.hw.sanitized = true;
->  }
->  
->  static void bxt_cdclk_init_hw(struct intel_display *display)
-> @@ -3598,9 +3601,10 @@ static int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  
->  int intel_cdclk_atomic_check(struct intel_atomic_state *state)
->  {
-> +	struct intel_display *display = to_intel_display(state);
->  	const struct intel_cdclk_state *old_cdclk_state;
->  	struct intel_cdclk_state *new_cdclk_state;
-> -	bool need_cdclk_calc = false;
-> +	bool need_cdclk_calc = display->cdclk.hw.sanitized;
->  	int ret;
->  
->  	ret = intel_cdclk_modeset_checks(state, &need_cdclk_calc);
-> @@ -3631,6 +3635,8 @@ int intel_cdclk_atomic_check(struct intel_atomic_state *state)
->  		ret = intel_modeset_calc_cdclk(state);
->  		if (ret)
->  			return ret;
-> +
-> +		display->cdclk.hw.sanitized = false;
->  	}
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index 1ff7d078b42c..bae2b7ea2da9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -18,6 +18,7 @@ struct intel_display;
->  struct intel_cdclk_config {
->  	unsigned int cdclk, vco, ref, bypass;
->  	u8 voltage_level;
-> +	bool sanitized;
->  	/* This field is only valid for Xe2LPD and above. */
->  	bool joined_mbus;
->  };
-> -- 
-> 2.54.0
-> 
+>  	/* Forward interrupt to I2C adapter */
+> -	generic_handle_irq_safe(xe->i2c->adapter_irq);
+> +	if (xe->i2c->smbus_alert)
+> +		xe_i2c_handle_smbus_alert(xe->i2c);
+> +	else
+> +		generic_handle_irq_safe(xe->i2c->adapter_irq);
 
--- 
-Ville Syrjälä
-Intel
+This looks like the else case will never hit since no other platform
+supports irq. Is it on the cards at some point or can we make it obsolete?
+
+Raag
