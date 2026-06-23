@@ -4,95 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201CCCDB470
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 08:42:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55595CDB470
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 09:02:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFF1B10EA05;
-	Tue, 23 Jun 2026 08:42:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD40E10EA23;
+	Tue, 23 Jun 2026 09:02:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=canonical.com header.i=@canonical.com header.b="nO/hURDq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q27LO949";
 	dkim-atps=neutral
-Received: from smtp-relay-internal-1.canonical.com
- (smtp-relay-internal-1.canonical.com [185.125.188.123])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18FFB10EA05
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jun 2026 08:42:07 +0000 (UTC)
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com
- [209.85.210.198])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9D1C83F4B4
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jun 2026 08:42:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20251003; t=1782204125;
- bh=YRUdbfA4V8+mw/54eWhWx7hbp+2WiDaQD/36neeUeQE=;
- h=From:To:Cc:Subject:Date:Message-ID:MIME-Version;
- b=nO/hURDqPv0Hw+LeLdwYSAUk9XCKOBR9X3Z/uIukpBB3qVPz3Pw+1ESZJgjGJ14Pj
- nKO4TdZw5pW1QHKNGOc4HnV3dJxVarsK3IxuDleBCezW0zOPqHvE9C/erIscGYpVjy
- bq52dGJcTAj4QzxwpIjl4Rja+SCm01bq716vSYAFXPaAnlJSsuHh/RSXyidt7d3KAq
- tRNokxpmLunnnuk4TKtjmLpt0pUmKPvTOdjm28W79pIWLL+X4I6vG3n73M54UcEx6f
- amxwZsRaXibaFzggaJ4YcHAhUaBnr+TlH10lCJO0QgS5ZlGMARuGNuLo/BzZO59l3Y
- UBCOlIMc0AZpJ4drsYivLxXMABmq+CvzMwppXP0agREcOcThVUc54DwPW10QMvmKQw
- h+K1xspjEjve9A3kpo4snPags7/TC5pjfCn5aeQfe0hYmBLFPgz+Me5up9PvH2uz92
- macX5KHODPLXe6RDwJf2v0l5ghVB2jplbqqAv5IstVl8q7OtdS9M5sMyPAtEQ8Zh2v
- 0MLn8M3P+WDNaCvgAr1DlOJhh/OaOC1PUR0aBGpGdXzbon1jNpLYGERow5EtQs/GvK
- lHv2moGgCZ3pz3vNoglD686SDlGC1pd6RUDAcOV2qC7cFHjrhJaBROxO4Fe4623vsa
- Pkr2HLigBqiT+hT4YZb5y6j8=
-Received: by mail-pf1-f198.google.com with SMTP id
- d2e1a72fcca58-845338eb797so740603b3a.0
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jun 2026 01:42:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782204124; x=1782808924;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=YRUdbfA4V8+mw/54eWhWx7hbp+2WiDaQD/36neeUeQE=;
- b=UVUEwvcp8WTP2Q7wvFizVwHMw4HqHwiezJMOGKNOMjSQ706MW9V3I0wRejCOTpSdsp
- WQA6yS03rAJ2IEOspklxkTfgOZq7sx2Bs5tSmax1Q4F6dw6KuXtaODeSMjJoFZHyRNtS
- qVfOpltbt4ILR0r0V5LjkD/Bj4P2hdb8FqZ9gPEyuYak52QmWneI35jG7TnQYbDnoRvl
- hkjmqn89SYt/47Eb4MjsAtMXrZNNl3Khhk63B1GKooNg24Jy8L02i4Hu5jcs0To/hIB2
- pakrkpU/x4ztNPD0w9dpR+9ehO51fNEZWPz3HlK80Z3b15XA1KaqD5O0pkAYMMAtqW/+
- ARqw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9LVaClb77/RUlfsOfi3y8X3azeeaEwa6UiKkuMmRDS7KrJrwp7hNjxuFBgnStMZ0f0QLixptsiHQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzrVrpm1amWlv75Jw1CelzqWBcqN01/nSr1EO0qAioQg3wSyBVZ
- L+bSmVAT95nKs2XThaOKZB5BSYqmp7+Ztyl6DnjrNhyS2iAZePTyLpfeXeznSWuLd9QSIdCL2Av
- /9nV6Hxs9oB0VtzhwC5tCSp4M9848gMihyZXJcNWchy7eC6+HIPdrG+wrs6PdUQkKEZ7mZnT2I0
- qHkhgRmLKL
-X-Gm-Gg: AfdE7clAaSAgai79OHkKqttNlQzc3NuZUcDuSLcCmHzrhLVddxR1Ue6Dn5s0oga2HLb
- HLABJQAfNQ4gWsRuk+t0IVelgPtaKiuZjZc2GydMpgFKmIZkd1Vf7kbxZfhE8BUEs22k2y9O2hh
- nsELlxCeDBXrKgLDfdjXO8j6usxb7LcueL3HZv7fFkXJE7O6VgVfqc/5BWnv5bmM4MBOCj3LoZi
- VGx05+klhagV0MRuhAot0Tw920fpfgteo/9t5BC5EZpUZs7B7qMM55ZjuVvzmaRMvX7EYzS5TZC
- tvFFF+rweuTEMCy1coKBE0QEytmhm6hLaTK2KLXchey394ry+my1ZiDt4r1hNrXXFN8gIxs3AOp
- vf2z6nH2AAB8fUxU4vQLyH+OLEUSxYFaAVZTyQtzULPPmAjkavMZnXnGoE9aOwWKP6klUB2veYw
- LEN81gDJI=
-X-Received: by 2002:a05:6a00:21cd:b0:835:447b:a2ac with SMTP id
- d2e1a72fcca58-84591b23f6emr2544152b3a.5.1782204124205; 
- Tue, 23 Jun 2026 01:42:04 -0700 (PDT)
-X-Received: by 2002:a05:6a00:21cd:b0:835:447b:a2ac with SMTP id
- d2e1a72fcca58-84591b23f6emr2544117b3a.5.1782204123617; 
- Tue, 23 Jun 2026 01:42:03 -0700 (PDT)
-Received: from localhost.localdomain ([103.155.100.6])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-84564da30b5sm10828955b3a.25.2026.06.23.01.41.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 Jun 2026 01:42:03 -0700 (PDT)
-From: Aaron Ma <aaron.ma@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE5B410EA21
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jun 2026 09:02:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782205346; x=1813741346;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0OsWPFT24/1A3gVvRtsDb/q1IkfyAEiksm6+VwAVXtc=;
+ b=Q27LO949vFcjWtIMvMgdG54ybbWCP5NlZQvr5DOTbpB5VPxZcZ2Pq8mj
+ yYGP2fQdO0xVSE6xhR6vo95wm+bQPIqdT2dpBngMz6MoQ2KA2JD8to+nz
+ RVdm19SmpkLA9TBy6WMO3HuPsyXdZu9n8H1gOi29k3kvlGzZ4NBPLB0I1
+ 2nT31gaphJ31heboIy9jTtImr+tB1LYOKIsOICxoV/nbOUMw0G4XmOS4R
+ HmHKG4GLDFwqPckOQ9qmPhEnrWAv1h8Dxa6NwP5THl7qOmAfpRlllu2Iv
+ gD+N/xKEGloAfrSSuWLAzopBvqEsXEbuTjobrDlB5PEWPp90LZL5aCpwD A==;
+X-CSE-ConnectionGUID: n/QrAprwQMyWfazfQtxgTA==
+X-CSE-MsgGUID: z1Cwf6v2Sgugld4k1B0fMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="86850156"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="86850156"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 02:02:26 -0700
+X-CSE-ConnectionGUID: z3buD7AQQmuFZ5uAd9qbDw==
+X-CSE-MsgGUID: 8Onl5Nt8TIeZEQseCQGoTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="246547047"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.52])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 02:02:23 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH] drm/i915/psr: Skip PSR exit for legacy cursor updates on LNL
-Date: Tue, 23 Jun 2026 16:41:37 +0800
-Message-ID: <20260623084137.3421894-1-aaron.ma@canonical.com>
-X-Mailer: git-send-email 2.43.0
+ Nikolay Mikhaylov <sonny@milton.pro>, Uma Shankar <uma.shankar@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, stable@vger.kernel.org
+Subject: [PATCH v2] drm/xe/display: consider DPT when WA 22019338487 is active
+Date: Tue, 23 Jun 2026 10:01:56 +0100
+Message-ID: <20260623090155.268763-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -108,37 +70,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-ORIGIN_CURSOR_UPDATE falls through to _psr_flush_handle() on LNL
-(DISPLAY_VER >= 20), which calls intel_psr_exit(). Cursor plane updated
-via legacy ioctl (drmModeMoveCursor) does not dirty the primary
-frontbuffer, no PSR2 state change is needed. Match the existing
-ORIGIN_FLIP behavior by unconditionally returning early.
+WA 22019338487 (22019338487_display) indicates that stolen memory should
+not be used for display allocations on affected platforms (like Lunar
+Lake). In particular we need to be mindful of not hammering stolen over
+the BAR from the host side, like with issuing many writes.
 
-Before this, the psr2_sel_fetch_enabled guard only prevented the early
-return when PSR2 selective fetch was active, sending cursor updates
-through intel_psr_exit() and causing a black line artifact on some
-panels during the exit/re-enable transition.
+While the fbdev allocation in xe_display_bo.c properly respected this
+workaround, the Display Page Table (DPT) allocation in xe_fb_pin.c
+continued to unconditionally attempt to allocate from stolen memory on
+all integrated GPUs.
 
-Fixes: ef39826c12b4 ("drm/i915/display: Fix glitches when moving cursor with PSR2 selective fetch enabled")
-Signed-off-by: Aaron Ma <aaron.ma@canonical.com>
+Check XE_DEVICE_WA(xe, 22019338487_display) before attempting to
+allocate the DPT from stolen memory. If the workaround applies, skip the
+stolen allocation attempt and let the driver naturally fall back to
+allocating from system memory.
+
+Without this we will end up hammering stolen when programming the DPT on
+the host side during the normal operation, which seems to be exactly
+what the WA wants us to avoid.
+
+There are a bunch of users all getting some kind of hard hang in the fb
+pin programming sequence on LNL, so wondering if this could help there.
+
+v2 (Jani):
+  - Invert the WA check. No functional change.
+
+Assisted-by: Gemini:gemini-3.1-pro-preview
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Fixes: 775d0adc01a5 ("drm/xe/fbdev: Limit the usage of stolen for LNL+")
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Nikolay Mikhaylov <sonny@milton.pro>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: <stable@vger.kernel.org> # v6.12+
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index e138982dc91f6..32bee6c03b754 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3771,8 +3771,7 @@ void intel_psr_flush(struct intel_display *display,
- 			goto unlock;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index f93c98bec5b5..8ebb52741ea6 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -20,6 +20,9 @@
+ #include "xe_pat.h"
+ #include "xe_pm.h"
+ #include "xe_vram_types.h"
++#include "xe_wa.h"
++
++#include <generated/xe_device_wa_oob.h>
  
- 		if (origin == ORIGIN_FLIP ||
--		    (origin == ORIGIN_CURSOR_UPDATE &&
--		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
-+		    origin == ORIGIN_CURSOR_UPDATE) {
- 			tgl_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
- 			goto unlock;
- 		}
+ static void
+ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+@@ -172,6 +175,8 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
+ 						   XE_BO_FLAG_GGTT |
+ 						   XE_BO_FLAG_PAGETABLE,
+ 						   pin_params->alignment, false);
++	else if (XE_DEVICE_WA(xe, 22019338487_display))
++		dpt = ERR_PTR(-ENODEV);
+ 	else
+ 		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+ 						   dpt_size,  ~0ull,
 -- 
-2.43.0
+2.54.0
 
