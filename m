@@ -4,57 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DF43CD98F2
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 12:51:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCDB4CD98F2
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 12:57:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0074A10EB38;
-	Tue, 23 Jun 2026 12:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC9910EB38;
+	Tue, 23 Jun 2026 12:57:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJu592yy";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="IRLI3ZAA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FC6E10EB2F;
- Tue, 23 Jun 2026 12:51:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782219106; x=1813755106;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hTgfaBRhjgDfBxzxCSw1yvQXX5lyIS/JipKPBcUzJUI=;
- b=lJu592yyEelfQ2qQe1XA4iHcUhvpbzS1PPnLtI9+odYSHrKeHfRqhx3s
- dhDTR7wbeRmzYS75KGFdNsAMLBCSK/x89edddjxhvv6ZsSvVSy3vp2Vv3
- OLncAeIK1WqjduP2Gtk4IG+0+IGPKT4iNxMkrjjoMMOOBe0M+gAzCQmc6
- Qp4XkE6JILuxJNGirjH8dhsK7rvOHjMsj/tPLfdIxXpzN3bQw6ym8hL+/
- e4yEymvrLaZ4z2fk6Yxjp4XBRc7seu0WxK4+eQq4m1I+ztWaxs+XcvTkx
- ZoH9WVCW5iH9Dy2w5ZojEQ8pePIiTyGCsseVFNRI0CojIN8Gc+w7IQRxD g==;
-X-CSE-ConnectionGUID: gTPc1KNTSbKerjlKGCtnnQ==
-X-CSE-MsgGUID: 1Erj+KO0QRaHRreUvr0B4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="94452731"
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="94452731"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 05:51:46 -0700
-X-CSE-ConnectionGUID: duAzr+EvQGaaSzpDa9NbNQ==
-X-CSE-MsgGUID: 6PslLAXzS6+qybrNgsT/ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="273209924"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.67])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 05:51:44 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/i915/hdmi: Remove CNP port F leftovers
-Date: Tue, 23 Jun 2026 15:51:11 +0300
-Message-ID: <20260623125111.6632-7-ville.syrjala@linux.intel.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F10510EB37;
+ Tue, 23 Jun 2026 12:57:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1782219449;
+ bh=JS0M9r7CwPet/6DU8JqLngOA8EMgWZN5+is1R4jMjvg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=IRLI3ZAAejrmZH7VDmRcARI23Kz1vLDQvdTnBzz3SGNzoFTLNt05T0eCQxNbNJuvv
+ qqTRV1KNPJs7zl9ecIw4NHBtOehTpYcfOTypEZ1mbraYFy3CcH4ID2alexpg1aElxw
+ pTu+b7zTOxEU36lTUL8urHif5dQps8N9FDbEvsnzRDiuo8p0TM0vk7BaJ+6sPV75q7
+ hADRPcExXk5GRdHHtB5op3vExwxKkTigZeGGbsGjf3RFVWbWlXoGglsKSG+ksIzpCg
+ GWtsYfjYqohiwtz4I09LM+Mnt9/zGIZVpoguu2P6Fj9K0zaD4H5Z9W7Nk1WmRqtmyq
+ bGtZG2iYVl5GQ==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v9.5] drm/i915: Disable "busy" pmu event on CONFIG_PREEMPT_RT
+Date: Tue, 23 Jun 2026 14:57:45 +0200
+Message-ID: <20260623125745.179419-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260623125111.6632-1-ville.syrjala@linux.intel.com>
-References: <20260623125111.6632-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260622181044.39335-31-dev@lankhorst.se>
+References: <20260622181044.39335-31-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,30 +52,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+The busyness implementation for guc is incompatible with PMU,
+so disable it to prevent upsetting lockdep.
 
-Since CNL got nuked cnp_encoder_to_ddc_pin() will never
-see a port F. Remove the leftovers.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/i915/i915_pmu.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index f046918fd4bc..8a019d3574df 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2853,9 +2853,6 @@ static u8 cnp_encoder_to_ddc_pin(struct intel_encoder *encoder)
- 	case PORT_D:
- 		ddc_pin = GMBUS_PIN_4;
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 65771e54b9b51..f8bea3ec458d9 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -554,6 +554,9 @@ engine_event_status(struct intel_engine_cs *engine,
+ {
+ 	switch (sample) {
+ 	case I915_SAMPLE_BUSY:
++		/* The guc submission engine->busyness() callback has issues with CONFIG_PREEMPT_RT */
++		if (CONFIG_ENABLED(CONFIG_PREEMPT_RT) && intel_uc_uses_guc_submission(engine->gt->uc))
++			return -ENODEV;
+ 	case I915_SAMPLE_WAIT:
  		break;
--	case PORT_F:
--		ddc_pin = GMBUS_PIN_3;
--		break;
- 	default:
- 		MISSING_CASE(port);
- 		ddc_pin = GMBUS_PIN_1;
+ 	case I915_SAMPLE_SEMA:
 -- 
 2.53.0
 
