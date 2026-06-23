@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED635CDB470
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 09:13:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4EA7CDB470
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jun 2026 09:13:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98D6E10EA2B;
-	Tue, 23 Jun 2026 09:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D7510EA2B;
+	Tue, 23 Jun 2026 09:13:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tygb+bJw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jnu1qWU0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E153510EA2B
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jun 2026 09:13:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1CD710EA2B;
+ Tue, 23 Jun 2026 09:13:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782206011; x=1813742011;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=H67/UKX0qPqaf/5FJvG8OqN2EL3E6gTU+C++rltPvtI=;
- b=Tygb+bJwGPUAey635TUjOh/MnH8awcwvfsRK73kA7zYRl6IsL1RHgsJG
- 8dIhXZ+JDkKolc/hJ8ubiTsPLqnpoJbwYmv6G8pAWc4Cj/p2DKb4pZq7h
- 9WvjpHBbptezOA8d6CJ0AqJosagTTS/XwgQwXB2qAYZ2T/3aXvEPuyJQR
- ot/zZvL5sWT0oCPB15/CVpMAwvQRccKB+0XEbJv1iW/zwuhXL99KPA681
- ZsrzkP9aYCCkaFHWm+DzlsCpxzaeqRVFUPAaEuknWnNEdnqwNqpwjKvaP
- I7jAy3K2REDIpIyyZloBXeaBH39Q+Jdlu730ANaTQUXgMPVjE4bKChHVt g==;
-X-CSE-ConnectionGUID: h1fHh7eVRsKwJW69wniwbA==
-X-CSE-MsgGUID: fZTdjsgRQxW7NYELLv30ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="82949050"
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="82949050"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 02:13:31 -0700
-X-CSE-ConnectionGUID: f1BcAwwnRKSwegU6QLeW8w==
-X-CSE-MsgGUID: NbpvDdsART2WNjrNpS+4JQ==
+ t=1782206036; x=1813742036;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=aJPnT7jtSY9Orv8tcVp+XJHWQex1eAxy52Os3S+gJH4=;
+ b=Jnu1qWU0QM72bbAFZrwzy1qKLGm9BqsaAy79MN/tKpkf5U5EEXFB4yr9
+ bSnu/OT+42XA3I5vU1TRHo2dJgGcPGO1PleswDV0LQggh+0E+krBQBdCy
+ 4hEnaPj7PnGCWnNC/drM6QQr1BJ+mGiA5iogsdq+8jDqzTxc/R2Bxc+Yl
+ tTXM6RlyyGCue2bO7jTG132n8U4JCvmkw4cvlAO9DRzpmrX4FxycQFUZK
+ nr32Xdhdbz6YaqbVQN3bx723BIhmb3kan4akFdHQhPxZUbmJeducJaSwf
+ 220CnfLqPj5ChDkJUqO3m69/ao5NuF4bLGA3rUVqZKR2JJKe99gtgXL39 g==;
+X-CSE-ConnectionGUID: 8IzD6XzGTKy6U31OqC6Dnw==
+X-CSE-MsgGUID: EXt3oAWDTreWIOiXAq6PqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="82948763"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="82948763"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 02:13:56 -0700
+X-CSE-ConnectionGUID: WKCp6T9XTImZ1dkPRngltg==
+X-CSE-MsgGUID: FwixhfvYSmapzGrKE15Acw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="253349162"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.52])
- ([10.245.244.52])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 02:13:30 -0700
-Message-ID: <9883b211-98c6-49a2-9c96-f2048a6c5dcc@intel.com>
-Date: Tue, 23 Jun 2026 10:13:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] drm/xe/mmio: Prefer tile-based WARN message
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.35])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2026 02:13:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-References: <20260622132342.19600-1-michal.wajdeczko@intel.com>
- <20260622132342.19600-7-michal.wajdeczko@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260622132342.19600-7-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Cc: Nemesa Garg <nemesa.garg@intel.com>, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 4/4] drm/i915/dp: Decode dsc max delta bpp from sink dpcd
+In-Reply-To: <20260619113905.1413453-5-nemesa.garg@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260619113905.1413453-1-nemesa.garg@intel.com>
+ <20260619113905.1413453-5-nemesa.garg@intel.com>
+Date: Tue, 23 Jun 2026 12:13:52 +0300
+Message-ID: <111b5aa834e7e94cd9bd487f5583594b21afb803@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,39 +70,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/06/2026 14:23, Michal Wajdeczko wrote:
-> If 64-bit read operations are unstable, use tile-based WARN message
-> to provide more details on which tile this was observed.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+On Fri, 19 Jun 2026, Nemesa Garg <nemesa.garg@intel.com> wrote:
+> Add intel_dp_dsc_max_delta_bppx16() to parse sink dsc max
+> delta bpp from dpcd when DP_DSC_MAX_BPP_DELTA_AVAILABILITY
+> is set. This helper decodes the delta range for both RGB/YCbCr444
+> and YCbCr420 formats from DP_DSC_MAX_BPP_DELTA.
+>
+> With this addition, the flow becomes:
+> 1. First, check for a format-specific range and use it to calculate
+> max compressed bpp.
+> 2. If not, check for sink supported max compressed bpp and
+> use that
+> 3. If this is also not there go with mandatory
+> max range supported bpp.
+>
+> v2: Reorder the check flow for max_bpp. [Ankit]
+> v3: Put RGB and YCbCr444 mask assignment in the same line. [Ankit]
+> v4: Zero max_bpp for reserved RGB/YCbCr444 delta values. [sashiko]
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+for merging via drm-misc-next
 
 > ---
->   drivers/gpu/drm/xe/xe_mmio.c | 5 ++---
->   1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 41e6b753634f..7fa18dfcb5a2 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -11,7 +11,6 @@
->   #include <linux/pci.h>
->   
->   #include <drm/drm_managed.h>
-> -#include <drm/drm_print.h>
->   
->   #include "regs/xe_bars.h"
->   #include "xe_device.h"
-> @@ -315,8 +314,8 @@ u64 xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg)
->   		oldudw = udw;
->   	}
->   
-> -	drm_WARN(&mmio->tile->xe->drm, retries == 0,
-> -		 "64-bit read of %#x did not stabilize\n", reg.addr);
-> +	xe_tile_WARN(mmio->tile, retries == 0,
-> +		     "MMIO: 64-bit read of %#x did not stabilize\n", reg.addr);
->   
->   	return (u64)udw << 32 | ldw;
->   }
+>  drivers/gpu/drm/i915/display/intel_dp.c | 43 +++++++++++++++++++++++--
+>  1 file changed, 41 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 3569e61e7fee..28b887ee5cf1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2184,17 +2184,56 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+>  	return -EINVAL;
+>  }
+>  
+> +static u16 intel_dp_dsc_max_delta_bppx16(const struct intel_connector *connector,
+> +					 enum intel_output_format output_format)
+> +{
+> +	const u8 *dsc_dpcd = connector->dp.dsc_dpcd;
+> +	u8 max_bpp_delta_v1 = dsc_dpcd[DP_DSC_MAX_BPP_DELTA_VERSION_1 - DP_DSC_SUPPORT];
+> +	int max_bpp;
+> +
+> +	if (!(dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
+> +	    DP_DSC_MAX_BPP_DELTA_AVAILABILITY))
+> +		return 0;
+> +
+> +	switch (output_format) {
+> +	case INTEL_OUTPUT_FORMAT_RGB:
+> +	case INTEL_OUTPUT_FORMAT_YCBCR444:
+> +		max_bpp =  max_bpp_delta_v1 & DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK;
+> +		if (max_bpp >= 1 && max_bpp <= 21)
+> +			max_bpp =  max_bpp + DP_DSC_BPP_DELTA_444 - 1;
+> +		else
+> +			max_bpp = 0;
+> +		break;
+> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
+> +		max_bpp = (max_bpp_delta_v1 & DP_DSC_NATIVE_YCbCr420_MAX_BPP_DELTA_MASK) >>
+> +			  DP_DSC_BPP_DELTA_SHIFT_420;
+> +		if (max_bpp >= 1 && max_bpp <= 7)
+> +			max_bpp = max_bpp + DP_DSC_BPP_DELTA_420 - 1;
+> +		break;
+> +	default:
+> +		MISSING_CASE(output_format);
+> +		return 0;
+> +	}
+> +
+> +	return max_bpp << 4;
+> +}
+> +
+>  static
+>  u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connector,
+>  					    enum intel_output_format output_format,
+>  					    int bpc)
+>  {
+> -	u16 max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
+> +	u16 max_bppx16 = intel_dp_dsc_max_delta_bppx16(connector, output_format);
+> +
+> +	if (max_bppx16)
+> +		return max_bppx16;
+> +
+> +	max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
+>  
+>  	if (max_bppx16)
+>  		return max_bppx16;
+>  	/*
+> -	 * If support not given in DPCD 67h, 68h use the Maximum Allowed bit rate
+> +	 * If support not given in DPCD 67h, 68h, 6Eh, 6Fh use the Maximum Allowed bit rate
+>  	 * values as given in spec Table 2-157 DP v2.0
+>  	 */
+>  	switch (output_format) {
 
+-- 
+Jani Nikula, Intel
