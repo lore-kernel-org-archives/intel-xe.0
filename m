@@ -4,66 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43ACCCDB479
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 09:23:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7CDDCDB479
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 09:27:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05D0510EE38;
-	Wed, 24 Jun 2026 09:23:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 805A110EE41;
+	Wed, 24 Jun 2026 09:27:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XVtWEvxQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VhxkMXxm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19D2A10EE39;
- Wed, 24 Jun 2026 09:23:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2175610EE41;
+ Wed, 24 Jun 2026 09:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782292986; x=1813828986;
+ t=1782293236; x=1813829236;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=ER0Ha8/W/1ogI3UhR2iFbBaUkIegTlSxqgNA1aKKQ+Q=;
- b=XVtWEvxQIhFeSv7pjYFWwkB6OMDfK18TROn9pKzHsJaf+MW1U3YSI7x5
- xHJ6nhR0NsJiDCy0BZNVlD+nuTLtivWp4gjE0mm/b13TJigafujliuMyi
- z883c6Q2btEF/lJrRC7Hw/EDfFPqZ2IT5nUDegUEn+lsvEDvfR3D7sSLg
- rHVMrMgKryVbpWmljwqmGXjSGrINqliZVnXMZ6WZS6z7ZuS/8n03fnc4m
- cMT3+a9iOwwImibNeg981XD9C/79wLWZ0QgFBXcZasFNmzOdPfUFRl9nB
- k61ZAdno6yh4FvtBxASPwINEhxnaf6IzwWbS5jk41xND7Uj4raYVzJ4My g==;
-X-CSE-ConnectionGUID: SOKylyyWSGmxuWrmMoNR4w==
-X-CSE-MsgGUID: d0D/S9TARMGJfuYchUbdPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="100473637"
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="100473637"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 02:23:05 -0700
-X-CSE-ConnectionGUID: BxUn7xoeRPSQeDtkX+eq4g==
-X-CSE-MsgGUID: TayrNkd3RB6Ru63uwUvdAA==
+ bh=dI0O288id5nByduVA0CM6QTnd06XGS0SpN64DxnqARQ=;
+ b=VhxkMXxmbm5mi6HJHQ17F33ykbjP83LN7oCkpRB7bVD7Fi1qoN90H4bo
+ x7z+rG4aox0rvp5ChewXFc3vbaB4vpQNSWtOd1RNwWfc4H0L+QxlhE6MR
+ rCys32dkN6dT4685+GPLxXvwuzMfnryWR1TvYNce1kydOr9NjCahYBKt4
+ Nques4dsdsYr8B3TNIm4ba2MKmJn5ceX4ihqz42tqee0NK5GUX7WKwcTV
+ 4LUs5hrhZwiQfbTZrnRn2CfwK3CRE/PtMRQguHlIPTvxcfC+I0Of5RGWS
+ QQXnv/wKl+GEKRLa/xq6xbIrjYKhMgU7r1fboMoxAhV8lWxpZ0OFQWLBy A==;
+X-CSE-ConnectionGUID: Irnx4W+nSOaQ83LgvkH0MA==
+X-CSE-MsgGUID: LckDsjQpQteAOqt233zjNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="86731952"
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="86731952"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 02:27:15 -0700
+X-CSE-ConnectionGUID: XdfY8CY0SduRc8eSn4RE8w==
+X-CSE-MsgGUID: hF6WLbKETgOnCpRIH38j7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="254762946"
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="273854445"
 Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa005.jf.intel.com with ESMTP; 24 Jun 2026 02:23:03 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 24 Jun 2026 02:27:12 -0700
 Received: by black.igk.intel.com (Postfix, from userid 1008)
- id E525295; Wed, 24 Jun 2026 11:23:01 +0200 (CEST)
-Date: Wed, 24 Jun 2026 12:23:00 +0300
+ id 1DADD95; Wed, 24 Jun 2026 11:27:12 +0200 (CEST)
+Date: Wed, 24 Jun 2026 12:27:10 +0300
 From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
  "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Mika Westerberg <mika.westerberg@linux.intel.com>,
  Riana Tauro <riana.tauro@intel.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] drm/xe/i2c: Handler for SMBus Alerts
-Message-ID: <ajuh9K5C3gcDeKwl@kuha>
+Subject: Re: [PATCH v1 2/2] drm/xe/mcu_i2c: Take over control of the
+ controller enabling
+Message-ID: <ajui7vNvhzJSNu9C@kuha>
 References: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
- <20260622114759.3464047-2-heikki.krogerus@linux.intel.com>
- <ajqZXnaU7709IlzA@black.igk.intel.com>
+ <20260622114759.3464047-3-heikki.krogerus@linux.intel.com>
+ <ajpmdQjArQkhQ8fl@ashevche-desk.local>
+ <ajqfH5j58Z8L_XJN@black.igk.intel.com>
+ <ajrL_5cPDIlXcfXP@ashevche-desk.local>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ajqZXnaU7709IlzA@black.igk.intel.com>
+In-Reply-To: <ajrL_5cPDIlXcfXP@ashevche-desk.local>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,37 +80,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 23, 2026 at 04:34:06PM +0200, Raag Jadav wrote:
-> On Mon, Jun 22, 2026 at 01:47:58PM +0200, Heikki Krogerus wrote:
-> > Some devices that are attached to the I2C controller use the
-> > SMBus Alert signal for example to inform the host about
-> > thermal events, so registering the default SMBus Alert
-> > device device for them. The alert device makes sure that
-> 
-> Nit: Duplicate 'device' ;)
-> 
-> > the alert is processed and passed to the correct I2C client
-> > driver.
+On Tue, Jun 23, 2026 at 09:10:07PM +0300, Andy Shevchenko wrote:
+> On Tue, Jun 23, 2026 at 04:58:39PM +0200, Raag Jadav wrote:
+> > On Tue, Jun 23, 2026 at 01:56:53PM +0300, Andy Shevchenko wrote:
+> > > On Mon, Jun 22, 2026 at 01:47:59PM +0200, Heikki Krogerus wrote:
 > 
 > ...
 > 
-> > @@ -182,7 +183,10 @@ void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
-> >  		return;
-> >  
-> >  	/* Forward interrupt to I2C adapter */
-> > -	generic_handle_irq_safe(xe->i2c->adapter_irq);
-> > +	if (xe->i2c->smbus_alert)
-> > +		xe_i2c_handle_smbus_alert(xe->i2c);
-> > +	else
-> > +		generic_handle_irq_safe(xe->i2c->adapter_irq);
+> > > > +#define IC_CON				0x00
+> > > > +#define IC_TAR				0x04
+> > > > +#define IC_SAR				0x08
+> > > > +#define IC_ENABLE			0x6c
+> > > > +#define IC_ENABLE_STATUS		0x9c
+> > > 
+> > > Heh, I would like to have a shared header with the registers, but dunno
+> > > if the prons will weight out the cons.
+> > 
+> > Perhaps something like i2c-algo-pca.h?
 > 
-> This looks like the else case will never hit since no other platform
-> supports irq. Is it on the cards at some point or can we make it obsolete?
+> It's different. It's more device specific header and it doesn't look like
+> a platform data. For SPI PXA2xx we have them in pxa2xx_ssp.h. And we have
+> some device specific i2c headers, seems like the pattern is
+> *_i2c.h, exempli gratia, designware_i2c.h.
 
-I'm not sure yet. Right now it looks like there could be need for it
-later, but I'm just not sure. Let's keep it for now.
+Okay, I'll add a patch the series where I'll move the register
+definitions to include/linux/designware_i2c.h
 
-thanks,
+Cheers,
 
 -- 
 heikki
