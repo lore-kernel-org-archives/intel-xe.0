@@ -4,66 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF326CDB47C
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 11:14:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69DDCCDB479
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 11:16:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8687D10EE9D;
-	Wed, 24 Jun 2026 11:14:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YrcOhbqP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC86F10EE9D;
- Wed, 24 Jun 2026 11:14:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782299649; x=1813835649;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=4Z1i9Z2EfATKkuXzRV/xbJfEP7bd2JhvUbuiK3wcH8I=;
- b=YrcOhbqPhZ7SKifDidlBZBBK30YuMExxU5XvB/EBam5f06U9jyaIKT8J
- 5aUbqY/Q6asDq5EY7hOjMHtzf6r8KM88nG4LvoiMXdma7+3voJ/417dM1
- Dfzb0VSiFqOcJZdnWa9j684oEigwpkkmq8FNLXwmJA1+h0t4Alo2r2AXy
- A58szYXaEiQ3k8UiPvJAUD64fCTf7VyC+rl3vqrlVyrJoC6lb8BZ5EbpU
- I5f8f9eLSANzNjvXoGmqVTUArjHQmKFLYAsEbl/Pfg9hAIF3pbFOQdekd
- uD1XYGv8pfeJi3/lhXRG7tRWoksb5K1FEvJ9PJgicJE9hANiAuI+JPehw g==;
-X-CSE-ConnectionGUID: yBbj8pVDT1S3yiN/fQI0Xw==
-X-CSE-MsgGUID: A91Uq+DdSnWsw8xab9S9lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82827865"
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="82827865"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 04:14:08 -0700
-X-CSE-ConnectionGUID: 5etJSCkMTVeo4aUWC2WejQ==
-X-CSE-MsgGUID: RN0RErp7Rpa2d0PdDje2bQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="254787509"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 04:14:05 -0700
-Date: Wed, 24 Jun 2026 13:14:02 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Heikki Krogerus <heikki.krogerus@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] drm/xe/mcu_i2c: Take over control of the
- controller enabling
-Message-ID: <aju7-s04LShxB-i8@black.igk.intel.com>
-References: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
- <20260622114759.3464047-3-heikki.krogerus@linux.intel.com>
- <ajqaid7CHChu35iR@black.igk.intel.com> <ajut5N-FTomAG5DE@kuha>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 218F510E067;
+	Wed, 24 Jun 2026 11:16:09 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E8E10E067;
+ Wed, 24 Jun 2026 11:16:08 +0000 (UTC)
+Received: from 87-93-171-105.bb.dnainternet.fi ([87.93.171.105]
+ helo=[192.168.101.113])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1wcLaK-000000016aW-3bSv; Wed, 24 Jun 2026 14:16:04 +0300
+Message-ID: <29538d55435f6ddd64d0bcfd2ff4504d74e9ab47.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Wed, 24 Jun 2026 14:15:59 +0300
+In-Reply-To: <20260616200849.3534628-12-imre.deak@intel.com>
+References: <20260616200849.3534628-1-imre.deak@intel.com>
+ <20260616200849.3534628-12-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-9 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ajut5N-FTomAG5DE@kuha>
+Subject: Re: [PATCH v2 11/28] drm/i915/dp_link_caps: Move link config
+ tracking to link_caps
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,38 +45,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 24, 2026 at 01:13:56PM +0300, Heikki Krogerus wrote:
-> On Tue, Jun 23, 2026 at 04:39:05PM +0200, Raag Jadav wrote:
-> > On Mon, Jun 22, 2026 at 01:47:59PM +0200, Heikki Krogerus wrote:
-> > > Some platforms make an assumption that the i2c controller's
-> > > enabled state indicates also the power state of the
-> > > controller. This can create a problem when the controller is
-> > > in disabled state, because the hardware may assume
-> > > incorrectly that it is then also in low-power state.
-> > > 
-> > > To fix this, the controller is kept enabled by taking over
-> > > the IC_ENABLE register. The controller has to be disabled
-> > > when the configuration is updated and when the target
-> > > address or the slave address are assigned, so disabling it
-> > > when IC_CON, IC_TAR or IC_SAR registers are programmed, and
-> > > then re-enabling it again.
-> > 
-> > ...
-> > 
-> > >  static int xe_i2c_read(void *context, unsigned int reg, unsigned int *val)
-> > >  {
-> > >  	struct xe_i2c *i2c = context;
-> > >  
-> > > -	*val = xe_mmio_read32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET));
-> > > +	switch (reg) {
-> > 
-> > Curious, should I expect DW_IC_INTR_MASK case here which skips the MMIO?
-> 
-> Probable not. We have the ACCESS_POLLING flag set, so the
-> i2c-designware will only write 0 to that register. Check
-> __i2c_dw_write_intr_mask().
+On Tue, 2026-06-16 at 23:08 +0300, Imre Deak wrote:
+> Move tracking of the link configurations from struct intel_dp to struct
+> intel_dp_link_caps.
+>=20
+> Previous changes moved the helpers operating on configurations to the
+> link caps module, so the state can now be kept internal to that module.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
 
-Yes, but I'm not sure if all the writes to DW_IC_INTR_MASK have been
-converted to use that helper yet, or did I miss something?
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Raag
+--
+Cheers,
+Luca.
+
+
+
+>  .../drm/i915/display/intel_display_types.h    | 12 -------
+>  .../gpu/drm/i915/display/intel_dp_link_caps.c | 36 ++++++++++++++-----
+>  2 files changed, 27 insertions(+), 21 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index c84ef29529373..443bb3b5e9fa3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1841,18 +1841,6 @@ struct intel_dp {
+>  	struct {
+>  		/* TODO: move the rest of link specific fields to here */
+>  		bool active;
+> -		/* common rate,lane_count configs in bw order */
+> -		int num_configs;
+> -#define INTEL_DP_MAX_LANE_COUNT			4
+> -#define INTEL_DP_MAX_SUPPORTED_LANE_CONFIGS	(ilog2(INTEL_DP_MAX_LANE_COU=
+NT) + 1)
+> -#define INTEL_DP_LANE_COUNT_EXP_BITS		order_base_2(INTEL_DP_MAX_SUPPORTE=
+D_LANE_CONFIGS)
+> -#define INTEL_DP_LINK_RATE_IDX_BITS		(BITS_PER_TYPE(u8) - INTEL_DP_LANE_=
+COUNT_EXP_BITS)
+> -#define INTEL_DP_MAX_LINK_CONFIGS		(DP_MAX_SUPPORTED_RATES * \
+> -						 INTEL_DP_MAX_SUPPORTED_LANE_CONFIGS)
+> -		struct intel_dp_link_config_entry {
+> -			u8 link_rate_idx:INTEL_DP_LINK_RATE_IDX_BITS;
+> -			u8 lane_count_exp:INTEL_DP_LANE_COUNT_EXP_BITS;
+> -		} configs[INTEL_DP_MAX_LINK_CONFIGS];
+>  		/* Max lane count for the current link */
+>  		int max_lane_count;
+>  		/* Max rate for the current link */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/=
+gpu/drm/i915/display/intel_dp_link_caps.c
+> index 6a37ba8c35e27..05ec933c74407 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> @@ -3,10 +3,12 @@
+>   * Copyright =C2=A9 2026 Intel Corporation
+>   */
+> =20
+> +#include <linux/bitops.h>
+>  #include <linux/debugfs.h>
+>  #include <linux/log2.h>
+>  #include <linux/slab.h>
+>  #include <linux/sort.h>
+> +#include <linux/types.h>
+> =20
+>  #include <drm/drm_print.h>
+> =20
+> @@ -18,6 +20,19 @@
+>  struct intel_dp_link_caps {
+>  	struct intel_dp *dp;
+> =20
+> +	/* common rate,lane_count configs in bw order */
+> +	int num_configs;
+> +#define INTEL_DP_MAX_LANE_COUNT			4
+> +#define INTEL_DP_MAX_SUPPORTED_LANE_CONFIGS	(ilog2(INTEL_DP_MAX_LANE_COU=
+NT) + 1)
+> +#define INTEL_DP_LANE_COUNT_EXP_BITS		order_base_2(INTEL_DP_MAX_SUPPORTE=
+D_LANE_CONFIGS)
+> +#define INTEL_DP_LINK_RATE_IDX_BITS		(BITS_PER_TYPE(u8) - INTEL_DP_LANE_=
+COUNT_EXP_BITS)
+> +#define INTEL_DP_MAX_LINK_CONFIGS		(DP_MAX_SUPPORTED_RATES * \
+> +						 INTEL_DP_MAX_SUPPORTED_LANE_CONFIGS)
+> +	struct intel_dp_link_config_entry {
+> +		u8 link_rate_idx:INTEL_DP_LINK_RATE_IDX_BITS;
+> +		u8 lane_count_exp:INTEL_DP_LANE_COUNT_EXP_BITS;
+> +	} configs[INTEL_DP_MAX_LINK_CONFIGS];
+> +
+>  	/*
+>  	 * Forced parameters requested via debugfs. Remains set across sink
+>  	 * disconnects.
+> @@ -118,6 +133,7 @@ static int link_config_cmp_by_bw(const void *a, const=
+ void *b, const void *p)
+> =20
+>  void intel_dp_link_config_init(struct intel_dp *intel_dp)
+>  {
+> +	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>  	struct intel_dp_link_config_entry *lc;
+>  	int num_common_lane_configs;
+> @@ -130,12 +146,12 @@ void intel_dp_link_config_init(struct intel_dp *int=
+el_dp)
+>  	num_common_lane_configs =3D ilog2(intel_dp_max_common_lane_count(intel_=
+dp)) + 1;
+> =20
+>  	if (drm_WARN_ON(display->drm, intel_dp->num_common_rates * num_common_l=
+ane_configs >
+> -				    ARRAY_SIZE(intel_dp->link.configs)))
+> +				    ARRAY_SIZE(link_caps->configs)))
+>  		return;
+> =20
+> -	intel_dp->link.num_configs =3D intel_dp->num_common_rates * num_common_=
+lane_configs;
+> +	link_caps->num_configs =3D intel_dp->num_common_rates * num_common_lane=
+_configs;
+> =20
+> -	lc =3D &intel_dp->link.configs[0];
+> +	lc =3D &link_caps->configs[0];
+>  	for (i =3D 0; i < intel_dp->num_common_rates; i++) {
+>  		for (j =3D 0; j < num_common_lane_configs; j++) {
+>  			lc->lane_count_exp =3D j;
+> @@ -145,21 +161,22 @@ void intel_dp_link_config_init(struct intel_dp *int=
+el_dp)
+>  		}
+>  	}
+> =20
+> -	sort_r(intel_dp->link.configs, intel_dp->link.num_configs,
+> -	       sizeof(intel_dp->link.configs[0]),
+> +	sort_r(link_caps->configs, link_caps->num_configs,
+> +	       sizeof(link_caps->configs[0]),
+>  	       link_config_cmp_by_bw, NULL,
+>  	       intel_dp);
+>  }
+> =20
+>  void intel_dp_link_config_get(struct intel_dp *intel_dp, int idx, int *l=
+ink_rate, int *lane_count)
+>  {
+> +	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>  	const struct intel_dp_link_config_entry *lc;
+> =20
+> -	if (drm_WARN_ON(display->drm, idx < 0 || idx >=3D intel_dp->link.num_co=
+nfigs))
+> +	if (drm_WARN_ON(display->drm, idx < 0 || idx >=3D link_caps->num_config=
+s))
+>  		idx =3D 0;
+> =20
+> -	lc =3D &intel_dp->link.configs[idx];
+> +	lc =3D &link_caps->configs[idx];
+> =20
+>  	*link_rate =3D intel_dp_link_config_rate(intel_dp, lc);
+>  	*lane_count =3D intel_dp_link_config_lane_count(lc);
+> @@ -167,13 +184,14 @@ void intel_dp_link_config_get(struct intel_dp *inte=
+l_dp, int idx, int *link_rate
+> =20
+>  int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_rate,=
+ int lane_count)
+>  {
+> +	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
+>  	int link_rate_idx =3D intel_dp_rate_index(intel_dp->common_rates, intel=
+_dp->num_common_rates,
+>  						link_rate);
+>  	int lane_count_exp =3D ilog2(lane_count);
+>  	int i;
+> =20
+> -	for (i =3D 0; i < intel_dp->link.num_configs; i++) {
+> -		const struct intel_dp_link_config_entry *lc =3D &intel_dp->link.config=
+s[i];
+> +	for (i =3D 0; i < link_caps->num_configs; i++) {
+> +		const struct intel_dp_link_config_entry *lc =3D &link_caps->configs[i]=
+;
+> =20
+>  		if (lc->lane_count_exp =3D=3D lane_count_exp &&
+>  		    lc->link_rate_idx =3D=3D link_rate_idx)
