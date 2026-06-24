@@ -4,36 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94E42CDE00D
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:04:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D80CDE014
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:04:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 384F010F031;
-	Wed, 24 Jun 2026 18:04:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F54710F045;
+	Wed, 24 Jun 2026 18:04:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Z+o/pGWY";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="hRRFR55q";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2564E10F031;
- Wed, 24 Jun 2026 18:04:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33F5710F018;
+ Wed, 24 Jun 2026 18:04:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782324287;
- bh=j+kZhrKGeVLe6Kwb9Av2wRwsLfG3GUrsHoYClLpC+34=;
+ s=default; t=1782324284;
+ bh=Oh1os3TsHNdW2Pq4AI0gYhWG24uRvSoJ0dx3b6zoRio=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Z+o/pGWYlmNjVLNDSFC1tAySQR0Lo4i6sHw4tv8MCGRt3bAal0eCmGWaccLuMUjOX
- zZhPGMMa3faFVv4Z6DwZRhW2puY9GFeku1NMLsvPgm/uxh7iLtAEMul4pkZFF3Y1IK
- ZGY/5Giuoz9tuWNBLJL7MglrlSXieg6mE+Bqbn/NBxiYsTSjHi3qBvVRCYbagWx41F
- hnJ0TmimrHux31TnDhLHw+TJkQldk1PKvdrC+4ka/bLfC2bKSeol+Vq3RSbHzX7/BS
- jAUBKG4GlVP9xV4Ho4cHknDlKGSVgw5C2ohGKH8lo6yl0BJOuWhTZ1PD0YLtct7Z0A
- sxT6pq+JWgWKQ==
+ b=hRRFR55qGHo68fCG+d/HT2cSw472JrST1n7GDC8xAjcIKQJX+OHvcws241GpKNvu7
+ L/yV6vNHw9ly3De/xlXh7sm5+GuSHIR5fLa2mKF6VlHXEBpo5xP07bT/qCCLqWa0S7
+ YlHj5LWE3ZACzKTXxfqxXY09VUzvL1f9b9wOH90FTgHZaUmBbQYx3H97DuYloyqzGe
+ UnmCBe4x7Ly5AvZcHnuXYeXAbngvWrnNM/pwoGQ2Bt9q0GZPxvrSnIYSX4xiWpB+js
+ H93uESPCRtg33rd45vbrzGOI9TK7afRSZoKLd5isFst8B12TXO2bkFuPPYZoM14Ov6
+ 5as4ZnFYHKh/A==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10 19/30] drm/i915/gt: Set stop_timeout() correctly on
- PREEMPT-RT
-Date: Wed, 24 Jun 2026 20:04:46 +0200
-Message-ID: <20260624180459.1024068-20-dev@lankhorst.se>
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v10 16/30] drm/i915: Drop the irqs_disabled() check
+Date: Wed, 24 Jun 2026 20:04:43 +0200
+Message-ID: <20260624180459.1024068-17-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180459.1024068-1-dev@lankhorst.se>
 References: <20260624180459.1024068-1-dev@lankhorst.se>
@@ -53,25 +55,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Also check if RCU is disabled for PREEMPT-RT, which is the case when
-local_bh_disable() is called.
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
+The !irqs_disabled() check triggers on PREEMPT_RT even with
+i915_sched_engine::lock acquired. The reason is the lock is transformed
+into a sleeping lock on PREEMPT_RT and does not disable interrupts.
+
+There is no need to check for disabled interrupts. The lockdep
+annotation below already check if the lock has been acquired by the
+caller and will yell if the interrupts are not disabled.
+
+Remove the !irqs_disabled() check.
+
+Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_request.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c0fd349a4600c..9dd9665128caa 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1607,7 +1607,7 @@ u64 intel_engine_get_last_batch_head(const struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index d2c7b1090df08..f66f8efc70629 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -610,7 +610,6 @@ bool __i915_request_submit(struct i915_request *request)
  
- static unsigned long stop_timeout(const struct intel_engine_cs *engine)
- {
--	if (in_atomic() || irqs_disabled()) /* inside atomic preempt-reset? */
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
- 		return 0;
+ 	RQ_TRACE(request, "\n");
+ 
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
+ 
+ 	/*
+@@ -719,7 +718,6 @@ void __i915_request_unsubmit(struct i915_request *request)
+ 	 */
+ 	RQ_TRACE(request, "\n");
+ 
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
  
  	/*
 -- 
