@@ -4,36 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FD4ACDE01A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB01CDE009
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:05:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 746BD10F065;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB16810F068;
 	Wed, 24 Jun 2026 18:04:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Y/UWAdAB";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Wo3RuYZx";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D7A410F04E;
- Wed, 24 Jun 2026 18:04:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23E7910F05F;
+ Wed, 24 Jun 2026 18:04:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782324288;
- bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
+ s=default; t=1782324289;
+ bh=y7YrR9Jx1PcXUHjRQtEYdpxMBRgSE6y36uz2+nOziO0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Y/UWAdAB932S760R/q/K6bVV639kFrFx5W0bvnM8Z10uwoKPfBbul4xGgFrBk/m/u
- 9IKqXkMGqLq2CgdFGnpy1Qjs/mQiv+74mw11imkigW8gc0jVB7ayGLKdkkBU7A/kwL
- xTZ8Ri4V6BfaYlbUflGEbi9svvLiJKeBioN3HwXHVs6SkRdi5FcFqqN3RUstKY9XHv
- IBy6F+8cff4gKutjjj3p4BKf4zBQ1FCsX7cZ5UtSiqRcv15cmsnsgZd+0C+eM6kRHC
- AK4/XVpW1mOdp3yGTNux6IVjnT2P8GJIj969zi5zRQdBMgIByAqQF6TG54G6b7TYs9
- 4havLPSEBXiLQ==
+ b=Wo3RuYZxVj97IIccbrJR1eYEDg0yuYyizUUHy2SktzmtJamD6UTEAB9aMv+mFNCCk
+ WM1us/Q/1XISMAWupRaL+4QT5GaAELtNCdIUzhqNWbl5eZB1sztBaDR/gNRXnjLuo3
+ H257jpdwPFKL6biKyQ8HkWJb0Ymgjy1w/m0eyytqlFpBJYaCDZacIR5wqjwmKYBSJX
+ gY7iFDWFHLGSiAEZQYOhtNVd4vxkPT1XjKJk9jaMijPToxZU0b1uM6+5BOLK6YdGWI
+ xne1iEgtI04yc6NAh76qKirYoT9ttBnYYy4RZjXE4aGCdLD26/YI8CgAZTkX2vdqJW
+ Oef6YUc18igqw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10 21/30] drm/i915: Use sleeping selftests for igt_atomic on
- PREEMPT_RT
-Date: Wed, 24 Jun 2026 20:04:48 +0200
-Message-ID: <20260624180459.1024068-22-dev@lankhorst.se>
+Subject: [PATCH v10 23/30] PREEMPT_RT injection
+Date: Wed, 24 Jun 2026 20:04:50 +0200
+Message-ID: <20260624180459.1024068-24-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180459.1024068-1-dev@lankhorst.se>
 References: <20260624180459.1024068-1-dev@lankhorst.se>
@@ -53,36 +52,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This makes the i915 selftests slightly happier, especially
-related to GPU reset.
-
-I believe this may be a better approach than trying to convert
-uncore->lock to raw_spinlock
-
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ kernel/Kconfig.preempt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
-index fb506b6990956..8ae39cf570b76 100644
---- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
-@@ -39,7 +39,14 @@ static void __hardirq_end(void)
- 	local_irq_enable();
- }
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index 88c594c6d7fcd..11bec9be95405 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -90,9 +90,9 @@ config PREEMPT_LAZY
+ endchoice
  
-+static void __maybe_unused __nop(void)
-+{}
-+
- const struct igt_atomic_section igt_atomic_phases[] = {
-+#if IS_ENABLED(CONFIG_PREEMPT_RT)
-+	{ "sleeping", __nop, __nop },
-+	{ },
-+#endif
- 	{ "preempt", __preempt_begin, __preempt_end },
- 	{ "softirq", __softirq_begin, __softirq_end },
- 	{ "hardirq", __hardirq_begin, __hardirq_end },
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.53.0
 
