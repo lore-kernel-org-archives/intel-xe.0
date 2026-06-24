@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61412CDB479
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:04:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C94DCDE008
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:04:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DED610F009;
-	Wed, 24 Jun 2026 18:04:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3439210F028;
+	Wed, 24 Jun 2026 18:04:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="OqIk9pxt";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="irvigOAa";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1FDB10F00A;
- Wed, 24 Jun 2026 18:04:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CCE110F026;
+ Wed, 24 Jun 2026 18:04:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782324275;
- bh=x/pMnmGlf0E1qkYHnHqsVenD9HzTf66a+fzX4nCRg38=;
+ s=default; t=1782324279;
+ bh=urxsbtugd8+UdPADq6BZx60lq8D4HcydlFOp3SgwB5E=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=OqIk9pxt9U9p17ZPdbzTli/kea37BtPNPlnO5VRrUj0xOdG2fTixhVhfc0TS5MADN
- LRoqMSEnad8MgiJ2qv6M8NlZIr9yDr57/J+/w15BmSGYfBZo+fUUH8jmJ4mJtp4kFq
- A4SkE55I85G1P6gHCkBIW1/C0TyqeZdGFzaObnmQ+J/YUkX/zsvRqdRQTEEFlhkAEl
- 2hACuBRzvXgHGMN+A2pLXnzjRsZZzS8bhpeUM2PpirMI0xDKFtVZWqlZ+Qbw/JnhNS
- y1oXJApBUzBEE1GuuLl+Yc2TbLdjJ+0qdqz8s0FUO0xzPFXciGMXBZJI6dbVJHaRX0
- IeshZGCQNQ3HQ==
+ b=irvigOAaRavKcQ4534QPW74y6cEu/VcaEH8z0IgQquWlVb28+jiju6wbnJ+6+MnLp
+ le5cqj1xWd6OyYtkGayvlEWH/XkQG3rUD5QlBchvhbr7ZZQEFXGydTNJu89lkb6mGc
+ GJLC45CLeWJdJEaLyD/LPKps1op8dl312huKxlrRiqvcuo7maOakjgAENRhaXNtHgY
+ TTG3GextpbJ1wqt1xKIncfwmfpo2QkJYUAIuSRx5zED3vk1SkxzNBRDyaS+LSydi2F
+ XGAmT+a64PfihrnQeOk7Pi8782bfiwY+qlGoHNdw7ZTaExpztlvtfrAO+G0Xp3WoBO
+ jpBdhVPyeUimA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10 02/30] drm/vblank: Add a 2-stage version of
- drm_crtc_arm_vblank_event
-Date: Wed, 24 Jun 2026 20:04:29 +0200
-Message-ID: <20260624180459.1024068-3-dev@lankhorst.se>
+Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v10 07/30] drm/i915/display: Handle vlv dsi workaround in
+ scanline_in_safe_range too
+Date: Wed, 24 Jun 2026 20:04:34 +0200
+Message-ID: <20260624180459.1024068-8-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180459.1024068-1-dev@lankhorst.se>
 References: <20260624180459.1024068-1-dev@lankhorst.se>
@@ -53,147 +53,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When trying to fix the hardware programming in intel/display, I had
-to take all the vblank locks with local_irqs_disabled(). This
-required converting the entire vblank code to raw spinlocks.
+Now that we have a macro, might as well handle the VLV dsi workaround
+too.
 
-In the alternative approach, do all preparations in advance, and only
-enable the vblank_event with interrupts disabled, this requires only
-a simple write and prevents a complete re-architecture of the code.
+This makes the vblank evasion code slightly more deterministic, by not
+looping with interrupts disabled.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/drm_vblank.c | 64 +++++++++++++++++++++++++++++++++++-
- include/drm/drm_vblank.h     | 14 +++++++-
- 2 files changed, 76 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 36 ++++++++++-----------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index f90fb2d13e423..b52e0215312f8 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1127,12 +1127,71 @@ void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index ca08059e088ea..6f1fa952b5391 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -739,6 +739,24 @@ static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *sc
+ 	else
+ 		*scanline = __intel_get_crtc_scanline(evade->crtc);
  
- 	assert_spin_locked(&dev->event_lock);
- 
-+	WARN_ON(e->postponed);
- 	e->pipe = pipe;
- 	e->sequence = drm_crtc_accurate_vblank_count(crtc) + 1;
- 	list_add_tail(&e->base.link, &dev->vblank_event_list);
- }
- EXPORT_SYMBOL(drm_crtc_arm_vblank_event);
- 
-+/**
-+ * drm_crtc_prepare_arm_vblank_event - arm vblank event *before* pageflip.
-+ * @crtc: the source CRTC of the vblank event
-+ * @e: the event to send
-+ *
-+ * See drm_crtc_arm_vblank_event(). This function is a 2-stage version of
-+ * that call. This function is called *BEFORE* programming the hardware.
-+ *
-+ * After programming, call drm_crtc_arm_prepared_vblank_event() and the
-+ * event will be scheduled on the next vblank.
-+ *
-+ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
-+ * with interrupts disabled, since all vblank spinlocks are converted to
-+ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
-+ *
-+ * It also increases determinism for any hardware
-+ * programming, since no vblank related locks are taking when arming.
-+ */
-+void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
-+				       struct drm_pending_vblank_event *e)
-+{
-+	drm_crtc_arm_vblank_event(crtc, e);
-+
-+	/* Set the flag, so that the event is not fired yet */
-+	e->postponed = true;
-+}
-+EXPORT_SYMBOL(drm_crtc_prepare_arm_vblank_event);
-+
-+/**
-+ * drm_crtc_arm_prepared_vblank_event - arm prepared vblank event *after* pageflip.
-+ * @crtc: the source CRTC of the vblank event
-+ * @e: the event to send
-+ *
-+ * See drm_crtc_prepare_arm_vblank_event(). This function is a 2-stage version of
-+ * that call. This function is called directly *AFTER* programming the hardware.
-+ *
-+ * Before this function is called, drm_crtc_prepare_arm_vblank_event() should be
-+ * called instead.
-+ *
-+ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
-+ * with interrupts disabled, since all vblank spinlocks are converted to
-+ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
-+ *
-+ * It also increases determinism for any hardware
-+ * programming, since no vblank related locks are taking when arming.
-+ */
-+void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e)
-+{
-+	WARN_ON(!e->postponed);
-+
-+	/* Ensure previous writes are visible */
-+	smp_wmb();
-+
-+	/* remove the flag to be processed as a normal event */
-+	WRITE_ONCE(e->postponed, false);
-+}
-+EXPORT_SYMBOL(drm_crtc_arm_prepared_vblank_event);
-+
- /**
-  * drm_crtc_send_vblank_event - helper to send vblank event after pageflip
-  * @crtc: the source CRTC of the vblank event
-@@ -1390,6 +1449,8 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
- 		if (e->pipe != pipe)
- 			continue;
-+
-+		WARN_ON(e->postponed);
- 		drm_dbg_core(dev, "Sending premature vblank event on disable: "
- 			     "wanted %llu, current %llu\n",
- 			     e->sequence, seq);
-@@ -1892,7 +1953,8 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
- 	seq = drm_vblank_count_and_time(dev, pipe, &now);
- 
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
--		if (e->pipe != pipe)
-+		/* Matches WRITE_ONCE in drm_crtc_arm_prepared_vblank_event() */
-+		if (e->pipe != pipe || READ_ONCE(e->postponed))
- 			continue;
- 		if (!drm_vblank_passed(seq, e->sequence))
- 			continue;
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index 2fcef9c0f5b1b..956d5621eb7f9 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -53,6 +53,13 @@ struct drm_pending_vblank_event {
- 	 * @sequence: frame event should be triggered at
- 	 */
- 	u64 sequence;
-+
-+	/**
-+	 * @postponed: whether drm_crtc_prepare_arm_vblank_event() is called,
-+	 * and drm_crtc_arm_prepared_vblank_event has yet to be called to arm.
++	/*
++	 * On VLV/CHV DSI the scanline counter would appear to
++	 * increment approx. 1/3 of a scanline before start of vblank.
++	 * The registers still get latched at start of vblank however.
++	 * This means we must not write any registers on the first
++	 * line of vblank (since not the whole line is actually in
++	 * vblank). And unfortunately we can't use the interrupt to
++	 * wait here since it will fire too soon. We could use the
++	 * frame start interrupt instead since it will fire after the
++	 * critical scanline, but that would require more changes
++	 * in the interrupt code. So for now we'll just do the nasty
++	 * thing and poll for the bad scanline to pass us by.
++	 *
++	 * FIXME figure out if BXT+ DSI suffers from this as well
 +	 */
-+	bool postponed;
++	if (evade->need_vlv_dsi_wa && *scanline == evade->vblank_start)
++		return false;
 +
- 	/**
- 	 * @event: Actual event which will be sent to userspace.
- 	 */
-@@ -294,7 +301,12 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime);
- void drm_crtc_send_vblank_event(struct drm_crtc *crtc,
- 			       struct drm_pending_vblank_event *e);
- void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
--			      struct drm_pending_vblank_event *e);
-+			       struct drm_pending_vblank_event *e);
-+
-+void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
-+				       struct drm_pending_vblank_event *e);
-+void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e);
-+
- void drm_vblank_set_event(struct drm_pending_vblank_event *e,
- 			  u64 *seq,
- 			  ktime_t *now);
+ 	return *scanline < evade->min || *scanline > evade->max;
+ }
+ 
+@@ -769,24 +787,6 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 		local_irq_disable();
+ 	}
+ 
+-	/*
+-	 * On VLV/CHV DSI the scanline counter would appear to
+-	 * increment approx. 1/3 of a scanline before start of vblank.
+-	 * The registers still get latched at start of vblank however.
+-	 * This means we must not write any registers on the first
+-	 * line of vblank (since not the whole line is actually in
+-	 * vblank). And unfortunately we can't use the interrupt to
+-	 * wait here since it will fire too soon. We could use the
+-	 * frame start interrupt instead since it will fire after the
+-	 * critical scanline, but that would require more changes
+-	 * in the interrupt code. So for now we'll just do the nasty
+-	 * thing and poll for the bad scanline to pass us by.
+-	 *
+-	 * FIXME figure out if BXT+ DSI suffers from this as well
+-	 */
+-	while (evade->need_vlv_dsi_wa && scanline == evade->vblank_start)
+-		scanline = intel_get_crtc_scanline(crtc);
+-
+ 	return scanline;
+ }
+ 
 -- 
 2.53.0
 
