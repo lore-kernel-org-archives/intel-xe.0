@@ -4,68 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83F46CDB47C
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 10:14:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03EF4CDB47C
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 10:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4284610EE5E;
-	Wed, 24 Jun 2026 10:14:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B23F10EE84;
+	Wed, 24 Jun 2026 10:31:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cb1UhANJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c/pdAAqg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C516310EE6A;
- Wed, 24 Jun 2026 10:14:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDFE710EE7D;
+ Wed, 24 Jun 2026 10:31:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782296042; x=1813832042;
- h=date:to:cc:subject:message-id:references:mime-version:
- in-reply-to:from;
- bh=qdlq6hba7pUusRaImB9v9jjJNCh0CdFKio3R9kCkqvU=;
- b=cb1UhANJD1yCWt32cfuhO2bQVFbxQk0b1yQ2QrsJZjPSQlo5XDM5Lp9b
- JVcPWxTgSSyUtxa2DgJaGOs37AvG1wfLB7cPz0CGHpY2UJ6v+/7QZdOgb
- gqfequiD/m/QRgHpAtpTm9FA8XBpg9nSgwxyD9ib46MHn5P6gwUFAIqPd
- D7yuneUwP93fGXnG05xghuZKRXQXYgxPFPtboEc2lc9NSmjGJeIBZK1KB
- 0eUk0UZsXFjaRbafPpnKRp6Q+lFGMC+q7B0RpHDDnfALVxqwFp0tLYliL
- h5bXvEAlKsx9dayai5dxBdjnZBRDBHaLrXDjv2psx0BvyWwMiPMD6hkSY A==;
-X-CSE-ConnectionGUID: sWZgOoF1Qwu+XZ3t05N6zQ==
-X-CSE-MsgGUID: ZV6zrJg3Qlm0NrHh7RrGzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82925091"
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="82925091"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 03:14:02 -0700
-X-CSE-ConnectionGUID: bXmnm89bST2CeeccQjTeLg==
-X-CSE-MsgGUID: 924S/CsuRYC0LULGuH/zSA==
+ t=1782297111; x=1813833111;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DtJ/CNN9GumTvr2hAj6sRgQ9MHu53c3lB1R067sVku8=;
+ b=c/pdAAqgNnSqHxYEADCgqwqiXxMMAlZfV6+TclF6uviA63in/Q+eu0o2
+ 8G2YYXMry8WTCu7vDb3WTrSYhVQhzpraWHvP1KdbwmhthtJOgPEp3X9RK
+ o4W9ZIUrBo9W4Ey7nGNs4rBublR/m2VFjUcosa0llTsW7bxXYNHXmWzQg
+ F+KTDZ4QM8JqeCPG7NsKKCdj2MOfA1TFpP7KzV11iSooieONVYpKxWAI5
+ CMrbF7XAgAVG3EQlVVe2qklpXJZejAZYuGuKQwdQPsFNP/5kUCduZhFV3
+ qXVEgq7OFZCZIcFUwuX3ELL8yoIQq9/RpRsmXnSSA6SV6G6cFPGC62RMw Q==;
+X-CSE-ConnectionGUID: AUr9s5GzRc+xOagyIMuimQ==
+X-CSE-MsgGUID: ViBzy96DQJ6TpwulJLLGbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="86898254"
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="86898254"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 03:31:50 -0700
+X-CSE-ConnectionGUID: gZSgSSrXSQGPs8UD06tZCg==
+X-CSE-MsgGUID: lU/PpAQQT8efGMJ9IEQrjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="273873653"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa001.fm.intel.com with ESMTP; 24 Jun 2026 03:13:59 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1008)
- id B4CC395; Wed, 24 Jun 2026 12:13:57 +0200 (CEST)
-Date: Wed, 24 Jun 2026 13:13:56 +0300
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] drm/xe/mcu_i2c: Take over control of the
- controller enabling
-Message-ID: <ajut5N-FTomAG5DE@kuha>
-References: <20260622114759.3464047-1-heikki.krogerus@linux.intel.com>
- <20260622114759.3464047-3-heikki.krogerus@linux.intel.com>
- <ajqaid7CHChu35iR@black.igk.intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="253690412"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.244])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 03:31:48 -0700
+Date: Wed, 24 Jun 2026 13:31:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: =?iso-8859-1?Q?Gabr=EDel_Arth=FAr_P=E9tursson?=
+ <gabriel.petursson@jbtmarel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "tursulin@ursulin.net" <tursulin@ursulin.net>
+Subject: Re: [PATCH] drm/i915: Calculate CDCLK on modeset after sanitizing
+ pre-os programming
+Message-ID: <ajuyD3vOdMdvbGqx@intel.com>
+References: <AM9PR06MB78601E2636164181A4689CC281EF2@AM9PR06MB7860.eurprd06.prod.outlook.com>
+ <ajqXK-fZnty-YGCK@intel.com>
+ <178228365985.16303.14222363163462260344@jlahtine-mobl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ajqaid7CHChu35iR@black.igk.intel.com>
-rom: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-From: Heikki Krogerus <heikki.krogerus@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <178228365985.16303.14222363163462260344@jlahtine-mobl>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,37 +81,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 23, 2026 at 04:39:05PM +0200, Raag Jadav wrote:
-> On Mon, Jun 22, 2026 at 01:47:59PM +0200, Heikki Krogerus wrote:
-> > Some platforms make an assumption that the i2c controller's
-> > enabled state indicates also the power state of the
-> > controller. This can create a problem when the controller is
-> > in disabled state, because the hardware may assume
-> > incorrectly that it is then also in low-power state.
+On Wed, Jun 24, 2026 at 09:47:39AM +0300, Joonas Lahtinen wrote:
+> Quoting Ville Syrjälä (2026-06-23 17:24:43)
+> > This smells like the same thing I already fixed with
+> > commit 3f9de66f8acb ("drm/i915/cdclk: Fix up CDCLK_FREQ_DECIMAL
+> > without a full PLL re-enable")
 > > 
-> > To fix this, the controller is kept enabled by taking over
-> > the IC_ENABLE register. The controller has to be disabled
-> > when the configuration is updated and when the target
-> > address or the slave address are assigned, so disabling it
-> > when IC_CON, IC_TAR or IC_SAR registers are programmed, and
-> > then re-enabling it again.
+> > Sadly it looks like I forgot to cc:stable it :/
+> > 
+> > Jani, can you pick that up for -fixes and slap a cc:stable on it?
 > 
-> ...
-> 
-> >  static int xe_i2c_read(void *context, unsigned int reg, unsigned int *val)
-> >  {
-> >  	struct xe_i2c *i2c = context;
-> >  
-> > -	*val = xe_mmio_read32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET));
-> > +	switch (reg) {
-> 
-> Curious, should I expect DW_IC_INTR_MASK case here which skips the MMIO?
+> I'll include it in drm-intel-next-fixes, do we have a
+> Fixes: tag to add?
 
-Probable not. We have the ACCESS_POLLING flag set, so the
-i2c-designware will only write 0 to that register. Check
-__i2c_dw_write_intr_mask().
+It's been basically broken forever so the correct fixes
+tags probably aren't super useful.
 
-Thanks,
+However the nastier user visible regression happened in 
+commit ba91b9eecb47 ("drm/i915/cdclk: Decouple cdclk from
+state->modeset") which therefore might make sense as a
+fixes tag. But if we put that in then I'm worried that it
+won't get backported to older kernels. I guess we could throw
+that in there along with the ancient commits that actually
+introduced the problem.
+
+So something along the lines of:
+Fixes: ba91b9eecb47 ("drm/i915/cdclk: Decouple cdclk from state->modeset")
+Fixes: d66a21947e21 ("drm/i915/bxt: Sanitize CDCLK to fix breakage during S4 resume")
+Fixes: c73666f394fc ("drm/i915/skl: If needed sanitize bios programmed cdclk")
 
 -- 
-heikki
+Ville Syrjälä
+Intel
