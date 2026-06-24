@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A399BCDE007
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:04:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01712CDE00A
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:04:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3463D10F032;
-	Wed, 24 Jun 2026 18:04:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2D0310F030;
+	Wed, 24 Jun 2026 18:04:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="RDIU5rLB";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="JCMqnJVo";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86A010E0D9;
- Wed, 24 Jun 2026 18:04:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6214510F029;
+ Wed, 24 Jun 2026 18:04:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782324276;
- bh=SmCb7iPHg2+9A/ixj9TBOSkQYHIyXxixNZ3hoWoXINI=;
+ s=default; t=1782324280;
+ bh=07jvFRigIF4c2WP1/tQ0UqgvxYpJAG8Jfl5912+WIUE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RDIU5rLBhZ4tZPMOaNsP/aT3IrwuJRrbEoxjTl0RtIwM7U+xZN7sSS9NfvE/+/TRS
- YJ23NdhKU5Pe5+hIX7a8Bp3mb6MYlthutgUoe0Mzsp0YPLmTnUGLhQNtOde8jxhDqB
- BDsSgtNXcFGaFIwLcdSJ9DNuh3bXyhhu0L1KqOTI+lBmBfdt97dYOt1yh6uciz1w4T
- qfHb0bZOR5hMa+OkerCtMHDb0kHXIoOVoS/PaRtUoeFM8jfeRfrjyo1nnZGCzNSXBN
- 2LcqnAx7Z33OAtGscffd10TF6aL/Nax5tQ8YS3Is5yF7iznk9YQ4rJYShzjt4h4dE6
- JMPf6ncCe0hng==
+ b=JCMqnJVoHVNLE8ehdObfdK6RZFJhQSl2Z4aQbHKazsPxEA2DdxWlDXmFGJCldiO8n
+ ZOvYzVjafHFRmWLNLJgzAbyX/gpjcDR+QXkmfxB5nLEfjnb0dWG+WZr6DCghYS8fwF
+ 1WNBfs6KEBEUCbdZYsAB2Uon21sqi3GFNuQ82m4F45PRPNxw6FHAUESUuSVsT7v899
+ Y6/nYbkKjy6JCSzpBziT6HjdI4Qd8Vu8CMl3ct6UsXhh/Z3hd9QfTTclkRRiI+uLXw
+ zlVFatPY2OjycSD4DzGPllkgiZUmGxD6/OLaa9IlEJXUZco44XtxoejC286asiOy8c
+ gcFHpZ0S2cVyg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10 03/30] drm/intel/display: Make intel_crtc_arm_vblank_event
- static
-Date: Wed, 24 Jun 2026 20:04:30 +0200
-Message-ID: <20260624180459.1024068-4-dev@lankhorst.se>
+Subject: [PATCH v10 09/30] drm/i915/display: Make get_vblank_counter use
+ intel_de_read_fw()
+Date: Wed, 24 Jun 2026 20:04:36 +0200
+Message-ID: <20260624180459.1024068-10-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180459.1024068-1-dev@lankhorst.se>
 References: <20260624180459.1024068-1-dev@lankhorst.se>
@@ -53,39 +53,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Only used inside intel_crtc.c now, so no need to export it any more.
+Fixes the following lockdep splat on PREEMPT_RT:
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+<3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
+<3> preempt_count: 1, expected: 0
+<3> RCU nest depth: 0, expected: 0
+<4> 11 locks held by xe_module_load/1373:
+<4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
+<4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
+<4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
+<4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
+<4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
+<4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
+<4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
+<4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+<4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
+
+This splat will happen otherwise on all tracepoints too, for similar reasons.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
- drivers/gpu/drm/i915/display/intel_crtc.h | 1 -
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 10ed9bdfee763..805645318747f 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -684,7 +684,7 @@ static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end)
- static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end) {}
- #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 07dca05332e5b..c0cc0a4c25dbe 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -132,7 +132,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+ 	if (!vblank->max_vblank_count)
+ 		return 0;
  
--void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state)
-+static void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	unsigned long irqflags;
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-index 12507b51ee77e..f65cbafe2b42a 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.h
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-@@ -33,7 +33,6 @@ int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
- 			     int usecs);
- int intel_scanlines_to_usecs(const struct drm_display_mode *adjusted_mode,
- 			     int scanlines);
--void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state);
- void intel_crtc_prepare_vblank_event(struct intel_crtc_state *crtc_state,
- 				     struct drm_pending_vblank_event **event);
- u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state);
+-	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
++	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+ }
+ 
+ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
 -- 
 2.53.0
 
