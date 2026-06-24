@@ -4,39 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35EFDCDB479
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:04:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FD4ACDE01A
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 18:05:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45C6910F047;
-	Wed, 24 Jun 2026 18:04:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 746BD10F065;
+	Wed, 24 Jun 2026 18:04:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="RxmBcz65";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Y/UWAdAB";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71D6910F042;
- Wed, 24 Jun 2026 18:04:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D7A410F04E;
+ Wed, 24 Jun 2026 18:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782324284;
- bh=Q8sFpW0LaWK/Smzuxt/7dTEculaPVCfQO31xaLLhI2w=;
+ s=default; t=1782324288;
+ bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RxmBcz65riGxH8gBcw/hTQf0U7RskozlYSiOc8IzdY4Oz/9f4VI5WIZbx/+m8NuIS
- H5uCBnSZgH7y04znpEPnpmZzJ/8/DLQRGDTT3USZ2vQPf9aYK4w4Wn4kDfIQrnptkW
- Aky+a5daa9HNIBcO0eXXCsue/l2a42R8qY7ZkjaYIvoNwTVSKM6vVJJdO7Nhv08Wpn
- zxDGqu+wPUwOVh4Sn/H/gDYjyusWeQ6c190JqC0e6UTtvTcJPxOjY2rl4mR+mEojLD
- AbXUR66bcn4Ljbi4W7q1HpeuVZYKQMnY91mRu2pGdLJuFcz0PappToWC6qvQgbxu06
- xytt4rBz7g3nw==
+ b=Y/UWAdAB932S760R/q/K6bVV639kFrFx5W0bvnM8Z10uwoKPfBbul4xGgFrBk/m/u
+ 9IKqXkMGqLq2CgdFGnpy1Qjs/mQiv+74mw11imkigW8gc0jVB7ayGLKdkkBU7A/kwL
+ xTZ8Ri4V6BfaYlbUflGEbi9svvLiJKeBioN3HwXHVs6SkRdi5FcFqqN3RUstKY9XHv
+ IBy6F+8cff4gKutjjj3p4BKf4zBQ1FCsX7cZ5UtSiqRcv15cmsnsgZd+0C+eM6kRHC
+ AK4/XVpW1mOdp3yGTNux6IVjnT2P8GJIj969zi5zRQdBMgIByAqQF6TG54G6b7TYs9
+ 4havLPSEBXiLQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <williams@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10 15/30] drm/i915/gt: Use spin_lock_irq() instead of
- local_irq_disable() + spin_lock()
-Date: Wed, 24 Jun 2026 20:04:42 +0200
-Message-ID: <20260624180459.1024068-16-dev@lankhorst.se>
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v10 21/30] drm/i915: Use sleeping selftests for igt_atomic on
+ PREEMPT_RT
+Date: Wed, 24 Jun 2026 20:04:48 +0200
+Message-ID: <20260624180459.1024068-22-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180459.1024068-1-dev@lankhorst.se>
 References: <20260624180459.1024068-1-dev@lankhorst.se>
@@ -56,94 +53,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+This makes the i915 selftests slightly happier, especially
+related to GPU reset.
 
-execlists_dequeue() is invoked from a function which uses
-local_irq_disable() to disable interrupts so the spin_lock() behaves
-like spin_lock_irq().
-This breaks PREEMPT_RT because local_irq_disable() + spin_lock() is not
-the same as spin_lock_irq().
+I believe this may be a better approach than trying to convert
+uncore->lock to raw_spinlock
 
-execlists_dequeue_irq() and execlists_dequeue() has each one caller
-only. If intel_engine_cs::active::lock is acquired and released with the
-_irq suffix then it behaves almost as if execlists_dequeue() would be
-invoked with disabled interrupts. The difference is the last part of the
-function which is then invoked with enabled interrupts.
-I can't tell if this makes a difference. From looking at it, it might
-work to move the last unlock at the end of the function as I didn't find
-anything that would acquire the lock again.
-
-Reported-by: Clark Williams <williams@redhat.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- .../drm/i915/gt/intel_execlists_submission.c    | 17 +++++------------
- 1 file changed, 5 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 1359fc9cb88ef..e11db81dca9c5 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1300,7 +1300,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * and context switches) submission.
- 	 */
- 
--	spin_lock(&sched_engine->lock);
-+	spin_lock_irq(&sched_engine->lock);
- 
- 	/*
- 	 * If the queue is higher priority than the last
-@@ -1400,7 +1400,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				 * Even if ELSP[1] is occupied and not worthy
- 				 * of timeslices, our queue might be.
- 				 */
--				spin_unlock(&sched_engine->lock);
-+				spin_unlock_irq(&sched_engine->lock);
- 				return;
- 			}
- 		}
-@@ -1426,7 +1426,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 		if (last && !can_merge_rq(last, rq)) {
- 			spin_unlock(&ve->base.sched_engine->lock);
--			spin_unlock(&engine->sched_engine->lock);
-+			spin_unlock_irq(&engine->sched_engine->lock);
- 			return; /* leave this for another sibling */
- 		}
- 
-@@ -1588,7 +1588,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 */
- 	sched_engine->queue_priority_hint = queue_prio(sched_engine);
- 	i915_sched_engine_reset_on_empty(sched_engine);
--	spin_unlock(&sched_engine->lock);
-+	spin_unlock_irq(&sched_engine->lock);
- 
- 	/*
- 	 * We can skip poking the HW if we ended up with exactly the same set
-@@ -1614,13 +1614,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	}
+diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+index fb506b6990956..8ae39cf570b76 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
++++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+@@ -39,7 +39,14 @@ static void __hardirq_end(void)
+ 	local_irq_enable();
  }
  
--static void execlists_dequeue_irq(struct intel_engine_cs *engine)
--{
--	local_irq_disable(); /* Suspend interrupts across request submission */
--	execlists_dequeue(engine);
--	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
--}
--
- static void clear_ports(struct i915_request **ports, int count)
- {
- 	memset_p((void **)ports, NULL, count);
-@@ -2475,7 +2468,7 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
- 	}
- 
- 	if (!engine->execlists.pending[0]) {
--		execlists_dequeue_irq(engine);
-+		execlists_dequeue(engine);
- 		start_timeslice(engine);
- 	}
- 
++static void __maybe_unused __nop(void)
++{}
++
+ const struct igt_atomic_section igt_atomic_phases[] = {
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	{ "sleeping", __nop, __nop },
++	{ },
++#endif
+ 	{ "preempt", __preempt_begin, __preempt_end },
+ 	{ "softirq", __softirq_begin, __softirq_end },
+ 	{ "hardirq", __hardirq_begin, __hardirq_end },
 -- 
 2.53.0
 
