@@ -4,163 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A58C2CDB471
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 11:51:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75D05CDE002
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jun 2026 11:53:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51EAE10E073;
-	Wed, 24 Jun 2026 11:51:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3539810E073;
+	Wed, 24 Jun 2026 11:53:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gh6sJtrD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M1n5PtIJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A972210E073
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jun 2026 11:51:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA3110E073
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jun 2026 11:53:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782301894; x=1813837894;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ctugkUb4q6nbN/w6QQ8i2lY8chuvhJbH25Y4KH8r/JE=;
- b=Gh6sJtrDrQHm0IFzqND5wMU2pKZZVMw0ECBN9CXu9DT5wFyqvQpebLS9
- Kc52x2vNVofQVOtkLl0JB4WKB7P4Pi94+nQPqPlNfe/0popVj6sOhsMlU
- iesYh5iwmZUN7BsmMIIm6ZVBzqVxSSsLnuAst5whNiqO2eybwSC0nw6Pj
- 3QFF7+YDqahVUfFNkfS9kbvtOr2atAkyKSR9p3zSRJ7qqMfvCs4dayfTU
- g0I/+M228x3adv7aevU86zN2vaaJfsuwG/rxQsdg1Ac0WDvUqjaAbL5Oy
- h4VwxzyExHgiD5sNIWa3Db3eNXb/bk4Baijx7/8aXldsU+h9SmKyj3tyj Q==;
-X-CSE-ConnectionGUID: CghqxKIgQ76FWYVGA997jQ==
-X-CSE-MsgGUID: LINQShWlSU6qqkeKzUoWGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="93417825"
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="93417825"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 04:51:34 -0700
-X-CSE-ConnectionGUID: l7ZHPvtpQgKIJpuj9CwB9Q==
-X-CSE-MsgGUID: u/wjbe8EStu/F4WICGL8Sw==
+ t=1782301988; x=1813837988;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=fWKUp81b8eCCANganXpfwvPkb03xlbOFtHS0mi5PUQU=;
+ b=M1n5PtIJMCnC5TuzY39gOlGLF1bruBN2cAALAIEIFObZSd79r4CW1WXE
+ GDybdx8vFk1ycFal8cznmWp6GITlVhHjF2duIPL2ixWc07XBYlegj49kY
+ 7ILfaooEXx6sMwwmVUum2d5PowCNttHFWFlulROrFTqHFTjcU5AaLibdb
+ FhBVtX7yUuLp6EkSqNwQL7rKmOgbL4vuniZ0ETm9434zmsb96tGweEFu6
+ 3Dk64u7gWVRavItVtMQ/HESDjnbbYFBXxznpoR279R0Rqq9kY0liSALpL
+ YryTCVh3kQUTCEqeNEVWdrD1DPbedoFNAy5tzbSxfENgs0FydyByN+cfG g==;
+X-CSE-ConnectionGUID: FQ4tuImcT/Gw6yXBsdn33Q==
+X-CSE-MsgGUID: cP3QtyOsTRaMJShcbtIriA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="83181616"
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="83181616"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 04:53:07 -0700
+X-CSE-ConnectionGUID: MP/VXHOBRWi14Ia8c2AzLQ==
+X-CSE-MsgGUID: oSdIfIAXTnO5DOxVdlkS4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="254191409"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 04:51:33 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 24 Jun 2026 04:51:32 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 24 Jun 2026 04:51:32 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.51) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 24 Jun 2026 04:51:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kp/sWKggmijc5IRWrgV78rBAkryAC4zlFEOoh/Xl6lFGdmE2G7BkWNLfKQitbyciLR86xPpaPDz4ykauNAErKIMX+U0rJE6CLWsEiK8zlR04X+oaI0eEMbsw+FXpkgFJGVzOSUI+nwdBFTrlc+tNLWtVSTGuOOsy04hsN7+70SXRk2GtkIX5D3Wnqtu+4KWbG6e7ZAY8g22T8dgWcpUvWLRDGDPmHsbDMMF5hUJx8RWMnsCzb7F/oDhnROlUMmP/qvpzy0UGPpad49fHEVB7X1W9lEfKjkRRJeboPB4Tit97otjq/ojpzyVT5Qi5jI1jnsKMssHAVpTQ/PXMkFS5yQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A7XGAQ++s/m8uvQ1C2WdsjBZ3xAgngCKWNHBxZlChzs=;
- b=f6G87ksNFFI4vPSvwZvtgGsirMsguEuPCjfOIPJchSd7Z4UWiWwbfRmPz2rUAh2dKi6k1mO/oHQFrcJFGGi2Mj1oP6wihNNCnj3MljdyZqB82Osh7Ml0V9hfCWwzwPWSO/VJWMMkl8Eq43Y8gazI8uPCPSnQVOXfasf+402p6cxK9k2QRUCBcaGK2SB+zpYu9CJht4MzJvQDhY5LnWC4okuL5QhOIbPh9fCpCpm8E34Na8qb5sDY/Dj5OBNnDd9d06s6viL+jcXs0/EUrvgKyprMJt3TIgrKi47A7OTq0/Q2uiRgPgFUtvP6iCZsZmStuoyB692lnNXWqc46ZG8WrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by BL4PR11MB8845.namprd11.prod.outlook.com (2603:10b6:208:5aa::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Wed, 24 Jun
- 2026 11:51:29 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.21.0159.012; Wed, 24 Jun 2026
- 11:51:29 +0000
-Message-ID: <c06980ee-87ca-4cf8-b5f0-214486eb989b@intel.com>
-Date: Wed, 24 Jun 2026 17:21:19 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 1/3] drm/xe: Add error Signature IDs for RAS logging
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <matthew.brost@intel.com>, <thomas.hellstrom@linux.intel.com>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <vinay.belgaumkar@intel.com>, <aravind.iddamsetty@intel.com>,
- <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <sk.anirban@intel.com>,
- <raag.jadav@intel.com>
-References: <20260617104711.79646-5-mallesh.koujalagi@intel.com>
- <20260617104711.79646-6-mallesh.koujalagi@intel.com>
- <db58c7ea-8d55-40c6-9fc7-b69878a02505@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <db58c7ea-8d55-40c6-9fc7-b69878a02505@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0276.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1f2::19) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="246916135"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.244.217])
+ ([10.245.244.217])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 04:53:06 -0700
+Message-ID: <8ce47d11-af19-4cfb-88f0-83c1d8a546a1@intel.com>
+Date: Wed, 24 Jun 2026 12:53:04 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|BL4PR11MB8845:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac614886-7032-45ee-9716-08ded1e6ed79
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|6133799003|11063799006|56012099006|22082099003|18002099003|4143699003;
-X-Microsoft-Antispam-Message-Info: uPelI25FpIeMfCjOAYsoFLPxXH2rpJ94AYUMRP++Cp5VrCnMGCZlIiKQ4u5Qd9p/si0HoUP6PRmQbG0xUM3gmncFhRQd+rREDhhnZaX61oEpAez3HInNy4UHj5cxIfPdEfOcJPPdI0KePeu3UQ099yOT6r3+56Wa+6HEtgKld9EBi7PDlganYDnnUCtMkNnh7tj3noekWlkIdTWdHrKfp+qnUVeG+nPxhzX3k/ceLqNDgCrvt8M8IpApmjGMdKrd397Dk+s6cUinFpFqrUoxVLA9Mjj40XTbSLJqSxaiGr/y+s2AnSd9xFIfrAvQhzKy0pVqc41O1XSIVaoeQtjhjhBHHzDWzEbK/OH62gspdz7Fw5P+ek8Fu7k2YKpiCby2F/BCVzyGHNErjYE/ljKonOcTXuN+Iaj8vVLxbpz7JBGSS9AYFuaPHD7D8DvW1IBoSe84Xx+wRytt9kUdnJO7oofP+DzgUCZ38YH0rh9Xm3ygecbELNSADDQuFgFKqCB3Cu1qevEd2ZRSrUzbwRVAx9VqQZBRuJlqjU9YOmtBSiziuxe6X4zcI9uIDuO/fTYEl9D/HIRHvCLZnNXuHchO6Z6DCBP3k3+HT02aa/07bK1Yn9/ZF2J9kvzya2btCp/V
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(6133799003)(11063799006)(56012099006)(22082099003)(18002099003)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SzUxMWpEOTZaaHdPVlB4YlNCQzhkVHkrVVgxZ1V5NmpJRGZzNDF2cTBZYnh5?=
- =?utf-8?B?M0hQdlcxcHJKdDBtRTl1L1BTZXdpTm5iOGhlTXF2d09FQUE4NWpidzFCbXIx?=
- =?utf-8?B?QmZsaFNsRmxqQ25FVXRJYU9aSFp3eDJoTURNd2RrYktMaTZJRk91d1UxeGNI?=
- =?utf-8?B?VXNqeU1KSkEvSm1WMCs3T0cwWXVNSUpRNFpMZUdoMURRU2Z6NDR0bi9pY0lK?=
- =?utf-8?B?bXdpbE4rbzdQYnRUbXRwaFdQUVh5a211WDhPanJrVHp5SDRVSlE3ak5kTnh5?=
- =?utf-8?B?aTRFMFhCdkhRVit6b3l0MGhZamh1c1RodmFlMSt1VUlnTjFTREZ3cDZNQytH?=
- =?utf-8?B?S3M2YUlPbnhKKzlBY2VMWUxkLzBhY2hHSGc5VjJZcEhidThHRnkvdVBuQzNG?=
- =?utf-8?B?ZWVaemFKeTNNTGdqUDFTWnY4K2t4ZG1id29mWGpWOVlPZnN4SkRDVGhhRVFr?=
- =?utf-8?B?eDlFdFZ3ZUtJMnQ3d1BnTFo4clZXeFFUcUErRDlseTVrRkEwd041WEwyakZx?=
- =?utf-8?B?L29Tc0VoVFdtc3lPVmlVLzYxTVdycEZSMU9JMWxRTENpZStaV0FpZHNQaGQv?=
- =?utf-8?B?RzhzY2VUdG01Ti9rMjd3SWZyK1hjdmhtaW1STWp6SWdsdDBmenNqMjR4OEU0?=
- =?utf-8?B?TGgvZkJibnZjNElGRnUxWWRHaEExWDdlWWgxQWhUYUNRdVIwK0JrclRKSWw2?=
- =?utf-8?B?cWJ5ZDBlTG5VVlhYeVh5MENiMWErZFNTMXAyL2JlRjFjZnJiUm1aK3QySXVF?=
- =?utf-8?B?VnUySHY0cFZGbFFvQWFld2xSaGZmalUzODJ5eEtKbHJCRTdPeU1YTStmazdP?=
- =?utf-8?B?YlllRHhZbUlOSnlXUjAwOUVmc3FNV2g5Y3Uwa3V2OE1SRnFxNzVVN2RLSE9t?=
- =?utf-8?B?ZHRBc0NhZVFxRUVCMjNqUWNtZGUvZ2NUNjg1RnBsKzhCT29NbkQyUGlkOHVj?=
- =?utf-8?B?THVYT2JYYStZMjlMUHBmc2NkSTQ5T2JEY0lNREVuQXpxTWdNNFgyczNGdzRE?=
- =?utf-8?B?OHRtMWtveDlqQi96RWVDZmw1RUplQTlDMVVWM2JaUllieXZZZGtMTUYxMmJV?=
- =?utf-8?B?dUhLUkNiZXpLMkVPeFlQL25DYzhFNVN3bFUzZWZYd0hhWmpRdy9JWGpQZWtx?=
- =?utf-8?B?bk1vQS9oQW1ucllvbERnQ2ZvTEdRVnlqemFJTzZBeW5ST053c1VUN25YN1dP?=
- =?utf-8?B?MDg4Nm4xRTQrMnJvaGVkWXVGY2NjY2RqemVkUTcvWVNCdkx0eVQ0VXpCRWNz?=
- =?utf-8?B?cGNNMGkwNFZvTHprU0N3cXlJQjJSYW00WHlrNFB5dEt2NDFId3FNaEh4UVZB?=
- =?utf-8?B?MUhWeFhWQzhlcTNHTDFYRnYxZWZsTXJBSE4xdnRUUGVFR0VVdVcwOXB3dEtw?=
- =?utf-8?B?Z3gvYzNkQWNEeFB6QjR5MitQVkl6RjdDTThzbm1jQjNYZ0NVZDQyRXA0b3gx?=
- =?utf-8?B?clJkTGZpZDRjQk92eTlaL1BSbHEvYWFJNElJZEE2QUtRaXVsY0I2Vld0UUpl?=
- =?utf-8?B?cGl6NmRIT2FFcmlzeDRFZUpFVzgrNWNYN0pLWWdPNFo5NmswSlhpOG9Cbmlq?=
- =?utf-8?B?cWV3YkpMK3JCOTNQVCt5UDFXQk4xc0tQSExPV1pBRS9nME5ZSXJiUGlMcVY1?=
- =?utf-8?B?TzBxeUx0b245NDAyV2V6S0UwdjFwQWdVaEJkdW9SMytCbDZkSjRpd3JGVUkz?=
- =?utf-8?B?QkVaQjg5TmUzdkVTcWV1NjJCQVg3Yit4MDZvU3gwcDdXNG12VjZNOStnUnUw?=
- =?utf-8?B?RlF5M3ZNMzRTdFlabWJoT0hMYWprbU5UOWFSbTQ3Ti9wczYxRjhJUEhtdkRY?=
- =?utf-8?B?TE1ZK1VldmYzWWU3MHh5QkxKck95a3VGZVBlMURJSnhQUk1KQTZSdHEvRW5o?=
- =?utf-8?B?QlZvTnVVcFo2UVVSdXNaZk4zY2JsbnpjeW5QVWhlZTZlVEw2RXJ0M1NjNWxB?=
- =?utf-8?B?YmM4SjRzTzBLOG5FOGFyZ2FDdXpDSE92dDRZR3lDZ1FsQ1oySDh5b296WDVI?=
- =?utf-8?B?bUt0bi9NeUtSVFYwQ1dDTHVKcE1lL1pJeG53dDJlUU9FTmtRb1F6U1ZXQllV?=
- =?utf-8?B?WTZEMnVnNGhKU3dKZkx4Ri91KytCQTNvbTBSQklRNjhRQlRoUWc1b0VxTzMr?=
- =?utf-8?B?TDNKSVFRVlloUUJyb0hhUHIzWXR3ZmlyeVY2Z2NRbzVuSHlKYS82MkQrTlh1?=
- =?utf-8?B?SXNRN1dEaFc0bThKSU5iY2dqOFVNWUZrVzA1RHlhclZ4Q0ZmdTRQblI5TG0v?=
- =?utf-8?B?aWcxNXM1eFFSdVNtckZab3pDZy83S3V5VUZ3MWhoWmlSSVNjaVNKMnUxc1pz?=
- =?utf-8?B?dGp3RHdvU3ZlSFo2eTdwdFFFMk4yamt5K1QvajFsYnJaL25OVGR5eUw5ek81?=
- =?utf-8?Q?LCeaKXeZqrqHTh7I=3D?=
-X-Exchange-RoutingPolicyChecked: eY8XJzkYUUkv6c9UfZQWj/TzOoj/OZzG07mOLOlG4X0LigiaC10v4wzoYD+XfY4QTMw+tL6NfP4FBZm1ozEkmwJOh3j9zcnqrBBrtaKj5pbhlRdh4qJbaxI1azWwd01XWxPe7gtVh8BoGfUgnvNEfZ3DVJrZM9n7k4heqpYTS3RGAYQwSWkoCka6U6x698QYocrCoJ4aQj4wjRmothhrRVQF7xiZYYVg/7AKhSV4C2rb8htvQ03QT5Nb6vcOfE3coOYFR0xI0cDtvSEnWDYAWZy+0PgAiY6jwUUb73f1B52VCoB6U+GfciEKOmC4D3Qwp3ZJKwvHU/R1sxd2LPqG9w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac614886-7032-45ee-9716-08ded1e6ed79
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 11:51:29.4227 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eT8sDSHGNmScjJV2JakpXHNHT4s9aAa32Dshqn55WM3q6/xnIuEfrdxqvKk+91F6n4QtLlZ3bhijHy60qXFa5qxlyXwiO6NpuRl7v3i5gy8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR11MB8845
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 08/10] drm/xe/vf: wire up NUM_PAGING_ENGINE_INSTANCES
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+References: <20260611161634.506476-12-matthew.auld@intel.com>
+ <20260611161634.506476-20-matthew.auld@intel.com>
+Content-Language: en-GB
+In-Reply-To: <20260611161634.506476-20-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,160 +72,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 11/06/2026 17:16, Matthew Auld wrote:
+> When host PF writes the logical configuration for the GUC PAGING engine,
+> the VF is meant to query it, and mirror it. Size of N means we have
+> paging logical index range [0, N-1], with N fewer normal copy engines.
+> 
+> Agreement is that PF will only spawn PAGING engines on NVL-S+, so this
+> should be zero on older platforms, where we should simply fall back to
+> the old behaviour.
+> 
+> v2 (Sashiko):
+>    - We can't call use the guc_has_paging_engine() this early in the VF
+>      code. With that just unconditionally do the query, if the GuC is new
+>      enough and take the value as-is. With that drop the -1 special case and
+>      just let the upper layers figure out the rest.
+> v3:
+>    - Also update xe_guc_klv_key_to_string. (Michal)
+>    - Add kernel-doc for xe_gt_sriov_vf_paging_engines(), plus other
+>      tweaks. (Michal)
+>    - Update with final GuC version.
+> v4:
+>    - Just fallback to manual reserve when vf reported paging engines is
+>      zero. Will revisit in the future.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-On 20-06-2026 10:32 pm, Michal Wajdeczko wrote:
->
-> On 6/17/2026 12:47 PM, Mallesh Koujalagi wrote:
->> Every GPU fault needs a stable numeric label so monitoring tools can
-> so the goal is to assign unique number to each GPU error that we report?
+Michal/Piotr, does this look sane from SRIOV side? Any further comments? 
+Otherwise any chance of an ack/r-b for this one?
 
-Thanks for questions, happy to clarify.
+> ---
+>   drivers/gpu/drm/xe/abi/guc_klvs_abi.h     |  9 +++++
+>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 47 +++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  1 +
+>   drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 ++
+>   drivers/gpu/drm/xe/xe_guc_klv_helpers.c   |  2 +
+>   drivers/gpu/drm/xe/xe_hw_engine.c         | 30 ++++++++++++++-
+>   6 files changed, 91 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+> index 644f5a4226d7..753c049d2fc8 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+> @@ -52,6 +52,12 @@
+>    * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
+>    *      Tells the driver whether scheduler groups are enabled or not.
+>    *      Requires GuC ABI 1.26+
+> + *
+> + * _`GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES` : 0x3003
+> + *      Tells the driver the paging engine configuration.
+> + *      Paging engine logical instances are guaranteed to be dense starting at
+> + *      index 0.
+> + *      Requires GuC ABI 1.36+
+>    */
+>   
+>   #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY			0x3000u
+> @@ -60,6 +66,9 @@
+>   #define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY	0x3001u
+>   #define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN	1u
+>   
+> +#define GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_KEY	0x3003u
+> +#define GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_LEN	1u
+> +
+>   /**
+>    * DOC: GuC Self Config KLVs
+>    *
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index 0cd9d77f3351..0a11e63f470b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -658,6 +658,33 @@ static int vf_cache_sched_groups_status(struct xe_gt *gt)
+>   	return 0;
+>   }
+>   
+> +static int vf_cache_num_paging_engines(struct xe_gt *gt)
+> +{
+> +	struct xe_guc *guc = &gt->uc.guc;
+> +	struct xe_uc_fw_version guc_version;
+> +	u32 value = 0;
+> +	int err;
+> +
+> +	xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
+> +
+> +	if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 36, 0))
+> +		return 0;
+> +
+> +	err = guc_action_query_single_klv32(guc, GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_KEY,
+> +					    &value);
+> +	if (unlikely(err)) {
+> +		xe_gt_sriov_err(gt,
+> +				"Failed to obtain the number of paging instances (%pe)\n",
+> +				ERR_PTR(err));
+> +		return err;
+> +	}
+> +
+> +	gt->sriov.vf.runtime.num_paging_engine_instances = value;
+> +
+> +	xe_gt_sriov_dbg(gt, "num_paging_engines %u\n", value);
+> +	return err;
+> +}
+> +
+>   /**
+>    * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
+>    * @gt: the &xe_gt
+> @@ -694,6 +721,10 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
+>   	if (has_gmdid(xe))
+>   		vf_cache_gmdid(gt);
+>   
+> +	err = vf_cache_num_paging_engines(gt);
+> +	if (unlikely(err))
+> +		return err;
+> +
+>   	return 0;
+>   }
+>   
+> @@ -731,6 +762,22 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
+>   	return gt->sriov.vf.self_config.num_ctxs;
+>   }
+>   
+> +/**
+> + * xe_gt_sriov_vf_paging_engines - Query the number of paging engine instances
+> + * @gt: the &xe_gt
+> + *
+> + * This function is for VF use only.
+> + *
+> + * Return: number of GuC paging engine instances configured by the PF.
+> + */
+> +u32 xe_gt_sriov_vf_paging_engines(struct xe_gt *gt)
+> +{
+> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+> +	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+> +
+> +	return gt->sriov.vf.runtime.num_paging_engine_instances;
+> +}
+> +
+>   static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
+>   {
+>   	u32 request[VF2PF_HANDSHAKE_REQUEST_MSG_LEN] = {
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> index 79878f21b1da..d171a8242a34 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> @@ -31,6 +31,7 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+>   u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+>   u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+>   bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
+> +u32 xe_gt_sriov_vf_paging_engines(struct xe_gt *gt);
+>   
+>   u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
+>   void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+> index 80562ffadb16..21cb9bc1a341 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+> @@ -40,6 +40,10 @@ struct xe_gt_sriov_vf_runtime {
+>   		/** @regs.value: register value. */
+>   		u32 value;
+>   	} *regs;
+> +	/**
+> +	 * @num_paging_engine_instances: number of configured paging engines.
+> +	 */
+> +	u32 num_paging_engine_instances;
+>   };
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+> index 97600edda837..be992b8da9a1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+> @@ -24,6 +24,8 @@ const char *xe_guc_klv_key_to_string(u16 key)
+>   	/* GuC Global Config KLVs */
+>   	case GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY:
+>   		return "group_scheduling_available";
+> +	case GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_KEY:
+> +		return "num_paging_engine_instances";
+>   	/* VGT POLICY keys */
+>   	case GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY:
+>   		return "sched_if_idle";
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 4d7cb8b54b4b..1227b9e66fd6 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -650,7 +650,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+>   	return err;
+>   }
+>   
+> -static void hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
+> +static int hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
+>   {
+>   	struct xe_device *xe = gt_to_xe(gt);
+>   	unsigned int num_copy_engines = 0, num_paging_engines = 0;
+> @@ -667,6 +667,27 @@ static void hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
+>   	if (num_copy_engines && xe->info.has_usm)
+>   		num_paging_engines = 1;
+>   
+> +	if (IS_SRIOV_VF(xe)) {
+> +		u32 vf_num_paging_engines;
+> +
+> +		/*
+> +		 * PF could in theory reserve multiple paging engines, which
+> +		 * internally the submission/scheduling backend can load balance
+> +		 * from. Not something we currently expect, but we are at the
+> +		 * mercy of the PF, so we just need try our best to mirror the
+> +		 * paging configuration.
+> +		 */
+> +		vf_num_paging_engines = xe_gt_sriov_vf_paging_engines(gt);
+> +		if (vf_num_paging_engines) {
+> +			/* This should only be non-zero on NVL-S+ */
+> +			xe_gt_assert(gt, xe->info.platform >= XE_NOVALAKE_S);
+> +			num_paging_engines = vf_num_paging_engines;
+> +		}
+> +	}
+> +
+> +	if (xe_gt_WARN_ON(gt, num_paging_engines > num_copy_engines))
+> +		return -EINVAL;
+> +
+>   	reserved_logical_bcs_start = num_copy_engines - num_paging_engines;
+>   
+>   	/* FIXME: Doing a simple logical mapping that works for most hardware */
+> @@ -688,6 +709,8 @@ static void hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
+>   			}
+>   		}
+>   	}
+> +
+> +	return 0;
+>   }
+>   
+>   static void read_media_fuses(struct xe_gt *gt)
+> @@ -906,7 +929,10 @@ int xe_hw_engines_init(struct xe_gt *gt)
+>   			return err;
+>   	}
+>   
+> -	hw_engine_setup_logical_and_paging_mapping(gt);
+> +	err = hw_engine_setup_logical_and_paging_mapping(gt);
+> +	if (err)
+> +		return err;
+> +
+>   	err = xe_hw_engine_setup_groups(gt);
+>   	if (err)
+>   		return err;
 
-Not exactly. SIG_IDs represent types of errors,
-
-not individual events. For example, XE_SIG_WEDGED = 2 just mean a 
-"device wedged" error happened.
-
-Multiple log message can share the same SIG_ID because they belongs to 
-same category.
->
-> can't we teach the monitoring tools to use the message pattern instead?
-
-We can and that is basically what HW_ERR "[Hardware Error]" does today. 
-But that approach is
-
-fragile. If the message tech changes (Wording etc) the pattern can 
-break. So that is reason a
-
-numeric ID like SIG_ID is more stable and acts like a reliable 
-interface, even if the message text changes.
-
->
-> or maybe it's not about unique signature but rather class of Xe GPU errors?
-> like HW_ERR defined in [1] for generic hardware errors?
->
-> [1] https://elixir.bootlin.com/linux/v7.1/source/include/linux/printk.h#L118
-
-Yes, that is the closest comparison. The difference is that SIG_IDs are 
-numeric, specific to Xe
-
-and designed to work with CPER.
-
->> identify what went wrong without parsing log text.
-> hmm, but they will have to parse this text already to find that ID
-
-Fair point, I'll fix the commit message. Tool can identify what went 
-wrong by matching the stable SIG_ID field,
-
-without relying on message text.
-
->> Add xe_sig_ids.h
->> which defines those labels, called SIG_IDs.
-> SIG_ID looks like an acronym already - can we know the full real name?
-SIG_ID expands to “Signature ID.” which is mentioned in the Spec.
->
-> the 'signature' suggests uniqueness, but below definitions are more like a 'class' of errors/faults
-
-It designed function as a stable component/category identifier for a 
-class of errors, with the specific cause carried separately
-
-errno, message text etc.
-
->> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
->> ---
->> v3:
->> - Add HW SIG IDS details. (Riana)
->> ---
->>   drivers/gpu/drm/xe/xe_sig_ids.h | 29 +++++++++++++++++++++++++++++
->>   1 file changed, 29 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_sig_ids.h
->>
->> diff --git a/drivers/gpu/drm/xe/xe_sig_ids.h b/drivers/gpu/drm/xe/xe_sig_ids.h
->> new file mode 100644
->> index 000000000000..7badd0d7ad72
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_sig_ids.h
->> @@ -0,0 +1,29 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_SIG_IDS_H_
->> +#define _XE_SIG_IDS_H_
->> +
->> +/*
->> + * Driver SIG_IDs
-> please add kernel-doc for SIG_IDs itself
-> maybe then it will be clear what is it
-Sure, will add in next revision.
->
-> based on the "Every GPU fault needs a stable numeric label"
-> maybe the more appropriate name would be names like:
->
-> 	XE_ERROR_
-> 	XE_FAULT_
->
-Agreed, need to check with Arch team.
->> + */
->> +#define XE_SIG_PROBE			1  /* FATAL: probe failed */
->> +#define XE_SIG_WEDGED			2  /* FATAL: device wedged */
->> +#define XE_SIG_SURVIVABILITY		3  /* FATAL: survivability mode */
->> +#define XE_SIG_FW			4  /* RECOVERABLE: GuC/HuC/UC/GSC/CSC/PCODE */
->> +#define XE_SIG_GT_TDR			5  /* RECOVERABLE: engine hang / reset */
->> +#define XE_SIG_MEM_FAULT		6  /* RECOVERABLE: VM bind, page fault, GTT */
->> +#define XE_SIG_IO_BUS			7  /* RECOVERABLE: runtime PCIe/IOMMU/MMIO */
-> at this patch, there is no description what FATAL or RECOVERABLE (severity?) really means here
-> also, if there is a strict relation between SIG and its severity, then maybe those definitions should look like:
->
-> #define XE_SIG_PROBE			XE_SIG(1, FATAL)
-> #define XE_SIG_WEDGED			XE_SIG(2, FATAL)
-> ...
->
-> but
-
-Agreed. For driver SIG_IDs, severity is part of the contract, not just 
-an incidental comment.
-
-Sure, I can add the severity details in the header.
-
->> +
->> +/*
->> + * HW SIG_IDs
->> + */
-> below SIGs do not have associated severity
-> why the same family of IDs is defined so differently?
-
-This is intentional. Driver SIG_IDs are paired with fixed severities via 
-the driver logging macros,
-
-while Hardware SIG_IDs identify only the hardware component. Hardware 
-severity is not fixed per SIG_ID,
-
-it is carried by the incoming CPER record and may vary per event.
-
->> +#define XE_SIG_HW_DEVICE_MEMORY		8  /* Device memory errors (e.g. ECC) */
->> +#define XE_SIG_HW_CORE_COMPUTE		9  /* Compute/shader core errors */
->> +#define XE_SIG_HW_PCIE			10 /* PCIe interface errors */
->> +#define XE_SIG_HW_FABRIC		11 /* On-package fabric errors */
->> +#define XE_SIG_HW_SOC_INTERNAL		12 /* SoC-internal errors */
-> what's the plan for extending SW or HW SIG_IDs in the future?
-
-The current scheme assumes driver IDs are a fixed low range and HW IDs 
-occupy the next contiguous range,
-
-with range alone distinguishing Driver vs Hardware.
-
-> as now it looks that will not be able to have new SW IDs together with old ones
->
-> and I guess the goal is to not change the IDs assignments
-
-Yes, the stated goal is stable IDs.
-
-Thanks,
-
--/Mallesh
-
->
->> +
->> +#endif /* _XE_SIG_IDS_H_ */
