@@ -4,92 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D890ACDB466
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 09:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17FEBCDB466
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 09:27:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A5F892A1;
-	Thu, 25 Jun 2026 09:19:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="FS2ks8jw";
-	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998B2892A1
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 09:19:24 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-490b7866869so17854075e9.2
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 02:19:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1782379163; x=1782983963; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=ECEn+V2NhWD3Cl+wFoaowjzh5mZpSqtDy2oOQW/aJbc=;
- b=FS2ks8jw2gnHlF0ksmkAV3+FuaABl+YUDnA6qcsTIELaroYsoYuJlUh8G3FsZvq5jJ
- dYAYawETVSwA4lYCORlXqHPZye7Jc8/B7vNxQGvnXG4pVpOjIfUdXQYZmQH3CmaL7nMC
- 1ojQGh2ZcbKR3EnAsK01CV5jdsUtLS/dGcFdJZsAuol2bas+7x8fTMGo3Ao6A7Q5HUBF
- EyGiLZYdbdgRFcxi4i8E2CN6foNib5ZxLNmTBKUKpRpX4+5QDfkmkRxLpCGIgy5S4k83
- TO0clZXiqNE9gNdbgcFKxfZtokUqs5jEkL4PAZmdmImAVKWTmfym43L8I9tcuIuuEC73
- qquA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782379163; x=1782983963;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ECEn+V2NhWD3Cl+wFoaowjzh5mZpSqtDy2oOQW/aJbc=;
- b=FuId0Bv6m0NULqs41ZjAq39PqK20KcRhcis9qBxZQNJH+6adP7vxCh7FUhNhKXb1T8
- cI9ln2EiXB0DPgRbW0tq65gke9NWpEDiE3xNgQxmsqQgdNK41xURCx3MnlsHzbLVoLiW
- Sewc1jY4/TuqiK2lqNaNeOTSi8QiEA2scBULYu1ZrS6Y8hdB/kVU455AoH0Vkxb/7t3d
- qLQcQH8HKalAAoONPkKKkGi41E626j4ebwTAeCHI+sfY6quUgNgIBu3ctEYZpfM9tBls
- zV1lubZSrKJ+VmDHgZoEiiWQuNoNRTdAzUw7cZUpsNwv42Yyw/fr/nemoddMVlmxLDU8
- m96w==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9Wha+SVktCcgOM+5eHdXfvnSxX9V0MyQBK/Vda1vfa5a0bqlPbDrn48LHAVRgA9z8dEOmeA2+qQA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw2C1vqa6Eqn89MQTKRbAFZysA7aUuVWQzr7j6JyOJN7O0y8ohS
- kb3kZBtnkwTMzWPG2QI9yC6T9Ry1ShZ8QdQcQ4YVyH9/ouB2SJai6qz1cMarQTdwar0=
-X-Gm-Gg: AfdE7cm3TtLHrj1aXsHyaP7w3lQkHh4r0ar5kcJUsj7Sn4bmB8Zcvo8jwnMYMK0SZ++
- 6whIKsbojOIRhO52Sx8/MTHCo85diFNjpWJIHtRLd1NZMpzeSDZkqW5miUwYhM5uySXrStxowwD
- bBkUJElPOww4hBARMdJ5bgHr8X7iPVhrT76kFnxS2SPW6pGqtnxBw+Zam/wzHU7R7MnoDoFGeMS
- wCQzaFBqSWR5PSa/d8Vsgjrsl3McvIwNv6XGB15UGVH6pQHxSYwyk8mTfzk0aLLzo/Ee2NigdDC
- c785D+GSq+bPx9GVTeVvDE9/DegBKbhPSwQSHXl7h1HonIaBncXEBAyCkShoEHboHEPSnuNX2ze
- suwCMZWIK455bXPgKUDtGxeO2YpKNJ8niyelVD0Zjh72XSKas+l9v1lFHZt1uvg803L0Y07Vl35
- 7tRNxeR0lMxGbOyHyFsw==
-X-Received: by 2002:a05:600d:8443:10b0:490:d32b:39c3 with SMTP id
- 5b1f17b1804b1-4926685feb6mr16924745e9.6.1782379163017; 
- Thu, 25 Jun 2026 02:19:23 -0700 (PDT)
-Received: from localhost.localdomain ([62.77.90.70])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49264082426sm60418065e9.9.2026.06.25.02.19.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Jun 2026 02:19:22 -0700 (PDT)
-Date: Thu, 25 Jun 2026 11:19:19 +0200
-From: Michal =?utf-8?Q?Koutn=C3=BD?= <mkoutny@suse.com>
-To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-Cc: Tejun Heo <tj@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org, 
- Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
- cgroups@vger.kernel.org, 
- Huang Rui <ray.huang@amd.com>, Matthew Brost <matthew.brost@intel.com>, 
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/6] [PATCH v6 0/6] Add reclaim to the dmem cgroup
- controller
-Message-ID: <ajzxLABtnWym81Dp@localhost.localdomain>
-References: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
- <ajBJU-Jp2QVy14qt@slm.duckdns.org>
- <ajBLAsNoKesXmFcs@slm.duckdns.org>
- <ajlUPmaMsa2gxOLg@quatroqueijos.cascardo.eti.br>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7698E10E1CF;
+	Thu, 25 Jun 2026 09:27:01 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 007E910E1CF;
+ Thu, 25 Jun 2026 09:26:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6262880341612279584=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="lrl2vho5y5eomexp"
-Content-Disposition: inline
-In-Reply-To: <ajlUPmaMsa2gxOLg@quatroqueijos.cascardo.eti.br>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/forcewake=3A_add_del?=
+ =?utf-8?q?ayed-release_optimization_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zongyao Bai" <zongyao.bai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 25 Jun 2026 09:26:59 -0000
+Message-ID: <178237961999.116331.14980630144474526628@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260601213804.707256-1-zongyao.bai@intel.com>
+In-Reply-To: <20260601213804.707256-1-zongyao.bai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,45 +36,234 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---lrl2vho5y5eomexp
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 0/6] [PATCH v6 0/6] Add reclaim to the dmem cgroup
- controller
+--===============6262880341612279584==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 22, 2026 at 12:26:54PM -0300, Thadeu Lima de Souza Cascardo <ca=
-scardo@igalia.com> wrote:
-> As far as I understood the patchset, it doesn't fail the write if it fails
-> to reclaim. It sets the new max, then, if the write is blocking, starts
-> reclaim and eventually returns after multiple attempts. But it still
-> returns success.
->=20
-> So I believe this is behaving as you would expect.
+== Series Details ==
 
-I was alarmed by the EBUSY mention similarly to Tejun but then I
-couldn't find it in pre-patch (840ef6c78e6a2) nor in patched (v5) code.
-Please make sure the EBUSY return behavior is not introduced
-(essentially match memory.max behavior) and that the accompanying
-message refers up to date code ;-)
+Series: drm/xe/forcewake: add delayed-release optimization (rev3)
+URL   : https://patchwork.freedesktop.org/series/167697/
+State : failure
 
-Michal
+== Summary ==
 
---lrl2vho5y5eomexp
-Content-Type: application/pgp-signature; name="signature.asc"
+CI Bug Log - changes from xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973_BAT -> xe-pw-167697v3_BAT
+====================================================
 
------BEGIN PGP SIGNATURE-----
+Summary
+-------
 
-iJEEABYKADkWIQRCE24Fn/AcRjnLivR+PQLnlNv4CAUCajzykhsUgAAAAAAEAA5t
-YW51MiwyLjUrMS4xMiwyLDIACgkQfj0C55Tb+AihGwEA1SCEBfnAwyeubLR7IllY
-8xY1mJBt88wz9mCIeM9+iY8A/0e+2PnPs29VJ7kdk24/ZbM72Eltcu2Pv4++6deM
-lMAL
-=i/jW
------END PGP SIGNATURE-----
+  **FAILURE**
 
---lrl2vho5y5eomexp--
+  Serious unknown changes coming with xe-pw-167697v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-167697v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-167697v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-system-vram01:
+    - bat-bmg-2:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-system-vram01.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-system-vram01.html
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:
+    - bat-bmg-3:          NOTRUN -> [CRASH][3] +4 other tests crash
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html
+
+  * igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate:
+    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][4] +1 other test incomplete
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate.html
+
+  * igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz:
+    - bat-bmg-3:          NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-167697v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-rebind:
+    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][6] ([Intel XE#8439]) +4 other tests incomplete
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-rebind.html
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][7] ([Intel XE#6566]) +3 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap:
+    - bat-bmg-3:          [INCOMPLETE][8] ([Intel XE#8439]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html
+
+  
+#### Warnings ####
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-mmap:
+    - bat-bmg-3:          [CRASH][10] ([Intel XE#8438]) -> [INCOMPLETE][11] ([Intel XE#8439])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-mmap.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-mmap.html
+
+  
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
+  [Intel XE#8438]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438
+  [Intel XE#8439]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439
+
+
+Build changes
+-------------
+
+  * Linux: xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973 -> xe-pw-167697v3
+
+  IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973: adbc617250e16fb2db4a4c777b89440927cb8973
+  xe-pw-167697v3: 167697v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/index.html
+
+--===============6262880341612279584==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/forcewake: add delayed-release optimization (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167697/">https://patchwork.freedesktop.org/series/167697/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973_BAT -&gt; xe-pw-167697v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-167697v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-167697v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-167697v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-system-vram01:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-system-vram01.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-system-vram01.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html">CRASH</a> +4 other tests crash</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-invalidate.html">INCOMPLETE</a> +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167697v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-rebind:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a>) +4 other tests incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-mmap:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-mmap.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438">Intel XE#8438</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167697v3/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-mmap.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973 -&gt; xe-pw-167697v3</li>
+</ul>
+<p>IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973: adbc617250e16fb2db4a4c777b89440927cb8973<br />
+  xe-pw-167697v3: 167697v3</p>
+
+</body>
+</html>
+
+--===============6262880341612279584==--
