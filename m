@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0365CDB466
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 08:31:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A3BCCDB47F
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 08:51:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE08D10F1A8;
-	Thu, 25 Jun 2026 08:31:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hDb+a9F3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEB5010F1A8;
- Thu, 25 Jun 2026 08:31:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782376292; x=1813912292;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=4oKU/4FqLtrV5VGuw696pPPkQZaHiKm24g+4H9U1CMQ=;
- b=hDb+a9F3LN5V+5O+e4xcV4Lbf+lEazXnyaKC/p9JYWjPqBtFyQOr/nyU
- N5xQC4QhQANjedCNMkcawamflMzEqmVItLZG4Jjoif+Yt//y24fVaIBgZ
- RIOzEN46MF1E/Ub/AwP3DT6+ROqQ2ieJOBbEtLSHHcJVTOLuIlDAlabh7
- 489KtH9c0kbHjfxtMqVlX+ZdMHRIJbwznyAvWei2U4ASyhAiovvmVRP5U
- D34EBc/EQTHB0an+QZF5liYSJzRr1qTUkj0wmz17+Y80Dy/cstbg/BWpM
- BYplD0RIPnH3dpV874RgLncCj8NNjV3h+V5z0/FIM663OpOHtIogU5h11 w==;
-X-CSE-ConnectionGUID: fYQBU1SxSX6k6J7XFN5Iqg==
-X-CSE-MsgGUID: ydwnqe/ETCWu+2Ft/tNdIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="93801072"
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="93801072"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 01:31:31 -0700
-X-CSE-ConnectionGUID: E/PmwROmTByQPXTVclp+qg==
-X-CSE-MsgGUID: PvAdd3xpRU2D+58wXr+uUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="249072550"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.245.136])
- ([10.245.245.136])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 01:31:27 -0700
-Message-ID: <2d17f718-43f5-4772-9c04-a975c9ad4bc3@linux.intel.com>
-Date: Thu, 25 Jun 2026 10:31:52 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1475410E1A0;
+	Thu, 25 Jun 2026 08:51:19 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E7F110E1A0;
+ Thu, 25 Jun 2026 08:51:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3518454402743242048=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Revert_=22drm/i915/psr=3A_A?=
+ =?utf-8?q?llow_SCL=3D0_on_platforms_with_always-on_VRR_TG=22_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 25 Jun 2026 08:51:17 -0000
+Message-ID: <178237747751.116178.6747318392294391995@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260622101736.2389991-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260622101736.2389991-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,81 +36,222 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+--===============3518454402743242048==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-drm-misc-next-fixes is still empty, but here's all the drm-misc-fixes for next release!
+== Series Details ==
 
-Kind regards,
-~Maarten Lankhorst
+Series: Revert "drm/i915/psr: Allow SCL=0 on platforms with always-on VRR TG" (rev2)
+URL   : https://patchwork.freedesktop.org/series/168926/
+State : failure
 
-drm-misc-fixes-2026-06-25:
-drm-misc-fixes for v7.2:
-- drm/sysfb truncation and alignment fixes.
-- fix edid OOB read.
-- fix error handling paths in nouveau
-- amdxdna get_bo_info fix.
-- increase displayid topology id to correct size.
-- fix leak when error handling in ivpu.
-The following changes since commit 2f41af638c92bac6f1f9275ea2d1901baef578f3:
+== Summary ==
 
-  accel/amdxdna: Fix mm_struct reference leak in aie2_populate_range() (2026-06-11 09:50:07 -0700)
+CI Bug Log - changes from xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973_BAT -> xe-pw-168926v2_BAT
+====================================================
 
-are available in the Git repository at:
+Summary
+-------
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-06-25
+  **FAILURE**
 
-for you to fetch changes up to 9206b22fb959f4a9cf1921f34aed0df1dcb1ab04:
+  Serious unknown changes coming with xe-pw-168926v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-168926v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-  drm/sysfb: Avoid truncating maximum stride (2026-06-22 11:03:23 +0200)
+  
 
-----------------------------------------------------------------
-drm-misc-fixes for v7.2:
-- drm/sysfb truncation and alignment fixes.
-- fix edid OOB read.
-- fix error handling paths in nouveau
-- amdxdna get_bo_info fix.
-- increase displayid topology id to correct size.
-- fix leak when error handling in ivpu.
+Participating hosts (13 -> 13)
+------------------------------
 
-----------------------------------------------------------------
-Jani Nikula (1):
-      drm/displayid: fix Tiled Display Topology ID size
+  No changes in participating hosts
 
-Junrui Luo (1):
-      drm/nouveau: fix reversed error cleanup order in ucopy functions
+Possible new issues
+-------------------
 
-Karol Wachowski (1):
-      accel/ivpu: fix HWS command queue leak on registration failure
+  Here are the unknown changes that may have been introduced in xe-pw-168926v2_BAT:
 
-Shuvam Pandey (1):
-      accel/amdxdna: Use caller client for debug BO sync
+### IGT changes ###
 
-Thomas Zimmermann (4):
-      drm/sysfb: Do not page-align visible size of the framebuffer
-      drm/sysfb: Avoid possible truncation with calculating visible size
-      drm/sysfb: Return errno code from drm_sysfb_get_visible_size()
-      drm/sysfb: Avoid truncating maximum stride
+#### Possible regressions ####
 
-Wentao Liang (1):
-      drm/nouveau/acr: fix missing nvkm_done() in error path of nvkm_acr_oneinit()
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind:
+    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][1] +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind.html
 
-Xiang Mei (1):
-      drm/edid: fix OOB read in drm_parse_tiled_block()
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:
+    - bat-bmg-3:          NOTRUN -> [CRASH][2] +5 other tests crash
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html
 
- drivers/accel/amdxdna/amdxdna_gem.c            |  3 ++-
- drivers/accel/ivpu/ivpu_job.c                  | 10 +++++-----
- drivers/gpu/drm/drm_connector.c                | 12 ++++++------
- drivers/gpu/drm/drm_displayid_internal.h       |  2 +-
- drivers/gpu/drm/drm_edid.c                     |  8 ++++++++
- drivers/gpu/drm/nouveau/nouveau_exec.c         |  4 ++--
- drivers/gpu/drm/nouveau/nouveau_uvmm.c         |  4 ++--
- drivers/gpu/drm/nouveau/nvkm/subdev/acr/base.c |  1 +
- drivers/gpu/drm/sysfb/drm_sysfb_helper.h       |  2 +-
- drivers/gpu/drm/sysfb/drm_sysfb_screen_info.c  | 13 ++++++++++---
- drivers/gpu/drm/sysfb/efidrm.c                 |  7 ++++---
- drivers/gpu/drm/sysfb/vesadrm.c                |  6 +++---
- include/drm/drm_connector.h                    |  6 +++---
- 13 files changed, 48 insertions(+), 30 deletions(-)
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-prefetch:
+    - bat-bmg-2:          [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-prefetch.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-prefetch.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-168926v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr:
+    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][5] ([Intel XE#8439]) +2 other tests incomplete
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr.html
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][6] ([Intel XE#6566]) +3 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind:
+    - bat-bmg-3:          [CRASH][7] ([Intel XE#8438]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap:
+    - bat-bmg-3:          [INCOMPLETE][9] ([Intel XE#8439]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html
+
+  
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
+  [Intel XE#8438]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438
+  [Intel XE#8439]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439
+
+
+Build changes
+-------------
+
+  * Linux: xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973 -> xe-pw-168926v2
+
+  IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973: adbc617250e16fb2db4a4c777b89440927cb8973
+  xe-pw-168926v2: 168926v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/index.html
+
+--===============3518454402743242048==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Revert &quot;drm/i915/psr: Allow SCL=0 on platforms with always-on VRR TG&quot; (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168926/">https://patchwork.freedesktop.org/series/168926/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973_BAT -&gt; xe-pw-168926v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-168926v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-168926v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-168926v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind.html">INCOMPLETE</a> +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html">CRASH</a> +5 other tests crash</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate-prefetch.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-168926v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a>) +2 other tests incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438">Intel XE#8438</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168926v2/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973 -&gt; xe-pw-168926v2</li>
+</ul>
+<p>IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973: adbc617250e16fb2db4a4c777b89440927cb8973<br />
+  xe-pw-168926v2: 168926v2</p>
+
+</body>
+</html>
+
+--===============3518454402743242048==--
