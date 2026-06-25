@@ -4,76 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5483CDE00B
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 23:38:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A7C0CDE00B
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 23:40:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8856310E2C7;
-	Thu, 25 Jun 2026 23:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C0910E2C7;
+	Thu, 25 Jun 2026 23:40:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YQ+P1HJe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j+OF/6Zs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DDB810E2C7
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 23:38:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 452C410E2BC
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 23:40:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782430699; x=1813966699;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=C+dsS6RJueBViAuKK7wFhltpTfP/yAA3YfEz7HhInz4=;
- b=YQ+P1HJe/LadwP3YHFtIoQxMCZN9d6Sqw+EhzPxtfHnz3DtmUFZ8fZr0
- sPjn/NAkQVjF2qqJsTX5XWHxOUhMQQOLyagcGsWIhsuorAD0NGPGpSJt1
- v+ykta8pii5Ild4oXSciNYOhIK/q/xPu7xe2wOjTdaT3ZCa6uXNEexNBb
- R6OmPll8v5jXW52QPb7sgZhuQCYTTjNEARulyGFK0Glw7QGQaAPDzO1XP
- Ux7GzDs7+2kdr9HIaFpDsT7U9XrdPV06G1lZBrW9IZOYSmfIovHkJrniP
- Ups27Cdqo79f1qaERKS70YrJ2KQHRtN5JRZW9EYz8kxpWZhCy9V3gOD2w Q==;
-X-CSE-ConnectionGUID: PNUx5jO1Q6q9ChneM8uE0g==
-X-CSE-MsgGUID: H5WYUtwFR4evCnpBx5hDFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="83353187"
-X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="83353187"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 16:38:19 -0700
-X-CSE-ConnectionGUID: J5E5vvjzQBKr/XlGguPWiQ==
-X-CSE-MsgGUID: 8eVs8wDwSe2uIjeGxlQG0w==
+ t=1782430831; x=1813966831;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Z9c2XEyGeJONZxRtxr1M0FuHwV+nZZknwkScjbWnykY=;
+ b=j+OF/6Zs9YSv1QhJhyp9MLvkrKHANOzkimXTMs050O/MnNrdxVMxARzl
+ IKGkC1IHDpm7quVvInRGrILMkleLl4BTmVJxrK8GJytPNQYQdcAq4EL9z
+ JEtFVon1iHPc391ttDoS5xdZrdHoX+ED/EMFpto92vSXKo++sNJXEMv0P
+ Cibf0Q/hC2fdPYtGZ3Glwfq/hcbz6cIivbns3HQUOanyR1w2o0uLDnBfC
+ bjslLDYVElSNRJm+C/IeShhFiQJHeB9I6KUljJJ5oKTZdBwWZXvMn3izF
+ SJgSWHwEa7m4GFBNJB06lTSzXo2EF2ZNi83kJeZt71XpeuB9Kw+k3W3cE Q==;
+X-CSE-ConnectionGUID: q4k89OgGSXm4VGN3ZPfATQ==
+X-CSE-MsgGUID: Dy8S6VnAQsa9PvcbFqkBxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="83103226"
+X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="83103226"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 16:40:31 -0700
+X-CSE-ConnectionGUID: QDERHfe+Tuau0QJ/f/hq4A==
+X-CSE-MsgGUID: fJe1Mk5IRS2OpXII+J1rXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="251311826"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.39.134])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 16:38:18 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 25 Jun 2026 16:37:54 -0700
-Subject: [PATCH] drm/xe/tests/rtp: Add kunit test for whitelist upper
- bounds
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="255581177"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 16:40:31 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 25 Jun 2026 16:40:30 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 25 Jun 2026 16:40:30 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.12) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 25 Jun 2026 16:40:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=W0ftauaU9imKD1KPbprC1DS0cVpajCjIWUJLFNRzir2NyQtDv6waswTTMKetePzi14oF3R6be1jjuO3dmG5+NV1wPoRGEMTR6NxpxDW7vVIhqw/7be5OSWdffDepPr9FIhBus9k/PqpLP65cUYe2HrQSMu1sEnaKKF0pOgz/GIFi5AnYLpEK6XB6tGEro8RDahtcC/JdSVQZGjFzCSgi77MM13ZpXqH7LpFt4VoZOjoCwyMaHG4+mcXBG+wH2fqIzJyH/Jx0Cegm/MV1nXQHQ8y5N8JFfAnNCRTwsYH6iSgAwofZ4/e57n3OzRoe/NH6nZnPnSYeqQl/n1rmBYiPdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aL0sG+OKfviNcjzC7KotMpGzH+S1aOQkTVPmAFqOrRk=;
+ b=EkAjdRkthjH8ENEAqEfW4/NLAo5zmPbyn8fgyJsblD8uPmgh86ndd+gFjdUUeTd+Snez8E1UaXiV5ZYYvmXlGE1K6YBiQBsnQcZeBHwwmdOpZLMu1wW2ypkgrbdidcJo9/oewQsa7ECqICLf9U9Dr+iuKzNGlGiZ1m43cYIzPaztELy3+nBGxoOC6J2TNe1RR/+v58fMC4m1t56w6aL+i8uHM66qRjQoXdsAuivIaQh8FSJM9ZSCyWOg9J2VfX8AaNetNgA+FgH8azM7U6APutDIPIhUioGC0x70RFgMzBhl1PhGSFrb0BwR1BCnr4NK/5CtpMP+tQjYjSW4eAclwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB4979.namprd11.prod.outlook.com (2603:10b6:303:99::16)
+ by PH7PR11MB7450.namprd11.prod.outlook.com (2603:10b6:510:27e::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Thu, 25 Jun
+ 2026 23:40:22 +0000
+Received: from CO1PR11MB4979.namprd11.prod.outlook.com
+ ([fe80::ed0a:e4ab:fde6:edcc]) by CO1PR11MB4979.namprd11.prod.outlook.com
+ ([fe80::ed0a:e4ab:fde6:edcc%2]) with mapi id 15.21.0159.014; Thu, 25 Jun 2026
+ 23:40:22 +0000
+Message-ID: <c24f22fd-86a6-4217-8ad5-cf5223589e08@intel.com>
+Date: Thu, 25 Jun 2026 16:40:21 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 01/10] drm/xe/uc_fw: Allow re-initializing firmware
+To: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <riana.tauro@intel.com>,
+ <michal.wajdeczko@intel.com>, <matthew.d.roper@intel.com>,
+ <michal.winiarski@intel.com>, <matthew.auld@intel.com>, <dev@lankhorst.se>,
+ <jani.nikula@intel.com>, <lukasz.laguna@intel.com>, <zhanjun.dong@intel.com>, 
+ <lukas@wunner.de>, <badal.nilawar@intel.com>
+References: <20260603101814.916948-1-raag.jadav@intel.com>
+ <20260603101814.916948-2-raag.jadav@intel.com>
+Content-Language: en-US
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20260603101814.916948-2-raag.jadav@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260625-kunit_whitelist_bounds-v1-1-d8f5f055f1f0@intel.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MTQ5AMBBA4avIrDWhUX9XERFqMCElnRaJuLvG8
- lu89wCjJWSoowcsnsS0m4A0jkAvvZlR0BgMMpF5kkslVm/IdddCDjdi1w27NyOLviyzSqHSuhg
- gxIfFie5/3LTv+wHL2qo3aAAAAA==
-X-Change-ID: 20260625-kunit_whitelist_bounds-a88495e5cc7b
-To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4339;
- i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=C+dsS6RJueBViAuKK7wFhltpTfP/yAA3YfEz7HhInz4=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBqPbvq68nmh0bHNnk08YKqe3MEvX6gFlGddxhTx
- 5zjBUivUvmJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaj276gAKCRBNeSQFyHKQ
- BKInD/9SU14PHKGwWoaCU4YhEQeY1pxy+QWTH1NXRW5J7zDiMx8G2AFf+64Waf+aL/2lEEFQfCj
- kdIvjeNp0qtZidegGjUVqxam9kRumLSPyX2+3qJuaNLTXHuSBvEq6x45cohiG6nWlybBfgaIeyp
- uzMg8/AyWv4hJcbcO5x3wGGdAxOmHmvZd4nn2Wa1/Lh9qKGOt/UclkIRMdg4oEtmIpOTelqK/8O
- LzDSadDBCHe+WqPE403pKdDulczmD/mcTxYU0RrDIF3RYYm3MtV4p12bwASyLhVsk5FaY/pytW2
- 3GCV2gatd2NKLF/J/iYhYaEgCAkX7wwu5U/qNs0UhOKr96n0IibQFif8Fj6DvT9fB/yogaBHvol
- oT84OsSgBDCrV+CtvLIQ3jQadF1CqKAWQY/DwWlhesXlc1O/pirc+ON5PfnF8R2HoH2nyiPZPxw
- k/Ru2nRTmgKt+tpoSEpZ9d2E5+jpfQi+xzp6VcSSvJ1uIJqojWNv8mYRBjjgTwJj+X4reV4eXpn
- 3vd9GWehmWRxb7G+/dJ7+tM8vc2e+EyyD+zIOJ9BxpDo08UwuLoiHn/dYow8SmCN26nxE1Orz/X
- eaXlMUxrUW9s1mj0FnwiUEdQUbMle+6MHiWeniXWsNcPUoXiihDGR8U6xpk+fbT8ui0jE9M58MD
- nhzaFx7DTgVlQog==
-X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
- fpr=C267C309447FEB4F3F216DAC4D792405C8729004
+X-ClientProxiedBy: SJ0PR13CA0130.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::15) To CO1PR11MB4979.namprd11.prod.outlook.com
+ (2603:10b6:303:99::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4979:EE_|PH7PR11MB7450:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ecae485-b8ff-419f-5a75-08ded3131f9f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|11063799006|56012099006|4143699003|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: jGJwVXL7F6K4rncU29G8q/L8OjfRa/tfdHQMpZ28VxlUVFR9883AqtdpQ3mGZ1OvO/MaDwvgZY5WP01vew0rbjoWAr6yoOgFlImDl4q4bszUrbK4H2Ee+YfH3ruisJBbr0qWCuFtGR2mBL8HHMRscdNQPfcVwXeLainwBUoi2SVSi4PkPELRP3xIAPh7b7QRS6jBm+wCmF+K0SIsrmJt0PfvJyagvwhZqT4/38YlVqkGXxPxAkPlk2tUXl1EWbMOfGOMHi/HI4DrkkUEsCSrO77ocSpSpw3SgZILrMlSi9vYHcLkzspmR/jyiM0k3ckAsgAydopSd2ghUjiLHWSGX8kuWuWbqfFVZ/B0WZZ6ONDMNsE0RK4eDKh9ajUkLQa6KVCTaD62sMWWlssKPs/1XnVS+2XcUbfvfPVMHBhfjUh/vbHYAtJkyOfJpsZH9fCDIVf79g7txcK8rg5tufJ2tST+o5bsYv8ck9c2OjEiU70/kSeuGK35DQjYe+1IU3aaPSFO1uY5UmBuWzYczfhc+oac2aEkW0Abq5WLXFHjcLYwkicXVmPrssubhK6lr1/7SrZ5eXhh9ll8XPVcCUEg0LMBX5kMDSvfRhvgzF9EIynYJA625gV3BHUV1PkRR2WoILxG+YYZbqzHTw3a12eGyygA5VT/A+HlcEF3m0xiaa8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4979.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(11063799006)(56012099006)(4143699003)(6133799003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Zk9IcFFPMXhBNE5XUU1RbGFPaWdhQUtoUmQ3S0dpUFJwZjVDbkg0RWZzYVkw?=
+ =?utf-8?B?cWhmREluejg2UW1pT2hSOGJsNkpEcWlHdk5SYVNNQmxKMGhBYTUwMEhwb3FV?=
+ =?utf-8?B?UDBJbGlmM3pFL0wvQ3crU3ZMdlV0Z0NrQThkem9JZlNzd0hrVkZ4WnlTek94?=
+ =?utf-8?B?WWJtcGlqbXE2M0RpcFJjR292STl2dXU3UlBWMTR3ZVlxUWpmalNvR1ViK1d5?=
+ =?utf-8?B?UEtmNXFrR1UvODBMczVJcCtsQmNSU29zMkZoVjBubFJrWGZoZnlleTVZeEtu?=
+ =?utf-8?B?dmhTUi91N1JPZGpwQ3Q4ekt2b01CM01HSlFEWkQ1VGI3bWJYUFpvZHBQUkpO?=
+ =?utf-8?B?KzI4dGNsWXdrWmNhMUZxSnhrdGlCNzJMaGVyWGhXTUlkL1Z5bWVzaVlqeHdP?=
+ =?utf-8?B?S09SZUcxUWhWTnZWemNsaHM5OUlHVllvWVJObXBONWVDNFAyek1iK0ZkbjJX?=
+ =?utf-8?B?RlFDc0paOU9jbS95ZTJZSE4yY1FyeWoyWTFWSWFDRktnRHNxT3BWZ2IrcVp6?=
+ =?utf-8?B?VndENWRxcUV0dDZTMTQwYXRjeGZTUVZYNlhBWXJPVzdrSHRFVDNaMGlDdnJX?=
+ =?utf-8?B?aEc3NlVnTlZmQktjWWpMMVVJTUJ4eHVtU05kV1dtYXY1Z3I2Zyt2eTRnZ05X?=
+ =?utf-8?B?Q3lJOUZwQ2FSVmp4YUJXRmwveGx0NmoxdWYxUVZrNmhoZTg5ZXI0SlJiL2RS?=
+ =?utf-8?B?K1BQbmFTK0hKenBvSURPU1FJSGkxLytBeFVaQnAzWkFpczd3Yktzc1FEWDNy?=
+ =?utf-8?B?OWFBZm1haFpoQXJKdklSeGVJZ0FqcTB3K3NVd0cyNkIySVFzVnVSV0pZZjlO?=
+ =?utf-8?B?SXBBaDAwL3J0OEtWRm8ySjRCSEh0bVp0bTNuaEVFaDRMZVNXVkpWODBNRTBa?=
+ =?utf-8?B?cFZGYnFUTDJ6MzVEeVM1cUVDQ2N6bit0Y1ZQbXZ6TXBGd2ZoZWJ3WS9KRllJ?=
+ =?utf-8?B?aUlVMGZNdVFUWDJ1ZENXcFRHemxxL2psZ1FoSG1Gd1Nud2lCQldvTWtiZmZ4?=
+ =?utf-8?B?Vkg2K3QxeFl3WmpPVElEdDFFWWw3YkV0YktsU0xUajdGY042T3VsNnliZjRI?=
+ =?utf-8?B?N1dNclZxbDQ2MFQvWm1tLzZhR2FjN1IrMTVtdWFOcURGNHJWdUVlVWFGRmxr?=
+ =?utf-8?B?dGlONXpGT3NLY04yL3NFUkdzbXFIYjZaNjc5RWNRb2VlMFhmRGxOVm1JdjBo?=
+ =?utf-8?B?UmZObCthTW0vSmIrVUJCM3lobzhYR2h4Sy9MaW5RU3FxajJMekhKWWtzZ1Q0?=
+ =?utf-8?B?QWNYbHVvU3RNdTBWU2VnODdTc1crS0ZYUnZJcGYyT3VDQVpqS0d2VmxNbGY1?=
+ =?utf-8?B?OFhjT2p2R3VlY3I1Vmc2dldQcjNwMTJwRXkxcTcvU1kxaDN6Zmpod09rUlRm?=
+ =?utf-8?B?cFdUcEIwV0M4RFUza2hLaDFPalVtOWJDWlMrVW1HVFNxdk5zaHNoMEFaZ25F?=
+ =?utf-8?B?RzNrSmdLTDIxdlpFRzcyZXQ5di9NRlFFNzhIS3pFRVoyNVMrOHgyOC8xQ29B?=
+ =?utf-8?B?UktXdTFuTm1mWXl0eG45c0xWVENjeWpaV3VOOG1lM21pMldoZnluc1VNOEJj?=
+ =?utf-8?B?ZDJ1bkpoek1HUDVzWXY2dVdPR282Sm5UQ29tMW1Ec01RT0h4NEo3c0FEVWlU?=
+ =?utf-8?B?ODFaY2lGYkNYbTFuaUx4SVFzeTZqWlErTlZySDE5emlVN3l0OElDVGMzR25U?=
+ =?utf-8?B?MXUvTXJ3YTR3NjVvRGpkYkVibVRXUk40MDk3K3A3QmdCMG9BU1c0QTJ5cldV?=
+ =?utf-8?B?cWFpR1RRd3F5UUZsc1RtaGZHRlhPQzBIM0FzOHMwQ205ZkpzWmpmT2hEVzM1?=
+ =?utf-8?B?cW5tdSt3RWhSVFh6SjZsWXJia1RCM2VPemNWMUdqb1dWVU1ZMHFtUU1Zd2o5?=
+ =?utf-8?B?ZzVGOVRTUmJoU1pEUWwvZmZ6VXUvUVJ4VFF1TnNXS2FmWEdqazdhOGdqRW1Q?=
+ =?utf-8?B?eDI0Nk0vbTQ0L3VIaEhaKy84Qk45ZkhNZmRHTHkyS0dKQkZqM1gwd3NHZThM?=
+ =?utf-8?B?UDNFVE90cFRrU3hkYlZxMmNPdUF6NkI1b2d5RGc5WG5CeDZSVjUxbkQ4WWFF?=
+ =?utf-8?B?MVNLT1RuOWIzaDlSN1d0L2UxdktsM2lEYU1HQTFNNVpNRmIvMzhqbmJ1UnhB?=
+ =?utf-8?B?d21paVpEZW55WThtMm1PS0hhNlhubGE0c0xnOE84VUh6ZlBHdjJOQzlNQzhn?=
+ =?utf-8?B?OFpOazkyRTZBdjd4SUJ5bnhnK3VHMXBtODVOWTdDKzFqMTVuemYvbVlrZkVW?=
+ =?utf-8?B?bC8xazdSd2Urc09CcHVVa01TRG9sYlFoNGdkbHhBS3N3UzBKMnI1eXpSU0Uz?=
+ =?utf-8?B?R2VGTzcyWnNLRTF3Zi9kVnpGSE9hbzJIZktLM1pjeWI0ZU5LQnJRdmJxOHNH?=
+ =?utf-8?Q?Aqq8GY7xVWXlrT5Y=3D?=
+X-Exchange-RoutingPolicyChecked: Zaa+VZerdxOa4lz1PTSd+RT0CnAoPyJb8CrQGXsJYyPOot1EKZtqt+YJ22gEaEAhYwzG44qtMUoyqMZIlyYTPA+9eG2iC3+RgHe4GzweZvqixT5MvjlqQsn74ss22kBxL7of29RPziVZSPn0QhXD1OFCz9c5zj+vyaIquB/ARx9cmB8QoC5+WNemHdUve/HeulxH8Tu1ayyhXKdvVnpB6Fzb3/Hv64ruCisCwkKbmToz2F0H7CfUDXwYjJLhpIQoeRs83iQHDP1vLXJ9S99Bz+jvWv1NEA/IUzqnt4PR6lcJglKm9t0xKCvKA5X7SITrgFpuso/SGBfVBffwjBgQ3Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ecae485-b8ff-419f-5a75-08ded3131f9f
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4979.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 23:40:22.4774 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7s8N9pgLvBTkWoXsIuy5bUvUPkLsvaYFzW6uK58dP+zxag4RUMdG43kmJhlotXM6OUmCpXh5VzPztDTyMnZHrgdjiRqyjjwQSMcywdZiH0k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7450
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,116 +174,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe must only add registers to the GT whitelist if they are listed in the
-"Software Allowlist" section of the bspec.  These registers have been
-carefully reviewed by the architecture/security teams to ensure that
-they are safe to whitelist from a security perspective.  The list of
-allowed registers changes from platform to platform, and it is not safe
-to assume that a register is safe to whitelist on a new platform/IP just
-because it was whitelisted on older ones.  This means that whitelist
-entries in the driver that used undefined upper bounds
-(XE_RTP_END_VERSION_UNDEFINED) for their version ranges should always be
-considered illegal since they could potentially open unexpected security
-holes on future platforms.  Add a kunit test to scan the whitelist RTP
-table and ensure that all entries have well-defined upper bounds on IP
-version ranges.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_reg_whitelist.c         |  4 +++-
- drivers/gpu/drm/xe/xe_reg_whitelist.h         |  4 ++++
- 3 files changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-index ef379cbb6a86..72ae1c13ad72 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-@@ -5,6 +5,7 @@
- 
- #include <kunit/test.h>
- 
-+#include "xe_reg_whitelist.h"
- #include "xe_rtp_types.h"
- #include "xe_tuning.h"
- #include "xe_wa.h"
-@@ -75,11 +76,30 @@ static void xe_rtp_table_dev_oob_test(struct kunit *test)
- 
- RTP_TABLE_PARAM(device_oob_was);
- 
-+static void xe_rtp_table_missing_upper_bound_test(struct kunit *test)
-+{
-+	const struct xe_rtp_entry_sr *entry = test->param_value;
-+
-+	for (int i = 0; i < entry->n_rules; i++) {
-+		u8 match_type = entry->rules[i].match_type;
-+
-+		if (match_type != XE_RTP_MATCH_GRAPHICS_VERSION_RANGE &&
-+		    match_type != XE_RTP_MATCH_MEDIA_VERSION_RANGE)
-+			continue;
-+
-+		KUNIT_EXPECT_NE(test, entry->rules[i].ver_end, XE_RTP_END_VERSION_UNDEFINED);
-+	}
-+}
-+
-+RTP_TABLE_PARAM(register_whitelist);
-+
- static struct kunit_case xe_rtp_table_tests[] = {
- 	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_tunings_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_table_oob_test, oob_was_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_table_dev_oob_test, device_oob_was_gen_params),
-+	KUNIT_CASE_PARAM(xe_rtp_table_missing_upper_bound_test,
-+			 register_whitelist_gen_params),
- 	{}
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 3d9e3daab01a..f03b6cc92c49 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -5,6 +5,8 @@
- 
- #include "xe_reg_whitelist.h"
- 
-+#include <kunit/visibility.h>
-+
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_oa_regs.h"
-@@ -41,7 +43,7 @@ static bool match_multi_queue_class(const struct xe_device *xe,
- 	return xe_gt_supports_multi_queue(gt, hwe->class);
- }
- 
--static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
-+VISIBLE_IF_KUNIT const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
- 	{ XE_RTP_NAME("WaAllowPMDepthAndInvocationCountAccessFromUMD, 1408556865"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(WHITELIST(PS_INVOCATION_COUNT,
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.h b/drivers/gpu/drm/xe/xe_reg_whitelist.h
-index e1eb1b7d5480..c0248063d515 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.h
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.h
-@@ -14,6 +14,10 @@ struct xe_hw_engine;
- struct xe_reg_sr;
- struct xe_reg_sr_entry;
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+extern const struct xe_rtp_table_sr register_whitelist;
-+#endif
-+
- void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
- 
- void xe_reg_whitelist_oa_regs(struct xe_gt *gt);
+On 6/3/2026 3:17 AM, Raag Jadav wrote:
+> In preparation of usecases which require re-initializing firmware without
+> reloading the driver, introduce xe_uc_fw_reinit(). The uC firmware bo
+> already exists but since it's contents are on VRAM, they are lost on PCIe
+> FLR. Copy the firmware back to it's bo and mark it as loadable as part of
+> re-initialization.
+>
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
 
----
-base-commit: c04e038b8787434bf489ea6de4ab2e2d936083c7
-change-id: 20260625-kunit_whitelist_bounds-a88495e5cc7b
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Best regards,
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+> ---
+> v2: Add kernel doc (Matthew Brost)
+> v6: Skip uC firmware selection during re-initialization (Daniele)
+> v8: Set fw state to XE_UC_FIRMWARE_INIT_FAIL on failure (Daniele)
+> ---
+>   drivers/gpu/drm/xe/xe_uc_fw.c | 67 +++++++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_uc_fw.h |  1 +
+>   2 files changed, 68 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+> index 3f08a3b54062..158ac15dde55 100644
+> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
+> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+> @@ -833,6 +833,14 @@ static int uc_fw_copy(struct xe_uc_fw *uc_fw, const void *data, size_t size, u32
+>   	return err;
+>   }
+>   
+> +static void uc_fw_reinit(struct xe_uc_fw *uc_fw, const void *data)
+> +{
+> +	struct xe_device *xe = uc_fw_to_xe(uc_fw);
+> +
+> +	xe_map_memcpy_to(xe, &uc_fw->bo->vmap, 0, data, uc_fw->size);
+> +	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOADABLE);
+> +}
+> +
+>   int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+>   {
+>   	const struct firmware *fw = NULL;
+> @@ -856,6 +864,65 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+>   }
+>   ALLOW_ERROR_INJECTION(xe_uc_fw_init, ERRNO); /* See xe_pci_probe() */
+>   
+> +/**
+> + * xe_uc_fw_reinit() - Re-initialize uC firmware into its bo
+> + * @uc_fw: uC firmware
+> + *
+> + * Returns: 0 on success, negative error code otherwise.
+> + */
+> +int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw)
+> +{
+> +	struct xe_device *xe = uc_fw_to_xe(uc_fw);
+> +	struct xe_uc_fw_version old_fw, new_fw;
+> +	const struct firmware *fw = NULL;
+> +	int err;
+> +
+> +	/* Make sure the status was cleared the last time we reset the uc */
+> +	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
+> +
+> +	/* We shouldn't be here for the firmware which wasn't available */
+> +	if (!xe_uc_fw_is_available(uc_fw))
+> +		return -ENOEXEC;
+> +
+> +	old_fw = uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+> +
+> +	err = firmware_request_nowarn(&fw, uc_fw->path, xe->drm.dev);
+> +	if (err)
+> +		goto init_fail;
+> +
+> +	err = parse_headers(uc_fw, fw);
+> +	if (err)
+> +		goto restore_old;
+> +
+> +	new_fw = uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+> +	if (memcmp(&old_fw, &new_fw, sizeof(old_fw)) || uc_fw->size != fw->size) {
+> +		drm_err(&xe->drm, "%s firmware mismatch on %s",
+> +			xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
+> +
+> +		err = -ENOEXEC;
+> +		goto restore_old;
+> +	}
+> +
+> +	uc_fw_reinit(uc_fw, fw->data);
+> +	uc_fw_release(fw);
+> +	return 0;
+> +
+> +restore_old:
+> +	/*
+> +	 * parse_headers() updates version details, so restore original version
+> +	 * before bailing.
+> +	 *
+> +	 * TODO: Create a struct of all the fields touched by parse_headers()
+> +	 * and restore them all.
+> +	 */
+> +	uc_fw->versions.found[XE_UC_FW_VER_RELEASE] = old_fw;
+> +init_fail:
+> +	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_INIT_FAIL);
+> +	/* OK even if fw is NULL */
+> +	uc_fw_release(fw);
+> +	return err;
+> +}
+> +
+>   static u32 uc_fw_ggtt_offset(struct xe_uc_fw *uc_fw)
+>   {
+>   	return xe_bo_ggtt_addr(uc_fw->bo);
+> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
+> index f2d3a3e7208b..6debdb924310 100644
+> --- a/drivers/gpu/drm/xe/xe_uc_fw.h
+> +++ b/drivers/gpu/drm/xe/xe_uc_fw.h
+> @@ -15,6 +15,7 @@
+>   struct drm_printer;
+>   
+>   int xe_uc_fw_init(struct xe_uc_fw *uc_fw);
+> +int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw);
+>   size_t xe_uc_fw_copy_rsa(struct xe_uc_fw *uc_fw, void *dst, u32 max_len);
+>   int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags);
+>   int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw);
 
