@@ -4,62 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83863CDB479
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 12:59:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7005ECDE000
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 13:10:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9EF10EAA5;
-	Thu, 25 Jun 2026 12:59:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26F8610E205;
+	Thu, 25 Jun 2026 13:10:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="as/4kRlJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CEbCx2Ox";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5246110EAA5;
- Thu, 25 Jun 2026 12:59:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAF210E205;
+ Thu, 25 Jun 2026 13:10:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782392394; x=1813928394;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ju3gfzFeBeams+3Iev1BlEjXoqqkURWq1dmcBXf0Gac=;
- b=as/4kRlJR8JJYKBvLFUQwjKrpExIgArLZ54zyXj/Bog75xmMY1ry0u/6
- 1kze4B0ZwGTkKGmcQihwc0vgVhu3cNogtY9p3YQAZwBCx3qYB0z9HbCF6
- HLgvhmVqHDVmVBLqXk8BRoET11pVDChuf7sF07PpcfFdYsoWhpYtWlL6J
- XQnw4tPjqLuxQ/9cvHfhWANsrNCmvJoXGxFPJqdF7IgY5eRUoTbmsbi1X
- F+cNdgUlDGF9fmSvKpoHsvbfbXuR8ycy626gLQ3JAXvSIMe01IuJF7PUM
- JqmkBWx3vaxsQfBc2MJvHyRLqanEihJZQVJXO94rA3c4nX2CFVihDFj2A g==;
-X-CSE-ConnectionGUID: i4uDSgtiRpCBGjwWxL4keA==
-X-CSE-MsgGUID: yXyCaomCTHO2uzSbkjQYvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="82287398"
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="82287398"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 05:59:54 -0700
-X-CSE-ConnectionGUID: iyYEnqxrRCqiMDSh7gcxFQ==
-X-CSE-MsgGUID: JDi4aJs1SZSPji3+mUzr0Q==
+ t=1782393048; x=1813929048;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lzC+LUUvfV7uYGcBaOhEXbvYJIWnO8/EqxSud/5mrYI=;
+ b=CEbCx2OxcnNzT2WKPoet6fUs+DpiClwjmEsIOmoZ5zgrk4gpY0MqTIES
+ kbjcgi5whr+d20RxJiHZCoCAwLqc+SGbVYVDNt0bPIl5O1wRB83CbHdyR
+ yLKcw1jny4Q1ugY6RBqsMAtECLOzIYOwJtHEfz6cN7z3M2WhXWdDsI+Ho
+ BSfefWwIVH+FGvTH/lmMHZ+aPbhQWBKPv57CIP7b0riGggDXgT2jF7E0M
+ kTk8oIw9nin3P0JNyPWZpD20KIeuNvEpp4zccOAPFI7sh4iSQ3K+hjaTT
+ ocxXiFN3b5Bgnrn4LnucAKuJhalv0Q4cjIPYHIulxV7WpUPD1SH0K/YTB w==;
+X-CSE-ConnectionGUID: l50e2tmxREGD1IrMJL/H3A==
+X-CSE-MsgGUID: Whb+J4NtR9efQbiDidMemg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="100720059"
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="100720059"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 06:10:47 -0700
+X-CSE-ConnectionGUID: VMgQrozUR0awUldBDO2E3w==
+X-CSE-MsgGUID: fCUVJKuuRguOl8X5bOl8Zg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="280857128"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa002.jf.intel.com with ESMTP; 25 Jun 2026 05:59:50 -0700
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Raag Jadav <raag.jadav@intel.com>,
- "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Andi Shyti <andi.shyti@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] drm/xe/mcu_i2c: Take over control of the controller
- enabling
-Date: Thu, 25 Jun 2026 14:59:39 +0200
-Message-ID: <20260625125939.429078-4-heikki.krogerus@linux.intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260625125939.429078-1-heikki.krogerus@linux.intel.com>
-References: <20260625125939.429078-1-heikki.krogerus@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="250863153"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.126])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 06:10:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Martin Hodo <martin.hodo@intel.com>,
+ stable@vger.kernel.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH] drm/i915/vrr: require valid min/max vfreq for VRR
+Date: Thu, 25 Jun 2026 16:10:40 +0300
+Message-ID: <20260625131040.1051272-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,121 +69,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some platforms make an assumption that the i2c controller's
-enabled state indicates also the power state of the
-controller. This can create a problem when the controller is
-in disabled state, because the hardware may assume
-incorrectly that it is then also in low-power state.
+Ensure the EDID provided min/max vfreq are valid. Most scenarios are
+already covered (by coincidence) through the checks in
+intel_vrr_is_capable() and intel_vrr_is_in_range(), but be more explicit
+about it. At worst, a zero min_vfreq could lead to a division by zero in
+intel_vrr_compute_vmax().
 
-To fix this, the controller is kept enabled by taking over
-the IC_ENABLE register. The controller has to be disabled
-when the configuration is updated and when the target
-address or the slave address are assigned, so disabling it
-when IC_CON, IC_TAR or IC_SAR registers are programmed, and
-then re-enabling it again.
+Discovered using AI-assisted static analysis confirmed by Intel Product
+Security.
 
-Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Reported-by: Martin Hodo <martin.hodo@intel.com>
+Fixes: 117cd09ba528 ("drm/i915/display/dp: Compute VRR state in atomic_check")
+Cc: <stable@vger.kernel.org> # v5.12+
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_i2c.c | 55 +++++++++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_i2c.h |  1 +
- 2 files changed, 54 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index 0495b561957a2..e2d8e77653cf2 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_print.h>
- #include <linux/array_size.h>
- #include <linux/container_of.h>
-+#include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/designware_i2c.h>
- #include <linux/err.h>
-@@ -294,11 +295,40 @@ static void xe_i2c_remove_irq(struct xe_i2c *i2c)
- 	irq_domain_remove(i2c->irqdomain);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 5d9b11185296..bffbdee76ee1 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -76,6 +76,10 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+ 		return false;
+ 	}
+ 
++	if (!info->monitor_range.min_vfreq || !info->monitor_range.max_vfreq ||
++	    info->monitor_range.min_vfreq > info->monitor_range.max_vfreq)
++		return false;
++
+ 	return info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
  }
  
-+/* See "Disabling DW_apb_i2c" in the DesignWare DW_abp_i2c databook. */
-+static void xe_i2c_disable(struct xe_i2c *i2c)
-+{
-+	int timeout = 100;
-+	u32 status;
-+
-+	xe_mmio_rmw32(i2c->mmio, I2C_REG(DW_IC_ENABLE), 1, 0);
-+
-+	do {
-+		status = xe_mmio_read32(i2c->mmio, I2C_REG(DW_IC_ENABLE_STATUS));
-+		if (!(status & 1))
-+			return;
-+		/* Can't sleep here. */
-+		udelay(25);
-+	} while (timeout--);
-+
-+	dev_warn(&i2c->adapter->dev, "timeout in disabling adapter\n");
-+}
-+
- static int xe_i2c_read(void *context, unsigned int reg, unsigned int *val)
- {
- 	struct xe_i2c *i2c = context;
- 
--	*val = xe_mmio_read32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET));
-+	*val = xe_mmio_read32(i2c->mmio, I2C_REG(reg));
-+
-+	switch (reg) {
-+	case DW_IC_ENABLE:
-+	case DW_IC_ENABLE_STATUS:
-+		FIELD_MODIFY(DW_IC_ENABLE_ENABLE, val,
-+			     i2c->ic_enable & DW_IC_ENABLE_ENABLE);
-+		break;
-+	default:
-+		break;
-+	}
- 
- 	return 0;
- }
-@@ -307,7 +337,28 @@ static int xe_i2c_write(void *context, unsigned int reg, unsigned int val)
- {
- 	struct xe_i2c *i2c = context;
- 
--	xe_mmio_write32(i2c->mmio, XE_REG(reg + I2C_MEM_SPACE_OFFSET), val);
-+	switch (reg) {
-+	case DW_IC_CON:
-+	case DW_IC_TAR:
-+	case DW_IC_SAR:
-+		/* Disable the controller. */
-+		xe_i2c_disable(i2c);
-+
-+		/* Write the register. */
-+		xe_mmio_write32(i2c->mmio, I2C_REG(reg), val);
-+
-+		/* Enable the controller. */
-+		xe_mmio_rmw32(i2c->mmio, I2C_REG(DW_IC_ENABLE), 0, 1);
-+		break;
-+	case DW_IC_ENABLE:
-+		i2c->ic_enable = val;
-+		/* Other fields can be updated except the enable bit. */
-+		val |= DW_IC_ENABLE_ENABLE;
-+		fallthrough;
-+	default:
-+		xe_mmio_write32(i2c->mmio, I2C_REG(reg), val);
-+		break;
-+	}
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_i2c.h b/drivers/gpu/drm/xe/xe_i2c.h
-index b3327db998708..231e36df09017 100644
---- a/drivers/gpu/drm/xe/xe_i2c.h
-+++ b/drivers/gpu/drm/xe/xe_i2c.h
-@@ -39,6 +39,7 @@ struct xe_i2c {
- 	struct platform_device *pdev;
- 	struct i2c_adapter *adapter;
- 	struct i2c_client *client[XE_I2C_MAX_CLIENTS];
-+	unsigned int ic_enable;
- 
- 	struct notifier_block bus_notifier;
- 	struct work_struct work;
 -- 
-2.50.1
+2.47.3
 
