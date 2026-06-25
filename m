@@ -4,66 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70853CDE00B
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 22:39:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9BA3CDE00C
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 22:45:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32A0110F3A8;
-	Thu, 25 Jun 2026 22:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95F9210F3A8;
+	Thu, 25 Jun 2026 22:45:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="We7ym64l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZKK+wbzg";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CBE910E295;
- Thu, 25 Jun 2026 22:39:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iSqoogcXxBiMpfVVgDCHCqL3LKy3w6cdDOiA0buc+Zo=; b=We7ym64l/dRYkiui+djH3QX0R3
- bkYhE9iaIItaLxg9oyq9Dzvd/WZ/KjNpsbhKzGmfaPykILr/daCO9NQ44OJUZe79d98l1qZxORXKv
- wFfUEi+fz0GnVmoWYhKpkIsMu/IGYQve8B50fhry8EzWbo8GoBsF+5CMFU7jwrdi5Y/ZKPz43aaGa
- yVw0dRLYe2nKk+0NG2A1HJrtXOc5S+OFfQkvGXM8pOoqM0BRKGH/YFvGcWb+6v5SLwBVpB1dm9v2Z
- RI8NK2TW5ohC9UL3/tIk/bPlLmVMRrgUbKhtVhcC5fAS98TULK9KOVyIi3XIWrbtG2xlnYGZWuz5V
- Is4TDDYQ==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
- helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wcsip-005FpT-Or; Fri, 26 Jun 2026 00:38:59 +0200
-Message-ID: <2a1ea63b-646e-4064-bb60-982b6b027c75@Igalia.com>
-Date: Thu, 25 Jun 2026 15:38:50 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDB5B10F3A8
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 22:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782427507; x=1813963507;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=izzg1pJlPG7CPXi/UyEZsEnyeDc3jtEU+CS2iKz2lGU=;
+ b=ZKK+wbzgQJN5Pv7wYqXDhDCa6AiuDPx/4xRf3zKDIdqZnpCVKrvNSDsA
+ Zkm0NVBDnDfc/WVvKO3Gub9DDK7p6Yl8xx9wrIEecsUWQHhhjdbiTcKa5
+ YO2ohYWPg+g1AVsgNDCBhmo9Y1A182AHfZaW9fa2kTDd7lhZNoZxb1TWf
+ iqTeykA/PiW4GDNtgFMWp0mwdIUqFFvfjX6Hx65KimbeZzPCIfYC7iB4z
+ Fr25hZTsQXsIwWSwfTl9/9QkdM167ER66bcn1RMPuYmmeGg/gilEcSIJA
+ jh3W0AA7l57Cg8SxECMW3oEC0/qq9UXkIw9MkZEkaqcvAr8uw3oTR22iW A==;
+X-CSE-ConnectionGUID: bb8YHxeGQ3GghNatToatxA==
+X-CSE-MsgGUID: YwvbmENNS5a4efFvxX8OBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="83099309"
+X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="83099309"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 15:45:06 -0700
+X-CSE-ConnectionGUID: kRcic4XWQDmnwCd/+dXT6w==
+X-CSE-MsgGUID: 9WNePfLfR7ew9Jm2H4gDMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="255121906"
+Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
+ by orviesa004.jf.intel.com with ESMTP; 25 Jun 2026 15:45:06 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/userptr: Drop bogus static from finish in
+ force_invalidate
+Date: Thu, 25 Jun 2026 22:44:52 +0000
+Message-Id: <20260625224452.3243231-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] drm/atomic: reject colorop update from inactive
- color pipeline
-To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
- alexander.deucher@amd.com, alex.hung@amd.com, aurabindo.pillai@amd.com,
- christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
- harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260609121230.1358786-1-mwen@igalia.com>
- <20260609121230.1358786-3-mwen@igalia.com>
-Content-Language: en-GB
-From: John Harrison <John.Harrison@Igalia.com>
-In-Reply-To: <20260609121230.1358786-3-mwen@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,119 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 6/9/26 13:51, Melissa Wen wrote:
-> Only allow updates on colorops that are part of an active pipeline, i.e.
-> check if a colorop belongs to the color pipeline of a plane in its
-> current, new or old state. If not, reject the state change of this
-> inactive colorop. Performing this check later in drm_atomic_check_only()
-> to remove the ordering dependency that would exist if done at the time
-> of colorop property setting. Userspace is allowed to change colorops of
-> an active color pipeline, or when activating or deactivating its
-> pipeline in the same commit. However, changes in inactive color pipeline
-> is not allowed.
-The last two sentences here seem to be a duplicate of the first two 
-sentences. Maybe drop them as redundant?
+The local "finish" pointer in xe_vma_userptr_force_invalidate() is
+unconditionally written before each read, so the static storage class
+serves no purpose. Worse, it makes the variable a process-wide shared
+slot: the function's per-VM asserts do not exclude concurrent callers
+on different VMs, so two such callers can race on the slot and take
+the wrong if (finish) branch.
 
->
-> Suggested-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Signed-off-by: Melissa Wen <mwen@igalia.com>
-> ---
->   drivers/gpu/drm/drm_atomic.c | 60 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 60 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 464562861408..960b52624deb 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -943,6 +943,55 @@ drm_atomic_add_pipeline_colorops(struct drm_atomic_commit *state,
->   	return 0;
->   }
->   
-> +/**
-> + * drm_atomic_colorop_check - check new colorop state
-> + * @new_colorop_state: new colorop state to check
-> + *
-> + * Ensure that the colorop in @new_colorop_state belongs to an active color
-> + * pipeline, i.e. it's in the chain of colorops set to the color_pipeline
-> + * property of current, old or new plane state.
-> + *
-> + * Returns: 0 on success, -EINVAL otherwise.
-> + */
-> +static int drm_atomic_colorop_check(const struct drm_colorop_state *new_colorop_state)
-> +{
-> +	struct drm_atomic_commit *state = new_colorop_state->state;
-> +	struct drm_plane *plane = new_colorop_state->colorop->plane;
-> +	struct drm_plane_state *new_plane_state, *old_plane_state;
-> +	struct drm_colorop *colorop;
-> +
-> +	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
-> +	old_plane_state = drm_atomic_get_old_plane_state(state, plane);
-> +
-> +	/* No changes in the plane state. Check current-committed plane state */
-> +	if (!new_plane_state) {
-> +		for (colorop = plane->state->color_pipeline; colorop; colorop = colorop->next)
-Doesn't the first patch add a macro for wrapping this for loop?
+The function is gated by CONFIG_DRM_XE_USERPTR_INVAL_INJECT
+(developer/test option, default n), so production builds are
+unaffected.
 
-> +			if (colorop == new_colorop_state->colorop)
-> +				return 0;
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (WARN_ON(!old_plane_state))
-> +		return -EINVAL;
-> +
-> +	/* Check if the colorop is active in the new plane state */
-> +	for (colorop = new_plane_state->color_pipeline; colorop; colorop = colorop->next)
-> +		if (colorop == new_colorop_state->colorop)
-> +			return 0;
-> +
-> +	/* Same color pipeline as new; no point walking old. Colorop isn't active */
-> +	if (new_plane_state->color_pipeline == old_plane_state->color_pipeline)
-> +		return -EINVAL;
-> +
-> +	/* Check if the colorop was active in the old plane state */
-> +	for (colorop = old_plane_state->color_pipeline; colorop; colorop = colorop->next)
-> +		if (colorop == new_colorop_state->colorop)
-> +			return 0;
-Doesn't this situation count as changing the properties of an inactive 
-colorop? And should therefore be rejected? The colorop was previously in 
-use but once the commit goes through, it will not be. So any changes to 
-its state will not actually affect the new post-commit universe. Or am I 
-missing something?
+Drop the static.
 
-John.
+Fixes: 18c4e536959e ("drm/xe/userptr: Convert invalidation to two-pass MMU notifier")
+Assisted-by: Claude:claude-opus-4.7
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_userptr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +
-> +	/* Colorop is not part of an active color pipeline. */
-> +	return -EINVAL;
-> +}
-> +
->   static void drm_atomic_colorop_print_state(struct drm_printer *p,
->   					   const struct drm_colorop_state *state)
->   {
-> @@ -1792,6 +1841,8 @@ int drm_atomic_check_only(struct drm_atomic_commit *state)
->   	struct drm_plane *plane;
->   	struct drm_plane_state *old_plane_state;
->   	struct drm_plane_state *new_plane_state;
-> +	struct drm_colorop *colorop;
-> +	struct drm_colorop_state *new_colorop_state;
->   	struct drm_crtc *crtc;
->   	struct drm_crtc_state *old_crtc_state;
->   	struct drm_crtc_state *new_crtc_state;
-> @@ -1808,6 +1859,15 @@ int drm_atomic_check_only(struct drm_atomic_commit *state)
->   			requested_crtc |= drm_crtc_mask(crtc);
->   	}
->   
-> +	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> +		ret = drm_atomic_colorop_check(new_colorop_state);
-> +		if (ret) {
-> +			drm_dbg_atomic(dev, "[COLOROP:%d:%d] isn't in an active color pipeline.\n",
-> +				       colorop->base.id, colorop->type);
-> +			return ret;
-> +		}
-> +	}
-> +
->   	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
->   		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
->   		if (ret) {
+diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
+index 6761005c0b90..6f71bc66b14e 100644
+--- a/drivers/gpu/drm/xe/xe_userptr.c
++++ b/drivers/gpu/drm/xe/xe_userptr.c
+@@ -269,7 +269,7 @@ static const struct mmu_interval_notifier_ops vma_userptr_notifier_ops = {
+  */
+ void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma)
+ {
+-	static struct mmu_interval_notifier_finish *finish;
++	struct mmu_interval_notifier_finish *finish;
+ 	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
+ 
+ 	/* Protect against concurrent userptr pinning */
+-- 
+2.43.0
 
