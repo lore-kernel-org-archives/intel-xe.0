@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAB61CDE001
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 15:21:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFDBECDE001
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 15:28:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8984F10F314;
-	Thu, 25 Jun 2026 15:21:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A4FC10F30E;
+	Thu, 25 Jun 2026 15:28:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FgFLSLnw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mR+mD8iv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D21A10F310
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 15:21:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9045A10F30E;
+ Thu, 25 Jun 2026 15:28:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782400876; x=1813936876;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=27PudUOpxz04Zh2kOZCYfVCWTjQABGt153eXZOpzJgA=;
- b=FgFLSLnwS8HD+tw95CRE4hcH+7uj+5vFa1qRi8ZENilwgSKklmmPV1mV
- RROx1YTC0cccHDQuNrxazMmtkaaUbjB45SBoA3e8PG+cQQwhtRzAWAIb6
- +7XIcbeVZzMByCJ1GH5TN5ekmMHBc8wPXSDKFNyJjnFNSY9kdHzGpySAN
- jLxYpPZrB1gI7Dg6lwBE78CrRNwS4qvRhwpnGRHPkInjyL2UlgQPQSLQ4
- 1yBEzfRaerWFjOcIVgM6Jq2OHepWxk6rrsZ7Lha6btm6NryiY7dtUO0EF
- /k2tme8xopQDP94QzU4mvyqaUH4dF4SipZkydbFKcJv/QshR56YMJDOC1 Q==;
-X-CSE-ConnectionGUID: gnIYRYDhRkGMyLdpiNkRBg==
-X-CSE-MsgGUID: tRyvVKzaTJOSQuHyR8m2Sg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="94576339"
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="94576339"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 08:21:16 -0700
-X-CSE-ConnectionGUID: xsAE2P69Tr6ttXum6rIRWw==
-X-CSE-MsgGUID: H9gbOM+dSpuZoCprfBF02Q==
+ t=1782401280; x=1813937280;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=vfCzvBFrq4aqLZUqAlJsgQ9pz1xMZKJQzgI6UmSmEI4=;
+ b=mR+mD8iv39CCTKUdUp5Pt6+kTmy+y4gsl2SODq2DTwts3rzPTel3jakx
+ WZbBd+tB7g0l5cV6ZoF8C4XyhDfxRybwXhDOrH3SKxjqZTg8tgXEYuzrj
+ zT2i9nwSmUHFkhfPClg+ouHvqlT6rtu1V8MsAKQhuYHCMxRXXHz9RyGZM
+ x0vavCCWUGQQ3PUdlHs1IjJgcG1wjeG3ZF2W2U2G8N/zHYkbthjL0VIlS
+ 0bpLgTx40ZgMgAKKyr4cDGoSj3gf62hQOAVVVAKZtRL0Ju+X/KFQ903P4
+ mEEeaX7OyIf+Bq2oxVv6drJARWElzVt8r1xM5jjlG/5fY0dHupx2y7Vv3 A==;
+X-CSE-ConnectionGUID: EkzuD6E4Sbi+i2BQOKQAlA==
+X-CSE-MsgGUID: PbIqhp8QTGiXXI2bxjshgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="83057522"
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="83057522"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 08:27:59 -0700
+X-CSE-ConnectionGUID: cwTZChLfQoOZDlSBPHTQUA==
+X-CSE-MsgGUID: qoEYF/gQQV+BhVfiKIQ0ow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="249734609"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.127])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 08:21:15 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Schwartz <matthew.schwartz@linux.dev>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Arvind Yadav <arvind.yadav@intel.com>
-Subject: [PATCH 3/3] drm/xe/pt: prevent invalid cursor access for purged BOs
-Date: Thu, 25 Jun 2026 16:20:58 +0100
-Message-ID: <20260625152054.450125-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260625152054.450125-5-matthew.auld@intel.com>
-References: <20260625152054.450125-5-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="251337583"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 08:27:58 -0700
+Date: Thu, 25 Jun 2026 17:27:55 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Martin Hodo <martin.hodo@intel.com>, stable@vger.kernel.org, 
+ Animesh Manna <animesh.manna@intel.com>, 
+ =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@intel.com>
+Subject: Re: [PATCH] drm/i915/bios: range check LFP Data Block panel_type2
+In-Reply-To: <20260625135130.1067872-1-jani.nikula@intel.com>
+Message-ID: <37079a8c-8eb7-aaa0-ed21-594f413210a2@intel.com>
+References: <20260625135130.1067872-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323329-253770812-1782401279=:605841"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,89 +68,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During a page table walk for binding, xe_pt_stage_bind() explicitly
-skips initializing the xe_res_cursor for purged BOs, treating them
-similarly to NULL VMAs by only setting the cursor size.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-However, xe_pt_hugepte_possible() and xe_pt_scan_64K() did not check
-if the BO was purged before attempting to walk the cursor using
-xe_res_dma() and xe_res_next(). Because the cursor was left
-uninitialized for purged BOs, this falls through and triggers
-warnings like:
+--8323329-253770812-1782401279=:605841
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-  WARNING: drivers/gpu/drm/xe/xe_res_cursor.h:274 at xe_res_next
+On Thu, 25 Jun 2026, Jani Nikula wrote:
+> While the panel_type from LFP Data Block is range checked, panel_type2
+> is not. Add a few helpers for range checking, and use them to not only
+> check panel_type2, but also imrove clarity and correctness in the panel
 
-Fix this by explicitly checking if the BO is purged in both
-xe_pt_hugepte_possible() and xe_pt_scan_64K(), returning early just
-as we do for NULL VMAs, avoiding the invalid cursor accesses entirely.
+typo: s/imrove/improve/
 
-As a precaution, also zero-initialize the cursor in xe_pt_stage_bind()
-to ensure we don't pass garbage data into the page table walkers
-if we ever hit a similar edge case in the future.
+> type selection.
+>
+> Discovered using AI-assisted static analysis confirmed by Intel Product
+> Security.
+>
+> Reported-by: Martin Hodo <martin.hodo@intel.com>
+> Fixes: 6434cf630086 ("drm/i915/bios: calculate panel type as per child device index in VBT")
+> Cc: <stable@vger.kernel.org> # v6.0+
+> Cc: Animesh Manna <animesh.manna@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8418
-Fixes: ad9843aac91a ("drm/xe/madvise: Implement purgeable buffer object support")
-Assisted-by: Copilot:gemini-3.1-pro-preview
-Reported-by: Matthew Schwartz <matthew.schwartz@linux.dev>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 0959e0e88a14..b1f6a96dab2e 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -433,6 +433,7 @@ xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
- static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 				   struct xe_pt_stage_bind_walk *xe_walk)
- {
-+	struct xe_bo *bo = xe_vma_bo(xe_walk->vma);
- 	u64 size, dma;
- 
- 	if (level > MAX_HUGEPTE_LEVEL)
-@@ -446,8 +447,8 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	if (next - xe_walk->va_curs_start > xe_walk->curs->size)
- 		return false;
- 
--	/* null VMA's do not have dma addresses */
--	if (xe_vma_is_null(xe_walk->vma))
-+	/* null VMA's and purged BO's do not have dma addresses */
-+	if (xe_vma_is_null(xe_walk->vma) || (bo && xe_bo_is_purged(bo)))
- 		return true;
- 
- 	/* if we are clearing page table, no dma addresses*/
-@@ -468,6 +469,7 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- static bool
- xe_pt_scan_64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
- {
-+	struct xe_bo *bo = xe_vma_bo(xe_walk->vma);
- 	struct xe_res_cursor curs = *xe_walk->curs;
- 
- 	if (!IS_ALIGNED(addr, SZ_64K))
-@@ -476,8 +478,8 @@ xe_pt_scan_64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
- 	if (next > xe_walk->l0_end_addr)
- 		return false;
- 
--	/* null VMA's do not have dma addresses */
--	if (xe_vma_is_null(xe_walk->vma))
-+	/* null VMA's and purged BO's do not have dma addresses */
-+	if (xe_vma_is_null(xe_walk->vma) || (bo && xe_bo_is_purged(bo)))
- 		return true;
- 
- 	xe_res_next(&curs, addr - xe_walk->va_curs_start);
-@@ -708,7 +710,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- {
- 	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_bo *bo = xe_vma_bo(vma);
--	struct xe_res_cursor curs;
-+	struct xe_res_cursor curs = {};
- 	struct xe_vm *vm = xe_vma_vm(vma);
- 	struct xe_pt_stage_bind_walk xe_walk = {
- 		.base = {
--- 
-2.54.0
+BR,
+Michał
 
+> ---
+> drivers/gpu/drm/i915/display/intel_bios.c | 29 +++++++++++++++++------
+> 1 file changed, 22 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 15ebadc72b88..0c420019e46a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -623,6 +623,16 @@ get_lfp_data_tail(const struct bdb_lfp_data *data,
+> 		return NULL;
+> }
+>
+> +static bool is_panel_type_valid(int panel_type)
+> +{
+> +	return panel_type >= 0 && panel_type < 16;
+> +}
+> +
+> +static bool is_panel_type_valid_or_pnp(int panel_type)
+> +{
+> +	return is_panel_type_valid(panel_type) || panel_type == 0xff;
+> +}
+> +
+> static int opregion_get_panel_type(struct intel_display *display,
+> 				   const struct intel_bios_encoder_data *devdata,
+> 				   const struct drm_edid *drm_edid, bool use_fallback)
+> @@ -640,15 +650,21 @@ static int vbt_get_panel_type(struct intel_display *display,
+> 	if (!lfp_options)
+> 		return -1;
+>
+> -	if (lfp_options->panel_type > 0xf &&
+> -	    lfp_options->panel_type != 0xff) {
+> +	if (!is_panel_type_valid_or_pnp(lfp_options->panel_type)) {
+> 		drm_dbg_kms(display->drm, "Invalid VBT panel type 0x%x\n",
+> 			    lfp_options->panel_type);
+> 		return -1;
+> 	}
+>
+> -	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
+> +	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2) {
+> +		if (!is_panel_type_valid_or_pnp(lfp_options->panel_type2)) {
+> +			drm_dbg_kms(display->drm, "Invalid VBT panel type 2 0x%x\n",
+> +				    lfp_options->panel_type2);
+> +			return -1;
+> +		}
+> +
+> 		return lfp_options->panel_type2;
+> +	}
+>
+> 	drm_WARN_ON(display->drm,
+> 		    devdata && devdata->child.handle != DEVICE_HANDLE_LFP1);
+> @@ -762,13 +778,12 @@ static int get_panel_type(struct intel_display *display,
+> 				    panel_types[i].name, panel_types[i].panel_type);
+> 	}
+>
+> -	if (panel_types[PANEL_TYPE_OPREGION].panel_type >= 0)
+> +	if (is_panel_type_valid(panel_types[PANEL_TYPE_OPREGION].panel_type))
+> 		i = PANEL_TYPE_OPREGION;
+> 	else if (panel_types[PANEL_TYPE_VBT].panel_type == 0xff &&
+> -		 panel_types[PANEL_TYPE_PNPID].panel_type >= 0)
+> +		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID].panel_type))
+> 		i = PANEL_TYPE_PNPID;
+> -	else if (panel_types[PANEL_TYPE_VBT].panel_type != 0xff &&
+> -		 panel_types[PANEL_TYPE_VBT].panel_type >= 0)
+> +	else if (is_panel_type_valid(panel_types[PANEL_TYPE_VBT].panel_type))
+> 		i = PANEL_TYPE_VBT;
+> 	else
+> 		i = PANEL_TYPE_FALLBACK;
+> -- 
+> 2.47.3
+>
+>
+--8323329-253770812-1782401279=:605841--
