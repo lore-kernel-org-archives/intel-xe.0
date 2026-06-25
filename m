@@ -4,27 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 464EECDE000
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 13:59:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3D52CDB479
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 14:14:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01C2810F2D4;
-	Thu, 25 Jun 2026 13:59:28 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4337D10F2C8;
- Thu, 25 Jun 2026 13:59:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6649660389280471678=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A8D910F2CD;
+	Thu, 25 Jun 2026 14:14:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBYlyry/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CDDF10F2CD;
+ Thu, 25 Jun 2026 14:14:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782396852; x=1813932852;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=WrSh/K4fjxZ4sY3VS0ERfDGAYoYik1Q9pMJJah15jUk=;
+ b=gBYlyry/CYhnJECzXAj5fK6wS6RuX759RYQKbbwj32udBbFH5Yok7kDT
+ ejf5J2YeyWtummZYyBy7yzCEVz4SH8kEvsW5sEDKty92TWDTETdWBPrE9
+ WWmLONZbuXq9IgA816lfSScJdy+818bUYQqw9xqDhHuHT6GRYxwcU47f5
+ BOJoiVq4buJkOoPl4nH3iuZEw8E5IFJxVMkxD07cQ0uHLA5l+b/ICmQI2
+ G3oaPESNtlHx17FVB58aTZjVKWL61lOErwdDv9gfJ5Sf60el7ES2WSUEs
+ SMqZ0TDiTZgl7DCUu1BQ1BVgJuqg5tKG5XFwm1j71RBN9lpRWu/ujql9v Q==;
+X-CSE-ConnectionGUID: ZC6NaNJ5Rram6+vHADCIhA==
+X-CSE-MsgGUID: 41LshA/3Q+OAILcjFdqlcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="87018820"
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="87018820"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 07:14:11 -0700
+X-CSE-ConnectionGUID: t1+s3mVRT9GGIOqHVz0Ewg==
+X-CSE-MsgGUID: EWQ1wvN/RtCENS/oOHm1BQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="252697649"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 07:14:11 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 25 Jun 2026 07:14:11 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 25 Jun 2026 07:14:11 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.8) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 25 Jun 2026 07:14:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Mqm0qIKJACPen9uT2g6ui8y2f/LD1fKwTzc84jabODv8xGUh9Xbf2UGJ2ELr+JO0YZhxSRyTmFQrRxSGCWHWNUSPh+PxohWL3NnpfFHhJviIdEINVZ+wGM/49HdQA8N7s2Px7CbtgfIyqsOSAQoeAthxZwj4ALcyZzNdR2S3CONC4oXNjYGFpe8US0mwKcOSlV1IYkTqeYDmnQIOlGoWBFrlYSYOsNTg/5g0H1mTL2ygYmHU9BEVwXCsqCP/O3l5Ra3Ys1Fp/5VcExOslUp08CXV3HyG1J38UC1aKZ/uP8WIkZbh8/6SLHkl+i0OnwksMIx0LKvjmTMG8pj66+mXOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+slkSW6IM1qh5jTVLHz2jTKf5uO/KiXNOjOOyqm8fYg=;
+ b=piFQBhwIzz+E9EqyWdcfhmmeM05AHr6EJ1NY4AFc+BzWv8Y8dN/ZwZ+4g0qYRXQdhK/Sde6jhcZ8j2T2jMpyW3q703t/e6YeOS0oyduYQTYaSvUWTdTnBN2huXKanpI40kKVmzd12vH8swl63aowdFyGVXTWZVVk+yk+UHuzUrp6lGjjT73hyWr4WqVCzeHDMgMtpHLhUimOGvMmwiPsoCrv8kuDZiOchEKzDYdMQ7f1PE7t34TuIPNOHbKmaPbLNSj4jg7UAy5PfsxqJJUdMn1AGFcBeLNILrpYWAdHiOmIhbgVxmDAEfPctozZpclbjLV33H8gV3wxtMtx1bXFiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
+ by SA1PR11MB8374.namprd11.prod.outlook.com (2603:10b6:806:385::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Thu, 25 Jun
+ 2026 14:14:03 +0000
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0159.012; Thu, 25 Jun 2026
+ 14:14:03 +0000
+Date: Thu, 25 Jun 2026 17:13:38 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Mika
+ Kahola" <mika.kahola@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: Re: [PATCH v1 29/30] drm/i915/dp_link_caps: s/lc/lce/
+Message-ID: <aj03klb1L2mUYNkq@ideak-desk.lan>
+References: <20260623224619.1949975-1-michal.grzelak@intel.com>
+ <20260623224619.1949975-30-michal.grzelak@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260623224619.1949975-30-michal.grzelak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GV2PEPF000239F2.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::2b3) To IA3PR11MB9273.namprd11.prod.outlook.com
+ (2603:10b6:208:573::17)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/vrr=3A_require_val?=
- =?utf-8?q?id_min/max_vfreq_for_VRR?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jun 2026 13:59:26 -0000
-Message-ID: <178239596626.117741.18178429433137082188@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260625131040.1051272-1-jani.nikula@intel.com>
-In-Reply-To: <20260625131040.1051272-1-jani.nikula@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|SA1PR11MB8374:EE_
+X-MS-Office365-Filtering-Correlation-Id: aaf1f55c-bbc5-4172-e3af-08ded2c4028f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|1800799024|376014|22082099003|18002099003|3023799007|56012099006|4143699003|11063799006;
+X-Microsoft-Antispam-Message-Info: e+D84PhR75brlSsxc+1CwQUPy8nlT2WN6ktEcQC+3J+LCdOk3SCLtCuTJkcYJe+LCLrHt1TQEIquNkz3GBjnoIo4+vdFFux59p/YaZMyCMzvAsDWlk4yqm6ZGbGOsYzV1Yd3fYrATgn5hq41YJz2V4a+29xv9ucJ+k9bg64nJ3ISese4CpINak8c/PHKpeAo+KoVo/WrWqKdZnO/VElry+U1WA8Q9hAdI+BYacEJ52e0PjvSKoS8JsQkDHVoQQz6tzZpMOYKoSaraX+JzYDzxNHnCg1blWQGFVRYqcMeyZvsjmL0Jf0WNNTpBPNnTCS2pDrgMg4uGdt8xsXWGjJCDRxi/20NgTnzOPmlO26ycjGNS0GNbxDd3joQMjInc9ZU0DOX3365XCvWFRt1v+cuBqXVgI12tNiRNb4w9ZOvlR40k7jNfuol8kkBaph2FrWcym7bseLXV4JgQKCwKOXr8gDLuqTP/C/N6JFFNqoiTDCNP5iHolLtRc7M6J9iQCUdmE+eeY8Mh7dMF9GDxpKBAy+ufMA3p/hkCCWAZyppyS2AmFOINzvYHZjizwAdeEYivAhJZH4B4RA3kANQoPwrtxUA+EoRnu8T8xHQT6JssYgx8Sjc9BNloIPNJ+1IYw0gIOdI32tnXwWdvIezgszFwaL7ZlWsMOrc4zJZmyFHTA0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(22082099003)(18002099003)(3023799007)(56012099006)(4143699003)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RmVZT3NOUE84Vyt2ZzhUNTY4Y1RMalR0Z2pCekh3Mnh5QXhueTVBMFVrZEFq?=
+ =?utf-8?B?SFdPbTRuN01idEc4Z1pEOFhmWFdNVjlKVit0d0FKcWpBU2ZSUEFjR2hVYUhp?=
+ =?utf-8?B?OWRzN21wam4vSXdjdE1zYjN5am4vSWI2QTNGV0pIaE1ZVFBJSVpZVlYzNDdX?=
+ =?utf-8?B?V1pheDROUnFNRWFKbERGSmlGNEVpemRtU3QveGVrdURZNzA5YmUvaEU2YzB2?=
+ =?utf-8?B?RTlYcjk1Sm1CR3UycWx2ekFNVUpIYWd4Ym9DQjVzQWdkTmNhckJWZlF5UlpY?=
+ =?utf-8?B?aUpiYm5JSHBwazM2WlF1eUxUV0FuQVV5blVyeUd0MUIvZHFFcktBSnFoMDk1?=
+ =?utf-8?B?My9PUzNydFFDaVNPWjJ2WExpaWw4dlhVQi9wUENqM0hLRnQwOFVnb09HQkds?=
+ =?utf-8?B?SGs1NjUwaVFXelJUbTdSbEt4MTUzc3BGLy9hS2NlVzBVcUdEZVpHQzFVS1FS?=
+ =?utf-8?B?YmdrMDJnWnNOUmNnRFR6NXNIbzduVGN2TWpvRHpZUHdVOUhRcVVHUHlmY1lI?=
+ =?utf-8?B?NXROVWlHNnB2ZFFrL0NnWW1uVGNVOUJKai9HcDJOc0lIMU9EdUtkcDV2bjNL?=
+ =?utf-8?B?czFjdDZaQWtoNUxMNExPeWt4RDB3Z3loT056NjZmNFM2MkVPWVZoTGdnQVRx?=
+ =?utf-8?B?b1pPa0ViNnhhMVhPZnVzQVRZODdLUytpbWM3QkNFVElCZjdnU1dpVURqTkkr?=
+ =?utf-8?B?T0tyYnA2RDgrc3o5VWlhaHM0T1lpMHBpdjJyOXc0RHFzN0pXZjBrYmFtN2N1?=
+ =?utf-8?B?bCtTYlRxdjl1R3MzKzJaenUvK0p6VGM2anpPekF1YmJPUndkeC9rZ0NQUkVo?=
+ =?utf-8?B?NWp6MUt1bWlCdmRNWTJvT0wyTFB4NTJ5dHVWMTVSdXdxV0hYdWhtclExMkw2?=
+ =?utf-8?B?TUJKemJFdkF6cGh5SVkwbGc0dUs1MnZTV2dVQXVPazUyM1pwbmdVcDhmLzhr?=
+ =?utf-8?B?MWZNYk84anYzS2tRUkkzUmI0SnZ3N1dSS0pvZW5pYUN5TUVLYUJpdEg4TEJa?=
+ =?utf-8?B?U1pPK0U5bEZYSjdUdFdSaWNMUkpyQzBGYVpqb1pNRk5maWtyY0JmVUFEaU9a?=
+ =?utf-8?B?K2dIVnpYUFVIa3BGcnpjTThITWM1cTZyMzFtbkowNWpxdjNWaTB2WHNRdk5z?=
+ =?utf-8?B?enpOWnRGUE5DNVJwNzg4V1RybTg5RW1CV1ZuQnlwV09qMktDK1RyZC9uTk11?=
+ =?utf-8?B?ajRXejNWc2V3Zm4vYWM1eFVsT2paU2pZTWxIZlltclR0MzdObCtjZ2w4RHFp?=
+ =?utf-8?B?MmY3d0FjbHVaTlVxNjlTMTFCdEU0MCtnUDRWU1VjTDlVSnk4MFdDWndBeGhk?=
+ =?utf-8?B?SFR6LzJuQ2JGeGVQcndSeDdiWWdoSGt2TWFFaWwyMzBnaSt1bG05QmNVRzFC?=
+ =?utf-8?B?Q0NFSFcvTVZFZmxmQnBGVXJicE4rMHZLWFIwUFZ6QXlMTkFYbEprd1RVeUFY?=
+ =?utf-8?B?T1VReWZ6aUgxUEtZQ1JiNjlZSFdtWVI2eDhxS3NMMUwrZmdycmlKbGVORWZS?=
+ =?utf-8?B?S1VlczNnbDB3cnNxRk9FVDJ1Sm5oTC9zU1E5ZTJaaVIvLy9xVHhDdXFzeEN2?=
+ =?utf-8?B?OVZLeGgvbTFxZnJRK294eG91OVVBZm5ZODBmQ3k1OXZ3cVZQWU5EWnhvYUVi?=
+ =?utf-8?B?SmY5aWtaTkNCYWhDNGNFNlJlZnJPdEw3SDc5SmlIT29tUGEzVmltdmkvUWtD?=
+ =?utf-8?B?ZGorUFlQL3dPcDhWay9Nd2VLY3FPNnRPT2NDbi9uOFpvaXd2ckZqZUI3bW1k?=
+ =?utf-8?B?bHg4WXFNemd0VU5Qci9JdzMvSCt5OFNNSWZCWk5mbVAzWnUvTjY2eXhRaGFh?=
+ =?utf-8?B?dVMxcHJ6a0U3Mis0SHhQT2tlcGx1TWV1cUhkU2FsRFZkUFMzeEh2aEhKeEkr?=
+ =?utf-8?B?WStPb2hNc2xmRlAyTEdXNDBCOGd0OGczRjBURTM1MDZSOXJsTnQwakZhUExW?=
+ =?utf-8?B?MGozc3E5RmJYRXB2UEE3cDBTcHljaGJDcExQS0twSnltWmo0WlFERWJrb0pS?=
+ =?utf-8?B?NEpmYXkzWjN2c0lTSHVyNy9yQTFVUmgzTjlUeDlyZkJOOUIzQkorSjc5WUFN?=
+ =?utf-8?B?M1lPR3BkQzhrNWZreXdmOXBpelo5d3NIZkhyZmZzRVRlcE9BZVFhZ2IzZUZa?=
+ =?utf-8?B?bkpZZ2ZkMlMyYU1xRGVUQk50Z2h6OU8rc04zUTNlc1Zvc3hDY0pqTkltWWxS?=
+ =?utf-8?B?VkhFd3VyRTVRRVFWM21kaG42N3NKMEVTN0xZYnNLdDAzUW5ucVNGd0ZETE1x?=
+ =?utf-8?B?Q05nbitOb2NXQzRybzBRdmVmZWlRUFlENGI2SWw2ZXdlZ1crelpWVDBEOStN?=
+ =?utf-8?B?SnRFc0RuMmFFdWFTTzF3T2VPdVl4cHB5aVlHaWhpZ2EyVWFXc3hEUT09?=
+X-Exchange-RoutingPolicyChecked: c9niFZw9cKXA1++cQdryERhtVbjdn+EPqJxcgzr35xfA+2pUvOZtg24UqX925xwekPeJBdJFPTFmIEPSwj7oSis8ZV/zndHN7qNH2AQauxm5xroTm53fQxYavKw9PafuqUL1RpIkTO5EmLyusyhs20OYbgfHPZaQV5sv5QPYuYFoIUByT/MqKbggis8rt1jfd7QlAK5fEPtLsnZGO0+l2s9PVsOCCCVClIR84ipt2urGBOV5N5XpwLHSC5pdLC/lcv++T+BllmK9VQanrmQZuFPCPeeRFDj1VtaFzmhwIzM0jQ4KKlxY9ZqcNOBll2I2iBUTyYM7Eh2u9bwZ2NlB/A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: aaf1f55c-bbc5-4172-e3af-08ded2c4028f
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 14:14:03.3329 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7/SBn5WHFo/H527cUgZGoxtCyCVE3r4ZSB4Ayj6Zfl+uBCpNh1+D/OTbRplQvyNLNkg5adkjjnE+q7xSQMVfEQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8374
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,301 +168,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6649660389280471678==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jun 24, 2026 at 12:46:18AM +0200, Michał Grzelak wrote:
+> lc variable took it's name as an acronym from struct
+> intel_dp_link_config. Rename the variable into lce since the struct was
+> renamed into intel_dp_link_config_entry.
+> 
+> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 
-== Series Details ==
+Thanks for the patch, I pushed this one to drm-intel-next.
 
-Series: drm/i915/vrr: require valid min/max vfreq for VRR
-URL   : https://patchwork.freedesktop.org/series/169197/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973_BAT -> xe-pw-169197v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-169197v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-169197v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 12)
-------------------------------
-
-  Missing    (1): bat-lnl-2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-169197v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate:
-    - bat-bmg-3:          NOTRUN -> [TIMEOUT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate.html
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:
-    - bat-bmg-3:          NOTRUN -> [CRASH][2] +4 other tests crash
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-169197v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr:
-    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][3] ([Intel XE#8439] / [Intel XE#8479]) +4 other tests incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr.html
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind:
-    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][4] ([Intel XE#8479]) +1 other test incomplete
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind.html
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr:
-    - bat-bmg-3:          [PASS][5] -> [INCOMPLETE][6] ([Intel XE#8479])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr.html
-
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
-    - bat-bmg-3:          NOTRUN -> [SKIP][7] ([Intel XE#6566]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
-
-  
-#### Warnings ####
-
-  * igt@xe_ccs@block-copy-compressed:
-    - bat-ptl-1:          [INCOMPLETE][8] ([Intel XE#8437]) -> [INCOMPLETE][9] ([Intel XE#8437] / [Intel XE#8479]) +7 other tests incomplete
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-ptl-1/igt@xe_ccs@block-copy-compressed.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-ptl-1/igt@xe_ccs@block-copy-compressed.html
-    - bat-lnl-1:          [INCOMPLETE][10] ([Intel XE#8437]) -> [INCOMPLETE][11] ([Intel XE#8437] / [Intel XE#8479]) +7 other tests incomplete
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-lnl-1/igt@xe_ccs@block-copy-compressed.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-lnl-1/igt@xe_ccs@block-copy-compressed.html
-
-  * igt@xe_ccs@ctrl-surf-copy:
-    - bat-ptl-2:          [INCOMPLETE][12] ([Intel XE#8437]) -> [INCOMPLETE][13] ([Intel XE#8437] / [Intel XE#8479]) +7 other tests incomplete
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-ptl-2/igt@xe_ccs@ctrl-surf-copy.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-ptl-2/igt@xe_ccs@ctrl-surf-copy.html
-    - bat-wcl-1:          [INCOMPLETE][14] ([Intel XE#8437]) -> [INCOMPLETE][15] ([Intel XE#8437] / [Intel XE#8479]) +7 other tests incomplete
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-wcl-1/igt@xe_ccs@ctrl-surf-copy.html
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-wcl-1/igt@xe_ccs@ctrl-surf-copy.html
-
-  * igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-vram01-vram01:
-    - bat-bmg-2:          [INCOMPLETE][16] ([Intel XE#8437]) -> [INCOMPLETE][17] ([Intel XE#8437] / [Intel XE#8479]) +7 other tests incomplete
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-vram01-vram01.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-vram01-vram01.html
-
-  * igt@xe_exec_atomic@basic-inc-all:
-    - bat-bmg-1:          [INCOMPLETE][18] ([Intel XE#8437]) -> [INCOMPLETE][19] ([Intel XE#8437] / [Intel XE#8479]) +7 other tests incomplete
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-1/igt@xe_exec_atomic@basic-inc-all.html
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-1/igt@xe_exec_atomic@basic-inc-all.html
-
-  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-system-memory:
-    - bat-wcl-2:          [INCOMPLETE][20] ([Intel XE#8437]) -> [INCOMPLETE][21] ([Intel XE#8437] / [Intel XE#8479]) +7 other tests incomplete
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-wcl-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-system-memory.html
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-wcl-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-system-memory.html
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind:
-    - bat-bmg-3:          [CRASH][22] ([Intel XE#8438]) -> [INCOMPLETE][23] ([Intel XE#8439] / [Intel XE#8479])
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap:
-    - bat-bmg-3:          [INCOMPLETE][24] ([Intel XE#8439]) -> [INCOMPLETE][25] ([Intel XE#8439] / [Intel XE#8479])
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html
-
-  
-  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
-  [Intel XE#8437]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437
-  [Intel XE#8438]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438
-  [Intel XE#8439]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439
-  [Intel XE#8479]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479
-
-
-Build changes
--------------
-
-  * IGT: IGT_8985 -> IGT_8986
-  * Linux: xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973 -> xe-pw-169197v1
-
-  IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8986: 8986
-  xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973: adbc617250e16fb2db4a4c777b89440927cb8973
-  xe-pw-169197v1: 169197v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/index.html
-
---===============6649660389280471678==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/vrr: require valid min/max vfreq for VRR</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169197/">https://patchwork.freedesktop.org/series/169197/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973_BAT -&gt; xe-pw-169197v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-169197v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-169197v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-lnl-2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-169197v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate.html">TIMEOUT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html">CRASH</a> +4 other tests crash</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169197v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +4 other tests incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_ccs@block-copy-compressed:</p>
-<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-ptl-1/igt@xe_ccs@block-copy-compressed.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-ptl-1/igt@xe_ccs@block-copy-compressed.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-lnl-1/igt@xe_ccs@block-copy-compressed.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-lnl-1/igt@xe_ccs@block-copy-compressed.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_ccs@ctrl-surf-copy:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-ptl-2/igt@xe_ccs@ctrl-surf-copy.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-ptl-2/igt@xe_ccs@ctrl-surf-copy.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-wcl-1/igt@xe_ccs@ctrl-surf-copy.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-wcl-1/igt@xe_ccs@ctrl-surf-copy.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-vram01-vram01:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-vram01-vram01.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-2/igt@xe_ccs@ctrl-surf-copy@linear-compressed-compfmt0-vram01-vram01.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_atomic@basic-inc-all:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-1/igt@xe_exec_atomic@basic-inc-all.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-1/igt@xe_exec_atomic@basic-inc-all.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-system-memory:</p>
-<ul>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-wcl-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-system-memory.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-wcl-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-system-memory.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438">Intel XE#8438</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169197v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-null-defer-mmap.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8985 -&gt; IGT_8986</li>
-<li>Linux: xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973 -&gt; xe-pw-169197v1</li>
-</ul>
-<p>IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8986: 8986<br />
-  xe-5299-adbc617250e16fb2db4a4c777b89440927cb8973: adbc617250e16fb2db4a4c777b89440927cb8973<br />
-  xe-pw-169197v1: 169197v1</p>
-
-</body>
-</html>
-
---===============6649660389280471678==--
+> ---
+>  .../gpu/drm/i915/display/intel_dp_link_caps.c | 50 +++++++++----------
+>  1 file changed, 25 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> index 0917e7f51a26d..1c34ba6c49c35 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> @@ -144,14 +144,14 @@ void intel_dp_link_caps_get_forced_params(struct intel_dp_link_caps *link_caps,
+>  }
+>  
+>  static int intel_dp_link_config_rate(struct intel_dp_link_caps *link_caps,
+> -				     const struct intel_dp_link_config_entry *lc)
+> +				     const struct intel_dp_link_config_entry *lce)
+>  {
+> -	return intel_dp_common_rate(link_caps, lc->link_rate_idx);
+> +	return intel_dp_common_rate(link_caps, lce->link_rate_idx);
+>  }
+>  
+> -static int intel_dp_link_config_lane_count(const struct intel_dp_link_config_entry *lc)
+> +static int intel_dp_link_config_lane_count(const struct intel_dp_link_config_entry *lce)
+>  {
+> -	return 1 << lc->lane_count_exp;
+> +	return 1 << lce->lane_count_exp;
+>  }
+>  
+>  static void set_max_link_limits_no_update(struct intel_dp_link_caps *link_caps,
+> @@ -236,10 +236,10 @@ void intel_dp_link_caps_reset_max_limits(struct intel_dp_link_caps *link_caps)
+>  }
+>  
+>  static int intel_dp_link_config_bw(struct intel_dp_link_caps *link_caps,
+> -				   const struct intel_dp_link_config_entry *lc)
+> +				   const struct intel_dp_link_config_entry *lce)
+>  {
+> -	return drm_dp_max_dprx_data_rate(intel_dp_link_config_rate(link_caps, lc),
+> -					 intel_dp_link_config_lane_count(lc));
+> +	return drm_dp_max_dprx_data_rate(intel_dp_link_config_rate(link_caps, lce),
+> +					 intel_dp_link_config_lane_count(lce));
+>  }
+>  
+>  static int link_config_cmp_by_bw(const void *a, const void *b, const void *p)
+> @@ -247,16 +247,16 @@ static int link_config_cmp_by_bw(const void *a, const void *b, const void *p)
+>  	struct intel_dp *intel_dp = (struct intel_dp *)p;	/* remove const */
+>  	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+>  
+> -	const struct intel_dp_link_config_entry *lc_a = a;
+> -	const struct intel_dp_link_config_entry *lc_b = b;
+> -	int bw_a = intel_dp_link_config_bw(link_caps, lc_a);
+> -	int bw_b = intel_dp_link_config_bw(link_caps, lc_b);
+> +	const struct intel_dp_link_config_entry *lce_a = a;
+> +	const struct intel_dp_link_config_entry *lce_b = b;
+> +	int bw_a = intel_dp_link_config_bw(link_caps, lce_a);
+> +	int bw_b = intel_dp_link_config_bw(link_caps, lce_b);
+>  
+>  	if (bw_a != bw_b)
+>  		return bw_a - bw_b;
+>  
+> -	return intel_dp_link_config_rate(link_caps, lc_a) -
+> -	       intel_dp_link_config_rate(link_caps, lc_b);
+> +	return intel_dp_link_config_rate(link_caps, lce_a) -
+> +	       intel_dp_link_config_rate(link_caps, lce_b);
+>  }
+>  
+>  /* Return %true if the supported link parameters have changed. */
+> @@ -265,7 +265,7 @@ bool intel_dp_link_caps_update(struct intel_dp_link_caps *link_caps,
+>  {
+>  	struct intel_dp *intel_dp = link_caps->dp;
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct intel_dp_link_config_entry *lc;
+> +	struct intel_dp_link_config_entry *lce;
+>  	bool link_params_changed = false;
+>  	int num_common_lane_configs;
+>  	int i;
+> @@ -298,13 +298,13 @@ bool intel_dp_link_caps_update(struct intel_dp_link_caps *link_caps,
+>  
+>  	link_caps->num_configs = num_rates * num_common_lane_configs;
+>  
+> -	lc = &link_caps->configs[0];
+> +	lce = &link_caps->configs[0];
+>  	for (i = 0; i < link_caps->num_rates; i++) {
+>  		for (j = 0; j < num_common_lane_configs; j++) {
+> -			lc->lane_count_exp = j;
+> -			lc->link_rate_idx = i;
+> +			lce->lane_count_exp = j;
+> +			lce->link_rate_idx = i;
+>  
+> -			lc++;
+> +			lce++;
+>  		}
+>  	}
+>  
+> @@ -320,15 +320,15 @@ void intel_dp_link_config_get(struct intel_dp_link_caps *link_caps,
+>  			      int idx, int *link_rate, int *lane_count)
+>  {
+>  	struct intel_display *display = to_intel_display(link_caps->dp);
+> -	const struct intel_dp_link_config_entry *lc;
+> +	const struct intel_dp_link_config_entry *lce;
+>  
+>  	if (drm_WARN_ON(display->drm, idx < 0 || idx >= link_caps->num_configs))
+>  		idx = 0;
+>  
+> -	lc = &link_caps->configs[idx];
+> +	lce = &link_caps->configs[idx];
+>  
+> -	*link_rate = intel_dp_link_config_rate(link_caps, lc);
+> -	*lane_count = intel_dp_link_config_lane_count(lc);
+> +	*link_rate = intel_dp_link_config_rate(link_caps, lce);
+> +	*lane_count = intel_dp_link_config_lane_count(lce);
+>  }
+>  
+>  int intel_dp_link_config_index(struct intel_dp_link_caps *link_caps,
+> @@ -340,10 +340,10 @@ int intel_dp_link_config_index(struct intel_dp_link_caps *link_caps,
+>  	int i;
+>  
+>  	for (i = 0; i < link_caps->num_configs; i++) {
+> -		const struct intel_dp_link_config_entry *lc = &link_caps->configs[i];
+> +		const struct intel_dp_link_config_entry *lce = &link_caps->configs[i];
+>  
+> -		if (lc->lane_count_exp == lane_count_exp &&
+> -		    lc->link_rate_idx == link_rate_idx)
+> +		if (lce->lane_count_exp == lane_count_exp &&
+> +		    lce->link_rate_idx == link_rate_idx)
+>  			return i;
+>  	}
+>  
+> -- 
+> 2.45.2
+> 
