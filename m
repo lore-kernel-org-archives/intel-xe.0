@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EA9CCDB479
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 745F8CDE005
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Jun 2026 02:53:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D46CD10E149;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB19610E14C;
 	Thu, 25 Jun 2026 02:53:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nic4qCU0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c47xT4pw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37D5910E149
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C37910E149
  for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 02:53:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1782356035; x=1813892035;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AI2v2dQ1uDKiRvDsSIXkF1P6omfw9W/HCsSW7rcOUfI=;
- b=nic4qCU09ThCIno/WKegWwdbc/MYKvHwGw4ckfHP7hB9uCjQBOrO5Y0v
- yEkTSkNpgf3OSQIz+xe8OHnhBTI4pvOZLnX5WCG+HttHR2pbrMUAHb7Uz
- dh2DtGFRX/ItBhhbbVOepDobE3QbwWK+DrwA158fnVp4kRQUjX2IZguDt
- L7rb3auzeQabtZweuqI4it20dazHMZH/vk/4eB6kMES5hteWDuRftYw4w
- qT6oH1wFl58BpgKK6w+/rYbciT9YCRLyrwGIxV9BKbej6GvO/sddofu86
- /lwShJTUj1k/SR9ajbkYwctwYJaiDwUBx8TFolnz+o+BHEWLb4b1OeuG5 Q==;
-X-CSE-ConnectionGUID: G2bBy11sRmKS2/++ZLtnKQ==
-X-CSE-MsgGUID: 7l54lfWFQ9uDyXcXXf5tew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="93781079"
-X-IronPort-AV: E=Sophos;i="6.24,223,1774335600"; d="scan'208";a="93781079"
+ bh=B3CjfpjhytA/Z3n6UCB5r53um7cqezJNVSP7lkAvkWQ=;
+ b=c47xT4pwxIAyCn42nfWMlZwSOFPDqTqkpENh75P439IuQ/zYwjutn/M+
+ mYYTWYcp6O17y0rB7zXN5MmTvh5fUIEfUjLHq9vWNge/7tKbLgJBjdgCS
+ GQyzR7asjXNSDPvR964fXcbDlT3TdLaMG0+ixc1supyRODmhozH7QFMwN
+ kfHg+Y1MhIBqNNK/5bGZbb3DNYTM6koH8BTwzes//8ufgrZW2UF9tq4x1
+ LWzJZmO27E7n3wRO/vGLxSHYQGPH8DFAYVQHp9DxpfPElVjCr8U5nCWqz
+ 2v9lJkN5iUo8DcNb/aMHFyvFuAaz4RZMOmMJt1Tl+p3FSUeaB01k+XgI4 w==;
+X-CSE-ConnectionGUID: T9QXnbawTj63L0BtbUkKGw==
+X-CSE-MsgGUID: vrdC7YaKSUGo7kwG4fLLCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="93781081"
+X-IronPort-AV: E=Sophos;i="6.24,223,1774335600"; d="scan'208";a="93781081"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jun 2026 19:53:54 -0700
-X-CSE-ConnectionGUID: Rm9hgX6JTvK2y+l9dYa2Zw==
-X-CSE-MsgGUID: ovSfuXsrR0mqZe6m3kQjEQ==
+X-CSE-ConnectionGUID: Mcv8Qy9DR2GkSOcRpp+prw==
+X-CSE-MsgGUID: jCZ/v0aGSFCL8YNE5BXwGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,223,1774335600"; d="scan'208";a="254118532"
+X-IronPort-AV: E=Sophos;i="6.24,223,1774335600"; d="scan'208";a="254118539"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jun 2026 19:53:54 -0700
@@ -45,10 +45,10 @@ From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	thomas.hellstrom@linux.intel.com
-Subject: [PATCH 1/5] drm/xe: only resume exec queues that were actually
- suspended
-Date: Wed, 24 Jun 2026 19:53:50 -0700
-Message-ID: <20260625025348.1620469-8-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 3/5] drm/xe/guc: wait killably for suspend and ban queue on
+ timeout
+Date: Wed, 24 Jun 2026 19:53:52 -0700
+Message-ID: <20260625025348.1620469-10-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260625025348.1620469-7-niranjana.vishwanathapura@intel.com>
 References: <20260625025348.1620469-7-niranjana.vishwanathapura@intel.com>
@@ -68,105 +68,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A consumer-issued suspend() can fail (e.g. the queue is killed, banned
-or wedged), leaving the queue un-suspended. The consumer must then not
-issue the matching resume(): resuming a queue that was never suspended
-is incorrect.
+Harden guc_exec_queue_suspend_wait():
 
-Add an lr.suspended flag to struct xe_exec_queue that records whether a
-consumer suspend() succeeded and a matching resume() is still owed. Set
-it on a successful suspend() in the preempt-fence path, clear it on
-resume(), and only resume queues that have it set.
+ - Wait killably rather than interruptibly. Once a suspend has been
+   issued it must be waited to completion (or timeout); an arbitrary
+   non-fatal signal must not abandon an in-flight suspend, otherwise the
+   wait reports a spurious failure while the suspend is still pending.
+   Only a fatal signal aborts, in which case the dying task tears the
+   queue down (clearing suspend_pending), so no stuck state persists.
 
-In resume_and_reinstall_preempt_fences() also skip queues that have
-since been reset/killed/banned/wedged: such a queue's suspend may not
-have completed (suspend_pending can still be set, e.g. a preempt fence
-signalled with -ENOENT without waiting), so resuming it would trip the
-!suspend_pending assert in the backend. Leave it marked suspended and
-let teardown resolve its state.
-
-A queue is only ever suspended by a single consumer at a time
-(preempt-fence mode and hw engine group fault mode are mutually
-exclusive), so a single flag is sufficient.
+ - On timeout, ban the queue and trigger cleanup rather than leaving it
+   suspended forever. Clearing suspend_pending via __suspend_fence_signal()
+   lets a subsequent resume() proceed without tripping the
+   !suspend_pending assert.
 
 Assisted-by: Github-Copilot:Claude-opus-4.8
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_preempt_fence.c    |  7 +++++++
- drivers/gpu/drm/xe/xe_vm.c               | 18 +++++++++++++++++-
- 3 files changed, 36 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 33 +++++++++++++++++++++++-------
+ 1 file changed, 26 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index d27ce24daae5..dbb2ee8eb5de 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -200,6 +200,18 @@ struct xe_exec_queue {
- 		u32 seqno;
- 		/** @lr.link: link into VM's list of exec queues */
- 		struct list_head link;
-+		/**
-+		 * @lr.suspended: Tracks whether the consumer-issued suspend()
-+		 * succeeded and a matching resume() is still owed. suspend() can
-+		 * fail (e.g. killed/banned/wedged), leaving the queue
-+		 * un-suspended, so consumers must only resume() queues that were
-+		 * actually suspended. Set by the suspend caller on success and
-+		 * cleared by the resume caller. A queue is only ever suspended by
-+		 * a single consumer at a time (preempt-fence mode and hw engine
-+		 * group fault mode are mutually exclusive), so a single flag is
-+		 * sufficient.
-+		 */
-+		bool suspended;
- 	} lr;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 9458bf477fa6..7363b8d1301b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2195,22 +2195,41 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ 	 xe_guc_read_stopped(guc))
  
- #define XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT	0
-diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
-index d6427b473ddd..4aa570fe745d 100644
---- a/drivers/gpu/drm/xe/xe_preempt_fence.c
-+++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
-@@ -74,6 +74,13 @@ static bool preempt_fence_enable_signaling(struct dma_fence *fence)
- 	struct xe_exec_queue *q = pfence->q;
- 
- 	pfence->error = q->ops->suspend(q);
+ retry:
 +	/*
-+	 * Record a successful suspend so the rebind worker only resumes queues
-+	 * that were actually suspended; a failed suspend() leaves the queue
-+	 * un-suspended and must not be paired with a resume().
++	 * Wait killably rather than interruptibly: once a suspend has been
++	 * issued it must be waited to completion (or timeout), otherwise an
++	 * arbitrary (non-fatal) signal would abandon an in-flight suspend and
++	 * the wait would report a spurious failure while suspend_pending is
++	 * still set. Only a fatal signal aborts here; in that case the dying
++	 * task tears the queue down (clearing suspend_pending), so no stuck
++	 * state persists.
 +	 */
-+	if (!pfence->error)
-+		WRITE_ONCE(q->lr.suspended, true);
- 	queue_work(q->vm->xe->preempt_fence_wq, &pfence->preempt_work);
- 	return true;
- }
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 080c2fff0e95..23f4a9fb9a49 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -206,7 +206,23 @@ static void resume_and_reinstall_preempt_fences(struct xe_vm *vm,
- 	xe_vm_assert_held(vm);
+ 	if (IS_SRIOV_VF(xe))
+-		ret = wait_event_interruptible_timeout(guc->ct.wq, WAIT_COND ||
+-						       vf_recovery(guc),
+-						       HZ * 5);
++		ret = wait_event_killable_timeout(guc->ct.wq, WAIT_COND ||
++						  vf_recovery(guc), HZ * 5);
+ 	else
+-		ret = wait_event_interruptible_timeout(q->guc->suspend_wait,
+-						       WAIT_COND, HZ * 5);
++		ret = wait_event_killable_timeout(q->guc->suspend_wait,
++						  WAIT_COND, HZ * 5);
  
- 	list_for_each_entry(q, &vm->preempt.exec_queues, lr.link) {
--		q->ops->resume(q);
+ 	if (vf_recovery(guc) && !xe_device_wedged((guc_to_xe(guc))))
+ 		return -EAGAIN;
+ 
+ 	if (!ret) {
+ 		xe_gt_warn(guc_to_gt(guc),
+-			   "Suspend fence, guc_id=%d, failed to respond",
++			   "Suspend fence, guc_id=%d, failed to respond, banning queue",
+ 			   q->guc->id);
+-		/* XXX: Trigger GT reset? */
 +		/*
-+		 * Only resume queues whose suspend() actually succeeded. A
-+		 * failed suspend() (e.g. killed/banned/wedged) leaves the queue
-+		 * un-suspended, so it must not be resumed.
-+		 *
-+		 * Also skip queues that have since been reset/killed/banned/
-+		 * wedged: their suspend may not have completed (suspend_pending
-+		 * can still be set, e.g. a preempt fence signalled with -ENOENT
-+		 * without waiting), so resuming would trip the !suspend_pending
-+		 * assert in the backend. Such queues are being torn down anyway,
-+		 * so leave them marked suspended and let teardown resolve their
-+		 * state.
++		 * The GuC failed to respond to the suspend within the timeout.
++		 * This is not recoverable for this context, so ban it rather
++		 * than leave it suspended forever (unmarked). Clearing
++		 * suspend_pending lets a subsequent resume() proceed without
++		 * tripping the !suspend_pending assert (the RESUME message is
++		 * dropped for a banned queue), and triggering cleanup tears the
++		 * context down.
 +		 */
-+		if (READ_ONCE(q->lr.suspended) && !q->ops->reset_status(q)) {
-+			WRITE_ONCE(q->lr.suspended, false);
-+			q->ops->resume(q);
-+		}
- 
- 		drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, q->lr.pfence,
- 					 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_BOOKKEEP);
++		set_exec_queue_banned(q);
++		__suspend_fence_signal(q);
++		xe_guc_exec_queue_trigger_cleanup(q);
+ 		return -ETIME;
+ 	} else if (IS_SRIOV_VF(xe) && !WAIT_COND) {
+ 		/* Corner case on RESFIX DONE where vf_recovery() changes */
 -- 
 2.43.0
 
