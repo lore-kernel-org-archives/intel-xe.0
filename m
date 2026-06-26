@@ -4,36 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C145DC43602
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 13:42:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9A78C44514
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 13:42:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A85F10F614;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42FF710F61B;
 	Fri, 26 Jun 2026 13:42:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="YkmTIY8A";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="OpAGGA1o";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F028D10F60C;
- Fri, 26 Jun 2026 13:42:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B24A10F613;
+ Fri, 26 Jun 2026 13:42:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481335;
- bh=SrqQAMYrLxDPK7Yj+2MrfgB0HHUwyS8YP/VDKTn/AAY=;
+ s=default; t=1782481337;
+ bh=XYNDq4eXOGhO09kEjocWzK9cHQLXrilgRy5+i3vFxPo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YkmTIY8AvYHy0g8ezs9ZrY6JANLxSwF/fOzVnWMaF9EJSsUNvRAR0nEPArtUfZf4E
- iu3alXwfDqmDd8JzL2VlBuN+iwi0TxlIjHM9p84fjXs9e/TujGeC4A6OW3Bu3eKII2
- L0JpjvJyjIcUGY9omGHrWmIgsJ866c3hzeDoSEsLusd+gCeHio/jsVAb+fGPqSQUkb
- Ga6MvNxOVIr468MITxFdZN3dImdkvZey7KUljc+O5intiVvoKifymfSBXHsiE7WnTv
- we6nB0xmJ0xktOjQgjblAL3YzyUpjVlQJ6GAarBupbBS5IuSdWt1vbEiqxNnEt8zZ7
- NOTBAAi9CNoig==
+ b=OpAGGA1oloyf6PX2hS2O7QEs/uosX+IaAdciS1qGd2FD8Xeoaa+amacrG6RLk0jHH
+ 1DF5+9fzWEPzuNyK3LK7gE39YoGOPv3bJa4ob7i4V4eDNL/0VN8Pnx52qQzmENmy5T
+ ppCtIiRC0dv2FsA3lttIyWSIkEVukdH2m8DTUPJBap3/ueaG+p72FE90dnH2hDk+Xi
+ PRCqfJ9FbTEL+xHTs8o0DnGD3hdSxSos1zr5eHFz4k4yHMkNMGnpuCHeZ//u2eeAQQ
+ YzkW4L6ujyftWa4fjbcn4qZ1vYHaVFPdCF8Clkq0pVdXq9XnXm2rGciQeeoFL36eK4
+ 6E1Kd2ZKUEP9Q==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 27/29] drm/xe/display: Avoid using stolen memory for
- framebuffer when media gt exists.
-Date: Fri, 26 Jun 2026 15:42:18 +0200
-Message-ID: <20260626134222.1198252-28-dev@lankhorst.se>
+Subject: [PATCH v10.5 29/29] drm/i915/pmu: Disable on PREEMPT_RT
+Date: Fri, 26 Jun 2026 15:42:20 +0200
+Message-ID: <20260626134222.1198252-30-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -53,35 +52,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On systems with media GT, extra latency is added when accessing stolen
-memory when the GT is in MC6.
+I tried to come up with alternative and lockless approaches
+to make pmu work, but since the perf events are run in
+atomic context on PREEMPT_RT, ordinary spinlocks no longer
+work and forcewake and register accesses become problematic.
 
-Simply disable allocating stolen memory for framebuffers when media gt
-is found.
+Disable perf events on PREEMPT_RT for now, without affecting
+!PREEMPT_RT users.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_display_bo.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/i915_pmu.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
-index 7fbac223b0977..a5080f6540d46 100644
---- a/drivers/gpu/drm/xe/display/xe_display_bo.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-@@ -130,6 +130,13 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
- 	if (IS_DGFX(xe))
- 		return false;
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 1c3bafda9c708..c2ff315de4481 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -1156,6 +1156,16 @@ void i915_pmu_register(struct drm_i915_private *i915)
+ 	};
+ 	int ret = -ENOMEM;
  
 +	/*
-+	 * Avoid stolen memory when the media_gt exists,
-+	 * because a lot of latency is added when media gt is in MC6
++	 * PREEMPT_RT has problems with forcewake. Forcewake is used by the
++	 * engine 'busy' event when guc submission is enabled, and to measure
++	 * rc6 residency.
++	 *
++	 * Disable pmu events on PREEMPT_RT entirely to prevent deadlocks.
 +	 */
-+	if (xe_device_get_root_tile(xe)->media_gt)
-+		return false;
++	if (IS_ENABLED(CONFIG_PREEMPT_RT))
++		reeturn;
 +
- 	if (XE_DEVICE_WA(xe, 22019338487_display))
- 		return false;
- 
+ 	spin_lock_init(&pmu->lock);
+ 	hrtimer_setup(&pmu->timer, i915_sample, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+ 	init_rc6(pmu);
 -- 
 2.53.0
 
