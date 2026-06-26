@@ -4,46 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 640A8C43458
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 13:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B5E4C43458
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 13:37:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B53510ED89;
-	Fri, 26 Jun 2026 13:37:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2234910EEC6;
+	Fri, 26 Jun 2026 13:37:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="KIQdaBNS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBELRJCE";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 630E210ED89
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 13:37:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481022;
- bh=q3+6V4eUQTKeZdpgI2StYKFRIAAyMrDmrm4eav+dXXY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=KIQdaBNS3t8bzt7l/l2ZUCs+9sorsb/73JMeAScFYOKkFEbu0vK5ClFC6ww9Hcwc3
- aPIOSKP4u9nuKTVKywNDTPcPhbW+lzI9SJSBQKUA8ADoHDdVdBLGuszILh0QaRBlyA
- YFArkJSzmf2mMetBT5Vds8SqlHpVqjqrKi3ecnNXzVnsoucZXpMLVEFUkcdM9PXLeo
- ODuwyJ8zZXg3fAMvUcX5t/fJghlp758Qn5yX+0A4BCL1XNzGstzAUPEKqoNFYiuCd8
- CYlfnP3ibAO/qKO8CIe2+FdI+66zZgUlnSru+Bttwv9cJSTutLV2euCmEhK1cDToNg
- EwyZKcgi1TSHA==
-Message-ID: <9924291e-5108-41b3-9131-12b292e8bcd2@lankhorst.se>
-Date: Fri, 26 Jun 2026 15:37:31 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82A9510EEC6;
+ Fri, 26 Jun 2026 13:37:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782481057; x=1814017057;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=SKXdPv7DRjhXzeJUb0Qk+hNMrwFleEBApqXwDr6wT3U=;
+ b=YBELRJCEvTYz8oYdb1EGDjosyI2VSPmcpBDvpOf3nRwuvTuoXZR9vuvT
+ ReCedpCh4r2wsj/XTsVPrafiC+dS23s5B0PHkhwjRVnZJ/KsOR+qpdK84
+ 73KsRY64pgzXTw6EqtzQGy+C5z3NYIOmtlRlQk+/IwC4XE5piCOIO96Cu
+ 0m4NL8PkGeZaeR7lqwZRVOvygkfCzubCxuTc++ljMPAtT+RgJQ9QclIy5
+ D/+hso6rn0tzrL6hHX9aClyiJh2hu9m6afauVNSsK9+levdjn0/MnGSh+
+ XFAnl+wddzIieLqIouVWBKiu9XinKmZ9HenqgvIIWc+A94IEw/Qlrp09f g==;
+X-CSE-ConnectionGUID: 2vI6jQxUT4KnTGAdursV4w==
+X-CSE-MsgGUID: DvdBUEYPQmS0feeGd5zlOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="83365006"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="83365006"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 06:37:36 -0700
+X-CSE-ConnectionGUID: PqTvptdtRzaDylvsY/bcYg==
+X-CSE-MsgGUID: JsSRIglcQCuqYmFJIw469Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="250253853"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.107])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 06:37:27 -0700
+Date: Fri, 26 Jun 2026 16:37:22 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Martin Hodo <martin.hodo@intel.com>, stable@vger.kernel.org,
+ Animesh Manna <animesh.manna@intel.com>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
+Subject: Re: [PATCH] drm/i915/bios: range check LFP Data Block panel_type2
+Message-ID: <aj6AkhNsUpWDEify@intel.com>
+References: <20260625135130.1067872-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe/display: consider DPT when WA 22019338487 is
- active
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Nikolay Mikhaylov <sonny@milton.pro>,
- Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- stable@vger.kernel.org
-References: <20260623090155.268763-2-matthew.auld@intel.com>
- <9e04ec82-712d-41b6-9fe8-78aeb015d67c@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <9e04ec82-712d-41b6-9fe8-78aeb015d67c@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260625135130.1067872-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,93 +74,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-On 6/26/26 12:27, Matthew Auld wrote:
-> On 23/06/2026 10:01, Matthew Auld wrote:
->> WA 22019338487 (22019338487_display) indicates that stolen memory should
->> not be used for display allocations on affected platforms (like Lunar
->> Lake). In particular we need to be mindful of not hammering stolen over
->> the BAR from the host side, like with issuing many writes.
->>
->> While the fbdev allocation in xe_display_bo.c properly respected this
->> workaround, the Display Page Table (DPT) allocation in xe_fb_pin.c
->> continued to unconditionally attempt to allocate from stolen memory on
->> all integrated GPUs.
->>
->> Check XE_DEVICE_WA(xe, 22019338487_display) before attempting to
->> allocate the DPT from stolen memory. If the workaround applies, skip the
->> stolen allocation attempt and let the driver naturally fall back to
->> allocating from system memory.
->>
->> Without this we will end up hammering stolen when programming the DPT on
->> the host side during the normal operation, which seems to be exactly
->> what the WA wants us to avoid.
->>
->> There are a bunch of users all getting some kind of hard hang in the fb
->> pin programming sequence on LNL, so wondering if this could help there.
->>
->> v2 (Jani):
->>    - Invert the WA check. No functional change.
->>
->> Assisted-by: Gemini:gemini-3.1-pro-preview
->> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Fixes: 775d0adc01a5 ("drm/xe/fbdev: Limit the usage of stolen for LNL+")
->> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Nikolay Mikhaylov <sonny@milton.pro>
->> Cc: Uma Shankar <uma.shankar@intel.com>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: <stable@vger.kernel.org> # v6.12+
+On Thu, Jun 25, 2026 at 04:51:30PM +0300, Jani Nikula wrote:
+> While the panel_type from LFP Data Block is range checked, panel_type2
+> is not. Add a few helpers for range checking, and use them to not only
+> check panel_type2, but also imrove clarity and correctness in the panel
+> type selection.
 > 
-> Ping on this? So far two separate users report this fixes the hard machine hang for them, after several days of testing.
-
-Can we instead disable stolen entirely so we no longer need this workaround?
-
-https://patchwork.freedesktop.org/patch/735208/?series=159035&rev=19
-https://patchwork.freedesktop.org/patch/735215/?series=159035&rev=19
-https://patchwork.freedesktop.org/patch/735223/?series=159035&rev=19
-
-Sending a new version soon, I can split out those patches if needed.
-Ideally we find a way to preserve the initial framebuffer by blitting
-from the DSB FB to a system memory FB, but this may affect module load time.
-
-Kind regards,
-~Maarten Lankhorst
-
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513#note_3537314
+> Discovered using AI-assisted static analysis confirmed by Intel Product
+> Security.
 > 
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513#note_3531435
+> Reported-by: Martin Hodo <martin.hodo@intel.com>
+> Fixes: 6434cf630086 ("drm/i915/bios: calculate panel type as per child device index in VBT")
+> Cc: <stable@vger.kernel.org> # v6.0+
+> Cc: Animesh Manna <animesh.manna@intel.com>
+> Cc: Ville Syrj�l� <ville.syrjala@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 29 +++++++++++++++++------
+>  1 file changed, 22 insertions(+), 7 deletions(-)
 > 
-> Looking through the HSD I think it is clear we need something like this for the WA.
-> 
->> ---
->>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> index f93c98bec5b5..8ebb52741ea6 100644
->> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> @@ -20,6 +20,9 @@
->>   #include "xe_pat.h"
->>   #include "xe_pm.h"
->>   #include "xe_vram_types.h"
->> +#include "xe_wa.h"
->> +
->> +#include <generated/xe_device_wa_oob.h>
->>     static void
->>   write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
->> @@ -172,6 +175,8 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
->>                              XE_BO_FLAG_GGTT |
->>                              XE_BO_FLAG_PAGETABLE,
->>                              pin_params->alignment, false);
->> +    else if (XE_DEVICE_WA(xe, 22019338487_display))
->> +        dpt = ERR_PTR(-ENODEV);
->>       else
->>           dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
->>                              dpt_size,  ~0ull,
-> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 15ebadc72b88..0c420019e46a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -623,6 +623,16 @@ get_lfp_data_tail(const struct bdb_lfp_data *data,
+>  		return NULL;
+>  }
+>  
+> +static bool is_panel_type_valid(int panel_type)
+> +{
+> +	return panel_type >= 0 && panel_type < 16;
+> +}
+> +
+> +static bool is_panel_type_valid_or_pnp(int panel_type)
+> +{
+> +	return is_panel_type_valid(panel_type) || panel_type == 0xff;
+> +}
+> +
+>  static int opregion_get_panel_type(struct intel_display *display,
+>  				   const struct intel_bios_encoder_data *devdata,
+>  				   const struct drm_edid *drm_edid, bool use_fallback)
+> @@ -640,15 +650,21 @@ static int vbt_get_panel_type(struct intel_display *display,
+>  	if (!lfp_options)
+>  		return -1;
+>  
+> -	if (lfp_options->panel_type > 0xf &&
+> -	    lfp_options->panel_type != 0xff) {
+> +	if (!is_panel_type_valid_or_pnp(lfp_options->panel_type)) {
+>  		drm_dbg_kms(display->drm, "Invalid VBT panel type 0x%x\n",
+>  			    lfp_options->panel_type);
+>  		return -1;
+>  	}
+>  
+> -	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
+> +	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2) {
+> +		if (!is_panel_type_valid_or_pnp(lfp_options->panel_type2)) {
+> +			drm_dbg_kms(display->drm, "Invalid VBT panel type 2 0x%x\n",
+> +				    lfp_options->panel_type2);
+> +			return -1;
+> +		}
+> +
+>  		return lfp_options->panel_type2;
+> +	}
+>  
+>  	drm_WARN_ON(display->drm,
+>  		    devdata && devdata->child.handle != DEVICE_HANDLE_LFP1);
+> @@ -762,13 +778,12 @@ static int get_panel_type(struct intel_display *display,
+>  				    panel_types[i].name, panel_types[i].panel_type);
+>  	}
+>  
+> -	if (panel_types[PANEL_TYPE_OPREGION].panel_type >= 0)
+> +	if (is_panel_type_valid(panel_types[PANEL_TYPE_OPREGION].panel_type))
+>  		i = PANEL_TYPE_OPREGION;
+>  	else if (panel_types[PANEL_TYPE_VBT].panel_type == 0xff &&
 
+is_panel_type_pnp()?
+
+> -		 panel_types[PANEL_TYPE_PNPID].panel_type >= 0)
+> +		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID].panel_type))
+>  		i = PANEL_TYPE_PNPID;
+> -	else if (panel_types[PANEL_TYPE_VBT].panel_type != 0xff &&
+> -		 panel_types[PANEL_TYPE_VBT].panel_type >= 0)
+> +	else if (is_panel_type_valid(panel_types[PANEL_TYPE_VBT].panel_type))
+>  		i = PANEL_TYPE_VBT;
+>  	else
+>  		i = PANEL_TYPE_FALLBACK;
+> -- 
+> 2.47.3
+
+-- 
+Ville Syrj�l�
+Intel
