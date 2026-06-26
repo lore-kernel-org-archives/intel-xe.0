@@ -4,85 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDB41CDE00C
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 10:57:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D5C1CDE008
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 11:15:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 456E610E0A9;
-	Fri, 26 Jun 2026 10:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCCC310E38C;
+	Fri, 26 Jun 2026 11:15:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="nUlhdiN2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CqARsfgH";
 	dkim-atps=neutral
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0957E10F560
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 10:57:35 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-4924f8db066so4077045e9.2
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 03:57:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1782471453; x=1783076253; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=sAseHEuLitU2XuzH9XcC23JCBmfXywpYjauwlpSls6I=;
- b=nUlhdiN20IwFVbaIIzgd8chiXPiL3BhMZnNrwJR4u0ocXLHRStqffQvtvrLWSZEjwO
- QKVOebBZfMfHUjsSO8TQjYzeJoIlG45gTrmzzff6XL5txjEo8d7g86iEPeRMxA4txYgt
- ZHlmCYK5wjAOQ+7k45ka5MYh/Zg+DeNQ3fi8Syj1r1ctFrBFPXEz2/A36Blpk8KkCpSU
- oR6hjC7lPIvV8NE6gfjn/KhZIFoyB+LjoXTSNj8uB58ecofr3aEQuj5XMNyZDY7Psqyx
- PCZKGc893aIEhPz8ht0sAAG36j6Mmq9r0iN1qgt3hJzVTUHRXkJSjGqxbB7HM41RCaRV
- 25cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782471453; x=1783076253;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=sAseHEuLitU2XuzH9XcC23JCBmfXywpYjauwlpSls6I=;
- b=jOGHygj/aYB6L0//m9TwA3SR5Y7B8qrI25GOKL4/WSLz3qps64Ob8THf4EHnLMID2U
- s2lvIlFse/OYBWHTXGgD7GiwH8YnlLR3VtgcZw+U7J/HYlOivzCUNpdT1hlq/RAMFko3
- ghtbdmELFUIgp60YBm50T2c23N0LwbxHKjACIzukaGlmJyLY/EDsejfOMewuCWrflS2w
- ROP+NJZflGjZfwPLL2jTPSQmv2NfYK3ENaTYY+nPPk0paXjTq42a0Hpl7T+Yp09t9kOl
- 6vq2CH7hKepjfO1e2TwqL5iKQU4LRFHsB2lW7wCmRSqCyjaGs6L5VS3q4b02VpZjpX8M
- +Svw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+Si8JzuH4tfxgwFauXtzoTK0TmjE/bxTcdo6M/kizHa0woPWpmOgGBv0k116mdY0BPKq3wBisXfA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YweM1tIgNkSaOSgy6WaroVG0Jwb36A3CN+EYyo5iejM+TLEtJ6H
- mjsxzIXq+xs6FTJa1Y/qYAXJwxPsP8YzdGIiiuxdBluye1T0MVVLYVQNzTHwrBt+WzE=
-X-Gm-Gg: AfdE7ck24OVa0D6w4JYmYEEAoAxUqM7XnktgUxPWeXGq9gShfEIOEAWLun23uH4Q5lO
- iZrHPgBH/zGdAizQtn9quQS9NHwYsHk4x///ZXJEgk1naChAXR99Z00bdbouTe+K/yk3ps5vtnS
- lqb/Ps0aNAf5PzKUMEYqVTH8Uayo2sN7WmZhFPVGV0D+2H08HCxGd0UsnGKJTnCr8O/5V8929FF
- Bra7HoWYqFmH5QuuX2PODzH16udVRrRhpdwIwUsv4w4XE4EIEni2nUsSnZ3+M7ysJ1eARk+q8O7
- avaxL1h/hE/tv4S64622pAIYkHWBEPWaxHhq6CogkDg2TXTJZGOhOrd6Bl7Vs+h0PR/jspN2lU3
- qbbkAqbyE9JnyeVjngrz12Q2Nlhr/I2ALhFkpvACWHaQsUQDxNOcrH93FUbPVZ7PmGsFwKvosYL
- ML7Yzy6pSFnrl/W8FN+Ql3g21TL3NzglM8Jw==
-X-Received: by 2002:a05:600c:8a1a:10b0:492:488c:f627 with SMTP id
- 5b1f17b1804b1-49266872ce4mr69640085e9.11.1782471452665; 
- Fri, 26 Jun 2026 03:57:32 -0700 (PDT)
-Received: from [192.168.0.116] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49268f700c0sm75417365e9.0.2026.06.26.03.57.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 26 Jun 2026 03:57:32 -0700 (PDT)
-Message-ID: <5021eae6-40f8-4079-9b5d-f511537aa460@ursulin.net>
-Date: Fri, 26 Jun 2026 11:57:31 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F9CD10E38C
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 11:15:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782472535; x=1814008535;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JLNRyZo0vys7M40u4UaD4U4Cfs7Ro1MKwnnQqUMouxw=;
+ b=CqARsfgHY4YmnnOTRAgmWzhdcDtpEHSeDD0qDvijYYWqiBDPrVy4c+/Q
+ sPFKmPyd7R7i8s7gNNQQQ9rbu4Zww0ozL48qduCg9rQ/xOTFmiioGkvKO
+ VpuVblrVyR/1HpP+6QFvT+j0bJC69lffktI2vJghGXZrOLDjKLObZexPz
+ CXHo/EVQBtzOu1Ayjc8/WZWb+TOCQMJmGnOCfuoTkGRlE//R2Lt1UmUsm
+ elWA9AoseHdnVw0BtSd9MGHxm92s8IBWKRqWFKH4/xInVKqMmuBIE9BRT
+ gFtZcHsyKSIVYqrna5zbCTB5HK26HOpddm7rV8Jd5CjSNZUBBsf9S7C8a Q==;
+X-CSE-ConnectionGUID: FFIIAOsSQmuqLmRjV4yX1Q==
+X-CSE-MsgGUID: KG50v1NzTFime3Bh3C1jVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="100694980"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="100694980"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 04:15:34 -0700
+X-CSE-ConnectionGUID: 3jf5dBO8SN+NemehOrBCtg==
+X-CSE-MsgGUID: OM0h6NPtQ/qhQ9u8EgKKgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="253214335"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.49])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 04:15:34 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v7 00/10] GuC paging engine support
+Date: Fri, 26 Jun 2026 12:15:21 +0100
+Message-ID: <20260626111520.487997-12-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/ttm: add generic drvparam[] alias for
- ttm_place::fpfn/lpfn
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: alexander.deucher@amd.com,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20260626063658.10237-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20260626063658.10237-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,72 +65,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On NVL-S+, the GuC will be moving towards a dedicated GuC engine class for
+the driver reserved copy engine(s), which we need for USM flows. With this
+the GuC will now be able to internally differentiate KMD paging operations,
+like clearing/migrating/binding, from other copy engine submissions.
+Note that this is purely a software view within the GuC. There is no new
+physical engine, or anything like that. With that in mind the design here
+keeps this contained on the GuC side, with upper layers not needing to know
+about this distinction.
 
-On 26/06/2026 07:36, Arunpravin Paneer Selvam wrote:
-> The fpfn/lpfn fields in struct ttm_place are named after page frame
-> numbers, but they are really just placement parameters interpreted by
-> the backend resource manager. Wrap them in a union with a generic
-> drvparam[2] array so backends can access the same storage without the
-> PFN-specific naming.
-> 
-> drvparam[0]/drvparam[1] alias fpfn/lpfn, so existing users and the
-> VRAM range manager are unchanged. This decouples the API from
-> PFN/range-specific semantics so that these fields can be used more
-> flexibly in the future (e.g. mask-based or segment-aware placement
-> constraints). No functional change.
-> 
-> v2: Use a union exposing a generic drvparam[2] array instead of
->      renaming fpfn/lpfn to param1/param2, keeping existing users
->      unchanged (Tvrtko Ursulin)
-> 
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Assisted-by: Claude:claude-opus-4-8
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> ---
->   include/drm/ttm/ttm_placement.h | 12 ++++++++++--
->   1 file changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/drm/ttm/ttm_placement.h b/include/drm/ttm/ttm_placement.h
-> index ab2639e42c54..7db2073f3236 100644
-> --- a/include/drm/ttm/ttm_placement.h
-> +++ b/include/drm/ttm/ttm_placement.h
-> @@ -75,14 +75,22 @@
->    *
->    * @fpfn:	first valid page frame number to put the object
->    * @lpfn:	last valid page frame number to put the object
-> + * @drvparam:	generic driver/backend placement parameters; the
-> + *		interpretation is defined by the backend resource manager.
-> + *		drvparam[0] and drvparam[1] alias @fpfn and @lpfn.
->    * @mem_type:	One of TTM_PL_* where the resource should be allocated from.
->    * @flags:	memory domain and caching flags for the object
->    *
->    * Structure indicating a possible place to put an object.
->    */
->   struct ttm_place {
-> -	uint64_t	fpfn;
-> -	uint64_t	lpfn;
-> +	union {
-> +		struct {
-> +			uint64_t	fpfn;
-> +			uint64_t	lpfn;
-> +		};
-> +		uint64_t	drvparam[2];
-> +	};
->   	uint32_t	mem_type;
->   	uint32_t	flags;
->   };
-> 
-> base-commit: cdeb2ccd993ed8647adbbda2c3b103aa717fd6f7
+v2 (Sashiko):
+ - In VF query patch, we shouldn't call guc_has_paging_engine(), since this
+   is too early in the VF sequence, and GUC_SUBMIT_VER() is still unset.
+v3:
+ - Revamp the paging engine setup in patch 5 (Sashiko)
+ - Some more improvements from Daniele
+v4:
+ - Some more improvements from Daniele, plus some other tweaks
+v5:
+ - Some improvements from Michal
+ - Update with the official GuC version: 70.68.0 (1.36.0)
+v6:
+ - Tweak the VF vs PF versioning as per GuC team
+ - Also for now treat zero paging engines as hint to use fallback
+v7:
+ - Some improvements to: drm/xe/vf: wire up NUM_PAGING_ENGINE_INSTANCES,
+   as suggested by Michal.
 
-LGTM but then again I suggested it (hint hint) so I may be biased :)
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-Regards,
-
-Tvrtko
+-- 
+2.54.0
 
