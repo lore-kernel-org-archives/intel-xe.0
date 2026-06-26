@@ -4,60 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 048AFC43458
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 14:05:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 533DFC43458
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 14:32:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 966A410E312;
-	Fri, 26 Jun 2026 14:05:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ABA610E3A4;
+	Fri, 26 Jun 2026 14:32:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WfPPpFF9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N64Gan4r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E21610E312;
- Fri, 26 Jun 2026 14:05:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B778A10E3A4
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 14:32:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782482735; x=1814018735;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=gGeatAbNW1Tyu504ZrnFfEPUli8yfMeLx+6zsAYFJ9U=;
- b=WfPPpFF9baFKqJ9OIghoIJMTqMH+NulkU/Ht2S7frlIhs3M8igyr94aS
- Oph7v1Frt4ppi5DTiE+3KT2gNZa66zsq1rAzfQ06mOtb9ej9D1B0Nuy2F
- ODH2k3gISJL8LPEBuMorHMsGYKsRP6Op9LdHNjL1jivF22hK0Lg6sIwr/
- gDeNEnqftTSyD8Tc0NBop+plVCSkfAFZF9nwLGH29GBAK8ehF1ZnY445D
- 4u1BE1aipVPTeTGlXLhR7PE7v2cBRqJRI0/ntxbTuPlJ3E00ycFW5NAWq
- dM7CD0oclGyNVfKchktwId3+nyYOd0hIiHlYcw3tHovsf531Lvtbp9Ztx g==;
-X-CSE-ConnectionGUID: dG6hfvWRRaOBumCH/pPpYQ==
-X-CSE-MsgGUID: HgDkHUUgQym2dpY1jL0/4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="83283955"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="83283955"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 07:05:34 -0700
-X-CSE-ConnectionGUID: e20pPGzvQx+yPzexCcSK7w==
-X-CSE-MsgGUID: exshc02NS/ypqar2jMHPtA==
+ t=1782484372; x=1814020372;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=1CYpYf+FwNEzDZ7W7ESjZCMN6SwZ0Qp80wMrfd5Bqew=;
+ b=N64Gan4ra2Vi29sEnFc1vjyGIjfe8uemoinHrHwNt56o22HCpDyElFf2
+ Xo2s2qUL7jqfTImt2czWVOrpxyomc94/XylAoKRdiombowOrtj1KTNHG0
+ Hncr4tCgnScYp+A1l8kMJOLq8ZP8kwX5ZHv5izM1DK8oSIHv3dpA2i7zZ
+ 2bQf3g1n/cgHdLfh1ToZGDhDJfBQUBGMUG7CgJbQtMzVcc1dAdqwdtPQI
+ CvOTCL4P/jw2J5XU6L1Rq+spv9fMvLFG1hYOjQKRnP9IvfFG8WH+Oy2uV
+ +5chA9k2Lfi4hz9JMJtk89ri/hYmRtGOJyuPkybmH/H24uVZ4jmH2sei8 w==;
+X-CSE-ConnectionGUID: HMd5Sjw4TlyvdGms3ytIRw==
+X-CSE-MsgGUID: zUxbk67SRx2JwMe7lJz4kQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="93630772"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="93630772"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 07:32:51 -0700
+X-CSE-ConnectionGUID: 8UIJEyHsTF+d2kVDlO7Hjw==
+X-CSE-MsgGUID: 6vuHH5reTdCo1ijrmNP6hA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="289431826"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.22])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 07:05:32 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Martin
- Hodo <martin.hodo@intel.com>, stable@vger.kernel.org, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH] drm/i915/vrr: require valid min/max vfreq for VRR
-In-Reply-To: <aj6BTiskgYhSUGYd@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260625131040.1051272-1-jani.nikula@intel.com>
- <aj6BTiskgYhSUGYd@intel.com>
-Date: Fri, 26 Jun 2026 17:05:28 +0300
-Message-ID: <a09eda4f6b780c0ac079827d73ef23917974b4e4@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="251988518"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.244.49])
+ ([10.245.244.49])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 07:32:50 -0700
+Message-ID: <dd6a1825-9c22-4c94-9ab5-7ccd24f96990@intel.com>
+Date: Fri, 26 Jun 2026 15:32:46 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/display: consider DPT when WA 22019338487 is
+ active
+To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Nikolay Mikhaylov <sonny@milton.pro>,
+ Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ stable@vger.kernel.org
+References: <20260623090155.268763-2-matthew.auld@intel.com>
+ <9e04ec82-712d-41b6-9fe8-78aeb015d67c@intel.com>
+ <9924291e-5108-41b3-9131-12b292e8bcd2@lankhorst.se>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <9924291e-5108-41b3-9131-12b292e8bcd2@lankhorst.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,67 +76,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 26 Jun 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Jun 25, 2026 at 04:10:40PM +0300, Jani Nikula wrote:
->> Ensure the EDID provided min/max vfreq are valid. Most scenarios are
->> already covered (by coincidence) through the checks in
->> intel_vrr_is_capable() and intel_vrr_is_in_range(), but be more explicit
->> about it. At worst, a zero min_vfreq could lead to a division by zero in
->> intel_vrr_compute_vmax().
->>=20
->> Discovered using AI-assisted static analysis confirmed by Intel Product
->> Security.
->>=20
->> Reported-by: Martin Hodo <martin.hodo@intel.com>
->> Fixes: 117cd09ba528 ("drm/i915/display/dp: Compute VRR state in atomic_c=
-heck")
->> Cc: <stable@vger.kernel.org> # v5.12+
->> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++++
->>  1 file changed, 4 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/=
-i915/display/intel_vrr.c
->> index 5d9b11185296..bffbdee76ee1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
->> @@ -76,6 +76,10 @@ bool intel_vrr_is_capable(struct intel_connector *con=
-nector)
->>  		return false;
->>  	}
->>=20=20
->> +	if (!info->monitor_range.min_vfreq || !info->monitor_range.max_vfreq ||
->> +	    info->monitor_range.min_vfreq > info->monitor_range.max_vfreq)
->> +		return false;
->
-> Perhaps it should be the responsibility of the EDID parser to make sure
-> the range isn't completely insane?
+On 26/06/2026 14:37, Maarten Lankhorst wrote:
+> Hey,
+> 
+> On 6/26/26 12:27, Matthew Auld wrote:
+>> On 23/06/2026 10:01, Matthew Auld wrote:
+>>> WA 22019338487 (22019338487_display) indicates that stolen memory should
+>>> not be used for display allocations on affected platforms (like Lunar
+>>> Lake). In particular we need to be mindful of not hammering stolen over
+>>> the BAR from the host side, like with issuing many writes.
+>>>
+>>> While the fbdev allocation in xe_display_bo.c properly respected this
+>>> workaround, the Display Page Table (DPT) allocation in xe_fb_pin.c
+>>> continued to unconditionally attempt to allocate from stolen memory on
+>>> all integrated GPUs.
+>>>
+>>> Check XE_DEVICE_WA(xe, 22019338487_display) before attempting to
+>>> allocate the DPT from stolen memory. If the workaround applies, skip the
+>>> stolen allocation attempt and let the driver naturally fall back to
+>>> allocating from system memory.
+>>>
+>>> Without this we will end up hammering stolen when programming the DPT on
+>>> the host side during the normal operation, which seems to be exactly
+>>> what the WA wants us to avoid.
+>>>
+>>> There are a bunch of users all getting some kind of hard hang in the fb
+>>> pin programming sequence on LNL, so wondering if this could help there.
+>>>
+>>> v2 (Jani):
+>>>     - Invert the WA check. No functional change.
+>>>
+>>> Assisted-by: Gemini:gemini-3.1-pro-preview
+>>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513
+>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>> Fixes: 775d0adc01a5 ("drm/xe/fbdev: Limit the usage of stolen for LNL+")
+>>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Cc: Nikolay Mikhaylov <sonny@milton.pro>
+>>> Cc: Uma Shankar <uma.shankar@intel.com>
+>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>> Cc: <stable@vger.kernel.org> # v6.12+
+>>
+>> Ping on this? So far two separate users report this fixes the hard machine hang for them, after several days of testing.
+> 
+> Can we instead disable stolen entirely so we no longer need this workaround?
 
-The min_vfreq/max_vfreq may be 0 if the EDID doesn't have the info, and
-if the EDID has bogus info, leaving them to 0 is pretty much the only
-thing we can do.
+I'm not sure. You mean disable it except for fbc etc ? We just need some 
+patch to disable at least this dpt path on LNL, which is also easy to 
+backport. We can take your patch to disable this completely instead and 
+I guess remove the WA, so long as we can easily backport it. Either way 
+we just need to land a fix for this ASAP.
 
-Since we need the !0 check here anyway, I decided to start off with
-this.
+> 
+> https://patchwork.freedesktop.org/patch/735208/?series=159035&rev=19
+> https://patchwork.freedesktop.org/patch/735215/?series=159035&rev=19
+> https://patchwork.freedesktop.org/patch/735223/?series=159035&rev=19
+> 
+> Sending a new version soon, I can split out those patches if needed.
+> Ideally we find a way to preserve the initial framebuffer by blitting
+> from the DSB FB to a system memory FB, but this may affect module load time.
+> 
+> Kind regards,
+> ~Maarten Lankhorst
+> 
+>> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513#note_3537314
+>>
+>> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513#note_3531435
+>>
+>> Looking through the HSD I think it is clear we need something like this for the WA.
+>>
+>>> ---
+>>>    drivers/gpu/drm/xe/display/xe_fb_pin.c | 5 +++++
+>>>    1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>> index f93c98bec5b5..8ebb52741ea6 100644
+>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>> @@ -20,6 +20,9 @@
+>>>    #include "xe_pat.h"
+>>>    #include "xe_pm.h"
+>>>    #include "xe_vram_types.h"
+>>> +#include "xe_wa.h"
+>>> +
+>>> +#include <generated/xe_device_wa_oob.h>
+>>>      static void
+>>>    write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+>>> @@ -172,6 +175,8 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
+>>>                               XE_BO_FLAG_GGTT |
+>>>                               XE_BO_FLAG_PAGETABLE,
+>>>                               pin_params->alignment, false);
+>>> +    else if (XE_DEVICE_WA(xe, 22019338487_display))
+>>> +        dpt = ERR_PTR(-ENODEV);
+>>>        else
+>>>            dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+>>>                               dpt_size,  ~0ull,
+>>
+> 
 
-BR,
-Jani.
-
->
->> +
->>  	return info->monitor_range.max_vfreq - info->monitor_range.min_vfreq >=
- 10;
->
-> I've been tempted to get rid of this completely arbitrary 10Hz thing as w=
-ell.
->
->>  }
->>=20=20
->> --=20
->> 2.47.3
-
---=20
-Jani Nikula, Intel
