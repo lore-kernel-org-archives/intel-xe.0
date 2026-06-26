@@ -4,61 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CEAACD4F26
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 07:47:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27077CD4F26
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 07:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13D6B10E31A;
-	Fri, 26 Jun 2026 07:47:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D863810E31A;
+	Fri, 26 Jun 2026 07:48:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQktW/sG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hCDA52NK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24AE610E31A;
- Fri, 26 Jun 2026 07:46:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1758D10E31A;
+ Fri, 26 Jun 2026 07:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782460020; x=1813996020;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=e3IG+R5dVcnKL4ygLKeL0m2vEuU45wiOiGT8SBpf4eY=;
- b=UQktW/sGUsk4kf+l4f9iToYF/ur+JcVeoL2MdA8PkSACmyzEe5qmSlPR
- +2p/VWxzQ4avlrkCka55xv4ZmheSmcyUFjgbOxLZfUrobnbaiNkeI/oEF
- n4P9SWkt7W8JyE/FWBUbl0AWfw5HAJNkKRKhUnfp2tl9RGymjpujf14Y/
- CANap0WtzdfuHjl1ZyfDdVIlq7ETyfusuL3gZ0OFiJafsd2XT032A4fFf
- 266uaMwxvWg0JrhL+abBlEB3Svo3+hPJfe++CG+O00g8oWcKCPmoJS67a
- NqZwJCxqvt09DKZTj17IY79y7UVq/jT/LTAl/Cx6TTc7rr4tfjRh8B5FP A==;
-X-CSE-ConnectionGUID: eFcAZUyVSXaJXTXzsGHTzA==
-X-CSE-MsgGUID: ZO6WrFloSwWIIBNzxjqghA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="83022642"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="83022642"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 00:46:59 -0700
-X-CSE-ConnectionGUID: NdUpLxY3SBWPzMmklOKPQw==
-X-CSE-MsgGUID: HBLSC6LcQ+GSKqajZFZ5BQ==
+ t=1782460097; x=1813996097;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=siPuG3qtDuR2mX/9xs387a7uvoOm0ztGnIno3erBd2s=;
+ b=hCDA52NKT9Unj9Mz8sin2ZBOhNedIVTOPy2fV7/7CeYzWAamaD0hz5W1
+ j+1ldxFMZZCRxLiObfxQuzQROjO9LJGohf7UJmGTyayxPsQ6WjhbtliYw
+ znv52cw30FI91BvbNDyhEi7BsOaQsMh/MQqRiUPIowz3P+StrJIDm7YKH
+ WDXEbz3tKHiDYNEPjuBMbBc/saIUNKsPv78qK70e9j4ZYa1+tPysb4yOT
+ ptrCVFkocLDTTJ1zJQDb5FRk1sj140Wv0tVuQb8mZM0oL7Sf1bJFkjTPY
+ dcfhoyst7sAk5u9hFpkdjjUIzvEAREWz58wxUgXwIbXZGRAhpxO6G92Su A==;
+X-CSE-ConnectionGUID: mgVVJ50dRleGCUG9+F0rgA==
+X-CSE-MsgGUID: M+zUrk0dROipOnMIKUpkxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="108799026"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="108799026"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 00:48:16 -0700
+X-CSE-ConnectionGUID: p3jMWxyXRnGpGRybgIUvNw==
+X-CSE-MsgGUID: PeCt/gEzR+K/eXoEkiwWRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="247304328"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 00:46:58 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: [PATCH] drm/ttm: Account for NULL pages in ttm_pool_backup
-Date: Fri, 26 Jun 2026 00:46:53 -0700
-Message-Id: <20260626074653.1326683-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="253181800"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 00:48:16 -0700
+Date: Fri, 26 Jun 2026 09:48:13 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 5/6] drm/{i915, xe}: move opregion cleanup to
+ intel_display_driver_remove_nogem()
+In-Reply-To: <8ccd49a5945e0560ba22079d686db1268e8e9f7f.1781549229.git.jani.nikula@intel.com>
+Message-ID: <7e5883c3-d4d5-fe72-35c9-c72350456ee7@intel.com>
+References: <cover.1781549229.git.jani.nikula@intel.com>
+ <8ccd49a5945e0560ba22079d686db1268e8e9f7f.1781549229.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323329-928124701-1782460096=:605841"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,135 +67,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pages in ttm_pool_backup can be NULL, and set_pages_array_wb() cannot
-handle NULL entries. Switch to set_pages_wb() after checking for NULL
-pages.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Fixes the following oops:
+--8323329-928124701-1782460096=:605841
+Content-Type: text/plain; charset=ISO-8859-2; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-Oops: general protection fault, kernel NULL pointer dereference 0x0: 0000 [#1] SMP NOPTI
-RIP: 0010:__cpa_process_fault+0xf8/0x770
-RSP: 0018:ffffc90000a87718 EFLAGS: 00010287
-RAX: 0000000000000000 RBX: ffffc90000a87868 RCX: 0000000000000000
-RDX: 0000000000001000 RSI: 0005088000000000 RDI: ffffffff827c5f34
-RBP: 0005088000000000 R08: ffffc90000a877cb R09: ffffc90000a877d0
-R10: 0000000000000000 R11: 000000000000001b R12: 000ffffffffff000
-R13: ffffc90000a87868 R14: ffffc90000a87868 R15: ffff88815b882ae0
-FS:  0000000000000000(0000) GS:ffff8884ec840000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f930b844000 CR3: 000000000262e003 CR4: 0000000008f70ef0
-PKRU: 55555554
-Call Trace:
- <TASK>
- __change_page_attr_set_clr+0x989/0xe90
- ? __purge_vmap_area_lazy+0x6c/0x3a0
- ? _vm_unmap_aliases+0x250/0x2a0
- set_pages_array_wb+0x7f/0x120
- ttm_pool_backup+0x4c9/0x5b0 [ttm]
- ? dma_resv_wait_timeout+0x3b/0xf0
- ttm_tt_backup+0x32/0x60 [ttm]
- ttm_bo_shrink+0x66/0x110 [ttm]
- xe_bo_shrink_purge+0x12b/0x1b0 [xe]
- xe_bo_shrink+0xbb/0x270 [xe]
- __xe_shrinker_walk+0xf7/0x160 [xe]
- xe_shrinker_walk+0x9d/0xc0 [xe]
- xe_shrinker_scan+0x11f/0x210 [xe]
- do_shrink_slab+0x13b/0x270
- shrink_slab+0xf1/0x400
- shrink_node+0x352/0x8a0
- balance_pgdat+0x32c/0x700
- kswapd+0x205/0x2f0
- ? __pfx_autoremove_wake_function+0x10/0x10
- ? __pfx_kswapd+0x10/0x10
- kthread+0xd1/0x110
- ? __pfx_kthread+0x10/0x10
- ret_from_fork+0x1b1/0x200
- ? __pfx_kthread+0x10/0x10
- ret_from_fork_asm+0x1a/0x30
- </TASK>
+On Mon, 15 Jun 2026, Jani Nikula wrote:
+> The intel_opregion_cleanup() call should really be in display. Move it
+> at the end of intel_display_driver_probe_noirq().
+>
+> For xe, this is a completely non-functional change now that the
+> noirq/nogem cleanup calls are in the right order.
+>
+> For i915, this only changes the relative order of
+> intel_opregion_cleanup() and i915_perf_fini(), which should be of no
+> consequence.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Fixes: b63d715b8090 ("drm/ttm/pool, drm/ttm/tt: Provide a helper to shrink pages")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/ttm/ttm_pool.c | 49 +++++++++++++++++-----------------
- 1 file changed, 24 insertions(+), 25 deletions(-)
+Reviewed-by: Micha≥ Grzelak <michal.grzelak@intel.com>
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 682ae4f40424..ea14447411a6 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -1064,34 +1064,33 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
- 	    ttm_pool_uses_dma_alloc(pool) || ttm_tt_is_backed_up(tt))
- 		return -EBUSY;
- 
--#ifdef CONFIG_X86
--	/* Anything returned to the system needs to be cached. */
--	if (tt->caching != ttm_cached)
--		set_pages_array_wb(tt->pages, tt->num_pages);
--#endif
-+	for (i = 0; i < tt->num_pages; i += num_pages) {
-+		unsigned int order;
- 
--	if (tt->dma_address || flags->purge) {
--		for (i = 0; i < tt->num_pages; i += num_pages) {
--			unsigned int order;
-+		page = tt->pages[i];
-+		if (unlikely(!page)) {
-+			num_pages = 1;
-+			continue;
-+		}
- 
--			page = tt->pages[i];
--			if (unlikely(!page)) {
--				num_pages = 1;
--				continue;
--			}
-+		order = ttm_pool_page_order(pool, page);
-+		num_pages = 1UL << order;
- 
--			order = ttm_pool_page_order(pool, page);
--			num_pages = 1UL << order;
--			if (tt->dma_address)
--				ttm_pool_unmap(pool, tt->dma_address[i],
--					       num_pages);
--			if (flags->purge) {
--				shrunken += num_pages;
--				page->private = 0;
--				__free_pages_gpu_account(page, order, false);
--				memset(tt->pages + i, 0,
--				       num_pages * sizeof(*tt->pages));
--			}
-+#ifdef CONFIG_X86
-+		/* Anything returned to the system needs to be cached. */
-+		if (tt->caching != ttm_cached)
-+			set_pages_wb(page, 1 << order);
-+#endif
-+
-+		if (tt->dma_address)
-+			ttm_pool_unmap(pool, tt->dma_address[i],
-+				       num_pages);
-+		if (flags->purge) {
-+			shrunken += num_pages;
-+			page->private = 0;
-+			__free_pages_gpu_account(page, order, false);
-+			memset(tt->pages + i, 0,
-+			       num_pages * sizeof(*tt->pages));
- 		}
- 	}
- 
--- 
-2.34.1
+BR,
+Micha≥
 
+> ---
+> drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+> drivers/gpu/drm/i915/i915_driver.c                  | 3 ---
+> drivers/gpu/drm/xe/display/xe_display.c             | 1 -
+> 3 files changed, 2 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 15a61f171d73..a1c91fbf737c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -662,6 +662,8 @@ void intel_display_driver_remove_nogem(struct intel_display *display)
+> 	intel_display_power_driver_remove(display);
+>
+> 	intel_bios_driver_remove(display);
+> +
+> +	intel_opregion_cleanup(display);
+> }
+>
+> void intel_display_driver_unregister(struct intel_display *display)
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 05fdcba7b2dc..68ab96b8195b 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -586,13 +586,10 @@ ALLOW_ERROR_INJECTION(i915_driver_hw_probe, ERRNO);
+>  */
+> static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
+> {
+> -	struct intel_display *display = dev_priv->display;
+> 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+>
+> 	i915_perf_fini(dev_priv);
+>
+> -	intel_opregion_cleanup(display);
+> -
+> 	pci_disable_msi(pdev);
+> }
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 0d93784754c1..8be3e600838b 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -84,7 +84,6 @@ static void xe_display_fini_early(void *arg)
+> 	intel_hpd_cancel_work(display);
+> 	intel_display_driver_remove_noirq(display);
+> 	intel_display_driver_remove_nogem(display);
+> -	intel_opregion_cleanup(display);
+> 	intel_display_power_cleanup(display);
+> }
+>
+> -- 
+> 2.47.3
+>
+>
+--8323329-928124701-1782460096=:605841--
