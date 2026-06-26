@@ -4,145 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D5E9CDE008
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 08:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6727BCD4F26
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 08:14:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBEB510E322;
-	Fri, 26 Jun 2026 08:00:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0390710F4D8;
+	Fri, 26 Jun 2026 08:14:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EyZzDFNE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hzXF7PUk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3EDD10E322
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 08:00:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7359E10F4D3;
+ Fri, 26 Jun 2026 08:14:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782460854; x=1813996854;
+ t=1782461647; x=1813997647;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=tHSKmDNHF7p3rMsTOzPlQxqqcHWGyxIxqNuLlJABQtk=;
- b=EyZzDFNENciGxH6VYU+/08+Am5z9xxQHJl9E6H/wmCUu+Ty2lgcHXT/d
- YfcawAHg5XDtlgNsi2hSVRxGn8xvHjhTst3n7oscLqiXp4fDc4LIAkFp+
- QicdauOAVJptw5DuX1wZuQ5jUGVXiAeRHi3YLla15fjoT/JezBwS/ytvx
- 5Y8cwSE8b3/fKyhU32wsIqfAoYXpciL/GEH/sPHr21jaGFZ+zjkPQbprd
- n+XPIG8UBaDD4TM1w5zofMDy9vyLodciPHt9gYq/KX0F7ka5u+s3pYhk9
- U7GfOAnt/NZkFDkWvnlB+rdcN46/fEm6KH6hn5/62/4FkF97qQJWBgQ5E Q==;
-X-CSE-ConnectionGUID: 1TygQPw/QBK2pbVf2ht+bg==
-X-CSE-MsgGUID: SLuk6ebiSmq0u8Cu8VaC9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="83389240"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="83389240"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 01:00:54 -0700
-X-CSE-ConnectionGUID: 9Ja4rHeRSta1OoR4GGCvvg==
-X-CSE-MsgGUID: /iy5k43bSnScRYzSLkTtcg==
+ bh=gZya5T7a9cCEzEUqG9MR4k8TtbLs7YNiBO9Z3kGgPGI=;
+ b=hzXF7PUklD+eYfTAZbsCuPpKd+lk7QGUsHlMCf3wEJRE8y53RLfVBZ6T
+ 8hCM87JUrMkern8VoSoakcjb9lQNn7FE7JGkAu5893/hLEMS/6LXTYfYs
+ 5xi5FCflDIZnpM4jodob4p25wUKDZi3qff0L7B96dPWZWPrzpZrLsa2nG
+ j9KwBooh6WywhExyB4WpeO3x9nbfvoc/8sLUmvbwJwg9Jgk7EsHelVYsp
+ iQr3kv8LQP35eq04/TXOabucdufHoxKO5aTfSg2PS16j7z+xTImrx/nj5
+ a+TYC4qU0u5YV2/qHCc/7Ul6BJMNcVPqACsNn7L7zx9sNN99wpSODu2Ps g==;
+X-CSE-ConnectionGUID: lX5yFmrSTzO8SeauBLZeYw==
+X-CSE-MsgGUID: TrYwdjRvQ6Omj5rBTKde3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="93606734"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="93606734"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 01:14:06 -0700
+X-CSE-ConnectionGUID: ox7ijuVTS4emC003Iae6yw==
+X-CSE-MsgGUID: LXo1+zr+RZWqAwbGtUBwCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="250877983"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 01:00:53 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 01:14:06 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 26 Jun 2026 01:00:52 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Fri, 26 Jun 2026 01:14:05 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 26 Jun 2026 01:00:52 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.48) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 26 Jun 2026 01:14:05 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.26) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 26 Jun 2026 01:00:52 -0700
+ 15.2.2562.37; Fri, 26 Jun 2026 01:14:05 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hF1Qx+mTcwGpJ+mpX6lSwImWDWtIgjzSbysDvpjHp2VNitxuup6crtnLsr64wz7MxLkeulsGktE0wu98Q4mhc/ulHIZzd+aJqqctJkMbVlfBruVjlUURh1PyjAqZAGeRK3qU5ZKRiROddmkaP65ap/qIRvahm3GsWsechu6zk8YTwIZOhkOkcNwLju2fv57kf5xNPjzn01nAu5IMfQrVljqr64SF1TfpJGLWrbMEkS+VR6cy88JzgdO579KN5wH18TopGAPtZbXZLBHqftmtyEceovG3iwMNpJj31odd5Hh/IPH2vVR/78wEh7XKTKh+OvVzC9lwJZWNfdNxCMuOkQ==
+ b=nbLpCioIvDqWf2d/Xs+jE9lwMwrbAxd1N6n99224dETARnfl8VuvUBXR77WxnT46cy6TzAamrPkZ8jtAabNjG7SGCQfZCEL8NhNT/G5pchyOZTu3/7V7B5n08IsNGE5e2uu7ND7WX9Bs8TR1JwGo3nbohpckUxWYBlvHc8/2g0Z2rJ+bVD6Ngs3tZ91TvNsJxSPbapBghp3B4W8cMZ3R3BWH5pJBsr/DuFGr7GxMavcLp3kFzZNJRyaToE6l8TIp+cfX2OBEgra7q7Yz3t9lmImL7YV5ve2cpVnzcxVDRZIrQbmAyhMs/TYStqyEwGqNuxbhOEExCUBb4ZVIyhVqCQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cQpNNyEVuyo3TZFqODSNCcucISW7JK4680R6K+9mOfY=;
- b=tBJRN/KIokgenG2zr/sK77XnYkteFMc8Cv1Irn8/BcVW3iUgrXN/emqBCvCOhntCZ7SjOp/nwZe0qmt0R0TveDqZtUYzGSEhUqVTfeY7N0PuqIjAnaKXgG6/eU+tn3FJdzP6fN9Q4gF8aW87j17CkPpKJeqqEc/Z0QmJkZJseVCHKg5Tb8HQPJd4OOEdvPZoWej/1Geim9q2RZOHhohMDCYGjm+FYV8+aSMQR+4Oh1CgYbR/LBjrY37IVFjW6nt5SaSkv6R7DbmVa7RUfL5pnjBQNw3cA8vV/Vv9dw9D98RFEvMFs2SPE+NoSRQvbp7cLha3dVfcFDCWC4N62v0Jmw==
+ bh=fdTAVAcB/xPg2aUbsRocMgetcjgpug78KLLTSdzUgz8=;
+ b=H0zCnDxCNs3MXsOCwSn3YqSLV2p/zKGeE2XEWcOuFUN9lgQ4OZ/KI7IZlRj0F0yZJlajsXFXdQ0XqphYkJmFGmEkXXd/GsED9335OY/f7TuPt8FJG/BDmC1YqlPw3sTy3DpQPU40UywY9V77ca2PmYG54ydgF917CU/0iV90lW1fYCMQFWsxnggAPzQhCg1NZm+v8MknBPpY44sjexi5DBYhHgXN4znFlIr00zP7csVOpWjYKRBCHb7V7hrxJJyROlHbSXXRJq/HIVwQ3Tzw8hVPQz0jy58D+/FSOy0GJ/CXIp8YNL3pJOWoIPq1JuwKqutlbJ4tBgi1hMgMTPASrg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by LVXPR11MB9756.namprd11.prod.outlook.com (2603:10b6:408:389::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.18; Fri, 26 Jun
- 2026 08:00:50 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277%4]) with mapi id 15.21.0159.016; Fri, 26 Jun 2026
- 08:00:50 +0000
-Date: Fri, 26 Jun 2026 10:00:43 +0200
-From: Francois Dugast <francois.dugast@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Return error on non-migratable faults requiring
- devmem
-Message-ID: <aj4xq7gYWYGLZlGR@fdugast-desk>
-References: <20260617135101.1245574-1-matthew.brost@intel.com>
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SA0PR11MB4766.namprd11.prod.outlook.com (2603:10b6:806:92::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Fri, 26 Jun
+ 2026 08:14:00 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0159.016; Fri, 26 Jun 2026
+ 08:14:00 +0000
+Date: Fri, 26 Jun 2026 01:13:57 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Honglei Huang <honglei1.huang@amd.com>
+CC: <sima@ffwll.ch>, <rodrigo.vivi@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>,
+ <aliceryhl@google.com>, <Alexander.Deucher@amd.com>,
+ <Felix.Kuehling@amd.com>, <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>,
+ <Jenny-Jing.Liu@amd.com>, <Philip.Yang@amd.com>, <Xiaogang.Chen@amd.com>,
+ <Ray.Huang@amd.com>, <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>,
+ <Yiru.Ma@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <honghuan@amd.com>
+Subject: Re: [PATCH v3 1/5] drm/gpusvm: split MM state flags out of
+ drm_gpusvm_pages_flags
+Message-ID: <aj40xcAiXlj6/z6S@gsse-cloud1.jf.intel.com>
+References: <20260618080902.1527255-1-honglei1.huang@amd.com>
+ <20260618080902.1527255-2-honglei1.huang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260617135101.1245574-1-matthew.brost@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: DUZPR01CA0177.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b3::26) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+In-Reply-To: <20260618080902.1527255-2-honglei1.huang@amd.com>
+X-ClientProxiedBy: SJ0PR03CA0177.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::32) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|LVXPR11MB9756:EE_
-X-MS-Office365-Filtering-Correlation-Id: 25106289-a88b-4fdf-da48-08ded35909ab
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4766:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9d18aba-0a7b-401a-7397-08ded35ae0a3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|22082099003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: I19zaWdOPB/wO/pu5fKlqE5w3sOTbaXMWZPGtqYONftJ7XHxoF0wm2VvLm5ySMTKQc8aOSwSXDsYnFogylqc2BL0edg3LOj+ZeB3oGI6XhUgtaWi7FfAZ4aTRawvsbdHXdYduw2oHkrMzBFPJ4Dgsqvp9pOYebXTM0p40UTyN7vfb8VNNN1GDxkOxKJrudAOs+it/UyY0F7ckFuNlHTzPV+CCvbjDNLVX22dv9mlZAeipwArJiCdBKJNSY6wt4W2xFv5yXOzYQ1MrYUbLfcQxVnU+r2w4hqLcqvmhsgwKrmvq+Ws7aKYkfEk7uUUS+c1Biz4qFWAMxmen0niAOIpTbPNOEUzZXWIdx3KCa5Q9kKc1/MkI8v9KAwkVFzN87lWrDjv0U2TkG9AeTUVs+Txo4AJvp5ZjsEglYM6UurMPRw2UesT9X5pAMDFF9BKRt9R9uaL1eef2ITVVgwTCdEnFia0LQRqqM00tFege4rzB7Gcljb1G1G8uadGeRbLapQ3yNYb7O5jVMnh530IIxS7POLkmpDb4kNOuqDoKTPO73HHvQ/EcB52NPhFof4nDGjWFakHz4Tpcy76ngctZ515RyF0V+NZi4SI9c5bjlwk3nKcMwLIaD5Del+pEsjX4oxpWQ0u2oA/0X6CHa0TnWvB+V+ZecRPGdH5v9tEGDfHVek=
+ ARA:13230040|366016|23010399003|376014|7416014|1800799024|6133799003|11063799006|4143699003|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: +75ml/qkqiIyahg3CFUeEn850GQFlRdXhnHSAqDUJTAXVnzlhnbUUwVgLHIuTxZ8iD6xoW7NxLoZV7WQeBaNUTLhJwyPW6ClkW4si3PFytkBLCqsn+4nJtiuRvZIqi2PchwqiNdmhq1elcNqhyhAKvzpSUd8oHvxAm/nAk3rKv2O5YPdzPTM8hwuu6dY72qJLMUxiedMHSkbS+5bG4T0zP6ucZiRa+bTCh5XgmzwiQNG3dJ0ayTfSPydYcNu/cntpxRT8kLfBjp3EdWRGt/UqNtdGPWEOzyOHMUCmXYsc6NV8PXnS3qLYnMzogUBgzlHMdCH2TdazvTkAmzezSn/jR88Q+HHGILDNyfo87TUwrPZfdlCA6MZM7eyqbV7Hu8zM8K/O9ynspMLRv7gOO/8pXcLVRwzoybUfueg0oWmGXIWktbwdg5Q0ih3b9NKLzE4TUFSsDm1gQiaFgqrB5pl3MIS0IQUGqPv13HIev9kattTpt0M2TQtRQUzXTJyaAE4Hu6ColT+a5pe50uSomOoPbt5Q+urTJdeNw1VVPuHnLQpkaWvU4ggELNxNe5r0QKpouvJUH0wkc8d/WYyzDDcjSOYlGz4i6Yt+TySEel6PBb/0xMFW+++lWEKn6cSin7m
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(22082099003)(18002099003)(11063799006)(56012099006);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(7416014)(1800799024)(6133799003)(11063799006)(4143699003)(56012099006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Xn7RJ4sa6XoE5fSIMB4chznMTmt/G5dlzQdgAXmNpu2wx2UQYNGQ1+tnWqo0?=
- =?us-ascii?Q?hexdk2m8Mi/S6vZ00WYIeABeE05FsAdYBrSYDGwQq3cF6f9ABkrc2CgDK2xj?=
- =?us-ascii?Q?wx0kubU0B+iUverZsOF+LsrsIoGUL5w84oQnd6z7hY6uzVB8ykFsCwbebNyB?=
- =?us-ascii?Q?TzuUhtPDUiFVyzP3sE2dO0XiQzfP5pyQoC+CqNVsXPUp2Bd1QzPtqfL//+pW?=
- =?us-ascii?Q?FRA/U9LvIHZd9fQTlpD+Zsxn6wegFuEjH/VgAOVdFSb1HJbn+Rhmd/CpLDEm?=
- =?us-ascii?Q?T39XPAkoBC0m3EWoE6KLjrfvEs06Oujpe2GtI94TlsiDCnY6OJF7X2seKZqF?=
- =?us-ascii?Q?zgJbC45sRjYt9WtWwTAoGnwC9QKdbZw8G4zKMgzOlf/tq4ICwm9lV6EVwW3f?=
- =?us-ascii?Q?cXa6iwkz5XMIpbvLYK7NcU2M1xF+xY/1ugRTNR+wEok2yITeoQnovWYt36qW?=
- =?us-ascii?Q?b0hiYwpPpRyk4WKdkm5fu0OsszUsfVlujtKcRjTq3eXSgUnStLGuc3DNA1Wl?=
- =?us-ascii?Q?c7D3IwSl/vimxln5Xq8frravvqPqgxnAEydkh3ftzh8fZ7XGGyVz6RdqrqwL?=
- =?us-ascii?Q?dMDuTsxYFq8fgv/96gtIJ5KL15J9u6c7eSq/xvyxO6ZqOACZsQUmqsIb/RKV?=
- =?us-ascii?Q?owAdH8VByH2D3D1pfX8DKCQuBAvFdi5ZJQ3MoYqQ/qcIO23j7OBRt+SNNJpF?=
- =?us-ascii?Q?i5HqJ1QFLSlLKppl7M2j59ZNDAFg90xj7OPRghsoQl5Rww6qon/J98QhbWsk?=
- =?us-ascii?Q?lZ8j/RGKR9NOv0Ep6aszNokr63VvSP9+a9poorCBlogHHD9pvEt2hCZ2Ov5D?=
- =?us-ascii?Q?EurBDq2moK+N+e2hNfajhHpmmYft1Ub8iKHjh7kn7lrIhUwFLkmGt3TWhwfV?=
- =?us-ascii?Q?erFBXI0JQ+bPZyu4IOvlLMAB+IT1qOBag9dM9Qr/oefjcyK/QxJI13V1FZxO?=
- =?us-ascii?Q?gxinSCuM5WQLnjZaYNNddhxB7Ld+qeYjdlb7h1KpdeEyDtfYVv7uWChnHoVC?=
- =?us-ascii?Q?T61x9ehfqNcjjDNg5/ZlD9+07wOmdmlBuPdm+AVU0lQ7jBJ9k114RvXdJ5Rl?=
- =?us-ascii?Q?B1L7uiNXZPlyLx4wf97dzvRIjeRcNTeVdju+CT7JRDV/hTABXBEiO3xpLKey?=
- =?us-ascii?Q?b9bHL6vGvMsiDTfTZB9TK2bj63zAN/mLHyLAjKz5Bh3Xtu01glj93uWjwFCV?=
- =?us-ascii?Q?OgVLU7ujG5aBOU0HpE1ibp9Jmod4fJh+E3Vc/3bgtQ6vgRAOOfUJfq2xLdC2?=
- =?us-ascii?Q?Z1VuNwXmMjSoHjZcFM0/FlXmQwFsF68UGg7oN3x/kKp63x2eqJs84FDOU9lC?=
- =?us-ascii?Q?BYawXArwQFTvZexZDbtilCcLZXrcgLYOyWiGB/Hy0+Vp1E2i44qUDzgUmpap?=
- =?us-ascii?Q?Sj9dDQpLFLWXFSmFqwV2Yabx0T6RE14KS8SWlY36nDQkkzJ8ix1Xixch0mWw?=
- =?us-ascii?Q?OrTK58B+0MuVJkv4Oj9dt6plK6Mxrxz0HCPjNz2fFYDzmEXmdk79h6pPhm53?=
- =?us-ascii?Q?Xe6s+aANQ4+1V08IrdR2JHwQLc7tGqzybgWCvtRq+Z9myYByOy7BJ+H2LiWU?=
- =?us-ascii?Q?S1Ek9FREOsib3cqAXy0tX1al69XaJgOz+gr8NrOgkntaNEP2qy3oGz8kDnvH?=
- =?us-ascii?Q?q6U6wze5rcCwqwvrP29oeZfUKd2d9GKzJ8E+U7leAPBuduu0wO5U3+mZLJR/?=
- =?us-ascii?Q?3hd5fV31e2o7zZ0MglPkA9Krh85iQByTFbCZwH/SLUkt6s3TBfEysJOuPdhS?=
- =?us-ascii?Q?QXXzrL934qLCLUXONPEeMRt6P8FVcuA=3D?=
-X-Exchange-RoutingPolicyChecked: nCAW5H970W4yGTHxX+cfY+yTdTdqI7rG7mdr/c/k4wPHfqM9f20XAnyv8BUz1PydGI559Q2/Hhbwu6wqPA+bZKA0GELcgjai9nVUEe7pVT87HsUdEFxGLASOaAE42h2KiDx7tB2Vjz6x02EtcgsrKyWXRpyJUaCA18xd5+dXNykGq7XHDDNN7nfvzNSHk3eZ0sm0W4vr6gsNTbiphVHdIN63vCdpHnymCNHiqr+34x3j1YK3JysynoddYzBlIURsaQbzO8Wd0qgvEOYQpK53IJYieSluIQUehj6N0Zsv5RqTysrDUOvW7UIU1ndV2MDGs+xupqEfEdsCttyY44gmLg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25106289-a88b-4fdf-da48-08ded35909ab
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zFPyvE0owmRWhf78AO8OSS1Y7Nt1gbMp8luwKL1JSI3BJQCukW/nozI5Arjv?=
+ =?us-ascii?Q?IsQF1SXpEwcLiPj7RVFl3RSecVBW9NyF3/Q8hSlNk2sDrXuwB2LTsJrvOUpe?=
+ =?us-ascii?Q?sr8Mu93SSaWUsf/J2o/ahfV/a90dgJbe2Xu8MBm/0XcZrAtWGfD6+zm64wES?=
+ =?us-ascii?Q?GNK0yWm+yCM7uZLeBo/SarPFBwizDeFavULl7Pf5jH34xRxb92ljGXf47i1G?=
+ =?us-ascii?Q?R18AZ/rHF6TZUQ+jiOod7hD03fUr/bcLYGXMvepIWbWHwQifxWA1R/GDyFNo?=
+ =?us-ascii?Q?cX1Vs3Avswh1OwXeGaYxv0cWyJzrd0nt/5enxm76NcXhKYZzbd2ZthfkkkOY?=
+ =?us-ascii?Q?tiEFOKIMZV6HB8Bxkq9X9cryf1bzvJ+r3MZsi9wK3bStA47A92CMZ9+O0MfU?=
+ =?us-ascii?Q?YiGEioHrbKARTY2WhT9QHyOoKHO3qRBA1rkUXjPrId/7yW9fuLtGirXGbILS?=
+ =?us-ascii?Q?PdAWh9IFh7RHSwdoMsBaJ8kk8vBNVtSGrne7WjV9jRkovBiS70/yMkucsfPw?=
+ =?us-ascii?Q?3wN4OKnaUFNqCdR3QUWv21n9rjMGWe5svwxGQE/wwpmSOvR0JU+qHT/DkIav?=
+ =?us-ascii?Q?AGUpfK0s+TQy0u1WzTTXayBDKxdU5MGcM2/yZ38F1tibJEQ+r6a4O972nC5a?=
+ =?us-ascii?Q?fVGG4jKYeRWEQe3+k/yo3wyS0tI9+jH7rPy8ppizz/wMOB7dqxhQ/oaRXkbU?=
+ =?us-ascii?Q?5w/UqdUlT3Rj64/6CSz+9YmWPvYhDJ/OmSz493q2J2q0MyemXtneWjB+CCoS?=
+ =?us-ascii?Q?uus4Tj1Ld/nVyENys4DTnSkiP/WMotLl+kjidpuaxF0TZpr+MT1FgJpWOmWl?=
+ =?us-ascii?Q?r/vK+WTwVXk9A0XpG8fbdpXmG3aHOFOuxrHCY34aZ3g2xKSP6KyE9eMjVCs/?=
+ =?us-ascii?Q?/SB1RIHUzvMXym7tHTWKMRmO73HDKb8x6FoaYe+8LdqgcYifitGPWgWpbshv?=
+ =?us-ascii?Q?b6RXZZB/fjP0GuXDwtRUZMp/5wla5B5xOBzAJmfitrhv5pDQaaJzI0Sgtn3K?=
+ =?us-ascii?Q?Qm8Uvqgfou/OTDPj58RqNWXnV+IbalgDQCjNAyP+VeFtoOCZ0hINyJWmDi+B?=
+ =?us-ascii?Q?gV5bCiWzrVTkR3Jo47VZrCT/zKfzFQCUSFltLiIgX1dNKmFxbB/zRw2RXV2v?=
+ =?us-ascii?Q?SVY21CFVu4krJD3VPOsax5phCFnKkwIr5t6WB6bpbjmXbnvdNbc/PBEHsbYV?=
+ =?us-ascii?Q?v8u6wCO+BtuKnd7Na9+ioiy7U9HVxu+mf7Vi7AiG9xQjIbzybGRIyBjbyJie?=
+ =?us-ascii?Q?mw2x6mDhjeb8eaiURnxE1iTMfAMijBdUF0hLc1PMu6pyi/vXNmbSbVpEzLqp?=
+ =?us-ascii?Q?FWjkYKn9Eq5J/5syvuXfi6zV/iarEsQDwN+dNo9mLFlrlAt9m2SBY6xQFBwP?=
+ =?us-ascii?Q?yDoi6RntzTIMQUoFXa6bUdtWRw3PcT6EqXEpgUEQW76yD8MLuSIxtxUT70iS?=
+ =?us-ascii?Q?h8Ya3iQ5yarqFfTVSfcN9ezkRS5VmzzeVSu58ynWaTmWw7V9YxU0fs5SEFF6?=
+ =?us-ascii?Q?h0IxZAKSQwWKNCvdPyQdoi3tMvUkXdlvUxKgtPuIBR4WWj/PEWFDQNd64qxn?=
+ =?us-ascii?Q?wjmaOkKra+CRL9EDNfdeRvcikZr8w+fYJ+tqET0d9mz7jARNWOlZBkkxlu5I?=
+ =?us-ascii?Q?uxtAwXTPgabVtmXih/nxZa5iphmavDiKrvRjAq1GJjL0vpryUkn3dfZ0RWM4?=
+ =?us-ascii?Q?EVWXLH917zPWcr0T5g4tR61zbfmzveXuWONH8gR/qORYqnNETOE22oUePLa0?=
+ =?us-ascii?Q?xfMg5wXwHuGtCRq4yceQpjuKNX+LAD4=3D?=
+X-Exchange-RoutingPolicyChecked: EiGrjLexlokzhxAjFpY91uLAeN677NR+r3K9o1boV1f9ewNp0qFcwko5qYUzt8Qbx4BciNMA8UhNzqiUkihcWuBJq5dZgbXw3vSaHzrhWPznAq/J0sLRjt/fQuQUcpqdyKA0LMUd9YmIV3FchjeMbG+Zms2vka1rcrTtED92ZxV1vb+/SOjx4/aHaH6m6MTuzW6ZYqel2PkZXU48gbcBNEgBMVTfdo+AEUwuzm/yXhwQXuVBijhmw4Kud1YZ43d2zRp++MumpIwqgpe1T0tR4xAurDJJ9ZT1kXEKEP1v32qMLNNbHRPY5EMqjrSZ1tbVEz09rFzZt9vVfkK7vYpLQQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9d18aba-0a7b-401a-7397-08ded35ae0a3
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2026 08:00:50.2260 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2026 08:14:00.4263 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OmUvpUmADe9EG2jiEOPXRumdE9+iDQvZ25F8BQrc0QgOikKnygKkVYWSo8oQJ3/9QeP2fjfB0x/Qlx0Sh2bhB61ASgXmQUTelknYvoeEO78=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LVXPR11MB9756
+X-MS-Exchange-CrossTenant-UserPrincipalName: uZ1czwvPEowI01IfyTIbfR45/NIqkWvdiTB31XxhvTfyJ3pPK1lTUjlR5pKuMhi7/EIReDbDC0SWR1FRM++mEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4766
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,39 +165,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 17, 2026 at 06:51:01AM -0700, Matthew Brost wrote:
-> Non-migratable faults that require devmem incorrectly jump to the 'out'
-> label, which squashes the error code intended to be returned to the
-> upper layers. Fix this by returning -EACCES instead.
+On Thu, Jun 18, 2026 at 04:08:58PM +0800, Honglei Huang wrote:
+> From: Honglei Huang <honghuan@amd.com>
 > 
-> Reported-by: Sashiko <sashiko-bot@kernel.org>
-> Fixes: ("4208fac3dce5 drm/xe: Add more SVM GT stats")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> drm_gpusvm_pages_flags currently mixes two status:
+>   - MM / virtual-address state: whether the range has been (partially)
+>     unmapped by the Linux MM, these follow the lifetime of the VMA and
+>     are a single per VA range fact.
+>   - Device mapping state: has_devmem_pages and has_dma_mapping,
+>     which describe the current page mapping status held by device
+>     itself.
+> 
+> Keeping both on the pages object blurs the semantics of the
+> abstraction of pages and VA range. So move the MM state flags onto the
+> range, and keep drm_gpusvm_pages_flags strictly for mapping state.
+> 
+>   - Introduce drm_gpusvm_range_flags { migrate_devmem, unmapped,
+>     partial_unmap } on drm_gpusvm_range.
+>   - Shrink drm_gpusvm_pages_flags to just has_devmem_pages and
+>     has_dma_mapping.
+> 
+> Side effect: drivers now need to check the unmap flags in the driver
+> itself to avoid handling the unmapped pages.
+> 
+> Mirror that bit onto drm_gpusvm_pages so the framework can
+> still short circuit drm_gpusvm_get_pages() under the notifier lock, and
+> make drm_gpusvm_range_set_unmapped() propagate it to the backing pages.
+> This follows Matt's review fixup for the v0 series; see the Link below.
+> 
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
+> Link: https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-svn-perf-6-15-2025/-/commit/623f6a50c037d9e44f6c9fbe6859a0ba7ad50177
+> Signed-off-by: Honglei Huang <honghuan@amd.com>
 > ---
->  drivers/gpu/drm/xe/xe_svm.c | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/drm_gpusvm.c | 21 ++++++++++++++++++---
+>  drivers/gpu/drm/xe/xe_svm.c  | 11 ++++++-----
+>  include/drm/drm_gpusvm.h     | 30 +++++++++++++++++++++++++-----
+>  3 files changed, 49 insertions(+), 13 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+> index 958cb605aed..df900553f21 100644
+> --- a/drivers/gpu/drm/drm_gpusvm.c
+> +++ b/drivers/gpu/drm/drm_gpusvm.c
+> @@ -641,7 +641,7 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
+>  	range->itree.last = ALIGN(fault_addr + 1, chunk_size) - 1;
+>  	INIT_LIST_HEAD(&range->entry);
+>  	range->pages.notifier_seq = LONG_MAX;
+> -	range->pages.flags.migrate_devmem = migrate_devmem ? 1 : 0;
+> +	range->flags.migrate_devmem = migrate_devmem ? 1 : 0;
+>  
+>  	return range;
+>  }
+> @@ -1784,20 +1784,35 @@ EXPORT_SYMBOL_GPL(drm_gpusvm_has_mapping);
+>  /**
+>   * drm_gpusvm_range_set_unmapped() - Mark a GPU SVM range as unmapped
+>   * @range: Pointer to the GPU SVM range structure.
+> + * @pages: Pointer to the GPU SVM pages structure(s).
+> + * @pages_count: Number of GPU SVM pages structure(s) passed in.
+>   * @mmu_range: Pointer to the MMU notifier range structure.
+>   *
+>   * This function marks a GPU SVM range as unmapped and sets the partial_unmap flag
+>   * if the range partially falls within the provided MMU notifier range.
+>   */
+>  void drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
+> +				   struct drm_gpusvm_pages *pages,
+> +				   unsigned int pages_count,
+>  				   const struct mmu_notifier_range *mmu_range)
+>  {
+> +	unsigned int i;
+> +
+>  	lockdep_assert_held_write(&range->gpusvm->notifier_lock);
+>  
+> -	range->pages.flags.unmapped = true;
+> +	range->flags.unmapped = true;
+> +	for (i = 0; i < pages_count; ++i) {
+> +		struct drm_gpusvm_pages_flags flags = {
+> +			.__flags = pages[i].flags.__flags,
+> +		};
+> +
+> +		flags.unmapped = true;
+> +		/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
+> +		WRITE_ONCE(pages[i].flags.__flags, flags.__flags);
+> +	}
+>  	if (drm_gpusvm_range_start(range) < mmu_range->start ||
+>  	    drm_gpusvm_range_end(range) > mmu_range->end)
+> -		range->pages.flags.partial_unmap = true;
+> +		range->flags.partial_unmap = true;
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gpusvm_range_set_unmapped);
+>  
 > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index 03cfbf831257..2d8448e5b2fd 100644
+> index e1651e70c8f..63da149f3b7 100644
 > --- a/drivers/gpu/drm/xe/xe_svm.c
 > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -1280,10 +1280,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+> @@ -134,7 +134,8 @@ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+>  
+>  	range_debug(range, "GARBAGE COLLECTOR ADD");
+>  
+> -	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
+> +	drm_gpusvm_range_set_unmapped(&range->base, &range->base.pages, 1,
+> +				      mmu_range);
+>  
+>  	spin_lock(&vm->svm.garbage_collector.lock);
+>  	if (list_empty(&range->garbage_collector_link))
+> @@ -166,7 +167,7 @@ xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
+>  	range_debug(range, "NOTIFIER");
+>  
+>  	/* Skip if already unmapped or if no binding exist */
+> -	if (range->base.pages.flags.unmapped || !range->tile_present)
+> +	if (range->base.flags.unmapped || !range->tile_present)
+>  		return 0;
+>  
+>  	range_debug(range, "NOTIFIER - EXECUTE");
+> @@ -1136,7 +1137,7 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
+>  	struct xe_vm *vm = range_to_vm(&range->base);
+>  	u64 range_size = xe_svm_range_size(range);
+>  
+> -	if (!range->base.pages.flags.migrate_devmem || !dpagemap)
+> +	if (!range->base.flags.migrate_devmem || !dpagemap)
+>  		return false;
+>  
+>  	xe_assert(vm->xe, IS_DGFX(vm->xe));
+> @@ -1248,7 +1249,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
 >  
 >  	xe_svm_range_fault_count_stats_incr(gt, range);
 >  
 > -	if (ctx.devmem_only && !range->base.pages.flags.migrate_devmem) {
-> -		err = -EACCES;
-> -		goto out;
-> -	}
-> +	if (ctx.devmem_only && !range->base.pages.flags.migrate_devmem)
-> +		return -EACCES;
+> +	if (ctx.devmem_only && !range->base.flags.migrate_devmem) {
+>  		err = -EACCES;
+>  		goto out;
+>  	}
+> @@ -1623,7 +1624,7 @@ int xe_svm_alloc_vram(struct xe_svm_range *range, const struct drm_gpusvm_ctx *c
+>  	int err, retries = 1;
+>  	bool write_locked = false;
 >  
->  	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only, dpagemap)) {
->  		xe_svm_range_valid_fault_count_stats_incr(gt, range);
+> -	xe_assert(range_to_vm(&range->base)->xe, range->base.pages.flags.migrate_devmem);
+> +	xe_assert(range_to_vm(&range->base)->xe, range->base.flags.migrate_devmem);
+>  	range_debug(range, "ALLOCATE VRAM");
+>  
+>  	migration_state = drm_gpusvm_scan_mm(&range->base,
+> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+> index 8a4d7134a9a..251a7266a73 100644
+> --- a/include/drm/drm_gpusvm.h
+> +++ b/include/drm/drm_gpusvm.h
+> @@ -109,9 +109,7 @@ struct drm_gpusvm_notifier {
+>  /**
+>   * struct drm_gpusvm_pages_flags - Structure representing a GPU SVM pages flags
+>   *
+> - * @migrate_devmem: Flag indicating whether the pages can be migrated to device memory
+>   * @unmapped: Flag indicating if the pages has been unmapped
+> - * @partial_unmap: Flag indicating if the pages has been partially unmapped
+>   * @has_devmem_pages: Flag indicating if the pages has devmem pages
+>   * @has_dma_mapping: Flag indicating if the pages has a DMA mapping
+>   * @__flags: Flags for pages in u16 form (used for READ_ONCE)
+> @@ -119,11 +117,8 @@ struct drm_gpusvm_notifier {
+>  struct drm_gpusvm_pages_flags {
+>  	union {
+>  		struct {
+> -			/* All flags below must be set upon creation */
+> -			u16 migrate_devmem : 1;
+>  			/* All flags below must be set / cleared under notifier lock */
+>  			u16 unmapped : 1;
+> -			u16 partial_unmap : 1;
+>  			u16 has_devmem_pages : 1;
+>  			u16 has_dma_mapping : 1;
+>  		};
+> @@ -151,6 +146,27 @@ struct drm_gpusvm_pages {
+>  	struct drm_gpusvm_pages_flags flags;
+>  };
+>  
+> +/**
+> + * struct drm_gpusvm_range_flags - Range-level GPU SVM flags
+> + *
+> + * @migrate_devmem: Flag indicating whether the range can be migrated to device memory
+> + * @unmapped: Flag indicating if the range has been unmapped
+> + * @partial_unmap: Flag indicating if the range has been partially unmapped
+> + * @__flags: All flags in u16 form (used for READ_ONCE)
+> + */
+> +struct drm_gpusvm_range_flags {
+> +	union {
+> +		struct {
+> +			/* All flags below must be set upon creation */
+> +			u16 migrate_devmem	: 1;
+> +			/* All flags below must be set / cleared under notifier lock */
+> +			u16 unmapped		: 1;
+> +			u16 partial_unmap	: 1;
+> +		};
+> +		u16 __flags;
+> +	};
+> +};
+> +
+>  /**
+>   * struct drm_gpusvm_range - Structure representing a GPU SVM range
+>   *
+> @@ -160,6 +176,7 @@ struct drm_gpusvm_pages {
+>   * @itree: Interval tree node for the range (inserted in GPU SVM notifier)
+>   * @entry: List entry to fast interval tree traversal
+>   * @pages: The pages for this range.
+> + * @flags: Flags for range see &struct drm_gpusvm_range_flags
+>   *
+>   * This structure represents a GPU SVM range used for tracking memory ranges
+>   * mapped in a DRM device.
+> @@ -171,6 +188,7 @@ struct drm_gpusvm_range {
+>  	struct interval_tree_node itree;
+>  	struct list_head entry;
+>  	struct drm_gpusvm_pages pages;
+> +	struct drm_gpusvm_range_flags flags;
+>  };
+>  
+>  /**
+> @@ -310,6 +328,8 @@ drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, unsigned long start,
+>  		      unsigned long end);
+>  
+>  void drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
+> +				   struct drm_gpusvm_pages *pages,
+> +				   unsigned int pages_count,
+>  				   const struct mmu_notifier_range *mmu_range);
+>  
+>  int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
 > -- 
 > 2.34.1
 > 
