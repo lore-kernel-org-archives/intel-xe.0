@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41786CDE00C
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 11:15:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E52FBCDE014
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 11:15:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04ACB10E390;
-	Fri, 26 Jun 2026 11:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5FD110E38C;
+	Fri, 26 Jun 2026 11:15:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZbK1PvKQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Upke1NPm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FA1E10E390
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 11:15:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14A5E10E390
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 11:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782472539; x=1814008539;
+ t=1782472537; x=1814008537;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ukxGSbk9yWbxaS6QkZH95xAeUfdKl8S6PIBk9VlHO8U=;
- b=ZbK1PvKQRPKHXgOyV5VBlPX9iYlFyMQO4kEMz0t5RThYicfEx+uzaIs+
- p7Kpq/E7FdPokf16Yzywzz0HbLN5n+2ZPwUMLfoiqwdQbksDS+28mAoQL
- /PFq5FZr342UZchg09yOkqVZ9tFNyVqKTvT4yY/zCCbmd8MEz2ZjYQmfV
- 83rGXN6pTeZMO+SL7B0ueVI3ZDOCYSkDVhG4HSmUKlGuQj6mgIldX5mHb
- oDP2/5XY50gaFgh5F5xO9N1otpFwRIjNckCRKwiYZIEp8iQf+t8bRCcHW
- aiDzJckb07sdphMZ79yqmuBaz5WQvBqWglF/zT8L2Ps2i97S7zSW5kcNC g==;
-X-CSE-ConnectionGUID: nzk1cZ1tR6yMzKMTR2cudQ==
-X-CSE-MsgGUID: qe9YqmGzQwWR+x9JU1kVCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="100694986"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="100694986"
+ bh=noaFEKssYu+kysSfQ4BKOHZtRMVDsWgIvbE+BfAVnnU=;
+ b=Upke1NPmxO6e7vyX6pI67sLNJIebZcRcNLYQJVUJUswKumtvxIUurK7p
+ ++NboGb7dWZ0CG410S12sSXBOq/wMYWnMXUpJ+5RyWimw3ziALSgsRf0b
+ sJsrKblJuWfISO0A9ahpJ9VdFk8rLBxOnbpQkvWHaRZ5d4nMzxjdqXf3h
+ d00M1ghwIx7wKxm6AcJi8pq65cHiAuqgMr4WD9ZDSSk4zvb2sOjkmFodZ
+ s3SOEj2IVzk2nS+DxyaCWhpENcKI5atlEnkn/BITegkiu4RLqqZIhms5/
+ K5ivREEJ13Xf2Lg7b6HPlAmHbpbGi/Kxkd6gTnq2ITQCMDzWFiwq2dqUi w==;
+X-CSE-ConnectionGUID: vlSjMdPUQoqHMY122nFMkw==
+X-CSE-MsgGUID: CnWWI5TzSBC04UsbxM7Tug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="100694982"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="100694982"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 04:15:39 -0700
-X-CSE-ConnectionGUID: jwze6y3PRQS7vaLA2e5GaQ==
-X-CSE-MsgGUID: rt/7MFCwSoO7tMo9D/W3Kg==
+ 26 Jun 2026 04:15:36 -0700
+X-CSE-ConnectionGUID: INIRq7JtR2eRFjTdfSdZlw==
+X-CSE-MsgGUID: UoMAqMeYSEWO7Kd301wrBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="253214350"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="253214343"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.49])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 04:15:38 -0700
+ 26 Jun 2026 04:15:36 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v7 04/10] drm/xe/hw_engine: don't open code is_usm_hwe()
-Date: Fri, 26 Jun 2026 12:15:25 +0100
-Message-ID: <20260626111520.487997-16-matthew.auld@intel.com>
+Subject: [PATCH v7 02/10] drm/xe/guc: refactor to_guc_class() to accept hwe
+Date: Fri, 26 Jun 2026 12:15:23 +0100
+Message-ID: <20260626111520.487997-14-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260626111520.487997-12-matthew.auld@intel.com>
 References: <20260626111520.487997-12-matthew.auld@intel.com>
@@ -67,29 +67,255 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefer is_usm_hwe() here.
+Rather than inferring the GuC engine class from the generic hw engine
+class, pass in the hwe itself, which gives the complete view, like
+instance etc.  On future GuC versions, there is dedicated PAGING class to
+identify the KMD reserved BCS engine, so we need more info here in order
+to return the correct GuC specific engine class.
+
+With this everything should now be using the new hwe based interface. No
+functional changes.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c  |  2 +-
+ drivers/gpu/drm/xe/xe_guc.h                 | 21 +---------------
+ drivers/gpu/drm/xe/xe_guc_ads.c             | 27 ++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_guc_capture.c         | 12 ++++-----
+ drivers/gpu/drm/xe/xe_guc_capture.h         |  4 +--
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c |  4 +--
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  2 +-
+ 8 files changed, 38 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 76aee461bcbe..68db0ce4aa1a 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -1045,8 +1045,7 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
- 	    hwe->logical_instance >= gt->ccs_mode)
- 		return true;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index ffa27f66bba7..f28c7ae0e8c2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -381,7 +381,7 @@ static ssize_t sched_group_engines_read(struct file *file, char __user *buf,
  
--	return xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
--		hwe->instance == gt->usm.reserved_bcs_instance;
-+	return xe_gt_is_usm_hwe(gt, hwe);
+ 	if (group < num_groups) {
+ 		for_each_hw_engine(hwe, gt, id) {
+-			u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
++			u8 guc_class = xe_hwe_to_guc_class(hwe);
+ 			u32 mask = groups[group].engines[guc_class];
+ 
+ 			if (mask & BIT(hwe->logical_instance)) {
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+index e8458d63742d..cf117bf52d41 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+@@ -471,7 +471,7 @@ static void pf_sched_group_media_slices(struct xe_gt *gt, struct guc_sched_group
+ 		return;
+ 
+ 	for_each_hw_engine(hwe, gt, id) {
+-		u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
++		u8 guc_class = xe_hwe_to_guc_class(hwe);
+ 
+ 		switch (hwe->class) {
+ 		case XE_ENGINE_CLASS_VIDEO_DECODE:
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 02514914f404..12faf0ba7229 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -67,26 +67,7 @@ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc);
+ int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *payload, u32 len);
+ #endif
+ 
+-static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
+-{
+-	switch (class) {
+-	case XE_ENGINE_CLASS_RENDER:
+-		return GUC_RENDER_CLASS;
+-	case XE_ENGINE_CLASS_VIDEO_DECODE:
+-		return GUC_VIDEO_CLASS;
+-	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+-		return GUC_VIDEOENHANCE_CLASS;
+-	case XE_ENGINE_CLASS_COPY:
+-		return GUC_BLITTER_CLASS;
+-	case XE_ENGINE_CLASS_COMPUTE:
+-		return GUC_COMPUTE_CLASS;
+-	case XE_ENGINE_CLASS_OTHER:
+-		return GUC_GSC_OTHER_CLASS;
+-	default:
+-		XE_WARN_ON(class);
+-		return -1;
+-	}
+-}
++u16 xe_hwe_to_guc_class(struct xe_hw_engine *hwe);
+ 
+ static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 9e5d03aa465d..be7eb9243ae8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -279,7 +279,7 @@ static u32 engine_enable_mask(struct xe_gt *gt, u16 guc_class)
+ 	u32 mask = 0;
+ 
+ 	for_each_hw_engine(hwe, gt, id)
+-		if (xe_engine_class_to_guc_class(hwe->class) == guc_class)
++		if (xe_hwe_to_guc_class(hwe) == guc_class)
+ 			mask |= BIT(hwe->instance);
+ 
+ 	return mask;
+@@ -494,6 +494,27 @@ static void fill_engine_enable_masks(struct xe_gt *gt,
+ 			       engine_enable_mask(gt, guc_class));
  }
  
- const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
++u16 xe_hwe_to_guc_class(struct xe_hw_engine *hwe)
++{
++	switch (hwe->class) {
++	case XE_ENGINE_CLASS_RENDER:
++		return GUC_RENDER_CLASS;
++	case XE_ENGINE_CLASS_VIDEO_DECODE:
++		return GUC_VIDEO_CLASS;
++	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
++		return GUC_VIDEOENHANCE_CLASS;
++	case XE_ENGINE_CLASS_COPY:
++		return GUC_BLITTER_CLASS;
++	case XE_ENGINE_CLASS_COMPUTE:
++		return GUC_COMPUTE_CLASS;
++	case XE_ENGINE_CLASS_OTHER:
++		return GUC_GSC_OTHER_CLASS;
++	default:
++		XE_WARN_ON(hwe->class);
++		return -1;
++	}
++}
++
+ /*
+  * Write the offsets corresponding to the golden LRCs. The actual data is
+  * populated later by guc_golden_lrc_populate()
+@@ -564,7 +585,7 @@ static void guc_mapping_table_init(struct xe_gt *gt,
+ 	for_each_hw_engine(hwe, gt, id) {
+ 		u8 guc_class;
+ 
+-		guc_class = xe_engine_class_to_guc_class(hwe->class);
++		guc_class = xe_hwe_to_guc_class(hwe);
+ 		info_map_write(xe, info_map,
+ 			       mapping_table[guc_class][hwe->logical_instance],
+ 			       hwe->instance);
+@@ -819,7 +840,7 @@ static void guc_mmio_reg_state_init(struct xe_guc_ads *ads)
+ 		 * 2. Record in the header (ads.reg_state_list) the address
+ 		 * location and number of entries
+ 		 */
+-		gc = xe_engine_class_to_guc_class(hwe->class);
++		gc = xe_hwe_to_guc_class(hwe);
+ 		ads_blob_write(ads, ads.reg_state_list[gc][hwe->instance].address, addr);
+ 		ads_blob_write(ads, ads.reg_state_list[gc][hwe->instance].count, count);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 1a019137ddf4..3f287dd5e34e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -440,7 +440,7 @@ static void guc_capture_alloc_steered_lists(struct xe_guc *guc)
+ 	 * to be extended
+ 	 */
+ 	for_each_hw_engine(hwe, gt, id) {
+-		if (xe_engine_class_to_guc_capture_class(hwe->class) ==
++		if (xe_hwe_to_guc_capture_class(hwe) ==
+ 		    GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE) {
+ 			has_rcs_ccs = true;
+ 			break;
+@@ -818,7 +818,7 @@ static int guc_capture_output_size_est(struct xe_guc *guc)
+ 	for_each_hw_engine(hwe, gt, id) {
+ 		enum guc_capture_list_class_type capture_class;
+ 
+-		capture_class = xe_engine_class_to_guc_capture_class(hwe->class);
++		capture_class = xe_hwe_to_guc_capture_class(hwe);
+ 		capture_size += sizeof(struct guc_state_capture_group_header_t) +
+ 					 (3 * sizeof(struct guc_state_capture_header_t));
+ 
+@@ -1626,7 +1626,7 @@ xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot
+ 	if (!new)
+ 		return;
+ 
+-	capture_class = xe_engine_class_to_guc_capture_class(hwe->class);
++	capture_class = xe_hwe_to_guc_capture_class(hwe);
+ 	for (type = GUC_STATE_CAPTURE_TYPE_GLOBAL; type < GUC_STATE_CAPTURE_TYPE_MAX; type++) {
+ 		struct gcap_reg_list_info *reginfo = &new->reginfo[type];
+ 		/*
+@@ -1668,7 +1668,7 @@ xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot
+ 		}
+ 	}
+ 
+-	new->eng_class = xe_engine_class_to_guc_class(hwe->class);
++	new->eng_class = xe_hwe_to_guc_class(hwe);
+ 	new->eng_inst = hwe->instance;
+ 	new->guc_id = guc_id;
+ 	new->lrca = lrca;
+@@ -1832,7 +1832,7 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+ 
+ 	xe_gt_assert(gt, snapshot->hwe);
+ 
+-	capture_class = xe_engine_class_to_guc_capture_class(snapshot->hwe->class);
++	capture_class = xe_hwe_to_guc_capture_class(snapshot->hwe);
+ 
+ 	drm_printf(p, "%s (physical), logical instance=%d\n",
+ 		   snapshot->name ? snapshot->name : "",
+@@ -1904,7 +1904,7 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
+ 	for_each_hw_engine(hwe, q->gt, id) {
+ 		if (hwe != q->hwe)
+ 			continue;
+-		guc_class = xe_engine_class_to_guc_class(hwe->class);
++		guc_class = xe_hwe_to_guc_class(hwe);
+ 		break;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
+index dca97d52b192..eb954f4d1ffd 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.h
++++ b/drivers/gpu/drm/xe/xe_guc_capture.h
+@@ -35,9 +35,9 @@ static inline enum guc_capture_list_class_type xe_guc_class_to_capture_class(u16
+ }
+ 
+ static inline enum guc_capture_list_class_type
+-xe_engine_class_to_guc_capture_class(enum xe_engine_class class)
++xe_hwe_to_guc_capture_class(struct xe_hw_engine *hwe)
+ {
+-	return xe_guc_class_to_capture_class(xe_engine_class_to_guc_class(class));
++	return xe_guc_class_to_capture_class(xe_hwe_to_guc_class(hwe));
+ }
+ 
+ void xe_guc_capture_process(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+index 2b99c1ebdd58..150d891d5a09 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+@@ -27,7 +27,7 @@ static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_eng
+ {
+ 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+ 	struct engine_activity_buffer *buffer;
+-	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
++	u16 guc_class = xe_hwe_to_guc_class(hwe);
+ 	size_t offset;
+ 
+ 	if (engine_activity->num_functions) {
+@@ -150,7 +150,7 @@ static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine
+ {
+ 	struct xe_guc *guc = &hwe->gt->uc.guc;
+ 	struct engine_activity_group *eag = &guc->engine_activity.eag[index];
+-	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
++	u16 guc_class = xe_hwe_to_guc_class(hwe);
+ 
+ 	return &eag->engine[guc_class][hwe->logical_instance];
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 9458bf477fa6..6c1a0d0b6dd5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -984,7 +984,7 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+ 
+ 	memset(&info, 0, sizeof(info));
+ 	info.context_idx = q->guc->id;
+-	info.engine_class = xe_engine_class_to_guc_class(q->class);
++	info.engine_class = xe_hwe_to_guc_class(q->hwe);
+ 	info.engine_submit_mask = q->logical_mask;
+ 	info.hwlrca_lo = lower_32_bits(xe_lrc_descriptor(lrc));
+ 	info.hwlrca_hi = upper_32_bits(xe_lrc_descriptor(lrc));
 -- 
 2.54.0
 
