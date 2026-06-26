@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 549DBCDE00B
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 00:00:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D259DCDE002
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 00:02:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E10BC10F3D5;
-	Fri, 26 Jun 2026 00:00:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7974D10F3D5;
+	Fri, 26 Jun 2026 00:02:01 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86D7710F3D5;
- Fri, 26 Jun 2026 00:00:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6519710F3D5;
+ Fri, 26 Jun 2026 00:02:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1110024510877993322=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/tests/rtp=3A_Add_k?=
- =?utf-8?q?unit_test_for_whitelist_upper_bounds?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_starting_with_=5Bv3?=
+ =?utf-8?q?=2C1/1=5D_drm/xe/guc=3A_Handle_GuC_local_uncorrectable_error_noti?=
+ =?utf-8?q?fications?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 26 Jun 2026 00:00:55 -0000
-Message-ID: <178243205554.119165.16032216254667192114@6beec6c84f66>
+Date: Fri, 26 Jun 2026 00:02:00 -0000
+Message-ID: <178243212040.119166.2970792356958806799@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260625-kunit_whitelist_bounds-v1-1-d8f5f055f1f0@intel.com>
-In-Reply-To: <20260625-kunit_whitelist_bounds-v1-1-d8f5f055f1f0@intel.com>
+References: <20260625225106.1703176-1-zhanjun.dong@intel.com>
+In-Reply-To: <20260625225106.1703176-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,50 +41,237 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1110024510877993322==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/tests/rtp: Add kunit test for whitelist upper bounds
-URL   : https://patchwork.freedesktop.org/series/169229/
-State : warning
+Series: series starting with [v3,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications
+URL   : https://patchwork.freedesktop.org/series/169226/
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit cdf595b4577c3d0d8ae45406ed36d7fe80a81892
-Author: Matt Roper <matthew.d.roper@intel.com>
-Date:   Thu Jun 25 16:37:54 2026 -0700
+CI Bug Log - changes from xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca_BAT -> xe-pw-169226v1_BAT
+====================================================
 
-    drm/xe/tests/rtp: Add kunit test for whitelist upper bounds
-    
-    Xe must only add registers to the GT whitelist if they are listed in the
-    "Software Allowlist" section of the bspec.  These registers have been
-    carefully reviewed by the architecture/security teams to ensure that
-    they are safe to whitelist from a security perspective.  The list of
-    allowed registers changes from platform to platform, and it is not safe
-    to assume that a register is safe to whitelist on a new platform/IP just
-    because it was whitelisted on older ones.  This means that whitelist
-    entries in the driver that used undefined upper bounds
-    (XE_RTP_END_VERSION_UNDEFINED) for their version ranges should always be
-    considered illegal since they could potentially open unexpected security
-    holes on future platforms.  Add a kunit test to scan the whitelist RTP
-    table and ensure that all entries have well-defined upper bounds on IP
-    version ranges.
-    
-    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-+ /mt/dim checkpatch 5fe805765b01f6e3519421039c3ade7cff1074ca drm-intel
-cdf595b4577c drm/xe/tests/rtp: Add kunit test for whitelist upper bounds
--:83: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#83: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:46:
-+VISIBLE_IF_KUNIT const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+Summary
+-------
 
-total: 0 errors, 0 warnings, 1 checks, 63 lines checked
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-169226v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-169226v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-169226v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-wcl-1:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca/bat-wcl-1/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-wcl-1/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-169226v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-vram01-vram01:
+    - bat-atsm-2:         NOTRUN -> [INCOMPLETE][3] ([Intel XE#8437])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-atsm-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-vram01-vram01.html
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-vram0-memory:
+    - bat-atsm-2:         [PASS][4] -> [INCOMPLETE][5] ([Intel XE#8437])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-vram0-memory.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-vram0-memory.html
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr-invalidate-race:
+    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][6] ([Intel XE#8439] / [Intel XE#8479]) +7 other tests incomplete
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr-invalidate-race.html
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate:
+    - bat-bmg-3:          NOTRUN -> [CRASH][7] ([Intel XE#8438] / [Intel XE#8482])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate.html
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:
+    - bat-bmg-3:          NOTRUN -> [CRASH][8] ([Intel XE#8482]) +3 other tests crash
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html
+
+  * igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-rebind:
+    - bat-bmg-3:          NOTRUN -> [INCOMPLETE][9] ([Intel XE#8479]) +1 other test incomplete
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-rebind.html
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][10] ([Intel XE#6566]) +3 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-vram01:
+    - bat-atsm-2:         [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca/bat-atsm-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-vram01.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-atsm-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-vram01.html
+
+  
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
+  [Intel XE#8437]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437
+  [Intel XE#8438]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438
+  [Intel XE#8439]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439
+  [Intel XE#8479]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479
+  [Intel XE#8482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8482
 
 
+Build changes
+-------------
+
+  * Linux: xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca -> xe-pw-169226v1
+
+  IGT_8987: 8987
+  xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca: 5fe805765b01f6e3519421039c3ade7cff1074ca
+  xe-pw-169226v1: 169226v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/index.html
+
+--===============1110024510877993322==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169226/">https://patchwork.freedesktop.org/series/169226/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca_BAT -&gt; xe-pw-169226v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-169226v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-169226v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-169226v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca/bat-wcl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-wcl-1/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-169226v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-vram01-vram01:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-atsm-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-vram01-vram01.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-vram0-memory:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-vram0-memory.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_render-instance-0-tile-0-vram0-memory.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8437">Intel XE#8437</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr-invalidate-race:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-bindexecqueue-userptr-invalidate-race.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8439">Intel XE#8439</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +7 other tests incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8438">Intel XE#8438</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8482">Intel XE#8482</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8482">Intel XE#8482</a>) +3 other tests crash</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-rebind:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_exec_basic@multigpu-once-bindexecqueue-userptr-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8479">Intel XE#8479</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-vram01:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca/bat-atsm-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-vram01.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169226v1/bat-atsm-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-vram01.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca -&gt; xe-pw-169226v1</li>
+</ul>
+<p>IGT_8987: 8987<br />
+  xe-5303-5fe805765b01f6e3519421039c3ade7cff1074ca: 5fe805765b01f6e3519421039c3ade7cff1074ca<br />
+  xe-pw-169226v1: 169226v1</p>
+
+</body>
+</html>
+
+--===============1110024510877993322==--
