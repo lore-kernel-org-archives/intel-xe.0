@@ -4,39 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9209DC44525
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 13:42:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15EBBC43211
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 14:02:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCA9810F60A;
-	Fri, 26 Jun 2026 13:42:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC4F510E3AE;
+	Fri, 26 Jun 2026 14:02:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="i23xqBh1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M8yCWIhB";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B14010F5F5;
- Fri, 26 Jun 2026 13:42:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481335;
- bh=8atRt4B/PXAXgr5z4WvxSpmOYT8k6lDmprmy2FqFD64=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=i23xqBh1BGzGVdxefVLl9XYf7hxCiy/KkIg0mELDBMo7jlkwnzNZyadsuAPx1j9I6
- DxfQcnntMpD1bIJrWbsP3H5NuLdMBw2xy5R0NG4gilflgNbBAETlBFVoS0Whgq9CMe
- YKmNME/gMAsDOLwXnz2ZPSfAc9OY5hjG/ZTYEx9cnAZk1OwhJbsCJNZT27Bji60l6s
- zDKzCPdwzUj4Y5pLlzd8aoqybsAxGQ0tbVufFoPshlV7dwGvGxmmv/Mr+9w1N52roW
- Orj+a36FyKFEqx6GG187UV1StS/fnwHDJccrjmi8rIZf2n/a2jwRaKboGGXlwa3noL
- fxbcUB8l7BTRQ==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 26/29] drm/xe: Avoid using stolen memory for DPT.
-Date: Fri, 26 Jun 2026 15:42:17 +0200
-Message-ID: <20260626134222.1198252-27-dev@lankhorst.se>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
-References: <20260626134222.1198252-1-dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0DB910E3AC;
+ Fri, 26 Jun 2026 14:02:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782482528; x=1814018528;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=t+344il5kS+1UwLrPedrEucQtxevDKH1A2BfGnBb1lw=;
+ b=M8yCWIhBg9rCYZ5p99/i3dOkzeS9VQ0pD0pHY/pxDEBdefiz+7mtK5BA
+ S3cY0HXEffUsHiUSAtu/ubNbq147WfrIFyvIRza1RKAvq7ihleIOOVyD7
+ rrv49wCsHa8vBBPs3c1lZAbAaQ/lvZDq+MFqrr6zHlbnN4TZ+UaX4ptzf
+ lq5kxzJ/0UDGtdrNFF/hniFkDbSFoiG1zlzRmPxmJzLs3AWQUGIE8mfvR
+ p0SospY1UG0v5BHbTrIkxfF43nEweHPV43qqL4Ci8avfYYt+hJXD3WAqQ
+ HFgfUEGx4uGyOIBkacCxGbhjzu3mnHCqT0LxB5Iz5OTXn3fQAWLhVF/W4 Q==;
+X-CSE-ConnectionGUID: e8UvsLwtRzaXiN5rNKH79g==
+X-CSE-MsgGUID: Qny6kcGqRaSwPBnjNqixvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="100823942"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="100823942"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 07:02:08 -0700
+X-CSE-ConnectionGUID: LfcSOjl3Rm+NdrhZBErWOQ==
+X-CSE-MsgGUID: 6cZ9xckeTgiQ7DWuFsBjRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="249666229"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.22])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 07:02:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Martin Hodo <martin.hodo@intel.com>, stable@vger.kernel.org,
+ Animesh Manna <animesh.manna@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v2] drm/i915/bios: range check LFP Data Block panel_type2
+Date: Fri, 26 Jun 2026 17:01:55 +0300
+Message-ID: <20260626140155.1389655-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260625135130.1067872-1-jani.nikula@intel.com>
+References: <20260625135130.1067872-1-jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,61 +74,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On systems with media GT, extra latency is added when accessing stolen
-memory when the GT is in MC6. Since we additionally aren't counting how
-much memory is used for stolen and we could in theory fill up the
-entire stolen area with DPT's, avoid using stolen and only use the
-default memory region.
+While the panel_type from LFP Data Block is range checked, panel_type2
+is not. Add a few helpers for range checking, and use them to not only
+check panel_type2, but also improve clarity and correctness in the panel
+type selection.
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Discovered using AI-assisted static analysis confirmed by Intel Product
+Security.
+
+v2:
+- Fix commit message typo (Michał)
+- Add is_panel_type_pnp() (Ville)
+
+Reported-by: Martin Hodo <martin.hodo@intel.com>
+Fixes: 6434cf630086 ("drm/i915/bios: calculate panel type as per child device index in VBT")
+Cc: <stable@vger.kernel.org> # v6.0+
+Cc: Animesh Manna <animesh.manna@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@intel.com>
+Reviewed-by: Michał Grzelak <michal.grzelak@intel.com> # v1
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 33 +++++++-------------------
- 1 file changed, 8 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 36 ++++++++++++++++++-----
+ 1 file changed, 28 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index f93c98bec5b5f..86013ef532fd7 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -164,31 +164,14 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
- 		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
- 				 XE_PAGE_SIZE);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 15ebadc72b88..97cbae2e547e 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -623,6 +623,21 @@ get_lfp_data_tail(const struct bdb_lfp_data *data,
+ 		return NULL;
+ }
  
--	if (IS_DGFX(xe))
--		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
--						   dpt_size, ~0ull,
--						   ttm_bo_type_kernel,
--						   XE_BO_FLAG_VRAM0 |
--						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
--						   pin_params->alignment, false);
--	else
--		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
--						   dpt_size,  ~0ull,
--						   ttm_bo_type_kernel,
--						   XE_BO_FLAG_STOLEN |
--						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
--						   pin_params->alignment, false);
--	if (IS_ERR(dpt))
--		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
--						   dpt_size,  ~0ull,
--						   ttm_bo_type_kernel,
--						   XE_BO_FLAG_SYSTEM |
--						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE |
--						   XE_BO_FLAG_FORCE_WC,
--						   pin_params->alignment, false);
-+	dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
-+					   dpt_size,  ~0ull,
-+					   ttm_bo_type_kernel,
-+					   XE_BO_FLAG_VRAM_IF_DGFX(tile0) |
-+					   XE_BO_FLAG_GGTT |
-+					   XE_BO_FLAG_PAGETABLE |
-+					   XE_BO_FLAG_FORCE_WC,
-+					   pin_params->alignment, false);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
++static bool is_panel_type_valid(int panel_type)
++{
++	return panel_type >= 0 && panel_type < 16;
++}
++
++static bool is_panel_type_pnp(int panel_type)
++{
++	return panel_type == 0xff;
++}
++
++static bool is_panel_type_valid_or_pnp(int panel_type)
++{
++	return is_panel_type_valid(panel_type) || is_panel_type_pnp(panel_type);
++}
++
+ static int opregion_get_panel_type(struct intel_display *display,
+ 				   const struct intel_bios_encoder_data *devdata,
+ 				   const struct drm_edid *drm_edid, bool use_fallback)
+@@ -640,15 +655,21 @@ static int vbt_get_panel_type(struct intel_display *display,
+ 	if (!lfp_options)
+ 		return -1;
  
+-	if (lfp_options->panel_type > 0xf &&
+-	    lfp_options->panel_type != 0xff) {
++	if (!is_panel_type_valid_or_pnp(lfp_options->panel_type)) {
+ 		drm_dbg_kms(display->drm, "Invalid VBT panel type 0x%x\n",
+ 			    lfp_options->panel_type);
+ 		return -1;
+ 	}
+ 
+-	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
++	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2) {
++		if (!is_panel_type_valid_or_pnp(lfp_options->panel_type2)) {
++			drm_dbg_kms(display->drm, "Invalid VBT panel type 2 0x%x\n",
++				    lfp_options->panel_type2);
++			return -1;
++		}
++
+ 		return lfp_options->panel_type2;
++	}
+ 
+ 	drm_WARN_ON(display->drm,
+ 		    devdata && devdata->child.handle != DEVICE_HANDLE_LFP1);
+@@ -762,13 +783,12 @@ static int get_panel_type(struct intel_display *display,
+ 				    panel_types[i].name, panel_types[i].panel_type);
+ 	}
+ 
+-	if (panel_types[PANEL_TYPE_OPREGION].panel_type >= 0)
++	if (is_panel_type_valid(panel_types[PANEL_TYPE_OPREGION].panel_type))
+ 		i = PANEL_TYPE_OPREGION;
+-	else if (panel_types[PANEL_TYPE_VBT].panel_type == 0xff &&
+-		 panel_types[PANEL_TYPE_PNPID].panel_type >= 0)
++	else if (is_panel_type_pnp(panel_types[PANEL_TYPE_VBT].panel_type) &&
++		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID].panel_type))
+ 		i = PANEL_TYPE_PNPID;
+-	else if (panel_types[PANEL_TYPE_VBT].panel_type != 0xff &&
+-		 panel_types[PANEL_TYPE_VBT].panel_type >= 0)
++	else if (is_panel_type_valid(panel_types[PANEL_TYPE_VBT].panel_type))
+ 		i = PANEL_TYPE_VBT;
+ 	else
+ 		i = PANEL_TYPE_FALLBACK;
 -- 
-2.53.0
+2.47.3
 
