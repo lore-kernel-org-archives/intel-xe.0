@@ -4,75 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D965C43327
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D03AC43458
 	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:59:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 196BE10F013;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09BC510F010;
 	Wed,  1 Jul 2026 12:59:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qb47BMg3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hfGmLhKu";
 	dkim-atps=neutral
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A68210E38C
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 11:29:05 +0000 (UTC)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-c121e83b89fso88165866b.1
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 04:29:05 -0700 (PDT)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7995310F5A1
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 11:58:35 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id
+ a640c23a62f3a-bebb72b845aso144279366b.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 04:58:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782473344; x=1783078144; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1782475114; x=1783079914; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=LhgdMS5TXgKcR8QoNKupqhHAfY6bdNKf0RyWHL3p3Ao=;
- b=Qb47BMg3DB7B/NeVHbovaa62uSwfiDLSx9hhVR7T9NRKnzHuL9Sbfob9/LELiHntO1
- sX172AfmV+kpbECuyUpIiwHE7W1Y/9YL8KuqnFBrE95snsE3wsLl30nBtP65fVrvKbdK
- 1QPClWtKRDUE8ljXAEkC2CFhRj/8zkFa7MwDyZzh0Fi98y4CY8lppnkZZ1b2f1xkO/AM
- PjxOBSzdCuIB+6Dboy5FYAK8eRNo+hLqqZ4upFCTfYGDNKPoA9NWeh6bM4B3q82U1iDq
- T08S4/S5e+u0hto0nm4c+QcCB9zzx3OwFMkAWH5eho6jZHkdzPFmXPYHQjWp6euDk8qO
- y2jw==
+ bh=i0Ps5tEtd22JyPLt5Txw4hpkbL4qYP5JlG6cYEFGqrA=;
+ b=hfGmLhKunB8vtUk1h0a3S5JZ+XyBNkKYCxXaP84nU0kPwK+1AZ6gZA8YGcjRwU2DSi
+ ldGCvKMbOKNsNKzCE7vyHGKdOcsYQPGjP4EbXkyHkDQPcp2ZAS+wotI5x41Fo3wYtras
+ WJQEg5bBXD0rVGunk5XjKlTfXGAiOSGRTx6fpHzpGPsJlGxL92Y/W1TySQcnMNs1Ct3U
+ ajxbgq3xH8yNN1DzEWXoKrFm6SSi7DX/sgOFyVKt+s0l5VN671b4Y7D09lN4mFCXANis
+ WJnXOuvETBIWCX1wZH+xIuno5XMlEMuYCqE/1vwof4gYyAaCBRGjq+f53bKIJ2hCZ8+I
+ 3UsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782473344; x=1783078144;
+ d=1e100.net; s=20251104; t=1782475114; x=1783079914;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=LhgdMS5TXgKcR8QoNKupqhHAfY6bdNKf0RyWHL3p3Ao=;
- b=fEj1/Ml6Hfi9MVv+eky4u5etuGursow/SsbwavX6/Eh3V2TvkD8f8E9aY9LCfItJpK
- WAwtBxyD8yJls2S1AHWYqzMv2GYPC9oypYEp65cC0vUcF8525/TPb5HtFHj7LQhH/PNT
- 6VWGm6f79ODHXswMPaYzVKS1SHKanidL4GlZSVVwJwUwwkfeXSWpiYcg46LnqYoERUFB
- HBDYH/FWR1YWY9qL0xNaqPmExjGRlFjRABSabtotlWrvgL0uR4vFnYzZYz3oul3IWanA
- ddXrjuvX8durUtbRauzaZSSmLDcSpQEneKNwlcYnoJV96J6YE5ZX5B9s1mjsC/4ghf5p
- sJkg==
+ bh=i0Ps5tEtd22JyPLt5Txw4hpkbL4qYP5JlG6cYEFGqrA=;
+ b=K0dnS/tP3mZ1dr7QW/Umy/qimQkKCxlEsDDJGaZngnRdAuhmSuqyn2ljUJdVMxFCSk
+ MIYoroemD7Nl3Vs6uMkdqNxZmcEOU5EYazhhxoZJ3tRYlRfxcJEb3CaxbX+aVHg/iXfe
+ ktGq+flayk3IHHxaOKPqY9dwy3B1hx4lH0OtDLDOF47zM1fi7z/+t1840LwGtAIrvAoK
+ eN3MfwyWRTocYK6N8S9OhvzwQOikI/gTmnKo5TWKwxRfFDd4qS+RmKZDK9FYw/TuTLT9
+ y/c/S/F1NglmbLcpxGqMW2Zf2P1QBEqxHgJOo58ZzbFm80SFi4bZp9yy3TfI8zc3pRsF
+ ZGJQ==
 X-Forwarded-Encrypted: i=1;
- AHgh+RoZunxC86isNodJJd4ocj1yASnbU4iFeNjMrH7SvE9hkzhBettw/BuIU2R8DVPOqTVRyeGwWdXMUQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy0B0Y4x0PBn0eMtHAg67J2OPl2nMoCHNs6kZ++Nnfbt5nffHn4
- lVhKVilpVIpUsoH2e34V5+8lTDZnjX3fMQUv8MojtjyafPbmFmA/asNm
-X-Gm-Gg: AfdE7cltomK7K/2YgBaOIZPz0mXLGdCwWAsMEiAqr4EN7cBsq7gE/x1f9POLN9JQvei
- brdm3BEq+HG2NBgS5iEPS7pUGUa5kun5d0I4GKlbYZ0XJ+nlNRI0VqdjAyyfgAazCOY0gOGgLr8
- DlMLWDTE5xTh/XELB9ErnZZzxAG/kR6grRKO/RDUqw++EHe0dJSVm4/I507p/D0M9TgGheFT8Nc
- dDZnM0V85pbDPCHh5455ZXlbMnKAXw0kD6/4q2iXLJVT4FYvb6mt4dB3lqbH0upmkdzfB+SFUMP
- bnT9RWasu51FdomwjwkVo/q0/IpsGy49MROgMBQmcP95IAFTT8o/0s8njhPrZZo6hC2GDd2OXfZ
- HiWC8+puC1v/meZOHgleSivgD2eGBs/pLacZ9TcFDxPA91OtA3bN4ze8eFOl2pZLZVZIYW/m1Ml
- /WPsvJGQaMztIo3BSkqfE38FmWoBuIN4uBLAaNkkUFJhzdU1BNDCV21qlv6trHgw5Ly9pVRa7Xf
- JAYyrdwRc+GlsyW89NelWmbkpzd9OXTrOWK3bp1/Z7M
-X-Received: by 2002:a17:907:3c8b:b0:c12:f85:bea4 with SMTP id
- a640c23a62f3a-c120f85cbb7mr361613666b.47.1782473343510; 
- Fri, 26 Jun 2026 04:29:03 -0700 (PDT)
+ AHgh+Rq4e8saYnETp4S6FdTH6FXlccF67VCWEIiZaBFefmANKBnTCLA0HxuVueQ3jQqMmbKq1v6HLgSRQw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwqSOfyPoLNIRLQEQj8Rcx+neK0ARkk4HYadR5IygFTpZ0sUUxT
+ /mBkO0p/F0gd2qPO/oWq0ESkQRznClA2t+3CVCwBZDU8NG1/ul8MM3gb
+X-Gm-Gg: AfdE7ckO/5Xkdmmckp81kwhH2QtUkZkVA1JOH0ASeteksdKBEgf7qqEUW4HUsS7qmgE
+ eNWJl//oXkId+/OTJ0z1OT7P+iCaLMQug0Szk77erM57NGd5epDAYDDG3AO8bmBYpZRTlSvTY67
+ GblvJP9mhc5SKYSTez9oNUZFksJGMxzaq6pRa5vi5Qk0o9n18eRUoHnjRxdpNS4kwjoZwhr5niH
+ 9hoFCA7IhnQ5UMe1rETsKmQYTNqvf7JAhlnj/pZfJY6S6gUcCCEb75mB1SWitSHX7e1PCjpqjFm
+ KGc7eg0yS78EdbpZLgWSfqor5yvXnK1Xes2ZwcRV0JcVWkoAIXyEdjYwSgFs2sqQFedDHtik8+5
+ kKftwwyGELKQJkxa0tXpH91DzVQTErm9HtN9p7bFdttsjP3Sv+4XnJxBCerel6NRnOJDZGTSP9J
+ AiM1PH2AcEqKp8z+dAsSvWXjibS2SYYCFRGyTECIiBXZf0Wd/IC7myNC7UphmAIEe7FJZw/lEWm
+ To68JIYsvww4AwCDieSE0nB6RJe7WthaA==
+X-Received: by 2002:a17:907:7ba1:b0:bd0:df77:98bb with SMTP id
+ a640c23a62f3a-c1205d4fd16mr415304166b.9.1782475113560; 
+ Fri, 26 Jun 2026 04:58:33 -0700 (PDT)
 Received: from fedora ([154.66.167.183]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c122176f39csm88811566b.21.2026.06.26.04.29.00
+ a640c23a62f3a-c122e9ae635sm37986266b.20.2026.06.26.04.58.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 26 Jun 2026 04:29:03 -0700 (PDT)
+ Fri, 26 Jun 2026 04:58:33 -0700 (PDT)
 From: aquiles <achillezongo07@gmail.com>
 To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com
 Cc: airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  aquiles <achillezongo07@gmail.com>
-Subject: [PATCH 1/2] drm/xe: count UMA shrinkable BOs as reclaimable without
- swap
-Date: Fri, 26 Jun 2026 11:26:37 +0000
-Message-ID: <20260626112638.2042298-1-achillezongo07@gmail.com>
+Subject: [PATCH v2 2/2] drm/xe: skip resv fence wait in xe_svm_invalidate if
+ no ranges are bound
+Date: Fri, 26 Jun 2026 11:58:08 +0000
+Message-ID: <20260626115808.2072258-1-achillezongo07@gmail.com>
 X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 01 Jul 2026 12:56:31 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -89,48 +90,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On integrated (UMA) devices all GPU buffer objects reside in system RAM.
-xe_shrinker_count() previously gated shrinkable (non-purgeable) page
-counts on ttm_backup_bytes_avail(), so those pages were invisible to
-the kernel's memory reclaim on systems without swap configured.
+xe_svm_invalidate() waited on the VM's reservation object fences before
+processing MMU notifier events, even when no range in the affected
+address region had active GPU bindings (tile_present == 0).
 
-On UMA, shrinkable system-memory BOs can be reclaimed independently of
-swap availability. Report them unconditionally so the shrinker can
-always request their eviction under memory pressure.
+Add a pre-scan over the affected ranges and skip dma_resv_wait_timeout()
+when no range needs invalidation and all BOOKKEEP fences are already
+signaled. The fence check is necessary because tile_present is cleared
+when an unbind is submitted, not when the GPU job completes — skipping
+the wait without it risks unmapping DMA while an unbind is still in flight.
 
 Signed-off-by: aquiles <achillezongo07@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_shrinker.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_svm.c | 22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-index 83374cd57..3ca2de342 100644
---- a/drivers/gpu/drm/xe/xe_shrinker.c
-+++ b/drivers/gpu/drm/xe/xe_shrinker.c
-@@ -140,16 +140,22 @@ xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
- {
- 	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
- 	unsigned long num_pages;
-+	long uma_reclaimable_pages;
- 	bool can_backup = !!(sc->gfp_mask & __GFP_FS);
-+	bool is_uma = !IS_DGFX(shrinker->xe);
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index e1651e70c..447c5c965 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -233,6 +233,7 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ 	ktime_t start = xe_gt_stats_ktime_get();
+ 	u64 adj_start = mmu_range->start, adj_end = mmu_range->end;
+ 	u8 tile_mask = 0, id;
++	bool needs_inval = false;
+ 	long err;
  
- 	num_pages = ttm_backup_bytes_avail() >> PAGE_SHIFT;
- 	read_lock(&shrinker->lock);
+ 	xe_svm_assert_in_notifier(vm);
+@@ -258,11 +259,22 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ 	if (xe_vm_is_closed(vm))
+ 		goto range_notifier_event_end;
  
-+	uma_reclaimable_pages = is_uma ? shrinker->shrinkable_pages : 0;
+-	/*
+-	 * XXX: Less than ideal to always wait on VM's resv slots if an
+-	 * invalidation is not required. Could walk range list twice to figure
+-	 * out if an invalidations is need, but also not ideal.
+-	 */
++	/* Pre-scan: skip fence wait if no range has active GPU bindings. */
 +
- 	if (can_backup)
--		num_pages = min_t(unsigned long, num_pages, shrinker->shrinkable_pages);
-+		num_pages = min_t(unsigned long, num_pages,
-+				  shrinker->shrinkable_pages - uma_reclaimable_pages);
- 	else
- 		num_pages = 0;
- 
-+	num_pages += uma_reclaimable_pages;
- 	num_pages += shrinker->purgeable_pages;
- 	read_unlock(&shrinker->lock);
- 
++	r = first;
++	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end) {
++		struct xe_svm_range *range = to_xe_range(r);
++
++		if (!range->base.pages.flags.unmapped && range->tile_present) {
++			needs_inval = true;
++			break;
++		}
++
++	}
++	if (!needs_inval &&
++	    dma_resv_test_signaled(xe_vm_resv(vm), DMA_RESV_USAGE_BOOKKEEP))
++		goto range_notifier_event_end;
++
+ 	err = dma_resv_wait_timeout(xe_vm_resv(vm),
+ 				    DMA_RESV_USAGE_BOOKKEEP,
+ 				    false, MAX_SCHEDULE_TIMEOUT);
 -- 
 2.54.0
 
