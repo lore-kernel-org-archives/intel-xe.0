@@ -4,39 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C4A8C43458
-	for <intel-xe@archiver.kernel.org>; Sat, 27 Jun 2026 07:02:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8101C43458
+	for <intel-xe@archiver.kernel.org>; Sat, 27 Jun 2026 15:08:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39FA210E46C;
-	Sat, 27 Jun 2026 07:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EA010E0D8;
+	Sat, 27 Jun 2026 15:08:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ieNgJdJu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ij2HrwC8";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB0810E46C
- for <intel-xe@lists.freedesktop.org>; Sat, 27 Jun 2026 07:02:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782543720;
- bh=g8N+XBf2h/veyRrEkQZeS6N0t63msFOJ3K5JXbdW6/s=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=ieNgJdJuyWJYw3bGZBmhnHVJpVk+6plJkywdVH5yF1wXAKFIazZ2y6GMVS9XEr+X5
- IAAYXUFH7UEDIrFFJpJ/XOblf2kFebtEjUpW+jvz24uxtdRYipC7+K4BWTJaaXX82V
- pQdyhxItPLnjYUilkdMYIQU/Y9yxpt4E2yne/cPuZ+rpN7iO0FZTFov/EoXKlvEhLZ
- ssvfPabwIJxjLWFlXpfKpemKLAW1pmSduC/9bpLMI5hFMn7bAxVgCyZAoULBmD3lK6
- Bunt9Kn4Qc9+2ZrUNSL5uT/PgboFwbMjBkkQHN2MuGxXKukONoCvR1Bn6gKQ+BGE5D
- j9QHQBrOSsZTw==
-Message-ID: <cc7c7b9a-7c41-465f-bb1b-75898c2cfd21@lankhorst.se>
-Date: Sat, 27 Jun 2026 09:02:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Drop 'force_execlist' module parameter
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
-References: <20260626-remove_execlists-v1-1-2584d8c4a6f2@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260626-remove_execlists-v1-1-2584d8c4a6f2@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD60D10E0D8
+ for <intel-xe@lists.freedesktop.org>; Sat, 27 Jun 2026 15:08:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782572908; x=1814108908;
+ h=date:from:to:cc:subject:message-id;
+ bh=QHXua/XQX9pDrdWJS61bMWJpSxrF/+UuKuZhBKlsa/Q=;
+ b=ij2HrwC8kI4Wu+D13F4IAq3PH1vGfbhlM8GnDbz3unPMzvxYJbzscLmY
+ RwjVf5SQmKQ6stpvy71Ox5sSS2xmUb7YV4HLu/BNFJY7usqC6B1rQus4a
+ TSdgNlV2VC6TJGed57GBWv1MGQVcKmSeg0qOGFZcxuqJvz+6wcFicD8kt
+ o5aW+0B35p5g0rmMmQD6b8dqJ+e0BATTawdUip34DxYPYaVeQnJ1cnHQm
+ 9x99CHIReUiOZzKVwxoBXYF1Z6V07+OPLZvHV1joAA7ZvwEgwyjKyy2nk
+ JZvRslxtHrxzvSBCAsSqy3b3zBUR/n2Z3iN/gKkra9JPOw02+ju5hdkjP g==;
+X-CSE-ConnectionGUID: 7/OqfdU3QmiYJ7jTm8o+Ww==
+X-CSE-MsgGUID: fAhxR8AvTTWbyMDuIeYTKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11830"; a="87241610"
+X-IronPort-AV: E=Sophos;i="6.24,228,1774335600"; d="scan'208";a="87241610"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2026 08:08:28 -0700
+X-CSE-ConnectionGUID: x7ReLSjfQceTmVUw00aTwg==
+X-CSE-MsgGUID: E7w8Qn6AQ5mWNPJLxL/c7g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,228,1774335600"; d="scan'208";a="248911787"
+Received: from lkp-server02.sh.intel.com (HELO ea128546eb3d) ([10.239.97.151])
+ by fmviesa008.fm.intel.com with ESMTP; 27 Jun 2026 08:08:26 -0700
+Received: from kbuild by ea128546eb3d with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1wdUds-000000005u1-1NGN;
+ Sat, 27 Jun 2026 15:08:24 +0000
+Date: Sat, 27 Jun 2026 23:08:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 3e493f88c84088ccd7b53cdd23ac5c875c9a60dd
+Message-ID: <202606272309.dco66YAk-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,159 +64,239 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 3e493f88c84088ccd7b53cdd23ac5c875c9a60dd  drm/xe/display: skip FORCE_WC and vm_bound check for external dma-bufs
 
-On 6/26/26 23:39, Matt Roper wrote:
-> During very early development of the Xe driver the force_execlist module
-> parameter could be used to exercise some parts of the driver in a
-> GuC-less manner.  This was primarily intended to ensure that the driver
-> was being designed and developed with proper modularity and layering;
-> use of the GuC firmware has always been considered mandatory for any
-> real Xe driver operation.  The "execlist" implementation in the driver
-> was never completed, and has further bitrotted over time to the point
-> where it hangs during execution of even the simplest IGT tests like
-> xe_exec_store now.
-> 
-> Drop the force_execlist parameter; it's broken and isn't going to get
-> fixed.  In the (very unlikely) event that we decide to bring something
-> like this back in the future, it would need to be as a per-device
-> configfs setting rather than a driver-wide module parameter.
-> 
-> The "execlist" implementation is now dead code, so it will probably also
-> be removed sometime in the near future.  There's a bit more general
-> refactoring we might want to do first before we take that step, so for
-> now we're just removing the module parameter.
-> 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_debugfs.c       | 1 -
->  drivers/gpu/drm/xe/xe_device.h        | 2 +-
->  drivers/gpu/drm/xe/xe_device_types.h  | 2 --
->  drivers/gpu/drm/xe/xe_gt_mcr.c        | 3 +--
->  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 6 ------
->  drivers/gpu/drm/xe/xe_module.c        | 3 ---
->  drivers/gpu/drm/xe/xe_module.h        | 1 -
->  drivers/gpu/drm/xe/xe_pci.c           | 1 -
->  8 files changed, 2 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index 22b471303984..3c018dbccc07 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -117,7 +117,6 @@ static int info(struct seq_file *m, void *data)
->  	drm_printf(&p, "revid %d\n", xe->info.revid);
->  	drm_printf(&p, "tile_count %d\n", xe->info.tile_count);
->  	drm_printf(&p, "vm_max_level %d\n", xe->info.vm_max_level);
-> -	drm_printf(&p, "force_execlist %s\n", str_yes_no(xe->info.force_execlist));
->  	drm_printf(&p, "has_flat_ccs %s\n", str_yes_no(xe->info.has_flat_ccs));
->  	drm_printf(&p, "has_usm %s\n", str_yes_no(xe->info.has_usm));
->  	drm_printf(&p, "skip_guc_pc %s\n", str_yes_no(xe->info.skip_guc_pc));
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index 975768a6a9c8..8056d8bd7d6d 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -116,7 +116,7 @@ static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
->  
->  static inline bool xe_device_uc_enabled(struct xe_device *xe)
->  {
-> -	return !xe->info.force_execlist;
-> +	return true;
->  }
->  
->  #define for_each_tile(tile__, xe__, id__) \
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 4e2f115f14e2..46a9e9fad7a9 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -144,8 +144,6 @@ struct xe_device {
->  		 * Keep all flags below alphabetically sorted
->  		 */
->  
-> -		/** @info.force_execlist: Forced execlist submission */
-> -		u8 force_execlist:1;
->  		/** @info.has_access_counter: Device supports access counter */
->  		u8 has_access_counter:1;
->  		/** @info.has_asid: Has address space ID */
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> index d11cc9e25cdb..a97b236dab7c 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> @@ -404,8 +404,7 @@ static unsigned int dss_per_group(struct xe_gt *gt)
->  	 * Some older platforms don't have tables or don't have complete tables.
->  	 * Newer platforms should always have the required info.
->  	 */
-> -	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 2000 &&
-> -	    !gt_to_xe(gt)->info.force_execlist)
-> +	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 2000)
->  		xe_gt_err(gt, "Slice/Subslice counts missing from hwconfig table; using typical fallback values\n");
->  
->  	if (gt_to_xe(gt)->info.platform == XE_PVC)
-> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> index cf6d106e6036..046d0655122f 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> @@ -208,9 +208,6 @@ static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
->  
->  	lockdep_assert_held(&tlb_inval->seqno_lock);
->  
-> -	if (guc_to_xe(guc)->info.force_execlist)
-> -		return -ECANCELED;
-> -
->  	return send_tlb_inval_ppgtt(guc, seqno, start, end, asid,
->  				    XE_GUC_TLB_INVAL_PAGE_SELECTIVE, prl_sa);
->  }
-> @@ -228,9 +225,6 @@ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
->  
->  	lockdep_assert_held(&tlb_inval->seqno_lock);
->  
-> -	if (xe->info.force_execlist)
-> -		return -ECANCELED;
-> -
->  	vm = xe_device_asid_to_vm(xe, asid);
->  	if (IS_ERR(vm))
->  		return PTR_ERR(vm);
-> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-> index 4cb578182912..39e4fc85f019 100644
-> --- a/drivers/gpu/drm/xe/xe_module.c
-> +++ b/drivers/gpu/drm/xe/xe_module.c
-> @@ -36,9 +36,6 @@ module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600)
->  MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size in MiB, must be power of 2 "
->  		 "[default=" __stringify(XE_DEFAULT_SVM_NOTIFIER_SIZE) "]");
->  
-> -module_param_named_unsafe(force_execlist, xe_modparam.force_execlist, bool, 0444);
-> -MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
-> -
->  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->  module_param_named(probe_display, xe_modparam.probe_display, bool, 0444);
->  MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's left untouched "
-> diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-> index 79cb9639c0f3..c75153471248 100644
-> --- a/drivers/gpu/drm/xe/xe_module.h
-> +++ b/drivers/gpu/drm/xe/xe_module.h
-> @@ -10,7 +10,6 @@
->  
->  /* Module modprobe variables */
->  struct xe_modparam {
-> -	bool force_execlist;
->  	bool probe_display;
->  	int force_vram_bar_size;
->  	int guc_log_level;
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 9c249454cc95..15020df6937a 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -793,7 +793,6 @@ static int xe_info_init_early(struct xe_device *xe,
->  	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
->  				 xe_modparam.probe_display &&
->  				 desc->has_display;
-> -	xe->info.force_execlist = xe_modparam.force_execlist;
->  
->  	xe_assert(xe, desc->max_gt_per_tile > 0);
->  	xe_assert(xe, desc->max_gt_per_tile <= XE_MAX_GT_PER_TILE);
-> 
-> ---
-> base-commit: 4020469e425c12c543a21904da37735c392223a3
-> change-id: 20260626-remove_execlists-45f82839fc8a
-> 
-> Best regards,
+elapsed time: 1216m
 
+configs tested: 220
+configs skipped: 11
+
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-16.1.0
+alpha                            allyesconfig    gcc-16.1.0
+alpha                               defconfig    gcc-16.1.0
+arc                              allmodconfig    clang-23
+arc                               allnoconfig    gcc-16.1.0
+arc                              allyesconfig    clang-23
+arc                                 defconfig    gcc-16.1.0
+arc                 nsimosci_hs_smp_defconfig    gcc-16.1.0
+arc                   randconfig-001-20260627    gcc-16.1.0
+arc                   randconfig-002-20260627    gcc-16.1.0
+arm                               allnoconfig    gcc-16.1.0
+arm                              allyesconfig    clang-23
+arm                         at91_dt_defconfig    clang-17
+arm                                 defconfig    clang-23
+arm                                 defconfig    gcc-16.1.0
+arm                   randconfig-001-20260627    gcc-16.1.0
+arm                   randconfig-002-20260627    gcc-16.1.0
+arm                   randconfig-003-20260627    gcc-16.1.0
+arm                   randconfig-004-20260627    gcc-16.1.0
+arm64                            allmodconfig    clang-23
+arm64                             allnoconfig    gcc-16.1.0
+arm64                               defconfig    gcc-16.1.0
+arm64                 randconfig-001-20260627    gcc-10.5.0
+arm64                 randconfig-002-20260627    gcc-10.5.0
+arm64                 randconfig-003-20260627    gcc-10.5.0
+arm64                 randconfig-004-20260627    gcc-10.5.0
+csky                             allmodconfig    gcc-16.1.0
+csky                              allnoconfig    gcc-16.1.0
+csky                                defconfig    gcc-16.1.0
+csky                  randconfig-001-20260627    gcc-10.5.0
+csky                  randconfig-002-20260627    gcc-10.5.0
+hexagon                          allmodconfig    gcc-16.1.0
+hexagon                           allnoconfig    gcc-16.1.0
+hexagon                             defconfig    clang-23
+hexagon                             defconfig    gcc-16.1.0
+hexagon                        randconfig-001    gcc-11.5.0
+hexagon               randconfig-001-20260627    gcc-11.5.0
+hexagon                        randconfig-002    gcc-11.5.0
+hexagon               randconfig-002-20260627    gcc-11.5.0
+i386                             allmodconfig    clang-22
+i386                              allnoconfig    gcc-16.1.0
+i386                             allyesconfig    clang-22
+i386                 buildonly-randconfig-001    clang-22
+i386        buildonly-randconfig-001-20260627    clang-22
+i386                 buildonly-randconfig-002    clang-22
+i386        buildonly-randconfig-002-20260627    clang-22
+i386                 buildonly-randconfig-003    clang-22
+i386        buildonly-randconfig-003-20260627    clang-22
+i386                 buildonly-randconfig-004    clang-22
+i386        buildonly-randconfig-004-20260627    clang-22
+i386                 buildonly-randconfig-005    clang-22
+i386        buildonly-randconfig-005-20260627    clang-22
+i386                 buildonly-randconfig-006    clang-22
+i386        buildonly-randconfig-006-20260627    clang-22
+i386                                defconfig    clang-22
+i386                                defconfig    gcc-16.1.0
+i386                           randconfig-001    clang-22
+i386                  randconfig-001-20260627    clang-22
+i386                           randconfig-002    clang-22
+i386                  randconfig-002-20260627    clang-22
+i386                           randconfig-003    clang-22
+i386                  randconfig-003-20260627    clang-22
+i386                           randconfig-004    clang-22
+i386                  randconfig-004-20260627    clang-22
+i386                           randconfig-005    clang-22
+i386                  randconfig-005-20260627    clang-22
+i386                           randconfig-006    clang-22
+i386                  randconfig-006-20260627    clang-22
+i386                           randconfig-007    clang-22
+i386                  randconfig-007-20260627    clang-22
+i386                  randconfig-011-20260627    clang-22
+i386                  randconfig-012-20260627    clang-22
+i386                  randconfig-013-20260627    clang-22
+i386                  randconfig-014-20260627    clang-22
+i386                  randconfig-015-20260627    clang-22
+i386                  randconfig-016-20260627    clang-22
+i386                  randconfig-017-20260627    clang-22
+loongarch                        allmodconfig    clang-23
+loongarch                         allnoconfig    gcc-16.1.0
+loongarch                           defconfig    clang-23
+loongarch                      randconfig-001    gcc-11.5.0
+loongarch             randconfig-001-20260627    gcc-11.5.0
+loongarch                      randconfig-002    gcc-11.5.0
+loongarch             randconfig-002-20260627    gcc-11.5.0
+m68k                             allmodconfig    gcc-16.1.0
+m68k                              allnoconfig    gcc-16.1.0
+m68k                             allyesconfig    clang-23
+m68k                                defconfig    clang-23
+microblaze                        allnoconfig    gcc-16.1.0
+microblaze                       allyesconfig    gcc-16.1.0
+microblaze                          defconfig    clang-23
+mips                             allmodconfig    gcc-16.1.0
+mips                              allnoconfig    gcc-16.1.0
+mips                             allyesconfig    gcc-16.1.0
+nios2                            allmodconfig    clang-20
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    clang-23
+nios2                               defconfig    clang-23
+nios2                          randconfig-001    gcc-11.5.0
+nios2                 randconfig-001-20260627    gcc-11.5.0
+nios2                          randconfig-002    gcc-11.5.0
+nios2                 randconfig-002-20260627    gcc-11.5.0
+openrisc                         allmodconfig    clang-20
+openrisc                         allmodconfig    gcc-16.1.0
+openrisc                          allnoconfig    clang-23
+openrisc                            defconfig    gcc-16.1.0
+parisc                           allmodconfig    gcc-16.1.0
+parisc                            allnoconfig    clang-23
+parisc                           allyesconfig    gcc-16.1.0
+parisc                              defconfig    gcc-16.1.0
+parisc                         randconfig-001    gcc-8.5.0
+parisc                randconfig-001-20260627    gcc-8.5.0
+parisc                         randconfig-002    gcc-8.5.0
+parisc                randconfig-002-20260627    gcc-8.5.0
+parisc64                            defconfig    clang-23
+powerpc                          allmodconfig    gcc-16.1.0
+powerpc                           allnoconfig    clang-23
+powerpc               mpc834x_itxgp_defconfig    clang-23
+powerpc                        randconfig-001    gcc-8.5.0
+powerpc               randconfig-001-20260627    gcc-8.5.0
+powerpc                        randconfig-002    gcc-8.5.0
+powerpc               randconfig-002-20260627    gcc-8.5.0
+powerpc64                      randconfig-001    gcc-8.5.0
+powerpc64             randconfig-001-20260627    gcc-8.5.0
+powerpc64                      randconfig-002    gcc-8.5.0
+powerpc64             randconfig-002-20260627    gcc-8.5.0
+riscv                            allmodconfig    clang-23
+riscv                             allnoconfig    clang-23
+riscv                            allyesconfig    clang-23
+riscv                               defconfig    gcc-16.1.0
+riscv                 randconfig-001-20260627    clang-23
+riscv                 randconfig-002-20260627    clang-23
+s390                             allmodconfig    clang-23
+s390                              allnoconfig    clang-23
+s390                             allyesconfig    gcc-16.1.0
+s390                                defconfig    gcc-16.1.0
+s390                  randconfig-001-20260627    clang-23
+s390                  randconfig-002-20260627    clang-23
+sh                               allmodconfig    gcc-16.1.0
+sh                                allnoconfig    clang-23
+sh                               allyesconfig    gcc-16.1.0
+sh                                  defconfig    gcc-14
+sh                    randconfig-001-20260627    clang-23
+sh                    randconfig-002-20260627    clang-23
+sparc                             allnoconfig    clang-23
+sparc                               defconfig    gcc-16.1.0
+sparc                          randconfig-001    gcc-8.5.0
+sparc                 randconfig-001-20260627    gcc-8.5.0
+sparc                          randconfig-002    gcc-8.5.0
+sparc                 randconfig-002-20260627    gcc-8.5.0
+sparc64                          allmodconfig    clang-20
+sparc64                             defconfig    gcc-14
+sparc64                        randconfig-001    gcc-8.5.0
+sparc64               randconfig-001-20260627    gcc-8.5.0
+sparc64                        randconfig-002    gcc-8.5.0
+sparc64               randconfig-002-20260627    gcc-8.5.0
+um                               allmodconfig    clang-23
+um                                allnoconfig    clang-23
+um                               allyesconfig    gcc-16.1.0
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                             randconfig-001    gcc-8.5.0
+um                    randconfig-001-20260627    gcc-8.5.0
+um                             randconfig-002    gcc-8.5.0
+um                    randconfig-002-20260627    gcc-8.5.0
+um                           x86_64_defconfig    gcc-14
+x86_64                           allmodconfig    clang-22
+x86_64                            allnoconfig    clang-23
+x86_64                           allyesconfig    clang-22
+x86_64               buildonly-randconfig-001    gcc-14
+x86_64      buildonly-randconfig-001-20260627    gcc-14
+x86_64               buildonly-randconfig-002    gcc-14
+x86_64      buildonly-randconfig-002-20260627    gcc-14
+x86_64               buildonly-randconfig-003    gcc-14
+x86_64      buildonly-randconfig-003-20260627    gcc-14
+x86_64               buildonly-randconfig-004    gcc-14
+x86_64      buildonly-randconfig-004-20260627    gcc-14
+x86_64               buildonly-randconfig-005    gcc-14
+x86_64      buildonly-randconfig-005-20260627    gcc-14
+x86_64               buildonly-randconfig-006    gcc-14
+x86_64      buildonly-randconfig-006-20260627    gcc-14
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-22
+x86_64                randconfig-001-20260627    clang-22
+x86_64                randconfig-002-20260627    clang-22
+x86_64                randconfig-003-20260627    clang-22
+x86_64                randconfig-004-20260627    clang-22
+x86_64                randconfig-005-20260627    clang-22
+x86_64                randconfig-006-20260627    clang-22
+x86_64                         randconfig-011    gcc-14
+x86_64                randconfig-011-20260627    gcc-14
+x86_64                         randconfig-012    gcc-14
+x86_64                randconfig-012-20260627    gcc-14
+x86_64                         randconfig-013    gcc-14
+x86_64                randconfig-013-20260627    gcc-14
+x86_64                         randconfig-014    gcc-14
+x86_64                randconfig-014-20260627    gcc-14
+x86_64                         randconfig-015    gcc-14
+x86_64                randconfig-015-20260627    gcc-14
+x86_64                         randconfig-016    gcc-14
+x86_64                randconfig-016-20260627    gcc-14
+x86_64                randconfig-071-20260627    clang-22
+x86_64                randconfig-072-20260627    clang-22
+x86_64                randconfig-073-20260627    clang-22
+x86_64                randconfig-074-20260627    clang-22
+x86_64                randconfig-075-20260627    clang-22
+x86_64                randconfig-076-20260627    clang-22
+x86_64                               rhel-9.4    clang-22
+x86_64                           rhel-9.4-bpf    gcc-14
+x86_64                          rhel-9.4-func    clang-22
+x86_64                    rhel-9.4-kselftests    clang-22
+x86_64                         rhel-9.4-kunit    gcc-14
+x86_64                           rhel-9.4-ltp    gcc-14
+x86_64                          rhel-9.4-rust    clang-22
+xtensa                            allnoconfig    clang-23
+xtensa                           allyesconfig    clang-20
+xtensa                         randconfig-001    gcc-8.5.0
+xtensa                randconfig-001-20260627    gcc-8.5.0
+xtensa                         randconfig-002    gcc-8.5.0
+xtensa                randconfig-002-20260627    gcc-8.5.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
