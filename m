@@ -4,59 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E339C43327
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jun 2026 23:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1D76C43327
+	for <intel-xe@archiver.kernel.org>; Sat, 27 Jun 2026 03:59:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A280710F744;
-	Fri, 26 Jun 2026 23:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B118C10E445;
+	Sat, 27 Jun 2026 03:59:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQQ7OYoT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YHWkSgRD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9F5E10E248;
- Fri, 26 Jun 2026 23:43:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC1BA10E444;
+ Sat, 27 Jun 2026 03:59:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782517388; x=1814053388;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rY/bF3dTfV54gRjBdYZf0lyV4zwS/OD8IcyqwDvwspE=;
- b=CQQ7OYoT9sxTBEemFBrq/0hDEEn44xRkRkw6B9jkZ66F6LICXbtzm6Dq
- 9oJpuEMYvM7uiQXXEuUFIyQ6z9LPPIB5DHm50CiWnUQBEPsIGjtpbeFFw
- dKoc2eURq7k1w5a8K4EC5hCQzi/06Mheeo7Dy/karHz6AFj4Li4PDhahx
- X7h6fZ9qjLFuSk6JrjqK6mOGG78CkfhdCuzz4f2PDdovEsUw7inQT7Rav
- p2PuTq0XVqnus5nBAqWfaLaafSAxe8XnlxmYXoNoHyN8oGpzdmu+5+gh4
- rfttq7EznTwfVpiRN2wFfs8AteR1vEnpYZnxpZ2kfF6OtyC4FOggBduvh g==;
-X-CSE-ConnectionGUID: 8cK5JgY4TjGpWfGgOAHctg==
-X-CSE-MsgGUID: 0Xt7QJq1QImjzwOi1/Snew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="85861096"
-X-IronPort-AV: E=Sophos;i="6.24,227,1774335600"; d="scan'208";a="85861096"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 16:43:08 -0700
-X-CSE-ConnectionGUID: cxIoU/qbQvScujYC0jz6Cg==
-X-CSE-MsgGUID: Q+KF5jHcTMCmLAYryBC0Cg==
+ t=1782532757; x=1814068757;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=AH6FeNt9dZaXYdw37p8X+AreX8E/XN6IGlSjX7my8HQ=;
+ b=YHWkSgRD07wVX7qcNfmKaUtcUdsdIj4KrzGCpzoU0VE902SLBFN9gAfG
+ n69Fb4pxMj89HlqKoSJWpkoikgYdExfwD9QoSPfod81gyrHz1IBbb9ykr
+ WWjIdxFJeDsgz0llBFHVPZxoFD3FjDjXhx2TDuiJY9n60fsppm5M/Pi/v
+ 9HPPFIKXfRO+C+/7gVjVpoIV6Zab+Hzfbkp7OjoMvRBPfDIQmvkeSXdnU
+ BDZVQ4y7UeLLromqWm4thRQP3etlo005YfoqktuuVinmU/9toK0AdyizB
+ MzllwpHK6D4+pAVH1WiOcZm3mc7Nem6EymVtdXV/xu2aGgyI3+OQcn+R5 A==;
+X-CSE-ConnectionGUID: 1AMhjnufTNKQCuKYS8VtuQ==
+X-CSE-MsgGUID: SYwjb9jwR7a9cSB6RORkJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="83197801"
+X-IronPort-AV: E=Sophos;i="6.24,227,1774335600"; d="scan'208";a="83197801"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 20:59:16 -0700
+X-CSE-ConnectionGUID: SMjQK0n1SKuKagikabxnKA==
+X-CSE-MsgGUID: 1A9kzmnHQHSjNBYKq86T9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,227,1774335600"; d="scan'208";a="248073763"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa007.fm.intel.com with ESMTP; 26 Jun 2026 16:43:06 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v9 7/8] drm/i915: override Combo's VS/PE when requested
-Date: Sat, 27 Jun 2026 01:42:45 +0200
-Message-ID: <20260626234246.2446451-8-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260626234246.2446451-1-michal.grzelak@intel.com>
-References: <20260626234246.2446451-1-michal.grzelak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,227,1774335600"; d="scan'208";a="255089904"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 20:59:16 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 26 Jun 2026 20:59:15 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 26 Jun 2026 20:59:15 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.35) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 26 Jun 2026 20:59:15 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JkV+AKG7ApJJtHEzGoY1XaSSEyZu0NnKGFQb+HFwlYoRWyfzHpePyHRgbolgHZ2/S1Dxaj3QWjWfQ9h5uk1DeAf9mWXc4rXCbUkTC0+2HktVYXDitaQ3P57waEeCBQyoKfLsFQPUozHsOtF3B5nvwB2UR4Sz5ODkgisfU1fWzTLjqW5lkhwKQ53mCs3cr1AeETlPc0/rA3WVNGrpF2IqmIEGphUbJPVNeL55XfwlmJ28QMGrAi6N0ctkPjutc/Jc5ZnJkNxw3JZAPFoHPAH9tYKeyUrtIcz678Q6kbkFonc5VXJNHSfe0DpUWathVeXXK+1qp/E6oWOT2u+P/2cv8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/jy+KwQWZTqs5Gvi6z2NCZ++IxkmFEMISVS4goTYUlU=;
+ b=rODtW6Tsi1ND6ahgfcMjmkIskAJf/fb3kd9IjKzx0x/KGEv/SiTSitvWQ5BsWVVd93VLjlpOgagGNQifCfpsYi5VnLgK2rfgPLYMK+SQsl4J/KouXtQtwCezVtR4hD8rsk9SVyqbPyA+SaVrptUO/IHh97+tKjHpiT+SrvNMgUXvYA13qErEqzNCJrUBjt3tFsPNO9AfZMxs6xLGMEWqzWVNbQVFq32DAjF24kDkiW1MjaDaphAoe2aiLo96PeA6FTwopsV1MIAVJs1ck6QAEKWqe0tcRfdy/jDz7G9g/KiPwr76X+wdML7Lpa6SPR00wotmqSOZE1lUI3m+ZgusUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::5b) by SJ0PR11MB6695.namprd11.prod.outlook.com
+ (2603:10b6:a03:44e::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Sat, 27 Jun
+ 2026 03:59:07 +0000
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::6d3c:5451:b5d4:3ea6]) by DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::6d3c:5451:b5d4:3ea6%6]) with mapi id 15.21.0159.014; Sat, 27 Jun 2026
+ 03:59:07 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Hodo, Martin" <martin.hodo@intel.com>, "stable@vger.kernel.org"
+ <stable@vger.kernel.org>, "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Subject: RE: [PATCH] drm/i915/hdcp: check streams[] bounds before overflow
+Thread-Topic: [PATCH] drm/i915/hdcp: check streams[] bounds before overflow
+Thread-Index: AQHdBMSO/AZvk7G4W0izKDEM0aHBg7ZRyO4A
+Date: Sat, 27 Jun 2026 03:59:07 +0000
+Message-ID: <DS4PPFE901A304F58021028E7F8F29EE9C7E3EA2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20260625170304.1104723-1-jani.nikula@intel.com>
+In-Reply-To: <20260625170304.1104723-1-jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|SJ0PR11MB6695:EE_
+x-ms-office365-filtering-correlation-id: 83295f48-a50c-4c3e-0e56-08ded4006fb8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|366016|23010399003|1800799024|38070700021|18002099003|22082099003|56012099006|11063799006|6133799003;
+x-microsoft-antispam-message-info: NdMd8chCGP46MjnEwPVzBSvYPFEdE0Ohikmh8/i1XFVPPv+KrrjaOC9fgOUxuCiPN+FQo98C//xV2lXqMpC21j7qCSrjufM/kDSBq9Ch4V1zgznsizZ5AYub6i/LDQDo8x6fQFGPl4pF9uvHyYEu6laRbSahEijPEcipDfoLfccs7HnADlyxZOjVqrzgAMpzX9RT0/quSbEcctxuvHWlyhYXrZAW0ys4W3OKQNcNhnvx5eFPycKutmaUnk+lv7UxmVDTnRGrlbuAbgjaBCIol4DFAMFzK/Vsehk4+88squ0HHgrhsMEmOVZLH1e9RI/prl9Muwq6pFdo6qd4BWXPNWqRRDVQcwd0hT7JvfxqniGCPek+hHQYDtjDQTxN7/VTjNdILREC+BWbC5kca2t6opoxY16uH7VSnAm7hq4LWcUJBXBgTlfeAHvERBQZKMUDIudCuaRRfEGC6LSdrTiNxjcmPFFOo5gsoSQmJjM1+YAZVuOwFWX8dAVevB9lN1WQde+EiZ3TYdinehIcwRw9pgAIrBZfksa/AmC5sWKILZAiJzNyZ7GD7Hfyv/JbanmpGZKXlVJ8hA5iCTBxdKW6tRK/9scbGqA02ngpsAzaSJQPfY4/ZW//XVxGvh8uc4eupF+FxNK/K7mMg28OQI28VeN34Vd72pNKTqwut7ln9264hTp34WuAyH6AGhucQhnVZw89Ekvz0p6IPaVOX0EEtia6kpbbavD6yEJl5ofIEig=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(38070700021)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?IUZxZyy0/BYwIaNBbXLexficOUi7OG/kuo2//mpTJ+NaKtM99eNda8LpqFFD?=
+ =?us-ascii?Q?p1YcLLNSCuecSwM+0Lz+b7eCPekFUoG91h+NkEQLWqEhiNCR2TvxaYb1YdE0?=
+ =?us-ascii?Q?56EicfwsTnLUvgM83pMH1r2C3GRZdrHlCVke26DbVnx9MueMxiOA5hQy+gqo?=
+ =?us-ascii?Q?dMYpUFeC6VTVawYHOIph5HOZ1uwwTvz+3PyHQPJTeCH9Hb00xLvz9fDUIEYB?=
+ =?us-ascii?Q?W619LlAcf26VZdOs6Fdkkdl0dGoTZ+TTHy7lh7oMLhlC4EXTTo7E8kFe3Ro5?=
+ =?us-ascii?Q?BZOyZdL0Gkn77tNA2ZX1Qsy5s+SFyP8xOo0StURzYqJ2hN1nh4Z8i65c6B3J?=
+ =?us-ascii?Q?XQLJgV4Zcfk246FdwhylkwFP76gTtSPhkyZlDc1QWDvvORsTTCZfDEqNPoa4?=
+ =?us-ascii?Q?EvQ2hTwZJr+mWqnAjSs01fftKIcP8OKI8+WjW40WOYsBZNa1nrqi5Tw/6088?=
+ =?us-ascii?Q?UK+wz+061fzY7+wyFmGBIOsRifacNfDbHmlLYLHJAX0aGTgKC7WGOwBTpDT/?=
+ =?us-ascii?Q?PWe9nHKbYmu0oSLmHGHNO1DaWfx+HpM0bc+b3sXPCa6D2eyhpWTiEXs02MtC?=
+ =?us-ascii?Q?VGh7Cjtm2NitopL7pyPJY3JXbsBUqtPkrPohzfgy8hkJczT0S9MuElLlV/LV?=
+ =?us-ascii?Q?ueIIpoaGzPMtRRhJUVjRCI9qJbofSH8tWUtH1ULtleOVrWA909Slfg9VihJZ?=
+ =?us-ascii?Q?8x6EPf4GadJsjL8P/oO6JdWk7SaRmLVs6jFPi0f7YILwjieaSxkIyphs8coE?=
+ =?us-ascii?Q?rS9tekOczz5jDZunXrPeKgCWAx8WjbQc9I/Sa6uVN+zMWEIN/IW6h/KQMJue?=
+ =?us-ascii?Q?Yvkr3Whlz0WZXOsPolSALXE4jL+X8/Q+eJPXJzwV9fq44+p0CLXARE9vdMiE?=
+ =?us-ascii?Q?1hQUn3ZuAr5FVxk9VFXrEyfGhcn+d8SdZgL8G7ulb0/jVp1XvPVW4FQ83Ejp?=
+ =?us-ascii?Q?MRB6hwsc4SX7flF1cf2nCDADvZlTZWwE7gOeIFFaddE2CEamui/vrnbLsEre?=
+ =?us-ascii?Q?vMunBuWdg0YLMZSMrM3BFGV6oE77uA4HG+hbnYWczXgUqT5vq4RGKYZcrrth?=
+ =?us-ascii?Q?aCrtSgdfyVBLnsbYl3A7tY5rnxCXVe0s3T4gB1cRE9yCwYFBv6CUqY1B6uFk?=
+ =?us-ascii?Q?7ANX70P9QfoQxWfn/vf6Uua9n0mOS5PyyzrID9Ckt4fqqw42omYGATT3V/Cf?=
+ =?us-ascii?Q?s/1h1NYfaOZ7p3XdeaP85Nvo7cLyqZkw9az4XH1vDfcNTLG4QhtoSuuZnrwW?=
+ =?us-ascii?Q?54x3GQ0r+eLx65ur7bd+U36/T2n31htstDiexiEruIhFL5p9s2Qyxd1BY2hK?=
+ =?us-ascii?Q?7UWfZapHU2XqrkIZOFX1aRxzOjI+liJthbYLSum8KlZXk+VKR0dNG98nL09B?=
+ =?us-ascii?Q?GQ59ZToygmf94z2TwNtSYRLiQ+oDfbDjPbhcyruWzLtHZ69h0oDYSeFcx/Ag?=
+ =?us-ascii?Q?01TTYdcSNkExl1aYJUVROWsPcT0J95DRGo+2K1D7CrRltxl0JFFOSNmlGgPK?=
+ =?us-ascii?Q?EOlwynqpAN71N6gCS3Rphwak5Gd8sGdYDFSUifGpfeRPANc7hEXeHzguG3UX?=
+ =?us-ascii?Q?54BfLIlBMAy7/PwvFDnIs3WkLDVkjxBKq9yrhjqR9NXiLla7lM3oAqBahuW/?=
+ =?us-ascii?Q?7TcoU/eGYrmaeVntRtqwwCFMTk+HSXWgOdDHGzkLC++TULmr23xnQmIJj5SD?=
+ =?us-ascii?Q?i2sI8X/o9U6dSTPNIHD2W3+fSbY7njV/ZQ9mE86Y1kydnYcAu6f8h+vGas5E?=
+ =?us-ascii?Q?mW1Q8lssRQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: Dre3PmnNJ3aVJ+MwjnDkw3yE/jBIWPGsIq+cB9480etGUAcj4wKoXeXAfUFvSoEa80H/SEFI6WBKXWmpVY+Xlgg0+vo3QJgdtHJwKSeIl/zILTgqsAOdSu6L2qP9Pog0QQPeZc8UG3coOv9N3ROVizWVYnuG7M8Q3GbtAHvZZ1ZK+OSybNgPMiB7PLFEHdhDLViXCBm0s0I+kea3oh5PclznoIFXRITZMSeMlEOQ00OSNVSPagtr6Gy0RMDJn50RFvj1LwwLg/zaW7Dg1PHyxXp9oRAebs+6gwiYv8VNTG38ZpTWOJBO/JkxgdmqXzHJbGN59u1w+boNasTgDpffBg==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83295f48-a50c-4c3e-0e56-08ded4006fb8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2026 03:59:07.2492 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8Rzyv7pXytNJQ1B58fMqR89zIBjCbj01wiBbTL5sfsdi1QcFj/XEAvxnqzGFiN0BKnTjEVPNab6oks3loHj8kA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6695
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,206 +162,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add accessor function for Combo to read requested table from VBT #57.
-Parse the requested table and transform data into port's buffer.
+> Subject: [PATCH] drm/i915/hdcp: check streams[] bounds before overflow
+>=20
+> The data->streams[] overflow check is done after the buffer overflow has
+> already happened. Move the overflow check before the write.
+>=20
+> Side note, emitting a warning splat with a backtrace might be overkill he=
+re, but
+> prefer not changing the behaviour other than not doing the overrun.
+>=20
+> Discovered using AI-assisted static analysis confirmed by Intel Product S=
+ecurity.
+>=20
+> Reported-by: Martin Hodo <martin.hodo@intel.com>
+> Fixes: e03187e12cae ("drm/i915/hdcp: MST streams support in hdcp
+> port_data")
+> Cc: <stable@vger.kernel.org> # v5.12+
+> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-For EHL, in cases when eDP encoder uses low vswing, choose 3rd table if
-encoder supports HBR3. Otherwise use 2nd table for eDP using low vswing.
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-In cases when eDP encoder does not use low vswing, choose 2nd table if
-encoder supports mode higher or including HBR2. Otherwise use 3rd table
-for eDP not using low vswing.
-
-For external DP use 2nd table if encoder supports modes higher than or
-including HBR2. Use 1st table if external DP encoder supports modes
-lower than HBR2.
-
-For JSL, always use 1st table for external DP. For eDPs not using low
-vswing use 1st table as well.
-
-In cases when eDP encoder uses low vswing, choose 1st table if encoder
-supports HBR3. When encoder supports HBR2 choose 3rd table. When
-encoder supports modes lower than HBR2 choose 2nd table.
-
-There are no changes to intel_ddi_dp_level() since selection of correct
-row of intel_ddi_buf_trans_entry is same as when no override request has
-been done.
-
-Looking from other OSes, in case when encoder does not support DP we
-could theoretically use 1st table. However, as of now, use default
-tables.
-
-v8->v9
-- deconstify intel_ddi_buf_trans_entry
-
-v6->v7
-- handle VS/PE-O's VBT details in intel_bios_* functions (Jani)
-- remove vspeo's cast to (void *) (Jani)
-- call encoder->get_buf_trans() once (Jani)
-- return NULL from intel_bios_get_* when using default (Jani)
-- validate VS/PE-O in intel_bios.c (Jani)
-- check devdata->vspeo if VS/PE-O was requested
-- inline {jsl,ehl}_combo_get_vspeo_buf_trans()
-- remove temporarily LT
-
-v4->v5
-- blend index computation with table parsing
-- remove enums entirely
-- add spaces around operators (Suraj)
-- remove spaces after type casting (Suraj)
-- remove INTEL_DISPLAY_STATE_WARN (Suraj)
-
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com> # v7
----
- drivers/gpu/drm/i915/display/intel_bios.c     | 98 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_bios.h     |  6 ++
- .../drm/i915/display/intel_ddi_buf_trans.c    |  6 ++
- 3 files changed, 110 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 0da87ff9a905a..c5265a532dfd6 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3960,6 +3960,104 @@ intel_bios_get_c10_vspeo(const struct intel_bios_encoder_data *devdata,
- 	return vspeo;
- }
- 
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_ehl_combo_vspeo(const struct intel_bios_encoder_data *devdata,
-+			       bool has_dp, int port_clock, bool has_edp)
-+{
-+	struct intel_display *display;
-+	union intel_ddi_buf_trans_entry *entries;
-+	int num_columns, num_rows, level, idx;
-+	struct intel_ddi_buf_trans *vspeo;
-+	const u32 *tables;
-+	size_t offset = 0;
-+
-+	if (!validate_vspeo(devdata, has_dp))
-+		return NULL;
-+
-+	display = devdata->display;
-+	vspeo = devdata->vspeo;
-+	entries = vspeo->entries;
-+	tables = display->vbt.vspeo.tables;
-+	num_columns = display->vbt.vspeo.num_columns;
-+	num_rows = display->vbt.vspeo.num_rows;
-+
-+	idx = port_clock > 270000 ? 1 : 0;
-+	if (has_edp)
-+		idx = port_clock > 540000 ? 2 : 1;
-+
-+	offset += idx * num_rows * num_columns;
-+
-+	for (level = 0; level < num_rows; level++) {
-+		u32 dw2_swing_sel = tables[offset];
-+		u32 dw7_n_scalar = tables[offset + 1];
-+		u32 dw4_cursor_coeff = tables[offset + 2];
-+		u32 dw4_post_cursor_2 = tables[offset + 3];
-+		u32 dw4_post_cursor_1 = tables[offset + 4];
-+
-+		entries[level].icl.dw2_swing_sel = dw2_swing_sel;
-+		entries[level].icl.dw7_n_scalar = dw7_n_scalar;
-+		entries[level].icl.dw4_cursor_coeff = dw4_cursor_coeff;
-+		entries[level].icl.dw4_post_cursor_2 = dw4_post_cursor_2;
-+		entries[level].icl.dw4_post_cursor_1 = dw4_post_cursor_1;
-+
-+		offset += num_columns;
-+	}
-+
-+	return vspeo;
-+}
-+
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_jsl_combo_vspeo(const struct intel_bios_encoder_data *devdata,
-+			       bool has_dp, int port_clock, bool low_vswing_edp)
-+{
-+	struct intel_display *display;
-+	union intel_ddi_buf_trans_entry *entries;
-+	int num_columns, num_rows, level, idx;
-+	struct intel_ddi_buf_trans *vspeo;
-+	const u32 *tables;
-+	size_t offset = 0;
-+
-+	if (!validate_vspeo(devdata, has_dp))
-+		return NULL;
-+
-+	display = devdata->display;
-+	vspeo = devdata->vspeo;
-+	entries = vspeo->entries;
-+	tables = display->vbt.vspeo.tables;
-+	num_columns = display->vbt.vspeo.num_columns;
-+	num_rows = display->vbt.vspeo.num_rows;
-+
-+	idx = 0;
-+	if (low_vswing_edp) {
-+		if (port_clock > 540000)
-+			idx = 0;
-+		else if (port_clock > 270000)
-+			idx = 1;
-+		else
-+			idx = 2;
-+	}
-+
-+	offset += idx * num_rows * num_columns;
-+
-+	for (level = 0; level < num_rows; level++) {
-+		u32 dw2_swing_sel = tables[offset];
-+		u32 dw7_n_scalar = tables[offset + 1];
-+		u32 dw4_cursor_coeff = tables[offset + 2];
-+		u32 dw4_post_cursor_2 = tables[offset + 3];
-+		u32 dw4_post_cursor_1 = tables[offset + 4];
-+
-+		entries[level].icl.dw2_swing_sel = dw2_swing_sel;
-+		entries[level].icl.dw7_n_scalar = dw7_n_scalar;
-+		entries[level].icl.dw4_cursor_coeff = dw4_cursor_coeff;
-+		entries[level].icl.dw4_post_cursor_2 = dw4_post_cursor_2;
-+		entries[level].icl.dw4_post_cursor_1 = dw4_post_cursor_1;
-+
-+		offset += num_columns;
-+	}
-+
-+	return vspeo;
-+}
-+
- bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
- {
- 	return devdata->display->vbt.version >= 264 &&
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 49acf8c405e2b..c55765a945949 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -79,6 +79,12 @@ intel_bios_get_c20_vspeo(const struct intel_bios_encoder_data *devdata,
- const struct intel_ddi_buf_trans *
- intel_bios_get_c10_vspeo(const struct intel_bios_encoder_data *devdata,
- 			 bool has_dp, int port_clock, bool has_edp);
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_ehl_combo_vspeo(const struct intel_bios_encoder_data *devdata,
-+			       bool has_dp, int port_clock, bool has_edp);
-+const struct intel_ddi_buf_trans *
-+intel_bios_get_jsl_combo_vspeo(const struct intel_bios_encoder_data *devdata,
-+			       bool has_dp, int port_clock, bool low_vswing_edp);
- 
- bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 9a294011ea4fa..22fd7ce005826 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1873,6 +1873,12 @@ const struct intel_ddi_buf_trans *intel_ddi_buf_trans_get(struct intel_encoder *
- 			buf_trans = intel_bios_get_c10_vspeo(devdata, has_dp, port_clock, has_edp);
- 		else
- 			buf_trans = intel_bios_get_c20_vspeo(devdata, has_dp, is_uhbr);
-+	} else if (DISPLAY_VER(display) == 11) {
-+		if (display->platform.jasperlake)
-+			buf_trans = intel_bios_get_jsl_combo_vspeo(devdata, has_dp, port_clock,
-+								   has_edp && use_edp_low_vswing(encoder));
-+		else if (display->platform.elkhartlake)
-+			buf_trans = intel_bios_get_ehl_combo_vspeo(devdata, has_dp, port_clock, has_edp);
- 	}
- 
- 	if (buf_trans)
--- 
-2.45.2
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index e88fec24af49..521786a75c42 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -145,6 +145,9 @@ intel_hdcp_required_content_stream(struct
+> intel_atomic_state *state,
+>  		if (!new_conn_state || !new_conn_state->crtc)
+>  			continue;
+>=20
+> +		if (drm_WARN_ON(display->drm, data->k >=3D
+> INTEL_NUM_PIPES(display)))
+> +			return -EINVAL;
+> +
+>  		data->streams[data->k].stream_id =3D
+>  			intel_conn_to_vcpi(state, connector);
+>  		data->k++;
+> @@ -155,7 +158,7 @@ intel_hdcp_required_content_stream(struct
+> intel_atomic_state *state,
+>  	}
+>  	drm_connector_list_iter_end(&conn_iter);
+>=20
+> -	if (drm_WARN_ON(display->drm, data->k > INTEL_NUM_PIPES(display)
+> || data->k =3D=3D 0))
+> +	if (drm_WARN_ON(display->drm, !data->k))
+>  		return -EINVAL;
+>=20
+>  	/*
+> --
+> 2.47.3
 
