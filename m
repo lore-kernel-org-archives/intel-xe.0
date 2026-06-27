@@ -4,78 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D03AC43458
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF2EC44500
 	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:59:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09BC510F010;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4EA10F018;
 	Wed,  1 Jul 2026 12:59:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hfGmLhKu";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Fb7zSISk";
 	dkim-atps=neutral
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7995310F5A1
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 11:58:35 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-bebb72b845aso144279366b.3
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jun 2026 04:58:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782475114; x=1783079914; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=i0Ps5tEtd22JyPLt5Txw4hpkbL4qYP5JlG6cYEFGqrA=;
- b=hfGmLhKunB8vtUk1h0a3S5JZ+XyBNkKYCxXaP84nU0kPwK+1AZ6gZA8YGcjRwU2DSi
- ldGCvKMbOKNsNKzCE7vyHGKdOcsYQPGjP4EbXkyHkDQPcp2ZAS+wotI5x41Fo3wYtras
- WJQEg5bBXD0rVGunk5XjKlTfXGAiOSGRTx6fpHzpGPsJlGxL92Y/W1TySQcnMNs1Ct3U
- ajxbgq3xH8yNN1DzEWXoKrFm6SSi7DX/sgOFyVKt+s0l5VN671b4Y7D09lN4mFCXANis
- WJnXOuvETBIWCX1wZH+xIuno5XMlEMuYCqE/1vwof4gYyAaCBRGjq+f53bKIJ2hCZ8+I
- 3UsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782475114; x=1783079914;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=i0Ps5tEtd22JyPLt5Txw4hpkbL4qYP5JlG6cYEFGqrA=;
- b=K0dnS/tP3mZ1dr7QW/Umy/qimQkKCxlEsDDJGaZngnRdAuhmSuqyn2ljUJdVMxFCSk
- MIYoroemD7Nl3Vs6uMkdqNxZmcEOU5EYazhhxoZJ3tRYlRfxcJEb3CaxbX+aVHg/iXfe
- ktGq+flayk3IHHxaOKPqY9dwy3B1hx4lH0OtDLDOF47zM1fi7z/+t1840LwGtAIrvAoK
- eN3MfwyWRTocYK6N8S9OhvzwQOikI/gTmnKo5TWKwxRfFDd4qS+RmKZDK9FYw/TuTLT9
- y/c/S/F1NglmbLcpxGqMW2Zf2P1QBEqxHgJOo58ZzbFm80SFi4bZp9yy3TfI8zc3pRsF
- ZGJQ==
-X-Forwarded-Encrypted: i=1;
- AHgh+Rq4e8saYnETp4S6FdTH6FXlccF67VCWEIiZaBFefmANKBnTCLA0HxuVueQ3jQqMmbKq1v6HLgSRQw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwqSOfyPoLNIRLQEQj8Rcx+neK0ARkk4HYadR5IygFTpZ0sUUxT
- /mBkO0p/F0gd2qPO/oWq0ESkQRznClA2t+3CVCwBZDU8NG1/ul8MM3gb
-X-Gm-Gg: AfdE7ckO/5Xkdmmckp81kwhH2QtUkZkVA1JOH0ASeteksdKBEgf7qqEUW4HUsS7qmgE
- eNWJl//oXkId+/OTJ0z1OT7P+iCaLMQug0Szk77erM57NGd5epDAYDDG3AO8bmBYpZRTlSvTY67
- GblvJP9mhc5SKYSTez9oNUZFksJGMxzaq6pRa5vi5Qk0o9n18eRUoHnjRxdpNS4kwjoZwhr5niH
- 9hoFCA7IhnQ5UMe1rETsKmQYTNqvf7JAhlnj/pZfJY6S6gUcCCEb75mB1SWitSHX7e1PCjpqjFm
- KGc7eg0yS78EdbpZLgWSfqor5yvXnK1Xes2ZwcRV0JcVWkoAIXyEdjYwSgFs2sqQFedDHtik8+5
- kKftwwyGELKQJkxa0tXpH91DzVQTErm9HtN9p7bFdttsjP3Sv+4XnJxBCerel6NRnOJDZGTSP9J
- AiM1PH2AcEqKp8z+dAsSvWXjibS2SYYCFRGyTECIiBXZf0Wd/IC7myNC7UphmAIEe7FJZw/lEWm
- To68JIYsvww4AwCDieSE0nB6RJe7WthaA==
-X-Received: by 2002:a17:907:7ba1:b0:bd0:df77:98bb with SMTP id
- a640c23a62f3a-c1205d4fd16mr415304166b.9.1782475113560; 
- Fri, 26 Jun 2026 04:58:33 -0700 (PDT)
-Received: from fedora ([154.66.167.183]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c122e9ae635sm37986266b.20.2026.06.26.04.58.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 26 Jun 2026 04:58:33 -0700 (PDT)
-From: aquiles <achillezongo07@gmail.com>
-To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com
-Cc: airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- aquiles <achillezongo07@gmail.com>
-Subject: [PATCH v2 2/2] drm/xe: skip resv fence wait in xe_svm_invalidate if
- no ranges are bound
-Date: Fri, 26 Jun 2026 11:58:08 +0000
-Message-ID: <20260626115808.2072258-1-achillezongo07@gmail.com>
-X-Mailer: git-send-email 2.54.0
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010022.outbound.protection.outlook.com [52.101.85.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D81410F751;
+ Sat, 27 Jun 2026 03:33:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lBhTOvZz+9sM7StEE8jBuCxdQAUuHSRvqAz+1m+fex6RprEi4dOCnHIB/VvaWQO4T0aWPqa+CVfZLX9EKPGcP0G8J9ExreBL+bSHPfNq/DjPXb7j3usCyMmNPgbHRY3DafUx01ybVzFJJ3py/hPQNd+YC5kBe0IKh8nubhlZj2hZXMw38x0R90bxzTBBjAVXbK0doyfDbN/dF0bd9aUUzEPHDEM+89kp50b4bU5kecrsihUS4qOzCF0Q2/EYFUOuEKrEDNlF8yNpBxlummvLmpT/nSSUwjz5NXI2hpWTWbkcv41kt7eK/YFFOM7J3EM9WZyh8HSriNBmiBI+t2ypiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yZvoOaL9PS1Dcg65KRA9qq9b5kVN1mV50oqrVcM2DEY=;
+ b=boET7hHCLW+Y4pgPBfGX70+yYs6f8SjKyv72g1LCwym5odSD0IuRlX6KXmH8eKq0wnxq2+FvX7hotV2h5s9HIhYuxNq2VgRMBLjw7LS7+bonxdGdJamY/zw8JO+dt07WZYVIS7EdolWd16IkUzsd2I1/rhi3ysTN247jt6qynIyWQNeGGPen4/gV7ia0GrrYZYM+EdtcGRnq/rD/3VIHEsFjmQHhw/PotaefpJKynjweLtXm+hsNeCjc8FJfXjAQS6L2rgIZDPbd3qhF/mc7bEeZXjyWbt5J2KkZ9uPuhObww9gQ0JJuVAmHWT3JiNawuF9ASrhn2cwL6Ki+swQUNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=ffwll.ch smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yZvoOaL9PS1Dcg65KRA9qq9b5kVN1mV50oqrVcM2DEY=;
+ b=Fb7zSISkQtGvJ+j8zQ8ZpXlzjoGrIm2wtl9Gmc6YeYwOAvBb7KvV5vP0KfH4ysR+mKmIn61BxLWRpza2riAVL4WxhEqaQV/1XS9cjUhq3Q4D9UPEUbrDWYXepWgmUsRXvOJmNwtxxlnFkTn1qRhsNXE6EuhyDQzPNskHTf+VDHQ=
+Received: from IA4P221CA0011.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:559::14)
+ by CH2PR12MB4104.namprd12.prod.outlook.com (2603:10b6:610:a4::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.18; Sat, 27 Jun
+ 2026 03:33:44 +0000
+Received: from BL6PEPF0001AB56.namprd02.prod.outlook.com
+ (2603:10b6:208:559:cafe::62) by IA4P221CA0011.outlook.office365.com
+ (2603:10b6:208:559::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.18 via Frontend Transport; Sat,
+ 27 Jun 2026 03:33:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF0001AB56.mail.protection.outlook.com (10.167.241.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Sat, 27 Jun 2026 03:33:44 +0000
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 26 Jun
+ 2026 22:33:40 -0500
+From: Honglei Huang <honglei1.huang@amd.com>
+To: <sima@ffwll.ch>, <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>,
+ <intel-xe@lists.freedesktop.org>
+CC: <Ray.Huang@amd.com>, <dri-devel@lists.freedesktop.org>, <honghuan@amd.com>
+Subject: [PATCH 0/2] drm/gpusvm: fix IOVA unmap path in
+ __drm_gpusvm_unmap_pages()
+Date: Sat, 27 Jun 2026 11:33:23 +0800
+Message-ID: <20260627033325.3795298-1-honglei1.huang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 01 Jul 2026 12:56:31 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB56:EE_|CH2PR12MB4104:EE_
+X-MS-Office365-Filtering-Correlation-Id: 215bf788-2e70-44ff-8e87-08ded3fce3d1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|82310400026|36860700016|376014|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: jiJJLN3RaawwC6xZ8wB18rORAiYYvLscL/0ElzxYMerWtF+3gHexvvDZ+AdQOp8pcVysVaNdLd5dhuUyJpxs0t6VmucOnipa5MlHqxPPZn4XB5jlYamyONWL5f8v0Vu9gMt3fyowAYcZJ0wggrXq64aH3wxF1ooPAsQFEXP/hjiMrMz60TE8waB8tLJxfaFlmt+ixX+ApkcFXiDaFFdCnvtdGNQaNIfR2dNfU/GkgdFoP+7uQKhU11m571mEHCq3QBBf0bQT2tywLFNxfKnlwJmbwLc4x4L7GWqmEgJODVJEt8BMZr69Q/LcrkXjBcvpmF5N3npWfy/ehhdvDVbJP3e7GGj3dT1hY53TzdTMqva0ycu1sM/g1RHlw9mLJV3scqvhC5/pgWLPryC39EaO++iFIgULwR9T2LhLmVvYV8ogISwsA4W+disdKA/1ny7iZ9QaFIliLwr30qnmOlWmdGkmQbQE+JtHP03QDtfBcKUr1BJwmKr5+6tPuQZhR9PlTZAPXQ/YthuphE9p+BH+YHCaa1C8zG3e7z5FHO+PlQNPJ7SL1GZppe2Q567WTPBPRdGDhBUFmcNctfjlyZAKMNX4CjqWXFyCJHNi6EqtdIqt65vkaK6SvRpOb1axRybQYOUQUrbpEOjV0aTQUB69r6lkLNrTCgf4KY10EIbUrrbyXhVUzX/B9w1YNUH4T9eAAYa5tnx1V3pKdxojOQFwpQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(82310400026)(36860700016)(376014)(18002099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: nu8MAt6BPPbWvgCRoD7d2szjts+dK6Z5RkWoEc10gRFfp8/Tbq9pdMTXFprlUFCCRF8AhJvuY4sQBVaQYEvspsSU4Axs3u7j2v3hfbJ/8GfGYSKkw/jW58c1T+jWODRIAr9ld3rfa2GVbopGpOSxPx6HRaOI2ppggz/8gnzhjW8ELke61IHHFVDIbRkOtJpU7NzSGGDrl5RnQG48XZsHscB16mDfMVMyBC5tG3oMEWEB8i4hzU7ybVTs45v38nbaRgAUXk8oBttd8hnJojI6iYRUWVTr55/vw5BAqauZqCZGkvMhWnrguKwY8oLsIbDD4SbMLV7UZKZ8tywa9cRFD+hvKWDEMcknhUEf061sA70DVBb8y9275Xk0f4zhl7xlmxoWjWG7VYgSMk9+ozmk6IZ+wCaDhjICf8uf1BG0uDgVve/ImKnI3HjdZWyHBMsb
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2026 03:33:44.0140 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 215bf788-2e70-44ff-8e87-08ded3fce3d1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB56.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4104
+X-Mailman-Approved-At: Wed, 01 Jul 2026 12:56:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,61 +111,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_svm_invalidate() waited on the VM's reservation object fences before
-processing MMU notifier events, even when no range in the affected
-address region had active GPU bindings (tile_present == 0).
+From: Honglei Huang <honghuan@amd.com>
 
-Add a pre-scan over the affected ranges and skip dma_resv_wait_timeout()
-when no range needs invalidation and all BOOKKEEP fences are already
-signaled. The fence check is necessary because tile_present is cleared
-when an unbind is submitted, not when the GPU job completes — skipping
-the wait without it risks unmapping DMA while an unbind is still in flight.
+Two small fixes for the IOVA unmap path in __drm_gpusvm_unmap_pages(),
+both spotted by AI review:
 
-Signed-off-by: aquiles <achillezongo07@gmail.com>
----
- drivers/gpu/drm/xe/xe_svm.c | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+  - Avoid reading dma_addr[0].dir when no pages were mapped (the
+    get_pages() error path can reach unmap with npages == 0 and an
+    uninitialised dma_addr array). Use a zeroing allocator and guard the
+    direction argument with npages.
+  - Do not route system pages to the device_unmap() callback on the IOVA
+    path. Branch off addr->proto so system pages only get an explicit
+    dma_unmap_page() in the non IOVA case, and only real device pages
+    reach device_unmap().
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index e1651e70c..447c5c965 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -233,6 +233,7 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
- 	ktime_t start = xe_gt_stats_ktime_get();
- 	u64 adj_start = mmu_range->start, adj_end = mmu_range->end;
- 	u8 tile_mask = 0, id;
-+	bool needs_inval = false;
- 	long err;
- 
- 	xe_svm_assert_in_notifier(vm);
-@@ -258,11 +259,22 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
- 	if (xe_vm_is_closed(vm))
- 		goto range_notifier_event_end;
- 
--	/*
--	 * XXX: Less than ideal to always wait on VM's resv slots if an
--	 * invalidation is not required. Could walk range list twice to figure
--	 * out if an invalidations is need, but also not ideal.
--	 */
-+	/* Pre-scan: skip fence wait if no range has active GPU bindings. */
-+
-+	r = first;
-+	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end) {
-+		struct xe_svm_range *range = to_xe_range(r);
-+
-+		if (!range->base.pages.flags.unmapped && range->tile_present) {
-+			needs_inval = true;
-+			break;
-+		}
-+
-+	}
-+	if (!needs_inval &&
-+	    dma_resv_test_signaled(xe_vm_resv(vm), DMA_RESV_USAGE_BOOKKEEP))
-+		goto range_notifier_event_end;
-+
- 	err = dma_resv_wait_timeout(xe_vm_resv(vm),
- 				    DMA_RESV_USAGE_BOOKKEEP,
- 				    false, MAX_SCHEDULE_TIMEOUT);
+Honglei Huang (2):
+  drm/gpusvm: avoid reading uninitialized dma_addr[0].dir on IOVA unmap
+  drm/gpusvm: do not route system pages to device_unmap() on IOVA unmap
+
+ drivers/gpu/drm/drm_gpusvm.c | 28 ++++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 8 deletions(-)
+
 -- 
-2.54.0
+2.34.1
 
