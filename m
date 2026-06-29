@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B769C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 21:40:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54E68C43458
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 21:52:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFA9D10EA6D;
-	Mon, 29 Jun 2026 21:40:07 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73A6510EA6C;
- Mon, 29 Jun 2026 21:40:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8720693815609782161=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16DFF10EA70;
+	Mon, 29 Jun 2026 21:52:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkfcgjQ4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08ABA10EA70
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 21:52:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782769969; x=1814305969;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N/0gBs3E6q6mhadnX+8Ztz8+RVBE+yLfO5+w2M8N2kA=;
+ b=bkfcgjQ46OBJqoEFivusYhUpebGOBwbvObQTmvUqBeXoiXJI59DXJADe
+ 4SMFqwVwuo7pFpK1KDZDvx0o5iXDdmUjwO2y9eXUrLa1YbBAWCaVsGmhB
+ MuzZBre1b+6YBrHZ9gCeiLvWKcCdbkXe2exfpsC/tZOPBMb37q61lboGU
+ 6NV0W+osxx+stFiWT/VeCL0763qh7F/lus5UVlfD/gmsH/nETS4xHDo02
+ dbbNNYfVEbRyRrYqFIr5C5AkCNdltOqotzAcRf+rae/j5OvEVqnCL5p5V
+ /m98DeyxUBiKxJN2nxGsHUhp/xnHFmO7V0xVgEYRXdFpgKE5p35WdyQfQ w==;
+X-CSE-ConnectionGUID: vhSt4jlsQkK4wLrwm/eg4Q==
+X-CSE-MsgGUID: GzyYkFMJRAKAtsJaoLvoRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83531289"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="83531289"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 14:52:49 -0700
+X-CSE-ConnectionGUID: s9czekCYT0m/KFP1QEjX9A==
+X-CSE-MsgGUID: 9t8o5ewkR/K8RTnrXkZmvw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="256012720"
+Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 14:52:48 -0700
+From: Julia Filipchuk <julia.filipchuk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Julia Filipchuk <julia.filipchuk@intel.com>
+Subject: [for-ci-only] drm/xe/nvl/guc: Check GuC firmware 70.71.0 for NVL-S
+Date: Mon, 29 Jun 2026 14:52:13 -0700
+Message-ID: <20260629215238.3844518-2-julia.filipchuk@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu/buddy=3A_bail_out_of_tr?=
- =?utf-8?q?y=5Fharder_when_alignment_cannot_be_honoured_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 29 Jun 2026 21:40:06 -0000
-Message-ID: <178276920646.130398.15753640361769543856@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260629074311.68836-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20260629074311.68836-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8720693815609782161==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Use new mmp versioned firmware for NVL-S.
 
-== Series Details ==
+Patch is intended for testing purposes only.
 
-Series: gpu/buddy: bail out of try_harder when alignment cannot be honoured (rev2)
-URL   : https://patchwork.freedesktop.org/series/168789/
-State : success
+Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index c0c02ecacf8e..83b766c140a1 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -118,7 +118,7 @@ struct fw_blobs_by_type {
+ 	fw_def(NOVALAKE_P,	GT_TYPE_MAIN,	mmp_ver(xe,	guc,	nvlpg,	70, 68, 0))	\
+ 	fw_def(NOVALAKE_P,	GT_TYPE_MEDIA,	mmp_ver(xe,	guc,	nvlpm,	70, 68, 0))	\
+ 	fw_def(CRESCENTISLAND,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	cri,	70, 68, 0))	\
+-	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 68, 0))	\
++	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 71, 0))	\
+ 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 53, 0))	\
+-- 
+2.51.0
 
-CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -> xe-pw-168789v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -> xe-pw-168789v2
-
-  IGT_8988: 8988
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc
-  xe-pw-168789v2: 168789v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168789v2/index.html
-
---===============8720693815609782161==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>gpu/buddy: bail out of try_harder when alignment cannot be honoured (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168789/">https://patchwork.freedesktop.org/series/168789/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168789v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168789v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -&gt; xe-pw-168789v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -&gt; xe-pw-168789v2</li>
-</ul>
-<p>IGT_8988: 8988<br />
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc<br />
-  xe-pw-168789v2: 168789v2</p>
-
-</body>
-</html>
-
---===============8720693815609782161==--
