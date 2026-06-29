@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E9FAC43458
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 08:28:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E7CBC43458
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 08:28:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1064A10E773;
-	Mon, 29 Jun 2026 08:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0658510E775;
+	Mon, 29 Jun 2026 08:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YeIeV3jM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iR++9JBw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0C4310E773
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 08:28:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C590010E775
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 08:28:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782721702; x=1814257702;
+ t=1782721706; x=1814257706;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TR0EuXB6gfxc+w2IM3T2iGBydnhvpJRZyn6eh6mdH8I=;
- b=YeIeV3jMOM8ztJBqE8h/M3cHSrU4H12IF/TFsJ1adKg5Dd2oJJuZh9ti
- 56Z3kRZFYoP9NAfzJd8t0GtTZdEBDrSfeLbnCXDxN9SKVr/5BHrPzKVYy
- OcEID8Yic5f+RAvQvbZziRDCbCMj8+7/XNOecZ69X1lr4ouSZT4FY5iW/
- viPcum/1YqX8j/tgQuVu5sWOl51//bR6Xr60EKhVSx/F2pR6yc0aMLDKc
- 9Mj4ooVTEGoVGmzwoflubeOi0GnWv4DSu0HNoo4xWNXt5qwdKh70SdvCe
- mm5arDLalrHjkMrRcOZC2WaNsoS56koEWeZEp0f0hXQZ2SOvWR9gNi/i7 g==;
-X-CSE-ConnectionGUID: gliEelAsTg6vZe57Lu3lyw==
-X-CSE-MsgGUID: Y2FkdVtkSou4sM31J7A3HQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="82398892"
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="82398892"
+ bh=3G589Afot6ionOpKnqb6waMvpUo1x/uC1M0LhvbU2uk=;
+ b=iR++9JBwLRzbO3BbumxPNwo0q31JQ+TL4uhRRRqzTmMcTXjFPZzElDp7
+ EnzbvN+JMdmdM3oQ6/gpN6hHWq6ZI3M+YbX4bBpAJbPCBOR182YFpQNvj
+ y645OecB2us7W7chSP0i31VN2YJiv7btCWsJ3BzuiwUrtw6IZ69rcmpUH
+ E5nt1mHFfxTtwiaiRMAFkPhQMm5/0mSwP4Cfrn/qwrd4yJrKUoxl6VBrH
+ slW2we7eGnbNInfa0Khh5keeWNATsDJd3CjiQKy52QDcFBcrrzP9zlvIw
+ coWA3epTDJU91sT5DHn3X7mDxFk1mp/wysvsTUAzwbKblINV/7EYk2J69 Q==;
+X-CSE-ConnectionGUID: IxEXRlSFQjKNvzJRLvKUBg==
+X-CSE-MsgGUID: T8zoeMhpSbmrvp5MZs0w2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="82398895"
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="82398895"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:28:22 -0700
-X-CSE-ConnectionGUID: 4o/thzc1RdKocJN324rZFw==
-X-CSE-MsgGUID: 7dCWCGKpTRuWdC911eTGMA==
+ 29 Jun 2026 01:28:26 -0700
+X-CSE-ConnectionGUID: 4kgYKVNzSAylP8UNd9rm/g==
+X-CSE-MsgGUID: YAFBV87nRY2LYQ26HiIKQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="281980236"
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="281980264"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:28:20 -0700
+ 29 Jun 2026 01:28:24 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -48,16 +48,15 @@ Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v9 1/4] drm/xe/xe_pci_error: Implement PCI error recovery
- callbacks
-Date: Mon, 29 Jun 2026 13:58:03 +0530
-Message-ID: <20260629082802.3690896-7-riana.tauro@intel.com>
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v9 2/4] drm/xe/xe_pci_error: Group all devres to release them
+ on PCIe slot reset
+Date: Mon, 29 Jun 2026 13:58:04 +0530
+Message-ID: <20260629082802.3690896-8-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260629082802.3690896-6-riana.tauro@intel.com>
 References: <20260629082802.3690896-6-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,244 +72,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add error_detected, mmio_enabled, slot_reset and resume recovery callbacks
-to handle PCIe Advanced Error Reporting (AER) errors.
+Add devres grouping to handle device resource cleanup during
+PCI error recovery.
 
-For fatal errors, the device is wedged and becomes inaccessible. Return
-PCI_ERS_RESULT_NEED_RESET from error_detected to request a Secondary
-Bus Reset (SBR).
+Secondary Bus Reset (SBR) is triggered by PCI core when the
+error_detected/mmio_enabled callbacks return PCI_ERS_RESULT_NEED_RESET.
 
-For non-fatal errors, return PCI_ERS_RESULT_CAN_RECOVER from
-error_detected to trigger the mmio_enabled callback. In this callback, the
-device is queried to determine the error cause and attempt recovery based
-on the error type.
-
-Once the secondary bus reset(SBR) is completed the slot_reset callback
-cleanly removes and reprobe the device to restore functionality.
+Once SBR is complete, the slot_reset callback is triggered. SBR wipes
+out all device memory requiring XE KMD to perform a device removal and
+reprobe.
+Calling xe_pci_remove() alone does not free the devres allocated.
+Since there are no exported functions to release all devres, group the
+devres allocations and release the entire group during slot reset to
+ensure proper cleanup.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-Note: The re-probe in this patch will be replaced by
-minimal re-initalization once below patch is merged
-https://lore.kernel.org/intel-xe/20260603101814.916948-1-raag.jadav@intel.com/
+v2: move to xe pci layer
 
-v2: re-order linux headers
-    reword error messages
-    do not clear in_recovery after remove
-    return PCI_ERS_RESULT_DISCONNECT if probe fails (Michal)
-    only wedge device do not send uevent (Raag)
-    set recovery flag in error_detected and clear on resume
-    add default switch case (Mallesh)
-
-v3: do not set in_recovery for disconnect (Mallesh)
-    return if already wedged or in survivability mode
-
-v4: Add comment (Matthew)
-    Fix tab (Mallesh)
-
-v5: remove in_reset
-    disconnect if already in survivability mode or wedged
-    block I/O operations in slot reset (Raag)
-
-v6: acquire runtime pm wakeref while setting the
-    wedged flag(Matthew Brost)
-    rename function from xe_pci_error_handling() to
-    pci_prepare_reset()
-    call pci_prepare_reset() before requesting SBR
-    add blank line after copyright
-
-v7: add header file
-    rename pci_prepare_reset function (Michal)
-
-v8: use xe_info logs
-    fix format specifier for state
+v3: rename to devres_group
 ---
- drivers/gpu/drm/xe/Makefile       |   1 +
- drivers/gpu/drm/xe/xe_pci.c       |   2 +
- drivers/gpu/drm/xe/xe_pci_error.c | 118 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pci_error.h |  13 ++++
- 4 files changed, 134 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
- create mode 100644 drivers/gpu/drm/xe/xe_pci_error.h
+ drivers/gpu/drm/xe/xe_device_types.h | 3 +++
+ drivers/gpu/drm/xe/xe_pci.c          | 8 ++++++++
+ drivers/gpu/drm/xe/xe_pci_error.c    | 1 +
+ 3 files changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index e5a04253e73b..6d728f8c4c39 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -101,6 +101,7 @@ xe-y += xe_bb.o \
- 	xe_page_reclaim.o \
- 	xe_pat.o \
- 	xe_pci.o \
-+	xe_pci_error.o \
- 	xe_pci_rebar.o \
- 	xe_pcode.o \
- 	xe_pm.o \
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 4e2f115f14e2..bd94d493dfaf 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -497,6 +497,9 @@ struct xe_device {
+ 		bool inconsistent_reset;
+ 	} wedged;
+ 
++	/** @devres_group: devres group */
++	void *devres_group;
++
+ 	/** @bo_device: Struct to control async free of BOs */
+ 	struct xe_bo_dev {
+ 		/** @bo_device.async_free: Free worker */
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 9c249454cc95..c151df2fa8cf 100644
+index c151df2fa8cf..25eec09b5797 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -26,6 +26,7 @@
- #include "xe_guc.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-+#include "xe_pci_error.h"
- #include "xe_pci_rebar.h"
- #include "xe_pci_sriov.h"
- #include "xe_pci_types.h"
-@@ -1352,6 +1353,7 @@ static struct pci_driver xe_pci_driver = {
- 	.remove = xe_pci_remove,
- 	.shutdown = xe_pci_shutdown,
- 	.sriov_configure = xe_pci_sriov_configure,
-+	.err_handler = &xe_pci_error_handlers,
- #ifdef CONFIG_PM_SLEEP
- 	.driver.pm = &xe_pm_ops,
- #endif
+@@ -1080,6 +1080,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	const struct xe_device_desc *desc = (const void *)ent->driver_data;
+ 	const struct xe_subplatform_desc *subplatform_desc;
+ 	struct xe_device *xe;
++	void *group;
+ 	int err;
+ 
+ 	subplatform_desc = find_subplatform(desc, pdev->device);
+@@ -1107,6 +1108,11 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (xe_display_driver_probe_defer(pdev))
+ 		return -EPROBE_DEFER;
+ 
++	/* Group all devres so xe_pci_error_slot_reset() can release them as a unit. */
++	group = devres_open_group(&pdev->dev, NULL, GFP_KERNEL);
++	if (!group)
++		return -ENOMEM;
++
+ 	err = pcim_enable_device(pdev);
+ 	if (err)
+ 		return err;
+@@ -1115,6 +1121,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (IS_ERR(xe))
+ 		return PTR_ERR(xe);
+ 
++	xe->devres_group = group;
++
+ 	pci_set_drvdata(pdev, &xe->drm);
+ 
+ 	xe_pm_assert_unbounded_bridge(xe);
 diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-new file mode 100644
-index 000000000000..10424d038e79
---- /dev/null
+index 3e76e1ead8c1..41d77ed14d76 100644
+--- a/drivers/gpu/drm/xe/xe_pci_error.c
 +++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -0,0 +1,118 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <linux/pci.h>
-+
-+#include "xe_device.h"
-+#include "xe_gt.h"
-+#include "xe_pci.h"
-+#include "xe_pm.h"
-+#include "xe_printk.h"
-+#include "xe_survivability_mode.h"
-+
-+static void prepare_device_for_reset(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct xe_gt *gt;
-+	u8 id;
-+
-+	/*
-+	 * Wedge the device to prevent userspace access but do not send the uevent.
-+	 * xe_device_wedged_fini() releases runtime pm if wedged flag is set, so acquire a runtime
-+	 * pm reference to avoid underflow.
-+	 */
-+	if (!atomic_xchg(&xe->wedged.flag, 1))
-+		xe_pm_runtime_get_noresume(xe);
-+
-+	for_each_gt(gt, xe, id)
-+		xe_gt_declare_wedged(gt);
-+
-+	pci_disable_device(pdev);
-+}
-+
-+static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_state_t state)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+
-+	xe_info(xe, "PCI error: detected state = %d\n", state);
-+
-+	if (state == pci_channel_io_perm_failure)
-+		return PCI_ERS_RESULT_DISCONNECT;
-+
-+	/* If the device is already wedged or in survivability mode, do not attempt recovery */
-+	if (xe_survivability_mode_is_boot_enabled(xe) || xe_device_wedged(xe))
-+		return PCI_ERS_RESULT_DISCONNECT;
-+
-+	switch (state) {
-+	case pci_channel_io_normal:
-+		return PCI_ERS_RESULT_CAN_RECOVER;
-+	case pci_channel_io_frozen:
-+		prepare_device_for_reset(pdev);
-+		return PCI_ERS_RESULT_NEED_RESET;
-+	default:
-+		xe_info(xe, "PCI error: unknown state %d\n", state);
-+		return PCI_ERS_RESULT_DISCONNECT;
-+	}
-+}
-+
-+static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+
-+	xe_info(xe, "PCI error: MMIO enabled\n");
-+
-+	/* TODO: Query system controller for the type of error and take appropriate action */
-+	return PCI_ERS_RESULT_RECOVERED;
-+}
-+
-+static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
-+{
-+	const struct pci_device_id *ent = pci_match_id(pdev->driver->id_table, pdev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+
-+	xe_info(xe, "PCI error: slot reset\n");
-+
-+	pci_restore_state(pdev);
-+
-+	if (pci_enable_device(pdev)) {
-+		xe_err(xe, "Cannot re-enable PCI device after reset\n");
-+		return PCI_ERS_RESULT_DISCONNECT;
-+	}
-+
-+	/*
-+	 * Secondary Bus Reset causes all VRAM state to be lost along with
-+	 * hardware state. As an initial step, re-probe the device to
-+	 * re-initialize the driver and hardware.
-+	 * TODO: optimize by re-initializing only the hardware state and re-creating
-+	 * kernel BOs.
-+	 */
-+	pdev->driver->remove(pdev);
-+
-+	if (pdev->driver->probe(pdev, ent))
-+		return PCI_ERS_RESULT_DISCONNECT;
-+
-+	xe = pdev_to_xe_device(pdev);
-+
-+	/* Wedge the device to prevent I/O operations till the resume callback */
-+	atomic_set(&xe->wedged.flag, 1);
-+
-+	return PCI_ERS_RESULT_RECOVERED;
-+}
-+
-+static void xe_pci_error_resume(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+
-+	xe_info(xe, "PCI error: resume\n");
-+
-+	atomic_set(&xe->wedged.flag, 0);
-+}
-+
-+const struct pci_error_handlers xe_pci_error_handlers = {
-+	.error_detected	= xe_pci_error_detected,
-+	.mmio_enabled	= xe_pci_error_mmio_enabled,
-+	.slot_reset	= xe_pci_error_slot_reset,
-+	.resume		= xe_pci_error_resume,
-+};
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.h b/drivers/gpu/drm/xe/xe_pci_error.h
-new file mode 100644
-index 000000000000..725ad0214e62
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pci_error.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_PCI_ERROR_H_
-+#define _XE_PCI_ERROR_H_
-+
-+struct pci_error_handlers;
-+
-+extern const struct pci_error_handlers xe_pci_error_handlers;
-+
-+#endif
+@@ -89,6 +89,7 @@ static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
+ 	 * kernel BOs.
+ 	 */
+ 	pdev->driver->remove(pdev);
++	devres_release_group(&pdev->dev, xe->devres_group);
+ 
+ 	if (pdev->driver->probe(pdev, ent))
+ 		return PCI_ERS_RESULT_DISCONNECT;
 -- 
 2.47.1
 
