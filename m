@@ -4,103 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E72CEC43458
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 16:23:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3635C43458
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 16:25:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2FC110E2C8;
-	Mon, 29 Jun 2026 16:23:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 582C510E2C8;
+	Mon, 29 Jun 2026 16:25:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OZidQczZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kaedL6yD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8883D10E2C8;
- Mon, 29 Jun 2026 16:23:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBB5710E2C8
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 16:25:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782750196; x=1814286196;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=60Kkhn1S4xFp8KF1ZAF46WPmvC0pF6KOvaZqQh2Mlf4=;
- b=OZidQczZx8P1Vo1Xs+EgC9oVEH+HS3OI/1r8KI2aLZljAIhr5r29CPvP
- fPyhEGqQK5Ck1cue2yJKQWs8l65/IKe50DwaNTk6PQW5pJWD4PwPVo5Bi
- jG+btG192ssMAKVka6mPYAOi39hdkIUnsP9S1Hlf0k4pDsCu1deH7Ug9s
- yO1WkR8C/B4uvOgGQZA1jxgagRDY+4fQDdnq0Hlp+6Yu/OzoscAakHEeF
- GtxTyIlFaaQKufCiyypLxbn4ZGc4R3IBxu5OR14sZYLvFykWqxfBSz5Kq
- +YoLxQFsQVEdHshYRR8QyDI6IwIxkY7Grrxkm7aC3dhkhu1WFWLyCROcm w==;
-X-CSE-ConnectionGUID: Wf/Z+a6bRziUGyTcRQSnRA==
-X-CSE-MsgGUID: ul1f/wOcQleTeWvokiJf8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83476035"
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="83476035"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 09:23:15 -0700
-X-CSE-ConnectionGUID: tfo8W8J/QcSmRxl6mSfrug==
-X-CSE-MsgGUID: qa+c086/QemtMiZKLSzfAA==
+ t=1782750339; x=1814286339;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=3eNeMJesmLVeamdWU1vcTRRAJhA28f7qiXb1tGg625c=;
+ b=kaedL6yDNa+65rU+ceFvG4WVL6SHoCnFvoasQj5GhjgJ52MxeALpmCpa
+ cB/1YXwREkA76n1fmk1tjkpMVrGXBgsWUbFkUiezgzwDy4/t9enCVpT/X
+ gHBYIEE1BMb5506uS2d8s9B7/BXf4q1ZOPGSksucfv4r3/0w+IpD2HX6S
+ FzKaSnXD2Ha1g9GlJ1VvCTQ2dYEPC+WKPRiRu50yC/giTwbAE00RRPLBj
+ 0moVYlU02YEbNTQZmrZjhmck7Ylxcdo/XMAuB5ACBbAVpuaxaILgeZ6xS
+ SEmYNZxH3vC06xsoJSuQiux01C2NUyA2eir7O10Izt+OhjnM1+IpVIbQ3 w==;
+X-CSE-ConnectionGUID: 64dDQGoaSNGP0aFz3FSdLQ==
+X-CSE-MsgGUID: Fh/ySwraSCi0apO9fOsYqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="106239422"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="106239422"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 09:25:38 -0700
+X-CSE-ConnectionGUID: QJbXb3PDRJCD3TGo2QBIhA==
+X-CSE-MsgGUID: 8oCc/d8TSQOq6Kv/Sjg1dw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="256920930"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.207])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 09:23:02 -0700
-Date: Mon, 29 Jun 2026 19:23:00 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>,
- Thierry Reding <thierry.reding@avionic-design.de>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Peter Chen <peter.chen@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- driver-core@lists.linux.dev, devicetree@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, linux-pm@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, stable@vger.kernel.org,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v2 00/19] driver core: count references of the platform
- device's fwnode, not OF node
-Message-ID: <akKb5LPBIMenF9yD@ashevche-desk.local>
-References: <20260629-pdev-fwnode-ref-v2-0-8abe2513f96e@oss.qualcomm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260629-pdev-fwnode-ref-v2-0-8abe2513f96e@oss.qualcomm.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="247545648"
+Received: from rchalla-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.128.110])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 09:25:38 -0700
+Date: Mon, 29 Jun 2026 09:25:37 -0700
+Message-ID: <87h5mljou6.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH v2 1/4] drm/xe/oa: Rename last argument of
+ WHITELIST_OA_MMIO_TRG
+In-Reply-To: <20260626163937.GR6214@mdroper-desk1.amr.corp.intel.com>
+References: <20260617015422.226177-1-ashutosh.dixit@intel.com>	<20260617015422.226177-2-ashutosh.dixit@intel.com>	<20260626163937.GR6214@mdroper-desk1.amr.corp.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,46 +71,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 29, 2026 at 11:12:23AM +0200, Bartosz Golaszewski wrote:
-> Platform device core provides helper interfaces for dealing with
-> dynamically created platform devices. Most users should use
-> platform_device_register_full() which encapsulates most of the
-> operations but some modules will want to use the split approach of
-> calling platform_device_alloc() + platform_device_add() separately for
-> various reasons.
-> 
-> With many platform devices now using dynamic software nodes as their
-> primary firmware nodes and with the platform device interface being
-> extended to also better cover the use-cases of secondary software nodes,
-> I believe it makes sense to switch to counting the references of all
-> kinds of firmware nodes.
-> 
-> To that end, I identified all users of platform_device_alloc() that also
-> assign dev.of_node or dev.fwnode manually. I noticed five cases where
-> the references are not increased as they should (patches 1-5 fix these
-> users) and provided three new functions in platform_device.h that now
-> become the preferred interfaces for assigning firmware nodes to dynamic
-> platform devices (in line with platform_device_add_data(),
-> platform_device_add_resources(), etc.). The bulk of the patches in this
-> series are small driver conversions to port all users to going through
-> the new functions that now encapsulate the refcount logic. With that
-> done, the final patch seamlessly switches to counting the references of
-> all firmware node types.
-> 
-> This effort is prerequisite of removing platform_device_release_full()
-> and unifying the release path for dynamic platform devices using
-> unmanaged software nodes.
-> 
-> Merging strategy: The entire series should go through the driver core
-> tree, possibly with an immutable branch provided to solve any potential
-> conflicts though these are rather unlikely.
+On Fri, 26 Jun 2026 09:39:37 -0700, Matt Roper wrote:
+>
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-for patches 2-4 assuming they will be accompanied with patch 19 at the same
-time.
+Hi Matt,
 
--- 
-With Best Regards,
-Andy Shevchenko
+> On Tue, Jun 16, 2026 at 06:54:19PM -0700, Ashutosh Dixit wrote:
+> > OA head pointer registers are not used by UMD's and do not need to be
+> > whitelisted, the last argument of WHITELIST_OA_MMIO_TRG is actually used
+> > for whitelisting tail pointer and OA buffer registers. Rename the argument
+> > to tail_buf to reflect this. OA head pointer is sometimes provided to the
+> > WHITELIST_OA_MMIO_TRG to have the correct register offset alignment (16)
+> > for RING_FORCE_TO_NONPRIV_RANGE_4.
+>
+> We should only be using that in cases where we definitely have four
+> consecutive registers that _all_ need the be accessed by userspace and
+> that are documented as okay to whitelist in the specs.  If userspace only
+> has a need for two consecutive registers, there's no reason to be using
+> RANGE_4.  Granting userspace access to two extra unnecessary registers is
+> a DRM uapi violation (and also a potential security risk depending on
+> what the extra two registers wind up being).
 
+We recently merged
 
+https://patchwork.freedesktop.org/series/166809/
+
+So OA registers are basically only whitelisted now with "explicit
+permission from root" (they are not whitelisted by default and also we are
+preparing series to fix this up in previous stable kernel versions
+too). Our position is that if root has given explicit permission, "all bets
+are off" (I will write a patch documenting the sort of things which can
+happen).
+
+So imo we should treat OA register whitelisting differently from other
+non-OA register whitelisting. Further, we asked our security guys
+specifically about the use of RANGE_4 for OA and they have okay'd it.
+
+> I think the proper fix here is to get rid of RANGE_4.
+
+There are few things in flight here (explained below), but the reason for
+retaining RANGE_4 was discussed here:
+
+https://lore.kernel.org/intel-xe/87ecin7259.wl-ashutosh.dixit@intel.com/
+
+So if we drop RANGE_4, we will currently use up 12 nonpriv slots for each
+media engine (leaving no free slots for other workarounds etc.). Of course,
+we can fix and merge the patch to increase the available nonpriv slots from
+12 to 20. In patches 3 and 4 of this series, we are also trying to stop
+whitelisting OASTATUS, so it that goes through (there's some discussion on
+Patch 3 currently), that will also free up 1 nonpriv slot (3 in total for
+each media engine). So if we do any of this, maybe we will still be able to
+drop RANGE_4.
+
+But the question would still be should we still save 3 nonpriv slots or not
+(for media engines and 1 nonpriv slot for rcs/ccs). But anyway I think
+we'll have to do one of the things mentioned above before we can drop
+RANGE_4.
+
+Thanks.
+--
+Ashutosh
+
+> > Fixes: ed455775c5a6 ("drm/xe/rtp: Refactor OAG MMIO trigger register whitelisting")
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_reg_whitelist.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > index 2e84b1c49f374..a17ebacc1455b 100644
+> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > @@ -104,10 +104,10 @@ static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+> >				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
+> >	},
+> >
+> > -#define WHITELIST_OA_MMIO_TRG(trg, status, head) \
+> > +#define WHITELIST_OA_MMIO_TRG(trg, status, tail_buf) \
+> >	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
+> >	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
+> > -	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
+> > +	WHITELIST(tail_buf, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
+> >
+> >  #define WHITELIST_OAG_MMIO_TRG \
+> >	WHITELIST_OA_MMIO_TRG(OAG_MMIOTRIGGER, OAG_OASTATUS, OAG_OAHEADPTR)
+> > --
+> > 2.54.0
+> >
