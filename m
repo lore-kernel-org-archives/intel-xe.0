@@ -4,99 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49ED2C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 02:29:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D07EFC43458
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 03:59:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1018E10E6AC;
-	Mon, 29 Jun 2026 02:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5EF10E002;
+	Mon, 29 Jun 2026 03:59:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Cs4qdwqn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JekhQRsr";
 	dkim-atps=neutral
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012067.outbound.protection.outlook.com
- [40.107.200.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39B9910E6A3
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 02:29:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A856010E002;
+ Mon, 29 Jun 2026 03:59:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782705591; x=1814241591;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=7NIdo0cnH/PmGUJHQKcuxjuP0wh3nYCwNS71TrcWl98=;
+ b=JekhQRsrSKmMVa5Q5S3KeXVcpSn0Nwl7KYWGUfCWcK/X3esBmyPUA1DO
+ 5CmUiIh8HL3InaRlICSt9cByZIcsTJXE3/sMEGcWBUXFDaPdrlwtMHP5U
+ q/sVFe1QDCX0zwFgn8CT08DlQAeWGbGByqX9/IgHdQHh0IswBL2MV9tK6
+ ON2wfXBZ0pUvndH0DakWP6cJSXnVMcPWzeObzcO+P10jip4+/bCUXpHRt
+ eFrnITT94KpeA89XjkXoo/FGVP+TbMwBk663YRJKD4efOe4fIj0O+gtQI
+ nMszoX4wkXewVTleOoffL95GAiGO3qV1jEvDOiQcTqtjUzpJoPdSr8KWY Q==;
+X-CSE-ConnectionGUID: fUmX+RZFSOKB8KDswwvGkw==
+X-CSE-MsgGUID: WKREvaxRTiGlnXohRxnPug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="83527686"
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="83527686"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2026 20:59:50 -0700
+X-CSE-ConnectionGUID: loGOaWrFT16YudExO5hrrg==
+X-CSE-MsgGUID: QgMkQE6gRZWMQqlx7zxiwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="248476113"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2026 20:59:50 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Sun, 28 Jun 2026 20:59:49 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Sun, 28 Jun 2026 20:59:49 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.41) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Sun, 28 Jun 2026 20:59:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mJtzTRUdRtuuYvrStSW8/gNuZdiTlb4sDGmoOv34VjkYWTFxxC9iKPE6PHEDpuRyJUvIZX2MnsIk7/ZOQ/gJDGxWHbYUlbQMo6Fr7VGaH90StMTZSdjnC8mshLaeRVCz8O5zifpZZz27L80ZuR5FKVpxBQffsswf2f80htLE0A+cbiquXRpJoZoDOaqUfGI141M4n5QYe/CSLvbNyIXONKeJe/0tawvdBWW6MtEZEM9Rgvq8WsRTFhmnifPmJoYuAdY1vuGlyDwbalkeD9Goom7IrqdT/NdLSas5ohHX3MVC2zhVWs4h62z+bCKe8/BqRJIZnihby2qj1GD7dFOgbQ==
+ b=gU3bnSdiyO8mCMQSjREujiZjEPz03OfO2UUC+lp+U0E7CYg14q2xjTMUkeeSvldLs6h6fizclsni73TKEh8NDKPHmab7ye1HFcMs3PtDvSvSol284oaGEijkFBGxtGFyPLwjm7EeSRHCv49s62WKXDuXhF+X6e39qLJT9ZK2avkdkjtQnfMaiFi3Tn9V3FgPzFio5wBt0zPPRYWn7W2mGNN46SVgzIHGAXeRBM42iI18866sbGlzHGiv2o+mmERLqYOhAkhno1Tgza758ePYG7Gf4PgFuoWdaa07tvcSJkRL3B10f3dy6m/nc/wnuQ3tY3Xn5MQ2lY81rx7pkZ7B8g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CHDMa5NODSlqF1ak0f3pBSIUSBefKs/FDTgD36oeFGM=;
- b=cADMSHBp3qQWKBOHojjW0aPlM1TXthKAA+kdtwExKP2FXaAqk9B31/RBLE0n03PYQ7tzE4EszuiRec6jCncTjgj3fhRALtFkwUOjqZ6rOAfvBYXgDzl6vkiRUzZ6rVwZ0mXOoKm/4VI9BsimAcNXOrkCcnq0V18BlWY2ivtLXsdUX7qzahsNgZqf2lLkF7yiBV750T4pRwrVim+Ljb8jtMQMmQDWMcYyhxw3sx21cEMsbERMSpUlnWpaZrkrE+63nH/inxZQ66o+8f315IUbOgKQr6FT2Qyu4TT304z1mCigaK8zRkafmjUEgqiE7k2d0PJXTCu6gO4fpQXCBJWfWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CHDMa5NODSlqF1ak0f3pBSIUSBefKs/FDTgD36oeFGM=;
- b=Cs4qdwqnK9Oohw3ZF3c6enhqZxkzJjJYLU2QD/ZNpPi1qIFS/lwP45//whbWFx/08PTX8i6/XTKW+0Wmu56MIDp+XAgxTeRXLkqnknPi4AREHDHAyIQLJR5LjfsZnkJhvp0qgXdjXhoxbI+QLv5asKQk0FIer07mWmOpEttie0o=
-Received: from SA0PR12CA0017.namprd12.prod.outlook.com (2603:10b6:806:6f::22)
- by MN6PR12MB8471.namprd12.prod.outlook.com (2603:10b6:208:473::19)
+ bh=hLt7j+ZOfAsW7HM8HEeCUDYuwn92OMx6TtDMSXJMNEg=;
+ b=mrrnqyD1qoMp5o4XMgpk04JtZIP0lQWV6ObIAcfk+yre1aV2iT2sm2kXgcnGjPY4WwPvqdsVR4KZbeEC/OPpA7HxJQhMFL1PIm0ThseWLFlOG2D7dtJCxfU1TQvVY+NdSQ5GPfmt9QI10/aUQLv0IdjJbS5OLmnhzO5Zb/9DIwZrUjvudLer1FHiG3muU+V1x/xyH1J3aOvBCC/4t2ChVjSUGamwVI+EYbQr1LhyYJE6agPUdBu7VIZFiGVnbiEg0nxSq4DiQydGKCg3QJ37PJiOrF4cYvz10VGtMBZIJNZRoP2FW6Ep7WwHRNjodtkXelxiDwoJiRdlMs0BI7pqZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA3PR11MB7554.namprd11.prod.outlook.com (2603:10b6:806:315::9)
+ by SN7PR11MB6679.namprd11.prod.outlook.com (2603:10b6:806:269::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
- 2026 02:29:40 +0000
-Received: from SA2PEPF00001508.namprd04.prod.outlook.com
- (2603:10b6:806:6f:cafe::1f) by SA0PR12CA0017.outlook.office365.com
- (2603:10b6:806:6f::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.19 via Frontend Transport; Mon,
- 29 Jun 2026 02:29:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SA2PEPF00001508.mail.protection.outlook.com (10.167.242.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Mon, 29 Jun 2026 02:29:39 +0000
-Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Sun, 28 Jun
- 2026 21:29:38 -0500
-From: Honglei Huang <honghuan@amd.com>
-To: <intel-xe@lists.freedesktop.org>
-CC: Honglei Huang <honghuan@amd.com>, Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v7 2/5] drm/gpusvm: embed struct drm_device into
- drm_gpusvm_pages
-Date: Mon, 29 Jun 2026 10:29:18 +0800
-Message-ID: <20260629022921.17533-3-honghuan@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260629022921.17533-1-honghuan@amd.com>
-References: <20260629022921.17533-1-honghuan@amd.com>
+ 2026 03:59:42 +0000
+Received: from SA3PR11MB7554.namprd11.prod.outlook.com
+ ([fe80::3ec0:2280:db82:d67b]) by SA3PR11MB7554.namprd11.prod.outlook.com
+ ([fe80::3ec0:2280:db82:d67b%5]) with mapi id 15.21.0159.016; Mon, 29 Jun 2026
+ 03:59:42 +0000
+Message-ID: <113da161-b03f-47ab-973d-96799ada5f13@intel.com>
+Date: Mon, 29 Jun 2026 09:29:33 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/i915/dp: Prefer DSC over a 6 bpc uncompressed
+ output
+To: Alexander Kaplan <alexander.kaplan@sms-medipool.de>, Imre Deak
+ <imre.deak@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Chaitanya
+ Kumar Borah" <chaitanya.kumar.borah@intel.com>, Nicolas Frattaroli
+ <nicolas.frattaroli@collabora.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <aiw0oaqf6Obrg054@ideak-desk.lan>
+ <20260612184638.7667-1-alexander.kaplan@sms-medipool.de>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260612184638.7667-1-alexander.kaplan@sms-medipool.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0079.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::7) To SA3PR11MB7554.namprd11.prod.outlook.com
+ (2603:10b6:806:315::9)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001508:EE_|MN6PR12MB8471:EE_
-X-MS-Office365-Filtering-Correlation-Id: aa35c70b-b8ed-45ac-262b-08ded5864567
+X-MS-TrafficTypeDiagnostic: SA3PR11MB7554:EE_|SN7PR11MB6679:EE_
+X-MS-Office365-Filtering-Correlation-Id: 087578af-7860-43ee-5710-08ded592d92e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|376014|23010399003|1800799024|22082099003|18002099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: BM595shg3g3Ggg/ERvNl6bZU/rPleegPfOPeGHIz+Gn4oNqsrjfy2264XTWqpDV2pHIlYyb9Kc0p5O/yO5fmGtBj9uAZzIRtyD8Y+ILWuMI0U53IRI+3VwiVpJBD9lpO8zUEXoLlml0OzAXHKJM6WLySjb+oi/HWhM/5F4i3Zqglgd2zYz0+KsJUQ6cMZAAti7twYOc/Ujb/OOf63SrAyouBQbbkMHzR9dWzM1zbNx74pGwGWQfszyA6R4AoifmTaHeWUHW2xgLVqGOS1LCeTSLAQQw929MEXWf3ophCCeCEPgQMOwBKLJEFLUjULMf4lWJoo2DpA6KiMAWEppokfvBymSfAXzEhHDd3gOEAoC2iEcwAuMFYKHSC1ZKc+lwALI8YGG4kCjS0diOR7KsxeWIphMxVMcHNPBdTIf9SFVoHyaIItZBogr8DiuShZiDz7IF5IXwlWNdRHV8FKp8+ho7/pSjKJLGo+5IqF/JyzCNDtOpYytz1QfYTbE7t8nhyUCGNNfW2zfavrZdpIg3y2BAtYhkA27R9AW4+6WV0rq1uZq9oy/c7BiAVf1EaT6e//2ssBiZfAzYZOWYWksVXhy1dZAMqcdKtDh1/2aQClhWOJi8axU9qHQQE1SqaMGqsnszY0BPMuYpJK/p6BmT6RauE1dB29Vq8yuJGwHToQ1xpi1/ksV3A/Lrn0fc6UOGKX7CVnyArtTbZi1NTfUo1wA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(376014)(23010399003)(1800799024)(22082099003)(18002099003)(56012099006)(11063799006);
+ ARA:13230040|1800799024|376014|366016|23010399003|6133799003|3023799007|22082099003|18002099003|56012099006|4143699003|11063799006;
+X-Microsoft-Antispam-Message-Info: 7wbfE+rkUcB7hyacAiDyAO1SJMP1eTVFQ9JiZLk2s+2iBHYz8SaP5kk9mmfhJQA1CdMP3pKsEIODSpKoE68lw5aUEZ6GBqlAEzdWDPRBzCopg63JNqtTGShMW4T9PZFLKiiM1csTkjlDJHHZWU/NkfAqw18LLv/qSPQiVswMnADfQdFIATUvW5m0XNhY0ANYFPkhME6QUA3EGmAcfsXx3pMLbhBbqTmzlRaPahREcbOnPYTBVid9odvh8SEFOU4RuXAWXDp9wZdAgw6FjJuQEYeTX1nA+ew8Nr8h4AKwTKQ9hC0IjvFSwvviCF9RaPXEpdrntkY59r3BoNn3LSVjZiX3ffupX8vLAk7c3KGNAB36P+0Ef5lodp/RDQRJ+5shL/MLwAp9S3hCT9/tZeXZiMw1QtkhhqO1qYPL5laZB3arVuOY3dZWS9Od6VQ6t+6+zcvXVKU/U2h3UnY5sioH8V2t2k8Q3WepmM2ESauu1+Fk0T6IxmBUqcFEu+xeJpfFJGfXr6Q6JUFJNM2VJvkSKj5RQcToz8sQ7IPZxuPZclD+OB3p2/uiBjAQF6TTt72jNefpaET2EJnboZG6jCMCLe4eO9KWaNwBjaVVSeei25jJgqG4IbAdKPs4x1AZwi/LkY/NsW0UA93VzAK1Xu9UuYzg2WpfJkVq2YDXI///OiI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA3PR11MB7554.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(6133799003)(3023799007)(22082099003)(18002099003)(56012099006)(4143699003)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: c42LH5G3TiJEdIIINlNli/Z7ZNvoygeBOkFZa9wHBB2vmYJ7tugQFIai3He2/K5515xUBZzO2OvaC75dtC6rEaifWhTpcn/0zBKgBTKlIyv6RE2kfAqhYZSBu1DNlKeq08wr86rDL0gGWi+8xi00ihvd/p9xTFxz8Q+EhPuxTEOM8HRALD4w00v3MejM/YsRKwC2iJ/GW63wk27L1JWz3XixYoAEI6IniCsysVzZfvStTd0ZULjzJ8G5W+GFQQFWSlzpNs/OgKYEjShNR7suPzdce4TmkZTdIkJ3Q98+aavK/vCTAfWnxdFNywN1ctw+KLhQcDnRkK2+NE2cK9Jw0uz5i3Twe2KfNX7B2HVBG6n18r9RxmJdam9aZeRTDf1Op2XGD1i3pPM5+L4kNwZfI1iGjMxLiCa1zat1lGAxBCQHgdGw0IHuLALWx3zZpDew
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 02:29:39.9143 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa35c70b-b8ed-45ac-262b-08ded5864567
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001508.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8471
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?clhwYUo5SEh0ZFpFaElGdzFUcDlIQ0d4eG00ajhDbytPQSszcWRVczYzVGpm?=
+ =?utf-8?B?YkZWdndxWU95Z1pybVN5UnJwd0YzQ2loZVIxUVM2Y2x2dk9TeHQ5akFjRGx3?=
+ =?utf-8?B?eG9yQzZobE5xSEZrS09qUGZldjMyUVJZc1pNYUlwQlNzc21ZWUpaQzFZNlg4?=
+ =?utf-8?B?N3dGRjhsNHV4K2ZZRlIrbzlPaEYvaGphQUtVa0FMZmdQRFR2SXJLaTVSTjh4?=
+ =?utf-8?B?ejRUUExLa3Z1N2ZsaFkybXZHK3BPbkszcUpTQ2FCTlBlOWtwSlo0c1dPNDRT?=
+ =?utf-8?B?dTFNQVh4eW5kSGk3QndnYnphUVZkd3pXUFhmRFoyK1ovdUlEN28wcWxWRTVJ?=
+ =?utf-8?B?SGdGZTNjbU1ZaE94M21DMGt2S2paMWtLOWlUTFU0YXI4T3Flc2MraXljeG5M?=
+ =?utf-8?B?dVFrVE9JNXFiUHV3WW1WRWFHaEhCOUc3K1RaeUFOTkhsVVQyQ2VGck04UWhH?=
+ =?utf-8?B?aTVlTGVUckZSQ2VBRU1MN2Q3RllLUGdkK0M3TzByUWdXZm1mVTl2clhCN1JC?=
+ =?utf-8?B?cGV1eVE5OGo2RUVmMWlzN2xaTkRiR0dSTTNVdFRLWHZrSW02a2RwTytTOE1K?=
+ =?utf-8?B?aTJydGhTM3NWUlY0dnFHcWJaeld5aGJoN3FIVDBXYzViVHFYUXlXQm9VbS9r?=
+ =?utf-8?B?NmFlRnpqZmg2UXlGTWVMdHNWTWoxMzJJU0xlU0RFaGlQdUtKQUlLdXdHaGha?=
+ =?utf-8?B?aVVPTXppWWJvMlVkVW9WV1pPUzQ4Z1VyVnN2bkZxTXdMNzB0NGlFdjFtbHpz?=
+ =?utf-8?B?clBVRXpKbDQ1QmxkTjU5NDh6aHAyK0Fwck5QNDhkcnJieDVWR2hMMTBucisy?=
+ =?utf-8?B?dzZ2VWhDWmc1VjVuUHpLTlJ4L2JyUVQ3UUdQT0NwbG1JaUd4cFZRN0FKM05l?=
+ =?utf-8?B?OWdnOW11Z1dscE5xck94NndvUVhiQUExVGwxTjgwK1MyN2dHcG9Zd1Rhck5K?=
+ =?utf-8?B?ZVpjdlJHTmg1Y2tTVUpRVmgwREwrMDZRSVNNRzhDdUo0bkZPN2FOSVQ3bUsw?=
+ =?utf-8?B?a0xHWmloZGNNcFBxaWRLbFkzMytrTk0xZ1RJcHBmUlhLU040aUtyY29JRzZt?=
+ =?utf-8?B?TGZlWjZRZlhtRTE4SFgvcVdBRFFncm5QbEVFdkVDMGFleTF4MlpIZW9KSDRr?=
+ =?utf-8?B?cDZZbjhsQ0dxQlNqa21iclYzZ09Tdk1GaFBkaGNTVWkrOWE4MW5UTzhyeHpq?=
+ =?utf-8?B?anF6d1JZZnU3Z24rMEY4OTIrckVJMldEdHN4QS96aEZjN3QxcUVrYUU5bkNp?=
+ =?utf-8?B?WkpSdk9FMXozMXNqUzVkemxrTytvWUhQT1lYN3JHZ2xuT0l1R1ljWVVqNjYv?=
+ =?utf-8?B?aDhYTE5mMkh5OGRSZXBPYjJRRFFjU2F6bUFhSDhVVVl5TDJCdHRibHhYVDhh?=
+ =?utf-8?B?anBzV1JlRjIyWTYxK0MzT2FzaHJ2R2FpYlBwdG9nenZIaDhhZGl4ajdIaDlT?=
+ =?utf-8?B?MGJLeGlHeGJXSWJvejU4Y25MNkdQbVhuRjdwU0k4eDZCSnl1aGIwNnBCQWhp?=
+ =?utf-8?B?NW9DUFpJbndyOUovc0RDOWMxOElRdEJRRmErcTBzV0hKaVpZSkhsa2VjNExU?=
+ =?utf-8?B?T0YwZ2F4QlJ3dm8zbU03eHJ0ek1GSTNCeVAyVStxS2NlaHIvRGNUSEZzNnZr?=
+ =?utf-8?B?MlozMGRabCtaRnA5cXhHcFZSa3ZaL2ZKMWtzSC9qNjdkL1ZiOUxSVkxkVVAw?=
+ =?utf-8?B?ek12cUk0V2hwQ0ZwUDljUzlEa1BlNFVKckRaOTBjYTZGeWFSeVR1NERvNmd1?=
+ =?utf-8?B?WWllOFZPTEdJZENVNnIxc09vWjZQbnN6OUNyMW9td2ZtaTc4cjQwNUxpdTlj?=
+ =?utf-8?B?cXUrSm5UMmRkT3pFZm1tTjJmcVNlcVJPQ3BxSUl5U3QxZzExa2gxRUpCdnVH?=
+ =?utf-8?B?MGxrdElQRU9vQkNpTzNZM0wzdFpPclNwYUtJRnpXdE5FMFlvTFRSOVdOaXV0?=
+ =?utf-8?B?NU0yUDFJY1piVDhMeUg1bWtmVlRUbjdoNytBLzRwTkptNlhLUHNiVVdITFJK?=
+ =?utf-8?B?QnU1Z1c2ams1MmNQTHRvUFgyQ0JTRy9CdEhXVDJuNWNob3V1RDhud3I3dlo0?=
+ =?utf-8?B?UXd3TDBVU3JmdUl5U3FGWmVWb0J3T3R1eks0K2tYN2FGaXgvcmZBYmtlQ3R4?=
+ =?utf-8?B?N1VlOHVEN0JacXRkNVQ5OWNuVTB3TnFpR2U4dlBOcmd2Nmpxcmt3QXlYZ0Rz?=
+ =?utf-8?B?L1ZXazZSeXptOVNNZTFlcWdYeTVCaElaWUtHSlhRNmZ2M09POFpQdzR6WVFy?=
+ =?utf-8?B?WkZPRG1kVklSSXpqckUyNVR2VEpTSjVwY0c4bURaOFJzSlp2eG5aWXVKam9R?=
+ =?utf-8?B?bCtkdFgvQ0FEU1FtQjJDeGMxdHhWL0lRWkU5WUxmZWZ6VTFiQVdlZis3dVNm?=
+ =?utf-8?Q?SQKTWbWqt16U4QLE=3D?=
+X-Exchange-RoutingPolicyChecked: MB1zO2v0pMmu8duZDF72BA2B68ojIQZUf6Qe2yTtuSXsSWaVQsCfj7p2Qxlwx5nXPXqVAA+hibZU0CozfZqXsGNg964sM7JBeeJYchTsMiDMMnS9U2J6QCo64IsjHRzSOUYAyL/ljnnjniy2PWVme1IlzN5bj5nnhGDxzAr/p1bYhn5NS+8qqo9jXMTtzpQEjuDKjyGGDTz1olLQbb/mVvHOTX4H7Zcyq5Mm7JoE8Dj6Vbcw3RzSKqR1CzSOCHcQ5JoM7t4jFaO2IhQcjFA8NeHqA5PjTyWdVxMShP3GHZdORYS9zdiVjlvuyKjJYLsW3sZj+1QKKaeAdPcu52sbtQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 087578af-7860-43ee-5710-08ded592d92e
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7554.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 03:59:42.2446 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Xyw4OBN6TgnjwEyloYQemctgd3yRp2wr5UqJtB4NpphVHdHLmMhvITAGGgf+GLRua3vx4TCUcCvtqWJ7DFZMwb6IdbOkyiUvt0glV4tvTfs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6679
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,183 +175,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_gpusvm_pages is the layer that actually represents physical
-pages/mappings it owns the dma_addr array, the dma_iova_state...
-With the previous patch, so drm_gpusvm_pages is now strictly about
-physical pages and their DMA view.
 
-Since now the drm_gpusvm_pages instance is inherently bound to one
-specific drm_device, make that ownership explicit by giving
-drm_gpusvm_pages its own drm_device handle, and drive all DMA through
-it instead of through the gpusvm:
+On 6/13/2026 12:16 AM, Alexander Kaplan wrote:
+> On Fri, Jun 12, 2026 at 07:32:33PM +0300, Imre Deak wrote:
+>> So, this would be a generalization for/instead of the HDR logic above
+>> using a intel_dp_in_hdr_mode() ? 30 : 24 limit (which would also apply a
+>> lower max-bpc limit for HDR as well).
+> Hi Imre,
+>
+> yes, it follows the same pattern as the HDR logic, with one deliberate
+> difference.
+> The extra crtc_state->pipe_bpp check makes an explicit max bpc property
+> request below 8 win over the new limit, so the uncompressed 6 bpc path
+> stays reachable.
+> That keeps the current uAPI behavior under IGT kms_dither and leaves an
+> escape hatch for sinks with a broken DSC implementation.
+> The HDR limit currently wins over a lower property request, so a merge
+> into an intel_dp_in_hdr_mode() ? 30 : 24 block would, as you say, make
+> HDR honor such a request as well.
+> If that behavior change for HDR is acceptable I am happy to merge the
+> two blocks in a v2, otherwise I would keep them separate.
+>
+>> There could be other reasons to prefer DSC, like a more finegrained BW
+>> allocation on MST links. But there are also reasons to prefer non-DSC
+>> mode like power saving (no need to enable either a DSC encoder in the
+>> source or a DSC decoder downstream), or reliability issues related to
+>> DSC.
+>>
+>> There's been a lot of talk internally about the above aspects and how to
+>> handle them in a way suitable in all scenarios. Hence, I'm not sure if
+>> adding more policies to the driver like the above bpp limit/DSC
+>> preference is too ad-hoc/early or not at this point.
+> I understand the hesitation about adding more policy, but for this
+> series the patch is less a quality preference and more a dependency of
+> patches 2 and 3.
+> Those open up RGB configurations on FRL links where previously only the
+> 4:2:0 fallback existed, and for modes like 4k120 on a 4 lane HBR3 link
+> the only uncompressed fit is 6 bpc.
+> Both tested Synaptics PCON device families output corrupted FRL timings
+> for exactly that configuration and the TV shows a black screen, while
+> the same mode works with DSC.
+> So without patch 1 the series would trade the previous 4:2:0 picture
+> for a black screen on this hardware.
+>
+> I also think the 6 bpc case is narrow enough that it does not really
+> open the general DSC versus non-DSC question.
+> 6 bpc is a DP and eDP panel concept, HDMI only defines 8, 10, 12 and 16
+> bpc output depths.
+> A PCON that has to forward an 18 bpp stream to an HDMI sink has no
+> valid HDMI output format for it, which would explain why both device
+> families fail in the same way.
+> Windows and macOS drive 4k120 on these devices via DSC, and they have
+> no other choice, RGB 8 bpc at a 1188 MHz pixel clock needs 28.5 Gbps
+> against the 25.92 Gbps payload of a 4 lane HBR3 link.
+> There is also precedent for forcing DSC where the uncompressed 18 bpp
+> path is broken, commit 55eaef164174 ("drm/i915/dp_mst: Handle the
+> Synaptics HBlank expansion quirk") does the same for the affected MST
+> docks.
+> And only modes which do not fit through the link at 8 bpc are affected
+> at all, so in the uncompressed case the link already runs at the top of
+> its capability.
+> For the power and reliability concerns the max bpc property acts as the
+> userspace override, setting it to 6 restores today's behavior.
+>
+> If the general form is still considered too early, I could narrow the
+> limit to HDMI sinks behind a PCON, gating it on
+> intel_dp_has_hdmi_sink().
+> There 6 bpc is not a valid output format on the HDMI side, so the
+> change is a correctness fix rather than a preference, and it would
+> still unblock patches 2 and 3.
 
-  - Add drm to struct drm_gpusvm_pages and route all DMA in
-    drm_gpusvm_get_pages() / __drm_gpusvm_unmap_pages() through
-    svm_pages->drm instead of gpusvm->drm.
-  - Bind svm_pages->drm where the pages object is initialised
-    (drm_gpusvm_range_alloc() and the xe userptr setup) and require
-    it to be set on entry to drm_gpusvm_get_pages(); the dma device
-    is immutable for the lifetime of the pages instance. A later
-    patch introduces drm_gpusvm_init_pages() to centralise this.
+I agree to this part. As you have noted, since HDMI does not accept 6 
+bpc, we should narrow down the check to HDMI sinks behind a DFP.
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Honglei Huang <honghuan@amd.com>
----
- drivers/gpu/drm/drm_gpusvm.c    | 30 ++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_userptr.c |  2 ++
- include/drm/drm_gpusvm.h        |  2 ++
- 3 files changed, 24 insertions(+), 10 deletions(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index abdfdaaf5e2..604554e40f6 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -641,6 +641,7 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
- 	range->itree.last = ALIGN(fault_addr + 1, chunk_size) - 1;
- 	INIT_LIST_HEAD(&range->entry);
- 	range->pages.notifier_seq = LONG_MAX;
-+	range->pages.drm = gpusvm->drm;
- 	range->flags.migrate_devmem = migrate_devmem ? 1 : 0;
- 
- 	return range;
-@@ -1135,11 +1136,16 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
- 				     unsigned long npages)
- {
- 	struct drm_pagemap *dpagemap = svm_pages->dpagemap;
--	struct device *dev = gpusvm->drm->dev;
-+	struct device *dev;
- 	unsigned long i, j;
- 
- 	lockdep_assert_held(&gpusvm->notifier_lock);
- 
-+	if (!svm_pages->drm)
-+		return;
-+
-+	dev = svm_pages->drm->dev;
-+
- 	if (svm_pages->flags.has_dma_mapping) {
- 		struct drm_gpusvm_pages_flags flags = {
- 			.__flags = svm_pages->flags.__flags,
-@@ -1421,6 +1427,9 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 							   DMA_BIDIRECTIONAL;
- 	struct dma_iova_state *state = &svm_pages->state;
- 
-+	if (!svm_pages->drm)
-+		return -EINVAL;
-+
- retry:
- 	if (time_after(jiffies, timeout))
- 		return -EBUSY;
-@@ -1520,7 +1529,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 
- 				pagemap = page_pgmap(page);
- 				dpagemap = drm_pagemap_page_to_dpagemap(page);
--				if (drm_WARN_ON(gpusvm->drm, !dpagemap)) {
-+				if (drm_WARN_ON(svm_pages->drm, !dpagemap)) {
- 					/*
- 					 * Raced. This is not supposed to happen
- 					 * since hmm_range_fault() should've migrated
-@@ -1532,10 +1541,10 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 			}
- 			svm_pages->dma_addr[j] =
- 				dpagemap->ops->device_map(dpagemap,
--							  gpusvm->drm->dev,
-+							  svm_pages->drm->dev,
- 							  page, order,
- 							  dma_dir);
--			if (dma_mapping_error(gpusvm->drm->dev,
-+			if (dma_mapping_error(svm_pages->drm->dev,
- 					      svm_pages->dma_addr[j].addr)) {
- 				err = -EFAULT;
- 				goto err_unmap;
-@@ -1555,11 +1564,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 			}
- 
- 			if (!i)
--				dma_iova_try_alloc(gpusvm->drm->dev, state,
-+				dma_iova_try_alloc(svm_pages->drm->dev, state,
- 						   0, npages * PAGE_SIZE);
- 
- 			if (dma_use_iova(state)) {
--				err = dma_iova_link(gpusvm->drm->dev, state,
-+				err = dma_iova_link(svm_pages->drm->dev, state,
- 						    hmm_pfn_to_phys(pfns[i]),
- 						    svm_pages->state_offset,
- 						    PAGE_SIZE << order,
-@@ -1570,11 +1579,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 				addr = state->addr + svm_pages->state_offset;
- 				svm_pages->state_offset += PAGE_SIZE << order;
- 			} else {
--				addr = dma_map_page(gpusvm->drm->dev,
-+				addr = dma_map_page(svm_pages->drm->dev,
- 						    page, 0,
- 						    PAGE_SIZE << order,
- 						    dma_dir);
--				if (dma_mapping_error(gpusvm->drm->dev, addr)) {
-+				if (dma_mapping_error(svm_pages->drm->dev, addr)) {
- 					err = -EFAULT;
- 					goto err_unmap;
- 				}
-@@ -1590,7 +1599,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 	}
- 
- 	if (dma_use_iova(state)) {
--		err = dma_iova_sync(gpusvm->drm->dev, state, 0,
-+		err = dma_iova_sync(svm_pages->drm->dev, state, 0,
- 				    svm_pages->state_offset);
- 		if (err)
- 			goto err_unmap;
-@@ -1640,7 +1649,8 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 			       struct drm_gpusvm_range *range,
- 			       const struct drm_gpusvm_ctx *ctx)
- {
--	return drm_gpusvm_get_pages(gpusvm, &range->pages, gpusvm->mm,
-+	return drm_gpusvm_get_pages(gpusvm, &range->pages,
-+				    gpusvm->mm,
- 				    &range->notifier->notifier,
- 				    drm_gpusvm_range_start(range),
- 				    drm_gpusvm_range_end(range), ctx);
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index 6761005c0b9..1b540e62af6 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -390,6 +390,7 @@ int xe_userptr_setup(struct xe_userptr_vma *uvma, unsigned long start,
- 		     unsigned long range)
- {
- 	struct xe_userptr *userptr = &uvma->userptr;
-+	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
- 	int err;
- 
- 	INIT_LIST_HEAD(&userptr->invalidate_link);
-@@ -402,6 +403,7 @@ int xe_userptr_setup(struct xe_userptr_vma *uvma, unsigned long start,
- 		return err;
- 
- 	userptr->pages.notifier_seq = LONG_MAX;
-+	userptr->pages.drm = &vm->xe->drm;
- 
- 	return 0;
- }
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index 251a7266a73..842353afb27 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -129,6 +129,7 @@ struct drm_gpusvm_pages_flags {
- /**
-  * struct drm_gpusvm_pages - Structure representing a GPU SVM mapped pages
-  *
-+ * @drm: The DRM device that owns the dma mappings
-  * @dma_addr: Device address array
-  * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
-  *            Note this is assuming only one drm_pagemap per range is allowed.
-@@ -138,6 +139,7 @@ struct drm_gpusvm_pages_flags {
-  * @flags: Flags for the range; see &struct drm_gpusvm_pages_flags
-  */
- struct drm_gpusvm_pages {
-+	struct drm_device *drm;
- 	struct drm_pagemap_addr *dma_addr;
- 	struct drm_pagemap *dpagemap;
- 	struct dma_iova_state state;
--- 
-2.34.1
+Ankit
 
+
+> Just let me know which shape you prefer.
+>
+> Thanks,
+> Alex
+>
