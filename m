@@ -4,54 +4,128 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB708C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 06:15:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBA09C43602
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 07:17:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FAF810E6CE;
-	Mon, 29 Jun 2026 06:15:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9225110E723;
+	Mon, 29 Jun 2026 07:17:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F2gMnST/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CZgU6lYS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D39810E029;
- Mon, 29 Jun 2026 06:15:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782713741; x=1814249741;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1b37EG7sQryQRTSZQ7FrV6NS8S5kwf8jEN/eOvmdz7w=;
- b=F2gMnST/WZdS+GH7ZJ4A+uB6NqmRxKa5AgrSDkc7X5m5z4eWZKb6QwOO
- Vk40J1SMeuOjtaUvMM9j1aZlBro4RaCTkyQzimCPMnRrFNyK3H/CrlL01
- +s+5wOLKkbm9HIDQ6ZjEqyJPM1MUK+rsWcRosddwrBrz6cYdr1EVB2y6G
- VLd7kBV0EEW6bijd27CrpfGo4Rif/m3LG4VBlh1zkEn+MR/SUubsIXKk4
- muOusaVNj2ZzUnUf5Vzh6yEcCRzr4o7SjoB5Rg0/mZroxTO20O4GZS2uF
- 8URm9S38v1GCLFI4v/qNnroqRNO8JFVVu8hqwsRd5gEn85xuM86djIHzC A==;
-X-CSE-ConnectionGUID: TC0iPx49TJOz56r+OmaXmg==
-X-CSE-MsgGUID: euxHW1JBQJeRONIK+6aI6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="93976200"
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="93976200"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2026 23:15:40 -0700
-X-CSE-ConnectionGUID: wqa5L+GpSdim/dIaX8WW0w==
-X-CSE-MsgGUID: sgpKKP0lTpuIRvbKGfWuaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="255825405"
-Received: from unknown (HELO shwdecgfx001.sh.intel.com) ([10.239.83.181])
- by orviesa004.jf.intel.com with ESMTP; 28 Jun 2026 23:15:38 -0700
-From: "Chen, Junjia" <junjia.chen@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
-	rodrigo.vivi@intel.com, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, "Chen, Junjia" <junjia.chen@intel.com>,
-	Chen@freedesktop.org
-Subject: [PATCH] drm/xe: Add creator TID to sched job trace points
-Date: Mon, 29 Jun 2026 14:15:27 +0800
-Message-ID: <20260629061527.146714-1-junjia.chen@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010001.outbound.protection.outlook.com
+ [40.93.198.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7833410E71F;
+ Mon, 29 Jun 2026 07:17:24 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dAIJH77FUedHUCFENHteeKzAS5MGydDedJirRvvl0nCQK+jN/CFjgLd23OXKdFRGthXk3gIbtiCGE2Gcw5uVy98FQOww5lD1w93gR8BgXOXNiyrXQMjPsh9YqKnl1G8GTDzanlcK7S33C0f/nV5lyt1e+SUKc0u6uIKG7Dyb/H+tp9y6HVhFSFm+zyVH6RF8zvYj+BpUUB8v5SqSKdBL4Z5Fmc+FbGlSqR30SWghU6Igh3c6cmLEAYBzi3VYfT/7/78GBvNWoY3JWyn2HWz9mIM14jlsjUX4cuYwl1XNWXap0e8ddVrD91Soi8hvBS+Y/nVxWjwVci+PEFMc7j4L0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=m8Ue8ruBUM3So0yR+Ftgl8cKq6bqCTwNlWBnLd6sjRY=;
+ b=b5YOqTu49CuGlYaerhx5Y7HHzkXOmq6BpFghi3OeNPL/8MbrpO17XWiEfLqluZP0e08b9YgOx4Kn30D53dDr9bHNPmCfSx2j326dckwwIDNgNvk9+bwWq9dyEDHlEd863vhQKTnSv1ihnNgwqsVLtJYRsofS52gurljAyjEBTd6vIhzg5jXEJt1UwPBkNUVvYNI1y+DrAfU9Hg6R6NOD9YYFNtmosaPODwT0+1sIv7+FIP4sWYZ11G2wz7DBtnNINQ0NbI8t8W7IYE8JkGPR4v2sIqhgnsU75Gmb1UvvUKqLeG5gjGcWf6OIsNFmfcubMeS/A5txlmDrbMxt+nO4kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m8Ue8ruBUM3So0yR+Ftgl8cKq6bqCTwNlWBnLd6sjRY=;
+ b=CZgU6lYSKbXR0NWc8/xlopmBw9AOheJrB5kg0Wa9lGUEVxlOBtSTovVX1GnxE1/AkMKtalmLUdjlUjkGGxz2DUSD6VEbaBHKiCM0u/KV2tIYP4d7aob2N/z9QCyW0W1sk6XB8lu+RIKnTy10I6s4irvjCNV1qkrn5hZ8NaWzcFc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from EAYPR12MB999132.namprd12.prod.outlook.com
+ (2603:10b6:303:2c2::11) by SJ2PR12MB8956.namprd12.prod.outlook.com
+ (2603:10b6:a03:53a::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.18; Mon, 29 Jun
+ 2026 07:17:21 +0000
+Received: from EAYPR12MB999132.namprd12.prod.outlook.com
+ ([fe80::7798:60c4:e3f0:d3f8]) by EAYPR12MB999132.namprd12.prod.outlook.com
+ ([fe80::7798:60c4:e3f0:d3f8%4]) with mapi id 15.21.0159.018; Mon, 29 Jun 2026
+ 07:17:19 +0000
+Message-ID: <c930b53d-6cb2-4d0c-9d3d-f895377649a8@amd.com>
+Date: Mon, 29 Jun 2026 12:47:13 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] gpu/buddy: bail out of try_harder when alignment cannot
+ be honoured
+To: Matthew Auld <matthew.auld@intel.com>, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, =?UTF-8?Q?Timur_Krist=C3=B3f?=
+ <timur.kristof@gmail.com>, John Olender <john.olender@gmail.com>,
+ stable@vger.kernel.org
+References: <20260618124755.2751205-1-Arunpravin.PaneerSelvam@amd.com>
+ <4c7300dc-ab5e-464f-9704-d8da378ee1af@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <4c7300dc-ab5e-464f-9704-d8da378ee1af@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0244.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ae::10) To EAYPR12MB999132.namprd12.prod.outlook.com
+ (2603:10b6:303:2c2::11)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: EAYPR12MB999132:EE_|SJ2PR12MB8956:EE_
+X-MS-Office365-Filtering-Correlation-Id: 920b7734-c32d-41c8-272b-08ded5ae7497
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|366016|376014|6133799003|4143699003|22082099003|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: wUq/JbFb6IIZIEmK0+dQC1g8zxYTlmpt04UWgHwvlreCxOD1sKgtx7n/l9/1XVOjmibB2M7d4OHFin77eXuKfCIJQKfgj5/uuU8zx1TRL4ds3ib7VZc2W49tnE9vsTnCGn2tB2R/Iq0EW2nO7PaOahn1g6meTjleU4+6La/pXhRWcxWyYLtyrNZM++nFrkTH/rdOxiKZxzY7NZePH1EuTsiM3OM++5yZTF/zZ20OiAJ7Ak+XO17ILFcD+GykRRGvzHandc1O9n1iM7JZm4IkAnjDxLGE9tmv5Y0Er41ppCm3QMZkNvOo9AQvA9k3pn9OfdLr4o9jIhJg5kXJSAX80Y5HsjHmtdAuzSmRVhLew2d0emM7oUjXgzThUdsWVP8C20YHCKrtjWIjlMT7v40w5nv3+FsW51rOyoTma5te+DfVkJdgzX4Z8XtsKEmR9xg2dWs/K2ALiDc4q0+oT852fjbViTNQb3Z7O6JQrWTBWPiaKmZUpRpBFHc/9b6qYNGbvTgBIfKR4z98MNhDuNMnvts/a5+KwWxglPzcslTfPO8kKRniTO1iqomnpQAreeHD8NMP0qtgauSuNUfeLec9mFC4zPncOTTVFaURV/hktztZlXmFHNZ4hke8GaHgtFlSzeq07k8HUlpEjteoJqom75V7jlsnYuP7CuAX0Jk5NSY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:EAYPR12MB999132.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(6133799003)(4143699003)(22082099003)(56012099006)(11063799006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qjl0RTVlMzZpL2JFbytnWlBrZFlYSTQ0azRpK0dzVVVNZmhRTnk1dUZPQjdk?=
+ =?utf-8?B?bWsydENzZTBabHpOMWRsZEJ6SmJCelA1ejRkVGkrbWV1cXRlVTZTMllwUGlp?=
+ =?utf-8?B?dGNmSUd0Nk5XODgxeVM5Y2RpZStVZ2UyVHEySzFsVW1jUlZvRmlLMWVUeTlR?=
+ =?utf-8?B?RG9BUG44ODc3aVBNbnlvY1lHSE83UENHSDlPT29NNW9COEZiTTNnZk9yWHBa?=
+ =?utf-8?B?SDNIaURXeUNqUVErZ0kyV0RKeTBVUjZsSEFaY204dm85amE3RVV5TVpLdVBz?=
+ =?utf-8?B?d21mMTlqMUZET2ErZk5QZENyTG96QUgyOGl4RFNYZUVFYWJzK3BhdDAwemFa?=
+ =?utf-8?B?TjIzVHlIY0FSaXJxcDBlWVhhalo2clZMcDFIT1p6ZTcwNnpBVE0xamo3WUtS?=
+ =?utf-8?B?TldQYnFxeHBxWFZOSnRMN3IyWno5NEg5NUtDa05XL01PUm05RGk2aERkaTNT?=
+ =?utf-8?B?SjV0aTZyQVdyY1BWSTI4Q2JkajZQWTFtR1M4VWVQNW5YKzl1M1l6YjhaWWdi?=
+ =?utf-8?B?Sm9rRmhDTTRMYnB0SUJiTTBBUXVoM0ZzTUowQjEzamJmTzNGOVBLcEYyS1hD?=
+ =?utf-8?B?ald6K2loM1F5N2F0c0YrZEJQZWY3YU9pamNaVDdzMTNxbzJ3TUVuQ0FwdEFK?=
+ =?utf-8?B?VWtYdm1IVU9mV3MvMW5ualhCT3hCYUxNeTl4eXpLV2I4WnZhaHN0TFZyVFNw?=
+ =?utf-8?B?Umx0WlNJbGRvblEyTjJMSlJtZVpEdXRBVXBFamt4WjR3QUkzeUozL2g0bm9z?=
+ =?utf-8?B?SEMzdUxMbXEvMmt2VGRyTUNER3pnUzhSSWlzYkpmNTFEbGViV01yYTg4ekRi?=
+ =?utf-8?B?TmdlRkc4bkxUV1VEWkt6RUlhVCtqQlZDK0FxaFJzaUFWMG5XZndVMEVHOXFk?=
+ =?utf-8?B?TGJFNjMvRnRUVGdGVkpZcThWajZMOVdCVDZ0TzNTSFV4U0R6U2J3U1I1YkEz?=
+ =?utf-8?B?WStRcG5JYVRnNXFoS0w2R0lCWWhNSnJhSjRkWVdXOFBiTE9yZGNYVnkvOXZl?=
+ =?utf-8?B?dVFTVzVwNUhtOGU4aGRzU3lvemVaSUNZUFNnODVuOUNhT2F0NHBMcUhIWGVV?=
+ =?utf-8?B?SE1kNkJ3ZXJrQWJLVXRXcitKaFhKdFd3MEk4eERQN0xNMGI1YVRsRkMzTmFR?=
+ =?utf-8?B?aEw5K1F0ckREY0liTlNjRlVlYytScFdySXNjSG1ybjlhTmgzRVRFM1JuQ0to?=
+ =?utf-8?B?TnRhQ2R2bTVpN2c3WDROTEltU3ZVR2c4V1VkYVVDRE84T2NMUzQ2NWJGQTFK?=
+ =?utf-8?B?dnhVSXU3R2tNaGJuSURKSFUrQUZkanhNejZsQittRGRSejd2dEF5TTUwYUlp?=
+ =?utf-8?B?SHBudy9GbGxlNUZUL3pFUFd2NGhFa1MxQ0tUR1V2TzhVb2N3Sis3TUFuV081?=
+ =?utf-8?B?VzVyT0FIaG9XNndDemg3QWdONEdva1VVYkRvTm5HZWQ2d1VmMkxOQnBiSHpq?=
+ =?utf-8?B?bU1RbFZwbUZrVkVobGd4R2ZpRUZDcHErUnNVOU01VU50OW1qTzhPVFVzOGpp?=
+ =?utf-8?B?OGNsaVhwL3N5Y1RrM2RwTmdVWWhNT285eEZyYnBXS1JjUUxuQTlvbndtSHJq?=
+ =?utf-8?B?RFp0WkhEcWpHcmp1TVcydm5XK3loL0s3WGtwSCtoYWhvTCs2MnR3dVplQ2p0?=
+ =?utf-8?B?dERtN285UFpLYXpVeHByVXF4ZjZTNVBIc1VKVW1mUWVHTi9SblFLaEVMZ3M0?=
+ =?utf-8?B?V1lUMmNhVVhpQ2laSXFTcWRubXd5R1pDamtiOEtmVXJ0M1UyUXpFTW1ueDRC?=
+ =?utf-8?B?a2NOamtONkNEL2tjRDhQVStENW5ZY3NYUm9GcGdqb2xWYm8zOW1rd0ZNaHZ1?=
+ =?utf-8?B?c3lBeWg2YXVhcjVSN0tRczE4TjRWaVE4TEM4bTdHWFZpU25wK0U4MUVIV2di?=
+ =?utf-8?B?MU1yWFNOR2RXWHkyV2JpS3lIQytCSDA3SFJVNGxHeU9QQ1NOTkdpdlVPbFVU?=
+ =?utf-8?B?U1FkMHZoUkpsOFBPd1pOd2xhSDB5MEkrZWpqNTZqRTdONERuUWpyMGJ1L2kv?=
+ =?utf-8?B?UFI0b3hPczFpTm9ibUtITGl5TU0vaVJ1RkZ6S0pDYnlhcFdMY016ZDJxVVl1?=
+ =?utf-8?B?dXVVU2tsMks3Tk8yUTdKNFdkaXUyR3pnWFFPa1dxeWV0d3JOTEYxSFZzUzB2?=
+ =?utf-8?B?SWNDYTViT0o5QjNxVWZzU1FwVXZCQzZheEI1NmpDWmF1VVVjcTN6NjlWaFZz?=
+ =?utf-8?B?MWR2dEEyN3NyNmprcURBVFpLb0ovZnBFTlozTTFPS1FLN05aSEQ5emY3NWVT?=
+ =?utf-8?B?cEJKbGQ2ZlEzN3RzWVZ2dG9zWEZhKzdFb2pXY1BBb1M4dld2SkZuQ2R6cEtP?=
+ =?utf-8?B?a0RxSklvNGZKWGdMNVczTVdKYytGM3RIY21rYTh5akJES2NwNS9udz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 920b7734-c32d-41c8-272b-08ded5ae7497
+X-MS-Exchange-CrossTenant-AuthSource: EAYPR12MB999132.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 07:17:19.7412 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NfcoEhYbSogxb+TdjUBEnQwETsWchXFangtRqu5fkUct+EBraYeTVmzPnr/W7r9BhZOSle7J7Xuhu8+Sx+4B+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8956
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,102 +140,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Capture the creating task pid when a scheduler job is allocated
-and emit it in the sched job trace events alongside the
-exec queue pointer.
 
-This makes it easier to correlate queue activity back to
-the userspace thread that submitted the work.
 
-Signed-off-by: Chen, Junjia <junjia.chen@intel.com>
----
- drivers/gpu/drm/xe/xe_sched_job.c       |  2 ++
- drivers/gpu/drm/xe/xe_sched_job_types.h |  3 +++
- drivers/gpu/drm/xe/xe_trace.h           | 12 +++++++++---
- 3 files changed, 14 insertions(+), 3 deletions(-)
+On 6/19/2026 6:15 PM, Matthew Auld wrote:
+> On 18/06/2026 13:47, Arunpravin Paneer Selvam wrote:
+>> The try_harder contiguous fallback could return a range whose start
+>> offset did not match the caller's min_block_size. Check each candidate
+>> against the requested alignment and reject the allocation when no
+>> candidate satisfies it, instead of handing back a misaligned range.
+>>
+>> Suggested-by: Christian König <christian.koenig@amd.com>
+>> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Timur Kristóf <timur.kristof@gmail.com>
+>> Cc: John Olender <john.olender@gmail.com>
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Arunpravin Paneer Selvam 
+>> <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/buddy.c | 33 +++++++++++++++++++++------------
+>>   1 file changed, 21 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>> index dc81fe0301ce..28ed3250ac57 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -1127,13 +1127,11 @@ static int __alloc_contig_try_harder(struct 
+>> gpu_buddy *mm,
+>>       struct gpu_buddy_block *block;
+>>       unsigned int tree, order;
+>>       LIST_HEAD(blocks_lhs);
+>> -    unsigned long pages;
+>>       u64 modify_size;
+>>       int err;
+>>         modify_size = rounddown_pow_of_two(size);
+>> -    pages = modify_size >> ilog2(mm->chunk_size);
+>> -    order = fls(pages) - 1;
+>> +    order = ilog2(modify_size) - ilog2(mm->chunk_size);
+>>       if (order == 0)
+>>           return -ENOSPC;
+>>   @@ -1149,31 +1147,42 @@ static int __alloc_contig_try_harder(struct 
+>> gpu_buddy *mm,
+>>           while (iter) {
+>>               block = rbtree_get_free_block(iter);
+>>   -            /* Allocate blocks traversing RHS */
+>>               rhs_offset = gpu_buddy_block_offset(block);
+>> +
+>> +            /* Allocate blocks traversing RHS */
+>>               err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
+>>                                  &filled, blocks);
+>> -            if (!err || err != -ENOSPC)
+>> +            if (err && err != -ENOSPC)
+>>                   return err;
+>> +            if (!err && IS_ALIGNED(rhs_offset, min_block_size))
+>> +                return 0;
+>> +            if (!err)
+>
+> Should we do some kind of rhs = round_down(rhs, min_block_size) at the 
+> start? Just wondering if we can get something misaligned here, that 
+> should have succeeded if we just applied the round_down first, in some 
+> edge case?
+  Done - when the whole size fits at rhs_offset but the start is 
+misaligned, we drop it and realign to the min_block_size boundary below 
+instead of bailing.
+>
+>> +                goto next;
+>>   -            lhs_size = max((size - filled), min_block_size);
+>> -            if (!IS_ALIGNED(lhs_size, min_block_size))
+>> -                lhs_size = round_up(lhs_size, min_block_size);
+>> +            lhs_size = round_up(max((size - filled), min_block_size),
+>> +                        min_block_size);
+>
+> Can this be simplified as: round_up(size - filled, min_block_size) ?
+Dropped round_up/lhs_size entirely, we realign and allocate exactly 
+size, so the max/round_up is gone.
+>
+>> +
+>> +            if (lhs_size > rhs_offset)
+>
+> What is the idea with this check?
+We reach here only on a partial RHS fill, so the leftover size - filled 
+must be taken from the space left of rhs_offset;
+if that leftover exceeds rhs_offset there isn't room, so we skip.
+It also prevents the next line's u64 rhs_offset - (size - filled) from 
+underflowing.
 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index b64e6a434807..1356755cd180 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -7,6 +7,7 @@
- 
- #include <uapi/drm/xe_drm.h>
- #include <linux/dma-fence-chain.h>
-+#include <linux/sched.h>
- #include <linux/slab.h>
- 
- #include "xe_device.h"
-@@ -111,6 +112,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 
- 	job->q = q;
- 	job->sample_timestamp = U64_MAX;
-+	job->creator_tid = task_pid_nr(current);
- 	kref_init(&job->refcount);
- 	xe_exec_queue_get(job->q);
- 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 0490b1247a6e..f2ad94105b37 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -7,6 +7,7 @@
- #define _XE_SCHED_JOB_TYPES_H_
- 
- #include <linux/kref.h>
-+#include <linux/types.h>
- 
- #include <drm/gpu_scheduler.h>
- 
-@@ -59,6 +60,8 @@ struct xe_sched_job {
- 	u32 lrc_seqno;
- 	/** @migrate_flush_flags: Additional flush flags for migration jobs */
- 	u32 migrate_flush_flags;
-+	/** @creator_tid: task pid that created this job */
-+	pid_t creator_tid;
- 	/** @sample_timestamp: Sampling of job timestamp in TDR */
- 	u64 sample_timestamp;
- 	/** @ring_ops_flush_tlb: The ring ops need to flush TLB before payload. */
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index dfd87f03c4fd..a3115d6e4c6a 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -258,8 +258,10 @@ DECLARE_EVENT_CLASS(xe_sched_job,
- 
- 		    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_eq(job->q))
-+			     __field(struct xe_exec_queue *, q)
- 			     __field(u32, seqno)
- 			     __field(u32, lrc_seqno)
-+			     __field(pid_t, creator_tid)
- 			     __field(u8, gt_id)
- 			     __field(u16, guc_id)
- 			     __field(u32, guc_state)
-@@ -271,8 +273,10 @@ DECLARE_EVENT_CLASS(xe_sched_job,
- 
- 		    TP_fast_assign(
- 			   __assign_str(dev);
-+			   __entry->q = job->q;
- 			   __entry->seqno = xe_sched_job_seqno(job);
- 			   __entry->lrc_seqno = xe_sched_job_lrc_seqno(job);
-+			   __entry->creator_tid = job->creator_tid;
- 			   __entry->gt_id = job->q->gt->info.id;
- 			   __entry->guc_id = job->q->guc->id;
- 			   __entry->guc_state =
-@@ -283,9 +287,11 @@ DECLARE_EVENT_CLASS(xe_sched_job,
- 			   __entry->batch_addr = (u64)job->ptrs[0].batch_addr;
- 			   ),
- 
--		    TP_printk("dev=%s, fence=%p, seqno=%u, lrc_seqno=%u, gt=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
--			      __get_str(dev), __entry->fence, __entry->seqno,
--			      __entry->lrc_seqno, __entry->gt_id, __entry->guc_id,
-+		    TP_printk("dev=%s, q=%p, fence=%p, seqno=%u, lrc_seqno=%u, creator_tid=%d, gt=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
-+			      __get_str(dev), __entry->q, __entry->fence,
-+			      __entry->seqno, __entry->lrc_seqno,
-+			      __entry->creator_tid,
-+			      __entry->gt_id, __entry->guc_id,
- 			      __entry->batch_addr, __entry->guc_state,
- 			      __entry->flags, __entry->error)
- );
--- 
-2.43.0
+>
+>> +                goto next;
+>>                 /* Allocate blocks traversing LHS */
+>> -            lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
+>> +            lhs_offset = rhs_offset - lhs_size;
+>> +
+>> +            if (!IS_ALIGNED(lhs_offset, min_block_size))
+>> +                goto next;
+>
+> Would it make sense to just align the lhs down, if misaligned, instead 
+> of baling? If the final size we get back is slightly too large, we can 
+> just apply a trim at the end?
+Done -  we realign lhs_offset (round_down) and request exactly size, so 
+there is no surplus to trim.
+Please review the v2.
+
+Regards,
+Arun.
+>
+>> +
+>>               err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
+>>                                  NULL, &blocks_lhs);
+>>               if (!err) {
+>>                   list_splice(&blocks_lhs, blocks);
+>>                   return 0;
+>> -            } else if (err != -ENOSPC) {
+>> +            }
+>> +            if (err != -ENOSPC) {
+>>                   gpu_buddy_free_list_internal(mm, blocks);
+>>                   return err;
+>>               }
+>> -            /* Free blocks for the next iteration */
+>> +next:
+>>               gpu_buddy_free_list_internal(mm, blocks);
+>> -
+>>               iter = rb_prev(iter);
+>>           }
+>>       }
+>>
+>> base-commit: b9e2d5cdaab05c997be3a69d9b372d7676683e1b
+>
 
