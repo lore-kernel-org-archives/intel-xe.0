@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27CA4C43458
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23F8C43602
 	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 14:08:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8BFA10E490;
-	Mon, 29 Jun 2026 14:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5810A10E7DF;
+	Mon, 29 Jun 2026 14:08:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iarRKVFX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aJveN/yT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3124310E490
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECDB10E490
  for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 14:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1782742121; x=1814278121;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mS+436ZyH7BPEZIhJwL073AR16sA1kyMgJnHTGHbvek=;
- b=iarRKVFX5tbkuicL+dTTn5CG8FmDVO089vx/JKJ2M4PdGfagva2UYD5p
- WoWx5/guYKs+630Ec7L5h2PPSVEQhxHCjoPBEwOiB2WSMe3qJ3rS33EXc
- Aa04Qeleh3EiArIukJmFdVHKdoe5ujLu6EYuc30ku9qXbWSmVC6B+4xj2
- CW46PtRfxGR3PMP/xWN5DcZ7lvS8Dnx/NjFXLeIc02LMocWAWY19lXX/3
- v+iyQnNNDrRDFUBtRNhWPZXamWoeaEpGT60Rfng2L1345tZzrujU2WfWB
- DMPHF+fuev8x7cUriv+GV0n4mtjPKUAFDI9Fw2uSfDCzzMOTfEDExCUd6 g==;
-X-CSE-ConnectionGUID: MDp7JdIXSzqJYy2G/ZLBSQ==
-X-CSE-MsgGUID: Y5ll8zz3QTOeUIGB8pz1Dg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="100972682"
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="100972682"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TAFxMJ5cprVxTVOzmik/hOOijXT73Q6fiEzRmDU858I=;
+ b=aJveN/yTAD1Pqk+vs07d8itz+0GWqGObOmj4aL5Nb/Ap+YQpdoOuAKPO
+ 8rpJmZg1w/lJxifPMt6C9LaRhLL4s5oih67+VHg7pPCPDt6XswLlreHiK
+ FMiO9asYpSU4ywHozRhDM4IEbMsyp3zxg1byTyK6HQQSv706zNYSYF8Wc
+ E+ieMyfhX50MgIIc3psd8+g0y8tMFJNkhj+/2HOlJ+tg0jtQPmJNIuX4D
+ e5pCd+WJ7H7/nxbb+N+WRXw7qcMAY4hF6bKRX9gp1/+2fbY+Ir3d/AUvH
+ a+uwerCOK0kVjACx+iFkQP1Y/Z454UMsHs/vkrNt2b/vFiHJzcInRbyCj Q==;
+X-CSE-ConnectionGUID: yhv3/z6RSza8v+jhlmHnxQ==
+X-CSE-MsgGUID: XYW/DZGhQuq2c+cWM1Ur1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="100972684"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="100972684"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 07:08:40 -0700
-X-CSE-ConnectionGUID: yVW0+v6PSpqwzJjAZJHamQ==
-X-CSE-MsgGUID: zwJ+G21zRgGFCQmUwaS9sA==
+ 29 Jun 2026 07:08:41 -0700
+X-CSE-ConnectionGUID: YO3zt0J6RPKJjqYwndQpxw==
+X-CSE-MsgGUID: 6fmCbHgXQ06b/1HlVckw6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="256369857"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="256369863"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.20])
  by orviesa005.jf.intel.com with ESMTP; 29 Jun 2026 07:08:38 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v4 0/2] drm/xe/guc: Handle GuC local uncorrectable error
- notifications
-Date: Mon, 29 Jun 2026 10:08:34 -0400
-Message-Id: <20260629140836.2074349-1-zhanjun.dong@intel.com>
+Subject: [PATCH v4 2/2] drm/xe/guc: Preserve HW error state in wedged mode 2
+Date: Mon, 29 Jun 2026 10:08:36 -0400
+Message-Id: <20260629140836.2074349-3-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260629140836.2074349-1-zhanjun.dong@intel.com>
+References: <20260629140836.2074349-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,32 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for the GuC uncorrectable local error G2H notification and
-opt in to the feature when the submission ABI exposes it.
-Preserve HW error state in wedged mode 2 to help debug the root cause of
-the error.
+When HW reports an uncorrectable error, debugging the root cause may
+require halting the GPU in the error state so scan dumps can be collected
+and inspected.
 
+Use wedged_mode=2 for this debug mode. In this mode, Xe already avoids GPU
+reset on hangs, so also skip the engine reset cleanup path for GuC
+uncorrectable error reports to keep the HW state intact.
+
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
-History:
-v4: Add wedged mode==2 handling patch
-v3: Remove not used flag bit and timeout worker check (Daniele)
-    Remove wedged mode==2 check, which will be handled in separate patch(Daniele)
-v2: Opt in for Xe3p only, excluding media GTs on NovaLake-P which don't support the feature
-    Remove timeout bypass, which is outside the scope of this patch and can be added separately
+ drivers/gpu/drm/xe/xe_guc_submit.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Zhanjun Dong (2):
-  drm/xe/guc: Handle GuC local uncorrectable error notifications
-  drm/xe/guc: Preserve HW error state in wedged mode 2
-
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |  1 +
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h    |  8 ++++++
- drivers/gpu/drm/xe/xe_guc.c              | 10 +++++++
- drivers/gpu/drm/xe/xe_guc_ct.c           |  3 ++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 35 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h       |  1 +
- drivers/gpu/drm/xe/xe_trace.h            |  5 ++++
- 7 files changed, 63 insertions(+)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 29ccabc4b7a4..05fa4e466461 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3024,8 +3024,10 @@ int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 
+ 	trace_xe_guc_uncorrectable_error(q);
+ 
+-	/* Treat the same as engine reset */
+-	xe_guc_exec_queue_reset_trigger_cleanup(q);
++	if (guc_to_xe(guc)->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
++		/* Treat the same as engine reset */
++		xe_guc_exec_queue_reset_trigger_cleanup(q);
++	}
+ 
+ 	return 0;
+ }
 -- 
 2.34.1
 
