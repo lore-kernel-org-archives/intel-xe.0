@@ -4,45 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7B6AC4450C
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06DA1C4450D
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:56:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3209A10E249;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6F8110EF9E;
 	Wed,  1 Jul 2026 12:56:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="V/6aUYar";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=rcpassos.me header.i=@rcpassos.me header.b="qB9mfzRC";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=purelymail.com header.i=@purelymail.com header.b="D2WEHFE7";
 	dkim-atps=neutral
-Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com
- [91.218.175.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7976610E246
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jun 2026 18:02:04 +0000 (UTC)
-Content-Type: text/plain; charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782410035;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=DcW7f1KnCKedIvf/bD+eSI3AnSVtFqLGxhFuAZBnp9o=;
- b=V/6aUYarmF+B8FnFQN/7beEEmbCtD5wX5P2YLhYAeBGkCCYal5PWhObasTBZw2PBzfBwFW
- N1SM9QTcxnNZZazAXv4oyAKE1jEYc0/MTpGLd7/KgBLiS8FCz+81lUlScA5Id0Ru/2JElo
- mPMMXg4s+nrgY7MW6uyyCR5m9MR3nH4=
+Received: from sendmail.purelymail.com (sendmail.purelymail.com
+ [34.202.193.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8431610E170
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 00:35:00 +0000 (UTC)
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256;
+ b=qB9mfzRCZYvoF9IRkZOjzjyQq8O/0jFLZFA0ucmORMzvxBxRp4K7/N7TLCoJt/cYyGfgDwXkJ/ZN6OU36pNb/Wqm/7kLI1+0lsE0q5csj72EEZSqi4zwPRD6Z+kzZWSeCDWIN6wa2wIgR6gnwCRf8PLT3Zu0uWK5mD1X3xq065sKFPS1OfULohLW291ewJoBDIE1jW+2aObKX3J6njkmUQ4Jge0LI8OphBFanZoSaDhZoK3URIOMkfpxB7mCgCNEf2WeG/T6tWohPPdTRrOBP77TEUmlicuKTNHIJyTnw5wa9Z5+QXge9SsiXUreaNTFJC0vW/DnE1EAMYDLdnudpQ==;
+ s=purelymail2; d=rcpassos.me; v=1;
+ bh=ZsfCjmQEzgl9BUa5k4KAiMGgZgn3+ETC4EaT4Dw+yFY=;
+ h=Received:Date:From:To:Subject; 
+DKIM-Signature: a=rsa-sha256;
+ b=D2WEHFE7KDUDAgT5dQJ2KVOBUCpPX/X8nLh3fGFXRxTK4KhZN9GKCzbm1/feLbn73x64KYgD2kR/EvbqzEMDdEHXALWVyptRG7M9czRgnr0eLf1UVRhQpSogE8v+EdRzuTuMIoA3sYQ2VbX8C29bkbLT7HUAndC/qGVZwpTSAT7I54M0JikPAoRfG6EfiwHoLhhGiv9qBq/qChOgFxw9T+ulxxODPN4TlBSLSEH/aPCbFGRk3ftGHeSaWr7hAYp/fnMJirWjYj31EmU4ZauF9XZPq9l7zU/iyriSQMCF93Z9pDmWxXCpgLZ2JnlHWy9KYaE8WDXMo79SZVl+Zu0PuQ==;
+ s=purelymail2; d=purelymail.com; v=1;
+ bh=ZsfCjmQEzgl9BUa5k4KAiMGgZgn3+ETC4EaT4Dw+yFY=;
+ h=Feedback-ID:Received:Date:From:To:Subject; 
+Feedback-ID: 45355:7809:null:purelymail
+X-Pm-Original-To: intel-xe@lists.freedesktop.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 53992085;
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Mon, 29 Jun 2026 00:34:29 +0000 (UTC)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Matthew Schwartz <matthew.schwartz@linux.dev>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH 1/3] drm/xe: fix NPD in bo_meminfo()
-Date: Thu, 25 Jun 2026 18:53:39 +0100
-Message-Id: <6929E9BF-BC21-4B17-9FD7-371AB832A37E@linux.dev>
-References: <20260625152054.450125-6-matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Arvind Yadav <arvind.yadav@intel.com>
-In-Reply-To: <20260625152054.450125-6-matthew.auld@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 28 Jun 2026 21:34:49 -0300
+Message-Id: <DJL413GMZH5Q.2S11VUVHGLLVF@rcpassos.me>
+From: "Rafael Passos" <rafael@rcpassos.me>
+To: "Randy Dunlap" <rdunlap@infradead.org>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2] Documentation: xe_drm: fix chars used for subsection
+Cc: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <skhan@linuxfoundation.org>, "Intel-xe"
+ <intel-xe-bounces@lists.freedesktop.org>, "Rafael Passos"
+ <rafael@rcpassos.me>
+X-Mailer: aerc 0.21.0
+References: <20260621030114.963405-1-rafael@rcpassos.me>
+ <1a20e4bf-fd7f-453e-b7a8-c7feb0b077c6@infradead.org>
+In-Reply-To: <1a20e4bf-fd7f-453e-b7a8-c7feb0b077c6@infradead.org>
 X-Mailman-Approved-At: Wed, 01 Jul 2026 12:56:31 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,78 +65,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi,
+
+I just checked, and this issue is still present.
+Since the merge window just closed, I think it's a good time
+to send a ping :)
+
+On Sun Jun 21, 2026 at 1:07 AM -03, Randy Dunlap wrote:
+> On 6/20/26 8:01 PM, Rafael Passos wrote:
+>> and the page title is defined the.
+>
+>                         defined there.
+
+Should I send a v3 of this patch fixing this minor typo ?
+
+I see the original email did not show up in Lore (just Randy's response).
+Should resend in cases like this ? In this case, while at it, just do a v3?
+
+> LGTM. Thanks.
+>
+> Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+> Tested-by: Randy Dunlap <rdunlap@infradead.org>
+
+Also, if I were to send a new version (changing only the commit message),
+and the previous had Review/Tested tags, should I carry them in the new ver=
+sion?
+Or just send it as is?
 
 
-> On Jun 25, 2026, at 4:21=E2=80=AFPM, Matthew Auld <matthew.auld@intel.com>=
- wrote:
->=20
-> =EF=BB=BFWhen a buffer object is purged, its ttm.resource is set to NULL v=
-ia the
-> TTM pipeline gutting flow. However, the BO remains in the client's
-> object list until userspace explicitly closes the GEM handle. If memory
-> stats are queried during this time, accessing bo->ttm.resource->mem_type
-> will result in a NULL pointer dereference.
->=20
-> Fix this by safely skipping purged BOs in bo_meminfo, as they no longer
-> consume any memory.
->=20
-> User is getting NPD on device resume, and possible theory is that in
-> bo_move(), if we need to evict something to SYSTEM to save the CCS state,
-> but the BO is marked as dontneed, this won't trigger a move but will
-> nuke the pages, leaving us with a NULL bo resource. And the meminfo()
-> doesn't look ready to handle a NULL resource.
->=20
-> v2 (Sashiko):
-> - There could potentially be other cases where we might end up with a
->   NULL resource, so make this a general NULL check for now.
->=20
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8419
-> Fixes: ad9843aac91a ("drm/xe/madvise: Implement purgeable buffer object su=
-pport")
-> Assisted-by: Copilot:gemini-3.1-pro-preview
-> Reported-by: Matthew Schwartz <matthew.schwartz@linux.dev>
+Thanks,
 
-Have not seen the issue again after applying this patch.
-
-Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev>
-
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Arvind Yadav <arvind.yadav@intel.com>
-> ---
-> drivers/gpu/drm/xe/xe_drm_client.c | 12 +++++++++++-
-> 1 file changed, 11 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_dr=
-m_client.c
-> index 84b66147bf49..81020b4b344e 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_client.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-> @@ -168,10 +168,20 @@ static void bo_meminfo(struct xe_bo *bo,
->               struct drm_memory_stats stats[TTM_NUM_MEM_TYPES])
-> {
->    u64 sz =3D xe_bo_size(bo);
-> -    u32 mem_type =3D bo->ttm.resource->mem_type;
-> +    u32 mem_type;
->=20
->    xe_bo_assert_held(bo);
->=20
-> +    /*
-> +     * The resource can be NULL if the BO has been purged, plus maybe som=
-e
-> +     * other cases. Either way there shouldn't be any memory to account f=
-or,
-> +     * or a current resource to account this against, so skip for now.
-> +     */
-> +    if (!bo->ttm.resource)
-> +        return;
-> +
-> +    mem_type =3D bo->ttm.resource->mem_type;
-> +
->    if (drm_gem_object_is_shared_for_memory_stats(&bo->ttm.base))
->        stats[mem_type].shared +=3D sz;
->    else
-> --
-> 2.54.0
->=20
+Rafael Passos
