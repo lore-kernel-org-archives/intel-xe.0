@@ -4,57 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 848B0C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 08:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02C31C43602
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 08:37:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 486A510E773;
-	Mon, 29 Jun 2026 08:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD8D310E064;
+	Mon, 29 Jun 2026 08:37:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TJizfi/3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JOUnnggC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6F9010E776
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 08:28:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3A3310E060;
+ Mon, 29 Jun 2026 08:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782721714; x=1814257714;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=R3rRPzPCk08VubYMDVMc+WjUMYOzDdHr77AdMWqTpRU=;
- b=TJizfi/3MABK9Ov2pHfw8WltQI7dbqECgOZ+GKwHY+OGHpRBzcyJmvjR
- 0UqwebT0q4NaFgL4/YHrnfMkVQWKuW40T2mzE+wd4UcS02Awrv79gowlr
- aLYg8eskDKhBAWQ7wgWhDDYJJey6ApL7BPXtNNCpe0kbMQQrocm4QBOsv
- xCkw7uUGy6n3SBag+W+DQm+ep8QN85tik2cZP/HBRNDhUfySl4oCfVKCc
- bv2HctLBrN7/HkC3YsnqitOSJJAp5AaKD1PK/3jNVXNpwkDGT07dpY7ET
- OdRZWRi/kPaEZDAkIpQvG2zKF/5aZ1nTW0Dl2FPZ0/pBo+lEugmm91Txj A==;
-X-CSE-ConnectionGUID: PHW+KxmFR4yHLKy73gLPqw==
-X-CSE-MsgGUID: qxUQx1EXTK6gEA+my6P/yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="82398902"
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="82398902"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:28:34 -0700
-X-CSE-ConnectionGUID: uDQTvkqbR2yKgb/UFdeG6w==
-X-CSE-MsgGUID: HIqi/zgCS2ywhBqUpPTKog==
+ t=1782722221; x=1814258221;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=yW4rE5Zr+InFVrJyY8OysXZwP625ZaE3tG8JAi/w1KE=;
+ b=JOUnnggC8fER4tptQj39CIdRUiQj6cqwdUtwIKFXLQBZ1SOGNP/Du0Gw
+ rBB3lsxr+yWsOHeawWazRYylwOZWgxcccExLXWnJV/Sey4aaHvIPCRzSq
+ g37c2q0H7f3stZ3ba751vDPu/O9QJRFGO+SDOMZX0Q56NOgSgQUyWAroE
+ oZ+ubZT2FkTPmUC5L8fu4ZfuocNRuLPaIMy3O1m4b1Oetvp46jSD1P5rl
+ YtIerCWWjrNikR4N+0E390G03Y8Ctv2OVrgF0Ol1sTB0tyPgo4SsdNgzH
+ Y85lHK4OsCHqg3v8/qAQx+FoES/8SlMRXgsagoax1UhR13U5ScB4HdkL2 w==;
+X-CSE-ConnectionGUID: 23+vvhrCSoSixDPnYvzDEQ==
+X-CSE-MsgGUID: Gj2OLwDTTYqah5kXSoOYyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="83174857"
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="83174857"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 01:37:01 -0700
+X-CSE-ConnectionGUID: cThrWzkYToKtCL0Q7jJf5Q==
+X-CSE-MsgGUID: ZTqd1/pyQK2hsN7TA3cjmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="281980320"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:28:32 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
- raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v9 4/4] drm/xe/xe_ras: Initialize Uncorrectable AER Registers
-Date: Mon, 29 Jun 2026 13:58:06 +0530
-Message-ID: <20260629082802.3690896-10-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260629082802.3690896-6-riana.tauro@intel.com>
-References: <20260629082802.3690896-6-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="250209467"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.253])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 01:36:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Hodo, Martin" <martin.hodo@intel.com>, "stable@vger.kernel.org"
+ <stable@vger.kernel.org>
+Subject: RE: [PATCH] drm/i915/hdcp: require monotonically increasing seq_num_v
+In-Reply-To: <DS4PPFE901A304F2E6AD5691A968A6BA2ECE3EA2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260625104407.1025614-1-jani.nikula@intel.com>
+ <DS4PPFE901A304F2E6AD5691A968A6BA2ECE3EA2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Date: Mon, 29 Jun 2026 11:36:56 +0300
+Message-ID: <6bfadde9120c6203f01a3b29fa2a1350b5a47904@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,135 +72,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Uncorrectable errors from different endpoints in the device are steered to
-the USP(Upstream Switch Port) which is a PCI Advanced Error Reporting (AER)
-Compliant device. Downgrade all the errors to non-fatal to prevent PCIe
-bus driver from triggering a Secondary Bus Reset (SBR). This allows error
-detection, containment and recovery in the driver.
+On Sat, 27 Jun 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: [PATCH] drm/i915/hdcp: require monotonically increasing seq_num_v
+>> 
+>> The HDCP 2.2 specification requires the seq_num_v to be monotonically
+>> increasing, and repeated seq_num_v needs to be treated as an integrity failure.
+>> Make it so.
+>> 
+>> For the first message, seq_num_v must be zero, and is already checked. We can
+>> only check for less-than-or-equal for the subsequent messages, where
+>> hdcp2_encrypted is true.
+>> 
+>> Discovered using AI-assisted static analysis confirmed by Intel Product Security.
+>> 
+>> Reported-by: Martin Hodo <martin.hodo@intel.com>
+>> Fixes: d849178e2c9e ("drm/i915: Implement HDCP2.2 repeater authentication")
+>> Cc: <stable@vger.kernel.org> # v5.2+
+>> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-The Uncorrectable Error Severity Register has the 'Uncorrectable
-Internal Error Severity' set to fatal by default. Set this to
-non-fatal and unmask the error.
+Thanks for the review, pushed to din.
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
----
-v2: clear stale uncorrectable internal status in status register
-(Aravind)
+BR,
+Jani.
 
-v3: abbrevate TLA's (Raag)
-    add a info message if USP does not support AER
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_hdcp.c | 7 ++++---
+>>  1 file changed, 4 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> index e88fec24af49..d097b478d010 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> @@ -1798,9 +1798,10 @@ int hdcp2_authenticate_repeater_topology(struct
+>> intel_connector *connector)
+>>  		return -EINVAL;
+>>  	}
+>> 
+>> -	if (seq_num_v < hdcp->seq_num_v) {
+>> -		/* Roll over of the seq_num_v from repeater. Reauthenticate.
+>> */
+>> -		drm_dbg_kms(display->drm, "Seq_num_v roll over.\n");
+>> +	if (hdcp->hdcp2_encrypted && seq_num_v <= hdcp->seq_num_v) {
+>> +		/* Reauthenticate on Seq_num_v repeat or rollover */
+>> +		drm_dbg_kms(display->drm, "Seq_num_v %s\n",
+>> +			    seq_num_v == hdcp->seq_num_v ? "repeat" :
+>> "rollover");
+>>  		return -EINVAL;
+>>  	}
+>> 
+>> --
+>> 2.47.3
+>
 
-v4: add a success log (Raag)
-
-v5: add extra newline
-    use IS_ENABLED check
-    remove VF check (Michal)
-    add function to get usp
-
-v6: fix kunit error
-
-v7: reorder functions (Mallesh)
-    use pci_clear_and_set_config_dword
-    rename function
-    fix comment
----
- drivers/gpu/drm/xe/xe_ras.c | 70 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 69 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 44f4e1a3455b..74d5016d9ffe 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -131,6 +131,68 @@ static inline const char *comp_to_str(u8 component)
- 	return xe_ras_components[component];
- }
- 
-+static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
-+{
-+	struct pci_dev *vsp;
-+
-+	/*
-+	 * Device Hierarchy:
-+	 *
-+	 * Upstream Switch Port (USP) --> Virtual Switch Port (VSP) --> SGunit (GPU endpoint)
-+	 */
-+	vsp = pci_upstream_bridge(pdev);
-+	if (!vsp)
-+		return NULL;
-+
-+	return pci_upstream_bridge(vsp);
-+}
-+
-+static void ras_usp_aer_init(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct pci_dev *usp;
-+	u16 aer_cap;
-+	u32 status;
-+
-+	usp = find_usp_dev(pdev);
-+	if (!usp)
-+		return;
-+
-+	aer_cap = pci_find_ext_capability(usp, PCI_EXT_CAP_ID_ERR);
-+	if (!aer_cap) {
-+		dev_warn(&usp->dev, "AER capability unavailable\n");
-+		return;
-+	}
-+
-+	/*
-+	 * Clear any stale Uncorrectable Internal Error Status event in Uncorrectable Error
-+	 * Status Register.
-+	 */
-+	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, &status);
-+	if (status & PCI_ERR_UNC_INTN)
-+		pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, PCI_ERR_UNC_INTN);
-+
-+	/*
-+	 * All errors are steered to USP which is a PCIe AER Compliant device.
-+	 * Downgrade all the errors to non-fatal to prevent PCIe bus driver
-+	 * from triggering a Secondary Bus Reset (SBR). This allows error
-+	 * detection, containment and recovery in the driver.
-+	 *
-+	 * The Uncorrectable Error Severity Register has the 'Uncorrectable
-+	 * Internal Error Severity' set to fatal by default. Set this to
-+	 * non-fatal and unmask the error.
-+	 */
-+
-+	/* Downgrade Uncorrectable Internal Error to non-fatal */
-+	pci_clear_and_set_config_dword(usp, aer_cap + PCI_ERR_UNCOR_SEVER, PCI_ERR_UNC_INTN, 0);
-+
-+	/* Unmask Uncorrectable Internal Error */
-+	pci_clear_and_set_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, PCI_ERR_UNC_INTN, 0);
-+
-+	pci_save_state(usp);
-+	dev_dbg(&usp->dev, "Uncorrectable Internal Errors downgraded and unmasked\n");
-+}
-+
- void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 				      struct xe_sysctrl_event_response *response)
- {
-@@ -274,7 +336,7 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
-  * xe_ras_init - Initialize Xe RAS
-  * @xe: xe device instance
-  *
-- * Register drm_ras nodes
-+ * Initialize Xe RAS
-  */
- void xe_ras_init(struct xe_device *xe)
- {
-@@ -282,4 +344,10 @@ void xe_ras_init(struct xe_device *xe)
- 		return;
- 
- 	xe_drm_ras_init(xe);
-+
-+	if (!xe->info.has_sysctrl)
-+		return;
-+
-+	if (IS_ENABLED(CONFIG_PCIEAER))
-+		ras_usp_aer_init(xe);
- }
 -- 
-2.47.1
-
+Jani Nikula, Intel
