@@ -4,62 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89AF7C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 08:57:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32D26C43602
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jun 2026 09:06:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D80310E785;
-	Mon, 29 Jun 2026 08:57:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF16B10E066;
+	Mon, 29 Jun 2026 09:06:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HSPKGcnr";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iyUhTV03";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6DF210E785;
- Mon, 29 Jun 2026 08:57:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782723423; x=1814259423;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=wtzhexgYu/GiWMolnu8lXfeDieCTDoNiL+kBDBrK4ig=;
- b=HSPKGcnrrcbYdHdhD/d+5KFXumgVF2n1QuDNlwVzB7LfTzkNdrJD1x/d
- RVFpRHzzP1q1bjAq/8FKjspHBjH5iP7nbRqtE87RAeCeLqv/mLL/b2ZNe
- lc4aJ12qZpyWfD+4mw5AJ3c7lynY46em0qqWfsAvqKbiu8nAF6cGopRm9
- EYj450nfL1LPkk0WwL8AcCz47GFWkXoiQ2ZldIz1EwTieSQKzE1he0zV5
- VBTm2jYkrR1tcuQH0qKDHBJ/V5hR0vE7H/tGjr8X88PwwQLmDEPDhL33f
- nFkhal2J9hK0BTag6rArTixVDTA/wwVXxTGURI93pf2AT+uL5oO8aqF+W A==;
-X-CSE-ConnectionGUID: 7Ab0iPy5SFqh3YqPl1NnlA==
-X-CSE-MsgGUID: eBnVXZceRBq1l8QYpVBRnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="83605584"
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="83605584"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:57:03 -0700
-X-CSE-ConnectionGUID: b23/RaZMRS26psfuHBE/LA==
-X-CSE-MsgGUID: flC0TqmrQD+p/7xG0cI3cg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="251514805"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.253])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:57:00 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, Alexander Kaplan
- <alexander.kaplan@sms-medipool.de>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Imre
- Deak <imre.deak@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2] drm/dp: Read the PCON max FRL bandwidth only for
- HDMI DFPs
-In-Reply-To: <2a22b3bf-5dcd-4163-aab9-a3471da24b50@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260610193825.2933-1-alexander.kaplan@sms-medipool.de>
- <2a22b3bf-5dcd-4163-aab9-a3471da24b50@intel.com>
-Date: Mon, 29 Jun 2026 11:56:36 +0300
-Message-ID: <6cf1f0d9b46070901b96a96ba10a11a3be108f68@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40F4110E066
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 09:06:11 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 25B6843F37
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 09:06:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D3291F00AC4
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 09:06:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782723971;
+ bh=qB4tJg2aYLg8hehpYin2dptPRoadEzGzbBpoppNMyKk=;
+ h=From:In-Reply-To:References:Date:Subject:To:Cc;
+ b=iyUhTV03bOKBX3P50ZCu5uI5Z9GdSG5FaWYf46X7lJcOmFmX+TOB5ZSHaEGQvoVvi
+ w7QBgX5wGnlIt9PwETkpMRIPTtL2gcrwvVGZlvQ9UEO6y0jwZX9Mmn6Zpk9DscDEuY
+ F0AAPET4mFlLtpb3GilD+x3+Q8aLT5LUaL+qRXeepLEhJbSMjM6672Tt+0t+JTi4Ib
+ aZbeAoeQD4GZ24bf76pYRPdkOembLX2HEF5nuge3oTrb5EA6IK7gusKHdgBYLt0wZe
+ 2UB/jbL1RUF+Rd3fa80u2w1VGLhbQLmwYrqVheU88CxYlRSZkCxTIpqImYjye4YPzK
+ QVoyZa2wkJ4iA==
+Received: by mail-lj1-f174.google.com with SMTP id
+ 38308e7fff4ca-39669bcaadfso32482151fa.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jun 2026 02:06:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqqxuJEz4kd0NiTCk+q6kgVTMXAluSfpS+9oF5KmoH0iAOspFYNugjfm+IhXCMMG/+pe0C+CWCAIw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwMEOrJnc0SNZIUQORFMISxws50jXuuYuR/zr7B+Vq7Mci3N1zE
+ 0EjSRlBOGWJ7rDJ2AWr069xYOfUPh37VDuwYMxGxTJe/7lMNYYQ4ShdsUS5b+QWtjyhlXrm91jm
+ oMqxXGR/5HG16QQQJbEzh/HEK4onrzlBeNFwVvLf3Lw==
+X-Received: by 2002:a05:651c:1587:b0:39a:e3c7:6644 with SMTP id
+ 38308e7fff4ca-39ae3c76ecdmr17150311fa.12.1782723969253; Mon, 29 Jun 2026
+ 02:06:09 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 29 Jun 2026 09:06:07 +0000
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 29 Jun 2026 09:06:07 +0000
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <ah9QPgco9BxEix7T@ashevche-desk.local>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
+ <20260521-pdev-fwnode-ref-v1-21-88c324a1b8d2@oss.qualcomm.com>
+ <ah9QPgco9BxEix7T@ashevche-desk.local>
+Date: Mon, 29 Jun 2026 09:06:07 +0000
+X-Gmail-Original-Message-ID: <CAMRc=McSDNdBMc_MAbBiOgeWusQXPEvivxniX5dJq+X6rp3UZw@mail.gmail.com>
+X-Gm-Features: AVVi8Cem7nS_T_r8P1YOw4p48wRJJJKggepy3MNLXmsKDTbaRpH5jyNSSJ0YwZw
+Message-ID: <CAMRc=McSDNdBMc_MAbBiOgeWusQXPEvivxniX5dJq+X6rp3UZw@mail.gmail.com>
+Subject: Re: [PATCH 21/23] usb: musb: use
+ platform_device_set_of_node_from_dev()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Lee Jones <lee@kernel.org>,
+ Mark Brown <broonie@opensource.wolfsonmicro.com>, 
+ Thierry Reding <thierry.reding@avionic-design.de>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Srinivas Kandagatla <srini@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, 
+ Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Ulf Hansson <ulfh@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>, 
+ Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maximilian Luz <luzmaximilian@gmail.com>, 
+ Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org, 
+ iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
+ linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,96 +118,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 29 Jun 2026, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 6/11/2026 1:08 AM, Alexander Kaplan wrote:
->> The PCON max FRL bandwidth field lives in byte 2 of the DFP Detailed
->> Capability Info (DPCD 0x82 for the first DFP).
->> The DP standard defines the meaning of descriptor bytes 1-3 strictly
->> per DFP type, and for a DisplayPort type DFP all of them are
->> reserved, with "read all 0s" semantics (DP v2.0, section 2.12.3,
->> Table 2-183).
->> The FRL bandwidth field is an HDMI DFP extension added by the VESA
->> DP-to-HDMI PCON specification.
->> drm_dp_get_pcon_max_frl_bw() however parses the byte without checking
->> the DFP type, the branch presence or DETAILED_CAP_INFO_AVAILABLE.
->> Without the latter the port descriptors are one byte wide and
->> port_cap[2] is not even the right register.
->>
->> All neighbouring helpers parsing the same descriptor are scoped by
->> the DFP type already, see for instance drm_dp_downstream_max_bpc()
->> reading the same byte and returning 0 for a DP type DFP.
->> amdgpu's DC parses the field only for HDMI(/DP++) detailed types as
->> well.
->>
->> This is not theoretical.
->> A Synaptics VMM7100 based USB-C to HDMI adapter with a macOS targeted
->> firmware advertises a DisplayPort type DFP with the type byte
->> replicated across the whole descriptor (08 08 08 08).
->> i915 decodes that as "PCON limited to 18 Gbps FRL" and prunes every
->> mode above ~750 MHz dotclock, including all the 4k@100/120 modes the
->> sink EDID offers, while macOS drives 4k@120 through the same adapter
->> just fine via DP DSC (and amdgpu's type-scoped parser would ignore
->> the bogus field as well).
->>
->> Only parse the field for an HDMI DFP behind a DPCD 1.1+ branch
->> device that reports detailed cap info, matching the type-scoped
->> field layout of the spec and the rest of the helpers.
->>
->> Fixes: ce32a6239de6 ("drm/dp_helper: Add Helpers for FRL Link Training support for DP-HDMI2.1 PCON")
->> Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
->> ---
->> v2: add an explicit DPCD_REV check like the neighbouring helpers
->>      have (Ville)
->> v1: https://lore.kernel.org/r/20260610174819.6258-1-alexander.kaplan@sms-medipool.de
->>
->> This patch is part of a set of independent fixes for the USB-C to DP
->> to HDMI 2.1 protocol converter (PCON) path, found and verified on an
->> ASUS NUC 16 Pro (Panther Lake, xe) with Synaptics VMM7100 based
->> adapters.
->> Each part stands on its own and can be merged independently.
->> The other parts:
->> [1] https://lore.kernel.org/r/20260610174413.5881-1-alexander.kaplan@sms-medipool.de
->> [2] https://lore.kernel.org/r/20260610174807.6231-1-alexander.kaplan@sms-medipool.de
->>   drivers/gpu/drm/display/drm_dp_helper.c | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
->> index 9c31e14cc413..e623ccb4c1d8 100644
->> --- a/drivers/gpu/drm/display/drm_dp_helper.c
->> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
->> @@ -3686,6 +3686,18 @@ int drm_dp_get_pcon_max_frl_bw(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->>   	int bw;
->>   	u8 buf;
->>   
->> +	if (!drm_dp_is_branch(dpcd))
->> +		return 0;
->> +
->> +	if (dpcd[DP_DPCD_REV] < 0x11)
->> +		return 0;
->> +
->> +	if ((dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DETAILED_CAP_INFO_AVAILABLE) == 0)
->> +		return 0;
->> +
->> +	if ((port_cap[0] & DP_DS_PORT_TYPE_MASK) != DP_DS_PORT_TYPE_HDMI)
->> +		return 0;
->> +
+On Tue, 2 Jun 2026 23:50:54 +0200, Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> said:
+> On Thu, May 21, 2026 at 10:36:44AM +0200, Bartosz Golaszewski wrote:
+>> Ahead of reworking the reference counting logic for platform devices,
+>> encapsulate the assignment of the OF node from another device for
+>> dynamically allocated platform devices with the provided helper.
 >
-> This is the right thing to do. These come under Additional HDMI Link 
-> Capability in the spec, so this needs a check for HDMI DFP.
+> Same Q as per chipidea. Do they provide a pin control facility at the same time?
 >
-> Thanks for the fix.
+> Otherwise simple device_set_node() or whatever platform analogue should suffice.
 >
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-I kicked CI to let this through. Please wait for the results before
-merging. Thanks.
+Hi!
 
->
->
->
->>   	buf = port_cap[2];
->>   	bw = buf & DP_PCON_MAX_FRL_BW;
->>   
+I don't know and I can't test it so let me respin the series as is. This can
+always be amended separately later.
 
--- 
-Jani Nikula, Intel
+Bart
