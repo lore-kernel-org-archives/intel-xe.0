@@ -4,63 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3ED7C43602
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 09:09:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F38C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 09:22:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D24610EBBC;
-	Tue, 30 Jun 2026 09:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78B9110EBD2;
+	Tue, 30 Jun 2026 09:22:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LDN676l2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WwPOsmfq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85B3A10EBB6;
- Tue, 30 Jun 2026 09:09:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35C6B10EBD2
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 09:21:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782810552; x=1814346552;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ZT5/YqAdR06D3iEcqa+qTOlX/3Y86xOSgxVe475ekKQ=;
- b=LDN676l2CBCGYcp4nD1U23o9stf5uVK8CqopbzpnQyqCPoZFkhRX65Xq
- oX3PoeCPgr3Ly8d73cYuSQ+w/umNxSNbJyhbL7P+J9lOCheBA8nzqEot8
- UdW6JW8Dz8on9MEj3CUBUSVk8bLk3q0inP52Ky2Zzx/y+Z34jIX07chd/
- WZD4/Uhd45ZU/DPTg/Pvu3wJcU/YWDnLcdgM1qiKlArlY2uKVRFL7W6CA
- bLpmYkxicNo80/a54PBlpu3w9I4biw+3wpUHtDQd8Ved7tRs3NieUlNP2
- o1W8iQDHB64Ux+ngBGQ6/sfXetbbfyTMR+AEpcpafc0NFxMEeh5xSaAbr A==;
-X-CSE-ConnectionGUID: irgwILNLQ5KNh940KKNtqg==
-X-CSE-MsgGUID: DnqOgCyKQ+uym4LWnhsVqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83715714"
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="83715714"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 02:09:12 -0700
-X-CSE-ConnectionGUID: 3rJaxcJtQ6+vhxSNpjY94A==
-X-CSE-MsgGUID: XtPPmhh0R/eOEcD+0WaoYw==
+ t=1782811318; x=1814347318;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=biCAux08V/v9SE9PWQVzDw+qiGLBSLpNvxIC5uBn0t0=;
+ b=WwPOsmfqGWJR2o17LD+FvFf54qGQSQ9gUXRnFCL2nD3hrAXaiPX/aVAW
+ kId82zI9/ZGeIfwBHJzkm4uZEKwlWQe6cN1PWBZ3It5gR76Y3+aXxR2AF
+ GD6wt6uns+/z5QDNfdqZlTULdodgiiNVMNrytp6bIR8KLtVTYGGmyMS4x
+ REeRvZz+vmkDo2Q24Wz2OGDsLtCDOzr3yGpwclq5VmY9TEPguNWRY1rM0
+ IWOxVdwuHPeaOtOZAD6IGlMJmSzBxVbYxz+NAuN6rQbsl4K5L2vbTos2P
+ O/8KOWGXXVHPMuffsL6H/pJjobLBsyYKDeyQjm9D2l5QhBGdZsQ6vDjMg w==;
+X-CSE-ConnectionGUID: ZK5HcqBVRdefKXyZDotUFQ==
+X-CSE-MsgGUID: /G18APl0QJCghswxqekC+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83390620"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="83390620"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 02:21:58 -0700
+X-CSE-ConnectionGUID: 1ZLs/ChETouAI349j0MT/A==
+X-CSE-MsgGUID: LdC/CH1SRPenzThEuToT7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="250518809"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.148])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 02:09:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Martin
- Hodo <martin.hodo@intel.com>, stable@vger.kernel.org, Animesh Manna
- <animesh.manna@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@intel.com>, =?utf-8?Q?Micha=C5=82?=
- Grzelak <michal.grzelak@intel.com>
-Subject: Re: [PATCH v2] drm/i915/bios: range check LFP Data Block panel_type2
-In-Reply-To: <akN8-YNa6kwRVkHk@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260625135130.1067872-1-jani.nikula@intel.com>
- <20260626140155.1389655-1-jani.nikula@intel.com>
- <akN8-YNa6kwRVkHk@intel.com>
-Date: Tue, 30 Jun 2026 12:09:06 +0300
-Message-ID: <b8d3d97a0977f8b7a2fcfedbf7d30fa95d322023@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="252862850"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa009.jf.intel.com with ESMTP; 30 Jun 2026 02:21:57 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: heikki.krogerus@linux.intel.com, rodrigo.vivi@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe/i2c: Drop manual VF check
+Date: Tue, 30 Jun 2026 14:48:00 +0530
+Message-ID: <20260630091800.403926-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,122 +65,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 30 Jun 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Jun 26, 2026 at 05:01:55PM +0300, Jani Nikula wrote:
->> While the panel_type from LFP Data Block is range checked, panel_type2
->> is not. Add a few helpers for range checking, and use them to not only
->> check panel_type2, but also improve clarity and correctness in the panel
->> type selection.
->>=20
->> Discovered using AI-assisted static analysis confirmed by Intel Product
->> Security.
->>=20
->> v2:
->> - Fix commit message typo (Micha=C5=82)
->> - Add is_panel_type_pnp() (Ville)
->>=20
->> Reported-by: Martin Hodo <martin.hodo@intel.com>
->> Fixes: 6434cf630086 ("drm/i915/bios: calculate panel type as per child d=
-evice index in VBT")
->> Cc: <stable@vger.kernel.org> # v6.0+
->> Cc: Animesh Manna <animesh.manna@intel.com>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@intel.com>
->> Reviewed-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com> # v1
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c | 36 ++++++++++++++++++-----
->>  1 file changed, 28 insertions(+), 8 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm=
-/i915/display/intel_bios.c
->> index 15ebadc72b88..97cbae2e547e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -623,6 +623,21 @@ get_lfp_data_tail(const struct bdb_lfp_data *data,
->>  		return NULL;
->>  }
->>=20=20
->> +static bool is_panel_type_valid(int panel_type)
->> +{
->> +	return panel_type >=3D 0 && panel_type < 16;
->> +}
->> +
->> +static bool is_panel_type_pnp(int panel_type)
->> +{
->> +	return panel_type =3D=3D 0xff;
->> +}
->> +
->> +static bool is_panel_type_valid_or_pnp(int panel_type)
->> +{
->> +	return is_panel_type_valid(panel_type) || is_panel_type_pnp(panel_type=
-);
->> +}
->> +
->>  static int opregion_get_panel_type(struct intel_display *display,
->>  				   const struct intel_bios_encoder_data *devdata,
->>  				   const struct drm_edid *drm_edid, bool use_fallback)
->> @@ -640,15 +655,21 @@ static int vbt_get_panel_type(struct intel_display=
- *display,
->>  	if (!lfp_options)
->>  		return -1;
->>=20=20
->> -	if (lfp_options->panel_type > 0xf &&
->> -	    lfp_options->panel_type !=3D 0xff) {
->> +	if (!is_panel_type_valid_or_pnp(lfp_options->panel_type)) {
->>  		drm_dbg_kms(display->drm, "Invalid VBT panel type 0x%x\n",
->>  			    lfp_options->panel_type);
->>  		return -1;
->>  	}
->>=20=20
->> -	if (devdata && devdata->child.handle =3D=3D DEVICE_HANDLE_LFP2)
->> +	if (devdata && devdata->child.handle =3D=3D DEVICE_HANDLE_LFP2) {
->> +		if (!is_panel_type_valid_or_pnp(lfp_options->panel_type2)) {
->> +			drm_dbg_kms(display->drm, "Invalid VBT panel type 2 0x%x\n",
->> +				    lfp_options->panel_type2);
->> +			return -1;
->> +		}
->> +
->>  		return lfp_options->panel_type2;
->> +	}
->
-> Hmm, this code will always return 'panel_type' if it's valid, even
-> for LFP2. That seems wrong, but would need to double check the
-> Windows behaviour to be sure...
->
-> But that's a separate issue, so this patch is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Clear has_i2c flag inside vf_update_device_info() instead of manually
+checking for VF instance.
 
-Thanks, pushed to din.
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 1 +
+ drivers/gpu/drm/xe/xe_i2c.c    | 3 ---
+ 2 files changed, 1 insertion(+), 3 deletions(-)
 
-BR,
-Jani.
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index e8b6afb29ab6..cfd4983be411 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -745,6 +745,7 @@ static void vf_update_device_info(struct xe_device *xe)
+ 	xe->info.probe_display = 0;
+ 	xe->info.has_heci_cscfi = 0;
+ 	xe->info.has_heci_gscfi = 0;
++	xe->info.has_i2c = 0;
+ 	xe->info.has_late_bind = 0;
+ 	xe->info.skip_guc_pc = 1;
+ 	xe->info.skip_pcode = 1;
+diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+index 706783863d07..bd956776b10b 100644
+--- a/drivers/gpu/drm/xe/xe_i2c.c
++++ b/drivers/gpu/drm/xe/xe_i2c.c
+@@ -334,9 +334,6 @@ int xe_i2c_probe(struct xe_device *xe)
+ 	if (!xe->info.has_i2c)
+ 		return 0;
+ 
+-	if (IS_SRIOV_VF(xe))
+-		return 0;
+-
+ 	xe_i2c_read_endpoint(xe_root_tile_mmio(xe), &ep);
+ 	if (ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
+ 		return 0;
+-- 
+2.43.0
 
->
->>=20=20
->>  	drm_WARN_ON(display->drm,
->>  		    devdata && devdata->child.handle !=3D DEVICE_HANDLE_LFP1);
->> @@ -762,13 +783,12 @@ static int get_panel_type(struct intel_display *di=
-splay,
->>  				    panel_types[i].name, panel_types[i].panel_type);
->>  	}
->>=20=20
->> -	if (panel_types[PANEL_TYPE_OPREGION].panel_type >=3D 0)
->> +	if (is_panel_type_valid(panel_types[PANEL_TYPE_OPREGION].panel_type))
->>  		i =3D PANEL_TYPE_OPREGION;
->> -	else if (panel_types[PANEL_TYPE_VBT].panel_type =3D=3D 0xff &&
->> -		 panel_types[PANEL_TYPE_PNPID].panel_type >=3D 0)
->> +	else if (is_panel_type_pnp(panel_types[PANEL_TYPE_VBT].panel_type) &&
->> +		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID].panel_type))
->>  		i =3D PANEL_TYPE_PNPID;
->> -	else if (panel_types[PANEL_TYPE_VBT].panel_type !=3D 0xff &&
->> -		 panel_types[PANEL_TYPE_VBT].panel_type >=3D 0)
->> +	else if (is_panel_type_valid(panel_types[PANEL_TYPE_VBT].panel_type))
->>  		i =3D PANEL_TYPE_VBT;
->>  	else
->>  		i =3D PANEL_TYPE_FALLBACK;
->> --=20
->> 2.47.3
-
---=20
-Jani Nikula, Intel
