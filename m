@@ -4,66 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4510C43327
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 09:56:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C872C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 09:57:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7775A10E1B2;
-	Tue, 30 Jun 2026 09:56:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEF2F10E1B2;
+	Tue, 30 Jun 2026 09:57:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bALv2/0y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FVmg4EGg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2003D10E1B1;
- Tue, 30 Jun 2026 09:56:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C5F010E1B2
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 09:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782813399; x=1814349399;
+ t=1782813434; x=1814349434;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=tVQbfGP0k8yz2W9KVQvlZMNsQQuav4FqShdctd5GCug=;
- b=bALv2/0y4QFjm9ZsdQgsNzPzEE83LgE9NKTJiDcl176aZjE0I3wnZ0j0
- EF724MxEPNZ21A/dU6pDculJnH50VTPffIVgf92Uv01MD9n+kCHnHR30g
- Hb4ws8PWhZbqIRQ5LhfD3SurouIiD6tgmoyIY4S09ODaSST+uK/gSfz7L
- ut/Tl3iMzsudUJVnQqxLScRvhHHEaJ/UFcOjEFWwJJEKQQB5kiSViVme7
- EitgJ0CYQzu+/3V/ggmVXu812ZVZK4WpscLytYtovJ+MgPO4ZSKqwphcg
- dfgOX+VsBmDeqgVuLyYrPICEUt7338gssb3GWtC0CXQFZeuN1EfGUk7aC A==;
-X-CSE-ConnectionGUID: j/hY2/uJTTmYtNnaG9tfWQ==
-X-CSE-MsgGUID: 620tljwMSKmP3+8h9DiYfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="109071209"
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="109071209"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 02:56:39 -0700
-X-CSE-ConnectionGUID: HU1QXltHRxWH76yAXNpY2w==
-X-CSE-MsgGUID: rkRorjRkQ5KMuS7SW2SRtg==
+ bh=n8PPDEKun6H3fY+hk/bKMnvdqRltN0zq5HzAJ1DReDI=;
+ b=FVmg4EGg+t20kh7IW2D7f+grVVwL8xjpYHCbzA6Z71I+DmCNBVKinKz2
+ GiCGYf5tpcJLOphNhjHHAeput2OTdcrHW5cE+uAoNOSmRQn72WsmgEzXu
+ TTimnWBS3+ITd+CnhIY5jThoj8qtZpyarKxhHT7xHE8DUYqPf4MXQu9BX
+ UJ5GwqftbwdqyCxxOI1gdOyNDxPpbwwz0b/NT11Q61NMoT/TGIxmCxzM7
+ GhrNm0sFEvaGch03DOm2EybnmXYn/zBCL2YdcmDdPa+ADYyK/TPs5TTAq
+ hzMiZilMM2ue/2lbniM/Vo/OsrgRrb9M8Vp568pqZWObXsYQQcUh9rVWB w==;
+X-CSE-ConnectionGUID: yslhrhs6RHOvyyvPgzcrTg==
+X-CSE-MsgGUID: EdqZku3QThuO80DnSGGovA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="94174606"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="94174606"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 02:57:13 -0700
+X-CSE-ConnectionGUID: Yeh9j/lvRX2OYlXxfXH+HA==
+X-CSE-MsgGUID: dLU0AfPIRNW4c+KsxNmKfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="249576680"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="251167431"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa008.fm.intel.com with ESMTP; 30 Jun 2026 02:56:36 -0700
+ by orviesa010.jf.intel.com with ESMTP; 30 Jun 2026 02:57:12 -0700
 Received: by black.igk.intel.com (Postfix, from userid 1008)
- id E15FA95; Tue, 30 Jun 2026 11:56:34 +0200 (CEST)
-Date: Tue, 30 Jun 2026 12:56:33 +0300
+ id A26ED95; Tue, 30 Jun 2026 11:57:11 +0200 (CEST)
+Date: Tue, 30 Jun 2026 12:57:10 +0300
 From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 To: Raag Jadav <raag.jadav@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andi Shyti <andi.shyti@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] drm/xe/i2c: Handler for SMBus Alerts
-Message-ID: <akOS0bAhabVXVtqM@kuha>
-References: <20260625125939.429078-1-heikki.krogerus@linux.intel.com>
- <20260625125939.429078-3-heikki.krogerus@linux.intel.com>
- <akOAy1AhbMkSxdjA@black.igk.intel.com>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH v1] drm/xe/i2c: Drop manual VF check
+Message-ID: <akOS9lXJjQhCSJGN@kuha>
+References: <20260630091800.403926-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <akOAy1AhbMkSxdjA@black.igk.intel.com>
+In-Reply-To: <20260630091800.403926-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,30 +68,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 30, 2026 at 10:39:39AM +0200, Raag Jadav wrote:
-> On Thu, Jun 25, 2026 at 02:59:38PM +0200, Heikki Krogerus wrote:
-> > Some devices that are attached to the I2C controller use the
-> > SMBus Alert signal for example to inform the host about
-> > thermal events, so registering the default SMBus Alert
-> > device for them. The alert device makes sure that the alert
-> > is processed and passed to the correct I2C client driver.
+On Tue, Jun 30, 2026 at 02:48:00PM +0530, Raag Jadav wrote:
+> Clear has_i2c flag inside vf_update_device_info() instead of manually
+> checking for VF instance.
 > 
-> ...
-> 
-> > +static int xe_i2c_register_smbus_alert(struct xe_i2c *i2c)
-> > +{
-> > +	struct xe_device *xe = kdev_to_xe_device(i2c->drm_dev);
-> > +	struct i2c_client *alert;
-> > +
-> > +	if (xe->info.platform != XE_CRESCENTISLAND)
-> 
-> Rather, introduce a has_i2c_smbus flag in xe_device_types.h and keep
-> things platform agnostic. I think you'll also need it to early return
-> from xe_i2c_create_irq().
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 
-OK. Feature flags are nice.
+FWIW:
 
-Thanks!
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/xe/xe_device.c | 1 +
+>  drivers/gpu/drm/xe/xe_i2c.c    | 3 ---
+>  2 files changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index e8b6afb29ab6..cfd4983be411 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -745,6 +745,7 @@ static void vf_update_device_info(struct xe_device *xe)
+>  	xe->info.probe_display = 0;
+>  	xe->info.has_heci_cscfi = 0;
+>  	xe->info.has_heci_gscfi = 0;
+> +	xe->info.has_i2c = 0;
+>  	xe->info.has_late_bind = 0;
+>  	xe->info.skip_guc_pc = 1;
+>  	xe->info.skip_pcode = 1;
+> diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+> index 706783863d07..bd956776b10b 100644
+> --- a/drivers/gpu/drm/xe/xe_i2c.c
+> +++ b/drivers/gpu/drm/xe/xe_i2c.c
+> @@ -334,9 +334,6 @@ int xe_i2c_probe(struct xe_device *xe)
+>  	if (!xe->info.has_i2c)
+>  		return 0;
+>  
+> -	if (IS_SRIOV_VF(xe))
+> -		return 0;
+> -
+>  	xe_i2c_read_endpoint(xe_root_tile_mmio(xe), &ep);
+>  	if (ep.cookie != XE_I2C_EP_COOKIE_DEVICE)
+>  		return 0;
+> -- 
+> 2.43.0
 
 -- 
 heikki
