@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCDAFC43602
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 08:39:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C6EEC43327
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 08:42:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89A6810E196;
-	Tue, 30 Jun 2026 08:39:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QMe5WCND";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E18D10E18E;
- Tue, 30 Jun 2026 08:39:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782808786; x=1814344786;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=EUfQGRyasCSbmwp8IOII8FDqfG3pxS91aWxjSPo+AW8=;
- b=QMe5WCNDlT+9NXh0qEUvESOoXUvgRbtyZgp0sHla3LfC2fviDCHcv+Ff
- tGT/fGT0MPm7ilWm3RMIGPOkfAv8bNBVyF9Wj7boi5KijNnmmSe7DzkCX
- jzyVHaZR0aLiYFKyUH3Qe6nYvxx0+SJDxePCBWIRU9LFCZc9fKEphWgfI
- 3aXPMWPWHwDF0tGuG9eh77frJeDf4mMi+nn57rY2GgMD/oiNstG7lLHPw
- boUI+Kl7YAgjH1ze/xcF0mXlCGxP5hlnBUx2R/qrwgjXbRTOB31LuRagK
- 8Yly588bYiIihVv7/EPhYePi3zKA6WH2ANkcXmlIrt6xVtVf9ICegCIjn w==;
-X-CSE-ConnectionGUID: rzU7P5YgQ4KXqA2PaArE6A==
-X-CSE-MsgGUID: w7tJl7QmQXizix9t/NKSPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="71038342"
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="71038342"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 01:39:46 -0700
-X-CSE-ConnectionGUID: jlcP/zO/SX+BvGRiA8zevg==
-X-CSE-MsgGUID: GVF3NpmfRRar7SSIHgmKzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="255798935"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 01:39:43 -0700
-Date: Tue, 30 Jun 2026 10:39:39 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andi Shyti <andi.shyti@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] drm/xe/i2c: Handler for SMBus Alerts
-Message-ID: <akOAy1AhbMkSxdjA@black.igk.intel.com>
-References: <20260625125939.429078-1-heikki.krogerus@linux.intel.com>
- <20260625125939.429078-3-heikki.krogerus@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D799A10E19C;
+	Tue, 30 Jun 2026 08:42:58 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B8010E196;
+ Tue, 30 Jun 2026 08:42:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4713355778159529146=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260625125939.429078-3-heikki.krogerus@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/gpusvm=3A_split_MM_and_?=
+ =?utf-8?q?device_state_across_gpusvm/range/pages_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Honglei Huang" <honghuan@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 30 Jun 2026 08:42:57 -0000
+Message-ID: <178280897746.131623.15785911654842771375@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260630073452.379071-1-honghuan@amd.com>
+In-Reply-To: <20260630073452.379071-1-honghuan@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,53 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 25, 2026 at 02:59:38PM +0200, Heikki Krogerus wrote:
-> Some devices that are attached to the I2C controller use the
-> SMBus Alert signal for example to inform the host about
-> thermal events, so registering the default SMBus Alert
-> device for them. The alert device makes sure that the alert
-> is processed and passed to the correct I2C client driver.
+--===============4713355778159529146==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
-> +static int xe_i2c_register_smbus_alert(struct xe_i2c *i2c)
-> +{
-> +	struct xe_device *xe = kdev_to_xe_device(i2c->drm_dev);
-> +	struct i2c_client *alert;
-> +
-> +	if (xe->info.platform != XE_CRESCENTISLAND)
+Series: drm/gpusvm: split MM and device state across gpusvm/range/pages (rev5)
+URL   : https://patchwork.freedesktop.org/series/169384/
+State : success
 
-Rather, introduce a has_i2c_smbus flag in xe_device_types.h and keep
-things platform agnostic. I think you'll also need it to early return
-from xe_i2c_create_irq().
+== Summary ==
 
-> +		return 0;
-> +
-> +	alert = i2c_new_smbus_alert_device(i2c->adapter, &xe_i2c_smbus_setup);
-> +	if (IS_ERR(alert))
-> +		return PTR_ERR(alert);
-> +
-> +	i2c->client[XE_I2C_CLIENT_ALERT] = alert;
-> +
-> +	return 0;
-> +}
+CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -> xe-pw-169384v5_BAT
+====================================================
 
-...
+Summary
+-------
 
-> @@ -182,7 +222,10 @@ void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
->  		return;
->  
->  	/* Forward interrupt to I2C adapter */
-> -	generic_handle_irq_safe(xe->i2c->adapter_irq);
-> +	if (xe->info.platform == XE_CRESCENTISLAND)
+  **SUCCESS**
 
-Ditto.
+  No regressions found.
 
-Raag
+  
 
-> +		xe_i2c_handle_smbus_alert(xe->i2c);
-> +	else
-> +		generic_handle_irq_safe(xe->i2c->adapter_irq);
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -> xe-pw-169384v5
+
+  IGT_8988: 8988
+  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc
+  xe-pw-169384v5: 169384v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169384v5/index.html
+
+--===============4713355778159529146==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/gpusvm: split MM and device state across gpusvm/range/pages (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169384/">https://patchwork.freedesktop.org/series/169384/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169384v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169384v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -&gt; xe-pw-169384v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -&gt; xe-pw-169384v5</li>
+</ul>
+<p>IGT_8988: 8988<br />
+  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc<br />
+  xe-pw-169384v5: 169384v5</p>
+
+</body>
+</html>
+
+--===============4713355778159529146==--
