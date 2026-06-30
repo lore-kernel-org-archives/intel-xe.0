@@ -4,106 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BB95C43602
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 13:22:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A3DC43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 13:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1902D10E1E8;
-	Tue, 30 Jun 2026 13:22:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AwMqGpzZ";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 289BC10E1E8
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 13:22:20 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 00CF543EB9
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 13:22:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 972CC1F01561
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 13:22:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782825739;
- bh=siJF0S+CSX6SKMbF6lhMt/C1v2E/StqLW87OFuT5mug=;
- h=From:In-Reply-To:References:Date:Subject:To:Cc;
- b=AwMqGpzZSvDnV5vSM2z0wkwmPZcuy6Z0HxhXFqaldHKlF6D4sOyHQK4L/B0fF/itF
- Z9C2BVuksw1mr1+6ch02R+Zz8gUAI5fDmwZjU0wGMt2h6Gvq8cC5ZOCtMOofX5R+yU
- 1Hy/oyLq2B0fQTEZyfgl3xfrexpVhETu+CQgBxy7/99a3XMItUDuxVCBl4oiSjn1eD
- o38KeGOoUlFVb5zZeSXv+WtlmGXFDo9Wxn8ecfVThX04SgSmZnYMsm+XWmLmYZpjIC
- zdm9J6iEsk3ibRX/F7HoLCPZU+tHrUTrb8Qp73PbRYfYDyWDS2X2Ru7diIgwCebdnz
- 9GKoHZxfVlf+A==
-Received: by mail-lf1-f51.google.com with SMTP id
- 2adb3069b0e04-5aeb36ed873so2276856e87.0
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 06:22:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AHgh+RoO7qHsz0xJPHka9Gd5pGnDJzC8xnPbLJy1GWAN1831juLgPqOqPtUb3OUlVXXGAEPWarFetHAgJg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEKT9CLfezMaTWV3NiwYbiwHCIdi4EwCi1Tgj/frFQGCbgfOsa
- W2qyN15b5fbXiMwb3iWtmB9kxgo6jjc0FSp+pD1VSqlkNph/+/QfHmdmoD6zBnMGvWMreV9z26g
- EEGLYzWdcOsOhPjWLUjjVfOKj/cgt8vym4KSk9tknNA==
-X-Received: by 2002:a05:6512:8041:b0:5ad:4f1c:8e50 with SMTP id
- 2adb3069b0e04-5aebdba2f7fmr745427e87.37.1782825738263; Tue, 30 Jun 2026
- 06:22:18 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 30 Jun 2026 09:22:16 -0400
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 30 Jun 2026 09:22:16 -0400
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <263f58b418a27a2339fc2478f93234e0208b0ad9.camel@mailbox.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 504D010E1A3;
+	Tue, 30 Jun 2026 13:26:04 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06A9410E86D;
+ Tue, 30 Jun 2026 13:26:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4982982239047077380=="
 MIME-Version: 1.0
-References: <20260629-pdev-fwnode-ref-v2-0-8abe2513f96e@oss.qualcomm.com>
- <20260629-pdev-fwnode-ref-v2-2-8abe2513f96e@oss.qualcomm.com>
- <263f58b418a27a2339fc2478f93234e0208b0ad9.camel@mailbox.org>
-Date: Tue, 30 Jun 2026 09:22:16 -0400
-X-Gmail-Original-Message-ID: <CAMRc=MdQURjypSn+QjSDJfEiOMC8bbEZmZLgjpt=EquAM1Q1pw@mail.gmail.com>
-X-Gm-Features: AVVi8CeQXBZd5M2B6MhLUb095jshYyZGAJu3z11iktq0q6r491Qj_z_hr6U3W70
-Message-ID: <CAMRc=MdQURjypSn+QjSDJfEiOMC8bbEZmZLgjpt=EquAM1Q1pw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/19] driver core: platform: provide
- platform_device_set_of_node()
-To: Manuel Ebner <manuelebner@mailbox.org>
-Cc: brgl@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
- driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org, 
- iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
- linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Lee Jones <lee@kernel.org>, 
- Thierry Reding <thierry.reding@avionic-design.de>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, 
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, 
- Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
- Andi Shyti <andi.shyti@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Ulf Hansson <ulfh@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>, 
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, 
- Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Switch_?=
+ =?utf-8?q?DG2_MPLLB_handling_to_the_DPLL_framework_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 30 Jun 2026 13:26:03 -0000
+Message-ID: <178282596301.133156.642118077197792966@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260630115336.1059976-1-mika.kahola@intel.com>
+In-Reply-To: <20260630115336.1059976-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,30 +36,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 30 Jun 2026 13:37:54 +0200, Manuel Ebner <manuelebner@mailbox.org> said:
-> On Mon, 2026-06-29 at 11:12 +0200, Bartosz Golaszewski wrote:
->> [...]
->>
->> +/**
->> + * platform_device_set_of_node - assign an OF node to device
->> + * @pdev: platform device to add the node for
->> + * @np: new device node
->> + *
->> + * Assign an OF node to this platform device. Internally keep track of the
->> + * reference count. Devices created with platform_device_alloc() must use this
->> + * function instead of assigning the node manually.
->
-> Doesn't it make sense to add a remark to the kernel doc of platform_device_alloc()?
->
-> Thanks
->  Manuel
->
->>  [...]
->
+--===============4982982239047077380==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Sure, will do in the next iteration.
+== Series Details ==
 
-Bart
+Series: drm/i915/display: Switch DG2 MPLLB handling to the DPLL framework (rev2)
+URL   : https://patchwork.freedesktop.org/series/166763/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f_BAT -> xe-pw-166763v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-166763v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_query@multigpu-query-cs-cycles:
+    - bat-bmg-3:          [FAIL][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166763v2/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f -> xe-pw-166763v2
+
+  IGT_8988: 8988
+  xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f: a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f
+  xe-pw-166763v2: 166763v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166763v2/index.html
+
+--===============4982982239047077380==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Switch DG2 MPLLB handling to the DPLL framework (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166763/">https://patchwork.freedesktop.org/series/166763/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166763v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166763v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f_BAT -&gt; xe-pw-166763v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-166763v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_query@multigpu-query-cs-cycles:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166763v2/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f -&gt; xe-pw-166763v2</li>
+</ul>
+<p>IGT_8988: 8988<br />
+  xe-5309-a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f: a2d82f27ac35c691c1c65b40c72b13d8b2a7f91f<br />
+  xe-pw-166763v2: 166763v2</p>
+
+</body>
+</html>
+
+--===============4982982239047077380==--
