@@ -4,102 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93005C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 07:41:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CDADC43327
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 07:49:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA9710EB58;
-	Tue, 30 Jun 2026 07:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F17D110E1AB;
+	Tue, 30 Jun 2026 07:49:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ihf4ac9s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGDxpVys";
 	dkim-atps=neutral
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012027.outbound.protection.outlook.com
- [40.93.195.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D9BD10EB50
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 07:41:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B8SSMVY1ELxq4stVFqAtp1TJl7N2BDHX8hAostfsFT/L+S7RBFiLFqyLQCElQ2E9rZly0HYrqWjSrf+2mi2DFqECdXZ+qoRgE2p1vCkmiPG1B4c2cnbKsEnq+nGu2Swzz1cwEjdvDkI5iu2JtgF/jnRSnO+pGlrtPa8BiFYPDmgSN0MppOpgjJtOidC6msQJdjpklC6hh+lQRSl+ttKnAxY6P8/L9CjBflMrkogcJKQ23UJYvpy3pbElrfCpzKioVyUP+NvgSc2GgopY691qF9VwpmDL7OiLI4v6pyxy0lFF3QX7Mpg2PraQrZYn/okznvDu9tABLgSvSwa8shNOGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M1Jp7Z0LCldMaZKnPFExtzeBWvBDo+p953k43Wy6gq8=;
- b=wOEEHOBPZ1O+8TDPJPotNqTJy2lypBO0neLxK/JFQuf+4WT9jrOxO2oCs2Q/t6zTm3VXhoiUluCg3f4Ed8GzgEySM7Ec56qwbwNMz2WtzgyuCLhEDSFgmcOWlpos0lFRe/1F5fzLRBNo2r9E0ShyYISc3z0KBi2eWgbDR5uj6eY0M8dxrONOauf6beeiB2haiNliG3Qy4undkeRZVyl2tj+7NC7fhqYTSJhTwZ07w2tmxlQZwZb6wI8agk/wqi8oiT3HaGywlZb3/IFb6W6+Rz77VOIE6AmJxWx0/UR4sk6eMW+C+B8jHEGu9qJhX13CRDMVJbylyvuGAdVG9QF7wg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M1Jp7Z0LCldMaZKnPFExtzeBWvBDo+p953k43Wy6gq8=;
- b=ihf4ac9swL+aWqiiP8lwe24QQceTpgzxkWnTMrBa0io0zrTeMHH60+O2MCv6frU+lasMxbCaAS3xFjmf9hxwzZxbu6cNNZd/KlHTK20kmXcpzs6N17dqNodfpIlvgw3EZwXm0R4Tuvx/6pL69Erb1PUvDcwfPYMPz465X8+4ZqU=
-Received: from SA0PR11CA0166.namprd11.prod.outlook.com (2603:10b6:806:1bb::21)
- by PH0PR12MB8052.namprd12.prod.outlook.com (2603:10b6:510:28b::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Tue, 30 Jun
- 2026 07:41:06 +0000
-Received: from SN1PEPF000252A1.namprd05.prod.outlook.com
- (2603:10b6:806:1bb:cafe::68) by SA0PR11CA0166.outlook.office365.com
- (2603:10b6:806:1bb::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.19 via Frontend Transport; Tue,
- 30 Jun 2026 07:41:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SN1PEPF000252A1.mail.protection.outlook.com (10.167.242.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 07:41:06 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 30 Jun
- 2026 02:41:03 -0500
-Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 30 Jun
- 2026 00:35:09 -0700
-From: Honglei Huang <honghuan@amd.com>
-To: <intel-xe@lists.freedesktop.org>
-Subject: [PATCH v9 5/5] drm/gpusvm: let the drm_gpusvm core context purely MM
- level
-Date: Tue, 30 Jun 2026 15:34:52 +0800
-Message-ID: <20260630073452.379071-6-honghuan@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260630073452.379071-1-honghuan@amd.com>
-References: <20260630073452.379071-1-honghuan@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0B610E183;
+ Tue, 30 Jun 2026 07:49:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782805788; x=1814341788;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SzR/0OEPKvCkiPLjKNVIAPDqQySrUHKMnRI7BY//8c0=;
+ b=ZGDxpVysaxk1bzMJu0A45QG8UGHQnoJbIrwr7LcvI4xrF0aeyjzpanrr
+ O+LMGQ3wBcczf+R6dvNAPUvuILimlhMyUSfK9XtYohO5LpFdkWp+AXCoQ
+ iN+68+vSjaD+ALGM8xku7YZjCOp6yoks1IjhEzBx0Zfp7i3DK4LvjWCjA
+ kxKHfa97Xy3uB0H4AsumPgRB6s/FC/hW/CO2vhBVaOrdbp6IiZkdH0ThX
+ 8q6r8kO67nYIDtxraZg9uyj9p8BdgZmTDCWoCp+0LZB4aPNCpEiPjSN4A
+ KsifbXUOQbUKdYDMEINpqV/Mu37Sf3vzOU1uVw8gbE8dCaO3lIYmYygLv w==;
+X-CSE-ConnectionGUID: yxKGIoPFRtC52zOuIEBVpw==
+X-CSE-MsgGUID: HNe0Pn7HTz6V59Z66u837g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="93867459"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="93867459"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 00:49:47 -0700
+X-CSE-ConnectionGUID: SUq535XNSge/UOs+cDtg2Q==
+X-CSE-MsgGUID: n9x3qRPTSqyRSIEK5sp1jA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="252332480"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.148])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 00:49:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Martin Hodo <martin.hodo@intel.com>, stable@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/vrr: require valid min/max vfreq for VRR
+In-Reply-To: <10218b5f-6720-4517-abf0-2ab7e8d4c9c6@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260625131040.1051272-1-jani.nikula@intel.com>
+ <10218b5f-6720-4517-abf0-2ab7e8d4c9c6@intel.com>
+Date: Tue, 30 Jun 2026 10:49:23 +0300
+Message-ID: <4056174972373bd293c34c2813967f2165056b11@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb09.amd.com
- (10.181.42.218)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000252A1:EE_|PH0PR12MB8052:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8bab5976-3569-483d-016c-08ded67af204
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|1800799024|82310400026|36860700016|22082099003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: KfxOQHzJyJSUTp96qKhBOlb2mnbvGeqtKMhd+wIKfMLkfHgchgzsbNKN6mvfIbh+dLR/09prH1MPJ50OkX/PREtR2Lvf+Y/mCV04Uu3xp+1fkHsmfk9cX/d8VmLzG39VonnMIu17ozdKfxhij8dSWoVZib9YVNOB8hEDYAjeIP7Hu3Zhebst2XswnO0aozIhBCzn2Q9A3QaDK0JBSurY2CptYCM6hVQwLtFFuZJ9vAICAce0gJ8/yWhcjgNSvYyAjniePu/Q7gDHrzTcq8B4xTZQ/rm6F/PCTsJdj+YjDSUVHpc6yh6GLzRLo4Omeg0U7ySK/h9Q3cqZvlwoEbu08HZC/FqD/j6rPy/VrWrJpjyXBRPbL/FdwIWyzZUsU4CbwvebNqKOmszfjoKQu9GMrxOFdg4nOTMihIawmc0Nma1WsLsFCH/xadIuZ2KP3EOpnVojGiHpfROe64OcjNMid7S47s75rG6dLmyIzR3Byke8Xg3yJHVrYdJKdCrp3UgjRqQpkOKLozcPqRj2BiThK8i0iclcgEe8zpBMJxvOSShQH5rc7cMPI+q/FMJXlnbHwPf1IDbrzROddDh/QHBLaxAhFUtxVBEp9unNYwHVyn+jbdY9W9pOV5i4dpQbXqLoZM4HG7VU2WDdY16vLH+wcpY3KbXjYWCb6JbIFjjb//eHh2p5kFRCxWWsYC1rfYHziA9WX5mOi72DvjGTGGXh1w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(1800799024)(82310400026)(36860700016)(22082099003)(18002099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: bKFHyGnU5QKIlqTuVb+CpvTjquA9ffRVvpTHpWV/k9CbnZWgTIS3bcSZGPwbC99TFvAEmlB2+rjKoIvFv0zmc9PzMInEGYsULgN/myKOFCAxpJ933WcL9xYCrKo3P8j50v9eIesXf9FTK3elY7B9YtC7VMwMG1Cb41aJ2BBhV7AEK0LufDp/2RkMvabGqC0KjBGDlQ6W2o9gVX9dDt/iXcIRtfzuFjzsWHvS/XuFZF4ANZBkqEQfc+kGtEB4oryE4iQvTlEw3zokz4D3+14+jMFtpZ2AzoQ+zaONdjYLg5RkoxFasQsWHdnmAW+Pwzl1ahoSbNCQeMSzZ88msNddMHCurEjwIqRJ0cSX3SYddaZOTFOmYsZ5xHsghCiZWFP+Pqmv60Q7ZWUR8LsT/W2n1ZVqT04rbI+lHep9A6b2GpZGpS7QZk/3CSaEZ1+Alhnn
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 07:41:06.7552 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bab5976-3569-483d-016c-08ded67af204
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A1.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8052
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,136 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The core mechanism of drm_gpusvm is HMM, which is fundamentally an
-MM side subsystem. A drm_device, enters the picture on the device side at
-DMA mapping / GPU bind.
+On Fri, 26 Jun 2026, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> On 6/25/2026 6:40 PM, Jani Nikula wrote:
+>> Ensure the EDID provided min/max vfreq are valid. Most scenarios are
+>> already covered (by coincidence) through the checks in
+>> intel_vrr_is_capable() and intel_vrr_is_in_range(), but be more explicit
+>> about it. At worst, a zero min_vfreq could lead to a division by zero in
+>> intel_vrr_compute_vmax().
+>>
+>> Discovered using AI-assisted static analysis confirmed by Intel Product
+>> Security.
+>>
+>> Reported-by: Martin Hodo <martin.hodo@intel.com>
+>> Fixes: 117cd09ba528 ("drm/i915/display/dp: Compute VRR state in atomic_check")
+>> Cc: <stable@vger.kernel.org> # v5.12+
+>> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Makes sense.
+>
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-So move struct drm_device from struct drm_gpusvm in drm_gpusvm. Let
-drm_gpusvm keep its core neutral and leave device side decisions to
-the driver. Make drm_gpusvm a pure MM level object.
+Thanks for the review, pushed to drm-intel-next.
 
-  - Move the drm_device from struct drm_gpusvm. drm_device now stored in
-    drm_gpusvm_pages.
-  - Drop the drm parameter from drm_gpusvm_init()
-  - Update the xe call sites in xe_svm_init() and other callers.
+BR,
+Jani.
 
-drm_device does not disappear from the framework, it is
-relocated onto each drm_gpusvm_pages where DMA actually happens.
+>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+>> index 5d9b11185296..bffbdee76ee1 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+>> @@ -76,6 +76,10 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+>>   		return false;
+>>   	}
+>>   
+>> +	if (!info->monitor_range.min_vfreq || !info->monitor_range.max_vfreq ||
+>> +	    info->monitor_range.min_vfreq > info->monitor_range.max_vfreq)
+>> +		return false;
+>> +
+>>   	return info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
+>>   }
+>>   
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Honglei Huang <honghuan@amd.com>
----
- drivers/gpu/drm/drm_gpusvm.c | 8 ++++----
- drivers/gpu/drm/xe/xe_svm.c  | 4 ++--
- drivers/gpu/drm/xe/xe_svm.h  | 2 +-
- include/drm/drm_gpusvm.h     | 4 +---
- 4 files changed, 8 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index e0fd0b2fcc5..fcfe635bc19 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -439,7 +439,6 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
-  * drm_gpusvm_init() - Initialize the GPU SVM.
-  * @gpusvm: Pointer to the GPU SVM structure.
-  * @name: Name of the GPU SVM.
-- * @drm: Pointer to the DRM device structure.
-  * @mm: Pointer to the mm_struct for the address space.
-  * @mm_start: Start address of GPU SVM.
-  * @mm_range: Range of the GPU SVM.
-@@ -453,7 +452,9 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
-  * This function initializes the GPU SVM.
-  *
-  * Note: If only using the simple drm_gpusvm_pages API (get/unmap/free),
-- * then only @gpusvm, @name, and @drm are expected. However, the same base
-+ * then only @gpusvm and @name are expected. The @drm drm_device for dma
-+ * mappings is bound per-pages via drm_gpusvm_init_pages() before the first
-+ * drm_gpusvm_get_pages() call. However, the same base
-  * @gpusvm can also be used with both modes together in which case the full
-  * setup is needed, where the core drm_gpusvm_pages API will simply never use
-  * the other fields.
-@@ -461,7 +462,7 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
-  * Return: 0 on success, a negative error code on failure.
-  */
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
--		    const char *name, struct drm_device *drm,
-+		    const char *name,
- 		    struct mm_struct *mm,
- 		    unsigned long mm_start, unsigned long mm_range,
- 		    unsigned long notifier_size,
-@@ -479,7 +480,6 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
- 	}
- 
- 	gpusvm->name = name;
--	gpusvm->drm = drm;
- 	gpusvm->mm = mm;
- 	gpusvm->mm_start = mm_start;
- 	gpusvm->mm_range = mm_range;
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index d515647192e..3283b74f7d5 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -911,7 +911,7 @@ int xe_svm_init(struct xe_vm *vm)
- 			return err;
- 		}
- 
--		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
-+		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM",
- 				      current->mm, 0, vm->size,
- 				      xe_modparam.svm_notifier_size * SZ_1M,
- 				      &gpusvm_ops, fault_chunk_sizes,
-@@ -925,7 +925,7 @@ int xe_svm_init(struct xe_vm *vm)
- 		}
- 	} else {
- 		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
--				      &vm->xe->drm, NULL, 0, 0, 0, NULL,
-+				      NULL, 0, 0, 0, NULL,
- 				      NULL, 0);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index c8f4a7ba0f4..a921556d346 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -235,7 +235,7 @@ static inline
- int xe_svm_init(struct xe_vm *vm)
- {
- #if IS_ENABLED(CONFIG_DRM_GPUSVM)
--	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)", &vm->xe->drm,
-+	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
- 			       NULL, 0, 0, 0, NULL, NULL, 0);
- #else
- 	return 0;
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index 2862104aa1b..b7d987bf76a 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -195,7 +195,6 @@ struct drm_gpusvm_range {
-  * struct drm_gpusvm - GPU SVM structure
-  *
-  * @name: Name of the GPU SVM
-- * @drm: Pointer to the DRM device structure
-  * @mm: Pointer to the mm_struct for the address space
-  * @mm_start: Start address of GPU SVM
-  * @mm_range: Range of the GPU SVM
-@@ -219,7 +218,6 @@ struct drm_gpusvm_range {
-  */
- struct drm_gpusvm {
- 	const char *name;
--	struct drm_device *drm;
- 	struct mm_struct *mm;
- 	unsigned long mm_start;
- 	unsigned long mm_range;
-@@ -271,7 +269,7 @@ struct drm_gpusvm_ctx {
- };
- 
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
--		    const char *name, struct drm_device *drm,
-+		    const char *name,
- 		    struct mm_struct *mm,
- 		    unsigned long mm_start, unsigned long mm_range,
- 		    unsigned long notifier_size,
 -- 
-2.34.1
-
+Jani Nikula, Intel
