@@ -4,27 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C6EEC43327
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 08:42:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 547D9C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 08:46:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D799A10E19C;
-	Tue, 30 Jun 2026 08:42:58 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72B8010E196;
- Tue, 30 Jun 2026 08:42:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4713355778159529146=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14A6A10EB44;
+	Tue, 30 Jun 2026 08:46:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dCnbgDJw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A94F010EB44;
+ Tue, 30 Jun 2026 08:46:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782809203; x=1814345203;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=fWhGWkg1sVC+Zopw1ah/LLgRFnq+PnpA3zeYqg1SVDo=;
+ b=dCnbgDJwOofH0T8PwMO2PNH9xdvxxxwbNo1YJTNmRgv89S1hp+eTbAQ2
+ tAKurWWMG5PKl8Iyxc0OPTZ27nDd1ARHuUgE1T789JZ+GwpsBWQA/jKHu
+ yA2+OVe08pRVZJgxeoGzEA/rHnbuT6EKCgzV1FnHekbQ2Fw75sj2asIaP
+ Q3v3PKT9UHy+TfCVg67LpjyplhkzpOgpR/dDrsFkIlvPEM3EZOcIGAPpp
+ lNWIcHIL51+uZwcMKGwweBbjXo8AaPuwK/TWdzzEyRDLAzJbB59psotMC
+ 9IatrqoE5yXP2dEIPb83T6CB+zl1iuvM4HpTVX1EfOJnOAZmED2tZL0mP A==;
+X-CSE-ConnectionGUID: 0h2nS27LSrecIbH3HmeaWA==
+X-CSE-MsgGUID: f/ZeF1xkTcCKGEyqfwtN7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83651073"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="83651073"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 01:46:42 -0700
+X-CSE-ConnectionGUID: +X9lGev+TKiS7ZuuBWMq9Q==
+X-CSE-MsgGUID: WjPREsZyTKSgs5LuE5kwEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="251799766"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 01:46:39 -0700
+Date: Tue, 30 Jun 2026 10:46:36 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ "Michael J . Ruhl" <michael.j.ruhl@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Riana Tauro <riana.tauro@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andi Shyti <andi.shyti@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] drm/xe/mcu_i2c: Take over control of the
+ controller enabling
+Message-ID: <akOCbMKgTbzbZI7R@black.igk.intel.com>
+References: <20260625125939.429078-1-heikki.krogerus@linux.intel.com>
+ <20260625125939.429078-4-heikki.krogerus@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/gpusvm=3A_split_MM_and_?=
- =?utf-8?q?device_state_across_gpusvm/range/pages_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Honglei Huang" <honghuan@amd.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Jun 2026 08:42:57 -0000
-Message-ID: <178280897746.131623.15785911654842771375@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260630073452.379071-1-honghuan@amd.com>
-In-Reply-To: <20260630073452.379071-1-honghuan@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260625125939.429078-4-heikki.krogerus@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +74,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4713355778159529146==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jun 25, 2026 at 02:59:39PM +0200, Heikki Krogerus wrote:
+> Some platforms make an assumption that the i2c controller's
+> enabled state indicates also the power state of the
+> controller. This can create a problem when the controller is
+> in disabled state, because the hardware may assume
+> incorrectly that it is then also in low-power state.
+> 
+> To fix this, the controller is kept enabled by taking over
+> the IC_ENABLE register. The controller has to be disabled
+> when the configuration is updated and when the target
+> address or the slave address are assigned, so disabling it
+> when IC_CON, IC_TAR or IC_SAR registers are programmed, and
+> then re-enabling it again.
 
-== Series Details ==
+I don't have enough context here, so I'll leave this one to the
+maintainers.
 
-Series: drm/gpusvm: split MM and device state across gpusvm/range/pages (rev5)
-URL   : https://patchwork.freedesktop.org/series/169384/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -> xe-pw-169384v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -> xe-pw-169384v5
-
-  IGT_8988: 8988
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc
-  xe-pw-169384v5: 169384v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169384v5/index.html
-
---===============4713355778159529146==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/gpusvm: split MM and device state across gpusvm/range/pages (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169384/">https://patchwork.freedesktop.org/series/169384/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169384v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169384v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -&gt; xe-pw-169384v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -&gt; xe-pw-169384v5</li>
-</ul>
-<p>IGT_8988: 8988<br />
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc<br />
-  xe-pw-169384v5: 169384v5</p>
-
-</body>
-</html>
-
---===============4713355778159529146==--
+Raag
