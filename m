@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF01AC43458
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 11:53:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67A7BC43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 11:58:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5060910EC3B;
-	Tue, 30 Jun 2026 11:53:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 202AD10EBFB;
+	Tue, 30 Jun 2026 11:58:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lf+2qpgd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="naDf4NU7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058FC10EC39;
- Tue, 30 Jun 2026 11:53:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FDBC10EBFB
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 11:58:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782820426; x=1814356426;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wDaamAXaV2j9crDZ0xLhHLaidrmBRIDAaTEbbnnNQiM=;
- b=lf+2qpgdC5+I30tbjOpMPrahacqmmzh9HDQoHAuMSiENJe7mN2flFdWQ
- 5RLuCOsG9+G+c0hZWKUvbG4cHkuexOOWIFeolVfLNcnnsrz6XMBAa/jSV
- OoLfpmZo8yjeFtXvekI41HBMr5wt626Zpv2fb/NWiZtJ2jFHSfXnzqoU3
- fRvSyv3saiXmJ3fqg+p2JLDmBG3zffm67Dfjl+DW9vGDCdIBWYdTgBGVf
- PYH3CvgES+y1T0Bo/cYtkjzMi3Ato1hd+fRNFqtVQUIEJ77sWMjwtZT/h
- LXZTB0ynRa0U5GrqP8tmwDDyKFh0/UuSfMqaPZJJlqcwAUMEt7yikI+bs A==;
-X-CSE-ConnectionGUID: 5/hebJZfQf606ddx3wsvbA==
-X-CSE-MsgGUID: 1Fa2B/ftQOKXl/+cp5dsJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="101074310"
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="101074310"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 04:53:46 -0700
-X-CSE-ConnectionGUID: HSfNiCsaSWaq337Nq6TT5A==
-X-CSE-MsgGUID: 0Ns+ZCHqSROEaWQLz445wQ==
+ t=1782820726; x=1814356726;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9I6zRg66FaiA0IRZsDZ7q0aZIZf2LP2HtEJo0TxXc8g=;
+ b=naDf4NU7zf/tBzeshHBjjSjc8BRLSOIuEhgYZ3gKldonI4hhcb8LKcqe
+ EelsmhjELBlJfZLsZQ9aARrI+X9irc1UtvNcPVl5k9Jt10lENemXA0n9+
+ i5oWoGRcj0q/xqzPzA2ZbbU//vsP+PiLmya9kXJugNnd6fKsF2rVM3myB
+ egOO1u6v/8MVf+HetIkrt1TW2sajYDSLwNG/YHthTaQvvg51X33MOca9+
+ ieEM59Pdu7HJOnCEdxYbErL9PgJ5n67sbqBdumC3l3jn4yZ7hqyOnpmtP
+ F5ZZmC2p/g5GNNASd3dFtp72hLBi7FLJn1r8yud0vI2/E8GUIyeCTiV33 g==;
+X-CSE-ConnectionGUID: 39s6ofmNS5SLsswxKSRAkg==
+X-CSE-MsgGUID: ntpq6rJtQkawBdLXxzJQpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="106323569"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="106323569"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 04:58:45 -0700
+X-CSE-ConnectionGUID: Co8iBoEHRSuwFnFcZ1jpEw==
+X-CSE-MsgGUID: qpojKSWOQMSIzBSaYb198Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="248876768"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa007.fm.intel.com with ESMTP; 30 Jun 2026 04:53:45 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 4/4] drm/i915/display: Switch DG2 to use DPLL framework
-Date: Tue, 30 Jun 2026 11:53:36 +0000
-Message-ID: <20260630115336.1059976-5-mika.kahola@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="255839640"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa003.jf.intel.com with ESMTP; 30 Jun 2026 04:58:41 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com, thomas.hellstrom@linux.intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, aravind.iddamsetty@intel.com,
+ riana.tauro@intel.com, karthik.poosa@intel.com, sk.anirban@intel.com,
+ raag.jadav@intel.com, Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [RFC PATCH v4 0/5] drm/xe: Structured RAS error logging infrastructure
+Date: Tue, 30 Jun 2026 17:25:04 +0530
+Message-ID: <20260630115503.407158-7-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260630115336.1059976-1-mika.kahola@intel.com>
-References: <20260630115336.1059976-1-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,143 +67,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that DG2 has a DPLL manager and its users are prepared to obtain
-clock state through the framework, switch the platform over to use the
-shared DPLL manager.
+Today XE logs GPU errors with ad-hoc drm_err()/drm_warn() calls that
+have no standard format, making it hard to identify what failed, where
+on the GPU it happened, and how to correlate events.
 
-Remove specific MPLLB state verification and use .compare_hw function
-hook to compare HW and SW PLL states.
+This series adds a lightweight structured logging layer:
 
-Assisted-by: Copilot:claude-sonnet-4-6
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      |  2 -
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 +++--
- .../drm/i915/display/intel_modeset_verify.c   |  1 -
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 49 -------------------
- 4 files changed, 8 insertions(+), 57 deletions(-)
+- Introduces xe_sig_ids.h (Signature IDs that name each error
+  class) and xe_ras_log.c (__xe_ras_log()), which emits every error in
+  a fixed format:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 3429ddba5683..ec3584c1f826 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -5350,8 +5350,6 @@ void intel_ddi_init(struct intel_display *display,
- 		else
- 			encoder->get_config = mtl_ddi_non_tc_phy_get_config;
- 	} else if (display->platform.dg2) {
--		encoder->enable_clock = intel_mpllb_enable;
--		encoder->disable_clock = intel_mpllb_disable;
- 		encoder->get_config = dg2_ddi_get_config;
- 	} else if (display->platform.alderlake_s) {
- 		encoder->enable_clock = adls_ddi_enable_clock;
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 3f9ed7f63eb2..bfd6f0a19725 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4933,7 +4933,6 @@ static bool dg2_compare_hw_state(const struct intel_dpll_hw_state *_a,
- 		a->mpllb_sscstep == b->mpllb_sscstep;
- }
- 
--__maybe_unused
- static const struct intel_dpll_mgr dg2_pll_mgr = {
- 	.dpll_info = dg2_plls,
- 	.compute_dplls = dg2_compute_dplls,
-@@ -4960,8 +4959,7 @@ void intel_dpll_init(struct intel_display *display)
- 	mutex_init(&display->dpll.lock);
- 
- 	if (display->platform.dg2)
--		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
--		dpll_mgr = NULL;
-+		dpll_mgr = &dg2_pll_mgr;
- 	else if (DISPLAY_VER(display) >= 35)
- 		dpll_mgr = &xe3plpd_pll_mgr;
- 	else if (DISPLAY_VER(display) >= 14)
-@@ -5330,8 +5328,13 @@ verify_single_dpll_state(struct intel_display *display,
- 
- 	if (pll->on) {
- 		const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
--
--		if (HAS_LT_PHY(display))
-+		/*
-+		 * Avoid direct struct comparison here. Some hw state fields, such
-+		 * as DG2 MPLLB ref_control or LT PHY config[1], are written by
-+		 * firmware and may differ from the software state without indicating
-+		 * a real mismatch.
-+		 */
-+		if (HAS_LT_PHY(display) || display->platform.dg2)
- 			pll_mismatch = !dpll_mgr->compare_hw_state(&pll->state.hw_state,
- 								   &dpll_hw_state);
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index 2ec17c2bfe0f..f0761d8a7437 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -245,7 +245,6 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
- 	verify_connector_state(state, crtc);
- 	verify_crtc_state(state, crtc);
- 	intel_dpll_state_verify(state, crtc);
--	intel_mpllb_state_verify(state, crtc);
- }
- 
- void intel_modeset_verify_disabled(struct intel_atomic_state *state)
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index dfb3a5c35c85..ce94ac689064 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -1982,52 +1982,3 @@ void intel_mpllb_readout_hw_state(struct intel_encoder *encoder,
- 	 */
- 	pll_state->mpllb_div &= ~SNPS_PHY_MPLLB_FORCE_EN;
- }
--
--void intel_mpllb_state_verify(struct intel_atomic_state *state,
--			      struct intel_crtc *crtc)
--{
--	struct intel_display *display = to_intel_display(state);
--	const struct intel_crtc_state *new_crtc_state =
--		intel_atomic_get_new_crtc_state(state, crtc);
--	struct intel_mpllb_state mpllb_hw_state = {};
--	const struct intel_mpllb_state *mpllb_sw_state = &new_crtc_state->dpll_hw_state.mpllb;
--	struct intel_encoder *encoder;
--
--	if (!display->platform.dg2)
--		return;
--
--	if (!new_crtc_state->hw.active)
--		return;
--
--	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
--	if (!intel_crtc_needs_modeset(new_crtc_state) &&
--	    !intel_crtc_needs_fastset(new_crtc_state))
--		return;
--
--	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
--	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
--
--#define MPLLB_CHECK(__name)						\
--	INTEL_DISPLAY_STATE_WARN(display, mpllb_sw_state->__name != mpllb_hw_state.__name, \
--				 "[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
--				 crtc->base.base.id, crtc->base.name,	\
--				 __stringify(__name),			\
--				 mpllb_sw_state->__name, mpllb_hw_state.__name)
--
--	MPLLB_CHECK(mpllb_cp);
--	MPLLB_CHECK(mpllb_div);
--	MPLLB_CHECK(mpllb_div2);
--	MPLLB_CHECK(mpllb_fracn1);
--	MPLLB_CHECK(mpllb_fracn2);
--	MPLLB_CHECK(mpllb_sscen);
--	MPLLB_CHECK(mpllb_sscstep);
--
--	/*
--	 * ref_control is handled by the hardware/firemware and never
--	 * programmed by the software, but the proper values are supplied
--	 * in the bspec for verification purposes.
--	 */
--	MPLLB_CHECK(ref_control);
--
--#undef MPLLB_CHECK
--}
+    [xe-err] SIG_ID=<id> Severity=<sev> Location=<loc> Errno=<n>
+    Message="<msg>"
+
+- Converts the first call site: the open-coded drm_err() in
+  xe_device_declare_wedged() is replaced with xe_ras_log_wedged(),
+  routing wedge events through the new common path.
+
+v2:
+- Rebase.
+
+v3:
+- Add HW SIG IDS details. (Riana)
+- Refer "Tile%u" and "GT%u" strings. (Michal Wajdeczko)
+- Remov xe_cper_severity_str(). (Michal Wajdeczko/Riana)
+- Move __xe_ras_log() function to xe_ras_log.h. (Michal Wajdeczko)
+- Make macro function properly.
+- Remove *_FIRST and *_LAST macro. (Michal Wajdeczko/Riana)
+- Add sig id documents. (Riana)
+- Change macro function same prefix as the file.
+- Handle __xe_ras_log() function with variable format.
+- Update message in xe_ras_log_wedged().
+
+v4:
+- Change commit message.
+- Update the document. (Riana)
+- Move documents to xe_sig_ids.h
+- Update Hardware error.
+- Remove example in Hardware error SIG_ID.
+- Make Fabric errors.
+- Add kernel doc for SIG_IDS. (Michal Wajdeczko)
+- Provide severity details
+- Handle CONFIG_UEFI_CPER properly.
+- Add CPER_SEV_RECOVERABLE in __xe_ras_log().
+- Add xe_ras_log_runtime_fw() and xe_ras_log_device_fw() macros.
+- Update commit message.
+- Remove document. (Riana)
+- Replace XE_RAS_WEDGED to xe_ras_log_wedged. (Dnyaneshwar)
+
+Dnyaneshwar Bhadane (1):
+  drm/xe: Replace critical drm_err log with xe_ras_log_probe
+
+Mallesh Koujalagi (4):
+  drm/xe: Add SIG_IDs for RAS error logging
+  drm/xe: Add RAS logging helpers
+  drm/xe: use xe_ras_log_wedged macro in xe_device_declare_wedged
+  drm/xe: Use RAS logging to report survivability mode
+
+ Documentation/gpu/xe/index.rst             |   1 +
+ Documentation/gpu/xe/xe_sig_ids.rst        |   8 ++
+ drivers/gpu/drm/xe/Makefile                |   1 +
+ drivers/gpu/drm/xe/xe_device.c             |  23 ++--
+ drivers/gpu/drm/xe/xe_hwmon.c              |   4 +-
+ drivers/gpu/drm/xe/xe_irq.c                |   5 +-
+ drivers/gpu/drm/xe/xe_mmio.c               |   5 +-
+ drivers/gpu/drm/xe/xe_pat.c                |   6 +-
+ drivers/gpu/drm/xe/xe_pci.c                |  14 ++-
+ drivers/gpu/drm/xe/xe_pcode.c              |   5 +-
+ drivers/gpu/drm/xe/xe_ras_log.c            |  65 +++++++++++
+ drivers/gpu/drm/xe/xe_ras_log.h            |  62 +++++++++++
+ drivers/gpu/drm/xe/xe_sig_ids.h            | 124 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.c |  11 +-
+ drivers/gpu/drm/xe/xe_vram.c               |   5 +-
+ 15 files changed, 307 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_sig_ids.rst
+ create mode 100644 drivers/gpu/drm/xe/xe_ras_log.c
+ create mode 100644 drivers/gpu/drm/xe/xe_ras_log.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sig_ids.h
+
 -- 
-2.43.0
+2.34.1
 
