@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 145D3C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 05:55:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90A26C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 06:18:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAAEA10E0AD;
-	Tue, 30 Jun 2026 05:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D79D10E176;
+	Tue, 30 Jun 2026 06:18:13 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 849AD10E0AD;
- Tue, 30 Jun 2026 05:55:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2509691894228240398=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 483B010E176;
+ Tue, 30 Jun 2026 06:18:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/userptr=3A_Hold_noti?=
- =?utf-8?q?fier=5Flock_for_write_on_inject_test_path_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/gpusvm=3A_fix_IOVA/DM?=
+ =?utf-8?q?A_unmap_leaks_in_=5F=5Fdrm=5Fgpusvm=5Funmap=5Fpages=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: "Huang, Honglei" <honghuan@amd.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Jun 2026 05:55:27 -0000
-Message-ID: <178279892753.131622.12043931191983991453@6beec6c84f66>
+Date: Tue, 30 Jun 2026 06:18:11 -0000
+Message-ID: <178280029128.131622.13235841848002193155@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260625215615.3016892-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260625215615.3016892-1-shuicheng.lin@intel.com>
+References: <20260630034021.362571-1-honghuan@amd.com>
+In-Reply-To: <20260630034021.362571-1-honghuan@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,82 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2509691894228240398==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/userptr: Hold notifier_lock for write on inject test path (rev2)
-URL   : https://patchwork.freedesktop.org/series/169222/
-State : success
+Series: drm/gpusvm: fix IOVA/DMA unmap leaks in __drm_gpusvm_unmap_pages()
+URL   : https://patchwork.freedesktop.org/series/169467/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -> xe-pw-169222v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ad89294a9147d7150cc39cfae8cb805768c2d4f1
+Author: Honglei Huang <honghuan@amd.com>
+Date:   Tue Jun 30 11:40:21 2026 +0800
 
-Summary
--------
+    drm/gpusvm: publish dpagemap early to avoid device mapping leak on error
+    
+    drm_gpusvm_get_pages() only stored the local dpagemap into
+    svm_pages->dpagemap on the success path. If a later page failed (e.g.
+    -EOPNOTSUPP when ctx->allow_mixed is false) and jumped to err_unmap,
+    svm_pages->dpagemap was still NULL, so __drm_gpusvm_unmap_pages() skipped
+    device_unmap() and leaked the device mappings already created.
+    
+    Assign svm_pages->dpagemap when the first device page is mapped so the
+    err_unmap path can device_unmap() those mappings.
+    
+    Reported-by: Sashiko AI review
+    Signed-off-by: Honglei Huang <honghuan@amd.com>
++ /mt/dim checkpatch 03288b34f48c3fe60055353c30da4aacab572cdc drm-intel
+a26411fffd0b drm/gpusvm: free the whole IOVA reservation on unmap
+-:20: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Sashiko AI review'
+#20: 
+Reported-by: Sashiko AI review
 
-  **SUCCESS**
+-:20: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: or Link: with a URL to the report
+#20: 
+Reported-by: Sashiko AI review
+Signed-off-by: Honglei Huang <honghuan@amd.com>
 
-  No regressions found.
+-:22: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: or Link: with a URL to the report
+#22: 
+Reported-by: sashiko <sashiko@sashiko.dev>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-  
+total: 1 errors, 2 warnings, 0 checks, 31 lines checked
+c8a38d3a9911 drm/gpusvm: do not route system pages to device_unmap() on IOVA unmap
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+When use_iova is true the first condition is false for system pages, so they
 
-Participating hosts (12 -> 12)
-------------------------------
+-:23: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Sashiko AI review'
+#23: 
+Reported-by: Sashiko AI review
 
-  No changes in participating hosts
+-:23: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: or Link: with a URL to the report
+#23: 
+Reported-by: Sashiko AI review
+Signed-off-by: Honglei Huang <honghuan@amd.com>
 
+total: 1 errors, 2 warnings, 0 checks, 24 lines checked
+ad89294a9147 drm/gpusvm: publish dpagemap early to avoid device mapping leak on error
+-:16: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Sashiko AI review'
+#16: 
+Reported-by: Sashiko AI review
 
-Changes
--------
+-:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: or Link: with a URL to the report
+#16: 
+Reported-by: Sashiko AI review
+Signed-off-by: Honglei Huang <honghuan@amd.com>
 
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -> xe-pw-169222v2
-
-  IGT_8988: 8988
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc
-  xe-pw-169222v2: 169222v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169222v2/index.html
-
---===============2509691894228240398==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/userptr: Hold notifier_lock for write on inject test path (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169222/">https://patchwork.freedesktop.org/series/169222/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169222v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169222v2/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 1 warnings, 0 checks, 29 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -&gt; xe-pw-169222v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -&gt; xe-pw-169222v2</li>
-</ul>
-<p>IGT_8988: 8988<br />
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc<br />
-  xe-pw-169222v2: 169222v2</p>
-
-</body>
-</html>
-
---===============2509691894228240398==--
