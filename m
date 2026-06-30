@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A89DC43458
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 11:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87762C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 11:58:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2742310EC53;
-	Tue, 30 Jun 2026 11:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EAAE10EC54;
+	Tue, 30 Jun 2026 11:58:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d68bQaxm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YJVu1gme";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA33110EC53
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 11:58:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88EDA10EC54
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 11:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782820729; x=1814356729;
+ t=1782820733; x=1814356733;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lo1VWrIhSGBuHyD+rOl+bWZqDFZe6/XoxrlxXm3luPg=;
- b=d68bQaxmmnsRcdTNtrVFH4gpEDnJsGSGA3Ki3L2yIlcdGKjrfpUPMTVI
- H11Q7dwu+I7XkGrutieJmLPB41ADOSqGooukBldEIZnkaYoT23lApQAhY
- 57Vd1t/Sl6QljLTL/KhcEVm67kaTRUl4urZGrnNV/Q11sPObfSq60ipsq
- TVbSoNhaoAbW5BOjEJdnSvEN5S/BM8cjrQLzALHK3+Me3HEUMN6Mv8Eek
- yOkhnsoRJEQ26flw8DUMUJrJDXKA145QQsu8AEb8us8mIgHEz2C1R0aso
- NEG0h3kVSGY0Kb7SjccUJeGXrufHa505QLyy1ZW7zwO7CeyInXAO7u8zU g==;
-X-CSE-ConnectionGUID: xyxfG99aRGun0AEqeTXCOw==
-X-CSE-MsgGUID: T7h8DptpQJiD4CgoeUbOtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="106323571"
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="106323571"
+ bh=szNaDMzeG8KVLhuLBagjJi3vpCoNA+i4PYHn7Sz+PI8=;
+ b=YJVu1gmeisHKgiTy2djYGuBCDgzpSFZBrzuaWeubhyVnGithxbwplfSQ
+ ipCMvB49U1OPdBVMUtib1GrXmjBsK6Mh7iMPbsyYYinCn7x243e+HmS04
+ JL2UkyU2FIhPuc6uA24epuLbtHK2Wx1kvwzHsyFRkjnlq5BuHPrNxMFVX
+ 3z5oHFODSD3zgIbYeaQnC11X2jlF2t/Ok18acCC3s/urnIIz8sjQCVhQz
+ uksa3xogHhHAdyWQmx3txmykJkVXS/H9r23/D25hrauTStlh3RpvN89gM
+ c6aT9gkDPFnjTC6BQoPnizlIzsgjVBik6ySzwGBl9CGO3UADI31j6f3o9 Q==;
+X-CSE-ConnectionGUID: YPbvtDWLQXy7wQ93fRZEZw==
+X-CSE-MsgGUID: TM20QGpkRTWOos5Rl5P9ZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="106323573"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="106323573"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 04:58:49 -0700
-X-CSE-ConnectionGUID: 8u5r/gFbSc63VssOqyMJvQ==
-X-CSE-MsgGUID: WPJ6D/ojSdqZO3AA+NlSZA==
+ 30 Jun 2026 04:58:53 -0700
+X-CSE-ConnectionGUID: hHnSY1VKRUKBOGwDn6KNdg==
+X-CSE-MsgGUID: QnrKM3DnS7qa1oi96X55+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="255839657"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="255839667"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa003.jf.intel.com with ESMTP; 30 Jun 2026 04:58:45 -0700
+ by orviesa003.jf.intel.com with ESMTP; 30 Jun 2026 04:58:48 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com, thomas.hellstrom@linux.intel.com
@@ -47,9 +47,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  vinay.belgaumkar@intel.com, aravind.iddamsetty@intel.com,
  riana.tauro@intel.com, karthik.poosa@intel.com, sk.anirban@intel.com,
  raag.jadav@intel.com, Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [RFC PATCH v4 1/5] drm/xe: Add SIG_IDs for RAS error logging
-Date: Tue, 30 Jun 2026 17:25:05 +0530
-Message-ID: <20260630115503.407158-8-mallesh.koujalagi@intel.com>
+Subject: [RFC PATCH v4 2/5] drm/xe: Add RAS logging helpers
+Date: Tue, 30 Jun 2026 17:25:06 +0530
+Message-ID: <20260630115503.407158-9-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260630115503.407158-7-mallesh.koujalagi@intel.com>
 References: <20260630115503.407158-7-mallesh.koujalagi@intel.com>
@@ -70,196 +70,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_sig_ids.h which defines a set of stable numeric labels
-for Xe error categories, called SIG_IDs.
+Add xe_ras_log_(*) macros to report Xe driver errors in a
+consistent, structured format.
 
-Each SIG_ID identifies which subsystem reported an error (e.g. probe,
-wedged, GT TDR, firmware). It does not encode the full failure details,
-those come from errno and the free-form message:
-
-  SIG_ID  -> which area failed
-  errno   -> what failed
-  message -> extra human-readable context
-
-Also add a DOC: kernel-doc section covering design rationale, driver
-severity labels (FATAL/RECOVERABLE), usage guidelines, and the
-distinction between driver and hardware error paths.
+Exposes one macro per error category (probe, wedged,
+survivability, firmware, GT TDR, memory fault, IO bus). Each macro
+hard-codes the correct SIG_ID and severity for that category, so
+callers only need to pass the device or GT handle, errno, and message.
 
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
 v3:
-- Add HW SIG IDS details. (Riana)
+- Refer "Tile%u" and "GT%u" strings. (Michal Wajdeczko)
+- Remov xe_cper_severity_str(). (Michal Wajdeczko/Riana)
+- Declare __xe_ras_log() function to xe_ras_log.h. (Michal Wajdeczko)
+- Make macro function properly.
+- Remove *_FIRST and *_LAST macro. (Michal Wajdeczko/Riana)
+- Add sig id documents. (Riana)
+- Change macro function same prefix as the file.
+- Handle __xe_ras_log() function with variable format.
 
 v4:
-- Change commit message.
-- Update the document. (Riana)
-- Move documents to xe_sig_ids.h
-- Update Hardware error.
-- Remove example in Hardware error SIG_ID.
-- Make Fabric errors.
-- Add kernel doc for SIG_IDS. (Michal Wajdeczko)
-- Provide severity details.
+- Handle CONFIG_UEFI_CPER properly.
+- Add CPER_SEV_RECOVERABLE in __xe_ras_log().
+- Add xe_ras_log_runtime_fw() and xe_ras_log_device_fw() macros.
+- Update commit message.
+- Remove document. (Riana)
 ---
- Documentation/gpu/xe/index.rst      |   1 +
- Documentation/gpu/xe/xe_sig_ids.rst |   8 ++
- drivers/gpu/drm/xe/xe_sig_ids.h     | 124 ++++++++++++++++++++++++++++
- 3 files changed, 133 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_sig_ids.rst
- create mode 100644 drivers/gpu/drm/xe/xe_sig_ids.h
+ drivers/gpu/drm/xe/Makefile     |  1 +
+ drivers/gpu/drm/xe/xe_ras_log.c | 65 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras_log.h | 62 +++++++++++++++++++++++++++++++
+ 3 files changed, 128 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_ras_log.c
+ create mode 100644 drivers/gpu/drm/xe/xe_ras_log.h
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 665c0e93601c..557877837348 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -35,3 +35,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is provided by
-    xe-drm-usage-stats.rst
-    xe_configfs
-    xe_gt_stats
-+   xe_sig_ids
-diff --git a/Documentation/gpu/xe/xe_sig_ids.rst b/Documentation/gpu/xe/xe_sig_ids.rst
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index e5a04253e73b..cac19c21be08 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -114,6 +114,7 @@ xe-y += xe_bb.o \
+ 	xe_query.o \
+ 	xe_range_fence.o \
+ 	xe_ras.o \
++	xe_ras_log.o \
+ 	xe_reg_sr.o \
+ 	xe_reg_whitelist.o \
+ 	xe_ring_ops.o \
+diff --git a/drivers/gpu/drm/xe/xe_ras_log.c b/drivers/gpu/drm/xe/xe_ras_log.c
 new file mode 100644
-index 000000000000..0e65d577927b
+index 000000000000..928fa4f45cdc
 --- /dev/null
-+++ b/Documentation/gpu/xe/xe_sig_ids.rst
-@@ -0,0 +1,8 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++++ b/drivers/gpu/drm/xe/xe_ras_log.c
+@@ -0,0 +1,65 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
 +
-+===============
-+SIG_ID Overview
-+===============
++#include <drm/drm_print.h>
 +
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_sig_ids.h
-+   :doc: SIG_ID Overview
-diff --git a/drivers/gpu/drm/xe/xe_sig_ids.h b/drivers/gpu/drm/xe/xe_sig_ids.h
++#include "xe_device.h"
++#include "xe_gt.h"
++#include "xe_ras_log.h"
++
++/**
++ * __xe_ras_log - Emit a structured RAS log entry
++ * @xe: xe device instance
++ * @gt: GT instance where the error occurred, or NULL if device-wide
++ * @sig_id: signature ID from xe_sig_ids.h identifying the error class
++ * @cper_sev: CPER severity (one of CPER_SEV_FATAL, CPER_SEV_RECOVERABLE, etc.)
++ * @errno_val: negative errno describing the error condition
++ * @fmt: printf-style format string
++ * @...: format arguments
++ *
++ * Formats the message and emits a kernel log line via drm_err() for fatal
++ * events or drm_warn() for all others. CPER record generation and hex dump
++ * are planned as follow-ups.
++ *
++ * Format:
++ *   [xe-err] SIG_ID = <id> Severity = <sev> Location = <loc> Errno = <n> Message = "<msg>"
++ */
++__printf(6, 7)
++void __xe_ras_log(struct xe_device *xe, struct xe_gt *gt,
++		  u16 sig_id, u32 cper_sev, int errno_val,
++		  const char *fmt, ...)
++{
++	char loc[32];
++	struct va_format vaf;
++	va_list ap;
++
++	if (gt)
++		snprintf(loc, sizeof(loc), "tile%u/gt%u",
++			 gt->tile->id, gt->info.id);
++	else
++		snprintf(loc, sizeof(loc), "device");
++
++	va_start(ap, fmt);
++	vaf.fmt = fmt;
++	vaf.va = &ap;
++
++	if (cper_sev == CPER_SEV_FATAL || cper_sev == CPER_SEV_RECOVERABLE)
++		drm_err(&xe->drm,
++			"[xe-err] SIG_ID = %u Severity = %s Location = %s Errno = %d Message = \"%pV\"",
++			sig_id,
++			IS_ENABLED(CONFIG_UEFI_CPER) ? cper_severity_str(cper_sev) : "unknown",
++			loc, errno_val, &vaf);
++	else
++		drm_warn(&xe->drm,
++			 "[xe-err] SIG_ID = %u Severity = %s Location = %s Errno = %d Message = \"%pV\"",
++			 sig_id,
++			 IS_ENABLED(CONFIG_UEFI_CPER) ? cper_severity_str(cper_sev) : "unknown",
++			 loc, errno_val, &vaf);
++
++	va_end(ap);
++
++	/* TODO: Add CPER record driver handler */
++	/* TODO: Add RAS dump cper hex handler */
++}
+diff --git a/drivers/gpu/drm/xe/xe_ras_log.h b/drivers/gpu/drm/xe/xe_ras_log.h
 new file mode 100644
-index 000000000000..57e4037fd7d4
+index 000000000000..3f94e6747e86
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sig_ids.h
-@@ -0,0 +1,124 @@
++++ b/drivers/gpu/drm/xe/xe_ras_log.h
+@@ -0,0 +1,62 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#ifndef _XE_SIG_IDS_H_
-+#define _XE_SIG_IDS_H_
++#ifndef _XE_RAS_LOG_H_
++#define _XE_RAS_LOG_H_
 +
-+/**
-+ * DOC: SIG_ID Overview
-+ *
-+ * Signature ID (SIG_ID) is a stable numeric identifier (u16) for a defined
-+ * Xe error category - it answers: "which subsystem reported the error?"
-+ *
-+ * SIG_ID format
-+ * =============
-+ *
-+ * Xe error events are emitted as a single structured line using stable fields.
-+ * Driver events use:
-+ *
-+ *   [xe-err] SIG_ID = <u16> Severity = <CPER_SEV_*>
-+ *            Location = <device|tile/gt> Errno = <neg_errno>
-+ *            Message = "<free-form text>"
-+ *
-+ * Hardware-originated RAS events use the same overall format, but typically
-+ * omit Errno and Message and instead report the hardware-derived location /
-+ * error-class information.
-+ *
-+ * Important
-+ * =========
-+ *
-+ * SIG_ID identifies the reporting subsystem/category only. It does not encode
-+ * the detailed failure reason. The detailed reason is carried separately by::
-+ *
-+ *   SIG_ID   -> which subsystem/category failed
-+ *   Severity -> how serious the event is
-+ *   Errno    -> what failed (driver events)
-+ *   Message  -> human-readable context
-+ *
-+ * Example (driver event)
-+ * ======================
-+ *
-+ *   [xe-err] SIG_ID = 6 Severity = CPER_SEV_RECOVERABLE
-+ *   Location = tile0/gt0 Errno = -5
-+ *   Message = "Engine 'rcs0' hung; TDR triggered, engine reset succeeded"
-+ *
-+ * In the example
-+ * ==============
-+ *
-+ *   SIG_ID 6   = XE GT/TDR category
-+ *   RECOVERABLE = workload impacted, device still operational
-+ *   -5         = Linux errno (-EIO)
-+ *   Message    = extra context for triage
-+ *
-+ * Why SIG_ID exists?
-+ * ==================
-+ *
-+ * The goal is to replace inconsistent ad-hoc error strings with a small
-+ * set of stable, structured error events that are easier for operators
-+ * and tools to understand. Each driver event carries a fixed SIG_ID with
-+ * a severity determined by its error category, and structured output that
-+ * can be consumed consistently across driver or firmware versions. It
-+ * reduces guesswork during triage and allows machine parsing of important
-+ * fault events.
-+ *
-+ * Driver severity labels
-+ * ======================
-+ *
-+ * FATAL means the device cannot continue operation (e.g. probe failure,
-+ * device wedged). RECOVERABLE means the driver encountered an error but
-+ * may continue with degraded functionality.
-+ *
-+ * When to use the xe_ras_log helpers (see xe_ras_log.h)
-+ * =====================================================
-+ *
-+ * Use them only for defined Xe error events that belong to the published
-+ * error categories. These helpers are intended for important fault paths
-+ * such as probe failure, wedged device, survivability mode, firmware
-+ * failures, GT hang/TDR/reset, memory faults, and runtime IO/bus faults.
-+ * The selected macro fixes the SIG_ID and severity for that category.
-+ *
-+ * Do not use xe_ras_log helpers for all logs
-+ * ==========================================
-+ *
-+ * These helpers are not a replacement for normal drm_info(), drm_dbg(),
-+ * tracing, or one-off diagnostics. They are for stable, structured error
-+ * reporting only. Using them for ordinary logs would dilute the error
-+ * stream and make operator-facing fault reporting noisy and less useful.
-+ *
-+ * Hardware errors
-+ * ===============
-+ *
-+ * Hardware errors are hardware-reported RAS events and map to the
-+ * XE_SIG_HW_* identifiers. They are reported through the hardware error
-+ * path (e.g. CPER records), not through the driver xe_ras_log helpers.
-+ *
-+ * Unlike driver xe_ras_log helpers, hardware events do not have one fixed
-+ * severity per SIG_ID. For example, a fabric event (XE_SIG_HW_FABRIC) may
-+ * be reported as CPER_SEV_CORRECTED, CPER_SEV_FATAL, CPER_SEV_RECOVERABLE,
-+ * or CPER_SEV_INFORMATIONAL, depending on what the hardware reported.
-+ */
++#include <linux/cper.h>
++
++#include "xe_sig_ids.h"
++
++struct xe_device;
++struct xe_gt;
 +
 +/*
-+ * Driver errors: SIG_IDs
++ * Common backend helper
 + */
-+#define XE_SIG_PROBE			1  /* FATAL: probe failed */
-+#define XE_SIG_WEDGED			2  /* FATAL: device wedged */
-+#define XE_SIG_SURVIVABILITY		3  /* FATAL: survivability mode */
-+#define XE_SIG_RUNTIME_FW		4  /* RECOVERABLE: GuC/HuC/UC/GSC */
-+#define XE_SIG_DEVICE_FW		5  /* RECOVERABLE: PCODE/CSC/System controller */
-+#define XE_SIG_GT_TDR			6  /* RECOVERABLE: engine hang / reset */
-+#define XE_SIG_MEM_FAULT		7  /* RECOVERABLE: VM bind, page fault, GTT */
-+#define XE_SIG_IO_BUS			8  /* RECOVERABLE: runtime PCIe/IOMMU/MMIO */
++__printf(6, 7)
++void __xe_ras_log(struct xe_device *xe, struct xe_gt *gt,
++		  u16 sig_id, u32 cper_sev, int errno_val,
++		  const char *fmt, ...);
 +
 +/*
-+ * Hardware errors: SIG_IDs
++ * Driver error reporting macros
 + */
-+#define XE_SIG_HW_DEVICE_MEMORY		9  /* Device memory errors */
-+#define XE_SIG_HW_CORE_COMPUTE		10 /* Compute/shader core errors */
-+#define XE_SIG_HW_PCIE			11 /* PCIe interface errors */
-+#define XE_SIG_HW_FABRIC		12 /* Fabric errors */
-+#define XE_SIG_HW_SOC_INTERNAL		13 /* SoC-internal errors */
 +
-+#endif /* _XE_SIG_IDS_H_ */
++/* FATAL */
++#define xe_ras_log_probe(xe, errno, fmt, ...) \
++	__xe_ras_log((xe), NULL, XE_SIG_PROBE, CPER_SEV_FATAL, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++#define xe_ras_log_wedged(xe, errno, fmt, ...) \
++	__xe_ras_log((xe), NULL, XE_SIG_WEDGED, CPER_SEV_FATAL, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++#define xe_ras_log_survivability(xe, errno, fmt, ...) \
++	__xe_ras_log((xe), NULL, XE_SIG_SURVIVABILITY, CPER_SEV_FATAL, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++/* RECOVERABLE */
++#define xe_ras_log_runtime_fw(xe, gt, errno, fmt, ...) \
++	__xe_ras_log((xe), (gt), XE_SIG_RUNTIME_FW, CPER_SEV_RECOVERABLE, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++#define xe_ras_log_device_fw(xe, gt, errno, fmt, ...) \
++	__xe_ras_log((xe), (gt), XE_SIG_DEVICE_FW, CPER_SEV_RECOVERABLE, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++#define xe_ras_log_gt_tdr(xe, gt, errno, fmt, ...) \
++	__xe_ras_log((xe), (gt), XE_SIG_GT_TDR, CPER_SEV_RECOVERABLE, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++#define xe_ras_log_mem_fault(xe, gt, errno, fmt, ...) \
++	__xe_ras_log((xe), (gt), XE_SIG_MEM_FAULT, CPER_SEV_RECOVERABLE, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++#define xe_ras_log_io_bus(xe, errno, fmt, ...) \
++	__xe_ras_log((xe), NULL, XE_SIG_IO_BUS, CPER_SEV_RECOVERABLE, \
++		     (errno), fmt, ##__VA_ARGS__)
++
++#endif /* _XE_RAS_LOG_H_ */
 -- 
 2.34.1
 
