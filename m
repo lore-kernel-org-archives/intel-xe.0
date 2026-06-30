@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 747FCC43602
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 13:26:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 220FDC43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 13:26:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35B8510E50F;
-	Tue, 30 Jun 2026 13:26:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0AD710E86D;
+	Tue, 30 Jun 2026 13:26:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mTCoVTd0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jls/Q6Or";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AEEB10E1A3
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 13:26:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 147DA10E1D9
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 13:26:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782826004; x=1814362004;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cf/j5lTK49LcQxhP7927CcZm6zDz8g55nxPJI/BGtGg=;
- b=mTCoVTd03nWJgvwOQoq/qKAPEWtMSiNGJB6Ia8QsmdVOKeupEF4YS4gk
- f5qTSeYt0cFLo/Gq9G8/kg44AjhXyJLw1WgXD9q4HJca+DaJcB6vH+Xbe
- ysAiimEbIbHz8fVwxasQgKAxCvl3JX4MVje3SMi2H0dTh/w4tUooQmvFz
- J6pxfCJo8bm8gpzeX2c9xkUicRRj7gtS+CR14NTFjcOaDld94KuT7oz4V
- RgYDq7YTLOH7vbEMTkfWRY6uYBeAJd/lpkZ/vg6lphRrUpGwDxKt3LzTY
- ytMdj38Z8K6dQvwNVhCSyU31XyQKCUV/+fljtm7cXEW8J4qAdlJ2R1F3e Q==;
-X-CSE-ConnectionGUID: SzJCOsSLRKCEmp6/lz8xLw==
-X-CSE-MsgGUID: /gxhR9SwSAemb1wJ8nKgrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83623508"
-X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="83623508"
+ t=1782826006; x=1814362006;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kIwPBalD3NEONg41o2dIKotfZ8CiArxXiGC/BWD47w0=;
+ b=jls/Q6OrQt4VWe6zWp5Re0RlFAsE3G8E2uTFsotf9E1Bp5RJSAsoCm2o
+ cA6xwZrr1dIG6enq7Sm1savFgJ3xwxi4oafljw42D4e9IvGVinQdoWL9A
+ YXmHQyA/mIJV034trBOMgrqm9QWlcuprriVh7xVTqo7q8hqOVk+zp79QI
+ qUijmQaEmpawDe3bhknr/FihwoQfbvruBGxM9TqPkipl7TOqinHHfpe/p
+ e2uoPfgcvmwOB8kCyTkStSlKHJQiRCRbI9nMvNhQ+b5w7iRUV5wXbX2/l
+ femXRR3YynyLDmMTLG41MBVca1mglH3BXmMOQdteTYc09VgNmnYk4cUIj Q==;
+X-CSE-ConnectionGUID: Hrmjyo1jSnGDDsI1aJ0MsA==
+X-CSE-MsgGUID: 7ICRWOTJToq7blHKl9uUIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83623510"
+X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="83623510"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 06:26:43 -0700
-X-CSE-ConnectionGUID: tG5+QX8gT3OiFNq4ImSS6g==
-X-CSE-MsgGUID: SdArxeDXQWG0z/WUKbuvxg==
+ 30 Jun 2026 06:26:46 -0700
+X-CSE-ConnectionGUID: t9fFO3zcSJ61Dn+Px3sO+g==
+X-CSE-MsgGUID: IYQX38PqSNm7oX2D3OkVHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="256182177"
+X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="256182193"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 06:26:43 -0700
+ 30 Jun 2026 06:26:45 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 00/13] drm/xe: Add and use more KLV helpers
-Date: Tue, 30 Jun 2026 15:26:19 +0200
-Message-ID: <20260630132633.32804-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 02/13] drm/xe/guc: Prepare to print group KLVs
+Date: Tue, 30 Jun 2026 15:26:21 +0200
+Message-ID: <20260630132633.32804-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260630132633.32804-1-michal.wajdeczko@intel.com>
+References: <20260630132633.32804-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,39 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During the VF migration, we already have a place where PF needs to prepare
-some KLVs during the VF state save and also be able to parse them back on
-the VF restore. Since we plan to extend that scenario by adding more KLVs
-and we also plan to add a new scenario where encoding and parsing KLVs will
-be required, introduce customized KLV helpers and add tests for them.
+Some future KLVs will be encoded as a group of nested KLVs. Prepare
+our KLV printer function to handle such KLVs. List of known group
+keys will be updated later, for now just prepare it for testing.
 
-Michal Wajdeczko (13):
-  drm/xe/guc: Allow to print single KLV
-  drm/xe/guc: Prepare to print group KLVs
-  drm/xe/guc: Add basic KLV encoding helpers
-  drm/xe/guc: Add string KLV encoding helper
-  drm/xe/guc: Add object KLV encoding helper
-  drm/xe/guc: Add KLV parsing helper
-  drm/xe/guc: Formalize Reserved KLVs
-  drm/xe/tests: Add GuC KLV helpers basic tests
-  drm/xe/tests: Add string encoding helper test
-  drm/xe/tests: Add object encoding helper test
-  drm/xe/tests: Add GuC KLV printer test
-  drm/xe/tests: Add migration packet test
-  drm/xe/pf: Handle migration descriptor using KLV helpers
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  17 +
- drivers/gpu/drm/xe/abi/xe_driver_klvs_abi.h   |  27 ++
- .../drm/xe/tests/xe_guc_klv_helpers_kunit.c   | 348 ++++++++++++++++++
- .../gpu/drm/xe/tests/xe_sriov_packet_kunit.c  |  83 +++++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c       | 251 ++++++++++++-
- drivers/gpu/drm/xe/xe_guc_klv_helpers.h       |  10 +
- drivers/gpu/drm/xe/xe_sriov_packet.c          | 117 +++---
- 7 files changed, 778 insertions(+), 75 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/abi/xe_driver_klvs_abi.h
- create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+index 3169c7f1eebf..f672f4947768 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <linux/bitfield.h>
++#include <kunit/static_stub.h>
+ #include <drm/drm_print.h>
+ 
+ #include "abi/guc_klvs_abi.h"
+@@ -12,6 +13,12 @@
+ 
+ #define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
+ 
++static bool is_group_key(u16 key)
++{
++	KUNIT_STATIC_STUB_REDIRECT(is_group_key, key);
++	return false;
++}
++
+ /**
+  * xe_guc_klv_key_to_string - Convert KLV key into friendly name.
+  * @key: the `GuC KLV`_ key
+@@ -89,6 +96,17 @@ void xe_guc_klv_print_one(u16 key, u16 len, const u32 *value, struct drm_printer
+ {
+ 	const char *name = xe_guc_klv_key_to_string(key);
+ 
++	if (is_group_key(key)) {
++		struct drm_printer gp = drm_line_printer(p, name, 0);
++
++		drm_printf(p, "{ key %#06x : group %u dwords } # %s\n",
++			   key, len, name);
++
++		/* print group recursively */
++		xe_guc_klv_print(value, len, &gp);
++		return;
++	}
++
+ 	switch (len) {
+ 	case 0:
+ 		drm_printf(p, "{ key %#06x : no value } # %s\n", key, name);
 -- 
 2.47.1
 
