@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27ABBC43327
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 05:07:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E299EC43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 05:20:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6F6510E177;
-	Tue, 30 Jun 2026 05:07:43 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAC5210E13A;
- Tue, 30 Jun 2026 05:07:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0387710345818638950=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D69B10E13A;
+	Tue, 30 Jun 2026 05:20:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="isEtJ/Sx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09B8010E13A;
+ Tue, 30 Jun 2026 05:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782796821; x=1814332821;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Kr/YG75jknEBGygfbdZbiLsmWOHsghWO/YAbsUOCBnA=;
+ b=isEtJ/SxG2viFRDptx17SepD3Rb2J9PvUbI+lBZi10lVAaV1pv2JKiet
+ tdTBp6eUVZ+RQWe/XPBV7qXechVbTZyD3/lq9b1lBfZkPhVV42RXKl00h
+ CF6QEYA1E3YSNH7d/XUYNI/tNGXU0Qqc0V9uGA7bWZwXagb8TQlR5VtRx
+ tFRSf/Wvhfl+OA7831WVjlB+qtn/s/933N4XHmjS1x4s3ejcYm4HUGpyI
+ tf0vi83KMi1vpikHlK8tfs6lkRj8ibnrUgmAirqoVgKYQ4NsnrJLB91hi
+ WyHydtrrEZiLR8J2oh/bYAPixbbpDWpZP2if2UI6V7nC3W0w6n+UjQgZI w==;
+X-CSE-ConnectionGUID: HC3XzVZdRee+VniCNG+rCg==
+X-CSE-MsgGUID: w2KQX7ETQ+yPkFxewxqwTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="94883791"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="94883791"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 22:20:20 -0700
+X-CSE-ConnectionGUID: t9Hv/DrSRa6tVdNCttLtrQ==
+X-CSE-MsgGUID: UHByy7OvTc6B1DVHvZlakg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="252305245"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 22:20:16 -0700
+Date: Tue, 30 Jun 2026 07:20:13 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, kuba@kernel.org,
+ simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ maarten.lankhorst@linux.intel.com, mallesh.koujalagi@intel.com,
+ soham.purkait@intel.com
+Subject: Re: [PATCH v3 3/3] drm/xe/xe_ras: Add error-event support for CRI
+Message-ID: <akNSDXcXa0mtwR5r@black.igk.intel.com>
+References: <20260622101716.3313496-5-riana.tauro@intel.com>
+ <20260622101716.3313496-8-riana.tauro@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/nvl/guc=3A_Check_GuC?=
- =?utf-8?q?_firmware_70=2E71=2E0_for_NVL-S?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Jun 2026 05:07:42 -0000
-Message-ID: <178279606295.131623.6867395498683490089@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260629215238.3844518-2-julia.filipchuk@intel.com>
-In-Reply-To: <20260629215238.3844518-2-julia.filipchuk@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260622101716.3313496-8-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +72,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0387710345818638950==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Jun 22, 2026 at 03:47:20PM +0530, Riana Tauro wrote:
+> Add error-event support for Correctable errors in CRI.
+> error-event is reported to  userspace for all errors that crossed
+> threshold on receiving an interrupt for correctable errors.
 
-== Series Details ==
+...
 
-Series: drm/xe/nvl/guc: Check GuC firmware 70.71.0 for NVL-S
-URL   : https://patchwork.freedesktop.org/series/169456/
-State : success
+> +static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component)
+> +{
+> +	u8 drm_severity, drm_component;
+> +	u32 value;
+> +	int ret;
+> +
+> +	drm_severity = xe_to_drm_ras_severity(severity);
+> +	if (drm_severity == DRM_XE_RAS_ERR_SEV_MAX)
+> +		return;
+> +
+> +	drm_component = xe_to_drm_ras_component(component);
+> +	if (drm_component == DRM_XE_RAS_ERR_COMP_MAX)
+> +		return;
+> +
+> +	ret = xe_ras_get_counter(xe, severity, component, &value);
+> +	if (ret)
+> +		return;
+> +
+> +	xe_drm_ras_event(xe, drm_component, drm_severity, value, GFP_KERNEL);
+> +}
+> +
+>  void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+>  				      struct xe_sysctrl_event_response *response)
+>  {
+> @@ -152,6 +203,8 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+>  		severity = errors[id].common.severity;
+>  		component = errors[id].common.component;
+>  
+> +		ras_send_error_event(xe, severity, component);
 
-== Summary ==
+We already have error-value as part of the event, so this looks like
+a lot of redundant duplicate events if threshold is set high enough.
+I'm wondering if we use a local variable as a bitmap for components
+(which we set here) and only send event for_each_set_bit() after the
+loop?
 
-CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -> xe-pw-169456v1_BAT
-====================================================
+Raag
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -> xe-pw-169456v1
-
-  IGT_8988: 8988
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc
-  xe-pw-169456v1: 169456v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169456v1/index.html
-
---===============0387710345818638950==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/nvl/guc: Check GuC firmware 70.71.0 for NVL-S</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169456/">https://patchwork.freedesktop.org/series/169456/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169456v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169456v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -&gt; xe-pw-169456v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -&gt; xe-pw-169456v1</li>
-</ul>
-<p>IGT_8988: 8988<br />
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc<br />
-  xe-pw-169456v1: 169456v1</p>
-
-</body>
-</html>
-
---===============0387710345818638950==--
+>  		xe_warn(xe, "[RAS]: %s %s detected\n",
+>  			comp_to_str(component), sev_to_str(severity));
+>  	}
+> -- 
+> 2.47.1
+> 
