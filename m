@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77D5AC43458
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 00:53:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA1F0C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 01:26:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3271010E127;
-	Tue, 30 Jun 2026 00:53:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6183210E131;
+	Tue, 30 Jun 2026 01:26:29 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DFE510E03D;
- Tue, 30 Jun 2026 00:53:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6221696341938992312=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFF4310E12E;
+ Tue, 30 Jun 2026 01:26:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Fix_FRL_rate?=
- =?utf-8?q?_selection_and_deep_color_for_HDMI_sinks_behind_FRL_PCONs_=28rev2?=
- =?utf-8?q?=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_shrink_and_?=
+ =?utf-8?q?compress_GuC_snapshot_dumps?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexander Kaplan" <alexander.kaplan@sms-medipool.de>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Jun 2026 00:53:35 -0000
-Message-ID: <178278081518.130996.17865938302963511117@6beec6c84f66>
+Date: Tue, 30 Jun 2026 01:26:27 -0000
+Message-ID: <178278278778.130996.524850548240894549@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
-In-Reply-To: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
+References: <20260629172239.2377117-1-zhanjun.dong@intel.com>
+In-Reply-To: <20260629172239.2377117-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,102 +40,49 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6221696341938992312==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp: Fix FRL rate selection and deep color for HDMI sinks behind FRL PCONs (rev2)
-URL   : https://patchwork.freedesktop.org/series/168276/
-State : success
+Series: drm/xe/guc: shrink and compress GuC snapshot dumps
+URL   : https://patchwork.freedesktop.org/series/169444/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -> xe-pw-168276v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 08167fcfee22224e3617e0f23aadf1e405a23201
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Mon Jun 29 13:22:39 2026 -0400
 
-Summary
--------
+    drm/xe/guc: Compress GuC log and CTB dump with zstd
+    
+    Replace the raw ascii85 dumps of GuC log snapshots with a
+    zstd-compressed ascii85 stream and reuse the same helper for CTB
+    snapshot output.
+    
+    Use zstd streaming with default level-3 parameters and an estimated
+    source size of 0 so the compression workspace stays bounded even for
+    multi-megabyte logs.
+    
+    Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
+    GuC log and CTB dumps are compressed with ZSTD. This allows users to
+    choose between reduced dump sizes or lower memory usage.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
++ /mt/dim checkpatch 03288b34f48c3fe60055353c30da4aacab572cdc drm-intel
+fb3ba80b03a9 drm/xe: Remove extra newlines from LRC snapshot dump
+08167fcfee22 drm/xe/guc: Compress GuC log and CTB dump with zstd
+-:193: CHECK:CAMELCASE: Avoid CamelCase: <cParams>
+#193: FILE: drivers/gpu/drm/xe/xe_guc_log.c:255:
++	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -> xe-pw-168276v2
-
-  IGT_8988: 8988
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc
-  xe-pw-168276v2: 168276v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168276v2/index.html
-
---===============6221696341938992312==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 322 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix FRL rate selection and deep color for HDMI sinks behind FRL PCONs (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168276/">https://patchwork.freedesktop.org/series/168276/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168276v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168276v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc_BAT -&gt; xe-pw-168276v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc -&gt; xe-pw-168276v2</li>
-</ul>
-<p>IGT_8988: 8988<br />
-  xe-5306-03288b34f48c3fe60055353c30da4aacab572cdc: 03288b34f48c3fe60055353c30da4aacab572cdc<br />
-  xe-pw-168276v2: 168276v2</p>
-
-</body>
-</html>
-
---===============6221696341938992312==--
