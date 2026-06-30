@@ -4,101 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 406C6C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 07:39:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BFD1C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 07:41:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D791D10EB50;
-	Tue, 30 Jun 2026 07:39:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5852110EB3C;
+	Tue, 30 Jun 2026 07:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fDaf4ZqW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yIDK3zWT";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EECD10EB3C;
- Tue, 30 Jun 2026 07:39:16 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3547140B7E;
- Tue, 30 Jun 2026 07:39:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F3C1F00A3D;
- Tue, 30 Jun 2026 07:38:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782805156;
- bh=QFTirDmiRXM2E2UxDPivyHpH5WU8vmAPSC3LpjlrT8o=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=fDaf4ZqW3PD9fY8acsrJCsXc7pOEzc4lLsW2jgJhfYGl7NXG5KcVo4Pxek2Uz+Nla
- tOcu2NuZHwmic0JpBPUEEgMmuaTGNKExmRCbT0ES7+8QhHL9YqeimbRUf62O0HtMfs
- LYny1udM2eWLdF0sRgHD+bBsvogcyV+srg+CrLasOfuUZDDcJr8dZlygrFZBfDoggP
- p2mllhEamdnPs77YGrH3WGaXXIkqv4Xgyt7g+R7YVqHEf/NFyfi55aJUF3SRsQX/b0
- NUbVhpaMaUvlKWWtDdlDlkLmrVKracrOVgHvCwNbE5g49j/+vG6Xvy5Wxh+acQ6BjY
- MYjz8K0OvlQ3A==
-Date: Tue, 30 Jun 2026 08:38:51 +0100
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Zi Yan <ziy@nvidia.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>, 
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>, 
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Zack Rusin <zack.rusin@broadcom.com>, 
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>, 
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Helge Deller <deller@gmx.de>, Benjamin LaHaise <bcrl@kvack.org>, 
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, 
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
- David Hildenbrand <david@kernel.org>,
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>, 
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, 
- Lance Yang <lance.yang@linux.dev>, Hugh Dickins <hughd@google.com>, 
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Jann Horn <jannh@google.com>, 
- Pedro Falcato <pfalcato@suse.de>, Kees Cook <kees@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, linux-mips@vger.kernel.org,
- linux-kernel@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, 
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- xen-devel@lists.xenproject.org, 
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 01/13] mm: introduce vma_flags_can_grow() and
- vma_can_grow()
-Message-ID: <akNucoP3eaDN2_Vz@lucifer>
-References: <cover.1782760670.git.ljs@kernel.org>
- <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
- <DJLTDCPWMXDL.4ICZ77A1LPZZ@nvidia.com>
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010056.outbound.protection.outlook.com [52.101.61.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E95D10EB3C
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 07:41:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sdVBGnIVlkAWTDc2AjkJc0OeA7wVkx71twKY/ddnHEuL+Th/l6BYn7TzXBhhjzG9aqUdXQyLf2Rb51w+FZSosEkZGZkVM9ZbyBtc5uEp4ZWf+j8yGWKtqF81blgt23xtnTntVzy7dLdNNOhmNdLaG0P5WthA4k76r2Z9gMbr3Tlnuco58zYzwyiVLysQgeIfbrSzfT9/KM/zCJ3jZZpLDjdSeYWzRjyOuzVyxlI+NGnYUYTFHg2SMAIBYr4wqXVLzKW2IRqPhQP02UQHrWZj+CGOCsU3uNQwXQ9kQk4hMPu7GteVdRPWqs4c8fk7MgY1uW5UIJuGTP7iqVimTdsEfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7xBkJZ9akLca8b/RLfE7UCpyqgJhT7kmLBPcOkUq6ak=;
+ b=nspwb0aOltx3Z5ZZXWvdlu4SWti8m2jAv21L6WgFl3TKbY/fJgDfKb7UlhRX21/G5DLUNC/Fo/oZ486a0hAQNFImKsuhAKmzXfoCS376lgycxu8emDlrYIf3J91IJ8ma+y1GeqEtXteZk8PsDwvMIOL9bKmQ47GHQ4MbjyCiNrC0+VpzwlQE8NBzEyEM24a/iX5xlM/vGauWxaNQWihASY5QeJI0+DVeeCO3agSMfMnqlN3F/u87G/2bUmDjcKrphW0Colap4OLk/ikAlcvKCQjrw1RL0FJtZeXkQtero6y6JoOVElpE/49WYW1/FfydJHLMxmscjNR2QFq7wQDwoQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7xBkJZ9akLca8b/RLfE7UCpyqgJhT7kmLBPcOkUq6ak=;
+ b=yIDK3zWTLPmzJoyicqYKj11VEnvxhy3dB6plNTkHOUo5B0XeudsotEgbh7tXWCx1rhufZFRcgR0Q3GL/DbDlWkeXI6pS1KtNkwBuE2bzwEK6EFAflSy9VnVdgscMbKn5BfWAaZJt8NwpDwnIuDR4yf9liMhUqYpziI0N0pJaUAQ=
+Received: from CH0PR03CA0200.namprd03.prod.outlook.com (2603:10b6:610:e4::25)
+ by DS5PPF922753E5F.namprd12.prod.outlook.com (2603:10b6:f:fc00::65a)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
+ 2026 07:41:03 +0000
+Received: from CH2PEPF00000144.namprd02.prod.outlook.com
+ (2603:10b6:610:e4:cafe::31) by CH0PR03CA0200.outlook.office365.com
+ (2603:10b6:610:e4::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Tue, 30
+ Jun 2026 07:41:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CH2PEPF00000144.mail.protection.outlook.com (10.167.244.101) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 07:41:03 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 30 Jun
+ 2026 02:41:02 -0500
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 30 Jun
+ 2026 00:35:06 -0700
+From: Honglei Huang <honghuan@amd.com>
+To: <intel-xe@lists.freedesktop.org>
+Subject: [PATCH v9 2/5] drm/gpusvm: embed struct drm_device into
+ drm_gpusvm_pages
+Date: Tue, 30 Jun 2026 15:34:49 +0800
+Message-ID: <20260630073452.379071-3-honghuan@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260630073452.379071-1-honghuan@amd.com>
+References: <20260630073452.379071-1-honghuan@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DJLTDCPWMXDL.4ICZ77A1LPZZ@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb09.amd.com
+ (10.181.42.218)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000144:EE_|DS5PPF922753E5F:EE_
+X-MS-Office365-Filtering-Correlation-Id: 354a86f8-b51b-4017-a447-08ded67aefd6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|82310400026|376014|1800799024|23010399003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 7UwHfxaSWlzyNIio7hvsylZwsAzNntcmxnsWyvHMbOWRcyWxnlwJOXuKdGMYlheb/z/6SIm4A6ojF5lMbz5U064UyeVuCuwEGLaDplkw04Hpj275tRCatqsEvp7ZVeNlgt944mZ6J4+sV/JS19K2YH0eVPsjHyTwMBxXin0EdUHroWHiaSyWgQ6f0+WYAYMruygnDj38vWquQHOpvnSwHVm3b1sSZZh8TXRA41xPxWt1mEDiD9JNTfucwQR3qAUU9gvyDurLLwAZ6lqcSUY2Cs0gtmPraFX3cwwLLag3H43cLF5exc/EYmt5OYnq8UaG9cPL5HtiKwAqof8vHdtl92pEHhTbO11u3T/X+22sjFC7YlBnD/M471RO06BdD1vfYJGou3AYs2ihdRXU8twhy6uqGADUOr6INRAz4Vreuvc2aewjKAvKuJzMwAzQ0jvkYluczEdymRQ9LPzAHBIuJT5dEhqfyLbqqVVQY70qi31mvXYysA1pq3ZgWXwwvvJ9aTSRUlBlt5TM/oMyBbCyjEgP1zO708JjZn+Db5oKfMm5/1SzWwiRWCaH+B1IcbkAJKbuk47w2yCkurR7iOVDfbWfJQgKtWRI+xHgfx9jNuQVe1RfHAMHLg1s7NqRzbV01iCiDnNkjUKPunZjmmacJW5pm1lvYwqRjOJYvaFS0CTZGQkl8jaXnlmpniLDUV0hb9Xw/5mBN1PIsJYs5gFQcw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(23010399003)(56012099006)(11063799006)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: kzSJ+Do6Xv9TmmeqR5ylbP+nJRoEH8FuilZBzvSomTKFNbvaDYDWnEVT+rE/XiYWOu20/86oS2IJ94fRz36nZqp/n1G1Dn6KoX2pgu28/p73d9uQLCpHqNtqpb0g0Iy7Q8gFyXuxNDD6Uvj6aBx6jwq9mg/nwMo9P7ZKkQCFzx4ewcP1fVjMtkgKdKNGFpmfhs7aBpIn1xDd8dmMdQU9KBMlBekY7EGTf5giVEJfxuG+EbDKJN/Ky3f21lMv8qMsF6yr1C2fGKeNgA2eU7vqiVvhg0Mkg0ouEgCQKWhTgQmLD9qWNsP6VjMn8xTJlaZ1qnJ8J//pxRPO6wvHYw078u/XSjWdEblsZvb3BXFt2yoBNYkKZkXksOcQSs0jkD6NuMfvv0J4EIWB1GH1kcW1w+Buwg3X5w+3LtzxqcEKkLiX/eZWv2qtQvUIbQ7ZljaY
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 07:41:03.1029 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 354a86f8-b51b-4017-a447-08ded67aefd6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000144.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF922753E5F
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,121 +113,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 29, 2026 at 04:26:18PM -0400, Zi Yan wrote:
-> On Mon Jun 29, 2026 at 3:25 PM EDT, Lorenzo Stoakes wrote:
-> > These test whether the VMA has stack sematics, i.e. is able to grow upwards
-> > or downwards depending on the architecture.
-> >
-> > In order to account for arches which do not support upward-growing stacks,
-> > introduce VMA_GROWSUP whose definition depends on the architecture
-> > supporting it, and use vma_flags_test_single_mask() in vma_flags_can_grow()
-> > to account for this.
-> >
-> > Update the VMA userland tests to reflect the changes
-> >
-> > No functional change intended.
-> >
-> > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> > ---
-> >  include/linux/mm.h              | 21 ++++++++++++++++++---
-> >  tools/testing/vma/include/dup.h |  4 ++++
-> >  2 files changed, 22 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/include/linux/mm.h b/include/linux/mm.h
-> > index 868b2334bff3..cf7df1569052 100644
-> > --- a/include/linux/mm.h
-> > +++ b/include/linux/mm.h
-> > @@ -472,6 +472,7 @@ enum {
-> >  #define VM_SAO		INIT_VM_FLAG(SAO)
-> >  #elif defined(CONFIG_PARISC)
-> >  #define VM_GROWSUP	INIT_VM_FLAG(GROWSUP)
-> > +#define VMA_GROWSUP	mk_vma_flags(VMA_GROWSUP_BIT)
-> >  #elif defined(CONFIG_SPARC64)
-> >  #define VM_SPARC_ADI	INIT_VM_FLAG(SPARC_ADI)
-> >  #define VM_ARCH_CLEAR	INIT_VM_FLAG(ARCH_CLEAR)
-> > @@ -483,6 +484,7 @@ enum {
-> >  #endif
-> >  #ifndef VM_GROWSUP
-> >  #define VM_GROWSUP	VM_NONE
-> > +#define VMA_GROWSUP	EMPTY_VMA_FLAGS
-> >  #endif
-> >  #ifdef CONFIG_ARM64_MTE
-> >  #define VM_MTE		INIT_VM_FLAG(MTE)
-> > @@ -1563,11 +1565,24 @@ static inline bool vma_is_initial_stack(const struct vm_area_struct *vma)
-> >  		vma->vm_end >= vma->vm_mm->start_stack;
-> >  }
-> >
-> > -static inline bool vma_is_temporary_stack(const struct vm_area_struct *vma)
-> > +static inline bool vma_flags_can_grow(const vma_flags_t *flags)
-> >  {
-> > -	int maybe_stack = vma->vm_flags & (VM_GROWSDOWN | VM_GROWSUP);
-> > +	if (vma_flags_test_single_mask(flags, VMA_GROWSUP))
-> > +		return true;
-> > +	if (vma_flags_test(flags, VMA_GROWSDOWN_BIT))
-> > +		return true;
-> > +
-> > +	return false;
-> > +}
-> >
-> > -	if (!maybe_stack)
-> > +static inline bool vma_can_grow(const struct vm_area_struct *vma)
-> > +{
-> > +	return vma_flags_can_grow(&vma->flags);
->
-> Would it save vma_flags_can_grow() if we do below?
->
-> return vma_test(vma, VMA_GROWSDOWN_BIT) || vma_test_single_mask(vma, VMA_GROWSUP);
->
-> I find these two functions when I am reading mm.h.
+drm_gpusvm_pages is the layer that actually represents physical
+pages/mappings it owns the dma_addr array, the dma_iova_state...
+With the previous patch, so drm_gpusvm_pages is now strictly about
+physical pages and their DMA view.
 
-Yeah but we require vma_flags_can_grow() for code in mmap.c, the majority of
-checks of this have only vma_flags_t to work with not a VMA :)
+Since now the drm_gpusvm_pages instance is inherently bound to one
+specific drm_device, make that ownership explicit by giving
+drm_gpusvm_pages its own drm_device handle, and drive all DMA through
+it instead of through the gpusvm:
 
->
-> > +}
-> > +
-> > +static inline bool vma_is_temporary_stack(const struct vm_area_struct *vma)
-> > +{
-> > +	if (!vma_can_grow(vma))
-> >  		return false;
-> >
-> >  	if ((vma->vm_flags & VM_STACK_INCOMPLETE_SETUP) ==
-> > diff --git a/tools/testing/vma/include/dup.h b/tools/testing/vma/include/dup.h
-> > index 5d7d0afd7765..6f5bcd7fbcd8 100644
-> > --- a/tools/testing/vma/include/dup.h
-> > +++ b/tools/testing/vma/include/dup.h
-> > @@ -245,8 +245,10 @@ enum {
-> >  #define VM_STACK	INIT_VM_FLAG(STACK)
-> >  #ifdef CONFIG_STACK_GROWS_UP
-> >  #define VM_STACK_EARLY	INIT_VM_FLAG(STACK_EARLY)
-> > +#define VMA_STACK_EARLY mk_vma_flags(VMA_STACK_EARLY_BIT)
-> >  #else
-> >  #define VM_STACK_EARLY	VM_NONE
-> > +#define VMA_STACK_EARLY EMPTY_VMA_FLAGS
-> >  #endif
-> >  #ifdef CONFIG_ARCH_HAS_PKEYS
-> >  #define VM_PKEY_SHIFT ((__force int)VMA_HIGH_ARCH_0_BIT)
-> > @@ -315,6 +317,8 @@ enum {
-> >
-> >  /* Bits set in the VMA until the stack is in its final location */
-> >  #define VM_STACK_INCOMPLETE_SETUP (VM_RAND_READ | VM_SEQ_READ | VM_STACK_EARLY)
-> > +#define VMA_STACK_INCOMPLETE_SETUP append_vma_flags(		\
-> > +	VMA_STACK_EARLY, VMA_RAND_READ_BIT, VMA_SEQ_READ_BIT)
-> >
-> >  #define TASK_EXEC_BIT ((current->personality & READ_IMPLIES_EXEC) ? \
-> >  		       VM_EXEC_BIT : VM_READ_BIT)
->
-> Why are VMA_STACK_EARLY and VMA_STACK_INCOMPLETE_SETUP added here but
-> not in mm.h?
+  - Add drm to struct drm_gpusvm_pages and route all DMA in
+    drm_gpusvm_get_pages() / __drm_gpusvm_unmap_pages() through
+    svm_pages->drm instead of gpusvm->drm.
+  - Bind svm_pages->drm where the pages object is initialised
+    (drm_gpusvm_range_alloc() and the xe userptr setup) and require
+    it to be set on entry to drm_gpusvm_get_pages(); the dma device
+    is immutable for the lifetime of the pages instance. A later
+    patch introduces drm_gpusvm_init_pages() to centralise this.
 
-Yeah urgh oops my bad. It doesn't really break anything but I'll fix it if a
-respin is needed...
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Honglei Huang <honghuan@amd.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c    | 30 ++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_userptr.c |  2 ++
+ include/drm/drm_gpusvm.h        |  2 ++
+ 3 files changed, 24 insertions(+), 10 deletions(-)
 
->
->
-> --
-> Best Regards,
-> Yan, Zi
->
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index abdfdaaf5e2..604554e40f6 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -641,6 +641,7 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
+ 	range->itree.last = ALIGN(fault_addr + 1, chunk_size) - 1;
+ 	INIT_LIST_HEAD(&range->entry);
+ 	range->pages.notifier_seq = LONG_MAX;
++	range->pages.drm = gpusvm->drm;
+ 	range->flags.migrate_devmem = migrate_devmem ? 1 : 0;
+ 
+ 	return range;
+@@ -1135,11 +1136,16 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
+ 				     unsigned long npages)
+ {
+ 	struct drm_pagemap *dpagemap = svm_pages->dpagemap;
+-	struct device *dev = gpusvm->drm->dev;
++	struct device *dev;
+ 	unsigned long i, j;
+ 
+ 	lockdep_assert_held(&gpusvm->notifier_lock);
+ 
++	if (!svm_pages->drm)
++		return;
++
++	dev = svm_pages->drm->dev;
++
+ 	if (svm_pages->flags.has_dma_mapping) {
+ 		struct drm_gpusvm_pages_flags flags = {
+ 			.__flags = svm_pages->flags.__flags,
+@@ -1421,6 +1427,9 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 							   DMA_BIDIRECTIONAL;
+ 	struct dma_iova_state *state = &svm_pages->state;
+ 
++	if (!svm_pages->drm)
++		return -EINVAL;
++
+ retry:
+ 	if (time_after(jiffies, timeout))
+ 		return -EBUSY;
+@@ -1520,7 +1529,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 
+ 				pagemap = page_pgmap(page);
+ 				dpagemap = drm_pagemap_page_to_dpagemap(page);
+-				if (drm_WARN_ON(gpusvm->drm, !dpagemap)) {
++				if (drm_WARN_ON(svm_pages->drm, !dpagemap)) {
+ 					/*
+ 					 * Raced. This is not supposed to happen
+ 					 * since hmm_range_fault() should've migrated
+@@ -1532,10 +1541,10 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 			}
+ 			svm_pages->dma_addr[j] =
+ 				dpagemap->ops->device_map(dpagemap,
+-							  gpusvm->drm->dev,
++							  svm_pages->drm->dev,
+ 							  page, order,
+ 							  dma_dir);
+-			if (dma_mapping_error(gpusvm->drm->dev,
++			if (dma_mapping_error(svm_pages->drm->dev,
+ 					      svm_pages->dma_addr[j].addr)) {
+ 				err = -EFAULT;
+ 				goto err_unmap;
+@@ -1555,11 +1564,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 			}
+ 
+ 			if (!i)
+-				dma_iova_try_alloc(gpusvm->drm->dev, state,
++				dma_iova_try_alloc(svm_pages->drm->dev, state,
+ 						   0, npages * PAGE_SIZE);
+ 
+ 			if (dma_use_iova(state)) {
+-				err = dma_iova_link(gpusvm->drm->dev, state,
++				err = dma_iova_link(svm_pages->drm->dev, state,
+ 						    hmm_pfn_to_phys(pfns[i]),
+ 						    svm_pages->state_offset,
+ 						    PAGE_SIZE << order,
+@@ -1570,11 +1579,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 				addr = state->addr + svm_pages->state_offset;
+ 				svm_pages->state_offset += PAGE_SIZE << order;
+ 			} else {
+-				addr = dma_map_page(gpusvm->drm->dev,
++				addr = dma_map_page(svm_pages->drm->dev,
+ 						    page, 0,
+ 						    PAGE_SIZE << order,
+ 						    dma_dir);
+-				if (dma_mapping_error(gpusvm->drm->dev, addr)) {
++				if (dma_mapping_error(svm_pages->drm->dev, addr)) {
+ 					err = -EFAULT;
+ 					goto err_unmap;
+ 				}
+@@ -1590,7 +1599,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 	}
+ 
+ 	if (dma_use_iova(state)) {
+-		err = dma_iova_sync(gpusvm->drm->dev, state, 0,
++		err = dma_iova_sync(svm_pages->drm->dev, state, 0,
+ 				    svm_pages->state_offset);
+ 		if (err)
+ 			goto err_unmap;
+@@ -1640,7 +1649,8 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 			       struct drm_gpusvm_range *range,
+ 			       const struct drm_gpusvm_ctx *ctx)
+ {
+-	return drm_gpusvm_get_pages(gpusvm, &range->pages, gpusvm->mm,
++	return drm_gpusvm_get_pages(gpusvm, &range->pages,
++				    gpusvm->mm,
+ 				    &range->notifier->notifier,
+ 				    drm_gpusvm_range_start(range),
+ 				    drm_gpusvm_range_end(range), ctx);
+diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
+index 6f71bc66b14..9df98bcd3ca 100644
+--- a/drivers/gpu/drm/xe/xe_userptr.c
++++ b/drivers/gpu/drm/xe/xe_userptr.c
+@@ -390,6 +390,7 @@ int xe_userptr_setup(struct xe_userptr_vma *uvma, unsigned long start,
+ 		     unsigned long range)
+ {
+ 	struct xe_userptr *userptr = &uvma->userptr;
++	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
+ 	int err;
+ 
+ 	INIT_LIST_HEAD(&userptr->invalidate_link);
+@@ -402,6 +403,7 @@ int xe_userptr_setup(struct xe_userptr_vma *uvma, unsigned long start,
+ 		return err;
+ 
+ 	userptr->pages.notifier_seq = LONG_MAX;
++	userptr->pages.drm = &vm->xe->drm;
+ 
+ 	return 0;
+ }
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 251a7266a73..842353afb27 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -129,6 +129,7 @@ struct drm_gpusvm_pages_flags {
+ /**
+  * struct drm_gpusvm_pages - Structure representing a GPU SVM mapped pages
+  *
++ * @drm: The DRM device that owns the dma mappings
+  * @dma_addr: Device address array
+  * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
+  *            Note this is assuming only one drm_pagemap per range is allowed.
+@@ -138,6 +139,7 @@ struct drm_gpusvm_pages_flags {
+  * @flags: Flags for the range; see &struct drm_gpusvm_pages_flags
+  */
+ struct drm_gpusvm_pages {
++	struct drm_device *drm;
+ 	struct drm_pagemap_addr *dma_addr;
+ 	struct drm_pagemap *dpagemap;
+ 	struct dma_iova_state state;
+-- 
+2.34.1
 
-Thanks, Lorenzo
