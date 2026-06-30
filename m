@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A23E2C44500
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59548C44501
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 13:27:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4715210EA15;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1837510E9FC;
 	Tue, 30 Jun 2026 13:27:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R4jlkl1t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G4VrTBZ7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8961410E1D9
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 13:26:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E6AC10E1D9
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jun 2026 13:26:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782826014; x=1814362014;
+ t=1782826008; x=1814362008;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6MB4fxFN71pvVz8nbohxANOc4efRGPAzoI4bcsJve1U=;
- b=R4jlkl1tHobODuyUVwpWqs9+i4rWs+v+rJAngWFR1GceAOYrOrXKehv+
- /ByuK/w9UPufFMJQndI+kJ4Dsq+9PDSrHRNFwifSQln7KlEMnFpu2SLPp
- BVUYly/z/OoODbJpacoHu6Lsub2toSoEbbKQ7dKPzL3xI030D14OOLGHV
- CIT1e4YA28lYU1HCybLvy4C1E1hCnUnMANpicyAMe3YVEuTI8V4SVvga8
- OM5kJ1W01gXNO8F0x/qOZRZasm8bz3BPovuJaB5iwho+OsPdAGpMNwTDC
- HVsvd5/T2zErrTEBzvc5PQ5KbWW02hPls/tWqgIc48ZWys2b72I3od6sd w==;
-X-CSE-ConnectionGUID: 1bPNnWAHRaigfivhA5O/GQ==
-X-CSE-MsgGUID: ovXbk9D5Tc+IpBwcoY4AiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83623522"
-X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="83623522"
+ bh=U89XTGJJasmhadZC23nsR9jCFIgM3q7iTD0vCpJsces=;
+ b=G4VrTBZ7i9fbwVq2FU6lp3nnVJALdxN+d0y1/CkDblMhCEX4GNAMreHs
+ fqv2oqLKBwD5ZPCtsokeEaEZ4ZuhK+WFvlB7zQBEuKjYHTkeRhQLh3lyl
+ h/bs+qcYElxiVISGouMxROKURK1XFqFfy3awHIRWUToODPDQUcxRp9Cai
+ GtqAMLgp8SL84Z3ghGHQUlUKbmBpMqQvlGoYyulWI7RLZRRHRmGBoBfn/
+ F240cZVsXAKzgXHv6nMH9zIcsUXRipDfnFkLzj7TZSYoKt5iCk6OOc4wi
+ uANvKg7ui8EzprRFVCaY1PqeHzXSMUPlcTzQyMc1ExrSXth8RkmSPMGDO w==;
+X-CSE-ConnectionGUID: MGvmELmDSvGPwxooHanOEA==
+X-CSE-MsgGUID: S77drjRFT1K2VPUkfuBYng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83623514"
+X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="83623514"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 06:26:54 -0700
-X-CSE-ConnectionGUID: X7v9/7HHT3mfaHa+LGGdkA==
-X-CSE-MsgGUID: cRev3A3eTh+vDc3Viq76Ww==
+ 30 Jun 2026 06:26:48 -0700
+X-CSE-ConnectionGUID: 21uRgut7TXa5063/Ici8JQ==
+X-CSE-MsgGUID: 4/Nsb8MiScufWWm6bJ9uyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="256182232"
+X-IronPort-AV: E=Sophos;i="6.24,234,1774335600"; d="scan'208";a="256182204"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 06:26:54 -0700
+ 30 Jun 2026 06:26:48 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 09/13] drm/xe/tests: Add string encoding helper test
-Date: Tue, 30 Jun 2026 15:26:28 +0200
-Message-ID: <20260630132633.32804-10-michal.wajdeczko@intel.com>
+Subject: [PATCH 04/13] drm/xe/guc: Add string KLV encoding helper
+Date: Tue, 30 Jun 2026 15:26:23 +0200
+Message-ID: <20260630132633.32804-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260630132633.32804-1-michal.wajdeczko@intel.com>
 References: <20260630132633.32804-1-michal.wajdeczko@intel.com>
@@ -67,75 +67,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Before we start using string to KLV encoding helper, add a simple
-test to make sure it works as expected.
+We also plan to encode a text data as KLV. Add helper for that too.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- .../drm/xe/tests/xe_guc_klv_helpers_kunit.c   | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 31 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.h |  1 +
+ 2 files changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
-index f87189ef13d5..c2d5f0098816 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
-@@ -84,10 +84,56 @@ static void test_encode_u64(struct kunit *test)
- 	KUNIT_ASSERT_PTR_EQ(test, fail, xe_guc_klv_encode_u64(fail, ARRAY_SIZE(klvs), key, value));
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+index e84d1f5f5c56..a5fcfc4a6c37 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+@@ -188,6 +188,11 @@ int xe_guc_klv_count(const u32 *klvs, u32 num_dwords)
+ 	return num_dwords ? -ENODATA : num_klvs;
  }
  
-+static void test_encode_string(struct kunit *test)
++static size_t to_num_bytes(u16 dwords)
 +{
-+	const char *string = "abcdefghijklmnopqrstvwxyz";
-+	u32 string_size = strlen(string) + 1;
-+	u32 dwlen = to_num_dwords(string_size);
-+	u32 num_dwords = GUC_KLV_LEN_MIN + dwlen;
-+	u32 klvs[num_dwords + GUC_KLV_LEN_MIN];
-+	u32 *failed = ERR_PTR(-ENOMEM);
-+	char buf[string_size];
-+	u16 key = TEST_KEY;
-+	u32 *next;
-+	u32 n;
-+
-+	/* too small, must fail */
-+	for (n = 0; n < num_dwords; n++) {
-+		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+		KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-ENOSPC),
-+				    xe_guc_klv_encode_string(klvs, n, key, string));
-+		KUNIT_ASSERT_EQ(test, klvs[0], TEST_PAD);
-+	}
-+
-+	/* different string len, must pass */
-+	for (n = 0; n < string_size; n++) {
-+		memcpy(buf, string, n);
-+		memset(buf + n, 0, sizeof(buf) - n);
-+		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+
-+		next = xe_guc_klv_encode_string(klvs, ARRAY_SIZE(klvs), key, buf);
-+		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, next);
-+		KUNIT_EXPECT_PTR_EQ(test, next, &klvs[GUC_KLV_LEN_MIN + to_num_dwords(n + 1)]);
-+		KUNIT_EXPECT_STREQ_MSG(test, buf, (char *)&klvs[1], "n=%u", n);
-+		kunit_info(test, "%u: %*ph\n", n, (int)to_num_bytes(next - klvs), klvs);
-+		KUNIT_EXPECT_NE(test, *(next - 1), TEST_PAD);
-+		KUNIT_ASSERT_EQ(test, *next, TEST_PAD);
-+
-+		/* bigger buf doesn't matter */
-+		KUNIT_EXPECT_PTR_EQ(test, xe_guc_klv_encode_string(klvs, num_dwords, key, string),
-+				    xe_guc_klv_encode_string(klvs, ARRAY_SIZE(klvs), key, string));
-+	}
-+
-+	/* don't crash if already failed */
-+	KUNIT_ASSERT_PTR_EQ(test, failed,
-+			    xe_guc_klv_encode_string(failed, ARRAY_SIZE(klvs), key, string));
++	return dwords * sizeof(u32);
 +}
 +
- static struct kunit_case guc_klv_helpers_test_cases[] = {
- 	KUNIT_CASE(test_count),
- 	KUNIT_CASE(test_encode_u32),
- 	KUNIT_CASE(test_encode_u64),
-+	KUNIT_CASE(test_encode_string),
- 	{}
- };
+ static u16 to_num_dwords(size_t size)
+ {
+ 	return round_up(size, sizeof(u32)) / sizeof(u32);
+@@ -243,3 +248,29 @@ u32 *xe_guc_klv_encode_u64(u32 *klvs, u32 avail, u16 key, u64 value)
+ 	*klvs++ = upper_32_bits(value);
+ 	return klvs;
+ }
++
++/**
++ * xe_guc_klv_encode_string() - Encode string as KLV.
++ * @klvs: the buffer where to place KLV
++ * @avail: number of dwords (u32) available in the buffer
++ * @key: key to be used
++ * @s: string to be encoded
++ *
++ * Return: pointer to the buffer location past the encoded KLV or
++ *         an ERR_PTR if there was no space to encode the KLV.
++ */
++u32 *xe_guc_klv_encode_string(u32 *klvs, u32 avail, u16 key, const char *s)
++{
++	size_t size = strnlen(s, FIELD_MAX(GUC_KLV_0_LEN) - 1) + 1; /* \0 */
++	u16 len = to_num_dwords(size);
++
++	if (IS_ERR(klvs))
++		return klvs;
++
++	if (avail < GUC_KLV_LEN_MIN + len)
++		return ERR_PTR(-ENOSPC);
++
++	*klvs++ = PREP_GUC_KLV(key, len);
++	strscpy_pad((void *)klvs, s, to_num_bytes(len));
++	return klvs + len;
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+index 713ef7f7b9f2..1c576456efc5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+@@ -19,6 +19,7 @@ int xe_guc_klv_count(const u32 *klvs, u32 num_dwords);
  
+ u32 *xe_guc_klv_encode_u32(u32 *klvs, u32 avail, u16 key, u32 value);
+ u32 *xe_guc_klv_encode_u64(u32 *klvs, u32 avail, u16 key, u64 value);
++u32 *xe_guc_klv_encode_string(u32 *klvs, u32 avail, u16 key, const char *s);
+ 
+ /**
+  * PREP_GUC_KLV - Prepare KLV header value based on provided key and len.
 -- 
 2.47.1
 
