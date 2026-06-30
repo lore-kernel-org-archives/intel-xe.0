@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E460C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 20:54:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E2FEC43327
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jun 2026 21:34:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01A0510E1C4;
-	Tue, 30 Jun 2026 20:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4315F10E269;
+	Tue, 30 Jun 2026 21:34:01 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B33110E1C4;
- Tue, 30 Jun 2026 20:54:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A90010E269;
+ Tue, 30 Jun 2026 21:34:00 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4943091298145146950=="
+ boundary="===============5951639656633421016=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv5?=
- =?utf-8?q?=2C1/1=5D_drm/xe/guc=3A_Handle_GuC_local_uncorrectable_error_noti?=
- =?utf-8?q?fications?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/nvl/guc=3A_Check_GuC?=
+ =?utf-8?q?_firmware_70=2E71=2E0_for_NVL-S_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Jun 2026 20:54:23 -0000
-Message-ID: <178285286362.134778.545878568546896285@6beec6c84f66>
+Date: Tue, 30 Jun 2026 21:34:00 -0000
+Message-ID: <178285524020.134778.16388375651411850907@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260630200139.2750152-1-zhanjun.dong@intel.com>
-In-Reply-To: <20260630200139.2750152-1-zhanjun.dong@intel.com>
+References: <20260629215238.3844518-2-julia.filipchuk@intel.com>
+In-Reply-To: <20260629215238.3844518-2-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4943091298145146950==
+--===============5951639656633421016==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: series starting with [v5,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications
-URL   : https://patchwork.freedesktop.org/series/169523/
+Series: drm/xe/nvl/guc: Check GuC firmware 70.71.0 for NVL-S (rev2)
+URL   : https://patchwork.freedesktop.org/series/169456/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e_BAT -> xe-pw-169523v1_BAT
+CI Bug Log - changes from xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e_BAT -> xe-pw-169456v2_BAT
 ====================================================
 
 Summary
@@ -66,45 +65,34 @@ Summary
 
   
 
-Participating hosts (13 -> 13)
+Participating hosts (13 -> 12)
 ------------------------------
 
-  No changes in participating hosts
+  Missing    (1): bat-bmg-2 
 
-Known issues
-------------
 
-  Here are the changes found in xe-pw-169523v1_BAT that come from known issues:
+Changes
+-------
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-bmg-2:          [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e/bat-bmg-2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169523v1/bat-bmg-2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  No changes found
 
 
 Build changes
 -------------
 
   * IGT: IGT_8988 -> IGT_8989
-  * Linux: xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e -> xe-pw-169523v1
+  * Linux: xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e -> xe-pw-169456v2
 
   IGT_8988: 8988
   IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
   xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e: e913ff3ff5099aa149bb820ca68e3cf8642b273e
-  xe-pw-169523v1: 169523v1
+  xe-pw-169456v2: 169456v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169523v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169456v2/index.html
 
---===============4943091298145146950==
+--===============5951639656633421016==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,42 +112,34 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>series starting with [v5,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169523/">https://patchwork.freedesktop.org/series/169523/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/nvl/guc: Check GuC firmware 70.71.0 for NVL-S (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169456/">https://patchwork.freedesktop.org/series/169456/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169523v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169523v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169456v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169456v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e_BAT -&gt; xe-pw-169523v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e_BAT -&gt; xe-pw-169456v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169523v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e/bat-bmg-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169523v1/bat-bmg-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-bmg-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
 <li>IGT: IGT_8988 -&gt; IGT_8989</li>
-<li>Linux: xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e -&gt; xe-pw-169523v1</li>
+<li>Linux: xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e -&gt; xe-pw-169456v2</li>
 </ul>
 <p>IGT_8988: 8988<br />
   IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
   xe-5315-e913ff3ff5099aa149bb820ca68e3cf8642b273e: e913ff3ff5099aa149bb820ca68e3cf8642b273e<br />
-  xe-pw-169523v1: 169523v1</p>
+  xe-pw-169456v2: 169456v2</p>
 
 </body>
 </html>
 
---===============4943091298145146950==--
+--===============5951639656633421016==--
