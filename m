@@ -4,152 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88E64C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 11:54:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51589C43602
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 11:57:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3050510E453;
-	Wed,  1 Jul 2026 11:54:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED9DB10E1EF;
+	Wed,  1 Jul 2026 11:57:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CIxbqekf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBVOA/Ja";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F4910E350;
- Wed,  1 Jul 2026 11:54:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F69110E1EF;
+ Wed,  1 Jul 2026 11:57:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782906840; x=1814442840;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=bVIyL8qBnWP6NHENPA4Tqp/urQrCcguS/X249TRTW04=;
- b=CIxbqekfQ26NKZ86YmFQr2jJL2WUtiWGdN2U5Q3NYr0JLGbvi02WrnRR
- rV9Kbbu/S8ICOwRce3yO7p7M+KzwBWLZ+z+6GQFrre/9h9Ukjj+4v+R/T
- tpaXIel/0+p6zL8BE3/0aLI9bTqA1/yBcl3Qu99jxyKlt9HtV2oG/XvL4
- Wr4459vT5zTXvC265yL4zfInqZpxaHMtcly8IY6LMuh9O7BGPQZevHfDf
- AgMVoai5L7GuR7ThHAAvQ8sztHRgb1AxnKHU+7UHVPyTU8p+lHJCWq9Qv
- MBMmoqL39i/5+YcS9TCVnTNSrzqHUv+XJ3TigFgc7KseIhvz0CE2EzM7b w==;
-X-CSE-ConnectionGUID: XsHjxGDXSDK3OIEsA4/o3g==
-X-CSE-MsgGUID: /uwD/8ppQqeqysGk/ssp7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="109184559"
-X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="109184559"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 04:54:00 -0700
-X-CSE-ConnectionGUID: HM0cPyNlT4qku3kTZgvVhw==
-X-CSE-MsgGUID: UCgHPei2QsCkO9wPwIWfkA==
+ t=1782907066; x=1814443066;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=0tp+7zcgSFtQPXo/HXnwjHM5gwirR7Xv/ZQ/pXHyyFY=;
+ b=PBVOA/Jalt1Y6t7HJyMIQQV6YcCED/If84Pc92Wz2cGRzhO32jrBIy6o
+ oXa7jLk2pNU1yyrvzc5Kvpe+Zcsv5JHSqRf0QeTMJgLRF6e4Cc+X4vyZO
+ tf2AB0erYoKghv1qb1McuKxaeh/N0D45X4XzPIPYFLQ8gsobHF7BVp7Xq
+ uUH6WiFDw6M0jajA/BVPBOh1ucXXexp9l8BF9wLRmxAYSQJp8INOvhb6M
+ vvneqg8CeEg9haPYpUNL1UrW8/v+LwRLijhgG2yUKTaHEWViJBX53OC0l
+ mOG75xznpu9T0rXbG8VLT0aNOfaJDQ/Hdyl3ejmDYVH9LGLcksmBPMTi4 g==;
+X-CSE-ConnectionGUID: wsz0vb14QOWKS7NJ9y8CKA==
+X-CSE-MsgGUID: vMGJunjESbGgF5+PrS2TzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="87473375"
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="87473375"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 04:57:45 -0700
+X-CSE-ConnectionGUID: OnZszanzTmCFLiGuL2vzrQ==
+X-CSE-MsgGUID: 1UKXULCjQTGzTjjPWtXVOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="256465458"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 04:53:59 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 1 Jul 2026 04:53:59 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Wed, 1 Jul 2026 04:53:59 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.40) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 1 Jul 2026 04:53:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=grPjR7moIJVFtaSdrVq+glLlNlHfdCjUIWhN3xzrJ58PNO6x2WQ1xQ0G04npYbKk3xHn4RGPMeqmIbiD3YFeuJAzHPMiLSRYL7KMK1838V7qXJVEBmG/juSqrFOfBBYXwqznWbl7apelmrk61vPyOeSsW9jSXDFqGuQjMI/lYL8B3YlMhRJ8lD/N1AFNNKOHfLw5OAQ4FXbgPFpg+4INCx7mTuGPVaXcLex2V7T9UM/dOpEDQY1F5rrEa01wtGK3x6S3IUDjxxT6J60bDbOI4iGBaRdRufT3MP/Ggua/a9LJ9uCfQqMaGynImF7TJIwcsjmXJZGHwXcfJ8vTXOtryA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LlNhxczYx6XH5sCaGLjcZlnS2nVBpJN1m8djcqlwplM=;
- b=VAd6JOmwpakWU2ur3xDKaDp14mIMkAbrviPFWgEw0Ee4WbeAwXRFxXGUMVvxf2AiLIBE/1B7LwAQcPHDU6fXtJIXHVGMuCikjZVcDnnaqG7I3Tr1sxtV8dcawGAAbePo7OiR5E04Dwd5e9Gzrsbts+dPEc4F8WnrlYAZWcbPB0fwyh6I14Cb2cTbov7n6jaWjVxJN5419WfwCo8n9Y6yC09TXr8/pGJFelkaFAPOBM5CvO8/DuaJ08GWQ7rZ7+yezNsOC1UVb+kcevgW9yoXp6nNEbl43RPoJI0oTM0Bu6G07+KpY8N4MMHOH2uUVjLf3F+t3zvOwuNNh5oQHMRqFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MN6SPRMB0009.namprd11.prod.outlook.com (2603:10b6:208:479::8)
- by SA1PR11MB6920.namprd11.prod.outlook.com (2603:10b6:806:2bb::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Wed, 1 Jul
- 2026 11:53:50 +0000
-Received: from MN6SPRMB0009.namprd11.prod.outlook.com
- ([fe80::4af4:988b:1af5:e328]) by MN6SPRMB0009.namprd11.prod.outlook.com
- ([fe80::4af4:988b:1af5:e328%2]) with mapi id 15.21.0159.018; Wed, 1 Jul 2026
- 11:53:50 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Shankar, Uma" <uma.shankar@intel.com>, Dibin Moolakadan Subrahmanian
- <dibin.moolakadan.subrahmanian@intel.com>, "Kandpal, Suraj"
- <suraj.kandpal@intel.com>
-Subject: RE: [PATCH v2 0/2] Fix array-index-out-of-bounds in
- intel_cmtg_disable()
-Thread-Topic: [PATCH v2 0/2] Fix array-index-out-of-bounds in
- intel_cmtg_disable()
-Thread-Index: AQHdB/YBOm4x1/NQ5EineAgPVpLyXrZYkDEA
-Date: Wed, 1 Jul 2026 11:53:50 +0000
-Message-ID: <MN6SPRMB000950F9F877E493652EB016F9F62@MN6SPRMB0009.namprd11.prod.outlook.com>
-References: <20260629180236.1353704-1-animesh.manna@intel.com>
-In-Reply-To: <20260629180236.1353704-1-animesh.manna@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN6SPRMB0009:EE_|SA1PR11MB6920:EE_
-x-ms-office365-filtering-correlation-id: ddcce894-04ae-41fb-ef4a-08ded7676aa9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|38070700021|6133799003|18002099003|22082099003|11063799006|56012099006;
-x-microsoft-antispam-message-info: x2LGHmRFo+drmaNnCVCCN6LjcKWxeOZFxP+LjLAlA8+6cYHhfupuKz7M/QmcvkoDEEtTSVsYj13w+nHS/nsCec6p+iQ8JE0Nn/GuLrysQYOKuvp0aXK0+fwtTfbUCVdlHRM9I0Rly/uYluePJeu4R6Ep7W9f53z5KLCtLUBHzi2USZw5JsMUdZQmpyQihubyYWolTPg16BKOc32q96mO/z+hHLszJ0+ZH/v6dOIWn0VCWwDWXqKTnyCEMwEQbIzxXQ1fR5ETWK142HXrg5ANqXaOtZFO13hcPUwaUES7UHuzILMSkSahnRwY51Quk1U0xaH/MmkEZhRvymqXLC92PtUQh7/ai7QNqPuGDpp99K5UZqVUuR6RIwFVmaCf/VPyGUudWgQnwON/NRevKx/eQ+DN+MuUmS1ogCZxPucoQmrHF3Ixk9mMfaH/rCn3uIMuVKpR4JkvcZqXnWXLzM5pQs433Z+adhl0G7bZpXaDsPEbTIYuT6G5sXpU+FfxdHCRDrdi5fUPAUE5/leMJZT3MMRsosezhvIlg6/rgoGdvwhf9H6t07vewxgU0JuAd1/57eddV0Xknu+WYxdEhkHe8SAfFW8Xh0+yBX8pnEx7dK5ZU6hwSPhshvPzgIUNBl+4enSn+nVyhKxgKRuncALToFFso7tZtI2JrF1B25ZzfWGXXOeZNkoPKhTwXquQ22c+Lheupv3AY7ge9Qc3i4eii0GRxeZ1epddGaJuzjfQFuA=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN6SPRMB0009.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(38070700021)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zbhFdzwl4MjK9A8OCeOFvroKgk+q5U+7FAeRjNyobqQtMy3nfzJ/EUDI2wTj?=
- =?us-ascii?Q?gJQWPbzbmyuFKSeft9y4LAoWESEhdp/O9VhsgnXtGQnWf8Fu1V1fTTxrIpYj?=
- =?us-ascii?Q?d5TAj5p9pOxqK/NUrmk+s4rNt5cRgNDFo+Ve3elkMQMOnRqJTgYhpt/I1xek?=
- =?us-ascii?Q?m/Iq3HXE+ALtAJHm/r27iayMFhDdq4RPKy/i8F9BhMEeXQcoIlGnaqlJnEMB?=
- =?us-ascii?Q?4xBZsF0cRulyjRL4QFkxcm1pPMAWTzuojn82j/+LdYJaQC2LL8XJExfdMitw?=
- =?us-ascii?Q?ss7b7dmxo+qyiHj4IYpI+Y4EYneufXPVC37JBLARupuFm4QtSwtQWd01CKI5?=
- =?us-ascii?Q?H7wBogoepzBbHsC9f0OJQ1STDud9ttxIa/FYxLLoHPzTcmHcBBfJqH0BM048?=
- =?us-ascii?Q?CVchBEoVwXIA2FNH5ibi2xQWdVg8t0qMPK2QX9tRp9Zx6GPJ0sxmzEl113Jg?=
- =?us-ascii?Q?fq92rjV1mzm42h+9cDz8l2Cx8l3p73oPoy9XTiFR80NbNLKVqwGGMZaaqV/H?=
- =?us-ascii?Q?45nFKeTajxa+z+CmFVdSL7Te1elAyQIfwgnmxEMCEsbHMTpBip0LeWEKaJKD?=
- =?us-ascii?Q?/ZDgbdlwiQPvdpkoLGzGv36NSGf43Pz8IcHDVd/yPiIZBuvRY7FLOSCIZMvU?=
- =?us-ascii?Q?vWwJB0LTKRKE4u6OH/k/MS9MeWein2JOjgiGFM1sMjr83txI2kF3ZBimFczr?=
- =?us-ascii?Q?mKGdRXCSNkg/n3fE1rujpUyroRqiNepkp7NIH3y/X3y4d++dcifNuJGyYv3f?=
- =?us-ascii?Q?VIl4e/BdODqSzoFB/voU0NXokD2GdTFRyPlsQhZurqk1BCnoXGd7EaDAL2nu?=
- =?us-ascii?Q?3/EY15ZY4Hg1aYPBcja9oejMKB068gIfcDY7tJwrcTqp0rrBbU3zixm6pvmI?=
- =?us-ascii?Q?yaT+5vgP9YEA4PHdmaVuF/HU799wKGyeE73veUcbovridKCAjcpJNMRqbTm+?=
- =?us-ascii?Q?0QrrkCt1S9YR6UsbR718HM0RnvCu/WRRAY/TMoJ1YiWVzpJ6iBYr58s0ltVC?=
- =?us-ascii?Q?WhxjI8VI/jFb/prMu+lOGhbiUxccRIP2eF48cWcX5MiqYHfintlpydBXrHqx?=
- =?us-ascii?Q?IhZDebXs6cUy4LC1X1DmDeAX7XCWWeB61PzxHLeRkjmOm56sCFjvltfpIZom?=
- =?us-ascii?Q?MgzUmGQRGdwfwghpNyP6292XeagONhIpveMt6JaAIZgaZOckmpftD35tzSsG?=
- =?us-ascii?Q?I8rrWjHlruk10kKgMygnJSrFb3leJZd0unujJ+wc45y13/fP/jZ7ZZ2OPuR5?=
- =?us-ascii?Q?PBI+/qoAPCc3D82Ah0yn0RE3SVl+IMXXPtfeQAPgtYcjrjeRWt6x7Fs81LWw?=
- =?us-ascii?Q?cs2Au2a9zE3/sgnKe36Ibf6Yisfew9KvYfGGDV3KtYmx+3u4YMdTlV3zotqr?=
- =?us-ascii?Q?8uxMRNXdMsrdpb7Ym2lcb44pHrLNL5gzpIpM/LksrgrnriX7/DVlC7tuXWGv?=
- =?us-ascii?Q?55BDGqb+m+otNDhshcgtXYPVVVSNunZ6kx8r6cD6s89q9MudtZttjNaErQ4Z?=
- =?us-ascii?Q?h6tjAE8klxX5DUPg2CYslgDFe+Muc3qWJUafWL7M9Qz+YGKhqqrC4GDAUXoW?=
- =?us-ascii?Q?HbaVKtBtu4mres9QSou5CxViKHa1+1k+Smr7HSfuxuUTuOIrJVnDc9/29MLm?=
- =?us-ascii?Q?ai3s6RAcG6SjLuA7UUVhMgFKNTsoVY7mA9mllVA6h2/aPI79kKAKzNji+L6n?=
- =?us-ascii?Q?kngBSKTVM5pFrSzjcpb6qVxBqllIpjkL9yAD07LN3v6l1oM8LL2kMN7DyKAS?=
- =?us-ascii?Q?drNopzVBkg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="249899986"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.120])
+ ([10.245.244.120])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 04:57:42 -0700
+Message-ID: <d2558fc5240d47d08d6b7d35fdeeb50f9b78a292.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/ttm: Account for NULL pages in ttm_pool_backup
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui
+ <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard	
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Date: Wed, 01 Jul 2026 13:57:28 +0200
+In-Reply-To: <20260626074653.1326683-1-matthew.brost@intel.com>
+References: <20260626074653.1326683-1-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: WIkwCCtU3CPf10zaF/N4JY0cBPqCYPSReGdJ5thb6HbMGkEZmau2LaGjJTCdUP/lhF9+twYlTNphuzt6W7cLRpGmTIljPCeWGiZMLXwxciakJ4A7QhvgtPod6tLeqAySoDFTXH8fA+yWlcyeSAgPZCG1eNHjWgs53hzbpHGP0FFo68UQbuzJkJGUQK2r2ulffU8lt5JnSyDK0JDsVu4DgPXAJ+T+ykkK5lLC8I/Cla5GnIJYoVeC36DvpC8YFAIouuxuN1qBLpvgAfV++9IyRTVNj3SyRv/IWL96awnzTuQP6JuIyXHCETfYEcqIkKQdm1k62g+zF+mzwIORjzCX+A==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN6SPRMB0009.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddcce894-04ae-41fb-ef4a-08ded7676aa9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2026 11:53:50.4266 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mOI0l7ZDXXzxL3eAjc6XmpQUEhJKRHxxZrdUMtcuVbHI+A0QQCI4eEdJ+totls/PPRFwJXFw+7xapuvUfSpD9w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6920
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,55 +75,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi, Matt
 
-
-> -----Original Message-----
-> From: Manna, Animesh <animesh.manna@intel.com>
-> Sent: Monday, June 29, 2026 11:33 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Shankar, Uma <uma.shankar@intel.com>; Dibin Moolakadan
-> Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>; Kandpal,
-> Suraj <suraj.kandpal@intel.com>; Manna, Animesh
-> <animesh.manna@intel.com>
-> Subject: [PATCH v2 0/2] Fix array-index-out-of-bounds in intel_cmtg_disab=
-le()
+On Fri, 2026-06-26 at 00:46 -0700, Matthew Brost wrote:
+> Pages in ttm_pool_backup can be NULL, and set_pages_array_wb() cannot
+> handle NULL entries. Switch to set_pages_wb() after checking for NULL
+> pages.
 >=20
-> intel_cmtg_disable() maps crtc_state->cpu_transcoder to a CMTG transcoder
-> via to_cmtg_transcoder(), which only returns a valid transcoder for
-> TRANSCODER_A/B. The disable call sites only checked the sticky
-> crtc->cmtg.enabled flag, so during a big-joiner reconfiguration that
-> crtc->moves
-> the eDP across pipes intel_cmtg_disable() could be reached with a
-> cpu_transcoder that does not map to a CMTG transcoder. That led to a
-> negative register-array index (trans_offsets[-1]) and a UBSAN array-index=
+> Fixes the following oops:
+>=20
+> Oops: general protection fault, kernel NULL pointer dereference 0x0:
+> 0000 [#1] SMP NOPTI
+> RIP: 0010:__cpa_process_fault+0xf8/0x770
+> RSP: 0018:ffffc90000a87718 EFLAGS: 00010287
+> RAX: 0000000000000000 RBX: ffffc90000a87868 RCX: 0000000000000000
+> RDX: 0000000000001000 RSI: 0005088000000000 RDI: ffffffff827c5f34
+> RBP: 0005088000000000 R08: ffffc90000a877cb R09: ffffc90000a877d0
+> R10: 0000000000000000 R11: 000000000000001b R12: 000ffffffffff000
+> R13: ffffc90000a87868 R14: ffffc90000a87868 R15: ffff88815b882ae0
+> FS:=C2=A0 0000000000000000(0000) GS:ffff8884ec840000(0000)
+> knlGS:0000000000000000
+> CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> CR2: 00007f930b844000 CR3: 000000000262e003 CR4: 0000000008f70ef0
+> PKRU: 55555554
+> Call Trace:
+> =C2=A0<TASK>
+> =C2=A0__change_page_attr_set_clr+0x989/0xe90
+> =C2=A0? __purge_vmap_area_lazy+0x6c/0x3a0
+> =C2=A0? _vm_unmap_aliases+0x250/0x2a0
+> =C2=A0set_pages_array_wb+0x7f/0x120
+> =C2=A0ttm_pool_backup+0x4c9/0x5b0 [ttm]
+> =C2=A0? dma_resv_wait_timeout+0x3b/0xf0
+> =C2=A0ttm_tt_backup+0x32/0x60 [ttm]
+> =C2=A0ttm_bo_shrink+0x66/0x110 [ttm]
+> =C2=A0xe_bo_shrink_purge+0x12b/0x1b0 [xe]
+> =C2=A0xe_bo_shrink+0xbb/0x270 [xe]
+> =C2=A0__xe_shrinker_walk+0xf7/0x160 [xe]
+> =C2=A0xe_shrinker_walk+0x9d/0xc0 [xe]
+> =C2=A0xe_shrinker_scan+0x11f/0x210 [xe]
+> =C2=A0do_shrink_slab+0x13b/0x270
+> =C2=A0shrink_slab+0xf1/0x400
+> =C2=A0shrink_node+0x352/0x8a0
+> =C2=A0balance_pgdat+0x32c/0x700
+> =C2=A0kswapd+0x205/0x2f0
+> =C2=A0? __pfx_autoremove_wake_function+0x10/0x10
+> =C2=A0? __pfx_kswapd+0x10/0x10
+> =C2=A0kthread+0xd1/0x110
+> =C2=A0? __pfx_kthread+0x10/0x10
+> =C2=A0ret_from_fork+0x1b1/0x200
+> =C2=A0? __pfx_kthread+0x10/0x10
+> =C2=A0ret_from_fork_asm+0x1a/0x30
+> =C2=A0</TASK>
+>=20
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: stable@vger.kernel.org
+> Fixes: b63d715b8090 ("drm/ttm/pool, drm/ttm/tt: Provide a helper to
+> shrink pages")
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 49 +++++++++++++++++--------------=
 -
-> out-of-bounds splat.
->=20
-> v1 fixed this with a silent early return inside intel_cmtg_disable().
-> Following review feedback, v2 instead gates the call sites with
-> intel_cmtg_is_allowed() (the actual fix) and keeps a drm_WARN_ON() inside
-> intel_cmtg_disable() as a backstop that documents the invariant.
->=20
-> The patches are ordered so that the series stays splat-free at every step=
-:
-> patch 1 prevents any invalid call from reaching intel_cmtg_disable(), and
-> patch 2 then adds the drm_WARN_ON() that should never fire in normal
-> operation.
->=20
-> Animesh Manna (2):
->   drm/i915/display: Guard CMTG disable with intel_cmtg_is_allowed()
->   drm/i915/cmtg: Warn on invalid CMTG transcoder in intel_cmtg_disable()
-
-Thank you Suraj for review, changes are pushed to din.
-
-Regards,
-Animesh
-
->=20
->  drivers/gpu/drm/i915/display/intel_cmtg.c    | 3 +++
->  drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
->  2 files changed, 6 insertions(+), 2 deletions(-)
->=20
 > --
-> 2.29.0
+> =C2=A01 file changed, 24 insertions(+), 25 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
+> b/drivers/gpu/drm/ttm/ttm_pool.c
+> index 682ae4f40424..ea14447411a6 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -1064,34 +1064,33 @@ long ttm_pool_backup(struct ttm_pool *pool,
+> struct ttm_tt *tt,
+> =C2=A0	=C2=A0=C2=A0=C2=A0 ttm_pool_uses_dma_alloc(pool) ||
+> ttm_tt_is_backed_up(tt))
+> =C2=A0		return -EBUSY;
+> =C2=A0
+> -#ifdef CONFIG_X86
+> -	/* Anything returned to the system needs to be cached. */
+> -	if (tt->caching !=3D ttm_cached)
+> -		set_pages_array_wb(tt->pages, tt->num_pages);
+> -#endif
+> +	for (i =3D 0; i < tt->num_pages; i +=3D num_pages) {
+> +		unsigned int order;
+> =C2=A0
+> -	if (tt->dma_address || flags->purge) {
+> -		for (i =3D 0; i < tt->num_pages; i +=3D num_pages) {
+> -			unsigned int order;
+> +		page =3D tt->pages[i];
+> +		if (unlikely(!page)) {
+> +			num_pages =3D 1;
+> +			continue;
+> +		}
+> =C2=A0
+> -			page =3D tt->pages[i];
+> -			if (unlikely(!page)) {
+> -				num_pages =3D 1;
+> -				continue;
+> -			}
+> +		order =3D ttm_pool_page_order(pool, page);
+> +		num_pages =3D 1UL << order;
+> =C2=A0
+> -			order =3D ttm_pool_page_order(pool, page);
+> -			num_pages =3D 1UL << order;
+> -			if (tt->dma_address)
+> -				ttm_pool_unmap(pool, tt-
+> >dma_address[i],
+> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages);
+> -			if (flags->purge) {
+> -				shrunken +=3D num_pages;
+> -				page->private =3D 0;
+> -				__free_pages_gpu_account(page,
+> order, false);
+> -				memset(tt->pages + i, 0,
+> -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages * sizeof(*tt-
+> >pages));
+> -			}
+> +#ifdef CONFIG_X86
+> +		/* Anything returned to the system needs to be
+> cached. */
+> +		if (tt->caching !=3D ttm_cached)
+> +			set_pages_wb(page, 1 << order);
+> +#endif
 
+As discussed otherwise, this causes one IPI per page when TLB flushing,
+whereas set_pages_array_wb() causes one per array. IPIs are quite
+costly, and
+set_pages_array_wb() has been tailor-made to only issue one per array,
+so we would want to call it on subarrays in case there are NULL
+pointers and always call it in case there are no NULL pointers.
+
+/Thomas
+
+
+> +
+> +		if (tt->dma_address)
+> +			ttm_pool_unmap(pool, tt->dma_address[i],
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages);
+> +		if (flags->purge) {
+> +			shrunken +=3D num_pages;
+> +			page->private =3D 0;
+> +			__free_pages_gpu_account(page, order,
+> false);
+> +			memset(tt->pages + i, 0,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages * sizeof(*tt->pages));
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0
