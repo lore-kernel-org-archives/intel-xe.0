@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51589C43602
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 11:57:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1902C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:26:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED9DB10E1EF;
-	Wed,  1 Jul 2026 11:57:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBVOA/Ja";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F69110E1EF;
- Wed,  1 Jul 2026 11:57:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782907066; x=1814443066;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=0tp+7zcgSFtQPXo/HXnwjHM5gwirR7Xv/ZQ/pXHyyFY=;
- b=PBVOA/Jalt1Y6t7HJyMIQQV6YcCED/If84Pc92Wz2cGRzhO32jrBIy6o
- oXa7jLk2pNU1yyrvzc5Kvpe+Zcsv5JHSqRf0QeTMJgLRF6e4Cc+X4vyZO
- tf2AB0erYoKghv1qb1McuKxaeh/N0D45X4XzPIPYFLQ8gsobHF7BVp7Xq
- uUH6WiFDw6M0jajA/BVPBOh1ucXXexp9l8BF9wLRmxAYSQJp8INOvhb6M
- vvneqg8CeEg9haPYpUNL1UrW8/v+LwRLijhgG2yUKTaHEWViJBX53OC0l
- mOG75xznpu9T0rXbG8VLT0aNOfaJDQ/Hdyl3ejmDYVH9LGLcksmBPMTi4 g==;
-X-CSE-ConnectionGUID: wsz0vb14QOWKS7NJ9y8CKA==
-X-CSE-MsgGUID: vMGJunjESbGgF5+PrS2TzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="87473375"
-X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="87473375"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 04:57:45 -0700
-X-CSE-ConnectionGUID: OnZszanzTmCFLiGuL2vzrQ==
-X-CSE-MsgGUID: 1UKXULCjQTGzTjjPWtXVOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="249899986"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.120])
- ([10.245.244.120])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 04:57:42 -0700
-Message-ID: <d2558fc5240d47d08d6b7d35fdeeb50f9b78a292.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/ttm: Account for NULL pages in ttm_pool_backup
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui
- <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard	
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Date: Wed, 01 Jul 2026 13:57:28 +0200
-In-Reply-To: <20260626074653.1326683-1-matthew.brost@intel.com>
-References: <20260626074653.1326683-1-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id B119410E36B;
+	Wed,  1 Jul 2026 12:26:22 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F00510E36B;
+ Wed,  1 Jul 2026 12:26:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2694508273145148804=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display/psr=3A_PSR?=
+ =?utf-8?q?2_DC3CO_fix_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 01 Jul 2026 12:26:21 -0000
+Message-ID: <178290878144.137420.4209340727628350577@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260701100650.1689665-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260701100650.1689665-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,162 +36,219 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matt
+--===============2694508273145148804==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Fri, 2026-06-26 at 00:46 -0700, Matthew Brost wrote:
-> Pages in ttm_pool_backup can be NULL, and set_pages_array_wb() cannot
-> handle NULL entries. Switch to set_pages_wb() after checking for NULL
-> pages.
->=20
-> Fixes the following oops:
->=20
-> Oops: general protection fault, kernel NULL pointer dereference 0x0:
-> 0000 [#1] SMP NOPTI
-> RIP: 0010:__cpa_process_fault+0xf8/0x770
-> RSP: 0018:ffffc90000a87718 EFLAGS: 00010287
-> RAX: 0000000000000000 RBX: ffffc90000a87868 RCX: 0000000000000000
-> RDX: 0000000000001000 RSI: 0005088000000000 RDI: ffffffff827c5f34
-> RBP: 0005088000000000 R08: ffffc90000a877cb R09: ffffc90000a877d0
-> R10: 0000000000000000 R11: 000000000000001b R12: 000ffffffffff000
-> R13: ffffc90000a87868 R14: ffffc90000a87868 R15: ffff88815b882ae0
-> FS:=C2=A0 0000000000000000(0000) GS:ffff8884ec840000(0000)
-> knlGS:0000000000000000
-> CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: 00007f930b844000 CR3: 000000000262e003 CR4: 0000000008f70ef0
-> PKRU: 55555554
-> Call Trace:
-> =C2=A0<TASK>
-> =C2=A0__change_page_attr_set_clr+0x989/0xe90
-> =C2=A0? __purge_vmap_area_lazy+0x6c/0x3a0
-> =C2=A0? _vm_unmap_aliases+0x250/0x2a0
-> =C2=A0set_pages_array_wb+0x7f/0x120
-> =C2=A0ttm_pool_backup+0x4c9/0x5b0 [ttm]
-> =C2=A0? dma_resv_wait_timeout+0x3b/0xf0
-> =C2=A0ttm_tt_backup+0x32/0x60 [ttm]
-> =C2=A0ttm_bo_shrink+0x66/0x110 [ttm]
-> =C2=A0xe_bo_shrink_purge+0x12b/0x1b0 [xe]
-> =C2=A0xe_bo_shrink+0xbb/0x270 [xe]
-> =C2=A0__xe_shrinker_walk+0xf7/0x160 [xe]
-> =C2=A0xe_shrinker_walk+0x9d/0xc0 [xe]
-> =C2=A0xe_shrinker_scan+0x11f/0x210 [xe]
-> =C2=A0do_shrink_slab+0x13b/0x270
-> =C2=A0shrink_slab+0xf1/0x400
-> =C2=A0shrink_node+0x352/0x8a0
-> =C2=A0balance_pgdat+0x32c/0x700
-> =C2=A0kswapd+0x205/0x2f0
-> =C2=A0? __pfx_autoremove_wake_function+0x10/0x10
-> =C2=A0? __pfx_kswapd+0x10/0x10
-> =C2=A0kthread+0xd1/0x110
-> =C2=A0? __pfx_kthread+0x10/0x10
-> =C2=A0ret_from_fork+0x1b1/0x200
-> =C2=A0? __pfx_kthread+0x10/0x10
-> =C2=A0ret_from_fork_asm+0x1a/0x30
-> =C2=A0</TASK>
->=20
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: stable@vger.kernel.org
-> Fixes: b63d715b8090 ("drm/ttm/pool, drm/ttm/tt: Provide a helper to
-> shrink pages")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 49 +++++++++++++++++--------------=
--
-> --
-> =C2=A01 file changed, 24 insertions(+), 25 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
-> b/drivers/gpu/drm/ttm/ttm_pool.c
-> index 682ae4f40424..ea14447411a6 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -1064,34 +1064,33 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 ttm_pool_uses_dma_alloc(pool) ||
-> ttm_tt_is_backed_up(tt))
-> =C2=A0		return -EBUSY;
-> =C2=A0
-> -#ifdef CONFIG_X86
-> -	/* Anything returned to the system needs to be cached. */
-> -	if (tt->caching !=3D ttm_cached)
-> -		set_pages_array_wb(tt->pages, tt->num_pages);
-> -#endif
-> +	for (i =3D 0; i < tt->num_pages; i +=3D num_pages) {
-> +		unsigned int order;
-> =C2=A0
-> -	if (tt->dma_address || flags->purge) {
-> -		for (i =3D 0; i < tt->num_pages; i +=3D num_pages) {
-> -			unsigned int order;
-> +		page =3D tt->pages[i];
-> +		if (unlikely(!page)) {
-> +			num_pages =3D 1;
-> +			continue;
-> +		}
-> =C2=A0
-> -			page =3D tt->pages[i];
-> -			if (unlikely(!page)) {
-> -				num_pages =3D 1;
-> -				continue;
-> -			}
-> +		order =3D ttm_pool_page_order(pool, page);
-> +		num_pages =3D 1UL << order;
-> =C2=A0
-> -			order =3D ttm_pool_page_order(pool, page);
-> -			num_pages =3D 1UL << order;
-> -			if (tt->dma_address)
-> -				ttm_pool_unmap(pool, tt-
-> >dma_address[i],
-> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages);
-> -			if (flags->purge) {
-> -				shrunken +=3D num_pages;
-> -				page->private =3D 0;
-> -				__free_pages_gpu_account(page,
-> order, false);
-> -				memset(tt->pages + i, 0,
-> -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages * sizeof(*tt-
-> >pages));
-> -			}
-> +#ifdef CONFIG_X86
-> +		/* Anything returned to the system needs to be
-> cached. */
-> +		if (tt->caching !=3D ttm_cached)
-> +			set_pages_wb(page, 1 << order);
-> +#endif
+== Series Details ==
 
-As discussed otherwise, this causes one IPI per page when TLB flushing,
-whereas set_pages_array_wb() causes one per array. IPIs are quite
-costly, and
-set_pages_array_wb() has been tailor-made to only issue one per array,
-so we would want to call it on subarrays in case there are NULL
-pointers and always call it in case there are no NULL pointers.
+Series: drm/i915/display/psr: PSR2 DC3CO fix (rev2)
+URL   : https://patchwork.freedesktop.org/series/169491/
+State : success
 
-/Thomas
+== Summary ==
+
+CI Bug Log - changes from xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68_BAT -> xe-pw-169491v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+New tests
+---------
+
+  New tests have been introduced between xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68_BAT and xe-pw-169491v2_BAT:
+
+### New IGT tests (9) ###
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.20] s
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.19] s
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.20] s
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.15] s
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.62] s
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.62] s
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.59] s
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-hdmi-a-3:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.59] s
+
+  * igt@xe_query@multigpu-query-oa-units:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.06] s
+
+  
 
 
-> +
-> +		if (tt->dma_address)
-> +			ttm_pool_unmap(pool, tt->dma_address[i],
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages);
-> +		if (flags->purge) {
-> +			shrunken +=3D num_pages;
-> +			page->private =3D 0;
-> +			__free_pages_gpu_account(page, order,
-> false);
-> +			memset(tt->pages + i, 0,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages * sizeof(*tt->pages));
-> =C2=A0		}
-> =C2=A0	}
-> =C2=A0
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68 -> xe-pw-169491v2
+
+  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68: 75f36b5b412ff6aaf866d2bddb37ec5a55851f68
+  xe-pw-169491v2: 169491v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169491v2/index.html
+
+--===============2694508273145148804==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display/psr: PSR2 DC3CO fix (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169491/">https://patchwork.freedesktop.org/series/169491/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169491v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169491v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68_BAT -&gt; xe-pw-169491v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68_BAT and xe-pw-169491v2_BAT:</p>
+<h3>New IGT tests (9)</h3>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.20] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.19] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.20] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.15] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.62] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.62] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.59] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-hdmi-a-3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.59] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_query@multigpu-query-oa-units:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+</ul>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68 -&gt; xe-pw-169491v2</li>
+</ul>
+<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5319-75f36b5b412ff6aaf866d2bddb37ec5a55851f68: 75f36b5b412ff6aaf866d2bddb37ec5a55851f68<br />
+  xe-pw-169491v2: 169491v2</p>
+
+</body>
+</html>
+
+--===============2694508273145148804==--
