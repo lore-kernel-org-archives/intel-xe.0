@@ -4,28 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F8F3C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 15:02:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FA48C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 15:23:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5D310E3BA;
-	Wed,  1 Jul 2026 15:02:07 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 343C910E3AC;
- Wed,  1 Jul 2026 15:02:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5806579506600531255=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BCF410E0FB;
+	Wed,  1 Jul 2026 15:23:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hyt/uq5e";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC31D10E3BB
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 15:23:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782919399; x=1814455399;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=11rMUklXb0pqNOKXlW6EemWO3Cy6rhYqZNz+Hsxi7Ic=;
+ b=Hyt/uq5eW5fwCGvlYuU4KUyjTYk+4qrPD68qebGTKA76hNs/VveRGuGL
+ 22E9VMH9PCPSeDcAdBKjZYA9ZHUsp7Hc4XF+ee48pf0I2u1kyOopqKCfJ
+ rHYr/imYzWCjNt0zyPDmAzGV+0Q1RoxjleNA04RCZuG4NOPnYKQIbe59b
+ +367cCvgbePhTlJSNlohXukTpJ5vX0c7rUgI23ZXKj9LRTa01NYo/Gu8/
+ dSgs5tbjsZRmPNJwwAItnnct1L76yFSU6SpLTAlZDhXlEz97DsfZ5XFjX
+ Vt7BZybjOgjF26Y57x7jg+Zq1t/GS8HfUmFkq4rfhZn6vz8xspHnxoQ24 w==;
+X-CSE-ConnectionGUID: uHgLYHdrTPGCSsfQwJJ4KA==
+X-CSE-MsgGUID: CqSbM1hJSGmyV1M9YGP4ug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="83789257"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="83789257"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 08:23:19 -0700
+X-CSE-ConnectionGUID: fAmO+TmlRpmiBDAiEP2W2g==
+X-CSE-MsgGUID: xsORQ27NRSuvz1RHDfTk+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="252727577"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.120])
+ ([10.245.244.120])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 08:23:17 -0700
+Message-ID: <fead429b4ee46bfb7cd1f1dee27912e155797fc6.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/ttm: Fix UAF on dma-buf attach failure for sg BOs
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Nitin
+ Gote	 <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Matthew Auld <matthew.auld@intel.com>
+Date: Wed, 01 Jul 2026 17:23:15 +0200
+In-Reply-To: <b32a5081-545f-4703-ad88-ce54cc1efe09@amd.com>
+References: <20260701062559.3731993-2-nitin.r.gote@intel.com>
+ <dfed18b63a7b6cf164b3af7f65df8b4a1b9dbdf2.camel@linux.intel.com>
+ <b32a5081-545f-4703-ad88-ce54cc1efe09@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/gpusvm=3A_fix_IOVA/DMA_?=
- =?utf-8?q?unmap_leaks_in_=5F=5Fdrm=5Fgpusvm=5Funmap=5Fpages=28=29_=28rev4?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Honglei Huang" <honghuan@amd.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Jul 2026 15:02:05 -0000
-Message-ID: <178291812520.139063.3179500168089895231@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260628061757.4093701-1-honglei1.huang@amd.com>
-In-Reply-To: <20260628061757.4093701-1-honglei1.huang@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,254 +69,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5806579506600531255==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 2026-07-01 at 15:20 +0200, Christian K=C3=B6nig wrote:
+> On 7/1/26 14:59, Thomas Hellstr=C3=B6m wrote:
+> > Hi, Nitin
+> >=20
+> > On Wed, 2026-07-01 at 11:56 +0530, Nitin Gote wrote:
+> > > When a dma-buf importer creates a ttm_bo_type_sg BO with bo-
+> > > > base.resv
+> > > pointing at the exporter's dma_buf->resv and
+> > > dma_buf_dynamic_attach()
+> > > fails, no dma_buf reference is held. The exporter can be freed
+> > > before
+> > > the delayed_delete worker calls dma_resv_lock(bo->base.resv),
+> > > causing
+> > > a
+> > > use-after-free:
+> > >=20
+> > > =C2=A0 Oops: general protection fault, probably for non-canonical
+> > > address
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x6b6b6b6b6b6b6b9c
+> > > =C2=A0 Workqueue: ttm ttm_bo_delayed_delete [ttm]
+> > > =C2=A0 RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
+> > >=20
+> > > ttm_bo_individualize_resv() skips the resv swap for all sg BOs to
+> > > keep
+> > > the shared resv available for delayed_delete to release the dma-
+> > > buf
+> > > mapping. A BO whose attach never succeeded has no mapping to
+> > > release,
+> > > yet it keeps bo->base.resv pointing at the exporter resv that
+> > > delayed_delete later locks once the exporter is gone.
+> > >=20
+> > > Fix this by checking bo->base.import_attach, which is set only
+> > > after
+> > > a
+> > > successful attach. The check is placed after
+> > > dma_resv_copy_fences()
+> > > so
+> > > successful imports still copy fences to _resv before returning,
+> > > keeping
+> > > the shared resv for delayed_delete. Failed imports fall through
+> > > to
+> > > swap
+> > > resv to _resv, so delayed_delete never locks the stale exporter
+> > > resv.
+> > >=20
+> > > Closes:
+> > > https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
+> > > Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup
+> > > path for imported bos")
+> > > Cc: stable@vger.kernel.org=C2=A0# v6.8+
+> > > Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+> > > Cc: Christian Konig <christian.koenig@amd.com>
+> > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+> > > Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> > > ---
+> > > Hi Thomas/Christian,
+> > > Thank you for the review. Addressed the v3 review comments in
+> > > this=20
+> > > v4 version.
+> > >=20
+> > > v4:
+> > > - Moved import_attach check to after dma_resv_copy_fences() so
+> > > fences
+> > > =C2=A0 are copied before returning for successful imports (Thomas).
+> > > - Removed exporter-alive claim from commit message (Thomas).
+> >=20
+> > That's not sufficient. What I meant was that this invalidates the
+> > approach in its current form:
+> >=20
+> > A			B
+> > prime_import()	=09
+> > exported_get();
+> > exported_lock();
+> > bo_create();		lru_walk():
+> > attach_fail();		bo_get();
+> > bo_put();	=09
+> > exported_unlock();	bo_lock() // exporter_lock
+> > exporter_put();	=09
+> > exporter_free();=09
+> > 			bo_unlock(); //UAF
+> > 		=09
+> > There is no guarantee that the exporter stays alive until
+> > resv individualization happens.
+>=20
+> IIRC at least for AMDGPU that shouldn't be possible.
+>=20
+> We intentionally create the imported BO as empty shell without
+> ttm_resource object, so it is not on any LRU list.
+>=20
+> But to be honest I haven't looked into that in years, so it is
+> perfectly possible that this is messed up again.
 
-== Series Details ==
+Yeah, this was recently changed in xe, but I'm not 100% sure we
+actually create a bo resource.
 
-Series: drm/gpusvm: fix IOVA/DMA unmap leaks in __drm_gpusvm_unmap_pages() (rev4)
-URL   : https://patchwork.freedesktop.org/series/169467/
-State : success
+In any case if we add an assert
 
-== Summary ==
+WARN_ON_ONCE(bo->type =3D=3D ttm_bo_type_sg && bo->res);
 
-CI Bug Log - changes from xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908_BAT -> xe-pw-169467v4_BAT
-====================================================
+just before / after=C2=A0
+bo->base.resv =3D &bo->base._resv;
 
-Summary
--------
+or something similar, we would hit that if the bo is published on the
+LRU and would need an additional fix in the driver.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-bmg-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-169467v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@fbdev@write.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_exec_multi_queue@priority:
-    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [PASS][9] -> [ABORT][10] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#1420] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          NOTRUN -> [SKIP][12] ([Intel XE#2245] / [Intel XE#7590])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-2:          NOTRUN -> [SKIP][13] ([Intel XE#2236] / [Intel XE#7590])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * Linux: xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908 -> xe-pw-169467v4
-
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908: 32ebc37ae37fcca08cddfcec5c9f3365685ee908
-  xe-pw-169467v4: 169467v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/index.html
-
---===============5806579506600531255==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+/Thomas
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/gpusvm: fix IOVA/DMA unmap leaks in __drm_gpusvm_unmap_pages() (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169467/">https://patchwork.freedesktop.org/series/169467/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908_BAT -&gt; xe-pw-169467v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169467v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf:</p>
-<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169467v4/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908 -&gt; xe-pw-169467v4</li>
-</ul>
-<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5321-32ebc37ae37fcca08cddfcec5c9f3365685ee908: 32ebc37ae37fcca08cddfcec5c9f3365685ee908<br />
-  xe-pw-169467v4: 169467v4</p>
-
-</body>
-</html>
-
---===============5806579506600531255==--
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> > >=20
+> > > v3:
+> > > - Dropped the xe-side reordering approach since importer_priv
+> > > must be
+> > > =C2=A0 valid when dma_buf_dynamic_attach() publishes the attachment.
+> > > - Per Christian's suggestion on the v1 thread, keyed the check on
+> > > =C2=A0 import_attach rather than removing the sg guard entirely.
+> > > - Fixes both xe and amdgpu in a single TTM patch.
+> > >=20
+> > > =C2=A0drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++++++++---------
+> > > =C2=A01 file changed, 15 insertions(+), 9 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+> > > b/drivers/gpu/drm/ttm/ttm_bo.c
+> > > index bcd76f6bb7f0..9b6341f69805 100644
+> > > --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> > > +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> > > @@ -203,15 +203,21 @@ static int ttm_bo_individualize_resv(struct
+> > > ttm_buffer_object *bo)
+> > > =C2=A0	if (r)
+> > > =C2=A0		return r;
+> > > =C2=A0
+> > > -	if (bo->type !=3D ttm_bo_type_sg) {
+> > > -		/* This works because the BO is about to be
+> > > destroyed and nobody
+> > > -		 * reference it any more. The only tricky case
+> > > is
+> > > the trylock on
+> > > -		 * the resv object while holding the lru_lock.
+> > > -		 */
+> > > -		spin_lock(&bo->bdev->lru_lock);
+> > > -		bo->base.resv =3D &bo->base._resv;
+> > > -		spin_unlock(&bo->bdev->lru_lock);
+> > > -	}
+> > > +	/*
+> > > +	 * Successfully imported sg BOs need the shared resv for
+> > > dma-buf
+> > > +	 * cleanup. Failed imports have no attachment or mapping
+> > > and
+> > > can
+> > > +	 * use the private _resv.
+> > > +	 */
+> > > +	if (bo->type =3D=3D ttm_bo_type_sg && bo-
+> > > >base.import_attach)
+> > > +		return 0;
+> > > +
+> > > +	/* This works because the BO is about to be destroyed
+> > > and
+> > > nobody
+> > > +	 * references it any more. The only tricky case is the
+> > > trylock on
+> > > +	 * the resv object while holding the lru_lock.
+> > > +	 */
+> > > +	spin_lock(&bo->bdev->lru_lock);
+> > > +	bo->base.resv =3D &bo->base._resv;
+> > > +	spin_unlock(&bo->bdev->lru_lock);
+> > > =C2=A0
+> > > =C2=A0	return r;
+> > > =C2=A0}
