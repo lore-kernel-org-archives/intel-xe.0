@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D034C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 10:08:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DA64C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 10:08:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2E7910E347;
-	Wed,  1 Jul 2026 10:08:07 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 277AA10E347;
- Wed,  1 Jul 2026 10:08:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1620137738512189461=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4852810E347;
+	Wed,  1 Jul 2026 10:08:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b8KJNMp4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB6C10E347;
+ Wed,  1 Jul 2026 10:08:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782900505; x=1814436505;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qjNIa7U/DXfZpbOozs1P5eSaxzt6Yfzd23M+deEXRTY=;
+ b=b8KJNMp4HlyU92VVWlmNtxo5EOXTu9I9As25ukyMhVMJofWcu2JT9xTl
+ OOCURCkZAKvifJTW5O1mQ8iIShjZHRxA/aGr1TRJ6Bd0G1AJy/uXZaq/8
+ vh246I5Y555f13gfdxZfe3sR6ZvvibgDkLPXKaVGKfDL7ZFMZS4MyOBVA
+ QAzzCcUn/eSUnzUTfMEN9FvDza49VySN2Z7YQhMW1vzTmgmEbfbY6h04H
+ eJkj3VX4jeMnUcRYT2dkTtwcM7jW6/n7CbhDPrpL5PsN1y5NlnlrnR+ER
+ 3u48+zwRCuyU83oPI4XZ6WOj2ZwEO+QX28bR2voMDuZY+G8BU10Y/gYJo w==;
+X-CSE-ConnectionGUID: /Kmr6PBEQ+Gtl6kqMqx+dA==
+X-CSE-MsgGUID: FpRjCiAVSGqHdHJ1NAi0zg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83827731"
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="83827731"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 03:08:24 -0700
+X-CSE-ConnectionGUID: cd+pWPGHTXyRgm9GcrnA2A==
+X-CSE-MsgGUID: WCkTeUj4RI+Qs3v5d1Ijlw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="248064822"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 03:08:21 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com,
+	uma.shankar@intel.com,
+	suraj.kandpal@intel.com
+Subject: [PATCH v2 0/1] drm/i915/display/psr: PSR2 DC3CO fix
+Date: Wed,  1 Jul 2026 15:36:49 +0530
+Message-ID: <20260701100650.1689665-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_distinguish_w?=
- =?utf-8?q?edged_from_recoverable_cancellation_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sk Anirban" <sk.anirban@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Jul 2026 10:08:06 -0000
-Message-ID: <178290048615.135894.6949872851525078095@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260624194618.2793571-4-sk.anirban@intel.com>
-In-Reply-To: <20260624194618.2793571-4-sk.anirban@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1620137738512189461==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Xe3P, DC3CO entry during an active frame can leave the pipe in a
+bad state and does not recover well.
 
-== Series Details ==
+Set CHICKEN_DCPR_4 bit 24 to inform DMC to block DC3CO entry.
 
-Series: drm/xe/guc: distinguish wedged from recoverable cancellation (rev3)
-URL   : https://patchwork.freedesktop.org/series/168780/
-State : success
+v2:
+- Add HSD number to intel_display_wa framework.
 
-== Summary ==
+Dibin Moolakadan Subrahmanian (1):
+  drm/i915/psr: Block DC3CO entry during active frame
 
-CI Bug Log - changes from xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3_BAT -> xe-pw-168780v3_BAT
-====================================================
+ .../gpu/drm/i915/display/intel_display_regs.h    |  3 +++
+ drivers/gpu/drm/i915/display/intel_display_wa.c  |  2 ++
+ drivers/gpu/drm/i915/display/intel_display_wa.h  |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c         | 16 ++++++++++++++++
+ 4 files changed, 22 insertions(+)
 
-Summary
--------
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3 -> xe-pw-168780v3
-
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3: 4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3
-  xe-pw-168780v3: 168780v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v3/index.html
-
---===============1620137738512189461==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: distinguish wedged from recoverable cancellation (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168780/">https://patchwork.freedesktop.org/series/168780/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168780v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3_BAT -&gt; xe-pw-168780v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3 -&gt; xe-pw-168780v3</li>
-</ul>
-<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3: 4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3<br />
-  xe-pw-168780v3: 168780v3</p>
-
-</body>
-</html>
-
---===============1620137738512189461==--
