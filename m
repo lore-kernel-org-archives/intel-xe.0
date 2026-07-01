@@ -4,30 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F9EFC44508
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D087C44503
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B319910F385;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A61C910F382;
 	Thu,  2 Jul 2026 13:06:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="F10EZD2M";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="GKsigi9j";
 	dkim-atps=neutral
-Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com
- [95.215.58.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D44F10F353
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 12:39:58 +0000 (UTC)
+X-Greylist: delayed 380 seconds by postgrey-1.36 at gabe;
+ Wed, 01 Jul 2026 16:16:13 UTC
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com
+ [91.218.175.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F94F10EEC6
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:16:13 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782995985;
+ t=1782922180;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=MSqvG6QTDeOE5qt8LI9tLb3iySB/2eramUM4HlZdPG8=;
- b=F10EZD2MKuMsgIZGg+Kv4CpsFBAqfutqUSZV+CnlSj4mTRO6SM+hx7IFnwTXi02n4W5ksq
- B3eV7EruPZaVg8GiZqN77RrtZjvlyRAPzkka+Z5kYwT5shcZ0occtt6vxWz8dsjkDZRJwI
- jZvjN/4FCRiAB3/YW0BqvRoNYnrlgRU=
+ bh=32k3xy2qoDs5v558QiIXDOBJrw4XcLaI228zHYcvJQI=;
+ b=GKsigi9jw5iEZkRAOu0U35OCwwNX+WFYQBJnw1VnjqCFwAV1xkeG5HVPPXjVerUIFCpvkl
+ 1sYFG/+4cZNO5RnH+3ZGNEajZyzEn2vDXqeNcTTch6ZM0ZT3P4Eo/8D1DaouN8eSB+B2FA
+ bvbtO9Gx6J4K8rZ0y4m06I1Z9Hu4ibM=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
 Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
@@ -61,11 +63,12 @@ Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
  linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-sound@vger.kernel.org
-Subject: Re: [PATCH 08/13] mm: introduce vma_get_page_prot() and use it
-Date: Thu,  2 Jul 2026 20:38:45 +0800
-Message-Id: <20260702123845.95316-1-lance.yang@linux.dev>
-In-Reply-To: <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
-References: <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
+Subject: Re: [PATCH 12/13] mm/mprotect: convert mprotect code to use
+ vma_flags_t
+Date: Thu,  2 Jul 2026 00:09:17 +0800
+Message-Id: <20260701160917.91435-1-lance.yang@linux.dev>
+In-Reply-To: <7ef626d8a12dc742cfc09d080be5dc09850e873a.1782760670.git.ljs@kernel.org>
+References: <7ef626d8a12dc742cfc09d080be5dc09850e873a.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -86,43 +89,123 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On Mon, Jun 29, 2026 at 08:25:31PM +0100, Lorenzo Stoakes wrote:
->There's a large number of vm_get_page_prot(vma->vm_flags) invocations. Make
->life easier by introducing vma_get_page_prot() parameterised by the VMA.
+On Mon, Jun 29, 2026 at 08:25:35PM +0100, Lorenzo Stoakes wrote:
+>Replace use of the legacy vm_flags_t flags with vma_flags_t values
+>throughout the mprotect logic.
 >
->This also makes converting vm_get_page_prot() to vma_flags_t easier.
+>Note that we retain the legacy vm_flags_t bit shifting code in
+>do_mprotect_key(), deferring a vma_flags_t approach to this for the time
+>being.
 >
->Also update the userland VMA tests to reflect the change.
+>Additionally update comments to reflect the changes to be consistent.
 >
 >No functional change intended.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
-> drivers/gpu/drm/drm_gem.c                   |  2 +-
-> drivers/gpu/drm/drm_gem_dma_helper.c        |  2 +-
-> drivers/gpu/drm/drm_gem_shmem_helper.c      |  2 +-
-> drivers/gpu/drm/etnaviv/etnaviv_gem.c       |  2 +-
-> drivers/gpu/drm/exynos/exynos_drm_gem.c     |  6 +++---
-> drivers/gpu/drm/i915/gem/i915_gem_mman.c    | 12 ++++++------
-> drivers/gpu/drm/msm/msm_gem.c               |  2 +-
-> drivers/gpu/drm/nouveau/nouveau_gem.c       |  2 +-
-> drivers/gpu/drm/omapdrm/omap_fbdev.c        |  2 +-
-> drivers/gpu/drm/omapdrm/omap_gem.c          |  6 +++---
-> drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  2 +-
-> drivers/gpu/drm/tegra/gem.c                 |  2 +-
-> drivers/gpu/drm/virtio/virtgpu_vram.c       |  2 +-
-> drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |  2 +-
-> drivers/gpu/drm/xe/xe_device.c              |  2 +-
-> drivers/gpu/drm/xe/xe_mmio_gem.c            |  2 +-
-> drivers/gpu/drm/xen/xen_drm_front_gem.c     |  2 +-
-> drivers/video/fbdev/core/fb_io_fops.c       |  2 +-
+> mm/mprotect.c | 16 ++++++++--------
+> 1 file changed, 8 insertions(+), 8 deletions(-)
+>
+>diff --git a/mm/mprotect.c b/mm/mprotect.c
+>index 9cbf932b028c..c9504b2a2525 100644
+>--- a/mm/mprotect.c
+>+++ b/mm/mprotect.c
+>@@ -40,7 +40,7 @@
+> 
+> static bool maybe_change_pte_writable(struct vm_area_struct *vma, pte_t pte)
+> {
+>-	if (WARN_ON_ONCE(!(vma->vm_flags & VM_WRITE)))
+>+	if (WARN_ON_ONCE(!vma_test(vma, VMA_WRITE_BIT)))
+> 		return false;
+> 
+> 	/* Don't touch entries that are not even readable. */
+>@@ -97,7 +97,7 @@ static bool can_change_shared_pte_writable(struct vm_area_struct *vma,
+> bool can_change_pte_writable(struct vm_area_struct *vma, unsigned long addr,
+> 			     pte_t pte)
+> {
+>-	if (!(vma->vm_flags & VM_SHARED))
+>+	if (!vma_test(vma, VMA_SHARED_BIT))
+> 		return can_change_private_pte_writable(vma, addr, pte);
+> 
+> 	return can_change_shared_pte_writable(vma, pte);
+>@@ -194,7 +194,7 @@ static __always_inline void set_write_prot_commit_flush_ptes(struct vm_area_stru
+> {
+> 	bool set_write;
+> 
+>-	if (vma->vm_flags & VM_SHARED) {
+>+	if (vma_test(vma, VMA_SHARED_BIT)) {
+> 		set_write = can_change_shared_pte_writable(vma, ptent);
+> 		prot_commit_flush_ptes(vma, addr, ptep, oldpte, ptent, nr_ptes,
+> 				       /* idx = */ 0, set_write, tlb);
+>@@ -811,8 +811,8 @@ mprotect_fixup(struct vma_iterator *vmi, struct mmu_gather *tlb,
+> 		vm_unacct_memory(nrpages);
+> 
+> 	/*
+>-	 * Private VM_LOCKED VMA becoming writable: trigger COW to avoid major
+>-	 * fault on access.
+>+	 * Private VMA_LOCKED_BIT VMA becoming writable: trigger COW to avoid
+>+	 * major fault on access.
+> 	 */
+> 	if (vma_flags_test(&new_vma_flags, VMA_WRITE_BIT) &&
+> 	    vma_flags_test(&old_vma_flags, VMA_LOCKED_BIT) &&
+>@@ -886,7 +886,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
+> 			goto out;
+> 		start = vma->vm_start;
+> 		error = -EINVAL;
+>-		if (!(vma->vm_flags & VM_GROWSDOWN))
+>+		if (!vma_test(vma, VMA_GROWSDOWN_BIT))
+> 			goto out;
+> 	} else {
+> 		if (vma->vm_start > start)
+>@@ -894,7 +894,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
+> 		if (unlikely(grows & PROT_GROWSUP)) {
+> 			end = vma->vm_end;
+> 			error = -EINVAL;
+>-			if (!(vma->vm_flags & VM_GROWSUP))
+>+			if (!vma_test(vma, VMA_GROWSUP_BIT))
 
-One missed?
+IIUC, should this be
 
-drivers/gpu/drm/panthor/panthor_gem.c still has:
+if (!vma_test_single_mask(vma, VMA_GROWSUP))
 
-	vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+instead?
 
-Can use vma_get_page_prot(vma) too.
+#elif defined(CONFIG_PARISC)
+#define VM_GROWSUP	INIT_VM_FLAG(GROWSUP)
+...
+#ifndef VM_GROWSUP
+#define VM_GROWSUP	VM_NONE
+...
 
-[...]
+VM_GROWSUP is only defined as GROWSUP on parisc and becomes VM_NONE
+elsewhere. But VMA_GROWSUP_BIT is the raw ARCH_1 bit, which is also used
+for other arch-specific VMA flags:
+
+	DECLARE_VMA_BIT_ALIAS(SAO, ARCH_1),		/* Strong Access Ordering (powerpc) */
+	DECLARE_VMA_BIT_ALIAS(GROWSUP, ARCH_1),		/* parisc */
+	DECLARE_VMA_BIT_ALIAS(SPARC_ADI, ARCH_1),	/* sparc64 */
+	DECLARE_VMA_BIT_ALIAS(ARM64_BTI, ARCH_1),	/* arm64 */
+	DECLARE_VMA_BIT_ALIAS(ARCH_CLEAR, ARCH_1),	/* sparc64, arm64 */
+	DECLARE_VMA_BIT_ALIAS(MAPPED_COPY, ARCH_1),	/* !CONFIG_MMU */
+
+Other vma_test() changes look fine to me: just fixed INIT_VM_FLAG()
+masks matching their VMA_*_BIT :)
+
+Cheers, Lance
+
+> 				goto out;
+> 		}
+> 	}
+>@@ -918,7 +918,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
+> 		}
+> 
+> 		/* Does the application expect PROT_READ to imply PROT_EXEC */
+>-		if (rier && (vma->vm_flags & VM_MAYEXEC))
+>+		if (rier && vma_test(vma, VMA_MAYEXEC_BIT))
+> 			prot |= PROT_EXEC;
+> 
+> 		/*
+>-- 
+>2.54.0
+>
+>
