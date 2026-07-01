@@ -4,100 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECC19C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 06:28:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEEBEC43602
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 06:32:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69FE210E2FF;
-	Wed,  1 Jul 2026 06:28:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3701110EDB0;
+	Wed,  1 Jul 2026 06:32:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="udA3ZurH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="StAMpCnw";
 	dkim-atps=neutral
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010046.outbound.protection.outlook.com [52.101.56.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EDA210E2FF;
- Wed,  1 Jul 2026 06:28:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B83C10ED9E;
+ Wed,  1 Jul 2026 06:32:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782887550; x=1814423550;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Dr6RZ6rncwuCMmXDLkUeUgXBMdomNEkEm/COTVASdk8=;
+ b=StAMpCnw9vL1eBPqQZG5/kxJH1Ael2iBSV1XAvANANqAGXjPKmMZfzs/
+ VhhSRu7wDKvT4ZbhJBgdsF5Ruc7cKk7+dz2YkHcbWaB6eGQKTHAG4BeKW
+ p8db/nTFA56iTxWZ6JhH0Wmk6zdw8s0pvrnbCvoq95MNh+WKQV1nv4rUL
+ zD3Ile8TdTqV4npmzwsZ09kJxda2juhMSKJjjdR3P0qiwIki7Y04SNtdV
+ QkFNVDWtOon37iQCaYG7Cvwk9SGTIc6a3sj5yOndEtncDd0kK9de9zZUz
+ mS0jSDSBQQ3BpFqppp0CpBszW+fGfJIAxkydL+5ZneKK6ZtNUSzcdSOAz w==;
+X-CSE-ConnectionGUID: S+ZLonVXT1S2OMncuhAFEg==
+X-CSE-MsgGUID: 1muXdUyiR8qvJMNvqg5YhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83809190"
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="83809190"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 23:32:28 -0700
+X-CSE-ConnectionGUID: YihiHO61RhataSTTKUFCJA==
+X-CSE-MsgGUID: 1AXxl+A7QBWMeBwdID6jaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="248001517"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 23:32:28 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 30 Jun 2026 23:32:27 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Tue, 30 Jun 2026 23:32:27 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.10) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 30 Jun 2026 23:32:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Nx/nf3mevFfhmRztV5oFB5Wy5/4TOFKTuc39TRmIEymolqyk8D2twzELa6wJyxbWCunylRxs6TgjcDeTkxa1BfRUeeUdTbZzEob4mWf9Q+DaE6EA+CBMfhUfDJM8TgqiFDMr31+Q2czHHVu+VY6r0Ezkxv4sMLn0fztWkY+oYg6WeuOhGhdMVbkDHvs2mXpxU+EIZwH++bNdlUCP4NzqI/ULPGm/HJOA3F1CU1q/S2tPFu26040XTxgT7nayHizGchF7rI8+TIbbKkwYhPEPCPjdnV3bNDAaLVFZWO6/AfC4VrJPaD49QT/MLpKSY9PiFi1s6J+kul08OpKJWJHSvA==
+ b=BRp3AsgPdrtPyVAjLrKFWmEApRO6Nfk9adieiZckk6+DjAlQF7eoLLrSLk9CEbwZZgQHOcMkEjrbFw3dtElo93PkNSFddYqObuU6IeUwuhnFiR3DJ4GvwpWdEU/7srwXZlm4LAccy/zXu+JyP5S0SZlTejLRCFfsRWuyCXd4szi+ZkWM8NSQWSfjMIQ/kbCYHaAkO67dS8Fdc57HhEGVYXq0lbkTjrN1DwSYvTyYZmHQo0NkI06ttZkEI7qX36dTcL4DDxeRvHz6WK1a8FwwnMaU1MSQxHS3CDlMYGR/7msHCvqh7NyjNG8KSYAINN+sea9Su1RUbHsyzR/vo2rXOg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ngbR43pKY8YTZJlF1LsFcIm3cpyWyFPxSk095iCe8zk=;
- b=QYrzMk2ZlcMLdVeyKpyZiLwjd8Fz0xw+G1//Wsr3I04yeeBGfkgO931oAQ5mOohRmai+MsRC1PYwbDz1x1a4fuyDoNhIXYKGoRLyxnrWPrXsotFx9Ypy/lfhM81O2tJnoyZP4kUcL6daBLp1OYz3PvbuDZXg+SP4IC51/DIDNnPJx9t9MWUmHsjCAghlNOWSNiS6WGPg/dNtEIf1H8ILFGWoh7CSrCcqVoBdYu/WfUv+gZfPJA6+47gcQzpsNtw6lm/4FGkGGM9z+yzoYe7Mdkt3KadldpEFxTx+SJ1Htl3Y9ST6Crh0iH/D1TtHOYhMnIwlG600Wbl44AoEZu0DEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ngbR43pKY8YTZJlF1LsFcIm3cpyWyFPxSk095iCe8zk=;
- b=udA3ZurH2k4QC8mMH9mEjz6qpDbqpPwRxcwjcECMTYRLAy5E6rVoV+EYkufZdbKhn3yrxeznxjfxX+xuYX8M0rcu1veMGysaNSAyaw2Hyf1+0+jMqmH3aSefoekWYCtPAkRPy+NHbWM3R5ZDmaVhK0X7eTjNgkuzTR/RDkjbJU4=
-Received: from CH2PR14CA0031.namprd14.prod.outlook.com (2603:10b6:610:56::11)
- by CH2PR12MB9543.namprd12.prod.outlook.com (2603:10b6:610:27f::22)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=XxMbyTbVFKGuXgwT7SDXwoT7OL0+KD32GxGKmuEg4js=;
+ b=iRZTKiP024aRrJrcHzowsS8EByXvwSOmxdQUt1WReojccjo9/+QAYz6qJZ1RSuZS49ROjEOWejpB1bYieE96F0nZ7YCgXJG7/gd4vQXnK06+9qNW0PQnQGi40TlYR9hVogbmhj8fErmXinEVpUIkYk5JT+OmkU9N7UdSDh0zBQY5uHFvZpbzywpKBEjpo/7tY6cSyyPB2U8fmxSt0S+616UCHcgu+NEGpaCzq6qW2F4rhpafxdTJt2GnBu53GzeZwPKIOBOnpyW3TGVvkeok9ts9SECR97Ur/EXQBkZEAvGdbDv9acrTR/TfLzcFdge6i9NMu86wBEHBy78JMMGxHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by DS4PPF07B018B9F.namprd11.prod.outlook.com (2603:10b6:f:fc02::7) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 1 Jul 2026
- 06:28:19 +0000
-Received: from CH2PEPF000000A0.namprd02.prod.outlook.com
- (2603:10b6:610:56:cafe::5d) by CH2PR14CA0031.outlook.office365.com
- (2603:10b6:610:56::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Wed, 1
- Jul 2026 06:28:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH2PEPF000000A0.mail.protection.outlook.com (10.167.244.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Wed, 1 Jul 2026 06:28:19 +0000
-Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 1 Jul
- 2026 01:28:16 -0500
-From: Honglei Huang <honghuan@amd.com>
-To: <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>,
- <intel-xe@lists.freedesktop.org>
-CC: <Ray.Huang@amd.com>, <dri-devel@lists.freedesktop.org>, <honghuan@amd.com>
-Subject: [PATCH v4 2/3] drm/gpusvm: do not route system pages to
- device_unmap() on IOVA unmap
-Date: Wed, 1 Jul 2026 14:27:59 +0800
-Message-ID: <20260701062800.409248-3-honghuan@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260701062800.409248-1-honghuan@amd.com>
-References: <20260701062800.409248-1-honghuan@amd.com>
+ 06:32:25 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%5]) with mapi id 15.21.0159.018; Wed, 1 Jul 2026
+ 06:32:23 +0000
+Message-ID: <2bf3f7a5-deff-472d-ac70-801cea21145b@intel.com>
+Date: Wed, 1 Jul 2026 12:02:16 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/i915/display/psr: Block DC3CO entry during active
+ frame
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Manna, Animesh" <animesh.manna@intel.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>
+References: <20260630085928.1317279-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260630085928.1317279-2-dibin.moolakadan.subrahmanian@intel.com>
+ <DS4PPFE901A304F76B8301BE5F920A333D4E3F62@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <DS4PPFE901A304F76B8301BE5F920A333D4E3F62@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0001.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::14) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF000000A0:EE_|CH2PR12MB9543:EE_
-X-MS-Office365-Filtering-Correlation-Id: c08ee8c2-1072-4687-908e-08ded739f126
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|DS4PPF07B018B9F:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15eb7195-3a04-4aa0-52f9-08ded73a8260
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|82310400026|376014|1800799024|36860700016|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: uhCRaBS6Lx2mJbeU/tsy6e1dGhsK0R8prm8EWfubPbRQj5UDJgvkasgCMC77P7aHhGB+rlnxQUFcckcSUy5w5TNpJ1vEl5CoTwD/ICH90LkSIBrQBXXpWLPlefVYjaK91YF9NGTvrLJOq7y4y5O9LOzGInelG8JWWoipriDQgqUirpmT/1sriUfzbTsclyqVlYvvDsbzQ9sr/KWdHTebv3M76MQWQ+yxX4oUsDbKqh/c0cUeuGScksAGkESI+DXBRMVMw/UOPtRhSH4oNex7MWjrXw9/bp1802sZaGwoDIIMo1AxsGnvxViQn9w+C4/p4RitcLV7j9P4nJn3RkY5cJNQPXgdpH3LJSCXaB44NxUaX7en85uvI6Cm/YiXU33pKoWHj7IL8GzxjMHgGEe0OsHMh5kBy6gMatEn4y5HKrr4DfLHFSDAjQ8Wxzp3OnHVeJ4mM+h3FRCyEmO1yKRgckOUIL9q4w0gMpj9FVLONFfciGrKNh2YIZSOy0QM3FSoH9eZrsT4BpVNX74Ev00xke0lnh7urN5FfbB7RQdMrq2/eX9S8X+cFhMdvexOduz/f41nQxgnu+fNSkBDvI393xUrQlVfg62A3yhcxVt3E9ozOecxpDSeBYrulWeHN2sqy0uTSfZHQoUI7KoD+EGzK0atkH5PVQVuS93WQ1y/dBG9IPqfwvXIBSResEqLHFTMqoKEe4FVhiZqKv3fnQYFow==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(82310400026)(376014)(1800799024)(36860700016)(18002099003)(22082099003)(11063799006)(56012099006);
+ ARA:13230040|366016|1800799024|376014|23010399003|11063799006|56012099006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: lruA9B1p18yDrylGOMAZVy1LbRrwhYRjvUhakvb/Fa48Y3WVG5Ssv4svq84JpNNL83yCHmt9/sSx55kjk1xyNJ7/BOBsUD3CcHPFT2yexKnQ6syOyPn2TSvKapyPdodO86XXmHNzpPKWZxmCISDB+R+f1mwjRpBFZtqzSFk4KxHHLgyAjIuxmIwtwqW1saam+8eR6GYGRhTMBfWTU7IUE7ONNyRvi7SOoDJmVIa5OQ85vigiXBCmWeKa0U9GjG2TGaBc+RjwAdDbAy8h1Qc7Uc0DXzLW7CmqD3DEUY/v2q83dSzYAeBsXyX48rb+6ZAe8oOzGNT2XHrjlxfjtnPxkKOq7U6/7n4Y1yWKWafHy4hKFFDW3A019ULlKasv5mzGMXzv1BRnGf+HJaxGjHyeCcocwlKXRgxKcjF9E4r8F4oLbb69xcxyZHaTHMBBCK+52HAGStZXEVcF/vmr11ACVG0CDJ3/NAOsoIEZ+gmB87vMLQ7aTuS1QV/kgCWti2Qy8Fs8iBuuUHYkLxUb+OuxkV5/p81ktCS+ZeE9AUFDSQCVLZK4/ZkBp5rOCPb42rrqrr6nHuroqBNWRPLGg8VKGG+eStpbaCmHEw8QCLTGe1Amh4QSpr6tYoRVMzY2ea1tBLCmMLrg+Fr6sYYJ4jt44K3YMq50KRSXsFZOr1MtvRg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: PIyUmFZiwMSdcdM2+wdjWsIxlVjnTmujTj+ILh818oR+fb+RGUX+tYNr4/52FAxndp9L/6oWsF/25iWxIVZIy6NA6qySxecGyb1wp2KLImWtwES/KBvW8eVyXYfwvDCif5Mhn8sqz3KTcHsHFyUTI+pAplOIRI0u9jIglLpSWInhKOrG6wi2DsJDzTyefdH1QDu5mkPB2O0b5uRUDlk+XKyTR2XBHaIWhRVThVuqV9CL2JhsDeRaD5s+XJJBEwWOo8KFpG7pHBWekQJnGxBldS81UgKBRiUIjEysR+VdfOw5fbm7assGv/3qYdlZGHR70Fd3bAsfiZn30G9ZnTCWzXHXn0/VyfuE8PEkUy/WAUy/JQH6P8F7lKS3UyUZiCb1pRxIKGSQy7lu3Y8STd+exg0V0itQKXLHvVcLktTyYOF1LHS42wmWwkGeVNGziPlX
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 06:28:19.1592 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c08ee8c2-1072-4687-908e-08ded739f126
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF000000A0.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB9543
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHJJczd0b08zRmo0bEc0V0hLMkt1UDhreHFpN2JTTXZBT1BhYndGVTNmQi9F?=
+ =?utf-8?B?WHpkUDluYW5QSmJMSDVlVGNQLzFYMDQvaUNiSldQTkZ1ZFFaNlRlNVZid1ZM?=
+ =?utf-8?B?NGlicm1NblE0MjA5cHdPZm5PWnlLd0VyZUNpMmhRZHFJOEVrRTUvRGErcjVy?=
+ =?utf-8?B?NWVTUWNrR2pvbFNKVEZtQjhTRkpuOENYQVNsZEpGWmtwOE5LNGdiZkdBQXRL?=
+ =?utf-8?B?YUd5STNJRlN4THBYUGYrWWZWb0NaekVzV0RXN1o0Ni9YSkZQZUJMWkVBUUYr?=
+ =?utf-8?B?YTVScWhzLzcrNVFWT0FtSzhmdS8zUVl6UXdoSkVrd0RmWmZ2eDdzWG9adUdT?=
+ =?utf-8?B?SjRMODhYcVgxOER4a1NXeFZCUU52QWpSbHpmQloxMmN4K2ZTQjBLU0NZMWto?=
+ =?utf-8?B?Ti92R1gvTTc3ais2OU1ZQjV6TU9lcFNiR01kNG11ZHhWK1N0UnY5bG9kOW4z?=
+ =?utf-8?B?UW41OGU0QXpRYk5tRVhJamRGMy84cEtHQ1ZnbUs1RmpBNDJwN1V6RzV1OFBI?=
+ =?utf-8?B?YmErbU1BekpOS0txUk4rWVVZZW5YelBIYUpHa1FqYkswbEF4VHVZQ3NsSDRD?=
+ =?utf-8?B?QktybmNCQm91U1duVW9hVmk2Snl5T3h4RnRUdTlVMHhwaW1odzBHNkxYclNB?=
+ =?utf-8?B?dmZXb1hOaTFRZU5pSlNYc0JXclRjZDJOZ3VlbDZyUjhrazJoRjIzTFhNVHo5?=
+ =?utf-8?B?L2EzTWw0WVpCRDE1VmJ0TTk3MlBiWVNTN3RtL1JLWDY3MG1GQ0dIYjFjc0dF?=
+ =?utf-8?B?UUkzUTNWY0VTMXZkb1VkRGl3aWVueVEwbWg5RC96Vk9oeFdHMHBWM0l4cGlh?=
+ =?utf-8?B?UkhId2RHL2orTUtyc3drczNWWkJ2U2syZGFBS3ZhZkYzendzNU5Gb3IvUW9l?=
+ =?utf-8?B?T0pYL3FaazJaTFA3ZWgrWjlQcC9BZGtFeEg2NzBsL0d3WktWT2FHUTZWbE54?=
+ =?utf-8?B?VFJQQ2E4aWp6MEVjTHRQQzQwV0l3N25iYkIrS2RWdFVxRVRXU0NmcWtMT3Jt?=
+ =?utf-8?B?SmJ0dDZCeE16VkpmOGtodkRFbFVlOTI4TEJHOEkwQTN4cm5XNDZkWmRFOE5k?=
+ =?utf-8?B?MTlyQ20wOGI1eS9CM2lnam5CYTByQ1hJL1Z1T052ZTJQZlBuZjB2RXFHYWpv?=
+ =?utf-8?B?UW5vTGI5cXJOZDhsdHZEczA3ek9heVJzYTlwS0RqR05UR2kyOC9Ja0pJSlNt?=
+ =?utf-8?B?ZUVzWUJFa0FIZ21sTDBjbDJqTUJmWkYvbTBIWVBzMDdTeCttK1o1YWdZOWs1?=
+ =?utf-8?B?MXN6cWdNRGZQTDZlUzlzeTlxZGJma0xIdy9sUTVadHdiSWFtV2QvYThuUVJG?=
+ =?utf-8?B?cS9KNmg4RzZpcStsNUsxRzFmemYyNWdzZllvSkVhNDVCTE1OMSt2UTd2dVZK?=
+ =?utf-8?B?dnFDdUlUMzdOUm1wa3hGQ0tYa01pYld2ZlhYclZheHdGRVU3MElxUENtTTFm?=
+ =?utf-8?B?Y3pkaFBneEo0eU4wSTlUN3VOUlYxRVBuWHd3NVBIVWIxTUJzREtLMjd1NXk0?=
+ =?utf-8?B?R0gwUmR3b0RtUGhURHNtR2wrNDNnRm9JSHdTbEVURzRzVXlrU2hDc0FzUG4w?=
+ =?utf-8?B?cm1lS0dWeHVFNVVTQVY3NFdrRnYrNTc0cWZNbUp4R2VDeHVvTWJTM3czQVA1?=
+ =?utf-8?B?TjlFVkZTVEJ4SmJaTERWY3lNWW1KbW96NGc2K3RxMytGWS9VY3RSWWl5NEJV?=
+ =?utf-8?B?YStBa25wbkhXSlNlUEs1cmR5UkQyUm5QVFRCTi9nZ0ZGbUhNc0RZM1JrU3Bl?=
+ =?utf-8?B?NndtdHZGQ3lsaW5Qd0F1eHJ5cGE3UnRQOWxlV2xWa0pka3NHcE1NK0tTWXlF?=
+ =?utf-8?B?UGZZMXdnSlpScWRJcUFXVmRDSVNXZ0Mwd3REOVVPMkVHNlhlOGJLY0ljQjVL?=
+ =?utf-8?B?QXpDck1LQ3NWaXd1R21sSVNoYXZkaVlZVE4vM0xqUVZIbGFlbWxHYjlzb3FS?=
+ =?utf-8?B?ZmpyQ2tUMDdWdWNqTk5UMWp3bitFQzluQVp1R3hnTFJsY2tTUUJTUkFmRUo2?=
+ =?utf-8?B?dGJjSnlvWXkyaVNOQ2h4QnRxMHhWc0NRUVZRK2I5TXlLQUR5clR5UmhXV1ZN?=
+ =?utf-8?B?WU9mcm81cDNiQk95SjllTjNKRjMyRXhVLytBZmtnRjRCS0c4ODlnWC9iRUtO?=
+ =?utf-8?B?bFhCTHNCbGg3U1FNaGZWOG1zbHhLOTRQbUs4dWlndGFSbzVLRk1ZVzFxangv?=
+ =?utf-8?B?eDlaOWZvcC9uRStOc01LaGcydjNSNndna0sxL2lKR0I5ZEhUWnkvQ2RHU1RQ?=
+ =?utf-8?B?WG5kNElKRVd0cjdJRmZVdW15L21aN09iQnJsMFZRUDBTNTYwZG04allqYk1x?=
+ =?utf-8?B?VUVTRGdSL3JHa0ZsbFVZQW1ReUNoL1huZ1lHWjV3VmFWdjBJR3N6WEppQURZ?=
+ =?utf-8?Q?f2c1/qVkoxlLjQGtXJ+X+emU/and2ZPL8buds?=
+X-Exchange-RoutingPolicyChecked: CaebihkWHpgLOQmWh0gblhuEKVSgG2AiE872m85CoSjsqyA2CM6EcKnxwd45dnpvDNCjejp0dz+CaWrgoZnEawKncCIVx75J/rFBR5/K2Nz9ApLBDwwEZjcDbv2Hvgd26aC8u5kVIOp7Jb0o0AUlWWBzFW6cliCO6p4Z9aRIlWhCeL3h0tby0xtHPErtK/DtTBfDjFR3+0OPulERAGpesNGL8cgeOrjWihU5F+LRbojYui3yNqRQvsTz/B65lAulimNZ4MHzpf94MRISYy3qJSo8iyVSr0QwsG9c1w87TGK9pLsdKl33so/DHgK/cffNbBjvzUeEhBRGSPjccpnqlw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15eb7195-3a04-4aa0-52f9-08ded73a8260
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 06:32:23.1919 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uCmrUr+PMSQ4+myBEL7tc/6hrYfKEvY7B3F/honNMlu0AlgEK0pQYcDaBzpkbfjph6IxEBEgXS4SqsTeumI37MrmDF/GIj5InfVs2cVsI3IreZptNjSU9GxVeELsPwCD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF07B018B9F
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,62 +174,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In a mixed range: ctx->allow_mixed dpagemap is not NULL while some entries
-are system pages. The unmap loop used:
+On 7/1/2026 11:15 AM, Kandpal, Suraj wrote:
+>> Subject: [PATCH 1/1] drm/i915/display/psr: Block DC3CO entry during active
+>> frame
+> Only drm/i915/psr should be enough as prefix
 
-        dma_unmap_page(...);
-    else if (dpagemap && dpagemap->ops->device_unmap)
-        dpagemap->ops->device_unmap(...);
+Thanks for the review. I'll remove it in the next version.
 
-When use_iova is true the first condition is false for system pages,
-so they fall through to device_unmap() and a system DMA address is
-handed to the device specific unmap callback, risking invalid accesses
-or state corruption.
+>> On Xe3P onwards, when PSR2 is enabled on a panel that does not support Early
+>> Transport, DC3CO can be entered in the middle of an active frame. This
+>> prevents the pipe from completing the frame and leaves it in a bad state that
+>> does not recover well, causing visible corruption on screen.
+>>
+>> Set CHICKEN_DCPR_4 bit 24 in the PSR2 enable path when Early Transport is
+>> not in use, to notify DMC to prevent DC3CO entry.
+>>
+>> BSpec: 71483
+> Add 75253 here too
 
-Key the branch off addr->proto instead: system pages only need an explicit
-dma_unmap_page() in the non IOVA case, IOVA system pages are already torn
-down by the single dma_iova_destroy(), and only genuine device pages
-reach device_unmap().
+Will add this in the next version.
 
-This issue was found by Sashiko AI review.
+>> Signed-off-by: Dibin Moolakadan Subrahmanian
+>> <dibin.moolakadan.subrahmanian@intel.com>
+>> ---
+>>   .../gpu/drm/i915/display/intel_display_regs.h    |  3 +++
+>>   drivers/gpu/drm/i915/display/intel_psr.c         | 16 ++++++++++++++++
+>>   2 files changed, 19 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> b/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> index 39e50423132f..754bb9b188b6 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> @@ -1747,6 +1747,9 @@
+>>   #define XELPD_CHICKEN_DCPR_3			_MMIO(0x46438)
+>>   #define   DMD_RSP_TIMEOUT_DISABLE		REG_BIT(19)
+>>
+>> +#define XE3LPD_CHICKEN_DCPR_4			_MMIO(0x454a0)
+> This should be XE3P_CHICKEN_DCPR_4
 
-Fixes: 37ad039fb367 ("drm/gpusvm: Use dma-map IOVA alloc, link, and sync API in GPU SVM")
-Cc: stable@vger.kernel.org
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Honglei Huang <honghuan@amd.com>
----
- drivers/gpu/drm/drm_gpusvm.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+Will correct this in the next version.
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 3145d55cd86..44bb19658dd 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1163,12 +1163,18 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
- 		for (i = 0, j = 0; i < npages; j++) {
- 			struct drm_pagemap_addr *addr = &svm_pages->dma_addr[j];
- 
--			if (!use_iova && addr->proto == DRM_INTERCONNECT_SYSTEM)
--				dma_unmap_page(dev,
--					       addr->addr,
--					       PAGE_SIZE << addr->order,
--					       addr->dir);
--			else if (dpagemap && dpagemap->ops->device_unmap)
-+			if (addr->proto == DRM_INTERCONNECT_SYSTEM) {
-+				/*
-+				 * Linked IOVA pages were already torn down by
-+				 * the dma_iova_unlink()/dma_iova_free() above;
-+				 * only the non-IOVA mappings need unmap here.
-+				 */
-+				if (!use_iova)
-+					dma_unmap_page(dev,
-+						       addr->addr,
-+						       PAGE_SIZE << addr->order,
-+						       addr->dir);
-+			} else if (dpagemap && dpagemap->ops->device_unmap)
- 				dpagemap->ops->device_unmap(dpagemap,
- 							    dev, addr);
- 			i += 1 << addr->order;
--- 
-2.34.1
+>
+>> +#define   DCPR4_BLOCK_DC3CO_ACTIVE_FRAME	REG_BIT(24)
+>> +
+>>   #define SKL_DFSM			_MMIO(0x51000)
+>>   #define   SKL_DFSM_DISPLAY_PM_DISABLE	(1 << 27)
+>>   #define   SKL_DFSM_DISPLAY_HDCP_DISABLE	(1 << 25)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>> b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index 911afb9cb24e..ad6ece3ce04d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -2103,6 +2103,18 @@ static void intel_psr_enable_source(struct intel_dp
+>> *intel_dp,
+>>   		else if (display->platform.alderlake_p)
+>>   			intel_de_rmw(display, CLKGATE_DIS_MISC, 0,
+>>   				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+>> +
+>> +		/*
+>> +		 * HSD: 14026643300
+> This can be WA: <WA no.>
+>
+>> +		 * On Xe3P+, restrict DC3CO entry during active frame when
+>> PSR2 is
+>> +		 * enabled without panel Early Transport; required to avoid
+>> pipe bad state.
+>> +		 * DMC honours CHICKEN_DCPR_4 bit 24 to block DC3CO entry
+>> during active frame.
+>> +		 */
+>> +		if (HAS_DC3CO(display) &&
+> We can do away with HAS_DC3CO and just use the intel_display_wa framework
+> Check intel_display_wa.c intel_display_wa.h as reference.
+>
+>
+Agreed,will add14026643300 to the intel_display_wa framework and use that here.
+
+>> +		    !intel_dp->psr.panel_replay_enabled &&
+>> +		    !intel_dp->psr.su_region_et_enabled)
+>> +			intel_de_rmw(display, XE3LPD_CHICKEN_DCPR_4,
+>> +				     0, DCPR4_BLOCK_DC3CO_ACTIVE_FRAME);
+>>   	}
+>>
+>>   	/* Wa_16025596647 */
+>> @@ -2344,6 +2356,10 @@ static void intel_psr_disable_locked(struct intel_dp
+>> *intel_dp)
+>>   		else if (display->platform.alderlake_p)
+>>   			intel_de_rmw(display, CLKGATE_DIS_MISC,
+>>   				     CLKGATE_DIS_MISC_DMASC_GATING_DIS,
+>> 0);
+>> +
+>> +		if (HAS_DC3CO(display))
+>> +			intel_de_rmw(display, XE3LPD_CHICKEN_DCPR_4,
+>> +				     DCPR4_BLOCK_DC3CO_ACTIVE_FRAME, 0);
+> Ditto.
+>
+> Regards,
+> Suraj Kandpal
+>
+>>   	}
+>>
+>>   	if (intel_dp_is_edp(intel_dp))
+>> --
+>> 2.43.0
 
