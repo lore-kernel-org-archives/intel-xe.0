@@ -4,94 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95312C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 13:09:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67E23C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 13:20:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 553E210E3A6;
-	Wed,  1 Jul 2026 13:09:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 084CE10E16F;
+	Wed,  1 Jul 2026 13:20:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="JIYPd0Nr";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QR3r83Z2";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="JIYPd0Nr";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QR3r83Z2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lnw/jKLl";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BDD310E3E8
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 13:09:37 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 859C373BE5;
- Wed,  1 Jul 2026 13:09:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1782911375; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=Wt51QxejWjuu6bJtZgDESWH3vxx2i2i9ZOd+J9IuiwY=;
- b=JIYPd0NrDESaEC0NmfQ+rZ5XyecpBvPWMDTxc6jV6/+1pUSOzxREXC2J1e55hXlxiyZc5r
- sfPKKWwvoyQiUBcavtmdAQ0aws6VuR0NjZKGm2/vVRh0GMx+rA8y9jnycbb+0bNQDMPKb9
- TYiEVN9LntdlVhuL6qz2vCWaQCLZYO0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1782911375;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=Wt51QxejWjuu6bJtZgDESWH3vxx2i2i9ZOd+J9IuiwY=;
- b=QR3r83Z2uF0BF+d9qP9zrIfvuNV4aYpVVBpNOWgFn+sQkkZf1pmkdFEnJj+B5VwcIkRsno
- KWrVa8WKhZyZOCBg==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1782911375; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=Wt51QxejWjuu6bJtZgDESWH3vxx2i2i9ZOd+J9IuiwY=;
- b=JIYPd0NrDESaEC0NmfQ+rZ5XyecpBvPWMDTxc6jV6/+1pUSOzxREXC2J1e55hXlxiyZc5r
- sfPKKWwvoyQiUBcavtmdAQ0aws6VuR0NjZKGm2/vVRh0GMx+rA8y9jnycbb+0bNQDMPKb9
- TYiEVN9LntdlVhuL6qz2vCWaQCLZYO0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1782911375;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=Wt51QxejWjuu6bJtZgDESWH3vxx2i2i9ZOd+J9IuiwY=;
- b=QR3r83Z2uF0BF+d9qP9zrIfvuNV4aYpVVBpNOWgFn+sQkkZf1pmkdFEnJj+B5VwcIkRsno
- KWrVa8WKhZyZOCBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3A22F779AA;
- Wed,  1 Jul 2026 13:09:35 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id HduLDI8RRWrucwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 01 Jul 2026 13:09:35 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, sashiko-reviews@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Javier Martinez Canillas <javierm@redhat.com>
-Subject: [PATCH] drm/i915/display: Handle struct
- drm_plane_state.ignore_damage_clips
-Date: Wed,  1 Jul 2026 15:07:23 +0200
-Message-ID: <20260701130929.234695-1-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.54.0
-MIME-Version: 1.0
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010054.outbound.protection.outlook.com
+ [52.101.193.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A170510E16F
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 13:20:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DQA0yFgzafENWvLE+fEequ+Ew2zV7FkOR/YsDAj8auAerJZJMlti7IUfjxLR6bBByLWiqAl0KJslZ5i3cCSkHFf+OlI3HvlJEBs/yPp7xZ2mGJG7GtjWcKoFI4rg0HREDC6FH2hMe4MxgGy4GEuNv40XnE85R/89QiSB5mmMuClmVd5WPKo3vGJkVz2o5N7S289rCmncVCIH5ZFFD0ohKDAsVdRxydEHMfAxNznOgLwmff/xoxLNV7CwchSXPJxJC0xzjK3E3Axy8HhtYbxOLOtwNrGRVuppuikyxaJL3cI6Jyb2t8nw7JkkuFjPGmS3KEsN23N3GOLu3yqsjH56IQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8BQROEVzr5r7WqeTMHp8zFRdP/kyEmT5lN0VXJuaIFg=;
+ b=qOWjsFxIaAOTznIIbCQtGH26r9oeOCWPHirm3FSYzksGhj08C5lx9/x99Jw3M03TfAZW469naevqsWK1/c8trTMFe0rHlWoomuNUFi4mixMSPlOXrLWlYZlTTpbXWM5EBPcLBaoD7dnK6I3ar4/7x8EQJxFXx6HvZcoBP7B4B4XhpJ/88mZtQ2NNUeD60DsqkDcFmlVrBMTg0hxTBKbvreevZG4jvhRGUcZdCgPQuUtA/eXbg2JaBHe0ChxeJ581kGP23JxL6e53P+ePVumxPKpT3Hp2jvs0C8lYO/IwmHTaqNvYgc7Hx67r1oH20rf3FS9m0zmKl6ZwWQlLWbiG0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8BQROEVzr5r7WqeTMHp8zFRdP/kyEmT5lN0VXJuaIFg=;
+ b=lnw/jKLlEqGI1I1LfDAreBdHIVZk+a11//jnJ68T7ARB4zBJ+dAL2PN8kkWd9HTXdW1rcuIfnWzsw1o6RA9iP8vP/d4mfJYRuEw186mSyXYB6cFPkQgISGKPJo0cb7WlzBdfFznMh9+0mV9m9fKpLepY4Iq+Te3/DiLMDxMFL5E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CY8PR12MB7146.namprd12.prod.outlook.com (2603:10b6:930:5e::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Wed, 1 Jul
+ 2026 13:20:51 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Wed, 1 Jul 2026
+ 13:20:51 +0000
+Message-ID: <b32a5081-545f-4703-ad88-ce54cc1efe09@amd.com>
+Date: Wed, 1 Jul 2026 15:20:47 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/ttm: Fix UAF on dma-buf attach failure for sg BOs
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Matthew Auld <matthew.auld@intel.com>
+References: <20260701062559.3731993-2-nitin.r.gote@intel.com>
+ <dfed18b63a7b6cf164b3af7f65df8b4a1b9dbdf2.camel@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <dfed18b63a7b6cf164b3af7f65df8b4a1b9dbdf2.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-0.990];
- MIME_GOOD(-0.10)[text/plain]; ARC_NA(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com];
- FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
- RCVD_COUNT_TWO(0.00)[2]; RCPT_COUNT_TWELVE(0.00)[12];
- MIME_TRACE(0.00)[0:+];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_HAS_DN(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid];
- FROM_EQ_ENVFROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-ClientProxiedBy: FR4P281CA0317.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:eb::10) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB7146:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1cccf64-f3c4-473f-eeb8-08ded7739251
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|11063799006|4143699003|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: R52JA2TIP7Fw85u8fVBzAjBT3/57XzLsYFkogeLjSANkTATfuUFoJhGM7Kcysj9eqpUfI0fc5Evkaqp/wWTaNi4GtWdQ0OFZmTblPg9sPiyiPUtnWhFK42CO0cACX9PjRfbx7NGGlvoXoo2yHIyXf9+jYHnTkXiNTatBDaZDvYRudKs3Xk5rDXvbSVxgkLRSZbXQgUnKuq/EHc4gG5GD6Y6OUWTzfW2IiWUvX+K58ETN64WaoPySFUPW27J+J/52xTFuScbb7n+MeUO6eipx9B1HrwRw/hCcV8CsOQQG9uim2f1JnmIi9krc5O5cLeNKtwj4Gm11//FxCiZZXNTaHTpRzni7btZgYFhCIzWancFhVglsa++ETSqLeYJo2ZU8Ac5OwxxU8qEudF/DcQfmKWOBot3wEvzoohGTzkmOTlz4dzudZxSbzhmoClyEccGOHFCF9d/Bb5cXDcCrjyHC/HqHM5FR6PyMGbMqu2FH11qRjSvtDdxCt7hNSYUM2iPxY1FGSQaa2Z3BnLc0RJub9wtojAuSq1uH8P8DlbEHJCIeItdbqioB4wx2fIo/Kl9E5xU+qmihbOYgldgf4j0nBaZQJx7QseQcCIboeFtZy7w=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a2lQOEJYa0JEV3kvQTZBaUpyOWludXBHTzNDUytWTDIvTkxVNzhESjZ0bFAv?=
+ =?utf-8?B?RU5Vc2FSZFdjQWUrbzNhdzdkTjQrUkw2Y1FuRWxDMnlaL2xSSFltM0tGeHlr?=
+ =?utf-8?B?Z1lVOTdLYzMrYXduVkc1U1hoWHBiaStoM2d2UmFJbGIyK0tXUElVYVR6V1ZI?=
+ =?utf-8?B?K3lVc3dUODlPQzdhZHVWMXpuQmFaL0J2Si9SYzN2Ny9rUGx3ZDhacEh1azVC?=
+ =?utf-8?B?cnhOalA4SlhVVUNocHE5elRyNDlyN3djenpCdVEzZGlhRDUyenl5aHNkeWxV?=
+ =?utf-8?B?SGJtZE5SMWRRMzZMbmVmbnIxMVVyZjdGT205Z0lrTkszOTJRNTNnVUpzQ3Yz?=
+ =?utf-8?B?Z3pZWUpLbmZzMlVmQVdJY0YyVmtaUTBJMG04QXN1MmNMek5GZ3lTUjhVZUtr?=
+ =?utf-8?B?ZW9qa0ZFTEhLclhXR3FCa1M5OW1NUnJ3YndSZ0IvY01haXNJU3puQUNYdVIv?=
+ =?utf-8?B?TWN2Z25lc3VHamVMRVRuRGQ5ZGgvSWdNT1cxU0RId2tsOVF0U1VJeUtmMGpl?=
+ =?utf-8?B?S1lNcTVEaVBvTi80TnhPK2ppbmNFbnNnSmtsREN1MWVEQUpqS2svWXVhakdF?=
+ =?utf-8?B?WkdjRWwzdW1mT0c1VDdsUENpVWlhQklMRlVpcnVoYzViUmxSSHRGSE9wbmY5?=
+ =?utf-8?B?Z2EvUER1VVhZb2dqTXVQTXg4TG5EVXlpaVVYblhUcDZVMWwrbUFCazVXMmRJ?=
+ =?utf-8?B?UjZmT2hCYUhIcDB4M1dWY1Q2QzBtSjBpYThRMHpCOW5OUU9kd2ZHT3N1ZE12?=
+ =?utf-8?B?OWNESXlCblcyUytKeDNTSzhTTTRhQU1MNUtQVTJOZXZCcWJrTVJqdThoR1Bx?=
+ =?utf-8?B?d09kNGVOcVB1N0JwMno5RG1mMjgxbXlsZU9ObldVK2NteUg3bHlhQmZXTHg4?=
+ =?utf-8?B?dFo3RGRpTkY3VjRaS3F2RUNtdWZneHVTeGpJZFdsQXBNY0gvUjRrN0Q3cmRq?=
+ =?utf-8?B?K1RYbVRkWjc1YlZBdXAwSG5qaVJuZmsrYVIwWUR0OEhoSkZ5M0k4bnlXUlVR?=
+ =?utf-8?B?Z0p1U01BSFQ0Yi9CKys2UURTQUY4d2NnTmZiZXFER3pienRBRk1hQS9paHh6?=
+ =?utf-8?B?UmlCNkZpQ1QrV1k0WmRiVDNZZVVnSjM2cWxlU0djTVl3VSszNVc2U1RJdElX?=
+ =?utf-8?B?amIzMGthOU5BTDNmZ1RPbi9QdUIxem4xTG16aHNUTURmYjBOVXQ2T0x3ZUln?=
+ =?utf-8?B?UzVzT0czdDdUUTUxV2VvMFU3ZzN2ak4rZVo3ZVh6Q0pBaWtXZVZWeHZpYlJV?=
+ =?utf-8?B?Y2tiK28weW5kbWcwRVlOOWxReGM2T1BBRXZ2WWpIZ0M0Y09JUnlkbmxjQ0My?=
+ =?utf-8?B?Z2k4dDljV1lucTl2cmQzOHh4WUd4UjlTNWhmMXdOaTVaVnlKOXgxeGhSZWtD?=
+ =?utf-8?B?b0pEeERZbW5RMFBSL2N2c1FWbS94RHBWUVVxczRhZ245TmFiRU5yaXdPNlNK?=
+ =?utf-8?B?cVkxU013WkZYR3NvdEJiWG1jcnlNRnhjaEwrNEtGZ2ZxZ1pmZG0rUTJnaUx1?=
+ =?utf-8?B?Z1NiMzNzR1lkVHNWZE04QTg2RDh1OWRiL2FGVjlIU3FLdnkwdDBHZlBHbDFQ?=
+ =?utf-8?B?ZFhQMVhFOTlGZ2lsN2Q2VVNUUmhRWk11c3lVUGsxSW9tN05DUlRyTlJ2R3Ra?=
+ =?utf-8?B?d05vSW80T2U1czNhbXRPWkhMcklxVzB4cms1YUVjdDcrcXdGcXF6eUQ2Mmlm?=
+ =?utf-8?B?NVlScUlBUFdhSFc0eU1acU9NeFN2amdCeHpxU1I0WlZBOGxFU0tXZGhaVzRw?=
+ =?utf-8?B?UHpESmMreElEcHptL2llb3UxUWdNZSs0aWtxUTg1NUJIdU5JV3ExTjllbTNG?=
+ =?utf-8?B?YW9pQzB5TEVKV1NsUmZ4VDJqclptYWZ4VXEzM1FtMWNpdHZBemJ5NUxIZ091?=
+ =?utf-8?B?RkoyTzg1YkZkTVRWK1M5UzVIWWJNMUN0d3pYVFgwVjlXcUpYbDR2Q3RydTh3?=
+ =?utf-8?B?elRrZTl2dEFmaCt1anNrV09QcXhLcGF1VDdWallTKzFyY093ZlRBU01NblJ0?=
+ =?utf-8?B?L29Fck5TSGVmWVZSZU9nQjRIekZ1QU8wb0dXV0N1MTRHamJPSGFDWUVuS3Jx?=
+ =?utf-8?B?L1hrQ2FieE9YSWZvaWphREVTdXhBbTdMUGJTN05sNEM4WXAxSkFSQ0hiZkhH?=
+ =?utf-8?B?aTlmSXBUblltRUFMRkxsZWRwNTZqU3BDTlJ0WlhhTjVROVhadFJacjRSakxl?=
+ =?utf-8?B?Wm4zMENBUCs3NXZIR3FTbWluZmluR1pTR3AzRHZZNjB6ZUFXRDNCOVlrTHhE?=
+ =?utf-8?B?N0V4cFR5dGR6MXZQR3kzT3Y2NWRSK3JwdVFSYUZTZ1pFZElia0YvaDl0ajNQ?=
+ =?utf-8?Q?5PSUnsIGQH+8iGBLWj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1cccf64-f3c4-473f-eeb8-08ded7739251
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 13:20:51.1720 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HB6O1e31duN7JTCELVPCrVTss6F2t4WfrXAT5mL7Jb8p7FElW/464qK/MhHkjylA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7146
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,42 +136,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Git commit 35ed38d58257 ("drm: Allow drivers to indicate the damage
-helpers to ignore damage clips") introduced ignore_damage_clips to
-selectively ignore damage clipping in certain framebuffer changes. The
-mode-setting pipeline can disabled damage clippings for an atomic commit
-by setting ignore_damage_clips in struct drm_plane_state. The atomic
-commit will then do a full display update.
+On 7/1/26 14:59, Thomas Hellström wrote:
+> Hi, Nitin
+> 
+> On Wed, 2026-07-01 at 11:56 +0530, Nitin Gote wrote:
+>> When a dma-buf importer creates a ttm_bo_type_sg BO with bo-
+>>> base.resv
+>> pointing at the exporter's dma_buf->resv and dma_buf_dynamic_attach()
+>> fails, no dma_buf reference is held. The exporter can be freed before
+>> the delayed_delete worker calls dma_resv_lock(bo->base.resv), causing
+>> a
+>> use-after-free:
+>>
+>>   Oops: general protection fault, probably for non-canonical address
+>>         0x6b6b6b6b6b6b6b9c
+>>   Workqueue: ttm ttm_bo_delayed_delete [ttm]
+>>   RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
+>>
+>> ttm_bo_individualize_resv() skips the resv swap for all sg BOs to
+>> keep
+>> the shared resv available for delayed_delete to release the dma-buf
+>> mapping. A BO whose attach never succeeded has no mapping to release,
+>> yet it keeps bo->base.resv pointing at the exporter resv that
+>> delayed_delete later locks once the exporter is gone.
+>>
+>> Fix this by checking bo->base.import_attach, which is set only after
+>> a
+>> successful attach. The check is placed after dma_resv_copy_fences()
+>> so
+>> successful imports still copy fences to _resv before returning,
+>> keeping
+>> the shared resv for delayed_delete. Failed imports fall through to
+>> swap
+>> resv to _resv, so delayed_delete never locks the stale exporter resv.
+>>
+>> Closes:
+>> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
+>> Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup
+>> path for imported bos")
+>> Cc: stable@vger.kernel.org # v6.8+
+>> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+>> Cc: Christian Konig <christian.koenig@amd.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+>> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+>> ---
+>> Hi Thomas/Christian,
+>> Thank you for the review. Addressed the v3 review comments in this 
+>> v4 version.
+>>
+>> v4:
+>> - Moved import_attach check to after dma_resv_copy_fences() so fences
+>>   are copied before returning for successful imports (Thomas).
+>> - Removed exporter-alive claim from commit message (Thomas).
+> 
+> That's not sufficient. What I meant was that this invalidates the
+> approach in its current form:
+> 
+> A			B
+> prime_import()		
+> exported_get();
+> exported_lock();
+> bo_create();		lru_walk():
+> attach_fail();		bo_get();
+> bo_put();		
+> exported_unlock();	bo_lock() // exporter_lock
+> exporter_put();		
+> exporter_free();	
+> 			bo_unlock(); //UAF
+> 			
+> There is no guarantee that the exporter stays alive until
+> resv individualization happens.
 
-Although the i915 driver does not modify the flag, DRM's damage iterator
-will soon rely on it. Calling drm_atomic_helper_check_plane_damage() right
-before drm_atomic_helper_damage_merged() guarantees that it has the correct
-state. The i915 driver does not do this elsewhere so far.
+IIRC at least for AMDGPU that shouldn't be possible.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
----
-Taken with minor updates to the commit description from the series at
+We intentionally create the imported BO as empty shell without ttm_resource object, so it is not on any LRU list.
 
-  https://lore.kernel.org/dri-devel/20260610152505.260172-1-tzimmermann@suse.de/
----
- drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
- 1 file changed, 3 insertions(+)
+But to be honest I haven't looked into that in years, so it is perfectly possible that this is messed up again.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 92af21d823a3..5a155f60110f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2949,6 +2949,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 		src = drm_plane_state_src(&new_plane_state->uapi);
- 		drm_rect_fp_to_int(&src, &src);
- 
-+		/* Prepare plane-damage state before using it */
-+		drm_atomic_helper_check_plane_damage(&state->base, &new_plane_state->uapi);
-+
- 		if (!drm_atomic_helper_damage_merged(&old_plane_state->uapi,
- 						     &new_plane_state->uapi, &damaged_area))
- 			continue;
--- 
-2.54.0
+Regards,
+Christian.
+
+> 
+> /Thomas
+> 
+> 
+>>
+>> v3:
+>> - Dropped the xe-side reordering approach since importer_priv must be
+>>   valid when dma_buf_dynamic_attach() publishes the attachment.
+>> - Per Christian's suggestion on the v1 thread, keyed the check on
+>>   import_attach rather than removing the sg guard entirely.
+>> - Fixes both xe and amdgpu in a single TTM patch.
+>>
+>>  drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++++++++---------
+>>  1 file changed, 15 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+>> b/drivers/gpu/drm/ttm/ttm_bo.c
+>> index bcd76f6bb7f0..9b6341f69805 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+>> @@ -203,15 +203,21 @@ static int ttm_bo_individualize_resv(struct
+>> ttm_buffer_object *bo)
+>>  	if (r)
+>>  		return r;
+>>  
+>> -	if (bo->type != ttm_bo_type_sg) {
+>> -		/* This works because the BO is about to be
+>> destroyed and nobody
+>> -		 * reference it any more. The only tricky case is
+>> the trylock on
+>> -		 * the resv object while holding the lru_lock.
+>> -		 */
+>> -		spin_lock(&bo->bdev->lru_lock);
+>> -		bo->base.resv = &bo->base._resv;
+>> -		spin_unlock(&bo->bdev->lru_lock);
+>> -	}
+>> +	/*
+>> +	 * Successfully imported sg BOs need the shared resv for
+>> dma-buf
+>> +	 * cleanup. Failed imports have no attachment or mapping and
+>> can
+>> +	 * use the private _resv.
+>> +	 */
+>> +	if (bo->type == ttm_bo_type_sg && bo->base.import_attach)
+>> +		return 0;
+>> +
+>> +	/* This works because the BO is about to be destroyed and
+>> nobody
+>> +	 * references it any more. The only tricky case is the
+>> trylock on
+>> +	 * the resv object while holding the lru_lock.
+>> +	 */
+>> +	spin_lock(&bo->bdev->lru_lock);
+>> +	bo->base.resv = &bo->base._resv;
+>> +	spin_unlock(&bo->bdev->lru_lock);
+>>  
+>>  	return r;
+>>  }
 
