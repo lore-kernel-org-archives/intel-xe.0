@@ -4,27 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53934C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 05:28:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAE4FC43602
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 05:45:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F300E10E2F3;
-	Wed,  1 Jul 2026 05:28:43 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8F7810E2ED;
- Wed,  1 Jul 2026 05:28:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2413450692524631573=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FDCF10E2FA;
+	Wed,  1 Jul 2026 05:45:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nktd2gzO";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A72F110E2EF;
+ Wed,  1 Jul 2026 05:45:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782884714; x=1814420714;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=q5SwzxQWyqc+7hsENKdVwLSLE6aBaiYST+GStA5DXNA=;
+ b=nktd2gzO9WLKlW2jUW3os/GHFy4tlej1KUvS8OLJCysaBIKGRZJxTrQN
+ Nd2oThiFsA89gTk7wrqrif0/n6gvi1E+7jl1AR1b55APnp8H1R0vsJ5Jf
+ Vp+oQixz4NGX1mgNQfBflhQ5mJJBFzGu8QVtvrMT14osBLyVWE9wM9Ilv
+ j8phzwm8p75w3l/hk+JOjtIASq8IUL9vdaESEhVmrovNaHFNQ+XTJ8Klb
+ Mli3+4tCkH/8sBnbmpUaal43+aNe7EbS9B0SwOPeVLb/Q+pGleHsCbXa5
+ i8Rj7NKYfYZAMGQ1rwgAMu28KrrXJEgR1xiJuEZxnH/niDbsZPM8f0ock Q==;
+X-CSE-ConnectionGUID: C6kTEOijTZ+0mYZ2DRqCjw==
+X-CSE-MsgGUID: ljOdOefDSnmNczLZK774oA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="94258739"
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="94258739"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 22:45:13 -0700
+X-CSE-ConnectionGUID: y1jDbb/aTJuDqmpAiKjH3Q==
+X-CSE-MsgGUID: O1UnQRXNTceUC3pAyXnoyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="276772077"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 22:45:13 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 30 Jun 2026 22:45:12 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Tue, 30 Jun 2026 22:45:12 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.24) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 30 Jun 2026 22:45:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nC/NJ9SrVrsOEKuLwa0JIp2p6OOx+S5M1omAREyAAKLftB2EEtCJlNVtM5x33mOQdWhUhNK/0QjApgL22W4h5rI0HWHqD0gn41OknZ9zk3CNzxsjx+tdix+ZzRAn1hIvEM8+0gFft1iOWPVQv7WhZoXgiL91zhkhy7oiRJRqN2sIqZ84CGPIXQWelWS8Hfr7+r2+2Y2xxppTPY6DWXU7DJMDxaDCfc1u8X6Ibz+CrX5jSpIamXhkPS7LUaatjw/ss6NPBPqyzPbRGcWIe9p4jQXiWBQkD7eJiUVTwfPIGkzkiUs6Z+E4LgmtGPPe4wNwDcHsA0lJ0t7S2+Kifl9kuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8NQ5pOnwSv9M54PImGovBN7faWPu245XSEp5OQeyJZI=;
+ b=vTHrWadecKrJ74oOObCtC4afwfXK4gyo5a7WzVoSzZcWswS4RT6BJBkVSbGvTgxSohiFVRXk6ClLe/h6JyNO8jGXxKF1Jb5ehbfdQHwIkYc3TnfnD3lbOBzFoQNNQELzoJnPTgLqtB1S7KJC44rUMjr2Bw9NWTvmMQegHf8ZkY/UDg/Cy8mA/Et2RRmo425IIxr1+9TqDAi08W8Xtl1RTFd5FFE6jkxVJXXt8+x5VVlL/mMRe+RPCjPbAkt+XMVIryerBGA5/fcRPaHdyWnY8RitgAV7RHJEwTLzip+g357TAwPPz2xqh5Hjl048XIIAC+0yAH9olLRj2owtSX9cKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::5b) by SJ2PR11MB7501.namprd11.prod.outlook.com
+ (2603:10b6:a03:4d2::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Wed, 1 Jul
+ 2026 05:45:07 +0000
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::6d3c:5451:b5d4:3ea6]) by DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::6d3c:5451:b5d4:3ea6%6]) with mapi id 15.21.0181.008; Wed, 1 Jul 2026
+ 05:45:07 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Manna, Animesh" <animesh.manna@intel.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>
+Subject: RE: [PATCH 1/1] drm/i915/display/psr: Block DC3CO entry during active
+ frame
+Thread-Topic: [PATCH 1/1] drm/i915/display/psr: Block DC3CO entry during
+ active frame
+Thread-Index: AQHdCG8O5yNy6QCb8kCVjeNh/kDdZrZYJ8Jw
+Date: Wed, 1 Jul 2026 05:45:06 +0000
+Message-ID: <DS4PPFE901A304F76B8301BE5F920A333D4E3F62@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20260630085928.1317279-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260630085928.1317279-2-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260630085928.1317279-2-dibin.moolakadan.subrahmanian@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|SJ2PR11MB7501:EE_
+x-ms-office365-filtering-correlation-id: 65deb264-785e-44a4-299f-08ded733e80a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|376014|366016|22082099003|18002099003|56012099006|38070700021|11063799006|4143699003;
+x-microsoft-antispam-message-info: Y8KJtHI5IBNF2a9LGWsyZwpyo591yRJrxPxzvsyU+zmz7pxLVZwwLAtiiZsxxjISw6KEzxpOqqTOPpWutKwFMus3WTNWgylSxfxrBACgCmUa3f07pYvc4mNKZrq3K44uvdAQNmY/YoCMy0aGQ0sFL2+9r+RZMLTW/6MHpwfIviwC22rYXYYnZeIPrfviQVBNpIqotYfaQqXJD8SmI7aIGD7ypEGfWSfXInANuWtfyvGW4qFhehqQRjMW63qsBZGq697i52PMkODINBtKq3LwZZI11L8LYR7lqDFwGTpavJtpmNbWJ43DOMT5NMFvmO3y8aYlCHs1j2aKoZQ03dLdEf73RWpIL1LfbgJKn6pZalKKyCeC5Fdne+CRRUiCuO5tU00fiL78kpbm931/6cCK90NtMShKr8zixV5L4ocM/mJWLZ4maySFkO8sdrNtX8AqdCX66PZQTPPJNYkPMWj7EOD8JvTxDuXfAvV+fLxaM9Y6pDvAeXwxv8twgkprou32mJAv95gHqpPLqhduVmVfdawTkQx0vy5cIM457Q8pKn0N6p7r5Do8oRopeaHctQ9mjocdTwOIzN9Gg3P5rUgTD+w1Ui8Uu5Y0ygnvaOOtKM7rnL5zZpdiPNBACgqKkIUCdoLgvUpDm3z0v8H2KLMAyj0w+pTre1QzX07AeR5bZ6CPiV5G+VmgZ2yifttiYJopxasse1l4cNNaG/67QMH7DW6GieXGHi46fvM7i5uacxY=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(22082099003)(18002099003)(56012099006)(38070700021)(11063799006)(4143699003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?SJlZXcgmYDtC+fPuHhGOiPWq/qajCAODzf1OdCiwkMUvEgVfAPesD3GZk1dV?=
+ =?us-ascii?Q?vI3E3vZbdQccJII9LAKMksdICoswgRB6oBJrc+P78S82Glnc95a/FTeGEoH6?=
+ =?us-ascii?Q?e9LgH98Lz07Tll2s8SZeLI1Oc+btHKWWLjOJcclMdd8HcZZuYFvtWX42ognW?=
+ =?us-ascii?Q?Jh8tEI8oXiVFkIVilmGcNn1P1PWJ4PWTK1m+PYA1hnaxeXXq+ZSQgDVD26KG?=
+ =?us-ascii?Q?PoQO/ntfC1GESLHdSzZJa4Iwce6nKukyGbjd0uIZLZ0NZckI+LJM4sxoz0g3?=
+ =?us-ascii?Q?YN1Xj6CgUEOagtTzuP0jGTk8FtZLo751Krnjn39DRIF4+nK7vAQOTIc+xO/Z?=
+ =?us-ascii?Q?Epuq7ui0G9vBA1CkzJCLFJAcWSgV+u/GtUztjXJjY/kCKATdI1BQWk052lpe?=
+ =?us-ascii?Q?119EaJGxDib3LY7yz3ugWLVMs/yljy1QWuO46rrT/l2SQm4j0UzDPMl+fDvn?=
+ =?us-ascii?Q?9p4AmDvKMSmVxNrsBiGiz4tK30uRELRiqnEgpCLGqWuIZv5h3ucVV4GBCv8d?=
+ =?us-ascii?Q?P329gydSQd9MpW/rQtX100/vHfTznE+ZOf1MZ1ZbfOV0oRB4QG7H2I/PVT5o?=
+ =?us-ascii?Q?WDPTPnE817AVEOvtaP2RY1IWrsIZxgyLZPSGSTDl66uN2HFrPeb1TglSiLMk?=
+ =?us-ascii?Q?SE/DLg9zmkipVnnx8cjIsjTgI+g0liJBhfALGhnR+u+zKXx0nS+yN9WvLeuZ?=
+ =?us-ascii?Q?u3g/e+hvfKheEsMwDASCUCMddid5XqrqfZtoSYUVANw7wk/IfUKhQFW68fKq?=
+ =?us-ascii?Q?4TQlK+w6nSh11Biaz2yMaE5Usr5yz+uqjFWHNs32pPL28Sm7Vu9aVrBFNFnL?=
+ =?us-ascii?Q?SJIavpR2RZjMW7eIVgidLsGmvGwCRFNGfUBZHEHDeYfqpjBh45UYSA7+yP3I?=
+ =?us-ascii?Q?WeDxgByPieMiAc8Mj3Ces1+phjW8oa0S6GCj24Kf7D+DwmSXggMx/wNyhNuF?=
+ =?us-ascii?Q?T6uQaGYiRDqlfWH9dmF1DyHTWl8Z9h4npZdCDXVMslz/uuOdKhl0fN0XpFSX?=
+ =?us-ascii?Q?ABFn6Nfb//+06sEiN8a4tmZgOannhTsxD4ahQ0s8JrpYP3fk1ulCJOxwA2BY?=
+ =?us-ascii?Q?KK+DBz134pqG7LI1TNODmVi4uPuTmlYtQWHDl9G4KJ63nBbQ7CLt7mwF/Iv6?=
+ =?us-ascii?Q?fU9A690u8OEhgygVcLGheetF9fNIjZDoeD80zTnBOcENJHam+MdXxIPDpK+x?=
+ =?us-ascii?Q?Rtd8I5krfoXfSyoG8ZcU2I7dt+JQ8XannzCs8NdhkS19p/G6tphWfDnLaUoN?=
+ =?us-ascii?Q?YMkF8G/+DRjlaRiLwQb7JTl0FKRUztoAyQgKTRYTXM0qkqqpCXWGbYwuTtDb?=
+ =?us-ascii?Q?Kt4H011ZK6ECWoSyg+sooGsXld7ZgvQW5RiDZPz+O1lAyqj0b/sWZVaYqQLL?=
+ =?us-ascii?Q?VM+wTm6zBBJeo0dGyDfCQ0riccXZeB5BOiyIqG1w5Vn/TouWf9ga6Y38ryUH?=
+ =?us-ascii?Q?3mIrCHQRfdCESAg/mChmlwctkTJBuMDV7EVc1fRkE3NFjYnQbaGH8F0hzVIn?=
+ =?us-ascii?Q?jGp/d6Ogarf4GtHWs65rRWKWGsuaNuOF2aacjvXUVm9kMI2T5UwXrfnZeUL9?=
+ =?us-ascii?Q?Xl27ePLb1roRjoiJ8F7+fCFcWNMiIPUVtNEdDhO7B8zK1dfnnpQsCWuPAGQL?=
+ =?us-ascii?Q?st05i3tf+inqx+CG/aZtQpmv9yOYTCC6tiNY1JDAkaUcll/TS6C1LB1UteRG?=
+ =?us-ascii?Q?Pm5AcIdYrtBGCpetTJ5KmCTq04a7roh+UVhWaBnDaZBivJfefOuUQZTzc/+5?=
+ =?us-ascii?Q?jsgnPdWqlw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/guc=5Fads=3A_allocat?=
- =?utf-8?q?e_UM_queues_in_a_separate_UC_BO?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jia Yao" <jia.yao@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Jul 2026 05:28:42 -0000
-Message-ID: <178288372274.135317.10206824394154711959@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260701041459.2151262-1-jia.yao@intel.com>
-In-Reply-To: <20260701041459.2151262-1-jia.yao@intel.com>
+X-Exchange-RoutingPolicyChecked: puYtY4qdDANlUyOcMGVzQ5tVt+mFWLo0F5MeELsB5dPYDctnszInI+Ma/FeRthm2/Yns6SWDkTucq/Qynnc/gQi56ZBzxA4uLDvmnQupUHW5ZbFsEHef5CsHiUib4i8wpNM+B7bOGP8SaLvBItomvKfcdNQHr/oiTkLGpmGg8d/8hjQwaqqr6DB1+hFkvB+0cqzfj6SKAWuU+vDDLo6Jkc2SjzMFIaWWomd+r6G640x+tm92fh1+jP4gNULG6fxZy4A+qrMLpbytCgHy/ekLxQk0PtW1CHSXXHWIK1g/3EeNYhyvIIVPWRVW7bBlCnk9RI5guCQokbklN9MpYHO4EQ==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65deb264-785e-44a4-299f-08ded733e80a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2026 05:45:06.9051 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WK+CJM2tLPycKwwqSLKw9KYDIvJmRrpfzGH/QLIPt1tCsETiy20h+nWACrXRKDNRD5K3+obeJBZTF1q2TQWqNQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7501
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,197 +162,113 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2413450692524631573==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Subject: [PATCH 1/1] drm/i915/display/psr: Block DC3CO entry during activ=
+e
+> frame
 
-== Series Details ==
+Only drm/i915/psr should be enough as prefix
 
-Series: drm/xe/guc_ads: allocate UM queues in a separate UC BO
-URL   : https://patchwork.freedesktop.org/series/169535/
-State : failure
+>=20
+> On Xe3P onwards, when PSR2 is enabled on a panel that does not support Ea=
+rly
+> Transport, DC3CO can be entered in the middle of an active frame. This
+> prevents the pipe from completing the frame and leaves it in a bad state =
+that
+> does not recover well, causing visible corruption on screen.
+>=20
+> Set CHICKEN_DCPR_4 bit 24 in the PSR2 enable path when Early Transport is
+> not in use, to notify DMC to prevent DC3CO entry.
+>=20
+> BSpec: 71483
 
-== Summary ==
+Add 75253 here too
 
-CI Bug Log - changes from xe-5316-7100870965845da8c31005c07fd1b390bbe96b20_BAT -> xe-pw-169535v1_BAT
-====================================================
+> Signed-off-by: Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_regs.h    |  3 +++
+>  drivers/gpu/drm/i915/display/intel_psr.c         | 16 ++++++++++++++++
+>  2 files changed, 19 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 39e50423132f..754bb9b188b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -1747,6 +1747,9 @@
+>  #define XELPD_CHICKEN_DCPR_3			_MMIO(0x46438)
+>  #define   DMD_RSP_TIMEOUT_DISABLE		REG_BIT(19)
+>=20
+> +#define XE3LPD_CHICKEN_DCPR_4			_MMIO(0x454a0)
 
-Summary
--------
+This should be XE3P_CHICKEN_DCPR_4
 
-  **FAILURE**
+> +#define   DCPR4_BLOCK_DC3CO_ACTIVE_FRAME	REG_BIT(24)
+> +
+>  #define SKL_DFSM			_MMIO(0x51000)
+>  #define   SKL_DFSM_DISPLAY_PM_DISABLE	(1 << 27)
+>  #define   SKL_DFSM_DISPLAY_HDCP_DISABLE	(1 << 25)
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+> b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 911afb9cb24e..ad6ece3ce04d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2103,6 +2103,18 @@ static void intel_psr_enable_source(struct intel_d=
+p
+> *intel_dp,
+>  		else if (display->platform.alderlake_p)
+>  			intel_de_rmw(display, CLKGATE_DIS_MISC, 0,
+>  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+> +
+> +		/*
+> +		 * HSD: 14026643300
 
-  Serious unknown changes coming with xe-pw-169535v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-169535v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+This can be WA: <WA no.>
 
-  
+> +		 * On Xe3P+, restrict DC3CO entry during active frame when
+> PSR2 is
+> +		 * enabled without panel Early Transport; required to avoid
+> pipe bad state.
+> +		 * DMC honours CHICKEN_DCPR_4 bit 24 to block DC3CO entry
+> during active frame.
+> +		 */
+> +		if (HAS_DC3CO(display) &&
 
-Participating hosts (13 -> 11)
-------------------------------
-
-  Missing    (2): bat-bmg-2 bat-bmg-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-169535v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind-imm:
-    - bat-bmg-1:          [PASS][1] -> [FAIL][2] +36 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind-imm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind-imm.html
-
-  * igt@xe_exec_mix_modes@exec-spinner-interrupted-lr:
-    - bat-bmg-1:          [PASS][3] -> [TIMEOUT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_mix_modes@exec-spinner-interrupted-lr.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_mix_modes@exec-spinner-interrupted-lr.html
-
-  * igt@xe_multigpu_svm@mgpu-latency-prefetch:
-    - bat-bmg-3:          [PASS][5] -> [FAIL][6] +20 other tests fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-prefetch.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-prefetch.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-169535v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_system_allocator@eu-fault-2m-range-device-host:
-    - bat-bmg-1:          [PASS][7] -> [TIMEOUT][8] ([Intel XE#8356])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-
-  * igt@xe_exec_system_allocator@many-execqueues-malloc:
-    - bat-bmg-1:          [PASS][9] -> [FAIL][10] ([Intel XE#8353]) +8 other tests fail
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_system_allocator@many-execqueues-malloc.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_system_allocator@many-execqueues-malloc.html
-
-  
-  [Intel XE#8353]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8353
-  [Intel XE#8356]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8356
+We can do away with HAS_DC3CO and just use the intel_display_wa framework
+Check intel_display_wa.c intel_display_wa.h as reference.
 
 
-Build changes
--------------
 
-  * Linux: xe-5316-7100870965845da8c31005c07fd1b390bbe96b20 -> xe-pw-169535v1
+> +		    !intel_dp->psr.panel_replay_enabled &&
+> +		    !intel_dp->psr.su_region_et_enabled)
+> +			intel_de_rmw(display, XE3LPD_CHICKEN_DCPR_4,
+> +				     0, DCPR4_BLOCK_DC3CO_ACTIVE_FRAME);
+>  	}
+>=20
+>  	/* Wa_16025596647 */
+> @@ -2344,6 +2356,10 @@ static void intel_psr_disable_locked(struct intel_=
+dp
+> *intel_dp)
+>  		else if (display->platform.alderlake_p)
+>  			intel_de_rmw(display, CLKGATE_DIS_MISC,
+>  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS,
+> 0);
+> +
+> +		if (HAS_DC3CO(display))
+> +			intel_de_rmw(display, XE3LPD_CHICKEN_DCPR_4,
+> +				     DCPR4_BLOCK_DC3CO_ACTIVE_FRAME, 0);
 
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5316-7100870965845da8c31005c07fd1b390bbe96b20: 7100870965845da8c31005c07fd1b390bbe96b20
-  xe-pw-169535v1: 169535v1
+Ditto.
 
-== Logs ==
+Regards,
+Suraj Kandpal
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/index.html
+>  	}
+>=20
+>  	if (intel_dp_is_edp(intel_dp))
+> --
+> 2.43.0
 
---===============2413450692524631573==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc_ads: allocate UM queues in a separate UC BO</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169535/">https://patchwork.freedesktop.org/series/169535/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5316-7100870965845da8c31005c07fd1b390bbe96b20_BAT -&gt; xe-pw-169535v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-169535v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-169535v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 11)</h2>
-<p>Missing    (2): bat-bmg-2 bat-bmg-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-169535v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind-imm:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind-imm.html">FAIL</a> +36 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_mix_modes@exec-spinner-interrupted-lr:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_mix_modes@exec-spinner-interrupted-lr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_mix_modes@exec-spinner-interrupted-lr.html">TIMEOUT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-latency-prefetch:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-prefetch.html">FAIL</a> +20 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169535v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_system_allocator@eu-fault-2m-range-device-host:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8356">Intel XE#8356</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@many-execqueues-malloc:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5316-7100870965845da8c31005c07fd1b390bbe96b20/bat-bmg-1/igt@xe_exec_system_allocator@many-execqueues-malloc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v1/bat-bmg-1/igt@xe_exec_system_allocator@many-execqueues-malloc.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8353">Intel XE#8353</a>) +8 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5316-7100870965845da8c31005c07fd1b390bbe96b20 -&gt; xe-pw-169535v1</li>
-</ul>
-<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5316-7100870965845da8c31005c07fd1b390bbe96b20: 7100870965845da8c31005c07fd1b390bbe96b20<br />
-  xe-pw-169535v1: 169535v1</p>
-
-</body>
-</html>
-
---===============2413450692524631573==--
