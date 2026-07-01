@@ -4,73 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9700CC44500
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F13CDC43602
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2606610F366;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67BAC10F371;
 	Thu,  2 Jul 2026 13:06:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="b+ldrvkt";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="pcd0PeJh";
 	dkim-atps=neutral
-Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com
- [91.218.175.185])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3F4210F341
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 12:25:47 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782995144;
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B374C10E3B5;
+ Wed,  1 Jul 2026 15:06:19 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4gr3Hr4RPhz9ts8;
+ Wed,  1 Jul 2026 17:06:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1782918376;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=7Ko6g/fNv98hSurpFrjSC8unNT/smMh3pnGqTobbcqg=;
- b=b+ldrvkt8ZmJ+OrI3yxcQgFLnRxGCWHjhsFZZL3rVzLaxyNILjolYA01aJGr58GPqotONa
- C0qfjyiCv0Ek1cqalMJ+/t7YCyD5CeARmY/TMOXt2of2lM3qjKi0LZINpNnLjdz9QLcCqu
- OOzdaIK15Lm4UMi7JwMdKk4MKXYIZlw=
-From: Lance Yang <lance.yang@linux.dev>
-To: ljs@kernel.org
-Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
- mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, robin.clark@oss.qualcomm.com,
- lumag@kernel.org, lyude@redhat.com, dakr@kernel.org,
- tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, heiko@sntech.de,
- andy.yan@rock-chips.com, thierry.reding@kernel.org, mperttunen@nvidia.com,
- jonathanh@nvidia.com, kraxel@redhat.com, dmitry.osipenko@collabora.com,
- zack.rusin@broadcom.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
- deller@gmx.de, bcrl@kvack.org, viro@zeniv.linux.org.uk, brauner@kernel.org,
- muchun.song@linux.dev, osalvador@suse.de, david@kernel.org, ziy@nvidia.com,
- baolin.wang@linux.alibaba.com, liam@infradead.org, npache@redhat.com,
- ryan.roberts@arm.com, dev.jain@arm.com, baohua@kernel.org,
- lance.yang@linux.dev, hughd@google.com, vbabka@kernel.org, rppt@kernel.org,
- surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de,
- kees@kernel.org, perex@perex.cz, tiwai@suse.com,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-sound@vger.kernel.org
-Subject: Re: [PATCH 07/13] mm/vma: rename vma_get_page_prot to
- vma_flags_to_page_prot
-Date: Thu,  2 Jul 2026 20:25:15 +0800
-Message-Id: <20260702122515.74271-1-lance.yang@linux.dev>
-In-Reply-To: <fc8ac30d03d29d236e76542b36432bba315aca60.1782760670.git.ljs@kernel.org>
-References: <fc8ac30d03d29d236e76542b36432bba315aca60.1782760670.git.ljs@kernel.org>
+ bh=7iK4BGNHJy0tB94tmLVRjvi1Oe1FniGBRLtTBxRpX9I=;
+ b=pcd0PeJh7Iv8r/KVTFH5oFdA/lvvSyvuvKi3if55cztI2n/XSqmRdnZKteH85HKKVV85yU
+ j9HVmz2EWbdR6s0CcET0z1vhIRn4hJ25bjWnCJwEuRpc0w/NW+iGM63mTUN/npapcFcSR/
+ fvTXXtkA/gTpkwn7ezESk2MSMTKfcqmvoICSsIiJierSEvXB9xwtVzbElgLSVNcJv+Ritx
+ B8K9i27AJIekT+XY6QmKpjCphMf9LuJwlimFmayP7Cy6geBGJUxhP+KSpU8c/IrGtSWTsI
+ iKUJjdFVYMmR+verObzbMA+hWZMieIpK2Ln1S3xxLh3nAIF0DvnMe971s5Fifw==
+Message-ID: <f6ce9878f3528dd026e6ca8ff56ac773a264e476.camel@mailbox.org>
+Subject: Re: [PATCH v2 02/19] driver core: platform: provide
+ platform_device_set_of_node()
+From: Manuel Ebner <manuelebner@mailbox.org>
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+ iommu@lists.linux.dev, 	linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
+ linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, Bartosz
+ Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Lee Jones
+ <lee@kernel.org>, Thierry Reding	 <thierry.reding@avionic-design.de>,
+ Sebastian Hesselbarth	 <sebastian.hesselbarth@gmail.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>,  "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Srinivas Kandagatla <srini@kernel.org>, Greg
+ Kroah-Hartman	 <gregkh@linuxfoundation.org>, Vinod Koul <vkoul@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich
+ <dakr@kernel.org>, Rob Herring <robh@kernel.org>,  Saravana Kannan
+ <saravanak@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, Michael
+ Ellerman	 <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Andi Shyti
+ <andi.shyti@kernel.org>, Andy Shevchenko	
+ <andriy.shevchenko@linux.intel.com>, Joerg Roedel <joro@8bytes.org>, Will
+ Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Doug Berger
+ <opendmb@gmail.com>,  Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson <ulfh@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team	 <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, Matthew Brost	 <matthew.brost@intel.com>, Thomas
+ =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>,  Paul
+ Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>,  Maximilian Luz <luzmaximilian@gmail.com>, Hans
+ de Goede <hansg@kernel.org>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=	
+ <ilpo.jarvinen@linux.intel.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Date: Wed, 01 Jul 2026 17:05:49 +0200
+In-Reply-To: <CAMRc=MdQURjypSn+QjSDJfEiOMC8bbEZmZLgjpt=EquAM1Q1pw@mail.gmail.com>
+References: <20260629-pdev-fwnode-ref-v2-0-8abe2513f96e@oss.qualcomm.com>
+ <20260629-pdev-fwnode-ref-v2-2-8abe2513f96e@oss.qualcomm.com>
+ <263f58b418a27a2339fc2478f93234e0208b0ad9.camel@mailbox.org>
+ <CAMRc=MdQURjypSn+QjSDJfEiOMC8bbEZmZLgjpt=EquAM1Q1pw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+X-MBO-RS-META: 37tty84b1zxogwptawjudbroswqcnaqn
+X-MBO-RS-ID: 303d5cb0e0c41c6b372
 X-Mailman-Approved-At: Thu, 02 Jul 2026 13:06:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,19 +101,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, 2026-06-30 at 09:22 -0400, Bartosz Golaszewski wrote:
+> On Tue, 30 Jun 2026 13:37:54 +0200, Manuel Ebner <manuelebner@mailbox.org=
+> said:
+> > On Mon, 2026-06-29 at 11:12 +0200, Bartosz Golaszewski wrote:
+> > > [...]
+> > >=20
+> > > +/**
+> > > + * platform_device_set_of_node - assign an OF node to device
+> > > + * @pdev: platform device to add the node for
+> > > + * @np: new device node
+> > > + *
+> > > + * Assign an OF node to this platform device. Internally keep track =
+of the
+> > > + * reference count. Devices created with platform_device_alloc() mus=
+t use this
+> > > + * function instead of assigning the node manually.
+> >=20
+> > Doesn't it make sense to add a remark to the kernel doc of platform_dev=
+ice_alloc()?
+> >=20
+> > Thanks
+> > =C2=A0Manuel
+> >=20
+> > > =C2=A0[...]
+> >=20
+>=20
+> Sure, will do in the next iteration.
 
-On Mon, Jun 29, 2026 at 08:25:30PM +0100, Lorenzo Stoakes wrote:
->Having vma_get_page_prot() refer to VMA flags and vma_set_page_prot() refer
->to a VMA is confusing.
->
->Rename vma_get_page_prot() to vma_flags_to_page_prot() to resolve this
->confusion.
->
->No functional change intended.
->
->Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
->---
+then you can add
+Reviewed-by: Manuel Ebner <manuelebner@mailbox.org>
 
-straight rename, no stale callers that I can spot ;) Feel free to add:
-
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+ Manuel
+>=20
+> Bart
