@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5272EC43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 08:35:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC8CFC43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 08:35:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0423C10E321;
-	Wed,  1 Jul 2026 08:35:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98D2A10E315;
+	Wed,  1 Jul 2026 08:35:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eoINAdLM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dtn6vFyQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DEBF10E321
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 08:35:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4091C10E315
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 08:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782894935; x=1814430935;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h+8qdYblj8MuSNotw+3WDTjgkpMIAfhtNC6Zd6lQl1g=;
- b=eoINAdLMMMlm/kzTr/VMQNoDlw2KOSqpzMMSSl3fW+4HPCHfv3ACY7wr
- ds+vRvM7KSzxFuTMSNzeMqIiNZNZs/YW6NyMBW6An3lv84fJZyZqkqtFU
- csJz/IANNdZM6pZjF49voDClMf3Z8H0Oa3XKkeaLQcK3YPjdr0ZMhLP2l
- v7r/+sPow4ZDjzz9cCyKJjTlEt2rQGXOd7cERT5NtEaSnVe8pFrJQDK5b
- nIrQs1Sfxu+Xypad8ADpejtgowYQbugZIb+pVfDG72TjIFWh2eCiM2bAA
- iQjzvt15Tp8Z4vEUpGfrUAxHanZKhX3rPAOr8TgbQvcDVHtJBiP25TkS2 Q==;
-X-CSE-ConnectionGUID: 0XeAS2QuQPWltgXNTSWlFQ==
-X-CSE-MsgGUID: a8XbISCKTOezO96+k3f3Vg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83492925"
-X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="83492925"
+ t=1782894941; x=1814430941;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=pS48iiLY6cNVCWWrNAAvllB6RPPdySsoRF0UpNhryUA=;
+ b=Dtn6vFyQnSlA9241oZooFCwIiBFPmrLawMDvvGkMmLmBDHJqIJve+Gdm
+ Kv33z16JtSBgpLLRDFDJRlByiRt+Bf6DlGiuwN78ZkmonHYeJFQtDFIEU
+ 257deUbwm7y4/FTSVivJnYMZM7gJHdJukKg5WeOKXECmBHgVAnBFe6UUk
+ BzeNvUcJHdniMBXT1LLRK+Lfre9b0xD73RmMVzIxKhO8wpoYLGNmNbbLQ
+ 50wXa7T124qekY5Da2xUepYdwlDPRyyh9BCCt/J6T4j25hvqbn0ex+Glp
+ tMqRCjSlFge95+OEbNhTqcL8sGPL9USP/cE1o0iThKnfsFdk8sorzUndf A==;
+X-CSE-ConnectionGUID: sNHN47JgRxSctwGQMkGcvg==
+X-CSE-MsgGUID: yrcienTJTmyBISZh1Rmz9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83492960"
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="83492960"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 01:35:34 -0700
-X-CSE-ConnectionGUID: aPU8QceFS/yf/8f/jv629g==
-X-CSE-MsgGUID: buyrSL4vQfCJbIzcc9uQLg==
+ 01 Jul 2026 01:35:40 -0700
+X-CSE-ConnectionGUID: 265yKpYOQVmSBYNcGNt5QQ==
+X-CSE-MsgGUID: A7ihIRw/SZuTfY1vcgVpEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="276806164"
+X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; d="scan'208";a="276806180"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa001.fm.intel.com with ESMTP; 01 Jul 2026 01:35:29 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 01 Jul 2026 01:35:35 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -49,10 +49,12 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  jani.nikula@intel.com, lukasz.laguna@intel.com, zhanjun.dong@intel.com,
  lukas@wunner.de, daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v9 00/10] Introduce Xe PCIe FLR
-Date: Wed,  1 Jul 2026 13:59:24 +0530
-Message-ID: <20260701083051.450259-1-raag.jadav@intel.com>
+Subject: [PATCH v9 01/10] drm/xe/uc_fw: Allow re-initializing firmware
+Date: Wed,  1 Jul 2026 13:59:25 +0530
+Message-ID: <20260701083051.450259-2-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260701083051.450259-1-raag.jadav@intel.com>
+References: <20260701083051.450259-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,104 +71,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Here's my humble attempt at introducing PCIe Function Level Reset (FLR)
-support in xe driver. This is ofcourse a half baked implementation and
-only limited to re-initializing GT. This needs to be extended for a lot
-of components which are expected to be added as a follow up.
+In preparation of usecases which require re-initializing firmware without
+reloading the driver, introduce xe_uc_fw_reinit(). The uC firmware bo
+already exists but since it's contents are on VRAM, they are lost on PCIe
+FLR. Copy the firmware back to it's bo and mark it as loadable as part of
+re-initialization.
 
-Detailed description in commit message and documentation.
-
-PS: All xe_exec_basic tests and clpeak run smoothly after FLR. Give it
-a spin and let me know if any regressions.
-
-Trigger it with:
-
-$ echo 1 > /sys/bus/pci/devices/<BDF>/reset
-
-v2: Re-initialize migrate context (Matthew Brost)
-    Add kernel doc (Matthew Brost)
-    Spell out Function Level Reset (Jani)
-
-v3: Cancel in-flight jobs before FLR
-
-v4: Teardown exec queues instead of mangling scheduler pending list (Matthew Brost)
-
-v5: Re-initialize kernel queues through submission backend (Matthew Brost)
-    Prevent PM ref leak for wedged device (Matthew Brost)
-
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+v2: Add kernel doc (Matthew Brost)
 v6: Skip uC firmware selection during re-initialization (Daniele)
-    Add IS_DGFX() and EXEC_QUEUE_FLAG_KERNEL asserts (Daniele)
-    s/flr_done/reinit (Daniele)
-    Repurpose system suspend/resume helpers for FLR (Daniele)
-    Add PCIe FLR documentation (Daniele)
-
-v7: Refine PCIe FLR documentation (Daniele)
-    Introduce xe_pci_reset_skip() helper (Lukasz)
-
 v8: Set fw state to XE_UC_FIRMWARE_INIT_FAIL on failure (Daniele)
-    Introduce xe_sched_reinit() (Daniele)
-    Maintain timeout per scheduler instance (Daniele)
-    s/reinit/reinit_kernel (Daniele)
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 67 +++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_uc_fw.h |  1 +
+ 2 files changed, 68 insertions(+)
 
-v9: Move drm_sched_is_stopped() assert to xe_sched_reinit() (Daniele)
-    Add negative asserts for GSC and PXP (Daniele)
-    Provide xe_lrc_ctx_init() as regular function (Daniele)
-    Redesign wedged state management to prevent races
-    Add 'Xe' prefix to document title (Rodrigo)
-
-Raag Jadav (10):
-  drm/xe/uc_fw: Allow re-initializing firmware
-  drm/xe/guc_submit: Introduce guc_exec_queue_reinit_kernel()
-  drm/xe/gt: Introduce FLR helpers
-  drm/xe/bo_evict: Introduce xe_bo_restore_map()
-  drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
-  drm/xe/migrate: Introduce xe_migrate_reinit()
-  drm/xe/pm: Introduce xe_device_suspend/resume()
-  drm/xe: Improve wedged state management
-  drm/xe/pci: Introduce PCIe FLR
-  drm/xe/doc: Wire up PCI Error Handling
-
- Documentation/gpu/xe/index.rst              |   1 +
- Documentation/gpu/xe/xe_pci_error.rst       |   8 +
- drivers/gpu/drm/xe/Makefile                 |   1 +
- drivers/gpu/drm/xe/xe_bo_evict.c            |  51 +++-
- drivers/gpu/drm/xe/xe_bo_evict.h            |   2 +
- drivers/gpu/drm/xe/xe_device.c              | 252 +++++++++++++++++---
- drivers/gpu/drm/xe/xe_device.h              |  10 +-
- drivers/gpu/drm/xe/xe_device_types.h        |  11 +-
- drivers/gpu/drm/xe/xe_exec_queue.c          |  47 +++-
- drivers/gpu/drm/xe/xe_exec_queue.h          |   1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h    |   2 +
- drivers/gpu/drm/xe/xe_execlist.c            |   6 +
- drivers/gpu/drm/xe/xe_gpu_scheduler.c       |  17 ++
- drivers/gpu/drm/xe/xe_gpu_scheduler.h       |   1 +
- drivers/gpu/drm/xe/xe_gpu_scheduler_types.h |   5 +
- drivers/gpu/drm/xe/xe_gsc.c                 |  14 ++
- drivers/gpu/drm/xe/xe_gsc.h                 |   1 +
- drivers/gpu/drm/xe/xe_gt.c                  |  33 +++
- drivers/gpu/drm/xe/xe_gt.h                  |   2 +
- drivers/gpu/drm/xe/xe_guc.c                 |  29 +++
- drivers/gpu/drm/xe/xe_guc.h                 |   2 +
- drivers/gpu/drm/xe/xe_guc_submit.c          |   9 +
- drivers/gpu/drm/xe/xe_huc.c                 |  14 ++
- drivers/gpu/drm/xe/xe_huc.h                 |   1 +
- drivers/gpu/drm/xe/xe_lrc.c                 |  15 +-
- drivers/gpu/drm/xe/xe_lrc.h                 |   2 +
- drivers/gpu/drm/xe/xe_migrate.c             |  12 +
- drivers/gpu/drm/xe/xe_migrate.h             |   1 +
- drivers/gpu/drm/xe/xe_pci.c                 |   1 +
- drivers/gpu/drm/xe/xe_pci.h                 |   2 +
- drivers/gpu/drm/xe/xe_pci_error.c           | 129 ++++++++++
- drivers/gpu/drm/xe/xe_pm.c                  | 103 +-------
- drivers/gpu/drm/xe/xe_uc.c                  |  72 ++++++
- drivers/gpu/drm/xe/xe_uc.h                  |   2 +
- drivers/gpu/drm/xe/xe_uc_fw.c               |  67 ++++++
- drivers/gpu/drm/xe/xe_uc_fw.h               |   1 +
- drivers/gpu/drm/xe/xe_uc_types.h            |  14 ++
- 37 files changed, 798 insertions(+), 143 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_pci_error.rst
- create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
-
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 3f08a3b54062..158ac15dde55 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -833,6 +833,14 @@ static int uc_fw_copy(struct xe_uc_fw *uc_fw, const void *data, size_t size, u32
+ 	return err;
+ }
+ 
++static void uc_fw_reinit(struct xe_uc_fw *uc_fw, const void *data)
++{
++	struct xe_device *xe = uc_fw_to_xe(uc_fw);
++
++	xe_map_memcpy_to(xe, &uc_fw->bo->vmap, 0, data, uc_fw->size);
++	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOADABLE);
++}
++
+ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ {
+ 	const struct firmware *fw = NULL;
+@@ -856,6 +864,65 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ }
+ ALLOW_ERROR_INJECTION(xe_uc_fw_init, ERRNO); /* See xe_pci_probe() */
+ 
++/**
++ * xe_uc_fw_reinit() - Re-initialize uC firmware into its bo
++ * @uc_fw: uC firmware
++ *
++ * Returns: 0 on success, negative error code otherwise.
++ */
++int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw)
++{
++	struct xe_device *xe = uc_fw_to_xe(uc_fw);
++	struct xe_uc_fw_version old_fw, new_fw;
++	const struct firmware *fw = NULL;
++	int err;
++
++	/* Make sure the status was cleared the last time we reset the uc */
++	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
++
++	/* We shouldn't be here for the firmware which wasn't available */
++	if (!xe_uc_fw_is_available(uc_fw))
++		return -ENOEXEC;
++
++	old_fw = uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
++
++	err = firmware_request_nowarn(&fw, uc_fw->path, xe->drm.dev);
++	if (err)
++		goto init_fail;
++
++	err = parse_headers(uc_fw, fw);
++	if (err)
++		goto restore_old;
++
++	new_fw = uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
++	if (memcmp(&old_fw, &new_fw, sizeof(old_fw)) || uc_fw->size != fw->size) {
++		drm_err(&xe->drm, "%s firmware mismatch on %s",
++			xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
++
++		err = -ENOEXEC;
++		goto restore_old;
++	}
++
++	uc_fw_reinit(uc_fw, fw->data);
++	uc_fw_release(fw);
++	return 0;
++
++restore_old:
++	/*
++	 * parse_headers() updates version details, so restore original version
++	 * before bailing.
++	 *
++	 * TODO: Create a struct of all the fields touched by parse_headers()
++	 * and restore them all.
++	 */
++	uc_fw->versions.found[XE_UC_FW_VER_RELEASE] = old_fw;
++init_fail:
++	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_INIT_FAIL);
++	/* OK even if fw is NULL */
++	uc_fw_release(fw);
++	return err;
++}
++
+ static u32 uc_fw_ggtt_offset(struct xe_uc_fw *uc_fw)
+ {
+ 	return xe_bo_ggtt_addr(uc_fw->bo);
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
+index f2d3a3e7208b..6debdb924310 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw.h
+@@ -15,6 +15,7 @@
+ struct drm_printer;
+ 
+ int xe_uc_fw_init(struct xe_uc_fw *uc_fw);
++int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw);
+ size_t xe_uc_fw_copy_rsa(struct xe_uc_fw *uc_fw, void *dst, u32 max_len);
+ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags);
+ int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw);
 -- 
 2.43.0
 
