@@ -4,50 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA9FAC43602
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 399C8C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:59:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915D110E750;
-	Wed,  1 Jul 2026 12:59:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1E6C89CFA;
+	Wed,  1 Jul 2026 12:59:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=rcpassos.me header.i=@rcpassos.me header.b="VJkqHKv6";
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=purelymail.com header.i=@purelymail.com header.b="SB2Bld69";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KhOf2v+l";
 	dkim-atps=neutral
-Received: from sendmail.purelymail.com (sendmail.purelymail.com
- [34.202.193.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70B6D10E2E3
- for <intel-xe@lists.freedesktop.org>; Sun, 21 Jun 2026 03:01:22 +0000 (UTC)
-Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256;
- b=VJkqHKv6NTNxhw5O2PJ50MOqTaJn60FjLQMKMBpuYgcIN6GDk3IFXCDEc1QeOhkfnDQVT9g9Aezdg0bIyylnlYmDMdBd6M+c9iGxXDbILKYbuY72Mej8ovORFm3ZlAmsryE1KcSXuJ+/P6Q9bk5SEWwPuvMOwBn/TThdLuwYqeZdz9nYLkvKTV+tw4pKWyXbp/tRWEx8lhz7CSZxiBQy5/LbSWK+Qa2p9vKZt/sU7Gu3cZ3rgjUwVhYglel5RQEIQgzBz9Tw2Gn7vHIBVq7ldFWySqxKLT3B9xkboV551k+rTeXOTppZbUdOTnOW8FqQNhtrpkZpluHxdIX0hZIJew==;
- s=purelymail1; d=rcpassos.me; v=1;
- bh=/+xYg6jX1ozm5WfnL4XEE4N+y3jAKId7pgtNcgp8lNQ=;
- h=Received:From:To:Subject:Date; 
-DKIM-Signature: a=rsa-sha256;
- b=SB2Bld69AqLyhvJ9wWnJN6kF6iYLq2hweum0LmU0tyitxMQ8D7fBPXHEsciOMIFaVMQ6rtPu7YWnIUNDQpre9098uNPLYXXfMUyfDjCb6wUPHX3F/MhcmS54HZqqHqI5NJS6qPvijpK7LrZitMjCe7iZvONCOlrnWMGkTzPruUp7qSvj8Qs68deW9mc7GEeYStaIWWkM9lkRZ5Gl5xgH1vDPYRPA3ihjw/LUqAuIVWqwNh7IGVU2OetcN5QPibSBPdvJIHbMAFTipgfIE48w/MB4vGUXUDqZNWIrglD1/x5fqVV4WrWnbjHuX5W/u+xz7CEVcvtokSunJL/CUlQc6g==;
- s=purelymail1; d=purelymail.com; v=1;
- bh=/+xYg6jX1ozm5WfnL4XEE4N+y3jAKId7pgtNcgp8lNQ=;
- h=Feedback-ID:Received:From:To:Subject:Date; 
-Feedback-ID: 45355:7809:null:purelymail
-X-Pm-Original-To: intel-xe@lists.freedesktop.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -75715480; 
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Sun, 21 Jun 2026 03:01:12 +0000 (UTC)
-From: Rafael Passos <rafael@rcpassos.me>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Randy Dunlap <rdunlap@infradead.org>, skhan@linuxfoundation.org,
- Rafael Passos <rafael@rcpassos.me>
-Subject: [PATCH v2] Documentation: xe_drm: fix chars used for subsection
-Date: Sun, 21 Jun 2026 00:01:14 -0300
-Message-ID: <20260621030114.963405-1-rafael@rcpassos.me>
-X-Mailer: git-send-email 2.53.0
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01C2F10E378
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 12:59:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782910768; x=1814446768;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=6fo20VRXrOdo58jE/al9Koqf8jb4GjjqmMEUtkJNTTw=;
+ b=KhOf2v+lEovDXU+oyk3NUrUNfqmAwwL7UWFhSnZosy4wh43tjLqc0dOs
+ DytVSjQm0ss7HmFjo01ckYs5yEfaYGp3fbhjtNAk7YEV0zAPEkc9id3AM
+ qhPRudiZWQbOxWJy2qsb1fWycB3CT/6K0gnoYiXTr0stVas6kjByIySK0
+ LpHV7TdNknY0wbfb2JE0XjXJhBUPWW3UVTWbf0vHy4hUxpGlm1bKfvKnW
+ yF64FylNvcKXsz7WI3Mhz2eG4oERdGbpAnQ0fusvLzapR/NPQy8QRzF+L
+ 8H4xhsg1HI+gL3NKKE8UtrGTozecUGd1ffNWU9k8n0jAxFYHkfPCCLLOf A==;
+X-CSE-ConnectionGUID: bWpzVngBRf+wxsSvShTDLA==
+X-CSE-MsgGUID: fFLYaWT7Tzmhb3ED8zVSxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83729236"
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="83729236"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 05:59:28 -0700
+X-CSE-ConnectionGUID: qXCQ/+SbQtmXd8eTMgVR6w==
+X-CSE-MsgGUID: VjS26tDmQnC5MDfeHwtIwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="253210494"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.120])
+ ([10.245.244.120])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 05:59:26 -0700
+Message-ID: <dfed18b63a7b6cf164b3af7f65df8b4a1b9dbdf2.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/ttm: Fix UAF on dma-buf attach failure for sg BOs
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Christian Konig <christian.koenig@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>
+Date: Wed, 01 Jul 2026 14:59:24 +0200
+In-Reply-To: <20260701062559.3731993-2-nitin.r.gote@intel.com>
+References: <20260701062559.3731993-2-nitin.r.gote@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by Purelymail
-Content-Type: text/plain; charset=UTF-8
-X-Mailman-Approved-At: Wed, 01 Jul 2026 12:56:31 +0000
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,57 +70,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fixes "ERROR: A level 2 section cannot be used here".
-Equal signs are reserved for document titles.
-This file docs gets imported by driver-uapi.rst,
-and the page title is defined the.
+Hi, Nitin
+
+On Wed, 2026-07-01 at 11:56 +0530, Nitin Gote wrote:
+> When a dma-buf importer creates a ttm_bo_type_sg BO with bo-
+> >base.resv
+> pointing at the exporter's dma_buf->resv and dma_buf_dynamic_attach()
+> fails, no dma_buf reference is held. The exporter can be freed before
+> the delayed_delete worker calls dma_resv_lock(bo->base.resv), causing
+> a
+> use-after-free:
+>=20
+> =C2=A0 Oops: general protection fault, probably for non-canonical address
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x6b6b6b6b6b6b6b9c
+> =C2=A0 Workqueue: ttm ttm_bo_delayed_delete [ttm]
+> =C2=A0 RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
+>=20
+> ttm_bo_individualize_resv() skips the resv swap for all sg BOs to
+> keep
+> the shared resv available for delayed_delete to release the dma-buf
+> mapping. A BO whose attach never succeeded has no mapping to release,
+> yet it keeps bo->base.resv pointing at the exporter resv that
+> delayed_delete later locks once the exporter is gone.
+>=20
+> Fix this by checking bo->base.import_attach, which is set only after
+> a
+> successful attach. The check is placed after dma_resv_copy_fences()
+> so
+> successful imports still copy fences to _resv before returning,
+> keeping
+> the shared resv for delayed_delete. Failed imports fall through to
+> swap
+> resv to _resv, so delayed_delete never locks the stale exporter resv.
+>=20
+> Closes:
+> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
+> Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup
+> path for imported bos")
+> Cc: stable@vger.kernel.org=C2=A0# v6.8+
+> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+> Cc: Christian Konig <christian.koenig@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> ---
+> Hi Thomas/Christian,
+> Thank you for the review. Addressed the v3 review comments in this=20
+> v4 version.
+>=20
+> v4:
+> - Moved import_attach check to after dma_resv_copy_fences() so fences
+> =C2=A0 are copied before returning for successful imports (Thomas).
+> - Removed exporter-alive claim from commit message (Thomas).
+
+That's not sufficient. What I meant was that this invalidates the
+approach in its current form:
+
+A			B
+prime_import()	=09
+exported_get();
+exported_lock();
+bo_create();		lru_walk():
+attach_fail();		bo_get();
+bo_put();	=09
+exported_unlock();	bo_lock() // exporter_lock
+exporter_put();	=09
+exporter_free();=09
+			bo_unlock(); //UAF
+		=09
+There is no guarantee that the exporter stays alive until
+resv individualization happens.
+
+/Thomas
 
 
-Signed-off-by: Rafael Passos <rafael@rcpassos.me>
----
-Hi, I send the v1 for this patch only for the linux-doc list.
-The v2 fixes this, and has improvements to the commit message.
-Thanks,
-
-Rafael
-
- include/uapi/drm/xe_drm.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 48e9f1fdb78d..4dfb30e6c8a8 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -2537,21 +2537,21 @@ struct drm_xe_exec_queue_set_property {
-  * Refer to Documentation/netlink/specs/drm_ras.yaml for complete interfac=
-e specification.
-  *
-  * Node Registration
-- * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-+ * -----------------
-  *
-  * The driver registers DRM RAS nodes for each error severity level.
-  * enum drm_xe_ras_error_severity defines the node-id, while DRM_XE_RAS_ER=
-ROR_SEVERITY_NAMES maps
-  * node-id to node-name.
-  *
-  * Error Classification
-- * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-+ * --------------------
-  *
-  * Each node contains a list of error counters. Each error is identified b=
-y a error-id and
-  * an error-name. enum drm_xe_ras_error_component defines the error-id, wh=
-ile
-  * DRM_XE_RAS_ERROR_COMPONENT_NAMES maps error-id to error-name.
-  *
-  * User Interface
-- * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-+ * --------------
-  *
-  * To retrieve error values of a error counter, userspace applications sho=
-uld
-  * follow the below steps:
---=20
-2.53.0
-
+>=20
+> v3:
+> - Dropped the xe-side reordering approach since importer_priv must be
+> =C2=A0 valid when dma_buf_dynamic_attach() publishes the attachment.
+> - Per Christian's suggestion on the v1 thread, keyed the check on
+> =C2=A0 import_attach rather than removing the sg guard entirely.
+> - Fixes both xe and amdgpu in a single TTM patch.
+>=20
+> =C2=A0drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++++++++---------
+> =C2=A01 file changed, 15 insertions(+), 9 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+> b/drivers/gpu/drm/ttm/ttm_bo.c
+> index bcd76f6bb7f0..9b6341f69805 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -203,15 +203,21 @@ static int ttm_bo_individualize_resv(struct
+> ttm_buffer_object *bo)
+> =C2=A0	if (r)
+> =C2=A0		return r;
+> =C2=A0
+> -	if (bo->type !=3D ttm_bo_type_sg) {
+> -		/* This works because the BO is about to be
+> destroyed and nobody
+> -		 * reference it any more. The only tricky case is
+> the trylock on
+> -		 * the resv object while holding the lru_lock.
+> -		 */
+> -		spin_lock(&bo->bdev->lru_lock);
+> -		bo->base.resv =3D &bo->base._resv;
+> -		spin_unlock(&bo->bdev->lru_lock);
+> -	}
+> +	/*
+> +	 * Successfully imported sg BOs need the shared resv for
+> dma-buf
+> +	 * cleanup. Failed imports have no attachment or mapping and
+> can
+> +	 * use the private _resv.
+> +	 */
+> +	if (bo->type =3D=3D ttm_bo_type_sg && bo->base.import_attach)
+> +		return 0;
+> +
+> +	/* This works because the BO is about to be destroyed and
+> nobody
+> +	 * references it any more. The only tricky case is the
+> trylock on
+> +	 * the resv object while holding the lru_lock.
+> +	 */
+> +	spin_lock(&bo->bdev->lru_lock);
+> +	bo->base.resv =3D &bo->base._resv;
+> +	spin_unlock(&bo->bdev->lru_lock);
+> =C2=A0
+> =C2=A0	return r;
+> =C2=A0}
