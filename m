@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BE1BC43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 16:33:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33264C43602
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 16:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 337B010F05D;
-	Wed,  1 Jul 2026 16:33:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE78C10F05E;
+	Wed,  1 Jul 2026 16:33:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W2dnKatY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkA6h/Dx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F291810F05D
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:33:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 711CD10F05E
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:33:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782923590; x=1814459590;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+WHeTQN7vGt9KUOtDCauFeJlop9QLEUQSgggwpFf3Jg=;
- b=W2dnKatYVzag2JU13xOSL1myV0qNSn5JMc5zkzfexK5Ts6l3k/ekN0hY
- zJ9ODyzHmAKPRe54eIUzYDWR8+tC2SeEac7HYmp00c1KP4vSQT8Kk4J17
- eXxi5UzQZUzCWDhvp2APoXVL58RztmGUp2GVVGlJ+zlRGiovqNadiYl9s
- j9Wuygt4schjNNsLtcpbEM7mLA+06JYbqSCB174F0ztyGptuzvtoPfFAn
- UovP9zwaPCjzWNsG2FvB0lxRVohQfJZoUqai6whXW2Af+hRcpW0M0zdGv
- sb2KPAfCTrmfd43hdXj7c/nsrdCyFXfOCO3uzJqRPxMuIPREJvFblko3J Q==;
-X-CSE-ConnectionGUID: 3TPj1QIwRQypFzSowlS/+Q==
-X-CSE-MsgGUID: 1UmBbfecQTCQIeyuU10KgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82779242"
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="82779242"
+ t=1782923591; x=1814459591;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Li4Ufw1zSVnzUocvIUQhsBHCJyaF/Tg0qj2I8A1AgA4=;
+ b=RkA6h/DxOMAmeLopPVUW+IiZkgSQJv7KDm6luzcmGDfI+Z2CUDok+jY4
+ 5mfqIk/sAJc3U1V0tYPQnOgtUZMPWZ05jxNCNiUJ09n/Hsqbyd1yF2Y27
+ bJrD59t/5CDFQ9YTA3SFuZ2mEAfx9Uxh6DdWMC72AX9GMvWmZrDtK9225
+ 7Tog7yec4T1ywlLqtnKflvlx+uqdaVrmmpnr/sdvFik9Cv4FL2nklYUXv
+ dlXPotAztPWVOwjot7Ny4SM/lZ7NQnuqPe/h0GvzbwGI/VYe1xM/s1y1x
+ NWZxMgjYQlD3rKZUCdzIwLizwkZ5JzVXFvMy9AHdv0nm2CNV5URVOlD9l g==;
+X-CSE-ConnectionGUID: 863DZXm8Q/2+nWbW2IFMGA==
+X-CSE-MsgGUID: OezHqZJRRtiFyxJmg1U/5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82779244"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="82779244"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 09:33:09 -0700
-X-CSE-ConnectionGUID: gYElwvoHQxSx6v2PKBaApQ==
-X-CSE-MsgGUID: hGTeazk1SICY5akiqjkLfw==
+ 01 Jul 2026 09:33:11 -0700
+X-CSE-ConnectionGUID: YhFrkVZPSqKY8MobghkJNg==
+X-CSE-MsgGUID: XoG+BlkxQua7AxFjciTnsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="256196412"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="256196421"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa003.jf.intel.com with ESMTP; 01 Jul 2026 09:33:08 -0700
+ by orviesa003.jf.intel.com with ESMTP; 01 Jul 2026 09:33:10 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v2 0/8] drm/xe: add page size allocation mode control
-Date: Wed,  1 Jul 2026 22:03:40 +0530
-Message-ID: <20260701163348.3432358-1-naresh.kumar.g@intel.com>
+Subject: [PATCH v2 1/8] drm/xe: add page size allocation control state to
+ xe_device
+Date: Wed,  1 Jul 2026 22:03:41 +0530
+Message-ID: <20260701163348.3432358-2-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260701163348.3432358-1-naresh.kumar.g@intel.com>
+References: <20260701163348.3432358-1-naresh.kumar.g@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,55 +67,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some platforms support multiple page sizes for user BO allocations,
-including 4K, 64K, 2M, and 1G.
+Introduce xe_page_size_alloc_ctrl_mode and add page_size_alloc_ctrl
+state to struct xe_device.
 
-For validation and debug, it is useful to control the page size
-selection policy for user BOs so that specific allocation paths can be
-exercised deterministically. In particular, this makes it possible to
-force allocations into 2M-only, 1G-only, or mixed modes.
+The new control supports forcing user BO allocations to 2M pages,
+forcing them to 1G pages, or using a mixed round-robin mode across
+4K, 64K, 2M, and 1G page sizes. Track the current mixed-mode index
+in xe_device so allocation policy can be applied consistently.
 
-In mixed mode, allocations are distributed across the supported page
-sizes in a round-robin manner. For example, for eight user BOs, the
-selected page sizes would be:
-  - BO1, BO5: 4K
-  - BO2, BO6: 64K
-  - BO3, BO7: 2M
-  - BO4, BO8: 1G
+v2
+- make cur_index to atomic as update need in later patch to
+  avoid race/concurency (sashiko)
 
-This series adds:
- - debug control state in xe_device
- - a platform helper for multi-page-size support
- - a debugfs knob to select allocation mode
- - 1G BO alignment flag handling
- - debug policy application at user BO create time
- - propagation into VMA map flags
- - bind-time alignment validation for large-page user BOs
- - PT bind support for selecting leaf level (4K/64K, 2M, 1G paths)
+Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-The intent is to improve debugability of page-size-specific
-behavior without impacting normal/default paths
-when debug mode is not enabled.
-
-Nareshkumar Gollakoti (8):
-  drm/xe: add page size allocation control state to xe_device
-  drm/xe: add helper for multi page-size support
-  drm/xe/debugfs: add page size allocation mode knob
-  drm/xe: add 1G BO page-size alignment flag
-  drm/xe: apply debug page-size policy to user BO creation
-  drm/xe/vm: apply debug page-size policy to VMA map flags
-  drm/xe/vm: validate large-page user BO bind alignment
-  drm/xe/pt: allow selecting the bind leaf PTE level
-
- drivers/gpu/drm/xe/xe_bo.c           | 68 +++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_bo.h           |  1 +
- drivers/gpu/drm/xe/xe_debugfs.c      | 52 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.h       |  5 ++
- drivers/gpu/drm/xe/xe_device_types.h | 20 ++++++++
- drivers/gpu/drm/xe/xe_pt.c           | 16 ++++++-
- drivers/gpu/drm/xe/xe_vm.c           | 57 ++++++++++++++++++++++-
- 7 files changed, 215 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 32dd2ffbc796..eb60bce89e2d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -61,6 +61,18 @@ enum xe_wedged_mode {
+ 	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
+ };
+ 
++/**
++ * enum xe_page_size_alloc_ctrl_mode - Page size allocation control modes
++ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M: Force all User BO allocations to 2MB pages
++ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G: Force all User BO allocations to 1GB pages
++ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED  : Round-robin, 4k,64K,2M and 1G per BO index
++ */
++enum xe_page_size_alloc_ctrl_mode {
++	XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M = 1,
++	XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G,
++	XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED
++};
++
+ #define XE_BO_INVALID_OFFSET	LONG_MAX
+ 
+ #define GRAPHICS_VER(xe) ((xe)->info.graphics_verx100 / 100)
+@@ -474,6 +486,14 @@ struct xe_device {
+ 	/** @late_bind: xe mei late bind interface */
+ 	struct xe_late_bind late_bind;
+ 
++	/** @page_size_alloc_ctrl: Struct to control page size allocation mode */
++	struct {
++		/** @mode: xe page size allocation control mode */
++		enum xe_page_size_alloc_ctrl_mode mode;
++		/** @cur_index: Current index in case of mixed mode */
++		atomic_t cur_index;
++	} page_size_alloc_ctrl;
++
+ 	/** @oa: oa observation subsystem */
+ 	struct xe_oa oa;
+ 
 -- 
 2.43.0
 
