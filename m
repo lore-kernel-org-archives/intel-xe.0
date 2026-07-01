@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C95E4C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 18:32:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CEA3C43602
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 18:36:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8340510F0AF;
-	Wed,  1 Jul 2026 18:32:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="drpaL/67";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA82510F0AF;
- Wed,  1 Jul 2026 18:32:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782930726; x=1814466726;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=qCjBgIVmNJOBA5M7gs8OoVXUZbWieKDY3aAX+ha+gx8=;
- b=drpaL/670yhWHEz4IxWiuEY6B9RBp5t4eJQpY/tTcyVhHxcF1ltVeMld
- Did5f8u4jV9WsOE69T9H3l7HhmWPNjHKKGVU4a7rAImzFVuS5plksHCuZ
- bQBazykO2UzmLedkT6zdakz4FaI7mvTtEJMzgLx7OCHrtPjpKd6mRqMuP
- IDAxAJ+8+dMZcBG53w/+XHyuAPow9TfLBiL4MDX6WWwzFjqMNFYXEvn6c
- wu1J5yPU3JRsCvK651h8MES/gmJMRTfSqc0CJENf2svzexOHLsGG15rnU
- 391OBls1vr4ZbkdYF6NH2XOKfrqmun3e7SvT9vANTJrYEG4GKwqJMQP3B Q==;
-X-CSE-ConnectionGUID: X1ZoDG+4TwyjO5Ts4NhgGg==
-X-CSE-MsgGUID: tXM5ry8xQ8+E3vp1f4fIgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="83727304"
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="83727304"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 11:32:05 -0700
-X-CSE-ConnectionGUID: LizbMcOSQyWSsu+7sPiFVg==
-X-CSE-MsgGUID: PIufW86NRnuKNmyGM/W7hQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="290758014"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 11:32:05 -0700
-Date: Wed, 1 Jul 2026 20:32:02 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [v6,3/4] drm/i915/display: harden shift in
- intel_ddi_compute_config_late()
-In-Reply-To: <20260609095525.570614-4-luciano.coelho@intel.com>
-Message-ID: <25e034f3-1940-f246-aee6-7aaced4b8e51@intel.com>
-References: <20260609095525.570614-4-luciano.coelho@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7A6F10F08E;
+	Wed,  1 Jul 2026 18:36:28 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE37610F08E;
+ Wed,  1 Jul 2026 18:36:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0724647845058189127=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-321272448-1782921155=:605841"
-Content-ID: <e88ec31a-207a-1906-08cb-783ece1edc60@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/xe=3A_Add_support_for_WA_22022079272?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 01 Jul 2026 18:36:27 -0000
+Message-ID: <178293098770.139769.7958234760910346353@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260701165830.2355397-3-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20260701165830.2355397-3-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============0724647845058189127==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323329-321272448-1782921155=:605841
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <3f867306-b4f3-3098-45b6-0d8b5de86746@intel.com>
+== Series Details ==
 
-On Tue, 9 Jun 2026, Luca Coelho wrote:
-> BIT() takes a non-negative shift amount, but cpu_transcoder is of type
-> enum transcoder, which can in theory be INVALID_TRANSCODER (-1).
->
-> This is not a problem with the current implementation, because
-> cpu_transcoder is always valid when this code is reached, but it's
-> more robust to cast to unsigned so the shift is always well-defined.
->
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> ---
-> drivers/gpu/drm/i915/display/intel_ddi.c | 4 ++--
-> 1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 6399b16405c8..51816c5bc80b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4635,8 +4635,8 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
->
-> 	if (crtc_state->master_transcoder == crtc_state->cpu_transcoder) {
-> 		crtc_state->master_transcoder = INVALID_TRANSCODER;
-> -		crtc_state->sync_mode_slaves_mask =
-> -			port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
-> +		crtc_state->sync_mode_slaves_mask = port_sync_transcoders &
-> +			~REG_BIT(crtc_state->cpu_transcoder);
+Series: series starting with [1/2] drm/xe: Add support for WA 22022079272
+URL   : https://patchwork.freedesktop.org/series/169641/
+State : success
 
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
+== Summary ==
 
-BR,
-Micha³
+CI Bug Log - changes from xe-5323-1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d_BAT -> xe-pw-169641v1_BAT
+====================================================
 
-> 	}
->
-> 	return 0;
->
---8323329-321272448-1782921155=:605841--
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5323-1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d -> xe-pw-169641v1
+
+  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5323-1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d: 1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d
+  xe-pw-169641v1: 169641v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169641v1/index.html
+
+--===============0724647845058189127==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Add support for WA 22022079272</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169641/">https://patchwork.freedesktop.org/series/169641/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169641v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169641v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5323-1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d_BAT -&gt; xe-pw-169641v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5323-1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d -&gt; xe-pw-169641v1</li>
+</ul>
+<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5323-1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d: 1fbbf91a9b037639c3c7ffa4f92abb3e701bbf3d<br />
+  xe-pw-169641v1: 169641v1</p>
+
+</body>
+</html>
+
+--===============0724647845058189127==--
