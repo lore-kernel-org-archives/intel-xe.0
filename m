@@ -4,28 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6701FC43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 14:04:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A28A8C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 14:05:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9F710E0F7;
-	Wed,  1 Jul 2026 14:04:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F41810E3A3;
+	Wed,  1 Jul 2026 14:05:16 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF6010E02F;
- Wed,  1 Jul 2026 14:04:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B298310E3A3;
+ Wed,  1 Jul 2026 14:05:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_series_starting_with_=5Bv5=2C1?=
- =?utf-8?q?/5=5D_drm/gpusvm=3A_split_MM_state_flags_out_of_drm=5Fgpusvm=5Fpa?=
- =?utf-8?q?ges=5Fflags?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_series_starting?=
+ =?utf-8?q?_with_=5B1/2=5D_drm/xe=3A_count_UMA_shrinkable_BOs_as_reclaimable?=
+ =?utf-8?q?_without_swap?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Honglei Huang" <honglei1.huang@amd.com>
+To: "aquiles" <achillezongo07@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Jul 2026 14:04:54 -0000
-Message-ID: <178291469424.137420.16398168747324473024@6beec6c84f66>
+Date: Wed, 01 Jul 2026 14:05:14 -0000
+Message-ID: <178291471472.137420.3287259419748326403@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260627035418.3796481-1-honglei1.huang@amd.com>
-In-Reply-To: <20260627035418.3796481-1-honglei1.huang@amd.com>
+References: <20260626112638.2042298-1-achillezongo07@gmail.com>
+In-Reply-To: <20260626112638.2042298-1-achillezongo07@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,43 +43,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v5,1/5] drm/gpusvm: split MM state flags out of drm_gpusvm_pages_flags
-URL   : https://patchwork.freedesktop.org/series/169604/
+Series: series starting with [1/2] drm/xe: count UMA shrinkable BOs as reclaimable without swap
+URL   : https://patchwork.freedesktop.org/series/169600/
 State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_pt.c: In function ‘xe_pt_stage_bind’:
-../drivers/gpu/drm/xe/xe_pt.c:763:47: error: ‘struct xe_svm_range’ has no member named ‘pages’
-  763 |                         xe_res_first_dma(range->pages.dma_addr, 0,
-      |                                               ^~
-../drivers/gpu/drm/xe/xe_pt.c: At top level:
-../drivers/gpu/drm/xe/xe_pt.c:1420:13: warning: ‘xe_pt_svm_userptr_notifier_lock’ defined but not used [-Wunused-function]
- 1420 | static void xe_pt_svm_userptr_notifier_lock(struct xe_vm *vm)
-      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_pt.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:549: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:549: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:549: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:549: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2184: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-[14:04:20] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[14:04:24] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Series author address 'achillezongo07@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1202089/ (on master)
 
 
