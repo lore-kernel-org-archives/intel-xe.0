@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE2C4C43327
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 16:33:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C57F2C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 16:33:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7322010F064;
-	Wed,  1 Jul 2026 16:33:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 880D310F067;
+	Wed,  1 Jul 2026 16:33:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IzA2sFxH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YSM4DBQY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2954310F064
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:33:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41BD110F067
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:33:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782923603; x=1814459603;
+ t=1782923605; x=1814459605;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pQUjeVk7dLora7Dqrt1Cz7lMN/9VvPqJCsA1+3ad4qc=;
- b=IzA2sFxH12l/Uz1HXOtJEUdEG7OumyS5wVnsnIsAR6jhDuzi2zpxa97E
- O8zkiRTBtwcmJSV8kgHVKOVzUXDMk1JdxolP6CVLL6V/bVuLY3EopkebX
- /I8wVJXnz4MsW34WlXPViOPLyAGLMnplPjI18rZQ12FqT7uhDxKUHTReC
- 9areV88amGuP8NBdFO1fvFE/gFEVdha0E8sLcW84PUgHDnAF5oFePRGaw
- kcQL0dY0eZyotyvuYoPLqPGC1nQvSAgUKi4pZlEtLUdbXRYDboxV699Nz
- kkVc7juEVL85hzmo0PAfACTOzoERPesKMqwUM8K3pLc3zIs8V3lJFU2ir w==;
-X-CSE-ConnectionGUID: LSIV44cSTr2SBYVmzJ6MJg==
-X-CSE-MsgGUID: ow935wYfSmW85v3IqA23XA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82779258"
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="82779258"
+ bh=x4KJG5YcbNni7nwvfP9MymrmzwSliJ5IWMjLbe6vI4s=;
+ b=YSM4DBQYYiAWMWDPceziLhn0PYSCuaaznQLLy4pPixfRXHVtYsI42cTu
+ uqZgSW6dc0xjdn6Ewu0sTwN8vwH+hfHwOaUjBWcbt08ujZRmawPLzHvXk
+ j50jN13Iv3srx4DUjHaWUyZLqEGK59O5ikQY3guRgTAXxGmVsDGw2LscL
+ zErPk1gYcJCe6NSR/pVmN+Qx6bW+Hmbbca/U8JtQL9ld72Fv9/is8CXPp
+ XNWbwaIYqM0SbGTRFVK41D1QGKmk4tT8UyNKQNkwk/E1zwBDca56BbGg+
+ If87m/JY6aCah/fMTEi9HsyBvKT3PuYwDvqhUuAm0U38IZm2Yu0FBanUj g==;
+X-CSE-ConnectionGUID: 3Rp4BSP/Tx+nfRQphPIBCQ==
+X-CSE-MsgGUID: vSFOg90tSnOsF4SO+pdrqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82779261"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="82779261"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 09:33:23 -0700
-X-CSE-ConnectionGUID: 5Ykt93nBS2a6M6cCI32l6A==
-X-CSE-MsgGUID: V+UkKAL+R0CEeJZveuzebw==
+ 01 Jul 2026 09:33:25 -0700
+X-CSE-ConnectionGUID: Kh1eOFL7TbqGV7c/JwQOYQ==
+X-CSE-MsgGUID: SGjAytxoSNOMnzKJs/bsNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="256196455"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="256196461"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa003.jf.intel.com with ESMTP; 01 Jul 2026 09:33:21 -0700
+ by orviesa003.jf.intel.com with ESMTP; 01 Jul 2026 09:33:24 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v2 7/8] drm/xe/vm: validate large-page user BO bind alignment
-Date: Wed,  1 Jul 2026 22:03:47 +0530
-Message-ID: <20260701163348.3432358-8-naresh.kumar.g@intel.com>
+Subject: [PATCH v2 8/8] drm/xe/pt: allow selecting the bind leaf PTE level
+Date: Wed,  1 Jul 2026 22:03:48 +0530
+Message-ID: <20260701163348.3432358-9-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260701163348.3432358-1-naresh.kumar.g@intel.com>
 References: <20260701163348.3432358-1-naresh.kumar.g@intel.com>
@@ -66,84 +66,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add VM bind validation for BOs that request 64K, 2M, or 1G pages.
+Add a target_leaf_level field to the page-table bind walk and use it
+to control the level where leaf entries are emitted.
 
-When a BO is created with XE_BO_FLAG_NEEDS_64K, XE_BO_FLAG_NEEDS_2M,
-or XE_BO_FLAG_NEEDS_1G, require the bind offset, virtual address, and
-range to be aligned to the requested page size for map operations.
-Skip these checks for unmap and unmap-all.
+The default bind walk emits leaf PTEs at level 0, while huge mappings
+are otherwise chosen through xe_pt_hugepte_possible(). Add an explicit
+target leaf level so the walk can stop earlier when the VMA requests a
+larger mapping size.
 
-Also allow the corresponding VMA page table flags in the user-visible
-VMA flag mask.
+Use level 1 for 2M PDE mappings and level 2 for 1G PDP mappings, while
+keeping level 0 for normal 4K/64K mappings. Keep the existing huge-page
+selection logic for the default level-0 case.
 
-This prevents invalid bind requests for large-page BOs from reaching
-later VM setup paths.
+This allows the bind path to emit 2M and 1G leaf entries when
+requested by the VMA.
 
-v2:(sashiko)
-- add 64K alignment validation alongside 2M and 1G
-  for user bindpaths
-- keep large-page alignment checks skipped for
-  UNMAP and UNMAP_ALL
-- refine commit message wordings
+v2:
+-Avoid using max_level field to control walk depth
+-use target_leaf_level field to preserve normal walk
+ environment
+-keep default huge-page heuristic only for the level0
+ default path
+-refine commit meessage
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 35 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 34 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pt.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 50ca29a79533..3fc5f1db93d0 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -721,7 +721,10 @@ static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask,
- 	XE_VMA_DUMPABLE |		    \
- 	XE_VMA_SYSTEM_ALLOCATOR |           \
- 	DRM_GPUVA_SPARSE |		    \
--	XE_VMA_MADV_AUTORESET)
-+	XE_VMA_MADV_AUTORESET |		    \
-+	XE_VMA_PTE_64K |		    \
-+	XE_VMA_PTE_2M  |		    \
-+	XE_VMA_PTE_1G)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 0959e0e88a14..245dadc7ab9d 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -302,6 +302,13 @@ struct xe_pt_stage_bind_walk {
+ 	bool needs_64K;
+ 	/** @clear_pt: clear page table entries during the bind walk */
+ 	bool clear_pt;
++	/** @target_leaf_level: The page-table level at which to emit leaf PTEs.
++	 * 0 for normal 4K/64K mappings, whereas 1 for 2M huge pages and 2 for
++	 * 1G huge pages. The walk still traverses from the root down; this field
++	 * instructs xe_pt_stage_bind_entry() to treat the given level as leaf
++	 * instead going further down.
++	 */
++	u32 target_leaf_level;
+ 	/**
+ 	 * @vma: VMA being mapped
+ 	 */
+@@ -530,7 +537,9 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 	u64 pte;
  
- static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
- 				  u8 tile_mask)
-@@ -3835,6 +3838,36 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 		}
+ 	/* Is this a leaf entry ?*/
+-	if (level == 0 || xe_pt_hugepte_possible(addr, next, level, xe_walk)) {
++	if (level == xe_walk->target_leaf_level || level == 0 ||
++	    (xe_walk->target_leaf_level == 0 &&
++	     xe_pt_hugepte_possible(addr, next, level, xe_walk))) {
+ 		struct xe_res_cursor *curs = xe_walk->curs;
+ 		struct xe_bo *bo = xe_vma_bo(xe_walk->vma);
+ 		bool is_null_or_purged = xe_vma_is_null(xe_walk->vma) ||
+@@ -773,6 +782,11 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
  	}
  
-+	if (bo->flags & XE_BO_FLAG_NEEDS_64K &&
-+	    (op != DRM_XE_VM_BIND_OP_UNMAP &&
-+	     op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
-+		if (XE_IOCTL_DBG(xe, obj_offset & (SZ_64K - 1)) ||
-+		    XE_IOCTL_DBG(xe, addr & (SZ_64K - 1)) ||
-+		    XE_IOCTL_DBG(xe, range & (SZ_64K - 1))) {
-+			return -EINVAL;
-+		}
-+	}
+ 	xe_walk.needs_64K = (vm->flags & XE_VM_FLAG_64K);
++	if (vma->gpuva.flags & XE_VMA_PTE_2M)
++		xe_walk.target_leaf_level = 1;
++	else if (vma->gpuva.flags & XE_VMA_PTE_1G)
++		xe_walk.target_leaf_level = 2;
 +
-+	if (bo->flags & XE_BO_FLAG_NEEDS_2M &&
-+	    (op != DRM_XE_VM_BIND_OP_UNMAP &&
-+	     op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
-+		if (XE_IOCTL_DBG(xe, obj_offset & (SZ_2M - 1)) ||
-+		    XE_IOCTL_DBG(xe, addr & (SZ_2M - 1)) ||
-+		    XE_IOCTL_DBG(xe, range & (SZ_2M - 1))) {
-+			return -EINVAL;
-+		}
-+	}
-+
-+	if (bo->flags & XE_BO_FLAG_NEEDS_1G &&
-+	    (op != DRM_XE_VM_BIND_OP_UNMAP &&
-+	     op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
-+		if (XE_IOCTL_DBG(xe, obj_offset & (SZ_1G - 1)) ||
-+		    XE_IOCTL_DBG(xe, addr & (SZ_1G - 1)) ||
-+		    XE_IOCTL_DBG(xe, range & (SZ_1G - 1))) {
-+			return -EINVAL;
-+		}
-+	}
-+
- 	coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
- 	if (bo->cpu_caching) {
- 		if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
+ 	if (clear_pt)
+ 		goto walk_pt;
+ 
 -- 
 2.43.0
 
