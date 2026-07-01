@@ -4,56 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD73DC44506
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2F03C44508
 	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 12:58:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EF9B10EFF3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 569B510EFF1;
 	Wed,  1 Jul 2026 12:58:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="NZ3EYI40";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=rcpassos.me header.i=@rcpassos.me header.b="cY5TEfE6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=purelymail.com header.i=@purelymail.com header.b="CWDlA1L9";
 	dkim-atps=neutral
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5080F10E07E;
- Wed, 24 Jun 2026 11:38:35 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4glg1M49jqz9vGR;
- Wed, 24 Jun 2026 13:38:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1782301111; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=8HV2lLqgXjOl+Lxo/8p13Wzs0cePcH00ansQo1+4Niw=;
- b=NZ3EYI40wV11NVQY3x+H8q3+RTUhftybHWSHPj8robJhre4p5i3eVvDRHcXB1CVQc8Ogvr
- hYS1kWl4VKPG/Pj/T4XGgP0pr0QukSZH5Dhj0UGDu9Q0IsVjsD9aVyHUSzTYmzHch0IJqG
- Y9RT0HMmVyeaBR9je/9KBGwkE0AjjsiwBaWDyFa1H7KKn88fZNsce5hGGyAvFKNWrJauhH
- qSjFZymChl1TEZYNoDykbSVVcCQ9OdIRoJoKHQS94SVbigK3iiX2ugj5p5yBhZUIMHK+Ii
- hNYTwCPcNvZrV2nxe/0aozEkOWzC3VaqbkPraPGJFe9i+DJDyH2Wr366IXc7nw==
-Message-ID: <27d0f7c4d1c8c3beaa0ef1732d2cc4c773826575.camel@mailbox.org>
-Subject: Re: [RFC] drm/sched: Replace completion with a flush
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, 
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
- Brost	 <matthew.brost@intel.com>, amd-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Wed, 24 Jun 2026 13:38:28 +0200
-In-Reply-To: <fd5e55f6-c6be-48b4-8b87-c3d6d6d0a6ff@igalia.com>
-References: <20260611123423.39819-1-tvrtko.ursulin@igalia.com>
- <ba8ea856526d54753da68deefe7b77f15c908fa3.camel@mailbox.org>
- <fd5e55f6-c6be-48b4-8b87-c3d6d6d0a6ff@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from sendmail.purelymail.com (sendmail.purelymail.com
+ [34.202.193.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C12510E2C4
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 01:22:10 +0000 (UTC)
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256;
+ b=cY5TEfE6AXUENknDiPE5GUfaWMaCpae8IgWdtuUuKJAwyEN4L8f2kF3/UfGSymKniV0Ii7Zf83cHCivNBSlHnZEPCju6rjInu0NOaXKTA2mRMpgl/2xMOPdz4P9jSbzRRDc2/KxVmEKVrLmBf1qug7dO0/HG2MZ76T6XehUoPTjEztokDlf2F/nG4Gj9vbpzuSXawkleZ81I2518h3vf0MWHkZHpHE7/84f66kiR/2dhAS6Mzoqv2nRCJSGbfNdv/y6TNYGmEoRn42oNeNmGgQ/FST81IQQ0YB7WbEKAYDvG+pZf8B1XufpqDYuXOOiot9pfZM7/hd5lN/aDFZcGWA==;
+ s=purelymail2; d=rcpassos.me; v=1;
+ bh=b9Lc5ANznPsadDX0Lpk40jsOORthKNT3ENHScNXKTHE=;
+ h=Received:From:To:Subject:Date; 
+DKIM-Signature: a=rsa-sha256;
+ b=CWDlA1L95vUATAxDjikT8ipA6OG17MGPpxv42xu3Kh+Ej4g/hG/5R4v8266n2O+Ia+SqIhZa/Gt1T+1lLTOB0PL9WiijEZDEBQmAd/UyagMWgXovq5IasKnJ1vHbVWYD9y0xIJ/Q2RdH9700BaN7K06xu+2QrgbTORB39m0362PWEJv3bHyi1VGJNpmRlhE6AO4fzBoDv+6cVkHFsCtl4lp0ft6cCE+4sfgszx1FGSk5vRNqajLubxap/jl2F83gt6Ew0IMSBHt1Iw8fAeQ3i/eku30IfZhq6RQZtWHicrTgD/wLWzTD/M/avkc2Qaa5PlY5P+yh9oxNvwMEbjsqHw==;
+ s=purelymail2; d=purelymail.com; v=1;
+ bh=b9Lc5ANznPsadDX0Lpk40jsOORthKNT3ENHScNXKTHE=;
+ h=Feedback-ID:Received:From:To:Subject:Date; 
+Feedback-ID: 45355:7809:null:purelymail
+X-Pm-Original-To: intel-xe@lists.freedesktop.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -604878159; 
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Wed, 01 Jul 2026 01:21:25 +0000 (UTC)
+From: Rafael Passos <rafael@rcpassos.me>
+To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de
+Cc: Rafael Passos <rafael@rcpassos.me>, Randy Dunlap <rdunlap@infradead.org>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH RESEND v2] Documentation: xe_drm: fix chars used for subsection
+Date: Tue, 30 Jun 2026 22:20:58 -0300
+Message-ID: <20260701012141.167868-1-rafael@rcpassos.me>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-MBO-RS-META: 31ueit5ouojyds81y79rjgsi9gsab7ac
-X-MBO-RS-ID: 923db6dc4facddbe1ff
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by Purelymail
+Content-Type: text/plain; charset=UTF-8
 X-Mailman-Approved-At: Wed, 01 Jul 2026 12:56:31 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,58 +59,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-06-23 at 08:19 +0100, Tvrtko Ursulin wrote:
-> On 17/06/2026 09:38, Philipp Stanner wrote:
-> >=20
-> > > @@ -576,6 +578,13 @@ void drm_sched_entity_select_rq(struct drm_sched=
-_entity *entity)
-> > > =C2=A0=C2=A0 return;
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0 spin_lock(&entity->lock);
-> > > +
-> > > + if (entity->stopped) {
-> > > + spin_unlock(&entity->lock);
-> > > + return;
-> > > +
-> > > + }
-> >=20
-> > Seems unrelated? Why wasn't this needed semantically before?
->=20
-> It solidifies the guarantee drm_sched_entity_kill() expects that the=20
-> scheduler assigned to an entity cannot change after entity has been stopp=
-ed.
->=20
-> There we have this sequence:
->=20
-> =C2=A0=C2=A0 spin_lock(&entity->lock);
-> =C2=A0=C2=A0 entity->stopped =3D true;
-> =C2=A0=C2=A0 sched =3D drm_sched_rq_remove_entity(entity->rq, entity);
-> =C2=A0=C2=A0 spin_unlock(&entity->lock);
->=20
-> =C2=A0=C2=A0 if (sched)
-> =C2=A0=C2=A0=C2=A0 drm_sched_flush_run_work(sched);
->=20
-> That is, without that check, in theory, an evil driver could race=20
-> drm_sched_entity_select_rq() (via drm_sched_job_arm()) and=20
-> drm_sched_entity_kill(). I am not sure if any driver can actually do=20
-> that at the moment but it felt sensible to express it in code.
-
-So, I was mentally in my Rust code the last weeks; re-evaluating this,
-I see what you want to achieve.
-
-I think this is then a valid robustness addition. However:
-
- * entity->lock's documentation currently does not state that entity-
-   >stopped is also protected by that lock. That needs an update.
- * Separate patch is desirable
- * That patch should investigate whether entity->stopped can
-   consistently be locked, i.e. drm_sched_entity_is_idle()
- * It might be a good opportunity to document the idempotence status of
-   drm_sched_entity_kill() :)
+Fixes "ERROR: A level 2 section cannot be used here".
+Equal signs are reserved for document titles.
+This file docs gets imported by driver-uapi.rst,
+and the page title is defined there.
 
 
-P.
+Signed-off-by: Rafael Passos <rafael@rcpassos.me>
+---
+Hi, I send the v1 for this patch only for the linux-doc list.
+The v2 fixes this, and has improvements to the commit message.
+
+It was reviewed and tested by Randy Dunlap.
+I decided to re-send since the original emails was not in picked by lore (n=
+ot sure why).
+https://lore.kernel.org/intel-xe/1a20e4bf-fd7f-453e-b7a8-c7feb0b077c6@infra=
+dead.org/
+
+In case it helps, here are the tags Randy added in my first send:
+Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+Tested-by: Randy Dunlap <rdunlap@infradead.org>
+
+Thanks,
+Rafael Passos
+
+ include/uapi/drm/xe_drm.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 48e9f1fdb78d..4dfb30e6c8a8 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -2537,21 +2537,21 @@ struct drm_xe_exec_queue_set_property {
+  * Refer to Documentation/netlink/specs/drm_ras.yaml for complete interfac=
+e specification.
+  *
+  * Node Registration
+- * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++ * -----------------
+  *
+  * The driver registers DRM RAS nodes for each error severity level.
+  * enum drm_xe_ras_error_severity defines the node-id, while DRM_XE_RAS_ER=
+ROR_SEVERITY_NAMES maps
+  * node-id to node-name.
+  *
+  * Error Classification
+- * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++ * --------------------
+  *
+  * Each node contains a list of error counters. Each error is identified b=
+y a error-id and
+  * an error-name. enum drm_xe_ras_error_component defines the error-id, wh=
+ile
+  * DRM_XE_RAS_ERROR_COMPONENT_NAMES maps error-id to error-name.
+  *
+  * User Interface
+- * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++ * --------------
+  *
+  * To retrieve error values of a error counter, userspace applications sho=
+uld
+  * follow the below steps:
+--=20
+2.53.0
+
