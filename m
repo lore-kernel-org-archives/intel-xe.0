@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F55AC43327
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 16:33:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE2C4C43327
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 16:33:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3BAA10F065;
-	Wed,  1 Jul 2026 16:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7322010F064;
+	Wed,  1 Jul 2026 16:33:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EVL4VvIr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IzA2sFxH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D8E10F064
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:33:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2954310F064
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:33:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782923601; x=1814459601;
+ t=1782923603; x=1814459603;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t5OdT2h7e7Xz3Z9NvGeAV2Jw4Mfoh7fytRO1cwnqURE=;
- b=EVL4VvIryrutD2V3XS+LKF8mNNi2xa3WdY14yODbEEaeHW0R6gUUd3SA
- sgvNh2d9gihSAl7vc6Rm7/57XgPJ2Up8p5lhc0oT3rGTW63J4VpBELN/u
- 7mHw0pTDOqxXgvdiJVU7ES2pkpJV94PEHOxLRA9nnVZNeBZAavgjxt8I4
- EchyxPykvnM4URNQf0jvOtjG1bwazxkwFT2mWZik3iUeZdZ2cASlq+OD9
- KvarXhp4dwZE2bGUq5nMkXzJWwob1kAeOkEMXKIzTXFpJxWwaXBjQRngS
- CbHQgqopQd0+g7GqPWSvlKiwbeMlo+6T+DfkQfBYdg1uR6N5awbeeuHeb A==;
-X-CSE-ConnectionGUID: X5dcEG2ZSEyxT08BCPTAUQ==
-X-CSE-MsgGUID: 4W2Ew2yWQiSHp/pwoa1Jbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82779256"
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="82779256"
+ bh=pQUjeVk7dLora7Dqrt1Cz7lMN/9VvPqJCsA1+3ad4qc=;
+ b=IzA2sFxH12l/Uz1HXOtJEUdEG7OumyS5wVnsnIsAR6jhDuzi2zpxa97E
+ O8zkiRTBtwcmJSV8kgHVKOVzUXDMk1JdxolP6CVLL6V/bVuLY3EopkebX
+ /I8wVJXnz4MsW34WlXPViOPLyAGLMnplPjI18rZQ12FqT7uhDxKUHTReC
+ 9areV88amGuP8NBdFO1fvFE/gFEVdha0E8sLcW84PUgHDnAF5oFePRGaw
+ kcQL0dY0eZyotyvuYoPLqPGC1nQvSAgUKi4pZlEtLUdbXRYDboxV699Nz
+ kkVc7juEVL85hzmo0PAfACTOzoERPesKMqwUM8K3pLc3zIs8V3lJFU2ir w==;
+X-CSE-ConnectionGUID: LSIV44cSTr2SBYVmzJ6MJg==
+X-CSE-MsgGUID: ow935wYfSmW85v3IqA23XA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82779258"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="82779258"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 09:33:21 -0700
-X-CSE-ConnectionGUID: suOMNmujT/O/zztdPOqdkA==
-X-CSE-MsgGUID: W8+6BtQCRPaIaYlfwrIgMQ==
+ 01 Jul 2026 09:33:23 -0700
+X-CSE-ConnectionGUID: 5Ykt93nBS2a6M6cCI32l6A==
+X-CSE-MsgGUID: V+UkKAL+R0CEeJZveuzebw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="256196449"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="256196455"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa003.jf.intel.com with ESMTP; 01 Jul 2026 09:33:20 -0700
+ by orviesa003.jf.intel.com with ESMTP; 01 Jul 2026 09:33:21 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v2 6/8] drm/xe/vm: apply debug page-size policy to VMA map
- flags
-Date: Wed,  1 Jul 2026 22:03:46 +0530
-Message-ID: <20260701163348.3432358-7-naresh.kumar.g@intel.com>
+Subject: [PATCH v2 7/8] drm/xe/vm: validate large-page user BO bind alignment
+Date: Wed,  1 Jul 2026 22:03:47 +0530
+Message-ID: <20260701163348.3432358-8-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260701163348.3432358-1-naresh.kumar.g@intel.com>
 References: <20260701163348.3432358-1-naresh.kumar.g@intel.com>
@@ -67,60 +66,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Propagate the debug user BO page-size selection into VM bind map
-operations.
+Add VM bind validation for BOs that request 64K, 2M, or 1G pages.
 
-When page-size allocation control is supported and the BO is a user BO,
-set the corresponding VMA PTE flag during bind-op construction based on
-the BO page-size requirement flags. This covers 64K, 2M, and 1G modes
-and allows the debug page-size allocation policy to influence page-table
-mapping behavior for user allocations.
+When a BO is created with XE_BO_FLAG_NEEDS_64K, XE_BO_FLAG_NEEDS_2M,
+or XE_BO_FLAG_NEEDS_1G, require the bind offset, virtual address, and
+range to be aligned to the requested page size for map operations.
+Skip these checks for unmap and unmap-all.
+
+Also allow the corresponding VMA page table flags in the user-visible
+VMA flag mask.
+
+This prevents invalid bind requests for large-page BOs from reaching
+later VM setup paths.
+
+v2:(sashiko)
+- add 64K alignment validation alongside 2M and 1G
+  for user bindpaths
+- keep large-page alignment checks skipped for
+  UNMAP and UNMAP_ALL
+- refine commit message wordings
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 35 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 34 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 080c2fff0e95..50ca29a79533 100644
+index 50ca29a79533..3fc5f1db93d0 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2390,6 +2390,27 @@ static void xe_svm_prefetch_gpuva_ops_fini(struct drm_gpuva_ops *ops)
- 	}
- }
+@@ -721,7 +721,10 @@ static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask,
+ 	XE_VMA_DUMPABLE |		    \
+ 	XE_VMA_SYSTEM_ALLOCATOR |           \
+ 	DRM_GPUVA_SPARSE |		    \
+-	XE_VMA_MADV_AUTORESET)
++	XE_VMA_MADV_AUTORESET |		    \
++	XE_VMA_PTE_64K |		    \
++	XE_VMA_PTE_2M  |		    \
++	XE_VMA_PTE_1G)
  
-+static void xe_vma_apply_debug_page_size_flag(struct xe_vm *vm,
-+					      struct xe_vma_op *op,
-+					      struct xe_bo *bo)
-+{
-+	if (!xe_device_supports_multi_pagesize(vm->xe))
-+		return;
+ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
+ 				  u8 tile_mask)
+@@ -3835,6 +3838,36 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 		}
+ 	}
+ 
++	if (bo->flags & XE_BO_FLAG_NEEDS_64K &&
++	    (op != DRM_XE_VM_BIND_OP_UNMAP &&
++	     op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
++		if (XE_IOCTL_DBG(xe, obj_offset & (SZ_64K - 1)) ||
++		    XE_IOCTL_DBG(xe, addr & (SZ_64K - 1)) ||
++		    XE_IOCTL_DBG(xe, range & (SZ_64K - 1))) {
++			return -EINVAL;
++		}
++	}
 +
-+	if (!bo)
-+		return;
++	if (bo->flags & XE_BO_FLAG_NEEDS_2M &&
++	    (op != DRM_XE_VM_BIND_OP_UNMAP &&
++	     op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
++		if (XE_IOCTL_DBG(xe, obj_offset & (SZ_2M - 1)) ||
++		    XE_IOCTL_DBG(xe, addr & (SZ_2M - 1)) ||
++		    XE_IOCTL_DBG(xe, range & (SZ_2M - 1))) {
++			return -EINVAL;
++		}
++	}
 +
-+	if (!(bo->flags & XE_BO_FLAG_USER))
-+		return;
++	if (bo->flags & XE_BO_FLAG_NEEDS_1G &&
++	    (op != DRM_XE_VM_BIND_OP_UNMAP &&
++	     op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
++		if (XE_IOCTL_DBG(xe, obj_offset & (SZ_1G - 1)) ||
++		    XE_IOCTL_DBG(xe, addr & (SZ_1G - 1)) ||
++		    XE_IOCTL_DBG(xe, range & (SZ_1G - 1))) {
++			return -EINVAL;
++		}
++	}
 +
-+	if (bo->flags & XE_BO_FLAG_NEEDS_64K)
-+		op->map.vma_flags |= XE_VMA_PTE_64K;
-+	else if (bo->flags & XE_BO_FLAG_NEEDS_2M)
-+		op->map.vma_flags |= XE_VMA_PTE_2M;
-+	else if (bo->flags & XE_BO_FLAG_NEEDS_1G)
-+		op->map.vma_flags |= XE_VMA_PTE_1G;
-+}
-+
- /*
-  * Create operations list from IOCTL arguments, setup operations fields so parse
-  * and commit steps are decoupled from IOCTL arguments. This step can fail.
-@@ -2485,6 +2506,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 			op->map.pat_index = pat_index;
- 			op->map.invalidate_on_bind =
- 				__xe_vm_needs_clear_scratch_pages(vm, flags);
-+			xe_vma_apply_debug_page_size_flag(vm, op, bo);
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
- 			struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
- 			struct xe_tile *tile;
+ 	coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
+ 	if (bo->cpu_caching) {
+ 		if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
 -- 
 2.43.0
 
