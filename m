@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F336C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 11:04:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECED2C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jul 2026 11:32:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0194C10EEC8;
-	Wed,  1 Jul 2026 11:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A18AD10EF04;
+	Wed,  1 Jul 2026 11:32:54 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDC2810EEC8;
- Wed,  1 Jul 2026 11:04:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C51B610EF04;
+ Wed,  1 Jul 2026 11:32:53 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============9201202552766217124=="
+ boundary="===============8122241778528882293=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_LT_PHY_related_SSC_writ?=
- =?utf-8?q?es_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_drm=5Fras_netlink_error?=
+ =?utf-8?q?_event_support_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Tauro, Riana" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Jul 2026 11:04:08 -0000
-Message-ID: <178290384896.135912.18113784122634092298@6beec6c84f66>
+Date: Wed, 01 Jul 2026 11:32:53 -0000
+Message-ID: <178290557379.135894.10493214488948703003@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260701091503.1302226-1-suraj.kandpal@intel.com>
-In-Reply-To: <20260701091503.1302226-1-suraj.kandpal@intel.com>
+References: <20260701094409.129131-5-riana.tauro@intel.com>
+In-Reply-To: <20260701094409.129131-5-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9201202552766217124==
+--===============8122241778528882293==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: Fix LT PHY related SSC writes (rev2)
-URL   : https://patchwork.freedesktop.org/series/169562/
+Series: Add drm_ras netlink error event support (rev4)
+URL   : https://patchwork.freedesktop.org/series/166765/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3_BAT -> xe-pw-169562v2_BAT
+CI Bug Log - changes from xe-5318-1441c1f8fee3995463a797cb1a759fe9f7ccb047_BAT -> xe-pw-166765v4_BAT
 ====================================================
 
 Summary
@@ -65,10 +65,10 @@ Summary
 
   
 
-Participating hosts (13 -> 12)
+Participating hosts (13 -> 13)
 ------------------------------
 
-  Missing    (1): bat-ptl-1 
+  No changes in participating hosts
 
 
 Changes
@@ -80,17 +80,17 @@ Changes
 Build changes
 -------------
 
-  * Linux: xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3 -> xe-pw-169562v2
+  * Linux: xe-5318-1441c1f8fee3995463a797cb1a759fe9f7ccb047 -> xe-pw-166765v4
 
   IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3: 4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3
-  xe-pw-169562v2: 169562v2
+  xe-5318-1441c1f8fee3995463a797cb1a759fe9f7ccb047: 1441c1f8fee3995463a797cb1a759fe9f7ccb047
+  xe-pw-166765v4: 166765v4
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169562v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166765v4/index.html
 
---===============9201202552766217124==
+--===============8122241778528882293==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,32 +110,32 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>Fix LT PHY related SSC writes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169562/">https://patchwork.freedesktop.org/series/169562/</a></td></tr>
+<tr><td><b>Series:</b></td><td>Add drm_ras netlink error event support (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166765/">https://patchwork.freedesktop.org/series/166765/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169562v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169562v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166765v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166765v4/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3_BAT -&gt; xe-pw-169562v2_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5318-1441c1f8fee3995463a797cb1a759fe9f7ccb047_BAT -&gt; xe-pw-166765v4_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-ptl-1 </p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
 <h2>Changes</h2>
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3 -&gt; xe-pw-169562v2</li>
+<li>Linux: xe-5318-1441c1f8fee3995463a797cb1a759fe9f7ccb047 -&gt; xe-pw-166765v4</li>
 </ul>
 <p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5317-4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3: 4847fd44d1663d4ea8bbfc2f6e178f60a377bbb3<br />
-  xe-pw-169562v2: 169562v2</p>
+  xe-5318-1441c1f8fee3995463a797cb1a759fe9f7ccb047: 1441c1f8fee3995463a797cb1a759fe9f7ccb047<br />
+  xe-pw-166765v4: 166765v4</p>
 
 </body>
 </html>
 
---===============9201202552766217124==--
+--===============8122241778528882293==--
