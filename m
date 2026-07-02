@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9A92C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 01:24:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B0C6C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 01:31:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F71A10E400;
-	Thu,  2 Jul 2026 01:24:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F190210E0B7;
+	Thu,  2 Jul 2026 01:31:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U3tnnHx4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F9eVsAaX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2999010E400
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 01:24:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1385710E0B7
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 01:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782955479; x=1814491479;
+ t=1782955911; x=1814491911;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ctpQ78W0lSbJOHnoQkwspXnJShQ/RwnX315jTlQMbDk=;
- b=U3tnnHx4aMYF22QnXD0/5RW3kSVbWm5QwZeq+2EGRxXZ66irr+1WYPtt
- yxHMdXWtObpCuLgcASn8UaGfjsmTwQ48jXtXTvbLAdaBuXf3Ps9QLlIq6
- rlClzj3kI915d3RNbZ9YWZMldsFDP+5xRnE9ELmxbowzYB/FVic1VNaBH
- 4DxP1/+MJpvh/2B7wPQbtguiA7DgmgVgonOjF5lJWYgNQn02lsEjk2D/L
- T0k9Yxmr6zgxYSukcfbBf45BkuJOxF26WScb74xAusPKduMxHyVTxMEtq
- tSqEv163190xPgQSzevJSig53WAVA24U7UW/pnGD5s91oNC8ogLZHwIfj w==;
-X-CSE-ConnectionGUID: a6Mu31nJTvCkRaY2328aPw==
-X-CSE-MsgGUID: GL3OpfQ2QM29jXDBu0Nmbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82688435"
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="82688435"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 18:24:38 -0700
-X-CSE-ConnectionGUID: HGIktfkMSq6AT4OZCvVlNQ==
-X-CSE-MsgGUID: ogIeEa1ORPecpIdEGVYojg==
+ bh=lAOaqqeOJr+LdzRTRWlQD9YWQUEY+iQJplpIs/yGEWs=;
+ b=F9eVsAaXbXfcAXN5241JOAiI4Gg5ByRRU02HUwwUm8ZtwtcdgLgjYhJ7
+ +Dggl5iKbB9JpPB95F+5ecWPUTMAiiAIyIaRRvdaJfnD7CAlFoU4FZOvG
+ UxYJZS/waew4NvQcV2+/ZhGn/bAS2Nm5xx3uRY78dtN8R2xzSO5CEUNNQ
+ jl2fDgQF7jMciL57ER8l3n5L1YxgA0XNtaX5OaOX3jZL8tfNerD+WHFXz
+ SORoiPyk6a3kfVfoAbir21hQjBCjraUDVQo9adOa2ooqu/k79u8OwCkxC
+ bT9vusKb3aleB+phcFbxo2FkLNSKp74iD4vxMwSCFnHun1Te8zxVbUrXV g==;
+X-CSE-ConnectionGUID: ok1g9vWpRxqJIeRdylyUIg==
+X-CSE-MsgGUID: /GZTwpjeRTeWvIYwrNycLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="83689565"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="83689565"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 18:31:50 -0700
+X-CSE-ConnectionGUID: oKnQ9aouTm2w/4PLg/vBoQ==
+X-CSE-MsgGUID: z2acP7KRSLGsLJH5XnDegw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="257604364"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 18:24:39 -0700
-From: Matthew Brost <matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="275927411"
+Received: from dut4072bmgfrd.fm.intel.com ([10.105.8.119])
+ by fmviesa002.fm.intel.com with ESMTP; 01 Jul 2026 18:31:50 -0700
+From: Zongyao Bai <zongyao.bai@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH] drm/xe: Fix PTE index in xe_vm_populate_pgtable() for chunked
- binds
-Date: Wed,  1 Jul 2026 18:24:34 -0700
-Message-Id: <20260702012434.3861171-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: matthew.brost@intel.com,
+	Zongyao Bai <zongyao.bai@intel.com>
+Subject: [PATCH] drm/xe/vm: Drop ASID after TLB invalidation
+Date: Thu,  2 Jul 2026 01:31:47 +0000
+Message-ID: <20260702013147.2446299-1-zongyao.bai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,66 +64,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_vm_populate_pgtable() indexed the source PTE array (update->pt_entries)
-by the per-call loop counter, assuming each call starts at the first entry
-of the update. That holds for the CPU bind path
-(xe_migrate_update_pgtables_cpu), which populates a whole update in a single
-call, but not for the GPU bind path: write_pgtable() splits an update into
-MAX_PTE_PER_SDI (510) sized MI_STORE_DATA_IMM chunks, invoking the populate
-callback once per chunk with an advancing qword_ofs but a fresh command-
-buffer destination pointer.
+xe_vm_close() clears vm->size before flushing the VM TLBs, while the
+ASID remains in asid_to_vm until final teardown. A late GPU page fault
+can still resolve the closed VM, fail in handle_pagefault_start(), and
+send an unsuccessful response while invalidation is pending, which may
+trigger IOMMU CAT and engine reset.
 
-As a result, every chunk after the first re-read pt_entries from index 0
-instead of from its true offset, so PTEs beyond the first 510 entries of a
-single update were programmed with the wrong physical pages, shifting the
-mapping by exactly MAX_PTE_PER_SDI pages.
+Erase the ASID after xe_tlb_inval_vm() returns, so subsequent GPU
+faults for this ASID cannot resolve the closing VM. xe_tlb_inval_vm()
+waits for invalidation completion before returning.
 
-This stayed latent because a single update only exceeds 510 qwords when a
-large (e.g. 2M) region is bound as individual 4K PTEs rather than a single
-huge-page entry, which happens when the backing store is sufficiently
-fragmented. It was surfaced by the BO defrag path, which deliberately
-rebinds such fragmented ranges via the GPU bind path, producing
-deterministic data corruption offset by 510 pages.
-
-Index pt_entries by the chunk's absolute offset relative to update->ofs so
-both the CPU and GPU paths pick the correct entries.
-
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: stable@vger.kernel.org
-Assisted-by: GitHub_Copilot:claude-opus-4.8
+Assisted-by: GitHub-Copilot:claude-sonnet-4.6
+Signed-off-by: Zongyao Bai <zongyao.bai@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 17 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm_types.h |  5 +++++
+ 2 files changed, 21 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 00cef6ff17cc..7970b4ed95b5 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1024,12 +1024,22 @@ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *t
- 	u64 *ptr = data;
- 	u32 i;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 080c2fff0e95..42d5a9de2452 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1864,6 +1864,21 @@ static void xe_vm_close(struct xe_vm *vm)
+ 		xe_svm_notifier_unlock(vm);
+ 	up_write(&vm->lock);
  
 +	/*
-+	 * @qword_ofs is the absolute entry offset within the page table, while
-+	 * @ptes is indexed relative to @update->ofs (its first entry). The GPU
-+	 * path (write_pgtable) splits a single update into MAX_PTE_PER_SDI-sized
-+	 * chunks, calling this with an advancing @qword_ofs but a fresh @data
-+	 * pointer per chunk, so translate back into a @ptes index rather than
-+	 * assuming the chunk starts at ptes[0].
++	 * Drop the ASID lookup after TLB invalidation, when no further GPU faults
++	 * are expected for this ASID.
 +	 */
- 	for (i = 0; i < num_qwords; i++) {
-+		u32 idx = qword_ofs - update->ofs + i;
++	if (bound && xe->info.has_asid && vm->usm.asid &&
++	    !(vm->flags & XE_VM_FLAG_MIGRATION)) {
++		void *lookup;
 +
- 		if (map)
- 			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
--				  sizeof(u64), u64, ptes[i].pte);
-+				  sizeof(u64), u64, ptes[idx].pte);
- 		else
--			ptr[i] = ptes[i].pte;
-+			ptr[i] = ptes[idx].pte;
- 	}
++		down_write(&xe->usm.lock);
++		lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
++		if (!drm_WARN_ON(&xe->drm, lookup != vm))
++			vm->usm.asid_removed_from_lookup = true;
++		up_write(&xe->usm.lock);
++	}
++
+ 	if (bound)
+ 		drm_dev_exit(idx);
  }
+@@ -1960,7 +1975,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	up_write(&vm->lock);
  
+ 	down_write(&xe->usm.lock);
+-	if (vm->usm.asid) {
++	if (vm->usm.asid && !vm->usm.asid_removed_from_lookup) {
+ 		void *lookup;
+ 
+ 		xe_assert(xe, xe->info.has_asid);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 635ed29b9a69..0d451ac0e73b 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -355,6 +355,11 @@ struct xe_vm {
+ 		 * get a flood of faults to the same VMA
+ 		 */
+ 		struct xe_vma *last_fault_vma;
++		/**
++		 * @asid_removed_from_lookup: Set once the ASID has already
++		 * been removed from asid_to_vm early in xe_vm_close().
++		 */
++		bool asid_removed_from_lookup;
+ 	} usm;
+ 
+ 	/** @error_capture: allow to track errors */
 -- 
-2.34.1
+2.43.0
 
