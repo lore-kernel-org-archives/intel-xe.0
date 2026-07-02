@@ -4,59 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91D18C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 07:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE43C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 07:21:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47A9210E08E;
-	Thu,  2 Jul 2026 07:15:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8378310E468;
+	Thu,  2 Jul 2026 07:21:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OERyqQhz";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="TZcvPhhB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 027E910E08E;
- Thu,  2 Jul 2026 07:15:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782976503; x=1814512503;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9jBboZnHLsZS3CzKFHlRL6PBYVcg6MqZlVo7Y+9m31M=;
- b=OERyqQhzgKR2qRwVWW5rALajty5N2B7r8+ny7nTpTKsc07BEYMXLzjzl
- b9wfG68QDlj1fKVrEStFvdbghHGzDDzwQw72IqkZiMeqpLoIzbSrVFSFk
- jT/g2YGf/tBFM3OmnjOgmwIvUl+qLbuuR0HmyykHxoP08RvxMpwmHquIA
- lqvDby6dM6MuQ+f1Uzp5um8FkBM95TLCRAFDolH2CSHLuGN87llR3kD2a
- zUGrI20rrengTu32Tvwf57gqYa4c8F89xVa8t9W2RRd/nPMvs+Y8mnwfW
- 5O7+nF+hhLEgJvfLjfQM+7Bq57Cz+5olVnh5ynHwy0eu8ZLbbxJqR7Jk5 g==;
-X-CSE-ConnectionGUID: a9wVQQ+KRxS1w71VpKT7Bw==
-X-CSE-MsgGUID: GHpI0WCRSuy8yRWCNYXySw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="83586484"
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="83586484"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 00:15:02 -0700
-X-CSE-ConnectionGUID: OiIb2+clQEKGmqBjo0luKA==
-X-CSE-MsgGUID: 9wrXf0zHRP6gFzym30TUNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="254711820"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.209])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 00:15:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com,
-	rodrigo.vivi@intel.com
-Subject: [PATCH v2] drm/xe/display: add xe_display_pm_runtime_resume_early()
-Date: Thu,  2 Jul 2026 10:14:57 +0300
-Message-ID: <20260702071457.2985893-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <04158267b9d3715512bfb46c9772da04d3372184.1782913901.git.jani.nikula@intel.com>
-References: <04158267b9d3715512bfb46c9772da04d3372184.1782913901.git.jani.nikula@intel.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B20B10F164;
+ Thu,  2 Jul 2026 07:21:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1782976883;
+ bh=x/pMnmGlf0E1qkYHnHqsVenD9HzTf66a+fzX4nCRg38=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=TZcvPhhBNBG0rFniP2iWy5vTcV5Xqhhsou1Ixdm54UTThxNCcitDDQ8WeoPC0utey
+ TsNlsFKQ6QveOoJwRf0EO0bB1U+ijIxXOJI72eCZKIK/1uCsy3/BSbMx6nFXOZyA3b
+ JWRKVxyJI4k9uFzQIOIKa3AIaid2OW4/pgp5o9pGOJvOTcyNLAZxdcqHgaqi5KtCdj
+ evMVlNfKxTNjqTSWnsbq/nhn47cIlBI7Od089rrPrZyRqYWOTKISdtZHrm6/h53LXN
+ Jspp1uAEE4MwvFmtDfMgnX5dRJCUvwlyTnZWpBuHM1oMBb/BbRwTrFkHzNZruLgMjz
+ ZDgr2Ii5wUlMA==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH 02/10] drm/vblank: Add a 2-stage version of
+ drm_crtc_arm_vblank_event
+Date: Thu,  2 Jul 2026 09:21:45 +0200
+Message-ID: <20260702072154.171324-3-dev@lankhorst.se>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260702072154.171324-1-dev@lankhorst.se>
+References: <20260702072154.171324-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,94 +53,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new display runtime PM hook xe_display_pm_runtime_resume_early(), to
-be called before IRQ resume. This is initially a no-op placeholder.
+When trying to fix the hardware programming in intel/display, I had
+to take all the vblank locks with local_irqs_disabled(). This
+required converting the entire vblank code to raw spinlocks.
 
-Add comments on the timing relative to irq suspend/resume to all the
-runtime PM hooks.
+In the alternative approach, do all preparations in advance, and only
+enable the vblank_event with interrupts disabled, this requires only
+a simple write and prevents a complete re-architecture of the code.
 
-v2: Add stub for CONFIG_DRM_XE_DISPLAY=n
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 13 +++++++++++++
- drivers/gpu/drm/xe/display/xe_display.h |  2 ++
- drivers/gpu/drm/xe/xe_pm.c              |  2 ++
- 3 files changed, 17 insertions(+)
+ drivers/gpu/drm/drm_vblank.c | 64 +++++++++++++++++++++++++++++++++++-
+ include/drm/drm_vblank.h     | 14 +++++++-
+ 2 files changed, 76 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 01b6501a204a..306c853dd07a 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -349,6 +349,7 @@ static void xe_display_disable_d3cold(struct xe_device *xe)
- 	intel_display_driver_runtime_pm_enable(display);
- }
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index f90fb2d13e423..b52e0215312f8 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -1127,12 +1127,71 @@ void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
  
-+/* before irq suspend */
- void xe_display_pm_runtime_suspend(struct xe_device *xe)
- {
- 	struct intel_display *display = xe->display;
-@@ -364,6 +365,7 @@ void xe_display_pm_runtime_suspend(struct xe_device *xe)
- 	intel_hpd_poll_enable(display);
- }
+ 	assert_spin_locked(&dev->event_lock);
  
-+/* after irq suspend */
- void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
- {
- 	struct intel_display *display = xe->display;
-@@ -382,6 +384,17 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
- 	intel_dmc_wl_flush_release_work(display);
++	WARN_ON(e->postponed);
+ 	e->pipe = pipe;
+ 	e->sequence = drm_crtc_accurate_vblank_count(crtc) + 1;
+ 	list_add_tail(&e->base.link, &dev->vblank_event_list);
  }
+ EXPORT_SYMBOL(drm_crtc_arm_vblank_event);
  
-+/* before irq resume */
-+void xe_display_pm_runtime_resume_early(struct xe_device *xe)
++/**
++ * drm_crtc_prepare_arm_vblank_event - arm vblank event *before* pageflip.
++ * @crtc: the source CRTC of the vblank event
++ * @e: the event to send
++ *
++ * See drm_crtc_arm_vblank_event(). This function is a 2-stage version of
++ * that call. This function is called *BEFORE* programming the hardware.
++ *
++ * After programming, call drm_crtc_arm_prepared_vblank_event() and the
++ * event will be scheduled on the next vblank.
++ *
++ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
++ * with interrupts disabled, since all vblank spinlocks are converted to
++ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
++ *
++ * It also increases determinism for any hardware
++ * programming, since no vblank related locks are taking when arming.
++ */
++void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
++				       struct drm_pending_vblank_event *e)
 +{
-+	if (!xe->info.probe_display)
-+		return;
++	drm_crtc_arm_vblank_event(crtc, e);
 +
-+	if (xe->d3cold.allowed)
-+		return;
++	/* Set the flag, so that the event is not fired yet */
++	e->postponed = true;
 +}
++EXPORT_SYMBOL(drm_crtc_prepare_arm_vblank_event);
 +
-+/* after irq resume */
- void xe_display_pm_runtime_resume(struct xe_device *xe)
- {
- 	struct intel_display *display = xe->display;
-diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-index e5f9aed93206..0babb50bfc77 100644
---- a/drivers/gpu/drm/xe/display/xe_display.h
-+++ b/drivers/gpu/drm/xe/display/xe_display.h
-@@ -43,6 +43,7 @@ void xe_display_pm_resume_early(struct xe_device *xe);
- void xe_display_pm_resume(struct xe_device *xe);
- void xe_display_pm_runtime_suspend(struct xe_device *xe);
- void xe_display_pm_runtime_suspend_late(struct xe_device *xe);
-+void xe_display_pm_runtime_resume_early(struct xe_device *xe);
- void xe_display_pm_runtime_resume(struct xe_device *xe);
- 
- #define XE_DISPLAY_DRIVER_FEATURES	(DRIVER_MODESET | DRIVER_ATOMIC)
-@@ -80,6 +81,7 @@ static inline void xe_display_pm_resume_early(struct xe_device *xe) {}
- static inline void xe_display_pm_resume(struct xe_device *xe) {}
- static inline void xe_display_pm_runtime_suspend(struct xe_device *xe) {}
- static inline void xe_display_pm_runtime_suspend_late(struct xe_device *xe) {}
-+static inline void xe_display_pm_runtime_resume_early(struct xe_device *xe) {}
- static inline void xe_display_pm_runtime_resume(struct xe_device *xe) {}
- 
- #endif /* CONFIG_DRM_XE_DISPLAY */
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 99562f691080..a5289a9df8d2 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -700,6 +700,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 	if (xe->d3cold.allowed)
- 		xe_sysctrl_pm_resume(xe);
- 
-+	xe_display_pm_runtime_resume_early(xe);
++/**
++ * drm_crtc_arm_prepared_vblank_event - arm prepared vblank event *after* pageflip.
++ * @crtc: the source CRTC of the vblank event
++ * @e: the event to send
++ *
++ * See drm_crtc_prepare_arm_vblank_event(). This function is a 2-stage version of
++ * that call. This function is called directly *AFTER* programming the hardware.
++ *
++ * Before this function is called, drm_crtc_prepare_arm_vblank_event() should be
++ * called instead.
++ *
++ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
++ * with interrupts disabled, since all vblank spinlocks are converted to
++ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
++ *
++ * It also increases determinism for any hardware
++ * programming, since no vblank related locks are taking when arming.
++ */
++void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e)
++{
++	WARN_ON(!e->postponed);
 +
- 	xe_irq_resume(xe);
++	/* Ensure previous writes are visible */
++	smp_wmb();
++
++	/* remove the flag to be processed as a normal event */
++	WRITE_ONCE(e->postponed, false);
++}
++EXPORT_SYMBOL(drm_crtc_arm_prepared_vblank_event);
++
+ /**
+  * drm_crtc_send_vblank_event - helper to send vblank event after pageflip
+  * @crtc: the source CRTC of the vblank event
+@@ -1390,6 +1449,8 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+ 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
+ 		if (e->pipe != pipe)
+ 			continue;
++
++		WARN_ON(e->postponed);
+ 		drm_dbg_core(dev, "Sending premature vblank event on disable: "
+ 			     "wanted %llu, current %llu\n",
+ 			     e->sequence, seq);
+@@ -1892,7 +1953,8 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
+ 	seq = drm_vblank_count_and_time(dev, pipe, &now);
  
- 	for_each_gt(gt, xe, id) {
+ 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
+-		if (e->pipe != pipe)
++		/* Matches WRITE_ONCE in drm_crtc_arm_prepared_vblank_event() */
++		if (e->pipe != pipe || READ_ONCE(e->postponed))
+ 			continue;
+ 		if (!drm_vblank_passed(seq, e->sequence))
+ 			continue;
+diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
+index 2fcef9c0f5b1b..956d5621eb7f9 100644
+--- a/include/drm/drm_vblank.h
++++ b/include/drm/drm_vblank.h
+@@ -53,6 +53,13 @@ struct drm_pending_vblank_event {
+ 	 * @sequence: frame event should be triggered at
+ 	 */
+ 	u64 sequence;
++
++	/**
++	 * @postponed: whether drm_crtc_prepare_arm_vblank_event() is called,
++	 * and drm_crtc_arm_prepared_vblank_event has yet to be called to arm.
++	 */
++	bool postponed;
++
+ 	/**
+ 	 * @event: Actual event which will be sent to userspace.
+ 	 */
+@@ -294,7 +301,12 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime);
+ void drm_crtc_send_vblank_event(struct drm_crtc *crtc,
+ 			       struct drm_pending_vblank_event *e);
+ void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
+-			      struct drm_pending_vblank_event *e);
++			       struct drm_pending_vblank_event *e);
++
++void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
++				       struct drm_pending_vblank_event *e);
++void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e);
++
+ void drm_vblank_set_event(struct drm_pending_vblank_event *e,
+ 			  u64 *seq,
+ 			  ktime_t *now);
 -- 
-2.47.3
+2.53.0
 
