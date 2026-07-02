@@ -4,28 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F83CC43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 00:40:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19DEFC43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 01:01:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 367EE10E248;
-	Thu,  2 Jul 2026 00:40:42 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF3510E248;
- Thu,  2 Jul 2026 00:40:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6428957696587621361=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB39910E3FB;
+	Thu,  2 Jul 2026 01:01:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQA3Eyey";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A90F010E3FB
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 01:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782954062; x=1814490062;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PRThhJOY20wlLmwkUVgRwpslJZEgNRhnAk3LZeGk4OE=;
+ b=UQA3EyeyEGx5GMx0C9hM5bheN+ABJpD5XBliKk0vdhozVk7+hS/UckE/
+ bmH9SnrClaaeYbeyP7BwD33k1i49wOf0O98erxv4UimOUedvFLwIbx5JR
+ vBxBn1ZpZDvTAEPm/uYZ1Lfd5GmqdAq1+E274BJdgFPMNCgXwiX4/bz4U
+ y1BzOQ8poc6+RZzuS+1ALIwP4tC0E2vD49hz0KJUYofUobYtKRd+WtsmP
+ 2Lowhw00BkOebAQnWxHItVwW3t9CDRxRVszrC2KwUoaHg7k3Is6RevK4w
+ 2C4YDRAZPedSRuPTpetHJ3IF+7BFyJvz1ccC54rsj6LdxMx+fElLLwlRE g==;
+X-CSE-ConnectionGUID: L3IWXoCGS+uBv92cKAZPSQ==
+X-CSE-MsgGUID: 1DxZgk0BTbGQDJvMByL+Zw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="94350375"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="94350375"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 18:01:02 -0700
+X-CSE-ConnectionGUID: AsK5DB2KRcSvmjhMAL44tg==
+X-CSE-MsgGUID: g8XacHG2Qmu026zi4IQThw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="252850648"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
+ by orviesa007.jf.intel.com with ESMTP; 01 Jul 2026 18:01:02 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v1 0/2] drm/xe: Use IBC v3 on PTL
+Date: Wed,  1 Jul 2026 17:56:12 -0700
+Message-Id: <20260702005614.2621735-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv6?=
- =?utf-8?q?=2C1/1=5D_drm/xe/guc=3A_Handle_GuC_local_uncorrectable_error_noti?=
- =?utf-8?q?fications?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Jul 2026 00:40:41 -0000
-Message-ID: <178295284164.140838.4625312104005027333@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260701235330.3005426-1-zhanjun.dong@intel.com>
-In-Reply-To: <20260701235330.3005426-1-zhanjun.dong@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,126 +61,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6428957696587621361==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Also add a sysfs entry to monitor the bias values.
 
-== Series Details ==
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-Series: series starting with [v6,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications
-URL   : https://patchwork.freedesktop.org/series/169653/
-State : success
+Vinay Belgaumkar (2):
+  drm/xe: Use IBC v3 on PTL
+  drm/xe: Add sysfs for GT/IA bias
 
-== Summary ==
+ drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  1 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  2 +
+ drivers/gpu/drm/xe/xe_gt_freq.c               | 51 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_pc.c                |  9 ++++
+ 4 files changed, 63 insertions(+)
 
-CI Bug Log - changes from xe-5327-5394116badd62f96fbe40313704b555dac73379d_BAT -> xe-pw-169653v1_BAT
-====================================================
+-- 
+2.38.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 12)
-------------------------------
-
-  Missing    (1): bat-bmg-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-169653v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [ABORT][1] ([Intel XE#8007] / [Intel XE#8023]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5327-5394116badd62f96fbe40313704b555dac73379d/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169653v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
-
-
-Build changes
--------------
-
-  * Linux: xe-5327-5394116badd62f96fbe40313704b555dac73379d -> xe-pw-169653v1
-
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5327-5394116badd62f96fbe40313704b555dac73379d: 5394116badd62f96fbe40313704b555dac73379d
-  xe-pw-169653v1: 169653v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169653v1/index.html
-
---===============6428957696587621361==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v6,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169653/">https://patchwork.freedesktop.org/series/169653/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169653v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169653v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5327-5394116badd62f96fbe40313704b555dac73379d_BAT -&gt; xe-pw-169653v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169653v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5327-5394116badd62f96fbe40313704b555dac73379d/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169653v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5327-5394116badd62f96fbe40313704b555dac73379d -&gt; xe-pw-169653v1</li>
-</ul>
-<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5327-5394116badd62f96fbe40313704b555dac73379d: 5394116badd62f96fbe40313704b555dac73379d<br />
-  xe-pw-169653v1: 169653v1</p>
-
-</body>
-</html>
-
---===============6428957696587621361==--
