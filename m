@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5903BC43327
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 08:28:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1668C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 08:32:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBA4E10F230;
-	Thu,  2 Jul 2026 08:28:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="koTqw2ur";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 512AB10F230;
- Thu,  2 Jul 2026 08:28:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782980906; x=1814516906;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jyzNdHDRrOs/8zDyjh6M2aCO4bIAMZLc7s33t/bis+o=;
- b=koTqw2urmqFQnx/dQHF0DY9gm8/CYOWf2oY3kPsY015TzCqLM3WX7waK
- ttlwfVJdmkctWfqDurpquURokrFaQyWXEhdf2nM2qUJTa0al19w1m2QhL
- nBR167lU30FqLT0CnTOshnZ+VPrwyZXknnNilRyEPycr0ydp0NMXysdPx
- p2CV9wTUlr3nEeyrIYjGOWFrENaycpx6DnDaWp9y75XMGcUMCpeR4ihOt
- 863yNNW8BwGS4vKZYW8ZEtThhTjYBdr77BNL5cWBOsz8AwfmCGuCeJjRX
- PXS9CZ+Vv1IHM/qtszOowJcD8SJ09Xu4xEtj++Proj1ggcEtOfbnENVy9 w==;
-X-CSE-ConnectionGUID: JU1bMX0sRSaTCwBAt3fWYw==
-X-CSE-MsgGUID: CzbusxP6QleOrK5l5bOdVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="109276105"
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="109276105"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 01:28:25 -0700
-X-CSE-ConnectionGUID: s+Gbp1+CTO6DtTaZi61U8w==
-X-CSE-MsgGUID: e0sdj6PaSWem85H152w+4w==
-X-ExtLoop1: 1
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.209])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 01:28:23 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [PATCH 2/4] drm/i915/display: Use intel_de_read/write_fw in
- colorops
-In-Reply-To: <20260702080346.431508-3-dev@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260702080346.431508-1-dev@lankhorst.se>
- <20260702080346.431508-3-dev@lankhorst.se>
-Date: Thu, 02 Jul 2026 11:28:20 +0300
-Message-ID: <7dedb81c7a3d431e70192fb73a86187619bc912f@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02AC10E473;
+	Thu,  2 Jul 2026 08:32:46 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95B6710F245;
+ Thu,  2 Jul 2026 08:32:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/intel/display=3A_Remo?=
+ =?utf-8?q?ve_forcewake_during_pipe_updates=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Jul 2026 08:32:45 -0000
+Message-ID: <178298116560.141365.9792983645093083518@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260702080346.431508-1-dev@lankhorst.se>
+In-Reply-To: <20260702080346.431508-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,156 +36,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 02 Jul 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> Using the _fw variants fixes a module load error on PTL:
+== Series Details ==
 
-The commit message should explain the why. (i.e. why this is the right
-fix).
+Series: drm/intel/display: Remove forcewake during pipe updates.
+URL   : https://patchwork.freedesktop.org/series/169673/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3c41fd1543876cb2f483377ba9028d899ca3b64d
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Thu Jul 2 10:03:45 2026 +0200
+
+    drm/i915/display: Make set_pipeconf use the fw variants
+    
+    The calls are used inside the critical section when updating
+    the gamma mode, and thus should use the _fw variants to prevent
+    locks.
+    
+    Fixes following splat:
+    | BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+    | in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 2115, name: modprobe
+    | preempt_count: 0, expected: 0
+    | RCU nest depth: 0, expected: 0
+    | 4 locks held by modprobe/2115:
+    |  #0: ffff99b9425161a0 (&dev->mutex){....}-{4:4}, at: __driver_attach+0xaf/0x1c0
+    |  #1: ffffaa224810f6c0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: intel_initial_commit+0x4c/0x200 [i915]
+    |  #2: ffffaa224810f6e8 (crtc_ww_class_mutex){+.+.}-{4:4}, at: intel_initial_commit+0x4c/0x200 [i915]
+    |  #3: ffff99b94a6c9030 (&uncore->lock){+.+.}-{3:3}, at: gen6_write32+0x50/0x290 [i915]
+    | irq event stamp: 513344
+    | hardirqs last  enabled at (513343): [<ffffffff8ba8d84c>] _raw_spin_unlock_irqrestore+0x4c/0x60
+    | hardirqs last disabled at (513344): [<ffffffffc1543646>] intel_pipe_update_start+0x216/0x2c0 [i915]
+    | softirqs last  enabled at (512766): [<ffffffff8af045cf>] __local_bh_enable_ip+0x10f/0x170
+    | softirqs last disabled at (512712): [<ffffffffc14dfb6a>] __i915_request_queue+0x3a/0x70 [i915]
+    | CPU: 3 UID: 0 PID: 2115 Comm: modprobe Tainted: G        W           6.18.0-rc1+ #17 PREEMPT_{RT,(lazy)}
+    | Tainted: [W]=WARN
+    | Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, BIOS P2.30 06/29/2012
+    | Call Trace:
+    |  <TASK>
+    |  dump_stack_lvl+0x68/0x90
+    |  __might_resched.cold+0xf0/0x12b
+    |  rt_spin_lock+0x5f/0x200
+    |  gen6_write32+0x50/0x290 [i915]
+    |  ilk_set_pipeconf+0x12d/0x230 [i915]
+    |  ilk_color_commit_arm+0x2d/0x70 [i915]
+    |  intel_update_crtc+0x15b/0x690 [i915]
+    |  intel_commit_modeset_enables+0xa6/0xd0 [i915]
+    |  intel_atomic_commit_tail+0xd55/0x19a0 [i915]
+    |  intel_atomic_commit+0x25d/0x2a0 [i915]
+    |  drm_atomic_commit+0xad/0xe0 [drm]
+    |  intel_initial_commit+0x16c/0x200 [i915]
+    |  intel_display_driver_probe+0x2e/0x80 [i915]
+    |  i915_driver_probe+0x791/0xc10 [i915]
+    |  i915_pci_probe+0xd7/0x190 [i915]
+    
+    Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 4a1a395fa156b92a83b501f8e331f21cd035c2e1 drm-intel
+f213bdc94042 drm/i915/display: Make icl_dsi_frame_update use _fw too
+ba329481c1d7 drm/i915/display: Use intel_de_read/write_fw in colorops
+-:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#123: FILE: drivers/gpu/drm/i915/display/intel_color.c:1054:
++	intel_de_write_fw(display, GAMMA_MODE(crtc->pipe),
+ 		       crtc_state->gamma_mode);
+
+-:143: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 1 checks, 24 lines checked
+7a617c57c5e8 drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:156: ERROR:CODE_INDENT: code indent should use tabs where possible
+#156: FILE: drivers/gpu/drm/i915/display/intel_display.c:2816:
++^I^I          VBLANK_START(crtc_vblank_start - 1) |$
+
+-:156: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#156: FILE: drivers/gpu/drm/i915/display/intel_display.c:2816:
++	intel_de_write_fw(display, TRANS_VBLANK(display, transcoder),
++		          VBLANK_START(crtc_vblank_start - 1) |
+
+-:157: ERROR:CODE_INDENT: code indent should use tabs where possible
+#157: FILE: drivers/gpu/drm/i915/display/intel_display.c:2817:
++^I^I          VBLANK_END(crtc_vblank_end - 1));$
+
+-:238: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 2 errors, 2 warnings, 1 checks, 141 lines checked
+3c41fd154387 drm/i915/display: Make set_pipeconf use the fw variants
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: or Link: with a URL to the report
+#46: 
+Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+
+-:76: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 3 warnings, 0 checks, 22 lines checked
 
 
->
-> <4> [363.690050] Call Trace:
-> <4> [363.690052]  <TASK>
-> <4> [363.690055]  dump_stack_lvl+0x91/0xf0
-> <4> [363.690067]  dump_stack+0x10/0x20
-> <4> [363.690074]  __might_resched+0x174/0x260
-> <4> [363.690087]  rt_spin_lock+0x63/0x200
-> <4> [363.690092]  ? intel_dmc_wl_get+0x3c/0x140 [xe]
-> <4> [363.690470]  ? __lock_acquire+0x1195/0x2860
-> <4> [363.690487]  intel_dmc_wl_get+0x3c/0x140 [xe]
-> <4> [363.690842]  intel_color_plane_commit_arm+0xbc/0x140 [xe]
-> <4> [363.691246]  icl_plane_update_arm+0x23f/0x280 [xe]
-> <4> [363.691605]  intel_plane_update_arm+0x74/0x170 [xe]
-> <4> [363.691970]  intel_crtc_planes_update_arm+0x3cb/0x4c0 [xe]
-> <4> [363.692338]  intel_update_crtc+0x1c3/0x840 [xe]
-> <4> [363.692742]  ? intel_pre_update_crtc+0x2ce/0x470 [xe]
-> <4> [363.693125]  ? intel_enable_crtc+0x123/0x150 [xe]
-> <4> [363.693508]  skl_commit_modeset_enables+0x4c4/0x720 [xe]
-> <4> [363.693888]  intel_atomic_commit_tail+0xd9d/0x1b30 [xe]
-> <4> [363.694274]  intel_atomic_commit+0x2e8/0x330 [xe]
-> <4> [363.694621]  ? intel_atomic_commit+0x2e8/0x330 [xe]
-> <4> [363.694956]  drm_atomic_commit+0xaf/0xf0
-> <4> [363.694962]  ? __pfx___drm_printfn_info+0x10/0x10
-> <4> [363.694978]  drm_client_modeset_commit_atomic+0x25c/0x2b0
-> <4> [363.695018]  drm_client_modeset_commit_locked+0x63/0x1b0
-> <4> [363.695029]  drm_client_modeset_commit+0x26/0x50
-> <4> [363.695035]  __drm_fb_helper_restore_fbdev_mode_unlocked+0xdc/0x110
-> <4> [363.695045]  drm_fb_helper_set_par+0x2f/0x50
-> <4> [363.695052]  intel_fbdev_set_par+0x39/0x90 [xe]
-> <4> [363.695365]  fbcon_init+0x283/0x680
-> <4> [363.695382]  visual_init+0xf2/0x190
-> <4> [363.695396]  do_bind_con_driver.isra.0+0x1f1/0x4c0
-> <4> [363.695416]  do_take_over_console+0x181/0x220
-> <4> [363.695422]  ? vprintk_default+0x1d/0x30
-> <4> [363.695436]  do_fbcon_takeover+0x85/0x160
-> <4> [363.695447]  do_fb_registered+0x24c/0x2b0
-> <4> [363.695460]  fbcon_fb_registered+0x3a/0x90
-> <4> [363.695469]  do_register_framebuffer+0x216/0x320
-> <4> [363.695488]  register_framebuffer+0x23/0x50
-> <4> [363.695494]  __drm_fb_helper_initial_config_and_unlock+0x3ea/0x670
-> <4> [363.695502]  ? trace_hardirqs_on+0x1e/0xd0
-> <4> [363.695526]  drm_fb_helper_initial_config+0x3f/0x50
-> <4> [363.695534]  drm_fbdev_client_hotplug+0x80/0xd0
-> <4> [363.695543]  drm_client_register+0x8a/0xe0
-> <4> [363.695556]  drm_fbdev_client_setup+0x127/0x1f0
-> <4> [363.695563]  drm_client_setup+0xa7/0xe0
-> <4> [363.695569]  drm_client_setup_with_color_mode+0x24/0x40
-> <4> [363.695575]  intel_fbdev_setup+0x1c6/0x510 [xe]
-> <4> [363.695857]  intel_display_driver_register+0xb5/0x100 [xe]
-> <4> [363.696188]  ? __pfx___drm_printfn_dbg+0x10/0x10
-> <4> [363.696194]  ? intel_display_driver_register+0x2e/0x100 [xe]
-> <4> [363.696515]  xe_display_register+0x29/0x40 [xe]
-> <4> [363.696858]  xe_device_probe+0x51a/0x9e0 [xe]
-> <4> [363.697102]  ? __drmm_add_action+0x98/0x110
-> <4> [363.697108]  ? __pfx___drmm_mutex_release+0x10/0x10
-> <4> [363.697116]  ? __drmm_add_action_or_reset+0x1e/0x50
-> <4> [363.697130]  xe_pci_probe+0x396/0x620 [xe]
-> <4> [363.697423]  local_pci_probe+0x47/0xb0
-> <4> [363.697431]  pci_device_probe+0xf3/0x260
-> <4> [363.697444]  really_probe+0xf1/0x3c0
-> <4> [363.697451]  __driver_probe_device+0x8c/0x180
-> <4> [363.697458]  driver_probe_device+0x24/0xd0
-> <4> [363.697464]  __driver_attach+0x10f/0x220
-> <4> [363.697468]  ? __pfx___driver_attach+0x10/0x10
-> <4> [363.697472]  bus_for_each_dev+0x7f/0xe0
-> <4> [363.697484]  driver_attach+0x1e/0x30
-> <4> [363.697487]  bus_add_driver+0x154/0x290
-> <4> [363.697498]  driver_register+0x5e/0x130
-> <4> [363.697504]  __pci_register_driver+0x84/0xa0
-> <4> [363.697509]  xe_register_pci_driver+0x23/0x30 [xe]
-> <4> [363.697762]  xe_init+0x2c/0x110 [xe]
-> <4> [363.698007]  ? __pfx_xe_init+0x10/0x10 [xe]
-> <4> [363.698239]  do_one_initcall+0x60/0x3f0
-> <4> [363.698250]  ? __kmalloc_cache_noprof+0x470/0x690
-> <4> [363.698267]  do_init_module+0x97/0x2b0
-> <4> [363.698275]  load_module+0x2d08/0x2e30
-> <4> [363.698280]  ? __kernel_read+0x164/0x310
-> <4> [363.698312]  ? kernel_read_file+0x2ca/0x340
-> <4> [363.698328]  init_module_from_file+0x96/0xe0
-> <4> [363.698330]  ? init_module_from_file+0x96/0xe0
-> <4> [363.698357]  idempotent_init_module+0x11d/0x340
-> <4> [363.698384]  __x64_sys_finit_module+0x73/0xe0
-> <4> [363.698393]  x64_sys_call+0x1e3d/0x26a0
-> <4> [363.698399]  do_syscall_64+0x93/0xab0
-> <4> [363.698413]  ? ext4_llseek+0xc3/0x130
-> <4> [363.698425]  ? ksys_lseek+0x55/0xd0
-> <4> [363.698438]  ? do_syscall_64+0x1b7/0xab0
-> <4> [363.698444]  ? switch_fpu_return+0xea/0x150
-> <4> [363.698454]  ? do_syscall_64+0x1b7/0xab0
-> <4> [363.698465]  ? kernfs_fop_read_iter+0x197/0x210
-> <4> [363.698470]  ? rw_verify_area+0x16f/0x200
-> <4> [363.698482]  ? vfs_read+0x22a/0x360
-> <4> [363.698498]  ? do_syscall_64+0x1b7/0xab0
-> <4> [363.698506]  ? ksys_read+0x72/0xf0
-> <4> [363.698520]  ? do_syscall_64+0x1b7/0xab0
-> <4> [363.698526]  ? do_syscall_64+0x1b7/0xab0
-> <4> [363.698532]  ? do_syscall_64+0x1b7/0xab0
-> <4> [363.698535]  ? exc_page_fault+0xbd/0x2c0
-> <4> [363.698545]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> <4> [363.698549] RIP: 0033:0x715af255025d
->
-> And a similar backtrace in hsw_color_commit_arm().
->
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index 87ced9f6ff408..cc3cdb90d6975 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1050,7 +1050,7 @@ static void hsw_color_commit_arm(struct intel_dsb *dsb,
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct intel_display *display = to_intel_display(crtc);
->  
-> -	intel_de_write(display, GAMMA_MODE(crtc->pipe),
-> +	intel_de_write_fw(display, GAMMA_MODE(crtc->pipe),
->  		       crtc_state->gamma_mode);
->  
->  	intel_de_write_fw(display, PIPE_CSC_MODE(crtc->pipe),
-> @@ -4066,7 +4066,7 @@ static void glk_load_lut_3d(struct intel_dsb *dsb,
->  	int i, lut_size = drm_color_lut32_size(blob);
->  	enum pipe pipe = crtc->pipe;
->  
-> -	if (!dsb && intel_de_read(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
-> +	if (!dsb && intel_de_read_fw(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
->  		drm_err(display->drm, "[CRTC:%d:%s] 3D LUT not ready, not loading LUTs\n",
->  			crtc->base.base.id, crtc->base.name);
->  		return;
-> @@ -4084,7 +4084,7 @@ static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bo
->  	enum pipe pipe = crtc->pipe;
->  	u32 val = 0;
->  
-> -	if (!dsb && intel_de_read(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
-> +	if (!dsb && intel_de_read_fw(display, LUT_3D_CTL(pipe)) & LUT_3D_READY) {
->  		drm_err(display->drm, "[CRTC:%d:%s] 3D LUT not ready, not committing change\n",
->  			crtc->base.base.id, crtc->base.name);
->  		return;
-
--- 
-Jani Nikula, Intel
