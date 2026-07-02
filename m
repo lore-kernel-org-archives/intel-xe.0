@@ -4,77 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D77C43327
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 15:40:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93256C43327
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 15:41:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BEDA10F479;
-	Thu,  2 Jul 2026 15:40:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC9C10F47D;
+	Thu,  2 Jul 2026 15:41:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Z8vOAtQO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SRDovvY2";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BDE710F475;
- Thu,  2 Jul 2026 15:40:39 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C7EA7601CA;
- Thu,  2 Jul 2026 15:40:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE8E41F00A3E;
- Thu,  2 Jul 2026 15:40:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783006838;
- bh=gNLYS8EYE6bJ5KaXF7DR9fRu4urDF+a7laqqF8q0hcA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=Z8vOAtQOT+iGTiy4xQ3GfxWy9CpR6iieY1qxm1fyBJSvxEFV2aEwGeTLwIZE4UbYF
- sH6QvDHKQJHBXcc/JYlecYNDNZBJEw63vn2taYjOLxg3iNlePJRLcm76SDX3qcqqpf
- OAzUHT+NRGQHyZOOfos5EJuVfaKEWfkdr4crDOBp2KFX/hKeIetGWLc1I64/oz6RHQ
- NC8RA6ivq/IEW4DV1d+3Z0k229cWnviqo6Svky+UHUgnyeaFy3m0xyIovRQ1UfVX8n
- wqqP9ts5FpBy46j7HS+G+te0/D/3BLeS388iQo+wLiLJCSDRdl7jDwGFy3vdpkllGJ
- NUUDfmqseIbQg==
-Date: Thu, 2 Jul 2026 16:40:15 +0100
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Lance Yang <lance.yang@linux.dev>
-Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, 
- maddy@linux.ibm.com, mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, 
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
- l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com, 
- kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org, 
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, 
- tursulin@ursulin.net, robin.clark@oss.qualcomm.com, lumag@kernel.org,
- lyude@redhat.com, 
- dakr@kernel.org, tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, 
- heiko@sntech.de, andy.yan@rock-chips.com, thierry.reding@kernel.org, 
- mperttunen@nvidia.com, jonathanh@nvidia.com, kraxel@redhat.com, 
- dmitry.osipenko@collabora.com, zack.rusin@broadcom.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
- deller@gmx.de, bcrl@kvack.org, 
- viro@zeniv.linux.org.uk, brauner@kernel.org, muchun.song@linux.dev,
- osalvador@suse.de, 
- david@kernel.org, ziy@nvidia.com, baolin.wang@linux.alibaba.com, 
- liam@infradead.org, npache@redhat.com, ryan.roberts@arm.com, dev.jain@arm.com, 
- baohua@kernel.org, hughd@google.com, vbabka@kernel.org, rppt@kernel.org, 
- surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de, 
- kees@kernel.org, perex@perex.cz, tiwai@suse.com, linux-mips@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- dri-devel@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- virtualization@lists.linux.dev, 
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, 
- linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
- linux-sound@vger.kernel.org
-Subject: Re: [PATCH 08/13] mm: introduce vma_get_page_prot() and use it
-Message-ID: <akaGOiLz-3Zx6kDs@lucifer>
-References: <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
- <20260702123845.95316-1-lance.yang@linux.dev>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 198C510F479;
+ Thu,  2 Jul 2026 15:41:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783006888; x=1814542888;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=9Ea14lAEOGohg0ov7VbDShfDUsza34y/w/Usg3DtUm4=;
+ b=SRDovvY2RwLwayQBdJb14yyhunV6vwVPxjR4Oqh8djEJ6yoQSqO72YFI
+ Lo9w/EogvPFu8D9Yo93zDdk/q7a/cmye1aIA5mbKYJ3Q3a6rN8txKcyhN
+ I+tTXvZ/CMsETXnIVlCKjwnmQ2bscjuoswcjmeYZ5/UlryoDoCEegsBOe
+ PEXZjTncj4tQBG3pof2yGtzkAWDivkP4pBslSiZezrm+07RIwWtjdJbJs
+ IUFNBjoSxREAz7kIQAoDkc5UHny0ozUVxrAjgCfJGiNCHIVZ1mA1K1Tyh
+ BjdFQ+2qhS3+1GFty8OnVcPCf7MSbjcmA+UhT9bpOZS/KX68YrxsET/pH g==;
+X-CSE-ConnectionGUID: FicJ1Sf4TaG91P/tZOSPRQ==
+X-CSE-MsgGUID: A0IdAXKBSECgA5tn2X8eyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83814489"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="83814489"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 08:41:28 -0700
+X-CSE-ConnectionGUID: 8Kp58UXZQoC0FzXQrBzptQ==
+X-CSE-MsgGUID: EnNdNwH/ToKaEQv+xbSOAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="282977504"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.43])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 08:41:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ ville.syrjala@linux.intel.com, suraj.kandpal@intel.com
+Subject: Re: [PATCH RESEND v2] drm/i915/display: Program TRANS_VTOTAL from
+ mode vtotal
+In-Reply-To: <20260617045850.862100-1-mitulkumar.ajitkumar.golani@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260617045850.862100-1-mitulkumar.ajitkumar.golani@intel.com>
+Date: Thu, 02 Jul 2026 18:41:21 +0300
+Message-ID: <0b7919083586f3ba26159f909f87666ea9b41045@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260702123845.95316-1-lance.yang@linux.dev>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,50 +72,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 02, 2026 at 08:38:45PM +0800, Lance Yang wrote:
->
-> On Mon, Jun 29, 2026 at 08:25:31PM +0100, Lorenzo Stoakes wrote:
-> >There's a large number of vm_get_page_prot(vma->vm_flags) invocations. Make
-> >life easier by introducing vma_get_page_prot() parameterised by the VMA.
-> >
-> >This also makes converting vm_get_page_prot() to vma_flags_t easier.
-> >
-> >Also update the userland VMA tests to reflect the change.
-> >
-> >No functional change intended.
-> >
-> >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> >---
-> > drivers/gpu/drm/drm_gem.c                   |  2 +-
-> > drivers/gpu/drm/drm_gem_dma_helper.c        |  2 +-
-> > drivers/gpu/drm/drm_gem_shmem_helper.c      |  2 +-
-> > drivers/gpu/drm/etnaviv/etnaviv_gem.c       |  2 +-
-> > drivers/gpu/drm/exynos/exynos_drm_gem.c     |  6 +++---
-> > drivers/gpu/drm/i915/gem/i915_gem_mman.c    | 12 ++++++------
-> > drivers/gpu/drm/msm/msm_gem.c               |  2 +-
-> > drivers/gpu/drm/nouveau/nouveau_gem.c       |  2 +-
-> > drivers/gpu/drm/omapdrm/omap_fbdev.c        |  2 +-
-> > drivers/gpu/drm/omapdrm/omap_gem.c          |  6 +++---
-> > drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  2 +-
-> > drivers/gpu/drm/tegra/gem.c                 |  2 +-
-> > drivers/gpu/drm/virtio/virtgpu_vram.c       |  2 +-
-> > drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |  2 +-
-> > drivers/gpu/drm/xe/xe_device.c              |  2 +-
-> > drivers/gpu/drm/xe/xe_mmio_gem.c            |  2 +-
-> > drivers/gpu/drm/xen/xen_drm_front_gem.c     |  2 +-
-> > drivers/video/fbdev/core/fb_io_fops.c       |  2 +-
->
-> One missed?
->
-> drivers/gpu/drm/panthor/panthor_gem.c still has:
->
-> 	vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
->
-> Can use vma_get_page_prot(vma) too.
+On Wed, 17 Jun 2026, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> w=
+rote:
+> There are monitors being sensitive to MSA and end up
+> blanking out when we override Vtotal, DP transcoder
+> uses TRANS_VTOTAL to derive MSA VTotal. Avoid overriding
+> crtc_vtotal to 1 on platform which supports VRR Timing
+> generator and always program VTOTAL from mode timing in
+> transcoder timing paths.
 
-Oops! Will respin and update. Good spot!
+Should this have had Fixes: tag? Does it require a backport?
+
+BR,
+Jani.
 
 >
-> [...]
+> --v2:
+> - Remove write to crtc_state->hw.adjusted_mode.crtc_vtotal
+> during intel_vrr_get_config. (Ankit)
+> - Fix merge conflicts.
+>
+> Bspec: 70001
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 17 -----------------
+>  drivers/gpu/drm/i915/display/intel_vrr.c     | 10 ----------
+>  2 files changed, 27 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index e76aa6c8dab6..42eb4c5bc9b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2737,15 +2737,6 @@ void intel_set_transcoder_timings(const struct int=
+el_crtc_state *crtc_state,
+>  		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
+>  		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
+>=20=20
+> -	/*
+> -	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+> -	 * bits are not required. Since the support for these bits is going to
+> -	 * be deprecated in upcoming platforms, avoid writing these bits for the
+> -	 * platforms that do not use legacy Timing Generator.
+> -	 */
+> -	if (intel_vrr_always_use_vrr_tg(display))
+> -		crtc_vtotal =3D 1;
+> -
+>  	intel_de_write(display, TRANS_VTOTAL(display, transcoder),
+>  		       VACTIVE(crtc_vdisplay - 1) |
+>  		       VTOTAL(crtc_vtotal - 1));
+> @@ -2834,14 +2825,6 @@ void intel_set_transcoder_timings_lrr(const struct=
+ intel_crtc_state *crtc_state,
+>  	intel_de_write(display, TRANS_VSYNC(display, transcoder),
+>  		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
+>  		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
+> -	/*
+> -	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+> -	 * bits are not required. Since the support for these bits is going to
+> -	 * be deprecated in upcoming platforms, avoid writing these bits for the
+> -	 * platforms that do not use legacy Timing Generator.
+> -	 */
+> -	if (intel_vrr_always_use_vrr_tg(display))
+> -		crtc_vtotal =3D 1;
+>=20=20
+>  	/*
+>  	 * The double buffer latch point for TRANS_VTOTAL
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index cd380fe8fd01..5d9b11185296 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -1102,16 +1102,6 @@ void intel_vrr_get_config(struct intel_crtc_state =
+*crtc_state)
+>  			crtc_state->vrr.vmin +=3D intel_vrr_vmin_flipline_offset(display);
+>  		}
+>=20=20
+> -		/*
+> -		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtot=
+al
+> -		 * bits are not filled. Since for these platforms TRAN_VMIN is always
+> -		 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
+> -		 * adjusted_mode.
+> -		 */
+> -		if (intel_vrr_always_use_vrr_tg(display))
+> -			crtc_state->hw.adjusted_mode.crtc_vtotal =3D
+> -				intel_vrr_vmin_vtotal(crtc_state);
+> -
+>  		if (HAS_AS_SDP(display)) {
+>  			trans_vrr_vsync =3D
+>  				intel_de_read(display,
 
-Thanks, Lorenzo
+--=20
+Jani Nikula, Intel
