@@ -4,58 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C13DC43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 15:10:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 773D9C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 15:10:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2842210F445;
-	Thu,  2 Jul 2026 15:10:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C17110F44F;
+	Thu,  2 Jul 2026 15:10:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OpFC1Xsq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l0Osp2qv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5627C10F43A
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 15:10:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC22510F447;
+ Thu,  2 Jul 2026 15:10:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783005004; x=1814541004;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=tSiYuecwEZcZ9CenmwPqJMBGgNVScC3RMRER1kIeu0w=;
- b=OpFC1XsqWyKOchN0qwCdBf+Euu1RZ3Jdl1Nv7NjHppiqqD77n/J65BZs
- J2b/Z/sOqnzol8sg2s9low4TqlGFYZ5ZbBDbRg2RhLfI68/m6erY6LCiJ
- Nv8bf9LclipvfaNYYhL265TwvdBX1dIW/bo9Frp4gwnqq1TA159L6jrtK
- HR2dwD0e9eW4YD2Uzj4IBD+4gSYocz3cmn2auGnO6FrJ7u7wy5BZMKcUj
- Tss6uZ+If/X5xBVszV5wWdTTP2ebzC8XvBVTuwcvcaGzJoJppmb5MaD40
- e9aw9HqBR6a5rG6bopZUjfpthvFlkPkVRIqZMWMUJ0IDJEBYsWKSXP68Z Q==;
-X-CSE-ConnectionGUID: tEaEhbmgQJuZxxQpH2/zYg==
-X-CSE-MsgGUID: CduSCFvBQ6q2vpK3R6Bs0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="82872059"
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="82872059"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 08:10:04 -0700
-X-CSE-ConnectionGUID: jGp0wV8wSN+07aELGjUrvg==
-X-CSE-MsgGUID: i8I64rPSTuiFjYXW3bktkQ==
+ t=1783005030; x=1814541030;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZqPDId4rZ0crapCTq1eL01OWkFGEpp+rSALCnzW0tyc=;
+ b=l0Osp2qvQj8r9Rl/qUOI4inX7b5KLEEyySq1rStgx3n8N4ljHYEL9ws7
+ aQAUl/LZFE5vJszNyOCgaQd7F26UocEDRyGKCuUjxas02A0KWxfEBRskK
+ lE+3GPZjwDMY92XWdJbiyuzUdZQGbON1RjATGJiMfUFPJo75B7XU9oAoU
+ jvP2EtVzKFKeL7dKlrX0YcZ/fHjBOTFiGHdEuhf6L7MLVZvvF2aN63hDS
+ 6GCePCrImMVFaMcJ1Pip45T7GAiKX9rGVIGjbHNoehw9OeLd5/XkrBkPJ
+ vLyzBOtIId2xwwMUmNyHtOI2VcWZUeTVW+kjkMwEwiudXHCJEAupbP8Ys Q==;
+X-CSE-ConnectionGUID: 6NSTBeE4RoyX4AG2iV7Jaw==
+X-CSE-MsgGUID: Jdih+9KXSNel97Et777R4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="82751168"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="82751168"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 08:10:29 -0700
+X-CSE-ConnectionGUID: wCXkafQbQ7OtQtjmelQETw==
+X-CSE-MsgGUID: C7earjokT/CYAXobTXsUJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="248435693"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.244.242])
- ([10.245.244.242])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 08:10:03 -0700
-Message-ID: <585cc96e-43ee-4e94-b883-5a9109caff0e@intel.com>
-Date: Thu, 2 Jul 2026 16:10:01 +0100
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="254819431"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.232])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 08:10:26 -0700
+Date: Thu, 2 Jul 2026 17:10:09 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <akZ_UbrL94G4F2iA@fedora>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Add support for WA 16029897822
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20260701165830.2355397-3-daniele.ceraolospurio@intel.com>
- <20260701165830.2355397-4-daniele.ceraolospurio@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260701165830.2355397-4-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,56 +77,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 01/07/2026 17:58, Daniele Ceraolo Spurio wrote:
-> The WA is implemented by the GuC, so we just need to enable it via the
-> dedicated KLV.
-> This WA is supported starting from GuC 70.69.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Hi Dave, Simona!
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Here's the drm-xe-fixes PR towards -rc2.
 
-> ---
->   drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 1 +
->   drivers/gpu/drm/xe/xe_guc_ads.c       | 4 ++++
->   drivers/gpu/drm/xe/xe_wa_oob.rules    | 2 ++
->   3 files changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> index fbbee40d7217..e4b028ab24c9 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> @@ -505,6 +505,7 @@ enum xe_guc_klv_ids {
->   	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
->   	GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG			= 0x900e,
->   	GUC_WA_KLV_REMAP_RANGED_TLB_INV							= 0x900f,
-> +	GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64					= 0x9010,
->   };
->   
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index becf9a004867..ff36946523aa 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -367,6 +367,10 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
->   	if (XE_GT_WA(gt, 22022079272) && GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 62))
->   		guc_waklv_enable(ads, NULL, 0, &offset, &remain, GUC_WA_KLV_REMAP_RANGED_TLB_INV);
->   
-> +	if (XE_GT_WA(gt, 16029897822) && GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 69))
-> +		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
-> +				 GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64);
-> +
->   	size = guc_ads_waklv_size(ads) - remain;
->   	if (!size)
->   		return;
-> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> index a2ccd036abce..5d6574ec9dee 100644
-> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> @@ -69,3 +69,5 @@
->   22022079272	MEDIA_VERSION(3503)
->   		GRAPHICS_VERSION(3510)
->   		GRAPHICS_VERSION(3511)
-> +16029897822	MEDIA_VERSION(3500)
-> +		GRAPHICS_VERSION(3510)
+Mostly various fixes sprinkled all over the place, with the notable
+exception of the RTP/OA whitelist fixes backport, manly by Ashutosh
 
+Thanks,
+Thomas
+
+drm-xe-fixes-2026-07-02:
+Driver Changes:
+- Wedge from the timeout handler only after releasing the queue (Rodrigo)
+- Fix a NULL pointer dereference (Francois)
+- Remove redundant exec_queue_suspended (Lu)
+- RTP / OA whitelist fixes (Ashutosh, Gustavo, Thomas)
+- Return error on non-migratable faults requiring devmem (Matt Brost)
+- Skip FORCE_WC and vm_bound check for external dma-bufs (Matt Auld)
+- Hold notifier lock for write on inject test path (Shuicheng)
+- Drop bogus static from finish in force_invalidate (Shuicheng)
+- Fix double-free of managed BO in error path (Shuicheng)
+- Don't attempt to process FAST_REQ or EVENT relays (Michal)
+- Fix NPD in bo_meminfo (Matthew Auld)
+- Prevent invalid cursor access for purged BOs (Matthew Auld)
+- Fix offset alignment for MERT WHITELST_OA_MERT_MMIO_TRG (Ashutosh)
+The following changes since commit dc59e4fea9d83f03bad6bddf3fa2e52491777482:
+
+  Linux 7.2-rc1 (2026-06-28 12:01:31 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2026-07-02
+
+for you to fetch changes up to 959b5016e4646b55fd2fd0438932e4c4e9ce171f:
+
+  drm/xe/oa: Fix offset alignment for MERT WHITELIST_OA_MERT_MMIO_TRG (2026-07-02 12:29:44 +0200)
+
+----------------------------------------------------------------
+Driver Changes:
+- Wedge from the timeout handler only after releasing the queue (Rodrigo)
+- Fix a NULL pointer dereference (Francois)
+- Remove redundant exec_queue_suspended (Lu)
+- RTP / OA whitelist fixes (Ashutosh, Gustavo, Thomas)
+- Return error on non-migratable faults requiring devmem (Matt Brost)
+- Skip FORCE_WC and vm_bound check for external dma-bufs (Matt Auld)
+- Hold notifier lock for write on inject test path (Shuicheng)
+- Drop bogus static from finish in force_invalidate (Shuicheng)
+- Fix double-free of managed BO in error path (Shuicheng)
+- Don't attempt to process FAST_REQ or EVENT relays (Michal)
+- Fix NPD in bo_meminfo (Matthew Auld)
+- Prevent invalid cursor access for purged BOs (Matthew Auld)
+- Fix offset alignment for MERT WHITELST_OA_MERT_MMIO_TRG (Ashutosh)
+
+----------------------------------------------------------------
+Ashutosh Dixit (10):
+      drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA whitelists
+      drm/xe/rtp: Maintain OA whitelists separately
+      drm/xe/rtp: Keep track of non-OA nonpriv slots
+      drm/xe/rtp: Generalize whitelist_apply_to_hwe
+      drm/xe/rtp: Save OA nonpriv registers to register save/restore lists
+      drm/xe/rtp: Toggle 'deny' bit to (de-)whitelist OA regs
+      drm/xe/rtp: (De-)whitelist OA registers for all hwe's for a gt
+      drm/xe/oa: (De-)whitelist OA registers on OA stream open/release
+      drm/xe/rtp: Ensure locking/ref counting for OA whitelists
+      drm/xe/oa: Fix offset alignment for MERT WHITELIST_OA_MERT_MMIO_TRG
+
+Francois Dugast (1):
+      drm/xe/pt: Fix NULL pointer dereference in xe_pt_zap_ptes_entry()
+
+Gustavo Sousa (1):
+      drm/xe/rtp: Add struct types for RTP tables
+
+Lu Yao (1):
+      drm/xe: Remove redundant exec_queue_suspended() check in submit_exec_queue()
+
+Matthew Auld (3):
+      drm/xe/display: skip FORCE_WC and vm_bound check for external dma-bufs
+      drm/xe: fix NPD in bo_meminfo()
+      drm/xe/pt: prevent invalid cursor access for purged BOs
+
+Matthew Brost (1):
+      drm/xe: Return error on non-migratable faults requiring devmem
+
+Michal Wajdeczko (1):
+      drm/xe/pf: Don't attempt to process FAST_REQ or EVENT relays
+
+Rodrigo Vivi (1):
+      drm/xe: wedge from the timeout handler only after releasing the queue
+
+Shuicheng Lin (3):
+      drm/xe/userptr: Hold notifier_lock for write on inject test path
+      drm/xe/userptr: Drop bogus static from finish in force_invalidate
+      drm/xe/hw_engine: Fix double-free of managed BO in error path
+
+Thomas Hellström (1):
+      drm/xe/rtp: Fix build error with clang < 21 and non-const initializers
+
+ drivers/gpu/drm/xe/display/xe_display_bo.c |   3 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c     |   3 +-
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c     | 103 +++++++++++------------------
+ drivers/gpu/drm/xe/xe_drm_client.c         |  12 +++-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c         |   4 +-
+ drivers/gpu/drm/xe/xe_guc_relay.c          |  13 ++--
+ drivers/gpu/drm/xe/xe_guc_submit.c         |   9 ++-
+ drivers/gpu/drm/xe/xe_hw_engine.c          |  20 +++---
+ drivers/gpu/drm/xe/xe_hw_engine_types.h    |   8 +++
+ drivers/gpu/drm/xe/xe_oa.c                 |   7 ++
+ drivers/gpu/drm/xe/xe_oa_types.h           |   3 +
+ drivers/gpu/drm/xe/xe_pt.c                 |  67 ++++++++++++++-----
+ drivers/gpu/drm/xe/xe_reg_whitelist.c      | 102 ++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_reg_whitelist.h      |   4 ++
+ drivers/gpu/drm/xe/xe_rtp.c                |  31 ++++-----
+ drivers/gpu/drm/xe/xe_rtp.h                |  24 ++++++-
+ drivers/gpu/drm/xe/xe_rtp_types.h          |  10 +++
+ drivers/gpu/drm/xe/xe_svm.c                |   6 +-
+ drivers/gpu/drm/xe/xe_svm.h                |  15 ++++-
+ drivers/gpu/drm/xe/xe_tuning.c             |  45 ++++++-------
+ drivers/gpu/drm/xe/xe_userptr.c            |   2 +-
+ drivers/gpu/drm/xe/xe_wa.c                 |  89 +++++++++++++------------
+ 22 files changed, 376 insertions(+), 204 deletions(-)
