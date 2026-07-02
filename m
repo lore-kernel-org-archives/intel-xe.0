@@ -4,32 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D087C44503
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69094C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A61C910F382;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D19110F377;
 	Thu,  2 Jul 2026 13:06:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="GKsigi9j";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="SNO+TI3y";
 	dkim-atps=neutral
-X-Greylist: delayed 380 seconds by postgrey-1.36 at gabe;
- Wed, 01 Jul 2026 16:16:13 UTC
-Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com
- [91.218.175.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F94F10EEC6
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Jul 2026 16:16:13 +0000 (UTC)
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com
+ [91.218.175.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBDD010F2DA
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 11:16:05 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782922180;
+ t=1782990951;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=32k3xy2qoDs5v558QiIXDOBJrw4XcLaI228zHYcvJQI=;
- b=GKsigi9jw5iEZkRAOu0U35OCwwNX+WFYQBJnw1VnjqCFwAV1xkeG5HVPPXjVerUIFCpvkl
- 1sYFG/+4cZNO5RnH+3ZGNEajZyzEn2vDXqeNcTTch6ZM0ZT3P4Eo/8D1DaouN8eSB+B2FA
- bvbtO9Gx6J4K8rZ0y4m06I1Z9Hu4ibM=
+ bh=MXoiAeiZxppUV0bbr36tbNoILtIVkAZHXOhXlmlq9aE=;
+ b=SNO+TI3ysBG4+DhR3hPTF1SvhO32c4IR52yjAPmkR78MakGGmD/cQOYIcE8MmMX2BXfJ/B
+ PngJwUk8MPDHueMWfaVQgxbOjSa6VTjHZniUa88SClGCvA5JNzJYRen32CdMAokXiIgXtC
+ 8TVZTPLK3UhpO1X2vjoT/Jd84+uq0gc=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
 Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
@@ -63,12 +61,11 @@ Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
  linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-sound@vger.kernel.org
-Subject: Re: [PATCH 12/13] mm/mprotect: convert mprotect code to use
- vma_flags_t
-Date: Thu,  2 Jul 2026 00:09:17 +0800
-Message-Id: <20260701160917.91435-1-lance.yang@linux.dev>
-In-Reply-To: <7ef626d8a12dc742cfc09d080be5dc09850e873a.1782760670.git.ljs@kernel.org>
-References: <7ef626d8a12dc742cfc09d080be5dc09850e873a.1782760670.git.ljs@kernel.org>
+Subject: Re: [PATCH 02/13] mm/vma: update do_mmap() to use vma_flags_t
+Date: Thu,  2 Jul 2026 19:15:31 +0800
+Message-Id: <20260702111531.64883-1-lance.yang@linux.dev>
+In-Reply-To: <e0ac58ad2b88ff7e2f0024e3286b2e786f79ca32.1782760670.git.ljs@kernel.org>
+References: <e0ac58ad2b88ff7e2f0024e3286b2e786f79ca32.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -89,123 +86,116 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On Mon, Jun 29, 2026 at 08:25:35PM +0100, Lorenzo Stoakes wrote:
->Replace use of the legacy vm_flags_t flags with vma_flags_t values
->throughout the mprotect logic.
+On Mon, Jun 29, 2026 at 08:25:25PM +0100, Lorenzo Stoakes wrote:
+>The core do_mmap() function accepts a vm_flags_t parameter which it then
+>manipulates before passing to mmap_region() to do the heavy lifting of the
+>memory mapping.
 >
->Note that we retain the legacy vm_flags_t bit shifting code in
->do_mprotect_key(), deferring a vma_flags_t approach to this for the time
->being.
+>Update do_mmap() to instead accept a vma_flags_t parameter, and adjust all
+>the logic within do_mmap() to manipulate this instead.
 >
->Additionally update comments to reflect the changes to be consistent.
+>This is as part of the ongoing effort to convert VMA flags from a system
+>word size to a bitmap type which allows us to unrestrict the number of VMA
+>flags, as well as gain control over how VMA flag manipulation occurs.
+>
+>We do not cascade these changes to all functions which accept vm_flags_t,
+>but rather use vma_flags_to_legacy() where necessary, specifically
+>deferring converting calc_vm_prot_bits(), calc_vm_flag_bits() and
+>__get_unmapped_area() to vma_flags_t.
+>
+>Also utilise the new vma_flags_can_grow() predicate which correctly handles
+>the case of architectures without upward growing stacks.
+>
+>As part of this change, introduce VMA_SHADOW_STACK so we can correctly
+>handle the case of the shadow stack not being defined.
 >
 >No functional change intended.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
-> mm/mprotect.c | 16 ++++++++--------
-> 1 file changed, 8 insertions(+), 8 deletions(-)
->
->diff --git a/mm/mprotect.c b/mm/mprotect.c
->index 9cbf932b028c..c9504b2a2525 100644
->--- a/mm/mprotect.c
->+++ b/mm/mprotect.c
->@@ -40,7 +40,7 @@
-> 
-> static bool maybe_change_pte_writable(struct vm_area_struct *vma, pte_t pte)
-> {
->-	if (WARN_ON_ONCE(!(vma->vm_flags & VM_WRITE)))
->+	if (WARN_ON_ONCE(!vma_test(vma, VMA_WRITE_BIT)))
-> 		return false;
-> 
-> 	/* Don't touch entries that are not even readable. */
->@@ -97,7 +97,7 @@ static bool can_change_shared_pte_writable(struct vm_area_struct *vma,
-> bool can_change_pte_writable(struct vm_area_struct *vma, unsigned long addr,
-> 			     pte_t pte)
-> {
->-	if (!(vma->vm_flags & VM_SHARED))
->+	if (!vma_test(vma, VMA_SHARED_BIT))
-> 		return can_change_private_pte_writable(vma, addr, pte);
-> 
-> 	return can_change_shared_pte_writable(vma, pte);
->@@ -194,7 +194,7 @@ static __always_inline void set_write_prot_commit_flush_ptes(struct vm_area_stru
-> {
-> 	bool set_write;
-> 
->-	if (vma->vm_flags & VM_SHARED) {
->+	if (vma_test(vma, VMA_SHARED_BIT)) {
-> 		set_write = can_change_shared_pte_writable(vma, ptent);
-> 		prot_commit_flush_ptes(vma, addr, ptep, oldpte, ptent, nr_ptes,
-> 				       /* idx = */ 0, set_write, tlb);
->@@ -811,8 +811,8 @@ mprotect_fixup(struct vma_iterator *vmi, struct mmu_gather *tlb,
-> 		vm_unacct_memory(nrpages);
-> 
-> 	/*
->-	 * Private VM_LOCKED VMA becoming writable: trigger COW to avoid major
->-	 * fault on access.
->+	 * Private VMA_LOCKED_BIT VMA becoming writable: trigger COW to avoid
->+	 * major fault on access.
-> 	 */
-> 	if (vma_flags_test(&new_vma_flags, VMA_WRITE_BIT) &&
-> 	    vma_flags_test(&old_vma_flags, VMA_LOCKED_BIT) &&
->@@ -886,7 +886,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
-> 			goto out;
-> 		start = vma->vm_start;
-> 		error = -EINVAL;
->-		if (!(vma->vm_flags & VM_GROWSDOWN))
->+		if (!vma_test(vma, VMA_GROWSDOWN_BIT))
-> 			goto out;
+
+Not exactly a small one :) I stared at this patch for a while, hopefully
+don't miss anythig ...
+
+Just one tiny nit below. Overall, LGTM, feel free to add:
+
+Reviewed-by: Lance Yang <lance.yang@linux.dev>
+
+[...]
+>diff --git a/mm/mmap.c b/mm/mmap.c
+>index 46174e706bbe..547352183214 100644
+>--- a/mm/mmap.c
+>+++ b/mm/mmap.c
+[...]
+>@@ -488,23 +496,27 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
+> 		 * Check to see if we are violating any seals and update VMA
+> 		 * flags if necessary to avoid future seal violations.
+> 		 */
+>-		err = memfd_check_seals_mmap(file, &vm_flags);
+>+		err = memfd_check_seals_mmap(file, &vma_flags);
+> 		if (err)
+> 			return (unsigned long)err;
 > 	} else {
-> 		if (vma->vm_start > start)
->@@ -894,7 +894,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
-> 		if (unlikely(grows & PROT_GROWSUP)) {
-> 			end = vma->vm_end;
-> 			error = -EINVAL;
->-			if (!(vma->vm_flags & VM_GROWSUP))
->+			if (!vma_test(vma, VMA_GROWSUP_BIT))
+> 		switch (flags & MAP_TYPE) {
+> 		case MAP_SHARED:
+>-			if (vm_flags & (VM_GROWSDOWN|VM_GROWSUP))
+>+			if (vma_flags_can_grow(&vma_flags))
+> 				return -EINVAL;
+> 			/*
+> 			 * Ignore pgoff.
+> 			 */
+> 			pgoff = 0;
+>-			vm_flags |= VM_SHARED | VM_MAYSHARE;
+>+			vma_flags_set(&vma_flags, VMA_SHARED_BIT, VMA_MAYSHARE_BIT);
+> 			break;
+>-		case MAP_DROPPABLE:
+>-			if (VM_DROPPABLE == VM_NONE)
+>+		case MAP_DROPPABLE: {
+>+			vma_flags_t droppable = VMA_DROPPABLE;
+>+
+>+			if (vma_flags_empty(&droppable))
+> 				return -EOPNOTSUPP;
+>+			vma_flags_set_mask(&vma_flags, droppable);
+>+
+> 			/*
+> 			 * A locked or stack area makes no sense to be droppable.
+> 			 *
+>@@ -515,23 +527,24 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
+> 			 */
+> 			if (flags & (MAP_LOCKED | MAP_HUGETLB))
+> 			        return -EINVAL;
+>-			if (vm_flags & (VM_GROWSDOWN | VM_GROWSUP))
+>+			if (vma_flags_can_grow(&vma_flags))
+> 			        return -EINVAL;
+> 
+>-			vm_flags |= VM_DROPPABLE;
 
-IIUC, should this be
+Old code checked VM_GROWSDOWN|VM_GROWSUP before seting VM_DROPPABLE. New
+code flips that around. Hmm, shouldn't master, just made me look twice ;)
 
-if (!vma_test_single_mask(vma, VMA_GROWSUP))
-
-instead?
-
-#elif defined(CONFIG_PARISC)
-#define VM_GROWSUP	INIT_VM_FLAG(GROWSUP)
-...
-#ifndef VM_GROWSUP
-#define VM_GROWSUP	VM_NONE
-...
-
-VM_GROWSUP is only defined as GROWSUP on parisc and becomes VM_NONE
-elsewhere. But VMA_GROWSUP_BIT is the raw ARCH_1 bit, which is also used
-for other arch-specific VMA flags:
-
-	DECLARE_VMA_BIT_ALIAS(SAO, ARCH_1),		/* Strong Access Ordering (powerpc) */
-	DECLARE_VMA_BIT_ALIAS(GROWSUP, ARCH_1),		/* parisc */
-	DECLARE_VMA_BIT_ALIAS(SPARC_ADI, ARCH_1),	/* sparc64 */
-	DECLARE_VMA_BIT_ALIAS(ARM64_BTI, ARCH_1),	/* arm64 */
-	DECLARE_VMA_BIT_ALIAS(ARCH_CLEAR, ARCH_1),	/* sparc64, arm64 */
-	DECLARE_VMA_BIT_ALIAS(MAPPED_COPY, ARCH_1),	/* !CONFIG_MMU */
-
-Other vma_test() changes look fine to me: just fixed INIT_VM_FLAG()
-masks matching their VMA_*_BIT :)
+Maybe keep old order?
 
 Cheers, Lance
 
-> 				goto out;
-> 		}
-> 	}
->@@ -918,7 +918,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
-> 		}
+>-
+> 			/*
+> 			 * If the pages can be dropped, then it doesn't make
+> 			 * sense to reserve them.
+> 			 */
+>-			vm_flags |= VM_NORESERVE;
+>+			vma_flags_set(&vma_flags, VMA_NORESERVE_BIT);
 > 
-> 		/* Does the application expect PROT_READ to imply PROT_EXEC */
->-		if (rier && (vma->vm_flags & VM_MAYEXEC))
->+		if (rier && vma_test(vma, VMA_MAYEXEC_BIT))
-> 			prot |= PROT_EXEC;
-> 
-> 		/*
->-- 
->2.54.0
->
->
+> 			/*
+> 			 * Likewise, they're volatile enough that they
+> 			 * shouldn't survive forks or coredumps.
+> 			 */
+>-			vm_flags |= VM_WIPEONFORK | VM_DONTDUMP;
+>+			vma_flags_set(&vma_flags, VMA_WIPEONFORK_BIT,
+>+				      VMA_DONTDUMP_BIT);
+>+
+> 			fallthrough;
+>+		}
+> 		case MAP_PRIVATE:
+> 			/*
+> 			 * Set pgoff according to addr for anon_vma.
+[...]
