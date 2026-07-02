@@ -4,77 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BF6FC43602
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 16:07:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 147B7C43602
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 16:14:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E80A10F4C7;
-	Thu,  2 Jul 2026 16:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C28EB10F4BB;
+	Thu,  2 Jul 2026 16:14:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RZKUR0qn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ms+Imtfe";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 199F110E4FB;
- Thu,  2 Jul 2026 16:07:34 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id E840C43BB8;
- Thu,  2 Jul 2026 16:07:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C8A31F000E9;
- Thu,  2 Jul 2026 16:07:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783008453;
- bh=TfvR3Muaq7o+afYbXjsDSvqRy7FxUVckvz1k4Hxbez0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=RZKUR0qnMCX1lVPMLegWDJwvMR3XwPOjgqmuDlY8+1sNyGBX6G0WNkOyriJ+PtG6y
- WoL1rkJ4u0k6Z/pcI27Q9cfN5qit8W5zrOm26I9VdyLr6cW2bUvNsdF/9cAdED/TO5
- AhCJxe7BVGNUURRd3IeizZOkboEYr9oFtXUUDXIMY549O+sfZleE5cdwLHHY1Mnd5w
- fUEwk8w3Bqh1uArvHx8Wkw0ChPSb59uuaQpmYgj0hIESSw8+X4zGBfFv8Mg5ixvDOI
- z8XtFU+Dq4mFlmkaOHGXh7hbxcLj3TzRDApEJrIOyiLSNEjyj9JwDrdlVKeNPP3pCm
- r9BU9h8EBQzqg==
-Date: Thu, 2 Jul 2026 17:07:10 +0100
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Lance Yang <lance.yang@linux.dev>
-Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, 
- maddy@linux.ibm.com, mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, 
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
- l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com, 
- kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org, 
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, 
- tursulin@ursulin.net, robin.clark@oss.qualcomm.com, lumag@kernel.org,
- lyude@redhat.com, 
- dakr@kernel.org, tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, 
- heiko@sntech.de, andy.yan@rock-chips.com, thierry.reding@kernel.org, 
- mperttunen@nvidia.com, jonathanh@nvidia.com, kraxel@redhat.com, 
- dmitry.osipenko@collabora.com, zack.rusin@broadcom.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
- deller@gmx.de, bcrl@kvack.org, 
- viro@zeniv.linux.org.uk, brauner@kernel.org, muchun.song@linux.dev,
- osalvador@suse.de, 
- david@kernel.org, ziy@nvidia.com, baolin.wang@linux.alibaba.com, 
- liam@infradead.org, npache@redhat.com, ryan.roberts@arm.com, dev.jain@arm.com, 
- baohua@kernel.org, hughd@google.com, vbabka@kernel.org, rppt@kernel.org, 
- surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de, 
- kees@kernel.org, perex@perex.cz, tiwai@suse.com, linux-mips@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- dri-devel@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- virtualization@lists.linux.dev, 
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, 
- linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
- linux-sound@vger.kernel.org
-Subject: Re: [PATCH 13/13] mm/mremap: convert mremap code to use vma_flags_t
-Message-ID: <akaJx8Zt8kazlrjq@lucifer>
-References: <380f761d35a3faa4370f8b3f92e3d4af3d4c7110.1782760670.git.ljs@kernel.org>
- <20260702134947.25189-1-lance.yang@linux.dev>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B78710F4B4;
+ Thu,  2 Jul 2026 16:14:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783008867; x=1814544867;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=S1eOUNoGUPRzg4B9lIAbmqPnV4Vd6mP9svY3Jun2rjk=;
+ b=ms+ImtfeAs6fHIvTjolyzgImS60Cr/WzJ//JxweSrga3E4WsSfUGYOJ1
+ mIYR8DAsf+kGvpqA2c5tYidVK92xpTe/E97lG4KKR9Q3dtpa2GhztQ7iq
+ U52CsFl6IEJNJ1o3G5Uz5+Gk+PeNn3eS1IwJrHlGQqBAJJCwiDmCkyS2f
+ pGeKqdbsrqNVCBXrvLzjX6ZiwsDG578aQ1y6qIUmZZBoZj5yBWoNXajBt
+ Dt+eMz+x/izUWJBs17FugsBZLZ/4Ofh119UGUvWSYrxMTLOvpiygHxnM4
+ ki400jsGtwSBBvOtuA6P5Pem72QpJ8N8aENA55opD7CCJYIXWQBKaZ/UI w==;
+X-CSE-ConnectionGUID: brfzogqjR66rHdvGFKTSWw==
+X-CSE-MsgGUID: UhVI33o9SvSOfJ1FpWEkPQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="94421016"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="94421016"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 09:14:27 -0700
+X-CSE-ConnectionGUID: zl0DBSBYQ5Ss3NqQ/YMSsA==
+X-CSE-MsgGUID: ye7wFa4XR3eZnSUZPiS7EQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="248919712"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 09:14:27 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 2 Jul 2026 09:14:26 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Thu, 2 Jul 2026 09:14:26 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.39) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 2 Jul 2026 09:14:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=J+tJxkv2v2kZiqfj/vD9TNhCHkUXhRupCljM0tedtiSEhxMN1CuxPTwnKLyZNDPaIOCM0yWMWTfoc1U7F64Uh0a1kI8XJttU7jPXZPqdiq9qE5NxsHRrdp4u8VIjr/AwcXrx3kXrYXSSWCtzyIbUTVKD3xX+DzBmjXj3hs3yXOVjr1JLT12ZpndyrZDvNSe+yL5/xH6lvA6Tsi+iHhenjXz48RpnLABjteOwlELzDGHn+Kg3RNKV7UaTO+fP9PphDJVeWv/2b+iCaD5TJJrc6YP1l6D46Ej3vNuOx4DXMtEx7R9L5VtuiDkp/knyBsIJ8U42Vv+V/KDr1Ld5aHO3IQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=S1eOUNoGUPRzg4B9lIAbmqPnV4Vd6mP9svY3Jun2rjk=;
+ b=lCof2Ag2GtI1VBMONUo4xUOMP+69Z59wfNGsJIf7+uLOTZgR3gB2zjQed1h8aqzGj15cPthKCZ5cnHm23zeFZ3ViylvMafbSz5ogOb/JJ1378zOBVVcetdzZry3pv2fjzrspJ89kGfdihvNQp2bTHol6aI4foJ7GkMnT23REYR0bBvqzrag4DgLZDinvhpVCs2EOZ4hbd7+rHw11Y0/lFDrqiAlvVoWuyt42JeTlyPOeVWnr+FblrIFDUdP0SUqhMW9sqJgCZZrDk2NJAziW7Xyvnyt0YPBKqh8ab/oi6GCbnpYZC+Bq/SCvwBSh6aR4+b9MtXs20LvV1XgfRgyWqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
+ by MW5PR11MB5882.namprd11.prod.outlook.com (2603:10b6:303:19e::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 2 Jul
+ 2026 16:14:23 +0000
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::5a70:4005:6905:8e31]) by IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::5a70:4005:6905:8e31%7]) with mapi id 15.21.0181.008; Thu, 2 Jul 2026
+ 16:14:22 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Kandpal,
+ Suraj" <suraj.kandpal@intel.com>
+Subject: RE: [PATCH RESEND v2] drm/i915/display: Program TRANS_VTOTAL from
+ mode vtotal
+Thread-Topic: [PATCH RESEND v2] drm/i915/display: Program TRANS_VTOTAL from
+ mode vtotal
+Thread-Index: AQHc/heN9711YFsTq0i18lopXGyyrLZadkaAgAAE9/A=
+Date: Thu, 2 Jul 2026 16:14:22 +0000
+Message-ID: <IA1PR11MB6348D8D9F53ECCFD47321C83B2F52@IA1PR11MB6348.namprd11.prod.outlook.com>
+References: <20260617045850.862100-1-mitulkumar.ajitkumar.golani@intel.com>
+ <0b7919083586f3ba26159f909f87666ea9b41045@intel.com>
+In-Reply-To: <0b7919083586f3ba26159f909f87666ea9b41045@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|MW5PR11MB5882:EE_
+x-ms-office365-filtering-correlation-id: fa2ccfcb-2648-47ff-a871-08ded854fa85
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|23010399003|376014|1800799024|366016|18002099003|38070700021|56012099006|3023799007|11063799006|4143699003|22082099003;
+x-microsoft-antispam-message-info: x/3btRHlsrjIxnaHYkykE2eXnKKBik25micqL7tzUK3WnR5Mm0RaW0E5lG9eE3lmM/c1XVHcwIAZkigbsA5qNd2rQasphwhGb572l8zRChRymOjf7mdlmsSykNUUI/ZaOOIJieNEDRUh1oY4msHjciqmAicTdJjOU/du+Kccb1Fpf79VS7YLaLv+Q5xGmAzfo6jTXkLv+J3gBTf0gdkI3VxTslkZgrWxBSdySrI9SwNs+eur9iLbSyoRwO8hGr0VHaKqc8gCLkdKPaylch2zEz6o7+t+bfLggjKPTfxfmJUrqMofTncaS5tUJ9tr4smDJSFBVZewfT4q0p+pWG8cTYry4VBNpYCQaV13Gn+htyMiQMfFf5c2GeyjfAsk9FYHvHIqtEi2g5Xv+Y9c+hhDFfZwn+5Pf9UT7ysYwOolXdtOknp0CkPBM4mUzZ/HDmuxa92JPtNYzluMszoYVY/3pt5qMk38+0mnklijFCy3F6tEFJ91IelYD4zyrxrSrnJ44WIs2TuLtGM2t8keMMbhcrhCVZWovLCkgCXJDu6kty5IAIL344BYmYd8B8or3/FDKBrKGQRrcXBt4sksm90ptiKTx7OBBvYm64u4OAUHBgIBO6P7KJxyZI936AAbLjDe0hhbV1w6DfKXaT9hADNsbnok/Wjqz2zccX7/vzcW9qqlhYYPobBHm+DZ2fcjAEGnm4DRi5De+uqnGqcEYq79LQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(23010399003)(376014)(1800799024)(366016)(18002099003)(38070700021)(56012099006)(3023799007)(11063799006)(4143699003)(22082099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TDVmMlphVDlDOEtMYnVUMmtkTng3a0VwTkxJMWhYbGtlVnhLVGFmRmp6K2wz?=
+ =?utf-8?B?OGRLOWVCckNKS1IrYk5UNm5pN1BlZnNjVFo2WFlZS2YxTVU1Z29TSGxIVStZ?=
+ =?utf-8?B?Z25pdzJwTlNXem45TmsxWWRxQ0t2WFhTak9GTFlqdWZqdXQva2lMU1IyNWI4?=
+ =?utf-8?B?ejVuRjRpajdXY2NvVW1Kc2RjclBYcVJpeWJoQkhhNTh2VGZsZ2trd01OSEk1?=
+ =?utf-8?B?STl0VnExUGRvZjB2Wm90UDY2MnVOd0I3bWFNaTUvM25OZ0Zyam1HZnZYWXNh?=
+ =?utf-8?B?MlVNOUh2UHZIZHh0NURtN3pEL2xwNXF6WUt2c3RUUmZkOVdodGhsVTVvT3Zw?=
+ =?utf-8?B?SzRiWUxtczhDSzF5eU1FWkcwT0ZaZXZ6dWpiNFFkKzBOSzJ6aTVKMlBiVXJD?=
+ =?utf-8?B?V0xQbkJSK0EzbEtkczZQVTVtR0RLcFE2U3J1L29KQ0U5VVRVUTRVU09hMUpw?=
+ =?utf-8?B?blZSemFUdUMwUTI0cXRsVVlDcWpwRXFFbTJMSEpZMGkwT3pUY210OFJWMlVm?=
+ =?utf-8?B?MUxlVURrN3ZxZjRFRTNxTENMOVZHaFd2U2ZobTZWeHRDcGVYN3pzaDVCSUVL?=
+ =?utf-8?B?Z0RSZjdLamZpTVcrZkl0UmJwTGwvc2QySXNPbkhlTE9BeWcvdE9XdnkvcVht?=
+ =?utf-8?B?ay9adFUydmhnT2R6QVg4Rld6TlpIb0VqRnlFMmpTZkZ0T2VBV1AxQXNsUkZW?=
+ =?utf-8?B?Y2hBR0lOTDg5OWZYUm51KzcvcnNUci8ydGVkVmtyelg1TnRqNFVzNVdRdkxI?=
+ =?utf-8?B?NHE4UGdNejdjdllsOFI5aWdjSVRkS1FvQnZDcDMvVlg5VWU1d1B3MGtNc212?=
+ =?utf-8?B?SjE2bXFMM3I3MTV5WGd5M3o0N1JQR0ZqT0JiMmFuVFFLaVNkRW1DbjlYbW5h?=
+ =?utf-8?B?S3Jxdk40MWFqTXMyR2ZPSDFkMHlHR3dVY2svc2c0Zm9qOTY5T3RxZG41UnBw?=
+ =?utf-8?B?R244YW55UFlacmhhWEtuc2VkL2s0cnZJc0ZIVlloVS9Xb2doc3oxTS93dGxE?=
+ =?utf-8?B?OVlsSmtHemlNTGhsNHJubU03NXlTWkpBY0VXcklrblZoU2ZEMTYyQTJBNEdP?=
+ =?utf-8?B?eDB4c1RTc3VDVXFoUmpDM3FGbG83OWJTSGNLaGFKeTJCSlo3dE5HRWxaMVps?=
+ =?utf-8?B?bmhYNUQyaWRDTm1yb21GWEJaTzlZT1p0U1EvR3FoQUwwRml4VEQ2MTRrVHVK?=
+ =?utf-8?B?ZWFYakZLQVJUTE9UMnA2Y0dtajc1c05obS9yZEVCcngzalYvbnZhanA5bW5V?=
+ =?utf-8?B?dmRlS0Z3ajhHM0E1SThuSjJJMitWOWc0SUZvWVRMTVlsQmkzaDN4cXlHTmQv?=
+ =?utf-8?B?M1pRSkpmcEg5QnJNWEMvN1J0VjBPVXlnam9hK0x5UitMekNkTUZmNVJ5bnRM?=
+ =?utf-8?B?L1dPdm92dGRwRnptNFVPekRXbkRWSmJ2RENla3lnaVBBcFE0Uy9HMVc3Wmd5?=
+ =?utf-8?B?eW0vZHdQYWlkNjRwM2lQZjdMeThKTFNheUpCTE5OVlYwMEh6ZUp3RjRySlpx?=
+ =?utf-8?B?czZNOVZRMFlrenlwY0ZyTXREOG1XUmRPUnBSRnJqM0hRcGNLUTFPVzA2NElV?=
+ =?utf-8?B?c2t0N3ZOb1pQS3NIM0ltNE5EL2VBSzNjRUlwblNqQkwweGN1VU0xdEZTWUJt?=
+ =?utf-8?B?d1ZzMFo3RnpyVDN1ZWVVTlVEdjRNQWxMNGMxQ3JPOGNYZUU0MkJHaTNvblly?=
+ =?utf-8?B?RjV1RnphK0N2NVlBdDFwZ1Z3dCtZUjFiT04ybk13T0xDc050b3BYMmFPVkQw?=
+ =?utf-8?B?blcxbVVzUys3c1FXQlIxMTRBZEpxRUVESEVoazZtSmUyZE9QWGNlRnM1MUU4?=
+ =?utf-8?B?WlhFOUxiWDExdERONTVBcm1FbzN6aHY5eExpVDVNSEhqN0NVOU05d211YTJR?=
+ =?utf-8?B?TGxJYzVIdFJvS2t2aWtTSXlpbUdnQzZTYllxRzFWMFU1Ymo3V2NZc054R1Q3?=
+ =?utf-8?B?cUhwd25UcysrRXhCeFBtSTNWL2VMUVhFakxWOHlyVERCYnZFNm9LNE83cU92?=
+ =?utf-8?B?L3Y4Y0x3dGF4WUtVY1FMZExYYVVvWTM0WVhlaVZhWkt0alhyM1ZxSjE0dHZQ?=
+ =?utf-8?B?a3hoTWF6YUs2bEhCZ0dWbnJhbzc1R3ZwSHdjSzdsYXduWCtuWDdxelhuV29h?=
+ =?utf-8?B?cnVsZURHU3RsYURiWE13MW91QmptS1hiWVRrWGViRXFBTitrYzRhSkJGTHI1?=
+ =?utf-8?B?YjVVY05YcDh5dVJCMXdlM1Q4MTI1VWNOaWFMZmU3dVY5V3pOMU1md3dqbm9D?=
+ =?utf-8?B?TVhRVkhCcjNpbldCeHRBZGdsamlQTld6bHFBbkpZeFhWTXJXeTg4RWdRVklt?=
+ =?utf-8?B?TGVQNDRGSE44dm1mL28zOHhkZ1RMNnQvVEE4WU91M09uWUxaSDFiOEU4dkdj?=
+ =?utf-8?Q?1NBLV0kpAYGCSSKpHr+DBQR3fuGslltjpI0ubfj/kkbMy?=
+x-ms-exchange-antispam-messagedata-1: LYdQZ2SKyxtE3/T0TD6gR5ggu+IQcEhuxw4IbrsRPxcOHJlbGFHypH3+
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260702134947.25189-1-lance.yang@linux.dev>
+X-Exchange-RoutingPolicyChecked: Py7oKNr+9tGd6+c6kg+7JYVk2nplp5YGnv0PpBA7U/eBc4Uusf95Q2YlTOAI3T4uci82mfLcDrHTqAH/sVTu8NMUQDTjlBPPOVuo824oKQKEnxX6vmGJCwGa7waEHY6pcoiMgkiGw7a54uO+PYnhesytClx92ScGXJdOFB7Bb3g9yw3CafULA8Y463t93XzQ+lzQUDl3ptgDy/ExjT50ibc7RC5S0Dq7gm1vD4AElID3APIG+ZuR5athpJd1MOsCze5+wwt5ShJ/Got/JWFzpzYwL6oHwszgNOVb5dP0DQWRozUur4SChMyVKXj5JQNdJKZ0OyeozDuSLMBKHY3bQg==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa2ccfcb-2648-47ff-a871-08ded854fa85
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2026 16:14:22.4352 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YYtR+xL4G+YlWYCyy+EiQ64YEZLhH/V+pEnXt7AY5qI+DIemh+TQv0emZss3y7T7L3fafJ0QEjQvYw1ASRBKfEIea+Ya68L9YYthes4jZiztvZT2aQXbqkPhPvjYeiRr
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5882
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,194 +177,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 02, 2026 at 09:49:47PM +0800, Lance Yang wrote:
->
-> On Mon, Jun 29, 2026 at 08:25:36PM +0100, Lorenzo Stoakes wrote:
-> >Replace use of the legacy vm_flags_t flags with vma_flags_t values
-> >throughout the mremap logic.
-> >
-> >Additionally update comments to reflect the changes to be consistent.
-> >
-> >No functional change intended.
-> >
-> >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> >---
->
-> The vm_flags_set() cases below spell out vma_start_write(), but the
-> vm_flags_clear() cases don't?
-
-Yep as I said elsewhere, implicitly taking the lock is terrible and me doing
-this is completely on purpose to get rid of that :)
-
-But I haven't been clear enough clearly, so I should put the argument as to why
-that's ok in the commit message.
-
-Will do so on respin.
-
->
-> Thanks, Lance
->
-> > mm/mremap.c | 38 ++++++++++++++++++++------------------
-> > 1 file changed, 20 insertions(+), 18 deletions(-)
-> >
-> >diff --git a/mm/mremap.c b/mm/mremap.c
-> >index 079a0ba0c4a7..0ea43302b7ed 100644
-> >--- a/mm/mremap.c
-> >+++ b/mm/mremap.c
-> >@@ -68,7 +68,7 @@ struct vma_remap_struct {
-> > 	bool populate_expand;		/* mlock()'d expanded, must populate. */
-> > 	enum mremap_type remap_type;	/* expand, shrink, etc. */
-> > 	bool mmap_locked;		/* Is mm currently write-locked? */
-> >-	unsigned long charged;		/* If VM_ACCOUNT, # pages to account. */
-> >+	unsigned long charged;		/* If VMA_ACCOUNT_BIT, # pgs to account */
-> > 	bool vmi_needs_invalidate;	/* Is the VMA iterator invalidated? */
-> > };
-> >
-> >@@ -954,7 +954,7 @@ static unsigned long vrm_set_new_addr(struct vma_remap_struct *vrm)
-> >
-> > 	if (vrm->flags & MREMAP_FIXED)
-> > 		map_flags |= MAP_FIXED;
-> >-	if (vma->vm_flags & VM_MAYSHARE)
-> >+	if (vma_test(vma, VMA_MAYSHARE_BIT))
-> > 		map_flags |= MAP_SHARED;
-> >
-> > 	res = get_unmapped_area(vma->vm_file, new_addr, vrm->new_len, pgoff,
-> >@@ -976,7 +976,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
-> > {
-> > 	unsigned long charged;
-> >
-> >-	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
-> >+	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
-> > 		return true;
-> >
-> > 	/*
-> >@@ -1003,7 +1003,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
-> >  */
-> > static void vrm_uncharge(struct vma_remap_struct *vrm)
-> > {
-> >-	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
-> >+	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
-> > 		return;
-> >
-> > 	vm_unacct_memory(vrm->charged);
-> >@@ -1023,7 +1023,7 @@ static void vrm_stat_account(struct vma_remap_struct *vrm,
-> > 	struct vm_area_struct *vma = vrm->vma;
-> >
-> > 	vm_stat_account(mm, vma->vm_flags, pages);
-> >-	if (vma->vm_flags & VM_LOCKED)
-> >+	if (vma_test(vma, VMA_LOCKED_BIT))
-> > 		mm->locked_vm += pages;
-> > }
-> >
-> >@@ -1167,7 +1167,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
-> > 	 * arose, in which case we _do_ wish to unmap the _new_ VMA, which means
-> > 	 * we actually _do_ want it be unaccounted.
-> > 	 */
-> >-	bool accountable_move = (vma->vm_flags & VM_ACCOUNT) &&
-> >+	bool accountable_move = vma_test(vma, VMA_ACCOUNT_BIT) &&
-> > 		!(vrm->flags & MREMAP_DONTUNMAP);
-> >
-> > 	/*
-> >@@ -1186,7 +1186,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
-> > 	 * portions of the original VMA that remain.
-> > 	 */
-> > 	if (accountable_move) {
-> >-		vm_flags_clear(vma, VM_ACCOUNT);
-> >+		vma_clear_flags(vma, VMA_ACCOUNT_BIT);
-
-This is called from move_vma() which holds the VMA write lock on vma.
-
-> > 		/* We are about to split vma, so store the start/end. */
-> > 		vm_start = vma->vm_start;
-> > 		vm_end = vma->vm_end;
-> >@@ -1211,8 +1211,8 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
-> > 	 * |             |
-> > 	 * |-------------|
-> > 	 *
-> >-	 * Having cleared VM_ACCOUNT from the whole VMA, after we unmap above
-> >-	 * we'll end up with:
-> >+	 * Having cleared VMA_ACCOUNT_BIT from the whole VMA, after we unmap
-> >+	 * above we'll end up with:
-> > 	 *
-> > 	 *    addr  end
-> > 	 *     |     |
-> >@@ -1232,13 +1232,15 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
-> > 		if (vm_start < addr) {
-> > 			struct vm_area_struct *prev = vma_prev(&vmi);
-> >
-> >-			vm_flags_set(prev, VM_ACCOUNT); /* Acquires VMA lock. */
-> >+			vma_start_write(prev);
-> >+			vma_set_flags(prev, VMA_ACCOUNT_BIT);
-> > 		}
-> >
-> > 		if (vm_end > end) {
-> > 			struct vm_area_struct *next = vma_next(&vmi);
-> >
-> >-			vm_flags_set(next, VM_ACCOUNT); /* Acquires VMA lock. */
-> >+			vma_start_write(next);
-> >+			vma_set_flags(next, VMA_ACCOUNT_BIT);
-
-These need vma_start_write() as referencing other, unlocked VMAs.
-
-> > 		}
-> > 	}
-> > }
-> >@@ -1321,8 +1323,8 @@ static void dontunmap_complete(struct vma_remap_struct *vrm,
-> > 	unsigned long old_start = vrm->vma->vm_start;
-> > 	unsigned long old_end = vrm->vma->vm_end;
-> >
-> >-	/* We always clear VM_LOCKED[ONFAULT] on the old VMA. */
-> >-	vm_flags_clear(vrm->vma, VM_LOCKED_MASK);
-> >+	/* We always clear VMA_LOCKED[ONFAULT]_BIT on the old VMA. */
-> >+	vma_clear_flags_mask(vrm->vma, VMA_LOCKED_MASK);
--
-Same as above, called from move_vma() with VMA write lock held.
-
-> >
-> > 	/*
-> > 	 * anon_vma links of the old vma is no longer needed after its page
-> >@@ -1758,14 +1760,14 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
-> > 	 * based on the original.  There are no known use cases for this
-> > 	 * behavior.  As a result, fail such attempts.
-> > 	 */
-> >-	if (!old_len && !(vma->vm_flags & (VM_SHARED | VM_MAYSHARE))) {
-> >+	if (!old_len && !vma_test_any(vma, VMA_SHARED_BIT, VMA_MAYSHARE_BIT)) {
-> > 		pr_warn_once("%s (%d): attempted to duplicate a private mapping with mremap.  This is not supported.\n",
-> > 			     current->comm, current->pid);
-> > 		return -EINVAL;
-> > 	}
-> >
-> > 	if ((vrm->flags & MREMAP_DONTUNMAP) &&
-> >-			(vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP)))
-> >+	    vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
-> > 		return -EINVAL;
-> >
-> > 	/*
-> >@@ -1795,7 +1797,7 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
-> > 		return 0;
-> >
-> > 	/* We are expanding and the VMA is mlock()'d so we need to populate. */
-> >-	if (vma->vm_flags & VM_LOCKED)
-> >+	if (vma_test(vma, VMA_LOCKED_BIT))
-> > 		vrm->populate_expand = true;
-> >
-> > 	/* Need to be careful about a growing mapping */
-> >@@ -1803,10 +1805,10 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
-> > 	if (pgoff + (new_len >> PAGE_SHIFT) < pgoff)
-> > 		return -EINVAL;
-> >
-> >-	if (vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP))
-> >+	if (vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
-> > 		return -EFAULT;
-> >
-> >-	if (!mlock_future_ok(mm, vma->vm_flags & VM_LOCKED, vrm->delta))
-> >+	if (!mlock_future_ok(mm, vma_test(vma, VMA_LOCKED_BIT), vrm->delta))
-> > 		return -EAGAIN;
-> >
-> > 	if (!may_expand_vm(mm, &vma->flags, vrm->delta >> PAGE_SHIFT))
-> >--
-> >2.54.0
-> >
-> >
-
-Cheers, Lorenzo
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSmFuaSBOaWt1bGEgPGph
+bmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2VudDogMDIgSnVseSAyMDI2IDIxOjExDQo+
+IFRvOiBHb2xhbmksIE1pdHVsa3VtYXIgQWppdGt1bWFyIDxtaXR1bGt1bWFyLmFqaXRrdW1hci5n
+b2xhbmlAaW50ZWwuY29tPjsNCj4gaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBD
+YzogaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBOYXV0aXlhbCwgQW5raXQgSw0KPiA8
+YW5raXQuay5uYXV0aXlhbEBpbnRlbC5jb20+OyB2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNv
+bTsgS2FuZHBhbCwgU3VyYWoNCj4gPHN1cmFqLmthbmRwYWxAaW50ZWwuY29tPg0KPiBTdWJqZWN0
+OiBSZTogW1BBVENIIFJFU0VORCB2Ml0gZHJtL2k5MTUvZGlzcGxheTogUHJvZ3JhbSBUUkFOU19W
+VE9UQUwNCj4gZnJvbSBtb2RlIHZ0b3RhbA0KPiANCj4gT24gV2VkLCAxNyBKdW4gMjAyNiwgTWl0
+dWwgR29sYW5pIDxtaXR1bGt1bWFyLmFqaXRrdW1hci5nb2xhbmlAaW50ZWwuY29tPg0KPiB3cm90
+ZToNCj4gPiBUaGVyZSBhcmUgbW9uaXRvcnMgYmVpbmcgc2Vuc2l0aXZlIHRvIE1TQSBhbmQgZW5k
+IHVwIGJsYW5raW5nIG91dCB3aGVuDQo+ID4gd2Ugb3ZlcnJpZGUgVnRvdGFsLCBEUCB0cmFuc2Nv
+ZGVyIHVzZXMgVFJBTlNfVlRPVEFMIHRvIGRlcml2ZSBNU0ENCj4gPiBWVG90YWwuIEF2b2lkIG92
+ZXJyaWRpbmcgY3J0Y192dG90YWwgdG8gMSBvbiBwbGF0Zm9ybSB3aGljaCBzdXBwb3J0cw0KPiA+
+IFZSUiBUaW1pbmcgZ2VuZXJhdG9yIGFuZCBhbHdheXMgcHJvZ3JhbSBWVE9UQUwgZnJvbSBtb2Rl
+IHRpbWluZyBpbg0KPiA+IHRyYW5zY29kZXIgdGltaW5nIHBhdGhzLg0KPiANCj4gU2hvdWxkIHRo
+aXMgaGF2ZSBoYWQgRml4ZXM6IHRhZz8gRG9lcyBpdCByZXF1aXJlIGEgYmFja3BvcnQ/DQo+IA0K
+PiBCUiwNCj4gSmFuaS4NCg0KSGkgSmFuaSwNCg0KTm8uIFRoaXMgY2hhbmdlIHdhcyBtYWRlIHRv
+IGFsaWduIHRoZSBkcml2ZXIgd2l0aCB0aGUgdXBkYXRlZCBWVE9UQUwgcHJvZ3JhbW1pbmcgcmVx
+dWlyZW1lbnRzIHJhdGhlciB0aGFuIHRvIGZpeCBhIHJlZ3Jlc3Npb24gaW50cm9kdWNlZCBieSBh
+IHNwZWNpZmljIHVwc3RyZWFtIGNvbW1pdC4NCg0KVGhlIHJlZ3Jlc3Npb24gd2UndmUgcmVjZW50
+bHkgb2JzZXJ2ZWQgZHVyaW5nIHRoZSBHT1AtdG8tZHJpdmVyIGhhbmRvZmYgYXBwZWFycyB0byBi
+ZSBhIHNlcGFyYXRlIGlzc3VlIGludHJvZHVjZWQgYnkgdGhpcyBjaGFuZ2UgYW5kIHdpbGwgbmVl
+ZCB0byBiZSBhZGRyZXNzZWQgd2l0aCBhIGZvbGxvdy11cCBmaXguDQoNClJlZ2FyZHMsDQpNaXR1
+bCANCj4gDQo+ID4NCj4gPiAtLXYyOg0KPiA+IC0gUmVtb3ZlIHdyaXRlIHRvIGNydGNfc3RhdGUt
+Pmh3LmFkanVzdGVkX21vZGUuY3J0Y192dG90YWwNCj4gPiBkdXJpbmcgaW50ZWxfdnJyX2dldF9j
+b25maWcuIChBbmtpdCkNCj4gPiAtIEZpeCBtZXJnZSBjb25mbGljdHMuDQo+ID4NCj4gPiBCc3Bl
+YzogNzAwMDENCj4gPiBDYzogQW5raXQgTmF1dGl5YWwgPGFua2l0LmsubmF1dGl5YWxAaW50ZWwu
+Y29tPg0KPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
+Y29tPg0KPiA+IENjOiBTdXJhaiBLYW5kcGFsIDxzdXJhai5rYW5kcGFsQGludGVsLmNvbT4NCj4g
+PiBTaWduZWQtb2ZmLWJ5OiBNaXR1bCBHb2xhbmkgPG1pdHVsa3VtYXIuYWppdGt1bWFyLmdvbGFu
+aUBpbnRlbC5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IFN1cmFqIEthbmRwYWwgPHN1cmFqLmthbmRw
+YWxAaW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuYyB8IDE3IC0tLS0tLS0tLS0tLS0tLS0tDQo+ID4gIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmMgICAgIHwgMTAgLS0tLS0tLS0tLQ0KPiA+ICAy
+IGZpbGVzIGNoYW5nZWQsIDI3IGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+IGluZGV4IGU3NmFhNmM4
+ZGFiNi4uNDJlYjRjNWJjOWI2IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiBAQCAtMjczNywxNSArMjczNyw2IEBAIHZvaWQg
+aW50ZWxfc2V0X3RyYW5zY29kZXJfdGltaW5ncyhjb25zdCBzdHJ1Y3QNCj4gaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZSwNCj4gPiAgCQkgICAgICAgSFNZTkNfU1RBUlQoYWRqdXN0ZWRfbW9k
+ZS0+Y3J0Y19oc3luY19zdGFydCAtIDEpIHwNCj4gPiAgCQkgICAgICAgSFNZTkNfRU5EKGFkanVz
+dGVkX21vZGUtPmNydGNfaHN5bmNfZW5kIC0gMSkpOw0KPiA+DQo+ID4gLQkvKg0KPiA+IC0JICog
+Rm9yIHBsYXRmb3JtcyB0aGF0IGFsd2F5cyB1c2UgVlJSIFRpbWluZyBHZW5lcmF0b3IsIHRoZQ0K
+PiBWVE9UQUwuVnRvdGFsDQo+ID4gLQkgKiBiaXRzIGFyZSBub3QgcmVxdWlyZWQuIFNpbmNlIHRo
+ZSBzdXBwb3J0IGZvciB0aGVzZSBiaXRzIGlzIGdvaW5nIHRvDQo+ID4gLQkgKiBiZSBkZXByZWNh
+dGVkIGluIHVwY29taW5nIHBsYXRmb3JtcywgYXZvaWQgd3JpdGluZyB0aGVzZSBiaXRzIGZvcg0K
+PiB0aGUNCj4gPiAtCSAqIHBsYXRmb3JtcyB0aGF0IGRvIG5vdCB1c2UgbGVnYWN5IFRpbWluZyBH
+ZW5lcmF0b3IuDQo+ID4gLQkgKi8NCj4gPiAtCWlmIChpbnRlbF92cnJfYWx3YXlzX3VzZV92cnJf
+dGcoZGlzcGxheSkpDQo+ID4gLQkJY3J0Y192dG90YWwgPSAxOw0KPiA+IC0NCj4gPiAgCWludGVs
+X2RlX3dyaXRlKGRpc3BsYXksIFRSQU5TX1ZUT1RBTChkaXNwbGF5LCB0cmFuc2NvZGVyKSwNCj4g
+PiAgCQkgICAgICAgVkFDVElWRShjcnRjX3ZkaXNwbGF5IC0gMSkgfA0KPiA+ICAJCSAgICAgICBW
+VE9UQUwoY3J0Y192dG90YWwgLSAxKSk7DQo+ID4gQEAgLTI4MzQsMTQgKzI4MjUsNiBAQCB2b2lk
+IGludGVsX3NldF90cmFuc2NvZGVyX3RpbWluZ3NfbHJyKGNvbnN0DQo+IHN0cnVjdCBpbnRlbF9j
+cnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiA+ICAJaW50ZWxfZGVfd3JpdGUoZGlzcGxheSwgVFJB
+TlNfVlNZTkMoZGlzcGxheSwgdHJhbnNjb2RlciksDQo+ID4gIAkJICAgICAgIFZTWU5DX1NUQVJU
+KGFkanVzdGVkX21vZGUtPmNydGNfdnN5bmNfc3RhcnQgLSAxKSB8DQo+ID4gIAkJICAgICAgIFZT
+WU5DX0VORChhZGp1c3RlZF9tb2RlLT5jcnRjX3ZzeW5jX2VuZCAtIDEpKTsNCj4gPiAtCS8qDQo+
+ID4gLQkgKiBGb3IgcGxhdGZvcm1zIHRoYXQgYWx3YXlzIHVzZSBWUlIgVGltaW5nIEdlbmVyYXRv
+ciwgdGhlDQo+IFZUT1RBTC5WdG90YWwNCj4gPiAtCSAqIGJpdHMgYXJlIG5vdCByZXF1aXJlZC4g
+U2luY2UgdGhlIHN1cHBvcnQgZm9yIHRoZXNlIGJpdHMgaXMgZ29pbmcgdG8NCj4gPiAtCSAqIGJl
+IGRlcHJlY2F0ZWQgaW4gdXBjb21pbmcgcGxhdGZvcm1zLCBhdm9pZCB3cml0aW5nIHRoZXNlIGJp
+dHMgZm9yDQo+IHRoZQ0KPiA+IC0JICogcGxhdGZvcm1zIHRoYXQgZG8gbm90IHVzZSBsZWdhY3kg
+VGltaW5nIEdlbmVyYXRvci4NCj4gPiAtCSAqLw0KPiA+IC0JaWYgKGludGVsX3Zycl9hbHdheXNf
+dXNlX3Zycl90ZyhkaXNwbGF5KSkNCj4gPiAtCQljcnRjX3Z0b3RhbCA9IDE7DQo+ID4NCj4gPiAg
+CS8qDQo+ID4gIAkgKiBUaGUgZG91YmxlIGJ1ZmZlciBsYXRjaCBwb2ludCBmb3IgVFJBTlNfVlRP
+VEFMIGRpZmYgLS1naXQNCj4gPiBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+dnJyLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmMNCj4g
+PiBpbmRleCBjZDM4MGZlOGZkMDEuLjVkOWIxMTE4NTI5NiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5jDQo+ID4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92cnIuYw0KPiA+IEBAIC0xMTAyLDE2ICsxMTAyLDYg
+QEAgdm9pZCBpbnRlbF92cnJfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiAq
+Y3J0Y19zdGF0ZSkNCj4gPiAgCQkJY3J0Y19zdGF0ZS0+dnJyLnZtaW4gKz0NCj4gaW50ZWxfdnJy
+X3ZtaW5fZmxpcGxpbmVfb2Zmc2V0KGRpc3BsYXkpOw0KPiA+ICAJCX0NCj4gPg0KPiA+IC0JCS8q
+DQo+ID4gLQkJICogRm9yIHBsYXRmb3JtcyB0aGF0IGFsd2F5cyB1c2UgVlJSIFRpbWluZyBHZW5l
+cmF0b3IsIHRoZQ0KPiBWVE9UQUwuVnRvdGFsDQo+ID4gLQkJICogYml0cyBhcmUgbm90IGZpbGxl
+ZC4gU2luY2UgZm9yIHRoZXNlIHBsYXRmb3JtcyBUUkFOX1ZNSU4gaXMNCj4gYWx3YXlzDQo+ID4g
+LQkJICogZmlsbGVkIHdpdGggY3J0Y192dG90YWwsIHVzZSBUUkFOX1ZSUl9WTUlOIHRvIGdldCB0
+aGUNCj4gdnRvdGFsIGZvcg0KPiA+IC0JCSAqIGFkanVzdGVkX21vZGUuDQo+ID4gLQkJICovDQo+
+ID4gLQkJaWYgKGludGVsX3Zycl9hbHdheXNfdXNlX3Zycl90ZyhkaXNwbGF5KSkNCj4gPiAtCQkJ
+Y3J0Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZS5jcnRjX3Z0b3RhbCA9DQo+ID4gLQkJCQlpbnRl
+bF92cnJfdm1pbl92dG90YWwoY3J0Y19zdGF0ZSk7DQo+ID4gLQ0KPiA+ICAJCWlmIChIQVNfQVNf
+U0RQKGRpc3BsYXkpKSB7DQo+ID4gIAkJCXRyYW5zX3Zycl92c3luYyA9DQo+ID4gIAkJCQlpbnRl
+bF9kZV9yZWFkKGRpc3BsYXksDQo+IA0KPiAtLQ0KPiBKYW5pIE5pa3VsYSwgSW50ZWwNCg==
