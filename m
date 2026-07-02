@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C96BC43327
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 14:58:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C231BC43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 14:58:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F30510E4F7;
-	Thu,  2 Jul 2026 14:58:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 852A710E504;
+	Thu,  2 Jul 2026 14:58:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GO65Y2hy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Si9d7Sa8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9010310E4F7
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 14:58:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FCD810E504
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 14:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1783004299; x=1814540299;
- h=date:from:to:cc:subject:message-id;
- bh=zrInxMY89HHh3CcwmmJ+FgufL5XFzqXUusc2yllFr8k=;
- b=GO65Y2hyWCbbBxGAs8JwmdOmHM7L6zMJHLqBj57lsFiI+Kr2EGHAnJBD
- 4h2+8yILGJL6oPPq4yK1HdjzffRuMW9jXbsrLdB4YQgpD9yfPYDy1JANd
- NHFAv5b+ZuBdM3rnkNU3tSI9VjUxwE5z5W4oftDRZ0x7vIycvkTmqkWRJ
- 0+cCxwe8/cpLxtsMJCu8hqJ8YrtJ9z+VRKvfCgnqsChYtFSR9KdFO594d
- UcOSdmKLgPOgIeQgz3TEp/l2sqAzkuDC1+leCgMryi8Uhxlr99cu64/9D
- iuwR7DMkQCR4akrQ9tWnMk8suGAxzRGZLEgnAidzJL4nPdiRbsOmDX7TI Q==;
-X-CSE-ConnectionGUID: NzxXhsAHRVuz2x9xSyzCKA==
-X-CSE-MsgGUID: TIQqzdpESfihO+dFoHI8ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83851946"
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="83851946"
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=TeW0DYTWvvt+1V2miRx1J0wYjCl085aO9bKXPTdByDo=;
+ b=Si9d7Sa8yxY87kdBONmlMdg154HclvHmYB94d/rocRxh4NVBvwZTDpSw
+ s0UTyNhua0bXWTeU1mLcn2a/mOaL7cSnUOlS+VR0XRrcmy4h7Nunw1wAo
+ eSCnDlIGYkEg5CERQrJs0NjbTmWSFWOzuUrGt8tBwjbB/1iEDBLDR8tyP
+ 4fbeWvv33wwJtGArANHkPSlKAXE6suZN1Eqr3bmtZgQpPbOhFxjW/nGyU
+ wS/vMlLHHV7oqIwxASDfBDtmWaaNP1IX/WQuxA90r2vy1Mj/RMXmuyjNv
+ mKZumK/0ka4/qcJQVYKhoo7A2tE+R6kvHEnkdPWvz640McRoBtNquVq0B g==;
+X-CSE-ConnectionGUID: VdpcjYypRXyC7csMG4jP7Q==
+X-CSE-MsgGUID: mMQ7HcXfRKWfz/XG0Gd+bw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83851947"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="83851947"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Jul 2026 07:58:19 -0700
-X-CSE-ConnectionGUID: NZIpfGcZQpe1lZ+zXb0tAA==
-X-CSE-MsgGUID: ZwUYBEgXRaO57YXZ+nq3NQ==
+X-CSE-ConnectionGUID: qsAp8eMdRseNnopXoN7FCA==
+X-CSE-MsgGUID: //vwYjGMRm+XClT7EBSIFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="248431054"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="248431056"
 Received: from lkp-server02.sh.intel.com (HELO ea128546eb3d) ([10.239.97.151])
  by fmviesa006.fm.intel.com with ESMTP; 02 Jul 2026 07:58:17 -0700
 Received: from kbuild by ea128546eb3d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wfIrm-00000000Asb-1yXG;
+ (envelope-from <lkp@intel.com>) id 1wfIrm-00000000Asd-26Q9;
  Thu, 02 Jul 2026 14:58:14 +0000
-Date: Thu, 02 Jul 2026 22:57:54 +0800
+Date: Thu, 02 Jul 2026 22:58:07 +0800
 From: kernel test robot <lkp@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS WITH WARNING
- f6c23e4589bdc69a5d2f79aed5c5bddd5d406cbe
-Message-ID: <202607022242.aidHtqAk-lkp@intel.com>
+Subject: [drm-xe:topic/xe-for-CI] BUILD SUCCESS
+ c944d863bcf9437285af3e58ec895f97d481983c
+Message-ID: <202607022257.A7AlgyRA-lkp@intel.com>
 User-Agent: s-nail v14.9.25
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,25 +66,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: f6c23e4589bdc69a5d2f79aed5c5bddd5d406cbe  drm/xe/oa: Fix offset alignment for MERT WHITELIST_OA_MERT_MMIO_TRG
-
-Warning (recently discovered and may have been fixed):
-
-    https://lore.kernel.org/oe-kbuild-all/202606302210.QqcLbOEN-lkp@intel.com
-
-    drivers/gpu/drm/xe/xe_pt.c:1420:13: warning: 'xe_pt_svm_userptr_notifier_lock' defined but not used [-Wunused-function]
-
-Warning ids grouped by kconfigs:
-
-recent_errors
-`-- um-allyesconfig
-    `-- drivers-gpu-drm-xe-xe_pt.c:warning:xe_pt_svm_userptr_notifier_lock-defined-but-not-used
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git topic/xe-for-CI
+branch HEAD: c944d863bcf9437285af3e58ec895f97d481983c  topic/xe-for-CI: Define GuC firmware for NVL-P
 
 elapsed time: 1082m
 
-configs tested: 206
+configs tested: 205
 configs skipped: 6
+
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
 tested configs:
 alpha                             allnoconfig    gcc-16.1.0
@@ -96,6 +89,7 @@ arc                              allyesconfig    gcc-16.1.0
 arc                                 defconfig    gcc-16.1.0
 arc                   randconfig-001-20260702    gcc-8.5.0
 arc                   randconfig-002-20260702    gcc-8.5.0
+arm                               allnoconfig    clang-23
 arm                               allnoconfig    gcc-16.1.0
 arm                              allyesconfig    clang-23
 arm                              allyesconfig    gcc-16.1.0
@@ -118,15 +112,15 @@ csky                  randconfig-001-20260702    gcc-15.2.0
 csky                  randconfig-002-20260702    gcc-15.2.0
 hexagon                          allmodconfig    clang-23
 hexagon                          allmodconfig    gcc-16.1.0
+hexagon                           allnoconfig    clang-23
 hexagon                           allnoconfig    gcc-16.1.0
 hexagon                             defconfig    gcc-16.1.0
 hexagon               randconfig-001-20260702    clang-23
 hexagon               randconfig-002-20260702    clang-23
 i386                             allmodconfig    clang-22
-i386                             allmodconfig    gcc-14
+i386                              allnoconfig    gcc-14
 i386                              allnoconfig    gcc-16.1.0
 i386                             allyesconfig    clang-22
-i386                             allyesconfig    gcc-14
 i386        buildonly-randconfig-001-20260702    clang-22
 i386        buildonly-randconfig-002-20260702    clang-22
 i386        buildonly-randconfig-003-20260702    clang-22
@@ -150,6 +144,7 @@ i386                  randconfig-016-20260702    clang-22
 i386                  randconfig-017-20260702    clang-22
 loongarch                        allmodconfig    clang-19
 loongarch                        allmodconfig    clang-23
+loongarch                         allnoconfig    clang-20
 loongarch                         allnoconfig    gcc-16.1.0
 loongarch                           defconfig    clang-23
 loongarch             randconfig-001-20260702    clang-23
@@ -166,14 +161,12 @@ mips                             allmodconfig    gcc-16.1.0
 mips                              allnoconfig    gcc-16.1.0
 mips                             allyesconfig    gcc-16.1.0
 nios2                            allmodconfig    clang-20
-nios2                            allmodconfig    gcc-11.5.0
 nios2                             allnoconfig    clang-23
 nios2                             allnoconfig    gcc-11.5.0
 nios2                               defconfig    clang-23
 nios2                 randconfig-001-20260702    clang-23
 nios2                 randconfig-002-20260702    clang-23
 openrisc                         allmodconfig    clang-20
-openrisc                         allmodconfig    gcc-16.1.0
 openrisc                          allnoconfig    clang-23
 openrisc                          allnoconfig    gcc-16.1.0
 openrisc                            defconfig    gcc-16.1.0
@@ -288,7 +281,6 @@ x86_64                          rhel-9.4-rust    clang-22
 xtensa                            allnoconfig    clang-23
 xtensa                            allnoconfig    gcc-16.1.0
 xtensa                           allyesconfig    clang-20
-xtensa                           allyesconfig    gcc-16.1.0
 xtensa                randconfig-001-20260702    gcc-16.1.0
 xtensa                randconfig-002-20260702    gcc-16.1.0
 
