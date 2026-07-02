@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BC59C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 06:36:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 723C0C43327
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 06:57:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC4A610E45E;
-	Thu,  2 Jul 2026 06:36:12 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBF9D10E45E;
- Thu,  2 Jul 2026 06:36:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3770900005934578566=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1AA10E460;
+	Thu,  2 Jul 2026 06:57:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGZQ0C+w";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7317610E459;
+ Thu,  2 Jul 2026 06:57:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782975445; x=1814511445;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Wby2xh2SHoZaRyG4RXixcOB6t/4d0RxplKwjCtFpIlg=;
+ b=VGZQ0C+wsCdcAqpbhfnU4up3/L49pyNtbnZ5XsdWbV0FHwZ7g4S+U/r0
+ QXH0yj4J8C1LYHAauEb7JRsu5SVhOpu83k0JpsBpRfIIIVuXtZ/RekU0w
+ efzSB0AJEjXa01kvLzCpEmNpMv8mik5hK5OygvYRZuS7qs+2HRvWePj2+
+ 6bf/Nn9c0l4Zhq5f24e4Vcr/u0AZ8R/oqDFd9KK38JAo26wPryq5BaHAT
+ zt7MPNDJGTQ15dX1N0NN9bkA5LoEDGr+hpSkYBxonPNbpI9amptESUign
+ rckA6xkKXuiz54jgaPp7yajOF12hWwdVanUBe24xC2YDzcrOQEVf/auZj w==;
+X-CSE-ConnectionGUID: grjFhF5QTe2eF0SyJuVjtw==
+X-CSE-MsgGUID: RgrJe5MITiaFii/xWaTLWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="83587982"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="83587982"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 23:57:17 -0700
+X-CSE-ConnectionGUID: LFUnjvcbT2eLuPNfyIMqAw==
+X-CSE-MsgGUID: 6WTj3a7CTOO/Llzf0h6IQw==
+X-ExtLoop1: 1
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.199])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 23:57:11 -0700
+Date: Thu, 2 Jul 2026 09:57:08 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <akYLxDea3kEyHqJA@jlahtine-mobl>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Hold_device_r?=
- =?utf-8?q?ef_until_queue_teardown_completes_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Jul 2026 06:36:11 -0000
-Message-ID: <178297417176.141201.12862456235029205985@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260702053841.182139-1-arvind.yadav@intel.com>
-In-Reply-To: <20260702053841.182139-1-arvind.yadav@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +71,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3770900005934578566==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave & Sima,
 
-== Series Details ==
+Here goes drm-intel-fixes PR towards v5.2-rc2.
 
-Series: drm/xe/guc: Hold device ref until queue teardown completes (rev6)
-URL   : https://patchwork.freedesktop.org/series/168424/
-State : success
+One near-NULL deref fix for GFP_ATOMIC OOM, couple of HDCP robustness
+fixes and two input validation fixes for BIOS data and EDID.
 
-== Summary ==
+Noteworthy, all of the bugs were reported with help from AI-assisted
+static analysis. And there are more on the mailing list.
 
-CI Bug Log - changes from xe-5328-fa669b282e875afd49a387644ad4d47767fe2e0a_BAT -> xe-pw-168424v6_BAT
-====================================================
+Regards, Joonas
 
-Summary
--------
+***
 
-  **SUCCESS**
+drm-intel-fixes-2026-07-02:
 
-  No regressions found.
+- Input validation fixes for BIOS and EDID (Jani)
+- Fix HDCP code buffer overflow and seq_num_v monotonic increase check (Jani)
+- Fix near-NULL deref in i915_active during GFP_ATOMIC exhaustion (Joonas)
 
-  
+The following changes since commit dc59e4fea9d83f03bad6bddf3fa2e52491777482:
 
-Participating hosts (13 -> 11)
-------------------------------
+  Linux 7.2-rc1 (2026-06-28 12:01:31 -0700)
 
-  Missing    (2): bat-bmg-2 bat-ptl-vm 
+are available in the Git repository at:
 
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-07-02
 
-Changes
--------
+for you to fetch changes up to 2084503f2d087bf956198e7f6eb25b03a7049cb2:
 
-  No changes found
+  drm/i915/bios: range check LFP Data Block panel_type2 (2026-07-01 09:12:33 +0300)
 
+----------------------------------------------------------------
+- Input validation fixes for BIOS and EDID (Jani)
+- Fix HDCP code buffer overflow and seq_num_v monotonic increase check (Jani)
+- Fix near-NULL deref in i915_active during GFP_ATOMIC exhaustion (Joonas)
 
-Build changes
--------------
+----------------------------------------------------------------
+Jani Nikula (4):
+      drm/i915/hdcp: check streams[] bounds before overflow
+      drm/i915/hdcp: require monotonically increasing seq_num_v
+      drm/i915/vrr: require valid min/max vfreq for VRR
+      drm/i915/bios: range check LFP Data Block panel_type2
 
-  * Linux: xe-5328-fa669b282e875afd49a387644ad4d47767fe2e0a -> xe-pw-168424v6
+Joonas Lahtinen (1):
+      drm/i915: Return NULL on error in active_instance
 
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5328-fa669b282e875afd49a387644ad4d47767fe2e0a: fa669b282e875afd49a387644ad4d47767fe2e0a
-  xe-pw-168424v6: 168424v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168424v6/index.html
-
---===============3770900005934578566==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Hold device ref until queue teardown completes (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168424/">https://patchwork.freedesktop.org/series/168424/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168424v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168424v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5328-fa669b282e875afd49a387644ad4d47767fe2e0a_BAT -&gt; xe-pw-168424v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 11)</h2>
-<p>Missing    (2): bat-bmg-2 bat-ptl-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5328-fa669b282e875afd49a387644ad4d47767fe2e0a -&gt; xe-pw-168424v6</li>
-</ul>
-<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5328-fa669b282e875afd49a387644ad4d47767fe2e0a: fa669b282e875afd49a387644ad4d47767fe2e0a<br />
-  xe-pw-168424v6: 168424v6</p>
-
-</body>
-</html>
-
---===============3770900005934578566==--
+ drivers/gpu/drm/i915/display/intel_bios.c | 36 ++++++++++++++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++++++----
+ drivers/gpu/drm/i915/display/intel_vrr.c  |  4 ++++
+ drivers/gpu/drm/i915/i915_active.c        |  7 +++++-
+ 4 files changed, 46 insertions(+), 13 deletions(-)
