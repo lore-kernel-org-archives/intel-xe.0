@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13240C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 18:37:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33CE3C43602
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 18:58:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8A6B10F56F;
-	Thu,  2 Jul 2026 18:37:36 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FFD810F56F;
- Thu,  2 Jul 2026 18:37:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5754083346363638108=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB01610F46A;
+	Thu,  2 Jul 2026 18:58:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCUGKmoI";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B849110E1A6;
+ Thu,  2 Jul 2026 18:58:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783018729; x=1814554729;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dM1qHjZoMcHwM/c/sIZAxACSR324IUA3ap7X1Hy+TzA=;
+ b=eCUGKmoIOKw8EcgMfKsC8DMO4GUsdAnelOH+farswDcnwQTYSPIdy1Vu
+ 7U4eLpl/+WTvgl7UuVD6BpY673hyNPxnBiyEWR4527J+eVhJUa0AQ3qVO
+ btkxpQE1obkF0IWqJpH6w9CEds6IAPk7pbkyo9hx2rc0zDPRZ09jYZUjA
+ vTjxrHIM0ZfKbFKkCa1NuzuVfUlWXFc4xw7HmvPL2VGboDupXD7j1YHBl
+ PgHPopiUOabSSbOC3QM+z+bSCKFFTTRm3LoC7lIZ0x8DZ4tPvlEpJI4VE
+ /mSChhskmwhlN8ZMwtd4KYvI60Se0P0IuyzUZTGLUZHOQU26Ma8ZJQ7+U A==;
+X-CSE-ConnectionGUID: SraE50i0SbOAn16VpnNZkA==
+X-CSE-MsgGUID: Bs/olIMZQwWIcTt3rtYnVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="71300024"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="71300024"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 11:58:48 -0700
+X-CSE-ConnectionGUID: 1nVIpUpjRtWoECwPOsuLhA==
+X-CSE-MsgGUID: ONCrzk2ITU2p0NqB54izKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="251862150"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by orviesa010.jf.intel.com with ESMTP; 02 Jul 2026 11:58:46 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v10 0/8] Vswing / Pre-emphasis Override
+Date: Thu,  2 Jul 2026 20:58:31 +0200
+Message-ID: <20260702185839.4042397-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sysctrl=3A_Add_helpe?=
- =?utf-8?q?r_to_query_application_status_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Jul 2026 18:37:35 -0000
-Message-ID: <178301745518.144407.256266047600858070@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260702173545.2288664-2-anoop.c.vijay@intel.com>
-In-Reply-To: <20260702173545.2288664-2-anoop.c.vijay@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,241 +66,383 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5754083346363638108==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Next version of [1]. v5 of IGT part is at [2].
 
-== Series Details ==
+Previous approach of deconstifying predefined tables wasn't a good idea.
+In order to follow Suraj's and Jani's comments, patch introducing this
+change has been dropped.
 
-Series: drm/xe/sysctrl: Add helper to query application status (rev4)
-URL   : https://patchwork.freedesktop.org/series/164471/
-State : success
+Also, instead of adding new if-ladder into intel_ddi_buf_trans_get(),
+one from intel_ddi_buf_trans_init() has been re-used. This required
+adding new vfunc into intel_encoder.
 
-== Summary ==
+This series still does not enable LT.
 
-CI Bug Log - changes from xe-5332-6c22844c120534560afc258f95a774245b4ef7e3_BAT -> xe-pw-164471v4_BAT
-====================================================
+Tested by loading xe with custom VBT#57 on PTL. Same for i915 on EHL.
 
-Summary
--------
+Custom VBT#57 from PTL decoded by [2]:
 
-  **SUCCESS**
+Block 57 min size 2 less than block size 1154
+BDB block 57 (1154 bytes, min 2 bytes) - Vswing Preemph:
+        Number of vswing tables: 6
+        Number of columns: 3
+        Number of rows: 16
+        PHY type: Cx0
+        Vswing Table #1 (C10: DP 1.4 RBR/HBR; C20: UNUSED):
+                Preset #01: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #02: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #03: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #04: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #05: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #06: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #07: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #08: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #09: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #10: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+        Vswing Table #2 (C10: DP 1.4 HBR2/HBR3; C20: UNUSED):
+                Preset #01: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #02: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #03: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #04: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #05: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #06: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #07: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #08: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #09: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #10: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+        Vswing Table #3 (C10: eDP non-HBR3; C20: UNUSED):
+                Preset #01: vswing: 0x0000001a, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #02: vswing: 0x00000021, pre-cursor: 0x00000000, post-cursor: 0x00000006
+                Preset #03: vswing: 0x00000026, pre-cursor: 0x00000000, post-cursor: 0x0000000b
+                Preset #04: vswing: 0x0000002b, pre-cursor: 0x00000000, post-cursor: 0x00000013
+                Preset #05: vswing: 0x00000027, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #06: vswing: 0x0000002d, pre-cursor: 0x00000000, post-cursor: 0x00000007
+                Preset #07: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x0000000d
+                Preset #08: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #09: vswing: 0x00000037, pre-cursor: 0x00000000, post-cursor: 0x00000007
+                Preset #10: vswing: 0x0000003e, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+        Vswing Table #4 (C10: eDP HBR3; C20: UNUSED):
+                Preset #01: vswing: 0x0000001a, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #02: vswing: 0x00000021, pre-cursor: 0x00000000, post-cursor: 0x00000006
+                Preset #03: vswing: 0x00000026, pre-cursor: 0x00000000, post-cursor: 0x0000000b
+                Preset #04: vswing: 0x0000002b, pre-cursor: 0x00000000, post-cursor: 0x00000013
+                Preset #05: vswing: 0x00000027, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #06: vswing: 0x0000002d, pre-cursor: 0x00000000, post-cursor: 0x00000007
+                Preset #07: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x0000000d
+                Preset #08: vswing: 0x0000002e, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #09: vswing: 0x00000037, pre-cursor: 0x00000000, post-cursor: 0x00000007
+                Preset #10: vswing: 0x0000003e, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+        Vswing Table #5 (C10: UNUSED; C20: DP 1.4):
+                Preset #01: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #02: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #03: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #04: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #05: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #06: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #07: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #08: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #09: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #10: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #11: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #12: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #13: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #14: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #15: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #16: vswing: 0x00000000, pre-cursor: 0x00000000, post-cursor: 0x00000000
+        Vswing Table #6 (C10: UNUSED; C20: DP 2.X):
+                Preset #01: vswing: 0x00000030, pre-cursor: 0x00000000, post-cursor: 0x00000000
+                Preset #02: vswing: 0x0000002b, pre-cursor: 0x00000000, post-cursor: 0x00000005
+                Preset #03: vswing: 0x00000028, pre-cursor: 0x00000000, post-cursor: 0x00000008
+                Preset #04: vswing: 0x00000025, pre-cursor: 0x00000000, post-cursor: 0x0000000b
+                Preset #05: vswing: 0x00000021, pre-cursor: 0x00000000, post-cursor: 0x0000000f
+                Preset #06: vswing: 0x0000002e, pre-cursor: 0x00000002, post-cursor: 0x00000000
+                Preset #07: vswing: 0x0000002a, pre-cursor: 0x00000002, post-cursor: 0x00000004
+                Preset #08: vswing: 0x00000026, pre-cursor: 0x00000002, post-cursor: 0x00000008
+                Preset #09: vswing: 0x00000023, pre-cursor: 0x00000002, post-cursor: 0x0000000b
+                Preset #10: vswing: 0x00000021, pre-cursor: 0x00000002, post-cursor: 0x0000000d
+                Preset #11: vswing: 0x0000002c, pre-cursor: 0x00000004, post-cursor: 0x00000000
+                Preset #12: vswing: 0x00000028, pre-cursor: 0x00000004, post-cursor: 0x00000004
+                Preset #13: vswing: 0x00000025, pre-cursor: 0x00000004, post-cursor: 0x00000007
+                Preset #14: vswing: 0x00000021, pre-cursor: 0x00000004, post-cursor: 0x0000000b
+                Preset #15: vswing: 0x00000028, pre-cursor: 0x00000008, post-cursor: 0x00000000
+                Preset #16: vswing: 0x0000001e, pre-cursor: 0x00000002, post-cursor: 0x00000002
 
-  No regressions found.
+Custom VBT#57 from EHL decoded by [2]:
 
-  
+Block 57 min size 2 less than block size 1322
+BDB block 57 (1322 bytes, min 2 bytes) - Vswing Preemph:
+        Warning: purpose of tables varies between EHL & JSL
+        Number of vswing tables: 3
+        Number of columns: 11
+        Number of rows: 10
+        PHY type: Combo
+        Vswing Table #1 (High Vswing eDP/DP upto HBR3):
+          V0-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P1:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P2:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P3:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P1:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P2:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V2-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V2-P1:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V3-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+        Vswing Table #2 (Low Vswing eDP upto HBR2):
+          V0-P0:
+            dw2_swing_sel:      0x0000000a, dw7_n_scalar:       0x00000033, dw4_cursor_coeff:   0x0000003f,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P1:
+            dw2_swing_sel:      0x0000000a, dw7_n_scalar:       0x00000047, dw4_cursor_coeff:   0x00000038,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000007, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P2:
+            dw2_swing_sel:      0x0000000c, dw7_n_scalar:       0x00000064, dw4_cursor_coeff:   0x00000033,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x0000000c, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P3:
+            dw2_swing_sel:      0x00000006, dw7_n_scalar:       0x0000007f, dw4_cursor_coeff:   0x0000002f,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000010, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P0:
+            dw2_swing_sel:      0x0000000a, dw7_n_scalar:       0x00000046, dw4_cursor_coeff:   0x0000003f,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P1:
+            dw2_swing_sel:      0x0000000c, dw7_n_scalar:       0x00000064, dw4_cursor_coeff:   0x00000037,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000008, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P2:
+            dw2_swing_sel:      0x00000006, dw7_n_scalar:       0x0000007f, dw4_cursor_coeff:   0x00000032,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x0000000d, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V2-P0:
+            dw2_swing_sel:      0x0000000c, dw7_n_scalar:       0x00000061, dw4_cursor_coeff:   0x0000003f,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V2-P1:
+            dw2_swing_sel:      0x00000006, dw7_n_scalar:       0x0000007f, dw4_cursor_coeff:   0x00000037,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000008, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V3-P0:
+            dw2_swing_sel:      0x00000006, dw7_n_scalar:       0x0000007f, dw4_cursor_coeff:   0x0000003f,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+        Vswing Table #3 (Low Vswing eDP upto HBR3):
+          V0-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P1:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P2:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V0-P3:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P1:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V1-P2:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V2-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V2-P1:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
+          V3-P0:
+            dw2_swing_sel:      0x00000000, dw7_n_scalar:       0x00000000, dw4_cursor_coeff:   0x00000000,
+            dw4_post_cursor_2:  0x00000000, dw4_post_cursor_1:  0x00000000, rcomp_scalar:       0x00000000,
+            rterm_select:       0x00000000, tap3_disable:       0x00000000, tap2_disable:       0x00000000,
+            cursor_program:     0x00000000, coeff_polarity:     0x00000000
 
-Participating hosts (12 -> 13)
-------------------------------
+BR,
+Michał
 
-  Additional (1): bat-bmg-2 
+[1] https://lore.kernel.org/intel-gfx/20260626234246.2446451-1-michal.grzelak@intel.com/
+[2] https://lore.kernel.org/igt-dev/20260702182619.3973788-1-michal.grzelak@intel.com/
 
-Known issues
-------------
+---
+Changelog:
+v9->v10
+- drop deconstifying default tables (Suraj, Jani)
+- add separate non-const field for `entries` caching
+- cache `entries` into const field after data is overwritten (Jani)
+- call dedicated VS/PE-O vfunc
 
-  Here are the changes found in xe-pw-164471v4_BAT that come from known issues:
+v8->v9 
+- init vspeo before using it
+- deconstify intel_ddi_buf_trans_entry in separate commit
 
-### IGT changes ###
+v7->v8
+- remove comments (Suraj)
+- add check for LT (Suraj)
 
-#### Issues hit ####
+v6->v7
+- parse VBT#57 before blocks dependant on child device list (Jani)
+- expand VS/PE-O acronym in debug logging (Jani)
+- handle VS/PE-O's VBT details in intel_bios_* functions (Jani)
+- remove vspeo's cast to (void *) (Jani)
+- check devdata->vspeo if VS/PE-O was requested
+- call encoder->get_buf_trans() once (Jani)
+- return NULL from intel_bios_get_* when using default (Jani)
+- validate VS/PE-O in intel_bios.c (Jani)
+- inline *_get_vspeo_buf_trans()
+- remove temporarily LT
 
-  * igt@fbdev@write:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@fbdev@write.html
+v5->v6
+- check if devdata is not NULL
+- add Bspec (Suraj)
+- remove drm_WARN_ONCE (Suraj)
+- pass default VS/PE tables to LT's BIOS accessor (Suraj)
+- set txswing & _level from default VS/PE tables (Suraj)
+- add helper checking if VS/PE-O has been allocated (Suraj)
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+v4->v5
+- set devdata->vspeo->num_entries in intel_bios.c
+- add if-ladder instead of function pointer
+- blend index computation with table parsing
+- remove WARN and debug messages
+- remove enums entirely
+- add spaces around operators (Suraj)
+- remove spaces after type casting (Suraj)
+- remove INTEL_DISPLAY_STATE_WARN (Suraj)
+- change funcs prefix from snps_ to mtl_ (Suraj)
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+v3->v4
+- add Bspec (Suraj)
+- remove unnecessary init of VS/PE-O metadata (Suraj)
+- add helper for computing number of rows (Suraj)
+- fix num_rows's type (Jani, Suraj)
+- declare num_rows (Suraj)
+- change debug message when requesting VS/PE-O (Suraj)
+- stick to solely changing VBT data into current structures (Jani)
+- move iterator declaration to declaration block (Suraj)
 
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_exec_multi_queue@priority:
-    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+v2->v3
+- remove unnecessary braces from if block (Suraj)
+- return -EINVAL instead of -1 (Suraj)
 
 
-Build changes
--------------
 
-  * Linux: xe-5332-6c22844c120534560afc258f95a774245b4ef7e3 -> xe-pw-164471v4
+Michał Grzelak (8):
+  drm/i915/bios: search for VBT #57 by default
+  drm/i915/bios: store VBT #57's metadata in intel_vbt_data
+  drm/i915/bios: print VS/PE-O port info
+  drm/i915/bios: de/allocate VS/PE-O buffers for each port
+  drm/i915/buf_trans: add vfunc for VS/PE-O
+  drm/i915: override Snps's VS/PE when requested
+  drm/i915: override Combo's VS/PE when requested
+  drm/i915/bios: remove VS/PE-O warning
 
-  IGT_8990: 8990
-  xe-5332-6c22844c120534560afc258f95a774245b4ef7e3: 6c22844c120534560afc258f95a774245b4ef7e3
-  xe-pw-164471v4: 164471v4
+ drivers/gpu/drm/i915/display/intel_bios.c     | 287 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bios.h     |  14 +
+ .../drm/i915/display/intel_ddi_buf_trans.c    |  86 +++++-
+ .../gpu/drm/i915/display/intel_display_core.h |   7 +
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ 5 files changed, 383 insertions(+), 14 deletions(-)
 
-== Logs ==
+-- 
+2.45.2
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/index.html
-
---===============5754083346363638108==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/sysctrl: Add helper to query application status (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164471/">https://patchwork.freedesktop.org/series/164471/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5332-6c22844c120534560afc258f95a774245b4ef7e3_BAT -&gt; xe-pw-164471v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164471v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164471v4/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5332-6c22844c120534560afc258f95a774245b4ef7e3 -&gt; xe-pw-164471v4</li>
-</ul>
-<p>IGT_8990: 8990<br />
-  xe-5332-6c22844c120534560afc258f95a774245b4ef7e3: 6c22844c120534560afc258f95a774245b4ef7e3<br />
-  xe-pw-164471v4: 164471v4</p>
-
-</body>
-</html>
-
---===============5754083346363638108==--
