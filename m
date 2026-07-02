@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FD3C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 11:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DB17C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 11:03:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C690910F2CD;
-	Thu,  2 Jul 2026 11:03:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C1ED10F2D0;
+	Thu,  2 Jul 2026 11:03:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AX+vAnDG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXrJw9jE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E68D10F2CD
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 11:03:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD60310F2D0
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 11:03:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782990185; x=1814526185;
+ t=1782990188; x=1814526188;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8lsgAXgVBAYCCrj+pLaKtE6rgEQtQmZzDAwcDxHHMF0=;
- b=AX+vAnDGkzQon7B1dDyKhlCT+905qbqs2O67mdjA5tN2Wd85BTmLWW9e
- TonLzPbEX4KQyjd/6KlX9mSZGAV078GHHvonMxF8betQA9mCxlBspvmhB
- /cWNNuK3KYOVptAFrDhQW/ALqcezn0Y5GlqmrB6R6N5mQtwSFtmbXV2Im
- UtXvxdfE2KSEgtVAOgfz6WdV3s6vF2vvGqekyvRdknI6caAUV/Hmtafg7
- q2RNYsOVz1iSvve88QxjYWjhykKMy5UGrqy65nvxpqHyUbRni6OIppcuo
- xO8gBbUGtPn5PQKXnuYUzSnEPoy4MF8pEtbcmU5AazZAxqNehDSn+bZYb g==;
-X-CSE-ConnectionGUID: 6QSiI8zBRZamA3kg+ZXN3A==
-X-CSE-MsgGUID: 22W4eqROS5mYs5tyZNmRZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82852902"
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="82852902"
+ bh=PgZt5Po9g9eD5XUdy2YhJrMhDji3KC/T6S1T2Yr6hK4=;
+ b=NXrJw9jEeCV6pdrFN4qE2QGzun93vKBk1cqO0MLXBbrkeKfiuCMx6oM7
+ YhiS0riogkJRuQ3hkKn2sgPktK+Xb+jZDDlTbfZRdWguUdpdj3XpfgT9n
+ uHpAhMQED4dJeAXHcLw9H+rMUAq13dH16hqVBGQTI/VyyiBPDJoGwD4NV
+ 5trOFn/a5cnGyyDNbFYOjyNx5LiicbRePnPUJK3nEq7MFzbKpQDbqdt3J
+ VlDqb6Lq6Dhqco6fZymSjRszVl3kRtP8TYJ0LeKAW71QI274My2evZsYw
+ 4XZOB2kzTJ/Y23oiV2HAWtWM3SQBGZ/joLAzwu0LUP39zUlhK43Op45qV g==;
+X-CSE-ConnectionGUID: o0VqDyY1RX+epaTVhq1Edw==
+X-CSE-MsgGUID: 4PSmKKq8QCCdaQMoaaWdpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82852906"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="82852906"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 04:03:05 -0700
-X-CSE-ConnectionGUID: D5Q/4JaTThGYK2rQDrUzkw==
-X-CSE-MsgGUID: GsEbBw8gTzy9fedcWTbXmw==
+ 02 Jul 2026 04:03:08 -0700
+X-CSE-ConnectionGUID: MWT8shsDSymlteCy4htLOQ==
+X-CSE-MsgGUID: t0+ARzwmTmGYXTOvfw8iFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="256738824"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="256738856"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 04:03:02 -0700
+ 02 Jul 2026 04:03:05 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  daniele.ceraolospurio@intel.com, raag.jadav@intel.com,
  riana.tauro@intel.com, mallesh.koujalagi@intel.com,
  aravind.iddamsetty@intel.com
-Subject: [RFC PATCH 6/7] drm/xe/cper: Prepare Intel CPER error info from info
- queue
-Date: Thu,  2 Jul 2026 16:44:08 +0530
-Message-ID: <20260702111401.3680214-15-badal.nilawar@intel.com>
+Subject: [RFC PATCH 7/7] drm/xe/cper: Log CPER record for correctable errors
+Date: Thu,  2 Jul 2026 16:44:09 +0530
+Message-ID: <20260702111401.3680214-16-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260702111401.3680214-9-badal.nilawar@intel.com>
 References: <20260702111401.3680214-9-badal.nilawar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,179 +69,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add prepare_cper_error_info() to xe_ras.c which assembles the raw info
-queue data embedded in a GET_COUNTER response (and any subsequent chunks
-fetched via GET_INFO_QUEUE_DATA) into a xe_cper_sec_intel_error_info
-that can be passed directly to cper logging function.
+In xe_ras_counter_threshold_crossed(), emit a CPER record for each
+correctable error reported via the counter threshold crossed event.
 
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 Assisted-by: Copilot:claude-sonnet-4.6
 ---
- drivers/gpu/drm/xe/xe_ras.c | 142 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 141 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ras.c | 75 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index e594d4d3a23f..8579cde6a4bf 100644
+index 8579cde6a4bf..53f192a2e97f 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2026 Intel Corporation
-  */
+@@ -11,6 +11,7 @@
+ #include "xe_printk.h"
+ #include "xe_ras.h"
+ #include "xe_ras_types.h"
++#include "xe_sig_ids.h"
+ #include "xe_sysctrl.h"
+ #include "xe_sysctrl_event_types.h"
+ #include "xe_sysctrl_mailbox.h"
+@@ -67,6 +68,10 @@ static const char *const xe_ras_components[] = {
+ };
+ static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
  
-+#include "xe_cper.h"
-+#include "xe_cper_types.h"
- #include "xe_device.h"
- #include "xe_drm_ras.h"
- #include "xe_pm.h"
-@@ -218,7 +220,7 @@ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *val
- 	if (ret)
- 		return ret;
- 
--	*value = response.counter_value;
-+	*value = response.value;
- 	return 0;
- }
- 
-@@ -311,6 +313,144 @@ static int get_info_queue_data(struct xe_device *xe,
- 	return 0;
- }
- 
-+/**
-+ * prepare_cper_error_info - Assemble info queue chunks and convert to CPER einfo
-+ * @xe: xe device instance
-+ * @counter_resp: counter response containing the first embedded chunk
-+ * @error_class: RAS error class used to populate the einfo error_class fields
-+ * @einfo_size_out: output size of the allocated einfo buffer
-+ *
-+ * Assembles the complete raw info queue data from the first chunk already
-+ * embedded in @counter_resp and any additional chunks fetched via
-+ * GET_INFO_QUEUE_DATA.  The raw data layout is:
-+ *
-+ *   [xe_ras_info_queue_dynamic_counter_hdr * num_headers]
-+ *   [xe_ras_error_log * N]
-+ *
-+ * Each xe_ras_error_log is translated into an xe_intel_priv_event_entry and
-+ * appended to the returned xe_cper_sec_intel_error_info.event_queue[].
-+ *
-+ * Returns: allocated einfo on success (caller must kfree()), NULL on failure.
-+ */
-+static struct xe_cper_sec_intel_error_info *
-+prepare_cper_error_info(struct xe_device *xe,
-+			       const struct xe_ras_get_counter_response *counter_resp,
++static void emit_hw_error_cper(struct xe_device *xe,
 +			       const struct xe_ras_error_class *error_class,
-+			       u32 *einfo_size_out)
++			       u64 timestamp, u32 sig_id, u8 severity);
++
+ static u8 drm_to_xe_ras_severity(u8 severity)
+ {
+ 	switch (severity) {
+@@ -133,6 +138,38 @@ static inline const char *comp_to_str(u8 component)
+ 	return xe_ras_components[component];
+ }
+ 
++static u32 ras_comp_to_hw_sigid(u8 component)
 +{
-+	const struct xe_ras_info_queue_header *first_qhdr =
-+		&counter_resp->info_queue.queue_header;
-+	struct xe_ras_get_info_queue_data_request iq_req = {0};
-+	struct xe_ras_get_info_queue_data_response iq_response = {0};
-+	struct xe_cper_sec_intel_error_info *einfo;
-+	struct xe_intel_priv_event_entry *entry;
-+	const struct xe_ras_error_log *logs;
-+	u32 entry_size, einfo_size;
-+	u32 num_logs;
-+	u32 raw_total, iq_offset = 0;
-+	u8 *raw_buf;
-+	u32 i;
++	switch (component) {
++	case XE_RAS_COMP_DEVICE_MEMORY:
++		return XE_SIG_HW_DEVICE_MEMORY;
++	case XE_RAS_COMP_CORE_COMPUTE:
++		return XE_SIG_HW_CORE_COMPUTE;
++	case XE_RAS_COMP_PCIE:
++		return XE_SIG_HW_PCIE;
++	case XE_RAS_COMP_FABRIC:
++		return XE_SIG_HW_FABRIC;
++	case XE_RAS_COMP_SOC_INTERNAL:
++		return XE_SIG_HW_SOC_INTERNAL;
++	default:
++		return U32_MAX;
++	}
++}
 +
-+	raw_buf = kzalloc(XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE, GFP_KERNEL);
-+	if (!raw_buf)
-+		return NULL;
++static u8 ras_sev_to_cper_sev(u8 ras_sev)
++{
++	switch (ras_sev) {
++	case XE_RAS_SEV_CORRECTABLE:
++		return CPER_SEV_CORRECTED;
++	case XE_RAS_SEV_UNCORRECTABLE:
++		return CPER_SEV_RECOVERABLE;
++	case XE_RAS_SEV_INFORMATIONAL:
++		return CPER_SEV_INFORMATIONAL;
++	default:
++		return CPER_SEV_RECOVERABLE;
++	}
++}
 +
-+	/* Copy first chunk already embedded in the counter response */
-+	if (first_qhdr->chunk_size &&
-+	    first_qhdr->chunk_offset + first_qhdr->chunk_size <=
-+	    XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) {
-+		memcpy(raw_buf + first_qhdr->chunk_offset,
-+		       counter_resp->info_queue.queue_data,
-+		       first_qhdr->chunk_size);
-+		iq_offset = first_qhdr->chunk_size;
+ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+ 				      struct xe_sysctrl_event_response *response)
+ {
+@@ -154,6 +191,9 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+ 		severity = errors[id].common.severity;
+ 		component = errors[id].common.component;
+ 
++		/* Emit a CPER record for this error */
++		emit_hw_error_cper(xe, &errors[id], 0, ras_comp_to_hw_sigid(component), severity);
++
+ 		xe_warn(xe, "[RAS]: %s %s detected\n",
+ 			comp_to_str(component), sev_to_str(severity));
+ 	}
+@@ -451,6 +491,41 @@ prepare_cper_error_info(struct xe_device *xe,
+ 	return einfo;
+ }
+ 
++static void emit_hw_error_cper(struct xe_device *xe,
++			       const struct xe_ras_error_class *error_class,
++			       u64 timestamp, u32 sig_id, u8 severity)
++{
++	struct xe_ras_get_counter_response counter_response = {};
++	struct xe_cper_sec_intel_err_hdr ihdr = {};
++	struct xe_cper_sec_intel_error_info *einfo = NULL;
++	u32 einfo_size = 0;
++
++	if (get_counter(xe, error_class, &counter_response)) {
++		xe_err(xe, "[RAS]: CPER: failed to get counter, skipping record\n");
++		return;
 +	}
 +
-+	/* Fetch any remaining chunks */
-+	if (first_qhdr->flags & XE_RAS_INFO_QUEUE_FLAG_MORE_DATA) {
-+		iq_req.source_command			= XE_SYSCTRL_CMD_GET_COUNTER;
-+		iq_req.source_context			= counter_resp->counter;
-+		iq_req.queue_request.requested_size	= XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE;
-+		iq_req.queue_request.session_id		= counter_resp->counter;
++	xe_cper_init_intel_err_hdr(xe,
++				   (const u8 *)error_class,
++				   timestamp,
++				   sig_id,
++				   counter_response.value,
++				   &ihdr);
 +
-+		do {
-+			struct xe_ras_info_queue_header *qhdr;
-+			u32 end;
-+
-+			iq_req.queue_request.requested_offset = iq_offset;
-+
-+			if (get_info_queue_data(xe, &iq_req, &iq_response))
-+				break;
-+
-+			qhdr = &iq_response.queue_response.queue_header;
-+			end  = qhdr->chunk_offset + qhdr->chunk_size;
-+
-+			if (end > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) {
-+				xe_warn(xe, "[RAS]: CPER: info queue chunk out of bounds (offset=%u size=%u)\n",
-+					qhdr->chunk_offset, qhdr->chunk_size);
-+				break;
-+			}
-+
-+			memcpy(raw_buf + qhdr->chunk_offset,
-+			       iq_response.queue_response.queue_data,
-+			       qhdr->chunk_size);
-+
-+			if (!qhdr->chunk_size)
-+				break;
-+
-+			iq_offset += qhdr->chunk_size;
-+		} while (iq_response.queue_response.queue_header.flags &
-+			 XE_RAS_INFO_QUEUE_FLAG_MORE_DATA);
++	if (counter_response.has_info_queue) {
++		einfo = prepare_cper_error_info(xe, &counter_response,
++						error_class, &einfo_size);
++		if (!einfo)
++			xe_err(xe, "[RAS]: CPER: failed to build einfo from info queue\n");
 +	}
 +
-+	raw_total = first_qhdr->total_size
-+		  ? min(first_qhdr->total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE)
-+		  : iq_offset;
-+
-+	num_logs = raw_total / sizeof(struct xe_ras_error_log);
-+	if (!num_logs) {
-+		kfree(raw_buf);
-+		return NULL;
-+	}
-+
-+	/*
-+	 * Each xe_intel_priv_event_entry holds:
-+	 *   entry_length (u32) + timestamp (u64) + metadata[] (error_details)
-+	 */
-+	entry_size = offsetof(struct xe_intel_priv_event_entry, metadata) +
-+		     sizeof_field(struct xe_ras_error_log, error_details);
-+	einfo_size = sizeof(*einfo) + num_logs * entry_size;
-+
-+	einfo = kzalloc(einfo_size, GFP_KERNEL);
-+	if (!einfo) {
-+		kfree(raw_buf);
-+		return NULL;
-+	}
-+
-+	einfo->error_count        = counter_resp->value;
-+	einfo->event_queue_length = num_logs * entry_size;
-+	einfo->event_queue_count  = num_logs;
-+	einfo->error_class.error_type		= error_class->common.severity;
-+	einfo->error_class.error_component	= error_class->common.component;
-+	einfo->error_class.tile			= error_class->product.unit.tile;
-+	einfo->error_class.instance		= error_class->product.unit.instance;
-+	einfo->error_class.cause		= error_class->product.cause.cause;
-+
-+	logs  = (const struct xe_ras_error_log *)raw_buf;
-+	entry = (struct xe_intel_priv_event_entry *)einfo->event_queue;
-+
-+	for (i = 0; i < num_logs; i++) {
-+		entry->entry_length = sizeof_field(struct xe_ras_error_log, error_details);
-+		entry->timestamp    = logs[i].timestamp;
-+		memcpy(entry->metadata, logs[i].error_details,
-+		       sizeof(logs[i].error_details));
-+		entry = (struct xe_intel_priv_event_entry *)((u8 *)entry + entry_size);
-+	}
-+
-+	kfree(raw_buf);
-+	*einfo_size_out = einfo_size;
-+	return einfo;
++	xe_cper_record_emit(xe, &guid_null,
++			    ras_sev_to_cper_sev(severity),
++			    INTEL_CPER_NOTIFY_GPU_ERROR,
++			    &ihdr, einfo, einfo_size);
++	kfree(einfo);
 +}
 +
  /**
