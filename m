@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC17C43327
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F4ABC43602
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:08:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C34D310E4CD;
-	Thu,  2 Jul 2026 13:06:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g96Te11x";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B570B10F38A;
- Thu,  2 Jul 2026 13:06:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782997578; x=1814533578;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aTtVrqfQ28f5zc1xUr4siKyKrnzdUKovfe/RA+pzl0M=;
- b=g96Te11xOtyzxX0Gf6/IsiCNyI/IYKsrfb4c3DZdX9he1680jYf2kBkl
- xQKJW8Q1pgq9Wg2IvfHJO9CyWcIYWNpLtpg8N+8lfOYymxJ6z3u4I5iXt
- xd59D5ORij6CVJLUlr9W2Q+YMD0PvwqI9lx5MlO6h612vqmWkkb2DNzJQ
- 43i7/wbptLpXDhSqZwhaIEmD5IKZBghd1odtTnYZidfk5sJMb6P25fseN
- OmvLkrE81oFm73iAYZAW2l32ltxJ+iWFOrP+6OX2YH/YfQ1dFrKd6JaJb
- EW3pL8FZeZ6iDzdFkKbBB0Ayvq/5k9rkpHWcftAZsmPez1yE6aMd/kEB5 g==;
-X-CSE-ConnectionGUID: d6yS0ZYcQBqjSq88IYGl3A==
-X-CSE-MsgGUID: XVdBA9kFSkC6At0LFE0UlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83621206"
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="83621206"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 06:06:18 -0700
-X-CSE-ConnectionGUID: vw0oYD1cRbGBJ8rfIK/GbQ==
-X-CSE-MsgGUID: 1ldM82LOQGiZYqbK9PzANw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="257748955"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa005.fm.intel.com with ESMTP; 02 Jul 2026 06:06:16 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 2/2] drm/i915/audio: Prune ELD SADs based on HDMI audio
- bandwidth
-Date: Thu,  2 Jul 2026 18:12:08 +0530
-Message-Id: <20260702124208.2401160-3-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260702124208.2401160-1-chaitanya.kumar.borah@intel.com>
-References: <20260702124208.2401160-1-chaitanya.kumar.borah@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E29610F38B;
+	Thu,  2 Jul 2026 13:08:51 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7749B10F38B;
+ Thu,  2 Jul 2026 13:08:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_remov?=
+ =?utf-8?q?e_duplicate_=3Ckunit/test-bug=2Eh=3E_include?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anas Khan" <anxkhn28@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Jul 2026 13:08:50 -0000
+Message-ID: <178299773048.144157.7277792828071649483@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260702112820.34675-1-anxkhn28@gmail.com>
+In-Reply-To: <20260702112820.34675-1-anxkhn28@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,193 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add bandwidth check to determine whether a given audio sample rate and
-channel count can be carried within the hblank period for HDMI TMDS mode.
+== Series Details ==
 
-Use this check to prune unsupported sample rates from each SAD in the
-ELD during intel_audio_compute_config(). SADs with no remaining
-supported rates are removed entirely.
+Series: drm/xe: remove duplicate <kunit/test-bug.h> include
+URL   : https://patchwork.freedesktop.org/series/169699/
+State : failure
 
-Sample rates are pruned rather than channel counts, since compressed
-formats (e.g. AC-3) are associated with specific channel counts.
+== Summary ==
 
-BSpec: 68944
-Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Assisted-by: GitHub-Copilot:claude-opus-4.6
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c | 144 +++++++++++++++++++++
- 1 file changed, 144 insertions(+)
+Series author address 'anxkhn28@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1202768/ (on master)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 9729f1837d2c..2cf3c347bf12 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -696,6 +696,147 @@ static void ibx_audio_codec_enable(struct intel_encoder *encoder,
- 	mutex_unlock(&display->audio.mutex);
- }
- 
-+static bool hdmi_audio_rate_supported(const struct intel_crtc_state *crtc_state,
-+				      int available_tmds,
-+				      int audio_rate, int channels)
-+{
-+	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-+	int pixel_clk_max_hz;
-+	int audio_pkt_factor;
-+	u64 audio_pkt_rate_x4_x1000;
-+	int audio_packets_line;
-+	int hblank_overhead;
-+	int required_tmds;
-+
-+	/*
-+	 * Part 2: Calculate TMDS clock cycles required for Audio Bandwidth
-+	 *
-+	 * Step 1: pixelclk_max = nominal_pixel_rate * (1 + 0.5%)
-+	 * crtc_clock (kHz) * 1000 * 1.005 = crtc_clock * 1005 (Hz)
-+	 */
-+	pixel_clk_max_hz = mode->crtc_clock * 1005;
-+
-+	/*
-+	 * Steps 3-4: Audio Packet Rate.
-+	 *   R_AP = (audio_rate * AP + 2 * acrrate_max) * (1 + 1000 / 1e6)
-+	 *        = (audio_rate * AP + 2*1500) * 1.001
-+	 *
-+	 * AP = 0.25 (2ch) or 1.0 (3-8ch); acrrate_max = 1500 Hz (max ACR
-+	 * packet transmission rate per HDMI spec)
-+	 *
-+	 * Scale by 4*1000 to stay integer:
-+	 *  x4: eliminates AP=0.25 -> audio_pkt_factor=1(2ch) or 4(3-8ch),
-+	 *      scaled acrrate_max: 2 * 1500 * 4 = 12000
-+	 *  x1000: eliminates 1.001 -> *1000*1.001 = *1001
-+	 *
-+	 * R_AP * 4 * 1000 = (audio_rate * audio_pkt_factor + 12000) * 1001
-+	 */
-+	audio_pkt_factor = (channels <= 2) ? 1 : 4;
-+	audio_pkt_rate_x4_x1000 = (u64)(audio_rate * audio_pkt_factor + 12000) * 1001;
-+
-+	/*
-+	 * Steps 2+5-6: Audio packets per line.
-+	 *   AudioPackets_Line = CEIL[R_AP * htotal / f_pixelclk_max]
-+	 *
-+	 * With audio_pkt_rate_x4_x1000 = R_AP * 4 * 1000:
-+	 *   = CEIL[audio_pkt_rate_x4_x1000 * htotal / (4 * 1000 * pixel_clk_max_hz)]
-+	 */
-+	audio_packets_line = DIV_ROUND_UP_ULL(audio_pkt_rate_x4_x1000 * mode->htotal,
-+					      (u64)4 * 1000 * pixel_clk_max_hz);
-+
-+	/*
-+	 * Steps 7-9: Hblank overhead.
-+	 * Standard:  2*dip_guardband + 2*control_period + video_guardband
-+	 *          = 2*2 + 2*12 + 2 = 30
-+	 * HDCP 1.x:  rekey_period + dip_guardband + control_period + video_guardband
-+	 *          = 58 + 2 + 12 + 2 = 74
-+	 *
-+	 * Always use HDCP 1.x worst case (74) since HDCP can be toggled
-+	 * via fastset without compute_config.
-+	 */
-+	hblank_overhead = 74;
-+
-+	/*
-+	 * Step 10: Required TMDS cycles for Audio.
-+	 *  32 TMDS clock cycles per audio packet.
-+	 *   Hblank_audio_min = 32 * AudioPackets_Line + Hblank_overhead
-+	 */
-+	required_tmds = 32 * audio_packets_line + hblank_overhead;
-+
-+	/*
-+	 * Part 3: audio supported if Hblank_audio_min <= TB_blank and
-+	 * audio packets per line <= Maximum allowed packets per line (18)
-+	 */
-+	return required_tmds <= available_tmds && audio_packets_line <= 18;
-+}
-+
-+static void intel_audio_hdmi_eld_compute_config(struct intel_crtc_state *crtc_state)
-+{
-+	static const int sad_freqs[] = {
-+		32000, 44100, 48000, 88200, 96000, 176400, 192000
-+	};
-+	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-+	int hblank = mode->htotal - mode->hdisplay;
-+	int bpc = crtc_state->pipe_bpp / 3;
-+	int ycbcr_420_divider = (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) ? 2 : 1;
-+	int available_tmds;
-+	u8 *eld = crtc_state->eld;
-+	int mnl = drm_eld_mnl(eld);
-+	int sad_count = drm_eld_sad_count(eld);
-+	int i = 0;
-+
-+	/*
-+	 * Part 1: Calculate available TMDS clock cycles (TB_blank).
-+	 *
-+	 * TB_blank = CEILING[hblank * K_CD / K_420]
-+	 *
-+	 * K_CD = 1 for YCbCr4:2:2, bpc / 8 otherwise.
-+	 * K_420 = 2 for YCbCr4:2:0, 1 otherwise.
-+	 * Rearranged: CEILING[hblank * bpc / (8 * K_420)]
-+	 *
-+	 * TODO: As and when support for YCbCr4:2:2 is added, set bpc = 8
-+	 * to achieve K_CD = 1
-+	 */
-+	available_tmds = DIV_ROUND_UP(hblank * bpc, 8 * ycbcr_420_divider);
-+
-+	while (i < sad_count) {
-+		int sad_offset = DRM_ELD_CEA_SAD(mnl, i);
-+		int channels = (eld[sad_offset] & 0x7) + 1;
-+		u8 freq_mask = eld[sad_offset + 1];
-+		u8 new_freq_mask = 0;
-+		int bit;
-+
-+		for (bit = 0; bit < 7; bit++) {
-+			if (!(freq_mask & BIT(bit)))
-+				continue;
-+			if (hdmi_audio_rate_supported(crtc_state, available_tmds,
-+						      sad_freqs[bit], channels))
-+				new_freq_mask |= BIT(bit);
-+		}
-+
-+		eld[sad_offset + 1] = new_freq_mask;
-+
-+		if (!new_freq_mask) {
-+			/* Remove this SAD by compacting the rest */
-+			memmove(&eld[DRM_ELD_CEA_SAD(mnl, i)],
-+				&eld[DRM_ELD_CEA_SAD(mnl, i + 1)],
-+				(sad_count - i - 1) * 3);
-+			memset(&eld[DRM_ELD_CEA_SAD(mnl, sad_count - 1)], 0, 3);
-+			sad_count--;
-+			continue;
-+		}
-+		i++;
-+	}
-+
-+	/* Update SAD count in ELD header */
-+	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] &= ~DRM_ELD_SAD_COUNT_MASK;
-+	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] |= sad_count << DRM_ELD_SAD_COUNT_SHIFT;
-+
-+	/* Recalculate baseline ELD length (in dwords) */
-+	eld[DRM_ELD_BASELINE_ELD_LEN] =
-+		DIV_ROUND_UP(drm_eld_calc_baseline_block_size(eld), 4);
-+}
-+
- bool intel_audio_compute_config(struct intel_encoder *encoder,
- 				struct intel_crtc_state *crtc_state,
- 				struct drm_connector_state *conn_state)
-@@ -717,6 +858,9 @@ bool intel_audio_compute_config(struct intel_encoder *encoder,
- 	BUILD_BUG_ON(sizeof(crtc_state->eld) != sizeof(connector->eld));
- 	memcpy(crtc_state->eld, connector->eld, sizeof(crtc_state->eld));
- 
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-+		intel_audio_hdmi_eld_compute_config(crtc_state);
-+
- 	crtc_state->eld[6] = drm_av_sync_delay(connector, adjusted_mode) / 2;
- 	mutex_unlock(&connector->eld_mutex);
- 
--- 
-2.25.1
 
