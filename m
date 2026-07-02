@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EB13C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:53:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBEEDC43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 14:08:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 119FB10E4D5;
-	Thu,  2 Jul 2026 13:53:21 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C356A10E4D5;
- Thu,  2 Jul 2026 13:53:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6284738479601425562=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7738210E17E;
+	Thu,  2 Jul 2026 14:08:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mmhHXUlF";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A37C10E17E
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 14:08:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783001317; x=1814537317;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KGKYrEKHvAg3Vtw1imsI947pXp2NVHSgr3TwPABqJh0=;
+ b=mmhHXUlFW7JK38z5x4OEbfzh+e5y/bpgBT/IIgn0C3TCBSsxhY4y+yhT
+ DevY826efc1/pKy3PskxquC2q8MoHKGGmuqI+ZBqFi4GbbEs+YLCgnLqJ
+ FNnv7sYgU8Y7npo4Su4x2wDOJ0oiARuGe6ID63tB72wPLG7Y8Siu4pm75
+ 8Z/5NXK64i/5AZmohwVJM35dirqTjPnJpQPFnw160Q/0NNPTh9h0ELV/G
+ 8hFq8IbulKjKl10S+dwxBV627yPUEsDDs/A+4IA1genGYko+gYf1O6Tk4
+ FE5x3jPdZbU+WI3oA9D42Z2j7ak1hAozs5838HcTKe7FTER46ld5ZiKmv w==;
+X-CSE-ConnectionGUID: tB9Lt7EVRGCBo6uYRjHj3A==
+X-CSE-MsgGUID: 5e3Ca0rTSdiWMMEBL3rsAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="94355862"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="94355862"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 07:08:36 -0700
+X-CSE-ConnectionGUID: XQrbXyXkRxGqZEgJp1Y61Q==
+X-CSE-MsgGUID: JZwZx76VSJ6EZ56DqMVFoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="257217570"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.244.242])
+ ([10.245.244.242])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 07:08:35 -0700
+Message-ID: <bd1aab65-fa42-4540-af71-16dea211523d@intel.com>
+Date: Thu, 2 Jul 2026 15:08:32 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/audio=3A_Add_HDMI_?=
- =?utf-8?q?TMDS_audio_bandwidth_check?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Jul 2026 13:53:19 -0000
-Message-ID: <178300039979.144477.10877715318997580740@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260702124208.2401160-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260702124208.2401160-1-chaitanya.kumar.borah@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix PTE index in xe_vm_populate_pgtable() for
+ chunked binds
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org
+References: <20260702012434.3861171-1-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260702012434.3861171-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,188 +67,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6284738479601425562==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 02/07/2026 02:24, Matthew Brost wrote:
+> xe_vm_populate_pgtable() indexed the source PTE array (update->pt_entries)
+> by the per-call loop counter, assuming each call starts at the first entry
+> of the update. That holds for the CPU bind path
+> (xe_migrate_update_pgtables_cpu), which populates a whole update in a single
+> call, but not for the GPU bind path: write_pgtable() splits an update into
+> MAX_PTE_PER_SDI (510) sized MI_STORE_DATA_IMM chunks, invoking the populate
+> callback once per chunk with an advancing qword_ofs but a fresh command-
+> buffer destination pointer.
+> 
+> As a result, every chunk after the first re-read pt_entries from index 0
+> instead of from its true offset, so PTEs beyond the first 510 entries of a
+> single update were programmed with the wrong physical pages, shifting the
+> mapping by exactly MAX_PTE_PER_SDI pages.
+> 
+> This stayed latent because a single update only exceeds 510 qwords when a
+> large (e.g. 2M) region is bound as individual 4K PTEs rather than a single
+> huge-page entry, which happens when the backing store is sufficiently
+> fragmented. It was surfaced by the BO defrag path, which deliberately
+> rebinds such fragmented ranges via the GPU bind path, producing
+> deterministic data corruption offset by 510 pages.
+> 
+> Index pt_entries by the chunk's absolute offset relative to update->ofs so
+> both the CPU and GPU paths pick the correct entries.
+> 
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Cc: stable@vger.kernel.org
+> Assisted-by: GitHub_Copilot:claude-opus-4.8
 
-== Series Details ==
+Missing sob.
 
-Series: drm/i915/audio: Add HDMI TMDS audio bandwidth check
-URL   : https://patchwork.freedesktop.org/series/169701/
-State : failure
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-== Summary ==
+> ---
+>   drivers/gpu/drm/xe/xe_pt.c | 14 ++++++++++++--
+>   1 file changed, 12 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 00cef6ff17cc..7970b4ed95b5 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1024,12 +1024,22 @@ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *t
+>   	u64 *ptr = data;
+>   	u32 i;
+>   
+> +	/*
+> +	 * @qword_ofs is the absolute entry offset within the page table, while
+> +	 * @ptes is indexed relative to @update->ofs (its first entry). The GPU
+> +	 * path (write_pgtable) splits a single update into MAX_PTE_PER_SDI-sized
+> +	 * chunks, calling this with an advancing @qword_ofs but a fresh @data
+> +	 * pointer per chunk, so translate back into a @ptes index rather than
+> +	 * assuming the chunk starts at ptes[0].
+> +	 */
+>   	for (i = 0; i < num_qwords; i++) {
+> +		u32 idx = qword_ofs - update->ofs + i;
+> +
+>   		if (map)
+>   			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
+> -				  sizeof(u64), u64, ptes[i].pte);
+> +				  sizeof(u64), u64, ptes[idx].pte);
+>   		else
+> -			ptr[i] = ptes[i].pte;
+> +			ptr[i] = ptes[idx].pte;
+>   	}
+>   }
+>   
 
-CI Bug Log - changes from xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3_BAT -> xe-pw-169701v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-169701v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-169701v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-169701v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-wcl-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-wcl-2/igt@kms_hdmi_inject@inject-audio.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-wcl-2/igt@kms_hdmi_inject@inject-audio.html
-    - bat-bmg-1:          [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-bmg-1/igt@kms_hdmi_inject@inject-audio.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-bmg-1/igt@kms_hdmi_inject@inject-audio.html
-    - bat-ptl-2:          [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html
-    - bat-wcl-1:          [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html
-    - bat-ptl-1:          [PASS][9] -> [FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-ptl-1/igt@kms_hdmi_inject@inject-audio.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-ptl-1/igt@kms_hdmi_inject@inject-audio.html
-    - bat-bmg-2:          [PASS][11] -> [FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-bmg-2/igt@kms_hdmi_inject@inject-audio.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-bmg-2/igt@kms_hdmi_inject@inject-audio.html
-    - bat-adlp-7:         [PASS][13] -> [FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-169701v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [PASS][15] -> [ABORT][16] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
-
-
-Build changes
--------------
-
-  * IGT: IGT_8989 -> IGT_8990
-  * Linux: xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3 -> xe-pw-169701v1
-
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8990: 8990
-  xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3: 4343c63c6acc14ed4d48dddaa56057663651d9e3
-  xe-pw-169701v1: 169701v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/index.html
-
---===============6284738479601425562==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/audio: Add HDMI TMDS audio bandwidth check</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169701/">https://patchwork.freedesktop.org/series/169701/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3_BAT -&gt; xe-pw-169701v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-169701v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-169701v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-169701v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-wcl-2/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-wcl-2/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-bmg-1/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-bmg-1/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-ptl-1/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-ptl-1/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-bmg-2/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-bmg-2/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169701v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8989 -&gt; IGT_8990</li>
-<li>Linux: xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3 -&gt; xe-pw-169701v1</li>
-</ul>
-<p>IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8990: 8990<br />
-  xe-5331-4343c63c6acc14ed4d48dddaa56057663651d9e3: 4343c63c6acc14ed4d48dddaa56057663651d9e3<br />
-  xe-pw-169701v1: 169701v1</p>
-
-</body>
-</html>
-
---===============6284738479601425562==--
