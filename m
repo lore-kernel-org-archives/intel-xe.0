@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69094C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97646C43327
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D19110F377;
-	Thu,  2 Jul 2026 13:06:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58E9C10F387;
+	Thu,  2 Jul 2026 13:06:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="SNO+TI3y";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="o2h14zEv";
 	dkim-atps=neutral
-Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com
- [91.218.175.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBDD010F2DA
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 11:16:05 +0000 (UTC)
+Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com
+ [91.218.175.186])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B58E10F315
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 12:11:10 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782990951;
+ t=1782994254;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=MXoiAeiZxppUV0bbr36tbNoILtIVkAZHXOhXlmlq9aE=;
- b=SNO+TI3ysBG4+DhR3hPTF1SvhO32c4IR52yjAPmkR78MakGGmD/cQOYIcE8MmMX2BXfJ/B
- PngJwUk8MPDHueMWfaVQgxbOjSa6VTjHZniUa88SClGCvA5JNzJYRen32CdMAokXiIgXtC
- 8TVZTPLK3UhpO1X2vjoT/Jd84+uq0gc=
+ bh=szYxJDyUXLwpHCPYtdT5QZRTamk7ohIwjDiVPC1pzUs=;
+ b=o2h14zEvKcQ49vaQ50LBNnbgHGGpFBTA0OsIFCWdpiUc7gYaraiUcJHgmdFM4mBzY7pBJH
+ 3Nawgn9WkBzIHxRb3Nw1H0UdEQI7UMwMGIksMhfoUjYHvm6uqPS5csZAIdTgWkWJ0NxwiR
+ +fbu3PSBP2IvpsY/0wNqYNag0+1ZZPU=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
 Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
@@ -61,11 +61,11 @@ Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
  linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-sound@vger.kernel.org
-Subject: Re: [PATCH 02/13] mm/vma: update do_mmap() to use vma_flags_t
-Date: Thu,  2 Jul 2026 19:15:31 +0800
-Message-Id: <20260702111531.64883-1-lance.yang@linux.dev>
-In-Reply-To: <e0ac58ad2b88ff7e2f0024e3286b2e786f79ca32.1782760670.git.ljs@kernel.org>
-References: <e0ac58ad2b88ff7e2f0024e3286b2e786f79ca32.1782760670.git.ljs@kernel.org>
+Subject: Re: [PATCH 05/13] mm: prefer mm->def_vma_flags in mm logic
+Date: Thu,  2 Jul 2026 20:10:22 +0800
+Message-Id: <20260702121022.49113-1-lance.yang@linux.dev>
+In-Reply-To: <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
+References: <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -86,116 +86,44 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On Mon, Jun 29, 2026 at 08:25:25PM +0100, Lorenzo Stoakes wrote:
->The core do_mmap() function accepts a vm_flags_t parameter which it then
->manipulates before passing to mmap_region() to do the heavy lifting of the
->memory mapping.
+On Mon, Jun 29, 2026 at 08:25:28PM +0100, Lorenzo Stoakes wrote:
+>Currently mm->def_flags (of type vm_flags_t) is union'd with
+>mm->def_vma_flags (of type vma_flags_t).
 >
->Update do_mmap() to instead accept a vma_flags_t parameter, and adjust all
->the logic within do_mmap() to manipulate this instead.
->
->This is as part of the ongoing effort to convert VMA flags from a system
->word size to a bitmap type which allows us to unrestrict the number of VMA
->flags, as well as gain control over how VMA flag manipulation occurs.
->
->We do not cascade these changes to all functions which accept vm_flags_t,
->but rather use vma_flags_to_legacy() where necessary, specifically
->deferring converting calc_vm_prot_bits(), calc_vm_flag_bits() and
->__get_unmapped_area() to vma_flags_t.
->
->Also utilise the new vma_flags_can_grow() predicate which correctly handles
->the case of architectures without upward growing stacks.
->
->As part of this change, introduce VMA_SHADOW_STACK so we can correctly
->handle the case of the shadow stack not being defined.
+>As part of the effort to convert vm_flags_t usage to vma_flags_t (in order
+>to no longer be arbitrarily limited to a system word size for VMA flags),
+>prefer mm->def_vma_flags to mm->def_flags throughout the mm logic.
 >
 >No functional change intended.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
+> mm/debug.c |  2 +-
+> mm/mlock.c | 13 +++++++------
+> mm/mmap.c  | 11 ++++++-----
+> mm/vma.c   |  4 ++--
+> 4 files changed, 16 insertions(+), 14 deletions(-)
+>
+>diff --git a/mm/debug.c b/mm/debug.c
+>index 497654b36f1a..f0a354a9496a 100644
+>--- a/mm/debug.c
+>+++ b/mm/debug.c
+>@@ -226,7 +226,7 @@ void dump_mm(const struct mm_struct *mm)
+> 		mm->numa_next_scan, mm->numa_scan_offset, mm->numa_scan_seq,
+> #endif
+> 		atomic_read(&mm->tlb_flush_pending),
+>-		mm->def_flags, &mm->def_flags
+>+		vma_flags_to_legacy(mm->def_vma_flags), &mm->def_vma_flags
+> 	);
 
-Not exactly a small one :) I stared at this patch for a while, hopefully
-don't miss anythig ...
+While at it, one thing for later: dump_mm() still assumes one-world VMA
+flags. That works today since vma_flags_t is one word. Maybe worth a
+BUILD_BUG_ON() here, before that stops being true?
 
-Just one tiny nit below. Overall, LGTM, feel free to add:
+Not a big deal though. Feel free to add:
 
 Reviewed-by: Lance Yang <lance.yang@linux.dev>
 
-[...]
->diff --git a/mm/mmap.c b/mm/mmap.c
->index 46174e706bbe..547352183214 100644
->--- a/mm/mmap.c
->+++ b/mm/mmap.c
-[...]
->@@ -488,23 +496,27 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
-> 		 * Check to see if we are violating any seals and update VMA
-> 		 * flags if necessary to avoid future seal violations.
-> 		 */
->-		err = memfd_check_seals_mmap(file, &vm_flags);
->+		err = memfd_check_seals_mmap(file, &vma_flags);
-> 		if (err)
-> 			return (unsigned long)err;
-> 	} else {
-> 		switch (flags & MAP_TYPE) {
-> 		case MAP_SHARED:
->-			if (vm_flags & (VM_GROWSDOWN|VM_GROWSUP))
->+			if (vma_flags_can_grow(&vma_flags))
-> 				return -EINVAL;
-> 			/*
-> 			 * Ignore pgoff.
-> 			 */
-> 			pgoff = 0;
->-			vm_flags |= VM_SHARED | VM_MAYSHARE;
->+			vma_flags_set(&vma_flags, VMA_SHARED_BIT, VMA_MAYSHARE_BIT);
-> 			break;
->-		case MAP_DROPPABLE:
->-			if (VM_DROPPABLE == VM_NONE)
->+		case MAP_DROPPABLE: {
->+			vma_flags_t droppable = VMA_DROPPABLE;
->+
->+			if (vma_flags_empty(&droppable))
-> 				return -EOPNOTSUPP;
->+			vma_flags_set_mask(&vma_flags, droppable);
->+
-> 			/*
-> 			 * A locked or stack area makes no sense to be droppable.
-> 			 *
->@@ -515,23 +527,24 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
-> 			 */
-> 			if (flags & (MAP_LOCKED | MAP_HUGETLB))
-> 			        return -EINVAL;
->-			if (vm_flags & (VM_GROWSDOWN | VM_GROWSUP))
->+			if (vma_flags_can_grow(&vma_flags))
-> 			        return -EINVAL;
-> 
->-			vm_flags |= VM_DROPPABLE;
-
-Old code checked VM_GROWSDOWN|VM_GROWSUP before seting VM_DROPPABLE. New
-code flips that around. Hmm, shouldn't master, just made me look twice ;)
-
-Maybe keep old order?
-
-Cheers, Lance
-
->-
-> 			/*
-> 			 * If the pages can be dropped, then it doesn't make
-> 			 * sense to reserve them.
-> 			 */
->-			vm_flags |= VM_NORESERVE;
->+			vma_flags_set(&vma_flags, VMA_NORESERVE_BIT);
-> 
-> 			/*
-> 			 * Likewise, they're volatile enough that they
-> 			 * shouldn't survive forks or coredumps.
-> 			 */
->-			vm_flags |= VM_WIPEONFORK | VM_DONTDUMP;
->+			vma_flags_set(&vma_flags, VMA_WIPEONFORK_BIT,
->+				      VMA_DONTDUMP_BIT);
->+
-> 			fallthrough;
->+		}
-> 		case MAP_PRIVATE:
-> 			/*
-> 			 * Set pgoff according to addr for anon_vma.
+> }
+> EXPORT_SYMBOL(dump_mm);
 [...]
