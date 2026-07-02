@@ -4,32 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00600C44506
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F9EFC44508
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A591010F379;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B319910F385;
 	Thu,  2 Jul 2026 13:06:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="UUw36nfQ";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="F10EZD2M";
 	dkim-atps=neutral
-X-Greylist: delayed 431 seconds by postgrey-1.36 at gabe;
- Thu, 02 Jul 2026 07:35:36 UTC
-Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com
- [95.215.58.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B63210F1B0;
- Thu,  2 Jul 2026 07:35:36 +0000 (UTC)
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com
+ [95.215.58.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D44F10F353
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 12:39:58 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782977290;
+ t=1782995985;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=cdXAMvaGTLXZ4tRHqX+15mFjqPO5NJv7/lbzInUeZeM=;
- b=UUw36nfQUDO4ek5W5MoGxv/bQdNbTQycY1qQKAEoJymjql+ZXc8a2FUo9eNrafl6xDrEni
- 1302Z8Y+Ma+0qxdUDhBISoxry5nus7uGAN8fTkB0ZcU/zUf+14Ol9iIljWhjg5Yh/mt933
- 8BhSh84bNWygA1To4TaXOltx56F5hgs=
+ bh=MSqvG6QTDeOE5qt8LI9tLb3iySB/2eramUM4HlZdPG8=;
+ b=F10EZD2MKuMsgIZGg+Kv4CpsFBAqfutqUSZV+CnlSj4mTRO6SM+hx7IFnwTXi02n4W5ksq
+ B3eV7EruPZaVg8GiZqN77RrtZjvlyRAPzkka+Z5kYwT5shcZ0occtt6vxWz8dsjkDZRJwI
+ jZvjN/4FCRiAB3/YW0BqvRoNYnrlgRU=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
 Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
@@ -63,12 +61,11 @@ Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
  linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-sound@vger.kernel.org
-Subject: Re: [PATCH 01/13] mm: introduce vma_flags_can_grow() and
- vma_can_grow()
-Date: Thu,  2 Jul 2026 15:27:50 +0800
-Message-Id: <20260702072750.45641-1-lance.yang@linux.dev>
-In-Reply-To: <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
-References: <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
+Subject: Re: [PATCH 08/13] mm: introduce vma_get_page_prot() and use it
+Date: Thu,  2 Jul 2026 20:38:45 +0800
+Message-Id: <20260702123845.95316-1-lance.yang@linux.dev>
+In-Reply-To: <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
+References: <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -89,22 +86,43 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On Mon, Jun 29, 2026 at 08:25:24PM +0100, Lorenzo Stoakes wrote:
->These test whether the VMA has stack sematics, i.e. is able to grow upwards
->or downwards depending on the architecture.
+On Mon, Jun 29, 2026 at 08:25:31PM +0100, Lorenzo Stoakes wrote:
+>There's a large number of vm_get_page_prot(vma->vm_flags) invocations. Make
+>life easier by introducing vma_get_page_prot() parameterised by the VMA.
 >
->In order to account for arches which do not support upward-growing stacks,
->introduce VMA_GROWSUP whose definition depends on the architecture
->supporting it, and use vma_flags_test_single_mask() in vma_flags_can_grow()
->to account for this.
+>This also makes converting vm_get_page_prot() to vma_flags_t easier.
 >
->Update the VMA userland tests to reflect the changes
+>Also update the userland VMA tests to reflect the change.
 >
 >No functional change intended.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
+> drivers/gpu/drm/drm_gem.c                   |  2 +-
+> drivers/gpu/drm/drm_gem_dma_helper.c        |  2 +-
+> drivers/gpu/drm/drm_gem_shmem_helper.c      |  2 +-
+> drivers/gpu/drm/etnaviv/etnaviv_gem.c       |  2 +-
+> drivers/gpu/drm/exynos/exynos_drm_gem.c     |  6 +++---
+> drivers/gpu/drm/i915/gem/i915_gem_mman.c    | 12 ++++++------
+> drivers/gpu/drm/msm/msm_gem.c               |  2 +-
+> drivers/gpu/drm/nouveau/nouveau_gem.c       |  2 +-
+> drivers/gpu/drm/omapdrm/omap_fbdev.c        |  2 +-
+> drivers/gpu/drm/omapdrm/omap_gem.c          |  6 +++---
+> drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  2 +-
+> drivers/gpu/drm/tegra/gem.c                 |  2 +-
+> drivers/gpu/drm/virtio/virtgpu_vram.c       |  2 +-
+> drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |  2 +-
+> drivers/gpu/drm/xe/xe_device.c              |  2 +-
+> drivers/gpu/drm/xe/xe_mmio_gem.c            |  2 +-
+> drivers/gpu/drm/xen/xen_drm_front_gem.c     |  2 +-
+> drivers/video/fbdev/core/fb_io_fops.c       |  2 +-
 
-Nice cleanup! Feel free to add:
+One missed?
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+drivers/gpu/drm/panthor/panthor_gem.c still has:
+
+	vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+
+Can use vma_get_page_prot(vma) too.
+
+[...]
