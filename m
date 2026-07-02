@@ -4,73 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97646C43327
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC437C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:06:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58E9C10F387;
-	Thu,  2 Jul 2026 13:06:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A02210F388;
+	Thu,  2 Jul 2026 13:06:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="o2h14zEv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fzYOzEtg";
 	dkim-atps=neutral
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com
- [91.218.175.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B58E10F315
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 12:11:10 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782994254;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=szYxJDyUXLwpHCPYtdT5QZRTamk7ohIwjDiVPC1pzUs=;
- b=o2h14zEvKcQ49vaQ50LBNnbgHGGpFBTA0OsIFCWdpiUc7gYaraiUcJHgmdFM4mBzY7pBJH
- 3Nawgn9WkBzIHxRb3Nw1H0UdEQI7UMwMGIksMhfoUjYHvm6uqPS5csZAIdTgWkWJ0NxwiR
- +fbu3PSBP2IvpsY/0wNqYNag0+1ZZPU=
-From: Lance Yang <lance.yang@linux.dev>
-To: ljs@kernel.org
-Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
- mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, robin.clark@oss.qualcomm.com,
- lumag@kernel.org, lyude@redhat.com, dakr@kernel.org,
- tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, heiko@sntech.de,
- andy.yan@rock-chips.com, thierry.reding@kernel.org, mperttunen@nvidia.com,
- jonathanh@nvidia.com, kraxel@redhat.com, dmitry.osipenko@collabora.com,
- zack.rusin@broadcom.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
- deller@gmx.de, bcrl@kvack.org, viro@zeniv.linux.org.uk, brauner@kernel.org,
- muchun.song@linux.dev, osalvador@suse.de, david@kernel.org, ziy@nvidia.com,
- baolin.wang@linux.alibaba.com, liam@infradead.org, npache@redhat.com,
- ryan.roberts@arm.com, dev.jain@arm.com, baohua@kernel.org,
- lance.yang@linux.dev, hughd@google.com, vbabka@kernel.org, rppt@kernel.org,
- surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de,
- kees@kernel.org, perex@perex.cz, tiwai@suse.com,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-sound@vger.kernel.org
-Subject: Re: [PATCH 05/13] mm: prefer mm->def_vma_flags in mm logic
-Date: Thu,  2 Jul 2026 20:10:22 +0800
-Message-Id: <20260702121022.49113-1-lance.yang@linux.dev>
-In-Reply-To: <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
-References: <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 868AA10F389;
+ Thu,  2 Jul 2026 13:06:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782997574; x=1814533574;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XI6sZtE1N+VvmNRtYJ+mzhfcmqL0TttJgeD3UfddJjI=;
+ b=fzYOzEtg8OvuWfeOUhiOfzsEqO6Lv9CfKWR5F3IPZrDcmlawDylWUp9H
+ MSXlfpFHyIhS96dox/V45Ry0de5VTiq9516hiN919jeDsYStzhTYA/Arx
+ wDvCg4zXLgD2BAN5ZdhLROp1bleRb1Rdh3ZUnRdFyTdbH0HtMRhqpe30j
+ 3IYGGuWUWabljs3l8HwYWvH6UpvGso7FoLDitWRzmaPaZ7DWinGhLgGta
+ ivjR5Adp27WibIpzhkheRVoSRg1fEZKI2ho8/bqnt7+wUVWDELJXyKNOR
+ bLqGoartp1dCq1DSoenDp7W6MQxeL2VEXizleLFqptDKvYwe7BSJV/3OJ w==;
+X-CSE-ConnectionGUID: P6/cnOYETyS8q8gNa7Lmmw==
+X-CSE-MsgGUID: 0qN9tI5UTR+E5YDASXfBFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83621203"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="83621203"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 06:06:14 -0700
+X-CSE-ConnectionGUID: PYFJYHrXR3mnlH5+Pk3geg==
+X-CSE-MsgGUID: jhydkSOdSiS8FhwBGhtKzA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="257748944"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa005.fm.intel.com with ESMTP; 02 Jul 2026 06:06:11 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 0/2] drm/i915/audio: Add HDMI TMDS audio bandwidth check
+Date: Thu,  2 Jul 2026 18:12:06 +0530
+Message-Id: <20260702124208.2401160-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Thu, 02 Jul 2026 13:06:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,45 +70,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This series adds audio bandwidth validation for HDMI TMDS mode.
+When the available hblank period cannot carry the required
+audio packets for a given sample rate and channel count, the
+corresponding frequencies are pruned from the ELD SADs before they reach
+the audio driver.
 
-On Mon, Jun 29, 2026 at 08:25:28PM +0100, Lorenzo Stoakes wrote:
->Currently mm->def_flags (of type vm_flags_t) is union'd with
->mm->def_vma_flags (of type vma_flags_t).
->
->As part of the effort to convert vm_flags_t usage to vma_flags_t (in order
->to no longer be arbitrarily limited to a system word size for VMA flags),
->prefer mm->def_vma_flags to mm->def_flags throughout the mm logic.
->
->No functional change intended.
->
->Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
->---
-> mm/debug.c |  2 +-
-> mm/mlock.c | 13 +++++++------
-> mm/mmap.c  | 11 ++++++-----
-> mm/vma.c   |  4 ++--
-> 4 files changed, 16 insertions(+), 14 deletions(-)
->
->diff --git a/mm/debug.c b/mm/debug.c
->index 497654b36f1a..f0a354a9496a 100644
->--- a/mm/debug.c
->+++ b/mm/debug.c
->@@ -226,7 +226,7 @@ void dump_mm(const struct mm_struct *mm)
-> 		mm->numa_next_scan, mm->numa_scan_offset, mm->numa_scan_seq,
-> #endif
-> 		atomic_read(&mm->tlb_flush_pending),
->-		mm->def_flags, &mm->def_flags
->+		vma_flags_to_legacy(mm->def_vma_flags), &mm->def_vma_flags
-> 	);
+Sample rates are pruned rather than channel counts because compressed
+audio formats like Dolby Digital (AC-3) and DTS require a fixed channel
+configuration to decode.
 
-While at it, one thing for later: dump_mm() still assumes one-world VMA
-flags. That works today since vma_flags_t is one word. Maybe worth a
-BUILD_BUG_ON() here, before that stops being true?
+This improves on an earlier attempt which can be seen in [1]
 
-Not a big deal though. Feel free to add:
+[1] https://lore.kernel.org/intel-gfx/20230615063137.2219870-3-mitulkumar.ajitkumar.golani@intel.com/
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 
-> }
-> EXPORT_SYMBOL(dump_mm);
-[...]
+Chaitanya Kumar Borah (2):
+  drm/i915/hdmi: Move audio compute config after format selection
+  drm/i915/audio: Prune ELD SADs based on HDMI audio bandwidth
+
+ drivers/gpu/drm/i915/display/intel_audio.c | 144 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c  |   8 +-
+ 2 files changed, 148 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
+
