@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D450EC43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 11:02:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22DBFC43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 11:02:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A18110F2CA;
-	Thu,  2 Jul 2026 11:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A348010F2CD;
+	Thu,  2 Jul 2026 11:02:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hni3zYdo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+Dfp1Tb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0EE210F2CA
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 11:02:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA1410F2CD
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 11:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782990170; x=1814526170;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=J1KLRBw8szRqUHWdHzXUcqlT6UrvHkrYYKENzionbCM=;
- b=hni3zYdoRRBL6mF4f+pd/qpnF8OUoaG5ZvxB/bLVEzibYz7rCEfyyFf3
- JjjpbzOJVVH6U52dkpgIJZ9aXpV5t853FjAdhpGk9zxO7aGbAuudwSggi
- zrg8xXP0GYYJWZEqfxnMBxqyc49CILBg0ziZt7XPjiurfg0jjd6+us0eG
- Dye7L/MAmQYy4htW6/oZqeKtau3zwbUiky2CKq3WHD6zuMDH1a53Audyi
- pslLp3Sc9yApvT/3CKuTYWbLC0ddlMIbaEzxxUv/erZxaUCK6AqmDhkLY
- UmEzJgIJLppCbnD0Dmwac3BkRJAL/zctMZlNRC8v8LxZztd9tgvqXQ6s3 w==;
-X-CSE-ConnectionGUID: 1T8JXQdqQji1jWhVSuLLAQ==
-X-CSE-MsgGUID: XUpizLLNQNutUH/1C2z9yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82852875"
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="82852875"
+ t=1782990172; x=1814526172;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fc8J3KMheTdy5i+0KCbyrXVybls4Dcz6Lh251dfbqXE=;
+ b=O+Dfp1Tb/un0gGHK5sSmwX+TX67WEFxklbAYE8LwecrftTDyScDFzA6A
+ 42z0HCXondRWyzmM7a/0VA8vIcuDHCKE9JTh57GBGG9yZNjBWnaK3TV0x
+ SVCBWSZt+WOMDyh9dh6iDsGdHdSqWDkhBScIlaB7HyMZEQq9imvJdKZVU
+ TVgDnXowtBnYXsZwTNG3mzjtv/gzKgVwP5Hh/KT2NkGpfC8hTMwh9jEf2
+ oGaYvwphHDvq+/wEbgoRfUfc5BuXEY3AdzFPz2AUSyyYjc2B+hC6+8ijP
+ qJo6j3p5BOT6YCPmNBdlPbLMOt9HLzR0wqOn7BIdTUD1SaqEARPIF4BUX w==;
+X-CSE-ConnectionGUID: XarS0RLPTYO8hPggsEVZZw==
+X-CSE-MsgGUID: 2YSZVktZTVy23AJ40hq/tg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="82852876"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="82852876"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 04:02:49 -0700
-X-CSE-ConnectionGUID: +fEBGQPyQLCk1v9yU6HQVA==
-X-CSE-MsgGUID: x/MCWK59Q0qpU+6KHHu/YA==
+ 02 Jul 2026 04:02:52 -0700
+X-CSE-ConnectionGUID: RqekusLrRYKBpQI43UMEYA==
+X-CSE-MsgGUID: RPUc/+p5SOe/tNxrXVmVqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="256738700"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="256738706"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 04:02:46 -0700
+ 02 Jul 2026 04:02:49 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  daniele.ceraolospurio@intel.com, raag.jadav@intel.com,
  riana.tauro@intel.com, mallesh.koujalagi@intel.com,
  aravind.iddamsetty@intel.com
-Subject: [RFC PATCH 0/7] Add CPER logging support for CRI
-Date: Thu,  2 Jul 2026 16:44:02 +0530
-Message-ID: <20260702111401.3680214-9-badal.nilawar@intel.com>
+Subject: [RFC PATCH 1/7] drm/xe: Add error Signature IDs for RAS logging
+Date: Thu,  2 Jul 2026 16:44:03 +0530
+Message-ID: <20260702111401.3680214-10-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260702111401.3680214-9-badal.nilawar@intel.com>
+References: <20260702111401.3680214-9-badal.nilawar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,44 +70,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch series adds CPER (Common Platform Error Record) logging support
-for Correctable errors reported by Intel Xe GPUs. CPER logging is done
-through trace event.
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 
-In subsequent patches will add CPER logging support for Un-correctable errors.
+Every GPU fault needs a stable numeric label so monitoring tools can
+identify what went wrong without parsing log text. Add xe_sig_ids.h
+which defines those labels, called SIG_IDs.
 
-Do not review patch "drm/xe: Add error Signature IDs for RAS logging" as
-it is part of https://patchwork.freedesktop.org/series/168333/ 
-
-Badal Nilawar (6):
-  drm/xe/xe_ras: Add support to retrieve info queue data for CRI
-  drm/xe/xe_ras: Refactor get_counter() to return response structure
-  drm/xe/cper: Add CPER structures and trace event
-  drm/xe/cper: APIs to prepare and log CPER record
-  drm/xe/cper: Prepare Intel CPER error info from info queue
-  drm/xe/cper: Log CPER record for correctable errors
-
-Mallesh Koujalagi (1):
-  drm/xe: Add error Signature IDs for RAS logging
-
- drivers/gpu/drm/xe/Makefile                   |   2 +
- drivers/gpu/drm/xe/xe_cper.c                  | 215 ++++++++++++++
- drivers/gpu/drm/xe/xe_cper.h                  |  30 ++
- drivers/gpu/drm/xe/xe_cper_types.h            | 186 ++++++++++++
- drivers/gpu/drm/xe/xe_ras.c                   | 272 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_ras_types.h             | 122 +++++++-
- drivers/gpu/drm/xe/xe_sig_ids.h               |  29 ++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
- drivers/gpu/drm/xe/xe_trace_cper.c            |   9 +
- drivers/gpu/drm/xe/xe_trace_cper.h            |  65 +++++
- 10 files changed, 921 insertions(+), 11 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_cper.c
- create mode 100644 drivers/gpu/drm/xe/xe_cper.h
- create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sig_ids.h | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/xe_sig_ids.h
- create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.c
- create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.h
 
+diff --git a/drivers/gpu/drm/xe/xe_sig_ids.h b/drivers/gpu/drm/xe/xe_sig_ids.h
+new file mode 100644
+index 000000000000..7badd0d7ad72
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sig_ids.h
+@@ -0,0 +1,29 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_SIG_IDS_H_
++#define _XE_SIG_IDS_H_
++
++/*
++ * Driver SIG_IDs
++ */
++#define XE_SIG_PROBE			1  /* FATAL: probe failed */
++#define XE_SIG_WEDGED			2  /* FATAL: device wedged */
++#define XE_SIG_SURVIVABILITY		3  /* FATAL: survivability mode */
++#define XE_SIG_FW			4  /* RECOVERABLE: GuC/HuC/UC/GSC/CSC/PCODE */
++#define XE_SIG_GT_TDR			5  /* RECOVERABLE: engine hang / reset */
++#define XE_SIG_MEM_FAULT		6  /* RECOVERABLE: VM bind, page fault, GTT */
++#define XE_SIG_IO_BUS			7  /* RECOVERABLE: runtime PCIe/IOMMU/MMIO */
++
++/*
++ * HW SIG_IDs
++ */
++#define XE_SIG_HW_DEVICE_MEMORY		8  /* Device memory errors (e.g. ECC) */
++#define XE_SIG_HW_CORE_COMPUTE		9  /* Compute/shader core errors */
++#define XE_SIG_HW_PCIE			10 /* PCIe interface errors */
++#define XE_SIG_HW_FABRIC		11 /* On-package fabric errors */
++#define XE_SIG_HW_SOC_INTERNAL		12 /* SoC-internal errors */
++
++#endif /* _XE_SIG_IDS_H_ */
 -- 
 2.54.0
 
