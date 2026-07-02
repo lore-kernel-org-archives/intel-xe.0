@@ -4,158 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A97CC43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:25:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 157F3C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:32:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9A6610F377;
-	Thu,  2 Jul 2026 13:25:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1E4F10E4D6;
+	Thu,  2 Jul 2026 13:32:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+UnS1hs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cco59cZv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D395C10F377;
- Thu,  2 Jul 2026 13:25:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8F1E10E4D6
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 13:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782998750; x=1814534750;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=wIy1JkviQ18VK6kBApZFI/kj2hbmF7ZPtK5C9MH0K8Y=;
- b=m+UnS1hs/LkqPZ/LkLpZIoVweuiuWgdlbcEYJZLtbAREEc94qaaiVcGu
- 96NrMGMDhYFLgchLK+i2vlHoHj59yjEYtJjPSXwWJIRolDinLSL8FnP+G
- lMFb0VT2+Wgsnxy3qz10XQwSWMUVywY3mSo2b/z6vwSYS817nL0KjpSim
- /s4JrN5X0T6GBUaAappw39K0zv9ErzVsh9q3dBEhMz1pQxjft+iNgVv44
- bvi8zabVp441ULokvJh+pOxZObMkllf5VQ7BVZneC4sn0FVVOZv7JvakJ
- rUt1eEs8dCA5s6vBcCZ5Mdu1WnLUtbSk9pKr770fqXMbyezQU/5IQAgzX w==;
-X-CSE-ConnectionGUID: S2B/Fh3sRBy5BvzpGDnCZA==
-X-CSE-MsgGUID: Fjq/5gibRWK7OmpQfjA15w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83784186"
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="83784186"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 06:25:49 -0700
-X-CSE-ConnectionGUID: lKQ2lkLiRGmjAo+cJl+CBg==
-X-CSE-MsgGUID: ofetJKnTSY6BnW5gW4VMYA==
+ t=1782999138; x=1814535138;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+350KlAJw7oU9VWXKiSCs/BhUdUZcRnvVAgk9gtyOpo=;
+ b=Cco59cZv/AF3t0CgE+brVqimg6TSTJhtI/xdSDxC37REIrsUM1Ddg+JK
+ mOk/MOaCd6Y+u93+HWC1QE90ClTXkQTn+VJ87QKVvlI9dkE8rLEcS3Mx1
+ yR/6gmmDHFnH9Ou+zpnz+z/x2orVuyPT/BDCbpyQo8/UJuFGJ2acjrKEf
+ IbtlWeFAeMXrURB/dLA9jzCQzPEdo3MUvar5HFAGiYPapZ8tcCvlq9Mne
+ SgmgnOV89HnZ6bZzg56aCWV99y03Mkdo/b7lDeZQYujKcKtvgB4o3p73B
+ 8q+c5VNb2fyPaX+gjLKrmk9y8GVwiJLVaSO5teCoKnL8OOXdfTk7DjrgI w==;
+X-CSE-ConnectionGUID: 1ECUrkXwQ1m98JUvMFebsQ==
+X-CSE-MsgGUID: 0RnDNEnJSnKxOdwey+X8Aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="94353070"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="94353070"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 06:32:17 -0700
+X-CSE-ConnectionGUID: b0wAxRQDS1WHiSbx113A/g==
+X-CSE-MsgGUID: F2vFtYxzQlupb8/6M5ay7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="253524852"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 06:25:50 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 2 Jul 2026 06:25:49 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Thu, 2 Jul 2026 06:25:49 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.17) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 2 Jul 2026 06:25:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TRZlA5jL+Th1JA5SK6HG86mtT59+ec7cI/SwKkElQ2T7U62f//hKyzZ1NZbx6VkMi0iR1j4zM/VfONgrrCL/OmpkfcGyXH7gSUSSOQeFwhxCBK/UIn6cQmRnVfLNCLnfb9cI+FgwrXVwNcnXKcC4kGqTGI/SBAPd2GVlGj6BNUYOBt1rl60Mb5Ry607WsaN2/m1voOSRs7PnoQhhfhVL/nGdKNJW3JCn4hU6ezgrSCTzRjgLeKFuNHf47Pd7wsO7fSB+aw7M1mhsG5O2pdnGWV3ErjjUOqHRSt4tsl8xfRHFROcU5bfvyMisvhZL8GHQe+shIg/v9Fd1zo+ydaeMqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+W0grW1V4pIcbPIbshziSql8g2W7pbcJC4iE9o2TGO0=;
- b=nTLAD5zyrhcmz/Z5FrmeZMxIiiY1tKLIwOsJljrhihrkNcC9ymIlL59VQDo3g7yoLkuG6h5ievfHL8HIkNSok0ifAY+guB+6gwSJoDFOmIMqFw37qF4V4tBFgfeeI84zEBMaepTUq+gNJ7zt/UbWkDifVMr8VkqyNnfXV6jeBZ8PQTbvbNXLPwKLHW0fpxdNSD75UBzNQR6ZvXY1XT124voavnB7+QN1crlejCFPt9nyP0AhHndthXPGZ2rAm5qlu/GfWSipW1B4ds0ugiGyCyEuudv/SxtkgNcMxx7cpvBwpsHM2TexXY/fG0z2NywbSRPvvkM2t/SlmEt3NEeYdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by MW4PR11MB6692.namprd11.prod.outlook.com (2603:10b6:303:20e::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Thu, 2 Jul 2026
- 13:25:44 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0181.009; Thu, 2 Jul 2026
- 13:25:43 +0000
-Date: Thu, 2 Jul 2026 09:25:36 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-CC: John Hubbard <jhubbard@nvidia.com>, Matthew Brost
- <matthew.brost@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar
- <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim
- <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>, Jiri Olsa <jolsa@kernel.org>, 
- Ian Rogers <irogers@google.com>, Adrian Hunter <adrian.hunter@intel.com>,
- James Clark <james.clark@linaro.org>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-perf-users@vger.kernel.org>, LKML
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] perf/core: out-of-line and export
- perf_allow_cpu/tracepoint()
-Message-ID: <akZm0HrMzwarUX1E@intel.com>
-References: <20260523013326.129491-1-jhubbard@nvidia.com>
- <20260523013326.129491-2-jhubbard@nvidia.com>
- <87fr3dv83t.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87fr3dv83t.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: BY1P220CA0040.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:59e::16) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="253023157"
+Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 06:32:13 -0700
+From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
+ riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
+ michael.j.ruhl@intel.com, paul.e.luse@intel.com,
+ mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
+Subject: [PATCH v3] drm/xe/sysctrl: Add helper to query application status
+Date: Thu,  2 Jul 2026 06:32:01 -0700
+Message-ID: <20260702133201.2164749-2-anoop.c.vijay@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|MW4PR11MB6692:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5653f793-bdca-47d6-624c-08ded83d6ad8
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|1800799024|376014|23010399003|4143699003|5023799004|11063799006|18002099003|22082099003|56012099006;
-X-Microsoft-Antispam-Message-Info: VqS8TluSEx1m+PW4GGJ6/ta5tT7TWP36B+Qs1IwKNqG3Why5WObLl2b3jREbUgk+6bbfshZP4mMXITvgTb1ROmP+MQjXNjgj3p5QcMDjcnfyI1EPAUBRNwe+0Pbtwg5F5rCo2eb1lanNgZC19fW7hN+7TRP4ES4RamR/gYQHLujiXksk1zKB0L2FC9CduG5oHxHPFDaqdZdOMtQ6C6CQGAQIUP0a6I2yOwVaF3h0u8HcPa99gfmL5o65wUBncZCeaDDhLUh+ngvqu7JKIowP3zuuM2Z4rpMqn+3kNHvcQM+EBp3kbBSoeqnYhqHzOl4VkKMjjP0amBjhf2QLD8SUJNWx9PlTgz0pcwyqxQKqlr+5kWdNE+mp7Q8xz5yvQYY6sO/xpUsplCfobDl92oXYtbVDH4sPLCrCh+1g04A1Q4l4w7wfg5PdqQ70rLgdntTEfFeyW/ZgJfB9kslXz8dFPKTcGKYhJlWWZiaG2TIWjlSUK1qeIr60uBWAXv0nViLmGO3W8K9erkUcnRJesB+ys7St+Hk8ZOtiLv+PlH4fpXE/S/j6ChJSi5LSK6hrHxffxexAB6JUd599On6mngNxtm21gMUzH819HyNk6PnS/vNw0OaHh7VdgXV3hlzCInoDl8cj/IEVGsRDqO+tHoM+XjHL9MRnv63XZ5ie7co7N94=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(1800799024)(376014)(23010399003)(4143699003)(5023799004)(11063799006)(18002099003)(22082099003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ttMXkpNzRSqOkUOFy32Z0cJ0wX4oH9az67mz9897gJPMp5BCsUZY21hFsQIg?=
- =?us-ascii?Q?S4HMOtXV0/OCSa8eRsGB8tVurBFB0u3fbyUCIaQVb94/7UsTCt2jGNXZ120J?=
- =?us-ascii?Q?Ar9WtiaqvEeoOzDajYKbe373pVENXp8hWiv8j7FBEQke4EiCohHRsNIm12iP?=
- =?us-ascii?Q?iHSUPCp6CNAH2crhl6WhdXKg1KpTgObuZo9fna6Xo2q5z0PUZGcrmYqqZQh2?=
- =?us-ascii?Q?IXWJXMtwHhWz5aAEmCrenB4ONILf/qY4OGdVQZC9w3dAIK28c0yB282/LPZt?=
- =?us-ascii?Q?DLN9Goj5BrVFcisW0T/XLvHKw1penVOqmgMSwJoMRp3ZwZ2F+CRHbnerYvhI?=
- =?us-ascii?Q?3m2l1SgflIKV3NkC19i7mKQ6JkhE3HkGKY7PU6eBtKrzYb+ImS4MYZeYLQiX?=
- =?us-ascii?Q?akBcxNQ/jPhd9xBXbQJPbqI/v26QR9t0EOfrC/HGz+JvVtJZ06QaemK4ruL4?=
- =?us-ascii?Q?uQxUerH4+bUg/fMGAgX+DrnozpnPbL1XAmNhaswjjc8soAMd41NH6HZGYI41?=
- =?us-ascii?Q?k8pTqkUn0bL1prIYiW74zCVbyh5lmu8hqHMjaBYHrEAYh7iz/fHK3/EfOCyp?=
- =?us-ascii?Q?gdNly/Q+z4ol9Bbl/6H25fH5/xDdfvwCzvp4nEZpVwNISXMnSkJAhBacwQhv?=
- =?us-ascii?Q?0XRT1BYN8XPledrfOFf6H4MEj/znXpmhSQ4CxL0YyxHAdW5m6GX2Fg+f8WcY?=
- =?us-ascii?Q?3lPDbfrafiTdpmxufQw3NbPYeQ1K64xAxUHpG0O5cddR28LzATG5zwx/d2ke?=
- =?us-ascii?Q?PQoRC1p3aOoeWupY4gy/FydOIrPrp1ppsiXLeh6MQCIssa3iWf7h4UxBwCOg?=
- =?us-ascii?Q?arEPb4E0HeY2JKgD3J322PY5B32b668h/OBg8JY35KuUe4MBUAEE19RQFO1b?=
- =?us-ascii?Q?YLy/p0hrBOZLNBjjraaqgZHxshvi7VtgMIHrq34Ow8JkLtbnGNYORk54tdei?=
- =?us-ascii?Q?uELN+T331KDNvhpjk7DvfOIMDxT50h2c+reSFl2MIV6OkhsRNtgBz+Wp3BIg?=
- =?us-ascii?Q?YV87/1Fd0yBPqLdedB1/ZCk1sVjMQ0RWwCXL1gCovp2dmmIRxsjJ8mWAljES?=
- =?us-ascii?Q?NGY9XJqMxz6bhlX56awZVQf7c+Q5BHrj5SCcZBbX7ok+wz37xA/03+lT3q2S?=
- =?us-ascii?Q?HozED6HCpRv7BKcW+hP+3Q+C1+bz8crOR3PxaD4WbA1kgRXLVLEdHVqH6doc?=
- =?us-ascii?Q?t/o6bz6yubbrpqW6q0CVS6wszE8zseUwvesVVpvFP+B4pfmMdEOPhXmpeG80?=
- =?us-ascii?Q?5t5FAlcxREQRp++9yZGx/nleyhwwHSnQTv9Yl7iWGXvLwzB2gqO97TPI1ATP?=
- =?us-ascii?Q?Lv2CKEL9RrPqtsyQvElDd+r9fC2B5JzMEZxLiajHCmclAejB4EVKExihieKg?=
- =?us-ascii?Q?tUfKbL/DPMVY1F2kaz78jHuKekST6NvOEaSZH370CLXhKfet7pbhd1w1qYc1?=
- =?us-ascii?Q?QFPGtHlt0uBxF5a09q3e8zeXsEL2OoAX+jIalYDjrpe5XUrRts/gvyax8zK0?=
- =?us-ascii?Q?tP25CwqQzBTovpDTjw7stLqRyzACuKcjlSqAc4LD3yOFxCpH8PGd2jDIbjgt?=
- =?us-ascii?Q?TLWWTjfJqAggAVDXXTtabeDNTZEdsM0+kcfGv/WEg7MISvw6x3Hm31e4kbGt?=
- =?us-ascii?Q?Wnt+5BFfcC/DmhYrGhHmR8AobSqJ8LRXmFz8n3zv4042dM0EeDr+Y/5ECZgj?=
- =?us-ascii?Q?jJehyVpg3HXSrixcjRL/UHkEBT53oPv5myH2ELULjqMsY9FGPQEGRwk9NxU1?=
- =?us-ascii?Q?9eYPPE4okw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: K+krLiMDTIDpSGCXlYshu5UKwWiGk2+XSSwEuSC10Ws7xB709bmx7SYvZsEmHIhYj2dbtVxi8IIQoMnkl+oRpjKwE1WU8sPc/aSon3QswC4653bALP5tPZw3smoV3KAxQQA4D1o6WzUX0fqg0SwkI+Kc2dbKD5q2W67ElII44boaIaoKcTIwXHrjKZbn61Hskds93+kynMrzCK+R7h3xPE6ONFZROoOGGHK76uedTSdcqiuhMXa6v0cgFgUGIrw2r3AwYylbNCLpcWzropLjjDgUNkPDP6e+4uw//6ZvSVFAqA4t7qBUtoMb0TOKn3uZyyMBOPv6xOY407mESKXjFQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5653f793-bdca-47d6-624c-08ded83d6ad8
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2026 13:25:43.6113 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LAmkbzii0GZqjCipM1hsaqJwyRQVA7Q/EaZLRhIZNzTrKXNW/CiCmb4kSjiyuCDUiVajq1mR7ia+bB6bn+lT+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6692
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,118 +69,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 26, 2026 at 08:34:14PM -0700, Dixit, Ashutosh wrote:
-> On Fri, 22 May 2026 18:33:25 -0700, John Hubbard wrote:
-> >
-> > These helpers are static inline in <linux/perf_event.h> and reach
-> > into sysctl_perf_event_paranoid and security_perf_event_open(),
-> > neither of which is itself exported. The perf_allow_* trio is
-> > therefore asymmetric: built-in callers can use any of the three, but
-> > modular code can only call perf_allow_kernel().
-> >
-> > Move both bodies into kernel/events/core.c next to perf_allow_kernel()
-> > and export them with EXPORT_SYMBOL_GPL, following the shape of
-> > commit 5e9629d0ae97 ("drivers/perf: arm_spe: Use perf_allow_kernel()
-> > for permissions"). Existing in-tree callers live in built-in arch and
-> > tracing code, so the change is invisible to them.
-> >
-> > Provide !CONFIG_PERF_EVENTS stubs that fall back to perfmon_capable(),
-> > so the helpers stay callable when perf is compiled out.
-> >
-> > Signed-off-by: John Hubbard <jhubbard@nvidia.com>
-> 
-> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> 
-> > ---
-> >  include/linux/perf_event.h | 31 +++++++++++++++----------------
-> >  kernel/events/core.c       | 18 ++++++++++++++++++
+From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Peter, Ingo or any other perf maintainer, ack on this patch and on
-propagating this through drm trees?
+Add xe_sysctrl_check_app_status() to query the state of a System
+Controller application through get_app_status_by_id mailbox
+command.
 
-Thanks,
-Rodrigo.
+The helper maps xe_sysctrl_app_id values to firmware application
+IDs and returns reported firmware state. Add convenience
+wrappers to check OOBMSM and Diagnostics application readiness.
 
-> >  2 files changed, 33 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
-> > index 48d851fbd8ea..5842552294c1 100644
-> > --- a/include/linux/perf_event.h
-> > +++ b/include/linux/perf_event.h
-> > @@ -1791,22 +1791,8 @@ static inline int perf_is_paranoid(void)
-> >  }
-> >
-> >  extern int perf_allow_kernel(void);
-> > -
-> > -static inline int perf_allow_cpu(void)
-> > -{
-> > -	if (sysctl_perf_event_paranoid > 0 && !perfmon_capable())
-> > -		return -EACCES;
-> > -
-> > -	return security_perf_event_open(PERF_SECURITY_CPU);
-> > -}
-> > -
-> > -static inline int perf_allow_tracepoint(void)
-> > -{
-> > -	if (sysctl_perf_event_paranoid > -1 && !perfmon_capable())
-> > -		return -EPERM;
-> > -
-> > -	return security_perf_event_open(PERF_SECURITY_TRACEPOINT);
-> > -}
-> > +extern int perf_allow_cpu(void);
-> > +extern int perf_allow_tracepoint(void);
-> >
-> >  extern int perf_exclude_event(struct perf_event *event, struct pt_regs *regs);
-> >
-> > @@ -2023,6 +2009,19 @@ perf_event_pause(struct perf_event *event, bool reset)			{ return 0; }
-> >  static inline int
-> >  perf_exclude_event(struct perf_event *event, struct pt_regs *regs)	{ return 0; }
-> >
-> > +static inline int perf_allow_kernel(void)
-> > +{
-> > +	return perfmon_capable() ? 0 : -EACCES;
-> > +}
-> > +static inline int perf_allow_cpu(void)
-> > +{
-> > +	return perfmon_capable() ? 0 : -EACCES;
-> > +}
-> > +static inline int perf_allow_tracepoint(void)
-> > +{
-> > +	return perfmon_capable() ? 0 : -EPERM;
-> > +}
-> > +
-> >  #endif /* !CONFIG_PERF_EVENTS */
-> >
-> >  #if defined(CONFIG_PERF_EVENTS) && defined(CONFIG_CPU_SUP_INTEL)
-> > diff --git a/kernel/events/core.c b/kernel/events/core.c
-> > index 7935d5663944..cb13f3ad11a3 100644
-> > --- a/kernel/events/core.c
-> > +++ b/kernel/events/core.c
-> > @@ -14731,6 +14731,24 @@ int perf_allow_kernel(void)
-> >  }
-> >  EXPORT_SYMBOL_GPL(perf_allow_kernel);
-> >
-> > +int perf_allow_cpu(void)
-> > +{
-> > +	if (sysctl_perf_event_paranoid > 0 && !perfmon_capable())
-> > +		return -EACCES;
-> > +
-> > +	return security_perf_event_open(PERF_SECURITY_CPU);
-> > +}
-> > +EXPORT_SYMBOL_GPL(perf_allow_cpu);
-> > +
-> > +int perf_allow_tracepoint(void)
-> > +{
-> > +	if (sysctl_perf_event_paranoid > -1 && !perfmon_capable())
-> > +		return -EPERM;
-> > +
-> > +	return security_perf_event_open(PERF_SECURITY_TRACEPOINT);
-> > +}
-> > +EXPORT_SYMBOL_GPL(perf_allow_tracepoint);
-> > +
-> >  /*
-> >   * Inherit an event from parent task to child task.
-> >   *
-> > --
-> > 2.54.0
-> >
+Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+---
+v3: (Riana, Badal)
+- Replace string-based app identifiers with enum xe_sysctrl_app_id
+- Use get_app_status_by_id (opcode 0x05)
+- Move mailbox definitions to xe_sysctrl_mailbox_types.h
+- Return enum xe_sysctrl_fw_status consistently
+- Map communication failures to COMM_FAILURE
+- Add INITIALIZED state and status helpers
+- Fix Diagnostics typo
+
+v2: (Badal)
+- Return SysCtrl firmware application states instead of errno for application lifecycle conditions
+---
+ drivers/gpu/drm/xe/xe_pci.c                   |   1 +
+ drivers/gpu/drm/xe/xe_sysctrl.c               | 107 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.h               |   5 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  67 +++++++++++
+ 4 files changed, 180 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 15020df6937a..fa4862820c8b 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -462,6 +462,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.has_flat_ccs = false,
+ 	.has_gsc_nvm = 1,
+ 	.has_i2c = true,
++	.has_late_bind = true,
+ 	.has_mbx_power_limits = true,
+ 	.has_mbx_thermal_info = true,
+ 	.has_mert = true,
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
+index 1db20be8158b..2c43217bc216 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2026 Intel Corporation
+  */
+ 
++#include <linux/bitfield.h>
+ #include <linux/device.h>
+ #include <linux/mutex.h>
+ 
+@@ -13,9 +14,11 @@
+ #include "xe_device.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
++#include "xe_printk.h"
+ #include "xe_soc_remapper.h"
+ #include "xe_sysctrl.h"
+ #include "xe_sysctrl_mailbox.h"
++#include "xe_sysctrl_mailbox_types.h"
+ #include "xe_sysctrl_types.h"
+ 
+ /**
+@@ -130,3 +133,107 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
+ 
+ 	xe_sysctrl_mailbox_init(sc);
+ }
++
++/**
++ * xe_sysctrl_check_app_status() - Query lifecycle state of a System Controller application
++ * @xe: xe device instance
++ * @app_id: application identifier (see enum xe_sysctrl_app_id)
++ *
++ * Query System Controller firmware to determine lifecycle state of specified
++ * application. Uses get_app_status_by_id command (Core group 0xFF, opcode 0x05)
++ * which provides explicit validity, boot, and initialization status.
++ *
++ * This is typically called before issuing commands to application-specific
++ * command groups to verify the application is ready to handle requests.
++ *
++ * Return: %XE_SYSCTRL_FIRMWARE_APP_INITIALIZED if the application is fully
++ * operational, %XE_SYSCTRL_FIRMWARE_APP_NOTSUPP if System Controller is not
++ * present on this platform, or another %XE_SYSCTRL_FIRMWARE_* value describing
++ * current application lifecycle state or a communication error.
++ */
++enum xe_sysctrl_fw_status
++xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
++{
++	struct xe_sysctrl_get_app_status_by_id_req req = {};
++	struct xe_sysctrl_get_app_status_by_id_resp resp = {};
++	struct xe_sysctrl_mailbox_command cmd = {};
++	size_t out_len = 0;
++	u32 flags;
++	int ret;
++
++	if (!xe->info.has_sysctrl)
++		return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
++
++	req.app_id = (u8)app_id;
++
++	cmd.header.data =
++		FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_CORE) |
++		FIELD_PREP(APP_HDR_COMMAND_MASK, XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID) |
++		FIELD_PREP(APP_HDR_VERSION_MASK, 0);
++
++	cmd.data_in = &req;
++	cmd.data_in_len = sizeof(req);
++	cmd.data_out = &resp;
++	cmd.data_out_len = sizeof(resp);
++
++	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
++	if (ret)
++		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
++
++	if (out_len != sizeof(resp)) {
++		xe_err(xe, "sysctrl: unexpected get app status response length %zu (expected %zu)\n",
++		       out_len, sizeof(resp));
++		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
++	}
++
++	flags = resp.flags;
++
++	if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
++		return XE_SYSCTRL_FIRMWARE_APP_INVALID;
++
++	if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
++		return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
++
++	if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
++		return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
++
++	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
++}
++
++/**
++ * xe_is_oobmsm_fw_ready() - Check if oCode firmware is fully initialized
++ * @xe: xe device instance
++ *
++ * Returns true if oCode firmware has reached the initialized state, indicating
++ * it is ready to handle requests. Returns true also on platforms without System
++ * Controller support, as there is no firmware gate to wait on.
++ *
++ * Return: true if oCode is initialized or sysctrl is not present, false otherwise
++ */
++bool xe_is_oobmsm_fw_ready(struct xe_device *xe)
++{
++	enum xe_sysctrl_fw_status status =
++		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_OCODE);
++
++	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
++	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
++}
++
++/**
++ * xe_is_diag_fw_ready() - Check if diag firmware is fully initialized
++ * @xe: xe device instance
++ *
++ * Returns true if diag firmware has reached the initialized state, indicating
++ * it is ready to handle requests. Returns true also on platforms without System
++ * Controller support, as there is no firmware gate to wait on.
++ *
++ * Return: true if diag is initialized or sysctrl is not present, false otherwise
++ */
++bool xe_is_diag_fw_ready(struct xe_device *xe)
++{
++	enum xe_sysctrl_fw_status status =
++		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
++
++	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
++	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
+index 090dffb6d55f..7337d9f7c3ae 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+@@ -9,6 +9,7 @@
+ #include <linux/container_of.h>
+ 
+ #include "xe_device_types.h"
++#include "xe_sysctrl_mailbox_types.h"
+ #include "xe_sysctrl_types.h"
+ 
+ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
+@@ -20,5 +21,9 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
+ int xe_sysctrl_init(struct xe_device *xe);
+ void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
+ void xe_sysctrl_pm_resume(struct xe_device *xe);
++enum xe_sysctrl_fw_status
++xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id);
++bool xe_is_oobmsm_fw_ready(struct xe_device *xe);
++bool xe_is_diag_fw_ready(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+index 6e3753554510..ebaa48fc667b 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+@@ -14,9 +14,11 @@
+  * enum xe_sysctrl_group - System Controller command groups
+  *
+  * @XE_SYSCTRL_GROUP_GFSP: GFSP group
++ * @XE_SYSCTRL_GROUP_CORE: Core group
+  */
+ enum xe_sysctrl_group {
+ 	XE_SYSCTRL_GROUP_GFSP			= 0x01,
++	XE_SYSCTRL_GROUP_CORE                   = 0xFF,
+ };
+ 
+ /**
+@@ -32,6 +34,71 @@ enum xe_sysctrl_gfsp_cmd {
+ 	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
+ };
+ 
++/**
++ * enum xe_sysctrl_core_cmd - Commands supported by Core group
++ *
++ * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
++ */
++enum xe_sysctrl_core_cmd {
++	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
++};
++
++/**
++ * struct xe_sysctrl_get_app_status_by_id_req - Get application status request
++ *
++ * @app_id: Application ID for which to retrieve status
++ */
++struct xe_sysctrl_get_app_status_by_id_req {
++	u8 app_id;
++} __packed;
++
++/**
++ * struct xe_sysctrl_get_app_status_by_id_resp - Get application status response
++ * @flags: Application status flags (see XE_SYSCTRL_APP_RESP_* definitions)
++ */
++struct xe_sysctrl_get_app_status_by_id_resp {
++	u32 flags;
++} __packed;
++
++/** XE_SYSCTRL_APP_RESP_VALID - app_id is recognized by System Controller firmware */
++#define XE_SYSCTRL_APP_RESP_VALID		BIT(0)
++/** XE_SYSCTRL_APP_RESP_BOOTED - application has completed its boot sequence */
++#define XE_SYSCTRL_APP_RESP_BOOTED		BIT(1)
++/** XE_SYSCTRL_APP_RESP_INITIALIZED - application has completed all post-boot initialization */
++#define XE_SYSCTRL_APP_RESP_INITIALIZED		BIT(2)
++
++/**
++ * enum xe_sysctrl_fw_status - System Controller firmware application lifecycle states
++ *
++ * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by firmware
++ * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has not yet booted
++ * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed, post-boot init pending
++ * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully operational
++ * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available on this device
++ * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System Controller firmware failed
++ */
++enum xe_sysctrl_fw_status {
++	XE_SYSCTRL_FIRMWARE_APP_INVALID,
++	XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
++	XE_SYSCTRL_FIRMWARE_APP_BOOTED,
++	XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
++	XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
++	XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
++};
++
++/**
++ * enum xe_sysctrl_app_id - Known System Controller application identifiers
++ *
++ * @XE_SYSCTRL_APP_GFSP: GFSP application (firmware ID 11)
++ * @XE_SYSCTRL_APP_OCODE: oCode application (firmware ID 12)
++ * @XE_SYSCTRL_APP_DIAG: diag application (firmware ID 13)
++ */
++enum xe_sysctrl_app_id {
++	XE_SYSCTRL_APP_GFSP	= 11,
++	XE_SYSCTRL_APP_OCODE	= 12,
++	XE_SYSCTRL_APP_DIAG	= 13,
++};
++
+ /**
+  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
+  */
+-- 
+2.43.0
+
