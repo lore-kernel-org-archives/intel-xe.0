@@ -4,57 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 157F3C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:32:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F2DC43458
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jul 2026 13:50:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1E4F10E4D6;
-	Thu,  2 Jul 2026 13:32:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D35A10F3C6;
+	Thu,  2 Jul 2026 13:50:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cco59cZv";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="SBk2LGdo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8F1E10E4D6
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 13:32:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782999138; x=1814535138;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+350KlAJw7oU9VWXKiSCs/BhUdUZcRnvVAgk9gtyOpo=;
- b=Cco59cZv/AF3t0CgE+brVqimg6TSTJhtI/xdSDxC37REIrsUM1Ddg+JK
- mOk/MOaCd6Y+u93+HWC1QE90ClTXkQTn+VJ87QKVvlI9dkE8rLEcS3Mx1
- yR/6gmmDHFnH9Ou+zpnz+z/x2orVuyPT/BDCbpyQo8/UJuFGJ2acjrKEf
- IbtlWeFAeMXrURB/dLA9jzCQzPEdo3MUvar5HFAGiYPapZ8tcCvlq9Mne
- SgmgnOV89HnZ6bZzg56aCWV99y03Mkdo/b7lDeZQYujKcKtvgB4o3p73B
- 8q+c5VNb2fyPaX+gjLKrmk9y8GVwiJLVaSO5teCoKnL8OOXdfTk7DjrgI w==;
-X-CSE-ConnectionGUID: 1ECUrkXwQ1m98JUvMFebsQ==
-X-CSE-MsgGUID: 0RnDNEnJSnKxOdwey+X8Aw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="94353070"
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="94353070"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 06:32:17 -0700
-X-CSE-ConnectionGUID: b0wAxRQDS1WHiSbx113A/g==
-X-CSE-MsgGUID: F2vFtYxzQlupb8/6M5ay7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="253023157"
-Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 06:32:13 -0700
-From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
- riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
- michael.j.ruhl@intel.com, paul.e.luse@intel.com,
- mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v3] drm/xe/sysctrl: Add helper to query application status
-Date: Thu,  2 Jul 2026 06:32:01 -0700
-Message-ID: <20260702133201.2164749-2-anoop.c.vijay@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com
+ [91.218.175.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 529AD10F3C5
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Jul 2026 13:50:31 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1783000216;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=n7JedrMMFsZ3SA9xp8Er9WQ7Q5NWmS7gMbpQ8O+PQSg=;
+ b=SBk2LGdo8O2Fh816oQbqXrmhKAQAYAxHqV6r2z//9k66SRzp2XfssdY3VkdvqTHoJEhhne
+ KBLV5b7WimMmbUd67b8UpLhwJTAsCl8UHKUpcr3XwD//YOwU43JswyAPjZ9yhLgdwnTOAg
+ TszqN8wOwdlDLsXMvuRT5nF6gC9LQmA=
+From: Lance Yang <lance.yang@linux.dev>
+To: ljs@kernel.org
+Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
+ mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, robin.clark@oss.qualcomm.com,
+ lumag@kernel.org, lyude@redhat.com, dakr@kernel.org,
+ tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, heiko@sntech.de,
+ andy.yan@rock-chips.com, thierry.reding@kernel.org, mperttunen@nvidia.com,
+ jonathanh@nvidia.com, kraxel@redhat.com, dmitry.osipenko@collabora.com,
+ zack.rusin@broadcom.com, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
+ deller@gmx.de, bcrl@kvack.org, viro@zeniv.linux.org.uk, brauner@kernel.org,
+ muchun.song@linux.dev, osalvador@suse.de, david@kernel.org, ziy@nvidia.com,
+ baolin.wang@linux.alibaba.com, liam@infradead.org, npache@redhat.com,
+ ryan.roberts@arm.com, dev.jain@arm.com, baohua@kernel.org,
+ lance.yang@linux.dev, hughd@google.com, vbabka@kernel.org, rppt@kernel.org,
+ surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de,
+ kees@kernel.org, perex@perex.cz, tiwai@suse.com,
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ linux-sound@vger.kernel.org
+Subject: Re: [PATCH 13/13] mm/mremap: convert mremap code to use vma_flags_t
+Date: Thu,  2 Jul 2026 21:49:47 +0800
+Message-Id: <20260702134947.25189-1-lance.yang@linux.dev>
+In-Reply-To: <380f761d35a3faa4370f8b3f92e3d4af3d4c7110.1782760670.git.ljs@kernel.org>
+References: <380f761d35a3faa4370f8b3f92e3d4af3d4c7110.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,290 +84,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add xe_sysctrl_check_app_status() to query the state of a System
-Controller application through get_app_status_by_id mailbox
-command.
+On Mon, Jun 29, 2026 at 08:25:36PM +0100, Lorenzo Stoakes wrote:
+>Replace use of the legacy vm_flags_t flags with vma_flags_t values
+>throughout the mremap logic.
+>
+>Additionally update comments to reflect the changes to be consistent.
+>
+>No functional change intended.
+>
+>Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
+>---
 
-The helper maps xe_sysctrl_app_id values to firmware application
-IDs and returns reported firmware state. Add convenience
-wrappers to check OOBMSM and Diagnostics application readiness.
+The vm_flags_set() cases below spell out vma_start_write(), but the
+vm_flags_clear() cases don't?
 
-Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
----
-v3: (Riana, Badal)
-- Replace string-based app identifiers with enum xe_sysctrl_app_id
-- Use get_app_status_by_id (opcode 0x05)
-- Move mailbox definitions to xe_sysctrl_mailbox_types.h
-- Return enum xe_sysctrl_fw_status consistently
-- Map communication failures to COMM_FAILURE
-- Add INITIALIZED state and status helpers
-- Fix Diagnostics typo
+Thanks, Lance
 
-v2: (Badal)
-- Return SysCtrl firmware application states instead of errno for application lifecycle conditions
----
- drivers/gpu/drm/xe/xe_pci.c                   |   1 +
- drivers/gpu/drm/xe/xe_sysctrl.c               | 107 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |   5 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  67 +++++++++++
- 4 files changed, 180 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 15020df6937a..fa4862820c8b 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -462,6 +462,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_flat_ccs = false,
- 	.has_gsc_nvm = 1,
- 	.has_i2c = true,
-+	.has_late_bind = true,
- 	.has_mbx_power_limits = true,
- 	.has_mbx_thermal_info = true,
- 	.has_mert = true,
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 1db20be8158b..2c43217bc216 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2026 Intel Corporation
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/device.h>
- #include <linux/mutex.h>
- 
-@@ -13,9 +14,11 @@
- #include "xe_device.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
-+#include "xe_printk.h"
- #include "xe_soc_remapper.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
- #include "xe_sysctrl_types.h"
- 
- /**
-@@ -130,3 +133,107 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
- 
- 	xe_sysctrl_mailbox_init(sc);
- }
-+
-+/**
-+ * xe_sysctrl_check_app_status() - Query lifecycle state of a System Controller application
-+ * @xe: xe device instance
-+ * @app_id: application identifier (see enum xe_sysctrl_app_id)
-+ *
-+ * Query System Controller firmware to determine lifecycle state of specified
-+ * application. Uses get_app_status_by_id command (Core group 0xFF, opcode 0x05)
-+ * which provides explicit validity, boot, and initialization status.
-+ *
-+ * This is typically called before issuing commands to application-specific
-+ * command groups to verify the application is ready to handle requests.
-+ *
-+ * Return: %XE_SYSCTRL_FIRMWARE_APP_INITIALIZED if the application is fully
-+ * operational, %XE_SYSCTRL_FIRMWARE_APP_NOTSUPP if System Controller is not
-+ * present on this platform, or another %XE_SYSCTRL_FIRMWARE_* value describing
-+ * current application lifecycle state or a communication error.
-+ */
-+enum xe_sysctrl_fw_status
-+xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
-+{
-+	struct xe_sysctrl_get_app_status_by_id_req req = {};
-+	struct xe_sysctrl_get_app_status_by_id_resp resp = {};
-+	struct xe_sysctrl_mailbox_command cmd = {};
-+	size_t out_len = 0;
-+	u32 flags;
-+	int ret;
-+
-+	if (!xe->info.has_sysctrl)
-+		return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+
-+	req.app_id = (u8)app_id;
-+
-+	cmd.header.data =
-+		FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_CORE) |
-+		FIELD_PREP(APP_HDR_COMMAND_MASK, XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID) |
-+		FIELD_PREP(APP_HDR_VERSION_MASK, 0);
-+
-+	cmd.data_in = &req;
-+	cmd.data_in_len = sizeof(req);
-+	cmd.data_out = &resp;
-+	cmd.data_out_len = sizeof(resp);
-+
-+	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
-+	if (ret)
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
-+
-+	if (out_len != sizeof(resp)) {
-+		xe_err(xe, "sysctrl: unexpected get app status response length %zu (expected %zu)\n",
-+		       out_len, sizeof(resp));
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
-+	}
-+
-+	flags = resp.flags;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
-+		return XE_SYSCTRL_FIRMWARE_APP_INVALID;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
-+		return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
-+		return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
-+
-+	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
-+}
-+
-+/**
-+ * xe_is_oobmsm_fw_ready() - Check if oCode firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if oCode firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if oCode is initialized or sysctrl is not present, false otherwise
-+ */
-+bool xe_is_oobmsm_fw_ready(struct xe_device *xe)
-+{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_OCODE);
-+
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+}
-+
-+/**
-+ * xe_is_diag_fw_ready() - Check if diag firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if diag firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if diag is initialized or sysctrl is not present, false otherwise
-+ */
-+bool xe_is_diag_fw_ready(struct xe_device *xe)
-+{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
-+
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index 090dffb6d55f..7337d9f7c3ae 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -9,6 +9,7 @@
- #include <linux/container_of.h>
- 
- #include "xe_device_types.h"
-+#include "xe_sysctrl_mailbox_types.h"
- #include "xe_sysctrl_types.h"
- 
- static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
-@@ -20,5 +21,9 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
- int xe_sysctrl_init(struct xe_device *xe);
- void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
- void xe_sysctrl_pm_resume(struct xe_device *xe);
-+enum xe_sysctrl_fw_status
-+xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id);
-+bool xe_is_oobmsm_fw_ready(struct xe_device *xe);
-+bool xe_is_diag_fw_ready(struct xe_device *xe);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 6e3753554510..ebaa48fc667b 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -14,9 +14,11 @@
-  * enum xe_sysctrl_group - System Controller command groups
-  *
-  * @XE_SYSCTRL_GROUP_GFSP: GFSP group
-+ * @XE_SYSCTRL_GROUP_CORE: Core group
-  */
- enum xe_sysctrl_group {
- 	XE_SYSCTRL_GROUP_GFSP			= 0x01,
-+	XE_SYSCTRL_GROUP_CORE                   = 0xFF,
- };
- 
- /**
-@@ -32,6 +34,71 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
- };
- 
-+/**
-+ * enum xe_sysctrl_core_cmd - Commands supported by Core group
-+ *
-+ * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
-+ */
-+enum xe_sysctrl_core_cmd {
-+	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
-+};
-+
-+/**
-+ * struct xe_sysctrl_get_app_status_by_id_req - Get application status request
-+ *
-+ * @app_id: Application ID for which to retrieve status
-+ */
-+struct xe_sysctrl_get_app_status_by_id_req {
-+	u8 app_id;
-+} __packed;
-+
-+/**
-+ * struct xe_sysctrl_get_app_status_by_id_resp - Get application status response
-+ * @flags: Application status flags (see XE_SYSCTRL_APP_RESP_* definitions)
-+ */
-+struct xe_sysctrl_get_app_status_by_id_resp {
-+	u32 flags;
-+} __packed;
-+
-+/** XE_SYSCTRL_APP_RESP_VALID - app_id is recognized by System Controller firmware */
-+#define XE_SYSCTRL_APP_RESP_VALID		BIT(0)
-+/** XE_SYSCTRL_APP_RESP_BOOTED - application has completed its boot sequence */
-+#define XE_SYSCTRL_APP_RESP_BOOTED		BIT(1)
-+/** XE_SYSCTRL_APP_RESP_INITIALIZED - application has completed all post-boot initialization */
-+#define XE_SYSCTRL_APP_RESP_INITIALIZED		BIT(2)
-+
-+/**
-+ * enum xe_sysctrl_fw_status - System Controller firmware application lifecycle states
-+ *
-+ * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by firmware
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has not yet booted
-+ * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed, post-boot init pending
-+ * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully operational
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available on this device
-+ * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System Controller firmware failed
-+ */
-+enum xe_sysctrl_fw_status {
-+	XE_SYSCTRL_FIRMWARE_APP_INVALID,
-+	XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
-+	XE_SYSCTRL_FIRMWARE_APP_BOOTED,
-+	XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
-+	XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
-+	XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
-+};
-+
-+/**
-+ * enum xe_sysctrl_app_id - Known System Controller application identifiers
-+ *
-+ * @XE_SYSCTRL_APP_GFSP: GFSP application (firmware ID 11)
-+ * @XE_SYSCTRL_APP_OCODE: oCode application (firmware ID 12)
-+ * @XE_SYSCTRL_APP_DIAG: diag application (firmware ID 13)
-+ */
-+enum xe_sysctrl_app_id {
-+	XE_SYSCTRL_APP_GFSP	= 11,
-+	XE_SYSCTRL_APP_OCODE	= 12,
-+	XE_SYSCTRL_APP_DIAG	= 13,
-+};
-+
- /**
-  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
-  */
--- 
-2.43.0
-
+> mm/mremap.c | 38 ++++++++++++++++++++------------------
+> 1 file changed, 20 insertions(+), 18 deletions(-)
+>
+>diff --git a/mm/mremap.c b/mm/mremap.c
+>index 079a0ba0c4a7..0ea43302b7ed 100644
+>--- a/mm/mremap.c
+>+++ b/mm/mremap.c
+>@@ -68,7 +68,7 @@ struct vma_remap_struct {
+> 	bool populate_expand;		/* mlock()'d expanded, must populate. */
+> 	enum mremap_type remap_type;	/* expand, shrink, etc. */
+> 	bool mmap_locked;		/* Is mm currently write-locked? */
+>-	unsigned long charged;		/* If VM_ACCOUNT, # pages to account. */
+>+	unsigned long charged;		/* If VMA_ACCOUNT_BIT, # pgs to account */
+> 	bool vmi_needs_invalidate;	/* Is the VMA iterator invalidated? */
+> };
+> 
+>@@ -954,7 +954,7 @@ static unsigned long vrm_set_new_addr(struct vma_remap_struct *vrm)
+> 
+> 	if (vrm->flags & MREMAP_FIXED)
+> 		map_flags |= MAP_FIXED;
+>-	if (vma->vm_flags & VM_MAYSHARE)
+>+	if (vma_test(vma, VMA_MAYSHARE_BIT))
+> 		map_flags |= MAP_SHARED;
+> 
+> 	res = get_unmapped_area(vma->vm_file, new_addr, vrm->new_len, pgoff,
+>@@ -976,7 +976,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
+> {
+> 	unsigned long charged;
+> 
+>-	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
+>+	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
+> 		return true;
+> 
+> 	/*
+>@@ -1003,7 +1003,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
+>  */
+> static void vrm_uncharge(struct vma_remap_struct *vrm)
+> {
+>-	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
+>+	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
+> 		return;
+> 
+> 	vm_unacct_memory(vrm->charged);
+>@@ -1023,7 +1023,7 @@ static void vrm_stat_account(struct vma_remap_struct *vrm,
+> 	struct vm_area_struct *vma = vrm->vma;
+> 
+> 	vm_stat_account(mm, vma->vm_flags, pages);
+>-	if (vma->vm_flags & VM_LOCKED)
+>+	if (vma_test(vma, VMA_LOCKED_BIT))
+> 		mm->locked_vm += pages;
+> }
+> 
+>@@ -1167,7 +1167,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+> 	 * arose, in which case we _do_ wish to unmap the _new_ VMA, which means
+> 	 * we actually _do_ want it be unaccounted.
+> 	 */
+>-	bool accountable_move = (vma->vm_flags & VM_ACCOUNT) &&
+>+	bool accountable_move = vma_test(vma, VMA_ACCOUNT_BIT) &&
+> 		!(vrm->flags & MREMAP_DONTUNMAP);
+> 
+> 	/*
+>@@ -1186,7 +1186,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+> 	 * portions of the original VMA that remain.
+> 	 */
+> 	if (accountable_move) {
+>-		vm_flags_clear(vma, VM_ACCOUNT);
+>+		vma_clear_flags(vma, VMA_ACCOUNT_BIT);
+> 		/* We are about to split vma, so store the start/end. */
+> 		vm_start = vma->vm_start;
+> 		vm_end = vma->vm_end;
+>@@ -1211,8 +1211,8 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+> 	 * |             |
+> 	 * |-------------|
+> 	 *
+>-	 * Having cleared VM_ACCOUNT from the whole VMA, after we unmap above
+>-	 * we'll end up with:
+>+	 * Having cleared VMA_ACCOUNT_BIT from the whole VMA, after we unmap
+>+	 * above we'll end up with:
+> 	 *
+> 	 *    addr  end
+> 	 *     |     |
+>@@ -1232,13 +1232,15 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+> 		if (vm_start < addr) {
+> 			struct vm_area_struct *prev = vma_prev(&vmi);
+> 
+>-			vm_flags_set(prev, VM_ACCOUNT); /* Acquires VMA lock. */
+>+			vma_start_write(prev);
+>+			vma_set_flags(prev, VMA_ACCOUNT_BIT);
+> 		}
+> 
+> 		if (vm_end > end) {
+> 			struct vm_area_struct *next = vma_next(&vmi);
+> 
+>-			vm_flags_set(next, VM_ACCOUNT); /* Acquires VMA lock. */
+>+			vma_start_write(next);
+>+			vma_set_flags(next, VMA_ACCOUNT_BIT);
+> 		}
+> 	}
+> }
+>@@ -1321,8 +1323,8 @@ static void dontunmap_complete(struct vma_remap_struct *vrm,
+> 	unsigned long old_start = vrm->vma->vm_start;
+> 	unsigned long old_end = vrm->vma->vm_end;
+> 
+>-	/* We always clear VM_LOCKED[ONFAULT] on the old VMA. */
+>-	vm_flags_clear(vrm->vma, VM_LOCKED_MASK);
+>+	/* We always clear VMA_LOCKED[ONFAULT]_BIT on the old VMA. */
+>+	vma_clear_flags_mask(vrm->vma, VMA_LOCKED_MASK);
+> 
+> 	/*
+> 	 * anon_vma links of the old vma is no longer needed after its page
+>@@ -1758,14 +1760,14 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
+> 	 * based on the original.  There are no known use cases for this
+> 	 * behavior.  As a result, fail such attempts.
+> 	 */
+>-	if (!old_len && !(vma->vm_flags & (VM_SHARED | VM_MAYSHARE))) {
+>+	if (!old_len && !vma_test_any(vma, VMA_SHARED_BIT, VMA_MAYSHARE_BIT)) {
+> 		pr_warn_once("%s (%d): attempted to duplicate a private mapping with mremap.  This is not supported.\n",
+> 			     current->comm, current->pid);
+> 		return -EINVAL;
+> 	}
+> 
+> 	if ((vrm->flags & MREMAP_DONTUNMAP) &&
+>-			(vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP)))
+>+	    vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
+> 		return -EINVAL;
+> 
+> 	/*
+>@@ -1795,7 +1797,7 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
+> 		return 0;
+> 
+> 	/* We are expanding and the VMA is mlock()'d so we need to populate. */
+>-	if (vma->vm_flags & VM_LOCKED)
+>+	if (vma_test(vma, VMA_LOCKED_BIT))
+> 		vrm->populate_expand = true;
+> 
+> 	/* Need to be careful about a growing mapping */
+>@@ -1803,10 +1805,10 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
+> 	if (pgoff + (new_len >> PAGE_SHIFT) < pgoff)
+> 		return -EINVAL;
+> 
+>-	if (vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP))
+>+	if (vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
+> 		return -EFAULT;
+> 
+>-	if (!mlock_future_ok(mm, vma->vm_flags & VM_LOCKED, vrm->delta))
+>+	if (!mlock_future_ok(mm, vma_test(vma, VMA_LOCKED_BIT), vrm->delta))
+> 		return -EAGAIN;
+> 
+> 	if (!may_expand_vm(mm, &vma->flags, vrm->delta >> PAGE_SHIFT))
+>-- 
+>2.54.0
+>
+>
