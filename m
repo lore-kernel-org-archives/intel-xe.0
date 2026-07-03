@@ -4,54 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 503F1C43458
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 12:42:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D54D2C43458
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 12:45:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1451410E5DF;
-	Fri,  3 Jul 2026 12:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 994F610E5E1;
+	Fri,  3 Jul 2026 12:45:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="neBk7nKS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RJkMvp2v";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E798110E5DF
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Jul 2026 12:42:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C293B10E5E1
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Jul 2026 12:45:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783082547; x=1814618547;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ygD9iI5qfGE+cBnbv4+h08Yk0JulNUxyKU+CQ12hzbY=;
- b=neBk7nKSDQJqog8aFAoHyUQaMLGoBunIg1VfUKYaobSmA6KQJ/BhHkYU
- BP6nmBVjbn183FF/cbwELGLiqkM0KJ8rMnJdiHoqVCUtV5eiIFNrg9iNQ
- 3jhOhMlm228CyNRT5w5IYqch7axvjOL13qfiWOTfZWJejxklA5bGJwF1E
- gnx7cMVPzhYcezPXL/VZy+e9nEEghUpPwNCqPzXXvaYes/kirmBnhzpwO
- 4+rHZ48oKNV/NdIDtMLWrkrJOVN54kyMnG7H1l+qAoNpnY5UbZVKDUB4X
- +xQLzgyPDeYjz3YLPs3FLw9g3jx+33Kc4W9v7+kUVCY5jjPxBwPfKP/+v Q==;
-X-CSE-ConnectionGUID: sync6GeLRk+XVCeL488tTA==
-X-CSE-MsgGUID: oe9gpF/EQDaae+IDEKiZww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="101256709"
-X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="101256709"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2026 05:42:27 -0700
-X-CSE-ConnectionGUID: Nc1qGdx2T2iYZRRrP/+pyw==
-X-CSE-MsgGUID: G9pJwvz2SlKbvFk7iimmKg==
+ t=1783082723; x=1814618723;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=0aC8w9q0z565Y62huoPJVMIdPPj5f0i/TASQy09hfEE=;
+ b=RJkMvp2vc44IDPFXapu0TP5KYgwy4doYnfAN42vhttw/pW59ZqEASsFc
+ W5kj2gdNO8nifFDEL0xLEE6sTTbIycrhIFsVgMty2X1HuNF1c7NBxBZa9
+ WiqgVToESBAHQ+jgvykvM+IXrlGfyxSgl7cpgduq9dPmIIc0w2xGxEUYw
+ Z7n2VRE/yqqOfKz96ENOo0gCfXO5u94vQIxLlOrnboc/ynEYsQsW3dk7R
+ 2h98R58YTplq4dTqqA+DWmUVzwnkbuCyxk2tFGubCgXkWauzqTJcuvgn6
+ AVYQufxSygstusx0AFCT6Qkh4XOzvm3/X7aV31Nixam5z6kzy1jHavpkr g==;
+X-CSE-ConnectionGUID: bqXWSonxQzehX/V3UbN1AQ==
+X-CSE-MsgGUID: Dh5OdIz1QSWnbnK8gOChxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="84026470"
+X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="84026470"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2026 05:45:23 -0700
+X-CSE-ConnectionGUID: c1tjSt6hSZC3ESr9hVW89Q==
+X-CSE-MsgGUID: hYaA4atpSAiPqRJt0awjxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="253249946"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO
- mpatelcz-mobl.intel.com) ([10.245.245.83])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2026 05:42:25 -0700
-From: Maciej Patelczyk <maciej.patelczyk@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, stuart.summers@intel.com,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH] drm/xe: Allow multi tile fence signaling for VM queue
-Date: Fri,  3 Jul 2026 14:41:53 +0200
-Message-ID: <20260703124153.1736798-1-maciej.patelczyk@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="255023900"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.146])
+ ([10.245.245.146])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2026 05:45:21 -0700
+Message-ID: <472b1e17a858113396a50a8a7b8d9c51dc396410.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe/display: skip FORCE_WC and vm_bound check for
+ external dma-bufs
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
+ <dev@lankhorst.se>, 	intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
+Date: Fri, 03 Jul 2026 14:45:18 +0200
+In-Reply-To: <8ef2f0cf-629e-4b38-a467-e243f37f8285@intel.com>
+References: <20260612170501.550816-2-matthew.auld@intel.com>
+ <d5be431c-8393-4846-95b8-c30cbceed51b@lankhorst.se>
+ <8ef2f0cf-629e-4b38-a467-e243f37f8285@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,140 +73,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-1. Exec queue can be created without populating multi_gt_list.
-2. VM BIND IOCTL can be called without exec queue id as argument
-   which will end in using vm->q[0] later in the flow.
-3. exec queues in vm->q table are not the same as in
-   vm->exec_queue.list.
+On Fri, 2026-06-26 at 10:09 +0100, Matthew Auld wrote:
+> On 25/06/2026 16:35, Maarten Lankhorst wrote:
+> > Hello,
+> >=20
+> > On 6/12/26 19:05, Matthew Auld wrote:
+> > > Currently, xe_display_bo_framebuffer_init() unconditionally
+> > > attempts to
+> > > apply XE_BO_FLAG_FORCE_WC to the buffer and rejects the FB
+> > > creation with
+> > > -EINVAL if the BO is already VM_BINDed.
+> > >=20
+> > > However, for imported dma-bufs (ttm_bo_type_sg), this check
+> > > doesn't seem
+> > > to make much sense since CPU caching policy is entirely
+> > > controlled by
+> > > the exporter. Plus there is no place to set this flag, in the
+> > > first
+> > > place. Also this is not rejected if not yet vm_binded, but that
+> > > seems
+> > > arbitrary since setting or not setting FORCE_WC should a noop
+> > > either
+> > > way, at this stage, and whether it is currently VM_BINDed makes
+> > > no
+> > > difference.
+> > >=20
+> > > Currently if we run an app and offload rendering to an external
+> > > dGPU,
+> > > like NV or another xe device, the dma-buf passed back to the
+> > > compositor
+> > > (igpu) will be an actual external import from xe pov, and it will
+> > > be
+> > > missing FORCE_WC, and if the compositor side did a VM_BIND before
+> > > turning into it into an fb the whole thing gets rejected.
+> > >=20
+> > > So it looks like we either need to reject outright, no matter
+> > > what, or
+> > > this usecase is valid and we need to loosen the restriction for
+> > > sg
+> > > buffers.=C2=A0 Proposing here to loosen the restriction.
+> > >=20
+> > > Assisted-by: Gemini:gemini-3.1-pro-preview
+> > > Link:
+> > > https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7919
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Maarten Lankhorst <dev@lankhorst.se>
+> > > ---
+> > > =C2=A0 drivers/gpu/drm/xe/display/xe_display_bo.c | 3 ++-
+> > > =C2=A0 drivers/gpu/drm/xe/display/xe_fb_pin.c=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 3 ++-
+> > > =C2=A0 2 files changed, 4 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c
+> > > b/drivers/gpu/drm/xe/display/xe_display_bo.c
+> > > index 7fbac223b097..8953da0136dc 100644
+> > > --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
+> > > +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+> > > @@ -48,7 +48,8 @@ static int
+> > > xe_display_bo_framebuffer_init(struct drm_gem_object *obj,
+> > > =C2=A0=C2=A0	if (ret)
+> > > =C2=A0=C2=A0		goto err;
+> > > =C2=A0=20
+> > > -	if (!(bo->flags & XE_BO_FLAG_FORCE_WC)) {
+> > > +	if (!(bo->flags & XE_BO_FLAG_FORCE_WC) &&
+> > > +	=C2=A0=C2=A0=C2=A0 bo->ttm.type !=3D ttm_bo_type_sg) {
+> > > =C2=A0=C2=A0		/*
+> > > =C2=A0=C2=A0		 * XE_BO_FLAG_FORCE_WC should ideally be set at
+> > > creation, or is
+> > > =C2=A0=C2=A0		 * automatically set when creating FB. We cannot
+> > > change caching
+> > > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > > b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > > index f93c98bec5b5..5f4a0cd8deca 100644
+> > > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > > @@ -331,7 +331,8 @@ static struct i915_vma
+> > > *__xe_pin_fb_vma(struct drm_gem_object *obj, bool is_dpt,
+> > > =C2=A0=C2=A0	int ret =3D 0;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	/* We reject creating !SCANOUT fb's, so this is weird..
+> > > */
+> > > -	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags &
+> > > XE_BO_FLAG_FORCE_WC));
+> > > +	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags &
+> > > XE_BO_FLAG_FORCE_WC) &&
+> > > +		=C2=A0=C2=A0=C2=A0 bo->ttm.type !=3D ttm_bo_type_sg);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	if (!vma)
+> > > =C2=A0=C2=A0		return ERR_PTR(-ENODEV);
+> >=20
+> > Yeah we cannot actually set the force flag on imported bo's for
+> > mmap coherency, but mmap on an imported dma-buf should be forbidden
+> > anyway, so that is fine.
+> >=20
+> > Best we can hope for is that dirtyfb is called correctly.
+> >=20
+> > Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+>=20
+> Thanks!
+>=20
+> >=20
+Hi,
 
-However, the xe_sync_in_fence_get() does not take the above into
-its calculations which may lead to following error:
-   [drm] Assertion `current_fence == num_fence` failed!
+Is there a chance an attacker could create a dma-buf on device 1,
+export it to device 2, then scan out from it while the clearing still
+sits in the CPU cache?
 
-Exec queues with and without multi_gt_list both carry
-EXEC_QUEUE_FLAG_VM flag, so xe_sync_in_fence_get() does its
-calculations in one way.
-The proposed solution it to check if input exec queue is vm's
-(un)binding queue, that is q == vm->q[0] and process data
-separately.
+We have a forced flush for this situation in the i915 driver, right?
 
-Fixes: cb99e12ba8cb ("drm/xe: Decouple bind queue last fence from TLB invalidations")
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
----
- drivers/gpu/drm/xe/xe_sync.c | 68 ++++++++++++++++++++++++++----------
- 1 file changed, 49 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 37866768d64c..14d8603631ab 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -314,6 +314,46 @@ void xe_sync_entry_cleanup(struct xe_sync_entry *sync)
- 		user_fence_put(sync->ufence);
- }
- 
-+static int
-+sync_in_fence_get_from_vm(struct xe_vm *vm, struct dma_fence **fences)
-+{
-+	struct xe_tile *tile;
-+	int id, i, n_fence = 0;
-+
-+	for_each_tile(tile, vm->xe, id) {
-+		fences[n_fence++] =
-+			xe_exec_queue_last_fence_get(vm->q[id], vm);
-+		for_each_tlb_inval(i)
-+			fences[n_fence++] =
-+				xe_exec_queue_tlb_inval_last_fence_get(vm->q[id], vm, i);
-+	}
-+	return n_fence;
-+}
-+
-+static int
-+sync_in_fence_get_from_q_list(struct xe_exec_queue *q, struct xe_vm *vm,
-+			      struct dma_fence **fences)
-+{
-+	struct xe_exec_queue *__q;
-+	int i, n_fence = 0;
-+
-+	fences[n_fence++] =
-+		xe_exec_queue_last_fence_get(q, vm);
-+	for_each_tlb_inval(i)
-+		fences[n_fence++] =
-+			xe_exec_queue_tlb_inval_last_fence_get(q, vm, i);
-+
-+	list_for_each_entry(__q, &q->multi_gt_list,
-+			    multi_gt_link) {
-+		fences[n_fence++] =
-+			xe_exec_queue_last_fence_get(__q, vm);
-+		for_each_tlb_inval(i)
-+			fences[n_fence++] =
-+				xe_exec_queue_tlb_inval_last_fence_get(__q, vm, i);
-+	}
-+	return n_fence;
-+}
-+
- /**
-  * xe_sync_in_fence_get() - Get a fence from syncs, exec queue, and VM
-  * @sync: input syncs
-@@ -335,7 +375,7 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
- 	struct dma_fence **fences = NULL;
- 	struct dma_fence_array *cf = NULL;
- 	struct dma_fence *fence;
--	int i, num_fence = 0, current_fence = 0;
-+	int i, num_fence = 0, n_fence = 0;
- 
- 	lockdep_assert_held(&vm->lock);
- 
-@@ -345,9 +385,8 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
- 			return ERR_PTR(-EOPNOTSUPP);
- 
- 	if (q->flags & EXEC_QUEUE_FLAG_VM) {
--		struct xe_exec_queue *__q;
- 		struct xe_tile *tile;
--		u8 id;
-+		int id;
- 
- 		for_each_tile(tile, vm->xe, id) {
- 			num_fence++;
-@@ -359,21 +398,12 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
- 		if (!fences)
- 			return ERR_PTR(-ENOMEM);
- 
--		fences[current_fence++] =
--			xe_exec_queue_last_fence_get(q, vm);
--		for_each_tlb_inval(i)
--			fences[current_fence++] =
--				xe_exec_queue_tlb_inval_last_fence_get(q, vm, i);
--		list_for_each_entry(__q, &q->multi_gt_list,
--				    multi_gt_link) {
--			fences[current_fence++] =
--				xe_exec_queue_last_fence_get(__q, vm);
--			for_each_tlb_inval(i)
--				fences[current_fence++] =
--					xe_exec_queue_tlb_inval_last_fence_get(__q, vm, i);
--		}
-+		if (q == vm->q[0])
-+			n_fence = sync_in_fence_get_from_vm(vm, fences);
-+		else
-+			n_fence = sync_in_fence_get_from_q_list(q, vm, fences);
- 
--		xe_assert(vm->xe, current_fence == num_fence);
-+		xe_assert(vm->xe, n_fence == num_fence);
- 		cf = dma_fence_array_create(num_fence, fences,
- 					    dma_fence_context_alloc(1),
- 					    1);
-@@ -387,8 +417,8 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
- 	return fence;
- 
- err_out:
--	while (current_fence)
--		dma_fence_put(fences[--current_fence]);
-+	while (n_fence)
-+		dma_fence_put(fences[--n_fence]);
- 	kfree(fences);
- 
- 	return ERR_PTR(-ENOMEM);
--- 
-2.43.0
-
+/Thomas
