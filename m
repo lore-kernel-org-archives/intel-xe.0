@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA5CAC44500
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 14:11:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 838C8C43458
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 14:17:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64F1510F81E;
-	Fri,  3 Jul 2026 14:11:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 454A110F822;
+	Fri,  3 Jul 2026 14:17:15 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB6E310F81E;
- Fri,  3 Jul 2026 14:11:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7115422939058503555=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD31A10F835;
+ Fri,  3 Jul 2026 14:17:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_reclaim_to_the_dmem_cgr?=
- =?utf-8?q?oup_controller_=28rev7=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/migrate=3A_Revamp_?=
+ =?utf-8?q?PAT_index_selection_for_migrate_PTEs_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 03 Jul 2026 14:11:24 -0000
-Message-ID: <178308788495.148094.9366171005671591113@6beec6c84f66>
+Date: Fri, 03 Jul 2026 14:17:14 -0000
+Message-ID: <178308823490.148328.1545113630870267950@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
+References: <20260703132234.402273-2-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20260703132234.402273-2-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,215 +40,65 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7115422939058503555==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add reclaim to the dmem cgroup controller (rev7)
-URL   : https://patchwork.freedesktop.org/series/163970/
-State : success
+Series: drm/xe/migrate: Revamp PAT index selection for migrate PTEs (rev5)
+URL   : https://patchwork.freedesktop.org/series/154629/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5336-539ef0bb9cab59e164d7b737287384864a457d05_BAT -> xe-pw-163970v7_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f1faf65735514b4c9ed8421ca09a59fd8695d720
+Author: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Date:   Fri Jul 3 18:52:35 2026 +0530
 
-Summary
--------
+    drm/xe/migrate: Revamp PAT index selection for migrate PTEs
+    
+    Improve PAT index selection logic in xe_migrate.c to avoid unnecessary
+    coherency overhead when host-side memory is uncached. Previously,
+    we defaulted to XE_CACHE_WB, which enforces 2-way coherency and may
+    trigger cacheline pulls from CPU even when host-side memory is never
+    dirty.
+    
+    This change introduces xe_migrate_pat_index() to choose the appropriate
+    PAT index based on the actual TTM caching mode of the buffer object
+    being mapped. For iGPUs with WC host mappings, we now prefer
+    XE_CACHE_NONE to skip coherency snoops. For compressed PTEs on newer
+    platforms, we select XE_CACHE_NONE_COMPRESSION.
+    
+    This avoids unnecessary cache traffic for uncached host mappings.
+    
+    v5: (Matt A)
+    - Simplify emit_pte() to derive caching from res->bo directly, removing
+      the separate bo parameter
+    - Leave changes in __xe_migrate_update_pgtables() and
+      build_pt_update_batch_sram()
+    - Fix comment about page-walker coherency in xe_migrate_pat_index()
+    
+    v4:
+    - Keep xe_migrate_prepare_vm() on XE_CACHE_WB since page tables require
+      page-walker coherency.
+    - Pass BO into emit_pte() and select PAT attributes from the BO's TTM
+      caching mode.
+    
+    Assisted-by: GitHub Copilot:claude-sonnet-5
+    Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+    Suggested-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 7c1fa3022f1e344b4289d72ed795fdb4672389ac drm-intel
+f1faf6573551 drm/xe/migrate: Revamp PAT index selection for migrate PTEs
+-:33: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#33: 
+Assisted-by: GitHub Copilot:claude-sonnet-5
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-New tests
----------
-
-  New tests have been introduced between xe-5336-539ef0bb9cab59e164d7b737287384864a457d05_BAT and xe-pw-163970v7_BAT:
-
-### New IGT tests (9) ###
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.69] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.68] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.66] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-a-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.68] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.68] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.66] s
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-a-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.60] s
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-c-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.62] s
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-d-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.61] s
-
-  
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5336-539ef0bb9cab59e164d7b737287384864a457d05 -> xe-pw-163970v7
-
-  IGT_8990: 8990
-  xe-5336-539ef0bb9cab59e164d7b737287384864a457d05: 539ef0bb9cab59e164d7b737287384864a457d05
-  xe-pw-163970v7: 163970v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v7/index.html
-
---===============7115422939058503555==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add reclaim to the dmem cgroup controller (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163970/">https://patchwork.freedesktop.org/series/163970/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5336-539ef0bb9cab59e164d7b737287384864a457d05_BAT -&gt; xe-pw-163970v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-5336-539ef0bb9cab59e164d7b737287384864a457d05_BAT and xe-pw-163970v7_BAT:</p>
-<h3>New IGT tests (9)</h3>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.69] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.68] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.66] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.68] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.68] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.66] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.60] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.62] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-d-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.61] s</li>
-</ul>
-</li>
-</ul>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5336-539ef0bb9cab59e164d7b737287384864a457d05 -&gt; xe-pw-163970v7</li>
-</ul>
-<p>IGT_8990: 8990<br />
-  xe-5336-539ef0bb9cab59e164d7b737287384864a457d05: 539ef0bb9cab59e164d7b737287384864a457d05<br />
-  xe-pw-163970v7: 163970v7</p>
-
-</body>
-</html>
-
---===============7115422939058503555==--
