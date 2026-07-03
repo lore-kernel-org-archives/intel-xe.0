@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ADB1C43458
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 13:25:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90A41C43458
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 13:27:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F20FE10F80A;
-	Fri,  3 Jul 2026 13:25:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rm/eZtr2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C72D110F806
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Jul 2026 13:25:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783085120; x=1814621120;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=73o+6Zy0MppDBu4qYAJ/BBouIs+JHxy2tEEsGMpodZc=;
- b=Rm/eZtr2Jwl5hwlDY6Ob9UsZzC/0Lk1YVCjUTJT01Sw2SfuCzIumRXIz
- wsx/fVR1E+YYSkevjmgxOoda5k29kpqhRno7qOwXluCUEe4GjED0DceiB
- JRgyJ5eqz48pQw0J1oihHde0UzAe+Lha9PAKTxb5VV77N6P75Rw4C9wkO
- OuQUkRTq3xKIEAXt6qgA9LMtfiudra0qySCGJ+RVkqTJmSWa/a2Yll3CU
- vM/vL7rSYmFR67b3PeuQxGrBOhwer73FoMvah/UHaVENW+gBBj6OTuqUg
- SRRToAPQodRdZCseuRvrAAT5kQmYjKetlYWOpei6fPECdvKrDQlLQcQkS w==;
-X-CSE-ConnectionGUID: mwtEFrBfTvCqy2/JcWpq5w==
-X-CSE-MsgGUID: fcB+AH+fRSSx40xoB62xJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83931913"
-X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="83931913"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2026 06:25:19 -0700
-X-CSE-ConnectionGUID: vh7bEvq8SpWP8/uVZYCGCg==
-X-CSE-MsgGUID: F9xJ6VcAR/yeCk/saG+2Mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="249757983"
-Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2026 06:25:17 -0700
-From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com
-Subject: [PATCH v5] drm/xe/migrate: Revamp PAT index selection for migrate PTEs
-Date: Fri,  3 Jul 2026 18:52:35 +0530
-Message-ID: <20260703132234.402273-2-sanjay.kumar.yadav@intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35D3810F80A;
+	Fri,  3 Jul 2026 13:27:16 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1422510F80A;
+ Fri,  3 Jul 2026 13:27:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_reclaim_to_the_dmem_c?=
+ =?utf-8?q?group_controller_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 03 Jul 2026 13:27:15 -0000
+Message-ID: <178308523507.148094.17200281204412660106@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,97 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Improve PAT index selection logic in xe_migrate.c to avoid unnecessary
-coherency overhead when host-side memory is uncached. Previously,
-we defaulted to XE_CACHE_WB, which enforces 2-way coherency and may
-trigger cacheline pulls from CPU even when host-side memory is never
-dirty.
+== Series Details ==
 
-This change introduces xe_migrate_pat_index() to choose the appropriate
-PAT index based on the actual TTM caching mode of the buffer object
-being mapped. For iGPUs with WC host mappings, we now prefer
-XE_CACHE_NONE to skip coherency snoops. For compressed PTEs on newer
-platforms, we select XE_CACHE_NONE_COMPRESSION.
+Series: Add reclaim to the dmem cgroup controller (rev7)
+URL   : https://patchwork.freedesktop.org/series/163970/
+State : warning
 
-This avoids unnecessary cache traffic for uncached host mappings.
+== Summary ==
 
-v5: (Matt A)
-- Simplify emit_pte() to derive caching from res->bo directly, removing
-  the separate bo parameter
-- Leave changes in __xe_migrate_update_pgtables() and
-  build_pt_update_batch_sram()
-- Fix comment about page-walker coherency in xe_migrate_pat_index()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 680d728b97f2c45af959bb96f1248eaeeb5061b6
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Jul 3 15:05:41 2026 +0200
 
-v4:
-- Keep xe_migrate_prepare_vm() on XE_CACHE_WB since page tables require
-  page-walker coherency.
-- Pass BO into emit_pte() and select PAT attributes from the BO's TTM
-  caching mode.
+    drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+    
+    Register the VRAM manager with the dmem cgroup reclaim infrastructure
+    so that lowering dmem.max below current VRAM usage triggers TTM
+    eviction rather than failing with -EBUSY.
+    
+    Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
+    as the TTM reclaim path passes a NULL place in cgroup drain mode.
+    
+    Use drmm_cgroup_register_region() so that the region is automatically
+    unregistered at DRM device release, after drm_dev_unplug() has already
+    made drm_dev_enter() return false.  The drm_dev_enter/exit guard in the
+    reclaim callback ensures no reclaim work touches the TTM manager after
+    driver unbind, closing the window between vram_mgr_fini() (called from
+    drm_driver.release) and the drmm cleanup that unregisters the region.
+    
+    v3:
+    - Rebased on fix for uninitialized list and buddy allocator on the
+      drmm_cgroup_register_region() error path.
+    
+    v5:
+    - Rebased on the introduction of struct dmem_cgroup_init.
+    - Clear the reclaim callback in amdgpu_vram_mgr_fini() to prevent
+      use-after-free if cgroup reclaim is triggered after driver unbind
+      while userspace holds an open DRM file descriptor. (Sashiko-bot)
+    - Switch from drmm_cgroup_register_region() to the raw
+      dmem_cgroup_register_region() and store the region in
+      amdgpu_vram_mgr.cg_region. Call dmem_cgroup_unregister_region()
+      in amdgpu_vram_mgr_fini() after ttm_resource_manager_evict_all()
+      to drain in-flight reclaim callbacks, and clear man->cg afterwards.
+      This is required because amdgpu's vram manager fini is called
+      explicitly during driver unbind, which may precede the DRM device
+      release and thus precede any drmm-based cleanup. (Sashiko-bot)
+    
+    v6:
+    - Fix mgr->cg_region never being assigned, so
+      dmem_cgroup_unregister_region() in fini silently no-ops on NULL
+      and leaks the region. (Sashiko-bot)
+    - Reorder fini to call set_used(false) and evict_all() before
+      dmem_cgroup_unregister_region(), so ttm_resource_free() can
+      uncharge via man->cg during eviction; clear man->cg after
+      unregister. (Sashiko-bot)
+    
+    v7:
+    - Move dmem_cgroup_unregister_region() before the early return on
+      evict_all() failure; not doing so leaves a dangling reclaim callback
+      pointing to the partially-torn-down VRAM manager, causing a
+      use-after-free when the cgroup later triggers reclaim. (Sashiko-bot)
+    - Switch back to drmm_cgroup_register_region() with a drm_dev_enter/
+      exit guard in the reclaim callback (matching xe), rather than manual
+      register/unregister.  drm_dev_unplug() fires before vram_mgr_fini(),
+      so drm_dev_enter() returning false prevents any reclaim from touching
+      the manager during teardown.  This also fixes the "vram" name
+      collision on multi-GPU systems, since drmm_cgroup_register_region()
+      automatically prefixes with "drm/<pci-addr>/". (Sashiko-bot)
+    
+    Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 7c1fa3022f1e344b4289d72ed795fdb4672389ac drm-intel
+5ff92f59222b drm/amdgpu: Fix init ordering in amdgpu_vram_mgr_init()
+6733af82c623 cgroup/dmem: Introduce struct dmem_cgroup_init for region initialization
+025f5b2b370b cgroup/dmem: Add reclaim callback for lowering max below current usage
+839d4f1181cc drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem controller
+-:147: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#147: FILE: drivers/gpu/drm/ttm/ttm_bo.c:679:
++	evict_walk.try_low = evict_walk.hit_low = false;
 
-Assisted-by: GitHub Copilot:claude-sonnet-5
-Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c | 32 ++++++++++++++++++++++++--------
- 1 file changed, 24 insertions(+), 8 deletions(-)
+total: 0 errors, 0 warnings, 1 checks, 224 lines checked
+d7d7b4f1f579 drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+-:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#42: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:282:
++static int xe_ttm_vram_mgr_dmem_reclaim(struct dmem_cgroup_pool_state *pool,
++					 u64 target_bytes, void *priv)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 9428dd5e7760..63f79673e4cc 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -117,6 +117,27 @@ static void xe_migrate_fini(void *arg)
- 	xe_exec_queue_put(m->q);
- }
- 
-+static inline u16 xe_migrate_pat_index(struct xe_device *xe,
-+				       enum ttm_caching caching,
-+				       bool is_comp_pte)
-+{
-+	enum xe_cache_level cache_level;
-+
-+	/*
-+	 * Select the appropriate PAT index for buffer object PTEs programmed
-+	 * by emit_pte(). We choose not to mess with xe_migrate_prepare_vm()
-+	 * yet, for simplicity.
-+	 */
-+	if (is_comp_pte && GRAPHICS_VERx100(xe) >= 2000)
-+		cache_level = XE_CACHE_NONE_COMPRESSION;
-+	else if (caching == ttm_cached)
-+		cache_level = XE_CACHE_WB;
-+	else
-+		cache_level = XE_CACHE_NONE;
-+
-+	return xe_cache_pat_idx(xe, cache_level);
-+}
-+
- static u64 xe_migrate_vm_addr(u64 slot, u32 level)
- {
- 	XE_WARN_ON(slot >= NUM_PT_SLOTS);
-@@ -631,18 +652,13 @@ static void emit_pte(struct xe_migrate *m,
- {
- 	struct xe_device *xe = tile_to_xe(m->tile);
- 	struct xe_vm *vm = m->q->vm;
--	u16 pat_index;
-+	struct xe_bo *bo = ttm_to_xe_bo(res->bo);
-+	enum ttm_caching caching = bo->ttm.ttm ? bo->ttm.ttm->caching : ttm_cached;
-+	u16 pat_index = xe_migrate_pat_index(xe, caching, is_comp_pte);
- 	u32 ptes;
- 	u64 ofs = (u64)at_pt * XE_PAGE_SIZE;
- 	u64 cur_ofs;
- 
--	/* Indirect access needs compression enabled uncached PAT index */
--	if (GRAPHICS_VERx100(xe) >= 2000)
--		pat_index = is_comp_pte ? xe_cache_pat_idx(xe, XE_CACHE_NONE_COMPRESSION) :
--					  xe_cache_pat_idx(xe, XE_CACHE_WB);
--	else
--		pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
--
- 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
- 
- 	while (ptes) {
--- 
-2.52.0
+total: 0 errors, 0 warnings, 1 checks, 75 lines checked
+680d728b97f2 drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+
 
