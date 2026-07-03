@@ -4,143 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B594C44508
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 17:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECF34C44507
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 17:23:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D744910F893;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8806610F88E;
 	Fri,  3 Jul 2026 17:23:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="PjraGoAE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nOtprTXW";
 	dkim-atps=neutral
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34AF910E63D;
- Fri,  3 Jul 2026 16:33:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1783096373; x=1783701173; i=natalie.vock@gmx.de;
- bh=RlIOsp9amv9L3HtZtHUz95KGgDOJHWsKLA5hpSR/B70=;
- h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=PjraGoAE+Zdugu5d+EyKxKG6ya7zD5fh6ehY2mPmkAuU28y39kL/TbgjLOx+EsJz
- bvL2EfDTkjIE0F2VwTRhGTYhMlG1tGrDkQg3Zk93TvqxXqup/Qcpl4HPgUxoMtw1F
- vMT7y74c2gtzn4L1+BwcRzcRjLOt2D5MavVhmn8KP24PijrCv6Tw1Mlc2rg1PBnPm
- /8Q2NVTIcp3QDHrfpL2PVE/a+eNPNC+QdJCyQA3hUMiJQrjVO6AJ2bD05kpFjt/Pl
- XC685z6qMJaNXa0AFNVRMliS1TjswP1k42UyIXRJCGKuUt1ASMIzwRLFzKTlLU6cg
- BknUPwJW12hKNOrTgg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mq2nK-1xRNtX31BS-00oj8m; Fri, 03
- Jul 2026 18:32:53 +0200
-From: Natalie Vock <natalie.vock@gmx.de>
-Date: Fri, 03 Jul 2026 18:31:28 +0200
-Subject: [PATCH 08/10] drm/xe: remove workaround for TTM internals
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
+ [209.85.222.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E58810F571
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Jul 2026 00:35:36 +0000 (UTC)
+Received: by mail-qk1-f181.google.com with SMTP id
+ af79cd13be357-92e6c4a867cso1326685a.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 02 Jul 2026 17:35:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1783038935; x=1783643735; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=IhuPZo9By9WeOKbnJZiXCMtpI4vqAR0qLJD+1E3bLpo=;
+ b=nOtprTXW4ewmf0vYJ6/cSZ9NoAr/FadyUwMmNvzf4pfshiM61P6ZCfl1lk8jeZXvnn
+ 71Jl65vjgSVdND+TNQsJ4Ftnv9HXWgLffbK4IXykUuFn/2uzDrZWjgCQPcBdDRstNPNY
+ 3IYVSRQltMp4/Kuyu5vFfMtLz2f7NUsveyS6sjB4PlVoFf9DgufKxR2UFRq0j6HjqO7i
+ MeMlBfSg3Bi8AJR0TWXqyewuZSi3IEGJkUDeNt/sIpj2sZrKOs/jF95ib9PQCF29l4zD
+ wQr1EcfAAkZU6EKOzGyeuSSTF1JdbBXCvZRVtEX+aTuA4ih8+zxo83eit62P9cn9lyvd
+ tQsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1783038935; x=1783643735;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=IhuPZo9By9WeOKbnJZiXCMtpI4vqAR0qLJD+1E3bLpo=;
+ b=dYIiZeUcKM4zP02YsQUDqUG9wBXsTSRW5IqJ0GWdr6009PMnQcnZ9w+K69OqTnXRIE
+ FVhUKuog+Q5oP/eG/Fm85RT5N91UKGFFgOOd3yNICfHfE/Q2h4OpixJW7qoeE9gtVoba
+ VwPga1oqcfw0cULyTGVfTWRNFd61hFvM9B876k2PgUDfVIyI0p24AJTZRZptM8MjsVc5
+ ZKaOtbGk6e2dlTfbX3vsEM7+UEhPib9iRgBYXdahuHAG71FSUCFN+t2zCqBSxzTcitgw
+ XF1zgXD2bQ5Wg+T9XiBXM7vr+pIfbE8SgclmRUIN4rzqKuXGjYAZCqtnpaibUP06kBjb
+ qF2Q==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9QaikEMZKkQx4MI4cFeimF8dXNDTy4ghujt6h3M435ygf8uLVZfe5hijTX7EqgPi3FiHUecwrvCA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxEDf7/z4c9YI1OBXRmXpog/xAj4g9XMsG0LxTVs45Lnn8mGYbf
+ alwF9w/SQO7sQ6FnNHmk2EnGRLw0WpRMYX/i9rN+q42VC9jm0FnFhWeo
+X-Gm-Gg: AfdE7clYKB79hbKsey5xySI1mVwMYYj1m3WJP6oBcq+NY+mMr4cO3amkb4gsxoC0DSm
+ Q/9bfjIwNSMpZVmfELQAom5J2HIXOAPuyTjmz8o4Db3Fg972W1gcL/9ciHVXsdTCVbkmnvxlwNy
+ 3nL2rpIZnlT2hYIzBO77N8LOKxNRqfWMWKE3aT8LMl9J+erscq0b4bSl9XpiXAofKnxcxkEqxmG
+ +HYu4W/P4/QlJ9F+FOA+JuAGKXbwNMVNxIi+Mhxh7R4sGHkw86V2oQd1o3fBEbp/C+zAkvNu3nY
+ Iq02ersJAD5NU1lFUgCvDa1pJH2jrP5gN6+NPZFYIWsROpnWlvJyUXLJA9dlb5Snly+zHyecYef
+ A/Wj2rhv1fFVH/LwnJHzsSiCgbtBUdhDi06w5V8RfdHLPxkKJeTA5g+bV05XyoFl+hbPYlGNdu9
+ xJdz5vylEaOqGa9d2ldg==
+X-Received: by 2002:a05:620a:269b:b0:92e:675e:8ef0 with SMTP id
+ af79cd13be357-92e7b473cfbmr986657085a.68.1783038935434; 
+ Thu, 02 Jul 2026 17:35:35 -0700 (PDT)
+Received: from [192.168.1.100] ([32.220.73.95])
+ by smtp.googlemail.com with ESMTPSA id
+ af79cd13be357-92e9095e780sm23952485a.0.2026.07.02.17.35.33
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 02 Jul 2026 17:35:34 -0700 (PDT)
+Message-ID: <edcfd337-2cba-49da-a77e-3a2f8aa67e4c@gmail.com>
+Date: Thu, 2 Jul 2026 20:35:33 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <20260703-ttm_2_drm_exec-v1-8-43685ac1286b@gmx.de>
-References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
-In-Reply-To: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Alex Deucher <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] gpu/buddy: bail out of try_harder when alignment
+ cannot be honoured
+To: Matthew Auld <matthew.auld@intel.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org
-X-Mailer: b4 0.15.2
-X-Provags-ID: V03:K1:ZeZV11GgCru8fytvte+sjtKlr+WtY7cq4tyrHtDpfBVat171dkk
- EdzbLowDTrYa1duZj32cAPvyXI8e/DqmVhUVKojTjuIfA/Cq84LIwmt+4FNsKZB+wOindlR
- 5IJspUugrZaNzdkmU/UPFn1q98VFrQ9FfZzzFo2Af4qZJ2kPOdAAyqgZMHUbqBi6TUfC9LK
- dzDKHVrku0/RfwQ6fP8KQ==
-UI-OutboundReport: notjunk:1;M01:P0:0UrJk38FwVA=;QFw6xkEsMn77UwtwmmIAd0cLaWT
- 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
- bO10889RBj9yvpcbKE=
+Cc: alexander.deucher@amd.com, =?UTF-8?Q?Timur_Krist=C3=B3f?=
+ <timur.kristof@gmail.com>, stable@vger.kernel.org
+References: <20260629074311.68836-1-Arunpravin.PaneerSelvam@amd.com>
+ <a4657daa-c58e-4441-ad81-c3e770bc5a94@intel.com>
+Content-Language: en-US
+From: John Olender <john.olender@gmail.com>
+In-Reply-To: <a4657daa-c58e-4441-ad81-c3e770bc5a94@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 03 Jul 2026 17:23:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -156,74 +98,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christian K=C3=B6nig <christian.koenig@amd.com>
+On 7/2/26 6:48 AM, Matthew Auld wrote:
+> On 29/06/2026 08:43, Arunpravin Paneer Selvam wrote:
+>> The try_harder contiguous fallback could return a range whose start
+>> offset did not match the caller's min_block_size. When a candidate's
+>> start is misaligned, realign it: free the misaligned run and reallocate
+>> exactly @size at the next lower min_block_size boundary. This keeps the
+>> returned size unchanged with no surplus to trim, and rejects the request
+>> only when no aligned candidate fits.
+>>
+>> v2: align misaligned candidates down to min_block_size instead of
+>>      bailing out, for both the RHS and LHS paths (Matthew).
+>>
+>> Suggested-by: Christian König <christian.koenig@amd.com>
+>> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Timur Kristóf <timur.kristof@gmail.com>
+>> Cc: John Olender <john.olender@gmail.com>
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> 
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> 
 
-This should no longer be necessary, TTM doesn't lock the BO without a
-reference any more.
+I haven't hit any issues with this revision during testing.
 
-Only compile tested!
+Thanks,
+John
 
-Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-=2D--
- drivers/gpu/drm/xe/xe_bo.c | 32 +++++---------------------------
- 1 file changed, 5 insertions(+), 27 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5843f850339c7..34eae56716076 100644
-=2D-- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1642,31 +1642,6 @@ static unsigned long xe_ttm_io_mem_pfn(struct ttm_b=
-uffer_object *ttm_bo,
-=20
- static void __xe_bo_vunmap(struct xe_bo *bo);
-=20
--/*
-- * TODO: Move this function to TTM so we don't rely on how TTM does its
-- * locking, thereby abusing TTM internals.
-- */
--static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo=
-)
--{
--	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
--	bool locked;
--
--	xe_assert(xe, !kref_read(&ttm_bo->base.refcount));
--
--	/*
--	 * We can typically only race with TTM trylocking under the
--	 * lru_lock, which will immediately be unlocked again since
--	 * the ttm_bo refcount is zero at this point. So trylocking *should*
--	 * always succeed here, as long as we hold the lru lock.
--	 */
--	spin_lock(&ttm_bo->bdev->lru_lock);
--	locked =3D dma_resv_trylock(&ttm_bo->base._resv);
--	spin_unlock(&ttm_bo->bdev->lru_lock);
--	xe_assert(xe, locked);
--
--	return locked;
--}
--
- static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- {
- 	struct dma_resv_iter cursor;
-@@ -1680,8 +1655,11 @@ static void xe_ttm_bo_release_notify(struct ttm_buf=
-fer_object *ttm_bo)
- 	bo =3D ttm_to_xe_bo(ttm_bo);
- 	xe_assert(xe_bo_device(bo), !(bo->created && kref_read(&ttm_bo->base.ref=
-count)));
-=20
--	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
--		return;
-+	/*
-+	 * This should never fail since there are no other references to the BO
-+	 * any more.
-+	 */
-+	WARN_ON(!dma_resv_trylock(ttm_bo->base.resv));
-=20
- 	/*
- 	 * Scrub the preempt fences if any. The unbind fence is already
-
-=2D-=20
-2.55.0
+>> ---
+>>   drivers/gpu/buddy.c | 63 +++++++++++++++++++++++++++++++--------------
+>>   1 file changed, 44 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>> index dc81fe0301ce..3c73ae87f3c5 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -1118,22 +1118,30 @@ static int __gpu_buddy_alloc_range(struct gpu_buddy *mm,
+>>                    blocks, total_allocated_on_err);
+>>   }
+>>   +static int __alloc_contig_aligned_retry(struct gpu_buddy *mm,
+>> +                    u64 unaligned_offset,
+>> +                    u64 size,
+>> +                    u64 min_block_size,
+>> +                    struct list_head *blocks)
+>> +{
+>> +    u64 aligned_offset = round_down(unaligned_offset, min_block_size);
+>> +
+>> +    return __gpu_buddy_alloc_range(mm, aligned_offset, size, NULL, blocks);
+>> +}
+>> +
+>>   static int __alloc_contig_try_harder(struct gpu_buddy *mm,
+>>                        u64 size,
+>>                        u64 min_block_size,
+>>                        struct list_head *blocks)
+>>   {
+>> -    u64 rhs_offset, lhs_offset, lhs_size, filled;
+>> +    u64 rhs_offset, lhs_offset, filled;
+>>       struct gpu_buddy_block *block;
+>>       unsigned int tree, order;
+>> -    LIST_HEAD(blocks_lhs);
+>> -    unsigned long pages;
+>>       u64 modify_size;
+>>       int err;
+>>         modify_size = rounddown_pow_of_two(size);
+>> -    pages = modify_size >> ilog2(mm->chunk_size);
+>> -    order = fls(pages) - 1;
+>> +    order = ilog2(modify_size) - ilog2(mm->chunk_size);
+>>       if (order == 0)
+>>           return -ENOSPC;
+>>   @@ -1149,31 +1157,48 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
+>>           while (iter) {
+>>               block = rbtree_get_free_block(iter);
+>>   -            /* Allocate blocks traversing RHS */
+>>               rhs_offset = gpu_buddy_block_offset(block);
+>> +
+>> +            /* Allocate blocks traversing RHS */
+>>               err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
+>>                                  &filled, blocks);
+>> -            if (!err || err != -ENOSPC)
+>> +            if (err && err != -ENOSPC)
+>>                   return err;
+>> +            if (!err && IS_ALIGNED(rhs_offset, min_block_size))
+>> +                return 0;
+>> +            if (!err) {
+>> +                /* Allocate the unaligned RHS offset using round_down */
+>> +                gpu_buddy_free_list_internal(mm, blocks);
+>> +                err = __alloc_contig_aligned_retry(mm, rhs_offset,
+>> +                                   size,
+>> +                                   min_block_size,
+>> +                                   blocks);
+>> +                if (!err)
+>> +                    return 0;
+>> +                if (err != -ENOSPC) {
+>> +                    gpu_buddy_free_list_internal(mm, blocks);
+>> +                    return err;
+>> +                }
+>> +                goto next;
+>> +            }
+>>   -            lhs_size = max((size - filled), min_block_size);
+>> -            if (!IS_ALIGNED(lhs_size, min_block_size))
+>> -                lhs_size = round_up(lhs_size, min_block_size);
+>> +            if (size - filled > rhs_offset)
+>> +                goto next;
+>>   -            /* Allocate blocks traversing LHS */
+>> -            lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
+>> -            err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
+>> -                               NULL, &blocks_lhs);
+>> -            if (!err) {
+>> -                list_splice(&blocks_lhs, blocks);
+>> +            lhs_offset = rhs_offset - (size - filled);
+>> +
+>> +            /* Allocate the unaligned LHS offset using round_down */
+>> +            gpu_buddy_free_list_internal(mm, blocks);
+>> +            err = __alloc_contig_aligned_retry(mm, lhs_offset, size,
+>> +                               min_block_size, blocks);
+>> +            if (!err)
+>>                   return 0;
+>> -            } else if (err != -ENOSPC) {
+>> +            if (err != -ENOSPC) {
+>>                   gpu_buddy_free_list_internal(mm, blocks);
+>>                   return err;
+>>               }
+>> -            /* Free blocks for the next iteration */
+>> +next:
+>>               gpu_buddy_free_list_internal(mm, blocks);
+>> -
+>>               iter = rb_prev(iter);
+>>           }
+>>       }
+>>
+>> base-commit: 6648301c5bb2ef23f0fb15bcb01d21ff66f36799
+> 
 
