@@ -4,162 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71720C43602
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 13:02:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A99C4C43458
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Jul 2026 13:06:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3383B10E5EF;
-	Fri,  3 Jul 2026 13:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ADCE10E5F0;
+	Fri,  3 Jul 2026 13:06:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J1U/W6SC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T0AtfSZ7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7036110E5EF
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Jul 2026 13:02:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24EEF10E5E3;
+ Fri,  3 Jul 2026 13:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783083738; x=1814619738;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=aX/Ys8vaLA/CdwA0jigHucxGT5lMfCv6gkbuMu2oqr0=;
- b=J1U/W6SCcYNSy1U+aP1Wovp/l5LXLK/0Qh5Vgnn1d3Lf0f4GQLIe0YPt
- w9A3wkcD9Y1L5ZQ6e/pbCSdhwsu/qAsdaWA0er9ZhvziZLeOLiwMjfmz1
- M3LJ7YhpKY9lFrbRRZkc2xiSfaT+C12I/pPmOMCHipnQZcOYFNmFYVWAs
- 5SLR2YyuwhqFYdI82K+EP7ZntSDgqGm/QxwVQWsUQ6KkNgyTHIquTrjwL
- 3uVWk7ZlX1p0j1A6zNN1DaDnHeelc04qP11DjjpjFiM2AmtKLDmt3jvIn
- KJSXM/3ka6N7BImmRIRIy138qZaocz+D59WS/mQZ+ixPvrnXgFh7KmOJe g==;
-X-CSE-ConnectionGUID: X+NY0ejAQnKSWiPV2oeJNw==
-X-CSE-MsgGUID: rpClYVtDSTWX+hSiN2NjZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83819486"
-X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="83819486"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2026 06:02:17 -0700
-X-CSE-ConnectionGUID: yeNw2fZ7QtGl9rPKqg2eJQ==
-X-CSE-MsgGUID: Vsgmg6GyRX+Avqh+HHrZxg==
+ t=1783083989; x=1814619989;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l2B0JRLaJTKxEOnBYF/tcsMc6gEYeiyKmWYd9PYsQ4U=;
+ b=T0AtfSZ7wIh8o/9j7xmquA10TEtYrY9ffTOEPlAX+bBXI1jH6cJ8O8uH
+ BiTT+Kr8pyF2lGdmxt0+RtokozPgv0x7oIotAzO7lqO/r2Si7zDVQ0ZzO
+ b9Fu/mLUE0I/TMtgDIlP2VcFYXmzNEP2GF0la7rJuKfjPFLNgvzkxeobl
+ YdIGr2NB81vZZfmwgv4FtmqS119G4Fq3l0Pi+rna+rrlEeGu5wOqIFENN
+ Oc6CHVEGxSKT7OGXOPSaK1w4Ihw6Z1e5WqpxyM2ybHWNCIlDGVWiEqo2O
+ lCqqaxNzTL/K0AOsunpUDzvAcYCaZ7PrC+8PDhHHTonFDzxc1keW8KIGS A==;
+X-CSE-ConnectionGUID: OpO/mhnLRceJiICuH2zZHw==
+X-CSE-MsgGUID: 7+rj57xkRWyp/c+Hla1wVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83702275"
+X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="83702275"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2026 06:06:28 -0700
+X-CSE-ConnectionGUID: AH4O+muaQE+jffHIXzt0ag==
+X-CSE-MsgGUID: epXHh/1LTsqPx3FtPa/RBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="277439114"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2026 06:02:17 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Fri, 3 Jul 2026 06:02:16 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Fri, 3 Jul 2026 06:02:16 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.63) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Fri, 3 Jul 2026 06:02:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JzCrF4P3wZPd9NTlu6fV6Z/yqx8ilk34YKIVgQpaXZl3HAf9cOm5qIMiIpZFjN8riYrvW0grM9XFKsvFhJtAegDgQKvcN/+I6S3pWieUEfhLEeaCQVw/fio5IZPURr7uza6t215uaCp+0DA2piX2R3XdarZdp9lNLPJKZVrh3WaXLSE8gz2ZIr81ycikWHkxnPb/on3zu8uM4srikbpr1CEGJJzHtXdkkfGdsFzzGf5lWsRJlCI4WI9d8OXZtvtMeUXB/I3x8FufuluXNXTP7rtBV+X9h4KXMy2HzYOw4JCAblQJsyX1KohrxYUN8jxqf/wKtKIMQD9A26bcXV5yDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=12ZGbgBY5M0uGn4tTljT0Yft76ttMEJcATVxTyJocWI=;
- b=hL3XOOe5qUxnxu+QMrvDYsyjJk6a0AXYqX9YY+6nlcGbAinL6tQS/XRN6ynfM3Uv8z20AB9WTbP2sMsCK7Rwip84PYbDcgkNoQcUHw3t4U0WcKssJKOBd4JCS3EPQlTwX55+6meI/SrdxHf02qqYJbhw+qme5v5X5eJc3j9TQQaqpYdrkve0BDx1UFekVSepSvgg4pe8M5BtIaCEfFx14mrB+jqb7nDg4+qTpwYBRuhqUqjw+saLiV6B6dVqRORGpi1IMu6yvmt4+VStp3h4nX9tteuJvcVCe723jZBHLaujUCSFwcwHhm1zjGlaRpWdG2B5CcQpEjVL8tthqUc9VQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Fri, 3 Jul 2026
- 13:02:12 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.21.0181.008; Fri, 3 Jul 2026
- 13:02:06 +0000
-Message-ID: <44fb1c8d-2a72-4c65-97b8-b95ec23a9bfa@intel.com>
-Date: Fri, 3 Jul 2026 18:31:55 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v4 2/5] drm/xe: Add RAS logging helpers
-To: "Tauro, Riana" <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <rodrigo.vivi@intel.com>, <matthew.brost@intel.com>,
- <thomas.hellstrom@linux.intel.com>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <vinay.belgaumkar@intel.com>, <aravind.iddamsetty@intel.com>,
- <karthik.poosa@intel.com>, <sk.anirban@intel.com>, <raag.jadav@intel.com>
-References: <20260630115503.407158-7-mallesh.koujalagi@intel.com>
- <20260630115503.407158-9-mallesh.koujalagi@intel.com>
- <6b6e6259-a4bb-4d79-a87f-a8b21e22e923@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <6b6e6259-a4bb-4d79-a87f-a8b21e22e923@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0085.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1ad::16) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; d="scan'208";a="283199568"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.146])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2026 06:06:24 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
+ Tejun Heo <tj@kernel.org>,
+ =?UTF-8?q?Michal=20Koutn=C3=BD?= <mkoutny@suse.com>,
+ cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/6] Add reclaim to the dmem cgroup controller
+Date: Fri,  3 Jul 2026 15:05:35 +0200
+Message-ID: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|IA0PR11MB7307:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8053352f-ed7f-4b48-3ea4-08ded903484f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|18002099003|3023799007|11063799006|56012099006|4143699003|6133799003|22082099003;
-X-Microsoft-Antispam-Message-Info: fNLJO0XrxXWRPwlSpj5E16KoyUAJaIRs+2xUOr4c75JnemKrSBRdQta0r6DLwRQIeo1YJYUlTyUxctL9ZSuxO302L9u3BWrggJwg9iXGbeq3xe+gwyAZ1xml4een6N5N7kOxgszPlsKUVTc6F3DNFA921dTs1ukzjYkJhC/Z8jFByoJoPHpVqV5oQ4A8Wd+hIR3VZuQC09rvLZwJJn2JpRoouNqZNeIz3o785ZF7j3gXdy+aRoWUocU1cE4V/7NFo+Bb/vOdQ9EBXCIVdVPKD/V6xbJXP8cqhwkReR0tCnuJtYW87psIB6GZAx2XUtHsYp23YZ7bbYCNhHuZ6LzVpYDfp3UpGpuP/oCo+Q8tWjGEjhbJfLbgkgiGJt6JMHv6z0JfoRUT9mROZgT5e11p/jy7lHyGZIw37mlv/LXc0cHa/jvlsVw6XWJG7XHZBT2HMjtE8LqNe3CnxVtL++SSiYUuGzEEzyRR1/2142BHlYPi8P04uME/fddnkCF5ZRKFo10MMcAAZHH0/ZfJHBJfYYZ698Vu5lGGWZ/O/OX8JfYcdf7RWHN31uGOt6FOHnUocxxCyU2AD4epddV+gTMq5S0fJE4bLrn0jkxX8t7kpJEEMD+faQMGXJsBTLcVS0giGg4dsqt/dKPA3M0eiCiFfUrMqz8Rrd1AO68Pgcxl4xw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(18002099003)(3023799007)(11063799006)(56012099006)(4143699003)(6133799003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bVN3V0NDeDJ6Q1NuMVpOaVNWbUYxeDUxYTdBWExYUm41YnJiRHUyREU5bmhP?=
- =?utf-8?B?Q2Y4Z2hmMXFKbHR2MTJGK0U4QTJkU05XTmFBYW9Gb0FmTUlHdjJvMUVrcUJN?=
- =?utf-8?B?UkYxekpUUlBUZTN2bFFqdHZhVzlOakg5cDlpdTh2WkpUK3Q0a2J2NUpkQytI?=
- =?utf-8?B?MWZVdytuZElUb1EvYVZFb3ozbUUvdUlxKzM4aEowRDEwVHBOcTJzS0hRejZC?=
- =?utf-8?B?cGxVTEhGdldhMUlFQlZLQjhHd0g5dVZEVUpLU2pGMnVSTDd5bkV3eitkQWk1?=
- =?utf-8?B?c2Y0dkFCNmxGSnVBaExhY0RKU1E1OWFMam9IUjJ0VXRVMEpKdlFaTmlKWnh4?=
- =?utf-8?B?MmRMelNyUi9uU0haaVN0czk0cFlISnM1VmsxaW9Razg1N3BpV3B6OTVSY1VI?=
- =?utf-8?B?SnQ1RDRPbmlHNmcvLy9CWGNXMCtNVnFuUGZSRkMvanlvaGhxV3F5anpCR2xK?=
- =?utf-8?B?WDhMN2VydEN0YTlUaDFYZ1pFNVU1S3N6bHJuRlMxQmxYYkFLYWcrNGVUVXQ1?=
- =?utf-8?B?NzZXT2orNnJ1cUR5WWVQRVAzajBaQzA5ODFiSktnbGdGalZ6anpvZng4U2Qy?=
- =?utf-8?B?QnluOGFldlZyU2s0UUtVa0xXQzZRTzJpeFRxQkRzMEJLcFRxcjJla2ZvNnZi?=
- =?utf-8?B?QUQxZTBHUmV6MC9vc1lobEtlZWFnMGIxczhxWmFRQys5bi9ZWFlXM2hEcHhT?=
- =?utf-8?B?VU51QVJURGoxN0RSOFd6QkU5ZWlQbURlOExOUmdqMlZuSVFXLzh4UU5KdlVl?=
- =?utf-8?B?ZG96UFRsb1Z6RmZlZDR1RTNDZDFkeDBGRXRQSjRsS1p6WXhHRklGb2t5ZWkz?=
- =?utf-8?B?NWxRQi9rQWRXNGQ2RHBaMDJXL3RteUNyMHF2dUViaTN2UFdtazdOTDFhZys4?=
- =?utf-8?B?U1hQWUc5Nk9Td1hUditkbkw0Nk5tR3AxanRSVmxZKzA3RlNJK3pWc09iWFVp?=
- =?utf-8?B?MmxseGZWZ1ZYQ3EwcWNnWHlaSFZuVE5oRzNUVVluSFJJTDl1VzJNYkNqMTZa?=
- =?utf-8?B?Q2dqMldsL0l1NGtPcWtVREFuTnlqdnhhVnFzWmJjQTBHM2xRU3BkNmhjWXI4?=
- =?utf-8?B?NUdHaEgzeXpvSGllaW9pQWZKVXIrbFBnaUhRdDJUYkdOWDV2M0prOWhMd3c1?=
- =?utf-8?B?R3hOWlloMC9lcUR1NmZnbGIyUXZldXVFSVlNRWZlN1dHRDl2Z3pKL1Q0OTY2?=
- =?utf-8?B?WDd0ak1jeXZvY2JHNEdCQ3l6MWVheFFkeXBRQysrcW9leUxtKzAzbk5Oemlu?=
- =?utf-8?B?YlpVcWVrQXRXc2NHK2EvaTNySTJmV2dvcDNqWHpyWmhpRExMNGR4UGNSTzJk?=
- =?utf-8?B?UWJUQWVHUVZEYXlZOThPelFCTjhHL3hZMEI1aGhUcWJtMlhrSTIvdU5mMlJJ?=
- =?utf-8?B?cDBQbFBIbC90ZWNlNE9QWk85RjJGYTcweFFHUm9wOTJ5UlJpbllnSVU2ejFQ?=
- =?utf-8?B?TkVQdXhWVitvakRBZXhmcVBRVWxpYUhxKy91NlBDaTRNNnpOMG45MUhpQ05R?=
- =?utf-8?B?ZlhLcHJOeEcrMC9nYm5IR2NlcGMzSFhETWRxNFRWZXBLUWpqb1EzV2pPcDh4?=
- =?utf-8?B?Q1psb2kybUtXSkkxNEtNZkpncXBiMHVlOHBqTGI5U1JBc2RWY0xIVGlFekFZ?=
- =?utf-8?B?REx3aDJYZkZQbTJnUXVmMTVLMHdGUC9SRkVUU2hrY0l3Y0JaUlF4NWtRTzNz?=
- =?utf-8?B?MDhnalFqNGF2R0lxQks0RmV2TkplVnkyM3E0VUIwb096VFE4bzl4SHJ3Zm9Q?=
- =?utf-8?B?K2RwNEhTSk5ySm9PWjlnL0NnWUdoMmVwMFNXUC9DSC8yMWlPeXhmSHFjMnJh?=
- =?utf-8?B?enNmUUJDckNnYTlrNGxZcmRTbTVJUm8wNXhrV3NmVXJ5V1h0S3ZuY0k4NExR?=
- =?utf-8?B?Tkxuc2FJTXVQbzhjODk4d3hsL25NL25OR2RrZXJCbnNoeVIvaVhjanhwSUh3?=
- =?utf-8?B?cmxZZUljblc4dXVCMnB6dW9GNjdBNWZ0WFdESlJxUEttbms0MGhCbE9Ka1dt?=
- =?utf-8?B?V3RaN2V6ZjNSQis0d3U0M05tWW5BeUhDUExmeUMxV1Evb2FBQkdUTitld1BC?=
- =?utf-8?B?VzFGNGxPbk5yM0xFd3dkb2RRZkVobCtZQ21JQ3BOSEtScytQdFU3eDEvTXUv?=
- =?utf-8?B?cGxpVjJaR1U5aHJZbkJ4dmJUcTJjaVMweEhIQ2h5NWtBajBUU1V6Q0dYQ0F1?=
- =?utf-8?B?TW1PSTlZdnkzK21hRnJsN0dBTTdwbmhDZkpaS1NLVS9YcndqZmtjMko5MEI5?=
- =?utf-8?B?aWJtVVo3VnNabEJvNmJQMmR5eWhFME5OV1lSNm91a2lHTHk2SFN6SzVGUHhT?=
- =?utf-8?B?dVA3MFBxUGYrOXNSSGNiSnVXNTRZTStHWmFWVGpHWUJqUEVTOFdkS0cvdVho?=
- =?utf-8?Q?ZZP9KVvYINihsOVQ=3D?=
-X-Exchange-RoutingPolicyChecked: JWNULS/UpXKxoBRoQrIMsNp8Lj6We/yqYOOk+3Jhbmfhwjotazwm3RoOYL7SDtaEQMbOvsIURGiNW4cKiJsKgDI6dm2Y59++fszXVmw5MynyEJFbU9sLfnXMsKrxUvWYzfg+9o1867osmu02SdOaNrRCUNimG1suI20dFbt35hzT6rdDjzwluxs+LW99HSCjQjlZ99J1gEEaFdOknXus0gRh7oG7sbmpLreDKVBgSR9cce/s5M0bBRuBv8SZKW1yusBjPasZoPL5ch6TOAjErvBVOe7RqksAuYuV+zYpcKWFDGFbT3mGWjGMI6t2JvqrTZokbfOwUzky0D5gBeV7MQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8053352f-ed7f-4b48-3ea4-08ded903484f
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2026 13:02:05.9307 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pJCGTfHoNXUYAAqRdfMxCP82W+t8wdRzRw1xqb0bc1nB2SMxw69/adaRFOLI1Va1VS6bhtc9umptDCvf7kaEdrhvYyOsauYaTn5dRf24W2E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7307
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,220 +81,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+When writing a "max" limit lower than the current usage, the
+existing code silently failed. This series aims to improve
+on that by returning -EBUSY on failure and also attempt
+to synchronously reclaim device memory to push the usage
+under the new max limit to avoid the error.
 
-On 03-07-2026 04:45 pm, Tauro, Riana wrote:
->
-> On 30-06-2026 17:25, Mallesh Koujalagi wrote:
->> Add xe_ras_log_(*) macros to report Xe driver errors in a
->> consistent, structured format.
->>
->> Exposes one macro per error category (probe, wedged,
->> survivability, firmware, GT TDR, memory fault, IO bus). Each macro
->> hard-codes the correct SIG_ID and severity for that category, so
->> callers only need to pass the device or GT handle, errno, and message.
->>
->> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
->> ---
->> v3:
->> - Refer "Tile%u" and "GT%u" strings. (Michal Wajdeczko)
->> - Remov xe_cper_severity_str(). (Michal Wajdeczko/Riana)
->> - Declare __xe_ras_log() function to xe_ras_log.h. (Michal Wajdeczko)
->> - Make macro function properly.
->> - Remove *_FIRST and *_LAST macro. (Michal Wajdeczko/Riana)
->> - Add sig id documents. (Riana)
->> - Change macro function same prefix as the file.
->> - Handle __xe_ras_log() function with variable format.
->>
->> v4:
->> - Handle CONFIG_UEFI_CPER properly.
->> - Add CPER_SEV_RECOVERABLE in __xe_ras_log().
->> - Add xe_ras_log_runtime_fw() and xe_ras_log_device_fw() macros.
->> - Update commit message.
->> - Remove document. (Riana)
->> ---
->>   drivers/gpu/drm/xe/Makefile     |  1 +
->>   drivers/gpu/drm/xe/xe_ras_log.c | 65 +++++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_ras_log.h | 62 +++++++++++++++++++++++++++++++
->>   3 files changed, 128 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_ras_log.c
->>   create mode 100644 drivers/gpu/drm/xe/xe_ras_log.h
->>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index e5a04253e73b..cac19c21be08 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -114,6 +114,7 @@ xe-y += xe_bb.o \
->>       xe_query.o \
->>       xe_range_fence.o \
->>       xe_ras.o \
->> +    xe_ras_log.o \
->>       xe_reg_sr.o \
->>       xe_reg_whitelist.o \
->>       xe_ring_ops.o \
->> diff --git a/drivers/gpu/drm/xe/xe_ras_log.c 
->> b/drivers/gpu/drm/xe/xe_ras_log.c
->> new file mode 100644
->> index 000000000000..928fa4f45cdc
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_ras_log.c
->> @@ -0,0 +1,65 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +
->> +#include <drm/drm_print.h>
->> +
->> +#include "xe_device.h"
->> +#include "xe_gt.h"
->> +#include "xe_ras_log.h"
->> +
->> +/**
->> + * __xe_ras_log - Emit a structured RAS log entry
->> + * @xe: xe device instance
->> + * @gt: GT instance where the error occurred, or NULL if device-wide
->> + * @sig_id: signature ID from xe_sig_ids.h identifying the error class
->> + * @cper_sev: CPER severity (one of CPER_SEV_FATAL, 
->> CPER_SEV_RECOVERABLE, etc.)
->> + * @errno_val: negative errno describing the error condition
->> + * @fmt: printf-style format string
->> + * @...: format arguments
->> + *
->> + * Formats the message and emits a kernel log line via drm_err() for 
->> fatal
->> + * events or drm_warn() for all others. CPER record generation and 
->> hex dump
->> + * are planned as follow-ups.
->> + *
->> + * Format:
->> + *   [xe-err] SIG_ID = <id> Severity = <sev> Location = <loc> Errno 
->> = <n> Message = "<msg>"
->> + */
->> +__printf(6, 7)
->> +void __xe_ras_log(struct xe_device *xe, struct xe_gt *gt,
->> +          u16 sig_id, u32 cper_sev, int errno_val,
->> +          const char *fmt, ...)
->> +{
->> +    char loc[32];
->> +    struct va_format vaf;
->> +    va_list ap;
->> +
->> +    if (gt)
->> +        snprintf(loc, sizeof(loc), "tile%u/gt%u",
->> +             gt->tile->id, gt->info.id);
->> +    else
->> +        snprintf(loc, sizeof(loc), "device");
->> +
->> +    va_start(ap, fmt);
->> +    vaf.fmt = fmt;
->> +    vaf.va = &ap;
->> +
->> +    if (cper_sev == CPER_SEV_FATAL || cper_sev == CPER_SEV_RECOVERABLE)
->> +        drm_err(&xe->drm,
->> +            "[xe-err] SIG_ID = %u Severity = %s Location = %s Errno 
->> = %d Message = \"%pV\"",
->> +            sig_id,
->> +            IS_ENABLED(CONFIG_UEFI_CPER) ? 
->> cper_severity_str(cper_sev) : "unknown",
->> +            loc, errno_val, &vaf);
->> +    else
->> +        drm_warn(&xe->drm,
->> +             "[xe-err] SIG_ID = %u Severity = %s Location = %s Errno 
->> = %d Message = \"%pV\"",
->> +             sig_id,
->> +             IS_ENABLED(CONFIG_UEFI_CPER) ? 
->> cper_severity_str(cper_sev) : "unknown",
->> +             loc, errno_val, &vaf);
->
->
-> There were few comments regarding this from both me and Michal from 
-> previous rev that were agreed by you but not fixed.
-> Also let's close comments from previous rev before sending new revisions.
->
-I checked with the Arch team. Even though this is logged using drm_warn(),
-we still want the output to be prefixed with xe_err because it is used
-for error handling paths. These messages are generated when correctable
-or other hardware errors occur, so having an explicit xe_err tag helps
-identify them as error-related events in the logs.
+Patch 1 fixes a pre-existing amdgpu_vram_mgr_init() error path
+Patch 2 introduces struct dmem_cgroup_init for extensible region
+      registration.
+Patch 3 implements and documents a reclaim callback interface
+      for the dmem controller.
+Patch 4 implements a TTM reclaim callback.
+Patches 5-6 hook up the reclaim callback to the dmem cgroup-aware
+      drivers xe and amdgpu.
 
-Thanks,
--/Mallesh
+v2:
+- Remove the error propagation that was in a previous series (Maarten)
+- A number of updates in patch 1. See its commit message for
+  details (Maarten)
 
-> Thanks
-> Riana
->
->> +
->> +    va_end(ap);
->> +
->> +    /* TODO: Add CPER record driver handler */
->> +    /* TODO: Add RAS dump cper hex handler */
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_ras_log.h 
->> b/drivers/gpu/drm/xe/xe_ras_log.h
->> new file mode 100644
->> index 000000000000..3f94e6747e86
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_ras_log.h
->> @@ -0,0 +1,62 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_RAS_LOG_H_
->> +#define _XE_RAS_LOG_H_
->> +
->> +#include <linux/cper.h>
->> +
->> +#include "xe_sig_ids.h"
->> +
->> +struct xe_device;
->> +struct xe_gt;
->> +
->> +/*
->> + * Common backend helper
->> + */
->> +__printf(6, 7)
->> +void __xe_ras_log(struct xe_device *xe, struct xe_gt *gt,
->> +          u16 sig_id, u32 cper_sev, int errno_val,
->> +          const char *fmt, ...);
->> +
->> +/*
->> + * Driver error reporting macros
->> + */
->> +
->> +/* FATAL */
->> +#define xe_ras_log_probe(xe, errno, fmt, ...) \
->> +    __xe_ras_log((xe), NULL, XE_SIG_PROBE, CPER_SEV_FATAL, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +#define xe_ras_log_wedged(xe, errno, fmt, ...) \
->> +    __xe_ras_log((xe), NULL, XE_SIG_WEDGED, CPER_SEV_FATAL, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +#define xe_ras_log_survivability(xe, errno, fmt, ...) \
->> +    __xe_ras_log((xe), NULL, XE_SIG_SURVIVABILITY, CPER_SEV_FATAL, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +/* RECOVERABLE */
->> +#define xe_ras_log_runtime_fw(xe, gt, errno, fmt, ...) \
->> +    __xe_ras_log((xe), (gt), XE_SIG_RUNTIME_FW, CPER_SEV_RECOVERABLE, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +#define xe_ras_log_device_fw(xe, gt, errno, fmt, ...) \
->> +    __xe_ras_log((xe), (gt), XE_SIG_DEVICE_FW, CPER_SEV_RECOVERABLE, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +#define xe_ras_log_gt_tdr(xe, gt, errno, fmt, ...) \
->> +    __xe_ras_log((xe), (gt), XE_SIG_GT_TDR, CPER_SEV_RECOVERABLE, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +#define xe_ras_log_mem_fault(xe, gt, errno, fmt, ...) \
->> +    __xe_ras_log((xe), (gt), XE_SIG_MEM_FAULT, CPER_SEV_RECOVERABLE, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +#define xe_ras_log_io_bus(xe, errno, fmt, ...) \
->> +    __xe_ras_log((xe), NULL, XE_SIG_IO_BUS, CPER_SEV_RECOVERABLE, \
->> +             (errno), fmt, ##__VA_ARGS__)
->> +
->> +#endif /* _XE_RAS_LOG_H_ */
+v3:
+- Add patch 1 fixing a pre-existing amdgpu_vram_mgr_init() error path
+  bug where drmm_cgroup_register_region() was called before
+  INIT_LIST_HEAD() and gpu_buddy_init(), causing a kernel panic on
+  failure. (Sashiko-bot)
+- Use an rwsem to protect reclaim callback registration and region
+  unregister against concurrent reclaim invocations. (Sashiko-bot)
+- Fix ttm_resource_manager_set_dmem_region() storing an error pointer
+  in man->cg unconditionally. (Sashiko-bot)
+- Fix kernel-doc function name format for ttm_bo_evict_cgroup() and
+  ttm_resource_manager_set_dmem_region().
+
+v4:
+- Rebased on drm-tip; dropped the XE_PL_STOLEN guard in the xe patch
+  as stolen memory uses a separate TTM manager.
+
+v5:
+- Add patch 2 introducing struct dmem_cgroup_init to make the
+  dmem_cgroup_register_region() API extensible without adding positional
+  arguments in the future.
+- Use nonblock=true in reset_all_resource_limits() to avoid sleeping
+  inside rcu_read_lock() in dmemcs_offline(). (Sashiko-bot)
+- Compare usage against the truncated limit stored in cnt.max, not the
+  original u64. (Sashiko-bot)
+- Use DMEM_MAX_RECLAIM_RETRIES (16) retry budget instead of 5, matching
+  the memcg controller; only -ENOSPC (no progress) counts against the
+  budget, other errors abort immediately.
+- Handle NULL region in ttm_resource_manager_set_dmem_region() to clear
+  the reclaim callback, preventing use-after-free when the manager is
+  torn down while the dmem region outlives it. (Sashiko-bot)
+- Return 0 on any eviction progress; reserve -ENOSPC for zero progress.
+- Clear the reclaim callback in xe and amdgpu fini paths to prevent
+  use-after-free after driver unbind with open DRM file descriptors.
+  (Sashiko-bot)
+- Register xe fini devres action before drmm_cgroup_register_region()
+  so LIFO teardown runs unregister first, draining callbacks before the
+  manager is destroyed. (Sashiko-bot)
+- Switch amdgpu to explicit dmem_cgroup_unregister_region() at the top
+  of amdgpu_vram_mgr_fini() before any manager teardown, since amdgpu's
+  fini is called explicitly during driver unbind before drmm cleanup.
+  (Sashiko-bot)
+- Wrap the xe reclaim callback with drm_dev_enter()/drm_dev_exit() to
+  prevent TTM reclaim from running after driver unbind.
+
+v6:
+- Move the ops check inside down_read() in set_resource_max(), guarded
+  by region->unregistered, to close a UAF race against
+  dmem_cgroup_unregister_region(). (Sashiko-bot)
+- Fix dmem_cgroup_ops->reclaim docstring: -ENOSPC is retried up to
+  DMEM_MAX_RECLAIM_RETRIES times, not an immediate stop. (Sashiko-bot)
+- Fix mgr->cg_region never being assigned in amdgpu_vram_mgr_init(),
+  causing dmem_cgroup_unregister_region() in fini to silently no-op.
+  (Sashiko-bot)
+- Reorder amdgpu_vram_mgr_fini() to call set_used(false) and
+  evict_all() before dmem_cgroup_unregister_region(), so
+  ttm_resource_free() can uncharge via man->cg during eviction; clear
+  man->cg after unregister. (Sashiko-bot)
+
+v7:
+- Replace the per-region rw_semaphore with a static SRCU domain
+  (dmemcg_srcu). SRCU is a better fit: it avoids per-region lock
+  overhead on every reclaim call, and synchronize_srcu() at unregister
+  time is a rare, shutdown-time operation. (Maarten)
+- Trim in-function comments to focus on what rather than how.
+- Switch back to drmm_cgroup_register_region() with a drm_dev_enter/
+  exit guard in the reclaim callback (matching xe), rather than manual
+  register/unregister.  drm_dev_unplug() fires before vram_mgr_fini(),
+  so drm_dev_enter() returning false prevents any reclaim from touching
+  the manager during teardown.  This also fixes the "vram" name
+  collision on multi-GPU systems, since drmm_cgroup_register_region()
+  automatically prefixes with "drm/<pci-addr>/". (Sashiko-bot)
+
+User-space tests are at
+https://patchwork.freedesktop.org/series/163935/
+
+Test-with: 20260428065411.4222-1-thomas.hellstrom@linux.intel.com
+
+Thomas Hellström (6):
+  drm/amdgpu: Fix init ordering in amdgpu_vram_mgr_init()
+  cgroup/dmem: Introduce struct dmem_cgroup_init for region
+    initialization
+  cgroup/dmem: Add reclaim callback for lowering max below current usage
+  drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem
+    controller
+  drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+  drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 38 +++++++-
+ drivers/gpu/drm/drm_drv.c                    |  8 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                 | 95 +++++++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_bo_util.c            |  3 +-
+ drivers/gpu/drm/ttm/ttm_resource.c           | 50 +++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c         | 53 +++++++++--
+ include/drm/drm_drv.h                        |  4 +-
+ include/drm/ttm/ttm_bo.h                     | 10 +++
+ include/drm/ttm/ttm_resource.h               |  7 ++
+ include/linux/cgroup_dmem.h                  | 38 +++++++-
+ kernel/cgroup/dmem.c                         | 91 +++++++++++++++----
+ 12 files changed, 362 insertions(+), 37 deletions(-)
+
+-- 
+2.54.0
+
