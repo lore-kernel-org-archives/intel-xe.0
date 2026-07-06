@@ -4,158 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D438AC43458
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 16:31:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 737A5C43458
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 16:34:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 709DE10E3C7;
-	Mon,  6 Jul 2026 16:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3304D89CAD;
+	Mon,  6 Jul 2026 16:34:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VIrBHtKX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wl/TXzst";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33D7410E3BB;
- Mon,  6 Jul 2026 16:31:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F31889CAD
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 16:34:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783355517; x=1814891517;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=qcGAZQ0JdugosbR0bZHdQXO5HKuN0pLEhyVrtX4UeJw=;
- b=VIrBHtKX7ruwOJaUXkQsH7LbQFXc4+4t8Mj5AOkGvrfi06pV41aCazAT
- a4rDKe1cbWcOJS6xMIq6ATylAE+m7oRUbLc3HRNmAWsUoJvyfLah16oNz
- MPupSRc1aJX/50iJodrOgTczOOIfjERPhF1fxvvQ+v8RWbUaYJdM+8FBq
- 1e4ngZOBqlO61x+d6i+N2b6iek9dfvQLKj/tuV45LIO7ZVhN58BFldv/Y
- ZpYQjx/QuLutkR2qQGFgTDAd3fwfmqNj93qjW60xkHMIpLNxBT2rihBv8
- FIlQfWwJBQwyH0dx+ANuw2xkAuTAPHHTUd7TQi17zmxOi/A8LFMKzf3Id w==;
-X-CSE-ConnectionGUID: 9CMeg4Q7Q3GpwTk2RzdU6A==
-X-CSE-MsgGUID: 6l2ffoU2Th2vlAYxzC/VhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="101539406"
-X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="101539406"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 09:31:57 -0700
-X-CSE-ConnectionGUID: nMysz/FMQQyQMtZJfMnW4g==
-X-CSE-MsgGUID: 7S1VMU6GTRCmb8QQjvqEIg==
+ t=1783355672; x=1814891672;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=qJrMXeVCDAMWZhNCvIz0UVAENAWfFKMwI43rgYttbFw=;
+ b=Wl/TXzstey+SD1ca6c/MWO7NktTT7cetn0pOWbRtEtNaR5AQa1ifWDsc
+ ydoJ4flYGafBgMP0A/JUIPycNkPrzn0kdgQxHn4MtKCi12VhZ+1k0SZzF
+ F9E9BVlrJRAzNXPwvOpZdM/QnZp81hGvXItMznODp/5MpG1MIVslXLGzy
+ 3/mCnd5E2wGMJCIRnG5mJ/jwVJK0jzmrbPQfX38RQRkVnkVKwGJ2x3YQY
+ DbfSWs5eq64P1lI3ZeL4K68MyXvJh6e9cVOltAhL8WBFvmTnBuxaTjoby
+ 7OMbxCTqw6Qj0g7/2ZMsxAmaVnMphPw3gstfE2/wm4UJrPU0VhKmoMXNY Q==;
+X-CSE-ConnectionGUID: SuyYcxf+R2myOISLiKCVxw==
+X-CSE-MsgGUID: eNSH7X+RTz27PqBMq7SMzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="94353295"
+X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="94353295"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2026 09:34:22 -0700
+X-CSE-ConnectionGUID: zDzexI28Tz+SkPmaefX41g==
+X-CSE-MsgGUID: GXVm/m1bRsenagJoFHz9GQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="253853365"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 09:31:56 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="249316443"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2026 09:34:22 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 6 Jul 2026 09:31:55 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.43; Mon, 6 Jul 2026 09:34:20 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Mon, 6 Jul 2026 09:31:55 -0700
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.62) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Mon, 6 Jul 2026 09:34:20 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.61) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 6 Jul 2026 09:31:54 -0700
+ 15.2.2562.43; Mon, 6 Jul 2026 09:34:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jS2/VZJ895iORo7nfMzM+L/V5AhBxghIV7yKyukPXpO2CQv5PqsLoopcHoBPEmaj2XbCY/kdI9GO7HByV79DvZzhRLTeWDGCZ3Yw2obv4yci0yWZE1H+MKhaQS8wmcLBFk/hJ9qaseLvg0L0VooixmFwUZ6C84VaB2oVtJbPcVZ4A+tr+fLgfGWKuIIhuX65hT3y1+u/crFpdFX/dlnsBcSc1OzIBR6lWlJB/f4W1Kv9VMGUJ1tyM+VUr6+SRO3R4iD5FENtICsgyPMfuO/uvMm+Eb9zpxRLexfGfqEw8LEI6yTHjvZuDjyrJKLE4dEBMmGs40ozMkaHi9B25Ba+4Q==
+ b=StUQqPZX29YAoFoQew7iJgl71+gyZWaiU70yC4Mfavnu3wm33ZXl2cVDr94pDA9c+T2He+76L/Rj0qVUJ6BJnh4V1nXv4aDr6D+JsJsEolATIbEjXNj30GaC/IYJ0q/qGKS4aczqcHxKZJQOmA1P8S2EjJayB345keP5cOdljdisyC9L+0H+aNQCzXIjg6B+k4l9FXsvdyXt0OrMzwzsi2T9YHXsnE3mXOQV4h1OkM0WCXxvMvEvwgkSNTvWFBT7dweH1vtxqZIfF7NPo6WTmwyo9G2TbpRXxN+GX5++cqW3leQ6wrxPKcmSCjFKbG8ud4TKUkpbsSt+PjFtS4FGHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iIuII0v7/vaF66LMp1fysogR2Ojc+ydhX2sGgAx0AQg=;
- b=mb9ehAm8x0goED+HVuS0l9yBZHciIe5Dg5Z4gQIei9A7Rd1Jvh7qqGxPipWaQ0ZIakrbv23cCzXXAsASc2Ft/bgxKK9j89I9LILiIJvO4i12woBNGor2PxDLeunoLu/G9CgEOIEaCpwVgmCSCiRdw5IPzE8RIxrYTbqxGzWrakkizu+6lMkTTWr4TkkxJdS9W0a+fvxVYgXnDBRoj/489bL892JDpsa1l2RFSpEFO99zMYLh7y2ePV8nB26g+twxm3F5ZOwdLSNq9A/PQS4MYMjm1LUgxr9/9T+urn+wCe2K9zDDKfo2Lj8PYRVi0yxuzPjtqTQuuU+uSBtIT8GArw==
+ bh=w1bPuPHKu+LN5iiQoBgWs2rfuIF8lqVfe9QYuAMkcr4=;
+ b=vzVZyzYeVVM775FyWbZDsryszWdgG3csLpSfkv/5JLcHqkkLdxRSXBfV5+0e3prbBaaRkQ0DHoE8ObEpdGWq9vpmnQvLLromzHhu2P6WHmOgdeNqfwqi8ie8ADuHrMbMszk270lLtJV/odpxaKnKZqSTMAzh4ywFQvMPexwcNdSfaRoa9AEwpxJfexIKTAg+p++KNPmOG2v5gdSV0KYAQjfdP1xDv0sOJWFG3T7onk+hBxhTnUKBDlmyb6VZal0QPICOPzNJTnbl20cQaaz5TJ7aE2o5JeqzMW9a2v4Sfz5byiJq+rIL8FyHHitNR2xanQS9Q9jDklEWQlpz1CgTIQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MN2PR11MB4629.namprd11.prod.outlook.com (2603:10b6:208:264::9)
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by CHAPR11MB9656.namprd11.prod.outlook.com (2603:10b6:610:2fe::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.13; Mon, 6 Jul
- 2026 16:31:51 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0181.008; Mon, 6 Jul 2026
- 16:31:51 +0000
-Date: Mon, 6 Jul 2026 09:31:47 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-CC: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, Alex Deucher
- <alexander.deucher@amd.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 03/10] drm/ttm: remove ttm_lru_walk_ops
-Message-ID: <akvYc0RxAh4rkbYK@gsse-cloud1.jf.intel.com>
-References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
- <20260703-ttm_2_drm_exec-v1-3-43685ac1286b@gmx.de>
- <247fece24913008be6d42ab0b6f19da1cb95abe1.camel@linux.intel.com>
- <be0b18e2-d5c0-40d5-b5ed-01acf6189955@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 6 Jul
+ 2026 16:34:18 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0181.009; Mon, 6 Jul 2026
+ 16:34:17 +0000
+Message-ID: <9ddc0d94-e2f5-46b4-9c95-ffe50fb42e80@intel.com>
+Date: Mon, 6 Jul 2026 18:34:14 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/13] drm/xe/tests: Add object encoding helper test
+To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+References: <20260630132633.32804-1-michal.wajdeczko@intel.com>
+ <20260630132633.32804-11-michal.wajdeczko@intel.com>
+ <akgfPCdZU8bXmWL9@nostramo>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <akgfPCdZU8bXmWL9@nostramo>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <be0b18e2-d5c0-40d5-b5ed-01acf6189955@amd.com>
-X-ClientProxiedBy: MW4P223CA0028.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:303:80::33) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-ClientProxiedBy: WA0P291CA0021.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1::25) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN2PR11MB4629:EE_
-X-MS-Office365-Filtering-Correlation-Id: eb7a4aa7-465d-4f83-7db5-08dedb7c152f
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|CHAPR11MB9656:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7af5ceee-0361-4473-c850-08dedb7c6c90
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|23010399003|366016|18002099003|22082099003|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: prfsNmEsFGCQ691FxuVo1h2VnGutPRj5LF+7sV1/0sdS8fGNibaab8PR+aV6h9VZ4kSS/ZqtSQ8J+nlF0FklFItOco8+t81Do5aBZML5Bq+jiD0yIKQbxfaN2u1l0h78y/NeXbwcAEYyeuWYb/ULHfKsw0jiZsflsOSYGOx8xBx0x2C+EzxZZ0+lDM55VDfD61B0fnmXTPPB3Qs0ha+V9Si577wE5GM3NIMLbkKfATwbRT69kxs0oN6+fcG4wZ4db37iDYupDBdXu0zR485TJ9S8SRda2NjZ/7BRMf2GO8NLJS+Hir6EoyanzBPcIKAxAmXZ3AK0qpbK5f3T+W/eRsyaCqwNwD9RMWo0vmk2xJJymbVUpVWNlAsNf5qOhIfpJ8A/1dejVUXB4uF3YKTmizQQKxq1ZybaIau4WASdeFVnc8PYsz5pPGoDDMNkqU57HTSW/U5d/Nf0kxKSKo7JPs9dq2zfYT6cLYddKJb05miYTYHKRcEm9tITwNneKNRluK8la1Zc13poG23+181Z/S9Bft125WyKEFlf6+8DeesRboXKqpbBZoSfnQAQWc6lkvq5eM7CyysWhLVndyCDNR68NcqcT0Ai/zO5iXDEmUJL0vLA9NIVjxTv8TDFNDN1xnbaagCpF/Zn6i9S5zAQl3xUedUT5019eQrZ7hf/caE=
+ ARA:13230040|1800799024|23010399003|366016|376014|22082099003|18002099003|3023799007|4143699003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: rU7Qrb+OABQrI1VWpNhbDRxLTVCcZU/MQ9fHkrQPIjUYl4yJR+AcBL1GCd4vbkUEiwG8YzUoNJAR0Me3kGzTdskGTperiF2QWlnwuCwijGxXmKONRGLbNTxPzAfBuvOOQ2AjDURzgDeLU/YcQqlVDluXo1jY4lOskq1tztuDbA6ihljEShBrRKPs0W+3/EZswAArVXVg6BIT9lqh+Uxv2nyo3hPzvBgy7I639zibbIC7e36Md55fogHnAtpGkLC6p3KsjrltBfKeTW2iXPSUsbsgQhoUyO9SvGBPrLAF695sn2PsGYcQHJIdeFKEsuLy6SVbGTH7ay0OW6O5tgmef4qKGpPebN8EBFqqKWnoY+29nHMuunjglZouYhCgkq9Ov0YPzdpoGPs7Sjw69teK3PXjD8s3XD3r62HNg/jtVfPe9vyBuaTuONYB9Hun2InXIU+vGHeB2X/2olL1zpe4+ZRfObmOqdAbfzuxQLazdYhaCE32KOai7H1rwq6/LTqjX1FQXjHtAadPuvc3xEMmJkZRaHE82f7DJerwpghirt94BfHqrNg5jUCR5gCxtsxV8UgMk0zmPOQQaFCdbgQKf1vOT8xmksK1j0S7OgxRR2CbNsAP+0uNvYRgi78Y/24erW1NcR27/M9fzzToX5t+SC9J/Tnxmc9V/BJpLwnU+ws=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(23010399003)(366016)(18002099003)(22082099003)(11063799006)(4143699003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(22082099003)(18002099003)(3023799007)(4143699003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?6SSgR3dKgoc3YB6oV8qF17495B8iTI3VmvyUwLQiEntTSqkVlRbID1SXDb?=
- =?iso-8859-1?Q?utk01c11o+hP4w4PBEhZtULMzz0Azn2/Rbvv9W7NT5U6wGsxY0M1SMp5lO?=
- =?iso-8859-1?Q?UtQIyeyoRJ0Dh3Cr7j7937SJgmSWzS4/QVyhToJOMjUVwOcukukmRfpZCN?=
- =?iso-8859-1?Q?Fkj6lhThy3ZUyrwYtg1w76dgne9lGFNWzL+gdxeCylHYlKCdkq041p8L4f?=
- =?iso-8859-1?Q?7zoXLUxyCQXudcKIc78dFTQlXU1ta3FSklBnAf3kksdw7oQka5BpOIDYCZ?=
- =?iso-8859-1?Q?eXHxNGqo5G3XLCtRCJ7WF0LNVK04DYu64TFhyqGs+iOJv6BW1OR2QupGNO?=
- =?iso-8859-1?Q?zfJ26zAuHN+x1Jk91gCI7x/HCUOGH1B/0pTL+Pjsr5fno7/XeKm4x32Pvv?=
- =?iso-8859-1?Q?uTGG+MV1hQhDhBbrNw0cSav5KvjOa0BJguZZjBdyb2gZkJerkcDB5TCw21?=
- =?iso-8859-1?Q?Huig3JlxkW6FXjFcnmnG90HcemV2Olh3/RW8J8sEvEEyEz2WuW8wm7enVg?=
- =?iso-8859-1?Q?W991I5gh9L2ogZTmETKPY/piP4zvXFNynjDn/RonFBso42K1qAMgjAMpKU?=
- =?iso-8859-1?Q?TB1TtokCBcVg3zOLqH+RBe62cz/ajEHYeqrGazImH9KmlTZ+pxBAhlwYEW?=
- =?iso-8859-1?Q?4AKxvjtrX8WOy0I1TqcWCpZhX/mYlrKI/Ly1odHdYSNZL+NUI24LEyhjGZ?=
- =?iso-8859-1?Q?aumQicB9twknA3OAu6GvD5yvIw5+tey0CEQgddJhnMETopaNSGgWppWc8U?=
- =?iso-8859-1?Q?+ZoMLG6J4OlI3McFmJUC6wlebp3kPLhyu7q/UIs7Vg7GwBawRAIhgKARW5?=
- =?iso-8859-1?Q?9kjIosAqX67Bz7Jc4qgt18emGVm9o3NnwpaLFuKUuingwIBUd8mf7u9zEN?=
- =?iso-8859-1?Q?3vgtZKVG0RfjZ9oXUDHVWlH9qAnDWhbdLncxSt6tOchAq70c/cXsZQta1R?=
- =?iso-8859-1?Q?00GRVS//+CINLJSrM/yQKtkS0TbEXDK0/o96njYv0j0nSjZTTN+FwYJX3n?=
- =?iso-8859-1?Q?3goi9UElvjLq8ptO3Fn70wh3KRdJOS8l1NyPqNSO43yv95+rulNl3jz0Xp?=
- =?iso-8859-1?Q?BfNHOVvTH1urndu6on8uhtu7mIQqDoo8DlYY1OcYyDrV8MwFMayKDFnX7C?=
- =?iso-8859-1?Q?CkZ2NJM9anoroJNuHjBTGiEgzVanMVAzPQaIftwWwW1rabL4//0FGd3ipE?=
- =?iso-8859-1?Q?bblzDIbtuscMVxLmBUd2kRWiNKI8tou5m7BF08EZ/tvTpjU9u9VfdtfivC?=
- =?iso-8859-1?Q?YNtv1Zl3b+QhdwI2uvcuORjRiWy2CGuDu1OZ8IUUJeU2T+CmzEBXf4T8ne?=
- =?iso-8859-1?Q?kjsxwQl+qQnurUOHLpR/5YC7n2LIA8rc6r9t13nVHZKnt1aWgK6tph3YtY?=
- =?iso-8859-1?Q?uyrRkCxzFXuiOzyyEAwPSJ+ZXbwBpySghN8kTdYDUlj+4YlN1hyeYTxvlw?=
- =?iso-8859-1?Q?Rjwig7unvhOImv9M+cwKbmBZdcFrUvXxwTs4a4BtljIn7GnSQAoi88a/fB?=
- =?iso-8859-1?Q?EGtQhvJ+wYjtkfSwBTeANl/lOyeM3h/JR19+kWFZ8NZcuQ5Gc8bfA/3kE9?=
- =?iso-8859-1?Q?JBY/zYlmUdRKSx6hi6mmn6hvCFvAqNi0MG7Cn6jX9dIxCTc4g0gdlrPS7B?=
- =?iso-8859-1?Q?BdZ3neh0iYFZi+6ttNYSQ1zFkMiaHVn2cZLf2genlBti2X1PpoyaxP8nwu?=
- =?iso-8859-1?Q?E/Yp7FH0+dbUKpmiyLAUwfWwQWg5aSDU2zHw7cN5SUC+6kjZnbhHy66J5M?=
- =?iso-8859-1?Q?CZGL6DRfYxHmKRvql5VHh4/JS0w96++A23MOdNSX3ms74PlbS/b5vGBqZV?=
- =?iso-8859-1?Q?OROfWNeOoA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: sOm54EcEjwYaxVG8H6Bm2a/AwS7YPlven+vBP2SATUuKrv1VJBbfA1FtRs3uV/k65Vc9NKgx6KexSFIHcuPx8pAyIc6ggFFRxteehKsc4WTdKjzQWIrSSiu787jY4I/R//alL1bRajwNmCjVV61lmLb4/7YADmrSSfKg04ibLnIbiOMt1YeUJwK6sa3I0ochlWMXvhnf/+AZc4dIsR2NpVeQmffkjJ/gNKHjMkz3t27ardcvtFQnXefWgZm85kPh8TQUULEUut+V/Rm5Zu6p54rCplAojBWKcYLq/xCanF3gy8C34sm0c5sICLB2djJLp/XmcWkuBM49aB2iDGKOfA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb7a4aa7-465d-4f83-7db5-08dedb7c152f
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T0wrNmticnVIa1lFUXlWdUZubXJaSTI0VnpBVG1HbmJSUVI4N3BoaGlLdk5Y?=
+ =?utf-8?B?c3RiaFAwdTZzU2UyN09qVWgyQ1k2QjBaa3BGT2ZVZG94Q0JncmQ0MUNPVVZu?=
+ =?utf-8?B?dmU5dURmQmNsSmE2ZWJ3S2REd1NRdWgybFhCN2M4WjVUUm9KeEVBdXdrWW1L?=
+ =?utf-8?B?TCs3ZzRhblNvUnNXUHdxc1pKWDNYYURHNnN2M2JPQ3F1OXRjMXNjeFZQS08z?=
+ =?utf-8?B?ZnY4cThPOWFTYmdZUlEydzVKRU00NFhYN3dzRkdMRHEzeWZkUSszNDVNZUZu?=
+ =?utf-8?B?NW1jVk5jYWNUUVhBRUpLb1drelhIQmJmVlBwK3pzTE5IRzBXQzB0K3Mxenlp?=
+ =?utf-8?B?UHpXVVlNY2ZObnMyR2ZJSlJ4cFdNZzcxZ25CMDRybUcwK2JNSkpCSitPSGpv?=
+ =?utf-8?B?Z25xdUJ1ZDd5M1c1OWNQOUJVb0ZTQlgyK3ZNTndLSlhmcTAxVGw1WTZWYkRy?=
+ =?utf-8?B?akVXQ0VJSG9jU1VRSWZOZU9BU04rbXJOa1JCZnk3V3BBTWpxaHRaNktJNHdM?=
+ =?utf-8?B?V3pjQ3czNFdXYzVIVnVkUEQxN0RvMzV0bjFmY016dG42S1pKam1OMVIyVFJj?=
+ =?utf-8?B?NDRGY0pMTzlSWXBhRFdzT1BOTENuNUVOdGs4bDY0a0hzRmZJcmsrdm5yVkZ2?=
+ =?utf-8?B?TUZpTXFRYU5QTjlFMWJKa2tNME0xM1VwWUdMWDFTQ25yYjJkeFI4c05jK2JX?=
+ =?utf-8?B?bmYrckV1UkhQQlhQbUZPTnplcm5pOUU4U3c0ZUxkU1dzVWw3RVgyUnpiZXFs?=
+ =?utf-8?B?SWJ2Y0RhRjFGT0RzRDZWdmFkREZpRUZObktmZGEvblA0Q3BzeklvMWE5S2o4?=
+ =?utf-8?B?a0FXK2xPT3NMbVNOZGxXLzN2R0lqQmNPYWQrd1NuaHdmTlozREFPcXpOS0tx?=
+ =?utf-8?B?UFJFMXRjT3BmTm5HVkNURFB2ZklpbHZ4Y25rcXNQZWRENk5JaWhIT0dIb09s?=
+ =?utf-8?B?clpvUFc3QkFjVXpTdFRLZDVSMnJ5R1Z6TlQ3YnBPbGZaTVYyTlZuWE5MRnQw?=
+ =?utf-8?B?N1VyRlpXQmVTTnpOWWs3WlNwaTFLSHdMbTRPUUNYS2Nta0xYZ2xCWURkU2t5?=
+ =?utf-8?B?akVWZFZRVUNySFpERGYrbmhuTnBUN2hUTnNIS1U4WXNkc0NYTVBBaStxMjY4?=
+ =?utf-8?B?d1Y3VVIvSDNQbjEvV3JSY25nWnlITS9LRGovUVF4eXZpTHZZZFlNWnFKQUh5?=
+ =?utf-8?B?WHJtaEhYbHMxdG1yQ1ZJT1F1cWlEdzdBZk9rc3Jka2J1Q0VZcExtaU1aU3Ny?=
+ =?utf-8?B?UmRSdTZTKzE4bHlBNUNVS2NZNytRWmdtUjc1MWVKRVNZbngvei9LNElkM3Q5?=
+ =?utf-8?B?czhwTHlKZloyNmRicFgvK2YrVUErZmNTRFhFVzVXOHVkaVVpQ3plbytOU3hu?=
+ =?utf-8?B?bDZxSHVkUFBMc3A1V1RlWXo3Q2NqY0I5SXVQU0c4R3drY3lkbFIzZFhzaWZr?=
+ =?utf-8?B?VHI0bDZlWTgyTUE5Zys0eXE0UXR2dHVEMTArNkRlVTVhMUZHTmFUaWlIUXNZ?=
+ =?utf-8?B?dW9NQzRqRmh1WGdTeVFEZFdyU2dtcTZEdE91a2VUeHcvejNDbjMzdEpZUm5T?=
+ =?utf-8?B?R2Z3RmJ0Y2M2NThuSENrNlVoRzB4dGJrQW51WCtqbnA5RmZRNVBtVlA5c0tH?=
+ =?utf-8?B?WE9MNGw5N01QNkp6L2tsSDV1VnpFWjlGVDlndGJndUlNeVVRejR6M2NlK0FL?=
+ =?utf-8?B?anR0ZzF6RzI1L3ovdWJzdWdJY215RTJ0SE5jRmUzajBiSFRlZnY3bld2d1h2?=
+ =?utf-8?B?ZTdNT0N5bGVEMjF5UjYyWFN1dEhlaUUyZUt4eEpoUm5FU3IrdERJRzB5NVF4?=
+ =?utf-8?B?c0lBMVJEQnF6VExVTjhQY0FpU0E1bGZFaDBkREVvZG0rS2xIU2lhSDNUOFNx?=
+ =?utf-8?B?UE8ydVpYMWY2M0VJckd5UmQyTGlwdVUzRmc4cXJNSEZUSTBENnlkeWxMWmtm?=
+ =?utf-8?B?V3N0eFM1aWIzQmg4Z3UxcDRKMGVONmo1ak15WHVUR05wRDcrQmV0OE9PbG4x?=
+ =?utf-8?B?L3M0clgxS0xTQWhxZXh5czk0S2xzTkx5N1FDTndWaHd1RnVVOFFvV1l2bUky?=
+ =?utf-8?B?TmN5MVR3WVBMQStvTWZTQlBXM1NOamJtMDV6bTV3SFRVRStVb0dDemtXeEtp?=
+ =?utf-8?B?QW05Z0phdkVNWUNMVGJtTWNueXB5R3FtR3F6MkM1WWROT1RrUUIrK1p3OFEz?=
+ =?utf-8?B?Mk1KMlRjcFlXVzE0Rm80YlRIV1JzK0tNZkhLemt4cldUSk5PQm5zMzZDQ3oy?=
+ =?utf-8?B?cmJyWnI0ZDY3Vm8walMzM3FhWUhDVTE4ZktlZ1VtUzBjNHNuUDllc2g5QVJX?=
+ =?utf-8?B?amZFVS81S3FmcEoxTGFQOGhCZ1VaYVViRW5LNW1MVlZBcjFDUzY5SWJEY1J6?=
+ =?utf-8?Q?yS2xF2K74PQgRycw=3D?=
+X-Exchange-RoutingPolicyChecked: pzZojezfehOUxt59ly2eJOYNYHMNpPtAf+PLa0Uepl7Fsh10H9D3N6tlFG9A/61+5glogv7X37nqnEd9euav4aAN+xgvcOp7G7hXv3yx6Jd1uQeU4o209eXmk6Zc56BnlnorSG1GApvpbvcQioCLWTqrc6xLUvc8sfHhDcy/yVoVoNZKRDhEaAUUwe1gdbZBe8OhZf3zPo85xW0TGb8ZvB0vZ3ddtrd8XSyOsZbstlyxFmW+seivL/L4WFeK1Om6rej7RiCvN2Cbsp2euBBV+fxhOJsbYCCYCJ5Sxmkgeaumq0MrKrGvv2nG5MU1sOQevoYfjg0x0GIvRER75tVLVw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7af5ceee-0361-4473-c850-08dedb7c6c90
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 16:31:51.2290 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 16:34:17.8833 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8Ge1nOPeNW+unTvfdh6yR0m1m9j3NWo/y58fBXV4lNMX3qvexm6EdeGoTlgGerOLeo33VrYeZ4/3eMB5gdhx2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4629
+X-MS-Exchange-CrossTenant-UserPrincipalName: mSCE6F7gO1zOKFt91RTJFxZ02Ru2H/tYe5bjlMInon5T86PGAVcPFRDrXrC5wbDqYViAuULnjrNYSmC9bfxs6h8kcOB3tr+3YudPQb1yVgc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CHAPR11MB9656
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,175 +170,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 06, 2026 at 03:05:54PM +0200, Christian König wrote:
-> On 7/6/26 14:34, Thomas Hellström wrote:
-> > Hi,
-> > 
-> > On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
-> >> From: Christian König <christian.koenig@amd.com>
-> >>
-> >> It's just another layer of indirection.
-> >>
-> >> Signed-off-by: Christian König <christian.koenig@amd.com>
-> >> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-> > 
-> > Personally I don't have a strong opinion on this, but the reason for
-> > separating out the ops is that adding function pointers in the walk
-> > iterator itself was once pushed back on quite forcefully by Linus when
-> > I tried to do that in mm/pagewalk. Claiming for various reasons the
-> > standard way of doing that in Linux is using a const ops struct that
-> > ends up in unmodifiable memory.
 
-+1, I was about to comment on this patch saying iirc I a read Linus
-statement once const ops struct was Linux prefered way.
 
-Matt
+On 7/3/2026 10:47 PM, MichaÅ‚ Winiarski wrote:
+> On Tue, Jun 30, 2026 at 03:26:29PM +0200, Michal Wajdeczko wrote:
+>> We will soon be encoding complex objects as KLVs using our helper
+>> function. Add few simple tests to make sure this helper function
+>> works as expected.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> ---
+>>  .../drm/xe/tests/xe_guc_klv_helpers_kunit.c   | 162 ++++++++++++++++++
+>>  1 file changed, 162 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
+>> index c2d5f0098816..9a8acc85e9f1 100644
+>> --- a/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
+>> +++ b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
+>> @@ -7,6 +7,7 @@
+>>  #include <kunit/test-bug.h>
+>>  
+>>  #define TEST_KEY	(GUC_KLV_RESERVED_RANGE_START + 0x3de)
+>> +#define TEST_GROUP_KEY	(GUC_KLV_RESERVED_RANGE_START + 0x3f0)
+>>  #define TEST_PAD	0xdeadbeef
+>>  
+>>  static void test_count(struct kunit *test)
+>> @@ -129,11 +130,172 @@ static void test_encode_string(struct kunit *test)
+>>  			    xe_guc_klv_encode_string(failed, ARRAY_SIZE(klvs), key, string));
+>>  }
+>>  
+>> +struct some_object {
+>> +	u32 value1;
+>> +	u64 value2;
+>> +} __packed;
+>> +
+>> +static u32 *obj_raw_encoder(u32 *klvs, u32 avail, const void *arg)
+>> +{
+>> +	const struct some_object *obj = arg;
+>> +	size_t sz = sizeof(*obj);
+>> +	u32 dwords = to_num_dwords(sz);
+>> +
+>> +	if (IS_ERR(klvs))
+>> +		return klvs;
+>> +	if (dwords > avail)
+>> +		return ERR_PTR(-ENOSPC);
+>> +	memcpy(klvs, obj, sz);
+>> +	return klvs + dwords;
+>> +}
+>> +
+>> +static u32 *obj_klv_encoder(u32 *klvs, u32 avail, const void *arg)
+>> +{
+>> +	const struct some_object *obj = arg;
+>> +	u32 *end = klvs + avail;
+>> +
+>> +	klvs = xe_guc_klv_encode_u32(klvs, end - klvs, TEST_KEY + 1, obj->value1);
+>> +	klvs = xe_guc_klv_encode_u64(klvs, end - klvs, TEST_KEY + 2, obj->value2);
+> 
+> Sashiko spotted that we should check for errors between the encode
+> calls, and that's probably a good idea.
+
+the complain is about the calculation of the avail parameter, as with klvs
+pointer being faulty, result of subtraction is undefined
+
+but
+
+the assumption is that all encode helpers shall ignore avail parameter if
+passed klvs pointer is invalid, hence passing garbage as avail should be safe
+
+and this allows us to write simpler code, as any encoding failure must result
+in ERR_PTR, which when passed to the next encoder, shall be immediately returned
+repeated by the subsequent encoders, without looking at other parameters
+
+thus we may only need to check the result of the final encoder
+
+and here, this is a pure example encoder code, for the test purposed we check
+the final encoding result in the code below, for object encoding test purposes,
+we don't care about internal encoding steps taken
 
 > 
-> Ah! I was already wondering why the extra indirection was used.
+> With that:
+> Reviewed-by: MichaÅ‚ Winiarski <michal.winiarski@intel.com>
 > 
-> I'm perfectly fine to keep it. It just looked a bit odd.
+> Thanks,
+> -MichaÅ‚
 > 
-> Regards,
-> Christian.
-> 
-> > 
-> > /Thomas
-> > 
-> > 
-> >> ---
-> >>  drivers/gpu/drm/ttm/ttm_bo.c      | 12 ++----------
-> >>  drivers/gpu/drm/ttm/ttm_bo_util.c |  2 +-
-> >>  include/drm/ttm/ttm_bo.h          | 34 ++++++++++++++---------------
-> >> -----
-> >>  3 files changed, 17 insertions(+), 31 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
-> >> b/drivers/gpu/drm/ttm/ttm_bo.c
-> >> index 2b470c1746f60..1fb8c53da0362 100644
-> >> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> >> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> >> @@ -545,10 +545,6 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk
-> >> *walk, struct ttm_buffer_object *
-> >>  	return lret;
-> >>  }
-> >>  
-> >> -static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
-> >> -	.process_bo = ttm_bo_evict_cb,
-> >> -};
-> >> -
-> >>  static int ttm_bo_evict_alloc(struct ttm_device *bdev,
-> >>  			      struct ttm_resource_manager *man,
-> >>  			      const struct ttm_place *place,
-> >> @@ -560,7 +556,7 @@ static int ttm_bo_evict_alloc(struct ttm_device
-> >> *bdev,
-> >>  {
-> >>  	struct ttm_bo_evict_walk evict_walk = {
-> >>  		.walk = {
-> >> -			.ops = &ttm_evict_walk_ops,
-> >> +			.process_bo = ttm_bo_evict_cb,
-> >>  			.arg = {
-> >>  				.ctx = ctx,
-> >>  				.ticket = ticket,
-> >> @@ -1187,10 +1183,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk,
-> >> struct ttm_buffer_object *bo)
-> >>  	return ret;
-> >>  }
-> >>  
-> >> -const struct ttm_lru_walk_ops ttm_swap_ops = {
-> >> -	.process_bo = ttm_bo_swapout_cb,
-> >> -};
-> >> -
-> >>  /**
-> >>   * ttm_bo_swapout() - Swap out buffer objects on the LRU list to
-> >> shmem.
-> >>   * @bdev: The ttm device.
-> >> @@ -1209,7 +1201,7 @@ s64 ttm_bo_swapout(struct ttm_device *bdev,
-> >> struct ttm_operation_ctx *ctx,
-> >>  {
-> >>  	struct ttm_bo_swapout_walk swapout_walk = {
-> >>  		.walk = {
-> >> -			.ops = &ttm_swap_ops,
-> >> +			.process_bo = ttm_bo_swapout_cb,
-> >>  			.arg = {
-> >>  				.ctx = ctx,
-> >>  				.trylock_only = true,
-> >> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> >> b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> >> index 7ed085adf1c9b..29f068944a972 100644
-> >> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> >> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> >> @@ -919,7 +919,7 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk
-> >> *walk, struct ttm_device *bdev,
-> >>  	s64 lret;
-> >>  
-> >>  	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &walk-
-> >>> arg, bo) {
-> >> -		lret = walk->ops->process_bo(walk, bo);
-> >> +		lret = walk->process_bo(walk, bo);
-> >>  		if (lret == -EBUSY || lret == -EALREADY)
-> >>  			lret = 0;
-> >>  		progress = (lret < 0) ? lret : progress + lret;
-> >> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> >> index 1eae9eea5ff32..0fcd5082a7080 100644
-> >> --- a/include/drm/ttm/ttm_bo.h
-> >> +++ b/include/drm/ttm/ttm_bo.h
-> >> @@ -189,24 +189,6 @@ struct ttm_operation_ctx {
-> >>  	uint64_t bytes_moved;
-> >>  };
-> >>  
-> >> -struct ttm_lru_walk;
-> >> -
-> >> -/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
-> >> -struct ttm_lru_walk_ops {
-> >> -	/**
-> >> -	 * process_bo - Process this bo.
-> >> -	 * @walk: struct ttm_lru_walk describing the walk.
-> >> -	 * @bo: A locked and referenced buffer object.
-> >> -	 *
-> >> -	 * Return: Negative error code on error, User-defined
-> >> positive value
-> >> -	 * (typically, but not always, size of the processed bo) on
-> >> success.
-> >> -	 * On success, the returned values are summed by the walk
-> >> and the
-> >> -	 * walk exits when its target is met.
-> >> -	 * 0 also indicates success, -EBUSY means this bo was
-> >> skipped.
-> >> -	 */
-> >> -	s64 (*process_bo)(struct ttm_lru_walk *walk, struct
-> >> ttm_buffer_object *bo);
-> >> -};
-> >> -
-> >>  /**
-> >>   * struct ttm_lru_walk_arg - Common part for the variants of BO LRU
-> >> walk.
-> >>   */
-> >> @@ -223,8 +205,20 @@ struct ttm_lru_walk_arg {
-> >>   * struct ttm_lru_walk - Structure describing a LRU walk.
-> >>   */
-> >>  struct ttm_lru_walk {
-> >> -	/** @ops: Pointer to the ops structure. */
-> >> -	const struct ttm_lru_walk_ops *ops;
-> >> +	/**
-> >> +	 * process_bo - Process this bo.
-> >> +	 * @walk: struct ttm_lru_walk describing the walk.
-> >> +	 * @bo: A locked and referenced buffer object.
-> >> +	 *
-> >> +	 * Return: Negative error code on error, User-defined
-> >> positive value
-> >> +	 * (typically, but not always, size of the processed bo) on
-> >> success.
-> >> +	 * On success, the returned values are summed by the walk
-> >> and the
-> >> +	 * walk exits when its target is met.
-> >> +	 * 0 also indicates success, -EBUSY means this bo was
-> >> skipped.
-> >> +	 */
-> >> +	s64 (*process_bo)(struct ttm_lru_walk *walk,
-> >> +			  struct ttm_buffer_object *bo);
-> >> +
-> >>  	/** @arg: Common bo LRU walk arguments. */
-> >>  	struct ttm_lru_walk_arg arg;
-> >>  };
-> 
+>> +	return klvs;
+>> +}
+>> +
+>> +static u32 *obj_nested_encoder(u32 *klvs, u32 avail, const void *arg)
+>> +{
+>> +	u32 *end = klvs + avail;
+>> +
+>> +	klvs = xe_guc_klv_encode_object(klvs, end - klvs, TEST_GROUP_KEY + 1,
+>> +					arg, obj_klv_encoder);
+>> +	klvs = xe_guc_klv_encode_object(klvs, end - klvs, TEST_GROUP_KEY + 2,
+>> +					arg, obj_klv_encoder);
+>> +	return klvs;
+>> +}
+>> +
+>> +static void test_encode_object_raw(struct kunit *test)
+>> +{
+>> +	const struct some_object obj = {
+>> +		.value1 = 0xdead1234,
+>> +		.value2 = 0xdead87654321dead,
+>> +	};
+>> +	u32 payload = to_num_dwords(sizeof(obj));
+>> +	u32 *err = ERR_PTR(-ENOSPC);
+>> +	u16 key = TEST_KEY;
+>> +	u32 klvs[16];
+>> +	u32 n;
+>> +
+>> +	/* too small, must fail */
+>> +	for (n = 0; n < GUC_KLV_LEN_MIN + payload; n++) {
+>> +		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
+>> +		KUNIT_EXPECT_PTR_EQ_MSG(test, ERR_PTR(-ENOSPC),
+>> +					xe_guc_klv_encode_object(klvs, n, key, &obj,
+>> +								 obj_raw_encoder),
+>> +					"buf size=%u dwords", n);
+>> +	}
+>> +
+>> +	/* must pass */
+>> +	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
+>> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test,
+>> +				     xe_guc_klv_encode_object(klvs, GUC_KLV_LEN_MIN + payload,
+>> +							      key, &obj, obj_raw_encoder));
+>> +	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, payload));
+>> +	KUNIT_EXPECT_MEMEQ(test, &klvs[1], &obj, sizeof(obj));
+>> +
+>> +	/* already failed, must fail */
+>> +	KUNIT_ASSERT_PTR_EQ(test, err,
+>> +			    xe_guc_klv_encode_object(err, ARRAY_SIZE(klvs), key,
+>> +						     &obj, obj_raw_encoder));
+>> +}
+>> +
+>> +static void test_encode_object_klv(struct kunit *test)
+>> +{
+>> +	const struct some_object obj = {
+>> +		.value1 = 0xdead1234,
+>> +		.value2 = 0xdead87654321dead,
+>> +	};
+>> +	u16 key = TEST_GROUP_KEY;
+>> +	u32 payload = 0;
+>> +	u32 klvs[16];
+>> +	u32 n;
+>> +
+>> +	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value1));
+>> +	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value2));
+>> +
+>> +	/* too small, must fail */
+>> +	for (n = 0; n < GUC_KLV_LEN_MIN + payload; n++) {
+>> +		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
+>> +		KUNIT_EXPECT_PTR_EQ_MSG(test, ERR_PTR(-ENOSPC),
+>> +					xe_guc_klv_encode_object(klvs, n, key, &obj,
+>> +								 obj_klv_encoder),
+>> +					"buf size=%u dwords", n);
+>> +	}
+>> +
+>> +	/* must pass */
+>> +	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
+>> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test,
+>> +				     xe_guc_klv_encode_object(klvs, GUC_KLV_LEN_MIN + payload,
+>> +							      key, &obj, obj_klv_encoder));
+>> +	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, payload));
+>> +	KUNIT_EXPECT_EQ(test, klvs[1], PREP_GUC_KLV(TEST_KEY + 1, 1));
+>> +	KUNIT_EXPECT_EQ(test, klvs[2], obj.value1);
+>> +	KUNIT_EXPECT_EQ(test, klvs[3], PREP_GUC_KLV(TEST_KEY + 2, 2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[4], lower_32_bits(obj.value2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[5], upper_32_bits(obj.value2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[6], TEST_PAD);
+>> +}
+>> +
+>> +static void test_encode_object_nested(struct kunit *test)
+>> +{
+>> +	const struct some_object obj = {
+>> +		.value1 = 0xdead1234,
+>> +		.value2 = 0xdead87654321dead,
+>> +	};
+>> +	u16 key = TEST_GROUP_KEY;
+>> +	u32 payload = 0;
+>> +	u32 klvs[16];
+>> +	u32 n;
+>> +
+>> +	payload += GUC_KLV_LEN_MIN;
+>> +	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value1));
+>> +	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value2));
+>> +	payload *= 2;
+>> +
+>> +	/* too small, must fail */
+>> +	for (n = 0; n < GUC_KLV_LEN_MIN + payload; n++) {
+>> +		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
+>> +		KUNIT_EXPECT_PTR_EQ_MSG(test, ERR_PTR(-ENOSPC),
+>> +					xe_guc_klv_encode_object(klvs, n, key, &obj,
+>> +								 obj_nested_encoder),
+>> +					"buf size=%u dwords", n);
+>> +	}
+>> +
+>> +	/* must pass */
+>> +	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
+>> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test,
+>> +				     xe_guc_klv_encode_object(klvs, GUC_KLV_LEN_MIN + payload,
+>> +							      key, &obj, obj_nested_encoder));
+>> +	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, payload));
+>> +	KUNIT_EXPECT_EQ(test, klvs[1], PREP_GUC_KLV(TEST_GROUP_KEY + 1, 5));
+>> +	KUNIT_EXPECT_EQ(test, klvs[2], PREP_GUC_KLV(TEST_KEY + 1, 1));
+>> +	KUNIT_EXPECT_EQ(test, klvs[3], obj.value1);
+>> +	KUNIT_EXPECT_EQ(test, klvs[4], PREP_GUC_KLV(TEST_KEY + 2, 2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[5], lower_32_bits(obj.value2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[6], upper_32_bits(obj.value2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[7], PREP_GUC_KLV(TEST_GROUP_KEY + 2, 5));
+>> +	KUNIT_EXPECT_EQ(test, klvs[8], PREP_GUC_KLV(TEST_KEY + 1, 1));
+>> +	KUNIT_EXPECT_EQ(test, klvs[9], obj.value1);
+>> +	KUNIT_EXPECT_EQ(test, klvs[10], PREP_GUC_KLV(TEST_KEY + 2, 2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[11], lower_32_bits(obj.value2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[12], upper_32_bits(obj.value2));
+>> +	KUNIT_EXPECT_EQ(test, klvs[13], TEST_PAD);
+>> +}
+>> +
+>>  static struct kunit_case guc_klv_helpers_test_cases[] = {
+>>  	KUNIT_CASE(test_count),
+>>  	KUNIT_CASE(test_encode_u32),
+>>  	KUNIT_CASE(test_encode_u64),
+>>  	KUNIT_CASE(test_encode_string),
+>> +	KUNIT_CASE(test_encode_object_raw),
+>> +	KUNIT_CASE(test_encode_object_klv),
+>> +	KUNIT_CASE(test_encode_object_nested),
+>>  	{}
+>>  };
+>>  
+>> -- 
+>> 2.47.1
+>>
+
