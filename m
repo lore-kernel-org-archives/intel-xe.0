@@ -4,158 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 799D0C43458
-	for <intel-xe@archiver.kernel.org>; Sun,  5 Jul 2026 08:04:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E181C43458
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 02:47:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36EE310E15C;
-	Sun,  5 Jul 2026 08:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5E2C10E713;
+	Mon,  6 Jul 2026 02:47:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBFZO2jy";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="FhmbG0It";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3B2310E15C
- for <intel-xe@lists.freedesktop.org>; Sun,  5 Jul 2026 08:04:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783238690; x=1814774690;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6wjFYh95qNNVlBcUln6pEwt4wAc5CA/lt1QbidmMZkQ=;
- b=VBFZO2jyE1Es5z3n4dulP5D9u+VqyHuwj0J7uoWMeSw9W7b0RAYbZjSY
- MAp3fSX1ci57CdP8yZ3E7t+vB/HKek9nSHnZlXEblEU+rQEaTIURPGdld
- 0nD10F/QBMRw3xB0ge12j8GTPF2xqqJM1jQfCOa1nV4xrIKI10ZRkLruX
- M1F8hTjN3zmc81LpqN3xhyW9cFbxHfT0qR7QRhrMQ7as/EQszuyqAaDNt
- I0Z8VingEFKEZVOPJC4FPMI5DbCjA4Z0zNpaQzQg6mHY2sjRFrn0T0ISn
- 78KW4+hWg/HYu2oILe+hc6vHOi2ZIbkaufgKt3skNxNmxh2337Pi9z/Bt Q==;
-X-CSE-ConnectionGUID: ryqbfciLQOuJF6tov3rzpQ==
-X-CSE-MsgGUID: 2s8a6y2xQxec2QcIqnsCZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11837"; a="101323369"
-X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="101323369"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2026 01:04:50 -0700
-X-CSE-ConnectionGUID: jAshIQTqSf6Q0+/lVU6zpQ==
-X-CSE-MsgGUID: Z0VkZMeLR+WOKMsGuKfP1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="255365441"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2026 01:04:49 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Sun, 5 Jul 2026 01:04:48 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Sun, 5 Jul 2026 01:04:48 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.19) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Sun, 5 Jul 2026 01:04:48 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012018.outbound.protection.outlook.com [52.101.53.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 200C610E713
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 02:47:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hzvMeJ8UObcnplPwARI5aDaGoVAsWcHCoeG1IWi6+KcrF+3az2MdiTfnZ6/+eyExjdfhBjx17+nWGeIpFyOjL9QFBsFCu/qKDPq2GHPZc82KmHzwN4tjD/ECJXjo3pBkiXCmIHna6edxNACrqKRIMi0hW2h8iqyRu5r0VkfJwr815g0xj8TsFU6YPz2H/4WxXXyHOXoe/q6PunNcdYkUFN4+p/lIcKYLQE8gL1F9zlsfgaaT0gKMGoH1DnGC01HumQgIGkWtfg8aoMaxb88xXpUMVubj7q4lKtS6r8XV92n3a8Zud0zMiAJOz8mZ6osQOWaVo+JLBQNvJ3zlb0eKNA==
+ b=r9Y4l8M9yHWzlnX0F2QWICmN9ZaD7RxMxzChc4E/1lEw+gWVouiSlDOB9AMWZP/ektPKO11btGYKvoouTVNeALn6FzySAgcc0BK2T7gSkkA8UB8EnNZe7H1g5kBRRlHN9JoeJMWNquKCkYVZzsMfHyUQOHH3me9OjiZw5aHXS1aUwGmcrXDl14JI2RrByJqsb6bwevaqxcONC9CksU+c/s7dCNDZinFOOMv7NYa3Cr1CuGqxjeS6ZC9AxTByLPV/4CJTHZfsGdnnUkjGOhnnuBsqEN3ZeNxsqgSC1s6MnNid1Gvp5dek0VLXdugT0BfQaPuTZx5GD3x+5EUf1F4oBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qWO/PpcN7rOP0XUJwC7RQtnAHLPwKeMVOeCVSVLITsY=;
- b=OBLLkA38N6QAatJv9hwnQhSlX61pHNl44+67yNwbJOnPmgQ/4gZ6srhKa6bKSP5th3aNejzlGcqPY6a1OVL04X40IHq1ioSZFDueEGa0PU1nls82SrxedomnBDhvAoHLbWUf5y8I3VULL5OKdqnBz+zUaoDrOuOt/SgtwkIUokvJgQKnq2zma3776/72Pf1ngHiUyD9yxXSZRrygBg8b4JusCzl7OFHzThKTWVotWwibm6UD6EruyCvxr3Lg8ml2I9REySSVpelfVt5n50ZmikxKtVvtbynoGW4LfYmVHBkY2CmRUpSlBxk7S5um7iKyBsBt0J/Xue6QK+PoC1LX/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
- by IA3PR11MB9040.namprd11.prod.outlook.com (2603:10b6:208:576::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Sun, 5 Jul 2026
- 08:04:46 +0000
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c]) by DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c%4]) with mapi id 15.21.0181.008; Sun, 5 Jul 2026
- 08:04:46 +0000
-Message-ID: <ffbde075-78cf-4337-af89-e73f6b159802@intel.com>
-Date: Sun, 5 Jul 2026 01:04:44 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] drm/xe: Add sysfs for GT/IA bias
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20260702005614.2621735-1-vinay.belgaumkar@intel.com>
- <20260702005614.2621735-3-vinay.belgaumkar@intel.com>
- <akgAD4rCNg1Ztdxb@intel.com>
-Content-Language: en-US
-From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-In-Reply-To: <akgAD4rCNg1Ztdxb@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4P222CA0005.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:303:114::10) To DM4PR11MB7757.namprd11.prod.outlook.com
- (2603:10b6:8:103::22)
+ bh=YimKKcZxXCK5Z2bOjLneMcn3XX+4Gf9m2i33BS4EUN4=;
+ b=aHUsjlpPMdWGzN5wmqreaEYJAwNSsDyZfZXONK8TTeK8YFPn150rOLuL4DB0Ot3HYssC0U/IRmr/yNtjx5EmtSyDMGWqHF+aeBfHGpwlMxt97oVXSflOSIAEodkaQYb+jzLuuxBmMUf0mAnIe04TO0AivLdacJ6a7UNhqwnmTldIwC+cuKPGZ9Mj5v/QeOc610tkY90N3RCsEtR0DCLWxPiZjcKkVdYJloPoW+lifl8iEUdCs/W8BkZX0BOlpKuw0AxI8vzZJs+7gRk7rff5kc7t6cuUbzc9iQlGqds9oMNeBSiAKdWHN1260reZgacIxHlgS1HGa/EZkqeHUDLvqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YimKKcZxXCK5Z2bOjLneMcn3XX+4Gf9m2i33BS4EUN4=;
+ b=FhmbG0Itb4x5DuvbXjnRaQZX/WxiMLn1678IGSHnmzWIeYX9JPogqOGdrwuFACfVEruUY7bN8X5jSYPCc/zU+XvjOvRZxKCB/laddJo/e2Q6V+9sRDM6MAUctEGW4ZAIdKLiiyx13+PS0SulLUd96kmA2ZaR7Iy6rSWcKKadKUE=
+Received: from CH0PR03CA0332.namprd03.prod.outlook.com (2603:10b6:610:11a::9)
+ by SJ1PR12MB6145.namprd12.prod.outlook.com (2603:10b6:a03:45c::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Mon, 6 Jul
+ 2026 02:46:56 +0000
+Received: from DS3PEPF0000C37A.namprd04.prod.outlook.com
+ (2603:10b6:610:11a:cafe::55) by CH0PR03CA0332.outlook.office365.com
+ (2603:10b6:610:11a::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.13 via Frontend Transport; Mon, 6
+ Jul 2026 02:46:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS3PEPF0000C37A.mail.protection.outlook.com (10.167.23.4) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Mon, 6 Jul 2026 02:46:56 +0000
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Sun, 5 Jul
+ 2026 21:46:55 -0500
+From: Honglei Huang <honghuan@amd.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: <honghuan@amd.com>
+Subject: [PATCH v4 0/3] drm/gpusvm: fix IOVA/DMA unmap leaks in
+ __drm_gpusvm_unmap_pages()
+Date: Mon, 6 Jul 2026 10:46:39 +0800
+Message-ID: <20260706024642.614238-1-honghuan@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|IA3PR11MB9040:EE_
-X-MS-Office365-Filtering-Correlation-Id: fae4aaeb-f035-46c0-f123-08deda6c1427
+X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|SJ1PR12MB6145:EE_
+X-MS-Office365-Filtering-Correlation-Id: b06c1aa2-eeae-431f-1367-08dedb08d81f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|376014|1800799024|6133799003|11063799006|4143699003|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: wVvng1S0QEl9PzK835T2v6OKKmOI+y6tRgvWVet8DllruARwhOFZimwf95kzJo8ShsAN5C2wEQLXuin5K2A+CWEruDF4MP97lpFzJ1hE4Bs2PMJ407384R0rmJV6yE3kEz4TJoFH/rD0VW/v3HvzjjwzDs29m4POQnBXS5kT6xwLQXYeitbJlmOhEy+IffPsPHXVL8wCLX0Fu3O33eb+6nAmTt3NHYI5d7wtvW1nyUN3p71l/v4gJwxHomiMi6LUb14EEoWGcwqxqXq6alyhTsjyTZmAEAx3E9nNX60e4Jb1yoJg4kkSTJc0YyCWUysTesF9+dcT92CmhVZ8Pvwra89ZMzMtx4jYJCcQlEY/av7/0tQeEKpy7k7UtrO5sGmUrkNxT7TYDWXznGT20twOVQsb2KM7CtILVuurCtYKee4Qjzy6Ic2plLf4EzLa+O5ZoF0MXPFztgredKLfrGgybPZydccr4fv+1/gWwOa9QqGjHh1f7uoCeNSFU+KjnaMdouOAaMlRBKgTxEf2n7lG9o3HJbxXvG2oxL75v9EFv7zHYlekP1TJ5UfoU6QNzdRO5Ys8V+UFoxgxKYI3UdL6RIk4A3WyAux06KXKGnc8mHlIyEJmMDJ2zZ7HR/I1u+c4LlbLpBWPe1gEl8py/gq62wucwW2kH3ziN0kYDp00omA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(6133799003)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003);
+ ARA:13230040|82310400026|376014|1800799024|23010399003|36860700016|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: ST0HhftbjzVlIrvzwy8bbXrkCvd9awTjUN8N0LBFD7qscyxl/LeP7bzQ9nqCVpgjVe9CZc7o2N1Ctma2s1O9Ae/ASgHX2SINaLinQz0dT4EghAITQSJaUCnHyq/478YQgiAIZqpkXnlm7d5NY0eVBuQ1Cnkh0MY2M6zuy/DGiYrzDc/NMbsxcQy5wcrX7//KNG/As7xUocn2deHL+JNF8l5stCkOgZ+O78sNNcJ/CCE/CtoL7tlKeEYfEh2iGPdOMXVVMKZBDbX6dQUDD0RHt8HXvUp3VYvaV9y/91uEijyxPvYFW+yqRBTH3sMKfEo1OQP42rw/lZOdqUpMVDUaQtP9SndgjjBPPJfvBqK4YB9a0GbIX6EdhuBen7U+k6L0qqis3jTZ1L16uFLXNrBRa+WSgbvto/yc+1B+VTL1N/VykcQ+g1Ow5/caSRrJU2tAcCeC3AYgKjrcQCLPgQX67EJb9xtxpxPkD/bATdR6MNMffxpGBaU0Szsi2V5Ga2JXVQdIwtzaULG1dnkQ3xOh5G+r5ann/I0BrL54xbclZgqvkvuQF07BtWj+lMLIRn48s2hL2OwDxa1i04UOX+acrxq78o+L8j8jBJqg7PYUtcTSUAm44wRTxhlsd9rF0JyYvHMXlrDrD9OZINLQ+os1BlhXkRUfhvj80sRpn0hUTUU5F5trEDXBMvIHMfrpmQiQGD9ybZhI55m8T+mtvzuHhw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(376014)(1800799024)(23010399003)(36860700016)(18002099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzJ6TlJOYjFuSERtYkMxYlVQMWJEUkFyZEZrMW42UjVnU0c4V24vU1U4R3BS?=
- =?utf-8?B?T3ZpUHhVbWRHUmp6L2FUNk9BcVluVlNDVFYyTnp5WGdLWWZVYXpwdnY5V291?=
- =?utf-8?B?bXVraktaaS8xS1FKOE1jYjNFTmdDRlFVOWJJeUNyR3dVUVBPa1NJa3lIU2Rs?=
- =?utf-8?B?VnorQjBudUd1Ukg0RFlrZjllNm9jem9LUHU5ZzBnbHZXWjFKWkVvRnZGQUpG?=
- =?utf-8?B?UEdDK0NyWFB4M0FLNTljUlBoamczQlBidTdMbFI0MDgzMXpKd04wYWRNa2pp?=
- =?utf-8?B?WG1iY1FLTEpSL3k1V0ZzeWhsZUVodDJWYW1WUytWM0tTNmxENEZ1VkVaL3NT?=
- =?utf-8?B?YnQ4MURneVBrSHNoUlNKMUpmbkxaY3lKM1lXLzBZZzJLSkp0WjU4SzRQdTZV?=
- =?utf-8?B?WTJrWnB2SjE2eG1UZ2tIS2ROY3h4c1FzdGF6cGNwNE5yNEZTSUFIMnVyMHg0?=
- =?utf-8?B?d3krUU51OWtLeFY2TE5hSTlEY3VnVUoxYzZiUFJzTUw3bjVoNHpiYUl4Nklx?=
- =?utf-8?B?Z0c1Q2QxWEtpYTlLTzBiRjZaVng0T2tYcmxDMG1TR3I2T0ptckxrY2NiWFNB?=
- =?utf-8?B?a2pwREg2Z1h5dDdTZnpnN0V3SXJyUXFZTlpoN2V5a25Ic2RhbVNqK2tldTdL?=
- =?utf-8?B?V004aVp1Zzd2anE1Z3poZzNSZXpoTVY4SUhSbDV0OEJMN0FYdjZpck8vQ1kv?=
- =?utf-8?B?K1I2SVVOVnF1bnNYZTAyVnJhcHRXczc5S0k5QTU3ekdMS1JZdmR3T3RxQjNU?=
- =?utf-8?B?d3RhMmQ5NXFNK3U5SHU4MDRzd3FvTUg2aXZDV3QvcGo5T2Vmam9CWmJIN2NR?=
- =?utf-8?B?dEJOdlUzWi9QWGN0bzl3VzQ2RUdBUGVzcWJoSVFudnJnQ0xFVzdTZmtDcXBS?=
- =?utf-8?B?OHhvamFkWjZDY2c4Y25nTzUzeTgwZncrTU5vWEtyUVNobU40RFh5OHVseTBi?=
- =?utf-8?B?VTdjbXFvYXZPUVN5ai9adkdlNVB3bFhaUFYwSyt5RUt2Uk1MTExSa1dQbW1S?=
- =?utf-8?B?L1BPUjRSMVc5TjJkRndZNnlra3A0czlqdHp1YVhmR0pFZU04S3QxdTJ3ajhR?=
- =?utf-8?B?VURWUGJPUi9WMjkyYW9GZmpLM3BadXJ3RUUzVWZQN2tlS3ZJSUU2V2RFT1ln?=
- =?utf-8?B?bklZWlBjdllzaTdOcUZkZmNDa0pCOE5ma2tiQjBva2Jqd1dwbVNqOEpXZFVx?=
- =?utf-8?B?NHVNblZmRDREZ2lxblNJdUk0YWx2S2hVREhwTFkzMktwYmJFKy9YaURPcytK?=
- =?utf-8?B?T0hXQlZYcTRzT0RIZDE4M0h6UDZVNG5jUnBaZzNvZ0M2RG1COTQ3ZkhLR3lw?=
- =?utf-8?B?Y1gwOWZvRUtNMnZQelRsMUxlOElYWkRDZ1BkWE9yMmtuRmJlbHpxdTQrTkwr?=
- =?utf-8?B?dE5sNzBORU1Fb1VNbnlPa1FVbWZwdnpvVEVjb21md0FpZWZ4a3VMdkZvZGZN?=
- =?utf-8?B?SGY2TkMrU2tpYjFqTC9XRTNCL1FraVFjUFIxajBrNzdFZEZZSEl6V2g2TERO?=
- =?utf-8?B?cnJYM251RVRTelVvRW9iR3RXZ2RSd1h4bXZHNnNLZk5uZWNaZ2lVNWllK01y?=
- =?utf-8?B?UkhscDc2SEFTWm0zN2M0RFRJSHF2eXZHZWgwdXZhT3Z6ZURjeElJSEhFMzZF?=
- =?utf-8?B?ZitjdURoY0NFTm9FdDJUU1h5RkR1eXFUNlFUMzZJN29xR0h5QnFiYk5hKzA4?=
- =?utf-8?B?TjM1eC8vYmxPREM3RzFmVW9ZaEI5Y3VPeHg0TnZXUW91L2JlSXZxUHgwcVNa?=
- =?utf-8?B?TWppdk8yYTZvaDFZdjBPVm1ndzRPcHgzUFg2anJuOG5kdVA4SDZwRVlaSkFw?=
- =?utf-8?B?VzRvRm1Ma3Z0M1VqZXBTd1hsK1k5eFpWMU0yczkvWXYwMCtweUM0bUl1Z0h5?=
- =?utf-8?B?RnFoOXBCY3Vyak5zYU1oRWRrQzFnMkY0c3VyY0FPcXpyV09ZMVp3aG5VQ2Nv?=
- =?utf-8?B?TnRWY1dRNTRnZGVFVDZuVDlMSFhheERpNDQ1M2wrS2pEUGdFMkE5K1AwL1Az?=
- =?utf-8?B?MzFnVWxzSi9KNEt1dlJpbk50b2FKZ1p1NHZwdUVLMFpwb2J2ZThlSFkvVUxD?=
- =?utf-8?B?d2JOTjJqUTErV0R0RVcyNjNSMmxNSlY0ME1FNlFJQUQ0OTA2MkliV3JTWU1v?=
- =?utf-8?B?UWlQeURXdXdYR08rOFM4cm54Sm1ob2N3ZjZabkxLOC92S0ZVVnQxSUVVTys0?=
- =?utf-8?B?MStlcnpEdXN5bkZQVEtaRVJ1Rk5wZ2tRdFl0eitsK2JPTkRCZGMvU3luYzE0?=
- =?utf-8?B?dHZzaFlpbHFKZVhUeWhzZFc0S045bm5wZzU1S25vK3Z0TmNTN1NkcEt0M2xw?=
- =?utf-8?B?VUpPZ2Vpd3R1OVFRN0Q3V0dYVWp5VDNPb3pKRlpsSkIrYWh6Mnc2ZEpQRlZH?=
- =?utf-8?Q?/RxkoG1DFNAWy3wY=3D?=
-X-Exchange-RoutingPolicyChecked: pb7rwrwz1NKTD9+Ryzo6kC1vEXG/oU7JfPOQzHaRqnWIAHhrAqFSg6Ql2rMuUc5DUO4zvF1FoAOkd0R3DJe9mrrqpO77+FcFu04EkR0DsxOx9cptTV1y4Q7iloY2wnJC0b9GQfchfClxxauQUftbATmQRdmCBHXXsgQmiIcQ4p94M/KAgy/TIqbp0wpp/CCtMTJWFZEfmb+EYK33E0ErrLzQkWH4svW7c0GKeY2mbcM+WokrF7aVhXqrnS9RNzMD9dF91kl1jREdBTMY/Y8Cf4z9bUiyysCvHc6U1gYPZVh16pwc1Kg786rZuNkUpH871CwP3ZlOMasMmQCRmbO0Ng==
-X-MS-Exchange-CrossTenant-Network-Message-Id: fae4aaeb-f035-46c0-f123-08deda6c1427
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2026 08:04:46.5562 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ju/FQOXRAvFP+VnalsQ5bpZIccBhTC99ICEdZUbAeqXqSiV4IPtJe+MABwFCVyBtrY46HEIm6jhmDq7NVJX7062Hbk2bj1YlIFtouTSaHM0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9040
-X-OriginatorOrg: intel.com
+X-MS-Exchange-AntiSpam-MessageData-0: 6+e6tU7TGBJeRuOfNI2BIXKXJUgmffItHTq/yFQ9tKYhMrZef2//P8Evg2IoZK/AdCjD0xqOsKfNeLhHYRw5ZeqBa5tFIjOOQGcJG8bnsByc+ogwpSVBqHb+pswTYMtSWnmllj+Ra/wthVMjvAdFwL5v89MSK3dQgzVlq8gXnndEMRxp2dMCJbEzIeE/FVh1Ztykkf250rZvFHf29GhOGRB7RpbjKZMkZmFM0hoaaadBA2yvJlWl2dbVktIAhYZOo9Wi0M8iHWE8Hb/FM47SvHeqL+hGRH7vtw7GGzXCBntWmoA0U7PhGCmmPbPA5VcpEwfB1b7XLSPqyyrfwOZGg3W3tP9xm3C9Dad3ISePbdMoBRdRdeHK+ze1+NlROfjm2Uzkpnxbj+4gyPBoFEtW1/rfBJ8VhOsc9nBFIgoithbXTCUxSt9IYF4ZtYrr4YHd
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 02:46:56.4592 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b06c1aa2-eeae-431f-1367-08dedb08d81f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37A.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6145
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,139 +108,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Three small fixes for the IOVA/DMA unmap path in
+__drm_gpusvm_unmap_pages() and the get_pages() error path, all spotted by
+AI review:
 
-On 7/3/2026 11:31 AM, Rodrigo Vivi wrote:
-> On Wed, Jul 01, 2026 at 05:56:14PM -0700, Vinay Belgaumkar wrote:
->> GT_IA_PERF_BIAS_REG indicates power budget between IA and GT.
->> Lower 16 bits correspond to IA and upper to GT. Higher value
->> indicates more bias towards that plane. The values are in U1.15
->> format.
->>
->> $ cat /sys/class/drm/card1/device/tile0/gt0/freq0/gt_ia_bias
->> 0x80002666
-> What about decoding this?
+  - Free the whole IOVA reservation on unmap. In a mixed range only the
+    system pages are linked, so freeing just the linked part leaks the
+    IOVA reserved for the device pages. Unlink the linked portion and
+    free the whole reservation. On the get_pages() error path
+    state_offset is 0, so skip the unlink, also avoiding the
+    uninitialised dma_addr[0].dir read, allocate dma_addr with the
+    zeroing kvzalloc_objs().
+  - Do not route system pages to device_unmap() on the IOVA path. Branch
+    off addr->proto so only real device pages reach device_unmap().
+  - Publish dpagemap early to avoid leaking device mappings on the
+    get_pages() error path. It was only stored on success, so a mid-way
+    failure left svm_pages->dpagemap NULL and skipped device_unmap().
+    Assign it when the first device page is mapped.
 
-With the standard U1.15 format, this represents fractions with max value 
-of 1. So, 0x8000 is decoded as 0x8000/2^15, which is 1. Every other 
-number will be less than 1. I could add the decoding if that adds value.
+All three issues are preexisting and independent of the gpusvm MM/device
+state split series; they were surfaced by the AI review of that series,
+so this series addresses them separately.
 
-Thanks,
+V4:
+  - Add reviewed-by for Matt's review.
 
-Vinay.
+V3:
+  - Add fixes for all patches, add Cc stable.
+  - Add reviewed by in patch 1.
+  - Move AI review note into commit message instead of reported by.
 
->
->> This interface will allow us to observe power budget changes while
->> running workloads and also, if needed, tune it.
->>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->> ---
->>   drivers/gpu/drm/xe/regs/xe_gt_regs.h |  2 ++
->>   drivers/gpu/drm/xe/xe_gt_freq.c      | 51 ++++++++++++++++++++++++++++
->>   2 files changed, 53 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> index 08251c7a1a4b..41c5c5f20964 100644
->> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> @@ -634,6 +634,8 @@
->>   #define GT_GFX_RC6_LOCKED			XE_REG(0x138104)
->>   #define GT_GFX_RC6				XE_REG(0x138108)
->>   
->> +#define GT_IA_PERF_BIAS_REG			XE_REG(0x138158)
->> +
->>   #define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
->>   /* Common performance limit reason bits - available on all platforms */
->>   #define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
->> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
->> index a40dd074106f..0847832151f9 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
->> @@ -11,10 +11,13 @@
->>   #include <drm/drm_managed.h>
->>   #include <drm/drm_print.h>
->>   
->> +#include <regs/xe_gt_regs.h>
->> +#include "xe_gt.h"
->>   #include "xe_gt_sysfs.h"
->>   #include "xe_gt_throttle.h"
->>   #include "xe_gt_types.h"
->>   #include "xe_guc_pc.h"
->> +#include "xe_mmio.h"
->>   #include "xe_pm.h"
->>   
->>   /**
->> @@ -242,6 +245,41 @@ static ssize_t power_profile_store(struct kobject *kobj,
->>   }
->>   static struct kobj_attribute attr_power_profile = __ATTR_RW(power_profile);
->>   
->> +static ssize_t gt_ia_bias_show(struct kobject *kobj,
->> +			       struct kobj_attribute *attr,
->> +			       char *buf)
->> +{
->> +	struct device *dev = kobj_to_dev(kobj);
->> +	struct xe_gt *gt = kobj_to_gt(kobj->parent);
->> +	u32 val;
->> +
->> +	guard(xe_pm_runtime)(dev_to_xe(dev));
->> +	val = xe_mmio_read32(&gt->mmio, GT_IA_PERF_BIAS_REG);
->> +
->> +	return sysfs_emit(buf, "0x%x\n", val);
->> +}
->> +
->> +static ssize_t gt_ia_bias_store(struct kobject *kobj,
->> +				struct kobj_attribute *attr,
->> +				const char *buff, size_t count)
->> +{
->> +	struct device *dev = kobj_to_dev(kobj);
->> +	struct xe_gt *gt = kobj_to_gt(kobj->parent);
->> +	u32 val;
->> +	int ret;
->> +
->> +	ret = kstrtou32(buff, 0, &val);
->> +	if (ret)
->> +		return ret;
->> +
->> +	guard(xe_pm_runtime)(dev_to_xe(dev));
->> +	xe_mmio_write32(&gt->mmio, GT_IA_PERF_BIAS_REG, val);
->> +
->> +	return count;
->> +}
->> +
->> +static struct kobj_attribute attr_gt_ia_bias = __ATTR_RW(gt_ia_bias);
->> +
->>   static const struct attribute *freq_attrs[] = {
->>   	&attr_act_freq.attr,
->>   	&attr_cur_freq.attr,
->> @@ -258,8 +296,13 @@ static const struct attribute *freq_attrs[] = {
->>   static void freq_fini(void *arg)
->>   {
->>   	struct kobject *kobj = arg;
->> +	struct device *dev = kobj_to_dev(kobj);
->> +	struct xe_gt *gt = kobj_to_gt(kobj->parent);
->>   
->>   	sysfs_remove_files(kobj, freq_attrs);
->> +
->> +	if (xe_gt_is_main_type(gt) && !IS_DGFX(dev_to_xe(dev)))
->> +		sysfs_remove_file(kobj, &attr_gt_ia_bias.attr);
->>   	kobject_put(kobj);
->>   }
->>   
->> @@ -289,6 +332,14 @@ int xe_gt_freq_init(struct xe_gt *gt)
->>   		return err;
->>   	}
->>   
->> +	if (xe_gt_is_main_type(gt) && !IS_DGFX(xe)) {
->> +		err = sysfs_create_file(gt->freq, &attr_gt_ia_bias.attr);
->> +		if (err) {
->> +			kobject_put(gt->freq);
->> +			return err;
->> +		}
->> +	}
->> +
->>   	err = devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
->>   	if (err)
->>   		return err;
->> -- 
->> 2.38.1
->>
+V2:
+  - patch 1: extend the uninitialized dma_addr[0].dir fix into freeing
+    the whole IOVA reservation, fixing the IOVA leak for mixed ranges
+    (the earlier version only guarded the direction argument).
+  - add patch 3: publish dpagemap early to fix the device-mapping leak on
+    the get_pages() error path.
+
+Honglei Huang (3):
+  drm/gpusvm: free the whole IOVA reservation on unmap
+  drm/gpusvm: do not route system pages to device_unmap() on IOVA unmap
+  drm/gpusvm: publish dpagemap early to avoid device mapping leak on
+    error
+
+ drivers/gpu/drm/drm_gpusvm.c | 53 +++++++++++++++++++++++++-----------
+ 1 file changed, 37 insertions(+), 16 deletions(-)
+
+-- 
+2.34.1
+
