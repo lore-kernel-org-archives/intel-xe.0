@@ -4,33 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88E0CC43458
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 16:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D6F5C43602
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 16:48:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D69910E3D1;
-	Mon,  6 Jul 2026 16:45:25 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A55710E3D1;
- Mon,  6 Jul 2026 16:45:24 +0000 (UTC)
-Received: from 87-93-171-105.bb.dnainternet.fi ([87.93.171.105]
- helo=[192.168.101.113])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wgmRd-00000001UFv-1qDL; Mon, 06 Jul 2026 19:45:22 +0300
-Message-ID: <83eb97e76ee3aa7e49cea7a7966a513b51d5d137.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Mon, 06 Jul 2026 19:45:19 +0300
-In-Reply-To: <20260701153204.4124150-21-imre.deak@intel.com>
-References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-21-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-10 
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD6E210E78B;
+	Mon,  6 Jul 2026 16:48:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RHMAEZLD";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C78E10E3D1;
+ Mon,  6 Jul 2026 16:48:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=Upk4tNhUzSa45KpTzjfX++wsP0s9fIj5d8Z8PGV+dgY=; b=RHMAEZLDq01U6HvRLT6A8Fqxzh
+ A/60Gn5kKN+IyFSfrkHnju6z5BtcQNLaNAQY8/bSSmVJinD+BdFLsO+raFuLhJRBhBveQsx2ywIPY
+ G+Zm/+fW7LKyOTB1KAi0f/gs3caiwOk6w0R9OuGPi2EVI/aHjBjJYlSQbxL3+0e3eRo7bgIf2VyLi
+ iGtCZq0Mk/oQl+JUO+KafwJUHsNtMBwBdRukjEUofL9ctd9m9mpkMLPhNoTlbfiQUzVP8MG4zrIvn
+ hrwUNrtyzgSDJ1FJ1EwahtPgkcvfMc3h6CziVsf2A+HnxhISEOUgxz5IijQpdQk50TPsm1mZa61cL
+ hG4TBKOQ==;
+Received: from d209-89-236-181.abhsia.telus.net ([209.89.236.181]
+ helo=atmagalia) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wgmUe-009q0s-Vy; Mon, 06 Jul 2026 18:48:29 +0200
+Date: Mon, 6 Jul 2026 10:48:22 -0600
+From: Rodrigo Siqueira <siqueira@igalia.com>
+To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Cc: igt-dev@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Christian Koenig <christian.koenig@amd.com>, maarten.lankhorst@linux.intel.com,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>, 
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>, 
+ Natalie Vock <natalie.vock@gmx.de>, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ kernel-dev@igalia.com
+Subject: Re: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+Message-ID: <akvbAndvXJBGFS6O@atmagalia>
+References: <20260702130108.1397444-1-cascardo@igalia.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 20/34] drm/i915/dp_mst: Use link caps for non-DSC
- config selection
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260702130108.1397444-1-cascardo@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,59 +66,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-07-01 at 18:31 +0300, Imre Deak wrote:
-> Use the link caps helper to select the maximum MST link configuration
-> for non-DSC computation, instead of using the separate max rate and lane
-> count limits, which may not form a valid configuration after individual
-> configs are disabled by fallback.
->=20
-> This is a step towards unifying configuration selection and iteration
-> across connector types and between compute and fallback paths.
->=20
-> In some cases all configurations should be considered, as noted in the
-> code comment; for now keep the existing behavior of selecting the
-> maximum bandwidth configuration as determined by the MST connector's BW
-> config iteration order.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index e113c9e60e67d..47b8563f85e4d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -445,8 +445,20 @@ static int mst_stream_compute_link_config(struct int=
-el_dp *intel_dp,
->  					  struct drm_connector_state *conn_state,
->  					  const struct link_config_limits *limits)
->  {
-> -	crtc_state->lane_count =3D limits->max_lane_count;
-> -	crtc_state->port_clock =3D limits->max_rate;
-> +	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
-nnector);
-> +	struct intel_dp_link_config max_link_config;
-> +
-> +	/*
-> +	 * FIXME: Use a proper iteration over the link configurations, instead
-> +	 * of using only the max BW config. For instance UHBR rate configs may
-> +	 * have additional limitations over non-UHBR ones, due to the DSC DPT
-> +	 * bpp maximum limit.
-> +	 */
-> +	if (!intel_dp_get_connector_max_link_config(connector, limits, &max_lin=
-k_config))
-> +		return -EINVAL;
-> +
-> +	crtc_state->port_clock =3D max_link_config.rate;
-> +	crtc_state->lane_count =3D max_link_config.lane_count;
-> =20
->  	/*
->  	 * FIXME: allocate the BW according to link_bpp, which in the case of
+On 07/02, Thadeu Lima de Souza Cascardo wrote:
+> v3 TLDR:
+> Sending again for fixes when running on top of Xe.
+> 
+> This patchset is based on the work of Thomas Hellström at [1] and a
+> followup I have submitted at [2]. This is now a v3, since I submitted [6].
+> 
+> With this version, I reverted the order in which to apply the patchsets, as
+> this one adds the infrastructure and the drivers mechanisms, and a test for
+> dmem.current and its behavior around dmem.max that is currently supported
+> in the kernel.
+> 
+> As for the new dmem.max eviction behavior, introduced by [3], it has been
+> pushed to a branch at [4]. If preferred, I can submit the two patches
+> independently.
+> 
+> I have run the tests, including the ones that test dmem.max eviction
+> behavior on a system with a 1GiB VRAM amdgpu card. Rodrigo Siqueira helped
+> me run it on a Xe system. We have applied the patchset at [3] on top of
+> current linux origin/master [5], with a fixup for the amdgpu driver.
+> 
+> Now, for the changes since v1 [2]:
+> - Changed the test name from drv_dmem_cgroups to dmem_cgroups.
+> - Have system includes before igt ones.
+> - Documented the current SUBTEST.
+> - Changed free_vram driver hook to only release a given BO. This allows for
+>   the eviction trigger by a new allocation added by write_eviction_nonblock
+>   subtest.
+> - Changed allocate_vram to keep more state necessary for releasing a single BO.
+> - Added a global free_vram helper to free all allocated VRAM.
+> 
+> Compared to v3 of [1]:
+> - I have kept wait_for_usage_drop as release can be lazy and we test for it
+>   on test_current SUBTEST, but had USAGE_DROP_TIMEOUT_MS be a little
+>   longer.
+> - Changed BO_SIZE and EVICT_STEP to allow for more than two eviction steps
+>   on a 1GiB VRAM system.
+> - Reduced USAGE_SLACK to avoid false positives, but still allow for some
+>   page table accounting.
+> 
+> Compared to v2 of this one [6]:
+> 
+> - Ignore -ENOMEM and -ENOSPC when trying to fill VRAM.
+> - When limiting max memory, allow for some slack, as there might be some
+>   overhead.
+> - On Xe, allocate GEM object with no deferred backing, and skip binding.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Hi,
 
---
-Cheers,
-Luca.
+I tested this series with the following hardware:
+- RX9060XT
+- RX570
+- Intel ARC B580
+
+Based on that, this series was:
+
+Tested-by: Rodrigo Siqueira <siqueira@igalia.com>
+
+Thanks
+
+> 
+> [1] https://patchwork.freedesktop.org/series/163935/#rev3
+> [2] https://patchwork.freedesktop.org/series/166496/
+> [3] https://lore.kernel.org/dri-devel/20260611173301.17473-1-thomas.hellstrom@linux.intel.com/
+> [4] https://gitlab.freedesktop.org/cascardo/igt-gpu-tools/-/commits/dmem_max?ref_type=heads
+> [5] 502d801f0ab0 ("Merge tag 'erofs-for-7.2-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs")
+> [6] https://lore.kernel.org/dri-devel/20260623174319.4138648-1-cascardo@igalia.com/
+> 
+> 
+> Thadeu Lima de Souza Cascardo (4):
+>   lib/xe: Introduce dmem driver and implement Xe support
+>   lib/amdgpu: add amdgpu_cgroup_region_name
+>   lib/amdgpu: add amdgpu support to igt_dmem_driver
+>   tests/dmem_cgroups: add test for dmem.current
+> 
+> Thomas Hellström (3):
+>   lib/igt_cgroup: add cgroup v2 and dmem controller helpers
+>   tests/cgroup_dmem: add dmem cgroup controller test
+>   lib/xe: add xe_cgroup_region_name() helper
+> 
+>  lib/amdgpu/amd_dmem.c   |  99 +++++++
+>  lib/amdgpu/amd_memory.c |  25 ++
+>  lib/amdgpu/amd_memory.h |   2 +
+>  lib/igt.h               |   1 +
+>  lib/igt_cgroup.c        | 638 ++++++++++++++++++++++++++++++++++++++++
+>  lib/igt_cgroup.h        |  56 ++++
+>  lib/igt_dmem_driver.h   |  25 ++
+>  lib/meson.build         |   3 +
+>  lib/xe/xe_dmem.c        | 143 +++++++++
+>  lib/xe/xe_query.c       |  32 ++
+>  lib/xe/xe_query.h       |   2 +
+>  tests/cgroup_dmem.c     |  92 ++++++
+>  tests/dmem_cgroups.c    | 245 +++++++++++++++
+>  tests/meson.build       |   2 +
+>  14 files changed, 1365 insertions(+)
+>  create mode 100644 lib/amdgpu/amd_dmem.c
+>  create mode 100644 lib/igt_cgroup.c
+>  create mode 100644 lib/igt_cgroup.h
+>  create mode 100644 lib/igt_dmem_driver.h
+>  create mode 100644 lib/xe/xe_dmem.c
+>  create mode 100644 tests/cgroup_dmem.c
+>  create mode 100644 tests/dmem_cgroups.c
+> 
+> -- 
+> 2.47.3
+> 
+
+-- 
+Rodrigo Siqueira
+https://siqueira.tech
