@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91A40C43602
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 05:25:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC59CC43458
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 05:31:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48D6C10E03D;
-	Mon,  6 Jul 2026 05:25:17 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19C0610E03D
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 05:25:16 +0000 (UTC)
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-652-APj01Y9IP2mujpffrA2ESQ-1; Mon,
- 06 Jul 2026 01:25:10 -0400
-X-MC-Unique: APj01Y9IP2mujpffrA2ESQ-1
-X-Mimecast-MFC-AGG-ID: APj01Y9IP2mujpffrA2ESQ_1783315508
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 6D8CD1955F73; Mon,  6 Jul 2026 05:25:08 +0000 (UTC)
-Received: from dreadlord.redhat.com (unknown [10.67.32.13])
- by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 094671956096; Mon,  6 Jul 2026 05:25:00 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org, tj@kernel.org, christian.koenig@amd.com,
- Johannes Weiner <hannes@cmpxchg.org>, Michal Hocko <mhocko@kernel.org>,
- Roman Gushchin <roman.gushchin@linux.dev>,
- Shakeel Butt <shakeel.butt@linux.dev>, Muchun Song <muchun.song@linux.dev>
-Cc: cgroups@vger.kernel.org,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Waiman Long <longman@redhat.com>, simona@ffwll.ch,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH 10/10] xe: create a flag to enable memcg accounting for XE as
- well.
-Date: Mon,  6 Jul 2026 15:22:39 +1000
-Message-ID: <20260706052330.1110909-11-airlied@gmail.com>
-In-Reply-To: <20260706052330.1110909-1-airlied@gmail.com>
-References: <20260706052330.1110909-1-airlied@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51F8710E03D;
+	Mon,  6 Jul 2026 05:31:33 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D7A210E03D;
+ Mon,  6 Jul 2026 05:31:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3839012294443965155=="
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: F_m6i9jv0QS10v1Gd03SA74f_HZ8L1ihC1N6kHmHCnA_1783315508
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Check_for_dead_co?=
+ =?utf-8?q?nfig_space_on_reading_all_1s_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 06 Jul 2026 05:31:32 -0000
+Message-ID: <178331589224.152942.847986469487760293@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260512060128.209698-1-arun.r.murthy@intel.com>
+In-Reply-To: <20260512060128.209698-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,131 +36,136 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <dev@lankhorst.se>
+--===============3839012294443965155==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This adds support for memcg accounting to ttm object used by xe driver.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/xe/xe_bo.c  | 10 +++++++---
- drivers/gpu/drm/xe/xe_bo.h  |  1 +
- drivers/gpu/drm/xe/xe_lrc.c |  3 ++-
- drivers/gpu/drm/xe/xe_oa.c  |  3 ++-
- drivers/gpu/drm/xe/xe_pt.c  |  3 ++-
- 5 files changed, 14 insertions(+), 6 deletions(-)
+Series: drm/xe: Check for dead config space on reading all 1s (rev3)
+URL   : https://patchwork.freedesktop.org/series/166378/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 62f1da04ca2b..e016f0314d86 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -56,6 +56,7 @@ static const struct ttm_place sys_placement_flags =3D {
- =09.flags =3D 0,
- };
-=20
-+/* TTM_PL_FLAG_MEMCG is not set, those placements are used for eviction */
- static struct ttm_placement sys_placement =3D {
- =09.num_placement =3D 1,
- =09.placement =3D &sys_placement_flags,
-@@ -181,8 +182,8 @@ static void try_add_system(struct xe_device *xe, struct=
- xe_bo *bo,
-=20
- =09=09bo->placements[*c] =3D (struct ttm_place) {
- =09=09=09.mem_type =3D XE_PL_TT,
--=09=09=09.flags =3D (bo_flags & XE_BO_FLAG_VRAM_MASK) ?
--=09=09=09TTM_PL_FLAG_FALLBACK : 0,
-+=09=09=09.flags =3D TTM_PL_FLAG_MEMCG | ((bo_flags & XE_BO_FLAG_VRAM_MASK)=
- ?
-+=09=09=09TTM_PL_FLAG_FALLBACK : 0),
- =09=09};
- =09=09*c +=3D 1;
- =09}
-@@ -2384,6 +2385,9 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe,=
- struct xe_bo *bo,
- =09placement =3D (type =3D=3D ttm_bo_type_sg ||
- =09=09     bo->flags & XE_BO_FLAG_DEFER_BACKING) ? &sys_placement :
- =09=09&bo->placement;
-+
-+=09if (bo->flags & XE_BO_FLAG_ACCOUNTED)
-+=09=09ttm_bo_set_cgroup(&bo->ttm, get_obj_cgroup_from_current());
- =09err =3D ttm_bo_init_reserved(&xe->ttm, &bo->ttm, type,
- =09=09=09=09   placement, alignment,
- =09=09=09=09   &ctx, NULL, resv, xe_ttm_bo_destroy);
-@@ -3361,7 +3365,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void =
-*data,
- =09if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
- =09=09return -EINVAL;
-=20
--=09bo_flags =3D 0;
-+=09bo_flags =3D XE_BO_FLAG_ACCOUNTED;
- =09if (args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING)
- =09=09bo_flags |=3D XE_BO_FLAG_DEFER_BACKING;
-=20
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6340317f7d2e..d38012c60175 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -52,6 +52,7 @@
- #define XE_BO_FLAG_CPU_ADDR_MIRROR=09BIT(24)
- #define XE_BO_FLAG_FORCE_USER_VRAM=09BIT(25)
- #define XE_BO_FLAG_NO_COMPRESSION=09BIT(26)
-+#define XE_BO_FLAG_ACCOUNTED=09=09BIT(27)
-=20
- /* this one is trigger internally only */
- #define XE_BO_FLAG_INTERNAL_TEST=09BIT(30)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index a4292a11391d..61aa5033a292 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1661,7 +1661,8 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_=
-hw_engine *hwe, struct xe_v
- =09=09   XE_BO_FLAG_GGTT_INVALIDATE;
-=20
- =09if ((vm && vm->xef) || init_flags & XE_LRC_CREATE_USER_CTX) /* userspac=
-e */
--=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
-_VRAM;
-+=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
-_VRAM |
-+=09=09=09    XE_BO_FLAG_ACCOUNTED;
-=20
- =09bo =3D xe_bo_create_pin_map_novm(xe, tile, bo_size,
- =09=09=09=09       ttm_bo_type_kernel,
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 2dce6a47202c..38d491fa8231 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -910,7 +910,8 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *s=
-tream, size_t size)
-=20
- =09bo =3D xe_bo_create_pin_map_novm(stream->oa->xe, stream->gt->tile,
- =09=09=09=09       size, ttm_bo_type_kernel,
--=09=09=09=09       vram | XE_BO_FLAG_GGTT, false);
-+=09=09=09=09       vram | XE_BO_FLAG_GGTT | XE_BO_FLAG_ACCOUNTED,
-+=09=09=09=09       false);
- =09if (IS_ERR(bo))
- =09=09return PTR_ERR(bo);
-=20
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 670bc2206fea..daf346eaa8f5 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -123,7 +123,8 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_=
-tile *tile,
- =09=09   XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE |
- =09=09   XE_BO_FLAG_NO_RESV_EVICT | XE_BO_FLAG_PAGETABLE;
- =09if (vm->xef) /* userspace */
--=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
-_VRAM;
-+=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
-_VRAM |
-+=09=09=09    XE_BO_FLAG_ACCOUNTED;
-=20
- =09pt->level =3D level;
-=20
---=20
-2.54.0
+== Summary ==
 
+CI Bug Log - changes from xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7_BAT -> xe-pw-166378v3_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-166378v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-166378v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (11 -> 4)
+------------------------------
+
+  ERROR: It appears as if the changes made in xe-pw-166378v3_BAT prevented too many machines from booting.
+
+  Missing    (7): bat-bmg-1 bat-ptl-1 bat-ptl-2 bat-ptl-vm bat-bmg-vm bat-wcl-2 bat-adlp-7 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-166378v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - bat-atsm-2:         [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v3/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7 -> xe-pw-166378v3
+
+  IGT_8990: 8990
+  xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7: cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7
+  xe-pw-166378v3: 166378v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v3/index.html
+
+--===============3839012294443965155==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Check for dead config space on reading all 1s (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166378/">https://patchwork.freedesktop.org/series/166378/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7_BAT -&gt; xe-pw-166378v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-166378v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-166378v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (11 -&gt; 4)</h2>
+<p>ERROR: It appears as if the changes made in xe-pw-166378v3_BAT prevented too many machines from booting.</p>
+<p>Missing    (7): bat-bmg-1 bat-ptl-1 bat-ptl-2 bat-ptl-vm bat-bmg-vm bat-wcl-2 bat-adlp-7 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-166378v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v3/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7 -&gt; xe-pw-166378v3</li>
+</ul>
+<p>IGT_8990: 8990<br />
+  xe-5344-cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7: cd2f56e2e0645a8a22ffbc83fdc922c5c4fe7bd7<br />
+  xe-pw-166378v3: 166378v3</p>
+
+</body>
+</html>
+
+--===============3839012294443965155==--
