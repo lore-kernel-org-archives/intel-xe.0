@@ -4,46 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3206DC4450C
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 10:16:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1533AC43458
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 10:26:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0B8A10E89B;
-	Mon,  6 Jul 2026 10:16:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8FE410E330;
+	Mon,  6 Jul 2026 10:26:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=pixelcluster.dev header.i=@pixelcluster.dev header.b="cHeSgi80";
+	dkim=pass (2048-bit key; unprotected) header.d=pixelcluster.dev header.i=@pixelcluster.dev header.b="kATjUqnK";
 	dkim-atps=neutral
-X-Greylist: delayed 483 seconds by postgrey-1.36 at gabe;
- Mon, 06 Jul 2026 10:16:47 UTC
-Received: from smtpout1.mo534.mail-out.ovh.net
- (smtpout1.mo534.mail-out.ovh.net [51.210.94.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74F3E10E893
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:47 +0000 (UTC)
+Received: from smtpout1.mo533.mail-out.ovh.net
+ (smtpout1.mo533.mail-out.ovh.net [51.210.94.138])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BFC110E87F
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 10:26:32 +0000 (UTC)
 Received: from director6.derp.mail-out.ovh.net
  (director6.derp.mail-out.ovh.net [51.255.22.22])
- by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SG4RP3z6JNt;
- Mon,  6 Jul 2026 10:08:46 +0000 (UTC)
+ by mo533.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SV4sZBz66ZF;
+ Mon,  6 Jul 2026 10:08:58 +0000 (UTC)
 Received: from director6.derp.mail-out.ovh.net
  (director6.derp.mail-out.ovh.net. [127.0.0.1])
  by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:46 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.188.61])
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:58 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.118.90])
  by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id
- 4gv0SG3D58z7tKd; Mon,  6 Jul 2026 10:08:46 +0000 (UTC)
+ 4gv0SV3YcQz7tLG; Mon,  6 Jul 2026 10:08:58 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 658228E1900; 
- Mon,  6 Jul 2026 10:08:44 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 750D78E1901; 
+ Mon,  6 Jul 2026 10:08:56 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-104R00590834597-f52e-4f2b-b839-ae2bddae85b6,
+ (GARM-104R0055796c633-823e-421a-8789-d7c0475bcf91,
  F224CF1D020274B13B21E639C91833BCDAC0997A) smtp.auth=nat@pixelcluster.dev
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Date: Mon, 06 Jul 2026 12:07:45 +0200
-Subject: [PATCH v2 03/10] drm/ttm: remove ttm_lru_walk_ops
+Date: Mon, 06 Jul 2026 12:07:52 +0200
+Subject: [PATCH v2 10/10] drm/amdgpu: use drm_exec during BO validation
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260706-ttm_2_drm_exec-v2-3-4bf6bfc0d320@pixelcluster.dev>
+Message-Id: <20260706-ttm_2_drm_exec-v2-10-4bf6bfc0d320@pixelcluster.dev>
 References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -62,18 +60,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9128233496850358588
+x-ovh-tracer-id: 9131611196327616828
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTF2rMupFDtSz5VGJXaGrwYUaRUbsc9Nn7nc8ghpwc35VyZFauYARogcas+VOSD8wf0IhZl41F2o83TSTJEqn1M70AEfTiU3uOfrR34AN46Y0JjeW4xo6cV+rH2TUD4SE1NDtof+377HjW5jUw1vYYddQq9f46CIv1pXDMg+OvLcv0mAeBq8idZd3/oeDOqFYW+mp/D/hf65ucF8pcrq4BoeAZT2yueghykMKcN1pOaBvVNRQXaTXALuE+8w2Owws5LoK70lx9jAX+i5vFCotZFddZWqe5L2MI0ywEcZRGnxLB/PRWCfMsAV61ff3CxEAEQBj4aCGHb8mrffVRaINrHzcRpKKoY7Gtf57EkJJ2EJ2On7AWz6HYmAqPwk0Ji9fkrtOutngurpFhVNgszUI/SLQtmkCdJMToQTjJW5Ju5ErW7FkPFXHDtcgHcOovBmnVMxv3QguXn8YjMgyBCx6jN7Uf65EiTwYZ/JUpTeM2g8Dj6r2JbJfEJPaFvQp3UUycCxIUVfE3LH2+kCvad2ao+ij+NXwb0S/jJpSM/dx5cmpikbkRhPGhAWiFROqgNsfB54ibFc9TJUCKzU3SMekKBxBCfKGwHO51GcwMCxNxIB8LimCZu4eqjnIA+CksDmmcor4vKUYJ7jvwMPGAZKJm6SfWexZqjVtmT6bLrBitMnLw
-DKIM-Signature: a=rsa-sha256; bh=jmgO1VqoCmbZK7RpvAI9AVCGbRxKc/AL/4JQ8AkCTDk=; 
+X-VR-SPAMCAUSE: dmFkZTGrlNJ8ShesFc0BsmoWFi51A7F15j2IaCkSK7BVZBg/BM8MBdGhyqLZmkbZMHw/TdptOPm8sgahQti1Nc9RjBh0KMZiGtpja+p6qhts3jrWUso58aRKRrx2DXtHoeXDd8faKpktnEASA9l57md6lmCqaecpmqLv9KOaMd5Cxk2fFcLRCf7Y1jiwLpKZwWHOg5MLCHSu/c85HhHBD+9tK6DpmR22NTjUbN0dGZJB9cmuuQPGLboQ0v7ZPGbXkip9C+NIKd694im0qBCyEcUf/DwxdiDWy9o5iBQA1zQlg0Y75Jpr3La1ocQctyDO3tKJ1UAaq83N/bdymi3oIi31d22YoBwaV6S4+7wx+MgMCAkshuFAYAtz/AfGr6I3hor+Y7lZW7dEb1uLDV2wbmKC3QD1fMvDma6KWvllxG6QQDWBlDqIVrDcFFPuio1GdZ3KW7GxpPlQt0Mq53xKhocm+4eKKPYWbi7eWEEkS1NeGn8v2GCU3Sg0RVcJQHWuksUNdHOIWBJA/QqtrZd5SxJRN2sf19r6oXE3YCMZSqbGT0e7oKdKXtGuXR8JCtQGwX+CZwliBAGiPLDqEQt69J0xNj8qwWaL3h+2nLwCsiBkQXYKUQzxwkmBqMuOkqhukP4mGtBliFdmjLt6B/H6xnmJ4kx51oPKJXcDigWABKY3Wn2Y6g
+DKIM-Signature: a=rsa-sha256; bh=pbTL1gLxQx0BxNCVq/hEgyFIwea3jgeRxwgqZhg0jzU=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332526; v=1;
- b=cHeSgi801Q1TZkJKx1CF7btk76tysmEH+/ubEWnddIH1wZsMdu+KnRQu+E4XPEDuCC2KlHlY
- LODHMaswSF79Hm25kxtF9j9wPuO0NqDlvPSdfd8EIb6uEWg1qY2fmCD5cl337mzBQHfOKUBDm5n
- umubUhMTpE+tsvsMp6lBENKGb3Cq+01v1xm6XbjS2Yzk69zZ7g2PS+dK8/8Rz1aZRraMW5izgIL
- RC6HOih8gqkDBfuAB2y/LkYeV60QHe88u0v4iISTe73TMkaLT3rrn+atRco3vwQCrg0ZWPrr4vQ
- N22CXcfw9oNvVjUNtj6OgCt2ywC21pS1NBbCk+5fAjGTg==
+ s=ovhmo-selector-1; t=1783332539; v=1;
+ b=kATjUqnK7pryV6J5UaqojO9SZ9jUV+uYS8x/i2SKKUiGU2y0OqN6au/5znYjEB+OJBHybkVU
+ 0BhghqWu17XmZAgQZoxFwmQbmHNfWnsa2GzBD5QVgGSRjayYYAnkA2yPszW9oT5aG4hvRG8mppF
+ pYz76DzGOOi0jecrRrmbSRO0+lzj1SnR1InHt1Wr2LcgePtB3qzL+B0sXKGOXyEQbf3JkLQr/Us
+ Oar30eGu23sFRJ6ABxQ9e/hXYqqXj0+xPG7Cu7A2Pbey56uvT6+d9UKQHB7CL1jFBa8lxsIV7Ae
+ vqyvsBgBBYDE2TQK8YNWIzRJOtG0yXcGkzFStIEE+6x8w==
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,125 +86,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It's just another layer of indirection.
+This allows to detect deadlocks happening because of resource
+constraints.
+
+Especially submissions which want to use all of GDS doesn't result in
+sporadic -ENOMEM any more.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c      | 12 ++----------
- drivers/gpu/drm/ttm/ttm_bo_util.c |  2 +-
- include/drm/ttm/ttm_bo.h          | 34 ++++++++++++++--------------------
- 3 files changed, 17 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 80 ++++++++++++++++++----------------
+ 1 file changed, 42 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 2b470c1746f60..1fb8c53da0362 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -545,10 +545,6 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
- 	return lret;
- }
- 
--static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
--	.process_bo = ttm_bo_evict_cb,
--};
--
- static int ttm_bo_evict_alloc(struct ttm_device *bdev,
- 			      struct ttm_resource_manager *man,
- 			      const struct ttm_place *place,
-@@ -560,7 +556,7 @@ static int ttm_bo_evict_alloc(struct ttm_device *bdev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index c2e6495a28bc5..052d41013f7a0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -793,7 +793,7 @@ static int amdgpu_cs_bo_validate(void *param, struct amdgpu_bo *bo)
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
+-		.resv = bo->tbo.base.resv
++		.exec = &p->exec,
+ 	};
+ 	uint32_t domain;
+ 	int r;
+@@ -845,7 +845,8 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 				union drm_amdgpu_cs *cs)
  {
- 	struct ttm_bo_evict_walk evict_walk = {
- 		.walk = {
--			.ops = &ttm_evict_walk_ops,
-+			.process_bo = ttm_bo_evict_cb,
- 			.arg = {
- 				.ctx = ctx,
- 				.ticket = ticket,
-@@ -1187,10 +1183,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- 	return ret;
- }
- 
--const struct ttm_lru_walk_ops ttm_swap_ops = {
--	.process_bo = ttm_bo_swapout_cb,
--};
+ 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
+-	struct ttm_operation_ctx ctx = { true, false };
++	struct ttm_operation_ctx ctx = { .interruptible = true,
++					 .exec = &p->exec };
+ 	struct amdgpu_vm *vm = &fpriv->vm;
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct drm_gem_object *obj;
+@@ -922,47 +923,53 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 			if (unlikely(r))
+ 				goto out_free_user_pages;
+ 		}
+-	}
 -
- /**
-  * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-  * @bdev: The ttm device.
-@@ -1209,7 +1201,7 @@ s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- {
- 	struct ttm_bo_swapout_walk swapout_walk = {
- 		.walk = {
--			.ops = &ttm_swap_ops,
-+			.process_bo = ttm_bo_swapout_cb,
- 			.arg = {
- 				.ctx = ctx,
- 				.trylock_only = true,
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 7ed085adf1c9b..29f068944a972 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -919,7 +919,7 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
- 	s64 lret;
+-	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
+-		struct mm_struct *usermm;
  
- 	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &walk->arg, bo) {
--		lret = walk->ops->process_bo(walk, bo);
-+		lret = walk->process_bo(walk, bo);
- 		if (lret == -EBUSY || lret == -EALREADY)
- 			lret = 0;
- 		progress = (lret < 0) ? lret : progress + lret;
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 1eae9eea5ff32..0fcd5082a7080 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -189,24 +189,6 @@ struct ttm_operation_ctx {
- 	uint64_t bytes_moved;
- };
+-		usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
+-		if (usermm && usermm != current->mm) {
+-			r = -EPERM;
+-			goto out_free_user_pages;
+-		}
++		amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
++			struct mm_struct *usermm;
  
--struct ttm_lru_walk;
--
--/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
--struct ttm_lru_walk_ops {
--	/**
--	 * process_bo - Process this bo.
--	 * @walk: struct ttm_lru_walk describing the walk.
--	 * @bo: A locked and referenced buffer object.
--	 *
--	 * Return: Negative error code on error, User-defined positive value
--	 * (typically, but not always, size of the processed bo) on success.
--	 * On success, the returned values are summed by the walk and the
--	 * walk exits when its target is met.
--	 * 0 also indicates success, -EBUSY means this bo was skipped.
--	 */
--	s64 (*process_bo)(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo);
--};
--
- /**
-  * struct ttm_lru_walk_arg - Common part for the variants of BO LRU walk.
-  */
-@@ -223,8 +205,20 @@ struct ttm_lru_walk_arg {
-  * struct ttm_lru_walk - Structure describing a LRU walk.
-  */
- struct ttm_lru_walk {
--	/** @ops: Pointer to the ops structure. */
--	const struct ttm_lru_walk_ops *ops;
-+	/**
-+	 * process_bo - Process this bo.
-+	 * @walk: struct ttm_lru_walk describing the walk.
-+	 * @bo: A locked and referenced buffer object.
-+	 *
-+	 * Return: Negative error code on error, User-defined positive value
-+	 * (typically, but not always, size of the processed bo) on success.
-+	 * On success, the returned values are summed by the walk and the
-+	 * walk exits when its target is met.
-+	 * 0 also indicates success, -EBUSY means this bo was skipped.
-+	 */
-+	s64 (*process_bo)(struct ttm_lru_walk *walk,
-+			  struct ttm_buffer_object *bo);
+-		if (amdgpu_ttm_tt_is_userptr(e->bo->tbo.ttm) &&
+-		    e->user_invalidated) {
+-			amdgpu_bo_placement_from_domain(e->bo,
+-							AMDGPU_GEM_DOMAIN_CPU);
+-			r = ttm_bo_validate(&e->bo->tbo, &e->bo->placement,
+-					    &ctx);
+-			if (r)
++			usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
++			if (usermm && usermm != current->mm) {
++				r = -EPERM;
+ 				goto out_free_user_pages;
++			}
+ 
+-			amdgpu_ttm_tt_set_user_pages(e->bo->tbo.ttm,
+-						     e->range);
++			if (amdgpu_ttm_tt_is_userptr(e->bo->tbo.ttm) &&
++			    e->user_invalidated) {
++				amdgpu_bo_placement_from_domain(e->bo,
++								AMDGPU_GEM_DOMAIN_CPU);
++				r = ttm_bo_validate(&e->bo->tbo, &e->bo->placement,
++						    &ctx);
++				drm_exec_retry_on_contention(&p->exec);
++				if (r)
++					goto out_free_user_pages;
 +
- 	/** @arg: Common bo LRU walk arguments. */
- 	struct ttm_lru_walk_arg arg;
- };
++				amdgpu_ttm_tt_set_user_pages(e->bo->tbo.ttm,
++							     e->range);
++			}
+ 		}
+-	}
+ 
+-	amdgpu_cs_get_threshold_for_moves(p->adev, &p->bytes_moved_threshold,
+-					  &p->bytes_moved_vis_threshold);
+-	p->bytes_moved = 0;
+-	p->bytes_moved_vis = 0;
+-
+-	r = amdgpu_vm_validate(p->adev, &fpriv->vm, NULL,
+-			       amdgpu_cs_bo_validate, p);
+-	if (r) {
+-		drm_err(adev_to_drm(p->adev), "amdgpu_vm_validate() failed.\n");
+-		goto out_free_user_pages;
+-	}
++		amdgpu_cs_get_threshold_for_moves(p->adev, &p->bytes_moved_threshold,
++						  &p->bytes_moved_vis_threshold);
++		p->bytes_moved = 0;
++		p->bytes_moved_vis = 0;
+ 
+-	drm_exec_for_each_locked_object(&p->exec, obj) {
+-		r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
+-		if (unlikely(r))
++		r = amdgpu_vm_validate(p->adev, &fpriv->vm, NULL,
++				       amdgpu_cs_bo_validate, p);
++		drm_exec_retry_on_contention(&p->exec);
++		if (r) {
++			drm_err(adev_to_drm(p->adev), "amdgpu_vm_validate() failed.\n");
+ 			goto out_free_user_pages;
++		}
++
++		drm_exec_for_each_locked_object(&p->exec, obj) {
++			r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
++			drm_exec_retry_on_contention(&p->exec);
++			if (unlikely(r))
++				goto out_free_user_pages;
++		}
++
++		amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
++					     p->bytes_moved_vis);
+ 	}
+ 
+ 	if (p->uf_bo) {
+@@ -973,9 +980,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		p->gang_leader->uf_addr += amdgpu_bo_gpu_offset(p->uf_bo);
+ 	}
+ 
+-	amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
+-				     p->bytes_moved_vis);
+-
+ 	for (i = 0; i < p->gang_size; ++i)
+ 		amdgpu_job_set_resources(p->jobs[i], p->bo_list->gds_obj,
+ 					 p->bo_list->gws_obj,
 
 -- 
 2.55.0
