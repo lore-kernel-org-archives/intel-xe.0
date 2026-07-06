@@ -4,70 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAA9BC44500
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:17:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD7DAC43458
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:19:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D82510EC99;
-	Tue,  7 Jul 2026 12:17:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8801410E49F;
+	Tue,  7 Jul 2026 12:19:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1NtG0Pc";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="uADD0ghB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 313B510EC96;
- Tue,  7 Jul 2026 12:17:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783426664; x=1814962664;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Du2diOCDPbrznkMPMFjrugVgoonoF5/iBi5TLHJk/cc=;
- b=f1NtG0PcZ2CnFFU1+HgR/R5F8VzXeibKPTDLCfjGOVKU59KTCWIFgiNi
- a7FwenRQBNc+yIQMQwtpTRCu2ZTg5ymjjBLZopYpBnDLpu2vlkTD1ziLw
- KZ9FAUwaPF2dck809SCF/uClbT9OiiauH0doQxPcfIOffVtkpr0WrhB4S
- 0qvdIBsjikn+O1BvezudsSzlfG1TegcuvTiAgs0XTvDFZVOt8JBRnnlpt
- +bgIguKeWubPjPk3DsSZj6YjJPRhZEb8ExVgpRFjz6/kUV3Rz+7isO7xH
- s7GzWZZi9c2MRMKbxKTIVtMdURdbPwxaAIuPVS6TjcASdL4rkqr3yjG4s A==;
-X-CSE-ConnectionGUID: t0gilYiITtK1xRsbzBM8Lw==
-X-CSE-MsgGUID: ci/Ja0+URO2AuxCIPEylRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="95450173"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="95450173"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:17:43 -0700
-X-CSE-ConnectionGUID: /aAFJNYvRr+DKJqCk74ZNQ==
-X-CSE-MsgGUID: 8leybw+GTTCL1M4c52cLIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="247605256"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
- ([10.245.244.199])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:17:39 -0700
-Message-ID: <82381da3faee2dde0319a5e9c55119f5cf206dd7.camel@linux.intel.com>
-Subject: Re: [PATCH 05/10] drm/ttm: switch to
- ttm_bo_lru_for_each_reserved_guarded for swapout
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula	
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
- <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
- <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
- Deucher	 <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org
-Date: Tue, 07 Jul 2026 14:17:37 +0200
-In-Reply-To: <20260703-ttm_2_drm_exec-v1-5-43685ac1286b@gmx.de>
-References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
- <20260703-ttm_2_drm_exec-v1-5-43685ac1286b@gmx.de>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9633B10E3A9;
+ Mon,  6 Jul 2026 14:49:15 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA512)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4gv6gr5jXVzKrrB;
+ Mon, 06 Jul 2026 16:49:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1783349352;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eulpyiUh0aznOlxmeBeXXDKWTgTsYGSGxJkchSqiGrM=;
+ b=uADD0ghBygQ7hl7LTqSuQzNrT4pfxd3Nkk3nWvmf6IB3D+bbZ8Po9+rlsavnkGLJ4uZdnA
+ E6oxE7wja5lrQWqtmpkzyprJHhQUbkUKADwiXdWDyRW509f88ZfjFbVdsc2ylpT40fOOU1
+ WzrrRp/KWvzTBBzYRWZJPYm3J3L0aVGbHLts233EFpwatX6mIqHFWSxS8OKrpUaHqJgDM6
+ 8q8JwEt/ImdukYWwmuJxsFdKcpthuzyLtn4uBC7Nb6yxlqQ9FZ9gTB4t5yU9FTpas5wHRe
+ 7YWXY3JENVL6v02qurgwVxEoXonNX6ionzTbrhMb+kZ8bmbK2CqpjuhuTskBOw==
+Message-ID: <88ee8e5f9b87c202a563accccc224280800a8a64.camel@mailbox.org>
+Subject: Re: [PATCH v3 02/20] driver core: platform: provide
+ platform_device_set_of_node()
+From: Manuel Ebner <manuelebner@mailbox.org>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Lee Jones	
+ <lee@kernel.org>, Thierry Reding <thierry.reding@avionic-design.de>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller"	 <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski	 <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Srinivas Kandagatla	 <srini@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Vinod Koul	 <vkoul@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich	
+ <dakr@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan	
+ <saravanak@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, Michael
+ Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)"	 <chleroy@kernel.org>, Andi Shyti
+ <andi.shyti@kernel.org>, Andy Shevchenko	
+ <andriy.shevchenko@linux.intel.com>, Joerg Roedel <joro@8bytes.org>, Will
+ Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Doug Berger
+ <opendmb@gmail.com>,  Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson <ulfh@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team	 <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, Matthew Brost	 <matthew.brost@intel.com>, Thomas
+ =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>,  Paul
+ Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>,  Maximilian Luz <luzmaximilian@gmail.com>, Hans
+ de Goede <hansg@kernel.org>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=	
+ <ilpo.jarvinen@linux.intel.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: brgl@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+ iommu@lists.linux.dev, 	linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
+ linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ mfd@lists.linux.dev
+Date: Mon, 06 Jul 2026 16:48:48 +0200
+In-Reply-To: <fbc50f89e0c3bb148656a3b8d96974f591576dec.camel@mailbox.org>
+References: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
+ <20260706-pdev-fwnode-ref-v3-2-1ff028e33779@oss.qualcomm.com>
+ <fbc50f89e0c3bb148656a3b8d96974f591576dec.camel@mailbox.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
+X-MBO-RS-META: yfo5gat8zopp9bgmyshyyaocgtadhjyy
+X-MBO-RS-ID: b5b23e49645ac2d82f8
+X-Mailman-Approved-At: Tue, 07 Jul 2026 12:19:51 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,196 +100,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
-> From: Christian K=C3=B6nig <christian.koenig@amd.com>
+On Mon, 2026-07-06 at 16:39 +0200, Manuel Ebner wrote:
+> Hi Bartosz,
 >=20
-> Instead of the walker wrapper use the underlying foreach. Saves us
-> quite
-> a bunch of complexity and loc.
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+> On Mon, 2026-07-06 at 14:44 +0200, Bartosz Golaszewski wrote:
+> >=20
+> > @@ -693,6 +693,24 @@ int platform_device_add_data(struct platform_devic=
+e *pdev, const
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Nevermind, I got confused because of @@ int platform_device_add_data() and
 
+> @@ -619,6 +619,13 @@ static void platform_device_release_full(struct devi=
+ce *dev)
+in [PATCH v3 05/20] driver core: update kerneldoc for platform_device_alloc=
+()
 
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0 | 58 +++++++--=
----------------------
-> ----------
-> =C2=A0drivers/gpu/drm/ttm/ttm_device.c | 19 ++++++++++---
-> =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 5 ++--
-> =C2=A03 files changed, 27 insertions(+), 55 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
-> b/drivers/gpu/drm/ttm/ttm_bo.c
-> index 1fb8c53da0362..24c52df169ac8 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -1080,25 +1080,18 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object
-> *bo, struct ttm_operation_ctx *ctx)
-> =C2=A0EXPORT_SYMBOL(ttm_bo_wait_ctx);
-> =C2=A0
-> =C2=A0/**
-> - * struct ttm_bo_swapout_walk - Parameters for the swapout walk
-> + * ttm_bo_swapout() - Swap out buffer objects on the LRU list to
-> shmem.
-> + * @bo: The buffer to swap out.
-> + * @ctx: The ttm_operation_ctx governing the swapout operation.
-> + * @gfp_flags: The gfp flags used for shmem page allocations.
-> + *
-> + * Return: The number of bytes actually swapped out, or negative
-> error code
-> + * on error.
-> =C2=A0 */
-> -struct ttm_bo_swapout_walk {
-> -	/** @walk: The walk base parameters. */
-> -	struct ttm_lru_walk walk;
-> -	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
-> -	gfp_t gfp_flags;
-> -	/** @hit_low: Whether we should attempt to swap BO's with
-> low watermark threshold */
-> -	/** @evict_low: If we cannot swap a bo when @try_low is
-> false (first pass) */
-> -	bool hit_low, evict_low;
-> -};
-> -
-> -static s64
-> -ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct
-> ttm_buffer_object *bo)
-> +s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct
-> ttm_operation_ctx *ctx,
-> +		=C2=A0=C2=A0 gfp_t gfp_flags)
-> =C2=A0{
-> =C2=A0	struct ttm_place place =3D { .mem_type =3D bo->resource-
-> >mem_type };
-> -	struct ttm_bo_swapout_walk *swapout_walk =3D
-> -		container_of(walk, typeof(*swapout_walk), walk);
-> -	struct ttm_operation_ctx *ctx =3D walk->arg.ctx;
-> =C2=A0	struct ttm_device *bdev =3D bo->bdev;
-> =C2=A0	struct ttm_tt *tt =3D bo->ttm;
-> =C2=A0	s64 ret;
-> @@ -1166,7 +1159,7 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk,
-> struct ttm_buffer_object *bo)
-> =C2=A0		bdev->funcs->swap_notify(bo);
-> =C2=A0
-> =C2=A0	if (ttm_tt_is_populated(tt)) {
-> -		ret =3D ttm_tt_swapout(bdev, tt, swapout_walk-
-> >gfp_flags);
-> +		ret =3D ttm_tt_swapout(bdev, tt, gfp_flags);
-> =C2=A0		if (!ret) {
-> =C2=A0			spin_lock(&bdev->lru_lock);
-> =C2=A0			ttm_resource_del_bulk_move_unevictable(bo-
-> >resource, bo);
-> @@ -1183,37 +1176,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk,
-> struct ttm_buffer_object *bo)
-> =C2=A0	return ret;
-> =C2=A0}
-> =C2=A0
-> -/**
-> - * ttm_bo_swapout() - Swap out buffer objects on the LRU list to
-> shmem.
-> - * @bdev: The ttm device.
-> - * @ctx: The ttm_operation_ctx governing the swapout operation.
-> - * @man: The resource manager whose resources / buffer objects are
-> - * goint to be swapped out.
-> - * @gfp_flags: The gfp flags used for shmem page allocations.
-> - * @target: The desired number of pages to swap out.
-> - *
-> - * Return: The number of pages actually swapped out, or negative
-> error code
-> - * on error.
-> - */
-> -s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx
-> *ctx,
-> -		=C2=A0=C2=A0 struct ttm_resource_manager *man, gfp_t
-> gfp_flags,
-> -		=C2=A0=C2=A0 s64 target)
-> -{
-> -	struct ttm_bo_swapout_walk swapout_walk =3D {
-> -		.walk =3D {
-> -			.process_bo =3D ttm_bo_swapout_cb,
-> -			.arg =3D {
-> -				.ctx =3D ctx,
-> -				.trylock_only =3D true,
-> -			},
-> -		},
-> -		.gfp_flags =3D gfp_flags,
-> -	};
-> -
-> -	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man,
-> target);
-> -}
-> -EXPORT_SYMBOL_FOR_TESTS_ONLY(ttm_bo_swapout);
-> -
-> =C2=A0void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
-> =C2=A0{
-> =C2=A0	if (bo->ttm =3D=3D NULL)
-> diff --git a/drivers/gpu/drm/ttm/ttm_device.c
-> b/drivers/gpu/drm/ttm/ttm_device.c
-> index d3bfb9a696a74..e4188e2ee7ab1 100644
-> --- a/drivers/gpu/drm/ttm/ttm_device.c
-> +++ b/drivers/gpu/drm/ttm/ttm_device.c
-> @@ -171,6 +171,12 @@ int ttm_device_swapout(struct ttm_device *bdev,
-> struct ttm_operation_ctx *ctx,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfp_t gfp_flags)
-> =C2=A0{
-> =C2=A0	struct ttm_resource_manager *man;
-> +	struct ttm_bo_lru_cursor cursor;
-> +	struct ttm_buffer_object *bo;
-> +	struct ttm_lru_walk_arg arg =3D {
-> +		.ctx =3D ctx,
-> +		.trylock_only =3D true
-> +	};
-> =C2=A0	unsigned i;
-> =C2=A0	s64 lret;
-> =C2=A0
-> @@ -179,10 +185,15 @@ int ttm_device_swapout(struct ttm_device *bdev,
-> struct ttm_operation_ctx *ctx,
-> =C2=A0		if (!man || !man->use_tt)
-> =C2=A0			continue;
-> =C2=A0
-> -		lret =3D ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
-> -		/* Can be both positive (num_pages) and negative
-> (error) */
-> -		if (lret)
-> -			return lret;
-> +		ttm_bo_lru_for_each_reserved_guarded(&cursor, man,
-> &arg, bo) {
-> +			lret =3D ttm_bo_swapout(bo, ctx, gfp_flags);
-> +				continue;
-> +			/* Can be both positive (num_pages) and
-> negative (error) */
-> +			if (lret && lret !=3D -EBUSY && lret !=3D -
-> EALREADY)
-> +				return lret;
-> +		}
-> +		if (IS_ERR(bo))
-> +			return PTR_ERR(bo);
-> =C2=A0	}
-> =C2=A0	return 0;
-> =C2=A0}
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index 0fcd5082a7080..bbed63064c9a9 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -408,9 +408,8 @@ void *ttm_bo_kmap_try_from_panic(struct
-> ttm_buffer_object *bo, unsigned long pag
-> =C2=A0int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map
-> *map);
-> =C2=A0void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map
-> *map);
-> =C2=A0int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct
-> ttm_buffer_object *bo);
-> -s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx
-> *ctx,
-> -		=C2=A0=C2=A0 struct ttm_resource_manager *man, gfp_t
-> gfp_flags,
-> -		=C2=A0=C2=A0 s64 target);
-> +s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct
-> ttm_operation_ctx *ctx,
-> +		=C2=A0=C2=A0 gfp_t gfp_flags);
-> =C2=A0void ttm_bo_pin(struct ttm_buffer_object *bo);
-> =C2=A0void ttm_bo_unpin(struct ttm_buffer_object *bo);
-> =C2=A0int ttm_bo_evict_first(struct ttm_device *bdev,
+Sorry for the noise
+ Manuel
