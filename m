@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 620A5C43458
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 22:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39042C43602
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 22:44:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4C7710E412;
-	Mon,  6 Jul 2026 22:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4F9D10E413;
+	Mon,  6 Jul 2026 22:43:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yiyo9HNJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U6nUNL/w";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C7A110E412
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 22:43:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F166410E413
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 22:43:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783377835; x=1814913835;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=B10I+LmBREmirMJ17dvu59uhj1pvBfFEdizNQtbQHNQ=;
- b=Yiyo9HNJVG3QrU4wqNgNTmTgsFT82gJabs5c+4wZcOE9PPuP9sqUPVEK
- JBNYKmg0F0kGe5Y7RRfw0qjTwqxaMtG+JBGruaixyjdkOcXlglIBWDBh1
- 4sG9ECeLkL5dXlapJzQqFMU8WuA/pnIihftMf9ZstSr0dhfVSU4rwqpXv
- yNcQDFvrk8HXHKdSfcNt9YHbxICpxhFPeNsACHdV1t5f1eIQdCiO5L3+7
- rhG18yZ46eYULpqZM0HQnVtOXx+xoUm7jJ8OUVsBW0vk10R3rtO41EOUm
- dQzMEGXDrbER11I3TnfttmWrq9NxmkmGgyMGBBRLrycy6Jm3MoklO6q4r Q==;
-X-CSE-ConnectionGUID: ahO8LkK1SLyoEHI6fE7Q1Q==
-X-CSE-MsgGUID: O3essD8LRBOSUcRoZejSzA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="83892285"
-X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="83892285"
+ t=1783377837; x=1814913837;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oR+WOoWlBslo2DMa2oAVu5KeiVVNs24/pczSoLj2eBA=;
+ b=U6nUNL/wiQ1eS3jrMx2YNkgyyiDyJGYGNHxdgM2JrE9ZxRQXW4QXFBBH
+ cCEsqrc2Xjhsvm4KabJNsu5BgF94nLsZd07yGV7YN0ouCjgeidndvAyjx
+ 6ip1Z6Ywz4sSpTYoRb25rKzaBkwwjrDWAnUv5fup4Stm8AJkqRP3TS84E
+ 6BsqABNbo3Vqihh5c948lpjOhj1Y08Tdgw3X1M3DWXSpT0Zf2GULJW/HC
+ Ozg4KOq0f5f02syAVcLlSHYv/n6dl7E84Q9dvtxQtRIhMZpBtXN9uSWfr
+ ohzj+pbNOHBLaNTDDNX2Q1EFck5B+Ud8ewCMp398LniG4/5PbQ5h63yPT g==;
+X-CSE-ConnectionGUID: N4eMnH0bSSCIcA6vk0XvLw==
+X-CSE-MsgGUID: rVvX4oGRTa+umH6/3S1cQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="83892286"
+X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="83892286"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 15:43:55 -0700
-X-CSE-ConnectionGUID: bj9gR97oRLKakgD9Wu6Jgw==
-X-CSE-MsgGUID: 1ue7yoCuTDizwIPdazj1rA==
+ 06 Jul 2026 15:43:57 -0700
+X-CSE-ConnectionGUID: 4QvsyLb5Tam4i9tOhZ/O6w==
+X-CSE-MsgGUID: Yk5tsHa3Q6y9lZ7xwnCLTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="283935386"
+X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="283935389"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 15:43:55 -0700
+ 06 Jul 2026 15:43:57 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 1/2] drm/xe: Add support for WA 22022079272
-Date: Mon,  6 Jul 2026 15:43:45 -0700
-Message-ID: <20260706224344.2723462-3-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 2/2] drm/xe: Add support for WA 16029897822
+Date: Mon,  6 Jul 2026 15:43:46 -0700
+Message-ID: <20260706224344.2723462-4-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260706224344.2723462-3-daniele.ceraolospurio@intel.com>
+References: <20260706224344.2723462-3-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,53 +69,59 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 The WA is implemented by the GuC, so we just need to enable it via the
 dedicated KLV.
-This WA is supported starting from GuC 70.62.
+This WA is supported starting from GuC 70.69. Note that the GuC does not
+enable the relevant feature on NVL-S, so this WA can't (and shouldn't)
+be enabled on that platform.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com> #v1
+---
+v2: don't enable the WA for NVL-S
 ---
  drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 1 +
- drivers/gpu/drm/xe/xe_guc_ads.c       | 3 +++
- drivers/gpu/drm/xe/xe_wa_oob.rules    | 3 +++
- 3 files changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 6 ++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    | 2 ++
+ 3 files changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 644f5a4226d7..fbbee40d7217 100644
+index fbbee40d7217..e4b028ab24c9 100644
 --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
 +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -504,6 +504,7 @@ enum xe_guc_klv_ids {
- 	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
+@@ -505,6 +505,7 @@ enum xe_guc_klv_ids {
  	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
  	GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG			= 0x900e,
-+	GUC_WA_KLV_REMAP_RANGED_TLB_INV							= 0x900f,
+ 	GUC_WA_KLV_REMAP_RANGED_TLB_INV							= 0x900f,
++	GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64					= 0x9010,
  };
  
  #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index c98454545a85..becf9a004867 100644
+index becf9a004867..79d6fd8d919b 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ads.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -364,6 +364,9 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG);
+@@ -367,6 +367,12 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 	if (XE_GT_WA(gt, 22022079272) && GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 62))
+ 		guc_waklv_enable(ads, NULL, 0, &offset, &remain, GUC_WA_KLV_REMAP_RANGED_TLB_INV);
  
-+	if (XE_GT_WA(gt, 22022079272) && GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 62))
-+		guc_waklv_enable(ads, NULL, 0, &offset, &remain, GUC_WA_KLV_REMAP_RANGED_TLB_INV);
++	/* The GuC does not enable the sem_tok_64 feature on NVL-S */
++	if (XE_GT_WA(gt, 16029897822) && gt_to_xe(gt)->info.platform != XE_NOVALAKE_S &&
++	    GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 69))
++		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
++				 GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64);
 +
  	size = guc_ads_waklv_size(ads) - remain;
  	if (!size)
  		return;
 diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 9027365f0043..a2ccd036abce 100644
+index a2ccd036abce..5d6574ec9dee 100644
 --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
 +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -66,3 +66,6 @@
- 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
- 		GRAPHICS_VERSION_RANGE(2004, 3005)
- 16029380221	MEDIA_VERSION(3500)
-+22022079272	MEDIA_VERSION(3503)
+@@ -69,3 +69,5 @@
+ 22022079272	MEDIA_VERSION(3503)
+ 		GRAPHICS_VERSION(3510)
+ 		GRAPHICS_VERSION(3511)
++16029897822	MEDIA_VERSION(3500)
 +		GRAPHICS_VERSION(3510)
-+		GRAPHICS_VERSION(3511)
 -- 
 2.43.0
 
