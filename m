@@ -4,46 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE882C43602
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 10:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 107CAC44501
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 10:16:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7FE10E895;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BA8510E894;
 	Mon,  6 Jul 2026 10:16:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=pixelcluster.dev header.i=@pixelcluster.dev header.b="g9bm8HDG";
+	dkim=pass (2048-bit key; unprotected) header.d=pixelcluster.dev header.i=@pixelcluster.dev header.b="HtnZymoT";
 	dkim-atps=neutral
-X-Greylist: delayed 477 seconds by postgrey-1.36 at gabe;
- Mon, 06 Jul 2026 10:16:45 UTC
-Received: from smtpout4.mo534.mail-out.ovh.net
- (smtpout4.mo534.mail-out.ovh.net [188.165.54.92])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C05F510E892
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:45 +0000 (UTC)
-Received: from director3.derp.mail-out.ovh.net
- (director3.derp.mail-out.ovh.net [152.228.215.222])
- by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SC1QPYz6JPw;
- Mon,  6 Jul 2026 10:08:43 +0000 (UTC)
-Received: from director3.derp.mail-out.ovh.net
- (director3.derp.mail-out.ovh.net. [127.0.0.1])
- by director3.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:43 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.101.1])
- by director3.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SC0HkGz5vVf;
- Mon,  6 Jul 2026 10:08:43 +0000 (UTC)
+Received: from smtpout7.mo534.mail-out.ovh.net
+ (smtpout7.mo534.mail-out.ovh.net [54.36.140.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6423E10E892
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:46 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net
+ (director6.derp.mail-out.ovh.net [51.255.22.22])
+ by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SR2vl7z6JVC;
+ Mon,  6 Jul 2026 10:08:55 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net
+ (director6.derp.mail-out.ovh.net. [127.0.0.1])
+ by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:55 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.168.36])
+ by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id
+ 4gv0SR1qmVz7tLG; Mon,  6 Jul 2026 10:08:55 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id C78D98E1903; 
- Mon,  6 Jul 2026 10:08:40 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 4C6098E18F1; 
+ Mon,  6 Jul 2026 10:08:53 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-104R005c18bf4c1-4a57-40e9-bf8d-5f756da7189f,
+ (GARM-104R005bf0a9a5b-634e-471f-9c15-56b367536c5c,
  F224CF1D020274B13B21E639C91833BCDAC0997A) smtp.auth=nat@pixelcluster.dev
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Date: Mon, 06 Jul 2026 12:07:43 +0200
-Subject: [PATCH v2 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES flag
+Date: Mon, 06 Jul 2026 12:07:50 +0200
+Subject: [PATCH v2 08/10] drm/xe: remove workaround for TTM internals
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-ttm_2_drm_exec-v2-1-4bf6bfc0d320@pixelcluster.dev>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260706-ttm_2_drm_exec-v2-8-4bf6bfc0d320@pixelcluster.dev>
 References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -62,18 +60,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9127389070351032636
+x-ovh-tracer-id: 9130766770950267196
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTEIx5EftTv6qDYynIITLbKmw2V9F73qkvPfwN+6GC3Ph5+oNBPVWeKaotSSyzsLEoE6aoNeT/z/sb6JP+NEna0IvjfnNYhnKja1q6dxD3Jb7I4shHgEmfwt4RwYwfWMrJeeSWT1tVWzr+1Wc90ClmqxXufcv16gHHKk4vjPweAJ7XZzvQwOvhu6mvw7q+gxZaRp/SFrLzBp8jROoK4pIBgRzH7e8vIhWqDQYAnvzOg3wwI7Cm5iQjWjEqopVyP5ALcEWcgRSjmo1GQmwlWMV5+MubgYMTlgg7JHi/WHKBd7/pcOIWar7nF/9t66zi6TVtVu8SSomL6KSZeUYk011HiNWwXLDfpjBPWLSvSdmxUcsM9aYjoysNMPJOKFE8nluG2E8EZqXxvA+mdjAaTXT/M1hQOgWTPGS3FLsqSsgERyjY0Br1rtM8lxfaynmnKDOuH5dZ+vO/avb+2EpJT6UC1E9mjeCIYddylpjZFBgn3hbF9yDSZ7uNN/fAYfTjCTxYuQiDPv0pGzoO0eyl15hzjbEzRQ/VK1jR6qfZ93H0FmF0209waqBTz34/Mma8XU0xZUqgviYlMEDvnVxtOFDxHZBrBZ9lSK/2y3UQH9rHkB8l9WEvVjpYo4ySKPMOFdcmGok13u2lMDPyXdHv3zDyhh9yq+yAiEhS+dEijzDsRwow
-DKIM-Signature: a=rsa-sha256; bh=N1GjEJtFReJ0oNOCKsB1O/DXSe6xcHnaiP0zlVWxP2o=; 
+X-VR-SPAMCAUSE: dmFkZTFMobFMhrI6mwdMIl0lqtl+jezqUsZKJEyxHHMvx1PsgGmhE5En/0ZDeXryAId2Em9Mti8vRUtIpVOn34/99l1LQ5l030FgMhMXOhVLq+uBm75VRIHj8rLyfz57Jhny6pfLI/a5uMuUBxpgTHiF4Nm51UDgsM1GTjEqQdO2rrr5aKw8so40daAKRKUV/l8A6+ijQJxCtS4zhdGd3Y4dJeQFCQjwYxQZLH5omJZDNaE6whidqSgL6+1HipjQPAFyJDuayta6IuE6t8k2dyZTEl7shc/jp3BLOkEEp/W6WxCVj1xm3fYRykYHxmmG6YjlwsomrEf7+MIILpb+XKIutt3OJ7CA1TJ/vMDYXDKTaoXwPoy3ieHmghJM9xDISzSfl5j/onWhhc7KnKEjIe8aaSq+Br5IdnSj077vprrymbsZBXJ3RwWazEUgqr+vkZ1iV6XeUtoOSfubd+9wZbHy6xtGaHn9xkRv7uZgoIHjo+xDxuKWGDXYUPixYXVsUBrrW9FZ3yXfmla5QaToqulPvdgMAk35Q5gWYvLvFbdWpdZwW0MYAPO6MLgHUuGgA8lon5pB6pIEWNP0vSeZNCscgGMOko2/3FNjatlyI8vkRKfQsIiyoBf+wwrdfqp8bT/tmiauKLyUcpqfBtkhMsBcZyEaOlIoL/38tkH9r+Vb0lSTDg
+DKIM-Signature: a=rsa-sha256; bh=V1VfkBOzIlL1diOCJO7aBkMIwTJ+y/SjTldGqzLicPY=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332523; v=1;
- b=g9bm8HDGNv+oEfb4xMXacBXhP3UH0s3rxe5xsiBflxdCipgZVZmp2R+S7eagIy9MD95MFBpB
- 1t4hpDTsp9SaS7WNVj2c2NaoZnM+HToChFhrlCeDLgiuMyPztfr8jdcRlO1xKzz1a3+PdTiBDCf
- c4Kg/aVBf73Vb0+4uRRZqbI21MqNELLsgPcIE5dVK09C4U8LdHHKg6whhUm1iYpCH7HmFgfrsc8
- 1l7vc12HNKgdOYtmkKwGQtEeJnR0HwPpYZIUm6lN6oeh/EMZBQ1GdY4YFtzyq5q51u2/5zaVreG
- VIy62vzjyvuk/AIdvaALpSrURIxFsg8h74Nqmqy9Qhfig==
+ s=ovhmo-selector-1; t=1783332535; v=1;
+ b=HtnZymoTFsua9NRHq9CojE+JhLNQNw/fO5lZi4G6jCuQ7BUkBu8FsCQXKQfMN/Dsx+B/4S8A
+ ya4QAIFY/nmv6Yl+f85BY3QfaSOkxjzGWsTHJnas9nAb7r8HD2DkAr6Gd1mJWQZru8miAIQaDVP
+ +qLLb5ZclQfvfgd3JZ9ILADvCQKw/Axf1O4hKtkB60rJV31kCXxi6f2HKxuJKMKqThUMw93Ayx5
+ BSc5AWhne6wBn1ISPUOxHpWUUtk3WSZju0KBgs4hW8djIy9CI9vjbScT73WLDJlAr/zHTaou1Oi
+ 9AuR+AlcXO7/PUbtVuJithM/VpM+6rvYNN2MkYD9n6BNQ==
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,116 +86,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TTM is about to switch to drm_exec for locking objects
-in the LRU list. When we're done processing the object, we want to
-unlock it only if the caller doesn't already hold that lock. If
-DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which callers may
-require for unrelated reasons), we have no way of knowing whether the
-lock is already held.
+This should no longer be necessary, TTM doesn't lock the BO without a
+reference any more.
 
-To remedy this, add a separate helper that forcefully bypasses the
-IGNORE_DUPLICATES flag for only a single locking operation.
+Only compile tested!
 
+Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
- drivers/gpu/drm/drm_exec.c | 54 ++++++++++++++++++++++++++++++++++------------
- include/drm/drm_exec.h     |  2 ++
- 2 files changed, 42 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 32 +++++---------------------------
+ 1 file changed, 5 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-index 7988f5e7d56a3..ec33ed4a523cc 100644
---- a/drivers/gpu/drm/drm_exec.c
-+++ b/drivers/gpu/drm/drm_exec.c
-@@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 5843f850339c7..34eae56716076 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1642,31 +1642,6 @@ static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
  
--/**
-- * drm_exec_lock_obj - lock a GEM object for use
-- * @exec: the drm_exec object with the state
-- * @obj: the GEM object to lock
-- *
-- * Lock a GEM object for use and grab a reference to it.
-- *
-- * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
-- * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
-- * flag), -ENOMEM when memory allocation failed and zero for success.
+ static void __xe_bo_vunmap(struct xe_bo *bo);
+ 
+-/*
+- * TODO: Move this function to TTM so we don't rely on how TTM does its
+- * locking, thereby abusing TTM internals.
 - */
--int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
-+static int __drm_exec_lock_obj(struct drm_exec *exec,
-+			       struct drm_gem_object *obj,
-+			       bool ignore_duplicates)
+-static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
+-{
+-	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+-	bool locked;
+-
+-	xe_assert(xe, !kref_read(&ttm_bo->base.refcount));
+-
+-	/*
+-	 * We can typically only race with TTM trylocking under the
+-	 * lru_lock, which will immediately be unlocked again since
+-	 * the ttm_bo refcount is zero at this point. So trylocking *should*
+-	 * always succeed here, as long as we hold the lru lock.
+-	 */
+-	spin_lock(&ttm_bo->bdev->lru_lock);
+-	locked = dma_resv_trylock(&ttm_bo->base._resv);
+-	spin_unlock(&ttm_bo->bdev->lru_lock);
+-	xe_assert(xe, locked);
+-
+-	return locked;
+-}
+-
+ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
  {
- 	int ret;
+ 	struct dma_resv_iter cursor;
+@@ -1680,8 +1655,11 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+ 	bo = ttm_to_xe_bo(ttm_bo);
+ 	xe_assert(xe_bo_device(bo), !(bo->created && kref_read(&ttm_bo->base.refcount)));
  
-@@ -226,8 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- 		return -EDEADLK;
- 	}
+-	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
+-		return;
++	/*
++	 * This should never fail since there are no other references to the BO
++	 * any more.
++	 */
++	WARN_ON(!dma_resv_trylock(ttm_bo->base.resv));
  
--	if (unlikely(ret == -EALREADY) &&
--	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
-+	if (unlikely(ret == -EALREADY) && ignore_duplicates)
- 		return 0;
- 
- 	if (unlikely(ret))
-@@ -243,8 +233,44 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- 	dma_resv_unlock(obj->resv);
- 	return ret;
- }
-+
-+/**
-+ * drm_exec_lock_obj - lock a GEM object for use
-+ * @exec: the drm_exec object with the state
-+ * @obj: the GEM object to lock
-+ *
-+ * Lock a GEM object for use and grab a reference to it.
-+ *
-+ * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
-+ * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
-+ * flag), -ENOMEM when memory allocation failed and zero for success.
-+ */
-+int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
-+{
-+	return __drm_exec_lock_obj(exec, obj,
-+				   exec->flags & DRM_EXEC_IGNORE_DUPLICATES);
-+}
- EXPORT_SYMBOL(drm_exec_lock_obj);
- 
-+/**
-+ * drm_exec_lock_obj_report_dup - lock a GEM object for use, but always report duplicates
-+ * @exec: the drm_exec object with the state
-+ * @obj: the GEM object to lock
-+ *
-+ * Like drm_exec_lock_obj, lock a GEM object for use and grab a reference to it.
-+ * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is ignored and duplicates are
-+ * always reported.
-+ *
-+ * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
-+ * already locked, -ENOMEM when memory allocation failed and zero for success.
-+ */
-+int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
-+				 struct drm_gem_object *obj)
-+{
-+	return __drm_exec_lock_obj(exec, obj, false);
-+}
-+EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
-+
- /**
-  * drm_exec_unlock_obj - unlock a GEM object in this exec context
-  * @exec: the drm_exec object with the state
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index 8725ba92ff916..ff80dd2b72240 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
- void drm_exec_fini(struct drm_exec *exec);
- bool drm_exec_cleanup(struct drm_exec *exec);
- int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
-+int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
-+				 struct drm_gem_object *obj);
- void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
- int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
- 			 unsigned int num_fences);
+ 	/*
+ 	 * Scrub the preempt fences if any. The unbind fence is already
 
 -- 
 2.55.0
