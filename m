@@ -4,158 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF774C44500
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 14:52:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23D97C43602
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 15:03:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 911EB10E3B7;
-	Mon,  6 Jul 2026 14:52:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4B9410E78B;
+	Mon,  6 Jul 2026 15:03:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="SaKpzDgg";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nmjtd/A8";
 	dkim-atps=neutral
-Received: from PA4PR04CU001.outbound.protection.outlook.com
- (mail-francecentralazon11013045.outbound.protection.outlook.com
- [40.107.162.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5CD310E3B6;
- Mon,  6 Jul 2026 14:52:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99FBD10E5CD;
+ Mon,  6 Jul 2026 15:03:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783350194; x=1814886194;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=LYEMIbEO/sTf04eWAim6MdgrzqoFsuc1ywlwJiJkFCw=;
+ b=nmjtd/A8+6496DvcJYXpVtd/L/Z95aacKJlm3S/2EGP7dewlNNTFRWGf
+ Nbzts8QzobM4y/xcrymH0WF77nODs2A+RE16kf3DIPQQZTCsJa6Z+ecxX
+ AOGBaSy76gen80jjfvxtEDpy65hrXgF/UAh6EQRp1IGvUruhRZ/8xcULT
+ I0hzoQi7b312HzIwIoSw9KFO+TtXc7EzWUXOmX2RH+U0dqE8hfJHmHksq
+ dXihtgDZORAneCddyuSIrgdPZX6GF7eVOXqaVTPSIM/29fX5sMbEnZTQ1
+ X8sIe6mJUonETe6ZEE9A7uYgme90SHV0lEZSiRMF+ijt1pkx9hlRtmPde A==;
+X-CSE-ConnectionGUID: eVcK1z+6T2y3RELfgQl7Zw==
+X-CSE-MsgGUID: bONQDF35TH6myQRBxZX/9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="94591884"
+X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="94591884"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2026 08:03:14 -0700
+X-CSE-ConnectionGUID: yYcQ4i9/SqeY2qd3IW0h9g==
+X-CSE-MsgGUID: WOrDG7XkSlKo0DMYjA2Whw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="291895167"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2026 08:03:14 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Mon, 6 Jul 2026 08:03:13 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Mon, 6 Jul 2026 08:03:13 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.33) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Mon, 6 Jul 2026 08:03:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d84dOjduQBNr6R3MQLtXTeWrMFoFzqcW/ebXq14oquL1PC3qxZ/rcZKowOa9ywjkBl/p86ksI4/uWrlaiOMJWhUG8bA58c/ekYodAFOM5Qdfuz3wdyHvrcz3+8C6HC/jI7oTyQS9CRYswWyumJ9O/N4V524jknl2NSNxXlfbJR/0lcIpsqHiqG5tWBsBeXrnAVrWUxASdmobIpeSEFuOTNCHj3jZ8qzVwas5P0rzumKbibh5uIXiTHqXfzqCPa5zW7/Lb2ACEW02gwx0/hTy7HhXf8NCsrFSDi6D3yoE35EK0UqUKlh/ky0IexKcn2y8Dco8x1lE3jtDufwylwh1Uw==
+ b=UcEhA7Xhy7tS4PczflHZMM91P6d4wJNwGgFEj2kCif7d9ltr57tG7bkSI9HZRmbeufV+dFnShp+EcJg0d84/t2e6NHnH2RmPGQtnaCRSEdaFxhYgDzUdCjBt4vkIGNqG1U7mWqDR9elve67OmRwzt6NH/DclBLsfiSNjCH+oeYYevDL0CYXMQf9pd7lz+d4zEeZnmRUGOqbGfAFIwYkmAZkoyICT+2tMhq9WI8XJ0WWwBzrRQL73QOKlXEsiZx74HBWg2HQ34+pRi147beqOOYMEzLkdBEvdkRfR+8cRQJCkOPaj6PKMI1RC7izVcUTwmlO+t8w6SP8UNQLQ1op4fw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bmQ0Zr5S8SGkSfP6QoQE3EeZPaKf1seTjeiSYjfs+F4=;
- b=Ofztn4bGE2wzojZkpi/ewuTHjhG8CxvhPRXaPs9pz0zXhPT/a+ggy3JVhsmCq6TCHhMdS0FzTpsoUwyrtja/22uZfM4PyCI6yIioMfL7wY7jYSRqxC/iZdqMpLvRUxn6UV0wmEBYZWtH2CpOEfOvfqRqA7+B3V/EGTa3kblHdJ0K46cb7HAWCCWB5C5NDWw4vL1itVafrS3k7pXp5xeoqbaa6V0LXykGobIaeNSsmFUxI+o58x4etrRC4X0kzO0II4GG78WManOe74ZHYJ6iWzhIuYrAVf7JkP44UgRdxC2ORaHbsGUG4m9q0cMz0od+TZUeWOoHXyaHmT7Q3ruP3A==
+ bh=ErX/3R26ZI2hh4NKvs4TsfXDH9Hp1kZeuYvipa8Rcuo=;
+ b=LdjK8MVnTrMwoY0/CwLOezhREVF41NxWU68CNphIi6zdLgZT5xiT6TwAWgyDr1EeU+Hc/aUSVojNY5JLdCKK+MhHm329TrM8TYifd5+zU4c/RTVqwD76rfLDXeBmb8Lq+kL+Ld+LkwTWUlJILh08PTTwoEgMwXJ+xATlA3hZ2Jqi2EQ0tDjexR76V+fo8Uy2yqjj5rJSyR9rQ2K/Ll/YkxRiANQRxK/SU7x5+XwO3EQvCBVd8ujaMfUoGVZI8tF+XO2YvyEURlRODHPXyD7INF8ji8EsEH/xDlC9pDZ2cuQImJE4kmjOCmnSQEP+G50QXBIWEvbawrKK2r1Vs+wUCw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com; 
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bmQ0Zr5S8SGkSfP6QoQE3EeZPaKf1seTjeiSYjfs+F4=;
- b=SaKpzDggSumgOUZ4V/mNLvLE6qCdZTXw/Hs3X2uo8tNBOVBA+7AFm2d/hXFR+VAyU9PgxZQNFAhKaSiTeIPFsiX16HSW/BPiUIoB+1BFPg5vm4sdra4dziU0L7Kpad1IpOLp91KCog2TlvQE7+vCAgM7Rz0vI2Tjk9wkyndZqOUqcPAxgB1NVG+XOLyDOJO/OnmzYecj3gtsmcRCMHjatIvJVADkuEPHXvm8p19xjNmBJA/YeVPRxcKEetcpHwvCY8alqBfaAT6T8d+EIUcVDJGsb9mYiancH1HYUeK6nnlVx44Tr/MBqC6kgaWATFcJw6zRXdJv7Spkkk399n5YTw==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by PA1PR04MB10699.eurprd04.prod.outlook.com (2603:10a6:102:488::16)
- with Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
+ by CYXPR11MB8732.namprd11.prod.outlook.com (2603:10b6:930:d6::5) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Mon, 6 Jul 2026
- 14:52:10 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Mon, 6 Jul 2026
- 14:52:10 +0000
-Date: Mon, 6 Jul 2026 09:51:47 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>,
- Thierry Reding <thierry.reding@avionic-design.de>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Peter Chen <peter.chen@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- driver-core@lists.linux.dev, devicetree@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, linux-pm@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, mfd@lists.linux.dev
-Subject: Re: [PATCH v3 09/20] iommu/fsl: use platform_device_set_of_node()
-Message-ID: <akvBA1ATCKKYgYkb@SMW015318>
-References: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
- <20260706-pdev-fwnode-ref-v3-9-1ff028e33779@oss.qualcomm.com>
-Content-Type: text/plain; charset=us-ascii
+ 15:03:10 +0000
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0181.008; Mon, 6 Jul 2026
+ 15:03:10 +0000
+Date: Mon, 6 Jul 2026 18:03:04 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Luca Coelho <luca@coelho.fi>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 19/34] drm/i915/dp: Use link caps for eDP DSC config
+ selection
+Message-ID: <akvDqN60We54W4Ad@ideak-desk.lan>
+References: <20260701153204.4124150-1-imre.deak@intel.com>
+ <20260701153204.4124150-20-imre.deak@intel.com>
+ <c496755d198f317620e2cfaae20851aa3fc206a8.camel@coelho.fi>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260706-pdev-fwnode-ref-v3-9-1ff028e33779@oss.qualcomm.com>
-X-ClientProxiedBy: PH8PR21CA0018.namprd21.prod.outlook.com
- (2603:10b6:510:2ce::8) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+In-Reply-To: <c496755d198f317620e2cfaae20851aa3fc206a8.camel@coelho.fi>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GV2PEPF000239D5.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::166) To IA3PR11MB9273.namprd11.prod.outlook.com
+ (2603:10b6:208:573::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|PA1PR04MB10699:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc55ae94-b642-49b6-d6a0-08dedb6e27d6
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|CYXPR11MB8732:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32765f61-e23e-4156-61e0-08dedb6fb182
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|19092799006|1800799024|23010399003|376014|366016|22082099003|18002099003|11063799006|4143699003|56012099006|3023799007;
-X-Microsoft-Antispam-Message-Info: R50DnXEdYb7zS5J9XBIFE1bkQUV4giQH59J0GB+J14IWYEEMyq3Ud5DVvsLPiYgTFvT1vmHlS6p8UmJ8vQBd19MiZ4mja5DM34ahtWt9gDJg55ynfsj9Syuw/LXD1klMaQT7P0jvrz9B6raRStMjfl7LVUEhg4MvGp0Apv5vog3RZm5vxleF4EBUXGqUVTC9ng93D5U2/vX5tceGOsKP+GZImQ4Lpllq6/VS6YILhfqlOpkDd8EmvNFjI6huJNEY7XpRZHDKMN+PVaaagFnDLQQB/cqWkXK2H1K61xjjo6QfoXUIrk0kOHsXI6vfPv/+eKcRjzPnRX6Qx0LgLNBTF7osSck59vRFFsbQiZ8YKI98QU3Mfb1929EPen8i6lUXGSpF3QfT2wnrXUWYBypfregsP9XuvFr3NeKbbwcvu9MZdAJGUmkIPhaQ9Gqa17R+aC0hjKKLROntM809zhP3BA869251LsOJp/xa9mGB3//q8TIYcSURaWXJsx95RY7T25VXGAlGFpAtvjBdR9UpariflmlUAsNn3E+oUEYGqAQg2t0Zz+KZNzr2Ua5OtEvjXwFHqYSBq6pyChkuq+HzeIoJ9AH2oUgNs8sCzpXQu7sK237m7qoJdpSCsWlwiLSlialhzEvHQbbmZiI3gGN2+MDpOQTZ5w4ApB9TMiTTs6c=
+ ARA:13230040|366016|1800799024|23010399003|376014|3023799007|56012099006|4143699003|11063799006|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: I0lG9+pjDfwRy02d8P3rg9da2nOQyTyV5DFU2W84P2Qv+VsTFSaOpNdX9UjW8kF4AJn2OHGiWqS/4VCsn+X8w+kBJe15dIW6lHFdO67NCR8mbVRX/xIGlKIBUvyol3/qGms4baK3hMRaXGJwdRvNxbztWRbYqWTM0xd1IvIA2XZ7HDRojolD6/6ZcZ4RaFj9FqAuDZjOSFkSXUC1NKf+ED+LfaF8ZU6vxfEfczYJx55GxGV5kH0U227EXNyCBu/OV0nrBy8vGJg8RLGJYWFGj/R6bDSpne1R19tR3V3S8gdqFESWrooqvV33suggOyzNw/iaQpgebt1NeqghVip0nXnfijM2Vwx0HlwYMnYCNOCTVhpMQNlOSq2m55YIqA5k8g77J6+u8y3xHZn7zkgF4NJjjrxtH5SvF/qomNWbL3qCFP0nxXIVss2SxVGsfcanUgwiWNFTQcQPySwhfcOzeHiAgpNE9ID+LXY4nnadIQOheX6VrQi92mYb33B2RSbGlK1nzwOuVZd4MiqM/ya3IUXU2ZlR9kPoDuJEctKRNpBaDEMCqPTXFSRGH7XNKVDTMJYTRp2r8NQCQ96GNRV+p0tlKlUr56vHICRtNzs6rV8GBSTlj+WzLUUq2k4nOho/bwJNXEWAAVH3Web2dMog/ysCFxsabolv4Wu73J1X6U4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:GV2PR04MB11799.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(19092799006)(1800799024)(23010399003)(376014)(366016)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006)(3023799007);
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(3023799007)(56012099006)(4143699003)(11063799006)(18002099003)(22082099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HqKq3Wr99DnxteEC3svflGigikw3HshYAQEaScYwmybLtGuPzQyrDg2fzv8R?=
- =?us-ascii?Q?3jpK6unUXT+6aB9iDHErg2CGKRQDHKbEIJwEq/Ic8nb9FSFkmMZOIP9h8Fud?=
- =?us-ascii?Q?+zfhs5O0tp93UWXJoVFKNMvEAT7D9DyQOwPBkmzpn7m8dfMNeWRyFWKKeEE2?=
- =?us-ascii?Q?zsFlOYvigQOQW3mrjhcUaG2JbUyz6oZp2ej1IT+7aqqrs8cWg/Kra52kwW63?=
- =?us-ascii?Q?hqg/4Cn7gWe5dDWtPnGThQ3YSXToWKOCZ2/jeJAmSNmoUrIZ5aHxa4UIp/X1?=
- =?us-ascii?Q?4JUvK+xTEIq9Ky3BZBaQVpAAk/0PzbtFZ6ITQt3Vt0BKmLk7LeojY7w1Yymt?=
- =?us-ascii?Q?qHYr8zNVlZHrkPhdpNkrzIP1oBENe80GukGAz5miO1th81nY3dGkCKBDqRcf?=
- =?us-ascii?Q?5UeVoJYSjnFhWSZcnojM3Cj/3uPdtitxi3Yj8mvWbuc8RhjfsGz3J93gfym1?=
- =?us-ascii?Q?E6SGPX7axOSBwIgJg+9aeamxcKjW7LhS3CTSNdnUfIw/qU3xP2nyfLUVBSWc?=
- =?us-ascii?Q?mD7011LJlIQGZFQWUClVx5/yIM52A+Zu57VuJ4ahdBRVqDPbvDPZ/q9vNVrH?=
- =?us-ascii?Q?1rB67CD4NJZIb9ZJjHqEFQ4GvTMqFhVT7wzn/G5urBZWresYHw9EoBOSp77X?=
- =?us-ascii?Q?KTwt99E4BpCtSAgy6Lm25I0BPT7gMp+7sj2QYW3qtlJXdcERbDLUlmxWPTFD?=
- =?us-ascii?Q?WC8BEz7lkV/ggEixOX5VJ9x6bH3QJKzW00uyXUfvanFjpKcsBfWv6cU4Nwqa?=
- =?us-ascii?Q?L4aTefU2GgGGyH6q5guPjmM7m2pH9xCzQKB7WJb1l6efopUNazvl99ydrdUZ?=
- =?us-ascii?Q?HQAncBpvZyXVAjpZ2fCSNHGikzFUQ+YWh8OyelaR8alRZOUnjKGvnzdlFNu4?=
- =?us-ascii?Q?jntg3SS0m3kDHqmXpeJ50ftN1ZquT69mAZ4n3EQPM6YqkddDDtHnvo35nAW6?=
- =?us-ascii?Q?T4V7T6rLYPzFlnBsF3NCXtBSIYl4kQT7I9IbuuZr/Lpbn5bzewSHGPWyHb4b?=
- =?us-ascii?Q?Kkzh4VE6JZSPGCTZspQwQt/UwoZzkAlOUzQ7OEMDffFKpzWwXse361UAXIM4?=
- =?us-ascii?Q?/HyQEuz7z5e2jQNizRO+LWm5RjpF/MA1wzqGZmdTWJdFCvB1ySLwNyIyaOI3?=
- =?us-ascii?Q?U7iMtsabAqRJBQsvfGUPV7KibumRq4UdTEz/JXFSpcwptR3HGNIrHVvkSduR?=
- =?us-ascii?Q?aDmSIQihZu8hUJYbImTZZl7IMWie4LL3YXSy7N7GrNyGLMKPqUWFMDa/Dhwy?=
- =?us-ascii?Q?1Iquem1G+zRhcx3zgfJ5wI4Mtr95JIJzAMLAfu92PLAlZi0j5b40TwWDb8H3?=
- =?us-ascii?Q?kuNGiQ/T9GKOPhtOegHg/nUEka7U4Q9gay4c9Km8lRcXxziazXa4xct60dny?=
- =?us-ascii?Q?C7wxisVS3O8tOUNQKreaPLo8Tab9zajGfLY2Ll2Cv0pF+GrE/CPZjTvdobDY?=
- =?us-ascii?Q?UkyiTwvvk3MCVHyKT4ThCNgFIv/fg34Fy9N33mQpr03QFPANYL3VrORiXbpi?=
- =?us-ascii?Q?RqYENQX0BKOmvmI7eehbWEZTFiUnkiIqKVRwUPoSEljc0Qx0S9i/DQBcJFd/?=
- =?us-ascii?Q?t4S97cq4Sw0qLi4Zon4WoGO7jHQ2MfgzFnjqOkfoUNlGeNyRO6yQxo7nsDtG?=
- =?us-ascii?Q?8HrAJzcIVx3yJ1OwaIVax4wKv63oC3m93Dwmvaz8C5AjIxv+AytQJ11qZRsq?=
- =?us-ascii?Q?nDo2SorRG+gwaXEWlJ3pUC5BJeeDXioBEXlEnbFr2EUBf+M5RkE8pBDQ5RtN?=
- =?us-ascii?Q?YEGsBVvqdZ88Gd1xbrcCG9jRmWtL1qEM+4jPL3ba4LLomQkhApOr?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc55ae94-b642-49b6-d6a0-08dedb6e27d6
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LndX8WbI/mNFhl++D0q06xdxYyUJw12VNZcbMYg1+zgiU3Lvdcsc4b/Pizeh?=
+ =?us-ascii?Q?ve/JxTDku5jea6jgZqWhxNgX2wneIqxVSKywWSc8iqDYI26F6BtmSDzUgqHx?=
+ =?us-ascii?Q?AV4B/GJEQgq3QDXkqP1PTWb4rOkW4cCQjvz0VH3AFVG7/dzKboAigyuOdpAg?=
+ =?us-ascii?Q?Pt3t7j2yULXTNNPUFkSAltSzbN7k3KE5eWthCLnB0bRxd6/p8gJaQt++GkzE?=
+ =?us-ascii?Q?tjB3gf3DSVkYJpxOIVy9Pohsg5/DHb3a8R3zD4zPMgalw4jlVbdj2ltzJU+6?=
+ =?us-ascii?Q?drwxu1HbSEBdhxe0r5WIYr6ns5ubPiiolkLOzVS2GbmxIB0za3hhVP76DKd6?=
+ =?us-ascii?Q?L5X7rkX/lDGwgkpQmXxb+mgCStoBU+uvd3dpzjmxlF6pcAukj7/7buqaY81P?=
+ =?us-ascii?Q?Fk5x6yqacS5kMo+KgbGEn7RFZf8gOJfxOtTgFc2JABq7vLbDoQUsDJKKfApE?=
+ =?us-ascii?Q?ZFVT6STTxnM9lGyu4AlT+xrwROxyy7FjiZLyN7i1hWh97VUpgN8VmpU/42rN?=
+ =?us-ascii?Q?lqAdYzXmMPDnzd65ef1MrnoB14HCXLh5SJuj3MuZTJrRsC9NiDnedtcQyWWI?=
+ =?us-ascii?Q?nxtHcsSViFFdyYQbzPX+0G7v5A0+rsC+Ts9TXHaZKUrAvDJRxVAPXzBLm7mT?=
+ =?us-ascii?Q?QWX6FJ6p1pQJ+9jcay9DXYI5195iw7eLicxcwLX7s+NfLP2YcKokwHENdLSS?=
+ =?us-ascii?Q?aQ4TjbSfudt2m8vZxMStcwXFdy11K/gDsA0oLUBrCM+JxuQCblogBKSqYcYn?=
+ =?us-ascii?Q?C7D9ntRsl58a4mDHXWi7LWhDpei+qYQgXgZ6kWucziFuTJz/eForA2Tlg7+Y?=
+ =?us-ascii?Q?k9OzEpwaLW1G4nhw8XPi0Kc+WNGU8FgAO/ReW3Ygj2NnnzC9AgH1ZIXyjVkN?=
+ =?us-ascii?Q?NNYWOQHgRHOeTbMScK54IpfuaepYmmBiRHYnV8GR2O+Nsuw1Z77nOeB8oHUk?=
+ =?us-ascii?Q?UdR6a4MmFXbpwotv6vxXsdsg3K7VDhDMAIaXAKNXNSLWMUw1BoxGUsWzK3ud?=
+ =?us-ascii?Q?qibfvx3dy7htYXpwTIiYIcIMMAQMYVhNWEzg0zzZ5+0MZviGWg7kdcHt9Hy1?=
+ =?us-ascii?Q?xaZ5mV5a3STEiK3k+ysZTLY7HnCfrwYJjH/3oX6iA5EYRtxSf6+9XxPd5SP6?=
+ =?us-ascii?Q?gL+pIS7H4JfXnjnTUqWgniM/0R5rDO6F87AN7OZwbPwDffmW9fWfIsJ7KEHr?=
+ =?us-ascii?Q?+AR6p36ji/2M9pCRqdtSQ0QCGr/eQvI+evIPg5ERy4b+UJRz7PvQjDr5A88L?=
+ =?us-ascii?Q?bAeJ9Uhib0ZNCwW9PrJDroIpm4q9o5IIdHvV3T+vBI3c/0bPmCsV36E99S9j?=
+ =?us-ascii?Q?AaQKs7I6AHdslH2FOl5HrByl3bNYu5XREhAEfeVnWOtx0ZSUdcpbCfFtbkYS?=
+ =?us-ascii?Q?QaElpjlRzaZUPQTP2E8293Zu8NWzf4GH0+dMR61vdUSdPPHafBtvEDx4wkOC?=
+ =?us-ascii?Q?vi2eQX4efipjCZasRbZaiEFGpkneI8bOiD4ZK7Z5hcwRi4VdkhTKNX/0PCAu?=
+ =?us-ascii?Q?PhE4yy78EM+aCTZKWgr3O/wJ+nXQoNtcoUUS4wWIA5UDHWkspkdY3MJ1TLXx?=
+ =?us-ascii?Q?YNVykvuYmvwosKAnC2wimjA4H7UY7H/vvZVzbqJNgeYdtNqzBzLehKnjzddw?=
+ =?us-ascii?Q?TdZ2LR9IQFJi7bGOWhqkkX0KPUSOAFDoYGm7yH8Mu/0Ft/ELvivNmJg54Bmt?=
+ =?us-ascii?Q?7z/HnvXXVMhWz+LXm9y4F6dw0GENnjnGiylJYQc043nLdl/EsOvK651TNuDh?=
+ =?us-ascii?Q?xWumnxDbVA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: G4ViE513DaY3KYON7dKhDMOR7Fx4Kf73mp/tjJXHmwXp+jsuXryno0g2Lm1upXbne1xpiJ9foX9HG3tvYgTsK4tUF+aXmwrLS9dMSFbso2+C/OnQGAejn8gklUPtRW3BhVCz7McuYf0F1D1JnLEmPQugzE0iPmoJDKnTjpLYuhpAxE0du89l/4Ck6pDctXpLyHYeWodg8BH4JmwLZ+mxWykGW0abN7DdeyvRV2LV7udCEt5YNmuUiOODGzpCFy1mIf7ID+ARVDzzHeAIvVXJsBoyLqiuUXHu3lMaxQj7cw97BRje82IjhD9lK4Bu832MNpQENHJKSNDEifo3xyLZDA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32765f61-e23e-4156-61e0-08dedb6fb182
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 14:52:09.8924 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 15:03:10.0445 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xIKtRlDx2pT3kbZXRTpAdCXKj5n0g0mxkPT5RRA07IPPy0IDauTXThljzjMgXT95pc4rkH5M8cHSJB6ncRAaCTVRnFYWQUakFUto5Xmgw4CWwjllLn8rnx4YQq5Cr6ev
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10699
+X-MS-Exchange-CrossTenant-UserPrincipalName: swscX72PI9HvjXvRU0jA1RxR2uVMM/oWBNKo0FB3ozYMXXOKWht8C3kD6k9eptjKpuEcOP9n/M4nTuuidGEsqg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8732
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,93 +158,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 06, 2026 at 02:44:21PM +0200, Bartosz Golaszewski wrote:
-> Ahead of reworking the reference counting logic for platform devices,
-> encapsulate the assignment of the OF node for dynamically allocated
-> platform devices with the provided helper.
->
-> Acked-by: Robin Murphy <robin.murphy@arm.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> ---
+On Mon, Jul 06, 2026 at 01:49:35PM +0300, Luca Coelho wrote:
+> On Wed, 2026-07-01 at 18:31 +0300, Imre Deak wrote:
+> > Use the link caps helper to select the maximum eDP link configuration
+> > for DSC computation, instead of using the separate max rate and lane
+> > count limits, which may not form a valid configuration after individual
+> > configs are disabled by fallback.
+> > 
+> > This is a step towards unifying configuration selection and iteration
+> > across connector types and between compute and fallback paths.
+> > 
+> > The state computation should likely consider all allowed configurations,
+> > as noted in the code comment; for now keep the existing eDP DSC behavior
+> > of selecting the maximum configuration determined by the eDP connector
+> > rate / lane config iteration order.
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++++++++++++---
+> >  1 file changed, 14 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index c6920afb50902..79e3334d24332 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -2248,7 +2248,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+> >  				      int pipe_bpp)
+> >  {
+> >  	struct intel_display *display = to_intel_display(intel_dp);
+> > -	const struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> > +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> >  	int min_bpp_x16, max_bpp_x16, bpp_step_x16;
+> >  	int bpp_x16;
+> >  	int ret;
+> > @@ -2260,8 +2260,19 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+> >  	max_bpp_x16 = align_max_compressed_bpp_x16(connector, pipe_config->output_format,
+> >  						   pipe_bpp, max_bpp_x16);
+> >  	if (intel_dp_is_edp(intel_dp)) {
+> > -		pipe_config->port_clock = limits->max_rate;
+> > -		pipe_config->lane_count = limits->max_lane_count;
+> > +		struct intel_dp_link_config max_link_config;
+> > +
+> > +		/*
+> > +		 * FIXME: Clarify why eDP does not use the regular SST BW
+> > +		 * check and instead always uses the maximum link config,
+> > +		 * regardless of intel_dp::use_max_params. Then unify this eDP
+> > +		 * path with the regular DP path.
+> > +		 */
+> 
+> Are you planning to clarify this? Will it be part of your current
+> refactoring (maybe in later patches)?
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+This patchset doesn't want to change the behavior, so here the link
+configuration with the max rate and lane count is selected as before.
+The above comment only serves as a reminder to make the eDP case work as
+the SST-DP case, in a follow-up.
 
->  drivers/iommu/fsl_pamu.c | 16 ++++++----------
->  1 file changed, 6 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/iommu/fsl_pamu.c b/drivers/iommu/fsl_pamu.c
-> index 25aa477a95a95cb4fa4e132727cde0a936750ee2..c83bbc3faad56d6ee1c89b0a7f74028af02c81e9 100644
-> --- a/drivers/iommu/fsl_pamu.c
-> +++ b/drivers/iommu/fsl_pamu.c
-> @@ -8,6 +8,7 @@
->
->  #include "fsl_pamu.h"
->
-> +#include <linux/cleanup.h>
->  #include <linux/fsl/guts.h>
->  #include <linux/interrupt.h>
->  #include <linux/genalloc.h>
-> @@ -933,7 +934,6 @@ static struct platform_driver fsl_of_pamu_driver = {
->  static __init int fsl_pamu_init(void)
->  {
->  	struct platform_device *pdev = NULL;
-> -	struct device_node *np;
->  	int ret;
->
->  	/*
-> @@ -955,7 +955,8 @@ static __init int fsl_pamu_init(void)
->  	 * PAMU node would require significant changes to a lot of code.
->  	 */
->
-> -	np = of_find_compatible_node(NULL, NULL, "fsl,pamu");
-> +	struct device_node *np __free(device_node) =
-> +			of_find_compatible_node(NULL, NULL, "fsl,pamu");
->  	if (!np) {
->  		pr_err("could not find a PAMU node\n");
->  		return -ENODEV;
-> @@ -964,7 +965,7 @@ static __init int fsl_pamu_init(void)
->  	ret = platform_driver_register(&fsl_of_pamu_driver);
->  	if (ret) {
->  		pr_err("could not register driver (err=%i)\n", ret);
-> -		goto error_driver_register;
-> +		return ret;
->  	}
->
->  	pdev = platform_device_alloc("fsl-of-pamu", 0);
-> @@ -973,7 +974,8 @@ static __init int fsl_pamu_init(void)
->  		ret = -ENOMEM;
->  		goto error_device_alloc;
->  	}
-> -	pdev->dev.of_node = of_node_get(np);
-> +
-> +	platform_device_set_of_node(pdev, np);
->
->  	ret = pamu_domain_init();
->  	if (ret)
-> @@ -988,17 +990,11 @@ static __init int fsl_pamu_init(void)
->  	return 0;
->
->  error_device_add:
-> -	of_node_put(pdev->dev.of_node);
-> -	pdev->dev.of_node = NULL;
-> -
->  	platform_device_put(pdev);
->
->  error_device_alloc:
->  	platform_driver_unregister(&fsl_of_pamu_driver);
->
-> -error_driver_register:
-> -	of_node_put(np);
-> -
->  	return ret;
->  }
->  arch_initcall(fsl_pamu_init);
->
+> > +		if (!intel_dp_get_connector_max_link_config(connector, limits, &max_link_config))
+> > +			return -EINVAL;
+> > +
+> > +		pipe_config->port_clock = max_link_config.rate;
+> > +		pipe_config->lane_count = max_link_config.lane_count;
+> >  
+> >  		pipe_config->dsc.compressed_bpp_x16 = max_bpp_x16;
+> >  
+> 
+> Regardless:
+> 
+> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+> 
 > --
-> 2.47.3
->
->
+> Cheers,
+> Luca.
