@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98A7EC43458
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 10:16:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C6E6C44503
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 10:16:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF78C10E878;
-	Mon,  6 Jul 2026 10:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E6E10E888;
+	Mon,  6 Jul 2026 10:16:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=pixelcluster.dev header.i=@pixelcluster.dev header.b="DmBwcT1K";
+	dkim=pass (2048-bit key; unprotected) header.d=pixelcluster.dev header.i=@pixelcluster.dev header.b="g2qFX0Bb";
 	dkim-atps=neutral
-Received: from 5.mo534.mail-out.ovh.net (5.mo534.mail-out.ovh.net
- [54.36.140.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2BD10E882;
- Mon,  6 Jul 2026 10:16:39 +0000 (UTC)
-Received: from director3.derp.mail-out.ovh.net
- (director3.derp.mail-out.ovh.net [152.228.215.222])
- by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0S94377z6JNY;
- Mon,  6 Jul 2026 10:08:41 +0000 (UTC)
-Received: from director3.derp.mail-out.ovh.net
- (director3.derp.mail-out.ovh.net. [127.0.0.1])
- by director3.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:41 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.113.54])
- by director3.derp.mail-out.ovh.net (Postfix) with ESMTPS id
- 4gv0S91f73z5vMF; Mon,  6 Jul 2026 10:08:41 +0000 (UTC)
+X-Greylist: delayed 467 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Jul 2026 10:16:42 UTC
+Received: from 12.mo534.mail-out.ovh.net (12.mo534.mail-out.ovh.net
+ [46.105.38.145])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7168D10E88D
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:42 +0000 (UTC)
+Received: from director4.derp.mail-out.ovh.net
+ (director4.derp.mail-out.ovh.net [79.137.60.37])
+ by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SL0cLtz6JQw;
+ Mon,  6 Jul 2026 10:08:50 +0000 (UTC)
+Received: from director4.derp.mail-out.ovh.net
+ (director4.derp.mail-out.ovh.net. [127.0.0.1])
+ by director4.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:49 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.188.244])
+ by director4.derp.mail-out.ovh.net (Postfix) with ESMTPS id
+ 4gv0SK6gg8z1xpM; Mon,  6 Jul 2026 10:08:49 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 68F1B8E18F1; 
- Mon,  6 Jul 2026 10:08:38 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id D6BB88E1900; 
+ Mon,  6 Jul 2026 10:08:47 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-104R005839ebacf-71a8-4403-bd92-15e344545245,
+ (GARM-104R0059e04c65d-8d6d-4e04-b7d3-3cab13c6df7f,
  F224CF1D020274B13B21E639C91833BCDAC0997A) smtp.auth=nat@pixelcluster.dev
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Subject: [PATCH v2 00/10] Use drm_exec to lock TTM buffers, respin
-Date: Mon, 06 Jul 2026 12:07:42 +0200
-Message-Id: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
+Date: Mon, 06 Jul 2026 12:07:47 +0200
+Subject: [PATCH v2 05/10] drm/ttm: switch to
+ ttm_bo_lru_for_each_reserved_guarded for swapout
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNyw6CMBQFf4XctTV9ICIr/8OQhrYXqEnBtJXUE
- P5dimuXk8yZs0JAbzFAU6zgcbHBztMO/FSAHrtpQGLNzsApr+iVChKjk1wa7yQm1IQbZRTr1c2
- UAvbRy2Nv0xF8tD8Ob/VEHXMlG6MNcfaf43Fh2fsbXxihpBRVfek043Wl7oNLZ4PQbtv2BQFwZ
- NG7AAAA
-X-Change-ID: 20260703-ttm_2_drm_exec-2dbdb1fb9d43
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260706-ttm_2_drm_exec-v2-5-4bf6bfc0d320@pixelcluster.dev>
+References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
+In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
@@ -63,18 +63,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9126826122039877948
+x-ovh-tracer-id: 9129077919805890876
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTFgEUEwEqBo3ZrzVucSTtO/cFkWvVsp3c3LMjrE7Lw1DeNsogoT1lbm30aCROrLeEEj8aVLa9IYqYnCp6i97vxuKze+6oHkIOAtFkImsarfenTHfLFMfIwh9XihJGWYxPe8CNTQTJIcfG+7nbbtlvQBBzK5XJlefECP8Z2oujAU7t3Wnm+UYWnTou5EdXX5eKxxPEX4sWN5iZfmo0z78nSNcf+dOtFZ4CuIghqxnLCu060kV7HrpV7TiD0dnchOO0CEOl3qmNQ19dAxtJ2sT6iAx0/9LWnzIpmxMx1/mrEqXxocLxkArzzMrSmLWpuk8777wwv1IhEzcdmvsVNUlyHbJ2vWreEw5ghkmnAZb3iPDq5BWX/Xfc2/6WV/ko1dcG0xEHhPOVXHeW5lXOY8qX+25C1mroB+HlRWNw4FNckbnyYZHbXzh5WTvKpG69xicFOVxlpldlGrXGzvgTI4aWVM9bSDZ8tOKkcLIuWzvsw0J1Nb+THerDTlZdkgJydSuu5WTez6kfo0JQpPkMcYnN4J4EKHc0JoUaDyEnlPdFO7FHK/O0OFkn9lW+ShT/Z6UfS5A6/DbV1upyvUAeR8xfM0y+4eAGRKY8OB/k3Pmp8MVrfK4HqgO/PpXjTaCa4VxDjlMEwe7NS6cKPIBOAN3+tuf6bnoUmb0oVygtqq09x6IQ
-DKIM-Signature: a=rsa-sha256; bh=b0aRyvHjrmTrYhQ1eeIvNkwvtpG+ep/zFFPoF8zkvLw=; 
+X-VR-SPAMCAUSE: dmFkZTGrlNJ8ShesFc0BsmoWFi51A7F15j2IaCkSK7BVZBg/BM8MBdGhyqLZmkbZMHw/TdptOPm8sgahQti1Nc9RjBh0KMZiGtpja+p6qhts3jrWUso58aRKRrx2DXtHoeXDd8faKpktnEASA9l57md6lmCqaecpmqLv9KOaMd5Cxk2fFcLRCf7Y1jiwLpKZwWHOg5MLCHSu/c85HhHBD+9tK6DpmR22NTjUbN0dGZJB9cmuuQPGLboQ0v7ZPGbXkip9C+NIKd694im0qBCyEcUf/DwxdiDWy9o5iBQA1zQlg0Y75Jpr3La1ocQctyDO3tKJ1UAaq83N/bdymi3oIi31d22Yh6zN0szX2fjCorgmlUwVsjE42R4cTUcyqWz8MJeNfTNeP58CJHiBRHfaOjZHzza+XgPWTFpoIfg39AhpFofapCMjO7Ye8tJfkRcDZwKWHSZc3S4MvZTGAWdHg0lHSkQGvwVvhKn4W9HZH5r47r2MwndWzZPkDQNff/femBsHqANAlYoPK31aHYUR7TGaR5mpDIFitIRzL4jD39nXjOaEIIrSfuIPhhnyDASz5xnxL4YR3aqQtkjp50TS0CduEin0X3zqcP3/gH9LpY70gs6RDaQxwEGlT6DffCe+DpM7fanv05/Q08DKKvxNKcQEIfnBFMr26Jpm5IvsA5zPes/H5Q
+DKIM-Signature: a=rsa-sha256; bh=pL2GIfs9pCSQWKYD/oWsFK8PH5Ljesh1GOwIouQX/U8=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332522; v=1;
- b=DmBwcT1KDCPjcJPXWrRTdv2DzBdrghtuPD8RcPRz0WQGtLxYb2DlQX6ugJYSLMERkdRDnE3z
- xsk1FUHxsFgGMdabvWLNJQsMI+/txAZPMzm+rbg7lwU7dUVyI+ciGT6I9Ui6r40HiqOJNC1N+6D
- k2WRWu3rU4WtfbNFO6SQpBKxN+HbF43+xIZ1RXe9AvViUB461Q/Y3azY0inrt6JqAk6wylfOOMp
- WwQbrDkvzSgqIn2SXN+QRPGM3letBD/QX4KWB7scK1yBB/L/2rSbL3DEwcNlnkro1GaxtkAl9uB
- sEqtbesB5aem1v8LdGwgzEaK1q1OOZl+CG54IsYXE5G6g==
+ s=ovhmo-selector-1; t=1783332530; v=1;
+ b=g2qFX0Bb0GEdNQAwaBtdy+IvZftPdYvnKZW6Sjv1c6W2jfP5cVO0sbPkGkDwBMIw9wwlgQiP
+ SDbMVtBb1l1dGwl5RJRyZpsbaB9PVt8p1hi7Agsn+s/nNT5fn2zG5RXZchu956j9fWjzvAsVFw8
+ vLFOe3n1nzzDPqouUk+Eqjs0u5N9nFa9efKPwBrJXuNiste1osfgtOwhYvvCFHPiOhkIEyACkXu
+ zEdLxvpnhG6wr3P7xeQ9ZPveToyVKkLOpz2v3hemmtq86dm87aGNjAZAmHvgr7FJoIY5sqd8r7W
+ tgbuFcD/H4Y9zDvSyWeZKOk+20jJBa/k2ZCBKBYQTT4tw==
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,87 +89,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi all,
+Instead of the walker wrapper use the underlying foreach. Saves us quite
+a bunch of complexity and loc.
 
-this is a respin of Christian's patchset to make TTM use drm_exec for
-evicting buffers.
-
-I've been investigating VRAM management for amdgpu quite a bit in recent
-times, and under really strong VRAM contention I observed frequent
-instabilities/random crashes that I traced back to TTM being unable to
-evict buffers properly. The typical failure case was one game squatting
-more or less all of VRAM while also being rather spammy with submits.
-In that case, trylocking fails because concurrent submits from the game
-already hold buffer locks, and since there isn't much else to evict,
-allocation just fails.
-
-The original patchset ended up fizzling out in previous attempts to
-upstream it, but I think it's worth retrying to upstream this, so I took
-over and rebased it on top of current drm-misc-next. Aside from
-that, while testing the patchset I found two bugs causing rather random
-issues ranging from kernel crashes to random GPU hangs in it, which I fixed
-for this respin. The two bugs were:
-1. The ttm_buffer_object duplication in ttm_buffer_object_transfer did
-   not alter the GEM object's driver function pointers, so the
-   transferred object erroneously inherited the free() function of the
-   source buffer. When the transferred object was freed, the driver's
-   free function was invoked and treated the transferred TTM bo as if it
-   was a driver BO. Hilarity ensued.
-2. drm_exec LRU walks were missing handling for already-locked objects.
-   If the incoming exec object was created without
-   DRM_EXEC_IGNORE_DUPLICATES, drm_exec_lock_obj would return -EALREADY
-   and the buffer would be skipped even if ctx->allow_res_evict was set
-   (funkiness level: moderate).
-   If the exec did have DRM_EXEC_IGNORE_DUPLICATES
-   set, the buffer would be processed, and then unlocked, silently
-   dropping the lock of some random object that the caller expected to
-   stay locked (funkiness level: off the charts).
-
-With those two bugs fixed, VRAM overcommit works considerably more
-stable - there are no random eviction failures and related fallouts at
-all anymore.
-
+Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
-Changes in v2:
-- Switched to my new email
-- Reworked drm_exec patch for always reporting duplicates (Christian)
-- Removed spurious continue; rebase artifact in swapout
-- Removed incorrect trylock_only for evict_all
-- Link to v1: https://patch.msgid.link/20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de
+ drivers/gpu/drm/ttm/ttm_bo.c     | 58 +++++++---------------------------------
+ drivers/gpu/drm/ttm/ttm_device.c | 18 ++++++++++---
+ include/drm/ttm/ttm_bo.h         |  5 ++--
+ 3 files changed, 26 insertions(+), 55 deletions(-)
 
----
-Natalie Vock (10):
-      drm/exec: Add helper to bypass IGNORE_DUPLICATES flag
-      drm/ttm: replace TTMs refcount with the DRM refcount v4
-      drm/ttm: remove ttm_lru_walk_ops
-      drm/ttm: grab BO reference before locking it
-      drm/ttm: switch to ttm_bo_lru_for_each_reserved_guarded for swapout
-      drm/ttm: move zombie handling into ttm_bo_evict
-      drm/ttm: use ttm_bo_lru_for_each_reserved_guarded in evict_all
-      drm/xe: remove workaround for TTM internals
-      drm/ttm: support using drm_exec during eviction v4
-      drm/amdgpu: use drm_exec during BO validation
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 1fb8c53da0362..24c52df169ac8 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -1080,25 +1080,18 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
+ EXPORT_SYMBOL(ttm_bo_wait_ctx);
+ 
+ /**
+- * struct ttm_bo_swapout_walk - Parameters for the swapout walk
++ * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
++ * @bo: The buffer to swap out.
++ * @ctx: The ttm_operation_ctx governing the swapout operation.
++ * @gfp_flags: The gfp flags used for shmem page allocations.
++ *
++ * Return: The number of bytes actually swapped out, or negative error code
++ * on error.
+  */
+-struct ttm_bo_swapout_walk {
+-	/** @walk: The walk base parameters. */
+-	struct ttm_lru_walk walk;
+-	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
+-	gfp_t gfp_flags;
+-	/** @hit_low: Whether we should attempt to swap BO's with low watermark threshold */
+-	/** @evict_low: If we cannot swap a bo when @try_low is false (first pass) */
+-	bool hit_low, evict_low;
+-};
+-
+-static s64
+-ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
++s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
++		   gfp_t gfp_flags)
+ {
+ 	struct ttm_place place = { .mem_type = bo->resource->mem_type };
+-	struct ttm_bo_swapout_walk *swapout_walk =
+-		container_of(walk, typeof(*swapout_walk), walk);
+-	struct ttm_operation_ctx *ctx = walk->arg.ctx;
+ 	struct ttm_device *bdev = bo->bdev;
+ 	struct ttm_tt *tt = bo->ttm;
+ 	s64 ret;
+@@ -1166,7 +1159,7 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
+ 		bdev->funcs->swap_notify(bo);
+ 
+ 	if (ttm_tt_is_populated(tt)) {
+-		ret = ttm_tt_swapout(bdev, tt, swapout_walk->gfp_flags);
++		ret = ttm_tt_swapout(bdev, tt, gfp_flags);
+ 		if (!ret) {
+ 			spin_lock(&bdev->lru_lock);
+ 			ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
+@@ -1183,37 +1176,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
+ 	return ret;
+ }
+ 
+-/**
+- * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
+- * @bdev: The ttm device.
+- * @ctx: The ttm_operation_ctx governing the swapout operation.
+- * @man: The resource manager whose resources / buffer objects are
+- * goint to be swapped out.
+- * @gfp_flags: The gfp flags used for shmem page allocations.
+- * @target: The desired number of pages to swap out.
+- *
+- * Return: The number of pages actually swapped out, or negative error code
+- * on error.
+- */
+-s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+-		   struct ttm_resource_manager *man, gfp_t gfp_flags,
+-		   s64 target)
+-{
+-	struct ttm_bo_swapout_walk swapout_walk = {
+-		.walk = {
+-			.process_bo = ttm_bo_swapout_cb,
+-			.arg = {
+-				.ctx = ctx,
+-				.trylock_only = true,
+-			},
+-		},
+-		.gfp_flags = gfp_flags,
+-	};
+-
+-	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man, target);
+-}
+-EXPORT_SYMBOL_FOR_TESTS_ONLY(ttm_bo_swapout);
+-
+ void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
+ {
+ 	if (bo->ttm == NULL)
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index d3bfb9a696a74..06fc5255d4091 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -171,6 +171,12 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 		       gfp_t gfp_flags)
+ {
+ 	struct ttm_resource_manager *man;
++	struct ttm_bo_lru_cursor cursor;
++	struct ttm_buffer_object *bo;
++	struct ttm_lru_walk_arg arg = {
++		.ctx = ctx,
++		.trylock_only = true
++	};
+ 	unsigned i;
+ 	s64 lret;
+ 
+@@ -179,10 +185,14 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 		if (!man || !man->use_tt)
+ 			continue;
+ 
+-		lret = ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
+-		/* Can be both positive (num_pages) and negative (error) */
+-		if (lret)
+-			return lret;
++		ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &arg, bo) {
++			lret = ttm_bo_swapout(bo, ctx, gfp_flags);
++			/* Can be both positive (num_pages) and negative (error) */
++			if (lret && lret != -EBUSY && lret != -EALREADY)
++				return lret;
++		}
++		if (IS_ERR(bo))
++			return PTR_ERR(bo);
+ 	}
+ 	return 0;
+ }
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 0fcd5082a7080..bbed63064c9a9 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -408,9 +408,8 @@ void *ttm_bo_kmap_try_from_panic(struct ttm_buffer_object *bo, unsigned long pag
+ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map);
+ void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map);
+ int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object *bo);
+-s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+-		   struct ttm_resource_manager *man, gfp_t gfp_flags,
+-		   s64 target);
++s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
++		   gfp_t gfp_flags);
+ void ttm_bo_pin(struct ttm_buffer_object *bo);
+ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+ int ttm_bo_evict_first(struct ttm_device *bdev,
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c           |  80 +++----
- drivers/gpu/drm/drm_exec.c                       |  54 +++--
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c          |  35 ++-
- drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c |   8 +-
- drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c    |   2 -
- drivers/gpu/drm/ttm/ttm_bo.c                     | 272 +++++++----------------
- drivers/gpu/drm/ttm/ttm_bo_internal.h            |  17 +-
- drivers/gpu/drm/ttm/ttm_bo_util.c                |  58 +++--
- drivers/gpu/drm/ttm/ttm_device.c                 |  18 +-
- drivers/gpu/drm/ttm/ttm_resource.c               |  21 +-
- drivers/gpu/drm/xe/xe_bo.c                       |  32 +--
- include/drm/drm_exec.h                           |   2 +
- include/drm/ttm/ttm_bo.h                         |  50 ++---
- 13 files changed, 295 insertions(+), 354 deletions(-)
----
-base-commit: 44d19b8a7548aa25cbc6ebd5f27e958f7142c36b
-change-id: 20260703-ttm_2_drm_exec-2dbdb1fb9d43
-
-Best regards,
---  
-Natalie Vock <nat@pixelcluster.dev>
+-- 
+2.55.0
 
