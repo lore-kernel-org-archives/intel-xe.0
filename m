@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B925BC44502
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 02:49:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1D8DC43458
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jul 2026 02:49:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7865810E71D;
-	Mon,  6 Jul 2026 02:49:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83CAF10E71E;
+	Mon,  6 Jul 2026 02:49:10 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7492D10E71C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D30ED10E71D
  for <intel-xe@lists.freedesktop.org>; Mon,  6 Jul 2026 02:49:07 +0000 (UTC)
 Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-416-88lZRkJ4Ovqn0o2uvIzJ8A-1; Sun,
- 05 Jul 2026 22:42:24 -0400
-X-MC-Unique: 88lZRkJ4Ovqn0o2uvIzJ8A-1
-X-Mimecast-MFC-AGG-ID: 88lZRkJ4Ovqn0o2uvIzJ8A_1783305742
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-626-aGMjOx-OPfScocOsh9L_cA-1; Sun,
+ 05 Jul 2026 22:42:55 -0400
+X-MC-Unique: aGMjOx-OPfScocOsh9L_cA-1
+X-Mimecast-MFC-AGG-ID: aGMjOx-OPfScocOsh9L_cA_1783305773
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
  by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id B3D951955F70; Mon,  6 Jul 2026 02:42:22 +0000 (UTC)
+ id 55AFE1955F78; Mon,  6 Jul 2026 02:42:53 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.67.32.13])
  by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 1DE87300070A; Mon,  6 Jul 2026 02:42:15 +0000 (UTC)
+ id 84FBE300070A; Mon,  6 Jul 2026 02:42:46 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org, tj@kernel.org, christian.koenig@amd.com,
  Johannes Weiner <hannes@cmpxchg.org>, Michal Hocko <mhocko@kernel.org>,
@@ -39,15 +39,16 @@ Cc: cgroups@vger.kernel.org,
  Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
  Waiman Long <longman@redhat.com>, simona@ffwll.ch,
  intel-xe@lists.freedesktop.org
-Subject: [PATCH 06/10] ttm: hook up memcg placement flags.
-Date: Mon,  6 Jul 2026 12:36:15 +1000
-Message-ID: <20260706024122.853329-7-airlied@gmail.com>
+Subject: [PATCH 10/10] xe: create a flag to enable memcg accounting for XE as
+ well.
+Date: Mon,  6 Jul 2026 12:36:19 +1000
+Message-ID: <20260706024122.853329-11-airlied@gmail.com>
 In-Reply-To: <20260706024122.853329-1-airlied@gmail.com>
 References: <20260706024122.853329-1-airlied@gmail.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: NbQsyy7h8GylnmHFgMio1e___cVbJdf5FidoY7qUliU_1783305742
+X-Mimecast-MFC-PROC-ID: kQwShyjbBQsaSJbOmXuopZct-uN6O-des-wyHqLWhAw_1783305773
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 content-type: text/plain; charset=WINDOWS-1252; x-default=true
@@ -65,127 +66,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+From: Maarten Lankhorst <dev@lankhorst.se>
 
-This adds a placement flag that requests that any bo with this
-placement flag set gets accounted for memcg if it's a system memory
-allocation.
+This adds support for memcg accounting to ttm object used by xe driver.
 
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c      | 4 ++--
- drivers/gpu/drm/ttm/ttm_bo_util.c | 6 +++---
- drivers/gpu/drm/ttm/ttm_bo_vm.c   | 2 +-
- drivers/gpu/drm/xe/xe_bo.c        | 2 +-
- include/drm/ttm/ttm_placement.h   | 3 +++
- 5 files changed, 10 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c  | 10 +++++++---
+ drivers/gpu/drm/xe/xe_bo.h  |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c |  3 ++-
+ drivers/gpu/drm/xe/xe_oa.c  |  3 ++-
+ drivers/gpu/drm/xe/xe_pt.c  |  3 ++-
+ 5 files changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 8e38c6c5c82e..54ee9d4e7a13 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -146,7 +146,7 @@ static int ttm_bo_handle_move_mem(struct ttm_buffer_obj=
-ect *bo,
- =09=09=09goto out_err;
-=20
- =09=09if (mem->mem_type !=3D TTM_PL_SYSTEM) {
--=09=09=09ret =3D ttm_bo_populate(bo, false, ctx);
-+=09=09=09ret =3D ttm_bo_populate(bo, mem->placement & TTM_PL_FLAG_MEMCG, c=
-tx);
- =09=09=09if (ret)
- =09=09=09=09goto out_err;
- =09=09}
-@@ -1296,7 +1296,7 @@ int ttm_bo_setup_export(struct ttm_buffer_object *bo,
- =09if (ret !=3D 0)
- =09=09return ret;
-=20
--=09ret =3D ttm_bo_populate(bo, false, ctx);
-+=09ret =3D ttm_bo_populate(bo, bo->resource->placement & TTM_PL_FLAG_MEMCG=
-, ctx);
- =09ttm_bo_unreserve(bo);
- =09return ret;
- }
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo=
-_util.c
-index 62dad6c05dff..f473ea829a00 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -167,7 +167,7 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
- =09src_man =3D ttm_manager_type(bdev, src_mem->mem_type);
- =09if (ttm && ((ttm->page_flags & TTM_TT_FLAG_SWAPPED) ||
- =09=09    dst_man->use_tt)) {
--=09=09ret =3D ttm_bo_populate(bo, false, ctx);
-+=09=09ret =3D ttm_bo_populate(bo, dst_mem->placement & TTM_PL_FLAG_MEMCG, =
-ctx);
- =09=09if (ret)
- =09=09=09return ret;
- =09}
-@@ -352,7 +352,7 @@ static int ttm_bo_kmap_ttm(struct ttm_buffer_object *bo=
-,
-=20
- =09BUG_ON(!ttm);
-=20
--=09ret =3D ttm_bo_populate(bo, false, &ctx);
-+=09ret =3D ttm_bo_populate(bo, mem->placement & TTM_PL_FLAG_MEMCG, &ctx);
- =09if (ret)
- =09=09return ret;
-=20
-@@ -533,7 +533,7 @@ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct io=
-sys_map *map)
- =09=09pgprot_t prot;
- =09=09void *vaddr;
-=20
--=09=09ret =3D ttm_bo_populate(bo, false, &ctx);
-+=09=09ret =3D ttm_bo_populate(bo, mem->placement & TTM_PL_FLAG_MEMCG, &ctx=
-);
- =09=09if (ret)
- =09=09=09return ret;
-=20
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_v=
-m.c
-index 2e59836b6085..98cf8f83220f 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-@@ -225,7 +225,7 @@ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vm=
-f,
-=20
- =09=09ttm =3D bo->ttm;
- =09=09err =3D ttm_bo_populate(bo,
--=09=09=09=09      false,
-+=09=09=09=09      bo->resource->placement & TTM_PL_FLAG_MEMCG,
- =09=09=09=09      &ctx);
- =09=09if (err) {
- =09=09=09if (err =3D=3D -EINTR || err =3D=3D -ERESTARTSYS ||
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 20a10a174d1d..62f1da04ca2b 100644
+index 62f1da04ca2b..e016f0314d86 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1927,7 +1927,7 @@ static int xe_bo_fault_migrate(struct xe_bo *bo, stru=
-ct ttm_operation_ctx *ctx,
- =09if (ttm_manager_type(tbo->bdev, tbo->resource->mem_type)->use_tt) {
- =09=09err =3D xe_bo_wait_usage_kernel(bo, ctx);
- =09=09if (!err)
--=09=09=09err =3D ttm_bo_populate(&bo->ttm, false, ctx);
-+=09=09=09err =3D ttm_bo_populate(&bo->ttm, tbo->resource->placement & TTM_=
-PL_FLAG_MEMCG, ctx);
- =09} else if (should_migrate_to_smem(bo)) {
- =09=09xe_assert(xe_bo_device(bo), bo->flags & XE_BO_FLAG_SYSTEM);
- =09=09err =3D xe_bo_migrate(bo, XE_PL_TT, ctx, exec);
-diff --git a/include/drm/ttm/ttm_placement.h b/include/drm/ttm/ttm_placemen=
-t.h
-index ab2639e42c54..3db7f9b7e9da 100644
---- a/include/drm/ttm/ttm_placement.h
-+++ b/include/drm/ttm/ttm_placement.h
-@@ -70,6 +70,9 @@
- /* Placement is only used during eviction */
- #define TTM_PL_FLAG_FALLBACK=09(1 << 4)
+@@ -56,6 +56,7 @@ static const struct ttm_place sys_placement_flags =3D {
+ =09.flags =3D 0,
+ };
 =20
-+/* Placement should account mem cgroup */
-+#define TTM_PL_FLAG_MEMCG=09(1 << 5)
++/* TTM_PL_FLAG_MEMCG is not set, those placements are used for eviction */
+ static struct ttm_placement sys_placement =3D {
+ =09.num_placement =3D 1,
+ =09.placement =3D &sys_placement_flags,
+@@ -181,8 +182,8 @@ static void try_add_system(struct xe_device *xe, struct=
+ xe_bo *bo,
+=20
+ =09=09bo->placements[*c] =3D (struct ttm_place) {
+ =09=09=09.mem_type =3D XE_PL_TT,
+-=09=09=09.flags =3D (bo_flags & XE_BO_FLAG_VRAM_MASK) ?
+-=09=09=09TTM_PL_FLAG_FALLBACK : 0,
++=09=09=09.flags =3D TTM_PL_FLAG_MEMCG | ((bo_flags & XE_BO_FLAG_VRAM_MASK)=
+ ?
++=09=09=09TTM_PL_FLAG_FALLBACK : 0),
+ =09=09};
+ =09=09*c +=3D 1;
+ =09}
+@@ -2384,6 +2385,9 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe,=
+ struct xe_bo *bo,
+ =09placement =3D (type =3D=3D ttm_bo_type_sg ||
+ =09=09     bo->flags & XE_BO_FLAG_DEFER_BACKING) ? &sys_placement :
+ =09=09&bo->placement;
 +
- /**
-  * struct ttm_place
-  *
++=09if (bo->flags & XE_BO_FLAG_ACCOUNTED)
++=09=09ttm_bo_set_cgroup(&bo->ttm, get_obj_cgroup_from_current());
+ =09err =3D ttm_bo_init_reserved(&xe->ttm, &bo->ttm, type,
+ =09=09=09=09   placement, alignment,
+ =09=09=09=09   &ctx, NULL, resv, xe_ttm_bo_destroy);
+@@ -3361,7 +3365,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void =
+*data,
+ =09if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
+ =09=09return -EINVAL;
+=20
+-=09bo_flags =3D 0;
++=09bo_flags =3D XE_BO_FLAG_ACCOUNTED;
+ =09if (args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING)
+ =09=09bo_flags |=3D XE_BO_FLAG_DEFER_BACKING;
+=20
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 6340317f7d2e..d38012c60175 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -52,6 +52,7 @@
+ #define XE_BO_FLAG_CPU_ADDR_MIRROR=09BIT(24)
+ #define XE_BO_FLAG_FORCE_USER_VRAM=09BIT(25)
+ #define XE_BO_FLAG_NO_COMPRESSION=09BIT(26)
++#define XE_BO_FLAG_ACCOUNTED=09=09BIT(27)
+=20
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST=09BIT(30)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index a4292a11391d..61aa5033a292 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1661,7 +1661,8 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_=
+hw_engine *hwe, struct xe_v
+ =09=09   XE_BO_FLAG_GGTT_INVALIDATE;
+=20
+ =09if ((vm && vm->xef) || init_flags & XE_LRC_CREATE_USER_CTX) /* userspac=
+e */
+-=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
+_VRAM;
++=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
+_VRAM |
++=09=09=09    XE_BO_FLAG_ACCOUNTED;
+=20
+ =09bo =3D xe_bo_create_pin_map_novm(xe, tile, bo_size,
+ =09=09=09=09       ttm_bo_type_kernel,
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 2dce6a47202c..38d491fa8231 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -910,7 +910,8 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *s=
+tream, size_t size)
+=20
+ =09bo =3D xe_bo_create_pin_map_novm(stream->oa->xe, stream->gt->tile,
+ =09=09=09=09       size, ttm_bo_type_kernel,
+-=09=09=09=09       vram | XE_BO_FLAG_GGTT, false);
++=09=09=09=09       vram | XE_BO_FLAG_GGTT | XE_BO_FLAG_ACCOUNTED,
++=09=09=09=09       false);
+ =09if (IS_ERR(bo))
+ =09=09return PTR_ERR(bo);
+=20
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 670bc2206fea..daf346eaa8f5 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -123,7 +123,8 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_=
+tile *tile,
+ =09=09   XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE |
+ =09=09   XE_BO_FLAG_NO_RESV_EVICT | XE_BO_FLAG_PAGETABLE;
+ =09if (vm->xef) /* userspace */
+-=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
+_VRAM;
++=09=09bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER=
+_VRAM |
++=09=09=09    XE_BO_FLAG_ACCOUNTED;
+=20
+ =09pt->level =3D level;
+=20
 --=20
 2.54.0
 
