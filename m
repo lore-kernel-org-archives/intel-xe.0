@@ -4,69 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AF76C43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:48:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0FF9C43458
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:50:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5D3410E4B1;
-	Tue,  7 Jul 2026 12:48:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DF5410E4B0;
+	Tue,  7 Jul 2026 12:50:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ORyrNEqw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eeSh4Xom";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB30F10E4B1;
- Tue,  7 Jul 2026 12:48:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 470A410E4B0;
+ Tue,  7 Jul 2026 12:50:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783428537; x=1814964537;
- h=message-id:subject:from:to:cc:date:in-reply-to:
+ t=1783428605; x=1814964605;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=c3xJLGT78382H2wwUUXrHkSRAD2v/5i9yMYobiMW27o=;
- b=ORyrNEqwR+PyCgLnzJM1twMbyGPZPQM4NjvVkCElfhe0VHiU0myQv4yj
- NzDpZE74B7blXwXFLlq7Z2XAKIhqsiYdpG8HhRIwo1Qh4WYQgQnyy1+YL
- U0wj4CT+krUVNyWMUlRlyqQ1j+k///wuOI/O/W2KfNrr9DLG2dzjGE+ya
- XuzmCKtifKWaIGj4BjiAIzdhdopI2tu0cXSyAAZ0XVFT6MsnQ8GjAKWjQ
- eoOuxMOIRs/wIkiXnjj5t1DNFcYIIn6QBoS0YEa8XfQVaZrSV/OVUlTyW
- C0Sh4chLJweUocl+IQMNvCcNGhY8YH8ygsVgDp7I3kC6uTmVp3eWUMUB4 Q==;
-X-CSE-ConnectionGUID: J0EFLz0GQ+aB0L4UqdwNmw==
-X-CSE-MsgGUID: Q8jydyYYQoSAmPiBx8CGaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="84263705"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84263705"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:48:57 -0700
-X-CSE-ConnectionGUID: xQhwTzvLQ/eZltsfvJDHDg==
-X-CSE-MsgGUID: 6++/c9N0RRSb04ShGpxCbg==
+ bh=1LO2e1PLuBM17y+zV6xHbsq3NyteoQYkAR/TRVKyvG0=;
+ b=eeSh4XomUdnLK50EayntwTFSGL7xSdbwDD//GPDseogSdr++QmNz5l/5
+ wufCvM1AoBv9hQYJSzwOG8iqSMWPB/ufsE7uN8K9CB0oM+BhA92vb+yqM
+ lOkpDHPHnhTh5Zb5W/fOk142ZrUY3lDHTYCQZgV8inxkCf0bMI0+xXnDR
+ /b/blMya1pKmDPIlNcu9B9quY5RMAlX/fMQIh/fCC+4U84kY/TBXrpQSM
+ RVwW4JkDvnOyP2s3PZTTOZOre+dtDtu4Kf2WDDl5jjMcKDMEWtJiob+JS
+ OJafmTJ+2onLpdt84/u4fsxaUXl8ikX5X8M20aPzvOhjR4T2RMe4UvioX Q==;
+X-CSE-ConnectionGUID: wnMehmGkScyr14DzsT4Uww==
+X-CSE-MsgGUID: dCqBInmaStClnFpqTJj/NQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="94718658"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="94718658"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:50:04 -0700
+X-CSE-ConnectionGUID: svpP1LClRliSRXlotuBZRg==
+X-CSE-MsgGUID: SxOfCVusRbKWyie/0dsZOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="251321073"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
- ([10.245.244.199])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:48:52 -0700
-Message-ID: <944807b30e00606dc3f4a8ad57c3e8e70ddd2d10.camel@linux.intel.com>
-Subject: Re: [PATCH 09/10] drm/ttm: support using drm_exec during eviction v4
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula	
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
- <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
- <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
- Deucher	 <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org
-Date: Tue, 07 Jul 2026 14:48:50 +0200
-In-Reply-To: <20260703-ttm_2_drm_exec-v1-9-43685ac1286b@gmx.de>
-References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
- <20260703-ttm_2_drm_exec-v1-9-43685ac1286b@gmx.de>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="292159364"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:50:04 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 7 Jul 2026 05:50:04 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Tue, 7 Jul 2026 05:50:04 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.13)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 7 Jul 2026 05:50:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rxPKYLRVF+2kQSjOz+FRjdxMev+9UQ4HAveQn8LUP4hvujU5Y/DN4W6KNngbvxCmbfdLhtJR5Wp8qZbRoDBf1iw8b2StamctBD4r1tM0WP/n2AVdXmjteW3X4j8lQYycS27K0KQX2v8083Iw6jL78kHryb4eEs5fidAM1Hxa2CQOTdcyc12Vn4TAsSZAgu8EuB8LGSxxqB0y+ePrtdRfaEbE5Rm7/o1pTdy4NKeGTSktlf6cpTUbxxeh6KLOZVNVUKZkmNBDTKqxCx07ULtzIa8UV7qOFThqJzWScBvJhdCn6egiHryG4wETUm92aY70QB3zbC5cSk2yM7ndPqGzlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ioVKugNM5o5SN/UZog66Ro2KW2Hyzi9/bNNIVl7jTV8=;
+ b=enITI2Z6BOolr+KwAAeTdhuaHYZDDMCNBGm2l65rgZFm5ILeCfXkKwfk9vTR1YOjFsQBnPpWiNFnj3xFXLt8paMLC5TIps5aI7QWxmyPtUGbfpsLl8mymNTMNCuOoL0OzpmCE3nCGK+ovFPgXR/L5rw6giKHBXwwHw7F9graWtn/Dafg8sNm+3vLOIcyJuKI3cQnFUelLrBFbRxLvJB4p96G6vcXbQ0sLWu1EYppJb2slBKR9klUnqISQ2fRlyl5h4QvW7gCV9Zis7NW7FEV1VelI/VYUophZeb1SrlCzZsyb2ve9I5Ck5bnBAvzc6mZIaupzQ0TPLGv5Bswy7NU7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
+ by SA2PR11MB5097.namprd11.prod.outlook.com (2603:10b6:806:11a::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.13; Tue, 7 Jul
+ 2026 12:50:02 +0000
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
+ 12:50:02 +0000
+From: Imre Deak <imre.deak@intel.com>
+To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v3 26/34] drm/i915/kunit: Enable KUnit tests
+Date: Tue, 7 Jul 2026 15:48:46 +0300
+Message-ID: <20260707124849.135319-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20260701153204.4124150-27-imre.deak@intel.com>
+References: <20260701153204.4124150-27-imre.deak@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: GVX0EPF0005F6F2.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::255) To IA3PR11MB9273.namprd11.prod.outlook.com
+ (2603:10b6:208:573::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|SA2PR11MB5097:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc4be77b-65a2-44c9-eb72-08dedc2642d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|23010399003|1800799024|376014|11063799006|56012099006|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: baX/OJLh2+Z2l5A1tmIT61ofgLCrpJdx7iTMhj/8jKkmDbBzJ+ZRaU8qaceu7UCuNkQTM2A9axu0gdMBrBRR/O0c42v76py8ZE+uwp/vo1I5UYnorDpHXNaiHINuEFvKPUYrAykpMDtWFVPyDY8GDj12IPtCIyQEBt7maIrwzeazBU+uxBfDs+emtvLSzDFNBeitnmEKxRVNwbmfeTikfbVT3zSatJH//qsESNRWiYNrDQCwM5kQIEaSR9Hqvnhl5orNBOPUNDCOSn2x7EmRLQIetizlYyfGA2SQN7h4klPT1KuLrEkdtgp3sRkpSvxbaRf3JPvBCe9WYxgrPm+hua2RpVmCpKVWKVGcuJSAkCGdw2j53iLnd5ANBTYAJCZKHBmfCRI9MZSC7afNBiCqc9Em501oaleqd7Pa2OscpuSrjEmTkCpTdjglCjI/C+Cz1BPmqKCVvuqtkVbZbPZGiGZITzXmD16Wdf/luVD4/M4zklndDEUmIQwqNpiFApNucIuMJ/t0Tz8F/VFm/naCBULctyEsKQP8MkQUUMVxCfMyYCGM4sH4AqSEdmXlTh3W6Yhg/qHUwSapDOEEEfJxnt41Dq4vWq+IuNSrMROAZ/Rd6bbf7PQxOSV16nYeCs66sF0p8SxRZ6v+Fp4g3YpOSqFsk0H5go2G4iATaOcJOaQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(11063799006)(56012099006)(6133799003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YzM2bUE4YVE2bVdTVDRmc0JGOWh1NU5XSmxzWlVZZ0phVExRT0RMWXNMb1ZJ?=
+ =?utf-8?B?alo1Rm9tT0Y3akszTkFQTEROeUdlbW1PbmtkM3lEdjBlblMvUzR3bDdUaEtp?=
+ =?utf-8?B?UEZxVDM1MWZvOVRXSHhlRC81TVQxS3B6UEVKbE9mdXV4dmdXVEx1dHpsZHNz?=
+ =?utf-8?B?TWZ6V2xydDZvVUZveHpVV1J4R0o3bDNTRStjYmJyRjdmTkdhOHJBRVBFc1B3?=
+ =?utf-8?B?bU9uT3NndTRkUWx3UHU5TDhNUklubDhzR3NlSGc5NWk3K3d1OFRWNUsrRmJ2?=
+ =?utf-8?B?dWU0RWtQUzJsQnFuQnZ6NDZWYitJeFc3YldrRHFpRDhUaTRwam1nRW9hUzMr?=
+ =?utf-8?B?MVQ1aStjR0tlc2hGK2RISEJnYTFIZjRMclBTVHNtdW9ENmRCTkJ3ZVVkWjls?=
+ =?utf-8?B?Tkc4QTZ4V01VNE1yN2hhOUJKMFpsR3RBSVJHRWFBV0doQWZrVGQ5Yk1lblVT?=
+ =?utf-8?B?TDZoUW1LUUhJMFZIN2NLRDJlU2RURlAxN3FmWHYvek5jQjB2WVlSaUFFeEVy?=
+ =?utf-8?B?ZWtJTnQxZ0h3bDIwb1dFWWFGbnRPZ3Q3Q2VpbEV1ZWZmLzA4eDUzdytqVE44?=
+ =?utf-8?B?Qy82ZTJYbFFDWE5keUxSSktSbmk0amdIaGZVUFpyVi9waHpvRVA3cEp4Nm9L?=
+ =?utf-8?B?TXEzeFROaFdzcEx0STVHSzdreVRDUWR6YjREVGRveVNTNW9aMFFJQjVuRmZn?=
+ =?utf-8?B?eDh3VjUzYUg5Z0gzcDA5ZnZDM0dlTW5VSTc5MUZqbFQvQlBCQnI2VmZhL1JZ?=
+ =?utf-8?B?MkNxWUFKQUdsbFJnaGJVSlk4SW9XMjR4YzJUampTUzRFUHlXaEE3b21DTFlr?=
+ =?utf-8?B?U0FtVnROTWF4SUFoOTNtclc4bTliK2JnVmlveFBFNWd6TVhERHBaSS9BdW8x?=
+ =?utf-8?B?SzcwQjN1YTI2Q3NNYmVTcHdkcU93N2E2bmdpd2hGNFNPUVJieDBIME9XQWFZ?=
+ =?utf-8?B?SEhqcWthZmhBMFRpOHJDMDhNY0hzOEN1YVV1RStiUmQrSDB6NXlTYUdBc1Js?=
+ =?utf-8?B?V3VVeXB4RkxEYSsrMkxZTXg1V1haQkZLY1pua1NWN1doWlZENXF3VFZ0VERK?=
+ =?utf-8?B?N05QK0VrdE1mdis4RVRlVytoVkpnYmVNMXd4VTJORWxBSGF0SmlyYW5CZEtH?=
+ =?utf-8?B?b2NINkd4eGpwbXl4Ukk3MGtIVUhRcmtxQmFKOHlaakJqQVd3bGZnMUxYQ21J?=
+ =?utf-8?B?U280SG02UVhQTVA3eEpNK3RDaUZnOEtMb1M4eTVWNG52U1lVdFgyT0dmZWJ3?=
+ =?utf-8?B?RXA0Zzd6TndKRWhUeFpydkdObnVHcjlKYzVqZllrVHQ2TWJZM3lrOW12SVdz?=
+ =?utf-8?B?WTFZc2RzdzBMYmlYN09nY1Rtc2Y1TjFZTWdwUThKd09Cb0tqLzdmdlNFRnFH?=
+ =?utf-8?B?d2lHOFpOWmZRWmQyWlpJZlRydkg4dlhUK3pPZFc4OVkxejlOczZ4aVg1T2Q2?=
+ =?utf-8?B?RG5aeVhpYmRUVXdyUk92VzZkUUp4bXd5NGFDdURHOEs4TExDUjRiQ28rM3JY?=
+ =?utf-8?B?VXhGNTk3WkFxb0pNT1Y4R0xFdCtTOWR0Vk42ekU3eHZHbnlCOTZUdTRZckJV?=
+ =?utf-8?B?NFRKUlpxTVdQV1Q3dDVRR2lWMUpORFE1NHoxdmk3TGkwZk1SMjA2RWNzUlJ0?=
+ =?utf-8?B?N2Zwdnc0c1dxOWRQRHJNRXltcTZxK0ZTRHVXTERoMGlGb1ZQTUF5NzZMMDYz?=
+ =?utf-8?B?WklpNGtLL1dxTlpRdGlROUV3dUJHZkpyMytuTmVGSVZ4cTh2aHVaTjNCNVFM?=
+ =?utf-8?B?TERRUE9xWm01T2R6NGE1VjZMdXdJcUFaVkNzcThERFA4VVQyMXMySHQ1SGx5?=
+ =?utf-8?B?WTgzUjIyclcrNlFFV1dQK25ITEpEamNvQW1JbVB1U2VhUGtrUU01cHAvNDdU?=
+ =?utf-8?B?NmZQSU9kMStWOVpqV0g4dExWZTJidENIM1MwaVlHc2MvMUdwT3F5YldxSGRu?=
+ =?utf-8?B?bVpNcHhvdFFtajAxOHFPTnh0eEhmRGtPbHNaVm9mVnJaNXF0MVdUYWI3UVRX?=
+ =?utf-8?B?VTgvdWM0RUJJam9oSGx6UFY2R3B5OFE5K2Myb1hFMWU3YVRjUHRlNnFiWjlu?=
+ =?utf-8?B?U1o3K294a0xvSmJYSEZyWEF1V3B6c2duV2xYWFdGa09obU9zMzU4U2NqVU5S?=
+ =?utf-8?B?cm1VYjBiTTV0cFFUV3JVZTFpbXhFOHVicHNONG9KYjdnVU4vRXVBOW9NNGxp?=
+ =?utf-8?B?RGhIajRsaUlML0xaMW54d1BJS3N1Q2V6WWpPaTljaWJ6aytvU1haRCt2bnp3?=
+ =?utf-8?B?VktwQmFsZTVRTHh3Tm9PSUpkNWcwUlpRK21EU1JCV1JGaXBOMGl6VU1tR0No?=
+ =?utf-8?B?MWdFRkt0MHBTQ0QxZE5YV2Jsd3JxamhPajJnQTFTRW9aTGwrQmZXZz09?=
+X-Exchange-RoutingPolicyChecked: pxSpeUgVVZ/pQ9m5x0rBgY+gtc9JEkGAzGREIT343u4E7UPErEzrtvA10Q4lwBa4RAO33XY433O7vctqlDD6F9OFKuzB+6R9JZOeD1uR+auW55/TmY7i2KDtBswASOiUyPLhIb2BDLGikRP5AFsuT7PqGkKP7og7ivPhC8R7noHcvASSmskuz1QYE07mkLtxCBoe5kppZDUKT43ico21lMFAgOeOf8bpaTEX891zW/H8/0bjxgo06qD4bexAzEerTA/xM1d+cD7fmoUBUTLlkJqcRkXdKiOAZhjEhxIFHWt9/PA9UTayum3jyWHNgFbDJ4KRjR3cANbtNr0qR4xpZg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc4be77b-65a2-44c9-eb72-08dedc2642d9
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 12:50:02.3576 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d4Pxycm7HMD/iahJNxMRbdJpuGBdSisuLqJVRlWAYfES7C5yvRoc4nGrogA9KFD8lBzR8aBxTpUphFtqPKCZAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5097
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,148 +168,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
-> From: Christian K=C3=B6nig <christian.koenig@amd.com>
->=20
-> Allow specifying a drm_exec object in TTMs operation context which is
-> used to lock objects during eviction.
->=20
-> This allows to handle deadlocks much more gracefully and with that
-> avoid returning -ENOMEM on heavily contended domains.
->=20
-> v2: rebased on top of Thomas work
-> v3: rebased again
-> v4: rebased, fixed locks of already-reserved buffers being dropped
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_bo_util.c | 30 ++++++++++++++++++++++------=
--
-> -
-> =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 5 +++++
-> =C2=A02 files changed, 27 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index a53b25e8c2967..96699532817c2 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -38,6 +38,7 @@
-> =C2=A0#include <drm/ttm/ttm_tt.h>
-> =C2=A0
-> =C2=A0#include <drm/drm_cache.h>
-> +#include <drm/drm_exec.h>
-> =C2=A0
-> =C2=A0#include "ttm_bo_internal.h"
-> =C2=A0
-> @@ -837,6 +838,8 @@ static bool ttm_lru_walk_trylock(struct
-> ttm_bo_lru_cursor *curs,
-> =C2=A0	struct ttm_operation_ctx *ctx =3D curs->arg->ctx;
-> =C2=A0
-> =C2=A0	curs->needs_unlock =3D false;
-> +	if (ctx->exec)
-> +		return false;
+Add KUnit configuration for i915 and a local .kunitconfig to run the
+tests.
 
-The first passes of eviction typically trylocks, and no_wait_gpu also
-skips sleeping locks since they can be held why waiting for fences.
-Otoh we could check that no_wait_gpu and exec is mutually exclusive.
+v2: Unchanged.
+v3: Remove kconfig options for kernel debug.
 
-But I think trylocking should be tried before exec locking to also
-avoid costly rollbacks, in line with mutex lock stealing.
+Reviewed-by: Michał Grzelak <michal.grzelak@intel.com> # v2
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/.kunitconfig  |  9 +++++++++
+ drivers/gpu/drm/i915/Kconfig.debug | 12 ++++++++++++
+ 2 files changed, 21 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/.kunitconfig
 
-> =C2=A0
-> =C2=A0	if (dma_resv_trylock(bo->base.resv)) {
-> =C2=A0		curs->needs_unlock =3D true;
-> @@ -857,7 +860,9 @@ static int ttm_lru_walk_ticketlock(struct
-> ttm_bo_lru_cursor *curs,
-> =C2=A0	struct ttm_lru_walk_arg *arg =3D curs->arg;
-> =C2=A0	int ret;
-> =C2=A0
-> -	if (arg->ctx->interruptible)
-> +	if (arg->ctx->exec)
-> +		ret =3D drm_exec_lock_obj_report_dup(arg->ctx->exec,
-> &bo->base);
-> +	else if (arg->ctx->interruptible)
-> =C2=A0		ret =3D dma_resv_lock_interruptible(bo->base.resv,
-> arg->ticket);
-> =C2=A0	else
-> =C2=A0		ret =3D dma_resv_lock(bo->base.resv, arg->ticket);
-> @@ -871,7 +876,11 @@ static int ttm_lru_walk_ticketlock(struct
-> ttm_bo_lru_cursor *curs,
-> =C2=A0		 * trylocking for this walk.
-> =C2=A0		 */
-> =C2=A0		arg->ticket =3D NULL;
-> -	} else if (ret =3D=3D -EDEADLK) {
-> +
-> +	} else if (arg->ctx->exec && arg->ctx->allow_res_evict &&
-> +		=C2=A0=C2=A0 ret =3D=3D -EALREADY) {
-> +		ret =3D 0;
-> +	} else if (!arg->ctx->exec && ret =3D=3D -EDEADLK) {
-> =C2=A0		/* Caller needs to exit the ww transaction. */
-> =C2=A0		ret =3D -ENOSPC;
-> =C2=A0	}
-> @@ -937,12 +946,17 @@ static void ttm_bo_lru_cursor_cleanup_bo(struct
-> ttm_bo_lru_cursor *curs)
-> =C2=A0{
-> =C2=A0	struct ttm_buffer_object *bo =3D curs->bo;
-> =C2=A0
-> -	if (bo) {
-> -		if (curs->needs_unlock)
-> +	if (!bo)
-> +		return;
-> +
-> +	if (curs->needs_unlock) {
-> +		if (curs->arg->ctx->exec)
-> +			drm_exec_unlock_obj(curs->arg->ctx->exec,
-> &bo->base);
+diff --git a/drivers/gpu/drm/i915/.kunitconfig b/drivers/gpu/drm/i915/.kunitconfig
+new file mode 100644
+index 0000000000000..1b47fe62b2854
+--- /dev/null
++++ b/drivers/gpu/drm/i915/.kunitconfig
+@@ -0,0 +1,9 @@
++CONFIG_EXPERT=y
++CONFIG_MODULES=y
++CONFIG_KUNIT=y
++CONFIG_PCI=y
++CONFIG_DEBUG_FS=y
++CONFIG_MAGIC_SYSRQ=y
++CONFIG_DRM=y
++CONFIG_DRM_I915=y
++CONFIG_DRM_I915_KUNIT_TEST=y
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 52a3a59b4ba2c..dc43dcfbadb6e 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -220,6 +220,18 @@ config DRM_I915_SELFTEST_BROKEN
+ 
+ 	  If in doubt, say "N".
+ 
++config DRM_I915_KUNIT_TEST
++	tristate "KUnit tests for the drm i915 driver" if !KUNIT_ALL_TESTS
++	depends on DRM_I915 && KUNIT && DEBUG_FS
++	default KUNIT_ALL_TESTS
++	help
++	  Choose this option to allow the driver to perform selftests under
++	  the kunit framework
++
++	  Recommended for driver developers only.
++
++	  If in doubt, say "N".
++
+ config DRM_I915_LOW_LEVEL_TRACEPOINTS
+ 	bool "Enable low level request tracing events"
+ 	depends on DRM_I915
+-- 
+2.49.1
 
-Unlocking after each locks sort of defeats the purpose of ww locking,
-since it can't guarantee forward progress, but I guess will work as an
-initial attempt.
-
-Thanks,
-Thomas
-
-
-> +		else
-> =C2=A0			dma_resv_unlock(bo->base.resv);
-> -		ttm_bo_put(bo);
-> -		curs->bo =3D NULL;
-> =C2=A0	}
-> +	ttm_bo_put(bo);
-> +	curs->bo =3D NULL;
-> =C2=A0}
-> =C2=A0
-> =C2=A0/**
-> @@ -1016,8 +1030,8 @@ __ttm_bo_lru_cursor_next(struct
-> ttm_bo_lru_cursor *curs)
-> =C2=A0		if (ttm_lru_walk_trylock(curs, bo)) {
-> =C2=A0			bo_locked =3D true;
-> =C2=A0
-> -		} else if (!arg->ticket || arg->ctx->no_wait_gpu ||
-> -			=C2=A0=C2=A0 arg->trylock_only) {
-> +		} else if ((!arg->ticket || arg->ctx->no_wait_gpu ||
-> +			=C2=A0=C2=A0=C2=A0 arg->trylock_only) && !arg->ctx->exec) {
-> =C2=A0			spin_unlock(lru_lock);
-> =C2=A0			ttm_bo_put(bo);
-> =C2=A0			spin_lock(lru_lock);
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index a4060e44d23d0..156444b5e85d8 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -187,6 +187,11 @@ struct ttm_operation_ctx {
-> =C2=A0	 * @bytes_moved: Statistics on how many bytes have been
-> moved.
-> =C2=A0	 */
-> =C2=A0	uint64_t bytes_moved;
-> +	/**
-> +	 * @exec: optional drm_exec object to use for locking BOs
-> and
-> +	 * tracking which are locked.
-> +	 */
-> +	struct drm_exec *exec;
-> =C2=A0};
-> =C2=A0
-> =C2=A0/**
