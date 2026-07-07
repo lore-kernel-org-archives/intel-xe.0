@@ -4,87 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8A37C44500
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:19:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47F75C43602
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:24:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A109010EC99;
-	Tue,  7 Jul 2026 12:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B482B10EC99;
+	Tue,  7 Jul 2026 12:24:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="OIh2q5No";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G6PBZFgP";
 	dkim-atps=neutral
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F19D710E3A1;
- Mon,  6 Jul 2026 14:40:00 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA512)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4gv6TB3Q84zKv2g;
- Mon, 06 Jul 2026 16:39:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1783348798;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PTWGfLdwlWAV/LMkx8q6n+16+BLtwX+Uw6eFuSY1pwE=;
- b=OIh2q5NoOb8/zfHzXHh6+EFxzLMaDkzPcbVgv5xkovZYR/4JA9SFzE0VU9VAm1rNRZLR0S
- AX9n6t6Qdg/BHwG8GIE0XsFgInmrRdJCk1rI7C64cKOlIyq4TCeFWdyPovr+dbaBZvE7Xw
- 3Gt8jIfDUCNo/K6k+YRQVDybeevZzGh0XtuQ2zVUtN5hCMOWCq8qaO0uMb1bLR1G0foLqN
- KuGMynijGMoLzFJiCQ/pxQVYlrrpwux9nHY20wk2i5B2W/3iVCLsdvpCsubihHUwhDMw1G
- ARSB7sTYnBnOH85aXuiUq7w/RlmGL22TeStMe6dbMo/bP0D6ZZw0KkWwo9maXg==
-Message-ID: <fbc50f89e0c3bb148656a3b8d96974f591576dec.camel@mailbox.org>
-Subject: Re: [PATCH v3 02/20] driver core: platform: provide
- platform_device_set_of_node()
-From: Manuel Ebner <manuelebner@mailbox.org>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Lee Jones	
- <lee@kernel.org>, Thierry Reding <thierry.reding@avionic-design.de>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller"	 <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski	 <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Srinivas Kandagatla	 <srini@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Vinod Koul	 <vkoul@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich	
- <dakr@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan	
- <saravanak@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, Michael
- Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)"	 <chleroy@kernel.org>, Andi Shyti
- <andi.shyti@kernel.org>, Andy Shevchenko	
- <andriy.shevchenko@linux.intel.com>, Joerg Roedel <joro@8bytes.org>, Will
- Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Doug Berger
- <opendmb@gmail.com>,  Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list	
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson <ulfh@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team	 <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, Matthew Brost	 <matthew.brost@intel.com>, Thomas
- =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>, Rodrigo
- Vivi <rodrigo.vivi@intel.com>,  David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>,  Paul
- Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, Philipp Zabel
- <p.zabel@pengutronix.de>,  Maximilian Luz <luzmaximilian@gmail.com>, Hans
- de Goede <hansg@kernel.org>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=	
- <ilpo.jarvinen@linux.intel.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Cc: brgl@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
- driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, 	linux-pm@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
- linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- mfd@lists.linux.dev
-Date: Mon, 06 Jul 2026 16:39:00 +0200
-In-Reply-To: <20260706-pdev-fwnode-ref-v3-2-1ff028e33779@oss.qualcomm.com>
-References: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
- <20260706-pdev-fwnode-ref-v3-2-1ff028e33779@oss.qualcomm.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51BC710E4BD;
+ Tue,  7 Jul 2026 12:24:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783427079; x=1814963079;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=H+e3am5bkmWAqDrpInK+XxfwX0696SVIY/2yyZwcuLM=;
+ b=G6PBZFgPN7pYLMHsD2vLpGvBHeFhM41mbgbvqwKDFEL7PWQy2WEhddRo
+ 1vd+pL1pz+txcmOdB1qROfimmWVbJEvm08i3JVwrOplTqckOR59F4zWOI
+ c5nalecSYtioMLzAy0VvXJWAX5Xq0qU5sUBbad3phV+VcnuPOeX7sgS9X
+ tr9OIFFf2396fb5rGBIng6ghNO60bjlwW83XUCW8kuKRvcgBOTQKCQDIB
+ +Ifk60AnITUGU9hCE4e8/j6WkBVGn6nFSKSq/dekTJ++UAewu1geurzzG
+ mg5ljeh5qQPLPuJ51QmSrcGfpBaggjhdPr5LILiEXNSbEZxw4KfbjhZWz A==;
+X-CSE-ConnectionGUID: UuYpJLrBQzaAjuD+pyB94w==
+X-CSE-MsgGUID: qmQKhxbATDmf/6ssG5m1IA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="101617694"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="101617694"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:24:39 -0700
+X-CSE-ConnectionGUID: S3/zQBKCTAmUH7YB7P3t/Q==
+X-CSE-MsgGUID: Fz5OH36eQy2vJvOkNPFyjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="249998997"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
+ ([10.245.244.199])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:24:35 -0700
+Message-ID: <80900aaceb79fc445c19016f08df8dedf3735aa2.camel@linux.intel.com>
+Subject: Re: [PATCH 06/10] drm/ttm: move zombie handling into ttm_bo_evict
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula	
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
+ <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
+ <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
+ Deucher	 <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org
+Date: Tue, 07 Jul 2026 14:24:32 +0200
+In-Reply-To: <20260703-ttm_2_drm_exec-v1-6-43685ac1286b@gmx.de>
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-6-43685ac1286b@gmx.de>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MBO-RS-ID: dd8ce0f1dac3e9f612a
-X-MBO-RS-META: 1q71yutefcf1nyjzwoom4gu47fi8rss3
-X-Mailman-Approved-At: Tue, 07 Jul 2026 12:19:51 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,106 +81,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Bartosz,
-
-On Mon, 2026-07-06 at 14:44 +0200, Bartosz Golaszewski wrote:
-> Encapsulate the reference counting logic for OF nodes assigned to
-> platform devices created with platform_device_alloc() in a helper
-> function. Make the kerneldoc state that this is the proper interface for
-> assigning OF nodes to dynamically allocated platform devices. This will
-> allow us to switch to counting the references of the device's firmware
-> nodes, not only the OF nodes.
+On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
+> From: Christian K=C3=B6nig <christian.koenig@amd.com>
 >=20
-> Reviewed-by: Manuel Ebner <manuelebner@mailbox.org>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> Both callers do the same thing, so we can trivially unify that.
+>=20
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+
+Although might need a different definition of ttm_bo_is_zombie if we
+keep the ttm refcount for now.
+
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+
+
 > ---
-> =C2=A0drivers/base/platform.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 18 ++++++++++++++++++
-> =C2=A0include/linux/platform_device.h |=C2=A0 4 ++++
-> =C2=A02 files changed, 22 insertions(+)
+> =C2=A0drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++---------------
+> =C2=A01 file changed, 9 insertions(+), 15 deletions(-)
 >=20
-> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-> index fb9120b0bcfe0e7dd9dfc0d29b91e0ad40a01440..3188d5aba5f90622f821c6950=
-49cacda030204fb
-> 100644
-> --- a/drivers/base/platform.c
-> +++ b/drivers/base/platform.c
-> @@ -693,6 +693,24 @@ int platform_device_add_data(struct platform_device =
-*pdev, const
-> void *data,
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL_GPL(platform_device_add_data);
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+> b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 24c52df169ac8..54f01611ec823 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -359,6 +359,13 @@ static int ttm_bo_evict(struct ttm_buffer_object
+> *bo,
+> =C2=A0	struct ttm_place hop;
+> =C2=A0	int ret =3D 0;
 > =C2=A0
-> +/**
-> + * platform_device_set_of_node - assign an OF node to device
-> + * @pdev: platform device to add the node for
-> + * @np: new device node
-> + *
-> + * Assign an OF node to this platform device. Internally keep track of t=
-he
-> + * reference count. Devices created with platform_device_alloc() must us=
-e this
-> + * function instead of assigning the node manually.
-
-I did some more pondering about this patch and concluded the right place
-for a warning would be the lines been read right before or after assigning
-a node manually.=20
-I think this would be in platform_device_alloc() (as I suggested in v2).
-
-BUT my knowledge in C isn't sound. So if it's good as is keep it. If it isn=
-'t
-add or move the remark.
-
-Either way Thanks and
- Reviewed-by Manuel Ebner.
-
----
-Note:
-I removed Mark Brown <broonie@opensource.wolfsonmicro.com> from recipients =
-because:
-=E2=80=9CRCPT TO <broonie@opensource.wolfsonmicro.com> failed:
-<broonie@opensource.wolfsonmicro.com>: Recipient address rejected: Domain n=
-ot found=E2=80=9D.
-
-
-> + */
-> +void platform_device_set_of_node(struct platform_device *pdev,
-> +				 struct device_node *np)
-> +{
-> +	of_node_put(pdev->dev.of_node);
-> +	pdev->dev.of_node =3D of_node_get(np);
-> +	pdev->dev.fwnode =3D of_fwnode_handle(np);
-> +}
-> +EXPORT_SYMBOL_GPL(platform_device_set_of_node);
+> +	if (ttm_bo_is_zombie(bo)) {
+> +		ret =3D ttm_bo_wait_ctx(bo, ctx);
+> +		if (!ret)
+> +			ttm_bo_cleanup_memtype_use(bo);
+> +		return ret;
+> +	}
 > +
-> =C2=A0/**
-> =C2=A0 * platform_device_add - add a platform device to device hierarchy
-> =C2=A0 * @pdev: platform device we're adding
-> diff --git a/include/linux/platform_device.h b/include/linux/platform_dev=
-ice.h
-> index 8c566f09d04efe420d85ffa046f92c44c6d08526..e9f7baceeb4c8269dbc0143c4=
-d8fc9d73ba024ca
-> 100644
-> --- a/include/linux/platform_device.h
-> +++ b/include/linux/platform_device.h
-> @@ -19,6 +19,8 @@
-> =C2=A0struct irq_affinity;
-> =C2=A0struct mfd_cell;
-> =C2=A0struct property_entry;
-> +struct platform_device_id;
-> +struct device_node;
+> =C2=A0	memset(&hop, 0, sizeof(hop));
 > =C2=A0
-> =C2=A0struct platform_device {
-> =C2=A0	const char	*name;
-> @@ -262,6 +264,8 @@ extern int platform_device_add_resources(struct platf=
-orm_device
-> *pdev,
-> =C2=A0					 unsigned int num);
-> =C2=A0extern int platform_device_add_data(struct platform_device *pdev,
-> =C2=A0				=C2=A0=C2=A0=C2=A0 const void *data, size_t size);
-> +void platform_device_set_of_node(struct platform_device *pdev,
-> +				 struct device_node *np);
-> =C2=A0extern int platform_device_add(struct platform_device *pdev);
-> =C2=A0extern void platform_device_del(struct platform_device *pdev);
-> =C2=A0extern void platform_device_put(struct platform_device *pdev);
+> =C2=A0	dma_resv_assert_held(bo->base.resv);
+> @@ -466,13 +473,7 @@ int ttm_bo_evict_first(struct ttm_device *bdev,
+> struct ttm_resource_manager *man
+> =C2=A0	if (!bo->resource || bo->resource->mem_type !=3D mem_type)
+> =C2=A0		goto out_bo_moved;
+> =C2=A0
+> -	if (ttm_bo_is_zombie(bo)) {
+> -		ret =3D ttm_bo_wait_ctx(bo, ctx);
+> -		if (!ret)
+> -			ttm_bo_cleanup_memtype_use(bo);
+> -	} else {
+> -		ret =3D ttm_bo_evict(bo, ctx);
+> -	}
+> +	ret =3D ttm_bo_evict(bo, ctx);
+> =C2=A0out_bo_moved:
+> =C2=A0	dma_resv_unlock(bo->base.resv);
+> =C2=A0out_no_lock:
+> @@ -520,14 +521,7 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk
+> *walk, struct ttm_buffer_object *
+> =C2=A0	if (bo->pin_count || !bo->bdev->funcs->eviction_valuable(bo,
+> evict_walk->place))
+> =C2=A0		return 0;
+> =C2=A0
+> -	if (ttm_bo_is_zombie(bo)) {
+> -		lret =3D ttm_bo_wait_ctx(bo, walk->arg.ctx);
+> -		if (!lret)
+> -			ttm_bo_cleanup_memtype_use(bo);
+> -	} else {
+> -		lret =3D ttm_bo_evict(bo, walk->arg.ctx);
+> -	}
+> -
+> +	lret =3D ttm_bo_evict(bo, walk->arg.ctx);
+> =C2=A0	if (lret)
+> =C2=A0		goto out;
+> =C2=A0
