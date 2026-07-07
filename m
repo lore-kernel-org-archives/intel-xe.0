@@ -4,137 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F38E7C43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:28:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 504BBC43458
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:29:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63F4210EC99;
-	Tue,  7 Jul 2026 12:28:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E13910E07B;
+	Tue,  7 Jul 2026 12:29:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4wOJWFtG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YuJ82NMw";
 	dkim-atps=neutral
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012054.outbound.protection.outlook.com [52.101.43.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EAF810EC99;
- Tue,  7 Jul 2026 12:28:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C102410E07B
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 12:29:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783427371; x=1814963371;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=dJGftPP0i4PYuVPddLHooLcVCmqsXZk+vwzcJAWBzTU=;
+ b=YuJ82NMwfOGvUwcSg5Ghn2z35USeX+Zh726jB3GZ5GvRJhp+LG//DVgo
+ vTWsOtaRKxRHdYfMozYJHDjxL09/qGo35d0cR4aKbyZXpHFi6AbpGjRXw
+ dYp9ujoBfDy7i1oWMp8/fmVoPmYM+o6wAlsuzPueb3ByEo6MwJKE9dkz0
+ kJLzvQ85j9mcORIiRc/buMehW7Ri1a11h3wkh/v9DyEyB0Odi/nrToF8F
+ NupDHLqm+2dfxyjeZTV750NsInO54AftnBsiIeFXxWjAsdH+mF4Lk5Xkj
+ GaBmOiA06wvJnTRCcN3yfftPu+4wYpNn6og9Y7hbUmNFHZdRauodOeYe6 w==;
+X-CSE-ConnectionGUID: JxyIJyI5Rz+TiWkGzuCEqw==
+X-CSE-MsgGUID: /YnYc1TYQHqzcFxzZCfOHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="101617974"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
+ d="scan'208,217";a="101617974"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:29:30 -0700
+X-CSE-ConnectionGUID: Xo4YCcIkQwaOBHR0zS/G9Q==
+X-CSE-MsgGUID: Ieznh+NnRlaiIgzrK4bPPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
+ d="scan'208,217";a="249999597"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:29:30 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 7 Jul 2026 05:29:29 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Tue, 7 Jul 2026 05:29:29 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.53)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 7 Jul 2026 05:29:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tPBWiDXUfom6/iQk84KvogAnog5BzhoF6mD2ncrgeFpX/KqfGdbfxLBm333ep3D0jbLMRrqiTG9OrCA7bLpg68pNoKgaQfa0IzOe2Ocznk20r+BxhaywvlcTq1bGd2Z+Lb+j3PF0REJywdXywYu5pmX2gJLI2+ECGAlYLN1E/gWkdle9NmbNO+GlNUVzLWJRy4x1HIgysX5gI9pnKTey2ZF/wpf5VpAM1BVRGfLPSqo1XVKAxLgEbTq2CtjIPQNf4GTh5eHQS8kUxLWQbO7PY6o1YCLVJFQiXllsxFSZnyepWU98irzyWSWsqkZ6leEHTUQoZqYqn9hlzLxuMAbjQA==
+ b=aVawePBKQS+6dh7VnZQHjlcEk7bFcx9/BGqDrYMvo2ZsDuBgoGROWgEt/pktcUw2iRpP8Nshp+58CE3dB4724QHm8pTMlxlylT4rh0rhfmTT/LuZXXRSBwStkbgBmw6RdO2Jyrn7psfrVxPuefNbWhGZG0lQz5mpUgI+UGVkvXPxiG3yeBuzfe0R2EOA1eu8UeBL3bmteDfAYBPTEF99qdbe7JhT+1CegLTcq243HgzSSbsv9N/drjCcVG4xQtZ/fJNYyfpp3i0VoFqVaETV/Y7K6lHZCqwx1Q6gKErajagZKPa91TdKJKObmIBmlZLTt0g62lu2SlR7WtktzPg54A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WqirLUwLsM4bi+Q7duzW1d5TCTuVmORM2K1RPANHLoE=;
- b=bCRh/WvNp2QvVIpqQOSJJcLNum1EE/vjGQ6MH99R7oBTaLO3vkktDNzaBI9Vgbl15m9jEHHkcLQLDt4NVoeweDzshh3TQIfkbqDTx5XflX6jMcjwgbXvgyEMo+XSUVpvI/Nv/ifMr870EFBGIkwbPCK9LCsCesztx8cAXaPascKzmXurvUdjqhqwLSl6F9woKt4s+b4KAx4f9Ho/ij/0bRK2wVZHM83wl0GJy3bqE28PU2wKVwm8zKFkWV8klcY/IQHCVmKXwTqg+nmLAdYQQJd9KVnQ95vrD/uFs1+IPPoI8gA/SpPl7LBp7yCx8h0XoUOiLdkclqZZzCI7l/CzGw==
+ bh=NeURqqp5VqJci0MXy2wO3MWZfMioRCwfYXx6qQ+L8fI=;
+ b=Uof5KAioqYc0rb9BZQl+JzxssWRlNV5j6QciiPVBNcQV/+u8ISlJocUkFA1HqyZELmg3Mwpxp/LFqguF14xvDesyMZKoxMmUBE0a5KewkGIVS2+Y9FRnixISwNQfNxfFe26joedNQsXz3ORTNFTTTVo/mRyTmsIqRPCiqbKSEDzoidbDo1x/J53hn+NKp8U5KtteLXWP9i9iX8qTUvqYB6dxPwJduMGzw4VGg1/huVETbiLbJVb6czDzblbKRZ4SkaDfLbnd74kYoMZy8vaGPMte25uy+r8zTLX7rw40n2kUJ8B9q6VY5euWZF88zGkLiRNI5yNtl+7C7PGgHt6LJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WqirLUwLsM4bi+Q7duzW1d5TCTuVmORM2K1RPANHLoE=;
- b=4wOJWFtGiS1PZTr15mmH11rlBNMy8SCGSySWcFZXJuRvYWhp484c6We8qV+5QDMKzJx1PZ7AirKl/WA6WZGE3gLrAnIe081CPmsWeWH3wvGELxAPS16bR0Br2+vfYAGXqjPyavFOsKBzvlyDstpi8UgjRvaLQTBqr2dzn15ZgSA=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA5PPFE494AA682.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8e7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.13; Tue, 7 Jul
- 2026 12:28:39 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
- 12:28:39 +0000
-Message-ID: <0f85e12e-7d34-40a8-9efc-0d1a00b7c24c@amd.com>
-Date: Tue, 7 Jul 2026 14:28:32 +0200
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
+ by PH7PR11MB7146.namprd11.prod.outlook.com (2603:10b6:510:1ed::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Tue, 7 Jul
+ 2026 12:29:25 +0000
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
+ 12:29:24 +0000
+Content-Type: multipart/alternative;
+ boundary="------------O42xsg0r41OLhRpTk1sbH2im"
+Message-ID: <8e4cf7dd-9985-4cd6-8e5a-3fc4009726cc@intel.com>
+Date: Tue, 7 Jul 2026 17:59:15 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES
- flag
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Natalie Vock <natalie.vock@gmx.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
- <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
- <673ae71a1fc4dcce0e6a1655985a141d6f08c06f.camel@linux.intel.com>
+Subject: Re: [RFC PATCH 2/7] drm/xe/xe_ras: Add support to retrieve info queue
+ data for CRI
+To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
+ <daniele.ceraolospurio@intel.com>, <raag.jadav@intel.com>,
+ <riana.tauro@intel.com>, <aravind.iddamsetty@intel.com>
+References: <20260702111401.3680214-9-badal.nilawar@intel.com>
+ <20260702111401.3680214-11-badal.nilawar@intel.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <673ae71a1fc4dcce0e6a1655985a141d6f08c06f.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0330.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:eb::8) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <20260702111401.3680214-11-badal.nilawar@intel.com>
+X-ClientProxiedBy: MA5P287CA0162.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ba::17) To MN0PR11MB6207.namprd11.prod.outlook.com
+ (2603:10b6:208:3c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA5PPFE494AA682:EE_
-X-MS-Office365-Filtering-Correlation-Id: 351187d7-0b46-42df-4093-08dedc2345fb
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|PH7PR11MB7146:EE_
+X-MS-Office365-Filtering-Correlation-Id: 02df64d5-b4ca-4ecb-d514-08dedc236140
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|7416014|921020|22082099003|18002099003|3023799007|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: iBadCvewOoLVCBC0MkZksZfnLCuPBOPTv5zPTUK4Z1/oXDP9w9wVqIqeA4QoHnzueFSIoY55JRIwxKR4jjNDDJK/b1g4YPT14FhLxSEJ1bmknNOkuc+bG9uBPwCB9eZ2Pi+5ETxe8+fKih49wc/M7R1oQXZUISMa1QairlcY5W/8x3B/VfCVggJkfO4bJ76HPA2Q/VMtYEMZ8tqkh/eTw0PWipkF2KEtBla4/y5e6S7R4Ubjcb/2Y3ujXIPBZOclBwdzGVRDQxH+GV8hmt6qxvYTidpqQdlu342A55cumjTYKekTbw5k5AH8NiZKD5c/+H8pmaoQ9AOo0ebHl7f9KrCEgknJj5OVn6SPID7h9g/juSld3BYQJj2mEcezuN0wXmNjdz4F23b82Rm5ju6IitnvC8NYh49zm3aVK9IcXk21ytQX+58yG8hNCX3B8RbxoUSsHMnjWwcA1ZWexTVYB8VwZCJjMCrmd2dBSux3EQg8Nd3fOH4SP+kATzl8ezUksb3TfOiiJdvTg7FpiAikHqJi9r+fueleHrv7dkFgxeIIm7ewChHRtk69O4TIzopOYSH+qRzoC55uvEntoz0w/0/M1sc4lrE2suSocCr3ieiV2J9IF1nPhePtB/4alw0z5HIfHBAG4RcAAN7hfn81+ecxHx+j8pNZTkuwNk2pLgk=
+ ARA:13230040|1800799024|23010399003|376014|366016|56012099006|3023799007|4143699003|8096899003|5023799004|11063799006|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: FmqFP5AzAfkIxdy07REiLRmEDYAGVAlcQeS/CLeyGUrYTjEDONALjuauRBe2An8QKs2IdHqhuw0GsYcTd/xdjnZiTD/EXZS/xPUF2wWR/p4PpPxrzvKKTPAM3OPcugqYj6Fcxj6kj6Y2fLKXt2fIHVzI2gOq63o8dhuYZJaqI2gaP77XSJSCT8huZDm3EhbMyK0MDwgWv28aCMuivsgWVkjVciHl8UT1u3IRCYMr1AaRCurnSW0A5rH1zoHf/W2S3zyXuis9lxnMe0KApBhsfgPoMaJAPnbrDp5FqbbU/rkNfCL/KsnlhwyDpsV36zxW3fXKUh9uiGTaStf5gauyruSL7PkULl4lDB4A2OSqyGFq8McHww7DM91yFR/1FOEaYk1qICoPrROZ4A09eGwpkAn+mKblERio9UZ9ljAPKZvKRhjfKw/3yBwgXwvoCVKZ20jEd472jFOJmoAcgq6iPEU3aKq+ul4SXoQ9b8HkNqCsDwfrbze6ofUptfGpuyJTNz/6R81P9BSHAjnyXmkhturBXiQTdmLK7F8KyVdnpEGH9Khome0Z+ewHbd7bDR8iSjmh33ZxZhfyI52FZHXiwFtGwSWGTS0boao8oMlS7FiXzHpQCI+DXh2LZ4O8hg5QneB4NzhNL3C809Lyg5pIzqTSWMiRRrp91b1QsSKG8FY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(7416014)(921020)(22082099003)(18002099003)(3023799007)(11063799006)(4143699003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(56012099006)(3023799007)(4143699003)(8096899003)(5023799004)(11063799006)(18002099003)(22082099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aHpqSzJQM0x2MnZUZ1ptY2hMcVJSTmVDNXBoR3czV3BXREltb2pGaEdtd1N0?=
- =?utf-8?B?enhNYnZSdkNJTWdtWFI4cFBmcVNaajZFRVBacDJieE1nTHRvYU5qckc2V04r?=
- =?utf-8?B?NXIxTTV1MVNXZVZiWEpMNjdFRjY2cy93eDc1eW5OZW90bVVrelhnbmNMM1o1?=
- =?utf-8?B?b1NtWXZpc0o2b0Qzd3RtbjZCWWNSUnNLZHdiQXBNcVNid3FoSENYWFc3eWZY?=
- =?utf-8?B?cThlcUw4VExMbXhZNCsvMTJncExudStuVGM4Qm5QOHprOTMvNVJ6WE1vYURK?=
- =?utf-8?B?UjNHTjlQdVIzMzdPekE3SjFVdmgreVNRTmNZNzM4VjJZbnpZT2hRdWMxSW9y?=
- =?utf-8?B?aVU5QUdYNUFoem16MlpMalFrellWNHpiQ1FqWDJFQTZSck5DdEhiakIzNXg0?=
- =?utf-8?B?WWRoTHlQUGtiN1EyVXNtcVAvWHBNMzU5bkNIWXhrQjdzVFZmNjhXZFRtbFM2?=
- =?utf-8?B?WkszcTlOcExrVTlZTXRsYWVhREhWRWZjcjNWZlc1bm5lem9tdWZ3VXVBS08z?=
- =?utf-8?B?MnFtMklzVzlGb0Y3eG5Gd1RvZ251VlZ6Qy9EVkcyc080SHVDMzI0dUhaYkRS?=
- =?utf-8?B?SUN6cWgyNFgrbnR2MkhQdjNNYW1sYWE3SmxNQkdlYVQzcncrZHhXZWVYN2NP?=
- =?utf-8?B?R1N6Ri9kczdqMXpBUlNZWXdVZXdnU2lEdGVJN0NOV2wvOHJmblNCYVVKZENN?=
- =?utf-8?B?TnFTbUg5MkRCOTM3M2pWVG5RVUpCeklJZk42c3ZsN0dtQStGcFJ4eUFoaDQr?=
- =?utf-8?B?bm43QWUySitUQjZkMFdMSEFZRHo5WWZhVGEvRG5ITmZDalhIdEhFaUkxYjF2?=
- =?utf-8?B?dksvU0pSYldteWVPcmE4OVR5cUZoSytMQk5qNVVPV3RTZVU2NE5LaFlObGhP?=
- =?utf-8?B?RjY4VTJFekdsMUZyNEpGWElteTVsNUtZbmd0dDJsYkxvUXZNdTJjbzcxSG90?=
- =?utf-8?B?MDdHMEJoTkVPNXFDNkdDK0RORXlDUEdlaU15QmY2VjQrN1hvRkw2RVhWNEY0?=
- =?utf-8?B?Z3hPdFhLYTdIamdwNW1mS0hlbTd6UXlOWm1PZjhaMWpQR3NISW91R1d3Y0ps?=
- =?utf-8?B?dEpDTjJRUmdDSnZiVXFFTElqYXMyZjMwRkt5WmRTekhPR0tHejI2NE5YZ1Yx?=
- =?utf-8?B?YmJSUHcwbkh3WGIvbXkycmFNZTJxNmpkb25sanhobzBWbXhERE5YT1lKQXli?=
- =?utf-8?B?VG1BRk95VzZlYWFvdGMzUkh4UlZKYzhEY2R3eTdTWUw3THArMTc5aGFLMDFY?=
- =?utf-8?B?cTFlWHorUThrb1k3SFpKK2x6TE4rK2MySm9waFE0cmE5TWdZWjh0Z3Q1UGFw?=
- =?utf-8?B?dFhwaVhyR0ZYazk2Tko0R09zdE5Ydm9vcDZjM1djZjR5YUcyK21qdVJ4bWx6?=
- =?utf-8?B?SFhBMkNqKzZpR1JXWDk2dFB3T2JIQ2ZGckZJWTdna09jdVMxMWVuSFRLM1N5?=
- =?utf-8?B?RUhtWUpTQzMwbG5RWEI4VW4zZnBrdytmWS9VU3RCZm43L1JNVkkwU2MrRVVP?=
- =?utf-8?B?bVJvNFp6bjRIVllIeG05Ukh0OVZtR1cvNFJtR2tPdWlPcSt6MHFsNk1NdUYy?=
- =?utf-8?B?MFAzZXMwT0xOMVd0ajdhQjBKYzkxUXg0TnFGaUNCaVRJRVpwTWV3ODFxbVFh?=
- =?utf-8?B?UURLcGRwTzNlT1FsdnUvY01QZjRLN1VYZXlTdU8zdVJxYlI4ZkxuZ29hZ3dY?=
- =?utf-8?B?eDlSdDA5Ti95VWFIeFMrY3FBenZTNWw4L3dSRk96OS9MR24xbXZ0Y1JJMWZE?=
- =?utf-8?B?SnRMZmowbS9BS2VQeTZ3c2NXSUdna3AxMmU4MnZBQTJtTWFpcGZwUERZL1g0?=
- =?utf-8?B?cFJwTzhxd2hnQmxLQ1FLYnJHL2oydklLYnFPZDNMZ1lSLzRGNkR3NVI4QzE3?=
- =?utf-8?B?emhUR3lXd2M4blA2MVcxdVFkblJ1UW1iTW5MdE1CZFJFeVNXczd3dEpYdXlt?=
- =?utf-8?B?MkszR1NFbGZYdGJOeGpndlRKdkFSN1NaWUsrT0JFM1pOM0NEb3lnZG11cFp1?=
- =?utf-8?B?YUdTSjFIeWs0b1BtMVlmQXAxcEthZ2RoODRmcTFabWRYTnVzWEV0VVhPc2d3?=
- =?utf-8?B?ekI3dVpNSFJBTW16S3ZoSFVMUDZ3eERMbS9ZVHNCTkJ0R3BGdUJoTG9pUmhp?=
- =?utf-8?B?b2EwS1dNVXRrbzBIMlBIbFkvdzRHcHByRGV1dUc3Q2xnVWJOS1AxL0FQdzF6?=
- =?utf-8?B?MW5aUTR2ZWtsa2JXVzdKTGREMGxTRWl6dlBLUFBGVEl4SW1GcDROUVBJaWFm?=
- =?utf-8?B?Tyt4dHlZREp5QXBhN0dQSDFnWVJEZVFmWUZKVlFSQ1RKUmFtSXBGckdtSXJs?=
- =?utf-8?Q?is1MKGxZBCy4WwvSay?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 351187d7-0b46-42df-4093-08dedc2345fb
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z09JWmlWTGt3cjNBZy9hWVlCWFJXUUdVTWtXMTdkekpobU9tNFJSZm5iZ2VF?=
+ =?utf-8?B?b0NYUnExU2VxVEdIeGxkK0NKME1hQjdwWHgrTDRZNkEzMTN4WnVzbTlhNEVL?=
+ =?utf-8?B?NExaaUxXR2QrV0Z5K2ZCRUJmdk1FclVQVWVzMS80b0p6S0lqMUs4YlVUZG9J?=
+ =?utf-8?B?dFcwTEd6VmhsZWZLL1h4UmxoYjFLUGNjek1DSW1UMUV1N0dFTDcvaEYvWDc0?=
+ =?utf-8?B?NlRSOXYzVTkwY2xLc3FxSHlYaWhLL0ZTak5wSkpnV1hGL1VXL29nMEw2dFJB?=
+ =?utf-8?B?VWxNNW1YaUR0L0pYTzFPbE5Fb3dSdnM4alJwTC9ZNjZBTVp6TWJmL0l5aU5O?=
+ =?utf-8?B?RG9oMnZIVHZWeFlEOFJwU2tvTGthZllmYndwZkpaWlJyV3YzS01CNWpNNkZz?=
+ =?utf-8?B?SE15TTJ4L2xCakU0QnBQdWtMRnQ5VGxNcEdmeEtQWFUxbXV4Sm1PSFBlRVpJ?=
+ =?utf-8?B?ZGo5OVkyV2t2OWphQ2ZucllvL0RpY0ZTRjRtZFAwZ0hXeCt2RjJhaDFsa2RH?=
+ =?utf-8?B?MU9uSDR4UEo2M1VFYnVKdHU2NGpNNEhWWTQ4eERVTXVHVkczck14MGNJZWRs?=
+ =?utf-8?B?aEw3SkI2Q295TXkxcU9vNzMyUzJ2UWJoRks4MjlteC9TUi9SL2ZPWjlpSXdO?=
+ =?utf-8?B?UEFtN0k4VlRFL0labDFBaWVSdCtOdWkybkNOa1V0Z1pod2lFd0VuTEViV1pR?=
+ =?utf-8?B?QTFOREpxbU93eXdoYUZ0Q1diY3FSTzUzbEZ4M0FNMkhleFV1bERrWFBQR1pP?=
+ =?utf-8?B?eW4rejk0VnIzWTBtNS9yZWdmZGthcklYc0d3bkwxVVQ5TlZxOUhIZVRyQUxJ?=
+ =?utf-8?B?RmdzK285cHlRYWtCN1ZQckNVSS9EZG1XTVQramlZOVpiTnZNOUVTSDlLUk1C?=
+ =?utf-8?B?NEpONWpwN0tnYVF3TlZJSkpJSGd0aExYa2JNK21BbmRkU29tc2VuVkp2Zng5?=
+ =?utf-8?B?dXdGcEN1ZmVyQnVjbTBOZkNsbWc5Q0JRYWd3bWJZMWdRWTBDNERwdW1rMGZi?=
+ =?utf-8?B?YXZSL0NoakluZWZwcUZNMG5tcjA5OC9TUTlKQ1dCaHVHd3U1R0tjV08wWWpW?=
+ =?utf-8?B?ZHFCcXdSNWoyOUMyNkJ5eE9ybXE2aEE1bHNueUZmTzdNY1MrVzJnVFljZWRZ?=
+ =?utf-8?B?eUxTYTA0N1ZsSjlVMVg1dVpSdUx4WFJNYTY1RG9rVnpBWnZ5RDE0Mm5pZ1hD?=
+ =?utf-8?B?NnhhSXBISm9ubWdaZ1YwbGVNM0ZPNkw3WUNVMlpZajFvTjY3cndxT1Zidllu?=
+ =?utf-8?B?T1orTHpSL2JqOTgyeHdrRTNGbyt4RUtxd2NpaWNIYk9hOEE4emVPeXFHVG9v?=
+ =?utf-8?B?ckV0RDZycnJSME9KUVRLTjlQWGl5blVTSGVXUkd3Wk1LazZnT2NVeG1sOWEz?=
+ =?utf-8?B?VUk5empMeUpkdjQ0c3VxU1M5QU85MGUxbnB3UGVaZWFrMW9raWZrQ1BjYzR0?=
+ =?utf-8?B?L3NBMEVidWFHeHMwaXJwQnpNOS96NWgrbG5JVzdwbUhjaUNRUmdTbEdhaWNl?=
+ =?utf-8?B?Rm9sTEp6cS9ydjB4MmdQRzViV2RscS9UQTNRZ2o3ZWxVMm5Hb2dXakYvWjVG?=
+ =?utf-8?B?WURvMmQzbzg3ZG9DNkhtU0pHUFVVR2h1K0hLNURHZEFIVkhwVXdGV1lGQ2hm?=
+ =?utf-8?B?TVZqRXJlRHBoUlFESERUU0xIdFJYSXVRK3QvU2JUTWtQNGI3MEZrUHNPMnNs?=
+ =?utf-8?B?V0U5RkxYSDNWMkpSM0JJaFVHNVlrSlBLSkdOYmxEdXZzZDZub2J4Zjd6Rmp5?=
+ =?utf-8?B?Tkh6Y1E2azF1OWZ2UWVTV2pXcElZaWtDMHJMN0ZzY1VnMCtVRy9xWUpSNGQ2?=
+ =?utf-8?B?amtLb0M4MU5mUVBzbGxYU2gxUjRQaW8wVUVXN0k5UjRFZ0IrNHc1dS9PRVhh?=
+ =?utf-8?B?Vi85NTNaZDYvVjdRR2xkVm1wemsxUU5SaWlFb29oYlo5OUN4akUxZE83M3hT?=
+ =?utf-8?B?aW1zbFIzSlE3TVF0QjB3NkUzYnRoVm5aczVadDZROFJybjFMck1XMEJlWE9U?=
+ =?utf-8?B?ZGUxZXZrL3ZyYmRBNHlBblZ4STFxaUQrcG83dExtOExodzNXZDlJNjEvblJ2?=
+ =?utf-8?B?QkI4MHd3TmczRmhBSEhqNGVURmFrRGU4WTh6U2NWMkJiRnhCdW5TL1EvVGZS?=
+ =?utf-8?B?RDFkVXZjSnJQZ3NZRWhFc2Q5bjBnVkhZdEp4bnZINWVaRDkrTkhaT0ExSkpr?=
+ =?utf-8?B?dDQ0TXM0NmUrSUs1alo1bDN6S0VvZjBNNHo1aW5ScHBENGpRblkxUi83TjM3?=
+ =?utf-8?B?SE0vSmJHQWZzQmVWekNYb3dUdmV5Rkh3cTYzWTMwVENaaXVtWVdhZ1o0QWVW?=
+ =?utf-8?B?blVPalBZbTB1azB4TmZqU1dsbW0wRDBORXo4T2oxRzQydVFhU0dKUVkwRHM2?=
+ =?utf-8?Q?5XT+JyKpny7NoD7Y=3D?=
+X-Exchange-RoutingPolicyChecked: O+PvZpMj+uRIvaCfdokXIS/CxaSQ16Shz8zr69+GjnTFCqxeGGNJ02UWVuUBgb5aJvpQyJteCMocRjQbTZe2li3/ZyUn5Rr+ujesILuc8L1ikCteYo6jD+UTBRXsyTLHwkPk8qUwQLKYZBd3ByTzQqDk4ndsuBnpbzXzpcX6TsInPRVdbdzQfaAMPLpqwC1glgQ+UkukTcuhAu3GWzti9q9Tv33U3Jrzny19ii+6qQOFSqSO7L04+1iclAEImiUqYXK+ocvCVNLbMu4AiHf3ZojAMgPy66E6dkO8/cGCDwDkncG5w15oLnlJFZVSOgnDW+OjU7DM3F44SAUmxZZ3vg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02df64d5-b4ca-4ecb-d514-08dedc236140
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 12:28:39.2061 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 12:29:24.8976 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WG973tuV+e8v2q8ogQVVo4eEahKkDmEmtlQ+NFZF4ET6DRNNvDf00GsgjS9juaC9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFE494AA682
+X-MS-Exchange-CrossTenant-UserPrincipalName: bbBi0NCHZ1u+yesQcH4Sc696RJ8+I8Xg0fczsnf1djEnTOyffKahkAhC0q9eSkBxSrSuDODVR2afpRbHnqrGGYwtPrTgGx86cHFktO40AKY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7146
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,163 +174,481 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 7/7/26 14:09, Thomas Hellström wrote:
-> On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
->> TTM is about to switch to drm_exec for locking objects
->> in the LRU list. When we're done processing the object, we want to
->> unlock it only if the caller doesn't already hold that lock. If
->> DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which callers
->> may
->> require for unrelated reasons), we have no way of knowing whether the
->> lock is already held.
->>
->> To remedy this, add a separate helper that forcefully bypasses the
->> IGNORE_DUPLICATES flag for only a single locking operation.
->>
->> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-> 
-> The first, more complete attempt to try to tackle the exhaustive
-> eviction introduced a drm_exec snapshot ability instead.
-> 
-> https://lists.freedesktop.org/archives/intel-xe/2024-May/035820.html
-> 
-> The idea was that one would want to incrementally lock more buffer
-> objects until the validation succeeded, rather than dropping each
-> single lock after processing the eviction. That's actually what
-> guarantees forward progress. Restoring the snapshot unlocked all locks
-> that we grabbed in the process, and would work also for single locks.
+--------------O42xsg0r41OLhRpTk1sbH2im
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-That's actually not what this patch here tries to solve.
 
-The problem is rather since we don't remove the BOs from the LRU list that we try to evict some which are actually part of our working set.
+On 02-07-2026 04:44 pm, Badal Nilawar wrote:
+> Add support to retrieve info queue data. It can be retrieved when
+> has_info_queue=1 and RAS_INFO_QUEUE_FLAG_MORE_DATA is set in
+> response of XE_SYSCTRL_CMD_GET_COUNTER.
+>
+nit: Please change commit message, we haven't checked has_info_queue=1
+>   
+> Signed-off-by: Badal Nilawar<badal.nilawar@intel.com>
+> Assisted-by: Copilot:claude-sonnet-4.6
+> ---
+>   drivers/gpu/drm/xe/xe_ras.c                   |  34 ++++++
+>   drivers/gpu/drm/xe/xe_ras_types.h             | 112 +++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+>   3 files changed, 147 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 44f4e1a3455b..85b0202467f6 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -270,6 +270,40 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
+>   	return 0;
+>   }
+>   
+> +static int get_info_queue_data(struct xe_device *xe,
+> +			       const struct xe_ras_get_info_queue_data_request *req,
+> +			       struct xe_ras_get_info_queue_data_response *out)
+> +{
+Why we need info queue data? When we are going to use info queue data?
+> +	struct xe_ras_get_info_queue_data_response response = {0};
+> +	struct xe_sysctrl_mailbox_command command = {0};
+> +	size_t rlen;
+> +	int ret;
+> +
+> +	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP,
+> +				  XE_SYSCTRL_CMD_GET_INFO_QUEUE_DATA,
+> +				  (void *)req, sizeof(*req), &response, sizeof(response));
+> +
+> +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> +	if (ret) {
+> +		xe_err(xe, "sysctrl: failed to get info queue data %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (rlen != sizeof(response)) {
+> +		xe_err(xe, "sysctrl: unexpected get info queue data response length %zu (expected %zu)\n",
+> +		       rlen, sizeof(response));
+> +		return -EIO;
+> +	}
+> +
+> +	xe_dbg(xe, "[RAS]: info queue data: status=%u chunk_size=%u flags=0x%x\n",
+> +	       response.operation_status,
+> +	       response.queue_response.queue_header.chunk_size,
+> +	       response.queue_response.queue_header.flags);
+> +
+What happen when system control send corrupt data?
+> +	*out = response;
+> +	return 0;
+> +}
+> +
+>   /**
+>    * xe_ras_init - Initialize Xe RAS
+>    * @xe: xe device instance
+> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+> index 6688e11f57a8..fc496888b3f8 100644
+> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> @@ -9,6 +9,12 @@
+>   #include <linux/types.h>
+>   
+>   #define XE_RAS_NUM_COUNTERS			16
+> +#define XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE        200
+> +#define XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE        5120
+> +#define XE_RAS_INFO_QUEUE_FLAG_AVAILABLE        0x01
+> +#define XE_RAS_INFO_QUEUE_FLAG_MORE_DATA        0x02
+> +#define XE_RAS_INFO_QUEUE_FLAG_OVERFLOW         0x04
+> +#define XE_RAS_INFO_QUEUE_FLAG_COMPRESSED       0x08
+>   
 
-So when we lock for eviction we can't ignore duplicates no matter what the global flag says.
+What is use of XE_RAS_INFO_QUEUE_FLAG_COMPRESSED? When we are using it?
 
-Regards,
-Christian.
+Thanks,
 
-> 
-> Thanks,
-> Thomas
-> 
-> 
->> ---
->>  drivers/gpu/drm/drm_exec.c | 52 ++++++++++++++++++++++++++++++++++--
->> ----------
->>  include/drm/drm_exec.h     |  2 ++
->>  2 files changed, 41 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
->> index 7988f5e7d56a3..91de6b4d29df8 100644
->> --- a/drivers/gpu/drm/drm_exec.c
->> +++ b/drivers/gpu/drm/drm_exec.c
->> @@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct
->> drm_exec *exec)
->>  	return ret;
->>  }
->>  
->> -/**
->> - * drm_exec_lock_obj - lock a GEM object for use
->> - * @exec: the drm_exec object with the state
->> - * @obj: the GEM object to lock
->> - *
->> - * Lock a GEM object for use and grab a reference to it.
->> - *
->> - * Returns: -EDEADLK if a contention is detected, -EALREADY when
->> object is
->> - * already locked (can be suppressed by setting the
->> DRM_EXEC_IGNORE_DUPLICATES
->> - * flag), -ENOMEM when memory allocation failed and zero for
->> success.
->> - */
->> -int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
->> *obj)
->> +static int __drm_exec_lock_obj(struct drm_exec *exec,
->> +			       struct drm_gem_object *obj,
->> +			       bool always_report_duplicates)
->>  {
->>  	int ret;
->>  
->> @@ -226,7 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec,
->> struct drm_gem_object *obj)
->>  		return -EDEADLK;
->>  	}
->>  
->> -	if (unlikely(ret == -EALREADY) &&
->> +	if (unlikely(ret == -EALREADY) && !always_report_duplicates
->> &&
->>  	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
->>  		return 0;
->>  
->> @@ -243,8 +234,43 @@ int drm_exec_lock_obj(struct drm_exec *exec,
->> struct drm_gem_object *obj)
->>  	dma_resv_unlock(obj->resv);
->>  	return ret;
->>  }
->> +
->> +/**
->> + * drm_exec_lock_obj - lock a GEM object for use
->> + * @exec: the drm_exec object with the state
->> + * @obj: the GEM object to lock
->> + *
->> + * Lock a GEM object for use and grab a reference to it.
->> + *
->> + * Returns: -EDEADLK if a contention is detected, -EALREADY when
->> object is
->> + * already locked (can be suppressed by setting the
->> DRM_EXEC_IGNORE_DUPLICATES
->> + * flag), -ENOMEM when memory allocation failed and zero for
->> success.
->> + */
->> +int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
->> *obj)
->> +{
->> +	return __drm_exec_lock_obj(exec, obj, false);
->> +}
->>  EXPORT_SYMBOL(drm_exec_lock_obj);
->>  
->> +/**
->> + * drm_exec_lock_obj_report_dup - lock a GEM object for use, but
->> always report duplicates
->> + * @exec: the drm_exec object with the state
->> + * @obj: the GEM object to lock
->> + *
->> + * Like drm_exec_lock_obj, lock a GEM object for use and grab a
->> reference to it.
->> + * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is ignored
->> and duplicates are
->> + * always reported.
->> + *
->> + * Returns: -EDEADLK if a contention is detected, -EALREADY when
->> object is
->> + * already locked, -ENOMEM when memory allocation failed and zero
->> for success.
->> + */
->> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
->> +				 struct drm_gem_object *obj)
->> +{
->> +	return __drm_exec_lock_obj(exec, obj, false);
->> +}
->> +EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
->> +
->>  /**
->>   * drm_exec_unlock_obj - unlock a GEM object in this exec context
->>   * @exec: the drm_exec object with the state
->> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
->> index 8725ba92ff916..ff80dd2b72240 100644
->> --- a/include/drm/drm_exec.h
->> +++ b/include/drm/drm_exec.h
->> @@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32
->> flags, unsigned nr);
->>  void drm_exec_fini(struct drm_exec *exec);
->>  bool drm_exec_cleanup(struct drm_exec *exec);
->>  int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
->> *obj);
->> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
->> +				 struct drm_gem_object *obj);
->>  void drm_exec_unlock_obj(struct drm_exec *exec, struct
->> drm_gem_object *obj);
->>  int drm_exec_prepare_obj(struct drm_exec *exec, struct
->> drm_gem_object *obj,
->>  			 unsigned int num_fences);
+-/Mallesh
 
+>   /**
+>    * struct xe_ras_error_common - Error fields that are common across all products
+> @@ -71,7 +77,64 @@ struct xe_ras_threshold_crossed {
+>   } __packed;
+>   
+>   /**
+> - * struct xe_ras_get_counter_request - Request structure for get counter
+> + * struct xe_ras_info_queue_header - Metadata for large info queue data transfers
+> + *
+> + * Provides chunk metadata for commands that support extended info queue
+> + * functionality. Used when the total data exceeds a single mailbox response.
+> + */
+> +struct xe_ras_info_queue_header {
+> +	/** @total_size: Total size of the complete info queue data in bytes */
+> +	u32 total_size;
+> +	/** @chunk_offset: Offset of this chunk within the total data in bytes */
+> +	u32 chunk_offset;
+> +	/** @chunk_size: Size of the data in this chunk in bytes */
+> +	u32 chunk_size;
+> +	/** @sequence_number: Sequence number for this chunk, starts at 0 */
+> +	u32 sequence_number;
+> +	/** @flags: Info queue control flags (RAS_INFO_QUEUE_FLAG_*) */
+> +	u32 flags:8;
+> +	/** @compression_type: Compression algorithm used; 0 = none */
+> +	u32 compression_type:4;
+> +	/** @num_headers: Number of detailed counter headers at start of queue_data */
+> +	u32 num_headers:5;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved:15;
+> +	/** @checksum: CRC32 checksum of this chunk data */
+> +	u32 checksum;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_info_queue_request - Request for a specific chunk of info queue data
+> + *
+> + * Allows the driver to request continuation of large info queue transfers
+> + * by specifying an offset and size within the full data set.
+> + */
+> +struct xe_ras_info_queue_request {
+> +	/** @requested_offset: Byte offset of the requested data chunk */
+> +	u32 requested_offset;
+> +	/** @requested_size: Maximum size of the requested chunk in bytes */
+> +	u32 requested_size;
+> +	/** @session_id: Session ID to correlate multi-chunk transfers */
+> +	struct xe_ras_error_class session_id;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_info_queue_response - Generic response for commands with info queues
+> + *
+> + * Standard response format for any command that returns an info queue
+> + * payload. May be embedded in a command-specific response structure.
+> + */
+> +struct xe_ras_info_queue_response {
+> +	/** @queue_header: Info queue metadata for this chunk */
+> +	struct xe_ras_info_queue_header queue_header;
+> +	/** @queue_data: Info queue data for this chunk */
+> +	u8 queue_data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_get_counter_request - Request for get error counter
+>    */
+>   struct xe_ras_get_counter_request {
+>   	/** @counter: Error counter to be queried */
+> @@ -121,4 +184,51 @@ struct xe_ras_clear_counter_response {
+>   	/** @reserved1: Reserved for future use */
+>   	u32 reserved1[3];
+>   } __packed;
+> +
+> +/**
+> + * struct xe_ras_info_queue_dynamic_counter_hdr - Aggregate counter header entry
+> + *
+> + * When a session requests aggregate counter data, one header per matching
+> + * dynamic counter class is prepended to the queue data. The @counter field
+> + * indicates how many subsequent error log entries belong to this class.
+> + */
+> +struct xe_ras_info_queue_dynamic_counter_hdr {
+> +	/** @error_class: Error class associated with this counter group */
+> +	struct xe_ras_error_class error_class;
+> +	/** @counter: Number of error log entries that follow for this class */
+> +	u32 counter;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_error_log - Single error log entry following dynamic counter headers
+> + */
+> +struct xe_ras_error_log {
+> +	/** @timestamp: Timestamp when the error was recorded */
+> +	u64 timestamp;
+> +	/** @error_details: Error-specific details */
+> +	u32 error_details[16];
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_get_info_queue_data_request - Request for RAS_CMD_GET_INFO_QUEUE_DATA
+> + */
+> +struct xe_ras_get_info_queue_data_request {
+> +	/** @queue_request: Info queue request parameters */
+> +	struct xe_ras_info_queue_request queue_request;
+> +	/** @source_command: Original command that generated the info queue */
+> +	u32 source_command;
+> +	/** @source_context: Context from original command, if applicable */
+> +	struct xe_ras_error_class source_context;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_get_info_queue_data_response - Response for RAS_CMD_GET_INFO_QUEUE_DATA
+> + */
+> +struct xe_ras_get_info_queue_data_response {
+> +	/** @operation_status: Status of the retrieval operation */
+> +	u32 operation_status;
+> +	/** @queue_response: Info queue data chunk */
+> +	struct xe_ras_info_queue_response queue_response;
+> +} __packed;
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> index 6e3753554510..538d93352655 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> @@ -25,11 +25,13 @@ enum xe_sysctrl_group {
+>    * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+>    * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
+>    * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
+> + * @XE_SYSCTRL_CMD_GET_INFO_QUEUE_DATA: Retrieve a chunk of info queue data
+>    */
+>   enum xe_sysctrl_gfsp_cmd {
+>   	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
+>   	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
+>   	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
+> +	XE_SYSCTRL_CMD_GET_INFO_QUEUE_DATA	= 0x0D,
+>   };
+>   
+>   /**
+--------------O42xsg0r41OLhRpTk1sbH2im
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 02-07-2026 04:44 pm, Badal Nilawar
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20260702111401.3680214-11-badal.nilawar@intel.com">
+      <pre wrap="" class="moz-quote-pre">Add support to retrieve info queue data. It can be retrieved when
+has_info_queue=1 and RAS_INFO_QUEUE_FLAG_MORE_DATA is set in
+response of XE_SYSCTRL_CMD_GET_COUNTER.
+
+</pre>
+    </blockquote>
+    nit: Please change commit message, we haven't checked&nbsp;<span style="white-space: pre-wrap">has_info_queue</span>=1&nbsp;
+    <blockquote type="cite" cite="mid:20260702111401.3680214-11-badal.nilawar@intel.com">
+      <pre wrap="" class="moz-quote-pre"> 
+Signed-off-by: Badal Nilawar <a class="moz-txt-link-rfc2396E" href="mailto:badal.nilawar@intel.com">&lt;badal.nilawar@intel.com&gt;</a>
+Assisted-by: Copilot:claude-sonnet-4.6
+---
+ drivers/gpu/drm/xe/xe_ras.c                   |  34 ++++++
+ drivers/gpu/drm/xe/xe_ras_types.h             | 112 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+ 3 files changed, 147 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 44f4e1a3455b..85b0202467f6 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -270,6 +270,40 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
+ 	return 0;
+ }
+ 
++static int get_info_queue_data(struct xe_device *xe,
++			       const struct xe_ras_get_info_queue_data_request *req,
++			       struct xe_ras_get_info_queue_data_response *out)
++{</pre>
+    </blockquote>
+    Why we need info queue data? When we are going to use info queue
+    data?
+    <blockquote type="cite" cite="mid:20260702111401.3680214-11-badal.nilawar@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++	struct xe_ras_get_info_queue_data_response response = {0};
++	struct xe_sysctrl_mailbox_command command = {0};
++	size_t rlen;
++	int ret;
++
++	xe_sysctrl_create_command(&amp;command, XE_SYSCTRL_GROUP_GFSP,
++				  XE_SYSCTRL_CMD_GET_INFO_QUEUE_DATA,
++				  (void *)req, sizeof(*req), &amp;response, sizeof(response));
++
++	ret = xe_sysctrl_send_command(&amp;xe-&gt;sc, &amp;command, &amp;rlen);
++	if (ret) {
++		xe_err(xe, &quot;sysctrl: failed to get info queue data %d\n&quot;, ret);
++		return ret;
++	}
++
++	if (rlen != sizeof(response)) {
++		xe_err(xe, &quot;sysctrl: unexpected get info queue data response length %zu (expected %zu)\n&quot;,
++		       rlen, sizeof(response));
++		return -EIO;
++	}
++
++	xe_dbg(xe, &quot;[RAS]: info queue data: status=%u chunk_size=%u flags=0x%x\n&quot;,
++	       response.operation_status,
++	       response.queue_response.queue_header.chunk_size,
++	       response.queue_response.queue_header.flags);
++</pre>
+    </blockquote>
+    What happen when system control send corrupt data?
+    <blockquote type="cite" cite="mid:20260702111401.3680214-11-badal.nilawar@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++	*out = response;
++	return 0;
++}
++
+ /**
+  * xe_ras_init - Initialize Xe RAS
+  * @xe: xe device instance
+diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+index 6688e11f57a8..fc496888b3f8 100644
+--- a/drivers/gpu/drm/xe/xe_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_ras_types.h
+@@ -9,6 +9,12 @@
+ #include &lt;linux/types.h&gt;
+ 
+ #define XE_RAS_NUM_COUNTERS			16
++#define XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE        200
++#define XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE        5120
++#define XE_RAS_INFO_QUEUE_FLAG_AVAILABLE        0x01
++#define XE_RAS_INFO_QUEUE_FLAG_MORE_DATA        0x02
++#define XE_RAS_INFO_QUEUE_FLAG_OVERFLOW         0x04
++#define XE_RAS_INFO_QUEUE_FLAG_COMPRESSED       0x08
+ </pre>
+    </blockquote>
+    <p>What is use of&nbsp;<span style="white-space: pre-wrap">XE_RAS_INFO_QUEUE_FLAG_COMPRESSED</span>?
+      When we are using it?</p>
+    <p>Thanks,</p>
+    <p>-/Mallesh</p>
+    <blockquote type="cite" cite="mid:20260702111401.3680214-11-badal.nilawar@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+ /**
+  * struct xe_ras_error_common - Error fields that are common across all products
+@@ -71,7 +77,64 @@ struct xe_ras_threshold_crossed {
+ } __packed;
+ 
+ /**
+- * struct xe_ras_get_counter_request - Request structure for get counter
++ * struct xe_ras_info_queue_header - Metadata for large info queue data transfers
++ *
++ * Provides chunk metadata for commands that support extended info queue
++ * functionality. Used when the total data exceeds a single mailbox response.
++ */
++struct xe_ras_info_queue_header {
++	/** @total_size: Total size of the complete info queue data in bytes */
++	u32 total_size;
++	/** @chunk_offset: Offset of this chunk within the total data in bytes */
++	u32 chunk_offset;
++	/** @chunk_size: Size of the data in this chunk in bytes */
++	u32 chunk_size;
++	/** @sequence_number: Sequence number for this chunk, starts at 0 */
++	u32 sequence_number;
++	/** @flags: Info queue control flags (RAS_INFO_QUEUE_FLAG_*) */
++	u32 flags:8;
++	/** @compression_type: Compression algorithm used; 0 = none */
++	u32 compression_type:4;
++	/** @num_headers: Number of detailed counter headers at start of queue_data */
++	u32 num_headers:5;
++	/** @reserved: Reserved for future use */
++	u32 reserved:15;
++	/** @checksum: CRC32 checksum of this chunk data */
++	u32 checksum;
++} __packed;
++
++/**
++ * struct xe_ras_info_queue_request - Request for a specific chunk of info queue data
++ *
++ * Allows the driver to request continuation of large info queue transfers
++ * by specifying an offset and size within the full data set.
++ */
++struct xe_ras_info_queue_request {
++	/** @requested_offset: Byte offset of the requested data chunk */
++	u32 requested_offset;
++	/** @requested_size: Maximum size of the requested chunk in bytes */
++	u32 requested_size;
++	/** @session_id: Session ID to correlate multi-chunk transfers */
++	struct xe_ras_error_class session_id;
++	/** @reserved: Reserved for future use */
++	u32 reserved;
++} __packed;
++
++/**
++ * struct xe_ras_info_queue_response - Generic response for commands with info queues
++ *
++ * Standard response format for any command that returns an info queue
++ * payload. May be embedded in a command-specific response structure.
++ */
++struct xe_ras_info_queue_response {
++	/** @queue_header: Info queue metadata for this chunk */
++	struct xe_ras_info_queue_header queue_header;
++	/** @queue_data: Info queue data for this chunk */
++	u8 queue_data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
++} __packed;
++
++/**
++ * struct xe_ras_get_counter_request - Request for get error counter
+  */
+ struct xe_ras_get_counter_request {
+ 	/** @counter: Error counter to be queried */
+@@ -121,4 +184,51 @@ struct xe_ras_clear_counter_response {
+ 	/** @reserved1: Reserved for future use */
+ 	u32 reserved1[3];
+ } __packed;
++
++/**
++ * struct xe_ras_info_queue_dynamic_counter_hdr - Aggregate counter header entry
++ *
++ * When a session requests aggregate counter data, one header per matching
++ * dynamic counter class is prepended to the queue data. The @counter field
++ * indicates how many subsequent error log entries belong to this class.
++ */
++struct xe_ras_info_queue_dynamic_counter_hdr {
++	/** @error_class: Error class associated with this counter group */
++	struct xe_ras_error_class error_class;
++	/** @counter: Number of error log entries that follow for this class */
++	u32 counter;
++} __packed;
++
++/**
++ * struct xe_ras_error_log - Single error log entry following dynamic counter headers
++ */
++struct xe_ras_error_log {
++	/** @timestamp: Timestamp when the error was recorded */
++	u64 timestamp;
++	/** @error_details: Error-specific details */
++	u32 error_details[16];
++} __packed;
++
++/**
++ * struct xe_ras_get_info_queue_data_request - Request for RAS_CMD_GET_INFO_QUEUE_DATA
++ */
++struct xe_ras_get_info_queue_data_request {
++	/** @queue_request: Info queue request parameters */
++	struct xe_ras_info_queue_request queue_request;
++	/** @source_command: Original command that generated the info queue */
++	u32 source_command;
++	/** @source_context: Context from original command, if applicable */
++	struct xe_ras_error_class source_context;
++} __packed;
++
++/**
++ * struct xe_ras_get_info_queue_data_response - Response for RAS_CMD_GET_INFO_QUEUE_DATA
++ */
++struct xe_ras_get_info_queue_data_response {
++	/** @operation_status: Status of the retrieval operation */
++	u32 operation_status;
++	/** @queue_response: Info queue data chunk */
++	struct xe_ras_info_queue_response queue_response;
++} __packed;
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+index 6e3753554510..538d93352655 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+@@ -25,11 +25,13 @@ enum xe_sysctrl_group {
+  * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+  * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
+  * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
++ * @XE_SYSCTRL_CMD_GET_INFO_QUEUE_DATA: Retrieve a chunk of info queue data
+  */
+ enum xe_sysctrl_gfsp_cmd {
+ 	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
+ 	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
+ 	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
++	XE_SYSCTRL_CMD_GET_INFO_QUEUE_DATA	= 0x0D,
+ };
+ 
+ /**
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------O42xsg0r41OLhRpTk1sbH2im--
