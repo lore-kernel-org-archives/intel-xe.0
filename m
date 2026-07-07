@@ -4,55 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0C25C43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:14:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F191C43458
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:14:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A623210EF00;
-	Tue,  7 Jul 2026 22:14:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0157010EF17;
+	Tue,  7 Jul 2026 22:14:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ov3o5vIo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YCXCkqDn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F4E910EF00
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:14:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4067610EF17
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:14:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783462451; x=1814998451;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZIpHZ54AKkXq7j8Nr3BYzJJoQDYvGOfLxTE6WWajDuo=;
- b=Ov3o5vIoSRHVr+PpnAANsfg5Y0ZLDTN6CUEb1b3T401RgwbUMShC0K3V
- X8nhHcNO5ZcUAjFdSGDQnR5NQGDV9bAjaO0q8an86mlo0tNkWmNMeT1U+
- 4LtCNwAoqifFPFQI+qkYf9ZEk2XaRjLJyXpgG/El3l8FU7CMsSoFbv6oS
- BMFEEU4hmFCP1bROFIxK5FGk9ZWb3W+CcqucR8iYtgbp7lsjh+k46SoMH
- T9HXmC0P7YLEsXdmkESHg9/sQqGEzHbZwmeWPJhWazbyor22fHpm0GlwN
- g7gFJFewLma0Ra5K8dUcZhEW05mMZ4nVpM/MFabUXdJHJtIEQEAWzz1fG g==;
-X-CSE-ConnectionGUID: CWsGyxCjRkCFEudHArA9TA==
-X-CSE-MsgGUID: xgRVZMsBSuO1PF64JUn/Gg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84176801"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84176801"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:14:08 -0700
-X-CSE-ConnectionGUID: 6XHK0wZoTfO49mwLiL9C9w==
-X-CSE-MsgGUID: 06OI2VApTAiSaavG8zWdYQ==
+ t=1783462457; x=1814998457;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Ilw+nSVEbKAjpTfPueU3isPDPKAoh85fMIS7HFvM/+g=;
+ b=YCXCkqDne6uyZwvLXg9HYhby1RAGoPNujaEsjp9s7818iZ3/F8bYNu7K
+ aDM32mf238i36Vqt0LPuqhd8HLTgjV+Mmhp8CXr2Do/bdtlCqKfLyLCOM
+ jDAtEXl38MwE6WmPFPH2AIbO7b8A8012H/DdERb5Ivi4YXVbC2rmAubyA
+ emvlo5YJYwLL3Ysq57HFBl22UDwvf9NpaZmCUVI1xHSYNrUvscZ5S94cw
+ 4OyqFIftFZiW4D/lCbWtrKEJx7qvHAeg8Uz9XnooeIEic8JKRu1Wx2RO2
+ PQY7PzQ5e4SmythSdZcu2IT4C96cZh9zoTw3Q0M+m62GxsFWEMcp34B8F g==;
+X-CSE-ConnectionGUID: wV/S/pJvRCyLQz24IcOl1A==
+X-CSE-MsgGUID: lt4MDBGaTba0yFulr5T9hQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84145589"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84145589"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 15:14:17 -0700
+X-CSE-ConnectionGUID: 76w0ieF1SzaB7D1rdWMhtQ==
+X-CSE-MsgGUID: Iyj2QQUtTTeABoLG2VMjZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="257996024"
-Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:14:07 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH] drm/xe/pxp: add termination on resume
-Date: Tue,  7 Jul 2026 15:14:00 -0700
-Message-ID: <20260707221359.2828044-2-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="250129735"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 15:14:16 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 7 Jul 2026 15:14:16 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Tue, 7 Jul 2026 15:14:16 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.53)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 7 Jul 2026 15:14:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uYR7TNQW3me6XhGV1eGvhTl3Z/g7hRBqdCP9MEY2idjLhb1AdiBxYM5G9IA4vh6qIPhanrIVw3P82YRP8Sr1wwkLFj9KalRFCeYOYvy+VeSdG3wn1sT2vPVE0s0cH86t/Fs/xDsulu6alN7Sd3QUmEZqlKzAeUin1cNKnSjVCXRdSE+Qzei8qPSCzpLYwJPe0MnhhplAapQ4jTJBqkZHq0GX2LeCt+KLouiSclnEoAxh/GKGeeGEbmMXH9stxBdWP0BQXeyIuuuKKqCakA54C9mNOYyCHS7RP6MkLU92tYFsQuIlZInFjVLC7X7byrRx4z9u9M0j9C5fqF6lKGUuzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PSRjORfwXdamFlKJg+ZpVJh0pvM+BliFbi2uonTMdXM=;
+ b=xLoQkXYbcymSfWc6BZjT/Ty1xrUDe7CduwNZ4Tr1hR4JPAPYNzSNtL793Acs231X2zPj+zMpviklD/2kGKwd1nLZmMvxwu8yMrESdJYso34ItBwm/Pp20Wq7C7FiFpLl07Rx2WIXluivQ3oUlN1DriwkCCE0LDrjEFdSTJpHp9UzzlPIBhSb3bUCLiuNW1PRrpBXOQDz9Fgl41lFqkUZavWKQLOeZGVF5ociHjmEjaDsXGoZa0bwEuLja1Fonk/4KrJX72zCdPX81o/wdB9yPL+8ojaadMAqP/b99BE+O6J8wpQgeitQD1C83+9MMzh+MQNO7EbrwVGK2xLM6shjhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by PH0PR11MB4838.namprd11.prod.outlook.com (2603:10b6:510:40::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.12; Tue, 7 Jul
+ 2026 22:14:14 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0181.009; Tue, 7 Jul 2026
+ 22:14:13 +0000
+Message-ID: <8a89ce3e-b5a1-43f2-b407-d7cb3cd11e1b@intel.com>
+Date: Wed, 8 Jul 2026 00:14:09 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/13] drm/xe/tests: Add migration packet test
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+References: <20260630132633.32804-1-michal.wajdeczko@intel.com>
+ <20260630132633.32804-13-michal.wajdeczko@intel.com>
+ <ake6DS7ZfTjXUwox@nostramo> <d6b9a35e-8202-4a78-8d46-ecb90b220b6b@intel.com>
+Content-Language: en-US
+In-Reply-To: <d6b9a35e-8202-4a78-8d46-ecb90b220b6b@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DU6P191CA0002.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:10:540::19) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|PH0PR11MB4838:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35c39be3-86ff-4759-6610-08dedc75136e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|11063799006|56012099006|22082099003|18002099003|4143699003|6133799003;
+X-Microsoft-Antispam-Message-Info: 9vXqyheXXd0PuKJFgrBSJXjvbWIXrJvUFIxCcbZP+g42XoHzY4HTut/dXqwYEz9KAyWetyOdYl+Bqa0Qac1wHE0Zx7friekftvuaZDEecFRlKHh2bZRnoKg3IKUJkTJL3Br1pJ0epJ0+YZwTymagAOHsPggk/xUDqGMIb5FfIeN0jH2jPeClCFjWnfyRiAgiY33QMPSRPnH1QzPIDygCkZbNChNFfCMU5jDqAv4//pXXu/Rsy5fbHsLQ58WOffO915MeJM3OW/iM/zqIeB0mueo/Xvt7IJrpSaxkkUgJ2knNE0eFk/s1025kCrL7JXUzd4NMKeY9E4ii1lTEgF5KBHvR5cjxp1NLcFTtDHCC01GGfoQ7uy99DeMGf9KlD8Uep+uyv7Uxzxtubcov8QNxTf8tJN5NggCjAKmuIiYd/rGeN+ZTHU/moSSMuLxo81ZhzPIOJsnJVdrpSsbuqEKPnheUypxW0EOf2ZB70W32qz8BTpyq3eDuyQtXsKhK65X9w/THsv4PmpGRNIJuRQaKONdvbL5IscJo5a5hzawpMO5hYHsx92LVta1agInnNDwrrmHHea+ZoBMRIr477J9lUY7OrBcRDDjZmMYCLiLgDTA4UYnPOMOdOzEaCQEPMsIKhq7AFRAEyVtzo4n+OlN/3458R1mF796rktIvboFjebY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(11063799006)(56012099006)(22082099003)(18002099003)(4143699003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QmNhejZVVUcyTmRMZnFIcFFDNEpYd1RQeEhpZHhMcVFrcjIvUmVLaEpDT2JX?=
+ =?utf-8?B?ZWNodzNuY1dqTlY4amQ4bXNEY0svUVBmZ3d5ZHRwMnQrR3ZOMWRKeUY5dHdM?=
+ =?utf-8?B?ODAxZ2FpNXJqRzBrTFdBZWdrS3FnRC8xVVlkMFM3M2FwRm9RTkpLNTM0YTJm?=
+ =?utf-8?B?ZEdwc3hYc1dtSUZuZlBvdDZ6ZWtGejFHSlI2eCsxakthc1F4N2VnY2RMTXNl?=
+ =?utf-8?B?Zys1WXJ1ZDduZWZrVTZRZEsrd1ljYUVhM3V2SjhaV1RBVFNzbTdIL0E4RkFP?=
+ =?utf-8?B?Wi9zelB1eGRHdzMwdTJRVFMrNjhBRjBiM3c5a0VCNjBUcGE3UHJTcHltWjdO?=
+ =?utf-8?B?cGFDeFF4dUtkV3ZiTUp1SWFkMDloYzNwWStDbUlLRVFJWkJENVBGdklyY1cw?=
+ =?utf-8?B?bjRRK09qOVNlYzFmOHV0VW9SOE51cllqbDdLTkVBTWpaYUtyMy95VVdTK2RO?=
+ =?utf-8?B?ZnQyZTgyTUg1OXNRYUhyNm9EQjJlclJKdFYzbWVlTXdIbG8xeG5lNllmeEJV?=
+ =?utf-8?B?bDd3bjUxVWtTeG8zR3ZyY3FqQ2VDcTI3VmpCR29SbkxRWWNFbTI4M2tqTzRz?=
+ =?utf-8?B?UWNpcW40YXFkM1NyUDZSZ2pkVkc3Umk3Z3JZVlh0Y1pHckdWbUN2QXRFam5F?=
+ =?utf-8?B?VjVOVnhmT1JVbjNCckZhZVFIVzJNVmJ4ZlBYY1g2d1VLWFU4OE81YTZYNmRu?=
+ =?utf-8?B?YVJjeC9oK2w4REZyazF3WXRtL1hReUdvSHZndDFFMEtDRDRPT1d1NEFETGwz?=
+ =?utf-8?B?a3UxcDhjcmd5UmdsRzJDWlhyR2IxbENtd3dRZHRnaWtHSjBJME9NMWdneU5U?=
+ =?utf-8?B?U1pOM0lEUUlJTm1BRHpRL2d6V1JqVzlBcEM3a2NKRjFmMHdPakQxUFZVMTRY?=
+ =?utf-8?B?Si9haGEwcFlpbGRRdlNodURDRFUyQ3VXWE01TFpPMkpXOXZMekZUb3lrR1Rs?=
+ =?utf-8?B?Q2lGM3hhdHVtSHo0WUdEdUh5amZmYUxtemVNa0JCWDFvMUFVY0dhc0JrMVRT?=
+ =?utf-8?B?TTEvVUJRcmo4eUpNWDZPTE5WcGowak42Z1NManpFbGdOejBwZy9kMlV4eXor?=
+ =?utf-8?B?MnhEd1RLVW1Ta3dzTkdFbmxJOU9vOHZMOEVHWDV1NWlJSXl0bTdvc2Z1Nnha?=
+ =?utf-8?B?VGJDNm1RRGhVb09rWStHMVdFY2h5WnlsMnlEVU5SQ0VTRkN6RzhSbm9NQVpC?=
+ =?utf-8?B?VllBR20zVVBvMS9kcjVlSVpRdlozQUV2Vjhuejl3RjBieUhXY1Rvdjhrckls?=
+ =?utf-8?B?SVRTd1l5Zmx3N0M0N2JLQUl3WmR2NlgzWVNIaEI1QWtxWjNIVjVKTHJFQnMv?=
+ =?utf-8?B?WHRMTTRqUm5VQ01ldVE1Zzk0OFJ4bWFIcWNXS1ljandldFpvK0FGWTl2a3FX?=
+ =?utf-8?B?cHU0bk1qcjd3L0VSbVAySEdCTFBjUjdWc3VXMmtjdVVBVVZ1amoxSXc5NXNk?=
+ =?utf-8?B?YkQ5bFYwQjZhSmJTYnhwNzFFOWNkWkJkeC9KNWZidENxbVVuTWRzb24vcXcy?=
+ =?utf-8?B?SENWMlN4a0ZUREV5Um1YL0dEVVZncVdxcGM4UFZNMUZ6YTRuKyszbk5LeW9p?=
+ =?utf-8?B?QlVTM1hYUUNlKzRXaWw0bDd4M01HYnFFWmE5MU9kWFk5YjZIL1hnZDVmMk5N?=
+ =?utf-8?B?Z3BKNWVlMjNCWmx4VWxaMzRvK2JqcENjWnFFZ2NCOFl5aVZPaFJpMjRXR0tR?=
+ =?utf-8?B?bWFyM2VuUHlMQ0UzeFc0b2RNeUlabWNBWGJaNmNqaDBaV3hUN3MyOC9tclhz?=
+ =?utf-8?B?S3ppbDJiWUgzckJUVlF2aHpGbWRjZDIvL2c5UzFqYW1DK0p2MTdiNXN0bEJF?=
+ =?utf-8?B?VTBhZERsVEsxZ0pDNExIMmdkZ2s2cnorUUJNWnN0end3SDE1bS9UMUU3alNr?=
+ =?utf-8?B?YUZkTVkxcWdxUmVxaXpveGJYazBjT2FJVkY4Z0EzZUI3MzNRMTNzV0owc0pv?=
+ =?utf-8?B?TGk1NGpVd1NJTW5kcmRTQ0o4OTRZbDkwZzljamlwZkFEbVJBWWV6QVRPZkRk?=
+ =?utf-8?B?QzZwZ2toRTFaNEE4d3FtTDBHNDBJNWI1M0hvSG9FTlRuRWE5Ylc3Q0dmRytZ?=
+ =?utf-8?B?NmxMYXZMTGRxUGp0NTZJd3MzMmJNaThldEN4WlNDL0tFVVZLL1pFNUJiM1Ev?=
+ =?utf-8?B?MXUwRDM2R2NGVDVoQjNhTzUwSHZCMVhObkVGLzVXeXJsRFlTRk85SlBIcitL?=
+ =?utf-8?B?RDQwaXBFOHNuU0FaRmlLWFV5R2plSllRQVNub3BPMi83WkFlTytJbHRGQUhr?=
+ =?utf-8?B?NmIrbjFPNExBTjQzc2pMbzRCcUdLcE9nc1ZSWjdEc3AxR0lTTy9JZE5RYnJ5?=
+ =?utf-8?B?eEErcm82K29mcDhvcGk4cDNLSFBwMlFQaFptOXlPUHBvVUJDWXd4QU1VU3dy?=
+ =?utf-8?Q?60X4ZA15TFaO9K5E=3D?=
+X-Exchange-RoutingPolicyChecked: Lgqu5wTH+x8/IxRWXwHi9bEA0AQCJeQ429SKEcqj1QDJSAqF/ZkiRSqgcBhTHRqmZ9+2SNGOXLTSwHadhcfRtyB5KbiBVDhPDNLJmauMuwgxnqr5FQURhgzEnpM5MLIYBMJlL83Jhdlu7nsnOGkNvKkyIPHka1ueotVHvxKM46DFFYhfgWCur6bSJoa+QDOlHIqjIBaSzg6T4oBZGGpy8ohHakAlQGQPGNUYqnMW+4yj5Ss21ccjTGrWrGPGnFkcW4YTgKOfnFv2IEVX22lUCMA7SbSErVpcUsWwQ7gf0QrhbmkAcEs74ffZJGt8kh4O1d/PU3xcaDnlw9/zkq/6Iw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35c39be3-86ff-4759-6610-08dedc75136e
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 22:14:13.4102 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c6ATl3dtvcXA4Q7Hnfg/QjcAi6gXDyI2HiU/O4dPu17835jhAYXGlasNKo5eJlWw5UtC71RlBQkJ0qnzzRB51kSFvHOoKHaPylB9PcJZCZc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4838
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,298 +170,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Suspend/resume causes the PXP keys to become invalid, but doesn't
-actually kill the session. The driver also doesn't explicitly kill and
-re-start the session until a new PXP request comes in, which means that
-the "zombie" session can potentially stick around if there are no new
-requests from userspace. While this is not an issue for PXP, HDCP has a
-new behavior starting on PTL where a communication is sent to GSC if a
-session is active at suspend time (even if it doesn't have a valid key),
-which can lead to delays in the suspend flow if we suspend while the
-zombie session is still active.
-To avoid this, we can trigger a termination on resume and kill the
-zombie session immediately, instead of delaying the termination to the
-next PXP request. Due to restrictions in the rpm suspend/resume flow, we
-can't call the termination flow from within the resume call itself, so
-the pxp irq worker is expanded to cover this scenario. As part of this
-change, the pxp->events variable has been moved to atomic, to avoid
-having to take xe->irq.lock from non-irq related paths.
 
-Fixes: b1dcec9bd8a1 ("drm/xe/ptl: Enable PXP for PTL")
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/xe/xe_pxp.c       | 111 ++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_pxp_types.h |  25 ++++---
- 2 files changed, 91 insertions(+), 45 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index fea3d8ceeddb..7e911e87b1a7 100644
---- a/drivers/gpu/drm/xe/xe_pxp.c
-+++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -174,16 +174,9 @@ static void mark_termination_in_progress(struct xe_pxp *pxp)
- 	pxp->status = XE_PXP_TERMINATION_IN_PROGRESS;
- }
- 
--static void pxp_terminate(struct xe_pxp *pxp)
-+static bool pxp_prep_for_termination(struct xe_pxp *pxp)
- {
--	int ret = 0;
--	struct xe_device *xe = pxp->xe;
--
--	if (!wait_for_completion_timeout(&pxp->activation,
--					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS)))
--		drm_err(&xe->drm, "failed to wait for PXP start before termination\n");
--
--	mutex_lock(&pxp->mutex);
-+	lockdep_assert_held(&pxp->mutex);
- 
- 	if (pxp->status == XE_PXP_ACTIVE)
- 		pxp->key_instance++;
-@@ -192,10 +185,8 @@ static void pxp_terminate(struct xe_pxp *pxp)
- 	 * we'll mark the status as needing termination on resume, so no need to
- 	 * emit a termination now.
- 	 */
--	if (pxp->status == XE_PXP_SUSPENDED) {
--		mutex_unlock(&pxp->mutex);
--		return;
--	}
-+	if (pxp->status == XE_PXP_SUSPENDED)
-+		return false;
- 
- 	/*
- 	 * If we have a termination already in progress, we need to wait for
-@@ -205,15 +196,44 @@ static void pxp_terminate(struct xe_pxp *pxp)
- 	 */
- 	if (pxp->status == XE_PXP_TERMINATION_IN_PROGRESS) {
- 		pxp->status = XE_PXP_NEEDS_ADDITIONAL_TERMINATION;
--		mutex_unlock(&pxp->mutex);
--		return;
-+		return false;
- 	}
- 
- 	mark_termination_in_progress(pxp);
- 
--	mutex_unlock(&pxp->mutex);
-+	return true;
-+}
- 
--	pxp_invalidate_queues(pxp);
-+static void pxp_terminate(struct xe_pxp *pxp, bool full)
-+{
-+	struct xe_device *xe = pxp->xe;
-+	int ret = 0;
-+
-+	if (!wait_for_completion_timeout(&pxp->activation,
-+					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS)))
-+		drm_err(&xe->drm, "failed to wait for PXP start before termination\n");
-+
-+	if (full) {
-+		bool prep_ok;
-+
-+		mutex_lock(&pxp->mutex);
-+
-+		prep_ok = pxp_prep_for_termination(pxp);
-+
-+		mutex_unlock(&pxp->mutex);
-+
-+		if (!prep_ok)
-+			return;
-+
-+		pxp_invalidate_queues(pxp);
-+	} else {
-+		/*
-+		 * The caller of the HW-only termination should have already
-+		 * called pxp_prep_for_termination and marked the termination as
-+		 * in progress.
-+		 */
-+		xe_assert(xe, !completion_done(&pxp->termination));
-+	}
- 
- 	ret = pxp_terminate_hw(pxp);
- 	if (ret) {
-@@ -259,16 +279,13 @@ static void pxp_terminate_complete(struct xe_pxp *pxp)
- 	mutex_unlock(&pxp->mutex);
- }
- 
--static void pxp_irq_work(struct work_struct *work)
-+static void pxp_events_work(struct work_struct *work)
- {
--	struct xe_pxp *pxp = container_of(work, typeof(*pxp), irq.work);
-+	struct xe_pxp *pxp = container_of(work, typeof(*pxp), events.work);
- 	struct xe_device *xe = pxp->xe;
- 	u32 events = 0;
- 
--	spin_lock_irq(&xe->irq.lock);
--	events = pxp->irq.events;
--	pxp->irq.events = 0;
--	spin_unlock_irq(&xe->irq.lock);
-+	events = atomic_xchg(&pxp->events.pending, 0);
- 
- 	if (!events)
- 		return;
-@@ -282,7 +299,7 @@ static void pxp_irq_work(struct work_struct *work)
- 
- 	if (events & PXP_TERMINATION_REQUEST) {
- 		events &= ~PXP_TERMINATION_COMPLETE;
--		pxp_terminate(pxp);
-+		pxp_terminate(pxp, events & PXP_TERMINATION_REQUEST_FULL);
- 	}
- 
- 	if (events & PXP_TERMINATION_COMPLETE)
-@@ -306,20 +323,18 @@ void xe_pxp_irq_handler(struct xe_device *xe, u16 iir)
- 		return;
- 	}
- 
--	lockdep_assert_held(&xe->irq.lock);
--
- 	if (unlikely(!iir))
- 		return;
- 
- 	if (iir & (KCR_PXP_STATE_TERMINATED_INTERRUPT |
- 		   KCR_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
--		pxp->irq.events |= PXP_TERMINATION_REQUEST;
-+		atomic_or(PXP_TERMINATION_REQUEST_FULL, &pxp->events.pending);
- 
- 	if (iir & KCR_PXP_STATE_RESET_COMPLETE_INTERRUPT)
--		pxp->irq.events |= PXP_TERMINATION_COMPLETE;
-+		atomic_or(PXP_TERMINATION_COMPLETE, &pxp->events.pending);
- 
--	if (pxp->irq.events)
--		queue_work(pxp->irq.wq, &pxp->irq.work);
-+	if (atomic_read(&pxp->events.pending))
-+		queue_work(pxp->events.wq, &pxp->events.work);
- }
- 
- static int kcr_pxp_set_status(const struct xe_pxp *pxp, bool enable)
-@@ -350,7 +365,7 @@ static void pxp_fini(void *arg)
- {
- 	struct xe_pxp *pxp = arg;
- 
--	destroy_workqueue(pxp->irq.wq);
-+	destroy_workqueue(pxp->events.wq);
- 	xe_pxp_destroy_execution_resources(pxp);
- 
- 	/* no need to explicitly disable KCR since we're going to do an FLR */
-@@ -417,7 +432,7 @@ int xe_pxp_init(struct xe_device *xe)
- 
- 	INIT_LIST_HEAD(&pxp->queues.list);
- 	spin_lock_init(&pxp->queues.lock);
--	INIT_WORK(&pxp->irq.work, pxp_irq_work);
-+	INIT_WORK(&pxp->events.work, pxp_events_work);
- 	pxp->xe = xe;
- 	pxp->gt = gt;
- 
-@@ -436,8 +451,8 @@ int xe_pxp_init(struct xe_device *xe)
- 
- 	mutex_init(&pxp->mutex);
- 
--	pxp->irq.wq = alloc_ordered_workqueue("pxp-wq", 0);
--	if (!pxp->irq.wq) {
-+	pxp->events.wq = alloc_ordered_workqueue("pxp-wq", 0);
-+	if (!pxp->events.wq) {
- 		err = -ENOMEM;
- 		goto out_free;
- 	}
-@@ -457,7 +472,7 @@ int xe_pxp_init(struct xe_device *xe)
- out_kcr_disable:
- 	kcr_pxp_disable(pxp);
- out_wq:
--	destroy_workqueue(pxp->irq.wq);
-+	destroy_workqueue(pxp->events.wq);
- out_free:
- 	drmm_kfree(&xe->drm, pxp);
- out:
-@@ -904,6 +919,7 @@ int xe_pxp_pm_suspend(struct xe_pxp *pxp)
- 		fallthrough;
- 	case XE_PXP_ACTIVE:
- 		pxp->key_instance++;
-+		pxp->needs_termination_on_resume = true;
- 		needs_queue_inval = true;
- 		break;
- 	}
-@@ -950,10 +966,31 @@ void xe_pxp_pm_resume(struct xe_pxp *pxp)
- 
- 	xe_assert(pxp->xe, pxp->status == XE_PXP_SUSPENDED);
- 
--	if (err)
-+	if (err) {
- 		pxp->status = XE_PXP_ERROR;
--	else
-+	} else {
- 		pxp->status = XE_PXP_NEEDS_TERMINATION;
- 
-+		if (pxp->needs_termination_on_resume) {
-+			pxp->needs_termination_on_resume = false;
-+
-+			/*
-+			 * We can't call pxp_terminate_hw directly from here
-+			 * because we're not allowed to do allocations within
-+			 * the rpm resume call, so we defer the termination to
-+			 * the worker that we use for the termination irqs.
-+			 * However, we do not want any PXP ops to go through
-+			 * between the suspend completing and the worker
-+			 * starting, so we need to do the termination prep
-+			 * immediately, which will mark the termination as in
-+			 * progress and stall PXP ops.
-+			 */
-+			if (pxp_prep_for_termination(pxp)) {
-+				atomic_or(PXP_TERMINATION_REQUEST_HW_ONLY, &pxp->events.pending);
-+				queue_work(pxp->events.wq, &pxp->events.work);
-+			}
-+		}
-+	}
-+
- 	mutex_unlock(&pxp->mutex);
- }
-diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
-index ec86306e16f4..7acfe45d397a 100644
---- a/drivers/gpu/drm/xe/xe_pxp_types.h
-+++ b/drivers/gpu/drm/xe/xe_pxp_types.h
-@@ -85,17 +85,20 @@ struct xe_pxp {
- 	/** @gsc_res: kernel-owned objects for PXP submissions to the GSCCS */
- 	struct xe_pxp_gsc_client_resources gsc_res;
- 
--	/** @irq: wrapper for the worker and queue used for PXP irq support */
-+	/** @events: wrapper for the worker and queue used for PXP event handling */
- 	struct {
--		/** @irq.work: worker that manages irq events. */
-+		/** @events.work: worker that manages termination events. */
- 		struct work_struct work;
--		/** @irq.wq: workqueue on which to queue the irq work. */
-+		/** @events.wq: workqueue on which to queue the work. */
- 		struct workqueue_struct *wq;
--		/** @irq.events: pending events, protected with xe->irq.lock. */
--		u32 events;
--#define PXP_TERMINATION_REQUEST  BIT(0)
--#define PXP_TERMINATION_COMPLETE BIT(1)
--	} irq;
-+		/** @events.pending: pending events */
-+		atomic_t pending;
-+#define PXP_TERMINATION_REQUEST_FULL	BIT(0)
-+#define PXP_TERMINATION_REQUEST_HW_ONLY BIT(1)
-+#define PXP_TERMINATION_REQUEST	(PXP_TERMINATION_REQUEST_FULL | \
-+				 PXP_TERMINATION_REQUEST_HW_ONLY)
-+#define PXP_TERMINATION_COMPLETE	BIT(2)
-+	} events;
- 
- 	/** @mutex: protects the pxp status and the queue list */
- 	struct mutex mutex;
-@@ -130,6 +133,12 @@ struct xe_pxp {
- 	 * suspend cycles.
- 	 */
- 	u32 last_suspend_key_instance;
-+	/**
-+	 * @needs_termination_on_resume: indicates if PXP termination is needed
-+	 * on resume. This is set if PXP was active when we suspended. Protected
-+	 * by pxp->mutex.
-+	 */
-+	bool needs_termination_on_resume;
- };
- 
- #endif /* _XE_PXP_TYPES_H_ */
--- 
-2.43.0
+On 7/6/2026 6:42 PM, Michal Wajdeczko wrote:
+> 
+> 
+> On 7/3/2026 3:44 PM, Michał Winiarski wrote:
+>> On Tue, Jun 30, 2026 at 03:26:31PM +0200, Michal Wajdeczko wrote:
+>>> One of our migration data packet (descriptor) is based on the KLV
+>>> encoding. Add a simple descriptor initialization test, as we plan
+>>> to use new KLV helper functions there.
+>>>
+>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> ---
+>>>  .../gpu/drm/xe/tests/xe_sriov_packet_kunit.c  | 83 +++++++++++++++++++
+>>>  drivers/gpu/drm/xe/xe_sriov_packet.c          |  4 +
+>>>  2 files changed, 87 insertions(+)
+>>>  create mode 100644 drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c b/drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c
+>>> new file mode 100644
+>>> index 000000000000..9af066875671
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c
+>>> @@ -0,0 +1,83 @@
+>>> +// SPDX-License-Identifier: GPL-2.0 AND MIT
+>>> +/*
+>>> + * Copyright © 2026 Intel Corporation
+>>> + */
+>>> +
+>>> +#include <kunit/test.h>
+>>> +#include <kunit/test-bug.h>
+>>> +
+>>> +#include "xe_device.h"
+>>> +#include "xe_guc_klv_helpers.h"
+>>> +#include "xe_kunit_helpers.h"
+>>> +#include "xe_pci_test.h"
+>>> +
+>>> +#define TEST_VF		VFID(1)
+>>> +
+>>> +static int sriov_packet_test_init(struct kunit *test)
+>>> +{
+>>> +	struct xe_pci_fake_data fake = {
+>>> +		.sriov_mode = XE_SRIOV_MODE_PF,
+>>> +		.platform = XE_PANTHERLAKE, /* we need MEMIRQ */
+>>> +		.subplatform = XE_SUBPLATFORM_NONE,
+>>> +		.graphics_verx100 = 3000,
+>>> +		.media_verx100 = 3000,
+>>> +	};
+>>> +	struct xe_device *xe;
+>>> +
+>>> +	test->priv = &fake;
+>>> +	xe_kunit_helper_xe_device_test_init(test);
+>>> +	xe = test->priv;
+>>> +
+>>> +	/* pretend we can support at least VF1 */
+>>> +	xe->sriov.pf.device_total_vfs = 1;
+>>> +	xe->sriov.pf.driver_max_vfs = 1;
+>>> +
+>>> +	KUNIT_ASSERT_EQ(test, 0, xe_sriov_init(xe));
+>>> +	KUNIT_ASSERT_TRUE(test, xe_sriov_pf_migration_supported(xe));
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static void test_descriptor_init(struct kunit *test)
+>>> +{
+>>> +	struct xe_device *xe = test->priv;
+>>> +	struct xe_sriov_packet **desc;
+>>> +
+>>> +	guard(mutex)(pf_migration_mutex(xe, TEST_VF));
+>>
+>> Sashiko complains that we'll never release the lock if we're mixing
+>> scope-managed locks with KUNIT_ASSERT.
+>> We might want to convert this to test-managed resource.
+> 
+> hmm, while this could be done here this way, it might be not so trivial
+> in cases where we would also mix some original code that uses guard(mutex)
+> before calling other function which we replaced with the stub and trigger
+> the KUNIT_ASSERT from there.
+> 
+> maybe special steps should be taken only when locking a global mutex,
+> which is not the case here? but it's not a rocket science, so yeah,
+> let's do it
+> 
+
+hmm, on the first ASSERT we will get this WARN anyway:
+
+
+====================================
+WARNING: kunit_try_catch/18 still has locks held!
+7.2.0-rc2-g1fa71d6adb71-dirty #1279 Tainted: G                 N
+------------------------------------
+1 lock held by kunit_try_catch/18:
+ #0: 00000000644e21d8 (&migration->lock){+.+.}-{3:3}, at: test_descriptor_init+0x1a6/0xdd4
+
+
+and doing mutex unlock in a cleanup action may result in:
+
+
+=====================================
+WARNING: bad unlock balance detected!
+7.2.0-rc2-g1fa71d6adb71-dirty #1279 Tainted: G                 N
+-------------------------------------
+kunit_try_catch/21 is trying to release lock (&migration->lock) at:
+[<00000000609192c5>] kunit_remove_resource+0x145/0x250
+but there are no more locks to release!
+
+
+so the best option seems to be avoid ASSERT and just return
+
+>>
+>> LGTM otherwise:
+>> Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
+> 
+> thanks!
+> 
+>>
+>> Thanks,
+>> -Michał
+>>
+>>> +
+>>> +	KUNIT_ASSERT_EQ(test, 0, pf_descriptor_init(xe, TEST_VF));
+>>> +	desc = pf_pick_descriptor(xe, TEST_VF);
+>>> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, *desc);
+>>> +	KUNIT_EXPECT_NE(test, (*desc)->hdr.version, 0);
+>>> +	KUNIT_EXPECT_EQ(test, (*desc)->hdr.version, XE_SRIOV_PACKET_SUPPORTED_VERSION);
+>>> +	KUNIT_EXPECT_EQ(test, (*desc)->hdr.type, XE_SRIOV_PACKET_TYPE_DESCRIPTOR);
+>>> +	KUNIT_EXPECT_NE(test, (*desc)->hdr.size, 0);
+>>> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, (*desc)->vaddr);
+>>> +	KUNIT_EXPECT_EQ(test, 0, xe_sriov_packet_process_descriptor(xe, TEST_VF, *desc));
+>>> +
+>>> +	switch ((*desc)->hdr.version) {
+>>> +	case 1:
+>>> +		/* v1 is KLV based */
+>>> +		KUNIT_EXPECT_TRUE(test, IS_ALIGNED((*desc)->hdr.size, sizeof(u32)));
+>>> +		/* v1 has at least DEVID and REVID KLVs */
+>>> +		KUNIT_EXPECT_LE(test, 2,
+>>> +				xe_guc_klv_count((*desc)->vaddr,
+>>> +						 (*desc)->hdr.size / sizeof(u32)));
+>>> +		break;
+>>> +	default:
+>>> +		kunit_skip(test, "missing test code for version %u\n", (*desc)->hdr.version);
+>>> +	}
+>>> +}
+>>> +
+>>> +static struct kunit_case sriov_packet_test_cases[] = {
+>>> +	KUNIT_CASE(test_descriptor_init),
+>>> +	{}
+>>> +};
+>>> +
+>>> +static struct kunit_suite sriov_packet_suite = {
+>>> +	.name = "sriov_packet",
+>>> +	.test_cases = sriov_packet_test_cases,
+>>> +	.init = sriov_packet_test_init,
+>>> +};
+>>> +
+>>> +kunit_test_suite(sriov_packet_suite);
+>>> diff --git a/drivers/gpu/drm/xe/xe_sriov_packet.c b/drivers/gpu/drm/xe/xe_sriov_packet.c
+>>> index e581e8e6c1d1..558a3697d639 100644
+>>> --- a/drivers/gpu/drm/xe/xe_sriov_packet.c
+>>> +++ b/drivers/gpu/drm/xe/xe_sriov_packet.c
+>>> @@ -516,3 +516,7 @@ int xe_sriov_packet_save_init(struct xe_device *xe, unsigned int vfid)
+>>>  
+>>>  	return 0;
+>>>  }
+>>> +
+>>> +#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
+>>> +#include "tests/xe_sriov_packet_kunit.c"
+>>> +#endif
+>>> -- 
+>>> 2.47.1
+>>>
+> 
 
