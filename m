@@ -4,76 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093FCC44501
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 13:49:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09E96C44503
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 13:49:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0C2410E5FE;
-	Wed,  8 Jul 2026 13:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3C210F13D;
+	Wed,  8 Jul 2026 13:49:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VugtrEs3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iod2B8/B";
 	dkim-atps=neutral
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
- [209.85.215.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDF010E579
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 07:17:25 +0000 (UTC)
-Received: by mail-pg1-f176.google.com with SMTP id
- 41be03b00d2f7-c998fd549a8so232526a12.2
- for <intel-xe@lists.freedesktop.org>; Wed, 08 Jul 2026 00:17:25 -0700 (PDT)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF68B89854
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 15:06:06 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2caea3f742bso61363135ad.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 07 Jul 2026 08:06:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783495044; x=1784099844; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1783436766; x=1784041566; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=h0Biz5zAntBoijadNrUEvs1mg/mB9KZLbipw/JNpHMQ=;
- b=VugtrEs38mHoIi2A9Jc/qzq7UuIyFZ5BLtdCPZHJaUqY9Qiua6v7iDPxg+2GiZK75P
- kzhw3Ae4ak4t6LlLk8bOLGSt3IT0yM0yMKEA3xDBOttH6QanFSsHBycEJomZYWZz4ge8
- 2iCzYTadNj4RCx6xje2jhQ004y8ew9yJHX8NyZodfjJIhh4w8K9oS3qJtqS5rn5Fwj6T
- 8/kjaA2CypmXAyYfC4odwZX5q1NifdH1oYNQDZqRYIshRNPLyXDgm214ug1l9MYrOiTd
- 0LT2v2flDMPHolUOMuuptLkWh/eDMLZIDHQaJuGyobbNyS/mQ19EKEGYvawbV8Fv2VGm
- 3yrA==
+ bh=ECigN/vOXEtjui4ch8BDCR2M2DmfXoIRQNpruIQx7/M=;
+ b=iod2B8/Baxq5kzBeBB52XiJ7TObU+n7lf4g+D5cA6WB+qWK11zTY1GOe27GRoTHqRl
+ LnrwO2CI8SV9bvqk2TO7ttjqMCRgArIFsKhLme3wJ1gIUvj7xNUI421BTTJTv3wEV3OJ
+ CZvJOujOnDBd/kEnCtncS2GFznMv03WA7sf54KhtlEUi2V/jvDy+zKgxYx74rHUaz11p
+ o7bsqEsBkUmcrQDttirvl3GhcfWkngwQewW3hCaP6Gpuy1z+4jOwZTXm2btsxU7xHgpM
+ Z2Zo1NaL2S1CuG1RK8ZIjr6VpkBS2MvL9mwsAKt4NP2tmZHrdeb9v5vebD/H1GQdDrDN
+ xKBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783495044; x=1784099844;
+ d=1e100.net; s=20251104; t=1783436766; x=1784041566;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=h0Biz5zAntBoijadNrUEvs1mg/mB9KZLbipw/JNpHMQ=;
- b=TGKdR3pDZmhN0nvEwRR4qReJ98DlEckFY1TxW/KOb15+vQ8k+0zan+RfVMPexkDxMq
- GkmAsSfXBKcWBzd0KK9wQYeEERVEIpn/Nj3ujwUqzCABZvAKrjK1qwmzgedfQQAa2LDl
- EOivzBJsS+BL3YLjvSrtU2YLBpWLdAKBmSQecxv9/5QJuMFlOLsB6BsL661OsP29mqlh
- z5G8jGVIFP40B7WBWBWqpDYyt2mYelFyPguPQuRiBd/zh9gtrbSXb23Lhjh7IG3An40S
- RDoFLb47tbwPmsJwUJNKVQkCR73qa6Hye80w0nC6gLxWUZWk28745vmag6SG+oHCAGzD
- Si2A==
+ bh=ECigN/vOXEtjui4ch8BDCR2M2DmfXoIRQNpruIQx7/M=;
+ b=OOdZyQnWK9h2v4tfwVAN+NlkGixrs1tO+nc6YEbzYtI1ICWK3iYDSnI5s0AEN8oJah
+ 373N43pcP4tpx5TXE69R4WwVQ1OoNU4UrqwoQZzYAMeg2UURbsrLNJuKkA3IUcBwsA2H
+ HyQGVvDtChxDwAVzh4ONntNIh59KWDJKeW17ttvp6iXRobf8ENWv40blmcSk6JIgs+yl
+ QWnM9NpO/HXoiLet2dF7uOu6wzCzGNjkfKMe3JmPGjc2eholquEVQvW1px1WXjlZMtEF
+ hu4J/XA1Ds5OywgQcx76OhckhDqJCww6xVVt58onPNs+WCtTGci5lBHwokkBSLgo0Wq3
+ WNqA==
 X-Forwarded-Encrypted: i=1;
- AHgh+RpDo6tnjXZcjvKcwSGlIJzbZRjU6tcadsXk9XtoBOK0BvuTDRlcy0Rc/dqg4WLj1hgRkyMBBw32xw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzZICqv4n18IrmhE8aIh8ShWawht22QnOvqAPottCFtZwXQoXde
- nc4OXmOm5zlhu/XrJvarOKtt/CF05nj16O0T/ZMKQtDIiNWtaXVD2ETC
-X-Gm-Gg: AfdE7clX5sF4HaowhznOGKBzCZ+eOSGLW75OzD2XA67nHM9JLwCAQxcdGD1YVBtE6ao
- Eh4d29kunfZyI0xd8DlA5hogvxsHNmmd+cXVMF5ew38lfKeRVo3eIJygmh//DPXVuKwp3aVektC
- FV/K6M/O8PThCbJlJL3rOqVw+bUg4jrGTR0pbUjKA+uUhGNeYzte8C4AfR8ZPr81RFgp8ZAFYQT
- zFDzqPR69JEdO4sqwPyL0SA4tiGncrf5Cous4CRxT8JM2CzrXPPvhSUrz+jt6+QE/DCv2NIm2Pt
- jrslIlcIBsylutGtSdl7+OHV8Qm0tDP6LK3hPCriKFCdzKvDMU1aH1nbb5DMRA4qxBJBovRPkI8
- OukE9cMbd/Hitu3vSQ/kslKW36nSA3hCn3+DPCbI3u79LnbE/NB1Ci6zf/xRkj8uMYUy77V4=
-X-Received: by 2002:a05:6a20:748a:b0:3bf:ab02:439e with SMTP id
- adf61e73a8af0-3c0bd0420b3mr1543741637.27.1783495044471; 
- Wed, 08 Jul 2026 00:17:24 -0700 (PDT)
-Received: from lgs.. ([2001:250:5800:1000::f280])
+ AHgh+RqiEWLVk9QBkq+TCD9zXP/7lt0zQi0EnthpKDaUiir/csZbox60NCjXdbJRKShdDQXQlN+6gBfzYQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwwPl87uc99wwBbTN7/aqkg6TpRbxeDE3APRE3WXT1rRhDuH1Zv
+ eVGewmSLIc6gjfLifrjl7DMSes2JXkJXdrBtplrkMHUAIW/zzeAueLHJ
+X-Gm-Gg: AfdE7cm83Q59L9AFx7jXKnWetL5kgiz4NdviHueXhZ8JBsmgZR4BXPc1HnW/EiN10SH
+ wxP5LvV5uIq+5PBogPEbcssNc5DWt1o6r7swwYNlaNNJfmy7fUQXw3tAKE5xjMn4muD77tYuY0i
+ T4E/TZQGkgyFff1nmEw9b9zi94JZkl3T4TBIt9gbo7o1qQUxg+oCWEMw45664LwJ+fSLxOh//u6
+ hiWf23hF5Yxsln8CpxkzxtrrxA26z6lUqIJp3ndqBwdEokuZVASmwvt3YsX4sEhMiwLiGyhH9SH
+ rjqwa3Q5/chwtywSAO3mHDPWUDevcEDWPeqHu1WzycxOw3jHJVUq/bXBwSWthDXgVn0+WHIzn1k
+ V+WdSi3pGo2aK7rZi+o2N1aRQEzgVCWGFUL7i/GcrddBfQ125PpYfeK6OcwEu9bqZw9UIxkGJuF
+ Nkz3oV0kpkHbCAJH6GIFEH7w8ewPI4u3Ej
+X-Received: by 2002:a17:903:98f:b0:2c9:ff29:3f73 with SMTP id
+ d9443c01a7336-2ccbf00d8eemr56727535ad.28.1783436766121; 
+ Tue, 07 Jul 2026 08:06:06 -0700 (PDT)
+Received: from haichao.tail057a43.ts.net
+ ([2001:da8:e000:1206:239e:a31b:1d0d:374f])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-ca5b3b25204sm1972985a12.28.2026.07.08.00.17.19
+ d9443c01a7336-2ccc9d3b906sm13966655ad.56.2026.07.07.08.06.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jul 2026 00:17:23 -0700 (PDT)
-From: Guangshuo Li <lgs201920130244@gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Tue, 07 Jul 2026 08:06:05 -0700 (PDT)
+From: Ruoyu Wang <ruoyuw560@gmail.com>
+To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
+Cc: michal.winiarski@intel.com, michal.wajdeczko@intel.com,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Guangshuo Li <lgs201920130244@gmail.com>
-Subject: [PATCH] drm/xe/pf: clear pending packet on header init failure
-Date: Wed,  8 Jul 2026 15:15:02 +0800
-Message-ID: <20260708071502.722393-1-lgs201920130244@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ linux-kernel@vger.kernel.org, Ruoyu Wang <ruoyuw560@gmail.com>
+Subject: [PATCH] drm/xe/lmtt: Unpublish page tables on allocation failure
+Date: Tue,  7 Jul 2026 23:05:59 +0800
+Message-ID: <20260707150559.2274875-1-ruoyuw560@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 08 Jul 2026 13:49:02 +0000
@@ -91,67 +89,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_sriov_packet_write_single() keeps a partially written restore packet
-in the per-VF pending slot across write() calls.
+LMTT allocation publishes a newly allocated child page table before
+recursing into the next level. If a lower-level allocation fails, the
+error path freed the page table directly but left the parent's software
+entry and hardware PTE pointing at it.
 
-When the header becomes complete, xe_sriov_packet_init_from_hdr() sets
-data->remaining from the user supplied header before initializing the
-packet backing storage. If that initialization fails, for example because
-the header contains an invalid gt_id, pkt_hdr_write() returns an error
-but the pending slot is left pointing at the partially initialized packet.
+The caller's failure cleanup then calls xe_lmtt_drop_pages(), which can
+walk the stale entry and destroy the same subtree again. The stale PTE
+also remains visible until the next invalidation.
 
-A later write then reuses that packet, skips the header path because
-hdr_remaining is already zero, and reaches pkt_data_write() without
-backing storage installed. This can dereference data->vaddr while it is
-still NULL.
+Clear the parent software entry, write an invalid PTE, invalidate the
+hardware view, and then destroy the partially allocated subtree.
 
-Drop the pending packet when header initialization fails after the header
-has been fully consumed, so the next write starts from a fresh packet.
+This issue was found by a static analysis checker and confirmed by
+manual source review.
 
-Fixes: 1ed30397c0b9 ("drm/xe/pf: Add support for encap/decap of bitstream to/from packet")
-Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+Fixes: b1d204058218 ("drm/xe/pf: Introduce Local Memory Translation Table")
+Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_sriov_packet.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_lmtt.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_packet.c b/drivers/gpu/drm/xe/xe_sriov_packet.c
-index 2ae9eff2a7c0..e9c92019862e 100644
---- a/drivers/gpu/drm/xe/xe_sriov_packet.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_packet.c
-@@ -323,8 +323,9 @@ ssize_t xe_sriov_packet_write_single(struct xe_device *xe, unsigned int vfid,
- 				     const char __user *buf, size_t len)
- {
- 	struct xe_sriov_packet **data = pf_pick_pending(xe, vfid);
--	int ret;
- 	ssize_t copied;
-+	bool writing_hdr;
-+	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
+index 0c726eda93906..9b0f8d4b26abc 100644
+--- a/drivers/gpu/drm/xe/xe_lmtt.c
++++ b/drivers/gpu/drm/xe/xe_lmtt.c
+@@ -406,8 +406,13 @@ static int __lmtt_alloc_range(struct xe_lmtt *lmtt, struct xe_lmtt_pt *pd,
  
- 	if (IS_ERR_OR_NULL(*data)) {
- 		*data = xe_sriov_packet_alloc(xe);
-@@ -332,11 +333,21 @@ ssize_t xe_sriov_packet_write_single(struct xe_device *xe, unsigned int vfid,
- 			return -ENOMEM;
- 	}
+ 		if (pt->level != 0) {
+ 			err = __lmtt_alloc_range(lmtt, pt, offset, next);
+-			if (err)
++			if (err) {
++				pd->entries[idx] = NULL;
++				lmtt_write_pte(lmtt, pd, LMTT_PTE_INVALID, idx);
++				lmtt_invalidate_hw(lmtt);
++				lmtt_destroy_pt(lmtt, pt);
+ 				return err;
++			}
+ 		}
  
--	if ((*data)->hdr_remaining)
-+	writing_hdr = (*data)->hdr_remaining;
-+	if (writing_hdr)
- 		copied = pkt_hdr_write(*data, buf, len);
- 	else
- 		copied = pkt_data_write(*data, buf, len);
+ 		offset = next;
+@@ -453,7 +458,10 @@ static int lmtt_alloc_range(struct xe_lmtt *lmtt, unsigned int vfid, u64 start,
+ 	return 0;
  
-+	if (copied < 0) {
-+		if (writing_hdr && !(*data)->hdr_remaining) {
-+			kfree(*data);
-+			*data = NULL;
-+		}
-+
-+		rturn copied;
-+	}
-+
- 	if ((*data)->hdr_remaining == 0 && (*data)->remaining == 0) {
- 		ret = xe_sriov_pf_migration_restore_produce(xe, vfid, *data);
- 		if (ret) {
+ out_free_pt:
+-	lmtt_pt_free(pt);
++	pd->entries[vfid] = NULL;
++	lmtt_write_pte(lmtt, pd, LMTT_PTE_INVALID, vfid);
++	lmtt_invalidate_hw(lmtt);
++	lmtt_destroy_pt(lmtt, pt);
+ 	return err;
+ }
+ 
 -- 
-2.43.0
+2.51.0
 
