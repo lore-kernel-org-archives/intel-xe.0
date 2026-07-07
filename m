@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ACC2C43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 00:05:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 396E4C43602
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 00:39:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC2810E28C;
-	Tue,  7 Jul 2026 00:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D506210E3F6;
+	Tue,  7 Jul 2026 00:39:53 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F8D910E28C;
- Tue,  7 Jul 2026 00:05:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D7FE10E3F6;
+ Tue,  7 Jul 2026 00:39:53 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============8164947251012656256=="
+ boundary="===============6136351434742221091=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Consolidate_debug?=
- =?utf-8?q?fs_fault_injection_functions=2E_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv7?=
+ =?utf-8?q?=2C1/1=5D_drm/xe/guc=3A_Handle_GuC_local_uncorrectable_error_noti?=
+ =?utf-8?q?fications?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 Jul 2026 00:05:55 -0000
-Message-ID: <178338275550.157584.3700173092679144474@6beec6c84f66>
+Date: Tue, 07 Jul 2026 00:39:53 -0000
+Message-ID: <178338479304.157590.14433742291681604925@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260706231837.201726-2-mallesh.koujalagi@intel.com>
-In-Reply-To: <20260706231837.201726-2-mallesh.koujalagi@intel.com>
+References: <20260706234353.3874355-1-zhanjun.dong@intel.com>
+In-Reply-To: <20260706234353.3874355-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +41,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8164947251012656256==
+--===============6136351434742221091==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Consolidate debugfs fault injection functions. (rev3)
-URL   : https://patchwork.freedesktop.org/series/167880/
+Series: series starting with [v7,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications
+URL   : https://patchwork.freedesktop.org/series/169902/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec_BAT -> xe-pw-167880v3_BAT
+CI Bug Log - changes from xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec_BAT -> xe-pw-169902v1_BAT
 ====================================================
 
 Summary
@@ -80,17 +81,17 @@ Changes
 Build changes
 -------------
 
-  * Linux: xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec -> xe-pw-167880v3
+  * Linux: xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec -> xe-pw-169902v1
 
   IGT_8990: 8990
   xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec: 5f3c5d8ad095d09441648d9f564eaee7d9c30bec
-  xe-pw-167880v3: 167880v3
+  xe-pw-169902v1: 169902v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v3/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169902v1/index.html
 
---===============8164947251012656256==
+--===============6136351434742221091==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,16 +111,16 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Consolidate debugfs fault injection functions. (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167880/">https://patchwork.freedesktop.org/series/167880/</a></td></tr>
+<tr><td><b>Series:</b></td><td>series starting with [v7,1/1] drm/xe/guc: Handle GuC local uncorrectable error notifications</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169902/">https://patchwork.freedesktop.org/series/169902/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v3/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169902v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169902v1/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec_BAT -&gt; xe-pw-167880v3_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec_BAT -&gt; xe-pw-169902v1_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
@@ -129,13 +130,13 @@ Content-Transfer-Encoding: 7bit
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec -&gt; xe-pw-167880v3</li>
+<li>Linux: xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec -&gt; xe-pw-169902v1</li>
 </ul>
 <p>IGT_8990: 8990<br />
   xe-5351-5f3c5d8ad095d09441648d9f564eaee7d9c30bec: 5f3c5d8ad095d09441648d9f564eaee7d9c30bec<br />
-  xe-pw-167880v3: 167880v3</p>
+  xe-pw-169902v1: 169902v1</p>
 
 </body>
 </html>
 
---===============8164947251012656256==--
+--===============6136351434742221091==--
