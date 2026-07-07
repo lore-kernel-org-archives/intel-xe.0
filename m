@@ -4,159 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54A0CC43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 07:48:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F9B1C44501
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 08:48:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12AFD10E460;
-	Tue,  7 Jul 2026 07:48:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 004C110EC06;
+	Tue,  7 Jul 2026 08:48:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R8S+JuGY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1uHUWjEL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9B2210E460
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 07:47:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783410479; x=1814946479;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=B3nAGqg4tjjEQcYwJqX0tRiLF+CmFqBHOeA30rWacY0=;
- b=R8S+JuGYXA2gWRKoSxEYgdYhvfw+zfIZ40mGQEm2+Z8Xd1feapyHRB8l
- nvi73gac5DcEw3OjLGRhnCQDFHKVp/R1ePZVqXnS3BRxXFTMtN974IkJP
- p4iVMtgkj+AocJo1dAoXCFnaO6tzHS5PKUbXBPrRW1jrpTBf4MSMV3IYr
- VkjJph+bRxQoRmwpEBd3DEgvJ0KU3A77JNCuszAFCBJe7FFDy2RInn6y4
- hvZ3QsZUkyyH4gOQaLoOQePu29BiLscdQ/SS7AYRUhuRdGZhBFSUYO0l6
- 25euTN1IMd6+hv4xd++6x0HHq7/2HFLtfD5TlSvZr3XfuorCR9XVg51Ce A==;
-X-CSE-ConnectionGUID: m7xhLsVvQKi4RQP48Uaoow==
-X-CSE-MsgGUID: ZI0Szo4oR0OYD0MY8YJ4Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="71572619"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="71572619"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 00:47:59 -0700
-X-CSE-ConnectionGUID: w7uX3omLRR+uACp5YuVqww==
-X-CSE-MsgGUID: wWnSMGGOS5+ic9htTuSWJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="257799845"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 00:47:59 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 7 Jul 2026 00:47:58 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 7 Jul 2026 00:47:58 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.50) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 7 Jul 2026 00:47:57 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010047.outbound.protection.outlook.com [52.101.46.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4794810E470;
+ Tue,  7 Jul 2026 08:48:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PAEFsLppG4wON71rkmPDhz2BqAF/i0y+8q52Z4LHlhk08Qdd53d/xF428QHWlSke/DHO8SHYYl8mHiwOMZi/N3X8y3Sih06rFE+TPB1TXBWMxkig+Ke8l2MuXiPG6nqG2hw42qREfGv8b1GcaGlZKgfh7Hj2WUhQ98bHK4jxY0Gd9lJX4au4FxVEQVH0XCp5a8B52ByYxtnnQcKDf2qvu5d0mgfL2w5wtQZemReMct6XqEELz/xLYnkdvE+kAAWUKyVisiHgmfFScklTMbVe4eL8z/DhmqX0216GHCsNDCPO3JPSomb60ha1tkyeSHmlJEOf9LGxhZFQGTL5KjU5zA==
+ b=ZRRAONecZtP6SeL8mydlEcCfjogFUpL7V/b0TjJV51mic/cdHQLD/KsfwQgfHn72kAU/+JfhgO+KEsNPoR04cka3/swCLnOfUij8MCPSVDrBqGFr4s4Cs/etMod4/0hyocvKNZ0e9QZzAVrU8RAmnKY0EdShqnjmyiUpMHv06nZWTtB8XVYbuBrK+sPX7mj1dHu2tigi061bRt2T1bos0UbW4YbApoJ7SvWQ0CA9AN+iQXQ5ja0VSHgecOKKg+r0D/9tWSCev5NMNseEz2W1ZEllntzlRhdOGWRV1B9PhIpvyayFzr+EEdAWPC8EpoUZf+FjWnkXtnvFuaA4kcU2wA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZtNayyPt1k+7oxhIGQ1RFAG31uB2VZjM8ZjmP7CAeSQ=;
- b=IngBcBVDTZrxvqmW1SX81t+le/UrX6ZoDmEyrXMe7DQ4QedkF/Jeg5ozFTebLDXHtNojj+cYXI+OlR1LR3xjjaUTfs7K2POCVdF6mf0mv+Y8Me9TA3EywGIRLWiA46hXhfQfWipNmgrV0uWwd74SjxAtnhYWogbzPpuZX0/6X2trYxVFh7ossLtByB9didS1GAduNQJZ8RnR5cumA4qd2CgRmgIyCiDU/SPxBao4TipY23QwRDB6lCH+X7Nzs2xFcNeJe10ysvCfK9HrVqN+hhCMYUk9yGxUmYQp4cvY4UWETwMR0i5b+wsZlhGNKYvUuGOdCW7+CrIiSNZkNOYGnQ==
+ bh=FaG3Dy+dreuRgnRQrXDQJLzsmy1YalzjNGe3S4BIevY=;
+ b=DFobQwFKDXS2ZCe0gX2NiFB4rPQnmZU4lItdzuQJAk/AbL10GZxcdsbgbSxK29b+g9DmzZEWt/Y3z8I2xGTxR4u2vty1I/C68GPR53jcB8a0HCWiTGhNm30p27/j3aIEb+gYjCptOOhvNIYZBS4SUK/F3+21eFF6GiZMnn0JBEsy+CLna2WrLK5Z4TrsChzRibB/AbbJmO8tFCdV8HT1V/cIWMdZJUJefhdLfnR7VKvYMqnz7ZLxxtuu57Zhx3H/4Uv/qcJTOW9ahWoRVIrlXs99vIS/sWgp6pJQMaJx8WdDx3BNWn8IZe6/7mSwA6Kxnmpoce3pcJyotelfNWhj4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FaG3Dy+dreuRgnRQrXDQJLzsmy1YalzjNGe3S4BIevY=;
+ b=1uHUWjELgvoA7nt2OIlVm62wyeipiEKI14en5VSRnXXyrkztZXExg7ZRKV8cGiZVdJA5THkkuqK1sE7VBXHu4oUzifev/xDZgI1TlDVvDpTQTj1WUV3fOVcpBem1rlN+pcSZL2xlxCrxbVty5DCQJUeN9udWtjpzrCW2TEU8DM0=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SA2PR11MB5145.namprd11.prod.outlook.com (2603:10b6:806:113::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.13; Tue, 7 Jul 2026 07:47:55 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0181.009; Tue, 7 Jul 2026
- 07:47:55 +0000
-Message-ID: <36bfb523-9c4c-4e1c-bbc8-b0ae851cf241@intel.com>
-Date: Tue, 7 Jul 2026 13:17:46 +0530
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by IA0PR12MB8376.namprd12.prod.outlook.com (2603:10b6:208:40b::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Tue, 7 Jul
+ 2026 08:48:46 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
+ 08:48:46 +0000
+Message-ID: <a67cc4c5-7545-4f8e-aa89-e90b3bee523a@amd.com>
+Date: Tue, 7 Jul 2026 10:48:37 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9] drm/xe: Consolidate debugfs fault injection functions.
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <matthew.brost@intel.com>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <vinay.belgaumkar@intel.com>, <karthik.poosa@intel.com>,
- <sk.anirban@intel.com>, <raag.jadav@intel.com>
-References: <20260706231837.201726-2-mallesh.koujalagi@intel.com>
+Subject: Re: [PATCH 02/10] drm/ttm: replace TTMs refcount with the DRM
+ refcount v4
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-2-43685ac1286b@gmx.de>
+ <b2932c85fee8e4bf89fdd80ada8883c199d823c0.camel@linux.intel.com>
+ <88614266-6ee3-4488-9e2f-030ae0266e0e@amd.com>
+ <7031c630c987940d814eaef9d1696969be12d81b.camel@linux.intel.com>
+ <5d56ec48-b0f0-4f03-8ec2-f8cc34cb3186@amd.com>
+ <eebae66784e24f4b2af6e0079ef74d11100d4020.camel@linux.intel.com>
 Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <20260706231837.201726-2-mallesh.koujalagi@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0148.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b9::13) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <eebae66784e24f4b2af6e0079ef74d11100d4020.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BL1P223CA0009.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:208:2c4::14) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SA2PR11MB5145:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4f6d293f-6f89-4a7a-7503-08dedbfc0e5f
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA0PR12MB8376:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2ceb0d5-364d-4277-367e-08dedc048e57
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|11063799006|6133799003|22082099003|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: 27VGb4hrrbsqdQzoTpBX9r7iJfdf6vGnhmW2qkBEoiMLH1A+rvQgNxz2mrjymMenwBKB36AuCNdNJxQtRBQZuHA9F0D0zrLd/XtZMLIng6AeaOhuB8mlP3+LsWCTIuFfr4woiVOSjRV1zZnpGGYP2KTYVENtBaHA2EhXMvH4G55Yt37zu6fSLi11F/PLOGBEJ+A8kDm5xiF1NcepfGMdi9jM5sFozAYTzEiDqhYMU6OCfDKvF4IO8iFHl+Vslwdy/AM9kHSOBOEYfi1pTWC5C3H9LuTnzaAU43BsBbrGnfbtgznLmgI1MBVM14Nm9cBPOREjV8xbOMtVxzGPTCjWm30zJPyngg6g6rrY6yjf8xw3f89gemI53p5bVaSkYKgUUdIG5ZTowCNpP/nGsPr1SFPb20seS991LZ5QKyIqdhBtE+Qf7Gb5fcNf0kkbSgpXoJ0q18xF/3qQqTnmMaVPT4wuhpBlJ6hG7AQdwrcRWOAbLcLKxTcAqk6FneI5W5Zb1Z4UNRMmzoRdX2swPnhtpQNZ5B24w2CoVJDzy1HoT0/EZm/BdeWGyPYAlqCh535J5PXfcoUvjOLHx7ewCleNqE8K/zbKgaZFm94eX/F40gKIATkTbAHBSCbRwS0UFpzkjWeHHckrHOJhtv67A8xE9/bbtIJv1BIRtbR2jaVeAmo=
+ ARA:13230040|1800799024|366016|23010399003|376014|7416014|22082099003|18002099003|3023799007|6133799003|56012099006|11063799006|921020|4143699003;
+X-Microsoft-Antispam-Message-Info: 6Mxrqi30foD0EtJsGeYBUqihjYwSlpSChRhzJw6v76V0GjR3iLN4GGt/WhKoxZxi8mXhFz4kLlzlh/JmSPZrUWA3fyR0M4SO859OHYSZOasAtDR4a/0tFFgo+KEqPr4bCO39MOaTQ21rlW3eEjsFfXM2H82SMxb2xrrrIfeN8pgsNEybn+RQdy5nq4GaK0nB0zOAgqcCBl+HGRVOFOoPDdWsT6c1E8ai+ZOVwODCW+1CIHEBDtHRNdt4fKapP7AdtvcYyoWBIlxNxioNFHnuZNwtakLQxtgDTGu83Eu/oHDvdiiHdmjOe1OwYIkrCdC82TMHlkTyWWsccDfsiVbPRTyW3BTykPTcAsCMiwwkxFXceUIedgmDAecDDp16SC+mlLcEy1MEPOyDY4EGl68ooeo8jBiwVpcYOBkdwpalEXVN0CKTaUes6777IL3uHyGG0RRQPGNWv+Q0xnWS/jFwFvCr8EsXGGCkSJcsybs5+iGh4TrgpEl+olXhq9bdYahCt1+jBKDb2gfi1fQsOnh8paKkvchaubYoP6rciVdsQebvy5fg3ElFRN1EemFogpDg/PAESfjYzoUd8nqDG5NlP95K5ZUNVaWX5/hRCAUgVC17s/criBLG0tCVh3D379Mww3pbueILGnXBIYXM5hVCG0IZH6k8lJDEC+pkloD1lptOCh3AZkc9ci5iawev4be9n0r2rclOwP7H6gpy12XK0g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(11063799006)(6133799003)(22082099003)(56012099006)(18002099003);
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(7416014)(22082099003)(18002099003)(3023799007)(6133799003)(56012099006)(11063799006)(921020)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b2VoaUtqYzQyRFVkOGlsMVUyVlhiOVorWVNuMHhFZ1FSQ040MEI4bmVXQ2dG?=
- =?utf-8?B?OEJmWXA4Q1hYTTZ0VUIzeEcxMWZvcEZ0MzN2WVJSUStNcnZaaHV6OWtWWGIx?=
- =?utf-8?B?T0ZzUGZ1c3p0dWM4RkVYY0NLZnFjeDd5U2tqL2xSWGF2NkZ2YlZUMnhVYXpE?=
- =?utf-8?B?MDNrR1lETDkvT0RWMFJwL2d2WUFhUWliSzVLZmNpNHQvbDN6T295ZTc2VU9D?=
- =?utf-8?B?R3VwYndvM0k2WjJUR0U5T2FNRjZCSnhtUEZVR2ZsTE9DZVlINFNybXVjRGJo?=
- =?utf-8?B?Vmk3TDNvanBWaExKN2xtQVJwbXlPcWNzUi8rdkJwY2NVUTJzbmsrYUc2NWsr?=
- =?utf-8?B?dnpLWjUva3RGam1lbVV6ODVaZ1J4enZZRDgvV1dBNFlTeHRPdFEwWWoxby9m?=
- =?utf-8?B?L0NYaWZrZFdtS1BoRHQ5WWFqK0FvdVdIc1lpMENvRFliZklvblNNOFlzVVV4?=
- =?utf-8?B?UUc4VG5vRFVrbndRTlRYSEtkUzVLcGNGL2Y2MHpVaE5GY3ZMOHFDclY2eHcr?=
- =?utf-8?B?MCtJS2ZLMVFITDdSVlFaS0tSclRtTmJrdHhrMDFWckE4RzlHaTYreHRPSHVO?=
- =?utf-8?B?a2lnZ3hoNVhpSjIzUDdLdXJ5bjk4YU5SLytnM2oxYWZFelVYNE5oRVFWQ0Fq?=
- =?utf-8?B?bXVNenpnVFBweEduZVk5aFlGa3NXRzc0a0xQNk1zR0pGR3k1RWlQYS9oUDBH?=
- =?utf-8?B?V2o3S1AzYU1aejZkRWxEenJua3g5am9jMGlyMWs2c2ZrU3VSYVBIeFpnZ1Zi?=
- =?utf-8?B?VEdZNHBxdHRlWk1QQlRzeEVuM3RzbGRYK0NCQXR1bmxOWTM5Rjd5UkZrVklB?=
- =?utf-8?B?TXVGZkZiNlhGc1JrOWNYMHd5TkVNZVFqSTFRUFlTWUdoSFlBdTNuRmZMd00y?=
- =?utf-8?B?bnVnNVlkTDJjU3RQdi9renFuMGJlVThzM1haTkZNYkJRNjBSYWc0cTZEMGtp?=
- =?utf-8?B?VEhKWUphbE1YdWN1aEZrZTlmcTVKRWJSazM0ZjdTNmdHcVFzNWhGN2g3ei80?=
- =?utf-8?B?YUlydmRSdkdxNTl2MGNibUFJend5NEdOWVZNalk3QXFZLzIvUGRaNHdpYkYz?=
- =?utf-8?B?YnZGdnhqK0Vwd3FGNmNBZWl3dkt1NjVVVkJmN1AyQlNXekh6dVMzcEV6U1cr?=
- =?utf-8?B?SnkvMWE5Rk9jNkxBaHBLL1R2ZjBwTytrcVdEbzNmVUxiQmpMd1pIM1lCcGxk?=
- =?utf-8?B?djlORXJ1YU1hak5NRHY1SGNkOU1zWlZKWExiY3ZtWjQ3NWUwQWN6dU9VNEsy?=
- =?utf-8?B?UHptUzVmbmxadUNtdGhObGl2VXVUa2ZRUE5VOFQ4UVYwUENVZHdRZzFNOUIr?=
- =?utf-8?B?bTFNbXVPN1RlQTdoNjN1WVVzZEg5RkdFNHFVSmVUd1dtUTEwck9JVndWSTRs?=
- =?utf-8?B?MitDWEJlQUR1bTBvejIzQ1hrMUYya0tXblZicEliay9EL0RCZm5hdHk4VWJC?=
- =?utf-8?B?RTBhanlUbzNWNGtad2FFRjRGdUQ5U28zM1FhNFpRUkM1Vk5TMkY0YzVGWlo3?=
- =?utf-8?B?VmFDQmRvQjd2b3gzZFZoQnRhdmxHM0hGNjlxc0ZzbkFNVG1MYmk0SEhFZ0tY?=
- =?utf-8?B?aXlVU01NM0pKVFV0MDJhU1BwSDVCdEo1TDhONkd2SHBhUzNKS1dxOXJmbXFM?=
- =?utf-8?B?OEFSbGFESTBwMnVOeUh5SFMxRk1NMG1UcjRGTUZjNU0wdnRwUlJZeWp3dm55?=
- =?utf-8?B?UVBKWXkvZGp4M2Z3YjlSd3FNL2FTWTdwS1B6KzFWbXhmTnN2UGtEdEt1K0ZB?=
- =?utf-8?B?cG9KdzZDZC9SS3NVNytpWXQ2ditjYi9SR3FldHhlZjJXY3hqVHRtaUFZeXA1?=
- =?utf-8?B?ZFkzZWt0dEVHUGlNOTljUm9kWldqb3dRMkhuejd3MnRuTlFUQ1h0TWtTdVlu?=
- =?utf-8?B?c25ZTnlEOFBmcDM4VnBqY1dQcVJRZjJ2SWY5WDR6eEY2cXh5N3FzSHVQcUJC?=
- =?utf-8?B?dmtHd25BYXpGczN2a3ZlbXJ0aHJIK08yblJjaGxKTkJmRStFWVZFakNpMWg0?=
- =?utf-8?B?ckd5Mi9qRFR6WXhUY0RMcjdyWEltT3Q0cm9oOW9HeURCZkxVUWpQVmtlL1hX?=
- =?utf-8?B?SEpVNGtvYlkvSzRXaTBROHU1NExYZ09RWHFNZ0ZXZVBnZEJYY3B4cENEeHpx?=
- =?utf-8?B?d2ZpelNtbk5yZktlczhvSFZjVDRKTStiNE9SSlBPT2ZTbE5VZi81S0JFTVAr?=
- =?utf-8?B?eDJjN1h6dXdOSS92Y0pSbVdyZy9NWFBCNGZRa2tVQ1IzOTYyODRTQmhEU1Nq?=
- =?utf-8?B?WWpHVDNoazBqNTZKWXIrZ3YrL2U1QTl1dThrSFU5OVoySXlqb01kV3ZOc2My?=
- =?utf-8?B?VWlrekF4MDBSbUcwSU1XWWtLYjFtYkhORndCL29ONk51QlpXaDZuUT09?=
-X-Exchange-RoutingPolicyChecked: CSrIgVDR81JEC2kKOS20kFmiKUZfJHLnkSF2ZtZBWGRw0Ztpw6h3lvxESnNLyGR4EnyAWvZ4LU65CwJg3+qnIRFpgk0j4QeW/Dq6kX9G0PgmprXZVUcap4FBHAmpv304nNIlukkGIE1J8ytadJXeC2x2NTXhFAzwg+QtSAISdwowzSRVlBzuH2Y4cFsJBIlWh8ZDQzllRPNzVQzqdtSQ/kTvwOSLqLn5uU8Ymlvmf06+9bZ6dfmgtHsJUlri6R//mLwxV7u0FF+85XWZNW1NdJUyvuZJBOEjF2H7Nwmw+g8bkvMnU5mBibpdIzCaZQYAlekVEsnscptf/1WMgqlCeA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f6d293f-6f89-4a7a-7503-08dedbfc0e5f
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L0lZVXZ2Nm9pMDNWbEpnd0ZwOUtWRTZuRExSZUlUZ25oa3BnVGNadGt4Ums5?=
+ =?utf-8?B?L1dYd0hvZytkTDc1TUdVT2NzUzZ1VzM4SXllMDJmd1Y5b3BpT0FySVA5TWRu?=
+ =?utf-8?B?cmdqdnRFVUwwbi84OWljL0FLZXNCRG1KZWM5ZVo4Q2Jyb0I5YkF1NWZZdlhi?=
+ =?utf-8?B?c0FxYzdJMVFDRW56ZHlnY21Dd1NNSnJOV3dPcDNYb3RDeUt3S0QyTVZzelpa?=
+ =?utf-8?B?YWdHdXMxVDVaV3BGMno4eWxsT2hJVUlUSzRMZ2pqZUJsSk1IZFV4K2h3U3VV?=
+ =?utf-8?B?QVNDeGlzNGkwbTBCVmttaW50UklrK2ZYdnNrbkNhTUZOTnJ1eDFuWmx1NlA1?=
+ =?utf-8?B?U3JOMi9pTU9RdmQ3T0FlS3BHaFRjY1pzTm1nbkZrMWNVWVpxRDl3TGRvd09k?=
+ =?utf-8?B?eXpKdUZtOUprSjlIU3lHL2JOS3lLMDU4UVh1NFRubUtzKzI3MXJuU1pFY0tm?=
+ =?utf-8?B?b0p4MFd0cldKa2dLZmhJVzRhNlVLcktiakJiOWxpNkFUd1g4NVo0cVlGQVZv?=
+ =?utf-8?B?WVB0cDZCa1dFbjBFbm9sbkdQeE1GdWRLSE9MQXdYM1FwWUU4QTVSZDY1QWd3?=
+ =?utf-8?B?bkF0aEZiME1XUG9GZjhncTFNU0lMTzN6WEJzbldsa1NMdVdhd0hzLzg5U254?=
+ =?utf-8?B?bFBRV25QM3F4QU1VMDcvR3J5WXNjaXdxdWtKZ3pNRkFwdVNCbUEvVG5XTStV?=
+ =?utf-8?B?dSsvZUVNSGFhcmdqa1dzMUdLaE9xQWl6UVF0ZnM0WUFmaFNQYXl4VFlSQTd0?=
+ =?utf-8?B?RVl4c0hzbW4rVzJRdlMvckRWQzhBMVJLUWNXNWJEbnVBWUY0TGlIaHE4UXI4?=
+ =?utf-8?B?VUFvM0dJRnZSbEpIQWlrYlN5ZnJpTlNwcHUrU2N1NWg3R3U4aG82b2RZS2hL?=
+ =?utf-8?B?bCtHZXhJcU9CTUtCNG1LS0hldUc1bWVvbHQ1bTdBYmZONzkxc0NqYjFlUkVY?=
+ =?utf-8?B?YlprM2FocWxrbzJhdVJ6VVFHM2xhOVh6OFByWDdVODNmQXJmMmtweTM4TVg2?=
+ =?utf-8?B?ajlNdkdvQnpFUmdDRHBmaDBjcmJOaG5vOTJra1FkKzFtY0J5bFRzMWFIQURx?=
+ =?utf-8?B?aGtjcWVmalZOSm5hZUZrKy9PT1JnZktkV240T3VVaVZFdlgvWjJpYmZCbWI5?=
+ =?utf-8?B?bVhOTjkvMEtibG1ucFptcDlkTHdqeUVMbG1vbFUreWFDZGdaRXFINmxNL2Uw?=
+ =?utf-8?B?YjNOK01IeWlqU1YrZHh2VzlxN1p5RVBMYzJXN3NoNXRCS3ZoQnltT0Z3RHlx?=
+ =?utf-8?B?NWhIL01pWjRGQnpIUXBranZZWlpubXJhQUo5dlczSzUzd0tTQllwZDlzNjVT?=
+ =?utf-8?B?SEE1VlE5MWQ3dDhxaUd0MC94dEVXWnFVY2VrektmcTdXdURIczR2RHYxemNy?=
+ =?utf-8?B?NFR5amNDODM1aHVERnpCY1I4SHNpbVN2bEx1eVpPaGxHTzc5K0kwS1VCUXZU?=
+ =?utf-8?B?Zk9zQTZwbklXN3JyMVZYeHpVcDdQNjVFZG9nT1RLVHpxQlBzUS9zRzBhNDJ5?=
+ =?utf-8?B?M3lTb3NFeVpraml3eU1GQUYrUCtoYU1rRFZCNjZTNlM1a25TbWVuUm53cWYw?=
+ =?utf-8?B?UVNDc3B6Yi9YOWRoZGQrZnlRY2UrYW42aWxpUEJZSDFvVlJGTVBHZTJqY2Zl?=
+ =?utf-8?B?Y0VYVDlQT1h0QjE4WEZ4S0pHZDBBN0traGh4ajBkdndrb3I5TnZqeEdxVWY1?=
+ =?utf-8?B?VCtOUldJeFliSm1IS1dCSGVxWDBQQTllRm5zWVptdGFtdTYrYmM5eVFHdG1Q?=
+ =?utf-8?B?aEZYNnNvZjhBV1dzY0NMRkdYNTgvSkxWVkxtQnpEMFp4R3VWRzFaSGJ4bk5P?=
+ =?utf-8?B?YTYrVzRJMndIS1IrOVcxdUM1T094RFFPMnVaYlR6TEcxZEFQYjlrcTE0bG5R?=
+ =?utf-8?B?K1dKdjRTZDh0bEJNVTZ1VEQvSnhZNDJXS1lVdEZjV2R6RlQ2SnA5d1htUmYv?=
+ =?utf-8?B?TkwwVDZJT2dYOFo0NmdOZCtPcHJyWDU0WThJTzY0SDFGbVg2Yk5WamFyU1M5?=
+ =?utf-8?B?YVA3K24yZmY4OTFXVDhvYWtIcnVrTlVMeTJUWHpZRkdQY01sYzlPb0E2TjZM?=
+ =?utf-8?B?a0pRZmVuUnlQWW5QOVI0SHhEUVZaOGJZaUZSVDdDWEtZTFl1MmpCdk1FWWZt?=
+ =?utf-8?B?bll5NVlDZHRWK1BNRVJvYVp6ZURwTXpJM1VCTUsyelY1c25FTi8yUGdXUzdC?=
+ =?utf-8?B?YUdNR1B1clVMalRRUUJydWFiWWlIclgxQXgvTzJRZ2c2RHNIaDhmR0JuNmVB?=
+ =?utf-8?B?QXEzeUhZUm1FM2JXbEtQWktXd3NkTFJEdSsrVW94SDV2d1ExclVNNkxMbE81?=
+ =?utf-8?Q?7ajVpLb/QTsO9AbEDW?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2ceb0d5-364d-4277-367e-08dedc048e57
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 07:47:55.6690 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 08:48:46.2313 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Pw8S9UUS78c4mVHU1vLOboVcZMfQIP2Z71hseFZYuZoAm/GCvshpsl+NZXwHoneuk04jYJHT7Yt+04H1Lj7h2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5145
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: DOGkTHvlFHLezmpqzvuw8b6rRwN2TT17U3Phl0KgR0g48/ljuPmnB7aTstpwF5tp
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8376
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,285 +153,773 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 7/7/26 08:56, Thomas Hellström wrote:
+> On Mon, 2026-07-06 at 20:23 +0200, Christian König wrote:
+>> On 7/6/26 19:01, Thomas Hellström wrote:
+...
+>>
+>> Well, I clearly rejected the idea to wait for the delayed delete
+>> worker because that can cause deadlocks no matter how we do it.
+>>
+>> The only possibility I see is to grab a reference on the next busy
+>> fence and wait for that to signal.
+>>
+>> But that approach still leaves a window open where the cleanup worker
+>> has not yet cleaned up the resource before we try to allocate a new
+>> one.
+>>
+>> The only two possibilities I see to close that window are:
+>> 1. Resurrect the GEM object.
+>> 2. Keep a reference to the GEM object while it is on the LRU.
+>>
+>> I would really like to do #2 instead, but that requires that we
+>> distinct between GEM object referenze and backing store reference.
+>>
+>> The GEM object does have some kind of backing store reference with
+>> the handle_count field, but that unfortunately doesn't have the right
+>> semantic (e.g. only goes from 0->1 when you actually create a handle
+>> etc..).
+> 
+> I think putting a struct completion + refcount on the TTM resource
+> would work. Or a much simpler variant, wait for anyone to release
+> something on the resource manager in question, (although the simpler
+> variant would be harder to debug if a deadlock occured).
+> 
+> Both of these would probably need to come with lockdep annotation so
+> that we could annotate the critical sections from ttm_bo_fini() to
+> resource_free, similar to the dma-fence signalling annotation.
+> 
+> At this point, following that previous discussion we know that imported
+> dma-bufs are an exception because we grab the shared dma-resv to
+> release the attachment. So until we add a way to avoid that in the dma-
+> buf code, we need to wake / signal completion before we grab that lock.
+> Not a big deal because imported bos will not matter for local reclaim
+> anyway.
 
-On 07-07-2026 04:48, Mallesh Koujalagi wrote:
-> The fault injection code was scattered: the GT reset
-> hook lived in xe_gt.h as an inline function with its own global
-> variable, the CSC hook had a separate global in xe_hw_error.c with
-> an extern declaration, and each was individually registered in
-> xe_debugfs.c. Adding a new error type meant editing many files and
-> copy-pasting the same boilerplate.
->
-> Debugfs interface (under /sys/kernel/debug/dri/0/):
->   - fail_gt_reset         - GT reset failure
->   - inject_csc_hw_error   - CSC firmware error
->
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
-> v2:
-> - Add multiple platform support. (Vinay)
-> - Handle VF properly.
-> - Rename to XE_FAULT_GT_RESET/XE_FAULT_CSC_HW_ERROR and
->    create xe_fault_inject_types.h file including those name.
->
-> v3:
-> - Solved patch apply issue on tip.
->
-> v4:
-> - Add proper header file.
->
-> v5:
-> - Properly refer FAULT_ATTR_INITIALIZER. (Vinay)
-> - Change xe_fault_inject_descs to xe_fault_inject_entry.
-> - Change 2025 to 2026.
->
-> v6:
-> - Change return comments of xe_fault_inject(). (Riana)
-> - Remove full description of xe_fault_inject_debugfs_register().
->
-> v7:
-> - Move all fault inject helper functions in xe_debugfs.c (Riana)
-> - Update commit message.
->
-> v8:
-> - Assign .attr pointer with DECLARE_FAULT_ATTR macro. (Riana)
-> - Remove CONFIG_FAULT_INJECTION block.
->
-> v9:
-> - Add single availability callback.
-> - Make an abstracted function. (Riana)
-> - Fix xe_fault_inject_entry struct.
-> ---
->   drivers/gpu/drm/xe/xe_debugfs.c  | 45 +++++++++++++++++++++++++++++---
->   drivers/gpu/drm/xe/xe_debugfs.h  | 19 ++++++++++++++
->   drivers/gpu/drm/xe/xe_gt.c       |  5 ++--
->   drivers/gpu/drm/xe/xe_gt.h       |  8 ------
->   drivers/gpu/drm/xe/xe_hw_error.c | 11 ++------
->   5 files changed, 66 insertions(+), 22 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index 8c391c7b017a..1d1261943676 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -5,6 +5,7 @@
->   
->   #include "xe_debugfs.h"
->   
-> +#include <linux/bits.h>
->   #include <linux/debugfs.h>
->   #include <linux/fault-inject.h>
->   #include <linux/string_helpers.h>
-> @@ -42,6 +43,46 @@
->   DECLARE_FAULT_ATTR(gt_reset_failure);
->   DECLARE_FAULT_ATTR(inject_csc_hw_error);
->   
-> +static bool csc_hw_error_available(struct xe_device *xe)
-> +{
-> +	return !IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE;
-> +}
-> +
-> +static struct {
-> +	const char *name;
-> +	bool (*available)(struct xe_device *xe);
-> +	struct fault_attr *attr;
-> +} xe_fault_inject_entry[XE_FAULT_MAX] = {
-> +	[XE_FAULT_GT_RESET]	= { .name = "fail_gt_reset",
-> +				    .attr = &gt_reset_failure },
-> +	[XE_FAULT_CSC_HW_ERROR]	= { .name = "inject_csc_hw_error",
-> +				    .available = csc_hw_error_available,
+The problem is that locking the dma_resv object for release is mandatory not only for proper DMA-buf import handling but for tons of other use cases as well. In other words DMA-buf imports, page tables, per process buffers who use the same dma_resv object as the root PD etc...
 
-is_visible would be better and matches kernel pattern.
+By now we I don't think we can't avoid locking the dma_resv object in the delete path, so a completeion event or any other method which blocks for resource cleanup without deadlock detection won't work as far as I can see.
 
-> +				    .attr = &inject_csc_hw_error },
-> +};
-> +
-> +bool xe_fault_inject(enum xe_fault_type type)
-> +{
-> +	if (type >= XE_FAULT_MAX)
-> +		return false;
-> +
-> +	return should_fail(xe_fault_inject_entry[type].attr, 1);
-> +}
-> +
-> +static void xe_fault_inject_debugfs_register(struct xe_device *xe,
-> +					     struct dentry *root)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < XE_FAULT_MAX; i++) {
-> +		if (xe_fault_inject_entry[i].available &&
-> +		    !xe_fault_inject_entry[i].available(xe))
-> +			continue;
-> +
-> +		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
-> +					  xe_fault_inject_entry[i].attr);
-> +	}
-> +}
-> +
->   static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
->   				   u32 offset, const char *name, struct drm_printer *p)
->   {
-> @@ -583,8 +624,6 @@ void xe_debugfs_register(struct xe_device *xe)
->   		drm_debugfs_create_files(debugfs_residencies,
->   					 ARRAY_SIZE(debugfs_residencies),
->   					 root, minor);
-> -		fault_create_debugfs_attr("inject_csc_hw_error", root,
-> -					  &inject_csc_hw_error);
->   	}
->   
->   	/*
-> @@ -642,7 +681,7 @@ void xe_debugfs_register(struct xe_device *xe)
->   
->   	xe_psmi_debugfs_register(xe);
->   
-> -	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
-> +	xe_fault_inject_debugfs_register(xe, root);
->   
->   	if (IS_SRIOV_PF(xe))
->   		xe_sriov_pf_debugfs_register(xe, root);
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
-> index 17f4c2f1b5e4..ec2c694cfca3 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.h
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.h
-> @@ -6,8 +6,27 @@
->   #ifndef _XE_DEBUGFS_H_
->   #define _XE_DEBUGFS_H_
->   
-> +#include <linux/types.h>
-> +
->   struct xe_device;
->   
-> +/**
-> + * enum xe_fault_type - Fault injection types
-> + * @XE_FAULT_GT_RESET: GT reset failure injection
-> + * @XE_FAULT_CSC_HW_ERROR: CSC hardware error injection
-> + * @XE_FAULT_MAX: Number of fault injection types
-> + */
-> +enum xe_fault_type {
-> +	XE_FAULT_GT_RESET,
-> +	XE_FAULT_CSC_HW_ERROR,
-> +	XE_FAULT_MAX
-> +};
-> +
-> +bool xe_fault_inject(enum xe_fault_type type);
-> +
-> +#define xe_fault_gt_reset()		xe_fault_inject(XE_FAULT_GT_RESET)
-> +#define xe_fault_csc_hw_error()		xe_fault_inject(XE_FAULT_CSC_HW_ERROR)
+The only way forward seems to be to lock the ww_mutex with deadlock avoidance handling and that in turn needs to make sure that the ww_mutex doesn't go away until we eventually have bubbled up the error to the driver and the drm_exec object had the chance to lock the offending ww_mutex before anything else.
 
-Can you try macro instead.
+>>>>> I fully support removing the ttm refcount, but not if it means
+>>>>> resurrecting the gem refcount.
+>>>>>
+>>>>> If we want to sidestep that problem, in favour of getting the
+>>>>> proposed
+>>>>> locking functionality in and future proof it, I suggest using
+>>>>>
+>>>>> https://lore.kernel.org/all/20260605112700.181040-1-thomas.hellstrom@linux.intel.com/
+>>>>>
+>>>>> And rebase this series on that. This means we can use the ttm
+>>>>> refcount
+>>>>> for the transaction refcounting, and also that if we add a dma-
+>>>>> buf
+>>>>> map
+>>>>> interface with a dma_resv_txn_obj, we could use that to also
+>>>>> have
+>>>>> exhaustive eviction that originates from a dma_buf map.
+>>>>
+>>>> I don't think that this is a good idea. It just adds another
+>>>> layer of
+>>>> abstraction and doesn't solve the problem in any way possible.
+>>>
+>>> This comment confuses me. Exactly what problem isn't solved by
+>>> this,
+>>> and which of the stated benefits/use-cases in the cover-letter do
+>>> you
+>>> think aren't worthwhile?
+>>
+>> Of course could the drm_exec object work with different reference
+>> counters, but as far as I can see that just complicates the situation
+>> and again creates a TTM specific solutions which I clearly want to
+>> avoid.
+>>
+>> I would rather go with the resurrection approach instead, that has
+>> less potential for problem I think.
+>>
+>> Alaternatively we could re-work the whole GEM refcount/GEM handle
+>> count/TTM refcount mess, but that has even more potential to break.
+> 
+> I think looking forward to a "final" solution we're happy with, we
+> would have removed the TTM refcount and found a way to deal with zombie
+> resources by finding something to wait for.
 
-Thanks
-Riana
+We should probably nail down the "final" solution now, it's just that way to many ugly workarounds arounds have been proposed so far and I completely agree that resuccertion of zombies is just another one.
 
+Just a random idea we haven't discussed so far: What about making the ww_mutex ref counted?
 
+There are basically just three users in the kernel for the ww_mutex, so that shouldn't be to much trouble.
 
-> +
->   #ifdef CONFIG_DEBUG_FS
->   void xe_debugfs_register(struct xe_device *xe);
->   #else
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index d904527a8898..dfdacc0f6de9 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -21,6 +21,7 @@
->   #include "regs/xe_gt_regs.h"
->   #include "xe_assert.h"
->   #include "xe_bb.h"
-> +#include "xe_debugfs.h"
->   #include "xe_device.h"
->   #include "xe_eu_stall.h"
->   #include "xe_exec_queue.h"
-> @@ -926,7 +927,7 @@ static void gt_reset_worker(struct work_struct *w)
->   
->   	xe_gt_info(gt, "reset started\n");
->   
-> -	if (xe_fault_inject_gt_reset()) {
-> +	if (xe_fault_gt_reset()) {
->   		err = -ECANCELED;
->   		goto err_fail;
->   	}
-> @@ -986,7 +987,7 @@ void xe_gt_reset_async(struct xe_gt *gt)
->   		return;
->   
->   	/* Don't do a reset while one is already in flight */
-> -	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
-> +	if (!xe_fault_gt_reset() && xe_uc_reset_prepare(&gt->uc))
->   		return;
->   
->   	xe_gt_info(gt, "reset queued from %ps\n", __builtin_return_address(0));
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index 4150aa594f05..f8e3ca63aabb 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -6,8 +6,6 @@
->   #ifndef _XE_GT_H_
->   #define _XE_GT_H_
->   
-> -#include <linux/fault-inject.h>
-> -
->   #include <drm/drm_util.h>
->   
->   #include "xe_device.h"
-> @@ -38,12 +36,6 @@
->   	xe_gt_is_media_type(gt_) ? MEDIA_VER(xe) : GRAPHICS_VER(xe); \
->   })
->   
-> -extern struct fault_attr gt_reset_failure;
-> -static inline bool xe_fault_inject_gt_reset(void)
-> -{
-> -	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
-> -}
-> -
->   struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
->   int xe_gt_init_early(struct xe_gt *gt);
->   int xe_gt_init(struct xe_gt *gt);
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-> index 4a4b363fc844..ad2ec603df4e 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> @@ -4,7 +4,6 @@
->    */
->   
->   #include <linux/bitmap.h>
-> -#include <linux/fault-inject.h>
->   
->   #include "regs/xe_gsc_regs.h"
->   #include "regs/xe_hw_error_regs.h"
-> @@ -12,6 +11,7 @@
->   
->   #include "xe_device.h"
->   #include "xe_drm_ras.h"
-> +#include "xe_debugfs.h"
->   #include "xe_hw_error.h"
->   #include "xe_mmio.h"
->   #include "xe_survivability_mode.h"
-> @@ -25,8 +25,6 @@
->   						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
->   						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
->   
-> -extern struct fault_attr inject_csc_hw_error;
-> -
->   static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
->   
->   static const char * const hec_uncorrected_fw_errors[] = {
-> @@ -167,11 +165,6 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
->   						 pvc_master_local_fatal_err_reg : \
->   						 pvc_master_local_nonfatal_err_reg)
->   
-> -static bool fault_inject_csc_hw_error(void)
-> -{
-> -	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
-> -}
-> -
->   static void csc_hw_error_work(struct work_struct *work)
->   {
->   	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
-> @@ -517,7 +510,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
->   {
->   	enum hardware_error hw_err;
->   
-> -	if (fault_inject_csc_hw_error())
-> +	if (xe_fault_csc_hw_error())
->   		schedule_work(&tile->csc_hw_error_work);
->   
->   	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
+> I'm also convinced that we want apps with shared bos to fully
+> participate so that a process trying to validate / map a shared bo
+> doesn't get killed because a trylock-driven eviction failed.
+
+I might not fully understand that, but if you mean that applications should be able to use all resources even if those resources has just recently been released than I'm all with you.
+
+> 
+> Since it's a layer violation to pass a drm_exec in an augmented dma-buf
+> map we will be needing something at the dma-buf level to handle that,
+> and given that, it also makes sense to base the eviction mechanism on
+> it.
+
+Well I disagree. The DMA-buf invalidation notification intentionally doesn't have a ww_acquire_ctx.
+
+Background is that when this is called exporters have often already passed the point of no return and the importers just *must* act on the request and can't say 'Na, sorry I can't take the locks I need'.
+
+> The ability to reuse the TTM refcount for now would just be a way to
+> separate out the zombie handling from this series until we can do it
+> properly. After all this series is about enabling sleeping ww locks.
+
+Well the problem is that I don't see how it should work with the TTM refcount.
+
+This basically means that for each lock operation has an ops table with put/get, in that case it would just easier to make the ww_mutex ref counted.
+
+Regards,
+Christian.
+
+> 
+> Thanks,
+> Thomas
+> 
+> 
+>>
+>> Regards,
+>> Christian.
+>>
+>>
+>>>
+>>> Also for reference: (Section at the end and follow-up messages)
+>>> https://lore.kernel.org/all/3716d43462188590743060755b37e3d060f7600f.camel@linux.intel.com/
+>>>
+>>> Thanks,
+>>> Thomas
+>>>
+>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>>
+>>>>> /Thomas
+>>>>>
+>>>>>>
+>>>>>> Signed-off-by: tChristian König <christian.koenig@amd.com>
+>>>>>> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+>>>>>> ---
+>>>>>>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c          |  35 +++--
+>>>>>> -
+>>>>>>  drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c |   8 +-
+>>>>>>  drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c    |   2 -
+>>>>>>  drivers/gpu/drm/ttm/ttm_bo.c                     | 135
+>>>>>> +++++++++++--
+>>>>>> ----------
+>>>>>>  drivers/gpu/drm/ttm/ttm_bo_internal.h            |  17 ++-
+>>>>>>  drivers/gpu/drm/ttm/ttm_bo_util.c                |  15 ++-
+>>>>>>  drivers/gpu/drm/xe/xe_bo.c                       |   2 +-
+>>>>>>  include/drm/ttm/ttm_bo.h                         |   9 --
+>>>>>>  8 files changed, 111 insertions(+), 112 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>>> index df3fcc2b1248e..642296602de69 100644
+>>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>>> @@ -939,7 +939,7 @@ void i915_ttm_adjust_lru(struct
+>>>>>> drm_i915_gem_object *obj)
+>>>>>>  	 * Don't manipulate the TTM LRUs while in TTM bo
+>>>>>> destruction.
+>>>>>>  	 * We're called through
+>>>>>> i915_ttm_delete_mem_notify().
+>>>>>>  	 */
+>>>>>> -	if (!kref_read(&bo->kref))
+>>>>>> +	if (!kref_read(&bo->base.refcount))
+>>>>>>  		return;
+>>>>>>  
+>>>>>>  	/*
+>>>>>> @@ -957,30 +957,21 @@ void i915_ttm_adjust_lru(struct
+>>>>>> drm_i915_gem_object *obj)
+>>>>>>  	 *
+>>>>>>  	 * TODO: consider maybe also bumping the shrinker
+>>>>>> list
+>>>>>> here
+>>>>>> when we have
+>>>>>>  	 * already unpinned it, which should give us
+>>>>>> something
+>>>>>> more
+>>>>>> like an LRU.
+>>>>>> -	 *
+>>>>>> -	 * TODO: There is a small window of opportunity for
+>>>>>> this
+>>>>>> function to
+>>>>>> -	 * get called from eviction after we've dropped the
+>>>>>> last
+>>>>>> GEM
+>>>>>> refcount,
+>>>>>> -	 * but before the TTM deleted flag is set on the
+>>>>>> object.
+>>>>>> Avoid
+>>>>>> -	 * adjusting the shrinker list in such cases, since
+>>>>>> the
+>>>>>> object is
+>>>>>> -	 * not available to the shrinker anyway due to its
+>>>>>> zero
+>>>>>> refcount.
+>>>>>> -	 * To fix this properly we should move to a TTM
+>>>>>> shrinker
+>>>>>> LRU
+>>>>>> list for
+>>>>>> -	 * these objects.
+>>>>>>  	 */
+>>>>>> -	if (kref_get_unless_zero(&obj->base.refcount)) {
+>>>>>> -		if (shrinkable != obj->mm.ttm_shrinkable) {
+>>>>>> -			if (shrinkable) {
+>>>>>> -				if (obj->mm.madv ==
+>>>>>> I915_MADV_WILLNEED)
+>>>>>> -
+>>>>>> 					__i915_gem_object_ma
+>>>>>> ke_s
+>>>>>> hrinkable(obj);
+>>>>>> -				else
+>>>>>> -
+>>>>>> 					__i915_gem_object_ma
+>>>>>> ke_p
+>>>>>> urgeable(obj);
+>>>>>> -			} else {
+>>>>>> -
+>>>>>> 				i915_gem_object_make_unshrin
+>>>>>> kabl
+>>>>>> e(obj);
+>>>>>> -			}
+>>>>>> -
+>>>>>> -			obj->mm.ttm_shrinkable = shrinkable;
+>>>>>> +	i915_gem_object_get(obj);
+>>>>>> +	if (shrinkable != obj->mm.ttm_shrinkable) {
+>>>>>> +		if (shrinkable) {
+>>>>>> +			if (obj->mm.madv ==
+>>>>>> I915_MADV_WILLNEED)
+>>>>>> +				__i915_gem_object_make_shrin
+>>>>>> kabl
+>>>>>> e(ob
+>>>>>> j);
+>>>>>> +			else
+>>>>>> +				__i915_gem_object_make_purge
+>>>>>> able
+>>>>>> (obj
+>>>>>> );
+>>>>>> +		} else {
+>>>>>> +			i915_gem_object_make_unshrinkable(ob
+>>>>>> j);
+>>>>>>  		}
+>>>>>> -		i915_gem_object_put(obj);
+>>>>>> +
+>>>>>> +		obj->mm.ttm_shrinkable = shrinkable;
+>>>>>>  	}
+>>>>>> +	i915_gem_object_put(obj);
+>>>>>>  
+>>>>>>  	/*
+>>>>>>  	 * Put on the correct LRU list depending on the MADV
+>>>>>> status
+>>>>>> diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+>>>>>> b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+>>>>>> index 56ad8ef325840..904cb4da6c9b3 100644
+>>>>>> --- a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+>>>>>> +++ b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+>>>>>> @@ -127,7 +127,7 @@ static void
+>>>>>> ttm_bo_init_reserved_sys_man(struct
+>>>>>> kunit *test)
+>>>>>>  	dma_resv_unlock(bo->base.resv);
+>>>>>>  
+>>>>>>  	KUNIT_EXPECT_EQ(test, err, 0);
+>>>>>> -	KUNIT_EXPECT_EQ(test, kref_read(&bo->kref), 1);
+>>>>>> +	KUNIT_EXPECT_EQ(test, kref_read(&bo->base.refcount),
+>>>>>> 1);
+>>>>>>  	KUNIT_EXPECT_PTR_EQ(test, bo->bdev, priv->ttm_dev);
+>>>>>>  	KUNIT_EXPECT_EQ(test, bo->type, bo_type);
+>>>>>>  	KUNIT_EXPECT_EQ(test, bo->page_alignment,
+>>>>>> PAGE_SIZE);
+>>>>>> @@ -176,7 +176,7 @@ static void
+>>>>>> ttm_bo_init_reserved_mock_man(struct
+>>>>>> kunit *test)
+>>>>>>  	dma_resv_unlock(bo->base.resv);
+>>>>>>  
+>>>>>>  	KUNIT_EXPECT_EQ(test, err, 0);
+>>>>>> -	KUNIT_EXPECT_EQ(test, kref_read(&bo->kref), 1);
+>>>>>> +	KUNIT_EXPECT_EQ(test, kref_read(&bo->base.refcount),
+>>>>>> 1);
+>>>>>>  	KUNIT_EXPECT_PTR_EQ(test, bo->bdev, priv->ttm_dev);
+>>>>>>  	KUNIT_EXPECT_EQ(test, bo->type, bo_type);
+>>>>>>  	KUNIT_EXPECT_EQ(test, ctx.bytes_moved, size);
+>>>>>> @@ -969,6 +969,8 @@ static void
+>>>>>> ttm_bo_validate_allowed_only_evict(struct kunit *test)
+>>>>>>  	ttm_mock_manager_fini(priv->ttm_dev, mem_multihop);
+>>>>>>  }
+>>>>>>  
+>>>>>> +extern const struct drm_gem_object_funcs
+>>>>>> ttm_deleted_object_funcs;
+>>>>>> +
+>>>>>>  static void ttm_bo_validate_deleted_evict(struct kunit
+>>>>>> *test)
+>>>>>>  {
+>>>>>>  	struct ttm_operation_ctx ctx_init = { }, ctx_val  =
+>>>>>> { };
+>>>>>> @@ -999,7 +1001,7 @@ static void
+>>>>>> ttm_bo_validate_deleted_evict(struct
+>>>>>> kunit *test)
+>>>>>>  	KUNIT_EXPECT_EQ(test,
+>>>>>> ttm_resource_manager_usage(man),
+>>>>>> big);
+>>>>>>  
+>>>>>>  	dma_resv_unlock(bo_big->base.resv);
+>>>>>> -	bo_big->deleted = true;
+>>>>>> +	bo_big->base.funcs = &ttm_deleted_object_funcs;
+>>>>>>  
+>>>>>>  	bo_small = ttm_bo_kunit_init(test, test->priv,
+>>>>>> small,
+>>>>>> NULL);
+>>>>>>  	bo_small->type = bo_type;
+>>>>>> diff --git a/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c
+>>>>>> b/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c
+>>>>>> index 5cfe8f3f80d75..b7ab19e0e4b2b 100644
+>>>>>> --- a/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c
+>>>>>> +++ b/drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c
+>>>>>> @@ -189,8 +189,6 @@ struct ttm_buffer_object
+>>>>>> *ttm_bo_kunit_init(struct kunit *test,
+>>>>>>  	bo->bdev = devs->ttm_dev;
+>>>>>>  	bo->destroy = dummy_ttm_bo_destroy;
+>>>>>>  
+>>>>>> -	kref_init(&bo->kref);
+>>>>>> -
+>>>>>>  	return bo;
+>>>>>>  }
+>>>>>>  EXPORT_SYMBOL_GPL(ttm_bo_kunit_init);
+>>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+>>>>>> b/drivers/gpu/drm/ttm/ttm_bo.c
+>>>>>> index 3980f376e3ba4..2b470c1746f60 100644
+>>>>>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+>>>>>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+>>>>>> @@ -246,88 +246,84 @@ static void
+>>>>>> ttm_bo_delayed_delete(struct
+>>>>>> work_struct *work)
+>>>>>>  	ttm_bo_put(bo);
+>>>>>>  }
+>>>>>>  
+>>>>>> -static void ttm_bo_release(struct kref *kref)
+>>>>>> +/*
+>>>>>> + * All other callbacks should never ever be called on a
+>>>>>> deleted
+>>>>>> TTM
+>>>>>> object.
+>>>>>> + */
+>>>>>> +const struct drm_gem_object_funcs ttm_deleted_object_funcs =
+>>>>>> {
+>>>>>> +	.free = ttm_bo_free
+>>>>>> +};
+>>>>>> +EXPORT_SYMBOL_FOR_TESTS_ONLY(ttm_deleted_object_funcs);
+>>>>>> +
+>>>>>> +/* Returns true if the BO is about to get deleted */
+>>>>>> +static bool ttm_bo_is_zombie(struct ttm_buffer_object *bo)
+>>>>>> +{
+>>>>>> +	return bo->base.funcs == &ttm_deleted_object_funcs;
+>>>>>> +}
+>>>>>> +
+>>>>>> +void ttm_bo_fini(struct ttm_buffer_object *bo)
+>>>>>>  {
+>>>>>> -	struct ttm_buffer_object *bo =
+>>>>>> -	    container_of(kref, struct ttm_buffer_object,
+>>>>>> kref);
+>>>>>>  	struct ttm_device *bdev = bo->bdev;
+>>>>>>  	int ret;
+>>>>>>  
+>>>>>>  	WARN_ON_ONCE(bo->pin_count);
+>>>>>>  	WARN_ON_ONCE(bo->bulk_move);
+>>>>>>  
+>>>>>> -	if (!bo->deleted) {
+>>>>>> -		ret = ttm_bo_individualize_resv(bo);
+>>>>>> -		if (ret) {
+>>>>>> -			/* Last resort, if we fail to
+>>>>>> allocate
+>>>>>> memory for the
+>>>>>> -			 * fences block for the BO to become
+>>>>>> idle
+>>>>>> -			 */
+>>>>>> -			dma_resv_wait_timeout(bo->base.resv,
+>>>>>> -					     
+>>>>>> DMA_RESV_USAGE_BOOKKEEP, false,
+>>>>>> -					      30 * HZ);
+>>>>>> -		}
+>>>>>> +	ret = ttm_bo_individualize_resv(bo);
+>>>>>> +	if (ret) {
+>>>>>> +		/* Last resort, if we fail to allocate
+>>>>>> memory
+>>>>>> for
+>>>>>> the
+>>>>>> +		 * fences block for the BO to become idle
+>>>>>> +		 */
+>>>>>> +		dma_resv_wait_timeout(bo->base.resv,
+>>>>>> DMA_RESV_USAGE_BOOKKEEP,
+>>>>>> +				      false, 30 * HZ);
+>>>>>> +	}
+>>>>>>  
+>>>>>> -		if (bdev->funcs->release_notify)
+>>>>>> -			bdev->funcs->release_notify(bo);
+>>>>>> +	if (bo->bdev->funcs->release_notify)
+>>>>>> +		bo->bdev->funcs->release_notify(bo);
+>>>>>>  
+>>>>>> -		drm_vma_offset_remove(bdev->vma_manager,
+>>>>>> &bo-
+>>>>>>> base.vma_node);
+>>>>>> -		ttm_mem_io_free(bdev, bo->resource);
+>>>>>> +	drm_vma_offset_remove(bdev->vma_manager, &bo-
+>>>>>>> base.vma_node);
+>>>>>> +	ttm_mem_io_free(bdev, bo->resource);
+>>>>>>  
+>>>>>> -		if (!dma_resv_test_signaled(&bo->base._resv,
+>>>>>> -					   
+>>>>>> DMA_RESV_USAGE_BOOKKEEP)
+>>>>>>>>
+>>>>>> -		    (want_init_on_free() && (bo->ttm !=
+>>>>>> NULL))
+>>>>>>>>
+>>>>>> -		    bo->type == ttm_bo_type_sg ||
+>>>>>> -		    !dma_resv_trylock(bo->base.resv)) {
+>>>>>> -			/* The BO is not idle, resurrect it
+>>>>>> for
+>>>>>> delayed destroy */
+>>>>>> -			ttm_bo_flush_all_fences(bo);
+>>>>>> -			bo->deleted = true;
+>>>>>> +	if (!dma_resv_test_signaled(&bo->base._resv,
+>>>>>> DMA_RESV_USAGE_BOOKKEEP) ||
+>>>>>> +	    (want_init_on_free() && (bo->ttm != NULL)) ||
+>>>>>> +	    bo->type == ttm_bo_type_sg ||
+>>>>>> +	    !dma_resv_trylock(bo->base.resv)) {
+>>>>>> +		/* The BO is not idle, resurrect it for
+>>>>>> delayed
+>>>>>> destroy */
+>>>>>> +		ttm_bo_flush_all_fences(bo);
+>>>>>>  
+>>>>>> -			spin_lock(&bdev->lru_lock);
+>>>>>> -
+>>>>>> -			/*
+>>>>>> -			 * Make pinned bos immediately
+>>>>>> available
+>>>>>> to
+>>>>>> -			 * shrinkers, now that they are
+>>>>>> queued
+>>>>>> for
+>>>>>> -			 * destruction.
+>>>>>> -			 *
+>>>>>> -			 * FIXME: QXL is triggering this.
+>>>>>> Can be
+>>>>>> removed when the
+>>>>>> -			 * driver is fixed.
+>>>>>> -			 */
+>>>>>> -			if (bo->pin_count) {
+>>>>>> -				bo->pin_count = 0;
+>>>>>> -
+>>>>>> 				ttm_resource_move_to_lru_tai
+>>>>>> l(bo-
+>>>>>>> resource);
+>>>>>> -			}
+>>>>>> +		spin_lock(&bo->bdev->lru_lock);
+>>>>>>  
+>>>>>> -			kref_init(&bo->kref);
+>>>>>> -			spin_unlock(&bdev->lru_lock);
+>>>>>> +		/*
+>>>>>> +		 * Make pinned bos immediately available to
+>>>>>> +		 * shrinkers, now that they are queued for
+>>>>>> +		 * destruction.
+>>>>>> +		 *
+>>>>>> +		 * FIXME: QXL is triggering this. Can be
+>>>>>> removed
+>>>>>> when the
+>>>>>> +		 * driver is fixed.
+>>>>>> +		 */
+>>>>>> +		if (bo->pin_count) {
+>>>>>> +			bo->pin_count = 0;
+>>>>>> +			ttm_resource_move_to_lru_tail(bo-
+>>>>>>> resource);
+>>>>>> +		}
+>>>>>>  
+>>>>>> -			INIT_WORK(&bo->delayed_delete,
+>>>>>> ttm_bo_delayed_delete);
+>>>>>> +		kref_init(&bo->base.refcount);
+>>>>>> +		bo->base.funcs = &ttm_deleted_object_funcs;
+>>>>>> +		spin_unlock(&bo->bdev->lru_lock);
+>>>>>>  
+>>>>>> -			/* Schedule the worker on the
+>>>>>> closest
+>>>>>> NUMA
+>>>>>> node. This
+>>>>>> -			 * improves performance since system
+>>>>>> memory
+>>>>>> might be
+>>>>>> -			 * cleared on free and that is best
+>>>>>> done
+>>>>>> on
+>>>>>> a CPU core
+>>>>>> -			 * close to it.
+>>>>>> -			 */
+>>>>>> -			queue_work_node(bdev->pool.nid,
+>>>>>> bdev-
+>>>>>>> wq,
+>>>>>> &bo->delayed_delete);
+>>>>>> -			return;
+>>>>>> -		}
+>>>>>> +		INIT_WORK(&bo->delayed_delete,
+>>>>>> ttm_bo_delayed_delete);
+>>>>>>  
+>>>>>> +		/* Schedule the worker on the closest NUMA
+>>>>>> node.
+>>>>>> This
+>>>>>> +		 * improves performance since system memory
+>>>>>> might be
+>>>>>> +		 * cleared on free and that is best done on
+>>>>>> a
+>>>>>> CPU
+>>>>>> core
+>>>>>> +		 * close to it.
+>>>>>> +		 */
+>>>>>> +		queue_work_node(bdev->pool.nid, bdev->wq,
+>>>>>> &bo-
+>>>>>>> delayed_delete);
+>>>>>> +	} else {
+>>>>>>  		ttm_bo_cleanup_memtype_use(bo);
+>>>>>>  		dma_resv_unlock(bo->base.resv);
+>>>>>> -	}
+>>>>>>  
+>>>>>> -	atomic_dec(&ttm_glob.bo_count);
+>>>>>> -	bo->destroy(bo);
+>>>>>> -}
+>>>>>> -
+>>>>>> -/* TODO: remove! */
+>>>>>> -void ttm_bo_put(struct ttm_buffer_object *bo)
+>>>>>> -{
+>>>>>> -	kref_put(&bo->kref, ttm_bo_release);
+>>>>>> -}
+>>>>>> -
+>>>>>> -void ttm_bo_fini(struct ttm_buffer_object *bo)
+>>>>>> -{
+>>>>>> -	ttm_bo_put(bo);
+>>>>>> +		atomic_dec(&ttm_glob.bo_count);
+>>>>>> +		bo->destroy(bo);
+>>>>>> +	}
+>>>>>>  }
+>>>>>>  EXPORT_SYMBOL(ttm_bo_fini);
+>>>>>>  
+>>>>>> @@ -470,7 +466,7 @@ int ttm_bo_evict_first(struct ttm_device
+>>>>>> *bdev,
+>>>>>> struct ttm_resource_manager *man
+>>>>>>  	if (!bo->resource || bo->resource->mem_type !=
+>>>>>> mem_type)
+>>>>>>  		goto out_bo_moved;
+>>>>>>  
+>>>>>> -	if (bo->deleted) {
+>>>>>> +	if (ttm_bo_is_zombie(bo)) {
+>>>>>>  		ret = ttm_bo_wait_ctx(bo, ctx);
+>>>>>>  		if (!ret)
+>>>>>>  			ttm_bo_cleanup_memtype_use(bo);
+>>>>>> @@ -524,7 +520,7 @@ static s64 ttm_bo_evict_cb(struct
+>>>>>> ttm_lru_walk
+>>>>>> *walk, struct ttm_buffer_object *
+>>>>>>  	if (bo->pin_count || !bo->bdev->funcs-
+>>>>>>> eviction_valuable(bo,
+>>>>>> evict_walk->place))
+>>>>>>  		return 0;
+>>>>>>  
+>>>>>> -	if (bo->deleted) {
+>>>>>> +	if (ttm_bo_is_zombie(bo)) {
+>>>>>>  		lret = ttm_bo_wait_ctx(bo, walk->arg.ctx);
+>>>>>>  		if (!lret)
+>>>>>>  			ttm_bo_cleanup_memtype_use(bo);
+>>>>>> @@ -624,7 +620,6 @@ static int ttm_bo_evict_alloc(struct
+>>>>>> ttm_device
+>>>>>> *bdev,
+>>>>>>  void ttm_bo_pin(struct ttm_buffer_object *bo)
+>>>>>>  {
+>>>>>>  	dma_resv_assert_held(bo->base.resv);
+>>>>>> -	WARN_ON_ONCE(!kref_read(&bo->kref));
+>>>>>>  	spin_lock(&bo->bdev->lru_lock);
+>>>>>>  	if (bo->resource)
+>>>>>>  		ttm_resource_del_bulk_move(bo->resource,
+>>>>>> bo);
+>>>>>> @@ -643,7 +638,6 @@ EXPORT_SYMBOL(ttm_bo_pin);
+>>>>>>  void ttm_bo_unpin(struct ttm_buffer_object *bo)
+>>>>>>  {
+>>>>>>  	dma_resv_assert_held(bo->base.resv);
+>>>>>> -	WARN_ON_ONCE(!kref_read(&bo->kref));
+>>>>>>  	if (WARN_ON_ONCE(!bo->pin_count))
+>>>>>>  		return;
+>>>>>>  
+>>>>>> @@ -934,7 +928,6 @@ int ttm_bo_init_reserved(struct
+>>>>>> ttm_device
+>>>>>> *bdev,
+>>>>>> struct ttm_buffer_object *bo,
+>>>>>>  {
+>>>>>>  	int ret;
+>>>>>>  
+>>>>>> -	kref_init(&bo->kref);
+>>>>>>  	bo->bdev = bdev;
+>>>>>>  	bo->type = type;
+>>>>>>  	bo->page_alignment = alignment;
+>>>>>> @@ -1131,8 +1124,8 @@ ttm_bo_swapout_cb(struct ttm_lru_walk
+>>>>>> *walk,
+>>>>>> struct ttm_buffer_object *bo)
+>>>>>>  		goto out;
+>>>>>>  	}
+>>>>>>  
+>>>>>> -	if (bo->deleted) {
+>>>>>> -		pgoff_t num_pages = tt->num_pages;
+>>>>>> +	if (ttm_bo_is_zombie(bo)) {
+>>>>>> +		pgoff_t num_pages = bo->ttm->num_pages;
+>>>>>>  
+>>>>>>  		ret = ttm_bo_wait_ctx(bo, ctx);
+>>>>>>  		if (ret)
+>>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_internal.h
+>>>>>> b/drivers/gpu/drm/ttm/ttm_bo_internal.h
+>>>>>> index e0d48eac74b03..ded2a47be0bcb 100644
+>>>>>> --- a/drivers/gpu/drm/ttm/ttm_bo_internal.h
+>>>>>> +++ b/drivers/gpu/drm/ttm/ttm_bo_internal.h
+>>>>>> @@ -27,6 +27,14 @@
+>>>>>>  
+>>>>>>  #include <drm/ttm/ttm_bo.h>
+>>>>>>  
+>>>>>> +static inline void ttm_bo_free(struct drm_gem_object *gobj)
+>>>>>> +{
+>>>>>> +	struct ttm_buffer_object *bo = container_of(gobj,
+>>>>>> typeof(*bo), base);
+>>>>>> +
+>>>>>> +	atomic_dec(&ttm_glob.bo_count);
+>>>>>> +	bo->destroy(bo);
+>>>>>> +}
+>>>>>> +
+>>>>>>  /**
+>>>>>>   * ttm_bo_get - reference a struct ttm_buffer_object
+>>>>>>   *
+>>>>>> @@ -34,7 +42,7 @@
+>>>>>>   */
+>>>>>>  static inline void ttm_bo_get(struct ttm_buffer_object *bo)
+>>>>>>  {
+>>>>>> -	kref_get(&bo->kref);
+>>>>>> +	drm_gem_object_get(&bo->base);
+>>>>>>  }
+>>>>>>  
+>>>>>>  /**
+>>>>>> @@ -50,11 +58,14 @@ static inline void ttm_bo_get(struct
+>>>>>> ttm_buffer_object *bo)
+>>>>>>  static inline __must_check struct ttm_buffer_object *
+>>>>>>  ttm_bo_get_unless_zero(struct ttm_buffer_object *bo)
+>>>>>>  {
+>>>>>> -	if (!kref_get_unless_zero(&bo->kref))
+>>>>>> +	if (!kref_get_unless_zero(&bo->base.refcount))
+>>>>>>  		return NULL;
+>>>>>>  	return bo;
+>>>>>>  }
+>>>>>>  
+>>>>>> -void ttm_bo_put(struct ttm_buffer_object *bo);
+>>>>>> +static inline void ttm_bo_put(struct ttm_buffer_object *bo)
+>>>>>> +{
+>>>>>> +	drm_gem_object_put(&bo->base);
+>>>>>> +}
+>>>>>>  
+>>>>>>  #endif
+>>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
+>>>>>> b/drivers/gpu/drm/ttm/ttm_bo_util.c
+>>>>>> index 3e3c201a02226..7ed085adf1c9b 100644
+>>>>>> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+>>>>>> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+>>>>>> @@ -41,6 +41,18 @@
+>>>>>>  
+>>>>>>  #include "ttm_bo_internal.h"
+>>>>>>  
+>>>>>> +static void ttm_transfer_object_free(struct drm_gem_object
+>>>>>> *obj)
+>>>>>> +{
+>>>>>> +	struct ttm_buffer_object *bo =
+>>>>>> +		container_of(obj, struct ttm_buffer_object,
+>>>>>> base);
+>>>>>> +
+>>>>>> +	ttm_bo_fini(bo);
+>>>>>> +}
+>>>>>> +
+>>>>>> +const struct drm_gem_object_funcs ttm_transfer_object_funcs
+>>>>>> = {
+>>>>>> +	.free = ttm_transfer_object_free,
+>>>>>> +};
+>>>>>> +
+>>>>>>  struct ttm_transfer_obj {
+>>>>>>  	struct ttm_buffer_object base;
+>>>>>>  	struct ttm_buffer_object *bo;
+>>>>>> @@ -247,7 +259,8 @@ static int
+>>>>>> ttm_buffer_object_transfer(struct
+>>>>>> ttm_buffer_object *bo,
+>>>>>>  	atomic_inc(&ttm_glob.bo_count);
+>>>>>>  	drm_vma_node_reset(&fbo->base.base.vma_node);
+>>>>>>  
+>>>>>> -	kref_init(&fbo->base.kref);
+>>>>>> +	kref_init(&fbo->base.base.refcount);
+>>>>>> +	fbo->base.base.funcs = &ttm_transfer_object_funcs;
+>>>>>>  	fbo->base.destroy = &ttm_transfered_destroy;
+>>>>>>  	fbo->base.pin_count = 0;
+>>>>>>  	if (bo->type != ttm_bo_type_sg)
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c
+>>>>>> b/drivers/gpu/drm/xe/xe_bo.c
+>>>>>> index 85e6d9a0f575b..5843f850339c7 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>>>>> @@ -1651,7 +1651,7 @@ static bool
+>>>>>> xe_ttm_bo_lock_in_destructor(struct
+>>>>>> ttm_buffer_object *ttm_bo)
+>>>>>>  	struct xe_device *xe = ttm_to_xe_device(ttm_bo-
+>>>>>>> bdev);
+>>>>>>  	bool locked;
+>>>>>>  
+>>>>>> -	xe_assert(xe, !kref_read(&ttm_bo->kref));
+>>>>>> +	xe_assert(xe, !kref_read(&ttm_bo->base.refcount));
+>>>>>>  
+>>>>>>  	/*
+>>>>>>  	 * We can typically only race with TTM trylocking
+>>>>>> under
+>>>>>> the
+>>>>>> diff --git a/include/drm/ttm/ttm_bo.h
+>>>>>> b/include/drm/ttm/ttm_bo.h
+>>>>>> index 8310bc3d55f90..1eae9eea5ff32 100644
+>>>>>> --- a/include/drm/ttm/ttm_bo.h
+>>>>>> +++ b/include/drm/ttm/ttm_bo.h
+>>>>>> @@ -78,11 +78,8 @@ enum ttm_bo_type {
+>>>>>>   * @type: The bo type.
+>>>>>>   * @page_alignment: Page alignment.
+>>>>>>   * @destroy: Destruction function. If NULL, kfree is used.
+>>>>>> - * @kref: Reference count of this buffer object. When this
+>>>>>> refcount
+>>>>>> reaches
+>>>>>> - * zero, the object is destroyed or put on the delayed
+>>>>>> delete
+>>>>>> list.
+>>>>>>   * @resource: structure describing current placement.
+>>>>>>   * @ttm: TTM structure holding system pages.
+>>>>>> - * @deleted: True if the object is only a zombie and already
+>>>>>> deleted.
+>>>>>>   * @bulk_move: The bulk move object.
+>>>>>>   * @priority: Priority for LRU, BOs with lower priority are
+>>>>>> evicted
+>>>>>> first.
+>>>>>>   * @pin_count: Pin count.
+>>>>>> @@ -109,17 +106,11 @@ struct ttm_buffer_object {
+>>>>>>  	uint32_t page_alignment;
+>>>>>>  	void (*destroy) (struct ttm_buffer_object *);
+>>>>>>  
+>>>>>> -	/*
+>>>>>> -	* Members not needing protection.
+>>>>>> -	*/
+>>>>>> -	struct kref kref;
+>>>>>> -
+>>>>>>  	/*
+>>>>>>  	 * Members protected by the bo::resv::reserved lock.
+>>>>>>  	 */
+>>>>>>  	struct ttm_resource *resource;
+>>>>>>  	struct ttm_tt *ttm;
+>>>>>> -	bool deleted;
+>>>>>>  	struct ttm_lru_bulk_move *bulk_move;
+>>>>>>  	unsigned priority;
+>>>>>>  	unsigned pin_count;
+
