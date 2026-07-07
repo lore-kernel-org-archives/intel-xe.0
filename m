@@ -4,100 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48EAEC43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 10:17:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CAACC44500
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 10:42:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0658E10E479;
-	Tue,  7 Jul 2026 10:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0FED10EC40;
+	Tue,  7 Jul 2026 10:42:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cGH+4V3q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D7DOEghC";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7DF10E479;
- Tue,  7 Jul 2026 10:17:21 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 86145419A0;
- Tue,  7 Jul 2026 10:17:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 122461F000E9;
- Tue,  7 Jul 2026 10:17:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783419441;
- bh=mnyEnVNjUbkl63yjftBd6ZAUslZHuhLMLE5i1q1dbiA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=cGH+4V3qnWn/h2ntR4JOMP1MeFASTJyb/ukIFIKga6vmMPs4hWnZeyozgnP8o9zcj
- 4aOepXlE5yG0XgvATIbejO38So9984JOSQXxfemV7MrbXTQdbQqJryZ7by0rmLtk6g
- KbyecrBlOO6RxZhZHoEJHQvN3lfQ+IRVIfllVkFrcFe5jzAzy0lAaGw02N38CG8Xem
- bIuNc24pIIBeQZLitf75XKOixE/v2BoAd9XaTV+y7NflJFaBKiVOSfh8s3qL1kjbV3
- QtnOkHzUZcffKxdXoostqrwbOmOdDgDEYFoMQefdIk5SYi6OuZQQ8BSF6bkbad2igD
- ZZ2I4X8hc6i0g==
-Date: Tue, 7 Jul 2026 11:16:56 +0100
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Zi Yan <ziy@nvidia.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>, 
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>, 
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Zack Rusin <zack.rusin@broadcom.com>, 
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>, 
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Helge Deller <deller@gmx.de>, Benjamin LaHaise <bcrl@kvack.org>, 
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, 
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
- David Hildenbrand <david@kernel.org>,
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>, 
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, 
- Lance Yang <lance.yang@linux.dev>, Hugh Dickins <hughd@google.com>, 
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Jann Horn <jannh@google.com>, 
- Pedro Falcato <pfalcato@suse.de>, Kees Cook <kees@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, linux-mips@vger.kernel.org,
- linux-kernel@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, 
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- xen-devel@lists.xenproject.org, 
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 03/13] mm: convert __get_unmapped_area() to use vma_flags_t
-Message-ID: <akzR7JQuaKEQpH5Y@lucifer>
-References: <cover.1782760670.git.ljs@kernel.org>
- <b1ad7c4443f5cba622e4c48c5a9ef15427001a93.1782760670.git.ljs@kernel.org>
- <DJRZGEZU5ESV.3IP5LEAUQJCBK@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC91A10E482;
+ Tue,  7 Jul 2026 10:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783420969; x=1814956969;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=kaP8tHjcW0A9pGpz3ksd9zt0ofOEKXJKf9UEC9INPjw=;
+ b=D7DOEghC0+lawCZE6AQrWQMbcQ1pQoFh6JU3yYlaXkwc/iQuBVvrHrUq
+ KzOWuIh5qFCl0vFNkZ2jmUeN4iE2KaPwYRRZDW53XgnlDdBxROiNjhA4X
+ koyNlnKi8G8uQWwjy7ERv2Ec2t8wNijSauZ9yD/MjkYh6Yeomf4MDUZ2T
+ t1Paa6iCoKT0NMU9nb/5qlykv8rk9H4fkQkjqij6JU8yPybFsxCgsme2N
+ KZgulcz9VGBHw35xgxKMFKxQdVDfMLuhuYYpMywdTU3u9gd1Ko1F9aZQt
+ UvueRBGiIft37unQpurA01krIr0ZVGeVtmtkG+PJyG85evxgsilmYeHQD Q==;
+X-CSE-ConnectionGUID: ij6/mVYgRpOR6JgqL7Q+FA==
+X-CSE-MsgGUID: 9NgCI4WlTByhjlFEidLtqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="84254337"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84254337"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 03:42:48 -0700
+X-CSE-ConnectionGUID: C2RiHyptRz6MveJaDbAikQ==
+X-CSE-MsgGUID: MeCBRJYvTXmMTIIpZ9ZHrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="257541468"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
+ by ORVIESA003-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2026 03:42:45 -0700
+Date: Tue, 7 Jul 2026 12:42:42 +0200
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Cc: "Sokolowski, Jan" <jan.sokolowski@intel.com>,
+ "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ "kernel-dev@igalia.com" <kernel-dev@igalia.com>
+Subject: Re: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+Message-ID: <20260707104242.teljyquxek3hdppm@kamilkon-DESK.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ "Sokolowski, Jan" <jan.sokolowski@intel.com>,
+ "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ "kernel-dev@igalia.com" <kernel-dev@igalia.com>
+References: <20260702130108.1397444-1-cascardo@igalia.com>
+ <IA4PR11MB9251D24975F81CFD242F88F299F42@IA4PR11MB9251.namprd11.prod.outlook.com>
+ <akeamIYrRSTph5St@quatroqueijos.cascardo.eti.br>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <DJRZGEZU5ESV.3IP5LEAUQJCBK@nvidia.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <akeamIYrRSTph5St@quatroqueijos.cascardo.eti.br>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,85 +98,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 06, 2026 at 10:28:24PM -0400, Zi Yan wrote:
-> On Mon Jun 29, 2026 at 3:25 PM EDT, Lorenzo Stoakes wrote:
-> > Update __get_unmapped_area() to be parameterised by vma_flags_t rather than
-> > vm_flags_t as part of the effort to move VMA flags from a system word to a
-> > bitmap.
-> >
-> > We cascade the changes up to arch_get_unmapped_area_topdown() and
-> > arch_get_unmapped_area(), where, for now, we use vma_flags_to_legacy() in
-> > order to propagate the VMA flags.
-> >
-> > No functional change intended.
-> >
-> > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> > ---
-> >  fs/hugetlbfs/inode.c     |  3 ++-
-> >  include/linux/huge_mm.h  | 10 +++++-----
-> >  include/linux/mm.h       |  6 ++++--
-> >  include/linux/sched/mm.h | 12 ++++++------
-> >  mm/huge_memory.c         | 21 ++++++++++++---------
-> >  mm/mmap.c                | 27 ++++++++++++++-------------
-> >  6 files changed, 43 insertions(+), 36 deletions(-)
-> >
-> <snip>
->
-> > diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
-> > index 95d0040df584..b301ec90740a 100644
-> > --- a/include/linux/sched/mm.h
-> > +++ b/include/linux/sched/mm.h
-> > @@ -193,12 +193,12 @@ unsigned long mm_get_unmapped_area(struct file *filp, unsigned long addr,
-> >  				   unsigned long len, unsigned long pgoff,
-> >  				   unsigned long flags);
-> >
-> > -unsigned long mm_get_unmapped_area_vmflags(struct file *filp,
-> > -					   unsigned long addr,
-> > -					   unsigned long len,
-> > -					   unsigned long pgoff,
-> > -					   unsigned long flags,
-> > -					   vm_flags_t vm_flags);
-> > +unsigned long mm_get_unmapped_area_vmaflags(struct file *filp,
-> > +					    unsigned long addr,
-> > +					    unsigned long len,
-> > +					    unsigned long pgoff,
-> > +					    unsigned long flags,
-> > +					    vma_flags_t vma_flags);
->
-> Want to use two-tab indentation while at it?
+Hi Thadeu,
+On 2026-07-03 at 08:18:48 -0300, Thadeu Lima de Souza Cascardo wrote:
+> On Fri, Jul 03, 2026 at 09:54:14AM +0000, Sokolowski, Jan wrote:
+> > I don't know if that's a problem or not, but your patches in patch series are titled as v2 instead of v3, at least that's how I see them.
+> > 
+> > Jan
+> > 
+> 
+> I decided to name this one v3, though I did not call the previous one v2,
+> because I have submitted a patchset earlier that was on top of Thomas
+> Hellström patchset.
+> 
+> I think it tracks the history of the patchset better. I am sorry if this
+> got confusing.
+> 
+> Cascardo.
+> 
 
-Yeah sure will fix on respin!
+Please keep versioning the same across series, if your cover letter
+has v3, all patches in series should also have v3.
 
->
-> <snip>
->
-> > @@ -812,19 +811,20 @@ arch_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
-> >  }
-> >  #endif
-> >
-> > -unsigned long mm_get_unmapped_area_vmflags(struct file *filp, unsigned long addr,
-> > -					   unsigned long len, unsigned long pgoff,
-> > -					   unsigned long flags, vm_flags_t vm_flags)
-> > +unsigned long mm_get_unmapped_area_vmaflags(struct file *filp, unsigned long addr,
-> > +					    unsigned long len, unsigned long pgoff,
-> > +					    unsigned long flags, vma_flags_t vma_flags)
->
-> Ditto.
+Regards,
+Kamil
 
-Ack will fix!
-
->
-> LGTM.
->
-> Reviewed-by: Zi Yan <ziy@nvidia.com>
-
-Thanks!
-
->
->
-> --
-> Best Regards,
-> Yan, Zi
->
-
-Cheers, Lorenzo
+> > > -----Original Message-----
+> > > From: igt-dev <igt-dev-bounces@lists.freedesktop.org> On Behalf Of Thadeu
+> > > Lima de Souza Cascardo
+> > > Sent: Thursday, July 2, 2026 3:01 PM
+> > > To: igt-dev@lists.freedesktop.org
+> > > Cc: siqueira@igalia.com; Thadeu Lima de Souza Cascardo
+> > > <cascardo@igalia.com>; dri-devel@lists.freedesktop.org; amd-
+> > > gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Christian Koenig
+> > > <christian.koenig@amd.com>; maarten.lankhorst@linux.intel.com; Thomas
+> > > Hellström <thomas.hellstrom@linux.intel.com>; Kamil Konieczny
+> > > <kamil.konieczny@linux.intel.com>; Janusz Krzysztofik
+> > > <janusz.krzysztofik@linux.intel.com>; Vitaly Prosyak
+> > > <vitaly.prosyak@amd.com>; Natalie Vock <natalie.vock@gmx.de>; Tvrtko
+> > > Ursulin <tvrtko.ursulin@igalia.com>; kernel-dev@igalia.com
+> > > Subject: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+> > > 
+> > > v3 TLDR:
+> > > Sending again for fixes when running on top of Xe.
+> > > 
+> > > This patchset is based on the work of Thomas Hellström at [1] and a
+> > > followup I have submitted at [2]. This is now a v3, since I submitted [6].
+> > > 
+> > > With this version, I reverted the order in which to apply the patchsets, as
+> > > this one adds the infrastructure and the drivers mechanisms, and a test for
+> > > dmem.current and its behavior around dmem.max that is currently
+> > > supported
+> > > in the kernel.
+> > > 
+> > > As for the new dmem.max eviction behavior, introduced by [3], it has been
+> > > pushed to a branch at [4]. If preferred, I can submit the two patches
+> > > independently.
+> > > 
+> > > I have run the tests, including the ones that test dmem.max eviction
+> > > behavior on a system with a 1GiB VRAM amdgpu card. Rodrigo Siqueira
+> > > helped
+> > > me run it on a Xe system. We have applied the patchset at [3] on top of
+> > > current linux origin/master [5], with a fixup for the amdgpu driver.
+> > > 
+> > > Now, for the changes since v1 [2]:
+> > > - Changed the test name from drv_dmem_cgroups to dmem_cgroups.
+> > > - Have system includes before igt ones.
+> > > - Documented the current SUBTEST.
+> > > - Changed free_vram driver hook to only release a given BO. This allows for
+> > >   the eviction trigger by a new allocation added by write_eviction_nonblock
+> > >   subtest.
+> > > - Changed allocate_vram to keep more state necessary for releasing a single
+> > > BO.
+> > > - Added a global free_vram helper to free all allocated VRAM.
+> > > 
+> > > Compared to v3 of [1]:
+> > > - I have kept wait_for_usage_drop as release can be lazy and we test for it
+> > >   on test_current SUBTEST, but had USAGE_DROP_TIMEOUT_MS be a little
+> > >   longer.
+> > > - Changed BO_SIZE and EVICT_STEP to allow for more than two eviction steps
+> > >   on a 1GiB VRAM system.
+> > > - Reduced USAGE_SLACK to avoid false positives, but still allow for some
+> > >   page table accounting.
+> > > 
+> > > Compared to v2 of this one [6]:
+> > > 
+> > > - Ignore -ENOMEM and -ENOSPC when trying to fill VRAM.
+> > > - When limiting max memory, allow for some slack, as there might be some
+> > >   overhead.
+> > > - On Xe, allocate GEM object with no deferred backing, and skip binding.
+> > > 
+> > > [1] https://patchwork.freedesktop.org/series/163935/#rev3
+> > > [2] https://patchwork.freedesktop.org/series/166496/
+> > > [3] https://lore.kernel.org/dri-devel/20260611173301.17473-1-
+> > > thomas.hellstrom@linux.intel.com/
+> > > [4] https://gitlab.freedesktop.org/cascardo/igt-gpu-tools/-
+> > > /commits/dmem_max?ref_type=heads
+> > > [5] 502d801f0ab0 ("Merge tag 'erofs-for-7.2-rc1' of
+> > > git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs")
+> > > [6] https://lore.kernel.org/dri-devel/20260623174319.4138648-1-
+> > > cascardo@igalia.com/
+> > > 
+> > > 
+> > > Thadeu Lima de Souza Cascardo (4):
+> > >   lib/xe: Introduce dmem driver and implement Xe support
+> > >   lib/amdgpu: add amdgpu_cgroup_region_name
+> > >   lib/amdgpu: add amdgpu support to igt_dmem_driver
+> > >   tests/dmem_cgroups: add test for dmem.current
+> > > 
+> > > Thomas Hellström (3):
+> > >   lib/igt_cgroup: add cgroup v2 and dmem controller helpers
+> > >   tests/cgroup_dmem: add dmem cgroup controller test
+> > >   lib/xe: add xe_cgroup_region_name() helper
+> > > 
+> > >  lib/amdgpu/amd_dmem.c   |  99 +++++++
+> > >  lib/amdgpu/amd_memory.c |  25 ++
+> > >  lib/amdgpu/amd_memory.h |   2 +
+> > >  lib/igt.h               |   1 +
+> > >  lib/igt_cgroup.c        | 638 ++++++++++++++++++++++++++++++++++++++++
+> > >  lib/igt_cgroup.h        |  56 ++++
+> > >  lib/igt_dmem_driver.h   |  25 ++
+> > >  lib/meson.build         |   3 +
+> > >  lib/xe/xe_dmem.c        | 143 +++++++++
+> > >  lib/xe/xe_query.c       |  32 ++
+> > >  lib/xe/xe_query.h       |   2 +
+> > >  tests/cgroup_dmem.c     |  92 ++++++
+> > >  tests/dmem_cgroups.c    | 245 +++++++++++++++
+> > >  tests/meson.build       |   2 +
+> > >  14 files changed, 1365 insertions(+)
+> > >  create mode 100644 lib/amdgpu/amd_dmem.c
+> > >  create mode 100644 lib/igt_cgroup.c
+> > >  create mode 100644 lib/igt_cgroup.h
+> > >  create mode 100644 lib/igt_dmem_driver.h
+> > >  create mode 100644 lib/xe/xe_dmem.c
+> > >  create mode 100644 tests/cgroup_dmem.c
+> > >  create mode 100644 tests/dmem_cgroups.c
+> > > 
+> > > --
+> > > 2.47.3
+> > 
