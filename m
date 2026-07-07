@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AB5DC43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:08:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91BA7C43602
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:08:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EADA10E394;
-	Tue,  7 Jul 2026 22:08:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53D5010E520;
+	Tue,  7 Jul 2026 22:08:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eWKf9ess";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S7beMW+B";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DAF410EF2D
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:08:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E58110E52D
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:08:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783462122; x=1814998122;
+ t=1783462124; x=1814998124;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n0mSe4RoSybG1Gs+xYcT/asxvsRSwWYshrdpv/hm7YI=;
- b=eWKf9essgXlLwfdb/6MQJGz1vnyLEogyd+pa77kGMl31SYIJqWMp65wS
- 3K9mAgN8FO8qsjD5KsbFSUTTSsJBK2nfww0gZsPjZDG3bGp6YkRGrhoO2
- Yn2UxnDo+vhO0QR/hSQkba/NfDLzuBvTgD5J2MsfcS/z4Ixe0SJkHzNAz
- x5we8RsgS9FnEX6qlVD4czNBPyMU6/md+PGxbDtli1Jl2yZYCMZb6wH6T
- ea3jsU+GXeLPoyYjtbcag3UobmMSzs7cttEkWh/QVO+faVUb59/+x7LgJ
- zUHv6dem/cbKbzFSCuXjYJihzOmePPxaY1voGE1d35lj0BQ65L2N1+H0h A==;
-X-CSE-ConnectionGUID: RoLX+3IWTeGObnJ9AuCWiQ==
-X-CSE-MsgGUID: TZqzxALyTQy4/T8MUqZqgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84176552"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84176552"
+ bh=D0RDWDtSUDZ+AxhOtIGWZOnecnAcgKd6CnmYz654s6E=;
+ b=S7beMW+BhLJbivyPa4PaopxgssrcJPddtlrP7ANHr8lXrFpdTtnj4xZf
+ Up61UmeGWpxo7vnacgPcJISRBBpaczhfYjwo5KJp1RUF2Ie8IO7LVXil3
+ 3T5bcMlDpOGVhUzEYb/8rp32DF/olp8tQ/ZaO0hjV9YLMr6QAA4pU/zKf
+ WrskhfG0xIxFkA5152GdgtWeUMDO1kHbrInM9aIBGMk2VbBRXKYGqIxH5
+ Jo/LV2VB7Ixj6iuEL1yCctqV4gv1ueoUc2dQp2zgAlmLX5HTfvMPpcKOa
+ fLZ+PXaRQSoOM5PV3lI1AT3kEe13hivqjFdiDLhzBk8ZWW7W7FTdkl62e Q==;
+X-CSE-ConnectionGUID: HGX07/QkRNGmngyD9xNGqA==
+X-CSE-MsgGUID: 6V1GtHK4S9W/8fA66oQeDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84176553"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84176553"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:08:42 -0700
-X-CSE-ConnectionGUID: 3xv3KXbORO2iKJTKYvDYNA==
-X-CSE-MsgGUID: UajH6nhXQbKirnngaRGYOg==
+ 07 Jul 2026 15:08:43 -0700
+X-CSE-ConnectionGUID: K8qv/SprTXiIdK4s11WaIQ==
+X-CSE-MsgGUID: eedc1JsBRWOM0Vh8TOfTGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="278487688"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="278487694"
 Received: from ssharm2x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.34.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:08:41 -0700
+ 07 Jul 2026 15:08:42 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
-Subject: [PATCH v2 12/13] drm/xe/tests: Add migration packet test
-Date: Wed,  8 Jul 2026 00:08:14 +0200
-Message-ID: <20260707220816.677-13-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 13/13] drm/xe/pf: Handle migration descriptor using KLV
+ helpers
+Date: Wed,  8 Jul 2026 00:08:15 +0200
+Message-ID: <20260707220816.677-14-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260707220816.677-1-michal.wajdeczko@intel.com>
 References: <20260707220816.677-1-michal.wajdeczko@intel.com>
@@ -69,126 +70,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-One of our migration data packet (descriptor) is based on the KLV
-encoding. Add a simple descriptor initialization test, as we plan
-to use new KLV helper functions there.
+As we plan to add more KLVs to the migration descriptor packet,
+to simplify such extensions and avoid coding errors, start using
+our KLV helpers for packet preparing and parsing.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
 ---
-v2: avoid KUNIT_ASSERT under mutex (Sashiko/Michal)
----
- .../gpu/drm/xe/tests/xe_sriov_packet_kunit.c  | 88 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_packet.c          |  4 +
- 2 files changed, 92 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c
+ drivers/gpu/drm/xe/xe_sriov_packet.c | 106 ++++++++++++++-------------
+ 1 file changed, 56 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c b/drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c
-new file mode 100644
-index 000000000000..8dcf5e9d3ad2
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_sriov_packet_kunit.c
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+#include <kunit/test-bug.h>
-+
-+#include "xe_device.h"
-+#include "xe_guc_klv_helpers.h"
-+#include "xe_kunit_helpers.h"
-+#include "xe_pci_test.h"
-+
-+#define TEST_VF		VFID(1)
-+
-+static int sriov_packet_test_init(struct kunit *test)
-+{
-+	struct xe_pci_fake_data fake = {
-+		.sriov_mode = XE_SRIOV_MODE_PF,
-+		.platform = XE_PANTHERLAKE, /* we need MEMIRQ */
-+		.subplatform = XE_SUBPLATFORM_NONE,
-+		.graphics_verx100 = 3000,
-+		.media_verx100 = 3000,
-+	};
-+	struct xe_device *xe;
-+
-+	test->priv = &fake;
-+	xe_kunit_helper_xe_device_test_init(test);
-+	xe = test->priv;
-+
-+	/* pretend we can support at least VF1 */
-+	xe->sriov.pf.device_total_vfs = 1;
-+	xe->sriov.pf.driver_max_vfs = 1;
-+
-+	KUNIT_ASSERT_EQ(test, 0, xe_sriov_init(xe));
-+	KUNIT_ASSERT_TRUE(test, xe_sriov_pf_migration_supported(xe));
-+
-+	return 0;
-+}
-+
-+static void test_descriptor_init(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_sriov_packet **desc;
-+
-+	/* note: with lock held we should avoid KUNIT_ASSERT() */
-+	guard(mutex)(pf_migration_mutex(xe, TEST_VF));
-+
-+	KUNIT_EXPECT_EQ(test, 0, pf_descriptor_init(xe, TEST_VF));
-+	desc = pf_pick_descriptor(xe, TEST_VF);
-+	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, *desc);
-+	if (!*desc)
-+		return;
-+	KUNIT_EXPECT_NE(test, (*desc)->hdr.version, 0);
-+	KUNIT_EXPECT_EQ(test, (*desc)->hdr.version, XE_SRIOV_PACKET_SUPPORTED_VERSION);
-+	KUNIT_EXPECT_EQ(test, (*desc)->hdr.type, XE_SRIOV_PACKET_TYPE_DESCRIPTOR);
-+	KUNIT_EXPECT_NE(test, (*desc)->hdr.size, 0);
-+	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, (*desc)->vaddr);
-+	if (!(*desc)->vaddr)
-+		return;
-+	KUNIT_EXPECT_EQ(test, 0, xe_sriov_packet_process_descriptor(xe, TEST_VF, *desc));
-+
-+	switch ((*desc)->hdr.version) {
-+	case 1:
-+		/* v1 is KLV based */
-+		KUNIT_EXPECT_TRUE(test, IS_ALIGNED((*desc)->hdr.size, sizeof(u32)));
-+		/* v1 has at least DEVID and REVID KLVs */
-+		KUNIT_EXPECT_LE(test, 2,
-+				xe_guc_klv_count((*desc)->vaddr,
-+						 (*desc)->hdr.size / sizeof(u32)));
-+		break;
-+	default:
-+		kunit_skip(test, "missing test code for version %u\n", (*desc)->hdr.version);
-+	}
-+}
-+
-+static struct kunit_case sriov_packet_test_cases[] = {
-+	KUNIT_CASE(test_descriptor_init),
-+	{}
-+};
-+
-+static struct kunit_suite sriov_packet_suite = {
-+	.name = "sriov_packet",
-+	.test_cases = sriov_packet_test_cases,
-+	.init = sriov_packet_test_init,
-+};
-+
-+kunit_test_suite(sriov_packet_suite);
 diff --git a/drivers/gpu/drm/xe/xe_sriov_packet.c b/drivers/gpu/drm/xe/xe_sriov_packet.c
-index e581e8e6c1d1..558a3697d639 100644
+index 558a3697d639..e9ae9c9744ea 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_packet.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_packet.c
-@@ -516,3 +516,7 @@ int xe_sriov_packet_save_init(struct xe_device *xe, unsigned int vfid)
+@@ -360,8 +360,7 @@ static int pf_descriptor_init(struct xe_device *xe, unsigned int vfid)
+ {
+ 	struct xe_sriov_packet **desc = pf_pick_descriptor(xe, vfid);
+ 	struct xe_sriov_packet *data;
+-	unsigned int len = 0;
+-	u32 *klvs;
++	u32 *klvs, *end;
+ 	int ret;
+ 
+ 	data = xe_sriov_packet_alloc(xe);
+@@ -376,20 +375,55 @@ static int pf_descriptor_init(struct xe_device *xe, unsigned int vfid)
+ 	}
+ 
+ 	klvs = data->vaddr;
+-	klvs[len++] = PREP_GUC_KLV_CONST(MIGRATION_KLV_DEVICE_DEVID_KEY,
+-					 MIGRATION_KLV_DEVICE_DEVID_LEN);
+-	klvs[len++] = xe->info.devid;
+-	klvs[len++] = PREP_GUC_KLV_CONST(MIGRATION_KLV_DEVICE_REVID_KEY,
+-					 MIGRATION_KLV_DEVICE_REVID_LEN);
+-	klvs[len++] = xe->info.revid;
++	end = klvs + MIGRATION_DESCRIPTOR_DWORDS;
+ 
+-	xe_assert(xe, len == MIGRATION_DESCRIPTOR_DWORDS);
++	klvs = xe_guc_klv_encode_u32(klvs, end - klvs,
++				     MIGRATION_KLV_DEVICE_DEVID_KEY,
++				     xe->info.devid);
++	klvs = xe_guc_klv_encode_u32(klvs, end - klvs,
++				     MIGRATION_KLV_DEVICE_REVID_KEY,
++				     xe->info.revid);
++	xe_assert(xe, !IS_ERR(klvs));
++	xe_assert(xe, klvs == end);
+ 
+ 	*desc = data;
  
  	return 0;
  }
+ 
++static int descriptor_decoder(void *arg, u16 key, u16 len, const u32 *value)
++{
++	struct xe_device *xe = arg;
 +
-+#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_sriov_packet_kunit.c"
-+#endif
++	xe_sriov_dbg_verbose(xe, "found KLV %#x %s\n", key, xe_guc_klv_key_to_string(key));
++
++	switch (key) {
++	case MIGRATION_KLV_DEVICE_DEVID_KEY:
++		if (*value != xe->info.devid) {
++			xe_sriov_warn(xe, "Aborting migration, devid mismatch %#06x!=%#06x\n",
++				      *value, xe->info.devid);
++			return -ENODEV;
++		}
++		break;
++	case MIGRATION_KLV_DEVICE_REVID_KEY:
++		if (*value != xe->info.revid) {
++			xe_sriov_warn(xe, "Aborting migration, revid mismatch %#06x!=%#06x\n",
++				      *value, xe->info.revid);
++			return -ENODEV;
++		}
++		break;
++	default:
++		if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
++			struct drm_printer p = xe_dbg_printer(xe);
++
++			xe_sriov_dbg(xe, "unexpected KLV %#x in descriptor!\n", key);
++			xe_guc_klv_print_one(key, len, value, &p);
++		}
++		return 0;
++	}
++	return 1;
++}
++
+ /**
+  * xe_sriov_packet_process_descriptor() - Process migration data descriptor packet.
+  * @xe: the &xe_device
+@@ -406,6 +440,7 @@ int xe_sriov_packet_process_descriptor(struct xe_device *xe, unsigned int vfid,
+ {
+ 	u32 num_dwords = data->hdr.size / sizeof(u32);
+ 	u32 *klvs = data->vaddr;
++	int ret;
+ 
+ 	xe_assert(xe, data->hdr.type == XE_SRIOV_PACKET_TYPE_DESCRIPTOR);
+ 
+@@ -415,47 +450,18 @@ int xe_sriov_packet_process_descriptor(struct xe_device *xe, unsigned int vfid,
+ 		return -EINVAL;
+ 	}
+ 
+-	while (num_dwords >= GUC_KLV_LEN_MIN) {
+-		u32 key = FIELD_GET(GUC_KLV_0_KEY, klvs[0]);
+-		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
+-
+-		klvs += GUC_KLV_LEN_MIN;
+-		num_dwords -= GUC_KLV_LEN_MIN;
+-
+-		if (len > num_dwords) {
+-			xe_sriov_warn(xe, "Aborting migration, truncated KLV %#x, len %u\n",
+-				      key, len);
+-			return -EINVAL;
+-		}
+-
+-		switch (key) {
+-		case MIGRATION_KLV_DEVICE_DEVID_KEY:
+-			if (*klvs != xe->info.devid) {
+-				xe_sriov_warn(xe,
+-					      "Aborting migration, devid mismatch %#06x!=%#06x\n",
+-					      *klvs, xe->info.devid);
+-				return -ENODEV;
+-			}
+-			break;
+-		case MIGRATION_KLV_DEVICE_REVID_KEY:
+-			if (*klvs != xe->info.revid) {
+-				xe_sriov_warn(xe,
+-					      "Aborting migration, revid mismatch %#06x!=%#06x\n",
+-					      *klvs, xe->info.revid);
+-				return -ENODEV;
+-			}
+-			break;
+-		default:
+-			xe_sriov_dbg(xe,
+-				     "Skipping unknown migration KLV %#x, len=%u\n",
+-				     key, len);
+-			print_hex_dump_bytes("desc: ", DUMP_PREFIX_OFFSET, klvs,
+-					     min(SZ_64, len * sizeof(u32)));
+-			break;
+-		}
+-
+-		klvs += len;
+-		num_dwords -= len;
++	ret = xe_guc_klv_count(klvs, num_dwords);
++	if (ret < 0) {
++		xe_sriov_warn(xe, "Aborting migration, corrupted descriptor KLVs (%pe)\n",
++			      ERR_PTR(ret));
++		return ret;
++	}
++
++	ret = xe_guc_klv_parser(klvs, num_dwords, xe, descriptor_decoder);
++	if (ret < 0) {
++		xe_sriov_warn(xe, "Aborting migration, descriptor parsing failed (%pe)\n",
++			      ERR_PTR(ret));
++		return ret;
+ 	}
+ 
+ 	return 0;
 -- 
 2.47.1
 
