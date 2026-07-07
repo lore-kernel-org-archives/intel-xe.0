@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8064BC44503
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:08:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3225C43602
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:08:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40FCC10E52D;
-	Tue,  7 Jul 2026 22:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E0B10E512;
+	Tue,  7 Jul 2026 22:08:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ViazUWaq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VrXvkhpR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0B910E52B
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:08:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E001F10E512
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783462111; x=1814998111;
+ t=1783462113; x=1814998113;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pdmM1PaBkozYpQLmliQROU6pxvJZypE0WCEby7bGjzI=;
- b=ViazUWaqxrvWnAfgUVbO+bqsl+k5klnM6Ny4GF82wc67e88jwLbc7/gE
- 7SA95kYDfAwiq2T27R8YcCIuQq7uoAPTXhWb4kWp1OCZu5HuArtjDGqH9
- DA3ZC2mpUEwbUyWHeNkXXSufOkQ0ZPo13ZWfocF+WxJ+KEKgHcEIUuLfi
- KlNay4qhSrl1PIlDyvRtjGLoEihawi4Z/k/Mwc/fL84Rl6ZzUX6lPN1UC
- SNAivWBmYu+qs55RJ4HBh4qk7I9LrdkbwcKrvsTyvGzNxBklV+K3iKRy9
- anAIE2IMgDJViPrta1Oqy3Z49RnA5vFq7rnH6Eig/RfKUXPlLjOJp0BY6 Q==;
-X-CSE-ConnectionGUID: EZLaTZuFR6iJy9giMuhnjw==
-X-CSE-MsgGUID: dPOb7wcJShCOiVVa3tToUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84176518"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84176518"
+ bh=H5B84Ld6lkq1S/QHnXd+fioLq/IxZ7rYNY+/83hJ834=;
+ b=VrXvkhpRc+aqosQ9GiI4/NnH8nRMHrs/GY0HKFRWAVIX0gyZ+rf29kbB
+ ijyZuWSjgT1aINGEUNiLKTMTp4B/NWZZcApjHuZbZ4WrG5whboxV2Bx2u
+ Shbku8u76JLJqrCNDN9Yc97h+paENh3KkYjs/nqeurxL6KijbDrAdZo68
+ +BO92JM/ZggeV3PHBpMWR3Q07Q9v0UeP8OlcGU8enDVClHCfoBeK8/YaV
+ WntyKKrSxYhnFJv/sO33qmcgURY7sQSAHeDYsbK4HhllCKIPmTWJM0g9c
+ +t78v4xdDM0XcLxyLKdWjQn95LL80pFky06T/JE6WNjSOqaHYY0k1k109 w==;
+X-CSE-ConnectionGUID: AvgpXxw8QUymuqlQBJOLYg==
+X-CSE-MsgGUID: uer8whKNS2+QWTI6OOFlXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84176529"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84176529"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:08:30 -0700
-X-CSE-ConnectionGUID: 3dSbcwNHTkmkpCvGBIL/Vg==
-X-CSE-MsgGUID: tuaqaJp0SNaVCI+AYyOO2Q==
+ 07 Jul 2026 15:08:33 -0700
+X-CSE-ConnectionGUID: xeMkeq5mQD+BEhrLh8qUVA==
+X-CSE-MsgGUID: b/70WU6xTFazlXifxFwcCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="278487655"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="278487664"
 Received: from ssharm2x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.34.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:08:29 -0700
+ 07 Jul 2026 15:08:32 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
-Subject: [PATCH v2 03/13] drm/xe/guc: Add basic KLV encoding helpers
-Date: Wed,  8 Jul 2026 00:08:05 +0200
-Message-ID: <20260707220816.677-4-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2 05/13] drm/xe/guc: Add object KLV encoding helper
+Date: Wed,  8 Jul 2026 00:08:07 +0200
+Message-ID: <20260707220816.677-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260707220816.677-1-michal.wajdeczko@intel.com>
 References: <20260707220816.677-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,93 +67,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We plan to encode more data as KLVs. Add helpers for that.
+We plan to encode larger objects as single KLV or set of KLVs.
+Add helper for that.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 56 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.h |  3 ++
- 2 files changed, 59 insertions(+)
+v2: limit avail to avoid unexpected truncation (Michal/Sashiko)
+---
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 39 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.h |  2 ++
+ 2 files changed, 41 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index f672f4947768..5f94852a906f 100644
+index 45471738c150..5ad51a8ff0de 100644
 --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
 +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -187,3 +187,59 @@ int xe_guc_klv_count(const u32 *klvs, u32 num_dwords)
- 
- 	return num_dwords ? -ENODATA : num_klvs;
+@@ -278,3 +278,42 @@ u32 *xe_guc_klv_encode_string(u32 *klvs, u32 avail, u16 key, const char *s)
+ 	strscpy_pad((void *)klvs, s, to_num_bytes(len));
+ 	return klvs + len;
  }
 +
-+static u16 to_num_dwords(size_t size)
-+{
-+	return round_up(size, sizeof(u32)) / sizeof(u32);
-+}
-+
 +/**
-+ * xe_guc_klv_encode_u32() - Encode 32-bit value as KLV.
++ * xe_guc_klv_encode_object() - Encode object using custom encoder as single KLV.
 + * @klvs: the buffer where to place KLV
 + * @avail: number of dwords (u32) available in the buffer
 + * @key: key to be used
-+ * @value: value to be encoded
++ * @obj: opaque object pointer
++ * @encoder: function pointer to the custom encoder
 + *
 + * Return: pointer to the buffer location past the encoded KLV or
 + *         an ERR_PTR if there was no space to encode the KLV.
 + */
-+u32 *xe_guc_klv_encode_u32(u32 *klvs, u32 avail, u16 key, u32 value)
++u32 *xe_guc_klv_encode_object(u32 *klvs, u32 avail, u16 key, const void *obj,
++			      u32 *(*encoder)(u32 *klvs, u32 avail, const void *obj))
 +{
-+	u16 len = to_num_dwords(sizeof(u32));
++	u32 *end;
 +
 +	if (IS_ERR(klvs))
 +		return klvs;
 +
-+	if (avail < GUC_KLV_LEN_MIN + len)
++	if (avail < GUC_KLV_LEN_MIN)
 +		return ERR_PTR(-ENOSPC);
 +
-+	*klvs++ = PREP_GUC_KLV(key, len);
-+	*klvs++ = value;
-+	return klvs;
-+}
++	if (avail > GUC_KLV_LEN_MIN + FIELD_MAX(GUC_KLV_0_LEN))
++		avail = GUC_KLV_LEN_MIN + FIELD_MAX(GUC_KLV_0_LEN);
 +
-+/**
-+ * xe_guc_klv_encode_u64() - Encode 64-bit value as KLV.
-+ * @klvs: the buffer where to place KLV
-+ * @avail: number of dwords (u32) available in the buffer
-+ * @key: key to be used
-+ * @value: value to be encoded
-+ *
-+ * Return: pointer to the buffer location past the encoded KLV or
-+ *         an ERR_PTR if there was no space to encode the KLV.
-+ */
-+u32 *xe_guc_klv_encode_u64(u32 *klvs, u32 avail, u16 key, u64 value)
-+{
-+	u16 len = to_num_dwords(sizeof(u64));
++	end = encoder(klvs + GUC_KLV_LEN_MIN, avail - GUC_KLV_LEN_MIN, obj);
++	if (IS_ERR(end))
++		return end;
 +
-+	if (IS_ERR(klvs))
-+		return klvs;
++	if (WARN_ON(end < klvs + GUC_KLV_LEN_MIN))
++		return ERR_PTR(-EPIPE);
 +
-+	if (avail < GUC_KLV_LEN_MIN + len)
-+		return ERR_PTR(-ENOSPC);
++	if (WARN_ON(end > klvs + avail))
++		return ERR_PTR(-EFBIG);
 +
-+	*klvs++ = PREP_GUC_KLV(key, len);
-+	*klvs++ = lower_32_bits(value);
-+	*klvs++ = upper_32_bits(value);
-+	return klvs;
++	*klvs = PREP_GUC_KLV(key, end - (klvs + GUC_KLV_LEN_MIN));
++	return end;
 +}
 diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
-index c7b7e61c1250..713ef7f7b9f2 100644
+index 1c576456efc5..855805f4463d 100644
 --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
 +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
-@@ -17,6 +17,9 @@ void xe_guc_klv_print_one(u16 key, u16 len, const u32 *value, struct drm_printer
- void xe_guc_klv_print(const u32 *klvs, u32 num_dwords, struct drm_printer *p);
- int xe_guc_klv_count(const u32 *klvs, u32 num_dwords);
+@@ -20,6 +20,8 @@ int xe_guc_klv_count(const u32 *klvs, u32 num_dwords);
+ u32 *xe_guc_klv_encode_u32(u32 *klvs, u32 avail, u16 key, u32 value);
+ u32 *xe_guc_klv_encode_u64(u32 *klvs, u32 avail, u16 key, u64 value);
+ u32 *xe_guc_klv_encode_string(u32 *klvs, u32 avail, u16 key, const char *s);
++u32 *xe_guc_klv_encode_object(u32 *klvs, u32 avail, u16 key, const void *obj,
++			      u32 *(*encoder)(u32 *klvs, u32 avail, const void *obj));
  
-+u32 *xe_guc_klv_encode_u32(u32 *klvs, u32 avail, u16 key, u32 value);
-+u32 *xe_guc_klv_encode_u64(u32 *klvs, u32 avail, u16 key, u64 value);
-+
  /**
   * PREP_GUC_KLV - Prepare KLV header value based on provided key and len.
-  * @key: KLV key
 -- 
 2.47.1
 
