@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0F8EC43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:08:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 807BCC43602
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 22:08:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A556610EF23;
-	Tue,  7 Jul 2026 22:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 445C610EF25;
+	Tue,  7 Jul 2026 22:08:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zr+9xv26";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VbmbcaFy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2D410EF23
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:08:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C460610EF25
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 22:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783462116; x=1814998116;
+ t=1783462117; x=1814998117;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hIgLkWGnaTF9DZDMHmcvDFJ9zGYa+4zLm+LuQRRgmj4=;
- b=Zr+9xv26duy8iAYoggdNetYIOe2pQg2pH3kS4iOEaaglOviNE8qcPGhR
- FNLB+oR/any9lxyiWEJj9hIVwRVbyQ1JI9XillYubGdemGzyQZBKl59L5
- 02wLepdle1uItq84T0QOlnKMJCqszzxmaW41dejA221RLdBx20ajGtRhS
- JGWX4Cva38znnva9FEZW/8ZjdqCAudilXiSepw6OETjZBMsLCRbJQJgWx
- FVulKVHocgH0T7OAimWeXxfanljzxQqQ6tKZlgRD84AZhu2pI5ejtMkkO
- H8p6e2SqmFTq0OOKwZQApFbirMql+Co5Um4T04axWlN63cNgobKB3COXV w==;
-X-CSE-ConnectionGUID: oEcOlDF/RTil84xOFGEWnw==
-X-CSE-MsgGUID: GAfQbNe/Q4WYUdqGoZzlzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84176541"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84176541"
+ bh=5D1uHEFVKnVewnkdYVcywRdd5IgqaHQHG3KEYyQw1kI=;
+ b=VbmbcaFyyxg2SpLAJdeLDynlUxmNKsjRXNdqLNHhuoXJzw/vEkUyzoSj
+ xifAhx3H7xuNnJSfXWVvghBhzF6M5eEuS3bytMs9d2UQDmYv+264cmyho
+ 349dxjrBdA+HmzbFLlbaOzL13ZEQAVCRPBUzg86cgHoLR8t+AOQm4cotF
+ r59/0aM8Oo2LXAmhWCFwUbBF3XkX+3kbS1fn1IswlbEgwbdxRUDjn/Sj5
+ rxj6M3S6wwpoAmkWlabLAoHCCoACJhgDCvBR8CoDo/KJI2mrQNsFPhetA
+ 6Qb7j9cGZMGj7Fk/2EyJT46apbfw9a5RCbkCl9Zj51/csEGotrhii9HUP g==;
+X-CSE-ConnectionGUID: 5KOXT0WbQ32QYsCVbA6fqQ==
+X-CSE-MsgGUID: KFeBhyUITUuuQpiNpGtJlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84176545"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84176545"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:08:36 -0700
-X-CSE-ConnectionGUID: HhbiSUSsTPeGyVbVFdufzw==
-X-CSE-MsgGUID: ZbPgJ7uPRx2WaUOBUslUHQ==
+ 07 Jul 2026 15:08:37 -0700
+X-CSE-ConnectionGUID: 3rDisbEiSU25mpOCbjuhAQ==
+X-CSE-MsgGUID: AqsInTYsQW64j3eVt4r0Dw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="278487670"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="278487674"
 Received: from ssharm2x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.34.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 15:08:34 -0700
+ 07 Jul 2026 15:08:35 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
-Subject: [PATCH v2 07/13] drm/xe/guc: Formalize Reserved KLVs
-Date: Wed,  8 Jul 2026 00:08:09 +0200
-Message-ID: <20260707220816.677-8-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 08/13] drm/xe/tests: Add GuC KLV helpers basic tests
+Date: Wed,  8 Jul 2026 00:08:10 +0200
+Message-ID: <20260707220816.677-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260707220816.677-1-michal.wajdeczko@intel.com>
 References: <20260707220816.677-1-michal.wajdeczko@intel.com>
@@ -69,152 +69,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have already started using few KLV keys from the 0xF000 range
-that, as we have agreed with the GuC team, will not be used in any
-GuC ABI actions. Add definitions for that reserved range and move
-our migration KLVs to new ABI header.
+We will be making more extensive use of GuC KLV helpers. Add simple
+tests to ensure the helpers are working as expected.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h       | 17 +++++++++++++
- drivers/gpu/drm/xe/abi/xe_driver_klvs_abi.h | 27 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c     | 14 +++++++++++
- drivers/gpu/drm/xe/xe_sriov_packet.c        |  7 ++----
- 4 files changed, 60 insertions(+), 5 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/abi/xe_driver_klvs_abi.h
+ .../drm/xe/tests/xe_guc_klv_helpers_kunit.c   | 99 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c       |  4 +
+ 2 files changed, 103 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 644f5a4226d7..2a313eb399e2 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -22,6 +22,7 @@
-  *  |   |       |   - `GuC Scheduling Policies KLVs`_                          |
-  *  |   |       |   - `GuC VGT Policy KLVs`_                                   |
-  *  |   |       |   - `GuC VF Configuration KLVs`_                             |
-+ *  |   |       |   - `GuC Reserved KLVs`_                                     |
-  *  |   |       |                                                              |
-  *  |   +-------+--------------------------------------------------------------+
-  *  |   |  15:0 | **LEN** - length of VALUE (in 32bit dwords)                  |
-@@ -506,4 +507,20 @@ enum xe_guc_klv_ids {
- 	GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG			= 0x900e,
- };
- 
-+/**
-+ * DOC: GuC Reserved KLVs
-+ *
-+ * Range of `GuC KLV`_ keys reserved for internal use by the GuC that will
-+ * never be part of the offcial GuC ABI and can be reused by the drivers.
-+ *
-+ * Currently this range includes 1024 keys starting from:
-+ *
-+ * _`GUC_KLV_RESERVED_RANGE_START` : 0xF000
-+ *
-+ * See `Xe Driver KLVs`_ for the KLVs that the Xe driver is currently using.
-+ */
-+
-+#define GUC_KLV_RESERVED_RANGE_START	0xf000u
-+#define GUC_KLV_RESERVED_RANGE_LEN	1024u
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/abi/xe_driver_klvs_abi.h b/drivers/gpu/drm/xe/abi/xe_driver_klvs_abi.h
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
 new file mode 100644
-index 000000000000..3b557e56892a
+index 000000000000..f87189ef13d5
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/xe_driver_klvs_abi.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: MIT */
++++ b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
+@@ -0,0 +1,99 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#ifndef _ABI_XE_DRIVER_KLVS_ABI_H
-+#define _ABI_XE_DRIVER_KLVS_ABI_H
++#include <kunit/test.h>
++#include <kunit/test-bug.h>
 +
-+#include "abi/guc_klvs_abi.h"
++#define TEST_KEY	(GUC_KLV_RESERVED_RANGE_START + 0x3de)
++#define TEST_PAD	0xdeadbeef
 +
-+/**
-+ * DOC: Xe Driver KLVs
-+ *
-+ * The Xe driver uses the following keys from the `GuC Reserved KLVs`_ range:
-+ *
-+ * _`MIGRATION_KLV_DEVICE_DEVID_KEY` :
-+ *      PCI device ID of the migrated VF.
-+ * _`MIGRATION_KLV_DEVICE_REVID_KEY` :
-+ *      PCI device revision ID of the migrated VF.
-+ */
-+
-+#define MIGRATION_KLV_DEVICE_DEVID_KEY		0xf001u
-+#define MIGRATION_KLV_DEVICE_DEVID_LEN		1u
-+#define MIGRATION_KLV_DEVICE_REVID_KEY		0xf002u
-+#define MIGRATION_KLV_DEVICE_REVID_LEN		1u
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index 723fc6894c37..9225a9066b8a 100644
---- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-+++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_print.h>
- 
- #include "abi/guc_klvs_abi.h"
-+#include "abi/xe_driver_klvs_abi.h"
- #include "xe_guc_klv_helpers.h"
- #include "xe_guc_klv_thresholds_set.h"
- 
-@@ -19,6 +20,11 @@ static bool is_group_key(u16 key)
- 	return false;
- }
- 
-+static bool is_reserved_key(u16 key)
++static void test_count(struct kunit *test)
 +{
-+	return in_range(key, GUC_KLV_RESERVED_RANGE_START, GUC_KLV_RESERVED_RANGE_LEN);
++	u32 value = 0x12345678;
++	u16 key = TEST_KEY;
++	u32 klvs[] = {
++		PREP_GUC_KLV(key + 0, 0),
++		PREP_GUC_KLV(key + 1, 1), value,
++		PREP_GUC_KLV(key + 2, 2), value, value,
++		PREP_GUC_KLV(key + 3, 0),
++		0, /* padding */
++	};
++
++	KUNIT_EXPECT_EQ(test, 0, xe_guc_klv_count(klvs, 0));
++	KUNIT_EXPECT_EQ(test, 1, xe_guc_klv_count(klvs, 1));
++	KUNIT_EXPECT_GT(test, 0, xe_guc_klv_count(klvs, 2));
++	KUNIT_EXPECT_EQ(test, 2, xe_guc_klv_count(klvs, 3));
++	KUNIT_EXPECT_GT(test, 0, xe_guc_klv_count(klvs, 4));
++	KUNIT_EXPECT_GT(test, 0, xe_guc_klv_count(klvs, 5));
++	KUNIT_EXPECT_EQ(test, 3, xe_guc_klv_count(klvs, 6));
++	KUNIT_EXPECT_EQ(test, 4, xe_guc_klv_count(klvs, 7));
++
++	/* 0 is treated as reserved KLV { KEY=0, LEN=0 } */
++	KUNIT_EXPECT_EQ(test, 5, xe_guc_klv_count(klvs, 8));
 +}
 +
- /**
-  * xe_guc_klv_key_to_string - Convert KLV key into friendly name.
-  * @key: the `GuC KLV`_ key
-@@ -78,7 +84,15 @@ const char *xe_guc_klv_key_to_string(u16 key)
- 	MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_threshold_key_to_string_case)
- #undef define_threshold_key_to_string_case
- 
-+	/* driver KLVs */
-+	case MIGRATION_KLV_DEVICE_DEVID_KEY:
-+		return "migration_devid";
-+	case MIGRATION_KLV_DEVICE_REVID_KEY:
-+		return "migration_revid";
++static void test_encode_u32(struct kunit *test)
++{
++	u32 *fail = ERR_PTR(-ENOMEM);
++	u32 value = 0x12345678;
++	u16 key = TEST_KEY;
++	u32 klvs[16];
 +
- 	default:
-+		if (is_reserved_key(key))
-+			return "(reserved)";
- 		return "(unknown)";
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_sriov_packet.c b/drivers/gpu/drm/xe/xe_sriov_packet.c
-index 2ae9eff2a7c0..e581e8e6c1d1 100644
---- a/drivers/gpu/drm/xe/xe_sriov_packet.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_packet.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2025 Intel Corporation
-  */
- 
-+#include "abi/xe_driver_klvs_abi.h"
++	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
 +
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_guc_klv_helpers.h"
-@@ -352,11 +354,6 @@ ssize_t xe_sriov_packet_write_single(struct xe_device *xe, unsigned int vfid,
- 	return copied;
- }
++	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-ENOSPC), xe_guc_klv_encode_u32(klvs, 0, key, value));
++	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-ENOSPC), xe_guc_klv_encode_u32(klvs, 1, key, value));
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe_guc_klv_encode_u32(klvs, 2, key, value));
++	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, 1));
++	KUNIT_EXPECT_EQ(test, klvs[1], value);
++	KUNIT_EXPECT_EQ(test, klvs[2], TEST_PAD);
++	KUNIT_EXPECT_PTR_EQ(test, &klvs[2], xe_guc_klv_encode_u32(klvs, 2, key, value));
++	KUNIT_EXPECT_PTR_EQ(test,
++			    xe_guc_klv_encode_u32(klvs, 2, key, value),
++			    xe_guc_klv_encode_u32(klvs, ARRAY_SIZE(klvs), key, value));
++
++	KUNIT_ASSERT_PTR_EQ(test, fail, xe_guc_klv_encode_u32(fail, ARRAY_SIZE(klvs), key, value));
++}
++
++static void test_encode_u64(struct kunit *test)
++{
++	u64 value = 0x123456789abcdef0;
++	u32 *fail = ERR_PTR(-ENOMEM);
++	u16 key = TEST_KEY;
++	u32 klvs[16];
++
++	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
++
++	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-ENOSPC), xe_guc_klv_encode_u64(klvs, 0, key, value));
++	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-ENOSPC), xe_guc_klv_encode_u64(klvs, 1, key, value));
++	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-ENOSPC), xe_guc_klv_encode_u64(klvs, 2, key, value));
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe_guc_klv_encode_u64(klvs, 3, key, value));
++	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, 2));
++	KUNIT_EXPECT_EQ(test, klvs[1], lower_32_bits(value));
++	KUNIT_EXPECT_EQ(test, klvs[2], upper_32_bits(value));
++	KUNIT_EXPECT_EQ(test, klvs[3], TEST_PAD);
++	KUNIT_EXPECT_PTR_EQ(test, &klvs[3], xe_guc_klv_encode_u64(klvs, 3, key, value));
++	KUNIT_EXPECT_PTR_EQ(test,
++			    xe_guc_klv_encode_u64(klvs, 3, key, value),
++			    xe_guc_klv_encode_u64(klvs, ARRAY_SIZE(klvs), key, value));
++
++	KUNIT_ASSERT_PTR_EQ(test, fail, xe_guc_klv_encode_u64(fail, ARRAY_SIZE(klvs), key, value));
++}
++
++static struct kunit_case guc_klv_helpers_test_cases[] = {
++	KUNIT_CASE(test_count),
++	KUNIT_CASE(test_encode_u32),
++	KUNIT_CASE(test_encode_u64),
++	{}
++};
++
++static struct kunit_suite guc_klv_helpers_suite = {
++	.name = "guc_klv_helpers",
++	.test_cases = guc_klv_helpers_test_cases,
++};
++
++kunit_test_suite(guc_klv_helpers_suite);
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+index 9225a9066b8a..f0ad5adc6699 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+@@ -369,3 +369,7 @@ int xe_guc_klv_parser(const u32 *klvs, u32 num_dwords, void *obj,
  
--#define MIGRATION_KLV_DEVICE_DEVID_KEY	0xf001u
--#define MIGRATION_KLV_DEVICE_DEVID_LEN	1u
--#define MIGRATION_KLV_DEVICE_REVID_KEY	0xf002u
--#define MIGRATION_KLV_DEVICE_REVID_LEN	1u
--
- #define MIGRATION_DESCRIPTOR_DWORDS	(GUC_KLV_LEN_MIN + MIGRATION_KLV_DEVICE_DEVID_LEN + \
- 					 GUC_KLV_LEN_MIN + MIGRATION_KLV_DEVICE_REVID_LEN)
- static int pf_descriptor_init(struct xe_device *xe, unsigned int vfid)
+ 	return total;
+ }
++
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_guc_klv_helpers_kunit.c"
++#endif
 -- 
 2.47.1
 
