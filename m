@@ -4,160 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDD99C43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:53:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABA17C43458
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 12:54:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFE1A10ECC7;
-	Tue,  7 Jul 2026 12:53:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C0710E4B0;
+	Tue,  7 Jul 2026 12:54:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THgi856o";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="am9tzlAi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BCC410E4B0
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 12:53:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783428804; x=1814964804;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=HuxP/qgp2Ea960f9rBcA4Fjd4Uon8plkAUMQqFVdK9o=;
- b=THgi856oxVUczhKb9ok7sl6q5WjOP+5POCdUOZ0g2siBCFwah3bUO4jc
- UaFA2i0adSVHrNhHwBJ3321SDM3ZWhZql1jmOInmOtnJ+BVL+N6FGXODS
- L3YmC3siQl/+EE9baHluSvTSBvWK3+akXT/1rPNd9Gf5mbj+18N7QSnzc
- 97PHFr/xptlMRCXDmChQRJJiib0+XxZlGkztEABt2AFPA5JLLriT5Ct1L
- sK+HVY3NXXr4wUi34Hf/vwME6gxe24dm0Ob04/F83mC3soRaSg8N3xGu0
- V6F5b+gC7HFT+mGbrE9AZ/Nbv7bRRxK7a+niT/9rGvY13OqVdBDxLx6yt A==;
-X-CSE-ConnectionGUID: vRptz+BsQGWNlRLkzok+jQ==
-X-CSE-MsgGUID: UfK+yWE0Scad1oqu77nnJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="84164986"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84164986"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:53:23 -0700
-X-CSE-ConnectionGUID: 42T7hzK2Q2WY82j+CcoKSA==
-X-CSE-MsgGUID: YHZDOTqrTSCe4US2/kl4iQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="255917779"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:53:22 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 7 Jul 2026 05:53:22 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 7 Jul 2026 05:53:22 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.53) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 7 Jul 2026 05:53:22 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011014.outbound.protection.outlook.com [52.101.57.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9EA898C4;
+ Tue,  7 Jul 2026 12:54:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uwGOKZBSHqLWXTfVm0w0lW5RXnPn/AsLZSEzNemu14z5Hvs4xj5JWawWp45ThXRHmEPNz5L32mpJfUFO3AtJZ1/hR1Ku1bGn5fNLPMgAP+oMe1GZa4tEA059nqvajkSmtT5H/2R/BP14UJPOztXoRj/SrmQoTAm4FohTx9kPAna6svX4gi7YHU9mcJS7hL2JqaNou1AB+7lBXp4EEVeWE4KEPXhnY9xecj8JCOlRI2nSog97TkJrkUnvzbSUkmjkD3LpdZmay8h/unemo/DRjqE3yxUvzFmGH5nAGog/rERCyAUT3kqTPE9aDwIukhwALwoMiyabBB6qYAavEESiJA==
+ b=dzx4MWivBNA4I8fV1RvMTnoKsMBhkIqthtvIKvOYXTcZLaO+kQhwThlSuA38WS8qAXMzANKBdXi5EgTofCFukjRdwAjnUVmmVpTbVWqZaS4aoXTc3/c66U9h3KChaeZw/rPeAIJbm7i4moYaY311zYVqi1O17SUuxH2gGf9b4Z+bOHMhbqXGiqYDtqJ1Rqq5hwNOt3tc37tOxl/ZTGlxRNN5CX+gb7IVzzrdhvw6EfNLH9amWGFvtTMeZhpfGjj3AR9AWxJ00jNl4XbZ9Sc36YZ2WdPZFFaHAlvkO51mE3ZcCP/qNG+OtujOSh7ic7p4S9YE7+nloSZ2DZbiH2TKjw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s4I83V/wHYQh4WUatIEaKwjlvRohIn4YiF2AK3R08OI=;
- b=irWOxiA/b2AFyrHISY4ADp+m3/j7px7qO+lT4G84gCxkzixUlCfCCwHj8Yk7DWa6akXSo/vUXcQdNeIgKHpuomrOLIfoP0I+n47XJ2sfucX+7UWtGgYUod/577vPBxODYMKMSAdJnytWpkJ4WFqJbQtAzz9KfPzk8/zTOYZaWFqd7ycAmthpiVYF8zDHCwjfe77hXrXTOKNBC9K4fxHh9eQjLwmdudfI3rshS5Z/Bx+5kjxEtSdxfoNGtwOCWnhl32T5dw3z5/iTyNiGM6+62GFbdt6DGWBcJhw4t7nyebhqkuQIbfh7wWw6iaLF/1TmGRUiU9dppQrwVBkLkiuBKA==
+ bh=W3k+oPFpaANgqaxtO9NbnYD/de9Z2dB3sKXG17trVas=;
+ b=GW91rtHGop9sDkL0/+Z4dq1uF0qTByGQ2wq0AjJD0AvbQDVgXDmGIuUe8U8QmBLw3M1c82iPnZDB6KGp8g/YPrHNbsomEM6y6GPd+o/Tkzzxon8Oif+PikDH9efs+1l9ziQWCEAx3w4rBj+oSKiOl4a6Pm1qZbr+M1sqDOC8KM7B5aZEe9uA4QRx/UU0zuBY8aX7MU3/ICZrCe9sQg7DP4L4+cz2zMgPy5vIar5knaP5RmP23hs1WrMquZb74hzqbqXyzyKKtKYxIAMpCkrE/9yHDkekciueERKOtcSNAT3bGo7i5aFbYnDIMEJ9ApGwrkposotRru0aq48qwDl9iw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W3k+oPFpaANgqaxtO9NbnYD/de9Z2dB3sKXG17trVas=;
+ b=am9tzlAiK5htWNKyrJOepLrLHzAiqSfWxjBoGnPsTmsz1JZCidHTJuB9jND8JewzgkjNlErjujf6oZVfy4/t1wMJ5CTG1cioZWFAdzie1M6ZfefO0Vj2r1+cqCipYODF6/HRb+J48ni4OmLWqWaK+WJWtATHQF57Z4U1aADO4FA=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by IA3PR11MB9423.namprd11.prod.outlook.com (2603:10b6:208:582::18)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH7PR12MB6443.namprd12.prod.outlook.com (2603:10b6:510:1f9::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Tue, 7 Jul
- 2026 12:53:19 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
- 12:53:19 +0000
-Message-ID: <8f12c08f-d874-40e0-b831-482fa89dcdf8@intel.com>
-Date: Tue, 7 Jul 2026 18:23:10 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Tue, 7 Jul
+ 2026 12:54:44 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
+ 12:54:43 +0000
+Message-ID: <9a55ba77-6920-427d-9325-ca0e3b8ee94a@amd.com>
+Date: Tue, 7 Jul 2026 14:54:35 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/7] drm/xe/xe_ras: Refactor get_counter() to return
- response structure
-To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <daniele.ceraolospurio@intel.com>, <raag.jadav@intel.com>,
- <riana.tauro@intel.com>, <aravind.iddamsetty@intel.com>
-References: <20260702111401.3680214-9-badal.nilawar@intel.com>
- <20260702111401.3680214-12-badal.nilawar@intel.com>
+Subject: Re: [PATCH 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES
+ flag
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
+ <673ae71a1fc4dcce0e6a1655985a141d6f08c06f.camel@linux.intel.com>
+ <0f85e12e-7d34-40a8-9efc-0d1a00b7c24c@amd.com>
+ <6fac8343dc71b1dbf17e77390cc878cfaeb6d650.camel@linux.intel.com>
 Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <20260702111401.3680214-12-badal.nilawar@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0142.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b9::17) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <6fac8343dc71b1dbf17e77390cc878cfaeb6d650.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0195.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a4::7) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|IA3PR11MB9423:EE_
-X-MS-Office365-Filtering-Correlation-Id: e282b7e5-e336-4407-44af-08dedc26b842
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB6443:EE_
+X-MS-Office365-Filtering-Correlation-Id: cec12f47-c02e-4d05-a6d0-08dedc26ea56
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|18002099003|56012099006|5023799004|4143699003|11063799006|22082099003;
-X-Microsoft-Antispam-Message-Info: SEPBWirtvo2GeM53caDMPHBBWFeKbN64460uxFoqIiCgIm0CT+LPDVMzv08FV1Qb4kmdeLDzT9o28QdwxNgnZqucSjgKWIPvNUEKQR+4qvuW9hT6qEeItKu91rSDwqB8jqT9+uxD5BAv3IjPAxcH7DaVanjEnd2r75UB85xtRdUWFC9EfUuxCdlia6Xx+4du+Zrq7C6xopmwFMVRjQd8PAIYgJGVAGXQrIOPuVRsR/KFNtRzInpaVTNi4Odg7kfFAJ7EfjyuHQ/sIPqT+QKiVTHZPSYmjy5SyCBWEovXe54Hmrp3pvxk/XxYDvDWfN9mINgWkjkfKTlZD2/c3ea7BbxnoZZ8DNXmvMLasV3mvyikgEBTZEHWkUl0i6Iuz4G7ZvTHInbMaKiLkjcqE0+zslWSkcVVMZ8VO8ked3a9Ewrjzypth0MeEzYYOJFNN77hfD54YZp0w+I83wnXprNMxfBqOfA6nGGaTn/YvYW20QpOlIY6ffS1mubSBE/aR2xEX7tR/81wf1qb0qhgDVb2nYziKzYK6AUiD5kGZ+riNDxim+7DVO4g0oH9jEfL2YV9Y6MrapG0g8Zj4pC2tnbnM8MQezIize0qdDQB7n6HtF487cUCCQtNrS21pjDH0pwUrLSozSAg8oovgspGxo3nTwurAketNrf4w4JNeB56mLQ=
+ ARA:13230040|376014|23010399003|366016|1800799024|7416014|22082099003|18002099003|11063799006|56012099006|4143699003|921020|3023799007;
+X-Microsoft-Antispam-Message-Info: L/SKcrsVU+LUxJOpUqLaxRtJvJ1frTuRJEuxN9uyrb0e4jlfRKYNdrlr6M1xN2qVlZ1irhDNMxfyByZwy6TkDNR51j1kjoSby0JtWz4NAtCSWfQt26l7re/l05DuyEwc7WvxvcIz9nNDvzZVXxxuPEpnHxaskBWCACxdP6uI6eRI/Mi+Ook9HnBLjVLWOyCMNo+PemvlOi0Ol+HZXLqLPC9gyI8o1SjNwleoNEWKN1XuE+sQFjOfY90nNwQYlkELv8kivYkXBpfLgVX6nt0HUKXWSRwXgTCPYUW0/PNRJIa5OJLtQV4UtATKOTWwRATI/U6qGNtLKisxUTSrO9Z/gcqD4pz1xWsCkbtSQg8t2vbYxNZjHMgNN5fZsR4DL91xAP8Cg37Q4JrdUdXdrMF5/4DbsPMw01RNAcKSkNmedLkrA3IPZGs57n2IfCQWYUBazR8Yvz73k3lB3hAvaaSVCMytNGxNBSzxKSyUaVSEKWr3JtXNmzRn6hxFAqXxYArLqSrGLMR6FP8/+AioGDeHYlwo1oYM5Wt8oqG4TrbbfAaltOEl8mVSQCCqO/xGGlCY6v0nBInmfsu72L8+qcl31DsQcuqkkRG2+kdWDHqRKRVIbml2HpiiHjU5rTUqKtm1vx6Lko2ruH2pKG50WhZpHrCJVgtQKjJUnp+4+fco9lg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(18002099003)(56012099006)(5023799004)(4143699003)(11063799006)(22082099003);
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(7416014)(22082099003)(18002099003)(11063799006)(56012099006)(4143699003)(921020)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OW93ZFI1VVAyc2JUV0dZNGluTVVPcnJ5R0xvTmx6QUdwUFJndVJiVUhkTEtH?=
- =?utf-8?B?VXdRUGFwUHJIVE5vNjNobkt5cCtkL1pWbFRXVVFTeHV4aVlDQWsvbTdJTEgr?=
- =?utf-8?B?aVNuN0lwZE9jZWtnQUZ6V2NXMTdCWlFaOS9hU1c2NkFPRktoK3NEYk14RER1?=
- =?utf-8?B?VGY3MFJaWkt4UTYrV2VEK2dIOU9waW1LT1JER2FnaVY4NFNmMmxIWm9VZmtB?=
- =?utf-8?B?RkZjOVgvbEFsd1MwRG1sYzlUZ2h2WEVmNjNhMFllUDdmYWtCNWZ4MmpDWVFI?=
- =?utf-8?B?RkdXaFl6MVc1ZEFJVXpZcTlHT1BuWjEzTjdCaHFFcmlVdzNoVVozdHVyTmEx?=
- =?utf-8?B?WnZnQWdCQ1o5RzNMd1ZNYmx0aWJKanplUlJudmxGejlkYVpWa29NQ3lwOHpR?=
- =?utf-8?B?NWRTOHE1dWVmY1JyZVh3aWZMWnZrZERETGpEYnREL1BhU1QxZWhoZzZTbWh5?=
- =?utf-8?B?Qys3YzNkUGdlMkttRW5ETE9oUWF2a0t5L3M2dVJVMXJyNTZRWndYVWxsSHhl?=
- =?utf-8?B?cDVNOWxEdTJFRWlOUUkva2Y2eEt1UHVGdWplRzd2ZW0xbjJFUm9BZUxmK1Ey?=
- =?utf-8?B?NzdyWUhqYk5JMnQ0Qlh2Z2F2NjlaaTFyNGlvT0lmc2thRVZFdVlxbzlLWllz?=
- =?utf-8?B?WEpXYnE1Z2NlMTFKSW1ab1FhMVkzOEtOamUra3FHSkFJMUVoL1BzQXV0ejFq?=
- =?utf-8?B?UHZtVDU5RS9UWitTUXZOblVXbWllamE1Q0xvc2VIZXQ4SWJuZXNCVmJMa2xL?=
- =?utf-8?B?VEtIQytIR0tLdnBuZmxXcENScnMxVXFGVmpLVXBUeVNSWDQyUmVhYmQwWXZL?=
- =?utf-8?B?a01zd3FtU1ViOThseEN6aEQ5N2VEU0xHRDM5cVBSRW9rVTNWeXBmMVBUemNU?=
- =?utf-8?B?YlBRK01NdUJOaiszSitWbTNhTk5MOGtBZ0ZGYm1HOTZEN1NSbjlxVi9jOVB4?=
- =?utf-8?B?aWZyWGRrQUNQbWl3Tm1xNWJKNDVUMlczTlQrNU5UZnduekZxdGpJU0g0ZkRt?=
- =?utf-8?B?c2hXSFp6aHVZSjVnMWNtdVhsWkRITmNuUEREd0FjN3QvTk51aU05Yk5nQnZ4?=
- =?utf-8?B?UGRRWlhHWkN0MnBmTU5HanNMQVdURnZseWEzRHJDOVZBaUNnUFdIRkVuT2ZY?=
- =?utf-8?B?YkxCdzRLNCtnbGRmeldRMjBiWjRDQ2NTQkZIT2lDb0NodUErRldSSkVtV0wv?=
- =?utf-8?B?TGEvQmVvbi9vUWVhNDVYWjA3YU5nNERkUW1ESERkVWNvODFvK0wyVVRvSExC?=
- =?utf-8?B?MW4wNnYwK2tKVWhOOC9hQ1pnYXZ4MlFGQmtReW5GamNPMFhIa3c5Z3FTai9z?=
- =?utf-8?B?VUxhZTBJelUza3JMVEttQTRtU2poVCtCS0tFbFhJNVFOamJYd2EyeE1UZDBJ?=
- =?utf-8?B?dFEyeGFYS1ZMdW40U0VRUWtsQkNBa1ZId05VMEN5emN1N211WHpBb2xNMHFk?=
- =?utf-8?B?NGhkK2xZbjIyMFI3ZFpCeW5IZFBHVmN2ZGJrZnNGSWVvWjlhNVVuNG5nUmI3?=
- =?utf-8?B?ZkQvci9QemUyWks5aVQrZTQ2anR2anRTK0tkM2d2TmNjZjVmMFdDOG1MTWY1?=
- =?utf-8?B?NGo4V2xscVpJdml5SlFNZWVVazhZMUUrc2FxSVFLY2lhUEQybWlQbWk5WXRs?=
- =?utf-8?B?eG9Ma2pjOWQ2c3JHSmU1YTVQSmovS0ZPRVBUVFMrZnk1aEhmZFpFaHc5M2tu?=
- =?utf-8?B?dUtVTXZsR3hBbzdlVVBzdU9zR3ZwL2h6TEZ4SXM2NURBTW1yK0VxMy9MNTFM?=
- =?utf-8?B?b0ZMNkJMUVpEUU1YVERKUVZnNGsvbG50SVRISkoxUFhTK3U2RVpDMW5CbjNP?=
- =?utf-8?B?WGtYdFl4dVZSb0ZNL1JpbXV1VWNYRzJtR0l5T2xna2FnRy9IS2VwbW5jc2tX?=
- =?utf-8?B?UGt2aGt0TU5mUXJHaTd5VSs5S1k0Z0N3TDdmNk53VXpXTHJXT0NMeUVVeWNE?=
- =?utf-8?B?ZFFJUVR6VTdhYTdlcmVwaDQzbVMySUZRT0pRcnB2UnAzdlBIcFpxOHpiNEov?=
- =?utf-8?B?VW9Id2xCQ0dxQ0lMckpxNlI3MzRPZzVSQmVCS2xqU2ozRFg1Yy9GditwcG04?=
- =?utf-8?B?ZFpJZkxucStFMzNPUGUrVThtUmoyc2VvaXc1OXJ0VkxSZnU5VGRDK2hFcFQ4?=
- =?utf-8?B?S1hLVWVMbVlSelFMSXJOelBqUDZaZjVrdWd3QTlKbXIrYzZkTlA1ZEw0MllL?=
- =?utf-8?B?bUVTVUd6UDNsSXFzaDcwMjJ2Lzc3dXM5UTJyQzZBekU1aUttSlY0Y0lBTHBa?=
- =?utf-8?B?bUJFK3FaUlMyZllDU1J2OXJGdkRRQlU1RnFHNGV2SXBTVjRkS1JteFFxNlAz?=
- =?utf-8?B?dXRnbXNNbHFMU0J3TmZjRXAwd0Vsbm52QzF5V0RjQUN2NGF1VVFDWS9XZ1Fu?=
- =?utf-8?Q?wNxnrU5pBumBmdZk=3D?=
-X-Exchange-RoutingPolicyChecked: BGvfCr3KqVevsZ3t26qsav76lJZud4kawDIGDr1yj5juox/BQoDjCJfsM5gfLa4Nh0bJMikaGaGwW0HYAIbpPuBsNoDobOhgqb1/L2NbOkVC41cZ0ntIUzhvGiiuTs2mfZePRbYwda4WbuF+ownT6M/Yzw/xQQs/HrB6Qoa4498JRtP+v1b1m1+ELrD1srFf3IilZSHUwex9ksJc9hImA2FH78QvztcGM28zYHYg3u1d4z9H6N+4sqUa9syVK2Zuj830B3ZhgZNsOWkeDMu9EzhtbIZZQczHSgUxqruJM5L3w8VblwrW8v08zY9lJmB3NLr02soAk89aD+4cdTZ2nQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e282b7e5-e336-4407-44af-08dedc26b842
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NENPWDN2MTNGN1NsWHFrNE5IZUFDeExGdnJQaWx6cW5hZlYyOTJNUUwyd0lU?=
+ =?utf-8?B?T2dwU1hEL0o0RjN3Z2NEcVNXY0o1MFI3bEtDWXFWcUZhY25nNlgrdmE2YVJj?=
+ =?utf-8?B?TjhrV0xrbGxrRkl0RmhOTzNYMXFqeHpNNUN1dG1XaERqV1FLK3pqUDJYbXhP?=
+ =?utf-8?B?blVXcXlqTTJnT2pFeXNXcW51WXZmaGZjcGFCSFlMTG9rajQ4NkoxQk92VTV4?=
+ =?utf-8?B?QTEreHYrczZkQW96eklLNk1saXBnTzZQSTk0aDJiNUlEU1V4NzBWZWduaVN3?=
+ =?utf-8?B?OS9TYUwxUTZ0NThDWHNTVFY2K2d0NkdQbjB3dUFibUswWm5peEZXZUF6K2s3?=
+ =?utf-8?B?K3o1anZQTDhraUdpS0xqSmhHT0NtZEJrMUdNcHlycVlNMEZUcE9ya3RMZmV6?=
+ =?utf-8?B?VHZVTmlHaC8wajluSlM4WitwTXRuN1dOeGQzNUY2eGxoaEJ4RmZmdHVPR0Fw?=
+ =?utf-8?B?V2NXcHZPUXBJcmg0NEZKMUgwRjZyTXlCUUkrcENVaDgyUlNMSURmb2UwZi82?=
+ =?utf-8?B?VnNKSGRISUJTdTZOK0p6cUpPZWlKSGdBaHdLcWJwVS90aGtwN1VxU3l3Tlo1?=
+ =?utf-8?B?NDVhZmFZTWR5eUNkRnJpSE5uUDFLVG1TMlpmaUlCQTR5OGMxb0VFT3c1U25m?=
+ =?utf-8?B?aTY2UGFOckcyZ1IxWm9uWXhNU2kzVmxUcEFReXUrQVFCbnFxMlcwcyt2U1U4?=
+ =?utf-8?B?bWNIaE1jRjhrVVVqbWcyUmVxdVc3b3NLWStJVURweWlyN1pLQlZWcjR2MEpN?=
+ =?utf-8?B?WkJKWlZ4QTcvNFJJZ0EvY1lsSXA3dGVkdDRIN21MM0h1enBzOU5BNzNyUmxI?=
+ =?utf-8?B?MUVGMG5RWENLdUNFRlJLZi8yV0wrTzJHdTRHZlBjMGFjVmNEYjdPaUwwamRi?=
+ =?utf-8?B?VUR2cllCdEU5a2VjNkhaL0RWdGxZVTNLenVkL1hCQkVVZlc0ZWdlWTl2eVl2?=
+ =?utf-8?B?Z2Z0VUoxMm1jZmJhWmRXU3hXNVBNckdZN3lUbUhjRlV4ZzlJTGp3a1pQcmdr?=
+ =?utf-8?B?UThHWGpSN0lwMGMwakZTamE4dDVnQmhFQ2tCeGhlTVhxL1ZLM3ZUd2UzcVdM?=
+ =?utf-8?B?aWxrTjVaeFBLcHl6T3U4bGNUdjkzdUJadEhwdm1DWm9Ud1NxbnpTQklwbEFl?=
+ =?utf-8?B?aUM0dTdaNURrcVUwb0thUDRnWklCVXRURENGbmkxdFVHRlkrR2txVW5UdGdT?=
+ =?utf-8?B?WG9VYXlDZHY1S0NGYW5SVUZmRXBUR2c1cXdpNmkxdzhmWWgyR0IvSXEwOWV6?=
+ =?utf-8?B?akd3c1VLbWYxTDRXR1NiWTFGeXZhQXZsZDc2cklGVWZ5bk1xOUdIR0VLUGpM?=
+ =?utf-8?B?Q0ZBaitHNmpOSnBhZWZYL3NvZVhRc0hlVjJ6dkdyUHFsKy9ycXVaamc5aEZ5?=
+ =?utf-8?B?NkV0Rnd5M2Q4MklyYkJDazYvS24zaytWbERTUHBFRnMyMFloZUlWV2JyQndR?=
+ =?utf-8?B?aG5INmZ4SldBY1B0czBwZ3NIbHp0RzN4TENpaTBOQjFPYUtualQvNWpsZmR5?=
+ =?utf-8?B?M0NwK01LQit6dUdNZHY2K0pqUVJmTnhhSGhNNk1LYWw3aVNCR1dCQlJRUHY5?=
+ =?utf-8?B?eWFxNnFNd3k0SlJHeEE0SjV0Vm5Pb2lxNjJvZVRHbGt0MDNZLytsTWR4SURO?=
+ =?utf-8?B?S1FtUnN5M0VoejluUk5kM09halI4azVOdGxEREJwNVljcFg2bFBMYVY4dDJG?=
+ =?utf-8?B?eXIza2hxVjkyOGVHRTJSQXNkc3BCNkRqZUQzSjYzNFBuMDhGQW9yY1JRSEdI?=
+ =?utf-8?B?NTJ3cmFOTUtENlltbi9Fd0RTeUNQRzZnT2h5WVdPdXBNYS9ZUnNVYkp0Skhy?=
+ =?utf-8?B?QkNVaFJuY2lidmZ3K1h6aEdzajlsR0ZKWHBoRDRzTWZNSHlPUWZlbStMbDc5?=
+ =?utf-8?B?K2wrSTh5RTVCZ29JdDhDWkthWHNMaytPaytVbTQ1emZWb1BSRHFKRGEwd3Ri?=
+ =?utf-8?B?NXRVdVdHT0pLSHNOakd2WUhSa2lZNjJkNTlZa3hEa29pazl4VEJTY3VSQzJD?=
+ =?utf-8?B?U29CZStQRlZsS3ZDc3k0NjNHRlNMS2cwVFhWKysrZEczeTd2RCtiTDUrSWN3?=
+ =?utf-8?B?dnNZZW1FQzM2QUQ1L1R3K2ZGVjVia1V3b0NmM2s3SjJaYnh3bUlWRFBZYVpH?=
+ =?utf-8?B?d01KN0dEZGF1RnFuaHFjWk9ERFVaRUhqbUZ5ZHZJVGdIVmM3ODEwUERUbDBz?=
+ =?utf-8?B?STJjZHhVUkhjanRJaG1aT1M0S2wyUEFzRzk0bzNGMCtyeTd3YW83Vk1wT3RB?=
+ =?utf-8?B?R0w0NGZ1cmlGWkVSOGdBTEZVR3dYbFNxRW9DVU5hTUxFbjRtczdzcXN2SFIv?=
+ =?utf-8?Q?SL3MnYsZrQBJF54bvy?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cec12f47-c02e-4d05-a6d0-08dedc26ea56
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 12:53:19.3111 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 12:54:43.6082 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qeuMlMosnU8Uv178mloz60fK71HK802FkhvRjHlAqwj1mJTFDL2OJXhOPfxyqSNfW5g6ZsC4z/QxGTd72rjs8/xdXEDlDrn01p/S4LOwhjI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9423
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: jyvjU/OL0u5GiuFfsiT2V1wYA4ym/n4J4+gEWGSXRu3FMZu56oMiki1ooXROg7nT
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6443
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,103 +151,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 7/7/26 14:41, Thomas Hellström wrote:
+> On Tue, 2026-07-07 at 14:28 +0200, Christian König wrote:
+>> On 7/7/26 14:09, Thomas Hellström wrote:
+>>> On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
+>>>> TTM is about to switch to drm_exec for locking objects
+>>>> in the LRU list. When we're done processing the object, we want
+>>>> to
+>>>> unlock it only if the caller doesn't already hold that lock. If
+>>>> DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which
+>>>> callers
+>>>> may
+>>>> require for unrelated reasons), we have no way of knowing whether
+>>>> the
+>>>> lock is already held.
+>>>>
+>>>> To remedy this, add a separate helper that forcefully bypasses
+>>>> the
+>>>> IGNORE_DUPLICATES flag for only a single locking operation.
+>>>>
+>>>> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+>>>
+>>> The first, more complete attempt to try to tackle the exhaustive
+>>> eviction introduced a drm_exec snapshot ability instead.
+>>>
+>>> https://lists.freedesktop.org/archives/intel-xe/2024-May/035820.html
+>>>
+>>> The idea was that one would want to incrementally lock more buffer
+>>> objects until the validation succeeded, rather than dropping each
+>>> single lock after processing the eviction. That's actually what
+>>> guarantees forward progress. Restoring the snapshot unlocked all
+>>> locks
+>>> that we grabbed in the process, and would work also for single
+>>> locks.
+>>
+>> That's actually not what this patch here tries to solve.
+>>
+>> The problem is rather since we don't remove the BOs from the LRU list
+>> that we try to evict some which are actually part of our working set.
+>>
+>> So when we lock for eviction we can't ignore duplicates no matter
+>> what the global flag says.
+> 
+> Ah yes, I see that now when I've gotten to patch 9. But then I think
+> the commit message is a bit misleading. It talks about unlocking an
+> already processed object?
 
-On 02-07-2026 04:44 pm, Badal Nilawar wrote:
-> Return the complete response structure from get_counter() instead of
-> only the counter value. This allows callers to access additional
-> response fields, such as has_info_queue for CPER record building.
->
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> Assisted-by: Copilot:claude-sonnet-4.6
-> ---
->   drivers/gpu/drm/xe/xe_ras.c       | 23 +++++++++++++++--------
->   drivers/gpu/drm/xe/xe_ras_types.h | 10 ++++++++--
->   2 files changed, 23 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 85b0202467f6..e594d4d3a23f 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -157,12 +157,12 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
->   	}
->   }
->   
-> -static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter, u32 *value)
-> +static int get_counter(struct xe_device *xe, const struct xe_ras_error_class *counter,
-> +		       struct xe_ras_get_counter_response *out)
->   {
->   	struct xe_ras_get_counter_response response = {0};
-response is not required, we can directly use "out".
->   	struct xe_ras_get_counter_request request = {0};
->   	struct xe_sysctrl_mailbox_command command = {0};
-> -	struct xe_ras_error_common *common;
->   	size_t rlen;
->   	int ret;
->   
-> @@ -183,12 +183,11 @@ static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter,
->   		return -EIO;
->   	}
->   
-> -	common = &response.counter.common;
-> -	*value = response.value;
-> -
-> -	xe_dbg(xe, "[RAS]: get counter %u for %s %s\n", *value, comp_to_str(common->component),
-> -	       sev_to_str(common->severity));
-> +	xe_dbg(xe, "[RAS]: get counter value %u for %s %s\n", response.value,
-> +	       comp_to_str(response.counter.common.component),
-> +	       sev_to_str(response.counter.common.severity));
->   
-> +	*out = response;
->   	return 0;
->   }
->   
-> @@ -207,12 +206,20 @@ static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter,
->   int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value)
->   {
->   	struct xe_ras_error_class counter = {0};
-> +	struct xe_ras_get_counter_response response;
-Safe to initialized response = {0}.
-> +	int ret;
->   
->   	counter.common.severity = drm_to_xe_ras_severity(severity);
->   	counter.common.component = drm_to_xe_ras_component(component);
->   
->   	guard(xe_pm_runtime)(xe);
-> -	return get_counter(xe, &counter, value);
-> +
-> +	ret = get_counter(xe, &counter, &response);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*value = response.counter_value;
+Oh, good point! Yeah the problem isn't the unlocking but that we evict an object from the working set.
 
-counter_value is not member of response. should get compilation error.
+The commit message clearly needs to be fixed.
 
-Thanks,
--/Mallesh
+Christian.
 
-> +	return 0;
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> index fc496888b3f8..befdaf297103 100644
-> --- a/drivers/gpu/drm/xe/xe_ras_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> @@ -155,8 +155,14 @@ struct xe_ras_get_counter_response {
->   	u64 timestamp;
->   	/** @threshold: Threshold value for the counter */
->   	u32 threshold;
-> -	/** @reserved: Reserved  */
-> -	u32 reserved[57];
-> +	/** @reserved: Reserved for future use */
-> +	u32 reserved:9;
-> +	/** @has_info_queue: Set if info queue is available */
-> +	u32 has_info_queue:1;
-> +	/** @reserved1: Reserved for future use */
-> +	u32 reserved1:22;
-> +	/** @info_queue: Initial info queue data (first chunk) if available */
-> +	struct xe_ras_info_queue_response info_queue;
->   } __packed;
->   
->   /**
+> 
+> Thanks,
+> Thomas
+> 
+> 
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> Thanks,
+>>> Thomas
+>>>
+>>>
+>>>> ---
+>>>>  drivers/gpu/drm/drm_exec.c | 52
+>>>> ++++++++++++++++++++++++++++++++++--
+>>>> ----------
+>>>>  include/drm/drm_exec.h     |  2 ++
+>>>>  2 files changed, 41 insertions(+), 13 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/drm_exec.c
+>>>> b/drivers/gpu/drm/drm_exec.c
+>>>> index 7988f5e7d56a3..91de6b4d29df8 100644
+>>>> --- a/drivers/gpu/drm/drm_exec.c
+>>>> +++ b/drivers/gpu/drm/drm_exec.c
+>>>> @@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct
+>>>> drm_exec *exec)
+>>>>  	return ret;
+>>>>  }
+>>>>  
+>>>> -/**
+>>>> - * drm_exec_lock_obj - lock a GEM object for use
+>>>> - * @exec: the drm_exec object with the state
+>>>> - * @obj: the GEM object to lock
+>>>> - *
+>>>> - * Lock a GEM object for use and grab a reference to it.
+>>>> - *
+>>>> - * Returns: -EDEADLK if a contention is detected, -EALREADY when
+>>>> object is
+>>>> - * already locked (can be suppressed by setting the
+>>>> DRM_EXEC_IGNORE_DUPLICATES
+>>>> - * flag), -ENOMEM when memory allocation failed and zero for
+>>>> success.
+>>>> - */
+>>>> -int drm_exec_lock_obj(struct drm_exec *exec, struct
+>>>> drm_gem_object
+>>>> *obj)
+>>>> +static int __drm_exec_lock_obj(struct drm_exec *exec,
+>>>> +			       struct drm_gem_object *obj,
+>>>> +			       bool always_report_duplicates)
+>>>>  {
+>>>>  	int ret;
+>>>>  
+>>>> @@ -226,7 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec,
+>>>> struct drm_gem_object *obj)
+>>>>  		return -EDEADLK;
+>>>>  	}
+>>>>  
+>>>> -	if (unlikely(ret == -EALREADY) &&
+>>>> +	if (unlikely(ret == -EALREADY) &&
+>>>> !always_report_duplicates
+>>>> &&
+>>>>  	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+>>>>  		return 0;
+>>>>  
+>>>> @@ -243,8 +234,43 @@ int drm_exec_lock_obj(struct drm_exec *exec,
+>>>> struct drm_gem_object *obj)
+>>>>  	dma_resv_unlock(obj->resv);
+>>>>  	return ret;
+>>>>  }
+>>>> +
+>>>> +/**
+>>>> + * drm_exec_lock_obj - lock a GEM object for use
+>>>> + * @exec: the drm_exec object with the state
+>>>> + * @obj: the GEM object to lock
+>>>> + *
+>>>> + * Lock a GEM object for use and grab a reference to it.
+>>>> + *
+>>>> + * Returns: -EDEADLK if a contention is detected, -EALREADY when
+>>>> object is
+>>>> + * already locked (can be suppressed by setting the
+>>>> DRM_EXEC_IGNORE_DUPLICATES
+>>>> + * flag), -ENOMEM when memory allocation failed and zero for
+>>>> success.
+>>>> + */
+>>>> +int drm_exec_lock_obj(struct drm_exec *exec, struct
+>>>> drm_gem_object
+>>>> *obj)
+>>>> +{
+>>>> +	return __drm_exec_lock_obj(exec, obj, false);
+>>>> +}
+>>>>  EXPORT_SYMBOL(drm_exec_lock_obj);
+>>>>  
+>>>> +/**
+>>>> + * drm_exec_lock_obj_report_dup - lock a GEM object for use, but
+>>>> always report duplicates
+>>>> + * @exec: the drm_exec object with the state
+>>>> + * @obj: the GEM object to lock
+>>>> + *
+>>>> + * Like drm_exec_lock_obj, lock a GEM object for use and grab a
+>>>> reference to it.
+>>>> + * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is
+>>>> ignored
+>>>> and duplicates are
+>>>> + * always reported.
+>>>> + *
+>>>> + * Returns: -EDEADLK if a contention is detected, -EALREADY when
+>>>> object is
+>>>> + * already locked, -ENOMEM when memory allocation failed and
+>>>> zero
+>>>> for success.
+>>>> + */
+>>>> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+>>>> +				 struct drm_gem_object *obj)
+>>>> +{
+>>>> +	return __drm_exec_lock_obj(exec, obj, false);
+>>>> +}
+>>>> +EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
+>>>> +
+>>>>  /**
+>>>>   * drm_exec_unlock_obj - unlock a GEM object in this exec
+>>>> context
+>>>>   * @exec: the drm_exec object with the state
+>>>> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+>>>> index 8725ba92ff916..ff80dd2b72240 100644
+>>>> --- a/include/drm/drm_exec.h
+>>>> +++ b/include/drm/drm_exec.h
+>>>> @@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32
+>>>> flags, unsigned nr);
+>>>>  void drm_exec_fini(struct drm_exec *exec);
+>>>>  bool drm_exec_cleanup(struct drm_exec *exec);
+>>>>  int drm_exec_lock_obj(struct drm_exec *exec, struct
+>>>> drm_gem_object
+>>>> *obj);
+>>>> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+>>>> +				 struct drm_gem_object *obj);
+>>>>  void drm_exec_unlock_obj(struct drm_exec *exec, struct
+>>>> drm_gem_object *obj);
+>>>>  int drm_exec_prepare_obj(struct drm_exec *exec, struct
+>>>> drm_gem_object *obj,
+>>>>  			 unsigned int num_fences);
+
