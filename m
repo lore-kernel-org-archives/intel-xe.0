@@ -4,32 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA152C43458
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 09:32:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D31FC43458
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jul 2026 09:43:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94A8310EC25;
-	Tue,  7 Jul 2026 09:32:30 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0468310EC25;
- Tue,  7 Jul 2026 09:32:29 +0000 (UTC)
-Received: from 81-197-16-175.elisa-laajakaista.fi ([81.197.16.175]
- helo=[192.168.100.133])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wh2AC-00000001VOW-3JqY; Tue, 07 Jul 2026 12:32:27 +0300
-Message-ID: <bda423b95b9d79cd58da098b2c06e022f1992869.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Tue, 07 Jul 2026 12:32:20 +0300
-In-Reply-To: <20260701153204.4124150-23-imre.deak@intel.com>
-References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-23-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-10 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278E010E483;
+	Tue,  7 Jul 2026 09:43:27 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7959110E483;
+ Tue,  7 Jul 2026 09:43:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7590065623427775421=="
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 22/34] drm/i915/dp: Remove min/max link config limits
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_skip_eDP_hw_pro?=
+ =?utf-8?q?be_when_connector_forced_off_via_cmdline?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "LIOU, Mei Fan" <mei.fan.liou@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 07 Jul 2026 09:43:26 -0000
+Message-ID: <178341740649.159280.15999858783647207609@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260707085704.14519-1-mei.fan.liou@intel.com>
+In-Reply-To: <20260707085704.14519-1-mei.fan.liou@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,258 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-07-01 at 18:31 +0300, Imre Deak wrote:
-> Remove the min/max rate and lane count fields from struct
-> link_config_limits after all state computation is converted to use the
-> configuration filter.
->=20
-> A simple min/max range cannot fully describe the valid configuration
-> set once individual configurations are disabled (for example by
-> fallback), as it may allow combinations that are not actually valid.
-> The configuration filter, on the other hand, always represents a
-> consistent set of valid configurations.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c       | 86 -------------------
->  drivers/gpu/drm/i915/display/intel_dp.h       |  6 --
->  .../gpu/drm/i915/display/intel_dp_link_caps.c |  4 +-
->  .../gpu/drm/i915/display/intel_dp_link_caps.h |  2 -
->  drivers/gpu/drm/i915/display/intel_dp_test.c  | 23 -----
->  5 files changed, 2 insertions(+), 119 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 79e3334d24332..16b3ab9732120 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -354,44 +354,6 @@ static int intel_dp_get_max_common_lane_count(struct=
- intel_dp *intel_dp)
->  	return min3(source_max, sink_max, lane_max);
->  }
-> =20
-> -static int intel_dp_max_lane_count(struct intel_dp *intel_dp)
-> -{
-> -	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
-> -	struct intel_dp_link_config max_link_limits;
-> -	struct intel_dp_link_config forced_params;
-> -	int lane_count;
-> -
-> -	intel_dp_link_caps_get_max_limits(link_caps, &max_link_limits);
-> -	intel_dp_link_caps_get_forced_params(link_caps, &forced_params);
-> -
-> -	if (forced_params.lane_count)
-> -		lane_count =3D forced_params.lane_count;
-> -	else
-> -		lane_count =3D max_link_limits.lane_count;
-> -
-> -	switch (lane_count) {
-> -	case 1:
-> -	case 2:
-> -	case 4:
-> -		return lane_count;
-> -	default:
-> -		MISSING_CASE(lane_count);
-> -		return 1;
-> -	}
-> -}
-> -
-> -static int intel_dp_min_lane_count(struct intel_dp *intel_dp)
-> -{
-> -	struct intel_dp_link_config forced_params;
-> -
-> -	intel_dp_link_caps_get_forced_params(intel_dp->link.caps, &forced_param=
-s);
-> -
-> -	if (forced_params.lane_count)
-> -		return forced_params.lane_count;
-> -
-> -	return 1;
-> -}
-> -
->  int intel_dp_link_bw_overhead(int link_clock, int lane_count, int hdispl=
-ay,
->  			      int dsc_slice_count, int bpp_x16, unsigned long flags)
->  {
-> @@ -1540,39 +1502,6 @@ static void intel_dp_print_rates(struct intel_dp *=
-intel_dp)
->  	intel_dp_link_caps_print_common_rates(intel_dp->link.caps);
->  }
-> =20
-> -static int
-> -intel_dp_max_link_rate(struct intel_dp *intel_dp)
-> -{
-> -	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
-> -	struct intel_dp_link_config max_link_limits;
-> -	struct intel_dp_link_config forced_params;
-> -	int len;
-> -
-> -	intel_dp_link_caps_get_forced_params(link_caps, &forced_params);
-> -
-> -	if (forced_params.rate)
-> -		return forced_params.rate;
-> -
-> -	intel_dp_link_caps_get_max_limits(link_caps, &max_link_limits);
-> -	len =3D intel_dp_common_len_rate_limit(link_caps, max_link_limits.rate)=
-;
-> -
-> -	return intel_dp_common_rate(link_caps, len - 1);
-> -}
-> -
-> -static int
-> -intel_dp_min_link_rate(struct intel_dp *intel_dp)
-> -{
-> -	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
-> -	struct intel_dp_link_config forced_params;
-> -
-> -	intel_dp_link_caps_get_forced_params(intel_dp->link.caps, &forced_param=
-s);
-> -
-> -	if (forced_params.rate)
-> -		return forced_params.rate;
-> -
-> -	return intel_dp_common_rate(link_caps, 0);
-> -}
-> -
->  int intel_dp_rate_select(struct intel_dp *intel_dp, int rate)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> @@ -2711,18 +2640,6 @@ intel_dp_compute_config_limits(struct intel_dp *in=
-tel_dp,
->  	struct intel_connector *connector =3D
->  		to_intel_connector(conn_state->connector);
-> =20
-> -	/*
-> -	 * Remove the following min/max rate and lane count setup, once
-> -	 * all users are converted to use link_config_mask instead.
-> -	 */
-> -	limits->min_rate =3D intel_dp_min_link_rate(intel_dp);
-> -	limits->max_rate =3D intel_dp_max_link_rate(intel_dp);
-> -
-> -	limits->min_rate =3D min(limits->min_rate, limits->max_rate);
-> -
-> -	limits->min_lane_count =3D intel_dp_min_lane_count(intel_dp);
-> -	limits->max_lane_count =3D intel_dp_max_lane_count(intel_dp);
-> -
->  	limits->link_config_filter =3D INTEL_DP_LINK_CAPS_FILTER_ALL;
-> =20
->  	limits->pipe.min_bpp =3D intel_dp_min_bpp(crtc_state->output_format);
-> @@ -2802,9 +2719,6 @@ intel_dp_compute_config_limits(struct intel_dp *int=
-el_dp,
->  		 * configuration, and typically on older panels these
->  		 * values correspond to the native resolution of the panel.
->  		 */
-> -		limits->min_lane_count =3D limits->max_lane_count;
-> -		limits->min_rate =3D limits->max_rate;
-> -
->  		if (!intel_dp_get_connector_max_link_config(connector, limits, &max_co=
-nfig))
->  			return false;
-> =20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index 9564369ea4852..0ec519fa12368 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -28,12 +28,6 @@ struct intel_dp_link_config;
->  struct intel_encoder;
-> =20
->  struct link_config_limits {
-> -	/*
-> -	 * TODO: Remove the following min/max rate and lane count limits
-> -	 * once all users are converted to use link_config_mask instead.
-> -	 */
-> -	int min_rate, max_rate;
-> -	int min_lane_count, max_lane_count;
->  	struct intel_dp_link_caps_filter link_config_filter;
->  	struct {
->  		/* Uncompressed DSC input or link output bpp in 1 bpp units */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/=
-gpu/drm/i915/display/intel_dp_link_caps.c
-> index 4ce35b76afee6..766dc9a98e05a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> @@ -242,8 +242,8 @@ intel_dp_link_caps_connector_fallback_order(bool is_m=
-st)
->  }
-> =20
->  /* Get length of common rates array potentially limited by max_rate. */
-> -int intel_dp_common_len_rate_limit(struct intel_dp_link_caps *link_caps,
-> -				   int max_rate)
-> +static int intel_dp_common_len_rate_limit(struct intel_dp_link_caps *lin=
-k_caps,
-> +					  int max_rate)
->  {
->  	return intel_dp_rate_limit_len(link_caps->rates,
->  				       link_caps->num_rates, max_rate);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/=
-gpu/drm/i915/display/intel_dp_link_caps.h
-> index 3c7e6c8d1ab1d..bb785c15c91f6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> @@ -119,8 +119,6 @@ intel_dp_link_caps_connector_compute_order(struct int=
-el_connector *connector);
->  struct intel_dp_link_caps_order
->  intel_dp_link_caps_connector_fallback_order(bool is_mst);
-> =20
-> -int intel_dp_common_len_rate_limit(struct intel_dp_link_caps *link_caps,
-> -				   int max_rate);
->  int intel_dp_common_rate(struct intel_dp_link_caps *link_caps, int index=
-);
->  int intel_dp_link_caps_common_rate_idx(struct intel_dp_link_caps *link_c=
-aps, int rate);
->  int intel_dp_max_common_rate(struct intel_dp_link_caps *link_caps);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_test.c b/drivers/gpu/d=
-rm/i915/display/intel_dp_test.c
-> index ec7fa690910bb..0551a1ce60d39 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_test.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_test.c
-> @@ -114,7 +114,6 @@ bool intel_dp_test_compute_config(struct intel_connec=
-tor *connector,
->  				  struct link_config_limits *limits)
->  {
->  	struct intel_dp *intel_dp =3D intel_attached_dp(connector);
-> -	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> =20
->  	/* For DP Compliance we override the computed bpp for the pipe */
-> @@ -130,28 +129,6 @@ bool intel_dp_test_compute_config(struct intel_conne=
-ctor *connector,
-> =20
->  	/* Use values requested by Compliance Test Request */
->  	if (intel_dp->compliance.test_type =3D=3D DP_TEST_LINK_TRAINING) {
-> -		int index;
-> -
-> -		/*
-> -		 * TODO: Remove the following min/max link limit setup
-> -		 * after converting to use the link configuration filter
-> -		 * instead in limits.
-> -		 */
-> -		/* Validate the compliance test data since max values
-> -		 * might have changed due to link train fallback.
-> -		 */
-> -		if (intel_dp_link_params_valid(intel_dp, intel_dp->compliance.test_lin=
-k_rate,
-> -					       intel_dp->compliance.test_lane_count)) {
-> -			index =3D intel_dp_link_caps_common_rate_idx(link_caps,
-> -								   intel_dp->compliance.test_link_rate);
-> -			if (index >=3D 0) {
-> -				limits->min_rate =3D intel_dp->compliance.test_link_rate;
-> -				limits->max_rate =3D intel_dp->compliance.test_link_rate;
-> -			}
-> -			limits->min_lane_count =3D intel_dp->compliance.test_lane_count;
-> -			limits->max_lane_count =3D intel_dp->compliance.test_lane_count;
-> -		}
-> -
->  		if (!set_filter_for_link_params(connector,
->  						intel_dp->compliance.test_link_rate,
->  						intel_dp->compliance.test_lane_count,
+--===============7590065623427775421==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+== Series Details ==
 
---
-Cheers,
-Luca.
+Series: drm/i915: skip eDP hw probe when connector forced off via cmdline
+URL   : https://patchwork.freedesktop.org/series/169917/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165_BAT -> xe-pw-169917v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-bmg-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-169917v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_dma_buf:
+    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169917v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+
+
+Build changes
+-------------
+
+  * Linux: xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165 -> xe-pw-169917v1
+
+  IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165: 96e9ac36699d58791b67aea5e1d258074ea63165
+  xe-pw-169917v1: 169917v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169917v1/index.html
+
+--===============7590065623427775421==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: skip eDP hw probe when connector forced off via cmdline</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169917/">https://patchwork.freedesktop.org/series/169917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169917v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169917v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165_BAT -&gt; xe-pw-169917v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-bmg-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-169917v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_dma_buf:<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169917v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165 -&gt; xe-pw-169917v1</li>
+</ul>
+<p>IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5354-96e9ac36699d58791b67aea5e1d258074ea63165: 96e9ac36699d58791b67aea5e1d258074ea63165<br />
+  xe-pw-169917v1: 169917v1</p>
+
+</body>
+</html>
+
+--===============7590065623427775421==--
