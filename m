@@ -4,76 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFB5EC43458
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093FCC44501
 	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 13:49:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87FB810E5EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0C2410E5FE;
 	Wed,  8 Jul 2026 13:49:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EYXn8/r1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VugtrEs3";
 	dkim-atps=neutral
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E121A10E580
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 07:34:33 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-2c7cfa17fedso4488795ad.3
- for <intel-xe@lists.freedesktop.org>; Wed, 08 Jul 2026 00:34:33 -0700 (PDT)
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
+ [209.85.215.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDF010E579
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 07:17:25 +0000 (UTC)
+Received: by mail-pg1-f176.google.com with SMTP id
+ 41be03b00d2f7-c998fd549a8so232526a12.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 08 Jul 2026 00:17:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783496073; x=1784100873; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1783495044; x=1784099844; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=QYyfRzVZfVK7y35yaNbampPDVaTcx8NzqBZy7M6l9p8=;
- b=EYXn8/r1+KQC1rjJO2n4W3J1RwJyuR8ejCDSgTf+JHfkPABXktnVFqE18r4s6MMG5M
- nkY7MoxNejyC7eYvvo0LN89ZsSb08ELgXlScYUzSVs1XYQlP+zXBrtgGeGR5TW001Rtd
- bqFuGtnnTlslyZPd2HWK0pSp6LSk1GMPPyQ03yiDdTMs59UgDPktr5Xj5iydY+eneXEf
- LDGBmh3HdHlPnLT2tEMAwHlnkZzcCRILIJzQKpawmq30Y4HRRBEzK3bPtNGLOVjijqPF
- UqeHqGFW3r/wNQOPkdiUAJMZK8I8AoFllQQZznrEeFLVuLpEibL7N91JegC49i+gtLHf
- jrOg==
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=h0Biz5zAntBoijadNrUEvs1mg/mB9KZLbipw/JNpHMQ=;
+ b=VugtrEs38mHoIi2A9Jc/qzq7UuIyFZ5BLtdCPZHJaUqY9Qiua6v7iDPxg+2GiZK75P
+ kzhw3Ae4ak4t6LlLk8bOLGSt3IT0yM0yMKEA3xDBOttH6QanFSsHBycEJomZYWZz4ge8
+ 2iCzYTadNj4RCx6xje2jhQ004y8ew9yJHX8NyZodfjJIhh4w8K9oS3qJtqS5rn5Fwj6T
+ 8/kjaA2CypmXAyYfC4odwZX5q1NifdH1oYNQDZqRYIshRNPLyXDgm214ug1l9MYrOiTd
+ 0LT2v2flDMPHolUOMuuptLkWh/eDMLZIDHQaJuGyobbNyS/mQ19EKEGYvawbV8Fv2VGm
+ 3yrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783496073; x=1784100873;
+ d=1e100.net; s=20251104; t=1783495044; x=1784099844;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=QYyfRzVZfVK7y35yaNbampPDVaTcx8NzqBZy7M6l9p8=;
- b=L1MHoyuxf4M8BptH+k9vwKUadKyYMYVFSjnhnajWdeLLPCRROX7n8cmG4lVCpXqJ0N
- nLtEGczYOjmgr1XcJGoPSkcttf5fgMpiCdBNSfl+FH7lzNyBX68K7fBApiySnOpPE8s3
- wePQyS2A5ZOJXy/eDkqgSdYn3Di+56KsrgnT9lW1Q14hlGKReWpCtfpeWQjZj9Wz04Lb
- N0/psgXaMKEGn6v65SAArpblicEg/ZxXX5T05a0bv27CFvYC/NKny6hwo43cZZl9KPfH
- k32NdMpkIXQiY1bHUCFbPGNc7WVJr/RqsSSEzPooGpeZw+pL/MkGqPL8Vmwv+LfvDj9l
- 9D4A==
+ :message-id:reply-to;
+ bh=h0Biz5zAntBoijadNrUEvs1mg/mB9KZLbipw/JNpHMQ=;
+ b=TGKdR3pDZmhN0nvEwRR4qReJ98DlEckFY1TxW/KOb15+vQ8k+0zan+RfVMPexkDxMq
+ GkmAsSfXBKcWBzd0KK9wQYeEERVEIpn/Nj3ujwUqzCABZvAKrjK1qwmzgedfQQAa2LDl
+ EOivzBJsS+BL3YLjvSrtU2YLBpWLdAKBmSQecxv9/5QJuMFlOLsB6BsL661OsP29mqlh
+ z5G8jGVIFP40B7WBWBWqpDYyt2mYelFyPguPQuRiBd/zh9gtrbSXb23Lhjh7IG3An40S
+ RDoFLb47tbwPmsJwUJNKVQkCR73qa6Hye80w0nC6gLxWUZWk28745vmag6SG+oHCAGzD
+ Si2A==
 X-Forwarded-Encrypted: i=1;
- AHgh+RpH1PlQ8ZT76ikY6BBBRrAYo159RtsikNJ1fNhTTYMPPcFWVRPEuMSc6+VP4yJlUdJnbyvQF8Woqw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YysmwSwAMpHtT6FxQvCQWE8MV7f+npefE8V/+zQCET1Wot55GEJ
- DRd2QDLB89XF8tjvpg4bc8k12jOKvi94Fd8z5VuQYPyCpzvJQ+eBRpQT
-X-Gm-Gg: AfdE7ckqKrawcx6UG1fyAtCzu9Aak397H3CZOGzEis+NOcjj9Q+pEepKmbu9I9M9KPg
- hN7+kHCDwQbRhNg171PPA45n1p3BsKuhOUHXM/xtYZhw7IHmF7lHS3kv8wB+57R9RO+lec529Sf
- Chp4zcQGpO8hB6D/pYnLCk7ABM+mQtMdMYuL2bbh5TVmjA+P8vxB71EHiWTzGmStLKbXmSd331D
- X9MGK6hYEYYLCrYDfhZf5C0EW9LlBeVecc8RyouGogSVDbyrpG8eSsb1poCXgUONfqDxauQ/xQX
- szZjGJ25JSxDl4x901cgUpSs6U3ZuLw3So+1/fmHQQ6VtT/rc1aJE0l0SAdMjnWPEPs4FpOakVq
- 2tPEsfBAAjPVkgKDpOzfffoE/A2umitJzytn1Lw77OV4UtpJgv2su5VcNdwgtVPRblyHzf84bu4
- VlB1StUVS+nw==
-X-Received: by 2002:a17:902:d4cf:b0:2c8:2808:3ec4 with SMTP id
- d9443c01a7336-2ccea37bd07mr14929815ad.24.1783496073389; 
- Wed, 08 Jul 2026 00:34:33 -0700 (PDT)
-Received: from lgs.. ([101.76.249.46]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2ccc9d3d952sm23359955ad.61.2026.07.08.00.34.29
+ AHgh+RpDo6tnjXZcjvKcwSGlIJzbZRjU6tcadsXk9XtoBOK0BvuTDRlcy0Rc/dqg4WLj1hgRkyMBBw32xw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzZICqv4n18IrmhE8aIh8ShWawht22QnOvqAPottCFtZwXQoXde
+ nc4OXmOm5zlhu/XrJvarOKtt/CF05nj16O0T/ZMKQtDIiNWtaXVD2ETC
+X-Gm-Gg: AfdE7clX5sF4HaowhznOGKBzCZ+eOSGLW75OzD2XA67nHM9JLwCAQxcdGD1YVBtE6ao
+ Eh4d29kunfZyI0xd8DlA5hogvxsHNmmd+cXVMF5ew38lfKeRVo3eIJygmh//DPXVuKwp3aVektC
+ FV/K6M/O8PThCbJlJL3rOqVw+bUg4jrGTR0pbUjKA+uUhGNeYzte8C4AfR8ZPr81RFgp8ZAFYQT
+ zFDzqPR69JEdO4sqwPyL0SA4tiGncrf5Cous4CRxT8JM2CzrXPPvhSUrz+jt6+QE/DCv2NIm2Pt
+ jrslIlcIBsylutGtSdl7+OHV8Qm0tDP6LK3hPCriKFCdzKvDMU1aH1nbb5DMRA4qxBJBovRPkI8
+ OukE9cMbd/Hitu3vSQ/kslKW36nSA3hCn3+DPCbI3u79LnbE/NB1Ci6zf/xRkj8uMYUy77V4=
+X-Received: by 2002:a05:6a20:748a:b0:3bf:ab02:439e with SMTP id
+ adf61e73a8af0-3c0bd0420b3mr1543741637.27.1783495044471; 
+ Wed, 08 Jul 2026 00:17:24 -0700 (PDT)
+Received: from lgs.. ([2001:250:5800:1000::f280])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-ca5b3b25204sm1972985a12.28.2026.07.08.00.17.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jul 2026 00:34:32 -0700 (PDT)
+ Wed, 08 Jul 2026 00:17:23 -0700 (PDT)
 From: Guangshuo Li <lgs201920130244@gmail.com>
 To: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Cc: Guangshuo Li <lgs201920130244@gmail.com>
-Subject: [PATCH] drm/xe: free madvise VMA array on L2 flush failure
-Date: Wed,  8 Jul 2026 15:34:22 +0800
-Message-ID: <20260708073422.725186-1-lgs201920130244@gmail.com>
+Subject: [PATCH] drm/xe/pf: clear pending packet on header init failure
+Date: Wed,  8 Jul 2026 15:15:02 +0800
+Message-ID: <20260708071502.722393-1-lgs201920130244@gmail.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -92,38 +91,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_vm_madvise_ioctl() allocates madvise_range.vmas in get_vmas().
-After get_vmas() succeeds with at least one VMA, error paths must go
-through free_vmas so the array is released before the madvise details are
-destroyed.
+xe_sriov_packet_write_single() keeps a partially written restore packet
+in the per-VF pending slot across write() calls.
 
-The L2 flush validation path added for PAT madvise rejects some
-SVM/userptr ranges after get_vmas() has succeeded, but jumps directly to
-madv_fini. This skips kfree(madvise_range.vmas), leaking the VMA array on
-each failed ioctl.
+When the header becomes complete, xe_sriov_packet_init_from_hdr() sets
+data->remaining from the user supplied header before initializing the
+packet backing storage. If that initialization fails, for example because
+the header contains an invalid gt_id, pkt_hdr_write() returns an error
+but the pending slot is left pointing at the partially initialized packet.
 
-Jump to free_vmas instead, matching the other validation failure paths
-after get_vmas() has succeeded.
+A later write then reuses that packet, skips the header path because
+hdr_remaining is already zero, and reaches pkt_data_write() without
+backing storage installed. This can dereference data->vaddr while it is
+still NULL.
 
-Fixes: 4f39a194d41e ("drm/xe/xe3p_lpg: Restrict UAPI to enable L2 flush optimization")
+Drop the pending packet when header initialization fails after the header
+has been fully consumed, so the next write starts from a fresh packet.
+
+Fixes: 1ed30397c0b9 ("drm/xe/pf: Add support for encap/decap of bitstream to/from packet")
 Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_vm_madvise.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_sriov_packet.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index c4fb29004195..246fe1843142 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -643,7 +643,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
- 				 xe_device_is_l2_flush_optimized(xe) &&
- 				 (pat_index != 19 && coh_mode != XE_COH_2WAY))) {
- 			err = -EINVAL;
--			goto madv_fini;
-+			goto free_vmas;
- 		}
+diff --git a/drivers/gpu/drm/xe/xe_sriov_packet.c b/drivers/gpu/drm/xe/xe_sriov_packet.c
+index 2ae9eff2a7c0..e9c92019862e 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_packet.c
++++ b/drivers/gpu/drm/xe/xe_sriov_packet.c
+@@ -323,8 +323,9 @@ ssize_t xe_sriov_packet_write_single(struct xe_device *xe, unsigned int vfid,
+ 				     const char __user *buf, size_t len)
+ {
+ 	struct xe_sriov_packet **data = pf_pick_pending(xe, vfid);
+-	int ret;
+ 	ssize_t copied;
++	bool writing_hdr;
++	int ret;
+ 
+ 	if (IS_ERR_OR_NULL(*data)) {
+ 		*data = xe_sriov_packet_alloc(xe);
+@@ -332,11 +333,21 @@ ssize_t xe_sriov_packet_write_single(struct xe_device *xe, unsigned int vfid,
+ 			return -ENOMEM;
  	}
  
+-	if ((*data)->hdr_remaining)
++	writing_hdr = (*data)->hdr_remaining;
++	if (writing_hdr)
+ 		copied = pkt_hdr_write(*data, buf, len);
+ 	else
+ 		copied = pkt_data_write(*data, buf, len);
+ 
++	if (copied < 0) {
++		if (writing_hdr && !(*data)->hdr_remaining) {
++			kfree(*data);
++			*data = NULL;
++		}
++
++		rturn copied;
++	}
++
+ 	if ((*data)->hdr_remaining == 0 && (*data)->remaining == 0) {
+ 		ret = xe_sriov_pf_migration_restore_produce(xe, vfid, *data);
+ 		if (ret) {
 -- 
 2.43.0
 
