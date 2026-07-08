@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0E3CC43458
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 13:50:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A408C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 13:51:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8748E10E5EA;
-	Wed,  8 Jul 2026 13:50:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8D010E5FE;
+	Wed,  8 Jul 2026 13:51:19 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8E010E5EA;
- Wed,  8 Jul 2026 13:50:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB22F10E5FE;
+ Wed,  8 Jul 2026 13:51:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe/pf=3A_cl?=
- =?utf-8?q?ear_pending_packet_on_header_init_failure?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_free_?=
+ =?utf-8?q?madvise_VMA_array_on_L2_flush_failure?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Guangshuo Li" <lgs201920130244@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Jul 2026 13:50:18 -0000
-Message-ID: <178351861844.165012.18196320565168369205@6beec6c84f66>
+Date: Wed, 08 Jul 2026 13:51:17 -0000
+Message-ID: <178351867795.165013.15315851148589231821@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260708071502.722393-1-lgs201920130244@gmail.com>
-In-Reply-To: <20260708071502.722393-1-lgs201920130244@gmail.com>
+References: <20260708073422.725186-1-lgs201920130244@gmail.com>
+In-Reply-To: <20260708073422.725186-1-lgs201920130244@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe/pf: clear pending packet on header init failure
-URL   : https://patchwork.freedesktop.org/series/170005/
+Series: drm/xe: free madvise VMA array on L2 flush failure
+URL   : https://patchwork.freedesktop.org/series/170006/
 State : failure
 
 == Summary ==
@@ -51,6 +51,6 @@ State : failure
 Series author address 'lgs201920130244@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1209615/ (on master)
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1209616/ (on master)
 
 
