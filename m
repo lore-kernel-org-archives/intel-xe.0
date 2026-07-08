@@ -4,27 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23C4C43602
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 14:38:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B42FC43602
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 15:23:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54FA810F159;
-	Wed,  8 Jul 2026 14:38:15 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97F6110E5FF;
- Wed,  8 Jul 2026 14:38:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0181413737523144968=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B0F610F153;
+	Wed,  8 Jul 2026 15:23:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IV/VS91r";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87AA310F189;
+ Wed,  8 Jul 2026 15:23:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783524215; x=1815060215;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=2bHyd0HYt0l7hyE2ucHxpvOuK+AjtrhAl7AvVaHul+w=;
+ b=IV/VS91rPNikudf6pjV7tEc/9co6HsX9Ld6klt0G1Dl5djTg1GmhkD7r
+ 2Yfki44H7oMmo1ebl3cFs8z/0fYdQ0CjJR4rlIi/Jsommj6BckAsLlMYp
+ Cmycv1rvFgAF/zDi6YDkmdRudojc8nXAQNXiWX17tNC7i/CoGXif8ljMd
+ k0sv26r2a/fmB1qSPPHCFefvttVMoYiOKOHNzxOXemJAbur3kymrIOvJN
+ ggVudZ/gP8oKEWw3xk+78RpnR2aCRcmw0A3Cm+nab37rvqDUnQzv4tM1+
+ HWVFBLL1w84zRiJiTiQVk4FYhinft2EMiqTqWefbEYTPoZRpPIOop6/if Q==;
+X-CSE-ConnectionGUID: w723QATVROmushc1grEWDQ==
+X-CSE-MsgGUID: Xxj+5nBeTamQA0DAWbmSug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="94795912"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="94795912"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 08:23:35 -0700
+X-CSE-ConnectionGUID: v7cevtXwQgSkrAfmoaX+cQ==
+X-CSE-MsgGUID: wxWuiIpTQsWxdUN/fWviSw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="278710205"
+Received: from sannilnx-dsk.jer.intel.com (HELO [127.0.1.1]) ([10.12.231.107])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 08:23:32 -0700
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+Date: Wed, 08 Jul 2026 18:00:17 +0300
+Subject: [PATCH] drm/xe/nvm: fix writable override for CRI
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_support_for_G?=
- =?utf-8?q?PU_health_indicator?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Soham Purkait" <soham.purkait@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Jul 2026 14:38:14 -0000
-Message-ID: <178352149461.165379.393911911755004275@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260708135110.4117174-3-soham.purkait@intel.com>
-In-Reply-To: <20260708135110.4117174-3-soham.purkait@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260708-cri_nvm_fdo_flip-v1-1-792373667334@intel.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MTQqAIBBA4avErBMs+6OrREjpWAOloiCBdPek5
+ bd4L0PEQBhhrjIETBTJ2YKmrkCdmz2QkS6GlrcDH/nEVCBp0y2NdtJc5JkQYu+7HhutJyiZD2j
+ o+ZfL+r4fclTRvGIAAAA=
+X-Change-ID: 20260708-cri_nvm_fdo_flip-333b545e1dd8
+To: Matthew Brost <matthew.brost@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Alexander Usyskin <alexander.usyskin@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783522843; l=2075;
+ i=alexander.usyskin@intel.com; s=20260315; h=from:subject:message-id;
+ bh=2bHyd0HYt0l7hyE2ucHxpvOuK+AjtrhAl7AvVaHul+w=;
+ b=u69QQyE7bZIM7sHe+PyjKm6pWbCkMTCF227z8KfKfdORYwtCWqsrtIbSe48v65lka92Q8wfz+
+ 5Zjzil3vWjOBuedkUx3D3Y2Mq1cPazPHNEaOQ64EwJK1QBlwWFX1yef
+X-Developer-Key: i=alexander.usyskin@intel.com; a=ed25519;
+ pk=X+qoF/nFCdDOV04IForWSxnkyoCAbUE10egZi6PSfcU=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +78,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0181413737523144968==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The witable override should be set when FDO_MODE bit is enabled.
+Fix the comparison to distingush this case from legacy systems
+where bit should be disabled to have override.
 
-== Series Details ==
+Cc: stable@vger.kernel.org
+Fixes: 9dde74fd9e65 ("drm/xe/nvm: enable cri platform")
+Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_nvm.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-Series: drm/xe: Add support for GPU health indicator
-URL   : https://patchwork.freedesktop.org/series/170010/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
+index 33487e91f366..d50ee414e83e 100644
+--- a/drivers/gpu/drm/xe/xe_nvm.c
++++ b/drivers/gpu/drm/xe/xe_nvm.c
+@@ -60,35 +60,39 @@ static bool xe_nvm_writable_override(struct xe_device *xe)
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	bool writable_override;
+ 	struct xe_reg reg;
+-	u32 test_bit;
++	u32 test_bit, test_val;
+ 
+ 	switch (xe->info.platform) {
+ 	case XE_CRESCENTISLAND:
+ 		reg = PCODE_SCRATCH(0);
+-		test_bit = FDO_MODE;
++		test_val = test_bit = FDO_MODE;
+ 		break;
+ 	case XE_BATTLEMAGE:
+ 		reg = HECI_FWSTS2(DG2_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	case XE_PVC:
+ 		reg = HECI_FWSTS2(PVC_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	case XE_DG2:
+ 		reg = HECI_FWSTS2(DG2_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	case XE_DG1:
+ 		reg = HECI_FWSTS2(DG1_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	default:
+ 		drm_err(&xe->drm, "Unknown platform\n");
+ 		return true;
+ 	}
+ 
+-	writable_override = !(xe_mmio_read32(mmio, reg) & test_bit);
++	writable_override = (xe_mmio_read32(mmio, reg) & test_bit) == test_val;
+ 	if (writable_override)
+ 		drm_info(&xe->drm, "NVM access overridden by jumper\n");
+ 	return writable_override;
 
-== Summary ==
+---
+base-commit: 8cdeaa50eae8dad34885515f62559ee83e7e8dda
+change-id: 20260708-cri_nvm_fdo_flip-333b545e1dd8
 
-CI Bug Log - changes from xe-5367-88c6be63ac7e9238c7791977d3f496ce6623afe4_BAT -> xe-pw-170010v1_BAT
-====================================================
+Best regards,
+-- 
+Alexander Usyskin <alexander.usyskin@intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5367-88c6be63ac7e9238c7791977d3f496ce6623afe4 -> xe-pw-170010v1
-
-  IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5367-88c6be63ac7e9238c7791977d3f496ce6623afe4: 88c6be63ac7e9238c7791977d3f496ce6623afe4
-  xe-pw-170010v1: 170010v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170010v1/index.html
-
---===============0181413737523144968==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add support for GPU health indicator</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170010/">https://patchwork.freedesktop.org/series/170010/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170010v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170010v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5367-88c6be63ac7e9238c7791977d3f496ce6623afe4_BAT -&gt; xe-pw-170010v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5367-88c6be63ac7e9238c7791977d3f496ce6623afe4 -&gt; xe-pw-170010v1</li>
-</ul>
-<p>IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5367-88c6be63ac7e9238c7791977d3f496ce6623afe4: 88c6be63ac7e9238c7791977d3f496ce6623afe4<br />
-  xe-pw-170010v1: 170010v1</p>
-
-</body>
-</html>
-
---===============0181413737523144968==--
