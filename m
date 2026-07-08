@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28975C44501
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 20:07:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC7FFC44503
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 20:11:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C9A10E66A;
-	Wed,  8 Jul 2026 20:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 911EF10E67E;
+	Wed,  8 Jul 2026 20:11:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VK3MLfSn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OtiF01q6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33E6210E66A
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 20:07:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 510B510E66A;
+ Wed,  8 Jul 2026 20:11:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783541227; x=1815077227;
+ t=1783541508; x=1815077508;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=9oKtwY0OixNqsf7xw8lxd42QAk/8MOYZIB70rdjQkjQ=;
- b=VK3MLfSnd213fEA4JbaflE/AYfMyw2zwEIy9/3Qt4pC/CGnM8dGIXucj
- qitm1FXXC2tqs40ruQs4Fquhgp7BXh2Q1BxRDel8uM5CHsyjg1XFi2bCb
- qfcVc481HS6HN2NWU6bJTClTQR32ccDPdCOXfHPKOkZ/IvqyIYw2DZQgJ
- XI++ec6t3aL6IP2WXYd7Z8wx6nK+bQCv599Jm7As1urzoMYJERWvu/Ixa
- aafGZEPDa/HV0Nrs1zNER6+WTk0fahdIrd+NbwKQqeqcDdYD4kWzrgiLA
- gYT7akDLBrqPI23gAXqGl8h6shJWtmHGC3BYtf/Cwy0aJjdW1BhxiCGj4 A==;
-X-CSE-ConnectionGUID: 7wTm/wGBR0S+uoEsrk+sWg==
-X-CSE-MsgGUID: h2yxpZI4T/mbq9q1GeAcKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95374680"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="95374680"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2026 13:07:06 -0700
-X-CSE-ConnectionGUID: 1UStcstTQjOTDj4PO+jCxg==
-X-CSE-MsgGUID: uoPZuGrBTpSSM0qbOin4JQ==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=zm4slQZA9a4PWROhmVthNxWl2LQq+afWtZlXCEOdF0A=;
+ b=OtiF01q6ThGb+wTKWwMVGP/Y1CgxJajxHx8KlZLBry/hApC5eaCYVE+w
+ nXdgTSuRFtGJVbSaIgJ+NtC/dQ+layjbY0JxImsxnjiRI5AtdE2ZVUH4A
+ C9xsxorz/z8ehIw59eImUa1mTpYJbiaRDNrdBWgAi3wlNJwmeNKWKuN/r
+ aHi3OCxhFlKgn0dcSk7B3NKL1J61CnvDxhju2eG2XXU/UYbBphsOS+bV1
+ DdHznOqmKY+ndEkS24QI80sJ8oy/IORxnwpe2KMNDOqFA/s7Y2wtteYvl
+ hyPfDk9I0E3wWB7aI4GcFQpF5NjTSfSbtfdJlOMZQhEhH+z2pFGEwkfJl Q==;
+X-CSE-ConnectionGUID: AHkBvKDwToSVIvr44cgBbw==
+X-CSE-MsgGUID: sjAjRth/SyixfTsTboEwjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="87900084"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="87900084"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 13:11:13 -0700
+X-CSE-ConnectionGUID: qeE8sJ6VQOSaN8dKUZ3HIg==
+X-CSE-MsgGUID: l9bvt7fpQKqDQru1SB6z5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="292565507"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2026 13:07:06 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="277608208"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 13:11:11 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 8 Jul 2026 13:07:05 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.43; Wed, 8 Jul 2026 13:11:10 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Wed, 8 Jul 2026 13:07:05 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.61) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Wed, 8 Jul 2026 13:11:10 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.1) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 8 Jul 2026 13:07:05 -0700
+ 15.2.2562.43; Wed, 8 Jul 2026 13:11:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R7F2WjrUB0L6pN8gUAM1W8L5uE/uxJbH+v1vZ3l/dt9PaYoy1+UEMCsY8U+/C2SEbYMCA3+hsJsoQWNjlesj+oLJm2B6CNfnNwoKUgZusq4zoQ+XmDlWX4HL2y/ihnfc1BUIRmtfyanwUeWxUQe1HURsvNSQ62aSy0Jm7xgZvrxuvGsWazYnBN3oGPl99vMOwJc5XbQP5TqWcjr24Q7jUSJgS3QBK6WmJoS1l9tJNHRF85ijiHeXFJM/bvs4d+NQ2NeasP2MhJzHQN4QB427IYZsxfRnQiPHjVKBwuJrVzIsPaj1Lll3cn91QZw0AVAtQbeLvifPrw7JKkkuArARKw==
+ b=NP4w+UFLU/gdcKrA7hYC5Xnh/f+DKMeh7duoilj5Z2rFaqjSiwe5pG3wlOhSp4m6WWUpJMDdr3zQZdwAiKjuUx0PHGeW307qpG6z0bB9PEfgZwylDSF6329JTJChhMMRKo8FYrB8c++ZJY2OukxzPGkYHZ8FGu010C5D/bpj+9KEuzOOCwK5L4Wcu3LC7c5XeimkAOWcqxnZ6/zH/iTwkQVny4ui8lBSqDl1gJAKTArL8K4b7anAfZgP7+1VPr5QSJE0QwbeQHoImJsBNEPpgR9j8e0E3FlyUNUQ1DA5l4eOQWC+rb3eugxlOzCojWOVEuqhW3ivGh8DxT/CSaYFzA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e1iqoR3/BLqyWF4AWD6173Fti+JQchDxbRbjZh+A4dc=;
- b=j+5qpywsPtKWo/3i4ctDxcynpJmzx7NXo4aD7xXXW2zgPbtt5Bg3b8XVioE8YrGjuQETqfIAI2HFxKFEQ9wxbqmo8V8aiJkrpb2KqIctvSXzW/Nt+7ItVOrubo+60kDmWhcQwMsHLGS0GM1luNe64ayAk5futGgGlEn28T3W7ev0hKRdhyTh3MBx+wuY9MzP2juwmbYwB6WZCjajQ1CjMObgk/YLNyCVKnOtn2NlJxKXvGOBoCKrXc/iOs20LnwQPAFOq3gLbfN3yE8HNVBu2TDYUSCJf1U5xCwXMph4+HtZXQJFTvJzRSRCX8TeBkbCCbn6Aof0DLDtVGr/+Lt4yQ==
+ bh=bg7shXJorBluHx7UL3Sty7PhAcSQ2fF+JyptWBbDoAA=;
+ b=fGTsIe+18Y+luaM/doTqZNdtqhKuBPQzDrWBGWqWogoZy8f9q4NvChFMFTLIpABpa83UopUB0cOAJftn6Uft7R18hBu2bTmR2OQtDjM9yT/0CVwbTXChXlAwWSkbnSNslaV1J8dfiYtyu8cHrtW2lnFIxQVPiPl0d5LLgnRxJCc0HGcVC6wcwDzSsNSkuqv+CnnM9ipQWpv17shGTlgoGtgzs/nmyRduZYuCHljpDbzoQ4YS4hHZVQc9tDQGWKs5zclzSL1fo/Pm8RoSvgnOkcDQhZUfxr0U3AU6SzvIBIXDCLB634YDO1hlRDh5Ffej9zxR2VA02jpTSkiyGc6ysw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,83 +69,86 @@ Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
  by PH8PR11MB9805.namprd11.prod.outlook.com (2603:10b6:510:3c2::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 8 Jul 2026
- 20:07:03 +0000
+ 20:11:08 +0000
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0181.014; Wed, 8 Jul 2026
- 20:07:03 +0000
-Date: Wed, 8 Jul 2026 16:06:58 -0400
+ 20:11:08 +0000
+Date: Wed, 8 Jul 2026 16:11:02 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Soham Purkait <soham.purkait@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <riana.tauro@intel.com>,
- <anshuman.gupta@intel.com>, <aravind.iddamsetty@linux.intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>,
- <ravi.kishore.koppuravuri@intel.com>, <mallesh.koujalagi@intel.com>,
- <andi.shyti@intel.com>, <anoop.c.vijay@intel.com>
-Subject: Re: [PATCH v8 1/1] drm/xe/xe_ras: Add RAS GPU health indicator
-Message-ID: <ak6t4jMGPjLV3QjT@intel.com>
-References: <20260708135110.4117174-3-soham.purkait@intel.com>
- <20260708135110.4117174-4-soham.purkait@intel.com>
- <ak6pqsN18JAqB9kF@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Thomas Zimmermann <tzimmermann@suse.de>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
+CC: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <tursulin@ursulin.net>, <airlied@gmail.com>, <simona@ffwll.ch>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <sashiko-reviews@lists.linux.dev>, "Javier
+ Martinez Canillas" <javierm@redhat.com>
+Subject: Re: [PATCH] drm/i915/display: Handle struct
+ drm_plane_state.ignore_damage_clips
+Message-ID: <ak6u1iPEIDulYTnv@intel.com>
+References: <20260701130929.234695-1-tzimmermann@suse.de>
+ <13f94040-6f6d-4a8e-9581-be769a0e3abb@suse.de>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <ak6pqsN18JAqB9kF@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0285.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::20) To CO1PR11MB5073.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <13f94040-6f6d-4a8e-9581-be769a0e3abb@suse.de>
+X-ClientProxiedBy: SJ0P220CA0027.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::18) To CO1PR11MB5073.namprd11.prod.outlook.com
  (2603:10b6:303:92::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|PH8PR11MB9805:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd68c706-1dad-4f94-5fbf-08dedd2c7a5a
+X-MS-Office365-Filtering-Correlation-Id: 39abf4b6-433a-4098-0b61-08dedd2d0c40
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|18002099003|22082099003|3023799007|4143699003|6133799003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: 880zvCLONle/kp2DPa6qHDi0keO1qYqY8ZJ0/v9QjaxcYXdhJFUqSLczeqgmbt4RGkTf1HktFiUR0JqUyzTSTm1+qr9B2q4MeF3alfpocX5gQ4Bnz/xCgWc59M2sFIjB00eE0gmFNBHKP0Y8INBKyDu+Q/bJqUnWef9vDMLNeofyT4mBcC7MNC9tP0XrWNsfCKbYLz+rMW9jSxhFkXDDNDRhDV1S9Ill4Bk+qIYBwaxQhZaz+zFBbnYeTtRknj6PjxTZDU1b2/qR4WhFyGXbd9ODnpOVVp5nH6TIMA+JfKO9mBVAJu1Yo9vrTdmy711cLDC9y6EOFxZBhxsrhHJrhfyc20ONPm8+wFCpgP5y8b9s7MlTIdMKZcWYxXzC/t6F9V6QVd9mGARN2lT+na3OxTkc8OOyi8m43gqRbV8X7EwsC2GOKAga4Pzq6qJpEMC/xb6JGyLDVouYuoEUJilBOGo+j2nhFPWS2i5NpQYS9vvJGfcnwcR2kGLg36GFfCcgOXXnFc3T9S5At8QAV2QMOSehrjzDYDXfimrsod5dNieDg4Kj5gKzubAlMyfAXPrWjNAQMdO9o4MXEL1HcxCuaSTJF4xyLbtEpL1dO9iGCxg+aTv4Mc6RnEY0fjAuNWj7uopRruL+0T+FeuS0KSHPf7dSb0VL7FQgrr4iqd2cjuQ=
+ ARA:13230040|23010399003|7416014|366016|1800799024|376014|18002099003|22082099003|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: bO4gno2fwoA6jUFVLmoUOjdzGUOPIpQMqKY6FIiYItjNMqGfSfJ/gNj8wSRij+X5FTdS/ruBPFtnBgj14hppur3si3dn8/eyTk940xbd4FMBtmpXINvjNJmg9p9thhtfFw8Le2co1jhwoX+ERZ0rDDsFlkB8NJO5GTVABHHcvqjQ7jRyySl4Bm8Ju/ZdLkUDObBWsRejf23tiDIU0GAYoKwCmTCzqJ+Ji3dsJvxDS0k3n0dq3CX+/N6rNRUBVdotHO/NSlzpiiqceZYgmedHwkJsNY3vE+fQbRK+r+lctjxOgh1YeMc1W9rJ7IqQMQWUJCq1s4Bk6xaF0Vb79DU4zL4T3JduDckl7FFDXdV+2tdNgVPwTTVK9OkgqIgwA7iDeOaY3Jgkml362coeFU/1cet/zrU56dsR4faG4jOrzAtp0Vr1MBqq9ez+/lLDA+GELMKO+gw/2xweb3P29z6E1zweubjeTV4xs0Nc3PEK7/I75oOL5pG/69TAQtjfVuww40GRVU4SlxDyjlQmF+3i99jv032I2Kp8Vp4KZQuyJcLBwjx/qjJP6hPwBR17Uj1o4aPgwX9raO8hSj/Qm8sGzO66ygrtPQChMHQRKHg4XGA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(18002099003)(22082099003)(3023799007)(4143699003)(6133799003)(11063799006)(56012099006);
+ SFS:(13230040)(23010399003)(7416014)(366016)(1800799024)(376014)(18002099003)(22082099003)(4143699003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KCKSI316R53USShBN/ncwjsjihfaS4Nk6N0tQsIC5ZfA45PGzJDpA665qD7U?=
- =?us-ascii?Q?d1rbuebNtHIZhYq5H7D9tEM20ZYV6w5Z/GJXH7rReZstjxS4aPyASSO1+a+A?=
- =?us-ascii?Q?zKztvM9QSCqpkgIB37ny7V2i6+S3K7HXOEZNLFRulSuZ7Pz4ZxgAeWjTkJJf?=
- =?us-ascii?Q?6gHSZ2ES5WBRcFGIyZ6KuhW3Z8iOGHFVgTPeKHWN2GqOW0P1bzOwFuadxxeS?=
- =?us-ascii?Q?5l/FD4I2tRraeX3EJNUAMsGFRCeovfzSfOp10Nc/bx9UXzLAWS8NDryg1BMq?=
- =?us-ascii?Q?95D2tyWTrOKnj2HdkA7j/zAVcb71RF0zaUlVoRHyeHs8SL+b1t1sJeUuEsDM?=
- =?us-ascii?Q?gEV2LJnG6hpOR+EWLpkwwyZmn4S+H05/h1RWlWioTPg0/o633NeHr+j3lGrm?=
- =?us-ascii?Q?Myz2WOs0ySK/K7pWW9uibtaFRaTWwHjRpg6lJClcIlzjo8WzNZ1gGGo4KIp5?=
- =?us-ascii?Q?KA+QXprUPvQ18oITKmPFv7/WAt7Nlbw2DSFZh+sZEwQBlLC4K2hQI2pUPj60?=
- =?us-ascii?Q?4/9ChYTBSeLZin5PQ9bRlNb9KbhFQ2NGt5nwdJ2TpZcO1tovIiC9nQjNFl8M?=
- =?us-ascii?Q?V5PcyipCRNJQ68q6eaXgKB4MwxAz4wC876garoOeo6BT9g4LajKKyWGElbnY?=
- =?us-ascii?Q?CEVjY+bVaox5J82peaUGNnE86nT9jdqFvzpUWv7DIqmmOl1iypC0vA1MV2E7?=
- =?us-ascii?Q?fGthifVCyOT0HQB/q8gRIp2kYiOUr4yGBYA5wlIzLcfV1og8u0cj5hTfjArH?=
- =?us-ascii?Q?NJNuJ+eNlriTe2q5utAqKhLw4u3yA7YAAlJ8d/7A48KO5D00HCX2z8sHFczt?=
- =?us-ascii?Q?nNLqqfiPB/WsNtzxxYxSQNmqiAl7d1JZMnf3zrIZD+JDUEy3w29aHgjY5THz?=
- =?us-ascii?Q?ighYG9USxCERbfpOdcIVnb5Iorn5WY3rcaDwQ59ikdQ32mOjs8PgH2sIY9zC?=
- =?us-ascii?Q?B1We5wa/leoHF+6nvV3rJqb+DvxUkxKLSYI89GKN6Hp4w6jBCNK83Rwzu5IC?=
- =?us-ascii?Q?m87hi8kFrDghdKL6iB0uBLxQgXM3mC8PdjV/Gm5+i7EnWOrWYTpQd06mkbiT?=
- =?us-ascii?Q?i2TLkiJfzAZCr7ALQ4CIFQr3Ydj/OJke7By7bHjkhwRReupgcCm9RketFDNe?=
- =?us-ascii?Q?+ld5QnibtgYjlx2bzQevRsxharXsvALqcspYFfl3g4nWqEkvsmIWUnlI3RxF?=
- =?us-ascii?Q?oDTt5YsdEdsNGNX43inX99K2WVkGrXeVO9u3hgUGizfKwI2Otg/CZQTjofgM?=
- =?us-ascii?Q?Brxn0V5Md/zfY19EFrU7tDTE3jWFMc93ElaDLa9E2eTrA3FzWBdPwBIrpr5Y?=
- =?us-ascii?Q?4hNZbAV5kmLbPomE5zwPrZprylXODjwOvthLtpTpk/KkFkOK7Cms8O6O6A+G?=
- =?us-ascii?Q?NcV+o6Atw6IKzC2w0kc+TORS0+mV5HZGgVXO+2bXI7XAatLt0FkuEClCZdHR?=
- =?us-ascii?Q?TUXDPY/MKDQSK1utwtP/ej3yG1xXWEiovUa2ubRYySpIgOu+LfcUcoBpD1Q2?=
- =?us-ascii?Q?AusjY9J6GnB8jGGopb8dqdsTD9Nicpx08XqNt7llDl3T0CrzfSQl6wkdn7Ji?=
- =?us-ascii?Q?1WofhFqaHF0OEfgsF4nagUmPvUdGuciH2+SlurvacGnzqijs8rsIdpRgZAUh?=
- =?us-ascii?Q?l3QGfF6GLvJxr+74zAzcGA4wJUdW27C7HQX6ae1seSoXCTKNNtxAFgdj+iHY?=
- =?us-ascii?Q?bCgEr8xNqKRa3KNyJWA08/WjvsG/TeU2KdfQBBA5bPNOyvyh0qiVRYV3c6s3?=
- =?us-ascii?Q?1uf/L92KvQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: TIJGPqGxzAMAwxcSQyENzij4WJN12tENxws7oUXUABim7a3TSQUEKPLLCalwHVV9P0G54hXbQU0nfrT7nlSFCdQEviyoZiNeBC/vgsYJFbzK0pL6l5t0WJwvLZODAg83fLJdSHEG5tjPEDHwFKPyNtOVLwdu/78lceaoS+8+lMF12j3KnQ7tjgdHcJfZUf6sAwwytxBdYnhApoz7xSME6OpWmfZr5oSfb+PJ9vQVFzt5R0Yw8XeSRYUkFm7w02SHKwCaVudS8E9ysd7ymzK2xS5oGW6yLpOM1XIBhGjx1vureULEpeWZ/vavX57P0Jtt1wn7A/i5hdFxqtfwR+L8RQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd68c706-1dad-4f94-5fbf-08dedd2c7a5a
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?v/fX5qTBZ1b1RCPILBJI4JhQasMsfxkxAyAgSYCbBIU7A1XR9Kab2oL8Ou?=
+ =?iso-8859-1?Q?UkGyy72UJi5sJax9okjNyjdyygyZyqd4URAxrVXwyEPUXDSFZT0cbWH6a4?=
+ =?iso-8859-1?Q?BIPg4myeDW9Mo5wC9oblrflVwCVgH1f+CEMxQLTDwI2TlamLKzIVmL67l6?=
+ =?iso-8859-1?Q?Q12RLWitK+fcIPN+DRB/shcKy2fvLa+2n+R3KsNS/Y9GSbPk+GAfqV3Ta5?=
+ =?iso-8859-1?Q?DyQ5VTpekZxgYpzP8qJJwiPNU3jjkjh6Z3fPJ7ecuNBNvARpC8iEncdAcn?=
+ =?iso-8859-1?Q?9bLung+tn9WQGGq1LDlhznd4yaEyY+vDxD2fx3lbd3vNWwlh6nIcqm2ryP?=
+ =?iso-8859-1?Q?kzI4YLVvl1FrrnSf52uAjQjmLEBgozQ6ZEBt0PeNKEgyQIKTcSR7jon+H+?=
+ =?iso-8859-1?Q?86pXdUEq3Lous9eDChKZ73jD54YyNib1gsiumB/84dHGiFijXMLJHVaNbn?=
+ =?iso-8859-1?Q?p0WDHWf83kFSLWo8tTpc+lQ4NmrCLA0hQNFKAUH4DI8As++/tRPt6VilFf?=
+ =?iso-8859-1?Q?XavK6EZNGYuf28ZsawtYIIxYyh5guo0YurgwGUZAfL7ORClUYvWYfdpGwU?=
+ =?iso-8859-1?Q?t+BuNYqqyxanrbkQ6ZCgGOrAVRddGBAqu4o64hLa8JSSQAg0u5v9IIgqUn?=
+ =?iso-8859-1?Q?f3/w0adrKDof/rTe2Kh4+kdcCKDoaUahD4zg9/C1CBAs0zBpbbyYdYdLGh?=
+ =?iso-8859-1?Q?RspjyvY3rxQKjnFFS6Y242x/NQTjVxqCKkwo70vT0tUjvq88h8ykMeo4ce?=
+ =?iso-8859-1?Q?1ql3E6Qq3Ect53MO0tIFZZmvLC6ZFKTXPoCc1DPaX11Aw1Oo9pWsArfy0H?=
+ =?iso-8859-1?Q?pSvTSAfs5K+zZrvPply67imsQubtCynwR+Z4a+F9HhBelZFsW0sPSkF3mX?=
+ =?iso-8859-1?Q?PvDqF8YuVfuQtgpL6otwp5LJHMFo0yh6isW/R+tckNMoDaP5VTZX1on5bI?=
+ =?iso-8859-1?Q?A6UXiT+/Beo67/XXHCCJd0vCsISvIjugvcYGsdGJoQ6onnCxi0CYN3Bpmd?=
+ =?iso-8859-1?Q?aJ11qAggj7puzpX5sSz2p2iIOfyjvknDjnNODqelnYYyAmjqwCoenZVJ02?=
+ =?iso-8859-1?Q?6Bk6XBYharu/I1wQnatx9hyoGxjYtl3o1Jq41rRwHRMeh0Nni4W+2UBZ32?=
+ =?iso-8859-1?Q?3P6dOpVGrC3gYM6u5PHe8vZEXhgjGaEybJjsqW9fDLAOwDK+8Bhxc1FDVY?=
+ =?iso-8859-1?Q?AXtnHmTkUlZTRcY29T3UEClj9QK68YNL7a0YStP2Yl4hmQK0EIvao9/x+Z?=
+ =?iso-8859-1?Q?XNPGs7ahrxEM+CJv8WcleZE69QHHbyB0JEpsl9F31Cf063MU0BkB0EoUm2?=
+ =?iso-8859-1?Q?b8lNoPmk6wNCVw/Ji8VqNjUu9dGRaFJ3MBbciR2skuwgG3xbCMl3b/It8k?=
+ =?iso-8859-1?Q?2dJjFZ2UdeviWNrHlCksSvo8jaNNzCp/eaXl4JMUaoSN55qZphGs2PSQJg?=
+ =?iso-8859-1?Q?oEV/LNzijXk2APtzznFkZCtmCHKnIxvclfGcY9b+NIHyhhdx3hhc7ws5G0?=
+ =?iso-8859-1?Q?jcahqgoUr+ZismRxU2TRa8CMkWKVU50zbKNWRCDezYHBpvmxa74oi0e54a?=
+ =?iso-8859-1?Q?Zibnioujhgv6cDvIe5RtZHaQXANvIHZChJnLBWcIuvz8TChgdOo3hfcNbT?=
+ =?iso-8859-1?Q?7hAkVvx1BTUufKSB3zgJ3WCAIeXGHwY/dhyUGFoXFMMOgnz34bjPsq2FPo?=
+ =?iso-8859-1?Q?3Jdss2YKNhIYXcK8tanRMBAtHKiVe89boD5n7iq6jHubxPhh071/4QQpev?=
+ =?iso-8859-1?Q?175U5ANSVyfB7hZGnOSKKBKDT8QI/rsC3eTk5sNQ3GnXTKGeSfVdONNuzC?=
+ =?iso-8859-1?Q?di89qi+mRA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: qycvl27hlaiAwqkXySX72S4Ln4/nVlOZU9tAl2E0x5pPii6Zk9VVxYfPMK/AGe+IXW1knN7sC3d/WDXw718AI+W8RCb7Rk7xh5ZwvTOD2EEbFcgvMekfnVs6SyqgoFl+QapcqiEmYqMAMwUOiVqO27rU8MqLBRyvw1LdLHF1//CJvAgAcA6gMAQW/VOJZi/x1JAJBhCAfAC5rwYSjjDTOdkYyA9U7XAJYF1ROISGX3g6C8YSXTIeqe0j3Ad85jnE2QkMJp1Jxy6Mi+inET5LxMeSiqTFGW0E7f78epc9ps/+HafiZK2g8a0HMDhp4X7MUEJ7ZJl1lWy0+DKXYBda3g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39abf4b6-433a-4098-0b61-08dedd2d0c40
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 20:07:03.6347 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 20:11:08.3757 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pMYevMlYwmJTDFkOV86nZZc4xrTngbHPG1PKyDqHeR0Ptp/0uVZa869ZpryX2J5qX0y9C8JwIRqE9/8LOgMJfA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: p2fNvZOZx+LLFp26NZyPrRd871FPUYHmvygNm+RzT+f10z1wY+pGPfWtDr7hQnds5lk39uD6UQrVF/UuhOc+5Q==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB9805
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -162,402 +165,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jul 08, 2026 at 03:48:58PM -0400, Rodrigo Vivi wrote:
-> On Wed, Jul 08, 2026 at 07:21:12PM +0530, Soham Purkait wrote:
-> > Add a sysfs interface that reports the current GPU health state and
-> > lets admin users and management tools update it but is readable by all
-> > users. Requests are routed through the sysctrl mailbox. The interface
-> > is present only on platforms that support the GPU health indicator.
-> > 
-> > The interface is a single read/write file at the device level:
-> > 
-> >   $ cat /sys/.../device/gpu_health
-> >   ok
-> > 
-> >   $ echo critical > /sys/.../device/gpu_health
-> > 
-> >   $ cat /sys/.../device/gpu_health
-> >   critical
-> > 
-> > v1:
-> >  - Add enum for health status. (Andi, Rodrigo)
-> >  - Return error number instead of error message in _show/_store. (Andi)
-> >  - Move GPU health sysfs init error logging to xe_ras_init. (Andi)
-> >  - Return only the current health state for sysfs read. (Andi, Rodrigo)
-> >  - Add documentation for sysfs interface. (Andi, Rodrigo)
-> > 
-> > v2:
-> >  - Make logs and structures consistent with their counterparts. (Riana)
-> >  - Drop unnecessary variables. (Andi, Riana)
-> >  - Add correct KernelVersion. (Raag)
-> > 
-> > v3:
-> >  - Add missing blank line before #endif. (Badal)
-> > 
-> > v4:
-> >  - Add consistent "gpu" nomenclature to the gpu health indicator
-> >    DOC blocks. (Riana)
-> >  - Add Kdoc for gpu health indicator. (Anshuman)
-> > 
-> > v5:
-> >  - Rename struct fields to response.health, request.health. (Riana, Raag)
-> >  - Use devm_device_add_group instead of custom sysfs init/fini. (Raag)
-> >  - Rename health enum to shorter XE_RAS_HEALTH_*, drop redundant
-> >    invalid-input log, and minor log/format cleanups. (Raag)
-> > 
-> > v6:
-> >  - Add updated ABI Date. (Raag)
-> >  - Rewrite DOC block with canonical path and cleaner wording. (Riana)
-> >  - Refactor enum name. (Riana)
-> > 
-> > Signed-off-by: Soham Purkait <soham.purkait@intel.com>
-> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-> 
-> pushed to drm-xe-next
+On Wed, Jul 08, 2026 at 09:44:05AM +0200, Thomas Zimmermann wrote:
+> gentle reminder to review this patch
 
-and removed after I noticed there are unsolved discussions on v7
-and that this tells version 7.2. Any patch going in right now is
-already targeting 7.3
+Ville, could you please take a look on this?
 
-Also probably good to clean up this revision history here.
-It is already big and at this point misleading.
-
-Thanks,
-Rodrigo.
+Thomas, have you seen shashiko for this?
+https://sashiko.dev/#/patchset/20260701130929.234695-1-tzimmermann%40suse.de
 
 > 
+> Am 01.07.26 um 15:07 schrieb Thomas Zimmermann:
+> > Git commit 35ed38d58257 ("drm: Allow drivers to indicate the damage
+> > helpers to ignore damage clips") introduced ignore_damage_clips to
+> > selectively ignore damage clipping in certain framebuffer changes. The
+> > mode-setting pipeline can disabled damage clippings for an atomic commit
+> > by setting ignore_damage_clips in struct drm_plane_state. The atomic
+> > commit will then do a full display update.
+> > 
+> > Although the i915 driver does not modify the flag, DRM's damage iterator
+> > will soon rely on it. Calling drm_atomic_helper_check_plane_damage() right
+> > before drm_atomic_helper_damage_merged() guarantees that it has the correct
+> > state. The i915 driver does not do this elsewhere so far.
+> > 
+> > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> > Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 > > ---
-> >  .../ABI/testing/sysfs-driver-intel-xe-ras     |  30 ++++
-> >  Documentation/gpu/xe/xe_device.rst            |   7 +
-> >  drivers/gpu/drm/xe/xe_ras.c                   | 147 ++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_ras_types.h             |  57 +++++++
-> >  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   4 +
-> >  5 files changed, 245 insertions(+)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-ras
+> > Taken with minor updates to the commit description from the series at
 > > 
-> > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-ras b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
-> > new file mode 100644
-> > index 000000000000..9c4a713b8cdd
-> > --- /dev/null
-> > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
-> > @@ -0,0 +1,30 @@
-> > +What:		/sys/bus/pci/drivers/xe/.../gpu_health
-> > +Date:		July 2026
-> > +KernelVersion:	7.2
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:
-> > +		This file exposes the current gpu health state and allows the gpu
-> > +		health state to be updated.
-> > +
-> > +		This sysfs file is present only on Intel Xe platforms that support
-> > +		the gpu health indicator interface for RAS. Reading the current
-> > +		health state is available to all users, while updating the health
-> > +		state is restricted to administrative users only.
-> > +
-> > +		Read returns a single line containing one of the valid values for
-> > +		the current gpu health state. Writing one of the valid values
-> > +		updates the current gpu health state.
-> > +
-> > +		The valid values for the gpu health state are:
-> > +
-> > +			ok
-> > +				The gpu is healthy and operating within normal
-> > +				parameters.
-> > +
-> > +			warning
-> > +				The gpu is experiencing minor issues but remains
-> > +				operational.
-> > +
-> > +			critical
-> > +				The gpu is in a critical state and may not be
-> > +				operational.
-> > diff --git a/Documentation/gpu/xe/xe_device.rst b/Documentation/gpu/xe/xe_device.rst
-> > index 39a937b97cd3..d3a022362ade 100644
-> > --- a/Documentation/gpu/xe/xe_device.rst
-> > +++ b/Documentation/gpu/xe/xe_device.rst
-> > @@ -8,3 +8,10 @@ Xe Device Wedging
-> >  
-> >  .. kernel-doc:: drivers/gpu/drm/xe/xe_device.c
-> >     :doc: Xe Device Wedging
-> > +
-> > +====================
-> > +GPU Health Indicator
-> > +====================
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/xe/xe_ras.c
-> > +   :doc: GPU Health Indicator
-> > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> > index 74d5016d9ffe..5ae5cd5b3383 100644
-> > --- a/drivers/gpu/drm/xe/xe_ras.c
-> > +++ b/drivers/gpu/drm/xe/xe_ras.c
-> > @@ -65,6 +65,13 @@ static const char *const xe_ras_components[] = {
-> >  };
-> >  static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
-> >  
-> > +static const char * const gpu_health_states[] = {
-> > +	[XE_RAS_HEALTH_OK]		= "ok",
-> > +	[XE_RAS_HEALTH_WARNING]		= "warning",
-> > +	[XE_RAS_HEALTH_CRITICAL]	= "critical",
-> > +};
-> > +static_assert(ARRAY_SIZE(gpu_health_states) == XE_RAS_HEALTH_MAX);
-> > +
-> >  static u8 drm_to_xe_ras_severity(u8 severity)
-> >  {
-> >  	switch (severity) {
-> > @@ -332,6 +339,140 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
-> >  	return 0;
-> >  }
-> >  
-> > +static ssize_t gpu_health_show(struct device *dev, struct device_attribute *attr, char *buf)
-> > +{
-> > +	struct xe_ras_get_health_response response = {0};
-> > +	struct xe_sysctrl_mailbox_command command = {0};
-> > +	struct xe_ras_get_health_request request = {0};
-> > +	struct xe_device *xe = kdev_to_xe_device(dev);
-> > +	const char *health;
-> > +	size_t rlen;
-> > +	int ret;
-> > +
-> > +	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_HEALTH,
-> > +				  &request, sizeof(request), &response, sizeof(response));
-> > +	guard(xe_pm_runtime)(xe);
-> > +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-> > +	if (ret) {
-> > +		xe_err(xe, "sysctrl: failed to get health %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	if (rlen != sizeof(response)) {
-> > +		xe_err(xe, "sysctrl: unexpected get health response length %zu (expected %zu)\n",
-> > +		       rlen, sizeof(response));
-> > +		return -EIO;
-> > +	}
-> > +	if (response.health >= XE_RAS_HEALTH_MAX) {
-> > +		xe_err(xe, "sysctrl: invalid health state %u\n",
-> > +		       response.health);
-> > +		return -EIO;
-> > +	}
-> > +
-> > +	health = gpu_health_states[response.health];
-> > +
-> > +	xe_dbg(xe, "[RAS]: get health: %s\n", health);
-> > +
-> > +	return sysfs_emit(buf, "%s\n", health);
-> > +}
-> > +
-> > +static ssize_t gpu_health_store(struct device *dev, struct device_attribute *attr,
-> > +				const char *buf, size_t count)
-> > +{
-> > +	struct xe_ras_set_health_response response = {0};
-> > +	struct xe_sysctrl_mailbox_command command = {0};
-> > +	struct xe_ras_set_health_request request = {0};
-> > +	struct xe_device *xe = kdev_to_xe_device(dev);
-> > +	const char *health;
-> > +	size_t rlen;
-> > +	int state;
-> > +	int ret;
-> > +
-> > +	state = sysfs_match_string(gpu_health_states, buf);
-> > +	if (state < 0)
-> > +		return -EINVAL;
-> > +
-> > +	request.health = state;
-> > +
-> > +	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_SET_HEALTH,
-> > +				  &request, sizeof(request), &response, sizeof(response));
-> > +	guard(xe_pm_runtime)(xe);
-> > +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-> > +	if (ret) {
-> > +		xe_err(xe, "sysctrl: failed to set health %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	if (rlen != sizeof(response)) {
-> > +		xe_err(xe, "sysctrl: unexpected set health response length %zu (expected %zu)\n",
-> > +		       rlen, sizeof(response));
-> > +		return -EIO;
-> > +	}
-> > +
-> > +	ret = ras_status_to_errno(response.status);
-> > +	if (ret) {
-> > +		xe_err(xe, "sysctrl: set health command failed with status %#x\n",
-> > +		       response.status);
-> > +		return ret;
-> > +	}
-> > +
-> > +	if (response.health >= XE_RAS_HEALTH_MAX) {
-> > +		xe_err(xe, "sysctrl: invalid health state %u\n",
-> > +		       response.health);
-> > +		return -EIO;
-> > +	}
-> > +
-> > +	health = gpu_health_states[response.health];
-> > +
-> > +	xe_dbg(xe, "[RAS]: set health: %s\n", health);
-> > +
-> > +	return count;
-> > +}
-> > +
-> > +static DEVICE_ATTR_RW(gpu_health);
-> > +
-> > +static struct attribute *gpu_health_attrs[] = {
-> > +	&dev_attr_gpu_health.attr,
-> > +	NULL,
-> > +};
-> > +
-> > +/**
-> > + * DOC: GPU Health Indicator
-> > + *
-> > + * On Intel Xe platforms that support the gpu health indicator interface,
-> > + * the driver exposes this sysfs attribute for in-band access to the gpu
-> > + * health state::
-> > + *
-> > + *     /sys/bus/pci/devices/<device>/gpu_health
-> > + *
-> > + * Reading the attribute is available to all users and returns a single
-> > + * line containing the current gpu health state, whereas writing is
-> > + * restricted to administrative users and updates the state to one of the
-> > + * valid values.
-> > + *
-> > + * Management tools and administrators use this interface to query the
-> > + * current gpu health state (e.g. for telemetry/monitoring) and to
-> > + * update it - for example, to mark the gpu as ``warning`` or ``critical``
-> > + * after diagnostics, or reset it back to ``ok`` once remediated.
-> > + *
-> > + * The valid values for the gpu health state are:
-> > + *
-> > + * - ``ok``
-> > + *     The gpu is healthy and operating within normal parameters.
-> > + *
-> > + * - ``warning``
-> > + *     The gpu is experiencing minor issues but remains operational.
-> > + *
-> > + * - ``critical``
-> > + *     The gpu is in a critical state and may not be operational.
-> > + *
-> > + * See Documentation/ABI/testing/sysfs-driver-intel-xe-ras for the ABI
-> > + * specification.
-> > + */
-> > +static const struct attribute_group gpu_health_group = {
-> > +	.attrs = gpu_health_attrs,
-> > +};
-> > +
-> >  /**
-> >   * xe_ras_init - Initialize Xe RAS
-> >   * @xe: xe device instance
-> > @@ -340,6 +481,8 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
-> >   */
-> >  void xe_ras_init(struct xe_device *xe)
-> >  {
-> > +	int ret;
-> > +
-> >  	if (!xe->info.has_drm_ras)
-> >  		return;
-> >  
-> > @@ -350,4 +493,8 @@ void xe_ras_init(struct xe_device *xe)
-> >  
-> >  	if (IS_ENABLED(CONFIG_PCIEAER))
-> >  		ras_usp_aer_init(xe);
-> > +
-> > +	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
-> > +	if (ret)
-> > +		xe_err(xe, "Failed to initialize GPU health sysfs, err=%d\n", ret);
-> >  }
-> > diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> > index 6688e11f57a8..bbfaff8326cb 100644
-> > --- a/drivers/gpu/drm/xe/xe_ras_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> > @@ -10,6 +10,21 @@
-> >  
-> >  #define XE_RAS_NUM_COUNTERS			16
-> >  
-> > +/**
-> > + * enum xe_ras_health - gpu health values
-> > + *
-> > + * @XE_RAS_HEALTH_OK: gpu is healthy and operating normally.
-> > + * @XE_RAS_HEALTH_WARNING: gpu has minor issues but is still operational.
-> > + * @XE_RAS_HEALTH_CRITICAL: gpu is in a critical state and may not be operational.
-> > + * @XE_RAS_HEALTH_MAX: Sentinel value for validation
-> > + */
-> > +enum xe_ras_health {
-> > +	XE_RAS_HEALTH_OK = 0,
-> > +	XE_RAS_HEALTH_WARNING,
-> > +	XE_RAS_HEALTH_CRITICAL,
-> > +	XE_RAS_HEALTH_MAX
-> > +};
-> > +
-> >  /**
-> >   * struct xe_ras_error_common - Error fields that are common across all products
-> >   */
-> > @@ -121,4 +136,46 @@ struct xe_ras_clear_counter_response {
-> >  	/** @reserved1: Reserved for future use */
-> >  	u32 reserved1[3];
-> >  } __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_get_health_request - Request structure for obtaining gpu health
-> > + */
-> > +struct xe_ras_get_health_request {
-> > +	/** @reserved: Reserved for future use. */
-> > +	u32 reserved[2];
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_get_health_response - Response structure for obtaining gpu health
-> > + */
-> > +struct xe_ras_get_health_response {
-> > +	/** @health: gpu health, see &enum xe_ras_health */
-> > +	u8 health;
-> > +	/** @reserved: Reserved for future use */
-> > +	u8 reserved[3];
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_set_health_request - Request structure for setting gpu health
-> > + */
-> > +struct xe_ras_set_health_request {
-> > +	/** @health: gpu health, see &enum xe_ras_health */
-> > +	u8 health;
-> > +	/** @reserved: Reserved for future use */
-> > +	u8 reserved[3];
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_set_health_response - Response structure for setting gpu health
-> > + */
-> > +struct xe_ras_set_health_response {
-> > +	/** @status: Status of set health operation, see &enum xe_ras_response_status */
-> > +	u32 status;
-> > +	/** @health: Resulting gpu health, see &enum xe_ras_health */
-> > +	u8 health;
-> > +	/** @reserved: Reserved for future use */
-> > +	u8 reserved[3];
-> > +	/** @reserved1: Reserved for future use */
-> > +	u32 reserved1[2];
-> > +} __packed;
-> >  #endif
-> > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> > index 6e3753554510..693c0ee592be 100644
-> > --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> > @@ -25,11 +25,15 @@ enum xe_sysctrl_group {
-> >   * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
-> >   * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
-> >   * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
-> > + * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
-> > + * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
-> >   */
-> >  enum xe_sysctrl_gfsp_cmd {
-> >  	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
-> >  	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
-> >  	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
-> > +	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
-> > +	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
-> >  };
-> >  
-> >  /**
-> > -- 
-> > 2.43.0
+> >    https://lore.kernel.org/dri-devel/20260610152505.260172-1-tzimmermann@suse.de/
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+> >   1 file changed, 3 insertions(+)
 > > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> > index 92af21d823a3..5a155f60110f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > @@ -2949,6 +2949,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+> >   		src = drm_plane_state_src(&new_plane_state->uapi);
+> >   		drm_rect_fp_to_int(&src, &src);
+> > +		/* Prepare plane-damage state before using it */
+> > +		drm_atomic_helper_check_plane_damage(&state->base, &new_plane_state->uapi);
+> > +
+> >   		if (!drm_atomic_helper_damage_merged(&old_plane_state->uapi,
+> >   						     &new_plane_state->uapi, &damaged_area))
+> >   			continue;
+> 
+> -- 
+> --
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+> GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
+> 
+> 
