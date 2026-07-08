@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFE49C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 11:24:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49902C43602
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 11:46:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66B0810F0D0;
-	Wed,  8 Jul 2026 11:24:04 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6848910F0D0;
- Wed,  8 Jul 2026 11:24:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8417081922109514701=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDA1B10E59C;
+	Wed,  8 Jul 2026 11:46:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lEzw0oXY";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 544B610E59C;
+ Wed,  8 Jul 2026 11:46:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783511186; x=1815047186;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+AfyJMpRSzJKVcV7NrivS/0hwEej9AOOUJThNHfKDxM=;
+ b=lEzw0oXYrzf5LV1MpjrL0VMHkm3F2SpHvtZst8QuPPLSyUnm6qvrn29t
+ aV1NylNb9pJqdlV/+qE3k4x+YsFx608wxb/rt96FmJdwB6l/L2SIspwQc
+ rNaxqFGg6KiP95iRniEKjNNPowbTTsR+/mncrwEYbceby+IY9K4Pcgdki
+ KjO2qU0N39fdP2xH5U4HKl/Ytef5b2EDH7PtUVvgdHYaAewaFuQL5+H6H
+ SKKVOS3waMW1W/j4pwasWX0AIH84CRTdT7jIyM7emLlagfK3Lic42MjES
+ ZMTj9J4hIZukwoB3Yv8QE88/yvdimCe1yUS0if7kcN/PdS0Xft55alZ+o w==;
+X-CSE-ConnectionGUID: LPcN50dhTCatkwOplMx5bg==
+X-CSE-MsgGUID: WQ3vOFiyTiWJohs3Yz6NUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="87852911"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="87852911"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 04:46:25 -0700
+X-CSE-ConnectionGUID: pRoqb8cdQoCv+o4smWvung==
+X-CSE-MsgGUID: Hib+z2C6R/2LYxcd7UbJvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="247897208"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa009.fm.intel.com with ESMTP; 08 Jul 2026 04:46:22 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
+ shawn.c.lee@intel.com, kai.vehmanen@intel.com, ankit.k.nautiyal@intel.com,
+ chaitanya.kumar.borah@intel.com, suraj.kandpal@intel.com
+Subject: [PATCH v3] drm/i915/audio: treat UHBR SST like MST for cpu_transcoder
+ signalling
+Date: Wed,  8 Jul 2026 17:05:58 +0530
+Message-ID: <20260708113558.1863316-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/audio=3A_treat_UHB?=
- =?utf-8?q?R_SST_like_MST_for_cpu=5Ftranscoder_signalling_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Jul 2026 11:24:03 -0000
-Message-ID: <178350984342.164302.15082176407598223394@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260708095624.1838706-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20260708095624.1838706-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,126 +63,178 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8417081922109514701==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Both DP MST and UHBR SST require the audio component to use a real
+cpu_transcoder (>= 0) value to identify the audio stream on a port.
+For DP MST this was already handled; for UHBR SST it was not, causing
+pin_eld_notify() to signal cpu_transcoder = -1 (the legacy SST sentinel)
+and find_audio_state() to skip the per-transcoder entry for the UHBR
+stream.
 
-== Series Details ==
+After suspend/resume or replug, the ELD lookup fails and audio goes
+silent. Fix by detecting UHBR SST alongside DP MST when deciding
+whether a real cpu_transcoder value must be used for audio state
+addressing, in both the pin_eld_notify() signalling and the
+find_audio_state() lookup paths.
 
-Series: drm/i915/audio: treat UHBR SST like MST for cpu_transcoder signalling (rev2)
-URL   : https://patchwork.freedesktop.org/series/169869/
-State : success
+--v2:
+- Commit message and comment update. (Suraj)
+- Change function name has_mst_transcoder. (Suraj)
+- Avoid Live crtc access in find_audio_state. (Suraj)
 
-== Summary ==
+--v3:
+- Minor comment changes to avoid MST over 128b/132b confusion. (Suraj)
 
-CI Bug Log - changes from xe-5365-6a22b406f919a5b891ceea74421732a026543902_BAT -> xe-pw-169869v2_BAT
-====================================================
+Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c    | 55 ++++++++++++++-----
+ .../gpu/drm/i915/display/intel_display_core.h |  1 +
+ 2 files changed, 41 insertions(+), 15 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 9729f1837d2c..fb0d7ed6fbd6 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -38,6 +38,7 @@
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_display_wa.h"
++#include "intel_dp.h"
+ #include "intel_lpe_audio.h"
+ 
+ /**
+@@ -696,6 +697,13 @@ static void ibx_audio_codec_enable(struct intel_encoder *encoder,
+ 	mutex_unlock(&display->audio.mutex);
+ }
+ 
++static
++bool intel_audio_needs_cpu_transcoder_id(const struct intel_crtc_state *crtc_state)
++{
++	return intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
++	       intel_dp_is_uhbr(crtc_state);
++}
++
+ bool intel_audio_compute_config(struct intel_encoder *encoder,
+ 				struct intel_crtc_state *crtc_state,
+ 				struct drm_connector_state *conn_state)
+@@ -762,6 +770,8 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ 	audio_state = &display->audio.state[cpu_transcoder];
+ 
+ 	audio_state->encoder = encoder;
++	audio_state->needs_cpu_transcoder_id =
++			intel_audio_needs_cpu_transcoder_id(crtc_state);
+ 	BUILD_BUG_ON(sizeof(audio_state->eld) != sizeof(crtc_state->eld));
+ 	memcpy(audio_state->eld, crtc_state->eld, sizeof(audio_state->eld));
+ 
+@@ -769,8 +779,12 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ 
+ 	if (acomp && acomp->base.audio_ops &&
+ 	    acomp->base.audio_ops->pin_eld_notify) {
+-		/* audio drivers expect cpu_transcoder = -1 to indicate Non-MST cases */
+-		if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
++		/*
++		 * Audio drivers expect cpu_transcoder = -1 to indicate
++		 * Non-MST/HBR cases. MST and UHBR SST are addressed by
++		 * a real cpu_transcoder.
++		 */
++		if (!intel_audio_needs_cpu_transcoder_id(crtc_state))
+ 			cpu_transcoder = -1;
+ 		acomp->base.audio_ops->pin_eld_notify(acomp->base.audio_ops->audio_ptr,
+ 						      (int)port, (int)cpu_transcoder);
+@@ -819,14 +833,19 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
+ 	audio_state = &display->audio.state[cpu_transcoder];
+ 
+ 	audio_state->encoder = NULL;
++	audio_state->needs_cpu_transcoder_id = false;
+ 	memset(audio_state->eld, 0, sizeof(audio_state->eld));
+ 
+ 	mutex_unlock(&display->audio.mutex);
+ 
+ 	if (acomp && acomp->base.audio_ops &&
+ 	    acomp->base.audio_ops->pin_eld_notify) {
+-		/* audio drivers expect cpu_transcoder = -1 to indicate Non-MST cases */
+-		if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST))
++		/*
++		 * Audio drivers expect cpu_transcoder = -1 to indicate
++		 * Non-MST/HBR cases. MST and UHBR SST are addressed by
++		 * a real cpu_transcoder.
++		 */
++		if (!intel_audio_needs_cpu_transcoder_id(old_crtc_state))
+ 			cpu_transcoder = -1;
+ 		acomp->base.audio_ops->pin_eld_notify(acomp->base.audio_ops->audio_ptr,
+ 						      (int)port, (int)cpu_transcoder);
+@@ -1118,18 +1137,24 @@ static int intel_audio_component_get_cdclk_freq(struct device *kdev)
+ }
+ 
+ /*
+- * get the intel audio state according to the parameter port and cpu_transcoder
+- * MST & (cpu_transcoder >= 0): return the audio.state[cpu_transcoder].encoder],
+- *   when port is matched
+- * MST & (cpu_transcoder < 0): this is invalid
+- * Non-MST & (cpu_transcoder >= 0): only cpu_transcoder = 0 (the first device entry)
+- *   will get the right intel_encoder with port matched
+- * Non-MST & (cpu_transcoder < 0): get the right intel_encoder with port matched
++ * Get the intel audio state for a given (port, cpu_transcoder).
++ *
++ * Streams are addressed either by a real cpu_transcoder (DP MST and UHBR SST,
++ * i.e. entries whose stored needs_cpu_transcoder_id is true) or by port alone
++ * (legacy SST). Both the signalling side (pin_eld_notify()) and the lookup
++ * side use the same predicate, so the two are symmetric.
++ *
++ * cpu_transcoder >= 0 & needs_cpu_transcoder_id: return audio.state[cpu_transcoder]
++ *   when the port matches.
++ * cpu_transcoder <  0 & !needs_cpu_transcoder_id: return the first port-matching
++ *   entry.
++ * cpu_transcoder =  0 & !needs_cpu_transcoder_id: falls through to the port-only
++ *   loop so the first device entry of a legacy SST port is still found.
+  */
+ static struct intel_audio_state *find_audio_state(struct intel_display *display,
+ 						  int port, int cpu_transcoder)
+ {
+-	/* MST */
++	/* MST, or UHBR SST. */
+ 	if (cpu_transcoder >= 0) {
+ 		struct intel_audio_state *audio_state;
+ 		struct intel_encoder *encoder;
+@@ -1142,11 +1167,11 @@ static struct intel_audio_state *find_audio_state(struct intel_display *display,
+ 		encoder = audio_state->encoder;
+ 
+ 		if (encoder && encoder->port == port &&
+-		    encoder->type == INTEL_OUTPUT_DP_MST)
++		    audio_state->needs_cpu_transcoder_id)
+ 			return audio_state;
+ 	}
+ 
+-	/* Non-MST */
++	/* Legacy SST. */
+ 	if (cpu_transcoder > 0)
+ 		return NULL;
+ 
+@@ -1158,7 +1183,7 @@ static struct intel_audio_state *find_audio_state(struct intel_display *display,
+ 		encoder = audio_state->encoder;
+ 
+ 		if (encoder && encoder->port == port &&
+-		    encoder->type != INTEL_OUTPUT_DP_MST)
++		    !audio_state->needs_cpu_transcoder_id)
+ 			return audio_state;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 17f7d3abdb9c..a6129d0b523f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -97,6 +97,7 @@ struct intel_wm_funcs {
+ struct intel_audio_state {
+ 	struct intel_encoder *encoder;
+ 	u8 eld[MAX_ELD_BYTES];
++	bool needs_cpu_transcoder_id;  /* MST, or SST on UHBR link */
+ };
+ 
+ struct intel_audio {
+-- 
+2.48.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-169869v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [ABORT][1] ([Intel XE#8007] / [Intel XE#8023]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5365-6a22b406f919a5b891ceea74421732a026543902/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v2/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
-
-
-Build changes
--------------
-
-  * Linux: xe-5365-6a22b406f919a5b891ceea74421732a026543902 -> xe-pw-169869v2
-
-  IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5365-6a22b406f919a5b891ceea74421732a026543902: 6a22b406f919a5b891ceea74421732a026543902
-  xe-pw-169869v2: 169869v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v2/index.html
-
---===============8417081922109514701==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/audio: treat UHBR SST like MST for cpu_transcoder signalling (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169869/">https://patchwork.freedesktop.org/series/169869/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5365-6a22b406f919a5b891ceea74421732a026543902_BAT -&gt; xe-pw-169869v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169869v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5365-6a22b406f919a5b891ceea74421732a026543902/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v2/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5365-6a22b406f919a5b891ceea74421732a026543902 -&gt; xe-pw-169869v2</li>
-</ul>
-<p>IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5365-6a22b406f919a5b891ceea74421732a026543902: 6a22b406f919a5b891ceea74421732a026543902<br />
-  xe-pw-169869v2: 169869v2</p>
-
-</body>
-</html>
-
---===============8417081922109514701==--
