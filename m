@@ -4,49 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67495C44501
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 04:28:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10106C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 06:12:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AEDB10EFCF;
-	Wed,  8 Jul 2026 04:28:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A526110E570;
+	Wed,  8 Jul 2026 06:12:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="b7v6lEM4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e14Ga4N6";
 	dkim-atps=neutral
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 626A410E4BA;
- Wed,  8 Jul 2026 04:28:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=J5KYkoVlChk5FZYYk9M3NMB8dnleaZ2GYxmr408Jaic=; b=b7v6lEM4nKC6cjUM3J/T5KHT4E
- /wUBtjYn5k0byZ5dtB4jw0mGx1uuJ1v6JBvT1Pf4QPfOJawiygW26T06u1H/K966a7r0AU+/5lBhR
- +kFqMNUy8ilvAb8w0OqtFc6mYjjWIY+dyyM33ZG8Xh5t7hwSSvkciSxRovOnzAlxmAXzZpTBz58mZ
- wsKjXOLq5tNgi+IpbfzGi8exXFpKiVUFQG3fm/2tQRA4j77ZBX3ZzeEqXarpldWfmCcKUZ/Y3mo7a
- Uy33MLFnUouLFI5ffSnCViW+Lloa4u7SENAAaJe4VgtH18WfiG/NXgfZXB3Bw/aFTN29ZZ1A1iXTM
- Fsp+NxDg==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
- id 1whJta-0000000GJuu-0pTr; Wed, 08 Jul 2026 04:28:26 +0000
-Message-ID: <c248c4e8-0dc6-4c9e-a7e8-1c00ba0f1453@infradead.org>
-Date: Tue, 7 Jul 2026 21:28:25 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E53510E572
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 06:12:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783491164; x=1815027164;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UBYy5bZrOSCc8CKuiTE6E2BiEFM06qBVkxSyw50++L8=;
+ b=e14Ga4N6t7XKfsdrtNmjuZ2hNxHQi4I35qX2m5JpWjFagbRa1eaLNjAD
+ cvnVRnN1cHEZOToBkf70IuIi5KwtsmxiRSlia7MZNZdW2J7/iVHW6cylc
+ qaeOgIUJtqAJbgwABI+fSiTvCR1kxycM0eqaGiJwtQSVxS9ZZpnITcJPn
+ beeTE05KLyHYoGlJh8T0U4BZcbbk5iQgSTobxVNz4ULZxs0mMS1MxYQQ+
+ GSgDn6V+yY8K43zVz76RGPY1+wHKWmw96nbh6LhVN6rkvaj/eWJ+ZcTFf
+ 9cDsP1fn4+RXIbJv6lGKTQ7zwpjlEX0yUtmiGGjHZZ9j4jJnVTiM8swFe w==;
+X-CSE-ConnectionGUID: SzT1oKwIQrOe4bi7x68HLQ==
+X-CSE-MsgGUID: Sh8lQq3eS36V2/bVS+pZ1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="83257830"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="83257830"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 23:12:43 -0700
+X-CSE-ConnectionGUID: WRWY6SfaTd+GNoEczvhTiA==
+X-CSE-MsgGUID: 8mjsAGXPQYS15ZpJ5JdN5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="258504069"
+Received: from psoham-ms-7e03.iind.intel.com ([10.223.55.64])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 23:12:39 -0700
+From: Soham Purkait <soham.purkait@intel.com>
+To: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ anshuman.gupta@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, raag.jadav@intel.com,
+ ravi.kishore.koppuravuri@intel.com, mallesh.koujalagi@intel.com,
+ andi.shyti@intel.com, rodrigo.vivi@intel.com
+Cc: soham.purkait@intel.com,
+	anoop.c.vijay@intel.com
+Subject: [PATCH v7 0/1] drm/xe: Add support for GPU health indicator
+Date: Wed,  8 Jul 2026 11:42:22 +0530
+Message-ID: <20260708061221.4006706-3-soham.purkait@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] Documentation: xe_drm: fix chars used for subsection
-To: Rafael Passos <rafael@rcpassos.me>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- skhan@linuxfoundation.org, Intel-xe <intel-xe-bounces@lists.freedesktop.org>
-References: <20260621030114.963405-1-rafael@rcpassos.me>
- <1a20e4bf-fd7f-453e-b7a8-c7feb0b077c6@infradead.org>
- <DJL413GMZH5Q.2S11VUVHGLLVF@rcpassos.me>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <DJL413GMZH5Q.2S11VUVHGLLVF@rcpassos.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,37 +69,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+    GPUs commonly rely on various reactive health monitoring approaches.
+The Xe GPU health indicator is intended to fit into such reactive
+monitoring flows, where it could be used by management tools to fetch
+and update GPU health status.
 
+This patch adds Xe GPU health indicator support as a RAS feature.
+It introduces the health command IDs and request/response structures
+used by the System Controller mailbox, and integrates the feature
+into Xe through the gpu_health sysfs interface.
 
-On 6/28/26 5:34 PM, Rafael Passos wrote:
-> Hi,
-> 
-> I just checked, and this issue is still present.
-> Since the merge window just closed, I think it's a good time
-> to send a ping :)
-> 
-> On Sun Jun 21, 2026 at 1:07 AM -03, Randy Dunlap wrote:
->> On 6/20/26 8:01 PM, Rafael Passos wrote:
->>> and the page title is defined the.
->>
->>                         defined there.
-> 
-> Should I send a v3 of this patch fixing this minor typo ?
-> 
-> I see the original email did not show up in Lore (just Randy's response).
-> Should resend in cases like this ? In this case, while at it, just do a v3?
-> 
->> LGTM. Thanks.
->>
->> Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
->> Tested-by: Randy Dunlap <rdunlap@infradead.org>
-> 
-> Also, if I were to send a new version (changing only the commit message),
-> and the previous had Review/Tested tags, should I carry them in the new version?
-> Or just send it as is?
+The sysfs file, gpu_health, is created at the device level and
+provides a simple interface for observing and updating the reported
+GPU health state. It is exposed as read-only for non admin users while
+write access is only provided to the admin users.
 
-Leave the tags there.
+The sysfs file (gpu_health) is placed at the device level and behaves
+as follows:
+
+  $ cat /sys/.../device/gpu_health
+  ok
+
+  $ echo critical > /sys/.../device/gpu_health
+
+  $ cat /sys/.../device/gpu_health
+  critical
+
+Userspace consumer (Level Zero Sysman):
+  https://github.com/intel/compute-runtime/commit/3d974c6d9b65bede475c118e582761670ef110d2
+
+Soham Purkait (1):
+  drm/xe/xe_ras: Add RAS GPU health indicator
+
+ .../ABI/testing/sysfs-driver-intel-xe-ras     |  30 ++++
+ Documentation/gpu/xe/xe_device.rst            |   9 ++
+ drivers/gpu/drm/xe/xe_ras.c                   | 139 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras_types.h             |  57 +++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   4 +
+ 5 files changed, 239 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-ras
 
 -- 
-~Randy
+2.43.0
 
