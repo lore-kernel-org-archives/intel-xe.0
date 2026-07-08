@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5A3EC43458
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 08:38:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B490C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 08:39:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CEB510F05D;
-	Wed,  8 Jul 2026 08:38:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1E2510F05D;
+	Wed,  8 Jul 2026 08:39:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wr3CVNsW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QaPLWY/H";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F2310F060
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 08:38:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAA9E10F062
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 08:38:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783499925; x=1815035925;
+ t=1783499923; x=1815035923;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IbPEtjb6G3yWAsf9Dfs6D2zVHXDyIoNAyTSVgZDyefw=;
- b=Wr3CVNsWsGYafxLcYwyIDFsbYQPrpjnTvsjoDdAiTBwGRCwvNtheIkhy
- YKsVKIqwozI4Uuk4OO+ARMNRxDGhj6WozrZz5Upu0Tlqzx162DhoPMKr2
- Y8Fnw0IxMZDvTO8lumE9zAqjuuk2YC2DewD8mx6gRTU9Lpqiv257TZ6cS
- DufQZMb4YyFOxUhH9MoGblH5S3jurc0/7yaPgt2mcIhcE8fyKxT1M2fIN
- t6kXfHLZ+07Uk5uGXG2wFC21yLk5sXWzklUZdcFf3WEkGvvWMptGMsM1J
- GoLfZOknFO8Xto8miqOZNOLFX80cYA+4dj6cElAKYQEmuKkF2xpwLZ5nv Q==;
-X-CSE-ConnectionGUID: exSuBO03TlKG3xLMCmrJ6w==
-X-CSE-MsgGUID: VvXrIyrVQRKE8B0dGm7YHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="94800438"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="94800438"
+ bh=7/SS1b53la8wj26oX2KDb+61KE6NUg8vXMTiB/BKZ0M=;
+ b=QaPLWY/H73Do9tmRq6+YlYiV7NsnayJdFpK4jMCdbS9Kv3agHwUhSTFl
+ oF+Zb+1rgjxt/MyG9ZkX3SsmxvZSehg9v0A8raaBLD4mzdRot2sGoG9+G
+ EuVu0nZv7AM8cqb8hQnfzuxDGrzwwdqwcuVKGTgK+/BBitqAeE05ZAxlg
+ 1M8HfETtztl008sVjJOp8zxlOrpwpa2v3no/WijQsgM20clKcifArbsK5
+ 7YX/8elE/65ZWTuPhaPHkoEnUfzKCGXT72AJt5TRpZJBGcvkB10gW1y4c
+ yfH8uY3yjMFiPCzu1D2H+FQgT2Q8lYFx+Uds+DDyqqRo7b8jKz3bIneCE Q==;
+X-CSE-ConnectionGUID: IiByMHP3QlKWZHu2MrNNmw==
+X-CSE-MsgGUID: PiBlLaVxQF6G3jGkegpAGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="94800423"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="94800423"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2026 01:38:45 -0700
-X-CSE-ConnectionGUID: WpsQVdzoQgm8yskIWyreww==
-X-CSE-MsgGUID: lZbyPQ+jQuSf+0W6icczuA==
+ 08 Jul 2026 01:38:43 -0700
+X-CSE-ConnectionGUID: yQ+uWy/zRQSflR4DtoMf8Q==
+X-CSE-MsgGUID: aZGCMK7vTia+hL5VXiVS1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="250240889"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="250240882"
 Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by fmviesa010.fm.intel.com with ESMTP; 08 Jul 2026 01:38:43 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 08 Jul 2026 01:38:41 -0700
 From: Nitin Gote <nitin.r.gote@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Nitin Gote <nitin.r.gote@intel.com>,
+Cc: Nitin Gote <nitin.r.gote@intel.com>, stable@vger.kernel.org,
  Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Christian Koenig <christian.koenig@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v5 2/2] drm/xe: Keep imported sg BOs off LRU until dma-buf
- attach succeeds
-Date: Wed,  8 Jul 2026 14:45:08 +0530
-Message-ID: <20260708091512.205482-6-nitin.r.gote@intel.com>
+Subject: [PATCH v5 1/2] drm/ttm: Fix UAF on dma-buf attach failure for sg BOs
+Date: Wed,  8 Jul 2026 14:45:07 +0530
+Message-ID: <20260708091512.205482-5-nitin.r.gote@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260708091512.205482-4-nitin.r.gote@intel.com>
 References: <20260708091512.205482-4-nitin.r.gote@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,126 +69,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Imported dma-buf BOs are created as ttm_bo_type_sg with bo->base.resv
-pointing at the exporter's resv. They are initialized with system
-placement, which allocates a ttm_resource and makes the BO visible to
-TTM LRU walkers before dma_buf_dynamic_attach() has succeeded.
+When a dma-buf importer creates a ttm_bo_type_sg BO with bo->base.resv
+pointing at the exporter's dma_buf->resv and dma_buf_dynamic_attach()
+fails, no dma_buf reference is held. The exporter can be freed before
+the delayed_delete worker calls dma_resv_lock(bo->base.resv), causing a
+use-after-free:
 
-If attach fails, xe holds no dma-buf reference, but an LRU walker may
-already have referenced the BO and locked bo->base.resv (the exporter
-resv). If the exporter is then freed, this is a use-after-free.
+  Oops: general protection fault, probably for non-canonical address
+        0x6b6b6b6b6b6b6b9c
+  Workqueue: ttm ttm_bo_delayed_delete [ttm]
+  RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
 
-Use an empty initial placement for imported sg BOs so bo->resource
-stays NULL and the BO is never added to an LRU before attach succeeds.
+ttm_bo_individualize_resv() skips the resv swap for all sg BOs to keep
+the shared resv available for delayed_delete to release the dma-buf
+mapping. A BO whose attach never succeeded has no mapping to release,
+yet it keeps bo->base.resv pointing at the exporter resv that
+delayed_delete later locks once the exporter is gone.
 
-As a result sg BOs now start without a resource, so their first move
-has old_mem == NULL. Check ttm_bo_type_sg before the creation path in
-xe_bo_move() so imports always use the dma-buf move path, and handle
-resource-less sg BOs in xe_evict_flags() before dereferencing
-tbo->resource.
+Fix this by checking bo->base.import_attach, which is set only after a
+successful attach. The check is placed after dma_resv_copy_fences() so
+successful imports still copy fences to _resv before returning, keeping
+the shared resv for delayed_delete. Failed imports fall through to swap
+resv to _resv, so delayed_delete never locks the stale exporter resv.
 
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
+Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup path for imported bos")
+Cc: stable@vger.kernel.org # v6.8+
 Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Christian Konig <christian.koenig@amd.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
 Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+Reviewed-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 53 ++++++++++++++++++++++++++++----------
- 1 file changed, 39 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++++++++---------
+ 1 file changed, 15 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 85e6d9a0f575..050de0f13232 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -63,6 +63,12 @@ static struct ttm_placement sys_placement = {
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 3980f376e3ba..f157e259dd5f 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -203,15 +203,21 @@ static int ttm_bo_individualize_resv(struct ttm_buffer_object *bo)
+ 	if (r)
+ 		return r;
  
- static struct ttm_placement purge_placement;
- 
-+/* Initial placement: keeps imported sg BOs resource-less (off the LRU)
-+ * until dma_buf_dynamic_attach() succeeds so they are not visible to LRU
-+ * walkers while bo->base.resv still points at the exporter.
-+ */
-+static struct ttm_placement sg_init_placement;
-+
- static const struct ttm_place tt_placement_flags[] = {
- 	{
- 		.fpfn = 0,
-@@ -342,9 +348,14 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
- 	}
- 
- 	/*
--	 * For xe, sg bos that are evicted to system just triggers a
--	 * rebind of the sg list upon subsequent validation to XE_PL_TT.
-+	 * sg BOs (dma-buf imports) evict to system and may have no
-+	 * resource yet, so handle them before dereferencing tbo->resource.
- 	 */
-+	if (tbo->type == ttm_bo_type_sg) {
-+		*placement = sys_placement;
-+		return;
-+	}
-+
- 	switch (tbo->resource->mem_type) {
- 	case XE_PL_VRAM0:
- 	case XE_PL_VRAM1:
-@@ -980,6 +991,22 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		return 0;
- 	}
- 
-+	/*
-+	 * sg BOs (dma-buf imports) must always be moved via the dmabuf path,
-+	 * regardless of whether they have an existing resource. This check must
-+	 * come before the creation-path check below: sg BOs start with no
-+	 * resource (sg_init_placement), so their first move to XE_PL_TT has
-+	 * old_mem == NULL, which would otherwise incorrectly trigger the
-+	 * creation path and call xe_tt_map_sg() instead of xe_bo_move_dmabuf().
-+	 */
-+	if (ttm_bo->type == ttm_bo_type_sg) {
-+		if (new_mem->mem_type == XE_PL_SYSTEM)
-+			ret = xe_bo_move_notify(bo, ctx);
-+		if (!ret)
-+			ret = xe_bo_move_dmabuf(ttm_bo, new_mem);
-+		return ret;
-+	}
-+
- 	/* Bo creation path, moving to system or TT. */
- 	if ((!old_mem && ttm) && !handle_system_ccs) {
- 		if (new_mem->mem_type == XE_PL_TT)
-@@ -989,14 +1016,6 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		goto out;
- 	}
- 
--	if (ttm_bo->type == ttm_bo_type_sg) {
--		if (new_mem->mem_type == XE_PL_SYSTEM)
--			ret = xe_bo_move_notify(bo, ctx);
--		if (!ret)
--			ret = xe_bo_move_dmabuf(ttm_bo, new_mem);
--		return ret;
+-	if (bo->type != ttm_bo_type_sg) {
+-		/* This works because the BO is about to be destroyed and nobody
+-		 * reference it any more. The only tricky case is the trylock on
+-		 * the resv object while holding the lru_lock.
+-		 */
+-		spin_lock(&bo->bdev->lru_lock);
+-		bo->base.resv = &bo->base._resv;
+-		spin_unlock(&bo->bdev->lru_lock);
 -	}
--
- 	tt_has_data = ttm && (ttm_tt_is_populated(ttm) || ttm_tt_is_swapped(ttm));
- 
- 	move_lacks_source = !old_mem || (handle_system_ccs ? (!bo->ccs_cleared) :
-@@ -2379,10 +2398,16 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
- 		}
- 	}
- 
--	/* Defer populating type_sg bos */
--	placement = (type == ttm_bo_type_sg ||
--		     bo->flags & XE_BO_FLAG_DEFER_BACKING) ? &sys_placement :
--		&bo->placement;
 +	/*
-+	 * For sg BOs (dma-buf imports) use sg_init_placement (num_placement=0)
-+	 * so that ttm_bo_validate() leaves bo->resource = NULL. The BO is then
-+	 * not on any LRU list before dma_buf_dynamic_attach() succeeds, which
-+	 * prevents the LRU-walker UAF when attach fails.
-+	 * For other BOs that request deferred backing, use sys_placement.
++	 * Successfully imported sg BOs need the shared resv for dma-buf
++	 * cleanup. Failed imports have no attachment or mapping and can
++	 * use the private _resv.
 +	 */
-+	placement = (type == ttm_bo_type_sg) ? &sg_init_placement :
-+		    (bo->flags & XE_BO_FLAG_DEFER_BACKING) ? &sys_placement :
-+		    &bo->placement;
- 	err = ttm_bo_init_reserved(&xe->ttm, &bo->ttm, type,
- 				   placement, alignment,
- 				   &ctx, NULL, resv, xe_ttm_bo_destroy);
++	if (bo->type == ttm_bo_type_sg && bo->base.import_attach)
++		return 0;
++
++	/* This works because the BO is about to be destroyed and nobody
++	 * references it any more. The only tricky case is the trylock on
++	 * the resv object while holding the lru_lock.
++	 */
++	spin_lock(&bo->bdev->lru_lock);
++	bo->base.resv = &bo->base._resv;
++	spin_unlock(&bo->bdev->lru_lock);
+ 
+ 	return r;
+ }
 -- 
 2.50.1
 
