@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38877C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 09:57:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB39EC43458
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 10:06:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC19010E5A0;
-	Wed,  8 Jul 2026 09:57:14 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAA8410E5A0;
- Wed,  8 Jul 2026 09:57:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0939754513465725935=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EF3710F088;
+	Wed,  8 Jul 2026 10:06:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M7KjOFHZ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 203C610F088
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 10:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783505184; x=1815041184;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xGm32M15MBEblP+qv+1TibfsPBLobE8B5tIawENsJ1w=;
+ b=M7KjOFHZAO2EN1saUZIcxzDyWnKaPc2sVCMbs7hVE/ODHVddhv7sqJ6o
+ mNqlUFkUd22cwUSneFMjKe6QP5uAdk/S4NHfheLqml9PjH+m1fHFdKFTW
+ OHJlfM4TuLM7qNNOlitFG7l2FUjGXxhq+OCXI5ET6pY75A1nIlGjwWWP6
+ di8u5yBDrPCqbmeJDXZ7g66TT8JeRxgm7JPMQZxmDQP9BhscT4WamAVf/
+ 174j9oJuDQmEhlMK05YE1RcuwIftA02F6tomeY7aV0MJZwmuvaCIu5viy
+ MZs7j8gX7yhEfasqpXFCsm12F6YRTjW14NmKOxcmVdGNqS/ZBxZhhYJuT Q==;
+X-CSE-ConnectionGUID: 4Zz5Z4UXSIq/axo5pbwcWw==
+X-CSE-MsgGUID: L9Etpi5bQQKn05gjuCgoig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="83275214"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="83275214"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 03:06:23 -0700
+X-CSE-ConnectionGUID: QHOgiF95TlSYWIvVREakIQ==
+X-CSE-MsgGUID: owKFU5W8QxupmItpVeJLAQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="252508682"
+Received: from soc-5cg43972f8.clients.intel.com (HELO localhost)
+ ([172.28.182.80])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 03:06:22 -0700
+From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH] drm/xe/uc: Apply RCS/CCS yield policy to SR-IOV VFs
+Date: Wed,  8 Jul 2026 12:06:15 +0200
+Message-ID: <20260708100616.1050537-1-marcin.bernatowicz@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Enable_PIPE?=
- =?utf-8?q?DMC=5FERROR_interrupt_on_display_version_30+_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Jul 2026 09:57:13 -0000
-Message-ID: <178350463365.164223.15770802485124277575@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260708090712.3800170-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260708090712.3800170-1-dibin.moolakadan.subrahmanian@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +64,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0939754513465725935==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+VFs were missing the call to apply the global scheduling policy.
+Call xe_guc_submit_enable() during vf_uc_load_hw() to ensure VFs
+get the same policy enforcement as PF.
 
-== Series Details ==
+Fixes: 26caeae9fb48 ("drm/xe/guc: Set RCS/CCS yield policy")
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Series: drm/i915/dmc: Enable PIPEDMC_ERROR interrupt on display version 30+ (rev2)
-URL   : https://patchwork.freedesktop.org/series/169877/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 75091bde0d50..c6f5fd966afb 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -15,6 +15,7 @@
+ #include "xe_guc_pc.h"
+ #include "xe_guc_rc.h"
+ #include "xe_guc_engine_activity.h"
++#include "xe_guc_submit.h"
+ #include "xe_huc.h"
+ #include "xe_sriov.h"
+ #include "xe_wopcm.h"
+@@ -159,7 +160,9 @@ static int vf_uc_load_hw(struct xe_uc *uc)
+ 	if (err)
+ 		return err;
+ 
+-	uc->guc.submission_state.enabled = true;
++	err = xe_guc_submit_enable(&uc->guc);
++	if (err)
++		return err;
+ 
+ 	err = xe_guc_opt_in_features_enable(&uc->guc);
+ 	if (err)
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c_BAT -> xe-pw-169877v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8991 -> IGT_8992
-  * Linux: xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c -> xe-pw-169877v2
-
-  IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c: 331949b3b9225375d72a6402cf94b5d6c6621d1c
-  xe-pw-169877v2: 169877v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169877v2/index.html
-
---===============0939754513465725935==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Enable PIPEDMC_ERROR interrupt on display version 30+ (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169877/">https://patchwork.freedesktop.org/series/169877/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169877v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169877v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c_BAT -&gt; xe-pw-169877v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8991 -&gt; IGT_8992</li>
-<li>Linux: xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c -&gt; xe-pw-169877v2</li>
-</ul>
-<p>IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c: 331949b3b9225375d72a6402cf94b5d6c6621d1c<br />
-  xe-pw-169877v2: 169877v2</p>
-
-</body>
-</html>
-
---===============0939754513465725935==--
