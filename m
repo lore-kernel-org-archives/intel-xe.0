@@ -4,74 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09E96C44503
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 13:49:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC202C43602
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 13:49:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3C210F13D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBF810F138;
 	Wed,  8 Jul 2026 13:49:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iod2B8/B";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="tFLRu6oM";
 	dkim-atps=neutral
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF68B89854
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Jul 2026 15:06:06 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-2caea3f742bso61363135ad.0
- for <intel-xe@lists.freedesktop.org>; Tue, 07 Jul 2026 08:06:06 -0700 (PDT)
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com
+ [209.85.221.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93DBE10E5FE
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 13:43:27 +0000 (UTC)
+Received: by mail-vk1-f174.google.com with SMTP id
+ 71dfb90a1353d-5bdfd7a2e06so375738e0c.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 08 Jul 2026 06:43:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783436766; x=1784041566; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1783518206; x=1784123006; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ECigN/vOXEtjui4ch8BDCR2M2DmfXoIRQNpruIQx7/M=;
- b=iod2B8/Baxq5kzBeBB52XiJ7TObU+n7lf4g+D5cA6WB+qWK11zTY1GOe27GRoTHqRl
- LnrwO2CI8SV9bvqk2TO7ttjqMCRgArIFsKhLme3wJ1gIUvj7xNUI421BTTJTv3wEV3OJ
- CZvJOujOnDBd/kEnCtncS2GFznMv03WA7sf54KhtlEUi2V/jvDy+zKgxYx74rHUaz11p
- o7bsqEsBkUmcrQDttirvl3GhcfWkngwQewW3hCaP6Gpuy1z+4jOwZTXm2btsxU7xHgpM
- Z2Zo1NaL2S1CuG1RK8ZIjr6VpkBS2MvL9mwsAKt4NP2tmZHrdeb9v5vebD/H1GQdDrDN
- xKBw==
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=BTjqa+8oynSoVj1P4JC5t/e1L3Jq0cVpGMAlSPn0/oc=;
+ b=tFLRu6oMRZVeGsW8VeP1a57m5TyezZzToNqsXsEr+fuj8f77vUeVEFxwwCiFA2QrUb
+ FLNoG1iPQs/ExNP6L6bdu0NKrLaWxGqUf/sjPwbmAh67uv8c1wyN6QxCM1Vbt6I+g1zw
+ FOv3C0RUsqF/q9Gr1DZhhCYyTV18o1ueB1cykofRoCSNZSeuQltraTf6E3QpD3VW7cdS
+ NTZ8EMTt21A1IrhFWNIAWOqHs5LK0em0CnzdaBXMyjFzmnKmXLQuV9gGeAXnTfLBzh7C
+ UeTwaTOGT1Nmr9chc90L35PVb9onJhgTU45u7+uU/uL9vQaPYSvs8VLKW0Kb2JBXj2XR
+ DT/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783436766; x=1784041566;
+ d=1e100.net; s=20251104; t=1783518206; x=1784123006;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ECigN/vOXEtjui4ch8BDCR2M2DmfXoIRQNpruIQx7/M=;
- b=OOdZyQnWK9h2v4tfwVAN+NlkGixrs1tO+nc6YEbzYtI1ICWK3iYDSnI5s0AEN8oJah
- 373N43pcP4tpx5TXE69R4WwVQ1OoNU4UrqwoQZzYAMeg2UURbsrLNJuKkA3IUcBwsA2H
- HyQGVvDtChxDwAVzh4ONntNIh59KWDJKeW17ttvp6iXRobf8ENWv40blmcSk6JIgs+yl
- QWnM9NpO/HXoiLet2dF7uOu6wzCzGNjkfKMe3JmPGjc2eholquEVQvW1px1WXjlZMtEF
- hu4J/XA1Ds5OywgQcx76OhckhDqJCww6xVVt58onPNs+WCtTGci5lBHwokkBSLgo0Wq3
- WNqA==
+ :message-id:reply-to:content-type;
+ bh=BTjqa+8oynSoVj1P4JC5t/e1L3Jq0cVpGMAlSPn0/oc=;
+ b=RrqlFqRfZMt+WEgCgnMlQEihoNBtwHmZOX6np/fm4WBCT2SF/yJ1uMoijHoA7M7x8V
+ cT1a/1bHLk8v+FeYbyPq8r1fHXwvCxjqsZRF/j1YzPI47oWWhNHqEuaFJfw14Z2Cmm9A
+ eycIhleq08MKfggThY9ZYUvNRM6ZEKueW+C+NzaaKMyCAhu8AMWtYIF/uyOuH+Wx2VPa
+ p9Ap/xjXORGQ3G3pSQrTRy/K3kvIE2+cPtXluQ/gHsULu6wqJrRY7gVMm1UPaO5j/OT/
+ 9gzVgHUhbQyEeOibxDlirElRGjT1uwaoY/JB8u2dVDal3Nbs1fcqn2OLUeRfYJxVHBJO
+ +KTQ==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqiEWLVk9QBkq+TCD9zXP/7lt0zQi0EnthpKDaUiir/csZbox60NCjXdbJRKShdDQXQlN+6gBfzYQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwwPl87uc99wwBbTN7/aqkg6TpRbxeDE3APRE3WXT1rRhDuH1Zv
- eVGewmSLIc6gjfLifrjl7DMSes2JXkJXdrBtplrkMHUAIW/zzeAueLHJ
-X-Gm-Gg: AfdE7cm83Q59L9AFx7jXKnWetL5kgiz4NdviHueXhZ8JBsmgZR4BXPc1HnW/EiN10SH
- wxP5LvV5uIq+5PBogPEbcssNc5DWt1o6r7swwYNlaNNJfmy7fUQXw3tAKE5xjMn4muD77tYuY0i
- T4E/TZQGkgyFff1nmEw9b9zi94JZkl3T4TBIt9gbo7o1qQUxg+oCWEMw45664LwJ+fSLxOh//u6
- hiWf23hF5Yxsln8CpxkzxtrrxA26z6lUqIJp3ndqBwdEokuZVASmwvt3YsX4sEhMiwLiGyhH9SH
- rjqwa3Q5/chwtywSAO3mHDPWUDevcEDWPeqHu1WzycxOw3jHJVUq/bXBwSWthDXgVn0+WHIzn1k
- V+WdSi3pGo2aK7rZi+o2N1aRQEzgVCWGFUL7i/GcrddBfQ125PpYfeK6OcwEu9bqZw9UIxkGJuF
- Nkz3oV0kpkHbCAJH6GIFEH7w8ewPI4u3Ej
-X-Received: by 2002:a17:903:98f:b0:2c9:ff29:3f73 with SMTP id
- d9443c01a7336-2ccbf00d8eemr56727535ad.28.1783436766121; 
- Tue, 07 Jul 2026 08:06:06 -0700 (PDT)
-Received: from haichao.tail057a43.ts.net
- ([2001:da8:e000:1206:239e:a31b:1d0d:374f])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2ccc9d3b906sm13966655ad.56.2026.07.07.08.06.02
+ AHgh+RprxbGLRr3c6Emw4Sv343bWE19nccGeFX6KqzMlSBck0ZZTu3Q24dKhe9I3JTR7eW0xDCsAlW6RAw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwGDqisdIU/GxYtuHB+a1Ro80mAkDn4crW/bKZ+aGnN9Ytn8+mm
+ /tjn0CzKY1qUVCZwtFX7tpLV0/AtC7pJ2TnX6Kho/w6X7XGsUgLy5y8x
+X-Gm-Gg: AfdE7cnop14o6B63LtMgH0VB79mwxRWxqcGaTwLvrC8rK0WHNnYYn9FON9VjN+vNNBB
+ 5PfY2Y3kvbSieIVgJHpbcH8axxTIpsIGqrpwrxyd7IY1ACZxcPJAwI9mSf5yRmvBykw0LaMSjhI
+ K9QFfPzJ46qR6PKj3KRsSK9fyVZ0sKkWSKuw9JjPhIS+P8DsuZAIlFp+Ad3QrH3eukt9gJr0L5+
+ KagGhgAlFDca2Z2X4QhuNooff3GmuvOSU09xQAXNL1dJ1bsSiicniVW5tsTzH2ZVWED6ZgA5unz
+ Rx80HxUSwyb3GZLh2rJZwlDlDBu0EGl8LSS1RiKvRXb3EQjDQRtT8f67QT7mPKSqJmypFMHDfFQ
+ lObDXlKN32ltsm130JZiW1JBxLV+ah/WrcxSkaDSGCfvqSSSY+wKlbqOgNG7Y0v9+nJ6mPj2YtR
+ BfyXumYBY9FXnwfJVnU/wFQzB0IJGy
+X-Received: by 2002:a05:6123:102:b0:567:4e8a:fb13 with SMTP id
+ 71dfb90a1353d-5bf75dc3cf4mr1129732e0c.8.1783518206208; 
+ Wed, 08 Jul 2026 06:43:26 -0700 (PDT)
+Received: from fedora ([67.230.148.25]) by smtp.gmail.com with ESMTPSA id
+ 71dfb90a1353d-5bf6f5e12a9sm1652971e0c.1.2026.07.08.06.43.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Jul 2026 08:06:05 -0700 (PDT)
-From: Ruoyu Wang <ruoyuw560@gmail.com>
-To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
-Cc: michal.winiarski@intel.com, michal.wajdeczko@intel.com,
+ Wed, 08 Jul 2026 06:43:25 -0700 (PDT)
+From: Thierry Cantin-Demers <thierrycantindemers@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ruoyu Wang <ruoyuw560@gmail.com>
-Subject: [PATCH] drm/xe/lmtt: Unpublish page tables on allocation failure
-Date: Tue,  7 Jul 2026 23:05:59 +0800
-Message-ID: <20260707150559.2274875-1-ruoyuw560@gmail.com>
-X-Mailer: git-send-email 2.51.0
+ linux-kernel@vger.kernel.org,
+ Thierry Cantin-Demers <thierrycantindemers@gmail.com>
+Subject: [PATCH] drm/i915/psr: Disable eDP Panel Replay on XPS 16 DA16260 (LG
+ 0x07C5)
+Date: Wed,  8 Jul 2026 09:42:52 -0400
+Message-ID: <20260708134252.11854-1-thierrycantindemers@gmail.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 08 Jul 2026 13:49:02 +0000
@@ -89,58 +90,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LMTT allocation publishes a newly allocated child page table before
-recursing into the next level. If a lower-level allocation fails, the
-error path freed the page table directly but left the parent's software
-entry and hardware PTE pointing at it.
+The Dell XPS 16 DA16260 ships in more than one panel variant. The existing
+quirk entry only matches the LG Display panel with DPCD sink OUI 00:22:b9.
+Another variant of the same laptop (subsystem 1028:0dba) uses an LG Display
+0x07C5 panel with sink OUI 00:aa:01, which is not matched, so eDP Panel
+Replay stays enabled and the panel hits a persistent PANEL-REPLAY Link CRC
+error, dropping the internal display to ~5 fps.
 
-The caller's failure cleanup then calls xe_lmtt_drop_pages(), which can
-walk the stale entry and destroy the same subtree again. The stale PTE
-also remains visible until the next invalidation.
+Add a quirk entry for OUI 00:aa:01 so this variant also gets eDP Panel
+Replay disabled. Confirmed xe.enable_panel_replay=0 resolves the issue.
 
-Clear the parent software entry, write an invalid PTE, invalidate the
-hardware view, and then destroy the partially allocated subtree.
-
-This issue was found by a static analysis checker and confirmed by
-manual source review.
-
-Fixes: b1d204058218 ("drm/xe/pf: Introduce Local Memory Translation Table")
-Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
+Fixes: cb8d155b0806 ("drm/i915/psr: Disable Panel Replay on Dell XPS 16 DA16260 as a quirk")
+Signed-off-by: Thierry Cantin-Demers <thierrycantindemers@gmail.com>
+Tested-by: Thierry Cantin-Demers <thierrycantindemers@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_lmtt.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_quirks.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index 0c726eda93906..9b0f8d4b26abc 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -406,8 +406,13 @@ static int __lmtt_alloc_range(struct xe_lmtt *lmtt, struct xe_lmtt_pt *pd,
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 33245f44c0d5..e452235832fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -286,6 +286,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+ 		.hook = quirk_disable_edp_panel_replay,
+ 	},
++	/* Dell XPS 16 DA16260 (LG Display 0x07C5, OUI 00:aa:01) */
++	{
++		.device = DEVICE_ID_ANY,
++		.subsystem_vendor = 0x1028,
++		.subsystem_device = 0x0dba,
++		.sink_oui = SINK_OUI(0x00, 0xaa, 0x01),
++		.hook = quirk_disable_edp_panel_replay,
++	},
+ };
  
- 		if (pt->level != 0) {
- 			err = __lmtt_alloc_range(lmtt, pt, offset, next);
--			if (err)
-+			if (err) {
-+				pd->entries[idx] = NULL;
-+				lmtt_write_pte(lmtt, pd, LMTT_PTE_INVALID, idx);
-+				lmtt_invalidate_hw(lmtt);
-+				lmtt_destroy_pt(lmtt, pt);
- 				return err;
-+			}
- 		}
- 
- 		offset = next;
-@@ -453,7 +458,10 @@ static int lmtt_alloc_range(struct xe_lmtt *lmtt, unsigned int vfid, u64 start,
- 	return 0;
- 
- out_free_pt:
--	lmtt_pt_free(pt);
-+	pd->entries[vfid] = NULL;
-+	lmtt_write_pte(lmtt, pd, LMTT_PTE_INVALID, vfid);
-+	lmtt_invalidate_hw(lmtt);
-+	lmtt_destroy_pt(lmtt, pt);
- 	return err;
- }
- 
+ void intel_init_quirks(struct intel_display *display)
 -- 
-2.51.0
+2.55.0
 
