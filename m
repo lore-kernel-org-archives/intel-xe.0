@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 845F2C43602
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 06:47:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ACF9C43458
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 06:54:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 301CE10EFF3;
-	Wed,  8 Jul 2026 06:47:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e2musIkk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 054BC10EFE4
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 06:47:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783493242; x=1815029242;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=1fqH7gqGiMm6AX/xECOCeGgShkS8rvZJBSHLK9vNPwE=;
- b=e2musIkkSvX5zSJEf04yybDvYL3XfqceOF9GLn7bGZYuluqplEdzLlA1
- 8RaGUY7y+5RdCuhPEe9jTvzeqSfdQR4g1ApF5vWzR8Qd5dGCvXf00Sa8N
- t+gswHm8gbAUyYP75cmKjQUf+xSQlYwB/gl2aOLVN2hXyMzIXKNniGhas
- KjkuuiF2E/oxl3JP/nA5Qj+w/ZGKr1+y6/Gy9nKvHJrAx+07OA72dHOhl
- EdHNfKPnmRP+RHZBSUefY6vN1y6pmk0+XJSD/bfw9QnSdRYSCGCHYPOGe
- yurz73k4pqgds5r+Z407G9U0iAidZrbqHF0J/sODGTNQzxZndAKTm4Gje Q==;
-X-CSE-ConnectionGUID: vXz+b8xLQnStl7upLTRjWg==
-X-CSE-MsgGUID: nPKSxXl2QGGAAhuy2Sty7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="83926574"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="83926574"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 23:47:22 -0700
-X-CSE-ConnectionGUID: AgwQiLL7SNCEnPqUOlLR3w==
-X-CSE-MsgGUID: v2FlhnK3TJqrqY2CkwwCXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="259115187"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 23:47:19 -0700
-Date: Wed, 8 Jul 2026 08:47:16 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Soham Purkait <soham.purkait@intel.com>
-Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
- anshuman.gupta@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, andi.shyti@intel.com,
- rodrigo.vivi@intel.com, anoop.c.vijay@intel.com
-Subject: Re: [PATCH v7 1/1] drm/xe/xe_ras: Add RAS GPU health indicator
-Message-ID: <ak3ydOjMXBrOVKbC@black.igk.intel.com>
-References: <20260708061221.4006706-3-soham.purkait@intel.com>
- <20260708061221.4006706-4-soham.purkait@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBFD888EF0;
+	Wed,  8 Jul 2026 06:54:46 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43A6188EF0;
+ Wed,  8 Jul 2026 06:54:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5581509758640600926=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260708061221.4006706-4-soham.purkait@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_support_for_G?=
+ =?utf-8?q?PU_health_indicator?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Soham Purkait" <soham.purkait@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Jul 2026 06:54:45 -0000
+Message-ID: <178349368527.164062.4082109257083497326@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260708061221.4006706-3-soham.purkait@intel.com>
+In-Reply-To: <20260708061221.4006706-3-soham.purkait@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,58 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jul 08, 2026 at 11:42:23AM +0530, Soham Purkait wrote:
-> Add a sysfs interface that reports the current GPU health state and
-> lets admin users and management tools update it but is readable by all
-> users. Requests are routed through the sysctrl mailbox. The interface
-> is present only on platforms that support the GPU health indicator.
-> 
-> The interface is a single read/write file at the device level:
-> 
->   $ cat /sys/.../device/gpu_health
->   ok
-> 
->   $ echo critical > /sys/.../device/gpu_health
-> 
->   $ cat /sys/.../device/gpu_health
->   critical
+--===============5581509758640600926==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
-> index 000000000000..9612b97b0f88
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
-> @@ -0,0 +1,30 @@
-> +What:		/sys/bus/pci/drivers/xe/.../gpu_health
-> +Date:		April 2026
-> +KernelVersion:	7.2
+Series: drm/xe: Add support for GPU health indicator
+URL   : https://patchwork.freedesktop.org/series/169976/
+State : success
 
-Unless there's time travel involved here that I'm not familiar with, we
-should consider using correct[1] date and version.
+== Summary ==
 
-[1] https://jnikula.github.io/linux-kernel-tea-leaves/
+CI Bug Log - changes from xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c_BAT -> xe-pw-169976v1_BAT
+====================================================
 
-...
+Summary
+-------
 
-> +/**
-> + * DOC: GPU Health Indicator
-> + *
-> + * On Intel Xe platforms that support the GPU health indicator interface,
-> + * the driver exposes a sysfs attribute at the device level as:
-> + *
-> + *	``/sys/bus/pci/drivers/xe/<BDF>/gpu_health``
+  **SUCCESS**
 
-The attribute is already under device <BFD>, so I'm really unsure of "gpu"
-is needed here. IMO it can simply be 'health' but I'll leave it to you all.
+  No regressions found.
 
-> + * Reading the attribute returns a single line containing the current GPU
-> + * health state. Writing one of the valid values updates the same. Reads
-> + * are available to all users; writes are restricted to administrative
-> + * users only (attribute permissions ``0644``).
+  
 
-Why is it readable for all users? Is there such a requirement?
+Participating hosts (13 -> 13)
+------------------------------
 
-Raag
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8991 -> IGT_8992
+  * Linux: xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c -> xe-pw-169976v1
+
+  IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c: 331949b3b9225375d72a6402cf94b5d6c6621d1c
+  xe-pw-169976v1: 169976v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169976v1/index.html
+
+--===============5581509758640600926==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add support for GPU health indicator</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169976/">https://patchwork.freedesktop.org/series/169976/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169976v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169976v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c_BAT -&gt; xe-pw-169976v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8991 -&gt; IGT_8992</li>
+<li>Linux: xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c -&gt; xe-pw-169976v1</li>
+</ul>
+<p>IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5364-331949b3b9225375d72a6402cf94b5d6c6621d1c: 331949b3b9225375d72a6402cf94b5d6c6621d1c<br />
+  xe-pw-169976v1: 169976v1</p>
+
+</body>
+</html>
+
+--===============5581509758640600926==--
