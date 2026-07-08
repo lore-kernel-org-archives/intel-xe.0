@@ -4,157 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A863BC44501
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 20:21:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 682C7C44501
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 20:58:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD3D10E66F;
-	Wed,  8 Jul 2026 20:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14E3710F082;
+	Wed,  8 Jul 2026 20:58:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iw9oF9RY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nkAYjkz1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25C0010E66F;
- Wed,  8 Jul 2026 20:21:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A2310F082
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 20:58:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783542110; x=1815078110;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Aw4uZV0kqi8CpLj15q3Q8hzebH0HLiMHALcD5vrUQig=;
- b=iw9oF9RYjXbaxISWSqYfhiO6oRLTWV7duwpgjBupUtvjhiToIV+EYYlb
- 26iPuzNwZyD+Dmg9mM93KX9YCq0OFoXIwD4hQ1N8aua2pmUdHDE6fm+di
- fWqIL3yCrJbFytt2Oj5AhrBJIXC9AbfO77lLL0fLdYhUXK86TJTBJxfoY
- xpPcibVuMpF89I8O9+ErFp7M9vFgTbatRNygAajEgHbBuCrNwLLLpr3XO
- yEgL3arOsPEGY5o+HXuyD++wpup3TgGLghai7h/QhZJGntwkVW5Nhl3GP
- +y5nJ//t2b1ocVyIoQ8WuS0Y7YfbnVtNlWjwkh3pVMNRUO7DV7C7GcD9t g==;
-X-CSE-ConnectionGUID: IUjaLWeARcyZeyefftjqAw==
-X-CSE-MsgGUID: JZiJNnq5TQWdo3qAD1jYxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="109763665"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="109763665"
+ t=1783544285; x=1815080285;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=sUROKVkJ4O+3X5yFuJHOJ/WExbvt8QoZzHo1u5jOITI=;
+ b=nkAYjkz1/zlsfTh1oL9Sy4rEkt8qycd1V/afgINn8LUYo2e67qD6nWoO
+ YFqPd0dUJL2EeOG1VJcAuA9Qcf+NLWvz1DUnJ6R3Wqr9cV1K7SEGKKnut
+ 6TRtOwyeEEyGQSf3Sw6uGDxj07/rMMHhCvfL7xdwGHuD4YqMFZ6TJdrfO
+ OAi1gr3c1Jf+iRQQwoIpZPnrLaOJB4O1uD86sIt1f2Sbdh2CZBwpKW7VT
+ G8TIVxBCIrStZc0F/lUGJANeeomKyTexz5tiBJk/fo3V0GiRKm+QR1mBD
+ ghjyg8t7sMrLfhg1eBfK1ij3G/MhQkA35rSsMXlBm5J4l/M5SUOMF1FJm w==;
+X-CSE-ConnectionGUID: Uy55cR0iRWaHP9xT7Nvg/g==
+X-CSE-MsgGUID: FLmcR/ZoQiGGWk5a7hvm4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84316672"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84316672"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2026 13:21:49 -0700
-X-CSE-ConnectionGUID: 8vGqCcg7QgSZRHU7YD+vaA==
-X-CSE-MsgGUID: B9J7Ya6TTbetMEji1SWooA==
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 13:58:05 -0700
+X-CSE-ConnectionGUID: o/DgoJ06QC6PfhVRf7NcOQ==
+X-CSE-MsgGUID: ZIKjziMxQEqoBPTvc0RylA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="256303529"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="256309329"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2026 13:21:47 -0700
+ 08 Jul 2026 13:58:04 -0700
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 8 Jul 2026 13:21:46 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ 15.2.2562.43; Wed, 8 Jul 2026 13:58:03 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Wed, 8 Jul 2026 13:21:46 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.49) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Wed, 8 Jul 2026 13:58:03 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.5) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 8 Jul 2026 13:21:46 -0700
+ 15.2.2562.43; Wed, 8 Jul 2026 13:58:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DzX/PoPhP57pgubSNsGjuAkdwJRIoi/nZkDR32NDudDMuu4yP7gex/iyDcmoN4aAiv4ZmDS7OaOwm4kbopxtsAAWOEHwzMkAQpNO70Ec42svU3NNa6+4nhWaPwHCyDdU8kBotHQXlcmFiMH3zzC1IKlP6/b59BI7V7aibnI7DHBGSQRO3tvO2YdVheWurA63ENl7Q9Jx5qoccErlsP4qCWAjE4Vc9p/Y25zplc1In5jcq4DiTVLp4m6r05cbzG1nOMCcoXTvWoqlx0ZWwIHf0/WcPwPTrDhs+dyiX0ArDtmVXe7m8JSpogPeKk5GSUAv6h29j+ex4081GjKDxWCPPw==
+ b=RnK2T6D8nFY0hwtLZ4jA1wceglrwZZpIvwad4rih57MzRyf1DcjzI8jFAXRGFfXCM2v+MW14fEnyRdsdpct/kHIho1nAeCLuOM7/PyINuy2HO2c+yagV9ZhZlOVwc3HfgZPUMAM3/L7hlfSsj2JPxsR2MRoLPV9d4a6uTujPRwJ2yL7IRgEEE9XPE+XY9CCmIocOAf6GKFDUrGsZZrVCgKg2sVU1tU9Mcxk+gjfojM/uQM/Yy1yesKxltBItRxVQ+SYYSoDpYBFzT4Hk4u1HQE2aQrh580TX0LqsRpKE6s85avwkLPZcgThXgeV8h79KZkWtuetViJ8O54gw8zTTCw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c3PXap9HuBPIJjbxR+2qF+i123YR1+aDjpmPLjUucu4=;
- b=SAjUVXaxdanv9GrWidxocA9PRSesud7+ZtvbIbMJGVSCEBl2Gm9rjPePULOgZ87UFkCtvTst66a9e9Y1af6CKYvIxUFo+JvepeBlM8D3lZYHNQ6gsYufPgnJ41zJfqoT2MgAqZZo0ZAxFeeKkaK7Dgpi25cVlDDwbq80m6wNTLHG5ikuSaGezqMsXpaXHWlHth4TgfQbRlKZpnVKBplRz3FBL/Ic/VWwsln9Jl40uUjGisxVVvhmaV9Ml13lSb0WAQPGCUYaFP1hUlnQ7hRaLC+qA9QCAJcgWFHOJsyUSkjtyt2m1ya53Gsy5/XmnvOn0CITbCL3Mj5D8IW0rX2LTA==
+ bh=cnHm9/j4DhngTSLUyknS4v1kpDg1Nn8FNL7oObIwOcc=;
+ b=Mpe3sqODOAcsCGtRVpcCO7/14MqIgZLvJ5K5K2POAGpsJ9xd2xGSYf7eg3yEjyJUr4Ki6QYEMDHjdMMOcRnr1wNIcx3SEb3HZBfLS6VJLtmyTVVt8RuMjcmQpBDAcllTazBiGwK9a5bpRWD5n96VqC1+0BHnFSlT6FwR0FW1Cqac1QEC+NrOoq1nLbrB/V/fCZhEtDYOYxzxmZd0jntoQNXtkRX296kTPWT2yFvz5KxFfeRzxZ/481ZizJkg5F5zlU5uJQlvIInyLkDOCbtrY1OIfegapygOyi7XiwuzE8o0WBSsC4OSJmXESpREiXcmhweWJ4M178xYAT3RhNUr1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by SA1PR11MB5876.namprd11.prod.outlook.com (2603:10b6:806:22a::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.9; Wed, 8 Jul 2026
- 20:21:43 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0181.014; Wed, 8 Jul 2026
- 20:21:42 +0000
-Date: Wed, 8 Jul 2026 16:21:34 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Tauro, Riana" <riana.tauro@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <aravind.iddamsetty@linux.intel.com>,
- <kuba@kernel.org>, <anshuman.gupta@intel.com>,
- <joonas.lahtinen@linux.intel.com>, <simona.vetter@ffwll.ch>,
- <airlied@gmail.com>, <pratik.bari@intel.com>,
- <joshua.santosh.ranjan@intel.com>, <ashwin.kumar.kulkarni@intel.com>,
- <shubham.kumar@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <raag.jadav@intel.com>, <maarten.lankhorst@linux.intel.com>,
- <mallesh.koujalagi@intel.com>, <soham.purkait@intel.com>, Zack McKevitt
- <zachary.mckevitt@oss.qualcomm.com>, Lijo Lazar <lijo.lazar@amd.com>,
- "Hawking Zhang" <Hawking.Zhang@amd.com>, "David S. Miller"
- <davem@davemloft.net>, "Paolo Abeni" <pabeni@redhat.com>, Eric Dumazet
- <edumazet@google.com>, <dri-devel@lists.freedesktop.org>,
- <netdev@vger.kernel.org>
-Subject: Re: [PATCH v4 1/3] drm/drm_ras: Add drm_ras netlink error event
-Message-ID: <ak6xThf9qeB0wqgK@intel.com>
-References: <20260701094409.129131-5-riana.tauro@intel.com>
- <20260701094409.129131-6-riana.tauro@intel.com>
- <202f6d3a-c29b-491b-979f-1d8223f59108@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <202f6d3a-c29b-491b-979f-1d8223f59108@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0217.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::12) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
+ by DS4PPF11E6CAE14.namprd11.prod.outlook.com (2603:10b6:f:fc02::c) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Wed, 8 Jul
+ 2026 20:57:55 +0000
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::f3ff:11d0:7a52:db0c]) by DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::f3ff:11d0:7a52:db0c%4]) with mapi id 15.21.0181.008; Wed, 8 Jul 2026
+ 20:57:55 +0000
+Message-ID: <80c30800-2206-4088-82a0-6ac85b64ea76@intel.com>
+Date: Wed, 8 Jul 2026 13:57:53 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/xe: Add sysfs for GT/IA bias
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+References: <20260706213636.2743937-1-vinay.belgaumkar@intel.com>
+ <20260706213636.2743937-3-vinay.belgaumkar@intel.com>
+ <61173c7f-5937-4772-9c47-aba57b5868e3@intel.com> <ak6n1pBJ8ILIJ7fm@intel.com>
+Content-Language: en-US
+From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <ak6n1pBJ8ILIJ7fm@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0298.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::33) To DM4PR11MB7757.namprd11.prod.outlook.com
+ (2603:10b6:8:103::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|SA1PR11MB5876:EE_
-X-MS-Office365-Filtering-Correlation-Id: 64997f39-6e25-498e-3c3b-08dedd2e862a
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|DS4PPF11E6CAE14:EE_
+X-MS-Office365-Filtering-Correlation-Id: 769bf075-147c-4f77-fdd9-08dedd3394fe
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|23010399003|366016|1800799024|376014|18002099003|3023799007|6133799003|22082099003|56012099006|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: VElXQUyVZ7eMAmQ9WkOhAYv6hdguDN6G5YJYQm8ysodlpUQjwDKiyKjY5O6hbdHZ9/e8Mx4gA0ntuqU7rbTfV4GYJcNRGJr5+XBmKMt+bUKXYttt7WA6SOGEj1x9XgHXA9Z4EZ0Fm8A8FXGpBo1+dG9gn3mTqbxDldEHkZOYA0e4pEkddJIqFY7IMPgpWRERYsMBAtzdT3sRNoo4HZKn8IYPuMq5FMMkTX+VWjxmdOt2l3LysUSr1T72vHlH1qcTkIX1uYppB1ZublDg3wzd3jb5hLFZSmbXqMnR4VZqqQS8RugAy8mfEtGJjjq9Qex+0H4Sc37YXUUn86SlK4vskBHzTouDDDBQsyhZ7VagvYkqB4CG0+7k8HQyfz5T0mdJjO6vZC7pCtiMo+KOY6zDxjseXyv2gtVd88kC7KKfdcOCALI6cso2bGCF50LPkVkApAR3dMBBJjU+gCCW52lAHc8zEdCwVzcg4hfvmHHB96QzjyceW90I0YlL+sWXxfcPS0NAkd0+KWfB42cHPRIWQNaR+vjJfZ75dGpYVU3SJt5Xlk3s81gQNkPDCmbFNSIZeocuLkJlWcMT4yFM/VSQLzD2yy7bNpEQh7A0lZBOug2ER5qYGpqKpc4xBUFEDH5ORhcSMYKg70gdNJl3ildGMBMnX/J3D4tZVKrUPPZ8W74=
+ ARA:13230040|23010399003|366016|1800799024|376014|18002099003|22082099003|4143699003|6133799003|56012099006|5023799004|11063799006;
+X-Microsoft-Antispam-Message-Info: ad2NdE4/mHw+P4YZPrYj4NeJjSq1Zpc2Hwns0RAQZ99IwyPetCH3cX8f0D/2atvlRxvMC3jI1VrA4B9ss8b+Sd2MAKKfX4sSakIKwvavU/8ScxMOWDkUlIZmS4UqZ7vnYBBj5DpIZxyH8sZKoBjvvtWS7036joo8QGUFbvpUhcwvMtcgtJUv6vSzcQHdv/lru/9dy3KLFj2QYEmXCJ+uyV5XGh5OTkSOcOTjZAmok7bEKwBXAr6hns9pog4gSouRcq2I6KT3kXMDA3ypwkO06xTmhTJiCkLU89gfp7HnOBFiBg9KMoFfue3NxnpHlTkHFYrqIuopnaHedsstwx57UwUj1X3VlrdkHO1pVUTbgc1EzMNFt2fzqmd01X3uQJuOKaCzSUasohF8+vuIlw8HY4uKFW9Tczy3K0j4RMGV37Lw9CszmQT2rsTb8TchK32W3uU5egfUEBylsxWwf8zU7llpmyyb8JBPpwpyjMJjtdOP/0XrPIoNeaTnqhncfdit99qmQJvCvmqkGV2zN4rwqLNqgzlMyHQjHL6d+WS4uC+GWhx/+24chOdW2QDkhRg0jvZzZweheOrZJUUuq/EHm1b5NrINQ74TPNNMylpWTDo/g44FYbHxFiRVZdD8nKRgFfj2DKB4stV4qjlPhoQ/JFERaliKY9L9m+PQD/Ovfi0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(23010399003)(366016)(1800799024)(376014)(18002099003)(3023799007)(6133799003)(22082099003)(56012099006)(4143699003)(11063799006);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(18002099003)(22082099003)(4143699003)(6133799003)(56012099006)(5023799004)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PlC6Q98rdOXwUa39WnwB/OmZ6Ba4Fz2Why3MztV12Vu2/7GWAW69VCWsXIOy?=
- =?us-ascii?Q?MOwWUjdaKKQrzCMvlqb4JRFtToMenSgugaPHoMILt1192B0Wnu5aNk9czUr7?=
- =?us-ascii?Q?AdyVULOyllfe8DNaS7d8c38cFJBAExlEwdFDYrWW1HKDzLAe0q66HBpAVKS2?=
- =?us-ascii?Q?mS6L5+izLX9TLXLM/uOAX4z+iCkt49q9YDgYlgHy8EJXiKs2/AAUcixBeumd?=
- =?us-ascii?Q?xJstlPgTfHdtNfPicFqa6OcUDagQcdQpJ0tyWzlkVK9GGY+DcYVEZm0hZLgK?=
- =?us-ascii?Q?s5j8eBPAx/WHrdE5pNwnNNk5I+lWqe9WGRAZErGEruTo0vZnssAhzQAUnfWQ?=
- =?us-ascii?Q?DyFz4XVF6k84ptqiZE/BYvVbENYChPHsu6zYRxFfC050+0TwlD0iurE7xE/Z?=
- =?us-ascii?Q?ZBfQCtDj2YDuybmLMGwZj8yNKoSq/Wsh1ReUS6HxX/JpgQTtkLFvciHCU6wT?=
- =?us-ascii?Q?1LWYzOjgVyCZjizW1/s7JlH9EVl4MI5WX1tdyDkzQSy43s6c+VifcHkhkUhg?=
- =?us-ascii?Q?bM7UIGu86B2he23KohB6UalK3S4ICuIbTlR9Sh3RBm1ElzNeJNVkMd/mwX5B?=
- =?us-ascii?Q?AuKSo9E1ulvvyDcw6akx0DyYRKpHhlSNYvUmxfOFX+XAlkHjcX23dSTZK7YO?=
- =?us-ascii?Q?Q3thBfu9S5QUAz43bjMJYsx8/K2SKn/UJGH8kUmZNGzxYejiWL1uI6Do/pyD?=
- =?us-ascii?Q?qyGnxqgzt4NGGs03mAXxqx2YKXYyByU+laIcTus1eM46FGT96oylil3SXFXl?=
- =?us-ascii?Q?7oQn5lRJgeoKNGpMQ/+LuiCsIVLc8dEI1k6mf4jZTnYrRLvxfR8JtEzMM9bC?=
- =?us-ascii?Q?dd728/IralPlqGmFSoiDRUrOofCyRPRvG3v+EX8fyM2fsIvGa6FZkSYDg1Zx?=
- =?us-ascii?Q?LF3l+ktP/cAHc8Zr9nmwnEQwLhqVJAYFIJzBZbAQ8SpsFnE9+8U/Hpi+PkwR?=
- =?us-ascii?Q?B0udQk7tasb1z2B75ZrQ+W5tYHBO7Z1EGctFS1PnlfUOyORDQ0BLHa4NYa9p?=
- =?us-ascii?Q?Es7u7/+987e77ZhLFTvO03m1xJVwkYj/GDvUfNZsTaCgnHWAZp2+UBht6YrV?=
- =?us-ascii?Q?RuHqPHOpYcE9fmfzdzwRjiG4BAhoBP3yrnHJDzRBO6sarvhr0nj1zkeCwQuv?=
- =?us-ascii?Q?m77hgR196FEXwoLUZU7zkB+SdaQ43FpfFFhIialUTV8DLM8wjthy8ghSEAEh?=
- =?us-ascii?Q?9thUUM4bqFIqTwh/fg5xvkYg7oF3agWzsFomNsntFsuK5IDIJ8ey2HaZupWi?=
- =?us-ascii?Q?zzv40MZ6ZpRza1kWUdtLBNBHVV7uxzvh4zd+07iFduxO6aktZYlk7rNkn4eO?=
- =?us-ascii?Q?NkO6cs6B97wPvUsIZb4dKpgIdlPbDIeXr68BzOY70ZePQKjKWCbgA3hRyIUl?=
- =?us-ascii?Q?hfFYQA2DbrdaSTVzCft0QKkOTyAkTBEMWlxib8Kpqly1s9Vo2R/8rQPLhfQ8?=
- =?us-ascii?Q?sHjHiSB9p9Pa9cq+IOUC2D1BY66VCSFpKFx5RAI4YQy/nZOiEOcKsXZ5AGlD?=
- =?us-ascii?Q?y0V5kNdM8walDiOJn4ZJo0CR1rU6Dhfzz6wRBq0EIRa36+Ls6oAIaOa6bA+S?=
- =?us-ascii?Q?+rj3mWg48OuR3PaZJI/mOgB3HXR4tRf0/n0V4IZ/7bax9VkCRIzQ1Wb2Byye?=
- =?us-ascii?Q?x95vsSuRd4dEpmnaN/dFBnNDTda72ZXdm2nH0dcRA46gYkNbPHt3iILuEwTC?=
- =?us-ascii?Q?9HeCUmL+kslhQCBM76Z5W1qHYBCq6Zbgy3rbAaKd1k40DldtIQTCsfrJ1wCm?=
- =?us-ascii?Q?cpVkMNUcNQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: UDI16nPEdIi2UwzDXKr/aPxNi/vC5q9Zk9Y8yAKqC7yF6QdKhATeXYkp7UtoIKisT9FCyzANv1ZXgbEaFVwFCL01sfzL7x/RQBGGXsIt3qrBBzPozlDD7NGMV2J2WNyiebmGSE+KWJqTB4OW4XiJgf+JxsBTWIkA8VCAokVTDmOeTfykj0H+DwKWdZp7uXk44yKNWrrfjM9sTpmVZVCUz2WJKhmdcgKLWydAzcn/pQExg2g43k2slJGTXjsd4/a9IVrWpmW+VBsTPBTSWXGGNqONouw2ljhosp+c3yPcbgIeg3F3KRGW0Pdk8REzKgH4+pPe2/m+UEa/DEHv9CboWg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64997f39-6e25-498e-3c3b-08dedd2e862a
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXA1eTUxSElWcmNjZWViMlRoak1FYlhXeDVReGZRRW1xSE1NSUI1d1hya05G?=
+ =?utf-8?B?ZWFBOHpZNmhtZy83V1JpNDloQjAwaGdtTDFFUHVpcWptMlBla3l2SWgyQzMw?=
+ =?utf-8?B?UUw5NllSWFZrbUxTQkZBVkdDNVZqcHcwaDhlVStaWUwyZFdteVdFWUdiZW5z?=
+ =?utf-8?B?SlZVckhSdXhHeElMTE5qQVl3empKVFdLeXVQZTl4d3BzUTlCK3djdC9FeUlH?=
+ =?utf-8?B?UEgyTnA2NGZiTzV2MHdFYlo3M1J0anR1djMzWm1KTzE1MUY1Vm9VNndVbUg5?=
+ =?utf-8?B?Z3picTMwVnVYNllFWE1LbkE3ZWk2YmpjYkt6ZVZzMDZmT0xzZHVzUTJTdVdZ?=
+ =?utf-8?B?T1FaOFMwMS9KanZKUUxXc2sxVVVDOURlRkF1a05xalpJRk9aNzI1SDVnYUhY?=
+ =?utf-8?B?TmhGTWhKQ0M4UWVMcE5LSUtqakhsdTJVUmp5d1pFSDVxSEs2TWxkeHBqMXFR?=
+ =?utf-8?B?cjRldkNESnppNTllUTNSLzltVVRzRzZkQjFYeTZPSnF5dWc0Um1ReHRZc3FG?=
+ =?utf-8?B?eDlnbjhJMDJhNC9TWXN4Z20reUZVaG9CY1RibitFcGtNbGNjYkw4eUM0KzNi?=
+ =?utf-8?B?dnZtSkR5SzFFcFF1RWNzcUR5REh6enBUU0xzVnN0emoySFpXNzBWYXkrM3JS?=
+ =?utf-8?B?WFR0Sk1RQXZCNnhZK3lDeUNBRTRPVTZYdjNITGtFbU1YdnZuaXJwcGJnelhG?=
+ =?utf-8?B?Z0x6RERkVXdEWm1zMytRZVhTNlBGeWdZdjhOcVVkQml4U05IVTBETjBJVEN0?=
+ =?utf-8?B?aXBhUHk1c2dVdTNqaDN3SG5zU0cvMHpGaWV4b0Z6Ty9HSXJRT3NTSEJ4djFr?=
+ =?utf-8?B?LzBwU2Zabm5FRjkwWEhFNVBYWmpvVWl2bWhHRUttZkRHWms5ZXV4dHBKYmRn?=
+ =?utf-8?B?cVE2b05rSlNvL094ZjFCdWQrZkoxMXEzejNmYVowcW1iek1BZkJoWk1GZTds?=
+ =?utf-8?B?VEUxcU1rZDVnWjZRSGJCS21YUjY2ZTRxUEhnUHJJVUZiRUFWc2w3KzVzMGwy?=
+ =?utf-8?B?bnU2SjEwVStLdGdCMENMU2VTT0tFMS9wUGNwS1hQcHdhbmRaSHQwbTk2ZVBL?=
+ =?utf-8?B?R2pBTXR4Q0psVEs2akg1QTB4dDZXa0d0U0kzeXN1WmxwL1d5NTVPWGZGTHJP?=
+ =?utf-8?B?bWNQaHNyb2QrZmlrRzBuQlBocDVOdDl6MWQyZCsxeCtVaEFOWG9FaUF6eXZP?=
+ =?utf-8?B?VkxGTTZSQ1RGbS8waXdyRk5SY2FkcGFHV0JrMmMvbExNajBxbzcrS1kxN1Bo?=
+ =?utf-8?B?L3NEVVpVblIxOG1qSktkaGNQMjQ2cXM5SUMrQUQ5Z3liY1R4aUN5cFlBYkpO?=
+ =?utf-8?B?S25UcDZOb2tQVGFFSUxKTHlrSnFUMzh5MUhOQWRjZXZ3Rzl5TnVHZ3ZmRFJM?=
+ =?utf-8?B?L3JuYnFPbWpCNDdMTkswcWNtSEdkL0tLVGV4OVFINDUrSUJtaE13eEhmUnRW?=
+ =?utf-8?B?d2UwQ3FjcGM2SERwd0dhY0tLV25HL0dLelZybk91cGMxRmQ1QmdQaGRWQnpJ?=
+ =?utf-8?B?emdxNEdNYWRsSjlLYlZFTnlMZUlWaGlINWFsOXpRWGt5WCtjSkxVM0ZZaEFB?=
+ =?utf-8?B?WGdZT29ySVYrQkwvd3VGanh0TWJTMnJTbzViNHZwbmJTdHNtTG1MN0VVdG0v?=
+ =?utf-8?B?bFVkYjh2ZWZxc3Z4NnkwOVUzYnhpa2JvYm9ybjExcWx1bitPcEtQUXIrcjFZ?=
+ =?utf-8?B?T0syZGVzMDFrSHRJcWUrcHJpNnlUQTNWcDRuZThPVHBsamY0dzNqWlQvUlhY?=
+ =?utf-8?B?MGZ2WWtBNWxhYzcrbE1lYWVvaG5QVmVnS0JNRkl2SFF2MjcvOHNsejBFSVdK?=
+ =?utf-8?B?UUE3UmxPOVhtWjZ0VTVxNWZ4bEMrRUI4MU42Zk03R1Z5QzQyTWNjblpmL2w3?=
+ =?utf-8?B?a0hGQjhpNEVmelFIbFp3ekFScXZUalE1ZHpQcS81QmNSVU02d2tsT1Q4anJI?=
+ =?utf-8?B?S2IvTDRKVFVrbE0vZWt2T0UyMEI3ZjBMZklvdm9VQTlmQVJwdmNzUUNHckZV?=
+ =?utf-8?B?ZWlHMm9wWWNRYnBPRVBsd0RlWFFSV3lOekZTaVhiczZqT2hIN2pqUnZxcDl3?=
+ =?utf-8?B?TDViQXFEYlk3WEpMRjlDRUVyNXY3S1RzVy9RcENLWHEySCthV2FDMnRZTHdN?=
+ =?utf-8?B?eml5bmxROERiNjNpazBLWXRWNE4vQTJDcHBoL05DeEFqUEllS096TnVQU0pD?=
+ =?utf-8?B?SHJiN0pPRS9ERmFRY0xWVXFadHdHbUk3Qk83RXlFcjlhdzdVT3A0WDFMNHpx?=
+ =?utf-8?B?SjIzQXUyQ1lWYVpjWi93TGF0NGdjS0FhREtTM3YzendlWjIwdE5DWkZNMFZE?=
+ =?utf-8?B?S2xwa1hzeDZDd3RlQXM0aXlFSHBxSzBuQVBZZkNSSDExeC83S1dBSE1XZ1hK?=
+ =?utf-8?Q?vGXuEi9dOEjVEtF8=3D?=
+X-Exchange-RoutingPolicyChecked: Uqt2zQjlMyEnoS8L077NhEE5mZNJgDxmg5PZrreee0CDeIvfyUEnpLusahJqzUFOZM89TLlj7aaGUo/JO6/M6s4+6Lv2AkKyWf7A59aneNlQ8CvbECnLkM+YB1ndzATu6y+4H686We4npYEC/cKB7G6ATnEIaRLcdYMw738ScPhI6GXRTXwKWYVsZNAKPdjtgMuNgmi3pz4Viv7BsTDRTYuw+3vWItXt7ZDiqHvK9biNoYUplub5OVdvzro7MJ17CxMKN3MFTbdrvAQ8MtVy6BjcgkCkWsFPdg3oD9e32m2n28rK0nJFTpSLhsq7Ru3GxwO+UkUs/elND1WlnzA6ww==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 769bf075-147c-4f77-fdd9-08dedd3394fe
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 20:21:42.4390 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 20:57:54.8591 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n2F8b9a7vW6WN3HwwrivyPaKTfU0rYGmWCXon/O96NFM1R/N0/RcD73Z8ibXbO3O1Gy9hVUjZCnayNp0PjLVZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5876
+X-MS-Exchange-CrossTenant-UserPrincipalName: /Rj2AA/6xSfLSj40ZS/5X7TurajYPVQezIyam5Z4ClGVMCpwJqRAXujF26UfEH8Qs5H1zkS2DMPXu8R7EsARPKFwJF5W0Nu8bpzi7e+hugc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF11E6CAE14
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,349 +171,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 07, 2026 at 12:02:11PM +0530, Tauro, Riana wrote:
-> Hi Rodrigo/Jakub/Aravind
-> 
-> Please let me know if you have any feedback for this patch or can you please
-> ack this if it looks good to you.
 
-I looks good to me, but could you please double check the sashiko's comments?
+On 7/8/2026 12:41 PM, Rodrigo Vivi wrote:
+> On Tue, Jul 07, 2026 at 12:48:05AM +0200, Michal Wajdeczko wrote:
+>>
+>> On 7/6/2026 11:36 PM, Vinay Belgaumkar wrote:
+>>> GT_IA_PERF_BIAS_REG indicates power budget between IA and GT.
+>>> Lower 16 bits correspond to IA and upper to GT. Higher value
+>>> indicates more bias towards that plane. The values are in U1.15
+>>> format.
+>>>
+>>> $ cat /sys/class/drm/card1/device/tile0/gt0/freq0/gt_ia_bias
+>>> GT Bias: 1.000
+>>> IA Bias: 0.500
+>> "Attributes should be ASCII text files, preferably with only one value per file"
+>>
+>> see https://docs.kernel.org/6.10/filesystems/sysfs.html#attributes
+> indeed. But I think the main question here is, do we really want this
+> to be a stable API?!
+>
+> Why don't we go with the debugfs?
+> So we print the Hex and the decoded values in the single file
+> and we accept the hex as input file?
+>
+> If we go with sysfs, I wonder if we shouldn't go with decoded,
+> but then having 2 separate bias files gt_bias, ia_bias.
+>
+> But also, if we go with stable API we need a whole documentation, explaining
+> the use cases where that might be useful and its limitations. I don't want
+> to keep receiving bug reports because people are randomly touching these
+> files and getting nothing because they are not in a limited TDP scenario.
+>
+> And even worse, having to debug other corner case bugs because people
+> decided to touch this. So, debugfs?!
 
-Patch 3 still needs review I believe, then we get Jakub and drm maintainers acks
-to get this through drm-xe-next.
+Agree about moving this to debugfs since we don't have fixed guidelines 
+for its usage.
 
 Thanks,
-Rodrigo.
 
-> 
-> Thanks
-> Riana
-> 
-> On 01-07-2026 15:14, Riana Tauro wrote:
-> > Define a new netlink event 'error-event' and a new multicast group
-> > 'error-report' in drm_ras. Each event contains device name, node and
-> > error information to identify the error triggering the event.
-> > 
-> > Add drm_ras_nl_error_event() to trigger an event from the driver.
-> > Userspace must subscribe to 'error-report' to receive 'error-event'
-> > notifications.
-> > 
-> > Usage:
-> > 
-> > $ sudo ynl --family drm_ras --subscribe error-report
-> > 
-> > Cc: Jakub Kicinski <kuba@kernel.org>
-> > Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
-> > Cc: Lijo Lazar <lijo.lazar@amd.com>
-> > Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-> > Cc: David S. Miller <davem@davemloft.net>
-> > Cc: Paolo Abeni <pabeni@redhat.com>
-> > Cc: Eric Dumazet <edumazet@google.com>
-> > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> > Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> > v2: remove redundant initialization
-> >      remove unnecessary space
-> >      use ynl in commit message and doc (Raag)
-> >      simplify doc for error-event attrs
-> > 
-> > v3: rename error-notify to error-report
-> >      Replace notify with report across the file (Raag)
-> > ---
-> >   Documentation/gpu/drm-ras.rst            | 21 ++++++
-> >   Documentation/netlink/specs/drm_ras.yaml | 48 +++++++++++++
-> >   drivers/gpu/drm/drm_ras.c                | 87 ++++++++++++++++++++++++
-> >   drivers/gpu/drm/drm_ras_nl.c             |  6 ++
-> >   drivers/gpu/drm/drm_ras_nl.h             |  4 ++
-> >   include/drm/drm_ras.h                    |  5 ++
-> >   include/uapi/drm/drm_ras.h               | 15 ++++
-> >   7 files changed, 186 insertions(+)
-> > 
-> > diff --git a/Documentation/gpu/drm-ras.rst b/Documentation/gpu/drm-ras.rst
-> > index 83c21853b74b..406e4c49bac1 100644
-> > --- a/Documentation/gpu/drm-ras.rst
-> > +++ b/Documentation/gpu/drm-ras.rst
-> > @@ -56,6 +56,7 @@ User space tools can:
-> >     ``node-id`` and ``error-id`` as parameters.
-> >   * Clear specific error counters with the ``clear-error-counter`` command, using both
-> >     ``node-id`` and ``error-id`` as parameters.
-> > +* Subscribe to the ``error-report`` multicast group to receive ``error-event``.
-> >   YAML-based Interface
-> >   --------------------
-> > @@ -111,3 +112,23 @@ Example: Clear an error counter for a given node
-> >       sudo ynl --family drm_ras --do clear-error-counter --json '{"node-id":0, "error-id":1}'
-> >       None
-> > +
-> > +Example: Subscribe to ``error-report`` multicast group
-> > +
-> > +.. code-block:: bash
-> > +
-> > +    sudo ynl --family drm_ras --output-json --subscribe error-report
-> > +
-> > +.. code-block:: json
-> > +
-> > +    {
-> > +        "name": "error-event",
-> > +        "msg": {
-> > +            "device-name": "0000:03:00.0",
-> > +            "node-id": 1,
-> > +            "node-name": "uncorrectable-errors",
-> > +            "error-id": 1,
-> > +            "error-name": "error_name1",
-> > +            "error-value": 1
-> > +        }
-> > +    }
-> > diff --git a/Documentation/netlink/specs/drm_ras.yaml b/Documentation/netlink/specs/drm_ras.yaml
-> > index e113056f8c01..8aed3d4515e5 100644
-> > --- a/Documentation/netlink/specs/drm_ras.yaml
-> > +++ b/Documentation/netlink/specs/drm_ras.yaml
-> > @@ -69,6 +69,33 @@ attribute-sets:
-> >           name: error-value
-> >           type: u32
-> >           doc: Current value of the requested error counter.
-> > +  -
-> > +    name: error-event-attrs
-> > +    attributes:
-> > +      -
-> > +        name: device-name
-> > +        type: string
-> > +        doc: Device (PCI BDF, UUID) that reported the error.
-> > +      -
-> > +        name: node-id
-> > +        type: u32
-> > +        doc: ID of the node that reported the error.
-> > +      -
-> > +        name: node-name
-> > +        type: string
-> > +        doc: Name of the node that reported the error.
-> > +      -
-> > +        name: error-id
-> > +        type: u32
-> > +        doc: ID of the error counter.
-> > +      -
-> > +        name: error-name
-> > +        type: string
-> > +        doc: Name of the error.
-> > +      -
-> > +        name: error-value
-> > +        type: u32
-> > +        doc: Current value of the error counter.
-> >   operations:
-> >     list:
-> > @@ -124,3 +151,24 @@ operations:
-> >         do:
-> >           request:
-> >             attributes: *id-attrs
-> > +    -
-> > +      name: error-event
-> > +      doc: >-
-> > +           Report an error event to userspace.
-> > +           The event includes the device, node and error information
-> > +           of the error that triggered the event.
-> > +      attribute-set: error-event-attrs
-> > +      mcgrp: error-report
-> > +      event:
-> > +        attributes:
-> > +          - device-name
-> > +          - node-id
-> > +          - node-name
-> > +          - error-id
-> > +          - error-name
-> > +          - error-value
-> > +
-> > +mcast-groups:
-> > +  list:
-> > +    -
-> > +      name: error-report
-> > diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
-> > index d6eab29a1394..77f912a4d101 100644
-> > --- a/drivers/gpu/drm/drm_ras.c
-> > +++ b/drivers/gpu/drm/drm_ras.c
-> > @@ -41,6 +41,11 @@
-> >    *    Userspace must provide Node ID, Error ID.
-> >    *    Clears specific error counter of a node if supported.
-> >    *
-> > + * 4. ERROR_REPORT: Subscribe to this multicast group to receive error events
-> > + *
-> > + * 5. ERROR_EVENT: Report an error event to userspace. The event contains device, node
-> > + *    and error information that triggered the event.
-> > + *
-> >    * Node registration:
-> >    *
-> >    * - drm_ras_node_register(): Registers a new node and assigns
-> > @@ -186,6 +191,34 @@ static int msg_reply_value(struct sk_buff *msg, u32 error_id,
-> >   			   value);
-> >   }
-> > +static int msg_put_error_event_attrs(struct sk_buff *msg, struct drm_ras_node *node,
-> > +				     u32 error_id, const char *error_name, u32 value)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = nla_put_string(msg, DRM_RAS_A_ERROR_EVENT_ATTRS_DEVICE_NAME, node->device_name);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = nla_put_u32(msg, DRM_RAS_A_ERROR_EVENT_ATTRS_NODE_ID, node->id);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = nla_put_string(msg, DRM_RAS_A_ERROR_EVENT_ATTRS_NODE_NAME, node->node_name);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = nla_put_u32(msg, DRM_RAS_A_ERROR_EVENT_ATTRS_ERROR_ID, error_id);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = nla_put_string(msg, DRM_RAS_A_ERROR_EVENT_ATTRS_ERROR_NAME, error_name);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return nla_put_u32(msg, DRM_RAS_A_ERROR_EVENT_ATTRS_ERROR_VALUE, value);
-> > +}
-> > +
-> >   static int doit_reply_value(struct genl_info *info, u32 node_id,
-> >   			    u32 error_id)
-> >   {
-> > @@ -222,6 +255,60 @@ static int doit_reply_value(struct genl_info *info, u32 node_id,
-> >   	return genlmsg_reply(msg, info);
-> >   }
-> > +/**
-> > + * drm_ras_nl_error_event() - Report an error event
-> > + * @node: Node structure
-> > + * @error_id: ID of the error
-> > + * @error_name: Name of the error
-> > + * @value: Value associated with the error
-> > + * @flags: GFP flags for memory allocation
-> > + *
-> > + * Report an error-event to userspace using the error-report multicast group.
-> > + *
-> > + * Return: 0 on success, or negative errno on failure.
-> > + */
-> > +int drm_ras_nl_error_event(struct drm_ras_node *node, u32 error_id, const char *error_name,
-> > +			   u32 value, gfp_t flags)
-> > +{
-> > +	struct genl_info info;
-> > +	struct sk_buff *msg;
-> > +	struct nlattr *hdr;
-> > +	int ret;
-> > +
-> > +	if (!error_name)
-> > +		return -EINVAL;
-> > +
-> > +	if (!genl_has_listeners(&drm_ras_nl_family, &init_net, DRM_RAS_NLGRP_ERROR_REPORT))
-> > +		return 0;
-> > +
-> > +	genl_info_init_ntf(&info, &drm_ras_nl_family, DRM_RAS_CMD_ERROR_EVENT);
-> > +
-> > +	msg = genlmsg_new(NLMSG_GOODSIZE, flags);
-> > +	if (!msg)
-> > +		return -ENOMEM;
-> > +
-> > +	hdr = genlmsg_iput(msg, &info);
-> > +	if (!hdr) {
-> > +		ret = -EMSGSIZE;
-> > +		goto free_msg;
-> > +	}
-> > +
-> > +	ret = msg_put_error_event_attrs(msg, node, error_id, error_name, value);
-> > +	if (ret)
-> > +		goto cancel_msg;
-> > +
-> > +	genlmsg_end(msg, hdr);
-> > +	genlmsg_multicast(&drm_ras_nl_family, msg, 0, DRM_RAS_NLGRP_ERROR_REPORT, flags);
-> > +	return 0;
-> > +
-> > +cancel_msg:
-> > +	genlmsg_cancel(msg, hdr);
-> > +free_msg:
-> > +	nlmsg_free(msg);
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL(drm_ras_nl_error_event);
-> > +
-> >   /**
-> >    * drm_ras_nl_get_error_counter_dumpit() - Dump all Error Counters
-> >    * @skb: Netlink message buffer
-> > diff --git a/drivers/gpu/drm/drm_ras_nl.c b/drivers/gpu/drm/drm_ras_nl.c
-> > index dea1c1b2494e..9d3123cc9f9c 100644
-> > --- a/drivers/gpu/drm/drm_ras_nl.c
-> > +++ b/drivers/gpu/drm/drm_ras_nl.c
-> > @@ -58,6 +58,10 @@ static const struct genl_split_ops drm_ras_nl_ops[] = {
-> >   	},
-> >   };
-> > +static const struct genl_multicast_group drm_ras_nl_mcgrps[] = {
-> > +	[DRM_RAS_NLGRP_ERROR_REPORT] = { "error-report", },
-> > +};
-> > +
-> >   struct genl_family drm_ras_nl_family __ro_after_init = {
-> >   	.name		= DRM_RAS_FAMILY_NAME,
-> >   	.version	= DRM_RAS_FAMILY_VERSION,
-> > @@ -66,4 +70,6 @@ struct genl_family drm_ras_nl_family __ro_after_init = {
-> >   	.module		= THIS_MODULE,
-> >   	.split_ops	= drm_ras_nl_ops,
-> >   	.n_split_ops	= ARRAY_SIZE(drm_ras_nl_ops),
-> > +	.mcgrps		= drm_ras_nl_mcgrps,
-> > +	.n_mcgrps	= ARRAY_SIZE(drm_ras_nl_mcgrps),
-> >   };
-> > diff --git a/drivers/gpu/drm/drm_ras_nl.h b/drivers/gpu/drm/drm_ras_nl.h
-> > index a398643572a5..03ec275aca92 100644
-> > --- a/drivers/gpu/drm/drm_ras_nl.h
-> > +++ b/drivers/gpu/drm/drm_ras_nl.h
-> > @@ -21,6 +21,10 @@ int drm_ras_nl_get_error_counter_dumpit(struct sk_buff *skb,
-> >   int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
-> >   					struct genl_info *info);
-> > +enum {
-> > +	DRM_RAS_NLGRP_ERROR_REPORT,
-> > +};
-> > +
-> >   extern struct genl_family drm_ras_nl_family;
-> >   #endif /* _LINUX_DRM_RAS_GEN_H */
-> > diff --git a/include/drm/drm_ras.h b/include/drm/drm_ras.h
-> > index 0beede3ddc4e..8abfb7d2077b 100644
-> > --- a/include/drm/drm_ras.h
-> > +++ b/include/drm/drm_ras.h
-> > @@ -80,9 +80,14 @@ struct drm_device;
-> >   #if IS_ENABLED(CONFIG_DRM_RAS)
-> >   int drm_ras_node_register(struct drm_ras_node *node);
-> >   void drm_ras_node_unregister(struct drm_ras_node *node);
-> > +int drm_ras_nl_error_event(struct drm_ras_node *node, u32 error_id, const char *error_name,
-> > +			   u32 value, gfp_t flags);
-> >   #else
-> >   static inline int drm_ras_node_register(struct drm_ras_node *node) { return 0; }
-> >   static inline void drm_ras_node_unregister(struct drm_ras_node *node) { }
-> > +static inline int drm_ras_nl_error_event(struct drm_ras_node *node, u32 error_id,
-> > +					 const char *error_name, u32 value, gfp_t flags)
-> > +{ return 0; }
-> >   #endif
-> >   #endif
-> > diff --git a/include/uapi/drm/drm_ras.h b/include/uapi/drm/drm_ras.h
-> > index 218a3ee86805..eab8231aa87c 100644
-> > --- a/include/uapi/drm/drm_ras.h
-> > +++ b/include/uapi/drm/drm_ras.h
-> > @@ -38,13 +38,28 @@ enum {
-> >   	DRM_RAS_A_ERROR_COUNTER_ATTRS_MAX = (__DRM_RAS_A_ERROR_COUNTER_ATTRS_MAX - 1)
-> >   };
-> > +enum {
-> > +	DRM_RAS_A_ERROR_EVENT_ATTRS_DEVICE_NAME = 1,
-> > +	DRM_RAS_A_ERROR_EVENT_ATTRS_NODE_ID,
-> > +	DRM_RAS_A_ERROR_EVENT_ATTRS_NODE_NAME,
-> > +	DRM_RAS_A_ERROR_EVENT_ATTRS_ERROR_ID,
-> > +	DRM_RAS_A_ERROR_EVENT_ATTRS_ERROR_NAME,
-> > +	DRM_RAS_A_ERROR_EVENT_ATTRS_ERROR_VALUE,
-> > +
-> > +	__DRM_RAS_A_ERROR_EVENT_ATTRS_MAX,
-> > +	DRM_RAS_A_ERROR_EVENT_ATTRS_MAX = (__DRM_RAS_A_ERROR_EVENT_ATTRS_MAX - 1)
-> > +};
-> > +
-> >   enum {
-> >   	DRM_RAS_CMD_LIST_NODES = 1,
-> >   	DRM_RAS_CMD_GET_ERROR_COUNTER,
-> >   	DRM_RAS_CMD_CLEAR_ERROR_COUNTER,
-> > +	DRM_RAS_CMD_ERROR_EVENT,
-> >   	__DRM_RAS_CMD_MAX,
-> >   	DRM_RAS_CMD_MAX = (__DRM_RAS_CMD_MAX - 1)
-> >   };
-> > +#define DRM_RAS_MCGRP_ERROR_REPORT	"error-report"
-> > +
-> >   #endif /* _UAPI_LINUX_DRM_RAS_H */
+Vinay.
+
+>
+>>> This interface will allow us to observe power budget changes while
+>>> running workloads and also, if needed, tune it.
+>>>
+>>> v2: Decode the bias values (Rodrigo)
+>>>
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h |  2 +
+>>>   drivers/gpu/drm/xe/xe_gt_freq.c      | 71 ++++++++++++++++++++++++++++
+>>>   2 files changed, 73 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>> index 08251c7a1a4b..41c5c5f20964 100644
+>>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>> @@ -634,6 +634,8 @@
+>>>   #define GT_GFX_RC6_LOCKED			XE_REG(0x138104)
+>>>   #define GT_GFX_RC6				XE_REG(0x138108)
+>>>   
+>>> +#define GT_IA_PERF_BIAS_REG			XE_REG(0x138158)
+>>> +
+>>>   #define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
+>>>   /* Common performance limit reason bits - available on all platforms */
+>>>   #define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+>>> index a40dd074106f..08c0be8defd0 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+>>> @@ -11,10 +11,13 @@
+>>>   #include <drm/drm_managed.h>
+>>>   #include <drm/drm_print.h>
+>>>   
+>>> +#include <regs/xe_gt_regs.h>
+>> use regular "" include
+>>
+>>> +#include "xe_gt.h"
+>>>   #include "xe_gt_sysfs.h"
+>>>   #include "xe_gt_throttle.h"
+>>>   #include "xe_gt_types.h"
+>>>   #include "xe_guc_pc.h"
+>>> +#include "xe_mmio.h"
+>>>   #include "xe_pm.h"
+>>>   
+>>>   /**
+>>> @@ -242,6 +245,61 @@ static ssize_t power_profile_store(struct kobject *kobj,
+>>>   }
+>>>   static struct kobj_attribute attr_power_profile = __ATTR_RW(power_profile);
+>>>   
+>>> +static ssize_t gt_ia_bias_show(struct kobject *kobj,
+>>> +			       struct kobj_attribute *attr,
+>>> +			       char *buf)
+>>> +{
+>>> +	struct device *dev = kobj_to_dev(kobj);
+>>> +	struct xe_gt *gt = kobj_to_gt(kobj->parent);
+>>> +	u32 val;
+>>> +	u32 ia_frac, gt_frac;
+>>> +	u16 ia_raw, gt_raw;
+>>> +	u16 ia_frac_bits, gt_frac_bits;
+>>> +	u16 ia_int, gt_int;
+>>> +
+>>> +	guard(xe_pm_runtime)(dev_to_xe(dev));
+>>> +	val = xe_mmio_read32(&gt->mmio, GT_IA_PERF_BIAS_REG);
+>>> +
+>>> +	ia_raw = val & 0xFFFF;
+>>> +	gt_raw = (val >> 16) & 0xFFFF;
+>> use REG_FIELD_GET instead
+>>
+>>> +
+>>> +	/* Uppermost bit is integer value */
+>>> +	ia_int = ia_raw >> 15;
+>>> +	gt_int = gt_raw >> 15;
+>>> +
+>>> +	/* Rest are fraction bits */
+>>> +	ia_frac_bits = ia_raw & 0x7FFF;
+>>> +	gt_frac_bits = gt_raw & 0x7FFF;
+>> maybe it is worth to define some Q1.15 helpers?
+>>
+>>> +
+>>> +	/* Up to 3 decimal places */
+>>> +	ia_frac = ((uint64_t)(ia_frac_bits * 1000)) / 0x8000;
+>>> +	gt_frac = ((uint64_t)(gt_frac_bits * 1000)) / 0x8000;
+>>> +
+>>> +	return sysfs_emit(buf, "GT Bias: %u.%03u\nIA Bias: %u.%03u\n",
+>>> +			  gt_int, gt_frac, ia_int, ia_frac);
+>>> +}
+>>> +
+>>> +static ssize_t gt_ia_bias_store(struct kobject *kobj,
+>>> +				struct kobj_attribute *attr,
+>>> +				const char *buff, size_t count)
+>>> +{
+>>> +	struct device *dev = kobj_to_dev(kobj);
+>>> +	struct xe_gt *gt = kobj_to_gt(kobj->parent);
+>>> +	u32 val;
+>>> +	int ret;
+>>> +
+>>> +	ret = kstrtou32(buff, 0, &val);
+>> hmm, shouldn't we accept decoded values as we show them?
+>> now it's inconsistent and admin must guess how to encode it properly
+> right. it should be consistent, easy to use and not so dependent on hw and fw.
+>
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	guard(xe_pm_runtime)(dev_to_xe(dev));
+>>> +	xe_mmio_write32(&gt->mmio, GT_IA_PERF_BIAS_REG, val);
+>>> +
+>>> +	return count;
+>>> +}
+>>> +
+>>> +static struct kobj_attribute attr_gt_ia_bias = __ATTR_RW(gt_ia_bias);
+>>> +
+>>>   static const struct attribute *freq_attrs[] = {
+>>>   	&attr_act_freq.attr,
+>>>   	&attr_cur_freq.attr,
+>>> @@ -258,8 +316,13 @@ static const struct attribute *freq_attrs[] = {
+>>>   static void freq_fini(void *arg)
+>>>   {
+>>>   	struct kobject *kobj = arg;
+>>> +	struct device *dev = kobj_to_dev(kobj);
+>>> +	struct xe_gt *gt = kobj_to_gt(kobj->parent);
+>>>   
+>>>   	sysfs_remove_files(kobj, freq_attrs);
+>>> +
+>>> +	if (xe_gt_is_main_type(gt) && !IS_DGFX(dev_to_xe(dev)))
+>>> +		sysfs_remove_file(kobj, &attr_gt_ia_bias.attr);
+>>>   	kobject_put(kobj);
+>>>   }
+>>>   
+>>> @@ -289,6 +352,14 @@ int xe_gt_freq_init(struct xe_gt *gt)
+>>>   		return err;
+>>>   	}
+>>>   
+>>> +	if (xe_gt_is_main_type(gt) && !IS_DGFX(xe)) {
+>>> +		err = sysfs_create_file(gt->freq, &attr_gt_ia_bias.attr);
+>>> +		if (err) {
+>>> +			kobject_put(gt->freq);
+>>> +			return err;
+>>> +		}
+>>> +	}
+>>> +
+>>>   	err = devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
+>>>   	if (err)
+>>>   		return err;
