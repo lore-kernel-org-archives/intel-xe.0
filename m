@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06A61C43458
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 12:37:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5655BC43602
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jul 2026 12:37:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE05410F106;
-	Wed,  8 Jul 2026 12:37:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g0JswxX7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B331410F115
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jul 2026 12:37:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783514276; x=1815050276;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=HmWZcnjkxjwGShMAnKpvXCWgZavbXkBjdSkiakMAU/Q=;
- b=g0JswxX7r1MKOr1DYry6PfKbqTczOOTSSq9N4r+Q3laGsz90efCFymxm
- PKHQC8Jhz6COLnin9MSBlA22vvfDn1Ol8INtpm2cR02mBaNekSd5fSuIi
- 8YgEdVWzV2VV9cCerv2ZKKRAibTsqGmzEQgO+FUYtxH3id2JkJgT0zUc+
- ACGSqPL/TbYGAQd1RVU5HqiX0s6mHb/LYPHHnjGfr5/f3aMqOEBdE4Anu
- s2nJW5AgblWDCqllFUYm6w+l/oQH20mNFynLnDC19QEm77I7vt3NJ6rpY
- sVeK6ocAWBJ/1AHICPCTj4Hwdnp9Tw6WSVhJD+6q4fa6EGldvR8IGQaN4 g==;
-X-CSE-ConnectionGUID: zSwujDNCRfuKwCwCO0PP/Q==
-X-CSE-MsgGUID: fpDtaY1sQGCkfCPkMHBBsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84231339"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84231339"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2026 05:37:55 -0700
-X-CSE-ConnectionGUID: WBSaY9xqSqCFIACNmCYwdw==
-X-CSE-MsgGUID: jH2hvz0qSBqoZnPHGrYL4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="249831970"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.245.113])
- ([10.245.245.113])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2026 05:37:54 -0700
-Message-ID: <df72ae4a41d526c3db1577532d13260bbe331869.camel@linux.intel.com>
-Subject: Re: [PATCH v5 1/2] drm/ttm: Fix UAF on dma-buf attach failure for
- sg BOs
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Christian Konig <christian.koenig@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>
-Date: Wed, 08 Jul 2026 14:37:51 +0200
-In-Reply-To: <20260708091512.205482-5-nitin.r.gote@intel.com>
-References: <20260708091512.205482-4-nitin.r.gote@intel.com>
- <20260708091512.205482-5-nitin.r.gote@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F3A710F119;
+	Wed,  8 Jul 2026 12:37:59 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 174CC10F115;
+ Wed,  8 Jul 2026 12:37:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7873895166926647391=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/audio=3A_treat_UHB?=
+ =?utf-8?q?R_SST_like_MST_for_cpu=5Ftranscoder_signalling_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Jul 2026 12:37:58 -0000
+Message-ID: <178351427800.164949.11421256836952493862@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260708113558.1863316-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20260708113558.1863316-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,106 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Nitin,
+--===============7873895166926647391==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Wed, 2026-07-08 at 14:45 +0530, Nitin Gote wrote:
-> When a dma-buf importer creates a ttm_bo_type_sg BO with bo-
-> >base.resv
-> pointing at the exporter's dma_buf->resv and dma_buf_dynamic_attach()
-> fails, no dma_buf reference is held. The exporter can be freed before
-> the delayed_delete worker calls dma_resv_lock(bo->base.resv), causing
-> a
-> use-after-free:
->=20
-> =C2=A0 Oops: general protection fault, probably for non-canonical address
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x6b6b6b6b6b6b6b9c
-> =C2=A0 Workqueue: ttm ttm_bo_delayed_delete [ttm]
-> =C2=A0 RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
->=20
-> ttm_bo_individualize_resv() skips the resv swap for all sg BOs to
-> keep
-> the shared resv available for delayed_delete to release the dma-buf
-> mapping. A BO whose attach never succeeded has no mapping to release,
-> yet it keeps bo->base.resv pointing at the exporter resv that
-> delayed_delete later locks once the exporter is gone.
->=20
-> Fix this by checking bo->base.import_attach, which is set only after
-> a
-> successful attach. The check is placed after dma_resv_copy_fences()
-> so
-> successful imports still copy fences to _resv before returning,
-> keeping
-> the shared resv for delayed_delete. Failed imports fall through to
-> swap
-> resv to _resv, so delayed_delete never locks the stale exporter resv.
->=20
-> Closes:
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
-> Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup
-> path for imported bos")
-> Cc: stable@vger.kernel.org=C2=A0# v6.8+
-> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> Cc: Christian Konig <christian.koenig@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+== Series Details ==
 
-It seems you dropped the patch changelog?
+Series: drm/i915/audio: treat UHBR SST like MST for cpu_transcoder signalling (rev3)
+URL   : https://patchwork.freedesktop.org/series/169869/
+State : success
 
-Also the WARN_ON_ONCE() we discussed for last version?
+== Summary ==
 
-/Thomas
+CI Bug Log - changes from xe-5365-6a22b406f919a5b891ceea74421732a026543902_BAT -> xe-pw-169869v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-169869v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_dma_buf:
+    - bat-bmg-vm:         [ABORT][1] ([Intel XE#8007] / [Intel XE#8023]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5365-6a22b406f919a5b891ceea74421732a026543902/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v3/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
 
 
+Build changes
+-------------
 
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++++++++---------
-> =C2=A01 file changed, 15 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
-> b/drivers/gpu/drm/ttm/ttm_bo.c
-> index 3980f376e3ba..f157e259dd5f 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -203,15 +203,21 @@ static int ttm_bo_individualize_resv(struct
-> ttm_buffer_object *bo)
-> =C2=A0	if (r)
-> =C2=A0		return r;
-> =C2=A0
-> -	if (bo->type !=3D ttm_bo_type_sg) {
-> -		/* This works because the BO is about to be
-> destroyed and nobody
-> -		 * reference it any more. The only tricky case is
-> the trylock on
-> -		 * the resv object while holding the lru_lock.
-> -		 */
-> -		spin_lock(&bo->bdev->lru_lock);
-> -		bo->base.resv =3D &bo->base._resv;
-> -		spin_unlock(&bo->bdev->lru_lock);
-> -	}
-> +	/*
-> +	 * Successfully imported sg BOs need the shared resv for
-> dma-buf
-> +	 * cleanup. Failed imports have no attachment or mapping and
-> can
-> +	 * use the private _resv.
-> +	 */
-> +	if (bo->type =3D=3D ttm_bo_type_sg && bo->base.import_attach)
-> +		return 0;
-> +
-> +	/* This works because the BO is about to be destroyed and
-> nobody
-> +	 * references it any more. The only tricky case is the
-> trylock on
-> +	 * the resv object while holding the lru_lock.
-> +	 */
-> +	spin_lock(&bo->bdev->lru_lock);
-> +	bo->base.resv =3D &bo->base._resv;
-> +	spin_unlock(&bo->bdev->lru_lock);
-> =C2=A0
-> =C2=A0	return r;
-> =C2=A0}
+  * Linux: xe-5365-6a22b406f919a5b891ceea74421732a026543902 -> xe-pw-169869v3
+
+  IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5365-6a22b406f919a5b891ceea74421732a026543902: 6a22b406f919a5b891ceea74421732a026543902
+  xe-pw-169869v3: 169869v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v3/index.html
+
+--===============7873895166926647391==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/audio: treat UHBR SST like MST for cpu_transcoder signalling (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169869/">https://patchwork.freedesktop.org/series/169869/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5365-6a22b406f919a5b891ceea74421732a026543902_BAT -&gt; xe-pw-169869v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-169869v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_dma_buf:<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5365-6a22b406f919a5b891ceea74421732a026543902/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169869v3/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5365-6a22b406f919a5b891ceea74421732a026543902 -&gt; xe-pw-169869v3</li>
+</ul>
+<p>IGT_8992: 1e912fa143a35c4238a1fbcf94443175d8ce1d60 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5365-6a22b406f919a5b891ceea74421732a026543902: 6a22b406f919a5b891ceea74421732a026543902<br />
+  xe-pw-169869v3: 169869v3</p>
+
+</body>
+</html>
+
+--===============7873895166926647391==--
