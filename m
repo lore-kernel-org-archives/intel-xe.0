@@ -4,154 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11560C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 02:28:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04F27C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 02:49:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0467A10F357;
-	Thu,  9 Jul 2026 02:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ABCE10E187;
+	Thu,  9 Jul 2026 02:49:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="bz5IKidz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oz3kvum/";
 	dkim-atps=neutral
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011001.outbound.protection.outlook.com [52.101.57.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 320BD10E0D2;
- Thu,  9 Jul 2026 02:28:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bOJJj7rmx60PJSWTNzmJhpej3sKFS5Wz0lJyPQb5rMSve7PCKTFTIEQRyzvrxznC2DbuldrKOnvAKU9jqmPxJWQntoKhXg07xNTS5g9vCvdt+IgIYPJqK3AiSmLbbOyBkkn6b8zt53Ft5+JJpdycLFNpgJiPe/UOPFKv3kMMAXjhP9r+o7zcJFDtQoYFwKpKr6ZDaeScx/TEUs2nnAUUWEgoVp672imEF+mPjXx5I/8tYGeAr1IMtPhWiUn2x89iY6ggjMo1B351Xkxs1t9FJuUH5Hpjg21G0jIWKkIAyn48n9kCDMCGHalzg3ZWOtRMzb4YCaooM7vGRNBq1UcszQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=628hE3qKJtKmhgz1J5dqnmQSJXhpojgwSEt0XJFiwHk=;
- b=sZ826dWvoJR0CQ61f3y+brnuYXkfl04ZcglwMw+BPJmSZTUXxsjb5KcakHxBlOed2S0bYLpG6GoZv19gn0CUFc8vdaWxjyynM229HQOu4ejImMFB69UXvhsxuPH8ZPA8lI8EA5C/udW+KtxkWVQdL/iyZCA2TqyJumPa+fF5rKqsovCiF+rVvN3HBm2R2Eh3mzVThdA+EGJs9mzQRXPukCuyOZIb6R9Yu9+MExQUbhncldCXh0F35bVZTtNq3jXR1sD/+4bAPzE3m1agCEBGkpuuZz4rk640FTvxEXLpGBISN73kYHU157Us2EiDYZGz4q/Q3w2PFPgbL914OQDcJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=628hE3qKJtKmhgz1J5dqnmQSJXhpojgwSEt0XJFiwHk=;
- b=bz5IKidz0aU0mhB4xRGwF2vFDP73iMiXQqknrJ5piQ94nra9oZVGFVmgDe6LIAxnbohuh5HRTYE7Nb+sgJjBiU11MeikVvzjdlL7gLMg9FB0voeTqK2vX0EWDvU4yK8XINW2Jcme270SiUwpeTTBjJeVR5I8HQOI6beO+PCgz7QLFyngV63D6DqDjxNBNCsLbSVkoDkvXpDOA9khZOgGBmvxDCZH4TCPrJ2qRBHGlV/SfOiIftDwBLNpnTBNvEWKH3osMg8sqSjD59eUOJ546U6ZafLqbMDSUgdR8iT7u5ANT8ENEFWf78eWB65Tg1Cf+6Ou3uIZQjOx4iYueE2Mvg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com (2603:10b6:208:40e::7)
- by CH3PR12MB8185.namprd12.prod.outlook.com (2603:10b6:610:123::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Thu, 9 Jul
- 2026 02:28:07 +0000
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16]) by IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16%5]) with mapi id 15.21.0181.014; Thu, 9 Jul 2026
- 02:28:07 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 08 Jul 2026 22:28:00 -0400
-Message-Id: <DJTOP760MDDG.2KUSKD8WVVKJ5@nvidia.com>
-Subject: Re: [PATCH 13/13] mm/mremap: convert mremap code to use vma_flags_t
-Cc: <akpm@linux-foundation.org>, <tsbogend@alpha.franken.de>,
- <maddy@linux.ibm.com>, <mpe@ellerman.id.au>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <l.stach@pengutronix.de>, <inki.dae@samsung.com>, <sw0312.kim@samsung.com>,
- <kyungmin.park@samsung.com>, <krzk@kernel.org>, <peter.griffin@linaro.org>,
- <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <tursulin@ursulin.net>,
- <robin.clark@oss.qualcomm.com>, <lumag@kernel.org>, <lyude@redhat.com>,
- <dakr@kernel.org>, <tomi.valkeinen@ideasonboard.com>, <hjc@rock-chips.com>,
- <heiko@sntech.de>, <andy.yan@rock-chips.com>, <thierry.reding@kernel.org>,
- <mperttunen@nvidia.com>, <jonathanh@nvidia.com>, <kraxel@redhat.com>,
- <dmitry.osipenko@collabora.com>, <zack.rusin@broadcom.com>,
- <matthew.brost@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <oleksandr_andrushchenko@epam.com>, <deller@gmx.de>, <bcrl@kvack.org>,
- <viro@zeniv.linux.org.uk>, <brauner@kernel.org>, <muchun.song@linux.dev>,
- <osalvador@suse.de>, <david@kernel.org>, <baolin.wang@linux.alibaba.com>,
- <liam@infradead.org>, <npache@redhat.com>, <ryan.roberts@arm.com>,
- <dev.jain@arm.com>, <baohua@kernel.org>, <hughd@google.com>,
- <vbabka@kernel.org>, <rppt@kernel.org>, <surenb@google.com>,
- <mhocko@suse.com>, <jannh@google.com>, <pfalcato@suse.de>,
- <kees@kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
- <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linuxppc-dev@lists.ozlabs.org>, <dri-devel@lists.freedesktop.org>,
- <etnaviv@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-samsung-soc@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>,
- <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>, <linux-rockchip@lists.infradead.org>,
- <linux-tegra@vger.kernel.org>, <virtualization@lists.linux.dev>,
- <intel-xe@lists.freedesktop.org>, <xen-devel@lists.xenproject.org>,
- <linux-fbdev@vger.kernel.org>, <linux-aio@kvack.org>,
- <linux-fsdevel@vger.kernel.org>, <linux-mm@kvack.org>,
- <linux-sound@vger.kernel.org>
-To: "Lorenzo Stoakes" <ljs@kernel.org>, "Lance Yang" <lance.yang@linux.dev>
-From: "Zi Yan" <ziy@nvidia.com>
-X-Mailer: aerc 0.21.0
-References: <380f761d35a3faa4370f8b3f92e3d4af3d4c7110.1782760670.git.ljs@kernel.org>
- <20260702134947.25189-1-lance.yang@linux.dev> <akaJx8Zt8kazlrjq@lucifer>
-In-Reply-To: <akaJx8Zt8kazlrjq@lucifer>
-X-ClientProxiedBy: DS7P220CA0110.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:8:25d::12) To IA0PR12MB8374.namprd12.prod.outlook.com
- (2603:10b6:208:40e::7)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8E0810E187
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Jul 2026 02:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783565373; x=1815101373;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zY/v+TZ6UyUHXFWK07j4szmOYDfu70bk1wyVfKtu1bg=;
+ b=Oz3kvum/H4MEHj86tJVkjCgN2RmEOmCvaPFXuLrQefvG9Q7YVI34N7H4
+ ntnO7ZvazizIRCsbWr//rwwqCMvatiaOjuYCgSfQiUg5pRccik5vqfGYv
+ eTu2uVZUENNIBDEWmXPVCzJceDpZsi1vTlSQEd/dKvTnNlh4A0R60VUFC
+ qS/FIv7t+yldSUtDF/0YM2ZKxK2JiMie5OhWu1f1Lw+WMQv4tNB6LOvUF
+ zuxWeH/+ZuAi0iOzgSprQGGItfy6QABnJVro7izRB9eiWnTuDbK3Jjw5P
+ asGXs5fr6hpUK2vB3riTRuKr3iP5V+e+HjNgfOgqayFjwZg9wKA7d23o8 g==;
+X-CSE-ConnectionGUID: m6c0BzMwT3S2RQVsn81Upg==
+X-CSE-MsgGUID: n0Js1exuRdq3x8gge54KnQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84020331"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84020331"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 19:49:33 -0700
+X-CSE-ConnectionGUID: w2TYQtJATiCpg4PsWNSjTw==
+X-CSE-MsgGUID: wxyCUNz7RWSlCSasmkV2nA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="284551167"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2026 19:49:32 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH] drm/xe: Flush L2 asynchronously in xe_bo_trigger_rebind()
+Date: Wed,  8 Jul 2026 19:49:25 -0700
+Message-Id: <20260709024925.1731496-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR12MB8374:EE_|CH3PR12MB8185:EE_
-X-MS-Office365-Filtering-Correlation-Id: d08dc437-8440-482d-c719-08dedd61b611
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|7416014|11063799006|18002099003|22082099003|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: Z/tjc06LNUj/ulqvzkhbzEoBDPqp8rufyAQcTElPkkRlF0B8T5Lbv7NMmcJr2fLtFbSsJgLgtFQE7voqnqaki+sE2P+d6Zq2TFmjE3fxJChyNDeTmhCtDvTiZO/XKngfNniy6jwmycUEa9vLkF/v2tAPyDLh4KOe8cIEtY8vtgAgmXR1KyNJPJW6VdDsUdKzYzL3I9N8Bgwyf2BDWdf+/jn3SJxXVHol2dODQXVmawEDDxxYe96QGbU8mg1IlAcDPVqgvY1CTNKIwHqWXo3HmmWXSRLC0lN2jN6ij11QBSyuVAY95RX+XdDCdiLHzjRN2nUcFafDKEwUJXECHDVv1pFmO+mPI2ZeDGU4uOG2KYqabOpq0AZ9U02WcOV+U5RXGj/0o58kNOZjIZXq8fjCkZno1LUGZ6pSljvH5R5tf+KUa5bZzEfGxC8fqYD4G4sHmVG2ZTvIDgG8RQNuqN5pIDhbPgMDHHgQn8uVdJYhWdGmCTbKhWOOB+jIlOYBfDORJ3fvm3BXCRyJ+MUAz7yvTyXwBlTV+Czo/rvFJC5g+vcpCcbEUWiElMspJ2ZW1nBbO8EFIAa9cdCLclSyU2JwoTl9+jG54SN7IHjyF3ozn47MSbc135KTOEkZcoJ+kUIaiOnk6eDkiLfNe8mpH1guZ6PqDK6XGo3FvG6Io0XdOcc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR12MB8374.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(7416014)(11063799006)(18002099003)(22082099003)(4143699003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b0drdVdBNTVMRW1PY2NGdUlvZm5yTDUvUlNxNm5CRXJhcG5NTHBVQVgvZDZi?=
- =?utf-8?B?S2hVcjdVcWJxZ2swZUZjSC9ITUkrczBKTjlWVlJ5aWVWRStvcWVvNU92b3dJ?=
- =?utf-8?B?YmlQNm1CQ28rNitYUzB1TUMrZFJCanluTVhwTGJEa1F4SldlMlQvL0hVNXNN?=
- =?utf-8?B?RnROemo0ZmdrL25FcUtHbWRsaGNLUzBvYjI4WThVRUVqVkIxeEtjVGZjVU9L?=
- =?utf-8?B?UzNRTUh5a3BUZjFFcnM0WU5Eaklzb3RwT3E0Y1JSZFEvdDRtWi9XOGJ5L2ph?=
- =?utf-8?B?RUJLc0hLREpIMCtZS0Y4eUN5VmJZUk5OZVZWOW93anpkbTBwUzVCek5icDNr?=
- =?utf-8?B?bE1GZEhhcEdtYlk4OFlwWFlobU9ZMFVBNW5hWWtkemRBb201UXN6ekQreW5o?=
- =?utf-8?B?b01oSGphdWJIOU91OGNFZFM3aTVxOWRPOXl5OGxDVUFBdmV4Zkpqak1KV1c0?=
- =?utf-8?B?T3JDWGtZV0p4aSt2Z0pxT2ZYQ2V2eGtTVlJwOW5YNGJ4dUpudGhxM1hhRkFr?=
- =?utf-8?B?ZXd2cTRpNnJmVWZTSGk2Ylg0QTlJS2pwbEx5YTJIcjBxVjNHbThZWVFMTENK?=
- =?utf-8?B?elh2Nk40WFBucHgzd01vNWl1MlRvTHpueEFQZEdVVjdGYnBqNG5lZWRQNTdT?=
- =?utf-8?B?YjVzMWgvNmw4bGpIVUUySjE0NHVzUzd0NVloT3loRDYzVWdsNEJ2ZTJBV242?=
- =?utf-8?B?K3pJZ2d2cHVHZ296RDBXMHdycFgxZEpFV3ZveW93YXlQZ08vNUlnRm05Sjd3?=
- =?utf-8?B?dm5EOUx2NTZQVEJ1WHAzZnF5cUhCTEkzUk9XNk0yek9VUGhlR0ZzWFNOYzNJ?=
- =?utf-8?B?NnpKckl1WTF5emJNT29rZDRXU1pJemFuVGRRWUJBRXZEYXNESUIrbVRRalhq?=
- =?utf-8?B?TVV5MUJzR1ArUWJoQ05FUm5CeHhGRHJLVEU0Z2lOMkxrQmNiQnQzNGZxN1hw?=
- =?utf-8?B?Y1BmcHU1MWdZMkcvY1ErMGtFWVMvWnBnTThGd2I3emdLOFZYSm1oSHhUS2R2?=
- =?utf-8?B?eVpNOFp3NC9EQ1hDRStsMnZLSmdObktmQjVFNGo4NzNZYysvYTYvcHlUenFG?=
- =?utf-8?B?WFJlaVFnbDMrNnN1OEdYYjE1YzczTzVXdUJ1K3BESk90K1FURFlVU0xZMU1Z?=
- =?utf-8?B?RGJWRUlVTFZMZy9vbExnRW5DcVREZytCTDZoMVNFaTNvYSs5Mm5DeUdNSzdL?=
- =?utf-8?B?N0NyWVZpaHNLdGlLYysvWk41MDZ3YXdUOHE1SUczODVNeXIrMis1Vjh0QzA0?=
- =?utf-8?B?Y1lBakpkZ0ZHR3pJRjlTQWJKWFhTcHJwdUJKS3JhZnZiMU5oUVpnZERjM2VR?=
- =?utf-8?B?bmgxSFlnMTVaSzVyYnIyYWVKUzR1Y01hSUtyTTFNUmxZTUJwcmV0ZmhxYXFV?=
- =?utf-8?B?Vjl4aXI3L0FDOTFkZUVQL25oUUFyZ3RmRlBPdkR3MUpPditUenZhS1hxSWlr?=
- =?utf-8?B?SGVFSlhrb0xCU3NsZ0JVVmlPekxKbFdzaXd0MWx1SDM2VHhYcDBQdlNBWjRE?=
- =?utf-8?B?QjcrYnY4R0dlQklVMFllNEVPVjFoOFh0WEdnT09yajZiOTcrQkYvSGhWcXdz?=
- =?utf-8?B?bDBXVlpXU1R6dlBEbm1JNnRXUWdLWEQwQ0lRUDB3L0QxZWtxOXFxNHVmb2ZK?=
- =?utf-8?B?VHV6dUh1d0hpbFVVY1lyT1gvVHBmZ1h0NUJreWJjTjZjWHlqbFNQTW96M2Zm?=
- =?utf-8?B?YjI1TVZrYmhFRkRuSU9oY1lKK0lmcU8xQ3E2UDJrZmMwbTlWVFhCVE9WUkdN?=
- =?utf-8?B?a3VKaW0zUWc0eXdoWDh0Q3dhekxVMUt2Vkl4MUNRUGlmNDNsTVJDVytwRktW?=
- =?utf-8?B?c3VpRlQ1b0hyTitNRmpsSTBYWS9WVzN3ZkFBQ1RvRWE1SXh6dWhPdGxWNjFN?=
- =?utf-8?B?bVdvQnFVSVhxbTRSVy8yckJ3aW9SWlFtRGUzaHAvR3dYd1ZTUjdQTGJRUzFN?=
- =?utf-8?B?TmtYeFRRSWNhTytJNGhpclVLcitvcnJOd0VwLzQ5dlBOYURLYm1wVEFVTDJh?=
- =?utf-8?B?WWhETDBzRzJXcEwydmVaWWF4VDVTMGtDbGY3RlpnUGRabHdRMmNmTDVrbFFC?=
- =?utf-8?B?L3VibzBteDdUNmNkZXdWUlQ5ZHFXMm9XWTl0NHVCY0VBaGRkdEpLcmdlaVl6?=
- =?utf-8?B?d21mKzM1M3FMM3VPcHdMbnBYUFFsbGhXWGVuRDA4MHlqV3BHZStzWkJjUjdI?=
- =?utf-8?B?Q3dwbCtuNHcvaWpmWVV4eE1IQmFGeHpQUytIWkxyMFRNK3VLVkJSZTNOam9J?=
- =?utf-8?B?c3BEWXpUQnNyb1dTVFVWR200RUNLL2hXTXd6Y0VVY05VNlFxclpqVG8wa21J?=
- =?utf-8?Q?o/F5FtLy/Vhx3E1ynX?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d08dc437-8440-482d-c719-08dedd61b611
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8374.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 02:28:07.1996 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HwvHZWQC9MdnD6g3v08vrOQ4XTKGoKoqxeyCnkhEi4z4/RE9HfeCt5vBm/x1LNgj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8185
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,42 +66,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu Jul 2, 2026 at 12:07 PM EDT, Lorenzo Stoakes wrote:
-> On Thu, Jul 02, 2026 at 09:49:47PM +0800, Lance Yang wrote:
->>
->> On Mon, Jun 29, 2026 at 08:25:36PM +0100, Lorenzo Stoakes wrote:
->> >Replace use of the legacy vm_flags_t flags with vma_flags_t values
->> >throughout the mremap logic.
->> >
->> >Additionally update comments to reflect the changes to be consistent.
->> >
->> >No functional change intended.
->> >
->> >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
->> >---
->>
->> The vm_flags_set() cases below spell out vma_start_write(), but the
->> vm_flags_clear() cases don't?
->
-> Yep as I said elsewhere, implicitly taking the lock is terrible and me do=
-ing
-> this is completely on purpose to get rid of that :)
->
-> But I haven't been clear enough clearly, so I should put the argument as =
-to why
-> that's ok in the commit message.
->
-> Will do so on respin.
+On L2-flush-optimized HW with a dma-resv (non-fault) VM, evicting a BO
+only needs to flush the L2 cache before the migration copy runs; the
+mappings themselves are torn down and rebuilt lazily via
+drm_gpuvm_bo_evict() and a subsequent rebind. Today this flush is done
+by waiting for the BO to go idle and then issuing a synchronous TLB
+invalidation per mapping VMA from inside xe_bo_trigger_rebind(). Both
+the idle wait and the synchronous invalidation stall the calling thread
+while holding the BO dma-resv lock, serializing the move behind all
+in-flight GPU work on the BO.
 
-How about also add a comment to vma_clear*() telling us a lock is not
-needed and why like you explained a lock is needed for vma_set*()?
-This asymmetry could confuse people.=20
+Replace this with an asynchronous flush. Add xe_vm_flush_vm_bo_tlb_async()
+which, for each VMA mapping the BO on each present tile, queues a TLB
+invalidation job on the tile migrate (kernel) exec queue. The jobs depend
+on the BO's in-flight GPU work, captured once as a singleton over
+DMA_RESV_USAGE_BOOKKEEP, so the flush only fires once the GPU is done with
+the current mapping. Each job's completion fence is installed into the
+BO's dma-resv as a DMA_RESV_USAGE_KERNEL fence, so the migration copy -
+which waits on the resv - waits on the flush without stalling this thread.
 
-This patch looks good to me.
+No PTEs are zapped and vma->tile_invalidated is left untouched: the
+mapping stays valid until the lazy rebind, and the only work performed
+here is the L2 flush. On any failure the caller falls back to the
+existing blocking wait-idle plus xe_vm_invalidate_vma() path.
 
-Reviewed-by: Zi Yan <ziy@nvidia.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Assisted-by: GitHub_Copilot:claude-opus-4.8
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c |  12 ++++
+ drivers/gpu/drm/xe/xe_vm.c | 125 +++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h |   5 ++
+ 3 files changed, 142 insertions(+)
 
---=20
-Best Regards,
-Yan, Zi
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 85e6d9a0f575..a08b983cb0b1 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -686,6 +686,18 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 			 */
+ 			if (!xe_device_is_l2_flush_optimized(xe))
+ 				continue;
++
++			/*
++			 * On L2-flush-optimized HW the only reason to touch the
++			 * mappings here is to flush L2 via a TLB invalidation.
++			 * Do it asynchronously: queue TLB-invalidation jobs that
++			 * wait on the BO's in-flight GPU work and install their
++			 * completion fences into the BO's kernel dma-resv slots,
++			 * so the migration waits on the flush without stalling
++			 * this thread. Fall back to the blocking path on failure.
++			 */
++			if (!xe_vm_flush_vm_bo_tlb_async(vm, bo, vm_bo))
++				continue;
+ 		}
+ 
+ 		if (!idle) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 73ac031ffb04..4557a8a4d270 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -39,6 +39,7 @@
+ #include "xe_sync.h"
+ #include "xe_tile.h"
+ #include "xe_tlb_inval.h"
++#include "xe_tlb_inval_job.h"
+ #include "xe_trace_bo.h"
+ #include "xe_vm_madvise.h"
+ #include "xe_wa.h"
+@@ -4401,6 +4402,130 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 	return ret;
+ }
+ 
++/*
++ * xe_vma_tlb_flush_client - Queue an async TLB flush for one VMA on one client
++ *
++ * Create and push a TLB invalidation job on the tile migrate (kernel) exec
++ * queue covering @vma's range, depending on @dep (the BO's in-flight GPU work)
++ * so the flush only fires once the GPU is done with the current mapping. The
++ * job's completion fence is installed into @resv as a KERNEL fence so the
++ * subsequent migration waits on the flush. No PTEs are zapped; this only
++ * flushes L2 via the TLB invalidation.
++ */
++static int xe_vma_tlb_flush_client(struct xe_vm *vm, struct xe_vma *vma,
++				   struct xe_tile *tile, struct xe_gt *gt,
++				   struct dma_resv *resv, struct dma_fence *dep,
++				   int type)
++{
++	struct xe_exec_queue *q = xe_migrate_exec_queue(tile->migrate);
++	struct xe_tlb_inval_job *job;
++	struct dma_fence *fence;
++	int err;
++
++	job = xe_tlb_inval_job_create(q, &gt->tlb_inval,
++				      q->tlb_inval[type].dep_scheduler, vm,
++				      xe_vma_start(vma), xe_vma_end(vma), type);
++	if (IS_ERR(job))
++		return PTR_ERR(job);
++
++	err = xe_tlb_inval_job_alloc_dep(job);
++	if (err)
++		goto out_put;
++
++	err = dma_resv_reserve_fences(resv, 1);
++	if (err)
++		goto out_put;
++
++	/* Cannot fail; consumes a ref on @dep and returns a referenced fence. */
++	fence = xe_tlb_inval_job_push(job, tile->migrate, dep);
++	dma_resv_add_fence(resv, fence, DMA_RESV_USAGE_KERNEL);
++	dma_fence_put(fence);
++
++out_put:
++	/* Drop the creation reference (destroys the job if it was not pushed). */
++	xe_tlb_inval_job_put(job);
++	return err;
++}
++
++/**
++ * xe_vm_flush_vm_bo_tlb_async - Asynchronously flush TLBs for a vm_bo's mappings
++ * @vm: The VM @vm_bo belongs to
++ * @bo: The buffer object being moved
++ * @vm_bo: The gpuvm_bo linking @bo into @vm
++ *
++ * On L2-flush-optimized HW a BO move only needs to flush L2 (via a TLB
++ * invalidation) for the BO's live mappings; the mappings themselves are torn
++ * down and rebuilt lazily via the eviction/rebind path, so no PTEs need to be
++ * zapped here. Rather than blocking the caller on a synchronous invalidation,
++ * issue a TLB invalidation job per VMA per TLB-invalidation client (per present
++ * tile, primary and media GT). Each job waits on the BO's in-flight GPU work
++ * (all dma-resv usages) and its completion fence is installed into the BO's
++ * dma-resv KERNEL slots, so the following migration waits on the flush without
++ * stalling this thread.
++ *
++ * The caller must hold the BO's dma-resv lock and @vm must not be in fault
++ * mode.
++ *
++ * Return: 0 on success, negative error code on failure. On failure the caller
++ * should fall back to the blocking xe_vm_invalidate_vma() path; any jobs
++ * already queued install harmless extra flush fences.
++ */
++int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
++				struct drm_gpuvm_bo *vm_bo)
++{
++	struct xe_device *xe = vm->xe;
++	struct dma_resv *resv = bo->ttm.base.resv;
++	struct dma_fence *dep = NULL;
++	struct drm_gpuva *gpuva;
++	int err;
++
++	dma_resv_assert_held(resv);
++	xe_assert(xe, !xe_vm_in_fault_mode(vm));
++
++	/*
++	 * Single fence capturing all in-flight GPU work on the BO; the TLB
++	 * invalidation jobs depend on it so the flush fires only once the GPU
++	 * is done with the current mapping.
++	 */
++	err = dma_resv_get_singleton(resv, DMA_RESV_USAGE_BOOKKEEP, &dep);
++	if (err)
++		return err;
++	if (!dep)
++		dep = dma_fence_get_stub();
++
++	drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++		struct xe_tile *tile;
++		u8 id;
++
++		if (xe_vma_is_null(vma) || xe_vma_is_cpu_addr_mirror(vma))
++			continue;
++
++		for_each_tile(tile, xe, id) {
++			if (!(vma->tile_present & BIT(id)))
++				continue;
++
++			err = xe_vma_tlb_flush_client(vm, vma, tile,
++						      tile->primary_gt, resv, dep,
++						      XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
++			if (err)
++				goto out;
++
++			if (tile->media_gt) {
++				err = xe_vma_tlb_flush_client(vm, vma, tile,
++							      tile->media_gt, resv, dep,
++							      XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT);
++				if (err)
++					goto out;
++			}
++		}
++	}
++
++out:
++	dma_fence_put(dep);
++	return err;
++}
++
+ int xe_vm_validate_protected(struct xe_vm *vm)
+ {
+ 	struct drm_gpuva *gpuva;
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index c5b900f38ded..dd5b070eaede 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -26,6 +26,8 @@ struct ttm_buffer_object;
+ 
+ struct dma_fence;
+ 
++struct xe_bo;
++struct drm_gpuvm_bo;
+ struct xe_exec_queue;
+ struct xe_file;
+ struct xe_pagefault;
+@@ -254,6 +256,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma);
+ 
+ int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct xe_tlb_inval_batch *batch);
+ 
++int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
++				struct drm_gpuvm_bo *vm_bo);
++
+ int xe_vm_validate_protected(struct xe_vm *vm);
+ 
+ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+-- 
+2.34.1
 
