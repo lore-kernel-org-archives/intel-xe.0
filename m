@@ -4,53 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0574AC43458
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 20:09:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF50C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 20:20:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D76710F690;
-	Thu,  9 Jul 2026 20:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93D5910E256;
+	Thu,  9 Jul 2026 20:20:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aTfZHynU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iG28juhp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E0510F690
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Jul 2026 20:09:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C39910E256
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Jul 2026 20:20:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783627744; x=1815163744;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nMLmZzz+EarKwPcJpEZ8tkOx8Zds+wESyeW+ZELWoF0=;
- b=aTfZHynUeOqTIV8/Rmgy/Zc99KJ3NdI7MU1WmLdGjzw9IWlcp+U7mpE5
- AaEadToAuaX+2WVVJsNC3EK2RdRekYB6HfFLURGkBGiLXWXaTEzWy4zP/
- BbTWLNYRhGaMMX6bPb7oH1JGFwfLI1uGEM7k+1OCiDMCLI0K9AtNAKYdX
- 4Y03iWxh7YC+XTEu1fUNkrxmgeO6ZWOx+FSwxHFBdmvS9RHCpTJVHBdV3
- fHCS6RLtiAkIXW3sJEqALp6KxeOI20y2941RYCLAHiLw0IRfB8ZSCfxHZ
- +0O0ceEYvXv3KGtAs4XCMjQ6edxjafZSb2IpFZfAPFwIR7Sq6dOYbX8dp w==;
-X-CSE-ConnectionGUID: 3wNks991Rim7r5LiBNBgxg==
-X-CSE-MsgGUID: ibBjWF6wQz2q2ZBsMC/dOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84203083"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84203083"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 13:09:03 -0700
-X-CSE-ConnectionGUID: u6VxfaASSKa5ZbxWUPekrw==
-X-CSE-MsgGUID: 8VYkFS8WRqWbs18xdhNwLA==
+ t=1783628425; x=1815164425;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=XT8JHx70kQDnEl/EN3I5KKXu3+GPNmcyV23HnTZGeC0=;
+ b=iG28juhptV/XRbZ1X7JyvZ4WZF8JTTkw/IQQfLqFNWcRlPkcH6EUbDW5
+ VxQGleuDba3h8LzwLn5JwhtyLl8xIv+4vUUWxCHAPmLxB+blPfJsJe/Pt
+ QEDtWLILHgUQhZwk47ecPE6Rud+ug2aprg+kbj8sqe0a5Z0cL2FgRevZ1
+ eVUHySj4ghUXejx5LSBXaiTP6AX418n9CY0YIQjvgyHsAfqfmfIPBN+Aa
+ Aim5E+xdnBlj/OR4K6pqyM1vjOrDRiqxMU+7fY7J6g+ae7PQ7+Tb5eZPJ
+ ai+6WYxHWMChDfFoaqqVd/AeSzHVYMVLJ+DE4hln3TdrfAtp/CjknJk4G A==;
+X-CSE-ConnectionGUID: OzCzHfw+TO2ayFk5HojEBA==
+X-CSE-MsgGUID: KRVXISqmTImlV/AkXsKxuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88009776"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88009776"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 13:20:24 -0700
+X-CSE-ConnectionGUID: IYcfaatURWegiTtp+wqjAA==
+X-CSE-MsgGUID: F8eaHsEoR2y0JR3CRJiRFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="279086370"
-Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
- by fmviesa001.fm.intel.com with ESMTP; 09 Jul 2026 13:09:02 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH v4] drm/xe/configfs: Add enable_multi_queue attribute
-Date: Thu,  9 Jul 2026 20:08:22 +0000
-Message-Id: <20260709200822.3257825-1-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="277924515"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 13:20:24 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 9 Jul 2026 13:20:24 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Thu, 9 Jul 2026 13:20:24 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.36) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 9 Jul 2026 13:20:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qeCJSClh9hSvo6tARn5Y+nkNM0OMRTDv9WJhZOjNHl0R+mZ/W0TByey1VUsTXt5I6VX2K6dao+CNia1Bok5qEKhD7eM96d5MUALUV89R+7qenJOrSG+P82yWqVIPxby2/a2AT1Tba6h4/W9cWSZgm3rGFntR4uaPZHbTvHxOMW3kALcSBkb9jCich4ritSUMn6ArQQa3rRHT2vK7PerwAU5ITnj28VmQ9BWEZYpH3gpeDp5PsApYCHi9s7BiiJqe9poToEhvnpHs67EAPLpdQX9Hd/W6rbch0ZTJyvPcTWr8hVueQ9lMSXrgRslHfeQYBUbP4QOi+T90tFz2Ec8+SQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eTQxTQSg2XZXD5nm3l5KNuF6NsX4IzL2+224SEmp6Z0=;
+ b=WSxPclebL+NCUbxz5Y4e1wg7O3gCk7O2qLdBr+dDw9wUrrxjXgCuVSiOTCBfRaH/gWpYJg/N5lKIulcz4lz2sIRjRaht0kgnoxbMeitaXxxFdgj+sB9dtkILfJa1KWiDQynBzwb8xYsXFz1AfqfU6j22PLGN8XrasUt33ES9AnhMHiaaiOZF2xFp19iHiMgdoOsu8DYSi3WowpoKU+w11Zy0426HvsbmN0fuT+03B7Eq0obtDTHjwMz2+z5LKaZxzV7PmYNaSvPz+ex1vPnskAmTEv+r6jcI/dM214q/KqkhbHuwtsM+9CjlCVPaRlJjXIMpYQ87VoAXcmjklvyq5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by DS0PR11MB7632.namprd11.prod.outlook.com (2603:10b6:8:14f::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Thu, 9 Jul 2026
+ 20:20:19 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.21.0181.009; Thu, 9 Jul 2026
+ 20:20:16 +0000
+Date: Thu, 9 Jul 2026 13:20:12 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v2 2/5] drm/xe/hw_engine_group: propagate suspend
+ failures during mode switch
+Message-ID: <alACfMCbLyNwiq4m@gsse-cloud1.jf.intel.com>
+References: <20260701050730.1776476-7-niranjana.vishwanathapura@intel.com>
+ <20260701050730.1776476-9-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260701050730.1776476-9-niranjana.vishwanathapura@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0063.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::8) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DS0PR11MB7632:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26cfcf84-160e-4723-715f-08deddf77d25
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|23010399003|18002099003|22082099003|5023799004|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: AkhLrbvmmBn53A5GTdA9D67wFcQ/vOxPUqxo52fgE8JZO+21nSRPdD3KSEdNmEd6soY3ETaxzuK5qKzxSErAxWa6BiduLqik9rGX85yX+TGXA9mr81QCO6LUWmAZuBq12udB5/6qvn093/CyZBd8ZdvKK+xEZ9RN5VwUzqwKHOUOthhkbxdsRigjqiMYLcIzJif2uVlpGwp0rXPAxUCYogb2kte69Y4YoFxlX0fL6BzgNJmmyz2KwirHHKR0axCYUjjKtAj43iTE2xBsR+YIY5XZSY2Btzw2CWIVdWY5Nbso2/wpoLifuYc/E9H4osccvElu8PpRsKg3HX8EhlQwek8IIGJl9+ieg9dtMtxF/e5UOeHiil5khyQ+S8Diw25zhO/FtWuJ/rDQOhKwywpG05jbYU+dawg9GKYsHDUwh9AMpqDVnobwC0T27Ch+Gehi+qcjl9NsVIqOswDxtq8GY1jbDxjM90qNH1qZoznvxxSn+ZQWoPC55TcJpFgteRci8g5ZP7tqdHrzsMC8DAyaX+BnFQk7nQqt+V4hjpP89ttTISvZMI+oDPQfn7EOPX++MzAiEaEnzBFu2MZ4zNJ8muiKfwxOEJm161Pynv4OxxE/g4GH+q01IejQscYx3tV/RDVYMrWa9cCeqW9wlJJwPvAWUt7lpIoirrA8uRivk04=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(18002099003)(22082099003)(5023799004)(4143699003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0jdcsJK9WZQprFtuoM+DBZj2JRgvPXoX4DaPXA2UIdKhUiwgccun/l/Xym57?=
+ =?us-ascii?Q?AvJNlErQ6LTgMGbZ7iNe2MRhv6kbjbypY4mA0ocuLmgWD3f4akiJQ2ZOpqoo?=
+ =?us-ascii?Q?poV16WGhRxMLmGX78OXhAStEEqEMNkleQwTB65dfzRW+kABZwz4xNr1Bn7sM?=
+ =?us-ascii?Q?RV/C+DyLhAmb/t7CxQxFxrOJBhH2cSEXlX3/+5XFMIKUcbe9KrLZrqipcRVu?=
+ =?us-ascii?Q?ALo0ZkVYPVN/z/LN+qkF7xm5nKxVUthVNIfw0gyUTKiVIQMMjhCwaaP2dex6?=
+ =?us-ascii?Q?uCleTW/nJDIoZS57Dzv+AoUDvB/jU4XFkBcprAY+dxLMqcMjjyVXkBQ4ZPj0?=
+ =?us-ascii?Q?AnDc9RKHN3H0SP02RRo23IQr7UUsacK4NuWvtkMVo76AxshG1QpkEQQuNZqn?=
+ =?us-ascii?Q?Q5GjeCnRNNqdBSy+ZdMGVsNrClaqnJMIWOd6jb9eJwLB8kpnEgFUCFdq6NR4?=
+ =?us-ascii?Q?QSc1Ku/uRs1mYTcSPyWwTmKtiY2yuGpl5N8mqmDY8c4ZnA2GIVm6KAT+KsbP?=
+ =?us-ascii?Q?YI8FnfcTgloJHbPYN6u/qW7R8RLoLI+MSoU+7gCPHFP/iddR6Mt5wyokM6fG?=
+ =?us-ascii?Q?NRzRUGu0FO+bGflNTKL6RYPQbexD6Jw4AJHVnKclJ6BulMR50hyVWNxl7wmo?=
+ =?us-ascii?Q?WzdyAuY99Ggu0D3evt6USG/RCWZhZH2jsF8T0GnqCGP6nxHT+MmlS9br6kmZ?=
+ =?us-ascii?Q?G557WyWrjPOyOsjumVYB5Uq1OjagG5QY4nOAZP7bg6Iji+faZYa+VbMwpT4a?=
+ =?us-ascii?Q?/CoHeBphXuePHfhsYmOkU+rO9YUrHyAU0Ji92HemPqciNDZOsoSFz36GZzju?=
+ =?us-ascii?Q?XJ6f2vwhYzte29/675bciarB6R0f3aeCptX8xeF+LtCUj9IVLgDszFv2Ycv/?=
+ =?us-ascii?Q?Boq43BdKxN11IUooN56bBQYlY9NdG+GGBRHypSRBVCxFZ70Fn+VCOETNdsGE?=
+ =?us-ascii?Q?BsSCt58Cx543eKK8i/vaYD/gvfDZm6YjYKxicBfYHxBHU1/phUrXbTvAv3Qj?=
+ =?us-ascii?Q?QlDJ+GyFUUqbGKBYKBouBbvr/JCa4yv/gcAx9r5D+fAZsaYgY+7bKq4MjQuh?=
+ =?us-ascii?Q?LU30u19VvoDm6vm1za/HNZ+Yw40IQuHCyfZbPTMSSh9G/gVs2zpizsxKXHpo?=
+ =?us-ascii?Q?J053CDad7erX5+jqztDVgzttySr+/JxPc7TOIqoj9VHoe3qtiLn0QrZyXYs7?=
+ =?us-ascii?Q?UcUrg/b9uqwklKBMQUxiCHL7iOz2MqQ9CqlptLrirChwLDgVeRpZXs96Qov+?=
+ =?us-ascii?Q?RspZ1WApvX5pu7ihr/o8EsYTb3VC/GrK9mEy0X91m0Ix47kBkBXzYgU72b7U?=
+ =?us-ascii?Q?Mvb2mUTZCbpP0/PhG++dATSIazMyf6XuUrYLk1rzK2KiJ9US3M8ItMsQZzMf?=
+ =?us-ascii?Q?+Pd/f7fHpQdL6/qFY43YeG1TwF12KJnBLCuAe5N2Oxw6DGmfqwMyt5tUCW5K?=
+ =?us-ascii?Q?LV1lLDuQ7BQlUet7N+Nh4StD3igOnjVLqPTLlzS92Zp9mbsIpi0DwtajuTKu?=
+ =?us-ascii?Q?fDB4x3drVfMc34sgFm25zRjq9JG9g6vgrCIG2aJl0puoMJisuVKriIXTluKX?=
+ =?us-ascii?Q?vBoqpan3WpZc5iXfys3nP1EhdLErd5vSU+L0f1PwxcpAKkMQvz1I5DG7zaXm?=
+ =?us-ascii?Q?Zrh58K7kNbZIiub3zRGgjwPrWedWxOP3r3M7UnrtFt24A6M3N2H4iLd21qbh?=
+ =?us-ascii?Q?MeCxAa+lfNM0mlKYVJQMWebtyFa6n+BwyU9oyJpCEBcXB1dreaVSjHlVdpHu?=
+ =?us-ascii?Q?hzKOtdqPnwmD/rkI/rgn6St+FZgVWd4=3D?=
+X-Exchange-RoutingPolicyChecked: oD9AE2c2WgLDiq47D4JSzfiKQOUsP5nVtW14W1HDjMq/Z2oTJvSGju2zJ7G6nCc6fLtXfA4oOYnMw/HbNCIPO6PlRC6dv8FLFCVRXhfcnEDVxjm+r3IOQ5zkkh/VZH5PyKBc8bufmidFDXNRBT8Udkfz+EnMA9697GGo7GxMJjFY5PzhBLB+3Sg9pRvoyd+t+ualmrh2FQbVqX0FsW1mnbHilINoTek+ljlL4YenHsEEkumqVbV1Jfe/pzt+iOkl4HvxjqSScKHtfPa4CGq915pWxfREOhRdUozNtNahJB8b2ekEKM/Jz/sZjWoS954XRpcRE4g+jNl6YjU60EyXrg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26cfcf84-160e-4723-715f-08deddf77d25
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 20:20:16.7327 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dVzSrqwtzMNS9b3W6k4SD3BgGblvqi93cwep0h8usmvHTh+sZWNMPUOez8452TFywAzADuNkjENfbv15Sg+1FA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7632
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,299 +158,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new configfs boolean attribute 'enable_multi_queue' that lets an
-administrator force-disable multi-queue support on a device before it
-binds to the driver. The attribute defaults to true (use the platform
-hardware capability as-is); writing 0 force-disables multi-queue. This
-is intended for debugging and for validating non-multi-queue code paths
-on hardware that would otherwise expose multi-queue.
+On Tue, Jun 30, 2026 at 10:07:30PM -0700, Niranjana Vishwanathapura wrote:
+> The hw engine group fault-mode switch suspends all faulting LR queues
+> but ignored the suspend()/suspend_wait() return value. A suspend() can
+> fail (e.g. the queue is killed/banned/wedged), leaving the queue
+> un-suspended, so silently continuing could later resume a queue that was
+> never suspended.
+> 
+> Propagate the failure instead: in xe_hw_engine_group_add_exec_queue()
+> bail out if suspend() fails, and in
+> xe_hw_engine_group_suspend_faulting_lr_jobs() undo the partial suspend
+> via a new err_resume path that resumes the sibling queues already
+> suspended in this call. Record per-queue success with lr.suspended so
+> only queues that were actually suspended are waited on and resumed, and
+> skip the cleanup resume() when suspend_wait() failed or the queue was
+> reset/killed/banned/wedged (its suspend may not have completed, so
+> resuming would trip the !suspend_pending assert in the resume path;
+> teardown resolves its state instead).
+> 
+> Gate the group resume worker (hw_engine_group_resume_lr_jobs_func()) on
+> lr.suspended for the same reason, so it only resumes queues that were
+> actually suspended.
+> 
+> Assisted-by: Github-Copilot:Claude-opus-4.8
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_hw_engine_group.c | 76 ++++++++++++++++++++++++-
+>  1 file changed, 73 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> index 02cf32ae5aa9..84851929c16f 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> @@ -34,6 +34,15 @@ hw_engine_group_resume_lr_jobs_func(struct work_struct *w)
+>  		if (!xe_vm_in_fault_mode(q->vm))
+>  			continue;
+>  
+> +		/*
+> +		 * Only resume queues that were actually suspended. A queue whose
+> +		 * suspend() failed (e.g. killed/banned/wedged) was never
+> +		 * suspended, so it must not be resumed.
+> +		 */
+> +		if (!READ_ONCE(q->lr.suspended))
+> +			continue;
+> +
+> +		WRITE_ONCE(q->lr.suspended, false);
+>  		q->ops->resume(q);
+>  	}
+>  
+> @@ -140,7 +149,18 @@ int xe_hw_engine_group_add_exec_queue(struct xe_hw_engine_group *group, struct x
+>  		return err;
+>  
+>  	if (xe_vm_in_fault_mode(q->vm) && group->cur_mode == EXEC_MODE_DMA_FENCE) {
+> -		q->ops->suspend(q);
+> +		/*
+> +		 * suspend() can fail (e.g. killed/banned/wedged), leaving the
+> +		 * queue un-suspended. Propagate the failure so the queue is not
+> +		 * added; on failure nothing was suspended, so there is nothing to
+> +		 * undo. Only record the queue as suspended (and later resume it)
+> +		 * once suspend() has succeeded.
+> +		 */
+> +		err = q->ops->suspend(q);
+> +		if (err)
+> +			goto err_suspend;
+> +
+> +		WRITE_ONCE(q->lr.suspended, true);
+>  		err = q->ops->suspend_wait(q);
+>  		if (err)
+>  			goto err_suspend;
+> @@ -216,8 +236,20 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+>  			return -EAGAIN;
+>  
+>  		xe_gt_stats_incr(q->gt, XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
+> +		/*
+> +		 * suspend() can fail (e.g. killed/banned/wedged), leaving the
+> +		 * queue un-suspended. Propagate the failure, but first undo the
+> +		 * partial suspend by resuming the sibling queues already
+> +		 * suspended in this call (see err_resume). Record per-queue that
+> +		 * the suspend succeeded so only those queues are later waited on
+> +		 * and resumed.
+> +		 */
+> +		err = q->ops->suspend(q);
+> +		if (err)
+> +			goto err_resume;
 
-The override disables multi-queue at two levels:
 
-- UAPI: In alloc_primary_gt(), clear
-  gt->info.multi_queue_engine_class_mask on the primary GT so that
-  xe_gt_supports_multi_queue() returns false and attempts to create
-  a multi-queue group via DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP
-  are rejected.
+This is not right. I think what you want here is:
 
-- GuC: In guc_ctl_feature_flags(), set the GUC_CTL_DISABLE_MULTI_QUEUE
-  (BIT(24)) init-params bit on GuC firmware older than 70.66. On GuC
-  firmware 70.66 and above, guc_waklv_init() emits the new
-  GUC_FEATURE_KLV_DISABLE_MULTI_QUEUE Feature KLV (0x5001) via the ADS
-  WA/Feature KLV buffer instead. Feature KLVs share the WA KLV buffer.
+err = q->ops->suspend(q);
+if (err)
+        continue;
 
-The attribute is rejected after the device has been bound, so it only
-takes effect during probe:
+A killed, banned, or wedged job should not abort the entire suspend
+flow and propagate an error back through the user IOCTL. The "group" is
+a cross-process concept (i.e., a global concept), so a queue tearing
+down in one process should not affect submissions from another process.
 
-	# echo 0 > /sys/kernel/config/xe/0000:03:00.0/enable_multi_queue
-	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind
+I'm pretty sure you could trivially cause a compositor exec IOCTL to
+fail by running applications that page-fault and hang, or by killing
+them with Ctrl-C. Under the right conditions, the compositor could then
+see an error from its exec IOCTL while trying to render a frame.
 
-v2: Add log for multi-queue disabled. (Niranjana)
-v3: Rename attribute to enable_multi_queue with default true. (Stuart &&
-    Niranjana)
-v4: rebase.
+> +
+> +		WRITE_ONCE(q->lr.suspended, true);
+>  		need_resume = true;
+> -		q->ops->suspend(q);
+>  		gt = q->gt;
+>  	}
+>  
+> @@ -225,9 +257,13 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+>  		if (!xe_vm_in_fault_mode(q->vm))
+>  			continue;
+>  
+> +		/* Only wait on queues that were actually suspended above. */
+> +		if (!READ_ONCE(q->lr.suspended))
+> +			continue;
+> +
+>  		err = q->ops->suspend_wait(q);
+>  		if (err)
+> -			return err;
+> +			goto err_resume;
+>  	}
+>  
+>  	if (gt) {
+> @@ -240,6 +276,40 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+>  		xe_hw_engine_group_resume_faulting_lr_jobs(group);
+>  
+>  	return 0;
+> +
+> +err_resume:
+> +	/*
+> +	 * A suspend()/suspend_wait() failed partway through the mode switch.
+> +	 * Resume the sibling queues that were already suspended in this call so
+> +	 * they are not left suspended forever.
+> +	 *
+> +	 * resume() requires the suspend to have completed (suspend_pending
+> +	 * cleared) or it trips the !suspend_pending assert. So skip the resume
+> +	 * when either:
+> +	 *  - suspend_wait() fails: the suspend did not complete (timeout, VF
 
-Assisted-by: Claude:claude-opus-4.7
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  3 +-
- drivers/gpu/drm/xe/xe_configfs.c      | 65 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h      |  2 +
- drivers/gpu/drm/xe/xe_guc.c           |  8 ++++
- drivers/gpu/drm/xe/xe_guc_ads.c       | 14 ++++++
- drivers/gpu/drm/xe/xe_guc_fwif.h      |  1 +
- drivers/gpu/drm/xe/xe_pci.c           |  5 +++
- 7 files changed, 97 insertions(+), 1 deletion(-)
+VF recovery is a non-issue given page faults are not enabled on VFs which
+can migrate. Don't bring that up here as if that needs to be handled
+this code would have to look different, or mentiond VF recovery doesn't
+need to be considered.
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index ec9c22dc21be..281d4af419d6 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -499,9 +499,10 @@ enum  {
- #define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MIN_LEN	1u
- #define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN	GUC_MAX_SCHED_GROUPS
- /*
-- * Workaround keys:
-+ * Feature and Workaround keys:
-  */
- enum xe_guc_klv_ids {
-+	GUC_FEATURE_KLV_DISABLE_MULTI_QUEUE						= 0x5001,
- 	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
- 	GUC_WORKAROUND_KLV_DISABLE_PSMI_INTERRUPTS_AT_C6_ENTRY_RESTORE_AT_EXIT		= 0x9004,
- 	GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING				= 0x9005,
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 32102600a148..052cce962161 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -237,6 +237,18 @@
-  *
-  * This setting only takes effect when probing the device.
-  *
-+ * Enable multi-queue
-+ * ------------------
-+ *
-+ * Multi-queue support on the device is enabled by default where the
-+ * hardware supports it. Writing 0 force-disables multi-queue support:
-+ * multi-queue exec-queue group creation via ioctl is refused, and the
-+ * GuC feature is disabled::
-+ *
-+ *	# echo 0 > /sys/kernel/config/xe/0000:03:00.0/enable_multi_queue
-+ *
-+ * This attribute can only be set before binding to the device.
-+ *
-  * Remove devices
-  * ==============
-  *
-@@ -262,6 +274,7 @@ struct xe_config_group_device {
- 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
- 		bool survivability_mode;
- 		bool enable_psmi;
-+		bool enable_multi_queue;
- 		struct {
- 			unsigned int max_vfs;
- 			bool admin_only_pf;
-@@ -281,6 +294,7 @@ static const struct xe_config_device device_defaults = {
- 	.engines_allowed = U64_MAX,
- 	.survivability_mode = false,
- 	.enable_psmi = false,
-+	.enable_multi_queue = true,
- 	.sriov = {
- 		.max_vfs = XE_DEFAULT_MAX_VFS,
- 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
-@@ -575,6 +589,33 @@ static ssize_t enable_psmi_store(struct config_item *item, const char *page, siz
- 	return len;
- }
- 
-+static ssize_t enable_multi_queue_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_device *dev = to_xe_config_device(item);
-+
-+	return sprintf(page, "%d\n", dev->enable_multi_queue);
-+}
-+
-+static ssize_t enable_multi_queue_store(struct config_item *item, const char *page,
-+					size_t len)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+	bool val;
-+	int ret;
-+
-+	ret = kstrtobool(page, &val);
-+	if (ret)
-+		return ret;
-+
-+	guard(mutex)(&dev->lock);
-+	if (is_bound(dev))
-+		return -EBUSY;
-+
-+	dev->config.enable_multi_queue = val;
-+
-+	return len;
-+}
-+
- static bool wa_bb_read_advance(bool dereference, char **p,
- 			       const char *append, size_t len,
- 			       size_t *max_size)
-@@ -812,6 +853,7 @@ static ssize_t ctx_restore_post_bb_store(struct config_item *item,
- 
- CONFIGFS_ATTR(, ctx_restore_mid_bb);
- CONFIGFS_ATTR(, ctx_restore_post_bb);
-+CONFIGFS_ATTR(, enable_multi_queue);
- CONFIGFS_ATTR(, enable_psmi);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
-@@ -820,6 +862,7 @@ CONFIGFS_ATTR(, survivability_mode);
- static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_ctx_restore_mid_bb,
- 	&attr_ctx_restore_post_bb,
-+	&attr_enable_multi_queue,
- 	&attr_enable_psmi,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
-@@ -1097,6 +1140,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- 
- 	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
- 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
-+	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
- 	PRI_CUSTOM_ATTR("%d", enable_psmi);
- 	PRI_CUSTOM_ATTR("%d", survivability_mode);
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
-@@ -1225,6 +1269,27 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
- 	return ret;
- }
- 
-+/**
-+ * xe_configfs_get_enable_multi_queue - get configfs enable_multi_queue setting
-+ * @pdev: pci device
-+ *
-+ * Return: true if multi-queue is enabled for this device (the default),
-+ * false if it has been force-disabled via configfs.
-+ */
-+bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+	bool ret;
-+
-+	if (!dev)
-+		return true;
-+
-+	ret = dev->config.enable_multi_queue;
-+	config_group_put(&dev->group);
-+
-+	return ret;
-+}
-+
- /**
-  * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
-  * @pdev: pci device
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 07d62bf0c152..4fbbeafba473 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -23,6 +23,7 @@ bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
- bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
-+bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
- u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 				       enum xe_engine_class class,
- 				       const u32 **cs);
-@@ -42,6 +43,7 @@ static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return
- static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
-+static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
- static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 						     enum xe_engine_class class,
- 						     const u32 **cs) { return 0; }
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 543f3992bccd..b2528cdfe642 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -102,6 +102,14 @@ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
- 	if (xe_device_is_l2_flush_optimized(xe) && xe_gt_is_media_type(guc_to_gt(guc)))
- 		flags |= GUC_CTL_ENABLE_L2FLUSH_OPT;
- 
-+	/*
-+	 * On GuC firmware 70.66 and above, the GUC_FEATURE_KLV_DISABLE_MULTI_QUEUE
-+	 * Feature KLV is used instead.
-+	 */
-+	if (!xe_configfs_get_enable_multi_queue(to_pci_dev(xe->drm.dev)) &&
-+	    !GUC_FIRMWARE_VER_AT_LEAST(guc, 70, 66))
-+		flags |= GUC_CTL_DISABLE_MULTI_QUEUE;
-+
- 	return flags;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 79d6fd8d919b..4c88d04221c6 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -16,6 +16,7 @@
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_guc_regs.h"
- #include "xe_bo.h"
-+#include "xe_configfs.h"
- #include "xe_gt.h"
- #include "xe_gt_ccs_mode.h"
- #include "xe_gt_mcr.h"
-@@ -373,6 +374,19 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64);
- 
-+	/*
-+	 * On GuC firmware 70.66 and above, use the Feature KLV (shared with the
-+	 * WA KLV buffer); older firmware uses GUC_CTL_DISABLE_MULTI_QUEUE in
-+	 * the init params instead.
-+	 */
-+	if (!xe_configfs_get_enable_multi_queue(to_pci_dev(gt_to_xe(gt)->drm.dev)) &&
-+	    GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 66)) {
-+		u32 data = 1;
-+
-+		guc_waklv_enable(ads, &data, 1, &offset, &remain,
-+				 GUC_FEATURE_KLV_DISABLE_MULTI_QUEUE);
-+	}
-+
- 	size = guc_ads_waklv_size(ads) - remain;
- 	if (!size)
- 		return;
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 3fbda4798cff..971b850f2136 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -68,6 +68,7 @@ struct guc_update_exec_queue_policy {
- #define   GUC_CTL_MAIN_GAMCTRL_QUEUES	BIT(9)
- #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
- #define   GUC_CTL_ENABLE_L2FLUSH_OPT	BIT(15)
-+#define   GUC_CTL_DISABLE_MULTI_QUEUE	BIT(24)
- 
- #define GUC_CTL_DEBUG			3
- #define   GUC_LOG_VERBOSITY		REG_GENMASK(1, 0)
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 11a69dffdce7..a56c137008a1 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -22,6 +22,7 @@
- #include "xe_device.h"
- #include "xe_drv.h"
- #include "xe_gt.h"
-+#include "xe_gt_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
- #include "xe_mmio.h"
-@@ -888,6 +889,10 @@ static struct xe_gt *alloc_primary_gt(struct xe_tile *tile,
- 	gt->info.has_uncorrectable_error_reporting =
- 		graphics_desc->has_uncorrectable_error_reporting;
- 	gt->info.multi_queue_engine_class_mask = graphics_desc->multi_queue_engine_class_mask;
-+	if (!xe_configfs_get_enable_multi_queue(to_pci_dev(xe->drm.dev))) {
-+		xe_gt_info(gt, "Multi-queue disabled via configfs\n");
-+		gt->info.multi_queue_engine_class_mask = 0;
-+	}
- 	gt->info.engine_mask = graphics_desc->hw_engine_mask;
- 	gt->info.num_geometry_xecore_fuse_regs = graphics_desc->num_geometry_xecore_fuse_regs;
- 	gt->info.num_compute_xecore_fuse_regs = graphics_desc->num_compute_xecore_fuse_regs;
--- 
-2.43.0
+> +	 *    recovery, interrupt), so suspend_pending may still be set; or
 
+IRQs are a valid concern and this part doesn't look right.
+
+> +	 *  - reset_status() is true: the queue was reset/killed/banned/wedged.
+> +	 *    suspend_wait() can return success in this case via its killed/
+> +	 *    stopped wait condition while suspend_pending is still set, and the
+> +	 *    queue is being torn down anyway, so its state is resolved by
+> +	 *    teardown rather than by a resume here.
+> +	 * In either case leave the queue marked suspended.
+> +	 */
+> +	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
+> +		if (!xe_vm_in_fault_mode(q->vm))
+> +			continue;
+> +
+> +		if (!READ_ONCE(q->lr.suspended))
+> +			continue;
+> +
+> +		if (q->ops->suspend_wait(q) || q->ops->reset_status(q))
+
+-ERESTARTSYS on this process doesn't mean a different processes queues
+are bad. I believe what we need to here is suspend_wait_no_irq(q) to
+recover any suspended queues back to the resume state. Yes, ctrl-c /
+process kill will have block but I don't see any other option to
+maintain balance.
+
+So I'd write this like:
+
+if (q->ops->reset_status(q))
+	continue;
+
+q->ops->suspend_wait_no_irq(q);
+
+Or feel free to a no_irq argument to suspend_wait.
+
+Matt
+
+> +			continue;
+> +
+> +		WRITE_ONCE(q->lr.suspended, false);
+> +		q->ops->resume(q);
+> +	}
+> +
+> +	return err;
+>  }
+>  
+>  /**
+> -- 
+> 2.43.0
+> 
