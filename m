@@ -4,59 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3ED2C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 11:01:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 011DEC44501
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 11:23:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7770410E090;
-	Thu,  9 Jul 2026 11:01:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7106910F4F1;
+	Thu,  9 Jul 2026 11:23:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KCY0auSr";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AgksuMgF";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LurRybuz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D696A10E090
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Jul 2026 11:01:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783594871; x=1815130871;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=dj24b08LSuULdHCbTX/VMTiC9XDpe+VNx4I8C5xtGBQ=;
- b=KCY0auSrhlUQLI8dGX+6Nman1ah8s6CT4JPpdnWTf0Qw3m7+2VxWcRDO
- uPgMqTkJsSsC6356mVFEzXp+RsC0ef+Ux23KjDwZisVL829AJMdFvdROC
- SYIhnTFbC/7tS1NyhXIYHhTNq7yMtyHmrXCumwY1f5liUBDJNXAxTHCt+
- WoOvrrFRkxGJfIc+lGkWeb1OvumC/AqNQvnmYY7kkbbcYQLlrd2K8toCx
- 9qziAS/NZSMoYNWDOFYz94Nacx0ThrRrGIwgEw7gYPaGamO9I1tHnz5Ec
- LnlV4IRiXpRlCGN8BFPwlD6iAY0SD4UFL6Zma3jHre7k4TDonYyxG9AbE g==;
-X-CSE-ConnectionGUID: vTrMKSo3STubE7PdrZlK1g==
-X-CSE-MsgGUID: 9Ah/tSrRTpeJEwsdXMU4jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88187616"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88187616"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 04:01:11 -0700
-X-CSE-ConnectionGUID: 9AYzT13aTJWvDifjVC+/2w==
-X-CSE-MsgGUID: 8UvcYIYWRwWlJEf7oA83ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="248180803"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.44])
- ([10.245.244.44])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 04:01:09 -0700
-Message-ID: <42f4a99a3b572f7141ff1a2d7db2854d457300c4.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Wait on external BO kernel fences in exec IOCTL
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Date: Thu, 09 Jul 2026 13:01:07 +0200
-In-Reply-To: <d5c3258a-04d1-42d6-9d74-cdd9a1172d97@intel.com>
-References: <20260702215805.4011228-1-matthew.brost@intel.com>
- <d5c3258a-04d1-42d6-9d74-cdd9a1172d97@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA16F10F4F1
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Jul 2026 11:23:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1783596229;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=iqvuaXf4vG1HDX5Z90yA08BrpKhvZyMNlr2mnXXfO0Q=;
+ b=AgksuMgFVCtCSnN5py1wIvaaJvVy5jMNyJ3+2DjWLPMnSw6TeBnMmB+XofH5t5eKYP6ft2
+ 5wTb/WnQxPOblSOdpjLnbLXuqWREXeklP5TYkrg/fv6mOszjvPOMi/oewPcvT48eMrtU+I
+ WONDyShzhtoJVtdBC6NymomLyhE9W9o=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-412-S6dSHsyUOfGgqsEdARFvLg-1; Thu, 09 Jul 2026 07:23:46 -0400
+X-MC-Unique: S6dSHsyUOfGgqsEdARFvLg-1
+X-Mimecast-MFC-AGG-ID: S6dSHsyUOfGgqsEdARFvLg_1783596225
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-493ce08a6b4so7816405e9.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 09 Jul 2026 04:23:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1783596225; x=1784201025; darn=lists.freedesktop.org;
+ h=content-disposition:content-type:mime-version:message-id:subject:cc
+ :to:from:date:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=iqvuaXf4vG1HDX5Z90yA08BrpKhvZyMNlr2mnXXfO0Q=;
+ b=LurRybuzAKoazKPKtuvTQoK2qo2A5xgpsd9E5vlbTu5Zh3C9B1ZCIFhISEfF48bwYf
+ 9Dt/14RETzzfA57cDJJ1KSJUI+5Qr/gmgdw7pTW/UeQtiHtg2XX8d57VIK7pMKgRLkJJ
+ tCZY5mznsNnzdXLFs0+EDhuE3uc6SJIxWysE0BjEa0mjPrh/sUFjPEEyRxgom9u63pst
+ /Ga4twJ19+XG4ZUNI5zB0+povlQdT2M38Jlmzz4o6B2vQK9wlO4NFJacGeo9E1nuxRBA
+ fCp5h96QQLTMjPV6Wou4/rz4KTIyA4uwlJ/zW961hrgQRvWJgtYOkN3E5zQPpBvRPiVT
+ Mmvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1783596225; x=1784201025;
+ h=content-disposition:content-type:mime-version:message-id:subject:cc
+ :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=iqvuaXf4vG1HDX5Z90yA08BrpKhvZyMNlr2mnXXfO0Q=;
+ b=iAgFtNIbwryp9kTgb1s3TitTYInN/mfXjpXBq9fGsq7GfEoDWNGKChLFMYLnf5Tf20
+ n5A4JT1C4uwy6cVLgQ/mcpNQV0hWN0JZlj4ZIjC49Z0p/7mZBQ+zm6tfo9kUsOP9zkem
+ dsaFc9U4+TN2vU339nzr5XWfhbZAUxRYiTE1ADReam7VbEx/F25+A743VeF+z99bQJZl
+ 3ewEYBUZOi6u/Xb0EO/il/1+2QEZ+H8Wo2QJs+W1QGjPRYI4YHv5zbod1FZtoLbnRaD4
+ +sTZYkJnhJT2SwTWJOcc8FIfNFqMhn/CyOES5eIORZBC2f4SO5LIjp6FrOYWaeL0owu7
+ h+6A==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rr4oOc9y913PNVN2VgjpECpNm0XL4bg2/sLPW9N8X9IgxDAWcRbuq7sdqFCCsca1PPDryL3FodLzg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxn757eXy+NkrBYcSHxomH8RkLJMiQXugpeaOTsuFzcbyUfvdsA
+ HskvJ1cmxs2HkgHkP38qZAjGVwMEL7H0v1nAS0WfchcGDBXAH1VilDSNzd6rCKTxwfwlepBB7an
+ +11m8pMMdXahH0XyA3OiCyfl3C5lVXJD+EslRT6mt4Ek3/q07OrXuE3cKBAg0QoASWMg9
+X-Gm-Gg: AfdE7cmjDR0jugkoJimkuSPIHySeAWzN8z5410YQW91cIrwebawMqpyhND5nKevHE49
+ QKmCz81csY+QvWolGXIZyXqEVcMJVTOTwBCpujPss70QYUvNlschyY2OstJuFCab+TJqzUHMuwR
+ oOcaEN8vmNfEMk40f5faxSmEnCr1MFVdra3ZGgoxV7CmTIe6S6TMN+aFQ9zltM3wMZZBnqlMKgs
+ 5JHPMLkKDOzEiXmxaYb3CQQIemoNmOnF44FqXy2M5QDXXlkOSiKXAKHVHWD2rh381sg5hnq/uO8
+ zkau/Ku2F0CrwWGZjLkddo3u/VNB2N7mC/sHiYkMsQnFbdj55DfDulGV9khpmPJP95L+UgmkycR
+ kOOG8fOOs
+X-Received: by 2002:a05:600c:5394:b0:493:ece1:86b9 with SMTP id
+ 5b1f17b1804b1-493ed949ffemr18412435e9.8.1783596224464; 
+ Thu, 09 Jul 2026 04:23:44 -0700 (PDT)
+X-Received: by 2002:a05:600c:5394:b0:493:ece1:86b9 with SMTP id
+ 5b1f17b1804b1-493ed949ffemr18411995e9.8.1783596223959; 
+ Thu, 09 Jul 2026 04:23:43 -0700 (PDT)
+Received: from localhost ([2a01:e0a:a99:9822:ca7f:54ff:fe01:374c])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-493e5a58853sm104845375e9.1.2026.07.09.04.23.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Jul 2026 04:23:43 -0700 (PDT)
+Date: Thu, 9 Jul 2026 13:23:42 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20260709-calm-ibis-of-storm-4aefe4@houat>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="g3d2ia2nlmjl6uj4"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,107 +114,259 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-07-03 at 09:45 +0100, Matthew Auld wrote:
-> On 02/07/2026 22:58, Matthew Brost wrote:
-> > Before arming a user job, xe_exec_ioctl() only added the VM's
-> > dma-resv KERNEL slot as a dependency. That slot covers rebinds and
-> > the kernel operations of the VM's private BOs, but not external BOs
-> > (bo->vm =3D=3D NULL), which carry their kernel operations (evictions,
-> > moves, ...) in their own dma-resv KERNEL slot.
-> >=20
-> > The DMA_RESV_USAGE_KERNEL slot is the cross-driver contract for
-> > memory management operations that must complete before the BO or
-> > its
-> > backing store may be used: any accessor is required to wait on the
-> > KERNEL fences before touching the resv. By skipping the external
-> > BOs'
-> > KERNEL slots, the exec path violated that contract and could
-> > schedule
-> > a user job while a kernel operation on an external BO mapped by the
-> > VM
-> > was still in flight, racing against it and potentially reading or
-> > writing memory that was being moved.
-> >=20
-> > Replace the VM-only dependency with an iteration over every object
-> > locked by the exec, adding each object's KERNEL slot as a job
-> > dependency. This covers the VM resv (rebinds and private BOs) as
-> > well
-> > as every external BO, mirroring the drm_gpuvm_resv_add_fence() call
-> > that later publishes the job fence to the same set of objects.
-> > Long-running mode continues to skip this, as before.
-> >=20
-> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
-> > GPUs")
-> > Cc: stable@vger.kernel.org
-> > Assisted-by: GitHub_Copilot:claude-opus-4.8
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->=20
-> Wow, kind of surprised we missed this.
 
-Hm. Does this actually add any additional kernel fences to the exec
-dep?
+--g3d2ia2nlmjl6uj4
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
 
-Isn't the safety mechanism we have that no valid GPU PTEs are allowed
-to be set up with active kernel fences, and in the cases (rebinds,
-munmap split) we generate a VM kernel fence.=C2=A0
+Hi Dave, Sima,
 
-So if an exec runs trying to access such a bo with an active clear, for
-example, it would typically generate a pagefault?
+Here's this week drm-misc-next PR. The diffstat still looks scary
+because the previous MRs haven't been merged yet, but this week has
+actually been pretty quiet.
 
-Thomas
+Thanks!
+Maxime
 
+drm-misc-next-2026-07-09:
+drm-misc-next for 7.3:
 
+UAPI Changes:
 
+Cross-subsystem Changes:
 
+Core Changes:
+- Switch to kmalloc_objs where relevant
+- Create drm_of_get_panel_orientation(), and switch to it where relevant
 
->=20
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->=20
-> > ---
-> > =C2=A0 drivers/gpu/drm/xe/xe_exec.c | 22 ++++++++++++++++------
-> > =C2=A0 1 file changed, 16 insertions(+), 6 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_exec.c
-> > b/drivers/gpu/drm/xe/xe_exec.c
-> > index e05dabfcd43c..d5293bc33a67 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec.c
-> > +++ b/drivers/gpu/drm/xe/xe_exec.c
-> > @@ -292,13 +292,23 @@ int xe_exec_ioctl(struct drm_device *dev,
-> > void *data, struct drm_file *file)
-> > =C2=A0=C2=A0		goto err_exec;
-> > =C2=A0=C2=A0	}
-> > =C2=A0=20
-> > -	/* Wait behind rebinds */
-> > +	/*
-> > +	 * Wait behind rebinds and any kernel operations
-> > (evictions, defrag
-> > +	 * moves, ...) on the VM and all external BOs. The VM's
-> > private BOs
-> > +	 * carry their kernel ops in the VM dma-resv KERNEL slot,
-> > while each
-> > +	 * external BO carries them in its own dma-resv KERNEL
-> > slot; both are
-> > +	 * covered by iterating every object locked by the exec,
-> > mirroring the
-> > +	 * drm_gpuvm_resv_add_fence() below.
-> > +	 */
-> > =C2=A0=C2=A0	if (!xe_vm_in_lr_mode(vm)) {
-> > -		err =3D xe_sched_job_add_deps(job,
-> > -					=C2=A0=C2=A0=C2=A0 xe_vm_resv(vm),
-> > -					=C2=A0=C2=A0=C2=A0
-> > DMA_RESV_USAGE_KERNEL);
-> > -		if (err)
-> > -			goto err_put_job;
-> > +		struct drm_gem_object *obj;
-> > +
-> > +		drm_exec_for_each_locked_object(exec, obj) {
-> > +			err =3D xe_sched_job_add_deps(job, obj-
-> > >resv,
-> > +						=C2=A0=C2=A0=C2=A0
-> > DMA_RESV_USAGE_KERNEL);
-> > +			if (err)
-> > +				goto err_put_job;
-> > +		}
-> > =C2=A0=C2=A0	}
-> > =C2=A0=20
-> > =C2=A0=C2=A0	for (i =3D 0; i < num_syncs && !err; i++)
+Driver Changes:
+
+- rockchip: Switch away from simple helpers
+- rocket: error handling and null pointer dereference fixes
+- ssd130x: Addressing fixes
+- sun4i: Switch away from simple helpers, refcount fix
+- v3d: validate CPU-job query writes boundaries, misc perfmon fixes
+
+- bridges:
+  - analogix_dp: Switch to DP link training helpers
+
+- panels:
+  - visionox-vtdr6130: Enable DSC
+  - New panels: Ilitek ILI7807S, Renesas R63419, MNE001BS6-2, MNF601BS4-1
+The following changes since commit 0461ba9a7994a9bfa2ceefe730e2c87759edc267:
+
+  Merge tag 'amd-drm-next-7.3-2026-07-02' of https://gitlab.freedesktop.org=
+/agd5f/linux into drm-next (2026-07-07 16:48:23 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
+6-07-09
+
+for you to fetch changes up to 671b7825dbfe9ea6e3ad3001003aeee0df48d1b5:
+
+  drm/v3d: bound CPU-job query writes to their destination BO (2026-07-08 0=
+9:15:42 -0300)
+
+----------------------------------------------------------------
+drm-misc-next for 7.3:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+- Switch to kmalloc_objs where relevant
+- Create drm_of_get_panel_orientation(), and switch to it where relevant
+
+Driver Changes:
+
+- rockchip: Switch away from simple helpers
+- rocket: error handling and null pointer dereference fixes
+- ssd130x: Addressing fixes
+- sun4i: Switch away from simple helpers, refcount fix
+- v3d: validate CPU-job query writes boundaries, misc perfmon fixes
+
+- bridges:
+  - analogix_dp: Switch to DP link training helpers
+
+- panels:
+  - visionox-vtdr6130: Enable DSC
+  - New panels: Ilitek ILI7807S, Renesas R63419, MNE001BS6-2, MNF601BS4-1
+
+----------------------------------------------------------------
+Adri=E1n Larumbe (2):
+      drm/gpuvm: Remove dead code
+      drm/gpuvm: Fix comment to reflect remap operation operand status
+
+Amit Barzilai (3):
+      drm/ssd130x: fix column and row end address in partial updates for ss=
+d132x
+      drm/ssd130x: hoist column and row addresses out of repeated division
+      drm/ssd130x: fix column and row end address in partial updates in ssd=
+133x
+
+Arpit Saini (2):
+      dt-bindings: display: panel: add Ilitek ILI7807S panel controller
+      drm/panel: add Ilitek ILI7807S panel driver
+
+Cristian Ciocaltea (1):
+      MAINTAINERS: Track dw-hdmi-qp under Rockchip DRM drivers
+
+Damon Ding (1):
+      drm/bridge: analogix_dp: Apply standard DP training delay helpers
+
+Diogo Silva (2):
+      drm/sun4i: Remove dependency on DRM simple helpers
+      drm/rockchip: Remove dependency on DRM simple helpers
+
+Haikun Zhou (1):
+      drm/panel-edp: Support MNE001BS6-2 and MNF601BS4-1 edp panel
+
+Jonathan Cavitt (2):
+      drm/exec: Use kvmalloc_objs for exec->objects
+      drm/syncobj: Use kmalloc_objs for chains
+
+Jun Nie (1):
+      drm/panel: Enable DSC for Visionox VTDR6130 panel
+
+KancyJoe (1):
+      drm: panel: add support for the Renesas R63419 based dual-DSI video m=
+ode Display Panels
+
+Ma=EDra Canal (3):
+      drm/v3d: Refactor perfmon locking
+      drm/v3d: Serialize jobs across queues when a perfmon is attached
+      drm/v3d: Use write_to_buffer() helper in performance query copy
+
+Michael Bommarito (1):
+      drm/v3d: bound CPU-job query writes to their destination BO
+
+Muhammad Bilal (1):
+      accel/rocket: fix NULL dereference and integer overflow in rocket_job=
+_push()
+
+Neil Armstrong (2):
+      dt-bindings: display: panel: document the Renesas R63419 based dual-D=
+SI video mode Display Panels
+      drm/panel: visionox-vtdr6130: switch to devm panel calls and drop rem=
+ove
+
+Philipp Stanner (1):
+      drm/sched: Remove relic from entity docu
+
+Shahyan Soltani (1):
+      dma_buf: change unsigned int and int types into size_t
+
+Shuvam Pandey (1):
+      accel/rocket: initialize job domain before cleanup paths
+
+Thierry Reding (1):
+      drm/panel: Use drm_of_get_panel_orientation()
+
+Thomas Zimmermann (3):
+      Merge drm/drm-next into drm-misc-next
+      drm/of: Implement drm_of_get_panel_orientation()
+      drm/sysfb: simpledrm: Read panel orientation from DT node
+
+Wentao Liang (1):
+      drm/sun4i: fix refcount leak in sun4i_backend_init_sat()
+
+ZhaoJinming (1):
+      accel/rocket: Fix error path handling in rocket_job_run()
+
+ .../bindings/display/panel/ilitek,ili7807s.yaml    |  71 +++++
+ .../bindings/display/panel/renesas,r63419.yaml     |  98 ++++++
+ MAINTAINERS                                        |   3 +
+ drivers/accel/rocket/rocket_job.c                  |  32 +-
+ drivers/dma-buf/dma-fence-unwrap.c                 |   8 +-
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |  10 +-
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.h |   2 +
+ drivers/gpu/drm/drm_exec.c                         |   2 +-
+ drivers/gpu/drm/drm_gpuvm.c                        |  44 ---
+ drivers/gpu/drm/drm_of.c                           |  44 +++
+ drivers/gpu/drm/drm_panel.c                        |  44 +--
+ drivers/gpu/drm/drm_syncobj.c                      |   2 +-
+ drivers/gpu/drm/panel/Kconfig                      |  26 ++
+ drivers/gpu/drm/panel/Makefile                     |   2 +
+ drivers/gpu/drm/panel/panel-anbernic-td4310.c      |   3 +-
+ .../gpu/drm/panel/panel-boe-th101mb31ig002-28a.c   |   3 +-
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c     |   3 +-
+ drivers/gpu/drm/panel/panel-chipone-icna35xx.c     |   3 +-
+ drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c  |   3 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |   5 +-
+ drivers/gpu/drm/panel/panel-elida-kd35t133.c       |   3 +-
+ drivers/gpu/drm/panel/panel-focaltech-ota7290b.c   |   3 +-
+ drivers/gpu/drm/panel/panel-himax-hx83102.c        |   3 +-
+ drivers/gpu/drm/panel/panel-himax-hx8394.c         |   3 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili7807s.c      | 285 +++++++++++++++++
+ drivers/gpu/drm/panel/panel-ilitek-ili9488.c       |   3 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9806e-dsi.c  |   3 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      |   3 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9882t.c      |   3 +-
+ drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   |   2 +-
+ drivers/gpu/drm/panel/panel-lvds.c                 |   2 +-
+ drivers/gpu/drm/panel/panel-novatek-nt36523.c      |   3 +-
+ drivers/gpu/drm/panel/panel-renesas-r63419.c       | 351 +++++++++++++++++=
+++++
+ drivers/gpu/drm/panel/panel-simple.c               |   2 +-
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c      |   3 +-
+ drivers/gpu/drm/panel/panel-sitronix-st7703.c      |   3 +-
+ drivers/gpu/drm/panel/panel-sitronix-st7789v.c     |   3 +-
+ drivers/gpu/drm/panel/panel-visionox-vtdr6130.c    |  42 +--
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |   9 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |   9 +-
+ drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c    |   9 +-
+ drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c   |   8 +-
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c          |   1 -
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |   1 -
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |   1 -
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c             |   8 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c           |   9 +-
+ drivers/gpu/drm/rockchip/rockchip_rgb.c            |   8 +-
+ drivers/gpu/drm/solomon/ssd130x.c                  |  14 +-
+ drivers/gpu/drm/sun4i/sun4i_backend.c              |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   9 +-
+ drivers/gpu/drm/sun4i/sun4i_lvds.c                 |  10 +-
+ drivers/gpu/drm/sun4i/sun4i_rgb.c                  |  10 +-
+ drivers/gpu/drm/sun4i/sun4i_tv.c                   |  10 +-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             |  10 +-
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |   8 +-
+ drivers/gpu/drm/sysfb/simpledrm.c                  |  11 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |  47 ++-
+ drivers/gpu/drm/v3d/v3d_gem.c                      |   7 +-
+ drivers/gpu/drm/v3d/v3d_irq.c                      |   7 +-
+ drivers/gpu/drm/v3d/v3d_perfmon.c                  | 189 ++++++++---
+ drivers/gpu/drm/v3d/v3d_power.c                    |   4 +
+ drivers/gpu/drm/v3d/v3d_sched.c                    |  37 +--
+ drivers/gpu/drm/v3d/v3d_submit.c                   | 206 +++++++++++-
+ include/drm/drm_gpuvm.h                            |   4 +-
+ include/drm/drm_of.h                               |  11 +
+ include/drm/drm_panel.h                            |   8 -
+ include/drm/gpu_scheduler.h                        |   3 +-
+ include/linux/dma-fence-unwrap.h                   |   6 +-
+ 69 files changed, 1502 insertions(+), 302 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,=
+ili7807s.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/renesas=
+,r63419.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili7807s.c
+ create mode 100644 drivers/gpu/drm/panel/panel-renesas-r63419.c
+
+--g3d2ia2nlmjl6uj4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCak+EvQAKCRAnX84Zoj2+
+dqMxAYCpiwLrG+bRTmYGwDu/tDWMDajxHzJ6AHoSPjncvgxD26uM8YigwuVJyff5
+3uIqod0BgNzX4QB7wfWJcoiH0GaRs10CaYYAscTKYnhT6kivq3HrSpAvykcfOtB4
++TyZeXjA2A==
+=9YQi
+-----END PGP SIGNATURE-----
+
+--g3d2ia2nlmjl6uj4--
+
