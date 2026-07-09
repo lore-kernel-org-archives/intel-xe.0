@@ -4,52 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A8F1C43458
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 09:41:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC0C7C43458
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jul 2026 09:47:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1655310F4A1;
-	Thu,  9 Jul 2026 09:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 869BA10F4A1;
+	Thu,  9 Jul 2026 09:47:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DIS9EVjK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDEJhqQB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BCC210F4A1
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Jul 2026 09:41:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E495910E048;
+ Thu,  9 Jul 2026 09:47:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783590065; x=1815126065;
+ t=1783590469; x=1815126469;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=/jIzPx8D1mCO4pAPRp29DOlIvcn6agXNfQ5yVJtfUcw=;
- b=DIS9EVjKgHyfhYjRNOqS0gjlqiHSjLFqZ5ygRBaHjuZRnOomjy/+Ds5u
- /0AYBZWnM179OH4RuuinDSY1L8ObvhxjwQ1UoiNKMHiCIeRZTE+iHo2Vz
- NRz3NC1AFt7yaqZGFWKWbJjYB4E3NJ0So2CbTrzVMfRKQbYWA9Pyc+59i
- kfQ/gyPY6u+L6/YESqOrcdCv7i0lTCBothDZgfg1CGvY+oyKSYanwOOeu
- JpIXt0hwm0RCh6mZ7r218xmJG6+uJXs13IhxAydlejqUFuALbNPsFwQm1
- a6p9KGxJUbJsKMAYJgER21a6y7jMxeY6lNq8qCogeDKIoMhd/IvYx/Tvl Q==;
-X-CSE-ConnectionGUID: PggPsgXsTcObSz9ksUDlDQ==
-X-CSE-MsgGUID: nwtb7CGkSuGE/F2NQQuBLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95780849"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95780849"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 02:41:04 -0700
-X-CSE-ConnectionGUID: qzL8Bb1AQUikH6OXOmBIOw==
-X-CSE-MsgGUID: /wufDccQR5y1YPwsZfbaIQ==
+ bh=SSuJLx9SE57A7qIxtS+wkjg1DUj+y6sjOCSXMaWQQak=;
+ b=KDEJhqQBHnzg+W1DRvUp7QtkgN85iaQZt5INbNrre8pcbKIRt8PaEJeU
+ gbbELqnC3US+8pegF3PlrYLrVOsb7tBwiNHiiFf2eXS4EVwPT+SxhQOFm
+ FbhcpKsSZ8dcaF5BkBJmHm3nmQntq7rbntS2Y1ooYz+QVQtKQDAjRFvtm
+ Nw3E3Br/rVasHzTmsXHe4JvEpaXvUHErnheEIm/jnn6XJP/+dIHcrCGGd
+ V1rioierX0Iv562aMRy/r/9euIeMShToDhYjPvnQdqWVTZXsPf2x1No7p
+ ipAPWeKY5OA3JaSgp+2T9FcRZw9m4y7qlzMVAcCeuZ2MjC6JtIhkshTUn g==;
+X-CSE-ConnectionGUID: A3Jrmow9S66XtN0ECenGtw==
+X-CSE-MsgGUID: 6fIC7AdSRNusHGmjonn8Qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84380023"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84380023"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 02:47:48 -0700
+X-CSE-ConnectionGUID: 4ygGpAhyTYeln8kGMGST4g==
+X-CSE-MsgGUID: th6FiBwhSfakI1Bu3JJT6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="254046699"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="258142936"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.44])
  ([10.245.244.44])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 02:41:03 -0700
-Message-ID: <512dde5212d036c9f6ad08c0dd53318180f96602.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Flush L2 asynchronously in xe_bo_trigger_rebind()
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 02:47:41 -0700
+Message-ID: <265737ad21d42a7509a8c43619975f0ef150f275.camel@linux.intel.com>
+Subject: Re: [PATCH v7] cgroup/dmem: implement dmem.high soft limit with
+ proactive reclaim
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Date: Thu, 09 Jul 2026 11:41:00 +0200
-In-Reply-To: <20260709024925.1731496-1-matthew.brost@intel.com>
-References: <20260709024925.1731496-1-matthew.brost@intel.com>
+To: Jing Wu <realwujing@gmail.com>, matthew.brost@intel.com
+Cc: christian.koenig@amd.com, ray.huang@amd.com, matthew.auld@intel.com, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, tj@kernel.org, hannes@cmpxchg.org, 
+ mkoutny@suse.com, natalie.vock@gmx.de, mhocko@kernel.org,
+ roman.gushchin@linux.dev, 	shakeel.butt@linux.dev, muchun.song@linux.dev,
+ intel-xe@lists.freedesktop.org, 	dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 	cgroups@vger.kernel.org, linux-mm@kvack.org
+Date: Thu, 09 Jul 2026 11:47:38 +0200
+In-Reply-To: <20260709061114.1623774-1-realwujing@gmail.com>
+References: <ak81RUK6vRZaMN2D@gsse-cloud1.jf.intel.com>
+ <20260709061114.1623774-1-realwujing@gmail.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,295 +77,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-07-08 at 19:49 -0700, Matthew Brost wrote:
-> On L2-flush-optimized HW with a dma-resv (non-fault) VM, evicting a
-> BO
-> only needs to flush the L2 cache before the migration copy runs; the
-> mappings themselves are torn down and rebuilt lazily via
-> drm_gpuvm_bo_evict() and a subsequent rebind. Today this flush is
-> done
-> by waiting for the BO to go idle and then issuing a synchronous TLB
-> invalidation per mapping VMA from inside xe_bo_trigger_rebind(). Both
-> the idle wait and the synchronous invalidation stall the calling
-> thread
-> while holding the BO dma-resv lock, serializing the move behind all
-> in-flight GPU work on the BO.
+On Thu, 2026-07-09 at 14:11 +0800, Jing Wu wrote:
+> On Wed, Jul 09, 2026 at 12:44:37AM -0700, Matthew Brost wrote:
+> > This looks quite similar to work Thomas is doing here [1].
 >=20
-> Replace this with an asynchronous flush. Add
-> xe_vm_flush_vm_bo_tlb_async()
-> which, for each VMA mapping the BO on each present tile, queues a TLB
-> invalidation job on the tile migrate (kernel) exec queue. The jobs
-> depend
-> on the BO's in-flight GPU work, captured once as a singleton over
-> DMA_RESV_USAGE_BOOKKEEP, so the flush only fires once the GPU is done
-> with
-> the current mapping. Each job's completion fence is installed into
+> Thank you for the pointer, Matt.=C2=A0 We were not aware of Thomas's
+> series
+> before your mail.=C2=A0 After reviewing Thomas's v7 [1], the two series
+> turn
+> out to address different =E2=80=94 and complementary =E2=80=94 problems:
+>=20
+> =C2=A0 - Thomas's series hooks a reclaim callback into the dmem.max write
+> =C2=A0=C2=A0=C2=A0 path: when an administrator lowers dmem.max below curr=
+ent usage,
 > the
-> BO's dma-resv as a DMA_RESV_USAGE_KERNEL fence, so the migration copy
-> -
-> which waits on the resv - waits on the flush without stalling this
-> thread.
+> =C2=A0=C2=A0=C2=A0 kernel calls the driver's reclaim callback to bring de=
+vice memory
+> =C2=A0=C2=A0=C2=A0 usage down to the new limit.=C2=A0 This is analogous t=
+o what happens
+> in
+> =C2=A0=C2=A0=C2=A0 memcg when memory.max is written below current usage.
 >=20
-> No PTEs are zapped and vma->tile_invalidated is left untouched: the
-> mapping stays valid until the lazy rebind, and the only work
-> performed
-> here is the L2 flush. On any failure the caller falls back to the
-> existing blocking wait-idle plus xe_vm_invalidate_vma() path.
+> =C2=A0 - Our series adds dmem.high as a soft limit enforced in the charge
+> =C2=A0=C2=A0=C2=A0 path: when a successful allocation pushes a cgroup's u=
+sage above
+> =C2=A0=C2=A0=C2=A0 dmem.high, TTM proactively evicts one BO from that cgr=
+oup before
+> =C2=A0=C2=A0=C2=A0 returning.=C2=A0 This mirrors memory.high semantics in=
+ memcg, where
+> =C2=A0=C2=A0=C2=A0 reclaim is triggered per-allocation to keep usage belo=
+w the soft
+> =C2=A0=C2=A0=C2=A0 threshold.
 >=20
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Assisted-by: GitHub_Copilot:claude-opus-4.8
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-
-Is there possibly a way to do this using a GPU command now that we're
-making it async anyway?
-
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c |=C2=A0 12 ++++
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c | 125
-> +++++++++++++++++++++++++++++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_vm.h |=C2=A0=C2=A0 5 ++
-> =C2=A03 files changed, 142 insertions(+)
+> Both mechanisms coexist independently in memcg and serve distinct
+> purposes: the max write path handles capacity reconfiguration by
+> operators, while the high-limit path provides automatic backpressure
+> for workloads approaching their quota.=C2=A0 Having both in the dmem
+> cgroup
+> controller seems correct.
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 85e6d9a0f575..a08b983cb0b1 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -686,6 +686,18 @@ static int xe_bo_trigger_rebind(struct xe_device
-> *xe, struct xe_bo *bo,
-> =C2=A0			 */
-> =C2=A0			if (!xe_device_is_l2_flush_optimized(xe))
-> =C2=A0				continue;
-> +
-> +			/*
-> +			 * On L2-flush-optimized HW the only reason
-> to touch the
-> +			 * mappings here is to flush L2 via a TLB
-> invalidation.
-> +			 * Do it asynchronously: queue TLB-
-> invalidation jobs that
-> +			 * wait on the BO's in-flight GPU work and
-> install their
-> +			 * completion fences into the BO's kernel
-> dma-resv slots,
-> +			 * so the migration waits on the flush
-> without stalling
-> +			 * this thread. Fall back to the blocking
-> path on failure.
-> +			 */
+> > Are either of you two aware of this seemly overlapping work?
+>=20
+> We were not, until your mail.=C2=A0 Now that we are, we would like to
+> coordinate with Thomas on a few interaction points:
+>=20
+> =C2=A0 1. API intersection: Thomas's v5+ replaces the bare u64 size
+> argument
+> =C2=A0=C2=A0=C2=A0=C2=A0 in dmem_cgroup_register_region() with struct dme=
+m_cgroup_init
+> (which
+> =C2=A0=C2=A0=C2=A0=C2=A0 bundles the region size, reclaim ops, and driver=
+ private data).=C2=A0
+> If
+> =C2=A0=C2=A0=C2=A0=C2=A0 Thomas's series lands first, we will adapt our p=
+atches to the
+> new
+> =C2=A0=C2=A0=C2=A0=C2=A0 registration interface.
+>=20
+> =C2=A0 2. File-level conflicts: both series modify ttm_resource.c and
+> =C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo.c.=C2=A0 The changes are semantically ind=
+ependent and should
+> =C2=A0=C2=A0=C2=A0=C2=A0 compose cleanly after a rebase, whichever lands =
+second.
+>=20
+> Thomas, would you be open to coordinating on merge ordering?=C2=A0 We are
+> happy to rebase our dmem.high series on top of yours once it lands,
+> or
+> to split out any shared infrastructure as a common prerequisite if
+> that
+> helps.
 
-This more or less echoes the xe_vm_flush_vm_bo_tlb_async() kerneldoc.
-Perhaps /* Attempt to flush L2 async, fallback to sync flush on failure
-*/?
+Sure. Let's notify eachother of imminent merge plans. I will rebase my
+series on yours if yours go in first. If needed let's look at a topic
+branch that we can merge into drm or vice versa.
 
-> +			if (!xe_vm_flush_vm_bo_tlb_async(vm, bo,
-> vm_bo))
-> +				continue;
-> =C2=A0		}
-> =C2=A0
-> =C2=A0		if (!idle) {
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 73ac031ffb04..4557a8a4d270 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -39,6 +39,7 @@
-> =C2=A0#include "xe_sync.h"
-> =C2=A0#include "xe_tile.h"
-> =C2=A0#include "xe_tlb_inval.h"
-> +#include "xe_tlb_inval_job.h"
-> =C2=A0#include "xe_trace_bo.h"
-> =C2=A0#include "xe_vm_madvise.h"
-> =C2=A0#include "xe_wa.h"
-> @@ -4401,6 +4402,130 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
-> =C2=A0	return ret;
-> =C2=A0}
-> =C2=A0
-> +/*
-> + * xe_vma_tlb_flush_client - Queue an async TLB flush for one VMA on
-> one client
-> + *
-> + * Create and push a TLB invalidation job on the tile migrate
-> (kernel) exec
-> + * queue covering @vma's range, depending on @dep (the BO's in-
-> flight GPU work)
-> + * so the flush only fires once the GPU is done with the current
-> mapping. The
-> + * job's completion fence is installed into @resv as a KERNEL fence
-> so the
-> + * subsequent migration waits on the flush. No PTEs are zapped; this
-> only
-> + * flushes L2 via the TLB invalidation.
-> + */
-> +static int xe_vma_tlb_flush_client(struct xe_vm *vm, struct xe_vma
-> *vma,
-> +				=C2=A0=C2=A0 struct xe_tile *tile, struct
-> xe_gt *gt,
-> +				=C2=A0=C2=A0 struct dma_resv *resv, struct
-> dma_fence *dep,
-> +				=C2=A0=C2=A0 int type)
-> +{
-> +	struct xe_exec_queue *q =3D xe_migrate_exec_queue(tile-
-> >migrate);
-> +	struct xe_tlb_inval_job *job;
-> +	struct dma_fence *fence;
-> +	int err;
-> +
-> +	job =3D xe_tlb_inval_job_create(q, &gt->tlb_inval,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 q-
-> >tlb_inval[type].dep_scheduler, vm,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_start(vma),
-> xe_vma_end(vma), type);
-> +	if (IS_ERR(job))
-> +		return PTR_ERR(job);
-> +
-> +	err =3D xe_tlb_inval_job_alloc_dep(job);
-> +	if (err)
-> +		goto out_put;
-> +
-> +	err =3D dma_resv_reserve_fences(resv, 1);
-> +	if (err)
-> +		goto out_put;
-> +
-> +	/* Cannot fail; consumes a ref on @dep and returns a
-> referenced fence. */
-> +	fence =3D xe_tlb_inval_job_push(job, tile->migrate, dep);
-> +	dma_resv_add_fence(resv, fence, DMA_RESV_USAGE_KERNEL);
-> +	dma_fence_put(fence);
-> +
-> +out_put:
-> +	/* Drop the creation reference (destroys the job if it was
-> not pushed). */
-> +	xe_tlb_inval_job_put(job);
-> +	return err;
-> +}
-> +
-> +/**
-> + * xe_vm_flush_vm_bo_tlb_async - Asynchronously flush TLBs for a
-> vm_bo's mappings
-> + * @vm: The VM @vm_bo belongs to
-> + * @bo: The buffer object being moved
-> + * @vm_bo: The gpuvm_bo linking @bo into @vm
-> + *
-> + * On L2-flush-optimized HW a BO move only needs to flush L2 (via a
-> TLB
-> + * invalidation) for the BO's live mappings; the mappings themselves
-> are torn
-> + * down and rebuilt lazily via the eviction/rebind path, so no PTEs
-> need to be
-> + * zapped here. Rather than blocking the caller on a synchronous
-> invalidation,
-> + * issue a TLB invalidation job per VMA per TLB-invalidation client
-> (per present
-> + * tile, primary and media GT). Each job waits on the BO's in-flight
-> GPU work
-> + * (all dma-resv usages) and its completion fence is installed into
-> the BO's
-> + * dma-resv KERNEL slots, so the following migration waits on the
-> flush without
-> + * stalling this thread.
-> + *
-> + * The caller must hold the BO's dma-resv lock and @vm must not be
-> in fault
-> + * mode.
-> + *
-> + * Return: 0 on success, negative error code on failure. On failure
-> the caller
-> + * should fall back to the blocking xe_vm_invalidate_vma() path; any
-> jobs
-> + * already queued install harmless extra flush fences.
-> + */
-> +int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
-> +				struct drm_gpuvm_bo *vm_bo)
-> +{
-> +	struct xe_device *xe =3D vm->xe;
-> +	struct dma_resv *resv =3D bo->ttm.base.resv;
-> +	struct dma_fence *dep =3D NULL;
-> +	struct drm_gpuva *gpuva;
-> +	int err;
-> +
-> +	dma_resv_assert_held(resv);
-> +	xe_assert(xe, !xe_vm_in_fault_mode(vm));
-> +
-> +	/*
-> +	 * Single fence capturing all in-flight GPU work on the BO;
-> the TLB
-> +	 * invalidation jobs depend on it so the flush fires only
-> once the GPU
-> +	 * is done with the current mapping.
-> +	 */
-> +	err =3D dma_resv_get_singleton(resv, DMA_RESV_USAGE_BOOKKEEP,
-> &dep);
-> +	if (err)
-> +		return err;
-> +	if (!dep)
-> +		dep =3D dma_fence_get_stub();
-> +
-> +	drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
-> +		struct xe_vma *vma =3D gpuva_to_vma(gpuva);
-> +		struct xe_tile *tile;
-> +		u8 id;
-> +
-> +		if (xe_vma_is_null(vma) ||
-> xe_vma_is_cpu_addr_mirror(vma))
-> +			continue;
-> +
-> +		for_each_tile(tile, xe, id) {
-> +			if (!(vma->tile_present & BIT(id)))
-> +				continue;
-> +
-> +			err =3D xe_vma_tlb_flush_client(vm, vma, tile,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tile-
-> >primary_gt, resv, dep,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
-> +			if (err)
-> +				goto out;
-> +
-> +			if (tile->media_gt) {
-> +				err =3D xe_vma_tlb_flush_client(vm,
-> vma, tile,
-> +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tile-
-> >media_gt, resv, dep,
-> +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT);
-> +				if (err)
-> +					goto out;
-> +			}
-> +		}
-> +	}
-> +
-> +out:
-> +	dma_fence_put(dep);
-> +	return err;
-> +}
-> +
-> =C2=A0int xe_vm_validate_protected(struct xe_vm *vm)
-> =C2=A0{
-> =C2=A0	struct drm_gpuva *gpuva;
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index c5b900f38ded..dd5b070eaede 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -26,6 +26,8 @@ struct ttm_buffer_object;
-> =C2=A0
-> =C2=A0struct dma_fence;
-> =C2=A0
-> +struct xe_bo;
-> +struct drm_gpuvm_bo;
-> =C2=A0struct xe_exec_queue;
-> =C2=A0struct xe_file;
-> =C2=A0struct xe_pagefault;
-> @@ -254,6 +256,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma);
-> =C2=A0
-> =C2=A0int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct
-> xe_tlb_inval_batch *batch);
-> =C2=A0
-> +int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
-> +				struct drm_gpuvm_bo *vm_bo);
-> +
-> =C2=A0int xe_vm_validate_protected(struct xe_vm *vm);
-> =C2=A0
-> =C2=A0static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+My work is stalled on lack of reviews ATM.
 
-Otherwise LGTM.
-/Thomas
+Thanks,
+Thomas
+
+>=20
+> Thanks,
+> Jing Wu
