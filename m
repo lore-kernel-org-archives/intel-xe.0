@@ -4,53 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B1F7C44515
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D4AC4450D
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E332910F99A;
-	Fri, 10 Jul 2026 21:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16C1110F99F;
+	Fri, 10 Jul 2026 21:54:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iFWSKpLT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U9Y09aU3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 895C810F963;
- Fri, 10 Jul 2026 21:54:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30AD410F986;
+ Fri, 10 Jul 2026 21:54:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783720491; x=1815256491;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=u3Jx6VC8xZg2yCE3q2v8z9AzOPMGzRVVf08fs1sAico=;
- b=iFWSKpLTf9k40gzl0whj8L8qcd7nh5g0O1kHPW9kK0rvwOtJjgmuMkz3
- 2rLTqbhrz91uKZkKBBcUbPaKRtQyyIwvjgOQK6WQASlJ5V8e7p6jmoxge
- /OIfUhyEfgHVpiE84t0F/ktv54/5gKcz/H++tj3LI/tCCAQT/yuEiWPEH
- zgGv3QrK090OsH6aSlpOTw2Ly25WE0B562FO7JHF5k1U8Yib8jgQdHUjY
- HtOYdsogZt6kTlB1Zd12Aox+b1lWiczCC7/e8G7DzmskQX1OwMt+YX8Ee
- ec/9jJNYb+79oiGOF02PQAGk61/Mhqpys+qBxg8ahrdIudoeAWQzoHqT3 w==;
-X-CSE-ConnectionGUID: 1GjOnbhdTCGh1KdINAspsA==
-X-CSE-MsgGUID: tG2rIPqFSEGyRFPBGJ4s6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543129"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543129"
+ t=1783720495; x=1815256495;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KMs46OPL0Vngl0tZUFulMtAp5PmjK7zLdDVOXrYesaM=;
+ b=U9Y09aU32AktJNDMJVjVTrOAII1k/ZH1LpD3j4iK3M7MYlDSRWkcuWQZ
+ NYHVFKv3GkbAkT5WSROmCzAFb5a5gNCsYhpMGdQE2OaN7POVqFLXPim0B
+ GGCK28SXFdSQOmr7Qgjc0L0wWUXjlaZGT0d7MCwjZ9PSL5fjcbUe5FSU+
+ qzU7Mt3VUNpkxP6m+Z99M2QaI+VCEQiLB1NT7xzfsqeRse2Ib7YngZGgn
+ t9hD+JTbfO0UNm0CCWD5Q4GUFwZrYz0WA/8C9+3d8uACC/JugUkQMRA46
+ TJ3ZT8jUJLxKgbPxnENY0KSyfyJCEH7InaFb1WOmJ95fQ5ZfKCxoIwwTp w==;
+X-CSE-ConnectionGUID: NGvimCTrR+WwJwlFH/1O5Q==
+X-CSE-MsgGUID: lQw1u5S/QrmjKoNaXAag0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543214"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543214"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:51 -0700
-X-CSE-ConnectionGUID: FtWfxIrsR9mm0PTFskZRHg==
-X-CSE-MsgGUID: scwcx8AnTQCWGQ8xyEUAUw==
+ 10 Jul 2026 14:54:55 -0700
+X-CSE-ConnectionGUID: XyjAOcA7SYSFJU7j86NXBA==
+X-CSE-MsgGUID: AfHXwFlDTk6q7ZBbBu82KQ==
 X-ExtLoop1: 1
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:51 -0700
+ 10 Jul 2026 14:54:55 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 14/33] drm/xe: Destroy page tables after unlinking all VMAs
- on VM close
-Date: Fri, 10 Jul 2026 14:54:23 -0700
-Message-Id: <20260710215442.2444235-15-matthew.brost@intel.com>
+Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 24/33] drm/xe: Add defrag profiling tracepoints
+Date: Fri, 10 Jul 2026 14:54:33 -0700
+Message-Id: <20260710215442.2444235-25-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260710215442.2444235-1-matthew.brost@intel.com>
 References: <20260710215442.2444235-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,91 +74,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_vm_close_and_put() freed the VM's page-table roots via
-xe_vm_pt_destroy() before destroying the "contested" VMAs - those backed
-by external (shared) BOs, which are deferred to xe_vma_destroy_unlocked()
-because unlinking them requires taking the external BO's dma-resv lock
-(via drm_exec), not vm->lock.
+Add two tracepoints to profile the page defragmentation worker:
 
-Until such a VMA is unlinked it remains reachable from its BO through
-drm_gem_for_each_gpuvm_bo(). A concurrent BO move that only holds the
-BO's dma-resv lock - TTM eviction, the shrinker, or the defrag worker -
-calls xe_bo_move_notify() -> xe_bo_trigger_rebind() ->
-xe_vm_invalidate_vma() -> xe_pt_zap_ptes(), which dereferences
-vm->pt_root[tile->id]. With the page tables already freed this is a
-use-after-free / NULL dereference, e.g.:
+ - xe_bo_defrag_worker: emitted on worker entry and exit with the
+   current defrag list count and the bytes processed in the run.
+ - xe_bo_defrag_one: emitted per BO with the run budget, the prealloc
+   fill ratio (got/want) and the lock-held, lock-wait and prealloc
+   durations, plus the bytes consumed and the result.
 
-  Oops: general protection fault [...] kernel NULL pointer dereference
-  RIP: xe_pt_zap_ptes+0x7c [xe]
-  Call Trace:
-   xe_vm_invalidate_vma_submit+0x64/0x130 [xe]
-   xe_vm_invalidate_vma+0x27/0x60 [xe]
-   xe_bo_move_notify+0x1e7/0x3d0 [xe]
-   xe_bo_move+0x62d/0x1620 [xe]
-   ttm_bo_handle_move_mem+0x243/0x330 [ttm]
-   ttm_bo_validate+0xb4/0x1a0 [ttm]
+These break down the cost of a defrag attempt into its locked vs
+unlocked phases, making it possible to confirm that the expensive
+beneficial-order allocation and cpu cache mode change happen outside
+the BO dma-resv lock and that the residual lock-held time is copy-bound
+(with the tail dominated by lock-wait behind active rendering).
 
-The race is not closable with a flag or a NULL pt_root check in the
-invalidate path: the freeing side holds only vm->lock while the walker
-holds only the BO's resv, so there is no common lock to serialise on.
-
-Fix the ordering instead: destroy the page tables only after every VMA -
-including the contested external-BO VMAs - has been unlinked. Once the
-contested loop completes no BO can reach a VMA of this VM, so freeing the
-page tables (under vm->lock, to satisfy xe_vm_assert_held()) is safe.
-xe_vm_free_scratch() still runs before the free as it reads
-pt_root[]->level.
-
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Carlos Santa <carlos.santa@intel.com>
+Cc: Ryan Neph <ryanneph@google.com>
+Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Huang Rui <ray.huang@amd.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 24 ++++++++++++++++--------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c       | 18 +++++++++-
+ drivers/gpu/drm/xe/xe_trace_bo.h | 59 ++++++++++++++++++++++++++++++++
+ 2 files changed, 76 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 4557a8a4d270..9f55d22cb985 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1934,15 +1934,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		vma->gpuva.flags |= XE_VMA_DESTROYED;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 2f014fc9f988..a01004265349 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1254,7 +1254,9 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
+ 	struct ttm_placement placement;
+ 	struct ttm_place place;
+ 	enum ttm_caching tt_caching;
+-	unsigned int order, want = 0;
++	unsigned int order, want = 0, got = 0;
++	u64 lock_ns = 0, prealloc_ns = 0, lockwait_ns = 0;
++	ktime_t t0;
+ 	int ret = 0;
  
--	/*
--	 * All vm operations will add shared fences to resv.
--	 * The only exception is eviction for a shared object,
--	 * but even so, the unbind when evicted would still
--	 * install a fence to resv. Hence it's safe to
--	 * destroy the pagetables immediately.
--	 */
- 	xe_vm_free_scratch(vm);
--	xe_vm_pt_destroy(vm);
- 	xe_vm_unlock(vm);
+ 	*consumed = 0;
+@@ -1284,6 +1286,7 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
+ 
+ 	/* Phase 2: preallocate outside the lock; */
+ 	if (want) {
++		t0 = ktime_get();
+ 		ret = ttm_pool_prealloc_fill(pool, tt_caching, &pp, want);
+ 		if (ret || !pp.count) {
+ 			ret = ret ?: -ENOMEM;
+@@ -1291,12 +1294,16 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
+ 					 XE_GT_STATS_ID_DEFRAG_FAILED_COUNT, 1);
+ 			goto out_err;
+ 		}
++		prealloc_ns = ktime_to_ns(ktime_sub(ktime_get(), t0));
+ 	}
  
  	/*
-@@ -1956,6 +1948,22 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		xe_vma_destroy_unlocked(vma);
+ 	 * Phase 3: re-take the lock, re-check, and validate using the prealloc.
+ 	 */
++	t0 = ktime_get();
+ 	xe_bo_lock(bo, false);
++	lockwait_ns = ktime_to_ns(ktime_sub(ktime_get(), t0));
++	t0 = ktime_get();
+ 
+ 	if (!xe_bo_needs_defrag(bo)) {
+ 		xe_bo_defrag_remove(bo);
+@@ -1350,9 +1357,13 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
+ 
+ unlock:
+ 	xe_bo_unlock(bo);
++	lock_ns = ktime_to_ns(ktime_sub(ktime_get(), t0));
++	got = pp.used;
+ out_err:
+ 	ttm_pool_prealloc_fini(pool, &pp);
+ out:
++	trace_xe_bo_defrag_one(bo, budget, want, got, lock_ns, prealloc_ns,
++			       lockwait_ns, *consumed, ret);
+ 	return ret;
+ }
+ 
+@@ -1373,6 +1384,9 @@ static void xe_bo_defrag_worker(struct work_struct *w)
+ 		return;
  	}
  
-+	/*
-+	 * Destroy the page tables only after every VMA has been unlinked. The
-+	 * contested (external-BO) VMAs above are unlinked from their BO under
-+	 * the BO's dma-resv lock, not vm->lock, so they can still be reached
-+	 * via drm_gem_for_each_gpuvm_bo() by a concurrent BO move (eviction,
-+	 * shrinker or the defrag worker) that only holds the BO's resv. Such a
-+	 * move calls xe_vm_invalidate_vma() -> xe_pt_zap_ptes(), which
-+	 * dereferences vm->pt_root[]; freeing the page tables while those VMAs
-+	 * are still linked is a use-after-free. All vm operations add shared
-+	 * fences to the resv (eviction of a shared object still installs an
-+	 * unbind fence), so no GPU work outlives this point.
-+	 */
-+	xe_vm_lock(vm, false);
-+	xe_vm_pt_destroy(vm);
-+	xe_vm_unlock(vm);
++	trace_xe_bo_defrag_worker(xe, 0, atomic_read(&xe->mem.defrag.count),
++				  true);
 +
- 	xe_svm_fini(vm);
+ 	/*
+ 	 * Process at most XE_BO_DEFRAG_SIZE_LIMIT bytes of newly (re)allocated
+ 	 * backing per run rather than draining the whole list in one go. Only
+@@ -1479,6 +1493,8 @@ static void xe_bo_defrag_worker(struct work_struct *w)
  
- 	up_write(&vm->lock);
+ 	xe_pm_runtime_put(xe);
+ 	drm_dev_exit(idx);
++	trace_xe_bo_defrag_worker(xe, defrag_bytes,
++				  atomic_read(&xe->mem.defrag.count), false);
+ }
+ 
+ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index 86323cf3be2c..a169a322464b 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -85,6 +85,65 @@ TRACE_EVENT(xe_bo_move,
+ 		      __get_str(new_placement_name), __get_str(device_id))
+ );
+ 
++TRACE_EVENT(xe_bo_defrag_worker,
++	    TP_PROTO(struct xe_device *xe, u64 defrag_bytes, int count,
++		     bool enter),
++	    TP_ARGS(xe, defrag_bytes, count, enter),
++	    TP_STRUCT__entry(
++		     __string(dev, dev_name(xe->drm.dev))
++		     __field(u64, defrag_bytes)
++		     __field(int, count)
++		     __field(bool, enter)
++		     ),
++	    TP_fast_assign(
++		   __assign_str(dev);
++		   __entry->defrag_bytes = defrag_bytes;
++		   __entry->count = count;
++		   __entry->enter = enter;
++		   ),
++	    TP_printk("dev=%s %s defrag_bytes=%llu count=%d",
++		      __get_str(dev), __entry->enter ? "enter" : "exit",
++		      __entry->defrag_bytes, __entry->count)
++);
++
++TRACE_EVENT(xe_bo_defrag_one,
++	    TP_PROTO(struct xe_bo *bo, u64 budget, unsigned int prealloc_want,
++		     unsigned int prealloc_got, u64 lock_ns, u64 prealloc_ns,
++		     u64 lockwait_ns, u64 consumed, int ret),
++	    TP_ARGS(bo, budget, prealloc_want, prealloc_got, lock_ns,
++		    prealloc_ns, lockwait_ns, consumed, ret),
++	    TP_STRUCT__entry(
++		     __string(dev, __dev_name_bo(bo))
++		     __field(size_t, size)
++		     __field(u64, budget)
++		     __field(unsigned int, prealloc_want)
++		     __field(unsigned int, prealloc_got)
++		     __field(u64, lock_ns)
++		     __field(u64, prealloc_ns)
++		     __field(u64, lockwait_ns)
++		     __field(u64, consumed)
++		     __field(int, ret)
++		     ),
++	    TP_fast_assign(
++		   __assign_str(dev);
++		   __entry->size = xe_bo_size(bo);
++		   __entry->budget = budget;
++		   __entry->prealloc_want = prealloc_want;
++		   __entry->prealloc_got = prealloc_got;
++		   __entry->lock_ns = lock_ns;
++		   __entry->prealloc_ns = prealloc_ns;
++		   __entry->lockwait_ns = lockwait_ns;
++		   __entry->consumed = consumed;
++		   __entry->ret = ret;
++		   ),
++	    TP_printk("dev=%s size=%zu budget=%llu prealloc=%u/%u lock_us=%llu lockwait_us=%llu prealloc_us=%llu consumed=%llu ret=%d",
++		      __get_str(dev), __entry->size, __entry->budget,
++		      __entry->prealloc_got, __entry->prealloc_want,
++		      __entry->lock_ns / 1000, __entry->lockwait_ns / 1000,
++		      __entry->prealloc_ns / 1000, __entry->consumed,
++		      __entry->ret)
++);
++
+ DECLARE_EVENT_CLASS(xe_vma,
+ 		    TP_PROTO(struct xe_vma *vma),
+ 		    TP_ARGS(vma),
 -- 
 2.34.1
 
