@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87F42C44510
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 19:08:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34A12C44508
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 19:08:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D671810F962;
-	Fri, 10 Jul 2026 19:08:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B600610F968;
+	Fri, 10 Jul 2026 19:08:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mbakxcOC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Le8KTyLI";
 	dkim-atps=neutral
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F57810F959
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 19:08:06 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-47defd0c1c5so895885f8f.3
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 12:08:06 -0700 (PDT)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 087A810F966
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 19:08:08 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-493c52cde9eso10887665e9.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 12:08:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783710485; x=1784315285; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1783710486; x=1784315286; darn=lists.freedesktop.org;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=yBVaMK4L9gyjT+EoEO4978A5AdaqzcXPIfWDlt2pVck=;
- b=mbakxcOCk7i2neame4DhEP3io9L9dO0btd1e8r1DoUds3+rsUqWopP5TanobREO250
- m2N7mngPAFoXJTDtFVdRRwEkrtjpY3cSg/GmqMeUYkH42t4Topf3JKlYTa1DA5AlAh6B
- iAy1aCKwNz2nGPMAibkHDjapsfMyvg/NGS8SLUG5tN9jFWIBArJUgLQyBA/XLTiuMRir
- pm8un0V4ae+EhSKKnANVqiG7h8aNXW4iHmphiurG6rVhwUocgHr9AveudRx9k2Xg2xEQ
- kB799CEmW1viN+M9lGTtHOz5IGm1PqVWY26P33Cqz4F/7YNattuhN7nfmw+MfOyGm3pq
- L6Dw==
+ bh=IOmjbtLYRqKMFq3vRWGT3hOtZz67iXQHbJfJ46cKOMg=;
+ b=Le8KTyLIGLaA6v8sZadV65LV/7w46D5ggqmcWAgLzSW2OUnj8mjDM6Fc2t1goVxJ/E
+ 7IBCR0VO+upogSVpwBCkF4J5qvGP/uommSjsMKz55Qxsg2luoS/dlo5F5fMGVmebv1g4
+ LFiymyno3MZpYcGiOD6FAOLYwWIFiDqTsJSiy3L4HzGDCVxhE/wagJoZAJrL4J7fJcsc
+ JcTWPmNU/pdwvOeUbObxvhNj5Cg7Suv9EUadr53olIU3ASOI5TAWbk3jK+PnwptTzD5J
+ cMj6aoQ1eKKW2aUqQ/sJqDksdCXvyENC2uGLomZdLnnOB7n3TcOh9Fvm145wijPtaDLo
+ 1qhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783710485; x=1784315285;
+ d=1e100.net; s=20251104; t=1783710486; x=1784315286;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=yBVaMK4L9gyjT+EoEO4978A5AdaqzcXPIfWDlt2pVck=;
- b=qLpXibUfiEAqpApGHeUJgjWPPEd/ND7os2EEhVSh718Wkp0a0ck0MH2LMAfAAeB1HA
- XJGCx0v59oW+AyH25YIp/0q3Y2I0PFTy8F+3pTAJjUB2ds0QgvqZSAfE692sn4yt9GI5
- rc1RkxQwZ8oPEdD/QZGDKBOQUsE9x8mnNnGT3kame5LAAIvOmiUHso3D8lhlZ7Fjgx2p
- /Y7wVli+AeOTuotEmRZvJMnZTktHBU7LZsZKv/FlK+KX9WzIHF0h/rAHSw1xPPFxf5gc
- nBmkFfhJsGC4SWe3F1sUNrfzNjIh+Jx73ZVrDjieW+3/QGD9i5zGADrNqfrgNz7eaONV
- /0mw==
+ bh=IOmjbtLYRqKMFq3vRWGT3hOtZz67iXQHbJfJ46cKOMg=;
+ b=G6AN8kd7dR/79Bc+1+8FGPiJU9NQeeT4UbryID0M2qwU4atxBlSnKz2k8s/WIn/7L9
+ 7TVvDGgXKVcLTeqr00CV+73UqUPhyaBgOAtOwkOqCe4nMJ9+HCQz9w/M5kraJIuQyMf9
+ Ycle5qFU3XDnxDcW3M/tzEx3PYyySeW2nkdoM294CAbYtS8lvsBxx9VvNQkvT7FMyohR
+ x6zv67LNQzsSbBcwdf0rzFlnpvHFxtHgaJX5LgSCbre9egaURGgxZXt0Um2Q5G1LoCwc
+ nWep0uPzEAHLmG8ge3W4xfPtgJ+Bi1OS2vy/Ih/xGwheLfTHwIK2K0Ad63dysnWcfPyA
+ wJgA==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqrCZfDrXaLIH5kgD5Zby+YSrLN+Gcv14T0n954+dCMUfwBtoO99reGbM1O42zDmdZBTTJDFRRrzg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw1i+cnDovkuTBaNuUauA56d2DNPOHUBU0mHYiB833Mk9JFSGYu
- sDwNCVwJK8gPUQ40CZSvTpeLo7g1xZF+I7DBw6wGl4e4HNuC+2bwst/T
-X-Gm-Gg: AfdE7ckTwoNsHs2JZ7y9tS57Jfk1XHrQGI8fydTTcWDa/looZddG+wTS/v4ViounsJ+
- /f/iGXUuGo4X3BRb2vYPTm27l3Ex/YARDUpQQgjBFr7zPAQJTbRqSYzkaB1LmhzaIVgYTpqo2E8
- B5wzd4E/ZDVz29mbYD0RaWwOZiKGNLaX6UtHB3bODvOGTnXOxBtqNJjAjC0xdvlrbXL/6q5xKq3
- wxbdiop/5J2ZAZXsDqWgFVN6o2GwHmnrt5D21mqKdSgUXadoU9flzEENEI3pGoB1z1RJyzhyW4/
- xUk7U1u5fX2ffiM3ZhcxvnzVjsC2g3+jJzbNZeZkQIdLNs7OZXY1N8t+xekpNh23NWIDi8YGQ4Q
- 15eMrJ3FpG6AHndD/oDIKbqLiLpHx/cIqBm2v/K15y3CBPsCmUfpt39Tgj2RCdnXRsyeH31Z8OQ
- EamctH7WaHIPR2SCOmUgIhP3CrR8YrNwbiPoXi
-X-Received: by 2002:a05:600c:564b:b0:493:e79e:da98 with SMTP id
- 5b1f17b1804b1-493f8837fdbmr510375e9.39.1783710484544; 
- Fri, 10 Jul 2026 12:08:04 -0700 (PDT)
+ AHgh+RorrPD41bC7mi35ip06J3bewepATYtj3tFTPDLyUtyK7n+Dz189a+D7cIFr3vhjy8QRFX61MyA97w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzieniD3d5CJ4suSkkQUSMROqicX8IdOBmNk0EkbMM258HMOCcj
+ xfIlnMa+SfQBfVcppMfRcaZYYNVZSd7JtpRF2WDzsMMIZh6JTIYhfQKj
+X-Gm-Gg: AfdE7clkTlPqyf7sk7n98X8UTDQco7vBpuPPfYmc3bl7tOiestwslISWF81C0qCdEbJ
+ VdX5cUKuQfLSURLJ5glHynKsszSR+CDOUuAJd3UgreYXlxtMTfnunZD3Z4iXmtYZlSxQMrvYYKc
+ DfCjZ1Zdhz8CYsztPQZimgNgP2sAcf1rwSKTBPOjCTek0AT32ZrI7kEz2a/wesMwOyVL3ZkVEZf
+ GEeJkvep+HD6Xw3RzfiuMciQwMQPkIav6W5qNeCUAp1zoz8fbD/gyitMeC3T0SdHB80qGFOO+ud
+ b8mRqhO7Vt2jPBlt60ZVNp30GNhYPFD3geK6LJvZ6FfcXjK3fi1VHTqzBOodZHOS8r//r4Su78j
+ JGOuxPHI45GJE8Dqxga6DXmouUZRe7G1GyHlQO/ltEwKWoDTf+xYwTnEc/tuVn2uZNRSQnZsm9J
+ caEdLfNBS5NA6X1qDyKliTPEJIxQ==
+X-Received: by 2002:a05:600c:5849:b0:493:b55f:bca2 with SMTP id
+ 5b1f17b1804b1-493f88389cemr678085e9.34.1783710486348; 
+ Fri, 10 Jul 2026 12:08:06 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:154f:ec00:aa08:de24:db33:4496])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493f567eadfsm55000755e9.6.2026.07.10.12.08.03
+ 5b1f17b1804b1-493f567eadfsm55000755e9.6.2026.07.10.12.08.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Jul 2026 12:08:04 -0700 (PDT)
+ Fri, 10 Jul 2026 12:08:05 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -71,9 +71,9 @@ To: thomas.hellstrom@linux.intel.com, dakr@kernel.org, ecourtney@nvidia.com,
  airlied@gmail.com, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 10/12] drm/exec: add drm_exec_lock_resv function
-Date: Fri, 10 Jul 2026 20:52:50 +0200
-Message-ID: <20260710190752.2355-11-christian.koenig@amd.com>
+Subject: [PATCH 12/12] drm/amdgpu: use drm_exec during BO validation
+Date: Fri, 10 Jul 2026 20:52:52 +0200
+Message-ID: <20260710190752.2355-13-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260710190752.2355-1-christian.koenig@amd.com>
 References: <20260710190752.2355-1-christian.koenig@amd.com>
@@ -95,204 +95,146 @@ Reply-To: christian.koenig@amd.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Restructure the drm_exec object to work with dma_resv references instead
-of GEM object references.
+This allows to detect deadlocks happening because of resource
+constraints.
 
-Add the new function dma_exec_lock_resv() to lock individual dma_resv
-objects and so allow higher level implementations to handle contention
-purely on dma_resv objects.
-
-WIP! Don't commit like that!
+Especially submissions which want to use all of GDS doesn't result in
+sporadic -ENOMEM any more.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/drm_exec.c | 75 ++++++++++++++++++++++----------------
- drivers/gpu/drm/drm_gem.c  |  2 +
- include/drm/drm_exec.h     |  9 +++--
- 3 files changed, 50 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 82 ++++++++++++++------------
+ 1 file changed, 44 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-index fa923852fae45..382bf7bcd5ff3 100644
---- a/drivers/gpu/drm/drm_exec.c
-+++ b/drivers/gpu/drm/drm_exec.c
-@@ -58,8 +58,11 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
- 		drm_gem_object_put(obj);
- 	}
- 
--	drm_gem_object_put(exec->prelocked);
--	exec->prelocked = NULL;
-+	if (exec->prelocked) {
-+		dma_resv_unlock(exec->prelocked);
-+		dma_resv_put(exec->prelocked);
-+		exec->prelocked = NULL;
-+	}
- }
- 
- /**
-@@ -101,7 +104,7 @@ void drm_exec_fini(struct drm_exec *exec)
- 	drm_exec_unlock_all(exec);
- 	kvfree(exec->objects);
- 	if (exec->contended != DRM_EXEC_DUMMY) {
--		drm_gem_object_put(exec->contended);
-+		dma_resv_put(exec->contended);
- 		ww_acquire_fini(&exec->ticket);
- 	}
- }
-@@ -158,50 +161,41 @@ static int drm_exec_obj_locked(struct drm_exec *exec,
- /* Make sure the contended object is locked first */
- static int drm_exec_lock_contended(struct drm_exec *exec)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index c2e6495a28bc5..17223e295ff25 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -793,7 +793,7 @@ static int amdgpu_cs_bo_validate(void *param, struct amdgpu_bo *bo)
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
+-		.resv = bo->tbo.base.resv
++		.exec = &p->exec,
+ 	};
+ 	uint32_t domain;
+ 	int r;
+@@ -845,7 +845,10 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 				union drm_amdgpu_cs *cs)
  {
--	struct drm_gem_object *obj = exec->contended;
-+	struct dma_resv *resv = exec->contended;
- 	int ret;
- 
--	if (likely(!obj))
-+	if (likely(!resv))
- 		return 0;
- 
- 	/* Always cleanup the contention so that error handling can kick in */
- 	exec->contended = NULL;
- 	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT) {
--		ret = dma_resv_lock_slow_interruptible(obj->resv,
--						       &exec->ticket);
-+		ret = dma_resv_lock_slow_interruptible(resv, &exec->ticket);
- 		if (unlikely(ret))
- 			goto error_dropref;
- 	} else {
--		dma_resv_lock_slow(obj->resv, &exec->ticket);
-+		dma_resv_lock_slow(resv, &exec->ticket);
+ 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
+-	struct ttm_operation_ctx ctx = { true, false };
++	struct ttm_operation_ctx ctx = {
++		.interruptible =true,
++		.exec = &p->exec
++	};
+ 	struct amdgpu_vm *vm = &fpriv->vm;
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct drm_gem_object *obj;
+@@ -899,6 +902,11 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		e->user_invalidated = userpage_invalidated;
  	}
  
--	ret = drm_exec_obj_locked(exec, obj);
--	if (unlikely(ret))
--		goto error_unlock;
--
--	exec->prelocked = obj;
-+	exec->prelocked = resv;
- 	return 0;
- 
--error_unlock:
--	dma_resv_unlock(obj->resv);
--
- error_dropref:
--	drm_gem_object_put(obj);
-+	dma_resv_put(resv);
- 	return ret;
- }
- 
- /**
-- * drm_exec_lock_obj - lock a GEM object for use
-+ * drm_exec_lock_resv - lock a dma_resv object
-  * @exec: the drm_exec object with the state
-- * @obj: the GEM object to lock
-+ * @resv: the dma_resv object to lock
-  *
-- * Lock a GEM object for use and grab a reference to it.
-+ * Lock a dma_resv object for use or grab a reference to it on contention.
-  *
-  * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
-- * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
-- * flag), -ENOMEM when memory allocation failed and zero for success.
-+ * already locked, -ENOMEM when memory allocation failed and zero for success.
-  */
--int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
-+int drm_exec_lock_resv(struct drm_exec *exec, struct dma_resv *resv)
- {
- 	int ret;
- 
-@@ -209,22 +203,39 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- 	if (unlikely(ret))
- 		return ret;
- 
--	if (exec->prelocked == obj) {
--		drm_gem_object_put(exec->prelocked);
-+	if (exec->prelocked == resv) {
-+		dma_resv_put(exec->prelocked);
- 		exec->prelocked = NULL;
- 		return 0;
- 	}
- 
- 	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT)
--		ret = dma_resv_lock_interruptible(obj->resv, &exec->ticket);
-+		ret = dma_resv_lock_interruptible(resv, &exec->ticket);
- 	else
--		ret = dma_resv_lock(obj->resv, &exec->ticket);
-+		ret = dma_resv_lock(resv, &exec->ticket);
- 
--	if (unlikely(ret == -EDEADLK)) {
--		drm_gem_object_get(obj);
--		exec->contended = obj;
--		return -EDEADLK;
++	amdgpu_cs_get_threshold_for_moves(p->adev, &p->bytes_moved_threshold,
++					  &p->bytes_moved_vis_threshold);
++	p->bytes_moved = 0;
++	p->bytes_moved_vis = 0;
++
+ 	drm_exec_until_all_locked(&p->exec) {
+ 		r = amdgpu_vm_lock_pd(&fpriv->vm, &p->exec, 1 + p->gang_size);
+ 		drm_exec_retry_on_contention(&p->exec);
+@@ -922,47 +930,48 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 			if (unlikely(r))
+ 				goto out_free_user_pages;
+ 		}
 -	}
-+	if (unlikely(ret == -EDEADLK))
-+		exec->contended = dma_resv_get(resv);
-+	return ret;
-+}
-+EXPORT_SYMBOL(drm_exec_lock_resv);
+ 
+-	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
+-		struct mm_struct *usermm;
++		amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
++			struct mm_struct *usermm;
+ 
+-		usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
+-		if (usermm && usermm != current->mm) {
+-			r = -EPERM;
+-			goto out_free_user_pages;
+-		}
+-
+-		if (amdgpu_ttm_tt_is_userptr(e->bo->tbo.ttm) &&
+-		    e->user_invalidated) {
+-			amdgpu_bo_placement_from_domain(e->bo,
+-							AMDGPU_GEM_DOMAIN_CPU);
+-			r = ttm_bo_validate(&e->bo->tbo, &e->bo->placement,
+-					    &ctx);
+-			if (r)
++			usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
++			if (usermm && usermm != current->mm) {
++				r = -EPERM;
+ 				goto out_free_user_pages;
++			}
+ 
+-			amdgpu_ttm_tt_set_user_pages(e->bo->tbo.ttm,
+-						     e->range);
++			if (amdgpu_ttm_tt_is_userptr(e->bo->tbo.ttm) &&
++			    e->user_invalidated) {
++				amdgpu_bo_placement_from_domain(e->bo,
++								AMDGPU_GEM_DOMAIN_CPU);
++				r = ttm_bo_validate(&e->bo->tbo, &e->bo->placement,
++						    &ctx);
++				drm_exec_retry_on_contention(&p->exec);
++				if (r)
++					goto out_free_user_pages;
 +
-+/**
-+ * drm_exec_lock_obj - lock a GEM object for use
-+ * @exec: the drm_exec object with the state
-+ * @obj: the GEM object to lock
-+ *
-+ * Lock a GEM object for use and grab a reference to it.
-+ *
-+ * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
-+ * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
-+ * flag), -ENOMEM when memory allocation failed and zero for success.
-+ */
-+int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
-+{
-+	int ret;
-+
-+	ret = drm_exec_lock_resv(exec, obj->resv);
++				amdgpu_ttm_tt_set_user_pages(e->bo->tbo.ttm,
++							     e->range);
++			}
+ 		}
+-	}
  
- 	if (unlikely(ret == -EALREADY) &&
- 	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
-diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-index bbcbd25f014f0..f5cf9ad596a67 100644
---- a/drivers/gpu/drm/drm_gem.c
-+++ b/drivers/gpu/drm/drm_gem.c
-@@ -229,6 +229,8 @@ void drm_gem_private_object_init(struct drm_device *dev,
- 	obj->size = size;
- 	mutex_init(&obj->gpuva.lock);
- 	dma_resv_init(&obj->_resv);
-+
-+	/* TODO: This needs to go away for drm_exec to work correctly!!! */
- 	if (!obj->resv)
- 		obj->resv = dma_resv_get(&obj->_resv);
+-	amdgpu_cs_get_threshold_for_moves(p->adev, &p->bytes_moved_threshold,
+-					  &p->bytes_moved_vis_threshold);
+-	p->bytes_moved = 0;
+-	p->bytes_moved_vis = 0;
++		r = amdgpu_vm_validate(p->adev, &fpriv->vm, NULL,
++				       amdgpu_cs_bo_validate, p);
++		drm_exec_retry_on_contention(&p->exec);
++		if (r) {
++			drm_err(adev_to_drm(p->adev), "amdgpu_vm_validate() failed.\n");
++			goto out_free_user_pages;
++		}
  
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index 8725ba92ff916..9daedb676d7b1 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -47,14 +47,14 @@ struct drm_exec {
- 	struct drm_gem_object	**objects;
+-	r = amdgpu_vm_validate(p->adev, &fpriv->vm, NULL,
+-			       amdgpu_cs_bo_validate, p);
+-	if (r) {
+-		drm_err(adev_to_drm(p->adev), "amdgpu_vm_validate() failed.\n");
+-		goto out_free_user_pages;
+-	}
++		drm_exec_for_each_locked_object(&p->exec, obj) {
++			r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
++			drm_exec_retry_on_contention(&p->exec);
++			if (unlikely(r))
++				goto out_free_user_pages;
  
- 	/**
--	 * @contended: contended GEM object we backed off for
-+	 * @contended: contended dma_resv object we backed off for
- 	 */
--	struct drm_gem_object	*contended;
-+	struct dma_resv		*contended;
+-	drm_exec_for_each_locked_object(&p->exec, obj) {
+-		r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
+-		if (unlikely(r))
+-			goto out_free_user_pages;
++			amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
++						     p->bytes_moved_vis);
++		}
+ 	}
  
- 	/**
--	 * @prelocked: already locked GEM object due to contention
-+	 * @prelocked: already locked dma_resv object due to contention
- 	 */
--	struct drm_gem_object *prelocked;
-+	struct dma_resv		*prelocked;
- };
+ 	if (p->uf_bo) {
+@@ -973,9 +982,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		p->gang_leader->uf_addr += amdgpu_bo_gpu_offset(p->uf_bo);
+ 	}
  
- /**
-@@ -175,6 +175,7 @@ static inline struct ww_acquire_ctx *drm_exec_ticket(struct drm_exec *exec)
- void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
- void drm_exec_fini(struct drm_exec *exec);
- bool drm_exec_cleanup(struct drm_exec *exec);
-+int drm_exec_lock_resv(struct drm_exec *exec, struct dma_resv *resv);
- int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
- void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
- int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
+-	amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
+-				     p->bytes_moved_vis);
+-
+ 	for (i = 0; i < p->gang_size; ++i)
+ 		amdgpu_job_set_resources(p->jobs[i], p->bo_list->gds_obj,
+ 					 p->bo_list->gws_obj,
 -- 
 2.43.0
 
