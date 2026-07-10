@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98C77C43458
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 14:43:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A11EC43458
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 15:14:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3E610E271;
-	Fri, 10 Jul 2026 14:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4656510E1E9;
+	Fri, 10 Jul 2026 15:14:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cEq0r7Jx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eJieYKpC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B219410E271;
- Fri, 10 Jul 2026 14:43:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0A3910E1E9
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 15:14:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783694638; x=1815230638;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=P/xTpRQYMnd8u/4+Tw0FzTUYhWK0cV5/lwQ3OzgYZ1g=;
- b=cEq0r7JxSCbd0ZbubfrWG30YEqCu8R/qx14qHORITDHrNEBKh0qEcT6z
- QKbt4nCUXvOyh48DyrC5WRE6oXas7ugcSTOdd+b2C7WOzjGqNeYlPAahA
- nR4yWcqsMy0kbMrdCgYdAYZzIEgAvmGizOYDCVHgnIG/QK7optaYHY/DL
- h4EbnUzYY2RwLl0Cp3EQM+iNAC1a5UL24OtLFYxZNb9SsUrXismlu6gxp
- AQaSoJNLm/oBg0T/oHWCNKZp/OwIxMmjX9CfjI0IzU+Ly8c1T0Jw7Yfvn
- 6chBULH7eyfZHIW2BOteGCHh034XfHnA02cycHqfgsPVBY57hqMZzB0JI g==;
-X-CSE-ConnectionGUID: DOKH8/TaQcWF3I2E+rA1wg==
-X-CSE-MsgGUID: nWv8fLBtSneUMoE9R+tKdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95040123"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95040123"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 07:43:58 -0700
-X-CSE-ConnectionGUID: UI+Pb0gwS0We7SIQUxPtew==
-X-CSE-MsgGUID: qQi3cn8RR02z1tltzmgnIA==
+ t=1783696477; x=1815232477;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=EMM65rhM6dkeXBw7nZUAd4RQkERGQjDlJeUgMvScY4w=;
+ b=eJieYKpC8i/heR2x6TZwkwk3IEJgk16m3p97YlV8zT2JKjDeqQnNCiWQ
+ clh+xOg4Ev4UOyslGKG7PNKEdA/v1ElUJEph5TKaIA4YbYKO3A6aIoYBs
+ xMsKMosu+gIEGPDPrfSZemJg5q2fxdcLtYNLIuRiDPcPAlGjnoSENNcyC
+ yfKBaClYo6iL4pBu4D9R3yVJU6y5DnH3DOMq6W1dZORN8iWkNjl6xThJ0
+ CvsZl6AQp5G5twlhy/6dAcPIQAhKK5EWlTsUp5K84VcPZRMfNv9RPr5iM
+ 636e8hCu4tL6Nqx6jiIafQAPZ9CnSYE3R5bJdEc39Pddhmf4PyaYuuhwt A==;
+X-CSE-ConnectionGUID: 2mgOLBJBRfO7g0trItqgDw==
+X-CSE-MsgGUID: Y7Rot9L1Tzy6XUM4rzYkRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84589386"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84589386"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 08:14:37 -0700
+X-CSE-ConnectionGUID: K63PHow6QQO13QOwC2BOyQ==
+X-CSE-MsgGUID: mEIjbmtsT9eTFK2YpE7o1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="250915261"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.208])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 07:43:56 -0700
-Date: Fri, 10 Jul 2026 17:43:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 00/10] drm/intel/display: Changes required to make vblank
- evasion PREEMPT_RT safe.
-Message-ID: <alEFKfqD-69wOVxJ@intel.com>
-References: <20260702072154.171324-1-dev@lankhorst.se>
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="255004116"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.203])
+ ([10.245.244.203])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 08:14:37 -0700
+Message-ID: <74396ae4-3503-466a-8c3e-02bc56a55628@intel.com>
+Date: Fri, 10 Jul 2026 16:14:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260702072154.171324-1-dev@lankhorst.se>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Don't fall through on DRM_GPUVA_OP_DRIVER in
+ op_check_svm_userptr
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260710141259.1512070-1-mika.kuoppala@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260710141259.1512070-1-mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,67 +70,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 02, 2026 at 09:21:43AM +0200, Maarten Lankhorst wrote:
-> CONFIG_PREEMPT_RT requires code to be as deterministic as possible,
-> and codes with interrupts disabled cannot use spinlocks.
-> 
-> In order to handle this correctly, we ensure any locking requirements
-> are handled before disabling interrupts, and only start locking again
-> after interrupts are re-enabled and timing sensitive path completed.
-> 
-> This also has the benefit of making the vblank evasion code more
-> deterministic; without locking there's much less jitter.
-> 
-> Previously, we scheduled vblank work on completion.
-> This is now handled by scheduling the vblank in advance, only arming
-> it upon completion without locks.
+Hi,
 
-Sashiko found a bunch of stuff that I was also thinking would be
-a problem. Don't think I'll need to repeat it here.
+On 10/07/2026 15:12, Mika Kuoppala wrote:
+> The DRM_GPUVA_OP_DRIVER operation is used by eudebug (and potentially
+> other driver ops). Because the break was inside the #if GPUSVM block,
+> we fell through and printed the "NOT POSSIBLE" warning.
 
-I'm still thinking the easy way out would be to just convert
-everything to raw spinlocks. The uncore lock I think should become
-easier to deal with once I manage to move all of it into the
-display code. I admit that the vblank locking is kinda annoying
-and potentially inefficient. I've been pondering about making the
-vblank locks to per-crtc to at least avoid some unnecessary contention,
-but the fact that a lot of the drivers poke at the vblank internals
-directly makes it a lot more work than it should be :/
+I think throwing a warn with "NOT POSSIBLE" was maybe not the wrong 
+thing wrt SVM and the current driver code, in the sense that there would 
+be a bug somewhere if we reach here without GPUSVM support?
+
+Are you triggering this only with upcoming eudebug? i.e there is a new 
+DRM_GPUVA_OP_DRIVER user, which is not SVM?
 
 > 
-> Maarten Lankhorst (9):
->   drm/vblank_work: Add methods to schedule vblank_work in 2 stages
->   drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
->   drm/intel/display: Make intel_crtc_arm_vblank_event static
->   drm/intel/display: Convert vblank event handling to 2-stage arming
->   drm/i915/display: Move vblank put until after critical section
->   drm/i915/display: Remove locking from intel_vblank_evade critical
->     section
->   drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
->     too
->   drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
->   drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
-> 
-> Mike Galbraith (1):
->   drm/i915: Use preempt_disable/enable_rt() where recommended
-> 
->  drivers/gpu/drm/drm_vblank.c                  |  64 +++++++++-
->  drivers/gpu/drm/drm_vblank_work.c             | 110 +++++++++++++----
->  drivers/gpu/drm/i915/display/intel_crtc.c     |  86 ++++++-------
->  drivers/gpu/drm/i915/display/intel_crtc.h     |   1 -
->  drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
->  drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
->  drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
->  drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
->  drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
->  .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
->  include/drm/drm_vblank.h                      |  14 ++-
->  include/drm/drm_vblank_work.h                 |  12 ++
->  12 files changed, 324 insertions(+), 128 deletions(-)
-> 
-> -- 
-> 2.53.0
+> Fixes: 7477c4bd20dc ("drm/xe/pt: unify xe_pt_svm_pre_commit with userptr")
 
--- 
-Ville Syrjälä
-Intel
+I think maybe drop the fixes, and tweak the commit to make it clear that 
+this is just prep work for a new user?
+
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_pt.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 7111b5d0f6aa..f5ce1fcf484c 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1547,8 +1547,8 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
+>   			err = vma_check_userptr(vm, gpuva_to_vma(op->base.prefetch.va), pt_update);
+>   		}
+>   		break;
+> -#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
+>   	case DRM_GPUVA_OP_DRIVER:
+> +#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
+>   		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
+>   			struct xe_svm_range *range = op->map_range.range;
+>   
+> @@ -1561,8 +1561,8 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
+>   				return -EAGAIN;
+>   			}
+>   		}
+> -		break;
+>   #endif
+> +		break;
+>   	default:
+>   		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+>   	}
+
