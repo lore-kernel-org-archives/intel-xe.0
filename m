@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60ED1C43458
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 03:01:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 139BDC44501
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 03:05:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D23CD10E11E;
-	Fri, 10 Jul 2026 03:01:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTFuMgu3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7962410E11E
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 03:01:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783652479; x=1815188479;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2uH4QKitQq7nJcjKVpelUHmh4sdIG3HWRZWvFE0OFeU=;
- b=BTFuMgu3fxlr7T12p7dzt0hes5cRRLsNE/1tsCck7souv63UmO36s9RO
- T95pA5QYlPxhqQG/kC0wRLXYCVZNNYBisA4mslyqE28lNs8Aij3IBL9qu
- rgQ06rOCaubuLH1aV0FVodZ1uSzT5oyRTHJ80Kc/18gav2ptwiQ/8fB+t
- tGR4/WQfJ9uw8iKfKbpw4Ev6o2zXsoAw8DU5eyPUQj+mrblRJNupxwsM7
- evSp7pcYBFuk4zKemKs0o+L0n/ApZ8Kbt6b2mvLnWf7oZvYiao7/7/ioR
- Uj8RVLCx5Sri2CibkSaYhtw8V9IHFVpq3CziVtuAyFBcYuN5KIEleny89 w==;
-X-CSE-ConnectionGUID: GYrzaRtZTyicK+FScM+TNQ==
-X-CSE-MsgGUID: vmTCRxHQRUKMihM8Ms2YYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83327343"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83327343"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 20:01:19 -0700
-X-CSE-ConnectionGUID: nA9ZiOIsTrySjJWNX2iOEQ==
-X-CSE-MsgGUID: hUbBkwK+TVKaddcdUmucTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="255423677"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 20:01:17 -0700
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- tejas.upadhyay@intel.com
-Subject: [PATCH v10] drm/xe/guc: Hold device ref until queue teardown completes
-Date: Fri, 10 Jul 2026 08:31:07 +0530
-Message-ID: <20260710030107.1813068-1-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD87210F769;
+	Fri, 10 Jul 2026 03:05:16 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39B010E138;
+ Fri, 10 Jul 2026 03:05:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7151914318903945549=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vm=3A_Reject_invalid?=
+ =?utf-8?q?_prefetch_region_for_non-SVM_VMA?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Jul 2026 03:05:14 -0000
+Message-ID: <178365271479.172904.10629991350349921388@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260710021700.3611909-1-shuicheng.lin@intel.com>
+In-Reply-To: <20260710021700.3611909-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,414 +36,280 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC exec queue destruction can run asynchronously. If the final device
-put happens from a destroy worker, drmm cleanup can end up draining
-the same workqueue and deadlock.
+--===============7151914318903945549==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hold a drm_device reference for the queue lifetime and drop it after
-queue teardown completes. This keeps drmm cleanup from running while
-async destroy work is still pending.
+== Series Details ==
 
-Move GuC destroy work to a module-lifetime Xe workqueue and flush it
-on PCI remove so hot-unbind/rebind still waits for pending destroy work.
+Series: drm/xe/vm: Reject invalid prefetch region for non-SVM VMA
+URL   : https://patchwork.freedesktop.org/series/170158/
+State : success
 
-With queue-held device refs, guc_submit_sw_fini() cannot run with live
-GuC IDs. Replace the fini wait with an assertion and remove the unused
-fini_wq.
+== Summary ==
 
-v2:
-  - Rebase
+CI Bug Log - changes from xe-5379-e6db87755f42426899dd6ca45f97eb1b98e2f9fc_BAT -> xe-pw-170158v1_BAT
+====================================================
 
-v3:
-  - Switch to queue-lifetime drm_dev_get()/drm_dev_put() model. (Matt)
-  - Queue async teardown on system_dfl_wq instead of xe->destroy_wq. (Matt)
-  - Drop separate deferred drm_dev_put worker.
-  - Remove stale drain_workqueue(xe->destroy_wq) from guc_submit_sw_fini().
+Summary
+-------
 
-v4:
-  - Replace the guc_submit_sw_fini() wait with an assertion and remove
-    the now-unused fini_wq. (sashiko)
+  **SUCCESS**
 
-v5:
-  - Move destroy work to a module-lifetime Xe workqueue instead of
-    system_dfl_wq. (Matt)
-  - Flush the module-lifetime destroy workqueue during PCI remove to
-    preserve the old device-remove wait semantics.
+  No regressions found.
 
-v6:
-  - Keep SVM pagemap destroy work on the per-device destroy_wq to avoid
-    letting it outlive the xe_device/drm_device. (Sashiko)
-  - Use WQ_MEM_RECLAIM for xe->destroy_wq because SVM pagemap destroy work
-    can be queued from the reclaim path.
+  
 
-v7:
-  - Drop the per-device xe->destroy_wq and use the module-level destroy WQ
-    for SVM pagemap destroy as well. (Matt)
-  - Rename xe_exec_queue_destroy_wq_*() helpers to xe_destroy_wq_*()
-    helpers because the WQ is no longer exec-queue specific. (Matt)
+Participating hosts (11 -> 13)
+------------------------------
 
-v8:
-  - Rebase.
+  Additional (2): bat-bmg-1 bat-bmg-2 
 
-v9:
-  - Keep SVM pagemap destroy work on the per-device WQ_MEM_RECLAIM
-    destroy_wq because it can be queued from reclaim and embeds
-    the dev_pagemap used by devres teardown. (Sashiko)
-  - Keep the module-level destroy WQ GuC-only and drop WQ_MEM_RECLAIM
-    from it.
-  - Update the module-WQ kdoc to document the GuC/SVM split.
+Known issues
+------------
 
-v10:
-  - Keep xe->destroy_wq per-cpu while adding WQ_MEM_RECLAIM to fix the
-    workqueue allocation warning.
+  Here are the changes found in xe-pw-170158v1_BAT that come from known issues:
 
-Fixes: 2d2be279f1ca ("drm/xe: fix UAF around queue destruction")
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c       |  2 +-
- drivers/gpu/drm/xe/xe_device_types.h |  2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c   | 66 ++++++++++++++++------------
- drivers/gpu/drm/xe/xe_guc_types.h    |  2 -
- drivers/gpu/drm/xe/xe_module.c       | 49 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_module.h       |  5 +++
- drivers/gpu/drm/xe/xe_pci.c          |  6 +++
- drivers/gpu/drm/xe/xe_svm.c          |  5 +++
- 8 files changed, 105 insertions(+), 32 deletions(-)
+### IGT changes ###
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index ad7f3e61d457..47630e9f7410 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -581,7 +581,7 @@ int xe_device_init_early(struct xe_device *xe)
- 						       WQ_MEM_RECLAIM);
- 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
- 	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", WQ_PERCPU, 0);
--	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU, 0);
-+	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU | WQ_MEM_RECLAIM, 0);
- 	if (!xe->ordered_wq || !xe->unordered_wq ||
- 	    !xe->preempt_fence_wq || !xe->destroy_wq) {
- 		/*
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 022e08205897..56c17cca79c0 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -355,7 +355,7 @@ struct xe_device {
- 	/** @unordered_wq: used to serialize unordered work */
- 	struct workqueue_struct *unordered_wq;
- 
--	/** @destroy_wq: used to serialize user destroy work, like queue */
-+	/** @destroy_wq: used to serialize SVM pagemap destroy work */
- 	struct workqueue_struct *destroy_wq;
- 
- 	/** @tiles: device tiles */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 12416bfa3255..9b9434d7452a 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -10,6 +10,7 @@
- #include <linux/circ_buf.h>
- #include <linux/dma-fence-array.h>
- 
-+#include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- 
- #include "abi/guc_actions_abi.h"
-@@ -37,6 +38,7 @@
- #include "xe_macros.h"
- #include "xe_map.h"
- #include "xe_mocs.h"
-+#include "xe_module.h"
- #include "xe_pm.h"
- #include "xe_ring_ops_types.h"
- #include "xe_sched_job.h"
-@@ -232,17 +234,9 @@ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
- static void guc_submit_sw_fini(struct drm_device *drm, void *arg)
- {
- 	struct xe_guc *guc = arg;
--	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_gt *gt = guc_to_gt(guc);
--	int ret;
--
--	ret = wait_event_timeout(guc->submission_state.fini_wq,
--				 xa_empty(&guc->submission_state.exec_queue_lookup),
--				 HZ * 5);
- 
--	drain_workqueue(xe->destroy_wq);
--
--	xe_gt_assert(gt, ret);
-+	xe_gt_assert(gt, xa_empty(&guc->submission_state.exec_queue_lookup));
- 
- 	xa_destroy(&guc->submission_state.exec_queue_lookup);
- }
-@@ -319,8 +313,6 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids)
- 
- 	xa_init(&guc->submission_state.exec_queue_lookup);
- 
--	init_waitqueue_head(&guc->submission_state.fini_wq);
--
- 	primelockdep(guc);
- 
- 	guc->submission_state.initialized = true;
-@@ -411,9 +403,6 @@ static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q,
- 	xe_guc_id_mgr_release_locked(&guc->submission_state.idm,
- 				     q->guc->id, q->width);
- 
--	if (xa_empty(&guc->submission_state.exec_queue_lookup))
--		wake_up(&guc->submission_state.fini_wq);
--
- 	mutex_unlock(&guc->submission_state.lock);
- }
- 
-@@ -1686,6 +1675,7 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	struct xe_guc_exec_queue *ge = q->guc;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct drm_device *drm = &guc_to_xe(guc)->drm;
- 
- 	if (xe_exec_queue_is_multi_queue_secondary(q)) {
- 		struct xe_exec_queue_group *group = q->multi_queue.group;
-@@ -1704,36 +1694,52 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
- 	 * (timeline name).
- 	 */
- 	kfree_rcu(ge, rcu);
-+
-+	drm_dev_put(drm);
- }
- 
--static void __guc_exec_queue_destroy_async(struct work_struct *w)
-+static void guc_exec_queue_do_destroy(struct xe_exec_queue *q)
- {
--	struct xe_guc_exec_queue *ge =
--		container_of(w, struct xe_guc_exec_queue, destroy_async);
--	struct xe_exec_queue *q = ge->q;
-+	struct xe_guc_exec_queue *ge = q->guc;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct xe_device *xe = guc_to_xe(guc);
-+	struct drm_device *drm = &xe->drm;
- 
--	guard(xe_pm_runtime)(guc_to_xe(guc));
--	trace_xe_exec_queue_destroy(q);
-+	/*
-+	 * guc_exec_queue_fini() drops the queue's drm_device ref.
-+	 * Keep the device alive until the PM-runtime guard unwinds.
-+	 */
-+	drm_dev_get(drm);
- 
--	/* Confirm no work left behind accessing device structures */
--	cancel_delayed_work_sync(&ge->sched.base.work_tdr);
-+	scoped_guard(xe_pm_runtime, xe) {
-+		trace_xe_exec_queue_destroy(q);
- 
--	xe_exec_queue_fini(q);
-+		/* Confirm no work left behind accessing device structures */
-+		cancel_delayed_work_sync(&ge->sched.base.work_tdr);
-+
-+		xe_exec_queue_fini(q);
-+	}
-+
-+	drm_dev_put(drm);
- }
- 
--static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
-+static void __guc_exec_queue_destroy_async(struct work_struct *w)
- {
--	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct xe_device *xe = guc_to_xe(guc);
-+	struct xe_guc_exec_queue *ge =
-+		container_of(w, struct xe_guc_exec_queue, destroy_async);
-+
-+	guc_exec_queue_do_destroy(ge->q);
-+}
- 
-+static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
-+{
- 	INIT_WORK(&q->guc->destroy_async, __guc_exec_queue_destroy_async);
- 
- 	/* We must block on kernel engines so slabs are empty on driver unload */
- 	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT || exec_queue_wedged(q))
--		__guc_exec_queue_destroy_async(&q->guc->destroy_async);
-+		guc_exec_queue_do_destroy(q);
- 	else
--		queue_work(xe->destroy_wq, &q->guc->destroy_async);
-+		xe_destroy_wq_queue(&q->guc->destroy_async);
- }
- 
- static void __guc_exec_queue_destroy(struct xe_guc *guc, struct xe_exec_queue *q)
-@@ -1928,6 +1934,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- {
- 	struct xe_gpu_scheduler *sched;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct drm_device *drm = &guc_to_xe(guc)->drm;
- 	struct workqueue_struct *submit_wq = NULL;
- 	struct xe_guc_exec_queue *ge;
- 	long timeout;
-@@ -1939,6 +1946,8 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	if (!ge)
- 		return -ENOMEM;
- 
-+	drm_dev_get(drm);
-+
- 	q->guc = ge;
- 	ge->q = q;
- 	init_rcu_head(&ge->rcu);
-@@ -2015,6 +2024,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	release_guc_id(guc, q);
- err_free:
- 	kfree(ge);
-+	drm_dev_put(drm);
- 
- 	return err;
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index c7b9642b41ba..31a2acb63ac3 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -100,8 +100,6 @@ struct xe_guc {
- 		 * even initialized - before that not even the lock is valid
- 		 */
- 		bool initialized;
--		/** @submission_state.fini_wq: submit fini wait queue */
--		wait_queue_head_t fini_wq;
- 	} submission_state;
- 
- 	/** @hwconfig: Hardware config state */
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 39e4fc85f019..848d65265443 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/init.h>
- #include <linux/module.h>
-+#include <linux/workqueue.h>
- 
- #include <drm/drm_module.h>
- 
-@@ -88,6 +89,50 @@ static int xe_check_nomodeset(void)
- 	return 0;
- }
- 
-+static struct workqueue_struct *xe_destroy_wq;
-+
-+static int __init xe_destroy_wq_module_init(void)
-+{
-+	xe_destroy_wq = alloc_workqueue("xe-guc-destroy-wq", WQ_UNBOUND, 0);
-+	if (!xe_destroy_wq)
-+		return -ENOMEM;
-+	return 0;
-+}
-+
-+static void xe_destroy_wq_module_exit(void)
-+{
-+	if (xe_destroy_wq)
-+		destroy_workqueue(xe_destroy_wq);
-+	xe_destroy_wq = NULL;
-+}
-+
-+/**
-+ * xe_destroy_wq_queue() - Queue work on the destroy workqueue
-+ * @work: work item to queue
-+ *
-+ * The destroy workqueue has module lifetime and is used for GuC exec queue
-+ * teardown that can outlive a single xe_device. SVM pagemap destroy uses the
-+ * per-device xe->destroy_wq instead.
-+ *
-+ * Return: %true if @work was queued, %false if it was already pending.
-+ */
-+bool xe_destroy_wq_queue(struct work_struct *work)
-+{
-+	return queue_work(xe_destroy_wq, work);
-+}
-+
-+/**
-+ * xe_destroy_wq_flush() - Flush the destroy workqueue
-+ *
-+ * Drains all pending destroy work. Called from PCI remove to ensure
-+ * teardown ordering before the device is destroyed.
-+ */
-+void xe_destroy_wq_flush(void)
-+{
-+	if (xe_destroy_wq)
-+		flush_workqueue(xe_destroy_wq);
-+}
-+
- struct init_funcs {
- 	int (*init)(void);
- 	void (*exit)(void);
-@@ -109,6 +154,10 @@ static const struct init_funcs init_funcs[] = {
- 		.init = xe_sched_job_module_init,
- 		.exit = xe_sched_job_module_exit,
- 	},
-+	{
-+		.init = xe_destroy_wq_module_init,
-+		.exit = xe_destroy_wq_module_exit,
-+	},
- 	{
- 		.init = xe_register_pci_driver,
- 		.exit = xe_unregister_pci_driver,
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index c75153471248..a0eb7db07770 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -8,6 +8,8 @@
- 
- #include <linux/types.h>
- 
-+struct work_struct;
-+
- /* Module modprobe variables */
- struct xe_modparam {
- 	bool probe_display;
-@@ -26,5 +28,8 @@ struct xe_modparam {
- 
- extern struct xe_modparam xe_modparam;
- 
-+bool xe_destroy_wq_queue(struct work_struct *work);
-+void xe_destroy_wq_flush(void);
-+
- #endif
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 08c14a0202d9..b0764eb90834 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -1099,6 +1099,12 @@ static void xe_pci_remove(struct pci_dev *pdev)
- 		return;
- 
- 	xe_device_remove(xe);
-+
-+	/*
-+	 * Preserve remove-time flush after moving destroy work to module
-+	 * lifetime.
-+	 */
-+	xe_destroy_wq_flush();
- 	xe_pm_fini(xe);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index e0f0c23d172d..2cb17497d950 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -1732,6 +1732,11 @@ static void xe_pagemap_destroy(struct drm_pagemap *dpagemap, bool from_atomic_or
- 	struct xe_pagemap *xpagemap = container_of(dpagemap, typeof(*xpagemap), dpagemap);
- 	struct xe_device *xe = to_xe_device(dpagemap->drm);
- 
-+	/*
-+	 * SVM pagemap destroy can be queued from reclaim and xpagemap embeds
-+	 * the dev_pagemap used by devres teardown. Keep it on the per-device
-+	 * WQ_MEM_RECLAIM destroy_wq, not the module-level GuC destroy WQ.
-+	 */
- 	if (from_atomic_or_reclaim)
- 		queue_work(xe->destroy_wq, &xpagemap->destroy_work);
- 	else
--- 
-2.43.0
+#### Issues hit ####
 
+  * igt@fbdev@write:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@fbdev@write.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#2233])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#8265])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2482]) +3 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-1:          NOTRUN -> [SKIP][8] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_exec_multi_queue@exec-sanity:
+    - bat-bmg-1:          NOTRUN -> [SKIP][10] ([Intel XE#8364]) +13 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_exec_multi_queue@exec-sanity.html
+
+  * igt@xe_exec_multi_queue@priority:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#8364]) +13 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][12] ([Intel XE#2229])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][13] ([Intel XE#2229])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][14] ([Intel XE#1420] / [Intel XE#7590])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][15] ([Intel XE#1420] / [Intel XE#7590])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][16] ([Intel XE#2245] / [Intel XE#7590])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][17] ([Intel XE#2245] / [Intel XE#7590])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][18] ([Intel XE#2236] / [Intel XE#7590])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][19] ([Intel XE#2236] / [Intel XE#7590])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+
+
+Build changes
+-------------
+
+  * Linux: xe-5379-e6db87755f42426899dd6ca45f97eb1b98e2f9fc -> xe-pw-170158v1
+
+  IGT_8997: 8997
+  xe-5379-e6db87755f42426899dd6ca45f97eb1b98e2f9fc: e6db87755f42426899dd6ca45f97eb1b98e2f9fc
+  xe-pw-170158v1: 170158v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/index.html
+
+--===============7151914318903945549==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vm: Reject invalid prefetch region for non-SVM VMA</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170158/">https://patchwork.freedesktop.org/series/170158/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5379-e6db87755f42426899dd6ca45f97eb1b98e2f9fc_BAT -&gt; xe-pw-170158v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 13)</h2>
+<p>Additional (2): bat-bmg-1 bat-bmg-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-170158v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@exec-sanity:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_exec_multi_queue@exec-sanity.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@priority:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170158v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5379-e6db87755f42426899dd6ca45f97eb1b98e2f9fc -&gt; xe-pw-170158v1</li>
+</ul>
+<p>IGT_8997: 8997<br />
+  xe-5379-e6db87755f42426899dd6ca45f97eb1b98e2f9fc: e6db87755f42426899dd6ca45f97eb1b98e2f9fc<br />
+  xe-pw-170158v1: 170158v1</p>
+
+</body>
+</html>
+
+--===============7151914318903945549==--
