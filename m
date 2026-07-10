@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4CF6C43458
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 12:45:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A873DC43458
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 12:57:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8412B10F897;
-	Fri, 10 Jul 2026 12:45:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55EDC10E1C7;
+	Fri, 10 Jul 2026 12:57:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bu5YzHf/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NTcYWVHH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDB410F897
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 12:45:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 794A510E198
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 12:57:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783687529; x=1815223529;
+ t=1783688246; x=1815224246;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=SiRxxfaKrEixWdVWrqPKMz9ASaj812XS3eMCabOJoz0=;
- b=bu5YzHf/48FjlWO5H4RLcIsWQbKJ2l6IETyXFhVB0q4fITshISEgdE2v
- QiySc+eFWFGA76qnncZ9fVdY5Qx+MuqiKFSgPPWwFZHivaFyJLROaBZDQ
- d/dPelu+CP1/6lYHkH/S27Lt9AHU94iydxb3i0xhHjTsk/56dLfpUDEUa
- LUxd8OfSdLZf2ySNl7mqpP/FkkebBpfObXBN3Mb6Sv4HML2fTbx50fgAr
- 493l02IwM5iV1yV1LsmvgE1xlQpOI1wkoZKv2MHY+PB3utbudsBFhDaoW
- BCA4dLBwCexyc706puH2/3CjNZGFDxOusow3DmFc9Gqn7z6ZsYUXghGUj A==;
-X-CSE-ConnectionGUID: pCNqYvPEQUO8Cygd1Vkd+A==
-X-CSE-MsgGUID: Lv0EUR68RNGOi8zOpk6zqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84354252"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84354252"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 05:45:28 -0700
-X-CSE-ConnectionGUID: PU2WZrMWS/aci11mZ/1A2Q==
-X-CSE-MsgGUID: yn/Bt1WwRcq1rvkwku7eoQ==
+ bh=/ScoASIQDvwH1L1fiT7RNnpKKr85jiCjg7LhUh3XK40=;
+ b=NTcYWVHHUvy3C+GPI+olRzuIHMCDEdWkhxNRzfkRGe+i5ymWTxnKDK5O
+ 7DsLlV3fEAGDS9EHduN4A4XKE5BtVE7yUgNxuAIbGYkCq24FT4KUxYWc9
+ rRcdz8Hio4jOAoXrOiQGrrcFdAFLX82Q7/Wd/NWTyc/AzJ/kRzCUTbY0p
+ HlBjHs1xlSzDZWYlRXkZ6NE3lP1TPKYHwJhRHGCh2Pra+xLP/aNKxjcgz
+ dlc0jxn85Ey3FEf8J9K03r3mdJTuRXFlCD5KwNNRkb/LuHbE5iHTgU2i/
+ rj/OHcDjFiHEF7idBmXbRvkmY7KryKdOO9c4ukdGWtXolcSpPTVi+RwqN A==;
+X-CSE-ConnectionGUID: k4NKv6mqSQm5wEuoR+9Pdw==
+X-CSE-MsgGUID: 7qUnFUswSWqldo3t8hbcCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88297438"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88297438"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 05:57:25 -0700
+X-CSE-ConnectionGUID: HKE5xD5XTLGbDXbuykAMyg==
+X-CSE-MsgGUID: N2vDJgOKTJ6YtXsPnGs48Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="253147081"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="248502768"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.151])
  ([10.245.244.151])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 05:45:27 -0700
-Message-ID: <5f6b7649d0bcc6bc37691708d985bdb558a66adb.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Hold a dma-buf reference for imported BOs
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 05:57:23 -0700
+Message-ID: <9fea8ff82fa362c7e68f2f1f805ce3fe8c0cf257.camel@linux.intel.com>
+Subject: Re: [PATCH v10] drm/xe/guc: Hold device ref until queue teardown
+ completes
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Christian Konig <christian.koenig@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>
-Date: Fri, 10 Jul 2026 14:45:24 +0200
-In-Reply-To: <20260710093726.43324-2-nitin.r.gote@intel.com>
-References: <20260710093726.43324-2-nitin.r.gote@intel.com>
+To: "Yadav, Arvind" <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com, 
+ rodrigo.vivi@intel.com, tejas.upadhyay@intel.com
+Date: Fri, 10 Jul 2026 14:57:21 +0200
+In-Reply-To: <b2745e11-a5e3-4754-812e-cd29654db193@intel.com>
+References: <20260710030107.1813068-1-arvind.yadav@intel.com>
+ <2a946288e9c348473a8c81b8ab56fb1e5ababe6c.camel@linux.intel.com>
+ <b2745e11-a5e3-4754-812e-cd29654db193@intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,275 +73,596 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-07-10 at 15:07 +0530, Nitin Gote wrote:
-> An imported dma-buf BO is created as a ttm_bo_type_sg BO whose
-> reservation object is the exporter's dma_buf->resv. The importer,
-> however, only takes a dma-buf reference after a successful
-> dma_buf_dynamic_attach(). Until then nothing keeps the exporter
-> alive,
-> so if the exporter is freed while the BO still references its resv, a
-> later access to that resv is a use-after-free:
+On Fri, 2026-07-10 at 15:30 +0530, Yadav, Arvind wrote:
 >=20
-> =C2=A0 Oops: general protection fault, probably for non-canonical address
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x6b6b6b6b6b6b6b9c
-> =C2=A0 Workqueue: ttm ttm_bo_delayed_delete [ttm]
-> =C2=A0 RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
+> On 10-07-2026 12:04, Thomas Hellstr=C3=B6m wrote:
+> > On Fri, 2026-07-10 at 08:31 +0530, Arvind Yadav wrote:
+> > > GuC exec queue destruction can run asynchronously. If the final
+> > > device
+> > > put happens from a destroy worker, drmm cleanup can end up
+> > > draining
+> > > the same workqueue and deadlock.
+> > >=20
+> > > Hold a drm_device reference for the queue lifetime and drop it
+> > > after
+> > > queue teardown completes. This keeps drmm cleanup from running
+> > > while
+> > > async destroy work is still pending.
+> > >=20
+> > > Move GuC destroy work to a module-lifetime Xe workqueue and flush
+> > > it
+> > > on PCI remove so hot-unbind/rebind still waits for pending
+> > > destroy
+> > > work.
+> > >=20
+> > > With queue-held device refs, guc_submit_sw_fini() cannot run with
+> > > live
+> > > GuC IDs. Replace the fini wait with an assertion and remove the
+> > > unused
+> > > fini_wq.
+> > >=20
+> > > v2:
+> > > =C2=A0=C2=A0 - Rebase
+> > >=20
+> > > v3:
+> > > =C2=A0=C2=A0 - Switch to queue-lifetime drm_dev_get()/drm_dev_put() m=
+odel.
+> > > (Matt)
+> > > =C2=A0=C2=A0 - Queue async teardown on system_dfl_wq instead of xe-
+> > > >destroy_wq.
+> > > (Matt)
+> > > =C2=A0=C2=A0 - Drop separate deferred drm_dev_put worker.
+> > > =C2=A0=C2=A0 - Remove stale drain_workqueue(xe->destroy_wq) from
+> > > guc_submit_sw_fini().
+> > >=20
+> > > v4:
+> > > =C2=A0=C2=A0 - Replace the guc_submit_sw_fini() wait with an assertio=
+n and
+> > > remove
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 the now-unused fini_wq. (sashiko)
+> > >=20
+> > > v5:
+> > > =C2=A0=C2=A0 - Move destroy work to a module-lifetime Xe workqueue in=
+stead
+> > > of
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 system_dfl_wq. (Matt)
+> > > =C2=A0=C2=A0 - Flush the module-lifetime destroy workqueue during PCI
+> > > remove to
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 preserve the old device-remove wait semantic=
+s.
+> > >=20
+> > > v6:
+> > > =C2=A0=C2=A0 - Keep SVM pagemap destroy work on the per-device destro=
+y_wq
+> > > to
+> > > avoid
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 letting it outlive the xe_device/drm_device.=
+ (Sashiko)
+> > > =C2=A0=C2=A0 - Use WQ_MEM_RECLAIM for xe->destroy_wq because SVM page=
+map
+> > > destroy
+> > > work
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 can be queued from the reclaim path.
+> > >=20
+> > > v7:
+> > > =C2=A0=C2=A0 - Drop the per-device xe->destroy_wq and use the module-=
+level
+> > > destroy WQ
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 for SVM pagemap destroy as well. (Matt)
+> > > =C2=A0=C2=A0 - Rename xe_exec_queue_destroy_wq_*() helpers to
+> > > xe_destroy_wq_*()
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 helpers because the WQ is no longer exec-que=
+ue specific.
+> > > (Matt)
+> > >=20
+> > > v8:
+> > > =C2=A0=C2=A0 - Rebase.
+> > >=20
+> > > v9:
+> > > =C2=A0=C2=A0 - Keep SVM pagemap destroy work on the per-device
+> > > WQ_MEM_RECLAIM
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 destroy_wq because it can be queued from rec=
+laim and embeds
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 the dev_pagemap used by devres teardown. (Sa=
+shiko)
+> > > =C2=A0=C2=A0 - Keep the module-level destroy WQ GuC-only and drop
+> > > WQ_MEM_RECLAIM
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 from it.
+> > > =C2=A0=C2=A0 - Update the module-WQ kdoc to document the GuC/SVM spli=
+t.
+> > >=20
+> > > v10:
+> > > =C2=A0=C2=A0 - Keep xe->destroy_wq per-cpu while adding WQ_MEM_RECLAI=
+M to
+> > > fix
+> > > the
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 workqueue allocation warning.
+> > If *all* work items that release the drm_device refcount are
+> > flushed at
+> > device removal (unplug) time, Why do we need the drm_device
+> > reference
+> > in the first place? Since IIRC the devres, that runs after unplug,
+> > keeps a drm_device reference?
 >=20
-> This can be reached on two paths:
 >=20
-> =C2=A0- dma_buf_dynamic_attach() fails, or
-> =C2=A0- ttm_bo_init_reserved() fails during BO creation.
+> The flush only covers work queued at unplug/remove time.=20
+> "xe_device_remove()" does not close clients or destroy user queues,
+> so a=20
+> queue can outlive the remove-time flush. That's why the queue-held=20
+> "drm_dev_get()" is still needed to keep "drm_dev_release()" and drmm=20
+> cleanup from running until queue teardown completes.
 >=20
-> In both cases the BO already has bo->base.resv pointing at the
-> exporter
-> resv, and sg BOs are always torn down via ttm_bo_delayed_delete(),
-> which
-> locks bo->base.resv asynchronously - potentially after the exporter
-> has
-> been freed.
 >=20
-> Take the dma-buf reference in xe_bo_init_locked(), before
-> ttm_bo_init_reserved(), so it also covers a creation failure there,
-> and
-> release it in xe_ttm_bo_destroy(). The reference is held for the
-> whole
-> BO lifetime, keeping the shared resv alive on every path.
+> > Similarly, if we flush all outstanding per-device GuC work at
+> > device
+> > removal time, why do we need this additional module-wide workqueue?
+> > Wouldn't it be equivalent to keep the GuC work items on the per-
+> > device
+> > destroy wq, and flush it at unplug / pci removal, the latter being
+> > the
+> > key?
 >=20
-> Closes:
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
-> GPUs")
-> Cc: stable@vger.kernel.org
-> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> Cc: Christian Konig <christian.koenig@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Suggested-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
-> ---
-> Thank you Thomas for suggesting this simpler approach over the
-> earlier
-> TTM/LRU handling.
 >=20
-> v6:
-> =C2=A0- Reworked the fix based on Thomas' suggestion. Instead of the TTM
-> resv
-> =C2=A0=C2=A0 individualization (v1-v5) plus the xe off-LRU/placement hand=
-ling
-> (v5),
-> =C2=A0=C2=A0 just hold a dma-buf reference for the imported BO lifetime s=
-o the
-> =C2=A0=C2=A0 shared resv can never be freed while the BO still references=
- it.
-> =C2=A0=C2=A0 Single xe patch, no TTM change. (Thomas)
-> =C2=A0- Take the reference in xe_bo_init_locked() before
-> ttm_bo_init_reserved()
-> =C2=A0=C2=A0 so a TTM creation failure is covered too (Thomas).
-> =C2=A0- Dropped the v5 series (drm/ttm + drm/xe off-LRU); the off-LRU
-> approach
-> =C2=A0=C2=A0 also regressed in CI BAT via ttm_bo_pipeline_gutting() creat=
-ing a
-> ghost
-> =C2=A0=C2=A0 BO that outlived the exporter.
-> =C2=A0=C2=A0 Link to v5: https://patchwork.freedesktop.org/series/169984/
-> =C2=A0=C2=A0=20
-> v5:
-> =C2=A0- Add drm/xe patch to keep imported sg BOs off the LRU before attac=
-h
-> =C2=A0=C2=A0 succeeds; the TTM fix alone is not sufficient for xe if the =
-BO is
-> =C2=A0=C2=A0 already LRU-visible. (Thomas)
-> =C2=A0=C2=A0 v4 patch:
-> =C2=A0=C2=A0
-> https://patchwork.freedesktop.org/patch/736663/?series=3D169129&rev=3D2
-> =C2=A0 - Patch 1 (drm/ttm) carries Christian's Reviewed-by from v4.
+> The PCI-remove flush only waits for destroy work already queued at
+> that=20
+> time. A user queue can outlive unplug and queue its destroy work
+> later=20
+> when the fd closes. That is why the per-device WQ is still unsafe for
+> GuC teardown, the worker can drop the final drm_device ref, enter
+> drmm=20
+> cleanup and destroy the same WQ it is running on. So the module-
+> lifetime=20
+> WQ is still needed.
 >=20
-> v4:
-> =C2=A0- Moved import_attach check to after dma_resv_copy_fences() so
-> fences
-> =C2=A0=C2=A0 are copied before returning for successful imports (Thomas).
-> =C2=A0- Removed exporter-alive claim from commit message (Thomas).
->=20
-> v3:
-> =C2=A0- Dropped the xe-side reordering approach since importer_priv must
-> be
-> =C2=A0=C2=A0 valid when dma_buf_dynamic_attach() publishes the attachment=
-.
-> =C2=A0- Per Christian's suggestion on the v1 thread, keyed the check on
-> =C2=A0=C2=A0 import_attach rather than removing the sg guard entirely.
-> =C2=A0- Fixes both xe and amdgpu in a single TTM patch.
+> Please let me know if I have missed something in this reasoning.
 
-We typically place the changelog above the ___ for xe, so it is kept in
-the commit message. And in the reverse order so v3 comes first.
+No, it sounds sane.
 
-With that fixed,
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Thanks!
+Thomas
 
 
 >=20
 >=20
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 24=
- ++++++++++++++++++++----
-> =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 3 ++-
-> =C2=A0drivers/gpu/drm/xe/xe_bo_types.h |=C2=A0 2 ++
-> =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c=C2=A0 |=C2=A0 2 +-
-> =C2=A04 files changed, 25 insertions(+), 6 deletions(-)
+> >=20
+> > > Fixes: 2d2be279f1ca ("drm/xe: fix UAF around queue destruction")
+> > > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> > > ---
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 2 +-
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_device_types.h |=C2=A0 2 +-
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_guc_submit.c=C2=A0=C2=A0 | 66 +++++=
++++++++++++-----
+> > > -----
+> > > --
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_guc_types.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 2 -
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_module.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 49 +++++++++++++++++++++
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_module.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 5 +++
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_pci.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 6 +++
+> > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 +++
+> > > =C2=A0=C2=A08 files changed, 105 insertions(+), 32 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > > b/drivers/gpu/drm/xe/xe_device.c
+> > > index ad7f3e61d457..47630e9f7410 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -581,7 +581,7 @@ int xe_device_init_early(struct xe_device
+> > > *xe)
+> > > =C2=A0=C2=A0					=09
+> > > WQ_MEM_RECLAIM);
+> > > =C2=A0=C2=A0	xe->ordered_wq =3D alloc_ordered_workqueue("xe-ordered-
+> > > wq",
+> > > 0);
+> > > =C2=A0=C2=A0	xe->unordered_wq =3D alloc_workqueue("xe-unordered-wq",
+> > > WQ_PERCPU, 0);
+> > > -	xe->destroy_wq =3D alloc_workqueue("xe-destroy-wq",
+> > > WQ_PERCPU,
+> > > 0);
+> > > +	xe->destroy_wq =3D alloc_workqueue("xe-destroy-wq",
+> > > WQ_PERCPU
+> > > > WQ_MEM_RECLAIM, 0);
+> > > =C2=A0=C2=A0	if (!xe->ordered_wq || !xe->unordered_wq ||
+> > > =C2=A0=C2=A0	=C2=A0=C2=A0=C2=A0 !xe->preempt_fence_wq || !xe->destroy=
+_wq) {
+> > > =C2=A0=C2=A0		/*
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+> > > b/drivers/gpu/drm/xe/xe_device_types.h
+> > > index 022e08205897..56c17cca79c0 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > > @@ -355,7 +355,7 @@ struct xe_device {
+> > > =C2=A0=C2=A0	/** @unordered_wq: used to serialize unordered work */
+> > > =C2=A0=C2=A0	struct workqueue_struct *unordered_wq;
+> > > =C2=A0=20
+> > > -	/** @destroy_wq: used to serialize user destroy work,
+> > > like
+> > > queue */
+> > > +	/** @destroy_wq: used to serialize SVM pagemap destroy
+> > > work
+> > > */
+> > > =C2=A0=C2=A0	struct workqueue_struct *destroy_wq;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	/** @tiles: device tiles */
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > index 12416bfa3255..9b9434d7452a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > @@ -10,6 +10,7 @@
+> > > =C2=A0=C2=A0#include <linux/circ_buf.h>
+> > > =C2=A0=C2=A0#include <linux/dma-fence-array.h>
+> > > =C2=A0=20
+> > > +#include <drm/drm_drv.h>
+> > > =C2=A0=C2=A0#include <drm/drm_managed.h>
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0#include "abi/guc_actions_abi.h"
+> > > @@ -37,6 +38,7 @@
+> > > =C2=A0=C2=A0#include "xe_macros.h"
+> > > =C2=A0=C2=A0#include "xe_map.h"
+> > > =C2=A0=C2=A0#include "xe_mocs.h"
+> > > +#include "xe_module.h"
+> > > =C2=A0=C2=A0#include "xe_pm.h"
+> > > =C2=A0=C2=A0#include "xe_ring_ops_types.h"
+> > > =C2=A0=C2=A0#include "xe_sched_job.h"
+> > > @@ -232,17 +234,9 @@ static bool
+> > > exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+> > > =C2=A0=C2=A0static void guc_submit_sw_fini(struct drm_device *drm, vo=
+id
+> > > *arg)
+> > > =C2=A0=C2=A0{
+> > > =C2=A0=C2=A0	struct xe_guc *guc =3D arg;
+> > > -	struct xe_device *xe =3D guc_to_xe(guc);
+> > > =C2=A0=C2=A0	struct xe_gt *gt =3D guc_to_gt(guc);
+> > > -	int ret;
+> > > -
+> > > -	ret =3D wait_event_timeout(guc->submission_state.fini_wq,
+> > > -				 xa_empty(&guc-
+> > > > submission_state.exec_queue_lookup),
+> > > -				 HZ * 5);
+> > > =C2=A0=20
+> > > -	drain_workqueue(xe->destroy_wq);
+> > > -
+> > > -	xe_gt_assert(gt, ret);
+> > > +	xe_gt_assert(gt, xa_empty(&guc-
+> > > > submission_state.exec_queue_lookup));
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	xa_destroy(&guc->submission_state.exec_queue_lookup);
+> > > =C2=A0=C2=A0}
+> > > @@ -319,8 +313,6 @@ int xe_guc_submit_init(struct xe_guc *guc,
+> > > unsigned int num_ids)
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	xa_init(&guc->submission_state.exec_queue_lookup);
+> > > =C2=A0=20
+> > > -	init_waitqueue_head(&guc->submission_state.fini_wq);
+> > > -
+> > > =C2=A0=C2=A0	primelockdep(guc);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	guc->submission_state.initialized =3D true;
+> > > @@ -411,9 +403,6 @@ static void __release_guc_id(struct xe_guc
+> > > *guc,
+> > > struct xe_exec_queue *q,
+> > > =C2=A0=C2=A0	xe_guc_id_mgr_release_locked(&guc->submission_state.idm,
+> > > =C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 q->guc->id, q->width);
+> > > =C2=A0=20
+> > > -	if (xa_empty(&guc->submission_state.exec_queue_lookup))
+> > > -		wake_up(&guc->submission_state.fini_wq);
+> > > -
+> > > =C2=A0=C2=A0	mutex_unlock(&guc->submission_state.lock);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > @@ -1686,6 +1675,7 @@ static void guc_exec_queue_fini(struct
+> > > xe_exec_queue *q)
+> > > =C2=A0=C2=A0{
+> > > =C2=A0=C2=A0	struct xe_guc_exec_queue *ge =3D q->guc;
+> > > =C2=A0=C2=A0	struct xe_guc *guc =3D exec_queue_to_guc(q);
+> > > +	struct drm_device *drm =3D &guc_to_xe(guc)->drm;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	if (xe_exec_queue_is_multi_queue_secondary(q)) {
+> > > =C2=A0=C2=A0		struct xe_exec_queue_group *group =3D q-
+> > > > multi_queue.group;
+> > > @@ -1704,36 +1694,52 @@ static void guc_exec_queue_fini(struct
+> > > xe_exec_queue *q)
+> > > =C2=A0=C2=A0	 * (timeline name).
+> > > =C2=A0=C2=A0	 */
+> > > =C2=A0=C2=A0	kfree_rcu(ge, rcu);
+> > > +
+> > > +	drm_dev_put(drm);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > -static void __guc_exec_queue_destroy_async(struct work_struct
+> > > *w)
+> > > +static void guc_exec_queue_do_destroy(struct xe_exec_queue *q)
+> > > =C2=A0=C2=A0{
+> > > -	struct xe_guc_exec_queue *ge =3D
+> > > -		container_of(w, struct xe_guc_exec_queue,
+> > > destroy_async);
+> > > -	struct xe_exec_queue *q =3D ge->q;
+> > > +	struct xe_guc_exec_queue *ge =3D q->guc;
+> > > =C2=A0=C2=A0	struct xe_guc *guc =3D exec_queue_to_guc(q);
+> > > +	struct xe_device *xe =3D guc_to_xe(guc);
+> > > +	struct drm_device *drm =3D &xe->drm;
+> > > =C2=A0=20
+> > > -	guard(xe_pm_runtime)(guc_to_xe(guc));
+> > > -	trace_xe_exec_queue_destroy(q);
+> > > +	/*
+> > > +	 * guc_exec_queue_fini() drops the queue's drm_device
+> > > ref.
+> > > +	 * Keep the device alive until the PM-runtime guard
+> > > unwinds.
+> > > +	 */
+> > > +	drm_dev_get(drm);
+> > > =C2=A0=20
+> > > -	/* Confirm no work left behind accessing device
+> > > structures
+> > > */
+> > > -	cancel_delayed_work_sync(&ge->sched.base.work_tdr);
+> > > +	scoped_guard(xe_pm_runtime, xe) {
+> > > +		trace_xe_exec_queue_destroy(q);
+> > > =C2=A0=20
+> > > -	xe_exec_queue_fini(q);
+> > > +		/* Confirm no work left behind accessing device
+> > > structures */
+> > > +		cancel_delayed_work_sync(&ge-
+> > > >sched.base.work_tdr);
+> > > +
+> > > +		xe_exec_queue_fini(q);
+> > > +	}
+> > > +
+> > > +	drm_dev_put(drm);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > -static void guc_exec_queue_destroy_async(struct xe_exec_queue
+> > > *q)
+> > > +static void __guc_exec_queue_destroy_async(struct work_struct
+> > > *w)
+> > > =C2=A0=C2=A0{
+> > > -	struct xe_guc *guc =3D exec_queue_to_guc(q);
+> > > -	struct xe_device *xe =3D guc_to_xe(guc);
+> > > +	struct xe_guc_exec_queue *ge =3D
+> > > +		container_of(w, struct xe_guc_exec_queue,
+> > > destroy_async);
+> > > +
+> > > +	guc_exec_queue_do_destroy(ge->q);
+> > > +}
+> > > =C2=A0=20
+> > > +static void guc_exec_queue_destroy_async(struct xe_exec_queue
+> > > *q)
+> > > +{
+> > > =C2=A0=C2=A0	INIT_WORK(&q->guc->destroy_async,
+> > > __guc_exec_queue_destroy_async);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	/* We must block on kernel engines so slabs are empty on
+> > > driver unload */
+> > > =C2=A0=C2=A0	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT ||
+> > > exec_queue_wedged(q))
+> > > -		__guc_exec_queue_destroy_async(&q->guc-
+> > > > destroy_async);
+> > > +		guc_exec_queue_do_destroy(q);
+> > > =C2=A0=C2=A0	else
+> > > -		queue_work(xe->destroy_wq, &q->guc-
+> > > >destroy_async);
+> > > +		xe_destroy_wq_queue(&q->guc->destroy_async);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0static void __guc_exec_queue_destroy(struct xe_guc *guc, =
+struct
+> > > xe_exec_queue *q)
+> > > @@ -1928,6 +1934,7 @@ static int guc_exec_queue_init(struct
+> > > xe_exec_queue *q)
+> > > =C2=A0=C2=A0{
+> > > =C2=A0=C2=A0	struct xe_gpu_scheduler *sched;
+> > > =C2=A0=C2=A0	struct xe_guc *guc =3D exec_queue_to_guc(q);
+> > > +	struct drm_device *drm =3D &guc_to_xe(guc)->drm;
+> > > =C2=A0=C2=A0	struct workqueue_struct *submit_wq =3D NULL;
+> > > =C2=A0=C2=A0	struct xe_guc_exec_queue *ge;
+> > > =C2=A0=C2=A0	long timeout;
+> > > @@ -1939,6 +1946,8 @@ static int guc_exec_queue_init(struct
+> > > xe_exec_queue *q)
+> > > =C2=A0=C2=A0	if (!ge)
+> > > =C2=A0=C2=A0		return -ENOMEM;
+> > > =C2=A0=20
+> > > +	drm_dev_get(drm);
+> > > +
+> > > =C2=A0=C2=A0	q->guc =3D ge;
+> > > =C2=A0=C2=A0	ge->q =3D q;
+> > > =C2=A0=C2=A0	init_rcu_head(&ge->rcu);
+> > > @@ -2015,6 +2024,7 @@ static int guc_exec_queue_init(struct
+> > > xe_exec_queue *q)
+> > > =C2=A0=C2=A0	release_guc_id(guc, q);
+> > > =C2=A0=C2=A0err_free:
+> > > =C2=A0=C2=A0	kfree(ge);
+> > > +	drm_dev_put(drm);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	return err;
+> > > =C2=A0=C2=A0}
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_types.h
+> > > b/drivers/gpu/drm/xe/xe_guc_types.h
+> > > index c7b9642b41ba..31a2acb63ac3 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_types.h
+> > > @@ -100,8 +100,6 @@ struct xe_guc {
+> > > =C2=A0=C2=A0		 * even initialized - before that not even the
+> > > lock
+> > > is valid
+> > > =C2=A0=C2=A0		 */
+> > > =C2=A0=C2=A0		bool initialized;
+> > > -		/** @submission_state.fini_wq: submit fini wait
+> > > queue */
+> > > -		wait_queue_head_t fini_wq;
+> > > =C2=A0=C2=A0	} submission_state;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	/** @hwconfig: Hardware config state */
+> > > diff --git a/drivers/gpu/drm/xe/xe_module.c
+> > > b/drivers/gpu/drm/xe/xe_module.c
+> > > index 39e4fc85f019..848d65265443 100644
+> > > --- a/drivers/gpu/drm/xe/xe_module.c
+> > > +++ b/drivers/gpu/drm/xe/xe_module.c
+> > > @@ -7,6 +7,7 @@
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0#include <linux/init.h>
+> > > =C2=A0=C2=A0#include <linux/module.h>
+> > > +#include <linux/workqueue.h>
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0#include <drm/drm_module.h>
+> > > =C2=A0=20
+> > > @@ -88,6 +89,50 @@ static int xe_check_nomodeset(void)
+> > > =C2=A0=C2=A0	return 0;
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > +static struct workqueue_struct *xe_destroy_wq;
+> > > +
+> > > +static int __init xe_destroy_wq_module_init(void)
+> > > +{
+> > > +	xe_destroy_wq =3D alloc_workqueue("xe-guc-destroy-wq",
+> > > WQ_UNBOUND, 0);
+> > > +	if (!xe_destroy_wq)
+> > > +		return -ENOMEM;
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void xe_destroy_wq_module_exit(void)
+> > > +{
+> > > +	if (xe_destroy_wq)
+> > > +		destroy_workqueue(xe_destroy_wq);
+> > > +	xe_destroy_wq =3D NULL;
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_destroy_wq_queue() - Queue work on the destroy workqueue
+> > > + * @work: work item to queue
+> > > + *
+> > > + * The destroy workqueue has module lifetime and is used for GuC
+> > > exec queue
+> > > + * teardown that can outlive a single xe_device. SVM pagemap
+> > > destroy
+> > > uses the
+> > > + * per-device xe->destroy_wq instead.
+> > > + *
+> > > + * Return: %true if @work was queued, %false if it was already
+> > > pending.
+> > > + */
+> > > +bool xe_destroy_wq_queue(struct work_struct *work)
+> > > +{
+> > > +	return queue_work(xe_destroy_wq, work);
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_destroy_wq_flush() - Flush the destroy workqueue
+> > > + *
+> > > + * Drains all pending destroy work. Called from PCI remove to
+> > > ensure
+> > > + * teardown ordering before the device is destroyed.
+> > > + */
+> > > +void xe_destroy_wq_flush(void)
+> > > +{
+> > > +	if (xe_destroy_wq)
+> > > +		flush_workqueue(xe_destroy_wq);
+> > > +}
+> > > +
+> > > =C2=A0=C2=A0struct init_funcs {
+> > > =C2=A0=C2=A0	int (*init)(void);
+> > > =C2=A0=C2=A0	void (*exit)(void);
+> > > @@ -109,6 +154,10 @@ static const struct init_funcs init_funcs[]
+> > > =3D {
+> > > =C2=A0=C2=A0		.init =3D xe_sched_job_module_init,
+> > > =C2=A0=C2=A0		.exit =3D xe_sched_job_module_exit,
+> > > =C2=A0=C2=A0	},
+> > > +	{
+> > > +		.init =3D xe_destroy_wq_module_init,
+> > > +		.exit =3D xe_destroy_wq_module_exit,
+> > > +	},
+> > > =C2=A0=C2=A0	{
+> > > =C2=A0=C2=A0		.init =3D xe_register_pci_driver,
+> > > =C2=A0=C2=A0		.exit =3D xe_unregister_pci_driver,
+> > > diff --git a/drivers/gpu/drm/xe/xe_module.h
+> > > b/drivers/gpu/drm/xe/xe_module.h
+> > > index c75153471248..a0eb7db07770 100644
+> > > --- a/drivers/gpu/drm/xe/xe_module.h
+> > > +++ b/drivers/gpu/drm/xe/xe_module.h
+> > > @@ -8,6 +8,8 @@
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0#include <linux/types.h>
+> > > =C2=A0=20
+> > > +struct work_struct;
+> > > +
+> > > =C2=A0=C2=A0/* Module modprobe variables */
+> > > =C2=A0=C2=A0struct xe_modparam {
+> > > =C2=A0=C2=A0	bool probe_display;
+> > > @@ -26,5 +28,8 @@ struct xe_modparam {
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0extern struct xe_modparam xe_modparam;
+> > > =C2=A0=20
+> > > +bool xe_destroy_wq_queue(struct work_struct *work);
+> > > +void xe_destroy_wq_flush(void);
+> > > +
+> > > =C2=A0=C2=A0#endif
+> > > =C2=A0=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_pci.c
+> > > b/drivers/gpu/drm/xe/xe_pci.c
+> > > index 08c14a0202d9..b0764eb90834 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > @@ -1099,6 +1099,12 @@ static void xe_pci_remove(struct pci_dev
+> > > *pdev)
+> > > =C2=A0=C2=A0		return;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	xe_device_remove(xe);
+> > > +
+> > > +	/*
+> > > +	 * Preserve remove-time flush after moving destroy work
+> > > to
+> > > module
+> > > +	 * lifetime.
+> > > +	 */
+> > > +	xe_destroy_wq_flush();
+> > > =C2=A0=C2=A0	xe_pm_fini(xe);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > > b/drivers/gpu/drm/xe/xe_svm.c
+> > > index e0f0c23d172d..2cb17497d950 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > > @@ -1732,6 +1732,11 @@ static void xe_pagemap_destroy(struct
+> > > drm_pagemap *dpagemap, bool from_atomic_or
+> > > =C2=A0=C2=A0	struct xe_pagemap *xpagemap =3D container_of(dpagemap,
+> > > typeof(*xpagemap), dpagemap);
+> > > =C2=A0=C2=A0	struct xe_device *xe =3D to_xe_device(dpagemap->drm);
+> > > =C2=A0=20
+> > > +	/*
+> > > +	 * SVM pagemap destroy can be queued from reclaim and
+> > > xpagemap embeds
+> > > +	 * the dev_pagemap used by devres teardown. Keep it on
+> > > the
+> > > per-device
+> > > +	 * WQ_MEM_RECLAIM destroy_wq, not the module-level GuC
+> > > destroy WQ.
+> > > +	 */
+> > I think this comment can be dropped. Outside the context of this
+> > patch
+> > it will be confusing?
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 85e6d9a0f575..ae730bd6f4b2 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1349,7 +1349,7 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo
-> *bo)
-> =C2=A0		backup =3D xe_bo_init_locked(xe, NULL, NULL, bo-
-> >ttm.base.resv, NULL, xe_bo_size(bo),
-> =C2=A0					=C2=A0=C2=A0
-> DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
-> =C2=A0					=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM |
-> XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -					=C2=A0=C2=A0 XE_BO_FLAG_PINNED,
-> &exec);
-> +					=C2=A0=C2=A0 XE_BO_FLAG_PINNED, NULL,
-> &exec);
-> =C2=A0		if (IS_ERR(backup)) {
-> =C2=A0			drm_exec_retry_on_contention(&exec);
-> =C2=A0			ret =3D PTR_ERR(backup);
-> @@ -1490,7 +1490,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
-> =C2=A0						=C2=A0=C2=A0 xe_bo_size(bo),
-> =C2=A0						=C2=A0=C2=A0
-> DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
-> =C2=A0						=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM
-> | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -						=C2=A0=C2=A0
-> XE_BO_FLAG_PINNED, &exec);
-> +						=C2=A0=C2=A0
-> XE_BO_FLAG_PINNED, NULL, &exec);
-> =C2=A0			if (IS_ERR(backup)) {
-> =C2=A0				drm_exec_retry_on_contention(&exec);
-> =C2=A0				ret =3D PTR_ERR(backup);
-> @@ -1826,6 +1826,8 @@ static void xe_ttm_bo_destroy(struct
-> ttm_buffer_object *ttm_bo)
-> =C2=A0
-> =C2=A0	if (bo->ttm.base.import_attach)
-> =C2=A0		drm_prime_gem_destroy(&bo->ttm.base, NULL);
-> +	if (bo->dma_buf)
-> +		dma_buf_put(bo->dma_buf);
-> =C2=A0	drm_gem_object_release(&bo->ttm.base);
-> =C2=A0
-> =C2=A0	xe_assert(xe, list_empty(&ttm_bo->base.gpuva.list));
-> @@ -2283,6 +2285,8 @@ void xe_bo_free(struct xe_bo *bo)
-> =C2=A0 * @cpu_caching: The cpu caching used for system memory backing
-> store.
-> =C2=A0 * @type: The TTM buffer object type.
-> =C2=A0 * @flags: XE_BO_FLAG_ flags.
-> + * @dma_buf: The dma-buf to reference for the BO lifetime (imported
-> BOs),
-> + * or NULL.
-> =C2=A0 * @exec: The drm_exec transaction to use for exhaustive eviction.
-> =C2=A0 *
-> =C2=A0 * Initialize or create an xe buffer object. On failure, any
-> allocated buffer
-> @@ -2294,7 +2298,8 @@ struct xe_bo *xe_bo_init_locked(struct
-> xe_device *xe, struct xe_bo *bo,
-> =C2=A0				struct xe_tile *tile, struct
-> dma_resv *resv,
-> =C2=A0				struct ttm_lru_bulk_move *bulk,
-> size_t size,
-> =C2=A0				u16 cpu_caching, enum ttm_bo_type
-> type,
-> -				u32 flags, struct drm_exec *exec)
-> +				u32 flags, struct dma_buf *dma_buf,
-> +				struct drm_exec *exec)
-> =C2=A0{
-> =C2=A0	struct ttm_operation_ctx ctx =3D {
-> =C2=A0		.interruptible =3D true,
-> @@ -2383,6 +2388,17 @@ struct xe_bo *xe_bo_init_locked(struct
-> xe_device *xe, struct xe_bo *bo,
-> =C2=A0	placement =3D (type =3D=3D ttm_bo_type_sg ||
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0 bo->flags & XE_BO_FLAG_DEFER_BACKING) ?
-> &sys_placement :
-> =C2=A0		&bo->placement;
-> +
-> +	/*
-> +	 * For imported BOs, keep the exporter dma-buf alive for the
-> BO
-> +	 * lifetime. Taken before ttm_bo_init_reserved() to also
-> cover a
-> +	 * creation failure there. Released in xe_ttm_bo_destroy().
-> +	 */
-> +	if (dma_buf) {
-> +		get_dma_buf(dma_buf);
-> +		bo->dma_buf =3D dma_buf;
-> +	}
-> +
-> =C2=A0	err =3D ttm_bo_init_reserved(&xe->ttm, &bo->ttm, type,
-> =C2=A0				=C2=A0=C2=A0 placement, alignment,
-> =C2=A0				=C2=A0=C2=A0 &ctx, NULL, resv,
-> xe_ttm_bo_destroy);
-> @@ -2500,7 +2516,7 @@ __xe_bo_create_locked(struct xe_device *xe,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vm && !xe_vm_in_fault_mode(=
-vm) &&
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 flags & XE_BO_FLAG_USER ?
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &vm->lru_bulk_move : NULL, =
-size,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu_caching, type, flags, exec);
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu_caching, type, flags, NULL,
-> exec);
-> =C2=A0	if (IS_ERR(bo))
-> =C2=A0		return bo;
-> =C2=A0
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 6340317f7d2e..7ae1d9ac0574 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -118,7 +118,8 @@ struct xe_bo *xe_bo_init_locked(struct xe_device
-> *xe, struct xe_bo *bo,
-> =C2=A0				struct xe_tile *tile, struct
-> dma_resv *resv,
-> =C2=A0				struct ttm_lru_bulk_move *bulk,
-> size_t size,
-> =C2=A0				u16 cpu_caching, enum ttm_bo_type
-> type,
-> -				u32 flags, struct drm_exec *exec);
-> +				u32 flags, struct dma_buf *dma_buf,
-> +				struct drm_exec *exec);
-> =C2=A0struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct
-> xe_tile *tile,
-> =C2=A0				=C2=A0 struct xe_vm *vm, size_t size,
-> =C2=A0				=C2=A0 enum ttm_bo_type type, u32 flags,
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h
-> b/drivers/gpu/drm/xe/xe_bo_types.h
-> index fcc63ae3f455..e45f24301050 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -36,6 +36,8 @@ struct xe_bo {
-> =C2=A0	struct xe_bo *backup_obj;
-> =C2=A0	/** @parent_obj: Ref to parent bo if this a backup_obj */
-> =C2=A0	struct xe_bo *parent_obj;
-> +	/** @dma_buf: Imported dma-buf ref to keep its resv alive.
-> */
-> +	struct dma_buf *dma_buf;
-> =C2=A0	/** @flags: flags for this buffer object */
-> =C2=A0	u32 flags;
-> =C2=A0	/** @vm: VM this BO is attached to, for extobj this will be
-> NULL */
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
-> b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 8a920e58245c..bf0728838ead 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -302,7 +302,7 @@ xe_dma_buf_create_obj(struct drm_device *dev,
-> struct dma_buf *dma_buf)
-> =C2=A0
-> =C2=A0		bo =3D xe_bo_init_locked(xe, NULL, NULL, resv, NULL,
-> dma_buf->size,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0, /* Will require 1way or
-> 2way for vm_bind */
-> -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_sg,
-> XE_BO_FLAG_SYSTEM, &exec);
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_sg,
-> XE_BO_FLAG_SYSTEM, dma_buf, &exec);
-> =C2=A0		drm_exec_retry_on_contention(&exec);
-> =C2=A0		if (IS_ERR(bo)) {
-> =C2=A0			ret =3D PTR_ERR(bo);
+>=20
+> Agreed, I will remove this comment.
+>=20
+> Thanks,
+> Arvind
+>=20
+> >=20
+> > > =C2=A0=C2=A0	if (from_atomic_or_reclaim)
+> > > =C2=A0=C2=A0		queue_work(xe->destroy_wq, &xpagemap-
+> > > >destroy_work);
+> > > =C2=A0=C2=A0	else
+> > Thanks,
+> > Thomas
