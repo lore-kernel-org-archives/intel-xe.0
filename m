@@ -4,88 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE892C43458
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 14:09:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CD2CC44507
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 14:13:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7FD89316;
-	Fri, 10 Jul 2026 14:09:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28B7D10F90E;
+	Fri, 10 Jul 2026 14:13:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kgmiif0J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBesZITJ";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85DE389316;
- Fri, 10 Jul 2026 14:09:54 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D4C2460051;
- Fri, 10 Jul 2026 14:09:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E7411F000E9;
- Fri, 10 Jul 2026 14:09:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
- s=korg; t=1783692593;
- bh=h1xi3IKQjbdJ53JCv2L+jzRlcSu7ApiSTvfpodjcvtk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=kgmiif0JKq2HSeSzJ7OofwRSlUD94iS3uEV1tKQ943E0Dw5HJBa/NodJ+UjhAlKNH
- FGbXFGZ+JEAXY3Dr+tF4ssnWwH8WP2JApHQJxCeAynEVTGBtdWPwSFCDmJ7/fOYkFW
- Kncg2+p1T/D/wvPa/3glV7KVkw5wq6sn17XSngyM=
-Date: Fri, 10 Jul 2026 16:09:16 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>,
- Thierry Reding <thierry.reding@avionic-design.de>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Srinivas Kandagatla <srini@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Peter Chen <peter.chen@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- driver-core@lists.linux.dev, devicetree@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, linux-pm@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, mfd@lists.linux.dev,
- stable@vger.kernel.org, Manuel Ebner <manuelebner@mailbox.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v3 00/20] driver core: count references of the platform
- device's fwnode, not OF node
-Message-ID: <2026071001-limelight-stoppable-d7cb@gregkh>
-References: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F99A10F90E
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 14:13:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783692793; x=1815228793;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TpmaFu654cwOORK4VqKyWiFi/Yis+tDTaOsOy7NF32o=;
+ b=YBesZITJdCYYCSsAQTzVGD9NvCsJrr6YHEZ2f0nglIJO8KqbkxzxeSf0
+ ++dPaoH60Y7SvYiuIJ99UHXWFoQflX3Vw58a/hMAmq+iocmt4ELiUSA0Z
+ srQhGXg67ZLYtffgbGK8eFMqXmNlE3HMuJcXKusVEpnpucE4t3ym0uo09
+ FtewpJKZL+k/ntX1abUHeZyQbmXRl1mYuPmZ2PktfmNAgxMLSgikmv/ky
+ +cEE5G96IpgpbFyff5felFsdFzt0abfwKQ3i+XdEhniIpZprx3XSjHJhR
+ ZOvSTyx6lFlWEr4EmHmgcREZUIJwJr00zkFIyJMDFZAmgHfrN1vlqJRRJ A==;
+X-CSE-ConnectionGUID: H9S9uohTRtS1+mjNUjCrFQ==
+X-CSE-MsgGUID: o96mjHOmTeiGBi9EPt4Khw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84442956"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84442956"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 07:13:12 -0700
+X-CSE-ConnectionGUID: cOoXtrPfRCm/rHvc7cLb3A==
+X-CSE-MsgGUID: 1L4KFQ3gR3G2DaLkUaCbbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="258496756"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO
+ mkuoppal-desk.home.arpa) ([10.245.248.117])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 07:13:11 -0700
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH] drm/xe: Don't fall through on DRM_GPUVA_OP_DRIVER in
+ op_check_svm_userptr
+Date: Fri, 10 Jul 2026 17:12:59 +0300
+Message-ID: <20260710141259.1512070-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,40 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 06, 2026 at 02:44:12PM +0200, Bartosz Golaszewski wrote:
-> Platform device core provides helper interfaces for dealing with
-> dynamically created platform devices. Most users should use
-> platform_device_register_full() which encapsulates most of the
-> operations but some modules will want to use the split approach of
-> calling platform_device_alloc() + platform_device_add() separately for
-> various reasons.
-> 
-> With many platform devices now using dynamic software nodes as their
-> primary firmware nodes and with the platform device interface being
-> extended to also better cover the use-cases of secondary software nodes,
-> I believe it makes sense to switch to counting the references of all
-> kinds of firmware nodes.
-> 
-> To that end, I identified all users of platform_device_alloc() that also
-> assign dev.of_node or dev.fwnode manually. I noticed five cases where
-> the references are not increased as they should (patches 1-5 fix these
-> users) and provided three new functions in platform_device.h that now
-> become the preferred interfaces for assigning firmware nodes to dynamic
-> platform devices (in line with platform_device_add_data(),
-> platform_device_add_resources(), etc.). The bulk of the patches in this
-> series are small driver conversions to port all users to going through
-> the new functions that now encapsulate the refcount logic. With that
-> done, the final patch seamlessly switches to counting the references of
-> all firmware node types.
-> 
-> This effort is prerequisite of removing platform_device_release_full()
-> and unifying the release path for dynamic platform devices using
-> unmanaged software nodes.
-> 
-> Merging strategy: The entire series should go through the driver core
-> tree, possibly with an immutable branch provided to solve any potential
-> conflicts though these are rather unlikely.
+The DRM_GPUVA_OP_DRIVER operation is used by eudebug (and potentially
+other driver ops). Because the break was inside the #if GPUSVM block,
+we fell through and printed the "NOT POSSIBLE" warning.
 
-I've added this to the driver-core-testing branch now, thanks!
+Fixes: 7477c4bd20dc ("drm/xe/pt: unify xe_pt_svm_pre_commit with userptr")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-greg k-h
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 7111b5d0f6aa..f5ce1fcf484c 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1547,8 +1547,8 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
+ 			err = vma_check_userptr(vm, gpuva_to_vma(op->base.prefetch.va), pt_update);
+ 		}
+ 		break;
+-#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
+ 	case DRM_GPUVA_OP_DRIVER:
++#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
+ 		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
+ 			struct xe_svm_range *range = op->map_range.range;
+ 
+@@ -1561,8 +1561,8 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
+ 				return -EAGAIN;
+ 			}
+ 		}
+-		break;
+ #endif
++		break;
+ 	default:
+ 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+ 	}
+-- 
+2.43.0
+
