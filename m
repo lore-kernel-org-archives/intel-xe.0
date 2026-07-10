@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E398C44510
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AA4DC4450C
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B08C10F9B2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E25D10F9B3;
 	Fri, 10 Jul 2026 21:55:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+kNYV5G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CuTOoGZh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ADFF10F9A8;
- Fri, 10 Jul 2026 21:54:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABC9010F98C;
+ Fri, 10 Jul 2026 21:54:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783720498; x=1815256498;
+ t=1783720496; x=1815256496;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s8nV69rF9JvhqU/iw2lgCgvsuNYQ0qwOG4N9ZK38jvo=;
- b=O+kNYV5G+JtO1IpCRvA6klE/t7QDOCop+6/SSLnO6h6Ku8dvasYcloJU
- FI0P8hrIjx0jwVVrUmiJn/jfYUw63AGPKMbEFr8CsXq7k9EFhSzgqD5Mk
- oT3U4N8BF7iN3djay/+0/uQxR82XtWM/A4TjQoxv1j5TSVlGI34eKA49M
- RwebvMlHF28WrRtv1j1HXaJbsbWLXuDnCweNlEEhbleyUsxgn0xBJ0QT1
- 5CluQr/+fHHsIzAKFnn6PDmjfYrk2IxRM5ylujFdu8UnucwKw+xQt5yRW
- jJE3kAB6AC9TDAMfTl9VRoG5BpA85/3ztuQ8Bxsjt3/M3ZaVtrKNbAImm A==;
-X-CSE-ConnectionGUID: HFrpb2RxS+WMqFXGhMH2TQ==
-X-CSE-MsgGUID: myyAGkgvQPWB8zbFw6evoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543286"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543286"
+ bh=V6LdYmrjK8Dp751Pmwfoljt9LqgFCd/zuL2biM+omUU=;
+ b=CuTOoGZhTWxa7C6m1R3uR6DaFwB5qhveJojM88Ktbj42V8JIsaF1y1BQ
+ NrMzJLOqnsavF+JybY4JLD0ZLBN9YN6vooHxVu0jM8SWRUDCgmJ0VTuOX
+ ydtTWrHT6AZIGEJJjQjIXIbiOKMo3MiETZcf5bqvxKoGlcJfd8sGwQNCK
+ wvUa3BT9wzfqYZt9vqDnZB76OysAQB9UCn1lIYi+xCGVGGl9eybybQ7gU
+ QtfZ0RG+FyaC+kQ6CHXizJkSVMIjxk09hFZC/jQTCIPJSUY4B4Q56zBhk
+ IVmr7qmlufe6LZHpSYlAQC/DY/4oGIf+EiqCFoW8tiKx5saddA4iTiI1M w==;
+X-CSE-ConnectionGUID: 981PwtPOR+aJ47Qxban/Vg==
+X-CSE-MsgGUID: w7RLkY0gRIabZEWccjy5SA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543222"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543222"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:58 -0700
-X-CSE-ConnectionGUID: CvMBT9ifRLWCWxSnpRvugQ==
-X-CSE-MsgGUID: LMlacjv6TC2Ju+0XkowfrA==
+ 10 Jul 2026 14:54:55 -0700
+X-CSE-ConnectionGUID: dO6nl+1nTfmcasrwBPIMag==
+X-CSE-MsgGUID: yYYevovrR6a9rzSvOCnYqQ==
 X-ExtLoop1: 1
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:57 -0700
+ 10 Jul 2026 14:54:55 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -51,9 +51,10 @@ Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 32/33] drm/xe: Finalize defrag-IOVA moves with post-copy job
-Date: Fri, 10 Jul 2026 14:54:41 -0700
-Message-Id: <20260710215442.2444235-33-matthew.brost@intel.com>
+Subject: [PATCH v2 25/33] drm/xe: Preallocate system BO backing outside the
+ dma-resv lock
+Date: Fri, 10 Jul 2026 14:54:34 -0700
+Message-Id: <20260710215442.2444235-26-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260710215442.2444235-1-matthew.brost@intel.com>
 References: <20260710215442.2444235-1-matthew.brost@intel.com>
@@ -74,27 +75,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wire up end-to-end defrag for IOVA-mapped BOs. A defrag move
-is eligible whenever the destination TT is IOVA mapped. The
-packed-copy step moves only changed pages; the IOVA reservation
-is transferred to the new backing so device-visible addresses
-are preserved, avoiding GPU rebind overhead.
+xe_gem_create_ioctl() populates a buffer object's backing store inside
+xe_validation_guard(), i.e. under the dma-resv lock.  For a system-memory
+buffer that means the whole page allocation - potentially stalling in
+reclaim or compaction - happens in the critical section, holding the
+reservation and blocking anything that contends on it.
 
-Add xe_bo_defrag_use_iova() to select the IOVA defrag path.
-Add xe_bo_defrag_iova_copy() to drive the move: diff new vs
-stashed old TT, link changed pages packed, blit them, then
-queue a post-copy finalize job.
+Use the TTM full-preallocation mechanism to move that work out of the
+lock.  For a system-only, non-deferred user BO, allocate the entire tt
+backing up front, before entering the validation guard, and hand the bag
+down to the populate so it merely installs the pages:
 
-The finalize job tears down the temporary packed mapping,
-transfers the full old TT reservation to the new one, and
-relinks the copied pages at natural offsets.
+  - Thread an optional struct ttm_pool_prealloc through xe_bo_create_user()
+    -> __xe_bo_create_locked() -> xe_bo_init_locked(), which stashes it in
+    ttm_operation_ctx::prealloc.  All other callers pass NULL.
 
-Borrowed pages skip the copy and simply adopt the old
-reservation.
+  - In xe_gem_create_ioctl(), for XE_BO_FLAG_SYSTEM BOs that are not VRAM,
+    stolen or deferred-backing, call ttm_pool_prealloc_fill_full() before
+    the guard and ttm_pool_prealloc_fini() after it.  The bag size covers
+    both the data pages and the appended CCS backup pages, matching the tt
+    layout in xe_ttm_tt_create(), and the caching mirrors the same path.
 
-Since reservation transfer preserves device-visible addresses,
-xe_bo_trigger_rebind() skips drm_gpuvm_bo_evict() marking;
-GPU PTEs stay valid.
+The fill is best-effort: on a short fill (or if it is skipped) the pool
+allocates the remainder in-line as before, so this is purely an
+optimisation with no behavioural change to the created BO.  fini() only
+releases the unconsumed tail, so it is safe on every success, error and
+OOM-retry path (consumed pages are owned by the tt).
+
+The fill requests reclaim backoff for higher-order chunks
+(@beneficial_reclaim_backoff): Xe runs a background defragmenter that
+upgrades suboptimal pages to beneficial order in place, so there is no
+need to stall this user context reclaiming/compacting for contiguity.
+
+To size the preallocation before the xe_bo exists, factor the CCS-pages
+decision in xe_bo_needs_ccs_pages() into a parameterised helper,
+__xe_bo_needs_ccs_pages(), and query it directly from the ioctl.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -112,453 +127,438 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 302 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 288 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c      |   8 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c |   2 +-
+ drivers/gpu/drm/xe/tests/xe_migrate.c |   6 +-
+ drivers/gpu/drm/xe/xe_bo.c            | 120 ++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_bo.h            |   8 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c       |   2 +-
+ 6 files changed, 109 insertions(+), 37 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 49c95ed67d7e..78781317b420 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -141,7 +141,7 @@ static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
+ 		kunit_info(test, "Testing system memory\n");
+ 
+ 	bo = xe_bo_create_user(xe, NULL, SZ_1M, DRM_XE_GEM_CPU_CACHING_WC,
+-			       bo_flags, exec);
++			       bo_flags, NULL, exec);
+ 	if (IS_ERR(bo)) {
+ 		KUNIT_FAIL(test, "Failed to create bo.\n");
+ 		return;
+@@ -220,7 +220,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 		xe_vm_lock(vm, false);
+ 		bo = xe_bo_create_user(xe, vm, 0x10000,
+ 				       DRM_XE_GEM_CPU_CACHING_WC,
+-				       bo_flags, exec);
++				       bo_flags, NULL, exec);
+ 		xe_vm_unlock(vm);
+ 		if (IS_ERR(bo)) {
+ 			KUNIT_FAIL(test, "bo create err=%pe\n", bo);
+@@ -229,7 +229,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 
+ 		external = xe_bo_create_user(xe, NULL, 0x10000,
+ 					     DRM_XE_GEM_CPU_CACHING_WC,
+-					     bo_flags, NULL);
++					     bo_flags, NULL, NULL);
+ 		if (IS_ERR(external)) {
+ 			KUNIT_FAIL(test, "external bo create err=%pe\n", external);
+ 			goto cleanup_bo;
+@@ -494,7 +494,7 @@ static int shrink_test_run_device(struct xe_device *xe)
+ 		/* We can create bos using WC caching here. But it is slower. */
+ 		bo = xe_bo_create_user(xe, NULL, XE_BO_SHRINK_SIZE,
+ 				       DRM_XE_GEM_CPU_CACHING_WB,
+-				       XE_BO_FLAG_SYSTEM, NULL);
++				       XE_BO_FLAG_SYSTEM, NULL, NULL);
+ 		if (IS_ERR(bo)) {
+ 			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
+ 			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index 0be8440b3976..e4fdc247c0c7 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -127,7 +127,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
+ 
+ 	kunit_info(test, "running %s\n", __func__);
+ 	bo = xe_bo_create_user(xe, NULL, size, DRM_XE_GEM_CPU_CACHING_WC,
+-			       params->mem_mask, NULL);
++			       params->mem_mask, NULL, NULL);
+ 	if (IS_ERR(bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+ 			   PTR_ERR(bo));
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 3c1be809be82..41de648b2c86 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -647,7 +647,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+ 				   DRM_XE_GEM_CPU_CACHING_WC,
+ 				   XE_BO_FLAG_SYSTEM |
+ 				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
+-				   XE_BO_FLAG_PINNED, NULL);
++				   XE_BO_FLAG_PINNED, NULL, NULL);
+ 
+ 	if (IS_ERR(sys_bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+@@ -673,7 +673,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+ 	ccs_bo = xe_bo_create_user(xe, NULL, SZ_4M,
+ 				   DRM_XE_GEM_CPU_CACHING_WC,
+ 				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+-				   XE_BO_FLAG_PINNED, NULL);
++				   XE_BO_FLAG_PINNED, NULL, NULL);
+ 
+ 	if (IS_ERR(ccs_bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+@@ -698,7 +698,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+ 	vram_bo = xe_bo_create_user(xe, NULL, SZ_4M,
+ 				    DRM_XE_GEM_CPU_CACHING_WC,
+ 				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+-				    XE_BO_FLAG_PINNED, NULL);
++				    XE_BO_FLAG_PINNED, NULL, NULL);
+ 	if (IS_ERR(vram_bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+ 			   PTR_ERR(vram_bo));
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 16d9e135cba2..0eee53f4d653 100644
+index a01004265349..d9226a3995fe 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -13,6 +13,7 @@
- #include <drm/drm_dumb_buffers.h>
- #include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_managed.h>
-+#include <drm/gpu_scheduler.h>
- #include <drm/ttm/ttm_backup.h>
- #include <drm/ttm/ttm_device.h>
- #include <drm/ttm/ttm_placement.h>
-@@ -25,6 +26,7 @@
- #include <trace/events/gpu_mem.h>
+@@ -1924,7 +1924,7 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
+ 		backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
+ 					   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+ 					   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+-					   XE_BO_FLAG_PINNED, &exec);
++					   XE_BO_FLAG_PINNED, NULL, &exec);
+ 		if (IS_ERR(backup)) {
+ 			drm_exec_retry_on_contention(&exec);
+ 			ret = PTR_ERR(backup);
+@@ -2065,7 +2065,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+ 						   xe_bo_size(bo),
+ 						   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+ 						   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+-						   XE_BO_FLAG_PINNED, &exec);
++						   XE_BO_FLAG_PINNED, NULL, &exec);
+ 			if (IS_ERR(backup)) {
+ 				drm_exec_retry_on_contention(&exec);
+ 				ret = PTR_ERR(backup);
+@@ -2860,6 +2860,8 @@ void xe_bo_free(struct xe_bo *bo)
+  * @cpu_caching: The cpu caching used for system memory backing store.
+  * @type: The TTM buffer object type.
+  * @flags: XE_BO_FLAG_ flags.
++ * @prealloc: Optional pages preallocated outside the dma-resv lock to back the
++ * bo (see ttm_operation_ctx::prealloc), or NULL.
+  * @exec: The drm_exec transaction to use for exhaustive eviction.
+  *
+  * Initialize or create an xe buffer object. On failure, any allocated buffer
+@@ -2871,12 +2873,14 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 				struct xe_tile *tile, struct dma_resv *resv,
+ 				struct ttm_lru_bulk_move *bulk, size_t size,
+ 				u16 cpu_caching, enum ttm_bo_type type,
+-				u32 flags, struct drm_exec *exec)
++				u32 flags, struct ttm_pool_prealloc *prealloc,
++				struct drm_exec *exec)
+ {
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
+ 		.gfp_retry_mayfail = true,
++		.prealloc = prealloc,
+ 	};
+ 	struct ttm_placement *placement;
+ 	uint32_t alignment;
+@@ -3053,7 +3057,8 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 		      struct xe_tile *tile, struct xe_vm *vm,
+ 		      size_t size, u64 start, u64 end,
+ 		      u16 cpu_caching, enum ttm_bo_type type, u32 flags,
+-		      u64 alignment, struct drm_exec *exec)
++		      u64 alignment, struct ttm_pool_prealloc *prealloc,
++		      struct drm_exec *exec)
+ {
+ 	struct xe_bo *bo = NULL;
+ 	int err;
+@@ -3078,7 +3083,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 			       vm && !xe_vm_in_fault_mode(vm) &&
+ 			       flags & XE_BO_FLAG_USER ?
+ 			       &vm->lru_bulk_move : NULL, size,
+-			       cpu_caching, type, flags, exec);
++			       cpu_caching, type, flags, prealloc, exec);
+ 	if (IS_ERR(bo))
+ 		return bo;
  
- #include "xe_device.h"
-+#include "xe_dep_job_types.h"
- #include "xe_dep_scheduler.h"
- #include "xe_dma_buf.h"
- #include "xe_drm_client.h"
-@@ -542,7 +544,6 @@ static void xe_tt_unaccount_iova(struct xe_device *xe,
-  * @xe_tt->iova_dma_pages[]. Used to (re)derive accounting that exactly matches
-  * the pages a tt is actually mapped with.
-  */
--__maybe_unused
- static void xe_tt_account_iova_pages(struct xe_device *xe,
- 				     struct xe_ttm_tt *xe_tt)
+@@ -3153,7 +3158,7 @@ struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
+ 				  struct drm_exec *exec)
  {
-@@ -567,7 +568,6 @@ static void xe_tt_unaccount_iova(struct xe_device *xe,
- {
+ 	return __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL, 0, type,
+-				     flags, 0, exec);
++				     flags, 0, NULL, exec);
  }
  
--__maybe_unused
- static void xe_tt_account_iova_pages(struct xe_device *xe,
- 				     struct xe_ttm_tt *xe_tt)
+ static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *tile,
+@@ -3169,7 +3174,7 @@ static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *til
+ 	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = intr},
+ 			    ret) {
+ 		bo = __xe_bo_create_locked(xe, tile, NULL, size, 0, ~0ULL,
+-					   cpu_caching, type, flags, alignment, &exec);
++					   cpu_caching, type, flags, alignment, NULL, &exec);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (IS_ERR(bo)) {
+ 			ret = PTR_ERR(bo);
+@@ -3189,6 +3194,9 @@ static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *til
+  * @size: The storage size to use for the bo.
+  * @cpu_caching: The caching mode to be used for system backing store.
+  * @flags: XE_BO_FLAG_ flags.
++ * @prealloc: Optional pages preallocated outside the dma-resv lock to back the
++ * bo (see ttm_operation_ctx::prealloc), or NULL. Only consumed on the locked
++ * (@vm or @exec) path.
+  * @exec: The drm_exec transaction to use for exhaustive eviction, or NULL
+  * if such a transaction should be initiated by the call.
+  *
+@@ -3199,7 +3207,8 @@ static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *til
+ struct xe_bo *xe_bo_create_user(struct xe_device *xe,
+ 				struct xe_vm *vm, size_t size,
+ 				u16 cpu_caching,
+-				u32 flags, struct drm_exec *exec)
++				u32 flags, struct ttm_pool_prealloc *prealloc,
++				struct drm_exec *exec)
  {
-@@ -806,7 +806,6 @@ struct xe_tt_iova_copy {
-  * differ. Coalesce contiguous changed folios into runs and, for each run,
-  * invoke @fn. Returns the total number of changed pages.
-  */
--__maybe_unused
- static pgoff_t xe_tt_iova_walk_changed(struct ttm_tt *new_tt,
- 				       struct ttm_tt *old_tt,
- 				       void (*fn)(pgoff_t start, pgoff_t count,
-@@ -855,7 +854,6 @@ struct xe_tt_iova_run_collect {
- };
+ 	struct xe_bo *bo;
  
- /* Geometrically grow @arr (element size @elem) to hold at least @need slots. */
--__maybe_unused
- static int xe_tt_iova_grow(void **arr, unsigned int *cap, unsigned int need,
- 			   size_t elem)
- {
-@@ -878,7 +876,6 @@ static int xe_tt_iova_grow(void **arr, unsigned int *cap, unsigned int need,
+@@ -3209,7 +3218,7 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe,
+ 		xe_assert(xe, exec);
+ 		bo = __xe_bo_create_locked(xe, NULL, vm, size, 0, ~0ULL,
+ 					   cpu_caching, ttm_bo_type_device,
+-					   flags, 0, exec);
++					   flags, 0, prealloc, exec);
+ 		if (!IS_ERR(bo))
+ 			xe_bo_unlock_vm_held(bo);
+ 	} else {
+@@ -3248,7 +3257,7 @@ struct xe_bo *xe_bo_create_pin_range_novm(struct xe_device *xe, struct xe_tile *
+ 
+ 	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
+ 		bo = __xe_bo_create_locked(xe, tile, NULL, size, start, end,
+-					   0, type, flags, 0, &exec);
++					   0, type, flags, 0, NULL, &exec);
+ 		if (IS_ERR(bo)) {
+ 			drm_exec_retry_on_contention(&exec);
+ 			err = PTR_ERR(bo);
+@@ -3287,7 +3296,7 @@ static struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+ 
+ 	bo = __xe_bo_create_locked(xe, tile, vm, size, start, end, 0, type,
+ 				   flags | XE_BO_FLAG_NEEDS_CPU_ACCESS | XE_BO_FLAG_PINNED,
+-				   alignment, exec);
++				   alignment, NULL, exec);
+ 	if (IS_ERR(bo))
+ 		return bo;
+ 
+@@ -3902,6 +3911,10 @@ static int gem_create_user_extensions(struct xe_device *xe, struct xe_bo *bo,
  	return 0;
  }
  
--__maybe_unused
- static void xe_tt_iova_store_run(pgoff_t start, pgoff_t count, void *arg)
++static bool __xe_bo_needs_ccs_pages(struct xe_device *xe,
++				    enum ttm_bo_type type, u32 flags,
++				    u16 cpu_caching);
++
+ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file)
  {
- 	struct xe_tt_iova_run_collect *c = arg;
-@@ -933,7 +930,6 @@ static void xe_tt_iova_store_run(pgoff_t start, pgoff_t count, void *arg)
-  *
-  * Return: 0 on success, -ENOMEM on allocation failure.
-  */
--__maybe_unused
- static int xe_tt_iova_copy_init(struct ttm_tt *new_tt, struct ttm_tt *old_tt,
- 				struct xe_tt_iova_copy *copy)
- {
-@@ -969,7 +965,6 @@ static int xe_tt_iova_copy_init(struct ttm_tt *new_tt, struct ttm_tt *old_tt,
-  * xe_tt_iova_copy_fini() - Release a struct xe_tt_iova_copy
-  * @copy: The copy description to release.
-  */
--__maybe_unused
- static void xe_tt_iova_copy_fini(struct xe_tt_iova_copy *copy)
- {
- 	kfree(copy->runs);
-@@ -1000,7 +995,6 @@ static void xe_tt_iova_copy_fini(struct xe_tt_iova_copy *copy)
-  * Return: 0 on success, negative error code on failure (any partial linkage is
-  * unwound).
-  */
--__maybe_unused
- static int xe_tt_map_iova_copy(struct xe_device *xe, struct ttm_tt *new_tt,
- 			       const struct xe_tt_iova_copy *copy)
- {
-@@ -1047,6 +1041,129 @@ static int xe_tt_map_iova_copy(struct xe_device *xe, struct ttm_tt *new_tt,
- 	return ret;
- }
- 
-+/**
-+ * struct xe_iova_defrag_job - Post-copy finalize job for an IOVA defrag move.
-+ *
-+ * After the GPU defrag copy into the packed copy-step mapping completes, this
-+ * dependency job runs the CPU-side IOMMU fixups at the point of no failure:
-+ * tear down the temporary packed mapping, then per changed run unlink the old
-+ * pages and link the new pages into the (transferred) reservation at their
-+ * natural offset.
-+ */
-+struct xe_iova_defrag_job {
-+	/** @dep: base generic dependency Xe job. */
-+	struct xe_dep_job dep;
-+	/** @xe: The xe device. */
-+	struct xe_device *xe;
-+	/** @new_tt: The destination tt being finalized (owns the reservation). */
-+	struct ttm_tt *new_tt;
-+	/**
-+	 * @copy_iova: Snapshot of the new tt's original IOVA reservation that
-+	 * held the temporary packed copy-step mapping. Destroyed by the job
-+	 * (the new tt itself adopts the old tt's reservation at job creation).
-+	 */
-+	struct dma_iova_state copy_iova;
-+	/** @copy_bytes: Byte length of the packed copy-step mapping. */
-+	size_t copy_bytes;
-+	/** @copy: Changed-page description; the job owns and frees @copy.runs. */
-+	struct xe_tt_iova_copy copy;
-+};
-+
-+static struct dma_fence *xe_iova_defrag_job_run(struct xe_dep_job *dep_job)
-+{
-+	struct xe_iova_defrag_job *job =
-+		container_of(dep_job, typeof(*job), dep);
-+	struct xe_device *xe = job->xe;
-+	struct device *dev = xe->drm.dev;
-+	struct xe_ttm_tt *xe_tt =
-+		container_of(job->new_tt, struct xe_ttm_tt, ttm);
-+	unsigned int r, l;
-+
-+	/*
-+	 * Tear down the temporary packed copy-step mapping and free its
-+	 * reservation. The new tt has already adopted the old tt's full
-+	 * reservation (transferred at job creation), so this only touches the
-+	 * snapshot taken before the transfer.
-+	 *
-+	 * This mapping was the GPU blit's write destination, so tear it down
-+	 * with attrs 0 (not DMA_ATTR_SKIP_CPU_SYNC): for non-coherent or
-+	 * bounced (SWIOTLB) mappings the device->CPU copy-back / cache sync of
-+	 * the freshly copied data happens during unlink, exactly as
-+	 * xe_tt_unmap_iova() does. Skipping it would silently drop the
-+	 * defragmented data on those configs.
-+	 */
-+	if (job->copy_bytes)
-+		dma_iova_destroy(dev, &job->copy_iova, job->copy_bytes,
-+				 DMA_BIDIRECTIONAL, 0);
-+	else
-+		dma_iova_free(dev, &job->copy_iova);
-+
-+	/*
-+	 * For each changed run, unlink the old pages (still linked from the
-+	 * adopted reservation).
-+	 */
-+	for (r = 0; r < job->copy.nr_runs; r++) {
-+		size_t off = (size_t)job->copy.runs[r].start << PAGE_SHIFT;
-+		size_t len = (size_t)job->copy.runs[r].count << PAGE_SHIFT;
-+
-+		dma_iova_unlink(dev, &xe_tt->iova, off, len,
-+				DMA_BIDIRECTIONAL, DMA_ATTR_SKIP_CPU_SYNC);
-+	}
-+
-+	/*
-+	 * Relink the freshly copied new pages from the snapshot captured at job
-+	 * creation. The destination tt's page array may have been mutated (or
-+	 * torn down) by TTM since then, so it is never dereferenced here.
-+	 * Borrowed pages are shared with the old tt and stay correctly linked
-+	 * for free, so the snapshot only covers the changed runs.
-+	 */
-+	for (l = 0; l < job->copy.nr_links; l++) {
-+		int ret = dma_iova_link(dev, &xe_tt->iova,
-+					job->copy.links[l].phys,
-+					job->copy.links[l].offset,
-+					job->copy.links[l].len,
-+					DMA_BIDIRECTIONAL,
-+					DMA_ATTR_SKIP_CPU_SYNC);
-+		/*
-+		 * Point of no failure: the data is already copied and the
-+		 * reservation ownership has been transferred. A relink failure
-+		 * leaves a hole in the mapping; there is no safe recovery, so
-+		 * just warn.
-+		 */
-+		drm_WARN_ON(&xe->drm, ret);
-+	}
-+
-+	/* Sync the relinked changed runs into the device's view. */
-+	for (r = 0; r < job->copy.nr_runs; r++) {
-+		size_t off = (size_t)job->copy.runs[r].start << PAGE_SHIFT;
-+		size_t len = (size_t)job->copy.runs[r].count << PAGE_SHIFT;
-+
-+		dma_iova_sync(dev, &xe_tt->iova, off, len);
-+	}
-+
-+	/*
-+	 * All work is synchronous CPU-side IOMMU fixup, so there is no hardware
-+	 * fence to wait on; returning NULL makes the scheduler signal the job's
-+	 * finished fence immediately.
-+	 */
-+	return NULL;
-+}
-+
-+static void xe_iova_defrag_job_free(struct xe_dep_job *dep_job)
-+{
-+	struct xe_iova_defrag_job *job =
-+		container_of(dep_job, typeof(*job), dep);
-+
-+	xe_tt_iova_copy_fini(&job->copy);
-+	drm_sched_job_cleanup(&job->dep.drm);
-+	kfree(job);
-+}
-+
-+static const struct xe_dep_job_ops xe_iova_defrag_job_ops = {
-+	.run_job = xe_iova_defrag_job_run,
-+	.free_job = xe_iova_defrag_job_free,
-+};
-+
- /*
-  * xe_tt_iova_transfer - Transfer a full IOVA reservation old_tt -> new_tt.
-  *
-@@ -1063,7 +1180,6 @@ static int xe_tt_map_iova_copy(struct xe_device *xe, struct ttm_tt *new_tt,
-  * folio walk of the new tt keeps xe->mem.dma_mapped_pages[] exact while the new
-  * mapping lives, rather than carrying the old tt's stale distribution.
-  */
--__maybe_unused
- static void xe_tt_iova_transfer(struct xe_device *xe,
- 				struct xe_ttm_tt *new_tt,
- 				struct xe_ttm_tt *old_tt)
-@@ -1078,6 +1194,135 @@ static void xe_tt_iova_transfer(struct xe_device *xe,
- 	old_tt->use_iova = false;
- }
- 
-+/*
-+ * xe_bo_defrag_iova_copy - Run an IOVA defrag move with a packed copy mapping.
-+ *
-+ * Only the changed (non-borrowed) pages of @new_tt are DMA mapped, packed
-+ * contiguously into the front of its reservation, the GPU copy blits them from
-+ * the old tt at natural offsets, and a post-copy finalize job adopts the old
-+ * tt's full reservation and relinks the changed runs. Returns the finalize
-+ * job's finished fence (the fence the move waits on), or an ERR_PTR on failure
-+ * with all partial state unwound.
-+ */
-+static struct dma_fence *
-+xe_bo_defrag_iova_copy(struct xe_device *xe, struct xe_migrate *migrate,
-+		       struct xe_bo *bo, struct ttm_resource *old_mem,
-+		       struct ttm_resource *new_mem, struct ttm_tt *old_tt,
-+		       bool handle_system_ccs)
-+{
-+	struct ttm_tt *new_tt = bo->ttm.ttm;
-+	struct xe_ttm_tt *new_xe_tt = container_of(new_tt, struct xe_ttm_tt, ttm);
-+	struct xe_ttm_tt *old_xe_tt = container_of(old_tt, struct xe_ttm_tt, ttm);
-+	struct drm_sched_entity *entity =
-+		xe_dep_scheduler_entity(xe->mem.defrag.iova_sched);
-+	struct xe_iova_defrag_job *job;
-+	struct dma_fence *copy_fence;
-+	struct dma_fence *fence;
-+	struct xe_tt_iova_copy copy;
-+	bool packed = false;
-+	int err;
-+
-+	xe_assert(xe, new_xe_tt->use_iova && !new_xe_tt->iova_linked);
-+	xe_assert(xe, old_xe_tt->use_iova && old_xe_tt->iova_linked);
-+
-+	err = xe_tt_iova_copy_init(new_tt, old_tt, &copy);
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	if (copy.nr_changed) {
-+		err = xe_tt_map_iova_copy(xe, new_tt, &copy);
-+		if (err)
-+			goto err_copy;
-+		packed = true;
-+
-+		copy_fence = xe_migrate_copy_defrag_iova(migrate, bo, old_mem,
-+							 new_mem, old_tt,
-+							 copy.nr_changed,
-+							 handle_system_ccs);
-+	} else {
-+		copy_fence = dma_fence_get_stub();
-+	}
-+	if (IS_ERR(copy_fence)) {
-+		err = PTR_ERR(copy_fence);
-+		goto err_unmap;
-+	}
-+
-+	job = kzalloc(sizeof(*job), GFP_KERNEL);
-+	if (!job) {
-+		err = -ENOMEM;
-+		goto err_fence;
-+	}
-+
-+	job->dep.ops = &xe_iova_defrag_job_ops;
-+	job->xe = xe;
-+	job->new_tt = new_tt;
-+	job->copy_iova = new_xe_tt->iova;
-+	job->copy_bytes = (size_t)copy.nr_changed << PAGE_SHIFT;
-+	job->copy = copy;
-+
-+	err = drm_sched_job_init(&job->dep.drm, entity, 1, NULL, 0);
-+	if (err)
-+		goto err_job;
-+
-+	err = drm_sched_job_add_dependency(&job->dep.drm,
-+					   dma_fence_get(copy_fence));
-+	if (err)
-+		goto err_job_init;
-+
-+	/*
-+	 * Point of no failure: transfer the old tt's full reservation to the
-+	 * new tt. The finalize job (already armed below) destroys the packed
-+	 * copy mapping snapshot and relinks the changed runs.
-+	 */
-+	xe_tt_iova_transfer(xe, new_xe_tt, old_xe_tt);
-+	memset(&copy, 0, sizeof(copy)); /* ownership moved to the job */
-+
-+	drm_sched_job_arm(&job->dep.drm);
-+	fence = dma_fence_get(&job->dep.drm.s_fence->finished);
-+	drm_sched_entity_push_job(&job->dep.drm);
-+
-+	dma_fence_put(copy_fence);
-+
-+	return fence;
-+
-+err_job_init:
-+	drm_sched_job_cleanup(&job->dep.drm);
-+err_job:
-+	kfree(job);
-+err_fence:
-+	dma_fence_put(copy_fence);
-+err_unmap:
-+	if (packed)
-+		dma_iova_unlink(xe->drm.dev, &new_xe_tt->iova, 0,
-+				(size_t)copy.nr_changed << PAGE_SHIFT,
-+				DMA_BIDIRECTIONAL, DMA_ATTR_SKIP_CPU_SYNC);
-+err_copy:
-+	xe_tt_iova_copy_fini(&copy);
-+	return ERR_PTR(err);
-+}
-+
-+/*
-+ * xe_bo_defrag_use_iova - Whether a defrag move should use the packed IOVA path.
-+ *
-+ * Eligible when the move is a defrag (stashed old tt) and the destination tt is
-+ * IOVA mapped. The IOVA reservation is transferred to the new backing, so the
-+ * device-visible addresses are preserved and no GPU rebind is needed (see
-+ * xe_bo_trigger_rebind()); this makes the path worthwhile regardless of BO
-+ * size. A flat-CCS aux pass, if needed, is migrated packed alongside the data
-+ * (changed pages only), so it does not disqualify the path. Otherwise the
-+ * full-mapping defrag path is used.
-+ */
-+static bool xe_bo_defrag_use_iova(struct ttm_buffer_object *ttm_bo)
-+{
-+	struct xe_ttm_tt *xe_tt;
-+
-+	if (!ttm_bo->defrag_old_tt || !ttm_bo->ttm)
-+		return false;
-+
-+	xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
-+	return xe_tt->use_iova;
-+}
-+
- /*
-  * Account ttm pages against the device shrinker's shrinkable and
-  * purgeable counts.
-@@ -1357,6 +1602,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 	struct drm_gem_object *obj = &bo->ttm.base;
- 	struct drm_gpuvm_bo *vm_bo;
- 	bool idle = false;
-+	bool defrag_iova;
- 	int ret = 0;
- 
- 	dma_resv_assert_held(bo->ttm.base.resv);
-@@ -1369,12 +1615,25 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 		dma_resv_iter_end(&cursor);
+@@ -3912,6 +3925,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_exec exec;
+ 	struct xe_vm *vm = NULL;
+ 	struct xe_bo *bo;
++	struct ttm_pool_prealloc prealloc = {};
++	bool have_prealloc = false;
+ 	unsigned int bo_flags;
+ 	u32 handle;
+ 	int err;
+@@ -3994,6 +4009,45 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			return -ENOENT;
  	}
  
 +	/*
-+	 * A defrag move that reallocates IOVA-mapped backing preserves the
-+	 * device-visible addresses: the IOVA reservation is transferred from
-+	 * the old to the new tt, so the existing GPU PTEs stay valid and the
-+	 * BO must not be marked evicted (the rebind paths in xe_exec_ioctl()
-+	 * and preempt_rebind_work_func() would otherwise needlessly rebind).
-+	 * Preempt fences still need to be triggered, and fault-mode / L2
-+	 * flush-optimized configs still need a TLB invalidation below, so only
-+	 * the eviction marking is skipped.
++	 * For system-only BOs, preallocate the whole backing outside the
++	 * dma-resv lock so the populate under the validation guard does not
++	 * stall in reclaim/compaction. The caching mirrors the system-BO path
++	 * in xe_ttm_tt_create(); the pool falls back to in-line allocation for
++	 * any shortfall, so a failed fill is harmless.
 +	 */
-+	defrag_iova = xe_bo_defrag_use_iova(&bo->ttm);
++	if ((bo_flags & XE_BO_FLAG_SYSTEM) &&
++	    !(bo_flags & (XE_BO_FLAG_DEFER_BACKING | XE_BO_FLAG_VRAM_MASK |
++			  XE_BO_FLAG_STOLEN))) {
++		enum ttm_caching caching = ttm_cached;
++		unsigned long num_pages = args->size >> PAGE_SHIFT;
 +
- 	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
- 		struct xe_vm *vm = gpuvm_to_vm(vm_bo->vm);
- 		struct drm_gpuva *gpuva;
- 
- 		if (!xe_vm_in_fault_mode(vm)) {
--			drm_gpuvm_bo_evict(vm_bo, true);
-+			if (!defrag_iova)
-+				drm_gpuvm_bo_evict(vm_bo, true);
- 			/*
- 			 * L2 cache may not be flushed, so ensure that is done in
- 			 * xe_vm_invalidate_vma() below
-@@ -1388,6 +1647,8 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 			 */
- 			if (!xe_vm_flush_vm_bo_tlb_async(vm, bo, vm_bo))
- 				continue;
-+			else if (defrag_iova)
-+				drm_gpuvm_bo_evict(vm_bo, true);
++		if (!IS_DGFX(xe) &&
++		    args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WC)
++			caching = ttm_write_combined;
++
++		/*
++		 * Cover the CCS backup pages appended to the tt (see
++		 * xe_ttm_tt_create()) so the whole tt is preallocated.
++		 */
++		if (__xe_bo_needs_ccs_pages(xe, ttm_bo_type_device, bo_flags,
++					    args->cpu_caching))
++			num_pages += DIV_ROUND_UP(xe_device_ccs_bytes(xe,
++								      args->size),
++						  PAGE_SIZE);
++
++		/*
++		 * Back off aggressive reclaim/compaction for higher-order
++		 * chunks here: Xe runs a background defragmenter that upgrades
++		 * suboptimal pages to beneficial order in place later, so there
++		 * is no need to stall this user context reclaiming for
++		 * contiguity.
++		 */
++		ttm_pool_prealloc_fill_full(&xe->ttm.pool, caching, &prealloc,
++					    num_pages, true);
++		have_prealloc = true;
++	}
++
+ 	err = 0;
+ 	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = true},
+ 			    err) {
+@@ -4004,7 +4058,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 				break;
  		}
+ 		bo = xe_bo_create_user(xe, vm, args->size, args->cpu_caching,
+-				       bo_flags, &exec);
++				       bo_flags, have_prealloc ? &prealloc : NULL,
++				       &exec);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (IS_ERR(bo)) {
+ 			err = PTR_ERR(bo);
+@@ -4012,6 +4067,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			break;
+ 		}
+ 	}
++	if (have_prealloc)
++		ttm_pool_prealloc_fini(&xe->ttm.pool, &prealloc);
+ 	if (err)
+ 		goto out_vm;
  
- 		if (!idle) {
-@@ -2096,6 +2357,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	bool needs_clear;
- 	bool handle_system_ccs = (!IS_DGFX(xe) && xe_bo_needs_ccs_pages(bo) &&
- 				  ttm && ttm_tt_is_populated(ttm)) ? true : false;
-+	bool defrag_iova = xe_bo_defrag_use_iova(ttm_bo);
- 	int ret = 0;
+@@ -4307,21 +4364,19 @@ int xe_bo_evict(struct xe_bo *bo, struct drm_exec *exec)
+ 	return 0;
+ }
+ 
+-/**
+- * xe_bo_needs_ccs_pages - Whether a bo needs to back up CCS pages when
+- * placed in system memory.
+- * @bo: The xe_bo
+- *
+- * Return: true if extra pages need to be allocated, false otherwise.
++/*
++ * Whether a bo with the given attributes needs to back up CCS pages when placed
++ * in system memory. Split out so callers can query before the xe_bo exists (see
++ * xe_gem_create_ioctl() preallocation).
+  */
+-bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
++static bool __xe_bo_needs_ccs_pages(struct xe_device *xe,
++				    enum ttm_bo_type type, u32 flags,
++				    u16 cpu_caching)
+ {
+-	struct xe_device *xe = xe_bo_device(bo);
+-
+ 	if (GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe))
+ 		return false;
+ 
+-	if (!xe_device_has_flat_ccs(xe) || bo->ttm.type != ttm_bo_type_device)
++	if (!xe_device_has_flat_ccs(xe) || type != ttm_bo_type_device)
+ 		return false;
+ 
+ 	/* On discrete GPUs, if the GPU can access this buffer from
+@@ -4329,24 +4384,37 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 	 * can't be used since there's no CCS storage associated with
+ 	 * non-VRAM addresses.
+ 	 */
+-	if (IS_DGFX(xe) && (bo->flags & XE_BO_FLAG_SYSTEM))
++	if (IS_DGFX(xe) && (flags & XE_BO_FLAG_SYSTEM))
+ 		return false;
+ 
+ 	/* Check if userspace explicitly requested no compression */
+-	if (bo->flags & XE_BO_FLAG_NO_COMPRESSION)
++	if (flags & XE_BO_FLAG_NO_COMPRESSION)
+ 		return false;
  
  	/*
-@@ -2144,7 +2406,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
- 		(!ttm && ttm_bo->type == ttm_bo_type_device);
+ 	 * For WB (Write-Back) CPU caching mode, check if the device
+ 	 * supports WB compression with coherency.
+ 	 */
+-	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB &&
++	if (cpu_caching == DRM_XE_GEM_CPU_CACHING_WB &&
+ 	    xe->pat.idx[XE_CACHE_WB_COMPRESSION] == XE_PAT_INVALID_IDX)
+ 		return false;
  
--	if (new_mem->mem_type == XE_PL_TT) {
-+	/*
-+	 * For a defrag move using the packed IOVA path the destination tt is
-+	 * not fully mapped here; only the changed pages are mapped (packed) for
-+	 * the copy, and the finalize job establishes the full mapping.
-+	 */
-+	if (new_mem->mem_type == XE_PL_TT && !defrag_iova) {
- 		ret = xe_tt_map(xe, ttm);
- 		if (ret)
- 			goto out;
-@@ -2254,9 +2521,16 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	return true;
+ }
  
- 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
- 	} else if (ttm_bo->defrag_old_tt) {
--		fence = xe_migrate_copy_defrag(migrate, bo, old_mem, new_mem,
--					       ttm_bo->defrag_old_tt,
--					       handle_system_ccs);
-+		if (defrag_iova)
-+			fence = xe_bo_defrag_iova_copy(xe, migrate, bo, old_mem,
-+						       new_mem,
-+						       ttm_bo->defrag_old_tt,
-+						       handle_system_ccs);
-+		else
-+			fence = xe_migrate_copy_defrag(migrate, bo, old_mem,
-+						       new_mem,
-+						       ttm_bo->defrag_old_tt,
-+						       handle_system_ccs);
- 	} else {
- 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
- 					handle_system_ccs);
++/**
++ * xe_bo_needs_ccs_pages - Whether a bo needs to back up CCS pages when
++ * placed in system memory.
++ * @bo: The xe_bo
++ *
++ * Return: true if extra pages need to be allocated, false otherwise.
++ */
++bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
++{
++	return __xe_bo_needs_ccs_pages(xe_bo_device(bo), bo->ttm.type,
++				       bo->flags, bo->cpu_caching);
++}
++
+ /**
+  * __xe_bo_release_dummy() - Dummy kref release function
+  * @kref: The embedded struct kref.
+@@ -4453,7 +4521,7 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+ 			       DRM_XE_GEM_CPU_CACHING_WC,
+ 			       XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+ 			       XE_BO_FLAG_FORCE_WC |
+-			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
++			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL, NULL);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 38d50f8122cb..18fcccd082b7 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -111,6 +111,7 @@ enum xe_madv_purgeable_state {
+ 
+ struct sg_table;
+ struct ttm_tt;
++struct ttm_pool_prealloc;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+ void xe_bo_free(struct xe_bo *bo);
+@@ -119,13 +120,16 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 				struct xe_tile *tile, struct dma_resv *resv,
+ 				struct ttm_lru_bulk_move *bulk, size_t size,
+ 				u16 cpu_caching, enum ttm_bo_type type,
+-				u32 flags, struct drm_exec *exec);
++				u32 flags, struct ttm_pool_prealloc *prealloc,
++				struct drm_exec *exec);
+ struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
+ 				  struct xe_vm *vm, size_t size,
+ 				  enum ttm_bo_type type, u32 flags,
+ 				  struct drm_exec *exec);
+ struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_vm *vm, size_t size,
+-				u16 cpu_caching, u32 flags, struct drm_exec *exec);
++				u16 cpu_caching, u32 flags,
++				struct ttm_pool_prealloc *prealloc,
++				struct drm_exec *exec);
+ struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
+ 				   struct xe_vm *vm, size_t size,
+ 				   enum ttm_bo_type type, u32 flags,
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 8a920e58245c..ec947d86a1ce 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -302,7 +302,7 @@ xe_dma_buf_create_obj(struct drm_device *dev, struct dma_buf *dma_buf)
+ 
+ 		bo = xe_bo_init_locked(xe, NULL, NULL, resv, NULL, dma_buf->size,
+ 				       0, /* Will require 1way or 2way for vm_bind */
+-				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, &exec);
++				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, NULL, &exec);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (IS_ERR(bo)) {
+ 			ret = PTR_ERR(bo);
 -- 
 2.34.1
 
