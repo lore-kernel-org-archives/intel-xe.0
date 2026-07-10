@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00F24C4450D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C67BC4450C
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9100F10F96C;
-	Fri, 10 Jul 2026 21:54:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E36EE10F963;
+	Fri, 10 Jul 2026 21:54:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jgWB5oeT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CVFOs+Ap";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8CB10E4B2;
- Fri, 10 Jul 2026 21:54:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3350210E4B2;
+ Fri, 10 Jul 2026 21:54:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783720492; x=1815256492;
+ t=1783720493; x=1815256493;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cbP6tEvbRD0S2XfIB8Mi9mEJEIVpdG6/v8k9ps/vcxM=;
- b=jgWB5oeTDYQSKg1g8Keljs1d4Fnfml6eJpLcKSTZVRXlZF3DhKYJeaZc
- Xd0aAWT1FiwpQpYeiXW9TJ8r0TohNnDph7D/+CJ03U4vKUJtEyNUCGlA8
- aVRZxt4kcFDu5It+FPGkgMFM1141I6Oy9ImzBxzSfUdITiaAoUnNoiRq9
- 51lKdizupf1ecUOEA62T3w8JwsX6kCQI3I65mx2Oj2XuaVysoEUXj4Niq
- UpOrsD05q9TH2wjTey3TkiWAQ0Wiq1BcnssCcYQpzki+pVnozb5u3u4lS
- 9VMkHcQxIyWZxYmy7HjRKlKFPtYLwt6eJ0oR6DB1bR60SWtvKyx5zzAZX A==;
-X-CSE-ConnectionGUID: UNvd5guERdalO8NnWp9UiQ==
-X-CSE-MsgGUID: JK+2GTCvT2C1ws99M4K0qA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543145"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543145"
+ bh=RU2m66qHxawEY+yc3BVQ7M+UAP7WYB/UvwO4LeO/dqA=;
+ b=CVFOs+Ap3A2ABgXFAzOFQs4VsM6kM9wgbIlcsUNhm+O9JLRHVfFZfEQb
+ 3v7eJhVUuaxcXghwLQeoNCxmCD3GxT9XY8W7g3q/86A4K8vKRkdfbM3Jt
+ dwdGXUuKqVX3k+SHVnTEGMg3Ev4cNda53KrA0cW6IvCIihNk0eiVR5ruV
+ R4wrYJhfheh0YAzWKwP+viJ3fDb4kgoVyTknPib21TDus8nmKADNFiga5
+ F2LKXz5c7twwdKMg7LZ2eB5yGQPWjnASA1xcpsLu0jt0H4/Kngl2N/0jt
+ vLAXKjicRQ3/H6+yfDZW230VGuNd5xv6DhJk9eN1qqewgp6qfsnPdPrDR g==;
+X-CSE-ConnectionGUID: s6v88XtGRFC9CPfqD1Hglw==
+X-CSE-MsgGUID: sakOvNbwSDyKGzKWDXkXPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543165"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543165"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:52 -0700
-X-CSE-ConnectionGUID: jaoiRWSESKaLCb6cQBCH7A==
-X-CSE-MsgGUID: ptQyJZmNRRCxsLaiywo/qw==
+ 10 Jul 2026 14:54:53 -0700
+X-CSE-ConnectionGUID: r/GHF95USf6QFmhhhWJArA==
+X-CSE-MsgGUID: 7BHpNNixSIKbcEhbXK93EA==
 X-ExtLoop1: 1
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:52 -0700
+ 10 Jul 2026 14:54:53 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -51,10 +51,9 @@ Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 16/33] drm/xe: Back off beneficial-order reclaim under
- defrag pressure
-Date: Fri, 10 Jul 2026 14:54:25 -0700
-Message-Id: <20260710215442.2444235-17-matthew.brost@intel.com>
+Subject: [PATCH v2 18/33] drm/xe: Handle defrag moves in xe_bo_move()
+Date: Fri, 10 Jul 2026 14:54:27 -0700
+Message-Id: <20260710215442.2444235-19-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260710215442.2444235-1-matthew.brost@intel.com>
 References: <20260710215442.2444235-1-matthew.brost@intel.com>
@@ -75,15 +74,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Once a meaningful number of BOs are already tracked as being backed at a
-sub-optimal order, continuing to push hard for beneficial-order pages
-during populate mostly wastes time in reclaim/compaction.
+Teach xe_bo_move() to service a defrag move, where TTM reallocates a
+BO's backing at the device's beneficial order and hands the old, still
+populated tt to the move via the BO's defrag_old_tt.
 
-In xe_ttm_tt_populate(), set ctx->beneficial_reclaim_backoff when the
-device defrag count reaches XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD (2)
-so the TTM pool backs off and allocations make forward progress. The
-deferred defrag pass is responsible for upgrading these objects to
-beneficial order later.
+A defrag move always has existing contents to copy, so force
+move_lacks_source false and fall through the XE_PL_TT -> XE_PL_TT no-op
+shortcut so the copy path runs. The relocation is performed entirely on
+the GPU via xe_migrate_copy_defrag(), reading the old pages from the
+stashed tt's sg table and writing the freshly reallocated backing.
+
+Both copy passes run in order on the same migrate queue and are captured
+by the returned fence, so the teardown is pipelined via
+ttm_bo_move_accel_cleanup(): the old tt is handed to a ghost object and
+only unpopulated and freed once the fence signals, so the move need not
+block. The VF CCS attach/detach handling is extended to treat a defrag
+move (ctx->defrag) like the XE_PL_SYSTEM <-> XE_PL_TT transitions it
+mirrors.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -101,41 +108,71 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 24 ++++++++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index d7b0536564ab..21d087170ef3 100644
+index 21d087170ef3..8e9fc8b3dffa 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -41,6 +41,14 @@
- #include "xe_vm.h"
- #include "xe_vram_types.h"
+@@ -1164,6 +1164,13 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	move_lacks_source = !old_mem || (handle_system_ccs ? (!bo->ccs_cleared) :
+ 					 (!mem_type_is_vram(old_mem_type) && !tt_has_data));
  
-+/*
-+ * Once this many BOs are tracked on the device defrag list (i.e. were backed
-+ * with a sub-optimal page order), request that the TTM pool backs off from
-+ * aggressive reclaim at the beneficial order during populate, so that
-+ * allocations make forward progress instead of stalling.
-+ */
-+#define XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD	2
++	/*
++	 * A defrag move always copies the existing contents from the stashed
++	 * old tt into the freshly (re)allocated backing.
++	 */
++	if (ttm_bo->defrag_old_tt)
++		move_lacks_source = false;
 +
- const char *const xe_mem_type_to_name[TTM_NUM_MEM_TYPES]  = {
- 	[XE_PL_SYSTEM] = "system",
- 	[XE_PL_TT] = "gtt",
-@@ -598,6 +606,12 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
- 	if (ttm_tt_is_backed_up(tt) && !xe_tt->purgeable) {
- 		err = ttm_tt_restore(ttm_dev, tt, ctx);
- 	} else {
-+		struct xe_device *xe = ttm_to_xe_device(ttm_dev);
-+
-+		if (atomic_read(&xe->mem.defrag.count) >=
-+		    XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD)
-+			ctx->beneficial_reclaim_backoff = true;
-+
- 		ttm_tt_clear_backed_up(tt);
- 		err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
+ 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+ 		(!ttm && ttm_bo->type == ttm_bo_type_device);
+ 
+@@ -1200,9 +1207,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	/*
+ 	 * Failed multi-hop where the old_mem is still marked as
+ 	 * TTM_PL_FLAG_TEMPORARY, should just be a dummy move.
++	 *
++	 * For a defrag move the old and new tt differ, so fallthrough to the
++	 * copy path instead of treating it as a no-op.
+ 	 */
+ 	if (old_mem_type == XE_PL_TT &&
+-	    new_mem->mem_type == XE_PL_TT) {
++	    new_mem->mem_type == XE_PL_TT && !ttm_bo->defrag_old_tt) {
+ 		ttm_bo_move_null(ttm_bo, new_mem);
+ 		goto out;
  	}
+@@ -1273,6 +1283,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 			flags |= XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
+ 
+ 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
++	} else if (ttm_bo->defrag_old_tt) {
++		struct xe_ttm_tt *old_xe_tt =
++			container_of(ttm_bo->defrag_old_tt, struct xe_ttm_tt, ttm);
++
++		fence = xe_migrate_copy_defrag(migrate, bo, old_mem, new_mem,
++					       old_xe_tt->sg, handle_system_ccs);
+ 	} else {
+ 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
+ 					handle_system_ccs);
+@@ -1309,13 +1325,13 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	 * BBs from BO as it is no longer needed.
+ 	 */
+ 	if (IS_VF_CCS_READY(xe) && old_mem_type == XE_PL_TT &&
+-	    new_mem->mem_type == XE_PL_SYSTEM)
++	    (new_mem->mem_type == XE_PL_SYSTEM || ctx->defrag))
+ 		xe_sriov_vf_ccs_detach_bo(bo);
+ 
+ 	if (IS_VF_CCS_READY(xe) &&
+ 	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
+-	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
+-	    handle_system_ccs)
++	     ((old_mem_type == XE_PL_SYSTEM || ctx->defrag) &&
++	      new_mem->mem_type == XE_PL_TT)) && handle_system_ccs)
+ 		ret = xe_sriov_vf_ccs_attach_bo(bo);
+ 
+ out:
 -- 
 2.34.1
 
