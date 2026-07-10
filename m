@@ -4,35 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F1E6C44501
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 11:14:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 922BFC44508
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 11:14:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42B7910F877;
-	Fri, 10 Jul 2026 11:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01FFF10F84B;
+	Fri, 10 Jul 2026 11:14:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Us+f5d5j";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="dDH4LNWI";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95EEC10F86C;
- Fri, 10 Jul 2026 11:14:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C115F10F87A;
+ Fri, 10 Jul 2026 11:14:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783682095;
- bh=eVO2Dssv4lilRzs4kxcyOFA5Pth+OoAw3SkARZig7WY=;
- h=From:To:Cc:Subject:Date:From;
- b=Us+f5d5jbIcnvyZSZEdJY9pOpSclw4lM0k1nhkMnQQYaCJKouEffJhtobqovOTdlC
- 45ybPFchWk8SqXGrNEfhqsQMIXFd5D73LME/CU8C4Lc3Jonu17w23z/rDCN/Pl61gJ
- 1/LICfJseUAX5ywjtJfcu57PeCAwuS+0u+mCIfqu928KDErKy1eFRx2xTbbG4TqrOX
- ckjoAZjnFHLQpNWmVHEv9zmHTumdc8LKZgyrroFDvie09T+UEgv/UKdiepLTS9l1rM
- exT0isR13+7XRWs1z+xu1gTj5cVWu8WPBp6El3rroKr70dsfNcsEIgxhcBtJisRnX5
- QcLMl4ZCikoeA==
+ s=default; t=1783682096;
+ bh=puNEFq/vgUL5AClDAG8HJvqijCJH00dnnk6QrChIzrw=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=dDH4LNWI/DLSqOazCxCu+qO54jIzYRnd70Deq/FKbFZk/vZCQIk/yIR3xsws7zOny
+ vzeaGYFBT5ZhaAZfXkV8Ww3j7UKYJ+ruEQ8SuJwN2tfsoIUDx8qITlLFzcm+8Q3D2f
+ NSvPSgxc0smi5NQrsQZOV/8V0wdr7uZIOBsTirWR2OHgm5h9XTu6rVWXI0jVFVsE5Y
+ hlEPQ4HQeITgxd4uQXvOrlAIBPj6GzjGnT6Cxtn4oFQQRemHHdT3vgpwNltWoP/tg5
+ +O7oi10RjsvfWvgS+3jw/4087z8EpM5ytBbePaP/Pk/ydPq/CmcmVJsti+NbUFBvWg
+ Jw6f8/VcmqFFg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 00/11] drm/{i915,xe}: some BIOS FB takeover fixes
-Date: Fri, 10 Jul 2026 13:15:27 +0200
-Message-ID: <20260710111539.1274555-1-dev@lankhorst.se>
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v2 02/11] drm/i915/fbdev: Extract bios_fb_ok()
+Date: Fri, 10 Jul 2026 13:15:29 +0200
+Message-ID: <20260710111539.1274555-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
+References: <20260710111539.1274555-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -50,43 +53,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are some bugs related to BIOS fb takeover, and some cleanups and fixes.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-All the patches here were previously posted by Ville under a similar series name,
-but I've taken out 3 patches I want to rework, and my motivation for each patch:
-"drm/i915: Introduce intel_bo_fbdev_bios_fb_ok()"
-- It's clear that using stolen memory on integrated platforms with media gt
-  is causing issues, I will modify it to copy the entire framebuffer bo into
-  system memory on xe.
-"drm/xe/ggtt: Decouple lmem/stolen physcial offset from GGTT offset"
-- Intermingling of 2 different goals. There was a workaround in xe_bo.c
-  to avoid trampling over the previously reserved GGTT area, but a better
-  way to solve it is by reserving GGTT explicitly here, and allocating the
-  BO  without the GGTT or map flags set initially.
-"drm/xe: Use the correct stolen offset in initial FB readout"
-- Depends on the previous changes to xe/ggtt
+Pull the "is the BIOS FB OK?" checks to a helper function. We'll
+add other relevant checks there later.
 
-Ville Syrjälä (11):
-  drm/i915: Disable the plane if initial plane config readout failed
-  drm/i915/fbdev: Extract bios_fb_ok()
-  drm/i915: Throw away the BIOS fb if has the wrong depth/bpp
-  drm/i915: Use drm_dbg_kms() for initial FB debugs
-  drm/xe: Do the initial FB size alignment earlier
-  drm/xe: Print a debug message if we have no stolen for the initial FB
-  drm/xe: Abstract the initial FB PTE checks a bit
-  drm/xe: Check the PTE local memory bit for initial FB in stolen
-  drm/xe: s/bar2/lmembar/
-  drm/i915: Fix BIOS FB memory region name debug prints
-  drm/i915: Print the phys_base in addition to the dma_addr for the BIOS
-    FB
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patch.msgid.link/20260511214122.8468-3-ville.syrjala@linux.intel.com
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 26 +++++++++++++++-------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 35 ++++++++---
- .../drm/i915/display/intel_initial_plane.c    |  6 +-
- drivers/gpu/drm/i915/i915_initial_plane.c     | 12 ++--
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 58 ++++++++++++++-----
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        | 16 ++---
- 5 files changed, 87 insertions(+), 40 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index c8d4e3a5ce6b1..bc267776106e8 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -262,6 +262,23 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
+ 
+ }
+ 
++static bool bios_fb_ok(const struct intel_framebuffer *fb,
++		       const struct drm_fb_helper_surface_size *sizes)
++{
++	struct intel_display *display = to_intel_display(fb->base.dev);
++	int width = fb->base.width;
++	int height = fb->base.height;
++
++	if (sizes->fb_width > width || sizes->fb_height > height) {
++		drm_dbg_kms(display->drm,
++			    "BIOS fb too small (%dx%d), we require (%dx%d), releasing it\n",
++			    width, height, sizes->fb_width, sizes->fb_height);
++		return false;
++	}
++
++	return true;
++}
++
+ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 				   struct drm_fb_helper_surface_size *sizes)
+ {
+@@ -279,14 +296,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 
+ 	ifbdev->fb = NULL;
+ 
+-	if (fb &&
+-	    (sizes->fb_width > fb->base.width ||
+-	     sizes->fb_height > fb->base.height)) {
+-		drm_dbg_kms(display->drm,
+-			    "BIOS fb too small (%dx%d), we require (%dx%d),"
+-			    " releasing it\n",
+-			    fb->base.width, fb->base.height,
+-			    sizes->fb_width, sizes->fb_height);
++	if (fb && !bios_fb_ok(fb, sizes)) {
+ 		drm_framebuffer_put(&fb->base);
+ 		fb = NULL;
+ 	}
 -- 
 2.53.0
 
