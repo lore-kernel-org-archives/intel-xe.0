@@ -4,55 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CD2CC44507
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 14:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C83D2C44507
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 14:19:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28B7D10F90E;
-	Fri, 10 Jul 2026 14:13:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D89610E9D6;
+	Fri, 10 Jul 2026 14:19:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBesZITJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0IPrYyR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F99A10F90E
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 14:13:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D45810E1A3;
+ Fri, 10 Jul 2026 14:19:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783692793; x=1815228793;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TpmaFu654cwOORK4VqKyWiFi/Yis+tDTaOsOy7NF32o=;
- b=YBesZITJdCYYCSsAQTzVGD9NvCsJrr6YHEZ2f0nglIJO8KqbkxzxeSf0
- ++dPaoH60Y7SvYiuIJ99UHXWFoQflX3Vw58a/hMAmq+iocmt4ELiUSA0Z
- srQhGXg67ZLYtffgbGK8eFMqXmNlE3HMuJcXKusVEpnpucE4t3ym0uo09
- FtewpJKZL+k/ntX1abUHeZyQbmXRl1mYuPmZ2PktfmNAgxMLSgikmv/ky
- +cEE5G96IpgpbFyff5felFsdFzt0abfwKQ3i+XdEhniIpZprx3XSjHJhR
- ZOvSTyx6lFlWEr4EmHmgcREZUIJwJr00zkFIyJMDFZAmgHfrN1vlqJRRJ A==;
-X-CSE-ConnectionGUID: H9S9uohTRtS1+mjNUjCrFQ==
-X-CSE-MsgGUID: o96mjHOmTeiGBi9EPt4Khw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84442956"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84442956"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 07:13:12 -0700
-X-CSE-ConnectionGUID: cOoXtrPfRCm/rHvc7cLb3A==
-X-CSE-MsgGUID: 1L4KFQ3gR3G2DaLkUaCbbg==
+ t=1783693156; x=1815229156;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5xqZRoVs04553QBmifkFy6kQq1W0V6AgofrU2LzY4b4=;
+ b=h0IPrYyRj6ZtNK0z8XXJgn5IcRVuC4zv6wJw6uqLdyySSqtPY2BXnuE2
+ RCIBVaAKEW48qQ5qotMHMKAJHADCttIv6eNY2wW2aEpniEygjQhKSG3YD
+ /n19SFiE3xKxGE0iWqi0/qIiqoqMgVPpdH2xgtFo5zFySWyibMjI8r0D3
+ jMXcJWQ2o07AuhFHxZnZ/TLZ/iyKFhvgyHuBgQ+agE15EewpfJquzueWE
+ wf8khPHeaklkLK5Vp3ifG6DqeKgQxzxqZRnOja2jtHwi3qt5bNdQdHndP
+ PQe8scmjO6U6NCpJr7FkB79S1KOaImtMAr/Fwq3vwVDg+A54KihLIXNv6 g==;
+X-CSE-ConnectionGUID: rpDZlTWsTviJ1vezBcALKQ==
+X-CSE-MsgGUID: 8VooMGfkR4WobwifIGADug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88221517"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88221517"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 07:19:16 -0700
+X-CSE-ConnectionGUID: 39XakDziQVK2bUUHMr0pDQ==
+X-CSE-MsgGUID: rYgknKpmSgCro8CFVSEccw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="258496756"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO
- mkuoppal-desk.home.arpa) ([10.245.248.117])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 07:13:11 -0700
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH] drm/xe: Don't fall through on DRM_GPUVA_OP_DRIVER in
- op_check_svm_userptr
-Date: Fri, 10 Jul 2026 17:12:59 +0300
-Message-ID: <20260710141259.1512070-1-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="250909834"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.208])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 07:19:14 -0700
+Date: Fri, 10 Jul 2026 17:19:12 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 10/10] drm/i915/display: Do not take uncore lock in
+ i915_get_vblank_counter
+Message-ID: <alD_YJbOxdRUJTQZ@intel.com>
+References: <20260702072154.171324-1-dev@lankhorst.se>
+ <20260702072154.171324-11-dev@lankhorst.se>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260702072154.171324-11-dev@lankhorst.se>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,41 +74,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The DRM_GPUVA_OP_DRIVER operation is used by eudebug (and potentially
-other driver ops). Because the break was inside the #if GPUSVM block,
-we fell through and printed the "NOT POSSIBLE" warning.
+On Thu, Jul 02, 2026 at 09:21:53AM +0200, Maarten Lankhorst wrote:
+> This fixes a lockdep splat that occurs in the code that should be run
+> with interrupts disabled. The uncore and DMC locks should not be taken
+> and released repeatedly in a timing sensitive path.
+> 
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+>  drivers/gpu/drm/i915/display/intel_de.h       |  8 ++++++
+>  drivers/gpu/drm/i915/display/intel_vblank.c   |  4 +--
+>  drivers/gpu/drm/i915/intel_uncore.h           | 26 +++++++++++++------
+>  .../drm/xe/compat-i915-headers/intel_uncore.h |  7 +++++
+>  4 files changed, 35 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+> index 1029790194296..497a308322847 100644
+> --- a/drivers/gpu/drm/i915/display/intel_de.h
+> +++ b/drivers/gpu/drm/i915/display/intel_de.h
+> @@ -65,6 +65,14 @@ intel_de_read64_2x32(struct intel_display *display, intel_reg_t reg)
+>  	return (u64)upper << 32 | lower;
+>  }
+>  
+> +static inline u64
+> +intel_de_read64_2x32_fw(struct intel_display *display,
+> +			i915_reg_t lower_reg, i915_reg_t upper_reg)
+> +{
+> +	return intel_uncore_read64_2x32_fw(__to_uncore(display),
+> +					   lower_reg, upper_reg);
+> +}
+> +
+>  static inline void
+>  intel_de_posting_read(struct intel_display *display, intel_reg_t reg)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> index c0cc0a4c25dbe..5ca22899055d7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> @@ -109,8 +109,8 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
+>  	 * we get a low value that's stable across two reads of the high
+>  	 * register.
+>  	 */
+> -	frame = intel_de_read64_2x32_volatile(display, PIPEFRAMEPIXEL(display, pipe),
+> -					      PIPEFRAME(display, pipe));
+> +	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
+> +				        PIPEFRAME(display, pipe));
 
-Fixes: 7477c4bd20dc ("drm/xe/pt: unify xe_pt_svm_pre_commit with userptr")
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This is the only user of intel_de_read64_2x32_volatile() and it
+doesn't need any locking/wakelocks/etc so we should just convert
+intel_de_read64_2x32_volatile() into intel_de_read64_2x32_volatile_fw().
+And we should just skip the uncore dependency (so that we'll have one 
+less thing to worry about later) so I'd just implement it directly in
+intel_de.[ch] in terms of intel_de_read_fw().
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 7111b5d0f6aa..f5ce1fcf484c 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1547,8 +1547,8 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
- 			err = vma_check_userptr(vm, gpuva_to_vma(op->base.prefetch.va), pt_update);
- 		}
- 		break;
--#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
- 	case DRM_GPUVA_OP_DRIVER:
-+#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
- 		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
- 			struct xe_svm_range *range = op->map_range.range;
- 
-@@ -1561,8 +1561,8 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
- 				return -EAGAIN;
- 			}
- 		}
--		break;
- #endif
-+		break;
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 	}
+>  
+>  	pixel = frame & PIPE_PIXEL_MASK;
+>  	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+> index fafc2ca9a2376..507398a562649 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -449,13 +449,28 @@ static inline void intel_uncore_rmw_fw(struct intel_uncore *uncore,
+>  		intel_uncore_write_fw(uncore, reg, val);
+>  }
+>  
+> +static inline u64
+> +intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
+> +			    i915_reg_t lower_reg, i915_reg_t upper_reg)
+> +{
+> +	u32 upper, lower, old_upper, loop = 0;
+> +	upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	do {
+> +		old_upper = upper;
+> +		lower = intel_uncore_read_fw(uncore, lower_reg);
+> +		upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	} while (upper != old_upper && loop++ < 2);
+> +
+> +	return (u64)upper << 32 | lower;
+> +}
+> +
+>  static inline u64
+>  intel_uncore_read64_2x32(struct intel_uncore *uncore,
+>  			 i915_reg_t lower_reg, i915_reg_t upper_reg)
+>  {
+> -	u32 upper, lower, old_upper, loop = 0;
+>  	enum forcewake_domains fw_domains;
+>  	unsigned long flags;
+> +	u64 ret;
+>  
+>  	fw_domains = intel_uncore_forcewake_for_reg(uncore, lower_reg,
+>  						    FW_REG_READ);
+> @@ -466,17 +481,12 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
+>  	spin_lock_irqsave(&uncore->lock, flags);
+>  	intel_uncore_forcewake_get__locked(uncore, fw_domains);
+>  
+> -	upper = intel_uncore_read_fw(uncore, upper_reg);
+> -	do {
+> -		old_upper = upper;
+> -		lower = intel_uncore_read_fw(uncore, lower_reg);
+> -		upper = intel_uncore_read_fw(uncore, upper_reg);
+> -	} while (upper != old_upper && loop++ < 2);
+> +	ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+>  
+>  	intel_uncore_forcewake_put__locked(uncore, fw_domains);
+>  	spin_unlock_irqrestore(&uncore->lock, flags);
+>  
+> -	return (u64)upper << 32 | lower;
+> +	return ret;
+>  }
+>  
+>  static inline int intel_uncore_write_and_verify(struct intel_uncore *uncore,
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> index 08d7ab9336725..764bc94044537 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> @@ -74,6 +74,13 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
+>  	return (u64)upper << 32 | lower;
+>  }
+>  
+> +static inline u64
+> +intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
+> +			    i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
+> +{
+> +	return intel_uncore_read64_2x32(uncore, i915_lower_reg, i915_upper_reg);
+> +}
+> +
+>  static inline void intel_uncore_posting_read(struct intel_uncore *uncore,
+>  					     i915_reg_t i915_reg)
+>  {
+> -- 
+> 2.53.0
+
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
