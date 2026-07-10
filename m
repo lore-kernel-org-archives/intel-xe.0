@@ -4,35 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F590C4450B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 817A6C4450A
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 11:15:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 638A110F87A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF5310F87F;
 	Fri, 10 Jul 2026 11:15:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="hmOcIZGi";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="HGZwEkWN";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB32410F875;
- Fri, 10 Jul 2026 11:15:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A008D10F879;
+ Fri, 10 Jul 2026 11:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783682099;
- bh=8OOecsLalkhMhzDjTmPYJsSQ2MSjP7aUquCNY+5c6dA=;
+ s=default; t=1783682101;
+ bh=FhWnln2x5ZsoqS5+DJezj3L6bEYUD7ALmsG56Z9yjwM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hmOcIZGiOhblnrRrRBHlQns6Y0NjAMUbiQUwmhPj2N3Le3gaPzziUqfa4qR73v4dS
- 8hypL4H8xg2+zWf7xDt+yVhjtk+T0WSjcDS/Yg9f7FLs4pJG8yhuaSPKIYmIsU6q4j
- FlKJCYN0xjf7CmIyZ4387fhLLuV+nkvl0aG8qPo6X3nqrc6Wd6yc5KTijHpXBjnaMe
- M8valw5/Ie22UBvuQiiLS0o4rn/0JzhltqB2Gb3ZP6Scn3m8SLl38pZT/1oEO3fNXc
- zhHVS1dXXkGwGVAbQZp4quNWszIWyh8Woo00Ct/GKNd93B7/N9uXCqjU0Xe1fxmwMk
- WJlGqhvY0NC8g==
+ b=HGZwEkWNbebm+Wl72c7CS5DDSeAVv7Cnz8rrpoBpJUyblM2KeYFuVl9GRzQV2C2Me
+ tz1kZc2XN3fgdg+TjsTRg9JJX2OJDcrgrWaAmj38Z0dk99gBHwFaHIUeqpQGLP/JHq
+ WBK6WbGarhPLgpSClIyWA+R+iVJMEpWd+EI7c6S6tnSi2BipFL8tGi5rmtuSc26/RH
+ h7sbc6sF0vEK82TMkGuZMEiNHZHQrSF1VYwnBhdQd1k24ac7Awi8jcoDjvZ2P3BqJw
+ kbVYV/Nz4X13IFQzfsK+gRSL9CojaVeHJR8q0+IoANdUtVpv/w3puUnxEwVxjAtoFk
+ RuLJKXvw5cL/w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 05/11] drm/xe: Do the initial FB size alignment earlier
-Date: Fri, 10 Jul 2026 13:15:32 +0200
-Message-ID: <20260710111539.1274555-6-dev@lankhorst.se>
+ Jani Nikula <jani.nikula@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v2 06/11] drm/xe: Print a debug message if we have no stolen
+ for the initial FB
+Date: Fri, 10 Jul 2026 13:15:33 +0200
+Message-ID: <20260710111539.1274555-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
 References: <20260710111539.1274555-1-dev@lankhorst.se>
@@ -55,44 +56,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-For some reason we've split the alignment of 'base' vs. 'size'
-to live on separate sides of the xe initial plane PTE readout.
-There's no reason for this split, so make things less confusing
-by aligning both at the same time.
+Inform the poor sop reading the logs why the initial FB was rejected
+if there is no stolen memory.
+
+Technically this should perhaps be an error since the plane is known
+to be enabled at this point, and if there is no stolen then it clearly
+can't be scanning out from anywhere. But maybe there are some
+virtualization passthrough cases and whatnot where we might not be
+able to get access to stolen, so keep it as debug (same as i915).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://patch.msgid.link/20260511214122.8468-7-ville.syrjala@linux.intel.com
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patch.msgid.link/20260511214122.8468-9-ville.syrjala@linux.intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index da04ee66252ad..feb979cca12af 100644
+index feb979cca12af..a62e5394c3f7d 100644
 --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -37,6 +37,10 @@ initial_plane_bo(struct xe_device *xe,
- 	flags = XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_GGTT;
+@@ -68,10 +68,14 @@ initial_plane_bo(struct xe_device *xe,
+ 			    "Using phys_base=%pa, based on initial plane programming\n",
+ 			    &phys_base);
+ 	} else {
+-		struct ttm_resource_manager *stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
++		struct ttm_resource_manager *stolen;
  
- 	base = round_down(plane_config->base, page_size);
-+	size = round_up(plane_config->base + plane_config->size,
-+			page_size);
-+	size -= base;
+-		if (!stolen)
++		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
++		if (!stolen) {
++			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
+ 			return NULL;
++		}
 +
- 	if (IS_DGFX(xe)) {
- 		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+ 		phys_base = base;
+ 		flags |= XE_BO_FLAG_STOLEN;
  
-@@ -79,10 +83,6 @@ initial_plane_bo(struct xe_device *xe,
- 		}
- 	}
- 
--	size = round_up(plane_config->base + plane_config->size,
--			page_size);
--	size -= base;
--
- 	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
- 					  ttm_bo_type_kernel, flags, 0, false);
- 	if (IS_ERR(bo)) {
 -- 
 2.53.0
 
