@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 480BFC44506
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:54:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B5E1C44507
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:54:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8C6F10E257;
-	Fri, 10 Jul 2026 21:54:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 135D810E25F;
+	Fri, 10 Jul 2026 21:54:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GY1NOWyu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GeBnAFTU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C32E410E1FB;
- Fri, 10 Jul 2026 21:54:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F6EC10E1BD;
+ Fri, 10 Jul 2026 21:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783720489; x=1815256489;
+ t=1783720490; x=1815256490;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uANo8AU2qjxG7dyQS1UjyUtkgRaIVCXKH5biwxrC45c=;
- b=GY1NOWyukQCRAYqybDf2QFStgo4dVUj67hIqKLC4YjtCS8DBxo2LmKQv
- SFfWOoLWs0oDDZfWyBrWGvtCpXk9kDFtO13wydlCqrfllTdP8zSMLwbeb
- wD0Letg1IPPapu+XIk9Vc2lAx6V4lV2+XL/YJRFt0mu3pQbieKjz/V1HH
- ZgxCNdSsFz0CMLNSmVm9El1qrKSe0Lz0lFZQYTnigYHw3olyqtTWrKEkA
- 4kjUYiQnLT2f0H27pjllds7817a9fxeRGzRz0Uwc6invo2NfZvG8C5RWk
- YqIgBzOZCsYOZR9OUXnMvBEZoWzPlJAeQCRuJxxoxzBbSKdnfyjQ+BUsj w==;
-X-CSE-ConnectionGUID: 7MKXxPOrRIm4/O0vs2YzmQ==
-X-CSE-MsgGUID: YqR1YG1DSAuTbSHmPTmmNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543045"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543045"
+ bh=lfVJ+7vWfytE/llozbCEpptR+xFojlu7pViazgBaLVo=;
+ b=GeBnAFTUJrQSj+/PUO8xJJ1AcszLSuS+eO2FlCeEqSLHJftHnITaGxec
+ TxJYYJuTzn55hff4HfBSJlN9UzpGNaCq34K5cPHwckk9mF9oOyzCIWoZp
+ 1g01IiA2SjKMW6WYJ0IKRPtY4mLVVEsQIFxd8E5bc+muZAo3II/68Foee
+ SzWREW8m8cD1wCl88YO+Zfg8+UOx3JuWCA5JKJPMwg1ThEEYYUp2Q8dUH
+ MZftD0bt8Lf1Jsz7MLq8rqXaeQ07WBtMi244oRgyVFgZLFBiwYCYH8HFN
+ N57CIpZtS8OCd48Ub8ggFF9m360y4ahn8xq88MlZKp5UVT2sbQiZIQqv+ Q==;
+X-CSE-ConnectionGUID: Q5zI2OIJSmiXXTAiiR2IJA==
+X-CSE-MsgGUID: fex592MJSjamTX+5pRJgoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543078"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543078"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:48 -0700
-X-CSE-ConnectionGUID: URlHXn9+Qb+a3/Mw346sNw==
-X-CSE-MsgGUID: ZLa++p9jShmDFJVbr8ZY8Q==
+ 10 Jul 2026 14:54:49 -0700
+X-CSE-ConnectionGUID: lc3/xtviSVyAP+UR0WX66A==
+X-CSE-MsgGUID: X1yQPYNlTAqjfQZ7lhEe5Q==
 X-ExtLoop1: 1
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:47 -0700
+ 10 Jul 2026 14:54:49 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -51,10 +51,9 @@ Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 01/33] drm/ttm/pool: Allow backing off reclaim at the
- beneficial order
-Date: Fri, 10 Jul 2026 14:54:10 -0700
-Message-Id: <20260710215442.2444235-2-matthew.brost@intel.com>
+Subject: [PATCH v2 05/33] drm/ttm: Support defragmentation moves
+Date: Fri, 10 Jul 2026 14:54:14 -0700
+Message-Id: <20260710215442.2444235-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260710215442.2444235-1-matthew.brost@intel.com>
 References: <20260710215442.2444235-1-matthew.brost@intel.com>
@@ -75,21 +74,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allocating at the pool's beneficial order normally uses
-__GFP_RETRY_MAYFAIL to push hard for a contiguous high-order page. When
-beneficial-order allocations have recently been failing, this retry just
-burns CPU cycles in reclaim/compaction before falling back to a smaller
-order anyway.
+Add infrastructure to let a driver re-back an already-resident BO with
+fresh pages (e.g. at a more beneficial order) by reusing the normal move
+machinery.
 
-Add a beneficial_reclaim_backoff flag to struct ttm_operation_ctx and
-plumb it through to ttm_pool_alloc_page(). When set, the beneficial
-order is treated like the orders we already consider not worth stalling
-for: __GFP_RECLAIM is cleared so the allocation skips reclaim/compaction
-entirely, and the __GFP_NORETRY clearing / __GFP_RETRY_MAYFAIL promotion
-is skipped. Together this makes the allocator back off quickly to a
-smaller order instead of stalling.
+Add ctx->defrag, which makes ttm_bo_validate() skip the "current
+resource already compatible" short-circuit so a move is forced even when
+placement is unchanged. In ttm_bo_handle_move_mem(), when defragging a
+populated BO, stash the old tt, create and populate a fresh one
+(allocating new backing), and hand the old tt to the driver move
+callback via bo->defrag_old_tt for copying. On success the old tt is
+unpopulated and freed; if populate or the move fails, the freshly
+allocated backing is discharged and the BO is restored to its original
+tt and placement.
 
-This is a no-op until a caller opts in.
+The old tt is handed off through bo->defrag_old_tt (reservation-lock
+protected) rather than the operation context. The pointer describes BO
+state for the duration of the move, so keeping it on the buffer object
+is better layering and lets ttm_bo_move_accel_cleanup() pick it up.
+
+Because a defrag move commonly fails (beneficial-order pages are often
+unavailable) and then leaves the BO untouched on its original backing,
+defer ttm_bo_unmap_virtual() for the defrag case until the new backing
+has been populated and the move is about to commit. Ordinary moves still
+unmap up front. This avoids needlessly zapping and refaulting every
+userspace mapping on the common failure path where nothing moved.
+
+Teach ttm_bo_move_accel_cleanup()'s ghost path about defrag: instead of
+tearing the move's source tt down synchronously, hand bo->defrag_old_tt
+to the ghost object so it is kept populated until the copy fence signals
+and then unbound and destroyed asynchronously, while the BO keeps its
+new tt. This lets a driver pipeline defrag teardown behind the GPU copy
+rather than blocking on it.
+
+This is driver-opt-in and a no-op unless ctx->defrag is set.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -107,64 +125,228 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_pool.c | 12 ++++++++----
- include/drm/ttm/ttm_bo.h       |  7 +++++++
- 2 files changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c      | 83 ++++++++++++++++++++++++++++---
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 16 +++++-
+ drivers/gpu/drm/ttm/ttm_pool.c    |  5 +-
+ include/drm/ttm/ttm_bo.h          | 17 +++++++
+ 4 files changed, 111 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 3980f376e3ba..d05da4eb1d8a 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -125,36 +125,93 @@ static int ttm_bo_handle_move_mem(struct ttm_buffer_object *bo,
+ {
+ 	struct ttm_device *bdev = bo->bdev;
+ 	bool old_use_tt, new_use_tt;
++	bool defrag;
+ 	int ret;
+ 
+ 	old_use_tt = !bo->resource || ttm_manager_type(bdev, bo->resource->mem_type)->use_tt;
+ 	new_use_tt = ttm_manager_type(bdev, mem->mem_type)->use_tt;
+ 
+-	ttm_bo_unmap_virtual(bo);
++	/*
++	 * Only the BO that is the actual defrag target (moved in place via
++	 * ttm_bo_validate(), evict == false) is being defragmented. The same
++	 * ctx->defrag is threaded into evictions triggered while allocating
++	 * that target's new backing (ttm_bo_evict_alloc()), so guard against
++	 * an unrelated victim BO (evict == true) being misclassified as a
++	 * defrag move and needlessly reallocating its backing.
++	 */
++	defrag = ctx->defrag && !evict && new_use_tt && bo->ttm &&
++		 ttm_tt_is_populated(bo->ttm);
++
++	/*
++	 * Tear down userspace mappings up front for ordinary moves. A defrag
++	 * move is likely to leave the BO in place (beneficial-order allocation
++	 * commonly fails), so defer the unmap until the new backing has been
++	 * populated and the move is about to commit. This avoids a needless
++	 * zap and refault of every userspace mapping on the common failure,
++	 * where the BO keeps its original, still-mapped backing.
++	 */
++	if (!defrag)
++		ttm_bo_unmap_virtual(bo);
+ 
+ 	/*
+ 	 * Create and bind a ttm if required.
+ 	 */
+ 
+ 	if (new_use_tt) {
++		struct ttm_tt *defrag_old_tt = NULL;
++
++		/*
++		 * For a defrag move, stash the current populated tt and force a
++		 * fresh one to be created and populated (at beneficial order).
++		 * The old tt is handed to the driver move callback to copy the
++		 * contents from, and freed once the move completes.
++		 */
++		if (defrag) {
++			defrag_old_tt = bo->ttm;
++			bo->ttm = NULL;
++		}
++
+ 		/* Zero init the new TTM structure if the old location should
+ 		 * have used one as well.
+ 		 */
+-		ret = ttm_tt_create(bo, old_use_tt);
+-		if (ret)
++		ret = ttm_tt_create(bo, old_use_tt && !defrag_old_tt);
++		if (ret) {
++			if (defrag_old_tt)
++				bo->ttm = defrag_old_tt;
+ 			goto out_err;
++		}
+ 
+-		if (mem->mem_type != TTM_PL_SYSTEM) {
++		if (defrag_old_tt || mem->mem_type != TTM_PL_SYSTEM) {
+ 			ret = ttm_bo_populate(bo, ctx);
+-			if (ret)
++			if (ret) {
++				/*
++				 * Discharge the freshly allocated backing and
++				 * leave the BO on its original tt/placement.
++				 */
++				if (defrag_old_tt) {
++					ttm_tt_destroy(bo->bdev, bo->ttm);
++					bo->ttm = defrag_old_tt;
++				}
+ 				goto out_err;
++			}
+ 		}
++
++		bo->defrag_old_tt = defrag_old_tt;
+ 	}
+ 
+ 	ret = dma_resv_reserve_fences(bo->base.resv, 1);
+ 	if (ret)
+ 		goto out_err;
+ 
++	/*
++	 * A defrag move deferred its virtual unmap until the new backing was
++	 * successfully populated; tear the userspace mappings down now, before
++	 * the move swaps in the new pages, so the next fault re-establishes
++	 * them against the new backing.
++	 */
++	if (defrag)
++		ttm_bo_unmap_virtual(bo);
++
+ 	ret = bdev->funcs->move(bo, evict, ctx, mem, hop);
+ 	if (ret) {
+ 		if (ret == -EMULTIHOP)
+@@ -162,12 +219,24 @@ static int ttm_bo_handle_move_mem(struct ttm_buffer_object *bo,
+ 		goto out_err;
+ 	}
+ 
++	if (bo->defrag_old_tt) {
++		ttm_tt_unpopulate(bo->bdev, bo->defrag_old_tt);
++		ttm_tt_destroy(bo->bdev, bo->defrag_old_tt);
++		bo->defrag_old_tt = NULL;
++	}
++
+ 	ctx->bytes_moved += bo->base.size;
+ 	return 0;
+ 
+ out_err:
+-	if (!old_use_tt)
++	if (bo->defrag_old_tt) {
++		/* Failed defrag move: restore the original backing. */
++		ttm_bo_tt_destroy(bo);
++		bo->ttm = bo->defrag_old_tt;
++		bo->defrag_old_tt = NULL;
++	} else if (!old_use_tt) {
+ 		ttm_bo_tt_destroy(bo);
++	}
+ 
+ 	return ret;
+ }
+@@ -835,7 +904,7 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+ 	force_space = false;
+ 	do {
+ 		/* Check whether we need to move buffer. */
+-		if (bo->resource &&
++		if (bo->resource && !ctx->defrag &&
+ 		    ttm_resource_compatible(bo->resource, placement,
+ 					    force_space))
+ 			return 0;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 3e3c201a0222..771313162c8d 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -626,10 +626,22 @@ static int ttm_bo_move_to_ghost(struct ttm_buffer_object *bo,
+ 	 * bo to be unbound and destroyed.
+ 	 */
+ 
+-	if (dst_use_tt)
++	if (bo->defrag_old_tt) {
++		/*
++		 * Defrag move: @bo already points at the freshly allocated,
++		 * beneficial-order tt that the move copied into. Hand the old
++		 * tt (the move's source) to the ghost so it is kept populated
++		 * until @fence signals and then unbound and destroyed, instead
++		 * of being torn down synchronously. @bo keeps its new tt.
++		 */
++		ghost_obj->ttm = bo->defrag_old_tt;
++		ghost_obj->defrag_old_tt = NULL;
++		bo->defrag_old_tt = NULL;
++	} else if (dst_use_tt) {
+ 		ghost_obj->ttm = NULL;
+-	else
++	} else {
+ 		bo->ttm = NULL;
++	}
+ 
+ 	dma_resv_unlock(&ghost_obj->base._resv);
+ 	ttm_bo_put(ghost_obj);
 diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 3d5f2ae0a456..dbe977412a81 100644
+index 6826c8ae6fc5..340855e9bcfe 100644
 --- a/drivers/gpu/drm/ttm/ttm_pool.c
 +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -145,7 +145,8 @@ static int ttm_pool_nid(struct ttm_pool *pool)
- 
- /* Allocate pages of size 1 << order with the given gfp_flags */
- static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
--					unsigned int order)
-+					unsigned int order,
-+					bool beneficial_reclaim_backoff)
- {
- 	const unsigned int beneficial_order = ttm_pool_beneficial_order(pool);
- 	unsigned long attr = DMA_ATTR_FORCE_CONTIGUOUS;
-@@ -165,10 +166,12 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
- 	 * Do not add latency to the allocation path for allocations orders
- 	 * device tolds us do not bring them additional performance gains.
+@@ -860,8 +860,11 @@ static int ttm_pool_iter_lower_order(struct ttm_pool_alloc_iter *it)
+ 	 * pages. Record it so the driver can later try to defragment the object
+ 	 * back to beneficial order.
  	 */
--	if (order && beneficial_order && order != beneficial_order)
-+	if (order && (beneficial_reclaim_backoff ||
-+		      (beneficial_order && order != beneficial_order)))
- 		gfp_flags &= ~__GFP_RECLAIM;
+-	if (it->beneficial_order && it->order == it->beneficial_order)
++	if (it->beneficial_order && it->order == it->beneficial_order) {
+ 		it->tt->page_flags |= TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED;
++		if (it->ctx->defrag)
++			return -ENOMEM;
++	}
  
--	if (beneficial_order && order == beneficial_order) {
-+	if (!beneficial_reclaim_backoff &&
-+	    beneficial_order && order == beneficial_order) {
- 		gfp_flags &= ~__GFP_NORETRY;
- 		gfp_flags |= __GFP_RETRY_MAYFAIL;
- 	}
-@@ -814,7 +817,8 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
- 		if (!p) {
- 			page_caching = ttm_cached;
- 			allow_pools = false;
--			p = ttm_pool_alloc_page(pool, gfp_flags, order);
-+			p = ttm_pool_alloc_page(pool, gfp_flags, order,
-+						ctx->beneficial_reclaim_backoff);
- 		}
- 		/* If that fails, lower the order if possible and retry. */
- 		if (!p) {
+ 	it->order--;
+ 	it->page_caching = it->tt->caching;
 diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 8310bc3d55f9..fd814b5cf535 100644
+index fd814b5cf535..f4f8a8c29f04 100644
 --- a/include/drm/ttm/ttm_bo.h
 +++ b/include/drm/ttm/ttm_bo.h
-@@ -187,6 +187,13 @@ struct ttm_operation_ctx {
- 	 * when multiple BOs share the same reservation object @resv.
+@@ -135,6 +135,16 @@ struct ttm_buffer_object {
+ 	 * reservation lock.
  	 */
- 	bool allow_res_evict;
+ 	struct sg_table *sg;
++
 +	/**
-+	 * @beneficial_reclaim_backoff: Back off from direct reclaim at the
-+	 * pool's beneficial order. Useful when beneficial-order allocation has
-+	 * recently been failing, to avoid burning CPU cycles in
-+	 * reclaim/compaction before falling back to a smaller order anyway.
++	 * @defrag_old_tt: Used internally during a defrag move to hand the BO's
++	 * previous, populated struct ttm_tt to the driver's move callback so
++	 * that it can copy the contents into the freshly allocated
++	 * beneficial-order backing. Set by TTM, consumed by the driver; the old
++	 * tt is freed (or restored on failure) by TTM once the move completes.
++	 * Protected by the reservation lock.
 +	 */
-+	bool beneficial_reclaim_backoff;
++	struct ttm_tt *defrag_old_tt;
+ };
+ 
+ #define TTM_BO_MAP_IOMEM_MASK 0x80
+@@ -194,6 +204,13 @@ struct ttm_operation_ctx {
+ 	 * reclaim/compaction before falling back to a smaller order anyway.
+ 	 */
+ 	bool beneficial_reclaim_backoff;
++	/**
++	 * @defrag: Defragmentation pass. Attempt a move even when the bo's
++	 * current resource is already compatible with the requested placement,
++	 * so that the backing store can be reallocated at the pool's beneficial
++	 * order.
++	 */
++	bool defrag;
  	/**
  	 * @resv: Reservation object to be used together with
  	 * @allow_res_evict.
