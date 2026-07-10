@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3C3FC44506
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 19:08:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87F42C44510
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 19:08:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE63710F963;
-	Fri, 10 Jul 2026 19:08:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D671810F962;
+	Fri, 10 Jul 2026 19:08:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="i+oSygXn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mbakxcOC";
 	dkim-atps=neutral
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D41010F963
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 19:08:07 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-493ae59eca6so6472975e9.1
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 12:08:07 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F57810F959
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 19:08:06 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-47defd0c1c5so895885f8f.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 12:08:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783710486; x=1784315286; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1783710485; x=1784315285; darn=lists.freedesktop.org;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=zbrYcqmMOcj7F4MQKjHREDeErg/FeYwN50JFqd0IkSY=;
- b=i+oSygXnGIF7RDeABxAQkP++3FoHIFTch2k4T5tASWfc/nrwxSF4WtVOm63zAxRiOR
- M6CfAPmJXFtOVnBmzwKw6ErQ8Y42mfTffwN3yptvyW3a7+dU9WU1/OWiSwekZk9BUy2N
- PCSXsG0HvSaHs04qwaUifTNgdfHXxLl8NKcDbc9RSc/ZwC2uSoQSguSfuQAYDhTZYgbQ
- IOd1KDr9x+d1PzmxmiFjcIEp1XrigVWTNFdNvAMxsh2i+dG6WpgONn84iJtd2jSG/Oea
- E0taIPUosuuvVpTP6dctRaxlZJZxREyJX8t+jw8U83KJWOOJ853Vq20kSpPVAps+1V2o
- Y4hw==
+ bh=yBVaMK4L9gyjT+EoEO4978A5AdaqzcXPIfWDlt2pVck=;
+ b=mbakxcOCk7i2neame4DhEP3io9L9dO0btd1e8r1DoUds3+rsUqWopP5TanobREO250
+ m2N7mngPAFoXJTDtFVdRRwEkrtjpY3cSg/GmqMeUYkH42t4Topf3JKlYTa1DA5AlAh6B
+ iAy1aCKwNz2nGPMAibkHDjapsfMyvg/NGS8SLUG5tN9jFWIBArJUgLQyBA/XLTiuMRir
+ pm8un0V4ae+EhSKKnANVqiG7h8aNXW4iHmphiurG6rVhwUocgHr9AveudRx9k2Xg2xEQ
+ kB799CEmW1viN+M9lGTtHOz5IGm1PqVWY26P33Cqz4F/7YNattuhN7nfmw+MfOyGm3pq
+ L6Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783710486; x=1784315286;
+ d=1e100.net; s=20251104; t=1783710485; x=1784315285;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=zbrYcqmMOcj7F4MQKjHREDeErg/FeYwN50JFqd0IkSY=;
- b=jSu4dL2cZhyBFCtDS/3Bv05yrC9XN0w3a3NlVhbh3F0vaXEoIC0AblL9HIXYlLlKey
- Dr4cv13uj5JFeAkcSzRGSAQX/EyZf4eEvTQlA+4HCB3QPlj8wslqnZ70mvBQn8ouxf4/
- TMcLOMrllC2kIxBsOWB73ZyZP0CNPeyVosKPIqSqa5uu6Iew25kz19emmv13ZSSt/jdb
- k251UdRQ8NVytDL1AQSnJ4mC6l78vuQieingjywsg0rKgpp4QKENkZcyzfqTS49qKn0Z
- 3wwgvuwGxzRPTHsojVWCYDTopqdvbL1Z4mT7eHcZh6s87lkLIuYjIegw7d6uXCu65SST
- 3evg==
+ bh=yBVaMK4L9gyjT+EoEO4978A5AdaqzcXPIfWDlt2pVck=;
+ b=qLpXibUfiEAqpApGHeUJgjWPPEd/ND7os2EEhVSh718Wkp0a0ck0MH2LMAfAAeB1HA
+ XJGCx0v59oW+AyH25YIp/0q3Y2I0PFTy8F+3pTAJjUB2ds0QgvqZSAfE692sn4yt9GI5
+ rc1RkxQwZ8oPEdD/QZGDKBOQUsE9x8mnNnGT3kame5LAAIvOmiUHso3D8lhlZ7Fjgx2p
+ /Y7wVli+AeOTuotEmRZvJMnZTktHBU7LZsZKv/FlK+KX9WzIHF0h/rAHSw1xPPFxf5gc
+ nBmkFfhJsGC4SWe3F1sUNrfzNjIh+Jx73ZVrDjieW+3/QGD9i5zGADrNqfrgNz7eaONV
+ /0mw==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqcKE7ss+4kP8Ryrn1rvgvxR5uRs75aL6HQ4yLhTbg6beWkj+JLOrkRxYg13IpLMls5RrTwB9Dqmg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwrHU0VT65flD1Es8SWDxw/i8z9NEpK/Qeo25+ziPpGXRuug+vT
- /yUvtrIX44Iz/0hl8v7HNSvludEWb0GSDND7mbdkqGcw32arp6kdEfAy
-X-Gm-Gg: AfdE7cl0A6LMmPtSqDMv0tCnbYwvoQgtB59RUuflKGVujeq9yGuORT8z0NxasMocSqa
- D48VvCw52rhdWNIJPSIKBYZBNynAzZCAEPWFtjD9PsBC1jSgwoC65qvXXoUuBMhoC6n9JyrBmHu
- PK9xOpOvmmwukup/T0AT4fVokYluOXkJuTcqehRyEmmR5C1UJsvcVBlQmD2kdqFQP8JTjg/Pv/v
- VKCEcVzLqxfwML/WvEHQtiYEsAqtqF7e7I8Wj0YZS3kRuEV/HDRBfSdJ2vZPcHxbjn9JApz0cmj
- M9AayKVlPP4timnFTU81gOXoMXWGNaGrpYVWwyZw6AdUoXsHR12cOTRJbn+XoWtXKBjd4CL6Cao
- y7RBO/mK522FAq5pwnifLKXBrs7S21SnHiS0pWjDoVzwr9g1S2ZMM2i5J8HXse0iUwlM0fJhtoj
- qteoSY360nEmq8zC7sJaB1S3UPkEWOrfVAYFxp
-X-Received: by 2002:a05:600c:4ece:b0:493:a613:56b2 with SMTP id
- 5b1f17b1804b1-493f87d8573mr1160215e9.8.1783710485433; 
- Fri, 10 Jul 2026 12:08:05 -0700 (PDT)
+ AHgh+RqrCZfDrXaLIH5kgD5Zby+YSrLN+Gcv14T0n954+dCMUfwBtoO99reGbM1O42zDmdZBTTJDFRRrzg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw1i+cnDovkuTBaNuUauA56d2DNPOHUBU0mHYiB833Mk9JFSGYu
+ sDwNCVwJK8gPUQ40CZSvTpeLo7g1xZF+I7DBw6wGl4e4HNuC+2bwst/T
+X-Gm-Gg: AfdE7ckTwoNsHs2JZ7y9tS57Jfk1XHrQGI8fydTTcWDa/looZddG+wTS/v4ViounsJ+
+ /f/iGXUuGo4X3BRb2vYPTm27l3Ex/YARDUpQQgjBFr7zPAQJTbRqSYzkaB1LmhzaIVgYTpqo2E8
+ B5wzd4E/ZDVz29mbYD0RaWwOZiKGNLaX6UtHB3bODvOGTnXOxBtqNJjAjC0xdvlrbXL/6q5xKq3
+ wxbdiop/5J2ZAZXsDqWgFVN6o2GwHmnrt5D21mqKdSgUXadoU9flzEENEI3pGoB1z1RJyzhyW4/
+ xUk7U1u5fX2ffiM3ZhcxvnzVjsC2g3+jJzbNZeZkQIdLNs7OZXY1N8t+xekpNh23NWIDi8YGQ4Q
+ 15eMrJ3FpG6AHndD/oDIKbqLiLpHx/cIqBm2v/K15y3CBPsCmUfpt39Tgj2RCdnXRsyeH31Z8OQ
+ EamctH7WaHIPR2SCOmUgIhP3CrR8YrNwbiPoXi
+X-Received: by 2002:a05:600c:564b:b0:493:e79e:da98 with SMTP id
+ 5b1f17b1804b1-493f8837fdbmr510375e9.39.1783710484544; 
+ Fri, 10 Jul 2026 12:08:04 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:154f:ec00:aa08:de24:db33:4496])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493f567eadfsm55000755e9.6.2026.07.10.12.08.04
+ 5b1f17b1804b1-493f567eadfsm55000755e9.6.2026.07.10.12.08.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Jul 2026 12:08:05 -0700 (PDT)
+ Fri, 10 Jul 2026 12:08:04 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -71,9 +71,9 @@ To: thomas.hellstrom@linux.intel.com, dakr@kernel.org, ecourtney@nvidia.com,
  airlied@gmail.com, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/12] drm/ttm: support using drm_exec during eviction v4
-Date: Fri, 10 Jul 2026 20:52:51 +0200
-Message-ID: <20260710190752.2355-12-christian.koenig@amd.com>
+Subject: [PATCH 10/12] drm/exec: add drm_exec_lock_resv function
+Date: Fri, 10 Jul 2026 20:52:50 +0200
+Message-ID: <20260710190752.2355-11-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260710190752.2355-1-christian.koenig@amd.com>
 References: <20260710190752.2355-1-christian.koenig@amd.com>
@@ -95,82 +95,204 @@ Reply-To: christian.koenig@amd.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow specifying a drm_exec object in TTMs operation context which is
-used to lock objects during eviction.
+Restructure the drm_exec object to work with dma_resv references instead
+of GEM object references.
 
-This allows to handle deadlocks much more gracefully and with that
-avoid returning -ENOMEM on heavily contended domains.
+Add the new function dma_exec_lock_resv() to lock individual dma_resv
+objects and so allow higher level implementations to handle contention
+purely on dma_resv objects.
 
-v2: rebased on top of Thomas work
-v3: rebased again
-v4: adjust to dma_resv changes
+WIP! Don't commit like that!
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c | 12 ++++++++----
- include/drm/ttm/ttm_bo.h          |  5 +++++
- 2 files changed, 13 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/drm_exec.c | 75 ++++++++++++++++++++++----------------
+ drivers/gpu/drm/drm_gem.c  |  2 +
+ include/drm/drm_exec.h     |  9 +++--
+ 3 files changed, 50 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 1bdd69643c313..570640ae79d84 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -38,6 +38,7 @@
- #include <drm/ttm/ttm_tt.h>
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+index fa923852fae45..382bf7bcd5ff3 100644
+--- a/drivers/gpu/drm/drm_exec.c
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -58,8 +58,11 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
+ 		drm_gem_object_put(obj);
+ 	}
  
- #include <drm/drm_cache.h>
-+#include <drm/drm_exec.h>
+-	drm_gem_object_put(exec->prelocked);
+-	exec->prelocked = NULL;
++	if (exec->prelocked) {
++		dma_resv_unlock(exec->prelocked);
++		dma_resv_put(exec->prelocked);
++		exec->prelocked = NULL;
++	}
+ }
  
- struct ttm_transfer_obj {
- 	struct ttm_buffer_object base;
-@@ -839,7 +840,9 @@ static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
- 	struct ttm_lru_walk_arg *arg = curs->arg;
+ /**
+@@ -101,7 +104,7 @@ void drm_exec_fini(struct drm_exec *exec)
+ 	drm_exec_unlock_all(exec);
+ 	kvfree(exec->objects);
+ 	if (exec->contended != DRM_EXEC_DUMMY) {
+-		drm_gem_object_put(exec->contended);
++		dma_resv_put(exec->contended);
+ 		ww_acquire_fini(&exec->ticket);
+ 	}
+ }
+@@ -158,50 +161,41 @@ static int drm_exec_obj_locked(struct drm_exec *exec,
+ /* Make sure the contended object is locked first */
+ static int drm_exec_lock_contended(struct drm_exec *exec)
+ {
+-	struct drm_gem_object *obj = exec->contended;
++	struct dma_resv *resv = exec->contended;
  	int ret;
  
--	if (arg->ctx->interruptible)
-+	if (arg->ctx->exec)
-+		ret = drm_exec_lock_resv(arg->ctx->exec, resv);
-+	else if (arg->ctx->interruptible)
- 		ret = dma_resv_lock_interruptible(resv, arg->ticket);
- 	else
- 		ret = dma_resv_lock(resv, arg->ticket);
-@@ -853,7 +856,8 @@ static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
- 		 * trylocking for this walk.
- 		 */
- 		arg->ticket = NULL;
--	} else if (ret == -EDEADLK) {
-+
-+	} else if (!arg->ctx->exec && ret == -EDEADLK) {
- 		/* Caller needs to exit the ww transaction. */
- 		ret = -ENOSPC;
- 	}
-@@ -993,8 +997,8 @@ __ttm_bo_lru_cursor_iter(struct ttm_bo_lru_cursor *curs, bool first)
- 		if (!ttm_lru_walk_trylock(curs, res->bo->base.resv)) {
- 			struct dma_resv *resv;
+-	if (likely(!obj))
++	if (likely(!resv))
+ 		return 0;
  
--			if (!arg->ticket || arg->ctx->no_wait_gpu ||
--			    arg->trylock_only) {
-+			if ((!arg->ticket || arg->ctx->no_wait_gpu ||
-+			     arg->trylock_only) && !arg->ctx->exec) {
- 				spin_unlock(lru_lock);
- 				continue;
- 			}
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index e1221e3be7bda..0ffa84a5caa65 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -186,6 +186,11 @@ struct ttm_operation_ctx {
- 	 * @bytes_moved: Statistics on how many bytes have been moved.
+ 	/* Always cleanup the contention so that error handling can kick in */
+ 	exec->contended = NULL;
+ 	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT) {
+-		ret = dma_resv_lock_slow_interruptible(obj->resv,
+-						       &exec->ticket);
++		ret = dma_resv_lock_slow_interruptible(resv, &exec->ticket);
+ 		if (unlikely(ret))
+ 			goto error_dropref;
+ 	} else {
+-		dma_resv_lock_slow(obj->resv, &exec->ticket);
++		dma_resv_lock_slow(resv, &exec->ticket);
+ 	}
+ 
+-	ret = drm_exec_obj_locked(exec, obj);
+-	if (unlikely(ret))
+-		goto error_unlock;
+-
+-	exec->prelocked = obj;
++	exec->prelocked = resv;
+ 	return 0;
+ 
+-error_unlock:
+-	dma_resv_unlock(obj->resv);
+-
+ error_dropref:
+-	drm_gem_object_put(obj);
++	dma_resv_put(resv);
+ 	return ret;
+ }
+ 
+ /**
+- * drm_exec_lock_obj - lock a GEM object for use
++ * drm_exec_lock_resv - lock a dma_resv object
+  * @exec: the drm_exec object with the state
+- * @obj: the GEM object to lock
++ * @resv: the dma_resv object to lock
+  *
+- * Lock a GEM object for use and grab a reference to it.
++ * Lock a dma_resv object for use or grab a reference to it on contention.
+  *
+  * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
+- * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
+- * flag), -ENOMEM when memory allocation failed and zero for success.
++ * already locked, -ENOMEM when memory allocation failed and zero for success.
+  */
+-int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
++int drm_exec_lock_resv(struct drm_exec *exec, struct dma_resv *resv)
+ {
+ 	int ret;
+ 
+@@ -209,22 +203,39 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	if (unlikely(ret))
+ 		return ret;
+ 
+-	if (exec->prelocked == obj) {
+-		drm_gem_object_put(exec->prelocked);
++	if (exec->prelocked == resv) {
++		dma_resv_put(exec->prelocked);
+ 		exec->prelocked = NULL;
+ 		return 0;
+ 	}
+ 
+ 	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT)
+-		ret = dma_resv_lock_interruptible(obj->resv, &exec->ticket);
++		ret = dma_resv_lock_interruptible(resv, &exec->ticket);
+ 	else
+-		ret = dma_resv_lock(obj->resv, &exec->ticket);
++		ret = dma_resv_lock(resv, &exec->ticket);
+ 
+-	if (unlikely(ret == -EDEADLK)) {
+-		drm_gem_object_get(obj);
+-		exec->contended = obj;
+-		return -EDEADLK;
+-	}
++	if (unlikely(ret == -EDEADLK))
++		exec->contended = dma_resv_get(resv);
++	return ret;
++}
++EXPORT_SYMBOL(drm_exec_lock_resv);
++
++/**
++ * drm_exec_lock_obj - lock a GEM object for use
++ * @exec: the drm_exec object with the state
++ * @obj: the GEM object to lock
++ *
++ * Lock a GEM object for use and grab a reference to it.
++ *
++ * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
++ * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
++ * flag), -ENOMEM when memory allocation failed and zero for success.
++ */
++int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
++{
++	int ret;
++
++	ret = drm_exec_lock_resv(exec, obj->resv);
+ 
+ 	if (unlikely(ret == -EALREADY) &&
+ 	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+index bbcbd25f014f0..f5cf9ad596a67 100644
+--- a/drivers/gpu/drm/drm_gem.c
++++ b/drivers/gpu/drm/drm_gem.c
+@@ -229,6 +229,8 @@ void drm_gem_private_object_init(struct drm_device *dev,
+ 	obj->size = size;
+ 	mutex_init(&obj->gpuva.lock);
+ 	dma_resv_init(&obj->_resv);
++
++	/* TODO: This needs to go away for drm_exec to work correctly!!! */
+ 	if (!obj->resv)
+ 		obj->resv = dma_resv_get(&obj->_resv);
+ 
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index 8725ba92ff916..9daedb676d7b1 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -47,14 +47,14 @@ struct drm_exec {
+ 	struct drm_gem_object	**objects;
+ 
+ 	/**
+-	 * @contended: contended GEM object we backed off for
++	 * @contended: contended dma_resv object we backed off for
  	 */
- 	uint64_t bytes_moved;
-+	/*
-+	 * @exec: optional drm_exec object to use for locking and contention
-+	 * handling
-+	 */
-+	struct drm_exec *exec;
+-	struct drm_gem_object	*contended;
++	struct dma_resv		*contended;
+ 
+ 	/**
+-	 * @prelocked: already locked GEM object due to contention
++	 * @prelocked: already locked dma_resv object due to contention
+ 	 */
+-	struct drm_gem_object *prelocked;
++	struct dma_resv		*prelocked;
  };
  
- struct ttm_lru_walk;
+ /**
+@@ -175,6 +175,7 @@ static inline struct ww_acquire_ctx *drm_exec_ticket(struct drm_exec *exec)
+ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
+ void drm_exec_fini(struct drm_exec *exec);
+ bool drm_exec_cleanup(struct drm_exec *exec);
++int drm_exec_lock_resv(struct drm_exec *exec, struct dma_resv *resv);
+ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+ void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+ int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
 -- 
 2.43.0
 
