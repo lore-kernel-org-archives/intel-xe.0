@@ -4,54 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2217C43458
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 19:59:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B876C43458
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 20:04:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52B0A10E1EC;
-	Fri, 10 Jul 2026 19:59:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C41F10E4EC;
+	Fri, 10 Jul 2026 20:04:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QFmft89A";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VlASjWqz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7007D10E1EC
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 19:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783713595; x=1815249595;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=ALopfRX9HXiwtbxBerr7Y2So2r87KPmytgoArh+4dZc=;
- b=QFmft89AjuguqMwbAjUeKArpCUdmaBZ8msvhpJfmzj80cZQN/r+nC5pY
- auIWU14fV0UwnX9JdJ3sVsFYLtDcd8NBLhLKLby2P1xgnptw5lwy8uTps
- 3PuV2d/i3wOnGPGgsr7cKRbWOMk7o81tH1enOeayw5vaWoFfFIin9KtG7
- 2fcX4+NpXJzOrMziC62gwLic3c94sl/CRyhTv/qD7UCx3LYr5EV5srZbP
- +cs94uhU6QJZUBwJAVn2R+sF1g9FSu1Ao6k/vE9vMwgv/QOa2YbShTipe
- eiZhp7HoA+eWlodFHB1sn5F1+qx9XiAbNvSaifQlfdXXfmyY4X+gnsWkc g==;
-X-CSE-ConnectionGUID: /wS8EtUBREu0RqQA2tNm5A==
-X-CSE-MsgGUID: UR2/7yjPR063pdzBZmRx+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95020380"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95020380"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 12:59:55 -0700
-X-CSE-ConnectionGUID: OTTP/MbOQHSog23oCgplLw==
-X-CSE-MsgGUID: vLJCNoGoQ2Gkj7SokEthwg==
-X-ExtLoop1: 1
-Received: from ssharm2x-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.34.19])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 12:59:54 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 10/13] drm/xe/tests: Add object encoding helper test
-Date: Fri, 10 Jul 2026 21:59:45 +0200
-Message-ID: <20260710195945.7316-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260707220816.677-11-michal.wajdeczko@intel.com>
-References: <20260707220816.677-11-michal.wajdeczko@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E39F910E50F;
+ Fri, 10 Jul 2026 20:03:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:Message-ID:Subject:To:From:Date:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=mbKc1/cSnSEV/apgsx5ozNRioLCTdX2qVb6//I9wooI=; b=VlASjWqzgcw0QONm2VCn9BzIJk
+ mn2RdSSUjEIO5JzWmm0NECkI5oCnjfmSMQXC0ltkXJbkRdgysaJK3+O0Hj1BAFTmqQuyc96+CQijd
+ ImJPaq1+68QSTSe4CVZr1+6vewHd8GF/6SfFcgMiBiKwHx49XRSSrKhVQHZ+Fup2D0lUv2libGRjO
+ sgaRQmB46aZF6mbROIzJ5fwRcgCXmLJXY6cl1iWO7nMzmdx6LPQbRuV5OEesW1Pz+r4QaKiIJ9ZTa
+ D+PM8H77iOfgAsWThzGhnupIr3Gcw1XxgpwacXiYkBYB4AQcIu0g/I5ob7R5PpPKivZmvq7s8sLdf
+ D//CRstQ==;
+Received: from 179-125-92-221-dinamico.pombonet.net.br ([179.125.92.221]
+ helo=quatroqueijos.cascardo.eti.br)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wiHRt-00D7nu-Ma; Fri, 10 Jul 2026 22:03:50 +0200
+Date: Fri, 10 Jul 2026 17:03:40 -0300
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ "Sokolowski, Jan" <jan.sokolowski@intel.com>,
+ "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ "kernel-dev@igalia.com" <kernel-dev@igalia.com>
+Subject: Re: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+Message-ID: <alFQHEiMqY2QUs4n@quatroqueijos.cascardo.eti.br>
+References: <20260702130108.1397444-1-cascardo@igalia.com>
+ <IA4PR11MB9251D24975F81CFD242F88F299F42@IA4PR11MB9251.namprd11.prod.outlook.com>
+ <akeamIYrRSTph5St@quatroqueijos.cascardo.eti.br>
+ <20260707104242.teljyquxek3hdppm@kamilkon-DESK.igk.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260707104242.teljyquxek3hdppm@kamilkon-DESK.igk.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,247 +75,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We will soon be encoding complex objects as KLVs using our helper
-function. Add few simple tests to make sure this helper function
-works as expected.
+On Tue, Jul 07, 2026 at 12:42:42PM +0200, Kamil Konieczny wrote:
+> Hi Thadeu,
+> On 2026-07-03 at 08:18:48 -0300, Thadeu Lima de Souza Cascardo wrote:
+> > On Fri, Jul 03, 2026 at 09:54:14AM +0000, Sokolowski, Jan wrote:
+> > > I don't know if that's a problem or not, but your patches in patch series are titled as v2 instead of v3, at least that's how I see them.
+> > > 
+> > > Jan
+> > > 
+> > 
+> > I decided to name this one v3, though I did not call the previous one v2,
+> > because I have submitted a patchset earlier that was on top of Thomas
+> > Hellstrˆm patchset.
+> > 
+> > I think it tracks the history of the patchset better. I am sorry if this
+> > got confusing.
+> > 
+> > Cascardo.
+> > 
+> 
+> Please keep versioning the same across series, if your cover letter
+> has v3, all patches in series should also have v3.
+> 
+> Regards,
+> Kamil
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Micha≈Ç Winiarski <michal.winiarski@intel.com>
----
-v2: add more negative tests (me)
-v3: drop faulty encoder for now (drm-xe-next)
----
- .../drm/xe/tests/xe_guc_klv_helpers_kunit.c   | 205 ++++++++++++++++++
- 1 file changed, 205 insertions(+)
+Ah, I missed that and didn't notice when sending. I will make sure
+everything is v4 when I send the next version.
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
-index cb4b182d88d0..33d7a52f6bf8 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c
-@@ -7,6 +7,7 @@
- #include <kunit/test-bug.h>
- 
- #define TEST_KEY	(GUC_KLV_RESERVED_RANGE_START + 0x3de)
-+#define TEST_GROUP_KEY	(GUC_KLV_RESERVED_RANGE_START + 0x3f0)
- #define TEST_PAD	0xdeadbeef
- 
- static void test_count(struct kunit *test)
-@@ -167,11 +168,215 @@ static void test_encode_string(struct kunit *test)
- 			    xe_guc_klv_encode_string(klvs, avail, key, buf));
- }
- 
-+struct some_object {
-+	u32 value1;
-+	u64 value2;
-+} __packed;
-+
-+static u32 *obj_raw_encoder(u32 *klvs, u32 avail, const void *arg)
-+{
-+	const struct some_object *obj = arg;
-+	size_t sz = sizeof(*obj);
-+	u32 dwords = to_num_dwords(sz);
-+
-+	if (IS_ERR(klvs))
-+		return klvs;
-+	if (dwords > avail)
-+		return ERR_PTR(-ENOSPC);
-+	memcpy(klvs, obj, sz);
-+	return klvs + dwords;
-+}
-+
-+static u32 *obj_klv_encoder(u32 *klvs, u32 avail, const void *arg)
-+{
-+	const struct some_object *obj = arg;
-+	u32 *end = klvs + avail;
-+
-+	klvs = xe_guc_klv_encode_u32(klvs, end - klvs, TEST_KEY + 1, obj->value1);
-+	klvs = xe_guc_klv_encode_u64(klvs, end - klvs, TEST_KEY + 2, obj->value2);
-+	return klvs;
-+}
-+
-+static u32 *obj_nested_encoder(u32 *klvs, u32 avail, const void *arg)
-+{
-+	u32 *end = klvs + avail;
-+
-+	klvs = xe_guc_klv_encode_object(klvs, end - klvs, TEST_GROUP_KEY + 1,
-+					arg, obj_klv_encoder);
-+	klvs = xe_guc_klv_encode_object(klvs, end - klvs, TEST_GROUP_KEY + 2,
-+					arg, obj_klv_encoder);
-+	return klvs;
-+}
-+
-+static void test_encode_object_raw(struct kunit *test)
-+{
-+	const struct some_object obj = {
-+		.value1 = 0xdead1234,
-+		.value2 = 0xdead87654321dead,
-+	};
-+	u32 payload = to_num_dwords(sizeof(obj));
-+	u32 *err = ERR_PTR(-ENOSPC);
-+	u16 key = TEST_KEY;
-+	u32 klvs[16];
-+	u32 n;
-+
-+	/* too small, must fail */
-+	for (n = 0; n < GUC_KLV_LEN_MIN + payload; n++) {
-+		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+		KUNIT_EXPECT_PTR_EQ_MSG(test, ERR_PTR(-ENOSPC),
-+					xe_guc_klv_encode_object(klvs, n, key, &obj,
-+								 obj_raw_encoder),
-+					"buf size=%u dwords", n);
-+	}
-+
-+	/* must pass */
-+	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test,
-+				     xe_guc_klv_encode_object(klvs, GUC_KLV_LEN_MIN + payload,
-+							      key, &obj, obj_raw_encoder));
-+	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, payload));
-+	KUNIT_EXPECT_MEMEQ(test, &klvs[1], &obj, sizeof(obj));
-+
-+	/* already failed, must fail */
-+	KUNIT_ASSERT_PTR_EQ(test, err,
-+			    xe_guc_klv_encode_object(err, ARRAY_SIZE(klvs), key,
-+						     &obj, obj_raw_encoder));
-+}
-+
-+static void test_encode_object_klv(struct kunit *test)
-+{
-+	const struct some_object obj = {
-+		.value1 = 0xdead1234,
-+		.value2 = 0xdead87654321dead,
-+	};
-+	u16 key = TEST_GROUP_KEY;
-+	u32 payload = 0;
-+	u32 klvs[16];
-+	u32 n;
-+
-+	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value1));
-+	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value2));
-+
-+	/* too small, must fail */
-+	for (n = 0; n < GUC_KLV_LEN_MIN + payload; n++) {
-+		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+		KUNIT_EXPECT_PTR_EQ_MSG(test, ERR_PTR(-ENOSPC),
-+					xe_guc_klv_encode_object(klvs, n, key, &obj,
-+								 obj_klv_encoder),
-+					"buf size=%u dwords", n);
-+	}
-+
-+	/* must pass */
-+	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test,
-+				     xe_guc_klv_encode_object(klvs, GUC_KLV_LEN_MIN + payload,
-+							      key, &obj, obj_klv_encoder));
-+	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, payload));
-+	KUNIT_EXPECT_EQ(test, klvs[1], PREP_GUC_KLV(TEST_KEY + 1, 1));
-+	KUNIT_EXPECT_EQ(test, klvs[2], obj.value1);
-+	KUNIT_EXPECT_EQ(test, klvs[3], PREP_GUC_KLV(TEST_KEY + 2, 2));
-+	KUNIT_EXPECT_EQ(test, klvs[4], lower_32_bits(obj.value2));
-+	KUNIT_EXPECT_EQ(test, klvs[5], upper_32_bits(obj.value2));
-+	KUNIT_EXPECT_EQ(test, klvs[6], TEST_PAD);
-+}
-+
-+static void test_encode_object_nested(struct kunit *test)
-+{
-+	const struct some_object obj = {
-+		.value1 = 0xdead1234,
-+		.value2 = 0xdead87654321dead,
-+	};
-+	u16 key = TEST_GROUP_KEY;
-+	u32 payload = 0;
-+	u32 klvs[16];
-+	u32 n;
-+
-+	payload += GUC_KLV_LEN_MIN;
-+	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value1));
-+	payload += GUC_KLV_LEN_MIN + to_num_dwords(sizeof(obj.value2));
-+	payload *= 2;
-+
-+	/* too small, must fail */
-+	for (n = 0; n < GUC_KLV_LEN_MIN + payload; n++) {
-+		memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+		KUNIT_EXPECT_PTR_EQ_MSG(test, ERR_PTR(-ENOSPC),
-+					xe_guc_klv_encode_object(klvs, n, key, &obj,
-+								 obj_nested_encoder),
-+					"buf size=%u dwords", n);
-+	}
-+
-+	/* must pass */
-+	memset32(klvs, TEST_PAD, ARRAY_SIZE(klvs));
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test,
-+				     xe_guc_klv_encode_object(klvs, GUC_KLV_LEN_MIN + payload,
-+							      key, &obj, obj_nested_encoder));
-+	KUNIT_EXPECT_EQ(test, klvs[0], PREP_GUC_KLV(key, payload));
-+	KUNIT_EXPECT_EQ(test, klvs[1], PREP_GUC_KLV(TEST_GROUP_KEY + 1, 5));
-+	KUNIT_EXPECT_EQ(test, klvs[2], PREP_GUC_KLV(TEST_KEY + 1, 1));
-+	KUNIT_EXPECT_EQ(test, klvs[3], obj.value1);
-+	KUNIT_EXPECT_EQ(test, klvs[4], PREP_GUC_KLV(TEST_KEY + 2, 2));
-+	KUNIT_EXPECT_EQ(test, klvs[5], lower_32_bits(obj.value2));
-+	KUNIT_EXPECT_EQ(test, klvs[6], upper_32_bits(obj.value2));
-+	KUNIT_EXPECT_EQ(test, klvs[7], PREP_GUC_KLV(TEST_GROUP_KEY + 2, 5));
-+	KUNIT_EXPECT_EQ(test, klvs[8], PREP_GUC_KLV(TEST_KEY + 1, 1));
-+	KUNIT_EXPECT_EQ(test, klvs[9], obj.value1);
-+	KUNIT_EXPECT_EQ(test, klvs[10], PREP_GUC_KLV(TEST_KEY + 2, 2));
-+	KUNIT_EXPECT_EQ(test, klvs[11], lower_32_bits(obj.value2));
-+	KUNIT_EXPECT_EQ(test, klvs[12], upper_32_bits(obj.value2));
-+	KUNIT_EXPECT_EQ(test, klvs[13], TEST_PAD);
-+}
-+
-+static u32 *obj_echo_encoder(u32 *klvs, u32 avail, const void *arg)
-+{
-+	return ERR_CAST(arg);
-+}
-+
-+static void test_encode_object_basic(struct kunit *test)
-+{
-+	u32 longest = GUC_KLV_LEN_MIN + FIELD_MAX(GUC_KLV_0_LEN);
-+	u32 avail = GUC_KLV_LEN_MIN + longest;
-+	u16 key = TEST_GROUP_KEY;
-+	u32 *klvs;
-+
-+	klvs = kunit_kcalloc(test, avail, sizeof(u32), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, klvs);
-+
-+	/* smallest */
-+	KUNIT_EXPECT_PTR_EQ(test, klvs + GUC_KLV_LEN_MIN,
-+			    xe_guc_klv_encode_object(klvs, avail, key,
-+						     klvs + GUC_KLV_LEN_MIN,
-+						     obj_echo_encoder));
-+	/* largest */
-+	KUNIT_EXPECT_PTR_EQ(test, klvs + longest,
-+			    xe_guc_klv_encode_object(klvs, avail, key,
-+						     klvs + longest,
-+						     obj_echo_encoder));
-+	/* already failed */
-+	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-EROFS),
-+			    xe_guc_klv_encode_object(ERR_PTR(-EROFS), avail, key,
-+						     klvs + GUC_KLV_LEN_MIN,
-+						     obj_echo_encoder));
-+	/* encoding error */
-+	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-EUCLEAN),
-+			    xe_guc_klv_encode_object(klvs, avail, key,
-+						     ERR_PTR(-EUCLEAN),
-+						     obj_echo_encoder));
-+	/* no space */
-+	KUNIT_EXPECT_PTR_EQ(test, ERR_PTR(-ENOSPC),
-+			    xe_guc_klv_encode_object(klvs, 0, key,
-+						     klvs + GUC_KLV_LEN_MIN,
-+						     obj_echo_encoder));
-+}
-+
- static struct kunit_case guc_klv_helpers_test_cases[] = {
- 	KUNIT_CASE(test_count),
- 	KUNIT_CASE(test_encode_u32),
- 	KUNIT_CASE(test_encode_u64),
- 	KUNIT_CASE(test_encode_string),
-+	KUNIT_CASE(test_encode_object_raw),
-+	KUNIT_CASE(test_encode_object_klv),
-+	KUNIT_CASE(test_encode_object_nested),
-+	KUNIT_CASE(test_encode_object_basic),
- 	{}
- };
- 
--- 
-2.47.1
-
+Cascardo.
