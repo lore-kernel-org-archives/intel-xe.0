@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02D3EC44510
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F253CC44501
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4334110F982;
-	Fri, 10 Jul 2026 21:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC34E10F99B;
+	Fri, 10 Jul 2026 21:54:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JGEE4Iuh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OCygifMH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C13910F992;
- Fri, 10 Jul 2026 21:54:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8620210F963;
+ Fri, 10 Jul 2026 21:54:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783720496; x=1815256496;
+ t=1783720494; x=1815256494;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BG1PFICdpAljvWYeK8+LJvs9zXvpb2Spx/Q4HUyJTRs=;
- b=JGEE4IuhW3XdgYMZS/xUGXNrxDfuidmwtctNH1ADgJGsa0hW1c2mM3vJ
- sczTBCm2XYOTcm07swYtH8vxkF8B6XtRTRWPIrXc4jBkXI1eLJCKY9DsH
- bz36xJ5uhVd+7AcHPhvj9PgLHDRZDZYoXVaFpbbq1j8wiGIcscLI7806A
- 7dJKhzNe4FrRnpu+2pY1vcAwJzXt33Ut0uZCFWYSBPkXQ6LvzSi2BoGHC
- zUj8BHZT2sCkIVMi5kwf0OXLtEGibvcywSA+TGLKC83UAZ5cUYyGJsvPd
- pyepL9gFHLcYE/xoe24QD5Vw+OhRdCkgutfOnNhE9i7KWoWCuIG70Fd/e g==;
-X-CSE-ConnectionGUID: LriX8A0PS5Kbn3XpuD+cmg==
-X-CSE-MsgGUID: uOy3HXESS6aKpz34DTgfug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543241"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543241"
+ bh=nn+M/8PLlLtKIB9/allZXyCpaBAHNBmt3SZOdW8TBhg=;
+ b=OCygifMHWy0erCLcBIP8wya4tM5JUqikg1Hl4TPCghgytkO1kRmHjvPw
+ QNY9p+5x1ZJkYslX422gDQ885HB1iW6oIa9jVTxxMyIC2aOCTrQmOFyYo
+ AgT9ERqbsJ+zdXcW8B9c+a4h2KMCzAOTsNg2uwpveDLqSvR+eJybJvq/V
+ 5yDF7nVSewmahB2iAFjIspRENeqsMieqQlNCWoTEfASJX21yvLzyMANl/
+ C+4Kl2BYIqZKMBsLgsk/yG1Cltb6rJAXgEiaPN9TI9IgvKpFY11UHHmoL
+ egNWikCNCLnJxLvL3duu6zbvgSaRbaPg98mXQFOHZmAj7rdPpqcpBVTbL g==;
+X-CSE-ConnectionGUID: l6L81E2xS+q7IUmy7NcSGw==
+X-CSE-MsgGUID: zD/G+NSXRra1M/G4atgL7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543173"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543173"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:56 -0700
-X-CSE-ConnectionGUID: YRnX5efARB2FCxiRdNvuWg==
-X-CSE-MsgGUID: 01+A5H6tSZ6TZrxfUiagyg==
+ 10 Jul 2026 14:54:53 -0700
+X-CSE-ConnectionGUID: kYpc8AmURU6Kel0HZxQSQw==
+X-CSE-MsgGUID: 3B2iPam1SMuppOnPuzLjOQ==
 X-ExtLoop1: 1
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 14:54:56 -0700
+ 10 Jul 2026 14:54:53 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -51,9 +51,10 @@ Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 27/33] drm/xe: Add IOVA-based xe_res_cursor variant
-Date: Fri, 10 Jul 2026 14:54:36 -0700
-Message-Id: <20260710215442.2444235-28-matthew.brost@intel.com>
+Subject: [PATCH v2 19/33] drm/xe: Skip self-copies for borrowed pages on
+ defrag moves
+Date: Fri, 10 Jul 2026 14:54:28 -0700
+Message-Id: <20260710215442.2444235-20-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260710215442.2444235-1-matthew.brost@intel.com>
 References: <20260710215442.2444235-1-matthew.brost@intel.com>
@@ -74,20 +75,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_res_first_iova() to walk a buffer that was DMA mapped using
-the IOVA-based DMA API (dma_iova_try_alloc() and friends). Such a mapping
-is described by a struct dma_iova_state and is a single contiguous IOVA
-range, so the cursor walks it as one segment.
+A defrag move may harvest already beneficial-order chunks from the old
+tt, so the freshly reallocated backing borrows (references) some of the
+same physical pages. For those pages the source and destination GPU
+mappings alias the same memory, making the data blit a pointless
+self-copy.
 
-Add an is_iova flag to struct xe_res_cursor to distinguish this case.
-When set, xe_res_dma() returns the IOVA backing the current position
-(state->addr + cursor offset), xe_res_next() advances within the single
-contiguous segment, and xe_res_is_vram() returns false since IOVA
-mappings never point to same-device VRAM.
+Pass the source (old) tt into __xe_migrate_copy() instead of just its sg
+table, so the data pass can compare the src and dst tt page arrays at the
+matching offset and only blit runs of pages that actually differ. A new
+emit_copy_chunks() helper walks each L0 chunk, skips borrowed-page runs,
+and coalesces contiguous to-copy pages into a single emit_copy(). It runs
+twice per chunk: once with a NULL batch buffer to count the blits for
+batch sizing, then again to emit them.
 
-The flag is explicitly cleared in the existing xe_res_first(),
-xe_res_first_sg() and xe_res_first_dma() initializers so stale stack
-values cannot leak into the new path.
+When an entire L0 chunk turns out to be borrowed, skip it outright: no
+batch buffer is allocated and no GPU commands are issued, the cursors are
+just advanced past the chunk. If every chunk of the move is borrowed the
+copy is a complete no-op, so hand back a signaled stub fence.
+
+The comparison is a cheap per-page pointer test (src page != dst page)
+that coalesces contiguous to-copy pages into a single blit. PTEs are
+still emitted for partially borrowed chunks, since that setup is cheap and
+only the data copies are worth skipping. Only the defrag data pass is
+affected; the separate CCS pass still migrates all aux state.
+
+Since the Xe tt sg lives in the xe_ttm_tt subclass rather than the base
+ttm_tt, add an xe_tt_sg() helper to fetch it from a struct ttm_tt.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -105,125 +119,349 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_res_cursor.h | 56 +++++++++++++++++++++++++++++-
- 1 file changed, 55 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.c      |  22 +++++-
+ drivers/gpu/drm/xe/xe_bo.h      |   2 +
+ drivers/gpu/drm/xe/xe_migrate.c | 136 ++++++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_migrate.h |   3 +-
+ 4 files changed, 142 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
-index 0522caafd89d..f0f1d699e16e 100644
---- a/drivers/gpu/drm/xe/xe_res_cursor.h
-+++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-@@ -24,6 +24,7 @@
- #ifndef _XE_RES_CURSOR_H_
- #define _XE_RES_CURSOR_H_
- 
-+#include <linux/dma-mapping.h>
- #include <linux/scatterlist.h>
- 
- #include <drm/drm_pagemap.h>
-@@ -67,6 +68,12 @@ struct xe_res_cursor {
- 	u64 dma_start;
- 	/** @dma_seg_size: Size of the current DMA segment. */
- 	u64 dma_seg_size;
-+	/**
-+	 * @is_iova: Whether the cursor walks a single contiguous IOVA
-+	 * mapping described by a struct dma_iova_state. When true, the
-+	 * DMA address is @dma_start + @start and never points to VRAM.
-+	 */
-+	bool is_iova;
- };
- 
- static struct gpu_buddy *xe_res_get_buddy(struct ttm_resource *res)
-@@ -93,6 +100,7 @@ static inline void xe_res_first(struct ttm_resource *res,
- {
- 	cur->sgl = NULL;
- 	cur->dma_addr = NULL;
-+	cur->is_iova = false;
- 	if (!res)
- 		goto fallback;
- 
-@@ -224,6 +232,7 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
- 	cur->dma_addr = NULL;
- 	cur->sgl = sg->sgl;
- 	cur->mem_type = XE_PL_TT;
-+	cur->is_iova = false;
- 	__xe_res_sg_next(cur);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8e9fc8b3dffa..3b867c486ea4 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -473,6 +473,22 @@ struct sg_table *xe_bo_sg(struct xe_bo *bo)
+ 	return xe_tt->sg;
  }
  
-@@ -255,6 +264,41 @@ static inline void xe_res_first_dma(const struct drm_pagemap_addr *dma_addr,
- 	__xe_res_dma_next(cur);
- 	cur->sgl = NULL;
- 	cur->mem_type = XE_PL_TT;
-+	cur->is_iova = false;
++/**
++ * xe_tt_sg() - Return the DMA scatter-gather table backing a ttm_tt.
++ * @tt: The ttm_tt to query.
++ *
++ * Like xe_bo_sg(), but takes the ttm_tt directly. Used by the defrag copy
++ * path which needs the old (source) tt's sg table without a backing xe_bo.
++ *
++ * Return: The sg table, or NULL if the tt is not currently mapped.
++ */
++struct sg_table *xe_tt_sg(struct ttm_tt *tt)
++{
++	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++
++	return xe_tt->sg;
 +}
 +
-+/**
-+ * xe_res_first_iova() - initialize a xe_res_cursor with a dma_iova_state
-+ *
-+ * @state: struct dma_iova_state describing a single contiguous IOVA mapping
-+ * @start: Start of the range
-+ * @size: Size of the range
-+ * @cur: cursor object to initialize
-+ *
-+ * Start walking over the range of an allocation that was DMA mapped using the
-+ * IOVA-based DMA API (see dma_iova_try_alloc()). Such a mapping is a single
-+ * contiguous IOVA range, so the cursor walks it as one segment. Subsequent
-+ * calls to xe_res_next() advance within that range and xe_res_dma() returns
-+ * the IOVA backing the current position. xe_res_is_vram() always returns false
-+ * for such a cursor.
-+ */
-+static inline void xe_res_first_iova(struct dma_iova_state *state,
-+				     u64 start, u64 size,
-+				     struct xe_res_cursor *cur)
-+{
-+	XE_WARN_ON(!state);
-+	XE_WARN_ON(start + size > dma_iova_size(state));
-+
-+	cur->node = NULL;
-+	cur->start = start;
-+	cur->remaining = size;
-+	cur->size = size;
-+	cur->dma_addr = NULL;
-+	cur->sgl = NULL;
-+	cur->dma_start = state->addr;
-+	cur->dma_seg_size = dma_iova_size(state);
-+	cur->mem_type = XE_PL_TT;
-+	cur->is_iova = true;
+ /*
+  * Account ttm pages against the device shrinker's shrinkable and
+  * purgeable counts.
+@@ -1284,11 +1300,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 
+ 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
+ 	} else if (ttm_bo->defrag_old_tt) {
+-		struct xe_ttm_tt *old_xe_tt =
+-			container_of(ttm_bo->defrag_old_tt, struct xe_ttm_tt, ttm);
+-
+ 		fence = xe_migrate_copy_defrag(migrate, bo, old_mem, new_mem,
+-					       old_xe_tt->sg, handle_system_ccs);
++					       ttm_bo->defrag_old_tt,
++					       handle_system_ccs);
+ 	} else {
+ 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
+ 					handle_system_ccs);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 4186cb51af87..32211016a722 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -110,6 +110,7 @@ enum xe_madv_purgeable_state {
+ };
+ 
+ struct sg_table;
++struct ttm_tt;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+ void xe_bo_free(struct xe_bo *bo);
+@@ -547,6 +548,7 @@ void xe_bo_dev_init(struct xe_bo_dev *bo_device);
+ void xe_bo_dev_fini(struct xe_bo_dev *bo_device);
+ 
+ struct sg_table *xe_bo_sg(struct xe_bo *bo);
++struct sg_table *xe_tt_sg(struct ttm_tt *tt);
+ 
+ /*
+  * xe_sg_segment_size() - Provides upper limit for sg segment size.
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 305c6e1942fb..c1e96f105648 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -811,6 +811,63 @@ static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
+ 		emit_xy_fast_copy(gt, bb, src_ofs, dst_ofs, size, pitch);
  }
  
- /**
-@@ -283,6 +327,13 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
- 		return;
- 	}
- 
-+	if (cur->is_iova) {
-+		/* Single contiguous IOVA segment. */
-+		cur->start += size;
-+		cur->size = cur->remaining;
-+		return;
++/*
++ * emit_copy_chunks() - Emit the data blits for one defrag L0 chunk, skipping
++ * borrowed pages.
++ * @gt: The GT.
++ * @bb: The batch buffer to emit into, or NULL to only count the blits needed.
++ * @src_L0_ofs: GPU offset of the source pages mapped for this L0 chunk.
++ * @dst_L0_ofs: GPU offset of the destination pages mapped for this L0 chunk.
++ * @src_L0: Byte size of the L0 chunk (page aligned).
++ * @src_tt: Source (old) tt providing the page pointers.
++ * @dst_tt: Destination (new) tt providing the page pointers.
++ * @start_page: Page offset of this L0 chunk within the tt page arrays.
++ *
++ * A defragmentation move may harvest already beneficial-order chunks from the
++ * old tt, so the new tt references (borrows) some of the same physical pages.
++ * For those pages the source and destination GPU mappings alias the same
++ * memory and the data blit is a pointless self-copy. Walk the L0 chunk and
++ * only blit runs of pages that actually differ (src page != dst page),
++ * coalescing contiguous to-copy pages into a single blit.
++ *
++ * Return: The number of blits emitted (or that would be emitted when @bb is
++ * NULL).
++ */
++static u32 emit_copy_chunks(struct xe_gt *gt, struct xe_bb *bb,
++			    u64 src_L0_ofs, u64 dst_L0_ofs, u32 src_L0,
++			    struct ttm_tt *src_tt, struct ttm_tt *dst_tt,
++			    pgoff_t start_page)
++{
++	u32 npages = src_L0 >> PAGE_SHIFT;
++	u32 i = 0, nblits = 0;
++
++	while (i < npages) {
++		u32 run = 0;
++
++		/* Skip a run of borrowed pages (src and dst alias). */
++		if (src_tt->pages[start_page + i] ==
++		    dst_tt->pages[start_page + i]) {
++			i++;
++			continue;
++		}
++
++		/* Coalesce a run of pages that actually need copying. */
++		while (i + run < npages &&
++		       src_tt->pages[start_page + i + run] !=
++		       dst_tt->pages[start_page + i + run])
++			run++;
++
++		if (bb)
++			emit_copy(gt, bb, src_L0_ofs + (u64)i * PAGE_SIZE,
++				  dst_L0_ofs + (u64)i * PAGE_SIZE,
++				  run * PAGE_SIZE, PAGE_SIZE);
++		nblits++;
++		i += run;
 +	}
 +
- 	if (cur->dma_addr) {
- 		cur->start += size;
- 		__xe_res_dma_next(cur);
-@@ -334,7 +385,7 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
-  */
- static inline u64 xe_res_dma(const struct xe_res_cursor *cur)
- {
--	if (cur->dma_addr)
-+	if (cur->is_iova || cur->dma_addr)
- 		return cur->dma_start + cur->start;
- 	else if (cur->sgl)
- 		return sg_dma_address(cur->sgl) + cur->start;
-@@ -351,6 +402,9 @@ static inline u64 xe_res_dma(const struct xe_res_cursor *cur)
-  */
- static inline bool xe_res_is_vram(const struct xe_res_cursor *cur)
- {
-+	if (cur->is_iova)
-+		return false;
++	return nblits;
++}
 +
- 	if (cur->dma_addr)
- 		return cur->dma_addr->proto == XE_INTERCONNECT_VRAM;
+ static u64 xe_migrate_batch_base(struct xe_migrate *m, bool usm)
+ {
+ 	return usm ? m->usm_batch_base_ofs : m->batch_base_ofs;
+@@ -865,13 +922,15 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+  * @is_vram_resolve: Decompression (VRAM -> system) resolve; always uses the
+  * compression PAT index for the data copy.
+  * @defrag_ccs: Defrag move pass that migrates only the CCS aux state between
+- * two distinct page sets (old @src_sg pages -> new pages). The data blit is
++ * two distinct page sets (old @src_tt pages -> new pages). The data blit is
+  * skipped (the data was copied by the @defrag_copy pass) and both the source
+  * and destination data pages are mapped with the compression PAT so the aux
+  * state is copied indirect -> indirect.
+  * @defrag_copy: Defrag move pass that copies the data pages between two
+- * distinct page sets (old @src_sg pages -> new pages) without touching the CCS
+- * aux state. The data pages are mapped without the compression PAT so the
++ * distinct page sets (old @src_tt pages -> new pages) without touching the CCS
++ * aux state. Pages the new tt borrowed from @src_tt (harvested already
++ * beneficial-order chunks) alias the same memory on both sides and are skipped.
++ * The data pages are mapped without the compression PAT so the
+  * (possibly compressed) bytes are copied verbatim rather than being
+  * decompressed and recompressed, and no CCS aux copy is appended; the aux
+  * state is migrated separately by the @defrag_ccs pass. The two passes need
+@@ -889,7 +948,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 					   struct xe_bo *dst_bo,
+ 					   struct ttm_resource *src,
+ 					   struct ttm_resource *dst,
+-					   struct sg_table *src_sg,
++					   struct ttm_tt *src_tt,
+ 					   struct xe_migrate_copy_flags flags)
+ {
+ 	struct xe_gt *gt = m->tile->primary_gt;
+@@ -914,6 +973,14 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 		!flags.defrag_copy;
+ 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram) &&
+ 		!flags.defrag_ccs && !flags.defrag_copy;
++	/*
++	 * On the defrag data pass the new (destination) tt may have borrowed
++	 * already beneficial-order pages from the old (source) tt, so skip the
++	 * self-copy for any page they share. Compare the tt page arrays at the
++	 * matching offset.
++	 */
++	struct ttm_tt *dst_tt = dst_bo->ttm.ttm;
++	bool skip_borrowed = flags.defrag_copy && src_tt && dst_tt;
  
+ 	/*
+ 	 * For decompression operation, always use the compression PAT index.
+@@ -926,7 +993,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 
+ 	/*
+ 	 * The defrag CCS pass migrates the aux state from the old pages
+-	 * (@src_sg) to the new pages with both sides accessed indirectly, so
++	 * (@src_tt) to the new pages with both sides accessed indirectly, so
+ 	 * keep both src_is_pltt and dst_is_pltt set (no direct staging side).
+ 	 */
+ 
+@@ -938,7 +1005,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 		return ERR_PTR(-EINVAL);
+ 
+ 	if (!src_is_vram)
+-		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo), 0, size, &src_it);
++		xe_res_first_sg(src_tt ? xe_tt_sg(src_tt) : xe_bo_sg(src_bo), 0, size, &src_it);
+ 	else
+ 		xe_res_first(src, 0, size, &src_it);
+ 	if (!dst_is_vram)
+@@ -947,7 +1014,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 		xe_res_first(dst, 0, size, &dst_it);
+ 
+ 	if (copy_system_ccs)
+-		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo),
++		xe_res_first_sg(src_tt ? xe_tt_sg(src_tt) : xe_bo_sg(src_bo),
+ 				xe_bo_ccs_pages_start(src_bo),
+ 				PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
+ 				&ccs_it);
+@@ -961,6 +1028,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 		u64 ccs_ofs, ccs_size;
+ 		u32 ccs_pt;
+ 		u32 pte_flags;
++		pgoff_t start_page = (xe_bo_size(src_bo) - size) >> XE_PTE_SHIFT;
++		u32 ndata_blits = 1;
+ 
+ 		bool usm = xe->info.has_usm;
+ 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+@@ -998,9 +1067,30 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+ 		}
+ 
+-		/* Add copy commands size here */
++		/*
++		 * Add copy commands size here. On the defrag data pass the blit
++		 * is split into one command per run of non-borrowed pages, so
++		 * size for the number of runs actually needed.
++		 */
++		if (skip_borrowed)
++			ndata_blits = emit_copy_chunks(gt, NULL, 0, 0, src_L0,
++						       src_tt, dst_tt, start_page);
++
++		/*
++		 * If every page in this chunk was borrowed there is nothing to
++		 * copy: don't build a batch or issue any GPU commands, just
++		 * advance the cursors past the chunk. The non-vram tt cursors
++		 * would otherwise be advanced by emit_pte().
++		 */
++		if (skip_borrowed && !ndata_blits) {
++			xe_res_next(&src_it, src_L0);
++			xe_res_next(&dst_it, src_L0);
++			size -= src_L0;
++			continue;
++		}
++
+ 		batch_size += ((flags.copy_only_ccs || flags.defrag_ccs) ? 0 :
+-			       emit_copy_cmd_len(xe)) +
++			       ndata_blits * emit_copy_cmd_len(xe)) +
+ 			((needs_ccs_emit ? EMIT_COPY_CCS_DW : 0));
+ 
+ 		bb = xe_bb_new(gt, batch_size, usm);
+@@ -1029,7 +1119,10 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
+-		if (!flags.copy_only_ccs && !flags.defrag_ccs)
++		if (skip_borrowed)
++			emit_copy_chunks(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,
++					 src_tt, dst_tt, start_page);
++		else if (!flags.copy_only_ccs && !flags.defrag_ccs)
+ 			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
+ 
+ 		if (needs_ccs_emit)
+@@ -1088,6 +1181,14 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+ 		return ERR_PTR(err);
+ 	}
+ 
++	/*
++	 * Every chunk of a defrag data pass may have been borrowed (nothing
++	 * copied), leaving no job and a NULL fence. Hand back a signaled stub
++	 * so callers always get a valid fence to wait on.
++	 */
++	if (!fence)
++		return dma_fence_get_stub();
++
+ 	return fence;
+ }
+ 
+@@ -1129,18 +1230,21 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+  * @bo: The buffer object being defragmented. Both @src and @dst belong to @bo.
+  * @src: The source TTM resource (the old backing).
+  * @dst: The dst TTM resource (the freshly reallocated backing).
+- * @src_sg: Scatter-gather table of the source (old) backing pages.
++ * @src_tt: The source (old) backing tt, providing both the scatter-gather
++ * table and page pointers of the old pages.
+  * @need_ccs: Whether the BO has CCS aux state that must be migrated too.
+  *
+  * Used by the defrag path where a single BO has its backing reallocated at a
+  * more beneficial page order. The contents are relocated from the old pages
+- * (@src_sg) to the new pages (the BO's current backing) entirely on the GPU,
++ * (@src_tt) to the new pages (the BO's current backing) entirely on the GPU,
+  * in up to two passes:
+  *
+  *  - Data pass (always): copy the data pages verbatim. The pages are mapped
+  *    without the compression PAT, so the (possibly compressed) bytes are copied
+  *    as-is rather than being decompressed and recompressed, and no CCS aux copy
+- *    is appended.
++ *    is appended. Pages the new backing borrowed from @src_tt (harvested
++ *    already beneficial-order chunks) alias the same memory on both sides and
++ *    are skipped.
+  *
+  *  - CCS pass (@need_ccs): copy the CCS aux (compression) state. Both the old
+  *    and new data pages are mapped with the compression PAT so the copy engine
+@@ -1159,11 +1263,11 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
+ 					 struct xe_bo *bo,
+ 					 struct ttm_resource *src,
+ 					 struct ttm_resource *dst,
+-					 struct sg_table *src_sg,
++					 struct ttm_tt *src_tt,
+ 					 bool need_ccs)
+ {
+ 	struct dma_fence *fence2, *fence =
+-		__xe_migrate_copy(m, bo, bo, src, dst, src_sg,
++		__xe_migrate_copy(m, bo, bo, src, dst, src_tt,
+ 				  (struct xe_migrate_copy_flags) {
+ 					 .defrag_copy = true,
+ 					 });
+@@ -1171,7 +1275,7 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
+ 	if (IS_ERR(fence) || !need_ccs)
+ 		return fence;
+ 
+-	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_sg,
++	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_tt,
+ 				   (struct xe_migrate_copy_flags) {
+ 				   .defrag_ccs = true,
+ 				   });
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index e4f996942a6d..4094ea1c19c1 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -13,6 +13,7 @@ struct drm_pagemap_addr;
+ struct iosys_map;
+ struct sg_table;
+ struct ttm_resource;
++struct ttm_tt;
+ 
+ struct xe_bo;
+ struct xe_gt;
+@@ -137,7 +138,7 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
+ 					 struct xe_bo *bo,
+ 					 struct ttm_resource *src,
+ 					 struct ttm_resource *dst,
+-					 struct sg_table *src_sg,
++					 struct ttm_tt *src_tt,
+ 					 bool need_ccs);
+ 
+ struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
 -- 
 2.34.1
 
