@@ -4,27 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F81DC43458
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 10:45:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F1E6C44501
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 11:14:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2697810E18B;
-	Fri, 10 Jul 2026 10:45:59 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9042110E18B;
- Fri, 10 Jul 2026 10:45:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7639484791934229728=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42B7910F877;
+	Fri, 10 Jul 2026 11:14:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Us+f5d5j";
+	dkim-atps=neutral
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95EEC10F86C;
+ Fri, 10 Jul 2026 11:14:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1783682095;
+ bh=eVO2Dssv4lilRzs4kxcyOFA5Pth+OoAw3SkARZig7WY=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Us+f5d5jbIcnvyZSZEdJY9pOpSclw4lM0k1nhkMnQQYaCJKouEffJhtobqovOTdlC
+ 45ybPFchWk8SqXGrNEfhqsQMIXFd5D73LME/CU8C4Lc3Jonu17w23z/rDCN/Pl61gJ
+ 1/LICfJseUAX5ywjtJfcu57PeCAwuS+0u+mCIfqu928KDErKy1eFRx2xTbbG4TqrOX
+ ckjoAZjnFHLQpNWmVHEv9zmHTumdc8LKZgyrroFDvie09T+UEgv/UKdiepLTS9l1rM
+ exT0isR13+7XRWs1z+xu1gTj5cVWu8WPBp6El3rroKr70dsfNcsEIgxhcBtJisRnX5
+ QcLMl4ZCikoeA==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v2 00/11] drm/{i915,xe}: some BIOS FB takeover fixes
+Date: Fri, 10 Jul 2026 13:15:27 +0200
+Message-ID: <20260710111539.1274555-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Hold_a_dma-buf_re?=
- =?utf-8?q?ference_for_imported_BOs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Jul 2026 10:45:57 -0000
-Message-ID: <178368035758.173635.4937632050490415788@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260710093726.43324-2-nitin.r.gote@intel.com>
-In-Reply-To: <20260710093726.43324-2-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +47,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7639484791934229728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There are some bugs related to BIOS fb takeover, and some cleanups and fixes.
 
-== Series Details ==
+All the patches here were previously posted by Ville under a similar series name,
+but I've taken out 3 patches I want to rework, and my motivation for each patch:
+"drm/i915: Introduce intel_bo_fbdev_bios_fb_ok()"
+- It's clear that using stolen memory on integrated platforms with media gt
+  is causing issues, I will modify it to copy the entire framebuffer bo into
+  system memory on xe.
+"drm/xe/ggtt: Decouple lmem/stolen physcial offset from GGTT offset"
+- Intermingling of 2 different goals. There was a workaround in xe_bo.c
+  to avoid trampling over the previously reserved GGTT area, but a better
+  way to solve it is by reserving GGTT explicitly here, and allocating the
+  BO  without the GGTT or map flags set initially.
+"drm/xe: Use the correct stolen offset in initial FB readout"
+- Depends on the previous changes to xe/ggtt
 
-Series: drm/xe: Hold a dma-buf reference for imported BOs
-URL   : https://patchwork.freedesktop.org/series/170181/
-State : success
+Ville Syrjälä (11):
+  drm/i915: Disable the plane if initial plane config readout failed
+  drm/i915/fbdev: Extract bios_fb_ok()
+  drm/i915: Throw away the BIOS fb if has the wrong depth/bpp
+  drm/i915: Use drm_dbg_kms() for initial FB debugs
+  drm/xe: Do the initial FB size alignment earlier
+  drm/xe: Print a debug message if we have no stolen for the initial FB
+  drm/xe: Abstract the initial FB PTE checks a bit
+  drm/xe: Check the PTE local memory bit for initial FB in stolen
+  drm/xe: s/bar2/lmembar/
+  drm/i915: Fix BIOS FB memory region name debug prints
+  drm/i915: Print the phys_base in addition to the dma_addr for the BIOS
+    FB
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 35 ++++++++---
+ .../drm/i915/display/intel_initial_plane.c    |  6 +-
+ drivers/gpu/drm/i915/i915_initial_plane.c     | 12 ++--
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 58 ++++++++++++++-----
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        | 16 ++---
+ 5 files changed, 87 insertions(+), 40 deletions(-)
 
-CI Bug Log - changes from xe-5381-b9fb5de18ad076d077d7b45a3722cfb468ead956_BAT -> xe-pw-170181v1_BAT
-====================================================
+-- 
+2.53.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8997 -> IGT_9000
-  * Linux: xe-5381-b9fb5de18ad076d077d7b45a3722cfb468ead956 -> xe-pw-170181v1
-
-  IGT_8997: 8997
-  IGT_9000: 9000
-  xe-5381-b9fb5de18ad076d077d7b45a3722cfb468ead956: b9fb5de18ad076d077d7b45a3722cfb468ead956
-  xe-pw-170181v1: 170181v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170181v1/index.html
-
---===============7639484791934229728==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Hold a dma-buf reference for imported BOs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170181/">https://patchwork.freedesktop.org/series/170181/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170181v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170181v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5381-b9fb5de18ad076d077d7b45a3722cfb468ead956_BAT -&gt; xe-pw-170181v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8997 -&gt; IGT_9000</li>
-<li>Linux: xe-5381-b9fb5de18ad076d077d7b45a3722cfb468ead956 -&gt; xe-pw-170181v1</li>
-</ul>
-<p>IGT_8997: 8997<br />
-  IGT_9000: 9000<br />
-  xe-5381-b9fb5de18ad076d077d7b45a3722cfb468ead956: b9fb5de18ad076d077d7b45a3722cfb468ead956<br />
-  xe-pw-170181v1: 170181v1</p>
-
-</body>
-</html>
-
---===============7639484791934229728==--
