@@ -4,36 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53D53C44507
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3B87C44508
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 11:15:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A81A910F85E;
-	Fri, 10 Jul 2026 11:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51A1E10F86C;
+	Fri, 10 Jul 2026 11:15:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="KIaZOjVv";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="lq8mV1ON";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D83C10F88F;
- Fri, 10 Jul 2026 11:14:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57F1910F85E;
+ Fri, 10 Jul 2026 11:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783682096;
- bh=JSQ3dM1fhSFoNnLU1RcdnlEKoQsQDbdPfsKNJ5u2etM=;
+ s=default; t=1783682098;
+ bh=3JVk7Ii6bOZK+y7mCUOxJrpfJz6aU21nRzuk0gjuZyM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KIaZOjVvTZXXhm9T0vOCDTIbtLVTpNyBpb2G7uVoyiPLN8cnsB8THFxgDWS5IC4gb
- OrtSEm24zWBsxX7LvVusP+zAMnnGUZSPzXPH04MArwJ3E9UaOO2/FLmYASGMo3vS2P
- E3ikCjEQAv0iU1ZsQ8pzaNskSNjSVPvIgTXzHW2pdAkwCu2umx3/YiWmung09dvA1z
- r35/jwkZtgm1skUKkX5IdRzYs0Bx8KQWs1NwkOQJNKroR9m0U9icbqI9Lg5FXdVrBU
- FlwBmRlO1Deu5Jz7Ou2QUn7XAKuEF+BRkboqfM0AYwKCUBnHp4RjwQgcjbT3kDwJ1f
- bPB9jYFgfje1w==
+ b=lq8mV1ONDjuVe/t5TJWHZEoQjxtm+FwkOaFKxcy+ReQAwXm1yR39gymP+i8yhFoLB
+ +po6x/zRI/4Flw5sOMRa9ZHpD6wreu0NtNZoFi3nQA3b7RjgP9Q/pP0KMiya2MMAWC
+ VGGLi5R5uwWAPxKPkVIS5zdgafuU/nlWH58skG/L1k539dNHral76YKo5GCx+FNlvq
+ g692NcBDrW5g2ffucAK0uQYM/UJoIrR/yqAh6E9pBORAfNaVP4ZL4+6Hkvs5oXAIqL
+ DxiQ5LIqSXjKujbdTIV9j3V/h5LYjwY2rXh1/ZQFdNMwno25C52vQdtcfZUGaCVSyJ
+ 2iioXjL/TZ43w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 01/11] drm/i915: Disable the plane if initial plane config
- readout failed
-Date: Fri, 10 Jul 2026 13:15:28 +0200
-Message-ID: <20260710111539.1274555-2-dev@lankhorst.se>
+Subject: [PATCH v2 04/11] drm/i915: Use drm_dbg_kms() for initial FB debugs
+Date: Fri, 10 Jul 2026 13:15:31 +0200
+Message-ID: <20260710111539.1274555-5-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
 References: <20260710111539.1274555-1-dev@lankhorst.se>
@@ -56,50 +55,63 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Properly turn off the plane if it is enabled but
-.get_initial_plane_config() failed for whatever reason.
-
-The hardware does (or at least did) perform some kind of automagic
-plane disable when the pipe gets disabled, but we don't rely on that
-anywhere else either. Also the GGTT/actual memory may get clobbered
-afterwards, so leaving the plane enabled here could result in visual
-corruption/GTT faults/etc.
+The initial FB stuff is ultimately about display stuff, so
+use the proper display specific debug level for it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patch.msgid.link/20260511214122.8468-2-ville.syrjala@linux.intel.com
+Link: https://patch.msgid.link/20260511214122.8468-6-ville.syrjala@linux.intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_initial_plane.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_initial_plane.c     |  4 ++--
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 12 ++++++------
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-index e414b5d1085c0..7427f41e4d7e1 100644
---- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-@@ -128,11 +128,10 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
+index 4902c07486640..08d94f3a1584a 100644
+--- a/drivers/gpu/drm/i915/i915_initial_plane.c
++++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+@@ -69,8 +69,8 @@ initial_plane_phys(struct drm_i915_private *i915,
+ 		return false;
+ 	}
  
- 	/*
- 	 * TODO:
--	 *   Disable planes if get_initial_plane_config() failed.
- 	 *   Make sure things work if the surface base is not page aligned.
- 	 */
- 	if (!plane_config->fb)
--		return;
-+		goto nofb;
+-	drm_dbg(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
+-		&dma_addr);
++	drm_dbg_kms(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
++		    &dma_addr);
  
- 	if (intel_alloc_initial_plane_obj(display, plane_config)) {
- 		fb = plane_config->fb;
-@@ -184,7 +183,8 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 	 * simplest solution is to just disable the primary plane now and
- 	 * pretend the BIOS never had it enabled.
- 	 */
--	intel_plane_disable_noatomic(crtc, plane);
-+	if (plane_state->uapi.visible)
-+		intel_plane_disable_noatomic(crtc, plane);
- }
+ 	*out_phys_base = dma_addr - mem->region.start;
+ 	*out_mem = mem;
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 02b46cc3b6df9..da04ee66252ad 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -60,9 +60,9 @@ initial_plane_bo(struct xe_device *xe,
+ 			return NULL;
+ 		}
  
- static void plane_config_fini(struct intel_display *display,
+-		drm_dbg(&xe->drm,
+-			"Using phys_base=%pa, based on initial plane programming\n",
+-			&phys_base);
++		drm_dbg_kms(&xe->drm,
++			    "Using phys_base=%pa, based on initial plane programming\n",
++			    &phys_base);
+ 	} else {
+ 		struct ttm_resource_manager *stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+ 
+@@ -86,9 +86,9 @@ initial_plane_bo(struct xe_device *xe,
+ 	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
+ 					  ttm_bo_type_kernel, flags, 0, false);
+ 	if (IS_ERR(bo)) {
+-		drm_dbg(&xe->drm,
+-			"Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
+-			&phys_base, size, flags, PTR_ERR(bo));
++		drm_dbg_kms(&xe->drm,
++			    "Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
++			    &phys_base, size, flags, PTR_ERR(bo));
+ 		return NULL;
+ 	}
+ 
 -- 
 2.53.0
 
