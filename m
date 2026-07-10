@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B693BC43458
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 12:18:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4085C44501
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 12:18:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7526010F8A0;
-	Fri, 10 Jul 2026 12:18:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78E5110F8A2;
+	Fri, 10 Jul 2026 12:18:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NcZfF9yX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MNcengR0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 175A410F8A0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBA3E10F8A0
  for <intel-xe@lists.freedesktop.org>; Fri, 10 Jul 2026 12:18:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783685909; x=1815221909;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LBGb5lYCSByiJrZ3w8b8ORfNiGmg/7x0yDo+GCArO64=;
- b=NcZfF9yXXDZzxAxa12JTHjVcLssvLHhcowNa/QreU8obk5xPOwt12anB
- JTdOSpoki8rrKK0W17cxjrgAKPVqdUWotQW1OvV/OroKFcrBecORIUUxa
- SMChKc7DwXEelwzBSVR7wGdwDgfSXzPPT/D1c3s4I/8atDqDaEg9PrlWq
- tE0LJgkmPmeawb10I0xg/Q40mOoKGqX/aZNQjJ9INZ3Xg46pNYgnZ1X/j
- g32Ae4QKnk+dC33ZFLmOAzeVrs7HMacLKaxEBBu99ZxEATT2DGCir/msw
- OSn/4Fk7GOxAuu1tmLTqoNWTWXe0HnmfVyciMaukQfdtqy7bqrv5U4pwt A==;
-X-CSE-ConnectionGUID: r+bwl8X4TP+HSn9QsW2dDQ==
-X-CSE-MsgGUID: 0B/RanhtQ3e2KVsxuNFDXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83360314"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83360314"
+ t=1783685910; x=1815221910;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=8lhIt4xOKpA28xAxBZopNjTLCOV2GjbI3tuqPHpocus=;
+ b=MNcengR0VMXu6xV4cfQl6NckWFC56PDKTfqUvHO1J8VygTZywoIVTfFs
+ RfC0tJvE43IYI3dQZlHIOdHqRtF0hQ/QR8ci9I21kB+2BOfCxb/1AMhL8
+ AuJ76rc1sbx/KiRK2eNk9w4D2WuZUj73PV6xL8nswdYDfy33OLA6AH3dy
+ EIVWkiUu8LtnAwkw8thi6zrturICCMblRNGI8VSKUqjjJAVOuLCq3cLPT
+ 7FOqptYcPto5Sdo/qr4JXx5tS5/zFUcm9lbOufY+5Vj5rxbOD1u7wzEur
+ YC/VTQmW4t5TxpfeD9ElCQE0LRaOXgvPdsaMieUtc0gtuAvz2+o+nOvqn w==;
+X-CSE-ConnectionGUID: 9/icRh4WQD6GXC+1GxrjwQ==
+X-CSE-MsgGUID: eQHtc1cgQai4iTDerW0GeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83360315"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83360315"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 05:18:29 -0700
-X-CSE-ConnectionGUID: BpQ5JzXVTHmbAzzWC41BYQ==
-X-CSE-MsgGUID: oL+Yd68ES3GzSMJ/+wPY4g==
+ 10 Jul 2026 05:18:30 -0700
+X-CSE-ConnectionGUID: ojuZsLsqSuGJ7f1fNbft+g==
+X-CSE-MsgGUID: sdzeTT0VS2+8Ds35tN6Ojw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="255522153"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="255522159"
 Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
- by orviesa009.jf.intel.com with ESMTP; 10 Jul 2026 05:18:28 -0700
+ by orviesa009.jf.intel.com with ESMTP; 10 Jul 2026 05:18:29 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 0/2] KUnit test for VF provisioning error handling
-Date: Fri, 10 Jul 2026 17:49:54 +0530
-Message-ID: <20260710122007.3329932-1-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH 1/2] drm/xe/vf: Add KUNIT stub for
+ guc_action_query_single_klv()
+Date: Fri, 10 Jul 2026 17:49:55 +0530
+Message-ID: <20260710122007.3329932-2-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260710122007.3329932-1-satyanarayana.k.v.p@intel.com>
+References: <20260710122007.3329932-1-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,43 +67,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patchset adds infrastructure and tests to verify that a VF
-properly handles malformed or invalid device configuration
-responses from the PF.
-
-A VF relies on the PF to provide valid hardware configuration through GuC
-KLV responses during initialization. If the PF is misconfigured or
-malfunctioning, a VF may receive zero, incomplete, or out-of-range
-values for critical resources like GGTT, VRAM, Contexts or Doorbells.
-
-A parametrized KUnit test suite (vf_gt_config_suite) that covers distinct
-error scenarios across the four resource types is added. Each test verifies
-that the corresponding VF configuration function returns a negative error
-code when presented with:
-
-  Contexts : zero count, too-small allocation, invalid,
-             single context, too-large allocation
-  Doorbells: zero count, too-small allocation, invalid,
-             single doorbell, too-large allocation
-  LMEM     : zero size, too-small allocation, double expected size,
-             1 GB allocation, too-large allocation
-  GGTT     : zero size, too-small allocation, 4K vs 2G expected
-
-All tests use the guc_action_query_single_klv() stub to inject these bad
-responses without requiring actual hardware or PF interaction.
+Add a KUNIT_STATIC_STUB_REDIRECT() to guc_action_query_single_klv() so
+that KUnit tests can mock the GuC MMIO query response and exercise VF
+KLV query error paths without talking to real hardware.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Satyanarayana K V P (2):
-  drm/xe/vf: Add KUNIT stub for guc_action_query_single_klv()
-  drm/xe/tests: Add KUnit tests for VF provisioning error handling
-
- drivers/gpu/drm/xe/tests/xe_gt_sriov_vf.c | 387 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       |   7 +
- 2 files changed, 394 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_vf.c
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 0cd9d77f3351..802c982ea39b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -10,6 +10,8 @@
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+ 
++#include <kunit/static_stub.h>
++
+ #include "abi/guc_actions_sriov_abi.h"
+ #include "abi/guc_communication_mmio_abi.h"
+ #include "abi/guc_klvs_abi.h"
+@@ -387,6 +389,7 @@ static int vf_resfix_done(struct xe_gt *gt, u16 marker)
+ static int guc_action_query_single_klv(struct xe_guc *guc, u32 key,
+ 				       u32 *value, u32 value_len)
+ {
++	KUNIT_STATIC_STUB_REDIRECT(guc_action_query_single_klv, guc, key, value, value_len);
+ 	u32 request[VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_LEN] = {
+ 		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
+ 		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
 -- 
 2.53.0
 
