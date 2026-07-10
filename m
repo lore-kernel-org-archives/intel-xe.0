@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F253CC44501
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03611C4450E
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 21:55:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC34E10F99B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1C7A10F9A1;
 	Fri, 10 Jul 2026 21:54:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OCygifMH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KVWEwVGY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8620210F963;
- Fri, 10 Jul 2026 21:54:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F33C10F93B;
+ Fri, 10 Jul 2026 21:54:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1783720494; x=1815256494;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nn+M/8PLlLtKIB9/allZXyCpaBAHNBmt3SZOdW8TBhg=;
- b=OCygifMHWy0erCLcBIP8wya4tM5JUqikg1Hl4TPCghgytkO1kRmHjvPw
- QNY9p+5x1ZJkYslX422gDQ885HB1iW6oIa9jVTxxMyIC2aOCTrQmOFyYo
- AgT9ERqbsJ+zdXcW8B9c+a4h2KMCzAOTsNg2uwpveDLqSvR+eJybJvq/V
- 5yDF7nVSewmahB2iAFjIspRENeqsMieqQlNCWoTEfASJX21yvLzyMANl/
- C+4Kl2BYIqZKMBsLgsk/yG1Cltb6rJAXgEiaPN9TI9IgvKpFY11UHHmoL
- egNWikCNCLnJxLvL3duu6zbvgSaRbaPg98mXQFOHZmAj7rdPpqcpBVTbL g==;
-X-CSE-ConnectionGUID: l6L81E2xS+q7IUmy7NcSGw==
-X-CSE-MsgGUID: zD/G+NSXRra1M/G4atgL7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543173"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543173"
+ bh=xD1gGyFHPjrBmDU5PsVYg3WOX5gPknUKelAZPk7axg8=;
+ b=KVWEwVGYpFB+zPh28ut1DTnvfTViQCRNmdLyVCFzo4ILuuGpicMID5rK
+ MXmpGeYmUgpr5LQ5K5VJ+dvCjKB2/MuMrKQtusdMRxEe/JOWpYLZoVDHq
+ RH3/3mMAsW8kKe7V12sLAUfVzeqzuCCIs61tv0D10NiP1uRf54io7SUW+
+ AleytJagoRNzWiUIOKIRjiPSzRcKJdLXW3+XXIFoqvDJavtq9ghi3Ibmt
+ K3XhPnwK7eV/iN27FMwL8UAwLk7rQArXaJjtlyJ7xiRbReM4M8wl81qUF
+ tpPOpIw6UqsgLlR6X7J2lLX0mDX4M28M8sX7oiKSvBksvqwcoNV7hnLS5 A==;
+X-CSE-ConnectionGUID: TuTqNjHcT8yR6gh4ijzfrQ==
+X-CSE-MsgGUID: QkNCpqZHRwS1g1EQf3E8mA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="83543181"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="83543181"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jul 2026 14:54:53 -0700
-X-CSE-ConnectionGUID: kYpc8AmURU6Kel0HZxQSQw==
-X-CSE-MsgGUID: 3B2iPam1SMuppOnPuzLjOQ==
+X-CSE-ConnectionGUID: Q1+w2+MKTBK3rtFtPPriRg==
+X-CSE-MsgGUID: /OJxczSfTMeKHmS5amo4VA==
 X-ExtLoop1: 1
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -51,10 +51,9 @@ Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 19/33] drm/xe: Skip self-copies for borrowed pages on
- defrag moves
-Date: Fri, 10 Jul 2026 14:54:28 -0700
-Message-Id: <20260710215442.2444235-20-matthew.brost@intel.com>
+Subject: [PATCH v2 20/33] drm/xe: Add a page defragmentation worker
+Date: Fri, 10 Jul 2026 14:54:29 -0700
+Message-Id: <20260710215442.2444235-21-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260710215442.2444235-1-matthew.brost@intel.com>
 References: <20260710215442.2444235-1-matthew.brost@intel.com>
@@ -75,33 +74,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A defrag move may harvest already beneficial-order chunks from the old
-tt, so the freshly reallocated backing borrows (references) some of the
-same physical pages. For those pages the source and destination GPU
-mappings alias the same memory, making the data blit a pointless
-self-copy.
+BOs whose backing TT pages were allocated below the device's beneficial
+order (tracked via the TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED tt page flag)
+are added to a per-device defrag list. Add a delayed worker that
+periodically walks this list and attempts to re-back each BO with
+beneficial-order pages, improving TLB efficiency for long-lived objects
+that were initially allocated under memory pressure.
 
-Pass the source (old) tt into __xe_migrate_copy() instead of just its sg
-table, so the data pass can compare the src and dst tt page arrays at the
-matching offset and only blit runs of pages that actually differ. A new
-emit_copy_chunks() helper walks each L0 chunk, skips borrowed-page runs,
-and coalesces contiguous to-copy pages into a single emit_copy(). It runs
-twice per chunk: once with a NULL batch buffer to count the blits for
-batch sizing, then again to emit them.
+The worker is kicked when the list first transitions to non-empty and
+reschedules itself while work remains. On a failed pass it backs off
+exponentially (XE_BO_DEFRAG_INTERVAL_MS up to
+XE_BO_DEFRAG_INTERVAL_MAX_MS) and retries the whole list later; the
+interval is reset to the default on the next fresh enqueue. The worker
+stops scheduling once the list drains.
 
-When an entire L0 chunk turns out to be borrowed, skip it outright: no
-batch buffer is allocated and no GPU commands are issued, the cursors are
-just advanced past the chunk. If every chunk of the move is borrowed the
-copy is a complete no-op, so hand back a signaled stub fence.
+A defrag move synchronously reallocates and re-copies a BO's backing
+store, which is not free. To avoid stalling concurrent active work when
+many BOs (or one very large BO) become eligible at once (e.g. after a
+burst of memory pressure, which would otherwise manifest as a large FPS
+drop while the worker churns through the whole list), cap the number of
+newly (re)allocated bytes processed per run to XE_BO_DEFRAG_SIZE_LIMIT
+and reschedule. Only the pages a move actually reallocates are charged -
+pages harvested (borrowed) from the old backing are free and do not count
+- so the budget tracks real defrag work and an object larger than the
+budget is upgraded in budget-sized slices across runs. This spreads the
+defrag effort over time, keeping it in the background and yielding to
+userspace progress.
 
-The comparison is a cheap per-page pointer test (src page != dst page)
-that coalesces contiguous to-copy pages into a single blit. PTEs are
-still emitted for partially borrowed chunks, since that setup is cheap and
-only the data copies are worth skipping. Only the defrag data pass is
-affected; the separate CCS pass still migrates all aux state.
-
-Since the Xe tt sg lives in the xe_ttm_tt subclass rather than the base
-ttm_tt, add an xe_tt_sg() helper to fetch it from a struct ttm_tt.
+Defragmenting a BO forces a TTM move (ctx.defrag) that reallocates the
+backing at the beneficial order and relocates the contents on the GPU
+(see xe_bo_move()). The per-BO move is bounded by the run's remaining
+byte budget via ctx.defrag_bytes_remaining; the pool allocator reports
+how much it spent so the worker can charge it accurately. When
+beneficial-order pages cannot be obtained the new allocation is
+discharged during populate and the BO keeps its original backing, staying
+on the list for a later retry.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -119,349 +126,409 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c      |  22 +++++-
- drivers/gpu/drm/xe/xe_bo.h      |   2 +
- drivers/gpu/drm/xe/xe_migrate.c | 136 ++++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_migrate.h |   3 +-
- 4 files changed, 142 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c           | 277 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_bo.h           |   1 +
+ drivers/gpu/drm/xe/xe_device.c       |   9 +
+ drivers/gpu/drm/xe/xe_device_types.h |  11 ++
+ 4 files changed, 294 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 8e9fc8b3dffa..3b867c486ea4 100644
+index 3b867c486ea4..6a847e42946c 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -473,6 +473,22 @@ struct sg_table *xe_bo_sg(struct xe_bo *bo)
- 	return xe_tt->sg;
+@@ -31,6 +31,7 @@
+ #include "xe_pat.h"
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
++#include "xe_printk.h"
+ #include "xe_pxp.h"
+ #include "xe_res_cursor.h"
+ #include "xe_shrinker.h"
+@@ -49,6 +50,35 @@
+  */
+ #define XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD	2
+ 
++/*
++ * Maximum number of bytes of newly (re)allocated backing the defrag worker will
++ * produce in a single run before yielding and rescheduling itself.
++ *
++ * A defrag move synchronously reallocates and re-copies a BO's backing store,
++ * which is not free. If a large number of BOs (or one very large BO) become
++ * eligible at once (e.g. after a burst of memory pressure), processing them all
++ * in one worker run would hold things up for a long, unbounded stretch and can
++ * visibly starve concurrent active work (e.g. a large FPS drop). Instead, cap
++ * the bytes actually upgraded per run and requeue, spreading the defrag effort
++ * out over time so it stays in the background and yields to userspace progress.
++ * Only pages a move truly reallocates are charged; pages harvested from the old
++ * backing are free, so an object larger than the budget is upgraded in
++ * budget-sized slices across runs.
++ */
++#define XE_BO_DEFRAG_SIZE_LIMIT			SZ_32M
++
++/* Default delay before (re)running the defrag worker, in milliseconds. */
++#define XE_BO_DEFRAG_INTERVAL_MS		25
++
++/*
++ * Upper bound for the (exponentially backed off) defrag worker interval, in
++ * milliseconds, so repeated failures don't push the retry arbitrarily far out.
++ */
++#define XE_BO_DEFRAG_INTERVAL_MAX_MS		15000	/* 15 seconds */
++
++static void xe_bo_defrag_worker(struct work_struct *w);
++static void xe_place_from_ttm_type(u32 mem_type, struct ttm_place *place);
++
+ const char *const xe_mem_type_to_name[TTM_NUM_MEM_TYPES]  = {
+ 	[XE_PL_SYSTEM] = "system",
+ 	[XE_PL_TT] = "gtt",
+@@ -624,8 +654,10 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+ 	} else {
+ 		struct xe_device *xe = ttm_to_xe_device(ttm_dev);
+ 
+-		if (atomic_read(&xe->mem.defrag.count) >=
+-		    XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD)
++		if (ctx->defrag)
++			ctx->beneficial_reclaim_backoff = false;
++		else if (atomic_read(&xe->mem.defrag.count) >=
++			 XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD)
+ 			ctx->beneficial_reclaim_backoff = true;
+ 
+ 		ttm_tt_clear_backed_up(tt);
+@@ -1041,18 +1073,54 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
+ 	return 0;
  }
  
-+/**
-+ * xe_tt_sg() - Return the DMA scatter-gather table backing a ttm_tt.
-+ * @tt: The ttm_tt to query.
-+ *
-+ * Like xe_bo_sg(), but takes the ttm_tt directly. Used by the defrag copy
-+ * path which needs the old (source) tt's sg table without a backing xe_bo.
-+ *
-+ * Return: The sg table, or NULL if the tt is not currently mapped.
-+ */
-+struct sg_table *xe_tt_sg(struct ttm_tt *tt)
++static void xe_bo_defrag_fini(void *arg)
 +{
-+	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++	struct xe_device *xe = arg;
 +
-+	return xe_tt->sg;
++	disable_delayed_work_sync(&xe->mem.defrag.worker);
 +}
 +
- /*
-  * Account ttm pages against the device shrinker's shrinkable and
-  * purgeable counts.
-@@ -1284,11 +1300,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ /**
+  * xe_bo_defrag_init_early() - Initialize the device defrag BO tracking
+  * @xe: The xe device
+  *
+- * Initialize the list, lock and count used to track BOs whose backing TT
+- * pages were allocated at a sub-optimal order.
++ * Initialize the list, lock, count and delayed worker used to track and
++ * defragment BOs whose backing TT pages were allocated at a sub-optimal order.
++ *
++ * The devm action that cancels the worker on teardown is registered separately
++ * by xe_bo_defrag_init(), which must run after the migrate contexts the
++ * worker depends on have been initialized.
+  */
+ void xe_bo_defrag_init_early(struct xe_device *xe)
+ {
+ 	spin_lock_init(&xe->mem.defrag.lock);
+ 	INIT_LIST_HEAD(&xe->mem.defrag.list);
+ 	atomic_set(&xe->mem.defrag.count, 0);
++	xe->mem.defrag.interval_ms = XE_BO_DEFRAG_INTERVAL_MS;
++	INIT_DELAYED_WORK(&xe->mem.defrag.worker, xe_bo_defrag_worker);
++}
++
++/**
++ * xe_bo_defrag_init() - Register defrag worker teardown
++ * @xe: The xe device
++ *
++ * Register the devm action that disables and drains the defrag worker on
++ * device teardown. This must be called after xe_migrate_init() so that, with
++ * devm's reverse-order cleanup, the worker is stopped before the migrate
++ * contexts it relies on (via xe_bo_defrag_one() -> ttm_bo_validate() ->
++ * xe_bo_move() -> xe_migrate_copy_defrag()) are torn down.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int xe_bo_defrag_init(struct xe_device *xe)
++{
++	return devm_add_action_or_reset(xe->drm.dev, xe_bo_defrag_fini, xe);
++}
++
++static void xe_bo_defrag_schedule(struct xe_device *xe)
++{
++	schedule_delayed_work(&xe->mem.defrag.worker,
++			      msecs_to_jiffies(xe->mem.defrag.interval_ms));
+ }
  
- 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
- 	} else if (ttm_bo->defrag_old_tt) {
--		struct xe_ttm_tt *old_xe_tt =
--			container_of(ttm_bo->defrag_old_tt, struct xe_ttm_tt, ttm);
--
- 		fence = xe_migrate_copy_defrag(migrate, bo, old_mem, new_mem,
--					       old_xe_tt->sg, handle_system_ccs);
-+					       ttm_bo->defrag_old_tt,
-+					       handle_system_ccs);
- 	} else {
- 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
- 					handle_system_ccs);
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 4186cb51af87..32211016a722 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -110,6 +110,7 @@ enum xe_madv_purgeable_state {
- };
+ static bool xe_bo_needs_defrag(struct xe_bo *bo)
+@@ -1073,16 +1141,24 @@ static bool xe_bo_needs_defrag(struct xe_bo *bo)
+ static void xe_bo_defrag_add(struct xe_bo *bo)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
++	bool kick = false;
  
- struct sg_table;
-+struct ttm_tt;
+ 	xe_bo_assert_held(bo);
+ 	xe_assert(xe, xe_bo_needs_defrag(bo));
  
- struct xe_bo *xe_bo_alloc(void);
- void xe_bo_free(struct xe_bo *bo);
-@@ -547,6 +548,7 @@ void xe_bo_dev_init(struct xe_bo_dev *bo_device);
- void xe_bo_dev_fini(struct xe_bo_dev *bo_device);
+ 	scoped_guard(spinlock, &xe->mem.defrag.lock) {
+ 		if (list_empty(&bo->defrag_link)) {
++			/* Kick the worker when the list transitions to non-empty. */
++			kick = list_empty(&xe->mem.defrag.list);
++			if (kick)
++				xe->mem.defrag.interval_ms = XE_BO_DEFRAG_INTERVAL_MS;
+ 			list_add_tail(&bo->defrag_link, &xe->mem.defrag.list);
+ 			atomic_inc(&xe->mem.defrag.count);
+ 		}
+ 	}
++
++	if (kick)
++		xe_bo_defrag_schedule(xe);
+ }
  
- struct sg_table *xe_bo_sg(struct xe_bo *bo);
-+struct sg_table *xe_tt_sg(struct ttm_tt *tt);
- 
- /*
-  * xe_sg_segment_size() - Provides upper limit for sg segment size.
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 305c6e1942fb..c1e96f105648 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -811,6 +811,63 @@ static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
- 		emit_xy_fast_copy(gt, bb, src_ofs, dst_ofs, size, pitch);
+ static void __xe_bo_defrag_remove(struct xe_bo *bo)
+@@ -1125,6 +1201,199 @@ static void xe_bo_defrag_update(struct xe_bo *bo)
+ 		xe_bo_defrag_remove(bo);
  }
  
 +/*
-+ * emit_copy_chunks() - Emit the data blits for one defrag L0 chunk, skipping
-+ * borrowed pages.
-+ * @gt: The GT.
-+ * @bb: The batch buffer to emit into, or NULL to only count the blits needed.
-+ * @src_L0_ofs: GPU offset of the source pages mapped for this L0 chunk.
-+ * @dst_L0_ofs: GPU offset of the destination pages mapped for this L0 chunk.
-+ * @src_L0: Byte size of the L0 chunk (page aligned).
-+ * @src_tt: Source (old) tt providing the page pointers.
-+ * @dst_tt: Destination (new) tt providing the page pointers.
-+ * @start_page: Page offset of this L0 chunk within the tt page arrays.
-+ *
-+ * A defragmentation move may harvest already beneficial-order chunks from the
-+ * old tt, so the new tt references (borrows) some of the same physical pages.
-+ * For those pages the source and destination GPU mappings alias the same
-+ * memory and the data blit is a pointless self-copy. Walk the L0 chunk and
-+ * only blit runs of pages that actually differ (src page != dst page),
-+ * coalescing contiguous to-copy pages into a single blit.
-+ *
-+ * Return: The number of blits emitted (or that would be emitted when @bb is
-+ * NULL).
++ * Attempt to defragment a single BO by forcing a move that reallocates its
++ * backing at the device's beneficial order. @budget bounds how many bytes of
++ * new pages the move may (re)allocate; the remainder of the object is completed
++ * by harvesting the old backing, and the BO stays flagged for a later pass. On
++ * return *@consumed holds the bytes actually (re)allocated (0 on failure or
++ * when nothing needed reallocating). Returns 0 if the BO no longer needs to be
++ * tracked (either defragmented or no longer eligible), or a negative error code
++ * if the attempt should be retried later.
 + */
-+static u32 emit_copy_chunks(struct xe_gt *gt, struct xe_bb *bb,
-+			    u64 src_L0_ofs, u64 dst_L0_ofs, u32 src_L0,
-+			    struct ttm_tt *src_tt, struct ttm_tt *dst_tt,
-+			    pgoff_t start_page)
++static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
++			    u64 budget, u64 *consumed)
 +{
-+	u32 npages = src_L0 >> PAGE_SHIFT;
-+	u32 i = 0, nblits = 0;
++	struct ttm_operation_ctx ctx = {
++		.gfp_retry_mayfail = true,
++		.defrag = true,
++		.defrag_bytes_remaining = budget,
++	};
++	struct ttm_buffer_object *ttm_bo = &bo->ttm;
++	struct ttm_placement placement;
++	struct ttm_place place;
++	int ret = 0;
 +
-+	while (i < npages) {
-+		u32 run = 0;
++	*consumed = 0;
 +
-+		/* Skip a run of borrowed pages (src and dst alias). */
-+		if (src_tt->pages[start_page + i] ==
-+		    dst_tt->pages[start_page + i]) {
-+			i++;
-+			continue;
-+		}
++	xe_bo_lock(bo, false);
 +
-+		/* Coalesce a run of pages that actually need copying. */
-+		while (i + run < npages &&
-+		       src_tt->pages[start_page + i + run] !=
-+		       dst_tt->pages[start_page + i + run])
-+			run++;
-+
-+		if (bb)
-+			emit_copy(gt, bb, src_L0_ofs + (u64)i * PAGE_SIZE,
-+				  dst_L0_ofs + (u64)i * PAGE_SIZE,
-+				  run * PAGE_SIZE, PAGE_SIZE);
-+		nblits++;
-+		i += run;
++	/* Re-check eligibility under the BO lock. */
++	if (!xe_bo_needs_defrag(bo)) {
++		xe_bo_defrag_remove(bo);
++		goto unlock;
 +	}
 +
-+	return nblits;
++	xe_place_from_ttm_type(ttm_bo->resource->mem_type, &place);
++	place.flags |= TTM_PL_FLAG_TEMPORARY;
++	placement.num_placement = 1;
++	placement.placement = &place;
++
++	/*
++	 * On success the move reallocates the backing at beneficial order and
++	 * drops the BO from the defrag list. On failure the BO keeps its
++	 * original backing and stays on the list for a later retry.
++	 */
++	ret = ttm_bo_validate(ttm_bo, &placement, &ctx);
++
++	/*
++	 * The pool allocator decremented defrag_bytes_remaining as it
++	 * (re)allocated pages, so the unused budget tells us how much was spent.
++	 * Only meaningful when the move succeeded. A successful move may spend
++	 * nothing - e.g. when the object was already fully upgraded and every
++	 * chunk is harvested (borrowed) from the old backing for free - so a
++	 * zero spend is legitimate and must be charged as zero, not the whole
++	 * budget.
++	 */
++	if (!ret) {
++		s64 spent = (s64)budget - ctx.defrag_bytes_remaining;
++
++		*consumed = spent > 0 ? spent : 0;
++	}
++
++	xe_dbg(xe, "Defrag attempt on BO size=%zu: ret=%pe consumed=%llu\n",
++	       xe_bo_size(bo), ERR_PTR(ret), *consumed);
++
++unlock:
++	xe_bo_unlock(bo);
++	return ret;
 +}
 +
- static u64 xe_migrate_batch_base(struct xe_migrate *m, bool usm)
- {
- 	return usm ? m->usm_batch_base_ofs : m->batch_base_ofs;
-@@ -865,13 +922,15 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
-  * @is_vram_resolve: Decompression (VRAM -> system) resolve; always uses the
-  * compression PAT index for the data copy.
-  * @defrag_ccs: Defrag move pass that migrates only the CCS aux state between
-- * two distinct page sets (old @src_sg pages -> new pages). The data blit is
-+ * two distinct page sets (old @src_tt pages -> new pages). The data blit is
-  * skipped (the data was copied by the @defrag_copy pass) and both the source
-  * and destination data pages are mapped with the compression PAT so the aux
-  * state is copied indirect -> indirect.
-  * @defrag_copy: Defrag move pass that copies the data pages between two
-- * distinct page sets (old @src_sg pages -> new pages) without touching the CCS
-- * aux state. The data pages are mapped without the compression PAT so the
-+ * distinct page sets (old @src_tt pages -> new pages) without touching the CCS
-+ * aux state. Pages the new tt borrowed from @src_tt (harvested already
-+ * beneficial-order chunks) alias the same memory on both sides and are skipped.
-+ * The data pages are mapped without the compression PAT so the
-  * (possibly compressed) bytes are copied verbatim rather than being
-  * decompressed and recompressed, and no CCS aux copy is appended; the aux
-  * state is migrated separately by the @defrag_ccs pass. The two passes need
-@@ -889,7 +948,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 					   struct xe_bo *dst_bo,
- 					   struct ttm_resource *src,
- 					   struct ttm_resource *dst,
--					   struct sg_table *src_sg,
-+					   struct ttm_tt *src_tt,
- 					   struct xe_migrate_copy_flags flags)
- {
- 	struct xe_gt *gt = m->tile->primary_gt;
-@@ -914,6 +973,14 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		!flags.defrag_copy;
- 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram) &&
- 		!flags.defrag_ccs && !flags.defrag_copy;
-+	/*
-+	 * On the defrag data pass the new (destination) tt may have borrowed
-+	 * already beneficial-order pages from the old (source) tt, so skip the
-+	 * self-copy for any page they share. Compare the tt page arrays at the
-+	 * matching offset.
-+	 */
-+	struct ttm_tt *dst_tt = dst_bo->ttm.ttm;
-+	bool skip_borrowed = flags.defrag_copy && src_tt && dst_tt;
- 
- 	/*
- 	 * For decompression operation, always use the compression PAT index.
-@@ -926,7 +993,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 
- 	/*
- 	 * The defrag CCS pass migrates the aux state from the old pages
--	 * (@src_sg) to the new pages with both sides accessed indirectly, so
-+	 * (@src_tt) to the new pages with both sides accessed indirectly, so
- 	 * keep both src_is_pltt and dst_is_pltt set (no direct staging side).
- 	 */
- 
-@@ -938,7 +1005,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		return ERR_PTR(-EINVAL);
- 
- 	if (!src_is_vram)
--		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo), 0, size, &src_it);
-+		xe_res_first_sg(src_tt ? xe_tt_sg(src_tt) : xe_bo_sg(src_bo), 0, size, &src_it);
- 	else
- 		xe_res_first(src, 0, size, &src_it);
- 	if (!dst_is_vram)
-@@ -947,7 +1014,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		xe_res_first(dst, 0, size, &dst_it);
- 
- 	if (copy_system_ccs)
--		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo),
-+		xe_res_first_sg(src_tt ? xe_tt_sg(src_tt) : xe_bo_sg(src_bo),
- 				xe_bo_ccs_pages_start(src_bo),
- 				PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
- 				&ccs_it);
-@@ -961,6 +1028,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		u64 ccs_ofs, ccs_size;
- 		u32 ccs_pt;
- 		u32 pte_flags;
-+		pgoff_t start_page = (xe_bo_size(src_bo) - size) >> XE_PTE_SHIFT;
-+		u32 ndata_blits = 1;
- 
- 		bool usm = xe->info.has_usm;
- 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-@@ -998,9 +1067,30 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
- 		}
- 
--		/* Add copy commands size here */
-+		/*
-+		 * Add copy commands size here. On the defrag data pass the blit
-+		 * is split into one command per run of non-borrowed pages, so
-+		 * size for the number of runs actually needed.
-+		 */
-+		if (skip_borrowed)
-+			ndata_blits = emit_copy_chunks(gt, NULL, 0, 0, src_L0,
-+						       src_tt, dst_tt, start_page);
++static void xe_bo_defrag_worker(struct work_struct *w)
++{
++	struct delayed_work *dwork = to_delayed_work(w);
++	struct xe_device *xe =
++		container_of(dwork, struct xe_device, mem.defrag.worker);
++	u64 defrag_bytes = 0;
++	bool requeue = false;
++	int idx;
 +
-+		/*
-+		 * If every page in this chunk was borrowed there is nothing to
-+		 * copy: don't build a batch or issue any GPU commands, just
-+		 * advance the cursors past the chunk. The non-vram tt cursors
-+		 * would otherwise be advanced by emit_pte().
-+		 */
-+		if (skip_borrowed && !ndata_blits) {
-+			xe_res_next(&src_it, src_L0);
-+			xe_res_next(&dst_it, src_L0);
-+			size -= src_L0;
-+			continue;
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return;
++
++	if (!xe_pm_runtime_get_if_in_use(xe)) {
++		drm_dev_exit(idx);
++		return;
++	}
++
++	/*
++	 * Process at most XE_BO_DEFRAG_SIZE_LIMIT bytes of newly (re)allocated
++	 * backing per run rather than draining the whole list in one go. Only
++	 * the pages a move actually reallocates are charged - pages harvested
++	 * (borrowed) from the old backing are free and do not count - so the
++	 * budget tracks real defrag work. A single object larger than the
++	 * budget is upgraded in slices across successive runs. Each defrag is
++	 * synchronous and relatively expensive, so bounding the work per run
++	 * keeps the worker from monopolising resources and lets concurrent
++	 * active work make progress; any remaining work is handled by a
++	 * follow-up run scheduled below.
++	 */
++	while (defrag_bytes < XE_BO_DEFRAG_SIZE_LIMIT) {
++		struct xe_bo *first, *bo;
++		u64 consumed = 0;
++		int ret;
++
++		scoped_guard(spinlock, &xe->mem.defrag.lock) {
++			bool again;
++
++			/* Progress, reset interval */
++			if (defrag_bytes)
++				xe->mem.defrag.interval_ms = XE_BO_DEFRAG_INTERVAL_MS;
++
++			do {
++				first = list_first_entry_or_null(&xe->mem.defrag.list,
++								 struct xe_bo,
++								 defrag_link);
++				bo = first ? xe_bo_get_unless_zero(first) : NULL;
++				again = first && !bo;
++				if (again) {
++					list_del_init(&first->defrag_link);
++					atomic_dec(&xe->mem.defrag.count);
++				}
++			} while (again);
 +		}
 +
- 		batch_size += ((flags.copy_only_ccs || flags.defrag_ccs) ? 0 :
--			       emit_copy_cmd_len(xe)) +
-+			       ndata_blits * emit_copy_cmd_len(xe)) +
- 			((needs_ccs_emit ? EMIT_COPY_CCS_DW : 0));
++		if (!bo)
++			break;
++
++		/*
++		 * Bound the per-BO move to the run's remaining byte budget. A
++		 * large object is upgraded in budget-sized slices across runs;
++		 * the slices already upgraded come back as free already-
++		 * beneficial harvests, so each run only spends budget on new
++		 * forward progress.
++		 */
++		ret = xe_bo_defrag_one(xe, bo, XE_BO_DEFRAG_SIZE_LIMIT - defrag_bytes,
++				       &consumed);
++		defrag_bytes += consumed;
++
++		if (ret || ttm_tt_is_beneficial_order_failed(bo->ttm.ttm)) {
++			scoped_guard(spinlock, &xe->mem.defrag.lock) {
++				if (ret)
++					/*
++					 * Abort the pass and retry the whole
++					 * list later, backing off exponentially
++					 * on every failure.
++					 */
++					xe->mem.defrag.interval_ms =
++						min(xe->mem.defrag.interval_ms * 2,
++						    (unsigned int)XE_BO_DEFRAG_INTERVAL_MAX_MS);
++				else
++					/* Progress, reset interval */
++					xe->mem.defrag.interval_ms = XE_BO_DEFRAG_INTERVAL_MS;
++			}
++
++			xe_bo_put(bo);
++			requeue = true;
++			break;
++		}
++
++		xe_bo_put(bo);
++	}
++
++	/*
++	 * Decide whether to reschedule:
++	 *
++	 *  - The loop hit its per-run limit (defrag_bytes >=
++	 *    XE_BO_DEFRAG_SIZE_LIMIT): we stopped early to spread the work out,
++	 *    so requeue at the default interval (reset here since this run made
++	 *    progress) whenever the list still has entries.
++	 *
++	 *  - The loop aborted on a failed defrag (requeue): retry later at the
++	 *    backed-off interval computed above.
++	 *
++	 *  - The loop drained the list (broke on the empty list): nothing left to
++	 *    do, so stop scheduling. A fresh enqueue will kick the worker again.
++	 */
++	if (defrag_bytes >= XE_BO_DEFRAG_SIZE_LIMIT) {
++		struct xe_bo *bo;
++
++		scoped_guard(spinlock, &xe->mem.defrag.lock) {
++			bo = list_first_entry_or_null(&xe->mem.defrag.list,
++						      struct xe_bo, defrag_link);
++			xe->mem.defrag.interval_ms = XE_BO_DEFRAG_INTERVAL_MS;
++		}
++
++		if (bo)
++			xe_bo_defrag_schedule(xe);
++	} else if (requeue) {
++		xe_bo_defrag_schedule(xe);
++	}
++
++	xe_pm_runtime_put(xe);
++	drm_dev_exit(idx);
++}
++
+ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		      struct ttm_operation_ctx *ctx,
+ 		      struct ttm_resource *new_mem,
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 32211016a722..38d50f8122cb 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -226,6 +226,7 @@ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec);
+ void xe_bo_unpin_external(struct xe_bo *bo);
+ void xe_bo_unpin(struct xe_bo *bo);
+ void xe_bo_defrag_init_early(struct xe_device *xe);
++int xe_bo_defrag_init(struct xe_device *xe);
+ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
+ 		   struct drm_exec *exec);
  
- 		bb = xe_bb_new(gt, batch_size, usm);
-@@ -1029,7 +1119,10 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
- 
--		if (!flags.copy_only_ccs && !flags.defrag_ccs)
-+		if (skip_borrowed)
-+			emit_copy_chunks(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,
-+					 src_tt, dst_tt, start_page);
-+		else if (!flags.copy_only_ccs && !flags.defrag_ccs)
- 			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
- 
- 		if (needs_ccs_emit)
-@@ -1088,6 +1181,14 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		return ERR_PTR(err);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d4321419ee35..df5bb94f3ecb 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1063,6 +1063,15 @@ int xe_device_probe(struct xe_device *xe)
+ 			return err;
  	}
  
 +	/*
-+	 * Every chunk of a defrag data pass may have been borrowed (nothing
-+	 * copied), leaving no job and a NULL fence. Hand back a signaled stub
-+	 * so callers always get a valid fence to wait on.
++	 * Register the defrag worker teardown now that the migrate contexts it
++	 * depends on are initialized, so devm's reverse-order cleanup stops the
++	 * worker before those contexts are torn down.
 +	 */
-+	if (!fence)
-+		return dma_fence_get_stub();
++	err = xe_bo_defrag_init(xe);
++	if (err)
++		return err;
 +
- 	return fence;
- }
+ 	err = xe_pagefault_init(xe);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9e6244d8f41b..6e68add4d652 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -314,6 +314,17 @@ struct xe_device {
+ 			 * @mem.defrag.list.
+ 			 */
+ 			atomic_t count;
++			/**
++			 * @mem.defrag.worker: Delayed worker that walks
++			 * @mem.defrag.list trying to reallocate BO backing
++			 * store at the device's beneficial order.
++			 */
++			struct delayed_work worker;
++			/**
++			 * @mem.defrag.interval_ms: Reschedule interval for
++			 * @mem.defrag.worker, in milliseconds.
++			 */
++			unsigned int interval_ms;
+ 		} defrag;
+ 	} mem;
  
-@@ -1129,18 +1230,21 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
-  * @bo: The buffer object being defragmented. Both @src and @dst belong to @bo.
-  * @src: The source TTM resource (the old backing).
-  * @dst: The dst TTM resource (the freshly reallocated backing).
-- * @src_sg: Scatter-gather table of the source (old) backing pages.
-+ * @src_tt: The source (old) backing tt, providing both the scatter-gather
-+ * table and page pointers of the old pages.
-  * @need_ccs: Whether the BO has CCS aux state that must be migrated too.
-  *
-  * Used by the defrag path where a single BO has its backing reallocated at a
-  * more beneficial page order. The contents are relocated from the old pages
-- * (@src_sg) to the new pages (the BO's current backing) entirely on the GPU,
-+ * (@src_tt) to the new pages (the BO's current backing) entirely on the GPU,
-  * in up to two passes:
-  *
-  *  - Data pass (always): copy the data pages verbatim. The pages are mapped
-  *    without the compression PAT, so the (possibly compressed) bytes are copied
-  *    as-is rather than being decompressed and recompressed, and no CCS aux copy
-- *    is appended.
-+ *    is appended. Pages the new backing borrowed from @src_tt (harvested
-+ *    already beneficial-order chunks) alias the same memory on both sides and
-+ *    are skipped.
-  *
-  *  - CCS pass (@need_ccs): copy the CCS aux (compression) state. Both the old
-  *    and new data pages are mapped with the compression PAT so the copy engine
-@@ -1159,11 +1263,11 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
- 					 struct xe_bo *bo,
- 					 struct ttm_resource *src,
- 					 struct ttm_resource *dst,
--					 struct sg_table *src_sg,
-+					 struct ttm_tt *src_tt,
- 					 bool need_ccs)
- {
- 	struct dma_fence *fence2, *fence =
--		__xe_migrate_copy(m, bo, bo, src, dst, src_sg,
-+		__xe_migrate_copy(m, bo, bo, src, dst, src_tt,
- 				  (struct xe_migrate_copy_flags) {
- 					 .defrag_copy = true,
- 					 });
-@@ -1171,7 +1275,7 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
- 	if (IS_ERR(fence) || !need_ccs)
- 		return fence;
- 
--	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_sg,
-+	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_tt,
- 				   (struct xe_migrate_copy_flags) {
- 				   .defrag_ccs = true,
- 				   });
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index e4f996942a6d..4094ea1c19c1 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -13,6 +13,7 @@ struct drm_pagemap_addr;
- struct iosys_map;
- struct sg_table;
- struct ttm_resource;
-+struct ttm_tt;
- 
- struct xe_bo;
- struct xe_gt;
-@@ -137,7 +138,7 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
- 					 struct xe_bo *bo,
- 					 struct ttm_resource *src,
- 					 struct ttm_resource *dst,
--					 struct sg_table *src_sg,
-+					 struct ttm_tt *src_tt,
- 					 bool need_ccs);
- 
- struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
 -- 
 2.34.1
 
