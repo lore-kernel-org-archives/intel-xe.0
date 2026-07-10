@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3B87C44508
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 11:15:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F590C4450B
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jul 2026 11:15:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51A1E10F86C;
-	Fri, 10 Jul 2026 11:15:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 638A110F87A;
+	Fri, 10 Jul 2026 11:15:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="lq8mV1ON";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="hmOcIZGi";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57F1910F85E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB32410F875;
  Fri, 10 Jul 2026 11:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783682098;
- bh=3JVk7Ii6bOZK+y7mCUOxJrpfJz6aU21nRzuk0gjuZyM=;
+ s=default; t=1783682099;
+ bh=8OOecsLalkhMhzDjTmPYJsSQ2MSjP7aUquCNY+5c6dA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=lq8mV1ONDjuVe/t5TJWHZEoQjxtm+FwkOaFKxcy+ReQAwXm1yR39gymP+i8yhFoLB
- +po6x/zRI/4Flw5sOMRa9ZHpD6wreu0NtNZoFi3nQA3b7RjgP9Q/pP0KMiya2MMAWC
- VGGLi5R5uwWAPxKPkVIS5zdgafuU/nlWH58skG/L1k539dNHral76YKo5GCx+FNlvq
- g692NcBDrW5g2ffucAK0uQYM/UJoIrR/yqAh6E9pBORAfNaVP4ZL4+6Hkvs5oXAIqL
- DxiQ5LIqSXjKujbdTIV9j3V/h5LYjwY2rXh1/ZQFdNMwno25C52vQdtcfZUGaCVSyJ
- 2iioXjL/TZ43w==
+ b=hmOcIZGiOhblnrRrRBHlQns6Y0NjAMUbiQUwmhPj2N3Le3gaPzziUqfa4qR73v4dS
+ 8hypL4H8xg2+zWf7xDt+yVhjtk+T0WSjcDS/Yg9f7FLs4pJG8yhuaSPKIYmIsU6q4j
+ FlKJCYN0xjf7CmIyZ4387fhLLuV+nkvl0aG8qPo6X3nqrc6Wd6yc5KTijHpXBjnaMe
+ M8valw5/Ie22UBvuQiiLS0o4rn/0JzhltqB2Gb3ZP6Scn3m8SLl38pZT/1oEO3fNXc
+ zhHVS1dXXkGwGVAbQZp4quNWszIWyh8Woo00Ct/GKNd93B7/N9uXCqjU0Xe1fxmwMk
+ WJlGqhvY0NC8g==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 04/11] drm/i915: Use drm_dbg_kms() for initial FB debugs
-Date: Fri, 10 Jul 2026 13:15:31 +0200
-Message-ID: <20260710111539.1274555-5-dev@lankhorst.se>
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v2 05/11] drm/xe: Do the initial FB size alignment earlier
+Date: Fri, 10 Jul 2026 13:15:32 +0200
+Message-ID: <20260710111539.1274555-6-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
 References: <20260710111539.1274555-1-dev@lankhorst.se>
@@ -55,63 +55,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The initial FB stuff is ultimately about display stuff, so
-use the proper display specific debug level for it.
+For some reason we've split the alignment of 'base' vs. 'size'
+to live on separate sides of the xe initial plane PTE readout.
+There's no reason for this split, so make things less confusing
+by aligning both at the same time.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patch.msgid.link/20260511214122.8468-6-ville.syrjala@linux.intel.com
+Link: https://patch.msgid.link/20260511214122.8468-7-ville.syrjala@linux.intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/i915_initial_plane.c     |  4 ++--
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 12 ++++++------
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
-index 4902c07486640..08d94f3a1584a 100644
---- a/drivers/gpu/drm/i915/i915_initial_plane.c
-+++ b/drivers/gpu/drm/i915/i915_initial_plane.c
-@@ -69,8 +69,8 @@ initial_plane_phys(struct drm_i915_private *i915,
- 		return false;
- 	}
- 
--	drm_dbg(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
--		&dma_addr);
-+	drm_dbg_kms(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
-+		    &dma_addr);
- 
- 	*out_phys_base = dma_addr - mem->region.start;
- 	*out_mem = mem;
 diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 02b46cc3b6df9..da04ee66252ad 100644
+index da04ee66252ad..feb979cca12af 100644
 --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -60,9 +60,9 @@ initial_plane_bo(struct xe_device *xe,
- 			return NULL;
+@@ -37,6 +37,10 @@ initial_plane_bo(struct xe_device *xe,
+ 	flags = XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_GGTT;
+ 
+ 	base = round_down(plane_config->base, page_size);
++	size = round_up(plane_config->base + plane_config->size,
++			page_size);
++	size -= base;
++
+ 	if (IS_DGFX(xe)) {
+ 		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+ 
+@@ -79,10 +83,6 @@ initial_plane_bo(struct xe_device *xe,
  		}
+ 	}
  
--		drm_dbg(&xe->drm,
--			"Using phys_base=%pa, based on initial plane programming\n",
--			&phys_base);
-+		drm_dbg_kms(&xe->drm,
-+			    "Using phys_base=%pa, based on initial plane programming\n",
-+			    &phys_base);
- 	} else {
- 		struct ttm_resource_manager *stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
- 
-@@ -86,9 +86,9 @@ initial_plane_bo(struct xe_device *xe,
+-	size = round_up(plane_config->base + plane_config->size,
+-			page_size);
+-	size -= base;
+-
  	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
  					  ttm_bo_type_kernel, flags, 0, false);
  	if (IS_ERR(bo)) {
--		drm_dbg(&xe->drm,
--			"Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
--			&phys_base, size, flags, PTR_ERR(bo));
-+		drm_dbg_kms(&xe->drm,
-+			    "Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
-+			    &phys_base, size, flags, PTR_ERR(bo));
- 		return NULL;
- 	}
- 
 -- 
 2.53.0
 
