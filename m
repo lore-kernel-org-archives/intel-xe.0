@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 602D5C44511
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Jul 2026 02:56:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C0A0C44519
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Jul 2026 02:56:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB78610F98C;
-	Sat, 11 Jul 2026 02:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D052F10E2AA;
+	Sat, 11 Jul 2026 02:56:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HO+4tPxO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F/czYRyX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 133CF10E2C2;
- Sat, 11 Jul 2026 02:56:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7C2610E714;
+ Sat, 11 Jul 2026 02:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783738589; x=1815274589;
+ t=1783738594; x=1815274594;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fXaQzmg9C8ccdgyA7dvXJKZ9kGLg5xJcX2x2GThuUBo=;
- b=HO+4tPxOYO9vz3OA3ItjUj/YJ3gpChhkqJgE9Dbx413j5HzBB+/Of1J0
- VoU/aMEmYZs2uBf/eq2qKVZ9MSJb7gQmt8nboZDw6N/Q1rrpYclesKHji
- DdWp324Sb8k2sGkgzHcDD9027MSWJA9Jb1XeDQXxSzt2JX2aIeTAvFPFU
- SLiyVAQ8gflDgZJ0zFuY1EIye6LCcJ6/Uzql7rOBub+aHr46ed0032OlP
- oC8myXw+Unlw0NhArCN+5TbvZyuMZYHrGuT3TGoPWrPowzbzDXJzqWtI0
- ChpFVkpVUTlCuPt3YpnhyNBA7VjInobbAK5rHzUmO/QBxrYbp+e+k/QKx Q==;
-X-CSE-ConnectionGUID: axwGbFHXTs6XrnAHkZrCJQ==
-X-CSE-MsgGUID: j1dNqjeMSEevg82OEcJj1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="101986267"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="101986267"
+ bh=s1kAvnvnQkwVmd4imVG6gsZyMofshgCgR4AnJw6ACCI=;
+ b=F/czYRyXH13ArX7QHKgN3v04esSIrK1u7+MqyGXJBU4rOXNdQFhrMPxi
+ bxPuOv+5b0lwrkFEA7qEDPAyioSbOoo6QXjhwEA5Rq/OL/MZQQGC3LRKt
+ 67IBv2dStrnzhsaSbjc/V13FENghUsEVgPcY3S09b9R0NY4r7KPuk49MM
+ wb6H+uzQIHp2wSK58bI7HmwePoDGCwwGzSSVT6Q7MGpNlb3uC7/EmkJU+
+ 7Lt6a/92ThE5xRAHOE+/wZj1y0CSgaENJMYNNYhKKXbw+HKBUMQNQxFzl
+ qWjrQQitbePxh0YPf+f3h5/6BR+Z1tl7HbedzDUl+v9ifN/6H8fTki4iK g==;
+X-CSE-ConnectionGUID: Nhr1UpCMSCmm4oykawVTXQ==
+X-CSE-MsgGUID: qAFmnVQTQDm3MRi8O+iPaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="101986381"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="101986381"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 19:56:29 -0700
-X-CSE-ConnectionGUID: xokSzoEiSfiTRKT+T1VGkQ==
-X-CSE-MsgGUID: qup7yAnvTzGE6Che5WHvdQ==
+ 10 Jul 2026 19:56:34 -0700
+X-CSE-ConnectionGUID: tcsmkzlRQvGZjOWC4QDdxw==
+X-CSE-MsgGUID: nvJ5LVzwRCaSfF1y268Qww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256987719"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256987792"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 19:56:28 -0700
+ 10 Jul 2026 19:56:33 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -52,9 +52,10 @@ Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v3 15/33] drm/xe: Track BOs backed at a sub-optimal page order
-Date: Fri, 10 Jul 2026 19:56:01 -0700
-Message-Id: <20260711025619.2540575-16-matthew.brost@intel.com>
+Subject: [PATCH v3 29/33] drm/xe: Add per-device dependency scheduler for IOVA
+ defrag finalize
+Date: Fri, 10 Jul 2026 19:56:15 -0700
+Message-Id: <20260711025619.2540575-30-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260711025619.2540575-1-matthew.brost@intel.com>
 References: <20260711025619.2540575-1-matthew.brost@intel.com>
@@ -75,22 +76,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add per-device tracking of BOs whose backing TT pages were allocated
-below the pool's beneficial order, as reported by the
-TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED tt page flag (read via
-ttm_tt_is_beneficial_order_failed()). These BOs are future candidates for
-a defragmentation pass that reallocates their pages at the beneficial
-order.
+A future patch performs the destination DMA mapping of a defrag move in
+two stages when the BO is IOVA mapped: a temporary contiguous mapping of
+just tht changed pages used for the GPU copy, followed by a post-copy
+finalize stet that tears that mapping down and links the new backing
+into the (transferred) IOVA reservation. The finalize step must run only
+after the GPU copy it depends on has completed, so it is dispatched as
+an xe_dep_job,
 
-Add a mem.defrag sub-struct (lock, list, atomic count) to struct
-xe_device and a defrag_link to struct xe_bo, initialised at BO create
-and device init. Membership is updated from xe_bo_move() via
-xe_bo_defrag_update(): a BO is added when it is a populated, needed,
-non-pinned ttm_bo_type_device object flagged
-TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED, and removed otherwise. BOs are also
-removed on pin, on purge, moved to dontneed, and at destroy.
-
-Only ttm_bo_type_device BOs are tracked.
+Add a per-device xe_dep_scheduler dedicated to these finalize jobs,
+created in xe_bo_defrag_init() (after the migrate contexts are up) and
+torn down in xe_bo_defrag_fini(). No users yet; the job itself is added
+in a later patch.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -108,284 +105,78 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c           | 115 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h           |   1 +
- drivers/gpu/drm/xe/xe_bo_types.h     |   6 ++
- drivers/gpu/drm/xe/xe_device.c       |   2 +
- drivers/gpu/drm/xe/xe_device_types.h |  19 +++++
- 5 files changed, 143 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c           | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_device_types.h | 10 ++++++++++
+ 2 files changed, 25 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 4ee48cdc02ac..ff324caab6da 100644
+index d54e69aefeba..c5022c16411f 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -926,6 +926,9 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
- 	}
- }
+@@ -25,6 +25,7 @@
+ #include <trace/events/gpu_mem.h>
  
-+static void xe_bo_defrag_update(struct xe_bo *bo);
-+static void xe_bo_defrag_remove(struct xe_bo *bo);
-+
- /**
-  * xe_bo_set_purgeable_state() - Set BO purgeable state with validation
-  * @bo: Buffer object
-@@ -954,6 +957,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+ #include "xe_device.h"
++#include "xe_dep_scheduler.h"
+ #include "xe_dma_buf.h"
+ #include "xe_drm_client.h"
+ #include "xe_ggtt.h"
+@@ -1306,6 +1307,10 @@ static void xe_bo_defrag_fini(void *arg)
+ 	struct xe_device *xe = arg;
  
- 	bo->purgeable.state = new_state;
- 	xe_bo_set_purgeable_shrinker(bo, new_state);
-+	xe_bo_defrag_update(bo);
- }
- 
- /**
-@@ -1003,9 +1007,100 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
- 	/* Commit the state transition only once invalidation was queued */
- 	xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_PURGED);
- 
-+	/*
-+	 * The backing store is gone, so the BO no longer needs defrag. Drop it
-+	 * from the defrag list here so the count stays accurate even for purge
-+	 * paths that don't pass through xe_bo_move() (e.g. swap_notify).
-+	 */
-+	xe_bo_defrag_remove(bo);
-+
- 	return 0;
- }
- 
-+/**
-+ * xe_bo_defrag_init_early() - Initialize the device defrag BO tracking
-+ * @xe: The xe device
-+ *
-+ * Initialize the list, lock and count used to track BOs whose backing TT
-+ * pages were allocated at a sub-optimal order.
-+ */
-+void xe_bo_defrag_init_early(struct xe_device *xe)
-+{
-+	spin_lock_init(&xe->mem.defrag.lock);
-+	INIT_LIST_HEAD(&xe->mem.defrag.list);
-+	atomic_set(&xe->mem.defrag.count, 0);
-+}
-+
-+static bool xe_bo_needs_defrag(struct xe_bo *bo)
-+{
-+	struct ttm_buffer_object *ttm_bo = &bo->ttm;
-+	struct ttm_tt *tt = ttm_bo->ttm;
-+
-+	xe_bo_assert_held(bo);
-+
-+	return ttm_bo->type == ttm_bo_type_device && tt &&
-+		!xe_bo_madv_is_dontneed(bo) &&
-+		ttm_tt_is_populated(tt) &&
-+		ttm_tt_is_beneficial_order_failed(tt) &&
-+		ttm_bo->resource && ttm_bo->resource->mem_type == XE_PL_TT &&
-+		!xe_bo_is_pinned(bo);
-+}
-+
-+static void xe_bo_defrag_add(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+
-+	xe_bo_assert_held(bo);
-+	xe_assert(xe, xe_bo_needs_defrag(bo));
-+
-+	scoped_guard(spinlock, &xe->mem.defrag.lock) {
-+		if (list_empty(&bo->defrag_link)) {
-+			list_add_tail(&bo->defrag_link, &xe->mem.defrag.list);
-+			atomic_inc(&xe->mem.defrag.count);
-+		}
+ 	disable_delayed_work_sync(&xe->mem.defrag.worker);
++	if (xe->mem.defrag.iova_sched) {
++		xe_dep_scheduler_fini(xe->mem.defrag.iova_sched);
++		xe->mem.defrag.iova_sched = NULL;
 +	}
-+}
-+
-+static void __xe_bo_defrag_remove(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+
-+	guard(spinlock)(&xe->mem.defrag.lock);
-+	if (!list_empty(&bo->defrag_link)) {
-+		list_del_init(&bo->defrag_link);
-+		atomic_dec(&xe->mem.defrag.count);
-+	}
-+}
-+
-+static void xe_bo_defrag_remove(struct xe_bo *bo)
-+{
-+	xe_bo_assert_held(bo);
-+
-+	if (list_empty(&bo->defrag_link))
-+		return;
-+
-+	__xe_bo_defrag_remove(bo);
-+}
-+
-+/**
-+ * xe_bo_defrag_update() - Update defrag list membership for a BO
-+ * @bo: The buffer object
-+ *
-+ * Add @bo to the device defrag list when it is a ttm_bo_type_device BO resident
-+ * in XE_PL_TT with a populated TT whose pages were allocated at a sub-optimal
-+ * order (ttm_tt_is_beneficial_order_failed()) and it isn't pinned. Otherwise
-+ * ensure it is removed from the list.
-+ */
-+static void xe_bo_defrag_update(struct xe_bo *bo)
-+{
-+	xe_bo_assert_held(bo);
-+
-+	if (xe_bo_needs_defrag(bo))
-+		xe_bo_defrag_add(bo);
-+	else
-+		xe_bo_defrag_remove(bo);
-+}
-+
- static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		      struct ttm_operation_ctx *ctx,
- 		      struct ttm_resource *new_mem,
-@@ -1231,6 +1326,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		xe_tt_unmap_sg(xe, ttm_bo->ttm);
- 	}
- 
-+	xe_bo_defrag_update(bo);
-+
- 	return ret;
- }
- 
-@@ -1267,6 +1364,15 @@ static long xe_bo_shrink_purge(struct ttm_operation_ctx *ctx,
- 	if (lret > 0) {
- 		xe_ttm_tt_account_subtract(xe, bo->ttm);
- 		update_global_total_pages(bo->bdev, -(long)tt->num_pages);
-+
-+		/*
-+		 * The pages are gone, so a tracked BO no longer needs defrag.
-+		 * This shrinker purge path frees pages without going through
-+		 * xe_bo_move(), so drop any stale defrag list entry here. Ghost
-+		 * bos are never tracked, so guard for real xe bos.
-+		 */
-+		if (xe_bo_is_xe_bo(bo))
-+			xe_bo_defrag_remove(ttm_to_xe_bo(bo));
- 	}
- 
- 	return lret;
-@@ -1909,6 +2015,8 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
- 		list_del(&bo->vram_userfault_link);
- 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
- 
-+	__xe_bo_defrag_remove(bo);
-+
- 	kfree(bo);
- }
- 
-@@ -2414,6 +2522,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
- 	bo->ttm.base.funcs = &xe_gem_object_funcs;
- 	bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
- 	INIT_LIST_HEAD(&bo->pinned_link);
-+	INIT_LIST_HEAD(&bo->defrag_link);
- #ifdef CONFIG_PROC_FS
- 	INIT_LIST_HEAD(&bo->client_link);
- #endif
-@@ -3020,6 +3129,8 @@ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec)
- 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
- 		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
- 
-+	xe_bo_defrag_remove(bo);
-+
- 	/*
- 	 * FIXME: If we always use the reserve / unreserve functions for locking
- 	 * we do not need this.
-@@ -3078,6 +3189,8 @@ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec)
- 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
- 		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
- 
-+	xe_bo_defrag_remove(bo);
-+
- 	/*
- 	 * FIXME: If we always use the reserve / unreserve functions for locking
- 	 * we do not need this.
-@@ -3113,6 +3226,7 @@ void xe_bo_unpin_external(struct xe_bo *bo)
- 	ttm_bo_unpin(&bo->ttm);
- 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
- 		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
-+	xe_bo_defrag_update(bo);
- 
- 	/*
- 	 * FIXME: If we always use the reserve / unreserve functions for locking
-@@ -3145,6 +3259,7 @@ void xe_bo_unpin(struct xe_bo *bo)
- 	ttm_bo_unpin(&bo->ttm);
- 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
- 		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
-+	xe_bo_defrag_update(bo);
  }
  
  /**
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6340317f7d2e..4186cb51af87 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -224,6 +224,7 @@ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec);
- int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec);
- void xe_bo_unpin_external(struct xe_bo *bo);
- void xe_bo_unpin(struct xe_bo *bo);
-+void xe_bo_defrag_init_early(struct xe_device *xe);
- int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
- 		   struct drm_exec *exec);
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index fcc63ae3f455..9eea9ab380e5 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -54,6 +54,12 @@ struct xe_bo {
- 	struct ttm_bo_kmap_obj kmap;
- 	/** @pinned_link: link to present / evicted list of pinned BO */
- 	struct list_head pinned_link;
-+	/**
-+	 * @defrag_link: link into @xe_device.mem.defrag.list for BOs whose
-+	 * backing TT pages were allocated at a sub-optimal order. Protected by
-+	 * @xe_device.mem.defrag.lock.
-+	 */
-+	struct list_head defrag_link;
- #ifdef CONFIG_PROC_FS
- 	/**
- 	 * @client: @xe_drm_client which created the bo
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 97cc2d185e45..bb93425a5c70 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -607,6 +607,8 @@ int xe_device_init_early(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	xe_bo_defrag_init_early(xe);
+@@ -1342,6 +1347,16 @@ void xe_bo_defrag_init_early(struct xe_device *xe)
+  */
+ int xe_bo_defrag_init(struct xe_device *xe)
+ {
++#define XE_BO_MAX_IOVA_DEFRAG_JOBS	16	/* Picking a reasonable value */
++	struct xe_dep_scheduler *iova_sched;
 +
- 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
- 						       WQ_MEM_RECLAIM);
- 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
++	iova_sched = xe_dep_scheduler_create(xe, NULL, "xe_iova_defrag",
++					     XE_BO_MAX_IOVA_DEFRAG_JOBS);
++	if (IS_ERR(iova_sched))
++		return PTR_ERR(iova_sched);
++	xe->mem.defrag.iova_sched = iova_sched;
++#undef XE_BO_MAX_IOVA_DEFRAG_JOBS
++
+ 	return devm_add_action_or_reset(xe->drm.dev, xe_bo_defrag_fini, xe);
+ }
+ 
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 95e7cea91cbf..9e6244d8f41b 100644
+index 6e68add4d652..b55d549d5e30 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -296,6 +296,25 @@ struct xe_device {
- 		 */
- 		atomic_long_t dma_mapped_pages_svm[NR_PAGE_ORDERS];
- #endif
-+		/**
-+		 * @mem.defrag: Tracking of BOs whose backing TT pages were
-+		 * allocated at a sub-optimal (smaller than beneficial) order.
-+		 *
-+		 * Such BOs are candidates for a future defragmentation pass that
-+		 * tries to reallocate their pages at the device's beneficial
-+		 * order. Only ttm_bo_type_device BOs are tracked.
-+		 */
-+		struct {
-+			/** @mem.defrag.lock: Protects @mem.defrag.list. */
-+			spinlock_t lock;
-+			/** @mem.defrag.list: List of struct xe_bo defrag_link. */
-+			struct list_head list;
+@@ -38,6 +38,7 @@
+ 
+ struct drm_pagemap_shrinker;
+ struct intel_display;
++struct xe_dep_scheduler;
+ struct intel_dg_nvm_dev;
+ struct xe_ggtt;
+ struct xe_i2c;
+@@ -325,6 +326,15 @@ struct xe_device {
+ 			 * @mem.defrag.worker, in milliseconds.
+ 			 */
+ 			unsigned int interval_ms;
 +			/**
-+			 * @mem.defrag.count: Number of BOs currently on
-+			 * @mem.defrag.list.
++			 * @mem.defrag.iova_sched: Dependency scheduler used to
++			 * run the post-copy IOVA finalize job for defrag moves
++			 * of IOVA-mapped BOs. The job tears down the temporary
++			 * copy-step IOVA mapping and links the new backing into
++			 * the (transferred) reservation once the GPU copy that
++			 * its dependencies gate has completed.
 +			 */
-+			atomic_t count;
-+		} defrag;
++			struct xe_dep_scheduler *iova_sched;
+ 		} defrag;
  	} mem;
  
- 	/** @sriov: device level virtualization data */
 -- 
 2.34.1
 
