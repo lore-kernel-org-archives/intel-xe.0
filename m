@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F3EBC43458
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Jul 2026 01:42:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0149C43458
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Jul 2026 02:05:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 160F310E288;
-	Sat, 11 Jul 2026 01:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9658810E295;
+	Sat, 11 Jul 2026 02:05:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKF7mSI/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cEre9XO8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFBF210E288
- for <intel-xe@lists.freedesktop.org>; Sat, 11 Jul 2026 01:42:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B69610E290
+ for <intel-xe@lists.freedesktop.org>; Sat, 11 Jul 2026 02:05:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783734160; x=1815270160;
- h=date:from:to:cc:subject:message-id;
- bh=UwM811WNSSfnSWiO5E6kSzvJKa5wx/wZnQxRpiTo6Bs=;
- b=cKF7mSI/ORry6o/uDgffecgzkqFhTBCcRFHCa7pw7JwRvUNuPOeDnsEx
- dRMzwMXgPe/NKlM9gXMhOzvOtTbbtYKAOF/ENrw5HW/9PK+t2O8VpPVd9
- rf/e5Va9rnGAIxmeiBvKGOODv4nG6vL0cVGGPKXqd6E9wilRZ4Vfx/B4u
- 00jvr7govdVKrzm6A/h5pqOElo/M1ClcDxDqlZBuzMNw/yeEZMiimJUH1
- enWInIco2ov3TOIW5boews14/hW6w0m2zlcS0pYK/5CFiRCmQIZKvFAfq
- I4cAyuGrVwVtB8DDGfFozlUaQ6IjoSLTucltrfNJM2y6JuYG07VifzojP w==;
-X-CSE-ConnectionGUID: B3Cw2U2+RmyTgZKwz8mBMg==
-X-CSE-MsgGUID: Wzp5CV+HRZKdX+VQEZpHZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84626170"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84626170"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 18:42:39 -0700
-X-CSE-ConnectionGUID: zQznh0lnTIysNSY1VK/TiA==
-X-CSE-MsgGUID: sHpb2hbtT+GpD4/AdpsoaQ==
+ t=1783735506; x=1815271506;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ZwW0Y1pydhIPsXZVVH4v9CgBXR+u+htzOjPNROOQPAs=;
+ b=cEre9XO8gAmqZb+VnzDcVgU+QeE6pMTgV/P9yVd7+YkQKk7+aByz4SWw
+ KocLpR9p6+Wp7IVM6AOPwXO5JD8kxlVOGxZdZ1PQPjjnFR0aVK0UcdXQC
+ uG03Osj2tdc95oRQCQomec82aUaVZHqSNu6XlitvHpaUCgpJUNzAcCfVH
+ i5QclQ9WzO4ujANtn02nqNwAsqDBo++VhliRac0q4tpqwlvwdWMlmnpxz
+ OXpzZddpAw1mE0muSxwR4rOvBdy0j0Ezjqe3ntmR+c078dBIAWISET2pi
+ TGCXmP8i6egZDKM8eOWgDPXWnWZbCxny8kTm+0hNz95Dej0FlVz++o6fw A==;
+X-CSE-ConnectionGUID: WcbnrUJFQgqXh8WI692FiA==
+X-CSE-MsgGUID: FtDc9qfuQ6G6CvK9PXNW0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="71957064"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="71957064"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 19:05:06 -0700
+X-CSE-ConnectionGUID: zOHToSAmRsOdWCz4Li4Q7A==
+X-CSE-MsgGUID: jczGCQqmQR6KU2eOeJK0bw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="253292369"
-Received: from lkp-server02.sh.intel.com (HELO ea128546eb3d) ([10.239.97.151])
- by orviesa006.jf.intel.com with ESMTP; 10 Jul 2026 18:42:38 -0700
-Received: from kbuild by ea128546eb3d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wiMjj-00000000Jbm-2RMk;
- Sat, 11 Jul 2026 01:42:35 +0000
-Date: Sat, 11 Jul 2026 09:42:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- ed5a093c2fdd980dda2b2e14b1577a285a87e506
-Message-ID: <202607110920.lNs1Lb3L-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="248654395"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 19:05:05 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com,
+	thomas.hellstrom@linux.intel.com
+Subject: [PATCH v3 2/6] drm/xe/guc: ban exec queue on suspend timeout
+Date: Fri, 10 Jul 2026 19:04:59 -0700
+Message-ID: <20260711020459.2049523-10-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260711020459.2049523-8-niranjana.vishwanathapura@intel.com>
+References: <20260711020459.2049523-8-niranjana.vishwanathapura@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,248 +67,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: ed5a093c2fdd980dda2b2e14b1577a285a87e506  drm/xe/guc: toggle paging engine support for NVL-S+
+Harden guc_exec_queue_suspend_wait():
 
-elapsed time: 729m
+ - In multi-queue mode the primary owns the group's GuC scheduling
+   context, so wait on the primary's suspend to complete.
 
-configs tested: 229
-configs skipped: 3
+ - On timeout, ban the queue and trigger cleanup rather than leaving it
+   suspended forever. Clearing suspend_pending via __suspend_fence_signal()
+   lets a subsequent resume() proceed without tripping the
+   !suspend_pending assert. A timeout on the primary wedges the whole
+   group, so ban and tear down the entire group in the multi-queue case.
+   The ban/cleanup is factored into guc_exec_queue_suspend_timeout_ban().
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Add a note that on a signal (-ERESTARTSYS) the queue is not banned and
+the suspend is not confirmed complete, so callers must not resume()
+without re-confirming.
 
-tested configs:
-alpha                             allnoconfig    gcc-16.1.0
-alpha                            allyesconfig    gcc-16.1.0
-alpha                               defconfig    gcc-16.1.0
-arc                              allmodconfig    clang-23
-arc                              allmodconfig    gcc-16.1.0
-arc                               allnoconfig    gcc-16.1.0
-arc                              allyesconfig    clang-23
-arc                              allyesconfig    gcc-16.1.0
-arc                                 defconfig    gcc-16.1.0
-arc                   randconfig-001-20260711    gcc-13.4.0
-arc                   randconfig-002-20260711    gcc-13.4.0
-arm                               allnoconfig    gcc-16.1.0
-arm                              allyesconfig    clang-23
-arm                              allyesconfig    gcc-16.1.0
-arm                                 defconfig    gcc-16.1.0
-arm                           omap1_defconfig    gcc-16.1.0
-arm                   randconfig-001-20260711    gcc-13.4.0
-arm                   randconfig-002-20260711    gcc-13.4.0
-arm                   randconfig-003-20260711    gcc-13.4.0
-arm                   randconfig-004-20260711    gcc-13.4.0
-arm64                            allmodconfig    clang-23
-arm64                             allnoconfig    gcc-16.1.0
-arm64                               defconfig    gcc-16.1.0
-arm64                 randconfig-001-20260711    gcc-16.1.0
-arm64                 randconfig-002-20260711    gcc-16.1.0
-arm64                 randconfig-003-20260711    gcc-16.1.0
-arm64                 randconfig-004-20260711    gcc-16.1.0
-csky                             allmodconfig    gcc-16.1.0
-csky                              allnoconfig    gcc-16.1.0
-csky                                defconfig    gcc-16.1.0
-csky                  randconfig-001-20260711    gcc-16.1.0
-csky                  randconfig-002-20260711    gcc-16.1.0
-hexagon                          allmodconfig    clang-23
-hexagon                          allmodconfig    gcc-16.1.0
-hexagon                           allnoconfig    gcc-16.1.0
-hexagon                             defconfig    gcc-16.1.0
-hexagon               randconfig-001-20260711    gcc-16.1.0
-hexagon               randconfig-002-20260711    gcc-16.1.0
-i386                             allmodconfig    clang-22
-i386                              allnoconfig    gcc-16.1.0
-i386                             allyesconfig    clang-22
-i386        buildonly-randconfig-001-20260711    gcc-14
-i386        buildonly-randconfig-002-20260711    gcc-14
-i386        buildonly-randconfig-003-20260711    gcc-14
-i386        buildonly-randconfig-004-20260711    gcc-14
-i386        buildonly-randconfig-005-20260711    gcc-14
-i386        buildonly-randconfig-006-20260711    gcc-14
-i386                                defconfig    gcc-16.1.0
-i386                  randconfig-001-20260710    clang-22
-i386                  randconfig-001-20260711    clang-22
-i386                  randconfig-002-20260710    clang-22
-i386                  randconfig-002-20260711    clang-22
-i386                  randconfig-003-20260710    clang-22
-i386                  randconfig-003-20260711    clang-22
-i386                  randconfig-004-20260710    clang-22
-i386                  randconfig-004-20260711    clang-22
-i386                  randconfig-005-20260710    clang-22
-i386                  randconfig-005-20260711    clang-22
-i386                  randconfig-006-20260710    clang-22
-i386                  randconfig-006-20260711    clang-22
-i386                  randconfig-007-20260710    clang-22
-i386                  randconfig-007-20260711    clang-22
-i386                  randconfig-011-20260711    gcc-13
-i386                  randconfig-012-20260711    gcc-13
-i386                  randconfig-013-20260711    gcc-13
-i386                  randconfig-014-20260711    gcc-13
-i386                  randconfig-015-20260711    gcc-13
-i386                  randconfig-016-20260711    gcc-13
-i386                  randconfig-017-20260711    gcc-13
-loongarch                        allmodconfig    clang-19
-loongarch                        allmodconfig    clang-23
-loongarch                         allnoconfig    gcc-16.1.0
-loongarch                           defconfig    clang-23
-loongarch             randconfig-001-20260711    gcc-16.1.0
-loongarch             randconfig-002-20260711    gcc-16.1.0
-m68k                             allmodconfig    gcc-16.1.0
-m68k                              allnoconfig    gcc-16.1.0
-m68k                             allyesconfig    clang-23
-m68k                             allyesconfig    gcc-16.1.0
-m68k                                defconfig    clang-23
-m68k                                defconfig    gcc-16.1.0
-microblaze                        allnoconfig    gcc-16.1.0
-microblaze                       allyesconfig    gcc-16.1.0
-microblaze                          defconfig    clang-23
-microblaze                          defconfig    gcc-16.1.0
-mips                             allmodconfig    gcc-16.1.0
-mips                              allnoconfig    gcc-16.1.0
-mips                             allyesconfig    gcc-16.1.0
-mips                malta_qemu_32r6_defconfig    gcc-16.1.0
-mips                   sb1250_swarm_defconfig    gcc-16.1.0
-nios2                            allmodconfig    clang-20
-nios2                             allnoconfig    clang-23
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    clang-23
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20260711    gcc-16.1.0
-nios2                 randconfig-002-20260711    gcc-16.1.0
-openrisc                         allmodconfig    clang-20
-openrisc                          allnoconfig    clang-23
-openrisc                          allnoconfig    gcc-16.1.0
-openrisc                            defconfig    gcc-16.1.0
-parisc                           allmodconfig    gcc-16.1.0
-parisc                            allnoconfig    clang-23
-parisc                            allnoconfig    gcc-16.1.0
-parisc                           allyesconfig    clang-17
-parisc                           allyesconfig    gcc-16.1.0
-parisc                              defconfig    gcc-16.1.0
-parisc                randconfig-001-20260710    clang-17
-parisc                randconfig-001-20260711    clang-17
-parisc                randconfig-002-20260710    clang-17
-parisc                randconfig-002-20260711    clang-17
-parisc64                            defconfig    clang-23
-parisc64                            defconfig    gcc-16.1.0
-powerpc                          allmodconfig    gcc-16.1.0
-powerpc                           allnoconfig    clang-23
-powerpc                           allnoconfig    gcc-16.1.0
-powerpc               randconfig-001-20260710    clang-17
-powerpc               randconfig-001-20260711    clang-17
-powerpc               randconfig-002-20260710    clang-17
-powerpc               randconfig-002-20260711    clang-17
-powerpc64             randconfig-001-20260710    clang-17
-powerpc64             randconfig-001-20260711    clang-17
-powerpc64             randconfig-002-20260710    clang-17
-powerpc64             randconfig-002-20260711    clang-17
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    clang-23
-riscv                             allnoconfig    gcc-16.1.0
-riscv                            allyesconfig    clang-23
-riscv                               defconfig    gcc-16.1.0
-riscv                 randconfig-001-20260711    gcc-8.5.0
-riscv                 randconfig-002-20260711    gcc-8.5.0
-s390                             allmodconfig    clang-17
-s390                             allmodconfig    clang-23
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-16.1.0
-s390                                defconfig    gcc-16.1.0
-s390                  randconfig-001-20260711    gcc-8.5.0
-s390                  randconfig-002-20260711    gcc-8.5.0
-sh                               allmodconfig    gcc-16.1.0
-sh                                allnoconfig    clang-23
-sh                                allnoconfig    gcc-16.1.0
-sh                               allyesconfig    clang-17
-sh                               allyesconfig    gcc-16.1.0
-sh                                  defconfig    gcc-14
-sh                    randconfig-001-20260711    gcc-8.5.0
-sh                    randconfig-002-20260711    gcc-8.5.0
-sparc                             allnoconfig    clang-23
-sparc                             allnoconfig    gcc-16.1.0
-sparc                               defconfig    gcc-16.1.0
-sparc                 randconfig-001-20260711    gcc-16.1.0
-sparc                 randconfig-002-20260711    gcc-16.1.0
-sparc64                          allmodconfig    clang-20
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260711    gcc-16.1.0
-sparc64               randconfig-002-20260711    gcc-16.1.0
-um                               allmodconfig    clang-17
-um                               allmodconfig    clang-23
-um                                allnoconfig    clang-16
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-14
-um                               allyesconfig    gcc-16.1.0
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260711    gcc-16.1.0
-um                    randconfig-002-20260711    gcc-16.1.0
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-22
-x86_64                            allnoconfig    clang-22
-x86_64                            allnoconfig    clang-23
-x86_64                           allyesconfig    clang-22
-x86_64      buildonly-randconfig-001-20260710    gcc-14
-x86_64      buildonly-randconfig-001-20260711    gcc-14
-x86_64      buildonly-randconfig-002-20260710    clang-22
-x86_64      buildonly-randconfig-002-20260711    gcc-14
-x86_64      buildonly-randconfig-003-20260710    clang-22
-x86_64      buildonly-randconfig-003-20260711    gcc-14
-x86_64      buildonly-randconfig-004-20260710    clang-22
-x86_64      buildonly-randconfig-004-20260711    gcc-14
-x86_64      buildonly-randconfig-005-20260710    clang-22
-x86_64      buildonly-randconfig-005-20260711    gcc-14
-x86_64      buildonly-randconfig-006-20260710    clang-22
-x86_64      buildonly-randconfig-006-20260711    gcc-14
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-22
-x86_64                randconfig-001-20260710    gcc-14
-x86_64                randconfig-001-20260711    gcc-14
-x86_64                randconfig-002-20260710    gcc-14
-x86_64                randconfig-002-20260711    gcc-14
-x86_64                randconfig-003-20260710    gcc-14
-x86_64                randconfig-003-20260711    gcc-14
-x86_64                randconfig-004-20260710    gcc-14
-x86_64                randconfig-004-20260711    gcc-14
-x86_64                randconfig-005-20260710    gcc-14
-x86_64                randconfig-005-20260711    gcc-14
-x86_64                randconfig-006-20260710    gcc-14
-x86_64                randconfig-006-20260711    gcc-14
-x86_64                randconfig-011-20260711    gcc-14
-x86_64                randconfig-012-20260711    gcc-14
-x86_64                randconfig-013-20260711    gcc-14
-x86_64                randconfig-014-20260711    gcc-14
-x86_64                randconfig-015-20260711    gcc-14
-x86_64                randconfig-016-20260711    gcc-14
-x86_64                randconfig-071-20260710    clang-22
-x86_64                randconfig-071-20260710    gcc-14
-x86_64                randconfig-071-20260711    gcc-14
-x86_64                randconfig-072-20260710    gcc-14
-x86_64                randconfig-072-20260711    gcc-14
-x86_64                randconfig-073-20260710    gcc-14
-x86_64                randconfig-073-20260711    gcc-14
-x86_64                randconfig-074-20260710    clang-22
-x86_64                randconfig-074-20260710    gcc-14
-x86_64                randconfig-074-20260711    gcc-14
-x86_64                randconfig-075-20260710    clang-22
-x86_64                randconfig-075-20260710    gcc-14
-x86_64                randconfig-075-20260711    gcc-14
-x86_64                randconfig-076-20260710    gcc-14
-x86_64                randconfig-076-20260711    gcc-14
-x86_64                               rhel-9.4    clang-22
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-22
-x86_64                    rhel-9.4-kselftests    clang-22
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-22
-xtensa                            allnoconfig    clang-23
-xtensa                            allnoconfig    gcc-16.1.0
-xtensa                           allyesconfig    clang-20
-xtensa                randconfig-001-20260711    gcc-16.1.0
-xtensa                randconfig-002-20260711    gcc-16.1.0
+Assisted-by: Github-Copilot:Claude-opus-4.8
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 53 +++++++++++++++++++++++++++---
+ 1 file changed, 49 insertions(+), 4 deletions(-)
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index cec3bbf3a10e..3ece51451f86 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2202,12 +2202,53 @@ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
+ 	return 0;
+ }
+ 
++static void guc_exec_queue_suspend_timeout_ban(struct xe_exec_queue *q)
++{
++	struct xe_guc *guc = exec_queue_to_guc(q);
++
++	xe_gt_warn(guc_to_gt(guc),
++		   "Suspend fence, guc_id=%d, failed to respond, banning queue",
++		   q->guc->id);
++	/*
++	 * The GuC failed to respond to the suspend within the timeout. This is
++	 * not recoverable for this context, so ban it and tear it down via
++	 * cleanup rather than leave it suspended forever. __suspend_fence_signal
++	 * clears suspend_pending and wakes any waiter.
++	 *
++	 * @q is the primary here; it owns the group's GuC context, so a failure
++	 * to suspend it wedges the whole group. Ban and tear down the entire
++	 * group in the multi-queue case.
++	 */
++	if (xe_exec_queue_is_multi_queue(q)) {
++		set_exec_queue_group_banned(q);
++		__suspend_fence_signal(q);
++		xe_guc_exec_queue_group_trigger_cleanup(q);
++	} else {
++		set_exec_queue_banned(q);
++		__suspend_fence_signal(q);
++		xe_guc_exec_queue_trigger_cleanup(q);
++	}
++}
++
+ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	int ret;
+ 
++	/*
++	 * In multi-queue mode the primary owns the GuC scheduling context for
++	 * the whole group, so wait on the primary's suspend to complete. All
++	 * group members share the same GuC/device, so guc, xe and timeout above
++	 * are computed from @q directly.
++	 *
++	 * A secondary's suspend is short-circuited (no GuC round-trip) and, as
++	 * its SUSPEND message precedes the primary's on the shared FIFO
++	 * submit_wq, completes before the primary's. So waiting on the primary
++	 * is sufficient.
++	 */
++	q = xe_exec_queue_multi_queue_primary(q);
++
+ 	/*
+ 	 * Likely don't need to check exec_queue_killed() as we clear
+ 	 * suspend_pending upon kill but to be paranoid but races in which
+@@ -2230,10 +2271,7 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ 		return -EAGAIN;
+ 
+ 	if (!ret) {
+-		xe_gt_warn(guc_to_gt(guc),
+-			   "Suspend fence, guc_id=%d, failed to respond",
+-			   q->guc->id);
+-		/* XXX: Trigger GT reset? */
++		guc_exec_queue_suspend_timeout_ban(q);
+ 		return -ETIME;
+ 	} else if (IS_SRIOV_VF(xe) && !WAIT_COND) {
+ 		/* Corner case on RESFIX DONE where vf_recovery() changes */
+@@ -2242,6 +2280,13 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ 
+ #undef WAIT_COND
+ 
++	/*
++	 * ret < 0 (-ERESTARTSYS): the interruptible wait was aborted by a
++	 * signal. The queue is not banned - the failure is in the waiter, not
++	 * the queue. The suspend is not confirmed complete, so suspend_pending
++	 * may still be set; callers must not resume() on this error without
++	 * re-confirming the suspend.
++	 */
+ 	return ret < 0 ? ret : 0;
+ }
+ 
+-- 
+2.43.0
+
