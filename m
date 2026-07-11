@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46DD2C44508
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46D9CC43458
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E47FA10E9AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E694710E9BD;
 	Mon, 13 Jul 2026 13:45:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BGbT3efQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A3lQ/qzw";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B63589A1F;
- Sat, 11 Jul 2026 18:47:07 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2443710E181;
+ Sat, 11 Jul 2026 18:49:12 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 9970660052;
- Sat, 11 Jul 2026 18:47:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38421F000E9;
- Sat, 11 Jul 2026 18:46:45 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id F3F59418D3;
+ Sat, 11 Jul 2026 18:49:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7572D1F000E9;
+ Sat, 11 Jul 2026 18:48:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783795626;
- bh=Cys+jf7FSJvkCpfIdDug3cdlx8ypGdMjngNui8wSibo=;
+ s=k20260515; t=1783795751;
+ bh=PQeVSJrFNGuAKYRqlJkf6JopIzp3qlHM9CyXIq3KHK4=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=BGbT3efQd05kEEjTh+aO4RIluI/3vbRGG07jZPAzbysVlgzwXnZVd8f3t8E8Vuhd6
- /dACfscdhH9yKm6ORV9MIHznN0QDaIGK+Xd+Y+t8MqLriFyX1OaduZQhi7cZQzgZLA
- zhkYGSy3lsS2NYCL1bWL202tjTmTDVV+eSqCV7wUyQZndnvpprLtQNMS5nm7owHWNj
- KGyx5ds0GcgnPAShXFUlRpaavVRV26dnZg4wZ7A21dt9cXYXyOCSf0zPZMetrqJNJW
- /KsazvPLmIyGMbdJPeU7/Pu006j9N9JCilWvEgMUxQFss7qH26Jx8s/ZkArz+vG1bl
- K1uChQpzKnO0g==
+ b=A3lQ/qzw9J0Mef36BzMgXFxCB7dkGxinxIIAW9JQmfMzrEgdVXCZbMvez44EZPEeX
+ gzXNhanDpKBvr0GU1vbuTRlAVgICQASw38QvYjbrawwYLjk41zoY+o6bs5EJQXWA4B
+ N8ZheKvFfC7ObvlfJNb/UgFOGLScihFKvVLmqfFpAtRomluF+G9vwP3+ja7py9qw8f
+ K4SpVyb7Rs9cJFxpYgZkzgj3ThMgqYWZtLE4yV783JlpDDz2j3hz/q139ORq9vViT5
+ +PH6eC4zBsvX0nSUubBGLLM+1N8LdIbC9v3OR05k+HOezHB2d7wpLQkmt7rZqu2Bfi
+ X2DIl7kAZDv+A==
 From: Lorenzo Stoakes <ljs@kernel.org>
-Date: Sat, 11 Jul 2026 19:45:01 +0100
-Subject: [PATCH v2 04/13] mm: update generic_get_unmapped_area[_topdown]()
- to use vma_flags_t
+Date: Sat, 11 Jul 2026 19:45:07 +0100
+Subject: [PATCH v2 10/13] mm/vma: convert miscellaneous uses of VMA flags
+ in core mm
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-b4-vma-flags-mm-v2-4-0fa2357d5431@kernel.org>
+Message-Id: <20260711-b4-vma-flags-mm-v2-10-0fa2357d5431@kernel.org>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 In-Reply-To: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 To: Andrew Morton <akpm@linux-foundation.org>, 
@@ -109,12 +109,12 @@ Cc: Lorenzo Stoakes <ljs@kernel.org>, linux-mm@kvack.org,
  intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, 
  linux-fbdev@vger.kernel.org, linux-sound@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5495; i=ljs@kernel.org;
- h=from:subject:message-id; bh=q7YWuxvCY0LSuxzxUdXFVMeI8S+gRJqyF3+arUou2v8=;
- b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+i2NEp1+fZh+q6WCyTJbY35wdc6HWZPCOjy54oQmS
- 8fxCv3pKGVhEONikBVTZHn+RXx/kEjYvM4L/m4wc1iZQIYwcHEKwET0vBgZzm+rtfp9UtOlYFNd
- VUrv+3hJr49ru99VTjn8XNVY8UQJG8N/t7zLlVMXTLjaPmvbSZkQrfo9K1r/7GqZnb+h7uyNZ7a
- OvAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6231; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=2Eukk7/bboJXcRN4Serqm42H9hjt4k2BF/S8ckNM3q8=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+q1YA9XOTHweaCw7b1K84KM/l+4VzJwymz/yypnOw
+ EgXoUUrO0pZGMS4GGTFFFmefxHfHyQSNq/zgr8bzBxWJpAhDFycAjARtxOMDJfd9Z1WrGFzkSqR
+ k3zENmPW9uv9Jq2mlyfbPCqdYyDftZfhD/8EKYZXMltEpvpf7zFQMVFoW/Ccy10ubMFc/7tFUrK
+ OTAA=
 X-Developer-Key: i=ljs@kernel.org; a=openpgp;
  fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-Mailman-Approved-At: Mon, 13 Jul 2026 13:45:20 +0000
@@ -132,137 +132,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As part of the changes converting VMA flags from a system word size to a
-bitmap, extend this change to generic_get_unmapped_area() and
-generic_get_unmapped_area_topdown(), which also allows us to convert
-stack_guard_placement() as well.
-
-We retain arch_get_unmapped_area() and arch_get_unmapped_area_topdown()
-as-is for now, using legacy_to_vma_flags() as necessary to do so.
+Update various uses of legacy flags in vma.c and mmap.c to the new
+vma_flags_t type, updating comments alongside them to be consistent.
 
 No functional change intended.
 
 Reviewed-by: Zi Yan <ziy@nvidia.com>
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
 Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 ---
- arch/powerpc/mm/book3s64/slice.c |  6 ++++--
- include/linux/sched/mm.h         |  4 ++--
- mm/mmap.c                        | 16 ++++++++--------
- 3 files changed, 14 insertions(+), 12 deletions(-)
+ mm/mmap.c | 39 +++++++++++++++++++++------------------
+ mm/vma.c  | 13 ++++++++-----
+ 2 files changed, 29 insertions(+), 23 deletions(-)
 
-diff --git a/arch/powerpc/mm/book3s64/slice.c b/arch/powerpc/mm/book3s64/slice.c
-index 28bec5bc7879..82127e31dca6 100644
---- a/arch/powerpc/mm/book3s64/slice.c
-+++ b/arch/powerpc/mm/book3s64/slice.c
-@@ -659,7 +659,8 @@ unsigned long arch_get_unmapped_area(struct file *filp,
- 	unsigned int psize;
- 
- 	if (radix_enabled())
--		return generic_get_unmapped_area(filp, addr, len, pgoff, flags, vm_flags);
-+		return generic_get_unmapped_area(filp, addr, len, pgoff, flags,
-+						 legacy_to_vma_flags(vm_flags));
- 
- 	if (filp && is_file_hugepages(filp))
- 		psize = file_to_psize(filp);
-@@ -679,7 +680,8 @@ unsigned long arch_get_unmapped_area_topdown(struct file *filp,
- 	unsigned int psize;
- 
- 	if (radix_enabled())
--		return generic_get_unmapped_area_topdown(filp, addr0, len, pgoff, flags, vm_flags);
-+		return generic_get_unmapped_area_topdown(filp, addr0, len,
-+				pgoff, flags, legacy_to_vma_flags(vm_flags));
- 
- 	if (filp && is_file_hugepages(filp))
- 		psize = file_to_psize(filp);
-diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
-index 10d723bee95c..10be8a54b416 100644
---- a/include/linux/sched/mm.h
-+++ b/include/linux/sched/mm.h
-@@ -200,11 +200,11 @@ unsigned long mm_get_unmapped_area_vmaflags(struct file *filp,
- unsigned long
- generic_get_unmapped_area(struct file *filp, unsigned long addr,
- 			  unsigned long len, unsigned long pgoff,
--			  unsigned long flags, vm_flags_t vm_flags);
-+			  unsigned long flags, vma_flags_t vma_flags);
- unsigned long
- generic_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
- 				  unsigned long len, unsigned long pgoff,
--				  unsigned long flags, vm_flags_t vm_flags);
-+				  unsigned long flags, vma_flags_t vma_flags);
- #else
- static inline void arch_pick_mmap_layout(struct mm_struct *mm,
- 					 const struct rlimit *rlim_stack) {}
 diff --git a/mm/mmap.c b/mm/mmap.c
-index 4a88b2a233f7..39d33f3a55c2 100644
+index 2076c70e7700..4bf26b0f1e6e 100644
 --- a/mm/mmap.c
 +++ b/mm/mmap.c
-@@ -657,9 +657,9 @@ SYSCALL_DEFINE1(old_mmap, struct mmap_arg_struct __user *, arg)
-  * Determine if the allocation needs to ensure that there is no
-  * existing mapping within it's guard gaps, for use as start_gap.
-  */
--static inline unsigned long stack_guard_placement(vm_flags_t vm_flags)
-+static inline unsigned long stack_guard_placement(vma_flags_t vma_flags)
- {
--	if (vm_flags & VM_SHADOW_STACK)
-+	if (vma_flags_test_single_mask(&vma_flags, VMA_SHADOW_STACK))
- 		return PAGE_SIZE;
+@@ -557,8 +557,8 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
+ 	}
  
- 	return 0;
-@@ -701,7 +701,7 @@ unsigned long vm_unmapped_area(struct vm_unmapped_area_info *info)
- unsigned long
- generic_get_unmapped_area(struct file *filp, unsigned long addr,
- 			  unsigned long len, unsigned long pgoff,
--			  unsigned long flags, vm_flags_t vm_flags)
-+			  unsigned long flags, vma_flags_t vma_flags)
- {
- 	struct mm_struct *mm = current->mm;
- 	struct vm_area_struct *vma, *prev;
-@@ -726,7 +726,7 @@ generic_get_unmapped_area(struct file *filp, unsigned long addr,
- 	info.length = len;
- 	info.low_limit = mm->mmap_base;
- 	info.high_limit = mmap_end;
--	info.start_gap = stack_guard_placement(vm_flags);
-+	info.start_gap = stack_guard_placement(vma_flags);
- 	if (filp && is_file_hugepages(filp))
- 		info.align_mask = huge_page_mask_align(filp);
- 	return vm_unmapped_area(&info);
-@@ -739,7 +739,7 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
- 		       unsigned long flags, vm_flags_t vm_flags)
- {
- 	return generic_get_unmapped_area(filp, addr, len, pgoff, flags,
--					 vm_flags);
-+					 legacy_to_vma_flags(vm_flags));
+ 	/*
+-	 * Set 'VM_NORESERVE' if we should not account for the
+-	 * memory use of this mapping.
++	 * Set VMA_NORESERVE_BIT if we should not account for the memory use
++	 * of this mapping.
+ 	 */
+ 	if (flags & MAP_NORESERVE) {
+ 		/* We honor MAP_NORESERVE if allowed to overcommit */
+@@ -985,7 +985,7 @@ struct vm_area_struct *find_extend_vma_locked(struct mm_struct *mm, unsigned lon
+ 		return NULL;
+ 	if (expand_stack_locked(prev, addr))
+ 		return NULL;
+-	if (prev->vm_flags & VM_LOCKED)
++	if (vma_test(prev, VMA_LOCKED_BIT))
+ 		populate_vma_page_range(prev, addr, prev->vm_end, NULL);
+ 	return prev;
  }
- #endif
- 
-@@ -750,7 +750,7 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
- unsigned long
- generic_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
- 				  unsigned long len, unsigned long pgoff,
--				  unsigned long flags, vm_flags_t vm_flags)
-+				  unsigned long flags, vma_flags_t vma_flags)
- {
- 	struct vm_area_struct *vma, *prev;
- 	struct mm_struct *mm = current->mm;
-@@ -778,7 +778,7 @@ generic_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
- 	info.length = len;
- 	info.low_limit = PAGE_SIZE;
- 	info.high_limit = arch_get_mmap_base(addr, mm->mmap_base);
--	info.start_gap = stack_guard_placement(vm_flags);
-+	info.start_gap = stack_guard_placement(vma_flags);
- 	if (filp && is_file_hugepages(filp))
- 		info.align_mask = huge_page_mask_align(filp);
- 	addr = vm_unmapped_area(&info);
-@@ -807,7 +807,7 @@ arch_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
- 			       unsigned long flags, vm_flags_t vm_flags)
- {
- 	return generic_get_unmapped_area_topdown(filp, addr, len, pgoff, flags,
--						 vm_flags);
-+						 legacy_to_vma_flags(vm_flags));
+@@ -1009,7 +1009,7 @@ struct vm_area_struct *find_extend_vma_locked(struct mm_struct *mm, unsigned lon
+ 	start = vma->vm_start;
+ 	if (expand_stack_locked(vma, addr))
+ 		return NULL;
+-	if (vma->vm_flags & VM_LOCKED)
++	if (vma_test(vma, VMA_LOCKED_BIT))
+ 		populate_vma_page_range(vma, addr, start, NULL);
+ 	return vma;
  }
- #endif
+@@ -1134,18 +1134,18 @@ SYSCALL_DEFINE5(remap_file_pages, unsigned long, start, unsigned long, size,
+ 	 */
+ 	vma = vma_lookup(mm, start);
  
+-	if (!vma || !(vma->vm_flags & VM_SHARED)) {
++	if (!vma || !vma_test(vma, VMA_SHARED_BIT)) {
+ 		mmap_read_unlock(mm);
+ 		return -EINVAL;
+ 	}
+ 
+-	prot |= vma->vm_flags & VM_READ ? PROT_READ : 0;
+-	prot |= vma->vm_flags & VM_WRITE ? PROT_WRITE : 0;
+-	prot |= vma->vm_flags & VM_EXEC ? PROT_EXEC : 0;
++	prot |= vma_test(vma, VMA_READ_BIT) ? PROT_READ : 0;
++	prot |= vma_test(vma, VMA_WRITE_BIT) ? PROT_WRITE : 0;
++	prot |= vma_test(vma, VMA_EXEC_BIT) ? PROT_EXEC : 0;
+ 
+ 	flags &= MAP_NONBLOCK;
+ 	flags |= MAP_SHARED | MAP_FIXED | MAP_POPULATE;
+-	if (vma->vm_flags & VM_LOCKED)
++	if (vma_test(vma, VMA_LOCKED_BIT))
+ 		flags |= MAP_LOCKED;
+ 
+ 	/* Save vm_flags used to calculate prot and flags, and recheck later. */
+@@ -1271,7 +1271,7 @@ unsigned long tear_down_vmas(struct mm_struct *mm, struct vma_iterator *vmi,
+ 	mmap_assert_write_locked(mm);
+ 	vma_iter_set(vmi, vma->vm_end);
+ 	do {
+-		if (vma->vm_flags & VM_ACCOUNT)
++		if (vma_test(vma, VMA_ACCOUNT_BIT))
+ 			nr_accounted += vma_pages(vma);
+ 		vma_mark_detached(vma);
+ 		remove_vma(vma);
+@@ -1420,7 +1420,7 @@ static int special_mapping_split(struct vm_area_struct *vma, unsigned long addr)
+ {
+ 	/*
+ 	 * Forbid splitting special mappings - kernel has expectations over
+-	 * the number of pages in mapping. Together with VM_DONTEXPAND
++	 * the number of pages in mapping. Together with VMA_DONTEXPAND_BIT
+ 	 * the size of vma should stay the same over the special mapping's
+ 	 * lifetime.
+ 	 */
+@@ -1692,7 +1692,7 @@ bool mmap_read_lock_maybe_expand(struct mm_struct *mm,
+ 		return true;
+ 	}
+ 
+-	if (!(new_vma->vm_flags & VM_GROWSDOWN))
++	if (!vma_test(new_vma, VMA_GROWSDOWN_BIT))
+ 		return false;
+ 
+ 	mmap_write_lock(mm);
+@@ -1742,7 +1742,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
+ 		retval = vma_start_write_killable(mpnt);
+ 		if (retval < 0)
+ 			goto loop_out;
+-		if (mpnt->vm_flags & VM_DONTCOPY) {
++		if (vma_test(mpnt, VMA_DONTCOPY_BIT)) {
+ 			retval = vma_iter_clear_gfp(&vmi, mpnt->vm_start,
+ 						    mpnt->vm_end, GFP_KERNEL);
+ 			if (retval)
+@@ -1752,7 +1752,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
+ 			continue;
+ 		}
+ 		charge = 0;
+-		if (mpnt->vm_flags & VM_ACCOUNT) {
++		if (vma_test(mpnt, VMA_ACCOUNT_BIT)) {
+ 			unsigned long len = vma_pages(mpnt);
+ 
+ 			if (security_vm_enough_memory_mm(oldmm, len)) /* sic */
+@@ -1770,16 +1770,19 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
+ 		retval = dup_userfaultfd(tmp, &uf);
+ 		if (retval)
+ 			goto fail_nomem_anon_vma_fork;
+-		if (tmp->vm_flags & VM_WIPEONFORK) {
++
++		if (vma_test(tmp, VMA_WIPEONFORK_BIT)) {
+ 			/*
+-			 * VM_WIPEONFORK gets a clean slate in the child.
++			 * VMA_WIPEONFORK_BIT gets a clean slate in the child.
+ 			 * Don't prepare anon_vma until fault since we don't
+ 			 * copy page for current vma.
+ 			 */
+ 			tmp->anon_vma = NULL;
+ 		} else if (anon_vma_fork(tmp, mpnt))
+ 			goto fail_nomem_anon_vma_fork;
+-		vm_flags_clear(tmp, VM_LOCKED_MASK);
++
++		vma_start_write(tmp);
++		vma_clear_flags_mask(tmp, VMA_LOCKED_MASK);
+ 		/*
+ 		 * Copy/update hugetlb private vma information.
+ 		 */
+@@ -1812,7 +1815,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
+ 			i_mmap_unlock_write(mapping);
+ 		}
+ 
+-		if (!(tmp->vm_flags & VM_WIPEONFORK))
++		if (!vma_test(tmp, VMA_WIPEONFORK_BIT))
+ 			retval = copy_page_range(tmp, mpnt);
+ 
+ 		if (retval) {
+diff --git a/mm/vma.c b/mm/vma.c
+index e0ad895098a9..b5bc3eec961c 100644
+--- a/mm/vma.c
++++ b/mm/vma.c
+@@ -3419,17 +3419,20 @@ struct vm_area_struct *__install_special_mapping(
+ 	vm_flags_t vm_flags, void *priv,
+ 	const struct vm_operations_struct *ops)
+ {
+-	int ret;
++	vma_flags_t vma_flags = legacy_to_vma_flags(vm_flags);
+ 	struct vm_area_struct *vma;
++	int ret;
+ 
+ 	vma = vm_area_alloc(mm);
+-	if (unlikely(vma == NULL))
++	if (unlikely(!vma))
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	vm_flags |= vma_flags_to_legacy(mm->def_vma_flags) | VM_DONTEXPAND;
++	vma_flags_set_mask(&vma_flags, mm->def_vma_flags);
++	vma_flags_set(&vma_flags, VMA_DONTEXPAND_BIT);
+ 	if (pgtable_supports_soft_dirty())
+-		vm_flags |= VM_SOFTDIRTY;
+-	vm_flags_init(vma, vm_flags & ~VM_LOCKED_MASK);
++		vma_flags_set(&vma_flags, VMA_SOFTDIRTY_BIT);
++	vma_flags_clear_mask(&vma_flags, VMA_LOCKED_MASK);
++	vma->flags = vma_flags;
+ 	vma->vm_page_prot = vma_get_page_prot(vma);
+ 
+ 	vma->vm_ops = ops;
 
 -- 
 2.55.0
