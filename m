@@ -4,62 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB55AC43458
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:41:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AE7DC44501
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:45:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2ED10E9AF;
-	Mon, 13 Jul 2026 13:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12E7A10E5F0;
+	Mon, 13 Jul 2026 13:45:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n+pTa9I8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kGl604zO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06ABA10E5E9;
- Mon, 13 Jul 2026 13:41:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783950081; x=1815486081;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=HNCSf+8mFzTX+IBoUmO+EGOSM+uBiVN8uDNdDDmkHSM=;
- b=n+pTa9I8sAdh4J+Oj1FEczIGGR/k24HkVYTtCWu47162ZRiLH3IuNZro
- 0Yohqm7SVonOzIMncMbNRBnVZ92H0tnwWQVSG6fp8C6BVJV8rchzsgozo
- oIglWit6H5l/R45Ws02ieRn4rploJXmv6N71/pxDUb4fyTm0UAqO5+lc7
- 0AelJjyWZbDS0WftJS4aJgvhBZywi8AaaVf0g+JKAujh1+bd/3Vco247t
- HO/Ci0aEZIDQoBHUL4ZD6gm1zLyYK3+q+nakanzo4MeVs6QrtUCNKNv45
- SjvxB0i6srUC6GDjsRiOH4/ggge71w8G9yntoT04pKPtn+abr7vjG/go1 A==;
-X-CSE-ConnectionGUID: xlCMsACPQeWcGrwIL44OUA==
-X-CSE-MsgGUID: KAv3woz2QVqz5b+t/8kVhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="110101977"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="110101977"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 06:41:20 -0700
-X-CSE-ConnectionGUID: 1ZcerACKQh6V4Vher9QbhA==
-X-CSE-MsgGUID: Il+pedYaREa7obTVObY84Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="259865504"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.123])
- ([10.245.245.123])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 06:41:18 -0700
-Message-ID: <051148cb56c32c89b6d06458144124d08d4b28d6.camel@linux.intel.com>
-Subject: Re: [PATCH 04/12] drm/ttm: Switch LRU cursor to track dma_resv
- instead of buffer objects
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: christian.koenig@amd.com, dakr@kernel.org, ecourtney@nvidia.com, 
- simona@ffwll.ch, matthew.brost@intel.com, nat@pixelcluster.dev,
- airlied@gmail.com, 	dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 	intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 	amd-gfx@lists.freedesktop.org
-Date: Mon, 13 Jul 2026 15:40:55 +0200
-In-Reply-To: <20260710190752.2355-5-christian.koenig@amd.com>
-References: <20260710190752.2355-1-christian.koenig@amd.com>
- <20260710190752.2355-5-christian.koenig@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DB2410E2FF;
+ Sat, 11 Jul 2026 18:50:15 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 16B8760052;
+ Sat, 11 Jul 2026 18:50:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2690E1F00A3A;
+ Sat, 11 Jul 2026 18:49:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1783795814;
+ bh=VYkDI6h+waLNcPjkBya9DGnDggZvgWVLygEReXlfsZM=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc;
+ b=kGl604zOY5i/9BHc7cLc4ryqHD+01SAUicrFqMKwslfHQhi80jDyaMm2MyxhO5qOt
+ 5Pq/TrS3o9h1Q+W/qwP8lSEVI5jCfMdWQHJGOSTzqQxcgi/ZcaaOXqvQkVb1FUVgE6
+ 9YbVEPYs9ZC7WBFyRZhHqrj+/ntYKTZVK3XRtCayQvKHxiWeP6HYUE54e0sI1syKFA
+ s2zK3U9ax8wTAugutxfyxWaRWS5LrbXoh4d2i5NgoY8R2qopkb5XoFfc+IxgcXnP6J
+ LumgNfEnvhlL0OZHtdfacxoMtfjedGIBKxF4rKadinDpk8PtJvmtheBqh+pFiShHQX
+ BbDB2Fj9clkaw==
+From: Lorenzo Stoakes <ljs@kernel.org>
+Date: Sat, 11 Jul 2026 19:45:10 +0100
+Subject: [PATCH v2 13/13] mm/mremap: convert mremap code to use vma_flags_t
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260711-b4-vma-flags-mm-v2-13-0fa2357d5431@kernel.org>
+References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
+In-Reply-To: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
+To: Andrew Morton <akpm@linux-foundation.org>, 
+ David Hildenbrand <david@kernel.org>, 
+ "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, 
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
+ Michal Hocko <mhocko@suse.com>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Benjamin LaHaise <bcrl@kvack.org>, Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
+ Hugh Dickins <hughd@google.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Jann Horn <jannh@google.com>, 
+ Pedro Falcato <pfalcato@suse.de>, Muchun Song <muchun.song@linux.dev>, 
+ Oscar Salvador <osalvador@suse.de>, Zi Yan <ziy@nvidia.com>, 
+ Nico Pache <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>, 
+ Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>, 
+ Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Lucas Stach <l.stach@pengutronix.de>, 
+ Russell King <linux+etnaviv@armlinux.org.uk>, 
+ Christian Gmeiner <christian.gmeiner@gmail.com>, 
+ Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Thierry Reding <thierry.reding@kernel.org>, 
+ Mikko Perttunen <mperttunen@nvidia.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>, 
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
+ Gurchetan Singh <gurchetansingh@chromium.org>, 
+ Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, 
+ Helge Deller <deller@gmx.de>, Kees Cook <kees@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
+Cc: Lorenzo Stoakes <ljs@kernel.org>, linux-mm@kvack.org, 
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, virtualization@lists.linux.dev, 
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, 
+ linux-fbdev@vger.kernel.org, linux-sound@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6381; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=PIqQBUvFAhhZLltfbuAmGUSiDj9zb0uqnBAJox/uNeE=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+q2WCm/T1ymxZjMq/yxer2XvM7/x212H55Myy179n
+ RqvN8Gno5SFQYyLQVZMkeX5F/H9QSJh8zov+LvBzGFlAhnCwMUpABPpOszIsGhLcPGPAz1FjgKb
+ Jc53v4/W6X/HznOmXdW58Edb+l2lCQz/DLaa7emYsZ9lb/CKY38l3gjvWSW8537dgQvfdvIpbK9
+ 8xgIA
+X-Developer-Key: i=ljs@kernel.org; a=openpgp;
+ fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
+X-Mailman-Approved-At: Mon, 13 Jul 2026 13:45:20 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,349 +131,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-07-10 at 20:52 +0200, Christian K=C3=B6nig wrote:
-> Refactor the LRU cursor to hold references to dma_resv directly while
-> locking it rather than the buffer object.
->=20
-> This avoid the need to grab a reference to the BO and so allows
-> handling
-> of BOs with zero reference count.
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_bo_util.c=C2=A0 | 124 +++++++++++++++------=
-------
-> --
-> =C2=A0drivers/gpu/drm/ttm/ttm_resource.c |=C2=A0 18 +++++
-> =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +--
-> =C2=A0include/drm/ttm/ttm_resource.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 2 +
-> =C2=A04 files changed, 87 insertions(+), 67 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index 029c218f9fb47..1f7361604b552 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -819,19 +819,17 @@ int ttm_bo_pipeline_gutting(struct
-> ttm_buffer_object *bo)
-> =C2=A0}
-> =C2=A0
-> =C2=A0static bool ttm_lru_walk_trylock(struct ttm_bo_lru_cursor *curs,
-> -				 struct ttm_buffer_object *bo)
-> +				 struct dma_resv *resv)
-> =C2=A0{
-> =C2=A0	struct ttm_operation_ctx *ctx =3D curs->arg->ctx;
-> =C2=A0
-> -	curs->needs_unlock =3D false;
-> -
-> -	if (dma_resv_trylock(bo->base.resv)) {
-> -		curs->needs_unlock =3D true;
-> +	if (dma_resv_trylock(resv)) {
-> +		curs->resv =3D dma_resv_get(resv);
-> =C2=A0		return true;
-> =C2=A0	}
-> =C2=A0
-> -	if (bo->base.resv =3D=3D ctx->resv && ctx->allow_res_evict) {
-> -		dma_resv_assert_held(bo->base.resv);
-> +	if (resv =3D=3D ctx->resv && ctx->allow_res_evict) {
-> +		dma_resv_assert_held(resv);
-> =C2=A0		return true;
-> =C2=A0	}
-> =C2=A0
-> @@ -839,18 +837,18 @@ static bool ttm_lru_walk_trylock(struct
-> ttm_bo_lru_cursor *curs,
-> =C2=A0}
-> =C2=A0
-> =C2=A0static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
-> -				=C2=A0=C2=A0 struct ttm_buffer_object *bo)
-> +				=C2=A0=C2=A0 struct dma_resv *resv)
-> =C2=A0{
-> =C2=A0	struct ttm_lru_walk_arg *arg =3D curs->arg;
-> =C2=A0	int ret;
-> =C2=A0
-> =C2=A0	if (arg->ctx->interruptible)
-> -		ret =3D dma_resv_lock_interruptible(bo->base.resv,
-> arg->ticket);
-> +		ret =3D dma_resv_lock_interruptible(resv, arg-
-> >ticket);
-> =C2=A0	else
-> -		ret =3D dma_resv_lock(bo->base.resv, arg->ticket);
-> +		ret =3D dma_resv_lock(resv, arg->ticket);
-> =C2=A0
-> =C2=A0	if (!ret) {
-> -		curs->needs_unlock =3D true;
-> +		curs->resv =3D dma_resv_get(resv);
-> =C2=A0		/*
-> =C2=A0		 * Only a single ticketlock per loop. Ticketlocks
-> are prone
-> =C2=A0		 * to return -EDEADLK causing the eviction to fail,
-> so
-> @@ -920,14 +918,16 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk
-> *walk, struct ttm_device *bdev,
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(ttm_lru_walk_for_evict);
-> =C2=A0
-> -static void ttm_bo_lru_cursor_cleanup_bo(struct ttm_bo_lru_cursor
-> *curs)
-> +static void ttm_bo_lru_cursor_cleanup(struct ttm_bo_lru_cursor
-> *curs)
-> =C2=A0{
-> -	struct ttm_buffer_object *bo =3D curs->bo;
-> +	if (curs->resv) {
-> +		dma_resv_unlock(curs->resv);
-> +		dma_resv_put(curs->resv);
-> +		curs->resv =3D NULL;
-> +	}
-> =C2=A0
-> -	if (bo) {
-> -		if (curs->needs_unlock)
-> -			dma_resv_unlock(bo->base.resv);
-> -		ttm_bo_put(bo);
-> +	if (curs->bo) {
-> +		drm_gem_object_put(&curs->bo->base);
-> =C2=A0		curs->bo =3D NULL;
-> =C2=A0	}
-> =C2=A0}
-> @@ -941,7 +941,7 @@ void ttm_bo_lru_cursor_fini(struct
-> ttm_bo_lru_cursor *curs)
-> =C2=A0{
-> =C2=A0	spinlock_t *lru_lock =3D &curs->res_curs.man->bdev->lru_lock;
-> =C2=A0
-> -	ttm_bo_lru_cursor_cleanup_bo(curs);
-> +	ttm_bo_lru_cursor_cleanup(curs);
-> =C2=A0	spin_lock(lru_lock);
-> =C2=A0	ttm_resource_cursor_fini(&curs->res_curs);
-> =C2=A0	spin_unlock(lru_lock);
-> @@ -972,21 +972,18 @@ ttm_bo_lru_cursor_init(struct ttm_bo_lru_cursor
-> *curs,
-> =C2=A0EXPORT_SYMBOL(ttm_bo_lru_cursor_init);
-> =C2=A0
-> =C2=A0static struct ttm_buffer_object *
-> -__ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
-> +__ttm_bo_lru_cursor_iter(struct ttm_bo_lru_cursor *curs, bool first)
-> =C2=A0{
-> =C2=A0	spinlock_t *lru_lock =3D &curs->res_curs.man->bdev->lru_lock;
-> -	struct ttm_resource *res =3D NULL;
-> -	struct ttm_buffer_object *bo;
-> =C2=A0	struct ttm_lru_walk_arg *arg =3D curs->arg;
-> -	bool first =3D !curs->bo;
-> -
-> -	ttm_bo_lru_cursor_cleanup_bo(curs);
-> +	int ret;
-> =C2=A0
-> -	spin_lock(lru_lock);
-> =C2=A0	for (;;) {
-> -		int mem_type, ret =3D 0;
-> -		bool bo_locked =3D false;
-> +		struct ttm_resource *res;
-> +
-> +		ttm_bo_lru_cursor_cleanup(curs);
-> =C2=A0
-> +		spin_lock(lru_lock);
-> =C2=A0		if (first) {
-> =C2=A0			res =3D ttm_resource_manager_first(&curs-
-> >res_curs);
-> =C2=A0			first =3D false;
-> @@ -996,43 +993,48 @@ __ttm_bo_lru_cursor_next(struct
-> ttm_bo_lru_cursor *curs)
-> =C2=A0		if (!res)
-> =C2=A0			break;
-> =C2=A0
-> -		bo =3D res->bo;
-> -		if (ttm_lru_walk_trylock(curs, bo))
-> -			bo_locked =3D true;
-> -		else if (!arg->ticket || arg->ctx->no_wait_gpu ||
-> arg->trylock_only)
-> -			continue;
-> -
-> -		if (!ttm_bo_get_unless_zero(bo)) {
-> -			if (curs->needs_unlock)
-> -				dma_resv_unlock(bo->base.resv);
-> -			continue;
-> +		if (!ttm_lru_walk_trylock(curs, res->bo->base.resv))
-> {
-> +			struct dma_resv *resv;
-> +
-> +			if (!arg->ticket || arg->ctx->no_wait_gpu ||
-> +			=C2=A0=C2=A0=C2=A0 arg->trylock_only) {
-> +				spin_unlock(lru_lock);
-> +				continue;
-> +			}
-> +
-> +			resv =3D dma_resv_get(res->bo->base.resv);
-> +			spin_unlock(lru_lock);
-> +
-> +			ret =3D ttm_lru_walk_ticketlock(curs, resv);
-> +			if (ret && ret !=3D -EALREADY)
-> +				return ERR_PTR(ret);
-> +
-> +			/*
-> +			 * We need to double check that we still
-> have the same
-> +			 * dma_resv object.
+Replace use of the legacy vm_flags_t flags with vma_flags_t values
+throughout the mremap logic.
 
-While I think this would actually work, we need documentation and
-asserts of what exactly we're relying on here to keep the bo alive.
-Otherwise future work will most likely break something.
+Note that, in replacing vm_flags_clear() (which takes the VMA write lock)
+with vma_clear_flags() and vma_clear_flags_mask() (which do not)
+respectively in unmap_source_vma() and dontunmap_complete(), we do not add
+a VMA write lock to account for htis.
 
-Thanks,
-Thomas
+This is because, in both cases, move_vma() is their calling function and
+this has already acquired the VMA write lock on vrm->vma whose VMA flags
+are being cleared.
 
+In the case of vma_set_flags() in unmap_source_vma() we do need to do this
+- as prev and next were not necessarily write locked at this point.
 
-> +			 */
-> +			spin_lock(lru_lock);
-> +			res =3D ttm_resource_manager_current(&curs-
-> >res_curs);
-> +			if (ret || !res || res->bo->base.resv !=3D
-> resv) {
-> +				spin_unlock(lru_lock);
-> +				dma_resv_put(resv);
-> +				continue;
-> +			}
-> +			dma_resv_put(resv);
-> =C2=A0		}
-> -
-> -		mem_type =3D res->mem_type;
-> =C2=A0		spin_unlock(lru_lock);
-> -		if (!bo_locked)
-> -			ret =3D ttm_lru_walk_ticketlock(curs, bo);
-> +
-> +		/* Grab a GEM reference to the BO if it isn't
-> already deleted */
+Additionally update comments to reflect the changes to be consistent.
 
+No functional change intended.
 
+Reviewed-by: Zi Yan <ziy@nvidia.com>
+Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
+---
+ mm/mremap.c | 38 ++++++++++++++++++++------------------
+ 1 file changed, 20 insertions(+), 18 deletions(-)
 
-> +		if (kref_get_unless_zero(&res->bo->base.refcount))
-> +			curs->bo =3D res->bo;
-> =C2=A0
-> =C2=A0		/*
-> -		 * Note that in between the release of the lru lock
-> and the
-> -		 * ticketlock, the bo may have switched resource,
-> -		 * and also memory type, since the resource may have
-> been
-> -		 * freed and allocated again with a different memory
-> type.
-> -		 * In that case, just skip it.
-> +		 * The BO is now locked so it can't be released any
-> more until
-> +		 * we drop both the lock and the eventual GEM
-> reference.
-> =C2=A0		 */
-> -		curs->bo =3D bo;
-> -		if (!ret && bo->resource && bo->resource->mem_type
-> =3D=3D mem_type)
-> -			return bo;
-> -
-> -		ttm_bo_lru_cursor_cleanup_bo(curs);
-> -		if (ret && ret !=3D -EALREADY)
-> -			return ERR_PTR(ret);
-> -
-> -		spin_lock(lru_lock);
-> +		return res->bo;
-> =C2=A0	}
-> -
-> -	spin_unlock(lru_lock);
-> -	return res ? bo : NULL;
-> +	return NULL;
-> =C2=A0}
-> =C2=A0
-> =C2=A0/**
-> @@ -1046,7 +1048,7 @@ __ttm_bo_lru_cursor_next(struct
-> ttm_bo_lru_cursor *curs)
-> =C2=A0 */
-> =C2=A0struct ttm_buffer_object *ttm_bo_lru_cursor_next(struct
-> ttm_bo_lru_cursor *curs)
-> =C2=A0{
-> -	return __ttm_bo_lru_cursor_next(curs);
-> +	return __ttm_bo_lru_cursor_iter(curs, false);
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(ttm_bo_lru_cursor_next);
-> =C2=A0
-> @@ -1060,8 +1062,8 @@ EXPORT_SYMBOL(ttm_bo_lru_cursor_next);
-> =C2=A0 */
-> =C2=A0struct ttm_buffer_object *ttm_bo_lru_cursor_first(struct
-> ttm_bo_lru_cursor *curs)
-> =C2=A0{
-> -	ttm_bo_lru_cursor_cleanup_bo(curs);
-> -	return __ttm_bo_lru_cursor_next(curs);
-> +	ttm_bo_lru_cursor_cleanup(curs);
-> +	return __ttm_bo_lru_cursor_iter(curs, true);
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(ttm_bo_lru_cursor_first);
-> =C2=A0
-> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
-> b/drivers/gpu/drm/ttm/ttm_resource.c
-> index 154d6739256f8..4a765b25472c3 100644
-> --- a/drivers/gpu/drm/ttm/ttm_resource.c
-> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
-> @@ -714,6 +714,24 @@ ttm_resource_manager_next(struct
-> ttm_resource_cursor *cursor)
-> =C2=A0	return NULL;
-> =C2=A0}
-> =C2=A0
-> +/* TODO */
-> +struct ttm_resource *
-> +ttm_resource_manager_current(struct ttm_resource_cursor *cursor)
-> +{
-> +	struct ttm_resource_manager *man =3D cursor->man;
-> +	struct ttm_lru_item *lru;
-> +
-> +	lockdep_assert_held(&man->bdev->lru_lock);
-> +
-> +	lru =3D &cursor->hitch;
-> +	list_for_each_entry_continue_reverse(lru, &man->lru[cursor-
-> >priority],
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 link) {
-> +		if (ttm_lru_item_is_res(lru))
-> +			return ttm_lru_item_to_res(lru);
-> +	}
-> +	return NULL;
-> +}
-> +
-> =C2=A0/**
-> =C2=A0 * ttm_lru_first_res_or_null() - Return the first resource on an lr=
-u
-> list
-> =C2=A0 * @head: The list head of the lru list.
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index 8310bc3d55f90..30e835414e721 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -488,15 +488,13 @@ struct ttm_bo_lru_cursor {
-> =C2=A0	/** @res_curs: Embedded struct ttm_resource_cursor. */
-> =C2=A0	struct ttm_resource_cursor res_curs;
-> =C2=A0	/**
-> -	 * @bo: Buffer object pointer if a buffer object is
-> refcounted,
-> -	 * NULL otherwise.
-> +	 * @resv: reference to the locked dma_resv
-> =C2=A0	 */
-> -	struct ttm_buffer_object *bo;
-> +	struct dma_resv *resv;
-> =C2=A0	/**
-> -	 * @needs_unlock: Valid iff @bo !=3D NULL. The bo resv needs
-> -	 * unlock before the next iteration or after loop exit.
-> +	 * @bo: TTM BO with GEM reference, NULL for deleted BOs
-> =C2=A0	 */
-> -	bool needs_unlock;
-> +	struct ttm_buffer_object *bo;
-> =C2=A0	/** @arg: Pointer to common BO LRU walk arguments. */
-> =C2=A0	struct ttm_lru_walk_arg *arg;
-> =C2=A0};
-> diff --git a/include/drm/ttm/ttm_resource.h
-> b/include/drm/ttm/ttm_resource.h
-> index a5d386583fb6e..e8e9c8b81ce4b 100644
-> --- a/include/drm/ttm/ttm_resource.h
-> +++ b/include/drm/ttm/ttm_resource.h
-> @@ -488,6 +488,8 @@ struct ttm_resource *
-> =C2=A0ttm_resource_manager_first(struct ttm_resource_cursor *cursor);
-> =C2=A0struct ttm_resource *
-> =C2=A0ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
-> +struct ttm_resource *
-> +ttm_resource_manager_current(struct ttm_resource_cursor *cursor);
-> =C2=A0
-> =C2=A0struct ttm_resource *
-> =C2=A0ttm_lru_first_res_or_null(struct list_head *head);
+diff --git a/mm/mremap.c b/mm/mremap.c
+index 384ef4cc2195..b64aa1f6e07e 100644
+--- a/mm/mremap.c
++++ b/mm/mremap.c
+@@ -68,7 +68,7 @@ struct vma_remap_struct {
+ 	bool populate_expand;		/* mlock()'d expanded, must populate. */
+ 	enum mremap_type remap_type;	/* expand, shrink, etc. */
+ 	bool mmap_locked;		/* Is mm currently write-locked? */
+-	unsigned long charged;		/* If VM_ACCOUNT, # pages to account. */
++	unsigned long charged;		/* If VMA_ACCOUNT_BIT, # pgs to account */
+ 	bool vmi_needs_invalidate;	/* Is the VMA iterator invalidated? */
+ };
+ 
+@@ -963,7 +963,7 @@ static unsigned long vrm_set_new_addr(struct vma_remap_struct *vrm)
+ 
+ 	if (vrm->flags & MREMAP_FIXED)
+ 		map_flags |= MAP_FIXED;
+-	if (vma->vm_flags & VM_MAYSHARE)
++	if (vma_test(vma, VMA_MAYSHARE_BIT))
+ 		map_flags |= MAP_SHARED;
+ 
+ 	res = get_unmapped_area(vma->vm_file, new_addr, vrm->new_len, pgoff,
+@@ -985,7 +985,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
+ {
+ 	unsigned long charged;
+ 
+-	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
++	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
+ 		return true;
+ 
+ 	/*
+@@ -1012,7 +1012,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
+  */
+ static void vrm_uncharge(struct vma_remap_struct *vrm)
+ {
+-	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
++	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
+ 		return;
+ 
+ 	vm_unacct_memory(vrm->charged);
+@@ -1032,7 +1032,7 @@ static void vrm_stat_account(struct vma_remap_struct *vrm,
+ 	struct vm_area_struct *vma = vrm->vma;
+ 
+ 	vm_stat_account(mm, vma->vm_flags, pages);
+-	if (vma->vm_flags & VM_LOCKED)
++	if (vma_test(vma, VMA_LOCKED_BIT))
+ 		mm->locked_vm += pages;
+ }
+ 
+@@ -1176,7 +1176,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+ 	 * arose, in which case we _do_ wish to unmap the _new_ VMA, which means
+ 	 * we actually _do_ want it be unaccounted.
+ 	 */
+-	bool accountable_move = (vma->vm_flags & VM_ACCOUNT) &&
++	bool accountable_move = vma_test(vma, VMA_ACCOUNT_BIT) &&
+ 		!(vrm->flags & MREMAP_DONTUNMAP);
+ 
+ 	/*
+@@ -1195,7 +1195,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+ 	 * portions of the original VMA that remain.
+ 	 */
+ 	if (accountable_move) {
+-		vm_flags_clear(vma, VM_ACCOUNT);
++		vma_clear_flags(vma, VMA_ACCOUNT_BIT);
+ 		/* We are about to split vma, so store the start/end. */
+ 		vm_start = vma->vm_start;
+ 		vm_end = vma->vm_end;
+@@ -1220,8 +1220,8 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+ 	 * |             |
+ 	 * |-------------|
+ 	 *
+-	 * Having cleared VM_ACCOUNT from the whole VMA, after we unmap above
+-	 * we'll end up with:
++	 * Having cleared VMA_ACCOUNT_BIT from the whole VMA, after we unmap
++	 * above we'll end up with:
+ 	 *
+ 	 *    addr  end
+ 	 *     |     |
+@@ -1241,13 +1241,15 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
+ 		if (vm_start < addr) {
+ 			struct vm_area_struct *prev = vma_prev(&vmi);
+ 
+-			vm_flags_set(prev, VM_ACCOUNT); /* Acquires VMA lock. */
++			vma_start_write(prev);
++			vma_set_flags(prev, VMA_ACCOUNT_BIT);
+ 		}
+ 
+ 		if (vm_end > end) {
+ 			struct vm_area_struct *next = vma_next(&vmi);
+ 
+-			vm_flags_set(next, VM_ACCOUNT); /* Acquires VMA lock. */
++			vma_start_write(next);
++			vma_set_flags(next, VMA_ACCOUNT_BIT);
+ 		}
+ 	}
+ }
+@@ -1330,8 +1332,8 @@ static void dontunmap_complete(struct vma_remap_struct *vrm,
+ 	unsigned long old_start = vrm->vma->vm_start;
+ 	unsigned long old_end = vrm->vma->vm_end;
+ 
+-	/* We always clear VM_LOCKED[ONFAULT] on the old VMA. */
+-	vm_flags_clear(vrm->vma, VM_LOCKED_MASK);
++	/* We always clear VMA_LOCKED[ONFAULT]_BIT on the old VMA. */
++	vma_clear_flags_mask(vrm->vma, VMA_LOCKED_MASK);
+ 
+ 	/*
+ 	 * anon_vma links of the old vma is no longer needed after its page
+@@ -1767,14 +1769,14 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
+ 	 * based on the original.  There are no known use cases for this
+ 	 * behavior.  As a result, fail such attempts.
+ 	 */
+-	if (!old_len && !(vma->vm_flags & (VM_SHARED | VM_MAYSHARE))) {
++	if (!old_len && !vma_test_any(vma, VMA_SHARED_BIT, VMA_MAYSHARE_BIT)) {
+ 		pr_warn_once("%s (%d): attempted to duplicate a private mapping with mremap.  This is not supported.\n",
+ 			     current->comm, current->pid);
+ 		return -EINVAL;
+ 	}
+ 
+ 	if ((vrm->flags & MREMAP_DONTUNMAP) &&
+-			(vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP)))
++	    vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
+ 		return -EINVAL;
+ 
+ 	/*
+@@ -1804,7 +1806,7 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
+ 		return 0;
+ 
+ 	/* We are expanding and the VMA is mlock()'d so we need to populate. */
+-	if (vma->vm_flags & VM_LOCKED)
++	if (vma_test(vma, VMA_LOCKED_BIT))
+ 		vrm->populate_expand = true;
+ 
+ 	/* Need to be careful about a growing mapping */
+@@ -1812,10 +1814,10 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
+ 	if (pgoff + (new_len >> PAGE_SHIFT) < pgoff)
+ 		return -EINVAL;
+ 
+-	if (vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP))
++	if (vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
+ 		return -EFAULT;
+ 
+-	if (!mlock_future_ok(mm, vma->vm_flags & VM_LOCKED, vrm->delta))
++	if (!mlock_future_ok(mm, vma_test(vma, VMA_LOCKED_BIT), vrm->delta))
+ 		return -EAGAIN;
+ 
+ 	if (!may_expand_vm(mm, &vma->flags, vrm->delta >> PAGE_SHIFT))
+
+-- 
+2.55.0
+
