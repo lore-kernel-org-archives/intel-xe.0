@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46D9CC43458
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80705C4450A
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E694710E9BD;
-	Mon, 13 Jul 2026 13:45:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 202C410E9C8;
+	Mon, 13 Jul 2026 13:45:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A3lQ/qzw";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jgpXcvfv";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2443710E181;
- Sat, 11 Jul 2026 18:49:12 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17A7710E08B;
+ Sat, 11 Jul 2026 18:48:10 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id F3F59418D3;
- Sat, 11 Jul 2026 18:49:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7572D1F000E9;
- Sat, 11 Jul 2026 18:48:51 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 49C4360052;
+ Sat, 11 Jul 2026 18:48:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94E9F1F00A3A;
+ Sat, 11 Jul 2026 18:47:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783795751;
- bh=PQeVSJrFNGuAKYRqlJkf6JopIzp3qlHM9CyXIq3KHK4=;
+ s=k20260515; t=1783795689;
+ bh=QPt/8l9E60JoRhMjGZtDOkVB0VSnW+l2hm5OFyFrrO0=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=A3lQ/qzw9J0Mef36BzMgXFxCB7dkGxinxIIAW9JQmfMzrEgdVXCZbMvez44EZPEeX
- gzXNhanDpKBvr0GU1vbuTRlAVgICQASw38QvYjbrawwYLjk41zoY+o6bs5EJQXWA4B
- N8ZheKvFfC7ObvlfJNb/UgFOGLScihFKvVLmqfFpAtRomluF+G9vwP3+ja7py9qw8f
- K4SpVyb7Rs9cJFxpYgZkzgj3ThMgqYWZtLE4yV783JlpDDz2j3hz/q139ORq9vViT5
- +PH6eC4zBsvX0nSUubBGLLM+1N8LdIbC9v3OR05k+HOezHB2d7wpLQkmt7rZqu2Bfi
- X2DIl7kAZDv+A==
+ b=jgpXcvfv3gVBn7IsGBF1ebSBCDETWMhhmUgGYFu1KJSh6jDQWPcTX0Vq7whuKCVn4
+ rBhFdMRmgxmdR8P0PcWxbkTlO8COzjvSFflXXXwYeV1HcoXi8sN68u8NJ26w+IOyUw
+ R0sApERkImbfGC1PQUNQIDENSFzQep8HDEipIa0GQAQDHYmD1VBxVxmWBk3vGxNW/K
+ 4N9W61bIOsobxULyDZZV6QFTrlSEId1V48hblg2M8NWfCHnUNfV+Pr7EKw+8P7wBkV
+ cuWci1FXthx0PZWUsCVBzadkDWBmiusvn/RlVjMBQh/ePtU/5mvkHHdKyTyd9zk3sK
+ /EpfagqzUOOIA==
 From: Lorenzo Stoakes <ljs@kernel.org>
-Date: Sat, 11 Jul 2026 19:45:07 +0100
-Subject: [PATCH v2 10/13] mm/vma: convert miscellaneous uses of VMA flags
- in core mm
+Date: Sat, 11 Jul 2026 19:45:04 +0100
+Subject: [PATCH v2 07/13] mm/vma: rename vma_get_page_prot to
+ vma_flags_to_page_prot
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-b4-vma-flags-mm-v2-10-0fa2357d5431@kernel.org>
+Message-Id: <20260711-b4-vma-flags-mm-v2-7-0fa2357d5431@kernel.org>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 In-Reply-To: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 To: Andrew Morton <akpm@linux-foundation.org>, 
@@ -109,12 +109,12 @@ Cc: Lorenzo Stoakes <ljs@kernel.org>, linux-mm@kvack.org,
  intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, 
  linux-fbdev@vger.kernel.org, linux-sound@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6231; i=ljs@kernel.org;
- h=from:subject:message-id; bh=2Eukk7/bboJXcRN4Serqm42H9hjt4k2BF/S8ckNM3q8=;
- b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+q1YA9XOTHweaCw7b1K84KM/l+4VzJwymz/yypnOw
- EgXoUUrO0pZGMS4GGTFFFmefxHfHyQSNq/zgr8bzBxWJpAhDFycAjARtxOMDJfd9Z1WrGFzkSqR
- k3zENmPW9uv9Jq2mlyfbPCqdYyDftZfhD/8EKYZXMltEpvpf7zFQMVFoW/Ccy10ubMFc/7tFUrK
- OTAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2845; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=Soud7SJAfopgWlkROt1dYPu535d7z0wbh0cd1bt/8n8=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+i1r+Lfnqbc90vrVGDSl+P4cT/kJqy/bTGI35c5dL
+ sXF8uhaRykLgxgXg6yYIsvzL+L7g0TC5nVe8HeDmcPKBDKEgYtTACaSn8zwP+Tvx29OMZ4Olxy3
+ dh5LDd7V18X908Jec02jyvrfMTdLNRj+cLwPSWPNn3D00+v715gv/5eulHkbvKPiskGWQoG+s6U
+ EAwA=
 X-Developer-Key: i=ljs@kernel.org; a=openpgp;
  fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-Mailman-Approved-At: Mon, 13 Jul 2026 13:45:20 +0000
@@ -132,182 +132,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update various uses of legacy flags in vma.c and mmap.c to the new
-vma_flags_t type, updating comments alongside them to be consistent.
+Having vma_get_page_prot() refer to VMA flags and vma_set_page_prot() refer
+to a VMA is confusing.
+
+Rename vma_get_page_prot() to vma_flags_to_page_prot() to resolve this
+confusion.
 
 No functional change intended.
 
+Reviewed-by: Lance Yang <lance.yang@linux.dev>
 Reviewed-by: Zi Yan <ziy@nvidia.com>
 Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 ---
- mm/mmap.c | 39 +++++++++++++++++++++------------------
- mm/vma.c  | 13 ++++++++-----
- 2 files changed, 29 insertions(+), 23 deletions(-)
+ include/linux/mm.h              | 4 ++--
+ mm/vma.c                        | 2 +-
+ mm/vma.h                        | 2 +-
+ tools/testing/vma/include/dup.h | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/mm/mmap.c b/mm/mmap.c
-index 2076c70e7700..4bf26b0f1e6e 100644
---- a/mm/mmap.c
-+++ b/mm/mmap.c
-@@ -557,8 +557,8 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
- 	}
+diff --git a/include/linux/mm.h b/include/linux/mm.h
+index 5b3825fddf58..b8fe40f89d87 100644
+--- a/include/linux/mm.h
++++ b/include/linux/mm.h
+@@ -4603,7 +4603,7 @@ static inline bool range_in_vma_desc(const struct vm_area_desc *desc,
+ #ifdef CONFIG_MMU
+ pgprot_t vm_get_page_prot(vm_flags_t vm_flags);
  
- 	/*
--	 * Set 'VM_NORESERVE' if we should not account for the
--	 * memory use of this mapping.
-+	 * Set VMA_NORESERVE_BIT if we should not account for the memory use
-+	 * of this mapping.
- 	 */
- 	if (flags & MAP_NORESERVE) {
- 		/* We honor MAP_NORESERVE if allowed to overcommit */
-@@ -985,7 +985,7 @@ struct vm_area_struct *find_extend_vma_locked(struct mm_struct *mm, unsigned lon
- 		return NULL;
- 	if (expand_stack_locked(prev, addr))
- 		return NULL;
--	if (prev->vm_flags & VM_LOCKED)
-+	if (vma_test(prev, VMA_LOCKED_BIT))
- 		populate_vma_page_range(prev, addr, prev->vm_end, NULL);
- 	return prev;
- }
-@@ -1009,7 +1009,7 @@ struct vm_area_struct *find_extend_vma_locked(struct mm_struct *mm, unsigned lon
- 	start = vma->vm_start;
- 	if (expand_stack_locked(vma, addr))
- 		return NULL;
--	if (vma->vm_flags & VM_LOCKED)
-+	if (vma_test(vma, VMA_LOCKED_BIT))
- 		populate_vma_page_range(vma, addr, start, NULL);
- 	return vma;
- }
-@@ -1134,18 +1134,18 @@ SYSCALL_DEFINE5(remap_file_pages, unsigned long, start, unsigned long, size,
- 	 */
- 	vma = vma_lookup(mm, start);
- 
--	if (!vma || !(vma->vm_flags & VM_SHARED)) {
-+	if (!vma || !vma_test(vma, VMA_SHARED_BIT)) {
- 		mmap_read_unlock(mm);
- 		return -EINVAL;
- 	}
- 
--	prot |= vma->vm_flags & VM_READ ? PROT_READ : 0;
--	prot |= vma->vm_flags & VM_WRITE ? PROT_WRITE : 0;
--	prot |= vma->vm_flags & VM_EXEC ? PROT_EXEC : 0;
-+	prot |= vma_test(vma, VMA_READ_BIT) ? PROT_READ : 0;
-+	prot |= vma_test(vma, VMA_WRITE_BIT) ? PROT_WRITE : 0;
-+	prot |= vma_test(vma, VMA_EXEC_BIT) ? PROT_EXEC : 0;
- 
- 	flags &= MAP_NONBLOCK;
- 	flags |= MAP_SHARED | MAP_FIXED | MAP_POPULATE;
--	if (vma->vm_flags & VM_LOCKED)
-+	if (vma_test(vma, VMA_LOCKED_BIT))
- 		flags |= MAP_LOCKED;
- 
- 	/* Save vm_flags used to calculate prot and flags, and recheck later. */
-@@ -1271,7 +1271,7 @@ unsigned long tear_down_vmas(struct mm_struct *mm, struct vma_iterator *vmi,
- 	mmap_assert_write_locked(mm);
- 	vma_iter_set(vmi, vma->vm_end);
- 	do {
--		if (vma->vm_flags & VM_ACCOUNT)
-+		if (vma_test(vma, VMA_ACCOUNT_BIT))
- 			nr_accounted += vma_pages(vma);
- 		vma_mark_detached(vma);
- 		remove_vma(vma);
-@@ -1420,7 +1420,7 @@ static int special_mapping_split(struct vm_area_struct *vma, unsigned long addr)
+-static inline pgprot_t vma_get_page_prot(vma_flags_t vma_flags)
++static inline pgprot_t vma_flags_to_page_prot(vma_flags_t vma_flags)
  {
- 	/*
- 	 * Forbid splitting special mappings - kernel has expectations over
--	 * the number of pages in mapping. Together with VM_DONTEXPAND
-+	 * the number of pages in mapping. Together with VMA_DONTEXPAND_BIT
- 	 * the size of vma should stay the same over the special mapping's
- 	 * lifetime.
- 	 */
-@@ -1692,7 +1692,7 @@ bool mmap_read_lock_maybe_expand(struct mm_struct *mm,
- 		return true;
- 	}
+ 	const vm_flags_t vm_flags = vma_flags_to_legacy(vma_flags);
  
--	if (!(new_vma->vm_flags & VM_GROWSDOWN))
-+	if (!vma_test(new_vma, VMA_GROWSDOWN_BIT))
- 		return false;
- 
- 	mmap_write_lock(mm);
-@@ -1742,7 +1742,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 		retval = vma_start_write_killable(mpnt);
- 		if (retval < 0)
- 			goto loop_out;
--		if (mpnt->vm_flags & VM_DONTCOPY) {
-+		if (vma_test(mpnt, VMA_DONTCOPY_BIT)) {
- 			retval = vma_iter_clear_gfp(&vmi, mpnt->vm_start,
- 						    mpnt->vm_end, GFP_KERNEL);
- 			if (retval)
-@@ -1752,7 +1752,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 			continue;
- 		}
- 		charge = 0;
--		if (mpnt->vm_flags & VM_ACCOUNT) {
-+		if (vma_test(mpnt, VMA_ACCOUNT_BIT)) {
- 			unsigned long len = vma_pages(mpnt);
- 
- 			if (security_vm_enough_memory_mm(oldmm, len)) /* sic */
-@@ -1770,16 +1770,19 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 		retval = dup_userfaultfd(tmp, &uf);
- 		if (retval)
- 			goto fail_nomem_anon_vma_fork;
--		if (tmp->vm_flags & VM_WIPEONFORK) {
-+
-+		if (vma_test(tmp, VMA_WIPEONFORK_BIT)) {
- 			/*
--			 * VM_WIPEONFORK gets a clean slate in the child.
-+			 * VMA_WIPEONFORK_BIT gets a clean slate in the child.
- 			 * Don't prepare anon_vma until fault since we don't
- 			 * copy page for current vma.
- 			 */
- 			tmp->anon_vma = NULL;
- 		} else if (anon_vma_fork(tmp, mpnt))
- 			goto fail_nomem_anon_vma_fork;
--		vm_flags_clear(tmp, VM_LOCKED_MASK);
-+
-+		vma_start_write(tmp);
-+		vma_clear_flags_mask(tmp, VMA_LOCKED_MASK);
- 		/*
- 		 * Copy/update hugetlb private vma information.
- 		 */
-@@ -1812,7 +1815,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 			i_mmap_unlock_write(mapping);
- 		}
- 
--		if (!(tmp->vm_flags & VM_WIPEONFORK))
-+		if (!vma_test(tmp, VMA_WIPEONFORK_BIT))
- 			retval = copy_page_range(tmp, mpnt);
- 
- 		if (retval) {
+@@ -4616,7 +4616,7 @@ static inline pgprot_t vm_get_page_prot(vm_flags_t vm_flags)
+ {
+ 	return __pgprot(0);
+ }
+-static inline pgprot_t vma_get_page_prot(vma_flags_t vma_flags)
++static inline pgprot_t vma_flags_to_page_prot(vma_flags_t vma_flags)
+ {
+ 	return __pgprot(0);
+ }
 diff --git a/mm/vma.c b/mm/vma.c
-index e0ad895098a9..b5bc3eec961c 100644
+index a74a0e467c63..38481aca7321 100644
 --- a/mm/vma.c
 +++ b/mm/vma.c
-@@ -3419,17 +3419,20 @@ struct vm_area_struct *__install_special_mapping(
- 	vm_flags_t vm_flags, void *priv,
- 	const struct vm_operations_struct *ops)
+@@ -56,7 +56,7 @@ struct mmap_state {
+ 		.pglen = PHYS_PFN(len_),				\
+ 		.vma_flags = vma_flags_,				\
+ 		.file = file_,						\
+-		.page_prot = vma_get_page_prot(vma_flags_),		\
++		.page_prot = vma_flags_to_page_prot(vma_flags_),	\
+ 	}
+ 
+ #define VMG_MMAP_STATE(name, map_, vma_)				\
+diff --git a/mm/vma.h b/mm/vma.h
+index 8ca6e7e8ae28..0bc7d521e976 100644
+--- a/mm/vma.h
++++ b/mm/vma.h
+@@ -543,7 +543,7 @@ static inline bool vma_wants_manual_pte_write_upgrade(struct vm_area_struct *vma
+ #ifdef CONFIG_MMU
+ static inline pgprot_t vma_pgprot_modify(pgprot_t oldprot, vma_flags_t vma_flags)
  {
--	int ret;
-+	vma_flags_t vma_flags = legacy_to_vma_flags(vm_flags);
- 	struct vm_area_struct *vma;
-+	int ret;
+-	const pgprot_t prot = vma_get_page_prot(vma_flags);
++	const pgprot_t prot = vma_flags_to_page_prot(vma_flags);
  
- 	vma = vm_area_alloc(mm);
--	if (unlikely(vma == NULL))
-+	if (unlikely(!vma))
- 		return ERR_PTR(-ENOMEM);
+ 	return pgprot_modify(oldprot, prot);
+ }
+diff --git a/tools/testing/vma/include/dup.h b/tools/testing/vma/include/dup.h
+index 24955a1e318a..8621a7ae8980 100644
+--- a/tools/testing/vma/include/dup.h
++++ b/tools/testing/vma/include/dup.h
+@@ -1545,7 +1545,7 @@ static inline int get_sysctl_max_map_count(void)
+ #define pgtable_supports_soft_dirty()	IS_ENABLED(CONFIG_MEM_SOFT_DIRTY)
+ #endif
  
--	vm_flags |= vma_flags_to_legacy(mm->def_vma_flags) | VM_DONTEXPAND;
-+	vma_flags_set_mask(&vma_flags, mm->def_vma_flags);
-+	vma_flags_set(&vma_flags, VMA_DONTEXPAND_BIT);
- 	if (pgtable_supports_soft_dirty())
--		vm_flags |= VM_SOFTDIRTY;
--	vm_flags_init(vma, vm_flags & ~VM_LOCKED_MASK);
-+		vma_flags_set(&vma_flags, VMA_SOFTDIRTY_BIT);
-+	vma_flags_clear_mask(&vma_flags, VMA_LOCKED_MASK);
-+	vma->flags = vma_flags;
- 	vma->vm_page_prot = vma_get_page_prot(vma);
+-static inline pgprot_t vma_get_page_prot(vma_flags_t vma_flags)
++static inline pgprot_t vma_flags_to_page_prot(vma_flags_t vma_flags)
+ {
+ 	const vm_flags_t vm_flags = vma_flags_to_legacy(vma_flags);
  
- 	vma->vm_ops = ops;
 
 -- 
 2.55.0
