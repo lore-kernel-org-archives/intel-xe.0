@@ -4,42 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9A1AC4450E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A90DDC4450D
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B5CF10E9D3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16D5B10E9C5;
 	Mon, 13 Jul 2026 13:45:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cWfdCojd";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HwBiHjyd";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A70E10E181;
- Sat, 11 Jul 2026 18:47:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 093BA89A1F;
+ Sat, 11 Jul 2026 18:45:44 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3AAE7436AC;
- Sat, 11 Jul 2026 18:47:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF4801F000E9;
- Sat, 11 Jul 2026 18:47:27 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id BE3B1436AC;
+ Sat, 11 Jul 2026 18:45:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF9E11F000E9;
+ Sat, 11 Jul 2026 18:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783795668;
- bh=mLC9P7bLR/Uoa69VZ1d0HzztKwzCdHVcxkdSF4M05FQ=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=cWfdCojd9BEVdJixJem5fW1yN2WMCBSqX49JBrY8VEVdZfJU2N7N3Nxjti2dd1PAY
- jHUCK8DxeZrKYnvyB+RT9x7Cp2M5SoYFjZcIsDmFeaH1lqF767UeNHIIBPY+Sng5Fp
- MK+9v3J7Qa9RSE25T4WS2oSi8fTCtKzWW6Odi2CaiQPPbEjTa8vRRaWJWdUuMUts4O
- cA9jeJjD4VBwS0DTGUMhgeHN9UmX28wOStoae3Af6e7oQlz0+Dgt1jAYXhFRrvXj3V
- aDj9iQonQd8MmaaAgMBdzyflHOa0sh1Ocs8CIFYwiYPnS5VCh7VghyS+RJDWLO0kSW
- ijUTjw6rx6hTw==
+ s=k20260515; t=1783795542;
+ bh=6Gq4ADgsF216KVXDCQvsNulS1k0GIw7kWSrVwfWrShU=;
+ h=From:Subject:Date:To:Cc;
+ b=HwBiHjydO82LFji0UszYF+rut4yPEXSI9+yS+Eeji5ZCbyrT7X+W6u1SUhVQrniFh
+ k7zXkJTLpkdkF17TCk/BE+KcBy5UxuqcCjXmdN5PS9ECGxuOXb2w3UmsQyrZZxq7/t
+ c+KqnJP4WL+6PC8X11/5T9fjXKiXHAd7Xpt/IXxNiG+CVT7P4gTg2l4JBZQF5qRc7Q
+ jPA9ta75uC74wIyT42vdmuOfCbRm4RxExyPtvpLAMrtRGgX9U5roby63Qt1Y3NlQfu
+ ZTdoDsuPZHxU6x5M8BAHXT6+GUlCHjJtm0CqjR6W2GWRZYz7riaLxSYOABQQKBAl2z
+ Lovf7UvBmWVMw==
 From: Lorenzo Stoakes <ljs@kernel.org>
-Date: Sat, 11 Jul 2026 19:45:03 +0100
-Subject: [PATCH v2 06/13] mm/vma: convert vm_pgprot_modify() to use
- vma_flags_t and rename
+Subject: [PATCH v2 00/13] mm: convert more vm_flags_t users to vma_flags_t
+Date: Sat, 11 Jul 2026 19:44:57 +0100
+Message-Id: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-b4-vma-flags-mm-v2-6-0fa2357d5431@kernel.org>
-References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
-In-Reply-To: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACmPUmoC/yWNwQ6CMBAFf4Xs2TZtFYqe/A/DAcq2FIGaLTYaw
+ r8LeJxk3rwFIpLHCLdsAcLkow/TBuqUgenqySHz7caghCqElpI1F5bGmtmhdpGNI2takZ/LvLV
+ Xa2BbvQit/xzFR/Xn+G56NPOe2Y3OxznQ97hMcvfAhITEpS6VLkShBXd+5kMf70+kCQceyEG1r
+ usP7sodQ68AAAA=
+X-Change-ID: 20260711-b4-vma-flags-mm-bd05385df9fc
 To: Andrew Morton <akpm@linux-foundation.org>, 
  David Hildenbrand <david@kernel.org>, 
  "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, 
@@ -107,14 +109,15 @@ Cc: Lorenzo Stoakes <ljs@kernel.org>, linux-mm@kvack.org,
  nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
  linux-tegra@vger.kernel.org, virtualization@lists.linux.dev, 
  intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, 
- linux-fbdev@vger.kernel.org, linux-sound@vger.kernel.org
+ linux-fbdev@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Jani Nikula <jani.nikula@intel.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4379; i=ljs@kernel.org;
- h=from:subject:message-id; bh=zyqVv3UzBLKq1hjuUUCPSl3cGoER1z2LvGWjiRKvzK0=;
- b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+i1XKLHOjEnRP75gpcyaV01nzvXnrX6+LO73lGlC/
- +aJsv8/0VHKwiDGxSArpsjy/Iv4/iCRsHmdF/zdYOawMoEMYeDiFICJBNoyMuzw9q5WXt7gt/vl
- TK3NR7uCs2/mFnmo127Y8Mp28h/pyrmMDPe0ts0S3/2Ix3jO9zPB+xdkc/g3qqdk5hRZZBpk9Qb
- 58QMA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9041; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=LqsBGIOBz5PhtEm4kn0sretpylkcze+o2dhAS4zKBkg=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+i02/1R97n5LZdUBvaNhKqyiTOKbuqcr+39vmCDrN
+ C/ldFJnRykLgxgXg6yYIsvzL+L7g0TC5nVe8HeDmcPKBDKEgYtTACYy7TDDP8WyBX46r8L/TZLs
+ cZaTWbaR54Fcv03k49BlKk/5xW3LKhkZ3pq+mhJ2N67ur3lDuMiZzJwFGnk8BsunfPLc6v+h6dI
+ LDgA=
 X-Developer-Key: i=ljs@kernel.org; a=openpgp;
  fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-Mailman-Approved-At: Mon, 13 Jul 2026 13:45:20 +0000
@@ -132,114 +135,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update vm_pgprot_modify() to use the new VMA flags type vma_flags_t, and
-rename to vma_pgprot_modify() accordingly.
+This series makes further progress in converting usage of the deprecated
+vm_flags_t type to its replacement, vma_flags_t.
 
-This is part of the ongoing work to convert vm_flags_t to vma_flags_t, in
-order to eliminate the arbitrary limit of the number of bits in a system
-word on available VMA flags.
+It focuses on mm, though updates some users of mm APIs also.
 
-Update VMA userland tests accordingly, updating vma_set_page_prot() to no
-longer inline vma_pgprot_modify(), rather we can simply define
-vma_pgprot_modify() as a static inline function and the tests will pick it
-up from vma.h.
+It updates:
 
-No functional change intended.
+* The core do_mmap() code path for VMA mapping.
+* Unmapped area logic.
+* The usage of mm->def_vma_flags.
+* VMA page protection bit logic.
+* General usage of VMA flags in core mm code, mlock, mprotect, mremap.
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
-Reviewed-by: Zi Yan <ziy@nvidia.com>
+REVIEWER/MERGER NOTE: This is dependent on [0], which must be merged before
+this.
+
+[0]:https://lore.kernel.org/linux-mm/20260710-b4-pre-scalable-cow-v2-0-2a5aa403d977@kernel.org/
+
 Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 ---
- mm/mmap.c                       |  8 ++++----
- mm/vma.c                        |  2 +-
- mm/vma.h                        |  6 ++++--
- tools/testing/vma/include/dup.h | 12 +++++-------
- 4 files changed, 14 insertions(+), 14 deletions(-)
+Changes in v2:
+* Rebased on to mm-new that has the 33 patch rework dependency in it.
+* Distributed tags, thanks everybody!
+* Moved VMA_STACK_INCOMPLETE_SETUP and VMA_STACK_EARLY VMA userland test defines
+  from 1/13 to 9/13 as per Zi.
+* Fixed whitespace in 3/13 as per Zi.
+* Updated 5/13 to use %*pb formatter for VMA flags (to match mm flags formatter)
+  in dump_mm(), as per Lance.
+* Updated 8/13 to update panthor_gem.c to vma_get_page_prot() as per Lance.
+* Fixed up comment type in 11/13 as per Lance.
+* Fixed bug of using VMA_GROWSUP_BIT rather than VMA_GROWSUP as per Lance
+  in 12/13.
+* Added detail about when we are and are not required to open code
+  vma_write_lock() for VMA flag mutators in the commit message for 13/13 as
+  per Lance and Zi.
 
-diff --git a/mm/mmap.c b/mm/mmap.c
-index ae9a5018e20e..2076c70e7700 100644
---- a/mm/mmap.c
-+++ b/mm/mmap.c
-@@ -80,13 +80,13 @@ core_param(ignore_rlimit_data, ignore_rlimit_data, bool, 0644);
- /* Update vma->vm_page_prot to reflect vma->vm_flags. */
- void vma_set_page_prot(struct vm_area_struct *vma)
- {
--	vm_flags_t vm_flags = vma->vm_flags;
-+	vma_flags_t vma_flags = vma->flags;
- 	pgprot_t vm_page_prot;
- 
--	vm_page_prot = vm_pgprot_modify(vma->vm_page_prot, vm_flags);
-+	vm_page_prot = vma_pgprot_modify(vma->vm_page_prot, vma_flags);
- 	if (vma_wants_writenotify(vma, vm_page_prot)) {
--		vm_flags &= ~VM_SHARED;
--		vm_page_prot = vm_pgprot_modify(vm_page_prot, vm_flags);
-+		vma_flags_clear(&vma_flags, VMA_SHARED_BIT);
-+		vm_page_prot = vma_pgprot_modify(vm_page_prot, vma_flags);
- 	}
- 	/* remove_protection_ptes reads vma->vm_page_prot without mmap_lock */
- 	WRITE_ONCE(vma->vm_page_prot, vm_page_prot);
-diff --git a/mm/vma.c b/mm/vma.c
-index 1f443d979a7d..a74a0e467c63 100644
---- a/mm/vma.c
-+++ b/mm/vma.c
-@@ -2176,7 +2176,7 @@ bool vma_wants_writenotify(struct vm_area_struct *vma, pgprot_t vm_page_prot)
- 	/* The open routine did something to the protections that pgprot_modify
- 	 * won't preserve? */
- 	if (pgprot_val(vm_page_prot) !=
--	    pgprot_val(vm_pgprot_modify(vm_page_prot, vma->vm_flags)))
-+	    pgprot_val(vma_pgprot_modify(vm_page_prot, vma->flags)))
- 		return false;
- 
- 	/*
-diff --git a/mm/vma.h b/mm/vma.h
-index 4eb85b4a6adc..8ca6e7e8ae28 100644
---- a/mm/vma.h
-+++ b/mm/vma.h
-@@ -541,9 +541,11 @@ static inline bool vma_wants_manual_pte_write_upgrade(struct vm_area_struct *vma
- }
- 
- #ifdef CONFIG_MMU
--static inline pgprot_t vm_pgprot_modify(pgprot_t oldprot, vm_flags_t vm_flags)
-+static inline pgprot_t vma_pgprot_modify(pgprot_t oldprot, vma_flags_t vma_flags)
- {
--	return pgprot_modify(oldprot, vm_get_page_prot(vm_flags));
-+	const pgprot_t prot = vma_get_page_prot(vma_flags);
-+
-+	return pgprot_modify(oldprot, prot);
- }
- #endif
- 
-diff --git a/tools/testing/vma/include/dup.h b/tools/testing/vma/include/dup.h
-index 773e23303e26..24955a1e318a 100644
---- a/tools/testing/vma/include/dup.h
-+++ b/tools/testing/vma/include/dup.h
-@@ -1424,20 +1424,18 @@ struct vm_area_struct *vma_iter_next_range(struct vma_iterator *vmi)
- }
- 
- bool vma_wants_writenotify(struct vm_area_struct *vma, pgprot_t vm_page_prot);
-+static inline pgprot_t vma_pgprot_modify(pgprot_t oldprot, vma_flags_t vma_flags);
- 
- /* Update vma->vm_page_prot to reflect vma->vm_flags. */
- static inline void vma_set_page_prot(struct vm_area_struct *vma)
- {
--	vm_flags_t vm_flags = vma->vm_flags;
-+	vma_flags_t vma_flags = vma->flags;
- 	pgprot_t vm_page_prot;
- 
--	/* testing: we inline vm_pgprot_modify() to avoid clash with vma.h. */
--	vm_page_prot = pgprot_modify(vma->vm_page_prot, vm_get_page_prot(vm_flags));
--
-+	vm_page_prot = vma_pgprot_modify(vma->vm_page_prot, vma_flags);
- 	if (vma_wants_writenotify(vma, vm_page_prot)) {
--		vm_flags &= ~VM_SHARED;
--		/* testing: we inline vm_pgprot_modify() to avoid clash with vma.h. */
--		vm_page_prot = pgprot_modify(vm_page_prot, vm_get_page_prot(vm_flags));
-+		vma_flags_clear(&vma_flags, VMA_SHARED_BIT);
-+		vm_page_prot = vma_pgprot_modify(vm_page_prot, vma_flags);
- 	}
- 	/* remove_protection_ptes reads vma->vm_page_prot without mmap_lock */
- 	WRITE_ONCE(vma->vm_page_prot, vm_page_prot);
+v1:
+https://patch.msgid.link/cover.1782760670.git.ljs@kernel.org
 
+To: Andrew Morton <akpm@linux-foundation.org>
+To: David Hildenbrand <david@kernel.org>
+To: "Liam R. Howlett" <liam@infradead.org>
+To: Vlastimil Babka <vbabka@kernel.org>
+To: Mike Rapoport <rppt@kernel.org>
+To: Suren Baghdasaryan <surenb@google.com>
+To: Michal Hocko <mhocko@suse.com>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Benjamin LaHaise <bcrl@kvack.org>
+To: Alexander Viro <viro@zeniv.linux.org.uk>
+To: Christian Brauner <brauner@kernel.org>
+To: Jan Kara <jack@suse.cz>
+To: Hugh Dickins <hughd@google.com>
+To: Baolin Wang <baolin.wang@linux.alibaba.com>
+To: Jann Horn <jannh@google.com>
+To: Pedro Falcato <pfalcato@suse.de>
+To: Muchun Song <muchun.song@linux.dev>
+To: Oscar Salvador <osalvador@suse.de>
+To: Zi Yan <ziy@nvidia.com>
+To: Nico Pache <npache@redhat.com>
+To: Ryan Roberts <ryan.roberts@arm.com>
+To: Dev Jain <dev.jain@arm.com>
+To: Barry Song <baohua@kernel.org>
+To: Lance Yang <lance.yang@linux.dev>
+To: Usama Arif <usama.arif@linux.dev>
+To: Madhavan Srinivasan <maddy@linux.ibm.com>
+To: Michael Ellerman <mpe@ellerman.id.au>
+To: Nicholas Piggin <npiggin@gmail.com>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Lucas Stach <l.stach@pengutronix.de>
+To: Russell King <linux+etnaviv@armlinux.org.uk>
+To: Christian Gmeiner <christian.gmeiner@gmail.com>
+To: Inki Dae <inki.dae@samsung.com>
+To: Seung-Woo Kim <sw0312.kim@samsung.com>
+To: Kyungmin Park <kyungmin.park@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+To: Peter Griffin <peter.griffin@linaro.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+To: Rob Clark <robin.clark@oss.qualcomm.com>
+To: Dmitry Baryshkov <lumag@kernel.org>
+To: Abhinav Kumar <abhinav.kumar@linux.dev>
+To: Jessica Zhang <jesszhan0024@gmail.com>
+To: Sean Paul <sean@poorly.run>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+To: Lyude Paul <lyude@redhat.com>
+To: Danilo Krummrich <dakr@kernel.org>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To: Sandy Huang <hjc@rock-chips.com>
+To: Heiko Stübner <heiko@sntech.de>
+To: Andy Yan <andy.yan@rock-chips.com>
+To: Thierry Reding <thierry.reding@kernel.org>
+To: Mikko Perttunen <mperttunen@nvidia.com>
+To: Jonathan Hunter <jonathanh@nvidia.com>
+To: Gerd Hoffmann <kraxel@redhat.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: Gurchetan Singh <gurchetansingh@chromium.org>
+To: Chia-I Wu <olvaffe@gmail.com>
+To: Zack Rusin <zack.rusin@broadcom.com>
+To: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+To: Matthew Brost <matthew.brost@intel.com>
+To: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+To: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+To: Helge Deller <deller@gmx.de>
+To: Kees Cook <kees@kernel.org>
+To: Jaroslav Kysela <perex@perex.cz>
+To: Takashi Iwai <tiwai@suse.com>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+To: Steven Price <steven.price@arm.com>
+To: Liviu Dudau <liviu.dudau@arm.com>
+Cc: ljs@kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-mips@vger.kernel.org
+Cc: linux-aio@kvack.org
+Cc: linux-fsdevel@vger.kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: etnaviv@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: freedreno@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-tegra@vger.kernel.org
+Cc: virtualization@lists.linux.dev
+Cc: intel-xe@lists.freedesktop.org
+Cc: xen-devel@lists.xenproject.org
+Cc: linux-fbdev@vger.kernel.org
+Cc: linux-sound@vger.kernel.org
+
+---
+Lorenzo Stoakes (13):
+      mm: introduce vma_flags_can_grow() and vma_can_grow()
+      mm/vma: update do_mmap() to use vma_flags_t
+      mm: convert __get_unmapped_area() to use vma_flags_t
+      mm: update generic_get_unmapped_area[_topdown]() to use vma_flags_t
+      mm: prefer mm->def_vma_flags in mm logic
+      mm/vma: convert vm_pgprot_modify() to use vma_flags_t and rename
+      mm/vma: rename vma_get_page_prot to vma_flags_to_page_prot
+      mm: introduce vma_get_page_prot() and use it
+      mm/vma: update create_init_stack_vma() to use vma_flags_t
+      mm/vma: convert miscellaneous uses of VMA flags in core mm
+      mm/mlock: convert mlock code to use vma_flags_t
+      mm/mprotect: convert mprotect code to use vma_flags_t
+      mm/mremap: convert mremap code to use vma_flags_t
+
+ arch/mips/kernel/vdso.c                     |   4 +-
+ arch/powerpc/mm/book3s64/slice.c            |   6 +-
+ drivers/gpu/drm/drm_gem.c                   |   2 +-
+ drivers/gpu/drm/drm_gem_dma_helper.c        |   2 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c      |   2 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c       |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_gem.c     |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c    |  12 +-
+ drivers/gpu/drm/msm/msm_gem.c               |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c       |   2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c        |   2 +-
+ drivers/gpu/drm/omapdrm/omap_gem.c          |   6 +-
+ drivers/gpu/drm/panthor/panthor_gem.c       |   2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c |   2 +-
+ drivers/gpu/drm/tegra/gem.c                 |   2 +-
+ drivers/gpu/drm/virtio/virtgpu_vram.c       |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |   2 +-
+ drivers/gpu/drm/xe/xe_device.c              |   2 +-
+ drivers/gpu/drm/xe/xe_mmio_gem.c            |   2 +-
+ drivers/gpu/drm/xen/xen_drm_front_gem.c     |   2 +-
+ drivers/video/fbdev/core/fb_io_fops.c       |   2 +-
+ fs/aio.c                                    |   2 +-
+ fs/hugetlbfs/inode.c                        |   3 +-
+ include/linux/huge_mm.h                     |  10 +-
+ include/linux/memfd.h                       |   6 +-
+ include/linux/mm.h                          |  52 +++++++--
+ include/linux/sched/mm.h                    |  13 +--
+ ipc/shm.c                                   |   3 +-
+ mm/debug.c                                  |   5 +-
+ mm/huge_memory.c                            |  21 ++--
+ mm/memfd.c                                  |  15 +--
+ mm/mlock.c                                  |  99 +++++++++--------
+ mm/mmap.c                                   | 164 +++++++++++++++-------------
+ mm/mprotect.c                               |  16 +--
+ mm/mremap.c                                 |  38 ++++---
+ mm/nommu.c                                  |   3 +-
+ mm/util.c                                   |  10 +-
+ mm/vma.c                                    |  26 +++--
+ mm/vma.h                                    |   8 +-
+ mm/vma_exec.c                               |  20 ++--
+ sound/core/memalloc.c                       |   2 +-
+ tools/testing/vma/include/dup.h             |  23 ++--
+ 42 files changed, 341 insertions(+), 264 deletions(-)
+---
+base-commit: 61cccb8363fcc282d4ae0555b8739dd227f5ad0b
+change-id: 20260711-b4-vma-flags-mm-bd05385df9fc
+
+Cheers,
 -- 
-2.55.0
+Lorenzo Stoakes <ljs@kernel.org>
 
