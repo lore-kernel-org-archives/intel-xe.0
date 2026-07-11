@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7072CC44506
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Jul 2026 02:56:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACBBBC44508
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Jul 2026 02:56:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C7FA10E6FE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36BA710E6FB;
 	Sat, 11 Jul 2026 02:56:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TES0ASNc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P0laGbag";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C34E110E6F0;
- Sat, 11 Jul 2026 02:56:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6027C10E1DF;
+ Sat, 11 Jul 2026 02:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783738592; x=1815274592;
+ t=1783738586; x=1815274586;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MkDmOHMdUUIRDIcGOStHc6YdQK1SAZZSc3FC6q53LOQ=;
- b=TES0ASNcsQgtGdxMP91PpmAWVi76SGjGtZTxUnZhCZ4lM7W9PyAm6jSY
- T2KQtg7wZUpARQlIDAX3a7VPCKvEWdJhadKKWUIdrhMauzumjq8FuBtec
- vNQhJdUThPgoiwWjlp9hUpxcwbjxVktipAcia9MV1iN5m7S4M1pua1A6f
- 0v7sDncQDk4pVZh2oQjpretUzJtxAua1iJdy9xAfafPrSYvS+BSdhfgHN
- YdoZx95i4xI/gTKJXzbv/0aeveI0HJJZ7O+ju5OSxSIReYtohcQ7V7Scy
- 5ccvQZF1TvUd78fbIFhSYqn2te7kO/en7iro+CWZUWbHt2y8zrZU4RKfQ g==;
-X-CSE-ConnectionGUID: p84HTHJ5S1eo4vz1CF+AAQ==
-X-CSE-MsgGUID: v35L8VRqSNO237/utOoqKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="101986331"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="101986331"
+ bh=onB5KkS8J/1ab+CzHqV5dwJxkB3nLWQwKJ7ATOEu4QU=;
+ b=P0laGbag/IQGpdHRSA8BI65vT3K2ekBcfWEPXmh3maVRNEFWrqmzJO+H
+ qcsCeXY7VIphHrJthttQUEME6C8FTNASeNtMOXNUkFbvyRyr8rjAyR089
+ kr8kFIlMsM6XAmKvYC2uCm13ikdVOC8D/e8hIvsKu967U4TaOQpUFbqO1
+ B6IJx6ILTt8TSTU6pyz03SBrQNT2/Yjh+ezn6tRu3EAXLb+OMwH3jrxzM
+ pWCl3dmwBXP2Y8P58yqu17Zf7nU/V/Ey5s1seS1PCBvPA1DBt+JSJCDyU
+ BLb4fzoJza4q4ffkIA3BxABTHw0KSammR3HW+50/m0mPY4RYmeoJk4wOP g==;
+X-CSE-ConnectionGUID: +MxmymHJQLmkuJArphQ7mg==
+X-CSE-MsgGUID: eLQoJPF5SFWWLx3q0adlTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="101986190"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="101986190"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 19:56:32 -0700
-X-CSE-ConnectionGUID: DjfB2bHCRsuh5KDlYFMYOg==
-X-CSE-MsgGUID: 6iAXW7+RTR2nAszUf8yzMg==
+ 10 Jul 2026 19:56:25 -0700
+X-CSE-ConnectionGUID: YbFHngh2QMqIAfli62S5ig==
+X-CSE-MsgGUID: 88q3m20uQEyTE0+aUNrHZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256987772"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256987679"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 19:56:31 -0700
+ 10 Jul 2026 19:56:24 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -52,9 +52,9 @@ Cc: Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v3 23/33] drm/xe: Defrag using out-of-lock page preallocation
-Date: Fri, 10 Jul 2026 19:56:09 -0700
-Message-Id: <20260711025619.2540575-24-matthew.brost@intel.com>
+Subject: [PATCH v3 02/33] drm/ttm/pool: Add ttm_pool_page_order_nodma() helper
+Date: Fri, 10 Jul 2026 19:55:48 -0700
+Message-Id: <20260711025619.2540575-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260711025619.2540575-1-matthew.brost@intel.com>
 References: <20260711025619.2540575-1-matthew.brost@intel.com>
@@ -75,22 +75,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert xe_bo_defrag_one() to a three-phase scheme that moves the
-expensive beneficial-order allocations out of the BO dma-resv lock:
+TTM records the allocation order of a multi-order page in page->private at
+allocation time. For pools that do not use dma_alloc the order is stored
+directly, while dma_alloc pools store a struct ttm_pool_dma pointer there
+instead. Drivers that do their own DMA mapping (e.g. Xe) need the per-page
+order to walk a populated ttm_tt one chunk at a time, but cannot rely on
+folio_order(): TTM allocates high-order pages with alloc_pages_node()
+without __GFP_COMP, so they are not compound and folio_order() always
+returns 0.
 
- 1. Under the lock, re-check eligibility, capture the tt cpu-caching and
-    read the exact sub-optimal page count (ttm_tt_suboptimal_pages()),
-    bounded by the run budget.
- 2. Drop the lock and preallocate that many beneficial-order chunks via
-    ttm_pool_prealloc_fill(); reclaim/compaction stalls and the cpu
-    cache mode change both happen here, outside the lock.
- 3. Re-take the lock, re-check, and validate consuming the prealloc bag.
-    Any shortfall harvests the old backing instead of reclaiming, so the
-    move never stalls under the lock; the BO re-queues for a later pass.
-
-With both allocation and caching hoisted out, the BO-lock held time
-drops to copy-bound (median ~0.27ms, p95 ~2ms); the remaining tail is
-lock-wait behind active rendering, as intended.
+Expose ttm_pool_page_order_nodma(), a thin wrapper that returns the order
+recorded in page->private. It is only valid for pages from a pool that does
+not use dma_alloc; whether a TTM device uses dma_alloc is fixed at ttm
+device init time, so callers know from their device configuration that this
+helper applies. Use it from the existing internal ttm_pool_page_order() to
+keep a single source of truth.
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
@@ -107,95 +106,66 @@ Cc: linux-kernel@vger.kernel.org
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-opus-4.8
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-
 ---
+ drivers/gpu/drm/ttm/ttm_pool.c | 25 ++++++++++++++++++++++++-
+ include/drm/ttm/ttm_pool.h     |  2 ++
+ 2 files changed, 26 insertions(+), 1 deletion(-)
 
-v3:
- - Use DIV_ROUND_UP_ULL() for the 64-bit preallocation chunk count
-   (Sashiko)
----
- drivers/gpu/drm/xe/xe_bo.c | 46 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 45 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 0bdd1c920404..8b89d34f37d4 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1258,16 +1258,56 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
- 		.defrag_bytes_remaining = budget,
- 	};
- 	struct ttm_buffer_object *ttm_bo = &bo->ttm;
-+	struct ttm_pool *pool = &ttm_bo->bdev->pool;
-+	struct ttm_pool_prealloc pp = {};
- 	struct ttm_placement placement;
- 	struct ttm_place place;
-+	enum ttm_caching tt_caching;
-+	unsigned int order, want = 0;
- 	int ret = 0;
- 
- 	*consumed = 0;
- 	*needs_more = false;
- 
-+	/*
-+	 * Phase 1: under the BO lock, re-check eligibility and estimate how
-+	 * many beneficial-order chunks the move will (re)allocate, bounded by
-+	 * the run's byte budget. Then drop the lock so the high-order, possibly
-+	 * reclaim/compaction stalling allocations happen unlocked.
-+	 */
-+	xe_bo_lock(bo, false);
-+	if (!xe_bo_needs_defrag(bo)) {
-+		xe_bo_defrag_remove(bo);
-+		xe_bo_unlock(bo);
-+		goto out;
-+	}
-+	tt_caching = bo->ttm.ttm->caching;
-+	order = ttm_pool_prealloc_order(pool);
-+	if (order && ttm_bo->ttm) {
-+		u32 suboptimal = ttm_tt_suboptimal_pages(ttm_bo->ttm);
-+		u64 cap = min_t(u64, budget, xe_bo_size(bo)) >> PAGE_SHIFT;
-+
-+		/* Prealloc only the beneficial-order chunks the move replaces. */
-+		want = DIV_ROUND_UP_ULL(min_t(u64, suboptimal, cap), 1UL << order);
-+	}
-+	xe_bo_unlock(bo);
-+
-+	/* Phase 2: preallocate outside the lock; */
-+	if (want) {
-+		ret = ttm_pool_prealloc_fill(pool, tt_caching, &pp, want);
-+		if (ret || !pp.count) {
-+			ret = ret ?: -ENOMEM;
-+			xe_gt_stats_incr(xe_root_mmio_gt(xe),
-+					 XE_GT_STATS_ID_DEFRAG_FAILED_COUNT, 1);
-+			goto out_err;
-+		}
-+	}
-+
-+	/*
-+	 * Phase 3: re-take the lock, re-check, and validate using the prealloc.
-+	 */
- 	xe_bo_lock(bo, false);
- 
--	/* Re-check eligibility under the BO lock. */
- 	if (!xe_bo_needs_defrag(bo)) {
- 		xe_bo_defrag_remove(bo);
- 		goto unlock;
-@@ -1277,6 +1317,7 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
- 	place.flags |= TTM_PL_FLAG_TEMPORARY;
- 	placement.num_placement = 1;
- 	placement.placement = &place;
-+	ctx.prealloc = &pp;
- 
- 	/*
- 	 * On success the move reallocates the backing at beneficial order and
-@@ -1321,6 +1362,9 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
- 
- unlock:
- 	xe_bo_unlock(bo);
-+out_err:
-+	ttm_pool_prealloc_fini(pool, &pp);
-+out:
- 	return ret;
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index ab242ad4339e..5b7d7f5ae53d 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -461,6 +461,29 @@ static unsigned int ttm_pool_shrink(int nid, unsigned long num_to_free)
+ 	return num_pages;
  }
+ 
++/**
++ * ttm_pool_page_order_nodma() - Allocation order of a non-dma_alloc TTM page
++ * @p: The page to query.
++ *
++ * Return the allocation order that the TTM pool allocator recorded in
++ * @p->private at allocation time. This only works for pages that were
++ * allocated from a pool which does *not* use dma_alloc (i.e. pages backed by
++ * alloc_pages_node()), where TTM stores the order directly in page->private.
++ *
++ * For dma_alloc pools, page->private instead holds a struct ttm_pool_dma
++ * pointer and this helper must not be used. Whether a TTM device uses
++ * dma_alloc is fixed at ttm device init time, so callers are expected to know
++ * from their TTM device configuration that their pages are not dma_alloc
++ * backed before using this helper.
++ *
++ * Return: The allocation order of the page.
++ */
++unsigned int ttm_pool_page_order_nodma(struct page *p)
++{
++	return p->private;
++}
++EXPORT_SYMBOL(ttm_pool_page_order_nodma);
++
+ /* Return the allocation order based for a page */
+ static unsigned int ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
+ {
+@@ -470,7 +493,7 @@ static unsigned int ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
+ 		return dma->vaddr & ~PAGE_MASK;
+ 	}
+ 
+-	return p->private;
++	return ttm_pool_page_order_nodma(p);
+ }
+ 
+ /*
+diff --git a/include/drm/ttm/ttm_pool.h b/include/drm/ttm/ttm_pool.h
+index 26ee592e1994..753203980e2c 100644
+--- a/include/drm/ttm/ttm_pool.h
++++ b/include/drm/ttm/ttm_pool.h
+@@ -94,6 +94,8 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *ttm,
+ int ttm_pool_restore_and_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+ 			       const struct ttm_operation_ctx *ctx);
+ 
++unsigned int ttm_pool_page_order_nodma(struct page *p);
++
+ int ttm_pool_mgr_init(unsigned long num_pages);
+ void ttm_pool_mgr_fini(void);
  
 -- 
 2.34.1
