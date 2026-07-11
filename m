@@ -4,39 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84BCDC44507
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:45:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46DD2C44508
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E55410E5FD;
-	Mon, 13 Jul 2026 13:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47FA10E9AF;
+	Mon, 13 Jul 2026 13:45:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KCh2Wp49";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BGbT3efQ";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 914BF10E1CB;
- Sat, 11 Jul 2026 18:49:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B63589A1F;
+ Sat, 11 Jul 2026 18:47:07 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id EB32D60052;
- Sat, 11 Jul 2026 18:49:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EE8B1F000E9;
- Sat, 11 Jul 2026 18:49:33 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 9970660052;
+ Sat, 11 Jul 2026 18:47:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38421F000E9;
+ Sat, 11 Jul 2026 18:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783795793;
- bh=Fr9+W5ioGfovNH8dryM/kzP+up/ElY+Oy2uwfNl+UZQ=;
+ s=k20260515; t=1783795626;
+ bh=Cys+jf7FSJvkCpfIdDug3cdlx8ypGdMjngNui8wSibo=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=KCh2Wp49fergCiFPuJT2qu+NLRDa7tcNsKE68tr0X57/gxQeoxFEQALVKzPPGCBCs
- 1S2aNlk++tT/2vIRKjYUsq8gWVO5hc3Pv8Wj7ehGz3ecvbnsQJtpGf+Z3pEmCQ5Zpb
- 0G4kl6AsVgK7NukwvKxLJBKVBgW4cGFGkyDpvnIWMOL+cqs+XQ3maPfs9w3a7IE778
- VHeldKO9fd0SwC8Wj8f7RSPZ4Jk+y+nxR+cKOZdHbk7BShTL6YF9RcqJ6dbx/Ra7Fm
- TE7Z2bwnikCj/QtjUnOZ8uMRw3s/GTnG9x5fnIpGmsCUudhHKyJXYAWkomP4MG/RhR
- DQejuUUlKg3zw==
+ b=BGbT3efQd05kEEjTh+aO4RIluI/3vbRGG07jZPAzbysVlgzwXnZVd8f3t8E8Vuhd6
+ /dACfscdhH9yKm6ORV9MIHznN0QDaIGK+Xd+Y+t8MqLriFyX1OaduZQhi7cZQzgZLA
+ zhkYGSy3lsS2NYCL1bWL202tjTmTDVV+eSqCV7wUyQZndnvpprLtQNMS5nm7owHWNj
+ KGyx5ds0GcgnPAShXFUlRpaavVRV26dnZg4wZ7A21dt9cXYXyOCSf0zPZMetrqJNJW
+ /KsazvPLmIyGMbdJPeU7/Pu006j9N9JCilWvEgMUxQFss7qH26Jx8s/ZkArz+vG1bl
+ K1uChQpzKnO0g==
 From: Lorenzo Stoakes <ljs@kernel.org>
-Date: Sat, 11 Jul 2026 19:45:09 +0100
-Subject: [PATCH v2 12/13] mm/mprotect: convert mprotect code to use vma_flags_t
+Date: Sat, 11 Jul 2026 19:45:01 +0100
+Subject: [PATCH v2 04/13] mm: update generic_get_unmapped_area[_topdown]()
+ to use vma_flags_t
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-b4-vma-flags-mm-v2-12-0fa2357d5431@kernel.org>
+Message-Id: <20260711-b4-vma-flags-mm-v2-4-0fa2357d5431@kernel.org>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 In-Reply-To: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 To: Andrew Morton <akpm@linux-foundation.org>, 
@@ -108,12 +109,12 @@ Cc: Lorenzo Stoakes <ljs@kernel.org>, linux-mm@kvack.org,
  intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, 
  linux-fbdev@vger.kernel.org, linux-sound@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2996; i=ljs@kernel.org;
- h=from:subject:message-id; bh=srWqnQOI/gzNhpzulQ661PMe2/Xdt3Viy9gVjyuNxVs=;
- b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+q08lh17/Pn9DO6GppTAjP7Fs7Y758nqdTXNm/9By
- 2P20jvmHaUsDGJcDLJiiizPv4jvDxIJm9d5wd8NZg4rE8gQBi5OAZjIo6cM/6OUTKz3VR0/Kd/z
- 9N+FX84lasa5MY7rRCqXPVqaO+Hv4qeMDLfOLP6RuO0wS2eR6YK62aGFcS/ctwjs0Qu2mW4r7s7
- Dww8A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5495; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=q7YWuxvCY0LSuxzxUdXFVMeI8S+gRJqyF3+arUou2v8=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+i2NEp1+fZh+q6WCyTJbY35wdc6HWZPCOjy54oQmS
+ 8fxCv3pKGVhEONikBVTZHn+RXx/kEjYvM4L/m4wc1iZQIYwcHEKwET0vBgZzm+rtfp9UtOlYFNd
+ VUrv+3hJr49ru99VTjn8XNVY8UQJG8N/t7zLlVMXTLjaPmvbSZkQrfo9K1r/7GqZnb+h7uyNZ7a
+ OvAA=
 X-Developer-Key: i=ljs@kernel.org; a=openpgp;
  fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-Mailman-Approved-At: Mon, 13 Jul 2026 13:45:20 +0000
@@ -131,91 +132,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace use of the legacy vm_flags_t flags with vma_flags_t values
-throughout the mprotect logic.
+As part of the changes converting VMA flags from a system word size to a
+bitmap, extend this change to generic_get_unmapped_area() and
+generic_get_unmapped_area_topdown(), which also allows us to convert
+stack_guard_placement() as well.
 
-Note that we retain the legacy vm_flags_t bit shifting code in
-do_mprotect_pkey(), deferring a vma_flags_t approach to this for the time
-being.
-
-Additionally update comments to reflect the changes to be consistent.
+We retain arch_get_unmapped_area() and arch_get_unmapped_area_topdown()
+as-is for now, using legacy_to_vma_flags() as necessary to do so.
 
 No functional change intended.
 
+Reviewed-by: Zi Yan <ziy@nvidia.com>
+Reviewed-by: Lance Yang <lance.yang@linux.dev>
 Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 ---
- mm/mprotect.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ arch/powerpc/mm/book3s64/slice.c |  6 ++++--
+ include/linux/sched/mm.h         |  4 ++--
+ mm/mmap.c                        | 16 ++++++++--------
+ 3 files changed, 14 insertions(+), 12 deletions(-)
 
-diff --git a/mm/mprotect.c b/mm/mprotect.c
-index dc27bbc1712f..2888ee638d87 100644
---- a/mm/mprotect.c
-+++ b/mm/mprotect.c
-@@ -40,7 +40,7 @@
+diff --git a/arch/powerpc/mm/book3s64/slice.c b/arch/powerpc/mm/book3s64/slice.c
+index 28bec5bc7879..82127e31dca6 100644
+--- a/arch/powerpc/mm/book3s64/slice.c
++++ b/arch/powerpc/mm/book3s64/slice.c
+@@ -659,7 +659,8 @@ unsigned long arch_get_unmapped_area(struct file *filp,
+ 	unsigned int psize;
  
- static bool maybe_change_pte_writable(struct vm_area_struct *vma, pte_t pte)
+ 	if (radix_enabled())
+-		return generic_get_unmapped_area(filp, addr, len, pgoff, flags, vm_flags);
++		return generic_get_unmapped_area(filp, addr, len, pgoff, flags,
++						 legacy_to_vma_flags(vm_flags));
+ 
+ 	if (filp && is_file_hugepages(filp))
+ 		psize = file_to_psize(filp);
+@@ -679,7 +680,8 @@ unsigned long arch_get_unmapped_area_topdown(struct file *filp,
+ 	unsigned int psize;
+ 
+ 	if (radix_enabled())
+-		return generic_get_unmapped_area_topdown(filp, addr0, len, pgoff, flags, vm_flags);
++		return generic_get_unmapped_area_topdown(filp, addr0, len,
++				pgoff, flags, legacy_to_vma_flags(vm_flags));
+ 
+ 	if (filp && is_file_hugepages(filp))
+ 		psize = file_to_psize(filp);
+diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
+index 10d723bee95c..10be8a54b416 100644
+--- a/include/linux/sched/mm.h
++++ b/include/linux/sched/mm.h
+@@ -200,11 +200,11 @@ unsigned long mm_get_unmapped_area_vmaflags(struct file *filp,
+ unsigned long
+ generic_get_unmapped_area(struct file *filp, unsigned long addr,
+ 			  unsigned long len, unsigned long pgoff,
+-			  unsigned long flags, vm_flags_t vm_flags);
++			  unsigned long flags, vma_flags_t vma_flags);
+ unsigned long
+ generic_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
+ 				  unsigned long len, unsigned long pgoff,
+-				  unsigned long flags, vm_flags_t vm_flags);
++				  unsigned long flags, vma_flags_t vma_flags);
+ #else
+ static inline void arch_pick_mmap_layout(struct mm_struct *mm,
+ 					 const struct rlimit *rlim_stack) {}
+diff --git a/mm/mmap.c b/mm/mmap.c
+index 4a88b2a233f7..39d33f3a55c2 100644
+--- a/mm/mmap.c
++++ b/mm/mmap.c
+@@ -657,9 +657,9 @@ SYSCALL_DEFINE1(old_mmap, struct mmap_arg_struct __user *, arg)
+  * Determine if the allocation needs to ensure that there is no
+  * existing mapping within it's guard gaps, for use as start_gap.
+  */
+-static inline unsigned long stack_guard_placement(vm_flags_t vm_flags)
++static inline unsigned long stack_guard_placement(vma_flags_t vma_flags)
  {
--	if (WARN_ON_ONCE(!(vma->vm_flags & VM_WRITE)))
-+	if (WARN_ON_ONCE(!vma_test(vma, VMA_WRITE_BIT)))
- 		return false;
+-	if (vm_flags & VM_SHADOW_STACK)
++	if (vma_flags_test_single_mask(&vma_flags, VMA_SHADOW_STACK))
+ 		return PAGE_SIZE;
  
- 	/* Don't touch entries that are not even readable. */
-@@ -97,7 +97,7 @@ static bool can_change_shared_pte_writable(struct vm_area_struct *vma,
- bool can_change_pte_writable(struct vm_area_struct *vma, unsigned long addr,
- 			     pte_t pte)
+ 	return 0;
+@@ -701,7 +701,7 @@ unsigned long vm_unmapped_area(struct vm_unmapped_area_info *info)
+ unsigned long
+ generic_get_unmapped_area(struct file *filp, unsigned long addr,
+ 			  unsigned long len, unsigned long pgoff,
+-			  unsigned long flags, vm_flags_t vm_flags)
++			  unsigned long flags, vma_flags_t vma_flags)
  {
--	if (!(vma->vm_flags & VM_SHARED))
-+	if (!vma_test(vma, VMA_SHARED_BIT))
- 		return can_change_private_pte_writable(vma, addr, pte);
- 
- 	return can_change_shared_pte_writable(vma, pte);
-@@ -194,7 +194,7 @@ static __always_inline void set_write_prot_commit_flush_ptes(struct vm_area_stru
+ 	struct mm_struct *mm = current->mm;
+ 	struct vm_area_struct *vma, *prev;
+@@ -726,7 +726,7 @@ generic_get_unmapped_area(struct file *filp, unsigned long addr,
+ 	info.length = len;
+ 	info.low_limit = mm->mmap_base;
+ 	info.high_limit = mmap_end;
+-	info.start_gap = stack_guard_placement(vm_flags);
++	info.start_gap = stack_guard_placement(vma_flags);
+ 	if (filp && is_file_hugepages(filp))
+ 		info.align_mask = huge_page_mask_align(filp);
+ 	return vm_unmapped_area(&info);
+@@ -739,7 +739,7 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
+ 		       unsigned long flags, vm_flags_t vm_flags)
  {
- 	bool set_write;
+ 	return generic_get_unmapped_area(filp, addr, len, pgoff, flags,
+-					 vm_flags);
++					 legacy_to_vma_flags(vm_flags));
+ }
+ #endif
  
--	if (vma->vm_flags & VM_SHARED) {
-+	if (vma_test(vma, VMA_SHARED_BIT)) {
- 		set_write = can_change_shared_pte_writable(vma, ptent);
- 		prot_commit_flush_ptes(vma, addr, ptep, oldpte, ptent, nr_ptes,
- 				       /* idx = */ 0, set_write, tlb);
-@@ -846,8 +846,8 @@ mprotect_fixup(struct vma_iterator *vmi, struct mmu_gather *tlb,
- 		vm_unacct_memory(nrpages);
+@@ -750,7 +750,7 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
+ unsigned long
+ generic_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
+ 				  unsigned long len, unsigned long pgoff,
+-				  unsigned long flags, vm_flags_t vm_flags)
++				  unsigned long flags, vma_flags_t vma_flags)
+ {
+ 	struct vm_area_struct *vma, *prev;
+ 	struct mm_struct *mm = current->mm;
+@@ -778,7 +778,7 @@ generic_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
+ 	info.length = len;
+ 	info.low_limit = PAGE_SIZE;
+ 	info.high_limit = arch_get_mmap_base(addr, mm->mmap_base);
+-	info.start_gap = stack_guard_placement(vm_flags);
++	info.start_gap = stack_guard_placement(vma_flags);
+ 	if (filp && is_file_hugepages(filp))
+ 		info.align_mask = huge_page_mask_align(filp);
+ 	addr = vm_unmapped_area(&info);
+@@ -807,7 +807,7 @@ arch_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
+ 			       unsigned long flags, vm_flags_t vm_flags)
+ {
+ 	return generic_get_unmapped_area_topdown(filp, addr, len, pgoff, flags,
+-						 vm_flags);
++						 legacy_to_vma_flags(vm_flags));
+ }
+ #endif
  
- 	/*
--	 * Private VM_LOCKED VMA becoming writable: trigger COW to avoid major
--	 * fault on access.
-+	 * Private VMA_LOCKED_BIT VMA becoming writable: trigger COW to avoid
-+	 * major fault on access.
- 	 */
- 	if (vma_flags_test(&new_vma_flags, VMA_WRITE_BIT) &&
- 	    vma_flags_test(&old_vma_flags, VMA_LOCKED_BIT) &&
-@@ -921,7 +921,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
- 			goto out;
- 		start = vma->vm_start;
- 		error = -EINVAL;
--		if (!(vma->vm_flags & VM_GROWSDOWN))
-+		if (!vma_test(vma, VMA_GROWSDOWN_BIT))
- 			goto out;
- 	} else {
- 		if (vma->vm_start > start)
-@@ -929,7 +929,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
- 		if (unlikely(grows & PROT_GROWSUP)) {
- 			end = vma->vm_end;
- 			error = -EINVAL;
--			if (!(vma->vm_flags & VM_GROWSUP))
-+			if (!vma_test_single_mask(vma, VMA_GROWSUP))
- 				goto out;
- 		}
- 	}
-@@ -953,7 +953,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
- 		}
- 
- 		/* Does the application expect PROT_READ to imply PROT_EXEC */
--		if (rier && (vma->vm_flags & VM_MAYEXEC))
-+		if (rier && vma_test(vma, VMA_MAYEXEC_BIT))
- 			prot |= PROT_EXEC;
- 
- 		/*
 
 -- 
 2.55.0
