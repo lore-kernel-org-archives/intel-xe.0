@@ -4,144 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 158F8C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 16:15:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6AC3C43458
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 16:18:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C54E810E476;
-	Mon, 13 Jul 2026 16:15:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76AAB10E476;
+	Mon, 13 Jul 2026 16:18:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MOZqShek";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gC9BfzJF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E923410E4D9
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 16:15:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20F2C10E476
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 16:18:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783959327; x=1815495327;
+ t=1783959481; x=1815495481;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=7UDg3Oyv0wO3mKywrIXca+4BnNRPVbGNVYOZ4PoIMlY=;
- b=MOZqShekUrOG60cVlKvyKtQUrJW+95rsEh/F1k3sV6D9Zbh+q8d6kytF
- fTOzmJ7Lq+g9f4YLKoeWFez00EJhmpG5G4Z4sAxCJO7790J3DHdf5ZPsG
- S+r1oZvm8DFdpHqtC1n0FYVuIzHeC9le6gqJYAMBTL6uq0FLp9sNK2NnC
- 6Tv5dIzE9Gc8yxOuwIJi1IC922Vk5hRzMWD2lebcFgL+lmnZb/0nPxXhq
- N84rF1Th2KjhueeZascUV4ja4LajQzb9hcDkgvqxOjfY7cs5tddlZ2RVZ
- epp/s7iyhELoW+ZMagac2CynmIvz41HkEGxMQXJ4U9SsodvUAyjhe46N6 Q==;
-X-CSE-ConnectionGUID: Ump08dRmQa6mg3OOa1/H3Q==
-X-CSE-MsgGUID: ETrPRLaoTGmlGFltr2WnuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84689251"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84689251"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 09:15:26 -0700
-X-CSE-ConnectionGUID: yJ4FaLXjTkuHSwtQtOLJDw==
-X-CSE-MsgGUID: 8RhHRwlqQkyb75gY/ewZiQ==
+ bh=x7J2IE0n21/vv6n1U1Q8T4zvNIq2qAfhI25NP7wbUjo=;
+ b=gC9BfzJFRca1xka4Vua2XhgG7/69etNAgbF6nhy2J0xblI7xrMyXmfeM
+ 9jEAg2TvocSVmbUS6/7mo9RXCzAGtDikFZc+gHGp3JiaiOsiceeD6mU2w
+ wEgIMKwTbE6bo41X7E6mEqsY9qTp66mh4ihhq8uO5xPMD6M4cTKSvbzoe
+ wYGRU7uiVKuObNRByWYPBT3eWQEuKP6hcPi9gizGx6Ea903n1sOeXYoxA
+ l6AbyxQAJMjHLdpVnWhbAG0c7lyjWxX6AXGSmYm1s4Jv1WTrLPpa4bo9I
+ CwU5PhU6dpbY1ObbFcH/l836/1RhIB6W+y8vIAGBiIiqrNDmlE7i41+LJ Q==;
+X-CSE-ConnectionGUID: sMuBoQG9TiqOlSYLaGQFQQ==
+X-CSE-MsgGUID: CyJ8AMziQ+C0brO9OaUflw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="72096393"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="72096393"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 09:18:00 -0700
+X-CSE-ConnectionGUID: DnfILCgySiOQ/2SYUZLNdQ==
+X-CSE-MsgGUID: gHZSY8lzQVySbdQLa+cFNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="259446326"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 09:15:26 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="249241728"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 09:18:01 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 09:15:26 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.43; Mon, 13 Jul 2026 09:18:00 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Mon, 13 Jul 2026 09:15:26 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.21) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Mon, 13 Jul 2026 09:18:00 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.16)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 09:15:25 -0700
+ 15.2.2562.43; Mon, 13 Jul 2026 09:17:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Eb+5Vgc3phc1ipNhu0OUPmpilc3FTX2GSzoalfq9uMB2hacGm0MM0ha4PZc6lQMXFj41qRquq5ibwKQDDP+hhqNICn8FCHlS9JXcKbIuR7/R0kFonimssDw7kWccRP5bLF8S9YBpeOddGVeB3SNYaAltnpFuh+JVuTRoWl6zvgEycl8EYY9eRFDdNZ9bSdym27vNkFIMSZVlFOuSjn3CIfb9EQBiZd+HRlXp5gvBt73xjBf4MGdrTMn3+Yb6E/fD03U5DM9bbXre945UuRHgHuNpMDQrYwnPqMrjF6oik8UHagrCvPPAVyAckxjrzZsC/zImiKNHYknMWS8FWE9fqg==
+ b=qvx5vaBpRhUXGMLqMKqVd+54/21v9EX+yLKZ7d5gtSqfaobls0DBszLcy4MuFWGW5oI193iZcq5QPlOgbBtNJKQdY3YkTJ4jKrDJPEPr3Yssppjl/QX9MXcWbsb950Vplc5UwFpUMcBiYzlgX9x6N6kiB4uAmOFEhdk7sMfg0X9Ku9UzAvCODyWD4vuu6TVPsbkcglgLIng+Q8sLLyl6kqjCfsJoCNLkhtYqUqvCsurClVKlGNeTyvKNL9Jbt/Gid3Jhd5T4OpF9fkzvIkGbL0k/GYFcpN1UaLZEGIM1CCzk2LTLx4H0MXqK8Yf3Y15HxznBp7jzNtrDuXcLmkmEEQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fK3SGmD8HfxnCcHamxn0OlhkGog+8gOY0aqZ2UyQtsA=;
- b=qevWhXAL/uSxhxJzCYysWkZB0Wq/JUtWLMGwspk6jSQrFvtlJ1D6/243BSYkU/3vlBW8wjWot4iOkxQyaHt9aLm5FzNyrL8cH5g7k3D5GOeQBW0nvmJARumKH3kc4tTzWGyXR8PXG78t6GoKAmRkJbQfIkyqJF7jocHR0gEC6HoOLt+QdbiEhwOu+xYvQv2Gk1VCUJKkTjOf8k8jZBSviO62c+JyzIeKIUEYRjJlVSLFcwYOFcEXalMAk0WiTf9Ns7FTUjkdJo7bsbl76Zkb/VVacxJWpHUTWrao4kwHoxFxqTYu38jg3xPiHquIsfmn/M4HS/+erYSLJjY2tt6S8w==
+ bh=PfN+Y6H6ZxF0mqE5uxR4G9RAG1TkZk0uywewzUDeCHA=;
+ b=j4dis2D4WVnqN2PfU4RocUrYUvtfU4fYTzf2+X6lCfFPTQKzIlORGswDRrAWGDYRJTbjM3fM4GKHZu+5ahyynSblzdmjDMkOl0MVkwKDvF0aanPP5FYCtkhBjy3JVkfhqgYOGnnu2J6f8JRB3pDFSGgPCFoT451TmT16Yztcu5QhCFwelDEkq5H85WrGOX4kpHeDK6Gfa2NB/WE5a8yDKV9Qr8yTPtVqbzqCKGHV2BXsiUUaBrc/RazWSnoOiB9wmn4mx447CPIdFGcbXHMNOzWrTTW7/wpjdybt6qBNrlFq/Ihxb2jK8Nekr5TK6Vtri1I9W2rrsTTK3Z4KGMczcg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA3PR11MB9510.namprd11.prod.outlook.com (2603:10b6:806:47e::15)
+ by MW5PR11MB5787.namprd11.prod.outlook.com (2603:10b6:303:192::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
- 2026 16:15:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Mon, 13 Jul
+ 2026 16:17:56 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0202.014; Mon, 13 Jul 2026
- 16:15:19 +0000
-Date: Mon, 13 Jul 2026 09:15:17 -0700
+ 16:17:56 +0000
+Date: Mon, 13 Jul 2026 09:17:53 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v4 2/6] drm/xe/guc: ban exec queue on suspend timeout
-Message-ID: <alUPFZaePMxtC1FN@gsse-cloud1.jf.intel.com>
+Subject: Re: [PATCH v4 3/6] drm/xe/guc: add uninterruptible suspend wait for
+ cross-process cleanup
+Message-ID: <alUPsce7S3Kh+YY1@gsse-cloud1.jf.intel.com>
 References: <20260713030005.2123322-8-niranjana.vishwanathapura@intel.com>
- <20260713030005.2123322-10-niranjana.vishwanathapura@intel.com>
+ <20260713030005.2123322-11-niranjana.vishwanathapura@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260713030005.2123322-10-niranjana.vishwanathapura@intel.com>
-X-ClientProxiedBy: MW3PR06CA0020.namprd06.prod.outlook.com
- (2603:10b6:303:2a::25) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20260713030005.2123322-11-niranjana.vishwanathapura@intel.com>
+X-ClientProxiedBy: MW4PR02CA0002.namprd02.prod.outlook.com
+ (2603:10b6:303:16d::10) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA3PR11MB9510:EE_
-X-MS-Office365-Filtering-Correlation-Id: 26b22bea-a68f-412d-e545-08dee0f9ef0a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW5PR11MB5787:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51a9639c-1be5-474d-6f00-08dee0fa4c33
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|6133799003|22082099003|18002099003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: pH7fIe0YWuyo4h+dzM9XQH3IZZ6InVr+iSlhRzHMLp0FMCUVNDMkFmDth31zLuZ8/xCJ7r0EGjHnmGN6mAPWcU1r9bZvFzJzk9KlBzRnFlR/xWKGsIgJjhFSQmVMAF60gOu8cdulHNYHvXaKGzKwc+Ov5smneUWQB4IxOXhyL0PDM1asbxhhSzBzanPYYh5ywmu+B73CBcyTxXlf1hDric6jJGKKI8n+14X3jKapKf0pCjXn9BQ3AjXU5TDcmD1Uh3mNkLa16R8ApjlbxGV8EjK/u34K4U+eCOTjejUl8vsoNsZBjO+70yGvV3JaUnD3KkVrUprhEnXd0QwG9oFEstcLGbzlLnIArpO5llLORp7+UFBcGBNEVz/2jr0czroierO1tKC3kmy/ipQEdTRiZVs8SorMO1hdwsyEkwPR6e5TGlcV1mjGJ6zdPRxDwFzCjU/wh6Gi/hPGLf2EAqDJbiuQBT7slc6RHWFfherinmVsVm3/JbvXhwVNe1F2RG9fy+LQH7uPRoOBj+7+PLS4/pXJjSbOyCHp9rkY1RFDgVcZy69PjA+em5flpgBV2HhEqjjS3hiD79NPxmHPTicnE+XFEMcax4CT6JrSutBUzpUqJEx0VeQQeY/kX4oUEkgwCX6r0InJ9GvfUEL4DLl47QxNDgmsygzWjeycP6d4XaI=
+ ARA:13230040|376014|23010399003|1800799024|366016|11063799006|4143699003|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: DIFoMoZ+fwyn8xQKY3v6G/HLVaItXH++TWM6hsjmUoGCI/TQ7lYkvAlsph0ESdb1i16c3+J/SJOF49BMP4KVpO8J60+hPvKI+XDiiTiwWQ0ZdEwEBo4yVBeQDg4wtc3lOVzVGXb+LM93rcPhFa8zOCA0Dzk/v53jnMzi0tfVgn+X4GIz6VCQ8lijg6ZvNoeCk+eP/WVWzGEq2Mqmd/6zT26c74QzxI1LyThFCaInO5Z0sud0y23D/nH/SZrOr1iknyJVtLRWGzyotBiOBR0nikyjRoJ1rUZoXQvtD5+uPUK7bOiUR/05gmuT4+czBzB/dHTebfEJYQ5CuslAVL0Ul17UcwYOHmPL6PT3Tgil3ezYlfoMRVm6RDM3AjO4hYVo50Df17vX8VTcVImbBeFxWY7gBlSLgMVOGM99wG9djLdDX7rVLuhNHxhvxJfOIbPGsAier+hKwwRGi7wriN6GdjWy+grwka2dmamYmVLuTNbMR0YyOtd+VUMl4G42CXZ7S/QHjPuDGG45c59hPf3KD8WLe/xg31W3Q5JTLe5o6+/i6MiFNXVZfvQ2qD+x+llXzRmti5l6J9otIrwpzrg3HKm5qmt58+hZU3dGnX/DiUSJZC5sh1eztUjoSKeNjo8AjdeBX+QO87/OAW+96q3+q4cX4tvcGqIx2lwe2wwRpdw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(6133799003)(22082099003)(18002099003)(56012099006)(11063799006)(4143699003);
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PPfn7PFU8h4OWbBVHIg2lf5oTDMF1NLiAFGWo+Yrpki+RUYATCPMvl1rPgJV?=
- =?us-ascii?Q?n+Jz8kMO89pyvrTZEhzBVTmJMrsyS/xOLwzhjJk4TOuhcyixoo9P4o5CLcqF?=
- =?us-ascii?Q?rj20SDzx2ldoKpRAp4QirJLkSAEHTWlm3YeIcTyAs8OJ9u4EHZ7Cb8LM9Sh+?=
- =?us-ascii?Q?HFj8z9WfDRpbAT/R0ZRIg6fkvXw0fnGPOLc8tjYq3g2UcPaifHHCYspyIUvE?=
- =?us-ascii?Q?NcosmWnPlu17//SWTnAxYYehPvcHkPuCI3gvDdr8mYNOE8NJDtZgThEX94D7?=
- =?us-ascii?Q?5Ohi03AR0LR33GPeyVaAGsB9zi8x4qNWE4FreHfA/+OdLCXP1O7srBtISGTJ?=
- =?us-ascii?Q?lalwtxnii5iNKCpKNHsgKaDY1Qzpz6/7TXDuNy9xivRlRj9CKxJkSjsn2ql/?=
- =?us-ascii?Q?5eX9INR2ab7ttKWEBEijFqxzozuMPhC2h+CPCw7zt9rhM3gan0TnTgd4IOeS?=
- =?us-ascii?Q?o7dAmMbM8SXUZmwecqQZWyQ54sHutB2lvAbHwB8RY41Fdh7XialriTxF0BEh?=
- =?us-ascii?Q?PsTkKXEUMLu+x4wSERTzQ6USFq6WT4paUCw35SNlqoHGrAH6xKQOycvArrzw?=
- =?us-ascii?Q?+k/0qdkpnZdbkM8jaAbeIVr/nha2H+zMgTSWV14wvt/hAH0T4NIX/nsMmYJ9?=
- =?us-ascii?Q?oTqSi1DGmTuHWCikU9pka6wvaeTQ2qN8UPiuAJcVryVOfLvyS43qt73vh/oL?=
- =?us-ascii?Q?9/R6Jla3zIX/ehTE8M6CnhJkgauFSxZ+7vO6bBc0/CJXgcFBVUS4q/oSZsXY?=
- =?us-ascii?Q?gEJ9+05IflIAtobpAMrjYlV7M/49E98fIOvYg42wGOSFDUpluNmyuz3X82qO?=
- =?us-ascii?Q?1ZVMipXafEAbOgCFzf5Lz3/KjjpwaQzA8qMehabJAbqTcVQJGYKAy8To3ceR?=
- =?us-ascii?Q?twTa13UQumd45jrkVKUftxsMWyx1p4K5ogC0Qhqi9PCJvgj1uGMtLL1Ox6x+?=
- =?us-ascii?Q?tc9sLM2AH2ohFwI7UzOvm4TpYcKCOBHpw0rKtG5ST1FVH+0fgF93lo/5GpXr?=
- =?us-ascii?Q?l7rzRavrBBJG3dUQlItatgabWBebRmfRC3jnuAkFArUTnEY0H32DSvMwMm4y?=
- =?us-ascii?Q?7wlvXgBLpXiyIMbDEoASzvyHNBKKDGxPwmC7d+Q3OJRqhR7Q9RVaYk/5w+eQ?=
- =?us-ascii?Q?xc8P2b9/FOM4Wd/HlgReJaRp34qW548+fj0bCiQorIYL4oqq2rHIiHmohCHF?=
- =?us-ascii?Q?+SIpWwIDODh0Apb2lKwvb9jUIB73vB9UWqozFL05FvNHM8+/1VAPB+1RcNjp?=
- =?us-ascii?Q?BhnqquADUxYTmx7QRnIrdMMiL1JMTnwvZ7H4YTndkklCK9nagrvyncv+nzi9?=
- =?us-ascii?Q?PFyUWo3iXyM5IQfOxdzBBrlucK5oVMnhQrgfLd6OCikAzSZdV72fxQywxMBs?=
- =?us-ascii?Q?THmJLFMvg839vI5P7yJ7GFaIIp2IRP2rUo8aJPt17KwR4Jij5FXnYsGdZCeb?=
- =?us-ascii?Q?taH5vC10EF+3igkQhC2S88WIpmWvCQ2S1QJmvq5vLn7lPGmPtuRpRp+8v42G?=
- =?us-ascii?Q?G4ISP6cIla6Iadi0pNizPnp38h37XeP88SyEqvjceuRJJ++UU96YYRO/7oPh?=
- =?us-ascii?Q?AB6J60zAQM4gXN32BFQ4OgQDfXjVvylLqQAmKhsDEp+u/LFF1+gT4Bwg4dQS?=
- =?us-ascii?Q?/7MNrYfjPjml836afRUGmraa043XpfTjStLl0x/mOoeGYyK4vtHexdSE0iwq?=
- =?us-ascii?Q?3qia0fdWIau6//n6x+etr6GgGTG9iZzjoMIj0hxN70QwrRxiHf73mZanVV9c?=
- =?us-ascii?Q?klvimnlaLA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: YAzx4dx/545QuCa0Ul4HvbYfntLSVGQ80qH+1kfLTuOU4McbEHg6pmlWZmvOkfIpX++jytsJ2MT2SraVwqyO761j3NRV/GL7ATHbk0qCeFKyYaW1n4LY5g+jW29ngLr35ss4HSKZbcSZU3Nxwy79VAnMT8TOMOs8Q8pZhEdySs8R+uWdUzSWbG1QZ7BPcQAZVsPguFj86c0jtwO4UVR3aoflDjzqzAYn4YtG/1Y119ZnhnjFQfaDpOdLAqsYCpJehZPLNHJYwCvo6TyyVb3yCUrNk93xbkPNtR2Xo0yuQDimZ4MFENq/AOqlNXfsE3MOKaIoVxgIr8/L6q8fCAWmDA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26b22bea-a68f-412d-e545-08dee0f9ef0a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EZ6gAlkNJW64uh80hRGTgA4WcFTXmLxltLLuD/YZI0VNLRz/b55Q2eWLeEZi?=
+ =?us-ascii?Q?JaGvHGskMYb26t11UcUpEgaVy5pxyGw5pMecXyiImweMmdva7xILCm+Q18rL?=
+ =?us-ascii?Q?jpFWp8YoJ16wOMDGsuyJiI49Mnld7mfQuvELO8n5HsAB5rVN+3GXFrXjiWMw?=
+ =?us-ascii?Q?NZMpoR7y01ek7MzyAhE97AiC5wlKeH7u4xWz0XT9MUhpAefE9bbC1sdXA/t5?=
+ =?us-ascii?Q?oySbiPy393wMkdx3L1DrPo8r1t7IjpACyO8bt5MXfzuPxa8gSkClU3P+m8Qo?=
+ =?us-ascii?Q?DaCQQMZJ/cYCyz24jyLy6rNBKcg4onnFe5hvpFEcBTc+LZtKN/Af0INgvUe6?=
+ =?us-ascii?Q?VvB3yAJvjeET4qeR6xZbGcDvpFmriv+PDwF4PN9ejqkZ3bjq/ZuwgpBUMoIW?=
+ =?us-ascii?Q?1ot1YviNkt926R2Qji6oC2Ay2BMMAuYOys/GiuKSYoBpQP/mDE/d9p5eeyHL?=
+ =?us-ascii?Q?eWE29D5/BRrTdk5W5ERMIV+bO9otJU4vcuzSilKOGs72JDdkL/+nOA2nNUq5?=
+ =?us-ascii?Q?vzqm0Zr91ltSHSG5VorL8PtniFiRvvYupib9lHTRgOSgZjuylHGZLFBJ3dcy?=
+ =?us-ascii?Q?Qgwb91v/JYzGRzlc+ICcmctIq8emuwYLwyJIWaYk0UrXF01YFsNtVYYYl/f4?=
+ =?us-ascii?Q?9phiOBu96Y+0wwFVwIQbaN8h+WZi9QxqPWkH5uzekoxruCXqAVTdj3SzjR4H?=
+ =?us-ascii?Q?xpDbBNnajexpuubFRYyYydlDNCC6hIFAKJmFqLFx9LDZ34ejdMSS3wfNtEXA?=
+ =?us-ascii?Q?AZkz4xAb/7SIvnHsldabxLdI2LAvzuYCsDrCAlpvmsELkYFchjwktxjFyn0J?=
+ =?us-ascii?Q?zctnehQg6n/qpVgSmWE9uhaxC5b7AXcTQMjsIhs+EzW2Csg/mujOKIc/IMhs?=
+ =?us-ascii?Q?w/1TD3JMTeHtLE+io/bv1Q8nki/Ju5L9KHie36wXXhqaXh38lk8pbri9nln5?=
+ =?us-ascii?Q?KmW/K/UXIdKjvhZWatKQeKHPzDCe1z/MnmD4TKbMX36MdijYgiyvipbgZfOM?=
+ =?us-ascii?Q?iiFfgoGWeO0veKtmCWchPOj10sBpiQHqczVaw94zHZC/cF0e7U6oGA7QJHBl?=
+ =?us-ascii?Q?dnMahi5O2j+HFdrCsNByRT4zHEroWOAg8TrLVPq4EFFSeja4vOxY473DGXDd?=
+ =?us-ascii?Q?q6yIcmPGaagu9XgswR95XXuwkbvWL1qI6z2+iXuQSCk0+37pOyBiulYacAR8?=
+ =?us-ascii?Q?3bhehNKUmM48VXY/XLKaHLFqikq58vyJcoH+Z/nVjFT+LApr6j9AbD89Vna5?=
+ =?us-ascii?Q?pcZxqBmoLuFOIUlKQyiWXgplFeg1GvR+oV6DGFSKg9GLgW4ffQoYFrCG04Hb?=
+ =?us-ascii?Q?M0q66i/zkb9fiQQiYGRgIcc+B2gyjiSsQBsTslv6xa17apL/VVXuPsQfwPD7?=
+ =?us-ascii?Q?o2ZBELd4UGRVxvDhsOkBigNSAtqqOwkrCt9EVP/UF7pGRNalGgWAJTE1yKv1?=
+ =?us-ascii?Q?fRDsusp7qrX0fgjU0ipFiuULmUVZSmVDmLjQvZ0ZMv2moBhp0ra4N8Tndg9m?=
+ =?us-ascii?Q?nwVckRQRbBwDwjaj6VP6mcr9+Cm6XKG8Cr7G0DXtngpzSCUFTcRyPwYAoNEw?=
+ =?us-ascii?Q?pAScwICF8PnG2DvZ7TE/zJkyeldPvjxFZ6CxcUQTuBR2kfaHQjkzIcE8RDYv?=
+ =?us-ascii?Q?dEgQNXue2GSgIfiCJBQO/gof5FGox7HXm7d/W0SdwV3e4z5deeD1L8LJPl6c?=
+ =?us-ascii?Q?Z+Q4wdl6Y7cxFano29NZ5stf2lUIijKoWWcZD7MaYPTGHEeOKIjAbG+HwSv9?=
+ =?us-ascii?Q?bg6VMc6ahQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: YnXQAWT13kz1RE6bYmkdT2DkPgfy6kRMk9aRQiVw+Hl4SSWTBbqTSstVh4EBgXV3A4fkIGIvkyZd2uA9XqHgXwtefd8kjYM9hQBIUOLCVEQ4hGb0hOw6gDewNZHTpLVIfURVkHr7HFIj67KjiiDewdT5kPs3K6RHhoKw9BhxR2vlA797yXQGkYetIVo9figwImLBd4WslVY/j/hkc0wa7iLsCqELdd+V/rBggw/KC+b4NEMSxuMo4oicxWtMeGJ2jjuqqe2cdRVm1y7sdBSH1XuPx3zjOvWHG/CPeZK+QBJnoEkLJDnUfFyw0uYldfaaaYGYb4RTJYwcwbaaIsqKnA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51a9639c-1be5-474d-6f00-08dee0fa4c33
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 16:15:19.6674 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 16:17:56.2753 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JKe8lmE5iTdjXVmWXpk7gel1RJKxm/ZxXIPwuEg2m2kQBk3ilXLHJTGwH2GS1sWFpLjFQpznieGeZus6N/9i3w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB9510
+X-MS-Exchange-CrossTenant-UserPrincipalName: SNTxNlDi/R+XwVM3hExbhnqxFA6LTIyKx/+9wEAG7kLjqJ54TF18zczu8jkeuzVEkd2Gb/JDoBhhdRVqSB9tuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5787
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,22 +158,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Jul 12, 2026 at 08:00:06PM -0700, Niranjana Vishwanathapura wrote:
-> Harden guc_exec_queue_suspend_wait():
+On Sun, Jul 12, 2026 at 08:00:07PM -0700, Niranjana Vishwanathapura wrote:
+> Add a suspend_wait_blocking() exec queue op: an uninterruptible variant
+> of suspend_wait() for callers that must complete a suspend on behalf of a
+> queue that may belong to a different process than the calling task (e.g.
+> cleanup/undo paths). An interruptible suspend_wait() returns -ERESTARTSYS
+> when the calling task is signalled, which would leave the other process's
+> queue suspended forever - a cross-process DoS.
 > 
->  - In multi-queue mode the primary owns the group's GuC scheduling
->    context, so wait on the primary's suspend to complete.
-> 
->  - On timeout, ban the queue and trigger cleanup rather than leaving it
->    suspended forever. Clearing suspend_pending via __suspend_fence_signal()
->    lets a subsequent resume() proceed without tripping the
->    !suspend_pending assert. A timeout on the primary wedges the whole
->    group, so ban and tear down the entire group in the multi-queue case.
->    The ban/cleanup is factored into guc_exec_queue_suspend_timeout_ban().
-> 
-> Add a note that on a signal (-ERESTARTSYS) the queue is not banned and
-> the suspend is not confirmed complete, so callers must not resume()
-> without re-confirming.
+> The blocking variant waits uninterruptibly and, on a genuine GuC timeout,
+> bans and tears down the queue like suspend_wait() (shared via
+> guc_exec_queue_suspend_timeout_ban()). It deliberately does not handle VF
+> recovery since a blocking caller cannot retry.
 > 
 > Assisted-by: Github-Copilot:Claude-opus-4.8
 > Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -180,93 +177,100 @@ On Sun, Jul 12, 2026 at 08:00:06PM -0700, Niranjana Vishwanathapura wrote:
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/xe_guc_submit.c | 53 +++++++++++++++++++++++++++---
->  1 file changed, 49 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  9 ++++++
+>  drivers/gpu/drm/xe/xe_execlist.c         |  1 +
+>  drivers/gpu/drm/xe/xe_guc_submit.c       | 39 ++++++++++++++++++++++++
+>  3 files changed, 49 insertions(+)
 > 
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index dbb2ee8eb5de..0aa0823cbdaa 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -322,6 +322,15 @@ struct xe_exec_queue_ops {
+>  	 * avoidance mechanism.
+>  	 */
+>  	int (*suspend_wait)(struct xe_exec_queue *q);
+> +	/**
+> +	 * @suspend_wait_blocking: Like @suspend_wait, but waits uninterruptibly
+> +	 * (does not abort on the calling task's signals). For cleanup/undo paths
+> +	 * that must complete a suspend on behalf of a queue that may belong to a
+> +	 * different process than the caller: a signal to the caller must not
+> +	 * abandon the wait, which would leave the other process's queue
+> +	 * suspended forever (cross-process DoS). A timeout bans like suspend_wait.
+> +	 */
+> +	int (*suspend_wait_blocking)(struct xe_exec_queue *q);
+>  	/**
+>  	 * @resume: Resume exec queue execution, exec queue must be in a suspended
+>  	 * state and dma fence returned from most recent suspend call must be
+> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+> index 6b86b4f9cc1c..cc33ae80e8cf 100644
+> --- a/drivers/gpu/drm/xe/xe_execlist.c
+> +++ b/drivers/gpu/drm/xe/xe_execlist.c
+> @@ -468,6 +468,7 @@ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+>  	.set_preempt_timeout = execlist_exec_queue_set_preempt_timeout,
+>  	.suspend = execlist_exec_queue_suspend,
+>  	.suspend_wait = execlist_exec_queue_suspend_wait,
+> +	.suspend_wait_blocking = execlist_exec_queue_suspend_wait,
+>  	.resume = execlist_exec_queue_resume,
+>  	.reset_status = execlist_exec_queue_reset_status,
+>  };
 > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index cec3bbf3a10e..3ece51451f86 100644
+> index 3ece51451f86..de9c131fc62d 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -2202,12 +2202,53 @@ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
->  	return 0;
->  }
->  
-> +static void guc_exec_queue_suspend_timeout_ban(struct xe_exec_queue *q)
-> +{
-> +	struct xe_guc *guc = exec_queue_to_guc(q);
-> +
-> +	xe_gt_warn(guc_to_gt(guc),
-> +		   "Suspend fence, guc_id=%d, failed to respond, banning queue",
-> +		   q->guc->id);
-> +	/*
-> +	 * The GuC failed to respond to the suspend within the timeout. This is
-> +	 * not recoverable for this context, so ban it and tear it down via
-> +	 * cleanup rather than leave it suspended forever. __suspend_fence_signal
-> +	 * clears suspend_pending and wakes any waiter.
-> +	 *
-> +	 * @q is the primary here; it owns the group's GuC context, so a failure
-> +	 * to suspend it wedges the whole group. Ban and tear down the entire
-> +	 * group in the multi-queue case.
-> +	 */
-> +	if (xe_exec_queue_is_multi_queue(q)) {
-> +		set_exec_queue_group_banned(q);
-> +		__suspend_fence_signal(q);
-> +		xe_guc_exec_queue_group_trigger_cleanup(q);
-> +	} else {
-> +		set_exec_queue_banned(q);
-> +		__suspend_fence_signal(q);
-> +		xe_guc_exec_queue_trigger_cleanup(q);
-> +	}
-> +}
-> +
->  static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
->  {
->  	struct xe_guc *guc = exec_queue_to_guc(q);
->  	struct xe_device *xe = guc_to_xe(guc);
->  	int ret;
->  
-> +	/*
-> +	 * In multi-queue mode the primary owns the GuC scheduling context for
-> +	 * the whole group, so wait on the primary's suspend to complete. All
-> +	 * group members share the same GuC/device, so guc, xe and timeout above
-> +	 * are computed from @q directly.
-> +	 *
-> +	 * A secondary's suspend is short-circuited (no GuC round-trip) and, as
-> +	 * its SUSPEND message precedes the primary's on the shared FIFO
-> +	 * submit_wq, completes before the primary's. So waiting on the primary
-> +	 * is sufficient.
-> +	 */
-> +	q = xe_exec_queue_multi_queue_primary(q);
-> +
->  	/*
->  	 * Likely don't need to check exec_queue_killed() as we clear
->  	 * suspend_pending upon kill but to be paranoid but races in which
-> @@ -2230,10 +2271,7 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
->  		return -EAGAIN;
->  
->  	if (!ret) {
-> -		xe_gt_warn(guc_to_gt(guc),
-> -			   "Suspend fence, guc_id=%d, failed to respond",
-> -			   q->guc->id);
-> -		/* XXX: Trigger GT reset? */
-> +		guc_exec_queue_suspend_timeout_ban(q);
->  		return -ETIME;
->  	} else if (IS_SRIOV_VF(xe) && !WAIT_COND) {
->  		/* Corner case on RESFIX DONE where vf_recovery() changes */
-> @@ -2242,6 +2280,13 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
->  
->  #undef WAIT_COND
->  
-> +	/*
-> +	 * ret < 0 (-ERESTARTSYS): the interruptible wait was aborted by a
-> +	 * signal. The queue is not banned - the failure is in the waiter, not
-> +	 * the queue. The suspend is not confirmed complete, so suspend_pending
-> +	 * may still be set; callers must not resume() on this error without
-> +	 * re-confirming the suspend.
-> +	 */
+> @@ -2290,6 +2290,44 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
 >  	return ret < 0 ? ret : 0;
 >  }
 >  
+> +static int guc_exec_queue_suspend_wait_blocking(struct xe_exec_queue *q)
+> +{
+> +	struct xe_guc *guc = exec_queue_to_guc(q);
+> +	struct xe_device *xe = guc_to_xe(guc);
+> +	int ret;
+> +
+> +	/*
+> +	 * Uninterruptible variant of guc_exec_queue_suspend_wait() for callers
+> +	 * that must complete the wait on behalf of a queue possibly owned by a
+> +	 * different process (e.g. cleanup/undo paths). An interruptible wait
+> +	 * could return -ERESTARTSYS if the calling task is signalled, leaving
+> +	 * that queue suspended forever (cross-process DoS).
+> +	 *
+> +	 * A timeout is still a real per-queue fault, so it bans and cleans up
+> +	 * like suspend_wait(). VF recovery is deliberately not handled (no
+> +	 * -EAGAIN) since a blocking caller cannot retry.
+> +	 */
+> +	q = xe_exec_queue_multi_queue_primary(q);
+> +
+> +#define WAIT_COND \
+> +	(!READ_ONCE(q->guc->suspend_pending) ||	exec_queue_killed(q) || \
+> +	 xe_guc_read_stopped(guc))
+> +
+> +	if (IS_SRIOV_VF(xe))
+> +		ret = wait_event_timeout(guc->ct.wq, WAIT_COND, HZ * 5);
+> +	else
+> +		ret = wait_event_timeout(q->guc->suspend_wait, WAIT_COND, HZ * 5);
+> +
+> +#undef WAIT_COND
+> +
+> +	if (!ret) {
+> +		guc_exec_queue_suspend_timeout_ban(q);
+> +		return -ETIME;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static void guc_exec_queue_resume(struct xe_exec_queue *q)
+>  {
+>  	struct xe_gpu_scheduler *sched = &q->guc->sched;
+> @@ -2329,6 +2367,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+>  	.set_multi_queue_priority = guc_exec_queue_set_multi_queue_priority,
+>  	.suspend = guc_exec_queue_suspend,
+>  	.suspend_wait = guc_exec_queue_suspend_wait,
+> +	.suspend_wait_blocking = guc_exec_queue_suspend_wait_blocking,
+>  	.resume = guc_exec_queue_resume,
+>  	.reset_status = guc_exec_queue_reset_status,
+>  };
 > -- 
 > 2.43.0
 > 
