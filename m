@@ -4,46 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5E9AC44507
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 23:43:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9301C43458
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 23:46:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56B510E36F;
-	Mon, 13 Jul 2026 23:43:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A58F110E03B;
+	Mon, 13 Jul 2026 23:46:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Y4BTsTQO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aGRWF3/4";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EDC310E2E9;
- Mon, 13 Jul 2026 23:42:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=pofkKNf1ZRcJb2ob42/GV7t7rQSOQ/uhrVsYxEKCW3w=; b=Y4BTsTQOzs64IGvt91RoHXXAX3
- AxMQob614m6cTPY2JCUf2d32dPikKMTY63drguhpFPW2TKZXFe0tDCI9qnCGsVnsyTquILYGuOZ1R
- KLwI9DqbGj1lH+DSAL9Yp+psWYJ23aMMypSJljfztKAIbbgCzCh8lG+4seWVFZTTOxvX9mdCUzJzE
- A09fQjyqX0Tufu5DHQn45fttEV+XqiSIX4sKnP5081hv/x4lg9xVRiC0GG59R7mA3NsoCXqYT6rwU
- qPnwv0ba+apxMkS9ieH2+4/iHFjmxNDyMu+mmHWgVd49xZ9Ju1kNBwxUHsEUAHqIkFb0AtowNyYew
- G76zPhZg==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wjQIX-00Ej4M-FK; Tue, 14 Jul 2026 01:42:54 +0200
-From: John Harrison <John.Harrison@Igalia.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Uma Shankar <uma.shankar@intel.com>,
- Animesh Manna <animesh.manna@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2] drm/i915/display: Fix too few bits in transcoder mask
- variables
-Date: Mon, 13 Jul 2026 16:41:38 -0700
-Message-ID: <20260713234138.3861243-1-John.Harrison@Igalia.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 396D610E39D
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 23:46:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783986374; x=1815522374;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HBke8rca0nRfQv6WtUGPYuLhrQKfbbp8VZGbS/UcrB0=;
+ b=aGRWF3/4U5o4lCJe4HJJwxLq3q9h9tScW0GUlCQ3g8iwWjNatG4X4Ep0
+ ur8nOzPdAKrkhJmvFuxTtib0fcta9BJ2F7KxScQTjpTULKxti67Bnd7xW
+ gHqdSRc4GW6yD4M6ERPFwyGqKLHZAFgfYDH02jqocRDmwl5VtjzTysrR7
+ 2IA5RWopldlbRD2kVSfrEY0ryqq9ULY6dLyxGpsTH6tyMYxEJvJQf/OHW
+ wi1qYCOqmQgqjlDu34Ol2mg5VxyUk49pmp02NvVjCVTTvuaysHmOnUQ9D
+ DPrM+Rs+sNPliWY8VZBnvp/L5FrR9fOUHIVikQtTr8URhIMy36rvuezwS w==;
+X-CSE-ConnectionGUID: /aNlYOhhQy67wLUcFXAcKg==
+X-CSE-MsgGUID: D8dTXElrR22UHHqZBT9bHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95207235"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95207235"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 16:46:13 -0700
+X-CSE-ConnectionGUID: 1WZIo7qYRUqvgYzrZaNBGA==
+X-CSE-MsgGUID: vddhUCKWQpiNStf/DpmgyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="293879206"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 16:46:13 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Carlos Santa <carlos.santa@intel.com>,
+	Ryan Neph <ryanneph@google.com>
+Subject: [PATCH 2/2] drm/xe: Set BO TTM priority based on VM exec queue
+ priority band
+Date: Mon, 13 Jul 2026 16:46:06 -0700
+Message-Id: <20260713234606.3367215-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260713234606.3367215-1-matthew.brost@intel.com>
+References: <20260713234606.3367215-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -60,245 +68,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-New transcoder enum values (for CMTG) were recently added which pushed
-the maximum transcoder mask beyond 8bits. The patch in question
-updated the info structure's u8 to u16 but not any of the functions
-that process transcoder masks. So fix those as well.
+Add XE_BO_PRIORITY_LOW/HIGH/HIGHEST defines alongside the existing
+XE_BO_PRIORITY_NORMAL, and use them in xe_bo_init_locked() to select
+the TTM LRU priority for a newly created bo.
 
-v2: Fix more instances (found by Sashiko)
+Kernel internal buffers (non ttm_bo_type_device) and buffers that can
+be shared cross-process, i.e. not private to a single VM (no VM
+pointer available), should not be evicted ahead of user buffers, so
+they are always given the highest priority. For buffers private to a
+user VM, prioritize the buffer based on the highest priority band of
+any exec queue userspace has created against that VM, since that
+reflects the importance userspace has assigned to work using the VM:
 
-Signed-off-by: John Harrison <John.Harrison@Igalia.com>
-Fixes: 789dda6429e0 ("drm/i915/cmtg: Add CMTG transcoder offset in struct _device_info")
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+ - ttm_bo_type != ttm_bo_type_device, or no VM: XE_BO_PRIORITY_HIGHEST
+ - VM with a HIGH priority exec queue: XE_BO_PRIORITY_HIGH
+ - VM with a NORMAL priority exec queue: XE_BO_PRIORITY_NORMAL
+ - VM with a LOW priority exec queue: XE_BO_PRIORITY_LOW
+ - VM with no exec queues at all: XE_BO_PRIORITY_NORMAL
+
+This relies on the per-priority-band exec queue counts tracked in
+vm->exec_queues.priority_count, read under vm->exec_queues.lock in
+read mode. xe_bo_init_locked() now takes a struct xe_vm * parameter;
+all callers that create ttm_bo_type_kernel/ttm_bo_type_sg bos pass
+NULL since they always get XE_BO_PRIORITY_HIGHEST regardless.
+
+Cc: Carlos Santa <carlos.santa@intel.com>
+Cc: Ryan Neph <ryanneph@google.com>
+Assisted-by: GitHub_Copilot:claude-sonnet-5
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c      |  6 ++---
- drivers/gpu/drm/i915/display/intel_display.c  | 22 +++++++++----------
- .../drm/i915/display/intel_display_types.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  4 ++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 +-
- .../drm/i915/display/intel_modeset_setup.c    | 18 +++++++--------
- 6 files changed, 27 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c       | 28 +++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_bo.h       |  3 ++-
+ drivers/gpu/drm/xe/xe_bo_types.h |  3 +++
+ drivers/gpu/drm/xe/xe_dma_buf.c  |  2 +-
+ 4 files changed, 29 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 2b7eb010511b..617106c68cb4 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4563,7 +4563,7 @@ static bool crtcs_port_sync_compatible(const struct intel_crtc_state *crtc_state
- 		m_n_equal(&crtc_state1->dp_m_n, &crtc_state2->dp_m_n);
- }
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 85e6d9a0f575..9da75ade8eaf 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1346,7 +1346,8 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
+ 		if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+ 			break;
  
--static u8
-+static u16
- intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
- 				int tile_group_id)
- {
-@@ -4572,7 +4572,7 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
- 	const struct drm_connector_state *conn_state;
- 	struct intel_atomic_state *state =
- 		to_intel_atomic_state(ref_crtc_state->uapi.state);
--	u8 transcoders = 0;
-+	u16 transcoders = 0;
- 	int i;
+-		backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
++		backup = xe_bo_init_locked(xe, NULL, NULL, NULL, bo->ttm.base.resv, NULL,
++					   xe_bo_size(bo),
+ 					   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+ 					   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+ 					   XE_BO_FLAG_PINNED, &exec);
+@@ -1486,7 +1487,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+ 			break;
  
- 	/*
-@@ -4616,7 +4616,7 @@ static int intel_ddi_compute_config_late(struct intel_atomic_state *state,
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_connector *connector = conn_state->connector;
--	u8 port_sync_transcoders = 0;
-+	u16 port_sync_transcoders = 0;
- 	int ret = 0;
- 
- 	if (intel_crtc_has_dp_encoder(crtc_state))
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 214454f419e9..38763a6802c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3767,9 +3767,9 @@ static void enabled_joiner_pipes(struct intel_display *display,
- 	}
- }
- 
--static u8 hsw_panel_transcoders(struct intel_display *display)
-+static u16 hsw_panel_transcoders(struct intel_display *display)
- {
--	u8 panel_transcoder_mask = BIT(TRANSCODER_EDP);
-+	u16 panel_transcoder_mask = BIT(TRANSCODER_EDP);
- 
- 	if (DISPLAY_VER(display) >= 11)
- 		panel_transcoder_mask |= BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1);
-@@ -3777,13 +3777,13 @@ static u8 hsw_panel_transcoders(struct intel_display *display)
- 	return panel_transcoder_mask;
- }
- 
--static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
-+static u16 hsw_enabled_transcoders(struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	u8 panel_transcoder_mask = hsw_panel_transcoders(display);
-+	u16 panel_transcoder_mask = hsw_panel_transcoders(display);
- 	enum transcoder cpu_transcoder;
- 	u8 primary_pipe, secondary_pipes;
--	u8 enabled_transcoders = 0;
-+	u16 enabled_transcoders = 0;
- 
- 	/*
- 	 * XXX: Do intel_display_power_get_if_enabled before reading this (for
-@@ -3844,18 +3844,18 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
- 	return enabled_transcoders;
- }
- 
--static bool has_edp_transcoders(u8 enabled_transcoders)
-+static bool has_edp_transcoders(u16 enabled_transcoders)
- {
- 	return enabled_transcoders & BIT(TRANSCODER_EDP);
- }
- 
--static bool has_dsi_transcoders(u8 enabled_transcoders)
-+static bool has_dsi_transcoders(u16 enabled_transcoders)
- {
- 	return enabled_transcoders & (BIT(TRANSCODER_DSI_0) |
- 				      BIT(TRANSCODER_DSI_1));
- }
- 
--static bool has_pipe_transcoders(u8 enabled_transcoders)
-+static bool has_pipe_transcoders(u16 enabled_transcoders)
- {
- 	return enabled_transcoders & ~(BIT(TRANSCODER_EDP) |
- 				       BIT(TRANSCODER_DSI_0) |
-@@ -3863,7 +3863,7 @@ static bool has_pipe_transcoders(u8 enabled_transcoders)
- }
- 
- static void assert_enabled_transcoders(struct intel_display *display,
--				       u8 enabled_transcoders)
-+				       u16 enabled_transcoders)
- {
- 	/* Only one type of transcoder please */
- 	drm_WARN_ON(display->drm,
-@@ -5880,7 +5880,7 @@ static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
- }
- 
- static bool intel_cpu_transcoders_need_modeset(struct intel_atomic_state *state,
--					       u8 transcoders)
-+					       u16 transcoders)
- {
- 	const struct intel_crtc_state *new_crtc_state;
- 	struct intel_crtc *crtc;
-@@ -6516,7 +6516,7 @@ int intel_atomic_check(struct drm_device *dev,
+ 		if (!backup) {
+-			backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL,
++			backup = xe_bo_init_locked(xe, NULL, NULL, NULL, bo->ttm.base.resv, NULL,
+ 						   xe_bo_size(bo),
+ 						   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+ 						   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+@@ -2276,6 +2277,9 @@ void xe_bo_free(struct xe_bo *bo)
+  * if the function should allocate a new one.
+  * @tile: The tile to select for migration of this bo, and the tile used for
+  * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel bos.
++ * @vm: The VM this bo will be associated with, used to determine the bo's
++ * TTM LRU priority based on the priority band of the VM's exec queues, or
++ * NULL if the bo is not associated with a user VM.
+  * @resv: Pointer to a locked shared reservation object to use for this bo,
+  * or NULL for the xe_bo to use its own.
+  * @bulk: The bulk move to use for LRU bumping, or NULL for external bos.
+@@ -2291,7 +2295,8 @@ void xe_bo_free(struct xe_bo *bo)
+  * Return: The buffer object on success. Negative error pointer on failure.
+  */
+ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+-				struct xe_tile *tile, struct dma_resv *resv,
++				struct xe_tile *tile, struct xe_vm *vm,
++				struct dma_resv *resv,
+ 				struct ttm_lru_bulk_move *bulk, size_t size,
+ 				u16 cpu_caching, enum ttm_bo_type type,
+ 				u32 flags, struct drm_exec *exec)
+@@ -2353,7 +2358,20 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	bo->flags = flags;
+ 	bo->cpu_caching = cpu_caching;
+ 	bo->ttm.base.funcs = &xe_gem_object_funcs;
+-	bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
++	if (type != ttm_bo_type_device || !vm) {
++		bo->ttm.priority = XE_BO_PRIORITY_HIGHEST;
++	} else {
++		down_read(&vm->exec_queues.lock);
++		if (vm->exec_queues.priority_count[XE_EXEC_QUEUE_PRIORITY_HIGH])
++			bo->ttm.priority = XE_BO_PRIORITY_HIGH;
++		else if (vm->exec_queues.priority_count[XE_EXEC_QUEUE_PRIORITY_NORMAL])
++			bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
++		else if (vm->exec_queues.priority_count[XE_EXEC_QUEUE_PRIORITY_LOW])
++			bo->ttm.priority = XE_BO_PRIORITY_LOW;
++		else
++			bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
++		up_read(&vm->exec_queues.lock);
++	}
+ 	INIT_LIST_HEAD(&bo->pinned_link);
+ #ifdef CONFIG_PROC_FS
+ 	INIT_LIST_HEAD(&bo->client_link);
+@@ -2496,7 +2514,7 @@ __xe_bo_create_locked(struct xe_device *xe,
  		}
+ 	}
  
- 		if (is_trans_port_sync_mode(new_crtc_state)) {
--			u8 trans = new_crtc_state->sync_mode_slaves_mask;
-+			u16 trans = new_crtc_state->sync_mode_slaves_mask;
+-	bo = xe_bo_init_locked(xe, bo, tile, vm ? xe_vm_resv(vm) : NULL,
++	bo = xe_bo_init_locked(xe, bo, tile, vm, vm ? xe_vm_resv(vm) : NULL,
+ 			       vm && !xe_vm_in_fault_mode(vm) &&
+ 			       flags & XE_BO_FLAG_USER ?
+ 			       &vm->lru_bulk_move : NULL, size,
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 6340317f7d2e..12625740a47a 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -115,7 +115,8 @@ struct xe_bo *xe_bo_alloc(void);
+ void xe_bo_free(struct xe_bo *bo);
  
- 			if (new_crtc_state->master_transcoder != INVALID_TRANSCODER)
- 				trans |= BIT(new_crtc_state->master_transcoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index c048da7d6fea..8bd213db5e7a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1372,7 +1372,7 @@ struct intel_crtc_state {
- 	enum transcoder master_transcoder;
+ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+-				struct xe_tile *tile, struct dma_resv *resv,
++				struct xe_tile *tile, struct xe_vm *vm,
++				struct dma_resv *resv,
+ 				struct ttm_lru_bulk_move *bulk, size_t size,
+ 				u16 cpu_caching, enum ttm_bo_type type,
+ 				u32 flags, struct drm_exec *exec);
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index fcc63ae3f455..95904b03c71f 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -24,7 +24,10 @@ struct xe_vm;
+ #define XE_BO_MAX_PLACEMENTS	3
  
- 	/* Bitmask to indicate slaves attached */
--	u8 sync_mode_slaves_mask;
-+	u16 sync_mode_slaves_mask;
+ /* TODO: To be selected with VM_MADVISE */
++#define	XE_BO_PRIORITY_LOW	0
+ #define	XE_BO_PRIORITY_NORMAL	1
++#define	XE_BO_PRIORITY_HIGH	2
++#define	XE_BO_PRIORITY_HIGHEST	3
  
- 	/* Only valid on TGL+ */
- 	enum transcoder mst_master_transcoder;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ade7e51e7590..799dca78767b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6583,7 +6583,7 @@ static int intel_modeset_tile_group(struct intel_atomic_state *state,
- 	return ret;
- }
+ /**
+  * struct xe_bo - Xe buffer object
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 8a920e58245c..a80831fabd1d 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -300,7 +300,7 @@ xe_dma_buf_create_obj(struct drm_device *dev, struct dma_buf *dma_buf)
+ 		if (ret)
+ 			break;
  
--static int intel_modeset_affected_transcoders(struct intel_atomic_state *state, u8 transcoders)
-+static int intel_modeset_affected_transcoders(struct intel_atomic_state *state, u16 transcoders)
- {
- 	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc *crtc;
-@@ -6631,7 +6631,7 @@ static int intel_modeset_synced_crtcs(struct intel_atomic_state *state,
- 		drm_atomic_get_old_connector_state(&state->base, &connector->base);
- 	const struct intel_crtc_state *old_crtc_state;
- 	struct intel_crtc *crtc;
--	u8 transcoders;
-+	u16 transcoders;
- 
- 	crtc = to_intel_crtc(old_conn_state->crtc);
- 	if (!crtc)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index ecc90e8faee1..507e2156d905 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -776,7 +776,7 @@ intel_dp_mst_transcoder_mask(struct intel_atomic_state *state,
- 	struct intel_display *display = to_intel_display(state);
- 	const struct intel_digital_connector_state *conn_state;
- 	struct intel_connector *connector;
--	u8 transcoders = 0;
-+	u16 transcoders = 0;
- 	int i;
- 
- 	if (DISPLAY_VER(display) < 12)
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index e8730b5baf2a..e27a531e1aa2 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -186,11 +186,11 @@ static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
-  * Return all the pipes using a transcoder in @transcoder_mask.
-  * For joiner configs return only the joiner primary.
-  */
--static u8 get_transcoder_pipes(struct intel_display *display,
--			       u8 transcoder_mask)
-+static u16 get_transcoder_pipes(struct intel_display *display,
-+				u16 transcoder_mask)
- {
- 	struct intel_crtc *temp_crtc;
--	u8 pipes = 0;
-+	u16 pipes = 0;
- 
- 	for_each_intel_crtc(display, temp_crtc) {
- 		struct intel_crtc_state *temp_crtc_state =
-@@ -214,7 +214,7 @@ static u8 get_transcoder_pipes(struct intel_display *display,
-  * For joiner configs return only the joiner primary pipes.
-  */
- static void get_portsync_pipes(struct intel_crtc *crtc,
--			       u8 *master_pipe_mask, u8 *slave_pipes_mask)
-+			       u16 *master_pipe_mask, u16 *slave_pipes_mask)
- {
- 	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_crtc_state *crtc_state =
-@@ -243,10 +243,10 @@ static void get_portsync_pipes(struct intel_crtc *crtc,
- 	*slave_pipes_mask = get_transcoder_pipes(display, master_crtc_state->sync_mode_slaves_mask);
- }
- 
--static u8 get_joiner_secondary_pipes(struct intel_display *display, u8 primary_pipes_mask)
-+static u16 get_joiner_secondary_pipes(struct intel_display *display, u16 primary_pipes_mask)
- {
- 	struct intel_crtc *primary_crtc;
--	u8 pipes = 0;
-+	u16 pipes = 0;
- 
- 	for_each_intel_crtc_in_pipe_mask(display, primary_crtc, primary_pipes_mask) {
- 		struct intel_crtc_state *primary_crtc_state =
-@@ -263,9 +263,9 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
- {
- 	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_crtc *temp_crtc;
--	u8 portsync_master_mask;
--	u8 portsync_slaves_mask;
--	u8 joiner_secondaries_mask;
-+	u16 portsync_master_mask;
-+	u16 portsync_slaves_mask;
-+	u16 joiner_secondaries_mask;
- 
- 	/* TODO: Add support for MST */
- 	get_portsync_pipes(crtc, &portsync_master_mask, &portsync_slaves_mask);
+-		bo = xe_bo_init_locked(xe, NULL, NULL, resv, NULL, dma_buf->size,
++		bo = xe_bo_init_locked(xe, NULL, NULL, NULL, resv, NULL, dma_buf->size,
+ 				       0, /* Will require 1way or 2way for vm_bind */
+ 				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, &exec);
+ 		drm_exec_retry_on_contention(&exec);
 -- 
-2.43.0
+2.34.1
 
