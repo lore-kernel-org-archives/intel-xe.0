@@ -4,65 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B633C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:37:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23B02C43458
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:40:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BBFB10E5DF;
-	Mon, 13 Jul 2026 13:37:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2D2810E5E2;
+	Mon, 13 Jul 2026 13:40:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WK49smQa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jsQ7Fbs5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD02F10E5DF;
- Mon, 13 Jul 2026 13:37:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F278C10E5D2
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 13:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783949874; x=1815485874;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=VaiiiSXA2tW300f95CVO5r2r91ZNzT/rX9FcMVLNutU=;
- b=WK49smQa+KReNNkJ3IAis6IvBcfGiX2g4ML5dDAIkHcfYrOxyrKaPKnE
- uKOZZRZDMbfp83TGrl918LW88mlj/7Bs7AcVnp0ScpgzofeComjWu+mpT
- UwH55uwuXD0D0fB5PsZgTzW7+dikZ3E5o73b5RqgzA2WOUGUB07sW+3MT
- kfNVQYWoQF0h53m9B31iLteABnk1sneBc5P9E//5vhQjSiJLwP5IAlMge
- rsVRYSmNwgZcVwkEM9yVAVTf8QpEzKocKFSGkN7Gw4aIMHtECQAk1ZWXl
- Ec86MkrOiDoILTZcnl7eQxfxXTt5Kr6o3+vgrSjihEPU/AaQgugW5DbJM A==;
-X-CSE-ConnectionGUID: w/Vy8ZTCT4ugXP70gHqFow==
-X-CSE-MsgGUID: SYnIpAUuQRyoY/HZoCIizA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84575423"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84575423"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 06:37:53 -0700
-X-CSE-ConnectionGUID: 20sOKCn8QNu8nTRGvYmkZw==
-X-CSE-MsgGUID: faqOZqR9RkWWTfO7sIXQsw==
+ t=1783950005; x=1815486005;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Rfcv60+zcBux+F6qE+tHxn6kMuVdT65M4ZxcWk8VIKs=;
+ b=jsQ7Fbs5VAzY0t3Tdd3U0q1uRI3+xX9qFF1+Yo2rZNa2UJQMFCM9AMGd
+ adsALLVs4a+qfDorwRG0y9TSPwMsvp/uUquywArTUv/CRwXIQaZAn6wxi
+ QXyDj0Mjibte3usQtqQrpAGB/13Df0hNXeEBSx4M3nrkZlJaTUJoj2P1O
+ /MU2+wxGwembbS0KPaI3Rc3ly+NdY6QKbUT4N/oVBqRSfHgwwUXT4Autw
+ U5oTuOMOzKKfFTFwtiVn1z1sDwvy5EcysZZhPfIF4vqyERKABU9aO6fFg
+ JR+fLBaQ+D2d1MWIsDnFHs75NMRSguClgIU/sJMkzwAYUmhIgiOxOvWxY A==;
+X-CSE-ConnectionGUID: HIOiI3BIQNOSBEYv6TLJtA==
+X-CSE-MsgGUID: PjdXIr28Q7GYpFOtHajlHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88382304"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88382304"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 06:39:56 -0700
+X-CSE-ConnectionGUID: qTDdhE1SQQqbPd2oz27fQg==
+X-CSE-MsgGUID: 1E+hLMGMQYm41K4Rqqv4Ug==
 X-ExtLoop1: 1
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.123])
- ([10.245.245.123])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 06:37:50 -0700
-Message-ID: <856018c9da5bbc03eba0e7fd5862c6b9567c695a.camel@linux.intel.com>
-Subject: Re: [PATCH 10/12] drm/exec: add drm_exec_lock_resv function
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- dakr@kernel.org, ecourtney@nvidia.com, simona@ffwll.ch,
- matthew.brost@intel.com, 	nat@pixelcluster.dev, airlied@gmail.com,
- dri-devel@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Date: Mon, 13 Jul 2026 15:37:48 +0200
-In-Reply-To: <ff8e2004-366b-447a-b1b2-504e1cbcb265@amd.com>
-References: <20260710190752.2355-1-christian.koenig@amd.com>
- <20260710190752.2355-11-christian.koenig@amd.com>
- <0cfc1913440ce8f19f715f5df7faa23dc1164755.camel@linux.intel.com>
- <bda9ac0e-cca5-4262-94e1-d048c470c3af@amd.com>
- <60e358ad5babca098e4ae20fa89703988fda64f2.camel@linux.intel.com>
- <ff8e2004-366b-447a-b1b2-504e1cbcb265@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="252927666"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa008.fm.intel.com with ESMTP; 13 Jul 2026 06:39:53 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v10] drm/xe: Consolidate debugfs fault injection functions.
+Date: Mon, 13 Jul 2026 19:06:12 +0530
+Message-ID: <20260713133611.262732-2-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,373 +67,267 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-07-13 at 15:14 +0200, Christian K=C3=B6nig wrote:
-> On 7/13/26 14:19, Thomas Hellstr=C3=B6m wrote:
-> > On Mon, 2026-07-13 at 14:07 +0200, Christian K=C3=B6nig wrote:
-> > > On 7/13/26 13:57, Thomas Hellstr=C3=B6m wrote:
-> > > > On Fri, 2026-07-10 at 20:52 +0200, Christian K=C3=B6nig wrote:
-> > > > > Restructure the drm_exec object to work with dma_resv
-> > > > > references
-> > > > > instead
-> > > > > of GEM object references.
-> > > > >=20
-> > > > > Add the new function dma_exec_lock_resv() to lock individual
-> > > > > dma_resv
-> > > > > objects and so allow higher level implementations to handle
-> > > > > contention
-> > > > > purely on dma_resv objects.
-> > > > >=20
-> > > > > WIP! Don't commit like that!
-> > > > >=20
-> > > > > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > >=20
-> > > > Here, IMO we should move a dma-resv based implementation to
-> > > > dma-buf
-> > > > to
-> > > > facilitate passing it also through dma_buf_map(),
-> > >=20
-> > > I still don't see why that would be necessary?
-> > >=20
-> > > dma_buf_map() just maps the current location of the buffer, it
-> > > has no
-> > > requirement to force the buffer into VRAM.
-> > >=20
-> > > At least on amdgpu we always validate buffer during dma_buf_map()
-> > > with VRAM|GTT, so we never cause any eviction at all.
-> >=20
-> > For fast interconnects xe wants to avoid pinning in VRAM and needs
-> > a
-> > more aggressive validation. If you have a bunch of processes using
-> > WW
-> > transactions to lock out others from VRAM allocation with one
-> > process
-> > not participating that wouldn't work out well.
-> >=20
-> > > =C2=A0
-> > > > And if wanting to avoid rewriting all users of drm_exec, Make
-> > > > drm_exec
-> > > > a thin wrapper on top.
-> > >=20
-> > > DMA-buf looks like the wrong place for this since it only works
-> > > on
-> > > exported buffers and that should be the absolute minority.
-> > >=20
-> > > We could have a dma-resv contention tracking helper, but I still
-> > > don't see for what that would be good for?
-> >=20
-> > See the above. The problem is that the WW transaction always starts
-> > with a drm_exec on the importer side and it needs to be the same
-> > structure that holds the contended lock on rollback.
-> >=20
-> > What are the issues you are seeing?
->=20
-> Mhm, there had been quite some discussion on that topic in the past
-> and so far the result was usually that this shouldn't be necessary.
->=20
-> On the other hand with a reference counted dma_resv object it should
-> be technically doable and the past discussions have already been
-> years ago with quite a bunch of different requirements.
+The fault injection code was scattered: the GT reset
+hook lived in xe_gt.h as an inline function with its own global
+variable, the CSC hook had a separate global in xe_hw_error.c with
+an extern declaration, and each was individually registered in
+xe_debugfs.c. Adding a new error type meant editing many files and
+copy-pasting the same boilerplate.
 
-Yeah, IIRC the main argument was that for various reasons neither the
-WW mutex nor the dma_resv had a refcount, so either one had to use an
-ops (like my rfc) or attach a refcount to the drm_resv or ww_mutex,
-like the series under discussion.
+Debugfs interface (under /sys/kernel/debug/dri/0/):
+ - fail_gt_reset         - GT reset failure
+ - inject_csc_hw_error   - CSC firmware error
 
->=20
-> For dma_buf_map() I still don't see the use case, cause that function
-> is really "give me access to the current location of the buffer" it
-> should not move the buffer. If the exporter needs the buffer in a
-> different location later on it can still do so.
->=20
-> But for dma_buf_pin() it might be perfectly valid to kick out other
-> buffers and then I agree that definately needs to ww locking context.
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+---
+v2:
+- Add multiple platform support. (Vinay)
+- Handle VF properly.
+- Rename to XE_FAULT_GT_RESET/XE_FAULT_CSC_HW_ERROR and
+  create xe_fault_inject_types.h file including those name.
 
-OK, so xe has always seen the dma_buf_map() as the dma-buf equivalent
-of ttm_bo_validate() + dma_mapping. The main reason for that is the
-pairing with what was previously known as move_notify. If the map was
-invalidated, you'd release it and when you needed it again, you called
-dma_buf_map(), and if p2p was requested, the exporter moved the dma_buf
-to vram if all attachments supported it.
+v3:
+- Solved patch apply issue on tip.
 
-Pinning would create the awkwardness of having to pin and then
-immediately unpin again.
+v4:
+- Add proper header file.
 
-But regardless of what dma_buf interface we use for this, or perhaps
-agree on a new interface, the functionality will be needed, and since
-with refcounted dma_resv, this is more of a move than a
-reimplementation, I think we should do it now or agree to do it as a
-follow-up.
+v5:
+- Properly refer FAULT_ATTR_INITIALIZER. (Vinay)
+- Change xe_fault_inject_descs to xe_fault_inject_entry.
+- Change 2025 to 2026.
 
-Thanks,
-Thomas
+v6:
+- Change return comments of xe_fault_inject(). (Riana)
+- Remove full description of xe_fault_inject_debugfs_register().
 
+v7:
+- Move all fault inject helper functions in xe_debugfs.c (Riana)
+- Update commit message.
 
+v8:
+- Assign .attr pointer with DECLARE_FAULT_ATTR macro. (Riana)
+- Remove CONFIG_FAULT_INJECTION block.
 
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > /Thomas
-> >=20
-> >=20
-> > >=20
-> > > Regards,
-> > > Christian.
-> > >=20
-> > > >=20
-> > > > Thanks,
-> > > > Thomas
-> > > >=20
-> > > >=20
-> > > >=20
-> > > > > ---
-> > > > > =C2=A0drivers/gpu/drm/drm_exec.c | 75 ++++++++++++++++++++++-----=
+v9:
+- Add single availability callback.
+- Make an abstracted function. (Riana)
+- Fix xe_fault_inject_entry struct.
+
+v10:
+- Swap attr and is_visible in xe_fault_inject_entry.
+- Add is_visible instead of available. (Riana)
+- Add FAULT_ACTION macro.
+---
+ drivers/gpu/drm/xe/xe_debugfs.c  | 46 +++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_debugfs.h  |  5 ++++
+ drivers/gpu/drm/xe/xe_gt.c       |  5 ++--
+ drivers/gpu/drm/xe/xe_gt.h       |  8 ------
+ drivers/gpu/drm/xe/xe_hw_error.c | 11 ++------
+ 5 files changed, 53 insertions(+), 22 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 8c391c7b017a..1fabb0b8d198 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_debugfs.h"
+ 
++#include <linux/bits.h>
+ #include <linux/debugfs.h>
+ #include <linux/fault-inject.h>
+ #include <linux/string_helpers.h>
+@@ -42,6 +43,47 @@
+ DECLARE_FAULT_ATTR(gt_reset_failure);
+ DECLARE_FAULT_ATTR(inject_csc_hw_error);
+ 
++static bool csc_hw_error_available(struct xe_device *xe)
++{
++	return !IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE;
++}
++
++static struct {
++	const char *name;
++	struct fault_attr *attr;
++	bool (*is_visible)(struct xe_device *xe);
++} xe_fault_inject_entry[] = {
++	{ .name = "fail_gt_reset",
++	  .attr = &gt_reset_failure },
++	{ .name = "inject_csc_hw_error",
++	  .attr = &inject_csc_hw_error,
++	  .is_visible = csc_hw_error_available },
++};
++
++#define FAULT_ACTION(name, fault_attr)			\
++bool xe_fault_##name(void)				\
++{							\
++	return should_fail(&(fault_attr), 1);		\
++}
++
++FAULT_ACTION(gt_reset, gt_reset_failure)
++FAULT_ACTION(csc_hw_error, inject_csc_hw_error)
++
++static void xe_fault_inject_debugfs_register(struct xe_device *xe,
++					     struct dentry *root)
++{
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(xe_fault_inject_entry); i++) {
++		if (xe_fault_inject_entry[i].is_visible &&
++		    !xe_fault_inject_entry[i].is_visible(xe))
++			continue;
++
++		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
++					  xe_fault_inject_entry[i].attr);
++	}
++}
++
+ static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+ 				   u32 offset, const char *name, struct drm_printer *p)
+ {
+@@ -583,8 +625,6 @@ void xe_debugfs_register(struct xe_device *xe)
+ 		drm_debugfs_create_files(debugfs_residencies,
+ 					 ARRAY_SIZE(debugfs_residencies),
+ 					 root, minor);
+-		fault_create_debugfs_attr("inject_csc_hw_error", root,
+-					  &inject_csc_hw_error);
+ 	}
+ 
+ 	/*
+@@ -642,7 +682,7 @@ void xe_debugfs_register(struct xe_device *xe)
+ 
+ 	xe_psmi_debugfs_register(xe);
+ 
+-	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
++	xe_fault_inject_debugfs_register(xe, root);
+ 
+ 	if (IS_SRIOV_PF(xe))
+ 		xe_sriov_pf_debugfs_register(xe, root);
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
+index 17f4c2f1b5e4..e8e65f2507cb 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.h
++++ b/drivers/gpu/drm/xe/xe_debugfs.h
+@@ -6,8 +6,13 @@
+ #ifndef _XE_DEBUGFS_H_
+ #define _XE_DEBUGFS_H_
+ 
++#include <linux/types.h>
++
+ struct xe_device;
+ 
++bool xe_fault_gt_reset(void);
++bool xe_fault_csc_hw_error(void);
++
+ #ifdef CONFIG_DEBUG_FS
+ void xe_debugfs_register(struct xe_device *xe);
+ #else
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index d904527a8898..dfdacc0f6de9 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -21,6 +21,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "xe_assert.h"
+ #include "xe_bb.h"
++#include "xe_debugfs.h"
+ #include "xe_device.h"
+ #include "xe_eu_stall.h"
+ #include "xe_exec_queue.h"
+@@ -926,7 +927,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 
+ 	xe_gt_info(gt, "reset started\n");
+ 
+-	if (xe_fault_inject_gt_reset()) {
++	if (xe_fault_gt_reset()) {
+ 		err = -ECANCELED;
+ 		goto err_fail;
+ 	}
+@@ -986,7 +987,7 @@ void xe_gt_reset_async(struct xe_gt *gt)
+ 		return;
+ 
+ 	/* Don't do a reset while one is already in flight */
+-	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
++	if (!xe_fault_gt_reset() && xe_uc_reset_prepare(&gt->uc))
+ 		return;
+ 
+ 	xe_gt_info(gt, "reset queued from %ps\n", __builtin_return_address(0));
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index a6cfaa1af23f..65a4655b0994 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -6,8 +6,6 @@
+ #ifndef _XE_GT_H_
+ #define _XE_GT_H_
+ 
+-#include <linux/fault-inject.h>
 -
-> > > > > ----
-> > > > > ----
-> > > > > --
-> > > > > =C2=A0drivers/gpu/drm/drm_gem.c=C2=A0 |=C2=A0 2 +
-> > > > > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 9 ++=
-+--
-> > > > > =C2=A03 files changed, 50 insertions(+), 36 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/drm_exec.c
-> > > > > b/drivers/gpu/drm/drm_exec.c
-> > > > > index fa923852fae45..382bf7bcd5ff3 100644
-> > > > > --- a/drivers/gpu/drm/drm_exec.c
-> > > > > +++ b/drivers/gpu/drm/drm_exec.c
-> > > > > @@ -58,8 +58,11 @@ static void drm_exec_unlock_all(struct
-> > > > > drm_exec
-> > > > > *exec)
-> > > > > =C2=A0		drm_gem_object_put(obj);
-> > > > > =C2=A0	}
-> > > > > =C2=A0
-> > > > > -	drm_gem_object_put(exec->prelocked);
-> > > > > -	exec->prelocked =3D NULL;
-> > > > > +	if (exec->prelocked) {
-> > > > > +		dma_resv_unlock(exec->prelocked);
-> > > > > +		dma_resv_put(exec->prelocked);
-> > > > > +		exec->prelocked =3D NULL;
-> > > > > +	}
-> > > > > =C2=A0}
-> > > > > =C2=A0
-> > > > > =C2=A0/**
-> > > > > @@ -101,7 +104,7 @@ void drm_exec_fini(struct drm_exec *exec)
-> > > > > =C2=A0	drm_exec_unlock_all(exec);
-> > > > > =C2=A0	kvfree(exec->objects);
-> > > > > =C2=A0	if (exec->contended !=3D DRM_EXEC_DUMMY) {
-> > > > > -		drm_gem_object_put(exec->contended);
-> > > > > +		dma_resv_put(exec->contended);
-> > > > > =C2=A0		ww_acquire_fini(&exec->ticket);
-> > > > > =C2=A0	}
-> > > > > =C2=A0}
-> > > > > @@ -158,50 +161,41 @@ static int drm_exec_obj_locked(struct
-> > > > > drm_exec
-> > > > > *exec,
-> > > > > =C2=A0/* Make sure the contended object is locked first */
-> > > > > =C2=A0static int drm_exec_lock_contended(struct drm_exec *exec)
-> > > > > =C2=A0{
-> > > > > -	struct drm_gem_object *obj =3D exec->contended;
-> > > > > +	struct dma_resv *resv =3D exec->contended;
-> > > > > =C2=A0	int ret;
-> > > > > =C2=A0
-> > > > > -	if (likely(!obj))
-> > > > > +	if (likely(!resv))
-> > > > > =C2=A0		return 0;
-> > > > > =C2=A0
-> > > > > =C2=A0	/* Always cleanup the contention so that error
-> > > > > handling
-> > > > > can
-> > > > > kick in */
-> > > > > =C2=A0	exec->contended =3D NULL;
-> > > > > =C2=A0	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT) {
-> > > > > -		ret =3D dma_resv_lock_slow_interruptible(obj-
-> > > > > > resv,
-> > > > > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > &exec-
-> > > > > > ticket);
-> > > > > +		ret =3D dma_resv_lock_slow_interruptible(resv,
-> > > > > &exec-
-> > > > > > ticket);
-> > > > > =C2=A0		if (unlikely(ret))
-> > > > > =C2=A0			goto error_dropref;
-> > > > > =C2=A0	} else {
-> > > > > -		dma_resv_lock_slow(obj->resv, &exec-
-> > > > > >ticket);
-> > > > > +		dma_resv_lock_slow(resv, &exec->ticket);
-> > > > > =C2=A0	}
-> > > > > =C2=A0
-> > > > > -	ret =3D drm_exec_obj_locked(exec, obj);
-> > > > > -	if (unlikely(ret))
-> > > > > -		goto error_unlock;
-> > > > > -
-> > > > > -	exec->prelocked =3D obj;
-> > > > > +	exec->prelocked =3D resv;
-> > > > > =C2=A0	return 0;
-> > > > > =C2=A0
-> > > > > -error_unlock:
-> > > > > -	dma_resv_unlock(obj->resv);
-> > > > > -
-> > > > > =C2=A0error_dropref:
-> > > > > -	drm_gem_object_put(obj);
-> > > > > +	dma_resv_put(resv);
-> > > > > =C2=A0	return ret;
-> > > > > =C2=A0}
-> > > > > =C2=A0
-> > > > > =C2=A0/**
-> > > > > - * drm_exec_lock_obj - lock a GEM object for use
-> > > > > + * drm_exec_lock_resv - lock a dma_resv object
-> > > > > =C2=A0 * @exec: the drm_exec object with the state
-> > > > > - * @obj: the GEM object to lock
-> > > > > + * @resv: the dma_resv object to lock
-> > > > > =C2=A0 *
-> > > > > - * Lock a GEM object for use and grab a reference to it.
-> > > > > + * Lock a dma_resv object for use or grab a reference to it
-> > > > > on
-> > > > > contention.
-> > > > > =C2=A0 *
-> > > > > =C2=A0 * Returns: -EDEADLK if a contention is detected, -EALREADY
-> > > > > when
-> > > > > object is
-> > > > > - * already locked (can be suppressed by setting the
-> > > > > DRM_EXEC_IGNORE_DUPLICATES
-> > > > > - * flag), -ENOMEM when memory allocation failed and zero for
-> > > > > success.
-> > > > > + * already locked, -ENOMEM when memory allocation failed and
-> > > > > zero
-> > > > > for success.
-> > > > > =C2=A0 */
-> > > > > -int drm_exec_lock_obj(struct drm_exec *exec, struct
-> > > > > drm_gem_object
-> > > > > *obj)
-> > > > > +int drm_exec_lock_resv(struct drm_exec *exec, struct
-> > > > > dma_resv
-> > > > > *resv)
-> > > > > =C2=A0{
-> > > > > =C2=A0	int ret;
-> > > > > =C2=A0
-> > > > > @@ -209,22 +203,39 @@ int drm_exec_lock_obj(struct drm_exec
-> > > > > *exec,
-> > > > > struct drm_gem_object *obj)
-> > > > > =C2=A0	if (unlikely(ret))
-> > > > > =C2=A0		return ret;
-> > > > > =C2=A0
-> > > > > -	if (exec->prelocked =3D=3D obj) {
-> > > > > -		drm_gem_object_put(exec->prelocked);
-> > > > > +	if (exec->prelocked =3D=3D resv) {
-> > > > > +		dma_resv_put(exec->prelocked);
-> > > > > =C2=A0		exec->prelocked =3D NULL;
-> > > > > =C2=A0		return 0;
-> > > > > =C2=A0	}
-> > > > > =C2=A0
-> > > > > =C2=A0	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT)
-> > > > > -		ret =3D dma_resv_lock_interruptible(obj->resv,
-> > > > > &exec-
-> > > > > > ticket);
-> > > > > +		ret =3D dma_resv_lock_interruptible(resv,
-> > > > > &exec-
-> > > > > > ticket);
-> > > > > =C2=A0	else
-> > > > > -		ret =3D dma_resv_lock(obj->resv, &exec-
-> > > > > >ticket);
-> > > > > +		ret =3D dma_resv_lock(resv, &exec->ticket);
-> > > > > =C2=A0
-> > > > > -	if (unlikely(ret =3D=3D -EDEADLK)) {
-> > > > > -		drm_gem_object_get(obj);
-> > > > > -		exec->contended =3D obj;
-> > > > > -		return -EDEADLK;
-> > > > > -	}
-> > > > > +	if (unlikely(ret =3D=3D -EDEADLK))
-> > > > > +		exec->contended =3D dma_resv_get(resv);
-> > > > > +	return ret;
-> > > > > +}
-> > > > > +EXPORT_SYMBOL(drm_exec_lock_resv);
-> > > > > +
-> > > > > +/**
-> > > > > + * drm_exec_lock_obj - lock a GEM object for use
-> > > > > + * @exec: the drm_exec object with the state
-> > > > > + * @obj: the GEM object to lock
-> > > > > + *
-> > > > > + * Lock a GEM object for use and grab a reference to it.
-> > > > > + *
-> > > > > + * Returns: -EDEADLK if a contention is detected, -EALREADY
-> > > > > when
-> > > > > object is
-> > > > > + * already locked (can be suppressed by setting the
-> > > > > DRM_EXEC_IGNORE_DUPLICATES
-> > > > > + * flag), -ENOMEM when memory allocation failed and zero for
-> > > > > success.
-> > > > > + */
-> > > > > +int drm_exec_lock_obj(struct drm_exec *exec, struct
-> > > > > drm_gem_object
-> > > > > *obj)
-> > > > > +{
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	ret =3D drm_exec_lock_resv(exec, obj->resv);
-> > > > > =C2=A0
-> > > > > =C2=A0	if (unlikely(ret =3D=3D -EALREADY) &&
-> > > > > =C2=A0	=C2=A0=C2=A0=C2=A0 exec->flags & DRM_EXEC_IGNORE_DUPLICATE=
-S)
-> > > > > diff --git a/drivers/gpu/drm/drm_gem.c
-> > > > > b/drivers/gpu/drm/drm_gem.c
-> > > > > index bbcbd25f014f0..f5cf9ad596a67 100644
-> > > > > --- a/drivers/gpu/drm/drm_gem.c
-> > > > > +++ b/drivers/gpu/drm/drm_gem.c
-> > > > > @@ -229,6 +229,8 @@ void drm_gem_private_object_init(struct
-> > > > > drm_device *dev,
-> > > > > =C2=A0	obj->size =3D size;
-> > > > > =C2=A0	mutex_init(&obj->gpuva.lock);
-> > > > > =C2=A0	dma_resv_init(&obj->_resv);
-> > > > > +
-> > > > > +	/* TODO: This needs to go away for drm_exec to work
-> > > > > correctly!!! */
-> > > > > =C2=A0	if (!obj->resv)
-> > > > > =C2=A0		obj->resv =3D dma_resv_get(&obj->_resv);
-> > > > > =C2=A0
-> > > > > diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-> > > > > index 8725ba92ff916..9daedb676d7b1 100644
-> > > > > --- a/include/drm/drm_exec.h
-> > > > > +++ b/include/drm/drm_exec.h
-> > > > > @@ -47,14 +47,14 @@ struct drm_exec {
-> > > > > =C2=A0	struct drm_gem_object	**objects;
-> > > > > =C2=A0
-> > > > > =C2=A0	/**
-> > > > > -	 * @contended: contended GEM object we backed off
-> > > > > for
-> > > > > +	 * @contended: contended dma_resv object we backed
-> > > > > off
-> > > > > for
-> > > > > =C2=A0	 */
-> > > > > -	struct drm_gem_object	*contended;
-> > > > > +	struct dma_resv		*contended;
-> > > > > =C2=A0
-> > > > > =C2=A0	/**
-> > > > > -	 * @prelocked: already locked GEM object due to
-> > > > > contention
-> > > > > +	 * @prelocked: already locked dma_resv object due to
-> > > > > contention
-> > > > > =C2=A0	 */
-> > > > > -	struct drm_gem_object *prelocked;
-> > > > > +	struct dma_resv		*prelocked;
-> > > > > =C2=A0};
-> > > > > =C2=A0
-> > > > > =C2=A0/**
-> > > > > @@ -175,6 +175,7 @@ static inline struct ww_acquire_ctx
-> > > > > *drm_exec_ticket(struct drm_exec *exec)
-> > > > > =C2=A0void drm_exec_init(struct drm_exec *exec, u32 flags,
-> > > > > unsigned
-> > > > > nr);
-> > > > > =C2=A0void drm_exec_fini(struct drm_exec *exec);
-> > > > > =C2=A0bool drm_exec_cleanup(struct drm_exec *exec);
-> > > > > +int drm_exec_lock_resv(struct drm_exec *exec, struct
-> > > > > dma_resv
-> > > > > *resv);
-> > > > > =C2=A0int drm_exec_lock_obj(struct drm_exec *exec, struct
-> > > > > drm_gem_object
-> > > > > *obj);
-> > > > > =C2=A0void drm_exec_unlock_obj(struct drm_exec *exec, struct
-> > > > > drm_gem_object *obj);
-> > > > > =C2=A0int drm_exec_prepare_obj(struct drm_exec *exec, struct
-> > > > > drm_gem_object *obj,
+ #include <drm/drm_util.h>
+ 
+ #include "xe_device.h"
+@@ -38,12 +36,6 @@
+ 	xe_gt_is_media_type(gt_) ? MEDIA_VER(xe) : GRAPHICS_VER(xe); \
+ })
+ 
+-extern struct fault_attr gt_reset_failure;
+-static inline bool xe_fault_inject_gt_reset(void)
+-{
+-	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
+-}
+-
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+ int xe_gt_init_early(struct xe_gt *gt);
+ int xe_gt_init(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+index 4a4b363fc844..ad2ec603df4e 100644
+--- a/drivers/gpu/drm/xe/xe_hw_error.c
++++ b/drivers/gpu/drm/xe/xe_hw_error.c
+@@ -4,7 +4,6 @@
+  */
+ 
+ #include <linux/bitmap.h>
+-#include <linux/fault-inject.h>
+ 
+ #include "regs/xe_gsc_regs.h"
+ #include "regs/xe_hw_error_regs.h"
+@@ -12,6 +11,7 @@
+ 
+ #include "xe_device.h"
+ #include "xe_drm_ras.h"
++#include "xe_debugfs.h"
+ #include "xe_hw_error.h"
+ #include "xe_mmio.h"
+ #include "xe_survivability_mode.h"
+@@ -25,8 +25,6 @@
+ 						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
+ 						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
+ 
+-extern struct fault_attr inject_csc_hw_error;
+-
+ static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+ 
+ static const char * const hec_uncorrected_fw_errors[] = {
+@@ -167,11 +165,6 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
+ 						 pvc_master_local_fatal_err_reg : \
+ 						 pvc_master_local_nonfatal_err_reg)
+ 
+-static bool fault_inject_csc_hw_error(void)
+-{
+-	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
+-}
+-
+ static void csc_hw_error_work(struct work_struct *work)
+ {
+ 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
+@@ -517,7 +510,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+ {
+ 	enum hardware_error hw_err;
+ 
+-	if (fault_inject_csc_hw_error())
++	if (xe_fault_csc_hw_error())
+ 		schedule_work(&tile->csc_hw_error_work);
+ 
+ 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
+-- 
+2.34.1
+
