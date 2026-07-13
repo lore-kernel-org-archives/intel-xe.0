@@ -4,151 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A29CDC44501
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 15:07:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9FA2C43458
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 15:07:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D71B10E5FE;
-	Mon, 13 Jul 2026 15:07:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="caF3hSeb";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA4A910E118;
- Mon, 13 Jul 2026 15:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783955222; x=1815491222;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=fsuwV5rMvHnr4t+j0lbFifrIqbx+jiMFRqNnT38RDZU=;
- b=caF3hSebcBvizvtVXxtyrPBvIl3j0S1QCg+Tu/79UwKua/VWPKqg8atY
- Oll3lhq4ui7nfPxiDrfyfQ8/1+WGh6IYcj/v5R6MsdbPkIDDm6E/bsQKR
- uZ8wdaKBbsbP6xj5O+3jm6ivY6MIkSyeTXgXYgchOrwSRwUsMEpj8lN9M
- 8aT0xrakWhkuBCmISeEVW/QtmJhSVK0MtWNsH1sTHaIKziedkWab8TtK2
- vQk1cwxxfBICa2Goi6gdkCqCnvIcDS1eZshk0HkpTMdudSpRL77MaPngt
- N8SjnCQI72Cqz0qlf5GKXToRnkiAEO0BsKYWGYy8pa0/SOxttqXljKSYY Q==;
-X-CSE-ConnectionGUID: uJdt+8v+Rv2OS5sZUHavrQ==
-X-CSE-MsgGUID: MI1KaqAyQHSa7i/vkAvEkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95934791"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95934791"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 08:07:01 -0700
-X-CSE-ConnectionGUID: /0AlFHhbRO2sOwpzg/jkXw==
-X-CSE-MsgGUID: 57RR0HU9R82JapqR7ivudQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256218381"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 08:07:01 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 08:07:00 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Mon, 13 Jul 2026 08:07:00 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.13) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 08:06:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F3baFoVch8FbAQ6USbp6mgKixUh1nXiHgzN29iRBFVBVD6vFZc8+spBpJyhTD2oIfLFp8PEw+J7NbXA5ulGukLEk/a58SC1Iq+fNLKS3Ahdwu7eOADaN6WTjuOwrD/JJSjswbuM2A0azcGLjOfU03HJNd3kUjp/X1efkB1914UM0MEMhXYXPF4e/tNFJjybK185oOBLLJacWZwXI+ikZFJtjai6IF/e0hs9gNjT2PhpWk3jFpD36c+KjLtOakf6TUU9Ys6DzJwIPanoV4hC+/l+PfgMleTW2kXvZV+Cfs3lJHsPFBwkK/ED9Zk3TFn1yep8iHJZ7PGuHBaOGvLx1lA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ajrt0XiI3pv+/wAAEUN4cBGKgALPf/9unmC0DUGpS74=;
- b=t+KClmwjEA4nI18vQ2SjOAcJG0z+w2l9Q/H6wvCVC5HjiAv4IhXmK8nADpIZOb+tzdNUTZIXdkmAf85mH8CjjqEB+kMt0RZHt2xz6S9dCKk0XjBPNiSvETULhEbvATu8jEWZXfKUYpiIVHN46jU1d6GL20cFP670bpE0Dt/9f3DbXQVj4KYm74uzeNL64YSQnDc0ldndzAaEDdEgbb0EwYdAsUQq+S9M2j6VLupfNpwYbPWDCpnt6H206stnea3Sk7C5LUS1T13MTfFiTqBW/ZtfY/p3t/vFjBOTQ7iqFSNsItt0bzGJpYqugYbg2CSyHgS3/sjwV2DxUh1kkdgj4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CY8PR11MB6892.namprd11.prod.outlook.com (2603:10b6:930:5b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
- 2026 15:06:56 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0202.014; Mon, 13 Jul 2026
- 15:06:56 +0000
-Date: Mon, 13 Jul 2026 08:06:53 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Danilo Krummrich <dakr@kernel.org>
-CC: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- <christian.koenig@amd.com>, <thomas.hellstrom@linux.intel.com>,
- <ecourtney@nvidia.com>, <simona@ffwll.ch>, <nat@pixelcluster.dev>,
- <airlied@gmail.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 09/12] drm/ttm: nuke buffer refcounting
-Message-ID: <alT/Dbp0JSkfGRjA@gsse-cloud1.jf.intel.com>
-References: <20260710190752.2355-1-christian.koenig@amd.com>
- <20260710190752.2355-10-christian.koenig@amd.com>
- <DJVRYBLM3B94.MAUO8T8NXM5P@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <DJVRYBLM3B94.MAUO8T8NXM5P@kernel.org>
-X-ClientProxiedBy: MW4P223CA0026.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:303:80::31) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70CB710EA12;
+	Mon, 13 Jul 2026 15:07:31 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC00210E5FE;
+ Mon, 13 Jul 2026 15:07:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3150529741144658311=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB6892:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf87b96d-9509-4ccf-29ca-08dee0f0616f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|23010399003|18002099003|22082099003|6133799003|4143699003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: jAzG/7BmTyMqtc3DnqMQ6Gz/RjolhI0LiKLPmdVvtG420JZzIBHf+/CsVSxrwKB8LN/zAa/jCNpuVJIVeX4nMf90YP9RFzZ+7a154NEw3csvUsSyzVg/LcP/2c8y5XUQhY55obFeVKgkAp4WoIxXAfVQSD5Ca0D/JjTRDjYHzurF6yV7XVdHGpSAPgx4u6E2V4NgabaC+WCmWXEzKdAPKqkntCsbB1KXYIhvt1TEB63F9+Ipkzz9CZWqDLCz7vvS4Rex80n21647lbqfv0jefPrvkuE8QG5d0fIxPsiuURltwUajHBjkJCVil9wmYUy4Kr9s3FPQlEAyqSBBN0EV7Jqu2EduOAeave2xUME+L84J3aCp60vEUUff7+wqqPcBEKHCCurcxcd2f6d06JmDeSFoACmns/XNUWXpMc1RtmfKwyu1ZL7ZkaWWPHJHvAg18kJbH1ywVnsZs7XvM3qlKcT0TMYQrRzveEp2sNj6aTex8AW+pREK0QOlhVJ9a9POw89fCUJPWk4i/bTcjJhnmSP3dMK28NbW+pjkABg4jSGvl+ot26UhlN1YAzOJxwccdFrmZoAqwaBQ0NXpavwo6NwUezIHKvYygjQ7TE2Yk/p0NY2+fVkwxDMoc7C+193q2oTWlzABDE4yYUB6Z3/dbIlBo3/6CWqUaLAyPs+oJqs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(18002099003)(22082099003)(6133799003)(4143699003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8nnRCf0fMg4A4J+HxsYKrh0Ma5WpaUT3C1wb+yCW5uiUaeCluC0opr3w3B8R?=
- =?us-ascii?Q?XHAY5rL9WzsW0VppYLNifJnkqxJ4ZBaj761P/ySuzPLInGpoig9phM2BzQ6W?=
- =?us-ascii?Q?2RII56lgb6pLzS4yGknpj+mzsqep2a75H/vw3vLKKnS7jrPYWG893QHhlvjS?=
- =?us-ascii?Q?hungNToxDMk9eCxuCu9Zcdp5NgZTITCsH0qoBsfC6psDSUOnFVkR3g0mdwJ3?=
- =?us-ascii?Q?P0Dm0xsSpEAJaC0FSKKuRNnF2vEen+qXwp5CvHh2M1RG3XEpdzw34tiTmqqm?=
- =?us-ascii?Q?Z794ttwXKL4ohfpmiF1whC5LKZzRgQlvmftKOAx3HGQa/BO6CNoYG591c3UG?=
- =?us-ascii?Q?So8KBtsNIyuppyfOCJSJWEfS25W+iT6/Ez9wteibrlyH4R3YYuO0FhTylQ75?=
- =?us-ascii?Q?1UAVda/6dUNRG35L64XhHG1+zDkNgWgfwDZr/nd74z6BYKkrmfm/ExKVU/WO?=
- =?us-ascii?Q?0+ERVxtW2bXrwFsW3gATYXbb2+KZgC7P0U3Qkq63HuHMt61gPaiHfuIa9WVr?=
- =?us-ascii?Q?N7N4B671NsOEtg0t9PXH6PIBvQGp/u5Xw1taYUKg8HpKqkrRM27yJyzg4NKx?=
- =?us-ascii?Q?8C6ZaqPWERcYqLRbGvDzzlyMHyHiCsO1B4XxtPusUNA9h7JXBdNwrfjICDNI?=
- =?us-ascii?Q?FRY1aPzqN5z8bEwexn5yysOINSlW0gekFbrCSwH1hdRxqNcFaULGGY6pgk/J?=
- =?us-ascii?Q?GgApQWNiHcHFg4z90237YOhlw0FheCqVvTrRidct4MQSi2Hvpfk/1bFWgD7s?=
- =?us-ascii?Q?gJS4EuIdJNV7bLjiTniCgrvmdZddu7bLs2o+ZkDSX51DSWACJTV0qEYSNJKQ?=
- =?us-ascii?Q?Yo8jd0b8sQTof+F7Bo08aErZfdu8d6/1YEfMrf0TrP7OM9C0NLDgGbVBR3m/?=
- =?us-ascii?Q?5g3PtJ8SBLfIDSR4LeE4gHcjbNTJKq/ybtbl+XPHHPNrneO59yc7LzgzfXjN?=
- =?us-ascii?Q?MO3fJt6iSRleoqImxg3pq4q2202vk49jV87/ksLdqcF3KdSXU32Bse86FuML?=
- =?us-ascii?Q?d/dB7nrNHh5rm381Gm24qEsMSPJURgwoY4ltAxzO1S21yUugG9SyJrB4lDoj?=
- =?us-ascii?Q?Hw82+d7GKibyvgZ0lNBuBkwgQdrrABpO3ljvblSwe0qqQ7IMRCOD5QIeNXuO?=
- =?us-ascii?Q?2BePiE/Nw5o/w0FpvnPEV+kT3xcwvbpRgmlHW7jT0VWvQ9XU8C1VF2kpV1b4?=
- =?us-ascii?Q?GlgMiGrbYE6OExVjFnPKwobFaaQXsV3tvpv1WOPg7VhPnBaQjn/7pWpfZPCo?=
- =?us-ascii?Q?EpHRpt6z9am9k9qh+btK2mhvT2EIwavUsriq/YTqQrLnoTWy1ip8gzLfCo68?=
- =?us-ascii?Q?ucT+zFLi4Mweinp8d8zZV95bWjBj/WJloQFb+ZMFQrpg2IYjejX55YMIGO+5?=
- =?us-ascii?Q?TDigvaKRUzM+6BJK7AwY7tm1iLUFFy/KsIgPAP5DVaviuN8340WuYJdxAAI0?=
- =?us-ascii?Q?lbhUNzB+EgLo++W3Xhvic1y3SEKwAlu6mVNw9VValhjnblZkPCBDgBCGhKOd?=
- =?us-ascii?Q?ajXhLj7OJyU8Pf+dcqX2X9GvoY9hkfleL+j6cHxHvOxODdXwEho9cIQxyX9d?=
- =?us-ascii?Q?t0JIkubCstaNxPAyPmu7GDD2uXyjT4qH37GOi/dhvgLFYmeYhRnO+T0hjdeE?=
- =?us-ascii?Q?w8mCkm3uycRjtlsDUDvX0+OxFWUCUwsoAgeVICr2Qr5J9vtkPKdtGItWph2w?=
- =?us-ascii?Q?GR/iE35Tlqgvo1R6Dgqyr6hyc72DBE2XiTpMO6rmtl9ggjFvbNOHyCKDmbwi?=
- =?us-ascii?Q?kxNCS6N16A=3D=3D?=
-X-Exchange-RoutingPolicyChecked: lGjaZi2dxPLZD00E9xBE7JVZuf4hGsAfMfJwEW3tDg8qg7eXlSKVxUnJaOOOPPRNlkpirOL96MVPyvxXiz+VOts2YcrrN9+6J5xMhblztckKzoHV2WWRXfT+qg+TTYaxgMaY4ZVxd7X8OpNkowaGYd4rymM8aiNAS0iLCtoy4XSeH+zRZpooUYYsj/3zD+TqXVNCl8ynhGGKZP0Wk9PjZ4IpMQ5OV1CgxS0PsRbi9ffcA2sqksmSevh/3yy8KqfTHErSpE+aQZmgaxWTYomfVpiktAZQT+4gIIm4aHwVYbBVg+3Rs3z0ZNEMidnox4YCt152LTWczYXyf08CsxnnUQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf87b96d-9509-4ccf-29ca-08dee0f0616f
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 15:06:56.6149 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z/KL+SI2eknJiHP770X50bHAMAC/rceD2UPq0yZCzGjXwXhOlZfh9dSK3PWr9AiRiN3aLqzq1hyIBEzbX3Tkag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6892
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Add_debugfs_knob_?=
+ =?utf-8?q?to_disable_Mid-Thread_Preemption_per_GT_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Varun Gupta" <varun.gupta@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Jul 2026 15:07:30 -0000
+Message-ID: <178395525096.184234.9006311348530005924@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260618042421.483657-1-varun.gupta@intel.com>
+In-Reply-To: <20260618042421.483657-1-varun.gupta@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,33 +36,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Jul 11, 2026 at 03:26:18PM +0200, Danilo Krummrich wrote:
-> On Fri Jul 10, 2026 at 8:52 PM CEST, =?UTF-8?q?Christian=20K=C3=B6nig?= wrote:
-> > +/**
-> > + * ttm_bo_is_deleted - test if buffer is already deleted
-> > + * @bo: the struct ttm_buffer_object to test
-> > + *
-> > + * Returns true if the buffer is already deleted and only waiting for
-> > + * destruction.
-> > + */
-> > +static inline bool ttm_bo_is_deleted(struct ttm_buffer_object *bo)
-> > +{
-> > +	return !kref_read(&bo->base.refcount);
-> > +}
-> 
-> This is an anti-pattern, branch decisions cannot rely on an atomic reference
-> count unless additional invariants are upheld that otherwise guarantee that the
-> read values does not instantly become meaningless.
+--===============3150529741144658311==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-So I believe that means the TTM refcount reaching zero is a terminal
-state; i.e., reinitialization (0 -> 1) is not allowed. I believe I agree
-with that or if reinit is allowed the check needs to change.
+== Series Details ==
 
-Matt 
+Series: drm/xe: Add debugfs knob to disable Mid-Thread Preemption per GT (rev6)
+URL   : https://patchwork.freedesktop.org/series/168743/
+State : failure
 
-> 
-> Something like this should at least document in which context and under which
-> conditions it is valid to rely on the returned value.
+== Summary ==
+
+CI Bug Log - changes from xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218_BAT -> xe-pw-168743v6_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-168743v6_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-168743v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-168743v6_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - bat-adlp-7:         [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168743v6/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-atsm-2:         [PASS][3] -> [ABORT][4] +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168743v6/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9003 -> IGT_9005
+  * Linux: xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218 -> xe-pw-168743v6
+
+  IGT_9003: 9003
+  IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218: 83d782d98f4ebb4a10b8ee107e3a389917e0b218
+  xe-pw-168743v6: 168743v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168743v6/index.html
+
+--===============3150529741144658311==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add debugfs knob to disable Mid-Thread Preemption per GT (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168743/">https://patchwork.freedesktop.org/series/168743/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168743v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168743v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218_BAT -&gt; xe-pw-168743v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-168743v6_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-168743v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-168743v6_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@sriov_basic@enable-vfs-autoprobe-on:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168743v6/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168743v6/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9003 -&gt; IGT_9005</li>
+<li>Linux: xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218 -&gt; xe-pw-168743v6</li>
+</ul>
+<p>IGT_9003: 9003<br />
+  IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5391-83d782d98f4ebb4a10b8ee107e3a389917e0b218: 83d782d98f4ebb4a10b8ee107e3a389917e0b218<br />
+  xe-pw-168743v6: 168743v6</p>
+
+</body>
+</html>
+
+--===============3150529741144658311==--
