@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9388BC43458
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 18:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0355CC44501
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 18:23:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 530A510E0FF;
-	Mon, 13 Jul 2026 18:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A972510E61A;
+	Mon, 13 Jul 2026 18:23:22 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C293E10E629;
- Mon, 13 Jul 2026 18:22:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB09910E0FF;
+ Mon, 13 Jul 2026 18:23:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_add_page_size_a?=
- =?utf-8?q?llocation_mode_control_and_coverage_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_add_page_size_alloca?=
+ =?utf-8?q?tion_mode_control_and_coverage_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Jul 2026 18:22:47 -0000
-Message-ID: <178396696778.185196.6114114422362354884@6beec6c84f66>
+Date: Mon, 13 Jul 2026 18:23:20 -0000
+Message-ID: <178396700095.185203.8978376932207055808@6beec6c84f66>
 X-Patchwork-Hint: ignore
 References: <20260713181605.3127204-1-naresh.kumar.g@intel.com>
 In-Reply-To: <20260713181605.3127204-1-naresh.kumar.g@intel.com>
@@ -44,66 +44,135 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: add page size allocation mode control and coverage (rev3)
 URL   : https://patchwork.freedesktop.org/series/168905/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 14212074064d448d2cc69d5243c80cbd89ca2b66
-Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Date:   Mon Jul 13 23:46:05 2026 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_bo.c:4057:
+../drivers/gpu/drm/xe/tests/xe_bo.c:26:43: error: field ‘mode’ has incomplete type
+   26 |         enum xe_page_size_alloc_ctrl_mode mode;
+      |                                           ^~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘page_size_alloc_save’:
+../drivers/gpu/drm/xe/tests/xe_bo.c:34:21: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   34 |         s->mode = xe->page_size_alloc_ctrl.mode;
+      |                     ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:35:26: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   35 |         s->cur_index = xe->page_size_alloc_ctrl.cur_index;
+      |                          ^~
+In file included from ../include/linux/seqlock.h:20,
+                 from ../include/linux/mmzone.h:17,
+                 from ../include/linux/gfp.h:7,
+                 from ../include/linux/mm.h:8,
+                 from ../include/linux/pagemap.h:8,
+                 from ../include/drm/ttm/ttm_tt.h:30,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:9,
+                 from ../drivers/gpu/drm/xe/xe_bo.c:6:
+../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘page_size_alloc_restore’:
+../drivers/gpu/drm/xe/tests/xe_bo.c:41:23: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   41 |         mutex_lock(&xe->page_size_alloc_ctrl.lock);
+      |                       ^~
+../include/linux/mutex.h:193:44: note: in definition of macro ‘mutex_lock’
+  193 | #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+      |                                            ^~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c:42:11: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   42 |         xe->page_size_alloc_ctrl.mode = s->mode;
+      |           ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:43:11: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   43 |         xe->page_size_alloc_ctrl.cur_index = s->cur_index;
+      |           ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:44:25: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   44 |         mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+      |                         ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c: At top level:
+../drivers/gpu/drm/xe/tests/xe_bo.c:70:61: error: parameter 2 (‘mode’) has incomplete type
+   70 |                           enum xe_page_size_alloc_ctrl_mode mode,
+      |                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c:69:13: error: function declaration isn’t a prototype [-Werror=strict-prototypes]
+   69 | static void run_only_leaf(struct kunit *test,
+      |             ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘run_only_leaf’:
+../drivers/gpu/drm/xe/tests/xe_bo.c:89:23: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   89 |         mutex_lock(&xe->page_size_alloc_ctrl.lock);
+      |                       ^~
+../include/linux/mutex.h:193:44: note: in definition of macro ‘mutex_lock’
+  193 | #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+      |                                            ^~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c:91:11: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   91 |         xe->page_size_alloc_ctrl.mode = mode;
+      |           ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:92:25: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+   92 |         mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+      |                         ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘xe_bo_page_size_alloc_only_2m’:
+../drivers/gpu/drm/xe/tests/xe_bo.c:147:29: error: ‘XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M’ undeclared (first use in this function)
+  147 |         run_only_leaf(test, XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M, &leaf_2m);
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c:147:29: note: each undeclared identifier is reported only once for each function it appears in
+../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘xe_bo_page_size_alloc_only_1g’:
+../drivers/gpu/drm/xe/tests/xe_bo.c:152:29: error: ‘XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G’ undeclared (first use in this function)
+  152 |         run_only_leaf(test, XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G, &leaf_1g);
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘xe_bo_page_size_alloc_mixed_bos’:
+../drivers/gpu/drm/xe/tests/xe_bo.c:178:23: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  178 |         mutex_lock(&xe->page_size_alloc_ctrl.lock);
+      |                       ^~
+../include/linux/mutex.h:193:44: note: in definition of macro ‘mutex_lock’
+  193 | #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+      |                                            ^~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c:180:11: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  180 |         xe->page_size_alloc_ctrl.mode = XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED;
+      |           ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:180:41: error: ‘XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED’ undeclared (first use in this function)
+  180 |         xe->page_size_alloc_ctrl.mode = XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED;
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c:181:11: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  181 |         xe->page_size_alloc_ctrl.cur_index = 0;
+      |           ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:182:25: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  182 |         mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+      |                         ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:208:31: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  208 |                 mutex_lock(&xe->page_size_alloc_ctrl.lock);
+      |                               ^~
+../include/linux/mutex.h:193:44: note: in definition of macro ‘mutex_lock’
+  193 | #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+      |                                            ^~~~
+../drivers/gpu/drm/xe/tests/xe_bo.c:209:19: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  209 |                 xe->page_size_alloc_ctrl.mode = XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED;
+      |                   ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:210:19: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  210 |                 xe->page_size_alloc_ctrl.cur_index = i;
+      |                   ^~
+../drivers/gpu/drm/xe/tests/xe_bo.c:211:33: error: ‘struct xe_device’ has no member named ‘page_size_alloc_ctrl’
+  211 |                 mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+      |                                 ^~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_bo.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:549: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:549: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:549: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:549: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2184: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe/tests: add live KUnit coverage for BO page-size allocation modes
-    
-    Add live KUnit coverage for the debug-controlled BO
-        page-size allocation modes.
-    
-        The new tests cover forced 2M mode, forced 1G mode,
-        and mixed mode. They verify that user BO creation applies
-        the expected NEEDS_* flags, that no unexpected page-size flags are
-        added in the forced modes, that BO size is rounded as expected, and
-        that page_alignment matches the selected leaf size.
-    
-        The mixed-mode test does not assume a strict per-allocation rotation
-        sequence, since the device-global mixed-mode index may be perturbed by
-        concurrent BO creation on a live system. Instead,
-        it validates that each allocation results in
-        one valid mixed-mode page-size outcome.
-    
-        Treat transient VRAM allocation failures as skipped test cases so the
-        tests can run in varying live environments without producing false
-        failures.
-    
-        v3
-        - address review comments
-        - rework mixed-mode test to avoid assuming strict rotation order
-        - reword commit message
-        v4
-        - skip VRAM-targeted live tests on non-dGFX devices
-        v5
-        - advance the mixed-mode index in the test
-    
-    Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-+ /mt/dim checkpatch b4ff3505d3eacce720d43e24651ce84f2a0d7f56 drm-intel
-c249539cb2f0 drm/xe: add page size allocation control state to xe_device
-60932a6b8998 drm/xe/debugfs: add page-size allocation mode knob
-92ee91c8357d drm/xe: add XE_BO_FLAG_NEEDS_1G for minimum page-size sizing
-9b1d0b97a633 drm/xe: apply debug page-size allocation policy to user BOs
-fcba96e1d0d0 drm/xe/vm: propagate BO page-size requirements to VMA map flags
-1493a2ae76ae drm/xe/pt: allow selecting the bind leaf PTE level
-14212074064d drm/xe/tests: add live KUnit coverage for BO page-size allocation modes
--:312: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
-#312: FILE: drivers/gpu/drm/xe/tests/xe_live_test_mod.c:14:
-+extern struct kunit_suite xe_bo_page_size_alloc_suite;
-
-total: 0 errors, 1 warnings, 0 checks, 275 lines checked
+[18:22:48] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[18:22:53] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
