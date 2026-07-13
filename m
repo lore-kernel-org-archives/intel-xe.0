@@ -4,55 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23B02C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:40:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB55AC43458
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 13:41:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D2810E5E2;
-	Mon, 13 Jul 2026 13:40:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2ED10E9AF;
+	Mon, 13 Jul 2026 13:41:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jsQ7Fbs5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n+pTa9I8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F278C10E5D2
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 13:40:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06ABA10E5E9;
+ Mon, 13 Jul 2026 13:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783950005; x=1815486005;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Rfcv60+zcBux+F6qE+tHxn6kMuVdT65M4ZxcWk8VIKs=;
- b=jsQ7Fbs5VAzY0t3Tdd3U0q1uRI3+xX9qFF1+Yo2rZNa2UJQMFCM9AMGd
- adsALLVs4a+qfDorwRG0y9TSPwMsvp/uUquywArTUv/CRwXIQaZAn6wxi
- QXyDj0Mjibte3usQtqQrpAGB/13Df0hNXeEBSx4M3nrkZlJaTUJoj2P1O
- /MU2+wxGwembbS0KPaI3Rc3ly+NdY6QKbUT4N/oVBqRSfHgwwUXT4Autw
- U5oTuOMOzKKfFTFwtiVn1z1sDwvy5EcysZZhPfIF4vqyERKABU9aO6fFg
- JR+fLBaQ+D2d1MWIsDnFHs75NMRSguClgIU/sJMkzwAYUmhIgiOxOvWxY A==;
-X-CSE-ConnectionGUID: HIOiI3BIQNOSBEYv6TLJtA==
-X-CSE-MsgGUID: PjdXIr28Q7GYpFOtHajlHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88382304"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88382304"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 06:39:56 -0700
-X-CSE-ConnectionGUID: qTDdhE1SQQqbPd2oz27fQg==
-X-CSE-MsgGUID: 1E+hLMGMQYm41K4Rqqv4Ug==
+ t=1783950081; x=1815486081;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=HNCSf+8mFzTX+IBoUmO+EGOSM+uBiVN8uDNdDDmkHSM=;
+ b=n+pTa9I8sAdh4J+Oj1FEczIGGR/k24HkVYTtCWu47162ZRiLH3IuNZro
+ 0Yohqm7SVonOzIMncMbNRBnVZ92H0tnwWQVSG6fp8C6BVJV8rchzsgozo
+ oIglWit6H5l/R45Ws02ieRn4rploJXmv6N71/pxDUb4fyTm0UAqO5+lc7
+ 0AelJjyWZbDS0WftJS4aJgvhBZywi8AaaVf0g+JKAujh1+bd/3Vco247t
+ HO/Ci0aEZIDQoBHUL4ZD6gm1zLyYK3+q+nakanzo4MeVs6QrtUCNKNv45
+ SjvxB0i6srUC6GDjsRiOH4/ggge71w8G9yntoT04pKPtn+abr7vjG/go1 A==;
+X-CSE-ConnectionGUID: xlCMsACPQeWcGrwIL44OUA==
+X-CSE-MsgGUID: KAv3woz2QVqz5b+t/8kVhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="110101977"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="110101977"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 06:41:20 -0700
+X-CSE-ConnectionGUID: 1ZcerACKQh6V4Vher9QbhA==
+X-CSE-MsgGUID: Il+pedYaREa7obTVObY84Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="252927666"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa008.fm.intel.com with ESMTP; 13 Jul 2026 06:39:53 -0700
-From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- matthew.brost@intel.com
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
- vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
- sk.anirban@intel.com, raag.jadav@intel.com,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v10] drm/xe: Consolidate debugfs fault injection functions.
-Date: Mon, 13 Jul 2026 19:06:12 +0530
-Message-ID: <20260713133611.262732-2-mallesh.koujalagi@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="259865504"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.123])
+ ([10.245.245.123])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 06:41:18 -0700
+Message-ID: <051148cb56c32c89b6d06458144124d08d4b28d6.camel@linux.intel.com>
+Subject: Re: [PATCH 04/12] drm/ttm: Switch LRU cursor to track dma_resv
+ instead of buffer objects
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: christian.koenig@amd.com, dakr@kernel.org, ecourtney@nvidia.com, 
+ simona@ffwll.ch, matthew.brost@intel.com, nat@pixelcluster.dev,
+ airlied@gmail.com, 	dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 	intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 	amd-gfx@lists.freedesktop.org
+Date: Mon, 13 Jul 2026 15:40:55 +0200
+In-Reply-To: <20260710190752.2355-5-christian.koenig@amd.com>
+References: <20260710190752.2355-1-christian.koenig@amd.com>
+ <20260710190752.2355-5-christian.koenig@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,267 +74,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The fault injection code was scattered: the GT reset
-hook lived in xe_gt.h as an inline function with its own global
-variable, the CSC hook had a separate global in xe_hw_error.c with
-an extern declaration, and each was individually registered in
-xe_debugfs.c. Adding a new error type meant editing many files and
-copy-pasting the same boilerplate.
+On Fri, 2026-07-10 at 20:52 +0200, Christian K=C3=B6nig wrote:
+> Refactor the LRU cursor to hold references to dma_resv directly while
+> locking it rather than the buffer object.
+>=20
+> This avoid the need to grab a reference to the BO and so allows
+> handling
+> of BOs with zero reference count.
+>=20
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+> =C2=A0drivers/gpu/drm/ttm/ttm_bo_util.c=C2=A0 | 124 +++++++++++++++------=
+------
+> --
+> =C2=A0drivers/gpu/drm/ttm/ttm_resource.c |=C2=A0 18 +++++
+> =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +--
+> =C2=A0include/drm/ttm/ttm_resource.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 2 +
+> =C2=A04 files changed, 87 insertions(+), 67 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index 029c218f9fb47..1f7361604b552 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -819,19 +819,17 @@ int ttm_bo_pipeline_gutting(struct
+> ttm_buffer_object *bo)
+> =C2=A0}
+> =C2=A0
+> =C2=A0static bool ttm_lru_walk_trylock(struct ttm_bo_lru_cursor *curs,
+> -				 struct ttm_buffer_object *bo)
+> +				 struct dma_resv *resv)
+> =C2=A0{
+> =C2=A0	struct ttm_operation_ctx *ctx =3D curs->arg->ctx;
+> =C2=A0
+> -	curs->needs_unlock =3D false;
+> -
+> -	if (dma_resv_trylock(bo->base.resv)) {
+> -		curs->needs_unlock =3D true;
+> +	if (dma_resv_trylock(resv)) {
+> +		curs->resv =3D dma_resv_get(resv);
+> =C2=A0		return true;
+> =C2=A0	}
+> =C2=A0
+> -	if (bo->base.resv =3D=3D ctx->resv && ctx->allow_res_evict) {
+> -		dma_resv_assert_held(bo->base.resv);
+> +	if (resv =3D=3D ctx->resv && ctx->allow_res_evict) {
+> +		dma_resv_assert_held(resv);
+> =C2=A0		return true;
+> =C2=A0	}
+> =C2=A0
+> @@ -839,18 +837,18 @@ static bool ttm_lru_walk_trylock(struct
+> ttm_bo_lru_cursor *curs,
+> =C2=A0}
+> =C2=A0
+> =C2=A0static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
+> -				=C2=A0=C2=A0 struct ttm_buffer_object *bo)
+> +				=C2=A0=C2=A0 struct dma_resv *resv)
+> =C2=A0{
+> =C2=A0	struct ttm_lru_walk_arg *arg =3D curs->arg;
+> =C2=A0	int ret;
+> =C2=A0
+> =C2=A0	if (arg->ctx->interruptible)
+> -		ret =3D dma_resv_lock_interruptible(bo->base.resv,
+> arg->ticket);
+> +		ret =3D dma_resv_lock_interruptible(resv, arg-
+> >ticket);
+> =C2=A0	else
+> -		ret =3D dma_resv_lock(bo->base.resv, arg->ticket);
+> +		ret =3D dma_resv_lock(resv, arg->ticket);
+> =C2=A0
+> =C2=A0	if (!ret) {
+> -		curs->needs_unlock =3D true;
+> +		curs->resv =3D dma_resv_get(resv);
+> =C2=A0		/*
+> =C2=A0		 * Only a single ticketlock per loop. Ticketlocks
+> are prone
+> =C2=A0		 * to return -EDEADLK causing the eviction to fail,
+> so
+> @@ -920,14 +918,16 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk
+> *walk, struct ttm_device *bdev,
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(ttm_lru_walk_for_evict);
+> =C2=A0
+> -static void ttm_bo_lru_cursor_cleanup_bo(struct ttm_bo_lru_cursor
+> *curs)
+> +static void ttm_bo_lru_cursor_cleanup(struct ttm_bo_lru_cursor
+> *curs)
+> =C2=A0{
+> -	struct ttm_buffer_object *bo =3D curs->bo;
+> +	if (curs->resv) {
+> +		dma_resv_unlock(curs->resv);
+> +		dma_resv_put(curs->resv);
+> +		curs->resv =3D NULL;
+> +	}
+> =C2=A0
+> -	if (bo) {
+> -		if (curs->needs_unlock)
+> -			dma_resv_unlock(bo->base.resv);
+> -		ttm_bo_put(bo);
+> +	if (curs->bo) {
+> +		drm_gem_object_put(&curs->bo->base);
+> =C2=A0		curs->bo =3D NULL;
+> =C2=A0	}
+> =C2=A0}
+> @@ -941,7 +941,7 @@ void ttm_bo_lru_cursor_fini(struct
+> ttm_bo_lru_cursor *curs)
+> =C2=A0{
+> =C2=A0	spinlock_t *lru_lock =3D &curs->res_curs.man->bdev->lru_lock;
+> =C2=A0
+> -	ttm_bo_lru_cursor_cleanup_bo(curs);
+> +	ttm_bo_lru_cursor_cleanup(curs);
+> =C2=A0	spin_lock(lru_lock);
+> =C2=A0	ttm_resource_cursor_fini(&curs->res_curs);
+> =C2=A0	spin_unlock(lru_lock);
+> @@ -972,21 +972,18 @@ ttm_bo_lru_cursor_init(struct ttm_bo_lru_cursor
+> *curs,
+> =C2=A0EXPORT_SYMBOL(ttm_bo_lru_cursor_init);
+> =C2=A0
+> =C2=A0static struct ttm_buffer_object *
+> -__ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
+> +__ttm_bo_lru_cursor_iter(struct ttm_bo_lru_cursor *curs, bool first)
+> =C2=A0{
+> =C2=A0	spinlock_t *lru_lock =3D &curs->res_curs.man->bdev->lru_lock;
+> -	struct ttm_resource *res =3D NULL;
+> -	struct ttm_buffer_object *bo;
+> =C2=A0	struct ttm_lru_walk_arg *arg =3D curs->arg;
+> -	bool first =3D !curs->bo;
+> -
+> -	ttm_bo_lru_cursor_cleanup_bo(curs);
+> +	int ret;
+> =C2=A0
+> -	spin_lock(lru_lock);
+> =C2=A0	for (;;) {
+> -		int mem_type, ret =3D 0;
+> -		bool bo_locked =3D false;
+> +		struct ttm_resource *res;
+> +
+> +		ttm_bo_lru_cursor_cleanup(curs);
+> =C2=A0
+> +		spin_lock(lru_lock);
+> =C2=A0		if (first) {
+> =C2=A0			res =3D ttm_resource_manager_first(&curs-
+> >res_curs);
+> =C2=A0			first =3D false;
+> @@ -996,43 +993,48 @@ __ttm_bo_lru_cursor_next(struct
+> ttm_bo_lru_cursor *curs)
+> =C2=A0		if (!res)
+> =C2=A0			break;
+> =C2=A0
+> -		bo =3D res->bo;
+> -		if (ttm_lru_walk_trylock(curs, bo))
+> -			bo_locked =3D true;
+> -		else if (!arg->ticket || arg->ctx->no_wait_gpu ||
+> arg->trylock_only)
+> -			continue;
+> -
+> -		if (!ttm_bo_get_unless_zero(bo)) {
+> -			if (curs->needs_unlock)
+> -				dma_resv_unlock(bo->base.resv);
+> -			continue;
+> +		if (!ttm_lru_walk_trylock(curs, res->bo->base.resv))
+> {
+> +			struct dma_resv *resv;
+> +
+> +			if (!arg->ticket || arg->ctx->no_wait_gpu ||
+> +			=C2=A0=C2=A0=C2=A0 arg->trylock_only) {
+> +				spin_unlock(lru_lock);
+> +				continue;
+> +			}
+> +
+> +			resv =3D dma_resv_get(res->bo->base.resv);
+> +			spin_unlock(lru_lock);
+> +
+> +			ret =3D ttm_lru_walk_ticketlock(curs, resv);
+> +			if (ret && ret !=3D -EALREADY)
+> +				return ERR_PTR(ret);
+> +
+> +			/*
+> +			 * We need to double check that we still
+> have the same
+> +			 * dma_resv object.
 
-Debugfs interface (under /sys/kernel/debug/dri/0/):
- - fail_gt_reset         - GT reset failure
- - inject_csc_hw_error   - CSC firmware error
+While I think this would actually work, we need documentation and
+asserts of what exactly we're relying on here to keep the bo alive.
+Otherwise future work will most likely break something.
 
-Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
----
-v2:
-- Add multiple platform support. (Vinay)
-- Handle VF properly.
-- Rename to XE_FAULT_GT_RESET/XE_FAULT_CSC_HW_ERROR and
-  create xe_fault_inject_types.h file including those name.
+Thanks,
+Thomas
 
-v3:
-- Solved patch apply issue on tip.
 
-v4:
-- Add proper header file.
+> +			 */
+> +			spin_lock(lru_lock);
+> +			res =3D ttm_resource_manager_current(&curs-
+> >res_curs);
+> +			if (ret || !res || res->bo->base.resv !=3D
+> resv) {
+> +				spin_unlock(lru_lock);
+> +				dma_resv_put(resv);
+> +				continue;
+> +			}
+> +			dma_resv_put(resv);
+> =C2=A0		}
+> -
+> -		mem_type =3D res->mem_type;
+> =C2=A0		spin_unlock(lru_lock);
+> -		if (!bo_locked)
+> -			ret =3D ttm_lru_walk_ticketlock(curs, bo);
+> +
+> +		/* Grab a GEM reference to the BO if it isn't
+> already deleted */
 
-v5:
-- Properly refer FAULT_ATTR_INITIALIZER. (Vinay)
-- Change xe_fault_inject_descs to xe_fault_inject_entry.
-- Change 2025 to 2026.
 
-v6:
-- Change return comments of xe_fault_inject(). (Riana)
-- Remove full description of xe_fault_inject_debugfs_register().
 
-v7:
-- Move all fault inject helper functions in xe_debugfs.c (Riana)
-- Update commit message.
-
-v8:
-- Assign .attr pointer with DECLARE_FAULT_ATTR macro. (Riana)
-- Remove CONFIG_FAULT_INJECTION block.
-
-v9:
-- Add single availability callback.
-- Make an abstracted function. (Riana)
-- Fix xe_fault_inject_entry struct.
-
-v10:
-- Swap attr and is_visible in xe_fault_inject_entry.
-- Add is_visible instead of available. (Riana)
-- Add FAULT_ACTION macro.
----
- drivers/gpu/drm/xe/xe_debugfs.c  | 46 +++++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_debugfs.h  |  5 ++++
- drivers/gpu/drm/xe/xe_gt.c       |  5 ++--
- drivers/gpu/drm/xe/xe_gt.h       |  8 ------
- drivers/gpu/drm/xe/xe_hw_error.c | 11 ++------
- 5 files changed, 53 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 8c391c7b017a..1fabb0b8d198 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -5,6 +5,7 @@
- 
- #include "xe_debugfs.h"
- 
-+#include <linux/bits.h>
- #include <linux/debugfs.h>
- #include <linux/fault-inject.h>
- #include <linux/string_helpers.h>
-@@ -42,6 +43,47 @@
- DECLARE_FAULT_ATTR(gt_reset_failure);
- DECLARE_FAULT_ATTR(inject_csc_hw_error);
- 
-+static bool csc_hw_error_available(struct xe_device *xe)
-+{
-+	return !IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE;
-+}
-+
-+static struct {
-+	const char *name;
-+	struct fault_attr *attr;
-+	bool (*is_visible)(struct xe_device *xe);
-+} xe_fault_inject_entry[] = {
-+	{ .name = "fail_gt_reset",
-+	  .attr = &gt_reset_failure },
-+	{ .name = "inject_csc_hw_error",
-+	  .attr = &inject_csc_hw_error,
-+	  .is_visible = csc_hw_error_available },
-+};
-+
-+#define FAULT_ACTION(name, fault_attr)			\
-+bool xe_fault_##name(void)				\
-+{							\
-+	return should_fail(&(fault_attr), 1);		\
-+}
-+
-+FAULT_ACTION(gt_reset, gt_reset_failure)
-+FAULT_ACTION(csc_hw_error, inject_csc_hw_error)
-+
-+static void xe_fault_inject_debugfs_register(struct xe_device *xe,
-+					     struct dentry *root)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(xe_fault_inject_entry); i++) {
-+		if (xe_fault_inject_entry[i].is_visible &&
-+		    !xe_fault_inject_entry[i].is_visible(xe))
-+			continue;
-+
-+		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
-+					  xe_fault_inject_entry[i].attr);
-+	}
-+}
-+
- static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
- 				   u32 offset, const char *name, struct drm_printer *p)
- {
-@@ -583,8 +625,6 @@ void xe_debugfs_register(struct xe_device *xe)
- 		drm_debugfs_create_files(debugfs_residencies,
- 					 ARRAY_SIZE(debugfs_residencies),
- 					 root, minor);
--		fault_create_debugfs_attr("inject_csc_hw_error", root,
--					  &inject_csc_hw_error);
- 	}
- 
- 	/*
-@@ -642,7 +682,7 @@ void xe_debugfs_register(struct xe_device *xe)
- 
- 	xe_psmi_debugfs_register(xe);
- 
--	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
-+	xe_fault_inject_debugfs_register(xe, root);
- 
- 	if (IS_SRIOV_PF(xe))
- 		xe_sriov_pf_debugfs_register(xe, root);
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
-index 17f4c2f1b5e4..e8e65f2507cb 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.h
-+++ b/drivers/gpu/drm/xe/xe_debugfs.h
-@@ -6,8 +6,13 @@
- #ifndef _XE_DEBUGFS_H_
- #define _XE_DEBUGFS_H_
- 
-+#include <linux/types.h>
-+
- struct xe_device;
- 
-+bool xe_fault_gt_reset(void);
-+bool xe_fault_csc_hw_error(void);
-+
- #ifdef CONFIG_DEBUG_FS
- void xe_debugfs_register(struct xe_device *xe);
- #else
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index d904527a8898..dfdacc0f6de9 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -21,6 +21,7 @@
- #include "regs/xe_gt_regs.h"
- #include "xe_assert.h"
- #include "xe_bb.h"
-+#include "xe_debugfs.h"
- #include "xe_device.h"
- #include "xe_eu_stall.h"
- #include "xe_exec_queue.h"
-@@ -926,7 +927,7 @@ static void gt_reset_worker(struct work_struct *w)
- 
- 	xe_gt_info(gt, "reset started\n");
- 
--	if (xe_fault_inject_gt_reset()) {
-+	if (xe_fault_gt_reset()) {
- 		err = -ECANCELED;
- 		goto err_fail;
- 	}
-@@ -986,7 +987,7 @@ void xe_gt_reset_async(struct xe_gt *gt)
- 		return;
- 
- 	/* Don't do a reset while one is already in flight */
--	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
-+	if (!xe_fault_gt_reset() && xe_uc_reset_prepare(&gt->uc))
- 		return;
- 
- 	xe_gt_info(gt, "reset queued from %ps\n", __builtin_return_address(0));
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index a6cfaa1af23f..65a4655b0994 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -6,8 +6,6 @@
- #ifndef _XE_GT_H_
- #define _XE_GT_H_
- 
--#include <linux/fault-inject.h>
--
- #include <drm/drm_util.h>
- 
- #include "xe_device.h"
-@@ -38,12 +36,6 @@
- 	xe_gt_is_media_type(gt_) ? MEDIA_VER(xe) : GRAPHICS_VER(xe); \
- })
- 
--extern struct fault_attr gt_reset_failure;
--static inline bool xe_fault_inject_gt_reset(void)
--{
--	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
--}
--
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
- int xe_gt_init_early(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 4a4b363fc844..ad2ec603df4e 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -4,7 +4,6 @@
-  */
- 
- #include <linux/bitmap.h>
--#include <linux/fault-inject.h>
- 
- #include "regs/xe_gsc_regs.h"
- #include "regs/xe_hw_error_regs.h"
-@@ -12,6 +11,7 @@
- 
- #include "xe_device.h"
- #include "xe_drm_ras.h"
-+#include "xe_debugfs.h"
- #include "xe_hw_error.h"
- #include "xe_mmio.h"
- #include "xe_survivability_mode.h"
-@@ -25,8 +25,6 @@
- 						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
- 						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
- 
--extern struct fault_attr inject_csc_hw_error;
--
- static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
- 
- static const char * const hec_uncorrected_fw_errors[] = {
-@@ -167,11 +165,6 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
- 						 pvc_master_local_fatal_err_reg : \
- 						 pvc_master_local_nonfatal_err_reg)
- 
--static bool fault_inject_csc_hw_error(void)
--{
--	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
--}
--
- static void csc_hw_error_work(struct work_struct *work)
- {
- 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
-@@ -517,7 +510,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
- {
- 	enum hardware_error hw_err;
- 
--	if (fault_inject_csc_hw_error())
-+	if (xe_fault_csc_hw_error())
- 		schedule_work(&tile->csc_hw_error_work);
- 
- 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
--- 
-2.34.1
-
+> +		if (kref_get_unless_zero(&res->bo->base.refcount))
+> +			curs->bo =3D res->bo;
+> =C2=A0
+> =C2=A0		/*
+> -		 * Note that in between the release of the lru lock
+> and the
+> -		 * ticketlock, the bo may have switched resource,
+> -		 * and also memory type, since the resource may have
+> been
+> -		 * freed and allocated again with a different memory
+> type.
+> -		 * In that case, just skip it.
+> +		 * The BO is now locked so it can't be released any
+> more until
+> +		 * we drop both the lock and the eventual GEM
+> reference.
+> =C2=A0		 */
+> -		curs->bo =3D bo;
+> -		if (!ret && bo->resource && bo->resource->mem_type
+> =3D=3D mem_type)
+> -			return bo;
+> -
+> -		ttm_bo_lru_cursor_cleanup_bo(curs);
+> -		if (ret && ret !=3D -EALREADY)
+> -			return ERR_PTR(ret);
+> -
+> -		spin_lock(lru_lock);
+> +		return res->bo;
+> =C2=A0	}
+> -
+> -	spin_unlock(lru_lock);
+> -	return res ? bo : NULL;
+> +	return NULL;
+> =C2=A0}
+> =C2=A0
+> =C2=A0/**
+> @@ -1046,7 +1048,7 @@ __ttm_bo_lru_cursor_next(struct
+> ttm_bo_lru_cursor *curs)
+> =C2=A0 */
+> =C2=A0struct ttm_buffer_object *ttm_bo_lru_cursor_next(struct
+> ttm_bo_lru_cursor *curs)
+> =C2=A0{
+> -	return __ttm_bo_lru_cursor_next(curs);
+> +	return __ttm_bo_lru_cursor_iter(curs, false);
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(ttm_bo_lru_cursor_next);
+> =C2=A0
+> @@ -1060,8 +1062,8 @@ EXPORT_SYMBOL(ttm_bo_lru_cursor_next);
+> =C2=A0 */
+> =C2=A0struct ttm_buffer_object *ttm_bo_lru_cursor_first(struct
+> ttm_bo_lru_cursor *curs)
+> =C2=A0{
+> -	ttm_bo_lru_cursor_cleanup_bo(curs);
+> -	return __ttm_bo_lru_cursor_next(curs);
+> +	ttm_bo_lru_cursor_cleanup(curs);
+> +	return __ttm_bo_lru_cursor_iter(curs, true);
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(ttm_bo_lru_cursor_first);
+> =C2=A0
+> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
+> b/drivers/gpu/drm/ttm/ttm_resource.c
+> index 154d6739256f8..4a765b25472c3 100644
+> --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> @@ -714,6 +714,24 @@ ttm_resource_manager_next(struct
+> ttm_resource_cursor *cursor)
+> =C2=A0	return NULL;
+> =C2=A0}
+> =C2=A0
+> +/* TODO */
+> +struct ttm_resource *
+> +ttm_resource_manager_current(struct ttm_resource_cursor *cursor)
+> +{
+> +	struct ttm_resource_manager *man =3D cursor->man;
+> +	struct ttm_lru_item *lru;
+> +
+> +	lockdep_assert_held(&man->bdev->lru_lock);
+> +
+> +	lru =3D &cursor->hitch;
+> +	list_for_each_entry_continue_reverse(lru, &man->lru[cursor-
+> >priority],
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 link) {
+> +		if (ttm_lru_item_is_res(lru))
+> +			return ttm_lru_item_to_res(lru);
+> +	}
+> +	return NULL;
+> +}
+> +
+> =C2=A0/**
+> =C2=A0 * ttm_lru_first_res_or_null() - Return the first resource on an lr=
+u
+> list
+> =C2=A0 * @head: The list head of the lru list.
+> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+> index 8310bc3d55f90..30e835414e721 100644
+> --- a/include/drm/ttm/ttm_bo.h
+> +++ b/include/drm/ttm/ttm_bo.h
+> @@ -488,15 +488,13 @@ struct ttm_bo_lru_cursor {
+> =C2=A0	/** @res_curs: Embedded struct ttm_resource_cursor. */
+> =C2=A0	struct ttm_resource_cursor res_curs;
+> =C2=A0	/**
+> -	 * @bo: Buffer object pointer if a buffer object is
+> refcounted,
+> -	 * NULL otherwise.
+> +	 * @resv: reference to the locked dma_resv
+> =C2=A0	 */
+> -	struct ttm_buffer_object *bo;
+> +	struct dma_resv *resv;
+> =C2=A0	/**
+> -	 * @needs_unlock: Valid iff @bo !=3D NULL. The bo resv needs
+> -	 * unlock before the next iteration or after loop exit.
+> +	 * @bo: TTM BO with GEM reference, NULL for deleted BOs
+> =C2=A0	 */
+> -	bool needs_unlock;
+> +	struct ttm_buffer_object *bo;
+> =C2=A0	/** @arg: Pointer to common BO LRU walk arguments. */
+> =C2=A0	struct ttm_lru_walk_arg *arg;
+> =C2=A0};
+> diff --git a/include/drm/ttm/ttm_resource.h
+> b/include/drm/ttm/ttm_resource.h
+> index a5d386583fb6e..e8e9c8b81ce4b 100644
+> --- a/include/drm/ttm/ttm_resource.h
+> +++ b/include/drm/ttm/ttm_resource.h
+> @@ -488,6 +488,8 @@ struct ttm_resource *
+> =C2=A0ttm_resource_manager_first(struct ttm_resource_cursor *cursor);
+> =C2=A0struct ttm_resource *
+> =C2=A0ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
+> +struct ttm_resource *
+> +ttm_resource_manager_current(struct ttm_resource_cursor *cursor);
+> =C2=A0
+> =C2=A0struct ttm_resource *
+> =C2=A0ttm_lru_first_res_or_null(struct list_head *head);
