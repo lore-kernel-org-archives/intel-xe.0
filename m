@@ -4,35 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7723C43458
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 04:56:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9B70C43458
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 05:07:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6290E10E53C;
-	Mon, 13 Jul 2026 04:56:00 +0000 (UTC)
-X-Greylist: delayed 581 seconds by postgrey-1.36 at gabe;
- Mon, 13 Jul 2026 04:55:58 UTC
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFAE010E53C
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 04:55:58 +0000 (UTC)
-Received: from [192.168.10.87] (unknown [39.110.247.193])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id DE9E63F123
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 06:46:14 +0200 (CEST)
-Message-ID: <bafcfff1-162f-4abf-b996-c4aafd293324@hogyros.de>
-Date: Mon, 13 Jul 2026 13:46:10 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E85E10E53F;
+	Mon, 13 Jul 2026 05:07:59 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D65A910E32D;
+ Mon, 13 Jul 2026 05:07:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7643459097629693101=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/8] drm/xe:add page size allocation mode control and
- coverage
-To: intel-xe@lists.freedesktop.org
-References: <20260712111517.1956177-1-naresh.kumar.g@intel.com>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <20260712111517.1956177-1-naresh.kumar.g@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Hold_device_r?=
+ =?utf-8?q?ef_until_queue_teardown_completes_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Jul 2026 05:07:57 -0000
+Message-ID: <178391927787.180620.7297763897269373570@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260713042530.2108459-1-arvind.yadav@intel.com>
+In-Reply-To: <20260713042530.2108459-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,33 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+--===============7643459097629693101==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 7/12/26 8:15 PM, Nareshkumar Gollakoti wrote:
+== Series Details ==
 
-> Some platforms support multiple page sizes for user BO allocations,
-> including 4K, 64K, 2M, and 1G.
+Series: drm/xe/guc: Hold device ref until queue teardown completes (rev9)
+URL   : https://patchwork.freedesktop.org/series/168424/
+State : success
 
-aarch64 also has 16k -- and these also become the minimum page size for 
-CPU accessible allocations.
+== Summary ==
 
-There is also 256k, but that is probably not in actual use anywhere near 
-an Intel GPU.
+CI Bug Log - changes from xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88_BAT -> xe-pw-168424v9_BAT
+====================================================
 
-I can give this a test on a kernel with PAGE_SIZE 64k next weekend.
+Summary
+-------
 
-The biggest annoyance on machines with large page size are the BOs that 
-are allocated for device page tables, because these are always 4k in 
-size, but must be CPU accessible, so their size and alignment must fit 
-CPU requirements.
+  **SUCCESS**
 
-The original series[1] from Mincong Bai solved that by forcing alignment 
-for all BOs, which wastes a bit of memory, but works. Obviously we don't 
-want to use a 2M or 1G BO for a page table, so presumably we want to 
-special-case those, but at the same time they cannot be so special that 
-they ignore the constraints from the CPU.
+  No regressions found.
 
-    Simon
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88 -> xe-pw-168424v9
+
+  IGT_9002: 9002
+  xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88: f8ed2f7559466d59169b7a840c2403a0d4614f88
+  xe-pw-168424v9: 168424v9
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168424v9/index.html
+
+--===============7643459097629693101==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Hold device ref until queue teardown completes (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168424/">https://patchwork.freedesktop.org/series/168424/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168424v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168424v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88_BAT -&gt; xe-pw-168424v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88 -&gt; xe-pw-168424v9</li>
+</ul>
+<p>IGT_9002: 9002<br />
+  xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88: f8ed2f7559466d59169b7a840c2403a0d4614f88<br />
+  xe-pw-168424v9: 168424v9</p>
+
+</body>
+</html>
+
+--===============7643459097629693101==--
