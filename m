@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70D59C44507
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42A94C43458
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 18:15:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB3A10E643;
-	Mon, 13 Jul 2026 18:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0006310E638;
+	Mon, 13 Jul 2026 18:15:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TnDAkKAH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knHgUSax";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F82410E638
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 18:15:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B52D010E638
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 18:15:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783966545; x=1815502545;
+ t=1783966547; x=1815502547;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bfXAms5yq4WiPB1/cHki5r0Xw7l/5rabkHpcyXu+Uyo=;
- b=TnDAkKAHz7nVayQfS08DKa8G5VwT7+HbI1siQguH+LOV7iMr1/7HpkiT
- tISi/O0iOwwINjYPvKtM4srORueYi7UUHw+kwwZTP4WIw/PhVRB/nYeJb
- 72GB+ubCAGZrpoCu/tR6b2t+FFhzqpw01YfkJ0kmCprRxdKgDWYjhKBOr
- 8mxATeM8y0HoafwzVrxmmHd9sL2u/x/2yfcwiZ5lopF812J4lmW+jz5e8
- 0cBQIF8hb0mFL8kUnPynVHpmsnE3bH+/xEW2kwZfhblOKvTPdKYbRod6+
- vUho0pAR/tbS8I9/GWzazpaSG4UJaEUfqjOtAzRAQ9Nw5olSkRo4wUhe5 A==;
-X-CSE-ConnectionGUID: xjIduRFgRT6BjR41aY3sEw==
-X-CSE-MsgGUID: 5lLrklKCS4awRd6goVtezA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84460878"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84460878"
+ bh=svroKjqAiO0KyBOpyZkY8q1bnAkbajZP0zUy4sIvu0U=;
+ b=knHgUSaxYtNkUkZZIaplfHXNP/3Vz6jz8FnlOC2K/4V9bHIT7KWj/3fd
+ OvCPxWmNJk55ZUhi/GcLVuzGyIIW5qXvJoZ/aMdNZJPeZEolk1ObE851I
+ ZXm5JzyY4kwWXux9G5AIrv8Y+mEDyY6qbNAsCtyUSeJSkwQbfLisvP3MF
+ jgCqXQHt9+7c0Wmuc8jA+qG9+W16y0v3q9AM0BDtYNvkALy2i0IKcWplw
+ SsKpoeuOHgsLIEVGibLrjU23gwynHFGnGhOVbvisXY9rTvUH0x0y3hy5P
+ I9Rk+dGSXxP14GfNcMhEPjkRBTBbA+VTopcpa+naaJHzSF3Tqgw5/7XR4 A==;
+X-CSE-ConnectionGUID: yIESQSOYQ+i3PRDNACycQA==
+X-CSE-MsgGUID: eaVYZlBdTteqfUShcqgZMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84460880"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84460880"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 11:15:45 -0700
-X-CSE-ConnectionGUID: VKK4btTaRdunWsl5TZVFEQ==
-X-CSE-MsgGUID: F+DA5Oy+T6WlTnMogkRlMA==
+ 13 Jul 2026 11:15:47 -0700
+X-CSE-ConnectionGUID: INEnAL1oREecgcuQvgSf4Q==
+X-CSE-MsgGUID: 9N/hNZyUQgeh0sZviqjhmw==
 X-ExtLoop1: 1
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by fmviesa003.fm.intel.com with ESMTP; 13 Jul 2026 11:15:44 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 13 Jul 2026 11:15:45 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
 	naresh.kumar.g@intel.com
-Subject: [PATCH v5 3/7] drm/xe: add XE_BO_FLAG_NEEDS_1G for minimum page-size
- sizing
-Date: Mon, 13 Jul 2026 23:46:01 +0530
-Message-ID: <20260713181605.3127204-4-naresh.kumar.g@intel.com>
+Subject: [PATCH v5 4/7] drm/xe: apply debug page-size allocation policy to
+ user BOs
+Date: Mon, 13 Jul 2026 23:46:02 +0530
+Message-ID: <20260713181605.3127204-5-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260713181605.3127204-1-naresh.kumar.g@intel.com>
 References: <20260713181605.3127204-1-naresh.kumar.g@intel.com>
@@ -66,61 +66,231 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add XE_BO_FLAG_NEEDS_1G to mark BOs that require 1G minimum page-size
-sizing.
+Apply the debug page-size allocation policy during user BO creation.
 
-Update xe_bo_init_locked() to honor the new flag in the existing
-VRAM/stolen-memory minimum page-size sizing path. When
-XE_BO_FLAG_NEEDS_1G is set, the BO size is rounded up to 1G. Otherwise,
-the existing 2M and 64K sizing behavior is preserved.
+When page-size allocation control is enabled, override the user BO
+page-size selection flags based on the selected debug mode and round the
+requested size up to the corresponding granularity:
+  - 2M mode selects 2M handling
+  - 1G mode selects 1G handling
+  - mixed mode selects the page size from the current mixed-mode index
 
-If multiple minimum page-size flags are set, the largest requirement
-takes precedence: 1G over 2M over 64K.
+This is intended for internal debug and validation flows. When the
+control mode is left at the default setting, the normal user BO creation
+path is unchanged.
+
+v2
+- ensure debug page-size allocation does not
+  affect the default path (sashiko)
+- rework synchronization for concurrent access (sashiko)
+- refactor commit message for readability
 
 v3
-- commit message reworded
+- update user BO size alignment based on debug policy mode
+- reword commit message
+- ensure normal user flow is unchanged when debug policy is disabled
+
+v4(sashiko)
+- limit debug page-size policy application to VRAM BOs
+- do not override preexisting page-size requirement flags
+- advance mixed-mode index only after successful
+  BO create ioctl completion
+- add overflow checks before ALIGN() in debug page-size handling
+- ensure CONFIG_DRM_XE_DEBUG_PAGE_SIZE enabled and it is dgfx
+
+v5(Himal)
+v5:
+- Guard debug page-size policy paths with CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+- Leave the normal BO creation path unchanged
+  when no debug mode is selected
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 12 ++++++++++--
- drivers/gpu/drm/xe/xe_bo.h |  1 +
- 2 files changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 154 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 154 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 4c80bac67622..9dbf59fad421 100644
+index 9dbf59fad421..bccc3611dca3 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2323,8 +2323,16 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
- 	if (flags & (XE_BO_FLAG_VRAM_MASK | XE_BO_FLAG_STOLEN) &&
- 	    !(flags & XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE) &&
- 	    ((xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) ||
--	     (flags & (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M)))) {
--		size_t align = flags & XE_BO_FLAG_NEEDS_2M ? SZ_2M : SZ_64K;
-+	     (flags & (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M |
-+		       XE_BO_FLAG_NEEDS_1G)))) {
-+		size_t align;
+@@ -2612,6 +2612,148 @@ static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *til
+ 	return ret ? ERR_PTR(ret) : bo;
+ }
+ 
++#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
++static void xe_bo_debug_mixed_mode_cur_index_advance(struct xe_device *xe)
++{
++	if (!IS_DGFX(xe) ||
++	    READ_ONCE(xe->page_size_alloc_ctrl.mode) !=
++	    XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED)
++		return;
 +
-+		if (flags & XE_BO_FLAG_NEEDS_1G)
-+			align = SZ_1G;
-+		else if (flags & XE_BO_FLAG_NEEDS_2M)
-+			align = SZ_2M;
-+		else
-+			align = SZ_64K;
++	mutex_lock(&xe->page_size_alloc_ctrl.lock);
++	if (xe->page_size_alloc_ctrl.mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED)
++		xe->page_size_alloc_ctrl.cur_index++;
++	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
++}
++
++static bool xe_size_align_overflows(size_t size, size_t align)
++{
++	return size > SIZE_MAX - (align - 1);
++}
++
++static u32 get_flag_from_cur_index_in_mixed_mode(struct xe_device *xe, size_t *align_size,
++						 int *err)
++{
++	static const u32 map[4] = {
++		0, /* default mode 4K */
++		XE_BO_FLAG_NEEDS_64K,
++		XE_BO_FLAG_NEEDS_2M,
++		XE_BO_FLAG_NEEDS_1G,
++	};
++	u32 idx;
++
++	lockdep_assert_held(&xe->page_size_alloc_ctrl.lock);
++
++	*err = 0;
++	idx = xe->page_size_alloc_ctrl.cur_index % ARRAY_SIZE(map);
++
++	if (!map[idx])
++		return 0;
++
++	if (map[idx] == XE_BO_FLAG_NEEDS_64K) {
++		if (xe_size_align_overflows(*align_size, SZ_64K)) {
++			*err = -EINVAL;
++			return 0;
++		}
++		*align_size = ALIGN(*align_size, SZ_64K);
++		return map[idx];
++	}
++
++	if (map[idx] == XE_BO_FLAG_NEEDS_2M) {
++		if (xe_size_align_overflows(*align_size, SZ_2M)) {
++			*err = -EINVAL;
++			return 0;
++		}
++		*align_size = ALIGN(*align_size, SZ_2M);
++		return map[idx];
++	}
++
++	if (map[idx] == XE_BO_FLAG_NEEDS_1G) {
++		if (xe_size_align_overflows(*align_size, SZ_1G)) {
++			*err = -EINVAL;
++			return 0;
++		}
++		*align_size = ALIGN(*align_size, SZ_1G);
++		return map[idx];
++	}
++
++	return 0;
++}
++
++static int xe_bo_apply_debug_page_size_policy(struct xe_device *xe,
++					      u32 *bo_flags,
++					      size_t *size)
++{
++	enum xe_page_size_alloc_ctrl_mode mode;
++	u32 want = 0;
++	size_t align_size = *size;
++	int err = 0;
++
++	if (!IS_DGFX(xe))
++		return 0;
++	/*
++	 * The debug page-size policy is only meaningful for BOs placed in
++	 * VRAM, where the downstream BO init path can
++	 * actually honor the corresponding minimum page-size requirement.
++	 */
++	if (!(*bo_flags & XE_BO_FLAG_VRAM_MASK))
++		return 0;
++
++	/*
++	 * Do not override existing page-size requirement flags, since they
++	 * may reflect functional requirements for specific BO types.
++	 */
++	if (*bo_flags & (XE_BO_FLAG_NEEDS_64K |
++			 XE_BO_FLAG_NEEDS_2M |
++			 XE_BO_FLAG_NEEDS_1G))
++		return 0;
++
++	if (!READ_ONCE(xe->page_size_alloc_ctrl.mode))
++		return 0;
++
++	mutex_lock(&xe->page_size_alloc_ctrl.lock);
++
++	mode = xe->page_size_alloc_ctrl.mode;
++	if (mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_NONE) {
++		goto out_unlock;
++	} else if (mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M) {
++		if (xe_size_align_overflows(align_size, SZ_2M)) {
++			err = -EINVAL;
++			goto out_unlock;
++		}
++		want = XE_BO_FLAG_NEEDS_2M;
++		align_size = ALIGN(align_size, SZ_2M);
++	} else if (mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G) {
++		if (xe_size_align_overflows(align_size, SZ_1G)) {
++			err = -EINVAL;
++			goto out_unlock;
++		}
++		want = XE_BO_FLAG_NEEDS_1G;
++		align_size = ALIGN(align_size, SZ_1G);
++	} else if (mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED) {
++		want = get_flag_from_cur_index_in_mixed_mode(xe, &align_size, &err);
++		if (err)
++			goto out_unlock;
++	} else {
++		goto out_unlock;
++	}
++
++	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
++
++	*bo_flags |= want;
++	/*
++	 * Apply the debug page-size policy by rounding the user BO size up to
++	 * the selected granularity.
++	 */
++	*size = align_size;
++	return err;
++
++out_unlock:
++	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
++	return err;
++}
++#endif
++
+ /**
+  * xe_bo_create_user() - Create a user BO
+  * @xe: The xe device.
+@@ -2632,9 +2774,18 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe,
+ 				u32 flags, struct drm_exec *exec)
+ {
+ 	struct xe_bo *bo;
++#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
++	int err;
++#endif
  
- 		aligned_size = ALIGN(size, align);
- 		if (type != ttm_bo_type_device)
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6340317f7d2e..d5d023cac367 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -52,6 +52,7 @@
- #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
- #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
- #define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
-+#define XE_BO_FLAG_NEEDS_1G		BIT(27)
+ 	flags |= XE_BO_FLAG_USER;
  
- /* this one is trigger internally only */
- #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
++#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
++
++	err = xe_bo_apply_debug_page_size_policy(xe, &flags, &size);
++	if (err)
++		return ERR_PTR(err);
++#endif
+ 	if (vm || exec) {
+ 		xe_assert(xe, exec);
+ 		bo = __xe_bo_create_locked(xe, NULL, vm, size, 0, ~0ULL,
+@@ -3449,6 +3600,9 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (err)
+ 		goto out_bulk;
+ 
++#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
++	xe_bo_debug_mixed_mode_cur_index_advance(xe);
++#endif
+ 	args->handle = handle;
+ 	goto out_put;
+ 
 -- 
 2.43.0
 
