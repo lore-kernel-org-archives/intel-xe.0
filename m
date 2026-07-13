@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D839C44506
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 08:31:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E2FBC43458
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 08:37:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40DD510E5B6;
-	Mon, 13 Jul 2026 08:31:08 +0000 (UTC)
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 080E210E58F;
- Mon, 13 Jul 2026 08:31:04 +0000 (UTC)
-X-UUID: 2c0d83c87e9511f1aa26b74ffac11d73-20260713
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12, REQID:1c3859d4-f82f-4cc0-9ce0-488c3dc37588, IP:0,
- U
- RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
- release,TS:0
-X-CID-META: VersionHash:e7bac3a, CLOUDID:5c2935fe4293b9d09a414be2a6fa101d,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:102|136|850|865|898,TC:nil,Content:0|15|
- 50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
- ,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 2c0d83c87e9511f1aa26b74ffac11d73-20260713
-X-User: lilinmao@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
- (envelope-from <lilinmao@kylinos.cn>)
- (Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
- with ESMTP id 255197116; Mon, 13 Jul 2026 16:30:57 +0800
-From: Linmao Li <lilinmao@kylinos.cn>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Linmao Li <lilinmao@kylinos.cn>
-Subject: [PATCH] drm/xe/oa: Check managed mutex initialization errors
-Date: Mon, 13 Jul 2026 16:30:53 +0800
-Message-Id: <20260713083053.321091-1-lilinmao@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF43D10E597;
+	Mon, 13 Jul 2026 08:37:10 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 528B410E58A;
+ Mon, 13 Jul 2026 08:37:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8675523895700706946=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_uncorrectable_error_han?=
+ =?utf-8?q?dling_for_core-compute_errors?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Jul 2026 08:37:10 -0000
+Message-ID: <178393183033.182092.2497364736080540276@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260713074755.1278607-6-riana.tauro@intel.com>
+In-Reply-To: <20260713074755.1278607-6-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drmm_mutex_init() can fail while registering its managed cleanup action.
-On failure, the reset path destroys the mutex, so continuing OA setup
-leaves an unusable lock that later paths may acquire.
+--===============8675523895700706946==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Return the error from per-GT OA initialization and abort device-wide OA
-initialization if the metrics lock cannot be initialized.
+== Series Details ==
 
-Fixes: a9f905ae7b6f ("drm/xe/oa/uapi: Initialize OA units")
-Fixes: cdf02fe1a94a ("drm/xe/oa/uapi: Add/remove OA config perf ops")
-Signed-off-by: Linmao Li <lilinmao@kylinos.cn>
----
- drivers/gpu/drm/xe/xe_oa.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+Series: Add uncorrectable error handling for core-compute errors
+URL   : https://patchwork.freedesktop.org/series/170293/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 2dce6a47202c..f3a0d5bf7894 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -2713,9 +2713,7 @@ static int xe_oa_init_gt(struct xe_gt *gt)
- 
- 	__xe_oa_init_oa_units(gt);
- 
--	drmm_mutex_init(&gt_to_xe(gt)->drm, &gt->oa.gt_lock);
--
--	return 0;
-+	return drmm_mutex_init(&gt_to_xe(gt)->drm, &gt->oa.gt_lock);
- }
- 
- static void xe_oa_print_gt_oa_units(struct xe_gt *gt)
-@@ -2855,7 +2853,10 @@ int xe_oa_init(struct xe_device *xe)
- 	oa->xe = xe;
- 	oa->oa_formats = oa_formats;
- 
--	drmm_mutex_init(&oa->xe->drm, &oa->metrics_lock);
-+	ret = drmm_mutex_init(&oa->xe->drm, &oa->metrics_lock);
-+	if (ret)
-+		goto exit;
-+
- 	idr_init_base(&oa->metrics_idr, 1);
- 
- 	ret = xe_oa_init_oa_units(oa);
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88_BAT -> xe-pw-170293v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-bmg-2 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9002 -> IGT_9003
+  * Linux: xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88 -> xe-pw-170293v1
+
+  IGT_9002: 9002
+  IGT_9003: 9003
+  xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88: f8ed2f7559466d59169b7a840c2403a0d4614f88
+  xe-pw-170293v1: 170293v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170293v1/index.html
+
+--===============8675523895700706946==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add uncorrectable error handling for core-compute errors</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170293/">https://patchwork.freedesktop.org/series/170293/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170293v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170293v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88_BAT -&gt; xe-pw-170293v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-bmg-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9002 -&gt; IGT_9003</li>
+<li>Linux: xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88 -&gt; xe-pw-170293v1</li>
+</ul>
+<p>IGT_9002: 9002<br />
+  IGT_9003: 9003<br />
+  xe-5390-f8ed2f7559466d59169b7a840c2403a0d4614f88: f8ed2f7559466d59169b7a840c2403a0d4614f88<br />
+  xe-pw-170293v1: 170293v1</p>
+
+</body>
+</html>
+
+--===============8675523895700706946==--
