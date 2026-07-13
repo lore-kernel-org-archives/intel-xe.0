@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18B28C44507
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B577C44508
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Jul 2026 03:00:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B698910E4B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B654210E2C1;
 	Mon, 13 Jul 2026 03:00:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G0ANzJTU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NRbdlJ/e";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B81210E2C1
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 03:00:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2F4510E2A4
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Jul 2026 03:00:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1783911614; x=1815447614;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KGD9Cd37dL/f/tZh2SyrUyzyY9iGpKENk36wsVPVXsA=;
- b=G0ANzJTUPCTlPLDWj8MQ21NlZSHexOeMSg7LjB+zgc7eKrm7oQTtMJZF
- KoeEW125ZP4+B+zQrQcAcqP1NasUhH9KA5fYZD6ZJ4XFqXFfTUrfScNgC
- s1YxXlaSxczMuEyRRBCNj+vYHozr126tEoFGW+ERNGtlCjgq0f12MgM1B
- /SSVZJViwmjPZbVp9LPM76kCTcwYfjO2154strhf1IdSy4rbkiJOiF/Py
- NBIngp/cgzgud6XjIEZw0nUSlSrIUMtI1j+Ysc6hzg0m2DO2L5ocYacql
- lqykTRdng2ZCLrYyvzuH4tP82/oeBe1BJDlbZGCtgqkhzzw7+uBNS2ksF w==;
-X-CSE-ConnectionGUID: +VKT7isiSBuZgWZMXUb8Ug==
-X-CSE-MsgGUID: 5XVGQ/0mSxmZSxLQz+2WNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84372636"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84372636"
+ bh=z4RzBfs8YM9DAhpzHe6kp69nmy6Ddf23E9Q2LBT5WoE=;
+ b=NRbdlJ/epiD/HuGg0ZBvY028qJgYQK23SMn9iWVeHMGThX7liOOQTXtb
+ UH4V4uFMd6sIPTI256wQiQ9BBRa/zxfnvCHMEuHXJmFBZunkZ1sFCVLk/
+ BCN9gvtRmEHirN6/vEY9fO84kQ5c4YVxFPKVjmW3mFH8mtdYzICkddIOU
+ X6YVbX97IfhhaYCk+/GfkSjNWroPg7CtizyqBsux1EPAPbrz82pzvv0vu
+ 1U6TqQ6vm35HW20wM0JRJJc1d8BhJpCarbn721ULiwbPUB72jIDGXpwLc
+ 8+sTNBj5tarCF7bh6SVBHZseTmJFUhQ4F0fiCNIGwxe2fMeACi4BoYWcD w==;
+X-CSE-ConnectionGUID: sbAzzEUTRPmEem1Sa4p+2g==
+X-CSE-MsgGUID: jzdyHJRQQDCfEvn9ZUn71g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84372628"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84372628"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2026 20:00:13 -0700
-X-CSE-ConnectionGUID: 2RMnMG5NRZOmSuXt9d/1Kg==
-X-CSE-MsgGUID: UW2mpXM1QPGV/jeMTtW2nQ==
+ 12 Jul 2026 20:00:12 -0700
+X-CSE-ConnectionGUID: s7mWXgytTkyM5F3LhD+cog==
+X-CSE-MsgGUID: KUTP76R8Tq+99uVOk3iEXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256059820"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256059808"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2026 20:00:13 -0700
+ 12 Jul 2026 20:00:12 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	thomas.hellstrom@linux.intel.com
-Subject: [PATCH v4 5/6] drm/xe/guc: Add suspend refcount to exec queue ops
-Date: Sun, 12 Jul 2026 20:00:09 -0700
-Message-ID: <20260713030005.2123322-13-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v4 1/6] drm/xe: only resume exec queues that were actually
+ suspended
+Date: Sun, 12 Jul 2026 20:00:05 -0700
+Message-ID: <20260713030005.2123322-9-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260713030005.2123322-8-niranjana.vishwanathapura@intel.com>
 References: <20260713030005.2123322-8-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,104 +68,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+A consumer-issued suspend() can fail (e.g. the queue is killed, banned
+or wedged), leaving the queue un-suspended. The consumer must then not
+issue the matching resume(): resuming a queue that was never suspended
+is incorrect.
 
-With the lr.suspended flag a consumer already pairs its own suspend()
-and resume() correctly, and no current path issues overlapping suspends
-on the same queue.
+Add an lr.suspended flag to struct xe_exec_queue that records whether a
+consumer suspend() succeeded and a matching resume() is still owed. Set
+it on a successful suspend() in the preempt-fence path, clear it on
+resume(), and only resume queues that have it set.
 
-Add a reference count to the exec queue suspend operations, as a small
-self-contained building block for callers that can genuinely overlap.
-A queue stays suspended as long as any caller holds a suspend and only
-resumes once the last caller releases it, so each caller pairs its own
-suspend/resume without needing to know about the others. This is what
-the upcoming multi-queue support needs, where queues in a group share
-a primary and may be suspended concurrently.
+In resume_and_reinstall_preempt_fences() also skip queues that have
+since been reset/killed/banned/wedged: such a queue's suspend may not
+have completed (suspend_pending can still be set, e.g. a preempt fence
+signalled with -ENOENT without waiting), so resuming it would trip the
+!suspend_pending assert in the backend. Leave it marked suspended and
+let teardown resolve its state.
 
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Co-authored-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+A queue is only ever suspended by a single consumer at a time
+(preempt-fence mode and hw engine group fault mode are mutually
+exclusive), so a single flag is sufficient.
+
+Assisted-by: Github-Copilot:Claude-opus-4.8
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  7 +++++
- drivers/gpu/drm/xe/xe_guc_submit.c           | 30 ++++++++++++++------
- 2 files changed, 28 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_preempt_fence.c    |  7 +++++++
+ drivers/gpu/drm/xe/xe_vm.c               | 18 +++++++++++++++++-
+ 3 files changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index e5e53b421f29..1207d51cf770 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -49,6 +49,13 @@ struct xe_guc_exec_queue {
- 	wait_queue_head_t suspend_wait;
- 	/** @suspend_pending: a suspend of the exec_queue is pending */
- 	bool suspend_pending;
-+	/**
-+	 * @suspend_count: Reference count of active suspend requests. The
-+	 * exec_queue remains suspended while this is non-zero, allowing
-+	 * multiple concurrent callers to independently hold a suspend without
-+	 * prematurely re-enabling the queue. Protected by @sched.msg_lock.
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index d27ce24daae5..dbb2ee8eb5de 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -200,6 +200,18 @@ struct xe_exec_queue {
+ 		u32 seqno;
+ 		/** @lr.link: link into VM's list of exec queues */
+ 		struct list_head link;
++		/**
++		 * @lr.suspended: Tracks whether the consumer-issued suspend()
++		 * succeeded and a matching resume() is still owed. suspend() can
++		 * fail (e.g. killed/banned/wedged), leaving the queue
++		 * un-suspended, so consumers must only resume() queues that were
++		 * actually suspended. Set by the suspend caller on success and
++		 * cleared by the resume caller. A queue is only ever suspended by
++		 * a single consumer at a time (preempt-fence mode and hw engine
++		 * group fault mode are mutually exclusive), so a single flag is
++		 * sufficient.
++		 */
++		bool suspended;
+ 	} lr;
+ 
+ #define XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT	0
+diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
+index d6427b473ddd..4aa570fe745d 100644
+--- a/drivers/gpu/drm/xe/xe_preempt_fence.c
++++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
+@@ -74,6 +74,13 @@ static bool preempt_fence_enable_signaling(struct dma_fence *fence)
+ 	struct xe_exec_queue *q = pfence->q;
+ 
+ 	pfence->error = q->ops->suspend(q);
++	/*
++	 * Record a successful suspend so the rebind worker only resumes queues
++	 * that were actually suspended; a failed suspend() leaves the queue
++	 * un-suspended and must not be paired with a resume().
 +	 */
-+	int suspend_count;
- 	/**
- 	 * @needs_cleanup: Needs a cleanup message during VF post migration
- 	 * recovery.
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index de9c131fc62d..5a30f17f5c28 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2188,15 +2188,21 @@ static int guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
- 
- static int guc_exec_queue_suspend(struct xe_exec_queue *q)
- {
--	struct xe_gpu_scheduler *sched = &q->guc->sched;
--	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_SUSPEND;
-+	struct xe_guc_exec_queue *ge = q->guc;
-+	struct xe_gpu_scheduler *sched = &ge->sched;
-+	struct xe_sched_msg *msg = ge->static_msgs + STATIC_MSG_SUSPEND;
- 
- 	if (exec_queue_killed_or_banned_or_wedged(q))
- 		return -EINVAL;
- 
- 	xe_sched_msg_lock(sched);
--	if (guc_exec_queue_try_add_msg(q, msg, SUSPEND))
--		q->guc->suspend_pending = true;
-+	if (++ge->suspend_count == 1) {
-+		bool added = guc_exec_queue_try_add_msg(q, msg, SUSPEND);
-+
-+		/* slot must be free at 0->1 */
-+		xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)), added);
-+		ge->suspend_pending = true;
-+	}
- 	xe_sched_msg_unlock(sched);
- 
- 	return 0;
-@@ -2330,14 +2336,20 @@ static int guc_exec_queue_suspend_wait_blocking(struct xe_exec_queue *q)
- 
- static void guc_exec_queue_resume(struct xe_exec_queue *q)
- {
--	struct xe_gpu_scheduler *sched = &q->guc->sched;
--	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_RESUME;
-+	struct xe_guc_exec_queue *ge = q->guc;
-+	struct xe_gpu_scheduler *sched = &ge->sched;
-+	struct xe_sched_msg *msg = ge->static_msgs + STATIC_MSG_RESUME;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 
--	xe_gt_assert(guc_to_gt(guc), !q->guc->suspend_pending);
--
- 	xe_sched_msg_lock(sched);
--	guc_exec_queue_try_add_msg(q, msg, RESUME);
-+	xe_gt_assert(guc_to_gt(guc), !ge->suspend_pending);
-+	xe_gt_assert(guc_to_gt(guc), ge->suspend_count > 0);
-+	if (--ge->suspend_count == 0) {
-+		bool added = guc_exec_queue_try_add_msg(q, msg, RESUME);
-+
-+		/* slot must be free at 1->0 */
-+		xe_gt_assert(guc_to_gt(guc), added);
-+	}
- 	xe_sched_msg_unlock(sched);
++	if (!pfence->error)
++		WRITE_ONCE(q->lr.suspended, true);
+ 	queue_work(q->vm->xe->preempt_fence_wq, &pfence->preempt_work);
+ 	return true;
  }
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 080c2fff0e95..23f4a9fb9a49 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -206,7 +206,23 @@ static void resume_and_reinstall_preempt_fences(struct xe_vm *vm,
+ 	xe_vm_assert_held(vm);
  
+ 	list_for_each_entry(q, &vm->preempt.exec_queues, lr.link) {
+-		q->ops->resume(q);
++		/*
++		 * Only resume queues whose suspend() actually succeeded. A
++		 * failed suspend() (e.g. killed/banned/wedged) leaves the queue
++		 * un-suspended, so it must not be resumed.
++		 *
++		 * Also skip queues that have since been reset/killed/banned/
++		 * wedged: their suspend may not have completed (suspend_pending
++		 * can still be set, e.g. a preempt fence signalled with -ENOENT
++		 * without waiting), so resuming would trip the !suspend_pending
++		 * assert in the backend. Such queues are being torn down anyway,
++		 * so leave them marked suspended and let teardown resolve their
++		 * state.
++		 */
++		if (READ_ONCE(q->lr.suspended) && !q->ops->reset_status(q)) {
++			WRITE_ONCE(q->lr.suspended, false);
++			q->ops->resume(q);
++		}
+ 
+ 		drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, q->lr.pfence,
+ 					 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_BOOKKEEP);
 -- 
 2.43.0
 
