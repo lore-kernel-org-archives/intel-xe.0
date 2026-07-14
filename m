@@ -4,40 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AE79C4450B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84023C4450A
 	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 16:27:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F09AD10EDF7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3BFB10EDF5;
 	Tue, 14 Jul 2026 16:27:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="UsL3X29G";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="oUP+dnEZ";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7218F10E9DA;
- Tue, 14 Jul 2026 16:27:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4CAC10E466;
+ Tue, 14 Jul 2026 16:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1784046460;
- bh=8Yj+XzhBkj+3eDFn41zxHZ0OWUysDQ+VJqoDx4Rq6Fw=;
+ s=default; t=1784046459;
+ bh=Uh1I9AQT/zD14G3G7nTtXol2UYt5hVDXgBO6hfs7sRA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UsL3X29GkH4LIiIQKgtsan56ZvgJBW2MSkmlf1VYRkwzcOKJwBV64FLgXsAnc/lFf
- oekTmzbtxnOE8h2cwQLZdQqiMfGa18W8aUE9VKq9Kiu54imrQVzvg6h80aDCNWjaAO
- ozyRM6Srr6SVln71Rl2vGRV1zup+jWcid30mVP3/++fIP2IhgyW5s/aej8JmigNvrh
- eWCqgRVHIGRxtGqPzq2V6ocCI+ESyEBo1pqW665yDAHUp4Qvno1q2AkUyXKuJlTUio
- ovxAdI0Ro0i/Aqwxq+MO6ePNiWZQb/1aoZprxRwVvGF4BCPNjBdI9y+8I/gwHTEU2Q
- ocVwL7lFFKD8w==
+ b=oUP+dnEZxOx/X69YpfY7r7dKnoSfvIMxqFmQ9QhumN4/V63CsntDuKZcp4Lip8fdz
+ ieZw2hN4c2D6+78aTn/SxmrtG8v78EqRSpPER2spqqNkZZRD10n98xbxS351GIFN6S
+ 1XvuudfP5qtmcPaFXEhCCRjeYJnKDM0trHoE6gIO6IUNSgCTr76Diyodmr2YjRqLy6
+ /uJBGw0368DkvJC24fHXBS2nV1rNbZvloFUX49lxP1STfIU6woqcWAqKyypU5myrxs
+ FPaRBqtY+n4J71W9FwzYwgSPluOQQTOsXqSOo8XSP3jEgbio0nW/Ip0lIwUuxhL/Lm
+ a8lY+EQkBmvPQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH 5/7] drm/xe/display: Use the correct calculation for phys_base
- on integrated
-Date: Tue, 14 Jul 2026 18:28:22 +0200
-Message-ID: <20260714162824.2063637-6-dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH 4/7] drm/xe/display: Reserve the original GGTT space before
+ creating a bo
+Date: Tue, 14 Jul 2026 18:28:21 +0200
+Message-ID: <20260714162824.2063637-5-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260714162824.2063637-1-dev@lankhorst.se>
 References: <20260714162824.2063637-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,30 +52,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The code originally assumed there was a 1:1 mapping between
-stolen and GGTT offset. This is no longer true as of MTL, so
-perform the correct calculations, similar to how they're
-performed for the DGFX case.
+Annotate the original area of the framebuffer as reserved in the GGTT
+before creating a new GGTT entry. This allows us to remove the
+range restrictions of GGTT in xe_bo_create_pin_map_at_novm().
 
-Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 8127384fa5bdf..275cfb13fbbd0 100644
+index 0f86b73036d03..8127384fa5bdf 100644
 --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -101,7 +101,7 @@ initial_plane_bo(struct xe_device *xe,
- 			return NULL;
+@@ -46,6 +46,7 @@ initial_plane_bo(struct xe_device *xe,
+ 	resource_size_t phys_base;
+ 	u32 base, size, flags;
+ 	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
++	struct xe_ggtt_node *original_ggtt_node;
+ 
+ 	if (plane_config->size == 0)
+ 		return NULL;
+@@ -111,8 +112,21 @@ initial_plane_bo(struct xe_device *xe,
  		}
+ 	}
  
--		phys_base = base;
-+		phys_base = (pte & ~(page_size - 1)) - xe_ttm_stolen_gpu_offset(xe);
- 		flags |= XE_BO_FLAG_STOLEN;
- 
- 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
++	if (base + size <= xe_ggtt_start(tile0->mem.ggtt))
++		original_ggtt_node = NULL;
++	else if (base < xe_ggtt_start(tile0->mem.ggtt))
++		original_ggtt_node = xe_ggtt_insert_node_at(tile0->mem.ggtt, size - xe_ggtt_start(tile0->mem.ggtt), page_size, 0, base + size);
++	else
++		original_ggtt_node = xe_ggtt_insert_node_at(tile0->mem.ggtt, size, page_size, base, base + size);
++
++	if (IS_ERR(original_ggtt_node))
++		return NULL;
++
+ 	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
+ 					  ttm_bo_type_kernel, flags, 0, false);
++	if (original_ggtt_node)
++		xe_ggtt_node_remove_noclear(original_ggtt_node);
++
+ 	if (IS_ERR(bo)) {
+ 		drm_dbg_kms(&xe->drm,
+ 			    "Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
 -- 
 2.53.0
 
