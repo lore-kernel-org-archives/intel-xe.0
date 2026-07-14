@@ -4,158 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97AE8C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 06:20:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68958C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 06:24:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50A9C10E002;
-	Tue, 14 Jul 2026 06:20:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2867F89369;
+	Tue, 14 Jul 2026 06:24:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mz3/AOo/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LUp2dZUd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B93C10E002
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 06:20:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02BAE89369
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 06:24:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784010012; x=1815546012;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=cn79V9Pvi9dxTyedqfKs7Rjd45RkHHiOSw0Utehw5HI=;
- b=mz3/AOo/cIVdux4z9RZREUvYF0T0WDlNCxyKKWt4nkPWPmeIaUJvzVKJ
- 9Zb1yShGEqWZXr3FCO/k3xShVarMv2xMVru5Ly4JU1XPrMRmFxdTYk1Dw
- qOcRg4AXQ3bbIDLRnBc90pTo8eGNFbvQVURlnR3Laam80LdOXArBlD8xq
- 2gSKvpKLoI1UsxODGMwFWcrd7vLJszma4yso+F8l1dcqIwCV4AP3kThCv
- jqwrNtQriX04zFBsh7tYFhvmRyPbmnl/bcW5JOOJKFPrsFufwXupDOgwf
- Hakc/9vlE7Mf9ftCCsf1QFIQTlqlzqe5mM+TYfxkzCCRH4qZmfzODi29R g==;
-X-CSE-ConnectionGUID: 62pZ2M4LS+K7vuPYQmmDLQ==
-X-CSE-MsgGUID: 8IfPzwtmQSeJuyAwsd2Xmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="107417930"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="107417930"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 23:20:12 -0700
-X-CSE-ConnectionGUID: nMsULieCQLuqjndSQEijcQ==
-X-CSE-MsgGUID: R6qmYQeZTf6brHVCVuCzlQ==
+ t=1784010285; x=1815546285;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SWBcWBq6c9xeoSrvhV14oMuOQwa0UED31C9lUR/SgfI=;
+ b=LUp2dZUd8Jtc2jRJaJg7UwXm3HVIF8sLPvFuVeRiU2vT/Yu+Sz4DSC6K
+ XES2mFXIkmRpYiqP3KqAKUi1OzN/zq4UMKKqEKre6GCMQkLSO1NcmcDmr
+ K57kuoArkYJz6JQeCyVB8atu2wIKW30FvQBaSOBjTF0UU5SLfAl8dTOLH
+ 5CO46ANPNY+GhnM84sbhELifxI8SizAu+iOi/az9sTdmrt9RXkSxPS+dp
+ F71rQdYNzzYwDLLW+kpO05ow2t6KyD1Qa9z6ae9g8dMBgtQu4IGMGB8g9
+ RZvDNL/6EpHX+n18d7dfmfJT6ImOUFkRQFT1io8iKmAY6+w+vxZNHvF/v A==;
+X-CSE-ConnectionGUID: i7d8Si4mSC2Q/nrIUNUVNw==
+X-CSE-MsgGUID: k9U39nxbQ66vjMSdsCk0WQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="95991818"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="95991818"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 23:24:44 -0700
+X-CSE-ConnectionGUID: tf5bchFVSZe3kgWawZ8JOg==
+X-CSE-MsgGUID: Ekyym8YFQB27qU+ttnD2NA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="293952551"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 23:20:12 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 23:20:11 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Mon, 13 Jul 2026 23:20:11 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.62) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 23:20:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BKpebKRNsewISQTDh/g2rJRLutIAVn6iNHrqBuyuKdC+afGcirpRZhwYblIL21yQMaMHVkq/kqRY8OsMPi79aQJ+lmhoSYqTvginqC5ay64RtqfqbRaUD2QGEvK+doUd9l2XiPPgjHw/Z4nY4xWtz00cxgTN2qohmn8A6eW5HZ8Imx9Ud8vXuoQJbDOXQTpcp5rbIH6Ey7bwCk57gJxFeOLrrUw3JSuC6Eyl3rc2fee+ttcgj1dVoZKFsIPIMmJkRVZ1vEE7DZZasD/vsZOQ9RAL2tHGO+AzxqgPY23Al3u7Oinr7ydBrwcCxjddOrzX4OgNUlzKUMEofCOfeeBUCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mMKxuJPIqioqid4hT9b23ZtO5XcRnWcdvOzU5397E5c=;
- b=HpRmF6U0z/32ZWd0ZIyl8jhWhcrSIiopcD0Cf+h4tM8OqVZM8Nm+GS0QWK8GS7AmlZ1qYPqzTZWgptCxW0z1WnLIN4s8J6olaBXrXGIkmuxP/Jj/QK+wowEpxCVsCWvP0BRKGuzZ9Be9XVWYyyLcIOFD7pu/vaRVc9uM6HidcL6BozRIKwmBS2SbJZysLcast8rwpkzsKsnGdFOTCTQDpb4V7CZAJnZTR9lLdiynmZYR0gd+jCev8jCegNHH7uSI9yjQPJSeOWCSSfwZU1k3evlQghd10bc16kjRbspA7OwfwYeOtyyt0fcU8aX+JJAQhvPBPKKHckARFcGTvLeBTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM4PR11MB5293.namprd11.prod.outlook.com (2603:10b6:5:390::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Tue, 14 Jul
- 2026 06:20:03 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0202.018; Tue, 14 Jul 2026
- 06:20:03 +0000
-Date: Mon, 13 Jul 2026 23:20:00 -0700
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="285849923"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 23:24:45 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-CC: Shuicheng Lin <shuicheng.lin@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/xe/vm: Reject invalid prefetch region for non-SVM VMA
-Message-ID: <alXVEIHZLiopsPTt@gsse-cloud1.jf.intel.com>
-References: <20260710021700.3611909-1-shuicheng.lin@intel.com>
- <alVSDlVhQBy59KlF@gsse-cloud1.jf.intel.com>
- <f6a7473e-66fa-4151-ba46-3e51d2009582@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f6a7473e-66fa-4151-ba46-3e51d2009582@intel.com>
-X-ClientProxiedBy: MW4P222CA0026.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:303:114::31) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH] drm/xe/vf: Fix VF CCS attach/detach race with in-flight BO
+ moves
+Date: Mon, 13 Jul 2026 23:24:40 -0700
+Message-Id: <20260714062440.3421225-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB5293:EE_
-X-MS-Office365-Filtering-Correlation-Id: 609988fb-b3cf-415d-2fb5-08dee16ff0b0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|22082099003|18002099003|11063799006|4143699003|5023799004|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: x2aDEZjX2UXimrc9ws9MvQwze7On1iCvl+44xRr1RjnrZXntwyjFdv/ljrPVAbxt+wTebl6WhztQRw3aTVzNq9noQ9N2eK/ZELKI6wWMRZFmMS5fhxREAD1gULtIjqjvGO60r5pRzzp3NX9OrlIiUrnVQgPusUStQxGrffFIbGydUNZoSPXccSH/WybAzmqjXfcvxq3QBirFrMBmhaiiossuDpdOaRUroTIckTPCuQfR0O1YjqckiayzZ2H6xS2XvBF4o+Ux1kLocgKEeocRoaWsB5gLc4I5ODMxHRqYx4RUbFhElw+k2oabVBzCuDTtKPmQj+1u54y/jTbaMi0sdaocgdvu6CXCuoxLl7vaS/fLFZNhFXVtrpnWIKlqtR5b4DDID8uCnTl7P02g/1jMbz3oy8Esa55/pZs+eNzgBelYTo84vj5/+o+nrHFHzjV10zSG0Q3Bd3xxHKRUC0eVK9ij5fWNZu9K/U5QeawuciyWrfdw7f5A3wwvA8L1Xga8eEUiBDBF2eYBe5zKPJPLINyLkHb8vnvs00zYUveoJiXjkBVs/ePcpsexOZ2tpvXQVFTY6w1JgpFhZ9VXdrVvmh8tNn3b5mU+DYvUxzIRbPhO+Wqh0GlipF9q8DX84U3n
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(22082099003)(18002099003)(11063799006)(4143699003)(5023799004)(56012099006)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eTBkZXdsUnFoOFNleHR4TWl0TFBoL2t5bEl3TmNmYjB0ZCtQdTNzcnFIYWxj?=
- =?utf-8?B?aHNZUkQ3TGhCYXZJUmIvdkJqSzdaN0tGK3V5NHdXNU9XemFiZitKMmpYeGxw?=
- =?utf-8?B?RHZDWFFRUGZISUpnQ2NMY1pnSmk2Sjl5T3llTGxRRWtqRXp6bi9qNnB1aDE2?=
- =?utf-8?B?eExXMG5mazFZSEN3UUV4b1VmT2dwOW83NzBNdnNDUkF5K0hWeFNoZkk2NERu?=
- =?utf-8?B?eGw0N29UYUNDcTBPZ0p6dzE2UnErODhaci80RExhYitPZTV1eGNUSmdxMlYw?=
- =?utf-8?B?amNhd0ZNK2NteWJINkRDeVdLL245cWE4SERpeFd2TDhvdlJEd1gvZ0pzNjJB?=
- =?utf-8?B?TURHMkhmTFNNOGo5aEZkdHAzTEsxZUE1dVcxSk9ZSEZIUDY3ZHF5bGRHbDZI?=
- =?utf-8?B?YU1aQmJOS0phdmJBQnZxK2JKSm4rblZaMVlhVkRQbFZLV3dOYjN3dnkzMEJZ?=
- =?utf-8?B?akcvQ2puWS94U1dJU2phSTl4dVZ3NzViQ2xrUDlWc2lvOUgyK0doZnRweW1E?=
- =?utf-8?B?T3NJb3M1NzhSRUNna0Y2T2xDT2VpUEpEUnlLWW0vWDd1ZzhYaUlUR3Q5UXEv?=
- =?utf-8?B?Y1piY1p0Szg4dysrTDQwT2VLM2kyK3JyMy9RQldyVjE1aXJuaHpCOUUzWFJv?=
- =?utf-8?B?SE1RQ2NpdzhBWTM1VnB0YVhRcDc5Q0h6UllERzQwbzZPMEF0Z3BtMC80YTBV?=
- =?utf-8?B?blBQeVhNY0Y3UlVIRHEvS1BaU0ZyMWw1azMvTUg4WGhuRTBRYWw5dDVqeG5r?=
- =?utf-8?B?ZlRrcDRqNURBQ1lhZEpBSkN2WFgvdUFZaEhLZHlSMmFXNFZtcVBFSVdYSnR0?=
- =?utf-8?B?bUpXa25wNmFUNUd5RGM3OWs0WHRrQ0ZOL2U4OGd1bmhsZmRaeU1wOHlJZXFX?=
- =?utf-8?B?U1dHRUtTdEI4K3RaVi91aGJPUVE0aFJDeXhuM1pGR0tRbVZjL2VBVW9jOUJi?=
- =?utf-8?B?dytwSmNNekVyUzhVb1dwc3paKzZoVFJjV21Ed3RpYnJWZ0ZqTTlDMjFaYjJt?=
- =?utf-8?B?b3ROSXVmSFdyMUpMVERwalhTMEcxbXBTcUkxYUZtNXJFY1lJeFp1bVVzVUhk?=
- =?utf-8?B?UTEva29BbHU4ZmN3MlV1cnJndnBhR1M5bEg1QWUrSFM2VUMxOWdaWEhaamNm?=
- =?utf-8?B?SWZtbEdraFlGLzd1QzVzbVY0TGorNi9UUGN2OU1DenVCVUdIZHB5QW1yeGFY?=
- =?utf-8?B?Uk9pbEJnbWsvbG5VRjd3bC9Fdm03cFhwZGNVZnM0QmV4SkRYWWtzTHZtTm5J?=
- =?utf-8?B?U0hlTStTOFRYeCs3VnB0S3ZPZmtwUWJQNHg5bEtnYnc5TkdIVmJRTFFsY3ls?=
- =?utf-8?B?aHpkRmlZRXJZbUVyRmpva0xnazE3R2lLNlJnWVJEUVdZY2kwTnZwcENOai9z?=
- =?utf-8?B?dFZLQmUyUDVjdzRZTHBibDFuK3BUTi8xUlZPSHhFNjdwaWFHSUNPSjJzRVY2?=
- =?utf-8?B?bnNUZENJSHlKRVJhNmJQTXRybVJSMnNwUnVFWm4yK3daL2dob25TazBvRlg0?=
- =?utf-8?B?YmtqbWtxVUFtaytKeStMT1BaWXF6clk4R1psUXBCbkhsc2w3Z0hGMVYxMndO?=
- =?utf-8?B?UnA1aExWTi82TS9WMnNqci9sYyt5NmxGQngyZ010b0EyOWRZZjVNUGdmSnJP?=
- =?utf-8?B?TWVXelV1NFNhQ3NIbDI0OWFtSkl4eFFFbVJWK1FTZ2hLYUh1Z2lYNjVpbjll?=
- =?utf-8?B?WW42b3laOWlIUURqRERBSm9wcWZmaWNMc2VHTUYwamdIMUVESWVzSEpDVkty?=
- =?utf-8?B?MWxHalJvRkk0bEJYNnBYY3dPMDZCbmE2SzYwL0sxbFJUdDlHZURZejMzRld0?=
- =?utf-8?B?NUhIdzRuaEdza3BqUzdkeG9nanhtcGVGUkZvTnJHYXZhZmliRG40eHkyRzF5?=
- =?utf-8?B?dG81NEsyQm16VUJrOUtUY3ZubWJMOGZoVjFpYjVjdUhpakFIV0xNdmpXRlV6?=
- =?utf-8?B?bm95NzVQb3AzK2NTbDdIUUs0d256VnVnWlFta21MUXZuUUNjNEJSSDllVGJ3?=
- =?utf-8?B?YlBidkl6YTJTOG85YUdaVDgzQndvcnZjUjUzOThEKzFEMjk4WWdiN01pckNV?=
- =?utf-8?B?UDhQRGx4TWxSVTlUQklENURudnBhNDhDUktPN3grRjFORkV1OEc5YS94eTFG?=
- =?utf-8?B?T1k1dnRpMHVYclZIMWlxb1NVRElFVFIxZGw2bVc0T21ENXJ4ems5bStGWmdQ?=
- =?utf-8?B?STAwMW9DTC9oWHNrSW9EbkZMdDJhK3BBU1hyMGF2ejRSN0xBL0ZLTVdrMW5x?=
- =?utf-8?B?dExDTjhNMzY0WTRJL1R0bVFaTkZEb0c0ajB3UVZwWi9BZCt4QlZNU2tEdTBo?=
- =?utf-8?B?RnUyZDNVbVRaT0swekQwT1hNaTFXRFdLSm1MQkg1T2I5TkRReVlsQ0dCODBU?=
- =?utf-8?Q?YEikdaUgz2WtrA54=3D?=
-X-Exchange-RoutingPolicyChecked: FjqlLf6BovhUERGMB1d5BHyt2OFF0hPv7GlcVwj/vaTqev3Kx2QGjOcCcxI2BbzKqepyjcgnnxU3oAJY/VgPAoI0+nB5HcVE3M7RPUW96bWM1v+O1ULSh9VRnD7u4pIn6d4A9sThWrcs3AY0dGnYvWQ4MNX9+w6jmPNgZ11/Y8FV8loG2Ngouew9KLUOGKPsJGI9AeQ2Xbkejg3ScSSfcrrTn4dMRZ8WiJlI0Gdy1C+xtF4l83uL/cEoO4DRsyHUaLyQLBiNx34kEvjNHzKr2xYETZ8shD4EGBvT8X8H4+gklNgkD0tH5XpnsFkDCoITA133k/Lxc8RItCv+ntIMgA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 609988fb-b3cf-415d-2fb5-08dee16ff0b0
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 06:20:03.0843 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hdTjZjhor0dLLirc2kUF5uOYsnZH20Bn3gpTUhDdCfLx/dKujzUc8g97DF8QIvhaCp+toqXWilA16WV/mCTOCA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5293
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,140 +69,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 14, 2026 at 09:02:52AM +0530, Ghimiray, Himal Prasad wrote:
-> 
-> 
-> On 14-07-2026 02:31, Matthew Brost wrote:
-> > On Fri, Jul 10, 2026 at 02:17:00AM +0000, Shuicheng Lin wrote:
-> > > DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC (-1) is only valid on a
-> > > CPU-address-mirror (SVM) VMA. On a regular VMA the value is used as
-> > > an index into region_to_mem_type[], causing an out-of-bounds access:
-> > > 
-> > >    UBSAN: array-index-out-of-bounds in drivers/gpu/drm/xe/xe_vm.c:3260:28
-> > >    index 4294967295 is out of range for type 'u32 [3]'
-> > >    Call Trace:
-> > >     __ubsan_handle_out_of_bounds+0xa7/0xf0
-> > >     vm_bind_ioctl_ops_execute+0x9b0/0x9d0 [xe]
-> > >     xe_vm_bind_ioctl+0x19f1/0x1b10 [xe]
-> > > 
-> > > Three related changes:
-> > > 
-> > > - vm_bind_ioctl_ops_create(): For a non-CPU-address-mirror VMA, reject
-> > >    both DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC and out-of-range prefetch
-> > >    regions with -EINVAL. This is the primary fix for the OOB.
-> > > 
-> > > - op_lock_and_prep(): Tighten the xe_assert() to
-> > >    'region < ARRAY_SIZE(region_to_mem_type)'. The
-> > >    DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC exemption is no longer needed
-> > >    since the value is rejected earlier, and '<=' was an off-by-one
-> > >    bound (valid indices are 0..ARRAY_SIZE-1).
-> > > 
-> > > - xe_drm.h: Document the CPU-address-mirror constraint on the
-> > >    DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC UAPI value.
-> > > 
-> > > Fixes: c1bb69a2e8e2 ("drm/xe/svm: Consult madvise preferred location in prefetch")
-> > > Assisted-by: Claude:claude-opus-4.7
-> > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > 
-> > I think Himal at least fixed the memory safety problem later in the
-> > pipeline here [1]. I'm unsure if he merged that one yet, but I'm
-> > inclined to say this is a better solution.
-> > 
-> > What do you think Himal?
-> 
-> Hi Matt,
-> 
-> IMO -EINVAL isn't the right behaviour here. Rejecting fails the whole ioctl
-> and prefetches nothing — including the SVM VMAs in the range that were
-> always valid.
-> 
-> AFAIU prefetching a range that covers mixed VMAs is a perfectly valid use
-> case. Today:
-> 
-> region 0 (system) works
-> region 1 (devmem) works
-> for -1 (CONSULT_MEM_ADVISE_PREF_LOC) we should prefetch each SVM VMA to its
-> preferred location, and for a BO VMA try its preferred location (which is
-> effectively always local devmem); if the BO has no VRAM placement, fall back
-> to PL_TT — but no ioctl failure.
-> 
-> If we do decide -EINVAL is the right way, then we'd effectively be telling
-> UMD that range-based prefetch only works with system/devmem, and that a
-> CONSULT_MEM_ADVISE_PREF_LOC prefetch range must not contain any BO VMAs.
-> That's a much more awkward contract to put on UMD, since a range can span
-> both VMA types, so I'm not aligned with the EINVAL approach.
-> 
+xe_bo_move() attaches VF CCS read/write batch buffers (BBs) to a BO
+after it transitions NULL/SYSTEM -> TT, and detaches them after it
+transitions TT -> SYSTEM. Both operations were done synchronously on
+the CPU immediately after building the move's copy/clear fence,
+without waiting for that fence to signal. This creates two races with
+VF migration:
 
-Thanks for input here, I'm going to have to agree with Himal's line of
-thinking here.
+- Attach happens too late relative to the copy job it is meant to
+  protect. If the copy job is submitted before the CCS BBs are
+  attached, a VF migration event that pauses execution mid-copy can
+  observe partially copied CCS metadata without the attach state
+  needed to correctly save/restore it.
 
-> Patch [1] is not merged yet, once you confirm will go ahead with it.
->
+- Detach happens too early relative to the copy job that moves data
+  out of TT. The CCS BBs are torn down right after the copy fence is
+  obtained, while the actual blit may still be in flight. A VF
+  migration event that pauses execution mid-copy can then race the
+  save/restore path against the still-running blit, and the CCS BBs
+  it would need to make sense of the paused state have already been
+  removed.
 
-Go ahead merge.
+Fix both races:
 
-Matt
+- Move the attach call to before the copy/clear job is submitted, so
+  the CCS BBs are already registered by the time the copy runs. On
+  attach failure, unwind and bail out of the move. xe_migrate_ccs_rw_copy()
+  now takes the destination resource explicitly, since bo->ttm.resource
+  is not updated to the new resource until after the move commits.
 
-> BR
-> Himal
-> 
-> 
-> > 
-> > Matt
-> > 
-> > [1] https://patchwork.freedesktop.org/series/168913/
-> > 
-> > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: stable@vger.kernel.org
-> > > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/xe/xe_vm.c | 12 ++++++++++--
-> > >   include/uapi/drm/xe_drm.h  |  4 +++-
-> > >   2 files changed, 13 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > > index 080c2fff0e95..9430b2be18e4 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -2495,6 +2495,15 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
-> > >   			u32 i;
-> > >   			if (!xe_vma_is_cpu_addr_mirror(vma)) {
-> > > +				if (XE_IOCTL_DBG(vm->xe,
-> > > +						 prefetch_region ==
-> > > +						 DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC) ||
-> > > +				    XE_IOCTL_DBG(vm->xe,
-> > > +						 prefetch_region >=
-> > > +						 ARRAY_SIZE(region_to_mem_type))) {
-> > > +					err = -EINVAL;
-> > > +					goto unwind_prefetch_ops;
-> > > +				}
-> > >   				op->prefetch.region = prefetch_region;
-> > >   				break;
-> > >   			}
-> > > @@ -3236,8 +3245,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
-> > >   		if (!xe_vma_is_cpu_addr_mirror(vma)) {
-> > >   			region = op->prefetch.region;
-> > > -			xe_assert(vm->xe, region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC ||
-> > > -				  region <= ARRAY_SIZE(region_to_mem_type));
-> > > +			xe_assert(vm->xe, region < ARRAY_SIZE(region_to_mem_type));
-> > >   		}
-> > >   		/*
-> > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > > index 509202a7b13e..e159c44e380a 100644
-> > > --- a/include/uapi/drm/xe_drm.h
-> > > +++ b/include/uapi/drm/xe_drm.h
-> > > @@ -1075,7 +1075,9 @@ struct drm_xe_vm_destroy {
-> > >    *
-> > >    * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
-> > >    *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
-> > > - *    the memory region advised by madvise.
-> > > + *    the memory region advised by madvise. Only valid when the target VMA
-> > > + *    was created with %DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR; rejected with
-> > > + *    -EINVAL otherwise.
-> > >    */
-> > >   struct drm_xe_vm_bind_op {
-> > >   	/** @extensions: Pointer to the first extension struct, if any */
-> > > -- 
-> > > 2.43.0
-> > > 
-> 
+- Detach only after explicitly waiting for the copy fence to signal,
+  instead of tearing down the CCS BBs immediately after obtaining it.
+
+While here, also fix xe_sriov_vf_ccs_attach_bo() to properly unwind and
+propagate errors: the per-context loop previously never broke out on
+error, silently discarding earlier failures. Unwind by clearing each
+attached context directly via xe_migrate_ccs_rw_copy_clear() instead of
+reusing xe_sriov_vf_ccs_detach_bo(), which requires both contexts to be
+attached before it will clean up either one.
+
+Fixes: 864690cf4dd6 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Assisted-by: GitHub_Copilot:claude-sonnet-5
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c           | 34 +++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_migrate.c      |  5 +++-
+ drivers/gpu/drm/xe/xe_migrate.h      |  1 +
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 20 ++++++++++++++--
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  3 ++-
+ 5 files changed, 48 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 85e6d9a0f575..7916aea0c9cb 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1102,6 +1102,21 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		xe_pm_runtime_get_noresume(xe);
+ 	}
+ 
++	/*
++	 * Attach CCS BBs before submitting the copy job below so a VF
++	 * migration racing the copy sees valid, up to date attach state.
++	 */
++	if (IS_VF_CCS_READY(xe) &&
++	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
++	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
++	    handle_system_ccs) {
++		ret = xe_sriov_vf_ccs_attach_bo(bo, new_mem);
++		if (ret) {
++			xe_pm_runtime_put(xe);
++			goto out;
++		}
++	}
++
+ 	if (move_lacks_source) {
+ 		u32 flags = 0;
+ 
+@@ -1139,22 +1154,19 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		ttm_bo_move_null(ttm_bo, new_mem);
+ 	}
+ 
+-	dma_fence_put(fence);
+-	xe_pm_runtime_put(xe);
+-
+ 	/*
+-	 * CCS meta data is migrated from TT -> SMEM. So, let us detach the
+-	 * BBs from BO as it is no longer needed.
++	 * Detach must wait for the copy above to complete: a VF migration
++	 * racing an in-flight copy must still see valid CCS BBs, so don't
++	 * tear them down until the copy fence has signaled.
+ 	 */
+ 	if (IS_VF_CCS_READY(xe) && old_mem_type == XE_PL_TT &&
+-	    new_mem->mem_type == XE_PL_SYSTEM)
++	    new_mem->mem_type == XE_PL_SYSTEM) {
++		dma_fence_wait(fence, false);
+ 		xe_sriov_vf_ccs_detach_bo(bo);
++	}
+ 
+-	if (IS_VF_CCS_READY(xe) &&
+-	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
+-	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
+-	    handle_system_ccs)
+-		ret = xe_sriov_vf_ccs_attach_bo(bo);
++	dma_fence_put(fence);
++	xe_pm_runtime_put(xe);
+ 
+ out:
+ 	if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 92d5e81ceac2..c84e14e86a82 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1142,6 +1142,8 @@ static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
+  * @tile: Tile whose migration context to be used.
+  * @q : Execution to be used along with migration context.
+  * @src_bo: The buffer object @src is currently bound to.
++ * @new_mem: The (not yet committed) destination resource @src_bo is being
++ *          moved into; src_bo->ttm.resource is still the old resource.
+  * @read_write : Creates BB commands for CCS read/write.
+  *
+  * Creates batch buffer instructions to copy CCS metadata from CCS pool to
+@@ -1153,12 +1155,13 @@ static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
+  */
+ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 			   struct xe_bo *src_bo,
++			   struct ttm_resource *new_mem,
+ 			   enum xe_sriov_vf_ccs_rw_ctxs read_write)
+ 
+ {
+ 	bool src_is_pltt = read_write == XE_SRIOV_VF_CCS_READ_CTX;
+ 	bool dst_is_pltt = read_write == XE_SRIOV_VF_CCS_WRITE_CTX;
+-	struct ttm_resource *src = src_bo->ttm.resource;
++	struct ttm_resource *src = new_mem;
+ 	struct xe_migrate *m = tile->migrate;
+ 	struct xe_gt *gt = tile->primary_gt;
+ 	u32 batch_size, batch_size_allocated;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 965c45889c72..78e5b63f3ebe 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -138,6 +138,7 @@ struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
+ 
+ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 			   struct xe_bo *src_bo,
++			   struct ttm_resource *new_mem,
+ 			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
+ 
+ void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 09b99fb2608b..6787564629c6 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -404,6 +404,8 @@ void xe_sriov_vf_ccs_rw_update_bb_addr(struct xe_sriov_vf_ccs_ctx *ctx)
+ /**
+  * xe_sriov_vf_ccs_attach_bo - Insert CCS read write commands in the BO.
+  * @bo: the &buffer object to which batch buffer commands will be added.
++ * @new_mem: the (not yet committed) destination resource @bo is being moved
++ *          into; bo->ttm.resource is still the old resource at this point.
+  *
+  * This function shall be called only by VF. It inserts the PTEs and copy
+  * command instructions in the BO by calling xe_migrate_ccs_rw_copy()
+@@ -411,7 +413,7 @@ void xe_sriov_vf_ccs_rw_update_bb_addr(struct xe_sriov_vf_ccs_ctx *ctx)
+  *
+  * Returns: 0 if successful, negative error code on failure.
+  */
+-int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
++int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo, struct ttm_resource *new_mem)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
+@@ -430,7 +432,21 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
+ 		xe_assert(xe, !bb);
+ 
+ 		ctx = &xe->sriov.vf.ccs.contexts[ctx_id];
+-		err = xe_migrate_ccs_rw_copy(tile, ctx->mig_q, bo, ctx_id);
++		err = xe_migrate_ccs_rw_copy(tile, ctx->mig_q, bo, new_mem, ctx_id);
++		if (err)
++			goto err_unwind;
++	}
++	return 0;
++
++err_unwind:
++	/*
++	 * Clean up any contexts already attached. Can't reuse
++	 * xe_sriov_vf_ccs_detach_bo() here as it requires both contexts
++	 * attached before cleaning up either one.
++	 */
++	for_each_ccs_rw_ctx(ctx_id) {
++		if (bo->bb_ccs[ctx_id])
++			xe_migrate_ccs_rw_copy_clear(bo, ctx_id);
+ 	}
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+index 00e58b36c510..e1034d852104 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -11,11 +11,12 @@
+ #include "xe_sriov_vf_ccs_types.h"
+ 
+ struct drm_printer;
++struct ttm_resource;
+ struct xe_device;
+ struct xe_bo;
+ 
+ int xe_sriov_vf_ccs_init(struct xe_device *xe);
+-int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
++int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo, struct ttm_resource *new_mem);
+ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
+ void xe_sriov_vf_ccs_rebase(struct xe_device *xe);
+-- 
+2.34.1
+
