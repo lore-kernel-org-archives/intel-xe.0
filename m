@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E8C2C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 21:03:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6750C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 21:13:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56D4910E0D1;
-	Tue, 14 Jul 2026 21:03:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlroUrwN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10F4610E0D1
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 21:03:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784063028; x=1815599028;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eTypfvhISDNcwo5prL+OFhowyzv8GHS5o9h2CKnnJ6g=;
- b=mlroUrwN0ApNP83xRrP2oeMU+T5CoEDeMLPeAAAxWoFmu0BvWa3lZc49
- Dis1DdFC5Yfz9tG3vmCFheSUwLvhfp3kbMPhBsZXIN/Rqfa7KK33qyOLm
- w6qUyOMCNqsYFAbnciQ2Ozjg71Awlou8Fe9wSWgHs976zwUIzeYV9OEoD
- lRJpepyQAkY/LS+GfPCl5x34GtRDKo+VXdD5dws32KZlcxICrQuUw+d+s
- IdMYbZ6V8wmiFNM7eHEVo63Ak/Zd8XyIWLRh8vV4cjNg4sSTIGWTlRow1
- auANbkqIWZQI4edyzjpJCM6GxYaFoLxS4n9qtrKxFtsF1EbXzY45oO0Ys Q==;
-X-CSE-ConnectionGUID: 6GktJxInQ9q5y8nl8fcvzA==
-X-CSE-MsgGUID: wolVwbdYSCOgS+fOEf6IoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84653668"
-X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="84653668"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 14:03:47 -0700
-X-CSE-ConnectionGUID: RyhN8mEGRUO1pn6a3lfK6w==
-X-CSE-MsgGUID: kbOnvkIuQ0SZzsZCLh57+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="279247058"
-Received: from hchegond-desk.jf.intel.com ([10.88.27.198])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 14:03:46 -0700
-From: Harish Chegondi <harish.chegondi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, balasubramani.vivekanandan@intel.com,
- Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v4 1/1] drm/xe/eustall: Add WA 14027054324 support for
- graphics IP 35.11
-Date: Tue, 14 Jul 2026 14:03:41 -0700
-Message-ID: <643b0f5b70e4635b5fdd0544e764fd4596ab6f93.1784062276.git.harish.chegondi@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B81510EE77;
+	Tue, 14 Jul 2026 21:13:44 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F35C10EE6A;
+ Tue, 14 Jul 2026 21:13:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7470610862232103451=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Recommend_GuC?=
+ =?utf-8?q?_v70=2E65=2E0_for_LNL=2C_BMG=2C_PTL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 14 Jul 2026 21:13:43 -0000
+Message-ID: <178406362358.190128.2894488520215145405@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260714203012.855004-7-julia.filipchuk@intel.com>
+In-Reply-To: <20260714203012.855004-7-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,169 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-WA 14027054324 is implemented in the firmware and is applied before
-EU stall sampling and reverted after EU stall sampling. The driver
-needs to notify the firmware whenever EU stall sampling is being
-enabled/disabled so that the firmware takes the necessary action.
-The driver uses a scratch pad register to communicate with the firmware.
+--===============7470610862232103451==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Before enabling EU stall sampling, write 0x20 to the SWF scratch pad
-register to request the firmware to apply the workaround. The firmware
-applies the workaround and sets the scratch pad register to 0x60
-as an ACK.
+== Series Details ==
 
-Before disabling EU stall sampling, write 0x40 to the SWF scratch pad
-register to request the firmware to revert the workaround. The firmware
-reverts the workaround and sets the scratch pad register to 0 as an ACK.
+Series: drm/xe/guc: Recommend GuC v70.65.0 for LNL, BMG, PTL
+URL   : https://patchwork.freedesktop.org/series/170438/
+State : success
 
-The firmware is expected to take about 1 ms to apply/revert the
-workaround. 10 ms timeout is used in the driver while waiting for an
-ack from the firmware to have adequate grace period.
+== Summary ==
 
-Bspec update for the SWF scratch pad register is still pending, but has
-been confirmed offline with the firmware team.
+CI Bug Log - changes from xe-5402-9cf91140eff27765d402aedeea89505d52db121e_BAT -> xe-pw-170438v1_BAT
+====================================================
 
-Bspec: 53188
-Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
----
-v4: 1. Use xe_mmio_wait32() instead of read_poll_timeout()
-v3: 1. Make SWF_SCRATCHPAD an indexed register and move it to xe_regs.h
-    2. Use write instead of rmw to write to SWF_SCRATCHPAD register
-    3. Reduce the firmware ACK timeout to 10ms
+Summary
+-------
 
- drivers/gpu/drm/xe/regs/xe_regs.h  |  3 +++
- drivers/gpu/drm/xe/xe_eu_stall.c   | 35 +++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
- 3 files changed, 36 insertions(+), 3 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index ad93c57edd17..6ca8b1f2440c 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -7,6 +7,9 @@
- 
- #include "regs/xe_reg_defs.h"
- 
-+#define SWF_SCRATCHPAD(_idx)			XE_REG(0x4f000 + (_idx) * 4)
-+#define   SWF_EUSTALL_MASK			REG_GENMASK(6, 5)
-+
- #define SOC_BASE				0x280000
- 
- #define GU_CNTL_PROTECTED			XE_REG(0x10100C)
-diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index d37770c58c5d..ffeae6e09f58 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
-+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -7,6 +7,7 @@
- #include <linux/fs.h>
- #include <linux/poll.h>
- #include <linux/types.h>
-+#include <linux/iopoll.h>
- 
- #include <drm/drm_drv.h>
- #include <generated/xe_wa_oob.h>
-@@ -20,6 +21,7 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_topology.h"
- #include "xe_macros.h"
-+#include "xe_mmio.h"
- #include "xe_observation.h"
- #include "xe_pm.h"
- #include "xe_trace.h"
-@@ -27,9 +29,15 @@
- 
- #include "regs/xe_eu_stall_regs.h"
- #include "regs/xe_gt_regs.h"
-+#include "regs/xe_regs.h"
- 
- #define POLL_PERIOD_MS	5
- 
-+#define REQ_EUSTALL_ENABLE	0x20
-+#define ACK_EUSTALL_ENABLE	0x60
-+#define REQ_EUSTALL_DISABLE	0x40
-+#define ACK_EUSTALL_DISABLE	0
-+
- static size_t per_xecore_buf_size = SZ_512K;
- 
- struct per_xecore_buf {
-@@ -682,7 +690,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
- 	struct per_xecore_buf *xecore_buf;
- 	struct xe_gt *gt = stream->gt;
- 	u16 group, instance;
--	int xecore;
-+	int xecore, ret = 0;
- 
- 	/* Take runtime pm ref and forcewake to disable RC6 */
- 	xe_pm_runtime_get(gt_to_xe(gt));
-@@ -693,6 +701,18 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
- 		return -ETIMEDOUT;
- 	}
- 
-+	if (XE_GT_WA(gt, 14027054324)) {
-+		/* Request the firmware to apply the workaround and wait for an ACK */
-+		xe_mmio_write32(&gt->mmio, SWF_SCRATCHPAD(0), REQ_EUSTALL_ENABLE);
-+		ret = xe_mmio_wait32(&gt->mmio, SWF_SCRATCHPAD(0), SWF_EUSTALL_MASK,
-+				     ACK_EUSTALL_ENABLE, 10000, NULL, false);
-+		if (ret) {
-+			xe_gt_err(gt, "Timeout polling for EU stall enable ACK from firmware\n");
-+			xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
-+			xe_pm_runtime_put(gt_to_xe(gt));
-+			return ret;
-+		}
-+	}
- 	if (XE_GT_WA(gt, 22016596838))
- 		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
- 					  REG_MASKED_FIELD_ENABLE(DISABLE_DOP_GATING));
-@@ -730,7 +750,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
- 	reg_value |= XEHPC_EUSTALL_BASE_ENABLE_SAMPLING;
- 	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
- 
--	return 0;
-+	return ret;
- }
- 
- static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
-@@ -840,6 +860,7 @@ static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
- static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
- {
- 	struct xe_gt *gt = stream->gt;
-+	int ret = 0;
- 
- 	if (!stream->enabled)
- 		return 0;
-@@ -853,11 +874,19 @@ static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
- 	if (XE_GT_WA(gt, 22016596838))
- 		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
- 					  REG_MASKED_FIELD_DISABLE(DISABLE_DOP_GATING));
-+	if (XE_GT_WA(gt, 14027054324)) {
-+		/* Request the firmware to revert the workaround and wait for an ACK */
-+		xe_mmio_write32(&gt->mmio, SWF_SCRATCHPAD(0), REQ_EUSTALL_DISABLE);
-+		ret = xe_mmio_wait32(&gt->mmio, SWF_SCRATCHPAD(0), SWF_EUSTALL_MASK,
-+				     ACK_EUSTALL_DISABLE, 10000, NULL, false);
-+		if (ret)
-+			xe_gt_err(gt, "Timeout polling for EU stall disable ACK from firmware\n");
-+	}
- 
- 	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
- 	xe_pm_runtime_put(gt_to_xe(gt));
- 
--	return 0;
-+	return ret;
- }
- 
- static long xe_eu_stall_stream_ioctl_locked(struct xe_eu_stall_data_stream *stream,
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 5d6574ec9dee..f02ac9bf7424 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -71,3 +71,4 @@
- 		GRAPHICS_VERSION(3511)
- 16029897822	MEDIA_VERSION(3500)
- 		GRAPHICS_VERSION(3510)
-+14027054324	GRAPHICS_VERSION(3511)
--- 
-2.43.0
+  No regressions found.
 
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5402-9cf91140eff27765d402aedeea89505d52db121e -> xe-pw-170438v1
+
+  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5402-9cf91140eff27765d402aedeea89505d52db121e: 9cf91140eff27765d402aedeea89505d52db121e
+  xe-pw-170438v1: 170438v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170438v1/index.html
+
+--===============7470610862232103451==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Recommend GuC v70.65.0 for LNL, BMG, PTL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170438/">https://patchwork.freedesktop.org/series/170438/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170438v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170438v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5402-9cf91140eff27765d402aedeea89505d52db121e_BAT -&gt; xe-pw-170438v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5402-9cf91140eff27765d402aedeea89505d52db121e -&gt; xe-pw-170438v1</li>
+</ul>
+<p>IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5402-9cf91140eff27765d402aedeea89505d52db121e: 9cf91140eff27765d402aedeea89505d52db121e<br />
+  xe-pw-170438v1: 170438v1</p>
+
+</body>
+</html>
+
+--===============7470610862232103451==--
