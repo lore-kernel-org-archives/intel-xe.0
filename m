@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D172C44509
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 10:50:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A5FBC44507
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 10:50:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 025C110ECE8;
-	Tue, 14 Jul 2026 10:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04E7B10ECF0;
+	Tue, 14 Jul 2026 10:50:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DA1AFSWI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dcTW5hJm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB2FE10E687;
- Tue, 14 Jul 2026 10:50:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8B5410ECD7;
+ Tue, 14 Jul 2026 10:50:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784026207; x=1815562207;
+ t=1784026212; x=1815562212;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sIQNH2+t0S17jIIOiotXVKTLKPHo2txinsDtMk6qLjs=;
- b=DA1AFSWIX29wXyOAiKj1oiYgmewwFvTrKgL+uNBfhUJwWAbKyv6vZWCh
- QhKouK5AVVhCx3GhDtd5FyrIjGHOAjwXllERGqYlMzj8rNj3axsp0giy7
- V0IPECsuu3DKNLm1AamLRKAOpNoJdCL+BPCyoptwhzCzzMaNNyVS41r/Q
- N8IXPMUsdJNzkCw3U+f4/f1KXHCRVw5BM7cQl7NlfI5VDmP7DGfIIlp8K
- UdjgqhhzKhWrIi+AsLLGG1dxiI8AuFW0DOaJUNZziMFVpjH4cmdY5bvyn
- zSiM48XxvQwhPwfW64a+Vm1Epi38627F2NtMAu2Mo86PUzvfyESotubBs g==;
-X-CSE-ConnectionGUID: 3GsPlFkQQqWxC5p1Px53AA==
-X-CSE-MsgGUID: jv0iZB/dT/m7r0th/5jZqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="88544451"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="88544451"
+ bh=gq2/CKMS+xdFvuKZumJ9Kl+cbr8qnc0+OuCFmxv9iWM=;
+ b=dcTW5hJmwpJKcD4popy3qT53JCFDEPkHnrdYNEGk5EKoYwx1ZS2/ehCL
+ 9JLbMOox2fPjkHFnm3zfSnFgIST5kAOKCUEv/kG+1Vw6QtLPf1zG5Mxdb
+ KndgG5KJJH3lS8WXKLFOonE7up2JIey+HZDxiXY4a4OjKz69VDGmp6gRn
+ 912iR/qsfEGvj1BouGVh4CN+WdAj62Wi4YM4fMfzsKJ/XKk2jYVLylyZo
+ frF4nxzF3ZOcTaKdBK2qtZ0Aw9yI1k7utEmKn3dZQKGx+wG/dBwaVcpzl
+ WRNuiBcmGlIoVXFNast3BodYzdBh0aQqCclp1X+cig73hcQrhs1OAbyzq w==;
+X-CSE-ConnectionGUID: 6M+Y8PVrRMi6qbi4i7RJQA==
+X-CSE-MsgGUID: q9oRVH88SuKKRF+AjYf5ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="88544454"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="88544454"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 03:50:07 -0700
-X-CSE-ConnectionGUID: OQBoNVXpRAiIr4B3ab8Czw==
-X-CSE-MsgGUID: rDmGYvc0Tf6cvlE3/K7DGA==
+ 14 Jul 2026 03:50:12 -0700
+X-CSE-ConnectionGUID: nxpkDo0oRt6b1uDFlTc90Q==
+X-CSE-MsgGUID: hFu21UNhRd+4BD67rna4Lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="260134508"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="260134527"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa005.jf.intel.com with ESMTP; 14 Jul 2026 03:50:06 -0700
+ by orviesa005.jf.intel.com with ESMTP; 14 Jul 2026 03:50:11 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
  ankit.k.nautiyal@intel.com, chaitanya.kumar.borah@intel.com
-Subject: [PATCH v3 4/8] drm/i915/vrr: Dump CMRR state in the crtc state dump
-Date: Tue, 14 Jul 2026 16:09:33 +0530
-Message-ID: <20260714103938.2371448-5-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v3 7/8] drm/i915/vrr: Return from CMRR compute config in case
+ of PSR2 enabled
+Date: Tue, 14 Jul 2026 16:09:36 +0530
+Message-ID: <20260714103938.2371448-8-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20260714103938.2371448-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20260714103938.2371448-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -66,30 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add crtc state dump for CMRR.
-
---v2:
-- Remove video mode state checker.
+CMRR is mutually exclusive to PSR2, hence return from CMRR if PSR2
+is already computed.
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 +++
+ drivers/gpu/drm/i915/display/intel_vrr.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 4493483f10a9..ad4f362e0c09 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -311,6 +311,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->vrr.dc_balance.max_increase,
- 		   pipe_config->vrr.dc_balance.max_decrease,
- 		   pipe_config->vrr.dc_balance.vblank_target);
-+	drm_printf(&p, "cmrr: %s, cmrr_m: %llu, cmrr_n: %llu\n",
-+		   str_yes_no(pipe_config->vrr.cmrr.enable),
-+		   pipe_config->vrr.cmrr.cmrr_m, pipe_config->vrr.cmrr.cmrr_n);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 52fe40fdbdb3..ca3cac5aa6ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -202,6 +202,9 @@ intel_vrr_cmrr_compute_config(struct intel_crtc_state *crtc_state)
+ 	if (!HAS_CMRR(display))
+ 		return;
  
- 	drm_printf(&p, "requested mode: " DRM_MODE_FMT "\n",
- 		   DRM_MODE_ARG(&pipe_config->hw.mode));
++	if (crtc_state->has_sel_update)
++		return;
++
+ 	/* No CMRR ratio configured through debugfs */
+ 	if (!crtc->force_cmrr.numerator)
+ 		return;
 -- 
 2.48.1
 
