@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1ED4C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 13:49:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEDBAC4450A
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 13:49:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 738B910ED64;
-	Tue, 14 Jul 2026 13:49:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71FFC10E6EF;
+	Tue, 14 Jul 2026 13:49:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vv7G9Aqd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AlnzgbQ5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64A4510ED64
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 13:49:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12B7010ED64
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 13:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784036984; x=1815572984;
+ t=1784036988; x=1815572988;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SeX39dTMkwEKNg634sylCPh7nFDIIkU+sc7x9CJda4I=;
- b=Vv7G9AqdjHBP2iRB7+S/HPgIYOopmI1z4JiWueG+R+SCXVNqmH82p9s4
- yiiLvYOjVtnn7TBmloPbMbxejqKhuIRwvZyN5SXxMd5UZivK5tyNeivXG
- PE12r3E+nEp1sbrHFiHA+alazU8ATiQyaISF2e7CN+7Rkg1rZEZz5lCvo
- GCs6dtLU1xQxWIoEDGYdYUZlV3DtfEQn/h4KtWcohdYLEiJjSHcePKkk5
- /uEFFVKfo2Md7/z8gRBkl2T14vUABXwnluwyZZJop2aS7vSGusHDr+SmC
- 0VMMX+j1jRi6B9CCgySeeyJNSkx7P3XjHH1xKlbqDGNhdfRPOM1sAWhe1 A==;
-X-CSE-ConnectionGUID: MUniNo/fQBKn6lgykuPbMg==
-X-CSE-MsgGUID: CuGD8nNKS1mRPLO/H4YgRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84777569"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="84777569"
+ bh=+qDIr7s2jXEulFN8ApunZP6IhqNggAGpqi4HPn1Z7r0=;
+ b=AlnzgbQ5hlsgMYm3m8UL7XqeF10emBWnZtADQyQjs1ObJ8i17228anWy
+ dY7rCldLIKvMrA7VHhFheG6AcHtP5NNuLUUxbTLEwJh76rhVwXiFuwh7b
+ CycbfGjLCQhdnB9J8y83FMmxS9rGcilVbZgVq0JNUXkQPC1xGNCcVLF5N
+ PzEBJxDegpKL0AgYenXAXdU8LayOs6haMxBQzkaCADGSL1ocFBbdKRt4F
+ SYU8F/PGiNB5jOXOhuc/vgemImalDaV7//Udd6nuZUHV28NTf39EL8K1h
+ 7DIeed0ghMVfsGgJxNgSkCvy0Mp0wbhDwaGEhsNtLHiBtddX7XVOFRfEi g==;
+X-CSE-ConnectionGUID: GobMTgDrTVavLdHFpdF+TQ==
+X-CSE-MsgGUID: Uc8aWO/SR0qGQxe7GdD2eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84777583"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="84777583"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 06:49:44 -0700
-X-CSE-ConnectionGUID: 0F/imBOaRLukbmj1VD3s0w==
-X-CSE-MsgGUID: fcslOyAASmGONazCdBFQxQ==
+ 14 Jul 2026 06:49:48 -0700
+X-CSE-ConnectionGUID: nRVbAQ1jTjOq4AQ5+GK2eA==
+X-CSE-MsgGUID: r1GNQA4JTGyJm6HdLYLwMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="279138458"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="279138503"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 06:49:43 -0700
+ 14 Jul 2026 06:49:47 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V12 08/11] drm/xe/configfs: Add vram bad page reservation
- policy
-Date: Tue, 14 Jul 2026 19:19:07 +0530
-Message-ID: <20260714134900.1283308-21-tejas.upadhyay@intel.com>
+Subject: [PATCH V12 11/11] drm/xe: Add soft/hard offline mode for VRAM page
+ retirement
+Date: Tue, 14 Jul 2026 19:19:10 +0530
+Message-ID: <20260714134900.1283308-24-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260714134900.1283308-13-tejas.upadhyay@intel.com>
 References: <20260714134900.1283308-13-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,211 +68,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The interface enables setting the policy for how bad pages are
-handled in VRAM. This is crucial for maintaining system
-stability in scenarios where VRAM degradation occurs.
+Introduce a mode-based approach for VRAM page offlining to distinguish
+between soft (temporary) and hard (permanent) page retirement:
 
-By default policy will be "reserve", which can be changed to
-"logging" only.
+- Add enum xe_page_offline_mode with XE_PAGE_OFFLINE_SOFT and
+  XE_PAGE_OFFLINE_HARD states.
+- Add 'mode' field to struct xe_ttm_vram_offline_resource.
 
-v3:
-- All FW communication moved under RAS
-v2:
-- Add CRI check and rebase
+On first fault at an address:
+- Reserve the block, add to offlined_pages with mode = SOFT.
+- Page stays out of the allocator pool but is not permanently retired.
+
+On second fault at the same address:
+- xe_ttm_vram_page_already_processed() finds the entry and promotes
+  mode from SOFT to HARD.
+- Returns -EEXIST to the caller, which signals FW to permanently
+  retire the page.
+
+This avoids unnecessary permanent retirement on transient single-bit
+errors while ensuring persistent faults get hard-offlined.
+
+v2(Sashiko):
+- Add soft-to-hard mode promotion for queued_pages
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c     | 64 +++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_configfs.h     |  2 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 10 +++++
- 3 files changed, 75 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 15 +++++++++++++--
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h | 12 ++++++++++++
+ 2 files changed, 25 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 052cce962161..c4f386d4bf09 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -61,7 +61,8 @@
-  *	    ├── survivability_mode
-  *	    ├── gt_types_allowed
-  *	    ├── engines_allowed
-- *	    └── enable_psmi
-+ *          ├── enable_psmi
-+ *          └── bad_page_reservation
-  *
-  * After configuring the attributes as per next section, the device can be
-  * probed with::
-@@ -159,6 +160,16 @@
-  *
-  * This attribute can only be set before binding to the device.
-  *
-+ * Bad pages reservation:
-+ * ---------------------
-+ *
-+ * Disable vram bad pages reservation, instead just report it in dmesg.
-+ *  Example to disable it::
-+ *
-+ *      # echo 0 > /sys/kernel/config/xe/0000:03:00.0/bad_page_reservation
-+ *
-+ * This attribute can only be set before binding to the device.
-+ *
-  * Context restore BB
-  * ------------------
-  *
-@@ -275,6 +286,7 @@ struct xe_config_group_device {
- 		bool survivability_mode;
- 		bool enable_psmi;
- 		bool enable_multi_queue;
-+		bool bad_page_reservation;
- 		struct {
- 			unsigned int max_vfs;
- 			bool admin_only_pf;
-@@ -295,6 +307,7 @@ static const struct xe_config_device device_defaults = {
- 	.survivability_mode = false,
- 	.enable_psmi = false,
- 	.enable_multi_queue = true,
-+	.bad_page_reservation = true,
- 	.sriov = {
- 		.max_vfs = XE_DEFAULT_MAX_VFS,
- 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
-@@ -616,6 +629,32 @@ static ssize_t enable_multi_queue_store(struct config_item *item, const char *pa
- 	return len;
- }
- 
-+static ssize_t bad_page_reservation_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_device *dev = to_xe_config_device(item);
-+
-+	return sprintf(page, "%d\n", dev->bad_page_reservation);
-+}
-+
-+static ssize_t bad_page_reservation_store(struct config_item *item, const char *page, size_t len)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+	bool val;
-+	int ret;
-+
-+	ret = kstrtobool(page, &val);
-+	if (ret)
-+		return ret;
-+
-+	guard(mutex)(&dev->lock);
-+	if (is_bound(dev))
-+		return -EBUSY;
-+
-+	dev->config.bad_page_reservation = val;
-+
-+	return len;
-+}
-+
- static bool wa_bb_read_advance(bool dereference, char **p,
- 			       const char *append, size_t len,
- 			       size_t *max_size)
-@@ -855,6 +894,7 @@ CONFIGFS_ATTR(, ctx_restore_mid_bb);
- CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, enable_multi_queue);
- CONFIGFS_ATTR(, enable_psmi);
-+CONFIGFS_ATTR(, bad_page_reservation);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
- CONFIGFS_ATTR(, survivability_mode);
-@@ -864,6 +904,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_ctx_restore_post_bb,
- 	&attr_enable_multi_queue,
- 	&attr_enable_psmi,
-+	&attr_bad_page_reservation,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
- 	&attr_survivability_mode,
-@@ -1142,6 +1183,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
- 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
- 	PRI_CUSTOM_ATTR("%d", enable_psmi);
-+	PRI_CUSTOM_ATTR("%d", bad_page_reservation);
- 	PRI_CUSTOM_ATTR("%d", survivability_mode);
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
- 
-@@ -1290,6 +1332,26 @@ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
- 	return ret;
- }
- 
-+/**
-+ * xe_configfs_get_bad_page_reservation - get configfs bad_page_reservation setting
-+ * @pdev: pci device
-+ *
-+ * Return: bad_page_reservation setting in configfs
-+ */
-+bool xe_configfs_get_bad_page_reservation(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+	bool ret;
-+
-+	if (!dev)
-+		return device_defaults.bad_page_reservation;
-+
-+	ret = dev->config.bad_page_reservation;
-+	config_group_put(&dev->group);
-+
-+	return ret;
-+}
-+
- /**
-  * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
-  * @pdev: pci device
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 4fbbeafba473..7405cc5f3207 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -24,6 +24,7 @@ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
- bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
-+bool xe_configfs_get_bad_page_reservation(struct pci_dev *pdev);
- u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 				       enum xe_engine_class class,
- 				       const u32 **cs);
-@@ -44,6 +45,7 @@ static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return t
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
- static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
-+static inline bool xe_configfs_get_bad_page_reservation(struct pci_dev *pdev) { return true; }
- static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 						     enum xe_engine_class class,
- 						     const u32 **cs) { return 0; }
 diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 61c5d4ef8a07..8506c1e0594d 100644
+index 3c190db2e613..868e6e8f8599 100644
 --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -12,6 +12,7 @@
- #include <drm/ttm/ttm_range_manager.h>
+@@ -587,13 +587,23 @@ static bool xe_ttm_vram_page_already_processed(struct xe_ttm_vram_mgr *mgr,
+ 	lockdep_assert_held(&mgr->lock);
  
- #include "xe_bo.h"
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_exec_queue.h"
- #include "xe_lrc.h"
-@@ -771,6 +772,7 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
- 	struct xe_ttm_vram_mgr *vram_mgr;
- 	struct xe_vram_region *vr;
- 	struct gpu_buddy *mm;
-+	bool policy;
+ 	list_for_each_entry(pos, &mgr->offlined_pages, offlined_link) {
+-		if (pos->addr == addr)
++		if (pos->addr == addr) {
++			/*
++			 * Second fault at same addr: promote soft to hard.
++			 * Caller returns -EEXIST to FW for permanent retirement.
++			 */
++			if (pos->mode == XE_PAGE_OFFLINE_SOFT)
++				pos->mode = XE_PAGE_OFFLINE_HARD;
+ 			return true;
++		}
+ 	}
  
- 	vr = xe_ttm_vram_addr_to_region(xe, addr);
- 	if (!vr) {
-@@ -782,6 +784,14 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
- 	vram_mgr = &vr->ttm;
- 	mm = &vram_mgr->mm;
+ 	list_for_each_entry(pos, &mgr->queued_pages, queued_link) {
+-		if (pos->addr == addr)
++		if (pos->addr == addr) {
++			if (pos->mode == XE_PAGE_OFFLINE_SOFT)
++				pos->mode = XE_PAGE_OFFLINE_HARD;
+ 			return true;
++		}
+ 	}
  
-+	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(xe->drm.dev));
-+	if (!policy) {
-+		drm_err(&xe->drm, "0x%lx is reported as corrupted address by HW\n",
-+			addr);
-+		/* Let RAS report to FW to drop addr from SRAM queue */
-+		return -EOPNOTSUPP;
-+	}
+ 	return false;
+@@ -626,6 +636,7 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, unsigned long
+ 		INIT_LIST_HEAD(&nentry->blocks);
+ 		nentry->status = pending;
+ 		nentry->addr = addr;
++		nentry->mode = XE_PAGE_OFFLINE_SOFT;
+ 
+ 		if (block) {
+ 			struct xe_bo *pbo;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index b23796066a1a..f73dfd1ad82b 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -57,6 +57,16 @@ struct xe_ttm_vram_mgr_resource {
+ 	unsigned long flags;
+ };
+ 
++/**
++ * enum xe_page_offline_mode - Mode of page offline
++ * @XE_PAGE_OFFLINE_SOFT: Page is soft-offlined (scrubbed, can be restored)
++ * @XE_PAGE_OFFLINE_HARD: Page is hard-offlined (permanently retired)
++ */
++enum xe_page_offline_mode {
++	XE_PAGE_OFFLINE_SOFT = 0,
++	XE_PAGE_OFFLINE_HARD,
++};
 +
- 	/* Reserve page at address */
- 	return xe_ttm_vram_reserve_page_at_addr(xe, addr, vram_mgr, mm);
- }
+ /**
+  * struct xe_ttm_vram_offline_resource - Xe TTM VRAM offline  resource
+  */
+@@ -75,6 +85,8 @@ struct xe_ttm_vram_offline_resource {
+ 	unsigned long addr;
+ 	/** @status: reservation status of resource */
+ 	bool status;
++	/** @mode: offline mode (soft or hard) */
++	enum xe_page_offline_mode mode;
+ };
+ 
+ #endif
 -- 
 2.52.0
 
