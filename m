@@ -4,140 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D87F6C44501
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 13:44:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFE0FC43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 13:44:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2931C10ED5C;
-	Tue, 14 Jul 2026 13:44:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F29410ED5D;
+	Tue, 14 Jul 2026 13:44:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="XMe8ZXs7";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="b48cJk93";
 	dkim-atps=neutral
-X-Greylist: delayed 471 seconds by postgrey-1.36 at gabe;
- Mon, 13 Jul 2026 14:19:25 UTC
-Received: from mout.web.de (mout.web.de [212.227.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD15E10E9D4;
- Mon, 13 Jul 2026 14:19:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1783952364; x=1784557164; i=markus.elfring@web.de;
- bh=IN1IQs896HSaIw9gEbrqKaClxJt5RzMdKHMvraSsIio=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
- Subject:Content-Type:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=XMe8ZXs7zCFP/vE711QwNaskgpui8XRA47RmP96VKfI2Mrxu9RbAvoJxcyUVWnP8
- +nif3uskbWqW91VULMIyKrP8MjY4dU8w0Nbi/TWBJgjc1h6lHkb4M/I5AJT77vgVD
- rG2JYdhBkDAH+80DRJfznG6cIciUY7mDSp5l2WbzgFm9x+61TLh7zPrE1mq5n0Pb0
- W//HxW+RsDr7M0AqHBss4H4VBz65dvm4dGDpYGkD4FH38wnmU2EgvhN847kYjRgmq
- XxH/Pt0NFV+b42sITT7cg1PJiwqeuf0G21I/y+r/z4XqNViGbGmMvnAtj9ck+jzEL
- NkobrNND4ISwmOt4Yw==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MDvDi-1wqwnw3duG-008vCf; Mon, 13
- Jul 2026 16:05:56 +0200
-Message-ID: <e81277a0-93f8-45e9-9fa4-7c2c2df9c311@web.de>
-Date: Mon, 13 Jul 2026 16:05:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Content-Language: en-GB, de-DE
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: [PATCH] drm/i915/bios: Move a variable assignment behind a null
- pointer check in intel_bios_encoder_supports_dp_dual_mode()
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:AGCv3si7pPH/jwVPGEDa/a4Gmy9w8/cL73mE/HY67HNX3d+sY5Z
- C58P4Nn/oryUeQvtlygm8FWT6oHpeLcG5NB32NY1LS2cMxuuoM/Q+uuk5csqXMhickScT22
- FR1fQY5SId6UI3OHX/d3XpVU4MCuKMRJ183DRjXpdGSJyZip8N29wQU7E/M+Xf9vZqzLnLX
- hhRuAMHLP5GL40agOxRTQ==
-UI-OutboundReport: notjunk:1;M01:P0:L4PpSTV5B50=;FGD+QjUfHjCINE5eWaDBf2cIgE1
- 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
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A58010E1CC;
+ Tue, 14 Jul 2026 02:25:24 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id AC9B660103;
+ Tue, 14 Jul 2026 02:25:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93DE31F000E9;
+ Tue, 14 Jul 2026 02:25:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=korg; t=1783995922;
+ bh=dxhqIlF4Nmwz7Dc6V0zHplATkq8zPUSt2q/Zds9EZa8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References;
+ b=b48cJk93FtKmn41eVdolAVE/uzQX6EHo01Pnkn0OgnY1vIvJtpHyTyl3C+S0onbuL
+ GGMGjmfE2JKefejiLP1J3PzT6MIi/Ch6j4XkBShkTRk15H8PEW9ZSYVvQQ/3WhTIGU
+ P9nMjGwkFSOLhnsQCjHUwc7HZ389d5X722tVvR6w=
+Date: Mon, 13 Jul 2026 19:25:19 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Lorenzo Stoakes <ljs@kernel.org>
+Cc: David Hildenbrand <david@kernel.org>, "Liam R. Howlett"
+ <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport
+ <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, Michal Hocko
+ <mhocko@suse.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Benjamin LaHaise <bcrl@kvack.org>, Alexander Viro
+ <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, Jan Kara
+ <jack@suse.cz>, Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Jann Horn <jannh@google.com>, Pedro
+ Falcato <pfalcato@suse.de>, Muchun Song <muchun.song@linux.dev>, Oscar
+ Salvador <osalvador@suse.de>, Zi Yan <ziy@nvidia.com>, Nico Pache
+ <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>, Dev Jain
+ <dev.jain@arm.com>, Barry Song <baohua@kernel.org>, Lance Yang
+ <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>, Madhavan
+ Srinivasan <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Nicholas Piggin <npiggin@gmail.com>, "Christophe Leroy (CS GROUP)"
+ <chleroy@kernel.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner
+ <christian.gmeiner@gmail.com>, Inki Dae <inki.dae@samsung.com>, Seung-Woo
+ Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin
+ <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, Jani
+ Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark
+ <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang
+ <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@kernel.org>, Tomi Valkeinen
+ <tomi.valkeinen@ideasonboard.com>, Sandy Huang <hjc@rock-chips.com>, Heiko
+ =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>, Andy Yan
+ <andy.yan@rock-chips.com>, Thierry Reding <thierry.reding@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter
+ <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko
+ <dmitry.osipenko@collabora.com>, Gurchetan Singh
+ <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, Zack Rusin
+ <zack.rusin@broadcom.com>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Matthew Brost
+ <matthew.brost@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Oleksandr Andrushchenko
+ <oleksandr_andrushchenko@epam.com>, Helge Deller <deller@gmx.de>, Kees Cook
+ <kees@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+ <tiwai@suse.com>, Boris Brezillon <boris.brezillon@collabora.com>, Steven
+ Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ xen-devel@lists.xenproject.org, linux-fbdev@vger.kernel.org,
+ linux-sound@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v2 00/13] mm: convert more vm_flags_t users to vma_flags_t
+Message-Id: <20260713192519.58113fa69c169d3f5f82e453@linux-foundation.org>
+In-Reply-To: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
+References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 14 Jul 2026 13:44:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -153,52 +111,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Mon, 13 Jul 2026 15:56:46 +0200
+On Sat, 11 Jul 2026 19:44:57 +0100 Lorenzo Stoakes <ljs@kernel.org> wrote:
 
-The address of a data structure member was determined before
-a corresponding null pointer check in the implementation of
-the function =E2=80=9Cintel_bios_encoder_supports_dp_dual_mode=E2=80=9D.
+> This series makes further progress in converting usage of the deprecated
+> vm_flags_t type to its replacement, vma_flags_t.
+> 
+> It focuses on mm, though updates some users of mm APIs also.
+> 
+> It updates:
+> 
+> * The core do_mmap() code path for VMA mapping.
+> * Unmapped area logic.
+> * The usage of mm->def_vma_flags.
+> * VMA page protection bit logic.
+> * General usage of VMA flags in core mm code, mlock, mprotect, mremap.
 
-Thus avoid the risk for undefined behaviour by reducing the scope for
-the variable =E2=80=9Cchild=E2=80=9D behind condition checks.
+Added to mm-new, thanks.
 
-This issue was detected by using the Coccinelle software.
+And oh my, what a lot of pre-existing issues:
+	https://sashiko.dev/#/patchset/20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org
 
-Fixes: 044cbc7a74c136f12a80c855cadd1b085084aef1 ("drm/i915/bios: Nuke DEVI=
-CE_TYPE_DP_DUAL_MODE_BITS")
-Cc: stable@vger.kernel.org
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/gpu/drm/i915/display/intel_bios.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i=
-915/display/intel_bios.c
-index 97cbae2e547e..1c4760373514 100644
-=2D-- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3514,8 +3514,6 @@ bool intel_bios_is_port_present(struct intel_display=
- *display, enum port port)
-=20
- bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_enc=
-oder_data *devdata)
- {
--	const struct child_device_config *child =3D &devdata->child;
--
- 	if (!devdata)
- 		return false;
-=20
-@@ -3523,6 +3521,8 @@ bool intel_bios_encoder_supports_dp_dual_mode(const =
-struct intel_bios_encoder_da
- 	    !intel_bios_encoder_supports_hdmi(devdata))
- 		return false;
-=20
-+	const struct child_device_config *child =3D &devdata->child;
-+
- 	if (dvo_port_type(child->dvo_port) =3D=3D DVO_PORT_DPA)
- 		return true;
-=20
-=2D-=20
-2.55.0
 
