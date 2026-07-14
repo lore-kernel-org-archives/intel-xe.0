@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E09D8C44507
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 18:19:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE2FC44507
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 18:29:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97D8D10E0A8;
-	Tue, 14 Jul 2026 18:19:39 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B29910E0A8;
- Tue, 14 Jul 2026 18:19:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0666989158977694276=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6324510E0D7;
+	Tue, 14 Jul 2026 18:29:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMvJq/xq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67F6110E0D7
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 18:29:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784053754; x=1815589754;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3LtAuWMIU1wO6eW7c4PkR6ZdxrghPi4LMQMPTqyC09M=;
+ b=ZMvJq/xqwA5gqRhqI9EnJ8dpjCWjXXVFENJ1baHVVZdI3KlC25vAW7mj
+ UiyaVQa9HYu/c891+VsOzYAkVj1vz2Qv8IzdEh3qoXCAldfnMpEGWrpax
+ QSFnnlBZnmDoMD3r/RCM8OL0Z7VbhhCqiYimiqiBVUnp9C6X2tvDDSZLs
+ 2HlKowAlOS6+/XUJ+2ol/8ROpLYfpGbspyGxkCMYFSW0uoHKC+E6zAnp9
+ J91YucDziiT3RP+DsNZPMurjmYJv/jKDACCJLonFRzSFcOV/AdcOP9pzt
+ DeKVmOvCP0s8q/69ypUw3P6T6RO6UsWj0CGl0OFzc6zmoIJsHcB7Ff34t w==;
+X-CSE-ConnectionGUID: L2a41ToLSUG04hpt9DjARw==
+X-CSE-MsgGUID: Z4GOL7ggRLWTzxKaPQaR2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84880805"
+X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="84880805"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 11:29:13 -0700
+X-CSE-ConnectionGUID: MwmgvdlPTdG3uKGrzP7m3Q==
+X-CSE-MsgGUID: 8jMe6gJ/TI+6QlJNUmehIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="260838219"
+Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 11:29:13 -0700
+From: Julia Filipchuk <julia.filipchuk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+Subject: [PATCH v3 0/5] drm/xe/guc: Recommend GuC v70.65.0 for BMG, LNL, PTL
+Date: Tue, 14 Jul 2026 11:28:38 -0700
+Message-ID: <20260714182904.620871-7-julia.filipchuk@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/gpusvm=3A_Fix_MM_refere?=
- =?utf-8?q?nce_leak_in_drm=5Fgpusvm=5Frange=5Fevict?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Jul 2026 18:19:38 -0000
-Message-ID: <178405317849.189125.1821989795011233610@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260714170025.3487974-1-matthew.brost@intel.com>
-In-Reply-To: <20260714170025.3487974-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0666989158977694276==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Recommend newer GuC firmware for BMG, LNL, PTL. UAPI version: 1.34.0
 
-== Series Details ==
+Platforms PVC, CRI, NVL-P are not merged to upstream at present.
+The GuC definitions for those only exist in the for-ci topic branches
+drm-xe:topic/xe-for-ci and drm-intel:topic/core-for-ci. This patch set
+reverts those patches, updates the recommended GuC versions for fully
+upstream platforms, then re-adds the CI only platforms definitions.
 
-Series: drm/gpusvm: Fix MM reference leak in drm_gpusvm_range_evict
-URL   : https://patchwork.freedesktop.org/series/170433/
-State : success
+- Patches 1-2 revert patches from *-for-ci topic branches.
+- Patch 3 updates recommended guc version. Intended to merge into
+  drm-xe/drm-xe-next.
+- Patches 4+ re-apply reverted patches.
 
-== Summary ==
-
-CI Bug Log - changes from xe-5400-3b55f4b405c64ce1e75cc228be905f70a6dd95a3_BAT -> xe-pw-170433v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
+v3: NVL-S fw_defs now upstream instead of in topic branch.
 
 
-Changes
--------
+Balasubramani Vivekanandan (1):
+  topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI
 
-  No changes found
+John INTEL (1):
+  topic/xe-for-CI: Define GuC firmware for NVL-P
 
+Julia INTEL (3):
+  Revert "topic/xe-for-CI: Define GuC firmware for NVL-P"
+  Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
+  drm/xe/guc: Recommend GuC v70.65.0 for BMG, LNL, PTL
 
-Build changes
--------------
+ drivers/gpu/drm/xe/xe_uc_fw.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-  * Linux: xe-5400-3b55f4b405c64ce1e75cc228be905f70a6dd95a3 -> xe-pw-170433v1
+-- 
+2.51.0
 
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5400-3b55f4b405c64ce1e75cc228be905f70a6dd95a3: 3b55f4b405c64ce1e75cc228be905f70a6dd95a3
-  xe-pw-170433v1: 170433v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170433v1/index.html
-
---===============0666989158977694276==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/gpusvm: Fix MM reference leak in drm_gpusvm_range_evict</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170433/">https://patchwork.freedesktop.org/series/170433/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170433v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170433v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5400-3b55f4b405c64ce1e75cc228be905f70a6dd95a3_BAT -&gt; xe-pw-170433v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5400-3b55f4b405c64ce1e75cc228be905f70a6dd95a3 -&gt; xe-pw-170433v1</li>
-</ul>
-<p>IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5400-3b55f4b405c64ce1e75cc228be905f70a6dd95a3: 3b55f4b405c64ce1e75cc228be905f70a6dd95a3<br />
-  xe-pw-170433v1: 170433v1</p>
-
-</body>
-</html>
-
---===============0666989158977694276==--
