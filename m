@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1AB6C44508
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 15:48:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34D18C44501
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 15:49:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D66010EDB7;
-	Tue, 14 Jul 2026 15:48:04 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E6DF10EDB7;
- Tue, 14 Jul 2026 15:48:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8812556494829444551=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB62C10EDC7;
+	Tue, 14 Jul 2026 15:49:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5JRU+x0";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCF410EDB7
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 15:49:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784044154; x=1815580154;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I/hz153sTMr9+xiaqTrOC77GIofyXGHHNTDQbH1B7/U=;
+ b=O5JRU+x0VyJvYSJuKes/bQbKjcqv2NKENeUTic98qwZ9k1XksYecQ3XL
+ rQKfGF3E7rlnnoDF9I75HmwdRPI7rdl0eaRGwdirLQ/x+6mjPfoBdgE6O
+ 7qEn5ukD7oMfnsiitLwMVUAWi+QnWtvE3m5lU03vfT+wBo3gkvfjT9Wes
+ kqQu4+YXQMomOaMIjxZBtasLi/HCQgL3otK0JBldUnX3UrPyxxz6a5L/K
+ 84zPp6Z9FDZE5DnxAPJMFmLTH1pvBwKUnyt6txicK/qhEWYWUcGoxDG2E
+ uS0s7QBu/EdfEt9nBgrWtiN3aAbxUk3iuswq/Dv65cRBHC21vzLAmtNzE A==;
+X-CSE-ConnectionGUID: tC5orytZSQ290QEEDRNcrw==
+X-CSE-MsgGUID: hYbaGb/xTUerNrqsnREzRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="102093347"
+X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="102093347"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 08:49:13 -0700
+X-CSE-ConnectionGUID: 9YTDG2gJRca441B8NRdQHg==
+X-CSE-MsgGUID: dRGRU4NoTGmoTRYXQcAALA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="255941968"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.20])
+ by orviesa007.jf.intel.com with ESMTP; 14 Jul 2026 08:49:13 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: julia.filipchuk@intel.com, matthew.brost@intel.com,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v4 0/2] drm/xe/guc: shrink and compress GuC snapshot dumps
+Date: Tue, 14 Jul 2026 11:49:08 -0400
+Message-Id: <20260714154910.900217-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/ttm=3A_Represent_LRU_bu?=
- =?utf-8?q?lk_moves_as_nested_sublists_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Jul 2026 15:48:03 -0000
-Message-ID: <178404408344.189132.3041667040419206629@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260714141400.20904-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260714141400.20904-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +61,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8812556494829444551==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+GuC snapshot output is currently expensive in both size and latency: large
+log buffers are emitted as raw ascii85, and the surrounding dump text
+includes a bit of avoidable noise. This series makes xe snapshot dumps more
+compact and easier to handle by compressing the large binary payloads,
+tightening the textual output, and trimming the default GuC log size.
 
-== Series Details ==
+Select ZSTD_COMPRESS in DRM_XE so the xe module pulls in the zstd
+compressor when built.
 
-Series: drm/ttm: Represent LRU bulk moves as nested sublists (rev2)
-URL   : https://patchwork.freedesktop.org/series/170311/
-State : success
+Reduces the default GuC log buffer from 8MB to 2MB, which still preserves
+useful history while cutting dump latency and dmesg load; with typical
+compression, the emitted payload drops further.
 
-== Summary ==
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+History:
+v4: No longer auto-select ZSTD_DECOMPRESS
+v3: Add Kconfig option to control compression of GuC log and CTB dumps,
+    allowing users to choose between reduced dump sizes or lower memory
+    usage.
+    Remove "reduce GuC log size from 8MB to 2MB" patch, to be added later
+    if needed.
+    Replace pr_err with xe_gt_err and add more error print.
+v2: Fix Kunit test error by selecting ZSTD_DECOMPRESS in DRM_XE config,
+    required by zstd_is_error/zstd_get_error_name.
 
-CI Bug Log - changes from xe-5398-d3709d2bd13debee032d55c0dd71f145e11ec366_BAT -> xe-pw-170311v2_BAT
-====================================================
+Zhanjun Dong (2):
+  drm/xe: Remove extra newlines from LRC snapshot dump
+  drm/xe/guc: Compress GuC log and CTB dump with zstd
 
-Summary
--------
+ drivers/gpu/drm/xe/Kconfig          |  15 +++
+ drivers/gpu/drm/xe/xe_devcoredump.c |   4 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c      |  19 ++--
+ drivers/gpu/drm/xe/xe_guc_ct.h      |   4 +-
+ drivers/gpu/drm/xe/xe_guc_log.c     | 161 +++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_guc_log.h     |   9 +-
+ drivers/gpu/drm/xe/xe_lrc.c         |   4 +-
+ 7 files changed, 185 insertions(+), 31 deletions(-)
 
-  **SUCCESS**
+-- 
+2.34.1
 
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5398-d3709d2bd13debee032d55c0dd71f145e11ec366 -> xe-pw-170311v2
-
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5398-d3709d2bd13debee032d55c0dd71f145e11ec366: d3709d2bd13debee032d55c0dd71f145e11ec366
-  xe-pw-170311v2: 170311v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170311v2/index.html
-
---===============8812556494829444551==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Represent LRU bulk moves as nested sublists (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170311/">https://patchwork.freedesktop.org/series/170311/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170311v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170311v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5398-d3709d2bd13debee032d55c0dd71f145e11ec366_BAT -&gt; xe-pw-170311v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5398-d3709d2bd13debee032d55c0dd71f145e11ec366 -&gt; xe-pw-170311v2</li>
-</ul>
-<p>IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5398-d3709d2bd13debee032d55c0dd71f145e11ec366: d3709d2bd13debee032d55c0dd71f145e11ec366<br />
-  xe-pw-170311v2: 170311v2</p>
-
-</body>
-</html>
-
---===============8812556494829444551==--
