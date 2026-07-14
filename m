@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34926C4450B
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 18:33:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B6B5C4450A
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 18:35:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5D0C10E2A5;
-	Tue, 14 Jul 2026 18:33:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CH3qaEjK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 477F710E0D7;
- Tue, 14 Jul 2026 18:33:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784054022; x=1815590022;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=G+CQm2u0t0jDXEYLT97IgrcW4GZxek5QHJjqTILuWeo=;
- b=CH3qaEjKWw5poOJJ1jE++MnlO42OWSlwEBNt8V/3spY0DaS+/vMLX4aQ
- Sy6Yhtk2Z+RV5T92DD5iv5D8HrXom3wJIhQrEXjYxJweTJHHa9FRfINAq
- HrBzIENakx+G4OMXR17RfpGJJqumuYhBsW94g6OnTcr9fatfVgYWtqWoW
- 4Tty/GSvulR3uA2GZ+XnGxQE9cUs+byyIOMZA6hcL7/zTghrwdcjOFmxS
- DlZBD5xxPEnlWmBsReybEJKEz8nYOW7O8bHAOV15+ZuWanEDXpRuW7SjP
- ymn3ZQtFbTICISbfedaPYMklheF8n6w1SmptC94zvRBtpq4k9eWY03ZoW g==;
-X-CSE-ConnectionGUID: 3c2HRqJ1ToKRWq4VqMJR1g==
-X-CSE-MsgGUID: AYO/ZXUWRne+x7GFeQioKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="95038852"
-X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="95038852"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 11:33:42 -0700
-X-CSE-ConnectionGUID: vI5Lrot2TqCssFkfALbIog==
-X-CSE-MsgGUID: a+xk3+08R8akDWBAe+bVnQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="259511182"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.245.238])
- ([10.245.245.238])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 11:33:39 -0700
-Message-ID: <b66a85c300828f2a79bce20cdbad9051c617b694.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/ttm: Account for NULL and handle pages in
- ttm_pool_backup
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui
- <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard	
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Date: Tue, 14 Jul 2026 20:33:36 +0200
-In-Reply-To: <20260702214815.4009271-1-matthew.brost@intel.com>
-References: <20260702214815.4009271-1-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECBE510E2A5;
+	Tue, 14 Jul 2026 18:35:20 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D224310E2A5;
+ Tue, 14 Jul 2026 18:35:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Recommend_G?=
+ =?utf-8?q?uC_v70=2E65=2E0_for_BMG=2C_LNL=2C_PTL_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 14 Jul 2026 18:35:19 -0000
+Message-ID: <178405411985.189125.110896973409374957@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260714182904.620871-7-julia.filipchuk@intel.com>
+In-Reply-To: <20260714182904.620871-7-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,146 +36,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-07-02 at 14:48 -0700, Matthew Brost wrote:
-> Pages in ttm_pool_backup can be NULL or backup handles
-> (ttm_backup_page_ptr_is_handle()), neither of which can be passed to
-> set_pages_array_wb() or freed. Add a dedicated WB pass before the
-> dma/purge loop that walks allocations using the same i +=3D num_pages
-> stride, skipping NULL and handle entries, and calls
-> set_pages_array_wb()
-> once per contiguous run of real pages. Apply the same NULL/handle
-> guard
-> to the dma/purge loop.
->=20
-> Fixes the following oops:
->=20
-> Oops: general protection fault, kernel NULL pointer dereference 0x0:
-> 0000 [#1] SMP NOPTI
-> RIP: 0010:__cpa_process_fault+0xf8/0x770
-> RSP: 0018:ffffc90000a87718 EFLAGS: 00010287
-> RAX: 0000000000000000 RBX: ffffc90000a87868 RCX: 0000000000000000
-> RDX: 0000000000001000 RSI: 0005088000000000 RDI: ffffffff827c5f34
-> RBP: 0005088000000000 R08: ffffc90000a877cb R09: ffffc90000a877d0
-> R10: 0000000000000000 R11: 000000000000001b R12: 000ffffffffff000
-> R13: ffffc90000a87868 R14: ffffc90000a87868 R15: ffff88815b882ae0
-> FS:=C2=A0 0000000000000000(0000) GS:ffff8884ec840000(0000)
-> knlGS:0000000000000000
-> CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: 00007f930b844000 CR3: 000000000262e003 CR4: 0000000008f70ef0
-> PKRU: 55555554
-> Call Trace:
-> =C2=A0<TASK>
-> =C2=A0__change_page_attr_set_clr+0x989/0xe90
-> =C2=A0? __purge_vmap_area_lazy+0x6c/0x3a0
-> =C2=A0? _vm_unmap_aliases+0x250/0x2a0
-> =C2=A0set_pages_array_wb+0x7f/0x120
-> =C2=A0ttm_pool_backup+0x4c9/0x5b0 [ttm]
-> =C2=A0? dma_resv_wait_timeout+0x3b/0xf0
-> =C2=A0ttm_tt_backup+0x32/0x60 [ttm]
-> =C2=A0ttm_bo_shrink+0x66/0x110 [ttm]
-> =C2=A0xe_bo_shrink_purge+0x12b/0x1b0 [xe]
-> =C2=A0xe_bo_shrink+0xbb/0x270 [xe]
-> =C2=A0__xe_shrinker_walk+0xf7/0x160 [xe]
-> =C2=A0xe_shrinker_walk+0x9d/0xc0 [xe]
-> =C2=A0xe_shrinker_scan+0x11f/0x210 [xe]
-> =C2=A0do_shrink_slab+0x13b/0x270
-> =C2=A0shrink_slab+0xf1/0x400
-> =C2=A0shrink_node+0x352/0x8a0
-> =C2=A0balance_pgdat+0x32c/0x700
-> =C2=A0kswapd+0x205/0x2f0
-> =C2=A0? __pfx_autoremove_wake_function+0x10/0x10
-> =C2=A0? __pfx_kswapd+0x10/0x10
-> =C2=A0kthread+0xd1/0x110
-> =C2=A0? __pfx_kthread+0x10/0x10
-> =C2=A0ret_from_fork+0x1b1/0x200
-> =C2=A0? __pfx_kthread+0x10/0x10
-> =C2=A0ret_from_fork_asm+0x1a/0x30
-> =C2=A0</TASK>
->=20
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: stable@vger.kernel.org
-> Fixes: b63d715b8090 ("drm/ttm/pool, drm/ttm/tt: Provide a helper to
-> shrink pages")
-> Cc: stable@vger.kernel.org
-> Assisted-by: GitHub_Copilot:claude-opus-4.8
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+== Series Details ==
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Series: drm/xe/guc: Recommend GuC v70.65.0 for BMG, LNL, PTL (rev3)
+URL   : https://patchwork.freedesktop.org/series/168118/
+State : warning
 
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 30 ++++++++++++++++++++++++++----
-> =C2=A01 file changed, 26 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
-> b/drivers/gpu/drm/ttm/ttm_pool.c
-> index 3d5f2ae0a456..ff043420d517 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -1065,9 +1065,31 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0		return -EBUSY;
-> =C2=A0
-> =C2=A0#ifdef CONFIG_X86
-> -	/* Anything returned to the system needs to be cached. */
-> -	if (tt->caching !=3D ttm_cached)
-> -		set_pages_array_wb(tt->pages, tt->num_pages);
-> +	/* Anything returned to the system needs to be cached. Walk
-> allocations
-> +	 * skipping NULL pages and issue set_pages_array_wb() per
-> contiguous run.
-> +	 */
-> +	if (tt->caching !=3D ttm_cached) {
-> +		pgoff_t run_start =3D 0, run_count =3D 0;
-> +
-> +		for (i =3D 0; i < tt->num_pages; i +=3D num_pages) {
-> +			page =3D tt->pages[i];
-> +			if (unlikely(!page ||
-> ttm_backup_page_ptr_is_handle(page))) {
-> +				if (run_count) {
-> +					set_pages_array_wb(&tt-
-> >pages[run_start],
-> +							=C2=A0=C2=A0
-> run_count);
-> +					run_count =3D 0;
-> +				}
-> +				num_pages =3D 1;
-> +				continue;
-> +			}
-> +			num_pages =3D 1UL << ttm_pool_page_order(pool,
-> page);
-> +			if (!run_count)
-> +				run_start =3D i;
-> +			run_count +=3D num_pages;
-> +		}
-> +		if (run_count)
-> +			set_pages_array_wb(&tt->pages[run_start],
-> run_count);
-> +	}
-> =C2=A0#endif
-> =C2=A0
-> =C2=A0	if (tt->dma_address || flags->purge) {
-> @@ -1075,7 +1097,7 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0			unsigned int order;
-> =C2=A0
-> =C2=A0			page =3D tt->pages[i];
-> -			if (unlikely(!page)) {
-> +			if (unlikely(!page ||
-> ttm_backup_page_ptr_is_handle(page))) {
-> =C2=A0				num_pages =3D 1;
-> =C2=A0				continue;
-> =C2=A0			}
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ebcae3b7997256f4917e023a900fa55a99e38c06
+Author: John Harrison <John.C.Harrison@Intel.com>
+Date:   Tue Jul 14 11:28:43 2026 -0700
+
+    topic/xe-for-CI: Define GuC firmware for NVL-P
+    
+    Novalake P has different IP on each GT and requires a different GuC
+    for each. So add separate graphics and media GT entries or NVL-P.
+    
+    Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7235
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Link: https://patch.msgid.link/20260202-nvl-p-upstreaming-v1-16-653e4ff105dc@intel.com
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Link: https://patch.msgid.link/20260529193558.185436-14-daniele.ceraolospurio@intel.com
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Link: https://patch.msgid.link/20260618222536.3351750-14-julia.filipchuk@intel.com
+    Acked-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
++ /mt/dim checkpatch 9cf91140eff27765d402aedeea89505d52db121e drm-intel
+fed59b533d78 Revert "topic/xe-for-CI: Define GuC firmware for NVL-P"
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:20: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+6244a7d9e65f Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
+-:10: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:20: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 1 warnings, 0 checks, 7 lines checked
+f93b2f209f3a drm/xe/guc: Recommend GuC v70.65.0 for BMG, LNL, PTL
+0cfdd5599686 topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI
+-:21: WARNING:BAD_SIGN_OFF: Duplicate signature
+#21: 
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+ebcae3b79972 topic/xe-for-CI: Define GuC firmware for NVL-P
+-:22: WARNING:BAD_SIGN_OFF: Duplicate signature
+#22: 
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+
+
