@@ -4,27 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E720C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 06:14:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D927BC44501
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 06:17:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E384D10E002;
-	Tue, 14 Jul 2026 06:14:50 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8F1210E002;
- Tue, 14 Jul 2026 06:14:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8691676129341378570=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9555510E002;
+	Tue, 14 Jul 2026 06:17:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NCjRekVa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82D5110E002;
+ Tue, 14 Jul 2026 06:17:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784009846; x=1815545846;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=yPJi8dqAeqIB4aBsYSEWntf2un8xrRXwoxXijOHtDEo=;
+ b=NCjRekVa+IHfGyueB1J6gT14KR7koIj5OHu+ZtOoikvWomoCYNY9nJoH
+ NwxvGTLqhHXh6sAbsO35QYCU72HyK4G82EUXonPd3IjxY8lcQ8pIvCrjE
+ k5oxXjoqsO34EYNh+bE0QkvGvIRYoCUWYHUBq0yaHY0yBOuwur7cUEjSt
+ y/f2p78ScYOI8K5whoz0QKmYc9TpYpqORAoGCiCyM1oCXAJkDd/IDoMI9
+ nfVPyeFNEyQgXI60qiGHm3TafXK4uBJpWlnNWPqY60yJppoYlXb8mIy7L
+ vw74Aqk1OiLSm/Lyru9qfqigv2iIs1/33hZhNywx4QcU9DRJk7b+LtIuX Q==;
+X-CSE-ConnectionGUID: fbNKEfkdSjqaBWUFeqLJaw==
+X-CSE-MsgGUID: 5l/QVDxFT9e4FonG5ZdnGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="95227336"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="95227336"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 23:17:26 -0700
+X-CSE-ConnectionGUID: Qf5lIy5bRy2ZZHWUUqr0fA==
+X-CSE-MsgGUID: BZJf3tSWS8Gb7gK15xa2DA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="251809889"
+Received: from sannilnx-dsk.jer.intel.com (HELO [127.0.1.1]) ([10.12.231.107])
+ by fmviesa010-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2026 23:17:23 -0700
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+Date: Tue, 14 Jul 2026 08:54:17 +0300
+Subject: [PATCH v2] drm/xe/nvm: fix writable override for CRI
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/multi=5Fqueue=3A_wai?=
- =?utf-8?q?t_for_secondary=27s_own_suspend_in_suspend=5Fwait?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Jul 2026 06:14:49 -0000
-Message-ID: <178400968968.186930.13894756775558185519@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260714052627.2241302-2-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20260714052627.2241302-2-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260714-cri_nvm_fdo_flip-v2-1-14580e71b58e@intel.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NQQ6CMBBFr0JmbQ3tAEVX3sMQonSQSaAlLWk0p
+ He3cgCX7yX//R0CeaYA12IHT5EDO5tBnQoYpod9kWCTGVSpmlKXrRg89zYu/WhcP868CkR81lV
+ N0pgW8mz1NPL7SN67zBOHzfnP8RDlz/6JRSmk0BeFGptGI1Y3thvN58Et0KWUvlJDQFOwAAAA
+X-Change-ID: 20260708-cri_nvm_fdo_flip-333b545e1dd8
+To: Matthew Brost <matthew.brost@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Alexander Usyskin <alexander.usyskin@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784008475; l=2208;
+ i=alexander.usyskin@intel.com; s=20260315; h=from:subject:message-id;
+ bh=yPJi8dqAeqIB4aBsYSEWntf2un8xrRXwoxXijOHtDEo=;
+ b=JQHtEsrvNDL7FiH3ZfVzZUo4fLLtwJWDYSOuLDPlhh7akUtWo+p1mOi3Vwj780IE8h8NmmJVt
+ BHEN//o76UVA16e/h48/bGJhHUaiQSKcmc293bfSCyqMQ1O/jm8wEQy
+X-Developer-Key: i=alexander.usyskin@intel.com; a=ed25519;
+ pk=X+qoF/nFCdDOV04IForWSxnkyoCAbUE10egZi6PSfcU=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +78,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8691676129341378570==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The witable override should be set when FDO_MODE bit is enabled.
+Fix the comparison to distingush this case from legacy systems
+where bit should be disabled to have override.
 
-== Series Details ==
+Cc: stable@vger.kernel.org
+Fixes: 9dde74fd9e65 ("drm/xe/nvm: enable cri platform")
+Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+---
+Changes in v2:
+- avoid multiple assignments
+- Link to v1: https://lore.kernel.org/r/20260708-cri_nvm_fdo_flip-v1-1-792373667334@intel.com
+---
+ drivers/gpu/drm/xe/xe_nvm.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-Series: drm/xe/multi_queue: wait for secondary's own suspend in suspend_wait
-URL   : https://patchwork.freedesktop.org/series/170375/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
+index 33487e91f366..1ea67eaeae24 100644
+--- a/drivers/gpu/drm/xe/xe_nvm.c
++++ b/drivers/gpu/drm/xe/xe_nvm.c
+@@ -60,35 +60,40 @@ static bool xe_nvm_writable_override(struct xe_device *xe)
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	bool writable_override;
+ 	struct xe_reg reg;
+-	u32 test_bit;
++	u32 test_bit, test_val;
+ 
+ 	switch (xe->info.platform) {
+ 	case XE_CRESCENTISLAND:
+ 		reg = PCODE_SCRATCH(0);
+ 		test_bit = FDO_MODE;
++		test_val = FDO_MODE;
+ 		break;
+ 	case XE_BATTLEMAGE:
+ 		reg = HECI_FWSTS2(DG2_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	case XE_PVC:
+ 		reg = HECI_FWSTS2(PVC_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	case XE_DG2:
+ 		reg = HECI_FWSTS2(DG2_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	case XE_DG1:
+ 		reg = HECI_FWSTS2(DG1_GSC_HECI2_BASE);
+ 		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
++		test_val = 0;
+ 		break;
+ 	default:
+ 		drm_err(&xe->drm, "Unknown platform\n");
+ 		return true;
+ 	}
+ 
+-	writable_override = !(xe_mmio_read32(mmio, reg) & test_bit);
++	writable_override = (xe_mmio_read32(mmio, reg) & test_bit) == test_val;
+ 	if (writable_override)
+ 		drm_info(&xe->drm, "NVM access overridden by jumper\n");
+ 	return writable_override;
 
-== Summary ==
+---
+base-commit: 8cdeaa50eae8dad34885515f62559ee83e7e8dda
+change-id: 20260708-cri_nvm_fdo_flip-333b545e1dd8
 
-CI Bug Log - changes from xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc_BAT -> xe-pw-170375v1_BAT
-====================================================
+Best regards,
+-- 
+Alexander Usyskin <alexander.usyskin@intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 12)
-------------------------------
-
-  Missing    (1): bat-bmg-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-170375v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-atsm-2:         [FAIL][1] ([Intel XE#8576]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc/bat-atsm-2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170375v1/bat-atsm-2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#8576]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8576
-
-
-Build changes
--------------
-
-  * Linux: xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc -> xe-pw-170375v1
-
-  IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc: 4df02bb6acd1307de4de001699112cbdaf5afdfc
-  xe-pw-170375v1: 170375v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170375v1/index.html
-
---===============8691676129341378570==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/multi_queue: wait for secondary&#x27;s own suspend in suspend_wait</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170375/">https://patchwork.freedesktop.org/series/170375/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170375v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170375v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc_BAT -&gt; xe-pw-170375v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-170375v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc/bat-atsm-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8576">Intel XE#8576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170375v1/bat-atsm-2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc -&gt; xe-pw-170375v1</li>
-</ul>
-<p>IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc: 4df02bb6acd1307de4de001699112cbdaf5afdfc<br />
-  xe-pw-170375v1: 170375v1</p>
-
-</body>
-</html>
-
---===============8691676129341378570==--
