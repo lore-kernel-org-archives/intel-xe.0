@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A1CC44508
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 15:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F88BC4450A
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 15:27:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC79D10EDB7;
-	Tue, 14 Jul 2026 15:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E682310EDC5;
+	Tue, 14 Jul 2026 15:27:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Noy/Zy6q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SGolx9SS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3D4210EDB7;
- Tue, 14 Jul 2026 15:27:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36D2710EDC5;
+ Tue, 14 Jul 2026 15:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784042859; x=1815578859;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=C0ZLz46Ek0d7Z+yCuLa1EYaUApm3rglN6fepP+Ca3LA=;
- b=Noy/Zy6qwfEenEdbjHHjSmYvH5DyeHkG4V+lwjTZgDZJWLPeiPuPlxyz
- 5HEEsqu/zwH0xDgJWXghEuhKxzd1jVhC4KGaKO5eLDpdtSgmvM+g5usqJ
- PCeMB4Bdwm94EC2tW/wndGOmqw5X+No6lh9rDQ4Z0T6lsLmT2q4qCOobP
- v5uPnYBR8oTQ7r5nLnD3p2r+dnz/LyII1knsqvGaoDj/BefS/E5IacAub
- gXIR/Si34GCUaVXDAsZSNfkpH0Ws7XlhNCOwtLqbx47JEKmE1LcUNI5rk
- 4Ok6RGQk7DfKw3YKQHzyBDLwwRyoz5+Pilw34aL0goqr6oAV2J+FwMbkJ w==;
-X-CSE-ConnectionGUID: XGkKoDThTOuZebEbC12Cpw==
-X-CSE-MsgGUID: btzSo9P6TQOB+FGVE9fikA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84548010"
-X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="84548010"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 08:27:39 -0700
-X-CSE-ConnectionGUID: O9PlJO/ES/+To6IBIDonNQ==
-X-CSE-MsgGUID: 9sqetw2aRiKAmDIvJqBkwg==
+ t=1784042862; x=1815578862;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=o5D8mrvR8/eDUyRAAJNvk07lkLrUXzplwE508QRAtYw=;
+ b=SGolx9SSQlW39vTcOsdd3z4tqiw9N1sxygFIcGiWpAPvEAUkEF/OFzN7
+ zvbsLXNzJjEuIJSJVtMCrlxiOsT7as600yZ4y3lgrQnYfZbzZMbNEbiOg
+ 5WSSIEtnPrq+Ymuf6vLAK/Va8pUCPjo6I+5N03rFAOqd7r6l0bv78E8Z9
+ PZUZylKynZAhEVOBbD1Y8YPKF9QoZEoPyTcYNj++cZZMKyzh7ONhQ//Ig
+ ylPyM5VAVr+I5+V8S4qo5ykJSVZIQvx5X0Va1oX7RASB7lL+u3be7mzNB
+ NshJpernSccXkIgXtczI1biqx+BsfXa9onJsAZOaapHTZ+QkUwsDXwrkD Q==;
+X-CSE-ConnectionGUID: 9ZcG2aftSsSUPO4rH86XTg==
+X-CSE-MsgGUID: mMte/MwERwKBN2DYSEXwTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="88345862"
+X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="88345862"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 08:27:42 -0700
+X-CSE-ConnectionGUID: dFwpn674R3yxURX4pmckBw==
+X-CSE-MsgGUID: KJ5kMtn0RfCCJFaAkDFwFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="285962057"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 08:27:40 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,164,1779174000"; d="scan'208";a="249529850"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 08:27:42 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 14 Jul 2026 08:27:39 -0700
+ 15.2.2562.43; Tue, 14 Jul 2026 08:27:41 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 14 Jul 2026 08:27:39 -0700
+ 15.2.2562.43 via Frontend Transport; Tue, 14 Jul 2026 08:27:41 -0700
 Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.31) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 14 Jul 2026 08:27:37 -0700
+ 15.2.2562.43; Tue, 14 Jul 2026 08:27:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C3cU7J7aFssv+Xt3TQqfS90ZIeF0hdDmYdbe8tLY8i4EyNzSBQW75tXt298enev64RGgJzUZaGiQMgTXeRjd0dTDMIOAibQkq4pEmcCtpJP0lEHTR7tdcgkRLogxapWzMD8lVSxg5/7UN3Nw+rUOZRk1eTxq28LzMk9M7/5wtCOX/J9y1C8hOeAhtUZylGSwHaOpFsDrKCUQvLfA9mhELfL1zQA7ygt6Qe6MTX7ynKPGK226zezNv0semsz7DGyhkTwETz4NTHePfA0hL2WQ7PdDmlhJzQm9jxejtY7wqRf5BIUX7DY7R9ws2hiSTR9eB2jzAuOCwtnAO5kdMI+DJg==
+ b=qsyhrF3+qe+tPK6oKUCRBQT/vv9hi3GDemSsYwfyUOrxjjqRKEVPF5NPJqu2F1p2Wr6wDQk3Dpz6SWDGSNdEWTbOkERGk0c6LduAlPQLc5AwyAGs5GMLQwegVePV/SfdQXjoRO+jx5gjv1KgwgTHlGTijTkoGVyzUrquG0su1CYK1Vc5Qi1VyjjSfGjUEe7g7iFBI2Gv+xp4+yqeRYI+jyxwtsw99Wsu/tibDzjvAmOzoXaB2zUI+W62sBlq62PlIIXKTjGFp8Edi3g2vu9F/emExuibmkGhbJHy2frff5u/RLRV3hFZDSYohY3J838yOp6H+pnpOR6a7tcT7Jen4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2RQS3XviziwX8a5wkz9yjIU3WJ3hQEmXU6qEvY3dnY0=;
- b=IZ29/bFe/Mgy9w7yWX9uaE4Bbd7pdIzpU1mc4t5lZ+p+l/MPQBXrpKQ48kmt378S9N/k0x8ed0FZuoTYme5WHHzLOgsaQlLkz6fGvf0Ut8XxbHqQGP8SFgNNHt+c6shgOlowkBsxpnfsIpZOzEjPkgsJUpN2b9xiInVdva5jHhNkgZt5p4erI/EO2KWOqQfkLHYYy0aHiwWGU8nbACTvPG0DWdtcmhKKjJbHxJEz6idGEn0C3WD/mQLHKB8tZdIdNCi330ZyZL5RJPp9KBJpAT9ffI82uXmtGNlx/E4JTaUSBbCpnhnJumEbjWLYiKU0jAKEbdJKs0ZRq4faCIlsnA==
+ bh=z3LETKtQclIP/K7j2PK0O2y3yQRh/89wuLm13CQxgpc=;
+ b=sin44lFEnua+9ARnbzxpE8MXCXP3h4niQRrNr9SA/kAe7Fd4bIPZZJMPhODwy5OtR1Ux646KQ/7/MbCjDAnAiKZmmGc4byXdvA0n2ZGwVmMw107keonDZuYWnFdMP0G9PLUhQJH/9EVWzXaIH+fjsaPYAXC4zw9Oaz6UHtcKdxZH0eB74NTh0Bi699o99z48+zfKzoeTiEcOLMGvrkSworTKMKjexeJg2oKUzXqtKQhRFW3T9FdKM86gFAGuJnniGtnylLBRoUPdD9gN+FePLi4FZtXgzZRkjwEJ2EDT4me6JtHDT3j2rFgmyJAQCA5xBmPjd4huzoeVwJYNWZAhOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,17 +69,17 @@ Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
  by IA0PR11MB7354.namprd11.prod.outlook.com (2603:10b6:208:434::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Tue, 14 Jul
- 2026 15:27:33 +0000
+ 2026 15:27:36 +0000
 Received: from IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0202.014; Tue, 14 Jul 2026
- 15:27:33 +0000
+ 15:27:36 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH 2/6] drm/i915/dp: End link configuration loops properly
-Date: Tue, 14 Jul 2026 18:26:56 +0300
-Message-ID: <20260714152700.555527-3-imre.deak@intel.com>
+Subject: [PATCH 4/6] drm/i915/dp: Remove UHBR dependency from SST fallback
+ kunit test
+Date: Tue, 14 Jul 2026 18:26:58 +0300
+Message-ID: <20260714152700.555527-5-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20260714152700.555527-1-imre.deak@intel.com>
 References: <20260714152700.555527-1-imre.deak@intel.com>
@@ -93,56 +93,56 @@ X-ClientProxiedBy: GVX0EPF00073CE8.SWEP280.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|IA0PR11MB7354:EE_
-X-MS-Office365-Filtering-Correlation-Id: aae2b79b-2019-4be1-a92d-08dee1bc6cd5
+X-MS-Office365-Filtering-Correlation-Id: 8cc96eca-9231-4123-91ea-08dee1bc6e63
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|6133799003|11063799006|56012099006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: Gaqinv/t59Frrgsa0FxVopO3OfUBLO/R7NgiPit/CwS5yvoTg/IJzZlKKDyquREecRb4l4QLtNlv4+PFqAMUZ4mz6CHo73EGJD21JKQQe2IGkfa3e5Tz7qsSfMS/9Fx1FAmDUq+K4ChlgM/GEXBPKSuUgXJqOTo9diapIcyCQWylrSEwduWV/+0A0DVsgNCq+9mOOIJyorExtS5hLJZCg29OiR5JWmOUmkFTsS9/QOkdHJi+P9svaPymY+A3lfAbhujPdMaW7lmyuN9YKTg+0gWdazf2srPynpNdb14HcVOBiIGDJ9TSkQn6YTttV2XU+Yr7nsP0Qt2BfRj53rRFemxDnB5R3Lxx9g0YgcX8vvJS75sRDuGZymeVwkEFxxJ76EEl0PqQ2znn/CIl+TMSVLkdqYkv2qdTroZDEs7AR7RYBnsn67FJciNV/1PrGNTt8KLldDEJw6Ff+3Fl9nqGwZngRhylVayrWBoVqwNvzFp7b7pF1m5b+cWGxKgoDbc+wkce0oswh1bZRKJOw5qeC2+rBKZM6ZUlfHdVs88wVgP1J98in/doBYwHKDXNvfv9Pq5cDUKNYt/TcNLYUPpJUcfZmCdfezqS9lTLK/jrOxgAUMjjXahTMzNEirOquH4Uv7hAc3qvO5wONjTQaEnLQvZj3ETxlFQavhz1qMKJC0k=
+ ARA:13230040|23010399003|366016|1800799024|376014|3023799007|11063799006|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: lcs3DQpZuJ8rBeHzvwLUh4c/Lavo59GCR7pJiJRf4tzGsluXSF1FK67Sxx8S84ilHn6OvMCvWV9bRfmNb3Mzyrj3AFNSaGYrs+DtsUggoDSO+juuuYpXPkNgUIwKrMLetqrpFe+RTFAyZjfbb0l8Ca5ybTYkZAasDC4+zaNykZ4CrmA7y7bzYkQAHrLCC5FyTYtoMVWUiUJLP7l94FERy9h4ZhahLBFpdDMatIikkMv79TJAtVvIuySl7KhY/wDLXDto4iQJfZujbxrgW4BIlRrQS1jCLng7ICxTW+3lvR5mbXIY+uwR77XZ4WCpIwGtHVSmRnvSKN/tujEoaXs3GVHJ+u9592fRFeYouDqW0KmHuMX5XzBO9BdlD2xcawl3fbpacW6peDtgIBMGtOa9sGYgWDfmaZ6A2ogch4/1EnkyFkHzoidImR9vKGOA+FRnMgTB1Aol0OOPkoyxN/DbrjV2PRxky4574oWLruRvnT8FkmqYU1wyguTMSbDntPxHQOd+thcZAVLdYu6q3jVwS+lZIk035l6CpGhQ/F725WXqYDBwZCycEg1mlGI3rTTVvBy8UHXCZZmawz/r57LjC6p5LPhF7Rh4EjBNUr6fSgz7eNd2srJj8PAmNjUHKqaK+dbKA+Ux8IcOjINVErM1Y96PJmfxOHcEvqV1/HOXiVQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(6133799003)(11063799006)(56012099006)(18002099003)(22082099003);
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(3023799007)(11063799006)(56012099006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FYBIJmTBkR/+GjqmuX2WTbhJDsvfV1GXolMc7v3v3I2LasCd0+xYYFnj4piq?=
- =?us-ascii?Q?f6bDMdA8wqf/w++FXLbPP8CZfizYKz2zT+2TaKzdiF/M2KSvo37IGZUuexdx?=
- =?us-ascii?Q?xbxnz11Q3YT5icvfGRV+vdah6VFj4XykK3NhCJLXx+zvTcL1T7YS4GcG0b7Y?=
- =?us-ascii?Q?69A8nT/KZWpOGarYw/zMIOfMUlcZ8AfsUQOIlS9PTMCiujRBBkSdWETC2WQg?=
- =?us-ascii?Q?P0fPJkRI0GbvO75JVtYBsMgR5RXZM2kprbE8uEeh/j+dJRw8VjwaEzeZb/lP?=
- =?us-ascii?Q?H54eaA9okMS06BZfLRGtAnvjE37UC6pNi2ujs+ywHT5TglTSedL/bFvqIDU6?=
- =?us-ascii?Q?1OQUh7g2lnbOLwXTrR3vvRyOdSEkcKHWZaA9iQNcLW4tcNDXZjD3RWqhAdMz?=
- =?us-ascii?Q?pDRFLLhrzOXPyNN0+V29J8NzvM0uRoRTeC/5Ve/ZoVlekl6WIFMahUtesG7F?=
- =?us-ascii?Q?5R2aA1LJJ058WA+57WFHky84w9jQ/e3f5ExhQLx91TjUxpMpKTCG2faG1VWu?=
- =?us-ascii?Q?MLxNF7UlTF3v6MOpnRmJJa8s7bHhwe85JMwf03KjBL+0ZcEQMtClR8tsN9DA?=
- =?us-ascii?Q?ImlMAo56PPKs0j8dCnmlVpB7ir+Vu/pY5oVRkieUmqBR4G5ttZZZGuQ8OTFh?=
- =?us-ascii?Q?GkQIz3kBjikF/ynzj0GOVEHkjgcMCb+HqXHex4+BgSW5prMS6AcSLEgzv+rN?=
- =?us-ascii?Q?+A74D/OW/GasPyOScglxYromt1mewTdORuFKh72N2xpogTDgHzOKJWnTVqQm?=
- =?us-ascii?Q?W+KiKHO3TDsazVlqG2NWqpiqFJ6ybYiiYNQNd7J1o288QB4Son5Sg/CIrZX4?=
- =?us-ascii?Q?2sW44kydlnoX7tvMPUPKDcUg6uLAWlTG49oOp3aTgNX8CbX7x7ydV9ierJn4?=
- =?us-ascii?Q?7lrRQ5Da/m2/lo5IUW3qnDMT0ZLWPlb9VSVqBbyS2Ps+wNArF9dQXLtmogFs?=
- =?us-ascii?Q?bdRDrwOatHPClUmcx+dznLcIN7HPYctfQ8U8Y/VnxDfGTZtqlY0yys312e1F?=
- =?us-ascii?Q?R33ruDhZqgjehVKf4ji60+lOzszBrLNdfEkqqRlDB5yr4iCvquKgoFdx1/Ex?=
- =?us-ascii?Q?+PPxvJzmH62H1rUmkTY/ZTDGKfqJcOjw85Se6RU5t0wJvmInBwwM0mgypskO?=
- =?us-ascii?Q?TMpp6DueffBD1vYgn8g8y2MUm51BU0R8sCRMBKR7PfkHtG6JpM1zrcrDRvJL?=
- =?us-ascii?Q?fkCzer9c3OLq/Y14KfoQ3Tmems9BQSVpHhjd0i6qAdfJ9UsdZ/gsEEPOjqjf?=
- =?us-ascii?Q?m3mbzOXAGVnk5zLWstcmyoXT8mroTx0YZaswh0j9fMJqysqidv3CYPW7JT+W?=
- =?us-ascii?Q?gF05WkHKzJncUca5DHpIomF6rWiiPAqffKte0FD+aAalw42tTTEVBJPcb/GJ?=
- =?us-ascii?Q?12n01HFUn8a2rEPTsv76z8muLLvHEIoeF7bftMJgfAcSazfjsu1yCScxjTNX?=
- =?us-ascii?Q?KkbTpy8PUQceKUtinY4HFZy+SYOk8FzxIgWgbPgivVAzq/fwS6VHV3/RQd3S?=
- =?us-ascii?Q?0iGw95Irsr6o1Uz9MwawEDQ3dCpeCU7G5BmztyAOSWKN19D8eCzo4ZQDJxp6?=
- =?us-ascii?Q?OiWDg78CBFqMDhEW4PW/PHcF9QzdVHAVi0OzCWMWKs/J11ZMbRL/sEuCseJA?=
- =?us-ascii?Q?eDC0KzrAprNuqUJuT3yymmpdbG6S5od0QMxrJx1ftNWfEaGgFgJG2aG88fGV?=
- =?us-ascii?Q?OKLKeXPR5HKcdJtzjUh+/hfPBEuv9nVN30uypPbmPlKWF9AoNNy89qNjXBuY?=
- =?us-ascii?Q?uBYKT1U42w=3D=3D?=
-X-Exchange-RoutingPolicyChecked: f18zyHto5shqnovyGdjaDiyXZJguProHrj8n2G+J3LtY97IwfZ2h09YJYWmPMjIWm00I1qmU+vn3asuujemwwL2nDEUTJexPMH/NHuL8Fc2GoYClbRahigGQdDmsLSWrs1NQu41xS02FEeHU7DalBpd8WMhhIQwdau5SThJ65UoZjpSFKlXle/l6fcnSNYQbwgHfKMp0mXRBSUDyj2r1wA1WX3nUboSG9ljxuNenQWdEF/B/nPkpAhMHwJX09sBG3a3FMH8Xi0qu9NSNkNGjCzXKnpfkXhK+n+fXYiLlwQPzJld8T3P4Gr8uible4X/IGARvFOeSSnV7gXg1WjU3Dw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: aae2b79b-2019-4be1-a92d-08dee1bc6cd5
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?c6JzyGWfHpU8SkKxp+MXZhtrmW31oCwjUF4hq81sqDxbGqABitGng8Cdj/65?=
+ =?us-ascii?Q?HYqhPq6/zT8LIBH/2IvO20qMUio5voQCaQ/PUFD9OIwwHjPenXLZ1goXMOXo?=
+ =?us-ascii?Q?G7m+X53WRGeAbdqVLC/+qamU+ECo/r2eZBOUpoN7D9fH4cJfDGHelV0dz54Q?=
+ =?us-ascii?Q?eS06Ect6jONUuXfUYCy+PUwNzWSbPGxvn4WI2jxyV+y8LMdb4ed3wcmVzFdn?=
+ =?us-ascii?Q?J/QY+Dosruh3bLd7tpWhn4DhG1zLi68kJhCBvdeMySPxFJ43rIttcsf2df5P?=
+ =?us-ascii?Q?RXiJVP15NVjT88CYNgXI42lznk1AjUfsBnDUNyzGaLH4PICqq7iklI7c69nE?=
+ =?us-ascii?Q?yQ6qviqc2qaKOHz2S1IbY4LE9J4yiAUvusa7qxKgDx/sXmkeQgqXXgmPm1xD?=
+ =?us-ascii?Q?vYiYVZN32tnun4xxFCvRqd1fw3b3z9udrxX1s8/KDuc+m2qUtuBZRPCKUn98?=
+ =?us-ascii?Q?iVlaTnpZSBtWDAVQQ+6+w/o729T+2voc+qP4v9pym2CxODEwOy984Vs97Vga?=
+ =?us-ascii?Q?Wd9GkwQD8dg4KPXz4vBF3pyou4MOANvcdyRK72QODucxu6fKTopr4PcdDMLo?=
+ =?us-ascii?Q?2RQXKfPweSlIZBZXiWPPB9uJFO5jLaTrnxY9A4zr0VNSFSMufsrv3P7k/bHg?=
+ =?us-ascii?Q?Wl7lJOKXPO/ds31agSA8nLwXwDURfdKO5Zt1H8fre9uUgYQ4F+LtuuArZLbN?=
+ =?us-ascii?Q?69MPIQk0jc914H5cD1Xjxe/fGNv33cAkdpCAJtxX/ulfh1y3tBKoYZHdbDaz?=
+ =?us-ascii?Q?D+l0G4GXIdJ4TaVpQACXk3ZQPzS+/YLG1brd9vJiu+TlawHI7Q27OTqtqgle?=
+ =?us-ascii?Q?zj5ihxF0thtMqqaZYYR2SGZUIowHlo6ghR6soJ4RSRdF7pI1j/p6e0fgZyrU?=
+ =?us-ascii?Q?z6eNWM1U5yPDQ4J5Lguu1aVIQBHF7fhjXNP482GoIRhVzQvHDxBwYJ6NsBTk?=
+ =?us-ascii?Q?YBBTfy3zVrsZfNMmi71mopdUbRsxchuvuagJPcaJp5LdJdheET4pFWpNPN+c?=
+ =?us-ascii?Q?LQFBEzn0rpWw4+98s5tEFMJNH/zXqzyoXcSjy+aD/cP6D4RheFW5UAvgkEXS?=
+ =?us-ascii?Q?3Zy5J+Bu4BdjNSUPhnONM5X/0tax60gIqcbFlYrPup24ce10aBkJKeIpavIN?=
+ =?us-ascii?Q?oL9wVhUqjwaphWTRF+96vntWN9CDnUsnsaqpwbe+3zE6bHs+Y6MSii1xB8cJ?=
+ =?us-ascii?Q?IWy5hjl4yRc0Nk6ttPUo3S8EtOUxlZUs/XPVfpUjktOxEqdQrHVNCGpwabDn?=
+ =?us-ascii?Q?gvwJz4UR2TSBI+ziuMMdeaRDaLBo4pJsG3hqvDsZTthE1Mpcj/oUfZAkTDmx?=
+ =?us-ascii?Q?9/Q8vCQWsz5gxr3fvOosf06h/aWQnXLKS31KXV84McjmMrrFyZXrHFBSQBcm?=
+ =?us-ascii?Q?6sBa2gbF1wupYEJdeKwYA9CY7NM1VtVUBMCg7zqOk5DN7Wy9dc12FK0j3vls?=
+ =?us-ascii?Q?HUYxO32F4jRlB6CDN193wHFOz564qbdg5wgK1VfgSZGdiCkh49F/iQf3DdRK?=
+ =?us-ascii?Q?7poN1UiCYu4sIlDmutonYeGfgFVA9ovFn19IUJxaOxFCjOy4PKJFaA4Gc0HA?=
+ =?us-ascii?Q?Cc2B7AwldQTkR0BD6ID07X/FF1n1aj2i7Xg0F3i61sUwxykWP4gfM7rhqQq7?=
+ =?us-ascii?Q?tTF2reO3WdIMOqd5kMLpP+Znc1eygxeF/jGSlzN6rgSKsrnRixHzdrhBjTrt?=
+ =?us-ascii?Q?UdQRG3ZGodKfBteuc7Z5eDDvRGRDL9qzp6bMlqHVDxRrmJsKXOCDgDt931Fb?=
+ =?us-ascii?Q?35OPbB46TQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: eBrFJ3v7nAQDSuP1mEWRzlwZuZ6xQgmvfCzGnuFWQKNorKHcTU2M0jKq/RfBVMV0krAie/BosLRmJYFCuMo5juy75I1CNSIdUX4DA/flMAzOYH6lfSINvSPryE3OYXSbAKeQNMVl/lsp5vZ3ZmUdjv0qkNseWPcg9k4pyfxwZbGEWYTxj6rY04EcYRMWlHun+Wmf5SGnNF/coyteVo1e/K25DhBTXhIjuiWZZEVd5SxufzjY86gFGsSq5BtJV1eGUehy/RMBQfn4KXqf0jHPOYkK6HwA6alLAvMqdygPMMV9IQ++afORYxA82zihXO055WKJeG6K1BUlUufPj+KpfQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8cc96eca-9231-4123-91ea-08dee1bc6e63
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 15:27:33.1767 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 15:27:36.0580 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /2Ww2NU2CIk1xSlKqjtPVyf7vzAjrRfedBLDXnYkP6CQQxc4DdFS46QzKoPu2PLHRfIWHVBK85p2XZgkhDdttQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: z+Ou8bMCnZACXM+0JbtQu1s5qlLE98Gc4CoUQVcNUDD+w9I+7pmu0LwV1EbACfS6KC+SZZ0QjjaJ5mzxo5duvQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7354
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -159,76 +159,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Call intel_dp_link_caps_iter_end() after the link configuration loops.
-At the moment this call only clears the iteration object, so the lack of
-call didn't cause an actual issue.
+After fallback between UHBR and non-UHBR link rates got enabled in a
+previous change, there is no need to test fallback sequences for UHBR
+and non-UHBR rates separately. Make the test simply start from the
+maximum (UHBR) rate.
 
-Cc: Luca Coelho <luciano.coelho@intel.com>
-Fixes: 7266df62ed0a7 ("drm/i915/dp: Iterate configurations via link_caps for SST non-DSC")
-Fixes: 4f104fc10a461 ("drm/i915/dp: Iterate configurations via link_caps for SST DSC")
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 21 ++++++++++++++++-----
- 1 file changed, 16 insertions(+), 5 deletions(-)
+ .../i915/display/tests/intel_dp_link_test.c   | 47 +++++--------------
+ 1 file changed, 12 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0922d23b284ca..0d2c696b9e4b0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1688,6 +1688,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- 	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
- 	struct intel_dp_link_caps_order order =
- 		intel_dp_link_caps_connector_compute_order(connector);
-+	int err = -EINVAL;
- 	int link_avail;
+diff --git a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+index 776d93f333851..67c6fe9f1812a 100644
+--- a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
++++ b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+@@ -1101,7 +1101,7 @@ static void intel_dp_link_test_fallback_for_edp(struct kunit *test)
+ }
  
- 	for (bpp = fxp_q4_to_int(limits->link.max_bpp_x16);
-@@ -1718,12 +1719,18 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- 				pipe_config->pipe_bpp = bpp;
- 				pipe_config->port_clock = link_config.rate;
+ static bool test_fallback_from_target(struct test_config_table *expected_table,
+-				      enum intel_output_type output_type, int max_rate,
++				      enum intel_output_type output_type,
+ 				      const struct intel_dp_link_config *expected_target_config,
+ 				      const struct intel_dp_link_config *expected_fallback_config)
+ {
+@@ -1123,8 +1123,7 @@ static bool test_fallback_from_target(struct test_config_table *expected_table,
+ 	/* Get the max connector config, optionally filtered to the max_rate limit. */
+ 	lc_ops->iter_start(&iter, link_caps, fallback_order, INTEL_DP_LINK_CAPS_FILTER_ALL);
+ 	for_each_dp_link_config(&iter, &iter_config)
+-		if (max_rate == 0 || iter_config.rate <= max_rate)
+-			break;
++		break;
+ 	lc_ops->iter_end(&iter);
  
--				return 0;
-+				err = 0;
-+
-+				break;
- 			}
- 		}
-+		intel_dp_link_caps_iter_end(&iter);
-+
-+		if (!err)
-+			break;
+ 	KUNIT_EXPECT_TRUE(test, link_configs_match(&iter_config,
+@@ -1236,7 +1235,6 @@ static bool get_fallback_config(const struct test_config_table *expected_table,
+ 
+ static bool get_target_config(const struct test_config_table *expected_table,
+ 			      enum intel_output_type output_type,
+-			      int max_rate,
+ 			      struct intel_dp_link_config *target)
+ {
+ 	struct kunit *test = expected_table->test;
+@@ -1248,20 +1246,17 @@ static bool get_target_config(const struct test_config_table *expected_table,
+ 		const struct intel_dp_link_config *config =
+ 			&config_set->entries[i];
+ 
+-		if (config->rate <= max_rate) {
+-			assert_config_is_supported(expected_table, config);
+-			*target = *config;
++		assert_config_is_supported(expected_table, config);
++		*target = *config;
+ 
+-			return true;
+-		}
++		return true;
  	}
  
--	return -EINVAL;
-+	return err;
+ 	return false;
  }
  
- int intel_dp_dsc_max_src_input_bpc(struct intel_display *display)
-@@ -1924,6 +1931,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 		intel_dp_link_caps_connector_compute_order(connector);
- 	struct intel_dp_link_config link_config;
- 	struct intel_dp_link_caps_iter iter;
-+	int err = -EINVAL;
+ static void test_fallback_seq(struct kunit *test,
+-			      enum intel_output_type output_type,
+-			      bool uhbr)
++			      enum intel_output_type output_type)
+ {
+ 	struct test_ctx *ctx = test->priv;
+ 	struct intel_dp_link_caps *link_caps = ctx->dev.dig_port.dp.link.caps;
+@@ -1273,12 +1268,6 @@ static void test_fallback_seq(struct kunit *test,
+ 	struct intel_dp_link_config target_config;
+ 	int fallback_count = 0;
+ 	bool target_found;
+-	int max_rate;
+-
+-	if (uhbr)
+-		max_rate = expected_table.rates.entries[expected_table.rates.size - 1];
+-	else
+-		max_rate = 810000;
  
- 	intel_dp_link_caps_iter_start(&iter, link_caps, order, limits->link_config_filter);
- 	for_each_dp_link_config(&iter, &link_config) {
-@@ -1966,10 +1974,13 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 				continue;
- 		}
+ 	dig_port->base.type = output_type;
+ 	ctx->dev.dig_port.dp.use_max_params = false;
+@@ -1287,7 +1276,7 @@ static void test_fallback_seq(struct kunit *test,
  
--		return 0;
--	}
-+		err = 0;
+ 	/* Get the initial target config. */
+ 	target_found = get_target_config(&expected_table, output_type,
+-					 max_rate, &target_config);
++					 &target_config);
+ 	KUNIT_ASSERT_TRUE(test, target_found);
  
--	return -EINVAL;
-+		break;
-+	}
-+	intel_dp_link_caps_iter_end(&iter);
-+
-+	return err;
+ 	for (;;) {
+@@ -1296,16 +1285,10 @@ static void test_fallback_seq(struct kunit *test,
+ 					 &target_config, &fallback_config))
+ 			fallback_config = INTEL_DP_LINK_CONFIG_NULL;
+ 
+-		if (!test_fallback_from_target(&expected_table, output_type, max_rate,
++		if (!test_fallback_from_target(&expected_table, output_type,
+ 					       &target_config, &fallback_config))
+ 			break;
+ 
+-		/*
+-		 * The fallback changed the max rate allowed for the next
+-		 * target.
+-		 */
+-		max_rate = fallback_config.rate;
+-
+ 		/* Simply select the fallback config as the next target. */
+ 		target_config = fallback_config;
+ 
+@@ -1314,14 +1297,9 @@ static void test_fallback_seq(struct kunit *test,
+ 	}
  }
  
- static u16 intel_dp_dsc_max_delta_bppx16(const struct intel_connector *connector,
+-static void intel_dp_link_test_fallback_for_sst_max_non_uhbr(struct kunit *test)
++static void intel_dp_link_test_fallback_for_sst(struct kunit *test)
+ {
+-	test_fallback_seq(test, INTEL_OUTPUT_DP, false);
+-}
+-
+-static void intel_dp_link_test_fallback_for_sst_max_uhbr(struct kunit *test)
+-{
+-	test_fallback_seq(test, INTEL_OUTPUT_DP, true);
++	test_fallback_seq(test, INTEL_OUTPUT_DP);
+ }
+ 
+ static void intel_dp_link_test_fallback_for_mst(struct kunit *test)
+@@ -1330,7 +1308,7 @@ static void intel_dp_link_test_fallback_for_mst(struct kunit *test)
+ 
+ 	ctx->dev.connector.mst.dp = &ctx->dev.dig_port.dp;
+ 
+-	test_fallback_seq(test, INTEL_OUTPUT_DP_MST, true);
++	test_fallback_seq(test, INTEL_OUTPUT_DP_MST);
+ }
+ 
+ static struct kunit_case intel_dp_link_test_cases[] = {
+@@ -1352,8 +1330,7 @@ static struct kunit_case intel_dp_link_test_cases[] = {
+ 	KUNIT_CASE(intel_dp_link_caps_test_update_params_expand_disable_random),
+ 
+ 	KUNIT_CASE(intel_dp_link_test_fallback_for_edp),
+-	KUNIT_CASE(intel_dp_link_test_fallback_for_sst_max_non_uhbr),
+-	KUNIT_CASE(intel_dp_link_test_fallback_for_sst_max_uhbr),
++	KUNIT_CASE(intel_dp_link_test_fallback_for_sst),
+ 	KUNIT_CASE(intel_dp_link_test_fallback_for_mst),
+ 
+ 	{}
 -- 
 2.49.1
 
