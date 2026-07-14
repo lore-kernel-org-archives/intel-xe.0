@@ -4,151 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79351C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 09:28:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8709AC43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 09:32:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0FC10E68C;
-	Tue, 14 Jul 2026 09:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4164E10E6A7;
+	Tue, 14 Jul 2026 09:32:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QdkGlAYE";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="DmCHfbEW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DEC010E04D;
- Tue, 14 Jul 2026 09:28:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784021307; x=1815557307;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=iBtV0tmgG+etCY7irH6hUWxU+7/p5XNbAIFF5FTRc9w=;
- b=QdkGlAYE2lB5Pk9Z7cKasl5vqhY8OkvrhKwNJ0i2KzWFTOHj8VZ3IifL
- pOJgeE/9yRcFqxhERsEm3Wh6vlH71+wc+Z7sjCZ234n435izCDsKG/vcz
- /Fty/su1GENGCjVQw4MK3zr2+jVPllZlqUBnzCzasywsAB6YfRq7XSkIX
- QdjvA4SUOCMrG/iII1tYep60ZNUZDFQ4OOjp6dlvIzosG+lEwsqAF+oDX
- 8FcXyVJhGoyLzmGdXdtivFVshLgV0JIDcEkMsa1vV9jXbIe/nUbGmPX5I
- wgndlp0+OMz6u7yGE0eVODJ92bE9AYf91j6HicJ8RCRlq1nLHocdCNWBu g==;
-X-CSE-ConnectionGUID: 2THAkyosSuGlauaqgKL0nw==
-X-CSE-MsgGUID: Sdl4Gx6yTT67XtJA3PyK9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84604102"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="84604102"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 02:28:27 -0700
-X-CSE-ConnectionGUID: gV3q6XDzT3CIkPX6PRbEhg==
-X-CSE-MsgGUID: 9hZVyZ/lRZqguEA+953Log==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="255309076"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 02:28:26 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 14 Jul 2026 02:28:26 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 14 Jul 2026 02:28:26 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.41) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 14 Jul 2026 02:28:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=x9UUlUz7x6yQLK1If8ja/vlcnXkHqoSY2r0Ufi/s5nIKP/A9jwW8wrsq40Q2qbZX2LGwkenBvis4agqzEIZLfXvNSbGQacLiAa+PK4incHxJ3jahH2h4WL8RJUKzkZjcGGdK9oppfD6T+jw6FNgWmWZAQEaiQQwcNtK9ZjfLwcWPDUKJ100wWS0ZxTuL1XlsJIlnssw48U77BMqm1XEfL5Amsq8ZeswaAb/1gNn+Emulllx8h5itE/GriaTbMLACotiM+ajYF069khQZeezKzGFY6j1IMFuw1M5ygb0sQr/qiXnwHC+cVlkOavXp1rg7HXYRmlO/7UkhuH42cd/lMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i96UN/RmY8DjTlyCJxT7iMqhRa5fk4gFlAQaXaJL9fg=;
- b=sYLdJ7flFRAVJK8WUv+o5XgqKiGosdRMiaR8Ly4e/DvVZpYbNIt1tyw8NGxklN1X5GCXvfbPmnIMKB7fiJK5FP5nsSAWQb0c0S9pIKmfZn4pxAyBRb8LOIW8OSTLuL9r3t2i9Piyv/zcCouhNp1K6HQoFreNC2iJchbLOn6+Z9F6Fv0f9ZsjXpPpEXwAP06eRbBnFvMkhPIMwKz0ndpxLM5LPsBhSAhgWTWUToiBBGhoqRBq680/SPMnn+7mrWTA/Vo8l2xWZccTKpZ+Bx7xG1W4LyYEJWLQvZRgnxCcDbjKa1tgs7OaJdAAAiplTRYF911ZD1htvkswb5pn08rU0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by IA1PR11MB7917.namprd11.prod.outlook.com
- (2603:10b6:208:3fe::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.22; Tue, 14 Jul
- 2026 09:28:22 +0000
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::6d3c:5451:b5d4:3ea6]) by DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::6d3c:5451:b5d4:3ea6%6]) with mapi id 15.21.0202.014; Tue, 14 Jul 2026
- 09:28:22 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Subject: RE: [PATCH] drm/i915/display/xe3p: Interpret 0xF populated-channel
- count as 16
-Thread-Topic: [PATCH] drm/i915/display/xe3p: Interpret 0xF populated-channel
- count as 16
-Thread-Index: AQHdE2fjaMXpUJRkHUeQ62C74qH2wLZsuS2Q
-Date: Tue, 14 Jul 2026 09:28:22 +0000
-Message-ID: <DS4PPFE901A304F6E10AD9EAE73E633F844E3F92@DS4PPFE901A304F.namprd11.prod.outlook.com>
-References: <20260714082651.4104132-1-uma.shankar@intel.com>
-In-Reply-To: <20260714082651.4104132-1-uma.shankar@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|IA1PR11MB7917:EE_
-x-ms-office365-filtering-correlation-id: 05a539a2-dca9-44a2-cbbc-08dee18a3fa3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|366016|376014|38070700021|18002099003|22082099003|56012099006|11063799006|6133799003;
-x-microsoft-antispam-message-info: 4FZi53UgA5VIE/xAjIZEzFBMhNZcLA8jMjyVcxj27uYSC3EU9H0uPOk1XgNQrByCWCrgR/Vu65rx9Aun3kbeLHmpmMMrDatRZgDnj8R1fHhAVLaUtlDLfxsd8vlqLu4PzVn5NdXy7Hz2nSwiiat9OrAldBJdclh/6MgVJhdCdWxb3sIekYpklZjE+hDP4gvvYvZA+Czjgx/CoiRgHAi5C0uUVs7Lv4rpuPYNk1hGmyy0I0soGgvC7ioRcJVpkVj8zNQEsME1gQPmgbQju0aRiLM+N36yeyw8cBHunZROrlMUtn2G0V7N33xk3DFVv7igzPpTSKvwOE5Wib9h46NA5DKZEZZ9qeFVFACGZIgvAP3jgatwtMGlRgsLyWT2c67iqEGYMTtJA0lp8KiMha2GGuRBOED9ZN4K0bbOqKhfc7FMvDMFSrs0ASiuXTvt+rIgrUUgo9LzUg4vapNgNSDf0tnFGN0zGVtToylO49Uu8TTR1tEOeYj59NPDf4XQI8UxwoTVyZCc40dkPvBfiAmUYL4nElDETQ/x6VacWm95PZ0fqs6So+LHaf6FJEzs0NES2O98QkuYdTSvOYzSjqhnU+7Lgvcqht3qSZOfLrcDlMcWHLncexy7a5l482hB9pJHU5CTUlOx0Sj49TnYqKwWf4Zy1Phcm8abnQWtTnf7XzWLn/YTKE+NUuqnaj0ULwKFbY/xWpnzrUUdJQpTpO1nGG+ZeOx3QejET2Oze1WCpzo=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(38070700021)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0np4Rcqnm8GABoHsGr8ZGxHzYvF+t4f9yfpV2zHdeR+b67ZOimfWW8gBdHWw?=
- =?us-ascii?Q?L/eXmGTxLVmfe3PCG+xR0RpCjx2Kl4KT/S9DMWdoX9hgGJMyF+mfIBq23dNS?=
- =?us-ascii?Q?Sa4DI57JC3L0UT2vTBTP6tk8TWX7xpB7lmJye/W0XS5iy5409Rw0qo4oNM1l?=
- =?us-ascii?Q?L+VDKlIhcfTApHSp1vb8IIoFmSoxTfVtydnMQdNCRES/jHLZQ9vo8EFO8/5p?=
- =?us-ascii?Q?MIwm5RMNpYqY5q9Hz47Mz5/PxfmvMwDMk31KYZwhL4HE4tytzynB+SxC/Zgk?=
- =?us-ascii?Q?aoTarHJPDEG23hdF3Dg9Njith7SUE4jxCjallC2rrUz6Yt88tPNlR5YJ4Pmp?=
- =?us-ascii?Q?gz+WlaoFsPfXsRd0wwjMXHUnxsEiNos9khicGRIDPeF/YrKrkMCkqgw66eb8?=
- =?us-ascii?Q?HyJkhSTU1U6VrkRTWul1UDPY8buHDjA7PzD84uMalS1Q3fJXzgM0zSNzgtzb?=
- =?us-ascii?Q?NzuBPESbdFPREI9klt7WzLe4lPAj4cofB/p+Gsz4ilDilFthvKg8itG2sQaQ?=
- =?us-ascii?Q?kHuVmAQmo2E4Eh8VPr7UAVoLQRM9m90DRjlPxPtQg2vkNMHxqBwWwJi/Teta?=
- =?us-ascii?Q?yThL6ZVGO7HJW3O4Plj/iTvHxx6RQr4YeaO3dP0gUdJMRN5Ml1PeHSlvczT9?=
- =?us-ascii?Q?zJE0oW/cwOwYFQ15lfxxvKeRlfNaZJnUtz+5gj5jbwsG7LO9162d882Oq0IL?=
- =?us-ascii?Q?igfb5rWcaV0lBSBP1nZdcOOCSSmPEvFiJshfjvabOzR5DzBXnNB2gk9UxvsO?=
- =?us-ascii?Q?3ck7iVajAEQ0sIheDzv1/mnJ4c0+kNLO8rS6CqGJipvRalWmDUV9XIdLTvFp?=
- =?us-ascii?Q?iuV8Qy7uCOUD1JRZkN65X6LIAy/pBy+XdDmabOTMvsJcGQoMcegURtS7TOER?=
- =?us-ascii?Q?Syc5Xv+Q0OTEcMZFnnGy+OaMDZ6WjffB8GKD91FeO6cwhJHvXWbY2+Mku5rX?=
- =?us-ascii?Q?TL9kNGhTvL3mRUeO38ojCRci6jxMW3hw6PGCAEYV+O3VvRjJJAjEUDWmtBRP?=
- =?us-ascii?Q?tWRrotYk08mk0S/YeK1gedynvPD0CUz4AG3phTJWE6w2JgTEuoLRJ6gNblLN?=
- =?us-ascii?Q?CN67EnP5pC5Z3sLyn8ox9+UK4X2RfWlWS9IkqNXpQM8vZSNdUdlw3NLYIgZ5?=
- =?us-ascii?Q?65Bz2TBettiUaE3iVgyeRPneceyOvx9kFxQBfH9jwu+z4Pwzy6gsBsxOH/xm?=
- =?us-ascii?Q?8d86jriUztxfKXEro5XOpcAdeQYxpwgV0Ah9VX0eZnohrspnJxhZ6Sd1fOkb?=
- =?us-ascii?Q?JzL5wf2SbFlzO3SraYLi60xoWuNCHQqTjI/XRYM9ysPtd1rdIy2H7E9pAjEa?=
- =?us-ascii?Q?P+TefscSlhJbfLewI+qrOYxbeQ55jrlt+KH0Cxr+6FySfylTPhLxKuHzfhfR?=
- =?us-ascii?Q?IM0KTohcXkF/QKStTcamy8TSB1oBftF15dM3I5OP1XTjAM/nZpPJA3i8oQfu?=
- =?us-ascii?Q?uPiXVw4HpqjX5VWpswmMjWTcNMxjMd65jBNbWL6claTop4T2OpE4yn7uinEU?=
- =?us-ascii?Q?cYBvSCjQPCQmuqkdWkMkrXPv2P74edj5Rj2bBlLQvnAMJPF7FC9907uN5yw7?=
- =?us-ascii?Q?NHZXkBGWR7/pID454gb004FUKvsxExqEDr2/h6gD2y351twuaPqqxhJo4i3m?=
- =?us-ascii?Q?kgvw7CbtyLSsJY/ZE5KOFld8gdXrQv9+RGk5Kv5PyxYMU4SKsj3xNU1kWpdL?=
- =?us-ascii?Q?N+4snWqlXENKvzV0YKWbu4MdxNKHHM7ImzomAMC9gwusavAc5HN1A8GYwFQy?=
- =?us-ascii?Q?CYogapIc8g=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F83B10E6A7
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 09:32:12 +0000 (UTC)
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-c15f020a223so532115866b.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 02:32:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin.net; s=google; t=1784021531; x=1784626331; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=IutPtTO1ZuTokmR7Cv7+6zqNGJ/ROF8mV/RFoMSHFSE=;
+ b=DmCHfbEWfWB2CiyvZujTWlu8DhM8L3ZOlmC++hBklh2OtEp3CtLCyZy2v8hUyyMQlQ
+ 8DQRLWitcDuCynm+/74mR7wVXXeA7vUY7lI98eJTTsTqgeJ1WUjljTlTupW4ilT3rtmo
+ sSVZRvZ6M71iWAgDnCEIMoO1sGWp1tbRKXR2aYG10//1OInueW8WCZzv8gUckqhNaRrC
+ eOngGnj99/FzlOVJyCSuHl82zkArYqOuiChQfVtp83GvPq0py0Bg8HmFPlMsdiz5Ie6h
+ LHRgpRpTNRuqmVvixd1vfswgVDXB0uESfpeQIcUMQpNTs6z/dca1Raldz2p9wWvAhd8C
+ O0Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1784021531; x=1784626331;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=IutPtTO1ZuTokmR7Cv7+6zqNGJ/ROF8mV/RFoMSHFSE=;
+ b=riO3YLgLOqnkHcgz+qFvMUOcMntpErrSjkghUp2PMr5QZHGoGRlL8n/ptRrTijO9yv
+ jqjd4tsDgw/PkJhSwW4hMpLrZh++Xg05nNqZg8PRy98l9uqt/oQsTkzMg65iV6l/oW6s
+ Dhtp8C2rj7MhwstMen8vlOKyAvhB5GC12lTQ/rK0rBmYd4GMV9ne19igtnUTBiSYhgjZ
+ eB+lSIeDzUPyCyjDwP4zcxboghRijI0zIJA9AuQBaU/u/9DMzHAHdkjdcsNMXGkcNU+N
+ jH4O0mrz3FjpOoTk1N0JdQZJ+Z2EKb3Nq8S7YD82BscUH2OPd0L7h4Rw076ZVJhIMNWX
+ SwYw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqHEnyhoIa5JSxy588SN+YPigdy284iAm3mt3fWtcW2oqGeLgbQxp47mK62fw5xVq1wimDx/z9xoA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxzlnB+UWDh3fQdtKeiQXSyWm4u/OEstxY1AmNnNOqI5fn2e3te
+ bXI03wycVGMFTQZFnb/h8c0v1SzgZVOnHSGe0f0oVPUHj2SDw8GzGR4LuEjSOjXFyHs=
+X-Gm-Gg: AfdE7cnp3GkMGy+4i5Tdi1nJbMsnBJMX/R/eFaXUBYtfgjC4j2tfs/ZsoZqextffsCz
+ X5mGj22xJKPVnY9U5DDlWYJReGZgr22Ws1ZsvsfV7hkEO+HWIpAUryxw94loExLduTgltZEc4Et
+ Si1fMwykC8ArLXJgqgd84jwiPhg/HSgqVjRhhbrSMj9ww67JgQhwjhKEZa5f+etefiWCNSCcpra
+ aEnYLh8SHj9rGp1wQA1L1ASeUrXrfgBT0WN5/0sE6cm8DC6n9y40ULDqo2Vp75f7hhvi44vfwZ9
+ TQtxR5upubhtyHUgOcR6NOL36yYXQ04oC1Oks2It1N189K0JkO8c9ae+LqFuGC63iBZu+tGnyJE
+ 4NSzcX5tFsJoDDQs48NvSCK+aYMZHLM5gkDxQ+xv3yQW6wvEIxzwPnnobQnOUkkoq2WYr/ON34n
+ u865Sc7VqKcCZ8BaOnCaDQt0KmenqtJ4K9xQ==
+X-Received: by 2002:a17:907:d28:b0:c12:4c93:852b with SMTP id
+ a640c23a62f3a-c16679962eamr72380766b.13.1784021530605; 
+ Tue, 14 Jul 2026 02:32:10 -0700 (PDT)
+Received: from [192.168.0.116] ([90.240.106.137])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-c1602f5e9c5sm587742866b.21.2026.07.14.02.32.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 14 Jul 2026 02:32:10 -0700 (PDT)
+Message-ID: <3f103d7b-3a58-4c3d-a4d7-e413e7b92e47@ursulin.net>
+Date: Tue, 14 Jul 2026 10:32:09 +0100
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: LbQAoWPZVcNYgt3LxylVQbfLiegVqiX3EU69lHnVHyL061xaHD2h93fdnYHBCvVTwwXs2DGyhgV7kr4AcTMODx37gwVvOLn21EElyqLJOQyWe8ZyxZ8DyigeDtLn4MoHefhJAlEtgzFgcKafZq76ent7W+osVDHfGQTp/oWLtXmYnUTaNojJUJLO9iIlERdNEdkwIU6TQpyTSMFxWK6M8yEj5PyYKkvX4PlNNDPArhyPvQdlIsliDO5AazadxIsPH5415FE5vAop0qu4ZvkjURxfdZ1GPRXxmi1I+EcoRIMK69YqY4gP6PF9nEnklXe8bWyuNI8H09pFI5IMA8ZjEw==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05a539a2-dca9-44a2-cbbc-08dee18a3fa3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jul 2026 09:28:22.2304 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RFVLiix1AMQCJfL29CY1VHvwvi2ONAnFGV+efof8vN7U/hx/3xv9uRb6AWT0YzEjH3noSoRH38tCTEyb6tuY1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7917
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/guc: Keep scheduler timeline name alive
+To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ tejas.upadhyay@intel.com
+References: <20260714064402.2457257-1-arvind.yadav@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20260714064402.2457257-1-arvind.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,124 +92,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH] drm/i915/display/xe3p: Interpret 0xF populated-channel
-> count as 16
->=20
 
-Hi,
-Thanks for the patch mostly looks good I have some comments you can find th=
-em below
+On 14/07/2026 07:44, Arvind Yadav wrote:
+> The scheduler keeps a pointer to the timeline name, but q->name
+> is freed with the exec queue while scheduler fences can still
+> reference it.
+> 
+> Store the name in struct xe_guc_exec_queue so it shares
+> the scheduler's RCU-deferred lifetime.
+> 
+> Fixes: 6bd90e700b42 ("drm/xe: Make dma-fences compliant with the safe access rules")
 
-> The register MEM_SS_INFO_GLOBAL [Number of populated channels] field
-> definition is updated with an encoding for 16 channels.
->=20
-> For 16-channel configuration, program 1111b. A programmed value of 1111b
-> must be interpreted as 16 channels for memory bandwidth calculations.
->=20
-> WA: 16030862157
-> Bspec: 69131, 68859
-> Assisted-by: Claude:claude-opus-4-8
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c   | 18 +++++++++++++++---
->  drivers/gpu/drm/i915/display/intel_dram.c | 11 +++++++++++
->  2 files changed, 26 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
-> b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 41539fdfeac5..f1197ce2d9fa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -272,7 +272,13 @@ static int icl_get_qgv_points(struct intel_display
-> *display,
->  		case INTEL_DRAM_LPDDR4:
->  		case INTEL_DRAM_LPDDR5:
->  			qi->t_bl =3D 16;
-> -			qi->max_numchannels =3D 8;
-> +			/*
-> +			 * Wa_16030862157
-> +			 * Xe3p supports a fully-populated 16-channel LPDDR
-> +			 * config (4 memory controllers x 4 channels); earlier
-> +			 * D14+ platforms top out at 8.
-> +			 */
-> +			qi->max_numchannels =3D DISPLAY_VER(display) >=3D 35 ?
+Feel free to copy me if I broke something, or even fixed it incompletely. :)
 
-Should this be =3D=3D 35 and later be extended as and when WA is extended	?
+It is curious since I had an IGT which confirmed the fix was effective 
+by dereferencing the timeline.
 
-> 16 : 8;
+At the time of the above commit:
 
-Since this is a WA lets use the intel_display_wa framework
-Which would mean defining intel_display_wa enum for this wa
-And updating the function intel_display_wa()
-Then we can call this function instead of=20
-DISPLAY_VER(display) >=3D 35
-
->  			qi->channel_width =3D 16;
->  			qi->deinterleave =3D 4;
->  			break;
-> @@ -624,10 +630,16 @@ static int tgl_get_bw_info(struct intel_display
-> *display,
->=20
->  	ipqdepth =3D min(ipqdepthpch, display_bw_params->displayrtids /
-> num_channels);
->  	/*
-> +	 * Wa_16030862157
->  	 * clperchgroup =3D 4kpagespermempage * clperchperblock,
-> -	 * clperchperblock =3D 8 / num_channels * interleave
-> +	 * clperchperblock =3D max(8 / num_channels, 1) * interleave
-> +	 *
-> +	 * The 8 / num_channels truncating divide collapses to 0 for
-> +	 * >8-channel configs (16-channel: 8 / 16 =3D 0); the max(..., 1) floor
-> +	 * keeps clperchperblock >=3D 1 there while preserving the literal
-> +	 * truncating divide for <=3D8-channel configs.
->  	 */
-> -	clperchgroup =3D 4 * (8 / num_channels) * qi.deinterleave;
-> +	clperchgroup =3D 4 * max(8 / num_channels, 1) * qi.deinterleave;
->=20
->  	display->bw.num_qgv_points =3D qi.num_qgv_points;
->  	display->bw.num_psf_gv_points =3D qi.num_psf_points; diff --git
-> a/drivers/gpu/drm/i915/display/intel_dram.c
-> b/drivers/gpu/drm/i915/display/intel_dram.c
-> index f103f7cba018..df58effca785 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dram.c
-> @@ -796,6 +796,17 @@ static int xelpdp_get_dram_info(struct intel_display
-> *display, struct dram_info
->  	dram_info->num_qgv_points =3D
-> REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
->  	/* PSF GV points not supported in D14+ */
->=20
-> +	/*
-> +	 * Wa_16030862157
-> +	 * MEM_SS_INFO_GLOBAL populated-channel field is only 4 bits and
-> +	 * cannot encode 16, so on Xe3p the BIOS programs the saturated field
-> +	 * value (0xf) to indicate the fully-populated 16-channel config (4
-> +	 * memory controllers x 4 channels). Interpret it as 16.
-> +	 */
-> +	if (DISPLAY_VER(display) >=3D 35 &&
+__guc_exec_queue_process_msg_cleanup
+   __guc_exec_queue_fini
+     guc_exec_queue_fini_async
+     ...
+         xe_sched_entity_fini
+         xe_sched_fini
+         kfree_rcu ge
+         xe_exec_queue_fini q
+           __xe_exec_queue_free
+            kfree q
 
 
-Same here
+Now:
 
-I also think this patch series can be broken into two=20
-1st patch which introduces the WA enum and function updating along with thi=
-s change in dram
-The 2nd patch updating the bw side of things.
+__guc_exec_queue_process_msg_cleanup
+   __guc_exec_queue_destroy
+     guc_exec_queue_destroy_async
+       __guc_exec_queue_destroy_async
+         xe_exec_queue_fini
+	  __xe_exec_queue_fini
+             guc_exec_queue_fini
+             ...
+               xe_sched_entity_fini
+               xe_sched_fini
+               kfree_rcu ge
+	  __xe_exec_queue_free
+               kfree q
 
-Also the subject for 1st patch can be drm/i915/dram and 2nd patch can be dr=
-m/i915/bw
+Looks functionally identical.
+
+AFAIR the problem actually was:
+
+drm_sched_fence_get_timeline_name()
+   return (const char *)fence->sched->name;
+
+Where fence->sched is drm sched, aka "ge" from the above flow.
+
+And that has kfree_rcu in the today's code base too. So no issue with 
+the sched pointer itself.
+
+What about sched->name ie. q->name? It is only free after the scheduler 
+is freed, so after the RCU grace, and if scheduler itself is unreachable 
+then sched->name is surely unreachable too.
+
+What am I missing? Could you provide some details on where and how this 
+crashes?
 
 Regards,
-Suraj Kandpal
 
-> +	    dram_info->num_channels =3D=3D
-> REG_FIELD_MAX(MTL_N_OF_POPULATED_CH_MASK))
-> +		dram_info->num_channels =3D 16;
+Tvrtko
+
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 5 +++++
+>   drivers/gpu/drm/xe/xe_guc_submit.c           | 4 +++-
+>   2 files changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> index e5e53b421f29..cda14d954e57 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> @@ -10,6 +10,7 @@
+>   #include <linux/workqueue.h>
+>   
+>   #include "xe_gpu_scheduler_types.h"
+> +#include "xe_hw_fence_types.h"
+>   
+>   struct dma_fence;
+>   struct xe_exec_queue;
+> @@ -24,6 +25,10 @@ struct xe_guc_exec_queue {
+>   	struct rcu_head rcu;
+>   	/** @sched: GPU scheduler for this xe_exec_queue */
+>   	struct xe_gpu_scheduler sched;
+> +	/**
+> +	 * @name: Scheduler timeline name, kept with @sched until RCU free.
+> +	 */
+> +	char name[MAX_FENCE_NAME_LEN];
+>   	/** @entity: Scheduler entity for this xe_exec_queue */
+>   	struct xe_sched_entity entity;
+>   	/**
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index cec3bbf3a10e..8ef6eeebfaa8 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1978,6 +1978,8 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>   
+>   	xe_exec_queue_assign_name(q, q->guc->id);
+>   
+> +	strscpy(ge->name, q->name, sizeof(ge->name));
 > +
->  	if (DISPLAY_VER(display) >=3D 35)
->  		dram_info->ecc_impacting_de_bw =3D
-> REG_FIELD_GET(XE3P_ECC_IMPACTING_DE, val);
->=20
-> --
-> 2.50.1
+>   	/*
+>   	 * Use primary queue's submit_wq for all secondary queues of a
+>   	 * multi queue group. This serialization avoids any locking around
+> @@ -1992,7 +1994,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>   	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+>   			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+>   			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+> -			    q->name, gt_to_xe(q->gt)->drm.dev);
+> +			    ge->name, gt_to_xe(q->gt)->drm.dev);
+>   	if (err)
+>   		goto err_release_id;
+>   
 
