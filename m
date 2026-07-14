@@ -4,41 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6452FC43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 05:28:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C171C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 05:31:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2341210E237;
-	Tue, 14 Jul 2026 05:28:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D5E10E685;
+	Tue, 14 Jul 2026 05:31:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GunEwmcz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c4z7ij73";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C621C10E237
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 05:28:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC06F10E685
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 05:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784006881; x=1815542881;
+ t=1784007090; x=1815543090;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=5362T79yXbbNSuijA8gaXwb56y+TUfj+RpelOz/46Uc=;
- b=GunEwmczZK8GgkPabk6VhYd+NMsiNA/PFuO0jcUW2tmkOju6Apkl6CQ6
- JNFA/KjFl4nSRYXLDce2eEwiw6kU7uzZ40lTWYQvdUdvyG8mXEz9tYU9P
- UyO26CeqtN8LKEzm/QGDwY0vIO7drhP8VzgkZiPmUMOOS0edQTV+FJMNV
- 1HQTLeaRVqnQb3uhJr9zhQAOmxITBd+2bAnxScqqwkeHNSofFtOQFwId5
- WlfaM/gbD1xPwsHP8ZZTkNsyfB8U6SKDj43GqsOfJQ4Vx39+jZE9K85AC
- PkkE/cajtaqcGPSzZdfNlJlm0cPRdUWgkj/QJO5pZr40uW45muSDHCINS w==;
-X-CSE-ConnectionGUID: 3wThtCH9R+KM4HR05ky3ug==
-X-CSE-MsgGUID: zJJ9iAgeRH2cmcmS7TqaQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84642009"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="84642009"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 22:28:00 -0700
-X-CSE-ConnectionGUID: 3kr7IxBpSYWy17sueghjCQ==
-X-CSE-MsgGUID: rfVqI78eRTWx+nAkexz0Bw==
+ bh=AI0IyB6WX+lei5a0wY5hQz0MbpmUQAmZXZNYohR16yw=;
+ b=c4z7ij733Sd6KWQ0RdsiBkPLa1ocre7+kyVgYqY+YV9sgAVs+j+SfOjZ
+ 30PYXa+y7e+LuPen6AXeKZnJLtrJ8ueeF2p/cOX6UZ39krL/U0yHsOQIa
+ JpgMEXY5IZQx62WlyrhtV04K+e1NW26/RzVZWJz3FEcmoi7OwgNoc6PoU
+ F520flrJcAJUa5+m+9CUQT4vaRbAERUAE8SYRqg4ddYD0H1Hd2VTrcz1g
+ kgfYmgMgTuBl2cMWirTq/4lVdS+jV0PvM4/1s+dxThMd8d6xCqxcQdc0g
+ 9o6o+jlf3qkhK0qmJgdX+euMz0w+zmXVpO/VxdMx1cOo40LCrXf57OfFy w==;
+X-CSE-ConnectionGUID: Agnt8bkERs6bYt8MPVrsuQ==
+X-CSE-MsgGUID: bqALSccnRrSQJjNUUiyTKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="83742052"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="83742052"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 22:31:30 -0700
+X-CSE-ConnectionGUID: M4yaY3UcRcSGn7Hp/6yvXg==
+X-CSE-MsgGUID: qQj9f3khQ0m07xrPJ++zOQ==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="249393550"
 Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
- by fmviesa003.fm.intel.com with ESMTP; 13 Jul 2026 22:27:58 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 13 Jul 2026 22:31:28 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
@@ -46,9 +47,9 @@ Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2] drm/xe/pf: Disable display in admin only PF mode
-Date: Tue, 14 Jul 2026 10:59:37 +0530
-Message-ID: <20260714052936.502740-2-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v3] drm/xe/pf: Disable display in admin only PF mode
+Date: Tue, 14 Jul 2026 11:03:00 +0530
+Message-ID: <20260714053259.504308-2-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -76,8 +77,12 @@ Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Cc: Michał Winiarski <michal.winiarski@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
 ---
+V2 -> V3:
+- Missed RB while resolving rebase conflicts. Fixed it.
+
 V1 -> V2:
 - Rebased to resolve merge conflicts.
 ---
