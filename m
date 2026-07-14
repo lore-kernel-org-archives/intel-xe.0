@@ -4,35 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84023C4450A
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 16:27:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB02C4450E
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 16:27:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3BFB10EDF5;
-	Tue, 14 Jul 2026 16:27:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8A7E10EE0D;
+	Tue, 14 Jul 2026 16:27:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="oUP+dnEZ";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="kC/wjNzr";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4CAC10E466;
- Tue, 14 Jul 2026 16:27:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D368510EDDE;
+ Tue, 14 Jul 2026 16:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1784046459;
- bh=Uh1I9AQT/zD14G3G7nTtXol2UYt5hVDXgBO6hfs7sRA=;
+ s=default; t=1784046461;
+ bh=a+wbG35+w4I/cqUCaw2OzIFFbdDAqa/oUV7xbL7nxc4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=oUP+dnEZxOx/X69YpfY7r7dKnoSfvIMxqFmQ9QhumN4/V63CsntDuKZcp4Lip8fdz
- ieZw2hN4c2D6+78aTn/SxmrtG8v78EqRSpPER2spqqNkZZRD10n98xbxS351GIFN6S
- 1XvuudfP5qtmcPaFXEhCCRjeYJnKDM0trHoE6gIO6IUNSgCTr76Diyodmr2YjRqLy6
- /uJBGw0368DkvJC24fHXBS2nV1rNbZvloFUX49lxP1STfIU6woqcWAqKyypU5myrxs
- FPaRBqtY+n4J71W9FwzYwgSPluOQQTOsXqSOo8XSP3jEgbio0nW/Ip0lIwUuxhL/Lm
- a8lY+EQkBmvPQ==
+ b=kC/wjNzrenpy3YEolJaX29FRN1/oiqsYZuXknX1XLnM1XLzG9YSYceDMUv035HNiK
+ nJxcqzmgGf7P5Xsx1xUdaM8fVxCn7s+vbrxDZsZG353UUqi8YoCfjw43NnI8cxNpLH
+ T4bXtw2H09A3HVvOddWLWBMOSGl4W1holH/QAw43fX4vQjgYBFoeraFDbH+AslP8Ao
+ B7vd+tyaKnOCQ4szOnaInzWwX04sMBG7S0uoO3h74v6kgf+8YMrxLTygwLv4CqVefI
+ 1KmhADotKUD2krgMKOi2QfyN6H43i6dlDu3puQO1MQkuygHApWE/e/U+3S6capEhg3
+ IZMNDsSFJMWtw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 4/7] drm/xe/display: Reserve the original GGTT space before
- creating a bo
-Date: Tue, 14 Jul 2026 18:28:21 +0200
-Message-ID: <20260714162824.2063637-5-dev@lankhorst.se>
+Subject: [PATCH 7/7] drm/xe/ggtt: Remove xe_ggtt_insert_bo_at
+Date: Tue, 14 Jul 2026 18:28:24 +0200
+Message-ID: <20260714162824.2063637-8-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260714162824.2063637-1-dev@lankhorst.se>
 References: <20260714162824.2063637-1-dev@lankhorst.se>
@@ -52,49 +51,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Annotate the original area of the framebuffer as reserved in the GGTT
-before creating a new GGTT entry. This allows us to remove the
-range restrictions of GGTT in xe_bo_create_pin_map_at_novm().
+This code was created specifically for the display handover,
+and can be removed now that we temporarily reserve the area
+of GGTT that contains the original framebuffer contents.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c   |  8 +-------
+ drivers/gpu/drm/xe/xe_ggtt.c | 16 ----------------
+ drivers/gpu/drm/xe/xe_ggtt.h |  2 --
+ 3 files changed, 1 insertion(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 0f86b73036d03..8127384fa5bdf 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -46,6 +46,7 @@ initial_plane_bo(struct xe_device *xe,
- 	resource_size_t phys_base;
- 	u32 base, size, flags;
- 	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-+	struct xe_ggtt_node *original_ggtt_node;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index ae730bd6f4b26..41b42aad783ad 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2548,13 +2548,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 			if (t != tile && !(bo->flags & XE_BO_FLAG_GGTTx(t)))
+ 				continue;
  
- 	if (plane_config->size == 0)
- 		return NULL;
-@@ -111,8 +112,21 @@ initial_plane_bo(struct xe_device *xe,
+-			if (flags & XE_BO_FLAG_FIXED_PLACEMENT) {
+-				err = xe_ggtt_insert_bo_at(t->mem.ggtt, bo,
+-							   start + xe_bo_size(bo), U64_MAX,
+-							   exec);
+-			} else {
+-				err = xe_ggtt_insert_bo(t->mem.ggtt, bo, exec);
+-			}
++			err = xe_ggtt_insert_bo(t->mem.ggtt, bo, exec);
+ 			if (err)
+ 				goto err_unlock_put_bo;
  		}
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 7aa075edf9d28..c38d5957d316e 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -904,22 +904,6 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	return err;
+ }
  
-+	if (base + size <= xe_ggtt_start(tile0->mem.ggtt))
-+		original_ggtt_node = NULL;
-+	else if (base < xe_ggtt_start(tile0->mem.ggtt))
-+		original_ggtt_node = xe_ggtt_insert_node_at(tile0->mem.ggtt, size - xe_ggtt_start(tile0->mem.ggtt), page_size, 0, base + size);
-+	else
-+		original_ggtt_node = xe_ggtt_insert_node_at(tile0->mem.ggtt, size, page_size, base, base + size);
-+
-+	if (IS_ERR(original_ggtt_node))
-+		return NULL;
-+
- 	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
- 					  ttm_bo_type_kernel, flags, 0, false);
-+	if (original_ggtt_node)
-+		xe_ggtt_node_remove_noclear(original_ggtt_node);
-+
- 	if (IS_ERR(bo)) {
- 		drm_dbg_kms(&xe->drm,
- 			    "Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
+-/**
+- * xe_ggtt_insert_bo_at - Insert BO at a specific GGTT space
+- * @ggtt: the &xe_ggtt where bo will be inserted
+- * @bo: the &xe_bo to be inserted
+- * @start: address where it will be inserted
+- * @end: end of the range where it will be inserted
+- * @exec: The drm_exec transaction to use for exhaustive eviction.
+- *
+- * Return: 0 on success or a negative error code on failure.
+- */
+-int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+-			 u64 start, u64 end, struct drm_exec *exec)
+-{
+-	return __xe_ggtt_insert_bo_at(ggtt, bo, start, end, exec);
+-}
+-
+ /**
+  * xe_ggtt_insert_bo - Insert BO into GGTT
+  * @ggtt: the &xe_ggtt where bo will be inserted
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 83654544feb6d..02e72dbae0e58 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -36,8 +36,6 @@ void xe_ggtt_node_remove_noclear(struct xe_ggtt_node *node);
+ size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
+ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
+-int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+-			 u64 start, u64 end, struct drm_exec *exec);
+ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare);
+ 
 -- 
 2.53.0
 
