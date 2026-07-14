@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F6F3C44509
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 10:50:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B931DC43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 10:54:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4FFD10ECE1;
-	Tue, 14 Jul 2026 10:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E32910E03F;
+	Tue, 14 Jul 2026 10:54:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="askr1aU/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XqkyQ88s";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAD710E060;
- Tue, 14 Jul 2026 10:50:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22C5E10E03F
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 10:54:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784026214; x=1815562214;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uwffkij6CNpLnIGm9VgcDZKdtaAxVqVyYDQl6auC5vQ=;
- b=askr1aU/tW/lNdkyH1ZhxvHAkcMWPYT78BzucVdX/zrU/ruEPnSN644U
- 3MGgBy+VV7FkPxVbXBCIprb4rjEH5M9zRgO7jssE6sEMVIGM10FQd7mAQ
- ko+o89InMAARg2eWw0oQS/aHvN3yIFRHpGcm5NebEdAgw5Xc/hScS8TCw
- xzXSC5l3SMxxiznF542bLlpVMxtd4Wdulz0qEjT/mVg/RrMAzj2xlfsPH
- hvdz5EaN9W1wSMpyTXIRJndJdRMCjejIAIZzVK+A0K1zfqbgAJg8LmGQJ
- Cr2kfMbWTQh4eXOuQZNJWFcrTnpjh3qeWoFRjbFuXP5DeaHAmhG8fNYY4 w==;
-X-CSE-ConnectionGUID: LV7b9BBdS6OJYy7aftvExQ==
-X-CSE-MsgGUID: e+13u9wfTParRYGt+bI4WA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="88544456"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="88544456"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 03:50:14 -0700
-X-CSE-ConnectionGUID: xe3keGWiTjSjbMLWvquw7w==
-X-CSE-MsgGUID: 7ZQrkQgcS3a+ogK9tTKl+w==
+ t=1784026474; x=1815562474;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3+R7nNpmx+nyCA9kNoVXJJXStRtPfozSmZUz+i+0eM0=;
+ b=XqkyQ88sOCx3dSCZ5gw2/dTtDhHZK7VoCqXsCwJQId+wBIvRfiJhmUAV
+ NK6BJWUHHg1jfLg0mHgjy9owcxRQlmvPgdi9tU+gdSyZps+QBmxo7O/ed
+ yKXweXNDb1VYU6m6y8jQmG3fzB5NDNJqNar8wbF3dBfr6pu4BcuSJg/sm
+ TS3r9TC+z8/CKKTskMVPjJBKpN93kvN6NQMxG2e7P7D+AL8vcbgb5bgjP
+ 2iBXwTN94NP/Aar7a5xA9i/Rb5RWOTDb/AW1K8CwG76rNDOwboCUEE/kE
+ o0avFhaD3EwgQgYFPb3OZpzzc+czB7fLNU4HefnCMkdyO/MWIocl/K4TV g==;
+X-CSE-ConnectionGUID: OcHk4b4kTKisvjS4qWmrYw==
+X-CSE-MsgGUID: sJlsSVQPRdKS3Ut/+36llg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84839578"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="84839578"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 03:54:34 -0700
+X-CSE-ConnectionGUID: HAbgJIkgRSSgCDtG9e4QIw==
+X-CSE-MsgGUID: wGAMsAEDR2an92Y+UmnQLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="260134532"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa005.jf.intel.com with ESMTP; 14 Jul 2026 03:50:12 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
- ankit.k.nautiyal@intel.com, chaitanya.kumar.borah@intel.com
-Subject: [PATCH v3 8/8] drm/i915/vrr: Enable cmrr
-Date: Tue, 14 Jul 2026 16:09:37 +0530
-Message-ID: <20260714103938.2371448-9-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20260714103938.2371448-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20260714103938.2371448-1-mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="255876692"
+Received: from hghimira.iind.intel.com ([10.190.239.34])
+ by orviesa007.jf.intel.com with ESMTP; 14 Jul 2026 03:54:33 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 0/7] drm/xe: add page size allocation mode control and
+ coverage
+Date: Tue, 14 Jul 2026 16:25:39 +0530
+Message-ID: <20260714105538.170849-9-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,31 +64,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable CMRR during compute config and add related state
-checker for the same.
+Some platforms support multiple page sizes for user BO allocations,
+including 4K, 64K, 2M, and 1G
 
---v2:
-- Everything else except enable compute to handle before this patch
-(Chaitanya)
+For validation and debug, it is useful to control the page size
+selection policy for user BOs so that specific allocation paths can be
+exercised deterministically. In particular, this makes it possible to
+force allocations into 2M-only, 1G-only, or mixed modes.
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 2 ++
- 1 file changed, 2 insertions(+)
+In mixed mode, allocations are distributed across the supported page
+sizes in a round-robin manner. For example, for four user BOs, the
+selected page sizes would be:
+  - BO1: 4K
+  - BO2: 64K
+  - BO3: 2M
+  - BO4: 1G
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index ca3cac5aa6ab..ce4148fa1687 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -256,6 +256,8 @@ intel_vrr_cmrr_compute_config(struct intel_crtc_state *crtc_state)
- 						   crtc_state->vrr.cmrr.cmrr_n,
- 						   &crtc_state->vrr.cmrr.cmrr_m);
- 
-+	crtc_state->vrr.cmrr.enable = true;
-+
- 	return;
- }
- 
+This series adds debug page-size allocation control for user BO in xe
+
+This series includes:
+ - debug control state in xe_device
+ - a debugfs knob to select allocation mode
+ - 1G BO alignment flag handling
+ - debug policy application at user BO create time
+ - propagation into VMA map flags
+ - PT bind support for selecting leaf level (4K/64K, 2M, 1G paths)
+ - add live Kunit coverage for BO page size allocation
+
+The default path is unchanged when the debug control is not enabled.
+
+v2
+-- addressed v1 comments at 
+   https://patchwork.freedesktop.org/series/169640/
+
+v3
+- refactor the design
+- update patches based on review feedback
+- due to space missing after drm/xe: it created a new series
+  https://patchwork.freedesktop.org/series/170246/
+
+v4
+- initialize page-size control state before userspace-visible
+  registration
+- add Kconfig support before CONFIG_DRM_XE_DEBUG_PAGE_SIZE users
+- limit debugfs and BO policy handling to supported dGFX VRAM paths
+- add fast-path mode checks and ALIGN() overflow handling
+- preserve existing BO NEEDS_* flags
+- defer mixed-mode index advancement until successful
+  BO create ioctl completion
+- replace 2M/1G vma_flags propagation with stable target_leaf_level
+  state
+- propagate target_leaf_level from bind op to VMA and into PT bind
+- allow smaller huge-page fallback and fix clear_pt handling in PT walk
+- skip VRAM-only live KUnit tests on non-dGFX
+  and restore state on all exits
+
+v5:
+- Guard debug page-size control support with
+  CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+- Fix kernel-doc warnings in xe_device_types.h for page_size_alloc_ctrl
+- Keep the normal BO creation path unchanged when no debug mode is
+  selected
+- Reword commit messages for clarity and to match the implementation
+
+v6:
+- Add Gaurd to kunit tests
+
+v7:
+- CI build failure
+
+Nareshkumar Gollakoti (7):
+  drm/xe: add page size allocation control state to xe_device
+  drm/xe/debugfs: add page-size allocation mode knob
+  drm/xe: add XE_BO_FLAG_NEEDS_1G for minimum page-size sizing
+  drm/xe: apply debug page-size allocation policy to user BOs
+  drm/xe/vm: propagate BO page-size requirements to VMA map flags
+  drm/xe/pt: allow selecting the bind leaf PTE level
+  drm/xe/tests: add live KUnit coverage for BO page-size allocation
+    modes
+
+ drivers/gpu/drm/xe/Kconfig.debug            |  16 ++
+ drivers/gpu/drm/xe/tests/xe_bo.c            | 240 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   6 +
+ drivers/gpu/drm/xe/xe_bo.c                  | 166 +++++++++++++-
+ drivers/gpu/drm/xe/xe_bo.h                  |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c             |  62 +++++
+ drivers/gpu/drm/xe/xe_device.c              |  13 +-
+ drivers/gpu/drm/xe/xe_device.h              |  30 +++
+ drivers/gpu/drm/xe/xe_device_types.h        |  31 +++
+ drivers/gpu/drm/xe/xe_pt.c                  |  53 ++++-
+ drivers/gpu/drm/xe/xe_vm.c                  |  30 +++
+ drivers/gpu/drm/xe/xe_vm_types.h            |   9 +
+ 12 files changed, 652 insertions(+), 5 deletions(-)
+
 -- 
-2.48.1
+2.43.0
 
