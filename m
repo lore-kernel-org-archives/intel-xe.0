@@ -4,69 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8385FC43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 09:40:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99AC7C44501
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 09:40:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44E9B89067;
-	Tue, 14 Jul 2026 09:40:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OHEVJwtd";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5732989067;
- Tue, 14 Jul 2026 09:40:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784022023; x=1815558023;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wrPx0hvuUujnOArhp+9g7U8p8v6mfKoZo5CUAYt8ZQ0=;
- b=OHEVJwtd5G69LQyfx85sQH6YRdlPEc7aR9dFq2l1FKmn9pFC7Wo6zllY
- x785SQv2K2GQbOt8dHkOI4SaBXnLsWsqKjhsgp90HI4hcJLrP7TUSQYiK
- 0rGGkg2MyM+q2fsgiOOpAaibedXbi6u+6ctlrehmpVul8CCGWtdp5a3C7
- wyA9oliatAr3SIxuCDET6tngVye8Rev+3AoahNcM0buJpzt+v/Dtpwpcy
- zYzZ6cKzoVixNn1GYPp8t8wW+geJeEqafohQlzKiJxTYlSPpT89hOU/Zo
- hJIjGR3ryQDsaJth7s6etOyePThW9J9R3gC1GzCrbGrppzSABbDhYWtII A==;
-X-CSE-ConnectionGUID: Ul/kY2+TQbS22jEIc6D62w==
-X-CSE-MsgGUID: dzkCZGYWQSurofaM+0tFLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84520333"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="84520333"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2026 02:40:23 -0700
-X-CSE-ConnectionGUID: 6foZP+VZTUaUDRJnvTzmAg==
-X-CSE-MsgGUID: BFUsCFjUR4eNFiQKfJyGnQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="252424937"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa007.fm.intel.com with ESMTP; 14 Jul 2026 02:40:19 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1008)
- id 38DC395; Tue, 14 Jul 2026 11:40:18 +0200 (CEST)
-Date: Tue, 14 Jul 2026 12:40:16 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, brgl@kernel.org,
- platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- driver-core@lists.linux.dev
-Subject: Re: [PATCH v7 2/4] drm/xe/i2c: use
- device_create_managed_software_node()
-Message-ID: <alYEAE_fZCfrRAYs@kuha>
-References: <20260713-swnode-remove-on-dev-unreg-v7-0-6d6bc448427a@oss.qualcomm.com>
- <20260713-swnode-remove-on-dev-unreg-v7-2-6d6bc448427a@oss.qualcomm.com>
- <alUGHxyN6l7awuEn@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5925389067;
+	Tue, 14 Jul 2026 09:40:36 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6865210E056;
+ Tue, 14 Jul 2026 09:40:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9138541297309185888=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <alUGHxyN6l7awuEn@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display/xe3p=3A_In?=
+ =?utf-8?q?terpret_0xF_populated-channel_count_as_16?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 14 Jul 2026 09:40:35 -0000
+Message-ID: <178402203542.187566.15240511285213894801@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260714082651.4104132-1-uma.shankar@intel.com>
+In-Reply-To: <20260714082651.4104132-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,114 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 13, 2026 at 11:37:03AM -0400, Rodrigo Vivi wrote:
-> On Mon, Jul 13, 2026 at 05:11:58PM +0200, Bartosz Golaszewski wrote:
-> > This driver intentionally uses the fine-grained approach to creating
-> > platform devices. It assigns a software node as the primary firmware
-> > node of the device it creates. Ahead of improving the reference counting
-> > of platform device software nodes, switch to using
-> > device_create_managed_software_node(). This way, we create a dynamic
-> > software node whose life-time is tied to the device to which it's
-> > assigned.
-> > 
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> 
-> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+--===============9138541297309185888==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-LGTM:
+== Series Details ==
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Series: drm/i915/display/xe3p: Interpret 0xF populated-channel count as 16
+URL   : https://patchwork.freedesktop.org/series/170390/
+State : success
 
-> > ---
-> >  drivers/gpu/drm/xe/xe_i2c.c | 22 ++++++++--------------
-> >  drivers/gpu/drm/xe/xe_i2c.h |  1 -
-> 
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> >  2 files changed, 8 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> > index 3d80eafb9a1318996d10db11e14af4cfde07ba55..af6e973e5e68125a9c006bb646447ca6e377a6e6 100644
-> > --- a/drivers/gpu/drm/xe/xe_i2c.c
-> > +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> > @@ -93,13 +93,8 @@ static int xe_i2c_register_adapter(struct xe_i2c *i2c)
-> >  {
-> >  	struct pci_dev *pci = to_pci_dev(i2c->drm_dev);
-> >  	struct platform_device *pdev;
-> > -	struct fwnode_handle *fwnode;
-> >  	int ret;
-> >  
-> > -	fwnode = fwnode_create_software_node(xe_i2c_adapter_properties, NULL);
-> > -	if (IS_ERR(fwnode))
-> > -		return PTR_ERR(fwnode);
-> > -
-> >  	/*
-> >  	 * Not using platform_device_register_full() here because we don't have
-> >  	 * a handle to the platform_device before it returns. xe_i2c_notifier()
-> > @@ -107,10 +102,14 @@ static int xe_i2c_register_adapter(struct xe_i2c *i2c)
-> >  	 * platform_device_register_full() is done.
-> >  	 */
-> >  	pdev = platform_device_alloc(adapter_name, pci_dev_id(pci));
-> > -	if (!pdev) {
-> > -		ret = -ENOMEM;
-> > -		goto err_fwnode_remove;
-> > -	}
-> > +	if (!pdev)
-> > +		return -ENOMEM;
-> > +
-> > +	ret = device_create_managed_software_node(&pdev->dev,
-> > +						  xe_i2c_adapter_properties,
-> > +						  NULL);
-> > +	if (ret)
-> > +		goto err_pdev_put;
-> >  
-> >  	if (i2c->adapter_irq) {
-> >  		struct resource res;
-> > @@ -123,8 +122,6 @@ static int xe_i2c_register_adapter(struct xe_i2c *i2c)
-> >  	}
-> >  
-> >  	pdev->dev.parent = i2c->drm_dev;
-> > -	platform_device_set_fwnode(pdev, fwnode);
-> > -	i2c->adapter_node = fwnode;
-> >  	i2c->pdev = pdev;
-> >  
-> >  	ret = platform_device_add(pdev);
-> > @@ -135,8 +132,6 @@ static int xe_i2c_register_adapter(struct xe_i2c *i2c)
-> >  
-> >  err_pdev_put:
-> >  	platform_device_put(pdev);
-> > -err_fwnode_remove:
-> > -	fwnode_remove_software_node(fwnode);
-> >  
-> >  	return ret;
-> >  }
-> > @@ -144,7 +139,6 @@ static int xe_i2c_register_adapter(struct xe_i2c *i2c)
-> >  static void xe_i2c_unregister_adapter(struct xe_i2c *i2c)
-> >  {
-> >  	platform_device_unregister(i2c->pdev);
-> > -	fwnode_remove_software_node(i2c->adapter_node);
-> >  }
-> >  
-> >  /**
-> > diff --git a/drivers/gpu/drm/xe/xe_i2c.h b/drivers/gpu/drm/xe/xe_i2c.h
-> > index 425d8160835f4648891ff75f2a9c06284241710e..b28229f056c5a664e1d41dc0cc1978782fe1c2f1 100644
-> > --- a/drivers/gpu/drm/xe/xe_i2c.h
-> > +++ b/drivers/gpu/drm/xe/xe_i2c.h
-> > @@ -30,7 +30,6 @@ struct xe_i2c_endpoint {
-> >  };
-> >  
-> >  struct xe_i2c {
-> > -	struct fwnode_handle *adapter_node;
-> >  	struct platform_device *pdev;
-> >  	struct i2c_adapter *adapter;
-> >  	struct i2c_client *client[XE_I2C_MAX_CLIENTS];
-> > 
-> > -- 
-> > 2.47.3
-> > 
+== Summary ==
 
--- 
-heikki
+CI Bug Log - changes from xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc_BAT -> xe-pw-170390v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9005 -> IGT_9006
+  * Linux: xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc -> xe-pw-170390v1
+
+  IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc: 4df02bb6acd1307de4de001699112cbdaf5afdfc
+  xe-pw-170390v1: 170390v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170390v1/index.html
+
+--===============9138541297309185888==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display/xe3p: Interpret 0xF populated-channel count as 16</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170390/">https://patchwork.freedesktop.org/series/170390/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170390v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170390v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc_BAT -&gt; xe-pw-170390v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9005 -&gt; IGT_9006</li>
+<li>Linux: xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc -&gt; xe-pw-170390v1</li>
+</ul>
+<p>IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5397-4df02bb6acd1307de4de001699112cbdaf5afdfc: 4df02bb6acd1307de4de001699112cbdaf5afdfc<br />
+  xe-pw-170390v1: 170390v1</p>
+
+</body>
+</html>
+
+--===============9138541297309185888==--
