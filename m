@@ -4,80 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8709AC43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 09:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56F69C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 09:36:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4164E10E6A7;
-	Tue, 14 Jul 2026 09:32:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC9610E044;
+	Tue, 14 Jul 2026 09:36:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="DmCHfbEW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S46cIrfx";
 	dkim-atps=neutral
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
- [209.85.218.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F83B10E6A7
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 09:32:12 +0000 (UTC)
-Received: by mail-ej1-f43.google.com with SMTP id
- a640c23a62f3a-c15f020a223so532115866b.1
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 02:32:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1784021531; x=1784626331; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=IutPtTO1ZuTokmR7Cv7+6zqNGJ/ROF8mV/RFoMSHFSE=;
- b=DmCHfbEWfWB2CiyvZujTWlu8DhM8L3ZOlmC++hBklh2OtEp3CtLCyZy2v8hUyyMQlQ
- 8DQRLWitcDuCynm+/74mR7wVXXeA7vUY7lI98eJTTsTqgeJ1WUjljTlTupW4ilT3rtmo
- sSVZRvZ6M71iWAgDnCEIMoO1sGWp1tbRKXR2aYG10//1OInueW8WCZzv8gUckqhNaRrC
- eOngGnj99/FzlOVJyCSuHl82zkArYqOuiChQfVtp83GvPq0py0Bg8HmFPlMsdiz5Ie6h
- LHRgpRpTNRuqmVvixd1vfswgVDXB0uESfpeQIcUMQpNTs6z/dca1Raldz2p9wWvAhd8C
- O0Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784021531; x=1784626331;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=IutPtTO1ZuTokmR7Cv7+6zqNGJ/ROF8mV/RFoMSHFSE=;
- b=riO3YLgLOqnkHcgz+qFvMUOcMntpErrSjkghUp2PMr5QZHGoGRlL8n/ptRrTijO9yv
- jqjd4tsDgw/PkJhSwW4hMpLrZh++Xg05nNqZg8PRy98l9uqt/oQsTkzMg65iV6l/oW6s
- Dhtp8C2rj7MhwstMen8vlOKyAvhB5GC12lTQ/rK0rBmYd4GMV9ne19igtnUTBiSYhgjZ
- eB+lSIeDzUPyCyjDwP4zcxboghRijI0zIJA9AuQBaU/u/9DMzHAHdkjdcsNMXGkcNU+N
- jH4O0mrz3FjpOoTk1N0JdQZJ+Z2EKb3Nq8S7YD82BscUH2OPd0L7h4Rw076ZVJhIMNWX
- SwYw==
-X-Forwarded-Encrypted: i=1;
- AHgh+RqHEnyhoIa5JSxy588SN+YPigdy284iAm3mt3fWtcW2oqGeLgbQxp47mK62fw5xVq1wimDx/z9xoA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxzlnB+UWDh3fQdtKeiQXSyWm4u/OEstxY1AmNnNOqI5fn2e3te
- bXI03wycVGMFTQZFnb/h8c0v1SzgZVOnHSGe0f0oVPUHj2SDw8GzGR4LuEjSOjXFyHs=
-X-Gm-Gg: AfdE7cnp3GkMGy+4i5Tdi1nJbMsnBJMX/R/eFaXUBYtfgjC4j2tfs/ZsoZqextffsCz
- X5mGj22xJKPVnY9U5DDlWYJReGZgr22Ws1ZsvsfV7hkEO+HWIpAUryxw94loExLduTgltZEc4Et
- Si1fMwykC8ArLXJgqgd84jwiPhg/HSgqVjRhhbrSMj9ww67JgQhwjhKEZa5f+etefiWCNSCcpra
- aEnYLh8SHj9rGp1wQA1L1ASeUrXrfgBT0WN5/0sE6cm8DC6n9y40ULDqo2Vp75f7hhvi44vfwZ9
- TQtxR5upubhtyHUgOcR6NOL36yYXQ04oC1Oks2It1N189K0JkO8c9ae+LqFuGC63iBZu+tGnyJE
- 4NSzcX5tFsJoDDQs48NvSCK+aYMZHLM5gkDxQ+xv3yQW6wvEIxzwPnnobQnOUkkoq2WYr/ON34n
- u865Sc7VqKcCZ8BaOnCaDQt0KmenqtJ4K9xQ==
-X-Received: by 2002:a17:907:d28:b0:c12:4c93:852b with SMTP id
- a640c23a62f3a-c16679962eamr72380766b.13.1784021530605; 
- Tue, 14 Jul 2026 02:32:10 -0700 (PDT)
-Received: from [192.168.0.116] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c1602f5e9c5sm587742866b.21.2026.07.14.02.32.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 14 Jul 2026 02:32:10 -0700 (PDT)
-Message-ID: <3f103d7b-3a58-4c3d-a4d7-e413e7b92e47@ursulin.net>
-Date: Tue, 14 Jul 2026 10:32:09 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4465110E044;
+ Tue, 14 Jul 2026 09:36:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784021808; x=1815557808;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Szf0VzqdfgFlB3puUGUwFwzZBKn0tb5pPCLMgaFFrko=;
+ b=S46cIrfxzf4GfIl9GzDmUKkaTmTvP/9LRhGMZDsvMeiP2jWwoi//vvEO
+ pRhLfncl54BA4mr6kyof9DENNMwnCehbfBt6WmtvFOh996EwaSqKkBSZ6
+ JrPgl4LwoiBTpEFrpl6I1d+GOPvjway6nOKgkT4xUGipH0y/isllbiqfa
+ bwDD22tUIoYEy+rj+Frn0Vs2VU7n9ByPej3JRugptzTtwn7bSiqlwM9DR
+ H69420IdgOBJ6UkYJbTGIIvSZUu1mPJx21G64Zlsd3vLDhrpbuOSfmOzl
+ dhzXwX1vdONmXhJP4Npge+IQbcggQLwmDY9vxXxilegrhKGW79TH0GK2b Q==;
+X-CSE-ConnectionGUID: k4T6NynsS6e01xtmu29I/Q==
+X-CSE-MsgGUID: elREb7w5T9qq3Nn9eNYH8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84687286"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="84687286"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 02:36:48 -0700
+X-CSE-ConnectionGUID: ORr7f38/TC6f+Ea1Ntw/AA==
+X-CSE-MsgGUID: 1vQIQYsDTbKumKhm/5G4wg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="251394193"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2026 02:36:47 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 14 Jul 2026 02:36:47 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Tue, 14 Jul 2026 02:36:47 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.17) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Tue, 14 Jul 2026 02:36:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mgBHos23csXBjjYbipusrwGWVLYxiL4KriArXoKscYz9Lxo2YHZ5LeGES0gp7s+SQbjjiC9a99tHFu+FLIwdaaRbW9OcreYSS4zrllkVD/AAZj81a0nrig0kF0Q3lRtjPQTUNS71hSUv6HzuQgJJwE5aLuale1FzArTUfK1vzH9FlDoErSK+3XVtMYGeHHXGOT9gZPvUGR0oTFP5qZD346G/ETC5P/PhcqLGBRq+maH3dL5OflLb8JkFQoNDNJGe7XWE6KkF4U1horv9eCju1aK0pI9t39Fis1YdVjLjylJ/qrJ6BiEOPiflgz1vt+RIzcvxcBUnvV0rZ3f1MuA0PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lf6XRsg57D4r7wTktqxd8ydgxkb985xmmfSkQEqVJJA=;
+ b=yWdy8JoWpOhBI9F94ie7Xfl7umO6R7X/+X1mLrFQdv39brZur0UMnAQbcYozwAPY7kVwPLBb5pjcLX2LWBh6ss7vAONLSuBH+xNKoV2oCenOteS2OkiEDOxozurD2T9wkmfeXXVxC5dmynInsLmiQN+fEcwomSON1nnYqefZos7kjkB4GklMB4U92julqizdEjbehkIOLiP9VjNhRxv97aiorJg5k5sfn3xuDyXRhR6iq3HOqhDtddaHX+MvHsWZoOCcSxAVtZ+fLEFianGZoI76uFXxnbYoD6GMbab+S6us+dQaggde9VtUatxYhaOIxlgukGVVJItWn1Q7dwoxsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::5b) by IA0PR11MB7861.namprd11.prod.outlook.com
+ (2603:10b6:208:3de::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Tue, 14 Jul
+ 2026 09:36:45 +0000
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::6d3c:5451:b5d4:3ea6]) by DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::6d3c:5451:b5d4:3ea6%6]) with mapi id 15.21.0202.014; Tue, 14 Jul 2026
+ 09:36:45 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Subject: RE: [PATCH v3 7/7] drm/i915/bw: introduce the peak bandwidth threshold
+Thread-Topic: [PATCH v3 7/7] drm/i915/bw: introduce the peak bandwidth
+ threshold
+Thread-Index: AQHc/QZrwr4f4LtmdkWlgf4/ll8PEbZs7boA
+Date: Tue, 14 Jul 2026 09:36:44 +0000
+Message-ID: <DS4PPFE901A304F24C228DE849CFFF801E4E3F92@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20260615203355.218578-1-vinod.govindapillai@intel.com>
+ <20260615203355.218578-8-vinod.govindapillai@intel.com>
+In-Reply-To: <20260615203355.218578-8-vinod.govindapillai@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|IA0PR11MB7861:EE_
+x-ms-office365-filtering-correlation-id: 82ea29e9-dd34-4a12-5db0-08dee18b6b4d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|23010399003|1800799024|376014|11063799006|56012099006|4143699003|22082099003|18002099003|38070700021;
+x-microsoft-antispam-message-info: mGeC50KPNoSlR7L/Nx08vGCD7uCHpX6I1VUpLF++S6xJYub7C0MBrRXCmadUfKJVNeArktl5ld0ErNEhNmLZXHIPLT+YdXKQUueacvYVwYA9fZT/nttxDzHMcQiH+O2ZQGfqkTw7T1tf91GIoiz3RfRBd6G6x/wB3eCextXw1uQHIne/ShOSc5rd+Pj1Sr7OID61KdOwNT1mDYYrFhBt3bPQbjzcsja2k6/jADnzwdkutVJn6r4tcCUj7LU/lcPq95CLcM0JSElyJTPkSKtMioT0gkSvCBccyRAIMx8Ammm8sHyLx4rqmjP7IYxZ+ZSAqO7jAdBZC4OsfeLxxiZFb3yRlGHMj9G4yEjxEw/QSWRjbTV92peGoo7F32V8fo6KfSdihhDdwFL0WgouwjjEjdIGvXytWVI5xJBW33haHUK0RO/kXjFlFVR/NgUrZBjYUGkuAoMC+CsSF01q2WCi2Jc4Jd4SHsWqBxRCzUAkPqp2xYZl2lSx3e3R9H25Y7TgaWLr8GPPDeiE8QsQrCZeRoQDmKTTJhz41Tv5zetbZumiPP7xSy3F9GbSW3/KrE0xp3BL65V1JwN2N9BAWV4ACMEUuvmFNf8S2aJnsP2qXa7JIuxvIwR++sm7OegVlJoOXc7EJXM0DpHzTpih04OQZEm2nkousz9HvLWBbX46OjogZNLKASxDASCfgVby30iUz3yD5NZRPSS2PwwNauYITA2KQjlEliEhxSqx+h/l7xM=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003)(38070700021);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MEIBkXNUX/mUam+o4e/LdTVjGge4omWMNh6exaRaK2BuevSVpz4m93Yxp0dZ?=
+ =?us-ascii?Q?X1Sl1q7YdwCEID93aqb0CFvr2+s14BiaQLdTGsI3uTbbT61gh1WOcdfoAJ1A?=
+ =?us-ascii?Q?FNHhyFBw0Z5qlKMpVihfHSTELB3bVnH5EeBnSpIzMeglVazlYfF4DLZGxHWi?=
+ =?us-ascii?Q?Cjj9uEohIGCznNOI1fp/3gJ1YnTPbix6jDXmmaSmeOjps6JrpljZ6oThTidX?=
+ =?us-ascii?Q?NddVr6FxWbRDvKUDHshN5pLWiY59tJpUxaILtAO5FMgUQyS2XITvJsPS3PIz?=
+ =?us-ascii?Q?874T8/KHpKkBbIP8N/m54+7kR7Ad4m/+lxhpcRj4CuZcrvFtG+CZWKmuPVVG?=
+ =?us-ascii?Q?Enz31NRioZx6Gkmr+imsvlTBu+dB/1COUzVcbNXavhXrR6SsAiBYzkH3qSXV?=
+ =?us-ascii?Q?0ZtfPPCl7Nc45KRvAGOkXn+5RDWgSeXz74pmkfzkHbF2lcrxCuBPn8oWP2hi?=
+ =?us-ascii?Q?QmVsnebdrhkI5qy1102sLoduug0TQL6KUFupWv8Tm502vWa742ffU7IXcgyG?=
+ =?us-ascii?Q?oJQlQmA8z5Z20Kat/I04IZJXiYUSGBvUXoBmMz4EbeC6X1MaM60kVRMq3rd3?=
+ =?us-ascii?Q?WFVv2Aot+zgpKkQ3T2SmKqD23TE6mg/WUCO//6K/8NDmpII/53v8a6/7hIeu?=
+ =?us-ascii?Q?68YSOrXhPXQubOVp4Cyt9HicbGZ21cF3xXEiiOz3XSrbBzZOYxF5SBjcRStU?=
+ =?us-ascii?Q?KwxTzSoptP10427mf2IEP4E2ygMyDSOh7LrQDTd2bpRkLRSaxytXKXzSHJcw?=
+ =?us-ascii?Q?tNKaZbaMx7H6M6VhCeV6e/xSw5gRsMDEKyxJBd3L7SCrFidvOg4xxnceEGGt?=
+ =?us-ascii?Q?DysGfurpuBk7QQCb36VN+chhQHHgTNWjEVtHzw9D4gSEtWP51y3H6B97ti1B?=
+ =?us-ascii?Q?XXFtDtz38vlfQNU9UXp6lpPd7LpcV0Dut/bc1cAMwAa/b+jM0J7MoTN5AJf1?=
+ =?us-ascii?Q?qjJhLXXYjTOmQAepczt2Px6VqzZkspF66HKuYej0z8fQnGsqF6z7b9PDrpbM?=
+ =?us-ascii?Q?L9F6HdY/cfFj6R/49N6bvxmZBcnGq2FuH+XAoWgCdrLFDrx7PGFMVBPN4EOO?=
+ =?us-ascii?Q?kCrDCBNLpsuUpFcV7BTyFIOIvZwehL6jG4MUc6HJ1paiUPbSjF0mZ5cL8BNY?=
+ =?us-ascii?Q?m2JJd4lOlgCPusCLgVnx9wSH/MlovYsFIhLXSrtTabfR7fHTVzl7TsHc5PyW?=
+ =?us-ascii?Q?y8N0nXOGyuQtHo0PXGIPSCZsT7+wijKhA+jqIuGQNBAAvvFdmcX1DOZVXm6E?=
+ =?us-ascii?Q?mUfFxzG9boA6pubqYxNL8+3dvVOYISUgT/1I7O6ZfxKPF2iAcaTDCFtbt2+4?=
+ =?us-ascii?Q?71vJCwitBJs7ibDR8pu2hwB0yUxAEoG6+qcZ/amhXGyIC58QzjFkN8SfuVmG?=
+ =?us-ascii?Q?bEIkZ1E6Ovd9Z84h4jyTaQgkPfeluA8P34noLpf/WQe0UvL1VcsFkAfXswzR?=
+ =?us-ascii?Q?CHzwruHjNx1oxgkr4DiIa0JWVRE9cZBwnhLNzOUZjffeqcg8eHoT2lWnBhtx?=
+ =?us-ascii?Q?HWWsTfY4h/NPX5lVtvElvH/BGedrcRQX92Z30kzzH85BXhlfEqs3jU+udenK?=
+ =?us-ascii?Q?WnEDY3cDyzQZRPAXGHLkQuPNimoW/hfnUDPb9VI/va60A6pq3J7PpYBXsA4L?=
+ =?us-ascii?Q?Tuacp4mGbqWVr+DTft+CGPImo4/uFTjA5E5PoRILNi7yIGcYFA7R6uKv2Kia?=
+ =?us-ascii?Q?aRvCjr2gjRbLcTisshmii+aIPtWrCm8PsR36E7An/IZoloSvGrqKwJDDI9/8?=
+ =?us-ascii?Q?FZaQ1/jGOg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Keep scheduler timeline name alive
-To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- tejas.upadhyay@intel.com
-References: <20260714064402.2457257-1-arvind.yadav@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20260714064402.2457257-1-arvind.yadav@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: fhnXbrSqE3tuDsYivg72iqNEkSOZlNrbDPvnj+S6wy3d6I3hxZTPnVquMsm1VM+08ywO3WyZEZFAfq0Ch3WfZJHQOsRGaX2cnJ6VO1tmVxAqJNyo0JE9uINWvgMKzi7Sbj2oUh1bcLlQJckyzZFsFca6/+Wl1J4hDqPcfnzabx3CfIBD5KY9gKLq8mNobtfiAKmDFFOEBFX7yAuP30JXKAwGL3PVi9Aso8Rw6PcHuiAXsUPxlOOo7eytyVAHZ9oN+iDgvZ7zuVR7Pky25PCuiP2fyURAPBvOadBHHZJH3hl7Hqk193yv3byJlIra/5fdERu7Qjx40v9hrQu4V9DjLg==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82ea29e9-dd34-4a12-5db0-08dee18b6b4d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jul 2026 09:36:44.9733 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1h4TWaZOldPufbqKzWGI+FeTA2Y2p6P408PJZuHCRqxkBHf9mZ/ci1VgPs27BvDE/S+r4xjrX4qTgrCn3jhOYw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7861
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,128 +164,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+> Subject: [PATCH v3 7/7] drm/i915/bw: introduce the peak bandwidth thresho=
+ld
+>=20
+> On Xe3+, the SoC can lower the fabric frequency when the display needs le=
+ss
+> bandwidth than the minimum GV point. This threshold is defined as 20 GB/s=
+.
+> The driver can choose to request this threshold when the required data ra=
+te
+> falls below it.
+>=20
+> Add an extra QGV entry, with both peak bw and derated bw set to
+> 20 GB/s, to the bandwidth info when all of the following hold:
+> 1. The platform is Xe3+.
+> 2. There is at least one existing QGV point.
+> 3. The number of QGV points is below 8 (the maximum).
+>=20
+> Once a plane group is found, the driver iterates over all QGV points in t=
+hat
+> group to find the best match for the required data rate. If the required =
+data
+> rate is below 20 GB/s, it selects the peak bw from this new QGV point (20=
+ GB/s).
+>=20
+> v2: add the peak bandwidth threshold as an additional QGV entry
+>=20
+> Bspec: 68880
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c       | 33 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_device.h   |  1 +
+>  2 files changed, 34 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
+> b/drivers/gpu/drm/i915/display/intel_bw.c
+> index db2ee9de5eec..71aa9a6928db 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -52,6 +52,8 @@ struct intel_qgv_point {
+>=20
+>  #define DEPROGBWPCLIMIT		60
+>=20
+> +#define PEAK_BW_THRESHOLD	20000
+> +
+>  struct intel_psf_gv_point {
+>  	u8 clk; /* clock in multiples of 16.6666 MHz */  }; @@ -601,6 +603,34
+> @@ static int tgl_peakbw(int num_channels, int channel_width, int dclk)
+>  	return num_channels * (channel_width / 8) * dclk;  }
+>=20
+> +static void xe3_add_peakbw_threshold(struct intel_display *display) {
+> +	u8 qgv_points =3D display->bw.num_qgv_points;
+> +
+> +	if (!HAS_PEAK_BW_THRESHOLD(display))
+> +		return;
+> +
+> +	if (qgv_points >=3D I915_NUM_QGV_POINTS) {
+> +		drm_warn(display->drm, "Maximum QGV points reached.
+> Ignore the peak bw threshold\n");
 
-On 14/07/2026 07:44, Arvind Yadav wrote:
-> The scheduler keeps a pointer to the timeline name, but q->name
-> is freed with the exec queue while scheduler fences can still
-> reference it.
-> 
-> Store the name in struct xe_guc_exec_queue so it shares
-> the scheduler's RCU-deferred lifetime.
-> 
-> Fixes: 6bd90e700b42 ("drm/xe: Make dma-fences compliant with the safe access rules")
-
-Feel free to copy me if I broke something, or even fixed it incompletely. :)
-
-It is curious since I had an IGT which confirmed the fix was effective 
-by dereferencing the timeline.
-
-At the time of the above commit:
-
-__guc_exec_queue_process_msg_cleanup
-   __guc_exec_queue_fini
-     guc_exec_queue_fini_async
-     ...
-         xe_sched_entity_fini
-         xe_sched_fini
-         kfree_rcu ge
-         xe_exec_queue_fini q
-           __xe_exec_queue_free
-            kfree q
+Do we really need to be throwing a warning splat here since these are just =
+the conditions we need to meet if we want peak BW threshold.
+From you commit message its not always necessary. Correct me if I am wrong
+Maybe drm_dbg_kms.
 
 
-Now:
+> +		return;
+> +	}
+> +
+> +	if (qgv_points <=3D 1) {
+> +		drm_warn(display->drm, "SAGV not supported. Ignore the
+> peak bw threshold\n");
 
-__guc_exec_queue_process_msg_cleanup
-   __guc_exec_queue_destroy
-     guc_exec_queue_destroy_async
-       __guc_exec_queue_destroy_async
-         xe_exec_queue_fini
-	  __xe_exec_queue_fini
-             guc_exec_queue_fini
-             ...
-               xe_sched_entity_fini
-               xe_sched_fini
-               kfree_rcu ge
-	  __xe_exec_queue_free
-               kfree q
-
-Looks functionally identical.
-
-AFAIR the problem actually was:
-
-drm_sched_fence_get_timeline_name()
-   return (const char *)fence->sched->name;
-
-Where fence->sched is drm sched, aka "ge" from the above flow.
-
-And that has kfree_rcu in the today's code base too. So no issue with 
-the sched pointer itself.
-
-What about sched->name ie. q->name? It is only free after the scheduler 
-is freed, so after the RCU grace, and if scheduler itself is unreachable 
-then sched->name is surely unreachable too.
-
-What am I missing? Could you provide some details on where and how this 
-crashes?
+Same here
 
 Regards,
+Suraj Kandpal
 
-Tvrtko
-
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 5 +++++
->   drivers/gpu/drm/xe/xe_guc_submit.c           | 4 +++-
->   2 files changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> index e5e53b421f29..cda14d954e57 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> @@ -10,6 +10,7 @@
->   #include <linux/workqueue.h>
->   
->   #include "xe_gpu_scheduler_types.h"
-> +#include "xe_hw_fence_types.h"
->   
->   struct dma_fence;
->   struct xe_exec_queue;
-> @@ -24,6 +25,10 @@ struct xe_guc_exec_queue {
->   	struct rcu_head rcu;
->   	/** @sched: GPU scheduler for this xe_exec_queue */
->   	struct xe_gpu_scheduler sched;
-> +	/**
-> +	 * @name: Scheduler timeline name, kept with @sched until RCU free.
-> +	 */
-> +	char name[MAX_FENCE_NAME_LEN];
->   	/** @entity: Scheduler entity for this xe_exec_queue */
->   	struct xe_sched_entity entity;
->   	/**
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index cec3bbf3a10e..8ef6eeebfaa8 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1978,6 +1978,8 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->   
->   	xe_exec_queue_assign_name(q, q->guc->id);
->   
-> +	strscpy(ge->name, q->name, sizeof(ge->name));
+> +		return;
+> +	}
 > +
->   	/*
->   	 * Use primary queue's submit_wq for all secondary queues of a
->   	 * multi queue group. This serialization avoids any locking around
-> @@ -1992,7 +1994,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->   	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
->   			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
->   			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
-> -			    q->name, gt_to_xe(q->gt)->drm.dev);
-> +			    ge->name, gt_to_xe(q->gt)->drm.dev);
->   	if (err)
->   		goto err_release_id;
->   
+> +	display->bw.num_qgv_points++;
+> +
+> +	display->bw.peakbw[qgv_points] =3D PEAK_BW_THRESHOLD;
+> +
+> +	for (int i =3D 0; i < ARRAY_SIZE(display->bw.max); i++)
+> +		display->bw.max[i].deratedbw[qgv_points] =3D
+> PEAK_BW_THRESHOLD;
+> +
+> +	drm_dbg_kms(display->drm, "An extra QGV point %d added for Peak
+> bw threshod of %d\n",
+> +		    qgv_points, PEAK_BW_THRESHOLD);
+> +}
+> +
+>  static int tgl_get_bw_info(struct intel_display *display,
+>  			   const struct dram_info *dram_info,
+>  			   const struct intel_soc_bw_params *soc_bw_params,
+> @@ -695,6 +725,9 @@ static int tgl_get_bw_info(struct intel_display *disp=
+lay,
+>  		drm_dbg_kms(display->drm, "QGV %d: peakbw=3D%u\n", i,
+> display->bw.peakbw[i]);
+>  	}
+>=20
+> +	/* For xe3 cases add an extra qgv point for Peak bw threshold */
+> +	xe3_add_peakbw_threshold(display);
+> +
+>  	for (i =3D 0; i < qi.num_psf_points; i++) {
+>  		const struct intel_psf_gv_point *sp =3D &qi.psf_points[i];
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h
+> b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 13e93a4b4f5f..1360a16edbc1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -191,6 +191,7 @@ struct intel_display_platforms {
+>  #define HAS_MBUS_JOINING(__display)	((__display)-
+> >platform.alderlake_p || DISPLAY_VER(__display) >=3D 14)
+>  #define HAS_MSO(__display)		(DISPLAY_VER(__display) >=3D 12)
+>  #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)-
+> >has_overlay)
+> +#define HAS_PEAK_BW_THRESHOLD(__display)
+> 	(DISPLAY_VER(__display) >=3D 30)
+>  #define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >=3D
+> 12)
+>  #define HAS_PIXEL_NORMALIZER(__display)	(DISPLAY_VER(__display) >=3D
+> 35)
+>  #define HAS_PMDEMAND(__display)		(DISPLAY_VER(__display) >=3D
+> 14)
+> --
+> 2.43.0
 
