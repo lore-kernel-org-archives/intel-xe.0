@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDD71C43458
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 00:48:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05884C43458
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jul 2026 00:48:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 931D010EA8E;
-	Tue, 14 Jul 2026 00:48:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C7F810EB88;
+	Tue, 14 Jul 2026 00:48:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZXmQXcaO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxfoXv93";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22F3110EA8E
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 00:48:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2043610EA9F
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 00:48:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783990131; x=1815526131;
+ t=1783990133; x=1815526133;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2p1e+0/kQsrbX3aAbIh+7M0KeCT7G8ff28kZvW6ti9A=;
- b=ZXmQXcaOu0ijo+SbvHR3E+XGeTLVmdICE51mEXOAFZLvG8bOaAlTVvYy
- QD+T6tju5QsZkddKlITcVUen6OCft9Tt3DYTcv0i/U+19bhSBYOTDxe/A
- q3tl6UB/4R/clIzFzSEc4jFJilwUfqHu0Oll7Lg0ga2rQNnHKQqQKuBLg
- 3ZowWgkBcGJPFb6oWriv3NS63t/6Pq9QBCKaYPN4VM8rLc0xNT/VdG8Ew
- 755xKHSp+39nwV16I+C5Lx25YU2S7aceVT1EvEoQn4lzn+zNoD1AkZrm9
- 8c4zC5g1G7Z8Iq1hsCtQonrJF/gxnL7DcQsFeNzo+oxI/Dmj0d8WJ8xoB w==;
-X-CSE-ConnectionGUID: cgPi/121S2CBzhokxmP0aA==
-X-CSE-MsgGUID: t5H77u4BT3qPHjfmkaqKPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="72130911"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="72130911"
+ bh=OQVeCZyg3Fj174yzKRQ3wmO7Ta21rxyBs2ovU+uE5ew=;
+ b=nxfoXv93m5SYbPNQkZW/wdgvHXw/QhP7ITNJ8GuqVaGnD5d/mAN+9zFQ
+ bw2QphVPd+DnbOt6f03iAm7jO9KcPSHzRJD7+M1mBNRjQasq+NZ1Ud5AP
+ EcLA9iSleKVxc0WToPIZ00VJq1sgrbk46IAvcP0ralqEcPkGciFxWqPLB
+ LVBjtohPXRcsE4iJVjSNJNleVSZKtzZxl7oHDH4IC6tdTMONQWHOFtFb3
+ G/pxzg+vgphZdglE7Zn6iKeUmzypb+2XUSkH4GLvQO8YH7neBdJx6Twt+
+ TurDdRULF63SheZWBkSJkpL5yLnPDbD69pJeuzAl9PqkWRavAmK+wkdYc w==;
+X-CSE-ConnectionGUID: w8PkVgLYTZWvL2K2aspY0Q==
+X-CSE-MsgGUID: +ll/3MWNRUOoiB5CWfRhlA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="72130913"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="72130913"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 17:48:51 -0700
-X-CSE-ConnectionGUID: pM6nKy6VR0K8g38KynDc9Q==
-X-CSE-MsgGUID: wddePkRJQq+95elr2PU72w==
+ 13 Jul 2026 17:48:53 -0700
+X-CSE-ConnectionGUID: Sbs9s4mzRleXtBjO5kFYPA==
+X-CSE-MsgGUID: FgWEcvlnQjSwtwmM9PODxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="260583033"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="260583038"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
- by fmviesa005.fm.intel.com with ESMTP; 13 Jul 2026 17:48:51 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 13 Jul 2026 17:48:53 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 1/2] drm/xe: Use IBC v3 on PTL
-Date: Mon, 13 Jul 2026 17:43:58 -0700
-Message-Id: <20260714004359.3905038-2-vinay.belgaumkar@intel.com>
+Subject: [PATCH v3 2/2] drm/xe: Add debugfs for IA/GT bias
+Date: Mon, 13 Jul 2026 17:43:59 -0700
+Message-Id: <20260714004359.3905038-3-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20260714004359.3905038-1-vinay.belgaumkar@intel.com>
 References: <20260714004359.3905038-1-vinay.belgaumkar@intel.com>
@@ -66,50 +67,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Intelligent Bias Control (IBC) v3 algorithm in GuC has PTL specific
-optimizations. This version selection param is only available GuC 70.48.0
-onwards.
+GT_IA_PERF_BIAS_REG indicates power budget between IA and GT.
+Lower 16 bits correspond to IA and upper to GT. Higher value
+indicates more bias towards that plane. The values are in U1.15
+format.
 
+$ cat /sys/kernel/debug/dri/0/gt0/ia_gt_bias
+0x80004000 (GT: 1.000, IA: 0.500)
+
+This interface will allow us to observe power budget changes while
+running workloads and also, if needed, tune it.
+
+v3: Add a helper function for U1.15 decode (Michal)
+
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h | 1 +
- drivers/gpu/drm/xe/xe_guc_pc.c                | 9 +++++++++
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  4 ++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   | 70 +++++++++++++++++++++++++++-
+ 2 files changed, 73 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-index ce5c59517528..57baa68bcba4 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-@@ -119,6 +119,7 @@ enum slpc_param_id {
- 	SLPC_PARAM_STRATEGIES = 26,
- 	SLPC_PARAM_POWER_PROFILE = 27,
- 	SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY = 28,
-+	SLPC_PARAM_SET_IBC_VERSION = 29,
- 	SLPC_MAX_PARAM = 32,
- };
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 08251c7a1a4b..4f1404c6c209 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -634,6 +634,10 @@
+ #define GT_GFX_RC6_LOCKED			XE_REG(0x138104)
+ #define GT_GFX_RC6				XE_REG(0x138108)
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 59f2fa79ad42..0d55d6b00cd9 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -1236,6 +1236,15 @@ static int pc_modify_defaults(struct xe_guc_pc *pc)
- 		ret = pc_action_set_dcc(pc, false);
- 		if (unlikely(ret))
- 			xe_gt_err(gt, "Failed to modify DCC default: %pe\n", ERR_PTR(ret));
++#define GT_IA_PERF_BIAS_REG			XE_REG(0x138158)
++#define   GT_BIAS				REG_GENMASK(31, 16)
++#define   IA_BIAS				REG_GENMASK(15, 0)
 +
-+		if (xe_gt_is_main_type(gt) &&
-+		    GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 48, 0)) {
-+			ret = pc_action_set_param(pc,
-+						  SLPC_PARAM_SET_IBC_VERSION,
-+						  3);
-+			if (unlikely(ret))
-+				xe_gt_err(gt, "Failed to modify IBC version: %pe\n", ERR_PTR(ret));
-+		}
- 	}
+ #define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
+ /* Common performance limit reason bits - available on all platforms */
+ #define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index c38bcacb27e4..f9230b3427d0 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
  
- 	return ret;
++#include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+@@ -22,6 +23,7 @@
+ #include "xe_guc_hwconfig.h"
+ #include "xe_hw_engine.h"
+ #include "xe_lrc.h"
++#include "xe_mmio.h"
+ #include "xe_mocs.h"
+ #include "xe_pat.h"
+ #include "xe_pm.h"
+@@ -336,6 +338,70 @@ static int force_reset_sync_show(struct seq_file *s, void *unused)
+ }
+ DEFINE_SHOW_STORE_ATTRIBUTE(force_reset_sync);
+ 
++#define U1_15_MAX		0x8000
++#define U1_15_INT_BIT		REG_BIT(15)
++#define U1_15_FRACTION_BITS	REG_GENMASK(14, 0)
++
++static void decode_u1_15_value(u16 num, u16 *whole, u32 *frac)
++{
++	u16 frac_bits;
++
++	/* Uppermost bit is integer value */
++	*whole = num & U1_15_INT_BIT ? 1 : 0;
++
++	/* Rest are fraction bits */
++	frac_bits = REG_FIELD_GET(U1_15_FRACTION_BITS, num);
++
++	/* Up to 3 decimal places */
++	*frac = ((u32)frac_bits * 1000) / U1_15_MAX;
++}
++
++static int ia_gt_bias_show(struct seq_file *s, void *unused)
++{
++	struct xe_gt *gt = s->private;
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 val;
++	u32 ia_frac, gt_frac;
++	u16 ia_raw, gt_raw;
++	u16 ia_int, gt_int;
++
++	guard(xe_pm_runtime)(xe);
++	val = xe_mmio_read32(&gt->mmio, GT_IA_PERF_BIAS_REG);
++
++	ia_raw = REG_FIELD_GET(IA_BIAS, val);
++	gt_raw = REG_FIELD_GET(GT_BIAS, val);
++
++	decode_u1_15_value(ia_raw, &ia_int, &ia_frac);
++	decode_u1_15_value(gt_raw, &gt_int, &gt_frac);
++
++	seq_printf(s, "0x%x (GT: %u.%03u, IA: %u.%03u)\n",
++		   val, gt_int, gt_frac, ia_int, ia_frac);
++
++	return 0;
++}
++
++static ssize_t ia_gt_bias_write(struct file *file,
++				const char __user *userbuf,
++				size_t count, loff_t *ppos)
++{
++	struct seq_file *s = file->private_data;
++	struct xe_gt *gt = s->private;
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 val;
++	int ret;
++
++	ret = kstrtou32_from_user(userbuf, count, 0, &val);
++	if (ret)
++		return ret;
++
++	guard(xe_pm_runtime)(xe);
++	xe_mmio_write32(&gt->mmio, GT_IA_PERF_BIAS_REG, val);
++
++	return count;
++}
++
++DEFINE_SHOW_STORE_ATTRIBUTE(ia_gt_bias);
++
+ void xe_gt_debugfs_register(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -368,7 +434,6 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 	debugfs_create_file("stats", 0600, root, gt, &stats_fops);
+ 	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
+ 	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
+-
+ 	drm_debugfs_create_files(vf_safe_debugfs_list,
+ 				 ARRAY_SIZE(vf_safe_debugfs_list),
+ 				 root, minor);
+@@ -378,6 +443,9 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 					 ARRAY_SIZE(pf_only_debugfs_list),
+ 					 root, minor);
+ 
++	if (xe_gt_is_main_type(gt) && !IS_DGFX(xe) && !IS_SRIOV_VF(xe))
++		debugfs_create_file("ia_gt_bias", 0600, root, gt, &ia_gt_bias_fops);
++
+ 	xe_uc_debugfs_register(&gt->uc, root);
+ 
+ 	if (IS_SRIOV_PF(xe))
 -- 
 2.38.1
 
