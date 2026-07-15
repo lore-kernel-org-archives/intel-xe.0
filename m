@@ -4,58 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08FD5C44508
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 15:03:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC10C44501
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 15:06:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAF6F10E141;
-	Wed, 15 Jul 2026 15:03:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B51010E141;
+	Wed, 15 Jul 2026 15:06:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nEBjD+2t";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aOLoj8Tj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D8CF10E141
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 15:03:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784127782; x=1815663782;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=lVXaKFl67cZ0lnecbeMXun199gyI+zRuFBgIPF9P47I=;
- b=nEBjD+2t21yWTszc4e0Ptz+dzA8VAF6840a2bKIrbTdOZwBCJow83fCT
- AnEEjXESGyWmyAe0jvNW4KJAI3923DC/C7cgzKYiZ41d4r+nPEE6ko8l1
- lDc8tK2qOvVKMRQc7o6KCc+mIECEX1ssyq0gT8xCQrAcgixKrFepjPF81
- EZ8aNoxj4QPiCZBv0//RWV6r78Y9ci06K3sDhg66Nr6UgyAREfCoc3+WX
- HOMAA9wUcEQTprRgJCo4AxdaqqUllqrlDWK1B3RuEfGJPebzP49743ugn
- bhUpyPyjGx8qZ/oaJdGu0KyYyo87NnA80ijIwQRecCPJi3sFBWExVp8La Q==;
-X-CSE-ConnectionGUID: PX749pHqTYuNH20f3uzQFg==
-X-CSE-MsgGUID: qaLrKJDsRdCE3AMlmHUzGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84726633"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="84726633"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 08:03:02 -0700
-X-CSE-ConnectionGUID: wZiCFLJ5TJSgyhlcB7jC7w==
-X-CSE-MsgGUID: PZDb59clRLyDnVwUq5CFxg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="254460277"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.131])
- ([10.245.244.131])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 08:03:01 -0700
-Message-ID: <b32d3a0f-e0d8-4aed-9a39-f3c317c33c3c@intel.com>
-Date: Wed, 15 Jul 2026 16:02:58 +0100
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A58310E141
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 15:06:33 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 369C240213
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 15:06:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B8761F00A3F
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 15:06:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1784127993;
+ bh=Fq3EApb3mdMsCrCnwSH+pp0h1+urKkk6TgufwcsavTA=;
+ h=From:In-Reply-To:References:Date:Subject:To:Cc;
+ b=aOLoj8Tj2RQN5x1dDzawSawtdyB9nPVBhVa7WtniQPYpMDe/SryaWchW1ZkWdsCuP
+ gbSf6YlKessyGwU3ovN3KqV94StcTiS1D/XLOY7r8T/p81mD4vZJo4AmPQTYrXwQ79
+ gfvTo500lBQaE9zha/uoIJs1LpXdByVs+k+CChcHO3lnbDKWhmtMdszYEORsrgwwCw
+ R6HRos61VfXcvcPcS/c07lLC2URwFx4BeiPOL20cCx+s0kxK/vZ1oUN7av1+gVdAqD
+ BNbGwrkrfLbMUAZTPhcJ/A+EvOuh6sE2ZlolfIwHDQZo0RBxS7BQLBQxf1OukeyhXE
+ Xhz8tUI8jzHDw==
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-5aeb24c0807so4241917e87.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 08:06:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rrq1+AzM8Nr6AAgQWdHICAGlFYs4O6jomAwDvSE0O7zYKsZy8ho3SKKlhN4qw0cg/ThzBy9wan0sw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyEer/ZP5cZ47mIM/HjQdlkqgfiUeQYxNEiBLtETcxzoMWX2Aqk
+ qbvxABI+/8m9+3h0FEENFMKLFgMtKLmqHSR6U0mtQRqDEQsOvXzyYylMQRAi7eSz3B2EpY1Q88n
+ BAtKA1zKncRWD9lJgbl1YSH4dhvtRopjVBOjcF6r1Cg==
+X-Received: by 2002:a05:6512:6185:b0:5b1:4fab:fbd4 with SMTP id
+ 2adb3069b0e04-5b159b8bbf7mr1391447e87.59.1784127991827; Wed, 15 Jul 2026
+ 08:06:31 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Jul 2026 10:06:30 -0500
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Jul 2026 10:06:30 -0500
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <CAMRc=MfOipGdiGXNgVrJVO8QOivQ-=8k3sX-nMfTS0DvdZcFnw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] xe/userptr: TLB invalidation new pm_runtime ref before
- submit
-To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20260715140133.1811959-1-dnyaneshwar.bhadane@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260715140133.1811959-1-dnyaneshwar.bhadane@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260713-swnode-remove-on-dev-unreg-v7-0-6d6bc448427a@oss.qualcomm.com>
+ <20260713-swnode-remove-on-dev-unreg-v7-3-6d6bc448427a@oss.qualcomm.com>
+ <DJXNZLE3L756.K5DYSTKM1UHT@kernel.org>
+ <CAMRc=MfOipGdiGXNgVrJVO8QOivQ-=8k3sX-nMfTS0DvdZcFnw@mail.gmail.com>
+Date: Wed, 15 Jul 2026 10:06:30 -0500
+X-Gmail-Original-Message-ID: <CAMRc=MeXwaRSDJYKeoM6PfqWqRPh9KCMF8HATFvaTWUf6N6GYA@mail.gmail.com>
+X-Gm-Features: AUfX_myDholJDSN2cDMXGUzfVzc3qcKtFWO9_fcTJk6A17fI1HiyRxBYBU-_K18
+Message-ID: <CAMRc=MeXwaRSDJYKeoM6PfqWqRPh9KCMF8HATFvaTWUf6N6GYA@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] driver core: platform: unify release path
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, platform-driver-x86@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, driver-core@lists.linux.dev, 
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Danilo Krummrich <dakr@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,43 +85,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 15/07/2026 15:01, Dnyaneshwar Bhadane wrote:
-> Take a proper runtime PM reference before TLB invalidation.
-> The MMU notifier path has no outer xe_pm_runtime_get()
-> protection, but xe_tlb_inval_fence_init() called from
-> xe_vm_invalidate_vma_submit() uses xe_pm_runtime_get_noresume()
-> which requires an existing reference. The fence itself will
-> hold its own noresume ref until it signals.
+On Wed, 15 Jul 2026 15:52:07 +0200, Bartosz Golaszewski <brgl@kernel.org> said:
+> On Mon, 13 Jul 2026 20:45:13 +0200, Danilo Krummrich <dakr@kernel.org> said:
+>> On Mon Jul 13, 2026 at 5:11 PM CEST, Bartosz Golaszewski wrote:
+>>
+>> So, either we have to special case platform_device_set_of_node() too (for the
+>> case that a swnode is set already), or just require that the function must only
+>> be called when no node has been set, as all users already do; I'd go for the
+>> latter.
+>
+> This sounds good too and it should be easy to implement another test case while
+> at it.
 
-Is this fixing a real issue? Do you have a link to a bug report or a splat?
+Oh but wouldn't that require us to introduce an integer return value for these
+functions? Or are you talking about simply updating the API contract?
 
-I think fault_mode implies LR, and LR vm is always holding an RPM ref 
-until destroyed?
+I think calling device_remove_software_node() on
+is_software_node(dev_fwnode(dev)) in platform_device_set_fwnode() be enough
+to handle that case, right?
 
-> 
-> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_userptr.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-> index 1d2ab678faf5..fc7e4b00fe17 100644
-> --- a/drivers/gpu/drm/xe/xe_userptr.c
-> +++ b/drivers/gpu/drm/xe/xe_userptr.c
-> @@ -8,6 +8,7 @@
->   
->   #include <linux/mm.h>
->   
-> +#include "xe_pm.h"
->   #include "xe_tlb_inval.h"
->   #include "xe_trace_bo.h"
->   
-> @@ -103,6 +104,7 @@ xe_vma_userptr_do_inval(struct xe_vm *vm, struct xe_userptr_vma *uvma, bool is_d
->   	XE_WARN_ON(err <= 0);
->   
->   	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
-> +		guard(xe_pm_runtime)(vm->xe);
->   		if (!userptr->finish_inuse) {
->   			/*
->   			 * Defer the TLB wait to an extra pass so the caller
-
+Bart
