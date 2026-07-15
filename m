@@ -4,65 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC00AC44501
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 11:55:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67FCCC44501
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 12:01:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 979AA10E18F;
-	Wed, 15 Jul 2026 11:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0C310F015;
+	Wed, 15 Jul 2026 12:01:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ciBaqtog";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HFGeABX4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C49D10E18F
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 11:55:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 589A010F008;
+ Wed, 15 Jul 2026 12:01:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784116516; x=1815652516;
+ t=1784116911; x=1815652911;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=NiI3H4QRbyjalnLO2FOTr0Npjt27DSj0yNz1CRgg7PU=;
- b=ciBaqtogFsLYqG2eILKVjBRVNBASQGvg8HH97YxUSIZggIFhNeoCxNtG
- 8tKkhJTO/0FWXkDP52yNcNzAMubQGBpPOl3BxjLoS8hfkX7vc4ZIY3v5M
- bYwDaiu097VEDrhfFvNtVDSZSp9tUpFzwsU2M2KJBcLOWQ3d5pZAKuYb3
- 1OyIpmARXlGk/4Mea0JugvYUs64kUWEjRbtx+GQpXugMr3noOdvbotcLC
- 8bWGoWSAC5vSVAnzY2uSDdfawszMM1vTNkYuIOSQ5h1wz3vzOcIbXy2H6
- 5mNXBOHC8GidjjSKODJJ7hGDIYZTi8MBQqzCYcUdGGJbMtyvo8NUzdjND A==;
-X-CSE-ConnectionGUID: aqlBE7P9TcupqZdRyLO0yw==
-X-CSE-MsgGUID: yp0E/1unSTiUhnFWaybBFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84776859"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="84776859"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 04:55:14 -0700
-X-CSE-ConnectionGUID: ORXn5ai7RfmdyHT/uP2wSA==
-X-CSE-MsgGUID: Vu7QXx7TSLyLxbnbwisE6Q==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=uivZYnE12vtDVX4iYR5SdSwylcLoYWBxL3vJpSj3ZnQ=;
+ b=HFGeABX4AHTVSGppRo1L7Fm14XpK6J/ncobw3NTGwjm5+bQIfqtCevLG
+ gEpUcZhAZ5sRKh8ufyp0MGWhQ57HAWVT2T/W2x+mkz8yW0mNCVkDS0hTI
+ 7L9rPQzRvvNMqGDF9b+pMCGVfCd98B8iJHNbKTnTMBchwle9oCvRNmVo/
+ OERhDlRL2zl6fbSbFDgrxobrcJx3PxtE9P4N9VhB28CI4bdrvb9sKPYxi
+ Z74/MkEGFoQOEXgodDTsUvSxjskd2T8h0CoWxIZkooJzEz/uRAyrP6NaQ
+ H+Ah6SFUEuav5IqGixlj8geD8bLRw2lLb88T5lVb2+n6kbsRa5/lQxO2a w==;
+X-CSE-ConnectionGUID: cXUorF0uTuuJxQDaDtqdzg==
+X-CSE-MsgGUID: HmD7OGpdSoqZ7RMA1ufKZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="72282099"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="72282099"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:01:50 -0700
+X-CSE-ConnectionGUID: 39d1d3RzRyG+j4fwVdKvEw==
+X-CSE-MsgGUID: pDUR51TjTRGxFgUZkhcuWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="261067409"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 04:55:11 -0700
-Date: Wed, 15 Jul 2026 13:55:08 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Ramesh Babu B <ramesh.babu.b@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] drm/xe/i2c: Fix the interrupt handling
-Message-ID: <ald1HG6KzjWb9CUK@black.igk.intel.com>
-References: <20260713155601.711389-1-heikki.krogerus@linux.intel.com>
- <20260713155601.711389-3-heikki.krogerus@linux.intel.com>
- <alcoDtq2aul-tA_h@black.igk.intel.com> <aldYjL2pxA7QxoLN@kuha>
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="259748816"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.168])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:01:47 -0700
+Date: Wed, 15 Jul 2026 15:01:44 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Uma Shankar <uma.shankar@intel.com>,
+ Leandro Ribeiro <leandro.ribeiro@collabora.com>
+Subject: Re: [PATCH] drm/i915/display: expose blend mode on alpha-capable
+ planes
+Message-ID: <ald2qKro09WTer7_@intel.com>
+References: <20260715054221.451421-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <aldYjL2pxA7QxoLN@kuha>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260715054221.451421-1-chaitanya.kumar.borah@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,115 +74,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jul 15, 2026 at 12:53:16PM +0300, Heikki Krogerus wrote:
-> On Wed, Jul 15, 2026 at 08:26:22AM +0200, Raag Jadav wrote:
-> > On Mon, Jul 13, 2026 at 05:56:00PM +0200, Heikki Krogerus wrote:
-> > > The platforms that support the interrupt from the I2C
-> > > adapter can not handle the amount of interrupts the adapter
-> > > generates because of the way the IRQ is routed in the
-> > > hardware. The I2C controller driver has to be kept in
-> > > polling mode because of that.
-> > > 
-> > > The AMC MCU can still generate critical alerts that have to
-> > > be handled. The interrupt from SMBus Alert is left enabled
-> > > and handled separately in the Xe. The alerts from the AMC
-> > > will cause the device to be declared wedged for now.
-
-...
-
-> > > +	    memcmp(&response.message, &request->message, sizeof(struct amc_message))) {
-> > > +		dev_err(&client->dev, "response does not match the request\n");
-
-Forgot add, use drm_*() variants where possible.
-
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	if (response.error) {
-> > > +		dev_err(&client->dev, "AMC error 0x%02x\n", response.error);
-
-Ditto.
-
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	dev_dbg(&client->dev, "%s: Alert reason: %d\n", __func__, response.value);
-
-Ditto.
-
-> > See below [1].
-> > 
-> > > +	switch (response.value) {
-> > > +	case AMC_ALERT_FW_DOWNLOAD:
-> > > +	case AMC_ALERT_THERMAL_TRIP:
-> > > +	case AMC_ALERT_OOB_REQUEST:
-> > > +	case AMC_ALERT_OOB_RESET:
-> > > +	case AMC_ALERT_CATERR:
-> > > +		xe_device_declare_wedged(i2c_client_to_xe_device(client));
-> > > +		break;
-> > > +	default:
-> > > +		break;
-> > > +	}
-> > > +}
-> > 
-> > ...
-> > 
-> > > @@ -181,8 +187,7 @@ void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
-> > >  	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
-> > >  		return;
-> > >  
-> > > -	/* Forward interrupt to I2C adapter */
-> > > -	generic_handle_irq_safe(xe->i2c->adapter_irq);
-> > > +	xe_i2c_handle_smbus_alert(xe->i2c);
-> > 
-> > [1] Can we move the below re-assert code to wq now? Or do you suspect any
-> > side-effects?
+On Wed, Jul 15, 2026 at 11:12:21AM +0530, Chaitanya Kumar Borah wrote:
+> Since commit 860e748bddcc ("drm: ensure blend mode supported if pixel
+> format with alpha exposed"), drm_mode_config_validate() warns when a
+> plane exposes an alpha pixel format but not the "pixel blend mode"
+> property. The cursor (ARGB8888, all platforms) and the VLV/CHV primary
+> and sprite planes trip this.
 > 
-> I think that you know this better than I do. But at this point
-> interrupt is cleared, so why should we wait for the wq?
-
-When does AMC clear the alert signal? Is it when you query from the wq?
-If the answer is yes, there's a possibility we might end up with an
-interrupt storm here.
-
-> To play it safe, can we change this as a followup if necessary?
-
-Sure, I'll leave it to you.
-
-> > >  	/* Deassert after I2C adapter clears the interrupt */
-> > >  	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
-> > > @@ -212,45 +217,6 @@ void xe_i2c_irq_postinstall(struct xe_device *xe)
-> > >  	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, PCI_COMMAND_INTX_DISABLE, 0);
-> > >  }
-> > 
-> > ...
-> > 
-> > > -#define XE_I2C_MAX_CLIENTS		3
-> > > -
-> > >  #define XE_I2C_EP_COOKIE_DEVICE		0xde
-> > >  
-> > >  /* Endpoint Capabilities */
-> > >  #define XE_I2C_EP_CAP_IRQ		BIT(0)
-> > >  
-> > > +enum XE_I2C_CLIENT {
-> > > +	XE_I2C_CLIENT_AMC,
-> > > +	XE_I2C_MAX_CLIENTS = 3,
-> > 
-> > I know it was already like this but I probably missed why do we have 3
-> > (atleast from driver POV)?
+> Userspace has historically assumed premultiplied blending when the
+> property is not attached, so it is safe to assume that planes that
+> did not expose the property already blended with fixed pre-multiplied
+> alpha in hardware. Therefore, expose a "pixel blend mode" property
+> advertising only DRM_MODE_BLEND_PREMULTI to match that assumption and
+> silence the warning. The cursor call is unconditional; the primary and
+> sprite calls are gated to VLV/CHV, the only platforms whose format lists
+> include alpha formats.
 > 
-> That is the maximum number of clients these platforms can support.
-> The AMC address is actually at a fixed offset 1. I'll change this so
-> that XE_I2C_CLIENT_AMC matches the offset:
-> 
-> enum XE_I2C_CLIENT {
-> 	XE_I2C_CLIENT_AMC = 1,
-> 	XE_I2C_MAX_CLIENTS = 3,
-> };
-> 
-> That probable makes this a bit more clear (right?).
+> Assisted-by: Claude:claude-opus-4-8
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Leandro Ribeiro <leandro.ribeiro@collabora.com>
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16623
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-With that I think these can be used as ep.addr[] indexes as well, but
-I'll leave them at your mercy.
+https://lore.kernel.org/intel-gfx/20260522194935.27411-1-ville.syrjala@linux.intel.com/
 
-Raag
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_plane.c   | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
+>  drivers/gpu/drm/i915/display/intel_sprite.c | 4 ++++
+>  3 files changed, 11 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> index 70734d32a409..490908f59141 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -1108,6 +1108,10 @@ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+>  						   DRM_MODE_ROTATE_0,
+>  						   supported_rotations);
+>  
+> +	if (display->platform.valleyview || display->platform.cherryview)
+> +		drm_plane_create_blend_mode_property(&plane->base,
+> +						     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = 0;
+>  	drm_plane_create_zpos_immutable_property(&plane->base, zpos);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index 88384dea868b..0673f16f6fd0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -1078,6 +1078,9 @@ intel_cursor_plane_create(struct intel_display *display,
+>  
+>  	intel_cursor_add_size_hints_property(cursor);
+>  
+> +	drm_plane_create_blend_mode_property(&cursor->base,
+> +					     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = DISPLAY_RUNTIME_INFO(display)->num_sprites[pipe] + 1;
+>  	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index 6a65f92e8a03..3e38960bbbd8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -1722,6 +1722,10 @@ intel_sprite_plane_create(struct intel_display *display,
+>  					  DRM_COLOR_YCBCR_BT709,
+>  					  DRM_COLOR_YCBCR_LIMITED_RANGE);
+>  
+> +	if (display->platform.valleyview || display->platform.cherryview)
+> +		drm_plane_create_blend_mode_property(&plane->base,
+> +						     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = sprite + 1;
+>  	drm_plane_create_zpos_immutable_property(&plane->base, zpos);
+>  
+> -- 
+> 2.25.1
+
+-- 
+Ville Syrjälä
+Intel
