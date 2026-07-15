@@ -4,61 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15D7C4452E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8069FC4452A
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:05:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BF1010F620;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2523D10F61C;
 	Fri, 17 Jul 2026 21:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="Zf7EijZL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R+BujgxB";
 	dkim-atps=neutral
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41EC410E393;
- Thu, 16 Jul 2026 17:18:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1784221779;
- bh=Jqeaf0RHmFHchKboHfe8TOAt/Yn8lf+aa6AK+WDbCKg=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=Zf7EijZLkQo1v/bOfZjO64Vgr+61+x6LOIbk2F2XVPt5NpNS+YOEfZVMKvO/LrAkw
- EBxR+ewG2SeKkW5VnXE7Sm+hZERYjnDJzC593yzsaMvY6Skp6clnL4wXYs4Zu0hpRW
- JONccwxIld905RKugoIEfKUTCnijiWpKNkeKYTho=
-From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Date: Thu, 16 Jul 2026 19:09:31 +0200
-Subject: [PATCH 6/6] samples: configfs: constify the configfs_attribute
- structures
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E0910F10E
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 18:16:00 +0000 (UTC)
+Received: by mail-pj1-f45.google.com with SMTP id
+ 98e67ed59e1d1-38dc69c74b8so3992687a91.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 11:16:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1784139360; x=1784744160; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:user-agent
+ :references:in-reply-to:message-id:date:cc:to:from:subject:from:to
+ :cc:subject:date:message-id:reply-to:content-type;
+ bh=PtG97ghw8TeTsbq/X2mfNjjQ8OBxNKf1PEUnxppKus0=;
+ b=R+BujgxBHItvsjC/BZJFiYPCe965IkbW8aTDbI4yBvPq3hdXM9Liab5FW1EtnyHXRv
+ n+7kpkLgRVfezf9KZ43DitG0kkqS4Ck14lQwwxTiLYMwQRVp6M1LKz1gMSYZS/YeSqb7
+ MDNMxL3Qsv18tRYAis9GeYANIjR1CMC/++NLCbFmJL4G9MFHs8rO56hR47NjGZ6udNYC
+ bew/F6AYHvP9XZdCSJ0XkIYK0u0A9dHDR8gTcd1RlNaaWc/5ts/pCIlfSOT56OaJu5Bc
+ F9HglCjB5k6jZYVyujrHhc4OGnFWnzZ7G6c0s6tE5qHT1q9IwJlBpT/+VfoKE/ZxXWQY
+ pwMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1784139360; x=1784744160;
+ h=content-transfer-encoding:content-type:mime-version:user-agent
+ :references:in-reply-to:message-id:date:cc:to:from:subject:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=PtG97ghw8TeTsbq/X2mfNjjQ8OBxNKf1PEUnxppKus0=;
+ b=VHa33XpJH9uU4YYkQ34zc9J+tHoqAHJ/kj8is6Y/FNi0PWqTuzYJNfArkY9cpS0+NY
+ MT17pPsWYivTCcWXhhe2rd6fXsklv8hnI2FzStWyIs5Du4nbW9DszlSCIy2XCjzlZTAW
+ jHmaKrp+Dfz9t/cqimVV+E850SxOC/IxZg44AQ5r3FQZ68OpW4MY/4JG6kH2ZFt1Lr8i
+ 7fq91HcV5ucfml33WHj9tLAR1eZ05DNbB3wzq5Fuki/oMSszl1hNlJan4uQsowB0ZUct
+ Sd5YztLfT6VJMRNSTOKsowP0ApuALMHBQWJ2ZS/8GraF783bBmktcfO/1KxvOMyNeHeX
+ mruA==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqTPrdOHbgDFMXF2huiDzNjerfE7zZDVA7XOqMxkPIOYRRDiScrO9E+wXrHfsKSIVLeYbyBleySBw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwgcyXxiBS2YYxI9eu8JCLNeAlPvDqBVeeyNyJ1rUQBfWim0WJ8
+ yyf/YzvHLkciYlSU2XHbNSTMl93iCkCvzz2bp2DRWfW5gqRAyqkQ8vD9
+X-Gm-Gg: AfdE7cnl7qUGU2Uqa6hfEFcij/t/o9ebhA8WSAdq+yDExV6SKjwHb+Nat9s3g5riARD
+ Vf+WdR5WWxKLArOHBO8nz4Urnn5yTMeF90VWoKhb8jM/KiRnahM2tBY5veG2V9q8kBlbuYkL0xS
+ dccVYdq+XcnsDzbLV+ie8398w3Bwcav/QkoCDRQMzBOFyRo4jIjeeqDUZ0grIB7egl/FcRVQ3GH
+ GC6xLhBbb0TTWvRo1ehhS8L3+HLrfyTwEmlSNZpoGW41pbo6TKrkkulsbNq1DNvot/BXltz1vyH
+ xaDZL+nK2IR9AStJ6ayyMTRxew8K4fKZ3X9xm8gAuY2O0qCc+C5DAFbWQG6py4In7bLeB0u1tz2
+ k19zhDUErTiyNaGWSYTaJf9o/qZi0y6wzqVg+LCE+UV9z9Ogfvbx/AwooLdsh4h0INcvIWUE4wU
+ hVh1UgIKoLKFVz+IoD1zkgNmqRfp7u5R+DExKo4Lbd2aquPcArIFeqD1jrHEY=
+X-Received: by 2002:a17:90b:2645:b0:37e:1430:769b with SMTP id
+ 98e67ed59e1d1-38e2a0c3c4amr3028190a91.24.1784139360154; 
+ Wed, 15 Jul 2026 11:16:00 -0700 (PDT)
+Received: from [192.168.0.160] (c-98-225-44-182.hsd1.wa.comcast.net.
+ [98.225.44.182]) by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-38e39e5e176sm7928a91.13.2026.07.15.11.15.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Jul 2026 11:15:59 -0700 (PDT)
+Subject: [PATCH v9 1/8] mm/hmm: move page fault handling out of walk callbacks
+From: Stanislav Kinsburskii <skinsburskii@gmail.com>
+To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
+ corbet@lwn.net, dakr@kernel.org, david@kernel.org, decui@microsoft.com,
+ haiyangz@microsoft.com, jgg@ziepe.ca, kees@kernel.org, kys@microsoft.com,
+ leon@kernel.org, liam@infradead.org, lizhi.hou@amd.com, ljs@kernel.org,
+ longli@microsoft.com, lyude@redhat.com, maarten.lankhorst@linux.intel.com,
+ mamin506@gmail.com, mhocko@suse.com, mripard@kernel.org,
+ nouveau@lists.freedesktop.org, ogabbay@kernel.org, oleg@redhat.com,
+ rppt@kernel.org, shuah@kernel.org, simona@ffwll.ch,
+ skhan@linuxfoundation.org, skinsburskii@gmail.com, surenb@google.com,
+ tzimmermann@suse.de, vbabka@kernel.org, wei.liu@kernel.org,
+ skinsburskii@gmail.com
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-doc@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-rdma@vger.kernel.org
+Date: Wed, 15 Jul 2026 11:15:58 -0700
+Message-ID: <178413935809.1155966.6398279131483632373.stgit@skinsburskii>
+In-Reply-To: <178413903133.1155966.3904063656020521607.stgit@skinsburskii>
+References: <178413903133.1155966.3904063656020521607.stgit@skinsburskii>
+User-Agent: StGit/0.19
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260716-configfs-const-base-v1-6-c545a4053cb5@weissschuh.net>
-References: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
-In-Reply-To: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
-To: Andreas Hindborg <a.hindborg@kernel.org>, 
- Breno Leitao <leitao@debian.org>, Miguel Ojeda <ojeda@kernel.org>, 
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
- Daniel Almeida <daniel.almeida@collabora.com>, 
- Tamir Duberstein <tamird@kernel.org>, 
- Alexandre Courbot <acourbot@nvidia.com>, 
- =?utf-8?q?Onur_=C3=96zkan?= <work@onurozkan.dev>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Dan Williams <djbw@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-coco@lists.linux.dev, linux-acpi@vger.kernel.org, 
- =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784221778; l=3081;
- i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
- bh=Jqeaf0RHmFHchKboHfe8TOAt/Yn8lf+aa6AK+WDbCKg=;
- b=7bDJtJqi2GwzcclrqO13otP/cHLvBoTe7MLJ8jjBiXrkkJXi3AfXGL9BGkA/sJ1Ohf1Di9KIa
- GwLutWLJ9x8AjIIoXiPjTXSpZ30RE48fGviKUafVk3UIuY78ChApoyH
-X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
- pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 17 Jul 2026 21:05:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,90 +103,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To show that the transition machinery works, constify the sample code.
+hmm_range_fault() currently triggers page faults from inside the page-table
+walk callbacks: hmm_vma_walk_pmd(), hmm_vma_walk_pud(),
+hmm_vma_walk_hugetlb_entry() and the pte-level helper all call
+hmm_vma_fault(), which in turn calls handle_mm_fault() while the walker
+still holds nested locks.  The pte spinlock is dropped explicitly by each
+caller, and the hugetlb path manually drops and retakes
+hugetlb_vma_lock_read around the fault to dodge a deadlock against the walk
+framework's unconditional unlock.
 
-Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
+This layering does not extend cleanly to fault handlers that may release
+mmap_lock (VM_FAULT_RETRY, VM_FAULT_COMPLETED). If the lock is dropped
+while walk_page_range() is mid-traversal, the VMA can be freed before the
+walk framework's matching hugetlb_vma_unlock_read(), turning that unlock
+into a use-after-free.
+
+Split the responsibilities the way get_user_pages() does. Walk callbacks
+become inspect-only: when they detect a range that needs to be faulted in,
+they record it in struct hmm_vma_walk and return a private sentinel
+(HMM_FAULT_PENDING). The outer loop in hmm_range_fault() then drops out of
+walk_page_range(), invokes a new helper hmm_do_fault() that calls
+handle_mm_fault() with only mmap_lock held, and restarts the walk so the
+now-present entries are collected into hmm_pfns.
+
+No functional change for existing callers. As a side effect the hugetlb
+callback no longer needs the hugetlb_vma_{un}lock_read dance, and every
+fault-path exit from the callbacks now releases the pte spinlock on a
+single, common path. This refactor is also a precursor for adding an
+unlockable variant of hmm_range_fault() in a follow-up patch.
+
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
 ---
- samples/configfs/configfs_sample.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ mm/hmm.c |  118 +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 75 insertions(+), 43 deletions(-)
 
-diff --git a/samples/configfs/configfs_sample.c b/samples/configfs/configfs_sample.c
-index c1b108ec4ea0..9788ec9b8e30 100644
---- a/samples/configfs/configfs_sample.c
-+++ b/samples/configfs/configfs_sample.c
-@@ -84,7 +84,7 @@ CONFIGFS_ATTR_RO(childless_, showme);
- CONFIGFS_ATTR(childless_, storeme);
- CONFIGFS_ATTR_RO(childless_, description);
- 
--static struct configfs_attribute *childless_attrs[] = {
-+static const struct configfs_attribute *const childless_attrs[] = {
- 	&childless_attr_showme,
- 	&childless_attr_storeme,
- 	&childless_attr_description,
-@@ -92,7 +92,7 @@ static struct configfs_attribute *childless_attrs[] = {
+diff --git a/mm/hmm.c b/mm/hmm.c
+index e5c1f4deed24..bc9361a715fa 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -33,8 +33,17 @@
+ struct hmm_vma_walk {
+ 	struct hmm_range	*range;
+ 	unsigned long		last;
++	unsigned long		end;
++	unsigned int		required_fault;
  };
  
- static const struct config_item_type childless_type = {
--	.ct_attrs	= childless_attrs,
-+	.ct_attrs_const	= childless_attrs,
- 	.ct_owner	= THIS_MODULE,
++/*
++ * Internal sentinel returned by walk callbacks when they need a page fault.
++ * The callback stores end/required_fault in hmm_vma_walk; the outer loop
++ * consumes the sentinel and never propagates it to the caller.
++ */
++#define HMM_FAULT_PENDING	-EAGAIN
++
+ enum {
+ 	HMM_NEED_FAULT = 1 << 0,
+ 	HMM_NEED_WRITE_FAULT = 1 << 1,
+@@ -60,37 +69,25 @@ static int hmm_pfns_fill(unsigned long addr, unsigned long end,
+ }
+ 
+ /*
+- * hmm_vma_fault() - fault in a range lacking valid pmd or pte(s)
+- * @addr: range virtual start address (inclusive)
+- * @end: range virtual end address (exclusive)
+- * @required_fault: HMM_NEED_* flags
+- * @walk: mm_walk structure
+- * Return: -EBUSY after page fault, or page fault error
++ * hmm_record_fault() - record a range that needs to be faulted in
+  *
+- * This function will be called whenever pmd_none() or pte_none() returns true,
+- * or whenever there is no page directory covering the virtual address range.
++ * Called by the walk callbacks when they discover that part of the range
++ * needs a page fault.  The callback records what to fault and returns
++ * HMM_FAULT_PENDING; the outer loop in hmm_range_fault() drops back out of
++ * walk_page_range() and invokes handle_mm_fault() from a context where no
++ * page-table or hugetlb_vma_lock is held.
+  */
+-static int hmm_vma_fault(unsigned long addr, unsigned long end,
+-			 unsigned int required_fault, struct mm_walk *walk)
++static int hmm_record_fault(unsigned long addr, unsigned long end,
++			    unsigned int required_fault,
++			    struct mm_walk *walk)
+ {
+ 	struct hmm_vma_walk *hmm_vma_walk = walk->private;
+-	struct vm_area_struct *vma = walk->vma;
+-	unsigned int fault_flags = FAULT_FLAG_REMOTE;
+ 
+ 	WARN_ON_ONCE(!required_fault);
+ 	hmm_vma_walk->last = addr;
+-
+-	if (required_fault & HMM_NEED_WRITE_FAULT) {
+-		if (!(vma->vm_flags & VM_WRITE))
+-			return -EPERM;
+-		fault_flags |= FAULT_FLAG_WRITE;
+-	}
+-
+-	for (; addr < end; addr += PAGE_SIZE)
+-		if (handle_mm_fault(vma, addr, fault_flags, NULL) &
+-		    VM_FAULT_ERROR)
+-			return -EFAULT;
+-	return -EBUSY;
++	hmm_vma_walk->end = end;
++	hmm_vma_walk->required_fault = required_fault;
++	return HMM_FAULT_PENDING;
+ }
+ 
+ static unsigned int hmm_pte_need_fault(const struct hmm_vma_walk *hmm_vma_walk,
+@@ -174,7 +171,7 @@ static int hmm_vma_walk_hole(unsigned long addr, unsigned long end,
+ 		return hmm_pfns_fill(addr, end, range, HMM_PFN_ERROR);
+ 	}
+ 	if (required_fault)
+-		return hmm_vma_fault(addr, end, required_fault, walk);
++		return hmm_record_fault(addr, end, required_fault, walk);
+ 	return hmm_pfns_fill(addr, end, range, 0);
+ }
+ 
+@@ -209,7 +206,7 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk, unsigned long addr,
+ 	required_fault =
+ 		hmm_range_need_fault(hmm_vma_walk, hmm_pfns, npages, cpu_flags);
+ 	if (required_fault)
+-		return hmm_vma_fault(addr, end, required_fault, walk);
++		return hmm_record_fault(addr, end, required_fault, walk);
+ 
+ 	pfn = pmd_pfn(pmd) + ((addr & ~PMD_MASK) >> PAGE_SHIFT);
+ 	for (i = 0; addr < end; addr += PAGE_SIZE, i++, pfn++) {
+@@ -328,7 +325,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+ fault:
+ 	pte_unmap(ptep);
+ 	/* Fault any virtual address we were asked to fault */
+-	return hmm_vma_fault(addr, end, required_fault, walk);
++	return hmm_record_fault(addr, end, required_fault, walk);
+ }
+ 
+ #ifdef CONFIG_ARCH_HAS_PMD_SOFTLEAVES
+@@ -371,7 +368,7 @@ static int hmm_vma_handle_absent_pmd(struct mm_walk *walk, unsigned long start,
+ 					      npages, 0);
+ 	if (required_fault) {
+ 		if (softleaf_is_device_private(entry))
+-			return hmm_vma_fault(addr, end, required_fault, walk);
++			return hmm_record_fault(addr, end, required_fault, walk);
+ 		else
+ 			return -EFAULT;
+ 	}
+@@ -517,7 +514,7 @@ static int hmm_vma_walk_pud(pud_t *pudp, unsigned long start, unsigned long end,
+ 						      npages, cpu_flags);
+ 		if (required_fault) {
+ 			spin_unlock(ptl);
+-			return hmm_vma_fault(addr, end, required_fault, walk);
++			return hmm_record_fault(addr, end, required_fault, walk);
+ 		}
+ 
+ 		pfn = pud_pfn(pud) + ((addr & ~PUD_MASK) >> PAGE_SHIFT);
+@@ -564,21 +561,8 @@ static int hmm_vma_walk_hugetlb_entry(pte_t *pte, unsigned long hmask,
+ 	required_fault =
+ 		hmm_pte_need_fault(hmm_vma_walk, pfn_req_flags, cpu_flags);
+ 	if (required_fault) {
+-		int ret;
+-
+ 		spin_unlock(ptl);
+-		hugetlb_vma_unlock_read(vma);
+-		/*
+-		 * Avoid deadlock: drop the vma lock before calling
+-		 * hmm_vma_fault(), which will itself potentially take and
+-		 * drop the vma lock. This is also correct from a
+-		 * protection point of view, because there is no further
+-		 * use here of either pte or ptl after dropping the vma
+-		 * lock.
+-		 */
+-		ret = hmm_vma_fault(addr, end, required_fault, walk);
+-		hugetlb_vma_lock_read(vma);
+-		return ret;
++		return hmm_record_fault(addr, end, required_fault, walk);
+ 	}
+ 
+ 	pfn = pte_pfn(entry) + ((start & ~hmask) >> PAGE_SHIFT);
+@@ -637,6 +621,44 @@ static const struct mm_walk_ops hmm_walk_ops = {
+ 	.walk_lock	= PGWALK_RDLOCK,
  };
  
-@@ -148,7 +148,7 @@ static ssize_t simple_child_storeme_store(struct config_item *item,
- 
- CONFIGFS_ATTR(simple_child_, storeme);
- 
--static struct configfs_attribute *simple_child_attrs[] = {
-+static const struct configfs_attribute *const simple_child_attrs[] = {
- 	&simple_child_attr_storeme,
- 	NULL,
- };
-@@ -164,7 +164,7 @@ static const struct configfs_item_operations simple_child_item_ops = {
- 
- static const struct config_item_type simple_child_type = {
- 	.ct_item_ops	= &simple_child_item_ops,
--	.ct_attrs	= simple_child_attrs,
-+	.ct_attrs_const	= simple_child_attrs,
- 	.ct_owner	= THIS_MODULE,
- };
- 
-@@ -205,7 +205,7 @@ static ssize_t simple_children_description_show(struct config_item *item,
- 
- CONFIGFS_ATTR_RO(simple_children_, description);
- 
--static struct configfs_attribute *simple_children_attrs[] = {
-+static const struct configfs_attribute *const simple_children_attrs[] = {
- 	&simple_children_attr_description,
- 	NULL,
- };
-@@ -230,7 +230,7 @@ static const struct configfs_group_operations simple_children_group_ops = {
- static const struct config_item_type simple_children_type = {
- 	.ct_item_ops	= &simple_children_item_ops,
- 	.ct_group_ops	= &simple_children_group_ops,
--	.ct_attrs	= simple_children_attrs,
-+	.ct_attrs_const	= simple_children_attrs,
- 	.ct_owner	= THIS_MODULE,
- };
- 
-@@ -283,7 +283,7 @@ static ssize_t group_children_description_show(struct config_item *item,
- 
- CONFIGFS_ATTR_RO(group_children_, description);
- 
--static struct configfs_attribute *group_children_attrs[] = {
-+static const struct configfs_attribute *const group_children_attrs[] = {
- 	&group_children_attr_description,
- 	NULL,
- };
-@@ -298,7 +298,7 @@ static const struct configfs_group_operations group_children_group_ops = {
- 
- static const struct config_item_type group_children_type = {
- 	.ct_group_ops	= &group_children_group_ops,
--	.ct_attrs	= group_children_attrs,
-+	.ct_attrs_const	= group_children_attrs,
- 	.ct_owner	= THIS_MODULE,
- };
- 
++/*
++ * hmm_do_fault - fault in a range recorded by a walk callback
++ *
++ * Called from the outer loop in hmm_range_fault() after a callback
++ * returned HMM_FAULT_PENDING.  At this point we hold only mmap_lock;
++ * the page-table spinlock and any hugetlb_vma_lock acquired by the walk
++ * framework have already been released by the unwind.
++ *
++ * Returns -EBUSY on success (all pages faulted, caller should re-walk).
++ * Returns a negative errno on failure.
++ */
++static int hmm_do_fault(struct mm_struct *mm,
++			struct hmm_vma_walk *hmm_vma_walk)
++{
++	unsigned long addr = hmm_vma_walk->last;
++	unsigned long end = hmm_vma_walk->end;
++	unsigned int required_fault = hmm_vma_walk->required_fault;
++	unsigned int fault_flags = FAULT_FLAG_REMOTE;
++	struct vm_area_struct *vma;
++
++	vma = vma_lookup(mm, addr);
++	if (!vma)
++		return -EFAULT;
++
++	if (required_fault & HMM_NEED_WRITE_FAULT) {
++		if (!(vma->vm_flags & VM_WRITE))
++			return -EPERM;
++		fault_flags |= FAULT_FLAG_WRITE;
++	}
++
++	for (; addr < end; addr += PAGE_SIZE)
++		if (handle_mm_fault(vma, addr, fault_flags, NULL) &
++		    VM_FAULT_ERROR)
++			return -EFAULT;
++
++	return -EBUSY;
++}
++
+ /**
+  * hmm_range_fault - try to fault some address in a virtual address range
+  * @range:	argument structure
+@@ -674,6 +696,16 @@ int hmm_range_fault(struct hmm_range *range)
+ 			return -EBUSY;
+ 		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
+ 				      &hmm_walk_ops, &hmm_vma_walk);
++		/*
++		 * When HMM_FAULT_PENDING is returned a walk callback
++		 * recorded a range that needs handle_mm_fault();
++		 * hmm_do_fault() runs the fault outside walk_page_range()
++		 * (so no page-table or hugetlb_vma_lock is held) and
++		 * returns -EBUSY so the loop re-walks and picks up the
++		 * now-present entries.
++		 */
++		if (ret == HMM_FAULT_PENDING)
++			ret = hmm_do_fault(mm, &hmm_vma_walk);
+ 		/*
+ 		 * When -EBUSY is returned the loop restarts with
+ 		 * hmm_vma_walk.last set to an address that has not been stored
 
--- 
-2.55.0
 
