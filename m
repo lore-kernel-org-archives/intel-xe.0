@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C55CC44501
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 15:55:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9512AC44508
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 16:04:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0D8C10E69C;
-	Wed, 15 Jul 2026 15:55:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ocQo6Ofu";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B049110F10B;
- Wed, 15 Jul 2026 15:54:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 34E0E42A3E;
- Wed, 15 Jul 2026 15:54:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6DA11F000E9;
- Wed, 15 Jul 2026 15:54:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1784130898;
- bh=/4je5v4Zc6foYfwF22j5/Y0sxbqqutXc3dxRqcgRIFQ=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To;
- b=ocQo6OfuCAGy9CbCU8jZO8bqxs3VCUC7UGkA6+1qW4pB7dfnvZwPl16bCqt1P0JK3
- 04lGRPsWduj7NXGdZiuEISgwzhSP4QmFbl3BPHM0L3UDwkiKTwBQETnRf40eVS6KlX
- DaHuSx9LOnLIjQMTMIfHvTcejI+98lJzUcB3e4dFCMqc9x8Gqx36ZbPnrGvS00sjdd
- 0p9PVefoSlIGmrEkECCWBopH4/fdwDgichvQ7yAK2dAK9hab2wlW3aAfhS7Sbee1cR
- +O8DYzTXTi1Xl5NUt8hucc7DV9JwjM7t2ahSLzgrgoQXu/gzdZjiSwtD1r0MT7rpJw
- rPpoB+Efr9gAA==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 15 Jul 2026 17:54:53 +0200
-Message-Id: <DJZ9M9BXQ30B.281L7YHD2MMAV@kernel.org>
-Subject: Re: [PATCH v7 3/4] driver core: platform: unify release path
-Cc: "Maximilian Luz" <luzmaximilian@gmail.com>, "Hans de Goede"
- <hansg@kernel.org>, =?utf-8?q?Ilpo_J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>, "Matthew Brost" <matthew.brost@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, <platform-driver-x86@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <driver-core@lists.linux.dev>, "Bartosz
- Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
-To: "Bartosz Golaszewski" <brgl@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260713-swnode-remove-on-dev-unreg-v7-0-6d6bc448427a@oss.qualcomm.com>
- <20260713-swnode-remove-on-dev-unreg-v7-3-6d6bc448427a@oss.qualcomm.com>
- <DJXNZLE3L756.K5DYSTKM1UHT@kernel.org>
- <CAMRc=MfOipGdiGXNgVrJVO8QOivQ-=8k3sX-nMfTS0DvdZcFnw@mail.gmail.com>
- <CAMRc=MeXwaRSDJYKeoM6PfqWqRPh9KCMF8HATFvaTWUf6N6GYA@mail.gmail.com>
- <DJZ8VG4H46XC.36XXT1A34B0TK@kernel.org>
- <CAMRc=MdKgadBrcBG=Rp68WfLzL2PCUMhmcma85BY=DYqUmt0kg@mail.gmail.com>
-In-Reply-To: <CAMRc=MdKgadBrcBG=Rp68WfLzL2PCUMhmcma85BY=DYqUmt0kg@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5718010F102;
+	Wed, 15 Jul 2026 16:04:12 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B557510F0F4;
+ Wed, 15 Jul 2026 16:04:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/i2c=3A_alerts_and_?=
+ =?utf-8?q?controller_enabling_modifications_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Jul 2026 16:04:11 -0000
+Message-ID: <178413145173.193149.16367424458266533072@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260715153153.1243751-1-heikki.krogerus@linux.intel.com>
+In-Reply-To: <20260715153153.1243751-1-heikki.krogerus@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,26 +36,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed Jul 15, 2026 at 5:25 PM CEST, Bartosz Golaszewski wrote:
-> While at it: the other dependency of this series is:
->
->   https://lore.kernel.org/all/20260713-swnode-fw-devlink-v4-0-d4f2dee27ad=
-9@oss.qualcomm.com/
->
-> It's been reviewed and I think it's ready. It shouldn't conflict with the=
- other
-> dependency that Greg already queued. Would you mind picking patches 1-4 f=
-rom
-> that series into an immutable branch based on v7.2-rc1 and taking them th=
-rough
-> the driver core tree and I'd queue patch 5 through the GPIO tree after fi=
-xing
-> conflicts with other GPIO kunit tests I already picked up?
+== Series Details ==
 
-Yeah, I have that series on my list to follow-up on, will do.
+Series: drm/xe/i2c: alerts and controller enabling modifications (rev5)
+URL   : https://patchwork.freedesktop.org/series/168930/
+State : warning
 
-Thanks,
-Danilo
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f2f75b9990fb7327aa1a7bb3540e0b771a119622
+Author: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Date:   Wed Jul 15 17:31:53 2026 +0200
+
+    drm/xe/i2c: Keep the i2c controller always enabled
+    
+    Some platforms make an assumption that the i2c controller's
+    enabled state indicates also the power state of the
+    controller. This can create a problem when the controller is
+    in disabled state, because the hardware may assume
+    incorrectly that it is then also in low-power state.
+    
+    To fix this, the controller is kept enabled by taking over
+    the IC_ENABLE register. The controller has to be disabled
+    when the configuration is updated and when the target
+    address or the slave address are assigned, so disabling it
+    when IC_CON, IC_TAR or IC_SAR registers are programmed, and
+    then re-enabling it again.
+    
+    Fixes: f0e53aadd702 ("drm/xe: Support for I2C attached MCUs")
+    Cc: stable@vger.kernel.org
+    Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
++ /mt/dim checkpatch 116ce94f4e028e50e3523c46a8ce1e665ce47cb9 drm-intel
+a96345de9e0c i2c: designware: Global register definitions
+-:191: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#191: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 250 lines checked
+68cae3d11a3b drm/xe/i2c: Fix the interrupt handling
+-:50: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#50: 
+new file mode 100644
+
+-:221: WARNING:ALLOC_WITH_SIZEOF: Prefer kzalloc_obj over kzalloc with sizeof
+#221: FILE: drivers/gpu/drm/xe/xe_amc.c:167:
++	amc = kzalloc(sizeof(*amc), GFP_KERNEL);
+
+total: 0 errors, 2 warnings, 0 checks, 457 lines checked
+f2f75b9990fb drm/xe/i2c: Keep the i2c controller always enabled
+-:52: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see function description of usleep_range() and udelay().
+#52: FILE: drivers/gpu/drm/xe/xe_i2c.c:231:
++		udelay(25);
+
+total: 0 errors, 0 warnings, 1 checks, 84 lines checked
+
+
