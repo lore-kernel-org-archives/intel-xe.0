@@ -4,67 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62273C44508
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 14:00:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3151C44508
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 14:01:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2082810F0CD;
-	Wed, 15 Jul 2026 14:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5450D10F0CE;
+	Wed, 15 Jul 2026 14:01:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fsbaqvhZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zh00gD2r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A48710F0CD
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 14:00:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0843310F0CE
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 14:01:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784124051; x=1815660051;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ukjcdgTG9XuOq7t7zom1ncaSxqFFGv0mhRH4E08Au5E=;
- b=fsbaqvhZdhmTlvgc7wrtZXMzsH5x5n0KmS8EL8Sa1Etc29pN/zXQF2vX
- nTmddP4qk93lYp+/fxjhwC9+ix3vHYBfgOltaVHfTCn83EXZKG7fqCN8S
- +N3L6T8dkM0QEzFBAdI/6L9Iw6EL8y4Frw0z1scnXMamSUqK2iWT9aBMs
- yXDrGeo3JvKGLCm9nS0sod37Wkwj6r9gGr3pRyiiLblIByki9pcNeXqP0
- Pp3TZxJWxYaPWz5v785ZExUjTbivGJIgotE9uV3vx6Qxt8J7HhuBOqhOb
- QvSiV3Hlsq5Ec4J8iOZCopUo/cY1I178ofJd3bxPXBI4MiWmZp7dddVdP g==;
-X-CSE-ConnectionGUID: ohYVTrOkRbOcFgQOEIy+Ng==
-X-CSE-MsgGUID: pStpt4pyQdKVEhZO67p7Ug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84543316"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="84543316"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 07:00:51 -0700
-X-CSE-ConnectionGUID: Uh786iniRrmjo7zN+7u/3A==
-X-CSE-MsgGUID: 83FZPJTrTmSurlB6sr2Vqg==
+ t=1784124101; x=1815660101;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aCDR8Zh4TbMEKZeq9myuxkMTjkw14RxDIZN0LbTH+sw=;
+ b=Zh00gD2rETwR/I2LHCmsWmP21fL7dSqJSo3XOuLOGtxh/E39AvniMM2h
+ YCvwoP34DbhQIYjKNav+TQq6kZ75+L2djf/MXz+tKDGaHeQ0skXW6F+vK
+ Yg58+GCd2PtxvRe0hTq1CEtdikOvXTWakCIStjkU0InJSEEzOoO8jIvO7
+ P1PKIvmdMA17XRaW+XBNbFWrIbaEbz8YexT/I4wryerTy0g8sv8mvNvTX
+ QfRnPn2kWlYBQy7wFGy9KFYZvc6f22BWVnK3DjokJWbgpPFFPA5KktjLf
+ J9FG7vL0sM/lWsTRNTEbTZLecEgI0M/UK78PcbxStGwRZ/atzFT7q8GXz w==;
+X-CSE-ConnectionGUID: 4XN+GM1fQtOFAeI6Mbg7Xg==
+X-CSE-MsgGUID: uCJoMBBhR6GxRZffF5GzrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="88588461"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="88588461"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 07:01:35 -0700
+X-CSE-ConnectionGUID: nW+notboQ/WZX9/LiOkOew==
+X-CSE-MsgGUID: lv5AZinUSr+mqnZA3wMIYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="255681857"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa008.jf.intel.com with ESMTP; 15 Jul 2026 07:00:47 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1008)
- id 3E21995; Wed, 15 Jul 2026 16:00:46 +0200 (CEST)
-Date: Wed, 15 Jul 2026 17:00:44 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Ramesh Babu B <ramesh.babu.b@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] drm/xe/i2c: Fix the interrupt handling
-Message-ID: <aleSjGxhStAiqLk6@kuha>
-References: <20260713155601.711389-1-heikki.krogerus@linux.intel.com>
- <20260713155601.711389-3-heikki.krogerus@linux.intel.com>
- <alcoDtq2aul-tA_h@black.igk.intel.com> <aldYjL2pxA7QxoLN@kuha>
- <ald1HG6KzjWb9CUK@black.igk.intel.com> <aleEReNBnQMy3-1E@kuha>
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="294398291"
+Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
+ by orviesa001.jf.intel.com with ESMTP; 15 Jul 2026 07:01:35 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH] xe/userptr: TLB invalidation new pm_runtime ref before submit
+Date: Wed, 15 Jul 2026 19:31:33 +0530
+Message-ID: <20260715140133.1811959-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aleEReNBnQMy3-1E@kuha>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,143 +63,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Raag,
+Take a proper runtime PM reference before TLB invalidation.
+The MMU notifier path has no outer xe_pm_runtime_get()
+protection, but xe_tlb_inval_fence_init() called from
+xe_vm_invalidate_vma_submit() uses xe_pm_runtime_get_noresume()
+which requires an existing reference. The fence itself will
+hold its own noresume ref until it signals.
 
-> > > > > -	/* Forward interrupt to I2C adapter */
-> > > > > -	generic_handle_irq_safe(xe->i2c->adapter_irq);
-> > > > > +	xe_i2c_handle_smbus_alert(xe->i2c);
-> > > > 
-> > > > [1] Can we move the below re-assert code to wq now? Or do you suspect any
-> > > > side-effects?
-> > > 
-> > > I think that you know this better than I do. But at this point
-> > > interrupt is cleared, so why should we wait for the wq?
-> > 
-> > When does AMC clear the alert signal? Is it when you query from the wq?
-> > If the answer is yes, there's a possibility we might end up with an
-> > interrupt storm here.
-> > 
-> > > To play it safe, can we change this as a followup if necessary?
-> > 
-> > Sure, I'll leave it to you.
-> 
-> I'll move it to the wq. There are no side-effects.
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/xe/xe_userptr.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Can you check does this work:
-
-diff --git a/drivers/gpu/drm/xe/xe_amc.c b/drivers/gpu/drm/xe/xe_amc.c
-index b44d5765f2ed5..1a517b79d0bb3 100644
---- a/drivers/gpu/drm/xe/xe_amc.c
-+++ b/drivers/gpu/drm/xe/xe_amc.c
-@@ -11,9 +11,12 @@
- #include <linux/string.h>
- #include <linux/workqueue.h>
+diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
+index 1d2ab678faf5..fc7e4b00fe17 100644
+--- a/drivers/gpu/drm/xe/xe_userptr.c
++++ b/drivers/gpu/drm/xe/xe_userptr.c
+@@ -8,6 +8,7 @@
  
-+#include "regs/xe_i2c_regs.h"
-+
- #include "xe_amc.h"
- #include "xe_device.h"
- #include "xe_i2c.h"
-+#include "xe_mmio.h"
+ #include <linux/mm.h>
  
- /**
-  * DOC: Add-In Management Controller (AMC)
-@@ -103,7 +106,7 @@ static void xe_amc_work(struct work_struct *work)
-        ret = i2c_master_send(client, (u8 *)request, sizeof(*request));
-        if (ret < 0) {
-                dev_err(&client->dev, "failed to send request (%d)\n", ret);
--               return;
-+               goto out_reassert_interrupt;
-        }
++#include "xe_pm.h"
+ #include "xe_tlb_inval.h"
+ #include "xe_trace_bo.h"
  
-        /* AMC needs 20ms to generate the response. */
-@@ -112,22 +115,22 @@ static void xe_amc_work(struct work_struct *work)
-        ret = i2c_master_recv(client, (u8 *)&response, sizeof(response));
-        if (ret < 0) {
-                dev_err(&client->dev, "failed to read response (%d)\n", ret);
--               return;
-+               goto out_reassert_interrupt;
-        }
+@@ -103,6 +104,7 @@ xe_vma_userptr_do_inval(struct xe_vm *vm, struct xe_userptr_vma *uvma, bool is_d
+ 	XE_WARN_ON(err <= 0);
  
-        if (!response.header.len) {
-                dev_err(&client->dev, "empty response from AMC\n");
--               return;
-+               goto out_reassert_interrupt;
-        }
- 
-        if (memcmp(&response.message, &request->message, sizeof(struct amc_message))) {
-                dev_err(&client->dev, "response does not match the request\n");
--               return;
-+               goto out_reassert_interrupt;
-        }
- 
-        if (response.error) {
-                dev_err(&client->dev, "AMC error 0x%02x\n", response.error);
--               return;
-+               goto out_reassert_interrupt;
-        }
- 
-        dev_dbg(&client->dev, "%s: Alert reason: %d\n", __func__, response.value);
-@@ -143,12 +146,19 @@ static void xe_amc_work(struct work_struct *work)
-        default:
-                break;
-        }
-+
-+out_reassert_interrupt:
-+       xe_mmio_rmw32(amc->i2c->mmio, I2C_CONFIG_CMD, PCI_COMMAND_INTX_DISABLE, 0);
- }
- 
- void xe_amc_handle_alert(struct xe_i2c *i2c)
- {
-+       xe_mmio_rmw32(i2c->mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
-+
-        if (i2c->client[XE_I2C_CLIENT_AMC])
-                queue_work(system_long_wq, &i2c->amc->work);
-+       else
-+               xe_mmio_rmw32(i2c->mmio, I2C_CONFIG_CMD, PCI_COMMAND_INTX_DISABLE, 0);
- }
- 
- int xe_amc_init(struct xe_i2c *i2c)
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index 8a978526e2b66..3859d4a9f75e4 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -87,6 +87,8 @@ static void xe_i2c_client_work(struct work_struct *work)
-        };
- 
-        i2c->client[XE_I2C_CLIENT_AMC] = i2c_new_client_device(i2c->adapter, &info);
-+
-+       xe_i2c_irq_postinstall(i2c_adapter_to_xe_device(i2c->adapter));
- }
- 
- static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void *data)
-@@ -183,17 +185,10 @@ static bool xe_i2c_irq_present(struct xe_device *xe)
-  */
- void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
- {
--       struct xe_mmio *mmio = xe_root_tile_mmio(xe);
--
-        if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
-                return;
- 
-        xe_i2c_handle_smbus_alert(xe->i2c);
--
--       /* Deassert after I2C adapter clears the interrupt */
--       xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
--       /* Reassert to allow subsequent interrupt generation */
--       xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, PCI_COMMAND_INTX_DISABLE, 0);
- }
- 
- void xe_i2c_irq_reset(struct xe_device *xe)
-@@ -392,6 +387,5 @@ int xe_i2c_probe(struct xe_device *xe)
-                return ret;
-        }
- 
--       xe_i2c_irq_postinstall(xe);
-        return devm_add_action_or_reset(drm_dev, xe_i2c_remove, i2c);
- }
-
-Thanks,
-
+ 	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
++		guard(xe_pm_runtime)(vm->xe);
+ 		if (!userptr->finish_inuse) {
+ 			/*
+ 			 * Defer the TLB wait to an extra pass so the caller
 -- 
-heikki
+2.54.0
+
