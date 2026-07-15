@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E5CC44507
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 12:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C4BCC44501
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 12:28:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C13E10F02C;
-	Wed, 15 Jul 2026 12:28:36 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 530B910F028;
- Wed, 15 Jul 2026 12:28:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4123370397181530754=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE9210F02C;
+	Wed, 15 Jul 2026 12:28:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FgWloTeB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F06C10F02C
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 12:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784118529; x=1815654529;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=6Hx0YLxUkeQK1xuuszHhTCiliocn0kC58NJbgxRopkg=;
+ b=FgWloTeBAH7BNXSLNSzTI30UzXueCM1lQtaPBxf0PAC9O8L0QYFE6Uyi
+ mG8ajI/BtLWDO76dhIuJvKbQh3B+nUfHoD6bHX3Co3r3Qy+um4PQKuhj4
+ enarIX4lR4dzRaJv+r/6e05E1GwNuv3Vm3heL+XU96rOKMPiUp/k+NoA9
+ Xn4uckk/YKzaKbVNRoCTILzySG5D7iCZllHaENmgLEK4A7V63Tr9ywpXS
+ wb/k+zrXPy/QMZQeGR+U5ry8U3S/Tza0nc1McKXB7R7eaWKTbsHK+zcgX
+ +a3+QbisuGdMo0t/k0WaceaiIgjAaf54jRG5I0D7Q+Ke9txlrMJuqH3Wy Q==;
+X-CSE-ConnectionGUID: ow8a0tPpQ62j7Zk4uFI/4A==
+X-CSE-MsgGUID: 6kj/V+GfT/SGUpPrc1rccQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84779622"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="84779622"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:28:49 -0700
+X-CSE-ConnectionGUID: 0VM6JB8hSXOD+A2d0Tsong==
+X-CSE-MsgGUID: /Aw6YJpjQai34zxQ0/TRDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="260466416"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.131])
+ ([10.245.244.131])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:28:48 -0700
+Message-ID: <3c48aa92-6451-4b8e-a1b8-75cec4899296@intel.com>
+Date: Wed, 15 Jul 2026 13:28:46 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_More_BIOS_FB_take?=
- =?utf-8?q?over_fixes_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Jul 2026 12:28:35 -0000
-Message-ID: <178411851533.190770.7624429494229155190@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260715110557.2172095-1-dev@lankhorst.se>
-In-Reply-To: <20260715110557.2172095-1-dev@lankhorst.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Remove ifdef in DRM_GPUVA_OP_DRIVER svm subop
+ checking
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260715103104.63954-1-mika.kuoppala@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260715103104.63954-1-mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4123370397181530754==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 15/07/2026 11:31, Mika Kuoppala wrote:
+> Always emit the DRM_GPUVA_OP_DRIVER case so the previous break is
+> effective and we never fall through to the default warning.
+> This also allows adding more subops in the future without ifdef dancing.
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-== Series Details ==
+Assuming it still builds,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Series: drm/xe: More BIOS FB takeover fixes (rev2)
-URL   : https://patchwork.freedesktop.org/series/170430/
-State : success
+> ---
+>   drivers/gpu/drm/xe/xe_pt.c | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 7111b5d0f6aa..d1b939dfaa13 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1547,7 +1547,6 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
+>   			err = vma_check_userptr(vm, gpuva_to_vma(op->base.prefetch.va), pt_update);
+>   		}
+>   		break;
+> -#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
+>   	case DRM_GPUVA_OP_DRIVER:
+>   		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
+>   			struct xe_svm_range *range = op->map_range.range;
+> @@ -1562,7 +1561,6 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
+>   			}
+>   		}
+>   		break;
+> -#endif
+>   	default:
+>   		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+>   	}
 
-== Summary ==
-
-CI Bug Log - changes from xe-5409-6dd678fdc2f39062bed466d7e3c851736e376531_BAT -> xe-pw-170430v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 12)
-------------------------------
-
-  Missing    (1): bat-adlp-7 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5409-6dd678fdc2f39062bed466d7e3c851736e376531 -> xe-pw-170430v2
-
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5409-6dd678fdc2f39062bed466d7e3c851736e376531: 6dd678fdc2f39062bed466d7e3c851736e376531
-  xe-pw-170430v2: 170430v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170430v2/index.html
-
---===============4123370397181530754==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: More BIOS FB takeover fixes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170430/">https://patchwork.freedesktop.org/series/170430/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170430v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170430v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5409-6dd678fdc2f39062bed466d7e3c851736e376531_BAT -&gt; xe-pw-170430v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-adlp-7 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5409-6dd678fdc2f39062bed466d7e3c851736e376531 -&gt; xe-pw-170430v2</li>
-</ul>
-<p>IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5409-6dd678fdc2f39062bed466d7e3c851736e376531: 6dd678fdc2f39062bed466d7e3c851736e376531<br />
-  xe-pw-170430v2: 170430v2</p>
-
-</body>
-</html>
-
---===============4123370397181530754==--
