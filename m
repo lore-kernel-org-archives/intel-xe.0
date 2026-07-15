@@ -4,27 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FE2CC44507
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 09:49:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8095C44501
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 09:53:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03CA910E16E;
-	Wed, 15 Jul 2026 09:49:30 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D897810E160;
- Wed, 15 Jul 2026 09:49:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8928227996164668466=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A390410E162;
+	Wed, 15 Jul 2026 09:53:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fJ7wLgkE";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F16F10E162
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 09:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784109203; x=1815645203;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6Th/RXyykNSrIqrevfiN5rbJul6P9tKqyVwuBd89v7E=;
+ b=fJ7wLgkEsSxJW7Ahk0BFTmzOJtD6ias4sM+mms/INe9gBPwSOxOtlt/P
+ pM1CG3LlZ5fvba39GMWBzGy7uYjx0vTkKV+HUoMVWCvt5HA2BVz7RSafb
+ cZsO/Zvjmaw9bokN7oFyUTzelHg2MzEPs3g7Q678BZHUB4zutAvBOBEJ+
+ 3+/Xn+Ewfz/okZHDo0KMJc0yUFo4FXJxzsnGjC/U8Jpghyi0XAp3F8Zl4
+ 2cEjcvr7rux1X25/Tt/RPT9nkXqXNFBs0EMEWk1YbAV9IlnrntG2rogr3
+ 5O4TAqyopOZ4R6obtrmVKRIyP2oueqbOxxnaJNe8xbBjfaT+WSV/py+F3 w==;
+X-CSE-ConnectionGUID: gsw9KtPBTCqupOPHpWR6Yg==
+X-CSE-MsgGUID: cvKQKz1pRFWdZNSrCQkohw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="88643900"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="88643900"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 02:53:22 -0700
+X-CSE-ConnectionGUID: 7KWkKS7ES2qZaJdubtX2wQ==
+X-CSE-MsgGUID: //QGPZhlQMmswNeqt5C3qw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="255627747"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa008.jf.intel.com with ESMTP; 15 Jul 2026 02:53:19 -0700
+Received: by black.igk.intel.com (Postfix, from userid 1008)
+ id 72A4495; Wed, 15 Jul 2026 11:53:18 +0200 (CEST)
+Date: Wed, 15 Jul 2026 12:53:16 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>,
+ Ramesh Babu B <ramesh.babu.b@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] drm/xe/i2c: Fix the interrupt handling
+Message-ID: <aldYjL2pxA7QxoLN@kuha>
+References: <20260713155601.711389-1-heikki.krogerus@linux.intel.com>
+ <20260713155601.711389-3-heikki.krogerus@linux.intel.com>
+ <alcoDtq2aul-tA_h@black.igk.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Consolidate_debug?=
- =?utf-8?q?fs_fault_injection_functions=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Jul 2026 09:49:28 -0000
-Message-ID: <178410896887.190770.17930227707299939193@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260715085159.424040-2-mallesh.koujalagi@intel.com>
-In-Reply-To: <20260715085159.424040-2-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alcoDtq2aul-tA_h@black.igk.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +75,146 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8928227996164668466==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jul 15, 2026 at 08:26:22AM +0200, Raag Jadav wrote:
+> On Mon, Jul 13, 2026 at 05:56:00PM +0200, Heikki Krogerus wrote:
+> > The platforms that support the interrupt from the I2C
+> > adapter can not handle the amount of interrupts the adapter
+> > generates because of the way the IRQ is routed in the
+> > hardware. The I2C controller driver has to be kept in
+> > polling mode because of that.
+> > 
+> > The AMC MCU can still generate critical alerts that have to
+> > be handled. The interrupt from SMBus Alert is left enabled
+> > and handled separately in the Xe. The alerts from the AMC
+> > will cause the device to be declared wedged for now.
+> 
+> ...
+> 
+> > +static void xe_amc_work(struct work_struct *work)
+> > +{
+> > +	struct xe_amc *amc = from_work(amc, work, work);
+> > +	struct i2c_client *client = amc->i2c->client[XE_I2C_CLIENT_AMC];
+> > +	const struct amc_request *request = &amc_get_alert_reason;
+> > +	struct amc_response response;
+> > +	int ret;
+> > +
+> > +	ret = i2c_master_send(client, (u8 *)request, sizeof(*request));
+> > +	if (ret < 0) {
+> > +		dev_err(&client->dev, "failed to send request (%d)\n", ret);
+> > +		return;
+> > +	}
+> > +
+> > +	fsleep(20 * USEC_PER_MSEC);
+> 
+> Nit: Probably worth an explanation.
 
-== Series Details ==
+Sure.
 
-Series: drm/xe: Consolidate debugfs fault injection functions. (rev5)
-URL   : https://patchwork.freedesktop.org/series/167880/
-State : success
+> > +	ret = i2c_master_recv(client, (u8 *)&response, sizeof(response));
+> > +	if (ret < 0) {
+> > +		dev_err(&client->dev, "failed to read response (%d)\n", ret);
+> > +		return;
+> > +	}
+> > +
+> > +	if (response.header.len == 0) {
+> 
+> Nit: Perhaps !response.header.len?
 
-== Summary ==
+OK.
 
-CI Bug Log - changes from xe-5408-d8c6a103005baca3596db23a9cf7076bccff3b2f_BAT -> xe-pw-167880v5_BAT
-====================================================
+> > +		dev_err(&client->dev, "empty response from AMC\n");
+> > +		return;
+> > +	}
+> > +
+> > +	if (response.header.command != request->header.command ||
+> 
+> Curious, what about the rest of the header? Would it be any different?
 
-Summary
--------
+The command is the only field that matches. But that check is not
+needed. The command is always the same. I'll drop that line.
 
-  **SUCCESS**
+> > +	    memcmp(&response.message, &request->message, sizeof(struct amc_message))) {
+> > +		dev_err(&client->dev, "response does not match the request\n");
+> > +		return;
+> > +	}
+> > +
+> > +	if (response.error) {
+> > +		dev_err(&client->dev, "AMC error 0x%02x\n", response.error);
+> > +		return;
+> > +	}
+> > +
+> > +	dev_dbg(&client->dev, "%s: Alert reason: %d\n", __func__, response.value);
+> 
+> See below [1].
+> 
+> > +	switch (response.value) {
+> > +	case AMC_ALERT_FW_DOWNLOAD:
+> > +	case AMC_ALERT_THERMAL_TRIP:
+> > +	case AMC_ALERT_OOB_REQUEST:
+> > +	case AMC_ALERT_OOB_RESET:
+> > +	case AMC_ALERT_CATERR:
+> > +		xe_device_declare_wedged(i2c_client_to_xe_device(client));
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
+> > +}
+> 
+> ...
+> 
+> > @@ -181,8 +187,7 @@ void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
+> >  	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
+> >  		return;
+> >  
+> > -	/* Forward interrupt to I2C adapter */
+> > -	generic_handle_irq_safe(xe->i2c->adapter_irq);
+> > +	xe_i2c_handle_smbus_alert(xe->i2c);
+> 
+> [1] Can we move the below re-assert code to wq now? Or do you suspect any
+> side-effects?
 
-  No regressions found.
+I think that you know this better than I do. But at this point
+interrupt is cleared, so why should we wait for the wq?
 
-  
+To play it safe, can we change this as a followup if necessary?
 
-Participating hosts (11 -> 12)
-------------------------------
+> >  	/* Deassert after I2C adapter clears the interrupt */
+> >  	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
+> > @@ -212,45 +217,6 @@ void xe_i2c_irq_postinstall(struct xe_device *xe)
+> >  	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, PCI_COMMAND_INTX_DISABLE, 0);
+> >  }
+> 
+> ...
+> 
+> > -#define XE_I2C_MAX_CLIENTS		3
+> > -
+> >  #define XE_I2C_EP_COOKIE_DEVICE		0xde
+> >  
+> >  /* Endpoint Capabilities */
+> >  #define XE_I2C_EP_CAP_IRQ		BIT(0)
+> >  
+> > +enum XE_I2C_CLIENT {
+> > +	XE_I2C_CLIENT_AMC,
+> > +	XE_I2C_MAX_CLIENTS = 3,
+> 
+> I know it was already like this but I probably missed why do we have 3
+> (atleast from driver POV)?
 
-  Additional (2): bat-ptl-1 bat-adlp-7 
-  Missing    (1): bat-lnl-1 
+That is the maximum number of clients these platforms can support.
+The AMC address is actually at a fixed offset 1. I'll change this so
+that XE_I2C_CLIENT_AMC matches the offset:
 
-Known issues
-------------
+enum XE_I2C_CLIENT {
+	XE_I2C_CLIENT_AMC = 1,
+	XE_I2C_MAX_CLIENTS = 3,
+};
 
-  Here are the changes found in xe-pw-167880v5_BAT that come from known issues:
+That probable makes this a bit more clear (right?).
 
-### IGT changes ###
+Thanks,
 
-#### Issues hit ####
-
-  * igt@xe_module_load@load:
-    - bat-ptl-1:          NOTRUN -> [ABORT][1] ([Intel XE#8607])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v5/bat-ptl-1/igt@xe_module_load@load.html
-    - bat-adlp-7:         NOTRUN -> [ABORT][2] ([Intel XE#8607])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v5/bat-adlp-7/igt@xe_module_load@load.html
-
-  
-  [Intel XE#8607]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8607
-
-
-Build changes
--------------
-
-  * Linux: xe-5408-d8c6a103005baca3596db23a9cf7076bccff3b2f -> xe-pw-167880v5
-
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5408-d8c6a103005baca3596db23a9cf7076bccff3b2f: d8c6a103005baca3596db23a9cf7076bccff3b2f
-  xe-pw-167880v5: 167880v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v5/index.html
-
---===============8928227996164668466==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Consolidate debugfs fault injection functions. (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167880/">https://patchwork.freedesktop.org/series/167880/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5408-d8c6a103005baca3596db23a9cf7076bccff3b2f_BAT -&gt; xe-pw-167880v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 12)</h2>
-<p>Additional (2): bat-ptl-1 bat-adlp-7 <br />
-  Missing    (1): bat-lnl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-167880v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-ptl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v5/bat-ptl-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8607">Intel XE#8607</a>)</li>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167880v5/bat-adlp-7/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8607">Intel XE#8607</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5408-d8c6a103005baca3596db23a9cf7076bccff3b2f -&gt; xe-pw-167880v5</li>
-</ul>
-<p>IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5408-d8c6a103005baca3596db23a9cf7076bccff3b2f: d8c6a103005baca3596db23a9cf7076bccff3b2f<br />
-  xe-pw-167880v5: 167880v5</p>
-
-</body>
-</html>
-
---===============8928227996164668466==--
+-- 
+heikki
