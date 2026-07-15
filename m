@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC965C44507
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 11:05:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB355C4450E
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jul 2026 11:05:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA4410E19B;
-	Wed, 15 Jul 2026 11:05:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1E7210EFC5;
+	Wed, 15 Jul 2026 11:05:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jVIj1n71";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="JLYecoMO";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96BC710EFA4;
- Wed, 15 Jul 2026 11:05:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C69310E19B;
+ Wed, 15 Jul 2026 11:05:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1784113508;
- bh=1qwaSV5biM9awAaPHMn1WDZ0oCBL7zyq3Tg7zloKrSI=;
+ s=default; t=1784113509;
+ bh=PPxt86CMmRzHFvTxSrH5dz/WU0pwYQz8LMpWjzArus4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jVIj1n718BaFoQJQIUVA7usUHtminWkmMMyrvDzGOwMWVgfNp1j4v7WXjXLO4PmOm
- ZrId6iUZoLegFVh5rMkr/t1TdQdH+MO26YOonSZqOUP5yyT9cgRTdXGK1ApFzrX1hj
- kbi1nI8qhFnMv6oVTabZ5Mc7aTNwZcyHn+KkQiyIcvgw0yk/GxugqXFhUAGM03nm3s
- hospQFSfwJY683rFOJT8UpPTqprlLuXkVbB1Bjhd81taK7tJvbSCMSLWTKuU46Wriv
- jq3CQmqVFRxgaencZnZlP6FdfkUOGTsggEj5V3QnoOwskti07qKufeEpvSt3NdjvYx
- EU1RSXbFXST9A==
+ b=JLYecoMOFt50Y6BZg5SNgdaPo+c1VlnV8BmIQ+Orid1trb15aigFyOkurpWcBlvvA
+ ogVMzNLlRtNU3YDe+xn134PL5YjStM7eLhka1to6NSEcZeXQnK1q4LBE5fHhox0DBX
+ KrwigtU5LQ8Ei9dnwhLWaYMyIgm6AZbLiFps5IbYWrrMDrGXKfWVECTkUTQjm9VLdL
+ KV9YzEhEiLxg6EULqotMe/8qMCmluQhmj9G3cwTl+OPHAW8rkECsZySnkp0v5JEMAW
+ 5U0b7/RDyPSfCmZ8ZdnIsAlgX0QEMIq1CNY6Y+ruse0XYHYSOIn+kNEoLT3zK6pf1K
+ DCvQyVm+l2seQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 1/6] drm/xe/ggtt: Add xe_ggtt_insert_node_at
-Date: Wed, 15 Jul 2026 13:05:52 +0200
-Message-ID: <20260715110557.2172095-2-dev@lankhorst.se>
+Subject: [PATCH v2 2/6] drm/xe/ggtt: Add xe_ggtt_node_remove_noclear
+Date: Wed, 15 Jul 2026 13:05:53 +0200
+Message-ID: <20260715110557.2172095-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260715110557.2172095-1-dev@lankhorst.se>
 References: <20260715110557.2172095-1-dev@lankhorst.se>
@@ -51,99 +51,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Create a new function xe_ggtt_insert_node_at() which will be used
-for reserving the part of GGTT where the initial framebuffer was
-allocated.
+The last bit required for handling fb takeover is
+ensuring we can release the old live framebuffer
+without keeping track. The display code can then
+safely perform the flip.
 
-This will allow us to either take over the initial mapping, or
-reserve it to have the newly allocated GGTT mapping not overwriting
-the initial mapping, which would cause flickering.
+It's unfortunately a workaround for how display
+is structured through callbacks instead of being
+a midlayer.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 35 +++++++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
- 2 files changed, 33 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c | 30 +++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_ggtt.h |  1 +
+ 2 files changed, 24 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 8ec23862477fc..c9f84db3bfecd 100644
+index c9f84db3bfecd..ff479e0a9f3b3 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -636,14 +636,17 @@ static struct xe_ggtt_node *ggtt_node_init(struct xe_ggtt *ggtt)
+@@ -470,24 +470,40 @@ static void ggtt_node_fini(struct xe_ggtt_node *node)
+ 	kfree(node);
  }
  
- /**
-- * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
-+ * xe_ggtt_insert_node_at - Insert a &xe_ggtt_node into the GGTT
-  * @ggtt: the &xe_ggtt into which the node should be inserted.
-  * @size: size of the node
-  * @align: alignment constrain of the node
-+ * @start: Starting offset of range to insert node
-+ * @end: Last offset for node insertion
-  *
-  * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
-  */
--struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
-+struct xe_ggtt_node *xe_ggtt_insert_node_at(struct xe_ggtt *ggtt, u32 size,
-+					    u32 align, u64 start, u64 end)
+-static void ggtt_node_remove(struct xe_ggtt_node *node)
++static void ggtt_node_remove(struct xe_ggtt_node *node, bool clear)
  {
- 	struct xe_ggtt_node *node;
- 	int ret;
-@@ -653,8 +656,19 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
- 		return node;
+ 	struct xe_ggtt *ggtt = node->ggtt;
+-	bool bound;
  
- 	guard(mutex)(&ggtt->lock);
--	ret = xe_ggtt_insert_node_locked(node, size, align,
--					 DRM_MM_INSERT_HIGH);
-+	if (start >= ggtt->start)
-+		start -= ggtt->start;
-+	else
-+		start = 0;
-+
-+	/* Should never happen, but since we handle start, fail graciously for end */
-+	if (end >= ggtt->start)
-+		end -= ggtt->start;
-+	else
-+		end = 0;
-+
-+	ret = drm_mm_insert_node_in_range(&ggtt->mm, &node->base, size, align,
-+					  0, start, end, DRM_MM_INSERT_HIGH);
- 	if (ret) {
- 		ggtt_node_fini(node);
- 		return ERR_PTR(ret);
-@@ -663,6 +677,19 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
- 	return node;
+ 	mutex_lock(&ggtt->lock);
+-	bound = ggtt->flags & XE_GGTT_FLAGS_ONLINE;
+-	if (bound)
++	if (clear)
++		clear = ggtt->flags & XE_GGTT_FLAGS_ONLINE;
++	if (clear)
+ 		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), xe_ggtt_node_size(node));
+ 	drm_mm_remove_node(&node->base);
+ 	node->base.size = 0;
+-	if (bound && node->invalidate_on_remove)
++	if (clear && node->invalidate_on_remove)
+ 		xe_ggtt_invalidate(ggtt);
+ 	mutex_unlock(&ggtt->lock);
+ 
+ 	ggtt_node_fini(node);
  }
  
 +/**
-+ * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
-+ * @ggtt: the &xe_ggtt into which the node should be inserted.
-+ * @size: size of the node
-+ * @align: alignment constrain of the node
++ * xe_ggtt_node_remove_noclear - Remove a &xe_ggtt_node from the GGTT without clearing entries
++ * @node: the &xe_ggtt_node to be removed
 + *
-+ * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
++ * This function is similar to xe_ggtt_node_remove(), but doesn't clear
++ * the entries. It's used to release the live FB mapping without
++ * clearing it.
++ *
++ * This function should only be called before xe_ggtt_init() in
++ * the bios FB takeover code.
 + */
-+struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
++void xe_ggtt_node_remove_noclear(struct xe_ggtt_node *node)
 +{
-+	return xe_ggtt_insert_node_at(ggtt, size, align, 0, ~0ULL);
++	ggtt_node_remove(node, false);
 +}
 +
+ static void ggtt_node_remove_work_func(struct work_struct *work)
+ {
+ 	struct xe_ggtt_node *node = container_of(work, typeof(*node),
+@@ -495,7 +511,7 @@ static void ggtt_node_remove_work_func(struct work_struct *work)
+ 	struct xe_device *xe = tile_to_xe(node->ggtt->tile);
+ 
+ 	guard(xe_pm_runtime)(xe);
+-	ggtt_node_remove(node);
++	ggtt_node_remove(node, true);
+ }
+ 
  /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-  * @node: the &xe_ggtt_node
+@@ -517,7 +533,7 @@ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate)
+ 	node->invalidate_on_remove = invalidate;
+ 
+ 	if (xe_pm_runtime_get_if_active(xe)) {
+-		ggtt_node_remove(node);
++		ggtt_node_remove(node, true);
+ 		xe_pm_runtime_put(xe);
+ 	} else {
+ 		queue_work(ggtt->wq, &node->delayed_removal_work);
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index c864cc975a695..69974da523f74 100644
+index 69974da523f74..83654544feb6d 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.h
 +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -22,6 +22,8 @@ void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_base);
- u64 xe_ggtt_start(struct xe_ggtt *ggtt);
- u64 xe_ggtt_size(struct xe_ggtt *ggtt);
- 
-+struct xe_ggtt_node *
-+xe_ggtt_insert_node_at(struct xe_ggtt *ggtt, u32 size, u32 align, u64 start, u64 end);
- struct xe_ggtt_node *
- xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align);
- struct xe_ggtt_node *
+@@ -32,6 +32,7 @@ xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
+ 			      u64 size, u32 align,
+ 			      xe_ggtt_transform_cb transform, void *arg);
+ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
++void xe_ggtt_node_remove_noclear(struct xe_ggtt_node *node);
+ size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
+ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
 -- 
 2.53.0
 
