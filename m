@@ -4,56 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C691C44521
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D541DC4451B
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:06:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCA2E10F627;
-	Fri, 17 Jul 2026 21:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95C2F10F62E;
+	Fri, 17 Jul 2026 21:06:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="RMKxXvhH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cVhHrgaH";
 	dkim-atps=neutral
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA4C610F4E0;
- Fri, 17 Jul 2026 09:43:00 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id 87BFCC2B9F7;
- Fri, 17 Jul 2026 09:43:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id CBB0F60361;
- Fri, 17 Jul 2026 09:42:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 6AD1111BD03DD; 
- Fri, 17 Jul 2026 11:42:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1784281378; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=wDA7PH6SG+1IbJdVpWIYnNVXI6eysPHFkoxwDGzOMF8=;
- b=RMKxXvhHqCyFi8shz1mt3PWQBGeeER7Fz63dXsty2lJq9WFTgV+UppFmeBRyFTM1jgSX23
- dlA6ZLOzvmha37E6UpGdJB3A119HyfzvdI1ZqH9+7LX/UstQaJ8W/IwKooNM/fbpslfux/
- Jh5L9npxcSw3UUDG9t35gEaTOM3TSrCbk8B5QhcMWcd6vwtzc1wMa5Jt44+xti8j8pSf6P
- Dm3Isj+PTvNjQqgHJ7nIMbpzVxzfFZWDMmiSDnJ45dBOOCLDguLfeKLcOpWh9okoQRklkm
- vCdnSp/IPYT1hBoV4xzIQVSyIgu02dEPeoHpGLjjKKP/odSR0OLpLEpzEgId0Q==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Matthew Brost <matthew.brost@intel.com>,  Thomas
- =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,  Rodrigo
- Vivi <rodrigo.vivi@intel.com>,  David Airlie <airlied@gmail.com>,  Simona
- Vetter <simona@ffwll.ch>,  linux-mtd@lists.infradead.org,
- linux-kernel@vger.kernel.org,  intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] mtd: mtd_intel_dg: add survivability partition
-In-Reply-To: <20260715-cri_surviv-v1-1-61763a6f1076@intel.com> (Alexander
- Usyskin's message of "Wed, 15 Jul 2026 16:45:29 +0300")
-References: <20260715-cri_surviv-v1-0-61763a6f1076@intel.com>
- <20260715-cri_surviv-v1-1-61763a6f1076@intel.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Fri, 17 Jul 2026 11:42:54 +0200
-Message-ID: <87qzl2j6jl.fsf@bootlin.com>
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFE110F123
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 18:16:40 +0000 (UTC)
+Received: by mail-pl1-f172.google.com with SMTP id
+ d9443c01a7336-2cad8076b01so69397095ad.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jul 2026 11:16:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1784139400; x=1784744200; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:user-agent
+ :references:in-reply-to:message-id:date:cc:to:from:subject:from:to
+ :cc:subject:date:message-id:reply-to:content-type;
+ bh=xews/oLHPsdqsmPpn1oXU4/lUwRmc6mOTrGvCA27l7U=;
+ b=cVhHrgaHhTNMpKyPxASD+efk7INLNPehfUrpBdOlYo06M+zQo0MT+XGbs4Yuaw2o4f
+ JpMvn7qiWZZ0FRmkVAwZ3NZjTC3YgeuhI8leRDk1hB4qjMH3t/C5vco69z8OPAuV0kmj
+ 0C59Viyrq8/keiY95btqT2idXMc7bUwHkd2lNzPiZeGaiMdE0WlvUg8ab2JjulOEBaTV
+ GZUiCUfxGM7EndgJcUeaJaku47X6EGojUdE5MfBZ6qX6yqG8RrZEAjk04DdJQvTwd1AE
+ 2kblR0X8jm2pr3mN2XxfM+RwI5ALtMVhSXthejitpslL7kx6LPuqTI5CvSXxY8TE95Uu
+ PGVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1784139400; x=1784744200;
+ h=content-transfer-encoding:content-type:mime-version:user-agent
+ :references:in-reply-to:message-id:date:cc:to:from:subject:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=xews/oLHPsdqsmPpn1oXU4/lUwRmc6mOTrGvCA27l7U=;
+ b=q9bh+gaHFAxbL8xAtlfHk3C0Ha9LQN1HGC575qZ+LOPUaZHDglCkkDY+iuAK4Tv6xv
+ DmRXw3hhcg9aZAH+m6rjNFURYCKE5658PXD2arQRjCxvRe4BiGHyBKWLHkqDDtnCsheT
+ hkVTHr71Ieqw2oVdZH51a8uz2t/SfxW3YxqiB2PjgR2WbntUmtIuHplvbCoGVKd67m59
+ UBo52lTiIAcRiSxcEeI5BBuKvXRmoh4ffok3FaYf1LG1xnem1oI28Pf/4dR0kf1qT5bk
+ NcKpbUIigoI94qY93d2QIxi9qFDBk7tQOK7dNs0dvhZ6kggKTU71wxuMfvf41iNANaqB
+ nlKQ==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rr2B4NekXIKaBpFFhnXEWGEm/x84z0qLF9ac5NTha6XI7gFvoZ8yfKx5TaRGGrgxBbq6jU3MpHV7w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzqLs44F+nQXhd4Xw3aGYp4FOjBpiUyyPpKbkYerNPA8jcCcKB7
+ ZG9f3z5XT72qSWliAi6clUuepuaaPTUbvKiPOx4heAXiWatGAyHQVxCX
+X-Gm-Gg: AfdE7clZTHuuVAIid7tfdPzoemQd7SQ1m43O39jOBjXXMeUhZvhLhIREDPVn6jXsbHl
+ 5KVrRuEZW3D86JFwYzKpsYlY+4936wkExJfyNQ6IbCXjW7JNvSlxVIouSk5iBKJnVqxxWWYPO0L
+ H7wxrJWEgnxYf3972w98sRv31T+Lhp0LvmcXXzvPLbIHRcJRwVj96iVUgPRQgbjFd6SZtzuvNXJ
+ XAl7MbYBEJKr8hOl07NZDszQ9zsdHeiuU97J7qO5NMhVyDsIUS4Et5ygjYfNAbFLA/l9u79rwnj
+ Vmr6F6/M6ZvDz5kRchMqpqTwkJ1ZOKgIMPIALbzbBU4Ebv2sExmkMWJhYuLHNcByFHlfl5mZbaN
+ aq3qxZZxDXYkYTUmreqD+L9pa4uW2v3gVtogfFsugbsA/2oPEXfgPWx3EkKj1jVqRd/ZQo/Yxyb
+ mgTSlUqisiAPjLvpk/BL1qnRz2rB0wgxIYFrgpEftOVfLT/2V6cub+6Z0Sncc=
+X-Received: by 2002:a17:902:ccd2:b0:2c8:4c29:afeb with SMTP id
+ d9443c01a7336-2cee9a64cf7mr89372715ad.8.1784139399557; 
+ Wed, 15 Jul 2026 11:16:39 -0700 (PDT)
+Received: from [192.168.0.160] (c-98-225-44-182.hsd1.wa.comcast.net.
+ [98.225.44.182]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2cf10592040sm6621985ad.55.2026.07.15.11.16.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Jul 2026 11:16:38 -0700 (PDT)
+Subject: [PATCH v9 6/8] RDMA/umem: Use hmm_range_fault_unlocked_timeout() for
+ ODP faults
+From: Stanislav Kinsburskii <skinsburskii@gmail.com>
+To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
+ corbet@lwn.net, dakr@kernel.org, david@kernel.org, decui@microsoft.com,
+ haiyangz@microsoft.com, jgg@ziepe.ca, kees@kernel.org, kys@microsoft.com,
+ leon@kernel.org, liam@infradead.org, lizhi.hou@amd.com, ljs@kernel.org,
+ longli@microsoft.com, lyude@redhat.com, maarten.lankhorst@linux.intel.com,
+ mamin506@gmail.com, mhocko@suse.com, mripard@kernel.org,
+ nouveau@lists.freedesktop.org, ogabbay@kernel.org, oleg@redhat.com,
+ rppt@kernel.org, shuah@kernel.org, simona@ffwll.ch,
+ skhan@linuxfoundation.org, skinsburskii@gmail.com, surenb@google.com,
+ tzimmermann@suse.de, vbabka@kernel.org, wei.liu@kernel.org,
+ skinsburskii@gmail.com
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-doc@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-rdma@vger.kernel.org
+Date: Wed, 15 Jul 2026 11:16:37 -0700
+Message-ID: <178413939750.1155966.3639451690646685854.stgit@skinsburskii>
+In-Reply-To: <178413903133.1155966.3904063656020521607.stgit@skinsburskii>
+References: <178413903133.1155966.3904063656020521607.stgit@skinsburskii>
+User-Agent: StGit/0.19
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 17 Jul 2026 21:05:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,23 +104,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Alexander,
+ib_umem_odp_map_dma_and_lock() takes mmap_read_lock() only around
+hmm_range_fault(), then retries -EBUSY until HMM_RANGE_DEFAULT_TIMEOUT
+expires.
 
-On 15/07/2026 at 16:45:29 +03, Alexander Usyskin <alexander.usyskin@intel.c=
-om> wrote:
+Use hmm_range_fault_unlocked_timeout() instead. The HMM helper now owns
+the mmap lock and refreshes range->notifier_seq for its internal retries.
+ODP keeps using HMM_RANGE_DEFAULT_TIMEOUT for each HMM fault attempt,
+while interval invalidation retries continue to be handled by the existing
+outer loop.
 
-> Add option to expose additional fixed-sized partition starting
-> from the beginning of storage.
-> Xe driver can request this partition exposure if firmware or hardware
-> have detected failure that may involve corrupted partition table.
-> Fixed-sized partition allows full storage re-write in this situation.
->
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+ODP still validates the interval notifier sequence while holding umem_mutex
+before DMA mapping pages.
 
-Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
+---
+ drivers/infiniband/core/umem_odp.c |   18 +++++-------------
+ 1 file changed, 5 insertions(+), 13 deletions(-)
 
-I'm not sure I follow the exact use case, but I don't see any major show
-stopper from an MTD standpoint, so feel free to take this through drm.
+diff --git a/drivers/infiniband/core/umem_odp.c b/drivers/infiniband/core/umem_odp.c
+index 404fa1cc3254..9cc21cd762d9 100644
+--- a/drivers/infiniband/core/umem_odp.c
++++ b/drivers/infiniband/core/umem_odp.c
+@@ -329,7 +329,7 @@ int ib_umem_odp_map_dma_and_lock(struct ib_umem_odp *umem_odp, u64 user_virt,
+ 	struct mm_struct *owning_mm = umem_odp->umem.owning_mm;
+ 	int pfn_index, dma_index, ret = 0, start_idx;
+ 	unsigned int page_shift, hmm_order, pfn_start_idx;
+-	unsigned long num_pfns, current_seq;
++	unsigned long num_pfns;
+ 	struct hmm_range range = {};
+ 	unsigned long timeout;
+ 
+@@ -363,26 +363,18 @@ int ib_umem_odp_map_dma_and_lock(struct ib_umem_odp *umem_odp, u64 user_virt,
+ 	}
+ 
+ 	range.hmm_pfns = &(umem_odp->map.pfn_list[pfn_start_idx]);
+-	timeout = jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
++	timeout = msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+ 
+ retry:
+-	current_seq = range.notifier_seq =
+-		mmu_interval_read_begin(&umem_odp->notifier);
+-
+-	mmap_read_lock(owning_mm);
+-	ret = hmm_range_fault(&range);
+-	mmap_read_unlock(owning_mm);
+-	if (unlikely(ret)) {
+-		if (ret == -EBUSY && !time_after(jiffies, timeout))
+-			goto retry;
++	ret = hmm_range_fault_unlocked_timeout(&range, timeout);
++	if (unlikely(ret))
+ 		goto out_put_mm;
+-	}
+ 
+ 	start_idx = (range.start - ib_umem_start(umem_odp)) >> page_shift;
+ 	dma_index = start_idx;
+ 
+ 	mutex_lock(&umem_odp->umem_mutex);
+-	if (mmu_interval_read_retry(&umem_odp->notifier, current_seq)) {
++	if (mmu_interval_read_retry(&umem_odp->notifier, range.notifier_seq)) {
+ 		mutex_unlock(&umem_odp->umem_mutex);
+ 		goto retry;
+ 	}
 
-Thanks,
-Miqu=C3=A8l
+
