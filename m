@@ -4,170 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D97E8C44512
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 13:59:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE6CDC4450A
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 14:37:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB1510E517;
-	Thu, 16 Jul 2026 13:59:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 579DB10E35B;
+	Thu, 16 Jul 2026 14:37:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E+n/IMR1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NFMEe+Rx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 757B110E517;
- Thu, 16 Jul 2026 13:59:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B016910E35B;
+ Thu, 16 Jul 2026 14:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784210392; x=1815746392;
+ t=1784212659; x=1815748659;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=af1YGCexfz4YN6GLod2Y5g8h/mHmm+fMe/maW9YXq4s=;
- b=E+n/IMR1fBPGmspKtsK4r1oKiZI3BPZVeow11PyQNMoL02uuUwK97tX6
- dfNsptS8lH/uqHowloIg07pOWv4PUzENlfGDDFsTOMMvmXepPlQ4tFBT6
- xBw3pFoKntJb2wjeBGLG16uHhaZU43rOH6ovdzABBvydvT3WYzwvwEBU+
- vcDsQcBr6A01v9qCPNioRsOsl16grr55EliZen09kBP9JsXvdiTJpr69d
- Br4JhCwPeGrYUqkAVt1Onz1JNqXD01tPotHSYtSS/pjl85+l+Y0jtxGli
- b6lHFhkj/uDpGlRE1HHa8n01HOOClK5AgdGPnWvPh+Y+pAWwUwREHHfii w==;
-X-CSE-ConnectionGUID: O1AKnx7JQRqGyYQ9T3ZBEw==
-X-CSE-MsgGUID: dQMZUXVFR7W18i3xLTuEkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="83853332"
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="83853332"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 06:59:52 -0700
-X-CSE-ConnectionGUID: A7GOxYW7QGaKTzcX/EiiwA==
-X-CSE-MsgGUID: RcVdSf1PSxWdAeTB+904Yw==
+ bh=6t6fN4gUgeIW6Q6fkh4JoYMepROrOIerCKgnnZPi1NM=;
+ b=NFMEe+RxmKMSWkuYairkwzlIrL/T0KNhtXg/SVCKn8987dGajpcvVDyX
+ 26+rP8omvELgIaHCtVLIz8/Jp9CbTtRRfDc2CiiuYtqvAKwhii4a2e+Qt
+ hMwOKH3cLXbTgQyKlWmyviCm4vwaW415BNTZ3gBE62vD0dirqLPrrxolz
+ vD2lDXWPQDX/kv8XXfDzhZgFTPOOXT0iOffRVuANDBM5D2WKHpPNBIKA3
+ 8AO/2D10a6i4gjMVzXFr9vFjxKXNrB7yBi0xcKX2uNGI0er4QzQno99tq
+ J7ZykqRca9xAeZFC8wk6AkFpc6tuRHSgNqJ+7YPYymA/qEnjQSPCV+3W7 g==;
+X-CSE-ConnectionGUID: xmAyGQqhQtCM/U876Ow+uw==
+X-CSE-MsgGUID: dOjjZxPiRxKyTRBgXi7mqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="72406246"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="72406246"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 07:37:38 -0700
+X-CSE-ConnectionGUID: eczOl5UfRqqlfj4Pc+gwAg==
+X-CSE-MsgGUID: y81alG79QySndCHOLVO3wA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="253095274"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 06:59:52 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="261439033"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 07:37:38 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 16 Jul 2026 06:59:51 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.43; Thu, 16 Jul 2026 07:37:37 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Thu, 16 Jul 2026 06:59:51 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.26)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Thu, 16 Jul 2026 07:37:37 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.19) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 16 Jul 2026 06:59:50 -0700
+ 15.2.2562.43; Thu, 16 Jul 2026 07:37:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YEc1vTNRuR5rBjuS5l7e87tX+/6Vmbc3oVeP5Wi7OaFxB4R1kGhjZYHqv/nafYQszBTb5fMmd+bvpBARD59TAtbvy23r/Arc0pHduYcTEhod4F2cFbAmt860uWQqrSmnc3J+7asktqXvwQYxDC6q0S0+jrM+HbZAvwO181nPUAuY9ge3hLglyAloepJOC6+qbdlJz8sdWYCVZW/cTdgxkx+qHJDJg3jBPMjiypLEInmVoN3uuHQ3/C3xT5PiTsyhGS60YDUevnSaC3hACpb+qTVu8aagcjOEJLII06f+wHKEa4ELK4QTNLG5ofxMrG9+Dvo4uZAMd1+yBwmLqSn6SA==
+ b=y82JV6v0J1W3nHhPeA2+WkitGh+VNFEXs5SJ59CUm4AGe55n9nU41OxgzfVQzF2uDlh2WxfGKMeu+AB+f/BJAVQeUJg3rxO6EWrvoX2ZENp2RDF+5E9ysQKkZkovzTNWYcg7gTb4GajOITxTaMP8bXDcKEb6tU0b8hHsP3cholIM6uAn8v4mWjd+QG8U6Z6rrSER0+OdQFu04FCjRC50E0pKkl4Hppb3y89MU8L1K3znS+TBIBK0yVyCJZ7ApaP6gNthRphf57obnVM/HFqMJRY1eQRTPfJvP51B1yDYa7QPmxoi8h1Xf+fjS/WiPgcVowmTKP2J6p8UQIm9wEipvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uRji27vq20RtUwCoZWf+07pYtFoTxPKp2bntzGSrusI=;
- b=H5LSxzaOhVV8S/0Jvh37LCwYL9BYnhbT1WcFWyAr/0E6ymSDWnmnGjUckmqpeBkzyUBn/SQc2KukMVGDSPetaHZWrenxNrlp4yFYblIkN0o/nTyUhj1eBEQR+SM5wuNr9THXRka/89O43YNPEoviyP/1nt9EAc2xtuZ7oM5LD8MKiHf2mLRs6q9V2B87VM3/HqaZQNMeGosPV+TdooWLDp3QIaJUCijua1orvhW8i4znIfwtljYsNF/2Ehj49XkrFLIfNQyBF+YZhULJMbUkoLua17GZ2pXLvqm5Yu6s35OuIJtKes24HktRIQtH61aXKhdETIyA13qVOQK/WnhR6Q==
+ bh=fZprANatZpFSczmUD6zPdSUSRh5zlL0nTtPaLX60CVc=;
+ b=UKCf3L/lJ0zgwwP+Ggwh0x+I4Wzhz0E+4/RMeka316TdRUAB387WJuCVEeP4r0XoB4WOnzzEdrDarGIqGmgzoNMWkE29YXpkLLhdI8A8reAs60Kh40L1S244c1GANRSuoT3Q08ijW02SBN9jf7TfFeaTTIASfxVi9npH5XJxgopoiDaZlcWukFKN5vckZHdQ0A63rm9PfPCYMH+QWTrEzxFm6f843litrYXi3OmbTw9nxCTEreBrmQeMF4xlsNi/NW4fsauXwXLvFjYAw3e+ddY72w7En0wiQoTNfH/kJr8t1STifAW8tdF1h0DfSRKQgdspZExDtHHWmqVoBRz2LA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB7636.namprd11.prod.outlook.com (2603:10b6:510:26f::13)
- by SJ0PR11MB4862.namprd11.prod.outlook.com (2603:10b6:a03:2de::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.12; Thu, 16 Jul
- 2026 13:59:47 +0000
-Received: from PH0PR11MB7636.namprd11.prod.outlook.com
- ([fe80::d611:6fa9:bc34:46b]) by PH0PR11MB7636.namprd11.prod.outlook.com
- ([fe80::d611:6fa9:bc34:46b%5]) with mapi id 15.21.0223.011; Thu, 16 Jul 2026
- 13:59:46 +0000
-Message-ID: <47fa61c2-de68-4ec7-9edd-8f7d5f360834@intel.com>
-Date: Thu, 16 Jul 2026 19:29:37 +0530
+Received: from MW4PR11MB7149.namprd11.prod.outlook.com (2603:10b6:303:221::14)
+ by DM4PR11MB6549.namprd11.prod.outlook.com (2603:10b6:8:8e::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.223.12; Thu, 16 Jul 2026 14:37:34 +0000
+Received: from MW4PR11MB7149.namprd11.prod.outlook.com
+ ([fe80::75d3:519d:fced:5a6c]) by MW4PR11MB7149.namprd11.prod.outlook.com
+ ([fe80::75d3:519d:fced:5a6c%3]) with mapi id 15.21.0223.008; Thu, 16 Jul 2026
+ 14:37:34 +0000
+Message-ID: <c6731e27-483b-4437-a135-4ad535eed472@intel.com>
+Date: Thu, 16 Jul 2026 20:07:24 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: REGRESSION: [PATCH] usb: typec: ucsi: Fix race condition and
- ordering in port unregistration
-To: Andrei Kuchynski <akuchynski@chromium.org>
-CC: Heikki Krogerus <heikki.krogerus@linux.intel.com>, Jameson Thies
- <jthies@google.com>, Benson Leung <bleung@chromium.org>,
- <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, Abhishek Pandit-Subedi
- <abhishekpandit@chromium.org>, Pooja Katiyar <pooja.katiyar@intel.com>,
- "Johan Hovold" <johan@kernel.org>, Hsin-Te Yuan <yuanhsinte@chromium.org>,
- "Myrrh Periwinkle" <myrrhperiwinkle@qtmlabs.xyz>, Linyu Yuan
- <quic_linyyuan@quicinc.com>, Jack Pham <quic_jackp@quicinc.com>,
- <stable@vger.kernel.org>
-References: <20260707141736.1635698-1-akuchynski@chromium.org>
- <22064276-6c56-411a-9f20-6917ceeb865f@intel.com>
- <CAMMMRMduSMniMrixGuq=m=00nUvzXQpySE86TpmvfNQtAChB=w@mail.gmail.com>
- <868cab1f-f581-4a01-a9ea-b2fa1a7a2831@intel.com>
- <CAMMMRMdZciCCmfOv0_PhX_VfPtXdMEwNe-CXOLWRSmFYBAEL7Q@mail.gmail.com>
-Content-Language: en-GB
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <CAMMMRMdZciCCmfOv0_PhX_VfPtXdMEwNe-CXOLWRSmFYBAEL7Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] drm/i915/vrr: Add per-CRTC vrr/cmrr debugfs control
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, <uma.shankar@intel.com>,
+ <ankit.k.nautiyal@intel.com>, <chaitanya.kumar.borah@intel.com>
+References: <20260714103938.2371448-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20260714103938.2371448-2-mitulkumar.ajitkumar.golani@intel.com>
+Content-Language: en-US
+From: "Naladala, Ramanaidu" <Ramanaidu.naladala@intel.com>
+In-Reply-To: <20260714103938.2371448-2-mitulkumar.ajitkumar.golani@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0339.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:21f::11) To PH0PR11MB7636.namprd11.prod.outlook.com
- (2603:10b6:510:26f::13)
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5PR01CA0160.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1cf::11) To MW4PR11MB7149.namprd11.prod.outlook.com
+ (2603:10b6:303:221::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR11MB7636:EE_|SJ0PR11MB4862:EE_
-X-MS-Office365-Filtering-Correlation-Id: b40fd654-2a2e-411f-5850-08dee3427ea9
+X-MS-TrafficTypeDiagnostic: MW4PR11MB7149:EE_|DM4PR11MB6549:EE_
+X-MS-Office365-Filtering-Correlation-Id: 322d0347-116c-4124-cd6d-08dee347c5dd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|23010399003|366016|10067099003|4143699003|11063799006|18002099003|22082099003|15056099003|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: RgJO7QWm7l988fECDG6TY2BOyb3ndf19jO06DQOO1CbW0r9S2sRgAfTryoP9FOBfvDMNUmkeGEa0bPnHZ58AKm/aeImUhykwX57KA4HxlBDKIdPseNYOYFXaeVejmbnJyCH/+uVzC8uG+TkZNFOuUuWDfAVoy550za4MdKMr//YAWgAHQw3AEU9OsnQGzGsxbw+CsnIPSzMfIQTbA5o8KKT/QK/mAjKiotItCzKbDv9gZPdYuGQ619nmwdwe+gVju/+dxnbTaaf5w6zwwlBxAKJ4hjF0mlspwE5yhFpKFnokwKPgD5zoMlMQ4F0pPfVoUdHmobNVNPTrkrvzM/jbztwAVtmnvqIqqB3TLw6Y9Z7+wrKApi36KViL+ZVuTwr56nzKCbPsoXOuqKgS24jI2UNR1yJQr4F0kGHFS+xkLKo1TtumGz9OECXtgOEXETD8w2ivJeMbNa6Pyqq47kYLffkbTzX2FrEa4QHCWMydYQthMDS5/QsAfbOqyDS/aLYrIofWctYsWCKU2GrdI6uq7TD+fgiWeu0obrrXq52nw2xVmOBLGQMar7KYadcGeoayb5znDfudrU1mQs7YEea1bPkEL1E4vNbrzak+1mGCP2U1SyFV4Xk/Tm8QP/66OBza
+ ARA:13230040|23010399003|1800799024|366016|376014|3023799007|56012099006|4143699003|11063799006|10067099003|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: ykE5kQPzW5fPdQ+oRBY5hLMNyhbTh6X9s+/vUdBJvH3nrlDexJvacvV2EWAv1rZAtEjH+NXhx/VFv4PZ72PUhEfRk5iBDLfR9sy2kSckaxo5w2MOkrB1qFS683TGLqTvHFj8NT9KvlKuLp+P6IYvAJUqqXqDf/ppXIgeFq5HLzRpqQRs7ttxJ/I3Vl6wtO6CT37eYj7WdvFWfsFl0siYZY2+y6gioMmV/mB2zOhQlShaPXfcVhtEUG3RqGKibz9WMzDQpLjQdzqoBW2MvUfj6tlok1TSwVA6tn56xtQeuYk7bAatjMKTvbzr4KfYACk4vooXwoLhvKF9KTRYZOV5ZrXt8o0twibBSjL25nqnHWmy+6YGdd8S/+0w6aQzk3OzW9hp1EiAiHq7xtbrRYqkht0xlZSPILrEnzuM7Oz+eF2ZNieq82GhUd703rYoxSgSkJ4VGmiPmHcissqqvMvm/GJ6+5kvR4CUhujXOYonnno23LU/UJt1z0P0ZYCzEpneENWW4T/i8yr86VDBRaT9tIfUHuBvz0z2WRc0UvRyzie2WF6Db/l/Q7bQmPYfh9rSs1PTWCNy99aP0ArbEACngHQzwwrbTPkgGbkEaVL8oGxV1eX3p8xCvpXUp94FpzPfncKB95ChcS8y2GZgb6SqsrTmB5L/1/EB+vHqvOZVhEo=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB7636.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(23010399003)(366016)(10067099003)(4143699003)(11063799006)(18002099003)(22082099003)(15056099003)(56012099006)(6133799003);
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB7149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(3023799007)(56012099006)(4143699003)(11063799006)(10067099003)(6133799003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RkdwNUtVdU1Yc0JpNG1pTFpodWhDZVZQT0hJK05wSHRZYVgycHFKeVdSTjl5?=
- =?utf-8?B?WEUxYjhYamRRNUVGR2VLckUyTTBwcnVHdkFiU25Wcm1TUXVnRDM0Vm0yc1lK?=
- =?utf-8?B?UVpwSDZleUs2WHpjMW4vNUg1TkxVMWl6dFZNaWV3NDd1L1VILzVkR1NMR3Q0?=
- =?utf-8?B?Yk82RjFxWnkwS0lpS3o5NDVuRkVjQ1RZekkycjdraXlYVnlZTlBiRCtwanhS?=
- =?utf-8?B?Mmoza2hMOWlOQWpEVlF6Z213aitYRTZlTjEzeDBrTE9PbllvQXVYa0F6MXZm?=
- =?utf-8?B?UVBMQkpZVTJlRWhPU3VFQmI1MVdRMHdwdFFGbTUwRHB6dlpSZGpDbzROVlF1?=
- =?utf-8?B?UWY5RENOZHZYMWNCaHVrdVVobTFrSG9KbkkwVTNHYituUlFLZlpsdFp3bEIy?=
- =?utf-8?B?WHFGY2pZamY2K050QW9NSlJCWURacE53cHJnT0VMRHpydzZOVXh2bkRYU2pQ?=
- =?utf-8?B?UjFEM2dOTnJjWUdLby9hd0lBb01acko4Y1J6MW1JdjBSUFUyNW40UnpNMHhH?=
- =?utf-8?B?QTR1S0VTM2VnckdUQ3hzOGIwZUQzS2gzUmJSa1oyMDMvSkFkQ041YWQvMXdk?=
- =?utf-8?B?UHRURmtyTUxjRWdCTiszdVFiblg3QnU3ZmlVTWlVS2FJUThhRTVnOHlLSGVh?=
- =?utf-8?B?OURMeHdGMTVlb0RUa05mNmZQOE1xYllxeTZoeDVjRDJNamdJekhQRm10M2ds?=
- =?utf-8?B?M0hCRWNwRytmV0JyNEtMeEVjd3BCUlpJaHp5ZUFsanRWR1ZXVlFzV29xeHRm?=
- =?utf-8?B?a3pZWEhhMmRTbFgwVGVyNk44VEQyY2dxbVowY21kY3NIK25TanpHZzArSTdz?=
- =?utf-8?B?Zlg1d2kwcEdpMHlvWmpaRFBoTFppUXBVYmRmTyt5cm1XcWxvRC82Z0ZZaEZO?=
- =?utf-8?B?YzhyMGJYaTdONWxsTGFLYmV2ZWc3cittQTRLV04yVVorYVE4ZlE2WElHTFZL?=
- =?utf-8?B?VU1RWExtanFwZU9aWVFQZ1E3dUpHTTdwY25PMkgyZkxUQnhycC9ZUG1qTk5O?=
- =?utf-8?B?R1hIOFZEK3JQK0FwTXNwMFNWbzI1YkpmWVorcDk0V1FKSlhYUmJEWVBhNkpH?=
- =?utf-8?B?VXU0ZzF0WGpSeG81NXE2TmpWZGNJQVZmRTNGQWdBcFdUdU5FanhwY2dSemZr?=
- =?utf-8?B?NmxWY2NTWncxQmRNRWE4UGlxV1dDbGQvRStBbVJHV1RHaC9kZkZiSWgwRDN0?=
- =?utf-8?B?ZkJKdHFQS2JOYVVCdlVWN1B3N29kM2JEV283amlwY1RPOFhSNkVLcnQrcW5H?=
- =?utf-8?B?VFNvY2VWQzRObWN0ejNta0tjQWVPdlpSdmovRW1xR0NHd1ZEQjk2MUVsZkUy?=
- =?utf-8?B?RTU2UFVXUzRpWFhtTGdhMmoxL1NjaWdTWnA3UWRTbHB2czNxV0c5M3duVDZy?=
- =?utf-8?B?MnFKMmF5K0JtRFBXQm1XV080aFczU2VMTkVnUVV1UytPZ1BkNHE0MFptRi9k?=
- =?utf-8?B?ZkcyTE9CUkNuNlR6UmdueURrSFE5aERhZWkzOS9MSEplZ1AzSFczTXRMeXkv?=
- =?utf-8?B?VnJTNzUvNkdvNVlyOWtQS29QaGlTMTdKR29Hekg3aHd4NmhFZkVPNWsxQ29k?=
- =?utf-8?B?RFdzUDdBdXRydmg2VDBLV1E1eStXa2h3Rm5acUVoZmZJVTZTNHlleWp0cUxI?=
- =?utf-8?B?amRFUE5lRkV3V0FBbk5EVnF1Ni81Y1hwa0c2SjBCL29iWU4zL29QL04ybUgy?=
- =?utf-8?B?RDZIbmtpVWdsbUE4Wkh6LzhrekpSNUhBK2ZHVTNaWnJYY1NVTzNxdWVsR1ho?=
- =?utf-8?B?ZHBadGpJNXN6cFV5RVV6c0x5TkFURTZyU3VhNitGa1VGbXFQcFJsODlzZmgx?=
- =?utf-8?B?Q3kxWEJpOVNiSTF0MVU0Vm0rNmhKQURVZVQzaDllRElwYW1YczZHYjNKdmtL?=
- =?utf-8?B?MTFNb2F0VFJ0Wll1Tk5NL1pyMmhyR0tHNlpPMklDcnY1bmtLb3dleitzTHFO?=
- =?utf-8?B?QUFJMUY1bytobnVtSVFnNHJoakFQTjF6M3pQMFpjaXFDOHQ1YnJJYWFhOEFp?=
- =?utf-8?B?YklkcjBrdERId3VSSnZyUlNDU1BaYlA1VU5zUDFmQ1ByaXlONmYxS256TkVr?=
- =?utf-8?B?NUJUK2NFMC9SYlBKdHJRWW5XZG15L21CZzAwa0RqVkFMbU5WSlJxMlpKOU9t?=
- =?utf-8?B?ZDk2TUFULzhHSDVnWjVGM0tjN0FTdVluNWQ0bTNBSTFWTHdhNFJFOXNkeEpY?=
- =?utf-8?B?djNaem51cHp1dmJGell6ZlNUN0diZzZEL0tNMDVRU0QrYWdneHN4Y3FuSTEw?=
- =?utf-8?B?NTZSZUF3dmIrOVVjYm40RGZFcGlVdkI1bVhzTzRCV29MYTFSN2ZzSllPdWs5?=
- =?utf-8?B?WTNveTQwbCtjNDlYdW15VUNqVWhMVTlkWWNGdDlMNUJYY1Z5dVJRdmxMVDRw?=
- =?utf-8?Q?HkUFD5xm7J3RMZiY=3D?=
-X-Exchange-RoutingPolicyChecked: I22xVqn/lsW+K+fuFfYEEunDU/SN0C6g2WYuoDGWBwlgqAhENMTI/e/i/+s+y1FpRLCE7Of6GZTcsFlsp2wUHfrdlHkLCmO3ECdE/jHZlJIJNBjVdzz3kFgFmxb7t+b97rcjZvi3pSQc5g2rix3keyOXt8VB3C23h3zoqPDm45l8JPM2TqJde9BbhBqLYdKW1TWvY/H8/MBE5PmetUKzCrGyM2F3uQ94+HYgkYa9wd84mMfDmunmru6RyHOcPsz2PYg223XSWQofPtTiAxMJPIgNdy2nSJT/LzHqoImML9ZtVPtuPhhI8pZAWxReruD6PrumYbVrLMjNNE/ftEr9Ng==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b40fd654-2a2e-411f-5850-08dee3427ea9
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB7636.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1ZrRVo5c213dzJVRER4a25zV0kzclNSNVpLelYxbFA0Z3BPUU4vUUpVR1Vy?=
+ =?utf-8?B?MlFOR0FwUkM3WVVyaXJBVk80SUR4QThRVllrZFlreGtDVEFxclp2aVlxc3d6?=
+ =?utf-8?B?bUkrNy9yZU1KdVkwbTRWNlNJRUlkbjh6cGE0eC9NRmtZd2lGTkFJSXdZZ0U3?=
+ =?utf-8?B?TjFIUmZsVGkzaytlL2h0SENKMUZzNDU5ZXVIUk5IZy9IYUpmTTNLNVpKU3VT?=
+ =?utf-8?B?UmZmQi9Oc25GUnRXS3doVEZLL3BNTm1qbkM3cEdXa0VFdVNNMlE3UTFjaUpR?=
+ =?utf-8?B?WFk2dWFxTHFRSU1DZlV1Rkx0VERCNzRadXFPNTA3MkkxS1dlM0RXV21PUkZG?=
+ =?utf-8?B?NVowSUVhV0wzZitFZ3B2aGlkZzdIUUhKZ2ZCa3ZjUEtFOFJpNjZrdGVqVmo4?=
+ =?utf-8?B?NXdWYVV1YVlLZHQrVmNScHpoK2Rvb2NicnpUZkVIRGg5VzhmbUp6dzloc2dZ?=
+ =?utf-8?B?cDFad1h3NkNweHFBTHM5aGMyN01Lc1BSY2dXOUNkVU4rc1IzN0dDWGo2R2JK?=
+ =?utf-8?B?WlA3LzlJNTlONWRmaFRPVkpXSHorQnpRZEtrTzFxb0JqV0VCZ2YwNGVtZ01k?=
+ =?utf-8?B?eWlzTXovWEFuZ2Evdyt2UkNaY3JYYy9NVG4zT1lnaEU1MDgySWM2aElwemJ1?=
+ =?utf-8?B?RkFRaGoweGkwWXJheC85NWhMb0c3VXhOM2N3TWdxaXkrcTFRWjlQVVJkeGYw?=
+ =?utf-8?B?Y1lLN0lPSzlQYWZuekFueDd3dnVCYTJVbFdiZFFPZEZWOW9NNWRpajQzUldT?=
+ =?utf-8?B?blNuMTRwTnJxR1hSelRkVjJzMmU1M0VrdWk2ZDc4OGZURlNCWFcyVUw1Y1hr?=
+ =?utf-8?B?aE8yRHJCSWxtbnJsYVFLL3pOblJ2enU4eEUvVnMwanBxUlBjeW1uWi9nREpH?=
+ =?utf-8?B?bnprK1FrNGY1c1V6VklzV2ltTjhvd09uTU01V04zdzRZbHMvaUtTZWh2WW9J?=
+ =?utf-8?B?aSt0NFA1VzQ5Z1c5OXJUM2VGVHJ3WTdRN1E4aUZsaEVmQ3RqN3VSWFRXalR3?=
+ =?utf-8?B?am5sTnFDamRiOVVaQUxpMnRrdXlra3VabkxaRWhtTDdwWENnRW9LZEErYzJL?=
+ =?utf-8?B?SFpNYmFZOC9VczlKSVR0U3dMYlg5MmdIV1VGN2JFcHlONVM5TWUxSnN5MzVH?=
+ =?utf-8?B?N0dWNUVocE9QcDVqS2FyK3N2UExHYXRWQWZ4VHJvRWVLS1crYlBHTTVqa1Nl?=
+ =?utf-8?B?SmxoRyswdkI3TlZ5aXBuZGJxcHhMWk9xNHhtRndlNUNpSWlDR3oyV2FaQitM?=
+ =?utf-8?B?OWQzN2VKQWRCOHNvVEtIOFlGOVhTQ25hZzBJNGZDZFEzc0JGRFk1dzJkR2h1?=
+ =?utf-8?B?MDdySkNzNnV3aDM1TGtnSmJmUDZxOEFQbUU0K0ViQWVBWnNMVncvVVpEejNF?=
+ =?utf-8?B?YmFJTlAyS20rOFU1TlU3V3h1bkt5cW9YcUN2ck9rdlBHNG9CeXVjbCtLZ2wv?=
+ =?utf-8?B?bXhIdThtdU9oLzBjSGYzY2JFdkRLbXhQdS9WeE84a2tTekVCblZDRk9lYUlL?=
+ =?utf-8?B?WnlLb3JyYzVGZlUxTVlGZmVlYWt4QWhOdytUL3cxbkpoUlBmemsxbW12bEJi?=
+ =?utf-8?B?enROd252Y3NkOC9ET0R4b1IvM3diUUVnVG1lenZWK2h0L2xKaGh4Y3VneDJv?=
+ =?utf-8?B?YkxDMHZXY2sySGc5YXR0UlZnM1A3bWJOMERicytnMXhHWHN5NTNxNWJUeEFN?=
+ =?utf-8?B?L1FkdXRTNzJ2NjlXUTFtRVIrZUtDek9paXR2ZjMrUHYxMnRHV1dCWThhcGMx?=
+ =?utf-8?B?SXh6eXJ2QkJQM2xBYzlJN3MxVHVuOUZ2THBzR0grRndhVXkwNS9MMzMyV2V2?=
+ =?utf-8?B?MUl0djg4ZTlpeGhYd2tyc2FnN3dWVWFJeUtoZmNJb2hvd0IzYTZPOUh5UFRS?=
+ =?utf-8?B?TTljOFZTNVhnWnYwS1llandNdlN6M2RsczdMWU1paHVXWVdGazlWdi9Kbm1T?=
+ =?utf-8?B?MUpReXBiM0E5MjBzMmNDT2NBMmxpR2lTZkNVWkhrMll6emxYY1dGbFh6YnF0?=
+ =?utf-8?B?b2JFSktVTXlvN3RFdC9tTEowdkJEaURBRVllMzdKbnpyWHdTWGdEOUp0NTlv?=
+ =?utf-8?B?aFU5bnpGR1daWEZYVjkvZXhpMmxhRDlxYXBwVGRQYzN6ZFR0Zy8vK3UxMEN2?=
+ =?utf-8?B?MEtudGtzSFJDYjFLbGFjZ2I5WnZRSElDWUp2dE5QbmFiVU9hRE9jZmJYWGFE?=
+ =?utf-8?B?OEo5WENyRVlLU2dzakgwbDBWcUNxUHB2SFRjMGxSTkR0aTEwV25nUHM5Z2Js?=
+ =?utf-8?B?SUM2MDdJSHRNdkU0cmpQMU9rZCtpaTJ0alp4blhJSmY1MlpRZmVTcXFJbzdq?=
+ =?utf-8?B?b21waktnRUpHOGtHSWRKYnVRd3pRZ3ZYb21JQnY1SWNrNlVZQ00xMi83bEtx?=
+ =?utf-8?Q?w79P8we6EoE+sWYo=3D?=
+X-Exchange-RoutingPolicyChecked: C/ossFO92XR4B3zWWKxdGZdJaAyBzCFE/ca6U97o4OADw5CvM0jyLYpaX0Jr++kqdxf7FfTSxq5/uu0QMABwNMolM4EPi5xqwhQ3ZK48+LspWCS9JnVKaOZTt3vrCT7syi2aOLrBjmxXsRCksj2m94JisUJgTEYaBkZAOOmWzV2Ap/bcth2qmBkbsvIvZ5TL8ZRSEcuMiIKLxiSnNJxi3HRQ+jUJtxS0Og2go+hdccStPVGL4FQHJbHgOyhRMkUF3qVBhYyarum3gQHYLYcPBQRexEaNf9ZHI9Kc2xDp0yABCidA2L0PnkEUHhXaQ5FAPN2+EIWm4Shtyji1avsFOA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 322d0347-116c-4124-cd6d-08dee347c5dd
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7149.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2026 13:59:46.8399 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2026 14:37:33.9099 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G9pjUcXcqp9B9mi4tNxE0seWB4InBbXguVtYDxdRP2WZ7rXQec4lOqpj0FhaJRY5PY3Uu/CVjvXKprx5humbkL4l5whtR3SftxUfZFHBu7Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4862
+X-MS-Exchange-CrossTenant-UserPrincipalName: vgHGq8ESCiNow9b6JtojNABiTHFqrpJMJAeQFXdjslrBj1QPYlbc/0PI/WOaex6uDGUybr11K9eZU1I2l+E6oMIT3Z1ynTUH2wOpPAiVbDg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6549
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -183,296 +171,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Mitul,
 
+Resending this, as it was previously sent only to i915 by mistake.
 
-On 7/16/2026 7:11 PM, Andrei Kuchynski wrote:
-> On Thu, Jul 16, 2026 at 3:23 PM Borah, Chaitanya Kumar
-> <chaitanya.kumar.borah@intel.com> wrote:
->>
->>
->>
->> On 7/16/2026 2:45 PM, Andrei Kuchynski wrote:
->>> On Thu, Jul 16, 2026 at 10:28 AM Borah, Chaitanya Kumar
->>> <chaitanya.kumar.borah@intel.com> wrote:
->>>>
->>>> Hello Andrei,
->>>>
->>>> On 7/7/2026 7:47 PM, Andrei Kuchynski wrote:
->>>>> A synchronization issue exists during port unregistration where pending
->>>>> partner work items can race against workqueue destruction, leading to
->>>>> use-after-free conditions:
->>>>>
->>>>>      cros_ec_ucsi cros_ec_ucsi.3.auto: error -ETIMEDOUT: PPM init failed
->>>>>      BUG: kernel NULL pointer dereference, address: 0000000000000000
->>>>>      RIP: 0010:__queue_work+0x83/0x4a0
->>>>>      Call Trace:
->>>>>        <IRQ>
->>>>>        __cfi_delayed_work_timer_fn+0x10/0x10
->>>>>        run_timer_softirq+0x3b6/0xbd0
->>>>>        sched_clock_cpu+0xc/0x110
->>>>>        irq_exit_rcu+0x18d/0x330
->>>>>        fred_sysvec_apic_timer_interrupt+0x5e/0x80
->>>>>
->>>>> Fix this by ensuring strict ordering and proper serialization during
->>>>> teardown:
->>>>>
->>>>> 1. Move ucsi_unregister_partner() to the beginning of the teardown
->>>>> sequence and protect it under the connector mutex lock.
->>>>> 2. Ensure all pending partner tasks are explicitly flushed and finished
->>>>> before the workqueue is destroyed.
->>>>> 3. Switch from mod_delayed_work() to a cancel_delayed_work() and
->>>>> queue_delayed_work() sequence. This guarantees that items currently marked
->>>>> as pending won't be scheduled an additional time, preventing a double
->>>>> release of resources which leads to the following crash:
->>>>>
->>>>>      Oops: general protection fault, probably for non-canonical address
->>>>>        0xdead000000000122: 0000 [#1] SMP NOPTI
->>>>>      Workqueue: cros_ec_ucsi.3.auto-con2 ucsi_poll_worker
->>>>>      RIP: 0010:ucsi_poll_worker+0x65/0x1e0
->>>>>      Call Trace:
->>>>>      <TASK>
->>>>>        process_scheduled_works+0x218/0x6d0
->>>>>        worker_thread+0x188/0x3f0
->>>>>        __cfi_worker_thread+0x10/0x10
->>>>>        kthread+0x226/0x2a0
->>>>>
->>>>> To ensure these rules are applied identically across both the normal
->>>>> teardown and the ucsi_init() error paths, consolidate the cleanup logic
->>>>> into a new helper, ucsi_unregister_port().
->>>>
->>>>
->>>> This seems to be causing regression in our linux-next CI. [1]
->>>>
->>>> <6>[   18.008557] ------------[ cut here ]------------
->>>> <4>[   18.013166] DEBUG_LOCKS_WARN_ON(1)
->>>> <4>[   18.013167] WARNING: kernel/locking/lockdep.c:238 at
->>>> __lock_acquire+0xa59/0x2750, CPU#1: kworker/u89:1/172
->>>> ...
->>>> <4>[   18.159950] Hardware name: Intel Corporation Meteor Lake Client
->>>> Platform/MTL-P DDR5 SODIMM SBS RVP, BIOS
->>>> MTLPFWI1.R00.3471.D89.2401091901 01/09/2024
->>>> <4>[   18.173125] Workqueue: events_dfl_long ucsi_init_work [typec_ucsi]
->>>> <4>[   18.179257] RIP: 0010:__lock_acquire+0xa60/0x2750
->>>> <4>[   18.183927] Code: 44 8b 5d a8 85 c0 0f 84 98 fd ff ff 44 8b 35 07
->>>> 0b 72 02 45 85 f6 0f 85 88 fd ff ff 48 8d 3d 27 25 73 02 48 c7 c6 1b 51
->>>> 27 83 <67> 48 0f b9 3a 31 c0 44 8b 5d a8 44 8b 4d b0 e9 c6 f7 ff ff 31 d2
->>>> ...
->>>> <4>[   18.263886] PKRU: 55555554
->>>> <4>[   18.266583] Call Trace:
->>>> <4>[   18.269014]  <TASK>
->>>> <4>[   18.271110]  ? mark_held_locks+0x46/0x90
->>>> <4>[   18.275007]  lock_acquire+0xd9/0x2e0
->>>> <4>[   18.278562]  ? ucsi_unregister_port+0x36/0x140 [typec_ucsi]
->>>> <4>[   18.284096]  __mutex_lock+0xb2/0x1020
->>>> <4>[   18.287735]  ? ucsi_unregister_port+0x36/0x140 [typec_ucsi]
->>>> <4>[   18.293265]  ? ucsi_unregister_port+0x36/0x140 [typec_ucsi]
->>>> <4>[   18.298797]  ? synchronize_rcu_expedited+0x2b2/0x300
->>>> <4>[   18.303724]  ? __pfx_autoremove_wake_function+0x10/0x10
->>>> <4>[   18.308912]  mutex_lock_nested+0x1b/0x30
->>>> <4>[   18.312806]  ? mutex_lock_nested+0x1b/0x30
->>>> <4>[   18.316878]  ucsi_unregister_port+0x36/0x140 [typec_ucsi]
->>>> <4>[   18.322238]  ucsi_init_work+0x66d/0xc10 [typec_ucsi]
->>>> <4>[   18.327167]  process_one_work+0x2ad/0x8b0
->>>> <4>[   18.331158]  worker_thread+0x200/0x3f0
->>>> <4>[   18.334886]  ? __pfx_worker_thread+0x10/0x10
->>>> <4>[   18.339128]  kthread+0x10d/0x150
->>>> <4>[   18.342339]  ? __pfx_kthread+0x10/0x10
->>>> <4>[   18.346067]  ret_from_fork+0x3bd/0x470
->>>> <4>[   18.349795]  ? __pfx_kthread+0x10/0x10
->>>> <4>[   18.353522]  ret_from_fork_asm+0x1a/0x30
->>>> <4>[   18.357420]  </TASK>
->>>>
->>>> Detailed log can be seen found in [2]
->>>>
->>>> We confirmed that reverting the patch solves the issue.
->>>>
->>>> Could you please check why the patch causes this regression and provide
->>>> a fix if necessary?
->>>>
->>>> Regards
->>>> Chaitanya
->>>>
->>>> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
->>>> [2]
->>>> https://intel-gfx-ci.01.org/tree/linux-next/next-20260714/bat-mtlp-9/boot0.txt
->>>>
->>>> -- Bisect Logs --
->>>>
->>>> git bisect start
->>>> # status: waiting for both good and bad commits
->>>> # good: [5f1b513690edf51727e6928b97705b6437f9a98e] Merge remote-tracking
->>>> branch 'spi/for-7.3' into spi-next
->>>> git bisect good 5f1b513690edf51727e6928b97705b6437f9a98e
->>>> # status: waiting for bad commit, 1 good commit known
->>>> # bad: [49362394dad7df66c274c867a271394c10ca2bb8] Add linux-next
->>>> specific files for 20260713
->>>> git bisect bad 49362394dad7df66c274c867a271394c10ca2bb8
->>>> # bad: [dffddeb046466ed57038295bde28b42b7506a12b] Merge branch
->>>> 'nand/next' of https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git
->>>> git bisect bad dffddeb046466ed57038295bde28b42b7506a12b
->>>> # bad: [d154d0766bf3fe830e1bf98fb2d8648294a4a8da] Merge branch
->>>> 'for-next' of
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-omap.git
->>>> git bisect bad d154d0766bf3fe830e1bf98fb2d8648294a4a8da
->>>> # bad: [671b0fd929bec9ebf863cb376baf9b9d1226a510] Merge branch 'master'
->>>> of https://git.kernel.org/pub/scm/linux/kernel/git/kvms390/linux.git
->>>> git bisect bad 671b0fd929bec9ebf863cb376baf9b9d1226a510
->>>> # good: [f4fb100039e96211609dfc44fb24b9e4a8a0f2f9] Merge tag
->>>> 's390-7.2-4' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux
->>>> git bisect good f4fb100039e96211609dfc44fb24b9e4a8a0f2f9
->>>> # good: [c296d513e034df93ddb230ad1c7a118d6b58750c] Merge branch
->>>> 'arm/fixes' of https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git
->>>> git bisect good c296d513e034df93ddb230ad1c7a118d6b58750c
->>>> # good: [de53c0a584f08f31eb957f8c849a59fb33b27fa8] Merge branch 'for-rc'
->>>> of https://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
->>>> git bisect good de53c0a584f08f31eb957f8c849a59fb33b27fa8
->>>> # bad: [a6969de5a038bc08a948ada52bd7199a8dfa6cec] Merge branch
->>>> 'usb-linus' of
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
->>>> git bisect bad a6969de5a038bc08a948ada52bd7199a8dfa6cec
->>>> # good: [15eab2dd63a97587405ab6bfaad9728d5b35b5fe] Merge tag
->>>> 'asoc-fix-v7.2-rc2' of
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound into for-linus
->>>> git bisect good 15eab2dd63a97587405ab6bfaad9728d5b35b5fe
->>>> # bad: [c2e819be6a5c7f34344926b4bd7e3dfca58cf48a] usb: gadget: printer:
->>>> fix infinite loop in printer_read()
->>>> git bisect bad c2e819be6a5c7f34344926b4bd7e3dfca58cf48a
->>>> # good: [29a142d3e8b35ebc9e0bcc78f4bc26c9b6a9ac0b] USB: gadget:
->>>> snps-udc: fix device name leak on probe failure
->>>> git bisect good 29a142d3e8b35ebc9e0bcc78f4bc26c9b6a9ac0b
->>>> # good: [1febec7e47cdcd01f43fb0211094e3010474666e] usb: gadget: f_ncm:
->>>> validate datagram bounds in ncm_unwrap_ntb()
->>>> git bisect good 1febec7e47cdcd01f43fb0211094e3010474666e
->>>> # bad: [0583f2fbf8f86ae3a0ce054f96783dd83e65d9bb] usb: gadget: udc: bdc:
->>>> free IRQ and drain func_wake_notify before teardown
->>>> git bisect bad 0583f2fbf8f86ae3a0ce054f96783dd83e65d9bb
->>>> # bad: [7aa7d4bf9d3fa9a6a47b640ad103ab433b7ff261] usb: typec: ucsi: Fix
->>>> race condition and ordering in port unregistration
->>>> git bisect bad 7aa7d4bf9d3fa9a6a47b640ad103ab433b7ff261
->>>> # first bad commit: [7aa7d4bf9d3fa9a6a47b640ad103ab433b7ff261] usb:
->>>> typec: ucsi: Fix race condition and ordering in port unregistration
->>>>>
->>>>> Cc: stable@vger.kernel.org
->>>>> Fixes: b9aa02ca39a4 ("usb: typec: ucsi: Add polling mechanism for partner tasks like alt mode checking")
->>>>> Fixes: b13abcb7ddd8 ("usb: typec: ucsi: Fix NULL pointer access")
->>>>> Fixes: fac4b8633fd6 ("usb: ucsi: Ensure connector delayed work items are flushed")
->>>>> Signed-off-by: Andrei Kuchynski <akuchynski@chromium.org>
->>>>> ---
->>>>>     drivers/usb/typec/ucsi/ucsi.c | 82 +++++++++++++++++------------------
->>>>>     1 file changed, 39 insertions(+), 43 deletions(-)
->>>>>
->>>>> diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
->>>>> index 92166a3725b16..d9668ed7c80ea 100644
->>>>> --- a/drivers/usb/typec/ucsi/ucsi.c
->>>>> +++ b/drivers/usb/typec/ucsi/ucsi.c
->>>>> @@ -1845,6 +1845,42 @@ static int ucsi_register_port(struct ucsi *ucsi, struct ucsi_connector *con)
->>>>>         return ret;
->>>>>     }
->>>>>
->>>>> +static void ucsi_unregister_port(struct ucsi_connector *con)
->>>>> +{
->>>>> +     struct ucsi_work *uwork;
->>>>> +
->>>>> +     if (con->wq) {
->>>>> +             mutex_lock(&con->lock);
->>>>> +             ucsi_unregister_partner(con);
->>>>> +             /*
->>>>> +              * queue delayed items immediately so they can execute
->>>>> +              * and free themselves before the wq is destroyed
->>>>> +              */
->>>>> +             list_for_each_entry(uwork, &con->partner_tasks, node) {
->>>>> +                     if (cancel_delayed_work(&uwork->work))
->>>>> +                             queue_delayed_work(con->wq, &uwork->work, 0);
->>>>> +             }
->>>>> +             mutex_unlock(&con->lock);
->>>>> +
->>>>> +             destroy_workqueue(con->wq);
->>>>> +             con->wq = NULL;
->>>>> +     } else {
->>>>> +             ucsi_unregister_partner(con);
->>>>> +     }
->>>>> +
->>>>> +     ucsi_unregister_altmodes(con, UCSI_RECIPIENT_CON);
->>>>> +     ucsi_unregister_port_psy(con);
->>>>> +
->>>>> +     usb_power_delivery_unregister_capabilities(con->port_sink_caps);
->>>>> +     con->port_sink_caps = NULL;
->>>>> +     usb_power_delivery_unregister_capabilities(con->port_source_caps);
->>>>> +     con->port_source_caps = NULL;
->>>>> +     usb_power_delivery_unregister(con->pd);
->>>>> +     con->pd = NULL;
->>>>> +     typec_unregister_port(con->port);
->>>>> +     con->port = NULL;
->>>>> +}
->>>>> +
->>>>>     static u64 ucsi_get_supported_notifications(struct ucsi *ucsi)
->>>>>     {
->>>>>         u16 features = ucsi->cap.features;
->>>>> @@ -1971,22 +2007,8 @@ static int ucsi_init(struct ucsi *ucsi)
->>>>>         for (i = 0; i < ucsi->cap.num_connectors; i++)
->>>>>                 lockdep_unregister_key(&connector[i].lock_key);
->>>>>
->>>>> -     for (con = connector; con->port; con++) {
->>>>> -             if (con->wq)
->>>>> -                     destroy_workqueue(con->wq);
->>>>> -             ucsi_unregister_partner(con);
->>>>> -             ucsi_unregister_altmodes(con, UCSI_RECIPIENT_CON);
->>>>> -             ucsi_unregister_port_psy(con);
->>>>> -
->>>>> -             usb_power_delivery_unregister_capabilities(con->port_sink_caps);
->>>>> -             con->port_sink_caps = NULL;
->>>>> -             usb_power_delivery_unregister_capabilities(con->port_source_caps);
->>>>> -             con->port_source_caps = NULL;
->>>>> -             usb_power_delivery_unregister(con->pd);
->>>>> -             con->pd = NULL;
->>>>> -             typec_unregister_port(con->port);
->>>>> -             con->port = NULL;
->>>>> -     }
->>>>> +     for (con = connector; con->port; con++)
->>>>> +             ucsi_unregister_port(con);
->>>
->>> Hi Chaitanya,
->>> Thank you for spotting this!
->>>
->>> Could you verify if calling lockdep_unregister_key(&connector[i].lock_key)
->>> after ucsi_unregister_port(con) resolves the issue?
->>>
->>>        for (con = connector; con->port; con++)
->>>               ucsi_unregister_port(con);
->>>        for (i = 0; i < ucsi->cap.num_connectors; i++)
->>>                  lockdep_unregister_key(&connector[i].lock_key);
->>>
->>> I will also try testing this on my side.
->>
->> Thank you Andrei for the patch. It seems to work for us.
->>
-> 
-> Hi Chaitanya,
-> 
-> Thanks for the testing!
-> I will prepare a fix or maybe V2 of this patch.
-> 
-> Could you please share your configuration details? Specifically, do you
-> have any of the following enabled?
-> CONFIG_DEBUG_LOCKDEP
-> CONFIG_LOCK_STAT
-> CONFIG_LOCKDEP_SMALL
-> CONFIG_DEBUG_LOCKDEP
-> CONFIG_PROVE_LOCKING
-> 
-> I am still  not able to reproduce it.
+> Add a per-CRTC debugfs file 'intel_vrr_cmrr' that lets the user force a
+> CMRR target refresh rate and video-mode requirement.
+>
+> The file uses a "numerator/denominator" format:
+>    - numerator:   requested refresh rate in milli-Hz
+>                   (refresh rate in Hz * 1000, e.g. 60000 for 60 Hz)
+>    - denominator: 1000 for a 1:1 ratio (no video timing) or
+>                   1001 for the 1000/1001 video timing
+>
+> Reading the file reports the currently stored values; writing updates
+> them. The file is created only on platforms with VRR and CMRR support.
+>
+> --v2:
+> - Drop the "vrr" debugfs subdirectory and expose a single flat,
+>    intel_-prefixed "intel_vrr_cmrr" file (Jani, Nikula)
+> - Rename struct intel_crtc.cmrr to force_cmrr to make its purpose
+>    explicit (Chaitanya)
+> - Fix parse comment: numerator unit is milli-Hz, not KHz (Chaitanya)
+> - Add debugfs/intel_ prefixes to the debugfs handler functions (Chaitanya)
+> - Expand commit message with debugfs entry semantics (Chaitanya)
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>   .../drm/i915/display/intel_display_debugfs.c  |   2 +
+>   .../drm/i915/display/intel_display_types.h    |   5 +
+>   drivers/gpu/drm/i915/display/intel_vrr.c      | 103 ++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_vrr.h      |   2 +
+>   4 files changed, 112 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 3f02868ef105..2bbf4760dc30 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -49,6 +49,7 @@
+>   #include "intel_psr.h"
+>   #include "intel_psr_regs.h"
+>   #include "intel_vdsc.h"
+> +#include "intel_vrr.h"
+>   #include "intel_wm.h"
+>   #include "intel_tc.h"
+>   
+> @@ -1395,6 +1396,7 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
+>   	intel_drrs_crtc_debugfs_add(crtc);
+>   	intel_fbc_crtc_debugfs_add(crtc);
+>   	hsw_ips_crtc_debugfs_add(crtc);
+> +	intel_vrr_crtc_debugfs_add(crtc);
+>   
+>   	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
+>   			    &i915_current_bpc_fops);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index c048da7d6fea..84a6d016e226 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1546,6 +1546,11 @@ struct intel_crtc {
+>   		u64 flip_count;
+>   	} dc_balance;
+>   
+> +	struct {
+> +		u32 numerator;
+> +		u32 denominator;
+> +	} force_cmrr;
+> +
+>   	int scanline_offset;
+>   
+>   	struct {
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 51e4f3309b8b..8b6e36ee9f55 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -4,6 +4,10 @@
+>    *
+>    */
+>   
+> +#include <linux/debugfs.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/string.h>
+> +
+>   #include <drm/drm_print.h>
+>   #include <drm/intel/step.h>
+>   
+> @@ -1231,3 +1235,102 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
+>   
+>   	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
+>   }
+> +
+> +static
+> +int intel_vrr_cmrr_parse_ratio(char *str, u32 *numerator, u32 *denominator)
+> +{
+> +	char *sep;
+> +	int ret;
+> +
+> +	/*
+> +	 * Parse a "numerator/denominator" CMRR ratio string. The numerator
+> +	 * is the requested refresh rate in milli-Hz (refresh rate in Hz * 1000)
+> +	 * and the denominator selects the timing: 1000 for a 1:1 ratio
+> +	 * (no video timing) or 1001 for the 1000/1001 video timing.
+> +	 */
+> +
+> +	sep = strchr(str, '/');
+> +	if (!sep)
+> +		return -EINVAL;
+> +
+> +	*sep = '\0';
+> +
+> +	ret = kstrtou32(strim(str), 10, numerator);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = kstrtou32(strim(sep + 1), 10, denominator);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (*numerator == 0)
+> +		return -EINVAL;
+> +
+> +	if (*denominator != 1000 && *denominator != 1001)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int intel_vrr_debugfs_cmrr_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_crtc *crtc = m->private;
+> +
+> +	seq_printf(m, "%u/%u\n", crtc->force_cmrr.numerator, crtc->force_cmrr.denominator);
+> +
+> +	return 0;
+> +}
+> +
+> +static int intel_vrr_debugfs_cmrr_open(struct inode *inode, struct file *file)
+> +{
+> +	return single_open(file, intel_vrr_debugfs_cmrr_show, inode->i_private);
+> +}
+> +
+> +static ssize_t intel_vrr_debugfs_cmrr_write(struct file *file, const char __user *ubuf,
+> +					    size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct intel_crtc *crtc = m->private;
+> +	u32 numerator, denominator;
+> +	char kbuf[32];
+> +	int ret;
+> +
+> +	if (len >= sizeof(kbuf))
+> +		return -EINVAL;
+> +
+> +	if (copy_from_user(kbuf, ubuf, len))
+> +		return -EFAULT;
+> +
+> +	kbuf[len] = '\0';
+> +
+> +	ret = intel_vrr_cmrr_parse_ratio(kbuf, &numerator, &denominator);
+> +	if (ret)
+> +		return ret;
+> +
+> +	crtc->force_cmrr.numerator = numerator;
+> +	crtc->force_cmrr.denominator = denominator;
+> +
+> +	return len;
+> +}
+> +
+> +static const struct file_operations intel_vrr_debugfs_cmrr_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = intel_vrr_debugfs_cmrr_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +	.write = intel_vrr_debugfs_cmrr_write,
+> +};
+> +
+> +void intel_vrr_crtc_debugfs_add(struct intel_crtc *crtc)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc);
+> +
+> +	if (!HAS_VRR(display))
+> +		return;
+> +
+> +	if (HAS_CMRR(display))
+> +		debugfs_create_file("intel_vrr_cmrr", 0600, crtc->base.debugfs_entry,
+> +				    crtc, &intel_vrr_debugfs_cmrr_fops);
+> +}
 
-I hope this is accessible.
+The debugfs interface accepts non-zero values, but fails to reset the 
+value to zero.
 
-https://intel-gfx-ci.01.org/tree/linux-next/next-20260713/kconfig.txt
-
-We also see this issue only in one of the CI machines. So it might not 
-be the config.
-
-==
-Chaitanya
-
-> 
-> Thanks,
-> Andrei
-
+> +
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> index 55e9c429f579..19c7990be1b2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> @@ -56,4 +56,6 @@ int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_sta
+>   int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
+>   int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
+>   
+> +void intel_vrr_crtc_debugfs_add(struct intel_crtc *crtc);
+> +
+>   #endif /* __INTEL_VRR_H__ */
