@@ -4,160 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F150C43458
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 04:02:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F24FC43458
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 04:02:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C62310E2B5;
-	Thu, 16 Jul 2026 04:02:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hv1pRuPY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB2D910E2B5;
- Thu, 16 Jul 2026 04:01:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784174519; x=1815710519;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=IN4r/R/iZ5eiXjp6/w8hu/LWI58rmymtXwXqKe3JUpY=;
- b=Hv1pRuPYrPyP44nV7hzgDOpwiTd1nIxfExqeScNa0fsyvOV734So459H
- iNIMj/QNnFGJc3Y8BTDAw4E4vcSJ7dhqxCRCgt0jEWivaCRGHCH1Nku0m
- wnJtyXWsm4knJFqdIF74LsWqzUgwo9l4YmyCFb6CbGWlG+SKzhergnQNH
- Tkax1kJcLmpJWzQFsriBFC/yztkZtzFU1FN6QlWSSSLJ49xEK5Jj3+KnW
- ZOXWc+wFFmGANRRnhi7bq1IasVQCb2Bw9qS/yYG7XxO21GqPpnDNW2MRU
- nwsIW9jhRaJXJL0Ny0SGtp5U3Bw+ow09hzcc/XUHSX57i4WdMTn0dIZKR g==;
-X-CSE-ConnectionGUID: 3RY/CEPzQ0WpUXaVzKBT8Q==
-X-CSE-MsgGUID: B5x6Uhn3R56sBZFmCBOIkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="102375935"
-X-IronPort-AV: E=Sophos;i="6.25,166,1779174000"; d="scan'208";a="102375935"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 21:01:59 -0700
-X-CSE-ConnectionGUID: 6E0oTN27RlW13N/Qna49oA==
-X-CSE-MsgGUID: vhlFzxCsQjG8e5ZAl/clPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,166,1779174000"; d="scan'208";a="252971601"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 21:01:59 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 15 Jul 2026 21:01:59 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Wed, 15 Jul 2026 21:01:59 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.56) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 15 Jul 2026 21:01:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PLMy1LeZdGuBPb9aOvBlI9B7At4QnrzaL/fcJTAndBG7y3oTtMknduSUJLoCtdyVsbgPv8n2vownpU73ULDKuNBkthwpHIc/iNgb89iWHjn91Z+jnKRv1yr+spyJSHaAgKMEcmfvXNNTwZe2kq8Y4EBKMFL5kaYNHIeIwwokPWgwcjlJP7QmPXBcqMUoaRFH3XVes5Z1tC1xt28RVWzu4ZaEhNshBCZnLyRq0A7Fh6vttK0TYhJGWtr2oiNjDR9Rt1rxXyRuN4Eb54wbQxRp/PpJgKIJ7NVEnTAIjijJzWTv6VdxpU89cOc5klp+PLhWOMgZjL0OxPij6izyoQkpqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IN4r/R/iZ5eiXjp6/w8hu/LWI58rmymtXwXqKe3JUpY=;
- b=SXsKzNNdzZm3W6FUu71Li9Y8AsxtC+ejsNLLMiaGCVU8wCcqa87jwrkgrurkdoiCUpUMFevUmrdXpuP0ojJN8KGn8oO6wSjgNl8qBBIek5nFuMdgNw2JYr9mVkxYUN3tJRcNfWftVWw2/bSI9148CTRKCRzx27OJFwbjV2eFMZ2fuoXzjPZxjhgtAgBZE0ZeMxGd7YG3zOQuGUHdIm5TN6Xv9/X0iGL1fu0NcLeN5iWwZ7a8h6blFQQl8lF7HkowOFhnpRMBs8Pq2vkoXyH4yfGjxafwZUovf2Ms/t3jDTAAS7BK9JVyTWAIGcAXMTUlOeqOqH2fjKWqREbmcv71sA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6467.namprd11.prod.outlook.com (2603:10b6:208:3a5::18)
- by SA2PR11MB4908.namprd11.prod.outlook.com (2603:10b6:806:112::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Thu, 16 Jul
- 2026 04:01:55 +0000
-Received: from IA1PR11MB6467.namprd11.prod.outlook.com
- ([fe80::7aa6:c6db:3d15:8973]) by IA1PR11MB6467.namprd11.prod.outlook.com
- ([fe80::7aa6:c6db:3d15:8973%3]) with mapi id 15.21.0223.008; Thu, 16 Jul 2026
- 04:01:55 +0000
-From: "Garg, Nemesa" <nemesa.garg@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 4/4] drm/i915/cdclk: Deal with 2 PPC hscale issues when
- calculating min CDCLK
-Thread-Topic: [PATCH 4/4] drm/i915/cdclk: Deal with 2 PPC hscale issues when
- calculating min CDCLK
-Thread-Index: AQHdFFLgBe1cGGgW1EeFHr8LBCsO+7Zvho9g
-Date: Thu, 16 Jul 2026 04:01:55 +0000
-Message-ID: <IA1PR11MB646768E88AF12FCDF0A49450E3C72@IA1PR11MB6467.namprd11.prod.outlook.com>
-References: <20260715120926.10786-1-ville.syrjala@linux.intel.com>
- <20260715120926.10786-5-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260715120926.10786-5-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6467:EE_|SA2PR11MB4908:EE_
-x-ms-office365-filtering-correlation-id: e9e60204-6338-499f-a2b8-08dee2eefa0b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|3023799007|4143699003|11063799006|56012099006|22082099003|18002099003|10067099003|38070700021;
-x-microsoft-antispam-message-info: UrEPL6Aq/h1ccX8Uy5LPeq3AZV3lRWV3i6xXjWE/BztAp8LjO21o67Cil+X+iToMVGO6kRBMq5qqErzx+nbCSu9UqfI+aA4mUicXZVHrPBwuzj4XgzXU8mhskBA/MbDmV6TjW+mwXbqiWSGtZbS21f7s9F6TZaSo65fk6MGEV0DE6n1TUmhHLVQQWBhUpkCfaB1m4xCw3nY3X3KQlmmDbC5LpBvsTUDcqIVef+edVAsho+jw80OeUpxNTZJ39oGcEqA/ovTBxIgNW/OY6EQP1YumsQNAx0yNEqhLlmFSJocCqo9kHPo4eoPzBJg7rMBUQhRM/zb2gs9mROekvSDDiTV5GZcyPsdIhemfoK9QH2fBC2e3Ik0/V1mtHKWzr09jonDtxf/WyFQLIU0XErrKqZJgP9N1avx5Q9jTfWPTT3Wq1cg3xeqjAVwyCsho1GjdKcF239cxiqT+9W4KXBGiYO72GSd7PdZdxQcP6uVpArFIkkrupnzy7dtGH+Eim6s8Dm5lBa23IHavtEm7q5hELjsL87BpJFP/mSEPbmOZ7szsrd+UftKotQ3P6ZOnTeq1kh9QxSBfn5DDVQk7tC0hwny8WX9b28lNhqbpX7kF6jdGM0KCXI45T8i7Mfn9IcQ8vp03oI6p72NZXkUY+BDSL4x7LrFZAGZJKWj1gX2efOyMzlM0V79GKOL6PFkAhlN9HlEwjX4BkoxSj9hrh3ebTXfw5TC30iiLfFQWHgKITdg=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6467.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(3023799007)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003)(10067099003)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OEFLVlhZREdWWWZyMzlEZ1FTdmNFYzNPYkczR3JNMlhIM2RNTWRTVnpXeklF?=
- =?utf-8?B?bU4zWkRUQmxvTitiVThRZzB3R3lHQjNCOXBpQllwMXM5NE1PTjYrQUs2MGRY?=
- =?utf-8?B?RWZybkFJZ05SdjVybzdhcm1rUVhIK0g2RlRvRS9ucDU3MEttVUd4UDd3Y2xq?=
- =?utf-8?B?NWRNdVo1MkZTT1N6eC9BTVRFTWkvYUNjc0grbEh0b0dDbmZOQUpaZFIzSnF4?=
- =?utf-8?B?OFBYWmpVMXRtbGR3NFgwazFjSXdLZThCQ3BUTmd5dEcrUDZheEhDUmVacVNr?=
- =?utf-8?B?QkFHZGZCNHA5VzNSQVA2NVMzV2wrdGI2UUt6aDY5elhJMFlTTk9VOWtIK3hM?=
- =?utf-8?B?a3g0OHF0Q1JIWlBxSnI1SkxvRnZQaDJROThoU0tnWGtUZXY2aStSL2xVcHlX?=
- =?utf-8?B?T0VtVXFzT2tRdDR6ek9LVEdOOXYxSFBSRjl2RzRYWHNwYTNkOUU3TnphU3E4?=
- =?utf-8?B?VTB5SXJWRW1WdnFRTmRlblRWMUpoYklNUnN1KzZYYm1NN25lRkJnTTJaYUNy?=
- =?utf-8?B?bHFrMDBPeTBQUjU1ZU9jZUM2VHFOTEdLTWVLcys1L0o2WHIwb1V4dEJNc0Qy?=
- =?utf-8?B?N2hxZVI0ZGVJYW5kSzZBMGd2M0N1NTBoZkswaTFEQXEzVnZpaXhoMXBuTVNZ?=
- =?utf-8?B?M0ZGUkF3ZUJqWExlVTQvQ3cvRUtKNDFnNHBESUdzVUlkcUluY2Y2ZzV0K2hU?=
- =?utf-8?B?RUlNdUVHYjQ2Nm4vcksydUEvT0M5TEVCa2FxbWQ2bUxSaUtHNUsydS9NVGtX?=
- =?utf-8?B?c0J0c3ZpQlN6MExScHB1ejBvSFFJMjBJbmZKd28rLzFaeGVlUkc5aFlBTDRK?=
- =?utf-8?B?eE13QjNjdm9FNDM4TFl2WEJ6blIreVFRdndXTm5ZRnBxZi9adFlSRkZPNmRo?=
- =?utf-8?B?S1Z3MGsvamxYWG5rUW5jaVh6RWU1ZDZBbUs3NjBqbE9WaXZCVVhNZVc2YWNl?=
- =?utf-8?B?Q254R0pNd3Z1dmUvNjc4QXk4UjZlQkhCZUJjbEM1bU41RzhMZ2haQjFvenJk?=
- =?utf-8?B?Z1JlaGtoTUUzM0JaM3JGMDl2emNYcFB3T0w4Q3JwR0txb09IWFAydmFoVDcy?=
- =?utf-8?B?UXE5dXE4bEFTYW1iNkR1QXA5cS9RaXZJSTJoMWh1dlpaOWhHY0pQZUlXVXpt?=
- =?utf-8?B?aG8xa1d6RC9zTnlkcU5KTisxaW8rKythOThHQkROeVloaCtLTWt0RmRkVGJ1?=
- =?utf-8?B?NFkxcEkzYWg3cUZibE5sOFhIaTVwRGdCKzRiRWRQTkJhTThPNW1XUGlpczN2?=
- =?utf-8?B?YnluN3dXV09Sd0pPblAwK09CTlQ3eHFoTkhOaTJFNUNVMGxCZE1XSGltYVRa?=
- =?utf-8?B?VTE1aFpTUGtRQ0lRdlpXLzhmdmVqTjZLZWJTNGZsdEtudStjMG8vclJkRHp3?=
- =?utf-8?B?a2cwYkUraXIzNWxDMWZpZXRvbjFzSnlESmJWekU5ZG8zNDcyUDluUE5TN3Q3?=
- =?utf-8?B?dmI3UEJ0MUtUL24yZ3YvYkRURjlGaWVxdnJjQlZCbUhlM1E5Z1lHRDUxdHZP?=
- =?utf-8?B?d3Y4N3NmY3JHeGdGNkJkY0NialpjYU5qeFh1dm9Jd29xKzdxczlqaHpyTTMr?=
- =?utf-8?B?Qk96VHpiTlBnUjg2ODhjQlAveEZmZnBVRExZMG1wK0pXMWtZbnNETDBrSndO?=
- =?utf-8?B?NjcxTEsxRW0zVWxidkdYZlVMQzk0M0tFVDdTUXJyZFZMOGtrQmFOaGFEeGZQ?=
- =?utf-8?B?OFZpbFkxOHU2YUdXeVVHL0lIamJ1M3NyZVZLK29nNFlValYzVVdOMFFRMy9I?=
- =?utf-8?B?RHdPajZyYjlKNmJYWmQ0OXhyTlp4RnA2c210TTlQRUx1cVl1OWxJS2pPeVJH?=
- =?utf-8?B?aUQ3SnJSNjBNbElNZEdSeXNrWXhwNlYrY3ZJb0M0MmVVbFU0OWpMeExWZWpM?=
- =?utf-8?B?Qllabjc1L1FNbWFpK0I1VnduTld1ZUx2bzRrc1hxaXVoK05ZZDZzVkhUTDRQ?=
- =?utf-8?B?dlQ0MTZMMEpzN1BFTWw1VHlhbThYMWZNUEJGV2JMMk9MYTdtUEZ5MGRjRm1l?=
- =?utf-8?B?cUppSWo5ZUJJcVBvVWVabkZQQ3RNb2pGbFBzeHNBdnF1S1FNdWFxL3h5TUti?=
- =?utf-8?B?dWgwdDV5anR3Sm8weUpRcHFLNStKM042ZS82WGQvSU9HWGVwTUFFbTJXNlN1?=
- =?utf-8?B?eFc2WDFCTXZWSDgvUFhITUhUOHNkUTUwT0dRbXArL3F1MkVmaWoveDU1dFEy?=
- =?utf-8?B?RkhTdGRJK1oyOEJmMXVtNW4rOWhZOGNaY3hEZHVFYXJWdlNUbmpKUHJXMVhF?=
- =?utf-8?B?V0dqamxvOFpYblhvb3NJMkF2NkFza3N6YUlYbnlRZGUyNnJvY0c3UGRaRXlL?=
- =?utf-8?B?UEJUbWk2a0FWM2RoNzhJaWcvMS93cG5wM2ViY01TMzJ1dFlRNXR0Zz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFD1410E2BF;
+	Thu, 16 Jul 2026 04:02:39 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1ACF10E2B5;
+ Thu, 16 Jul 2026 04:02:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3372902283468050532=="
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: MwJFreQi3/H+MnXSmV+VRkxXUmfKGUj3Ke+t7Sqfy+829uAWAIMLGFE5u7s1AOnRWhL2VDtpK3EI2A7u2DYNOknEtz7Wx9EuwH/2EPr5A8CImIY8RKHBewQkJ7M/0MoGmHv1IZI2XHYzDXM5BI6J4H6kKhWJJ8JHGVI0hae99r+V4FJIjOI71ULY3gw8L+/odXn207jz+M9zWady3rtpjO3WUrvjtKV8+p7Ihj1GCZwD+U7XHTpRSjKkinZ8g2vadNY6kJMBa9s0tAnCHFCfcDDgBUuFi+wMkOoRsveFtepge0Uf5oQQWCTpDK2odOjRtq23wr4/NDckDaII15v5iQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6467.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9e60204-6338-499f-a2b8-08dee2eefa0b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2026 04:01:55.7878 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hNH+POAupyui5AQloJyK9aHWb+kT75UH+8J9lVicQ4UGFb5M5MCXbw5r8qOPdPHAbt4e+YeMcSFQGvtXfi+fBg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4908
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/backlight=3A_Remov?=
+ =?utf-8?q?e_DP=5FEDP=5FBACKLIGHT=5FAUX=5FENABLE=5FCAP_check_for_DPCD_backli?=
+ =?utf-8?q?ght_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Jul 2026 04:02:37 -0000
+Message-ID: <178417455798.195560.15738038713799582281@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260716030701.432951-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260716030701.432951-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,165 +37,263 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZQ0K
-PiBTeXJqYWxhDQo+IFNlbnQ6IFdlZG5lc2RheSwgSnVseSAxNSwgMjAyNiA1OjM5IFBNDQo+IFRv
-OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBpbnRlbC14ZUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW1BBVENIIDQvNF0gZHJtL2k5MTUvY2RjbGs6IERl
-YWwgd2l0aCAyIFBQQyBoc2NhbGUgaXNzdWVzIHdoZW4NCj4gY2FsY3VsYXRpbmcgbWluIENEQ0xL
-DQo+IA0KPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPg0KPiANCj4gRG91YmxlIHRoZSBmcmFjdGlvbmFsIHBhcnQgb2YgdGhlIGhvcml6b250YWwg
-c2NhbGUgZmFjdG9yIGZvciB0aGUgcHVycG9zZXMgb2YNCj4gbWluX2NkY2sgY2FsY3VsYXRpb24u
-IFRoaXMgYnVtcHMgdGhlIG1pbiBDRENMSyBzdWZmaWNpZW50bHkgdG8gb3ZlcmNvbWUNCj4gc29t
-ZSBraW5kIG9mIDIgUFBDIGdyYW51bGFyaXR5IGlzc3VlLiBXaXRob3V0IHRoaXMgQ0RDTEsgbWF5
-IGVuZCB1cCBiZWluZw0KPiB0b28gbG93IGFuZCB3ZSBnZXQgdW5kZXJydW5zIHdpdGggY2VydGFp
-bCBob3Jpem9udGFsIGRvd25zY2FsZSBmYWN0b3JzLg0KPiANCk5pdDogY2VydGFpbg0KPiBUaGUg
-Y3VycmVudCBCc3BlYyBmb3JtdWxhIGNhbGxzIGZvciBkb3VibGluZyBvbmx5IHRoZSBmcmFjdGlv
-bmFsIHBhcnQgYmVsb3cNCj4gMC41LCBhbmQgcm91bmRpbmcgaXQgdG8gZG93biB0byBhIHVuaXQg
-ZnJhY3Rpb24uIEJ1dCB0aGF0IGZvcm11bGEgZG9lcyBub3QNCj4gcmVzdWx0IGluIGEgc3VmZmlj
-aWVudCBDRENMSyBidW1wIGluIGEgbG90IG9mIGNhc2VzLiBFbXBpcmljYWwgZXZpZGVuY2UNCj4g
-c3VwcG9ydHMgZG91YmxpbmcgdGhlIGVudGlyZSBmcmFjdGlvbmFsIHBhcnQsIHNvIGxldCdzIGp1
-c3QgZG8gdGhhdCB3aGlsZSB3ZSB3YWl0DQo+IGZvciBmdXJ0aGVyIGFuYWx5c2lzIGZyb20gdGhl
-IGhhcmR3YXJlIHRlYW0uDQo+IA0KPiBBbHNvIG5vdGUgdGhhdCB0aGUgcG9zaXRpb24gb2YgdGhl
-IHNjYWxlciBvdXRwdXQgd2luZG93IGFsc28gc2VlbXMgdG8gbWF0dGVyLg0KPiBJZiB0aGUgb3V0
-cHV0IGlzIG5lYXIgdGhlIGxlZnQgZWRnZSBvZiB0aGUgc2NyZWVuIHRoZW4gbG93ZXIgQ0RDTEsg
-aXMgc3VmZmljaWVudCwNCj4gYnV0IG1vdmluZyB0aGUgb3V0cHV0IHdpbmRvdyBmdXJ0aGVyIHRv
-IHRoZSByaWdodCBjYXVzZXMgdW5kZXJydW5zIHVubGVzcw0KPiBDRENMSyBpcyBhbHNvIGJ1bXBl
-ZC4gU29tZSBwcmVmaWxsIGhhcHBlbmluZyBkdXJpbmcgaGJsYW5rIGFscmVhZHk/DQo+IA0KPiBT
-aWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jICB8IDI2ICsrKysrKysrLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9wbGFuZS5jICAgIHwgNTUgKysrKysrKysrKysrKysrKysrKw0KPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9wbGFuZS5oICAgIHwgIDUgKysNCj4gIC4uLi9kcm0vaTkxNS9k
-aXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYyAgICB8ICA2ICstDQo+ICA0IGZpbGVzIGNoYW5n
-ZWQsIDg4IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBpbmRleCBkZjQzYmU1MWIz
-YmEuLjJjNTVhNDgxOGFkNyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTIyMzQsNiArMjIzNCwyOSBAQCBzdGF0aWMgdTMyIGls
-a19waXBlX3BpeGVsX3JhdGUoY29uc3Qgc3RydWN0DQo+IGludGVsX2NydGNfc3RhdGUgKmNydGNf
-c3RhdGUpDQo+ICAJCQkJICAgcGl4ZWxfcmF0ZSk7DQo+ICB9DQo+IA0KPiArc3RhdGljIHUzMiBp
-bGtfcGlwZV9waXhlbF9yYXRlX2NkY2xrKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlDQo+
-ICsqY3J0Y19zdGF0ZSkgew0KPiArCXN0cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5ID0gdG9f
-aW50ZWxfZGlzcGxheShjcnRjX3N0YXRlKTsNCj4gKwl1MzIgcGl4ZWxfcmF0ZSA9IGNydGNfc3Rh
-dGUtPmh3LnBpcGVfbW9kZS5jcnRjX2Nsb2NrOw0KPiArCXVuc2lnbmVkIGludCBwcGMgPSBIQVNf
-MlBQQyhkaXNwbGF5KSA/IDIgOiAxOw0KPiArCXN0cnVjdCBkcm1fcmVjdCBzcmM7DQo+ICsNCj4g
-KwkvKg0KPiArCSAqIFdlIG9ubHkgdXNlIElGLUlEIGludGVybGFjaW5nLiBJZiB3ZSBldmVyIHVz
-ZQ0KPiArCSAqIFBGLUlEIHdlJ2xsIG5lZWQgdG8gYWRqdXN0IHRoZSBwaXhlbF9yYXRlIGhlcmUu
-DQo+ICsJICovDQo+ICsNCj4gKwlpZiAoIWNydGNfc3RhdGUtPnBjaF9wZml0LmVuYWJsZWQpDQo+
-ICsJCXJldHVybiBwaXhlbF9yYXRlOw0KPiArDQo+ICsJZHJtX3JlY3RfaW5pdCgmc3JjLCAwLCAw
-LA0KPiArCQkgICAgICBkcm1fcmVjdF93aWR0aCgmY3J0Y19zdGF0ZS0+cGlwZV9zcmMpIDw8IDE2
-LA0KPiArCQkgICAgICBkcm1fcmVjdF9oZWlnaHQoJmNydGNfc3RhdGUtPnBpcGVfc3JjKSA8PCAx
-Nik7DQo+ICsNCj4gKwlyZXR1cm4gaW50ZWxfYWRqdXN0ZWRfcmF0ZV9jZGNsaygmc3JjLCAmY3J0
-Y19zdGF0ZS0+cGNoX3BmaXQuZHN0LA0KPiArCQkJCQkgcGl4ZWxfcmF0ZSwgcHBjKTsNCj4gK30N
-Cj4gKw0KPiAgc3RhdGljIHZvaWQgaW50ZWxfbW9kZV9mcm9tX2NydGNfdGltaW5ncyhzdHJ1Y3Qg
-ZHJtX2Rpc3BsYXlfbW9kZSAqbW9kZSwNCj4gIAkJCQkJIGNvbnN0IHN0cnVjdCBkcm1fZGlzcGxh
-eV9tb2RlDQo+ICp0aW1pbmdzKSAgeyBAQCAtMjI2Nyw3ICsyMjkwLDggQEAgc3RhdGljIHZvaWQN
-Cj4gaW50ZWxfY3J0Y19jb21wdXRlX3BpeGVsX3JhdGUoc3RydWN0IGludGVsX2NydGNfc3RhdGUg
-KmNydGNfc3RhdGUpDQo+ICAJfSBlbHNlIHsNCj4gIAkJY3J0Y19zdGF0ZS0+cGl4ZWxfcmF0ZSA9
-DQo+ICAJCQlpbGtfcGlwZV9waXhlbF9yYXRlKGNydGNfc3RhdGUpOw0KPiAtCQljcnRjX3N0YXRl
-LT5waXhlbF9yYXRlX2NkY2xrID0gY3J0Y19zdGF0ZS0+cGl4ZWxfcmF0ZTsNCj4gKwkJY3J0Y19z
-dGF0ZS0+cGl4ZWxfcmF0ZV9jZGNsayA9DQo+ICsJCQlpbGtfcGlwZV9waXhlbF9yYXRlX2NkY2xr
-KGNydGNfc3RhdGUpOw0KPiAgCX0NCj4gIH0NCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BsYW5lLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3BsYW5lLmMNCj4gaW5kZXggYTQ0MGY5MmZmMDBjLi40N2MzZTBjMTU3
-YjYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGxh
-bmUuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BsYW5lLmMN
-Cj4gQEAgLTI2NCw2ICsyNjQsNTAgQEAgdW5zaWduZWQgaW50IGludGVsX2FkanVzdGVkX3JhdGUo
-Y29uc3Qgc3RydWN0DQo+IGRybV9yZWN0ICpzcmMsDQo+ICAJCQkJZHN0X3cgKiBkc3RfaCk7DQo+
-ICB9DQo+IA0KPiArc3RhdGljIHVuc2lnbmVkIGludCBoc2NhbGVfY2RjbGsoY29uc3Qgc3RydWN0
-IGRybV9yZWN0ICpzcmMsDQo+ICsJCQkJIGNvbnN0IHN0cnVjdCBkcm1fcmVjdCAqZHN0LA0KPiAr
-CQkJCSB1bnNpZ25lZCBpbnQgcHBjKQ0KPiArew0KPiArCXVuc2lnbmVkIGludCBoc2NhbGU7DQo+
-ICsNCj4gKwloc2NhbGUgPSBkcm1fcmVjdF9jYWxjX2hzY2FsZShzcmMsIGRzdCwgMCwgSU5UX01B
-WCk7DQo+ICsJaHNjYWxlID0gbWF4KGhzY2FsZSwgMHgxMDAwMCk7DQo+ICsNCj4gKwkvKg0KPiAr
-CSAqIERvdWJsZSB0aGUgZnJhY3Rpb25hbCBwYXJ0IGR1ZSB0byBzb21lIDIgUFBDIGdyYW51bGFy
-aXR5IGlzc3VlDQo+ICsJICoNCj4gKwkgKiBGSVhNRTogQlNwZWMgY2FsbHMgZm9yIGRvdWJsaW5n
-IG9ubHkgdGhlIDwwLjUgZnJhY3Rpb25hbCBwYXJ0LA0KPiArCSAqIGFuZCByb3VuZGluZyBpdCBk
-b3duIHRvIGEgdW5pdCBmcmFjdGlvbi4gSW4gcHJhY3RpY2UgdGhhdCBpcw0KPiArCSAqIG5vdCBz
-dWZmaWNpZW50LCBhbmQgd2UgbmVlZCBhIG1vcmUgYWdncmVzc2l2ZSBDRENMSyBidW1wIGluDQo+
-ICsJICogbWFueSBjYXNlcy4gVGhlIHVwZGF0ZWQgZm9ybXVsYSB3YXMgZGVyaXZlZCBlbXBpcmlj
-YWxseS4NCj4gKwkgKiBUaGlzIG1heSBuZWVkIHRvIGJlIHVwZGF0ZWQgb25jZSB3ZSBoYXZlIGJl
-dHRlciB1bmRlc3RhZGluZw0KPiArCSAqIG9mIHdoYXQncyBoYXBwZW5pbmcgaW4gdGhlIGhhcmR3
-YXJlLi4uDQo+ICsJICovDQo+ICsJcmV0dXJuIChoc2NhbGUgJiB+MHhmZmZmKSArIHBwYyAqICho
-c2NhbGUgJiAweGZmZmYpOyB9DQo+ICsNCj4gK3N0YXRpYyB1bnNpZ25lZCBpbnQgdnNjYWxlX2Nk
-Y2xrKGNvbnN0IHN0cnVjdCBkcm1fcmVjdCAqc3JjLA0KPiArCQkJCSBjb25zdCBzdHJ1Y3QgZHJt
-X3JlY3QgKmRzdCkNCj4gK3sNCj4gKwl1bnNpZ25lZCBpbnQgdnNjYWxlOw0KPiArDQo+ICsJdnNj
-YWxlID0gZHJtX3JlY3RfY2FsY192c2NhbGUoc3JjLCBkc3QsMCwgSU5UX01BWCk7DQo+ICsJdnNj
-YWxlID0gbWF4KHZzY2FsZSwgMHgxMDAwMCk7DQo+ICsNCj4gKwlyZXR1cm4gdnNjYWxlOw0KPiAr
-fQ0KPiArDQo+ICt1bnNpZ25lZCBpbnQgaW50ZWxfYWRqdXN0ZWRfcmF0ZV9jZGNsayhjb25zdCBz
-dHJ1Y3QgZHJtX3JlY3QgKnNyYywNCj4gKwkJCQkgICAgICAgY29uc3Qgc3RydWN0IGRybV9yZWN0
-ICpkc3QsDQo+ICsJCQkJICAgICAgIHVuc2lnbmVkIGludCByYXRlLA0KPiArCQkJCSAgICAgICB1
-bnNpZ25lZCBpbnQgcHBjKQ0KPiArew0KPiArCXVuc2lnbmVkIGludCBoc2NhbGUgPSBoc2NhbGVf
-Y2RjbGsoc3JjLCBkc3QsIHBwYyk7DQo+ICsJdW5zaWduZWQgaW50IHZzY2FsZSA9IHZzY2FsZV9j
-ZGNsayhzcmMsIGRzdCk7DQo+ICsNCj4gKwlyZXR1cm4gRElWNjRfVTY0X1JPVU5EX1VQKCh1NjQp
-IHJhdGUgKiBoc2NhbGUgKiB2c2NhbGUsIDF1bGwgPDwNCj4gMzIpOyB9DQo+ICsNCj4gIHVuc2ln
-bmVkIGludCBpbnRlbF9wbGFuZV9waXhlbF9yYXRlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlLA0KPiAgCQkJCSAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3Rh
-dGUgKnBsYW5lX3N0YXRlKQ0KPiB7IEBAIC0yODQsNiArMzI4LDE3IEBAIHVuc2lnbmVkIGludCBp
-bnRlbF9wbGFuZV9waXhlbF9yYXRlKGNvbnN0IHN0cnVjdA0KPiBpbnRlbF9jcnRjX3N0YXRlICpj
-cnRjX3N0YXRlLA0KPiAgCQkJCSAgIGNydGNfc3RhdGUtPnBpeGVsX3JhdGUpOw0KPiAgfQ0KPiAN
-Cj4gK3Vuc2lnbmVkIGludCBpbnRlbF9wbGFuZV9waXhlbF9yYXRlX2NkY2xrKGNvbnN0IHN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlDQo+ICpjcnRjX3N0YXRlLA0KPiArCQkJCQkgIGNvbnN0IHN0cnVj
-dCBpbnRlbF9wbGFuZV9zdGF0ZQ0KPiAqcGxhbmVfc3RhdGUpIHsNCj4gKwlzdHJ1Y3QgaW50ZWxf
-ZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoY3J0Y19zdGF0ZSk7DQo+ICsJdW5z
-aWduZWQgaW50IHBwYyA9IEhBU18yUFBDKGRpc3BsYXkpID8gMiA6IDE7DQo+ICsNCj4gKwlyZXR1
-cm4gaW50ZWxfYWRqdXN0ZWRfcmF0ZV9jZGNsaygmcGxhbmVfc3RhdGUtPnVhcGkuc3JjLA0KPiAr
-CQkJCQkgJnBsYW5lX3N0YXRlLT51YXBpLmRzdCwNCj4gKwkJCQkJIGNydGNfc3RhdGUtPnBpeGVs
-X3JhdGVfY2RjbGssIHBwYyk7IH0NCj4gKw0KPiAgdW5zaWduZWQgaW50IGludGVsX3BsYW5lX2Rh
-dGFfcmF0ZShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwNCj4gIAkJ
-CQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlLA0KPiAgCQkJ
-CSAgIGludCBjb2xvcl9wbGFuZSkNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfcGxhbmUuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfcGxhbmUuaA0KPiBpbmRleCAzMWE2MjI5YWVhNzMuLmRiYTJiZTI0YWFlMiAxMDA2NDQN
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wbGFuZS5oDQo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGxhbmUuaA0KPiBAQCAtMjks
-OCArMjksMTMgQEAgYm9vbCBpbnRlbF9wbGFuZV9jYW5fYXN5bmNfZmxpcChzdHJ1Y3QgaW50ZWxf
-cGxhbmUNCj4gKnBsYW5lLCAgdW5zaWduZWQgaW50IGludGVsX2FkanVzdGVkX3JhdGUoY29uc3Qg
-c3RydWN0IGRybV9yZWN0ICpzcmMsDQo+ICAJCQkJIGNvbnN0IHN0cnVjdCBkcm1fcmVjdCAqZHN0
-LA0KPiAgCQkJCSB1bnNpZ25lZCBpbnQgcmF0ZSk7DQo+ICt1bnNpZ25lZCBpbnQgaW50ZWxfYWRq
-dXN0ZWRfcmF0ZV9jZGNsayhjb25zdCBzdHJ1Y3QgZHJtX3JlY3QgKnNyYywNCj4gKwkJCQkgICAg
-ICAgY29uc3Qgc3RydWN0IGRybV9yZWN0ICpkc3QsDQo+ICsJCQkJICAgICAgIHVuc2lnbmVkIGlu
-dCByYXRlLCB1bnNpZ25lZCBpbnQgcHBjKTsNCj4gIHVuc2lnbmVkIGludCBpbnRlbF9wbGFuZV9w
-aXhlbF9yYXRlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiAg
-CQkJCSAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUNCj4gKnBsYW5lX3N0YXRlKTsN
-Cj4gK3Vuc2lnbmVkIGludCBpbnRlbF9wbGFuZV9waXhlbF9yYXRlX2NkY2xrKGNvbnN0IHN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlDQo+ICpjcnRjX3N0YXRlLA0KPiArCQkJCQkgIGNvbnN0IHN0cnVj
-dCBpbnRlbF9wbGFuZV9zdGF0ZQ0KPiAqcGxhbmVfc3RhdGUpOw0KPiANCj4gIHVuc2lnbmVkIGlu
-dCBpbnRlbF9wbGFuZV9kYXRhX3JhdGUoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNy
-dGNfc3RhdGUsDQo+ICAJCQkJICAgY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFu
-ZV9zdGF0ZSwNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2ts
-X3VuaXZlcnNhbF9wbGFuZS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xf
-dW5pdmVyc2FsX3BsYW5lLmMNCj4gaW5kZXggMTY0YjdkNjFjOWEzLi5iMjQ2ZmM0ODU1OGIgMTAw
-NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9w
-bGFuZS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNh
-bF9wbGFuZS5jDQo+IEBAIC0yNjYsNyArMjY2LDcgQEAgYm9vbCBpY2xfaXNfaGRyX3BsYW5lKHN0
-cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5LA0KPiBlbnVtIHBsYW5lX2lkIHBsYW5lX2lkKSAg
-c3RhdGljIGludCBpY2xfcGxhbmVfbWluX2NkY2xrKGNvbnN0IHN0cnVjdA0KPiBpbnRlbF9jcnRj
-X3N0YXRlICpjcnRjX3N0YXRlLA0KPiAgCQkJICAgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFu
-ZV9zdGF0ZSAqcGxhbmVfc3RhdGUpICB7DQo+IC0JdW5zaWduZWQgaW50IHBpeGVsX3JhdGUgPSBp
-bnRlbF9wbGFuZV9waXhlbF9yYXRlKGNydGNfc3RhdGUsDQo+IHBsYW5lX3N0YXRlKTsNCj4gKwl1
-bnNpZ25lZCBpbnQgcGl4ZWxfcmF0ZSA9IGludGVsX3BsYW5lX3BpeGVsX3JhdGVfY2RjbGsoY3J0
-Y19zdGF0ZSwNCj4gK3BsYW5lX3N0YXRlKTsNCj4gDQo+ICAJLyogdHdvIHBpeGVscyBwZXIgY2xv
-Y2sgKi8NCj4gIAlyZXR1cm4gRElWX1JPVU5EX1VQKHBpeGVsX3JhdGUsIDIpOw0KPiBAQCAtMjkw
-LDcgKzI5MCw3IEBAIGdsa19wbGFuZV9yYXRpbyhjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3Rh
-dGUNCj4gKnBsYW5lX3N0YXRlLCAgc3RhdGljIGludCBnbGtfcGxhbmVfbWluX2NkY2xrKGNvbnN0
-IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlDQo+ICpjcnRjX3N0YXRlLA0KPiAgCQkJICAgICAgIGNv
-bnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUpICB7DQo+IC0JdW5zaWdu
-ZWQgaW50IHBpeGVsX3JhdGUgPSBpbnRlbF9wbGFuZV9waXhlbF9yYXRlKGNydGNfc3RhdGUsDQo+
-IHBsYW5lX3N0YXRlKTsNCj4gKwl1bnNpZ25lZCBpbnQgcGl4ZWxfcmF0ZSA9IGludGVsX3BsYW5l
-X3BpeGVsX3JhdGVfY2RjbGsoY3J0Y19zdGF0ZSwNCj4gK3BsYW5lX3N0YXRlKTsNCj4gIAl1bnNp
-Z25lZCBpbnQgbnVtLCBkZW47DQo+IA0KPiAgCWdsa19wbGFuZV9yYXRpbyhwbGFuZV9zdGF0ZSwg
-Jm51bSwgJmRlbik7IEBAIC0zMTcsNyArMzE3LDcgQEANCj4gc2tsX3BsYW5lX3JhdGlvKGNvbnN0
-IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUsICBzdGF0aWMgaW50DQo+IHNr
-bF9wbGFuZV9taW5fY2RjbGsoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
-dGUsDQo+ICAJCQkgICAgICAgY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9z
-dGF0ZSkgIHsNCj4gLQl1bnNpZ25lZCBpbnQgcGl4ZWxfcmF0ZSA9IGludGVsX3BsYW5lX3BpeGVs
-X3JhdGUoY3J0Y19zdGF0ZSwNCj4gcGxhbmVfc3RhdGUpOw0KPiArCXVuc2lnbmVkIGludCBwaXhl
-bF9yYXRlID0gaW50ZWxfcGxhbmVfcGl4ZWxfcmF0ZV9jZGNsayhjcnRjX3N0YXRlLA0KPiArcGxh
-bmVfc3RhdGUpOw0KPiAgCXVuc2lnbmVkIGludCBudW0sIGRlbjsNCj4gDQo+ICAJc2tsX3BsYW5l
-X3JhdGlvKHBsYW5lX3N0YXRlLCAmbnVtLCAmZGVuKTsNCg0KTEdUTSwNClJldmlld2VkLWJ5OiBO
-ZW1lc2EgR2FyZyA8bmVtZXNhLmdhcmdAaW50ZWwuY29tPg0KPiAtLQ0KPiAyLjU0LjANCg0K
+--===============3372902283468050532==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/backlight: Remove DP_EDP_BACKLIGHT_AUX_ENABLE_CAP check for DPCD backlight (rev2)
+URL   : https://patchwork.freedesktop.org/series/170522/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-5415-30d669bb45c300a1f1fc0f6201e14ad8679ef03c_BAT -> xe-pw-170522v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-170522v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-170522v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (12 -> 13)
+------------------------------
+
+  Additional (1): bat-bmg-2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-170522v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          NOTRUN -> [ABORT][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-170522v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2134]) +4 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@fbdev@write.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2233])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2482]) +3 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_exec_multi_queue@priority:
+    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#8364]) +13 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+
+
+Build changes
+-------------
+
+  * Linux: xe-5415-30d669bb45c300a1f1fc0f6201e14ad8679ef03c -> xe-pw-170522v2
+
+  IGT_9007: 9007
+  xe-5415-30d669bb45c300a1f1fc0f6201e14ad8679ef03c: 30d669bb45c300a1f1fc0f6201e14ad8679ef03c
+  xe-pw-170522v2: 170522v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/index.html
+
+--===============3372902283468050532==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/backlight: Remove DP_EDP_BACKLIGHT_AUX_ENABLE_CAP check for DPCD backlight (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170522/">https://patchwork.freedesktop.org/series/170522/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5415-30d669bb45c300a1f1fc0f6201e14ad8679ef03c_BAT -&gt; xe-pw-170522v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-170522v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-170522v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-bmg-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-170522v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-170522v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@priority:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170522v2/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5415-30d669bb45c300a1f1fc0f6201e14ad8679ef03c -&gt; xe-pw-170522v2</li>
+</ul>
+<p>IGT_9007: 9007<br />
+  xe-5415-30d669bb45c300a1f1fc0f6201e14ad8679ef03c: 30d669bb45c300a1f1fc0f6201e14ad8679ef03c<br />
+  xe-pw-170522v2: 170522v2</p>
+
+</body>
+</html>
+
+--===============3372902283468050532==--
