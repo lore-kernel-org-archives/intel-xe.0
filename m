@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB81CC44512
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 15:55:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE779C44512
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 16:04:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 702E310E0F7;
-	Thu, 16 Jul 2026 15:55:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iRwpVeCv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B016310E0F7
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 15:55:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784217326; x=1815753326;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PYiJnDZfZgAz/PTp6HvKjCyOO3Y6elICnjcj8mGN5As=;
- b=iRwpVeCvlH/pMDAxYiLRrkTlBsCi5eAo3c8Jj/I/IGrhn+hX84JBmlfl
- mG9BVwF/Lx6OHlrKCRs+CHfhjN+/SJbEQUr1JJymSL11NOP4VmThHJQsd
- B0kx0pgmmumMNLYoK3DW+M8mR0A+0sNre3VkDw0s4nfU4Fu3mUzdfoOS+
- SRc2FRRNYQDuu/wSSfS4ybqe7/3Ji4wLBePiGO5CyAIE1mO0D0uxKZsPZ
- UbnsjODPouqQVZ9qaPMXSIYImdD5szJgUF6/sT1IitxGwxxx7j3DwXzEu
- V9sv9XvKX5WMxotTlk7QDlHhQVLyrRq3n3eZ2BPdDdcWNMrG+WNc1gQm1 w==;
-X-CSE-ConnectionGUID: iJMFS6kdS0KirT/oG8PLYA==
-X-CSE-MsgGUID: 0jiwYv3bSqqgCELgy1SCmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="87427760"
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="87427760"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 08:55:26 -0700
-X-CSE-ConnectionGUID: vVoaH/o7SmKwRnUow+gijA==
-X-CSE-MsgGUID: EVp+SyUQQkCXTw49zgGoMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="258516682"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.245.35])
- ([10.245.245.35])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 08:55:24 -0700
-Message-ID: <db871d6a-1010-476e-91b7-7fb680f3a1e0@intel.com>
-Date: Thu, 16 Jul 2026 16:55:22 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6431B10E214;
+	Thu, 16 Jul 2026 16:04:41 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE9910E030;
+ Thu, 16 Jul 2026 16:04:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] drm/xe/mmio_gem: fix fault handler and destroy path
-To: Ilia Levi <ilia.levi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: koby.elbaz@intel.com, shuicheng.lin@intel.com, thomas.hellstrom@intel.com
-References: <20260526125106.2806522-7-ilia.levi@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260526125106.2806522-7-ilia.levi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Compress_Gu?=
+ =?utf-8?q?C_log_and_CTB_dump_with_zstd?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Jul 2026 16:04:40 -0000
+Message-ID: <178421788010.198473.11967986126679900741@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260716155114.1427366-1-zhanjun.dong@intel.com>
+In-Reply-To: <20260716155114.1427366-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,42 +36,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/05/2026 13:51, Ilia Levi wrote:
-> This series fixes several issues in xe_mmio_gem, introduced by
-> 1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions"):
-> split VMA fault handling, a rb-tree leak on destroy, dummy page
-> accumulation, and use-after-free / MMIO access after destroy.
+== Series Details ==
 
-I think other consideration, is how this component should interact with 
-RPM? Did you already have a plan for this? I think accessing the mmio 
-mapping when in d3 likely yields rubbish, but in some cases like for 
-PCI_BARRIER (once we convert), I think it's acceptable. If we track all 
-mmio_gem instances we should be able to force a refault on RPM suspend, 
-and then in the fault handler grab an RPM ref. I think should be pretty 
-similar to VRAM mappings. Perhaps would also want mmio_gem.need_rpm.
+Series: drm/xe/guc: Compress GuC log and CTB dump with zstd
+URL   : https://patchwork.freedesktop.org/series/170589/
+State : warning
 
-> 
-> v2:
-> - New patch 1/5: fix dummy page WB/UC aliasing (Sashiko)
-> - Patch 2/5: no longer modifies xe_mmio_gem_vm_fault_dummy_page() (handled by 1/5)
-> - Patch 3/5: unchanged
-> - Patch 4/5: compute pfn inside scoped_guard
-> - Patch 5/5: adapt to xe_mmio_gem_vm_fault_dummy_page() signature change, fix "objecthas" typo
-> 
-> Ilia Levi (4):
->    drm/xe/mmio_gem: use write-back mapping for dummy page
->    drm/xe/mmio_gem: fix fault handling for split VMA
->    drm/xe/mmio_gem: cache the dummy page per object
->    drm/xe/mmio_gem: fix destroy flow
-> 
-> Shuicheng Lin (1):
->    drm/xe/mmio_gem: Revoke drm_vma_node on xe_mmio_gem destroy
-> 
->   drivers/gpu/drm/xe/xe_mmio_gem.c | 97 +++++++++++++++++++-------------
->   drivers/gpu/drm/xe/xe_mmio_gem.h |  2 +-
->   2 files changed, 60 insertions(+), 39 deletions(-)
-> 
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4716a899185c6ad8284c5a6d8782e53b07085150
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Thu Jul 16 11:51:14 2026 -0400
+
+    drm/xe/guc: Compress GuC log and CTB dump with zstd
+    
+    Replace the raw ascii85 dumps of GuC log snapshots with a
+    zstd-compressed ascii85 stream and reuse the same helper for CTB
+    snapshot output.
+    
+    Use zstd streaming with default level-3 parameters and an estimated
+    source size of 0 so the compression workspace stays bounded even for
+    multi-megabyte logs.
+    
+    Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
+    GuC log and CTB dumps are compressed with ZSTD. This allows users to
+    choose between reduced dump sizes or lower memory usage.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
++ /mt/dim checkpatch 7fb776db50ccd72e7625c246c42157fa35274a24 drm-intel
+a96b3097da15 drm/xe: Remove extra newlines from LRC snapshot dump
+4716a899185c drm/xe/guc: Compress GuC log and CTB dump with zstd
+-:192: CHECK:CAMELCASE: Avoid CamelCase: <cParams>
+#192: FILE: drivers/gpu/drm/xe/xe_guc_log.c:255:
++	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
+
+-:219: CHECK:CAMELCASE: Avoid CamelCase: <ZSTD_isError>
+#219: FILE: drivers/gpu/drm/xe/xe_guc_log.c:282:
++			if (ZSTD_isError(ret)) {
+
+-:221: CHECK:CAMELCASE: Avoid CamelCase: <ZSTD_getErrorName>
+#221: FILE: drivers/gpu/drm/xe/xe_guc_log.c:284:
++					  ZSTD_getErrorName(ret));
+
+-:382: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#382: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 3 checks, 325 lines checked
+
 
