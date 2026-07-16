@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72D4BC44512
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 23:00:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FF7C44514
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 23:00:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33CA210F41D;
-	Thu, 16 Jul 2026 23:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C74C10F41E;
+	Thu, 16 Jul 2026 23:00:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RiweuuGQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hMBy12s9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF4AE10F41B;
- Thu, 16 Jul 2026 23:00:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2298810F41E;
+ Thu, 16 Jul 2026 23:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784242813; x=1815778813;
+ t=1784242816; x=1815778816;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MV9ex4cYFJRp4v5lCcgCR5VJNCwiNzCNNIucaN2rX/g=;
- b=RiweuuGQa4mzpjj/7lSU24SZHcKL3NNswgJAH46IzSGu6PP4dBF+MahB
- 3W7TviEcuffWgn/j5Nb220jJaE2Hdjwl3yEFBiJiRppFSBJRg4ArpwMj/
- VHz5RQqWiQn3njZhrf5p8ZuTLqa+pQLwVTsfApPiw9z/T8cMSLuBvSjEE
- 97Bx/PD1qa+J7QK+nsbiHJihYvmC3aJeGpX3SgUufkrTOnowllQ3f1zoj
- jUEd4hfPyYryZXkKOKVuP7OWQR7iRO64GxVugko3BWc4XVRLyaxMjuxFz
- 14WfNE3l/X6l9KyCRVus2IAL8KNF/0AU30B90lV0jT4wr8ICOhqlwwsdD Q==;
-X-CSE-ConnectionGUID: ldq3CsteTVabTjsmrpqz5Q==
-X-CSE-MsgGUID: J3X0WRq4SuudXos0No50zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="107711298"
-X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="107711298"
+ bh=a/dpIBp7Wmj4esvcsCFLW9xinPuSwiU5BAh1WoEK7ys=;
+ b=hMBy12s9kT4j589RJOBNuSTXXrWpoGp4MjYiRxfF3v9qzWDVQb8Erbxn
+ B3YH1/gZ0Vm23zVVRBqV2fw8N509RTywd6MSMDiTR8zufEMSi+EvzTG0h
+ CvEqtCtoAos/Mh6OEcbas8fpXryxuoo4aVJnyDMuMOiIzIkWVB1rFGf0n
+ Y85wv02RJ7UIVsXqZT1GiqHyVbd4QNMM8Rx/J57Koszw/GrHNggY1UEya
+ XZ6QgPVek5LqT8NZBOgwveDRxNabr4qSy2mobvrpTVLlwUrtrmq0YBz+x
+ 04oMFq4/FZOfBrD7DAhSFUyuQ4PFAKFvi10tzoI28Om4i4qmYZwKhvDlT w==;
+X-CSE-ConnectionGUID: P6kuNggmSIGkTObn4vLAlA==
+X-CSE-MsgGUID: 1rZRoFsgToSEVW5+FBIz/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="107711299"
+X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="107711299"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 16:00:13 -0700
-X-CSE-ConnectionGUID: rbaw9iupQN2SgOJzSNWAww==
-X-CSE-MsgGUID: KFhMz/Q6QRSUo9ljYkSPWw==
+ 16 Jul 2026 16:00:15 -0700
+X-CSE-ConnectionGUID: 6WRdziacRS2fxTXNHVb1FA==
+X-CSE-MsgGUID: knexvNXgRSC5ns7Q0HYyvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="252227099"
+X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="252227118"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.15])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 16:00:11 -0700
+ 16 Jul 2026 16:00:13 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 1/4] drm/xe/display: Expose plane max width/height helpers to
- global scope
-Date: Fri, 17 Jul 2026 01:59:53 +0300
-Message-ID: <20260716225956.555995-2-vinod.govindapillai@intel.com>
+Subject: [PATCH 2/4] drm/i915/fbc: refactor maximum plane size handling for fbc
+Date: Fri, 17 Jul 2026 01:59:54 +0300
+Message-ID: <20260716225956.555995-3-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260716225956.555995-1-vinod.govindapillai@intel.com>
 References: <20260716225956.555995-1-vinod.govindapillai@intel.com>
@@ -72,79 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enabling features like FBC on platforms may depend on a plane's
-maximum supported resolutions or some other arbitrary constant
-values because of hw restrictions. Currently the helpers that
-report a plane's max width and height are private to skl_plane
-/ skl_universal_plane. Change the scope to golbal so that
-this can be queried from other areas as well.
+Restrictions to enable FBC based on fixed plane width and height
+have been improving in newer platforms and eventualy may allow
+the maximum plane size as per the platform resolution support.
+Update the function which checks such a size restriction to have
+the possibility to get the maximum plane width and height
+compared rather than the hard coded values.
 
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- .../gpu/drm/i915/display/skl_universal_plane.c   | 16 ++++++++--------
- .../gpu/drm/i915/display/skl_universal_plane.h   |  9 +++++++++
- 2 files changed, 17 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 164b7d61c9a3..77d33012bdde 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1932,10 +1932,10 @@ static int intel_plane_min_height(struct intel_plane *plane,
- 	return 1;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index a7d02dd6ca96..78228a5e765f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1315,9 +1315,11 @@ static bool intel_fbc_surface_size_ok(const struct intel_plane_state *plane_stat
+ 	return effective_w <= max_w && effective_h <= max_h;
  }
  
--static int intel_plane_max_width(struct intel_plane *plane,
--				 const struct drm_framebuffer *fb,
--				 int color_plane,
--				 unsigned int rotation)
-+int intel_plane_max_width(struct intel_plane *plane,
-+			  const struct drm_framebuffer *fb,
-+			  int color_plane,
-+			  unsigned int rotation)
+-static void intel_fbc_max_plane_size(struct intel_display *display,
++static void intel_fbc_max_plane_size(const struct intel_plane_state *plane_state,
+ 				     unsigned int *w, unsigned int *h)
  {
- 	if (plane->max_width)
- 		return plane->max_width(fb, color_plane, rotation);
-@@ -1943,10 +1943,10 @@ static int intel_plane_max_width(struct intel_plane *plane,
- 		return INT_MAX;
- }
++	struct intel_display *display = to_intel_display(plane_state);
++
+ 	if (DISPLAY_VER(display) >= 10) {
+ 		*w = 5120;
+ 		*h = 4096;
+@@ -1335,10 +1337,9 @@ static void intel_fbc_max_plane_size(struct intel_display *display,
  
--static int intel_plane_max_height(struct intel_plane *plane,
--				  const struct drm_framebuffer *fb,
--				  int color_plane,
--				  unsigned int rotation)
-+int intel_plane_max_height(struct intel_plane *plane,
-+			   const struct drm_framebuffer *fb,
-+			   int color_plane,
-+			   unsigned int rotation)
+ static bool intel_fbc_plane_size_valid(const struct intel_plane_state *plane_state)
  {
- 	if (plane->max_height)
- 		return plane->max_height(fb, color_plane, rotation);
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.h b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-index 5e2451c21eeb..dcfbded773a1 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.h
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-@@ -8,6 +8,7 @@
+-	struct intel_display *display = to_intel_display(plane_state);
+ 	unsigned int w, h, max_w, max_h;
  
- #include <linux/types.h>
+-	intel_fbc_max_plane_size(display, &max_w, &max_h);
++	intel_fbc_max_plane_size(plane_state, &max_w, &max_h);
  
-+struct drm_framebuffer;
- struct intel_crtc;
- struct intel_display;
- struct intel_initial_plane_config;
-@@ -42,5 +43,13 @@ bool icl_is_hdr_plane(struct intel_display *display, enum plane_id plane_id);
- 
- u32 skl_plane_aux_dist(const struct intel_plane_state *plane_state,
- 		       int color_plane);
-+int intel_plane_max_width(struct intel_plane *plane,
-+			  const struct drm_framebuffer *fb,
-+			  int color_plane,
-+			  unsigned int rotation);
-+int intel_plane_max_height(struct intel_plane *plane,
-+			  const struct drm_framebuffer *fb,
-+			  int color_plane,
-+			  unsigned int rotation);
- 
- #endif
+ 	w = drm_rect_width(&plane_state->uapi.src) >> 16;
+ 	h = drm_rect_height(&plane_state->uapi.src) >> 16;
 -- 
 2.43.0
 
