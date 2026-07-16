@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8696CC44501
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 08:42:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90B70C4450A
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 09:08:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4181D10F22A;
-	Thu, 16 Jul 2026 08:42:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bpTwbyiL";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D22D10F22A;
- Thu, 16 Jul 2026 08:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- From:Reply-To; bh=iyWME1/Wlefybyl0ByxBWGf+Dl3rG+5VnCsnj9UCLrY=; b=bpTwbyiLiQ2
- eQhqbmepEoAgm+cFssiafkvLT+rYtsezCjb7ku7Ra0/yAbvUakaMGylnV4wHBhhi3q0luGTU5ROhh
- AmsQ5iDcYQTK9pxmvE9Cwvm2Fx69oB7t2DJPti5eO4aktgH7bgbMo2/1gtMlDZO/kEDP8xRdOcLYU
- cAwjnVqUmigPo/lFlFyK4GMoeU1zeBmSKLadY2wjjPK9tl65g095mEh4PdAXFUcDDiWZJOENNnOwy
- hV0ySqTxsBXrpHvbipEvt1zh6gBt9hvwNcWt+7kBU2qnXdgXdG0+57uN6XZKIKU1QvxfOKoEI003I
- 8oo6thGPcMguP48TtBjFLnQ==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wkHfT-00FosS-GO; Thu, 16 Jul 2026 10:42:07 +0200
-Date: Thu, 16 Jul 2026 09:42:06 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <aliZXnfbOV-Mh8gZ@linux>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52EF810E15B;
+	Thu, 16 Jul 2026 09:08:37 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D1CA10E15B;
+ Thu, 16 Jul 2026 09:08:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1995134905822597256=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_error_handling_for_unco?=
+ =?utf-8?q?rrectable_soc-internal_errors?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Jul 2026 09:08:36 -0000
+Message-ID: <178419291630.195794.5374844961498537517@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260716075701.2194254-4-riana.tauro@intel.com>
+In-Reply-To: <20260716075701.2194254-4-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,98 +36,241 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1995134905822597256==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Dave, Sima,
+== Series Details ==
 
-Here is the first pull request for 7.3. There isn't much to mention
-though. Apart from the stream of AI-induced fixes, all of which have been
-sent via fixes already, the only other changes are some misc stylistic
-cleanups.
+Series: Add error handling for uncorrectable soc-internal errors
+URL   : https://patchwork.freedesktop.org/series/170532/
+State : success
 
-I will be away for the next two weeks so might send a late follow up in
-the rc6 week if something interesting will land in the meantime.
+== Summary ==
 
-Tvrtko
+CI Bug Log - changes from xe-5416-6d15737b9d1d05c2107a1fab794dfc77f15dd945_BAT -> xe-pw-170532v1_BAT
+====================================================
 
-drm-intel-gt-next-2026-07-16:
-Driver Changes:
+Summary
+-------
 
-Fixes/improvements/new stuff:
+  **SUCCESS**
 
-- Fix phys BO pread/pwrite with offset [gem] (Joonas Lahtinen)
-- Add missing nospec on parallel submit slot [gem] (Joonas Lahtinen)
-- Return NULL on error in active_instance (Joonas Lahtinen)
-- Fix NULL deref in I915_CONTEXT_PARAM_SSEU [gem] (Joonas Lahtinen)
-- Fix NULL deref on sched_engine alloc failure [gt] (Joonas Lahtinen)
-- Do not leak siblings[] on proto context error [gem] (Joonas Lahtinen)
+  No regressions found.
 
-Miscellaneous:
+  
 
-- Return bool values from a boolean helper [gt] (Andi Shyti)
-- Use correct selftest config symbol [gt] (Pengpeng Hou)
-- Fix GT PM sort comparators [selftests] (Emre Cecanpunar)
-- Return NULL for missing multi-lrc parent [guc] (Linmao Li)
-The following changes since commit 6c064db893f548d57036fce17c6493808396e620:
+Participating hosts (12 -> 13)
+------------------------------
 
-  Revert "i915: don't use a vma that didn't match the context VM" (2026-05-20 10:46:41 +0300)
+  Additional (1): bat-bmg-2 
 
-are available in the Git repository at:
+Known issues
+------------
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2026-07-16
+  Here are the changes found in xe-pw-170532v1_BAT that come from known issues:
 
-for you to fetch changes up to 682ea2d28d18bb06f9fc663cb5ab7e80dc0e606a:
+### IGT changes ###
 
-  drm/i915/selftests: Fix GT PM sort comparators (2026-07-15 13:06:07 +0100)
+#### Issues hit ####
 
-----------------------------------------------------------------
-Driver Changes:
+  * igt@fbdev@write:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@fbdev@write.html
 
-Fixes/improvements/new stuff:
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
 
-- Fix phys BO pread/pwrite with offset [gem] (Joonas Lahtinen)
-- Add missing nospec on parallel submit slot [gem] (Joonas Lahtinen)
-- Return NULL on error in active_instance (Joonas Lahtinen)
-- Fix NULL deref in I915_CONTEXT_PARAM_SSEU [gem] (Joonas Lahtinen)
-- Fix NULL deref on sched_engine alloc failure [gt] (Joonas Lahtinen)
-- Do not leak siblings[] on proto context error [gem] (Joonas Lahtinen)
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
 
-Miscellaneous:
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
 
-- Return bool values from a boolean helper [gt] (Andi Shyti)
-- Use correct selftest config symbol [gt] (Pengpeng Hou)
-- Fix GT PM sort comparators [selftests] (Emre Cecanpunar)
-- Return NULL for missing multi-lrc parent [guc] (Linmao Li)
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
 
-----------------------------------------------------------------
-Andi Shyti (1):
-      drm/i915/gt: Return bool values from a boolean helper
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
 
-Emre Cecanpunar (1):
-      drm/i915/selftests: Fix GT PM sort comparators
+  * igt@xe_exec_multi_queue@priority:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
 
-Joonas Lahtinen (6):
-      drm/i915/gem: Fix phys BO pread/pwrite with offset
-      drm/i915/gem: Add missing nospec on parallel submit slot
-      drm/i915: Return NULL on error in active_instance
-      drm/i915/gem: Fix NULL deref in I915_CONTEXT_PARAM_SSEU
-      drm/i915/gt: Fix NULL deref on sched_engine alloc failure
-      drm/i915/gem: Do not leak siblings[] on proto context error
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
 
-Linmao Li (1):
-      drm/i915/guc: Return NULL for missing multi-lrc parent
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
 
-Pengpeng Hou (1):
-      drm/i915/gt: use correct selftest config symbol
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
 
- drivers/gpu/drm/i915/gem/i915_gem_context.c        | 25 ++++++++++++++--------
- drivers/gpu/drm/i915/gem/i915_gem_phys.c           | 19 ++++++++++++----
- drivers/gpu/drm/i915/gt/intel_engine_user.c        |  2 +-
- .../gpu/drm/i915/gt/intel_execlists_submission.c   | 19 ++++++++--------
- drivers/gpu/drm/i915/gt/intel_reset.c              |  2 +-
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |  8 +++----
- .../gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c    |  2 +-
- drivers/gpu/drm/i915/i915_active.c                 |  7 +++++-
- 8 files changed, 54 insertions(+), 30 deletions(-)
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+
+
+Build changes
+-------------
+
+  * Linux: xe-5416-6d15737b9d1d05c2107a1fab794dfc77f15dd945 -> xe-pw-170532v1
+
+  IGT_9007: 9007
+  xe-5416-6d15737b9d1d05c2107a1fab794dfc77f15dd945: 6d15737b9d1d05c2107a1fab794dfc77f15dd945
+  xe-pw-170532v1: 170532v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/index.html
+
+--===============1995134905822597256==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add error handling for uncorrectable soc-internal errors</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170532/">https://patchwork.freedesktop.org/series/170532/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5416-6d15737b9d1d05c2107a1fab794dfc77f15dd945_BAT -&gt; xe-pw-170532v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-bmg-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-170532v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@priority:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170532v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5416-6d15737b9d1d05c2107a1fab794dfc77f15dd945 -&gt; xe-pw-170532v1</li>
+</ul>
+<p>IGT_9007: 9007<br />
+  xe-5416-6d15737b9d1d05c2107a1fab794dfc77f15dd945: 6d15737b9d1d05c2107a1fab794dfc77f15dd945<br />
+  xe-pw-170532v1: 170532v1</p>
+
+</body>
+</html>
+
+--===============1995134905822597256==--
