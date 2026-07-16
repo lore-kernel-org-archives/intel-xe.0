@@ -4,77 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEBFEC44525
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:06:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A8C7C44524
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:06:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DDD910F62C;
-	Fri, 17 Jul 2026 21:06:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8B310F626;
+	Fri, 17 Jul 2026 21:06:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qA7BYMzX";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="nOETgqmV";
 	dkim-atps=neutral
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6330D10E078
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 22:54:34 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-2ccf2360620so12768455ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jul 2026 15:54:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784069674; x=1784674474; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:mime-version:user-agent
- :message-id:date:cc:to:from:subject:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=PuczVviH7I6iBF+tE/3yKvEgvc7CTglLYSZ6Ql2SVLo=;
- b=qA7BYMzX3yD7Db1pAVZlYvgINClBNY0EWAo1mDTuOeOtstwNhJwriJF6A2ghsSkbxE
- fX7u4HkfXXGYc49eWhBf9XnyOTRNT/o756H4pF3qlTT1VKLp9rfiQYLbtlBKWL79TGvG
- 9xPmlqINJ+PmQnkIZAZ1L0qTPS8+05f8KxL717JNS6BkMq1TGwS8Q4y3c19IkZCjNEtm
- 6OTKyxlkvuByqGePPa85T9Ta1W0lU5RolIOGrI0dd81VzlgEcUapeCbmR1kSlqOe79ry
- PsfsQV3b35+TABiPlfSTSKUYvQzNXFV8mgfV+EKG+JRIFsmw8D7gvWvB8ABzqwim6SFO
- YO6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784069674; x=1784674474;
- h=content-transfer-encoding:content-type:mime-version:user-agent
- :message-id:date:cc:to:from:subject:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=PuczVviH7I6iBF+tE/3yKvEgvc7CTglLYSZ6Ql2SVLo=;
- b=VihIQi3jr3JMdcqXi+1Vt0EN7PAMgbp1scvOIWFeO4KFkDR5Loe6Grq0ayJxC4Oxsx
- KLQoUBNgEZ2bZwlBeV40mf0jTMyspEqXXM3sngFlBO3gkns0hqJgWrWwXpiSF+3cNcDV
- Q6PGf/DsdR6rqy93xN1K5+hUHvcvbrMpREw1PE7IrCVi7cSV/Cut5whsD3SG7ygiAwRL
- mwvrbCKeZzTGF0w55yLdMMq2yO7p6ZWSzPGcIhno9+HyTvpfziugtqAjMLGIX1/OFMjB
- SLwxM+il8qKFaXYTnRGhVnQ6+tAvGtbBJ9Et5bm9h/NxHNIzm9uPJFRFEfcIoV01iMxs
- /kPA==
-X-Forwarded-Encrypted: i=1;
- AHgh+RqnIIS/EsWi13eJecDWzMUasNHQywkDWZRX5cFz3i8TDWn9bYVQORmoWUOxt+55sYAK1Z3vS3m+lg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyx69Ay5qzVkDUmDBkdnkXfenDxALbztTEmfJyWIaAdEo5PiSxU
- +lg1JWhW1ZtqBYROIwT75w499M8+HPuBny9xesWUB19bFY3xvQLHbHH4
-X-Gm-Gg: AfdE7cnL1ipavID6XFkS2eDTayj8IgNSIUTiVIpcA2Keqw5YYbavB3xPbyyvQVytxnB
- UCzPR4wF2qMx9olwjkkMm6qQde9nefJIohnIRWB4nB576a4FiheLe1t+wXA112VrksUrW6nCP0y
- lFX499K0pkuC0NqoKHS3cuCf0XiFk5t4wLF97lewGXvmdypGqgptx0gwc/jFAhWw7FF2oxGnOd7
- 9StfljFYqyojUUdR2SBlN6rC7h4P4YN9dHdpnY57GerP/G3a6uGRn2XiWDh4v8h3bbkUe/PHZxN
- 2iBSd245dho0pgnvXLacDEO7J0wrLszSb+FCp5k9lntpTyGer4pXpeO8dbiyjylHjtyLSS1hOVo
- zj3EsUQLrib2C7wLXrUCsluHxgofFLDtspPg9mHlKjFNR7GpdXjizrxpp6fAYlT1aALvVQ59eek
- oxseWkgteibaK06+r+WnR73n8DiWpOqsuppNjmRl6k+QF8jkNHp5Tr+6aiCsg=
-X-Received: by 2002:a17:902:d985:b0:2ca:bf8e:35fe with SMTP id
- d9443c01a7336-2ce9e9ac9b7mr141747505ad.16.1784069673866; 
- Tue, 14 Jul 2026 15:54:33 -0700 (PDT)
-Received: from [192.168.0.160] (c-98-225-44-182.hsd1.wa.comcast.net.
- [98.225.44.182]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2ccc9d3d57bsm122411715ad.59.2026.07.14.15.54.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2026 15:54:33 -0700 (PDT)
-Subject: [PATCH] drm/gpusvm: Zero HMM PFNs before scanning ranges
-From: Stanislav Kinsburskii <skinsburskii@gmail.com>
-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- skinsburskii@gmail.com, thomas.hellstrom@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org
-Date: Tue, 14 Jul 2026 15:54:32 -0700
-Message-ID: <178406967042.1113483.2116704310277917086.stgit@skinsburskii>
-User-Agent: StGit/0.19
+X-Greylist: delayed 506 seconds by postgrey-1.36 at gabe;
+ Thu, 16 Jul 2026 17:18:07 UTC
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3EEB10E312;
+ Thu, 16 Jul 2026 17:18:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+ s=mail; t=1784221779;
+ bh=rcnAPuhL8Z0tyvLmFviUdVzEcI4fwp6dRZrhwOTqVoA=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+ b=nOETgqmVNkaIt9iGQH/1tiOMAegyFKlI3RwPiCCK4gjxBd9f8iI1S3JDe2PnVCaAz
+ NxGs9kkQ3hD2UNPk26CSQb7Pv9r4aHe98FoTBCMfEUKzxP0P8pbkyv/7ki6/Mnn6kp
+ +slMWZBB5W6VhRNNdOGlrg04PHNiCNFqUxeHUdxM=
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Date: Thu, 16 Jul 2026 19:09:30 +0200
+Subject: [PATCH 5/6] configfs: Allow the registration of const struct
+ configfs_attribute
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260716-configfs-const-base-v1-5-c545a4053cb5@weissschuh.net>
+References: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
+In-Reply-To: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
+To: Andreas Hindborg <a.hindborg@kernel.org>, 
+ Breno Leitao <leitao@debian.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Tamir Duberstein <tamird@kernel.org>, 
+ Alexandre Courbot <acourbot@nvidia.com>, 
+ =?utf-8?q?Onur_=C3=96zkan?= <work@onurozkan.dev>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Dan Williams <djbw@kernel.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-coco@lists.linux.dev, linux-acpi@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784221778; l=3319;
+ i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
+ bh=rcnAPuhL8Z0tyvLmFviUdVzEcI4fwp6dRZrhwOTqVoA=;
+ b=BbbHbm8YNFPQUYzw2eaFmTWdJbpX3GvBgFeLEGXDxWxnIG1Z8xTzlkFqKvEUcuRAd6g3Rl8FE
+ OjFsAUTLCitCBHywW3Vn0JL/8AcrsjEWHYxagQ+dWpIfIh2HzKbjiX+
+X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
+ pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-Mailman-Approved-At: Fri, 17 Jul 2026 21:05:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,37 +76,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_gpusvm_scan_mm() asks HMM to report the current CPU page-table
-state without faulting missing entries by leaving default_flags set to
-zero. The HMM PFN array is still caller-owned input/output state, and
-the framework may preserve input bits while filling entries. It is not
-safe for the caller to hand HMM an uninitialized array and then treat
-entries without HMM_PFN_VALID as an authoritative unpopulated result.
+The attribute structure defined in driver code never need to be
+modified. Allow them to be marked as const.
 
-Use kvcalloc() for the temporary PFN array so entries that are not
-reported as valid start from the documented zero state. This prevents
-random stack or heap contents from being interpreted as HMM PFN flags or
-PFN values during the scan.
+As there are many drivers which use these attributes, prepare for a
+phased transition by using a union of const and non-const attributes.
 
-Fixes: f1d08a586482 ("drm/gpusvm: Introduce a function to scan the current migration state")
-Cc: stable@vger.kernel.org
-Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
+After all drivers have been migrated to the const variant, the non-const
+one can be replaced by the const one and the transition machinery will
+be removed again.
+
+Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
 ---
- drivers/gpu/drm/drm_gpusvm.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ fs/configfs/dir.c        | 4 ++--
+ include/linux/configfs.h | 5 ++++-
+ rust/kernel/configfs.rs  | 8 ++++++--
+ 3 files changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 1a8bb83bd28d..c8f489d7ff7e 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -859,7 +859,7 @@ enum drm_gpusvm_scan_result drm_gpusvm_scan_mm(struct drm_gpusvm_range *range,
- 	const struct dev_pagemap *other = NULL;
- 	int err, i;
+diff --git a/fs/configfs/dir.c b/fs/configfs/dir.c
+index 9a5c2bc4065d..c2152288517c 100644
+--- a/fs/configfs/dir.c
++++ b/fs/configfs/dir.c
+@@ -632,8 +632,8 @@ static int populate_attrs(struct config_item *item)
  
--	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-+	pfns = kvcalloc(npages, sizeof(*pfns), GFP_KERNEL);
- 	if (!pfns)
- 		return DRM_GPUSVM_SCAN_UNPOPULATED;
+ 	ops = t->ct_group_ops;
  
+-	if (t->ct_attrs) {
+-		for (i = 0; (attr = t->ct_attrs[i]) != NULL; i++) {
++	if (t->ct_attrs_const) {
++		for (i = 0; (attr = t->ct_attrs_const[i]) != NULL; i++) {
+ 			if (ops && ops->is_visible && !ops->is_visible(item, attr, i))
+ 				continue;
+ 
+diff --git a/include/linux/configfs.h b/include/linux/configfs.h
+index eff2fb22ab70..5bead9173ec1 100644
+--- a/include/linux/configfs.h
++++ b/include/linux/configfs.h
+@@ -66,7 +66,10 @@ struct config_item_type {
+ 	struct module				*ct_owner;
+ 	const struct configfs_item_operations	*ct_item_ops;
+ 	const struct configfs_group_operations	*ct_group_ops;
+-	struct configfs_attribute		**ct_attrs;
++	union {
++		struct configfs_attribute		**ct_attrs;
++		const struct configfs_attribute		*const *ct_attrs_const;
++	};
+ 	const struct configfs_bin_attribute	*const *ct_bin_attrs;
+ };
+ 
+diff --git a/rust/kernel/configfs.rs b/rust/kernel/configfs.rs
+index f99a6e376fa3..2ef9cce693b9 100644
+--- a/rust/kernel/configfs.rs
++++ b/rust/kernel/configfs.rs
+@@ -756,7 +756,9 @@ pub const fn new_with_child_ctor<const N: usize, Child>(
+                         ct_owner: owner.as_ptr(),
+                         ct_group_ops: GroupOperationsVTable::<Data, Child>::vtable_ptr(),
+                         ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr(),
+-                        ct_attrs: core::ptr::from_ref(attributes).cast_mut().cast(),
++                        __bindgen_anon_1: bindings::config_item_type__bindgen_ty_1 {
++                            ct_attrs_const: core::ptr::from_ref(attributes).cast(),
++                        },
+                         ct_bin_attrs: core::ptr::null(),
+                     }),
+                     _p: PhantomData,
+@@ -773,7 +775,9 @@ pub const fn new<const N: usize>(
+                         ct_owner: owner.as_ptr(),
+                         ct_group_ops: core::ptr::null(),
+                         ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr(),
+-                        ct_attrs: core::ptr::from_ref(attributes).cast_mut().cast(),
++                        __bindgen_anon_1: bindings::config_item_type__bindgen_ty_1 {
++                            ct_attrs_const: core::ptr::from_ref(attributes).cast(),
++                        },
+                         ct_bin_attrs: core::ptr::null(),
+                     }),
+                     _p: PhantomData,
 
+-- 
+2.55.0
 
