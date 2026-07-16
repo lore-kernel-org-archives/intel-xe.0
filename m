@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6079EC44528
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69AFDC44525
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:05:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBEA810F61A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF7A610F614;
 	Fri, 17 Jul 2026 21:05:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="Z/kDlRFh";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="jFoj39dy";
 	dkim-atps=neutral
 Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E70DA10E397;
- Thu, 16 Jul 2026 17:18:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB6A10E312;
+ Thu, 16 Jul 2026 17:18:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
  s=mail; t=1784221779;
- bh=dBHoPeFN74z8PL2Y8uyMGTiScXZKXOQLXSJUZCoOZ4k=;
+ bh=GubTlQat6UlimM/bcLKvGJ1gJF4TTwUHaWco6h44H3Y=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=Z/kDlRFhDRFgYQgSzQoKmtwdpeG1w4EntJToLPpWO31pBQFdwbqjvfcEyOm85ByYY
- kCg+CNUGmed4lMAcg69Wsrl0WUNMP9Zvkva2ooQJOdhW9AVbd+cbVmhggZklVF+V66
- fu/7Cxz71Oje6RypHiqZnGnxw6whBn6dRpXX2Sj8=
+ b=jFoj39dycLqDhiZ/HE2WOecxEDywP3bgZ4iV95iXaFEZtXShQqiGJ/bYsYnE1bDrv
+ jnDT/1cUrvnKZWESVk/8Hv78qoynxiqOjE3Vj+hS6LUrgqZMA7WARjHgun+iXgt3Ju
+ P/UuUQ1C8vqoZdk33gTnGDKE5+KxNts3SVqDC1yU=
 From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Date: Thu, 16 Jul 2026 19:09:26 +0200
-Subject: [PATCH 1/6] rust: configfs: remove mutability from some field
- initializers
+Date: Thu, 16 Jul 2026 19:09:27 +0200
+Subject: [PATCH 2/6] configfs: Constify is_visible/is_visible_bin in
+ configfs_group_operations
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260716-configfs-const-base-v1-1-c545a4053cb5@weissschuh.net>
+Message-Id: <20260716-configfs-const-base-v1-2-c545a4053cb5@weissschuh.net>
 References: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
 In-Reply-To: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
 To: Andreas Hindborg <a.hindborg@kernel.org>, 
@@ -52,11 +52,11 @@ Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-coco@lists.linux.dev, linux-acpi@vger.kernel.org, 
  =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784221778; l=1897;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784221778; l=3113;
  i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
- bh=dBHoPeFN74z8PL2Y8uyMGTiScXZKXOQLXSJUZCoOZ4k=;
- b=aVZbs/uCZXHVODH1ABH4MgJRQ4jtEG5Zi7lWJCam5sEMkaRjBjYob9SC7itElVohbe8A6rYQA
- yn0fmFmJirVDAxMfzaB4EKaDCo0xfVyJDcuL2BzPBWSP+x+Cf8lizUa
+ bh=GubTlQat6UlimM/bcLKvGJ1gJF4TTwUHaWco6h44H3Y=;
+ b=+sEBU8Jt02gLhwZLB6K47bnC0/qyt/YKihbwKPC9VgN0n6o0EqABg+QnHDz6bwxVU5djJq9LB
+ Lxa3CssRiovA2VWJwM69q10UwWQTZRJqxtJX4gZMHRnfgZ89T5XaxTL
 X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
  pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-Mailman-Approved-At: Fri, 17 Jul 2026 21:05:30 +0000
@@ -74,41 +74,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-These fields do not require mutable pointers.
+These callbacks are never meant to modify their configfs_attribute
+structure. Enforce this in the type system.
 
-Use regular immutable ones.
+As there are only two implementers of these callbacks, adapt them right
+away, avoiding a phased transition.
 
 Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
 ---
- rust/kernel/configfs.rs | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 4 ++--
+ drivers/virt/coco/guest/report.c | 4 ++--
+ include/linux/configfs.h         | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/rust/kernel/configfs.rs b/rust/kernel/configfs.rs
-index 2339c6467325..b33fb2e9adf1 100644
---- a/rust/kernel/configfs.rs
-+++ b/rust/kernel/configfs.rs
-@@ -754,8 +754,8 @@ pub const fn new_with_child_ctor<const N: usize, Child>(
-                 Self {
-                     item_type: Opaque::new(bindings::config_item_type {
-                         ct_owner: owner.as_ptr(),
--                        ct_group_ops: GroupOperationsVTable::<Data, Child>::vtable_ptr().cast_mut(),
--                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr().cast_mut(),
-+                        ct_group_ops: GroupOperationsVTable::<Data, Child>::vtable_ptr(),
-+                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr(),
-                         ct_attrs: core::ptr::from_ref(attributes).cast_mut().cast(),
-                         ct_bin_attrs: core::ptr::null_mut(),
-                     }),
-@@ -771,8 +771,8 @@ pub const fn new<const N: usize>(
-                 Self {
-                     item_type: Opaque::new(bindings::config_item_type {
-                         ct_owner: owner.as_ptr(),
--                        ct_group_ops: core::ptr::null_mut(),
--                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr().cast_mut(),
-+                        ct_group_ops: core::ptr::null(),
-+                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr(),
-                         ct_attrs: core::ptr::from_ref(attributes).cast_mut().cast(),
-                         ct_bin_attrs: core::ptr::null_mut(),
-                     }),
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 32102600a148..a5f696e7b329 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -843,7 +843,7 @@ static struct configfs_item_operations xe_config_device_ops = {
+ };
+ 
+ static bool xe_config_device_is_visible(struct config_item *item,
+-					struct configfs_attribute *attr, int n)
++					const struct configfs_attribute *attr, int n)
+ {
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+ 
+@@ -938,7 +938,7 @@ static struct configfs_attribute *xe_config_sriov_attrs[] = {
+ };
+ 
+ static bool xe_config_sriov_is_visible(struct config_item *item,
+-				       struct configfs_attribute *attr, int n)
++				       const struct configfs_attribute *attr, int n)
+ {
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
+ 
+diff --git a/drivers/virt/coco/guest/report.c b/drivers/virt/coco/guest/report.c
+index b254a1416286..96e89ddf4989 100644
+--- a/drivers/virt/coco/guest/report.c
++++ b/drivers/virt/coco/guest/report.c
+@@ -381,7 +381,7 @@ static struct configfs_item_operations tsm_report_item_ops = {
+ };
+ 
+ static bool tsm_report_is_visible(struct config_item *item,
+-				  struct configfs_attribute *attr, int n)
++				  const struct configfs_attribute *attr, int n)
+ {
+ 	guard(rwsem_read)(&tsm_rwsem);
+ 	if (!provider.ops)
+@@ -394,7 +394,7 @@ static bool tsm_report_is_visible(struct config_item *item,
+ }
+ 
+ static bool tsm_report_is_bin_visible(struct config_item *item,
+-				      struct configfs_bin_attribute *attr, int n)
++				      const struct configfs_bin_attribute *attr, int n)
+ {
+ 	guard(rwsem_read)(&tsm_rwsem);
+ 	if (!provider.ops)
+diff --git a/include/linux/configfs.h b/include/linux/configfs.h
+index ef65c75beeaa..5d3fc8822a1d 100644
+--- a/include/linux/configfs.h
++++ b/include/linux/configfs.h
+@@ -220,8 +220,8 @@ struct configfs_group_operations {
+ 	struct config_group *(*make_group)(struct config_group *group, const char *name);
+ 	void (*disconnect_notify)(struct config_group *group, struct config_item *item);
+ 	void (*drop_item)(struct config_group *group, struct config_item *item);
+-	bool (*is_visible)(struct config_item *item, struct configfs_attribute *attr, int n);
+-	bool (*is_bin_visible)(struct config_item *item, struct configfs_bin_attribute *attr,
++	bool (*is_visible)(struct config_item *item, const struct configfs_attribute *attr, int n);
++	bool (*is_bin_visible)(struct config_item *item, const struct configfs_bin_attribute *attr,
+ 			       int n);
+ };
+ 
 
 -- 
 2.55.0
