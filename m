@@ -4,141 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86719C4450A
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 07:54:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB850C44501
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 07:57:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B2D610E2B4;
-	Thu, 16 Jul 2026 07:54:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF6C10E2B4;
+	Thu, 16 Jul 2026 07:57:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="SXjwLjHc";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5caLxVPO";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SXjwLjHc";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5caLxVPO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0v3tAlV";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FED810E2B4
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 07:54:46 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 44B843E39;
- Thu, 16 Jul 2026 07:54:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1784188484; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Xz3VRVXR4wTds+ow8U8FtCyI1RdX1BXw5Yuc/M63rxw=;
- b=SXjwLjHc8NnkqFivIos1kq1g1bQW5FnZ62wtkdmlYkbeX6m2VWFHf5YQqPKWelWMFbpYOS
- n8v8DBz3i+9zAek99j8N7LzdgJ6zQei8uLtFDnDS+hTD8GeCZppiebggfXKnakzYZnmTqp
- vax2hxz2O5nJR1c5wOuuxeUKhW9juEM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1784188484;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Xz3VRVXR4wTds+ow8U8FtCyI1RdX1BXw5Yuc/M63rxw=;
- b=5caLxVPOmMXeDIuRcfzpYVYRYnFHQqvCOWy7ZGOqv54TXehhhmZsRoflb6f0WX4+AAyzOF
- +HehCfaH1hmQqmAw==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=SXjwLjHc;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=5caLxVPO
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1784188484; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Xz3VRVXR4wTds+ow8U8FtCyI1RdX1BXw5Yuc/M63rxw=;
- b=SXjwLjHc8NnkqFivIos1kq1g1bQW5FnZ62wtkdmlYkbeX6m2VWFHf5YQqPKWelWMFbpYOS
- n8v8DBz3i+9zAek99j8N7LzdgJ6zQei8uLtFDnDS+hTD8GeCZppiebggfXKnakzYZnmTqp
- vax2hxz2O5nJR1c5wOuuxeUKhW9juEM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1784188484;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Xz3VRVXR4wTds+ow8U8FtCyI1RdX1BXw5Yuc/M63rxw=;
- b=5caLxVPOmMXeDIuRcfzpYVYRYnFHQqvCOWy7ZGOqv54TXehhhmZsRoflb6f0WX4+AAyzOF
- +HehCfaH1hmQqmAw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id F26B8779AD;
- Thu, 16 Jul 2026 07:54:43 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id Lq7hOUOOWGonNgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 16 Jul 2026 07:54:43 +0000
-Message-ID: <bdcb98c6-ad37-465d-abe5-b2e6c3ef3876@suse.de>
-Date: Thu, 16 Jul 2026 09:54:43 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC68510E2B4
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 07:57:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784188635; x=1815724635;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=watm7KZvQ68Ds7Pba/SaaTdd44bDlUyqba6sulM3EtU=;
+ b=j0v3tAlVwAkYz+AueR8556/McELmZ8xt5lLRDBG1+RQXcrmAxsk+GQNs
+ HE+qfx7lIzsUCujSyvCQc9iciIjib8dXJCP5bOCpj2qjtOG5f7xKoffxk
+ CwaxlhSWZtOZZ8AR9GWzchN+9qebVlGw+PfmL/Kpbfh7FAVCNoeJvyRYs
+ Lr/I8IP/B9qdm+78bN0enanOw3VW2z0zPcuN1Lfz+t2A96ExkLaiwk+Mc
+ CXw/TJOYvl6fzuq211q39eKx2+4Wbff4AKZs6iae3y/ryFaBJq9Sr8+As
+ 5aiyt2ccAB1OrPnb8i5wwMF5/balWAomkOhjR9lNRzUo51lYwdLF3ckQK A==;
+X-CSE-ConnectionGUID: 6293LEhYQDSyzGa1xXUVVQ==
+X-CSE-MsgGUID: Xen9slm3Tdy2OIyKMP8K3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84800885"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="84800885"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 00:57:15 -0700
+X-CSE-ConnectionGUID: 1Ls//PeETym2nT0J6GtaKg==
+X-CSE-MsgGUID: 8OkSRa6VTs+dehW06/3G+Q==
+X-ExtLoop1: 1
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 00:57:11 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: [PATCH v9 0/2] Add error handling for uncorrectable soc-internal
+ errors
+Date: Thu, 16 Jul 2026 13:27:02 +0530
+Message-ID: <20260716075701.2194254-4-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: Handle struct
- drm_plane_state.ignore_damage_clips
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, sashiko-reviews@lists.linux.dev,
- Javier Martinez Canillas <javierm@redhat.com>
-References: <20260701130929.234695-1-tzimmermann@suse.de>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260701130929.234695-1-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Action: no action
-X-Rspamd-Queue-Id: 44B843E39
-X-Spamd-Result: default: False [-5.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_LOW(-1.00)[suse.de:dkim];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- MIME_TRACE(0.00)[0:+]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- ARC_NA(0.00)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; DKIM_TRACE(0.00)[suse.de:+];
- TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCVD_TLS_ALL(0.00)[];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- RCPT_COUNT_SEVEN(0.00)[11]; MID_RHS_MATCH_FROM(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,
- imap1.dmz-prg2.suse.org:helo, suse.de:dkim, suse.de:email, suse.de:mid,
- suse.com:url]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,52 +67,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-another gentle reminder to give this patch a review
+This series adds support for handling uncorrectable soc-internal errors
+and is a split from [1] for CI
 
-Am 01.07.26 um 15:07 schrieb Thomas Zimmermann:
-> Git commit 35ed38d58257 ("drm: Allow drivers to indicate the damage
-> helpers to ignore damage clips") introduced ignore_damage_clips to
-> selectively ignore damage clipping in certain framebuffer changes. The
-> mode-setting pipeline can disabled damage clippings for an atomic commit
-> by setting ignore_damage_clips in struct drm_plane_state. The atomic
-> commit will then do a full display update.
->
-> Although the i915 driver does not modify the flag, DRM's damage iterator
-> will soon rely on it. Calling drm_atomic_helper_check_plane_damage() right
-> before drm_atomic_helper_damage_merged() guarantees that it has the correct
-> state. The i915 driver does not do this elsewhere so far.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
-> Taken with minor updates to the commit description from the series at
->
->    https://lore.kernel.org/dri-devel/20260610152505.260172-1-tzimmermann@suse.de/
-> ---
->   drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
->   1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 92af21d823a3..5a155f60110f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -2949,6 +2949,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->   		src = drm_plane_state_src(&new_plane_state->uapi);
->   		drm_rect_fp_to_int(&src, &src);
->   
-> +		/* Prepare plane-damage state before using it */
-> +		drm_atomic_helper_check_plane_damage(&state->base, &new_plane_state->uapi);
-> +
->   		if (!drm_atomic_helper_damage_merged(&old_plane_state->uapi,
->   						     &new_plane_state->uapi, &damaged_area))
->   			continue;
+Most of the uncorrectable SoC internal errors are recovered using a
+Secondary Bus Reset (SBR) apart from CSC firmware and Punit errors.
+CSC firmware errors requires a firmware flash to be recovered and 
+Punit error requires cold-reset which is handled by [2].
+
+[1] https://lore.kernel.org/intel-xe/20260608084700.640376-17-riana.tauro@intel.com/
+[2] https://lore.kernel.org/intel-xe/20260713083939.251872-6-mallesh.koujalagi@intel.com/
+
+Riana Tauro (2):
+  drm/xe/xe_survivability: Decouple survivability info from boot
+    survivability
+  drm/xe/xe_ras: Handle uncorrectable SoC Internal errors
+
+ drivers/gpu/drm/xe/xe_ras.c                | 45 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras_types.h          | 50 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 13 +++++-
+ 3 files changed, 106 insertions(+), 2 deletions(-)
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
-
+2.47.1
 
