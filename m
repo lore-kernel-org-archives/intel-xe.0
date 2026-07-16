@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E32AAC44501
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 10:21:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4DEFC44501
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 10:21:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A67C10E34B;
-	Thu, 16 Jul 2026 10:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C55210F27C;
+	Thu, 16 Jul 2026 10:21:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TqUCflhS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N3EVb8pp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE9210E324;
- Thu, 16 Jul 2026 10:21:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7A6110F27C
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 10:21:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784197295; x=1815733295;
+ t=1784197298; x=1815733298;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CYW7ZWwjYiNsJoGlC7VlLxyC+Yi/oaY6orvc4E87fX4=;
- b=TqUCflhSvJercuAsJM+g6eZFWJuMA0cOH/l3r2eXBSTRFy29+5jcPByl
- 6I450c4pdBkkTpEVLXhuUCGiL3uvxSM5ninMgW7KEnuFMv5X56a5cGD4I
- mbbsfI70Tff90FmZWFaOJv20atlyHUSpEUUAMqbn1cy4epubdqZWXMRu7
- Q+p+H6IOhG+25NtOgxbJv0TOytoAeJ6j27dkQeARuLzGCEU7SQGjGBzuf
- VxT4GITlM8BIjcEbRR/0nY89mR7WlRmLgzZy5tus4p/j1Jg1sXnx8E5Ct
- Qr+cWfirRKDH0F4g+UjTwz/LKkmnpKUvFwBoWJKr5YUgu+UY0zPqpIi5X w==;
-X-CSE-ConnectionGUID: 4ecRfXgSR/usK4E5LnGaKA==
-X-CSE-MsgGUID: brcaeXulSsiYtG/sEXIl4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="96367762"
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="96367762"
+ bh=iYLSXbfv69U8cKmS/ywofJUTNhTAyKg7PQCfVA5l8jE=;
+ b=N3EVb8pp7CN6IOr91OkycZ3LP7QT+A0i3njxLg69m+gAv2aiu1RTThOn
+ ei/0lEzvRKFZwtRJNHWWmYIH31z4y1yS2BOW1ne66VkLVvFb4hyqHo4MM
+ 5FpTsHmNiPfou/LZCUrDXmlqKrxzG/evDDzksx6Xdsi5n6HH1a6Pgyv+M
+ QsBupYEehinzLfhB6t1luN01+O6St9EadjIY9j6IYOG4OAfQeevFdOa5w
+ 4z/OiuwBahQSYCMaIEpDl/jDSbERF9VvXfO9VPF++73Ujnk/2Q4gOpad+
+ Ioxjjw2TGvLxHpMX8Hr4VBPA/mREGv1wR4QfpjMttaGO2nyIF372rLBRn A==;
+X-CSE-ConnectionGUID: jfiMww78Q0yuUx87TxD2jg==
+X-CSE-MsgGUID: lDrrkLOJSVOLXUBmOGZnaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="96367765"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="96367765"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 03:21:35 -0700
-X-CSE-ConnectionGUID: V44MFak3T8ijFYdRkpUN2Q==
-X-CSE-MsgGUID: cJsfSWu9RzGLX1icJ+LLSA==
+ 16 Jul 2026 03:21:37 -0700
+X-CSE-ConnectionGUID: q2Drm0UdSeykr5ntClZWBg==
+X-CSE-MsgGUID: kBSG6wNVSwuCdsq8+1jaKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="253833811"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="253833834"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 03:21:33 -0700
+ 16 Jul 2026 03:21:36 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
- dri-devel@lists.freedesktop.org,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH V13 02/11] drm/gpu: Add gpu_buddy_allocated_addr_to_block
- helper
-Date: Thu, 16 Jul 2026 15:51:08 +0530
-Message-ID: <20260716102110.1549938-15-tejas.upadhyay@intel.com>
+ Arvind Yadav <arvind.yadav@intel.com>
+Subject: [PATCH V13 04/11] drm/xe: Extend BO purge to handle vram pages as well
+Date: Thu, 16 Jul 2026 15:51:10 +0530
+Message-ID: <20260716102110.1549938-17-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260716102110.1549938-13-tejas.upadhyay@intel.com>
 References: <20260716102110.1549938-13-tejas.upadhyay@intel.com>
@@ -71,102 +68,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper with primary purpose is to efficiently trace a specific
-physical memory address back to its corresponding TTM buffer object.
-
-v3:
-- use mm->chunk_size minimum allocation granularity (Arun)
-v2:
-- %s/gpu_buddy_addr_to_block/gpu_buddy_allocated_addr_to_block(MattA)
-- remove clear->avail and split nodes check(MattA)
-- Adapt lockdep(MattB)
+Recent driver update introduce support for purgeable buffer
+objects (BOs), extending the API to include VRAM pages to
+better manage memory pressure and enable memory offlining.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-Cc: dri-devel@lists.freedesktop.org
-Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Reviewed-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/buddy.c       | 53 +++++++++++++++++++++++++++++++++++++++
- include/linux/gpu_buddy.h |  2 ++
- 2 files changed, 55 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 5 +----
+ drivers/gpu/drm/xe/xe_bo.h | 1 +
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index eb1457376307..315f860f4346 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -594,6 +594,59 @@ void gpu_buddy_free_block(struct gpu_buddy *mm,
- }
- EXPORT_SYMBOL(gpu_buddy_free_block);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index ddbaf4242c79..cc7ab4b58684 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -909,7 +909,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+  *
+  * Return: 0 on success, negative error code on failure
+  */
+-static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
++int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
+ {
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct ttm_placement place = {};
+@@ -917,9 +917,6 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
  
-+/**
-+ * gpu_buddy_allocated_addr_to_block - given relative address find the allocated block
-+ *
-+ * @mm: GPU buddy manager
-+ * @addr: Relative address
-+ *
-+ * Returns:
-+ * gpu_buddy_block on success, NULL or error code on failure
-+ */
-+struct gpu_buddy_block *gpu_buddy_allocated_addr_to_block(struct gpu_buddy *mm, u64 addr)
-+{
-+	struct gpu_buddy_block *block;
-+	LIST_HEAD(dfs);
-+	u64 end;
-+	int i;
-+
-+	gpu_buddy_driver_lock_held(mm);
-+
-+	end = addr + mm->chunk_size - 1;
-+	for (i = 0; i < mm->n_roots; ++i)
-+		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
-+
-+	do {
-+		u64 block_start;
-+		u64 block_end;
-+
-+		block = list_first_entry_or_null(&dfs,
-+						 struct gpu_buddy_block,
-+						 tmp_link);
-+		if (!block)
-+			break;
-+
-+		list_del(&block->tmp_link);
-+
-+		block_start = gpu_buddy_block_offset(block);
-+		block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
-+
-+		if (!overlaps(addr, end, block_start, block_end))
-+			continue;
-+
-+		if (gpu_buddy_block_is_allocated(block))
-+			return block;
-+		else if (gpu_buddy_block_is_free(block))
-+			return NULL;
-+
-+		list_add(&block->right->tmp_link, &dfs);
-+		list_add(&block->left->tmp_link, &dfs);
-+	} while (1);
-+
-+	return ERR_PTR(-ENXIO);
-+}
-+EXPORT_SYMBOL(gpu_buddy_allocated_addr_to_block);
-+
- static void __gpu_buddy_free_list(struct gpu_buddy *mm,
- 				  struct list_head *objects,
- 				  bool mark_clear,
-diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-index 71941a039648..e7e22fa05ee2 100644
---- a/include/linux/gpu_buddy.h
-+++ b/include/linux/gpu_buddy.h
-@@ -272,6 +272,8 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear);
+ 	xe_bo_assert_held(bo);
  
- void gpu_buddy_free_block(struct gpu_buddy *mm, struct gpu_buddy_block *block);
+-	if (!ttm_bo->ttm)
+-		return 0;
+-
+ 	if (!xe_bo_madv_is_dontneed(bo))
+ 		return 0;
  
-+struct gpu_buddy_block *gpu_buddy_allocated_addr_to_block(struct gpu_buddy *mm, u64 addr);
-+
- void gpu_buddy_free_list(struct gpu_buddy *mm,
- 			 struct list_head *objects,
- 			 unsigned int flags);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 7ae1d9ac0574..9bd4221be8d8 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -585,6 +585,7 @@ struct xe_bo_shrink_flags {
+ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+ 		  const struct xe_bo_shrink_flags flags,
+ 		  unsigned long *scanned);
++int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
+ 
+ /**
+  * xe_bo_is_mem_type - Whether the bo currently resides in the given
 -- 
 2.52.0
 
