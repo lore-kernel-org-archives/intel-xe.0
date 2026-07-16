@@ -4,98 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F918C4450A
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 13:15:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1F2DC44512
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 13:23:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E6B610E16D;
-	Thu, 16 Jul 2026 13:15:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5667410F312;
+	Thu, 16 Jul 2026 13:23:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HjjAU7Lc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTyrHx3z";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56FCF10E16D;
- Thu, 16 Jul 2026 13:15:10 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1C51F43A36;
- Thu, 16 Jul 2026 13:15:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 205BA1F000E9;
- Thu, 16 Jul 2026 13:15:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1784207710;
- bh=/lsASfKlsXWiF9RuzVML0SRkC5laAid8xApepofB1/4=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=HjjAU7LclXzVZCbBv4yWUXrpvXmOeEJxBkXUGa1OwiBGoxx14m1l/v7xRhIDnfbQ7
- rmOQyWrUoWzSrmdkUkUIq7L5X3Dt9Qxus9nhvIP/GputsO3vz0kS+Y+N4ec7570Dmb
- 7nZmuEb8B73Sls/0RoYAoKB2h1Dg9MxjOpNVIkpI3EDKDIX8JqlV+LKXsQbkWCHflC
- FUyWrFocfTdC1f1QVK6jKlnEGCvMN5HM7JnBxPXXhuIuZ29JiiKAorI9Eptp/K2T65
- ahS3oOaV1KORLPvQsNi15DOqd3UMEUkP2HYOoynlNFFOQ1RLVRn4OSswvhpg0Yay26
- GBwJAt+GTeV+A==
-Message-ID: <1612d4cf-b725-4ecf-8618-51a33537f59d@kernel.org>
-Date: Thu, 16 Jul 2026 15:15:06 +0200
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D03510F30F;
+ Thu, 16 Jul 2026 13:23:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784208209; x=1815744209;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=jDqvW+3XmDcI9/W5FCNEyMJdOAjMqW5F1Us9w0G4T8A=;
+ b=BTyrHx3zb9rdzOe7QzRSrdN4KZfhd5ZA2ixYQtwFwpIOiEAqKNoDmCSX
+ yQ37wDM5BSHQ+R6cZ7ByJt8RP7npik9HX2CD8cTdwHdqDSetZqT50dgfJ
+ ku8+ZN43EoIimV2iHf3A0clODMhX2E6jZ5CwhS7i+q2pRuIw2b3tKpOTh
+ 3K9Qgrsmh1B++iRS6J67cK8qCjahQT/kGqPqp9s88hPLlfizHDOhuqeMT
+ XrifjPA9WpfNrqZ4YbHZIGxHHuYXLUlblFBWHjhPVf4W4P7KoaRCES67k
+ 6pE82Urc9+nygsyVeTjIR07z9mB4AcLeHouI3B9oMHJXkCGbtc504Ugid w==;
+X-CSE-ConnectionGUID: 16ZC3ORWRLOPBqQE9LPHHA==
+X-CSE-MsgGUID: GwD0ECOwST2nM35nTWNnbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="107663101"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="107663101"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 06:23:17 -0700
+X-CSE-ConnectionGUID: UtG+EFbVRUWKheYl0PGflw==
+X-CSE-MsgGUID: TfnTuwTUQDGoH5ECTWOnWQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="260792705"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 06:23:17 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 16 Jul 2026 06:23:17 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Thu, 16 Jul 2026 06:23:17 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.45) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 16 Jul 2026 06:23:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YPSxQjT0nx1Nbk7v9IjzA50xB7PQWXzC2EehCv3FpE82fnLdKw5i/FJqJglKz22MDqW6scsNU8x0tqcw/1E0U/GjpkVx20IrCqPxTCI///ZKPBvJR6iHmBgeaTcUpDdOYWnlmIPWfVWnFRp8iK54fYKg+l13kKOd46kM7BNxaaAk45Z9O76LqyqqseUnZGfgwrTVcB4EPjRPffmVZYuirr/ip3s9xzwAaQREQFKEjGuJ4TU2Y3mUrgg7mFEfauE4OAX7pw3EvUx4zSBr2e2nEX7Xb64DAoI2DBGZT27q13NsNAPHavPV/BXNH4dYTiL+RXJEtQusVgGurViCYZccGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xgdD5LOhoVKEQjud9APKc4cTwR72Yn3PloluoBjsWvc=;
+ b=qcxFCCinm366r9K97HotB+MdvBk1SM/v7bB0zNaQak9INVfwybIDsBsuVKpzLhoRM/1KqbR4m3UoNfPypgBRT4iOfPgEnJXa8fcaw+TJ1ioK00NtH77jjMnXNkcuCNM3uIHfU28amYak8NrtX3lWfLeFT2cht07S5vucO1cd+GCcXWEwm5bKOfzieWS0C255yx0h6lJppR2+lFvenxvfuxYBdpVfaAYvJItf5Hr+NipJByN7BJxixDweKA0gBCPz5ZsSeCg6JXP5AE8w3kLCvqNbtaT9a712Lv9BetsMO+V4tCfS5d8+Vhj15IQIaVP5YpGCHCWwwIyTO/8PmjNQJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH0PR11MB7636.namprd11.prod.outlook.com (2603:10b6:510:26f::13)
+ by SN7PR11MB6559.namprd11.prod.outlook.com (2603:10b6:806:26d::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.9; Thu, 16 Jul
+ 2026 13:23:14 +0000
+Received: from PH0PR11MB7636.namprd11.prod.outlook.com
+ ([fe80::d611:6fa9:bc34:46b]) by PH0PR11MB7636.namprd11.prod.outlook.com
+ ([fe80::d611:6fa9:bc34:46b%5]) with mapi id 15.21.0223.011; Thu, 16 Jul 2026
+ 13:23:14 +0000
+Message-ID: <868cab1f-f581-4a01-a9ea-b2fa1a7a2831@intel.com>
+Date: Thu, 16 Jul 2026 18:53:04 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 0/5] Migrate on fault for device pages
-To: mpenttil@redhat.com, linux-mm@kvack.org
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
-References: <20260525084524.139868-1-mpenttil@redhat.com>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20260525084524.139868-1-mpenttil@redhat.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: REGRESSION: [PATCH] usb: typec: ucsi: Fix race condition and
+ ordering in port unregistration
+To: Andrei Kuchynski <akuchynski@chromium.org>
+CC: Heikki Krogerus <heikki.krogerus@linux.intel.com>, Jameson Thies
+ <jthies@google.com>, Benson Leung <bleung@chromium.org>,
+ <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, Abhishek Pandit-Subedi
+ <abhishekpandit@chromium.org>, Pooja Katiyar <pooja.katiyar@intel.com>,
+ "Johan Hovold" <johan@kernel.org>, Hsin-Te Yuan <yuanhsinte@chromium.org>,
+ "Myrrh Periwinkle" <myrrhperiwinkle@qtmlabs.xyz>, Linyu Yuan
+ <quic_linyyuan@quicinc.com>, Jack Pham <quic_jackp@quicinc.com>,
+ <stable@vger.kernel.org>
+References: <20260707141736.1635698-1-akuchynski@chromium.org>
+ <22064276-6c56-411a-9f20-6917ceeb865f@intel.com>
+ <CAMMMRMduSMniMrixGuq=m=00nUvzXQpySE86TpmvfNQtAChB=w@mail.gmail.com>
+Content-Language: en-GB
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+In-Reply-To: <CAMMMRMduSMniMrixGuq=m=00nUvzXQpySE86TpmvfNQtAChB=w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0204.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b0::16) To PH0PR11MB7636.namprd11.prod.outlook.com
+ (2603:10b6:510:26f::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR11MB7636:EE_|SN7PR11MB6559:EE_
+X-MS-Office365-Filtering-Correlation-Id: 952b1635-f3b4-43fe-83a1-08dee33d63ba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|7416014|376014|23010399003|6133799003|4143699003|56012099006|11063799006|22082099003|18002099003|10067099003;
+X-Microsoft-Antispam-Message-Info: bq5PdXRfwbWcfvUK0/qox7U8pkrpH8LBCwwnSvG90RcpQe07vvh01y0lFgYfPNfigUY1a4ZNxvhsXBFGz5zjeC/jwdeYhD2X2kpxqJgKaY086PNH6Cl9e9hi4InHMrgdy20yOpiZfqjmIP6IgVGhj7Jg2QTh3ldFux2Zeps8Nu7pfmpJHd+uv9TYDI6h+/oFz22vO7oku/HlRZoUw+9UbOLZ4fvyFP9VvAZjsaBj2ZF5llUzViIffSCq+V0VDsVm/96PUUuh8pomWCz5zKZZ6l+JuQhY6IpnqvJbquDs7G+Q5VI0U+TOmp7YU3qGWvh1AJfvtccUanZ2LuffdVLWVB5560UbEJZsmZDsheIrtuAHBzBfwoAjA30HuwLYkUnNYUmSYNL5ypWQKJNb67RBw9ETW+fD7zSIlm6vcl3mjsmPZ/wtVM2AJfW9Liw8YDfxJ3E5RuZgRJuYIUTaj3hDGTWBjW+D3q8U+3nff1/sLdq5GI+Hi324Nj+fOh8RgY9oki+gBt0LX/ZXLQAJmSnTuTWOTJ23SB0TpUMrUeDF7F388H2ly7fJKz2VuaGFzNk3v7eMCZOT/KVRpS5PyeoxGl1+sbU5q16Fyek34mKvSMJfUGSd4WO10zKmwhJx8b6s
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB7636.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(7416014)(376014)(23010399003)(6133799003)(4143699003)(56012099006)(11063799006)(22082099003)(18002099003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L3B3V1MyTU41Qk94OU94Um80TElDUnBlUFJ6dDdzUUVEV0pGM3JkOElNZkR0?=
+ =?utf-8?B?bEdmN0s3bVREWEtuaVZLOEIwZlJFanliSURCYlRMNjVIYU4yZmdqajI4RUQ4?=
+ =?utf-8?B?WkhqMWJmblNNTkRCUzZMWW9rOUlUN1NqVkpOai9uT3E5aldFbmFxQ0tvdHcz?=
+ =?utf-8?B?dEU4SWRtK1EvYVlQTXI0R2c2L2VkaVdPOW1wRVlnVGp5QXR1TTY3b1d3eDFy?=
+ =?utf-8?B?NzBhNzNjcXBSOTVidlpUVDh5N1ZYUjYzVlI5K2ZhQVpDQ2MrQVNKZmN5b1pq?=
+ =?utf-8?B?UHcvenRmZDczR3NEV1RpeDk1UXd0VTZNSEVhL2JjejRTaHY1NU03bWREenp2?=
+ =?utf-8?B?WFZldTZxMTRub2lXSG5UQTZ1VnJ4NWN5cCs0eFBMa2luMXM0V05vUWxyZ3VZ?=
+ =?utf-8?B?NkgvVlVtTlQzd0pkNnRLeWtLVmIzdkl2emdYYi9YeHNCTVV6czB4NkdHWjZu?=
+ =?utf-8?B?bEJ4NHpVTHdKYzVYQXV5OTZqMHlGbUVSbFZtUTNmZ01mQzkrWG94SnBkV25X?=
+ =?utf-8?B?VzVMV21sNHIveGJCWk9KS1M0anBCNmt4Tk53dEhzWE5JeDRyQ0twKzZRSHJK?=
+ =?utf-8?B?SmhFS1pGLzNRaWgraFpqdmVBa3l3Qll5NUl3b2JEUGZUYTExWVRNcjR2TGxq?=
+ =?utf-8?B?ZndKRHlVcmZkbTVxWFVNQ1dXZ091UlZPNGErMnRYdmF6dklTYUFGWVZsbnl5?=
+ =?utf-8?B?NWhnVmMzdkg3OGI2NjFwSDNxWlJjVEVONzZ4ajJzZ0xqRUhKeU5LTzZObDIy?=
+ =?utf-8?B?QmQxQjNwY3g3eTJVVGJLRjFkYWFBRytGT0hHQi92UUN6K2hQR3V5SEk0MW9u?=
+ =?utf-8?B?RkV3Zk1tQUJHNkpkY2orMWZTLzBNYU50ZCtTWkg0QmhoNlc4aVBMS1E0TDNr?=
+ =?utf-8?B?S1ZEd0RQQXBvRElRZUlSNy9RbUFIblRMRG43dVAydGg0Z2dmazVpOVRHc3Qz?=
+ =?utf-8?B?VVArYVA0dHE0Rk5iTFRUYlE0NEVQSjhCQXhNUy9QR2FVN0lnZDFMU1FhM3NT?=
+ =?utf-8?B?aDVnVnF6eGhFMXlLL3dQazhMaWxwMG0xNWh2bENZT1ZrQWxpM3RicGlYVmpE?=
+ =?utf-8?B?R0poNER0WjFXNTE2bU52cHl6ZFNzWnBpRU4yeWxTZDhwbk1QZVROS2kvSGhM?=
+ =?utf-8?B?VGp1dG1YT2tnRlVBU1J3RnpsbkZJay95RnVYYWpKcm5PaHVQbmpOSVZLWXIr?=
+ =?utf-8?B?RXhPYWFFUU44aVdCeW1VZCtRSEI5UFVJZld4Y2ZkeFRGUnpMbE5PQmVrWklU?=
+ =?utf-8?B?bGY1T1JTdEFaL2k0QnQxV2pTNkJobjVBUVNlZ3E1U0xHZitZNHBHcjcrbFpX?=
+ =?utf-8?B?Vk5oWmVvMzBKU2hUUmlCbkVWLzVNOFRuUUErcC8zb2dVcjNpYjN6TlZSUVBZ?=
+ =?utf-8?B?aHJhVG4yb04ydk9tN0tPTk9pd0gxc2F6TmFjak1kTENRNmh4S0dkanF4cU1y?=
+ =?utf-8?B?VkRzRlZBb1VYTzJ2Q3V5TzU5UUdnTzFyUzVHQk9NT1ZFZGtkZXM2LzlVUWRz?=
+ =?utf-8?B?TUZIQk9LTTB3cE4xWnppVWtsb0ZIR282N3hWcms5OStuMmlFZ2FNRzNEMFpj?=
+ =?utf-8?B?MGVpRU5IL1RKT0FSQytEaG4xRmROZVJuLzZBQzMyNUNmTjhzQWtXRmpRRkg1?=
+ =?utf-8?B?MEhIUzM2a2ZINDJtb2dwamF6VFpLQXpZUitqOGpqR3lBbytzbUpuRVNEZU9G?=
+ =?utf-8?B?UVd2UE5ENjd3SHR5S2hiRDdZVnRGN2F5dVNOVTVyN3l4TGpNRWEzd0xieDhm?=
+ =?utf-8?B?bFBnVjdLVXcxMTRhVmZ5b01WVWZJT2ZLZVZ0UFUzTkllM1pJL1JhaXNCR3Rr?=
+ =?utf-8?B?NVc5UGZyTGcrMGEzb3d3UTNlNHJxeHhqVWV0VWVYZzY3ZGpEc1NVUkVTc2pG?=
+ =?utf-8?B?UnpRUUxnY2R6Y2hWNTBLWm5oT2Z3ZzBhclFTaWlsUk1yM3VWa3gwY2JqR2k2?=
+ =?utf-8?B?TkQyci8zSVozREdnQ0xidURqNTVsOFM5bjJMQ1lQN0J1R2tPRjV4MnZnOXVU?=
+ =?utf-8?B?MjNSSHRmZW9hRlM4U2crM3RUNk1YUnc4QmxvaXRBWXdzMUw5NU1NWVJXQjVV?=
+ =?utf-8?B?ODNYcUhjb2NlK1kyNUhjRGhSZG9YNHpydWxvalZSdU5VdUJKeW9jNWdSamRE?=
+ =?utf-8?B?M3VCazZvOHhYTjJvYVQ4UjNVUzhzNWwvOGhoRndjOUhoWEtrdDJReFdOWDBZ?=
+ =?utf-8?B?MENnc3NXUTRoU2ljMXJpT2w0MEE3RVh3dE5zUUprSHZlcU5odHhnNUFIcDZP?=
+ =?utf-8?B?andxdWVIQTlWQTBRU1RNRUpIZ3h0VnFlbDBwSFhOYUpyckk4Tk1qaEYrVDJ4?=
+ =?utf-8?B?K0FjZGhoUW5VQXN0S1ZVYkx4UUJpeDNYSHFNNXh0WFYwci9tR3FESHQ5OUhj?=
+ =?utf-8?Q?s1dgKZPEeyE0ch8k=3D?=
+X-Exchange-RoutingPolicyChecked: i72XVFWm7MJ+BDQLjRXYQ0lH4RbN9SmuBlc2KdWzlc3oITavVXpo1LxoVWm2Zvf4WlIyeR0e9SzJuHHimHyNtFxi7kneTcfhEqw5pYA9lnYLi6l+QICO19uAijINYWVDczgwUgJgg51Ts4lTSBLntRfj/J+VJ8W5jHSE9zWWAfhkl/fJPjRg/tbCbE/wPD1tzeCn1PNPLELx1Uf3ZpA+Ake2WgJUK4CKdQj6UadarcoROT5j6aTbUakvPulYqu9jx3Z2it3aSEVisq4pl979XE4D7yTSA09A8Qx1CzCV07eSY2Hsv/hEayOgHcjpOds3GHbs2g60xRYqaend/ggyhw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 952b1635-f3b4-43fe-83a1-08dee33d63ba
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB7636.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2026 13:23:14.2180 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: E/BowlZjWWcNIwkpnSHSJ9vR5w4DNeMkuKvCwfrD8EhnAj4kv9RXw90/eolEpi/4wTXjiYqGO3JlhIR2PUXdGUr8koATBgqwDv1mvh0AlI4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6559
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,182 +181,267 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/25/26 10:45, mpenttil@redhat.com wrote:
-> From: Mika Penttilä <mpenttil@redhat.com>
-> 
-> Currently, the way device page faulting and migration works
-> is not optimal, if you want to do both fault handling and
-> migration at once.
-> 
-> Being able to migrate not present pages (or pages mapped with incorrect
-> permissions, eg. COW) to the GPU requires doing either of the
-> following sequences:
-> 
-> 1. hmm_range_fault() - fault in non-present pages with correct permissions, etc.
-> 2. migrate_vma_*() - migrate the pages
-> 
-> Or:
-> 
-> 1. migrate_vma_*() - migrate present pages
-> 2. If non-present pages detected by migrate_vma_*():
->    a) call hmm_range_fault() to fault pages in
->    b) call migrate_vma_*() again to migrate now present pages
-> 
-> The problem with the first sequence is that you always have to do two
-> page walks even when most of the time the pages are present or zero page
-> mappings so the common case takes a performance hit.
-> 
-> The second sequence is better for the common case, but far worse if
-> pages aren't present because now you have to walk the page tables three
-> times (once to find the page is not present, once so hmm_range_fault()
-> can find a non-present page to fault in and once again to setup the
-> migration). It is also tricky to code correctly. One page table walk
-> could costs over 1000 cpu cycles on X86-64, which is a significant hit.
-> 
-> We should be able to walk the page table once, faulting
-> pages in as required and replacing them with migration entries if
-> requested.
-> 
-> Add a new flag to HMM APIs, HMM_PFN_REQ_MIGRATE,
-> which tells to prepare for migration also during fault handling.
-> Also, for the migrate_vma_setup() call paths, a flag, MIGRATE_VMA_FAULT,
-> is added to tell to add fault handling to migrate.
-> 
-> One extra benefit of migrating with hmm_range_fault() path
-> is the migrate_vma.vma gets populated, so no need to
-> retrieve that separataly.
-> 
-> Tested in X86-64 VM with HMM test device, passing the selftests.
-> For performance, the migrate throughput tests from the selftests
-> show similar numbers (within error margin) as unmodified kernel.
-> Tested also rebased on the
-> "Remove device private pages from physical address space" series:
-> https://lore.kernel.org/linux-mm/20260130111050.53670-1-jniethe@nvidia.com/
-> plus a small patch to adjust with no problems.
-> 
-> Changes v11-v12
->   - Fix for issue found by Intel CI in patch 3
-> 
-> Changes v10-v11
->   - Fix nested mmap_read_lock in test suite
->   - Addressed review comments from David
-> 
-> Changes v9-v10
->   - Fix for issue Intel CI found, forgotten pte_unmap() before
->     migration_entry_wait()
-> 
-> Changes v8-v9
->   - rebase on drm-tip
->   - fixed uaf around  migrate_vma_split_folio() usage
->   - added missing pmd unlock
-> 
-> Changes v7-v8
->   - rebase on 7.0
->   - fixed subject in two patches
->   - enhanced commit messages
->   - squashed patch 6 into patch 4 to fix kernel test robot warning
->   - readded dropped Cc block from cover letter
->   - fixed white space
-> 
-> Changes v6-v7
->   - rebase on 7.0.0-rc6
->   - added documentation and comments
->   - denote to be migrated zero page as HMM_PFN_MIGRATE alone
->   - got rid of HMM_PFN_INOUT_FLAGS movement in patch 2
->   - picked up Acked-By from David for patch 1
->   
-> Changes v5-v6
->   - rebase on 7.0.0-rc4
->   - use range based TLB flushing while unmapping ptes
->   - gate migration behind HMM_PFN_REQ_MIGRATE for fault and
->     migrate paths
->   - always infer migration flags from migrate->flags only
-> 
-> Changes v4-v5
->   - rebase on 6.19
->   - fixed David's email address
->   - fixed link issue without CONFIG_TRANSPARENT_HUGEPAGE
->   - refactored into smaller commits
->   - added more comments to code
-> 
-> Changes v3-v4:
->   - rebase on 6.19-rc8
->   - fixed issues found by kernel test robot with random configs
->   - fixed typos
-> 
-> Changes v2-v3:
->   - rebase on 6.19-rc7
->   - fixed issues found by kernel test robot
->   - fixed smatch issues reported by Dan Carpenter <dan.carpenter@linaro.org>
->   - fixes to lock handling (pmd/pte) on errors
->   - added assertions for pmd/pte lock states
->   - other issues discovered by Matthew, thanks!
-> 
-> Changes v1-v2:
->   - rebase on 6.19-rc6
->   - fixed issues found by kernel test robot
->   - fixed locking (pmd/ptl) to cover handle_ and prepare_ regions
->     parts if migrating
->   - other issues discovered by Matthew, thanks!
-> 
-> Changes RFC-v1:
->   - rebase on 6.19-rc5
->   - adjust for the device THP
->   - changes from feedback
-> 
-> Revisions:
->   - RFC https://lore.kernel.org/linux-mm/20250814072045.3637192-1-mpenttil@redhat.com/
->   - v1: https://lore.kernel.org/all/20260114091923.3950465-1-mpenttil@redhat.com/
->   - v2: https://lore.kernel.org/all/20260119112502.645059-1-mpenttil@redhat.com/
->   - v3: https://lore.kernel.org/all/20260126111939.1332983-2-mpenttil@redhat.com/
->   - v4: https://lore.kernel.org/all/20260202112622.2104213-1-mpenttil@redhat.com/
->   - v5: https://lore.kernel.org/linux-mm/20260211081301.2940672-1-mpenttil@redhat.com/
->   - v6: https://lore.kernel.org/linux-mm/20260316062407.3354636-1-mpenttil@redhat.com/
->   - v7: https://lore.kernel.org/linux-mm/20260330115611.347988-1-mpenttil@redhat.com/
->   - v8: https://lore.kernel.org/linux-mm/20260414041226.1539439-1-mpenttil@redhat.com/
->   - v9: https://lore.kernel.org/linux-mm/20260505051658.2219537-1-mpenttil@redhat.com/
->   - v10: https://lore.kernel.org/linux-mm/20260505184421.2324798-1-mpenttil@redhat.com/
->   - v11: https://lore.kernel.org/linux-mm/20260525050830.100254-1-mpenttil@redhat.com/
-> 
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Jason Gunthorpe <jgg@nvidia.com>
-> Cc: Leon Romanovsky <leonro@nvidia.com>
-> Cc: Alistair Popple <apopple@nvidia.com>
-> Cc: Balbir Singh <balbirs@nvidia.com>
-> Cc: Zi Yan <ziy@nvidia.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-> Cc: Vlastimil Babka <vbabka@suse.cz>
-> Cc: Mike Rapoport <rppt@kernel.org>
-> Cc: Suren Baghdasaryan <surenb@google.com>
-> Cc: Michal Hocko <mhocko@suse.com>
-> 
-> Mika Penttilä (5):
->   mm/Kconfig: changes for migrate on fault for device pages
->   mm: Add helper to convert HMM pfn to migrate pfn
->   mm/hmm: do the plumbing for HMM to participate in migration
->   mm: setup device page migration in HMM pagewalk
->   lib/test_hmm: add a new testcase for the migrate on fault
-> 
->  include/linux/hmm.h                    |  19 +-
->  include/linux/migrate.h                |  26 +-
->  lib/test_hmm.c                         | 118 +++-
->  lib/test_hmm_uapi.h                    |  19 +-
->  mm/Kconfig                             |   2 +
->  mm/hmm.c                               | 843 +++++++++++++++++++++++--
->  mm/migrate_device.c                    | 583 +++--------------
->  tools/testing/selftests/mm/hmm-tests.c |  54 ++
->  8 files changed, 1086 insertions(+), 578 deletions(-)
 
-What's the status of this?
 
-Patch #3+#5 are extremely hard to review, I wonder if there could be a better
-way to split this up better so we get smaller changes that can be more easily
-reviewed.
+On 7/16/2026 2:45 PM, Andrei Kuchynski wrote:
+> On Thu, Jul 16, 2026 at 10:28 AM Borah, Chaitanya Kumar
+> <chaitanya.kumar.borah@intel.com> wrote:
+>>
+>> Hello Andrei,
+>>
+>> On 7/7/2026 7:47 PM, Andrei Kuchynski wrote:
+>>> A synchronization issue exists during port unregistration where pending
+>>> partner work items can race against workqueue destruction, leading to
+>>> use-after-free conditions:
+>>>
+>>>     cros_ec_ucsi cros_ec_ucsi.3.auto: error -ETIMEDOUT: PPM init failed
+>>>     BUG: kernel NULL pointer dereference, address: 0000000000000000
+>>>     RIP: 0010:__queue_work+0x83/0x4a0
+>>>     Call Trace:
+>>>       <IRQ>
+>>>       __cfi_delayed_work_timer_fn+0x10/0x10
+>>>       run_timer_softirq+0x3b6/0xbd0
+>>>       sched_clock_cpu+0xc/0x110
+>>>       irq_exit_rcu+0x18d/0x330
+>>>       fred_sysvec_apic_timer_interrupt+0x5e/0x80
+>>>
+>>> Fix this by ensuring strict ordering and proper serialization during
+>>> teardown:
+>>>
+>>> 1. Move ucsi_unregister_partner() to the beginning of the teardown
+>>> sequence and protect it under the connector mutex lock.
+>>> 2. Ensure all pending partner tasks are explicitly flushed and finished
+>>> before the workqueue is destroyed.
+>>> 3. Switch from mod_delayed_work() to a cancel_delayed_work() and
+>>> queue_delayed_work() sequence. This guarantees that items currently marked
+>>> as pending won't be scheduled an additional time, preventing a double
+>>> release of resources which leads to the following crash:
+>>>
+>>>     Oops: general protection fault, probably for non-canonical address
+>>>       0xdead000000000122: 0000 [#1] SMP NOPTI
+>>>     Workqueue: cros_ec_ucsi.3.auto-con2 ucsi_poll_worker
+>>>     RIP: 0010:ucsi_poll_worker+0x65/0x1e0
+>>>     Call Trace:
+>>>     <TASK>
+>>>       process_scheduled_works+0x218/0x6d0
+>>>       worker_thread+0x188/0x3f0
+>>>       __cfi_worker_thread+0x10/0x10
+>>>       kthread+0x226/0x2a0
+>>>
+>>> To ensure these rules are applied identically across both the normal
+>>> teardown and the ucsi_init() error paths, consolidate the cleanup logic
+>>> into a new helper, ucsi_unregister_port().
+>>
+>>
+>> This seems to be causing regression in our linux-next CI. [1]
+>>
+>> <6>[   18.008557] ------------[ cut here ]------------
+>> <4>[   18.013166] DEBUG_LOCKS_WARN_ON(1)
+>> <4>[   18.013167] WARNING: kernel/locking/lockdep.c:238 at
+>> __lock_acquire+0xa59/0x2750, CPU#1: kworker/u89:1/172
+>> ...
+>> <4>[   18.159950] Hardware name: Intel Corporation Meteor Lake Client
+>> Platform/MTL-P DDR5 SODIMM SBS RVP, BIOS
+>> MTLPFWI1.R00.3471.D89.2401091901 01/09/2024
+>> <4>[   18.173125] Workqueue: events_dfl_long ucsi_init_work [typec_ucsi]
+>> <4>[   18.179257] RIP: 0010:__lock_acquire+0xa60/0x2750
+>> <4>[   18.183927] Code: 44 8b 5d a8 85 c0 0f 84 98 fd ff ff 44 8b 35 07
+>> 0b 72 02 45 85 f6 0f 85 88 fd ff ff 48 8d 3d 27 25 73 02 48 c7 c6 1b 51
+>> 27 83 <67> 48 0f b9 3a 31 c0 44 8b 5d a8 44 8b 4d b0 e9 c6 f7 ff ff 31 d2
+>> ...
+>> <4>[   18.263886] PKRU: 55555554
+>> <4>[   18.266583] Call Trace:
+>> <4>[   18.269014]  <TASK>
+>> <4>[   18.271110]  ? mark_held_locks+0x46/0x90
+>> <4>[   18.275007]  lock_acquire+0xd9/0x2e0
+>> <4>[   18.278562]  ? ucsi_unregister_port+0x36/0x140 [typec_ucsi]
+>> <4>[   18.284096]  __mutex_lock+0xb2/0x1020
+>> <4>[   18.287735]  ? ucsi_unregister_port+0x36/0x140 [typec_ucsi]
+>> <4>[   18.293265]  ? ucsi_unregister_port+0x36/0x140 [typec_ucsi]
+>> <4>[   18.298797]  ? synchronize_rcu_expedited+0x2b2/0x300
+>> <4>[   18.303724]  ? __pfx_autoremove_wake_function+0x10/0x10
+>> <4>[   18.308912]  mutex_lock_nested+0x1b/0x30
+>> <4>[   18.312806]  ? mutex_lock_nested+0x1b/0x30
+>> <4>[   18.316878]  ucsi_unregister_port+0x36/0x140 [typec_ucsi]
+>> <4>[   18.322238]  ucsi_init_work+0x66d/0xc10 [typec_ucsi]
+>> <4>[   18.327167]  process_one_work+0x2ad/0x8b0
+>> <4>[   18.331158]  worker_thread+0x200/0x3f0
+>> <4>[   18.334886]  ? __pfx_worker_thread+0x10/0x10
+>> <4>[   18.339128]  kthread+0x10d/0x150
+>> <4>[   18.342339]  ? __pfx_kthread+0x10/0x10
+>> <4>[   18.346067]  ret_from_fork+0x3bd/0x470
+>> <4>[   18.349795]  ? __pfx_kthread+0x10/0x10
+>> <4>[   18.353522]  ret_from_fork_asm+0x1a/0x30
+>> <4>[   18.357420]  </TASK>
+>>
+>> Detailed log can be seen found in [2]
+>>
+>> We confirmed that reverting the patch solves the issue.
+>>
+>> Could you please check why the patch causes this regression and provide
+>> a fix if necessary?
+>>
+>> Regards
+>> Chaitanya
+>>
+>> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+>> [2]
+>> https://intel-gfx-ci.01.org/tree/linux-next/next-20260714/bat-mtlp-9/boot0.txt
+>>
+>> -- Bisect Logs --
+>>
+>> git bisect start
+>> # status: waiting for both good and bad commits
+>> # good: [5f1b513690edf51727e6928b97705b6437f9a98e] Merge remote-tracking
+>> branch 'spi/for-7.3' into spi-next
+>> git bisect good 5f1b513690edf51727e6928b97705b6437f9a98e
+>> # status: waiting for bad commit, 1 good commit known
+>> # bad: [49362394dad7df66c274c867a271394c10ca2bb8] Add linux-next
+>> specific files for 20260713
+>> git bisect bad 49362394dad7df66c274c867a271394c10ca2bb8
+>> # bad: [dffddeb046466ed57038295bde28b42b7506a12b] Merge branch
+>> 'nand/next' of https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git
+>> git bisect bad dffddeb046466ed57038295bde28b42b7506a12b
+>> # bad: [d154d0766bf3fe830e1bf98fb2d8648294a4a8da] Merge branch
+>> 'for-next' of
+>> https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-omap.git
+>> git bisect bad d154d0766bf3fe830e1bf98fb2d8648294a4a8da
+>> # bad: [671b0fd929bec9ebf863cb376baf9b9d1226a510] Merge branch 'master'
+>> of https://git.kernel.org/pub/scm/linux/kernel/git/kvms390/linux.git
+>> git bisect bad 671b0fd929bec9ebf863cb376baf9b9d1226a510
+>> # good: [f4fb100039e96211609dfc44fb24b9e4a8a0f2f9] Merge tag
+>> 's390-7.2-4' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux
+>> git bisect good f4fb100039e96211609dfc44fb24b9e4a8a0f2f9
+>> # good: [c296d513e034df93ddb230ad1c7a118d6b58750c] Merge branch
+>> 'arm/fixes' of https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git
+>> git bisect good c296d513e034df93ddb230ad1c7a118d6b58750c
+>> # good: [de53c0a584f08f31eb957f8c849a59fb33b27fa8] Merge branch 'for-rc'
+>> of https://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+>> git bisect good de53c0a584f08f31eb957f8c849a59fb33b27fa8
+>> # bad: [a6969de5a038bc08a948ada52bd7199a8dfa6cec] Merge branch
+>> 'usb-linus' of
+>> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
+>> git bisect bad a6969de5a038bc08a948ada52bd7199a8dfa6cec
+>> # good: [15eab2dd63a97587405ab6bfaad9728d5b35b5fe] Merge tag
+>> 'asoc-fix-v7.2-rc2' of
+>> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound into for-linus
+>> git bisect good 15eab2dd63a97587405ab6bfaad9728d5b35b5fe
+>> # bad: [c2e819be6a5c7f34344926b4bd7e3dfca58cf48a] usb: gadget: printer:
+>> fix infinite loop in printer_read()
+>> git bisect bad c2e819be6a5c7f34344926b4bd7e3dfca58cf48a
+>> # good: [29a142d3e8b35ebc9e0bcc78f4bc26c9b6a9ac0b] USB: gadget:
+>> snps-udc: fix device name leak on probe failure
+>> git bisect good 29a142d3e8b35ebc9e0bcc78f4bc26c9b6a9ac0b
+>> # good: [1febec7e47cdcd01f43fb0211094e3010474666e] usb: gadget: f_ncm:
+>> validate datagram bounds in ncm_unwrap_ntb()
+>> git bisect good 1febec7e47cdcd01f43fb0211094e3010474666e
+>> # bad: [0583f2fbf8f86ae3a0ce054f96783dd83e65d9bb] usb: gadget: udc: bdc:
+>> free IRQ and drain func_wake_notify before teardown
+>> git bisect bad 0583f2fbf8f86ae3a0ce054f96783dd83e65d9bb
+>> # bad: [7aa7d4bf9d3fa9a6a47b640ad103ab433b7ff261] usb: typec: ucsi: Fix
+>> race condition and ordering in port unregistration
+>> git bisect bad 7aa7d4bf9d3fa9a6a47b640ad103ab433b7ff261
+>> # first bad commit: [7aa7d4bf9d3fa9a6a47b640ad103ab433b7ff261] usb:
+>> typec: ucsi: Fix race condition and ordering in port unregistration
+>>>
+>>> Cc: stable@vger.kernel.org
+>>> Fixes: b9aa02ca39a4 ("usb: typec: ucsi: Add polling mechanism for partner tasks like alt mode checking")
+>>> Fixes: b13abcb7ddd8 ("usb: typec: ucsi: Fix NULL pointer access")
+>>> Fixes: fac4b8633fd6 ("usb: ucsi: Ensure connector delayed work items are flushed")
+>>> Signed-off-by: Andrei Kuchynski <akuchynski@chromium.org>
+>>> ---
+>>>    drivers/usb/typec/ucsi/ucsi.c | 82 +++++++++++++++++------------------
+>>>    1 file changed, 39 insertions(+), 43 deletions(-)
+>>>
+>>> diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
+>>> index 92166a3725b16..d9668ed7c80ea 100644
+>>> --- a/drivers/usb/typec/ucsi/ucsi.c
+>>> +++ b/drivers/usb/typec/ucsi/ucsi.c
+>>> @@ -1845,6 +1845,42 @@ static int ucsi_register_port(struct ucsi *ucsi, struct ucsi_connector *con)
+>>>        return ret;
+>>>    }
+>>>
+>>> +static void ucsi_unregister_port(struct ucsi_connector *con)
+>>> +{
+>>> +     struct ucsi_work *uwork;
+>>> +
+>>> +     if (con->wq) {
+>>> +             mutex_lock(&con->lock);
+>>> +             ucsi_unregister_partner(con);
+>>> +             /*
+>>> +              * queue delayed items immediately so they can execute
+>>> +              * and free themselves before the wq is destroyed
+>>> +              */
+>>> +             list_for_each_entry(uwork, &con->partner_tasks, node) {
+>>> +                     if (cancel_delayed_work(&uwork->work))
+>>> +                             queue_delayed_work(con->wq, &uwork->work, 0);
+>>> +             }
+>>> +             mutex_unlock(&con->lock);
+>>> +
+>>> +             destroy_workqueue(con->wq);
+>>> +             con->wq = NULL;
+>>> +     } else {
+>>> +             ucsi_unregister_partner(con);
+>>> +     }
+>>> +
+>>> +     ucsi_unregister_altmodes(con, UCSI_RECIPIENT_CON);
+>>> +     ucsi_unregister_port_psy(con);
+>>> +
+>>> +     usb_power_delivery_unregister_capabilities(con->port_sink_caps);
+>>> +     con->port_sink_caps = NULL;
+>>> +     usb_power_delivery_unregister_capabilities(con->port_source_caps);
+>>> +     con->port_source_caps = NULL;
+>>> +     usb_power_delivery_unregister(con->pd);
+>>> +     con->pd = NULL;
+>>> +     typec_unregister_port(con->port);
+>>> +     con->port = NULL;
+>>> +}
+>>> +
+>>>    static u64 ucsi_get_supported_notifications(struct ucsi *ucsi)
+>>>    {
+>>>        u16 features = ucsi->cap.features;
+>>> @@ -1971,22 +2007,8 @@ static int ucsi_init(struct ucsi *ucsi)
+>>>        for (i = 0; i < ucsi->cap.num_connectors; i++)
+>>>                lockdep_unregister_key(&connector[i].lock_key);
+>>>
+>>> -     for (con = connector; con->port; con++) {
+>>> -             if (con->wq)
+>>> -                     destroy_workqueue(con->wq);
+>>> -             ucsi_unregister_partner(con);
+>>> -             ucsi_unregister_altmodes(con, UCSI_RECIPIENT_CON);
+>>> -             ucsi_unregister_port_psy(con);
+>>> -
+>>> -             usb_power_delivery_unregister_capabilities(con->port_sink_caps);
+>>> -             con->port_sink_caps = NULL;
+>>> -             usb_power_delivery_unregister_capabilities(con->port_source_caps);
+>>> -             con->port_source_caps = NULL;
+>>> -             usb_power_delivery_unregister(con->pd);
+>>> -             con->pd = NULL;
+>>> -             typec_unregister_port(con->port);
+>>> -             con->port = NULL;
+>>> -     }
+>>> +     for (con = connector; con->port; con++)
+>>> +             ucsi_unregister_port(con);
+> 
+> Hi Chaitanya,
+> Thank you for spotting this!
+> 
+> Could you verify if calling lockdep_unregister_key(&connector[i].lock_key)
+> after ucsi_unregister_port(con) resolves the issue?
+> 
+>       for (con = connector; con->port; con++)
+>              ucsi_unregister_port(con);
+>       for (i = 0; i < ucsi->cap.num_connectors; i++)
+>                 lockdep_unregister_key(&connector[i].lock_key);
+> 
+> I will also try testing this on my side.
 
--- 
-Cheers,
+Thank you Andrei for the patch. It seems to work for us.
 
-David
+==
+Chaitanya
+
+> 
+> Thanks,
+> Andrei
+
