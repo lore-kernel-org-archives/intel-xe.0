@@ -4,36 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62DE5C44529
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6079EC44528
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:05:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7C9310F619;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBEA810F61A;
 	Fri, 17 Jul 2026 21:05:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="Ni9G6ir7";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="Z/kDlRFh";
 	dkim-atps=neutral
 Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4104510E312;
- Thu, 16 Jul 2026 17:18:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E70DA10E397;
+ Thu, 16 Jul 2026 17:18:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
  s=mail; t=1784221779;
- bh=E/neM9q45oFk5vumCuNs3BlrBpr2PnvuUZbONFwRIKg=;
- h=From:Subject:Date:To:Cc:From;
- b=Ni9G6ir7X07AFt8GUroRRtE9hkhAZNVOrzMQepnCFH2BcL030i+v9bC1kxvm2nAcT
- nBbfHbVv/hBI75X0GZYJLl9tKUrCqPmSJWW3FIN5WIibKGxUoM65IQK9N0kdBRsDF1
- ZIUvhnPTAVAJ1lFO1jm81GcoprxerHFvc3XjcNzY=
+ bh=dBHoPeFN74z8PL2Y8uyMGTiScXZKXOQLXSJUZCoOZ4k=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+ b=Z/kDlRFhDRFgYQgSzQoKmtwdpeG1w4EntJToLPpWO31pBQFdwbqjvfcEyOm85ByYY
+ kCg+CNUGmed4lMAcg69Wsrl0WUNMP9Zvkva2ooQJOdhW9AVbd+cbVmhggZklVF+V66
+ fu/7Cxz71Oje6RypHiqZnGnxw6whBn6dRpXX2Sj8=
 From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Subject: [PATCH 0/6] configfs: Allow the registration of const struct
- configfs_attribute
-Date: Thu, 16 Jul 2026 19:09:25 +0200
-Message-Id: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
+Date: Thu, 16 Jul 2026 19:09:26 +0200
+Subject: [PATCH 1/6] rust: configfs: remove mutability from some field
+ initializers
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMyw5AMBCF4VeRWWtSl1Z4FbHQmjIWJR1EIt5ds
- Tvf4vwXMAZChia5IOBBTIuPyNIE7NT7EQUN0ZDLXMsq08Iu3tHo+B28CdMzCl0rZWRZKC0NxOc
- a0NH5VdvuN+9mRru9KbjvB7LL58h3AAAA
-X-Change-ID: 20260716-configfs-const-base-6955b043560b
+Message-Id: <20260716-configfs-const-base-v1-1-c545a4053cb5@weissschuh.net>
+References: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
+In-Reply-To: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
 To: Andreas Hindborg <a.hindborg@kernel.org>, 
  Breno Leitao <leitao@debian.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
@@ -54,11 +52,11 @@ Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-coco@lists.linux.dev, linux-acpi@vger.kernel.org, 
  =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784221778; l=1356;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784221778; l=1897;
  i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
- bh=E/neM9q45oFk5vumCuNs3BlrBpr2PnvuUZbONFwRIKg=;
- b=W8B1eCdzBPF+vX/iGW+KJHE8xAceDD1at4gcqjxGEzdBiqCIOPZrlc1rI1Witb3eC2twB400h
- B8v+ldzTTnpAVplEdwuXCfW7epvpRYTFvlvmL1bey309UhnH5QkbVcJ
+ bh=dBHoPeFN74z8PL2Y8uyMGTiScXZKXOQLXSJUZCoOZ4k=;
+ b=aVZbs/uCZXHVODH1ABH4MgJRQ4jtEG5Zi7lWJCam5sEMkaRjBjYob9SC7itElVohbe8A6rYQA
+ yn0fmFmJirVDAxMfzaB4EKaDCo0xfVyJDcuL2BzPBWSP+x+Cf8lizUa
 X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
  pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-Mailman-Approved-At: Fri, 17 Jul 2026 21:05:30 +0000
@@ -76,35 +74,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The attribute structure defined in driver code never need to be
-modified. Allow them to be marked as const.
+These fields do not require mutable pointers.
+
+Use regular immutable ones.
 
 Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
 ---
-Thomas Weißschuh (6):
-      rust: configfs: remove mutability from some field initializers
-      configfs: Constify is_visible/is_visible_bin in configfs_group_operations
-      configfs: Treat attribute structures as const internally
-      configfs: Constify configfs_bin_attribute
-      configfs: Allow the registration of const struct configfs_attribute
-      samples: configfs: constify the configfs_attribute structures
+ rust/kernel/configfs.rs | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
- drivers/acpi/acpi_configfs.c       |  2 +-
- drivers/gpu/drm/xe/xe_configfs.c   |  4 +--
- drivers/virt/coco/guest/report.c   |  6 ++--
- fs/configfs/configfs_internal.h    | 10 +++---
- fs/configfs/dir.c                  | 10 +++---
- fs/configfs/file.c                 |  6 ++--
- fs/configfs/inode.c                |  2 +-
- include/linux/configfs.h           | 73 ++++++++++++++++++++------------------
- rust/kernel/configfs.rs            | 20 ++++++-----
- samples/configfs/configfs_sample.c | 16 ++++-----
- 10 files changed, 78 insertions(+), 71 deletions(-)
----
-base-commit: c8d07eca6270b3f41c0e528a470895f1bd42e2b7
-change-id: 20260716-configfs-const-base-6955b043560b
+diff --git a/rust/kernel/configfs.rs b/rust/kernel/configfs.rs
+index 2339c6467325..b33fb2e9adf1 100644
+--- a/rust/kernel/configfs.rs
++++ b/rust/kernel/configfs.rs
+@@ -754,8 +754,8 @@ pub const fn new_with_child_ctor<const N: usize, Child>(
+                 Self {
+                     item_type: Opaque::new(bindings::config_item_type {
+                         ct_owner: owner.as_ptr(),
+-                        ct_group_ops: GroupOperationsVTable::<Data, Child>::vtable_ptr().cast_mut(),
+-                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr().cast_mut(),
++                        ct_group_ops: GroupOperationsVTable::<Data, Child>::vtable_ptr(),
++                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr(),
+                         ct_attrs: core::ptr::from_ref(attributes).cast_mut().cast(),
+                         ct_bin_attrs: core::ptr::null_mut(),
+                     }),
+@@ -771,8 +771,8 @@ pub const fn new<const N: usize>(
+                 Self {
+                     item_type: Opaque::new(bindings::config_item_type {
+                         ct_owner: owner.as_ptr(),
+-                        ct_group_ops: core::ptr::null_mut(),
+-                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr().cast_mut(),
++                        ct_group_ops: core::ptr::null(),
++                        ct_item_ops: ItemOperationsVTable::<$tpe, Data>::vtable_ptr(),
+                         ct_attrs: core::ptr::from_ref(attributes).cast_mut().cast(),
+                         ct_bin_attrs: core::ptr::null_mut(),
+                     }),
 
-Best regards,
---  
-Thomas Weißschuh <linux@weissschuh.net>
+-- 
+2.55.0
 
