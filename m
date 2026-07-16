@@ -4,66 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1613C44530
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 806D0C4452C
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:05:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBAB10F622;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0712F10F61B;
 	Fri, 17 Jul 2026 21:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=debian.org header.i=@debian.org header.b="N66YOktr";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="PGjNtLke";
 	dkim-atps=neutral
-Received: from stravinsky.debian.org (stravinsky.debian.org [82.195.75.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA7C10E436;
- Fri, 17 Jul 2026 08:44:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org; 
- s=smtpauto.stravinsky;
- h=X-Debian-User:In-Reply-To:Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Reply-To:Content-ID:Content-Description;
- bh=On0L/tUhVBCZkHcpg4iYUy0hWUVH8Ok6jsHQTKMmRd4=; b=N66YOktrtV+6V+16wEELIyghsT
- qd9ZhgIEex7fuSZ5Ej0bfE7aVb2og/BqNzyIzIO2QmGNWTIgJJY835686LzrFJbXtyA1gaYFhMQlp
- hy3SVjSrqjs4sttcnW4pJp2EehrtWDJZfjWxZQamqbJGmaew71niQBX5Aou/ejXzxwBJb5laRdPRk
- QXGGGqj+eBdkqHoCWrvoeXUgPjtPQvc8KeCi86ElcLPzchlXgsdVe4ng2V/pY4lhKeILYHJ0wQMNN
- QoFDU+R9ItAcUdgNMRKQKAdUeZzHmxsuD0gCJyYIiX4uZPhQ9NFUV311K787ZXFM8QZ4ynaXBeHGc
- c7AQNOWQ==;
-Received: from authenticated-user by stravinsky.debian.org with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.96) (envelope-from <leitao@debian.org>) id 1wkeAb-004TMi-30;
- Fri, 17 Jul 2026 08:43:46 +0000
-Date: Fri, 17 Jul 2026 01:43:36 -0700
-From: Breno Leitao <leitao@debian.org>
-To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: Andreas Hindborg <a.hindborg@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, 
- =?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>,
- Daniel Almeida <daniel.almeida@collabora.com>, 
- Tamir Duberstein <tamird@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>, 
- Onur =?utf-8?B?w5Z6a2Fu?= <work@onurozkan.dev>,
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Dan Williams <djbw@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, 
- linux-coco@lists.linux.dev, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH 5/6] configfs: Allow the registration of const struct
- configfs_attribute
-Message-ID: <alnrJJNb1hwDrAxI@gmail.com>
-References: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
- <20260716-configfs-const-base-v1-5-c545a4053cb5@weissschuh.net>
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B934010E38E;
+ Thu, 16 Jul 2026 17:18:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+ s=mail; t=1784221779;
+ bh=9YZesc5wcXlynZX+h2DL+YsI2VfvK0ZmkJiEnkQRKNY=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+ b=PGjNtLke6YGPB964aaVBz4MAWVNniRPsAqXwlv8pVmFv9TChaWf2Gk/zVXB9DEyG1
+ VZw3tihOZBwj+lTJ077L+4waZcGSDgZ4nMS1MxvlSsdPR0C7yCFNEuWi1QgOljhe1t
+ 01zc+/tPiDSfvQNVTmIed98XYxEyb5d7orrCtGE4=
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Date: Thu, 16 Jul 2026 19:09:28 +0200
+Subject: [PATCH 3/6] configfs: Treat attribute structures as const internally
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260716-configfs-const-base-v1-5-c545a4053cb5@weissschuh.net>
-X-Debian-User: leitao
+Message-Id: <20260716-configfs-const-base-v1-3-c545a4053cb5@weissschuh.net>
+References: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
+In-Reply-To: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
+To: Andreas Hindborg <a.hindborg@kernel.org>, 
+ Breno Leitao <leitao@debian.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Tamir Duberstein <tamird@kernel.org>, 
+ Alexandre Courbot <acourbot@nvidia.com>, 
+ =?utf-8?q?Onur_=C3=96zkan?= <work@onurozkan.dev>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Dan Williams <djbw@kernel.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-coco@lists.linux.dev, linux-acpi@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784221778; l=3841;
+ i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
+ bh=9YZesc5wcXlynZX+h2DL+YsI2VfvK0ZmkJiEnkQRKNY=;
+ b=n+mbJ+otyx8qMM6l8Vc3E+5CAxdDYeaMfR9dv5eIQzMk+XXKgH0vhEYfsIEgL6Q0umHcANnma
+ BIkvWu9KfcHBrT9wRpU/i2Jcxjy5UMrgog7uvwZ8+AfffbtJssC83Fn
+X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
+ pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-Mailman-Approved-At: Fri, 17 Jul 2026 21:05:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,11 +73,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 16, 2026 at 07:09:30PM +0200, Thomas Weiﬂschuh wrote:
-> The attribute structure defined in driver code never need to be
-> modified. Allow them to be marked as const.
-> 
-> As there are many drivers which use these attributes, prepare for a
-> phased transition by using a union of const and non-const attributes.
+The configfs core never modifies the attribute structures defined in
+driver core.
 
-How many drivers need to be migrated? Isn't this a mechanism move?
+Reflect this in the types used internally in the configfs core.
+
+Signed-off-by: Thomas Wei√üschuh <linux@weissschuh.net>
+---
+ fs/configfs/configfs_internal.h | 10 +++++-----
+ fs/configfs/dir.c               |  6 +++---
+ fs/configfs/file.c              |  6 +++---
+ fs/configfs/inode.c             |  2 +-
+ 4 files changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/fs/configfs/configfs_internal.h b/fs/configfs/configfs_internal.h
+index acdeea8e2d69..4bc19cd8d666 100644
+--- a/fs/configfs/configfs_internal.h
++++ b/fs/configfs/configfs_internal.h
+@@ -104,17 +104,17 @@ static inline struct config_item * to_item(struct dentry * dentry)
+ 	return ((struct config_item *) sd->s_element);
+ }
+ 
+-static inline struct configfs_attribute * to_attr(struct dentry * dentry)
++static inline const struct configfs_attribute * to_attr(struct dentry * dentry)
+ {
+ 	struct configfs_dirent * sd = dentry->d_fsdata;
+-	return ((struct configfs_attribute *) sd->s_element);
++	return ((const struct configfs_attribute *) sd->s_element);
+ }
+ 
+-static inline struct configfs_bin_attribute *to_bin_attr(struct dentry *dentry)
++static inline const struct configfs_bin_attribute *to_bin_attr(struct dentry *dentry)
+ {
+-	struct configfs_attribute *attr = to_attr(dentry);
++	const struct configfs_attribute *attr = to_attr(dentry);
+ 
+-	return container_of(attr, struct configfs_bin_attribute, cb_attr);
++	return container_of_const(attr, struct configfs_bin_attribute, cb_attr);
+ }
+ 
+ static inline struct config_item *configfs_get_config_item(struct dentry *dentry)
+diff --git a/fs/configfs/dir.c b/fs/configfs/dir.c
+index 3c88f13f1ca2..9a5c2bc4065d 100644
+--- a/fs/configfs/dir.c
++++ b/fs/configfs/dir.c
+@@ -461,7 +461,7 @@ static struct dentry * configfs_lookup(struct inode *dir,
+ 		 */
+ 		if ((sd->s_type & CONFIGFS_NOT_PINNED) &&
+ 		    !strcmp(configfs_get_name(sd), dentry->d_name.name)) {
+-			struct configfs_attribute *attr = sd->s_element;
++			const struct configfs_attribute *attr = sd->s_element;
+ 			umode_t mode = (attr->ca_mode & S_IALLUGO) | S_IFREG;
+ 
+ 			dentry->d_fsdata = configfs_get(sd);
+@@ -622,8 +622,8 @@ static int populate_attrs(struct config_item *item)
+ {
+ 	const struct config_item_type *t = item->ci_type;
+ 	const struct configfs_group_operations *ops;
+-	struct configfs_attribute *attr;
+-	struct configfs_bin_attribute *bin_attr;
++	const struct configfs_attribute *attr;
++	const struct configfs_bin_attribute *bin_attr;
+ 	int error = 0;
+ 	int i;
+ 
+diff --git a/fs/configfs/file.c b/fs/configfs/file.c
+index a48cece775a3..6460b000c593 100644
+--- a/fs/configfs/file.c
++++ b/fs/configfs/file.c
+@@ -41,8 +41,8 @@ struct configfs_buffer {
+ 	struct config_item	*item;
+ 	struct module		*owner;
+ 	union {
+-		struct configfs_attribute	*attr;
+-		struct configfs_bin_attribute	*bin_attr;
++		const struct configfs_attribute		*attr;
++		const struct configfs_bin_attribute	*bin_attr;
+ 	};
+ };
+ 
+@@ -291,7 +291,7 @@ static int __configfs_open_file(struct inode *inode, struct file *file, int type
+ {
+ 	struct dentry *dentry = file->f_path.dentry;
+ 	struct configfs_fragment *frag = to_frag(file);
+-	struct configfs_attribute *attr;
++	const struct configfs_attribute *attr;
+ 	struct configfs_buffer *buffer;
+ 	int error;
+ 
+diff --git a/fs/configfs/inode.c b/fs/configfs/inode.c
+index 68290fe0e374..69f1f24e890f 100644
+--- a/fs/configfs/inode.c
++++ b/fs/configfs/inode.c
+@@ -178,7 +178,7 @@ struct inode *configfs_create(struct dentry *dentry, umode_t mode)
+  */
+ const unsigned char * configfs_get_name(struct configfs_dirent *sd)
+ {
+-	struct configfs_attribute *attr;
++	const struct configfs_attribute *attr;
+ 
+ 	BUG_ON(!sd || !sd->s_element);
+ 
+
+-- 
+2.55.0
+
