@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19C7BC44501
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 10:21:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE585C4450A
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 10:21:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF58910F285;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D62E10E34B;
 	Thu, 16 Jul 2026 10:21:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WO1fMybl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wvr7Gy+t";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2B2410F284
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 10:21:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D60D10E324
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 10:21:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784197301; x=1815733301;
+ t=1784197307; x=1815733307;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gakMZDurgFSn/bvlgHjSoDnrF0jGEPzvGIgDOmHcoKc=;
- b=WO1fMyblim3T4ZHqrauETkyvLUiTa+YZgtuo8+48grppCuuaCyg1iCd7
- iM2oVGXu/Ws/jrlX1empYkBZFDcnCGXJCqeR5cuzGbymHlK7mGHFVE++U
- Y0BPn2fcj5hs+P2LEtxY3xb0+WuWMNKwdvSJUrwKtpy1K19fjOyyl65Ri
- eD6iKU2/12cxlPSAwniiQpcC4XUb8mMpToKk3Qfb12yRU0BNY1S2hqNLI
- NePRFzZu7RuBKq7Ak72J4r1svyRNBudDe1aT8Sj4CBc/ip4iYi4o3uE1u
- IYD+nWAUQfPmcenKFvNGiazzPxAG7cbFH6CC4wsPktPq+sy4zQqWy3tjO Q==;
-X-CSE-ConnectionGUID: 04oOOs7LRueyTVKBww32+Q==
-X-CSE-MsgGUID: Mxz25LXjT+a/xd5vQbTg5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="96367781"
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="96367781"
+ bh=h6xgIHS5PJV7NDQBuR2mbgKMPXKpgEJaXkRX6STc3jQ=;
+ b=Wvr7Gy+tjpGBHOBPkqlG+aRU6nakjJLBHDLxodlMwDHxMlynJODzilvm
+ 9E17oKLA8pC/BIIunVM3Y3HJXfmydr0NRvL2PJGLoFW2h9x44rcnOxwSG
+ BBsky4EpXcQuT6R622DDWQOpvhFh08YbKs94Ae1/yBYZRz/PnBanVoOW5
+ NV86v7NLObWlfahjvJwoCkxxGY8fp90kK1chcm3UXAim0h+OSfFZ2u+35
+ H0bhCFY8DmxuyUNOE2QguaEb+HLMu+ZrQ7sCW2T3c+yrIEiEmGdWmbOLe
+ ObjV/b1o9CR0I5EHYX90L9B1Cfesqo1cNjFB0lxyMi+X8yFf8V+uuWKwy A==;
+X-CSE-ConnectionGUID: 0Jz9ZRTlT9y1lsBMEKks1w==
+X-CSE-MsgGUID: bVTfSbU/TfyvWlvLCAN88w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="96367802"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="96367802"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 03:21:40 -0700
-X-CSE-ConnectionGUID: BLnb0GAYRtmUbPi53xz+aQ==
-X-CSE-MsgGUID: URXjVCYqTa+i7UUXd7IK3A==
+ 16 Jul 2026 03:21:47 -0700
+X-CSE-ConnectionGUID: YRidqoQeRYqzr8/fa9hz+Q==
+X-CSE-MsgGUID: fxZsasT+RDmcwTT+uiFHMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="253833847"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="253833872"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 03:21:39 -0700
+ 16 Jul 2026 03:21:46 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V13 06/11] gpu/buddy: Add routine to dump allocated buddy
- blocks
-Date: Thu, 16 Jul 2026 15:51:12 +0530
-Message-ID: <20260716102110.1549938-19-tejas.upadhyay@intel.com>
+Subject: [PATCH V13 11/11] drm/xe: Add fault-inject based VRAM page offline
+ injection
+Date: Thu, 16 Jul 2026 15:51:17 +0530
+Message-ID: <20260716102110.1549938-24-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260716102110.1549938-13-tejas.upadhyay@intel.com>
 References: <20260716102110.1549938-13-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,111 +69,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To implement the ability to see allocated blocks under a specific VRAM
-instance in the drm driver, new api is introduced. While existing structs
-often show the free block list, this addition provides a comprehensive view
-of all currently resident VRAM allocations.
+Add a fault-inject based debugfs interface for testing VRAM page
+offlining. This replaces the previous standalone debugfs approach
+with the standard kernel fault-inject infrastructure.
 
-Dump will look like,
+Two debugfs entries are created under the xe debugfs root for
+CRI platforms:
+- inject_mempage_offline/: Standard fault-inject knobs (probability,
+  times, interval, etc.) — only available with
+  CONFIG_FAULT_INJECTION_DEBUG_FS
+- inject_mempage_offline_trigger: Write a PFN value to inject a
+  specific page, or write "0" to auto-pick the last unallocated
+  VRAM page
 
-[  +0.000003] 0x00000002f8000000-0x00000002f8800000: 8388608
-[  +0.000005] 0x00000002f8800000-0x00000002f8840000: 262144
-[  +0.000004] 0x00000002f8840000-0x00000002f8860000: 131072
-[  +0.000004] 0x00000002f8860000-0x00000002f8870000: 65536
-[  +0.000005] 0x00000002f9000000-0x00000002f9800000: 8388608
-[  +0.000004] 0x00000002f9800000-0x00000002f9880000: 524288
-[  +0.000005] 0x00000002f9880000-0x00000002f9884000: 16384
-[  +0.000004] 0x00000002f9900000-0x00000002f9980000: 524288
-[  +0.000005] 0x00000002f9980000-0x00000002f9988000: 32768
-[  +0.000004] 0x00000002f9988000-0x00000002f998c000: 16384
+The trigger accepts:
+- "0"      : auto-pick last unallocated page
+- "0xPFN"  : inject fault at a specific PFN address
 
-v3(Sashiko):
-- Add cond_resched() every 1024 blocks to yield CPU on large VRAM dumps
-v2(MattB):
-- Add lockdep assert
+On kernels with CONFIG_FAULT_INJECTION_DEBUG_FS, injection is gated
+by should_fail() (probability/times must be configured first).
+On kernels without it, the trigger always injects directly.
+
+The injection reports the page as faulted via
+xe_ttm_vram_handle_addr_fault(), exercising the full page offlining
+path.
+
+Usage (with CONFIG_FAULT_INJECTION_DEBUG_FS):
+  echo 100 > inject_mempage_offline/probability
+  echo 1 > inject_mempage_offline/times
+  echo 0 > inject_mempage_offline_trigger
+
+Usage (without CONFIG_FAULT_INJECTION_DEBUG_FS):
+  echo 0 > inject_mempage_offline_trigger
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/buddy.c       | 46 +++++++++++++++++++++++++++++++++++++++
- include/linux/gpu_buddy.h |  1 +
- 2 files changed, 47 insertions(+)
+ drivers/gpu/drm/xe/xe_debugfs.c      | 40 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 37 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
+ 3 files changed, 78 insertions(+)
 
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index 315f860f4346..ffacd2069758 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -10,6 +10,7 @@
- #include <linux/sizes.h>
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 8c391c7b017a..05d314f0f794 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -30,6 +30,7 @@
+ #include "xe_sriov_vf.h"
+ #include "xe_step.h"
+ #include "xe_tile_debugfs.h"
++#include "xe_ttm_vram_mgr.h"
+ #include "xe_vsec.h"
+ #include "xe_wa.h"
  
- #include <linux/gpu_buddy.h>
-+#include <drm/drm_print.h>
+@@ -41,6 +42,7 @@
  
- /**
-  * gpu_buddy_assert - assert a condition in the buddy allocator
-@@ -1294,6 +1295,51 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+ DECLARE_FAULT_ATTR(gt_reset_failure);
+ DECLARE_FAULT_ATTR(inject_csc_hw_error);
++DECLARE_FAULT_ATTR(inject_mempage_offline);
+ 
+ static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+ 				   u32 offset, const char *name, struct drm_printer *p)
+@@ -564,6 +566,37 @@ static const struct file_operations disable_late_binding_fops = {
+ 	.write = disable_late_binding_set,
+ };
+ 
++static ssize_t inject_mempage_offline_trigger(struct file *f,
++					      const char __user *ubuf,
++					      size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_vram_region *vr = tile->mem.vram;
++	u64 pfn;
++	int ret;
++
++	if (IS_ENABLED(CONFIG_FAULT_INJECTION_DEBUG_FS) &&
++	    !should_fail(&inject_mempage_offline, 1))
++		return size;
++
++	ret = kstrtou64_from_user(ubuf, size, 0, &pfn);
++	if (ret)
++		return ret;
++
++	if (pfn == 0)
++		return xe_ttm_vram_inject_fault(xe) ?: size;
++
++	/* User provided PFN — convert to DPA and inject */
++	return xe_ttm_vram_handle_addr_fault(xe,
++					     (pfn << PAGE_SHIFT) + vr->dpa_base) ?: size;
++}
++
++static const struct file_operations inject_mempage_offline_fops = {
++	.owner = THIS_MODULE,
++	.write = inject_mempage_offline_trigger,
++};
++
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -632,6 +665,13 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	if (man)
+ 		ttm_resource_manager_create_debugfs(man, root, "stolen_mm");
+ 
++	if (xe->info.platform == XE_CRESCENTISLAND) {
++		fault_create_debugfs_attr("inject_mempage_offline", root,
++					  &inject_mempage_offline);
++		debugfs_create_file("inject_mempage_offline_trigger", 0200,
++				    root, xe, &inject_mempage_offline_fops);
++	}
++
+ 	for_each_tile(tile, xe, tile_id)
+ 		xe_tile_debugfs_register(tile);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 0e5dfbf203a3..bf9eefdbd339 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -814,6 +814,43 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
  }
- EXPORT_SYMBOL(gpu_buddy_block_trim);
+ EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
  
 +/**
-+ * gpu_buddy_dump_allocated_blocks - print all allocated blocks in drm buddy
++ * xe_ttm_vram_inject_fault - Inject a VRAM page fault for testing
++ * @xe: xe device instance
 + *
-+ * @mm: DRM buddy manager to look into
++ * Picks the last unallocated VRAM page and reports it as faulted
++ * via xe_ttm_vram_handle_addr_fault(). Used by the fault-inject
++ * debugfs interface for testing page offlining.
 + *
-+ * Looks into buddy manager for each block and their status and if allocated
-+ * print allocated block range and size
-+ *
-+ * Returns:
-+ * void
++ * Return: 0 on success, negative error code on failure.
 + */
-+void gpu_buddy_dump_allocated_blocks(struct gpu_buddy *mm)
++int xe_ttm_vram_inject_fault(struct xe_device *xe)
 +{
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_vram_region *vr = tile->mem.vram;
++	struct xe_ttm_vram_mgr *vram_mgr = &vr->ttm;
++	struct gpu_buddy *mm = &vram_mgr->mm;
 +	struct gpu_buddy_block *block;
-+	LIST_HEAD(dfs);
-+	int i, count = 0;
++	bool found = false;
++	u64 addr;
 +
-+	gpu_buddy_driver_lock_held(mm);
-+
-+	for (i = 0; i < mm->n_roots; ++i)
-+		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
-+
-+	do {
-+		block = list_first_entry_or_null(&dfs,
-+						 struct gpu_buddy_block,
-+						 tmp_link);
-+		if (!block)
-+			break;
-+
-+		list_del(&block->tmp_link);
-+
-+		if (gpu_buddy_block_is_allocated(block)) {
-+			gpu_buddy_block_print(mm, block);
-+			if (!(++count % 1024))
-+				cond_resched(); /* yield periodically */
++	/* Walk from end of VRAM to find last unallocated page */
++	for (addr = vr->actual_physical_size - SZ_4K;
++	     addr < vr->actual_physical_size; addr -= SZ_4K) {
++		scoped_guard(mutex, &vram_mgr->lock) {
++			block = gpu_buddy_allocated_addr_to_block(mm, addr);
++			if (!block)
++				found = true;
 +		}
++		if (found)
++			return xe_ttm_vram_handle_addr_fault(xe,
++							     addr + vr->dpa_base);
++	}
 +
-+		if (gpu_buddy_block_is_split(block)) {
-+			list_add(&block->right->tmp_link, &dfs);
-+			list_add(&block->left->tmp_link, &dfs);
-+		}
-+	} while (1);
++	return -ENOSPC;
 +}
-+EXPORT_SYMBOL(gpu_buddy_dump_allocated_blocks);
++EXPORT_SYMBOL(xe_ttm_vram_inject_fault);
 +
- static struct gpu_buddy_block *
- __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 			 u64 start, u64 end,
-diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-index e7e22fa05ee2..aaebdceb1c44 100644
---- a/include/linux/gpu_buddy.h
-+++ b/include/linux/gpu_buddy.h
-@@ -267,6 +267,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- 			 u64 *start,
- 			 u64 new_size,
- 			 struct list_head *blocks);
-+void gpu_buddy_dump_allocated_blocks(struct gpu_buddy *mm);
+ static int xe_ttm_vram_dump_bad_pages_info(char *buf, struct xe_ttm_vram_mgr *mgr)
+ {
+ 	struct xe_ttm_vram_offline_resource *pos;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index c33e1a8d9217..9e114c63223f 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
  
- void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear);
- 
+ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr);
++int xe_ttm_vram_inject_fault(struct xe_device *xe);
+ int xe_ttm_vram_sysfs_init(struct xe_device *xe);
+ static inline struct xe_ttm_vram_mgr_resource *
+ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
 -- 
 2.52.0
 
