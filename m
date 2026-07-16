@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 726E3C4450A
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 07:36:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82B09C4450A
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jul 2026 07:36:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32AD610E726;
-	Thu, 16 Jul 2026 07:36:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 431C110E729;
+	Thu, 16 Jul 2026 07:36:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uebapv4m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iSq3HYM+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF59E10E726
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 07:36:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF96A10E72B
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jul 2026 07:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784187379; x=1815723379;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zq48NoczXHRcdcOjIjZ8kBBr+wfRv52GaF+DuB9hhYk=;
- b=Uebapv4meDbeintnzAit4xKlBS8f4f7CyVAzFxPzIeg4KkH2GPWVc+O0
- 8hDTOyHguZsGJ6exHlgZaHI3Rqio+E6tB7mnx3Xarca9JVWZx22GEtTNV
- K9q1Hn8/xH4kFpeMvqmTBHt4lidZZgDd2Whrc+u3AkzRDBbIfzAoSW1d9
- WdR2zfmUMPrGBsqKmLxLFGxUk52zYtdPbaohLNyxS09PqDhJqTMwoloZt
- LT1Zp0cJkywSgiy2RElIlt37h60BghCv7x5PiQbkpJmeniRi7KYB+E1lF
- xtA9dMt1G4+nAPMewiMCallefTdtpBbwE/UT4lwGBQmzTPxk25xG5Fnhe w==;
-X-CSE-ConnectionGUID: zDWu+NUtQuW+zo27H4pbVQ==
-X-CSE-MsgGUID: qcIF0AmkRJSdihcOLaLcMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="95979144"
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="95979144"
+ t=1784187382; x=1815723382;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=dn3NaZb+2cQomOivpr4P8k9+9kBEyZFjfEeRsmjMc0s=;
+ b=iSq3HYM+Xe5oROC1Zj7nCpegtS5KrjPcjM2XulfQ1LRQTfwHb5UKoYRo
+ 8lzVlULKJIy0pp7XyhuUYwpXRuAaST/EldCEfR62FixTIoqnwbx2ey1F0
+ GKVTXTJZC6I/sKMzgSBqkzsaxfxp7X0gbBkK5t9EPUnsOxxImb8z8Gg5E
+ cUNhazExsVxkPOXvZkLbtPNt+8p6MNGm89K2N6+FMb2rIHtbNxa/y6zRv
+ Poy6+X4dX7bTl86NkSQFxxuDcmy7teB6wuS/KGzzmmui7lQv0gga1iSQq
+ dHjlrTxjkuxEWsRO6mbtcvEGaUNtkcQff5lWEUADH7ltWk4BHBpsGjBPI Q==;
+X-CSE-ConnectionGUID: Z7ZW/dtKSCa9NOUZiZ4SdQ==
+X-CSE-MsgGUID: 3UyZP/2wSp2ZueA4Zv14Vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="95979153"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="95979153"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 00:36:18 -0700
-X-CSE-ConnectionGUID: KP87kgZzTsOA5aMzQKY6Lw==
-X-CSE-MsgGUID: PrxeQyuoQNKQkfGydh8N3g==
+ 16 Jul 2026 00:36:22 -0700
+X-CSE-ConnectionGUID: mM0ty6hkQmGWIL88afXkfQ==
+X-CSE-MsgGUID: WEx3bin1Q5G4kt93QlLCZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="250055925"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; d="scan'208";a="250055952"
 Received: from psoham-ms-7e03.iind.intel.com ([10.223.55.64])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 00:36:15 -0700
+ 16 Jul 2026 00:36:18 -0700
 From: Soham Purkait <soham.purkait@intel.com>
 To: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
  anshuman.gupta@intel.com, aravind.iddamsetty@linux.intel.com,
@@ -49,10 +49,12 @@ To: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
  andi.shyti@intel.com, rodrigo.vivi@intel.com
 Cc: soham.purkait@intel.com,
 	anoop.c.vijay@intel.com
-Subject: [PATCH v11 0/1] drm/xe: Add support for GPU health indicator
-Date: Thu, 16 Jul 2026 13:06:01 +0530
-Message-ID: <20260716073600.674089-3-soham.purkait@intel.com>
+Subject: [PATCH v11 1/1] drm/xe/xe_ras: Add RAS GPU health indicator
+Date: Thu, 16 Jul 2026 13:06:02 +0530
+Message-ID: <20260716073600.674089-4-soham.purkait@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260716073600.674089-3-soham.purkait@intel.com>
+References: <20260716073600.674089-3-soham.purkait@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,23 +71,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-    GPUs commonly rely on various reactive health monitoring approaches.
-The Xe GPU health indicator is intended to fit into such reactive
-monitoring flows, where it could be used by management tools to fetch
-and update GPU health status.
+Add a sysfs interface that reports the current GPU health state and
+lets admin users and management tools update it but is readable by all
+users. Requests are routed through the sysctrl mailbox. The interface
+is present only on platforms that support the GPU health indicator.
 
-This patch adds Xe GPU health indicator support as a RAS feature.
-It introduces the health command IDs and request/response structures
-used by the System Controller mailbox, and integrates the feature
-into Xe through the gpu_health sysfs interface.
-
-The sysfs file, gpu_health, is created at the device level and
-provides a simple interface for observing and updating the reported
-GPU health state. It is exposed as read-only for non admin users while
-write access is only provided to the admin users.
-
-The sysfs file (gpu_health) is placed at the device level and behaves
-as follows:
+The interface is a single read/write file at the device level:
 
   $ cat /sys/.../device/gpu_health
   ok
@@ -95,12 +86,26 @@ as follows:
   $ cat /sys/.../device/gpu_health
   critical
 
-Userspace consumer (Level Zero Sysman):
-  https://github.com/intel/compute-runtime/commit/3d974c6d9b65bede475c118e582761670ef110d2
+Signed-off-by: Soham Purkait <soham.purkait@intel.com>
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Acked-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+---
+v9:
+ - Return only the current health state for sysfs read. (Andi, Rodrigo)
+ - Add documentation for sysfs interface. (Andi, Rodrigo, Anshuman)
+ - Make logs and structures consistent with their counterparts.
+   (Riana, Raag)
+ - Add correct KernelVersion and ABI Date. (Rodrigo, Raag)
 
-Soham Purkait (1):
-  drm/xe/xe_ras: Add RAS GPU health indicator
+v10:
+ - Move enum xe_ras_health to xe_ras.c to match the
+   placement of the other internal enums. (Raag)
 
+v11:
+ - Rebased.
+---
  .../ABI/testing/sysfs-driver-intel-xe-ras     |  30 ++++
  Documentation/gpu/xe/xe_device.rst            |   7 +
  drivers/gpu/drm/xe/xe_ras.c                   | 153 ++++++++++++++++++
@@ -109,6 +114,318 @@ Soham Purkait (1):
  5 files changed, 235 insertions(+)
  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-ras
 
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-ras b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
+new file mode 100644
+index 000000000000..3870e5a03a92
+--- /dev/null
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
+@@ -0,0 +1,30 @@
++What:		/sys/bus/pci/drivers/xe/.../gpu_health
++Date:		July 2026
++KernelVersion:	7.3
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		This file exposes the current gpu health state and allows the gpu
++		health state to be updated.
++
++		This sysfs file is present only on Intel Xe platforms that support
++		the gpu health indicator interface for RAS. Reading the current
++		health state is available to all users, while updating the health
++		state is restricted to administrative users only.
++
++		Read returns a single line containing one of the valid values for
++		the current gpu health state. Writing one of the valid values
++		updates the current gpu health state.
++
++		The valid values for the gpu health state are:
++
++			ok
++				The gpu is healthy and operating within normal
++				parameters.
++
++			warning
++				The gpu is experiencing minor issues but remains
++				operational.
++
++			critical
++				The gpu is in a critical state and may not be
++				operational.
+diff --git a/Documentation/gpu/xe/xe_device.rst b/Documentation/gpu/xe/xe_device.rst
+index 39a937b97cd3..d3a022362ade 100644
+--- a/Documentation/gpu/xe/xe_device.rst
++++ b/Documentation/gpu/xe/xe_device.rst
+@@ -8,3 +8,10 @@ Xe Device Wedging
+ 
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_device.c
+    :doc: Xe Device Wedging
++
++====================
++GPU Health Indicator
++====================
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_ras.c
++   :doc: GPU Health Indicator
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 845b0e99754c..ed609912fda1 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -55,6 +55,14 @@ enum xe_ras_response_status {
+ 	XE_RAS_STATUS_MAX
+ };
+ 
++/* GPU health values */
++enum xe_ras_health {
++	XE_RAS_HEALTH_OK = 0,
++	XE_RAS_HEALTH_WARNING,
++	XE_RAS_HEALTH_CRITICAL,
++	XE_RAS_HEALTH_MAX
++};
++
+ static const char *const xe_ras_severities[] = {
+ 	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
+ 	[XE_RAS_SEV_CORRECTABLE]		= "Correctable Error",
+@@ -74,6 +82,13 @@ static const char *const xe_ras_components[] = {
+ };
+ static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
+ 
++static const char * const gpu_health_states[] = {
++	[XE_RAS_HEALTH_OK]		= "ok",
++	[XE_RAS_HEALTH_WARNING]		= "warning",
++	[XE_RAS_HEALTH_CRITICAL]	= "critical",
++};
++static_assert(ARRAY_SIZE(gpu_health_states) == XE_RAS_HEALTH_MAX);
++
+ static u8 drm_to_xe_ras_severity(u8 severity)
+ {
+ 	switch (severity) {
+@@ -446,6 +461,139 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
+ 	return 0;
+ }
+ 
++static ssize_t gpu_health_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct xe_ras_get_health_response response = {0};
++	struct xe_sysctrl_mailbox_command command = {0};
++	struct xe_ras_get_health_request request = {0};
++	struct xe_device *xe = kdev_to_xe_device(dev);
++	const char *health;
++	size_t rlen;
++	int ret;
++
++	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_HEALTH,
++				  &request, sizeof(request), &response, sizeof(response));
++	guard(xe_pm_runtime)(xe);
++	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
++	if (ret) {
++		xe_err(xe, "sysctrl: failed to get health %d\n", ret);
++		return ret;
++	}
++
++	if (rlen != sizeof(response)) {
++		xe_err(xe, "sysctrl: unexpected get health response length %zu (expected %zu)\n",
++		       rlen, sizeof(response));
++		return -EIO;
++	}
++	if (response.health >= XE_RAS_HEALTH_MAX) {
++		xe_err(xe, "sysctrl: invalid health state %u\n",
++		       response.health);
++		return -EIO;
++	}
++
++	health = gpu_health_states[response.health];
++
++	xe_dbg(xe, "[RAS]: get health: %s\n", health);
++
++	return sysfs_emit(buf, "%s\n", health);
++}
++
++static ssize_t gpu_health_store(struct device *dev, struct device_attribute *attr,
++				const char *buf, size_t count)
++{
++	struct xe_ras_set_health_response response = {0};
++	struct xe_sysctrl_mailbox_command command = {0};
++	struct xe_ras_set_health_request request = {0};
++	struct xe_device *xe = kdev_to_xe_device(dev);
++	const char *health;
++	size_t rlen;
++	int state;
++	int ret;
++
++	state = sysfs_match_string(gpu_health_states, buf);
++	if (state < 0)
++		return -EINVAL;
++
++	request.health = state;
++
++	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_SET_HEALTH,
++				  &request, sizeof(request), &response, sizeof(response));
++	guard(xe_pm_runtime)(xe);
++	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
++	if (ret) {
++		xe_err(xe, "sysctrl: failed to set health %d\n", ret);
++		return ret;
++	}
++
++	if (rlen != sizeof(response)) {
++		xe_err(xe, "sysctrl: unexpected set health response length %zu (expected %zu)\n",
++		       rlen, sizeof(response));
++		return -EIO;
++	}
++
++	ret = ras_status_to_errno(response.status);
++	if (ret) {
++		xe_err(xe, "sysctrl: set health command failed with status %#x\n",
++		       response.status);
++		return ret;
++	}
++
++	if (response.health >= XE_RAS_HEALTH_MAX) {
++		xe_err(xe, "sysctrl: invalid health state %u\n",
++		       response.health);
++		return -EIO;
++	}
++
++	health = gpu_health_states[response.health];
++
++	xe_dbg(xe, "[RAS]: set health: %s\n", health);
++
++	return count;
++}
++static DEVICE_ATTR_RW(gpu_health);
++
++static struct attribute *gpu_health_attrs[] = {
++	&dev_attr_gpu_health.attr,
++	NULL
++};
++
++/**
++ * DOC: GPU Health Indicator
++ *
++ * On Intel Xe platforms that support the gpu health indicator interface,
++ * the driver exposes this sysfs attribute for in-band access to the gpu
++ * health state::
++ *
++ *     /sys/bus/pci/devices/<device>/gpu_health
++ *
++ * Reading the attribute is available to all users and returns a single
++ * line containing the current gpu health state, whereas writing is
++ * restricted to administrative users and updates the state to one of the
++ * valid values.
++ *
++ * Management tools and administrators use this interface to query the
++ * current gpu health state (e.g. for telemetry/monitoring) and to
++ * update it - for example, to mark the gpu as ``warning`` or ``critical``
++ * after diagnostics, or reset it back to ``ok`` once remediated.
++ *
++ * The valid values for the gpu health state are:
++ *
++ * - ``ok``
++ *     The gpu is healthy and operating within normal parameters.
++ *
++ * - ``warning``
++ *     The gpu is experiencing minor issues but remains operational.
++ *
++ * - ``critical``
++ *     The gpu is in a critical state and may not be operational.
++ *
++ * See Documentation/ABI/testing/sysfs-driver-intel-xe-ras for the ABI
++ * specification.
++ */
++static const struct attribute_group gpu_health_group = {
++	.attrs = gpu_health_attrs,
++};
++
+ /**
+  * xe_ras_init - Initialize Xe RAS
+  * @xe: xe device instance
+@@ -454,6 +602,8 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
+  */
+ void xe_ras_init(struct xe_device *xe)
+ {
++	int ret;
++
+ 	if (!xe->info.has_drm_ras)
+ 		return;
+ 
+@@ -471,4 +621,7 @@ void xe_ras_init(struct xe_device *xe)
+ 	 * causing the driver to enter survivability mode.
+ 	 */
+ 	xe_ras_process_errors(xe);
++	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
++	if (ret)
++		xe_err(xe, "Failed to create GPU health sysfs, err=%d\n", ret);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+index 8d344691b549..766b4b41768e 100644
+--- a/drivers/gpu/drm/xe/xe_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_ras_types.h
+@@ -177,4 +177,45 @@ struct xe_ras_compute_error {
+ 	u32 reserved[15];
+ } __packed;
+ 
++/**
++ * struct xe_ras_get_health_request - Request structure for obtaining gpu health
++ */
++struct xe_ras_get_health_request {
++	/** @reserved: Reserved for future use. */
++	u32 reserved[2];
++} __packed;
++
++/**
++ * struct xe_ras_get_health_response - Response structure for obtaining gpu health
++ */
++struct xe_ras_get_health_response {
++	/** @health: gpu health value */
++	u8 health;
++	/** @reserved: Reserved for future use */
++	u8 reserved[3];
++} __packed;
++
++/**
++ * struct xe_ras_set_health_request - Request structure for setting gpu health
++ */
++struct xe_ras_set_health_request {
++	/** @health: gpu health value */
++	u8 health;
++	/** @reserved: Reserved for future use */
++	u8 reserved[3];
++} __packed;
++
++/**
++ * struct xe_ras_set_health_response - Response structure for setting gpu health
++ */
++struct xe_ras_set_health_response {
++	/** @status: Status of set health operation */
++	u32 status;
++	/** @health: Resulting gpu health value */
++	u8 health;
++	/** @reserved: Reserved for future use */
++	u8 reserved[3];
++	/** @reserved1: Reserved for future use */
++	u32 reserved1[2];
++} __packed;
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+index f12bc99ee31b..d0341538ad05 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+@@ -26,12 +26,16 @@ enum xe_sysctrl_group {
+  * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+  * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
+  * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
++ * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
++ * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
+  */
+ enum xe_sysctrl_gfsp_cmd {
+ 	XE_SYSCTRL_CMD_GET_SOC_ERROR		= 0x01,
+ 	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
+ 	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
+ 	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
++	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
++	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
+ };
+ 
+ /**
 -- 
 2.43.0
 
