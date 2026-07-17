@@ -4,52 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21CBCC4451C
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 14:34:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83AECC4451C
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 14:35:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C431B10E48A;
-	Fri, 17 Jul 2026 14:34:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B42510F592;
+	Fri, 17 Jul 2026 14:35:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WAhfo6OK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NmUVOSko";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C700B10E48A
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Jul 2026 14:34:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F047110E46E;
+ Fri, 17 Jul 2026 14:35:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784298886; x=1815834886;
- h=date:from:to:cc:subject:message-id;
- bh=/M/Fic5aq8W3KtRZe+a1l6BhkHXp39FBCkwOqXYA84I=;
- b=WAhfo6OK+6vwSd83LlOjWMElnpJdhd75XsK5iigV4Eth3K+YAkdiT8zy
- leMPd/8ayN+Onv4KAn7bDX7+W7c8qyWNld3cxcICz6f3zl7K9d54jtJ9b
- N/iLo3EDbq9wuIPhakol1y3dUQr20J/h05bi5M9rVebe0zt8daytScrPw
- E6ZHXHiOQC+pq4/bud+5xhxMczfRhJ1nrwD71WHdCKMD2rhup3Lf/3fm4
- 4spthHreMJ2Yh8Uxspp3KzhOdS8I+DZdEQwavWA0OQHnHhkum0r2JhiHx
- Ih8hmlt1ivkV29k5yT8UmZtiSUK7povhh+hPp8to7TsGmu/NU6O6r1Ys8 Q==;
-X-CSE-ConnectionGUID: OZCCWofES/GkaH1cf9LmeQ==
-X-CSE-MsgGUID: CEYUSYqOTa+NG0XjeMn1cQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="88792625"
-X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="88792625"
+ t=1784298930; x=1815834930;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Sxo86iHk6JhyoiJuHjZoc4dKFxinrJN0cVm+TyfHmNY=;
+ b=NmUVOSkou9NNPtOaxRNzXpuz/HirqbMAIhCKTODkCDAnMd5ahm8zQtDM
+ z5k5JC8eWWIlwsfsR8xGMIdSF2zMJ68o5c0s2CPIQO+dvwLYT3MnECXwc
+ Vx9wiv2S91i6XkhApvH6JegESH6dVQzn0AyDbqYqF8h8gJRb1x94Xc8Ge
+ PYCJLhnMgcbcfG15y5LHA89cRDJYhRFKALlfUp/tl3wSjHh7U4D+1D2SF
+ oJbkZQQQrszFBhg/xchzfsiyQR5KXvbtQzKfrUBt3onY/2a/bfp1mbK3E
+ R2g+3yubbKiNLWT1Ysy96bKamh8/zh4j+m5HuK6VG2gnAZjKOFn/Ik/03 g==;
+X-CSE-ConnectionGUID: tacaVYAMQUylMi4Xo7UQKg==
+X-CSE-MsgGUID: d6cZN1FOQNSvtz9lHm+9lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="88792711"
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="88792711"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2026 07:34:45 -0700
-X-CSE-ConnectionGUID: gQgG3y3iTUa0CK3WAu3eZA==
-X-CSE-MsgGUID: jPFCxz8TReqnZP2tGmX9hg==
+ 17 Jul 2026 07:35:30 -0700
+X-CSE-ConnectionGUID: o0soWMmYR0KLa6Jgwu34Fg==
+X-CSE-MsgGUID: S2ShWQubRka5b5G8qlnakg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="252408073"
-Received: from lkp-server02.sh.intel.com (HELO ea128546eb3d) ([10.239.97.151])
- by fmviesa006.fm.intel.com with ESMTP; 17 Jul 2026 07:34:44 -0700
-Received: from kbuild by ea128546eb3d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wkjeD-00000000Sp2-3zAb;
- Fri, 17 Jul 2026 14:34:41 +0000
-Date: Fri, 17 Jul 2026 22:34:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- da1124abac689cc2b1d8995e5f0a816f8a122edb
-Message-ID: <202607172251.HshG6cEu-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="252408212"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.241])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2026 07:35:28 -0700
+Date: Fri, 17 Jul 2026 17:35:26 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/6] drm/xe/ggtt: Add xe_ggtt_node_remove_noclear
+Message-ID: <alo9rv15d-xtG85X@intel.com>
+References: <20260715110557.2172095-1-dev@lankhorst.se>
+ <20260715110557.2172095-3-dev@lankhorst.se>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260715110557.2172095-3-dev@lankhorst.se>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,108 +72,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: da1124abac689cc2b1d8995e5f0a816f8a122edb  drm/xe/guc: Hold device ref until queue teardown completes
+On Wed, Jul 15, 2026 at 01:05:53PM +0200, Maarten Lankhorst wrote:
+> The last bit required for handling fb takeover is
+> ensuring we can release the old live framebuffer
+> without keeping track. The display code can then
+> safely perform the flip.
+> 
+> It's unfortunately a workaround for how display
+> is structured through callbacks instead of being
+> a midlayer.
+> 
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 
-elapsed time: 1275m
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-configs tested: 89
-configs skipped: 1
+> ---
+>  drivers/gpu/drm/xe/xe_ggtt.c | 30 +++++++++++++++++++++++-------
+>  drivers/gpu/drm/xe/xe_ggtt.h |  1 +
+>  2 files changed, 24 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index c9f84db3bfecd..ff479e0a9f3b3 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -470,24 +470,40 @@ static void ggtt_node_fini(struct xe_ggtt_node *node)
+>  	kfree(node);
+>  }
+>  
+> -static void ggtt_node_remove(struct xe_ggtt_node *node)
+> +static void ggtt_node_remove(struct xe_ggtt_node *node, bool clear)
+>  {
+>  	struct xe_ggtt *ggtt = node->ggtt;
+> -	bool bound;
+>  
+>  	mutex_lock(&ggtt->lock);
+> -	bound = ggtt->flags & XE_GGTT_FLAGS_ONLINE;
+> -	if (bound)
+> +	if (clear)
+> +		clear = ggtt->flags & XE_GGTT_FLAGS_ONLINE;
+> +	if (clear)
+>  		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), xe_ggtt_node_size(node));
+>  	drm_mm_remove_node(&node->base);
+>  	node->base.size = 0;
+> -	if (bound && node->invalidate_on_remove)
+> +	if (clear && node->invalidate_on_remove)
+>  		xe_ggtt_invalidate(ggtt);
+>  	mutex_unlock(&ggtt->lock);
+>  
+>  	ggtt_node_fini(node);
+>  }
+>  
+> +/**
+> + * xe_ggtt_node_remove_noclear - Remove a &xe_ggtt_node from the GGTT without clearing entries
+> + * @node: the &xe_ggtt_node to be removed
+> + *
+> + * This function is similar to xe_ggtt_node_remove(), but doesn't clear
+> + * the entries. It's used to release the live FB mapping without
+> + * clearing it.
+> + *
+> + * This function should only be called before xe_ggtt_init() in
+> + * the bios FB takeover code.
+> + */
+> +void xe_ggtt_node_remove_noclear(struct xe_ggtt_node *node)
+> +{
+> +	ggtt_node_remove(node, false);
+> +}
+> +
+>  static void ggtt_node_remove_work_func(struct work_struct *work)
+>  {
+>  	struct xe_ggtt_node *node = container_of(work, typeof(*node),
+> @@ -495,7 +511,7 @@ static void ggtt_node_remove_work_func(struct work_struct *work)
+>  	struct xe_device *xe = tile_to_xe(node->ggtt->tile);
+>  
+>  	guard(xe_pm_runtime)(xe);
+> -	ggtt_node_remove(node);
+> +	ggtt_node_remove(node, true);
+>  }
+>  
+>  /**
+> @@ -517,7 +533,7 @@ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate)
+>  	node->invalidate_on_remove = invalidate;
+>  
+>  	if (xe_pm_runtime_get_if_active(xe)) {
+> -		ggtt_node_remove(node);
+> +		ggtt_node_remove(node, true);
+>  		xe_pm_runtime_put(xe);
+>  	} else {
+>  		queue_work(ggtt->wq, &node->delayed_removal_work);
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index 69974da523f74..83654544feb6d 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -32,6 +32,7 @@ xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
+>  			      u64 size, u32 align,
+>  			      xe_ggtt_transform_cb transform, void *arg);
+>  void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+> +void xe_ggtt_node_remove_noclear(struct xe_ggtt_node *node);
+>  size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
+>  void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+>  int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
+> -- 
+> 2.53.0
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig    gcc-16.1.0
-alpha                            allyesconfig    gcc-16.1.0
-alpha                               defconfig    gcc-16.1.0
-arc                              allmodconfig    gcc-16.1.0
-arc                              allyesconfig    gcc-16.1.0
-arc                   randconfig-001-20260717    gcc-11.5.0
-arc                   randconfig-002-20260717    gcc-13.4.0
-arc                           tb10x_defconfig    gcc-16.1.0
-arm                   randconfig-001-20260717    clang-24
-arm                   randconfig-002-20260717    clang-24
-arm                   randconfig-003-20260717    gcc-8.5.0
-arm                   randconfig-004-20260717    gcc-11.5.0
-arm64                 randconfig-001-20260717    gcc-11.5.0
-arm64                 randconfig-002-20260717    gcc-8.5.0
-arm64                 randconfig-003-20260717    gcc-8.5.0
-arm64                 randconfig-004-20260717    gcc-9.5.0
-csky                             allmodconfig    gcc-16.1.0
-csky                  randconfig-001-20260717    gcc-13.4.0
-csky                  randconfig-002-20260717    gcc-15.2.0
-hexagon                        randconfig-001    clang-17
-hexagon               randconfig-001-20260717    clang-24
-hexagon               randconfig-002-20260717    clang-17
-i386                             allmodconfig    gcc-14
-i386        buildonly-randconfig-001-20260717    gcc-14
-i386        buildonly-randconfig-002-20260717    gcc-14
-i386        buildonly-randconfig-003-20260717    clang-22
-i386        buildonly-randconfig-004-20260717    gcc-14
-i386        buildonly-randconfig-005-20260717    gcc-14
-i386        buildonly-randconfig-006-20260717    clang-22
-i386                  randconfig-011-20260717    clang-22
-i386                  randconfig-012-20260717    clang-22
-i386                  randconfig-013-20260717    clang-22
-i386                  randconfig-014-20260717    clang-22
-i386                  randconfig-015-20260717    clang-22
-i386                  randconfig-016-20260717    gcc-14
-i386                  randconfig-017-20260717    clang-22
-loongarch                           defconfig    clang-24
-loongarch             randconfig-001-20260717    gcc-16.1.0
-loongarch             randconfig-002-20260717    clang-24
-m68k                             allmodconfig    gcc-16.1.0
-microblaze                       allyesconfig    gcc-16.1.0
-mips                             allyesconfig    gcc-16.1.0
-nios2                            allmodconfig    gcc-11.5.0
-nios2                             allnoconfig    gcc-11.5.0
-nios2                 randconfig-001-20260717    gcc-8.5.0
-nios2                 randconfig-002-20260717    gcc-8.5.0
-parisc                           allmodconfig    gcc-16.1.0
-parisc                           allyesconfig    gcc-16.1.0
-parisc                              defconfig    gcc-16.1.0
-parisc                randconfig-001-20260717    gcc-10.5.0
-parisc                randconfig-002-20260717    gcc-16.1.0
-powerpc               randconfig-001-20260717    gcc-13.4.0
-powerpc               randconfig-002-20260717    gcc-11.5.0
-powerpc64             randconfig-001-20260717    gcc-15.2.0
-powerpc64             randconfig-002-20260717    gcc-8.5.0
-riscv                 randconfig-001-20260717    clang-17
-riscv                 randconfig-002-20260717    clang-24
-s390                  randconfig-001-20260717    clang-24
-s390                  randconfig-002-20260717    clang-20
-sh                                  defconfig    gcc-16.1.0
-sh                    randconfig-001-20260717    gcc-9.5.0
-sh                    randconfig-002-20260717    gcc-16.1.0
-sparc                          randconfig-001    gcc-16.1.0
-sparc                 randconfig-001-20260717    gcc-8.5.0
-sparc                 randconfig-002-20260717    gcc-14.3.0
-sparc64               randconfig-001-20260717    clang-22
-sparc64               randconfig-002-20260717    clang-24
-um                    randconfig-001-20260717    clang-24
-um                    randconfig-002-20260717    clang-21
-x86_64      buildonly-randconfig-001-20260717    gcc-14
-x86_64      buildonly-randconfig-002-20260717    gcc-14
-x86_64      buildonly-randconfig-003-20260717    gcc-14
-x86_64      buildonly-randconfig-004-20260717    gcc-14
-x86_64      buildonly-randconfig-005-20260717    clang-22
-x86_64      buildonly-randconfig-006-20260717    clang-22
-x86_64                randconfig-001-20260717    clang-22
-x86_64                randconfig-002-20260717    clang-22
-x86_64                randconfig-003-20260717    gcc-14
-x86_64                randconfig-004-20260717    gcc-14
-x86_64                randconfig-005-20260717    gcc-14
-x86_64                randconfig-006-20260717    gcc-13
-x86_64                randconfig-011-20260717    gcc-14
-x86_64                randconfig-012-20260717    gcc-14
-x86_64                randconfig-013-20260717    clang-22
-x86_64                randconfig-014-20260717    gcc-12
-x86_64                randconfig-015-20260717    gcc-14
-x86_64                randconfig-016-20260717    gcc-14
-xtensa                randconfig-001-20260717    gcc-16.1.0
-xtensa                randconfig-002-20260717    gcc-14.3.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-- 
+Ville Syrjälä
+Intel
