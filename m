@@ -4,87 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14B09C44507
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 05:53:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C34D2C4450F
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 06:27:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A94C710F42F;
-	Fri, 17 Jul 2026 05:53:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83A9310F44C;
+	Fri, 17 Jul 2026 06:27:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cG3v1/VP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nzknKWoq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 256F610F42F;
- Fri, 17 Jul 2026 05:53:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4CDF10F44C;
+ Fri, 17 Jul 2026 06:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784267605; x=1815803605;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=A7mb36UV4itBY6UdDyEOnWplou/d4VmkW8RrvNFzSgQ=;
- b=cG3v1/VPwgQ4u1ndbt4xc9iRGGumGqk2gSxSn3tPUFy/jrz/d+Vqz2wG
- 5RgxNwuHEjhYDO1vm0u/kph8Kjky2HRUhDZ+oONR1b4gTJuESQvA7SOwP
- +95VoDsVZNhnL8v/CHCuqmUByjELj6wS6eL27ftidyNcmCtbrCpNxnCwD
- Tf3gXL8wEZzoXaNu4a5WEQGqOKmODIjDWl/ZQiiuf/0HSo8uBGvgsHkto
- hDTOxUa2EtzWV/jx6zsF9moBgMss6EZTzy8y1qnxyB3Biqjrc9Puj91RL
- 2wkB+0+oiyQ9O5tOJVeyYwPM5w1mtlx7/dfSeGRKgeVryJ2terUIdU42E A==;
-X-CSE-ConnectionGUID: jmWwSHRwT6ySO5WOQkE8hg==
-X-CSE-MsgGUID: PLc4SCp4SkelrJ/IAzk1TA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="96301474"
-X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="96301474"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ t=1784269663; x=1815805663;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=4uZhHrNk5uo/CeG0nCYFXkun3mfbwsPg+Lpt7hwH9O0=;
+ b=nzknKWoqd0eg58wNf9vustJ5UXmbtle71xfJpUOKWgtACc3y1p4Lxm8a
+ gQjjRHZYzI2Ri4jnyX3epu50u/XfiL5Hbpmtf3FMC9G6NvzvhJ2Op0JUc
+ LNP3hi5pVwLOiWAcUEEhe4vf+08LLazIvAGpeDBP3SGv9/Y+lVF0d0y8Y
+ NYgP/jMyrqetCzulZlK/G+wvbJENCxpq6v5GbqvVVS9sO54mqIXUT7Cj7
+ qTsmS2WVF2buGpnCkHe/01P+5Wv4L7QyhumaiLIZbpr6l7xvl/UsSx8Up
+ slR5y4ilUOOKdswJPSOvX85u1UJ/oioCwge1p0MelOjKtxy5mhVTBLh75 g==;
+X-CSE-ConnectionGUID: 67j73dQ5Qn2PD7U62i7aNQ==
+X-CSE-MsgGUID: 3rHN4E3zTZ63kMNGKFsCLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="96303758"
+X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="96303758"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 22:53:25 -0700
-X-CSE-ConnectionGUID: 2nc675yJR6W+GNzFZBMAVg==
-X-CSE-MsgGUID: 87r3F7wYSs24R0agmlB30A==
+ 16 Jul 2026 23:27:42 -0700
+X-CSE-ConnectionGUID: Xzq+ChK0Sm6X7d9dXSdepA==
+X-CSE-MsgGUID: 1tki53uhTVuhV8RtInqY6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="257328734"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 22:53:24 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="252714625"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 23:27:42 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 16 Jul 2026 22:53:24 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.43; Thu, 16 Jul 2026 23:27:41 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Thu, 16 Jul 2026 22:53:24 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.62)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Thu, 16 Jul 2026 23:27:41 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.23) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 16 Jul 2026 22:53:21 -0700
+ 15.2.2562.43; Thu, 16 Jul 2026 23:27:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PNZe//geQG/C4xRn/qwA5XLK7SeJn1uJX0ThAmumKgfc0cx5CQMvgIl7QMGG+A3MkOHCzJJVoW6hi49b1ZzSBZdMjlnbuCMkErAN1IBzSaDB8X2KGYkJfRxoESpxlrGOf9oSjJ8TRudATkPjtb9FGhxN0RAvk1/tOhrUcqV/sUOZdKIdjL03C/X2l611LV1BtQt/i8YAkiu6IFrfcWkYUstQSXg9T6os3yrgvfpaEryqorGDjaogdMrsMf1MyKHhgmgfJ+9YSQ2jpw3IwT0POhhzmKB72YKuvgbty+3gTSbcVEKetI7oLqjuWOhsMFiLUC9vqo7+WQIQBOTG45xYuw==
+ b=S561ZPvcfNFjepgdH1IP/1YKFXjEYEvA1D6MOu9G4E7HwMHLuEP3y/uDErWujlYRJ2vsGBRqMt4vX97LIXtoS+RXzkDqEIZHS+iV1fUjcxGudyvKCiKJ0FwppnFuhlf87VUcc3SHa35p/B6pv47+7niFgBOVbZPzXkKuU9ycewYU5XsZVeML8vEBOuRfIIutmjU63Htkp5PbUw/cHFJzuQE5rNOfZxV3xa2q26x4ARGPrduRol/lM4K9etysPrpJ7cqvZvbttu/xJRAbRG2VHXziYVz4A58R9JsSkLs+vGqL0xqCtWIftxYVKkBIRXsYDpmOf9C816tjn1LdvlBg9Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jLJsfUyIIHXQc63uCzMLAvs7YK0Ho9bIAKJfqzUn7QE=;
- b=uceZ2SvM3JsChmm5D4KKSxFbs+uC2GL7+j9wHks2k6Te0iBo0rtJqHqndkVGiXfzfeJ7C849swBX9fTAKb90P6K7aOdFTLdGLvVq7tfVTB+acRR0mXawE0tlszbgUE6s/3h3Jb9cKK7ffhJcA1HBTZfr8WcyhGaeaospFD214zyAwalczyJjNYpF8w1L0EPc0LWK6Myu7DUjiBv05ikBedVRhSPF64HX1FdQyL5tu5SG3SJp2nkHVKPfznFhSIgZ9jUV/1aEvPMU+zpbukFCTi68X/Oh7eLeN3U4G099J12W/2yhDfY/zaed1lYxRWVHCmV+rloeVeAA+x+RCUruUA==
+ bh=zOq8TMntXBUqyU1uIbKwB0hnkBu/UFBtpTryx5DimtQ=;
+ b=iyIBspEECLuO2aZWG90nPeVGP86T8AO1Od9vY+xhVOuJZCx6g13MpHgOocVhgjtIuo+PH9BjDz+QiXk1V/fkREDrWORyEB81zazyzwA8EBXYCDwSuAudh8mtZ0jD1C00P0lc0jHRnuAhquBV61DMPiK7vr7X8FWxZtteO5mMRyfYrAiuLFr/0W1hd/4Q74XjKlzan8vjoP+Y2Z4JuJ0JII0/lYiSIDZ1b2CXzDZoK9/axAlHheG+V918I5vEizeygbh6AKsArxCxbo0mcHUH/O/qLRCe38ZjHnTUc/Jnt83haUWh4XNu5ZMaoolYilW+3XuWBYP2BHx7Lrn4jF5KiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by SABPR11MB9964.namprd11.prod.outlook.com
- (2603:10b6:806:50c::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.12; Fri, 17 Jul
- 2026 05:53:15 +0000
+ (2603:10b6:f:fc02::5b) by DS4PPF6F32BC4DA.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2e) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.13; Fri, 17 Jul
+ 2026 06:27:26 +0000
 Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
  ([fe80::6d3c:5451:b5d4:3ea6]) by DS4PPFE901A304F.namprd11.prod.outlook.com
  ([fe80::6d3c:5451:b5d4:3ea6%6]) with mapi id 15.21.0223.011; Fri, 17 Jul 2026
- 05:53:15 +0000
+ 06:27:25 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: RE: [PATCH 1/6] drm/dp_tunnel: Add UHBR tunneling support
-Thread-Topic: [PATCH 1/6] drm/dp_tunnel: Add UHBR tunneling support
-Thread-Index: AQHdE6Vc+9sgbbshiEWfPDUDCrS5VrZxObEA
-Date: Fri, 17 Jul 2026 05:53:14 +0000
-Message-ID: <DS4PPFE901A304F254DE0388E7AF5F88425E3C62@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 5/6] drm/i915/dp: Disable UHBR link configs with 1/2 lanes
+Thread-Topic: [PATCH 5/6] drm/i915/dp: Disable UHBR link configs with 1/2 lanes
+Thread-Index: AQHdE6eqEdB9ZyNcIkCkyNCUht1JZLZxQzWw
+Date: Fri, 17 Jul 2026 06:27:25 +0000
+Message-ID: <DS4PPFE901A304FBC80D4768001F4061B0DE3C62@DS4PPFE901A304F.namprd11.prod.outlook.com>
 References: <20260714152700.555527-1-imre.deak@intel.com>
- <20260714152700.555527-2-imre.deak@intel.com>
-In-Reply-To: <20260714152700.555527-2-imre.deak@intel.com>
+ <20260714152700.555527-6-imre.deak@intel.com>
+In-Reply-To: <20260714152700.555527-6-imre.deak@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -92,61 +91,61 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|SABPR11MB9964:EE_
-x-ms-office365-filtering-correlation-id: c280338a-15a0-4bb2-fadf-08dee3c7b196
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|DS4PPF6F32BC4DA:EE_
+x-ms-office365-filtering-correlation-id: 51085992-3351-47e9-92de-08dee3cc77fe
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|38070700021|10067099003|11063799006|6133799003|18002099003|22082099003|4143699003|56012099006;
-x-microsoft-antispam-message-info: Txt6zibSmbRcrpP3HSqAlBhWIdKZ0Sk2G30xUF9xK3o3WWGKjs26VGS3xr4irEuQvXObAlsvrcWzWmZQdhSTsGROM4TdBLD5Vv5VCrsUcv66FsnR105CxAu9SrnKqCwE/jlPPruTL3N3XYLSEI8u+F3hik0yqIkjY+VUbtrgArfm2hZSjCxt8yVqlJek+oZm/OfHLxOUEwGfxaIJ0dAQolo68/4asW1xTzR27KDueWyxSU38QIUUHr9fx/KKSCtQ8Aa57Q7E11DUsESVK0cieRao/gX6y7Ix1xM/SVgS3imIDeJZnmb7el/PM6cOyYZXushGqNIIxL3qjKjL7Ixl2ks7DhdtTM2dLlrerawpgTe3XM+RWgWt7L1wALzKXs7j9WfKoJdaZAl//SFpPVouBxPZ5BGi9eJYP5K3KZDHULTVMFAWxx7GVfFEZcb4DpuiNIETASVBjbyCX/VqJbdm9QrSCDTSXaBPSJ6OMU4kroraSUgqnuMO6ojE9X+qDqZp4MNKztOG4ertTitNNgkhesim3AGJEePAl1s0YDsPs9PC69ZOVmFuMDzejxP1DYJqKtPuQ+lTH7dobs2Thw/i8xEQG91qPWMj6Ey65Rm+2e+PGwx7wDM8r6UmMDCv5SwBtdxKjI7fD+2ltklCWr9M1fEPYrss7QYFxriiz3jIsVzuXlEbANFZeNZ4sYLzXn37CLk2o0+XS7pA4ztfBQ4LbSLLUFAID4b0fX/h9WA5lh8=
+ ARA:13230040|376014|23010399003|366016|1800799024|18002099003|22082099003|4143699003|38070700021|10067099003|56012099006|11063799006|6133799003;
+x-microsoft-antispam-message-info: P0VuGfO4bACbW43EU0+CYAUwikF9bQd+tJU6Qitax/uCImKBsTvRmy51+73L/6j/8LU7/fd68Gw8o9gspz84tEGuZPVkxrQxn0sWmqvnulWWVbb8/ryRqf0THQsMyfCI4Ztz/iYzmH/uLVDNjWRr6quJMBE/5XH8Ztp0MmQS6aeP/GaWvPCJBXPEH6+WXwy89ifsf8whNeV0lK41fK9l8fgI+paDptq1W6Fq3au+ZvjHwXppJSHqIkgL+n2EFMLjAhAstupl7y0w8+oK6ONdJM+Dv+tidWb284JwvTIovNU1+77biQfGGdmjIbAJm6KUqPmcxF/QEB+JO4eVdgta/gvrCkn1i0ELrWiNXh40NUA+q5LInvSVhvVTutUFF2yz306v5epFtL2ElmrajFDoBaj6X0iTHpty49/QcZrMqMqfz+3DrcSKHnHjVejV90roIdU4nYTcJAuppSxPNuBVcKeQpoWXRbxq4Hl+cOPOMpwUaBIFT9SWuvb8ggznU9qfShNFMlN2F4lJFPslMKb5LoTFtvROM5fi1hmN25VezuZjwRX+XNuEYXJS2rIa21g+CYU0gdi2bjME7ZHpfjbnUA74YhXTqxWkBfTOATOssOc79YdR2PYTZvR5rpuKyoWkJmczW6prprOOzsFHgEWBxXg+qkHKIaj0zAf9ulJoR6LOMxNSItRrGxRMLuKrFwf9xhZ98LKjE8/gVENPHDN4ow==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(38070700021)(10067099003)(11063799006)(6133799003)(18002099003)(22082099003)(4143699003)(56012099006);
+ SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(18002099003)(22082099003)(4143699003)(38070700021)(10067099003)(56012099006)(11063799006)(6133799003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nXKBd+nqKv4y27KyCKH6bbWjTrSlhrQcMS0j6qnv2LlIRnr4FTDwmbITFeZj?=
- =?us-ascii?Q?Ms8jkV9ByRADSfjlqAap/18E6ZmT4CZPUMaFXViP1bWJLAUvXIaz4wGH986J?=
- =?us-ascii?Q?ZBEGYwRSCy8qU8lPOvz77cvuKV3RpUD5VxdBK5cR9/YQ1PSk1DLtpN9346uQ?=
- =?us-ascii?Q?plZb6cEBpQSKJ7CFElU/p6IJWzWNQe9Afhrt6vE17Eu7pNI5toxaXaVOjIzk?=
- =?us-ascii?Q?OdWUa70kvJm/3Wy5BnvpiMg2SEe42bEBcvi5R0832/cYcFECM/1HH3KMv+cO?=
- =?us-ascii?Q?GERcrB/KkCC8FWk7D0vO4frFJQypsoDYy5674RdX0r1i1jkGBopqzOnUR4aE?=
- =?us-ascii?Q?PAijEA4jUNudd86ry5RTzfXfkqCfGCUVXI03XmDnUCnIvA08ez4zUl/6xvos?=
- =?us-ascii?Q?PxJLPeoJrNjjpLel4YttAMwboZQZ0Ao8VBvOa0ZCWQYNEwBKqPqJcllMFngN?=
- =?us-ascii?Q?q67Nv9tqZ7F4PCZnCNC7z+F6Ix2KYioylzRk8GBYEN6rDnhUYVeXN1VqIrcm?=
- =?us-ascii?Q?rCYVXnrXjfCBqbUeO8Vj9UFxSlbMQ079+k8yE+tpkfV0RuobP50sTnnbdg+H?=
- =?us-ascii?Q?BAHGVdkhoklZW0qjbF0W2BopEj0sfm4heHiYSpO4tecII2guEQk8VCxn5OJZ?=
- =?us-ascii?Q?4iHjEw5rYzdLaRuPuRx4Bw5jn0+IG2RAIXSJvQk/gAbdRATtrDipCG2Au/Z0?=
- =?us-ascii?Q?pwFGhXGYf6AxiAXA9+FUWJzY6XzDYd4fP8VGJSp567iHMMtVgeu7PadIbtSX?=
- =?us-ascii?Q?LxWALY2bnVaOlrCgzcyeIViqdoUy5ocCySE6QCEqsARP9Hid9odybEiVH9l1?=
- =?us-ascii?Q?lRm+pUUUjCCcRRmSf6yCgSmrdT6Ptoy5FIu0m5/yuyj65l24vWiS7h5zKzLt?=
- =?us-ascii?Q?j5wdwwhVtK6nr53tw69hZQ/+3y6AuN01ifZWU9Ri4IfptAhbarI9SJlctGoN?=
- =?us-ascii?Q?IzIi4C0NA7ujwDM6jKSN3LL+3bCogap+eyza9ZHXc9vE2MRVxJmsmAF+GC+4?=
- =?us-ascii?Q?BBPY1Mdp/1YXLUAP/DMUhQZhXm2GLIpi05kPML9Bq0wsB1gE/zQWDXHVTwNJ?=
- =?us-ascii?Q?Gas2cR6cQ1wcuMPzr9uONJv+ijjcwuLulGCPaB/Bv7XH6eI3RZxAmAR2PAeK?=
- =?us-ascii?Q?oS41p61MpcAGooLTaS24KJZ4IaiZkk1j3Ibhemz2nCuHKABbBelATnDykhkk?=
- =?us-ascii?Q?pqQgFXyhGQAv+mYRkpU/T+VWzF9pF0esMVcALj3OZv65g35dFuUGr1Dj2wIs?=
- =?us-ascii?Q?XwQr0HITI3PeqNOMh1pYlwjEbD7DGHRaX1akoxWEPE2OwDD9Y3/98OkFGmYO?=
- =?us-ascii?Q?yuinx3+XsSrisph0bkS+1LQ+J3Sdlyqvwf9nHkCw81CCfCZsHRsq2IbDnVPR?=
- =?us-ascii?Q?lNNivL7RW7WgEWbUJTv7DM4Ke9iKfLFPHE5DVF8/A9GI+rO0kDA9hRWhjdvq?=
- =?us-ascii?Q?z6GMMPWHctHJLjdgTfhui/WjYcF/P60dW9YXQkeKNYGX3vu1c5/C1t8R1wTg?=
- =?us-ascii?Q?1JmsNlw+5YRBVfIO2VDhGq2OhCdSgIyjEvHYNnw00iqPrLTENin/8gB6BzbY?=
- =?us-ascii?Q?XVWmayOagtihRMGb2g0CXo9Y6QOQRSm0qtJ0CPYimIm5u4ufhjstkKsnjvsf?=
- =?us-ascii?Q?R9rAt3G/2G5Hc8ufqFT1EnmP9GmXL0mN8Q7KtKDYqWN7B08g9gnkavGtoLj/?=
- =?us-ascii?Q?7pQ+GemNBXBRgg1xnlbT3f8gwqpdoRBzKf8xUN4XRrmzhc/SxN3x+BeFGOWv?=
- =?us-ascii?Q?oVTAeOMV6Q=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?53aEDaRNmoSvot5eGYNy6307AVZI2Y5TVxZB1cpcZQCE/vg1ZxAns97Vch+t?=
+ =?us-ascii?Q?otHcwkSSK8gHWixHOLLknZBG5v1OAanhaOADMpk48uX0p/JfB66oQQg94GwW?=
+ =?us-ascii?Q?6vWA9sWswiPQ7br3iBUEncqBvm7J6nxx3AO2h06X1d/YC6fH/v65JKIBUs8b?=
+ =?us-ascii?Q?imRUVhEbzNHDGsMs0vGsTA7rP7UqP3MpTm7noTkXGWeot5PY+hNS/xaLzieD?=
+ =?us-ascii?Q?FvIwRsB+gPHqAOmBDAz33p/kbV0yvtX/7T2Yl65pXApuGf6sJyYlNlGHs1GT?=
+ =?us-ascii?Q?e1+W9gTdp/ZdR3SOqrOoeOzoLC3YfDDr8s4OWRM3h2UygxoLayL8Ntxu9Pf2?=
+ =?us-ascii?Q?uS/TRRyhh4nLOBdZ75HBwLszUegBo7QhZZ1cB7t7Y6IlUPaOJqngIonKRmqE?=
+ =?us-ascii?Q?HD1cGxRFjFVWRyd+qLOHXFbNmHIVpYly60wNsIBM7rgVUKwXoFjdS2IDxe5n?=
+ =?us-ascii?Q?lHXGXRqQKy92RUy8MvD0ncM1DjRXzF7Zf9Tf0QvXsdKCMFnoZ6rP1+xOELug?=
+ =?us-ascii?Q?qICRHkZ5xuTGleWeLAW1ppqOTEts8H08za6o8E+ZIL0TJoA3Op8391EgSHoB?=
+ =?us-ascii?Q?U+zzp2lkUQQZRz0nQcJVWrmIENPMzCSS0L7p35PZCKw02bR6iHVT6imROnnI?=
+ =?us-ascii?Q?gof5UaN293duW1rojAL3Ae2nlwoZ0wCk7PoJkc9dQaABg+nLxmksYVnpDXeG?=
+ =?us-ascii?Q?qQeSDItQLc+dVDVBXQhZWHMwcISmpXAU54kPdQVPeLVDwdn/Wmw0QrFiRkpI?=
+ =?us-ascii?Q?VSED81hem0yfhbbCzCv7xzVNCZwk+eM3naZhlAFOuG7+KtbHMsmwr83TMxDj?=
+ =?us-ascii?Q?6yygrRWm9WRPDG8baaTQbMN1PV0zPW4X8Usicl2rDDNMFyWoWNIRZZCalem2?=
+ =?us-ascii?Q?DSg87D7BKI4XI0MXK/zd92A17y78+pKP8+HEW4VXbU7g3IZVYehP7irVcuhJ?=
+ =?us-ascii?Q?rlusALLLcJkJDN5b6Pb+RjqnjKPEA1KFyJ0A9yClfvwKPa/octc7fjvJxE3s?=
+ =?us-ascii?Q?LAVXLgCx5cKDwVgxweqX9Xu1lvQwGPRKGury97KpDm/tj9/Jkmpl9Re24nPK?=
+ =?us-ascii?Q?xcwQZLYcFLGvMHi8+b40C6WDzw0mfZGbn737FPbWMNQKLs0FygGzZrYxSeBl?=
+ =?us-ascii?Q?EzteEn3qtLnS8uktNi/p+ESurx4Y7nKsfKDEVfenBxmfIhmkGPrOUB0bXPS3?=
+ =?us-ascii?Q?UeMpSw/HaxbDQ21rO0Sb/0QMGKEPyzywxSvyIiqY2dS02kFYvehry2RdWVkv?=
+ =?us-ascii?Q?KsIQ6M1NTNeIse0g3dB2nJy5Dn7ztWdmRvRmdpRQPXR2ljw3RvHpADhX7yzE?=
+ =?us-ascii?Q?c5HhA2BzWRbSdnChB2m3EdhAzDUYh1Teb8RQFlLJDBWQy+lv5XPS17HU6b0Z?=
+ =?us-ascii?Q?vj2XP0VmbHJh4AYOKR6O2cc1u0IcHiJyn3bbt83PREVX9p5IAH+1/XxqzBkX?=
+ =?us-ascii?Q?xbRvyhAqjMbS4vuFjMvfW/ThGE5MQlRlldZnZut0etpc3fxpiXwrN4x/iRci?=
+ =?us-ascii?Q?mo1uoLPSN0K6FIiCRh2JPqGLEw3+wyOXU5wxY/M/FxwW8vO2i42kVpEorLNT?=
+ =?us-ascii?Q?rsoSCAUoOfVeFH6WCbceVjqbZxomxCmZlmPuZpInAxtmMD9SdMSZchFbW8Tc?=
+ =?us-ascii?Q?mY7edGUwZfK2KUAFQkGzpnQZYgiQ7zcbnumH3Ugl3vOwjR6fNdH46KHyCV0u?=
+ =?us-ascii?Q?/ie7364H4zDuN777B+8EKXC5O/iFyU4d8mAjcV7auWhqL4gZ9t1stsU/++zB?=
+ =?us-ascii?Q?EK2tsYgyXg=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: LJdAraf8Ap/lYMva6P/zE77Zqe5p7AnaYWhHN7dTfrJbrygxpv5eKmMBKUoSNYG98f7+QvRPu6qN48copgN67Z0FYWWXhk1eI0Ukt7ixgSqo8GK8OarMEP5o4Ntz8RaFPo/MCMto4WNvm2t+1A+3QzxSsvxLAUAZNspso2BC67czIZPqPl3LoHQD9oM8y6tqdBeBFDIiF2MwblkyejFI6Pn0pAJZz79FVrWnyOeP0/hEH+j3okn5d9LaF378laZqk7v+7LsUWL+xLdA+FGOknhX0x0Y6+NXMswMPqHRCrvo6+0FeLbHEju6CUStCf5Zs1kOm9QyuGVKhFt4bI45z8Q==
+X-Exchange-RoutingPolicyChecked: WCUpg8k0bAInpmewIM01LiDV59G9npWVT2LquXaltL5escgrB7b1LLZiADA34RuR0QMtVwLCSTzEjzv/VxjAN7EMD9CcjsZM7L1t5FS4qYXXByC/erY+CP/DvQViRN62fe3HYujGW5oo2XTv+kCCEbNt/nqoltj1+9DgXPC67hExODwzhoQ4t/uA0W8X9/jkKEbFINKrz4zCXm9hIJsdbdPH/gve19XcGqfX4kUIGF7Rl33OO9j08BsUfldKZnBwVrQqvgWo+mwZy0vfVN4wWTvJ0WiW+wvH1h8aZPS6dFMV+ausKegc9SozWjCxtOY3QETALJfQQ7czFQ8/67jEvQ==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c280338a-15a0-4bb2-fadf-08dee3c7b196
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2026 05:53:15.0247 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51085992-3351-47e9-92de-08dee3cc77fe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2026 06:27:25.9164 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: A5iQ8yzc2xIoSofh8pfOdCjhvv2PMP5chP1382Xhu9pzAyXwauDJfTV57/7Kn5yEGNIpt91Hrn3A347yz6ge/w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SABPR11MB9964
+X-MS-Exchange-CrossTenant-userprincipalname: dAS+ZowiER/AnSxrq2YMcXexYRleSof5XZ3pSWH4Tg2+SQ5YBIem2WsdGHN3F9yfOPXiiAeG5a9gHFu8B6UYJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF6F32BC4DA
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,286 +161,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH 1/6] drm/dp_tunnel: Add UHBR tunneling support
+> Subject: [PATCH 5/6] drm/i915/dp: Disable UHBR link configs with 1/2 lane=
+s
 >=20
-> Add the DPCD registers and detection required to support UHBR link rates =
-over
-> Thunderbolt tunnels.
+> Disable 1 and 2 lane link configurations on UHBR tunneled links, accordin=
+g to
+> DP Standard v2.1b "3.5.2.16.3 128b/132b DPRX Lane Count Conversion Failur=
+e
+> Indication and Corrective Action". A tunnel can indicate if it's not affe=
+cted by
+> this limitation, check for that and skip disabling the unsupported lanes =
+for a
+> well-behaving tunnel.
 >=20
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> The Standard in the same section also describes a workaround for 2 lanes =
+which
+> requires assisstance from the sink, where the sink indicates at the end o=
+f the
+> link training sequence if the link training must be retried. This mechani=
+sm also
+> requires quirking out some sinks - based on the sink's DPCD OUI and EDID
+> identifications - which doesn't implement this link training feedback ind=
+ication
+> properly. This patch leaves the implementation of this workaround for a f=
+ollow-
+> up, but prepares for it already by detecting the supported number of lane
+> counts at a place where both DPCD OUI and EDID is available for the quirk
+> detection.
+>=20
 
 LGTM,
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/display/drm_dp_tunnel.c | 116 +++++++++++++++++++++++-
->  include/drm/display/drm_dp.h            |  12 +++
->  include/drm/display/drm_dp_tunnel.h     |  21 +++++
->  3 files changed, 148 insertions(+), 1 deletion(-)
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  7 +++
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  5 +++
+>  .../gpu/drm/i915/display/intel_dp_tunnel.c    | 45 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_dp_tunnel.h    | 17 +++++++
+>  5 files changed, 75 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c
-> b/drivers/gpu/drm/display/drm_dp_tunnel.c
-> index 76c6bc84a806f..d29ad4116e641 100644
-> --- a/drivers/gpu/drm/display/drm_dp_tunnel.c
-> +++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
-> @@ -111,6 +111,8 @@
->  	DPTUN_REG(DP_ALLOCATED_BW) | \
->  	DPTUN_REG(DP_TUNNELING_MAX_LINK_RATE) | \
->  	DPTUN_REG(DP_TUNNELING_MAX_LANE_COUNT) | \
-> +	DPTUN_REG(DP_TUNNELING_MAIN_LINK_CHANNEL_CODING) | \
-> +	DPTUN_REG(DP_TUNNELING_128B132B_LINK_RATE) | \
->  	DPTUN_REG(DP_DPTX_BW_ALLOCATION_MODE_CONTROL))
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index c048da7d6fea7..adde53dc9dce3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1871,6 +1871,7 @@ struct intel_dp {
 >=20
->  static const DECLARE_BITMAP(dptun_info_regs, 64) =3D { @@ -140,11 +142,1=
-4
-> @@ struct drm_dp_tunnel {
->  	int estimated_bw;
->  	int allocated_bw;
+>  	struct drm_dp_tunnel *tunnel;
+>  	bool tunnel_suspended:1;
+> +	u8 disabled_uhbr_lane_mask;
 >=20
-> +	u8 dprx_128b132b_rates;
->  	int max_dprx_rate;
->  	u8 max_dprx_lane_count;
+>  	struct {
+>  		struct intel_dp_mst_encoder
+> *stream_encoders[I915_MAX_PIPES]; diff --git
+> a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 0d2c696b9e4b0..e0b95fbf7db0a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3629,6 +3629,8 @@ void intel_dp_reset_link_params(struct intel_dp
+> *intel_dp)
+>  	 * was called.
+>  	 */
+>  	intel_dp_link_caps_reset(intel_dp->link.caps);
+> +	intel_dp_tunnel_uhbr_lanes_wa_apply(intel_dp);
+> +
+>  	intel_dp->link.mst_probed_lane_count =3D 0;
+>  	intel_dp->link.mst_probed_rate =3D 0;
+>  	intel_dp_link_training_reset(intel_dp->link.training);
+> @@ -6281,6 +6283,8 @@ intel_dp_detect(struct drm_connector *_connector,
 >=20
->  	u8 adapter_id;
+>  		intel_dp_tunnel_disconnect(intel_dp);
 >=20
-> +	bool dprx_128b132b_support:1;
-> +	bool dprx_128b132b_lane0_mapping_support:1;
->  	bool bw_alloc_supported:1;
->  	bool bw_alloc_enabled:1;
->  	bool has_io_error:1;
-> @@ -260,9 +265,46 @@ static int tunnel_reg_bw_granularity(const struct
-> drm_dp_tunnel_regs *regs)
->  	return (250000 << gr) / 8;
+> +		intel_dp_tunnel_uhbr_lanes_wa_reset(intel_dp);
+> +
+>  		goto out_unset_edid;
+>  	}
+>=20
+> @@ -6345,6 +6349,9 @@ intel_dp_detect(struct drm_connector *_connector,
+>  	if (intel_dp_is_edp(intel_dp) || connector->detect_edid)
+>  		status =3D connector_status_connected;
+>=20
+> +	if (intel_dp_tunnel_uhbr_lanes_wa_setup(intel_dp))
+> +		intel_dp_tunnel_uhbr_lanes_wa_apply(intel_dp);
+> +
+>  out_unset_edid:
+>  	if (status !=3D connector_status_connected && !intel_dp->is_mst)
+>  		intel_dp_unset_edid(intel_dp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index df6e54508e5d4..7cbef16ab38b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -1453,6 +1453,11 @@ static int mst_connector_get_ddc_modes(struct
+> drm_connector *_connector)
+>=20
+>  	drm_edid_free(drm_edid);
+>=20
+> +	if (intel_dp_tunnel_uhbr_lanes_wa_setup(intel_dp)) {
+> +		intel_dp_flush_connector_commits(connector);
+> +		intel_dp_tunnel_uhbr_lanes_wa_apply(intel_dp);
+> +	}
+> +
+>  	return ret;
 >  }
 >=20
-> +static bool tunnel_reg_dprx_128b132b_support(const struct
-> +drm_dp_tunnel_regs *regs) {
-> +	return tunnel_reg(regs,
-> DP_TUNNELING_MAIN_LINK_CHANNEL_CODING) &
-> +DP_128B132B_DP_SUPPORTED; }
-> +
-> +static bool tunnel_reg_dprx_128b132b_lane0_mapping_support(const struct
-> +drm_dp_tunnel_regs *regs) {
-> +	return tunnel_reg(regs, DP_TUNNELING_128B132B_LINK_RATE) &
-> +	       DP_TUNNELING_128B132B_LL_LANE0_MAPPING_SUPPORT;
-> +}
-> +
-> +static u8 tunnel_reg_dprx_128b132b_rates(const struct
-> +drm_dp_tunnel_regs *regs) {
-> +	if (!tunnel_reg_dprx_128b132b_support(regs))
-> +		return 0;
-> +
-> +	return tunnel_reg(regs, DP_TUNNELING_128B132B_LINK_RATE) &
-> +	       DP_TUNNELING_128B132B_LINK_RATE_MASK;
-> +}
-> +
-> +static u8 max_128b132b_rate(u8 rates)
-> +{
-> +	if (rates & DP_TUNNELING_20GBPS_PER_LANE_SUPPORT)
-> +		return DP_TUNNELING_20GBPS_PER_LANE_SUPPORT;
-> +	else if (rates & DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT)
-> +		return DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT;
-> +	else if (rates & DP_TUNNELING_10GBPS_PER_LANE_SUPPORT)
-> +		return DP_TUNNELING_10GBPS_PER_LANE_SUPPORT;
-> +
-> +	WARN_ON(rates);
-> +
-> +	return 0;
-> +}
-> +
->  static int tunnel_reg_max_dprx_rate(const struct drm_dp_tunnel_regs *reg=
-s)  {
-> -	u8 bw_code =3D tunnel_reg(regs, DP_TUNNELING_MAX_LINK_RATE);
-> +	u8 bw_code =3D
-> max_128b132b_rate(tunnel_reg_dprx_128b132b_rates(regs));
-> +
-> +	if (!bw_code)
-> +		bw_code =3D tunnel_reg(regs,
-> DP_TUNNELING_MAX_LINK_RATE);
->=20
->  	return drm_dp_bw_code_to_link_rate(bw_code);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> index 49fa4c9699b61..2199396345646 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> @@ -831,6 +831,51 @@ void intel_dp_tunnel_atomic_alloc_bw(struct
+> intel_atomic_state *state)
+>  	atomic_increase_bw(state);
 >  }
-> @@ -706,6 +748,23 @@ static bool update_dprx_caps(struct drm_dp_tunnel
-> *tunnel, const struct drm_dp_t  {
->  	bool changed =3D false;
 >=20
-> +	if (tunnel_reg_dprx_128b132b_support(regs) !=3D tunnel-
-> >dprx_128b132b_support) {
-> +		tunnel->dprx_128b132b_support =3D
-> tunnel_reg_dprx_128b132b_support(regs);
-> +		changed =3D true;
-> +	}
-> +
-> +	if (tunnel_reg_dprx_128b132b_lane0_mapping_support(regs) !=3D
-> +	    tunnel->dprx_128b132b_lane0_mapping_support) {
-> +		tunnel->dprx_128b132b_lane0_mapping_support =3D
-> +
-> 	tunnel_reg_dprx_128b132b_lane0_mapping_support(regs);
-> +		changed =3D true;
-> +	}
-> +
-> +	if (tunnel_reg_dprx_128b132b_rates(regs) !=3D tunnel-
-> >dprx_128b132b_rates) {
-> +		tunnel->dprx_128b132b_rates =3D
-> tunnel_reg_dprx_128b132b_rates(regs);
-> +		changed =3D true;
-> +	}
-> +
->  	if (tunnel_reg_max_dprx_rate(regs) !=3D tunnel->max_dprx_rate) {
->  		tunnel->max_dprx_rate =3D tunnel_reg_max_dprx_rate(regs);
->  		changed =3D true;
-> @@ -1331,6 +1390,61 @@ int drm_dp_tunnel_handle_irq(struct
-> drm_dp_tunnel_mgr *mgr, struct drm_dp_aux *a  }
-> EXPORT_SYMBOL(drm_dp_tunnel_handle_irq);
->=20
-> +/**
-> + * drm_dp_tunnel_128b132b_supported - Query if 128b132b is supported by
-> +the tunnel's DPRX
-> + * @tunnel: Tunnel object
-> + *
-> + * The function is used to query if 128b132b is supported by the DPRX
-> +connected
-> + * to @tunnel.
-> + *
-> + * Returns %true if 128b132b is supported by the DPRX.
-> + */
-> +bool drm_dp_tunnel_128b132b_supported(const struct drm_dp_tunnel
-> +*tunnel) {
-> +	return tunnel->dprx_128b132b_support;
+> +static u8 lane_count_mask(int lane_count) {
+> +	return BIT(ilog2(lane_count));
 > +}
-> +EXPORT_SYMBOL(drm_dp_tunnel_128b132b_supported);
 > +
-> +/**
-> + * drm_dp_tunnel_128b132b_lane0_mapping_supported - Check 128b/132b
-> +lane 0 mapping support
-> + * @tunnel: Tunnel object
-> + *
-> + * Check whether the DP-out adapter always maps lane 0 as expected by
-> +the
-> + * DPRX on a tunneled 128b/132b link. If the function returns %true,
-> +one- and
-> + * two-lane configurations with UHBR link rates can always be used. If
-> +it
-> + * returns %false, using one or two lanes with UHBR link rates may
-> +cause a
-> + * lane-count conversion failure in the DPRX, requiring corrective
-> +action by
-> + * the source during link training. See DP Standard v2.1b, section
-> + * 3.5.2.16.3, 128b/132b DPRX Lane Count Conversion Failure Indication
-> +and
-> + * Corrective Action.
-> + *
-> + * A four-lane configuration can always be used, provided that the DPRX
-> + * supports it, regardless of the function's return value.
-> + *
-> + * Returns %true if the DP-out adapter supports the 128b/132b lane 0
-> mapping.
-> + */
-> +bool drm_dp_tunnel_128b132b_lane0_mapping_supported(const struct
-> +drm_dp_tunnel *tunnel) {
-> +	return tunnel->dprx_128b132b_lane0_mapping_support;
-> +}
-> +EXPORT_SYMBOL(drm_dp_tunnel_128b132b_lane0_mapping_supported);
+> +void intel_dp_tunnel_uhbr_lanes_wa_apply(struct intel_dp *intel_dp) {
+> +	struct intel_connector *connector =3D intel_dp->attached_connector;
+> +	struct intel_dp_link_caps_order order =3D
+> +		intel_dp_link_caps_connector_compute_order(connector);
+> +	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
+> +	struct intel_dp_link_config link_config;
+> +	struct intel_dp_link_caps_iter iter;
 > +
-> +/**
-> + * drm_dp_tunnel_128b132b_dprx_rates - Query the supported 128b132b
-> +rates of the tunnel's DPRX
-> + * @tunnel: Tunnel object
-> + *
-> + * The function is used to query the supported 128b132b rates of the
-> +DPRX connected
-> + * to @tunnel. Note that the related DP_128B132B_SUPPROTED_LINK_RATES
-> +DPCD
-> + * register will indicate no supported 128B132B rates for a tunneled DPR=
-X.
-> + *
-> + * Returns the mask of supported 128b132b rates.
-> + */
-> +u8 drm_dp_tunnel_128b132b_dprx_rates(const struct drm_dp_tunnel
-> +*tunnel) {
-> +	return tunnel->dprx_128b132b_rates;
+> +	if (!intel_dp->disabled_uhbr_lane_mask)
+> +		return;
+> +
+> +	intel_dp_link_caps_iter_start(&iter, link_caps, order,
+> INTEL_DP_LINK_CAPS_FILTER_ALL);
+> +	for_each_dp_link_config(&iter, &link_config) {
+> +		if (drm_dp_is_uhbr_rate(link_config.rate) &&
+> +		    lane_count_mask(link_config.lane_count) & intel_dp-
+> >disabled_uhbr_lane_mask)
+> +			intel_dp_link_caps_disable_config(link_caps,
+> &link_config);
+> +	}
+> +	intel_dp_link_caps_iter_end(&iter);
 > +}
-> +EXPORT_SYMBOL(drm_dp_tunnel_128b132b_dprx_rates);
+> +
+> +bool intel_dp_tunnel_uhbr_lanes_wa_setup(struct intel_dp *intel_dp) {
+> +	u8 old_mask =3D intel_dp->disabled_uhbr_lane_mask;
+> +
+> +	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp) ||
+> +	    drm_dp_tunnel_128b132b_lane0_mapping_supported(intel_dp-
+> >tunnel))
+> +		intel_dp->disabled_uhbr_lane_mask =3D 0;
+> +	else
+> +		/* TODO: Add support for keeping 2 lanes enabled as well. */
+> +		intel_dp->disabled_uhbr_lane_mask =3D lane_count_mask(1) |
+> +lane_count_mask(2);
+> +
+> +	return intel_dp->disabled_uhbr_lane_mask !=3D old_mask; }
+> +
+> +void intel_dp_tunnel_uhbr_lanes_wa_reset(struct intel_dp *intel_dp) {
+> +	intel_dp->disabled_uhbr_lane_mask =3D 0; }
 > +
 >  /**
->   * drm_dp_tunnel_max_dprx_rate - Query the maximum rate of the tunnel's
-> DPRX
->   * @tunnel: Tunnel object
-> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-> index 7154216e0aff9..8b0ca36083dd1 100644
-> --- a/include/drm/display/drm_dp.h
-> +++ b/include/drm/display/drm_dp.h
-> @@ -1506,6 +1506,18 @@
->  #define DP_TUNNELING_MAX_LANE_COUNT			0xe0029
->  #define  DP_TUNNELING_MAX_LANE_COUNT_MASK		0x1f
+>   * intel_dp_tunnel_mgr_init - Initialize the DP tunnel manager
+>   * @display: display device
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> index 8273e681a5128..13fc8fbb6e306 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> @@ -54,6 +54,10 @@ int intel_dp_tunnel_atomic_check_state(struct
+> intel_atomic_state *state,
 >=20
-> +#define DP_TUNNELING_MAIN_LINK_CHANNEL_CODING
-> 	0xe002b
-> +#define  DP_128B132B_DP_SUPPORTED			(1 << 0)
-> +
-> +#define DP_TUNNELING_128B132B_LINK_RATE			0xe002c
-> +#define  DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT		(1 <<
-> 2)
-> +#define  DP_TUNNELING_20GBPS_PER_LANE_SUPPORT		(1 <<
-> 1)
-> +#define  DP_TUNNELING_10GBPS_PER_LANE_SUPPORT		(1 <<
-> 0)
-> +#define  DP_TUNNELING_128B132B_LINK_RATE_MASK
-> 	(DP_TUNNELING_10GBPS_PER_LANE_SUPPORT | \
-> +
-> DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT | \
-> +
-> DP_TUNNELING_20GBPS_PER_LANE_SUPPORT)
-> +#define  DP_TUNNELING_128B132B_LL_LANE0_MAPPING_SUPPORT	(1 <<
-> 7)
-> +
->  #define DP_DPTX_BW_ALLOCATION_MODE_CONTROL		0xe0030
->  #define  DP_DISPLAY_DRIVER_BW_ALLOCATION_MODE_ENABLE	(1 <<
-> 7)
->  #define  DP_UNMASK_BW_ALLOCATION_IRQ			(1 << 6)
-> diff --git a/include/drm/display/drm_dp_tunnel.h
-> b/include/drm/display/drm_dp_tunnel.h
-> index 57f5e90ba8fda..b5e665560a47e 100644
-> --- a/include/drm/display/drm_dp_tunnel.h
-> +++ b/include/drm/display/drm_dp_tunnel.h
-> @@ -63,6 +63,9 @@ void drm_dp_tunnel_set_io_error(struct drm_dp_tunnel
-> *tunnel);  int drm_dp_tunnel_handle_irq(struct drm_dp_tunnel_mgr *mgr,
->  			     struct drm_dp_aux *aux);
+>  void intel_dp_tunnel_atomic_alloc_bw(struct intel_atomic_state *state);
 >=20
-> +bool drm_dp_tunnel_128b132b_supported(const struct drm_dp_tunnel
-> +*tunnel); bool drm_dp_tunnel_128b132b_lane0_mapping_supported(const
-> +struct drm_dp_tunnel *tunnel);
-> +u8 drm_dp_tunnel_128b132b_dprx_rates(const struct drm_dp_tunnel
-> +*tunnel);
->  int drm_dp_tunnel_max_dprx_rate(const struct drm_dp_tunnel *tunnel);  in=
-t
-> drm_dp_tunnel_max_dprx_lane_count(const struct drm_dp_tunnel *tunnel);
-> int drm_dp_tunnel_available_bw(const struct drm_dp_tunnel *tunnel); @@ -
-> 173,6 +176,24 @@ drm_dp_tunnel_handle_irq(struct drm_dp_tunnel_mgr
-> *mgr,
->  	return -EOPNOTSUPP;
+> +void intel_dp_tunnel_uhbr_lanes_wa_apply(struct intel_dp *intel_dp);
+> +bool intel_dp_tunnel_uhbr_lanes_wa_setup(struct intel_dp *intel_dp);
+> +void intel_dp_tunnel_uhbr_lanes_wa_reset(struct intel_dp *intel_dp);
+> +
+>  int intel_dp_tunnel_mgr_init(struct intel_display *display);  void
+> intel_dp_tunnel_mgr_cleanup(struct intel_display *display);
+>=20
+> @@ -129,6 +133,19 @@ intel_dp_tunnel_atomic_alloc_bw(struct
+> intel_atomic_state *state)
+>  	return 0;
 >  }
 >=20
-> +static inline bool
-> +drm_dp_tunnel_128b132b_supported(const struct drm_dp_tunnel *tunnel) {
+> +static inline void intel_dp_tunnel_uhbr_lanes_wa_apply(struct intel_dp
+> +*intel_dp) { }
+> +
+> +static inline bool intel_dp_tunnel_uhbr_lanes_wa_setup(struct intel_dp
+> +*intel_dp) {
 > +	return false;
 > +}
 > +
-> +static inline bool
-> +drm_dp_tunnel_128b132b_lane0_mapping_supported(const struct
-> +drm_dp_tunnel *tunnel) {
-> +	return false;
-> +}
-> +
-> +static inline u8
-> +drm_dp_tunnel_128b132b_dprx_rates(const struct drm_dp_tunnel *tunnel)
-> {
-> +	return 0;
-> +}
+> +static inline void intel_dp_tunnel_uhbr_lanes_wa_reset(struct intel_dp
+> +*intel_dp) { }
 > +
 >  static inline int
->  drm_dp_tunnel_max_dprx_rate(const struct drm_dp_tunnel *tunnel)  {
+>  intel_dp_tunnel_mgr_init(struct intel_display *display)  {
 > --
 > 2.49.1
 
