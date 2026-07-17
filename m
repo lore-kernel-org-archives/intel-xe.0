@@ -4,149 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FECAC4451B
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 18:42:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 880B3C44515
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 19:38:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD6A10E2F5;
-	Fri, 17 Jul 2026 18:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A22510E023;
+	Fri, 17 Jul 2026 19:38:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="exrK6qDc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EgMnjeNx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A92B510E2F4;
- Fri, 17 Jul 2026 18:42:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C0F410E023
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jul 2026 19:38:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784313758; x=1815849758;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=3iQD+hlDjBl9unHeyWKfJhOfAkBowaj+Z7G3SGGdSpg=;
- b=exrK6qDcim9KOuODb9r7ArCKcy20eo29bxLyYyIlYYNlPRb1/7I5+Jsk
- H++ozrcRAN5iXIO759Apg9X/JdztndsVmlPTQ2zn1XY5X82BcBdCqE3dM
- cbvvzsAE8WLnvyI/mOJ7YIOM2vFuoD7+z2DES+55lfJ9ptG9iNJ8dDGCg
- L7hg0tjtE+vkoiPAfHJbn5IJqIUKfzZwoXwu8e5qg77JGwelHBa2JL5Py
- dllVr8dqmK9iSmSDt+LUBTTYniebSSvHfhcEVUWPxHVm4adWsiApix0K4
- l74ne9kqMzOPjjc43895qmAmKq3AUULi2NFmmI2iBkysZxI8xmv1WX575 w==;
-X-CSE-ConnectionGUID: /uSpZNQsTN6r84dZ8mEtlA==
-X-CSE-MsgGUID: 0EKw0LvBSLifI/ukNtP7qg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11849"; a="84871060"
-X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="84871060"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2026 11:42:37 -0700
-X-CSE-ConnectionGUID: X8faj9vKS/OVygX+Rym/fQ==
-X-CSE-MsgGUID: 3dQDfEjYRL6FuCy7KflmPA==
+ t=1784317096; x=1815853096;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Z0p2iiWyWizbnLmJhiNY8lncMU3GdqUKa3xFy5CqnqQ=;
+ b=EgMnjeNxLQRxzLxuSejuwlNG3ghHCab2GXyOStUIm2Cg69pcxpFx/zX0
+ 0x25uoDvmD1JwT6OLkN17eh8w0scYY+pi4q11pbQM6bALckv0XgL6IpIt
+ TRcd69TnxrL2g3oZaYDxqqBbxnIQRrQ6Ku4A01cAC9DqF6RrwzCgaZEG3
+ NLR/1wYt3kfNrvRYCnbTskPgkEGj9N0AoYCGachan78k1gnoR5rKdQ8vL
+ sDSNBaNk+GkfD4SyoFNaBdU3CeJ3sjl8DKY4/ZSGsLRD6LEeodYneWgFi
+ 3PYYaXxuu57hHqS8hasTJih9ySmZSgG7OUrnuD9GpV3XwbQopCJ+iShmV Q==;
+X-CSE-ConnectionGUID: pPmL450jRtOQ02MKKY6j/A==
+X-CSE-MsgGUID: NBWjFzrNREiGVduntztAeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11849"; a="87538479"
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="87538479"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2026 12:38:16 -0700
+X-CSE-ConnectionGUID: HppVO3vpRAyzjEfW78BolA==
+X-CSE-MsgGUID: BR1prElgTbGK+g+f5cyPRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="255686630"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2026 11:42:36 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Fri, 17 Jul 2026 11:42:36 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Fri, 17 Jul 2026 11:42:36 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.11) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Fri, 17 Jul 2026 11:42:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YzIHx2uXhPG+YjDWMZPRrxmuvLNFoNRmVil5QnyqGjSjLPkrEEA9ac6yujR5Gf4oy8h+C1g3DCvh9QFh9K+b+JLVrRVc7OPsf2rqm7Tml22A9hkZDN8khHf4BwDtQh2F0sI+9yxMYzIRy+OmEq7Gd3Kyy12CdzBsZZyebD7aJfG7ZEFG1X6p3cB6XLWuQZQbUw+1JLxqb3GS8bfKzrkEjY7SuRawLdjfKPHWFA/lA1dmQ7kVNguOEQtfkE5CvaEJpyjUXv9rUinFwA4vxZxO+loNYicfA2BLk4AQXcVCN0PruIYJwPZGn8JgnGBHZUwNSi9uPJwsD2j+A2TkRET93Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oCVQ3H7a3O2+JLI7EfLGB82jKEqKpd/BFV1z1N3y1Mk=;
- b=w5qTNnKQv7TslGIOuapnxOfZ/EVf3qyyKFpXJ0vrqnaMRJN7pH9JyIAYkprhKTxXdUy4puIXubaLT1XnWM0GcOMfJQpUXA4VEIlHEun45GfesDqdtt5JAkqbBJGPL2dtmzybL29RAcHGLiqJP3YvwsHAQHZ9e/xUvnTBWV8Fsuz6WnqO+F69K3+kjk3V80Fd80fW3L3+Q9ZlWiXgLKU8cg/4kXL/vo8fYmjuaZFWFkgiXiqs3as6Qwfll569vxSZajPQK/cjw6h/u3AyS3vm4XYhH+SbeIi9VWpmrTCHZRWKZ3pCZrc/ypsZT0Fp+5MBDY21XU0Zuqr66rHFrESCWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by CH3PR11MB7914.namprd11.prod.outlook.com (2603:10b6:610:12c::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.12; Fri, 17 Jul
- 2026 18:42:33 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0223.008; Fri, 17 Jul 2026
- 18:42:31 +0000
-Date: Fri, 17 Jul 2026 14:42:26 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
- Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-intel-fixes
-Message-ID: <alp3ks0K1ZsxUC05@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-X-ClientProxiedBy: BY3PR04CA0014.namprd04.prod.outlook.com
- (2603:10b6:a03:217::19) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="260673209"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2026 12:38:16 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v3] drm/xe: Flush L2 asynchronously in xe_bo_trigger_rebind()
+Date: Fri, 17 Jul 2026 12:38:09 -0700
+Message-Id: <20260717193809.131394-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|CH3PR11MB7914:EE_
-X-MS-Office365-Filtering-Correlation-Id: bef016b6-7c8e-4d6e-d8b0-08dee4332909
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|7416014|376014|1800799024|10067099003|11063799006|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: /zcwhNghFlwa62FQZ2WgDwYFk4+bfvV7Yu3f2ul7kg3dPcHz9304TB1tglSGEPlCEvkLmVNTlMqz4UED0a7TlpRuKA4H84aJUVnKP6RHglNIg5dtRtt9RrJ5h3TM2UTP12oI0cudVmEPkyHWYE/TtzbN2lF1cFHt0LABkPSGuT5Ytu+A51G6g/4FumoVf3zVom1PUiSY8sTGJkXsNptVoGBP3zV45tHpUM0lhibMzzMmtfaHuw7ieDyUlOAABwlZZxstireXkW+XjIo9Y1USrXWl1oyfIdNl9W5BM3W28SvtjSJNTMfKfJBEHZctnUIJobyLKoUlZVnfVNPJqVGQa8A6MJnQu21v7GXaGSJPUXKWiga45ypm0nFpWd66mEdOX/vZUqBgiNwlwslGjUCTPwXQYzbzur7eIRof+L6Aim+R215MSf3bUEvcoUoGTe74OyiCsRxZt2v9r4tSZjmbYLTED2Emp6fYfgZTCmASx2DHw6bz6okEPAwiULa76jEGDoKDdAfWd4v0FjKTr1GS80ugAIXFwN10dqu7zhSZR02qPCtDoa+g7usS0FCfizCY5mqwWpGBhNC++WQxK4UM6GAVvYbl5WCqX1ljnknjWcd8aioDkuFK0IlSopjhdo9D
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(7416014)(376014)(1800799024)(10067099003)(11063799006)(56012099006)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/HSjVOdmjXUzic2gheSpjyaAOq9sTMlwEIZF60mDjKtTbFatnRKm22TCGsrJ?=
- =?us-ascii?Q?zWXQzHZYZprIfI3PLVSOLztnDL9bOClIRKuS0mUf5h12NOuI6vQwpI5G0zlc?=
- =?us-ascii?Q?JLDDloa8Ouje1pW9RBMtkMt9L2EhoYdpoxkZWM/vYuImR6HSMEFE43+Xsw0S?=
- =?us-ascii?Q?UWRR1ymGg5+EX0WUQughGL2X/wbeGpyIdQct4sKwb4DjiTerxlhDbmKCqjYj?=
- =?us-ascii?Q?Y72haJ23cGIlTaJhlkTkxPfegZZgDFKypThb7mDrTajAFOt07Uqk3DysHMmG?=
- =?us-ascii?Q?4iHXjq9q5b6gdL65KD3IjMJiKpMPMQbpSszjvSdx+4/4wJvohWYLVjAI6GFh?=
- =?us-ascii?Q?VihhkK52iPCWYpA1s4Yyr5rbcWdwGqmZTAR7hsX0sdfVOnZh3YSbycRT1LdX?=
- =?us-ascii?Q?SQGGqRDugxPAQgO/WfwclWuNlWjxm0Qgi9PW9aG/ZwFdPSrOJAqCNSzy3+NH?=
- =?us-ascii?Q?0baUq9JvQ5VqA9MHKe1TACBs9ZcFdKWW0J6MRZw8LAGxTUWSwH8GDSNDyIv2?=
- =?us-ascii?Q?mUs3oVKqqCOjZO/4yrV2kRIfmrx3EgNQRfr8U6VrE+eQj2BAynt6O9XU/KcE?=
- =?us-ascii?Q?hdKvCLtFjLWvyfkegbB0ThsAsVDDT/tAZlZ3MgsBmD45YNM3iQc3WkUH60hp?=
- =?us-ascii?Q?cgLQAJFYvUuIErruYX54eEklHgpTs8lghx2BEnuF7a0iL98WgFCxd187BXHW?=
- =?us-ascii?Q?zU1s8RYNak1m6IHweYYdL5T82gJVnlHQ+65zXOmI9O/5Lb2h8rs6SE2o7D1+?=
- =?us-ascii?Q?1Y5qXrhhFf5XwwEL79O3ySV78dkkakgXMoDdhTqmqlynlb+MJ95r3/Ngg5nP?=
- =?us-ascii?Q?w4ARG1XQ2F3AQ7mf/H02qrG8clw0hrUMkOtBuuDscs+JL/zS5xrfDb790Zwv?=
- =?us-ascii?Q?2J6qF+LK3uItS140c1PFD2jxrQ63Ub87WuYkSFQ4snznYJnSjTPf9NzPs7VM?=
- =?us-ascii?Q?kE5gQ5t3DvLTnxrb9KpGT0/ILbP+Y16qgtxBYWxklCy9xbl2Cgi1Fo0+6MYc?=
- =?us-ascii?Q?corDouVT9Tecf7etPxMMkJeLd8n00tXeHYoRk3xqpwhzfHeoKdoKvhi3/4KC?=
- =?us-ascii?Q?CojU5fMrQ1wriw9WI4S3B3JiQOAdsklloeJhKqu5+DlHDtv2rer8RiGYfx74?=
- =?us-ascii?Q?GDsG+9SiD8fVn9r61sgmV6AudPWqvYBDWd/m5sCjDoViTNxX5QU28ZeYOCyk?=
- =?us-ascii?Q?GR1HBc/ZuvmZlWmkMQdMjt2VojqdESCxBO1EZ1ecUT7OqLsOMKzfwrLYeHyA?=
- =?us-ascii?Q?bOVNBptjxknNkpmA91tKOCM1QS6D5yZcJ6QgctXEc9tyzabIIMX80O/HnFGI?=
- =?us-ascii?Q?evyxBYqvkNHmB1+avdVLUg9ik3Ljdo1tvbYUEOEou1UFGMRESHoAPII1dlMU?=
- =?us-ascii?Q?T+uDmqC+22L0pfHg/BxdDaOT24xHk4BAIxHG5gneHKbiSxukc8Wwo1vRit5Q?=
- =?us-ascii?Q?/GwSt76GIGLMPyCGuvjKQiTz557VIb8Y+j5C0Pryw5QtF2KdOhhqZD2kdd42?=
- =?us-ascii?Q?z7/ncDt5l2vLANBgGKLP5fmc9x58Sw+bNMazL0IcZpHsA9iRs1Tjt/QryS82?=
- =?us-ascii?Q?HjZOtYkw7FNZJkataHCpDQPxNq7fuWCodD5nEyAjTxzU+gVgSYAWAaenjqgR?=
- =?us-ascii?Q?KZs8KSpBtmXlMOufo8o6wsFvEG2QJG4zcapsheuiE/j21wyQYKoKjegE3l+L?=
- =?us-ascii?Q?nL8d7YG0Bc2JzpV5nH7re9YOVnoawYCYVMFP0hjxBqIbugJ52E4ku3y5gn1N?=
- =?us-ascii?Q?zkx0MOdigw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: Qa189QX2BtARDhYE/EYpxgaq1w8l88kqWQhP5gzMl4fFZlsZ0iE9MFsQXuPKoR2f844RW8m8SoBo5hQlsnUzCqGIdiq8dg0+1pErZMWDxyAW2equsDcT+Jz7sQYMJu5TkxZfS2tjNGBr3fe7VJmrIuUwXTjye61Fv3db+gzYQhrMpqc5RJWLZEzRXarn4cS1auA83tS2I42JpPA58fpuOu8UTNnTY7bKihpu1UKDjb8U6WbPOP5XCiPF2YMhi/ZAJ9LXxG7R1uPllVpX+cNzquCRoC8L4S3yMAGiqIBv+XNm5fyJnSRNcd/U5VK9GERMRVETr6FaftHg87aXg0L1CQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: bef016b6-7c8e-4d6e-d8b0-08dee4332909
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2026 18:42:31.8538 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6pDDnFj7a0AQ0vt9hy8XxaDr9PGVWRcC+MdMu7dcKol2h89rouYhmhZv8QeNa9DXXt08XXkyvSAEz995TRMJNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7914
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,51 +66,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+On L2-flush-optimized HW with a dma-resv (non-fault) VM, evicting a BO
+only needs to flush the L2 cache before the migration copy runs; the
+mappings themselves are torn down and rebuilt lazily via
+drm_gpuvm_bo_evict() and a subsequent rebind. Today this flush is done
+by waiting for the BO to go idle and then issuing a synchronous TLB
+invalidation per mapping VMA from inside xe_bo_trigger_rebind(). Both
+the idle wait and the synchronous invalidation stall the calling thread
+while holding the BO dma-resv lock, serializing the move behind all
+in-flight GPU work on the BO.
 
-Sorry for the delay on this PR.
-I had noticed some strange warnings in our CI runs of
-drm-intel-fixes so, I hold on until I was sure it was not
-getting caused by any of the patches in this PR.
-But everything should be good with these 4 small fixes.
+Replace this with an asynchronous flush. Add xe_vm_flush_vm_bo_tlb_async()
+which, for each VMA mapping the BO on each present tile, queues a TLB
+invalidation job on the tile migrate (kernel) exec queue. The jobs depend
+on the BO's in-flight GPU work, captured once as a singleton over
+DMA_RESV_USAGE_BOOKKEEP, so the flush only fires once the GPU is done with
+the current mapping. Each job's completion fence is installed into the
+BO's dma-resv as a DMA_RESV_USAGE_KERNEL fence, so the migration copy -
+which waits on the resv - waits on the flush without stalling this thread.
 
-Thanks,
-Rodrigo.
+No PTEs are zapped and vma->tile_invalidated is left untouched: the
+mapping stays valid until the lazy rebind, and the only work performed
+here is the L2 flush. On any failure the caller falls back to the
+existing blocking wait-idle plus xe_vm_invalidate_vma() path.
 
-drm-intel-fixes-2026-07-17:
-Couple of display fixes (NV12 for bigjoiner and Watermark clear
-on plane disable) along with couple of GT selftests fixes.
-The following changes since commit a13c140cc289c0b7b3770bce5b3ad42ab35074aa:
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Assisted-by: GitHub_Copilot:claude-opus-4.8
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-  Linux 7.2-rc3 (2026-07-12 14:16:39 -0700)
+---
+v2: Less verbose comment (Thomas)
+v3: Honor no_gpu_wait (Sashiko)
+---
+---
+ drivers/gpu/drm/xe/xe_bo.c |   8 +++
+ drivers/gpu/drm/xe/xe_vm.c | 125 +++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h |   5 ++
+ 3 files changed, 138 insertions(+)
 
-are available in the Git repository at:
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index c266fa6bade1..bb9dbc592941 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -686,6 +686,14 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 			 */
+ 			if (!xe_device_is_l2_flush_optimized(xe))
+ 				continue;
++
++			/*
++			 * Attempt to flush L2 async, fallback to sync flush on
++			 * no_wait_gpu or faliure
++			 */
++			if (!ctx->no_wait_gpu &&
++			    !xe_vm_flush_vm_bo_tlb_async(vm, bo, vm_bo))
++				continue;
+ 		}
+ 
+ 		if (!idle) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 57bcf0660eb8..28223e32fd26 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -39,6 +39,7 @@
+ #include "xe_sync.h"
+ #include "xe_tile.h"
+ #include "xe_tlb_inval.h"
++#include "xe_tlb_inval_job.h"
+ #include "xe_trace_bo.h"
+ #include "xe_vm_madvise.h"
+ #include "xe_wa.h"
+@@ -4432,6 +4433,130 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 	return ret;
+ }
+ 
++/*
++ * xe_vma_tlb_flush_client - Queue an async TLB flush for one VMA on one client
++ *
++ * Create and push a TLB invalidation job on the tile migrate (kernel) exec
++ * queue covering @vma's range, depending on @dep (the BO's in-flight GPU work)
++ * so the flush only fires once the GPU is done with the current mapping. The
++ * job's completion fence is installed into @resv as a KERNEL fence so the
++ * subsequent migration waits on the flush. No PTEs are zapped; this only
++ * flushes L2 via the TLB invalidation.
++ */
++static int xe_vma_tlb_flush_client(struct xe_vm *vm, struct xe_vma *vma,
++				   struct xe_tile *tile, struct xe_gt *gt,
++				   struct dma_resv *resv, struct dma_fence *dep,
++				   int type)
++{
++	struct xe_exec_queue *q = xe_migrate_exec_queue(tile->migrate);
++	struct xe_tlb_inval_job *job;
++	struct dma_fence *fence;
++	int err;
++
++	job = xe_tlb_inval_job_create(q, &gt->tlb_inval,
++				      q->tlb_inval[type].dep_scheduler, vm,
++				      xe_vma_start(vma), xe_vma_end(vma), type);
++	if (IS_ERR(job))
++		return PTR_ERR(job);
++
++	err = xe_tlb_inval_job_alloc_dep(job);
++	if (err)
++		goto out_put;
++
++	err = dma_resv_reserve_fences(resv, 1);
++	if (err)
++		goto out_put;
++
++	/* Cannot fail; consumes a ref on @dep and returns a referenced fence. */
++	fence = xe_tlb_inval_job_push(job, tile->migrate, dep);
++	dma_resv_add_fence(resv, fence, DMA_RESV_USAGE_KERNEL);
++	dma_fence_put(fence);
++
++out_put:
++	/* Drop the creation reference (destroys the job if it was not pushed). */
++	xe_tlb_inval_job_put(job);
++	return err;
++}
++
++/**
++ * xe_vm_flush_vm_bo_tlb_async - Asynchronously flush TLBs for a vm_bo's mappings
++ * @vm: The VM @vm_bo belongs to
++ * @bo: The buffer object being moved
++ * @vm_bo: The gpuvm_bo linking @bo into @vm
++ *
++ * On L2-flush-optimized HW a BO move only needs to flush L2 (via a TLB
++ * invalidation) for the BO's live mappings; the mappings themselves are torn
++ * down and rebuilt lazily via the eviction/rebind path, so no PTEs need to be
++ * zapped here. Rather than blocking the caller on a synchronous invalidation,
++ * issue a TLB invalidation job per VMA per TLB-invalidation client (per present
++ * tile, primary and media GT). Each job waits on the BO's in-flight GPU work
++ * (all dma-resv usages) and its completion fence is installed into the BO's
++ * dma-resv KERNEL slots, so the following migration waits on the flush without
++ * stalling this thread.
++ *
++ * The caller must hold the BO's dma-resv lock and @vm must not be in fault
++ * mode.
++ *
++ * Return: 0 on success, negative error code on failure. On failure the caller
++ * should fall back to the blocking xe_vm_invalidate_vma() path; any jobs
++ * already queued install harmless extra flush fences.
++ */
++int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
++				struct drm_gpuvm_bo *vm_bo)
++{
++	struct xe_device *xe = vm->xe;
++	struct dma_resv *resv = bo->ttm.base.resv;
++	struct dma_fence *dep = NULL;
++	struct drm_gpuva *gpuva;
++	int err;
++
++	dma_resv_assert_held(resv);
++	xe_assert(xe, !xe_vm_in_fault_mode(vm));
++
++	/*
++	 * Single fence capturing all in-flight GPU work on the BO; the TLB
++	 * invalidation jobs depend on it so the flush fires only once the GPU
++	 * is done with the current mapping.
++	 */
++	err = dma_resv_get_singleton(resv, DMA_RESV_USAGE_BOOKKEEP, &dep);
++	if (err)
++		return err;
++	if (!dep)
++		dep = dma_fence_get_stub();
++
++	drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++		struct xe_tile *tile;
++		u8 id;
++
++		if (xe_vma_is_null(vma) || xe_vma_is_cpu_addr_mirror(vma))
++			continue;
++
++		for_each_tile(tile, xe, id) {
++			if (!(vma->tile_present & BIT(id)))
++				continue;
++
++			err = xe_vma_tlb_flush_client(vm, vma, tile,
++						      tile->primary_gt, resv, dep,
++						      XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
++			if (err)
++				goto out;
++
++			if (tile->media_gt) {
++				err = xe_vma_tlb_flush_client(vm, vma, tile,
++							      tile->media_gt, resv, dep,
++							      XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT);
++				if (err)
++					goto out;
++			}
++		}
++	}
++
++out:
++	dma_fence_put(dep);
++	return err;
++}
++
+ int xe_vm_validate_protected(struct xe_vm *vm)
+ {
+ 	struct drm_gpuva *gpuva;
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index c5b900f38ded..dd5b070eaede 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -26,6 +26,8 @@ struct ttm_buffer_object;
+ 
+ struct dma_fence;
+ 
++struct xe_bo;
++struct drm_gpuvm_bo;
+ struct xe_exec_queue;
+ struct xe_file;
+ struct xe_pagefault;
+@@ -254,6 +256,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma);
+ 
+ int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct xe_tlb_inval_batch *batch);
+ 
++int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
++				struct drm_gpuvm_bo *vm_bo);
++
+ int xe_vm_validate_protected(struct xe_vm *vm);
+ 
+ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+-- 
+2.34.1
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-07-17
-
-for you to fetch changes up to 612978b83f45bf7018815209db5395d759db6f26:
-
-  drm/i915/selftests: Fix GT PM sort comparators (2026-07-16 11:27:19 -0400)
-
-----------------------------------------------------------------
-Couple of display fixes (NV12 for bigjoiner and Watermark clear
-on plane disable) along with couple of GT selftests fixes.
-
-----------------------------------------------------------------
-Emre Cecanpunar (1):
-      drm/i915/selftests: Fix GT PM sort comparators
-
-Pengpeng Hou (1):
-      drm/i915/gt: use correct selftest config symbol
-
-Vidya Srinivas (1):
-      drm/i915/display: Fix NV12 ceiling division for bigjoiner case
-
-Vinod Govindapillai (1):
-      drm/i915/wm: clear the plane ddb_y entries on plane disable
-
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 33 +++++++++-------------
- drivers/gpu/drm/i915/display/skl_watermark.c       |  2 +-
- drivers/gpu/drm/i915/gt/intel_engine_user.c        |  2 +-
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |  8 +++---
- 4 files changed, 19 insertions(+), 26 deletions(-)
