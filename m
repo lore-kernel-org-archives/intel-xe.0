@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F368C44507
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 09:41:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A38D7C44507
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 10:21:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC1E10E456;
-	Fri, 17 Jul 2026 09:41:07 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD4AB10E456;
- Fri, 17 Jul 2026 09:41:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8472132413285086440=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6565110F4E1;
+	Fri, 17 Jul 2026 10:21:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ws++lI61";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26AAF10F4E1
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jul 2026 10:21:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784283701; x=1815819701;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=irSKQgVTV5HXstVtrCY8lu9NBgNZQKtok0DuQQj/n9c=;
+ b=Ws++lI61LzxPq6tu8O0xx8pYd/TC9ZllX0tufjbvslJ0MUZUriZPLpo5
+ lOzSIk0+SucEdr1xXwEeeOVW0gKoKE1gDihQSQVF53j79n30KRb5vdget
+ ZQuywUZf8KV7/tSGyJWIgNTL6eoj/PHFwgg3aYPgQjLkqM3m0u5Vj7H/K
+ TY5zZH+RJPSuVXkesW7wQVKxOBDf6qbckVQiXaXvYBfohZzVPThseFex0
+ j8cp6wjxz4gJj4zdmb36xPNGsmvewY7YBjCwTdZaeSiFeYhO6pDG5FlCg
+ bUftDVKmEMLQzU8k1CqSsh5L/odL2RhDxbr1Tzd/t62L4GjamjmLSclm0 w==;
+X-CSE-ConnectionGUID: S5ol8S2lTIKHcMnf66sQJw==
+X-CSE-MsgGUID: zBxY6lErRfKiDdJv4bl7ng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="96466178"
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="96466178"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2026 03:21:41 -0700
+X-CSE-ConnectionGUID: YVRRVlcxRtiwHzTaOmrQhg==
+X-CSE-MsgGUID: kCNyHKLPSHiTchOXU6NWhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="261713420"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.245.155])
+ ([10.245.245.155])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2026 03:21:39 -0700
+Message-ID: <df56a3b648ad3033c0e276bcc60f1495402345dc.camel@linux.intel.com>
+Subject: Re: [PATCH v2] drm/xe: Flush L2 asynchronously in
+ xe_bo_trigger_rebind()
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date: Fri, 17 Jul 2026 12:21:37 +0200
+In-Reply-To: <alVQ6FRxDseVVPgE@gsse-cloud1.jf.intel.com>
+References: <20260709225309.2056268-1-matthew.brost@intel.com>
+ <alVQ6FRxDseVVPgE@gsse-cloud1.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sysctrl=3A_Detect_ov?=
- =?utf-8?q?ersized_sysctrl_mailbox_responses?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jul 2026 09:41:05 -0000
-Message-ID: <178428126589.200519.7215732834798688965@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260717082657.2466495-2-anoop.c.vijay@intel.com>
-In-Reply-To: <20260717082657.2466495-2-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +68,310 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8472132413285086440==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 2026-07-13 at 13:56 -0700, Matthew Brost wrote:
+> On Thu, Jul 09, 2026 at 03:53:09PM -0700, Matthew Brost wrote:
+> > On L2-flush-optimized HW with a dma-resv (non-fault) VM, evicting a
+> > BO
+> > only needs to flush the L2 cache before the migration copy runs;
+> > the
+> > mappings themselves are torn down and rebuilt lazily via
+> > drm_gpuvm_bo_evict() and a subsequent rebind. Today this flush is
+> > done
+> > by waiting for the BO to go idle and then issuing a synchronous TLB
+> > invalidation per mapping VMA from inside xe_bo_trigger_rebind().
+> > Both
+> > the idle wait and the synchronous invalidation stall the calling
+> > thread
+> > while holding the BO dma-resv lock, serializing the move behind all
+> > in-flight GPU work on the BO.
+> >=20
+> > Replace this with an asynchronous flush. Add
+> > xe_vm_flush_vm_bo_tlb_async()
+> > which, for each VMA mapping the BO on each present tile, queues a
+> > TLB
+> > invalidation job on the tile migrate (kernel) exec queue. The jobs
+> > depend
+> > on the BO's in-flight GPU work, captured once as a singleton over
+> > DMA_RESV_USAGE_BOOKKEEP, so the flush only fires once the GPU is
+> > done with
+> > the current mapping. Each job's completion fence is installed into
+> > the
+> > BO's dma-resv as a DMA_RESV_USAGE_KERNEL fence, so the migration
+> > copy -
+> > which waits on the resv - waits on the flush without stalling this
+> > thread.
+> >=20
+> > No PTEs are zapped and vma->tile_invalidated is left untouched: the
+> > mapping stays valid until the lazy rebind, and the only work
+> > performed
+> > here is the L2 flush. On any failure the caller falls back to the
+> > existing blocking wait-idle plus xe_vm_invalidate_vma() path.
+> >=20
+> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > Assisted-by: GitHub_Copilot:claude-opus-4.8
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >=20
+> > ---
+> > v2: Less verbose comment (Thomas)
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.c |=C2=A0=C2=A0 7 +++
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.c | 125
+> > +++++++++++++++++++++++++++++++++++++
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.h |=C2=A0=C2=A0 5 ++
+> > =C2=A03 files changed, 137 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > b/drivers/gpu/drm/xe/xe_bo.c
+> > index 85e6d9a0f575..aa3b60ac2e01 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -686,6 +686,13 @@ static int xe_bo_trigger_rebind(struct
+> > xe_device *xe, struct xe_bo *bo,
+> > =C2=A0			 */
+> > =C2=A0			if (!xe_device_is_l2_flush_optimized(xe))
+> > =C2=A0				continue;
+> > +
+> > +			/*
+> > +			 * Attempt to flush L2 async, fallback to
+> > sync flush on
+> > +			 * failure
+> > +			 */
+> > +			if (!xe_vm_flush_vm_bo_tlb_async(vm, bo,
+> > vm_bo))
+>=20
+> Sashiko pointed out this should likely be gated on !ctx->no_wait_gpu.
+>=20
+> I think that is correct what do you think Thomas?
 
-== Series Details ==
+If we can safely abort and propagate -EBUSY to the point where
+no_wait_gpu is set, we should honor no_wait_gpu. But if we need to wait
+for a fence in a failure path to avoid inconsistent state, no_wait_gpu
+could be ignored, but then IMO we need to add a comment describing why
+that is necessary.
 
-Series: drm/xe/sysctrl: Detect oversized sysctrl mailbox responses
-URL   : https://patchwork.freedesktop.org/series/170623/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5424-22852552aa1b7198931842ddf824af4dd09e2814_BAT -> xe-pw-170623v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
+/Thomas
 
 
-Changes
--------
 
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9011 -> IGT_9012
-  * Linux: xe-5424-22852552aa1b7198931842ddf824af4dd09e2814 -> xe-pw-170623v1
-
-  IGT_9011: 9011
-  IGT_9012: d94a55886c7eec82a791728d3cc1c4a6aa945281 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5424-22852552aa1b7198931842ddf824af4dd09e2814: 22852552aa1b7198931842ddf824af4dd09e2814
-  xe-pw-170623v1: 170623v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170623v1/index.html
-
---===============8472132413285086440==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/sysctrl: Detect oversized sysctrl mailbox responses</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170623/">https://patchwork.freedesktop.org/series/170623/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170623v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170623v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5424-22852552aa1b7198931842ddf824af4dd09e2814_BAT -&gt; xe-pw-170623v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9011 -&gt; IGT_9012</li>
-<li>Linux: xe-5424-22852552aa1b7198931842ddf824af4dd09e2814 -&gt; xe-pw-170623v1</li>
-</ul>
-<p>IGT_9011: 9011<br />
-  IGT_9012: d94a55886c7eec82a791728d3cc1c4a6aa945281 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5424-22852552aa1b7198931842ddf824af4dd09e2814: 22852552aa1b7198931842ddf824af4dd09e2814<br />
-  xe-pw-170623v1: 170623v1</p>
-
-</body>
-</html>
-
---===============8472132413285086440==--
+>=20
+> Matt
+>=20
+> > +				continue;
+> > =C2=A0		}
+> > =C2=A0
+> > =C2=A0		if (!idle) {
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > b/drivers/gpu/drm/xe/xe_vm.c
+> > index 73ac031ffb04..4557a8a4d270 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -39,6 +39,7 @@
+> > =C2=A0#include "xe_sync.h"
+> > =C2=A0#include "xe_tile.h"
+> > =C2=A0#include "xe_tlb_inval.h"
+> > +#include "xe_tlb_inval_job.h"
+> > =C2=A0#include "xe_trace_bo.h"
+> > =C2=A0#include "xe_vm_madvise.h"
+> > =C2=A0#include "xe_wa.h"
+> > @@ -4401,6 +4402,130 @@ int xe_vm_invalidate_vma(struct xe_vma
+> > *vma)
+> > =C2=A0	return ret;
+> > =C2=A0}
+> > =C2=A0
+> > +/*
+> > + * xe_vma_tlb_flush_client - Queue an async TLB flush for one VMA
+> > on one client
+> > + *
+> > + * Create and push a TLB invalidation job on the tile migrate
+> > (kernel) exec
+> > + * queue covering @vma's range, depending on @dep (the BO's in-
+> > flight GPU work)
+> > + * so the flush only fires once the GPU is done with the current
+> > mapping. The
+> > + * job's completion fence is installed into @resv as a KERNEL
+> > fence so the
+> > + * subsequent migration waits on the flush. No PTEs are zapped;
+> > this only
+> > + * flushes L2 via the TLB invalidation.
+> > + */
+> > +static int xe_vma_tlb_flush_client(struct xe_vm *vm, struct xe_vma
+> > *vma,
+> > +				=C2=A0=C2=A0 struct xe_tile *tile, struct
+> > xe_gt *gt,
+> > +				=C2=A0=C2=A0 struct dma_resv *resv, struct
+> > dma_fence *dep,
+> > +				=C2=A0=C2=A0 int type)
+> > +{
+> > +	struct xe_exec_queue *q =3D xe_migrate_exec_queue(tile-
+> > >migrate);
+> > +	struct xe_tlb_inval_job *job;
+> > +	struct dma_fence *fence;
+> > +	int err;
+> > +
+> > +	job =3D xe_tlb_inval_job_create(q, &gt->tlb_inval,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 q-
+> > >tlb_inval[type].dep_scheduler, vm,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_start(vma),
+> > xe_vma_end(vma), type);
+> > +	if (IS_ERR(job))
+> > +		return PTR_ERR(job);
+> > +
+> > +	err =3D xe_tlb_inval_job_alloc_dep(job);
+> > +	if (err)
+> > +		goto out_put;
+> > +
+> > +	err =3D dma_resv_reserve_fences(resv, 1);
+> > +	if (err)
+> > +		goto out_put;
+> > +
+> > +	/* Cannot fail; consumes a ref on @dep and returns a
+> > referenced fence. */
+> > +	fence =3D xe_tlb_inval_job_push(job, tile->migrate, dep);
+> > +	dma_resv_add_fence(resv, fence, DMA_RESV_USAGE_KERNEL);
+> > +	dma_fence_put(fence);
+> > +
+> > +out_put:
+> > +	/* Drop the creation reference (destroys the job if it was
+> > not pushed). */
+> > +	xe_tlb_inval_job_put(job);
+> > +	return err;
+> > +}
+> > +
+> > +/**
+> > + * xe_vm_flush_vm_bo_tlb_async - Asynchronously flush TLBs for a
+> > vm_bo's mappings
+> > + * @vm: The VM @vm_bo belongs to
+> > + * @bo: The buffer object being moved
+> > + * @vm_bo: The gpuvm_bo linking @bo into @vm
+> > + *
+> > + * On L2-flush-optimized HW a BO move only needs to flush L2 (via
+> > a TLB
+> > + * invalidation) for the BO's live mappings; the mappings
+> > themselves are torn
+> > + * down and rebuilt lazily via the eviction/rebind path, so no
+> > PTEs need to be
+> > + * zapped here. Rather than blocking the caller on a synchronous
+> > invalidation,
+> > + * issue a TLB invalidation job per VMA per TLB-invalidation
+> > client (per present
+> > + * tile, primary and media GT). Each job waits on the BO's in-
+> > flight GPU work
+> > + * (all dma-resv usages) and its completion fence is installed
+> > into the BO's
+> > + * dma-resv KERNEL slots, so the following migration waits on the
+> > flush without
+> > + * stalling this thread.
+> > + *
+> > + * The caller must hold the BO's dma-resv lock and @vm must not be
+> > in fault
+> > + * mode.
+> > + *
+> > + * Return: 0 on success, negative error code on failure. On
+> > failure the caller
+> > + * should fall back to the blocking xe_vm_invalidate_vma() path;
+> > any jobs
+> > + * already queued install harmless extra flush fences.
+> > + */
+> > +int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo
+> > *bo,
+> > +				struct drm_gpuvm_bo *vm_bo)
+> > +{
+> > +	struct xe_device *xe =3D vm->xe;
+> > +	struct dma_resv *resv =3D bo->ttm.base.resv;
+> > +	struct dma_fence *dep =3D NULL;
+> > +	struct drm_gpuva *gpuva;
+> > +	int err;
+> > +
+> > +	dma_resv_assert_held(resv);
+> > +	xe_assert(xe, !xe_vm_in_fault_mode(vm));
+> > +
+> > +	/*
+> > +	 * Single fence capturing all in-flight GPU work on the
+> > BO; the TLB
+> > +	 * invalidation jobs depend on it so the flush fires only
+> > once the GPU
+> > +	 * is done with the current mapping.
+> > +	 */
+> > +	err =3D dma_resv_get_singleton(resv,
+> > DMA_RESV_USAGE_BOOKKEEP, &dep);
+> > +	if (err)
+> > +		return err;
+> > +	if (!dep)
+> > +		dep =3D dma_fence_get_stub();
+> > +
+> > +	drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
+> > +		struct xe_vma *vma =3D gpuva_to_vma(gpuva);
+> > +		struct xe_tile *tile;
+> > +		u8 id;
+> > +
+> > +		if (xe_vma_is_null(vma) ||
+> > xe_vma_is_cpu_addr_mirror(vma))
+> > +			continue;
+> > +
+> > +		for_each_tile(tile, xe, id) {
+> > +			if (!(vma->tile_present & BIT(id)))
+> > +				continue;
+> > +
+> > +			err =3D xe_vma_tlb_flush_client(vm, vma,
+> > tile,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tile-
+> > >primary_gt, resv, dep,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> > +			if (err)
+> > +				goto out;
+> > +
+> > +			if (tile->media_gt) {
+> > +				err =3D xe_vma_tlb_flush_client(vm,
+> > vma, tile,
+> > +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > tile->media_gt, resv, dep,
+> > +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT);
+> > +				if (err)
+> > +					goto out;
+> > +			}
+> > +		}
+> > +	}
+> > +
+> > +out:
+> > +	dma_fence_put(dep);
+> > +	return err;
+> > +}
+> > +
+> > =C2=A0int xe_vm_validate_protected(struct xe_vm *vm)
+> > =C2=A0{
+> > =C2=A0	struct drm_gpuva *gpuva;
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.h
+> > b/drivers/gpu/drm/xe/xe_vm.h
+> > index c5b900f38ded..dd5b070eaede 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm.h
+> > @@ -26,6 +26,8 @@ struct ttm_buffer_object;
+> > =C2=A0
+> > =C2=A0struct dma_fence;
+> > =C2=A0
+> > +struct xe_bo;
+> > +struct drm_gpuvm_bo;
+> > =C2=A0struct xe_exec_queue;
+> > =C2=A0struct xe_file;
+> > =C2=A0struct xe_pagefault;
+> > @@ -254,6 +256,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma);
+> > =C2=A0
+> > =C2=A0int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct
+> > xe_tlb_inval_batch *batch);
+> > =C2=A0
+> > +int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo
+> > *bo,
+> > +				struct drm_gpuvm_bo *vm_bo);
+> > +
+> > =C2=A0int xe_vm_validate_protected(struct xe_vm *vm);
+> > =C2=A0
+> > =C2=A0static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+> > --=20
+> > 2.34.1
+> >=20
