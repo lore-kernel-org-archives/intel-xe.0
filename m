@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7341FC44515
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 16:26:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 791AAC44515
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 16:28:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32B5D10E4C2;
-	Fri, 17 Jul 2026 16:26:45 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A53E10E4C2;
- Fri, 17 Jul 2026 16:26:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4167985162201573091=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C67810E4C2;
+	Fri, 17 Jul 2026 16:28:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="jTHe1qxw";
+	dkim-atps=neutral
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43A0F10E4C3
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jul 2026 16:28:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=i4DEbOkf4Nlnm4ttg+oJUXqZuE2jbuo/tlclUK4guCs=; b=jTHe1qxwT+fLkTvtdmp08Jijzb
+ qKHY1ZArCAQFZkwLpleQpASof22kCinyi1OsZYR2WIAE5tSPvXXEpAofT1p3XIFesUfaZz/tDwlDl
+ zK0yykvSb3lGHrCEmpKEU1rlh+rQUsdFoRPzCa3PIAh6BqDbEwJtttlTtAJ7sBwyyYztLV9B0BGhh
+ Pu/lM+aNR+awrRdeoxiB3/krYZwRXNX1SbewgRkFKuYacVvZGYfOE+3lqlfP/8rp2ICFbMwJEIYCl
+ HAX8axvJU682LqPaNoRWYLiSUfSURGITqNZxQev71YT2IKH4oy/0GRGvDvNipga8/OUfcV8GWNkqn
+ IQ9KNp0Q==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
+ id 1wklQJ-00000002jrp-20m4; Fri, 17 Jul 2026 16:28:27 +0000
+Message-ID: <45e7b19d-e30c-40a9-9c78-ed5dc690b761@infradead.org>
+Date: Fri, 17 Jul 2026 09:28:26 -0700
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_Further_initial?=
- =?utf-8?q?_fb_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jul 2026 16:26:44 -0000
-Message-ID: <178430560403.202555.2105468313517041942@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260717154238.10792-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260717154238.10792-1-ville.syrjala@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] scripts/kernel-doc: Suggest possible names for excess
+ descriptions
+To: Ryszard Knop <ryszard.knop@intel.com>, linux-doc@vger.kernel.org
+Cc: Jonathan Corbet <corbet@lwn.net>, Shuicheng Lin
+ <shuicheng.lin@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
+References: <20260714111208.323108-1-ryszard.knop@intel.com>
+ <20260717125753.634550-1-ryszard.knop@intel.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260717125753.634550-1-ryszard.knop@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +57,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4167985162201573091==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Further initial fb cleanups
-URL   : https://patchwork.freedesktop.org/series/170650/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5425-9599a181c5885f816aa83fc18d3f6a4aec4adf7d_BAT -> xe-pw-170650v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
 
 
-Changes
--------
+On 7/17/26 5:57 AM, Ryszard Knop wrote:
+> Recent check_sections() change added a warning if a documentation tag
+> member name does not match the detected struct/union member names. Since
+> the checker knows all possible names, we can suggest known names, so
+> that it's more obvious how to deal with the warning.
+> 
+> Signed-off-by: Ryszard Knop <ryszard.knop@intel.com>
 
-  No changes found
+Tested-by: Randy Dunlap <rdunlap@infradead.org>
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
 
+Thanks.
 
-Build changes
--------------
+> ---
+> Changes in v1:
+> - Added the suggestion hint in the warning, with basic name substring checks
+> - Link: https://lore.kernel.org/linux-doc/20260714111208.323108-1-ryszard.knop@intel.com/
+> 
+> Changes in v2:
+> - Strip trailing whitespace from the warning when the generated hint is empty
+> - Link: https://lore.kernel.org/linux-doc/20260715111726.394565-1-ryszard.knop@intel.com/
+> 
+> v3:
+> - Use difflib to generate suggestions even if the tag member is mistyped
+> - Suggest names based on the nested struct members too
+> ---
+>  tools/lib/python/kdoc/kdoc_parser.py | 51 ++++++++++++++++++++++++++--
+>  1 file changed, 49 insertions(+), 2 deletions(-)
+> 
+> diff --git a/tools/lib/python/kdoc/kdoc_parser.py b/tools/lib/python/kdoc/kdoc_parser.py
+> index 2dedda215c22..884f42584667 100644
+> --- a/tools/lib/python/kdoc/kdoc_parser.py
+> +++ b/tools/lib/python/kdoc/kdoc_parser.py
+> @@ -11,6 +11,7 @@ and extract embedded documentation comments from it.
+>  
+>  import sys
+>  import re
+> +import difflib
+>  from pprint import pformat
+>  
+>  from kdoc.c_lex import CTokenizer, tokenizer_set_log
+> @@ -558,6 +559,50 @@ class KernelDoc:
+>                          self.push_parameter(ln, decl_type, param, dtype,
+>                                              arg, declaration_name)
+>  
+> +    def get_suggestions_hint(self, decl_name, possible_names):
+> +        # For decl name 'flags' or 'flgas', suggests 'substruct.flags'
+> +        submember_exact = []
+> +        submember_substrings = []
+> +        submember_suggestions = []
+> +        for possible_name in possible_names:
+> +            parts = possible_name.strip().split('.')
+> +            if len(parts) < 2:
+> +                continue
+> +
+> +            final_part = parts[-1]
+> +            if decl_name == final_part:
+> +                submember_exact.append(possible_name)
+> +            elif decl_name in final_part:
+> +                submember_substrings.append(possible_name)
+> +            elif difflib.get_close_matches(decl_name, [final_part]):
+> +                submember_suggestions.append(possible_name)
+> +
+> +        # For decl name 'flgas', suggests 'flags'
+> +        full_suggestions = difflib.get_close_matches(decl_name, possible_names)
+> +
+> +        # For decl name 'member', suggests 'longer_member'
+> +        full_substrings = [name for name in possible_names if decl_name in name]
+> +
+> +        ordered_lists = [
+> +            submember_exact,
+> +            submember_substrings,
+> +            submember_suggestions,
+> +            full_suggestions,
+> +            full_substrings,
+> +        ]
+> +
+> +        # Deduplicate but maintain order from most to least likely:
+> +        unique_suggestions = {}
+> +        for suggestion_list in ordered_lists:
+> +            for suggestion in suggestion_list:
+> +                unique_suggestions[suggestion] = None
+> +
+> +        suggestions = list(unique_suggestions.keys())
+> +        if not suggestions:
+> +            return ""
+> +
+> +        return f"(did you mean one of: '{"', '".join(suggestions)}')"
+> +
+>      def check_sections(self, ln, decl_name, decl_type):
+>          """
+>          Check for errors inside sections, emitting warnings if not found
+> @@ -566,12 +611,13 @@ class KernelDoc:
+>          for section in self.entry.sections:
+>              if section not in self.entry.parameterlist and \
+>                 not known_sections.search(section):
+> +                hint = self.get_suggestions_hint(section, self.entry.parameterlist)
+>                  if decl_type == 'function':
+>                      dname = f"{decl_type} parameter"
+>                  else:
+>                      dname = f"{decl_type} member"
+>                  self.emit_msg(ln,
+> -                              f"Excess {dname} '{section}' description in '{decl_name}'")
+> +                              f"Excess {dname} '{section}' description in '{decl_name}' {hint}".strip())
+>  
+>          #
+>          # Check that documented parameter names (from doc comments, including
+> @@ -591,12 +637,13 @@ class KernelDoc:
+>              if param_name in self.entry.parameterlist:
+>                  continue
+>  
+> +            hint = self.get_suggestions_hint(param_name, self.entry.parameterlist)
+>              if decl_type == 'function':
+>                  dname = f"{decl_type} parameter"
+>              else:
+>                  dname = f"{decl_type} member"
+>              self.emit_msg(ln,
+> -                          f"Excess {dname} '{param_name}' description in '{decl_name}'")
+> +                          f"Excess {dname} '{param_name}' description in '{decl_name}' {hint}".strip())
+>  
+>      def check_return_section(self, ln, declaration_name, return_type):
+>          """
 
-  * Linux: xe-5425-9599a181c5885f816aa83fc18d3f6a4aec4adf7d -> xe-pw-170650v1
-
-  IGT_9013: 10626f13bd71fd21fcbc0421404252766fcfecaf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5425-9599a181c5885f816aa83fc18d3f6a4aec4adf7d: 9599a181c5885f816aa83fc18d3f6a4aec4adf7d
-  xe-pw-170650v1: 170650v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170650v1/index.html
-
---===============4167985162201573091==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Further initial fb cleanups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170650/">https://patchwork.freedesktop.org/series/170650/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170650v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170650v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5425-9599a181c5885f816aa83fc18d3f6a4aec4adf7d_BAT -&gt; xe-pw-170650v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5425-9599a181c5885f816aa83fc18d3f6a4aec4adf7d -&gt; xe-pw-170650v1</li>
-</ul>
-<p>IGT_9013: 10626f13bd71fd21fcbc0421404252766fcfecaf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5425-9599a181c5885f816aa83fc18d3f6a4aec4adf7d: 9599a181c5885f816aa83fc18d3f6a4aec4adf7d<br />
-  xe-pw-170650v1: 170650v1</p>
-
-</body>
-</html>
-
---===============4167985162201573091==--
+-- 
+~Randy
