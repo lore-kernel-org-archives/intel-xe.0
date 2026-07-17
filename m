@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AC27C4451B
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 15:51:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 643A2C4451B
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 15:51:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05B1F10E301;
-	Fri, 17 Jul 2026 15:51:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2274D10E4A3;
+	Fri, 17 Jul 2026 15:51:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DVsv/XcZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RWzXoTVB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4620C897FD;
- Fri, 17 Jul 2026 15:51:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A62210E4A8;
+ Fri, 17 Jul 2026 15:51:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784303473; x=1815839473;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GYJP/Qkkuv8SC1nesZ+zygEQnpqogv4O8mP20JmumIg=;
- b=DVsv/XcZMtxM+DT0l5WQNZjQ7iRbsrxicVgnMCjUurmIixEsrhnecbat
- JXkR00azxQH6aggPQ8yonltu55EutQ6sr32FSFxLEpq9t1ryIEQj0FpIO
- fB758zN9oZ9jVX9o+c8ai+fWqMRGidoDETjogSRmIfKsSi0MIYVqKu0Xj
- EXpAfVCq8I6Nfa5ej9iNPSycV6P1G3aMguA59lTXs/tKam/YRBYpo4nCr
- uT9Tjx9kiqppdXRfDt4r6cxSWre6SoG75D4kvP3bLJ9zyutW0V8Pc2l91
- 9zSFppgvMXntFOfoJmMfxElqhTOxQvdF5jYDrqJEjqvo1x2/Nq2ni02db A==;
-X-CSE-ConnectionGUID: EaPEFabxQa64iYun4ftLFA==
-X-CSE-MsgGUID: RgDnNRPZSoq+Xx8fJnzy4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="96112551"
-X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="96112551"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2026 08:51:12 -0700
-X-CSE-ConnectionGUID: 05KjFR8HTwO1JHWIrXr50g==
-X-CSE-MsgGUID: nAsNTk8cRAmFYlI9eCCxng==
+ t=1784303477; x=1815839477;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=J7eQbM20VXnFtd0Jfy7syfTRRv40inaMU0GfURfu1F8=;
+ b=RWzXoTVBOgyamM9s2uMhXTFvUfgPHj3re43BcPi1aPtQtoGUtSu+ELD0
+ kXCbWX5hTK5gY2B2oV0yaiw6Ga/3fbKXRGa0MFOZ3bnqfI3atlqN+kZKY
+ loLdSRyqS7EXxKmHjVZVEUNIiCSYHSA5hCGPwnZMM+gk0wOxhyU0/Gm55
+ wBrxGc2kOOIO4JZ185SInsKsHcdj8T0rB0jh/PQUYy+r9zaCgniapwftd
+ MTm3JjYav0QOtFZOkRvYbKMk+4iBB+vocyhtVOStB5tUAuiLXF2MaCMgN
+ Uh21Zo1a1CdF6DEVcOYNaMrssUME4hk0ErWE36oPH+Lbr5zImiFHb15Ad g==;
+X-CSE-ConnectionGUID: gR+NDJ1rQ72n+MeqdDY4dQ==
+X-CSE-MsgGUID: DqBtjA0jR2uFOizMXeY9wA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="88877297"
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="88877297"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2026 08:51:16 -0700
+X-CSE-ConnectionGUID: siHJJkb6QC+AcBAy9ophpw==
+X-CSE-MsgGUID: t8UGqKOmRs2H1TN5+lBLww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="257452336"
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="286886619"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.241])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2026 08:51:10 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2026 08:51:15 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	stable@vger.kernel.org
-Subject: [PATCH 1/2] drm/i915/cdclk: Avoid spurious cdclk sanitization on PTL+
-Date: Fri, 17 Jul 2026 18:51:06 +0300
-Message-ID: <20260717155107.17801-1-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 2/2] drm/i915/cdclk: Introduce has_cd2x_pipe_select()
+Date: Fri, 17 Jul 2026 18:51:07 +0300
+Message-ID: <20260717155107.17801-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260717155107.17801-1-ville.syrjala@linux.intel.com>
+References: <20260717155107.17801-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -71,38 +72,81 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Apparently PTL+ no longer has the cd2x pipe select field in
-CDCLK_CTL. Take that into account during CDCLK sanitization.
+We have several open coded checks for the platform's
+cd2x pipe select capability, each written slightly
+differently. Move it all into a common
+has_cd2x_pipe_select() helper.
 
-This currently triggers a spurious CDCLK sanitization during
-driver load on PTL+ which will causes a visible glitch on all
-active displays.
+No functional changes as the previous 'DISPLAY_VER < 30'
+checks were in codepaths that already exclude pre-bxt
+platforms, and intel_cdclk_can_cd2x_update() already
+rejects PTL+ via the later HAS_CDCLK_SQUASH() check.
 
-Cc: stable@vger.kernel.org
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8550
-Fixes: 3f9de66f8acb ("drm/i915/cdclk: Fix up CDCLK_FREQ_DECIMAL without a full PLL re-enable")
+Also update the docs for the register bitfield while at it.
+
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c        | 12 ++++++++----
+ drivers/gpu/drm/i915/display/intel_display_regs.h |  2 +-
+ 2 files changed, 9 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index a53d88727177..9e5e15b0c4d1 100644
+index 9e5e15b0c4d1..75ada941d113 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2381,8 +2381,10 @@ static void bxt_sanitize_cdclk(struct intel_display *display)
+@@ -2177,6 +2177,11 @@ static bool pll_enable_wa_needed(struct intel_display *display)
+ 		display->cdclk.hw.vco > 0;
+ }
+ 
++static bool has_cd2x_pipe_select(struct intel_display *display)
++{
++	return IS_DISPLAY_VER(display, 10, 20) || display->platform.broxton;
++}
++
+ static u32 bxt_cdclk_ctl(struct intel_display *display,
+ 			 const struct intel_cdclk_config *cdclk_config,
+ 			 enum pipe pipe)
+@@ -2190,7 +2195,7 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
+ 
+ 	val = bxt_cdclk_cd2x_div_sel(display, cdclk, vco, waveform);
+ 
+-	if (DISPLAY_VER(display) < 30)
++	if (has_cd2x_pipe_select(display))
+ 		val |= bxt_cdclk_cd2x_pipe(display, pipe);
+ 
+ 	/*
+@@ -2381,7 +2386,7 @@ static void bxt_sanitize_cdclk(struct intel_display *display)
  	 * dividers both syncing to an active pipe, or asynchronously
  	 * (PIPE_NONE).
  	 */
--	cdctl &= ~bxt_cdclk_cd2x_pipe_mask(display);
--	cdctl |= bxt_cdclk_cd2x_pipe(display, INVALID_PIPE);
-+	if (DISPLAY_VER(display) < 30) {
-+		cdctl &= ~bxt_cdclk_cd2x_pipe_mask(display);
-+		cdctl |= bxt_cdclk_cd2x_pipe(display, INVALID_PIPE);
-+	}
+-	if (DISPLAY_VER(display) < 30) {
++	if (has_cd2x_pipe_select(display)) {
+ 		cdctl &= ~bxt_cdclk_cd2x_pipe_mask(display);
+ 		cdctl |= bxt_cdclk_cd2x_pipe(display, INVALID_PIPE);
+ 	}
+@@ -2579,8 +2584,7 @@ static bool intel_cdclk_can_cd2x_update(struct intel_display *display,
+ 					const struct intel_cdclk_config *a,
+ 					const struct intel_cdclk_config *b)
+ {
+-	/* Older hw doesn't have the capability */
+-	if (DISPLAY_VER(display) < 10 && !display->platform.broxton)
++	if (!has_cd2x_pipe_select(display))
+ 		return false;
  
- 	if (cdctl != expected) {
- 		if (DISPLAY_VER(display) < 20) {
+ 	/*
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 0f5018482497..1faca3cdaceb 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -2788,7 +2788,7 @@ enum skl_power_gate {
+ #define  BXT_CDCLK_CD2X_PIPE_MASK	REG_GENMASK(21, 20) /* bxt/glk */
+ #define  BXT_CDCLK_CD2X_PIPE(pipe)	REG_FIELD_PREP(BXT_CDCLK_CD2X_PIPE_MASK, (pipe))
+ #define  BXT_CDCLK_CD2X_PIPE_NONE	REG_FIELD_PREP(BXT_CDCLK_CD2X_PIPE_MASK, 3)
+-#define  ICL_CDCLK_CD2X_PIPE_MASK	REG_GENMASK(21, 19) /* icl+ */
++#define  ICL_CDCLK_CD2X_PIPE_MASK	REG_GENMASK(21, 19) /* icl-lnl */
+ #define  ICL_CDCLK_CD2X_PIPE(pipe)	REG_FIELD_PREP(ICL_CDCLK_CD2X_PIPE_MASK, (pipe) << 1)
+ #define  ICL_CDCLK_CD2X_PIPE_NONE	REG_FIELD_PREP(ICL_CDCLK_CD2X_PIPE_MASK, 7)
+ #define  CDCLK_DIVMUX_CD_OVERRIDE	REG_BIT(19) /* pre-icl */
 -- 
 2.54.0
 
