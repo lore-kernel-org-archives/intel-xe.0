@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 599B9C4451B
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 15:42:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC4A5C44515
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 15:42:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13FA710E499;
-	Fri, 17 Jul 2026 15:42:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D75910E493;
+	Fri, 17 Jul 2026 15:42:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n7QuBvNk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dFTl15ob";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6EC10E497;
- Fri, 17 Jul 2026 15:42:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8C1910E493;
+ Fri, 17 Jul 2026 15:42:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784302964; x=1815838964;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+xfwONrMaBTuBF4japoIUrSG9EqyGlarE6aZXQdcwP4=;
- b=n7QuBvNkDCdIDEpDV0Ia6K+9WpLBZQ9Ndxwd0w/+2JqWXWw4lbGYt9J7
- g9cDxZwd+le19UvVzVEXQL68SY5WoiV3w2Unw1z7NBLGLay5mmsWAdjCk
- 27kNjnUYK+qW2HjLq4C74QWhPwrflIlL8SWzBZ3G2AK8qVjU4i+nlVFIz
- FbJWccfdKWQaSJHYZTFwBF8knfXz/XTLAEhFhjJPe77YZp85fCU+z4qU9
- fD/u5Fq9a0rYaBmytyR5Z8b4iVCPje5Q+H7EgVzMmE1Br2NBQdl1ExHwl
- zzZpBU12monSdnI2JeBbWF/L73ABK/3HVhHi4cgE1FwNEp/zd1Uvb8zkL A==;
-X-CSE-ConnectionGUID: 1sKWL7ImSeKYoxM9S0yR5g==
-X-CSE-MsgGUID: z17eNgemThu2LkmvyyOuEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="88652106"
-X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="88652106"
+ t=1784302967; x=1815838967;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=BaE1WrfihNp+lq8joKY0I4vu/XcFi56MutJ63JSEjio=;
+ b=dFTl15obZuJYIQzvwO7OLJims6IM6De8mqzjGqrJfx0Qsu6Y3Hg8H2I0
+ 4WR3s3u37v8SD9GdUY3fR6ILLCQL3iYMEUHOQOmmISIt/+qeE+FBgR90G
+ Tm/9/dk2Rwa82oihQo2dADEZgr93mLldinyGZBjDomdPm4Se+hI6gQorg
+ f37NkQHq37zi/6EnZxVt9d2lZxykIe55G2qpkA6JloMz16kXZLEUjLQmp
+ K0fnSbVuGjSCsTIt5r25q1HLREYdH9Y687ncOVPL9Yhu1sPILkJZLaICA
+ DjEIjkaSbnZ+ni3CDpETKLa4DtwfGqhydNhtIBnoM1+kmhNAyuWBbop0g Q==;
+X-CSE-ConnectionGUID: 6LpOU18XTI+KkAlC5Hsqow==
+X-CSE-MsgGUID: FkNCMB4ARJOsARmTeZQV6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="88652116"
+X-IronPort-AV: E=Sophos;i="6.25,169,1779174000"; d="scan'208";a="88652116"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2026 08:42:43 -0700
-X-CSE-ConnectionGUID: PNDv3cyVShqCqxTCYhrRvg==
-X-CSE-MsgGUID: ChadIG9uSi+3bqpzyM6mgQ==
+ 17 Jul 2026 08:42:47 -0700
+X-CSE-ConnectionGUID: yhWeKOlHSHODt5yngih8tw==
+X-CSE-MsgGUID: B5cwXhdWRsSbaRpwZuN6mw==
 X-ExtLoop1: 1
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.241])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2026 08:42:41 -0700
+ 17 Jul 2026 08:42:45 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/7] drm/i915: Further initial fb cleanups
-Date: Fri, 17 Jul 2026 18:42:31 +0300
-Message-ID: <20260717154238.10792-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/7] drm/i915: Clear plane_config->fb pointer when done
+Date: Fri, 17 Jul 2026 18:42:32 +0300
+Message-ID: <20260717154238.10792-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260717154238.10792-1-ville.syrjala@linux.intel.com>
+References: <20260717154238.10792-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -69,31 +71,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Try to clean up most of the remaining mess in the initial FB
-readout/pinning code. This simplifies the parent interface,
-moves more display specific stuff to the display side of the
-driver split, and reduces the amount of state we need to drag
-across the border.
+Clear the pointer after we unref/free plane_config->fb. The plane_config
+struct will persist after this while we repeat the readout for other
+pipes, so having a stale pointer hanging around is a bit dangerous.
 
-Ville Syrjälä (7):
-  drm/i915: Clear plane_config->fb pointer when done
-  drm/i915: Don't pass the vma to parent->initial_plane->setup()
-  drm/i915: Return just the 'fb' from intel_reuse_initial_plane_obj()
-  drm/i915: Simplify intel_reuse_initial_plane_fb()
-  drm/i915: Move the BIOS FB intel_framebuffer_init() to the display
-    code
-  drm/i915: Use intel_parent_fb_pin_ggtt_pin() for BIOS FB pin
-  drm/i915: s/dev_priv/i915/ in the initial fb .setup()
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_initial_plane.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../drm/i915/display/intel_display_types.h    |  1 -
- .../drm/i915/display/intel_initial_plane.c    | 89 ++++++++++++-------
- drivers/gpu/drm/i915/i915_initial_plane.c     | 79 ++++------------
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 10 +--
- drivers/gpu/drm/xe/display/xe_fb_pin.h        | 12 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 76 ++--------------
- include/drm/intel/display_parent_interface.h  |  7 +-
- 7 files changed, 88 insertions(+), 186 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
+index 7427f41e4d7e..4c7e5de924cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
+@@ -198,6 +198,8 @@ static void plane_config_fini(struct intel_display *display,
+ 			drm_framebuffer_put(fb);
+ 		else
+ 			kfree(fb);
++
++		plane_config->fb = NULL;
+ 	}
+ 
+ 	display->parent->initial_plane->config_fini(plane_config);
 -- 
 2.54.0
 
