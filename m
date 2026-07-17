@@ -4,49 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEC4FC44527
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:06:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C7BEC44515
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 21:06:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8064F10F62F;
-	Fri, 17 Jul 2026 21:06:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=liuxiaozhen.dev header.i=@liuxiaozhen.dev header.b="cW/oih/h";
-	dkim-atps=neutral
-X-Greylist: delayed 913 seconds by postgrey-1.36 at gabe;
- Fri, 17 Jul 2026 13:03:08 UTC
-Received: from va-2-47.ptr.blmpb.com (va-2-47.ptr.blmpb.com [209.127.231.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3EB110E477
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Jul 2026 13:03:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=feishu2602171341; d=liuxiaozhen.dev; t=1784292465;
- h=from:subject:mime-version:from:date:message-id:subject:to:cc:
- reply-to:content-type:mime-version:in-reply-to:message-id;
- bh=h2qql/WrzP/FkAR7zs0ElNAIgMAvaP/NyI2tztNPzN4=;
- b=cW/oih/hreqkSyYZLl1INKjN3eVpW/fcdtu4yFcyix1IyFOPRFX+notx/M5fPze7vJsdY4
- BHfqaCQ881i8WViKaadNQ7UXI2YwtVJhNgpjuu86+A+u7+MKyRrapBiJ7pP4OyTWUXBYMn
- JIy4uCg7WOdshuBdPgYPaj0HQjmoPQNQrVWvn9QXeQkLqQosvsYOjA2F7+j/lvpJ9o15ip
- nSrAfdzeXrqSjMCw8s1LRWQmLECW0+bGZvo+vUPxGqU8M0rZMzypkAdxV5XmTlrJOOW3GK
- ZFBlxA8+cDWaHe/1cT9YM9wbVeQ7cUcPJ87Ky6zfdJ0WZYvfFail7nx6yiLkfg==
-To: "Jani Nikula" <jani.nikula@linux.intel.com>, 
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, 
- "Tvrtko Ursulin" <tursulin@ursulin.net>, 
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, 
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>, 
- <oliver@liuxiaozhen.dev>
-X-Mailer: git-send-email 2.53.0
-Subject: [PATCH] drm/i915/quirks: Disable PSR2 on Lenovo ThinkPad P15 Gen 1
-Date: Fri, 17 Jul 2026 20:47:28 +0800
-Message-Id: <20260717124728.11394-1-oliver@liuxiaozhen.dev>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291DC10F625;
+	Fri, 17 Jul 2026 21:06:22 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A57B10F628;
+ Fri, 17 Jul 2026 21:06:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Original-From: Oliver Lin <oliver@liuxiaozhen.dev>
-X-Lms-Return-Path: <lba+26a5a246f+860617+lists.freedesktop.org+oliver@liuxiaozhen.dev>
-From: "Oliver Lin" <oliver@liuxiaozhen.dev>
-Mime-Version: 1.0
-Received: from ThinkPadP15-Gen1 ([23.151.104.165]) by smtp.feishu.cn with
- ESMTPS; Fri, 17 Jul 2026 20:47:42 +0800
-Content-Type: text/plain; charset=UTF-8
-X-Mailman-Approved-At: Fri, 17 Jul 2026 21:05:30 +0000
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/gpusvm=3A_F?=
+ =?utf-8?q?ix_mm_reference_leak_in_range_eviction?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Kinsburskii" <skinsburskii@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 17 Jul 2026 21:06:16 -0000
+Message-ID: <178432237629.203384.13557110344365195316@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <178406551216.1092539.5238081578161393168.stgit@skinsburskii>
+In-Reply-To: <178406551216.1092539.5238081578161393168.stgit@skinsburskii>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,37 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The internal 4K eDP panel on the Lenovo ThinkPad P15 Gen 1
-flickers at 60 Hz when PSR2 is enabled.
+== Series Details ==
 
-The issue reproduces across multiple Linux distributions and
-does not occur on Windows. Limiting PSR to PSR1 with
-i915.enable_psr=1 prevents the flickering, while PSR2 triggers it.
+Series: drm/gpusvm: Fix mm reference leak in range eviction
+URL   : https://patchwork.freedesktop.org/series/170663/
+State : failure
 
-Add a device quirk to disable PSR2 on this system.
+== Summary ==
 
-Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16636
-Signed-off-by: Oliver Lin <oliver@liuxiaozhen.dev>
----
- drivers/gpu/drm/i915/display/intel_quirks.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series author address 'skinsburskii@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1218272/ (on master)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 33245f44c0d5..1e24692f4e43 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -259,6 +259,9 @@ static struct intel_quirk intel_quirks[] = {
- 
- 	/* Xiaomi Book Pro 14 2026 */
- 	{ 0xb081, 0x1d72, 0x2424, quirk_disable_psr2 },
-+
-+	/* Lenovo ThinkPad P15 Gen 1 */
-+	{ 0x9bc4, 0x17aa, 0x22b8, quirk_disable_psr2 },
- };
- 
- static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
--- 
-2.53.0
+
