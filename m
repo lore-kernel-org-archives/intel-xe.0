@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B4FBC44507
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 03:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 739F2C44507
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 04:08:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2DEB10E3FB;
-	Fri, 17 Jul 2026 03:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C785210E3D9;
+	Fri, 17 Jul 2026 04:08:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QXKRct81";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UH4S2OHt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4498E10E3FB;
- Fri, 17 Jul 2026 03:47:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB24810E3D9
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jul 2026 04:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784260059; x=1815796059;
+ t=1784261333; x=1815797333;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=3jR4z3ESC6MTQAACzKWY99jbmn52Qz6ICbcl8wVyYq4=;
- b=QXKRct81pzpP+KEJdQpIiD1UwEhNXduJnouds2x7Fjglov72iIE6QZOO
- O1Hif+3pCDAaMtEeYFvi5fjsSRj3whF52+yH/BsSUe1iLaiECpojU8e6d
- 46m7iJMFZflUYkgpHIviTiH+TeZ836lpZPQ+CBEfkplMaJICHDa9/K0ru
- D1xMxGhAsw/VkgxojX89jUQVtv3lqubSLP0gQwF3I3nPcElqfkOMG3gHR
- DHEIlPs451OG2Jnj7iPuFGndytoow1s3CjR3pinK2VN88SFcTeQ3JdvL0
- JEh7fThyrooWKC04TjCKUO29fN65nIEsIWMbTjLfoObdGZ4XnEdscy1OT w==;
-X-CSE-ConnectionGUID: 5vRs1SEpSUe4RJmJJIl0lQ==
-X-CSE-MsgGUID: 6JR27V8xSxO1QWIVf7gYDg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="84808255"
-X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="84808255"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2026 20:47:38 -0700
-X-CSE-ConnectionGUID: VwYGnnArTkGaVDaX4aI4BQ==
-X-CSE-MsgGUID: 8VpXe9axSDuFBDERx7nsmQ==
+ bh=BvFcyp9rxuv0z92W9hlHEjy3PX0J3VQNMXfh/wubIK0=;
+ b=UH4S2OHtVQrXzx/khqMyQNu3sBqMfC3RL9iJpR+sNWy5YWw4jQgOaKHm
+ xOm9Sm1i7gNvn5jGn7epqIZs6cygU4sKFi6nWoify54NCZwcZTR1HgN4F
+ oMwkORRsfuiBGVc7cIkI27cdgEFRWsWp2Wrrowoct4X6775cgqHEtL7NP
+ SGzrKeTZ1K3nR6RYhdNiacxdbfqg+aG0EPr88Hg/RBXm4XOj8Vqyw+rKn
+ w9ZsRu+CCk3SeP+MxL1irKOflSnztWV/Cp5CDbslZocsHsGXlqsj83y6A
+ QFX6o3g3C0yAwatN9GXOsCYnDVG5QgeiaTmypaxAXCQyi/rT6laBzi8uk w==;
+X-CSE-ConnectionGUID: 0p/ccEtTRkiGmLmutOvduQ==
+X-CSE-MsgGUID: 3hsBM3CyT/6c/8i0DQb2Mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="85129340"
+X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="85129340"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 21:08:53 -0700
+X-CSE-ConnectionGUID: VdZTAM4ISPGivKKyOjzz/w==
+X-CSE-MsgGUID: EVvB2ZJYSDy/oNx5BjXZzQ==
 X-ExtLoop1: 1
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa003.fm.intel.com with ESMTP; 16 Jul 2026 20:47:37 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Make hdcp2_encrypted and hdcp_encrypted
- mutually exclusive
-Date: Fri, 17 Jul 2026 09:17:34 +0530
-Message-Id: <20260717034734.477591-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.25,168,1779174000"; d="scan'208";a="255538795"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2026 21:08:50 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v2 0/9] Add fan control support
+Date: Fri, 17 Jul 2026 09:47:48 +0530
+Message-Id: <20260717041757.2759084-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,154 +67,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With introduction of force_hdcp14 we can now for HDCP 1.4 by passing
-HDCP 2.2 authentication but In MST, _intel_hdcp_disable() and
-_intel_hdcp2_disable() can return early
-when there are still other streams active on the port (num_streams > 0),
-leaving the per-connector hdcp_encrypted / hdcp2_encrypted flag stale.
-If the same connector is later re-enabled with the other HDCP version
-(e.g. HDCP 1.4 via force_hdcp14 after a prior HDCP 2.2 session on that
-connector) the stale flag from the previous protocol survives.
-intel_hdcp_disable() then picks the wrong branch on the next disable
-causing the following splat.
+This series adds Intel Xe fan control support through the hwmon sysfs ABI,
+including fan maximum reporting, direct PWM control, mode control, and
+programmable fan-curve points.
 
-xe 0000:00:02.0: [drm]
-drm_WARN_ON(!(intel_de_read(display,
-((((&(display)->info.__runtime_info)->ip.ver) >= 12) ? ((const
-i915_reg_t){ .reg = (((0x664B4) + (cpu_transcoder) * ((0x665B4) -
-(0x664B4)))) }) : ((const i915_reg_t){ .reg = ((((const u32 []){
-0x66800, 0x66500, 0x66600, 0x66700, 0x66A00, 0x66900 })[(port)]) +
-(0xB4)) }))) & ((u32)(((int)sizeof(struct
-{_Static_assert(!(__builtin_choose_expr((sizeof(int) == sizeof(*(8 ?
-((void *)((long)((20) >= (sizeof(u32) * 8)) * 0l)) : (int *)8))), (20)
->= (sizeof(u32) * 8), false)), "const_true((20) >= BITS_PER_TYPE(u32))"
-" is true");})) + ((((1ULL))) << (20))))))
-WARNING:
-drivers/gpu/drm/i915/display/intel_hdcp.c:1969 at
-_intel_hdcp2_disable+0x4bf/0x520 [xe], CPU#2: kms_content_pro/101318
-Modules linked in: xe vfio_pci_core vfio_iommu_type1
-vfio iommufd xt_multiport snd_hda_codec_intelhdmi snd_hda_codec_hdmi
-drm_gpuvm drm_gpusvm_helper drm_buddy gpu_sched drm_ttm_helper ttm
-drm_suballoc_helper drm_exec drm_display_helper cec rc_core
-drm_kunit_helpers kunit i2c_algo_bit xt_conntrack xt_MASQUERADE bridge
-stp llc nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4
-xt_addrtype nft_compat x_tables nf_tables xfrm_user xfrm_algo overlay
-cpuid cmdlinepart spi_nor mei_gsc_proxy mtd intel_rapl_msr wmi_bmof
-intel_uncore_frequency intel_uncore_frequency_common
-x86_pkg_temp_thermal intel_powerclamp coretemp snd_intel_dspcfg
-aesni_intel snd_hda_codec gf128mul snd_hda_core snd_hwdep r8169 snd_pcm
-intel_cstate snd_timer i2c_i801 i2c_mux snd spi_intel_pci
-processor_thermal_device_pci realtek video e1000e spi_intel i2c_smbus
-soundcore phy_package processor_thermal_device processor_thermal_wt_hint
-mei_me platform_temperature_control processor_thermal_soc_slider idma64
-mei processor_thermal_rfim
-processor_thermal_rapl intel_ish_ipc
-intel_rapl_common intel_ishtp thunderbolt processor_thermal_wt_req
-processor_thermal_power_floor intel_vpu processor_thermal_mbox
-igen6_edac wmi sunrpc kvm_intel binfmt_misc kvm irqbypass
-int3403_thermal int340x_thermal_zone intel_skl_int3472_tps68470
-tps68470_regulator intel_pmc_core clk_tps68470 acpi_tad int3400_thermal
-intel_hid pmt_telemetry acpi_thermal_rel sparse_keymap pmt_discovery
-pinctrl_intel_platform pmt_class intel_pmc_ssram_telemetry
-intel_pmc_pwrm_telemetry intel_skl_int3472_discrete
-intel_skl_int3472_common acpi_pad intel_vsec nls_iso8859_1 dm_multipath
-msr fuse efi_pstore autofs4 [last unloaded: xe_live_test]
-CPU: 2 UID: 0 PID: 101318 Comm: kms_content_pro Kdump:
-loaded Tainted: G     U       L   N
-7.2.0-rc2-lgci-xe-xe-5389-67aa8ad5c4c59cd1a-debug+ #1 PREEMPT(lazy)
-Tainted: [U]=USER, [L]=SOFTLOCKUP, [N]=TEST
-Hardware name: Intel Corporation Panther Lake Client
-Platform/PTL-UH LP5 T3 RVP1, BIOS PTLPFWI1.R00.3514.D01.2512291130
-12/29/2025
-RIP: 0010:_intel_hdcp2_disable+0x4c9/0x520 [xe]
-Code: 85 ff 74 04 48 8b 7f 08 4c 8b 7f 50 4d 85 ff 74
-23 e8 5b 80 df e0 48 89 c6 48 8d 3d b1 f7 ba ff 48 c7 c1 a0 27 6a a1 4c
-   89 fa <67> 48 0f b9 3a e9 c9 fc ff ff 4c 8b 3f eb d8 e8 33 45 4e e1
-      4c 89
-RSP: 0018:ffffc900027bf738 EFLAGS: 00010246
-RAX: ffffffffa16bd4f1 RBX: ffff8881a1e69000 RCX:
-ffffffffa16a27a0
-RDX: ffff8881c7b1b190 RSI: ffffffffa16bd4f1 RDI:
-ffffffffa100de30
-RBP: ffffc900027bf7b0 R08: 0000000000000000 R09:
-0000000000000000
-R10: 0000000000000000 R11: 0000000000000000 R12:
-ffff88844397a000
-R13: ffff88844397a000 R14: ffff88817f7d2000 R15:
-ffff8881c7b1b190
-FS:  0000774e9299dbc0(0000) GS:ffff8884eb36c000(0000)
-knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000774e94bc7220 CR3: 00000002166c1002 CR4:
-0000000108f72ef0
-PKRU: 55555554
-Call Trace:
- <TASK>
- ? intel_hdcp_update_value+0x7d/0x260 [xe]
- intel_hdcp_disable+0x118/0x130 [xe]
- intel_hdcp_update_pipe+0x175/0x1b0 [xe]
- ? intel_initial_watermarks+0x20/0x60 [xe]
- intel_ddi_update_pipe+0x44/0xb0 [xe]
- intel_pre_update_crtc+0x3bc/0x410 [xe]
- skl_commit_modeset_enables+0x1a7/0x890 [xe]
- ? icl_sagv_pre_plane_update+0x6c/0xf0 [xe]
- intel_atomic_commit_tail+0x114b/0x20a0 [xe]
- ? lock_release+0xd0/0x2a0
- intel_atomic_commit+0x2ff/0x350 [xe]
- ? intel_atomic_commit+0x2ff/0x350 [xe]
- drm_atomic_commit+0xaf/0xf0
- ? __pfx___drm_printfn_info+0x10/0x10
- drm_mode_atomic_ioctl+0xcb5/0xf60
- ? drm_mode_atomic_ioctl+0x8a8/0xf60
- ? drm_mode_atomic_ioctl+0x604/0xf60
- ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
- drm_ioctl_kernel+0xb3/0x120
- drm_ioctl+0x2db/0x5a0
- ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
- ? _raw_spin_unlock_irqrestore+0x51/0x80
- ? __pm_runtime_resume+0x5b/0x90
- ? xe_pm_runtime_get_ioctl+0x61/0x150 [xe]
- xe_drm_ioctl+0x64/0xb0 [xe]
- __x64_sys_ioctl+0xa5/0x100
- x64_sys_call+0x1250/0x26e0
- do_syscall_64+0x103/0x6d0
- ? __task_pid_nr_ns+0xc0/0x290
- ? trace_hardirqs_on_prepare+0xcb/0xf0
- ? do_syscall_64+0x34/0x6d0
- ? fred_entry_from_user+0x92/0x140
- ? trace_hardirqs_on+0x22/0xe0
- ? do_syscall_64+0xb8/0x6d0
- fred_entry_from_user+0x92/0x140
- asm_fred_entrypoint_user+0x41/
+The patch set is ordered from backend enablement to user-visible controls
+and full curve programming support.
 
-Ensure the two flags are mutually exclusive at every successful enable:
-after intel_hdcp_auth() succeeds.
+Series overview
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 2 ++
- 1 file changed, 2 insertions(+)
+drm/xe/hwmon: initialize fan-control backend and runtime state
+Initializes the fan-control backend and runtime state needed to safely
+expose fan controls through hwmon.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 0a076d2ed70a..e56df337dc6d 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1075,6 +1075,7 @@ static int intel_hdcp1_enable(struct intel_connector *connector)
- 		ret = intel_hdcp_auth(connector);
- 		if (!ret) {
- 			hdcp->hdcp_encrypted = true;
-+			hdcp->hdcp2_encrypted = false;
- 			return 0;
- 		}
- 
-@@ -2109,6 +2110,7 @@ static int _intel_hdcp2_enable(struct intel_atomic_state *state,
- 		    hdcp->content_type);
- 
- 	hdcp->hdcp2_encrypted = true;
-+	hdcp->hdcp_encrypted = false;
- 	return 0;
- }
- 
+drm/xe/hwmon: expose fanN_max
+Adds fan maximum RPM reporting through fan1_max, fan2_max, and fan3_max.
+
+drm/xe/hwmon: expose pwm1-3
+Adds direct PWM duty control through pwm1-3 with hwmon-compatible 0..255
+scaling.
+
+drm/xe/hwmon: expose pwm1-3_enable
+Adds PWM mode control through pwm1-3_enable:
+0 = full speed
+1 = manual user control
+2 = firmware automatic control
+
+drm/xe/hwmon: enable fan curve control support
+Adds programmable per-fan curve points through:
+pwm1-3_auto_point1-10_temp
+pwm1-3_auto_point1-10_pwm
+
+ABI updates are included in
+Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon, with implementation
+in drivers/gpu/drm/xe/xe_hwmon.c.
+
+Sysfs nodes and usage
+
+Read fan speed and max RPM:
+cat /sys/class/hwmon/hwmonX/fan1_input
+cat /sys/class/hwmon/hwmonX/fan1_max
+
+Set manual mode and direct PWM:
+echo 1 > /sys/class/hwmon/hwmonX/pwm1_enable
+echo 120 > /sys/class/hwmon/hwmonX/pwm1
+
+Return to firmware automatic control:
+echo 2 > /sys/class/hwmon/hwmonX/pwm1_enable
+
+Program a fan curve:
+echo 1 > /sys/class/hwmon/hwmonX/pwm1_enable
+echo 30000 > /sys/class/hwmon/hwmonX/pwm1_auto_point1_temp
+echo 20 > /sys/class/hwmon/hwmonX/pwm1_auto_point1_pwm
+...
+echo 85000 > /sys/class/hwmon/hwmonX/pwm1_auto_point10_temp
+echo 200 > /sys/class/hwmon/hwmonX/pwm1_auto_point10_pwm
+
+Note:
+
+Package temperature (temp2_input) is used as the temperature reference for
+fan table control.
+For hardware acceptance, fan-curve temperatures must be strictly
+increasing.
+The user fan table is committed to hardware only after the last curve point
+is written.
+Fan curve currently supports only 10 fan curve points.
+
+v2:
+
+ - Added kernel-doc for fan control flow and sysfs behavior.
+ - Added save/restore support for user fan table across suspend/resume.
+ - Added late-binding handling to refresh fan information after late
+   binding completes.
+ - Preserved user-selected PWM mode across late-binding updates (do not
+   force auto mode).
+ - Fan curve points show stock table points when pwmX_enable=2.
+
+Karthik Poosa (9):
+  drm/xe/pcode: Introduce xe_pcode_read_timeout() API
+  drm/xe/hwmon: initialize fan-control backend and table cache
+  drm/xe/hwmon: expose fanN_max
+  drm/xe/hwmon: expose pwm[1-3]
+  drm/xe/hwmon: expose pwm[1-3]_enable
+  drm/xe/hwmon: Enable fan curve control support
+  drm/xe/hwmon: Add kernel-doc for fan control
+  drm/xe/hwmon: preserve fan user table across suspend resume
+  drm/xe/hwmon: Update fan info after late binding
+
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |   44 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 1408 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hwmon.h                 |    6 +
+ drivers/gpu/drm/xe/xe_late_bind_fw.c          |    3 +
+ drivers/gpu/drm/xe/xe_pcode.c                 |   11 +
+ drivers/gpu/drm/xe/xe_pcode.h                 |    1 +
+ drivers/gpu/drm/xe/xe_pcode_api.h             |    9 +
+ drivers/gpu/drm/xe/xe_pm.c                    |    9 +
+ 8 files changed, 1476 insertions(+), 15 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
