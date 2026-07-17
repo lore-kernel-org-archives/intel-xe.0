@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 964D8C44520
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 12:05:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD9E9C44520
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jul 2026 12:05:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5133910E468;
-	Fri, 17 Jul 2026 12:05:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B08910E43D;
+	Fri, 17 Jul 2026 12:05:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="q7amZoey";
+	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Mzt76PfY";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5606010EAB0;
- Fri, 17 Jul 2026 12:05:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82DE910E446;
+ Fri, 17 Jul 2026 12:05:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:From:Reply-To;
- bh=ANM+eSpahzqvwTWIXh7CuP5Wcj+NwCM3k9v5P8p6HW0=; b=q7amZoeyCxXhGpVOm1qliBNxCH
- zdBs/I6Tyv86HAtwUP1EOkCNEd5Uz29JDMBLsUypAKAjTE7V40O8g4O8ODYXFeNHLYp1Jttxge72x
- ya+0ve6eJB0k8gt/6h0xyLxsfVnlPi4Lk4BMeM2lWAUYMKNROJH3M495T3jGGzmrkEZYc9Rhjm8DE
- dzgmLUnX88pckXjgw0t76g8KdEY3RXlcQLY1BUJ9WMFzcKCZ0rIMvs0GaXafs44LfoCxDtTuHeuej
- CNMFClwUH4rLChTy6oazjp0o/Ayw40KpUg1zYGtEfYk689oYKSK0sqEI5fryqzZVr2doT3zXcTVXr
- J1kcu3YA==;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:From:Reply-To; bh=I6Lp4nixbOv2LqJ07br1/AHEIE91d9ecDtIof3D1v7A=; b=
+ Mzt76PfY2W6HAha6HXDfPxdjD1f9orRZO5hxa6xgNNnBNqDPnsGGpmiYxW36A80mz+MMfzIvKb760
+ BQHEThHtRqUB84dTKO8mnXBCLQe8EmvqbwGvyvVrEtGiuczDY2CfS/3DX2FH8BiUeLCqNg5451Q+z
+ 1SBj0aUw7YPcC3wQKGgg4UEk1uSvS9jS+KQjhO1nKKy9ieRxfO/KGvuJuQ/TMBMD4PrX57xZBrqRU
+ kxdYySgiKrye7DzJntGR1JV2Rb+LabjrNtuoB7bzCprwKYpbRgzsgg2ZdaUQbavvrgMuKn/JkvIJf
+ 8cI4Lo+asIMaZ4Dt0rinYxSzHZyDYnFDOA==;
 Received: from 179-125-86-98-dinamico.pombonet.net.br ([179.125.86.98]
  helo=quatroqueijos.lan) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wkhJj-00GPAm-T9; Fri, 17 Jul 2026 14:05:24 +0200
+ id 1wkhJu-00GPAm-OV; Fri, 17 Jul 2026 14:05:35 +0200
 From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 To: igt-dev@lists.freedesktop.org
 Cc: siqueira@igalia.com, Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
@@ -42,14 +41,13 @@ Cc: siqueira@igalia.com, Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
  Vitaly Prosyak <vitaly.prosyak@amd.com>,
  Natalie Vock <natalie.vock@gmx.de>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
-Subject: [PATCH i-g-t v4 3/7] lib/xe: add xe_cgroup_region_name() helper
-Date: Fri, 17 Jul 2026 09:04:43 -0300
-Message-ID: <20260717120447.1837818-4-cascardo@igalia.com>
+Subject: [PATCH i-g-t v4 5/7] lib/amdgpu: add amdgpu_cgroup_region_name
+Date: Fri, 17 Jul 2026 09:04:45 -0300
+Message-ID: <20260717120447.1837818-6-cascardo@igalia.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260717120447.1837818-1-cascardo@igalia.com>
 References: <20260717120447.1837818-1-cascardo@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,91 +63,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+The amdgpu dmem region name uses its PCI address, just like the one from
+Xe, but there is only a single VRAM region.
 
-Add xe_cgroup_region_name(fd, region) which constructs the dmem cgroup
-region path for a given xe memory region.  The returned string has the
-form "drm/<pci-slot>/<region>" (e.g. "drm/0000:03:00.0/vram0"),
-matching the name registered by the kernel via drmm_cgroup_register_region().
-
-Only VRAM regions are tracked by the dmem controller; system and stolen
-memory regions return NULL.
-
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 ---
- lib/xe/xe_query.c | 32 ++++++++++++++++++++++++++++++++
- lib/xe/xe_query.h |  2 ++
- 2 files changed, 34 insertions(+)
+ lib/amdgpu/amd_memory.c | 25 +++++++++++++++++++++++++
+ lib/amdgpu/amd_memory.h |  2 ++
+ 2 files changed, 27 insertions(+)
 
-diff --git a/lib/xe/xe_query.c b/lib/xe/xe_query.c
-index 68e60ddc75a2..e2b25be21140 100644
---- a/lib/xe/xe_query.c
-+++ b/lib/xe/xe_query.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <fcntl.h>
+diff --git a/lib/amdgpu/amd_memory.c b/lib/amdgpu/amd_memory.c
+index 12fe23c65ab2..2da4a8a4baee 100644
+--- a/lib/amdgpu/amd_memory.c
++++ b/lib/amdgpu/amd_memory.c
+@@ -30,9 +30,11 @@
+ #include <amdgpu_drm.h>
+ #include <stdio.h>
+ #include <string.h>
 +#include <limits.h>
- #include <stdlib.h>
- #include <pthread.h>
- 
-@@ -21,6 +22,7 @@
- 
- #include "drmtest.h"
- #include "igt_debugfs.h"
+ #include <unistd.h>
+ #include <sys/mman.h>
+ #include <inttypes.h>
 +#include "igt_device.h"
- #include "ioctl_wrappers.h"
- #include "igt_map.h"
- #include "intel_common.h"
-@@ -1304,6 +1306,36 @@ int xe_query_eu_thread_count(int fd, int gt)
- 		xe_hwconfig_lookup_value_u32(fd, INTEL_HWCONFIG_NUM_THREADS_PER_EU);
+ 
+ /**
+  *
+@@ -679,6 +681,29 @@ bool virtual_free_memory(void *address, unsigned int size)
+ 	}
  }
  
 +/**
-+ * xe_cgroup_region_name() - Build the dmem cgroup region name for an xe memory region.
-+ * @fd: xe device fd.
-+ * @region: Region mask (as used by xe_mem_region(), xe_region_name(), etc.).
++ * amdgpu_cgroup_region_name() - Build the dmem cgroup region name for an amdgpu.
++ * @fd: amdgpu device fd.
 + *
-+ * Constructs the full dmem cgroup region path for @region on the device
++ * Constructs the full dmem cgroup region path for VRAM on the device
 + * identified by @fd.  The returned string has the form
-+ * ``drm/<pci-slot>/<region>`` (e.g. ``drm/0000:03:00.0/vram0``), matching
++ * ``drm/<pci-slot>/vram`` (e.g. ``drm/0000:03:00.0/vram``), matching
 + * the name registered by the kernel driver via drmm_cgroup_register_region().
-+ *
-+ * Only VRAM regions are registered with the dmem controller; passing a
-+ * system-memory region returns %NULL.
 + *
 + * Return: A newly allocated string that the caller must free(), or %NULL if
 + * @region is not tracked by the dmem cgroup controller.
 + */
-+char *xe_cgroup_region_name(int fd, uint64_t region)
++char *amdgpu_cgroup_region_name(int fd)
 +{
 +	char pci_slot[NAME_MAX];
 +	char *name;
 +
-+	if (xe_region_class(fd, region) != DRM_XE_MEM_REGION_CLASS_VRAM)
-+		return NULL;
-+
 +	igt_device_get_pci_slot_name(fd, pci_slot);
 +
-+	igt_assert(asprintf(&name, "drm/%s/%s", pci_slot, xe_region_name(region)) > 0);
++	igt_assert(asprintf(&name, "drm/%s/vram", pci_slot) > 0);
 +	return name;
 +}
 +
- igt_constructor
- {
- 	xe_device_cache_init();
-diff --git a/lib/xe/xe_query.h b/lib/xe/xe_query.h
-index 59330d80fd1b..a6ef9cab9aa1 100644
---- a/lib/xe/xe_query.h
-+++ b/lib/xe/xe_query.h
-@@ -206,4 +206,6 @@ void xe_device_put(int fd);
- int xe_query_eu_count(int fd, int gt);
- int xe_query_eu_thread_count(int fd, int gt);
+ /**
+  * Wait for specific value in memory with timeout
+  */
+diff --git a/lib/amdgpu/amd_memory.h b/lib/amdgpu/amd_memory.h
+index e26c85bc4b0a..de169e580c1b 100644
+--- a/lib/amdgpu/amd_memory.h
++++ b/lib/amdgpu/amd_memory.h
+@@ -105,6 +105,8 @@ void
+ bool
+ virtual_free_memory(void *address, unsigned int size);
  
-+char *xe_cgroup_region_name(int fd, uint64_t region);
++char *amdgpu_cgroup_region_name(int fd);
 +
- #endif	/* XE_QUERY_H */
+ bool
+ wait_on_value(unsigned int *ptr, unsigned int expected);
+ #endif
 -- 
 2.47.3
 
