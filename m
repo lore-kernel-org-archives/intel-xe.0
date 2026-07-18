@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B020C4451B
-	for <intel-xe@archiver.kernel.org>; Sat, 18 Jul 2026 10:52:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F8FC44525
+	for <intel-xe@archiver.kernel.org>; Sat, 18 Jul 2026 10:52:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4413B10E56A;
-	Sat, 18 Jul 2026 10:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3717E10E56F;
+	Sat, 18 Jul 2026 10:52:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="nlTTYwUB";
+	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="gmjGUTKj";
 	dkim-atps=neutral
 Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6915B10E32E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CA9710E561;
  Sat, 18 Jul 2026 10:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
  s=mail; t=1784371929;
- bh=IrG2R2T6jgTkwGB3VBs5ea6qqLRhQKQkhzvLQ1gG5Zo=;
- h=From:To:Cc:Subject:Date:From;
- b=nlTTYwUBotgDIU1/SJvSjV0mK47LDNY9m6bWRXuOBj5UE4lrcwDd0pFek5GKgZJFE
- WwnkFCgP5umDQ50CzugAkbQhAkRzEE8LzNUE6XkxeuM0ZCD9fywzwwf116GOpz8syi
- ahgAODmomIoDWe5vv2V9PTurFY61PDtQGeIiEqWf6A2rxaLrJWSSAtjJavD0HBMFfx
- /EnFTqdRHLigTrfM4LKLsF2IMazCbFNUUaNjdHE3dLVq2BwbfS1mEsJgIvOzbW5Rop
- UM0ZyWGuqXnmWAgo3fIX9WD/cVOFSjjFe7z3I3CX+1C3rfe1qiJwUoUNObfgP7XQVQ
- WeO+vjAItHBhA==
+ bh=6Iohovlj+/8MKjUXT1wjG9WzkydLBV9N63VsEKDeHdY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=gmjGUTKjGU4hmujL8nbXPpRzVC8qSvJOTMcYGhhfk0COBO85FRyaAClmUdSVB6O2v
+ KQqulfxpyrxMQ/TDfzMkN5pDg0EFc3RwuWIzl2qj/43lBeiahfenugzHdS7uz1Pd7M
+ ErJQRHs03WpHctHSAcyhqQs6mnYRlKsooEF+cFnV0ToTxhnqf8qmuEHoXDhldISGiB
+ RmUEbU/2jE7/SWeLkXP08jyQyzH2oyKpkM3KiIMKhi+yms1g8g7ijI12yfG0Nq4WgD
+ fE4f1MLPbKk5ZJknp56NZuBkThMkWT+8RZ3f7TdS+CnHp1m6eepFbDt3Y1yotaBysz
+ aGgbfxjTl3eJA==
 Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id 752AF18C15;
+ by mail.sms-medipool.de (Postfix) with ESMTPS id 7859418C16;
  Sat, 18 Jul 2026 12:52:09 +0200 (CEST)
 Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
  by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
@@ -41,11 +41,13 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: [PATCH v2 0/2] drm/i915/dp: Fix FRL rate selection and deep color for
- HDMI sinks behind FRL PCONs
-Date: Sat, 18 Jul 2026 12:52:05 +0200
-Message-ID: <20260718105207.5565-1-alexander.kaplan@sms-medipool.de>
+Subject: [PATCH v2 1/2] drm/i915/dp: Prefer DSC over 6 bpc uncompressed output
+ for HDMI sinks
+Date: Sat, 18 Jul 2026 12:52:06 +0200
+Message-ID: <20260718105207.5565-2-alexander.kaplan@sms-medipool.de>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260718105207.5565-1-alexander.kaplan@sms-medipool.de>
+References: <20260718105207.5565-1-alexander.kaplan@sms-medipool.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -63,59 +65,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Sorry for the late v2, work kept me away from this longer than
-planned.
+For modes which fit through the link uncompressed only with a 6 bpc
+pipe BPP, the link config currently selects 6 bpc with dithering even
+if the sink supports DSC.
 
-HDMI 2.1 sinks behind a DP to HDMI 2.1 PCON currently train the FRL
-link below what the hardware supports, because the sink's DSC max FRL
-rate caps the trained FRL rate even when the PCON has no DSC encoder
-and thus never produces compressed transport.
-Patch 2 applies the sink's DSC max FRL rate only when the PCON
-actually has a DSC 1.2 encoder (the gate intel_dp_pcon_dsc_configure()
-already uses).
-On a Panther Lake NUC (xe) with a Synaptics VMM7100 PCON and an LG
-OLED G4 (Max_FRL_Rate 48 Gbps, DSC_Max_FRL_Rate 24 Gbps) this trains
-the FRL link at 48 instead of 24 Gbps, matching Windows/macOS on the
-same hardware.
+For HDMI sinks behind a DP to HDMI protocol converter this is the
+wrong preference: HDMI knows no 6 bpc transport format, so the
+converter has to expand the dithered 6 bpc stream back to 8 bpc for
+the HDMI link anyway, and DSC with an at least 8 bpc input provides
+a better output quality than that.
+Prefer DSC, following the pattern commit ba49a4643cf5 ("drm/i915/dp:
+Set min_bpp limit to 30 in HDR mode") uses for HDR: keep the
+uncompressed minimum pipe BPP at 8 bpc if the sink supports DSC,
+making the uncompressed link config fail for such modes and the mode
+fall back to DSC.
+As there, if the DSC computation fails, the mode falls back to YCbCr
+4:2:0 where supported, or gets rejected.
 
-Patch 1 makes the link config prefer DSC over a dithered 6 bpc
-uncompressed output for HDMI sinks.
-Modes which fit an FRL link uncompressed only with 6 bpc (e.g. 4k120
-on a 4 lane HBR3 link) would otherwise select an RGB 6 bpc output,
-which the tested Synaptics PCONs cannot display at such pixel clocks
-(black screen), and which HDMI cannot carry anyway.
+Besides the output quality, some converters can't even display a
+6 bpc stream at high pixel clocks.
+Synaptics VMM PCON based DP to HDMI 2.1 adapters from two device
+families (branch device IDs SYNAq and SYNAa) output corrupted FRL
+timings for an uncompressed RGB 6 bpc 4k120 (1188 MHz) stream,
+resulting in a black screen, while the same mode works with DSC
+(12 bpc input) and 6 bpc works at lower pixel clocks.
+Windows and macOS drive 4k120 on these devices only via DSC.
 
-v1 patch 3 ("drm/i915/dp: Check FRL bandwidth limits in the HDMI bpc
-computation") is dropped from this series.
-Ankit's reworked PCON series covers that part of the problem, and
-testing on this hardware was offered for it.
+A lower bpc limit explicitly requested via the max bpc connector
+property is still honored.
+This keeps the current uAPI behavior (exercised by IGT kms_dither)
+and provides an escape hatch for sinks with a broken DSC
+implementation.
+DP and eDP sinks, and HDMI sinks without DSC support, are not
+affected and keep falling back to 6 bpc.
 
-One more thing: patch 1 touches intel_dp_compute_config_limits(),
-where the first part of Imre's link caps rework has landed in the
-meantime, with the rest of the rework still in flight.
-I rebased on top of it and see no conflict, but I don't want to get
-in the way of that rework.
-So it's up to you whether to take this now or let it wait for Imre's
-changes and rebase it on top, either is fine with me.
-Sorry Imre if this crosses paths with your series.
+Tested on PTL (xe) with the above PCONs and an LG OLED G4.
 
-Changes in v2:
-- Patch 1: apply the limit only to HDMI sinks behind a DFP
-  (intel_dp_has_hdmi_sink()), leaving DP and eDP link config policy
-  untouched, subject adjusted accordingly. (Ankit)
-- Patch 2: no code changes, picked up Ankit's Reviewed-by.
-- Dropped v1 patch 3 in favor of Ankit's reworked PCON series.
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+---
+v2: Apply the limit only to HDMI sinks behind a DFP
+    (intel_dp_has_hdmi_sink()), leaving DP and eDP link config
+    policy untouched, and adjust the subject accordingly. (Ankit)
 
-v1: https://lore.kernel.org/r/20260610174413.5881-1-alexander.kaplan@sms-medipool.de
+ drivers/gpu/drm/i915/display/intel_dp.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-Alexander Kaplan (2):
-  drm/i915/dp: Prefer DSC over 6 bpc uncompressed output for HDMI sinks
-  drm/i915/dp: Ignore the sink's DSC max FRL rate without a PCON DSC
-    encoder
-
- drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
-
---
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b2464a3dac056..7e860f62d5554 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2671,6 +2671,20 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+ 								     crtc_state)));
+ 	}
+ 
++	/*
++	 * HDMI knows no 6 bpc transport format, and DSC with an at least
++	 * 8 bpc input provides a better output quality than a dithered
++	 * 6 bpc output. Prefer it for HDMI sinks, by failing the
++	 * uncompressed link config for modes which would fit only with a
++	 * 6 bpc pipe BPP. Honor a lower limit set via the max bpc
++	 * connector property.
++	 */
++	if (!dsc && intel_dp_has_hdmi_sink(intel_dp) &&
++	    intel_dp_supports_dsc(intel_dp, connector, crtc_state) &&
++	    limits->pipe.max_bpp >= 24 &&
++	    crtc_state->pipe_bpp >= 24)
++		limits->pipe.min_bpp = max(limits->pipe.min_bpp, 24);
++
+ 	if (limits->pipe.min_bpp <= 0 ||
+ 	    limits->pipe.min_bpp > limits->pipe.max_bpp) {
+ 		drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s] Invalid pipe bpp range: %d-%d\n",
+-- 
 2.54.0
 
