@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF1E3C4451C
-	for <intel-xe@archiver.kernel.org>; Sat, 18 Jul 2026 10:52:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B020C4451B
+	for <intel-xe@archiver.kernel.org>; Sat, 18 Jul 2026 10:52:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C3D10E32E;
-	Sat, 18 Jul 2026 10:52:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4413B10E56A;
+	Sat, 18 Jul 2026 10:52:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="b/PJ/HTk";
+	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="nlTTYwUB";
 	dkim-atps=neutral
 Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7093310E56A;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6915B10E32E;
  Sat, 18 Jul 2026 10:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
  s=mail; t=1784371929;
- bh=3IuUFL+OtZXh1hA/9FYdPeYsr2TUteKbwTUskdSrVEY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=b/PJ/HTkwjgaDuykQB332Pz/CTrG/K9ZIavYVx9fNQHa424sjtmBQ1m4j9E3yDQbn
- 0+g9TNVTNtWNXe9L/6QGEHuTuE7F2+9SeD7hQd3XrupMVCZ+/q4P9s+QbZqHo+Mov7
- EKrwZAHCLw3yeNWCVnkk5u84ne/uLUv4gYuiUFa1xinvkKmgrH2iOA3sgWa2iWWFaB
- RahOXIN3j/UZf9qADSXKYPkLsq5EWVhp5uCn8EbMFShw4q16pLquxamAzruTbYU/By
- zoNZ80C+PxyXzuqZfpA4zrflxgagrljGQb/Jx8/Ss/Cvy+Fluh5uFu8MRFdZtNu4LM
- CTvJKz6gYCS3Q==
+ bh=IrG2R2T6jgTkwGB3VBs5ea6qqLRhQKQkhzvLQ1gG5Zo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=nlTTYwUBotgDIU1/SJvSjV0mK47LDNY9m6bWRXuOBj5UE4lrcwDd0pFek5GKgZJFE
+ WwnkFCgP5umDQ50CzugAkbQhAkRzEE8LzNUE6XkxeuM0ZCD9fywzwwf116GOpz8syi
+ ahgAODmomIoDWe5vv2V9PTurFY61PDtQGeIiEqWf6A2rxaLrJWSSAtjJavD0HBMFfx
+ /EnFTqdRHLigTrfM4LKLsF2IMazCbFNUUaNjdHE3dLVq2BwbfS1mEsJgIvOzbW5Rop
+ UM0ZyWGuqXnmWAgo3fIX9WD/cVOFSjjFe7z3I3CX+1C3rfe1qiJwUoUNObfgP7XQVQ
+ WeO+vjAItHBhA==
 Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id 79BC318C9E;
+ by mail.sms-medipool.de (Postfix) with ESMTPS id 752AF18C15;
  Sat, 18 Jul 2026 12:52:09 +0200 (CEST)
 Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
  by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
@@ -41,13 +41,11 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: [PATCH v2 2/2] drm/i915/dp: Ignore the sink's DSC max FRL rate
- without a PCON DSC encoder
-Date: Sat, 18 Jul 2026 12:52:07 +0200
-Message-ID: <20260718105207.5565-3-alexander.kaplan@sms-medipool.de>
+Subject: [PATCH v2 0/2] drm/i915/dp: Fix FRL rate selection and deep color for
+ HDMI sinks behind FRL PCONs
+Date: Sat, 18 Jul 2026 12:52:05 +0200
+Message-ID: <20260718105207.5565-1-alexander.kaplan@sms-medipool.de>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260718105207.5565-1-alexander.kaplan@sms-medipool.de>
-References: <20260718105207.5565-1-alexander.kaplan@sms-medipool.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,67 +63,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_dp_hdmi_sink_max_frl() limits the sink's max FRL rate by its
-DSC max FRL rate whenever the sink supports DSC 1.2.
-However, the DSC max FRL rate (HF-VSDB DSC_Max_FRL_Rate) only applies
-to compressed video transport, which requires a DSC 1.2 encoder in
-the PCON (configured via intel_dp_pcon_dsc_configure()).
-Without such an encoder the HDMI link always carries uncompressed
-video, for which the regular Max_FRL_Rate is the correct limit.
+Sorry for the late v2, work kept me away from this longer than
+planned.
 
-Applying the DSC limit unconditionally trains the FRL link at a lower
-rate than both the PCON and the sink support.
-E.g. an LG OLED G4 (Max_FRL_Rate 48 Gbps, DSC_Max_FRL_Rate 24 Gbps)
-behind a Synaptics VMM7100 PCON (PCON max FRL bw 48 Gbps, no DSC
-encoder):
+HDMI 2.1 sinks behind a DP to HDMI 2.1 PCON currently train the FRL
+link below what the hardware supports, because the sink's DSC max FRL
+rate caps the trained FRL rate even when the PCON has no DSC encoder
+and thus never produces compressed transport.
+Patch 2 applies the sink's DSC max FRL rate only when the PCON
+actually has a DSC 1.2 encoder (the gate intel_dp_pcon_dsc_configure()
+already uses).
+On a Panther Lake NUC (xe) with a Synaptics VMM7100 PCON and an LG
+OLED G4 (Max_FRL_Rate 48 Gbps, DSC_Max_FRL_Rate 24 Gbps) this trains
+the FRL link at 48 instead of 24 Gbps, matching Windows/macOS on the
+same hardware.
 
-  Sink max rate from EDID = 24 Gbps
-  FRL trained with : 24 Gbps
+Patch 1 makes the link config prefer DSC over a dithered 6 bpc
+uncompressed output for HDMI sinks.
+Modes which fit an FRL link uncompressed only with 6 bpc (e.g. 4k120
+on a 4 lane HBR3 link) would otherwise select an RGB 6 bpc output,
+which the tested Synaptics PCONs cannot display at such pixel clocks
+(black screen), and which HDMI cannot carry anyway.
 
-while Windows/macOS train the same hardware at 40/48 Gbps.
-The too low FRL rate needlessly constrains the formats available to
-the sink.
+v1 patch 3 ("drm/i915/dp: Check FRL bandwidth limits in the HDMI bpc
+computation") is dropped from this series.
+Ankit's reworked PCON series covers that part of the problem, and
+testing on this hardware was offered for it.
 
-Only apply the sink's DSC max FRL rate if the PCON has a DSC 1.2
-encoder, matching the gate in intel_dp_pcon_dsc_configure().
-PCONs with a DSC encoder keep the current conservative behavior,
-since the link is trained once and compressed transport may be used
-for any subsequent mode.
-With this the setup above trains at 48 Gbps.
+One more thing: patch 1 touches intel_dp_compute_config_limits(),
+where the first part of Imre's link caps rework has landed in the
+meantime, with the rest of the rework still in flight.
+I rebased on top of it and see no conflict, but I don't want to get
+in the way of that rework.
+So it's up to you whether to take this now or let it wait for Imre's
+changes and rebase it on top, either is fine with me.
+Sorry Imre if this crosses paths with your series.
 
-Tested on PTL (xe) with the above PCON/sink combo.
+Changes in v2:
+- Patch 1: apply the limit only to HDMI sinks behind a DFP
+  (intel_dp_has_hdmi_sink()), leaving DP and eDP link config policy
+  untouched, subject adjusted accordingly. (Ankit)
+- Patch 2: no code changes, picked up Ankit's Reviewed-by.
+- Dropped v1 patch 3 in favor of Ankit's reworked PCON series.
 
-Fixes: 10fec80b48c5 ("drm/i915/display: Configure PCON for DSC1.1 to DSC1.2 encoding")
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
----
-v2: No code changes. Picked up Ankit's Reviewed-by.
+v1: https://lore.kernel.org/r/20260610174413.5881-1-alexander.kaplan@sms-medipool.de
 
- drivers/gpu/drm/i915/display/intel_dp.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Alexander Kaplan (2):
+  drm/i915/dp: Prefer DSC over 6 bpc uncompressed output for HDMI sinks
+  drm/i915/dp: Ignore the sink's DSC max FRL rate without a PCON DSC
+    encoder
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7e860f62d5554..f21abb174c4a6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4100,7 +4100,14 @@ static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp)
- 	rate_per_lane = info->hdmi.max_frl_rate_per_lane;
- 	max_frl_rate = max_lanes * rate_per_lane;
- 
--	if (info->hdmi.dsc_cap.v_1p2) {
-+	/*
-+	 * The sink's DSC max FRL rate only applies to compressed video
-+	 * transport, which requires a DSC 1.2 encoder in the PCON. Without
-+	 * one the HDMI link always carries uncompressed video, for which
-+	 * the regular max FRL rate is the limit.
-+	 */
-+	if (drm_dp_pcon_enc_is_dsc_1_2(intel_dp->pcon_dsc_dpcd) &&
-+	    info->hdmi.dsc_cap.v_1p2) {
- 		max_dsc_lanes = info->hdmi.dsc_cap.max_lanes;
- 		dsc_rate_per_lane = info->hdmi.dsc_cap.max_frl_rate_per_lane;
- 		if (max_dsc_lanes && dsc_rate_per_lane)
--- 
+ drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
+
+--
 2.54.0
 
