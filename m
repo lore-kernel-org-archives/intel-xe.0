@@ -4,27 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48543C44520
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 16:13:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55B86C44520
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 16:14:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA62C10E9D4;
-	Mon, 20 Jul 2026 16:13:11 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1682210E9D3;
- Mon, 20 Jul 2026 16:13:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1891B10E9D6;
+	Mon, 20 Jul 2026 16:14:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="kdaFSXdN";
+	dkim-atps=neutral
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63FB110E9D3;
+ Mon, 20 Jul 2026 16:14:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1784564039;
+ bh=na2MBXDhivjrPNMqdY1zxNvHRn1HAnJpbTmZOARnBRE=;
+ h=From:To:Cc:Subject:Date:From;
+ b=kdaFSXdNFNHwfjuClV8ibKn5SRR6nN5FcyBqgDNCMI1JUMisDf1VZBiEkGw6apQig
+ AqLaSWsfomjJhAOHVkbeeVefpq2opgMUU+dMzg6dPLPPpEU9kvMa5TQsdie7UXChxr
+ xeOYLTKO2vVilZE2MYr5UQeKh+2rwnwEX5D/P2R0ybhhjWpJ0QK3gzQNUtAJUARPwj
+ eiz8FDLozR3WKt9K2+7g+AAhiXg7q9SlMWhcGsTkcAoq1Os1c4leaQWPZDCnT1yV8p
+ K75dBGUFGn7lo6kUuaw+/EoPyH6WPrLkfbVX4ejfIwKLDnIu3P3QFpZmq9VMkTvVT9
+ K4FTbCNm7HR3w==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH 00/11] drm/xe/display: Transparant fallback from stolen to
+ sysmem.
+Date: Mon, 20 Jul 2026 18:14:52 +0200
+Message-ID: <20260720161451.384968-13-dev@lankhorst.se>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_More_BIOS_FB_ta?=
- =?utf-8?q?keover_fixes_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 20 Jul 2026 16:13:11 -0000
-Message-ID: <178456399108.207232.5569240962268885567@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260720160805.380356-8-dev@lankhorst.se>
-In-Reply-To: <20260720160805.380356-8-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,50 +48,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Copy the initial framebuffer from the stolen region to system memory
+when deciding to keep the device's framebuffer, instead of re-using the
+stolen memory.
 
-Series: drm/xe: More BIOS FB takeover fixes (rev3)
-URL   : https://patchwork.freedesktop.org/series/170430/
-State : warning
+Patch 1-6 are part of a different series and should be reviewed there.
+The HACK is a test to always force the copying to system memory path.
 
-== Summary ==
+Maarten Lankhorst (10):
+  drm/xe/ggtt: Add xe_ggtt_reserve_area
+  drm/xe/ggtt: Add xe_ggtt_node_remove_noclear
+  drm/xe/display: Reserve the original GGTT space before creating a bo
+  drm/xe/display: Use the correct calculation for phys_base on
+    integrated
+  drm/xe/display: Remove duplicated code
+  drm/xe/ggtt: Remove xe_ggtt_insert_bo_at
+  drm/xe/display: Avoid using stolen memory for framebuffer when media
+    gt exists.
+  drm/xe/migrate: Support copying between sysmem and stolen
+  drm/xe: Raise gt frequency slightly earlier.
+  HACK: Always fallback
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 1f6ce6ab515db6913c5591ca25adae4849bcd971
-Author: Maarten Lankhorst <dev@lankhorst.se>
-Date:   Mon Jul 20 18:08:12 2026 +0200
+Ville Syrjälä (1):
+  drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
 
-    drm/xe/ggtt: Remove xe_ggtt_insert_bo_at
-    
-    This code was created specifically for the display handover,
-    and can be removed now that we temporarily reserve the area
-    of GGTT that contains the original framebuffer contents.
-    
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch a51267f4154e42c8bb10b2c6503eed320cfa861e drm-intel
-4eaa872635a3 drm/xe/ggtt: Add xe_ggtt_reserve_area
-292fd143de34 drm/xe/ggtt: Add xe_ggtt_node_remove_noclear
-5ab4f244cedb drm/xe/display: Reserve the original GGTT space before creating a bo
-0db3cd64de40 drm/xe/display: Use the correct calculation for phys_base on integrated
--:15: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: or Link: with a URL to the report
-#15: 
-Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+ drivers/gpu/drm/i915/display/intel_bo.c       |   7 ++
+ drivers/gpu/drm/i915/display/intel_bo.h       |   1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  68 +++++++++--
+ drivers/gpu/drm/i915/i915_bo.c                |  14 ++-
+ drivers/gpu/drm/i915/i915_bo.h                |   6 -
+ drivers/gpu/drm/i915/i915_initial_plane.c     |  14 ---
+ drivers/gpu/drm/xe/display/xe_display_bo.c    |  66 +++++++++-
+ drivers/gpu/drm/xe/display/xe_display_bo.h    |   6 -
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |  49 +++-----
+ drivers/gpu/drm/xe/xe_bo.c                    |   8 +-
+ drivers/gpu/drm/xe/xe_device.c                |   6 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 115 ++++++++++++++----
+ drivers/gpu/drm/xe/xe_ggtt.h                  |   5 +-
+ drivers/gpu/drm/xe/xe_migrate.c               |  29 +++--
+ include/drm/intel/display_parent_interface.h  |   1 +
+ 15 files changed, 278 insertions(+), 117 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-632f91d0f905 drm/xe/display: Remove duplicated code
-1f6ce6ab515d drm/xe/ggtt: Remove xe_ggtt_insert_bo_at
-
+-- 
+2.53.0
 
