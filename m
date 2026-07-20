@@ -4,61 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11022C4452A
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 14:39:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25218C4452A
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 14:44:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C176710E96D;
-	Mon, 20 Jul 2026 14:39:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D786E89209;
+	Mon, 20 Jul 2026 14:44:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DzPX2qXP";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="X0jRBY2W";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1744910E96D
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Jul 2026 14:39:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784558392; x=1816094392;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=ERcVWTh8u9o83ermIqh457u2W75jTftbCkgASClFX0c=;
- b=DzPX2qXPlwIaLeBiJAXeX5p1/ZmznNqjpBBNw39rKLuB0sCd1QpHcbBM
- H5An9p1Nty/EaFXphYyxPHXUfzk4Hso8yjQjVm9nNR4t61sGXDtS27apF
- GgIONaYKjkcDAECAEl5xhnUGtpwAmhR8VKBCfpY1t/TmHw0VBuN9D3DtX
- an80r6aqylNItdWC07bWqTeuS2uhV5Xm/+HT0OdbJwFgjmCNyrSvvMej5
- dOyZFb28uhCkFxFnegtlyxsE20r5j/iWfWNkxgpUBehoV5BKxvKFew20E
- vxLt2u6cvytYs+syJ4Wz5cKorB2zCeKncuMyc2Gvr15cSSw/+WNCnf2h2 Q==;
-X-CSE-ConnectionGUID: Qq4yxFR/TDC/2Jt4Z2ghrQ==
-X-CSE-MsgGUID: DnvfSFy7QiaXfQdbSgKlBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11852"; a="95733639"
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="95733639"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2026 07:39:51 -0700
-X-CSE-ConnectionGUID: 9FdVvYaSSbumN9sdCwVEGQ==
-X-CSE-MsgGUID: FpRMxYirStW9LavLHVnbMg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="295676997"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.155])
- ([10.245.244.155])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2026 07:39:49 -0700
-Message-ID: <d3add974-a35f-44de-973f-821f4ca6e167@intel.com>
-Date: Mon, 20 Jul 2026 15:39:46 +0100
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2635189209
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Jul 2026 14:44:38 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 8FECF60A60;
+ Mon, 20 Jul 2026 14:44:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C929A1F000E9;
+ Mon, 20 Jul 2026 14:44:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1784558677;
+ bh=bAMZIbk8NXMTspV6rsW+vBsTCk4YtPf/HNG/N7qN9aQ=;
+ h=Date:From:To:Cc:Subject;
+ b=X0jRBY2W1bHumTdeooPStsX6Hu1NsUGC8AiH1UcS5R3iaL7Rwull/pOpV1+KUXcdJ
+ FgCCnaqz5JP6WAQm7HKiZtpN6kyCfu/bpmXZ6XnKlao34jSExCN8MxNzKjtt2aWj25
+ aWZEt+kt1MVB5GjuL4mIt4oKCJOZf1DB7dQvLxdol3HVZ+f7pT1Eva+dXFP8DOy2mF
+ 7hyk0NrDXzgmhBCKl8b7n4G+TJgfaiiKb1QjlDYiByd/wcXHV50cCDJZlTSH5EVRhM
+ /VsytETfkIQ1Mkn+44lk5gEhsP5kSruHwvsU8FAtsyGE/VrXvKEmhZBL7A8LZJnwfa
+ 1FKDe2Sfp/WMQ==
+Date: Mon, 20 Jul 2026 15:44:33 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ DRM XE List <intel-xe@lists.freedesktop.org>
+Cc: Arvind Yadav <arvind.yadav@intel.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: linux-next: manual merge of the drm-xe tree with the origin tree
+Message-ID: <al40UQ7765u9mhHU@sirena.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: convert PCI barrier mmap to use xe_mmio_gem
-From: Matthew Auld <matthew.auld@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Ilia Levi <ilia.levi@intel.com>
-References: <20260717112455.840392-2-matthew.auld@intel.com>
- <alqv2b+dt/KaxEKi@gsse-cloud1.jf.intel.com>
- <52742ec7-d151-4bf4-8825-12d281cca959@intel.com>
-Content-Language: en-GB
-In-Reply-To: <52742ec7-d151-4bf4-8825-12d281cca959@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="xRlcgmWHH8fJP0SD"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,299 +59,531 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 20/07/2026 10:02, Matthew Auld wrote:
-> On 17/07/2026 23:42, Matthew Brost wrote:
->> On Fri, Jul 17, 2026 at 12:24:56PM +0100, Matthew Auld wrote:
->>> Convert the PCI barrier mmap over to use xe_mmio_gem, which is a good
->>> match for this functionality. This has the following advantages:
->>>
->>>   1) Removes a bunch of code.
->>>   2) Replaces the fragile hard coded fake offset design.
->>>   3) Adds the first user for xe_mmio_gem, which is preferred over nuking
->>>      it.
->>>
->>> There shouldn't be any big functional change here. From userspace pov,
->>> they still query the fake offset like before, just that now it is no
->>> longer hard coded in the KMD.
->>>
->>> TODO: We still need to fixup all existing mmio_gem issues.
->>
->> This patch itself looks sane enough but Sashiko did point out several
->> valid issues with mmio_gem. What is the plan here? I would think while
->> we are here clean those up too as part of this series?
->>
->> The big ones I think are:
->>
->> - Leaking a VMA node
->> - Honor GEM refcount (i.e., xe_mmio_gem_destroy should be a put)
->> - Add some permission control to mmio_gem
-> 
-> Yes, I think pretty much all of those are known issues:
-> 
-> https://patchwork.freedesktop.org/series/167217/
-> 
-> Except for two new mmio_gem flagged issues. I will add a comment for those.
 
-False alarm, those look to already be handled in that series.
+--xRlcgmWHH8fJP0SD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Ilia, maybe we just bolt this patch to the end of your series, when you 
-> send the next revision?
-> 
->>
->> Matt
->>
->>>
->>> Assisted-by: Gemini:gemini-3.1-pro-preview
->>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Ilia Levi <ilia.levi@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_bo.c           |  24 +++++--
->>>   drivers/gpu/drm/xe/xe_bo.h           |   1 -
->>>   drivers/gpu/drm/xe/xe_device.c       | 102 +++------------------------
->>>   drivers/gpu/drm/xe/xe_device_types.h |  12 ++++
->>>   4 files changed, 39 insertions(+), 100 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>> index c266fa6bade1..16ddbdf7628f 100644
->>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>> @@ -28,6 +28,7 @@
->>>   #include "xe_ggtt.h"
->>>   #include "xe_map.h"
->>>   #include "xe_migrate.h"
->>> +#include "xe_mmio_gem.h"
->>>   #include "xe_pat.h"
->>>   #include "xe_pm.h"
->>>   #include "xe_preempt_fence.h"
->>> @@ -3503,18 +3504,31 @@ int xe_gem_mmap_offset_ioctl(struct 
->>> drm_device *dev, void *data,
->>>           return -EINVAL;
->>>       if (args->flags & DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER) {
->>> +        struct xe_file *xef = file->driver_priv;
->>> +
->>>           if (XE_IOCTL_DBG(xe, !IS_DGFX(xe)))
->>>               return -EINVAL;
->>>           if (XE_IOCTL_DBG(xe, args->handle))
->>>               return -EINVAL;
->>> -        if (XE_IOCTL_DBG(xe, PAGE_SIZE > SZ_4K))
->>> -            return -EINVAL;
->>> +        guard(mutex)(&xef->mmio_gem.lock);
->>> +        if (!xef->mmio_gem.pci_barrier) {
->>> +            phys_addr_t phys_addr;
->>> +            int err;
->>> -        BUILD_BUG_ON(((XE_PCI_BARRIER_MMAP_OFFSET >> XE_PTE_SHIFT) +
->>> -                  SZ_4K) >= DRM_FILE_PAGE_OFFSET_START);
->>> -        args->offset = XE_PCI_BARRIER_MMAP_OFFSET;
->>> +#define LAST_DB_PAGE_OFFSET 0x7ff000
->>> +            phys_addr = pci_resource_start(to_pci_dev(dev->dev), 0) +
->>> +                LAST_DB_PAGE_OFFSET;
->>> +            xef->mmio_gem.pci_barrier = xe_mmio_gem_create(xe, file, 
->>> phys_addr, SZ_4K);
->>> +            if (IS_ERR(xef->mmio_gem.pci_barrier)) {
->>> +                err = PTR_ERR(xef->mmio_gem.pci_barrier);
->>> +                xef->mmio_gem.pci_barrier = NULL;
->>> +                return err;
->>> +            }
->>> +        }
->>> +
->>> +        args->offset = xe_mmio_gem_mmap_offset(xef- 
->>> >mmio_gem.pci_barrier);
->>>           return 0;
->>>       }
->>> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
->>> index 7ae1d9ac0574..82a4666ca51e 100644
->>> --- a/drivers/gpu/drm/xe/xe_bo.h
->>> +++ b/drivers/gpu/drm/xe/xe_bo.h
->>> @@ -85,7 +85,6 @@
->>>   #define XE_BO_PROPS_INVALID    (-1)
->>> -#define XE_PCI_BARRIER_MMAP_OFFSET    (0x50 << XE_PTE_SHIFT)
->>>   /**
->>>    * enum xe_madv_purgeable_state - Buffer object purgeable state 
->>> enumeration
->>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/ 
->>> xe_device.c
->>> index 4eed9a251e65..35a701980061 100644
->>> --- a/drivers/gpu/drm/xe/xe_device.c
->>> +++ b/drivers/gpu/drm/xe/xe_device.c
->>> @@ -49,6 +49,7 @@
->>>   #include "xe_irq.h"
->>>   #include "xe_late_bind_fw.h"
->>>   #include "xe_mmio.h"
->>> +#include "xe_mmio_gem.h"
->>>   #include "xe_module.h"
->>>   #include "xe_nvm.h"
->>>   #include "xe_oa.h"
->>> @@ -110,6 +111,8 @@ static int xe_file_open(struct drm_device *dev, 
->>> struct drm_file *file)
->>>       mutex_init(&xef->exec_queue.lock);
->>>       xa_init_flags(&xef->exec_queue.xa, XA_FLAGS_ALLOC1);
->>> +    mutex_init(&xef->mmio_gem.lock);
->>> +
->>>       file->driver_priv = xef;
->>>       kref_init(&xef->refcount);
->>> @@ -132,6 +135,8 @@ static void xe_file_destroy(struct kref *ref)
->>>       xa_destroy(&xef->vm.xa);
->>>       mutex_destroy(&xef->vm.lock);
->>> +    mutex_destroy(&xef->mmio_gem.lock);
->>> +
->>>       xe_drm_client_put(xef->client);
->>>       kfree(xef->process_name);
->>>       kfree(xef);
->>> @@ -188,6 +193,9 @@ static void xe_file_close(struct drm_device *dev, 
->>> struct drm_file *file)
->>>       xa_for_each(&xef->vm.xa, idx, vm)
->>>           xe_vm_close_and_put(vm);
->>> +    if (xef->mmio_gem.pci_barrier)
->>> +        xe_mmio_gem_destroy(xef->mmio_gem.pci_barrier);
->>> +
->>>       xe_file_put(xef);
->>>   }
->>> @@ -257,95 +265,6 @@ static long xe_drm_compat_ioctl(struct file 
->>> *file, unsigned int cmd, unsigned lo
->>>   #define xe_drm_compat_ioctl NULL
->>>   #endif
->>> -static void barrier_open(struct vm_area_struct *vma)
->>> -{
->>> -    drm_dev_get(vma->vm_private_data);
->>> -}
->>> -
->>> -static void barrier_close(struct vm_area_struct *vma)
->>> -{
->>> -    drm_dev_put(vma->vm_private_data);
->>> -}
->>> -
->>> -static void barrier_release_dummy_page(struct drm_device *dev, void 
->>> *res)
->>> -{
->>> -    struct page *dummy_page = (struct page *)res;
->>> -
->>> -    __free_page(dummy_page);
->>> -}
->>> -
->>> -static vm_fault_t barrier_fault(struct vm_fault *vmf)
->>> -{
->>> -    struct drm_device *dev = vmf->vma->vm_private_data;
->>> -    struct vm_area_struct *vma = vmf->vma;
->>> -    vm_fault_t ret = VM_FAULT_NOPAGE;
->>> -    pgprot_t prot;
->>> -    int idx;
->>> -
->>> -    prot = vm_get_page_prot(vma->vm_flags);
->>> -
->>> -    if (drm_dev_enter(dev, &idx)) {
->>> -        unsigned long pfn;
->>> -
->>> -#define LAST_DB_PAGE_OFFSET 0x7ff001
->>> -        pfn = PHYS_PFN(pci_resource_start(to_pci_dev(dev->dev), 0) +
->>> -                LAST_DB_PAGE_OFFSET);
->>> -        ret = vmf_insert_pfn_prot(vma, vma->vm_start, pfn,
->>> -                      pgprot_noncached(prot));
->>> -        drm_dev_exit(idx);
->>> -    } else {
->>> -        struct page *page;
->>> -
->>> -        /* Allocate new dummy page to map all the VA range in this 
->>> VMA to it*/
->>> -        page = alloc_page(GFP_KERNEL | __GFP_ZERO);
->>> -        if (!page)
->>> -            return VM_FAULT_OOM;
->>> -
->>> -        /* Set the page to be freed using drmm release action */
->>> -        if (drmm_add_action_or_reset(dev, 
->>> barrier_release_dummy_page, page))
->>> -            return VM_FAULT_OOM;
->>> -
->>> -        ret = vmf_insert_pfn_prot(vma, vma->vm_start, 
->>> page_to_pfn(page),
->>> -                      prot);
->>> -    }
->>> -
->>> -    return ret;
->>> -}
->>> -
->>> -static const struct vm_operations_struct vm_ops_barrier = {
->>> -    .open = barrier_open,
->>> -    .close = barrier_close,
->>> -    .fault = barrier_fault,
->>> -};
->>> -
->>> -static int xe_pci_barrier_mmap(struct file *filp,
->>> -                   struct vm_area_struct *vma)
->>> -{
->>> -    struct drm_file *priv = filp->private_data;
->>> -    struct drm_device *dev = priv->minor->dev;
->>> -    struct xe_device *xe = to_xe_device(dev);
->>> -
->>> -    if (!IS_DGFX(xe))
->>> -        return -EINVAL;
->>> -
->>> -    if (vma->vm_end - vma->vm_start > SZ_4K)
->>> -        return -EINVAL;
->>> -
->>> -    if (is_cow_mapping(vma->vm_flags))
->>> -        return -EINVAL;
->>> -
->>> -    if (vma->vm_flags & (VM_READ | VM_EXEC))
->>> -        return -EINVAL;
->>> -
->>> -    vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
->>> -    vm_flags_set(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_IO);
->>> -    vma->vm_ops = &vm_ops_barrier;
->>> -    vma->vm_private_data = dev;
->>> -    drm_dev_get(vma->vm_private_data);
->>> -
->>> -    return 0;
->>> -}
->>> -
->>>   static int xe_mmap(struct file *filp, struct vm_area_struct *vma)
->>>   {
->>>       struct drm_file *priv = filp->private_data;
->>> @@ -354,11 +273,6 @@ static int xe_mmap(struct file *filp, struct 
->>> vm_area_struct *vma)
->>>       if (drm_dev_is_unplugged(dev))
->>>           return -ENODEV;
->>> -    switch (vma->vm_pgoff) {
->>> -    case XE_PCI_BARRIER_MMAP_OFFSET >> XE_PTE_SHIFT:
->>> -        return xe_pci_barrier_mmap(filp, vma);
->>> -    }
->>> -
->>>       return drm_gem_mmap(filp, vma);
->>>   }
->>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/ 
->>> xe/xe_device_types.h
->>> index 56c17cca79c0..932aabb16570 100644
->>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>> @@ -38,6 +38,7 @@
->>>   struct drm_pagemap_shrinker;
->>>   struct intel_display;
->>>   struct intel_dg_nvm_dev;
->>> +struct xe_mmio_gem;
->>>   struct xe_ggtt;
->>>   struct xe_i2c;
->>>   struct xe_pat_ops;
->>> @@ -638,6 +639,17 @@ struct xe_file {
->>>       /** @refcount: ref count of this xe file */
->>>       struct kref refcount;
->>> +
->>> +    /** @mmio_gem: MMIO GEM objects for this xe file */
->>> +    struct {
->>> +        /**
->>> +         * @mmio_gem.lock: Protects allocation and attach of MMIO GEM
->>> +         * objects (singleton).
->>> +         */
->>> +        struct mutex lock;
->>> +        /** @mmio_gem.pci_barrier: MMIO GEM object for PCI barrier 
->>> mmap. */
->>> +        struct xe_mmio_gem *pci_barrier;
->>> +    } mmio_gem;
->>>   };
->>>   #endif
->>> -- 
->>> 2.55.0
->>>
-> 
+Hi all,
 
+Today's linux-next merge of the drm-xe tree got a conflict in:
+
+  drivers/gpu/drm/xe/xe_guc_submit.c
+
+between commit:
+
+  9b7e60184f4b2 ("drm/xe/guc: Hold device ref until queue teardown complete=
+s")
+
+=66rom the origin tree and commits:
+
+  da1124abac689 ("drm/xe/guc: Hold device ref until queue teardown complete=
+s")
+  5d5a729cc9780 ("drm/xe/multi_queue: preempt primary on queue group suspen=
+d")
+
+=66rom the drm-xe tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+diff --combined drivers/gpu/drm/xe/xe_guc_submit.c
+index 3188cd1658fe4,8aaed4fd13ea3..0000000000000
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@@ -961,6 -961,27 +961,27 @@@ static void __register_exec_queue(struc
+  	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+  }
+ =20
++ static u32 xe_hwe_guc_logical_to_submit_mask(struct xe_hw_engine *hwe, u3=
+2 logical_mask)
++ {
++ 	struct xe_gt *gt =3D hwe->gt;
++=20
++ 	if (xe_gt_is_usm_hwe(gt, hwe)) {
++ 		int shift =3D gt->usm.paging_hwe0->logical_instance;
++ 		u32 paging_logical_mask =3D gt->usm.paging_logical_mask;
++=20
++ 		xe_gt_assert(gt, (logical_mask & paging_logical_mask) =3D=3D logical_ma=
+sk);
++=20
++ 		/*
++ 		 * Remap to GUC_PAGING_CLASS logical instance mask, if
++ 		 * applicable.
++ 		 */
++ 		if (xe_guc_has_paging_engine(&hwe->gt->uc.guc))
++ 			return logical_mask >> shift;
++ 	}
++=20
++ 	return logical_mask;
++ }
++=20
+  static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+  {
+  	struct xe_guc *guc =3D exec_queue_to_guc(q);
+@@@ -973,8 -994,9 +994,9 @@@
+ =20
+  	memset(&info, 0, sizeof(info));
+  	info.context_idx =3D q->guc->id;
+- 	info.engine_class =3D xe_engine_class_to_guc_class(q->class);
+- 	info.engine_submit_mask =3D q->logical_mask;
++ 	info.engine_class =3D xe_hwe_to_guc_class(q->hwe);
++ 	info.engine_submit_mask =3D
++ 		xe_hwe_guc_logical_to_submit_mask(q->hwe, q->logical_mask);
+  	info.hwlrca_lo =3D lower_32_bits(xe_lrc_descriptor(lrc));
+  	info.hwlrca_hi =3D upper_32_bits(xe_lrc_descriptor(lrc));
+  	info.flags =3D CONTEXT_REGISTRATION_FLAG_KMD |
+@@@ -1671,12 -1693,37 +1693,37 @@@ handle_vf_resume
+  	return DRM_GPU_SCHED_STAT_NO_HANG;
+  }
+ =20
++ static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue =
+*q);
++ static int guc_exec_queue_suspend_wait_blocking(struct xe_exec_queue *q);
++=20
+  static void guc_exec_queue_fini(struct xe_exec_queue *q)
+  {
+  	struct xe_guc_exec_queue *ge =3D q->guc;
+  	struct xe_guc *guc =3D exec_queue_to_guc(q);
+  	struct drm_device *drm =3D &guc_to_xe(guc)->drm;
+ =20
++ 	/*
++ 	 * A secondary can leave the group while still preempt suspended (e.g.
++ 	 * xe_vm_remove_compute_exec_queue() forces its preempt fence to signal,
++ 	 * which suspends it). It holds one forwarded suspend reference on the
++ 	 * primary, so drop it and resume the primary if it was the last member
++ 	 * that had it suspended. Primaries forward to nobody, so they don't need
++ 	 * this.
++ 	 *
++ 	 * First make sure the primary's forwarded suspend has completed. If the
++ 	 * secondary was killed/reset before its preempt fence worker ran, that
++ 	 * worker skips suspend_wait() (see preempt_fence_work_func()), leaving
++ 	 * the primary's suspend possibly in flight. drop_suspend() runs under a
++ 	 * spinlock and cannot wait, so drain it here with the uninterruptible
++ 	 * blocking wait; otherwise resuming the primary in drop_suspend() could
++ 	 * trip the !suspend_pending assert.
++ 	 */
++ 	if (xe_exec_queue_is_multi_queue_secondary(q)) {
++ 		if (READ_ONCE(q->guc->suspend_count))
++ 			guc_exec_queue_suspend_wait_blocking(q);
++ 		guc_exec_queue_multi_queue_drop_suspend(q);
++ 	}
++=20
+  	if (xe_exec_queue_is_multi_queue_secondary(q)) {
+  		struct xe_exec_queue_group *group =3D q->multi_queue.group;
+ =20
+@@@ -2176,23 -2223,147 +2223,147 @@@ static int guc_exec_queue_set_multi_que
+  	return 0;
+  }
+ =20
++ /*
++  * Core suspend: take a suspend reference on @q and, on the first referen=
+ce,
++  * disable its GuC context so the GPU is actually preempted. Caller must =
+have
++  * ensured @q is not killed/banned/wedged. Returns true if this was the f=
+irst
++  * suspend reference (the 0->1 transition).
++  */
++ static bool __guc_exec_queue_suspend(struct xe_exec_queue *q)
++ {
++ 	struct xe_guc_exec_queue *ge =3D q->guc;
++ 	struct xe_gpu_scheduler *sched =3D &ge->sched;
++ 	struct xe_sched_msg *msg =3D ge->static_msgs + STATIC_MSG_SUSPEND;
++ 	bool first;
++=20
++ 	xe_sched_msg_lock(sched);
++ 	first =3D (++ge->suspend_count =3D=3D 1);
++ 	if (first) {
++ 		bool added =3D guc_exec_queue_try_add_msg(q, msg, SUSPEND);
++=20
++ 		/* slot must be free at 0->1 */
++ 		xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)), added);
++ 		ge->suspend_pending =3D true;
++ 	}
++ 	xe_sched_msg_unlock(sched);
++=20
++ 	return first;
++ }
++=20
++ /*
++  * Core resume: drop a suspend reference on @q and, on the last reference,
++  * re-enable its GuC context. Returns true if this dropped the last suspe=
+nd
++  * reference (the 1->0 transition).
++  */
++ static bool __guc_exec_queue_resume(struct xe_exec_queue *q)
++ {
++ 	struct xe_guc_exec_queue *ge =3D q->guc;
++ 	struct xe_gpu_scheduler *sched =3D &ge->sched;
++ 	struct xe_sched_msg *msg =3D ge->static_msgs + STATIC_MSG_RESUME;
++ 	struct xe_guc *guc =3D exec_queue_to_guc(q);
++ 	bool last;
++=20
++ 	xe_sched_msg_lock(sched);
++ 	xe_gt_assert(guc_to_gt(guc), !ge->suspend_pending);
++ 	xe_gt_assert(guc_to_gt(guc), ge->suspend_count > 0);
++ 	last =3D (--ge->suspend_count =3D=3D 0);
++ 	if (last) {
++ 		bool added =3D guc_exec_queue_try_add_msg(q, msg, RESUME);
++=20
++ 		/* slot must be free at 1->0 */
++ 		xe_gt_assert(guc_to_gt(guc), added);
++ 	}
++ 	xe_sched_msg_unlock(sched);
++=20
++ 	return last;
++ }
++=20
+  static int guc_exec_queue_suspend(struct xe_exec_queue *q)
+  {
+- 	struct xe_gpu_scheduler *sched =3D &q->guc->sched;
+- 	struct xe_sched_msg *msg =3D q->guc->static_msgs + STATIC_MSG_SUSPEND;
+-=20
+  	if (exec_queue_killed_or_banned_or_wedged(q))
+  		return -EINVAL;
+ =20
+- 	xe_sched_msg_lock(sched);
+- 	if (guc_exec_queue_try_add_msg(q, msg, SUSPEND))
+- 		q->guc->suspend_pending =3D true;
+- 	xe_sched_msg_unlock(sched);
++ 	/*
++ 	 * Non-multi-queue queues and multi-queue primaries suspend themselves
++ 	 * directly: their own msg_lock makes the suspend_count 0->1 transition
++ 	 * and the suspend_pending update atomic, so no group level serialization
++ 	 * is needed.
++ 	 */
++ 	if (!xe_exec_queue_is_multi_queue_secondary(q)) {
++ 		__guc_exec_queue_suspend(q);
++ 		return 0;
++ 	}
++=20
++ 	/*
++ 	 * A secondary's suspend is meaningless once the primary - which owns the
++ 	 * group's GuC context - is gone, so fail it too. This keeps the
++ 	 * secondary's effective state consistent with guc_exec_queue_reset_stat=
+us(),
++ 	 * which already reports the primary's killed/banned/wedged state for
++ 	 * secondaries. A primary killed *after* this check is still handled at
++ 	 * message-processing time, where the SUSPEND is a no-op for a killed
++ 	 * context; this only covers an already-dead primary.
++ 	 */
++ 	if (exec_queue_killed_or_banned_or_wedged(xe_exec_queue_multi_queue_prim=
+ary(q)))
++ 		return -EINVAL;
++=20
++ 	/*
++ 	 * A secondary doesn't interface with GuC: suspend it like any other
++ 	 * queue (its own suspend_count drives its internally handled scheduler
++ 	 * state) and, only on its own 0->1 transition, forward the suspend to t=
+he
++ 	 * primary so the GPU is actually preempted. Hold @suspend_lock so that
++ 	 * observing the secondary's transition and forwarding it to the primary
++ 	 * happen atomically; this keeps the primary's refcount paired with memb=
+er
++ 	 * transitions even if the same secondary is suspended and resumed
++ 	 * concurrently across rebind cycles.
++ 	 */
++ 	scoped_guard(spinlock, &q->multi_queue.group->suspend_lock) {
++ 		if (__guc_exec_queue_suspend(q))
++ 			__guc_exec_queue_suspend(xe_exec_queue_multi_queue_primary(q));
++ 	}
+ =20
+  	return 0;
+  }
+ =20
+- static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
++ static void guc_exec_queue_suspend_timeout_ban(struct xe_exec_queue *q)
++ {
++ 	struct xe_guc *guc =3D exec_queue_to_guc(q);
++=20
++ 	xe_gt_warn(guc_to_gt(guc),
++ 		   "Suspend fence, guc_id=3D%d, failed to respond, banning queue",
++ 		   q->guc->id);
++ 	/*
++ 	 * The GuC failed to respond to the suspend within the timeout. This is
++ 	 * not recoverable for this context, so ban it and tear it down via
++ 	 * cleanup rather than leave it suspended forever. __suspend_fence_signal
++ 	 * clears suspend_pending and wakes any waiter.
++ 	 *
++ 	 * @q is the primary here; it owns the group's GuC context, so a failure
++ 	 * to suspend it wedges the whole group. Ban and tear down the entire
++ 	 * group in the multi-queue case.
++ 	 */
++ 	if (xe_exec_queue_is_multi_queue(q)) {
++ 		set_exec_queue_group_banned(q);
++ 		__suspend_fence_signal(q);
++ 		xe_guc_exec_queue_group_trigger_cleanup(q);
++ 	} else {
++ 		set_exec_queue_banned(q);
++ 		__suspend_fence_signal(q);
++ 		xe_guc_exec_queue_trigger_cleanup(q);
++ 	}
++ }
++=20
++ /*
++  * Wait for @q's own suspend to complete: suspend_pending cleared, or the=
+ queue
++  * killed / GuC stopped. With @blocking, wait uninterruptibly and do not =
+handle
++  * VF recovery (for callers that must complete on behalf of a possibly
++  * cross-process queue); otherwise wait interruptibly.
++  *
++  * Returns 0 on completion or -ETIME on timeout. Interruptible waits may =
+also
++  * return -EAGAIN (VF recovery in progress, retry) or -ERESTARTSYS (abort=
+ed by a
++  * signal; suspend_pending may still be set, so callers must not resume()
++  * without re-confirming the suspend).
++  */
++ static int guc_exec_queue_wait_suspend_done(struct xe_exec_queue *q, bool=
+ blocking)
+  {
+  	struct xe_guc *guc =3D exec_queue_to_guc(q);
+  	struct xe_device *xe =3D guc_to_xe(guc);
+@@@ -2208,44 -2379,146 +2379,146 @@@
+  	 xe_guc_read_stopped(guc))
+ =20
+  retry:
+- 	if (IS_SRIOV_VF(xe))
++ 	if (blocking) {
++ 		if (IS_SRIOV_VF(xe))
++ 			ret =3D wait_event_timeout(guc->ct.wq, WAIT_COND, HZ * 5);
++ 		else
++ 			ret =3D wait_event_timeout(q->guc->suspend_wait, WAIT_COND,
++ 						 HZ * 5);
++ 	} else if (IS_SRIOV_VF(xe)) {
+  		ret =3D wait_event_interruptible_timeout(guc->ct.wq, WAIT_COND ||
+- 						       vf_recovery(guc),
+- 						       HZ * 5);
+- 	else
++ 						       vf_recovery(guc), HZ * 5);
++ 	} else {
+  		ret =3D wait_event_interruptible_timeout(q->guc->suspend_wait,
+  						       WAIT_COND, HZ * 5);
++ 	}
+ =20
+- 	if (vf_recovery(guc) && !xe_device_wedged((guc_to_xe(guc))))
++ 	if (!blocking && vf_recovery(guc) && !xe_device_wedged(xe))
+  		return -EAGAIN;
+ =20
+- 	if (!ret) {
+- 		xe_gt_warn(guc_to_gt(guc),
+- 			   "Suspend fence, guc_id=3D%d, failed to respond",
+- 			   q->guc->id);
+- 		/* XXX: Trigger GT reset? */
++ 	if (!ret)
+  		return -ETIME;
+- 	} else if (IS_SRIOV_VF(xe) && !WAIT_COND) {
++ 	else if (!blocking && IS_SRIOV_VF(xe) && !WAIT_COND)
+  		/* Corner case on RESFIX DONE where vf_recovery() changes */
+  		goto retry;
+- 	}
+ =20
+  #undef WAIT_COND
+ =20
+  	return ret < 0 ? ret : 0;
+  }
+ =20
++ static int guc_exec_queue_suspend_wait_common(struct xe_exec_queue *q, bo=
+ol blocking)
++ {
++ 	int ret;
++=20
++ 	/*
++ 	 * A secondary's suspend rides the sched-message worker (short-circuited,
++ 	 * no GuC round-trip) and so is not synchronous with
++ 	 * guc_exec_queue_suspend(): its own suspend_pending may still be set
++ 	 * here. Waiting on the primary alone is not sufficient - if the primary
++ 	 * was already suspended, the forward is a refcount-only transition that
++ 	 * queues no new primary SUSPEND and leaves the primary's suspend_pending
++ 	 * clear, so the primary wait would return immediately while the
++ 	 * secondary's suspend is still in flight, and a later resume() would tr=
+ip
++ 	 * the secondary's !suspend_pending assert. So first wait for the
++ 	 * secondary's own suspend to complete, then wait on the primary.
++ 	 *
++ 	 * A timeout on either bans the queue (being multi-queue, that tears down
++ 	 * the whole group). A secondary suspend has no real GuC round-trip, so
++ 	 * its timeout is a software scheduler stall rather than a GuC fault, but
++ 	 * banning is still the safe recovery: otherwise the queue is left with
++ 	 * suspend_pending set and a subsequent resume() trips the !suspend_pend=
+ing
++ 	 * assert.
++ 	 */
++ 	if (xe_exec_queue_is_multi_queue_secondary(q)) {
++ 		ret =3D guc_exec_queue_wait_suspend_done(q, blocking);
++ 		if (ret =3D=3D -ETIME)
++ 			guc_exec_queue_suspend_timeout_ban(q);
++ 		if (ret)
++ 			return ret;
++ 	}
++=20
++ 	q =3D xe_exec_queue_multi_queue_primary(q);
++ 	ret =3D guc_exec_queue_wait_suspend_done(q, blocking);
++ 	if (ret =3D=3D -ETIME)
++ 		guc_exec_queue_suspend_timeout_ban(q);
++=20
++ 	return ret;
++ }
++=20
++ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
++ {
++ 	return guc_exec_queue_suspend_wait_common(q, false);
++ }
++=20
++ /*
++  * Uninterruptible variant of guc_exec_queue_suspend_wait() for callers t=
+hat
++  * must complete the wait on behalf of a queue possibly owned by a differ=
+ent
++  * process (e.g. cleanup/undo paths). An interruptible wait could return
++  * -ERESTARTSYS if the calling task is signalled, leaving that queue susp=
+ended
++  * forever (cross-process DoS). VF recovery is deliberately not handled (=
+no
++  * -EAGAIN) since a blocking caller cannot retry.
++  */
++ static int guc_exec_queue_suspend_wait_blocking(struct xe_exec_queue *q)
++ {
++ 	return guc_exec_queue_suspend_wait_common(q, true);
++ }
++=20
+  static void guc_exec_queue_resume(struct xe_exec_queue *q)
+  {
+- 	struct xe_gpu_scheduler *sched =3D &q->guc->sched;
+- 	struct xe_sched_msg *msg =3D q->guc->static_msgs + STATIC_MSG_RESUME;
+- 	struct xe_guc *guc =3D exec_queue_to_guc(q);
++ 	/*
++ 	 * Non-multi-queue queues and multi-queue primaries resume themselves
++ 	 * directly; their own msg_lock is sufficient.
++ 	 */
++ 	if (!xe_exec_queue_is_multi_queue_secondary(q)) {
++ 		__guc_exec_queue_resume(q);
++ 		return;
++ 	}
+ =20
+- 	xe_gt_assert(guc_to_gt(guc), !q->guc->suspend_pending);
++ 	/*
++ 	 * Mirror of guc_exec_queue_suspend(): resume the secondary like any
++ 	 * other queue and, only on its own 1->0 transition, forward the resume
++ 	 * to the primary so the primary's GuC context is re-enabled once the
++ 	 * last member that suspended it resumes. @suspend_lock keeps the
++ 	 * secondary transition and the primary forward atomic.
++ 	 */
++ 	scoped_guard(spinlock, &q->multi_queue.group->suspend_lock) {
++ 		if (__guc_exec_queue_resume(q))
++ 			__guc_exec_queue_resume(xe_exec_queue_multi_queue_primary(q));
++ 	}
++ }
+ =20
+- 	xe_sched_msg_lock(sched);
+- 	guc_exec_queue_try_add_msg(q, msg, RESUME);
+- 	xe_sched_msg_unlock(sched);
++ /*
++  * Drop a leaving secondary's forwarded suspend reference on the primary =
+and
++  * resume the primary if this was the last member that had it suspended.
++  * See guc_exec_queue_fini().
++  */
++ static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue =
+*q)
++ {
++ 	scoped_guard(spinlock, &q->multi_queue.group->suspend_lock) {
++ 		struct xe_exec_queue *primary =3D xe_exec_queue_multi_queue_primary(q);
++=20
++ 		/*
++ 		 * A suspended secondary holds exactly one suspend reference on the
++ 		 * primary (forwarded on its 0->1 transition). If it leaves while
++ 		 * still suspended, release that reference so the primary is not
++ 		 * kept disabled forever.
++ 		 */
++ 		if (!READ_ONCE(q->guc->suspend_count))
++ 			break;
++=20
++ 		if (exec_queue_killed_or_banned_or_wedged(primary))
++ 			break;
++=20
++ 		/*
++ 		 * No suspend_wait() here (and we can't - suspend_lock is a
++ 		 * spinlock). guc_exec_queue_fini() has already drained the
++ 		 * primary's forwarded suspend with the blocking wait, so its
++ 		 * suspend has completed (suspend_pending cleared) by the time we
++ 		 * resume it here. __guc_exec_queue_resume() asserts this.
++ 		 */
++ 		__guc_exec_queue_resume(primary);
++ 	}
+  }
+ =20
+  static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+@@@ -2274,6 -2547,7 +2547,7 @@@ static const struct xe_exec_queue_ops g
+  	.set_multi_queue_priority =3D guc_exec_queue_set_multi_queue_priority,
+  	.suspend =3D guc_exec_queue_suspend,
+  	.suspend_wait =3D guc_exec_queue_suspend_wait,
++ 	.suspend_wait_blocking =3D guc_exec_queue_suspend_wait_blocking,
+  	.resume =3D guc_exec_queue_resume,
+  	.reset_status =3D guc_exec_queue_reset_status,
+  };
+@@@ -3030,6 -3304,38 +3304,38 @@@ int xe_guc_exec_queue_memory_cat_error_
+ =20
+  	/* Treat the same as engine reset */
+  	xe_guc_exec_queue_reset_trigger_cleanup(q);
++=20
++ 	return 0;
++ }
++=20
++ int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 =
+len)
++ {
++ 	struct xe_gt *gt =3D guc_to_gt(guc);
++ 	struct xe_exec_queue *q;
++ 	u32 guc_id;
++=20
++ 	if (unlikely(!len || len > 1))
++ 		return -EPROTO;
++=20
++ 	guc_id =3D msg[0];
++=20
++ 	if (guc_id =3D=3D GUC_ID_UNKNOWN) {
++ 		xe_gt_err(gt, "GuC: Uncorrectable local error with unknown GuC id\n");
++ 		return 0;
++ 	}
++=20
++ 	q =3D g2h_exec_queue_lookup(guc, guc_id);
++ 	if (unlikely(!q))
++ 		return -EPROTO;
++=20
++ 	xe_gt_err(gt,
++ 		  "GuC: Uncorrectable local error! guc_id=3D%d class=3D%s, logical_mask=
+=3D0x%x",
++ 		  guc_id, xe_hw_engine_class_to_str(q->class), q->logical_mask);
++=20
++ 	trace_xe_guc_uncorrectable_error(q);
++=20
++ 	/* Treat the same as engine reset */
++ 	xe_guc_exec_queue_reset_trigger_cleanup(q);
+ =20
+  	return 0;
+  }
+
+--xRlcgmWHH8fJP0SD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmpeNFAACgkQJNaLcl1U
+h9AbDgf/ahNZSbq8FyUKDzdq60k1dgquLYcSUTkkS/V2j2EtQEvZs6CGAQKOwtwd
+QAI9FW5ZG3ObcSae+8qZg4286G4oSSfPJ7hrFdhEVHZccQK0TLZNneumPFliaH40
+l8JYVRrkoJMwS7xGU837ymse9Y+9DV62f8T1qxHu04BlwEffQkeyEF8uFPZrGOdT
+o3oKEKt/8J13ryj5Kf9hJPdH6QEAsGJxzTsQobqILGuZo4aDvpTZXzTylkh055DP
+IQtVd7SYWwISbBEAw0pImRFAZkbb1Z5B3v12ZwHuP47pRC9HtS/KiH/JXpnbVZ+x
+/rsKE30rOm1rdcaHUqCgiJB7ICutdg==
+=ax63
+-----END PGP SIGNATURE-----
+
+--xRlcgmWHH8fJP0SD--
