@@ -4,62 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC19AC44515
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 08:22:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD85DC4451B
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 08:35:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B92010E806;
-	Mon, 20 Jul 2026 08:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8385E10E7F7;
+	Mon, 20 Jul 2026 08:35:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m0MrS5Jk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHwXWLp5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A53E10E80E;
- Mon, 20 Jul 2026 08:22:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A5FB10E7F7;
+ Mon, 20 Jul 2026 08:35:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784535765; x=1816071765;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kI9HX11AHtPLvfep3qW1CdbbEBM12C4Ad1vHVWm3A3k=;
- b=m0MrS5Jk0seWRZv5QnKY/PYwrLkg4X3/DxF6Ie+PE+m/4SVhmsAOYCSq
- +YO7hG9QqQ9BiOOgYorUsV762awpiyF0EiDT043PCecPnhQbYGMKWM3Mv
- w7n8Y/7IN1ORET9EbizqN0u4QI2/zqX3JcUOtOZ7aI/BlTkJt8iE+STPd
- R/4kK5wXnBJZNlXOzCVIGOjlM8nvGHl6GueQmhy/zUb3SaVUMD0ceKd6H
- QAVmd36o72MLTgsMjmdYaztoJafI+f1w+XSsQChAjN8VQrxyOBu3Yo/i2
- 6UqFO9tZgham5PqKUl6y5iVt75/Ncitmuxa5SUqVy6tTGr/b1SErOtQXp w==;
-X-CSE-ConnectionGUID: V7Y5S9b9TMuS7kKi7tlrjA==
-X-CSE-MsgGUID: Z/l1N0qiS9mNuTiD3y946A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11851"; a="85228613"
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="85228613"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2026 01:22:44 -0700
-X-CSE-ConnectionGUID: wMWxhp9xQ16lkWhtuHL9bQ==
-X-CSE-MsgGUID: OKUUQJ96SwWBJUDdaugmUw==
+ t=1784536514; x=1816072514;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fAWGP0EaxyVCXTUTPP0w/Jl6a29Dqywd96CdnlFKDww=;
+ b=bHwXWLp5anC+jfthdh4stVaYFqE7I27mZQmMXsD//bf9+dJhBTr4UQI4
+ ZidhkVKW8JAEkGrYDPsTPvSWeEyymWrhAc55NVRtPPX2wN/yk9IcY/AVZ
+ tj8ylHT+rrxRBE1ItQNVmVMAZv3eDomZYeQO3W/+XCWJvvy0R472NtVfi
+ 0UQ4c4nQTiY5NtVxpBVSMAw0RPMuw8fsaUympFVuqsR+kyagIpDyayXwV
+ h7tgoSDu0PteIYEAKkh6/YBf+Vk/uyQ8+1dRoHRy1QiNFdEUS6kHBRRNu
+ KXzubaMxeLq4WdeX/XLU9BOExZXRJdqZNXJs7m6fc4iMHNxlneEAp1MkT w==;
+X-CSE-ConnectionGUID: VdBBk3HNTXqv6Ab2ET6uPQ==
+X-CSE-MsgGUID: uwmZtq5KSHWHqwHj131mjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11851"; a="110658302"
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; 
+ d="scan'208,223";a="110658302"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2026 01:35:13 -0700
+X-CSE-ConnectionGUID: qgOCpcc1TlCWP/VdjhpzpQ==
+X-CSE-MsgGUID: boBWXO3FSsqgSwxwgoftYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="258034751"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2026 01:22:40 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org
-Cc: aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com, kuba@kernel.org,
- simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
- joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
- shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
- raag.jadav@intel.com, maarten.lankhorst@linux.intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- Riana Tauro <riana.tauro@intel.com>
-Subject: [PATCH v5 3/3] drm/xe/xe_ras: Report uncorrectable error events to
- userspace
-Date: Mon, 20 Jul 2026 13:52:12 +0530
-Message-ID: <20260720082208.2648279-8-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260720082208.2648279-5-riana.tauro@intel.com>
-References: <20260720082208.2648279-5-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; 
+ d="scan'208,223";a="257462180"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2026 01:35:11 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, chaitanya.kumar.borah@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH] drm/i915/display: Ensure a non-zero safe window from PTL
+ onwards
+Date: Mon, 20 Jul 2026 13:48:03 +0530
+Message-ID: <20260720081803.1123264-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,41 +70,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the firmware reports uncorrectable errors in response to an AER
-interrupt, deliver a drm-ras error event to userspace for each affected
-component. Multiple errors for the same component within a single firmware
-response are collapsed into one event to avoid duplicate notifications.
+From PTL onwards the DSB waits on the VRR safe window instead of vblank
+(chicken bit 14 selects the safe window signal from the DPT unit to
+start the DMA engine). The safe window starts at (undelayed vblank
+start - set context latency) and ends at the delayed vblank start.
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+With modes that have a smaller vblank region, the computed guardband is
+clamped to the vblank length, which makes the undelayed and delayed
+vblank coincide. If the set context latency (SCL) is also 0, the safe
+window collapses to 0. The DSB, configured to wait for the safe window,
+then stalls forever since the hardware never signals it, leading to:
+
+  *ERROR* [CRTC:159:pipe A] flip_done timed out
+  *ERROR* [CRTC:159:pipe A] DSB 0 timed out waiting for idle
+
+Clamp the set context latency to a minimum of 1 from PTL onwards so the
+safe window always keeps a non-zero width.
+
+Fixes: 4a68c7516c57 ("drm/i915/dsb: Use safe window path when VRR TG is used")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Assisted-by: GitHub-Copilot:Claude-Opus-4.8
 ---
- drivers/gpu/drm/xe/xe_ras.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index b08c664778ff..cd1307539912 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -449,6 +449,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 	enum xe_ras_recovery_action final_action;
- 	u32 remaining = XE_SYSCTRL_FLOOD_LIMIT;
- 	struct xe_ras_get_soc_error response;
-+	u8 sent = 0;
- 	size_t rlen;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 38763a6802c5..0822a2194c7f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2459,6 +2459,19 @@ static int intel_crtc_set_context_latency(struct intel_crtc_state *crtc_state)
+ 	set_context_latency = max(set_context_latency,
+ 				  intel_psr_min_set_context_latency(crtc_state));
  
-@@ -492,6 +493,12 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 			xe_info(xe, "[RAS]: %s %s detected\n", comp_to_str(component),
- 				sev_to_str(severity));
- 
-+			/* Send event once per component */
-+			if (!(sent & BIT(component))) {
-+				sent |= BIT(component);
-+				ras_send_error_event(xe, severity, component);
-+			}
++	/*
++	 * From PTL onwards, the set context latency can be in the vactive
++	 * region, letting the safe window start some lines before the vblank
++	 * start. With modes that have a smaller vblank region, the computed
++	 * guardband is clamped to the vblank length, making the undelayed and
++	 * delayed vblank coincide. If the SCL is also 0, the 'safe window'
++	 * becomes effectively 0, and the DSB configured to wait for it gets
++	 * stalled, since the hardware never signals the safe window. Keep the
++	 * set context latency at a minimum of 1 to avoid this.
++	 */
++	if (DISPLAY_VER(display) >= 30)
++		set_context_latency = max(1, set_context_latency);
 +
- 			switch (component) {
- 			case XE_RAS_COMP_CORE_COMPUTE:
- 				action = handle_core_compute_errors(arr);
+ 	return set_context_latency;
+ }
+ 
 -- 
-2.47.1
+2.50.1
 
