@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1181C4452F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02FEDC44530
 	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 05:15:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E86F810E675;
-	Mon, 20 Jul 2026 05:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 257B810E657;
+	Mon, 20 Jul 2026 05:15:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d5vEHJfd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PH4fjUoZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A307D10E674;
- Mon, 20 Jul 2026 05:15:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45FD010E676;
+ Mon, 20 Jul 2026 05:15:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784524547; x=1816060547;
+ t=1784524549; x=1816060549;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nkd2O1E3fX+r/k7Iw4fqWBOCJhWDIMnCqcv57IslaRY=;
- b=d5vEHJfd3IDhgHXOoEPuu9syYvX7ITypIl+75M+u4cfkhxa8Vrh7fvA4
- mWlVfcMXFVruL8QcC5OleKNMplXceYpV28AlaEzCMgn3f+LH+Wxz93t+l
- q5deNznvDkkSYMrr8d+Mw5H9uJzyBuEdcymWJQVNiH7yZ2sMqvhcskD+5
- zNrKoM2TPwgiHycMPc6iGGkyTUzZHrKoBgzCIAm8IfFGlBDzdo3qAltpd
- hgYU6WTsU+YmXJ8+tJ78Ni0geTiTl8jwYXc3MwH6G/UGuln+SKOGFkTY5
- sNXDNd4mwk54kbcdxLE/pIWemv2WEQB6JKtdzpU4qLbKS9CMtZ0bOpF4/ Q==;
-X-CSE-ConnectionGUID: SO+LP70oRZS/zWfdcJgnPg==
-X-CSE-MsgGUID: toIf5ROLRISVTYBu7iER8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11851"; a="85133414"
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="85133414"
+ bh=MNjyIEFDPUIA/LwxYKXC1e215e9zEKP86cOt984mK38=;
+ b=PH4fjUoZP8meVetwm2DoWz5gYsm+C7lj4KVBV8Xm4B4xqEsf5UEOkLQA
+ lUBN1pSYA9WW8RnXdw+c/euAsi8j32mldEoOJx4MimxHkIOmrESg0ASDJ
+ xif2EinChY4Cr2Qowj1f6vMm761ay4ijCM6+MrQxU3pYtOF0CChfXWHY4
+ sNJWJDRfT98ifFkWQ1WEQrJi2XTaXqkTqkdJQtYBvGniODOBa74QBQ8Pj
+ EQTmtOWpEzBuubnHz0jWxqWxnHfZMC5crCjMTMaA387KecUfyHnfyrejV
+ Mv+JBCjKTZ124J5U3wTcbfPpdqC88Fl+Er7KrDZ7UNGT1t04HfEfw6spd Q==;
+X-CSE-ConnectionGUID: BRKHXgapRxK6sqaALbV45A==
+X-CSE-MsgGUID: 25lQsgW/T/S1AkCZdqpvLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11851"; a="85133415"
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="85133415"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2026 22:15:47 -0700
-X-CSE-ConnectionGUID: cO53Zs/fSKK3EtxOrmDkOQ==
-X-CSE-MsgGUID: g3sq63BVQ+ec72bli3sftw==
+ 19 Jul 2026 22:15:49 -0700
+X-CSE-ConnectionGUID: mLtJ9tZ/SViOjUjfJgnDQw==
+X-CSE-MsgGUID: aJbxrg0wSpWBlGim09TMQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="257419810"
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="257419815"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa007.jf.intel.com with ESMTP; 19 Jul 2026 22:15:47 -0700
+ by orviesa007.jf.intel.com with ESMTP; 19 Jul 2026 22:15:48 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v5 08/14] drm/i915/color: Add YUV range correction to SDR plane
- pipeline
-Date: Mon, 20 Jul 2026 10:21:25 +0530
-Message-Id: <20260720045131.971650-9-chaitanya.kumar.borah@intel.com>
+Subject: [v5 09/14] drm/i915/color: Add support for 1D LUT in SDR planes
+Date: Mon, 20 Jul 2026 10:21:26 +0530
+Message-Id: <20260720045131.971650-10-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260720045131.971650-1-chaitanya.kumar.borah@intel.com>
 References: <20260720045131.971650-1-chaitanya.kumar.borah@intel.com>
@@ -68,29 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Insert the INTEL_PLANE_CB_YUV_RANGE_CORRECT color block into the SDR
-plane color pipeline. This enables YCbCr limited-to-full range expansion
-ahead of the CSC block that expects full range pixel data. With this,
-the pipeline can accept limited range framebuffers.
+Extend the SDR plane color pipeline to include pre- and post-CSC
+1D LUT blocks.
+
+SDR planes use a smaller LUT size than HDR planes and therefore
+initialize the 1D LUT colorops with the appropriate hardware
+capacity.
 
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color_pipeline.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_color_pipeline.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-index 7d25f4fbfa9b..7457fa51cb97 100644
+index 7457fa51cb97..136b9378ca48 100644
 --- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
 +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-@@ -44,6 +44,7 @@ static const enum intel_color_block hdr_plane_pipeline[] = {
- };
+@@ -15,6 +15,7 @@
+ #define MAX_COLOROP 4
+ #define PLANE_DEGAMMA_SIZE 128
+ #define PLANE_GAMMA_SIZE 32
++#define PLANE_DEGAMMA_SIZE_SDR 32
+ 
+ static const struct drm_colorop_funcs intel_colorop_funcs = {
+ 	.destroy = intel_colorop_destroy,
+@@ -45,7 +46,9 @@ static const enum intel_color_block hdr_plane_pipeline[] = {
  
  static const enum intel_color_block sdr_plane_pipeline[] = {
-+	INTEL_PLANE_CB_YUV_RANGE_CORRECT,
+ 	INTEL_PLANE_CB_YUV_RANGE_CORRECT,
++	INTEL_PLANE_CB_PRE_CSC_LUT,
  	INTEL_PLANE_CB_CSC_FF,
++	INTEL_PLANE_CB_POST_CSC_LUT,
  };
  
+ static const u64 intel_plane_supported_csc_ff =
+@@ -68,8 +71,10 @@ struct intel_colorop *intel_color_pipeline_plane_add_colorop(struct drm_plane *p
+ 							     enum intel_color_block id)
+ {
+ 	struct drm_device *dev = plane->dev;
++	struct intel_display *display = to_intel_display(dev);
+ 	struct intel_colorop *colorop;
+ 	int ret;
++	bool is_hdr = icl_is_hdr_plane(display, to_intel_plane(plane)->id);
+ 
+ 	colorop = intel_colorop_create(id);
+ 
+@@ -81,7 +86,9 @@ struct intel_colorop *intel_color_pipeline_plane_add_colorop(struct drm_plane *p
+ 		ret = drm_plane_colorop_curve_1d_lut_init(dev,
+ 							  &colorop->base, plane,
+ 							  &intel_colorop_funcs,
+-							  PLANE_DEGAMMA_SIZE,
++							  is_hdr ?
++							  PLANE_DEGAMMA_SIZE :
++							  PLANE_DEGAMMA_SIZE_SDR,
+ 							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
+ 							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
+ 		break;
 -- 
 2.25.1
 
