@@ -4,68 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22132C4452B
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 10:06:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6F81C44527
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 10:22:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B95C510E844;
-	Mon, 20 Jul 2026 10:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E6E10E161;
+	Mon, 20 Jul 2026 10:22:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=debian.org header.i=@debian.org header.b="NFOWe+Rt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WSEyutcF";
 	dkim-atps=neutral
-Received: from stravinsky.debian.org (stravinsky.debian.org [82.195.75.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97A2D10E844;
- Mon, 20 Jul 2026 10:06:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org; 
- s=smtpauto.stravinsky;
- h=X-Debian-User:In-Reply-To:Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Reply-To:Content-ID:Content-Description;
- bh=VrAlCPX0F1OIbDW3QqV5pnMEMC62myW987PYItxT88U=; b=NFOWe+RtK7qZJXlI70Cdw/CUpg
- WTu4wwTOIboyjm2+F5KSX4mHR+hPTnEsVxMYj91C27VjnUH4KVvOksATaG0jijbROwipaa4WYGG91
- vk6b/TZhfh6F+eDSQwk3MGN5UyqEdRGZ7awp4LBNiHoi4HNhPYZSjNwwm6QH0/URkUAyC00Y2lJVL
- nzc4kBjMiHuQBmZTlhHerLzNbp1zIXI9BQEKyQ2cSCIxWBUbieMrYMsZXCIb9HCdpNFVnMe60EsnR
- 1+YVrKkhN4TMId7JcbjQEv152pPWmNc9hkY8JKpZ1m5RI6/ylsFs9fJA/B1kkd74IqBoM9B41uvc/
- 1gqhxigw==;
-Received: from authenticated-user by stravinsky.debian.org with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.96) (envelope-from <leitao@debian.org>) id 1wlksm-001MTm-1H;
- Mon, 20 Jul 2026 10:05:56 +0000
-Date: Mon, 20 Jul 2026 03:05:49 -0700
-From: Breno Leitao <leitao@debian.org>
-To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: Andreas Hindborg <a.hindborg@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, 
- =?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>,
- Daniel Almeida <daniel.almeida@collabora.com>, 
- Tamir Duberstein <tamird@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>, 
- Onur =?utf-8?B?w5Z6a2Fu?= <work@onurozkan.dev>,
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Dan Williams <djbw@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, 
- linux-coco@lists.linux.dev, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH 5/6] configfs: Allow the registration of const struct
- configfs_attribute
-Message-ID: <al3y8c0bTJu4bq9r@gmail.com>
-References: <20260716-configfs-const-base-v1-0-c545a4053cb5@weissschuh.net>
- <20260716-configfs-const-base-v1-5-c545a4053cb5@weissschuh.net>
- <alnrJJNb1hwDrAxI@gmail.com>
- <91f5e9dc-1ba0-4e20-9f1f-5100aaaf0a88@t-8ch.de>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC9CC10E161;
+ Mon, 20 Jul 2026 10:22:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784542931; x=1816078931;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Nbe+7ueollokR2LMuvdixnDLwY1fCmunk+iwimAhyN4=;
+ b=WSEyutcFgsfkg6fjy5jOmbhhnOun5hJQo3HLhqvS8t8HyUvWJmXne2Xu
+ Cvyv4Cxt0j2az+pLN+S8m/jWZ+1uUIPmlH8Me2SBgV5pMaigQuqlYAteT
+ w0NtRJgUYOycJGyIzHu0ymTTjy/5q1b2rWgqPRBjiiNDUcR4cIEzDjAyC
+ sz3UzL1nQ+tQsO9OHS6wsU0Mc83Zivs41YnUODgdOQovRlZQeml1phSPb
+ erVlKRXvu9y3AMBRr/BCOwyorWg/ATY51zi7BbuTCbBObTmv0L3H1bW1a
+ Gdo3Xd5b2B44tirfRgqrbu2z+QJ3OSxnRGKSGWN8XusmXAsSJOVPKv6gJ A==;
+X-CSE-ConnectionGUID: JaGkPJmISyS1zM5+jsaeww==
+X-CSE-MsgGUID: NvO94CGqRXOYRavbvxEW4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11851"; a="85070508"
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="85070508"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2026 03:22:10 -0700
+X-CSE-ConnectionGUID: oxTh0wrFSYS3SfkQ88ZaXw==
+X-CSE-MsgGUID: hp4N8HuZRfC8dRRoX+7c8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="287475784"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa002.jf.intel.com with ESMTP; 20 Jul 2026 03:22:07 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
+Cc: andrealmeid@igalia.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona.vetter@ffwll.ch, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v11 0/3] Introduce cold reset recovery method
+Date: Mon, 20 Jul 2026 15:48:16 +0530
+Message-ID: <20260720101815.526813-5-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <91f5e9dc-1ba0-4e20-9f1f-5100aaaf0a88@t-8ch.de>
-X-Debian-User: leitao
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,35 +70,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 17, 2026 at 05:35:27PM +0200, Thomas Weiﬂschuh wrote:
-> On 2026-07-17 01:43:36-0700, Breno Leitao wrote:
-> > On Thu, Jul 16, 2026 at 07:09:30PM +0200, Thomas Weiﬂschuh wrote:
-> > > The attribute structure defined in driver code never need to be
-> > > modified. Allow them to be marked as const.
-> > > 
-> > > As there are many drivers which use these attributes, prepare for a
-> > > phased transition by using a union of const and non-const attributes.
-> > 
-> > How many drivers need to be migrated? Isn't this a mechanism move?
-> 
-> The actual constification of the attribute will happen with a central
-> change to the CONFIGFS_ATTR* macros. But all users of the macro
-> will need to be prepared to handle the constness.
-> 
-> I have a branch with the full conversion here:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/thomas.weissschuh/linux.git/log/?h=b4/configfs-const
-> 
->  73 files changed, 241 insertions(+), 248 deletions(-)
-> 
->  Most driver changes are really trivial. But a few do more interesting
->  things. My goal is to heavily reduce the amount of patches in this
->  branch by merging patches to the same subsystem.
-> 
->  The last four patches will be the finalization going again through
->  the configfs tree.
+Add support for handling errors that require a complete
+device power cycle (cold reset) to recover.
 
-Oh, that makes total sense now.
+Certain error conditions leave the device in a persistent hardware
+error state that cannot be cleared through existing recovery mechanisms
+such as driver reload or PCIe reset. In these cases, functionality can
+only be restored by performing a cold reset.
 
-Thanks,
---breno
+To support this, the series introduces a new DRM wedging recovery
+method, DRM_WEDGE_RECOVERY_COLD_RESET (BIT(4)). When a device is wedged
+with this method, the DRM core notifies userspace via a uevent that a cold
+reset is required. This allows userspace to take appropriate action to
+power-cycle the device.
+
+Example uevent received:
+  SUBSYSTEM=drm
+  WEDGED=cold-reset
+  DEVPATH=/devices/.../drm/card0
+
+v2:
+- Add use case: Handling errors from power management unit,
+  which requires a complete power cycle to
+  recover. (Christian)
+- Add several instead of number to avoid update. (Jani)
+
+v3:
+- Update any scenario that requires cold-reset. (Riana)
+- Update document with generic scenario. (Riana)
+- Consistent with terminology. (Raag)
+- Remove already covered information.
+- Use PUNIT instead of PMU. (Riana)
+- Use consistent wordingi.
+- Remove log. (Raag)
+
+v4:
+- Rename cold reset to power cyclce. (Raag)
+- Update doc. (Raag/Riana)
+- Change commit message. (Raag)
+- Make function static. (Raag)
+
+v5:
+- Make it consistent with consumer expectations. (Raag)
+- Update commit message.
+- Remove unbind.
+- Simplify cold-reset script.
+- Remove kdoc for static function.
+- Remove xe_ prefix for static function.
+
+v6:
+- Drop "last resort" wording. (Riana)
+- Look up the hotplug slot in DEVPATH instead of scanning
+  every PCI slot on the system. (Raag)
+- Drop arbitrary sleep values from the example script.
+- Expand commit message to explain why SUR_DN is masked. (Raag/Riana)
+- Check Slot Implemented bit before reading Slot Capabilities, per
+  PCIe spec. (Riana)
+- Add debug log.
+
+v7:
+- Update recovery script. (Raag)
+- Handle surprise link down event properly. (Aravind/Riana)
+- Update commit message. (Riana)
+- Correct log message.
+
+v8:
+- Add rescan instead of reset. (Raag)
+- Use find_usp_dev() in punit_error_handler() function.
+
+v9:
+- Remove unwanted header. (Sashiko)
+- Removed #ifdef CONFIG_PCIEAER. (Riana)
+- Used pci_find_ext_capability() instead of usp->aer_cap.
+- Clear the PCI_ERR_UNC_SURPDN status bit (W1C) after
+  reset complete. (Lukas Wunner)
+- Use pci_clear_and_set_config_dword() helper.
+
+v10:
+- Rebase.
+- Fix column width. (Sashiko)
+
+v11:
+- Make udev rules in single line. (Sashiko)
+
+Cc: Andr√© Almeida <andrealmeid@igalia.com>
+Cc: Christian K√∂nig <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+
+Mallesh Koujalagi (3):
+  drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/xe: Handle PUNIT errors by requesting cold-reset recovery
+
+ Documentation/gpu/drm-uapi.rst | 93 ++++++++++++++++++++++++++++++++--
+ drivers/gpu/drm/drm_drv.c      |  2 +
+ drivers/gpu/drm/xe/xe_ras.c    |  8 ++-
+ include/drm/drm_device.h       |  1 +
+ 4 files changed, 98 insertions(+), 6 deletions(-)
+
+-- 
+2.48.1
+
