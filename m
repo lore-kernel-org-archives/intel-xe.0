@@ -4,56 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3339C44515
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 09:14:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1EA6C44515
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jul 2026 09:15:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F93F10E844;
-	Mon, 20 Jul 2026 09:14:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B335C10E14C;
+	Mon, 20 Jul 2026 09:15:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ti6i0yGF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HFfHYf18";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0727010E844
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Jul 2026 09:14:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9BEA10E14C;
+ Mon, 20 Jul 2026 09:15:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784538857; x=1816074857;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1l53a6Ku+/K5osMwYOyqovepfCjKTenHPqzTfclXtEY=;
- b=Ti6i0yGF4cV9lnOGb7RyhqyefEx+WYnDbdyh3VSq6w4qoqrcFkLzCjAA
- l9E/nMqN8CaTsWOKXpjBiGhZ6cZYLtUozLkbDT8gJXKrIJ3G3cWmZwtHW
- /0iGFo01wENCd1q00hbZ3MStyUauqdu8rjepbAYL539QRdlKH/Kv7DtvY
- w2BJTfNJOv/32xR8/ysGg7YGYgH+NVJFtn3DdN8nVdNs2tvvn8pzn4Qhv
- AlAqL5lgrMKYGlvAjKnYs+8LOrRe5gGoPQrgbBTrYFLWcPNYkMS0Ody6+
- Cm00FqB82B+PtHXn1k+jfmSnYF8H/3B7pyC5QE0rwVctaEG6rWzPQ5J3t Q==;
-X-CSE-ConnectionGUID: 1lYi2GYFRFK92bcluSXS1w==
-X-CSE-MsgGUID: dljx4I1oTxO/dW3LyElT5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11851"; a="84969644"
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="84969644"
+ t=1784538934; x=1816074934;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=HdRh+ymOJ0ac4vm8ZMK/iaHoBQMnrskWK1UlTljR5X4=;
+ b=HFfHYf18orM7AygbhXRF1neZ/bFrmzjbcDjtqmGcOnU57N+F9GuhSxvk
+ AgUChgtgQWkvMak9Ug62usUEFWgm2RPr0v3Fn7G4CRnZopzUiR2zQbOsU
+ 6sjjfHrfDwSfmQKsfHcsi9uV45Ef50MydAplpho+lhtX3jUtkOsoG7xgs
+ KVCzcV9PIEczw4n73Fyrqpa94qzer54iGH4ZQ1ZgT8RMlScExW/T0EQaX
+ ggBe6si5jtR+Kxam9XbB+yi6BkbRznw8Rj2jbUtCq4RCmPUgAhD+kPfT9
+ wGdjF7ToviMBQmGNmPH72Bb61QyNOFBD1GZq/8bRPO9S/BQSRi6Ep328u Q==;
+X-CSE-ConnectionGUID: 9WLTFHmGQBuPYB5mN2zfZw==
+X-CSE-MsgGUID: RnKpT7QgTE2CCoE13kU67Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11851"; a="84969805"
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="84969805"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2026 02:14:16 -0700
-X-CSE-ConnectionGUID: EsMwNRLVRvWj/O8TKy/ZtQ==
-X-CSE-MsgGUID: 5buXfZ4YRIexm5ANxPonqg==
+ 20 Jul 2026 02:15:33 -0700
+X-CSE-ConnectionGUID: 0AIwnnlTQpi59DN88CWYXg==
+X-CSE-MsgGUID: Nq0Frpv2S8OS2iZmwbtEVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="256830721"
-Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
+X-IronPort-AV: E=Sophos;i="6.25,174,1779174000"; d="scan'208";a="256831076"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.165])
+ ([10.245.244.165])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2026 02:14:14 -0700
-From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
- riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
- michael.j.ruhl@intel.com, paul.e.luse@intel.com,
- mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v5] drm/xe/sysctrl: Add helper to query application status
-Date: Mon, 20 Jul 2026 02:14:11 -0700
-Message-ID: <20260720091410.4153002-2-anoop.c.vijay@intel.com>
-X-Mailer: git-send-email 2.43.0
+ 20 Jul 2026 02:15:31 -0700
+Message-ID: <4fd8cf87-3c70-4a8f-afbd-8c1a67122ab7@linux.intel.com>
+Date: Mon, 20 Jul 2026 11:15:27 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/dp_tunnel: Add UHBR tunneling support
+To: imre.deak@intel.com, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+References: <20260714152700.555527-1-imre.deak@intel.com>
+ <20260714152700.555527-2-imre.deak@intel.com>
+ <alnvFb5cupP9YmgL@ideak-desk.lan>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <alnvFb5cupP9YmgL@ideak-desk.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,225 +73,255 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anoop Vijay <anoop.c.vijay@intel.com>
+Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Add xe_sysctrl_check_app_status() to query the state of a System
-Controller application using get_app_status_by_id mailbox command.
-
-The helper maps xe_sysctrl_app_id values to firmware application
-IDs and returns the reported application state. Add a convenience
-wrapper to check OOBMSM application readiness.
-
-Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
----
-v5: (Anshuman)
-- Rename OOBMSM status helper to use xe_sysctrl_* prefix
-- Remove xe_is_diag_fw_ready() helper
-
-v4: (Anshuman)
-- Make xe_sysctrl_check_app_status() internal
-- Remove unused app identifier
-
-v3: (Riana, Badal)
-- Replace string-based app identifiers with enum xe_sysctrl_app_id
-- Use get_app_status_by_id (opcode 0x05)
-- Move mailbox definitions to xe_sysctrl_mailbox_types.h
-- Return enum xe_sysctrl_fw_status consistently
-- Map communication failures to COMM_FAILURE
-- Add INITIALIZED state and status helpers
-- Fix Diagnostics typo
-
-v2: (Badal)
-- Return SysCtrl firmware application states instead of errno for application lifecycle conditions
----
- drivers/gpu/drm/xe/xe_sysctrl.c               | 70 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |  1 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 63 +++++++++++++++++
- 3 files changed, 134 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 1db20be8158b..9406df029322 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -13,9 +13,11 @@
- #include "xe_device.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
-+#include "xe_printk.h"
- #include "xe_soc_remapper.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
- #include "xe_sysctrl_types.h"
- 
- /**
-@@ -130,3 +132,71 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
- 
- 	xe_sysctrl_mailbox_init(sc);
- }
-+
-+static enum xe_sysctrl_fw_status
-+xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
-+{
-+	struct xe_sysctrl_get_app_status_by_id_req req = {};
-+	struct xe_sysctrl_get_app_status_by_id_resp resp = {};
-+	struct xe_sysctrl_mailbox_command cmd = {};
-+	size_t out_len = 0;
-+	u32 flags;
-+	int ret;
-+
-+	if (!xe->info.has_sysctrl)
-+		return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+
-+	req.app_id = (u8)app_id;
-+
-+	cmd.header.data =
-+		FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_CORE) |
-+		FIELD_PREP(APP_HDR_COMMAND_MASK, XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID) |
-+		FIELD_PREP(APP_HDR_VERSION_MASK, 0);
-+
-+	cmd.data_in = &req;
-+	cmd.data_in_len = sizeof(req);
-+	cmd.data_out = &resp;
-+	cmd.data_out_len = sizeof(resp);
-+
-+	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
-+	if (ret)
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
-+
-+	if (out_len != sizeof(resp)) {
-+		xe_err(xe, "sysctrl: unexpected get app status response length %zu (expected %zu)\n",
-+		       out_len, sizeof(resp));
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
-+	}
-+
-+	flags = resp.flags;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
-+		return XE_SYSCTRL_FIRMWARE_APP_INVALID;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
-+		return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
-+		return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
-+
-+	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
-+}
-+
-+/**
-+ * xe_sysctrl_is_oobmsm_fw_ready() - Check if oCode firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if oCode firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if oCode is initialized or sysctrl is not present, false otherwise
-+ */
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe)
-+{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_OCODE);
-+
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index 090dffb6d55f..325334509a03 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -20,5 +20,6 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
- int xe_sysctrl_init(struct xe_device *xe);
- void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
- void xe_sysctrl_pm_resume(struct xe_device *xe);
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index d0341538ad05..c7ba6d69f4a7 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -14,9 +14,11 @@
-  * enum xe_sysctrl_group - System Controller command groups
-  *
-  * @XE_SYSCTRL_GROUP_GFSP: GFSP group
-+ * @XE_SYSCTRL_GROUP_CORE: Core group
-  */
- enum xe_sysctrl_group {
- 	XE_SYSCTRL_GROUP_GFSP			= 0x01,
-+	XE_SYSCTRL_GROUP_CORE			= 0xFF,
- };
- 
- /**
-@@ -38,6 +40,67 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
- };
- 
-+/**
-+ * enum xe_sysctrl_core_cmd - Commands supported by Core group
-+ *
-+ * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
-+ */
-+enum xe_sysctrl_core_cmd {
-+	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
-+};
-+
-+/**
-+ * struct xe_sysctrl_get_app_status_by_id_req - Get application status request
-+ *
-+ * @app_id: Application ID for which to retrieve status
-+ */
-+struct xe_sysctrl_get_app_status_by_id_req {
-+	u8 app_id;
-+} __packed;
-+
-+/**
-+ * struct xe_sysctrl_get_app_status_by_id_resp - Get application status response
-+ * @flags: Application status flags (see XE_SYSCTRL_APP_RESP_* definitions)
-+ */
-+struct xe_sysctrl_get_app_status_by_id_resp {
-+	u32 flags;
-+} __packed;
-+
-+/** XE_SYSCTRL_APP_RESP_VALID - app_id is recognized by System Controller firmware */
-+#define XE_SYSCTRL_APP_RESP_VALID		BIT(0)
-+/** XE_SYSCTRL_APP_RESP_BOOTED - application has completed its boot sequence */
-+#define XE_SYSCTRL_APP_RESP_BOOTED		BIT(1)
-+/** XE_SYSCTRL_APP_RESP_INITIALIZED - application has completed all post-boot initialization */
-+#define XE_SYSCTRL_APP_RESP_INITIALIZED		BIT(2)
-+
-+/**
-+ * enum xe_sysctrl_fw_status - System Controller firmware application lifecycle states
-+ *
-+ * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by firmware
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has not yet booted
-+ * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed, post-boot init pending
-+ * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully operational
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available on this device
-+ * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System Controller firmware failed
-+ */
-+enum xe_sysctrl_fw_status {
-+	XE_SYSCTRL_FIRMWARE_APP_INVALID,
-+	XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
-+	XE_SYSCTRL_FIRMWARE_APP_BOOTED,
-+	XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
-+	XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
-+	XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
-+};
-+
-+/**
-+ * enum xe_sysctrl_app_id - Known System Controller application identifiers
-+ *
-+ * @XE_SYSCTRL_APP_OCODE: oCode application (firmware ID 12)
-+ */
-+enum xe_sysctrl_app_id {
-+	XE_SYSCTRL_APP_OCODE	= 12,
-+};
-+
- /**
-  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
-  */
--- 
-2.43.0
+On 7/17/26 11:00, Imre Deak wrote:
+> Hi Thomas, Maarten, Maxime,
+> 
+> could you please ack merging this patch via the Intel trees? It adds the
+> DP tunnel register definitions for UHBR link rates and reading/parsing
+> them, which are then used later in this patchset by the Intel driver.
+> 
+> Thanks,
+> Imre
+> 
+> On Tue, Jul 14, 2026 at 06:26:55PM +0300, Imre Deak wrote:
+>> Add the DPCD registers and detection required to support UHBR link rates
+>> over Thunderbolt tunnels.
+>>
+>> Cc: dri-devel@lists.freedesktop.org
+>> Signed-off-by: Imre Deak <imre.deak@intel.com>
+>> ---
+>>  drivers/gpu/drm/display/drm_dp_tunnel.c | 116 +++++++++++++++++++++++-
+>>  include/drm/display/drm_dp.h            |  12 +++
+>>  include/drm/display/drm_dp_tunnel.h     |  21 +++++
+>>  3 files changed, 148 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c b/drivers/gpu/drm/display/drm_dp_tunnel.c
+>> index 76c6bc84a806f..d29ad4116e641 100644
+>> --- a/drivers/gpu/drm/display/drm_dp_tunnel.c
+>> +++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
+>> @@ -111,6 +111,8 @@
+>>  	DPTUN_REG(DP_ALLOCATED_BW) | \
+>>  	DPTUN_REG(DP_TUNNELING_MAX_LINK_RATE) | \
+>>  	DPTUN_REG(DP_TUNNELING_MAX_LANE_COUNT) | \
+>> +	DPTUN_REG(DP_TUNNELING_MAIN_LINK_CHANNEL_CODING) | \
+>> +	DPTUN_REG(DP_TUNNELING_128B132B_LINK_RATE) | \
+>>  	DPTUN_REG(DP_DPTX_BW_ALLOCATION_MODE_CONTROL))
+>>  
+>>  static const DECLARE_BITMAP(dptun_info_regs, 64) = {
+>> @@ -140,11 +142,14 @@ struct drm_dp_tunnel {
+>>  	int estimated_bw;
+>>  	int allocated_bw;
+>>  
+>> +	u8 dprx_128b132b_rates;
+>>  	int max_dprx_rate;
+>>  	u8 max_dprx_lane_count;
+>>  
+>>  	u8 adapter_id;
+>>  
+>> +	bool dprx_128b132b_support:1;
+>> +	bool dprx_128b132b_lane0_mapping_support:1;
+>>  	bool bw_alloc_supported:1;
+>>  	bool bw_alloc_enabled:1;
+>>  	bool has_io_error:1;
+>> @@ -260,9 +265,46 @@ static int tunnel_reg_bw_granularity(const struct drm_dp_tunnel_regs *regs)
+>>  	return (250000 << gr) / 8;
+>>  }
+>>  
+>> +static bool tunnel_reg_dprx_128b132b_support(const struct drm_dp_tunnel_regs *regs)
+>> +{
+>> +	return tunnel_reg(regs, DP_TUNNELING_MAIN_LINK_CHANNEL_CODING) & DP_128B132B_DP_SUPPORTED;
+>> +}
+>> +
+>> +static bool tunnel_reg_dprx_128b132b_lane0_mapping_support(const struct drm_dp_tunnel_regs *regs)
+>> +{
+>> +	return tunnel_reg(regs, DP_TUNNELING_128B132B_LINK_RATE) &
+>> +	       DP_TUNNELING_128B132B_LL_LANE0_MAPPING_SUPPORT;
+>> +}
+>> +
+>> +static u8 tunnel_reg_dprx_128b132b_rates(const struct drm_dp_tunnel_regs *regs)
+>> +{
+>> +	if (!tunnel_reg_dprx_128b132b_support(regs))
+>> +		return 0;
+>> +
+>> +	return tunnel_reg(regs, DP_TUNNELING_128B132B_LINK_RATE) &
+>> +	       DP_TUNNELING_128B132B_LINK_RATE_MASK;
+>> +}
+>> +
+>> +static u8 max_128b132b_rate(u8 rates)
+>> +{
+>> +	if (rates & DP_TUNNELING_20GBPS_PER_LANE_SUPPORT)
+>> +		return DP_TUNNELING_20GBPS_PER_LANE_SUPPORT;
+>> +	else if (rates & DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT)
+>> +		return DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT;
+>> +	else if (rates & DP_TUNNELING_10GBPS_PER_LANE_SUPPORT)
+>> +		return DP_TUNNELING_10GBPS_PER_LANE_SUPPORT;
+>> +
+>> +	WARN_ON(rates);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>  static int tunnel_reg_max_dprx_rate(const struct drm_dp_tunnel_regs *regs)
+>>  {
+>> -	u8 bw_code = tunnel_reg(regs, DP_TUNNELING_MAX_LINK_RATE);
+>> +	u8 bw_code = max_128b132b_rate(tunnel_reg_dprx_128b132b_rates(regs));
+>> +
+>> +	if (!bw_code)
+>> +		bw_code = tunnel_reg(regs, DP_TUNNELING_MAX_LINK_RATE);
+>>  
+>>  	return drm_dp_bw_code_to_link_rate(bw_code);
+>>  }
+>> @@ -706,6 +748,23 @@ static bool update_dprx_caps(struct drm_dp_tunnel *tunnel, const struct drm_dp_t
+>>  {
+>>  	bool changed = false;
+>>  
+>> +	if (tunnel_reg_dprx_128b132b_support(regs) != tunnel->dprx_128b132b_support) {
+>> +		tunnel->dprx_128b132b_support = tunnel_reg_dprx_128b132b_support(regs);
+>> +		changed = true;
+>> +	}
+>> +
+>> +	if (tunnel_reg_dprx_128b132b_lane0_mapping_support(regs) !=
+>> +	    tunnel->dprx_128b132b_lane0_mapping_support) {
+>> +		tunnel->dprx_128b132b_lane0_mapping_support =
+>> +			tunnel_reg_dprx_128b132b_lane0_mapping_support(regs);
+>> +		changed = true;
+>> +	}
+>> +
+>> +	if (tunnel_reg_dprx_128b132b_rates(regs) != tunnel->dprx_128b132b_rates) {
+>> +		tunnel->dprx_128b132b_rates = tunnel_reg_dprx_128b132b_rates(regs);
+>> +		changed = true;
+>> +	}
+>> +
+>>  	if (tunnel_reg_max_dprx_rate(regs) != tunnel->max_dprx_rate) {
+>>  		tunnel->max_dprx_rate = tunnel_reg_max_dprx_rate(regs);
+>>  		changed = true;
+>> @@ -1331,6 +1390,61 @@ int drm_dp_tunnel_handle_irq(struct drm_dp_tunnel_mgr *mgr, struct drm_dp_aux *a
+>>  }
+>>  EXPORT_SYMBOL(drm_dp_tunnel_handle_irq);
+>>  
+>> +/**
+>> + * drm_dp_tunnel_128b132b_supported - Query if 128b132b is supported by the tunnel's DPRX
+>> + * @tunnel: Tunnel object
+>> + *
+>> + * The function is used to query if 128b132b is supported by the DPRX connected
+>> + * to @tunnel.
+>> + *
+>> + * Returns %true if 128b132b is supported by the DPRX.
+>> + */
+>> +bool drm_dp_tunnel_128b132b_supported(const struct drm_dp_tunnel *tunnel)
+>> +{
+>> +	return tunnel->dprx_128b132b_support;
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_tunnel_128b132b_supported);
+>> +
+>> +/**
+>> + * drm_dp_tunnel_128b132b_lane0_mapping_supported - Check 128b/132b lane 0 mapping support
+>> + * @tunnel: Tunnel object
+>> + *
+>> + * Check whether the DP-out adapter always maps lane 0 as expected by the
+>> + * DPRX on a tunneled 128b/132b link. If the function returns %true, one- and
+>> + * two-lane configurations with UHBR link rates can always be used. If it
+>> + * returns %false, using one or two lanes with UHBR link rates may cause a
+>> + * lane-count conversion failure in the DPRX, requiring corrective action by
+>> + * the source during link training. See DP Standard v2.1b, section
+>> + * 3.5.2.16.3, 128b/132b DPRX Lane Count Conversion Failure Indication and
+>> + * Corrective Action.
+>> + *
+>> + * A four-lane configuration can always be used, provided that the DPRX
+>> + * supports it, regardless of the function's return value.
+>> + *
+>> + * Returns %true if the DP-out adapter supports the 128b/132b lane 0 mapping.
+>> + */
+>> +bool drm_dp_tunnel_128b132b_lane0_mapping_supported(const struct drm_dp_tunnel *tunnel)
+>> +{
+>> +	return tunnel->dprx_128b132b_lane0_mapping_support;
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_tunnel_128b132b_lane0_mapping_supported);
+>> +
+>> +/**
+>> + * drm_dp_tunnel_128b132b_dprx_rates - Query the supported 128b132b rates of the tunnel's DPRX
+>> + * @tunnel: Tunnel object
+>> + *
+>> + * The function is used to query the supported 128b132b rates of the DPRX connected
+>> + * to @tunnel. Note that the related DP_128B132B_SUPPROTED_LINK_RATES DPCD
+>> + * register will indicate no supported 128B132B rates for a tunneled DPRX.
+>> + *
+>> + * Returns the mask of supported 128b132b rates.
+>> + */
+>> +u8 drm_dp_tunnel_128b132b_dprx_rates(const struct drm_dp_tunnel *tunnel)
+>> +{
+>> +	return tunnel->dprx_128b132b_rates;
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_tunnel_128b132b_dprx_rates);
+>> +
+>>  /**
+>>   * drm_dp_tunnel_max_dprx_rate - Query the maximum rate of the tunnel's DPRX
+>>   * @tunnel: Tunnel object
+>> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+>> index 7154216e0aff9..8b0ca36083dd1 100644
+>> --- a/include/drm/display/drm_dp.h
+>> +++ b/include/drm/display/drm_dp.h
+>> @@ -1506,6 +1506,18 @@
+>>  #define DP_TUNNELING_MAX_LANE_COUNT			0xe0029
+>>  #define  DP_TUNNELING_MAX_LANE_COUNT_MASK		0x1f
+>>  
+>> +#define DP_TUNNELING_MAIN_LINK_CHANNEL_CODING		0xe002b
+>> +#define  DP_128B132B_DP_SUPPORTED			(1 << 0)
+>> +
+>> +#define DP_TUNNELING_128B132B_LINK_RATE			0xe002c
+>> +#define  DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT		(1 << 2)
+>> +#define  DP_TUNNELING_20GBPS_PER_LANE_SUPPORT		(1 << 1)
+>> +#define  DP_TUNNELING_10GBPS_PER_LANE_SUPPORT		(1 << 0)
+>> +#define  DP_TUNNELING_128B132B_LINK_RATE_MASK		(DP_TUNNELING_10GBPS_PER_LANE_SUPPORT | \
+>> +							 DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT | \
+>> +							 DP_TUNNELING_20GBPS_PER_LANE_SUPPORT)
+>> +#define  DP_TUNNELING_128B132B_LL_LANE0_MAPPING_SUPPORT	(1 << 7)
+>> +
+>>  #define DP_DPTX_BW_ALLOCATION_MODE_CONTROL		0xe0030
+>>  #define  DP_DISPLAY_DRIVER_BW_ALLOCATION_MODE_ENABLE	(1 << 7)
+>>  #define  DP_UNMASK_BW_ALLOCATION_IRQ			(1 << 6)
+>> diff --git a/include/drm/display/drm_dp_tunnel.h b/include/drm/display/drm_dp_tunnel.h
+>> index 57f5e90ba8fda..b5e665560a47e 100644
+>> --- a/include/drm/display/drm_dp_tunnel.h
+>> +++ b/include/drm/display/drm_dp_tunnel.h
+>> @@ -63,6 +63,9 @@ void drm_dp_tunnel_set_io_error(struct drm_dp_tunnel *tunnel);
+>>  int drm_dp_tunnel_handle_irq(struct drm_dp_tunnel_mgr *mgr,
+>>  			     struct drm_dp_aux *aux);
+>>  
+>> +bool drm_dp_tunnel_128b132b_supported(const struct drm_dp_tunnel *tunnel);
+>> +bool drm_dp_tunnel_128b132b_lane0_mapping_supported(const struct drm_dp_tunnel *tunnel);
+>> +u8 drm_dp_tunnel_128b132b_dprx_rates(const struct drm_dp_tunnel *tunnel);
+>>  int drm_dp_tunnel_max_dprx_rate(const struct drm_dp_tunnel *tunnel);
+>>  int drm_dp_tunnel_max_dprx_lane_count(const struct drm_dp_tunnel *tunnel);
+>>  int drm_dp_tunnel_available_bw(const struct drm_dp_tunnel *tunnel);
+>> @@ -173,6 +176,24 @@ drm_dp_tunnel_handle_irq(struct drm_dp_tunnel_mgr *mgr,
+>>  	return -EOPNOTSUPP;
+>>  }
+>>  
+>> +static inline bool
+>> +drm_dp_tunnel_128b132b_supported(const struct drm_dp_tunnel *tunnel)
+>> +{
+>> +	return false;
+>> +}
+>> +
+>> +static inline bool
+>> +drm_dp_tunnel_128b132b_lane0_mapping_supported(const struct drm_dp_tunnel *tunnel)
+>> +{
+>> +	return false;
+>> +}
+>> +
+>> +static inline u8
+>> +drm_dp_tunnel_128b132b_dprx_rates(const struct drm_dp_tunnel *tunnel)
+>> +{
+>> +	return 0;
+>> +}
+>> +
+>>  static inline int
+>>  drm_dp_tunnel_max_dprx_rate(const struct drm_dp_tunnel *tunnel)
+>>  {
+>> -- 
+>> 2.49.1
+>>
 
