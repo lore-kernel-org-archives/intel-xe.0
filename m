@@ -4,77 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6FBEC531C7
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 13:42:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB6BCC44536
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 13:42:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE80B10EDCF;
-	Wed, 22 Jul 2026 13:42:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5FB910EDC6;
+	Wed, 22 Jul 2026 13:42:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gsWNNrgY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="r7Z7Lk52";
 	dkim-atps=neutral
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com
- [209.85.221.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D53BF10E3D4
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 00:47:36 +0000 (UTC)
-Received: by mail-vk1-f180.google.com with SMTP id
- 71dfb90a1353d-5bfb5e20a90so5191274e0c.2
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 17:47:36 -0700 (PDT)
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com
+ [209.85.222.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 041FC10EA08
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Jul 2026 17:52:35 +0000 (UTC)
+Received: by mail-ua1-f49.google.com with SMTP id
+ a1e0cc1a2514c-9696369925aso2749129241.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Jul 2026 10:52:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784681256; x=1785286056; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=QUxIn1WFaPZcx4UkuKtETzjufHYnex7kE/0l2kUJDdc=;
- b=gsWNNrgY7Gjm66s7k9y2AHTkA1ceFcPpNJaAWkYvhTh++r+nHp8z7CkCkKr4gWd2+b
- 3wtn6tx59tJ65T+x00S+G9+4CKtnsacecI/XHJ200fnZCJW0810mPtFj54kUwCQoBkpM
- mO4m5g7z1W9Ad6ulg8uMT5SoxkIS8DMv5MMaUuJXrBgIOJlv/PhUyaxaD83vO7n4wHFj
- CzRQMh6b7OkAE5LCxRXP4JAijW9S/hJT5WSdm/UNLMnFLTv12OrwcvsZSetLxx7CrYd3
- xVLiyN5giqZ96kqyMNaEEjXcE2SgycAJcPtYg+IgubFnBhMdjXqtXUh9m5WwCwFlodX6
- U3tw==
+ d=gmail.com; s=20251104; t=1784569954; x=1785174754; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=M1GZajhqarMc4GuzpT0mLcFOMeIu7bIO6dEAnU4cRac=;
+ b=r7Z7Lk52RhpdQnu3zwjSLyKhbJm5WTKV8uPBNjRBES0WzK5Xj/PmlYwXF++JiJ0bLD
+ pgqmXjuNE8afk7tSRorfqgA4PufEZnCzcY2N/LNCsRzxBSSkw9B5F2TO3ZyCq9qZaLoZ
+ liS2rxyCpfrShR6wFgWoX2oGa9iBWG2I6p8W1ljgW2lS9isgaa+2ZdvCyXDNvGFWLFHG
+ BA8XlYTiyn44yYyUNHkfs7k89GGJCCunDcKXmkQqxMRhua6a84AZgnRkKGE8Y8nYD6xo
+ yq2iC9M9greWvsgoWM4DVKc8/RHcHsmY11l0P82lNujCbvCmNODOw5zZKjPhHm5jrg1H
+ ETNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784681256; x=1785286056;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=QUxIn1WFaPZcx4UkuKtETzjufHYnex7kE/0l2kUJDdc=;
- b=SmUvU+s4njuJNZ7r4mPgz39jRvEMFdfRVEZ1cukBNW39CsEClQWh332K67rpwSUnHI
- 3Ayr5lxNBLkCkzuPeqAKh5cboEoXkndnldeUsp/7EHLxAnJR/QaIBTLhQGejltjuers3
- BjBdl2SnlTVLiZf63A3NwRON2MRPhSunxr9ueOWwAURfik/KgrLODnX//OfgpeBvxB75
- 5hb24uW7WGyqTrmooltRIkcrcABlBm4GgwJibEhcdkDRcMlDpDZ5b/dZYsUoHO3+aNTP
- uvJ6s1eGk8nf2rOeqULKqq8mXEiKjcUdomSxMvjYztizW3UoOS1He3O6sSX9EAyMOu9C
- 4DCQ==
-X-Gm-Message-State: AOJu0YzplQ5hyBnTA7tOCmTApapN7D8VbzO7+0F9izq0sJyese6aVYNO
- oWgtXkN6A1Fcnxy5dFAnc8cMZAkLeXltP+PWvM9oyEk1AcZNTmUT+X4kxc5pwA==
-X-Gm-Gg: AR+sD11xXurpIUKTd58Euk5g414EUfa4PpdS9VxunG+1fXjTj66B7o1WYMBvOdtpLSj
- 45rRYTsglvoX1NuBJ721wy5YZGTUhX+CfqMDlG361JpGWF/O80vMJGrmUY7RRTvDwu1PmxsCW4c
- RjAYkNoXXg25EBGaD0z7NhqpLGJYKJP6mlb047PehChDTdIRcelvJFzSc4TJRwf6i6ogNddFlPb
- SWJvN0tyfihbdV6YraOtarP/BXui+cqsHqw2Lv+FrOrmkf0lI68EehemsnXASrrA9DaJeTljM+d
- ZqZSGjzNfw3W2aRqvmFvj2Xc6v8bNbgUGbODjzhwMJlV5BFhTE/FJhJCA36HcxST38Yxo1LluI1
- ZPLBasrD2Pgje+JI52U7bvQ70IwXwQI7TKnhMd9LbJHOBXAV+dgEerhsxBG7LLGmQ7C6lwB09Nc
- U5yfJKwt+94fwVI7Y3gn7MozriW4MWTEfAtlvGuVK/P4biJ8CaVrbdsiBcsX8c43oVB1H0eA==
-X-Received: by 2002:a05:6102:f86:b0:740:2bcd:24d2 with SMTP id
- ada2fe7eead31-74753465e4cmr7656619137.5.1784681255740; 
- Tue, 21 Jul 2026 17:47:35 -0700 (PDT)
-Received: from lord.bigscale.net ([170.246.211.222])
- by smtp.gmail.com with ESMTPSA id
- ada2fe7eead31-74ad31c215bsm1346505137.2.2026.07.21.17.47.32
+ d=1e100.net; s=20251104; t=1784569954; x=1785174754;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=M1GZajhqarMc4GuzpT0mLcFOMeIu7bIO6dEAnU4cRac=;
+ b=sVWhaHiHtiGXZfkPij+SwPH+surDM2GjlAldeVbJpZdFp71OxmoqVaJA83TRqSwkyq
+ ESe9UZ3qahoigG7eXl348PvAPreI9STX70TkxFeeBo3F045kZ6fB36/0E6R64qIpGVC8
+ JYqKHUHeRqwTWEzFlUK8yL9Opph0TIaOzihhKn/ZsezUF53urd/3ocXr9e2C8kRr311x
+ +bWAmZ5SBNF2lxZ77k5ZdxzqJQI18j1ihH3F5ICAeVSnffm2GEzpAUmUsmQ5Q0lsqjpn
+ u+DJ65L8O3TDZAelr7/Z/U08W5rBLCC0MXjwBREirqGr7znY9z1ba8N1JM8p6e5Z89AD
+ PJSw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RryeeXbCVzqqeDSawKSpIFu0Sb2Rzqexo2VZ1HAbEsNKeF+tvVveiPg5/ZgUjH9ppf04EJS6mwrYA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxAlQetawiCpN+qZZUiIHrTrlgTuK48zUbGjfK9U6uvZygS2bCh
+ 6jmi4mKdvG5QgvjCwlUei9k6KgsVkJ3rDZ/ytgky7Y9JoOPpcoBmAWRe
+X-Gm-Gg: AfdE7cnG4VCT7Tw+wm7WrDOUgWf1CsJtuItuSsh/pcvO/i8LNf0bMm1EUqXKoDfkPXz
+ 22hU4zyP4w9gGSl5ZcmjsT3xiKrs7tr4QozRnQ3YY2E7PPLAtb2ofyOvUDP6+sc46wYzEaaDt0g
+ xxgZIwITXWykytmrKZCl02jjFj5apelAbG4YpRL37gTHseG39wUry5be8lfGJkHyKySUtKuGgy5
+ woF2vjG4KAfHst4tlTwTUUxL5OUTAypT0r8WYtLbPvc2Vr8ECWA+Em12m6I1DNY4JqU/dxq0ozk
+ zMRwmDGs6Ax8VHWhC+jGZ1cW3hsNbn1fuW+zz6biT3YE7dzzhvVH+11PKPSUlzSWn9kql/CK08U
+ NA/E/6V9paXWMYvKOOfSeeANU96i0QMTr+K6SYpt3skv4xp41TzWH2lGmUwWVAODztlHdCfzZjG
+ wS1QEVzw85cVn3dzj7ZA==
+X-Received: by 2002:a05:6102:6446:b0:739:918a:16c5 with SMTP id
+ ada2fe7eead31-747534c3d0fmr3288184137.3.1784569953534; 
+ Mon, 20 Jul 2026 10:52:33 -0700 (PDT)
+Received: from fedora ([67.230.148.25]) by smtp.gmail.com with ESMTPSA id
+ ada2fe7eead31-74757c8048csm8999667137.0.2026.07.20.10.52.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jul 2026 17:47:34 -0700 (PDT)
-From: =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
-Subject: [PATCH v1 3/4] drm/xe/guc/ct: Queue G2H worker before flushing it in
- timeout paths
-Date: Tue, 21 Jul 2026 21:46:53 -0300
-Message-ID: <20260722004654.744249-4-talesam@gmail.com>
+ Mon, 20 Jul 2026 10:52:33 -0700 (PDT)
+From: Thierry Cantin-Demers <thierrycantindemers@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org,
+ Thierry Cantin-Demers <thierrycantindemers@gmail.com>
+Subject: [PATCH v2] drm/i915/psr: Disable eDP Panel Replay on XPS 16 DA16260
+ (LG 0x07C5)
+Date: Mon, 20 Jul 2026 13:52:29 -0400
+Message-ID: <20260720175229.11341-1-thierrycantindemers@gmail.com>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260722004654.744249-1-talesam@gmail.com>
-References: <20260722004654.744249-1-talesam@gmail.com>
+In-Reply-To: <a036e63561333e3f36896ac0919feab509553bdc.camel@intel.com>
+References: <a036e63561333e3f36896ac0919feab509553bdc.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 22 Jul 2026 13:42:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -91,110 +93,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Timeout-recovery paths flush the G2H worker to pick up a response that
-may have been posted by the GuC but not yet processed:
+The Dell XPS 16 DA16260 ships in more than one panel variant. The existing
+quirk that disables Panel Replay on this laptop (added to fix the low
+refresh rate / stutter in issue #7682) only matches the LG Display panel
+with DPCD sink OUI 00:22:b9.
 
- - guc_ct_send_recv() after the 1s wait for a G2H response fails
- - the TLB invalidation backend's .flush() hook, called by
-   xe_tlb_inval_fence_timeout() before declaring a fence timed out
+Another unit of the same laptop (subsystem 1028:0dba) uses an LG Display
+0x07C5 panel with sink OUI 00:aa:01. It shows the identical symptom: the
+internal eDP panel updates at only ~5 fps while external displays stay
+smooth, with Panel Replay Selective Update stuck (i915_psr_status cycling
+SLEEP/SU_STANDBY, no error). Because the OUI differs the existing quirk
+does not match and Panel Replay stays enabled.
 
-However flush_work() on a work item that is neither queued nor running
-is a no-op. If the GUC2HOST interrupt for the response was lost or
-coalesced, the G2H worker was never queued: the flush does not read the
-G2H CTB and the response sits there unprocessed until an unrelated G2H
-interrupt arrives. For TLB invalidations this results in
+Add a quirk entry for OUI 00:aa:01 so this variant also gets eDP Panel
+Replay disabled. Confirmed xe.enable_panel_replay=0 and a kernel with
+this quirk both resolve the stutter.
 
-  TLB invalidation fence timeout, seqno=N recv=N-1
-
-with the fence force-signalled with -ETIME even though the ack may
-already be present in the CTB. Observed sporadically on ARL-H under CPU
-load, always with recv == seqno - 1 and self-recovering on the next G2H
-interrupt, which is consistent with a lost wakeup rather than a
-GuC-side failure.
-
-Add xe_guc_ct_flush_g2h(), which queues the worker before flushing it,
-guaranteeing the flush always drains the CTB, and use it in both
-timeout paths. A spurious worker run is safe: g2h_read() returns no
-data under fast_lock, and receive_g2h() copes with runtime-PM state and
-disabled CT communication.
-
-After this change the fence-timeout error only fires when the ack is
-genuinely absent from the CTB, making the message a reliable indicator
-of a GuC-side stall.
-
-Signed-off-by: Tales A. Mendonça <talesam@gmail.com>
+Fixes: cb8d155b0806 ("drm/i915/psr: Disable Panel Replay on Dell XPS 16 DA16260 as a quirk")
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7682
+Signed-off-by: Thierry Cantin-Demers <thierrycantindemers@gmail.com>
+Tested-by: Thierry Cantin-Demers <thierrycantindemers@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c        | 23 ++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_guc_ct.h        |  1 +
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c |  2 +-
- 3 files changed, 24 insertions(+), 2 deletions(-)
+Hi Jouni,
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index fe70c0fd85c..11a05c2b8c7 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1377,7 +1377,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- wait_again:
- 	ret = wait_event_timeout(ct->g2h_fence_wq, READ_ONCE(g2h_fence.done), HZ);
- 	if (!ret) {
--		LNL_FLUSH_WORK(&ct->g2h_worker);
-+		xe_guc_ct_flush_g2h(ct);
- 		if (READ_ONCE(g2h_fence.done)) {
- 			xe_gt_warn(gt, "G2H fence %u, action %04x, done\n",
- 				   g2h_fence.seqno, action[0]);
-@@ -2046,6 +2046,27 @@ static void g2h_worker_func(struct work_struct *w)
- 	receive_g2h(ct);
- }
+Thanks for looking. After capturing full drm.debug=0xe logs I should
+correct my original description: this does not appear to be a Link CRC
+error. That was a one-off reading I have not been able to reproduce.
+
+With Panel Replay enabled and the panel stuck at ~5 fps, i915_psr_status
+just cycles SLEEP / SU_STANDBY with no error, and a full drm.debug dmesg
+shows nothing. It really seems to be the same low refresh rate / stutter
+you already handled in issue #7682:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7682
+
+My machine is the same laptop (XPS 16 DA16260, subsystem 1028:0dba) and
+seems to reproduce in the same way, including with no external display
+attached: applying a gamma LUT via wlr-gamma-control (I use gammad) early
+in the session is enough to leave the panel stuck. The main difference
+from #7682 is the panel: mine is an LG Display 0x07C5 with DPCD sink OUI
+00:aa:01, so the quirk from cb8d155b0806 (which matches 00:22:b9) does not
+cover it and Panel Replay stays enabled.
+
+xe.enable_panel_replay=0 resolves it, and a kernel with the quirk
+extended to 00:aa:01 does too. This v2 drops the CRC wording and
+references #7682. Happy to test any alternative you prefer.
+
+Rather than open a new ticket right away, I went back and captured proper
+logs, and once the CRC description turned out to be wrong it looked like
+the same problem as #7682 rather than a new one, so a one-line quirk
+extension seemed like the least noisy way to handle it. If after this you
+still think it is something different, just let me know and I will gladly
+file a fresh gitlab ticket with the full logs.
+
+Thanks a lot for your time,
+Thierry
+
+v1 -> v2:
+ - Reword: describe as the #7682 low-refresh-rate stutter, not a CRC error
+ - Add Link: to issue #7682
+
+ drivers/gpu/drm/i915/display/intel_quirks.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 33245f44c0d5..e452235832fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -286,6 +286,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+ 		.hook = quirk_disable_edp_panel_replay,
+ 	},
++	/* Dell XPS 16 DA16260 (LG Display 0x07C5, OUI 00:aa:01) */
++	{
++		.device = DEVICE_ID_ANY,
++		.subsystem_vendor = 0x1028,
++		.subsystem_device = 0x0dba,
++		.sink_oui = SINK_OUI(0x00, 0xaa, 0x01),
++		.hook = quirk_disable_edp_panel_replay,
++	},
+ };
  
-+/**
-+ * xe_guc_ct_flush_g2h() - Force processing of pending G2H messages
-+ * @ct: GuC CT object
-+ *
-+ * The GUC2HOST interrupt for a G2H message may be lost or coalesced. When
-+ * that happens the G2H worker is never queued and flushing it is a no-op
-+ * that does not read the G2H CTB, leaving messages the GuC has already
-+ * posted unprocessed until the next interrupt arrives. Queue the worker
-+ * before flushing it so the flush always drains the G2H CTB. A spurious
-+ * worker run is safe: it returns without side effects if the CTB is empty
-+ * or CT communication is disabled.
-+ */
-+void xe_guc_ct_flush_g2h(struct xe_guc_ct *ct)
-+{
-+	if (!xe_guc_ct_enabled(ct))
-+		return;
-+
-+	queue_work(ct->g2h_wq, &ct->g2h_worker);
-+	flush_work(&ct->g2h_worker);
-+}
-+
- static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
- 							bool want_ctb)
- {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 767365a33de..4e0338953f1 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -22,6 +22,7 @@ void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
-+void xe_guc_ct_flush_g2h(struct xe_guc_ct *ct);
- 
- struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
- void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index 046d0655122..91960dc4ba9 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -327,7 +327,7 @@ static void tlb_inval_flush(struct xe_tlb_inval *tlb_inval)
- {
- 	struct xe_guc *guc = tlb_inval->private;
- 
--	LNL_FLUSH_WORK(&guc->ct.g2h_worker);
-+	xe_guc_ct_flush_g2h(&guc->ct);
- }
- 
- static long tlb_inval_timeout_delay(struct xe_tlb_inval *tlb_inval)
+ void intel_init_quirks(struct intel_display *display)
 -- 
 2.55.0
 
