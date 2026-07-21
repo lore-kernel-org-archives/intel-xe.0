@@ -4,78 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F3F4C44532
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 12:25:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 188E9C4451C
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 12:36:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27EA610E329;
-	Tue, 21 Jul 2026 12:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA42610E33D;
+	Tue, 21 Jul 2026 12:36:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCgUvlu1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eTQ4Vvtj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35ECB10E329;
- Tue, 21 Jul 2026 12:25:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8998810E33D
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 12:36:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784636745; x=1816172745;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=I/YKssBTmCWpxAzh41dfBNeIEMvOCor3EGtfl9H79gE=;
- b=eCgUvlu1aIM11aZuXru9WjvTcjJV0CwrFckrqlG2lo5wbQP/F+XJzTnA
- xMztsAseZlBDVrkjcrHxMEN7EXZxAqAeEnRY+c9jHfXSF8XMJ1oucAY/E
- gbWnUx1wmAu4s4CLZVlmPnJLyqXgZNpKwDgVU/3pMbOm0x11DOXrhvNBA
- 7RAm0xLME9hArdfWSl7hjpCAhkNq2tz7FRyto4LZqlM2QPX8OWuASZkvd
- i/hKJfkwJVhUnZ1ZMkcz/YitYRF6v+0Rx+50qSFqy3MDIJ0o6uJyP525q
- cAlvyaToOtbk16AEO9Q3qTiI68fARP/lqXnNuWQ4gyqQOiAGAz5yChMFE w==;
-X-CSE-ConnectionGUID: 5L9jsiGYTWentO2z0ZXdDA==
-X-CSE-MsgGUID: 8uZjR8xOQ36mzEIXh+NUlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11852"; a="85251826"
-X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; d="scan'208";a="85251826"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 05:25:43 -0700
-X-CSE-ConnectionGUID: TRZNSRRfRZmcBxvcQyaQxA==
-X-CSE-MsgGUID: PHvGZ7zoS+u3lvSXILpcyA==
+ t=1784637363; x=1816173363;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=isaOFwmt/7fugpL8twyHdKJjDaKKI637iJImTODMNvw=;
+ b=eTQ4Vvtj4bCfqj7nTX5plUQpLLblJD7EIEQfVchmxBdz6YWkjq9HEPvh
+ 5quzFfRbF2pH9WkClPrd0SA3VFplmxjw7Fj+Y/LmkwubI0qpBGMq01X9g
+ STYD4RKXqsXvF9wFUOoDvvIPy9ZyPbOhFLiKBQjUW/F9Qvd22P4+RO5db
+ G5PUvCscb+mfPy/fkSmp6EsrzxdDat+/iBf4IEa2nEqYojF7IpqBxZswh
+ CwKXzTbCIrth41nKK8yjDfQLklHM3kn8v1m5mlvLQku4FOZVX/8WziDXY
+ n4bwTFjugtBnZniIdpjySs00m7BnDPm9TRA6Auy1EQNM3yEFScZFJWQAw Q==;
+X-CSE-ConnectionGUID: tVPU6nz7Te6I/f692YH74g==
+X-CSE-MsgGUID: k/cKN+khS+uIVpFj6/UHkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11852"; a="95831628"
+X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; d="scan'208";a="95831628"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2026 05:36:01 -0700
+X-CSE-ConnectionGUID: B9tfPGzXT/i4OQteGc7a2Q==
+X-CSE-MsgGUID: VgKrxKvlSY2D/7R0MYQRsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; d="scan'208";a="258396724"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.245.93])
- ([10.245.245.93])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 05:25:38 -0700
-Message-ID: <06bcc2e8-a7fd-483d-8c73-2a253b433840@linux.intel.com>
-Date: Tue, 21 Jul 2026 14:26:34 +0200
+X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; d="scan'208";a="295969108"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2026 05:36:00 -0700
+From: Varun Gupta <varun.gupta@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, gustavo.sousa@intel.com,
+ stuart.summers@intel.com
+Subject: [PATCH v8] drm/xe: Add debugfs knob to control GPGPU preemption
+ granularity
+Date: Tue, 21 Jul 2026 18:05:49 +0530
+Message-ID: <20260721123549.990426-1-varun.gupta@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260618042421.483657-1-varun.gupta@intel.com>
+References: <20260618042421.483657-1-varun.gupta@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/6] drm/amdgpu: Fix init ordering in
- amdgpu_vram_mgr_init()
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org
-Cc: Sashiko-bot <sashiko-bot@kernel.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, Maarten Lankhorst
- <dev@lankhorst.se>, Tejun Heo <tj@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Alex Deucher
- <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
- Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
- =?UTF-8?Q?Michal_Koutn=C3=BD?= <mkoutny@suse.com>, cgroups@vger.kernel.org,
- Huang Rui <ray.huang@amd.com>, Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>,
- Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org
-References: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
- <20260703130541.2686-2-thomas.hellstrom@linux.intel.com>
- <9eae1a5c-d2ef-4d75-a581-58299ca37a1f@amd.com>
- <9c8b4367-c029-4731-8ea8-b8263e11ada1@amd.com>
- <2e50a938-af3d-4495-926f-fbe084aaae9a@linux.intel.com>
- <60de7db0d25e387de4c13d0acb52d2dc1cc22d39.camel@linux.intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <60de7db0d25e387de4c13d0acb52d2dc1cc22d39.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,131 +68,333 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+Introduce a per-GT debugfs knob, 'gpgpu_preemption_level', to allow
+overriding the GPGPU preemption level on a per-context basis for newly
+created LRCs.
+Add an RTP rule to enable per-context control via FF_SLICE_CS_CHICKEN1,
+allowing the preemption level to be programmed directly into the LRC
+image at CTX_CS_CHICKEN1 during context initialization.
 
-On 7/21/26 14:10, Thomas Hellström wrote:
-> Hi, Maarten,
-> 
-> On Tue, 2026-07-21 at 13:46 +0200, Maarten Lankhorst wrote:
->> Hey,
->>
->> Can I merge this through drm-misc-next together with the rest of the
->> series?
->>
->> Kind regards
->> ~Maarten
-> 
-> For the xe patches, Ack from me.
-> 
-> I do have a v8 that fixes a sashiko comment on the last patch, though,
-> but I was holding that awaiting a review on the other patches.
-Yeah seems about right. Patches themselves look good to me now, so would be nice if amd can ack here or in v8.
+v8:
+  - Encapsulate LRC preemption programming into
+    xe_lrc_set_gpgpu_preemption_level() (Gustavo)
+  - Add xe_gt_WARN and early return for unexpected preemption level values
+    to prevent invalid CS_CHICKEN1 programming. (Gustavo)
+  - Change -EPERM to -EINVAL for MTP fused off check (Gustavo)
+  - Combine FF_SLICE_CS_CHICKEN1 RTP rule using OR macro (Gustavo)
 
-Series themselves look good, so feel free to add my r-b to entire series: (and Thadeu's t-b)
+v7:
+  - Restrict XEHP_FUSE4 read to Xe2+ primary GTs to prevent invalid
+    Media GT accesses and SR-IOV warnings. (Sashiko)
 
-Reviewed-By: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+v6:
+  - Add missing xe_gt_printk.h include to fix compilation failure.
 
-> 
-> Thanks,
-> Thomas
-> 
-> 
-> 
->>
->> On 7/7/26 20:05, Arunpravin Paneer Selvam wrote:
->>>
->>>
->>> On 7/3/2026 6:38 PM, Christian König wrote:
->>>> Arun please take a look at this.
->>> Sure Christian. This fix looks correct to me.
->>> Reviewed-by: Arunpravin Paneer Selvam
->>> <Arunpravin.PaneerSelvam@amd.com>
->>>
->>> Thanks,
->>> Arun.
->>>>
->>>> Thanks,
->>>> Christian.
->>>>
->>>> On 7/3/26 15:05, Thomas Hellström wrote:
->>>>> drmm_cgroup_register_region() is called before INIT_LIST_HEAD()
->>>>> and
->>>>> gpu_buddy_init() in amdgpu_vram_mgr_init(). If it fails, the
->>>>> function
->>>>> returns early and bypasses those initializations.
->>>>>
->>>>> Since adev->mman.initialized is set to true before
->>>>> amdgpu_vram_mgr_init()
->>>>> is called, a failure triggers amdgpu_ttm_fini(), which calls
->>>>> amdgpu_vram_mgr_fini(), which then:
->>>>>
->>>>>   - Calls list_for_each_entry_safe() on reservations_pending
->>>>> and
->>>>>     reserved_pages, whose list_head::next pointers are zero-
->>>>> initialized
->>>>>     (NULL). The loop does not recognize them as empty and
->>>>> dereferences NULL.
->>>>>
->>>>>   - Calls gpu_buddy_fini(), which iterates free_trees[]
->>>>> unconditionally
->>>>>     via for_each_free_tree(). Since mm->free_trees is NULL
->>>>>     (never allocated), this dereferences NULL.
->>>>>
->>>>> Both result in a kernel panic on the module load error path.
->>>>>
->>>>> Fix by moving drmm_cgroup_register_region() to after the list
->>>>> and buddy
->>>>> allocator are fully initialized, so the teardown path is safe
->>>>> to run.
->>>>>
->>>>> Reported-by: Sashiko-bot <sashiko-bot@kernel.org>
->>>>> Closes:
->>>>> https://sashiko.dev/#/patchset/20260428073116.15687-1-thomas.hellstrom@linux.intel.com?part=4
->>>>> Fixes: 2b624a2c1865 ("drm/ttm: Handle cgroup based eviction in
->>>>> TTM")
->>>>> Cc: Friedrich Vock <friedrich.vock@gmx.de>
->>>>> Cc: Maarten Lankhorst <dev@lankhorst.se>
->>>>> Cc: Tejun Heo <tj@kernel.org>
->>>>> Cc: Maxime Ripard <mripard@kernel.org>
->>>>> Cc: Christian König <christian.koenig@amd.com>
->>>>> Cc: Alex Deucher <alexander.deucher@amd.com>
->>>>> Cc: amd-gfx@lists.freedesktop.org
->>>>> Cc: dri-devel@lists.freedesktop.org
->>>>> Cc: <stable@vger.kernel.org> # v6.14+
->>>>> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
->>>>> Signed-off-by: Thomas Hellström
->>>>> <thomas.hellstrom@linux.intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 7 ++++---
->>>>>   1 file changed, 4 insertions(+), 3 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->>>>> index 2a241a5b12c4..ac3f71d77140 100644
->>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->>>>> @@ -918,9 +918,6 @@ int amdgpu_vram_mgr_init(struct
->>>>> amdgpu_device *adev)
->>>>>       struct ttm_resource_manager *man = &mgr->manager;
->>>>>       int err;
->>>>>   -    man->cg = drmm_cgroup_register_region(adev_to_drm(adev),
->>>>> "vram", adev->gmc.real_vram_size);
->>>>> -    if (IS_ERR(man->cg))
->>>>> -        return PTR_ERR(man->cg);
->>>>>       ttm_resource_manager_init(man, &adev->mman.bdev,
->>>>>                     adev->gmc.real_vram_size);
->>>>>   @@ -935,6 +932,10 @@ int amdgpu_vram_mgr_init(struct
->>>>> amdgpu_device *adev)
->>>>>       if (err)
->>>>>           return err;
->>>>>   +    man->cg = drmm_cgroup_register_region(adev_to_drm(adev),
->>>>> "vram", adev->gmc.real_vram_size);
->>>>> +    if (IS_ERR(man->cg))
->>>>> +        return PTR_ERR(man->cg);
->>>>> +
->>>>>       ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM,
->>>>> &mgr->manager);
->>>>>       ttm_resource_manager_set_used(man, true);
->>>>>       return 0;
->>>
+v5:
+  - Use correct offset for CTX_CS_CHICKEN1. (Matt)
+  - Restrict to the RCS engine. (Matt)
+  - Drop LRC layout table modifications; dummy layouts do not need late
+    context registers. (Matt)
+  - Stash WMTP fuse state at boot to remove pm/forcewake from debugfs.
+    (Matt)
+  - Rename debugfs knob to 'gpgpu_preemption_level'. (Matt)
+  - Use simple_write_to_buffer() and remove unnecessary READ_ONCE/
+    WRITE_ONCE macros. (Matt)
+  - Do not restrict debugfs visibility for SR-IOV VFs. (Matt)
+
+v4
+  - Fix incorrect NOP padding in the RCS context layout. (Sashiko)
+
+v3:
+  - Wrapped XEHP_FUSE4 forcewake read with xe_pm_runtime_get/put to
+    prevent PCIe aborts/timeouts when the GPU is in D3hot/D3cold. (sashiko)
+  - Fixed NOP macro truncation by splitting padding offsets larger than
+    0x7f into multiple NOPs, ensuring correct context layout. (sashiko)
+  - Converted CTX_CS_CHICKEN1 initialization to a read-modify-write
+    sequence to avoid overwriting golden context mask bits. (sashiko)
+  - Removed the FF_SLICE_CS_CHICKEN1 workaround for CCS engines, as
+    compute engines lack this 3D fixed-function register, which was
+    causing GuC "illegal register" panics on initialization.
+
+v2:
+  - Dropped the WA BB/MI_LRI path; per Bspec, CS_CHICKEN1 is context
+    save/restore state at DW 0x00E2, so we map CTX_CS_CHICKEN1 and program
+    it directly in LRC init via xe_lrc_write_ctx_reg(). (Matt)
+  - Split Xe2 CCS context offsets into a dedicated xe2_ccs_offsets array
+    to map CS_CHICKEN1 without polluting other XCS engines.
+  - Converted the debugfs interface from a binary boolean to a
+    multi-option string knob ("default", "mid-thread", "thread-group",
+    "command"). (Gustavo)
+  - Restricted file creation to the Physical Function
+    (!IS_SRIOV_VF). (Gustavo)
+  - Added kernel tainting (TAINT_USER) when deviating from
+    defaults. (Gustavo)
+  - Added power-safe hardware fuse check (FUSE4 register 0x9114[20],
+    CFEG_WMTP_DISABLE) before allowing MTP selection. (Matt)
+
+Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  2 +
+ drivers/gpu/drm/xe/xe_gt.c              |  6 +++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c      | 66 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h        | 34 +++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.c             | 33 +++++++++++++
+ drivers/gpu/drm/xe/xe_wa.c              |  4 +-
+ 6 files changed, 144 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 4ab86fc369fd..6f7abc0181b5 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -37,6 +37,8 @@
+ #define CTX_QUEUE_TIMESTAMP		(0xd0 + 1)
+ #define CTX_QUEUE_TIMESTAMP_UDW		(0xd2 + 1)
+ 
++#define CTX_CS_CHICKEN1			(0x12e + 1)
++
+ #define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
+ #define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
+ #define INDIRECT_CTX_RING_START		(0x06 + 1)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 783eb6d631b5..64532bf1f801 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -608,6 +608,12 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+ 	 */
+ 	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
+ 
++	if (GRAPHICS_VER(gt_to_xe(gt)) >= 20 && xe_gt_is_main_type(gt))
++		gt->info.has_wmtp_disabled = !!(xe_mmio_read32(&gt->mmio, XEHP_FUSE4) &
++			CFEG_WMTP_DISABLE);
++	else
++		gt->info.has_wmtp_disabled = 0;
++
+ 	/*
+ 	 * Wa_14026539277 can't be implemented as a regular GT workaround (i.e.
+ 	 * as an entry in gt_was[]) for two reasons: it is actually a device
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index c38bcacb27e4..6211c0b6d00b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -6,6 +6,8 @@
+ #include "xe_gt_debugfs.h"
+ 
+ #include <linux/debugfs.h>
++#include <linux/panic.h>
++#include <linux/string.h>
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+@@ -15,6 +17,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_idle.h"
++#include "xe_gt_printk.h"
+ #include "xe_gt_sriov_pf_debugfs.h"
+ #include "xe_gt_sriov_vf_debugfs.h"
+ #include "xe_gt_stats.h"
+@@ -336,6 +339,65 @@ static int force_reset_sync_show(struct seq_file *s, void *unused)
+ }
+ DEFINE_SHOW_STORE_ATTRIBUTE(force_reset_sync);
+ 
++static const char * const gpgpu_preemption_level_names[] = {
++	[XE_GPGPU_PREEMPT_DEFAULT]      = "default",
++	[XE_GPGPU_PREEMPT_MID_THREAD]   = "mid-thread",
++	[XE_GPGPU_PREEMPT_THREAD_GROUP] = "thread-group",
++	[XE_GPGPU_PREEMPT_COMMAND]      = "command",
++};
++
++static int gpgpu_preemption_level_show(struct seq_file *m, void *unused)
++{
++	struct xe_gt *gt = m->private;
++
++	seq_printf(m, "%s\n", gpgpu_preemption_level_names[gt->gpgpu_preemption_level]);
++
++	return 0;
++}
++
++static ssize_t gpgpu_preemption_level_write(struct file *file,
++					    const char __user *ubuf,
++					    size_t len, loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	struct xe_gt *gt = m->private;
++	enum xe_gpgpu_preempt_level new_level;
++	char buf[16];
++	ssize_t copied;
++	int idx;
++
++	if (*offp)
++		return -EINVAL;
++
++	copied = simple_write_to_buffer(buf, sizeof(buf) - 1, offp, ubuf, len);
++	if (copied < 0)
++		return copied;
++
++	buf[copied] = '\0';
++	idx = sysfs_match_string(gpgpu_preemption_level_names, strim(buf));
++	if (idx < 0)
++		return idx;
++
++	new_level = (enum xe_gpgpu_preempt_level)idx;
++
++	if (new_level == XE_GPGPU_PREEMPT_MID_THREAD && gt->info.has_wmtp_disabled) {
++		xe_gt_warn(gt, "MTP fused off in hardware, cannot select mid-thread\n");
++		return -EINVAL;
++	}
++
++	if (new_level != XE_GPGPU_PREEMPT_DEFAULT) {
++		add_taint(TAINT_USER, LOCKDEP_STILL_OK);
++		xe_gt_notice(gt,
++			     "GPGPU preemption overridden to '%s' (applies to new LRCs only)\n",
++			     gpgpu_preemption_level_names[new_level]);
++	}
++
++	gt->gpgpu_preemption_level = new_level;
++
++	return copied;
++}
++DEFINE_SHOW_STORE_ATTRIBUTE(gpgpu_preemption_level);
++
+ void xe_gt_debugfs_register(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -369,6 +431,10 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
+ 	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
+ 
++	if (GRAPHICS_VER(xe) >= 20 && (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK))
++		debugfs_create_file("gpgpu_preemption_level", 0600, root,
++				    gt, &gpgpu_preemption_level_fops);
++
+ 	drm_debugfs_create_files(vf_safe_debugfs_list,
+ 				 ARRAY_SIZE(vf_safe_debugfs_list),
+ 				 root, minor);
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index e5588c88800a..97bd943309b3 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -35,6 +35,33 @@ enum xe_gt_eu_type {
+ 	XE_GT_EU_TYPE_SIMD16,
+ };
+ 
++/**
++ * enum xe_gpgpu_preempt_level - Per-context GPGPU preemption override mode
++ *
++ * Selects the preemption granularity programmed into CS_CHICKEN1[2:1] for
++ * newly created Xe2+ RCS LRCs.
++ *
++ * The per-context override is effective only when
++ * FF_SLICE_CS_CHICKEN1[FFSC_PERCTX_PREEMPT_CTRL] is enabled via RTP.
++ *
++ * This setting is GT-scoped and affects only LRCs created after the value is
++ * changed; existing contexts keep their previously programmed value.
++ *
++ * @XE_GPGPU_PREEMPT_DEFAULT: Keep platform default preemption granularity.
++ * @XE_GPGPU_PREEMPT_MID_THREAD: Force mid-thread preemption level.
++ * @XE_GPGPU_PREEMPT_THREAD_GROUP: Force thread-group preemption level.
++ * @XE_GPGPU_PREEMPT_COMMAND: Force command-level preemption.
++ *
++ * Zero-initialized via kzalloc, so XE_GPGPU_PREEMPT_DEFAULT is the safe
++ * default (no override from platform policy).
++ */
++enum xe_gpgpu_preempt_level {
++	XE_GPGPU_PREEMPT_DEFAULT = 0,
++	XE_GPGPU_PREEMPT_MID_THREAD,
++	XE_GPGPU_PREEMPT_THREAD_GROUP,
++	XE_GPGPU_PREEMPT_COMMAND,
++};
++
+ #define XE_MAX_DSS_FUSE_REGS		4
+ #define XE_MAX_DSS_FUSE_BITS		(32 * XE_MAX_DSS_FUSE_REGS)
+ #define XE_MAX_EU_FUSE_REGS		1
+@@ -151,6 +178,8 @@ struct xe_gt {
+ 		 * feature.
+ 		 */
+ 		u8 has_xe2_blt_instructions:1;
++		/** @info.has_wmtp_disabled: hardware fuse indicates WMTP is disabled */
++		u8 has_wmtp_disabled:1;
+ 		/**
+ 		 * @info.num_geometry_xecore_fuse_regs: Number of 32b-bit fuse
+ 		 * registers the geometry XeCore mask spans.
+@@ -219,6 +248,11 @@ struct xe_gt {
+ 	 */
+ 	u32 ccs_mode;
+ 
++	/**
++	 * @gpgpu_preemption_level: per-GT GPGPU preemption granularity override.
++	 */
++	enum xe_gpgpu_preempt_level gpgpu_preemption_level;
++
+ 	/** @usm: unified shared memory state */
+ 	struct {
+ 		/**
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 3e7c995085d0..6e22e964e708 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1486,6 +1486,36 @@ void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_pri
+ 	lrc->desc |= FIELD_PREP(LRC_PRIORITY, xe_multi_queue_prio_to_lrc(lrc, priority));
+ }
+ 
++static void xe_lrc_set_gpgpu_preemption_level(struct xe_lrc *lrc, struct xe_gt *gt)
++{
++	enum xe_gpgpu_preempt_level level = gt->gpgpu_preemption_level;
++	u32 level_bits;
++	u32 val;
++
++	if (level == XE_GPGPU_PREEMPT_DEFAULT)
++		return;
++
++	switch (level) {
++	case XE_GPGPU_PREEMPT_MID_THREAD:
++		level_bits = PREEMPT_GPGPU_MID_THREAD_LEVEL;
++		break;
++	case XE_GPGPU_PREEMPT_THREAD_GROUP:
++		level_bits = PREEMPT_GPGPU_THREAD_GROUP_LEVEL;
++		break;
++	case XE_GPGPU_PREEMPT_COMMAND:
++		level_bits = PREEMPT_GPGPU_COMMAND_LEVEL;
++		break;
++	default:
++		xe_gt_WARN(gt, true, "Invalid GPGPU preemption level: %d\n", level);
++		return;
++	}
++
++	val = xe_lrc_read_ctx_reg(lrc, CTX_CS_CHICKEN1);
++	val &= ~PREEMPT_GPGPU_LEVEL_MASK;
++	val |= REG_MASKED_FIELD(PREEMPT_GPGPU_LEVEL_MASK, level_bits);
++	xe_lrc_write_ctx_reg(lrc, CTX_CS_CHICKEN1, val);
++}
++
+ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 			   void *replay_state, u16 msix_vec, u32 init_flags)
+ {
+@@ -1589,6 +1619,9 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+ 	if (xe->info.has_asid && vm)
+ 		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
+ 
++	if (GRAPHICS_VER(xe) >= 20 && hwe->class == XE_ENGINE_CLASS_RENDER)
++		xe_lrc_set_gpgpu_preemption_level(lrc, gt);
++
+ 	lrc->desc = LRC_VALID;
+ 	lrc->desc |= FIELD_PREP(LRC_ADDRESSING_MODE, LRC_LEGACY_64B_CONTEXT);
+ 	/* TODO: Priority */
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 139434946f8f..c94fe7753f9a 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -343,7 +343,9 @@ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
+ 	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL))
+ 	},
+ 	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER), OR,
++		       GRAPHICS_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN1(RENDER_RING_BASE),
+ 			     FFSC_PERCTX_PREEMPT_CTRL))
+ 	},
+-- 
+2.43.0
 
