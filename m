@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2513C44529
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 14:25:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B944FC44537
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 14:25:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78BC310EA2E;
-	Tue, 21 Jul 2026 14:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 639FE10EA48;
+	Tue, 21 Jul 2026 14:25:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="O4PY9zYj";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Zg2YUpHy";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D47610EA2E;
- Tue, 21 Jul 2026 14:25:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 757EF10EA43;
+ Tue, 21 Jul 2026 14:25:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1784643916;
- bh=MmaWzT+4FKZKngmyrrx8vgymN6f+HlVCN+qIc9Vq1g0=;
- h=From:To:Cc:Subject:Date:From;
- b=O4PY9zYjzChDg27dglDmzWNi9c3CKQ2L8Napg11XZvlBNswH0qfg8E8fNdQjrl+sc
- BbRl6FlLY2yA67oM+GBClrk8AfjoqYZRw6YQ8VLGCNkuVMxsaMOi3XNCZ6AOJOP3zu
- gcvNKNTulHl0vQa+a4Hm8KrfFfM6vnTMO548sxaOxMW/uEa/MHVAj2p0n10FOx+HHf
- sPcRag9BvWZAacBBgTuYhmJw2xFE/vse7DN9Hq8hEpEnbfdvjTjI4UyFVnFHuVex05
- /UwPxcSXey1ejdnm2AF7/v0yYXsIFgJyTNHQ+cXm5/WXZZoazs84X28nKAeWM3MRfD
- b9f+3kKcfuUrA==
+ s=default; t=1784643919;
+ bh=ZTyLbVEEnaqjwXrGfTztWzKjLkw8D8mPZxbsn3nK1yQ=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=Zg2YUpHyoKNTqLQo8g0VLWnRUhPnxN0sWmRG15DS7RjZu8seiqTsgAtQIl1Jd5sXh
+ 3avJIsPcv2IhDXFjX4aphkngIRlaZwpIHY8+USmCfjF8XN4XzoMlHKjI3qTUhX4/vP
+ 8LWJElgOXAGqxyULpSq5wDG5sAiN8SLYam+XsE/VF/nDGPm3UHVSFaZGWICMc0qZjn
+ hJZ3Rv6oOoNCXoDrUHafEHuHfWF90uh1D57KVkvsyzYiR2JPLvpp2GZSLr1wha/aro
+ J9IcGI//lkve83AacPw3CpjagGPXKY5Gk/4FgJjYHlqItfF/Xds4MeVUbfvqmw+0cG
+ +UGfFl41w7cpA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 0/5] drm/xe/display: Transparant fallback from stolen to
- sysmem.
-Date: Tue, 21 Jul 2026 16:26:11 +0200
-Message-ID: <20260721142610.93804-7-dev@lankhorst.se>
+Subject: [PATCH v2 4/5] HACK: Always fallback
+Date: Tue, 21 Jul 2026 16:26:15 +0200
+Message-ID: <20260721142610.93804-11-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260721142610.93804-7-dev@lankhorst.se>
+References: <20260721142610.93804-7-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -51,42 +51,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Changes since previous version:
-- Simplify the patch for copying between sysmem and stolen.
-- Take ownership of intel_bo_fbdev_bios_fb_takeover()
-- Keep series standalone.
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/display/xe_display_bo.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Copy the initial framebuffer from the stolen region to system memory
-when deciding to keep the device's framebuffer, instead of re-using the
-stolen memory.
-
-This allows for completely flicker-free boot even on platforms where
-we wouldn't allow use of stolen memory for the system framebuffer.
-
-Works best with https://patchwork.freedesktop.org/series/170430/	
-
-Maarten Lankhorst (5):
-  drm/xe/display: Avoid using stolen memory for framebuffer when media
-    gt exists.
-  drm/xe/migrate: Support copying between sysmem and stolen
-  drm/xe: Raise gt frequency slightly earlier.
-  HACK: Always fallback
-  drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
-
- drivers/gpu/drm/i915/display/intel_bo.c       |  7 ++
- drivers/gpu/drm/i915/display/intel_bo.h       |  1 +
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 68 ++++++++++++++++---
- drivers/gpu/drm/i915/i915_bo.c                | 14 +++-
- drivers/gpu/drm/i915/i915_bo.h                |  6 --
- drivers/gpu/drm/i915/i915_initial_plane.c     | 14 ----
- drivers/gpu/drm/xe/display/xe_display_bo.c    | 66 +++++++++++++++++-
- drivers/gpu/drm/xe/display/xe_display_bo.h    |  6 --
- drivers/gpu/drm/xe/display/xe_initial_plane.c |  8 ---
- drivers/gpu/drm/xe/xe_device.c                |  6 +-
- drivers/gpu/drm/xe/xe_migrate.c               | 25 +++++--
- include/drm/intel/display_parent_interface.h  |  1 +
- 12 files changed, 165 insertions(+), 57 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index 9385026a80b97..d78d893210c4f 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -142,6 +142,8 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ 	if (XE_DEVICE_WA(xe, 22019338487_display))
+ 		return false;
+ 
++	return false;
++
+ 	/*
+ 	 * If the FB is too big, just don't use it since fbdev is not very
+ 	 * important and we should probably use that space with FBC or other
 -- 
 2.53.0
 
