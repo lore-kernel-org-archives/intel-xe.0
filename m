@@ -4,50 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C9F5C4451C
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 19:05:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A07C4451C
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 19:10:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3651B10E3BF;
-	Tue, 21 Jul 2026 19:05:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E738510E3C4;
+	Tue, 21 Jul 2026 19:10:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="tKVjAG0W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bPxs9AXd";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E091810E3BF
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 19:05:17 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C610741AD3;
- Tue, 21 Jul 2026 19:05:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AA8A1F000E9;
- Tue, 21 Jul 2026 19:05:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
- s=korg; t=1784660716;
- bh=9D2ZTWF/WyLDZZwIvMtBdMHelmWcpDaMOG5YVQCPd8E=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=tKVjAG0WISx5zsMp+FGmUakvrHwfy7bqGEY82GpEm8Q1C2p3zB0USNFRhjQJ9kMOW
- T0erWZTzq05yG0uD5I2ACOnmqD/LS35RmXq5AMUKTsijl/eofcqE/VIEbCnO4/9LNo
- NQ+nEid9rhbtU9kGAm/HHZOpj5T1ps/VAm2uvCZI=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 7.1 1085/2077] drm/xe: Fix wa_oob codegen recipe for external
- module builds
-Date: Tue, 21 Jul 2026 17:12:38 +0200
-Message-ID: <20260721152618.413872507@linuxfoundation.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260721152552.646164743@linuxfoundation.org>
-References: <20260721152552.646164743@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F71910E3AA
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 19:10:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784661045; x=1816197045;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=n/T/XE05souDQ2sljIQ2poJgFtV+qL1HUB6UGhfc5u8=;
+ b=bPxs9AXd6LKITn6fb0pQKqvTURCaY6qPSXZMIAE3S58y3dmtJP01HiuK
+ J5Mixf04GQKO1hNYiW1P7XOZzAdrDRtNSWDq8PlQcTb85jyA8+I+tyi54
+ Hww4wtRV3OT+8DN4IisuHfbDnQxq6aOh1IupqvidWY+1K/P2oiKlWFs76
+ Uy047a4HiCd0MQ4Fmmu+rA5Zg11y7AccYp2ORMHnqEu+GvT6F64xs6eOs
+ oK3+cobnSMpN3xsXS2zy8AtwoH67STjYWh7lS45oqZ6lT+PfONVS1CJfB
+ crITEBB2OFGIUpMEkbF5k4AY0OWwlIr/6Qjwd/Ti8OvkvmNThTpNhePiq g==;
+X-CSE-ConnectionGUID: q1symCEzTUKvkJu7ucwp8A==
+X-CSE-MsgGUID: sa9nWTKVTteK7X4I46V7rg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="85295082"
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="85295082"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2026 12:10:45 -0700
+X-CSE-ConnectionGUID: 0CoR3N42TOubTQmZ3ztDgg==
+X-CSE-MsgGUID: pCe7kcBMSGGl2zC9TpyHrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="282374150"
+Received: from rosenzwe-mobl1.amr.corp.intel.com (HELO [192.168.1.16])
+ ([10.124.221.232])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2026 12:10:44 -0700
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH 0/3] drm/xe: Update Wa_14026539277
+Date: Tue, 21 Jul 2026 16:10:18 -0300
+Message-Id: <20260721-wa_14026539277-v1-0-09fa102f3084@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDcwND3fLEeEMTIMfU2NLI3FzXMsXYMjHVwDIxydxUCaipoCg1LbMCbGB
+ 0bG0tAMrN5bFgAAAA
+X-Change-ID: 20260701-wa_14026539277-9d39ae09ab75
+To: intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +70,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-7.1-stable review patch.  If anyone has any objections, please let me know.
+The definition of Wa_14026539277 has been updated in the workaround
+database and requires a different implementation.  Let's revert the
+existing one and then add the up-to-date implementation.
 
-------------------
-
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-[ Upstream commit 92dc59ab2a09097cdf249e0288ff9b69261761c6 ]
-
-When building with 'make M=drivers/gpu/drm/xe modules', kbuild invokes
-scripts/Makefile.build with obj=., causing $(obj) to expand to '.'.
-Make normalizes './xe_gen_wa_oob' to 'xe_gen_wa_oob' when constructing
-the $^ automatic variable (target name normalization), so the recipe
-command becomes just 'xe_gen_wa_oob ...' without any path prefix, and
-the shell cannot find the tool.
-
-Fix by replacing $^ with explicit $(obj)/xe_gen_wa_oob and
-$(src)/<rules-file> references in both wa_oob recipe commands.
-In recipe strings, make does not apply target name normalization, so
-$(obj)/xe_gen_wa_oob correctly expands to './xe_gen_wa_oob' and the
-shell can execute it. This matches the pattern already used by other
-DRM drivers (e.g. radeon's mkregtable).
-
-Fixes: f037e0b78e6d ("drm/xe: add xe_device_wa infrastructure")
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Link: https://patch.msgid.link/20260604074501.172129-1-thomas.hellstrom@linux.intel.com
-(cherry picked from commit 3a11a63cc16660d514ff584e7551589655337e87)
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Gustavo Sousa (3):
+      drm/xe: Extract override_has_cached_pt()
+      Revert "drm/xe/nvlp: Implement Wa_14026539277"
+      drm/xe: Add up-to-date implementation for Wa_14026539277
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 03242e8b3d876c..de36c8b640bafc 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -16,14 +16,14 @@ subdir-ccflags-y += -I$(obj) -I$(src)
- hostprogs := xe_gen_wa_oob
- generated_oob := $(obj)/generated/xe_wa_oob.c $(obj)/generated/xe_wa_oob.h
- quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
--      cmd_wa_oob = mkdir -p $(@D); $^ $(generated_oob)
-+      cmd_wa_oob = mkdir -p $(@D); $(obj)/xe_gen_wa_oob $(src)/xe_wa_oob.rules $(generated_oob)
- $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
- 		 $(src)/xe_wa_oob.rules
- 	$(call cmd,wa_oob)
- 
- generated_device_oob := $(obj)/generated/xe_device_wa_oob.c $(obj)/generated/xe_device_wa_oob.h
- quiet_cmd_device_wa_oob = GEN	$(notdir $(generated_device_oob))
--      cmd_device_wa_oob = mkdir -p $(@D); $^ $(generated_device_oob)
-+      cmd_device_wa_oob = mkdir -p $(@D); $(obj)/xe_gen_wa_oob $(src)/xe_device_wa_oob.rules $(generated_device_oob)
- $(obj)/generated/%_device_wa_oob.c $(obj)/generated/%_device_wa_oob.h: $(obj)/xe_gen_wa_oob \
- 		 $(src)/xe_device_wa_oob.rules
- 	$(call cmd,device_wa_oob)
--- 
-2.53.0
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  4 ---
+ drivers/gpu/drm/xe/xe_pat.h          | 10 +++++++
+ drivers/gpu/drm/xe/xe_device.c       | 27 ++++++++++++------
+ drivers/gpu/drm/xe/xe_gt.c           | 39 -------------------------
+ drivers/gpu/drm/xe/xe_pat.c          | 55 ++++++++++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_vm.c           |  5 ++++
+ 6 files changed, 83 insertions(+), 57 deletions(-)
+---
+base-commit: 3df5500bae7f8b1be2877ab60b924be7cb88d722
+change-id: 20260701-wa_14026539277-9d39ae09ab75
 
-
+Best regards,
+--  
+Gustavo Sousa <gustavo.sousa@intel.com>
 
