@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE667C4451C
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 19:27:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEAAEC4452B
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 20:02:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65FC710E3C0;
-	Tue, 21 Jul 2026 19:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B20910EB32;
+	Tue, 21 Jul 2026 20:02:13 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 487D510EB2B;
- Tue, 21 Jul 2026 19:27:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1604781870304447021=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CEBF10E3E6;
+ Tue, 21 Jul 2026 20:02:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Use_IBC_v3_on_PTL?=
- =?utf-8?q?_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Transpa?=
+ =?utf-8?q?rant_fallback_from_stolen_to_sysmem=2E_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Jul 2026 19:27:57 -0000
-Message-ID: <178466207729.212456.16999189617888778264@6beec6c84f66>
+Date: Tue, 21 Jul 2026 20:02:12 -0000
+Message-ID: <178466413250.212455.13771807477960475223@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260721175534.654743-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20260721175534.654743-1-vinay.belgaumkar@intel.com>
+References: <20260721142610.93804-7-dev@lankhorst.se>
+In-Reply-To: <20260721142610.93804-7-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,64 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1604781870304447021==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Use IBC v3 on PTL (rev5)
-URL   : https://patchwork.freedesktop.org/series/169654/
-State : success
+Series: drm/xe/display: Transparant fallback from stolen to sysmem. (rev3)
+URL   : https://patchwork.freedesktop.org/series/170759/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5450-5a2e99ff37471abda39af76d7c6d9c935b1945e1_BAT -> xe-pw-169654v5_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f93edf58183f5fe4026711152de75e6b3d0d935b
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Tue Jul 21 16:26:16 2026 +0200
 
-Summary
--------
+    drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
+    
+    Pull the "do we want to use stolen for the BIOS FB?" checks into
+    a new intel_bo_fbdev_bios_fb_takeover() helper, and defer that
+    decision until we're ready to reallocate the fbdev FB. This way
+    even if we don't want to ultimately use the BIOS FB we'll keep
+    the plane enabled until the replacement FB is ready. Should
+    hopefully result in fewer display blinks during boot.
+    
+    Additionally, on some platforms this allows us to re-create the
+    framebuffer when stolen memory is not suitable, using the blitter
+    engine to copy the contents to system memory without causing
+    any flickering by not preserving the stolen memory allocation.
+    
+    Based on a similar patch by Ville, that introduced
+    intel_bo_fbdev_bios_fb_ok().
+    
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 80b509f6e34a01edfccc01a05e3e7062a934bcf9 drm-intel
+9a0146ec344e drm/xe/display: Avoid using stolen memory for framebuffer when media gt exists.
+5965f829fb7e drm/xe/migrate: Support copying between sysmem and stolen
+7b5d008e445e drm/xe: Raise gt frequency slightly earlier.
+ee57633ec1b4 HACK: Always fallback
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+f93edf58183f drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
+-:145: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#145: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:326:
+ 
++
 
-  No regressions found.
+-:308: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#308: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:170:
++					    XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT,
 
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5450-5a2e99ff37471abda39af76d7c6d9c935b1945e1 -> xe-pw-169654v5
-
-  IGT_9017: 9017
-  xe-5450-5a2e99ff37471abda39af76d7c6d9c935b1945e1: 5a2e99ff37471abda39af76d7c6d9c935b1945e1
-  xe-pw-169654v5: 169654v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169654v5/index.html
-
---===============1604781870304447021==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 1 checks, 325 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Use IBC v3 on PTL (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169654/">https://patchwork.freedesktop.org/series/169654/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169654v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169654v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5450-5a2e99ff37471abda39af76d7c6d9c935b1945e1_BAT -&gt; xe-pw-169654v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5450-5a2e99ff37471abda39af76d7c6d9c935b1945e1 -&gt; xe-pw-169654v5</li>
-</ul>
-<p>IGT_9017: 9017<br />
-  xe-5450-5a2e99ff37471abda39af76d7c6d9c935b1945e1: 5a2e99ff37471abda39af76d7c6d9c935b1945e1<br />
-  xe-pw-169654v5: 169654v5</p>
-
-</body>
-</html>
-
---===============1604781870304447021==--
