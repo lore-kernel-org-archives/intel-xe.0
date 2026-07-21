@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07CABC4452D
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 10:09:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1294BC44529
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 10:18:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2F3510E75D;
-	Tue, 21 Jul 2026 10:09:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ycp2cEpw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACAF810E75D
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 10:09:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784628594; x=1816164594;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3rF6AaNAT9HeL7DPZ4ZuPNABsF8EqWLUa20lfdnMjSo=;
- b=Ycp2cEpw4P3a157yWsrlwVTpUt8nUb/peUQmopwks1Hrrsgx1kozx9FL
- Er8VafBihr76IzyuN/v6kEN37ENFVl8l6PEzfO+/1U6/sE4FJXa6gV9Fr
- XlSNbJX/bsgJhvzSsKkoKNkiO52q8h++OCzAB/9mGpFiMpwegGZuNd1F+
- oKjjZFgshUWDhIE5yBfA0hYryt55mnqdYgzHijL3M7Qg711USlwG8OAOL
- QElmur5kHpMU5X1GZMNuloMR6xgjFfJ3SiY5sADOdSyjiekvdFuaXqbGK
- GBX4WDNVth5wgT4zz9jIpdmQ5GwkXGQKYi177V9YiIyNDssT0LbpnBy6/ w==;
-X-CSE-ConnectionGUID: qP4TcTGjSdCvXaARo/ubXQ==
-X-CSE-MsgGUID: XCHtE7qPRD27Qi1fBNFhUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11852"; a="72759253"
-X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; d="scan'208";a="72759253"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 03:09:54 -0700
-X-CSE-ConnectionGUID: zxswh+Q2SPm3ZfbkRcU1JA==
-X-CSE-MsgGUID: flwqdWu0T+WddAHfkjOg+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; d="scan'208";a="282219570"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.58])
- ([10.245.245.58])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 03:09:53 -0700
-Message-ID: <ce3ba637-8484-44c0-b08a-1d809ba73a67@intel.com>
-Date: Tue, 21 Jul 2026 11:09:51 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97EB710E74B;
+	Tue, 21 Jul 2026 10:18:54 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6335D10E335;
+ Tue, 21 Jul 2026 10:18:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe/guc_ads: allocate UM queues in a separate UC BO
-To: Jia Yao <jia.yao@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-References: <20260713004048.1245794-1-jia.yao@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260713004048.1245794-1-jia.yao@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Handl?=
+ =?utf-8?q?e_struct_drm=5Fplane=5Fstate=2Eignore=5Fdamage=5Fclips_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Jul 2026 10:18:53 -0000
+Message-ID: <178462913340.209804.3255064526470297471@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260721095454.404298-1-tzimmermann@suse.de>
+In-Reply-To: <20260721095454.404298-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,206 +36,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 13/07/2026 01:40, Jia Yao wrote:
-> On integrated graphics, the GPU updates the HWQ tail pointer
-> (non-posted, strongly ordered) before the fault descriptor data reaches
-> DRAM (posted WB through L3, weakly ordered).  GuC reads the ring after
-> seeing the tail update but before the L3 write is flushed, resulting in
-> an all-zero descriptor being forwarded to the driver as a spurious page
-> fault.  In the worst case this triggers a P2I timeout on an unrelated
-> context.
-> 
-> On discrete graphics, xe_bo_main_addr() returns a CPU DMA IOVA for
-> SYSTEM BOs.  On platforms with limited DRAM (e.g. BMG with 4 GB) the
-> IOVA can alias a PCI MMIO reserved window, so GPU writes to the fault
-> ring go nowhere and GuC reads all-zeros.
-> 
-> Additionally, xe_guc_ads_populate() zeroes the entire ADS blob on every
-> GT reset, destroying any fault descriptor written between GDRST and GuC
-> restart.
-> 
-> Fix all three by allocating the UM queues in a separate BO
-> (ads->um_queue_bo):
-> 
-> - UC mapping (XE_BO_FLAG_NEEDS_UC) makes GPU writes bypass L3 and land
->    in DRAM before the tail-pointer update reaches GuC.  On dGFX, PCIe
->    writes are already strongly ordered, so UC is a harmless no-op.
-> 
-> - VRAM placement on dGFX (XE_BO_FLAG_VRAM_IF_DGFX) gives a well-defined
->    DPA, sidestepping the IOVA aliasing issue.
-> 
-> - A separate BO is never touched by xe_guc_ads_populate()'s memset.
+== Series Details ==
 
-Now that we have clarification from hw side, doing uc for the fault 
-queue looks like the safest thing.
+Series: drm/i915/display: Handle struct drm_plane_state.ignore_damage_clips (rev3)
+URL   : https://patchwork.freedesktop.org/series/169626/
+State : warning
 
-I think maybe just simplify the commit message with something like:
+== Summary ==
 
-"HW unit related to fault queue is not always coherent, with that ensure 
-we use uncached memory on the CPU side."
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4a7285cb3f16f45b205c811dee6fea753edc5276
+Author: Thomas Zimmermann <tzimmermann@suse.de>
+Date:   Tue Jul 21 11:54:11 2026 +0200
 
-?
+    drm/i915/display: Handle struct drm_plane_state.ignore_damage_clips
+    
+    Call drm_atomic_helper_check_plane_damage() in plane_atomic_check()
+    before copying the damage information to guarantees that ignore_damage_clips
+    from struct drm_plane_state has the correct value. Although i915 does not
+    directly modify or use the flag, DRM's damage iterator will soon rely on
+    it.
+    
+    As a side effect, if the CRTC has been marked for a full modeset before
+    the call to drm_atomic_helper_check_plane_damage() happens, the plane now
+    ignores all damage clips and does a full update.
+    
+    Git commit 35ed38d58257 ("drm: Allow drivers to indicate the damage
+    helpers to ignore damage clips") introduced ignore_damage_clips to
+    selectively ignore damage clipping for certain framebuffer changes. The
+    mode-setting pipeline can disabled damage clippings for an atomic commit
+    by setting ignore_damage_clips in struct drm_plane_state. The atomic
+    commit will then do a full display update.
+    
+    Future directions: there's currently a multitude of options that affect
+    damage clipping; with different places seeing different state. In order
+    to unify this, drm_atomic_helper_check_plane_state() will soon evaluate
+    all options in a single place and set ignore_damage_clips accordingly. All
+    later stages of the mode-setting pipeline will only look at this field.
+    
+    v3:
+    - fix the call to drm_atomic_helper_check_plane_state()
+    - use primary-CRTC's plane state (Sashiko)
+    - note full-plane updates in commit description
+    v2:
+    - move _check_plane_damage() before reading damage first time (Sashiko)
+    - expand commit description
+    
+    Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+    Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
++ /mt/dim checkpatch 74d5c695a145d1d6394a84ba483549d3310eb2d9 drm-intel
+4a7285cb3f16 drm/i915/display: Handle struct drm_plane_state.ignore_damage_clips
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+before copying the damage information to guarantees that ignore_damage_clips
 
-Also I guess we need Fixes: tag + maybe stable cc?
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
 
-> 
-> v2: also fix dGFX (VRAM placement + UC flag); remove now-dead
->      guc_ads_um_queues_size/offset helpers
-> 
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Jia Yao <jia.yao@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_guc_ads.c       | 65 ++++++++++++++++-----------
->   drivers/gpu/drm/xe/xe_guc_ads_types.h | 10 ++++-
->   2 files changed, 49 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index c98454545a85..e321fab2ee1b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -155,16 +155,6 @@ static size_t guc_ads_capture_size(struct xe_guc_ads *ads)
->   	return PAGE_ALIGN(ads->capture_size);
->   }
->   
-> -static size_t guc_ads_um_queues_size(struct xe_guc_ads *ads)
-> -{
-> -	struct xe_device *xe = ads_to_xe(ads);
-> -
-> -	if (!xe->info.has_usm)
-> -		return 0;
-> -
-> -	return GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX;
-> -}
-> -
->   static size_t guc_ads_private_data_size(struct xe_guc_ads *ads)
->   {
->   	return PAGE_ALIGN(ads_to_guc(ads)->fw.private_data_size);
-> @@ -205,22 +195,12 @@ static size_t guc_ads_capture_offset(struct xe_guc_ads *ads)
->   	return PAGE_ALIGN(offset);
->   }
->   
-> -static size_t guc_ads_um_queues_offset(struct xe_guc_ads *ads)
-> -{
-> -	u32 offset;
-> -
-> -	offset = guc_ads_capture_offset(ads) +
-> -		 guc_ads_capture_size(ads);
-> -
-> -	return PAGE_ALIGN(offset);
-> -}
-> -
->   static size_t guc_ads_private_data_offset(struct xe_guc_ads *ads)
->   {
->   	size_t offset;
->   
-> -	offset = guc_ads_um_queues_offset(ads) +
-> -		guc_ads_um_queues_size(ads);
-> +	offset = guc_ads_capture_offset(ads) +
-> +		 guc_ads_capture_size(ads);
->   
->   	return PAGE_ALIGN(offset);
->   }
-> @@ -409,6 +389,30 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
->   
->   	ads->bo = bo;
->   
-> +	/*
-> +	 * UM queues are in a separate UC BO (not the main ADS blob) so that
-> +	 * xe_guc_ads_populate() cannot zero fault descriptors written between
-> +	 * GDRST and GuC restart.  UC ensures GPU descriptor writes bypass L3
-> +	 * and reach DRAM before GuC reads the ring.  On dGFX, VRAM is used so
-> +	 * the DPA is well-defined; SYSTEM BOs use a CPU DMA IOVA that may
-> +	 * alias a PCI MMIO region on platforms with limited DRAM.
-> +	 */
-
-I think this comment and maybe also below can be simplied? "hw unit 
-related to queue is not always coherent..."
-
-Otherwise LGTM.
-
-> +	if (xe->info.has_usm) {
-> +		u32 um_flags = XE_BO_FLAG_GGTT |
-> +			       XE_BO_FLAG_GGTT_INVALIDATE |
-> +			       XE_BO_FLAG_PINNED_NORESTORE |
-> +			       XE_BO_FLAG_NEEDS_UC |
-> +			       XE_BO_FLAG_VRAM_IF_DGFX(tile);
-> +
-> +		bo = xe_managed_bo_create_pin_map(xe, tile,
-> +					  GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX,
-> +					  um_flags);
-> +		if (IS_ERR(bo))
-> +			return PTR_ERR(bo);
-> +
-> +		ads->um_queue_bo = bo;
-> +	}
-> +
->   	return 0;
->   }
->   ALLOW_ERROR_INJECTION(xe_guc_ads_init, ERRNO); /* See xe_pci_probe() */
-> @@ -820,9 +824,9 @@ static void guc_mmio_reg_state_init(struct xe_guc_ads *ads)
->   
->   static void guc_um_init_params(struct xe_guc_ads *ads)
->   {
-> -	u32 um_queue_offset = guc_ads_um_queues_offset(ads);
->   	struct xe_guc *guc = ads_to_guc(ads);
->   	struct xe_device *xe = ads_to_xe(ads);
-> +	struct xe_bo *um_bo = ads->um_queue_bo;
->   	u64 base_dpa;
->   	u32 base_ggtt;
->   	bool with_dpa;
-> @@ -830,8 +834,14 @@ static void guc_um_init_params(struct xe_guc_ads *ads)
->   
->   	with_dpa = !xe_guc_using_main_gamctrl_queues(guc);
->   
-> -	base_ggtt = xe_bo_ggtt_addr(ads->bo) + um_queue_offset;
-> -	base_dpa = xe_bo_main_addr(ads->bo, PAGE_SIZE) + um_queue_offset;
-> +	if (um_bo) {
-> +		/* All USM platforms: UM queues in dedicated um_queue_bo */
-> +		base_ggtt = xe_bo_ggtt_addr(um_bo);
-> +		base_dpa = xe_bo_main_addr(um_bo, PAGE_SIZE);
-> +	} else {
-> +		/* Platform does not support USM: no UM queues, nothing to do */
-> +		return;
-> +	}
->   
->   	for (i = 0; i < GUC_UM_HW_QUEUE_MAX; ++i) {
->   		/*
-> @@ -912,6 +922,11 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
->   	xe_gt_assert(gt, ads->bo);
->   
->   	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, xe_bo_size(ads->bo));
-> +	/*
-> +	 * um_queue_bo is not zeroed here. GuC resets the queue head/tail to
-> +	 * zero via MMIO on every restart, so the ring contents are never read
-> +	 * until GPU hardware produces a new entry. No CPU zeroing needed.
-> +	 */
->   	guc_policies_init(ads);
->   	fill_engine_enable_masks(gt, &info_map);
->   	guc_mmio_reg_state_init(ads);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads_types.h b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> index 48a8e092023f..cced8a7b4885 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> @@ -14,8 +14,16 @@ struct xe_bo;
->    * struct xe_guc_ads - GuC additional data structures (ADS)
->    */
->   struct xe_guc_ads {
-> -	/** @bo: Xe BO for GuC ads blob */
-> +	/** @bo: Xe BO for GuC ads blob (WB cached) */
->   	struct xe_bo *bo;
-> +	/**
-> +	 * @um_queue_bo: Dedicated UC BO for the HW fault ring (UM queues).
-> +	 * Separate from the main ADS blob to avoid being zeroed by
-> +	 * xe_guc_ads_populate() during GT reset. UC-mapped so GPU writes
-> +	 * bypass L3 and are visible in DRAM before GuC reads the ring.
-> +	 * VRAM on dGFX for a well-defined DPA; NULL if no USM support.
-> +	 */
-> +	struct xe_bo *um_queue_bo;
->   	/** @golden_lrc_size: golden LRC size */
->   	size_t golden_lrc_size;
->   	/** @regset_size: size of register set passed to GuC for save/restore */
 
