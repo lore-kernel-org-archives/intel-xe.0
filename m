@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEBFDC4452B
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 20:04:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E142C4452B
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 20:20:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F39010EB32;
-	Tue, 21 Jul 2026 20:04:04 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4A4610EB32;
- Tue, 21 Jul 2026 20:04:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4468687186439463894=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A2210E1B4;
+	Tue, 21 Jul 2026 20:20:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dpA6oWjJ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E661F10E195;
+ Tue, 21 Jul 2026 20:20:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784665204; x=1816201204;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PNIej+pFL396EvUVvZLG/dYSWwiLpVcQZci6t7vie/A=;
+ b=dpA6oWjJ1ECpHkMnyxgzdspsBPWPhVPOh/2DnTtQvneeq+jfpjKH5sS9
+ lQ0HZYb5yJEQHEqVY4dhgNyhNZvWQCzpVLYoZipfW2120swBi6qK6jbPz
+ TeY7Hq9oavlFtOO00tGMbBi1ukl1NsK/awhW4ofOu5u29y9PRtHrpX13+
+ YEgwSdnAqo2MMfyjTO6VcHsZ+eA2swP9GYo+TDx1h6Bl6wCCb75un2r0v
+ /9ZQoZXqf+inDVTztoVA7xBRFKmmL2KxBb4HSiVVR6s1sdhX38qobQ9pE
+ eztx8AE28HFv8ZT68DfpFI+zc+Ni1DUPumKDNfFhgXdOHQ1+N+7050nhU g==;
+X-CSE-ConnectionGUID: aV0rZW03S/u286DN41z4eA==
+X-CSE-MsgGUID: 5j1+a1qHTsWzTW4+nfOssg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="85319679"
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="85319679"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2026 13:20:03 -0700
+X-CSE-ConnectionGUID: owA6kmc1RcSAN6EXHsa4Fg==
+X-CSE-MsgGUID: s8A4Ql16TtaMB1dssZIJjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="253505829"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2026 13:20:03 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Sashiko <sashiko-bot@kernel.org>,
+	stable@vger.kernel.org
+Subject: [PATCH] drm/pagemap: Clear driver-provided PFNs from migration PFN
+ array
+Date: Tue, 21 Jul 2026 13:19:59 -0700
+Message-Id: <20260721201959.1082266-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Update_Wa=5F14026?=
- =?utf-8?q?539277?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Jul 2026 20:04:02 -0000
-Message-ID: <178466424293.212455.12483325440689605404@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260721-wa_14026539277-v1-0-09fa102f3084@intel.com>
-In-Reply-To: <20260721-wa_14026539277-v1-0-09fa102f3084@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4468687186439463894==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+DRM pagemap overloads the migration PFN array to store driver-provided
+PFNs before calling migrate_vma_*() to finalize the migration. If an
+error occurs during the incremental copy phase, the migration PFN
+entries are reverted to their original state. After reverting the
+device-folio mutations, clear any remaining driver-provided PFNs to
+avoid confusing the migrate_vma_*() functions.
 
-== Series Details ==
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Fixes: 3902846af36b ("drm/pagemap Fix error paths in drm_pagemap_migrate_to_devmem")
+Fixes: ec265e1f1cfc ("drm/pagemap: Support source migration over interconnect")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/drm_pagemap.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Series: drm/xe: Update Wa_14026539277
-URL   : https://patchwork.freedesktop.org/series/170845/
-State : success
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index 15c78eca180b..f991b296c8e1 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -807,8 +807,11 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
+ 		msecs_to_jiffies(mdetails->timeslice_ms);
+ 
+ err_finalize:
+-	if (err)
++	if (err) {
+ 		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
++		for (i = npages; i < npages_in_range(start, end); ++i)
++			migrate.dst[i] = 0;
++	}
+ err_aborted_migration:
+ 	migrate_vma_pages(&migrate);
+ 
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-5451-80b509f6e34a01edfccc01a05e3e7062a934bcf9_BAT -> xe-pw-170845v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 12)
-------------------------------
-
-  Missing    (1): bat-bmg-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5451-80b509f6e34a01edfccc01a05e3e7062a934bcf9 -> xe-pw-170845v1
-
-  IGT_9017: 9017
-  xe-5451-80b509f6e34a01edfccc01a05e3e7062a934bcf9: 80b509f6e34a01edfccc01a05e3e7062a934bcf9
-  xe-pw-170845v1: 170845v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170845v1/index.html
-
---===============4468687186439463894==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Update Wa_14026539277</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170845/">https://patchwork.freedesktop.org/series/170845/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170845v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170845v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5451-80b509f6e34a01edfccc01a05e3e7062a934bcf9_BAT -&gt; xe-pw-170845v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-bmg-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5451-80b509f6e34a01edfccc01a05e3e7062a934bcf9 -&gt; xe-pw-170845v1</li>
-</ul>
-<p>IGT_9017: 9017<br />
-  xe-5451-80b509f6e34a01edfccc01a05e3e7062a934bcf9: 80b509f6e34a01edfccc01a05e3e7062a934bcf9<br />
-  xe-pw-170845v1: 170845v1</p>
-
-</body>
-</html>
-
---===============4468687186439463894==--
