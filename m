@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F328FC4451C
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 18:00:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE1A1C4451C
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jul 2026 18:00:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0E210E3A8;
-	Tue, 21 Jul 2026 18:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAA110E3AF;
+	Tue, 21 Jul 2026 18:00:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k8h9zYnZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O15CuNFo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49ED310E3A8
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 18:00:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B74E010E3AF
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 18:00:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784656831; x=1816192831;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0CKXXxnWS3khLQuwBquseyX+aHYbh1eGM+FhU5snvAk=;
- b=k8h9zYnZJ/SpuCngD8XTb64A8FhquXusM1HZ+83cQbgR40pJ2LXL1jCm
- dvz06r+1vFvZ628uYu54obKH4ZkoF78gMcmdIxDoeRw1vZuvONBgipc6l
- p3kIioXDsXoGsFsn9NgY87J+5fgK9r6UFowDiB+NloliLlmZ4l/nlNVQ5
- /sPH63jFaZYn8u+s5KzPkONxyY9w0K3pf4LBmspsg/FPjmkPAdKNMqwCG
- QcWnh6PARQYqdexWnVobhY6CUnb4CxHhRDzF3E+Y4JXgonO/ReuEeQpwm
- x3n9ZApY7wygp1u+5ir23irfUG/yUmhyF0NLqRqDKoXb7kL49jEjPdlA+ g==;
-X-CSE-ConnectionGUID: P8Z2WDo8QQePFQ6mE34qIg==
-X-CSE-MsgGUID: f5CpvpvRRPuoOjHMdrUOyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="96401987"
-X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="96401987"
+ t=1784656836; x=1816192836;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vQCNkEYSeahbwEp3Oihowd5U3S0XXjRH+9/GxudDjS4=;
+ b=O15CuNFoDZQOHTbeKxhQpynUOooqwmNnm4BzcB0eIofPyY+I5P0X5uAU
+ DVHJkC+Y92Dr3yPjqt4HScVGoVv3f4H9VJ84v7Fba9P03siwd/F+kBXnk
+ 0pu703j4yM0x61E+Mp2PSBTuKyn55PJtfczr7yDTXG6ifWvsLRoJZOhtL
+ WVRBgZsN4qLAbx6cxVh7yR8KInaoEUwTLSzglX3IC6zym5bpMDH6wZVp2
+ 1B/aQiiFcu4zMmaGgUFt0RIUEvL/DeJx0VmcyHjjQiHhDhW3mBjeSXFNM
+ xZ0YA945eAfcrNfzAnagOO1II37yvSOA9mMnD3h9FZejDxj01e2LB/9Dg g==;
+X-CSE-ConnectionGUID: cDPZAz5NQ2eSMwIkI910fg==
+X-CSE-MsgGUID: l+AT5TDqTu2QbSqq3UlWbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="96401993"
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="96401993"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 11:00:30 -0700
-X-CSE-ConnectionGUID: PqdOKiG/TpKZoKA1cdUJyg==
-X-CSE-MsgGUID: 6focz8jSRAy1BYcuojLtsQ==
+ 21 Jul 2026 11:00:36 -0700
+X-CSE-ConnectionGUID: Scv43mx2TR+zUi/rpp6xaQ==
+X-CSE-MsgGUID: RqnB8TfkQUyzaRQ1DaD56A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="282352674"
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="282352712"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
- by fmviesa001.fm.intel.com with ESMTP; 21 Jul 2026 11:00:29 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 21 Jul 2026 11:00:35 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v5 0/2] drm/xe: Use IBC v3 on PTL
-Date: Tue, 21 Jul 2026 10:55:32 -0700
-Message-Id: <20260721175534.654743-1-vinay.belgaumkar@intel.com>
+Subject: [PATCH v5 1/2] drm/xe: Use IBC v3 on PTL
+Date: Tue, 21 Jul 2026 10:55:33 -0700
+Message-Id: <20260721175534.654743-2-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20260721175534.654743-1-vinay.belgaumkar@intel.com>
+References: <20260721175534.654743-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,27 +66,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Also add a debugfs entry to monitor the IA/GT bias values.
+Intelligent Bias Control (IBC) v3 algorithm in GuC has PTL specific
+optimizations. This version selection param is only available GuC 70.48.0
+onwards.
 
-v3: Use debugfs instead of sysfs (Rodrigo)
-v4: Address comments(Rodrigo)
-v5: Add assisted-by tag and other comments (Rodrigo, Michal)
+v4: Fix sashiko.dev review issue
+v5: Don't cascade return checks (Rodrigo)
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-
-
-Vinay Belgaumkar (2):
-  drm/xe: Use IBC v3 on PTL
-  drm/xe: Add debugfs for IA/GT bias
-
+---
  drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  1 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  4 +
- drivers/gpu/drm/xe/xe_gt_debugfs.c            | 77 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_pc.c                | 15 +++-
- 4 files changed, 96 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_pc.c                | 15 ++++++++++++++-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+index ce5c59517528..57baa68bcba4 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+@@ -119,6 +119,7 @@ enum slpc_param_id {
+ 	SLPC_PARAM_STRATEGIES = 26,
+ 	SLPC_PARAM_POWER_PROFILE = 27,
+ 	SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY = 28,
++	SLPC_PARAM_SET_IBC_VERSION = 29,
+ 	SLPC_MAX_PARAM = 32,
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 59f2fa79ad42..211569c2e8ea 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -1234,8 +1234,21 @@ static int pc_modify_defaults(struct xe_guc_pc *pc)
+ 
+ 	if (xe->info.platform == XE_PANTHERLAKE) {
+ 		ret = pc_action_set_dcc(pc, false);
+-		if (unlikely(ret))
++		if (unlikely(ret)) {
+ 			xe_gt_err(gt, "Failed to modify DCC default: %pe\n", ERR_PTR(ret));
++			return ret;
++		}
++
++		if (xe_gt_is_main_type(gt) &&
++		    GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 48, 0)) {
++			ret = pc_action_set_param(pc,
++						  SLPC_PARAM_SET_IBC_VERSION,
++						  3);
++			if (unlikely(ret)) {
++				xe_gt_err(gt, "Failed to modify IBC version: %pe\n", ERR_PTR(ret));
++				return ret;
++			}
++		}
+ 	}
+ 
+ 	return ret;
 -- 
 2.38.1
 
