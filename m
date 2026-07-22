@@ -4,64 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76B30C4453A
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 09:42:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D10DC44539
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 09:47:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3644210E27F;
-	Wed, 22 Jul 2026 09:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15DC110ED10;
+	Wed, 22 Jul 2026 09:47:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gf9eu9N1";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OlaYlSGG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6101210E27F;
- Wed, 22 Jul 2026 09:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784713351; x=1816249351;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cYMZXAxveWs1ms8YEGDRiHd6ZKGn3dOB8zEYGqhIbwo=;
- b=Gf9eu9N1/3NBQGGVwBJ0LRIiTChZ9PNO2FOV4ZiSjScM6ZWWfkaGx0qn
- lOUc4z53z3ygT3T9im0H+3mCcREu6gsM/i+1PwBu4Eb4L1TYIZw6rjEou
- 7RUF9Yi+hP2lUpyNK927qvBhn5iTHiL6Oj13J5BsGp22t/s0ASzUXZ+JF
- C89syU+H5SdZDqdhih4BhDvDv942FJDK1C5aQbFuxCP5AS6NrFMDio1Z6
- lyo1m/JNJf/C4SfS9WXOIp6167YmHJqcLSyYkNHcgR7dj0mLG4KVVBNpR
- 7l4ZVlJ2sc0WE0yobw0nREVlRtHbpoi9NCgqNbDO6sZSysewCNIWkQcxQ w==;
-X-CSE-ConnectionGUID: B3p0hyU/Q2+AYoJSaD0kLQ==
-X-CSE-MsgGUID: MuM80/omTqWV6L8yjTkx5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="95706088"
-X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="95706088"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2026 02:42:30 -0700
-X-CSE-ConnectionGUID: eiid++MxQSKbUCXZvp2gcQ==
-X-CSE-MsgGUID: 8ymMUpKjSN6+2e7gbBpNCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="254647437"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2026 02:42:24 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org
-Cc: aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com, kuba@kernel.org,
- simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
- joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
- shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
- raag.jadav@intel.com, maarten.lankhorst@linux.intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- Riana Tauro <riana.tauro@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v6 2/2] drm/xe/xe_ras: Report correctable/uncorrectable error
- events to userspace
-Date: Wed, 22 Jul 2026 15:11:37 +0530
-Message-ID: <20260722094134.3036087-6-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260722094134.3036087-4-riana.tauro@intel.com>
-References: <20260722094134.3036087-4-riana.tauro@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC7B10ED10
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 09:47:22 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 74867600DA
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 09:47:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B3151F00A3E
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 09:47:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1784713641;
+ bh=1psssF0EJ6tgCgfE2TXes0fv6UVmjctuTqOJj4nGWvY=;
+ h=From:In-Reply-To:References:Date:Subject:To:Cc;
+ b=OlaYlSGGgf3SjX9FtmKK314tNu5zhl9wEVX9vR6t71FECrmQdRnr+RAPXCGpTgYdc
+ 4+3eVvDBNfnlpgMQlUax2lwdMC4IDIV4k/o7Livq4QflOP/9M3y3w+kXQ1j41iHCTL
+ D/CziWm/gj2i7ZWI80Te0xiTyYtGacP3EG4cVxyX0sW0OPp5SOSTd4E8t/nas2QyXR
+ Nv7hp45iFsAuv1xr8zojBCS9q15iW6eWXa2t2PQRFGctrh8Psi3f/Qs7Y7mlFhFDXX
+ s+7ciqFi6fOjR3D8ae105CgrmLqy2GhsypU/BJfq1FL2muCof0nRxhJu8JKBSlfEjr
+ BUaR8mHWklewg==
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-5b0117d49dcso11299709e87.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 02:47:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AHgh+RrlTG21YOwdwaoUPBMR4un8i9lky2TU7mMzD2MIkNoxmvukdfhnlYxV7SX85IHDiH+hp8/E1nsXcw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy255wTiqXP/qadzPHKGdqZ4kInk9uHZ8rdy85wOlUpfnw/7Bte
+ VEtImySUD5+NhlzqthVtB7DRZHiD/O60pY/+UOmKOPu2VzANnQZBdgKRIeeKUuTgjWtVPLa8H7v
+ qw6ZuZ05QxPD1r6q9i3b3wSd+IIaB57TETmosnCjnVw==
+X-Received: by 2002:a05:6512:211:b0:5ae:b9b3:2c0 with SMTP id
+ 2adb3069b0e04-5b28f9b8c38mr3373315e87.58.1784713639893; Wed, 22 Jul 2026
+ 02:47:19 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 22 Jul 2026 02:47:18 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 22 Jul 2026 02:47:18 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <51d2d692-ba40-3035-fac2-a9e8e98e6d99@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260713-swnode-remove-on-dev-unreg-v7-0-6d6bc448427a@oss.qualcomm.com>
+ <20260713-swnode-remove-on-dev-unreg-v7-1-6d6bc448427a@oss.qualcomm.com>
+ <51d2d692-ba40-3035-fac2-a9e8e98e6d99@linux.intel.com>
+Date: Wed, 22 Jul 2026 02:47:18 -0700
+X-Gmail-Original-Message-ID: <CAMRc=McoW72iX1GKWJAeVDBV4ft_sqDtcOwhF8XSWyC8agQhWA@mail.gmail.com>
+X-Gm-Features: AUfX_myW5j5EC2yrK4hzqs7Ma3O0GUiOq4nsa6hrcCjhD9aYXO8RY8duj-A8ynw
+Message-ID: <CAMRc=McoW72iX1GKWJAeVDBV4ft_sqDtcOwhF8XSWyC8agQhWA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/4] platform/surface: gpe: use
+ platform_device_register_full()
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ brgl@kernel.org, 
+ platform-driver-x86@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ driver-core@lists.linux.dev, 
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,227 +86,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When an interrupt is received for correctable errors indicating that error
-counter has crossed its threshold, read the current counter value and
-deliver a drm-ras error-event to userspace for each affected component.
+On Tue, 21 Jul 2026 18:19:42 +0200, "Ilpo J=C3=A4rvinen"
+<ilpo.jarvinen@linux.intel.com> said:
+> On Mon, 13 Jul 2026, Bartosz Golaszewski wrote:
+>
+>> Creating a software node for a given set of properties and adding it to
+>> a platform device can be achieved with a single call to
+>> platform_device_register_full(). There's nothing in this driver that
+>> suggests using the more fine-grained interfaces was intentional so
+>> switch to using the high-level helper.
+>>
+>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com=
+>
+>> ---
+>>  drivers/platform/surface/surface_gpe.c | 39 ++++++++++-----------------=
+-------
+>>  1 file changed, 11 insertions(+), 28 deletions(-)
+>>
+>> diff --git a/drivers/platform/surface/surface_gpe.c b/drivers/platform/s=
+urface/surface_gpe.c
+>> index 40896a8544b0a4da4261ea881b1eaed62d93b32b..4ca7ad76f3b9d2b6c455a5d5=
+b37f23a85eb69c69 100644
+>> --- a/drivers/platform/surface/surface_gpe.c
+>> +++ b/drivers/platform/surface/surface_gpe.c
+>> @@ -290,9 +290,9 @@ static struct platform_device *surface_gpe_device;
+>>
+>>  static int __init surface_gpe_init(void)
+>>  {
+>> +	struct platform_device_info pdevinfo;
+>>  	const struct dmi_system_id *match;
+>>  	struct platform_device *pdev;
+>> -	struct fwnode_handle *fwnode;
+>>  	int status;
+>>
+>>  	match =3D dmi_first_match(dmi_lid_device_table);
+>> @@ -305,44 +305,27 @@ static int __init surface_gpe_init(void)
+>>  	if (status)
+>>  		return status;
+>>
+>> -	fwnode =3D fwnode_create_software_node(match->driver_data, NULL);
+>> -	if (IS_ERR(fwnode)) {
+>> -		status =3D PTR_ERR(fwnode);
+>> -		goto err_node;
+>> -	}
+>> -
+>> -	pdev =3D platform_device_alloc("surface_gpe", PLATFORM_DEVID_NONE);
+>> -	if (!pdev) {
+>> -		status =3D -ENOMEM;
+>> -		goto err_alloc;
+>> +	pdevinfo =3D (struct platform_device_info){
+>> +		.name =3D "surface_gpe",
+>> +		.id =3D PLATFORM_DEVID_NONE,
+>> +		.properties =3D match->driver_data,
+>> +	};
+>> +
+>> +	pdev =3D platform_device_register_full(&pdevinfo);
+>> +	if (IS_ERR(pdev)) {
+>
+> Hi,
+>
+> Please add an include for this and PTR_ERR().
+>
+> With the missing include fixed,
+>
+> Acked-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+>
+> Thanks for doing these.
+>
 
-Also send drm-ras error-event to userspace for uncorrectable errors on
-receiving an AER.
+Danilo already queued it so I'll send a follow-up once it's in next.
 
-To avoid sending duplicate events when the same component appears multiple
-times in the response, Send the error-event once per component.
-
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
-v2: add warns for unexpected values from system controller (Michal)
-    send an event at most once per component for each interrupt (Raag)
-    use correct parameters for get_counter (Sashiko)
-
-v3: move unsupported logs to drm_ras layer
-    use get_counter directly
-    use BITS_PER_TYPE
-    move the checks before detected log (Raag)
-
-v4: squash both patches
-    remove checks (Raag)
----
- drivers/gpu/drm/xe/xe_drm_ras.c | 31 +++++++++++++++
- drivers/gpu/drm/xe/xe_drm_ras.h |  3 ++
- drivers/gpu/drm/xe/xe_ras.c     | 68 +++++++++++++++++++++++++++++++++
- 3 files changed, 102 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-index 7937d8ba0ed9..0998d12464d0 100644
---- a/drivers/gpu/drm/xe/xe_drm_ras.c
-+++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-@@ -185,6 +185,37 @@ static int register_nodes(struct xe_device *xe)
- 	return ret;
- }
- 
-+/**
-+ * xe_drm_ras_event() - Report drm-ras error event to userspace
-+ * @xe: xe device structure
-+ * @component: error component (see &enum drm_xe_ras_error_component)
-+ * @severity: error severity (see &enum drm_xe_ras_error_severity)
-+ * @value: value of error counter
-+ *
-+ * Report an error-event to userspace.
-+ */
-+void xe_drm_ras_event(struct xe_device *xe, u8 component, u8 severity, u32 value)
-+{
-+	struct xe_drm_ras *ras = &xe->ras;
-+	struct xe_drm_ras_counter *info = ras->info[severity];
-+	struct drm_ras_node *node;
-+	int ret;
-+
-+	/* Event is supported only if drm-ras is enabled */
-+	if (!xe->info.has_drm_ras)
-+		return;
-+
-+	node = &ras->node[severity];
-+
-+	if (!info || !info[component].name)
-+		return;
-+
-+	ret = drm_ras_nl_error_event(node, component, info[component].name, value);
-+	if (ret)
-+		drm_err_ratelimited(&xe->drm, "drm-ras error-event failed: %d for %s %s\n", ret,
-+				    info[component].name, error_severity[severity]);
-+}
-+
- /**
-  * xe_drm_ras_init() - Initialize DRM RAS
-  * @xe: xe device instance
-diff --git a/drivers/gpu/drm/xe/xe_drm_ras.h b/drivers/gpu/drm/xe/xe_drm_ras.h
-index 365c70e93e82..add96bf1a7ab 100644
---- a/drivers/gpu/drm/xe/xe_drm_ras.h
-+++ b/drivers/gpu/drm/xe/xe_drm_ras.h
-@@ -5,11 +5,14 @@
- #ifndef _XE_DRM_RAS_H_
- #define _XE_DRM_RAS_H_
- 
-+#include <linux/types.h>
-+
- struct xe_device;
- 
- #define for_each_error_severity(i)	\
- 	for (i = 0; i < DRM_XE_RAS_ERR_SEV_MAX; i++)
- 
- int xe_drm_ras_init(struct xe_device *xe);
-+void xe_drm_ras_event(struct xe_device *xe, u8 component, u8 severity, u32 value);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index a31e06b8aa67..d43f614de723 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -90,6 +90,8 @@ static const char * const gpu_health_states[] = {
- };
- static_assert(ARRAY_SIZE(gpu_health_states) == XE_RAS_HEALTH_MAX);
- 
-+static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter, u32 *value);
-+
- static u8 drm_to_xe_ras_severity(u8 severity)
- {
- 	switch (severity) {
-@@ -102,6 +104,18 @@ static u8 drm_to_xe_ras_severity(u8 severity)
- 	}
- }
- 
-+static u8 xe_to_drm_ras_severity(u8 severity)
-+{
-+	switch (severity) {
-+	case XE_RAS_SEV_CORRECTABLE:
-+		return DRM_XE_RAS_ERR_SEV_CORRECTABLE;
-+	case XE_RAS_SEV_UNCORRECTABLE:
-+		return DRM_XE_RAS_ERR_SEV_UNCORRECTABLE;
-+	default:
-+		return DRM_XE_RAS_ERR_SEV_MAX;
-+	}
-+}
-+
- static u8 drm_to_xe_ras_component(u8 component)
- {
- 	switch (component) {
-@@ -120,6 +134,24 @@ static u8 drm_to_xe_ras_component(u8 component)
- 	}
- }
- 
-+static u8 xe_to_drm_ras_component(u8 component)
-+{
-+	switch (component) {
-+	case XE_RAS_COMP_DEVICE_MEMORY:
-+		return DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY;
-+	case XE_RAS_COMP_CORE_COMPUTE:
-+		return DRM_XE_RAS_ERR_COMP_CORE_COMPUTE;
-+	case XE_RAS_COMP_PCIE:
-+		return DRM_XE_RAS_ERR_COMP_PCIE;
-+	case XE_RAS_COMP_FABRIC:
-+		return DRM_XE_RAS_ERR_COMP_FABRIC;
-+	case XE_RAS_COMP_SOC_INTERNAL:
-+		return DRM_XE_RAS_ERR_COMP_SOC_INTERNAL;
-+	default:
-+		return DRM_XE_RAS_ERR_COMP_MAX;
-+	}
-+}
-+
- static int ras_status_to_errno(u32 status)
- {
- 	switch (status) {
-@@ -218,6 +250,26 @@ static void ras_usp_aer_init(struct xe_device *xe)
- 	dev_dbg(&usp->dev, "Uncorrectable Internal Errors downgraded and unmasked\n");
- }
- 
-+static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component)
-+{
-+	struct xe_ras_error_class counter = {0};
-+	u8 drm_severity, drm_component;
-+	u32 value;
-+	int ret;
-+
-+	counter.common.severity = severity;
-+	counter.common.component = component;
-+
-+	ret = get_counter(xe, &counter, &value);
-+	if (ret)
-+		return;
-+
-+	drm_severity = xe_to_drm_ras_severity(severity);
-+	drm_component = xe_to_drm_ras_component(component);
-+
-+	xe_drm_ras_event(xe, drm_component, drm_severity, value);
-+}
-+
- static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
- {
- 	struct xe_ras_compute_error *error_info = (void *)arr->details;
-@@ -312,8 +364,10 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 	struct xe_ras_threshold_crossed *pending = (void *)&response->data;
- 	struct xe_ras_error_class *errors = pending->counters;
- 	u32 id, ncounters = pending->ncounters;
-+	u8 sent = 0;
- 
- 	BUILD_BUG_ON(sizeof(response->data) < sizeof(*pending));
-+	BUILD_BUG_ON(BITS_PER_TYPE(sent) < XE_RAS_COMP_MAX);
- 	xe_device_assert_mem_access(xe);
- 
- 	if (!ncounters || ncounters > XE_RAS_NUM_COUNTERS)
-@@ -329,6 +383,13 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 
- 		xe_warn(xe, "[RAS]: %s %s detected\n",
- 			comp_to_str(component), sev_to_str(severity));
-+
-+		/* Send event once per component */
-+		if (sent & BIT(component))
-+			continue;
-+		sent |= BIT(component);
-+
-+		ras_send_error_event(xe, severity, component);
- 	}
- }
- 
-@@ -382,6 +443,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 	enum xe_ras_recovery_action final_action;
- 	u32 remaining = XE_SYSCTRL_FLOOD_LIMIT;
- 	struct xe_ras_get_soc_error response;
-+	u8 sent = 0;
- 	size_t rlen;
- 	int ret;
- 
-@@ -425,6 +487,12 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 			xe_info(xe, "[RAS]: %s %s detected\n", comp_to_str(component),
- 				sev_to_str(severity));
- 
-+			/* Send event once per component */
-+			if (!(sent & BIT(component))) {
-+				sent |= BIT(component);
-+				ras_send_error_event(xe, severity, component);
-+			}
-+
- 			switch (component) {
- 			case XE_RAS_COMP_CORE_COMPUTE:
- 				action = handle_core_compute_errors(arr);
--- 
-2.47.1
-
+Bartosz
