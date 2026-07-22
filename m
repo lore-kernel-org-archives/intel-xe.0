@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91731C4453A
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 21:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6751C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 21:59:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 449A210EEAE;
-	Wed, 22 Jul 2026 21:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 809A510E4E7;
+	Wed, 22 Jul 2026 21:59:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B/7cYpsf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HWkfAohc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30EE210E4F8
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 21:54:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35C3510E4E7
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 21:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784757250; x=1816293250;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=CUneno4o1pQutpj9etIzkTrUkJ+MkyTH5e7kTLdd0zg=;
- b=B/7cYpsfWt3As+uxy0FNuKMMwRmxfKoyvP7/7QrJDeOhpXLpuEcHZ9zA
- hyN6T50Ze7GhSqhNObbq3XXaF1vni/s+2Ccraj9qJjkbr8CfiRMcHR7QU
- NTydEaEBnuPsRB+0DcJ1NgY9VUQ8ZmPZ6OpgPbKrTrkqn2itZfzALjKDH
- z7S8ELQky6pUajsK6Mbk67kKE4h1OJ1lq3F9vkKs7Mb1yqGwI13vmevYP
- kgcZ+cmNWnejxNJWpSwZTgzV7nsURg0cXox3UqfcHSabI9feHjkXyPhoY
- ic3070jIXQ0amugOTWunmnszhgQddZ311g5VKa8rba7Kq2QpVNh7gm/kS Q==;
-X-CSE-ConnectionGUID: HE2efm+oQqOaem2l2zcTZw==
-X-CSE-MsgGUID: u432K/z8RV2niiWamxVqww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="102950635"
-X-IronPort-AV: E=Sophos;i="6.25,179,1779174000"; d="scan'208";a="102950635"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2026 14:54:10 -0700
-X-CSE-ConnectionGUID: EhHbEqXoS2+r6aIhVBFyLQ==
-X-CSE-MsgGUID: OPkFgDLTThSkpzbHpI5LmA==
+ t=1784757580; x=1816293580;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UFavr8fQpMIWU3oDmENRMU9Ham/DRKzGfMXVUXErVMk=;
+ b=HWkfAohc+4xnrmSndQuSw49GDH7L2IQ1FCsvMESARkztQehNm6Ts+X5F
+ ORVt/yzZsWOQy8BGGQ34l3s366AL6pk/O7dP30+KrIFxF1+9EVIf8VL8v
+ SubabkxhoA1ei3kv9I3dxEVu6MpiIPAE44/+ElY0gzLk2PZnS1Dv1eCmC
+ QS5Iy8RSNBosn8IFPqSyRPgznC3DoXkJl4syG/xYu4fb0ohho3a1QhIsC
+ c63K0o9i2bhgtYLI2cDpUnhKAj3UdbkEKCaDbHAiqhb2KlHryAVHz1zOu
+ 73VX+VWNhphZmtA6LntfOSdSedIElcpHaz5KHBLHtJzVJIpbW4p0xx4Er A==;
+X-CSE-ConnectionGUID: Yf0l7ildQR6LHS++lpjWsw==
+X-CSE-MsgGUID: 68QR+stHQQ6g/S8mAdfEbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="96064388"
+X-IronPort-AV: E=Sophos;i="6.25,179,1779174000"; d="scan'208";a="96064388"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2026 14:59:40 -0700
+X-CSE-ConnectionGUID: ySSJYDRmTsyK7PY5fBLtOg==
+X-CSE-MsgGUID: OFZiEH72Q66Ggs5YKeDxOA==
 X-ExtLoop1: 1
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2026 14:54:10 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-xe@lists.freedesktop.org, Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 3/3] drm/xe/xe_oa: Add a lag to the reports that is exported
- to user
-Date: Wed, 22 Jul 2026 14:54:07 -0700
-Message-ID: <20260722215403.2668958-8-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260722215403.2668958-5-umesh.nerlige.ramappa@intel.com>
-References: <20260722215403.2668958-5-umesh.nerlige.ramappa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,179,1779174000"; d="scan'208";a="258905549"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2026 14:59:40 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [RFC PATCH 0/2] LNL_FLUSH_* enhancements
+Date: Wed, 22 Jul 2026 14:59:33 -0700
+Message-Id: <20260722215935.1369012-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,54 +64,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When running heavy workloads, reading the OA reports too soon does not
-guarantee that the report has landed in memory. To make sure correct
-reports are copied to user buffer, only return reports that lag the
-current HW_TAIL register by 32 reports. This is an empirical number
-based on a heavy render workload and several test iterations.
+The LNL_FLUSH_* workaround is a horrid hack that has been papering over
+bugs. Let's limit its scope to determine whether it is actually needed
+on newer platforms and add more debug information for cases where it
+still occurs.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+This came up again in the context of this series [1].
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index c7f9c3955cb5..87cbd15eb7a2 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -224,7 +224,7 @@ static bool mert_wa_14026633728(struct xe_oa_stream *s)
- static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- {
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
--	u32 hw_tail, partial_report_size, available;
-+	u32 hw_tail, partial_report_size, available, lag;
- 	int report_size = stream->oa_buffer.format->size;
- 	unsigned long flags;
- 
-@@ -234,17 +234,20 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- 	hw_tail -= gtt_offset;
- 
- 	/*
--	 * The tail pointer increases in 64 byte (cacheline size), not in report_size
-+	 * The hw_tail pointer increases in 64 byte (cacheline size), not in report_size
- 	 * increments. Also report size may not be a power of 2. Compute potential
- 	 * partially landed report in OA buffer.
- 	 */
- 	partial_report_size = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
- 	partial_report_size %= report_size;
- 
--	/* Subtract partial amount off the tail */
-+	/* Subtract partial amount off the hw_tail */
- 	hw_tail = xe_oa_circ_diff(stream, hw_tail, partial_report_size);
- 
--	stream->oa_buffer.tail = hw_tail;
-+#define LAG_REPORTS 32
-+	lag = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
-+	if (lag >= LAG_REPORTS * report_size)
-+		stream->oa_buffer.tail = hw_tail;
- 
- 	available = xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->oa_buffer.head);
- 	stream->pollin = available >= stream->wait_num_reports * report_size;
+Matt
+
+[1] https://patchwork.freedesktop.org/series/170916/ 
+
+Matthew Brost (2):
+  drm/xe: Scope LNL_FLUSH_* workaround to affected CPUs, not GPU
+    platform
+  drm/xe: Add DRM_XE_DEBUG_FLUSH_WA to force the CPU flush workaround on
+
+ drivers/gpu/drm/xe/Kconfig.debug        | 16 ++++++
+ drivers/gpu/drm/xe/Makefile             |  1 +
+ drivers/gpu/drm/xe/xe_cpu_info.c        | 67 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_cpu_info.h        | 13 +++++
+ drivers/gpu/drm/xe/xe_device.h          | 35 +++++++++----
+ drivers/gpu/drm/xe/xe_device_types.h    | 10 ++++
+ drivers/gpu/drm/xe/xe_guc_ct.c          | 56 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_ct.h          |  1 +
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c   |  2 +-
+ drivers/gpu/drm/xe/xe_pci.c             | 10 ++++
+ drivers/gpu/drm/xe/xe_tlb_inval.c       | 28 +++++++++++
+ drivers/gpu/drm/xe/xe_wait_user_fence.c |  6 ++-
+ 12 files changed, 228 insertions(+), 17 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_cpu_info.c
+ create mode 100644 drivers/gpu/drm/xe/xe_cpu_info.h
+
 -- 
-2.51.0
+2.34.1
 
