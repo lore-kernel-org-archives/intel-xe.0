@@ -4,82 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59091C44539
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E8DC4453F
 	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 13:42:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F1FC10EDD2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BD7910EDD1;
 	Wed, 22 Jul 2026 13:42:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Mxy50lqW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZS6YHDwQ";
 	dkim-atps=neutral
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9851310E030
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 16:30:22 +0000 (UTC)
-Received: by mail-pl1-f169.google.com with SMTP id
- d9443c01a7336-2caced6038eso70561335ad.0
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 09:30:22 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com
+ [209.85.217.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59D4710E385
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 00:47:26 +0000 (UTC)
+Received: by mail-vs1-f54.google.com with SMTP id
+ ada2fe7eead31-738a5cc517eso6323585137.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 17:47:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784651422; x=1785256222; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=MHdawj2rFYjyK3F10CxJAoaZBnVtB6lTHhJb84UOuRM=;
- b=Mxy50lqW0pMdco1pW6BBvRwlXVT8E5ozJ1t0KYvI1n+fHB6y2Vty64D11+Sb/5B34I
- A4ex9bE6xPzxEprKDxx8RzVEZO+15CWAZBTGlmWxxQfQCiy/SxKxQIeyq7WmBd+s96SV
- rZV59Xc3uKJOGrgPQ+CMXM86i1/GT1320jzKwFBPkb7h1nFHWpnoTYji3pQRK5WpyE1C
- 4YJKd3mxFk5rUfVNM622IlfmRuO/BHU7FickWtamZ8SNPA0XYtYiGntdFcEQrwJEXq9a
- nASPtzmUJbLHs8c9iDcAC11al5azApPuPa+jaHIth0thHNlGRiA7Q3Vfsgx3bI3T0Fi5
- o72Q==
+ d=gmail.com; s=20251104; t=1784681245; x=1785286045; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=rAT02ZEvTL+fIOJG9k/2WuB4ZPnqd54oAdj5bUVg4l0=;
+ b=ZS6YHDwQB9x1Xs5i/3Ie+phd7Wmnm2sLUECK3nD1QSSkJSNqldZm59CepG/fNWitL4
+ KZyy+JoBFwAiooSQR8K1M2re9qOh1e0wYUq5KzAiUxJlUvX1BhWraHsXRfTByaNrxwhA
+ jPYBlKh6fHX/qeYjwZtAPx+rjbTaTPxzqU7UIxCJKD35QUBHq8SYV3RrLwF43nsOYw2b
+ 4j0daUnNkVqv4Uqpb+CBzyT6WmpxCVBH1w4/h+Zz1QuL/F0WKyxvL+55WZQfrpNtyH/H
+ L9pMrKbFy73PzYAWA6wPWcIhW9L3mzkCfKQmmzc9Oqn8XDtt3D9Hak9KHftav+ApsALZ
+ 0rDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784651422; x=1785256222;
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=MHdawj2rFYjyK3F10CxJAoaZBnVtB6lTHhJb84UOuRM=;
- b=f+Blx+4hs6FwnT7aheRUgXtJc+t/mDo9Eg968TDp8JmmXY0B3krlCUHoV6aZEKv17a
- PCtr6l+xPk7U6Amj58BEofyl64b+StGQllhbOxgYmDjcsOdGFF/JrGzEQU1RJ50Fg7e6
- KnDx4mm3m/31LbUYCCVBjuWFJul9bvGHjNmX+5kPGyomDGx0vDLRdJeMB7xyYkx05+0H
- 6Vf8J8eu/uabO5R9BwgNTY9ABdAu47ZfRFavxPk57HpZlGdkBndV2J/q2pxu5Y4CIETn
- 0w50ApTvzM7cfoL2jpN04HJ8TrVDEn8sXmU6mBngRi7e/KWfJp38EjYycUQjdztWcecm
- Y79g==
-X-Forwarded-Encrypted: i=1;
- AHgh+Rq6A/hC9Oq4ZxTTvOjfRoLc+PTHMsHFzxmB/DNutpih/WbIM7PYYNvRUwAWgM1tFsx+ISo5JHIVAg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyTDexO6WL1bJkFgFAxxzTqKhoREieJJ6ty9MWUwrM9OOw3lAjw
- uxPuj1UwbOmDEUrn7Efstm0R4TEssRxlQnRRol31QoE+hToih8MKC2gD
-X-Gm-Gg: AR+sD11SjwApGumIdT4GxPkVNtiQjylfV3U1B5MzEF3rQXZeGo0Ue166vlcsssLTr4U
- mFJQ26xMRWB3io8ncBEvcr7E05yZxqQ8om+YaBEmH0ZjxlpjswpSjbcYSfnzZN0a2ULATHvregt
- 3+FEPJq+clu3lPomkNhCoz7a4YMw+uaaip8fx2vCl2FWTtFwkpuwnNo5itpu/szOkQaFe0zLVHd
- OCH4EjKMcPEvYpLsSCHGSiFO0D4rpz3EdYDm2uqIzh3ZlicBljuKDKCcavMb17fgIUEaqmpt9AA
- 57ZFeO9IhOQCxDu5RAlcytOrR3zV6zDtoMDxGyZhkwSDNl4e3YHuGDTi1P5dadP72QF9iqG0I3U
- 4M9X+aX8OI0XqJD7XfkBC/lmkT+Op72RQQ/PmBS7sC5UNQ0KptioBOvlEMBwrn46LZ0erAtYwb1
- AOoyOGsch3gjVKaOsIDOUfRkJXMkEDOfgsCy5jZY5RxVh/
-X-Received: by 2002:a17:903:f83:b0:2c9:d277:2cdb with SMTP id
- d9443c01a7336-2cf8dcccd50mr3432635ad.9.1784651421915; 
- Tue, 21 Jul 2026 09:30:21 -0700 (PDT)
-Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
- [98.225.44.182]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2cf34729df7sm80984405ad.63.2026.07.21.09.30.20
+ d=1e100.net; s=20251104; t=1784681245; x=1785286045;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=rAT02ZEvTL+fIOJG9k/2WuB4ZPnqd54oAdj5bUVg4l0=;
+ b=r6xr5m5wsaeXMQ6gOxpXdvfo/Bt+rXpDzT4OIGtxrSjtpPThD/nJ41WRkGCUvwwh0v
+ 0EikR2BSU4EKeU8HHOouGwnN++3D1b0LbaMDI9brpA5Ka5CPh1CaIHiIyOl8Hlpcrt2l
+ X2h85ZV7qnKuFe8XYBAL90Md/6l674BZ7Z82B5PFMhHPRMh/WJ6GLxWJxOBZ1EQoZRGm
+ ePJJ+y25bwYmQemrusc6KIRIKOtaIy2fCLM2JP+LOaPkQ+YDsMB4eXkHDTYGwkQVzp37
+ nlNSUqp0LEbAyAO2Rm9xmdXYaqbyI0g0Xc29HVeYBoME3ZCcSBn+GypF4h7f0eyuC6f1
+ 7H8A==
+X-Gm-Message-State: AOJu0YyLZhn7hHyTwKxn7PA0qe2msASN9iSmWlmrSe05pI9CbzWZGfQD
+ dHzbJ3CuOaFwYv7W5QgWE0hUnLaEVSsacQ0HoFZd5L5n/g75QEyDR8Z5BIgnqw==
+X-Gm-Gg: AR+sD12I3Ej0WlmaMTCMXgfb9UberIoF+A9zMHiRa43yENuo6oNNr/aKabS0umMGFsd
+ BfNL+xBT84dpl6+cKUwkBZ2yVSSgTV6fqy8NTg6GDKu0QB+NP59fN0Vz/2zK5pLqVMT2UfAcyLG
+ sY98EMc90u913SOtXY9w+wwU32p18ExQvgMQqJbh1vfaYpBEyY+Q7PzUp0mdhqs9+IV5uohrvD1
+ TWpnRjwPOQgMaxLcNIVXSYkUfD6Z87qfzHMq5XbR79+EAlzbMN6iGHcZ19ZUdQ4FJvK9Y/a8jfu
+ XBp9vs39/BHf4DTel+Ar1PLmoAR/cEqZOa/1vF1Wqhi4ajNgUjyvKhsnsP4Ba/sX0KRb5PuKfJk
+ BjWwQR4IJ3zfVFbRCeNsfClR4I7r8i5IMcG5GKjuSRKGcMfFdqJwYCv7wW4VA+SI2wKOG3AmYwc
+ SQifJdlHt0VPiKzohCXFU+1EFJ6JPZEN4ephHoO6BfENW3hcZudQi3aVDoc0WMuNREbsL+2P8wa
+ 5PmD/F9
+X-Received: by 2002:a05:6102:3f55:b0:736:e4c0:cddf with SMTP id
+ ada2fe7eead31-747534657damr8579782137.6.1784681245064; 
+ Tue, 21 Jul 2026 17:47:25 -0700 (PDT)
+Received: from lord.bigscale.net ([170.246.211.222])
+ by smtp.gmail.com with ESMTPSA id
+ ada2fe7eead31-74ad31c215bsm1346505137.2.2026.07.21.17.47.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jul 2026 09:30:21 -0700 (PDT)
-Date: Tue, 21 Jul 2026 09:30:19 -0700
-From: Stanislav Kinsburskii <skinsburskii@gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- thomas.hellstrom@linux.intel.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/gpusvm: Zero HMM PFNs before scanning ranges
-Message-ID: <al-emy_WMeEo5SRC@skinsburskii>
-References: <178406967042.1113483.2116704310277917086.stgit@skinsburskii>
- <al5u+iJi1h6FhKsu@gsse-cloud1.jf.intel.com>
- <al6zslgo1Hm-l6oP@skinsburskii>
- <al68zIUmM9JS+Woq@gsse-cloud1.jf.intel.com>
+ Tue, 21 Jul 2026 17:47:24 -0700 (PDT)
+From: =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
+Subject: [PATCH v1 0/4] drm/xe: MCR semaphore and TLB invalidation timeout
+ fixes for ARL
+Date: Tue, 21 Jul 2026 21:46:50 -0300
+Message-ID: <20260722004654.744249-1-talesam@gmail.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <al68zIUmM9JS+Woq@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 22 Jul 2026 13:42:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,93 +88,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 20, 2026 at 05:26:52PM -0700, Matthew Brost wrote:
-> On Mon, Jul 20, 2026 at 04:48:02PM -0700, Stanislav Kinsburskii wrote:
-> > On Mon, Jul 20, 2026 at 11:54:50AM -0700, Matthew Brost wrote:
-> > > On Tue, Jul 14, 2026 at 03:54:32PM -0700, Stanislav Kinsburskii wrote:
-> > > > drm_gpusvm_scan_mm() asks HMM to report the current CPU page-table
-> > > > state without faulting missing entries by leaving default_flags set to
-> > > > zero. The HMM PFN array is still caller-owned input/output state, and
-> > > > the framework may preserve input bits while filling entries. It is not
-> > > > safe for the caller to hand HMM an uninitialized array and then treat
-> > > > entries without HMM_PFN_VALID as an authoritative unpopulated result.
-> > > > 
-> > > > Use kvcalloc() for the temporary PFN array so entries that are not
-> > > > reported as valid start from the documented zero state. This prevents
-> > > > random stack or heap contents from being interpreted as HMM PFN flags or
-> > > > PFN values during the scan.
-> > > > 
-> > > > Fixes: f1d08a586482 ("drm/gpusvm: Introduce a function to scan the current migration state")
-> > > > Cc: stable@vger.kernel.org
-> > > > Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
-> > > > ---
-> > > >  drivers/gpu/drm/drm_gpusvm.c |    2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> > > > index 1a8bb83bd28d..c8f489d7ff7e 100644
-> > > > --- a/drivers/gpu/drm/drm_gpusvm.c
-> > > > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > > > @@ -859,7 +859,7 @@ enum drm_gpusvm_scan_result drm_gpusvm_scan_mm(struct drm_gpusvm_range *range,
-> > > 
-> > > Two other cases in gpusvm would need to be fixed as well:
-> > > 
-> > > - drm_gpusvm_get_pages
-> > > - drm_gpusvm_range_evict
-> > > 
-> > 
-> > No, these two are fine, as the faulting is done with HMM_PFN_REQ_FAULT,
-> > which either populates all the PFNs or fails.
-> > 
-> 
-> Ah, yes clearly misunderstood the issue here / didn't read the commit
-> message.
-> 
-> This patch LGTM:
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> Will merge to drm-misc-fixes shortly.
-> 
-> But then drm_gpusvm_check_pages() should be fixed too as we don't set
-> HMM_PFN_REQ_FAULT there either.
-> 
+This series addresses two issues observed on Arrow Lake laptops (two
+ASUS Vivobook S 14 S3407CA units, Core Ultra 5 225H, iGPU 7d51/ARL-H
+and 7dd1/ARL-P, GuC firmware 70.53.0), reproduced and bisected over
+several weeks of daily use with instrumented kernels.
 
-Indeed.
-Please, see v2 of the patch.
+1) MCR steering semaphore held across resume (patches 1-2)
 
-Thanks,
-Stanislav
+On s2idle resume the first MCR access finds STEER_SEMAPHORE still held
+by firmware. The current code waits only 10us while spinning inside
+the mcr_lock spinlock and then fires a WARN with a full backtrace:
 
-> Matt
-> 
-> > The only case where PFNs must be zeroed is when the caller wants to
-> > collect the mapped PFNs. In this case, the missing PFNs are simply
-> > ignored by the HMM framework.
-> > 
-> > Thanks,
-> > Stanislav
-> > 
-> > > The offending patch is likely the one that added sticky bits to HMM:
-> > > `git format-patch -1 285e871884ff3` for above two cases.
-> > > 
-> > > While I think zeroing here would be the safest approach, it does not appear
-> > > to be a problem in practice because the sticky bits are only used by
-> > > `hmm_dma_map_pfn()` and `hmm_dma_unmap_pfn()`.
-> > > 
-> > > Also, there are several non-gpusvm cases in the kernel that do not zero
-> > > the PFN array either. So I'd say we should either fix the entire kernel
-> > > in one pass, document that pfns must initialized to a known state, or
-> > > leave this code alone.
-> > > 
-> > > Matt
-> > > 
-> > > >  	const struct dev_pagemap *other = NULL;
-> > > >  	int err, i;
-> > > >  
-> > > > -	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-> > > > +	pfns = kvcalloc(npages, sizeof(*pfns), GFP_KERNEL);
-> > > >  	if (!pfns)
-> > > >  		return DRM_GPUSVM_SCAN_UNPOPULATED;
-> > > >  
-> > > > 
-> > > > 
+  drm_WARN_ON_ONCE(ret == -110)
+  WARNING: drivers/gpu/drm/xe/xe_gt_mcr.c:697 mcr_lock
+
+Patch 1 ports the i915 MCR locking model: wait for the hardware
+semaphore (up to 100ms, sleeping) before taking the software spinlock,
+hold GT forcewake over the lock/steer/unlock cycle (Wa_22018931422),
+and demote the WARN to a rate-limited GT error. Patch 2 ports
+intel_gt_mcr_lock_sanitize() from i915, releasing an orphaned
+semaphore at GT resume before the first MCR access.
+
+Testing: before the fix the semaphore WARN fired on nearly every
+s2idle resume. With patches 1-2, zero occurrences across dozens of
+s2idle cycles (including several of 10+ hours) on both machines.
+
+2) TLB invalidation fence timeouts / GuC ack latency (patches 3-4)
+
+Under CPU load, TLB invalidation fences intermittently time out:
+
+  TLB invalidation fence timeout, seqno=N recv=N-1
+
+Instrumented kernels (logging the GT C-state at request and timeout
+time, the G2H CTB occupancy at timeout time, and the ack arrival time)
+show, across 26+ events on both machines:
+
+  - the ack is not sitting unprocessed in the G2H CTB at timeout time
+    (CTB head == tail, zero pending dwords), and
+  - the GT C-state does not matter (events observed both with the GT
+    parked in C6 the whole wait and, with forcewake artificially held,
+    in C0 the whole wait), and
+  - the ack arrives 5-475ms (median ~22ms) after the timeout handler
+    runs, i.e. right after the handler's forced G2H drain and register
+    traffic.
+
+This looks like a GuC-side stall posting the ack (a separate report
+with the full data is being prepared), but the host side can still be
+made more robust: patch 3 fixes the timeout-recovery paths, which
+flush a G2H worker that was possibly never queued (flush_work() on an
+idle work item is a no-op, so a lost/coalesced GUC2HOST interrupt
+turns the flush into a no-op too). Queueing the worker before flushing
+guarantees the CTB is actually drained, and with it the fence-timeout
+message becomes a reliable indicator of a genuine GuC-side stall.
+
+Patch 4 (RFC) raises the driver-internal TLB invalidation deadline
+from HZ/4 to HZ/2. All observed request-to-ack latencies cluster just
+above the current 250ms deadline (2.5s only because the fence TDR
+rounds up); HZ/2 keeps the WARN meaningful while not firing on
+latencies the hardware demonstrably recovers from. This one is a
+band-aid for the firmware behaviour above, hence RFC — happy to drop
+it if the GuC stall gets fixed at the source.
+
+Series based on drm-tip, compile-tested there; runtime testing was
+done on 7.1.3 plus backports of these patches (kernel package
+"linux71-comm" of the BigCommunity distribution, in daily use on both
+machines).
+
+Tales A. Mendonça (4):
+  drm/xe/mcr: Keep GT forcewake during MCR steering
+  drm/xe/mcr: Sanitize steering semaphore on GT resume
+  drm/xe/guc/ct: Queue G2H worker before flushing it in timeout paths
+  drm/xe: Raise hw_tlb_timeout to cover observed GuC ack latency
+
+ drivers/gpu/drm/xe/xe_gt.c            |  7 +++
+ drivers/gpu/drm/xe/xe_gt_mcr.c        | 90 ++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_gt_mcr.h        |  1 +
+ drivers/gpu/drm/xe/xe_guc_ct.c        | 23 ++++++-
+ drivers/gpu/drm/xe/xe_guc_ct.h        |  1 +
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c |  4 +-
+ 6 files changed, 106 insertions(+), 20 deletions(-)
+
+-- 
+2.55.0
+
