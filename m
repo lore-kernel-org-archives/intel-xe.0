@@ -4,80 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E282C4453F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A859EC531BC
 	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 13:42:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EBE610EDCD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C70F10EDBA;
 	Wed, 22 Jul 2026 13:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SnYBUIlS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pvN8QaBF";
 	dkim-atps=neutral
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D6FA10E229
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Jul 2026 23:48:06 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id
- 98e67ed59e1d1-38e071ed6aeso6726552a91.0
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Jul 2026 16:48:06 -0700 (PDT)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com
+ [209.85.222.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA7910E385
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 00:47:40 +0000 (UTC)
+Received: by mail-ua1-f46.google.com with SMTP id
+ a1e0cc1a2514c-9693bbb962eso1464411241.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jul 2026 17:47:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784591285; x=1785196085; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+ d=gmail.com; s=20251104; t=1784681259; x=1785286059; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=RYffH9r38rfAx+3tJsm8+T/9x0KXlih2xMhQUO2e5ek=;
- b=SnYBUIlShw5Vjn+YPyxKfFIv2UI9ircVpyWylQCZZR+WwP1uASy3grMFDTFQvV1IBU
- KEthQx1Z+SauLigD4k2xrJ5GxRLjCk5jtCUA7UQI8Mww3hDQ5smhbrpQdDCVZdUfURbD
- cx3uLQrt1DONfIPa+tCyUuQnYK/8qonBuPqfhk9xiF2AtNPpc6jV532tiMN5vXm8csOt
- jqDnARa+jBDE3/C0d3V6FI6UKi/FrTDWBuDNDjQzM76Iwb43IQtwIaGRYXsF6qGPgfH3
- vQr0KMhYBPIMu1LTeZGbLF/cSiL8151f9KE+edYz33zqOKxsvFB6B3mSMhdy5urWJtPR
- ntbw==
+ bh=yQODMN13qmDTEaPxJlH5XqI9VKI8Jhu1kZxKvHl9BvM=;
+ b=pvN8QaBFrDOUCIDPipffBmqANc7P3JQQ0fbuoeqjTe4Lv+jHzrLrjgeJueGjG4hV+u
+ awfmH7JDuxXe+IDh6JjfwHGVHRJ6jcTpcyglPczG/XY90iaMZxacAR4n0L2KFgRwX1tc
+ MUhwzBn3KQ0ssgy90HsaPvW6XdNktymNpqjnNYaZfVarHus0fhOJETK2a2OH9fA6J1ZG
+ xB9f2kuGqqp7Bc2hNaPivowzdgg0MBHhiCy02+2ZPyE9n+lFIyzaVWJkWn+pzRYiT8KI
+ fvZzgSKdqDKOTAkIff+yZ4+daQHwzNGli6IJCvPs8HGF3LmOaeTsy1EszVqjb9qdiRny
+ IE0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784591285; x=1785196085;
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:x-gm-gg
+ d=1e100.net; s=20251104; t=1784681259; x=1785286059;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=RYffH9r38rfAx+3tJsm8+T/9x0KXlih2xMhQUO2e5ek=;
- b=q5owXBJ5jMMIcVZVDQjWn/sB1j3Thf5dH3jaGCkr/jceQnqcpw6n+UuOM1fH7yB/rj
- yOCrPRJiSXvZDWPYrkVnCRFELU9oYD3plwbGC3XuGHOvNmvyXNEzP+/T+umPh3sD8DnW
- /OqiYX3sHIVh3k0DxpyFFWFDYUuVPL6/LWKL5PqJx66K6RIM2762vw7bgUihPgW2NMD9
- saWcmpSZ1Aa8c66txotFbEsmMtTM4sJJOi8Rysug2RR+9pcPbpwd4SOqw5SfVKL4n02j
- jaJDgZRoNyfwvaCinqyVahmkQpcdMIhvsuzYJ+go4I6E/H8H/kkgnZG3sXkLQb1t8gYR
- agTg==
-X-Forwarded-Encrypted: i=1;
- AHgh+RpsEaRQ3myq70d1d+GSsgYYDxtGeB8hjAevI314LNGRRbNW5Yst395jRU0pVin+cwxgU/u8fZPH3g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwJu2Ucd0D/MD4LPAbUGAB4gMBKRc1cWlKB7m8T2gIpXs8rHGrP
- SRXcocxLeqRuY/5nHNKN9cfoKiRhPFrUsI/JBxkcXm6eJ6JdHFzU/05t
-X-Gm-Gg: AR+sD11tikSIxVVqVF7fJJ0A7Eqv1m4khsUfwLR+XBUszer3KwpweQ6pzfX30Axw65B
- ZT3V3tI64eTMeHuCBgoBYuenK7WNAWtjNn8IJL2k7hu9abeeG+SjB2MoTtRtZkcWkSb4Ez5doFH
- PcODfbekcyL/Pzh51PYpRKUrojZA7QBrHUIrk6SYdWiQnqkbgvp38jaR/BIXwD8G3OEleeFLoIF
- MbZrd7h6dvLm4NwTY54UmgjN6oeIeLGCoqLtdmIhVwsnfCU3iFtO8kqINXeHvTSbZDSYO/6Tg/2
- wjTr0hy31r69NPPLmBRJ4i82Ue0BHMgPWPL2zsYE7prREpBnxTEr32aDFZRdqeKRJ/anRZcMoTJ
- S+36Tzki1lqpWE1C/+hknPeFWe6VHfT/WezxupduozbXTCvpCbOJp3EO3SUgI0PX1A6TXoYwxEq
- eFRzYvZuvFOW8DxChnLNhTFO0xoO2oqsJBvfKc0RIVmvys
-X-Received: by 2002:a17:90b:2c84:b0:381:3b5d:30f4 with SMTP id
- 98e67ed59e1d1-38e4b422c19mr16574158a91.1.1784591285491; 
- Mon, 20 Jul 2026 16:48:05 -0700 (PDT)
-Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
- [98.225.44.182]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-38e9232c4ccsm439122a91.7.2026.07.20.16.48.04
+ bh=yQODMN13qmDTEaPxJlH5XqI9VKI8Jhu1kZxKvHl9BvM=;
+ b=GwtXwsOJQH4aHu0DnDMMGsigQBGdAF509SQ4l14SGfjb64uBgIs3p293V/zrf/EE9a
+ PgFrx08nM+mzlxH+MyAITXwbaEaHPTIS5NDK6UFV402lb7E9p3pQDMQ1JDgSFNl1ZK41
+ MBsXLtUJIgsx2R0o7Tbt21eflnK856kF1NO1WIl5VLnzgLuRcDTrlB50SttPnJkTteO4
+ Y8b/+HmBQqDAy0KWeGqeNGQOVNNEC6BVkRA8T0kN4V1x4YVa0n3yLHWxMlFNtAuez8dO
+ c2dQ+nJFFRA8rZHAyi6XEK75WdaSHK6ueUAOGeFPshCCyqX1FLNTUitpXgg03g57Ww0d
+ 2o7Q==
+X-Gm-Message-State: AOJu0Yzi7UbY8fNivmH6QPqwPNdgo3GNrkONgh551G7nwU0MBr7i8Ur8
+ 9o07Zu6ZjFbRQO8M3ag3B1mXtkpBtUvWuGcCWGaWUyXdurL3nsa9Y04VrMUbmQ==
+X-Gm-Gg: AR+sD12sTHo04UOHUPKmbE6DkX9G36VvOcHm/5+9c97Zs4hq0SvIhd53b0raRr5TFqs
+ E6VATf/FSFk9ibk3q599qi6p8Uu8SdYuVoEzpyVRgqEQRL9lT/zcnEW5IP08O3ajU6bFEIY8If1
+ vRTU07FDVpNLpFwz2+hzwkpGtq/FUlLV+S55s4kQAQDV1XuMb//ID7IAAmLMbuQsydIvbhgpe9b
+ 5eNIVD5O9tu+Jh/Ze2vrP44NP0G4FX6kePGlPJ5/b/DqoVsVRIy+s2uBV/9uEfFTjwAh8LWOV0U
+ iwoCKctvqEeUc2jpy98DvqBpwMEBngW1LY8OzCDTVxNNnqXbwJrJIyd6O/83nSHq3nPo9zlElQZ
+ zz4/cLvkrBaIJI2Ic8Yojzxk5CfdybJWShswGG5HxmuCW/AGZ2rMAHDJeGoQjyYGQCNrQJ/MOz0
+ RtKIwIHTp8+GjyYOr/Puk9QfErnfvSRNAFRUaDMrZpcxBkJbPB4koiFMfc3lQxkYIgS9dAUg==
+X-Received: by 2002:a05:6102:5092:b0:631:4cda:3ebb with SMTP id
+ ada2fe7eead31-7475370e8b5mr8061218137.24.1784681259146; 
+ Tue, 21 Jul 2026 17:47:39 -0700 (PDT)
+Received: from lord.bigscale.net ([170.246.211.222])
+ by smtp.gmail.com with ESMTPSA id
+ ada2fe7eead31-74ad31c215bsm1346505137.2.2026.07.21.17.47.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Jul 2026 16:48:05 -0700 (PDT)
-Date: Mon, 20 Jul 2026 16:48:02 -0700
-From: Stanislav Kinsburskii <skinsburskii@gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- thomas.hellstrom@linux.intel.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/gpusvm: Zero HMM PFNs before scanning ranges
-Message-ID: <al6zslgo1Hm-l6oP@skinsburskii>
-References: <178406967042.1113483.2116704310277917086.stgit@skinsburskii>
- <al5u+iJi1h6FhKsu@gsse-cloud1.jf.intel.com>
+ Tue, 21 Jul 2026 17:47:38 -0700 (PDT)
+From: =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
+Subject: [PATCH v1 4/4] drm/xe: Raise hw_tlb_timeout to cover observed GuC ack
+ latency
+Date: Tue, 21 Jul 2026 21:46:54 -0300
+Message-ID: <20260722004654.744249-5-talesam@gmail.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260722004654.744249-1-talesam@gmail.com>
+References: <20260722004654.744249-1-talesam@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <al5u+iJi1h6FhKsu@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 22 Jul 2026 13:42:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,70 +91,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 20, 2026 at 11:54:50AM -0700, Matthew Brost wrote:
-> On Tue, Jul 14, 2026 at 03:54:32PM -0700, Stanislav Kinsburskii wrote:
-> > drm_gpusvm_scan_mm() asks HMM to report the current CPU page-table
-> > state without faulting missing entries by leaving default_flags set to
-> > zero. The HMM PFN array is still caller-owned input/output state, and
-> > the framework may preserve input bits while filling entries. It is not
-> > safe for the caller to hand HMM an uninitialized array and then treat
-> > entries without HMM_PFN_VALID as an authoritative unpopulated result.
-> > 
-> > Use kvcalloc() for the temporary PFN array so entries that are not
-> > reported as valid start from the documented zero state. This prevents
-> > random stack or heap contents from being interpreted as HMM PFN flags or
-> > PFN values during the scan.
-> > 
-> > Fixes: f1d08a586482 ("drm/gpusvm: Introduce a function to scan the current migration state")
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
-> > ---
-> >  drivers/gpu/drm/drm_gpusvm.c |    2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> > index 1a8bb83bd28d..c8f489d7ff7e 100644
-> > --- a/drivers/gpu/drm/drm_gpusvm.c
-> > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > @@ -859,7 +859,7 @@ enum drm_gpusvm_scan_result drm_gpusvm_scan_mm(struct drm_gpusvm_range *range,
-> 
-> Two other cases in gpusvm would need to be fixed as well:
-> 
-> - drm_gpusvm_get_pages
-> - drm_gpusvm_range_evict
-> 
+On ARL-H (Arrow Lake-H) under sustained load, TLB invalidation acks can
+arrive slightly later than the current fence timeout budget:
 
-No, these two are fine, as the faulting is done with HMM_PFN_REQ_FAULT,
-which either populates all the PFNs or fails.
+  tlb_inval_timeout_delay() = hw_tlb_timeout (HZ/4)
+                            + 2 * xe_guc_ct_queue_proc_time_jiffies()
 
-The only case where PFNs must be zeroed is when the caller wants to
-collect the mapped PFNs. In this case, the missing PFNs are simply
-ignored by the HMM framework.
+which with the 4K H2G buffer works out to 2.25s. When that happens the
+fence is force-signalled with -ETIME even though the invalidation
+completes an instant later:
 
-Thanks,
-Stanislav
+  xe 0000:00:02.0: [drm] *ERROR* TLB invalidation fence timeout,
+      seqno=15519 recv=15518
 
-> The offending patch is likely the one that added sticky bits to HMM:
-> `git format-patch -1 285e871884ff3` for above two cases.
-> 
-> While I think zeroing here would be the safest approach, it does not appear
-> to be a problem in practice because the sticky bits are only used by
-> `hmm_dma_map_pfn()` and `hmm_dma_unmap_pfn()`.
-> 
-> Also, there are several non-gpusvm cases in the kernel that do not zero
-> the PFN array either. So I'd say we should either fix the entire kernel
-> in one pass, document that pfns must initialized to a known state, or
-> leave this code alone.
-> 
-> Matt
-> 
-> >  	const struct dev_pagemap *other = NULL;
-> >  	int err, i;
-> >  
-> > -	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-> > +	pfns = kvcalloc(npages, sizeof(*pfns), GFP_KERNEL);
-> >  	if (!pfns)
-> >  		return DRM_GPUSVM_SCAN_UNPOPULATED;
-> >  
-> > 
-> > 
+Local instrumentation that records the request and timeout times of a
+timed-out invalidation and logs the deltas when its ack finally lands
+measured, over ~24h of heavy use (kernel builds, 3 VMs, browser; ~311k
+invalidations at ~7.4/s):
+
+  - 34 fence timeouts, every one followed by its ack
+  - request-to-ack: 2254-2355 ms (mean 2306 ms)
+  - timeout-to-ack: 2-59 ms (mean 25 ms)
+
+i.e. the ack always arrives, and always within tens of milliseconds of
+the deadline - there is no firmware stall (nothing arrives seconds
+late). A prior change guaranteeing a G2H CTB drain in the timeout path
+confirmed the acks are genuinely not yet delivered when the timeout
+fires, ruling out lost interrupts or an unprocessed CTB entry.
+
+Signalling -ETIME on an invalidation that completes ~25 ms later is
+worse than waiting a little longer: waiters see a spurious error for an
+operation that succeeds. Raise hw_tlb_timeout to HZ/2, extending the
+budget to 2.5s, which covers the observed worst case (2.355s) with
+~150 ms of margin and eliminated all spurious timeouts in testing on
+this workload.
+
+Signed-off-by: Tales A. Mendonça <talesam@gmail.com>
+---
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index 91960dc4ba9..c5ceac5ab86 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -335,7 +335,7 @@ static long tlb_inval_timeout_delay(struct xe_tlb_inval *tlb_inval)
+ 	struct xe_guc *guc = tlb_inval->private;
+ 
+ 	/* this reflects what HW/GuC needs to process TLB inv request */
+-	const long hw_tlb_timeout = HZ / 4;
++	const long hw_tlb_timeout = HZ / 2;
+ 
+ 	/* this estimates actual delay caused by the CTB transport */
+ 	long delay = xe_guc_ct_queue_proc_time_jiffies(&guc->ct);
+-- 
+2.55.0
+
