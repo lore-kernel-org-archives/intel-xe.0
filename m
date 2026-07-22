@@ -4,88 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF7DBC44536
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 17:47:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA07C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 17:49:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C16D10E0C9;
-	Wed, 22 Jul 2026 17:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E97410E0C9;
+	Wed, 22 Jul 2026 17:49:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N9PGe9DA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ksw3O4bJ";
 	dkim-atps=neutral
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
- [209.85.128.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE7B610E0C9
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 17:47:31 +0000 (UTC)
-Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-81ea0b7d137so101447687b3.2
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 10:47:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784742451; cv=none;
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com
+ [209.85.128.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B3B10EE6C
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 17:49:04 +0000 (UTC)
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-81e8fa1b8d6so132669197b3.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 10:49:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784742543; cv=none;
  d=google.com; s=arc-20260327;
- b=PplcIUHIkP4jwKFBgItr1S/fBYcb2naLrAdzhJ5203IkG7gSECWX/O+eehg8gglThY
- N6cCJL51qCgOIjVS0IM3W+26L+ar7pATClnBDLhLuwqBLsZgfJUewFK68ef1Lum1kKdI
- 1jRL8rbHXnypw8a/Fdh0NQdssPAsK1CHo19S/eMrpN06nDW9tmrXaZhqVtEqhT3o/KPF
- OWQi+45/JFRttyKt2ydz5UAG2PusDr2WGc7PuDu1Jw4f28wJmREpaDPvQPsv/XiGcCuW
- QNi/rUx3R0xxJoxPkSD9+61W19IdGyFrep6Ib2AMVVIlFc1dIFguxKSCAsqkDNf7+0J1
- HMmQ==
+ b=dFNVlbjrRhyk8KFgY3jyKA17/1Zi/NKdOywZ/Q5w5/c5Q3colAYApGzpgNoqbGuF3i
+ my+lFFGd/ekfANsn4Si3i4prf2PktjNSG8pcNz3UiIaB1+nHa9af27nWPXrFkCgihEFf
+ O7YCCCplH3b2I2Em2ObZ0NRkVbhyre15iMlzSNrRhl6ox/sBLtmWPkj4bLiYKBn/PGLS
+ xrwS1b3nxgJ0UzrdI8qNzXPePzCIEG4D8ZMmBWadus40Ys8uYO+dEP7jISO91t7eCVBn
+ /BvOuuBW1nhjEgu4fu8wdnYMge9VnNRjMCC6ji3311lkheJywVfsb7D3cHknZVtiSRw5
+ XSkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20260327; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=DqyEyXY0JqSe75MbjwLdRR9WOQt3kX/M0ZZvXr8r/mY=;
+ bh=+FbImOYnCjQq7E4LZcKl4osd/U/55au0kzrVGg/5Cts=;
  fh=RHt77CxFI8VNyQoQZGD2p5fp2XohHPbsKAwEtyIE+Go=;
- b=TNORQ4RjtBqYxcU+/NkxE6H3HadG8eDP5NnDPUlqMysCH2Lf7YNVhi/SDSqYlCf8YX
- i9TZDa6FydVr8DxbIV2+sr3gh9a4DNHHxTZCDfY5kHjpRW7KEQDg0dm7TsbrM8baJmeg
- NXNegNNvd4lABdY45nJXG47Xozy/47KZkwaXdEo8FAzx/KIjmr0v42drhvR4xieyWGmI
- cHQMd5KGw9k91BIozK+uasZ0TPily+Otxf36cbuAIT0UllGEmfUxmJtTOhTto/dG02x0
- cDkGiv0YgpJuunJy1B0HnqCOUr2uk6UHmAEJoK2RTlOd7+ep+2HHv2r4+sXV2pDfcLaE
- sm1Q==; darn=lists.freedesktop.org
+ b=GrERLFaxQrImz+Mn6giXEocjywqWsnRP+ViUFJ2pKA+ffAc73a7YRLdLl9fCKGoZKy
+ 52L8X0n1Faf2LryBtfE3pyNu+mdsHRQjPMyP5TdQMKETYnTxoYPv2iaGNsJg2QZ7PNYo
+ wxAgsAMG6D90Wy7PAz2UACiRaLvFSOWvtmDjV57Eo0RLs6YJFzRXwkdl+wE6k3p/rVi+
+ 8kicgp1tEwELUaKC8E0xv/5jNGvCQ0ipTXTgb0J9Wo01xAFXQqHFLP+OXZASrCRrnFNl
+ MbllE8Qu9HfAsUWvIXh39vcCXVheHfKrtUU0hdrQ2Mo77bZSHioV5BEO3bmDctKpbCWG
+ PItw==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784742451; x=1785347251; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1784742543; x=1785347343; darn=lists.freedesktop.org;
  h=content-transfer-encoding:content-type:cc:to:subject:message-id
  :date:from:in-reply-to:references:mime-version:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=DqyEyXY0JqSe75MbjwLdRR9WOQt3kX/M0ZZvXr8r/mY=;
- b=N9PGe9DAJMXOulXZMDbn5zsU0VD9Yk6CJOekPXZ/WYEj+glP8TjKhg/gkqdypClDuM
- jDH8zLGCGxHdf+VqbscBEQR0zzKSgzQ7ppuCHM9Xa+HehDzii0uWqJXh8jFemJWuyaW1
- DvHcCdnPfn/Tp2s6eNO3ZEXKOHKtoNKR9m8154gLxz0nLkQHj04W+QwAQDPe48GBmkTA
- IUsPWdaMuVZc0R3q5mJLVZWguWlrYRmp6xLfsplOCiKb2DpO8KHCb4x04I9ghS0mkjdb
- 3rwIZfoefkgUU6oxbWvWtyPy+dGXMCRaEu3lGJJrQsxeNY+k8JMCHBCxcIc2lAVsTZLp
- b2Lg==
+ bh=+FbImOYnCjQq7E4LZcKl4osd/U/55au0kzrVGg/5Cts=;
+ b=Ksw3O4bJx6U8OmyDPTXEbN+jJGGvKkDeM/mOIY7a5DH74jaMh1eFjBBSNrjZ4rv6k7
+ 1Af80eIdjPp+8t+exrVVQSRadWdxR+twEgiKcplfXVR+8nG3/j+dGBTHCm29kJL1Ikzo
+ fKuhm1tCBTg2Q3SywzXDwdngUDKHMAuP71SmwgWDX6bPdPB30eXbRIH+cT3g/XVhi9R+
+ iQ66Cc3RN0dzxbbIe5QiVta0ljJD9CVlxeNHo5NXVs4tvIdlGH8vTSSdIxX95bHyBUBk
+ FafO8PgBqqmQw/DIDwCaHQqrYuMeD1SS1BCqsS7Wj4g7IBUAr86k7F06lXzEgiLGODAy
+ I7Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784742451; x=1785347251;
+ d=1e100.net; s=20251104; t=1784742543; x=1785347343;
  h=content-transfer-encoding:content-type:cc:to:subject:message-id
  :date:from:in-reply-to:references:mime-version:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=DqyEyXY0JqSe75MbjwLdRR9WOQt3kX/M0ZZvXr8r/mY=;
- b=rdFOEU3TlY5tz7p0qE13Gla5qIXUrxkgBs9NsplKJOcBZ49dInlMBTH32j3M0VE1KV
- SiacIPXAAc/y054/VfcHGBzNoln8RQQ9TOantx5s1jamz7l/yOQmiJR2SyKSbYsVI+dG
- 8ZHirUBYPRYQOdymjJOy2yykq0qNffrNwfmxZJexBy6eiVV3JLu3HBeOb3Qn1KyWCXmQ
- 29aObz6lu7D0lTxnGcnKo9W9ou9FqI4OmsGdEY3mX0SCfY0NrmY5IIb8jaASme5JcZl5
- tCqVlcrcRr6jDqa8Z+rzqByo9gk9v9gImkRC+hWA9wG+uX0FMdt+GifHIm/VJp/EILHj
- ps5w==
-X-Gm-Message-State: AOJu0Yzl9MvIpZDaLtheWSkAS/2o8r7B8q3s6kNrEv9Q+KLi08wGb1Xa
- FJceU4V/jEJkOqf84E734zeHrTpqneHsfT6JS77LE/d2lPZdcUjYA3DXbRdDFGwyJqw1oBDv3D+
- MI4c6SLH8y4sgDSli/XtvnWIqxLgQ08oFXBOl
-X-Gm-Gg: AR+sD10CcmdIjHcU0qKA0ixYlIwU5ix+71EnG604gjditWYwiiGU9nMs2C+jc4O1vLG
- eUCTAj1i6Jl7eDaKjfdc+AgUFkM24FN1OwU7Y+UeSLdwA5BRUa/KvzGGpTJK45ActAfoEQ3rnu2
- DVWkI8d9LR5mC3baOE8fi9qVT73DhmUPdEir4tkyHwICAe0uhw+K3C6M3biD8HUWHorIFiVy9GT
- 5dRZlmQ7ZZdnAt6vObIeOA8rHHWaRGmyKZ4TBoCPV/DXDQ7EWl7SwWfz04m7ADBMxmDYOa36jLs
- Xwwy1Uxi54HRhk96eGpidWTTulcGFDGprqZltKezDKzCJBwN
-X-Received: by 2002:a05:690c:8682:20b0:81e:fbcd:7d4e with SMTP id
- 00721157ae682-81efbcd7e35mr51040237b3.61.1784742450753; Wed, 22 Jul 2026
- 10:47:30 -0700 (PDT)
+ bh=+FbImOYnCjQq7E4LZcKl4osd/U/55au0kzrVGg/5Cts=;
+ b=LMnanrqABLdX5tXyMmTaQoTHFoRRvaybrMgXUKkCq9t0pMYlz7aCPvKmZgZshVf9U6
+ hioFQEi+aBj/P/iwzOXjG4D+jDkjReXU8ZkprzhfznjlJd2BvU1G1dmddjZGg319a1g1
+ z7zx9/CianfNlp8wL6bKlLVLKFi/rLTb0RvFGYPQwxQzh91Wte3hleR/7caMsVQNwGe2
+ UwpgMewuQMXz0IWNx3Bc/zY1klfykN5F5czJJUIUaiyZLZdLSfCCteqft+lS2gj3VxpQ
+ LeEAJVyPp0UN1rzefB2jhP2+KMX188dA2aUfP2tkwLy7oIJqOWgTMRSKPFpTs7zQe3kP
+ FF6Q==
+X-Gm-Message-State: AOJu0YyotXdi58geZ6k+7sMX5HwCOFtKh0zmxoTLKkbTNhJa4Ayuc8mG
+ mdn+wCk/KWyQLLORxkpjNhDWTrVq2ufKfXrAIlZeOKm99K8gleEKAbo7a0o/vircY4zKV7knpmo
+ t7WVy3Go1OsWPPpQshvBngUTGoyXtZmow6QsR
+X-Gm-Gg: AR+sD10BppGOUPLPRrNLk2FFsg1cbcHTrRFDa4pwktwbX6UW81xNZwdK0jF03L7bp6m
+ IDe6X03DguVqEjwZeNzbBsgDoPzUD/nR71PuHDJhGag7jhmU8u88rwOQdJ9ezmKBdTNz+slXYQ4
+ xi4aX3PYaGDcvvU6igKQo/NocJXimtj1DYD3dtI/Y/99CA5GxoMpnvnXVGx6hWBfDjsNVlGtem9
+ uG63Qm5K2zv3HlVswRBi5S/c13ALW0XpFj96F5DmUlCIM2KI7NGC0fEitX0ObImAilTIMwJpJwI
+ r5wiK7Dgsb7WTbTCAExbinqf+GKiYRR++lOVD0VMozeoO/6z
+X-Received: by 2002:a05:690c:9c09:b0:807:bc80:b4ac with SMTP id
+ 00721157ae682-81ef27f2e17mr64665217b3.40.1784742543040; Wed, 22 Jul 2026
+ 10:49:03 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260722004654.744249-1-talesam@gmail.com>
- <20260722004654.744249-3-talesam@gmail.com>
-In-Reply-To: <20260722004654.744249-3-talesam@gmail.com>
+ <20260722004654.744249-4-talesam@gmail.com>
+In-Reply-To: <20260722004654.744249-4-talesam@gmail.com>
 From: =?UTF-8?B?VGFsZXMgQS4gTWVuZG9uw6dh?= <talesam@gmail.com>
-Date: Wed, 22 Jul 2026 14:47:19 -0300
-X-Gm-Features: AUfX_my-jgFvbpUDqbV1ZVXtVfIKfbU_nfDTNsOZjvrFekX-HMD68_L4t8dE_CI
-Message-ID: <CAHBRX4E9OY-A+Wi_EL0b6DQ0vFchoOkUoXzrCk_JyGYty+xmfw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] drm/xe/mcr: Sanitize steering semaphore on GT
- resume
+Date: Wed, 22 Jul 2026 14:48:52 -0300
+X-Gm-Features: AUfX_myEWevXxGatBnOLcKjMm-PJ4US4nFPerTva3bl1GuE_o_c3uZX1JLN3yM0
+Message-ID: <CAHBRX4E+GCm7aFK4Di4YVqCZ-a=o8dkKw3ArWMBZuNbmp2SjPQ@mail.gmail.com>
+Subject: Re: [PATCH v1 3/4] drm/xe/guc/ct: Queue G2H worker before flushing it
+ in timeout paths
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, matthew.brost@intel.com, 
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
@@ -107,118 +107,147 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thanks for the review.
 
-The call site mirrors i915, where intel_gt_mcr_lock_sanitize() is also
-only called on the resume path (intel_gt_resume_early(), its only
-caller). The "driver load/resume" wording comes from i915's hardware
-team note about when the forced release is *safe*, not about where it
-is required.
+The check-then-queue pattern here is the same long-standing one in
+xe_guc_ct_irq_handler() (xe_guc_ct.h), which also does an unlocked
+xe_guc_ct_enabled() check followed by queue_work(ct->g2h_wq, ...), so
+this patch does not introduce a new lifetime requirement - it relies
+on the same guarantees the IRQ path already does.
 
-Empirically the failure mode is resume-only: across dozens of cold
-boots on two ARL machines the probe-time stall never reproduced (boot
-firmware hands the semaphore over released; it is the suspend cycle
-that leaves it held). That said, dding a sanitize call early in the
-load path would be harmless per the same safety note - happy to do
-that in a v2 if preferred.
+Those guarantees hold for both callers: xe_tlb_inval_fence_timeout()
+cannot be in flight during the drmm teardown that destroys g2h_wq,
+because xe_tlb_inval_reset() cancels fence_tdr and force-signals all
+pending fences with the backend already disabled before that point
+(and with no pending fences the TDR is never re-armed); and
+guc_ct_send_recv() is synchronous within an active CT session, so it
+cannot overlap CT fini either. Note the LNL_FLUSH_WORK/flush_work
+calls being replaced already required the work item to outlive the
+caller in the same way.
+
+If additional hardening is still desirable, the check+queue could be
+done under ct->fast_lock, but that would equally apply to the existing
+IRQ handler path.
 
 Em ter., 21 de jul. de 2026 =C3=A0s 21:47, Tales A. Mendon=C3=A7a
 <talesam@gmail.com> escreveu:
 >
-> The MCR steering semaphore can be left in a held state after a suspend
-> cycle. The first MCR access after resume then stalls until the
-> semaphore wait times out and logs:
+> Timeout-recovery paths flush the G2H worker to pick up a response that
+> may have been posted by the GuC but not yet processed:
 >
->   Tile0: GT1: hardware MCR steering semaphore timed out
+>  - guc_ct_send_recv() after the 1s wait for a G2H response fails
+>  - the TLB invalidation backend's .flush() hook, called by
+>    xe_tlb_inval_fence_timeout() before declaring a fence timed out
 >
-> as observed on an Arrow Lake-P system resuming from s2idle. Recovery
-> currently only happens because mcr_unlock() releases the semaphore
-> unconditionally.
+> However flush_work() on a work item that is neither queued nor running
+> is a no-op. If the GUC2HOST interrupt for the response was lost or
+> coalesced, the G2H worker was never queued: the flush does not read the
+> G2H CTB and the response sits there unprocessed until an unrelated G2H
+> interrupt arrives. For TLB invalidations this results in
 >
-> i915 addresses the same issue in intel_gt_resume_early() via
-> intel_gt_mcr_lock_sanitize(), noting that the hardware team confirmed
-> that forcibly releasing the semaphore is safe during driver
-> load/resume because no other agents acquire it at that time.
+>   TLB invalidation fence timeout, seqno=3DN recv=3DN-1
 >
-> Port that to xe: release the steering semaphore at the start of
-> xe_gt_resume(), before the first MCR access performed by
-> do_gt_restart().
+> with the fence force-signalled with -ETIME even though the ack may
+> already be present in the CTB. Observed sporadically on ARL-H under CPU
+> load, always with recv =3D=3D seqno - 1 and self-recovering on the next G=
+2H
+> interrupt, which is consistent with a lost wakeup rather than a
+> GuC-side failure.
+>
+> Add xe_guc_ct_flush_g2h(), which queues the worker before flushing it,
+> guaranteeing the flush always drains the CTB, and use it in both
+> timeout paths. A spurious worker run is safe: g2h_read() returns no
+> data under fast_lock, and receive_g2h() copes with runtime-PM state and
+> disabled CT communication.
+>
+> After this change the fence-timeout error only fires when the ack is
+> genuinely absent from the CTB, making the message a reliable indicator
+> of a GuC-side stall.
 >
 > Signed-off-by: Tales A. Mendon=C3=A7a <talesam@gmail.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt.c     |  7 +++++++
->  drivers/gpu/drm/xe/xe_gt_mcr.c | 22 ++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_mcr.h |  1 +
->  3 files changed, 30 insertions(+)
+>  drivers/gpu/drm/xe/xe_guc_ct.c        | 23 ++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_guc_ct.h        |  1 +
+>  drivers/gpu/drm/xe/xe_guc_tlb_inval.c |  2 +-
+>  3 files changed, 24 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index dfdacc0f6de..c61f3d9fc9a 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -1068,6 +1068,13 @@ int xe_gt_resume(struct xe_gt *gt)
->                 return -ETIMEDOUT;
->         }
->
-> +       /*
-> +        * The MCR steering semaphore may be left held across a suspend
-> +        * cycle; release it before the first MCR access below so that
-> +        * mcr_lock() does not stall until the semaphore wait times out.
-> +        */
-> +       xe_gt_mcr_lock_sanitize(gt);
-> +
->         err =3D do_gt_restart(gt);
->         if (err)
->                 return err;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mc=
-r.c
-> index e1e3c0688dc..3934d0de717 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> @@ -750,6 +750,28 @@ static void mcr_unlock(struct xe_gt *gt, unsigned in=
-t fw_ref) __releases(&gt->mc
->         }
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_c=
+t.c
+> index fe70c0fd85c..11a05c2b8c7 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -1377,7 +1377,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, c=
+onst u32 *action, u32 len,
+>  wait_again:
+>         ret =3D wait_event_timeout(ct->g2h_fence_wq, READ_ONCE(g2h_fence.=
+done), HZ);
+>         if (!ret) {
+> -               LNL_FLUSH_WORK(&ct->g2h_worker);
+> +               xe_guc_ct_flush_g2h(ct);
+>                 if (READ_ONCE(g2h_fence.done)) {
+>                         xe_gt_warn(gt, "G2H fence %u, action %04x, done\n=
+",
+>                                    g2h_fence.seqno, action[0]);
+> @@ -2046,6 +2046,27 @@ static void g2h_worker_func(struct work_struct *w)
+>         receive_g2h(ct);
 >  }
 >
 > +/**
-> + * xe_gt_mcr_lock_sanitize - Release the hardware MCR steering semaphore
-> + * @gt: GT structure
+> + * xe_guc_ct_flush_g2h() - Force processing of pending G2H messages
+> + * @ct: GuC CT object
 > + *
-> + * The MCR steering semaphore can be left in a held state after a suspen=
-d
-> + * cycle, in which case the first MCR access after resume stalls until t=
-he
-> + * semaphore wait times out.  Forcibly release the semaphore during driv=
-er
-> + * load/resume; this is safe because no other agents acquire the semapho=
-re
-> + * during the load/resume process, mirroring i915's
-> + * intel_gt_mcr_lock_sanitize().
+> + * The GUC2HOST interrupt for a G2H message may be lost or coalesced. Wh=
+en
+> + * that happens the G2H worker is never queued and flushing it is a no-o=
+p
+> + * that does not read the G2H CTB, leaving messages the GuC has already
+> + * posted unprocessed until the next interrupt arrives. Queue the worker
+> + * before flushing it so the flush always drains the G2H CTB. A spurious
+> + * worker run is safe: it returns without side effects if the CTB is emp=
+ty
+> + * or CT communication is disabled.
 > + */
-> +void xe_gt_mcr_lock_sanitize(struct xe_gt *gt)
+> +void xe_guc_ct_flush_g2h(struct xe_guc_ct *ct)
 > +{
-> +       if (IS_SRIOV_VF(gt_to_xe(gt)))
+> +       if (!xe_guc_ct_enabled(ct))
 > +               return;
 > +
-> +       lockdep_assert_not_held(&gt->mcr_lock);
-> +
-> +       if (GRAPHICS_VERx100(gt_to_xe(gt)) >=3D 1270)
-> +               xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, 0x1);
+> +       queue_work(ct->g2h_wq, &ct->g2h_worker);
+> +       flush_work(&ct->g2h_worker);
 > +}
 > +
->  /*
->   * Access a register with specific MCR steering
->   *
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mc=
-r.h
-> index 75374662f10..162f54075cf 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-> @@ -16,6 +16,7 @@ void xe_gt_mcr_init_early(struct xe_gt *gt);
->  void xe_gt_mcr_init(struct xe_gt *gt);
+>  static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct=
+ *ct, bool atomic,
+>                                                         bool want_ctb)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_c=
+t.h
+> index 767365a33de..4e0338953f1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> @@ -22,6 +22,7 @@ void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct);
+>  void xe_guc_ct_stop(struct xe_guc_ct *ct);
+>  void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+>  void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+> +void xe_guc_ct_flush_g2h(struct xe_guc_ct *ct);
 >
->  void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt);
-> +void xe_gt_mcr_lock_sanitize(struct xe_gt *gt);
+>  struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *=
+ct);
+>  void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struc=
+t drm_printer *p);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/x=
+e_guc_tlb_inval.c
+> index 046d0655122..91960dc4ba9 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> @@ -327,7 +327,7 @@ static void tlb_inval_flush(struct xe_tlb_inval *tlb_=
+inval)
+>  {
+>         struct xe_guc *guc =3D tlb_inval->private;
 >
->  u32 xe_gt_mcr_unicast_read(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
->                            int group, int instance);
+> -       LNL_FLUSH_WORK(&guc->ct.g2h_worker);
+> +       xe_guc_ct_flush_g2h(&guc->ct);
+>  }
+>
+>  static long tlb_inval_timeout_delay(struct xe_tlb_inval *tlb_inval)
 > --
 > 2.55.0
 >
