@@ -4,87 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24916C4453A
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 17:46:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF7DBC44536
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 17:47:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90E9310E0C9;
-	Wed, 22 Jul 2026 17:46:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C16D10E0C9;
+	Wed, 22 Jul 2026 17:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pbhKTwMO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N9PGe9DA";
 	dkim-atps=neutral
 Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
  [209.85.128.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E59A010E0C9
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 17:46:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE7B610E0C9
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 17:47:31 +0000 (UTC)
 Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-8114a4542b2so78396257b3.1
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 10:46:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784742367; cv=none;
+ 00721157ae682-81ea0b7d137so101447687b3.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 10:47:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784742451; cv=none;
  d=google.com; s=arc-20260327;
- b=eEpKGEQ2ag3jNWCTrlxsezARhUhIuzU1eXHeL+yJ2mSgJUDSMjLE/Ugzq8kVPKaT3F
- CocqEkCOJxVPNvmkCKWUKbVhB1ny0qVmictijzEmnuB7xRb507LbLwlDHukBjDRO1CsS
- le0fB2gCYMUj5ZHmzuKk4f2lxQQDpT3z2nrUY1q6sq817lcFV+p+AOtmzoB5GzDIt9cg
- jMNlR2i+Oqjp7H+nwFFgAd4pJwj+xlmHsNKfqNd/m3rCvGLvldhcK3sD5g9VnbLFfgGd
- 2HS+wBUyxxrRjZcZjWf3dNLfYVpH+O8OSDNSrqHFmSp3ZtP+iI8ayPWuJi3GxKWtaw99
- eAbA==
+ b=PplcIUHIkP4jwKFBgItr1S/fBYcb2naLrAdzhJ5203IkG7gSECWX/O+eehg8gglThY
+ N6cCJL51qCgOIjVS0IM3W+26L+ar7pATClnBDLhLuwqBLsZgfJUewFK68ef1Lum1kKdI
+ 1jRL8rbHXnypw8a/Fdh0NQdssPAsK1CHo19S/eMrpN06nDW9tmrXaZhqVtEqhT3o/KPF
+ OWQi+45/JFRttyKt2ydz5UAG2PusDr2WGc7PuDu1Jw4f28wJmREpaDPvQPsv/XiGcCuW
+ QNi/rUx3R0xxJoxPkSD9+61W19IdGyFrep6Ib2AMVVIlFc1dIFguxKSCAsqkDNf7+0J1
+ HMmQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20260327; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=NY0BPoPhydtdhrGuYU9lkB78bJBp+Q7loo84kGkYU5k=;
+ bh=DqyEyXY0JqSe75MbjwLdRR9WOQt3kX/M0ZZvXr8r/mY=;
  fh=RHt77CxFI8VNyQoQZGD2p5fp2XohHPbsKAwEtyIE+Go=;
- b=kqqpoCMdfWI0O7ylhHy9WhwxM8K19z3BbeAvv6IkyLPIoFdxGZOKrS8fX+KxbCJeko
- GD9UL674cDRJCGvWOV5xpe3P20rovXnC5f6i/s4jFrU0J59ivW39Bu53TewlI5ZHIOtw
- lIEaIGb92RbXsx04oQxv4ui9xnSQ3C02ibPB+YpYWPIJkM9zf3YYQvTmHOLJqrDOclsg
- yiBQNLBOjhrkTt2VLWI/RNMBbCwag2yF7s34NJ9pw/E3GvlBQjPVfpC5TK7WkeolKvDJ
- M5Ae6fak+WyZVYNboCM7yWpuy/zmxr0jiqN8eLSZYRxE4QkjdEUcleLGZmNSsO5dkSPO
- 9fjw==; darn=lists.freedesktop.org
+ b=TNORQ4RjtBqYxcU+/NkxE6H3HadG8eDP5NnDPUlqMysCH2Lf7YNVhi/SDSqYlCf8YX
+ i9TZDa6FydVr8DxbIV2+sr3gh9a4DNHHxTZCDfY5kHjpRW7KEQDg0dm7TsbrM8baJmeg
+ NXNegNNvd4lABdY45nJXG47Xozy/47KZkwaXdEo8FAzx/KIjmr0v42drhvR4xieyWGmI
+ cHQMd5KGw9k91BIozK+uasZ0TPily+Otxf36cbuAIT0UllGEmfUxmJtTOhTto/dG02x0
+ cDkGiv0YgpJuunJy1B0HnqCOUr2uk6UHmAEJoK2RTlOd7+ep+2HHv2r4+sXV2pDfcLaE
+ sm1Q==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784742367; x=1785347167; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1784742451; x=1785347251; darn=lists.freedesktop.org;
  h=content-transfer-encoding:content-type:cc:to:subject:message-id
  :date:from:in-reply-to:references:mime-version:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=NY0BPoPhydtdhrGuYU9lkB78bJBp+Q7loo84kGkYU5k=;
- b=pbhKTwMOgedqcRAQPCtalH1zt5fZCxwiQSejLc+UYnCZqBsl8eRdcatjM9Pr4G7HMn
- TTdkhBXY0AgWeiQbXuAJOU5mAGbFf8ZXTKNby/IUIjM9t9hKjEe0zW9RVT1BbbAS0UMd
- z+lFLNZOsLA2/aZCfFUmSCaFwdofpEFkRu2iC36JSNA9j776zb5uWemFnRNPrEaVYe5O
- Lu3ATJVIbsn19UBaU2UcfvpHd5ztrZuvgzy/qKFos7KBf14wdNaBxNgbt2zVQ+QnNY34
- P0rUjPlIvsIdmkQ89h78O+4APgI3PqWtxW3OEIvQsT7/Dn9ymQgrpz4m+914LDxYb4QC
- PG2A==
+ bh=DqyEyXY0JqSe75MbjwLdRR9WOQt3kX/M0ZZvXr8r/mY=;
+ b=N9PGe9DAJMXOulXZMDbn5zsU0VD9Yk6CJOekPXZ/WYEj+glP8TjKhg/gkqdypClDuM
+ jDH8zLGCGxHdf+VqbscBEQR0zzKSgzQ7ppuCHM9Xa+HehDzii0uWqJXh8jFemJWuyaW1
+ DvHcCdnPfn/Tp2s6eNO3ZEXKOHKtoNKR9m8154gLxz0nLkQHj04W+QwAQDPe48GBmkTA
+ IUsPWdaMuVZc0R3q5mJLVZWguWlrYRmp6xLfsplOCiKb2DpO8KHCb4x04I9ghS0mkjdb
+ 3rwIZfoefkgUU6oxbWvWtyPy+dGXMCRaEu3lGJJrQsxeNY+k8JMCHBCxcIc2lAVsTZLp
+ b2Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784742367; x=1785347167;
+ d=1e100.net; s=20251104; t=1784742451; x=1785347251;
  h=content-transfer-encoding:content-type:cc:to:subject:message-id
  :date:from:in-reply-to:references:mime-version:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=NY0BPoPhydtdhrGuYU9lkB78bJBp+Q7loo84kGkYU5k=;
- b=QABLj7Hr1yfx4N453EmTUfISSagmovCQVZcxStaxp4sUJVtDqqaNW7r9Yy/X/40buE
- BGuwYcTbWP+hyfZ3narZzU8jtaLJmJrH1ZFoalAJNroh2JR5NIREODeEraFxz7fu6BZM
- nnz63tmhYiE42JNmyJFWZa4nEH09ozOPO8ozpsaTfbAUcyFALpWXncsW2Ar4hkVi1GAu
- AdIIiNH+U5G4QNtPr5wbcGzEMG4dAGtppbsxCxVn/1HogUYsgO/qXyZPPGQPg3+kTqaM
- aem1EfG0/QcxFJdAu6Dakq3dR9BG3iZFMefLvTtKnvT2TVOaIi6JdXxU85VhtnbDH7oT
- iR5g==
-X-Gm-Message-State: AOJu0YwP4MZVOVjeVQut9Uov0kndgYBUKaQU2MmrjyMQSfbqU2Yek7lM
- zOR3WIkaG2WHQxgqFr550xE850phLQeZ5woroAYaYGkPLDJlRaAaVnlAYpX8Hg9/xg1FYDAEKS3
- tatF54LnnlBSHE+5aEL334wFKJqP9z8/ucUB4
-X-Gm-Gg: AR+sD11s7XFsjHlxkB1DS74UJQFV4O7sgATO36TFVLuq/BIRCN1NkBSM2DPpF9plozi
- d3pC7DAEm3p2+csXaVnvsT5PjUgYQ3d8YHFMlLb6VEzPukFJZSnALob2Uito7VlESZDK1V9xU0b
- Gh4X4EImxg84OSpYFbzICjEBj8Axh9iNwejEmAfZkbamDRRksx+IDxiWR/2iLcbMBVq7KSNM+oa
- iGVoVGUR0rXpk4ijU4ZfsVJ2TA7Yd+ofP6YOFLN5r9nMb3gCBi8HBGsoiEVi9tSS7d2sWUi49HE
- SDjvJhPOeKvOI3O0tenD1ujNPQ4T1tvw6fXylvP6vYz+KOMy
-X-Received: by 2002:a05:690c:d95:b0:81e:6b13:4463 with SMTP id
- 00721157ae682-81ef28589dfmr73888517b3.46.1784742366645; Wed, 22 Jul 2026
- 10:46:06 -0700 (PDT)
+ bh=DqyEyXY0JqSe75MbjwLdRR9WOQt3kX/M0ZZvXr8r/mY=;
+ b=rdFOEU3TlY5tz7p0qE13Gla5qIXUrxkgBs9NsplKJOcBZ49dInlMBTH32j3M0VE1KV
+ SiacIPXAAc/y054/VfcHGBzNoln8RQQ9TOantx5s1jamz7l/yOQmiJR2SyKSbYsVI+dG
+ 8ZHirUBYPRYQOdymjJOy2yykq0qNffrNwfmxZJexBy6eiVV3JLu3HBeOb3Qn1KyWCXmQ
+ 29aObz6lu7D0lTxnGcnKo9W9ou9FqI4OmsGdEY3mX0SCfY0NrmY5IIb8jaASme5JcZl5
+ tCqVlcrcRr6jDqa8Z+rzqByo9gk9v9gImkRC+hWA9wG+uX0FMdt+GifHIm/VJp/EILHj
+ ps5w==
+X-Gm-Message-State: AOJu0Yzl9MvIpZDaLtheWSkAS/2o8r7B8q3s6kNrEv9Q+KLi08wGb1Xa
+ FJceU4V/jEJkOqf84E734zeHrTpqneHsfT6JS77LE/d2lPZdcUjYA3DXbRdDFGwyJqw1oBDv3D+
+ MI4c6SLH8y4sgDSli/XtvnWIqxLgQ08oFXBOl
+X-Gm-Gg: AR+sD10CcmdIjHcU0qKA0ixYlIwU5ix+71EnG604gjditWYwiiGU9nMs2C+jc4O1vLG
+ eUCTAj1i6Jl7eDaKjfdc+AgUFkM24FN1OwU7Y+UeSLdwA5BRUa/KvzGGpTJK45ActAfoEQ3rnu2
+ DVWkI8d9LR5mC3baOE8fi9qVT73DhmUPdEir4tkyHwICAe0uhw+K3C6M3biD8HUWHorIFiVy9GT
+ 5dRZlmQ7ZZdnAt6vObIeOA8rHHWaRGmyKZ4TBoCPV/DXDQ7EWl7SwWfz04m7ADBMxmDYOa36jLs
+ Xwwy1Uxi54HRhk96eGpidWTTulcGFDGprqZltKezDKzCJBwN
+X-Received: by 2002:a05:690c:8682:20b0:81e:fbcd:7d4e with SMTP id
+ 00721157ae682-81efbcd7e35mr51040237b3.61.1784742450753; Wed, 22 Jul 2026
+ 10:47:30 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260722004654.744249-1-talesam@gmail.com>
- <20260722004654.744249-2-talesam@gmail.com>
-In-Reply-To: <20260722004654.744249-2-talesam@gmail.com>
+ <20260722004654.744249-3-talesam@gmail.com>
+In-Reply-To: <20260722004654.744249-3-talesam@gmail.com>
 From: =?UTF-8?B?VGFsZXMgQS4gTWVuZG9uw6dh?= <talesam@gmail.com>
-Date: Wed, 22 Jul 2026 14:45:54 -0300
-X-Gm-Features: AUfX_mwbV_Fjr2pW0jOY4oQceeRdMWcX52TH3s2sOUlieXpWSymoMYR2XNGkDY0
-Message-ID: <CAHBRX4EmGgHtxzGVqgCFQesZmh1b7mjujgvybwFsW5X9t4FbZA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/4] drm/xe/mcr: Keep GT forcewake during MCR steering
+Date: Wed, 22 Jul 2026 14:47:19 -0300
+X-Gm-Features: AUfX_my-jgFvbpUDqbV1ZVXtVfIKfbU_nfDTNsOZjvrFekX-HMD68_L4t8dE_CI
+Message-ID: <CAHBRX4E9OY-A+Wi_EL0b6DQ0vFchoOkUoXzrCk_JyGYty+xmfw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] drm/xe/mcr: Sanitize steering semaphore on GT
+ resume
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, matthew.brost@intel.com, 
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
@@ -106,227 +107,118 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thanks for the review.
 
-  Agreed - the capture list locking concern is in xe_guc_capture.c and
-pre-dates this patch, which only touches the MCR steering lock path.
-  It seems worth tracking separately; I can file a report for it.
+The call site mirrors i915, where intel_gt_mcr_lock_sanitize() is also
+only called on the resume path (intel_gt_resume_early(), its only
+caller). The "driver load/resume" wording comes from i915's hardware
+team note about when the forced release is *safe*, not about where it
+is required.
+
+Empirically the failure mode is resume-only: across dozens of cold
+boots on two ARL machines the probe-time stall never reproduced (boot
+firmware hands the semaphore over released; it is the suspend cycle
+that leaves it held). That said, dding a sanitize call early in the
+load path would be harmless per the same safety note - happy to do
+that in a v2 if preferred.
 
 Em ter., 21 de jul. de 2026 =C3=A0s 21:47, Tales A. Mendon=C3=A7a
 <talesam@gmail.com> escreveu:
 >
-> On MTL and newer platforms xe uses STEER_SEMAPHORE to synchronize MCR
-> steering with external agents such as firmware. The current code waits
-> only 10us for the semaphore, while already holding the software MCR
-> spinlock, and fires drm_WARN_ON_ONCE() with a full stack trace when the
-> wait times out. On an Arrow Lake-P system this triggers during resume
-> while firmware still owns the semaphore:
+> The MCR steering semaphore can be left in a held state after a suspend
+> cycle. The first MCR access after resume then stalls until the
+> semaphore wait times out and logs:
 >
->   drm_WARN_ON_ONCE(ret =3D=3D -110)
->   WARNING: drivers/gpu/drm/xe/xe_gt_mcr.c:697 mcr_lock
+>   Tile0: GT1: hardware MCR steering semaphore timed out
 >
-> Port the i915 MCR locking model (intel_gt_mcr_lock/unlock) to xe:
+> as observed on an Arrow Lake-P system resuming from s2idle. Recovery
+> currently only happens because mcr_unlock() releases the semaphore
+> unconditionally.
 >
-> - Wait for the hardware semaphore before taking the software spinlock,
->   so the wait may sleep instead of spinning inside the critical
->   section.
-> - Allow up to 100ms for firmware to release the semaphore, matching
->   i915.
-> - Demote the WARN stack to a rate-limited GT error, using the same
->   message as i915 for easier cross-driver triage.
-> - Grab GT forcewake before touching the semaphore and hold it over the
->   entire lock/steer/unlock cycle (Wa_22018931422). The steering
->   registers are in an "always on" domain with respect to RC6, but are
->   sensitive while higher-level platform sleep states are
->   entering/exiting.
+> i915 addresses the same issue in intel_gt_resume_early() via
+> intel_gt_mcr_lock_sanitize(), noting that the hardware team confirmed
+> that forcibly releasing the semaphore is safe during driver
+> load/resume because no other agents acquire it at that time.
 >
-> The GT resume/reset paths already hold XE_FORCEWAKE_ALL around their
-> MCR accesses, so the forcewake reference taken here is usually just a
-> refcount increment; it closes the Wa_22018931422 window for the
-> remaining callers (debugfs, OA, EU stall, etc.).
->
-> mcr_lock() may now sleep; add might_sleep() to document and enforce
-> that contract. All current callers are in process context.
+> Port that to xe: release the steering semaphore at the start of
+> xe_gt_resume(), before the first MCR access performed by
+> do_gt_restart().
 >
 > Signed-off-by: Tales A. Mendon=C3=A7a <talesam@gmail.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt_mcr.c | 70 +++++++++++++++++++++++++---------
->  1 file changed, 52 insertions(+), 18 deletions(-)
+>  drivers/gpu/drm/xe/xe_gt.c     |  7 +++++++
+>  drivers/gpu/drm/xe/xe_gt_mcr.c | 22 ++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_mcr.h |  1 +
+>  3 files changed, 30 insertions(+)
 >
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index dfdacc0f6de..c61f3d9fc9a 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -1068,6 +1068,13 @@ int xe_gt_resume(struct xe_gt *gt)
+>                 return -ETIMEDOUT;
+>         }
+>
+> +       /*
+> +        * The MCR steering semaphore may be left held across a suspend
+> +        * cycle; release it before the first MCR access below so that
+> +        * mcr_lock() does not stall until the semaphore wait times out.
+> +        */
+> +       xe_gt_mcr_lock_sanitize(gt);
+> +
+>         err =3D do_gt_restart(gt);
+>         if (err)
+>                 return err;
 > diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mc=
 r.c
-> index a97b236dab7..e1e3c0688dc 100644
+> index e1e3c0688dc..3934d0de717 100644
 > --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
 > +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> @@ -10,6 +10,8 @@
->
->  #include "regs/xe_gt_regs.h"
->  #include "xe_assert.h"
-> +#include "xe_device.h"
-> +#include "xe_force_wake.h"
->  #include "xe_gt_printk.h"
->  #include "xe_gt_topology.h"
->  #include "xe_gt_types.h"
-> @@ -58,6 +60,8 @@ enum {
->         MCR_OP_WRITE
->  };
->
-> +#define MCR_STEER_SEMAPHORE_TIMEOUT_US 100000
-> +
->  static const struct xe_mmio_range xelp_l3bank_steering_table[] =3D {
->         { 0x00B100, 0x00B3FF },
->         {},
-> @@ -692,33 +696,58 @@ bool xe_gt_mcr_get_nonterminated_steering(struct xe=
-_gt *gt,
->   * to synchronize with external clients (e.g., firmware), so a semaphore
->   * register will also need to be taken.
->   */
-> -static void mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
-> +static unsigned int mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
->  {
->         struct xe_device *xe =3D gt_to_xe(gt);
-> +       unsigned int fw_ref =3D 0;
->         int ret =3D 0;
->
-> -       spin_lock(&gt->mcr_lock);
-> +       might_sleep();
->
->         /*
->          * Starting with MTL we also need to grab a semaphore register
->          * to synchronize with external agents (e.g., firmware) that now
->          * shares the same steering control register. The semaphore is ob=
-tained
->          * when a read to the relevant register returns 1.
-> +        *
-> +        * The steering control and semaphore registers are inside an
-> +        * "always on" power domain with respect to RC6.  However there
-> +        * are some issues if higher-level platform sleep states are
-> +        * entering/exiting at the same time these registers are accessed=
-.
-> +        * Grabbing GT forcewake and holding it over the entire
-> +        * lock/steer/unlock cycle ensures that those sleep states have
-> +        * fully exited before we access these registers, matching what
-> +        * i915 does in intel_gt_mcr_lock().
-> +        *
-> +        * Wa_22018931422
->          */
-> -       if (GRAPHICS_VERx100(xe) >=3D 1270)
-> -               ret =3D xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0=
-x1, 10, NULL,
-> -                                    true);
-> +       if (GRAPHICS_VERx100(xe) >=3D 1270) {
-> +               fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-> +               if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
-> +                       xe_gt_err_ratelimited(gt, "failed to get MCR forc=
-ewake\n");
-> +
-> +               ret =3D xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0=
-x1,
-> +                                    MCR_STEER_SEMAPHORE_TIMEOUT_US, NULL=
-,
-> +                                    false);
-> +       }
-> +
-> +       spin_lock(&gt->mcr_lock);
-> +
-> +       if (ret =3D=3D -ETIMEDOUT)
-> +               xe_gt_err_ratelimited(gt, "hardware MCR steering semaphor=
-e timed out\n");
->
-> -       xe_gt_WARN_ON_ONCE(gt, ret =3D=3D -ETIMEDOUT);
-> +       return fw_ref;
->  }
->
-> -static void mcr_unlock(struct xe_gt *gt) __releases(&gt->mcr_lock)
-> +static void mcr_unlock(struct xe_gt *gt, unsigned int fw_ref) __releases=
-(&gt->mcr_lock)
->  {
-> +       spin_unlock(&gt->mcr_lock);
-> +
->         /* Release hardware semaphore - this is done by writing 1 to the =
-register */
-> -       if (GRAPHICS_VERx100(gt_to_xe(gt)) >=3D 1270)
-> +       if (GRAPHICS_VERx100(gt_to_xe(gt)) >=3D 1270) {
->                 xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, 0x1);
-> -
-> -       spin_unlock(&gt->mcr_lock);
-> +               xe_force_wake_put(gt_to_fw(gt), fw_ref);
-> +       }
->  }
->
->  /*
-> @@ -807,10 +836,11 @@ u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, st=
-ruct xe_reg_mcr reg_mcr)
->                                                      &group, &instance);
->
->         if (steer) {
-> -               mcr_lock(gt);
-> +               unsigned int fw_ref =3D mcr_lock(gt);
-> +
->                 val =3D rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ,
->                                            group, instance, 0);
-> -               mcr_unlock(gt);
-> +               mcr_unlock(gt, fw_ref);
->         } else {
->                 val =3D xe_mmio_read32(&gt->mmio, reg);
+> @@ -750,6 +750,28 @@ static void mcr_unlock(struct xe_gt *gt, unsigned in=
+t fw_ref) __releases(&gt->mc
 >         }
-> @@ -832,13 +862,14 @@ u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
->                            struct xe_reg_mcr reg_mcr,
->                            int group, int instance)
->  {
-> +       unsigned int fw_ref;
->         u32 val;
->
->         xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
->
-> -       mcr_lock(gt);
-> +       fw_ref =3D mcr_lock(gt);
->         val =3D rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ, group, ins=
-tance, 0);
-> -       mcr_unlock(gt);
-> +       mcr_unlock(gt, fw_ref);
->
->         return val;
 >  }
-> @@ -857,11 +888,13 @@ u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
->  void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr=
-,
->                              u32 value, int group, int instance)
->  {
-> +       unsigned int fw_ref;
+>
+> +/**
+> + * xe_gt_mcr_lock_sanitize - Release the hardware MCR steering semaphore
+> + * @gt: GT structure
+> + *
+> + * The MCR steering semaphore can be left in a held state after a suspen=
+d
+> + * cycle, in which case the first MCR access after resume stalls until t=
+he
+> + * semaphore wait times out.  Forcibly release the semaphore during driv=
+er
+> + * load/resume; this is safe because no other agents acquire the semapho=
+re
+> + * during the load/resume process, mirroring i915's
+> + * intel_gt_mcr_lock_sanitize().
+> + */
+> +void xe_gt_mcr_lock_sanitize(struct xe_gt *gt)
+> +{
+> +       if (IS_SRIOV_VF(gt_to_xe(gt)))
+> +               return;
 > +
->         xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+> +       lockdep_assert_not_held(&gt->mcr_lock);
+> +
+> +       if (GRAPHICS_VERx100(gt_to_xe(gt)) >=3D 1270)
+> +               xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, 0x1);
+> +}
+> +
+>  /*
+>   * Access a register with specific MCR steering
+>   *
+> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mc=
+r.h
+> index 75374662f10..162f54075cf 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_mcr.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+> @@ -16,6 +16,7 @@ void xe_gt_mcr_init_early(struct xe_gt *gt);
+>  void xe_gt_mcr_init(struct xe_gt *gt);
 >
-> -       mcr_lock(gt);
-> +       fw_ref =3D mcr_lock(gt);
->         rw_with_mcr_steering(gt, reg_mcr, MCR_OP_WRITE, group, instance, =
-value);
-> -       mcr_unlock(gt);
-> +       mcr_unlock(gt, fw_ref);
->  }
+>  void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt);
+> +void xe_gt_mcr_lock_sanitize(struct xe_gt *gt);
 >
->  /**
-> @@ -876,6 +909,7 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, stru=
-ct xe_reg_mcr reg_mcr,
->                                u32 value)
->  {
->         struct xe_reg reg =3D to_xe_reg(reg_mcr);
-> +       unsigned int fw_ref;
->
->         xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
->
-> @@ -884,9 +918,9 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, stru=
-ct xe_reg_mcr reg_mcr,
->          * access, the MULTICAST bit should already be set, so there's no=
- need
->          * to touch the steering register.
->          */
-> -       mcr_lock(gt);
-> +       fw_ref =3D mcr_lock(gt);
->         xe_mmio_write32(&gt->mmio, reg, value);
-> -       mcr_unlock(gt);
-> +       mcr_unlock(gt, fw_ref);
->  }
->
->  void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p)
+>  u32 xe_gt_mcr_unicast_read(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+>                            int group, int instance);
 > --
 > 2.55.0
 >
