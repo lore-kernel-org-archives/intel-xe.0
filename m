@@ -4,54 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A7EEC44536
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 18:06:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24C6CC4453A
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 18:10:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA00A10EE74;
-	Wed, 22 Jul 2026 18:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B77810EE75;
+	Wed, 22 Jul 2026 18:10:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wa0V2tA8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="koRr+jpD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B7710E4BF
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 18:06:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B32910E4BF;
+ Wed, 22 Jul 2026 18:10:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784743582; x=1816279582;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3nNthi/Mlm+y6JBfQhpEM0x9Q8E4TmA5S5yk2Yq0kmI=;
- b=Wa0V2tA8pPgYCJ/mEij79snOPXO5rCVHUEi/nqujsM8ZUmoj/n3aIs/9
- LpAbNLJccyEutVdXCtYIm8c8agFEsOJHtOHzrAldYzTbFORF4HE0MH99J
- bOACXeqEQYIgOXKFzfm2NPw94GZR/grHVNV+aFAg+fxRzo1a417bGlC/I
- XSABFazDA5vyl+Ji9IY390/vQbaa7QK4AEfqJvwBcoiqcU6TWAt090eF4
- fjRTkj5S/Y7EAzLO76H93aVgBdy3clJfKVlFwgam0KAyrPzU69DmHfrbB
- bJHfzQrgBn4+fmWObQlCfwFunuhC7m9iceOwDPr5RufWmUTvsiCGDvU4l w==;
-X-CSE-ConnectionGUID: JZof7VxVSoGmpKnET0DWPw==
-X-CSE-MsgGUID: qtjAEZ/tSbK7S7Bf0PSTGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="95744221"
-X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="95744221"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2026 11:06:08 -0700
-X-CSE-ConnectionGUID: 3eHE68EAQtS9Hd+hjOE2bQ==
-X-CSE-MsgGUID: Rl2nVrO4Rqm3BtE5fb3dwQ==
+ t=1784743824; x=1816279824;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=YlL5okqVm4zrUMUnGAelbWMQCqgkS2XY7g1gJVlqfeI=;
+ b=koRr+jpDgd6XFRyOuE3OqWvZVG6cFGvD+69Am0+U+CkkY1qTi9XYOixm
+ TQFmJWNZZe+hQwFUQGRsuK30h9KaG38bsWH2hj9gDbZIDcSe8nB2SjPV4
+ YgtxoA7vjaS/UNQ2VLk/EbxXcwKHYSKQM+W8IH52IrKlLMzPhscF5S3mX
+ 2YTJcAn15sMe9DSZ5vW+r/ZguAEAcyZvLgVqRr9KbNEkAZAiqS7OwYB20
+ 37UUU74jUEFkonKdJqqrF9pOM05YyuRZzsJ45w4/TbvJjJZhJ8LdJXp2S
+ V+pc3KmQx2Vi/5b2ivqG8RFqQcLozE9tSgklWaxZpRMjdlr+Vus3aAfEV A==;
+X-CSE-ConnectionGUID: e0vyoFtwSiW6NvT2eEfJLw==
+X-CSE-MsgGUID: cBcXPrs3TtyVNo0ySd5kjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85582156"
+X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="85582156"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2026 11:10:24 -0700
+X-CSE-ConnectionGUID: mS+9md2jT4Gjrf5/8H2iMg==
+X-CSE-MsgGUID: ancjQtoGT5ONKsPVsDGnxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="253802245"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.20])
- by fmviesa006.fm.intel.com with ESMTP; 22 Jul 2026 11:06:06 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: julia.filipchuk@intel.com, matthew.brost@intel.com,
- Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v6 2/2] drm/xe/guc: Compress GuC log and CTB dump with zstd
-Date: Wed, 22 Jul 2026 14:06:05 -0400
-Message-Id: <20260722180605.2498906-3-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260722180605.2498906-1-zhanjun.dong@intel.com>
-References: <20260722180605.2498906-1-zhanjun.dong@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="255517084"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2026 11:10:23 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Wed, 22 Jul 2026 11:10:23 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Wed, 22 Jul 2026 11:10:23 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.56) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Wed, 22 Jul 2026 11:10:23 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Usp2ucC0ztV5xQf915KdIoovK/tS/1qE5DHNvUnanvsdg1YouBlRC70O5P0FHEloqhllwRNwT5dIjiSxXX8wGKkh1y9XNAu40+jnUTrFWAc65DvpP39Q7uZjNG22wZ8qz7XKd6eLwWkDHY2ERN8uUWUXx2NBbEii+UCuQnd2snLWwEo+OhunyvLJ+eJFgERgzG07ovJB+OK3G4W/sq3tHjldditF6ia/yZ+Upoyu5qWySrpNbIb73cP3HMWQG4aIlLIxvOgXUGL2KUwV6K4b5RgTlA7uUPobKLk2vjyHB5UnEg8iQp3yAlRWO6se8Iq1m1vbYJD8lJDPip+zwqbc1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7lb5/1GzFrBXvZR6yy/FCkZBWgclfzO/sLyjWxBN2K4=;
+ b=RUvGl9uU6JA/4Kqn0UsQBMcgiME2C8mYOVvrNMsSEVxXt7k+yUVPuRl4WFq6FpEwnU6+1R4qo+Z1RTgJy14ZwLstBCuIlA4jd1c8Zghq8tOL0JJFgVtErLyQO1HMhjxRxeGrsgFHfJUuX5Qy6bhd/ArOnbkwm1vxiIyFQ9EmbgwyL4IaRwMrjdDirF5gIXs7ZV0C1TLhsJEILXjFQO+Id+ImAwQ22tb5xT1x6Ca2O7vbE7WBSfeP8OuW4ZUxHrlcGRdC7WgFt219s+W+8d14VfUX5wezUaPf7SjL2xjkZFJi893r4uvgPtsJ/buaGmdXPqq9wGQOC3G2eyZeu+FmTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by CY8PR11MB7292.namprd11.prod.outlook.com (2603:10b6:930:9c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Wed, 22 Jul
+ 2026 18:10:20 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.21.0245.009; Wed, 22 Jul 2026
+ 18:10:20 +0000
+Date: Wed, 22 Jul 2026 11:10:17 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Tales =?iso-8859-1?Q?A=2E_Mendon=E7a?= <talesam@gmail.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <matthew.brost@intel.com>, <thomas.hellstrom@linux.intel.com>,
+ <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v1 1/4] drm/xe/mcr: Keep GT forcewake during MCR steering
+Message-ID: <20260722181017.GF2327163@mdroper-desk1.amr.corp.intel.com>
+References: <20260722004654.744249-1-talesam@gmail.com>
+ <20260722004654.744249-2-talesam@gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260722004654.744249-2-talesam@gmail.com>
+X-ClientProxiedBy: SJ0PR05CA0204.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::29) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CY8PR11MB7292:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2446ca23-165c-44a3-00eb-08dee81c7dbf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|23010399003|1800799024|11063799006|56012099006|4143699003|6133799003|10067099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 2m82m/Pajz1tXaQ+eUkUwt8M5CBp31J89S4lHuswFWpcZbj6RSZ4ZdZlCjpaM9gG03o8E69d0va6I12YdZGGp3PrCO/2H+wMZEyYaC22+++ZHefTyaknyz1vNYJWdWKz2ydg/1vfuT1vImjZOL8T72vPfZthYk3Wxq0JzNDMmZ+HDcoyxUgptAYHV7qfeU+Hz/TbxhMnbaSYRpetWyUCpuTaTsoxoSjSDg40yoSTIH3GqrsWQwa2GVXHAanL0QdH8HfDvl/mR1oDFk3D71tWUURoWm4nCvPv8nDwjJkOeKUganK8zlBIr2mVk7AJOSJa3CNicis46dI/o2qb7MGlUELMc6t45bKu6jfUBzGCNQtuLbqB16cOaD4R3DsAl37k/ggC+raQL7CB3Mcz1qL6DFAZCkqfJYD4XMKT1jAhUil9gMy3sR+iZWYpl+4y8Vne8wBUnL2XTT1sIsBPSlRa+YCAbaARfpKaUwXhfBB428yggn5/Msc0fDnJJl8iVUyLyVsD0navOLbRnJt9lBWeE49AvkT7gNWSSEfMKDq4RVmo93z6mAYafLMFG//V0VRACDlxZVjdqVNmbev9g8kyHgidCg+EPWGTj5cQASmnt1uN1h6RmoMK5gpq6MzEul551UEObQuaT3/2czs3Of6ABrk3/Fayp1L+QX3CUx8jEjk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(11063799006)(56012099006)(4143699003)(6133799003)(10067099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?rZI9RS1BWSgcViGhYKi5hq0Th3rN9eyO76Wh6vmeMGt6FO5+RZaEygA8NA?=
+ =?iso-8859-1?Q?vr7YGVnoX6eNwzf7tdShPxw154srE1fwDwNzQ5UwJWndsM0BCsOa8BMQ3M?=
+ =?iso-8859-1?Q?K+N2sAE+RzmgOKJ+YZgSZ1Lp7zsCbFrLF/aFcfeP/RmTBSnKfG+ZyqgwBT?=
+ =?iso-8859-1?Q?pl1eJRM+BWD9M6C0IBnrp92G49ZiCMGFtLV2pvX4QKoHxKEF8bhYLHWg6F?=
+ =?iso-8859-1?Q?tTmkmE1z1K8sZhmT0pAuuK6l3gPMfT7ARrziKKV1moL5dT1E0JzPreX++m?=
+ =?iso-8859-1?Q?pO+i1ak4mXDirT1sKYEqXmb83XGDi9Nx04T2z0fN2qstJ1phISIS3bfMsM?=
+ =?iso-8859-1?Q?C/4QXE9uyVPPTxzPjDgJTrRlcTgsYdmpWRwK1b30gawy/Xbltup+/Lwiby?=
+ =?iso-8859-1?Q?6bVv/xwijG9dnabLhQ0yQtPB+LqmFOoIhY4x1yoQ/DsuV5OWCv8KD4beR1?=
+ =?iso-8859-1?Q?YZYdohUQNHmtemBYDxakHVYOAiMbnxTCvhP6/DQpPTbPwuG4un8Eil6yAM?=
+ =?iso-8859-1?Q?PuW5T1pq2WbnO7wonqiTMa/eLHd1cAD87zBMsLfTgkRPNCCCnuxRRhWq76?=
+ =?iso-8859-1?Q?IzGc40P6MnxiWYm/saKpOH/2vsK+YG4ZYNXVQZQTOc5L++Taux4crFtRSB?=
+ =?iso-8859-1?Q?8WXetsvmgm+EZlQYGhNptf2USXi0nVqXedk4WVRweqyRoPAh/QiQ5GVZNM?=
+ =?iso-8859-1?Q?pYQfx3N1yxJKcoha5ufdb9PWjNdMqfSKhgLBVFgthFCiLexJt5sRxf65r9?=
+ =?iso-8859-1?Q?5+OC+mQE7CUnJKNX5ZojoOAndetg7TRDxYqbAkPS3Cb+B2+9hvhijhweZO?=
+ =?iso-8859-1?Q?dtGI/m2NnUCsJAfDBpXg5N8PXbEAdg4/8VdASpxDBd2DVVI6ypAV8VjZQ9?=
+ =?iso-8859-1?Q?QRKOd1P/a2+uB4Gdiq0nCazjb8FhaPwET66YtsXr8SEW0wLaJVA9tPl/2I?=
+ =?iso-8859-1?Q?tSqCWUDBlmewNpX4FJZKNSHlRouo37ehM9ZsdKa6iySoc5vODAitSnur1y?=
+ =?iso-8859-1?Q?ibrzCo4CGKkLK0NNADVWBz7axsceny1eRQIe6bZFV0rwBFIMuUfjVQyu6I?=
+ =?iso-8859-1?Q?M3Uxses2I5bNZ/ag+BiUa5Teep4Lxo8ur9u34gh4MOyPrV0YflaD/qMLAE?=
+ =?iso-8859-1?Q?aMvT+BEEwDkqqAvItJ6hgiJSXr4U3NyirexhMug0nua8JagkADI+KO6xNC?=
+ =?iso-8859-1?Q?hRDuYN3GSrbdXu8LtTuaoYLDDCdurD6JvKxZLECcmCnqDXblSPtBqxTom1?=
+ =?iso-8859-1?Q?cEiXIbk4Z7aJN/GuQou8I96XBg7zVY9+5+yy54ABP57w1jEaXIOdC2R0cc?=
+ =?iso-8859-1?Q?ZWtDwU9oGA1W56xsLhXcU4FvjvFfVcSL8dOrN/yQfd1Pw1MyOuyC9VNvBo?=
+ =?iso-8859-1?Q?eKupAFveIZhbeZvpbpciMqgk6xbbQtvTm3dhLNDJAVoG+OGcUkLtIrvRhf?=
+ =?iso-8859-1?Q?cFrCtuqrrqU4sPkUBfIpz3+4Koo/wrjDq4sLxuqxOv8il1ksKzmRY99Ugr?=
+ =?iso-8859-1?Q?gXbZdVk8RRR9Q3k7BwrCY1uH7caEOh1YF/pgW7i+JR1kDOd6HGu3jSCene?=
+ =?iso-8859-1?Q?2XejsO1Yxr2H+YrxxO1R1FcQ6DmGyQjPhG3EI3501NXbP2+aNnW93SNVpj?=
+ =?iso-8859-1?Q?M4xjKRYFZb4shgHjeCbw5Vy7vGBHTcl8BFzydGiT/yzM7jB+2qNMZGtLra?=
+ =?iso-8859-1?Q?0orTRTnjV9VehEkipVMXBPxdBbpc1flg2dQv5srV6l8UQeX99T5dj6s/mu?=
+ =?iso-8859-1?Q?4pUZGHYBy0m0udckln3zJ1XEuYR1hx2N8kMZsOPFdaMkMzVsA5Z7dDNwBP?=
+ =?iso-8859-1?Q?Xj/2NUzZD6PO1uE51PEQWlJYtzjyoTo=3D?=
+X-Exchange-RoutingPolicyChecked: sO6bq4YYhRiEpqzGLUPkfIXZq0Ofwv3Fl7zUViBXE2qCJmcVOrUV69UPILcXvEW8jJ2DGCtZj8mbobkD8mA9wNYlHSqpUEIFz7wdsQtUK3GuCClr2+N6OPnBNnqNTcxC4Htr2knMbbHYNjj6JMffuzvWHVYWgoDAbdr5V5+OCuImpiRKdYnNQmNyzaAyxPIMbEJUTew66eKz9G5UykZHimy9yB2eDI/el1KgGI8b2b6UY+6LKT1C2pspkJHpwW+oj9WUdVwneirVezFt5uMw0MFp7hdFLfEBRwJqPNp2yUDv1Af4rX1JwBw2FT8wAGTaCDFiMcBNDVCQSsB042V36A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2446ca23-165c-44a3-00eb-08dee81c7dbf
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2026 18:10:20.1936 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I0StR+onuoupgfvrLVVhhh4FH7xpqbNMIZDT+n9YWrAcZDHHYtBNo95p0LQr8vuhSd7w/5DlCCdxu+Bn43ZytC+dI0o7VXbr6kPLi0UVhH4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7292
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,388 +161,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the raw ascii85 dumps of GuC log snapshots with a
-zstd-compressed ascii85 stream and reuse the same helper for CTB
-snapshot output.
+On Tue, Jul 21, 2026 at 09:46:51PM -0300, Tales A. Mendonça wrote:
+> On MTL and newer platforms xe uses STEER_SEMAPHORE to synchronize MCR
+> steering with external agents such as firmware. The current code waits
+> only 10us for the semaphore, while already holding the software MCR
+> spinlock, and fires drm_WARN_ON_ONCE() with a full stack trace when the
+> wait times out. On an Arrow Lake-P system this triggers during resume
+> while firmware still owns the semaphore:
+> 
+>   drm_WARN_ON_ONCE(ret == -110)
+>   WARNING: drivers/gpu/drm/xe/xe_gt_mcr.c:697 mcr_lock
+> 
+> Port the i915 MCR locking model (intel_gt_mcr_lock/unlock) to xe:
+> 
+> - Wait for the hardware semaphore before taking the software spinlock,
+>   so the wait may sleep instead of spinning inside the critical
+>   section.
+> - Allow up to 100ms for firmware to release the semaphore, matching
+>   i915.
+> - Demote the WARN stack to a rate-limited GT error, using the same
+>   message as i915 for easier cross-driver triage.
+> - Grab GT forcewake before touching the semaphore and hold it over the
+>   entire lock/steer/unlock cycle (Wa_22018931422). The steering
+>   registers are in an "always on" domain with respect to RC6, but are
+>   sensitive while higher-level platform sleep states are
+>   entering/exiting.
 
-Use zstd streaming with default level-3 parameters and an estimated
-source size of 0 so the compression workspace stays bounded even for
-multi-megabyte logs.
+This workaround only applies to specific platforms (MTL and ARL), but
+your implementation here is grabbing forcewake on all platforms, which
+we don't want to happen.  Workarounds should be implemented through the
+workaround layers of the driver (either RTP or OOB) so that they only
+apply on the specific platforms that need them.
 
-Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
-GuC log and CTB dumps are compressed with ZSTD. This allows users to
-choose between reduced dump sizes or lower memory usage.
+I did a previous implementation of this workaround a couple years ago:
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/xe/Kconfig          |  15 +++
- drivers/gpu/drm/xe/xe_devcoredump.c |   4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c      |  19 ++--
- drivers/gpu/drm/xe/xe_guc_ct.h      |   4 +-
- drivers/gpu/drm/xe/xe_guc_log.c     | 161 +++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_guc_log.h     |   9 +-
- 6 files changed, 183 insertions(+), 29 deletions(-)
+https://lore.kernel.org/all/20250114190242.2026743-2-matthew.d.roper@intel.com/
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 4d7dcaff2b91..18a682a44b31 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -33,6 +33,7 @@ config DRM_XE
- 	select ACPI_WMI if X86 && ACPI
- 	select SYNC_FILE
- 	select CRC32
-+	select ZSTD_COMPRESS if DRM_XE_COMPRESS_DUMP
- 	select SND_HDA_I915 if SND_HDA_CORE
- 	select CEC_CORE if CEC_NOTIFIER
- 	select VMAP_PFN
-@@ -101,6 +102,20 @@ config DRM_XE_PAGEMAP
- 
- 	  If in doubt say "Y".
- 
-+config DRM_XE_COMPRESS_DUMP
-+	bool "Enable ZSTD compression for error dumps"
-+	depends on DRM_XE
-+	default y
-+	help
-+	  Enable this option to compress GuC log and CTB dumps with ZSTD
-+	  compression. This can significantly reduce the size of error dumps
-+	  but requires additional memory for compression workspace.
-+
-+	  Disable this option if you want to save memory or prefer uncompressed
-+	  error dumps for debugging.
-+
-+	  If in doubt say "Y".
-+
- config DRM_XE_FORCE_PROBE
- 	string "Force probe xe for selected Intel hardware IDs"
- 	depends on DRM_XE
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 5f2b90b18f97..27473c25aad2 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -115,9 +115,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
- 	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
- 
- 	drm_puts(&p, "\n**** GuC Log ****\n");
--	xe_guc_log_snapshot_print(ss->guc.log, &p);
-+	xe_guc_log_snapshot_print(ss->guc.log, &p, ss->gt);
- 	drm_puts(&p, "\n**** GuC CT ****\n");
--	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
-+	xe_guc_ct_snapshot_print(ss->guc.ct, &p, ss->gt);
- 
- 	drm_puts(&p, "\n**** Contexts ****\n");
- 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index fe70c0fd85c5..19314184798c 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -2135,11 +2135,12 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct)
-  * xe_guc_ct_snapshot_print - Print out a given GuC CT snapshot.
-  * @snapshot: GuC CT snapshot object.
-  * @p: drm_printer where it will be printed out.
-+ * @gt: GT structure for error reporting
-  *
-  * This function prints out a given GuC CT snapshot object.
-  */
- void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
--			      struct drm_printer *p)
-+			      struct drm_printer *p, struct xe_gt *gt)
- {
- 	if (!snapshot)
- 		return;
-@@ -2153,11 +2154,10 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
- 		drm_printf(p, "\tg2h outstanding: %d\n",
- 			   snapshot->g2h_outstanding);
- 
--		if (snapshot->ctb) {
--			drm_printf(p, "[CTB].length: 0x%zx\n", snapshot->ctb_size);
--			xe_print_blob_ascii85(p, "[CTB].data", '\n',
--					      snapshot->ctb, 0, snapshot->ctb_size);
--		}
-+		if (snapshot->ctb)
-+			xe_guc_print_blob(gt, p, "[CTB]", "[CTB].data",
-+					  &snapshot->ctb, 1,
-+					  snapshot->ctb_size, snapshot->ctb_size);
- 	} else {
- 		drm_puts(p, "CT disabled\n");
- 	}
-@@ -2191,9 +2191,10 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
- {
- 	struct xe_guc_ct_snapshot *snapshot;
-+	struct xe_gt *gt = ct_to_gt(ct);
- 
- 	snapshot = guc_ct_snapshot_capture(ct, false, want_ctb);
--	xe_guc_ct_snapshot_print(snapshot, p);
-+	xe_guc_ct_snapshot_print(snapshot, p, gt);
- 	xe_guc_ct_snapshot_free(snapshot);
- }
- 
-@@ -2291,10 +2292,10 @@ static void ct_dead_print(struct xe_dead_ct *dead)
- 	drm_printf(&lp, "\tTile: %d\n", gt->tile->id);
- 
- 	drm_puts(&lp, "**** GuC Log ****\n");
--	xe_guc_log_snapshot_print(dead->snapshot_log, &lp);
-+	xe_guc_log_snapshot_print(dead->snapshot_log, &lp, gt);
- 
- 	drm_puts(&lp, "**** GuC CT ****\n");
--	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp);
-+	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp, gt);
- 
- 	drm_puts(&lp, "Done.\n");
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 767365a33dee..2005d1a0cd6c 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -10,6 +10,7 @@
- 
- struct drm_printer;
- struct xe_device;
-+struct xe_gt;
- 
- int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
- int xe_guc_ct_init(struct xe_guc_ct *ct);
-@@ -24,7 +25,8 @@ void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
- 
- struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
--void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
-+void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p,
-+			      struct xe_gt *gt);
- void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 538d4df0f7aa..aaeb0f76af30 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -6,6 +6,9 @@
- #include "xe_guc_log.h"
- 
- #include <linux/fault-inject.h>
-+#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-+#include <linux/zstd.h>
-+#endif
- 
- #include <linux/utsname.h>
- #include <drm/drm_managed.h>
-@@ -225,16 +228,148 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log,
- 	return snapshot;
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-+static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p,
-+					 const char *length_label, const char *data_label,
-+					 void **chunks, int num_chunks,
-+					 size_t chunk_size, size_t total_size)
-+{
-+	zstd_parameters params;
-+	zstd_cstream *cstream;
-+	zstd_out_buffer outbuf;
-+	size_t wksp_size, dst_size;
-+	size_t remain, ret;
-+	void *wksp = NULL;
-+	char *dst = NULL;
-+	int i;
-+
-+	/*
-+	 * Pass 0 as estimated_src_size to use zstd level-3 defaults
-+	 * (windowLog=18, 256KB window). Passing the full total_size would
-+	 * cause zstd to inflate windowLog proportionally (e.g. windowLog=24
-+	 * for a 19MB log), making the workspace tens of MB.  With 0, the
-+	 * workspace stays ~1.5MB, well within kmalloc limits.
-+	 */
-+	params = zstd_get_params(3, 0);
-+
-+	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
-+	wksp = kvzalloc(wksp_size, GFP_KERNEL);
-+	if (!wksp)
-+		goto err;
-+
-+	dst_size = zstd_compress_bound(total_size);
-+	dst = kvzalloc(dst_size, GFP_KERNEL);
-+	if (!dst)
-+		goto err;
-+
-+	cstream = zstd_init_cstream(&params, 0, wksp, wksp_size);
-+	if (!cstream) {
-+		xe_gt_err(gt, "failed to init zstd cstream\n");
-+		goto err;
-+	}
-+
-+	outbuf.dst = dst;
-+	outbuf.size = dst_size;
-+	outbuf.pos = 0;
-+
-+	remain = total_size;
-+	for (i = 0; i < num_chunks && remain; i++) {
-+		size_t size = min(chunk_size, remain);
-+		zstd_in_buffer inbuf = { .src = chunks[i], .size = size, .pos = 0 };
-+
-+		while (inbuf.pos < inbuf.size) {
-+			ret = zstd_compress_stream(cstream, &outbuf, &inbuf);
-+			if (ZSTD_isError(ret)) {
-+				xe_gt_err(gt, "zstd_compress_stream failed: %s\n",
-+					  ZSTD_getErrorName(ret));
-+				goto err;
-+			}
-+		}
-+		remain -= size;
-+	}
-+
-+	do {
-+		ret = zstd_end_stream(cstream, &outbuf);
-+		if (ZSTD_isError(ret)) {
-+			xe_gt_err(gt, "zstd_end_stream failed: %s\n",
-+				  ZSTD_getErrorName(ret));
-+			goto err;
-+		}
-+	} while (ret > 0 && outbuf.pos < outbuf.size);
-+
-+	drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
-+		   length_label, total_size, outbuf.pos);
-+	xe_print_blob_ascii85(p, data_label, '\n', dst, 0,
-+			      DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32));
-+	goto out;
-+
-+err:
-+	drm_printf(p, "%s.length: 0x%zx Algo: ERROR (compression failed)\n",
-+		   length_label, total_size);
-+out:
-+	kvfree(dst);
-+	kvfree(wksp);
-+}
-+#endif
-+
- /**
-- * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-- * @snapshot: a snapshot of the GuC log
-- * @p: the printer object to output to
-+ * xe_guc_print_blob - Print binary data (compressed or uncompressed) as ascii85
-+ * @gt: GT structure for error reporting
-+ * @p: drm_printer for output
-+ * @length_label: label prefix for the length/metadata line (e.g. "[LOG]" or "[CTB]")
-+ * @data_label: label for the ascii85 blob (e.g. "[LOG].data" or "[CTB].data")
-+ * @chunks: array of pointers to source data chunks
-+ * @num_chunks: number of elements in @chunks
-+ * @chunk_size: nominal size of each chunk; the last chunk may hold fewer valid bytes
-+ * @total_size: total uncompressed byte count across all chunks
-+ *
-+ * If CONFIG_DRM_XE_COMPRESS_DUMP is enabled, compresses @total_size bytes using
-+ * zstd level-3 streaming compression and prints the result via @p using ascii85
-+ * encoding. Otherwise, directly prints the uncompressed data.
-+ * On failure the function returns without printing the data blob.
-  */
--void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
-+void xe_guc_print_blob(struct xe_gt *gt __maybe_unused, struct drm_printer *p,
-+		       const char *length_label, const char *data_label,
-+		       void **chunks, int num_chunks,
-+		       size_t chunk_size, size_t total_size)
- {
-+#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-+	xe_guc_print_blob_compressed(gt, p, length_label, data_label,
-+				     chunks, num_chunks, chunk_size, total_size);
-+#else
- 	size_t remain;
- 	int i;
- 
-+	drm_printf(p, "%s.length: 0x%zx Algo: RAW\n", length_label, total_size);
-+
-+	/*
-+	 * Print each chunk directly without merging into a single buffer.
-+	 * xe_print_blob_ascii85() supports multiple calls - use suffix=0
-+	 * for all but the last chunk to omit the newline between chunks.
-+	 */
-+	remain = total_size;
-+	for (i = 0; i < num_chunks && remain; i++) {
-+		size_t size = min(chunk_size, remain);
-+		const char *prefix = i ? NULL : data_label;
-+		/* Add suffix only on the last chunk */
-+		char suffix = (remain == size) ? '\n' : 0;
-+
-+		xe_print_blob_ascii85(p, prefix, suffix, chunks[i], 0,
-+				      DIV_ROUND_UP(size, sizeof(u32)) * sizeof(u32));
-+		remain -= size;
-+	}
-+#endif
-+}
-+
-+/**
-+ * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-+ * @snapshot: a snapshot of the GuC log
-+ * @p: the printer object to output to
-+ * @gt: GT structure of the GuC log
-+ */
-+void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-+			       struct xe_gt *gt)
-+{
- 	if (!snapshot) {
- 		drm_printf(p, "GuC log snapshot not allocated!\n");
- 		return;
-@@ -248,16 +383,9 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
- 	drm_printf(p, "GuC timestamp: 0x%08llX [%llu]\n", snapshot->stamp, snapshot->stamp);
- 	drm_printf(p, "Log level: %u\n", snapshot->level);
- 
--	drm_printf(p, "[LOG].length: 0x%zx\n", snapshot->size);
--	remain = snapshot->size;
--	for (i = 0; i < snapshot->num_chunks; i++) {
--		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
--		const char *prefix = i ? NULL : "[LOG].data";
--		char suffix = i == snapshot->num_chunks - 1 ? '\n' : 0;
--
--		xe_print_blob_ascii85(p, prefix, suffix, snapshot->copy[i], 0, size);
--		remain -= size;
--	}
-+	xe_guc_print_blob(gt, p, "[LOG]", "[LOG].data",
-+			  snapshot->copy, snapshot->num_chunks,
-+			  GUC_LOG_CHUNK_SIZE, snapshot->size);
- }
- 
- static inline void lfd_output_binary(struct drm_printer *p, char *buf, int buf_size)
-@@ -598,12 +726,13 @@ void xe_guc_log_print_dmesg(struct xe_guc_log *log)
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- {
- 	struct xe_guc_log_snapshot *snapshot;
-+	struct xe_gt *gt = log_to_gt(log);
- 
- 	drm_printf(p, "**** GuC Log ****\n");
- 
- 	snapshot = xe_guc_log_snapshot_capture(log, false);
--	drm_printf(p, "CS reference clock: %u\n", log_to_gt(log)->info.reference_clock);
--	xe_guc_log_snapshot_print(snapshot, p);
-+	drm_printf(p, "CS reference clock: %u\n", gt->info.reference_clock);
-+	xe_guc_log_snapshot_print(snapshot, p, gt);
- 	xe_guc_log_snapshot_free(snapshot);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-index 4649a260755e..3e97647ee8b5 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.h
-+++ b/drivers/gpu/drm/xe/xe_guc_log.h
-@@ -11,6 +11,7 @@
- 
- struct drm_printer;
- struct xe_device;
-+struct xe_gt;
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
- #define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_16M
-@@ -59,7 +60,13 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
- void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
- void xe_guc_log_print_dmesg(struct xe_guc_log *log);
- struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
--void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
-+
-+void xe_guc_print_blob(struct xe_gt *gt, struct drm_printer *p, const char *length_label,
-+		       const char *data_label, void **chunks, int num_chunks,
-+		       size_t chunk_size, size_t total_size);
-+
-+void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-+			       struct xe_gt *gt);
- void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
- 
- static inline u32
+but we decided not to apply it because the Xe driver doesn't officially
+support MTL or ARL (using force_probe to force Xe to probe the device is
+only intended for driver developers, not end users).  Generally we only
+include workarounds in Xe for unsupported platforms like MTL/ARL if they
+also apply to one of the platforms that the driver is intended to
+support, or if the workaround is trivial (e.g., one extra RTP entry).
+
+
+Matt
+
+> 
+> The GT resume/reset paths already hold XE_FORCEWAKE_ALL around their
+> MCR accesses, so the forcewake reference taken here is usually just a
+> refcount increment; it closes the Wa_22018931422 window for the
+> remaining callers (debugfs, OA, EU stall, etc.).
+> 
+> mcr_lock() may now sleep; add might_sleep() to document and enforce
+> that contract. All current callers are in process context.
+> 
+> Signed-off-by: Tales A. Mendonça <talesam@gmail.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_mcr.c | 70 +++++++++++++++++++++++++---------
+>  1 file changed, 52 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> index a97b236dab7..e1e3c0688dc 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> @@ -10,6 +10,8 @@
+>  
+>  #include "regs/xe_gt_regs.h"
+>  #include "xe_assert.h"
+> +#include "xe_device.h"
+> +#include "xe_force_wake.h"
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_topology.h"
+>  #include "xe_gt_types.h"
+> @@ -58,6 +60,8 @@ enum {
+>  	MCR_OP_WRITE
+>  };
+>  
+> +#define MCR_STEER_SEMAPHORE_TIMEOUT_US	100000
+> +
+>  static const struct xe_mmio_range xelp_l3bank_steering_table[] = {
+>  	{ 0x00B100, 0x00B3FF },
+>  	{},
+> @@ -692,33 +696,58 @@ bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+>   * to synchronize with external clients (e.g., firmware), so a semaphore
+>   * register will also need to be taken.
+>   */
+> -static void mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
+> +static unsigned int mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
+>  {
+>  	struct xe_device *xe = gt_to_xe(gt);
+> +	unsigned int fw_ref = 0;
+>  	int ret = 0;
+>  
+> -	spin_lock(&gt->mcr_lock);
+> +	might_sleep();
+>  
+>  	/*
+>  	 * Starting with MTL we also need to grab a semaphore register
+>  	 * to synchronize with external agents (e.g., firmware) that now
+>  	 * shares the same steering control register. The semaphore is obtained
+>  	 * when a read to the relevant register returns 1.
+> +	 *
+> +	 * The steering control and semaphore registers are inside an
+> +	 * "always on" power domain with respect to RC6.  However there
+> +	 * are some issues if higher-level platform sleep states are
+> +	 * entering/exiting at the same time these registers are accessed.
+> +	 * Grabbing GT forcewake and holding it over the entire
+> +	 * lock/steer/unlock cycle ensures that those sleep states have
+> +	 * fully exited before we access these registers, matching what
+> +	 * i915 does in intel_gt_mcr_lock().
+> +	 *
+> +	 * Wa_22018931422
+>  	 */
+> -	if (GRAPHICS_VERx100(xe) >= 1270)
+> -		ret = xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0x1, 10, NULL,
+> -				     true);
+> +	if (GRAPHICS_VERx100(xe) >= 1270) {
+> +		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+> +		if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
+> +			xe_gt_err_ratelimited(gt, "failed to get MCR forcewake\n");
+> +
+> +		ret = xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0x1,
+> +				     MCR_STEER_SEMAPHORE_TIMEOUT_US, NULL,
+> +				     false);
+> +	}
+> +
+> +	spin_lock(&gt->mcr_lock);
+> +
+> +	if (ret == -ETIMEDOUT)
+> +		xe_gt_err_ratelimited(gt, "hardware MCR steering semaphore timed out\n");
+>  
+> -	xe_gt_WARN_ON_ONCE(gt, ret == -ETIMEDOUT);
+> +	return fw_ref;
+>  }
+>  
+> -static void mcr_unlock(struct xe_gt *gt) __releases(&gt->mcr_lock)
+> +static void mcr_unlock(struct xe_gt *gt, unsigned int fw_ref) __releases(&gt->mcr_lock)
+>  {
+> +	spin_unlock(&gt->mcr_lock);
+> +
+>  	/* Release hardware semaphore - this is done by writing 1 to the register */
+> -	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270)
+> +	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
+>  		xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, 0x1);
+> -
+> -	spin_unlock(&gt->mcr_lock);
+> +		xe_force_wake_put(gt_to_fw(gt), fw_ref);
+> +	}
+>  }
+>  
+>  /*
+> @@ -807,10 +836,11 @@ u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, struct xe_reg_mcr reg_mcr)
+>  						     &group, &instance);
+>  
+>  	if (steer) {
+> -		mcr_lock(gt);
+> +		unsigned int fw_ref = mcr_lock(gt);
+> +
+>  		val = rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ,
+>  					   group, instance, 0);
+> -		mcr_unlock(gt);
+> +		mcr_unlock(gt, fw_ref);
+>  	} else {
+>  		val = xe_mmio_read32(&gt->mmio, reg);
+>  	}
+> @@ -832,13 +862,14 @@ u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
+>  			   struct xe_reg_mcr reg_mcr,
+>  			   int group, int instance)
+>  {
+> +	unsigned int fw_ref;
+>  	u32 val;
+>  
+>  	xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+>  
+> -	mcr_lock(gt);
+> +	fw_ref = mcr_lock(gt);
+>  	val = rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ, group, instance, 0);
+> -	mcr_unlock(gt);
+> +	mcr_unlock(gt, fw_ref);
+>  
+>  	return val;
+>  }
+> @@ -857,11 +888,13 @@ u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
+>  void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+>  			     u32 value, int group, int instance)
+>  {
+> +	unsigned int fw_ref;
+> +
+>  	xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+>  
+> -	mcr_lock(gt);
+> +	fw_ref = mcr_lock(gt);
+>  	rw_with_mcr_steering(gt, reg_mcr, MCR_OP_WRITE, group, instance, value);
+> -	mcr_unlock(gt);
+> +	mcr_unlock(gt, fw_ref);
+>  }
+>  
+>  /**
+> @@ -876,6 +909,7 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+>  			       u32 value)
+>  {
+>  	struct xe_reg reg = to_xe_reg(reg_mcr);
+> +	unsigned int fw_ref;
+>  
+>  	xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+>  
+> @@ -884,9 +918,9 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+>  	 * access, the MULTICAST bit should already be set, so there's no need
+>  	 * to touch the steering register.
+>  	 */
+> -	mcr_lock(gt);
+> +	fw_ref = mcr_lock(gt);
+>  	xe_mmio_write32(&gt->mmio, reg, value);
+> -	mcr_unlock(gt);
+> +	mcr_unlock(gt, fw_ref);
+>  }
+>  
+>  void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p)
+> -- 
+> 2.55.0
+> 
+
 -- 
-2.34.1
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
