@@ -4,152 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE5F4C4453A
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 18:18:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8616AC44536
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 18:39:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5444310EE6C;
-	Wed, 22 Jul 2026 18:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D9F310E493;
+	Wed, 22 Jul 2026 18:39:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X6trJqzR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="sZilkRKw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5D710E24D;
- Wed, 22 Jul 2026 18:18:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784744313; x=1816280313;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3uUMYQQ6P0Qfl1uGvm26fyweUPsKFFwsrLBTzKiAeDQ=;
- b=X6trJqzRAQ4o4/zvr+y0GIgiaLl/WKJM6D0PazixmzqqEgxjepyglEIm
- m8Xf2pHipF0JcZaGKB7rMCetOTJFMzoDee8CFJKf3NAtMwzxHJUdE06yY
- AJalNNeQuhJUXDrd+rCXQHeSaq/GOUiaznh6hek39bYo7SFHTAaTxC3eV
- FdXFRXlicQdue4hzIETrVYqkZ+RxAXt5KarmX1qODy57Nqb/HARDOPLLK
- hNEJYUF8QYS15PhGZWGehWXV34xv67xvqvIsfUtiLpAwbX+DH7gQ1+rpz
- DQTUoQ3kCLvXbVxYxu/8hWfuUHzkzhRJq5fZMw0zXGguWCDL3UBqW7hGM w==;
-X-CSE-ConnectionGUID: qjbEdfXZRymCgjUdyx4vTw==
-X-CSE-MsgGUID: AXCAereDQP+CrUnH1dhzLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="96764264"
-X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="96764264"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2026 11:18:33 -0700
-X-CSE-ConnectionGUID: lty/YGcbRw+PAyGQUtOOww==
-X-CSE-MsgGUID: BUC4fe87TqW+UZ2kU6N/wA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="258232082"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2026 11:18:33 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 22 Jul 2026 11:18:32 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Wed, 22 Jul 2026 11:18:32 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.56) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 22 Jul 2026 11:18:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UWnrTo3kKSOtPQl8do6x9sJUhreKPBguvS2B501D5uhKG+Q1/m6RZFm18WF0xWPqxrxiqRWG2wQp180wqb9bkSZhkA1r+tTMWTSBlPBNy5XLB7mfvIZcOqD7jFwGhfd1X514ZyYGOB57JU7XUG9Awl9PjJrkhMu/2G94zOHlAp7iq0GVNJ9IkDika6snLI+USNe+vuX2JSjHguBTKQ2dbYvUeJ2jR2mpwqEg2GcXX0kKpTTm5QytnFP/YLqG/rpy4CAo3odEVvfNX4PiB8Ofe1sOEQZpFW2bu6vtL4LdyVHBhjdQ11+086pqY+ooSYKnFdcjBK4xYtzsRlicQTZCkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5y2dtB9EngagJSNtxuUSRAZAgCZ/6WIfhy7HsElLq0Y=;
- b=FX7w6pLf5AcNCY6/zJVFiyplZNJYtpbDanDMsvXBSIt3644rYx8n4i1Tv0CcDyyBadgGnNOGczLr56u+Vqybh7y2rfxIntoG4F5VGneiRAxaKMNantGzmtFRdEE1IWEgFGgnFPY6RoRNBrX8HVCKHqIkgm8qY3Hjl8HPRyUUw3WCsUk98Goa+9HbY86Otl0IW26rRcgXdsWZgLF46E6XBKsN3gtBorRlXcvTofhhVZjzckP3UGkjFSkgZ+D5ODYI24NX/AiJQ9yDh1JeutENlQmpBu9NrMQ4zFFUNEVpQt7wlAtJOS8ZpjuewgeE6AWkzDqEeDBPgYN7Vpb71Dprgg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- SJ0PR11MB4943.namprd11.prod.outlook.com (2603:10b6:a03:2ad::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Wed, 22 Jul
- 2026 18:18:29 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::22d9:ae03:5db1:680]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::22d9:ae03:5db1:680%5]) with mapi id 15.21.0245.009; Wed, 22 Jul 2026
- 18:18:29 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Auld, Matthew" <matthew.auld@intel.com>
-Subject: RE: [PATCH v2 1/5] drm/xe/display: Avoid using stolen memory for
- framebuffer when media gt exists.
-Thread-Topic: [PATCH v2 1/5] drm/xe/display: Avoid using stolen memory for
- framebuffer when media gt exists.
-Thread-Index: AQHdGRzUppt+RSoPmUu4tcO6z1nBz7Z52OwA
-Date: Wed, 22 Jul 2026 18:18:29 +0000
-Message-ID: <DM4PR11MB63606EB39110561DF0BD37EAF4C12@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20260721142610.93804-7-dev@lankhorst.se>
- <20260721142610.93804-8-dev@lankhorst.se>
-In-Reply-To: <20260721142610.93804-8-dev@lankhorst.se>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|SJ0PR11MB4943:EE_
-x-ms-office365-filtering-correlation-id: ab2294d0-2800-40d2-6aeb-08dee81da178
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|38070700021|22082099003|18002099003|4143699003|10067099003|11063799006|56012099006;
-x-microsoft-antispam-message-info: i0RYCwz+tUHYXZIM9NA1UGYSYAdPMIhrMOnyoFzfDw+WyukmPCl4B/HPjxwxf+XOP/6B0ULh3BQrayMrAHIKDSlBnH2VZlg9yHTNzTbuleMxon5q4nLgTDy0Nj937vJvRYgUmIliU7E0SeV+F6/rvxBJ9vY5Z56MRaV1PXvq45KsgcBxrOIiFUpThmYNiTJpGXNpX/ucv/6slYY1diKF7TO89zw4phLGyEjcSKxoag5TZmBh9PFYOg6bU8KOOk5XhY1gOlxo93xGWj8rwSuy8tDoQElBuP7hzwN7SGeyrPXIIvrgdBJmxA76s/z0zxt5KY3mYvioN4aENpeRjN+qpRaEXYxMjHL2k3trO5CmbCuaak6mxhzS60mjJxdRwsuWSSpnlwZPi4CvEigNzpc0UBng5CqK8pSSxNfntoJqhNY7RZ4G/Cx5foSjt2c3YPMhz4rlkR6JSnvZAY2JTsnran8oKMgZExJZslZRSEAo9rLUpgf3HId0mJJAAwVJhKEWaINbSrvmyqz6lLKlFddxsl89qhsYzUoaYfy1Ikj1CIk7jFtz2kff+tBVqBl2nyVJ5QNz1Q7cdFJuwIrlC8dmqk+y9ZviuO1Bc13t6AI5DyMbV++EJF/m6ewmO9/jh8v3NpIo6sfRMSQJ3cX/wnPTUMigzL722XP+A84cZepAJi0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(38070700021)(22082099003)(18002099003)(4143699003)(10067099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9gHYYJvXeW+jKbjRw8k8BtQL4jpap6LOMBV2SwrnbuP9fQD8vbHD0VkzXO3X?=
- =?us-ascii?Q?JnGq8RVw+73/OBszlJd6WCldyuRkPlL7G57jSUMJPg8Lk42bbHUoJCmsWSaj?=
- =?us-ascii?Q?wFSct1lAEMXao3DcECt2EzsPPg3Itx3K4huU6XUFXEbX226y18Ld5Nl737Wk?=
- =?us-ascii?Q?zlBFha9GefTw5nYIZG3Wa7Cd59l+R+hgCNNORsOn5EgatKf3pdVzHUGqERna?=
- =?us-ascii?Q?CCFrCy39YN9v/MNjJ+0Ih/BQcRXo3Ok1DRpW4bK/QVWZIvm7lrXb3cI+SYzD?=
- =?us-ascii?Q?GeZk1kE1z9tCsAE9DZMU7D9VvQFeC5aFtUULMylnGntquRBnKqqwa82bvJ5w?=
- =?us-ascii?Q?7V7qaCZa8hVrMV6aROcB54uCtVQVkgR6+M8MWlZYMBCZkzRhzMSeoczo4xnY?=
- =?us-ascii?Q?W6ZZkrwer9id2cqDPAZFbBQf5he+Klt3r1rEzbqL2bsyhlPQJi87yAhxWw10?=
- =?us-ascii?Q?tNKYhqedGCWyB3YCGByy3AbHtVvj+6pU1wt8KU+44sEKAV2u/VUcitOkWu9K?=
- =?us-ascii?Q?AuuCk9e9l5oaP/Zk8aaNZ7TCdjAZ8hxHQMGOAprrASI5dWshHu8LjdRanQWm?=
- =?us-ascii?Q?MGaJ3/O4lGvySrz0bvFawHYISk6IfTyE9Dvjil4Z5K5i7hFHlTnGiVqZfU0e?=
- =?us-ascii?Q?nVXwUn2hwpNt5EOplHBiFHSfX+Y9vPqH2KPYmMt5vGW5ZtnQ4NfsWAQoSYSV?=
- =?us-ascii?Q?ewav4Areo/kWjhOpOlZGDFTrDsNiU+Q11GVbL4ckdwlz0PbhiG7mCjORSutl?=
- =?us-ascii?Q?6r6GduRzGcfcBdOZydd9Zngdk9nBPKoED/+safrRM+q6qVOs+SwbY6UMlKm+?=
- =?us-ascii?Q?Co/KNFbqRaEsR0to04YbVlppFbqGB1xFuNKLSI2TLvOP/kAI26vzD7ZM1OXY?=
- =?us-ascii?Q?RODMrCsF/6tkUestCN5z9Az0KgCsbp7HJEebHQgwN8eXuLf1cID1/Vi13xv+?=
- =?us-ascii?Q?L+WYp6LBww4l18BlRqMvVlAcdOayXZV4EkoJSJJHwA31RqGTQH34ibZHJYKC?=
- =?us-ascii?Q?S+B9gyD94TvxdB51WTm0s+zqGmKQOiOaLJwbHGEIxulzRiISHYP8Pje+VYJv?=
- =?us-ascii?Q?immQ5Vo6BMzoyREeiFceSNdt617DVMpkAuXYRuLaAVu/nFRa6Cz2Ja4WRxE6?=
- =?us-ascii?Q?eSC9Q0Ecdi2109aOB+zBpiVbJO1ApcYaR8uMGGUMinMz508gKaqQlcuzo1Mn?=
- =?us-ascii?Q?/BTXy+m+vqlukULqfIL4pgcMDJ4WzdwHXa+N17ct/D0628KdgLZL7bM8B0it?=
- =?us-ascii?Q?rZRtPkMGrb53S8s6hIi+hu3uCOYZ25ql7chgCzObdu5Pr7fuXs6OkF3HfGt7?=
- =?us-ascii?Q?S5nm+YJDWSCYc2G0HxLPcJjxeQDwGcRop4BZVOkdAVEpp2F3lgPzWJYLLiCv?=
- =?us-ascii?Q?w0Uf7YpJFEeQLURK7lSYdA+oEeO3/yMsuBQcjWRCPZJoGm6mp6dKmQJzX63E?=
- =?us-ascii?Q?/QGM6M4IL/X040GyXMiFD/0ld9vCCOX6N5CWvtsxc9LV9tICoKU52lgQabkH?=
- =?us-ascii?Q?J7Hw3mPgTJNh2lrElpcdhPSE5Bm4I8DZT1NmUgTF7+gHKN5JgiRecADpSjuh?=
- =?us-ascii?Q?2ihSsQVQA8mtLUynUjofUfRUVjxC9qNzZQA2tRroY14Ut7lre/u0jMDE7XZw?=
- =?us-ascii?Q?qJ/aZnlWc9bRZDlRKQHXBRPM0bq2eq5WhRQfo5IzZ3VSW1ZrPLFR2z3VjXOb?=
- =?us-ascii?Q?BMzZRJPLZLp6wC2hKGO4SN6CMobzh49Gr7kW6JSHbtnu2wSTSGtam0RrvyQg?=
- =?us-ascii?Q?CmIgURfswA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com
+ [209.85.128.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00CBE10E493
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 18:39:48 +0000 (UTC)
+Received: by mail-yw1-f178.google.com with SMTP id
+ 00721157ae682-81ee6b2da98so68466877b3.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 11:39:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784745588; cv=none;
+ d=google.com; s=arc-20260327;
+ b=VAdFzl7oqsgxpY4kG0B9xWZZXlkQc9GmvL/UcS4SIiCF0m98v4eRELgfuED052wVFJ
+ +XQJvpVFZ7MaFHdiHS8W4JT6REEOub0IYA0wJ6r/2h1rlHcalOX0f5oIDD/2QaXjIvDu
+ hfIHEuv63BKJbC0m+CyDXX+TwvbOUIqobEoI03x0LccMWfwPurtr3+EDpXQumfpBs6cN
+ KjHa51355/OADkff2fPSFE0HGz3JIeAyyVILLcnK8ieGofI1SeNcyPL0Lpk6oxoEnYfn
+ 8XvSidc8TKbh/1cdPc1A46FC6fTHeZmF1hpmLTuVK8bgVWoPD5MvIHP94N74/Q4IS0F8
+ g5rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=NtEJiIsjzHIffGZRfVDVLen19Z+kl6EfxzuajTiB9QI=;
+ fh=J/5bcnQFLD4gYiR6vPc7i2N6kuhqxr1XzVsSpU8WQgc=;
+ b=JinN6Qkp1sXRACQykCtK6uDhF9CcyHNM/Ezm7SS8Uw+MdxfU6m9F2wf/S5qvWbAzdY
+ EoYLXtqrTTtMOtREwzKDkyi5F1QKj1eXNAI3Xok7QzZ1VNg1Pnb/OkTAFcMcSkvwDK+h
+ 9FoNH+3BGfCMsP9zQHHios9rcZ995PD8qMPz3hZkjfrGydnyosUUuAgNan+8NQTmx66y
+ S3SMgzcvpE94Qw4OhNTkNdPOfM9vHdlTsYLEzduRWC5REwvFrjFtLVnI6m5+3S70hiyE
+ wrVh1xa68TkGxDiJpIKa8Mam3zRBShtLa0UnOzmYy4ihG4G/Q1jEYgY2qbGMZOXfU7Se
+ yLCA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1784745588; x=1785350388; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=NtEJiIsjzHIffGZRfVDVLen19Z+kl6EfxzuajTiB9QI=;
+ b=sZilkRKwWkIejFjcMFJA0YzNpu/Y+UVDDXCU2jmDCawb5h/ZUsQWqnjP5yflw5FbiI
+ ZNd53CJSYUpH5jVo+YZ4TdObkcYLycmnUFYIlDTEF79lW+lnX6fLRktjfO5I4ukpsG/w
+ UqxeOjybTqNdyuTvcpSsJWWiqPsX3/yi1Y/h1hf5mqIY5QetmE5hG9lS2CS8GcmqQml1
+ Sc+ifOTJukVGVAygsYqvEXLNzVIuaQJw/JE4nasCtL4EayTinPO9SnCT8XLQ+iJViYKW
+ 3UpOZci4XONY8EtcI1zTvFiZuc7s5YWVngVT88nR0nysdRSL98Phd90DR1NjlnwVmsHG
+ hGuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1784745588; x=1785350388;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=NtEJiIsjzHIffGZRfVDVLen19Z+kl6EfxzuajTiB9QI=;
+ b=rlUqeGny8b/lwogkR+ienM+agzT6fg454hn2jy+kfNSRnXeUUDuInh9k8LOyfKlPbi
+ lqHM8PC/keLF1c/d74asyKhmcOEKqOd6UX2x8Zuo8Vahj9aIG8VehNaSpv6Tq05UmKFw
+ bM+ttOHV2qhWuuUaqCT8BxCX+nRBIIxInP9Q5LsX8AKqE6oTV2jUG/AcxbGvhRLxJSrf
+ WimmnvkrN/jeN8w/VSitt1/lQSxaXpetTdqV9G8fh+M5LYAaPGv1/c47PC18ClidiRzq
+ yNHgLh0k0C9ybygyzEPwjQxCmIIlGwLS5exhFyFy0o6xJ4kpQ/tVYSXlaYVzGnv0z8ZA
+ p6GA==
+X-Gm-Message-State: AOJu0YxMgHELHedohQMGN3vD39aYGKvQu3s8p/a1TVLpIfXMxRGUZbBt
+ 5ct0Dis/5nZybxVPNMHqqQpCQ7vuhxnSpU4j5IfpkiSCmhZ4cAmZCb8N0UBJz64hcbAoVJk4QEo
+ b1vvmck8N2LCpWWyZQgwGeexqXAYSN8E=
+X-Gm-Gg: AR+sD11N/D2JMOBj7Ii8sJhqQWhHJ7abeC9wtZkvJJoWIYti+xkbIHsliWywadwSdMX
+ n+DWcVMiswf3XKJpteNsOmOLp0as0IpBKNxQUd1w8bdyLSOYRZps8/5vAeR9nkZPpPbdXTVfgnJ
+ s3Kq5Zpazfvo9aojqYSr+p/3sO9/tU6lg3mTmpbYzDX3+rs4O+tjZiTxkH5GOZSypIP72MJw8wI
+ rp/+na0xoZ136wKUstWPy1mIMYOV39tYwZz/i4ebCJzDSwXjg2chnqBbJn9Q1wvjFrHYiEuE3Kk
+ XWqiAllU3Nk1NzdnhkJE9ww/Adp2Mkraz5rbVtZ0+hDKK+uE
+X-Received: by 2002:a05:690c:6903:b0:81e:bd02:b02c with SMTP id
+ 00721157ae682-81ef22e4828mr76243497b3.1.1784745587607; Wed, 22 Jul 2026
+ 11:39:47 -0700 (PDT)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: LvNAmZthjPhFvpMrXkehYb4kuijoJHfyC/Rk003K7eVSDU0cpEEX9KBS+FxfG19BOYRefv6P76J0bdVMzBaoo4hi7GHQ+IR/GZXHAdHN+ONa8HlmtWVTjX2DWosP8Ms29KuWtEeuWbmOEeIUuxx6y5XZ6dQeSHjGLB6WIc29pjnulDgwhImGM0CCWdWFxC0QGVLwyyBSwsfqm6//BOKHWb0g1tfDU6FADI4sorVvBg4K6ua1s0gxOVVriV65iIMJIEehyfDorCPokeVDrFTwZpq3dHKvTLutpq+ZP1l+3uLbq7X9ky4o3URXP5witcjxj9vF1KbrP8hAv5bJ2PIXkg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab2294d0-2800-40d2-6aeb-08dee81da178
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2026 18:18:29.3572 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: A5twQwBDqHyyERvSTV9NGMtWyFI6QQB4mGiowprQeeU9RzxpFI5bSzbduKnICUkZU4BVuL44fbC7hGd2wwfplQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4943
-X-OriginatorOrg: intel.com
+References: <20260722004654.744249-1-talesam@gmail.com>
+ <20260722004654.744249-2-talesam@gmail.com>
+ <20260722181017.GF2327163@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20260722181017.GF2327163@mdroper-desk1.amr.corp.intel.com>
+From: =?UTF-8?B?VGFsZXMgQS4gTWVuZG9uw6dh?= <talesam@gmail.com>
+Date: Wed, 22 Jul 2026 15:39:36 -0300
+X-Gm-Features: AUfX_myjt1qIYvS7-JEyi7PtHUEq4RQ6hhRl4WmP77r2ZFcdpbyvtX2YI9Qp7A8
+Message-ID: <CAHBRX4Ghmom2TLOkeXVYJtVua5ioaRka6wycS79pv9UkizfVRw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] drm/xe/mcr: Keep GT forcewake during MCR steering
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ matthew.brost@intel.com, thomas.hellstrom@linux.intel.com, 
+ rodrigo.vivi@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,67 +106,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Matt,
 
+Thanks a lot for the context - and good to know this workaround had
+already been prototyped on your side; that link is very helpful.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ma=
-arten
-> Lankhorst
-> Sent: Tuesday, July 21, 2026 7:56 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org; Maarten Lankhorst <dev@lankhorst.se>=
-;
-> Auld, Matthew <matthew.auld@intel.com>
-> Subject: [PATCH v2 1/5] drm/xe/display: Avoid using stolen memory for
-> framebuffer when media gt exists.
->=20
-> On systems with media GT, extra latency is added when accessing stolen
-> memory when the GT is in MC6.
->=20
-> Simply disable allocating stolen memory for framebuffers when media gt is=
- found.
->=20
-> Thanks to the previous patch, it will be possible to preserve the content=
-s.
+Understood regarding the platform policy (this is indeed a force_probe
+setup on ARL).
 
-This line seems a left over comment from earlier version, can be dropped.
+Two questions to shape a possible v2:
 
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> Link: https://patch.msgid.link/20260630135523.1775379-3-dev@lankhorst.se
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> ---
->  drivers/gpu/drm/xe/display/xe_display_bo.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c
-> b/drivers/gpu/drm/xe/display/xe_display_bo.c
-> index f5102cd0e95d6..9385026a80b97 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-> @@ -131,6 +131,14 @@ bool xe_display_bo_fbdev_prefer_stolen(struct
-> xe_device *xe, unsigned int size)
->  	if (IS_DGFX(xe))
->  		return false;
->=20
-> +	/*
-> +	 * Avoid stolen memory when the media_gt exists,
-> +	 * because a lot of latency is added when media gt is in MC6
-> +	 */
-> +	if (xe_device_get_root_tile(xe)->media_gt)
-> +		return false;
-> +
-> +	/* machine hang when doing lots of LMEMBAR accesses */
+1) Part of this patch is not the workaround itself: waiting for the
+semaphore with a sleeping wait *before* taking the software spinlock
+(instead of the 10us atomic spin inside it), and demoting the WARN
+splat to a rate-limited GT error, both following i915. Would those be
+acceptable on their own, with the forcewake hold (the actual
+Wa_22018931422 part) dropped, or moved to the WA infrastructure gated
+to the affected platforms?
 
+2) If not, should I just drop this patch and keep 2-4? Patch 2 mirrors
+i915's trivial resume-time sanitize, and 3-4 are platform-independent
+CT/timeout robustness.
 
-This comment seems unrelated to the patch.
+Happy to rework either way.
 
-With above minor nits fixed, looks good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Thanks,
+Tales
 
->  	if (XE_DEVICE_WA(xe, 22019338487_display))
->  		return false;
->=20
+Em qua., 22 de jul. de 2026 =C3=A0s 15:10, Matt Roper
+<matthew.d.roper@intel.com> escreveu:
+>
+> On Tue, Jul 21, 2026 at 09:46:51PM -0300, Tales A. Mendon=C3=A7a wrote:
+> > On MTL and newer platforms xe uses STEER_SEMAPHORE to synchronize MCR
+> > steering with external agents such as firmware. The current code waits
+> > only 10us for the semaphore, while already holding the software MCR
+> > spinlock, and fires drm_WARN_ON_ONCE() with a full stack trace when the
+> > wait times out. On an Arrow Lake-P system this triggers during resume
+> > while firmware still owns the semaphore:
+> >
+> >   drm_WARN_ON_ONCE(ret =3D=3D -110)
+> >   WARNING: drivers/gpu/drm/xe/xe_gt_mcr.c:697 mcr_lock
+> >
+> > Port the i915 MCR locking model (intel_gt_mcr_lock/unlock) to xe:
+> >
+> > - Wait for the hardware semaphore before taking the software spinlock,
+> >   so the wait may sleep instead of spinning inside the critical
+> >   section.
+> > - Allow up to 100ms for firmware to release the semaphore, matching
+> >   i915.
+> > - Demote the WARN stack to a rate-limited GT error, using the same
+> >   message as i915 for easier cross-driver triage.
+> > - Grab GT forcewake before touching the semaphore and hold it over the
+> >   entire lock/steer/unlock cycle (Wa_22018931422). The steering
+> >   registers are in an "always on" domain with respect to RC6, but are
+> >   sensitive while higher-level platform sleep states are
+> >   entering/exiting.
+>
+> This workaround only applies to specific platforms (MTL and ARL), but
+> your implementation here is grabbing forcewake on all platforms, which
+> we don't want to happen.  Workarounds should be implemented through the
+> workaround layers of the driver (either RTP or OOB) so that they only
+> apply on the specific platforms that need them.
+>
+> I did a previous implementation of this workaround a couple years ago:
+>
+> https://lore.kernel.org/all/20250114190242.2026743-2-matthew.d.roper@inte=
+l.com/
+>
+> but we decided not to apply it because the Xe driver doesn't officially
+> support MTL or ARL (using force_probe to force Xe to probe the device is
+> only intended for driver developers, not end users).  Generally we only
+> include workarounds in Xe for unsupported platforms like MTL/ARL if they
+> also apply to one of the platforms that the driver is intended to
+> support, or if the workaround is trivial (e.g., one extra RTP entry).
+>
+>
+> Matt
+>
+> >
+> > The GT resume/reset paths already hold XE_FORCEWAKE_ALL around their
+> > MCR accesses, so the forcewake reference taken here is usually just a
+> > refcount increment; it closes the Wa_22018931422 window for the
+> > remaining callers (debugfs, OA, EU stall, etc.).
+> >
+> > mcr_lock() may now sleep; add might_sleep() to document and enforce
+> > that contract. All current callers are in process context.
+> >
+> > Signed-off-by: Tales A. Mendon=C3=A7a <talesam@gmail.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_gt_mcr.c | 70 +++++++++++++++++++++++++---------
+> >  1 file changed, 52 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_=
+mcr.c
+> > index a97b236dab7..e1e3c0688dc 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > @@ -10,6 +10,8 @@
+> >
+> >  #include "regs/xe_gt_regs.h"
+> >  #include "xe_assert.h"
+> > +#include "xe_device.h"
+> > +#include "xe_force_wake.h"
+> >  #include "xe_gt_printk.h"
+> >  #include "xe_gt_topology.h"
+> >  #include "xe_gt_types.h"
+> > @@ -58,6 +60,8 @@ enum {
+> >       MCR_OP_WRITE
+> >  };
+> >
+> > +#define MCR_STEER_SEMAPHORE_TIMEOUT_US       100000
+> > +
+> >  static const struct xe_mmio_range xelp_l3bank_steering_table[] =3D {
+> >       { 0x00B100, 0x00B3FF },
+> >       {},
+> > @@ -692,33 +696,58 @@ bool xe_gt_mcr_get_nonterminated_steering(struct =
+xe_gt *gt,
+> >   * to synchronize with external clients (e.g., firmware), so a semapho=
+re
+> >   * register will also need to be taken.
+> >   */
+> > -static void mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
+> > +static unsigned int mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_loc=
+k)
+> >  {
+> >       struct xe_device *xe =3D gt_to_xe(gt);
+> > +     unsigned int fw_ref =3D 0;
+> >       int ret =3D 0;
+> >
+> > -     spin_lock(&gt->mcr_lock);
+> > +     might_sleep();
+> >
+> >       /*
+> >        * Starting with MTL we also need to grab a semaphore register
+> >        * to synchronize with external agents (e.g., firmware) that now
+> >        * shares the same steering control register. The semaphore is ob=
+tained
+> >        * when a read to the relevant register returns 1.
+> > +      *
+> > +      * The steering control and semaphore registers are inside an
+> > +      * "always on" power domain with respect to RC6.  However there
+> > +      * are some issues if higher-level platform sleep states are
+> > +      * entering/exiting at the same time these registers are accessed=
+.
+> > +      * Grabbing GT forcewake and holding it over the entire
+> > +      * lock/steer/unlock cycle ensures that those sleep states have
+> > +      * fully exited before we access these registers, matching what
+> > +      * i915 does in intel_gt_mcr_lock().
+> > +      *
+> > +      * Wa_22018931422
+> >        */
+> > -     if (GRAPHICS_VERx100(xe) >=3D 1270)
+> > -             ret =3D xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0=
+x1, 10, NULL,
+> > -                                  true);
+> > +     if (GRAPHICS_VERx100(xe) >=3D 1270) {
+> > +             fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+> > +             if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
+> > +                     xe_gt_err_ratelimited(gt, "failed to get MCR forc=
+ewake\n");
+> > +
+> > +             ret =3D xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0=
+x1,
+> > +                                  MCR_STEER_SEMAPHORE_TIMEOUT_US, NULL=
+,
+> > +                                  false);
+> > +     }
+> > +
+> > +     spin_lock(&gt->mcr_lock);
+> > +
+> > +     if (ret =3D=3D -ETIMEDOUT)
+> > +             xe_gt_err_ratelimited(gt, "hardware MCR steering semaphor=
+e timed out\n");
+> >
+> > -     xe_gt_WARN_ON_ONCE(gt, ret =3D=3D -ETIMEDOUT);
+> > +     return fw_ref;
+> >  }
+> >
+> > -static void mcr_unlock(struct xe_gt *gt) __releases(&gt->mcr_lock)
+> > +static void mcr_unlock(struct xe_gt *gt, unsigned int fw_ref) __releas=
+es(&gt->mcr_lock)
+> >  {
+> > +     spin_unlock(&gt->mcr_lock);
+> > +
+> >       /* Release hardware semaphore - this is done by writing 1 to the =
+register */
+> > -     if (GRAPHICS_VERx100(gt_to_xe(gt)) >=3D 1270)
+> > +     if (GRAPHICS_VERx100(gt_to_xe(gt)) >=3D 1270) {
+> >               xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, 0x1);
+> > -
+> > -     spin_unlock(&gt->mcr_lock);
+> > +             xe_force_wake_put(gt_to_fw(gt), fw_ref);
+> > +     }
+> >  }
+> >
+> >  /*
+> > @@ -807,10 +836,11 @@ u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, =
+struct xe_reg_mcr reg_mcr)
+> >                                                    &group, &instance);
+> >
+> >       if (steer) {
+> > -             mcr_lock(gt);
+> > +             unsigned int fw_ref =3D mcr_lock(gt);
+> > +
+> >               val =3D rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ,
+> >                                          group, instance, 0);
+> > -             mcr_unlock(gt);
+> > +             mcr_unlock(gt, fw_ref);
+> >       } else {
+> >               val =3D xe_mmio_read32(&gt->mmio, reg);
+> >       }
+> > @@ -832,13 +862,14 @@ u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
+> >                          struct xe_reg_mcr reg_mcr,
+> >                          int group, int instance)
+> >  {
+> > +     unsigned int fw_ref;
+> >       u32 val;
+> >
+> >       xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+> >
+> > -     mcr_lock(gt);
+> > +     fw_ref =3D mcr_lock(gt);
+> >       val =3D rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ, group, ins=
+tance, 0);
+> > -     mcr_unlock(gt);
+> > +     mcr_unlock(gt, fw_ref);
+> >
+> >       return val;
+> >  }
+> > @@ -857,11 +888,13 @@ u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
+> >  void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_m=
+cr,
+> >                            u32 value, int group, int instance)
+> >  {
+> > +     unsigned int fw_ref;
+> > +
+> >       xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+> >
+> > -     mcr_lock(gt);
+> > +     fw_ref =3D mcr_lock(gt);
+> >       rw_with_mcr_steering(gt, reg_mcr, MCR_OP_WRITE, group, instance, =
+value);
+> > -     mcr_unlock(gt);
+> > +     mcr_unlock(gt, fw_ref);
+> >  }
+> >
+> >  /**
+> > @@ -876,6 +909,7 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, st=
+ruct xe_reg_mcr reg_mcr,
+> >                              u32 value)
+> >  {
+> >       struct xe_reg reg =3D to_xe_reg(reg_mcr);
+> > +     unsigned int fw_ref;
+> >
+> >       xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+> >
+> > @@ -884,9 +918,9 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, st=
+ruct xe_reg_mcr reg_mcr,
+> >        * access, the MULTICAST bit should already be set, so there's no=
+ need
+> >        * to touch the steering register.
+> >        */
+> > -     mcr_lock(gt);
+> > +     fw_ref =3D mcr_lock(gt);
+> >       xe_mmio_write32(&gt->mmio, reg, value);
+> > -     mcr_unlock(gt);
+> > +     mcr_unlock(gt, fw_ref);
+> >  }
+> >
+> >  void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p)
+> > --
+> > 2.55.0
+> >
+>
 > --
-> 2.53.0
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
 
+
+
+--=20
+Com os cumprimentos,
+
+Tales A. Mendon=C3=A7a
+talesam.org
+communitybig.org
