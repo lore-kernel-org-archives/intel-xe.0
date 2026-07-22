@@ -4,75 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5F74C531D4
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 14:08:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB4D1C531D2
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 14:08:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84B4610E259;
-	Thu, 23 Jul 2026 14:08:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95B9810E582;
+	Thu, 23 Jul 2026 14:08:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mbAgzanK";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gCYoa8gH";
 	dkim-atps=neutral
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
- [209.85.215.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3774B10EE46
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 15:48:04 +0000 (UTC)
-Received: by mail-pg1-f180.google.com with SMTP id
- 41be03b00d2f7-cbb7926836eso1710589a12.3
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 08:48:04 -0700 (PDT)
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C1210EE75
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 18:52:42 +0000 (UTC)
+Received: by mail-pl1-f170.google.com with SMTP id
+ d9443c01a7336-2cce6a0c9c3so119636745ad.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 11:52:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784735284; x=1785340084; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=oYgzICp3WWBVEAdBWpXW/nz3XQWTxOaX/2nc+F1fyyo=;
- b=mbAgzanKgbrsr/Rh8V4iysxZzDWxKj4GcWJEZkSL101AhSdl3cE/7OxD5XtNZ6Lcpt
- ECVnM/WtYPVYqoY0SNqhDJSp1d+LtDowPahjW6V4xe8umzNmlZSfjWi2YNlqN6M5bR9U
- /pIjHjWdvjRJCGGvrXgXlKsEvl/7H+ARtxGl8w88OZRRLQFJROCEwqvl/+1SCI3NKpwN
- AIpimg/YSqrd9Q8a4l4kbhZw8/F49uiq+zolMH3LedeY801czZzjkNYGimbEPCVACYn7
- Ecmi/Sp5IK5tBFkhBZOvC16N2oE0wBWrPCwSJX44XXExN8mEb/2rghG3V2E02SEx/lPm
- AlMg==
+ d=gmail.com; s=20251104; t=1784746362; x=1785351162; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:content-type:mime-version
+ :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=Uym772qkEh9LOk/iL6aKk1xWDH0j1Tlr0rPbsmQanS4=;
+ b=gCYoa8gHD1X8/BL1iIeCacjQVpJSpz4ZmWnoIvX6Y4m/OODxwJwDcPD1Q8ZO8KbRYq
+ dn0mKMq8oPGYE5dAK3pbJ4N59Rrw0l6zhJQue8kvbwcniLGSy25XKCEdMa33AGcSDi6H
+ JZMyDWejwMqlzgwnnl00tzof+1TM4kI1kQ+TD0HPLZPD/Up3FzF5ToEPzZr7Is9aiCEV
+ VmXTA4N6uR+XyH2ThiyIAKxy/US3GXSTRLJGtc6IGy6LFKZ2//4bxnDlxMDlUtCLpp5l
+ nw4lfZDwxjGEuv2JDhqvN5+sfiQm09eKP8fWj6UrpCCNoaQpAswErT+7GrVBt5pHGr6i
+ z0HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784735284; x=1785340084;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=oYgzICp3WWBVEAdBWpXW/nz3XQWTxOaX/2nc+F1fyyo=;
- b=onoTkanzcUV0fxcrNvKfzYdE8wO7YKSPn8xo5bfUIVL15nMZfBpB3r3GPd4nbg17Lo
- LjUqXpIK4ue3OKFUjzM9D/QJV1YNvUD9vno/0q1irkwK9RWyccULSIoMhIe2fESYzKhA
- JyzIdf+iLsXyZkxCjaGBYBl2PXrqu5i2OYlCNvt864cPdGV6uCW6TyzjwEEE2u/Bn1Tz
- bnG5lS7GXfRJOF/gnzUrh7liqavjcBLq6DSVE9fnFdMBNSNDm3wM2bG+bdzG1T5qpNxI
- h2/zCYm9cp3jlQBFBkorzUBECPI/Z+hKA1LZnjzjNj1rhDeOZbB9w+3JpuHyt4G1qT7i
- 9N9g==
-X-Gm-Message-State: AOJu0Yy7eL/Tehn04U4qrSWVseD63s3a8mvj1chMCihdohaabcYK12Uw
- S+Igxp4TplSgRlwoRL2I1jegVTeL7ddGsP8wtkiCYTT9tXiuF6wrgfVmCE6UIxEx
-X-Gm-Gg: AR+sD13v69h4DKCs0jBn+eO1rfSp2P0JynlMQCMPrWCSnkUTedSvgVyLqoqcw+1nqee
- 8FJ/bQE11eWbQDQcPwwmsP+dDTpLkej1yY/PBkiG1MU1Ocm74bpKig/pVIrPxscq7Am4Fj0G7Fw
- es/5oIHMvKyWZKkZCGH8SeMevXJzqZ4QW7qZsL1hINbH2/nfapHhpYf7gZ7akXn99YcqKe82I3y
- OE+Mg9RPq6+0qt467VvVLWx9EIpA2my+KUiUdNO+S950jjbPS1q/IkLPnmB93bYYup+UTcBT5qr
- 7WzNvi2gwC/Gp4IR/iLD3OZf7LpMmKKV8KTw4OnXerrr+75CTbLJAI34kHAQ3PBJffoWW5aYcsR
- 1SVeuLGrMLN3XiS0L9Ce+s1ftcL/Eq07s8nEYMVnTMjncT5UPEbsgdICvRkI0hutEeiLfztHMAN
- fp1KSI3+/fJoLp1TGn5GemkZuhbZhr8l+qmju/ixB1aCblG/1Xp/SJTpUdjy0=
-X-Received: by 2002:a05:6a00:1382:b0:846:7507:4e07 with SMTP id
- d2e1a72fcca58-84c29505e28mr24354626b3a.39.1784735283477; 
- Wed, 22 Jul 2026 08:48:03 -0700 (PDT)
-Received: from cm5pi.lan (174-21-80-34.tukw.qwest.net. [174.21.80.34])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-84e175cdc21sm1567763b3a.47.2026.07.22.08.48.02
+ d=1e100.net; s=20251104; t=1784746362; x=1785351162;
+ h=in-reply-to:content-disposition:content-type:mime-version
+ :references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=Uym772qkEh9LOk/iL6aKk1xWDH0j1Tlr0rPbsmQanS4=;
+ b=jm40MM8YJOIqinT95go2oPHe7mpgPKYHuw3/kioMBTNfN3CTZp9Qty3dpqnm1tox+K
+ lUgQq9u8SzQQPiT7N7nBvwXaoWmDFA8uQRUI0kDU4nPiGXXTDdKNQCcEGdbya5GAoHgn
+ LaDJZGQJRDk8BRNQ1KQVqo6nDcuya/eBkipch0C9Zj1CHu0QXjsf762kel3SFVc4v1Gr
+ PkTAxhQraOw4nMtWPe9hbZTacUliaX14OFgg+tgw0r2U8b+nPYNu5uh/P159KEzIQEcO
+ SgxNHMr+v5jcejOVrffK7igwJpy+O49/7D7cFASRTYXGS3Xzgd/ICKzzVTQzp2UowOIz
+ DGZw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RpAxBC1HFs9oB0AAX53VpKVHWN485SmQM8vEWTlak7soLRP37kacAvMp2gaQrOgkiqWmLBaM7FLGQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwojMwlGE4p5gEGiM7d1gGnC+IXyNgrCXV61fvtLoAuxPWx6Fc3
+ gi4fYtLlWOO8o8UwJi8Z8f6fIYacW7AiygU/0ZdUeYm5utGwlMOnKKVn
+X-Gm-Gg: AR+sD134SVtyGOTHtwNy0xAaOAegFcJk8/7NhEoRlFBCVhvdxUtZv8cUhty1p1lFA09
+ kB2dG845vqcE2gIkkO4SDUDKr9YaPEFnlHywP27KSP1Lswp+wOG9+ivYhABwR0k+CtE04qGCqMU
+ tH/7CQwwdV4HCMb7AbS8Ivb6AwvT3FvZLWRf0Fsklu3YVnL6DQhEj5JRFNz9cOp3evZ+VxcoLb9
+ JyynngzxHtg8wwxwx7zAJSvklgJof/1XOUw38Ib2+HzfHiPBSjdKPpKVIrzqLGHT5rgSiYpmI+D
+ i7mdJGROREZ0tL6MbxssB3XyI1nWoHTH5e/arGWs4w6fUBCtbxvKvjR+dKOjC3JlG8r2rk1qpbK
+ NO9Mn157cWNELNjP4IafYbs5PZCgNKS7sx6n+hfRqzQ5hhnBKtJvyN1djNOn8L5pXunZplKQh4a
+ xhYRTDiCuBUGz0WX7TVEIbybNaj4r8BwsiTeuUpN0HGYuDGfqg+DmJ0Uw=
+X-Received: by 2002:a17:902:da8b:b0:2cc:7e4a:bcc5 with SMTP id
+ d9443c01a7336-2cfa71aa7demr1018275ad.32.1784746361700; 
+ Wed, 22 Jul 2026 11:52:41 -0700 (PDT)
+Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
+ [98.225.44.182]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2cf8efde5cfsm19378335ad.31.2026.07.22.11.52.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Jul 2026 08:48:02 -0700 (PDT)
-From: John Foushee <johnfoushee@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- John Foushee <johnfoushee@gmail.com>, stable@vger.kernel.org
-Subject: [PATCH] drm/i915/backlight: allow hybrid pin-enable + AUX brightness
- panels
-Date: Wed, 22 Jul 2026 08:48:02 -0700
-Message-ID: <20260722154802.3760046-1-johnfoushee@gmail.com>
-X-Mailer: git-send-email 2.47.3
+ Wed, 22 Jul 2026 11:52:41 -0700 (PDT)
+Date: Wed, 22 Jul 2026 11:52:38 -0700
+From: Stanislav Kinsburskii <skinsburskii@gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
+ corbet@lwn.net, dakr@kernel.org, david@kernel.org,
+ decui@microsoft.com, haiyangz@microsoft.com, jgg@ziepe.ca,
+ kees@kernel.org, kys@microsoft.com, leon@kernel.org,
+ liam@infradead.org, lizhi.hou@amd.com, ljs@kernel.org,
+ longli@microsoft.com, lyude@redhat.com,
+ maarten.lankhorst@linux.intel.com, mamin506@gmail.com,
+ mhocko@suse.com, mripard@kernel.org, nouveau@lists.freedesktop.org,
+ ogabbay@kernel.org, oleg@redhat.com, rppt@kernel.org,
+ shuah@kernel.org, simona@ffwll.ch, skhan@linuxfoundation.org,
+ surenb@google.com, tzimmermann@suse.de, vbabka@kernel.org,
+ wei.liu@kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-rdma@vger.kernel.org
+Subject: Re: [PATCH v9 8/8] drm/gpusvm: Use
+ hmm_range_fault_unlocked_timeout() for range faults
+Message-ID: <amERdq2X5l5vHfJo@skinsburskii>
+References: <178413903133.1155966.3904063656020521607.stgit@skinsburskii>
+ <178413941236.1155966.14485211391150425997.stgit@skinsburskii>
+ <al7CGPdJGM+asOFK@gsse-cloud1.jf.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <al7CGPdJGM+asOFK@gsse-cloud1.jf.intel.com>
 X-Mailman-Approved-At: Thu, 23 Jul 2026 14:08:16 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,71 +107,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 102d44b3a8fa ("drm/i915/backlight: Fix VESA backlight possible
-check condition") restricted the VESA backlight path to fully AUX-based
-panels (enable and adjustment both via AUX), on the grounds that the
-hybrid configurations are not currently supported.
+On Mon, Jul 20, 2026 at 05:49:28PM -0700, Matthew Brost wrote:
+> On Wed, Jul 15, 2026 at 11:16:52AM -0700, Stanislav Kinsburskii wrote:
+> > Several GPU SVM paths take mmap_read_lock() only to call hmm_range_fault()
+> > and open-code mmu interval sequence setup before each HMM walk. They also
+> > retry -EBUSY until HMM_RANGE_DEFAULT_TIMEOUT expires.
+> > 
+> > Use hmm_range_fault_unlocked_timeout() for those faults. The HMM helper now
+> > owns mmap_lock acquisition and refreshes range->notifier_seq for its
+> > internal retries, while GPU SVM keeps its existing driver-lock validation
+> > with mmu_interval_read_retry() after a successful fault.
+> > 
+> > Pass HMM_RANGE_DEFAULT_TIMEOUT as the helper retry budget for each HMM
+> > fault attempt. This scopes the timeout to repeated HMM notifier retries
+> > while preserving the outer retry loops that restart when the interval is
+> > invalidated before GPU SVM updates or consumes the mapping state.
+> > 
+> 
+> This part doesn't seem right for get_pages(), see below.
+> 
+> > Leave drm_gpusvm_check_pages() on hmm_range_fault() because that path is
+> > called with the mmap lock already held by its caller.
+> > 
+> > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> > Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
+> > ---
+> >  drivers/gpu/drm/drm_gpusvm.c |   61 +++++-------------------------------------
+> >  1 file changed, 7 insertions(+), 54 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+> > index 958cb605aedd..de5bbfe58ee9 100644
+> > --- a/drivers/gpu/drm/drm_gpusvm.c
+> > +++ b/drivers/gpu/drm/drm_gpusvm.c
+> > @@ -773,8 +773,7 @@ enum drm_gpusvm_scan_result drm_gpusvm_scan_mm(struct drm_gpusvm_range *range,
+> >  		.end = end,
+> >  		.dev_private_owner = dev_private_owner,
+> >  	};
+> > -	unsigned long timeout =
+> > -		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> > +	unsigned long timeout = msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> >  	enum drm_gpusvm_scan_result state = DRM_GPUSVM_SCAN_UNPOPULATED, new_state;
+> >  	unsigned long *pfns;
+> >  	unsigned long npages = npages_in_range(start, end);
+> > @@ -788,22 +787,7 @@ enum drm_gpusvm_scan_result drm_gpusvm_scan_mm(struct drm_gpusvm_range *range,
+> >  	hmm_range.hmm_pfns = pfns;
+> >  
+> >  retry:
+> > -	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+> > -	mmap_read_lock(range->gpusvm->mm);
+> > -
+> > -	while (true) {
+> > -		err = hmm_range_fault(&hmm_range);
+> > -		if (err == -EBUSY) {
+> > -			if (time_after(jiffies, timeout))
+> > -				break;
+> > -
+> > -			hmm_range.notifier_seq =
+> > -				mmu_interval_read_begin(notifier);
+> > -			continue;
+> > -		}
+> > -		break;
+> > -	}
+> > -	mmap_read_unlock(range->gpusvm->mm);
+> > +	err = hmm_range_fault_unlocked_timeout(&hmm_range, timeout);
+> >  	if (err)
+> >  		goto err_free;
+> >  
+> > @@ -1406,8 +1390,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+> >  		.dev_private_owner = ctx->device_private_page_owner,
+> >  	};
+> >  	void *zdd;
+> > -	unsigned long timeout =
+> > -		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> > +	unsigned long timeout = msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> >  	unsigned long i, j;
+> >  	unsigned long npages = npages_in_range(pages_start, pages_end);
+> >  	unsigned long num_dma_mapped;
+> > @@ -1422,9 +1405,6 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+> >  	struct dma_iova_state *state = &svm_pages->state;
+> >  
+> >  retry:
+> > -	if (time_after(jiffies, timeout))
+> > -		return -EBUSY;
+> > -
+> 
+> I think that by deleting the code above, you have changed this function's
+> semantics by removing the hard cap of HMM_RANGE_DEFAULT_TIMEOUT. This
+> code was added because, on some non-production platforms, the timing in
+> this function could cause it to livelock.
+> 
+> Is there any reason this was remove aside from timeout variable not
+> being a deadline now? You likely should add the deadline back in.
+> 
 
-The hybrid pin-enable + AUX-adjustment configuration is however already
-handled: intel_dp_aux_vesa_enable_backlight() falls back to the PWM
-funcs for enable when info.aux_enable is unset, and
-drm_edp_backlight_init() supports aux_set without aux_enable.
+Indeed, this one can be called from a kernel thread context as well.
+I'll revert the change in the next revision.
 
-At least one panel requires this configuration to work at all: the
-Tianma Y156ZAN02.0 in the Google Pixel Slate (nocturne) advertises
-DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP but not
-DP_EDP_BACKLIGHT_AUX_ENABLE_CAP (DP_EDP_GENERAL_CAP_1 = 0xfb,
-DP_EDP_BACKLIGHT_ADJUSTMENT_CAP = 0xff). The panel ignores the PWM pin
-for brightness adjustment, and resets its AUX brightness register
-(DP_EDP_BACKLIGHT_BRIGHTNESS_MSB/LSB) to 0 whenever panel power is
-cycled. With the PWM backlight funcs selected, the panel comes back
-black after every suspend/resume or DPMS off/on cycle while all
-driver-visible state (link training, PPS, PWM duty) looks healthy.
-Firmware rewrites the register at boot, which masks the problem until
-the first runtime panel power cycle.
+Thanks,
+Stanislav
 
-Allow the hybrid configuration by requiring only AUX brightness
-adjustment capability; backlight enable keeps using the pin/PWM path
-via the existing fallback.
 
-Tested on the Google Pixel Slate (KBL-Y) on 7.1.4: i915 now selects the
-VESA AUX backlight interface, the panel's AUX brightness register is
-restored across suspend/resume, and brightness control works over the
-full range where it previously had no effect.
-
-Fixes: 102d44b3a8fa ("drm/i915/backlight: Fix VESA backlight possible check condition")
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16679
-Cc: stable@vger.kernel.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: John Foushee <johnfoushee@gmail.com>
----
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c    | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 7a6c07f..a5c03c3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -616,11 +616,15 @@ check_if_vesa_backlight_possible(struct intel_dp *intel_dp)
- 	u8 bit_min, bit_max;
- 
- 	/*
--	 * Since we only support Fully AUX Based VESA Backlight interface make sure
--	 * backlight enable is possible via AUX along with backlight adjustment
-+	 * Brightness adjustment must be possible via AUX. Backlight *enable*
-+	 * may come either via AUX (DP_EDP_BACKLIGHT_AUX_ENABLE_CAP) or via the
-+	 * BL_ENABLE pin, which the VESA backlight code already supports by
-+	 * falling back to the PWM funcs for enable when aux_enable is not set.
-+	 * Some panels (e.g. Tianma Y156ZAN02.0 in the Google Pixel Slate)
-+	 * support only that hybrid configuration and ignore the PWM pin for
-+	 * brightness adjustment.
- 	 */
--	if (!(intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP &&
--	      intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP))
-+	if (!(intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP))
- 		return false;
- 
- 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &bit_min);
--- 
-2.47.3
-
+> Matt
+> 
+> >  	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+> >  	if (drm_gpusvm_pages_valid_unlocked(gpusvm, svm_pages))
+> >  		goto set_seqno;
+> > @@ -1439,21 +1419,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+> >  	}
+> >  
+> >  	hmm_range.hmm_pfns = pfns;
+> > -	while (true) {
+> > -		mmap_read_lock(mm);
+> > -		err = hmm_range_fault(&hmm_range);
+> > -		mmap_read_unlock(mm);
+> > -
+> > -		if (err == -EBUSY) {
+> > -			if (time_after(jiffies, timeout))
+> > -				break;
+> > -
+> > -			hmm_range.notifier_seq =
+> > -				mmu_interval_read_begin(notifier);
+> > -			continue;
+> > -		}
+> > -		break;
+> > -	}
+> > +	err = hmm_range_fault_unlocked_timeout(&hmm_range, timeout);
+> >  	mmput(mm);
+> >  	if (err)
+> >  		goto err_free;
+> > @@ -1720,8 +1686,7 @@ int drm_gpusvm_range_evict(struct drm_gpusvm *gpusvm,
+> >  		.end = drm_gpusvm_range_end(range),
+> >  		.dev_private_owner = NULL,
+> >  	};
+> > -	unsigned long timeout =
+> > -		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> > +	unsigned long timeout = msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> >  	unsigned long *pfns;
+> >  	unsigned long npages = npages_in_range(drm_gpusvm_range_start(range),
+> >  					       drm_gpusvm_range_end(range));
+> > @@ -1736,24 +1701,12 @@ int drm_gpusvm_range_evict(struct drm_gpusvm *gpusvm,
+> >  		return -ENOMEM;
+> >  
+> >  	hmm_range.hmm_pfns = pfns;
+> > -	while (!time_after(jiffies, timeout)) {
+> > -		hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+> > -		if (time_after(jiffies, timeout)) {
+> > -			err = -ETIME;
+> > -			break;
+> > -		}
+> > -
+> > -		mmap_read_lock(mm);
+> > -		err = hmm_range_fault(&hmm_range);
+> > -		mmap_read_unlock(mm);
+> > -		if (err != -EBUSY)
+> > -			break;
+> > -	}
+> > +	err = hmm_range_fault_unlocked_timeout(&hmm_range, timeout);
+> >  
+> >  	kvfree(pfns);
+> >  	mmput(mm);
+> >  
+> > -	return err;
+> > +	return err == -EBUSY ? -ETIME : err;
+> >  }
+> >  EXPORT_SYMBOL_GPL(drm_gpusvm_range_evict);
+> >  
+> > 
+> > 
