@@ -4,28 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66E5FC44536
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 22:36:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1B63C4453A
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 23:01:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F76A10E514;
-	Wed, 22 Jul 2026 22:36:08 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05F6510E4F4;
- Wed, 22 Jul 2026 22:36:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2854698806431160204=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A48B10E358;
+	Wed, 22 Jul 2026 23:01:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W2pR9bMU";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5750710E358
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 23:01:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784761269; x=1816297269;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=AVx3uvmOZ0JfQ7jWa7kQbJIYLA01hMld5sQMSTXuj5k=;
+ b=W2pR9bMU0ULTZQRmFmlDxplRedqdWe4QFwctmdqsJnuAWpmqzkNhsApi
+ zKlYytSH55AiZAxhtbtEs+BHsUfDpn+gu6i6iKnjRlooRdorhOjqCb22v
+ PVsB+oHbYJhbTvzOAJxo8/jHH6CcU6888/PTQ2d2BiHfu2Z5YNY0WQldR
+ ujv4Jl83R8uz8r1MWyRJAJyeFlwA0Y2pvKZ4hb4cLAQMLOOPHXE9mOgOL
+ afvHvOVEYiOJPCQ7v+C6W2XKUNmvopgZFfXw96E9wMYgbQbMlFKwQuMa6
+ Vonyxm2WeueAYzFhgYbDind8GT6sH0Gy7QfZI2rb1mUIK7CyNr+Dc/0dv Q==;
+X-CSE-ConnectionGUID: b4NzyN1aTmCor4CfxGZQCQ==
+X-CSE-MsgGUID: NtdM1kfKRp+wtptUBti8nA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85456135"
+X-IronPort-AV: E=Sophos;i="6.25,179,1779174000"; d="scan'208";a="85456135"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2026 16:01:09 -0700
+X-CSE-ConnectionGUID: pRU6Ud8eSJer0JCctmQgnQ==
+X-CSE-MsgGUID: DIK6ljmYSjG9MkI4wx+e9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,179,1779174000"; d="scan'208";a="251919138"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2026 16:01:09 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Wed, 22 Jul 2026 16:01:08 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Wed, 22 Jul 2026 16:01:08 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.62) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Wed, 22 Jul 2026 16:01:08 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=l3m1TycuLt5MT8vjYUcPWTCZ53m+oPPSzAIJudAW3Jc0f76IaIpdMMFjgc/e7m2s4BEq081NedL8d2rmHzkJ7XcirwB9BwwQ/39znhK7uAG3wChP+5yTIgLqzF7bxiiZxHaEEcslB4mYioL6Z+v95pu3OAA+WmFq3vUU666NzsM5baNzj2zBPE7c8gtLShnG8ks0a2VEBIHBuTlskrr7uuWK7FoqqADzfvBxfl0tk8QcWzcYnfUl3Kgw4RB/N6tjSHveCWGo7uFe9wFHcWX+Tc+iQBdOPs0tNM/tkDeWrVA+ElEnKyQchkpQGR4vRssxEvp09wkANnGAIsnanMoDjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+JQKB7wHDdO13NwRnDF/I6O983AUmAExb9xgRMxnpmY=;
+ b=k42CcvLEHsx0//HPimqwhwBp3wFQmP/GRipwHnEMKWf7S0b+UVxS8HVAPBSo2zrWvitJFQyWHb8lTbmfI9v5yfS6cRAOHCuGxsR05x4crsvVPSyEU3piY+1B2x69OjExQN2ebuoIHlTB8ZOjL19ARjcaflzM5Ex2k0iAn41RLKpNgdM1cOZr1DlcZWcX0ViJLpjljgOnHKZRP8Ztkz/KaWrPFfLvvu9y6X58Ca2uhEA2yaeC3ZVObkLsFOXKwMhmBnZEECxw2ZEndrnjwIhYDEAltjvCvjOHBcnP7HDGtx+qgzXmIgH7AOBLPwRWkXEN0AOzpIFBVe5PZYZ/7b/dMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7904.namprd11.prod.outlook.com (2603:10b6:8:f8::8) by
+ IA0PR11MB8379.namprd11.prod.outlook.com (2603:10b6:208:488::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Wed, 22 Jul
+ 2026 23:01:05 +0000
+Received: from DS0PR11MB7904.namprd11.prod.outlook.com
+ ([fe80::6bec:e86c:e75d:5caa]) by DS0PR11MB7904.namprd11.prod.outlook.com
+ ([fe80::6bec:e86c:e75d:5caa%4]) with mapi id 15.21.0245.009; Wed, 22 Jul 2026
+ 23:01:00 +0000
+Message-ID: <94a877cc-3d66-4814-85b9-31376944cbf6@intel.com>
+Date: Wed, 22 Jul 2026 16:00:01 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/1] drm/xe/guc_ads: allocate UM queues in a separate
+ UC BO
+To: Jia Yao <jia.yao@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Matthew Auld <matthew.auld@intel.com>, <stable@vger.kernel.org>
+References: <20260722053410.2767369-1-jia.yao@intel.com>
+ <20260722053410.2767369-2-jia.yao@intel.com>
+Content-Language: en-US
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+In-Reply-To: <20260722053410.2767369-2-jia.yao@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4P223CA0007.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::12) To DS0PR11MB7904.namprd11.prod.outlook.com
+ (2603:10b6:8:f8::8)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv5?=
- =?utf-8?q?=2C1/1=5D_drm/xe/eustall=3A_Add_WA_14027054324_support_for_graphi?=
- =?utf-8?q?cs_IP_35=2E11?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Harish Chegondi" <harish.chegondi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jul 2026 22:36:07 -0000
-Message-ID: <178475976701.218318.1959907284796759013@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <16b6b972691943daddebad6e7b93b9d73add5249.1784745545.git.harish.chegondi@intel.com>
-In-Reply-To: <16b6b972691943daddebad6e7b93b9d73add5249.1784745545.git.harish.chegondi@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7904:EE_|IA0PR11MB8379:EE_
+X-MS-Office365-Filtering-Correlation-Id: 55811529-5545-4133-bd57-08dee845193e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|1800799024|376014|56012099006|11063799006|5023799004|4143699003|10067099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 4ukJdGhPY2eA8EhLKZPKSIqqoDAuv0FFl223YPxDV51mhGdevjsoURIaErat5wcaS95cbeaEieVrSvPW62ghHGBb5TAhIOIg4qiPYF8D3hbmJ1cBClz2YSPWtypEDrQRv7VPCu6676aVZEAUVdvh9zW6S+CqXB+olN/i3/BY8NqXgOUibbtd/0DEPiRIRlqmX4S9CfGZ/fnoMk2udUcFXeMx8lAJ7G0baOQa1zJ0dzeUlvqLI/GcMX+gcHpPvj4/Vvtyof1B3p3nA3h8KOdLftB41BaeqhXqCzqJku/N417qDb/hyP4duBAwI0kWIQU08AjkRVYCbJ7PZ15X0c6eh93S/VxHEQ8Y85KCJnAizF8AjxYfmJ3MCM0gHkujkjyhM8JPcmtBmO9MoM1rkxT0jUfKJkd1s9HpBir8V4zw2t1mMdjBu61VcEdc3oAwaV+fsJsbApRHXQRjnQwG1UlXPfVxKTo80Af4K3wjRj+BtED0hx684KPya0u5yx20bGJMlCtvR93MqdrcTsjyp2p/CdHjY06tU2XFgU/EqHLa1oQA99TGIBsuuJwohXa3OpTLS2Z+amXV/mGYw8c/Xx+M32fYiDCq9Z5zRrpEntfMzDcmdUeil4mCnj3qKcfsAGYlAVRpQPNOvOfuiJGEPXmxjLfJauOC8LYhOF/znigoPWw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7904.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(56012099006)(11063799006)(5023799004)(4143699003)(10067099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T1Z4Z092Vm41VTVGYmRINHEwM01HWllZWVBiTmFHdlB1WVVLWGE2aGc3c0Yr?=
+ =?utf-8?B?Z0JxNENkNHdEOTJiME5kRWJUa1ppczNXcy90ZzBuQUFBWW9uam03OTNhVm5S?=
+ =?utf-8?B?b3E4WEl2MUZFVk50MzdOUFROTVV4bnRHbDN0RFRybmJyVXNmWDY0TXNJSGFR?=
+ =?utf-8?B?Ti9oUXVMcnc2bDlvaTllQ0lWemRZR1BNQ0hjSHAyV3hGdTBnNk0zTHJ2VWtr?=
+ =?utf-8?B?R1ExVm1lV1NHdUV4UkZxTTJ3SzhXV2VHOHNhaDR0emsyQjVVWkNsM2pjcEVZ?=
+ =?utf-8?B?RnpSbXpJaXFISWRxL01LZ0x3UjVpL1hMQlhtaHd0OUljZjZpUWNSWXAyVi9M?=
+ =?utf-8?B?Wkd0MklCaGtKU2U3RzRxNmk3YjFrMlh2czF3KzFGbm9JUUFSRmpzQStPYmI4?=
+ =?utf-8?B?Z1lJYVlRak5BNmRnSW4vdHhqbW5Ja25RMTlDVVV0UzROZlc1UXVjRGdmZlpz?=
+ =?utf-8?B?bWRvT1lIY0FrWkNlTXRJemtnelVnemxBbTdJSU1KcVZtTUJzSzZvUkNvWVJu?=
+ =?utf-8?B?cUJxUi9rdFRXK3ZpZHRpVUJFTng5WjBpOW9nWllTMVRXQ3BraXdRaVBrUnQx?=
+ =?utf-8?B?b1J3SXRFNk0xcnQ1TlBXUXR5MUVWSnd4Y3hwOUJCYXE2R1M5Vm5qMzZSR25w?=
+ =?utf-8?B?VUxGTGF2RFQrOGtXVXRQUFUxUWtyUVdKS1J5T1pROHFGWitHbS9mRHpJSXZZ?=
+ =?utf-8?B?UEUvaGlrT3ZRZnpTY0ZpQWtEbjNNaVNOMzhwenlOc1RWdmpqZllBZDMzejBQ?=
+ =?utf-8?B?K08wNmtvNU1WejVrWVVRSkthNmpsSjRCVllCZzEvTktYdTdLR3lXS3hiYjlR?=
+ =?utf-8?B?YWthWDREbDZteE9kRnJmMmxzSDgyblhGTWkrQ0pzMTFuT0VBL3Y5SVZ0QTlE?=
+ =?utf-8?B?VWFFNlJOenJlRmZhN0V1UXdPZ2FlYnpJNmhhQnorNWQvamhVRG5tSFJhUnBp?=
+ =?utf-8?B?cDY5TEVsckRnVisvZThhSnZrUnRBMEMxWHd0SEpqQ3lPR015VVFDaHNNajQ3?=
+ =?utf-8?B?Mlg5Vms4REhZRnFYZXNCN0w4NERwMm9xVFFaeGlONVVRY20ydVJKbHlhMXly?=
+ =?utf-8?B?dTdXaURwamk1MUxkMjNpUUtsdTdrSnFrZnhBencwNmt0YXFUVUdSdHlCQTZs?=
+ =?utf-8?B?N2MwUXdrV3N4TXl6ZXIxNG42enlleEVJLy9rYUdMR0NDdnJPdzRCRGJZY0ty?=
+ =?utf-8?B?UnZ6ZEVZS3RYQ2dDdjljcTJTNG01UXdpYmROMnJoWDRrbUxsTkluczF6Tkl0?=
+ =?utf-8?B?VUxDL2tldlZ4bStqbEp1VGkrUWVrYnhQK21BMjBZNE5OR3dPVW1zT2xiTUoy?=
+ =?utf-8?B?UU1wOWxNUmc1NWNrQkFQMnphN2lUekhTUE04VHo2OWdSais0VVllNG5pRDVl?=
+ =?utf-8?B?R040NW9pQXlUODNVSTYxeHgvQnRtRnJVdUV4NVNZQ1Y2dmtDL2NZaTNmSEdB?=
+ =?utf-8?B?Mkl1c1N3WEh6dCtOYWlxbjNDS2lvam1kNk5SN0YwNlprWktScUoyUU42cG0y?=
+ =?utf-8?B?NXNuRExHR2NNMFNpc3IwT3RIaEd0c0xPQlFmbzJIelV2UUd5dHl3UEplbjl4?=
+ =?utf-8?B?a0VGWVlZMDQ1cUo3ZjgxMFJZVjdibUh3S3B2YzZ2bTNPMmVFYTNYampUd1ZL?=
+ =?utf-8?B?QmlZK0M0S1BjYjFRT1c3MkZnRjRIV3NBbktXNWNSN1hjd1ZtcTZiZ1RERjZ0?=
+ =?utf-8?B?cVdNdkZPamY5alk0VjVwekdMcXdmZ2NWUTJnSXJZaCszUlIzZENzQUR4OHZL?=
+ =?utf-8?B?eVBkcTJZQzg0aG80RHppTTI0emY3TzJqOEo3RDBHandCc2thNkZ0K2lVQ2M5?=
+ =?utf-8?B?TVBHd2t4dTBCSzFtSVdrR2ZGTml1UmpxTjUxeElwUFEvMFRGWkNKTHBEbWZo?=
+ =?utf-8?B?TFBtVWFHdW9jbFJhaHo5dVVuWmN4enBqamp6VUQxdW9qRER1c0lmd3d4dGJp?=
+ =?utf-8?B?NnRFSTNSejFkYlY0TWVwTDJudUNWdDFZcDl1ekNPWTdXTkJ2blF2MGZ6R3RD?=
+ =?utf-8?B?RlBHMktoa29YN012ZkN2TzZaQVdJZ2k3R011dDQrWnpNbUpTMnNQaVo3UEpG?=
+ =?utf-8?B?K1VQMWliUW9EMzYzbTNUL3o2YTVFV0E0dVRsZkI2UCtRZHU2a3huRGdyOE95?=
+ =?utf-8?B?bHpxSUtoOGR2QXE0VHZVSDVxVFE1aFZldExlMlZhRUh6OEp6YUF4T0djbVdV?=
+ =?utf-8?B?L2g2Zm43YlFUL09jNkhvMGtnWGxURE0vd2VPR25vOVBvMjVkaWZwcG96cDlt?=
+ =?utf-8?B?ZUlxazFQREpUbTlrVXNnQUVpQ1V1ejlGTHhKTFZlbGxWNHpkeGxKVXAxZHFD?=
+ =?utf-8?B?Wm1Zc2xwemtlUDRjT3lJakdNR2hBd0NrWnhpZEMyalMrU2NEM3p6dHhzV1lF?=
+ =?utf-8?Q?NWmtDxWeS49WxP7A=3D?=
+X-Exchange-RoutingPolicyChecked: rRkK/7QqUSqBDLpP4i8N6OvpcfDYvbdgtluNdKc43lDVasxrPamVPbdGolxAXgOPjlqw7Wefc4uRdePIwVnPlqppzGkJdk7m+s22y0iaElKSefEBfFvnbmz1yk+zlnPmtNpdzT4buN47Fi3YiytqZ6170PBlCYA8SBmxvx8ifbaCmzpcEHYAByiu7JWRZVmJcawm659LQ668c+39443auHi6DEXWiYhXWiRqWQ+wdCeOYLiYrAXlogS0T+IzJyZ3l/0JZNXUnA+xBwT5Zm3qE0g+EQMaV3iy83mNDy1WTJwoMT5WYe00ekgAqRL3UcFnwmzS2wXdcff9V4NDP79Q+g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55811529-5545-4133-bd57-08dee845193e
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7904.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2026 23:01:00.8467 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1cRZgvj3QqX0Y8nmnNsaMLPq9V+3A8CS4rPoYYI2bA8kTrfVOzphhX05BmkkLKx9ZZda+yyVRTzNUUmoHwegZNOYKOjKGHVgiDwxdxt+M5s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8379
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,241 +167,188 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2854698806431160204==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [v5,1/1] drm/xe/eustall: Add WA 14027054324 support for graphics IP 35.11
-URL   : https://patchwork.freedesktop.org/series/170932/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5462-447a47cf86f97a1f5362d0675d65d129be27b004_BAT -> xe-pw-170932v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-bmg-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-170932v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@fbdev@write.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_exec_multi_queue@priority:
-    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
 
 
-Build changes
--------------
+On 7/21/26 10:34 PM, Jia Yao wrote:
+> The HW unit that writes to the UM fault queue is not always coherent
+> with the CPU cache. Ensure the UM queue memory is uncached on the CPU
+> side so that GuC always reads descriptors from memory rather than a
+> stale CPU cache line.
+> 
+> Allocate the UM queues in a dedicated UC BO (ads->um_queue_bo) instead
+> of the main ADS blob. This also prevents xe_guc_ads_populate()'s
+> memset from zeroing any fault descriptor written between GDRST and GuC
+> restart. On dGFX, VRAM placement gives a well-defined DPA.
+> 
+> v3: simplify commit message and code comments per reviewer feedback;
+>      add Fixes tag and stable Cc
+> 
+> v2: also fix dGFX (VRAM placement + UC flag); remove now-dead
+>      guc_ads_um_queues_size/offset helpers
+> 
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Jia Yao <jia.yao@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_guc_ads.c       | 64 ++++++++++++++++-----------
+>   drivers/gpu/drm/xe/xe_guc_ads_types.h |  8 +++-
+>   2 files changed, 46 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+> index c98454545a85..ec36a5db7fc8 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> @@ -155,16 +155,6 @@ static size_t guc_ads_capture_size(struct xe_guc_ads *ads)
+>   	return PAGE_ALIGN(ads->capture_size);
+>   }
+>   
+> -static size_t guc_ads_um_queues_size(struct xe_guc_ads *ads)
+> -{
+> -	struct xe_device *xe = ads_to_xe(ads);
+> -
+> -	if (!xe->info.has_usm)
+> -		return 0;
+> -
+> -	return GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX;
+> -}
+> -
+>   static size_t guc_ads_private_data_size(struct xe_guc_ads *ads)
+>   {
+>   	return PAGE_ALIGN(ads_to_guc(ads)->fw.private_data_size);
+> @@ -205,22 +195,12 @@ static size_t guc_ads_capture_offset(struct xe_guc_ads *ads)
+>   	return PAGE_ALIGN(offset);
+>   }
+>   
+> -static size_t guc_ads_um_queues_offset(struct xe_guc_ads *ads)
+> -{
+> -	u32 offset;
+> -
+> -	offset = guc_ads_capture_offset(ads) +
+> -		 guc_ads_capture_size(ads);
+> -
+> -	return PAGE_ALIGN(offset);
+> -}
+> -
+>   static size_t guc_ads_private_data_offset(struct xe_guc_ads *ads)
+>   {
+>   	size_t offset;
+>   
+> -	offset = guc_ads_um_queues_offset(ads) +
+> -		guc_ads_um_queues_size(ads);
+> +	offset = guc_ads_capture_offset(ads) +
+> +		 guc_ads_capture_size(ads);
+>   
+>   	return PAGE_ALIGN(offset);
+>   }
+> @@ -409,6 +389,30 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+>   
+>   	ads->bo = bo;
+>   
+> +	/*
+> +	 * The HW unit that writes to the UM fault queue is not coherent with
+> +	 * the CPU cache.  Use a dedicated UC BO to ensure GuC always reads
+> +	 * descriptors from memory rather than a stale CPU cache line.  A
+> +	 * separate BO also prevents xe_guc_ads_populate()'s memset from
+> +	 * zeroing descriptors written between GDRST and GuC restart.  On
+> +	 * dGFX, VRAM gives a well-defined DPA.
+> +	 */
+> +	if (xe->info.has_usm) {
+> +		u32 um_flags = XE_BO_FLAG_GGTT |
+> +			       XE_BO_FLAG_GGTT_INVALIDATE |
+> +			       XE_BO_FLAG_PINNED_NORESTORE |
+> +			       XE_BO_FLAG_NEEDS_UC |
+> +			       XE_BO_FLAG_VRAM_IF_DGFX(tile);
+> +
+> +		bo = xe_managed_bo_create_pin_map(xe, tile,
+> +					  GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX,
+> +					  um_flags);
+> +		if (IS_ERR(bo))
+> +			return PTR_ERR(bo);
+> +
+> +		ads->um_queue_bo = bo;
+> +	}
+> +
+>   	return 0;
+>   }
+>   ALLOW_ERROR_INJECTION(xe_guc_ads_init, ERRNO); /* See xe_pci_probe() */
+> @@ -820,9 +824,9 @@ static void guc_mmio_reg_state_init(struct xe_guc_ads *ads)
+>   
+>   static void guc_um_init_params(struct xe_guc_ads *ads)
+>   {
+> -	u32 um_queue_offset = guc_ads_um_queues_offset(ads);
+>   	struct xe_guc *guc = ads_to_guc(ads);
+>   	struct xe_device *xe = ads_to_xe(ads);
+> +	struct xe_bo *um_bo = ads->um_queue_bo;
+>   	u64 base_dpa;
+>   	u32 base_ggtt;
+>   	bool with_dpa;
+> @@ -830,8 +834,14 @@ static void guc_um_init_params(struct xe_guc_ads *ads)
+>   
+>   	with_dpa = !xe_guc_using_main_gamctrl_queues(guc);
+>   
+> -	base_ggtt = xe_bo_ggtt_addr(ads->bo) + um_queue_offset;
+> -	base_dpa = xe_bo_main_addr(ads->bo, PAGE_SIZE) + um_queue_offset;
+> +	if (um_bo) {
+> +		/* All USM platforms: UM queues in dedicated um_queue_bo */
+> +		base_ggtt = xe_bo_ggtt_addr(um_bo);
+> +		base_dpa = xe_bo_main_addr(um_bo, PAGE_SIZE);
+> +	} else {
+> +		/* Platform does not support USM: no UM queues, nothing to do */
+> +		return;
+> +	}
+>   
+>   	for (i = 0; i < GUC_UM_HW_QUEUE_MAX; ++i) {
+>   		/*
+> @@ -912,6 +922,10 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
+>   	xe_gt_assert(gt, ads->bo);
+>   
+>   	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, xe_bo_size(ads->bo));
+> +	/*
+> +	 * um_queue_bo is not zeroed here. GuC resets head/tail via MMIO on
+> +	 * every restart so stale ring contents are never consumed.
+> +	 */
+>   	guc_policies_init(ads);
+>   	fill_engine_enable_masks(gt, &info_map);
+>   	guc_mmio_reg_state_init(ads);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads_types.h b/drivers/gpu/drm/xe/xe_guc_ads_types.h
+> index 48a8e092023f..a63ef000dc8a 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads_types.h
+> @@ -14,8 +14,14 @@ struct xe_bo;
+>    * struct xe_guc_ads - GuC additional data structures (ADS)
+>    */
+>   struct xe_guc_ads {
+> -	/** @bo: Xe BO for GuC ads blob */
+> +	/** @bo: Xe BO for GuC ads blob (WB cached) */
+>   	struct xe_bo *bo;
+> +	/**
+> +	 * @um_queue_bo: Dedicated UC BO for the HW fault ring (UM queues).
+> +	 * The HW unit writing to this ring is not coherent with the CPU cache;
+> +	 * UC ensures GuC reads descriptors from memory. NULL if no USM support.
+> +	 */
+> +	struct xe_bo *um_queue_bo;
+>   	/** @golden_lrc_size: golden LRC size */
+>   	size_t golden_lrc_size;
+>   	/** @regset_size: size of register set passed to GuC for save/restore */
 
-  * Linux: xe-5462-447a47cf86f97a1f5362d0675d65d129be27b004 -> xe-pw-170932v1
+Hi Jia,
 
-  IGT_9020: 9020
-  xe-5462-447a47cf86f97a1f5362d0675d65d129be27b004: 447a47cf86f97a1f5362d0675d65d129be27b004
-  xe-pw-170932v1: 170932v1
+Regarding the issue mentioned in the cover letter that this patch aims 
+to fix, wouldn't it be resolved by creating a separate um_queue_bo by 
+adding XE_BO_FLAG_NEEDS_UC to the (XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT | 
+XE_BO_FLAG_GGTT_INVALIDATE | XE_BO_FLAG_PINNED_NORESTORE) flags used in 
+the existing code when generating ads->bo? If so, as Matthew Auld 
+mentioned, wouldn't it be better to apply this patch as one that creates 
+an Uncached buffer for um_queue_bo, and then split it into a separate 
+patch that uses XE_BO_FLAG_VRAM_IF_DGFX(tile) instead of 
+XE_BO_FLAG_SYSTEM if there is a performance improvement on the dGPU?
 
-== Logs ==
+And please also update the description section titled "Layout of the ADS 
+blob allocated for the GuC" in the [drivers/gpu/drm/xe/xe_guc_ads.c] file.
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/index.html
-
---===============2854698806431160204==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v5,1/1] drm/xe/eustall: Add WA 14027054324 support for graphics IP 35.11</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170932/">https://patchwork.freedesktop.org/series/170932/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5462-447a47cf86f97a1f5362d0675d65d129be27b004_BAT -&gt; xe-pw-170932v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-170932v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170932v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5462-447a47cf86f97a1f5362d0675d65d129be27b004 -&gt; xe-pw-170932v1</li>
-</ul>
-<p>IGT_9020: 9020<br />
-  xe-5462-447a47cf86f97a1f5362d0675d65d129be27b004: 447a47cf86f97a1f5362d0675d65d129be27b004<br />
-  xe-pw-170932v1: 170932v1</p>
-
-</body>
-</html>
-
---===============2854698806431160204==--
+G.G.
