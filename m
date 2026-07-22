@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C64DC4453A
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 21:54:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D48D1C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 21:54:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25EF910E4F4;
-	Wed, 22 Jul 2026 21:54:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0D310E4F8;
+	Wed, 22 Jul 2026 21:54:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SEHQxspo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gyfDqsUE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50B9710E4F4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E7A510E4F8
  for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 21:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784757249; x=1816293249;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4RGJ9XAAMMperHzKGpSABC23Yy3+hRDqB7CK9HL57Vc=;
- b=SEHQxspo0l0Wksrpah52xODDILO2zgeh2JR39caRCBYFI3L5mcGfWlhB
- v/lv2MwHXcXTlIq8x1ukvCYSegg810q8x/lzX/ArtX2tVgAeE7TvzS3G6
- hHl8ZKSgXmhkGPKHmBrGnOUvr0se2u+qCGvbABm4k5CILXAZDUprZ4h8S
- sTVYEr5rmzgTEqT9xikGo/Sf7LTxovGMwinkZzNLlfGt/avwBR1ct42Eu
- FeMHT5d2RghXVGkGgGxMfIEcQ6FSVb6pE5FVIfpimHIKGNMXe0OzuKeG1
- mzVx5kOKj0DiG6HmwDhCV0d+7le7rRNKoeSc7DnE4QHngCAHD+1NmuA5K A==;
-X-CSE-ConnectionGUID: A990fBVITf2rA/7H8r2qUg==
-X-CSE-MsgGUID: J1jabOFARgGGyYiOxTu+eA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="102950628"
-X-IronPort-AV: E=Sophos;i="6.25,179,1779174000"; d="scan'208";a="102950628"
+ t=1784757250; x=1816293250;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=cd6GyCRGVGflu8mh7r7S/m/qRuamhF3c2yh1vpvziHw=;
+ b=gyfDqsUE/fa2aWJH2aucAp28W0vv6r9H1rY8V3ZHpWtHk4yBwiHBAmdF
+ d3tDosXE6o7nw9AjtWWgSbQjgLuCSXL3aVRVlPPBX84qwnbbXyJsbTNgL
+ l8VeRYpQsH++VsA9Qxfe9Df+mh6c4T8O97zd1dva6KAQf18TxqN3bRQd/
+ VJ6pJ0QYTUh+woPIcF2psR8TUvkx3E1oWnM6DbgZfgue3FCQPnypw+d87
+ O/LLPj31ykCXVPtFhZ2XzZSUlJTSCBcF/mhd8W2UKh3/m4drQBIGhj5Nd
+ 1FqzNeOmg05ovkGviCeA+LDVW7brLn7oOPr9R3PZucPv8I7hRg+y9IB41 w==;
+X-CSE-ConnectionGUID: oqSpOU0KQ8ulsMrdpKdI/g==
+X-CSE-MsgGUID: LI1xT/dDS/OS4KE4K/MK6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="102950632"
+X-IronPort-AV: E=Sophos;i="6.25,179,1779174000"; d="scan'208";a="102950632"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jul 2026 14:54:09 -0700
-X-CSE-ConnectionGUID: znsNHFxKSvOyxA738umifg==
-X-CSE-MsgGUID: mSPJvkO1Tluk91rU3yrkqw==
+X-CSE-ConnectionGUID: kQeJk2MsTnSPh0tjXCyz/A==
+X-CSE-MsgGUID: reZq0iVeQIa4hxA8FJPOrA==
 X-ExtLoop1: 1
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jul 2026 14:54:09 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 0/3] Modify the SW tail logic in OA
-Date: Wed, 22 Jul 2026 14:54:04 -0700
-Message-ID: <20260722215403.2668958-5-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 1/3] drm/xe/xe_oa: Clear status only if relevant bits are set
+Date: Wed, 22 Jul 2026 14:54:05 -0700
+Message-ID: <20260722215403.2668958-6-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260722215403.2668958-5-umesh.nerlige.ramappa@intel.com>
+References: <20260722215403.2668958-5-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -62,30 +64,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-OA unit updates the HW TAIL register to indicate that a new report is
-available, although it does not guarantee that the report is visible in
-memory. Also the currently running workload contributes to some latency
-in seeing this report in memory. In the past we would set some fields in
-the OA report and check if the fields are populated to non-zero values
-by the HW, but this is no longer sufficient since some parts of the
-report may land out of order under heavy workloads. Drop this WA and add
-a new logic that just waits for a fixed number of HW TAIL report
-increments before returning data to the user. User will always see the
-reports lagging by this fixed number, however we do not have realtime
-use cases for OAG since OAG reports are mainly post processed.
-
-v2: Rebase
+OA monitors only a few bits in the status field. The current
+read-modify-write will write to the MMIO even if none of the relevant
+bits are set. Clear the status only if relevant bits are set.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-Umesh Nerlige Ramappa (3):
-  drm/xe/xe_oa: Clear status only if relevant bits are set
-  drm/xe/xe_oa: Avoid checking and setting fields in the OA report
-  drm/xe/xe_oa: Add a lag to the reports that is exported to user
-
- drivers/gpu/drm/xe/xe_oa.c | 94 +++++---------------------------------
- 1 file changed, 12 insertions(+), 82 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index b3acbcd678b7..5eb8f6739fae 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -543,14 +543,16 @@ static int __xe_oa_read(struct xe_oa_stream *stream, char __user *buf,
+ 			size_t count, size_t *offset)
+ {
+ 	/* Only clear our bits to avoid side-effects */
+-	stream->oa_status = xe_mmio_rmw32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
+-					  OASTATUS_RELEVANT_BITS, 0);
++	stream->oa_status = xe_mmio_read32(&stream->gt->mmio, __oa_regs(stream)->oa_status);
+ 	/*
+ 	 * Signal to userspace that there is non-zero OA status to read via
+ 	 * @DRM_XE_OBSERVATION_IOCTL_STATUS observation stream fd ioctl
+ 	 */
+-	if (stream->oa_status & OASTATUS_RELEVANT_BITS)
++	if (stream->oa_status & OASTATUS_RELEVANT_BITS) {
++		xe_mmio_write32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
++				stream->oa_status & ~OASTATUS_RELEVANT_BITS);
+ 		return -EIO;
++	}
+ 
+ 	return xe_oa_append_reports(stream, buf, count, offset);
+ }
 -- 
 2.51.0
 
