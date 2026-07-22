@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAA1BC44536
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 17:50:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E2D9C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 18:06:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B9D010EE6C;
-	Wed, 22 Jul 2026 17:50:50 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54CA510EE6C;
- Wed, 22 Jul 2026 17:50:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6614930003186211112=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6E2210E4BF;
+	Wed, 22 Jul 2026 18:06:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WvKTyCRn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 974CA10E4BF
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jul 2026 18:06:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784743581; x=1816279581;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bhWYd+W0CttTNgcX91dauu0Pw1MnQzuzexGKxRFURTY=;
+ b=WvKTyCRnLCuo+fyXKDUA+5RppQcOESsTe4z/hgfNywd5TMb6FIyNfxWW
+ BRPMY2iRk+cqn6E7ZmhrYGn8RrJQv3zTelA9W49mr4Vu9EaRSNXvO8g1D
+ 800I69U3aggbKgNxHSrJmYywzuM3SebaVfZzLhrqiC+qlwFRtn8nn1F1U
+ QgiHefAXV29n3+IS/eVYZn7pg4biHHff4SRsrq+enbl59WnrL23ecxS9x
+ if0jCXe4gtTZRbiQfWGADrTSRW174DWi0AOum7Ql3vOahhKhvI7XWW5kB
+ i3OGbkSG+UVdCvpSB9qu+8fJi50JtLxd5qaVd9aoPf8AJ+oeQlK9gEspE g==;
+X-CSE-ConnectionGUID: sCO1InloTp2uqej8onYNHg==
+X-CSE-MsgGUID: xNbGxoDjRAmYW+eMJ9jw/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="95744219"
+X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="95744219"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2026 11:06:08 -0700
+X-CSE-ConnectionGUID: o1rR+jU+Q2SK6cdYaSkTHA==
+X-CSE-MsgGUID: 3/9EjRN4Th2BC8umF671Ig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; d="scan'208";a="253802242"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.20])
+ by fmviesa006.fm.intel.com with ESMTP; 22 Jul 2026 11:06:06 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: julia.filipchuk@intel.com, matthew.brost@intel.com,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v6 1/2] drm/xe: Remove extra newlines from LRC snapshot dump
+Date: Wed, 22 Jul 2026 14:06:04 -0400
+Message-Id: <20260722180605.2498906-2-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260722180605.2498906-1-zhanjun.dong@intel.com>
+References: <20260722180605.2498906-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/i2c=3A_alerts_and_co?=
- =?utf-8?q?ntroller_enabling_modifications_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jul 2026 17:50:49 -0000
-Message-ID: <178474264933.217735.10573988603951952586@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260722133554.2079612-1-heikki.krogerus@linux.intel.com>
-In-Reply-To: <20260722133554.2079612-1-heikki.krogerus@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,142 +63,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6614930003186211112==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The LRC snapshot printer adds an extra newline before the replay
+offset and replay length lines. This leaves blank lines in the
+HWCTX section of the dump.
 
-== Series Details ==
+Remove the stray newlines so the snapshot output remains compact
+and consistently formatted.
 
-Series: drm/xe/i2c: alerts and controller enabling modifications (rev6)
-URL   : https://patchwork.freedesktop.org/series/168930/
-State : success
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 3e7c995085d0..0b5f0a6d7d13 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2593,8 +2593,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 	}
+ 
+ 	drm_printf(p, "\n\t[HWCTX].length: 0x%lx\n", snapshot->lrc_size - LRC_PPHWSP_SIZE);
+-	drm_printf(p, "\n\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
+-	drm_printf(p, "\n\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
++	drm_printf(p, "\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
++	drm_printf(p, "\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
+ 
+ 	drm_puts(p, "\t[HWCTX].data: ");
+ 	for (; i < snapshot->lrc_size; i += sizeof(u32)) {
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7_BAT -> xe-pw-168930v6_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-168930v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_debugfs@read-all-entries:
-    - bat-wcl-1:          [TIMEOUT][1] -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7/bat-wcl-1/igt@core_debugfs@read-all-entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168930v6/bat-wcl-1/igt@core_debugfs@read-all-entries.html
-
-  * igt@xe_module_load@load:
-    - bat-wcl-1:          [DMESG-WARN][3] ([Intel XE#8551]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7/bat-wcl-1/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168930v6/bat-wcl-1/igt@xe_module_load@load.html
-
-  
-  [Intel XE#8551]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8551
-
-
-Build changes
--------------
-
-  * IGT: IGT_9018 -> IGT_9019
-  * Linux: xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7 -> xe-pw-168930v6
-
-  IGT_9018: f4345861cbd5d97fd50b73bf7af5fe3286fca056 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9019: 9019
-  xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7: 766692482abf46aeeca6881abdf0d4dfb32466a7
-  xe-pw-168930v6: 168930v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168930v6/index.html
-
---===============6614930003186211112==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/i2c: alerts and controller enabling modifications (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168930/">https://patchwork.freedesktop.org/series/168930/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168930v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168930v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7_BAT -&gt; xe-pw-168930v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-168930v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_debugfs@read-all-entries:</p>
-<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7/bat-wcl-1/igt@core_debugfs@read-all-entries.html">TIMEOUT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168930v6/bat-wcl-1/igt@core_debugfs@read-all-entries.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7/bat-wcl-1/igt@xe_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8551">Intel XE#8551</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168930v6/bat-wcl-1/igt@xe_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9018 -&gt; IGT_9019</li>
-<li>Linux: xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7 -&gt; xe-pw-168930v6</li>
-</ul>
-<p>IGT_9018: f4345861cbd5d97fd50b73bf7af5fe3286fca056 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9019: 9019<br />
-  xe-5459-766692482abf46aeeca6881abdf0d4dfb32466a7: 766692482abf46aeeca6881abdf0d4dfb32466a7<br />
-  xe-pw-168930v6: 168930v6</p>
-
-</body>
-</html>
-
---===============6614930003186211112==--
