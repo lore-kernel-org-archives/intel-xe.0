@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC888C44512
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 04:42:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A486AC4453B
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 04:42:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6FA10E4C4;
-	Wed, 22 Jul 2026 04:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A6AB10EC25;
+	Wed, 22 Jul 2026 04:42:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hM6a1C1Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AjYCYA7o";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3730E10E4C4;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3B4510E4C4;
  Wed, 22 Jul 2026 04:42:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784695347; x=1816231347;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=egqyx0xIHYO6pVjtq79Q7C2oe7YYIs3Mzn5MdOs14pI=;
- b=hM6a1C1Q8wtbZLfExHMUP45zRDupmYrBErRat7lbPgX1do+6fPgoJ7vj
- K6SLpaOc4/PjFfF1J3/DRwHcSCd/0uU/fwMMpgk8caIcyZffgV/I9VlnW
- hNwZY4zaP7lf4AUONbkSY/JlyZqXgtaiiTpSGxxbgGnywrfwkgKWrPNjM
- /wRajZPxzI8+WweKP7ENRr8ZHyhZlWnwRk6Sp7NHh1R8DPSbnXcVmXHKb
- 9mkkzGi8iyJrgi1qY1/lHqI5BWu2YD5u9fvi+3IdqNS+ODNVZxv2amImH
- n4+O69wQ+i0u+LoX2NccjbBd+tPsGSjGsUlCC0IUJ2iPW6KvQxVhwYvUf A==;
-X-CSE-ConnectionGUID: Z1mwctPZSXGY1+1hIbuv8Q==
-X-CSE-MsgGUID: CBZDV5XbTKWFe8uOXwMUSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="102865785"
-X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="102865785"
+ t=1784695348; x=1816231348;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=8r1Uq1zdtpAGJu8GavaMBdCBQ8DhrDpmk6GT3M4wn6s=;
+ b=AjYCYA7oOVmZ7rO+Bu5W9KLM7xAptqFy5TnPVlfZ1K5cHj8FWuUCp3o9
+ DF1m59K4yMpGwr08nmFpMTCsamuKBdevGAyqrd5lByDAm9JcIchzfYlQE
+ 44ihGuXdwJHfmAe0tzETT2qWA19Lt2EX1bjo3C+uIyDBFChCp+s0cHcvg
+ uQk39waq59RrTsA7Pg14OEcZ2FHbAVFXzlic0BGbt29BrsDc3yX7dN59O
+ 7DtnseFteeTnyASpC5Ks67ug4vioyZvep3fxg0eOwr7Sqen1JL1tXujpt
+ 6pJcMog0cHGtQmwwCQ/XE18AoaI4JPxVk1gBRWXBjYpVBZmlRXb55OZsH w==;
+X-CSE-ConnectionGUID: qjv6NIKES1aUaLKvCfRnOQ==
+X-CSE-MsgGUID: AMiu0Vl8SxKjJqk0bTqQdw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="102865818"
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="102865818"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 21:42:26 -0700
-X-CSE-ConnectionGUID: f5jNSLotR9G+hsgBQa+nlQ==
-X-CSE-MsgGUID: NNhGkjL0QKOHHVPYPaELjA==
+ 21 Jul 2026 21:42:27 -0700
+X-CSE-ConnectionGUID: ttMGdGQCR4qWX40DU9YdWg==
+X-CSE-MsgGUID: 4McOWbVNSJOBmCVv1kMXLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="254063555"
+X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="254063563"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 21:42:26 -0700
+ 21 Jul 2026 21:42:27 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-mm@kvack.org, linux-kernel@vger.kernel.org
@@ -58,10 +58,12 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Dave Airlie <airlied@redhat.com>, Matthew Wilcox <willy@infradead.org>
-Subject: [PATCH 1/3] mm/huge_memory: add folio_split_driver_managed()
-Date: Tue, 21 Jul 2026 21:42:18 -0700
-Message-Id: <20260722044220.1110278-1-matthew.brost@intel.com>
+Subject: [PATCH 3/3] drm/ttm: allocate pool pages as compound (__GFP_COMP)
+Date: Tue, 21 Jul 2026 21:42:20 -0700
+Message-Id: <20260722044220.1110278-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260722044220.1110278-1-matthew.brost@intel.com>
+References: <20260722044220.1110278-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -78,37 +80,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a lightweight structural split primitive for large (compound) folios
-that a driver allocated with __GFP_COMP and manages entirely by itself,
-outside of the core mm's view.
+Historically ttm_pool_alloc_page() deliberately avoided __GFP_COMP for
+higher-order allocations and instead stashed the allocation order in
+page->private. The stated reason was that mapping a TTM page into a
+userspace process and having that process call put_page() on it would be
+illegal on a compound page, because the stray reference would fold into
+the compound head and could free the whole block behind TTM's back.
 
-The existing split paths - split_folio() and folio_split_unmapped() -
-are built for folios that the mm owns: they perform a refcount freeze,
-walk and remap the rmap, and take the anon_vma / i_mmap locks, and
-folio_split_unmapped() further assumes an anon, pagecache-style refcount
-model (nr_pages + 1). None of that applies to a folio that is:
+That hazard no longer applies to the non-DMA path. TTM faults its pages
+into userspace via VM_PFNMAP (see ttm_bo_vm_fault_reserved() /
+vmf_insert_pfn_prot()), so the core mm never takes a struct page
+reference on them and GUP rejects the range; a stray userspace put_page()
+cannot reach these pages at all.
 
-  - singly referenced (the caller holds the only reference),
-  - not mapped through the rmap (folio_mapped() == 0),
-  - not in the page cache or swap cache (folio->mapping == NULL),
-  - not on any LRU or the deferred-split list.
+Convert the !ttm_pool_uses_dma_alloc() path to allocate compound pages
+with __GFP_COMP and recover the order via folio_order() instead of
+page->private:
 
-For such a folio the split is purely structural: because nothing else in
-the kernel can reach it, there is no need to freeze the refcount or touch
-any mapping. folio_split_driver_managed() therefore performs only the
-compound and split-accounting teardown via __split_unmapped_folio() and
-then hands each resulting order-@new_order folio its own reference,
-mirroring split_page() for compound folios. The caller keeps the original
-reference on the first resulting folio and is responsible for freeing all
-of them individually.
+  - ttm_pool_alloc_page(): add __GFP_COMP, drop the page->private write.
+  - ttm_pool_page_order() / ttm_pool_unmap_and_free(): read the order
+    from folio_order() for the non-DMA case.
+  - ttm_pool_split_for_swap(): for compound folios, split via the new
+    folio_split_driver_managed() helper rather than split_page(), which
+    rejects compound pages. Each resulting order-0 folio is then freed
+    individually as it is backed up.
+  - Drop the now-dead page->private = 0 clears on the purge and
+    full-backup free paths.
 
-The immediate user is TTM's GPU page pool, which allocates higher-order
-compound pages, maps them into userspace via VM_PFNMAP (never through the
-rmap), and needs to split them into order-0 folios under memory pressure
-so pages can be backed up to shmem and freed one at a time.
+The DMA path is intentionally left unchanged: dma_alloc_attrs() does not
+produce compound pages, so it keeps split_page() and the page->private
+order stash.
 
-A CONFIG_TRANSPARENT_HUGEPAGE=n stub is provided so callers can build
-without the split machinery; it warns and returns -EINVAL.
+folio_split_driver_managed() lives in the THP split machinery
+(mm/huge_memory.c), which only builds when CONFIG_TRANSPARENT_HUGEPAGE
+is enabled. Drivers that drive the TTM shrinker and therefore reach the
+split path must select TRANSPARENT_HUGEPAGE.
 
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: Maxime Ripard <mripard@kernel.org>
@@ -138,117 +144,179 @@ Cc: linux-mm@kvack.org
 Suggested-by: Matthew Wilcox <willy@infradead.org>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Assisted-by: GitHub-Copilot:claude-opus-4.8
-
 ---
+ drivers/gpu/drm/ttm/tests/ttm_pool_test.c | 23 +++++++++---
+ drivers/gpu/drm/ttm/ttm_backup.c          |  8 ++--
+ drivers/gpu/drm/ttm/ttm_pool.c            | 46 +++++++++++++++--------
+ 3 files changed, 53 insertions(+), 24 deletions(-)
 
-The patch is based on drm-tip rather than the core MM branches to
-facilitate Intel CI testing and initial review. It can be rebased onto
-the core MM branches in a subsequent revision.
----
- include/linux/huge_mm.h |  8 ++++++
- mm/huge_memory.c        | 63 +++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 71 insertions(+)
-
-diff --git a/include/linux/huge_mm.h b/include/linux/huge_mm.h
-index ad20f7f8c179..35661d82d54a 100644
---- a/include/linux/huge_mm.h
-+++ b/include/linux/huge_mm.h
-@@ -402,6 +402,7 @@ enum split_type {
- int __split_huge_page_to_list_to_order(struct page *page, struct list_head *list,
- 		unsigned int new_order);
- int folio_split_unmapped(struct folio *folio, unsigned int new_order);
-+int folio_split_driver_managed(struct folio *folio, unsigned int new_order);
- unsigned int min_order_for_split(struct folio *folio);
- int split_folio_to_list(struct folio *folio, struct list_head *list);
- int folio_check_splittable(struct folio *folio, unsigned int new_order,
-@@ -656,6 +657,13 @@ static inline int split_folio_to_list(struct folio *folio, struct list_head *lis
- 	return -EINVAL;
+diff --git a/drivers/gpu/drm/ttm/tests/ttm_pool_test.c b/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
+index be75c8abf388..771ed257778c 100644
+--- a/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
++++ b/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
+@@ -169,7 +169,14 @@ static void ttm_pool_alloc_basic(struct kunit *test)
+ 			KUNIT_ASSERT_NOT_NULL(test, (void *)fst_page->private);
+ 			KUNIT_ASSERT_NOT_NULL(test, (void *)last_page->private);
+ 		} else {
+-			KUNIT_ASSERT_EQ(test, fst_page->private, params->order);
++			/*
++			 * The non-DMA path allocates compound pages, so the
++			 * order is recovered from the folio rather than from
++			 * page->private.
++			 */
++			KUNIT_ASSERT_EQ(test,
++					folio_order(page_folio(fst_page)),
++					params->order);
+ 		}
+ 	} else {
+ 		if (ttm_pool_uses_dma_alloc(pool)) {
+@@ -177,13 +184,19 @@ static void ttm_pool_alloc_basic(struct kunit *test)
+ 			KUNIT_ASSERT_NULL(test, (void *)last_page->private);
+ 		} else {
+ 			/*
+-			 * We expect to alloc one big block, followed by
+-			 * order 0 blocks
++			 * We expect to alloc one or more max-order compound
++			 * blocks. page_folio() on any subpage resolves to the
++			 * compound head, so both the first and last pages
++			 * report the max block order.
+ 			 */
+-			KUNIT_ASSERT_EQ(test, fst_page->private,
++			KUNIT_ASSERT_EQ(test,
++					folio_order(page_folio(fst_page)),
++					min_t(unsigned int, MAX_PAGE_ORDER,
++					      params->order));
++			KUNIT_ASSERT_EQ(test,
++					folio_order(page_folio(last_page)),
+ 					min_t(unsigned int, MAX_PAGE_ORDER,
+ 					      params->order));
+-			KUNIT_ASSERT_EQ(test, last_page->private, 0);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
+index 3c067aadc52d..9194747a1dff 100644
+--- a/drivers/gpu/drm/ttm/ttm_backup.c
++++ b/drivers/gpu/drm/ttm/ttm_backup.c
+@@ -72,9 +72,11 @@ int ttm_backup_copy_page(struct file *backup, struct page *dst,
+  * ttm_backup_backup_folio() - Backup a folio
+  * @backup: The struct backup pointer to use.
+  * @folio: The folio to back up.
+- * @order: The allocation order of @folio.  Since TTM allocates higher-order
+- *         pages without __GFP_COMP, folio_nr_pages(@folio) would always
+- *         return 1; the caller must pass the true order explicitly.
++ * @order: The allocation order of @folio, passed explicitly. For the DMA
++ *         path TTM allocates higher-order pages without __GFP_COMP, so
++ *         folio_order(@folio) would return 0 rather than the true order;
++ *         the caller therefore passes the order explicitly. (The non-DMA
++ *         path allocates compound pages, for which the two agree.)
+  * @writeback: Whether to perform immediate writeback of the folio's pages.
+  * This may have performance implications.
+  * @idx: A unique integer for the first page of the folio and each struct backup.
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index 1bf37023fed6..364cc7ec7469 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -168,9 +168,11 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+ 	struct page *p;
+ 	void *vaddr;
+ 
+-	/* Don't set the __GFP_COMP flag for higher order allocations.
+-	 * Mapping pages directly into an userspace process and calling
+-	 * put_page() on a TTM allocated page is illegal.
++	/*
++	 * For higher-order allocations be a good citizen: don't dip into
++	 * memory reserves, don't retry hard, don't warn on failure and stay
++	 * on the local node. The non-DMA path additionally sets __GFP_COMP
++	 * below; the DMA path allocates via dma_alloc_attrs().
+ 	 */
+ 	if (order)
+ 		gfp_flags |= __GFP_NOMEMALLOC | __GFP_NORETRY | __GFP_NOWARN |
+@@ -189,11 +191,9 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+ 	}
+ 
+ 	if (!ttm_pool_uses_dma_alloc(pool)) {
+-		p = alloc_pages_node(pool->nid, gfp_flags, order);
+-		if (p) {
+-			p->private = order;
++		p = alloc_pages_node(pool->nid, gfp_flags | __GFP_COMP, order);
++		if (p)
+ 			mod_lruvec_page_state(p, NR_GPU_ACTIVE, 1 << order);
+-		}
+ 		return p;
+ 	}
+ 
+@@ -482,7 +482,7 @@ static unsigned int ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
+ 		return dma->vaddr & ~PAGE_MASK;
+ 	}
+ 
+-	return p->private;
++	return folio_order(page_folio(p));
  }
  
-+static inline int folio_split_driver_managed(struct folio *folio,
-+					     unsigned int new_order)
-+{
-+	VM_WARN_ON_ONCE_FOLIO(1, folio);
-+	return -EINVAL;
-+}
-+
- static inline int folio_split(struct folio *folio, unsigned int new_order,
- 		struct page *page, struct list_head *list)
- {
-diff --git a/mm/huge_memory.c b/mm/huge_memory.c
-index 2bccb0a53a0a..06f9a5f35df8 100644
---- a/mm/huge_memory.c
-+++ b/mm/huge_memory.c
-@@ -4185,6 +4185,69 @@ int folio_split_unmapped(struct folio *folio, unsigned int new_order)
- 	return ret;
- }
- 
-+/**
-+ * folio_split_driver_managed() - split an exclusively-owned, off-LRU folio
-+ * @folio: folio to split. Must be a large (compound) folio that is owned
-+ *         exclusively by the caller and is invisible to the core mm.
-+ * @new_order: the order of the folios after the split.
-+ *
-+ * This is a lightweight structural split for folios that a driver allocated
-+ * and manages itself (for example TTM's GPU page pool, which allocates
-+ * higher-order compound pages with __GFP_COMP and maps them into userspace
-+ * via VM_PFNMAP rather than through the rmap). Such folios are:
-+ *
-+ *   - singly referenced (the caller holds the only reference),
-+ *   - not mapped through the rmap (folio_mapcount() == 0),
-+ *   - not in the page cache or swap cache (folio->mapping == NULL),
-+ *   - not on any LRU or the deferred-split list.
-+ *
-+ * Because nothing else in the kernel can reach the folio, this helper does
-+ * not perform the refcount freeze / remap / anon_vma & i_mmap locking dance
-+ * that split_folio() and folio_split_unmapped() require. It performs only
-+ * the compound and split-accounting teardown and then hands each resulting
-+ * folio its own reference, mirroring split_page() for compound folios.
-+ *
-+ * The caller is responsible for freeing the resulting folios individually.
-+ *
-+ * Context: caller holds the only reference and excludes concurrent access.
-+ * Does not sleep.
-+ *
-+ * Return: 0 on success, negative errno on failure.
-+ */
-+int folio_split_driver_managed(struct folio *folio, unsigned int new_order)
-+{
-+	unsigned int old_order = folio_order(folio);
-+	unsigned int split_nr = 1U << new_order;
-+	unsigned int nr = 1U << old_order;
-+	unsigned int i;
-+
-+	if (new_order >= old_order)
-+		return -EINVAL;
-+
-+	VM_WARN_ON_ONCE_FOLIO(folio_ref_count(folio) != 1, folio);
-+	VM_WARN_ON_ONCE_FOLIO(folio_mapped(folio), folio);
-+	VM_WARN_ON_ONCE_FOLIO(folio->mapping, folio);
-+	VM_WARN_ON_ONCE_FOLIO(folio_test_swapcache(folio), folio);
-+	VM_WARN_ON_ONCE_FOLIO(folio_test_lru(folio), folio);
-+
-+	/*
-+	 * Structural + split-accounting teardown only. No mapping/xarray, no
-+	 * refcount freeze: the folio is frozen-by-ownership already.
-+	 */
-+	__split_unmapped_folio(folio, new_order, &folio->page, NULL, NULL,
-+			       SPLIT_TYPE_UNIFORM);
-+
-+	/*
-+	 * Give every resulting head folio its own reference. The original
-+	 * reference stays on the first one, exactly like split_page().
-+	 */
-+	for (i = split_nr; i < nr; i += split_nr)
-+		set_page_refcounted(folio_page(folio, i));
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(folio_split_driver_managed);
-+
  /*
-  * This function splits a large folio into smaller folios of order @new_order.
-  * @page can point to any page of the large folio to split. The split operation
+@@ -493,15 +493,31 @@ static unsigned int ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
+ static void ttm_pool_split_for_swap(struct ttm_pool *pool, struct page *p)
+ {
+ 	unsigned int order = ttm_pool_page_order(pool, p);
+-	pgoff_t nr;
+ 
+ 	if (!order)
+ 		return;
+ 
+-	split_page(p, order);
+-	nr = 1UL << order;
+-	while (nr--)
+-		(p++)->private = 0;
++	if (ttm_pool_uses_dma_alloc(pool)) {
++		pgoff_t nr;
++
++		/*
++		 * DMA-alloc pages are not compound; split the plain
++		 * higher-order allocation and clear the per-page private
++		 * (which held the order for the non-compound case).
++		 */
++		split_page(p, order);
++		nr = 1UL << order;
++		while (nr--)
++			(p++)->private = 0;
++		return;
++	}
++
++	/*
++	 * The non-DMA path allocates compound folios (__GFP_COMP). Split the
++	 * driver-owned, off-LRU, unmapped folio into order-0 folios so each
++	 * page can be freed as soon as it has been backed up.
++	 */
++	folio_split_driver_managed(page_folio(p), 0);
+ }
+ 
+ /**
+@@ -548,7 +564,7 @@ static pgoff_t ttm_pool_unmap_and_free(struct ttm_pool *pool, struct page *page,
+ 
+ 		pt = ttm_pool_select_type(pool, caching, order);
+ 	} else {
+-		order = page->private;
++		order = folio_order(page_folio(page));
+ 		nr = (1UL << order);
+ 	}
+ 
+@@ -1124,7 +1140,6 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
+ 					       num_pages);
+ 			if (flags->purge) {
+ 				shrunken += num_pages;
+-				page->private = 0;
+ 				__free_pages_gpu_account(page, order, false);
+ 				memset(tt->pages + i, 0,
+ 				       num_pages * sizeof(*tt->pages));
+@@ -1214,7 +1229,6 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
+ 		}
+ 
+ 		/* Fully backed up: free at native order. */
+-		page->private = 0;
+ 		__free_pages_gpu_account(page, order, false);
+ 	}
+ 
 -- 
 2.34.1
 
