@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71080C4452D
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 03:47:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E9FAC44512
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jul 2026 03:53:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA5110EC15;
-	Wed, 22 Jul 2026 03:47:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Co9DKqDw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF7010EC13;
- Wed, 22 Jul 2026 03:47:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784692045; x=1816228045;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KvNeFuWa9CZ6x5KDR4krMCHXl7bGc2zgpdiuvAllhKg=;
- b=Co9DKqDwMXS9fM1QasYCxkxdrtIWIo0cR0sRC+K09oYbKQz8gxQWrL3F
- DYe0tQHsxAVLQSVpQkCHuUfq6ZmzitAprU4CSmjYJEqowRXxloWHbA1hg
- c0eU0Htbob7CrL3EW17GnWIEmWNUuH6ahx+pfEahJhvaOm1CEVgd9LY+K
- W5OJtbVLfFU8ZtbHCDphifbzSX/BBJ7/3I72D09MSn/BRsCdqEcFkQ5bn
- 9ExMfFhCzApJ9ANOHoa03UOKZbxmu5gbeoBbe1+PPEK3yAYE8qjRSOktO
- eIgfgbYNePK1jH08LeyUFQg+HX4b+Q2xlqaU8Br9dfejH3LevrvnAKcTE Q==;
-X-CSE-ConnectionGUID: wObnABQ+R4uuNPo8k3TSlQ==
-X-CSE-MsgGUID: pNGp7g4ETzy7ySiJa3E7TA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11853"; a="85434051"
-X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="85434051"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2026 20:47:25 -0700
-X-CSE-ConnectionGUID: wfuArrUWSAGYjU0yYMl8rg==
-X-CSE-MsgGUID: BjFVAt/kQXOVKWNIx/bk/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,177,1779174000"; d="scan'208";a="257421751"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa008.jf.intel.com with ESMTP; 21 Jul 2026 20:47:20 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org
-Cc: simona.vetter@ffwll.ch, airlied@gmail.com, kuba@kernel.org,
- lijo.lazar@amd.com, Hawking.Zhang@amd.com, davem@davemloft.net,
- pabeni@redhat.com, edumazet@google.com, dev@lankhorst.se,
- zachary.mckevitt@oss.qualcomm.com, rodrigo.vivi@intel.com,
- riana.tauro@intel.com, michal.wajdeczko@intel.com,
- matthew.d.roper@intel.com, mallesh.koujalagi@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 5/5] drm/xe/sysctrl: Reuse xe_sysctrl_create_command()
-Date: Wed, 22 Jul 2026 09:11:15 +0530
-Message-ID: <20260722034228.662746-6-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260722034228.662746-1-raag.jadav@intel.com>
-References: <20260722034228.662746-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 000B610E403;
+	Wed, 22 Jul 2026 03:53:09 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82B5E10E403;
+ Wed, 22 Jul 2026 03:53:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_error_threshold?=
+ =?utf-8?q?_to_drm=5Fras_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Jul 2026 03:53:08 -0000
+Message-ID: <178469238853.213858.8943819580804198314@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260722034228.662746-1-raag.jadav@intel.com>
+In-Reply-To: <20260722034228.662746-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,66 +36,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have a helper to create sysctrl command, reuse it for
-threshold crossed events.
+== Series Details ==
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_sysctrl_event.c | 28 ++++++++-------------------
- 1 file changed, 8 insertions(+), 20 deletions(-)
+Series: Introduce error threshold to drm_ras (rev5)
+URL   : https://patchwork.freedesktop.org/series/165091/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-index da395148ee9d..15ddd2d8bc6d 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-@@ -49,18 +49,6 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
- 	} while (response->count);
- }
- 
--static void event_request_prepare(struct xe_device *xe, struct xe_sysctrl_app_msg_hdr *header,
--				  struct xe_sysctrl_event_request *request)
--{
--	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
--
--	header->data = REG_FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_GFSP) |
--		       REG_FIELD_PREP(APP_HDR_COMMAND_MASK, XE_SYSCTRL_CMD_GET_PENDING_EVENT);
--
--	request->vector = xe_device_has_msix(xe) ? XE_IRQ_DEFAULT_MSIX : 0;
--	request->fn = PCI_FUNC(pdev->devfn);
--}
--
- /**
-  * xe_sysctrl_event() - Handler for System Controller events
-  * @sc: System Controller instance
-@@ -72,16 +60,16 @@ void xe_sysctrl_event(struct xe_sysctrl *sc)
- 	struct xe_sysctrl_mailbox_command command = {};
- 	struct xe_sysctrl_event_response response = {};
- 	struct xe_sysctrl_event_request request = {};
--	struct xe_sysctrl_app_msg_hdr header = {};
-+	struct xe_device *xe = sc_to_xe(sc);
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
--	xe_device_assert_mem_access(sc_to_xe(sc));
--	event_request_prepare(sc_to_xe(sc), &header, &request);
-+	xe_device_assert_mem_access(xe);
- 
--	command.header = header;
--	command.data_in = &request;
--	command.data_in_len = sizeof(request);
--	command.data_out = &response;
--	command.data_out_len = sizeof(response);
-+	request.vector = xe_device_has_msix(xe) ? XE_IRQ_DEFAULT_MSIX : 0;
-+	request.fn = PCI_FUNC(pdev->devfn);
-+
-+	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_PENDING_EVENT,
-+				  &request, sizeof(request), &response, sizeof(response));
- 
- 	guard(mutex)(&sc->event_lock);
- 	get_pending_event(sc, &command);
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8ce7f7e2d86a53a5095fa393ea24f98f3a1fcd8d
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Wed Jul 22 09:11:15 2026 +0530
+
+    drm/xe/sysctrl: Reuse xe_sysctrl_create_command()
+    
+    Now that we have a helper to create sysctrl command, reuse it for
+    threshold crossed events.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 5726f9c4bde0290e5e60e636b9632bb03a57498c drm-intel
+d24e28e65805 drm/ras: Cancel and free message on get counter failure
+c1c2162329d3 drm/ras: Introduce error threshold
+-:315: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#315: FILE: drivers/gpu/drm/drm_ras_nl.c:32:
++static const struct nla_policy drm_ras_get_error_threshold_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID + 1] = {
+
+-:321: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#321: FILE: drivers/gpu/drm/drm_ras_nl.c:38:
++static const struct nla_policy drm_ras_set_error_threshold_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_THRESHOLD + 1] = {
+
+total: 0 errors, 2 warnings, 0 checks, 367 lines checked
+482581334268 drm/xe/ras: Add support for error threshold
+1e04b8f0a023 drm/xe/drm_ras: Wire up error threshold callbacks
+8ce7f7e2d86a drm/xe/sysctrl: Reuse xe_sysctrl_create_command()
+
 
