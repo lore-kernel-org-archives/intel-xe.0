@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44C53C44524
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 08:33:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5B06C44524
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 08:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1F7410F034;
-	Thu, 23 Jul 2026 08:33:30 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8463B10E575;
- Thu, 23 Jul 2026 08:33:29 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CF1210E562;
+	Thu, 23 Jul 2026 08:34:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dmxnsuep";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D53CB10E562
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 08:34:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784795653; x=1816331653;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CGo0SRn2Z4doMz0rZi2WAU10J3/uyG1RoiAhO332McA=;
+ b=DmxnsuepfkiXeqxyVnMekXcCqn5fIuFnwpC3R6FDK8YwN5vDPk8QEtQL
+ kREvBqFdl3d1E72pPLhfHJ7qFPxYXyixSj0mvFBZX45jxonIy36hQEkXc
+ TH4vMs4ByD8BJsYMAOrBQ/5i40y5yF/AYSvODrM3Q2+N5mYhuGEGXUfCT
+ 54y7JKLveQi8/LzezpbCRLq8zKNvsZeUIkVAGKnK7xZffglFKf7snDEGC
+ 0723B+B77Xc+wKemqCsxgHNjvjg6XmTeX3HbLPEEIcoXHl7UFs0HZQhsd
+ sgtZZaoz7vukxb/GwM+uqIgyGg80NGnPxTUbB2H0YQujQGqY4Py21EmJ1 g==;
+X-CSE-ConnectionGUID: W0BsK6yXTXaN3WKpxeJLbw==
+X-CSE-MsgGUID: m3CKsy2/S4qvl5X1wxxXDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="96101502"
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="96101502"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 01:34:12 -0700
+X-CSE-ConnectionGUID: CAVZ0MgbTXWKvQoysa/3/w==
+X-CSE-MsgGUID: N9DtT0EETL+xDL8U4YJWhQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="259034491"
+Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
+ by orviesa009.jf.intel.com with ESMTP; 23 Jul 2026 01:34:12 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH] [CI] drm/i915/dmc: Test Xe3LPD_3002 DMC v2.32
+Date: Thu, 23 Jul 2026 14:04:08 +0530
+Message-ID: <20260723083408.1791364-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_ocode_late_binding_su?=
- =?utf-8?q?pport_for_CRI_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Jul 2026 08:33:29 -0000
-Message-ID: <178479560953.220306.11353585617563660390@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260723083659.716683-7-badal.nilawar@intel.com>
-In-Reply-To: <20260723083659.716683-7-badal.nilawar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,50 +60,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+NOT TO BE REVIEWED/MERGED
 
-Series: Add ocode late binding support for CRI (rev4)
-URL   : https://patchwork.freedesktop.org/series/162657/
-State : warning
+Hardcode path to DMC firmware for CI purposes only.
 
-== Summary ==
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 30c96b75868d1eee4d06f7d3dd3d2de0cebb2ee3
-Author: Badal Nilawar <badal.nilawar@intel.com>
-Date:   Thu Jul 23 14:07:05 2026 +0530
-
-    drm/xe/xe_late_bind_fw: Refactor pm flow
-    
-    Refactor late binding flow across suspend/resume by adding dedicated
-    pm functions.
-    
-    Assisted-by: GitHub-Copilot:GPT-5.3
-    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-+ /mt/dim checkpatch 2917ea6f91d2957b4c9fa73d4631ccdb6a650830 drm-intel
-4721b8dd6bc7 drm/xe/xe_late_bind_fw: Fix firmware leak on missing manifest entry
-410db8b3175a drm/xe/xe_late_bind_fw: Convert late bind flag to mask
-7ec33c41c06b drm/xe/xe_late_bind_fw: Add support to load Ocode firmware
--:17: WARNING:TYPO_SPELLING: 'dependancy' may be misspelled - perhaps 'dependency'?
-#17: 
-  - Declare the Ocode firmware dependancy with MODULE_FIRMWARE (Daniele)
-                               ^^^^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 130 lines checked
-65870cd45fb1 drm/xe/xe_late_bind_fw: Enable late binding support for CRI
-30c96b75868d drm/xe/xe_late_bind_fw: Refactor pm flow
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index a191eee24..ac2395993 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -128,7 +128,7 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
+ #define XE3P_LPD_DMC_PATH		DMC_PATH(xe3p_lpd)
+ MODULE_FIRMWARE(XE3P_LPD_DMC_PATH);
+ 
+-#define XE3LPD_3002_DMC_PATH		DMC_PATH(xe3lpd_3002)
++#define XE3LPD_3002_DMC_PATH		"i915/xe3lpd_3002_dmc_ver2_32.bin"
+ MODULE_FIRMWARE(XE3LPD_3002_DMC_PATH);
+ 
+ #define XE3LPD_DMC_PATH			DMC_PATH(xe3lpd)
+-- 
+2.54.0
 
