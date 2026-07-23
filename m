@@ -4,27 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B4CCC531CC
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 22:47:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23CFFC531D0
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 23:19:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D21210E61E;
-	Thu, 23 Jul 2026 22:47:37 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 602E710E61E;
- Thu, 23 Jul 2026 22:47:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1193882813118386155=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC77710F24F;
+	Thu, 23 Jul 2026 23:19:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AsG2WuCo";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE40510F24F;
+ Thu, 23 Jul 2026 23:19:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784848765; x=1816384765;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=YAIspryRCpywyST1OkHk63PVboKSZKd1z9kf7pA42zI=;
+ b=AsG2WuCojB7QynaLM41ExFkEq/FS9/ffc8YCMGSI2UdMREJSb+9T99VC
+ BM2o5rwzA/0JVXHQMuVdJzW3Ud4v+vjr3SN4A45iRlm8Pu46IN38eMLW4
+ m3gan9L4L8IJpb/EaQaJQg7P7Np0QS/9Xho/9lTKXC0bc/JR1Gub+65Dh
+ vT0gHjFL5Uv8Bo++cY8AnrEqJ/QW0moP2X3bvJYuDgdjdnq/5Oh+ctAvG
+ P85wVnwNUpnWZk7UJJSbCLPuF860jJEuSVJnXiZplSKYeby07uuN6nIu1
+ XxmDL4WDJGX4O/V6rhq95G2KIQcfI4kfNYKdSMj3RBH+hd2g2ZStypjCH w==;
+X-CSE-ConnectionGUID: dGdD9zQPRqSGYT2IC671Eg==
+X-CSE-MsgGUID: ssAZkk8QR5CwuEha8eSSZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85562563"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="85562563"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 16:19:24 -0700
+X-CSE-ConnectionGUID: xN9HFnSsR/++AZloxL+6MQ==
+X-CSE-MsgGUID: SnTPzUAlRy+ZndioRN1LdA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="288522171"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 16:19:24 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 23 Jul 2026 16:19:23 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Thu, 23 Jul 2026 16:19:23 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.0) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 23 Jul 2026 16:19:23 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qgql5ej0E7MAxVPY707YeQbfbkSPe1rJW5Fy8mR/dLalNP+Y45Mk33jiZSWA3L0Geug3Awz+8dJzl9eucxMzYOWrvf0UbeKC6KuMAKBOtAxQKWOPUn6kfVMoR3Gg9K6KkLDhNaK59nNoHadxEdYdfi2hQvIC4j5OzzRxoLg1V6CnBjW9nH2YnifRmyidmMV9DPjFzUFZ++UGmDTvG/C2UZJDmLSKd2oH8LggKh5QPvh6fr6NWiyGaNCDDl0gZdXJ4gYtIJC+1+YwhkP+7kHtSIPDOReHFJC9pX2hKbSriZGStScuAD2vdaNjwapxSS3q1FjEsKlEhMwwWxG8k5uHSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AhLVFNYgw3MEZiub0fOUbXwssBgzdjiMRvhK3QCvWQc=;
+ b=cozT//+ILK0O+fyhZhk42YjMpEZSbvJv04aVl4Abi+A09ygXFFUP5HFwK+AQCcnStyCgx2W/ukJLnCHL0htND2Wpsnslo/zJqinLEwU9bWHGtVE7WQvXyUl86rhfgmLpacN5mFOGze69tfgFdji4F3s7t6NArVg2nPelSwiax5Yb9mR/2StXkM5E/sbGv8Cd37luBYsPFJDNdZ3+rIpK/b78R2wP9OLt2b5Ce1oZS5O5poggyoAoVa4QNgDD3lo56r/VgCYxTxqjtI2IJVrY8heKvKzNbCvaN8QDlUd+6wjl9SvomPaooLg3QYGTiYedvi2J/RBt73ZYfce7YhLyUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by DM4PR11MB6263.namprd11.prod.outlook.com (2603:10b6:8:a6::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Thu, 23 Jul
+ 2026 23:19:14 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.21.0245.010; Thu, 23 Jul 2026
+ 23:19:14 +0000
+Date: Thu, 23 Jul 2026 16:19:11 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Tales =?iso-8859-1?Q?A=2E_Mendon=E7a?= <talesam@gmail.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <thomas.hellstrom@linux.intel.com>, <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v1 3/4] drm/xe/guc/ct: Queue G2H worker before flushing
+ it in timeout paths
+Message-ID: <amKhbyYjQqcG1Asc@gsse-cloud1.jf.intel.com>
+References: <20260722004654.744249-1-talesam@gmail.com>
+ <20260722004654.744249-4-talesam@gmail.com>
+ <amExusdY0Qhs3LIx@gsse-cloud1.jf.intel.com>
+ <amE+Ltrb8qKNKWd2@gsse-cloud1.jf.intel.com>
+ <CAHBRX4HbDnpiEqgFauZNMWPq+Wtp6RhYYLKMW=zNbTphAB_xgw@mail.gmail.com>
+ <amFftEnuIfPJKFPX@gsse-cloud1.jf.intel.com>
+ <CAHBRX4GTHiv+3YYiNoDFy0L8KAyb7ruqDZR1rV9MNGwHBmLhnA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHBRX4GTHiv+3YYiNoDFy0L8KAyb7ruqDZR1rV9MNGwHBmLhnA@mail.gmail.com>
+X-ClientProxiedBy: SJ0PR05CA0116.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::31) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Fine_grained_fault_locking?=
- =?utf-8?q?=2C_threaded_prefetch=2C_storm_cache_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Jul 2026 22:47:36 -0000
-Message-ID: <178484685638.223390.9793028629487664702@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260723214743.1498125-1-matthew.brost@intel.com>
-In-Reply-To: <20260723214743.1498125-1-matthew.brost@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM4PR11MB6263:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ca9c6c3-8d95-452d-dc76-08dee910cf7b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|1800799024|376014|4143699003|56012099006|10067099003|5023799004|11063799006|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: bIZ9FayAnxs63ENRj5rROMHYXOtfXdzv4CY32qFM5B5De86IcxrYIlGe5JpMTckpUpcUooSmILI4rxq5G4D773LyadH1SqwRjSB1vIRnXGlpXAOmMyHarghgQkkqtWLUt2gYIG48PEcoZvK0xahBRT5VDEFkxNNXIKoAK/M/Ww73BVboWa9eq63w9/asmSKnyi5fCtBaPOr+mZKFT8kccjVSYbHVdRULgYROY1qhEQbibvmnyaE37qkmirl4ZxhXbLw//oHuaCy3ePYkPsMYeaBDpCC+wGBc906whT7O6VLTx3rhku+nP9ahmDNRTL64s01P9eMdW9D1pIQOj6m22o/q0CiL1WBb5xmq7Pd/5Nr2pVcmCAkvZN76zvpvI+IfrdppZ6oNI3UWG/ZPYm1dgP1HOe1v1LjrbkvGvXLtWB8Lfsvs+R61cHPcfeS/G3+whglXTzPDxsZP0D6swbqa/iueHVZcXxV7pL8cUUdsb9Qe9M6KjpMFl8h2rMX2nVlnX9beGT5ny4mP0Y3NIGU6WNHtj8I5K+ErOtSowv2e6MhOgdZULC6R3pcXe/C4uifOimWs6cKZRU9lVUwex+ILj6MgV9MYLbTabomCBosJc7BQfgfCbkTDMqNAPA9dNDCYkegjfNYKuvAN3R7RL9JEbviWF9RMIe7LDyhZcLcJ5vE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(4143699003)(56012099006)(10067099003)(5023799004)(11063799006)(18002099003)(22082099003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZDNPTENwQlJLa2RYcklZOU9LTXlCUEt4bDJwdWljTXF2Smw5VHBFT0NTakJq?=
+ =?utf-8?B?UlhVV2hYWCtvbExsbWJSYkFwSGVxejRSQ1dGSk9USGp5SHA3MklCLzJkTTNB?=
+ =?utf-8?B?end3K2FzMk01VSt3c0lZa0xzazdFVGY0Z2w2OVFMalQ5Vm5sOFpEYktNZ3g3?=
+ =?utf-8?B?ZHljeENPTFhyZEdrSG1VNW9mZkJDMVFHSWZpMTBFaHlkYTFTR05pWFNmdERU?=
+ =?utf-8?B?eVlLU1ptcXdZT25OM3E2SmtlY0lFRnNZeTlIWHl6MTZiajNHRUo4ajFFOGJq?=
+ =?utf-8?B?RllGWnRtS0ljWjZnaHdGOXJpTEZLajZoMFRYdlBwT0tKb1ZoQUlsRTRsMWJS?=
+ =?utf-8?B?UGZ1TGFXcytYZExjeHlPbjhDOUgwcnBYTVE1bmgyYk1TdkYvTC81d3VocFhW?=
+ =?utf-8?B?aWJjbW9HaVFvaEZZYkkyM0U1UWV2SHkwcTBlZXJtQkRnL1NIajIwSXR5Ynh6?=
+ =?utf-8?B?bEhDb01KeERJM09SOXA4dzVSV0pEWHQ2bzdKNFZ2MXRzWWNVK01BVnBmL0Ey?=
+ =?utf-8?B?blg3VVFCWXFOYzYydHJQcFhSUEN6M1VaMkRnOFdOc0dSK2lINEU5ZjRZYzlv?=
+ =?utf-8?B?YkhNOElwMWZRNVhvb2NicE1jczE2dTIxaWthRTRydmVmSUhEQ2RGUjJkaVdH?=
+ =?utf-8?B?THBwMy9vZm1WRzNTc0hYQnA1aThMWUM2RVZRNXVQUk5kNlFtWjg0VmRxZmI4?=
+ =?utf-8?B?SFVsK1kvbkNYNFd1bHlWbWdvRE16T3dydzJ3eGQrS1BIejlWaHZGeTBWMDhS?=
+ =?utf-8?B?Q1MvSjNuWXdGOGZjWHdRTldpZi9ndDc3WEZmTVVPQ25wTHZFV3JHaWhzTEx6?=
+ =?utf-8?B?cnJQTEtCUGlaanA4UFA1ay8zWHN5MWVjbE14bENrNGZTRmEvTndGVGlUSTdn?=
+ =?utf-8?B?M01mNnBrWm0wVTh5U3BFMU9FbE5RcVdpRXZHbEx2WldJWWV0ejlMZ242b1Za?=
+ =?utf-8?B?V21ZTEk3aFpZc240S2NOOVFRa1dESjI0cFdwMkwvY0NiZFY0VWx0NS9lOUpC?=
+ =?utf-8?B?MkNsMVZTZlZxZDVtb0QxUktJcWRmaWtuYW9sdEswNDlJVEVoNGxUQXkwL2gx?=
+ =?utf-8?B?TGlaUU9iMG5hWWJCYXdLbGNsTjUzZW5wMm5Ra21mbXZMRGxrRHpUcmI0YWpL?=
+ =?utf-8?B?Z3NKMEo0dzZHakc2L1h0TXp5S3d3UG5lVnJKSFBKQ0V6NWExNGNNVkE4S09E?=
+ =?utf-8?B?ZWVPdWV4QVNIcW9HQWJnbHBoOE5LYit4cEpBS2lxMlU2OGE2b2dlWEl6MEZW?=
+ =?utf-8?B?djRFSVVvaEFGZW5GMkZva01pYVJNdllkcURCS2ZIQ0dqWTFhSnYzZ2RZZjR4?=
+ =?utf-8?B?RDB5M0JYMmx2RWhETG1DcFQ4dVkwS3ZsOWpJV01oTjJST2N0Wm5NOEMwa3Vl?=
+ =?utf-8?B?VmtJYVg5cHhzOWVraFQzaEJVRVlyRkwxTkhVTGFDRUtPK1MveVkzRXgvU3FC?=
+ =?utf-8?B?ejNKZGtUVDhqTDgrYnN5NTJ1YkJpZG5nVmRpaDJ2Rm5iVm80eG9tWWFieG9s?=
+ =?utf-8?B?eW0xQVdrK2I4RnlDeVNFL1lScXNuUXNCMkJKU0c2bmpMWHRmZUpNd1BldzE2?=
+ =?utf-8?B?OXYwcmtrTHdwQ3JQTUpTSWxSSWxCYkRMekNWT2wrUkRHdS9sbEd0c1h4SXEx?=
+ =?utf-8?B?bWpWZXdXUHVwVFdqQ1B4UWZScUZ0VS8yRHNBdHE5aUpJeXFIR0FZWnF0ZzFr?=
+ =?utf-8?B?NXIxOHJZRjNJYU9OY0VUV3hyZHVQdkNjYXdMb0pTL1hMNzBhYVJiQkEyZ2d6?=
+ =?utf-8?B?ZXJwem51TGxQcW5DcVY2WGdQTUVHRzg3d2cxNi9OaGtLMkN4TnBHSmVpc1Fl?=
+ =?utf-8?B?dTI0cDM1L2F1ekNNbzlXK1VpVzdxajN6OTNwOUg0dWZUdVdQS3UyalRUMnJt?=
+ =?utf-8?B?SkJJUkUrMVBpUUZieDNNdE00QWpKVjJlT1NiVVpYY2ZDV2YvVjQwMlE4VFdm?=
+ =?utf-8?B?c0NTMmJGZ3pPYndmalo2b3V4WXgwdDR3ZzBTQ25pcVMvZzlwYVZmTHhhc2pJ?=
+ =?utf-8?B?bmNCc3MwSU5LaWpPWm9pSFA2aTRya1lvbUlKS2dTODhHUFdvV1BWZVZGVllH?=
+ =?utf-8?B?aVAxNEM4ZUpLMkVlOVR5K1Z4amQrNnd6RDlaTXpaaFErQzM1LytYdjZqZk1O?=
+ =?utf-8?B?N3RmaFdpUUFwejU1R0UrSm8rS2hYb1Erc0haR1pYaFE0MCsrMGIzL3VWMTJo?=
+ =?utf-8?B?Nk5GUXgvOHhiaGY1bFBPVisvWEtGQkRpY3lPZy9SQlNPbG83cjU0NDVYWGVE?=
+ =?utf-8?B?VVRBUjVEUTNZZDIzbDBuRFZzYUJQU1JibUZGV2piVFZTd3NnQlI2bHAvSjg0?=
+ =?utf-8?B?bWlOVjhYaEExank1blZvWU9GRUJHTStteUpvVndNVy9pU3YzNUpVZz09?=
+X-Exchange-RoutingPolicyChecked: lQPGcXuOjM9ZTswsN7AHzO6uAYPy7ZyLbzQENfYJCJ5lCvaDfDEAveVDj6DzokxlbYlLh0ZgBfzdiOjPw7pXl8DcqW2Vwf3ehjBi2/xeKdjIWQbaLBI100cLU4kRmgpmpjZcOvhy10W69DH95wgthDgrFlA+fRwJSX9x4Na8LgRzjaoc+EhrfD8Br6pXEETfgDjrXkjBY7b4B5wwRODhNKppGIn+pcMtoUxeoupI69kmGyW83ICgS1esn8Co0mSRg7Pr4uVQGXHtEhL3nOD+v7JEGfmS67CWkqwP1MayjLATXepDr9Pt8BziJQhHxiFD9DyFrEaiFeFEARWS1tXM2A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ca9c6c3-8d95-452d-dc76-08dee910cf7b
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2026 23:19:14.4870 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jTU54vt8OHIpVlIRPBQ5SyLZrjHBNHjdVwdgAb9k78RJQL3r/8TWiwzKgKMPZMuacrgGEOqGHbxjWv8OKs2rHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6263
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,301 +171,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1193882813118386155==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jul 23, 2026 at 07:31:10PM -0300, Tales A. Mendonça wrote:
+> > What about the H2G CT?
+> 
+> Hi Matt,
+> 
+> Thanks for the series and for the H2G question — I extended my
+> instrumentation to sample the H2G CTB descriptor as well, and I now
+> have results from two ARL machines running your series 170939.
+> 
+> Setup:
+> - Machine A: ARL-H (PCI 7d51, Core Ultra 5 225H)
+> - Machine B: ARL-P (PCI 7dd1, Core Ultra 7 255H)
+> - Both: GuC firmware 70.53.0, kernel 7.1.3 with your two patches
+> backported, plus debug-only instrumentation that samples both CTB
+> descriptors and the GT C-state at TDR time and logs late acks. My
+> earlier G2H-flush patch (3/4 of my series) is NOT applied, so your CPU
+> flush WA is the only recovery path in place, with the stock
+> invalidation timeout.
+> 
+> Results, 7 timeout events so far (6 on machine A, 1 on machine B),
+> identical signature on every single one:
+> 
+>   TLB invalidation timeout gtidle: seqno=89335, gt_c_state request=C0
+>     timeout=C6, c6_residency request-to-timeout=2278ms, waited=2279ms
+>   TLB invalidation timeout g2h: seqno=89335, ctb pending=0 dw,
+>     head=23932, tail=23932, outstanding=1
+>   TLB invalidation timeout h2g: seqno=89335, ctb pending=0 dw,
+>     head=792, tail=792
+>   TLB invalidation late ack: seqno=89335 recv=89335,
+>     request-to-ack=2325ms, timeout-to-ack=45ms
+> 
+> To answer your question directly: the H2G CTB is fully drained at TDR
+> time — head == tail as read from the shared descriptor, i.e. the GuC's
+> own view of its consumption progress. So the invalidation request is
+> not sitting unconsumed in the H2G ring. Combined with the empty G2H
+> ring (with one outstanding G2H credit) this means the GuC consumed the
+> request but did not send the ack until 2-45ms after the TDR fired,
+> roughly 2.3s after the request was posted.
+> 
+> Also worth noting: your "CPU flush WA resolved %u pending TLB inval
+> fence(s)" warning has not fired once across many hours on either
+> machine, while 7 timeouts went through the recovery path. So at least
+> on ARL the LNL flush WA does not appear to be the mechanism — there is
+> no G2H sitting unprocessed on the host side; the ack genuinely arrives
+> late from the firmware.
+> 
+> Everything points at a GuC 70.53.0 stall: request consumed, ack
 
-== Series Details ==
+Yes, this looks like something is going on in the GuC.
 
-Series: Fine grained fault locking, threaded prefetch, storm cache (rev5)
-URL   : https://patchwork.freedesktop.org/series/162167/
-State : failure
+> delayed by seconds, firmware "wakes up" right around the TDR. If it
+> would help I can file a gitlab issue with the full logs from both
+> machines, and I am happy to keep collecting events (the two machines
+> produce a steady trickle).
 
-== Summary ==
+I'd file a gitlab.
 
-CI Bug Log - changes from xe-5468-1b41172259f1c761714ee4d65a4386b42181c492_BAT -> xe-pw-162167v5_BAT
-====================================================
+> 
+> I would also like to give xe_devcoredump_gt() a try as a separate
+> series, as you suggested, if no one else is already on it.
+> 
 
-Summary
--------
+If you could wire up `xe_devcoredump_gt` and attach the devcoredump so
+we can inspect the GuC log, it would probably be worth us taking a quick
+look.
+ 
+We do support ARL on i915, and the firmware is the same. In general, the
+GuC firmware operates similarly across most platforms, so it's quite
+possible that whatever is happening here could also be an issue on other
+platforms.
 
-  **FAILURE**
+Matt
 
-  Serious unknown changes coming with xe-pw-162167v5_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-162167v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-bmg-2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-162167v5_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_system_allocator@eu-fault-2m-range-device-host:
-    - bat-wcl-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-wcl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-wcl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-bmg-1:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-lnl-2:          [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-lnl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-lnl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-bmg-vm:         [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-ptl-2:          [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-ptl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-ptl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-wcl-1:          [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-wcl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-wcl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-ptl-1:          [PASS][13] -> [ABORT][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-ptl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-ptl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-ptl-vm:         [PASS][15] -> [ABORT][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-ptl-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-ptl-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-lnl-1:          [PASS][17] -> [ABORT][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-lnl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-lnl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-    - bat-bmg-2:          NOTRUN -> [ABORT][19]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
-
-  * igt@xe_multigpu_svm@mgpu-xgpu-access-basic:
-    - bat-bmg-3:          [PASS][20] -> [DMESG-FAIL][21]
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-basic.html
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162167v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-bmg-2:          NOTRUN -> [SKIP][22] ([Intel XE#2134]) +4 other tests skip
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@fbdev@write.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][23] ([Intel XE#2233])
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][24] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-bmg-2:          NOTRUN -> [SKIP][25] ([Intel XE#2482]) +3 other tests skip
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][26] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][27] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_exec_multi_queue@priority:
-    - bat-bmg-2:          NOTRUN -> [SKIP][28] ([Intel XE#8364]) +13 other tests skip
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
-
-  * igt@xe_multigpu_svm@mgpu-atomic-op-basic:
-    - bat-bmg-3:          [PASS][29] -> [DMESG-FAIL][30] ([Intel XE#8300]) +1 other test dmesg-fail
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-basic.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-basic.html
-
-  * igt@xe_multigpu_svm@mgpu-atomic-op-prefetch:
-    - bat-bmg-3:          [PASS][31] -> [ABORT][32] ([Intel XE#8300])
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html
-
-  
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
-  [Intel XE#8300]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8300
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * Linux: xe-5468-1b41172259f1c761714ee4d65a4386b42181c492 -> xe-pw-162167v5
-
-  IGT_9022: 9022
-  xe-5468-1b41172259f1c761714ee4d65a4386b42181c492: 1b41172259f1c761714ee4d65a4386b42181c492
-  xe-pw-162167v5: 162167v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/index.html
-
---===============1193882813118386155==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fine grained fault locking, threaded prefetch, storm cache (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162167/">https://patchwork.freedesktop.org/series/162167/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5468-1b41172259f1c761714ee4d65a4386b42181c492_BAT -&gt; xe-pw-162167v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-162167v5_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-162167v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-bmg-2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-162167v5_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_exec_system_allocator@eu-fault-2m-range-device-host:</p>
-<ul>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-wcl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-wcl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-lnl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-lnl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-ptl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-ptl-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-wcl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-wcl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-ptl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-ptl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-ptl-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-ptl-vm/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-lnl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-lnl-1/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-xgpu-access-basic:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-basic.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162167v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-atomic-op-basic:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8300">Intel XE#8300</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-atomic-op-prefetch:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5468-1b41172259f1c761714ee4d65a4386b42181c492/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8300">Intel XE#8300</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5468-1b41172259f1c761714ee4d65a4386b42181c492 -&gt; xe-pw-162167v5</li>
-</ul>
-<p>IGT_9022: 9022<br />
-  xe-5468-1b41172259f1c761714ee4d65a4386b42181c492: 1b41172259f1c761714ee4d65a4386b42181c492<br />
-  xe-pw-162167v5: 162167v5</p>
-
-</body>
-</html>
-
---===============1193882813118386155==--
+> Thanks,
+> Tales
