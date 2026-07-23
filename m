@@ -4,148 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C356BC531F7
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 16:38:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39E54C531F8
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 16:42:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71F2E10F179;
-	Thu, 23 Jul 2026 16:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C63CA10F179;
+	Thu, 23 Jul 2026 16:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MQsCaMK7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FH+fe9xZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 918A810F179;
- Thu, 23 Jul 2026 16:38:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9091A10F179
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 16:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784824687; x=1816360687;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=iX6xY0SCkOrHhkGnWfZHuJnMcoZY5QlWfK8dUREqDTQ=;
- b=MQsCaMK7oDpxM8XlgjWsxb5rL72/iOpTtZwfQNTqTP1Wlf4THFpVVxTG
- fOr5Ka1XQfZFoq3iR8pk6FfeYP3SFkWC0zAsl/M32IxFF5IYB7aV3Hi9l
- Q17IKtSVyDMyauPF6ZuktomLvyihBSu8LKLJVhbjUWAJfrDvifMrapfVn
- GJED3SG+5J1XkMz/iWZzAbQBNGVhCRhm0uCicl35hY9Tx85ji8yqT7W9L
- cVSRNNnOCojPutWiSolo24KS2IZWehEH42Xs3CMbxjvBnsxdt9kEXHYaS
- 6oyCqRfsUR6BL4ib+fhQqbh7OlSIIuqnV4bYDf3PdmqufMVz/OtxMQ9aL A==;
-X-CSE-ConnectionGUID: TggMpB3ySN2Oc9iqUfckiQ==
-X-CSE-MsgGUID: ZAwQfe23T8qpBJBMM7wF4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85246005"
-X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="85246005"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 09:38:06 -0700
-X-CSE-ConnectionGUID: O1V3z2hzTj2a+lX9DdwgFQ==
-X-CSE-MsgGUID: S8isdWLOSYa79iTuF7YmWg==
+ t=1784824941; x=1816360941;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=gEkMbhLmgYh2vw/DQCqs334OwrxaBUC+IwsOKUt/4lE=;
+ b=FH+fe9xZMUutU/CH+T/ea+COXVBPTMbdpEw/Nt3WEjMChTUIQLZqjMy6
+ ag68KyB9qRN1bD22Geb+amW8omFjBkBdVGhrDyqFnzXvm5I4/2jlazkCY
+ UAD+Io7w43x/S5ijBNmStkoZTrR91MVeXZbwws64RbTqr5euSktq9rl25
+ kgFLZ3GaJ7/NSbtq14XHlQkR140aNT27F7R8YraYNHhm/6VPZ+SZeWFLP
+ 8kZLRqndm+ba6CAqPaqW1MVSYGi4LZS3aRzuXOEgIljXaXQpXNXy2I7na
+ aPK14cTFr++fRhk+mqrsPxsiy9J+4JdUHaQK4SvpPlHceyZne8P67/2RQ A==;
+X-CSE-ConnectionGUID: 3Y4U+jqOTyuMzHY57uMaUQ==
+X-CSE-MsgGUID: oSz7d8S8Q6CW7SRx1G7ORQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85680584"
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="85680584"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 09:42:21 -0700
+X-CSE-ConnectionGUID: pHA92nPiT/S4dwC+AYHVKg==
+X-CSE-MsgGUID: 2ISunSJ/QeGUBKhMNGktbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="262772415"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 09:38:06 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="255092091"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 09:42:21 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 23 Jul 2026 09:38:05 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.43; Thu, 23 Jul 2026 09:42:20 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Thu, 23 Jul 2026 09:38:05 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.33)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Thu, 23 Jul 2026 09:42:20 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.11)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Thu, 23 Jul 2026 09:38:05 -0700
+ 15.2.2562.43; Thu, 23 Jul 2026 09:42:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=maO38zrfqQJhCdzD/j5ylpwjdYGUJaHAu/PlzAjj0MxJy82eV6FAzDx9LzNsOLYaSQ0LpsSV5AcJq3SbWtAh+Au3MJURqE/6ESpZe8/k9fK8UgwD6cuCK99CQCVNxGkTjwZ1KBHMyvqOQbueCJSLRreYwgXoydGJQRrt3IuXawY7cO/fOJdDQ1UBvf4k1PCcuv6shugZI14ne1t2MJFiKACQ4cUlGQSmQyc8Vo9ZZpgcgDOfLoUV4mzm9uaA2heNPfDlJx+mfLpdUoMMh3tcaFBlBAE/xLvMiTPezjMH2XQCGJjaYfnd/e3Qvqi4KLSTXv5VHT19/uqIj/oIVLDH+w==
+ b=RPOmtxLF2k80uI0ZhFU8a3yDDIew3xdEUDQlpt7w3nhu53+SwwXZnqzz23OLcXb9TWvWPdjhYfh5Txhxgkzqrc64OG99ymfpRf5OdHfWt3/HN7n5kHvV96/l7bXIDPjtBWmIy1/d9dNi20kGD9wXsftg/C6sA1qzR6OcqbvGmp2445+XkFlubGzTQH5DmVHC3qtwytwylvBOr9lXNk+bdsuMfK180AOeSypFeCIaEewXtq9gepyClVPzQXlz28W9k1vxs3y7dw21WdRrwroSGjaRHoWCtceRux/rrUeQH5fhvYjHwIpXEt7xA0Lnm7DybOX5URjSjz9fQWcjV9MgWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fMNXet/wnQVcB5clN0Y3eJrlgi1gj53iBnELlWbG0VI=;
- b=eKFTW1YCdA3uC6FmvANRNwm+YwowJ1FyoCXRKniUYTmIq16f/IB8Qob0ZzObME52Wy8g+pDlRX9j5FuypB9t1hdYMCW6l/mFNodW+HWYX6B/hBqcHyev8OXwH8YQqcBKn0crCbF3IrCnezrpOHIq9e61s6muFSV/9iB0v+Hm3jD2fshq5+AAdUyZtJw2Zh1NJ9LtSNbB070n0RHVWVQrHVxXa0ZZCLN39Ha/O/yndjQsH89fw2TW0W2Yq8R7Kvtc/rrxyuix9BELgKmtI4ldXhI4ZI+7TsfnjnWd635mt1d5S7c+fZ78pYmbWxhnZvzCW3uu5nk9c423fk6Izlv/aQ==
+ bh=ysxcVyhHLSuM3DJnQfzBrds6jW9V3DamxVDvTHySTDE=;
+ b=PlZLQ2652EcI95esgKF54JC6S5Lb8esFsl+vY6AZqUqNhkJS66a35LqCG0bCzmA1sLdbVL8Uspe6ooY6q1TqDw4zD/AQyyoCUoYXAM/OWNRsh+VyPwqpkUpEarbO+HFAL4wLD5T0qtLCX4DzMjyFAqaK5xPm5RtwJskRQ6dyZvVrueRTlSFJFGNjHWXsRW9NRzJiJfwPd2/eknt0v4uNW+qhzMA3ka8SjVwEQmCdEbdIUn1beYHVLjxr5UhgFdQzaC/BulBAhcVSmcj1pMbN0mA802KYvUNVZX0DVCUqK3buEXDdYtmDTrDZlCwav1tTjYtxI38LHz/9BhAeAj3HOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by SA2PR11MB5083.namprd11.prod.outlook.com (2603:10b6:806:11b::24)
+ by PH0PR11MB4775.namprd11.prod.outlook.com (2603:10b6:510:34::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.11; Thu, 23 Jul
- 2026 16:38:00 +0000
+ 2026 16:42:17 +0000
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0245.010; Thu, 23 Jul 2026
- 16:37:59 +0000
-Date: Thu, 23 Jul 2026 12:37:49 -0400
+ 16:42:17 +0000
+Date: Thu, 23 Jul 2026 12:42:13 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
- Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-intel-fixes
-Message-ID: <amJDXaBKC9uUgRFt@intel.com>
+To: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
+CC: <umesh.nerlige.ramappa@intel.com>, <matthew.brost@intel.com>,
+ <kamil.konieczny@intel.com>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v6 3/3] drm/xe/lrc: Fix ABA race on engine migration in
+ context timestamp read
+Message-ID: <amJEZXEYtG2gVVS2@intel.com>
+References: <20260723092751.250613-5-gajendra.uttamchand@intel.com>
+ <20260723092751.250613-8-gajendra.uttamchand@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-X-ClientProxiedBy: YQZPR01CA0183.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:8b::27) To CO1PR11MB5073.namprd11.prod.outlook.com
+In-Reply-To: <20260723092751.250613-8-gajendra.uttamchand@intel.com>
+X-ClientProxiedBy: PH7P221CA0058.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:33c::28) To CO1PR11MB5073.namprd11.prod.outlook.com
  (2603:10b6:303:92::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|SA2PR11MB5083:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6903346a-064e-467b-e434-08dee8d8c18e
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|PH0PR11MB4775:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7b756f55-08bd-4358-6a9d-08dee8d95b69
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|23010399003|366016|1800799024|56012099006|11063799006|10067099003|18002099003;
-X-Microsoft-Antispam-Message-Info: +kf4jd4EhvRJz5ZJzyvea1SdmzrDtvMIHgwzwCegbzCf+9cvd6OpqcrBjTjyYTRGA1gBu4l6tdEz5wSeCNuq0jdhGpS7xC5qHSGNVak0Crmto1ACegWcxvr9eR+/2cQ2UtuAnb3hEVFc/7N8EBG8wDXNE/b488pJXPUXxUkuDDiqk7lnLZLpnKj2kp+/GtQ1DhI8V/tnHtfSEpFXqbY03u8OlqZB2x/apM7dMOymoImw+iXYJRSWRkBl/5HsGairWVnu8YkKQuAFMXVSY6SaNPpcrQw3U/b2747mg8F/IWqs1F49VxvEwIbIntjoRskctez9UKT+ighvnz0JbCEjW7qrWWCutnrnE3S5CR2s6823f9ZMTh8UsxPn77Qq6k457xygaPo9cDT8OWjdlwGJWzZTyY2B/+DTbcMbZn3OmMEGFEcLB6cV4I+V5G2kEvgjDYC+udqNya8fHF15aNQDozFYiDl5LusozVYEF/3U2xZZ0XAlKCzjgQWUBZIXGltVyn8vgOslnjJeK2sNO8s+ur0a/p+EHwgjy4nHVYqoq8Jvo/baE/PF1FFQI7zz4GPu8fdBSrgQ79lS4ZLTT+NFwjU5p4D9XMhogRBuoQB+fq/CKCaxpEDGqn2b7+PAROWa
+ ARA:13230040|23010399003|376014|366016|1800799024|10067099003|11063799006|5023799004|4143699003|18002099003|22082099003|56012099006;
+X-Microsoft-Antispam-Message-Info: LVwfwteia2mv09yqNgxVsz9gcWgyVMyuJxhVm5a485hQ4WwE/bPsDgQWKtE3kTlLUQH3DuuEKflKf/CxiAyfut07JVk0HrC/W+reO6BQdyF9LLGnOpaVr496/uDCIz7z5+Nf96+R4qblisG3Zb11ZYxtJvwNuFAHw2ctmP4PEqxcLFyYt/OE1XsIqJ5STa+nY8yeYygnlnzJI/QmDwwhMg0l1vhsOWKjka/40adDUdlGx3kS3WsUEm+Q1kPw/HkEERc8OPkuOTm0SNPdTPogsPq/qGLOSvN84FBAgKd2WOQYv6momXk6ljbyDiuaN+zoU/j65carr0jIvM9yMXnWucvOhy9N3s+2CZKQTfY3NSRjYLyBtnUh3/2JWeilJ4ZE5DrYCZk5+hDN8SZENRvHUFRW/FnCkIWpr94MvyxZk/e07qgImZ55UBV7MzKxjMZDCLfCP4PbMDVYJKGCvYVAy6IxK5b1Y2BTclUn5SeoutVGJu89dDlSjgPpAnWBEZ1vF+rlyTG6fydcYP0iEjBu7qJKRpt0ESv+s3YyrFeNuAAUKUlz3BL+ME/mRZEB4/HdnHWDcVmoNv58og0zyyGC63SO2F5TYD8pqGPR55wRvICLfsYtfZem4OMJeYoc7FsDNEdUr+tHExILVyi45L0yeUYhz9j95B7+02CQg/kTQTQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(23010399003)(366016)(1800799024)(56012099006)(11063799006)(10067099003)(18002099003);
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(10067099003)(11063799006)(5023799004)(4143699003)(18002099003)(22082099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XFL32F4+jeBwP1i+kNpPfE+XC+oLaoqIgDWTP0QYi+AmDfSRkwhASevBrAdj?=
- =?us-ascii?Q?IrMuTsYGrimXhljSQWFBidWOUzAVqVqdkY4gkkbiqll0MOPqgEL70XWr0akz?=
- =?us-ascii?Q?B+NhuYNCufpItU7282GFZEgB3FseZqjwHk4BduT7GjKqaOEKwDZi8K3rRwuA?=
- =?us-ascii?Q?wM5H62Gx6x0owk0V+Zyhlc658Ug6E2zT7aAnF1H17xRtOIi7PuFeT09KcAGD?=
- =?us-ascii?Q?afnVCuFOoCG9rdup8CAA0eKsVpmjBqCH4j3iG5htyRC07t+Ff50JDXOp3QJs?=
- =?us-ascii?Q?R24WLaOWng/kEskgji0cd0w6pztRI9eTQC5yPuOgOdns2msNWfQo5dr5umGa?=
- =?us-ascii?Q?myTc0eF8xv3nWdlTEXDJ284cdFkn/OzrK1vZyaIEg/1K7BDOX/wPMdudH2Y/?=
- =?us-ascii?Q?pH9rx2sU7KgQWctImnhMsPOwkHGc9pBk1TfHRt0PvK6ZwhvmLuiSIKOOa0KK?=
- =?us-ascii?Q?tXsI53khfEFTueun4cjGFPawyMIoWS071P8RTWUAYG1oP68kRc1kqx3NNfgn?=
- =?us-ascii?Q?Tzg8rjaM3ZlieflXjdgfeNJ/Is4XT5RPWvYxaJOVZrlDawmB9vIpeDpFf/Sg?=
- =?us-ascii?Q?zl5KM1rnS6Hao7TTPXxP+9gPlaNqzWWvRi1uw8vHiM3vXtPcqPu4nP/pYJHY?=
- =?us-ascii?Q?hVFcWDNov5FsTnVFOAOF4D8R8UQyrtVI50XhZC5QQexVjEII/8eyAu7U2UFJ?=
- =?us-ascii?Q?FASDeOMdRcaowADe/FWzC5sL8USluXRARk+rHT/qcvBP6PbBDeqFAn8H5pGH?=
- =?us-ascii?Q?c58lOt7HeTND4eHaB7NYO0rS1YUY9f2AXFHFtPqWnxVD2JpMq6HKNkRcpvQQ?=
- =?us-ascii?Q?IxY87iCbR4WMIlIrO4a/c5mMpoo4+jnAy3iHABsKry4MCrNVcB6v8j5pMySO?=
- =?us-ascii?Q?eYm9n9nksLRYZRPKIlOZ7SQaDjIS8FNfrsXn5CUFvGaCUaq862KZ2LtgpcqN?=
- =?us-ascii?Q?PnP+u9aDCQY8j7qMTCdqeeoywkWmEVsokCbuA7Ug21FgP3s0yQDMtntIVqx2?=
- =?us-ascii?Q?5xu8436PVLt4jnZzDtg5mAsTG/RF6vJ2+tC/kvjUwhT+oY7eMCoQXaHls/FJ?=
- =?us-ascii?Q?oOVFFJ9YmbCotnHFlwqAMGWecGQaz04R4koslsmxzuIuj5RxYX97glGd8BpT?=
- =?us-ascii?Q?M3yD05OzglFIucdFkcozLzqAl4g6gkIBn9sXfItFfea1aWiAT/siTdKWrm/g?=
- =?us-ascii?Q?H13Nx1/hK6I0ICmlBgrT6CT1LfIpinA7oK25F+cB1vdmAP23V+pRtnmOnIGM?=
- =?us-ascii?Q?89czB7mBkQgbl4a71rp8D85K1m5ynKa258CE/NAbtGXzNeS7aLKHYpHqL5Rd?=
- =?us-ascii?Q?PD601GxhY1Oy1Yt1rEVIyNrcuizWeCNVU27DLuiB1qa2F59SofXAoQ3+62AM?=
- =?us-ascii?Q?9VESjWvY9s0VNqMgbcJD/J9z8g8ZZA4jyYNvMcdcyn01JMmige0gkTkCsFsP?=
- =?us-ascii?Q?lPpGwIg+ArqXX48dNxOrw7HYqIboVb5IOW/LULJoyJTDCsB8Dg9ikRTfhvQs?=
- =?us-ascii?Q?2gt6w1pnTOrx7FIDH+aE5wiFsKQ2YUNCbxB8McVS04CaK5dnO12VVHyZtlJL?=
- =?us-ascii?Q?EomBhbi+p9FpMS9WSWPUd8SJKcc87WlmaY32HPI+R2Kk3Nha/tkRne+YMiN8?=
- =?us-ascii?Q?UsEKkkNZIBsHvqIrmTSyDTJOOYvP77GCNRwWRZWLSk9a1AiOPvI5wgDZGXH4?=
- =?us-ascii?Q?NdjDeCRFMK4FLzj/S8g/+AguwsZhWMftmwLdmhupINhjcxnVEmY0hvVbIlF5?=
- =?us-ascii?Q?t+dLExR4XQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: mNgSbYUY35jMDLu2bRZhqOgx2fHQuHqYqi+Snk6u7YWGbuKFZtrwxODoNQiNnLvwoA0UgeAruxVSM+IBFlmF+H10eAhF1ZxskQvH6eFVPq0EBnlUggY8P2En5rsy4n2ex5kw+KZx2bTA66RAU7VmS+mM1tZ4DZ2RhcCFC3xbd7Qoe9Jf6ZcNqnib8pF2VC4rFafaqwDL0hdVjfyMXpjyk981KOxg9SkObJSld/QxxL2wA9kcKSHSHBqlllAwiXvELPTcNxVMVsqd7dSRWZgxGZbxJtA0h5/VWcJUt4pwqyq71cte5ua3rWMK4PR0pMamVl9YTNTkMVlQTHR30+lAlg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6903346a-064e-467b-e434-08dee8d8c18e
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m7vJr0KE4kTQFaIRpBHpFaUCvOx+hdQUNTgtyRmeR0euq8wb5/Gua8ObGjSq?=
+ =?us-ascii?Q?4uEgl4LNAt18I5vHsj8zqmyzzxkx3ISR4d9dYp4Gofw/74wGX8sP8tEdr1sc?=
+ =?us-ascii?Q?guID083dnC7B+PTdhSsaQqEyzjoJMjG6sVqO+0lFWY5k4rQP0ZpYRBv4uCV1?=
+ =?us-ascii?Q?JDq4fJvveugLE+6vdiu//mhd22LSIF1HFvLcOakZ0jWHkloTjJ4PJSYvommr?=
+ =?us-ascii?Q?PR5fiSh24F2og3gy9zOiJrxvWG8oThWiYeTSL19zvTO0Q3f6lrhf89VAI8A+?=
+ =?us-ascii?Q?2vzl1XduRCjPaVMX8pSEP4GAAKVdIkIIqYLxAor9BtRxg0UMwTgmgCfWWNyZ?=
+ =?us-ascii?Q?dhhqVCmCKp6kd4hRBPbiKZ/7sIvKCm2zkOboUajdmZKxxPJDqQOOSnDMTQi8?=
+ =?us-ascii?Q?dbYj+e1VOBnOCswyC7iDA0fv3pN4bKn/vgkkfduPDy/uUeIRigoQMWd63kYE?=
+ =?us-ascii?Q?vToH1PZtDADj8b2a6V32d/A4HnFuZx1WxtGTMxuZWhWL8dTQx6QKqCRagolP?=
+ =?us-ascii?Q?n6OBsX+8xis1q3pfmYaZ3C05NBt9j7yGqBQpF1lfA9TgzFohHwCtCOd21FC8?=
+ =?us-ascii?Q?y1j8FFg8f41sFlChVmX6GA8tFqpubt8dimjkPexFgJSlkZiJzVvQwLDwBO7z?=
+ =?us-ascii?Q?FzCk/K02QoLXLIshyr7iWBePWeZVbfSX8scjb2BrenypdJdR13oyPcXZ0dGi?=
+ =?us-ascii?Q?I1SCS6xh95fgV1JyMuEBKVK6B6xczO0DawMHym7eMHXdT7iTpGtDT5zZfRS0?=
+ =?us-ascii?Q?+gsEjtYRGEldtged7VHzn4PjJIt8W8p4O/V7asi7rrjn9p1Y1hDVkLC1P4Uw?=
+ =?us-ascii?Q?cHD0KnfbnLwIXIE4XDiocIuIl+zzXre+VbjED5s2oGveYXyCyD/YOVkiWe59?=
+ =?us-ascii?Q?fRDIkcnAHoCT2uemdv/09EhUmlCXt04VzBllzkptEB4TAWiaAeovmzl+xkUs?=
+ =?us-ascii?Q?NN8ui4utW+85+J9B6z0YrRUzxD4SxPrdnzKXIAdlxuzV3yQISOc0rntKMgTu?=
+ =?us-ascii?Q?5ATcYBUriuyvH8poaxaGrw7NZ9AvCtLslHbcVxIIUrDeQG+SsAVb78m02d0w?=
+ =?us-ascii?Q?dN5qSTNz3immxRmq3UFYJgDtrB4+xPcOWTZFTg0hAJPWYfV0QbHVYm3+qCIS?=
+ =?us-ascii?Q?H6EqtZnWcHRVDgaJtHzVjB8Sj449B/HWOcJhaSh6rywGJaMUVs1pNNc4mKld?=
+ =?us-ascii?Q?QpAkpIq8amgKNL3/Sv5yVoLmnrUR0BfLDlEkBdmdL0THwaymx7k1Q1oGedR/?=
+ =?us-ascii?Q?9Ohny37R5CtjeaZZxEqG8boO6/53v63K9ZbtgD132EyXSp3WMmxOpdPJRUhr?=
+ =?us-ascii?Q?wQRG082Y48/UhVtbCE/BEUfFHeMr/LmQd7mHfT1NyQHNCTOj6wg50NkU7Gb/?=
+ =?us-ascii?Q?+gOswwraPb44mk9dsHEFNYVITVkknjFJK9a2QDQ8sUg0iFooN/zjbpXlxiz6?=
+ =?us-ascii?Q?3S0pnKhYthNrSevuqeGYbmyyNctkTF+2EAOoDtmlF5jfeOkSoIyQc9przpp/?=
+ =?us-ascii?Q?QB3V7XaqULqjSoHnLvbO/8PmBtWI+RaDPKZCqI5kw+tY/J0pENd2UW3+P1t2?=
+ =?us-ascii?Q?IE/x2hBGmRKT89M4rpL+nnN1ELnvIxHzM9AlSKEN4O5raYctnWtl835ft5dm?=
+ =?us-ascii?Q?YGM+3Ur8rJhTckKSsh99bh86mTbHxR9MftwR+KdFtsd55S6jOUuoMhelWG45?=
+ =?us-ascii?Q?zASc2QYorRD4TSiH4S/L+ZCszCeKja+FXuRnkFWyShBHG90UAgckafeykR9f?=
+ =?us-ascii?Q?+e4AHiAKeQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: OgatzQVcWXMQkZldVf9pEoMjYB9qdPJ5UEs+EEIRAW2rW2LsQnpsvLjDfnu2BPZoJ7lU/hJFfmOM1U+4oA5uh6438bT14FyPu90FQNpax4GUpLAoe8Rm8c6yEuLKtppgu3cCk8dnrI8IHEz9/xkTODr23lAff5EATUTx296NdcUrSS7UYqupLRsKMe1q7Q4y310K+PbOBPzrYwUSeSWyGPH1hCQ0ET9BEgQ1x0mOrE8HatbS1fbobyUhwJgqyYRucz5s4CFDHZjlp013QoDC1lytCDkrYvqPtog3TCoizk1/31RkeFqCcoVFhSDL5Vo6qbmQE6uMgnmBu1DeTtLPlw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b756f55-08bd-4358-6a9d-08dee8d95b69
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2026 16:37:59.4467 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2026 16:42:17.4340 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x04ywtS4aesi3rPGb3yvPow9VsmWkCdkCG+uI/alSamfQC5o5aqrsIS2/yOlDEJIKcvGvMVGqD2WMkvKpY5LQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5083
+X-MS-Exchange-CrossTenant-UserPrincipalName: wAnmNWICPOs1aD+XOlsTaVa18gyxgE86e5FL9YjeaZUDgTPzaXn1Mv9BqdlZ60tJoMQeBw98OKeywtdhk1W3rA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4775
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -161,33 +159,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+On Thu, Jul 23, 2026 at 09:27:55AM +0000, Gajendra Uttamchand wrote:
+> xe_lrc_context_timestamp() reads the engine id once via
+> xe_lrc_engine_id(lrc) and uses it to fetch the live CTX_TIMESTAMP MMIO
+> register, then re-checks the LRC-stored value to detect whether the
+> context switched out while the MMIO read was in flight. That check
+> only confirms the context is (still/again) active - it does not
+> confirm it is active on the *same* engine the MMIO read targeted.
+> 
+> If the context is saved and restored onto a different engine between
+> the initial engine id read and the final activity check, the
+> CONTEXT_ACTIVE sentinel will be observed again (now for the new
+> engine), and the stale MMIO value read from the old, now-unrelated
+> engine is returned as if it were valid.
+> 
+> Pin the engine id used for the MMIO read and re-validate it against
+> the current engine id after the final activity check. If the engine
+> changed, retry the whole read (bounded by a small retry count) instead
+> of trusting a timestamp sampled from an unrelated context, falling
+> back to the last cached value if the context keeps migrating.
+> 
+> Signed-off-by: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
 
-A single display fix for this round.
+The excess of comments in your patches is a good indication that you
+were helped by AI. There is nothing wrong with that. Just be sure
+to respect the rules and be transparent on its usage:
 
-Thanks,
-Rodrigo.
+Documentation/process/coding-assistants.rst
 
-drm-intel-fixes-2026-07-23:
-- Remove DP_EDP_BACKLIGHT_AUX_ENABLE_CAP check for DPCD backlight (Suraj)
-The following changes since commit 1590cf0329716306e948a8fc29f1d3ee87d3989f:
+And please, remove the excess of the comments as well. The code should
+be obvious and self explained.
 
-  Linux 7.2-rc4 (2026-07-19 13:54:41 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-07-23
-
-for you to fetch changes up to a411ea4a87162898d2a0547fdfb721ddb7626be3:
-
-  drm/i915/backlight: Remove DP_EDP_BACKLIGHT_AUX_ENABLE_CAP check for DPCD backlight (2026-07-20 06:30:37 -0400)
-
-----------------------------------------------------------------
-- Remove DP_EDP_BACKLIGHT_AUX_ENABLE_CAP check for DPCD backlight (Suraj)
-
-----------------------------------------------------------------
-Suraj Kandpal (1):
-      drm/i915/backlight: Remove DP_EDP_BACKLIGHT_AUX_ENABLE_CAP check for DPCD backlight
-
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+> ---
+>  drivers/gpu/drm/xe/xe_lrc.c | 66 ++++++++++++++++++++++++++-----------
+>  1 file changed, 46 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 1e910669e8d1..314de730ace6 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -2736,39 +2736,65 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
+>  	return lrc->queue_timestamp;
+>  }
+> 
+> +/*
+> + * Between reading the engine id and re-checking that the context is
+> + * still active below, the context may have been saved and restored
+> + * onto a *different* engine, in which case the MMIO read in between
+> + * targeted an unrelated context on the old engine.
+> + * Bound the number of times we retry the full read sequence when a
+> + * context migration between engines is detected. A small bound (3)
+> + * prevents long loops; if we exhaust retries we fall back to the
+> + * last cached `lrc->ctx_timestamp`.
+> + */
+> +#define CTX_TIMESTAMP_MAX_RETRIES 3
+> +
+>  static u64 xe_lrc_context_timestamp(struct xe_lrc *lrc)
+>  {
+>  	u64 reg_ts, new_ts = lrc->ctx_timestamp;
+>  	u64 stored;
+> +	u32 engine_id;
+> +	int retries = CTX_TIMESTAMP_MAX_RETRIES;
+> 
+>  	/* CTX_TIMESTAMP mmio read is invalid on VF, so return the LRC value */
+>  	if (IS_SRIOV_VF(lrc_to_xe(lrc)))
+>  		return xe_lrc_ctx_timestamp(lrc);
+> 
+> -	/*
+> -	 * Safely read CTX_TIMESTAMP: check the LRC-stored value before and
+> -	 * after the MMIO read to avoid a TOCTOU where a context switch makes the
+> -	 * MMIO value stale. If the LRC value is not `CONTEXT_ACTIVE` return it;
+> -	 * otherwise accept the MMIO value only if the context remained active.
+> -	 */
+> +	do {
+> +		/*
+> +		 * Safely read CTX_TIMESTAMP: check the LRC-stored value before and
+> +		 * after the MMIO read to avoid a TOCTOU where a context switch makes the
+> +		 * MMIO value stale. If the LRC value is not `CONTEXT_ACTIVE` return it;
+> +		 * otherwise accept the MMIO value only if the context remained active.
+> +		 */
+> 
+> -	stored = xe_lrc_ctx_timestamp(lrc);
+> -	if (stored != CONTEXT_ACTIVE)
+> -		return stored;
+> +		stored = xe_lrc_ctx_timestamp(lrc);
+> +		if (stored != CONTEXT_ACTIVE)
+> +			return stored;
+> 
+> -	/* Context is active: read the live timestamp from the engine's MMIO register. */
+> -	if (!get_ctx_timestamp(lrc, xe_lrc_engine_id(lrc), &reg_ts))
+> -		new_ts = reg_ts;
+> +		/* Context is active: read the live timestamp from the engine's MMIO register. */
+> +		engine_id = xe_lrc_engine_id(lrc);
+> +		if (!get_ctx_timestamp(lrc, engine_id, &reg_ts))
+> +			new_ts = reg_ts;
+> 
+> -	/* Re-check the LRC-stored timestamp: if the context switched out while
+> -	 * reading MMIO the hardware saved the canonical timestamp into the LRC
+> -	 * during context-save, so return that value instead of the MMIO read.
+> -	 */
+> -	stored = xe_lrc_ctx_timestamp(lrc);
+> -	if (stored != CONTEXT_ACTIVE)
+> -		return stored;
+> +		/* Re-check the LRC-stored timestamp: if the context switched out while
+> +		 * reading MMIO the hardware saved the canonical timestamp into the LRC
+> +		 * during context-save, so return that value instead of the MMIO read.
+> +		 */
+> +		stored = xe_lrc_ctx_timestamp(lrc);
+> +		if (stored != CONTEXT_ACTIVE)
+> +			return stored;
+> +
+> +		/*
+> +		 * Still active, but possibly on a different engine than the one
+> +		 * we just read MMIO from (context switched out and back in
+> +		 * elsewhere). Only trust new_ts if the engine id hasn't changed;
+> +		 * otherwise retry the whole sequence against the current engine.
+> +		 */
+> +		if (xe_lrc_engine_id(lrc) == engine_id)
+> +			return new_ts;
+> +	} while (--retries);
+> 
+> -	return new_ts;
+> +	return lrc->ctx_timestamp;
+>  }
+> 
+>  static u64 xe_lrc_update_context_timestamp(struct xe_lrc *lrc, u64 *old_ts)
+> --
+> 2.43.0
+> 
