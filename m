@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11F1EC4452B
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 11:21:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3336DC531CB
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 11:22:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD3E110F096;
-	Thu, 23 Jul 2026 11:21:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="UaQNzH1J";
-	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57D0910E56A;
- Thu, 23 Jul 2026 11:20:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1784805657;
- bh=da02RzMZpLZ3SfqEb6HEfFb8mMYa1onpAEXpqsbaFNo=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=UaQNzH1JT0+4fyA8kJe9EIIIZPGO+ew6XdAUFS4N3ojS3Ehrk4mF0/uzVV7Qz7Sdx
- E1tU/saUHeWBzJ27wCFiVm4iy/x15t3YzWqPzzKuZYmQEe8br0FUIV+C83Fy+lo/Xa
- ObivOLBrib9Le7r8q1rBWDtMC01t8OCl8AKnhK1Tm6EBWN7GKFh6hn5Tdupln6aziq
- JnWdQoroHZidrCIHITRITM1n0pV1IyS8jhYSzldSwRmVZ7IGpXmFgMF1RToSlmgsSp
- hy50vEEhJylFCVMf6OyQTn1dwBTFx4BicBY13LZvFcfOCUGTIGQ0uyQpxplYTos6Mb
- viW5YjAepl/XQ==
-Message-ID: <7de12f14-2e0c-4691-ad66-25c919aa01f7@lankhorst.se>
-Date: Thu, 23 Jul 2026 13:21:48 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7CC210E558;
+	Thu, 23 Jul 2026 11:22:45 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE3F10E558;
+ Thu, 23 Jul 2026 11:22:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1790118003698367977=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/migrate: Support copying between sysmem and stolen
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20260721142610.93804-9-dev@lankhorst.se>
- <20260721192540.115548-2-dev@lankhorst.se>
- <DM4PR11MB63600BA9A874C1FF20EF7391F4C12@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <DM4PR11MB63600BA9A874C1FF20EF7391F4C12@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe3LPD?=
+ =?utf-8?q?=5F3002_DMC_v2=2E32?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Jul 2026 11:22:44 -0000
+Message-ID: <178480576417.220306.13910802186373857718@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260723083408.1791364-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20260723083408.1791364-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,108 +36,207 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1790118003698367977==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/dmc: Test Xe3LPD_3002 DMC v2.32
+URL   : https://patchwork.freedesktop.org/series/170973/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830_BAT -> xe-pw-170973v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  Additional (1): bat-bmg-1 
+  Missing    (1): bat-bmg-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-170973v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#8265])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_exec_multi_queue@exec-sanity:
+    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#8364]) +13 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_exec_multi_queue@exec-sanity.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#2229])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#1420] / [Intel XE#7590])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2245] / [Intel XE#7590])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-1:          NOTRUN -> [SKIP][8] ([Intel XE#2236] / [Intel XE#7590])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
 
 
-On 7/22/26 21:01, Shankar, Uma wrote:
-> 
-> 
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Maarten
->> Lankhorst
->> Sent: Wednesday, July 22, 2026 12:56 AM
->> To: intel-xe@lists.freedesktop.org
->> Cc: intel-gfx@lists.freedesktop.org; Maarten Lankhorst <dev@lankhorst.se>
->> Subject: [PATCH] drm/xe/migrate: Support copying between sysmem and stolen
->>
->> Stolen memory is used on integrated devices to hold the firmware framebuffer. In
->> the next commit we want to copy the framebuffer to normal system memory.
->>
->> This requires treating stolen memory mostly as VRAM, but without access to the
->> identity mapping.
->>
->> On discrete the identity mapping can be used, but we never need to copy there, so
->> just prohibit identity map on stolen.
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/xe/xe_migrate.c | 18 +++++++++++++++---
->>  1 file changed, 15 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->> index 4366c41bd3254..505d105472fca 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -574,6 +574,10 @@ static u64 xe_migrate_res_sizes(struct xe_migrate *m,
->> struct xe_res_cursor *cur)
->>
-> 
-> This  migrate_res_sizes still uses the old function instead of is_devmem.
-> Is it intentional ?
-> 
-> Else all looks good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Build changes
+-------------
 
-Yeah, min_chunk_size is not set on integrated and that was causing an infinite loop
-during boot.
+  * Linux: xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830 -> xe-pw-170973v1
 
-The previous version of this patch had that issue worked around by unconditionally
-setting min_chunk_size for making migrate_res_size work, but the smaller delta makes
-it worth not fixing.
+  IGT_9020: 9020
+  xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830: 2917ea6f91d2957b4c9fa73d4631ccdb6a650830
+  xe-pw-170973v1: 170973v1
 
-Thanks!
+== Logs ==
 
-> Good to be checked by someone from Core KMD side as well.
-> 
->>  static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
->> {
->> +	/* Stolen only used by integrated, no VRAM or identity map there */
->> +	if (cur->mem_type == XE_PL_STOLEN)
->> +		return false;
->> +
->>  	/* If the chunk is not fragmented, allow identity map. */
->>  	return cur->size >= size;
->>  }
->> @@ -879,6 +883,14 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
->>  	return flush_flags;
->>  }
->>
->> +static bool is_devmem(u32 mem_type)
->> +{
->> +	if (mem_type_is_vram(mem_type) || mem_type == XE_PL_STOLEN)
->> +		return true;
->> +
->> +	return false;
->> +}
->> +
->>  static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>  					   struct xe_bo *src_bo,
->>  					   struct xe_bo *dst_bo,
->> @@ -899,8 +911,8 @@ static struct dma_fence *__xe_migrate_copy(struct
->> xe_migrate *m,
->>  	int err;
->>  	bool src_is_pltt = src->mem_type == XE_PL_TT;
->>  	bool dst_is_pltt = dst->mem_type == XE_PL_TT;
->> -	bool src_is_vram = mem_type_is_vram(src->mem_type);
->> -	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
->> +	bool src_is_vram = is_devmem(src->mem_type);
->> +	bool dst_is_vram = is_devmem(dst->mem_type);
->>  	bool type_device = src_bo->ttm.type == ttm_bo_type_device;
->>  	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe);
->>  	bool copy_ccs = xe_device_has_flat_ccs(xe) && @@ -1597,7 +1609,7
->> @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->>  				   struct ttm_resource *dst,
->>  				   u32 clear_flags)
->>  {
->> -	bool clear_vram = mem_type_is_vram(dst->mem_type);
->> +	bool clear_vram = is_devmem(dst->mem_type);
->>  	bool clear_bo_data = XE_MIGRATE_CLEAR_FLAG_BO_DATA &
->> clear_flags;
->>  	bool clear_ccs = XE_MIGRATE_CLEAR_FLAG_CCS_DATA & clear_flags;
->>  	struct xe_gt *gt = m->tile->primary_gt;
->> --
->> 2.53.0
-> 
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/index.html
 
+--===============1790118003698367977==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe3LPD_3002 DMC v2.32</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170973/">https://patchwork.freedesktop.org/series/170973/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830_BAT -&gt; xe-pw-170973v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>Additional (1): bat-bmg-1 <br />
+  Missing    (1): bat-bmg-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-170973v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@exec-sanity:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_exec_multi_queue@exec-sanity.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830 -&gt; xe-pw-170973v1</li>
+</ul>
+<p>IGT_9020: 9020<br />
+  xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830: 2917ea6f91d2957b4c9fa73d4631ccdb6a650830<br />
+  xe-pw-170973v1: 170973v1</p>
+
+</body>
+</html>
+
+--===============1790118003698367977==--
