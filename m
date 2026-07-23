@@ -4,27 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FC70C531D4
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 14:17:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE45C531F5
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 14:19:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0E1210F16C;
-	Thu, 23 Jul 2026 14:17:46 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 636A310F156;
- Thu, 23 Jul 2026 14:17:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0603843370464161198=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A9710F138;
+	Thu, 23 Jul 2026 14:19:03 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 483CC10F12C;
+ Thu, 23 Jul 2026 14:19:02 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 4F9D9600AD;
+ Thu, 23 Jul 2026 14:19:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5040D1F000E9;
+ Thu, 23 Jul 2026 14:18:54 +0000 (UTC)
+Date: Thu, 23 Jul 2026 15:18:24 +0100
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, 
+ Suren Baghdasaryan <surenb@google.com>, "Liam R. Howlett" <liam@infradead.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Shakeel Butt <shakeel.butt@linux.dev>, 
+ David Hildenbrand <david@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Michal Hocko <mhocko@suse.com>, 
+ Uladzislau Rezki <urezki@gmail.com>, Toshi Kani <toshi.kani@hpe.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, 
+ Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@kernel.org>, 
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Kiryl Shutsemau <kas@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Dev Jain <dev.jain@arm.com>, 
+ Ryan Roberts <ryan.roberts@arm.com>, David Carlier <devnexen@gmail.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 
+ "Denis V. Lunev" <den@virtuozzo.com>, stable@vger.kernel.org, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [REGRESSION]: [PATCH mm-hotfixes v5 3/5] x86/mm/pat: acquire
+ init_mm read lock on attribute change to avoid UAF
+Message-ID: <amIEC1qDW3kfeuHd@lucifer>
+References: <20260717-series-vmap-race-fix-v5-0-606a0ac6d3e5@kernel.org>
+ <20260717-series-vmap-race-fix-v5-3-606a0ac6d3e5@kernel.org>
+ <80993b70-352f-4069-84c7-39a04c061e98@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/bo=3A_optimise_TT_po?=
- =?utf-8?q?pulation_for_DONTNEED_BOs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Jul 2026 14:17:45 -0000
-Message-ID: <178481626539.221592.7801414231087831897@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260723133418.1201717-2-matthew.auld@intel.com>
-In-Reply-To: <20260723133418.1201717-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <80993b70-352f-4069-84c7-39a04c061e98@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,245 +59,229 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0603843370464161198==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jul 23, 2026 at 12:00:42PM +0530, Borah, Chaitanya Kumar wrote:
+> Hello Lorenzo,
+>
+> On 7/17/2026 11:00 PM, Lorenzo Stoakes (ARM) wrote:
+> > A previous commit protected us against races between ptdump and CPA
+> > collapse, however one still exists between attribute changes and collapse
+> > as reported by Denis V. Lunev (linked).
+> >
+> > When an attribute change arises, a lockless page table walker obtains a PTE
+> > entry, which is later written to via set_pte_atomic():
+> >
+> > ...
+> > -> change_page_attr_set_clr()
+> > -> __change_page_attr_set_clr()
+> > -> __change_page_attr()
+> > 	-> _lookup_address_cpa()
+> > 	-> lookup_address_in_pgd_attr()
+> > 	-> [ lockless page table walker ]
+> > -> set_pte_atomic()
+> >
+> > There is nothing preventing a concurrent CPA collapse which can free the
+> > PTE that was retrieved here, resulting in a use-after-free.
+> >
+> > With the mmap write lock taken on init_mm over CPA collapse, we can now
+> > resolve this race by acquiring an mmap read lock on init_mm over
+> > __change_page_attr_set_clr().
+> >
+> > This locks across the whole operation over which the walk and the PTE entry
+> > write occurs, solving the race.
+> >
+> > It is safe to do this here, as no spinlocks are held upon entry to
+> > __change_page_attr_set_clr().
+> >
+> > The CPA_COLLAPSE flag is only set by set_memory_rox(), which exclusively
+> > operates upon vmalloc ranges, and on x86 only within the module mapping
+> > space.
+> >
+> > This is important, because some callers directly invoke
+> > __change_page_attr_set_clr(), bypassing this lock. However, none of these
+> > operate within the module mapping space.
+> >
+> > * cpa_process_alias() - a recursive helper called by
+> >    __change_page_attr_set_clr().
+> > * __set_memory_enc_pgtable() - operates on the direct mapping and (via
+> >    __vmbus_establish_gpadl()) the vmalloc mapping space.
+> > * __set_pages_[n]p() - called by set_direct_map_[invalid, default,
+> >    valid]_noflush(), __kernel_map_pages() - operates on the direct map.
+> > * kernel_[un]map_pages_in_pgd() - operates on EFI ranges.
+> >
+> > This work is based upon Denis V. Lunev's excellent analysis of the bug with
+> > gratitude.
+> >
+>
+> This seems to be causing regression in our linux-next CI [1] on some of the
+> older machines (fi-elk-e7500, fi-ilk-650, fi-pnv-d510)
 
-== Series Details ==
+Thanks for the report!
 
-Series: drm/xe/bo: optimise TT population for DONTNEED BOs
-URL   : https://patchwork.freedesktop.org/series/170995/
-State : success
+A small note - it'd be useful for you to clearly point
+out the revision of next to make our life a bit easier :)
 
-== Summary ==
+I can see from below in the stack and the URI it's next-20260720. There was a
+broken merge in linux-next for a while but it's fixed by 20260720 so that's not
+it.
 
-CI Bug Log - changes from xe-5467-2c64192f1ad194a53800f6dd8c779d5b4bbc1831_BAT -> xe-pw-170995v1_BAT
-====================================================
+>
+> <4> [196.236867] ======================================================
+> <4> [196.236878] WARNING: possible circular locking dependency detected
+> <4> [196.236890] 7.2.0-rc4-next-20260720-next-20260720-g3fe08b9796f3+ #1
+> Tainted: G S   U       L
+> <4> [196.236906] ------------------------------------------------------
+> <4> [196.236916] core_hotunplug/5687 is trying to acquire lock:
+> <4> [196.236927] ffffffff839048b8 ((init_mm).mmap_lock){++++}-{4:4}, at:
+> change_page_attr_set_clr+0x10a/0x220
 
-Summary
--------
+This is the result of my change indeed.
 
-  **SUCCESS**
+> <4> [196.236958]
+> but task is already holding lock:
+> <4> [196.236969] ffff88810c852238 (&vm->mutex){+.+.}-{4:4}, at:
 
-  No regressions found.
+So this is a lock dependency issue as this is obviously an entirely
+different lock.
 
-  
+> i915_ggtt_driver_release+0xab/0x260 [i915]
+> <4> [196.237572]
+> which lock already depends on the new lock.
+> <4> [196.237585]
+> the existing dependency chain (in reverse order) is:
+> <4> [196.237597]
+> -> #2 (&vm->mutex){+.+.}-{4:4}:
+> <4> [196.237617]        i915_gem_shrinker_taints_mutex+0x35/0x70 [i915]
+> <4> [196.238267]        i915_address_space_init+0x226/0x2a0 [i915]
+> <4> [196.238961]        i915_ggtt_init_hw+0x2c/0x140 [i915]
+> <4> [196.239638]        i915_driver_hw_probe+0x208/0x380 [i915]
+> <4> [196.240260]        i915_driver_probe+0x113/0x5b0 [i915]
+> <4> [196.240883]        i915_pci_probe+0xe0/0x1d0 [i915]
 
-Participating hosts (12 -> 13)
-------------------------------
+(another small note - running scripts/decode_stacktrace.sh would be hugely
+useful as these offsets aren't so useful unless I have the exact kernel
+binary you have with debug symbols :)
 
-  Additional (1): bat-bmg-2 
+>
+> Detailed log can be seen found in [2]
+>
+> We confirmed that reverting the patch solves the issue.
+>
+> Could you please check why the patch causes this regression and provide
+> a fix if necessary?
+>
+> Regards
+> Chaitanya
+>
+> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+> [2] https://intel-gfx-ci.01.org/tree/linux-next/next-20260720/fi-ilk-650/igt@core_hotunplug@unbind-rebind.html
 
-Known issues
-------------
+<snip>
 
-  Here are the changes found in xe-pw-170995v1_BAT that come from known issues:
+So looking into it we have deadlock potential here:
 
-### IGT changes ###
+1. fs_reclaim -> &vm->mutex
 
-#### Issues hit ####
+< device init >
+-> i915_address_space_init()
+-> ...
+-> i915_gem_shrinker_taints_mutex()
+(mark the dependency in lockdep)
 
-  * igt@fbdev@write:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@fbdev@write.html
+This is presumably because the shrinker needs to lock this mutex.
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+2. init_mm -> fs_reclaim
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+This was introduced by my patch and there we have:
 
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+< caller needs to set memory, e.g. BPF >
+-> set_memory_rox()
+-> change_page_attr_set_clr()
+-> [acquire init_mm lock] <-- my change
+-> __change_page_attr_set_clr()
+-> __change_page_attr()
+-> split_large_page()
+-> pte_alloc_one_kernel()
+[ allocation ]
+< trigger direct reclaim >
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+Thus init_mm -> fs_reclaim becasue in split_large_page() there's:
 
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
+	if (!debug_pagealloc_enabled())
+		spin_unlock(&cpa_lock);
+	pte = pte_alloc_one_kernel(&init_mm); <-- allocate
+	if (!debug_pagealloc_enabled())
+		spin_lock(&cpa_lock);
+	if (!pte)
+		return -ENOMEM;
 
-  * igt@xe_exec_multi_queue@priority:
-    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
+Note the CPA lock dance, will come back to that as that's how to solve this
+issue...
 
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+3. &vm->mutex -> init_mm
 
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+< device remove >
+-> i915_ggtt_driver_release()
+-> ggtt_cleanup_hw()
+-> [acquire &vm->mutex lock]
+-> ggtt->vm.cleanup == gmch_ggtt_remove()
+-> intel_gmch_remove()
+-> intel_gtt_teardown_scratch_page()
+-> set_pages_wb()
+-> set_memory_wb()
+-> _set_memory_wb()
+-> change_page_attr_clear()
+-> change_page_attr_set_clr()
+-> [acquire init_mm lock] <-- my change
 
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+This &vm->mutex -> init_mm
 
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+And so there is a circular dependency:
 
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+ 	&vm->mutex ---> init_mm
+	      ^            |
+               \           v
+                \--- fs_reclaim
 
+(lockdep should totally do diagrams like this :)
 
-Build changes
--------------
+In reality to hit this you'd need something to be doing direct reclaim on
+allocating a split page table during a CPA operation with a simultaneous
+contended init_mm lock.
 
-  * IGT: IGT_9020 -> IGT_9022
-  * Linux: xe-5467-2c64192f1ad194a53800f6dd8c779d5b4bbc1831 -> xe-pw-170995v1
+But this issue is broader than that really - we can't be holding init_mm
+over an allocation.
 
-  IGT_9020: 9020
-  IGT_9022: 9022
-  xe-5467-2c64192f1ad194a53800f6dd8c779d5b4bbc1831: 2c64192f1ad194a53800f6dd8c779d5b4bbc1831
-  xe-pw-170995v1: 170995v1
+split_large_page() calls __split_large_page() after dropping the CPA lock,
+which opens with a revalidation:
 
-== Logs ==
+	spin_lock(&pgd_lock);
+	/*
+	 * Check for races, another CPU might have split this page
+	 * up for us already:
+	 */
+	tmp = _lookup_address_cpa(cpa, address, &level, &nx, &rw);
+	if (tmp != kpte) {
+		spin_unlock(&pgd_lock);
+		return 1;
+	}
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/index.html
+There's also revalidation in __change_page_attr() on every split:
 
---===============0603843370464161198==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+	err = split_large_page(cpa, kpte, address);
+	if (!err)
+		goto repeat;
 
+(Where goto repeat entails a complete rewalk)
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+So dropping the init_mm lock here should not result in any problems with
+being raced by a collapse and was something already accounted for.
 
+So the broad strokes of the fix is to eliminate the init_mm -> fs_reclaim
+dependency and thus break the dependency loop.
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/bo: optimise TT population for DONTNEED BOs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170995/">https://patchwork.freedesktop.org/series/170995/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+I'll send a respin with this addressed.
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5467-2c64192f1ad194a53800f6dd8c779d5b4bbc1831_BAT -&gt; xe-pw-170995v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-170995v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170995v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9020 -&gt; IGT_9022</li>
-<li>Linux: xe-5467-2c64192f1ad194a53800f6dd8c779d5b4bbc1831 -&gt; xe-pw-170995v1</li>
-</ul>
-<p>IGT_9020: 9020<br />
-  IGT_9022: 9022<br />
-  xe-5467-2c64192f1ad194a53800f6dd8c779d5b4bbc1831: 2c64192f1ad194a53800f6dd8c779d5b4bbc1831<br />
-  xe-pw-170995v1: 170995v1</p>
-
-</body>
-</html>
-
---===============0603843370464161198==--
+Cheers, Lorenzo
