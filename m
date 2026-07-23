@@ -4,57 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ED3CC531D0
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 09:28:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 456F5C531CB
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 10:04:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 094E110F039;
-	Thu, 23 Jul 2026 09:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E61C010F05A;
+	Thu, 23 Jul 2026 10:04:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bgvcUdqN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f8MFlBfK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB4F610E57D
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 09:28:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF8A110F058;
+ Thu, 23 Jul 2026 10:04:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784798898; x=1816334898;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0Rbtzg0WblOzxjmU+mFsLoeyxtuGE9qrB2Qo6oyKHWM=;
- b=bgvcUdqNnQVl4nkP8Hf4q8GbCWO9RSpZop6/IpWv3gdgNQkOOsHc1sAP
- mxZacxOjmYqqF60U1v49J5BXQ6Jpzd+sbANiJ4gA6RiHFHmB98EdRe/xo
- e7XgC5yVjItheF3ITiqGEiZATOMgjmTghFccLzj3eMvuUS1/4mxTzxGGA
- qpAGyI7wuXwhSg7Ry4DdPNolGMXGOnBMIE2DO6Ejv3eV8zu9KUi8p6XaH
- g7FRYgz+snTKstWTIBS763FSW11QxJO7YY2s5PcrNWshYmus/7ex+qLrw
- tkhlZ+fhtygImhy3NM1Rw5P5Y2WkN6iWjyHXJHNRZT7TjqfrCDw3gGJvU Q==;
-X-CSE-ConnectionGUID: DlRhQ5X8QymqUjYWED/VrQ==
-X-CSE-MsgGUID: Cyw2P+54QAaG6bfT8SOoug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="102858745"
-X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="102858745"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 02:28:18 -0700
-X-CSE-ConnectionGUID: fGPZ9RACQ7e3v8wzvD5CXg==
-X-CSE-MsgGUID: Tq6lyzRtSkibsQnTft007w==
+ t=1784801058; x=1816337058;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/k5TklTHou5l2dBOb2sTQtk7OujtNVKbrhR2IlqNeZ4=;
+ b=f8MFlBfKZy84K7ABB6MgiYi7Os/wJwwvps0L9N47wBXklxyHJZH3YjhE
+ VLIDGeYZ263p0N/V3yQDA4jsKxXDR5Kq/jQSr4foSpnu7oV4nCrE0pjEn
+ YjdlFevwcoUxFPsZaLA7x65Chcy21vhLW6K0vTsGjUl8tmZ7BL44+zXpR
+ 4ePGTR+/HIMV9/dAOXmteapzGsFK3roB/+U7tXdxzaf2YqGYI9asp0XQC
+ LrH1BQRWJQYnMQ6VuaRoXUihOkeh0EydAR/g/lLbkAh/jzd8lYEIjw/cu
+ kCLgepsCqBBUIjtMt6oUt8Lg5CbAwWKHxD2D3z9IRhUR+UROR3M6eX7V3 w==;
+X-CSE-ConnectionGUID: KATnO9dfSt+Sl2SmCoIRcA==
+X-CSE-MsgGUID: /zoggW/CRi6P8sGv9Oe+Qg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="87991833"
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="87991833"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 03:04:17 -0700
+X-CSE-ConnectionGUID: /jUMWDEQRdmamFTezA5kHQ==
+X-CSE-MsgGUID: JR7PUPQPQTijYEq6o8dobg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="282873633"
-Received: from nbidikar-mobl1.gar.corp.intel.com (HELO
- soc-5CG5233SZH.clients.intel.com) ([10.247.130.193])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 02:28:15 -0700
-From: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
-To: umesh.nerlige.ramappa@intel.com, matthew.brost@intel.com,
- kamil.konieczny@intel.com, rodrigo.vivi@intel.com,
- intel-xe@lists.freedesktop.org
-Cc: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
-Subject: [PATCH v6 3/3] drm/xe/lrc: Fix ABA race on engine migration in
- context timestamp read
-Date: Thu, 23 Jul 2026 09:27:55 +0000
-Message-ID: <20260723092751.250613-8-gajendra.uttamchand@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260723092751.250613-5-gajendra.uttamchand@intel.com>
-References: <20260723092751.250613-5-gajendra.uttamchand@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="254984847"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.122])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 03:04:12 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
+ Tejun Heo <tj@kernel.org>,
+ =?UTF-8?q?Michal=20Koutn=C3=BD?= <mkoutny@suse.com>,
+ cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v8 0/6] Add reclaim to the dmem cgroup controller
+Date: Thu, 23 Jul 2026 12:03:44 +0200
+Message-ID: <20260723100350.16895-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,120 +81,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_lrc_context_timestamp() reads the engine id once via
-xe_lrc_engine_id(lrc) and uses it to fetch the live CTX_TIMESTAMP MMIO
-register, then re-checks the LRC-stored value to detect whether the
-context switched out while the MMIO read was in flight. That check
-only confirms the context is (still/again) active - it does not
-confirm it is active on the *same* engine the MMIO read targeted.
+When writing a "max" limit lower than the current usage, the
+existing code silently failed. This series aims to improve
+on that by returning -EBUSY on failure and also attempt
+to synchronously reclaim device memory to push the usage
+under the new max limit to avoid the error.
 
-If the context is saved and restored onto a different engine between
-the initial engine id read and the final activity check, the
-CONTEXT_ACTIVE sentinel will be observed again (now for the new
-engine), and the stale MMIO value read from the old, now-unrelated
-engine is returned as if it were valid.
+Patch 1 fixes a pre-existing amdgpu_vram_mgr_init() error path
+Patch 2 introduces struct dmem_cgroup_init for extensible region
+      registration.
+Patch 3 implements and documents a reclaim callback interface
+      for the dmem controller.
+Patch 4 implements a TTM reclaim callback.
+Patches 5-6 hook up the reclaim callback to the dmem cgroup-aware
+      drivers xe and amdgpu.
 
-Pin the engine id used for the MMIO read and re-validate it against
-the current engine id after the final activity check. If the engine
-changed, retry the whole read (bounded by a small retry count) instead
-of trusting a timestamp sampled from an unrelated context, falling
-back to the last cached value if the context keeps migrating.
+v2:
+- Remove the error propagation that was in a previous series (Maarten)
+- A number of updates in patch 1. See its commit message for
+  details (Maarten)
 
-Signed-off-by: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 66 ++++++++++++++++++++++++++-----------
- 1 file changed, 46 insertions(+), 20 deletions(-)
+v3:
+- Add patch 1 fixing a pre-existing amdgpu_vram_mgr_init() error path
+  bug where drmm_cgroup_register_region() was called before
+  INIT_LIST_HEAD() and gpu_buddy_init(), causing a kernel panic on
+  failure. (Sashiko-bot)
+- Use an rwsem to protect reclaim callback registration and region
+  unregister against concurrent reclaim invocations. (Sashiko-bot)
+- Fix ttm_resource_manager_set_dmem_region() storing an error pointer
+  in man->cg unconditionally. (Sashiko-bot)
+- Fix kernel-doc function name format for ttm_bo_evict_cgroup() and
+  ttm_resource_manager_set_dmem_region().
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 1e910669e8d1..314de730ace6 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -2736,39 +2736,65 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
- 	return lrc->queue_timestamp;
- }
+v4:
+- Rebased on drm-tip; dropped the XE_PL_STOLEN guard in the xe patch
+  as stolen memory uses a separate TTM manager.
 
-+/*
-+ * Between reading the engine id and re-checking that the context is
-+ * still active below, the context may have been saved and restored
-+ * onto a *different* engine, in which case the MMIO read in between
-+ * targeted an unrelated context on the old engine.
-+ * Bound the number of times we retry the full read sequence when a
-+ * context migration between engines is detected. A small bound (3)
-+ * prevents long loops; if we exhaust retries we fall back to the
-+ * last cached `lrc->ctx_timestamp`.
-+ */
-+#define CTX_TIMESTAMP_MAX_RETRIES 3
-+
- static u64 xe_lrc_context_timestamp(struct xe_lrc *lrc)
- {
- 	u64 reg_ts, new_ts = lrc->ctx_timestamp;
- 	u64 stored;
-+	u32 engine_id;
-+	int retries = CTX_TIMESTAMP_MAX_RETRIES;
+v5:
+- Add patch 2 introducing struct dmem_cgroup_init to make the
+  dmem_cgroup_register_region() API extensible without adding positional
+  arguments in the future.
+- Use nonblock=true in reset_all_resource_limits() to avoid sleeping
+  inside rcu_read_lock() in dmemcs_offline(). (Sashiko-bot)
+- Compare usage against the truncated limit stored in cnt.max, not the
+  original u64. (Sashiko-bot)
+- Use DMEM_MAX_RECLAIM_RETRIES (16) retry budget instead of 5, matching
+  the memcg controller; only -ENOSPC (no progress) counts against the
+  budget, other errors abort immediately.
+- Handle NULL region in ttm_resource_manager_set_dmem_region() to clear
+  the reclaim callback, preventing use-after-free when the manager is
+  torn down while the dmem region outlives it. (Sashiko-bot)
+- Return 0 on any eviction progress; reserve -ENOSPC for zero progress.
+- Clear the reclaim callback in xe and amdgpu fini paths to prevent
+  use-after-free after driver unbind with open DRM file descriptors.
+  (Sashiko-bot)
+- Register xe fini devres action before drmm_cgroup_register_region()
+  so LIFO teardown runs unregister first, draining callbacks before the
+  manager is destroyed. (Sashiko-bot)
+- Switch amdgpu to explicit dmem_cgroup_unregister_region() at the top
+  of amdgpu_vram_mgr_fini() before any manager teardown, since amdgpu's
+  fini is called explicitly during driver unbind before drmm cleanup.
+  (Sashiko-bot)
+- Wrap the xe reclaim callback with drm_dev_enter()/drm_dev_exit() to
+  prevent TTM reclaim from running after driver unbind.
 
- 	/* CTX_TIMESTAMP mmio read is invalid on VF, so return the LRC value */
- 	if (IS_SRIOV_VF(lrc_to_xe(lrc)))
- 		return xe_lrc_ctx_timestamp(lrc);
+v6:
+- Move the ops check inside down_read() in set_resource_max(), guarded
+  by region->unregistered, to close a UAF race against
+  dmem_cgroup_unregister_region(). (Sashiko-bot)
+- Fix dmem_cgroup_ops->reclaim docstring: -ENOSPC is retried up to
+  DMEM_MAX_RECLAIM_RETRIES times, not an immediate stop. (Sashiko-bot)
+- Fix mgr->cg_region never being assigned in amdgpu_vram_mgr_init(),
+  causing dmem_cgroup_unregister_region() in fini to silently no-op.
+  (Sashiko-bot)
+- Reorder amdgpu_vram_mgr_fini() to call set_used(false) and
+  evict_all() before dmem_cgroup_unregister_region(), so
+  ttm_resource_free() can uncharge via man->cg during eviction; clear
+  man->cg after unregister. (Sashiko-bot)
 
--	/*
--	 * Safely read CTX_TIMESTAMP: check the LRC-stored value before and
--	 * after the MMIO read to avoid a TOCTOU where a context switch makes the
--	 * MMIO value stale. If the LRC value is not `CONTEXT_ACTIVE` return it;
--	 * otherwise accept the MMIO value only if the context remained active.
--	 */
-+	do {
-+		/*
-+		 * Safely read CTX_TIMESTAMP: check the LRC-stored value before and
-+		 * after the MMIO read to avoid a TOCTOU where a context switch makes the
-+		 * MMIO value stale. If the LRC value is not `CONTEXT_ACTIVE` return it;
-+		 * otherwise accept the MMIO value only if the context remained active.
-+		 */
+v7:
+- Replace the per-region rw_semaphore with a static SRCU domain
+  (dmemcg_srcu). SRCU is a better fit: it avoids per-region lock
+  overhead on every reclaim call, and synchronize_srcu() at unregister
+  time is a rare, shutdown-time operation. (Maarten)
+- Trim in-function comments to focus on what rather than how.
+- Switch back to drmm_cgroup_register_region() with a drm_dev_enter/
+  exit guard in the reclaim callback (matching xe), rather than manual
+  register/unregister.  drm_dev_unplug() fires before vram_mgr_fini(),
+  so drm_dev_enter() returning false prevents any reclaim from touching
+  the manager during teardown.  This also fixes the "vram" name
+  collision on multi-GPU systems, since drmm_cgroup_register_region()
+  automatically prefixes with "drm/<pci-addr>/". (Sashiko-bot)
 
--	stored = xe_lrc_ctx_timestamp(lrc);
--	if (stored != CONTEXT_ACTIVE)
--		return stored;
-+		stored = xe_lrc_ctx_timestamp(lrc);
-+		if (stored != CONTEXT_ACTIVE)
-+			return stored;
+v8:
+- Fix ttm_resource_manager_set_dmem_region() using IS_ERR_OR_NULL(),
+  which skipped the assignment for a NULL region and thus never cleared
+  man->cg. Use IS_ERR() so that a NULL region detaches the region as the
+  kernel-doc and the v5 changelog intended. (Sashiko-bot)
+- Move the amdgpu dmem cgroup region teardown back into
+  amdgpu_vram_mgr_fini() with an explicit dmem_cgroup_unregister_region()
+  after evict_all(), keeping the drm_dev_enter() guard. The v7 drmm-only
+  approach left a use-after-free on the probe-error teardown path, where
+  drm_dev_unplug() is never called so the drm_dev_enter() guard stays
+  open while drm_driver.release destroys the manager before the drmm
+  action unregisters the region. (Sashiko-bot)
 
--	/* Context is active: read the live timestamp from the engine's MMIO register. */
--	if (!get_ctx_timestamp(lrc, xe_lrc_engine_id(lrc), &reg_ts))
--		new_ts = reg_ts;
-+		/* Context is active: read the live timestamp from the engine's MMIO register. */
-+		engine_id = xe_lrc_engine_id(lrc);
-+		if (!get_ctx_timestamp(lrc, engine_id, &reg_ts))
-+			new_ts = reg_ts;
+User-space tests are at
+https://patchwork.freedesktop.org/series/163935/
 
--	/* Re-check the LRC-stored timestamp: if the context switched out while
--	 * reading MMIO the hardware saved the canonical timestamp into the LRC
--	 * during context-save, so return that value instead of the MMIO read.
--	 */
--	stored = xe_lrc_ctx_timestamp(lrc);
--	if (stored != CONTEXT_ACTIVE)
--		return stored;
-+		/* Re-check the LRC-stored timestamp: if the context switched out while
-+		 * reading MMIO the hardware saved the canonical timestamp into the LRC
-+		 * during context-save, so return that value instead of the MMIO read.
-+		 */
-+		stored = xe_lrc_ctx_timestamp(lrc);
-+		if (stored != CONTEXT_ACTIVE)
-+			return stored;
-+
-+		/*
-+		 * Still active, but possibly on a different engine than the one
-+		 * we just read MMIO from (context switched out and back in
-+		 * elsewhere). Only trust new_ts if the engine id hasn't changed;
-+		 * otherwise retry the whole sequence against the current engine.
-+		 */
-+		if (xe_lrc_engine_id(lrc) == engine_id)
-+			return new_ts;
-+	} while (--retries);
+Test-with: 20260428065411.4222-1-thomas.hellstrom@linux.intel.com
 
--	return new_ts;
-+	return lrc->ctx_timestamp;
- }
+Thomas Hellström (6):
+  drm/amdgpu: Fix init ordering in amdgpu_vram_mgr_init()
+  cgroup/dmem: Introduce struct dmem_cgroup_init for region
+    initialization
+  cgroup/dmem: Add reclaim callback for lowering max below current usage
+  drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem
+    controller
+  drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+  drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
 
- static u64 xe_lrc_update_context_timestamp(struct xe_lrc *lrc, u64 *old_ts)
---
-2.43.0
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 52 ++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h |  3 +
+ drivers/gpu/drm/drm_drv.c                    |  8 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                 | 95 +++++++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_bo_util.c            |  3 +-
+ drivers/gpu/drm/ttm/ttm_resource.c           | 52 +++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c         | 53 +++++++++--
+ include/drm/drm_drv.h                        |  4 +-
+ include/drm/ttm/ttm_bo.h                     | 10 +++
+ include/drm/ttm/ttm_resource.h               |  7 ++
+ include/linux/cgroup_dmem.h                  | 38 +++++++-
+ kernel/cgroup/dmem.c                         | 90 +++++++++++++++----
+ 13 files changed, 380 insertions(+), 37 deletions(-)
+
+-- 
+2.55.0
 
