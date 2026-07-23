@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01236C531F7
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 16:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DE58C531F7
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 16:19:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7CA810F15E;
-	Thu, 23 Jul 2026 16:19:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C58F410F166;
+	Thu, 23 Jul 2026 16:19:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YH6wX4K0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k6Q7a+O3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6966810F15B
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 16:19:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EC6010F168
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 16:19:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784823541; x=1816359541;
+ t=1784823549; x=1816359549;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aSDB2s8h8GSEyh5rdtfXqtQL6E4s27xeiuYyvPm8aqU=;
- b=YH6wX4K0nEwY7Q6sGWLfzfclj7Ltuq2ofPuFhichhvLpSvf9YVpbVd/s
- 5vY2Wp/ckNGHEqROzB7sBX7clE0L+7x5Qg1m/HXhFiADMaQqGIyLxpdxN
- fctnwyZaL9qOv01AON2kK3SZPvNnthDIgJeBAG1/GOsrvHFyZc9HZ9jl/
- U8RJOf2jlUq1esP0iYRHEj4rqUzSABYl9o+J7RE+jLCc+zEb2WQcDq5DB
- uwlh0765Jsq0ugcM3C8Jg1A3OLh64C3I0c/sTISoKEkdmPPqCIarAPQJS
- S3h4n7H2ivhmvz5BFPUIiUCojJYbei0+99H5F2k74ryVvRz9ufxaEMg1A g==;
-X-CSE-ConnectionGUID: jKxwaCUEQ0uxtqPuj+S8dw==
-X-CSE-MsgGUID: R/MTyE+zRjyBb3rteSHZ/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="88022907"
-X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="88022907"
+ bh=BJwJ2N4qW6gTYSJZUOmvZRRGyuvERybCKwWlekQwMe4=;
+ b=k6Q7a+O3Ih/lNh3q8XK5ZPsttx3ht1/KREyh2nRYfOYVUrA3BJOJP48O
+ WdX+b3KrbqlTvNcTZmnMqop2mwG5+sCCplk5D82nNfheOnp3VdrADa+lS
+ 9Dv3w/gHgLlXXVzcBoG9eftkSkxH57T8oFGpIjG+Ld8KOfQ1p2/0AepVa
+ AESwtqN98oToTHEijEGm4MS0itEF93bX8VWiwETYU5jNh24sYABsLXAAZ
+ ih3f8WZr009Gf53sZsv1PqkpMW9v1TooUGZACplLCo6rQdYN5xITI4Msv
+ RC+Ci7jwt64Fz3VvTSl2H62nRiLhYQmIjly/G+o3AG8AnKjwIZ1mPm2L4 w==;
+X-CSE-ConnectionGUID: QKF6SF04Qoq8SyDymX0zxg==
+X-CSE-MsgGUID: eQVr/Uz0RNy/0tQn70f4Kw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="88022913"
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="88022913"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 09:19:01 -0700
-X-CSE-ConnectionGUID: +eT5z13FRx20NMy5RFzhmQ==
-X-CSE-MsgGUID: GxV0VzWsT9ipETyjnWLjhQ==
+ 23 Jul 2026 09:19:04 -0700
+X-CSE-ConnectionGUID: f2k8r1KvTnCz7Iya1KmUHw==
+X-CSE-MsgGUID: 8rOnadg/RdiI1irBmTRafQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="255086053"
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="255086059"
 Received: from lharel-mobl.ger.corp.intel.com (HELO
  soc-PF64PT41.clients.intel.com) ([10.245.129.67])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 09:18:58 -0700
+ 23 Jul 2026 09:19:01 -0700
 From: Ilia Levi <ilia.levi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, koby.elbaz@intel.com, meny.yossefi@intel.com,
  shuicheng.lin@intel.com, thomas.hellstrom@intel.com,
- matthew.auld@intel.com, matthew.brost@intel.com,
- Sashiko <sashiko-bot@kernel.org>
-Subject: [PATCH v3 2/7] drm/xe/mmio_gem: use write-back mapping for dummy page
-Date: Thu, 23 Jul 2026 19:18:27 +0300
-Message-ID: <20260723161832.137153-3-ilia.levi@intel.com>
+ matthew.auld@intel.com, matthew.brost@intel.com
+Subject: [PATCH v3 3/7] drm/xe/mmio_gem: simplify fault handler loop
+Date: Thu, 23 Jul 2026 19:18:28 +0300
+Message-ID: <20260723161832.137153-4-ilia.levi@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20260723161832.137153-1-ilia.levi@intel.com>
 References: <20260723161832.137153-1-ilia.levi@intel.com>
@@ -70,72 +69,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently vmf_insert_pfn() maps the dummy page as UC, inheriting the
-VMA's page protection which was set for the real MMIO region. This
-conflicts with the direct map's WB mapping of the same page, creating a
-cache type alias which is architecturally undefined on x86.
+Make the iteration over the addresses in the VMA more explicit.
+No functional change, as the VMA matches the GEM object exactly.
 
-Use vmf_insert_pfn_prot() with a WB pgprot instead. Also simplify to
-fault in the requested page instead of the whole VMA.
-
-Fixes: 1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://sashiko.dev/#/patchset/20260525125801.975038-6-ilia.levi%40intel.com
-Assisted-by: GitHub-Copilot:claude-opus-4.6
 Signed-off-by: Ilia Levi <ilia.levi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio_gem.c | 19 +++++--------------
- 1 file changed, 5 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio_gem.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.c b/drivers/gpu/drm/xe/xe_mmio_gem.c
-index f15a6a84af15..418a24bdfa4e 100644
+index 418a24bdfa4e..dd41a62cb63c 100644
 --- a/drivers/gpu/drm/xe/xe_mmio_gem.c
 +++ b/drivers/gpu/drm/xe/xe_mmio_gem.c
-@@ -172,14 +172,13 @@ static void xe_mmio_gem_release_dummy_page(struct drm_device *dev, void *res)
- 	__free_page((struct page *)res);
- }
- 
--static vm_fault_t xe_mmio_gem_vm_fault_dummy_page(struct vm_area_struct *vma)
-+static vm_fault_t xe_mmio_gem_vm_fault_dummy_page(struct vm_fault *vmf)
- {
-+	struct vm_area_struct *vma = vmf->vma;
- 	struct drm_gem_object *base = vma->vm_private_data;
+@@ -200,7 +200,7 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
+ 	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
  	struct drm_device *dev = base->dev;
--	vm_fault_t ret = VM_FAULT_NOPAGE;
- 	struct page *page;
- 	unsigned long pfn;
+ 	vm_fault_t ret = VM_FAULT_NOPAGE;
 -	unsigned long i;
++	unsigned long addr, pfn;
+ 	int idx;
  
- 	page = alloc_page(GFP_KERNEL | __GFP_ZERO);
- 	if (!page)
-@@ -190,16 +189,8 @@ static vm_fault_t xe_mmio_gem_vm_fault_dummy_page(struct vm_area_struct *vma)
- 
- 	pfn = page_to_pfn(page);
- 
--	/* Map the entire VMA to the same dummy page */
--	for (i = 0; i < base->size; i += PAGE_SIZE) {
--		unsigned long addr = vma->vm_start + i;
--
--		ret = vmf_insert_pfn(vma, addr, pfn);
--		if (ret & VM_FAULT_ERROR)
--			break;
--	}
--
--	return ret;
-+	return vmf_insert_pfn_prot(vma, vmf->address, pfn,
-+				   vm_get_page_prot(vma->vm_flags));
- }
- 
- static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
-@@ -219,7 +210,7 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
- 		 * It is assumed the userspace will receive the notification via some
- 		 * other channel (e.g. drm uevent).
- 		 */
--		return xe_mmio_gem_vm_fault_dummy_page(vma);
-+		return xe_mmio_gem_vm_fault_dummy_page(vmf);
+ 	if (!drm_dev_enter(dev, &idx)) {
+@@ -213,13 +213,13 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
+ 		return xe_mmio_gem_vm_fault_dummy_page(vmf);
  	}
  
- 	for (i = 0; i < base->size; i += PAGE_SIZE) {
+-	for (i = 0; i < base->size; i += PAGE_SIZE) {
+-		unsigned long addr = vma->vm_start + i;
+-		unsigned long phys_addr = obj->phys_addr + i;
+-
+-		ret = vmf_insert_pfn(vma, addr, PHYS_PFN(phys_addr));
++	pfn = PHYS_PFN(obj->phys_addr);
++	for (addr = vma->vm_start; addr < vma->vm_end; addr += PAGE_SIZE) {
++		ret = vmf_insert_pfn(vma, addr, pfn);
+ 		if (ret & VM_FAULT_ERROR)
+ 			break;
++
++		pfn++;
+ 	}
+ 
+ 	drm_dev_exit(idx);
 -- 
 2.49.1
 
