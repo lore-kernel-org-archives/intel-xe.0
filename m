@@ -4,50 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE45C531F5
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 14:19:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73985C531D4
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 14:29:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A9710F138;
-	Thu, 23 Jul 2026 14:19:03 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 483CC10F12C;
- Thu, 23 Jul 2026 14:19:02 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 4F9D9600AD;
- Thu, 23 Jul 2026 14:19:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5040D1F000E9;
- Thu, 23 Jul 2026 14:18:54 +0000 (UTC)
-Date: Thu, 23 Jul 2026 15:18:24 +0100
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, 
- Suren Baghdasaryan <surenb@google.com>, "Liam R. Howlett" <liam@infradead.org>,
- Vlastimil Babka <vbabka@kernel.org>, Shakeel Butt <shakeel.butt@linux.dev>, 
- David Hildenbrand <david@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Michal Hocko <mhocko@suse.com>, 
- Uladzislau Rezki <urezki@gmail.com>, Toshi Kani <toshi.kani@hpe.com>, 
- Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, 
- Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@kernel.org>, 
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Kiryl Shutsemau <kas@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Dev Jain <dev.jain@arm.com>, 
- Ryan Roberts <ryan.roberts@arm.com>, David Carlier <devnexen@gmail.com>,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 
- "Denis V. Lunev" <den@virtuozzo.com>, stable@vger.kernel.org, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [REGRESSION]: [PATCH mm-hotfixes v5 3/5] x86/mm/pat: acquire
- init_mm read lock on attribute change to avoid UAF
-Message-ID: <amIEC1qDW3kfeuHd@lucifer>
-References: <20260717-series-vmap-race-fix-v5-0-606a0ac6d3e5@kernel.org>
- <20260717-series-vmap-race-fix-v5-3-606a0ac6d3e5@kernel.org>
- <80993b70-352f-4069-84c7-39a04c061e98@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1F110E331;
+	Thu, 23 Jul 2026 14:29:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JW+Rk4jA";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F4C910E331
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 14:29:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784816991; x=1816352991;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=oszVW0BMYPuiuQFNe4qEj26HTHTgsjh6Xx1siDMhao0=;
+ b=JW+Rk4jAbVD61WsOTaZtTWeBvsaFIsc7v/CMCJjvh46fC9Lc1Z8QjKTI
+ /N/t3Sm+/cBNweo+M/TiMNFWpMn/3tDzyz0zri6PdbUaxAzeXtbiGEk0U
+ 30jjQMlPJoE5bBvUs+Fsan6O9bBad4zfC4DMoDr8BFXiaT14osoM4eYZ1
+ KYT12V5OTudwvci0ewPazSzvW3K/TvgH6k9prrTS0twWJqhz9L4lGQuCE
+ P1RSc4SewCh3QmSs0adLWWyqV5rWMJQdq6TCAt65WKjunLEPYxz6rIgNb
+ EWIP3nqLzs0cRY6Jm0hUoKP2E769XBV2yE1cuNamV2SFkoqyA6Uz4rNiD A==;
+X-CSE-ConnectionGUID: zzCHOszSSyShjjvZvwpGXg==
+X-CSE-MsgGUID: hNSvPBOITeugBjKKVUZdgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85666674"
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="85666674"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 07:29:49 -0700
+X-CSE-ConnectionGUID: BiGkq/VATayvDNeGDLAIrA==
+X-CSE-MsgGUID: 1cC1OvebQT2ZmYsr4gkUiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="288407351"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 07:29:49 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 23 Jul 2026 07:29:47 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Thu, 23 Jul 2026 07:29:47 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.13) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 23 Jul 2026 07:29:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fsQVRMMczHqu4xvdnWc/ghneNrumPJBAbzm52h0IegEfHGjPpE7l5DiAOeUdfFESyJuzT/0+MEbAEedKQOtmLds/CNBbiw36fdokDLVe06RC+aSQBkA2CLU+zktwzUT6wVGK5T5XzetBEF3I1wI7noC/+ihLI/wi5taoupwyBAMdmw1FccSRJ5doPBRYCll/VZZ4uNpWWBvg+Un8Ow1HLTwGXGzPK6jjFfj00jcZyCwUf+aWKPFPEzPK0aPGAHonSbQbn68ABluHaYSow1hEXha3mpjZjnXJaKIPpvncfpRp1qxdqNepdBPhfm5pXKPJE3DJDH9eldaf5AkGKv2XFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rA5b4aqAYkiq8J08RzOXDd74bZoTW6bpmPhzQ83jSMY=;
+ b=ewKT2yCOXerwPoaaO9zDZ4xr3pxZ2DFdLXOedaSjDFL8+jegc20DK3tSPD8RWZPlPzA3lilbAzEgAAPFESgsrYxzu5HGhBwwo9l4haOTG0wXhpgTzfoqLEPs8dPezQ7kehXvyyZ+kvBG8QEwqsnWp0cD/4j+uZFxeeUzjHvV0fWP0LgKBjDU8BRHO+5YI98IekhbsAy8AAcXoFZEnDsPooWDAOX5gEQQwEZUcEvEJHPxzYsa+9hDKslnqsTuccLRRNs3sdl03s3Ka7D6dRVZI0Th+lhBbuBg9O+nxoizhV5SqX+/s+uxi2H2Sa/WnqYBHsQ7idn688PUNht9LlTPBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ CY8PR11MB7034.namprd11.prod.outlook.com (2603:10b6:930:52::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.245.10; Thu, 23 Jul 2026 14:29:39 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0245.010; Thu, 23 Jul 2026
+ 14:29:39 +0000
+Message-ID: <23532ff4-498b-4d43-ae79-a1c4326491c5@intel.com>
+Date: Thu, 23 Jul 2026 19:59:30 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/ras: Validate sysctrl response
+To: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20260722143142.675658-1-raag.jadav@intel.com>
+Content-Language: en-US
+From: "Tauro, Riana" <riana.tauro@intel.com>
+In-Reply-To: <20260722143142.675658-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0299.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:21e::18) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <80993b70-352f-4069-84c7-39a04c061e98@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|CY8PR11MB7034:EE_
+X-MS-Office365-Filtering-Correlation-Id: c97f1e0a-bb1f-4335-9fed-08dee8c6d41f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|376014|366016|11063799006|56012099006|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: WNmmJH58HibiXiu+Oc5fH8hEeTsVky9iwwa15GTleLejPd5c5hKBC3SkwLjpR4zpGQX6wBKD9JaXB26K63ho+ja7hY8xUU2v/trKw0RsKv11yRyJCU6IHd0TmL1kdZ5LvI41LUqXd+42oeOKhD7Y3V5J9TzTO1B7Ok1qz8E2hfQl30BIQnGJjHQ7j/xsRU2ACte3gs951D/LM9IFDT1m5TKrEZ+e5xxDGcJkdVrmp2qgc4ggNAbweeOWQt8Y3T6KXqRzKp6mqI+Rqg1ISUdAyjs3+VuxgOJKhSvEzYo38r7ctgW9iBUYEaotlf18HyVI44zKadiSsVQ3L6cGj6RoZwZ+KTCne/t1VNA4KaEBA4EXR53QqC+cNzDuRRc3i87lMBu+RnchUGByyxCnKPD96hUCzsx/kYFdwU0JLLvkzwEvkDlG30BgumPWk1y59V4fBUahRkEkxVpFNUiEMb1kDAYQZ6nUxetYCphr3KCZUolxO9HlxqPaTHc9J0Jpp5evW2cU93Q7aZ780VO1AbvoYDwS9LkGLLDrH4tV34oHYg1REEa1/5boL/79D6m1u3a89rin5HZ95dNa+2sfAiXoWWU3HeiT8u4CVmUEUS9On8Adr4LYSRPq3KEcrDa1dqbhygigdfmEZ+Why76W4Y5bbdYYG9in1UZa06iFZTjpT7o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(11063799006)(56012099006)(10067099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZFQwTVlLV2VvdUdnVUtTUWhsdy83WmZBamo1aU1VZThSUm1idFhQRVNUdGwy?=
+ =?utf-8?B?UTdEcXhwNEFjN2lxdVlXZjlHR1AvbHB2TVZndjZZNTRBbWw1eHJ5SDFBVERt?=
+ =?utf-8?B?dXlpbkRIRVVHTEJvU291MzJRUDN5Y1kvdTZDUzZxbm1rQ3RtYkZHdXJlZnRC?=
+ =?utf-8?B?Y0ZZeFlTa2dMZzZCVjNlNUN6Rms4K2w4c1czUkFwSGtOZm9XRnE3KzRLekxl?=
+ =?utf-8?B?VUlJRTlITE5NUmNVZjFLWHYzMW83c1dzYVNHNWNhV3A0ZHBpM04yUzJ6MXdN?=
+ =?utf-8?B?bFJYTVRCMlcwTjZRS0UwNWo4VjZLeEJxUCtMN2J0WEttakNrdSt6VXBQZWxN?=
+ =?utf-8?B?dVY3VmFSd1pKUk5DOW55czZndnd3NkgwS0lSaDlJL1lLcGZkTHlVMEJoYlBF?=
+ =?utf-8?B?WkhmMWZWNnZOVkFiWHkvK2hZVlpzbFBrR1FLc0VCNGZIZVhnaUFtekRON002?=
+ =?utf-8?B?KzloSnVwVlRxdE12YnRzSXRhbjlQY3o5VTcvdGg4aXo5TjlIcmhqaGtJdlN3?=
+ =?utf-8?B?L3p1c1FwTit3VWRDTEl2cyszR003bS9UWTdhL3B1LzBXd2RQcFdJbWpRcFRr?=
+ =?utf-8?B?NkdSRVF5aFBOMUJhSEltTUhxOC92Q2ZtN1p2N0wrOURFT2RYdkJXRHdnNzM1?=
+ =?utf-8?B?QmQ3U2ZZSkxUTi8vR3hrNlVmem0xdEQvdWZzZEZzaFc3anBXY0IxV0ppOExx?=
+ =?utf-8?B?dDhVSGthUjJRenJOZjUrSW5tUWswVjFGSDY1dG02V25mbmJ0UHZsMkJJQzZW?=
+ =?utf-8?B?Q0F0V0VnL2R0VG4ydTRvaGptb1NrSjFHSHF1NDg0bUZQMU1SU1ppVkd4d2Iy?=
+ =?utf-8?B?d3FTaXlnUDRnREoyMDdQRGVvYU9mRERnT0gxNjEzNkRPWEdZanpVazFUVzk2?=
+ =?utf-8?B?SEZiK01QTnJhZHdFYTc5VGtXOFNhV3A0c1dQQWlsUTh2R3BwN0wxNVZkb3hV?=
+ =?utf-8?B?YXo1QXRkQTdVNE5pWWw4UERsalNSNjU4d29QTDFJYjRHM2lqaDl5dWxjcTIz?=
+ =?utf-8?B?a2F5Tnl2S0NLVXJacmhjRE1veURvSWRUUVV2NTBsRjFxc3grdnlBcW8zcnpj?=
+ =?utf-8?B?b2lnMGhOOWNaRzRMRVh5SndPTzFob3I3ZC9OblV1aXpIRTl2N3pra3VCLzJF?=
+ =?utf-8?B?OVgyOXNodVpzQkpRM1hGN3dobWczNUdlUkkwVWplWmg1MHdnS0xVSkU0MUFC?=
+ =?utf-8?B?alpyV1RHV0dyK1dpbjk2NGJrNjVpallhSFYwaEtPbVFnaTZxNmRiVWl3cUVp?=
+ =?utf-8?B?WC9oalV0S2Nkdk1NTysrak45K1JLdE9sNEpNYXpWNnNETG43UnRMRDl6ODF1?=
+ =?utf-8?B?NzExNThXRHRnUUp4K2N0SnFVeVdnOUhtUDBZRGowRkwyQWRrYnl3bFNldVpi?=
+ =?utf-8?B?T0FpNUpzMVhZb2xWUDNHNmZmTXFxSTB2Rkt5RXg2OHJGN255RDNoMmJWTjhH?=
+ =?utf-8?B?bFdOUzlJY2wySTllZkRkcUdDS1dZUWhhcEVpZnNaVGlnd3gzRzlGL2VsSXRP?=
+ =?utf-8?B?cWxZOGF2eEtwb3Z4bGRjU21idDZscXRCQXp1NEJ5UTh2NHQ0NU8xOFp4aFZY?=
+ =?utf-8?B?VnpmbDNFOVJiSkdjRVh4Q2JYNGRYUWs4MTUyRG5Ed3RrRUFrVlFGMFUvclRJ?=
+ =?utf-8?B?RFl5dk5UditKSU5aU0tDN2l1akI1am44OEkwaUV5aVVsVVdaMzFyZFlXeTZ1?=
+ =?utf-8?B?VTRlNGcyYi9nc3VqeDAxazE5QU1OeXNNeGdKNTFXWEJJSGtySVpINVByOVR5?=
+ =?utf-8?B?VjBlVGdkKzU5RWF6c3Z5ZnpETTVrY2E1UUhxMmt2ekJScUl1cThjVHFFYzlW?=
+ =?utf-8?B?d1prMExUOFBXeVpCV3EwZHRzZTBLS3UxeWhqc2pJdDZBUUgwRGdWZnB0S1Vz?=
+ =?utf-8?B?dnpsZGxCOTNJN2J6NnVkNjN6VXA3VndIWXliQk4rbDVOVTAvaXlnV3FRZVgr?=
+ =?utf-8?B?VUs2QzRCbGJGRzU0V2M2UVJVSm9FSEhDNFVtSHFhSzRSWmFkQ1dWVTIvRis1?=
+ =?utf-8?B?YXlYQ3g0dmg0TlFCTWVmWUdYSHlqZ2ZQL3I3aXZVa29ERzhXZHBkMDJYN3Vo?=
+ =?utf-8?B?MWpvam1ITnhxSkdvTlAvM284aW03cXhFeFlhVmlqaE5hb1hhWThQWTFobUM1?=
+ =?utf-8?B?RytRZXZZRGJqM05sSnZ3QTZZU3RsZTRIVE5ZWGlIRUd4S2g2ejQ3dTJrTW1F?=
+ =?utf-8?B?bm4rL3FxYmgxNFNMdzZUN0RUODJ5L2NzVWFvTStzczV3YnB3MXA2L2pHeUFt?=
+ =?utf-8?B?NU5TWnlWc1ZUZTdCQUN4NTdCeGh3OVBxeENQbkJSb0J5MTU4ZitQVVluN2ds?=
+ =?utf-8?B?cE9kYTYwV0RtMitCM1U4RWVRNFlUaS95Z1RNK0J6ckIwNW9MODlTZz09?=
+X-Exchange-RoutingPolicyChecked: OrmXILRJ/f8eFXk6eNKdZhOpwUUI2XtwygLeWmLmr5CEiOieCMBYpxlaW4Pj3HXwjP7qUJgQ57W7Ytx9SfA8+oOHxWFqCodPs5mft7sYVP5CDevqkyRqFpP+fKZ8lZFB1reTM9wdiKIWM2VLA4eAgpwYucHtCl+zU6fQS/uFrvEEaZZWrdZjAdWFllwhwD7GTkTLHgsRs4rMlp71ofdMMQIUGDv3Ug4GODnl/azoiuWTCoSqR35qyH0hDbVKSB1gLN3+xHkf1HHgRC7wsB/stTIJICd+G3eNTJ8Y8I4JmfRDWn7T1a0cc7XGxYLOAio18jdGDhFKBbz4JxKJzyppFA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c97f1e0a-bb1f-4335-9fed-08dee8c6d41f
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2026 14:29:39.5109 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dPoWpuyrOuFekjAZuk8V57OPCeGWk47tTpooy8oDFohAdrClToabRjJ+wwBgjZwiY6/9V8CSaQysNH9bmP2PAw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7034
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,226 +166,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 23, 2026 at 12:00:42PM +0530, Borah, Chaitanya Kumar wrote:
-> Hello Lorenzo,
+
+On 22-07-2026 20:01, Raag Jadav wrote:
+> Validate errors raised by sysctrl firmware instead of blindly trusting
+> them.
 >
-> On 7/17/2026 11:00 PM, Lorenzo Stoakes (ARM) wrote:
-> > A previous commit protected us against races between ptdump and CPA
-> > collapse, however one still exists between attribute changes and collapse
-> > as reported by Denis V. Lunev (linked).
-> >
-> > When an attribute change arises, a lockless page table walker obtains a PTE
-> > entry, which is later written to via set_pte_atomic():
-> >
-> > ...
-> > -> change_page_attr_set_clr()
-> > -> __change_page_attr_set_clr()
-> > -> __change_page_attr()
-> > 	-> _lookup_address_cpa()
-> > 	-> lookup_address_in_pgd_attr()
-> > 	-> [ lockless page table walker ]
-> > -> set_pte_atomic()
-> >
-> > There is nothing preventing a concurrent CPA collapse which can free the
-> > PTE that was retrieved here, resulting in a use-after-free.
-> >
-> > With the mmap write lock taken on init_mm over CPA collapse, we can now
-> > resolve this race by acquiring an mmap read lock on init_mm over
-> > __change_page_attr_set_clr().
-> >
-> > This locks across the whole operation over which the walk and the PTE entry
-> > write occurs, solving the race.
-> >
-> > It is safe to do this here, as no spinlocks are held upon entry to
-> > __change_page_attr_set_clr().
-> >
-> > The CPA_COLLAPSE flag is only set by set_memory_rox(), which exclusively
-> > operates upon vmalloc ranges, and on x86 only within the module mapping
-> > space.
-> >
-> > This is important, because some callers directly invoke
-> > __change_page_attr_set_clr(), bypassing this lock. However, none of these
-> > operate within the module mapping space.
-> >
-> > * cpa_process_alias() - a recursive helper called by
-> >    __change_page_attr_set_clr().
-> > * __set_memory_enc_pgtable() - operates on the direct mapping and (via
-> >    __vmbus_establish_gpadl()) the vmalloc mapping space.
-> > * __set_pages_[n]p() - called by set_direct_map_[invalid, default,
-> >    valid]_noflush(), __kernel_map_pages() - operates on the direct map.
-> > * kernel_[un]map_pages_in_pgd() - operates on EFI ranges.
-> >
-> > This work is based upon Denis V. Lunev's excellent analysis of the bug with
-> > gratitude.
-> >
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+
+
+Looks good to me
+
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+
+
+> ---
+> v2: Continue invalid uncorrectable error case (Riana)
+>      s/error/counter (Riana)
+> ---
+>   drivers/gpu/drm/xe/xe_ras.c | 30 ++++++++++++++++++++++++++++++
+>   1 file changed, 30 insertions(+)
 >
-> This seems to be causing regression in our linux-next CI [1] on some of the
-> older machines (fi-elk-e7500, fi-ilk-650, fi-pnv-d510)
-
-Thanks for the report!
-
-A small note - it'd be useful for you to clearly point
-out the revision of next to make our life a bit easier :)
-
-I can see from below in the stack and the URI it's next-20260720. There was a
-broken merge in linux-next for a while but it's fixed by 20260720 so that's not
-it.
-
->
-> <4> [196.236867] ======================================================
-> <4> [196.236878] WARNING: possible circular locking dependency detected
-> <4> [196.236890] 7.2.0-rc4-next-20260720-next-20260720-g3fe08b9796f3+ #1
-> Tainted: G S   U       L
-> <4> [196.236906] ------------------------------------------------------
-> <4> [196.236916] core_hotunplug/5687 is trying to acquire lock:
-> <4> [196.236927] ffffffff839048b8 ((init_mm).mmap_lock){++++}-{4:4}, at:
-> change_page_attr_set_clr+0x10a/0x220
-
-This is the result of my change indeed.
-
-> <4> [196.236958]
-> but task is already holding lock:
-> <4> [196.236969] ffff88810c852238 (&vm->mutex){+.+.}-{4:4}, at:
-
-So this is a lock dependency issue as this is obviously an entirely
-different lock.
-
-> i915_ggtt_driver_release+0xab/0x260 [i915]
-> <4> [196.237572]
-> which lock already depends on the new lock.
-> <4> [196.237585]
-> the existing dependency chain (in reverse order) is:
-> <4> [196.237597]
-> -> #2 (&vm->mutex){+.+.}-{4:4}:
-> <4> [196.237617]        i915_gem_shrinker_taints_mutex+0x35/0x70 [i915]
-> <4> [196.238267]        i915_address_space_init+0x226/0x2a0 [i915]
-> <4> [196.238961]        i915_ggtt_init_hw+0x2c/0x140 [i915]
-> <4> [196.239638]        i915_driver_hw_probe+0x208/0x380 [i915]
-> <4> [196.240260]        i915_driver_probe+0x113/0x5b0 [i915]
-> <4> [196.240883]        i915_pci_probe+0xe0/0x1d0 [i915]
-
-(another small note - running scripts/decode_stacktrace.sh would be hugely
-useful as these offsets aren't so useful unless I have the exact kernel
-binary you have with debug symbols :)
-
->
-> Detailed log can be seen found in [2]
->
-> We confirmed that reverting the patch solves the issue.
->
-> Could you please check why the patch causes this regression and provide
-> a fix if necessary?
->
-> Regards
-> Chaitanya
->
-> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-> [2] https://intel-gfx-ci.01.org/tree/linux-next/next-20260720/fi-ilk-650/igt@core_hotunplug@unbind-rebind.html
-
-<snip>
-
-So looking into it we have deadlock potential here:
-
-1. fs_reclaim -> &vm->mutex
-
-< device init >
--> i915_address_space_init()
--> ...
--> i915_gem_shrinker_taints_mutex()
-(mark the dependency in lockdep)
-
-This is presumably because the shrinker needs to lock this mutex.
-
-2. init_mm -> fs_reclaim
-
-This was introduced by my patch and there we have:
-
-< caller needs to set memory, e.g. BPF >
--> set_memory_rox()
--> change_page_attr_set_clr()
--> [acquire init_mm lock] <-- my change
--> __change_page_attr_set_clr()
--> __change_page_attr()
--> split_large_page()
--> pte_alloc_one_kernel()
-[ allocation ]
-< trigger direct reclaim >
-
-Thus init_mm -> fs_reclaim becasue in split_large_page() there's:
-
-	if (!debug_pagealloc_enabled())
-		spin_unlock(&cpa_lock);
-	pte = pte_alloc_one_kernel(&init_mm); <-- allocate
-	if (!debug_pagealloc_enabled())
-		spin_lock(&cpa_lock);
-	if (!pte)
-		return -ENOMEM;
-
-Note the CPA lock dance, will come back to that as that's how to solve this
-issue...
-
-3. &vm->mutex -> init_mm
-
-< device remove >
--> i915_ggtt_driver_release()
--> ggtt_cleanup_hw()
--> [acquire &vm->mutex lock]
--> ggtt->vm.cleanup == gmch_ggtt_remove()
--> intel_gmch_remove()
--> intel_gtt_teardown_scratch_page()
--> set_pages_wb()
--> set_memory_wb()
--> _set_memory_wb()
--> change_page_attr_clear()
--> change_page_attr_set_clr()
--> [acquire init_mm lock] <-- my change
-
-This &vm->mutex -> init_mm
-
-And so there is a circular dependency:
-
- 	&vm->mutex ---> init_mm
-	      ^            |
-               \           v
-                \--- fs_reclaim
-
-(lockdep should totally do diagrams like this :)
-
-In reality to hit this you'd need something to be doing direct reclaim on
-allocating a split page table during a CPA operation with a simultaneous
-contended init_mm lock.
-
-But this issue is broader than that really - we can't be holding init_mm
-over an allocation.
-
-split_large_page() calls __split_large_page() after dropping the CPA lock,
-which opens with a revalidation:
-
-	spin_lock(&pgd_lock);
-	/*
-	 * Check for races, another CPU might have split this page
-	 * up for us already:
-	 */
-	tmp = _lookup_address_cpa(cpa, address, &level, &nx, &rw);
-	if (tmp != kpte) {
-		spin_unlock(&pgd_lock);
-		return 1;
-	}
-
-There's also revalidation in __change_page_attr() on every split:
-
-	err = split_large_page(cpa, kpte, address);
-	if (!err)
-		goto repeat;
-
-(Where goto repeat entails a complete rewalk)
-
-So dropping the init_mm lock here should not result in any problems with
-being raced by a collapse and was something already accounted for.
-
-So the broad strokes of the fix is to eliminate the init_mm -> fs_reclaim
-dependency and thus break the dependency loop.
-
-I'll send a respin with this addressed.
-
-Cheers, Lorenzo
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 5e294e9f8f99..28123f08e513 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -156,6 +156,24 @@ static inline const char *comp_to_str(u8 component)
+>   	return xe_ras_components[component];
+>   }
+>   
+> +static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
+> +{
+> +	u8 severity = counter->common.severity;
+> +	u8 component = counter->common.component;
+> +
+> +	if (!in_range(severity, XE_RAS_SEV_NOT_SUPPORTED + 1, XE_RAS_SEV_MAX - 1)) {
+> +		xe_err(xe, "sysctrl: unexpected severity %u\n", severity);
+> +		return false;
+> +	}
+> +
+> +	if (!in_range(component, XE_RAS_COMP_NOT_SUPPORTED + 1, XE_RAS_COMP_MAX - 1)) {
+> +		xe_err(xe, "sysctrl: unexpected component %u\n", component);
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>   static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
+>   {
+>   	struct pci_dev *vsp;
+> @@ -327,6 +345,9 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+>   		severity = errors[id].common.severity;
+>   		component = errors[id].common.component;
+>   
+> +		if (!ras_counter_is_valid(xe, &errors[id]))
+> +			continue;
+> +
+>   		xe_warn(xe, "[RAS]: %s %s detected\n",
+>   			comp_to_str(component), sev_to_str(severity));
+>   	}
+> @@ -358,6 +379,9 @@ static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter,
+>   		return -EIO;
+>   	}
+>   
+> +	if (!ras_counter_is_valid(xe, &response.counter))
+> +		return -EBADMSG;
+> +
+>   	common = &response.counter.common;
+>   	*value = response.value;
+>   
+> @@ -422,6 +446,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
+>   			component = arr->counter.common.component;
+>   			severity = arr->counter.common.severity;
+>   
+> +			if (!ras_counter_is_valid(xe, &arr->counter))
+> +				continue;
+> +
+>   			xe_info(xe, "[RAS]: %s %s detected\n", comp_to_str(component),
+>   				sev_to_str(severity));
+>   
+> @@ -532,6 +559,9 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
+>   
+>   	counter = &response.counter;
+>   
+> +	if (!ras_counter_is_valid(xe, counter))
+> +		return -EBADMSG;
+> +
+>   	xe_dbg(xe, "[RAS]: clear counter for %s %s\n", comp_to_str(counter->common.component),
+>   	       sev_to_str(counter->common.severity));
+>   
