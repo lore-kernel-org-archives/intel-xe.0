@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94C29C531FC
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DAFDC531D0
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DE0210F20B;
-	Thu, 23 Jul 2026 20:38:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2E3010F1FD;
+	Thu, 23 Jul 2026 20:38:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JVUIuC9A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cHBprGRu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0979010F209
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD7C710F206
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784839107; x=1816375107;
+ t=1784839116; x=1816375116;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rCAR3rOe7lwlK2xX+t4wFkjhF8rVW/MrnnHh1jTFbEo=;
- b=JVUIuC9AZvjkjeRooK6fjv4ARckGD7/DHdb5WhqUO2YKACHR5mHymZfj
- RjluF6LwluAiWJ3KMgotBaqce/IbGpnKs7ngfq9YrYbg9dztn/HCuEDCQ
- h4u0VYgLHLOq/8hf+4mQFUiqAxgPW+sJ79W2vSXA3t3FxF++72nOjeY+c
- RMN5qbQUqP4iuxIqXX2TQxn+oSluY8KoTvJGad4HZyo0qi2zmIyx3b8pK
- Poc/kKarrd29jwPHrXr2c2Nd4EBujAJX+bNf9+jrHk/X1ErZVazWVbE95
- M3YLlqeGkYWiFULcW3R0a3Z7Zvs2BX+1jnA8293BQBbB1OtaFG95efEa9 w==;
-X-CSE-ConnectionGUID: psyzaFPpRCekvH42UwhmYQ==
-X-CSE-MsgGUID: 4ZyLGnrfSqidMeIRmECRsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484313"
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484313"
+ bh=554A9tzEwUm7qq+REg3bp7JbtQSIQ39S33GIeFG1Z58=;
+ b=cHBprGRuDycZQvMZMsZ+IJA5OnRMZ821jg7I5K6Zurobg2/6qXYmz3ws
+ qBusQxkuGcnWDuyYxZXjOZyD+1+8h/wBmMUpccWOemLrw9H5T6MjuJUJE
+ xc6aJEFBpQ6ket+kkQ8C2Evbs26GwLc0xlTNjZXSniJT/nVrBRE8P+hbu
+ 65M7JU2vGtHSOGzc8MzLp7I+H4AQdQ2LNhi11dBNnUGEBO0NpnTNlQD16
+ bNINuPpWxuQZTBhcoWvKNm5Tg0JyQ7FeyLtDrn/nyv66pThSaZMyW8pkg
+ /eh5Ul9uojNXbjKfHGCE/B/SVTQP9rVN9OpoFWH6GDsJ+GrceS0eqYESi A==;
+X-CSE-ConnectionGUID: ppHRHi4OQkqwbuiQqIjzpA==
+X-CSE-MsgGUID: rPgaw97uQgqlXSTdmjrxmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484322"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484322"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:27 -0700
-X-CSE-ConnectionGUID: dGlvtaj4T72cmPCk2MN+HA==
-X-CSE-MsgGUID: tLVH+/JbTUWSAfRZ4e0CSQ==
+ 23 Jul 2026 13:38:35 -0700
+X-CSE-ConnectionGUID: bCLxAy4JQ1maWPCNr4F11w==
+X-CSE-MsgGUID: /8/X3Q2PQ8+Jzy94Nb44dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578612"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578629"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:25 -0700
+ 23 Jul 2026 13:38:34 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
- Yoni Levitt <yoni.levitt@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH 11/19] drm/xe/tests: Add Kunit tests for xe_log
-Date: Thu, 23 Jul 2026 22:37:44 +0200
-Message-ID: <20260723203754.3782-12-michal.wajdeczko@intel.com>
+Subject: [PATCH 16/19] drm/xe/pcode: Report 'Mailbox failed' error using SIGID
+Date: Thu, 23 Jul 2026 22:37:49 +0200
+Message-ID: <20260723203754.3782-17-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 References: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,400 +70,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All dmesg log lines generated by the xe_log() functions or helper
-macros are expected to have a stable format. Add tests to verify
-that generated output is not accidentally changed. Add demo pseudo
-tests to show how to use all variants of the xe_log() helpers.
+Report 'Mailbox failed' error using xe_log() helper.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
---
+Cc: Riana Tauro <riana.tauro@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Yoni Levitt <yoni.levitt@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_log_kunit.c | 331 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_log.c             |  11 +
- 2 files changed, 342 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_log_kunit.c
+ drivers/gpu/drm/xe/xe_pcode.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_log_kunit.c b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-new file mode 100644
-index 000000000000..4a9587265135
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-@@ -0,0 +1,331 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <kunit/static_stub.h>
-+#include <kunit/test.h>
-+#include <kunit/test-bug.h>
-+
-+#include "tests/xe_kunit_helpers.h"
-+#include "xe_device.h"
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index ccc3bdeed6bb..014632e11338 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -14,6 +14,7 @@
+ #include "regs/xe_pmt.h"
+ #include "xe_assert.h"
+ #include "xe_device.h"
 +#include "xe_log.h"
-+
-+static const u8 blob[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-+static const u8 dead[] = { 0xde, 0xad, 0xbe, 0xef };
-+
-+static void native(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = xe_any_to_pdev(xe);
-+
-+	xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PROBE, 1, 2,
-+		    ERR_PTR(-ENODEV), 0, "testing %s signature\n", "software");
-+	xe_log_emit(pdev, CPER_SEV_RECOVERABLE, XE_SIGID_GT_TDR, 1, 2,
-+		    ERR_PTR(-ETIMEDOUT), 0, "testing %s signature\n", "software");
-+	xe_log_emit(pdev, CPER_SEV_CORRECTED, XE_SIGID_RUNTIME_FW, 1, 2,
-+		    NULL, 0, "testing %s signature\n", "software");
-+	xe_log_emit(pdev, CPER_SEV_INFORMATIONAL, XE_SIGID_SURVIVABILITY, 1, 2,
-+		    NULL, 0, "testing %s signature\n", "software");
-+
-+	xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PCIE, 1, 2,
-+		    blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
-+	xe_log_emit(pdev, CPER_SEV_RECOVERABLE, XE_SIGID_CORE_COMPUTE, 1, 2,
-+		    blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
-+	xe_log_emit(pdev, CPER_SEV_CORRECTED, XE_SIGID_DEVICE_MEMORY, 1, 2,
-+		    blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
-+	xe_log_emit(pdev, CPER_SEV_INFORMATIONAL, XE_SIGID_FABRIC, 1, 2,
-+		    blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
-+}
-+
-+static void locations(struct xe_device *xe)
-+{
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	struct xe_gt *gt = tile->primary_gt;
-+
-+	xe_log_emit_from(tile, CPER_SEV_FATAL, XE_SIGID_PROBE, 1, 2,
-+			 ERR_PTR(-ENODEV), 0, "testing %s helper\n", "from/tile");
-+	xe_log_emit_from(tile, CPER_SEV_RECOVERABLE, XE_SIGID_GT_TDR, 1, 2,
-+			 ERR_PTR(-ETIMEDOUT), 0, "testing %s helper\n", "from/tile");
-+	xe_log_emit_from(xe, CPER_SEV_CORRECTED, XE_SIGID_RUNTIME_FW, 1, 2,
-+			 NULL, 0, "testing %s helper\n", "from/tile");
-+	xe_log_emit_from(xe, CPER_SEV_INFORMATIONAL, XE_SIGID_SURVIVABILITY, 1, 2,
-+			 NULL, 0, "testing %s helper\n", "from/tile");
-+
-+	xe_log_emit_from(gt, CPER_SEV_FATAL, XE_SIGID_PROBE, 1, 2,
-+			 ERR_PTR(-ENODEV), 0, "testing %s helper\n", "from/gt");
-+	xe_log_emit_from(gt, CPER_SEV_RECOVERABLE, XE_SIGID_GT_TDR, 1, 2,
-+			 ERR_PTR(-ETIMEDOUT), 0, "testing %s helper\n", "from/gt");
-+	xe_log_emit_from(gt, CPER_SEV_CORRECTED, XE_SIGID_RUNTIME_FW, 1, 2,
-+			 NULL, 0, "testing %s helper\n", "from/gt");
-+	xe_log_emit_from(gt, CPER_SEV_INFORMATIONAL, XE_SIGID_SURVIVABILITY, 1, 2,
-+			 NULL, 0, "testing %s helper\n", "from/gt");
-+}
-+
-+static void components(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = xe_any_to_pdev(xe);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	struct xe_gt *gt = tile->primary_gt;
-+
-+	xe_log_info(pdev, PROBE, "testing %s helper\n", "info/pdev");
-+	xe_log_info(xe, PCODE, "testing %s helper\n", "info/xe");
-+	xe_log_info(tile, GGTT, "testing %s helper\n", "info/tile");
-+	xe_log_info(gt, GUC, "testing %s helper\n", "info/gt");
-+
-+	xe_log_err(pdev, PROBE, -ENODEV, "testing %s helper\n", "err/pdev");
-+	xe_log_err(xe, PCODE, -EINVAL, "testing %s helper\n", "err/xe");
-+	xe_log_err(tile, GGTT, -EFAULT, "testing %s helper\n", "err/tile");
-+	xe_log_err(gt, GUC, -EPROTO, "testing %s helper\n", "err/gt");
-+
-+	xe_log_err_fatal(pdev, PROBE, -ENODEV, "testing %s helper\n", "err_fatal/pdev");
-+	xe_log_err_fatal(xe, PCODE, -EINVAL, "testing %s helper\n", "err_fatal/xe");
-+	xe_log_err_fatal(tile, GGTT, -EFAULT, "testing %s helper\n", "err_fatal/tile");
-+	xe_log_err_fatal(gt, GUC, -EPROTO, "testing %s helper\n", "err_fatal/gt");
-+}
-+
-+static void nop_emit_dmesg(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
-+{
-+}
-+
-+static void nop_prep_cper(struct pci_dev *pdev, int cper_sev,
-+			  enum xe_sigid sigid, u32 component, u32 location,
-+			  const void *cause, size_t len, struct va_format *vaf)
-+{
-+}
-+
-+static void fake_prep_cper(struct pci_dev *pdev, int cper_sev,
-+			   enum xe_sigid sigid, u32 component, u32 location,
-+			   const void *cause, size_t len, struct va_format *vaf)
-+{
-+	char msg[64];
-+	int n, err;
-+
-+	pr_info("\n");
-+	pr_info("CPER SEV=%u SIGID=%u COMPONENT=%#x LOC=%#x\n",
-+		cper_sev, sigid, component, location);
-+	pr_info("CPER DEV=%s\n", dev_name(&pdev->dev));
-+	if (IS_ERR(cause)) {
-+		err = PTR_ERR(cause);
-+		pr_info("CPER ERR=%d %#x %pe\n", err, -err, cause);
-+	} else {
-+		print_hex_dump(KERN_INFO, "CPER BIN=", DUMP_PREFIX_OFFSET,
-+			       16, 1, cause, len, false);
-+	}
-+
-+	n = vscnprintf(msg, sizeof(msg), vaf->fmt, *vaf->va);
-+	print_hex_dump(KERN_INFO, "CPER MSG=", DUMP_PREFIX_OFFSET, 16, 1, msg, n, true);
-+	pr_info("CPER END\n");
-+}
-+
-+static void demo_dmesg_native(struct kunit *test)
-+{
-+	kunit_activate_static_stub(test, log_prep_cper, nop_prep_cper);
-+	native(test->priv);
-+}
-+
-+static void demo_dmesg_locations(struct kunit *test)
-+{
-+	kunit_activate_static_stub(test, log_prep_cper, nop_prep_cper);
-+	locations(test->priv);
-+}
-+
-+static void demo_dmesg_components(struct kunit *test)
-+{
-+	kunit_activate_static_stub(test, log_prep_cper, nop_prep_cper);
-+	components(test->priv);
-+}
-+
-+static void demo_cper_native(struct kunit *test)
-+{
-+	kunit_activate_static_stub(test, log_prep_cper, fake_prep_cper);
-+	kunit_activate_static_stub(test, log_emit_dmesg, nop_emit_dmesg);
-+	native(test->priv);
-+}
-+
-+static void demo_cper_locations(struct kunit *test)
-+{
-+	kunit_activate_static_stub(test, log_prep_cper, fake_prep_cper);
-+	kunit_activate_static_stub(test, log_emit_dmesg, nop_emit_dmesg);
-+	locations(test->priv);
-+}
-+
-+static void demo_cper_components(struct kunit *test)
-+{
-+	kunit_activate_static_stub(test, log_prep_cper, fake_prep_cper);
-+	kunit_activate_static_stub(test, log_emit_dmesg, nop_emit_dmesg);
-+	components(test->priv);
-+}
-+
-+static struct pci_dev *xe_to_pdev_safe(struct xe_device *xe)
-+{
-+	return xe ? xe_any_to_pdev(xe) : NULL;
-+}
-+
-+static const char *test_fatal(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = xe_to_pdev_safe(xe);
-+
-+	if (pdev)
-+		xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PROBE, 1, 2,
-+			    ERR_PTR(-ENODEV), 0, "testing %d\n", 123);
-+	return "SIGID=101 FATAL (-ENODEV) testing 123\n";
-+}
-+
-+static const char *test_recoverable(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = xe_to_pdev_safe(xe);
-+
-+	if (pdev)
-+		xe_log_emit(pdev, CPER_SEV_RECOVERABLE, XE_SIGID_DEVICE_FW, 1, 2,
-+			    ERR_PTR(-EIO), 0, "testing %d\n", 123);
-+	return "SIGID=105 (-EIO) testing 123\n";
-+}
-+
-+static const char *test_info(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = xe_to_pdev_safe(xe);
-+
-+	if (pdev)
-+		xe_log_emit(pdev, CPER_SEV_INFORMATIONAL, XE_SIGID_SURVIVABILITY, 1, 2,
-+			    NULL, 0, "testing %d\n", 123);
-+	return "SIGID=103 testing 123\n";
-+}
-+
-+static const char *test_hw_fatal(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = xe_to_pdev_safe(xe);
-+
-+	if (pdev)
-+		xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PCIE, 1, 2,
-+			    dead, sizeof(dead), "testing %d\n", 123);
-+	return "SIGID=201 FATAL (deadbeef) " HW_ERR "testing 123\n";
-+}
-+
-+static const char *test_hw_recoverable(struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = xe_to_pdev_safe(xe);
-+
-+	if (pdev)
-+		xe_log_emit(pdev, CPER_SEV_RECOVERABLE, XE_SIGID_DEVICE_MEMORY, 1, 2,
-+			    dead, sizeof(dead), "testing %d\n", 123);
-+	return "SIGID=202 (deadbeef) " HW_ERR "testing 123\n";
-+}
-+
-+static const char *test_device_recoverable(struct xe_device *xe)
-+{
-+	if (xe)
-+		xe_log_err(xe, PCODE, -EIO, "testing %d\n", 123);
-+	return "SIGID=105 (-EIO) PCODE: testing 123\n";
-+}
-+
-+static const char *test_device_fatal(struct xe_device *xe)
-+{
-+	if (xe)
-+		xe_log_err_fatal(xe, PROBE, -ENODEV, "testing %d\n", 123);
-+	return "SIGID=101 FATAL (-ENODEV) PROBE: testing 123\n";
-+}
-+
-+static const char *test_tile_recoverable(struct xe_device *xe)
-+{
-+	if (xe)
-+		xe_log_err(&xe->tiles[0], PCODE, -EINVAL, "testing %d\n", 123);
-+	return "SIGID=105 (-EINVAL) Tile1: PCODE: testing 123\n";
-+}
-+
-+static const char *test_tile_fatal(struct xe_device *xe)
-+{
-+	if (xe)
-+		xe_log_err_fatal(&xe->tiles[0], SYSCTRL, -ENOKEY, "testing %d\n", 123);
-+	return "SIGID=105 FATAL (-ENOKEY) Tile1: SYSCTRL: testing 123\n";
-+}
-+
-+static const char *test_gt_recoverable(struct xe_device *xe)
-+{
-+	if (xe)
-+		xe_log_err(xe->tiles[0].primary_gt, HUC, -ETIMEDOUT, "testing %d\n", 123);
-+	return "SIGID=104 (-ETIMEDOUT) Tile1: GT3: HUC: testing 123\n";
-+}
-+
-+static const char *test_gt_fatal(struct xe_device *xe)
-+{
-+	if (xe)
-+		xe_log_err_fatal(xe->tiles[0].primary_gt, GUC, -EPROTO, "testing %d\n", 123);
-+	return "SIGID=104 FATAL (-EPROTO) Tile1: GT3: GUC: testing 123\n";
-+}
-+
-+static const struct log_test_param {
-+	const char *(*func)(struct xe_device *xe);
-+} log_test_params[] = {
-+	{ .func = test_fatal },
-+	{ .func = test_recoverable },
-+	{ .func = test_info },
-+	{ .func = test_device_fatal },
-+	{ .func = test_device_recoverable },
-+	{ .func = test_tile_fatal },
-+	{ .func = test_tile_recoverable },
-+	{ .func = test_gt_fatal },
-+	{ .func = test_gt_recoverable },
-+	{ .func = test_hw_fatal },
-+	{ .func = test_hw_recoverable },
-+};
-+
-+static void log_param_get_desc(const struct log_test_param *p, char *desc)
-+{
-+	snprintf(desc, KUNIT_PARAM_DESC_SIZE, "%ps", p->func);
-+}
-+
-+KUNIT_ARRAY_PARAM(log, log_test_params, log_param_get_desc);
-+
-+static void check_emit_dmesg(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct log_test_param *param = test->param_value;
-+	const char *exp = param->func(NULL);
-+	char msg[64];
-+	int n;
-+
-+	n = vscnprintf(msg, sizeof(msg), vaf->fmt, *vaf->va);
-+	KUNIT_EXPECT_LT(test, n, sizeof(msg));
-+	KUNIT_EXPECT_STREQ(test, msg, exp);
-+}
-+
-+static void test_dmesg(struct kunit *test)
-+{
-+	const struct log_test_param *param = test->param_value;
-+
-+	kunit_activate_static_stub(test, log_prep_cper, nop_prep_cper);
-+	kunit_activate_static_stub(test, log_emit_dmesg, check_emit_dmesg);
-+
-+	param->func(test->priv);
-+}
-+
-+static int xe_log_test_init(struct kunit *test)
-+{
-+	struct xe_device *xe;
-+
-+	xe_kunit_helper_xe_device_test_init(test);
-+	xe = test->priv;
-+	xe->tiles[0].id = 1;
-+	xe->tiles[0].primary_gt->info.id = 3;
-+
-+	return 0;
-+}
-+
-+static struct kunit_case xe_log_test_cases[] = {
-+	KUNIT_CASE(demo_cper_native),
-+	KUNIT_CASE(demo_cper_locations),
-+	KUNIT_CASE(demo_cper_components),
-+	KUNIT_CASE(demo_dmesg_native),
-+	KUNIT_CASE(demo_dmesg_locations),
-+	KUNIT_CASE(demo_dmesg_components),
-+	KUNIT_CASE_PARAM(test_dmesg, log_gen_params),
-+	{}
-+};
-+
-+static struct kunit_suite xe_log_suite = {
-+	.name = "xe_log",
-+	.test_cases = xe_log_test_cases,
-+	.init = xe_log_test_init,
-+};
-+
-+kunit_test_suites(&xe_log_suite);
-diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
-index c8ca0097c0b3..fbf85aa1a031 100644
---- a/drivers/gpu/drm/xe/xe_log.c
-+++ b/drivers/gpu/drm/xe/xe_log.c
-@@ -3,6 +3,9 @@
-  * Copyright © 2026 Intel Corporation
-  */
+ #include "xe_mmio.h"
+ #include "xe_pcode_api.h"
+ #include "xe_pm.h"
+@@ -61,9 +62,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
+ 	}
  
-+#include <kunit/static_stub.h>
-+#include <kunit/visibility.h>
-+
- #include "xe_log.h"
- #include "xe_printk.h"
+ 	if (err) {
+-		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
+-			err_decode, err_str);
+-
++		xe_log_err(tile, PCODE, err_decode, "Mailbox failed: %s\n", err_str);
+ 		return err_decode;
+ 	}
  
-@@ -10,6 +13,8 @@ static void log_prep_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigi
- 			  u32 component, u32 location, const void *data, size_t len,
- 			  struct va_format *vaf)
- {
-+	KUNIT_STATIC_STUB_REDIRECT(log_prep_cper, pdev, cper_sev, sigid,
-+				   component, location, data, len, vaf);
- 	/* TODO */
- }
- 
-@@ -77,6 +82,8 @@ static const char *log_sev_prefix(int cper_sev)
- 
- static void log_emit_dmesg(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
- {
-+	KUNIT_STATIC_STUB_REDIRECT(log_emit_dmesg, pdev, cper_sev, vaf);
-+
- 	if (cper_sev == CPER_SEV_INFORMATIONAL || cper_sev == CPER_SEV_CORRECTED)
- 		pci_info(pdev, __LOG_DRM_PRINTK_FMT("%pV", vaf));
- 	else
-@@ -208,3 +215,7 @@ void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
- 
- 	va_end(args);
- }
-+
-+#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_log_kunit.c"
-+#endif
 -- 
 2.47.1
 
