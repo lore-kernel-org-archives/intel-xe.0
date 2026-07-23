@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17BF5C531D0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A760FC531FC
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CADFF10F1FC;
-	Thu, 23 Jul 2026 20:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F19F10F208;
+	Thu, 23 Jul 2026 20:38:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QqW6VpQV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MqTkwufM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B89F10F204
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7E8410F1FC
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784839101; x=1816375101;
+ t=1784839104; x=1816375104;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8dwQ0xCKSzqyElfRg08vUif/+revHaqDBcdZLJLoKgo=;
- b=QqW6VpQVf3QJhhJjnFuiaFKcAS+Yt9vm67HwueuecxASWbfsZbFxhpIB
- JTqAGt06JVxYJpUmXlMK+eJ+tQEF/d8yGQCZ9d7m8OoX1hc2MdYKg20+B
- rx5Iqb7C9F4H/Kl1aJ0aI2sAiFajDU84z3Yonz83B3rsJRcrpR3Qe6F6h
- Fj2oBgrltwcVwzEyggQA6eoFi5I6jNikdZXeFRIGVp+TwKoTNaunSrGJP
- ObcTe9QBlp+qruLFINl37arJPmEb1pdqxHpgrgf8YPnolve9VaOL/ZWeC
- xJQDdqKiG1iIEJcJBlxD/aq8yQUtVBCWkD2Hlk4XgAdhJfIiRz+84j2AC A==;
-X-CSE-ConnectionGUID: Pe9Tjs5CTmeyUPMaRS4+AA==
-X-CSE-MsgGUID: FE/I4RB0RjiFdstSAmrnHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484302"
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484302"
+ bh=pHbAv3XkG9Jb6upM9ZFC67Oc9MosEU2uOmX0wTbkf1Y=;
+ b=MqTkwufM11kFeMcF9LhHGPg43VbKP4XAoyf28PgHiqk7f3kykkY2wH8v
+ CTRIYWRcFA90byYIUp0W4oeC1FzQkTFdOZDKEORATESkLKin756Kk1pjX
+ 3WrREq17q/VkDQLI7jvixS7/tDEafH5XO9+IKENtIRSUix/p52xDmKDXh
+ zLCD3oEqPrUgacUIkNB7urfvL04FPNrlRVsSnQ3neC11ydOodhLcomDNo
+ DoVkujEVQoQ2p0tOW1H/T8YOP3sfduLwGdSLp18xorhG4EwghZyG+q5qW
+ OJUo0UfVZm6FXEsYXcTSvVyrTkzM4p4VJorNY5DJsc0RgJGUh42CuQucx w==;
+X-CSE-ConnectionGUID: n/0ZKcTuR/KBMQz7NPMPJQ==
+X-CSE-MsgGUID: vn3934SvRcSbaqOe5R0A2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484309"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484309"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:21 -0700
-X-CSE-ConnectionGUID: P/4Cmz/cRLWeO7ND5WoSLQ==
-X-CSE-MsgGUID: +bvVbxlARweWGwwnf/2T6A==
+ 23 Jul 2026 13:38:23 -0700
+X-CSE-ConnectionGUID: Qxd1yHdcT9a5InXAWoWW2w==
+X-CSE-MsgGUID: cv17YoAXQaSi8SG77eyBIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578599"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578605"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:20 -0700
+ 23 Jul 2026 13:38:22 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 07/19] drm/xe/log: Add component based SIGID log helper
-Date: Thu, 23 Jul 2026 22:37:40 +0200
-Message-ID: <20260723203754.3782-8-michal.wajdeczko@intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Yoni Levitt <yoni.levitt@intel.com>
+Subject: [PATCH 09/19] drm/xe/log: Add hardware error signatures
+Date: Thu, 23 Jul 2026 22:37:42 +0200
+Message-ID: <20260723203754.3782-10-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 References: <20260723203754.3782-1-michal.wajdeczko@intel.com>
@@ -68,75 +68,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Our component list already defines relation between the component
-name, identified by the TAG, and its numerical identifier and the
-assigned SIGID. We can also prepare location identifier based on
-the pointer type used to emit the log entry. Add helper that will
-prepare SIGID, COMPONENT and LOCATION parameters for xe_log_emit()
-using provided TAG and the pointer.
+Extend our error signatures definitions xe_sigid to cover also
+hardware-originated errors and make them distinguishable from
+initially defined software-initiated errors.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Yoni Levitt <yoni.levitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_log.h | 41 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
-index 5d3f0ef4ecca..8e300e8b6d10 100644
---- a/drivers/gpu/drm/xe/xe_log.h
-+++ b/drivers/gpu/drm/xe/xe_log.h
-@@ -8,6 +8,7 @@
+diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+index 99717fdf74a6..e00ea6f5fb87 100644
+--- a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
++++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+@@ -159,6 +159,12 @@
+  * @XE_SIGID_GT_TDR: Engine hang / timeout detection and recovery (reset). [RETRY]
+  * @XE_SIGID_MEM_FAULT: VM bind, page fault or GTT fault. [COLLECT]
+  * @XE_SIGID_IO_BUS: Runtime PCIe / IOMMU / MMIO access fault. [RECOVER]
++ * @XE_SIGID_HW: Generic hardware failure.
++ * @XE_SIGID_PCIE: PCIe interface errors.
++ * @XE_SIGID_DEVICE_MEMORY: Device memory errors
++ * @XE_SIGID_CORE_COMPUTE: Compute/shader core errors.
++ * @XE_SIGID_FABRIC: Fabric errors.
++ * @XE_SIGID_SOC_INTERNAL: SoC-internal errors.
+  *
+  * The situations the driver detects and reports in software. Values are
+  * numbered sequentially, are only ever appended, and are never renumbered or
+@@ -178,6 +184,13 @@ enum xe_sigid {
+ 	XE_SIGID_GT_TDR			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 6,
+ 	XE_SIGID_MEM_FAULT		= INTEL_SIGID_GPU_XE_SOFTWARE_START + 7,
+ 	XE_SIGID_IO_BUS			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 8,
++
++	XE_SIGID_HW			= INTEL_SIGID_GPU_XE_HARDWARE_START,
++	XE_SIGID_PCIE			= INTEL_SIGID_GPU_XE_HARDWARE_START + 1,
++	XE_SIGID_DEVICE_MEMORY		= INTEL_SIGID_GPU_XE_HARDWARE_START + 2,
++	XE_SIGID_CORE_COMPUTE		= INTEL_SIGID_GPU_XE_HARDWARE_START + 3,
++	XE_SIGID_FABRIC			= INTEL_SIGID_GPU_XE_HARDWARE_START + 4,
++	XE_SIGID_SOC_INTERNAL		= INTEL_SIGID_GPU_XE_HARDWARE_START + 5,
+ };
  
- #include <linux/cper.h>
- 
-+#include "abi/xe_log_abi.h"
- #include "abi/xe_sigid_abi.h"
- #include "xe_any.h"
- #include "xe_gt_printk.h"
-@@ -99,4 +100,44 @@ void xe_log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
- 	xe_log_emit_from((any), CPER_SEV_INFORMATIONAL, (sig), (comp), (loc), \
- 			 (data), (len), fmt, ##args)
- 
-+#define xe_log_location_type(any)							\
-+	_Generic((any),									\
-+		 struct pci_dev * : XE_LOG_LOCATION_TYPE_DEVICE,			\
-+		 struct xe_device * : XE_LOG_LOCATION_TYPE_DEVICE,			\
-+		 struct xe_tile * : XE_LOG_LOCATION_TYPE_TILE,				\
-+		 struct xe_gt * : XE_LOG_LOCATION_TYPE_GT)
-+
-+#define xe_log_location(any) \
-+	PREP_XE_LOG_LOCATION(xe_log_location_type(any), xe_any_id(any))
-+
-+#define __XE_LOG_COMP_FMT(TAG, fmt, args...)	#TAG ": " fmt, ##args
-+
-+/**
-+ * xe_log_emit_comp() - Emit a structured SIGID log entry on the component behalf.
-+ * @any: the &xe_device or &xe_tile or &xe_gt pointer this report relates to
-+ * @cper_sev: CPER severity (CPER_SEV_FATAL, CPER_SEV_RECOVERABLE, ...)
-+ * @TAG: the component tag to use
-+ * @data: pointer to the additional details, or ERR_PTR, or NULL if not applicable
-+ * @len: length of the @data in bytes, or 0 if not applicable
-+ * @fmt: printf-style free text format string (not a stable interface)
-+ * @args: arguments for the @fmt format string
-+ *
-+ * The component SIGID will be determined by the component's @TAG.
-+ * The component location will be based on the @any pointer type.
-+ */
-+#define xe_log_emit_comp(any, cper_sev, TAG, data, len, fmt, args...) do {		\
-+	typeof(any) __any = (any);							\
-+	struct pci_dev *__pdev = xe_any_to_pdev(__any);					\
-+	int __sev = (cper_sev);								\
-+	int __sig = XE_LOG_COMPONENT_##TAG##_SIGID;					\
-+	u32 __component = XE_LOG_COMPONENT_##TAG;					\
-+	u32 __location = xe_log_location(__any);					\
-+	const void *__data = (data);							\
-+	size_t __len = (len);								\
-+	xe_log_emit_dmesg_from(__any, __sev, __sig, __data, __len,			\
-+			       __XE_LOG_COMP_FMT(TAG, fmt, ##args));			\
-+	xe_log_emit_cper(__pdev, __sev, __sig, __component, __location,			\
-+			 __data, __len,	fmt, ##args);					\
-+} while (0)
-+
  #endif
 -- 
 2.47.1
