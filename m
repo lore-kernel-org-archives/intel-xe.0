@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94B98C531FA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 302C0C531F7
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB8F910F207;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF04810F205;
 	Thu, 23 Jul 2026 20:38:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HA/tD3KI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0zGBDIz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDD0810F1FE
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 623EA10F1FC
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784839098; x=1816375098;
+ t=1784839102; x=1816375102;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZB5WzulFwCGPfi36H4+z5TlHCRKianlqS0OXQfx6yW8=;
- b=HA/tD3KIQOYSA27KaiNVcMoUcn1BsJT4SKjr1yhm7RZilIYLt7gkgIGq
- mQENY/zKmWcgv3qlEl/E68y24P8/or1fEuD6fuCNSbxXS1cyXHMlK0WIJ
- ayufrJ+5mwSvVXsuTR1yfua/VbJCKvY1HD6H+wB+DHPxDaQz4ZDSPoM7x
- ft+a/CxhVCtIOxZyJE+m0qr3sz1nIwpq/yo8Lq/4fm/0Ej4YfSr2IbLUf
- SUgZzGbPUKtaHhZlqt1WtVS3y/35f3TDYAGW523DATFPCyEc8gwK2WCzP
- Ni3iaqiULRkwdYqVdKVHBbWxOvvekKfPMsjgiRe/lkk49UzYFU0wWsr/b A==;
-X-CSE-ConnectionGUID: 2cwZtGOaTEueDVZGeIMD5Q==
-X-CSE-MsgGUID: CVH4oYOdS02XN5IyLfdsWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484298"
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484298"
+ bh=3GozrqFZECHNeHoNbTgyXspHovwKWJxX/tg6LtNFau0=;
+ b=B0zGBDIzmS5VqxkODdpkKvceL7g6zGq9dZsPj/+xtl17hW2LkeKbJZR1
+ OGL/QSb5mHuCtPZYMYFJeHrax48cIhfaMtx0JTQKpowfAaFXxrmCLoeyv
+ nA5f51RgD0J4bx1xldSxG7d9htLzheICG+Irtn68xTeg8ZhLTV9QTjzDJ
+ x5ySJcFyjTG4qz2WzIlg8HRxrFOcRPlH1wWGw/3T3R4LBei5aOplE4rfp
+ P5abtUxt8pBnYYLOBZRM5tXtB0yyTh4w0SJtm5dFsjMWNFbqnfVN+eku0
+ aLW+Vyf4cObivfdELMXdItHPHSV2bw8sGeYZKXwc5A7Zu72KypUojrZwP w==;
+X-CSE-ConnectionGUID: Xp52oQdTTA+S9PL4Ryrp1A==
+X-CSE-MsgGUID: CuqQq/zLQ0OGzLL/Vz5b7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484304"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484304"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:17 -0700
-X-CSE-ConnectionGUID: QMMU3DvdQHCt6LLk+fs4vQ==
-X-CSE-MsgGUID: 7L9He78pSD6/9v8YECOQEg==
+ 23 Jul 2026 13:38:22 -0700
+X-CSE-ConnectionGUID: P8/Gj026TrahpB7OyKB0IQ==
+X-CSE-MsgGUID: yEd31H1LSTKX7ljGKH0U9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578591"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578602"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:16 -0700
+ 23 Jul 2026 13:38:21 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 05/19] drm/xe/log: Add Tile/GT decorations for dmesg message
-Date: Thu, 23 Jul 2026 22:37:38 +0200
-Message-ID: <20260723203754.3782-6-michal.wajdeczko@intel.com>
+Subject: [PATCH 08/19] drm/xe/log: Add errno-only SIGID log helpers
+Date: Thu, 23 Jul 2026 22:37:41 +0200
+Message-ID: <20260723203754.3782-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 References: <20260723203754.3782-1-michal.wajdeczko@intel.com>
@@ -68,92 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Similar to what we do in our regular xe_gt|tile_err() macros,
-decorate dmesg message with info about Tile/GT identifiers.
+For the software based errors, we will usually want to pass only
+the errno value as the data to be logged in the dmesg line/CPER
+record. Add simple wrappers for that.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_log.h | 59 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 56 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_log.h | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
-index ebca8874a44d..5d3f0ef4ecca 100644
+index 8e300e8b6d10..7e0c28736841 100644
 --- a/drivers/gpu/drm/xe/xe_log.h
 +++ b/drivers/gpu/drm/xe/xe_log.h
-@@ -10,6 +10,9 @@
+@@ -140,4 +140,36 @@ void xe_log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+ 			 __data, __len,	fmt, ##args);					\
+ } while (0)
  
- #include "abi/xe_sigid_abi.h"
- #include "xe_any.h"
-+#include "xe_gt_printk.h"
-+#include "xe_printk.h"
-+#include "xe_tile_printk.h"
- 
- struct pci_dev;
- 
-@@ -26,9 +29,59 @@ __printf(6, 7)
- void xe_log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
- 		       const void *data, size_t len, const char *fmt, ...);
- 
--#define xe_log_emit_from(any, sev, sig, comp, loc, data, len, fmt, args...) \
--	xe_log_emit(xe_any_to_pdev(any), (sev), (sig), (comp), (loc), \
--		    (data), (len), fmt, ##args)
-+#define xe_log_emit_gt_dmesg(gt, sev, sigid, data, len, fmt, args...) do {		\
-+	struct xe_gt *__gt__ = (gt);							\
-+	xe_log_emit_tile_dmesg((__gt__)->tile, (sev), (sigid), (data), (len),		\
-+			       __XE_GT_PRINTK_FMT((__gt__), fmt, ##args));		\
-+} while (0)
++/**
++ * xe_log_err() - Emit a structured SIGID error log entry on the component behalf.
++ * @any: the &xe_device or &xe_tile or &xe_gt pointer this report relates to
++ * @TAG: the component tag to use
++ * @err: negative errno for the failing operation, or 0 if not applicable
++ * @fmt: printf-style free text format string (not a stable interface)
++ * @args: arguments for the @fmt format string
++ */
++#define xe_log_err(any, TAG, err, fmt, args...) \
++	xe_log_emit_comp((any), CPER_SEV_RECOVERABLE, TAG, ERR_PTR(err), 0, fmt, ##args)
 +
-+#define xe_log_emit_tile_dmesg(tile, sev, sigid, data, len, fmt, args...) do {		\
-+	struct xe_tile *__tile__= (tile);						\
-+	xe_log_emit_xe_dmesg((__tile__)->xe, (sev), (sigid), (data), (len),		\
-+			     __XE_TILE_PRINTK_FMT((__tile__), fmt, ##args));		\
-+} while (0)
++/**
++ * xe_log_err_fatal() - Emit a structured SIGID fatal error log entry on the component behalf.
++ * @any: the &xe_device or &xe_tile or &xe_gt pointer this report relates to
++ * @TAG: the component tag to use
++ * @err: negative errno for the failing operation, or 0 if not applicable
++ * @fmt: printf-style free text format string (not a stable interface)
++ * @args: arguments for the @fmt format string
++ */
++#define xe_log_err_fatal(any, TAG, err, fmt, args...) \
++	xe_log_emit_comp((any), CPER_SEV_FATAL, TAG, ERR_PTR(err), 0, fmt, ##args)
 +
-+#define xe_log_emit_xe_dmesg(xe, sev, sigid, data, len, fmt, args...) do {		\
-+	struct xe_device *__xe__ = (xe);						\
-+	xe_log_emit_dmesg(xe_any_to_pdev(__xe__), (sev), (sigid), (data), (len),	\
-+			  __XE_PRINTK_FMT((__xe__), fmt, ##args));			\
-+} while (0)
++/**
++ * xe_log_info() - Emit a structured SIGID information log entry on the component behalf.
++ * @any: the &xe_device or &xe_tile or &xe_gt pointer this report relates to
++ * @TAG: the component tag to use
++ * @fmt: printf-style free text format string (not a stable interface)
++ * @args: arguments for the @fmt format string
++ */
++#define xe_log_info(any, TAG, fmt, args...) \
++	xe_log_emit_comp((any), CPER_SEV_INFORMATIONAL, TAG, NULL, 0, fmt, ##args)
 +
-+#define xe_log_emit_dmesg_from(any, sev, sig, data, len, fmt, args...) do {		\
-+	typeof(any) __any_ = (any);							\
-+	struct pci_dev *__pdev_ = xe_any_to_pdev(__any_);				\
-+	struct xe_tile *__tile_ = xe_any_if_tile(__any_);				\
-+	struct xe_device *__xe_ = xe_any_if_xe(__any_);					\
-+	struct xe_gt *__gt_ = xe_any_if_gt(__any_);					\
-+	int __sev_ = (sev);								\
-+	int __sig_ = (sig);								\
-+	const void *__data_ = (data);							\
-+	size_t __len_ = (len);								\
-+	if (__gt_)									\
-+		xe_log_emit_gt_dmesg(__gt_, __sev_, __sig_,				\
-+				     __data_, __len_, fmt, ##args);			\
-+	else if (__tile_)								\
-+		xe_log_emit_tile_dmesg(__tile_, __sev_, __sig_,				\
-+				       __data_, __len_, fmt, ##args);			\
-+	else if (__xe_)									\
-+		xe_log_emit_xe_dmesg(__xe_, __sev_, __sig_,				\
-+				     __data_, __len_, fmt, ##args);			\
-+	else if (!__gt_ && !__tile_ && !__xe_)						\
-+		xe_log_emit_dmesg(__pdev_, __sev_, __sig_,				\
-+				  __data_, __len_, fmt, ##args);			\
-+} while (0)
-+
-+#define xe_log_emit_from(any, sev, sig, comp, loc, data, len, fmt, args...) do {	\
-+	typeof(any) ___any = (any);							\
-+	struct pci_dev *___pdev = xe_any_to_pdev(___any);				\
-+	int ___sev = (sev);								\
-+	int ___sig = (sig);								\
-+	const void *___data = (data);							\
-+	size_t ___len = (len);								\
-+	xe_log_emit_dmesg_from(___any, ___sev, ___sig, ___data, ___len, fmt, ##args);	\
-+	xe_log_emit_cper(___pdev, ___sev, ___sig, (comp), (loc),			\
-+			 ___data, ___len, fmt, ##args);					\
-+} while (0)
- 
- #define xe_log_emit_fatal(any, sig, comp, loc, data, len, fmt, args...) \
- 	xe_log_emit_from((any), CPER_SEV_FATAL, (sig), (comp), (loc), \
+ #endif
 -- 
 2.47.1
 
