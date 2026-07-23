@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0351C531D0
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 21:48:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4486DC531CC
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 21:54:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E3B10F224;
-	Thu, 23 Jul 2026 21:48:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bD4RtD57";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B92910F20A
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 21:47:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784843269; x=1816379269;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bmeuhotAJP2thBJVyys6ThsWvfdoTOlxxGkeHo/zM8o=;
- b=bD4RtD57EV8aul0nG+BzjWVBHeVdNjhwXrONOLC97LHs7hpHLotlzsFl
- WHqug2wjBR20etNSJuZaKIWdOuVTW1UolZnRUaxw3S23tZIvAfbt4QOOs
- oT5k/0KoYhx3zDu05dz4RYhX0basxQI/cVLeav6sOvuQ4iaHaPbhEWCef
- uIUpKOQH3U6HA+JWSvgqjc12YPA0KNBViipi6goirrzBuabAa1dQjye23
- +D+ScuDNV1YZn5IpjL8boFjxCt8BbLMEySmzK3Faie3j7VOHtxGe1X8QP
- /KxO2uBB9NJCzoOY8NlY+7++A9mOEOfYUbuw7WxRWQ+KGbnbk82ceLNla A==;
-X-CSE-ConnectionGUID: LnpXI1ugTaaVW3qqR+VACQ==
-X-CSE-MsgGUID: QaFBnLmbRcGW2V/hmsKqyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="88050505"
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="88050505"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 14:47:48 -0700
-X-CSE-ConnectionGUID: 4frUNKe5S4GN/k7JBzJ6zQ==
-X-CSE-MsgGUID: HG6fBn19RwGwxer3aktH9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254593762"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 14:47:48 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v5 05/12] drm/xe: Add num_pf_work modparam
-Date: Thu, 23 Jul 2026 14:47:36 -0700
-Message-Id: <20260723214743.1498125-6-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260723214743.1498125-1-matthew.brost@intel.com>
-References: <20260723214743.1498125-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF30810F20A;
+	Thu, 23 Jul 2026 21:54:16 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59DB810E60F;
+ Thu, 23 Jul 2026 21:54:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fine_grained_fault_lockin?=
+ =?utf-8?q?g=2C_threaded_prefetch=2C_storm_cache_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Jul 2026 21:54:15 -0000
+Message-ID: <178484365534.221667.960924336503683580@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260723214743.1498125-1-matthew.brost@intel.com>
+In-Reply-To: <20260723214743.1498125-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,177 +36,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a module parameter to control the number of page-fault work threads,
-making it easy to experiment with how different numbers of work threads
-impact performance.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
----
- drivers/gpu/drm/xe/xe_defaults.h     |  1 +
- drivers/gpu/drm/xe/xe_device.c       | 14 ++++++++++++--
- drivers/gpu/drm/xe/xe_device_types.h | 11 ++++-------
- drivers/gpu/drm/xe/xe_module.c       |  4 ++++
- drivers/gpu/drm/xe/xe_module.h       |  1 +
- drivers/gpu/drm/xe/xe_pagefault.c    |  6 +++---
- drivers/gpu/drm/xe/xe_vm.c           |  3 ++-
- 7 files changed, 27 insertions(+), 13 deletions(-)
+Series: Fine grained fault locking, threaded prefetch, storm cache (rev5)
+URL   : https://patchwork.freedesktop.org/series/162167/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index c8ae1d5f3d60..0884224ef7c7 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -22,5 +22,6 @@
- #define XE_DEFAULT_WEDGED_MODE			XE_WEDGED_MODE_UPON_CRITICAL_ERROR
- #define XE_DEFAULT_WEDGED_MODE_STR		"upon-critical-error"
- #define XE_DEFAULT_SVM_NOTIFIER_SIZE		512
-+#define XE_DEFAULT_NUM_PF_WORK			2
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4eed9a251e65..ff24d4a00c24 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -513,6 +513,17 @@ struct xe_device *xe_device_create(struct pci_dev *pdev)
- }
- ALLOW_ERROR_INJECTION(xe_device_create, ERRNO); /* See xe_pci_probe() */
- 
-+static void xe_device_parse_modparam(struct xe_device *xe)
-+{
-+	xe->atomic_svm_timeslice_ms = 5;
-+	xe->min_run_period_lr_ms = 5;
-+	xe->info.num_pf_work = xe_modparam.num_pf_work;
-+	if (xe->info.num_pf_work < 1)
-+		xe->info.num_pf_work = 1;
-+	else if (xe->info.num_pf_work > XE_PAGEFAULT_WORK_MAX)
-+		xe->info.num_pf_work = XE_PAGEFAULT_WORK_MAX;
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0487e2f6a208063dec337ac19f59a2828799772b
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Thu Jul 23 14:47:43 2026 -0700
+
+    drm/xe: Track parallel page fault activity in GT stats
+    
+    Add a new GT statistic, PARALLEL_PAGEFAULT_COUNT, to record when
+    multiple page fault workers are active concurrently.
+    
+    When a worker dequeues a fault, scan peer workers for an active
+    cache entry and increment the counter if another fault is already
+    in flight. This provides basic visibility into parallel fault
+    handling behavior for performance analysis and tuning.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
++ /mt/dim checkpatch 1b41172259f1c761714ee4d65a4386b42181c492 drm-intel
+1300e7d89ac3 drm/xe: Fine grained page fault locking
+-:554: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#554: FILE: drivers/gpu/drm/xe/xe_svm.h:253:
++	struct mutex lock;
+
+-:596: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#596: FILE: drivers/gpu/drm/xe/xe_userptr.c:70:
 +}
++#define xe_vma_userptr_lockdep(uvma)	\
+
+total: 0 errors, 0 warnings, 2 checks, 762 lines checked
+506012e4d197 drm/xe: Allow prefetch-only VM bind IOCTLs to use VM read lock
+be07693753a1 drm/xe: Thread prefetch of SVM ranges
+aa9986721179 drm/xe: Use a single page-fault queue with multiple workers
+76b0e43a11b4 drm/xe: Add num_pf_work modparam
+0beca879505d drm/xe: Engine class and instance into a u8
+2675a3add6e0 drm/xe: Track pagefault worker runtime
+75c8fbc090aa drm/xe: Chain page faults via queue-resident cache to avoid fault storms
+-:468: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#468: FILE: drivers/gpu/drm/xe/xe_pagefault.c:627:
++				xe_gt_stats_incr(pf->gt, XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT, 1);
+
+total: 0 errors, 1 warnings, 0 checks, 829 lines checked
+10ce2d0b9613 drm/xe: Add pagefault chaining stats
+-:112: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#112: FILE: drivers/gpu/drm/xe/xe_pagefault.c:867:
++							 XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT,
+
+total: 0 errors, 1 warnings, 0 checks, 84 lines checked
+8b7f1643b6a5 drm/xe: Add debugfs pagefault_info
+-:142: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#142: FILE: drivers/gpu/drm/xe/xe_pagefault.c:952:
 +
- /**
-  * xe_device_init_early() - Initialize a new &xe_device instance
-  * @xe: the &xe_device to initialize
-@@ -539,8 +550,7 @@ int xe_device_init_early(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	xe->atomic_svm_timeslice_ms = 5;
--	xe->min_run_period_lr_ms = 5;
-+	xe_device_parse_modparam(xe);
- 
- 	err = xe_irq_init(xe);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 8d41b7e77176..6c037b205942 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -123,6 +123,8 @@ struct xe_device {
- 		u8 revid;
- 		/** @info.step: stepping information for each IP */
- 		struct xe_step_info step;
-+		/** @info.num_pf_work: Number of page fault work thread */
-+		int num_pf_work;
- 		/** @info.dma_mask_size: DMA address bits */
- 		u8 dma_mask_size;
- 		/** @info.vram_flags: Vram flags */
-@@ -309,14 +311,9 @@ struct xe_device {
- 		struct rw_semaphore lock;
- 		/** @usm.pf_wq: page fault work queue, unbound, high priority */
- 		struct workqueue_struct *pf_wq;
--		/*
--		 * We pick 4 here because, in the current implementation, it
--		 * yields the best bandwidth utilization of the kernel paging
--		 * engine.
--		 */
--#define XE_PAGEFAULT_WORK_COUNT	4
-+#define XE_PAGEFAULT_WORK_MAX	8
- 		/** @usm.pf_workers: Page fault workers */
--		struct xe_pagefault_work pf_workers[XE_PAGEFAULT_WORK_COUNT];
-+		struct xe_pagefault_work pf_workers[XE_PAGEFAULT_WORK_MAX];
- 		/** @usm.pf_queue: Page fault queue */
- 		struct xe_pagefault_queue pf_queue;
- #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 848d65265443..3187c2b7df81 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -29,6 +29,7 @@ struct xe_modparam xe_modparam = {
- 	.max_vfs =		XE_DEFAULT_MAX_VFS,
- #endif
- 	.wedged_mode =		XE_DEFAULT_WEDGED_MODE,
-+	.num_pf_work =		XE_DEFAULT_NUM_PF_WORK,
- 	.svm_notifier_size =	XE_DEFAULT_SVM_NOTIFIER_SIZE,
- 	/* the rest are 0 by default */
- };
-@@ -81,6 +82,9 @@ MODULE_PARM_DESC(wedged_mode,
- 		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-error, 2=upon-any-hang-no-reset "
- 		 "[default=" XE_DEFAULT_WEDGED_MODE_STR "])");
- 
-+module_param_named(num_pf_work, xe_modparam.num_pf_work, int, 0600);
-+MODULE_PARM_DESC(num_pf_work, "Number of page fault work threads, default=2, min=1, max=8");
-+
- static int xe_check_nomodeset(void)
- {
- 	if (drm_firmware_drivers_only())
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index a0eb7db07770..6272d9e41207 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -23,6 +23,7 @@ struct xe_modparam {
- 	unsigned int max_vfs;
- #endif
- 	unsigned int wedged_mode;
-+	unsigned int num_pf_work;
- 	u32 svm_notifier_size;
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 410dc53b7df6..2322eb7369f1 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -424,7 +424,7 @@ int xe_pagefault_init(struct xe_device *xe)
- 
- 	xe->usm.pf_wq = alloc_workqueue("xe_page_fault_work_queue",
- 					WQ_UNBOUND | WQ_HIGHPRI,
--					XE_PAGEFAULT_WORK_COUNT);
-+					xe->info.num_pf_work);
- 	if (!xe->usm.pf_wq)
- 		return -ENOMEM;
- 
-@@ -432,7 +432,7 @@ int xe_pagefault_init(struct xe_device *xe)
- 	if (err)
- 		goto err_out;
- 
--	for (i = 0; i < XE_PAGEFAULT_WORK_COUNT; ++i) {
-+	for (i = 0; i < xe->info.num_pf_work; ++i) {
- 		struct xe_pagefault_work *pf_work = xe->usm.pf_workers + i;
- 
- 		pf_work->xe = xe;
-@@ -498,7 +498,7 @@ static int xe_pagefault_work_index(struct xe_device *xe)
- {
- 	lockdep_assert_held(&xe->usm.pf_queue.lock);
- 
--	return xe->usm.current_pf_work++ % XE_PAGEFAULT_WORK_COUNT;
-+	return xe->usm.current_pf_work++ % xe->info.num_pf_work;
++	}
+
+total: 0 errors, 0 warnings, 1 checks, 127 lines checked
+4e4ba02aea85 drm/xe: batch CT pagefault acks with periodic flush
+-:247: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#247: FILE: drivers/gpu/drm/xe/xe_guc_ct.h:65:
  }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 64caf8290517..286aebfcc461 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3236,7 +3236,8 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops,
- 	skip_threads =  op->prefetch_range.ranges_count == 1 ||
- 		(!dpagemap && !(vops->flags &
- 				XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE)) ||
--		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK);
-+		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK) ||
-+		vm->xe->info.num_pf_work == 1;
- 	thread = skip_threads ? &stack_thread : NULL;
- 
- 	if (!skip_threads) {
--- 
-2.34.1
++void xe_guc_ct_send_flush(struct xe_guc_ct *ct);
+
+total: 0 errors, 0 warnings, 1 checks, 364 lines checked
+0487e2f6a208 drm/xe: Track parallel page fault activity in GT stats
+
 
