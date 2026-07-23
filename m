@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F12BC531D0
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C7BC531FA
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B24710F203;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8DDB10F20A;
 	Thu, 23 Jul 2026 20:38:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z7iD4UCg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RLfo/o3K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 462A910F200
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2620F10F200
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784839110; x=1816375110;
+ t=1784839112; x=1816375112;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3GXSV3q46jBhhhpPlFL4zvlszcNlOke4qwPvzlt5AjM=;
- b=Z7iD4UCgDSyzsLi9D+kfHHsGm3UAQkeGR54BVzM3sUrzR29/NYHRt1X2
- 8eS4eiGdZvZftPgNQCuMZiEs9VqS4tLoYrEAp3/f/eIQ/PXe9EK4yCX3N
- XT9DZD6bDizf2rQlgQMaL6mmw7JRkhRZEdd1RFWj1Q49xuFuAzPliMMmS
- OaYO88H2xmc8x9yAjg+pNkLBhMMU9C7c85n2UaewYyMYYWhegeKvRPdv+
- 9Ihpy1mOXlRZNAJI8dmajA54krHmtaj7SqrydVSqvVKOwvFfEdd9wuMQn
- Hbo5F2xvzI43thAJFivTypd7UGVF8sCZs1bofNZo241+cHNbGQrRDt25R Q==;
-X-CSE-ConnectionGUID: oxUOPKiZTuCja5xuixDhkA==
-X-CSE-MsgGUID: x1hXl977Tx63D0Og7x0lcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484317"
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484317"
+ bh=/A0Cu7Jme8kwOQAwwmCyqRPpDLFSg2puxSLmsEu+GpI=;
+ b=RLfo/o3KB12TQemIA8Se8NERQsHSL1pBXsll6t4dB1y3Vd8yv44GcPbm
+ UWD0ONHrh6V3RD5Gt/lt4etroKyHslz31nCYvkb2PXFaqLnVKDhKNwdL8
+ 1zwO/M5X2fLS1MdjSI2wJ4gfU6C91ASd+yT9PEjOvLJPsnN3dWZ65xowD
+ RJZC3/46f/WOx+ec42IgSAhK4u6iGN1u9iHarpl3V9nFZPZeF4r5x8rln
+ IouFB9uPvyv2EGaKFXpDSz3bfOxB8YUMJ1jt3vc7ZbRgN9RAwBR2iJueo
+ kcNsZqRA7PGSrsz/NDfRoUpwGYHDVlHHvhfAZaoPSDq1QJd3s+5JsdZpd g==;
+X-CSE-ConnectionGUID: kFuqd9JrS9G3AzXSSF4mpw==
+X-CSE-MsgGUID: rjuTZmyvS8GPXi7rZqyXIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484318"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484318"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:30 -0700
-X-CSE-ConnectionGUID: LrAdhpj9ThKspoRG71rICA==
-X-CSE-MsgGUID: bYtGfjujSw6TERC3yx2Anw==
+ 23 Jul 2026 13:38:32 -0700
+X-CSE-ConnectionGUID: 885O2xpTR6Gy823PdXX80Q==
+X-CSE-MsgGUID: Rprn6owZSXWB+Fh453iKfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578618"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578621"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:29 -0700
+ 23 Jul 2026 13:38:30 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH 13/19] drm/xe: Report 'device wedged' errors using SIGID
-Date: Thu, 23 Jul 2026 22:37:46 +0200
-Message-ID: <20260723203754.3782-14-michal.wajdeczko@intel.com>
+Subject: [PATCH 14/19] drm/xe: Report 'Survivability Mode' errors using SIGID
+Date: Thu, 23 Jul 2026 22:37:47 +0200
+Message-ID: <20260723203754.3782-15-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 References: <20260723203754.3782-1-michal.wajdeczko@intel.com>
@@ -70,60 +70,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'device wedged' error using xe_log_err_fatal() helper.
-Use -EIO as the error cause, as nothing else is provided here.
-The hints about the recovery method and bug filling are now
-separated as it only needs to be printed once.
+Report various 'Survivability Mode' errors using xe_log() helpers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 23 ++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4eed9a251e65..b1e9bcd9f5b4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -48,6 +48,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index 4c506027fa94..47ffded9a425 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -14,6 +14,7 @@
+ #include "xe_device.h"
+ #include "xe_heci_gsc.h"
  #include "xe_i2c.h"
- #include "xe_irq.h"
- #include "xe_late_bind_fw.h"
 +#include "xe_log.h"
  #include "xe_mmio.h"
- #include "xe_module.h"
  #include "xe_nvm.h"
-@@ -1396,6 +1397,9 @@ void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
- 	xe->wedged.method = method;
+ #include "xe_pcode_api.h"
+@@ -179,11 +180,11 @@ static void log_survivability_info(struct pci_dev *pdev)
+ 	u32 *info = survivability->info;
+ 	int id;
+ 
+-	dev_info(&pdev->dev, "Survivability Boot Status : Critical Failure (%d)\n",
+-		 survivability->boot_status);
++	xe_log_info(xe, SURVIVABILITY, "Boot Status : Critical Failure (%d)\n",
++		    survivability->boot_status);
+ 	for (id = 0; id < MAX_SCRATCH_REG; id++) {
+ 		if (info[id])
+-			dev_info(&pdev->dev, "%s: 0x%x\n", reg_map[id], info[id]);
++			xe_log_info(xe, SURVIVABILITY, "%s: 0x%x\n", reg_map[id], info[id]);
+ 	}
  }
  
-+#define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
-+#define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/new"
-+
- /**
-  * xe_device_declare_wedged - Declare device wedged
-  * @xe: xe device instance
-@@ -1427,12 +1431,12 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 	if (!atomic_xchg(&xe->wedged.flag, 1)) {
- 		xe->needs_flr_on_fini = true;
- 		xe_pm_runtime_get_noresume(xe);
--		drm_err(&xe->drm,
--			"CRITICAL: Xe has declared device %s as wedged.\n"
--			"IOCTLs and executions are blocked.\n"
--			"For recovery procedure, refer to https://docs.kernel.org/gpu/drm-uapi.html#device-wedging\n"
--			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
--			dev_name(xe->drm.dev));
-+
-+		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
-+		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
-+			    "For recovery procedure, refer to %s\n"
-+			    "Please file a _new_ bug report at %s\n",
-+			    WEDGED_URL, XE_BUG_URL);
+@@ -316,7 +317,6 @@ static int create_survivability_sysfs(struct pci_dev *pdev)
+ 
+ static int enable_boot_survivability_mode(struct pci_dev *pdev)
+ {
+-	struct device *dev = &pdev->dev;
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	struct xe_survivability *survivability = &xe->survivability;
+ 	int ret = 0;
+@@ -342,12 +342,12 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
+ 	if (ret)
+ 		goto err;
+ 
+-	dev_err(dev, "In Survivability Mode\n");
+-
++	xe_log_emit(pdev, check_boot_failure(xe) ? CPER_SEV_FATAL : CPER_SEV_INFORMATIONAL,
++		    XE_SIGID_SURVIVABILITY, 0, 0, 0, 0, "In Survivability Boot Mode\n");
+ 	return 0;
+ 
+ err:
+-	dev_err(dev, "Failed to enable Survivability Mode\n");
++	xe_log_err_fatal(xe, SURVIVABILITY, ret, "Failed to enable Survivability Mode\n");
+ 	survivability->mode = false;
+ 	return ret;
+ }
+@@ -412,7 +412,7 @@ void xe_survivability_mode_runtime_enable(struct xe_device *xe)
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 
+ 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform < XE_BATTLEMAGE) {
+-		dev_err(&pdev->dev, "Runtime Survivability Mode not supported\n");
++		xe_log_info(xe, SURVIVABILITY, "Runtime Mode not supported!\n");
+ 		return;
  	}
  
- 	for_each_gt(gt, xe, id)
+@@ -422,11 +422,14 @@ void xe_survivability_mode_runtime_enable(struct xe_device *xe)
+ 		dev_err(&pdev->dev, "Failed to create survivability sysfs\n");
+ 
+ 	survivability->type = XE_SURVIVABILITY_TYPE_RUNTIME;
+-	dev_err(&pdev->dev, "Runtime Survivability mode enabled\n");
++	xe_log_err_fatal(xe, SURVIVABILITY, 0, "Runtime Mode enabled!\n");
+ 
+ 	xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
+ 	xe_device_declare_wedged(xe);
+-	dev_err(&pdev->dev, "Firmware flash required, Please refer to the userspace documentation for more details!\n");
++
++	xe_log_err_fatal(xe, SURVIVABILITY, 0, "Firmware flash required!\n");
++	xe_info(xe, "Please refer to the userspace documentation for more details how to flash the firmware on %s!\n",
++		xe->info.platform_name);
+ }
+ 
+ /**
 -- 
 2.47.1
 
