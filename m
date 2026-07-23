@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95C6BC531C7
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 08:25:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB925C44524
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 08:25:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 525B710E2FD;
-	Thu, 23 Jul 2026 08:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D7610F017;
+	Thu, 23 Jul 2026 08:25:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BBLOKkHZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BSmDeOY/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9B9C10E575
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 08:25:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A9A210E2FD
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 08:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784795137; x=1816331137;
+ t=1784795139; x=1816331139;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MI2PT4KOfrs1C9EMH5rCtC8YoJe8WrbroiAYqIwxA3o=;
- b=BBLOKkHZVwrFj0aDBzPT3JFiLlxPa+jVNJKuyHphqH73R1YDVnhgxeO7
- 2htrnvEQewuvSmt+TiqbcXvC1VprGDJuGs/p+H0fFbWIrBLylO//mDDTs
- LxR4xSVyijf8Y6kbVGNRf2F44ktRvCMYCOO+weYQF1UzxdS4la4aa02I3
- y+iRlOQM68HU6lsRf/VS/4w+peABR5wcCD1fJ5Y5xL6Kz08306fZgwIUB
- XhuKxtQ1Xen6Mg7EL68rMxf9gL8lz2lTRpIKxwnDsgDfMUvjdmTyvWeM8
- ifSY4tLzCjN6TbZjJjLXHc7i626lwVL/9P5Cj6cqZhwZP6eeJ7HFoMuRz A==;
-X-CSE-ConnectionGUID: nx/ohJPpTLWBe/TmbnPndA==
-X-CSE-MsgGUID: yBfHkTB2T1ORfhEiPYKNUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85389084"
-X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="85389084"
+ bh=qGvG8qpc+9X8ubg98CK71+TYgv2CjC5wQeBnFJW9vLc=;
+ b=BSmDeOY/xy76zVOTLtGaCERJe95pxzLKIHYnfr3X/62gfA6RYQtDX3WT
+ 9Mb0120OSs/a7knWYHBgQbHDnM9GIUJEdn8aAxmTE+ftZyGd/3WlbwGI3
+ MzQlUQHpQzUkZiSBA213ex+Z2WZNGYA2ed75O4S1V1VeOTJJu0wApZhcg
+ O8x08GlrlaOOSAJEJxZFY72XFeb16Vsez0EZ/cePA5uYrt2JchDJqmrsp
+ ypvidRcg19a8WLflGEmXJ5LysQocy9UgLS+mrb1iGsjxjHw82G+tOnWlT
+ 0nBEuZH/sOfB/RgJ5lYJhH/BNo9gWMDYs1akLSaNaXFF2Fav5GXxT80+O w==;
+X-CSE-ConnectionGUID: yrkVL9FlR06jK0z4pSeySg==
+X-CSE-MsgGUID: v9mO0+4HQkCpaegdSz6Y3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="85389085"
+X-IronPort-AV: E=Sophos;i="6.25,180,1779174000"; d="scan'208";a="85389085"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 01:25:36 -0700
-X-CSE-ConnectionGUID: kCPkIJUAR1OdYT4/3DRhMw==
-X-CSE-MsgGUID: ghuL0MzpSZuUia46YyF7YA==
+ 23 Jul 2026 01:25:39 -0700
+X-CSE-ConnectionGUID: qFF9u0jiRKi5O4hXTpiYeg==
+X-CSE-MsgGUID: LE4Dgxb6S8WXGqsNWip7Pg==
 X-ExtLoop1: 1
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 01:25:34 -0700
+ 23 Jul 2026 01:25:37 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  alexander.usyskin@intel.com, michael.j.ruhl@intel.com,
  daniele.ceraolospurio@intel.com, anoop.c.vijay@intel.com,
  shamim.begum@intel.com, anthony.giardina@intel.com
-Subject: [PATCH v4 1/5] drm/xe/xe_late_bind_fw: Fix firmware leak on missing
- manifest entry
-Date: Thu, 23 Jul 2026 14:07:01 +0530
-Message-ID: <20260723083659.716683-8-badal.nilawar@intel.com>
+Subject: [PATCH v4 2/5] drm/xe/xe_late_bind_fw: Convert late bind flag to mask
+Date: Thu, 23 Jul 2026 14:07:02 +0530
+Message-ID: <20260723083659.716683-9-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260723083659.716683-7-badal.nilawar@intel.com>
 References: <20260723083659.716683-7-badal.nilawar@intel.com>
@@ -69,55 +68,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Release firmware when the "LTES" manifest entry is not found in the
-firmware header.
+Replace the has_late_bind flag with a late_bind_mask to support
+multiple late bind firmware types.
 
-Fixes: efa29317a553 ("drm/xe/xe_late_bind_fw: Extract and print version info")
+No functional change intended.
+
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_late_bind_fw.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c       | 2 +-
+ drivers/gpu/drm/xe/xe_device_types.h | 4 ++--
+ drivers/gpu/drm/xe/xe_late_bind_fw.c | 5 ++++-
+ drivers/gpu/drm/xe/xe_pci.c          | 4 ++--
+ drivers/gpu/drm/xe/xe_pci_types.h    | 2 +-
+ 5 files changed, 10 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 4eed9a251e65..1849e1f072b4 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -738,7 +738,7 @@ static void vf_update_device_info(struct xe_device *xe)
+ 	xe->info.has_heci_cscfi = 0;
+ 	xe->info.has_heci_gscfi = 0;
+ 	xe->info.has_i2c = 0;
+-	xe->info.has_late_bind = 0;
++	xe->info.late_bind_mask = 0;
+ 	xe->info.skip_guc_pc = 1;
+ 	xe->info.skip_pcode = 1;
+ 	xe->info.has_drm_ras = false;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 860ad322237f..db56d35f453d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -139,6 +139,8 @@ struct xe_device {
+ 		u8 vm_max_level;
+ 		/** @info.va_bits: Maximum bits of a virtual address */
+ 		u8 va_bits;
++		/** @info.late_bind_mask: Indicates supported late binding firmwares */
++		u8 late_bind_mask;
+ 
+ 		/*
+ 		 * Keep all flags below alphabetically sorted
+@@ -168,8 +170,6 @@ struct xe_device {
+ 		u8 has_heci_gscfi:1;
+ 		/** @info.has_i2c: Device has I2C controller */
+ 		u8 has_i2c:1;
+-		/** @info.has_late_bind: Device has firmware late binding support */
+-		u8 has_late_bind:1;
+ 		/** @info.has_llc: Device has a shared CPU+GPU last level cache */
+ 		u8 has_llc:1;
+ 		/** @info.has_mbx_power_limits: Device has support to manage power limits using
 diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-index 768442ca7da6..1529a1de4051 100644
+index 1529a1de4051..8f3be55060f1 100644
 --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
 +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-@@ -335,19 +335,19 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
- 	if (fw->size > XE_LB_MAX_PAYLOAD_SIZE) {
- 		drm_err(&xe->drm, "Firmware %s size %zu is larger than max pay load size %u\n",
- 			lb_fw->blob_path, fw->size, XE_LB_MAX_PAYLOAD_SIZE);
--		release_firmware(fw);
--		return -ENODATA;
-+		ret = -ENODATA;
-+		goto release_fw;
- 	}
- 
- 	ret = parse_lb_layout(lb_fw, fw->data, fw->size, "LTES");
- 	if (ret)
--		return ret;
-+		goto release_fw;
- 
- 	lb_fw->payload_size = fw->size;
- 	lb_fw->payload = drmm_kzalloc(&xe->drm, lb_fw->payload_size, GFP_KERNEL);
- 	if (!lb_fw->payload) {
--		release_firmware(fw);
--		return -ENOMEM;
-+		ret = -ENOMEM;
-+		goto release_fw;
- 	}
- 
- 	drm_info(&xe->drm, "Using %s firmware from %s version %u.%u.%u.%u\n",
-@@ -359,7 +359,9 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
- 	release_firmware(fw);
- 	INIT_WORK(&lb_fw->work, xe_late_bind_work);
- 
--	return 0;
-+release_fw:
-+	release_firmware(fw);
-+	return ret;
- }
+@@ -366,6 +366,7 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
  
  static int xe_late_bind_fw_init(struct xe_late_bind *late_bind)
+ {
++	struct xe_device *xe = late_bind_to_xe(late_bind);
+ 	int ret;
+ 	int fw_id;
+ 
+@@ -374,6 +375,8 @@ static int xe_late_bind_fw_init(struct xe_late_bind *late_bind)
+ 		return -ENOMEM;
+ 
+ 	for (fw_id = 0; fw_id < XE_LB_FW_MAX_ID; fw_id++) {
++		if (!(xe->info.late_bind_mask & BIT(fw_id)))
++			continue;
+ 		ret = __xe_late_bind_fw_init(late_bind, fw_id);
+ 		if (ret)
+ 			return ret;
+@@ -437,7 +440,7 @@ int xe_late_bind_init(struct xe_late_bind *late_bind)
+ 	struct xe_device *xe = late_bind_to_xe(late_bind);
+ 	int err;
+ 
+-	if (!xe->info.has_late_bind)
++	if (!xe->info.late_bind_mask)
+ 		return 0;
+ 
+ 	if (!IS_ENABLED(CONFIG_INTEL_MEI_LB) || !IS_ENABLED(CONFIG_INTEL_MEI_GSC)) {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 36d62927b969..283919fbbc04 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -421,10 +421,10 @@ static const struct xe_device_desc bmg_desc = {
+ 	.has_gsc_nvm = 1,
+ 	.has_heci_cscfi = 1,
+ 	.has_i2c = true,
+-	.has_late_bind = true,
+ 	.has_pre_prod_wa = 1,
+ 	.has_soc_remapper_telem = true,
+ 	.has_sriov = true,
++	.late_bind_mask = BIT(XE_LB_FW_FAN_CONTROL),
+ 	.max_gt_per_tile = 2,
+ 	MULTI_LRC_MASK,
+ 	.needs_scratch = true,
+@@ -802,7 +802,6 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
+ 	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
+ 	xe->info.has_i2c = desc->has_i2c;
+-	xe->info.has_late_bind = desc->has_late_bind;
+ 	xe->info.has_llc = desc->has_llc;
+ 	xe->info.has_mert = desc->has_mert;
+ 	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
+@@ -818,6 +817,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.needs_scratch = desc->needs_scratch;
+ 	xe->info.needs_shared_vf_gt_wq = desc->needs_shared_vf_gt_wq;
+ 	xe->info.multi_lrc_mask = desc->multi_lrc_mask;
++	xe->info.late_bind_mask = desc->late_bind_mask;
+ 
+ 	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+ 				 xe_modparam.probe_display &&
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index fed509ff601e..d1d41c65133f 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -28,6 +28,7 @@ struct xe_device_desc {
+ 	enum xe_platform platform;
+ 
+ 	u8 dma_mask_size;
++	u8 late_bind_mask;
+ 	u8 max_remote_tiles:2;
+ 	u8 max_gt_per_tile:2;
+ 	u8 multi_lrc_mask;
+@@ -47,7 +48,6 @@ struct xe_device_desc {
+ 	u8 has_heci_gscfi:1;
+ 	u8 has_heci_cscfi:1;
+ 	u8 has_i2c:1;
+-	u8 has_late_bind:1;
+ 	u8 has_llc:1;
+ 	u8 has_mbx_power_limits:1;
+ 	u8 has_mbx_thermal_info:1;
 -- 
 2.54.0
 
