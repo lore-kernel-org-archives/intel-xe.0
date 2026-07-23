@@ -4,44 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CF15C531CF
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 13:36:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A4F2C531CA
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 13:38:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F50C10E586;
-	Thu, 23 Jul 2026 13:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9796810E586;
+	Thu, 23 Jul 2026 13:38:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="FzprHaSK";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="AgIuombQ";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 834A710E586;
- Thu, 23 Jul 2026 13:36:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD4910E586
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 13:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1784813760;
- bh=FW/au77XZS9cP0DFyXyqdPup/8yYKVmtXAQa/osTvYs=;
+ s=default; t=1784813936;
+ bh=Goyh+zRQ5KuilQP0KeZj7hFSzr7dGWK/jUqPOWcQFJw=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=FzprHaSKtTINhezQNliqvgXZPwffaq/EtGTHqAt85rc/6pT7m9WaQQT9l+19+UA98
- tlKQPwCZxGwTOM9x/YKRhV6VXAecE/5og9D+TXW5wK06t5DlInFTeBwrOpuSeBSGh5
- h5JGQbgMTyDbAajbxaJ4tyFRXOkm5/idKC0a/mLFIbYsVqZo2fvaIqm1uHB2FVX5E2
- gLG2LIXEra/V9nzWbCajr7/tQlBFonWbR9YVxGWDhwmBF825mk9qI5kk53PBCeEG7p
- HRH58tozBAJGvbtAquEKRuXhPYhmNAG1oe538fJAR6h4W1bpCqU/ME2rwlIDCVE32O
- WMncA/vqglmug==
-Message-ID: <685c2bb8-613c-4cae-ad11-514661bd86be@lankhorst.se>
-Date: Thu, 23 Jul 2026 15:37:02 +0200
+ b=AgIuombQz2mWYk8w1JwK4dxioR0aDzxtKcJ9c4CWNIB0Ynge16ScYwfFJ4SMdwmUL
+ RqpMVTgb/9eJrMyI5qv3weBrtr67+WOHm2I/7Olw6QqtAmm8kQa6STfkwBwKKW8h/B
+ /41wF0HnxSR8siwy6Dy7j0DC+dqrkTr+6c8EH1gSCDCcZ4n93K3gvyg/x4GtcRPAHt
+ iTgffb6if9FF45ONfQ1TJkCcTLkkEJ2SBljxc5NmF4byKwnCFIjpHj47HmCgSjnpFr
+ 9x4or1al7RsRVm/hc8AZUijq0i0tNObgNQA1Z45xs0gzMHbcLK0HRZAPofW22T0WGS
+ p/ip38mw1SWCA==
+Message-ID: <a741cb50-05d9-4dab-baf4-1b427e87bdee@lankhorst.se>
+Date: Thu, 23 Jul 2026 15:39:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] drm/i915: Introduce
- intel_bo_fbdev_bios_fb_takeover()
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "B S, Karthik" <karthik.b.s@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20260721142610.93804-7-dev@lankhorst.se>
- <20260721142610.93804-12-dev@lankhorst.se>
- <DM4PR11MB6360D8AB81342D5F9AA7DA27F4C02@DM4PR11MB6360.namprd11.prod.outlook.com>
+Subject: Re: [PATCH] drm/xe/bo: optimise TT population for DONTNEED BOs
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20260723133418.1201717-2-matthew.auld@intel.com>
 Content-Language: en-US
 From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <DM4PR11MB6360D8AB81342D5F9AA7DA27F4C02@DM4PR11MB6360.namprd11.prod.outlook.com>
+In-Reply-To: <20260723133418.1201717-2-matthew.auld@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -60,43 +55,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hey,
 
-On 7/23/26 11:06, Shankar, Uma wrote:
+On 7/23/26 15:34, Matthew Auld wrote:
+> When a VRAM buffer object is marked as DONTNEED, like in Mesa, the
+> driver skips migrating its contents to system memory and instead purges
+> the backing store during eviction (via xe_ttm_bo_purge).
 > 
+> However, xe_evict_flags() still returns tt_placement (XE_PL_TT) for VRAM
+> BOs even if they were marked DONTNEED.  This causes
+> ttm_bo_handle_move_mem() to call always call ttm_bo_populate() to
+> allocate destination system pages, only for those pages to be
+> immediately freed right after when xe_bo_move() calls xe_ttm_bo_purge().
 > 
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Maarten
->> Lankhorst
->> Sent: Tuesday, July 21, 2026 7:56 PM
->> To: intel-xe@lists.freedesktop.org
->> Cc: intel-gfx@lists.freedesktop.org; Maarten Lankhorst <dev@lankhorst.se>; Ville
->> Syrjälä <ville.syrjala@linux.intel.com>
->> Subject: [PATCH v2 5/5] drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
->>
->> Pull the "do we want to use stolen for the BIOS FB?" checks into a new
->> intel_bo_fbdev_bios_fb_takeover() helper, and defer that decision until we're ready
->> to reallocate the fbdev FB. This way even if we don't want to ultimately use the
->> BIOS FB we'll keep the plane enabled until the replacement FB is ready. Should
->> hopefully result in fewer display blinks during boot.
->>
->> Additionally, on some platforms this allows us to re-create the framebuffer when
->> stolen memory is not suitable, using the blitter engine to copy the contents to
->> system memory without causing any flickering by not preserving the stolen
->> memory allocation.
->>
->> Based on a similar patch by Ville, that introduced intel_bo_fbdev_bios_fb_ok().
+> Fix this by changing xe_evict_flags() to return sys_placement
+> (XE_PL_SYSTEM) for DONTNEED BOs.  This causes TTM to skip the population
+> step while still ensuring that TTM calls xe_bo_move(), so
+> xe_ttm_bo_purge() still triggers.
 > 
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> Assisted-by: Copilot:gemini-3.1-pro-preview
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_bo.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> Please get an ack from someone from Core KMD as well.
-> 
-> @B S, Karthik Can we ask someone to check and give a Tested-by from validation
-> side for this series.
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index c266fa6bade1..1daa80079608 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -341,6 +341,11 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+>  		return;
+>  	}
+>  
+> +	if (xe_bo_madv_is_dontneed(bo)) {
+> +		*placement = sys_placement;
+> +		return;
+> +	}
+> +
 
-I've been testing a bit locally, but I see a small flicker while transitioning
-from stolen to system memory.
-
-I need to figure out why that happens, as that should have been prevented by
-the call to drm_gem_plane_helper_prepare_fb() in prepare_plane_fb()
-before the atomic flip.
+Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
 
