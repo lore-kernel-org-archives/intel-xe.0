@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FD4DC531CC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A9CDC531FA
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1093010F206;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CAED10F20C;
 	Thu, 23 Jul 2026 20:38:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fvNejWID";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dgJy5ZKl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B275410F1FC
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D53DE10F1FC
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784839121; x=1816375121;
+ t=1784839118; x=1816375118;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uyyiJOMxikUXEDJXZKHj4gfg/blNd8zpm9VVDqx3L6g=;
- b=fvNejWIDryPtnDLKCnI9UvTBUF6dd0WTrNqLPoJ1JkQRmaSjV7oULvGr
- /tn0qRHgyPIxa89dRjqRdm0bD9VyJBapImTLb3e0W395l53dxMQqMT3lR
- wOs8stPlLOGIDUTS6Q+6hgIoXmRPs3/1Wi5OIPRmwTIdiVtOrCXE2OMOl
- D0+y8Miz0UoR7M9ugrYTHeGU9ZCwNCdTHWYtk3RarPWDwmm40S/dmDRmX
- OV0e0JrTZgcjq91uGaCWTB5EvgGfnQv9uXCD28d1hcIYvR4R42or3rZHf
- qR1u6h9qET5NrU5uWehavSykXpjoVrZtbuHF7+WuN7VR7MtliH1HqaNcC Q==;
-X-CSE-ConnectionGUID: hmflNnYFRiOAwfv1ubfdfg==
-X-CSE-MsgGUID: NiMUmzZrQdS+vG/ziugtDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484326"
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484326"
+ bh=Yfn5KVmDrI7roSBwjCOcbteaqoz9KPZf53HP+hq4uFw=;
+ b=dgJy5ZKlpbvO4RGWg1jlJ5bEfODBOPpVvN15Zqa86TcXtr6PzWspmQHu
+ I0J9suuEaR2jRLzFuZ4/h7vIb6go7PdTikGSPOf65o0ErBWNZCUlCBPIJ
+ EUac2Rv1AKy2bXvoQAXkHhjVgcP8QLQRy2d+Y+UdfkhGBdtrt4PFQ/0bj
+ BcPWTqbJ8FzY7divE+CvF2P9IUO28jPfPHHyTjsN56DV9tBuM54k63ZRw
+ 0RLETwZ87AAxNmU18/ymkX5VPSj7XkKW474z8ZZCTXUEMTVACViRRQoF+
+ pxO4lGT68s+GpN1U6ylCfZEe6snZaK7SiWkHiEUWajdsqy+erJkVdULS0 g==;
+X-CSE-ConnectionGUID: O8V8J1+qTOGbjljH5B0cyQ==
+X-CSE-MsgGUID: /yzHRxJwR4KBsFSMp+p7+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484323"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484323"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:41 -0700
-X-CSE-ConnectionGUID: t+aBVCs0Q0GzXJyLD79Fgw==
-X-CSE-MsgGUID: +fTxiUNhTQqnaXS8ie8bag==
+ 23 Jul 2026 13:38:37 -0700
+X-CSE-ConnectionGUID: tPnJwUnSQ9CAEUiSpS+bTg==
+X-CSE-MsgGUID: n0xDmIjcQE2ujyzmLqIDjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578641"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578633"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:40 -0700
+ 23 Jul 2026 13:38:36 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH 19/19] drm/xe/pci: Report 'cannot re-enable' error using SIGID
-Date: Thu, 23 Jul 2026 22:37:52 +0200
-Message-ID: <20260723203754.3782-20-michal.wajdeczko@intel.com>
+Subject: [PATCH 17/19] drm/xe/gt: Report 'reset failed' errors using SIGID
+Date: Thu, 23 Jul 2026 22:37:50 +0200
+Message-ID: <20260723203754.3782-18-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 References: <20260723203754.3782-1-michal.wajdeczko@intel.com>
@@ -70,47 +72,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'cannot re-enable PCI device' error using xe_log() helper.
+Report 'reset' related err/info messages using xe_log() helpers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci_error.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index e41af2ac7f23..fb965f52be5e 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -7,6 +7,7 @@
- 
- #include "xe_device.h"
- #include "xe_gt.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index dfdacc0f6de9..6805e0d3bf21 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -48,6 +48,7 @@
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_irq.h"
+ #include "xe_lmtt.h"
 +#include "xe_log.h"
- #include "xe_pci.h"
- #include "xe_pm.h"
- #include "xe_printk.h"
-@@ -90,13 +91,15 @@ static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
- {
- 	const struct pci_device_id *ent = pci_match_id(pdev->driver->id_table, pdev);
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	int err;
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+ #include "xe_migrate.h"
+@@ -925,7 +926,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 	if (!xe_device_uc_enabled(gt_to_xe(gt)))
+ 		goto err_pm_put;
  
- 	xe_info(xe, "PCI error: slot reset\n");
+-	xe_gt_info(gt, "reset started\n");
++	xe_log_info(gt, GT, "reset started\n");
  
- 	pci_restore_state(pdev);
+ 	if (xe_fault_gt_reset()) {
+ 		err = -ECANCELED;
+@@ -964,7 +965,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 	/* Pair with get while enqueueing the work in xe_gt_reset_async() */
+ 	xe_pm_runtime_put(gt_to_xe(gt));
  
--	if (pci_enable_device(pdev)) {
--		xe_err(xe, "Cannot re-enable PCI device after reset\n");
-+	err = pci_enable_device(pdev);
-+	if (err) {
-+		xe_log_err_fatal(xe, PCI, err, "Cannot re-enable PCI device after reset\n");
- 		return PCI_ERS_RESULT_DISCONNECT;
- 	}
+-	xe_gt_info(gt, "reset done\n");
++	xe_log_info(gt, GT, "reset done\n");
  
+ 	return;
+ 
+@@ -973,7 +974,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 	XE_WARN_ON(xe_uc_start(&gt->uc));
+ 
+ err_fail:
+-	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
++	xe_log_err_fatal(gt, GT, err, "reset failed\n");
+ 	xe_device_declare_wedged(gt_to_xe(gt));
+ err_pm_put:
+ 	xe_pm_runtime_put(gt_to_xe(gt));
 -- 
 2.47.1
 
