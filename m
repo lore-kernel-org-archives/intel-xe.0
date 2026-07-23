@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CC65C531CC
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08489C531F7
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 20:38:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC62C10F1FE;
-	Thu, 23 Jul 2026 20:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFFF210F204;
+	Thu, 23 Jul 2026 20:38:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DxwLTmLj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XLRwjXi7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 797F110F1FE
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9AA810F1FE
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 20:38:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784839096; x=1816375096;
+ t=1784839100; x=1816375100;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NymUYldqjejvG31ckf3mpiugH9eF3Ms4jzTYV2MGxbw=;
- b=DxwLTmLjOsImxs4xunZl3rMoQJ421Z9faVQRD29dnrb3Juh3XB71zX0G
- dtpCBU/IyZ0K+Cutl6slEA2op/Ig4QAC8ZVH/JlkIwX+18SnyUYIQMVOc
- FtVFX42Z0LpviXGb9Oizl5YqKwxmvuIRWcQz8uPYf63rkUbVU66Wq0V5g
- LED8MWTBebLIbLNTlwYE/2Ge5VybF/h0P81sYVj4VLkZtevBb+Q0TPd22
- rm7XoudgwPHPHAMfxKVBIqiD72mwf0sk3INRDqw30Rl0qeoTdvsd2EUVR
- n2p3RQBl4Xoo7od9OHTXSG4wbqDyU9ACy5lSnAlsM8oL2O+zR2x3JaBqN g==;
-X-CSE-ConnectionGUID: /Q9GPaZZSduU46vTefLdXw==
-X-CSE-MsgGUID: 6zFmu3/OTKefX/Xy51tsMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484296"
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484296"
+ bh=M/vmHPyVNaGwhUmiw7bDdHysh+sCFXZfKKBtJ9t+KQw=;
+ b=XLRwjXi7d63xrL7bp11dkg/98AqhZPt1bZaH8hlGFBGO/rxtFG27nn8P
+ JmVg5pVmdS5ZHXmLaHCZ/T+0EftlvqmlDPcN+P0fv3ViUjCdNUdHbZFo0
+ SyC1SXKe9y6CwJkC7145q3iHrQVkhngVCfCQWSfMPLpVX2IeI0CNlOdBp
+ 1qtI7sFbCCJkaF98f3tS9qEQZzWkSUWYUy1LxOyBRHQKF3pAQVxyyuAzk
+ zxA+eFEKRfI/FoNPfAarhd1pBKvEUrD5tnJla/H4ZOHl3+h+6znxFzahn
+ 3BGUhUcBACogVeLj101PoAMDsKLBSUMmHy+VfNy6cbaFYP9LHS+jRw1RV A==;
+X-CSE-ConnectionGUID: rgAIs4BkQXu9+KabboFK4A==
+X-CSE-MsgGUID: q4fFcHI+R/+vw8sCTs4sqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="84484300"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="84484300"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:16 -0700
-X-CSE-ConnectionGUID: p6ruUS9aSu22bv1I5SENCw==
-X-CSE-MsgGUID: A3r+VQ3STCWQFHVeMy4Zew==
+ 23 Jul 2026 13:38:19 -0700
+X-CSE-ConnectionGUID: Z43O436ASqaU650APsy/dw==
+X-CSE-MsgGUID: TXbIAS0lTRqLlfLwwRPciw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578588"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254578596"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2026 13:38:15 -0700
+ 23 Jul 2026 13:38:18 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 04/19] drm/xe/log: Allow to emit SIGID dmesg/cper separately
-Date: Thu, 23 Jul 2026 22:37:37 +0200
-Message-ID: <20260723203754.3782-5-michal.wajdeczko@intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ Raag Jadav <raag.jadav@intel.com>, Riana Tauro <riana.tauro@intel.com>
+Subject: [PATCH 06/19] drm/xe/log: Introduce structured log components
+Date: Thu, 23 Jul 2026 22:37:39 +0200
+Message-ID: <20260723203754.3782-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 References: <20260723203754.3782-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,136 +72,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For the device-level errors, like a probe failure, the messages that
-we want to put into dmesg and to store in the CPER record are the same.
-But in case of the tile-level or GT-level errors, like a TDR, we will
-want to decorate dmesg message with additional info about Tile/GT info,
-like we do in our existing xe_gt|tile_err() macros, but we also don't
-want this decoration be copied into a CPER record as location details
-will likely be provided as separate parameters to xe_log() anyway.
+Introduce structured identifiers for each component type that
+could emit a SIGID log entry and for their locations. We plan
+to store those IDs in the CPER records for better filtering.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_log.c | 78 +++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_log.h |  8 ++++
- 2 files changed, 86 insertions(+)
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/abi/xe_log_abi.h | 181 ++++++++++++++++++++++++++++
+ 1 file changed, 181 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/abi/xe_log_abi.h
 
-diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
-index 7ea8d8cde0c1..c8ca0097c0b3 100644
---- a/drivers/gpu/drm/xe/xe_log.c
-+++ b/drivers/gpu/drm/xe/xe_log.c
-@@ -13,6 +13,36 @@ static void log_prep_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigi
- 	/* TODO */
- }
- 
-+/**
-+ * xe_log_emit_cper() - Emit a structured SIGID CPER record
-+ * @pdev: the &pci_dev device
-+ * @cper_sev: CPER severity (CPER_SEV_FATAL, CPER_SEV_RECOVERABLE, ...)
-+ * @sigid: signature identifier, see &enum xe_sigid
-+ * @component: component identifer
-+ * @location: location details of the @component
-+ * @data: pointer to the additional details, or ERR_PTR, or NULL if not applicable
-+ * @len: length of the @data in bytes, or 0 if not applicable
-+ * @fmt: printf-style format string
-+ * @...: format arguments
-+ *
-+ * Note: generation of the CPER record is a planned follow-up.
+diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+new file mode 100644
+index 000000000000..cde86c6c08f2
+--- /dev/null
++++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+@@ -0,0 +1,181 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
 + */
-+void xe_log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		      u32 component, u32 location, const void *data, size_t len,
-+		      const char *fmt, ...)
-+{
-+	struct va_format vaf;
-+	va_list args;
 +
-+	va_start(args, fmt);
-+	vaf.fmt = fmt;
-+	vaf.va = &args;
++#ifndef _ABI_XE_LOG_ABI_H_
++#define _ABI_XE_LOG_ABI_H_
 +
-+	log_prep_cper(pdev, cper_sev, sigid, component, location, data, len, &vaf);
++#include <linux/bits.h>
++#include <linux/bitfield.h>
 +
-+	va_end(args);
-+}
++#include "abi/xe_sigid_abi.h"
 +
- static bool is_hw_sigid(enum xe_sigid sigid)
- {
- 	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
-@@ -84,6 +114,54 @@ static void log_prep_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sig
- 				sigid, sev_prefix, hwe_prefix, vaf);
- }
- 
 +/**
-+ * xe_log_emit_dmesg() - Emit a structured SIGID dmesg line only
-+ * @pdev: the &pci_dev device
-+ * @cper_sev: CPER severity (CPER_SEV_FATAL, CPER_SEV_RECOVERABLE, ...)
-+ * @sigid: signature identifier, see &enum xe_sigid
-+ * @data: pointer to the additional details, or ERR_PTR, or NULL if not applicable
-+ * @len: length of the @data in bytes, or 0 if not applicable
-+ * @fmt: printf-style format string
-+ * @...: format arguments
++ * enum xe_log_component_bits - bits for components structure definitions
 + *
-+ * Emits a dmesg line that includes a single stable, machine-matchable token
-+ * ``SIGID=<n>`` followed by the optional severity token (like ``FATAL``) and,
-+ * when @data pointer is set, either the error printed with %pe or a packed hex
-+ * dump of the @data binary blob. The dmesg line will also include printf-style
-+ * text message.
++ * Component identifiers are structured based on::
 + *
-+ * The dmesg line is emitted using the pci_err() (or pci_info() for informational)
-+ * wrapper, so the driver's name and device's BDF (like ``xe 0000:03:00.0:``) are
-+ * included.
++ *     COMPONENT = TYPE(8b).ID(8b)
 + *
-+ * Note that we can't use regular xe_err()/xe_info() macros, as we might want to
-+ * emit some logs during the early driver initialization, where do not have an
-+ * xe_device, and thus the underlying drm_device, allocation yet.
++ * and the structure looks like this::
 + *
-+ * To mimics the drm_err() or drm_info() outputs, we will provide ``[drm]``
-+ * decoration manually and for drm_err() it will include ``[drm] *ERROR*``
++ *     ├── SYSTEM(0)
++ *     │   └── ...
++ *     ├── DRIVER(1)
++ *     │   └── ...
++ *     ├── FEATURE(2)
++ *     │   └── ...
++ *     ├── FIRMWARE(4)
++ *     │   └── ...
++ *     └── HARDWARE(8)
++ *         └── ...
 + *
 + * Examples::
 + *
-+ *   <3> xe 0000:03:00.0: [drm] *ERROR* SIGID=104 FATAL (-EPROTO) Invalid GuC reply
-+ *   <3> xe 0000:03:00.0: [drm] *ERROR* SIGID=106 (-ETIMEDOUT) Engine 'rcs0' hung
-+ *   <6> xe 0000:03:00.0: [drm] SIGID=103 In survivability mode
++ *     COMPONENT(0.type) = SYSTEM.type = system component
++ *     COMPONENT(1.type) = DRIVER.type = driver core component
++ *     COMPONENT(3.type) = DRIVER_FEATURE.type = driver feature
++ *     COMPONENT(5.type) = DRIVER_FIRMWARE.type = firmware driver component
++ *     COMPONENT(9.type) = DRIVER_HARDWARE.type = hardware drivr component
++ *
 + */
-+void xe_log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		       const void *data, size_t len, const char *fmt, ...)
-+{
-+	struct va_format vaf;
-+	va_list args;
++enum xe_log_component_bits {
++	/* private: */
++	XE_LOG_COMPONENT_CLASS_MASK = GENMASK_U16(7, 0),
++	XE_LOG_COMPONENT_TYPE_MASK = GENMASK_U16(15, 8),
++	/* private: */
++	XE_LOG_COMPONENT_CLASS_SYSTEM = 0u,
++	XE_LOG_COMPONENT_CLASS_DRIVER = 1u,
++	XE_LOG_COMPONENT_CLASS_FEATURE = 2u,
++	XE_LOG_COMPONENT_CLASS_FIRMWARE = 4u,
++	XE_LOG_COMPONENT_CLASS_HARDWARE = 8u,
++	XE_LOG_COMPONENT_CLASS_DRIVER_FEATURE = XE_LOG_COMPONENT_CLASS_DRIVER |
++						XE_LOG_COMPONENT_CLASS_FEATURE,
++	XE_LOG_COMPONENT_CLASS_DRIVER_FIRMWARE = XE_LOG_COMPONENT_CLASS_DRIVER |
++						 XE_LOG_COMPONENT_CLASS_FIRMWARE,
++	XE_LOG_COMPONENT_CLASS_DRIVER_HARDWARE = XE_LOG_COMPONENT_CLASS_DRIVER |
++						 XE_LOG_COMPONENT_CLASS_HARDWARE,
++};
 +
-+	va_start(args, fmt);
-+	vaf.fmt = fmt;
-+	vaf.va = &args;
++#define MAKE_XE_LOG_COMPONENT(_CLASS, type) \
++	(FIELD_PREP_CONST(XE_LOG_COMPONENT_CLASS_MASK, \
++			  XE_LOG_COMPONENT_CLASS_##_CLASS) | \
++	 FIELD_PREP_CONST(XE_LOG_COMPONENT_TYPE_MASK, (type)))
 +
-+	log_prep_dmesg(pdev, cper_sev, sigid, data, len, &vaf);
++/**
++ * enum xe_log_location_bits - bits for location structure definitions
++ *
++ * Location identifiers are structured based on::
++ *
++ *     LOCATION = TYPE(8b).ID(8b)
++ *
++ * and the structure looks like this::
++ *
++ *     ├── DEVICE(0)
++ *     │   └── MBZ(0)
++ *     ├── TILE(1)
++ *     │   ├── Tile0(0)
++ *     │   ├── ...
++ *     │   └── TileN(n)
++ *     ├── GT(1)
++ *     │   ├── GT0(0)
++ *     │   ├── ...
++ *     │   └── GTn(n)
++ *     └── ...
++ *
++ * Examples::
++ *
++ *     LOCATION(0.0) = DEVICE.0 = "Device"
++ *     LOCATION(1.2) = TILE.2 = "Tile2"
++ *     LOCATION(2.3) = GT.3 = "GT3"
++ *
++ */
++enum xe_log_location_bits {
++	/* private: */
++	XE_LOG_LOCATION_TYPE_MASK = GENMASK_U16(7, 0),
++	XE_LOG_LOCATION_ID_MASK = GENMASK_U16(15, 8),
++	/* */
++	XE_LOG_LOCATION_TYPE_DEVICE = 0u,
++	XE_LOG_LOCATION_TYPE_TILE = 1u,
++	XE_LOG_LOCATION_TYPE_GT = 2u,
++};
 +
-+	va_end(args);
-+}
++#define PREP_XE_LOG_LOCATION(type, id) \
++	(FIELD_PREP(XE_LOG_LOCATION_TYPE_MASK, (type)) | \
++	 FIELD_PREP(XE_LOG_LOCATION_ID_MASK, (id)))
 +
- /**
-  * xe_log_emit() - Emit a structured SIGID log entry
-  * @pdev: the &pci_dev device
-diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
-index 1d30d05eb311..ebca8874a44d 100644
---- a/drivers/gpu/drm/xe/xe_log.h
-+++ b/drivers/gpu/drm/xe/xe_log.h
-@@ -18,6 +18,14 @@ void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
- 		 u32 component, u32 location, const void *data, size_t len,
- 		 const char *fmt, ...);
- 
-+__printf(8, 9)
-+void xe_log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		      u32 component, u32 location, const void *data, size_t len,
-+		      const char *fmt, ...);
-+__printf(6, 7)
-+void xe_log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		       const void *data, size_t len, const char *fmt, ...);
++#define MAKE_XE_LOG_LOCATION(_TYPE, id) \
++	PREP_XE_LOG_LOCATION(XE_LOG_LOCATION_TYPE_##_TYPE, (id))
 +
- #define xe_log_emit_from(any, sev, sig, comp, loc, data, len, fmt, args...) \
- 	xe_log_emit(xe_any_to_pdev(any), (sev), (sig), (comp), (loc), \
- 		    (data), (len), fmt, ##args)
++/**
++ * DEFINE_XE_LOG_COMPONENTS() - Define log components.
++ * @define: name of the inner macro to expand.
++ *
++ * Use this super macro to define custom code for the log components.
++ * The following parameters are available for each component::
++ *
++ *     define(CLASS, ID, TAG, SIGID, NAME)
++ *
++ * where:
++ *
++ *     @ID is the unique component identifier within CLASS.SUBCLASS.CATEGORY
++ *     @TAG is unique component tag (across all components)
++ *     @SIGID is the default xe_sigid for the component (without the XE_SIGID_ prefix)
++ */
++#define DEFINE_XE_LOG_COMPONENTS(define) \
++	/* */									\
++	define(SYSTEM, 1, PCI, SW, "Linux PCI Subsystem")			\
++	define(SYSTEM, 2, DRM, SW, "DRM")					\
++	/* */									\
++	define(DRIVER, 1, XE, SW, "Xe Driver")					\
++	define(DRIVER, 2, PROBE, PROBE, "Driver Initialization")		\
++	define(DRIVER, 3, WEDGED, WEDGED, "Device Malfunction")			\
++	define(DRIVER, 4, RTP, SW, "Register Table Processing")			\
++	define(DRIVER, 5, WA, SW, "Workarounds")				\
++	define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")			\
++	/* */									\
++	define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")			\
++	define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")			\
++	define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")		\
++	define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")	\
++	define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")		\
++	/* */									\
++	define(DRIVER_FEATURE, 1, PF, SW, "SR-IOV Physical Function")		\
++	define(DRIVER_FEATURE, 2, VF, SW, "SR-IOV Virtual Function")		\
++	define(DRIVER_FEATURE, 3, SURVIVABILITY, SURVIVABILITY, "Survivability") \
++	define(DRIVER_FEATURE, 4, RAS, SW, "Reliability, Accessibility, Serviceability") \
++	/* */									\
++	define(DRIVER_FIRMWARE, 1, GUC, RUNTIME_FW, "GuC")			\
++	define(DRIVER_FIRMWARE, 2, HUC, RUNTIME_FW, "HuC")			\
++	define(DRIVER_FIRMWARE, 3, GSC, RUNTIME_FW, "GSC")			\
++	define(DRIVER_FIRMWARE, 16, PCODE, DEVICE_FW, "PCode")			\
++	define(DRIVER_FIRMWARE, 17, SYSCTRL, DEVICE_FW, "System Controller")	\
++	/* eod */
++
++/**
++ * enum xe_log_component_tags - TAGs of all supported components
++ */
++enum xe_log_component_tags {
++	/* private: */
++#define MAKE_XE_LOG_COMPONENT_ENUM(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG = MAKE_XE_LOG_COMPONENT(_CLASS, (_ID)), \
++	XE_LOG_COMPONENT_##_CLASS##_##_ID = XE_LOG_COMPONENT_##_TAG, \
++	/* eod */
++	DEFINE_XE_LOG_COMPONENTS(MAKE_XE_LOG_COMPONENT_ENUM)
++#undef MAKE_XE_LOG_COMPONENT_ENUM
++};
++
++/**
++ * enum xe_log_component_sigids - SIGIDs of all supported components
++ */
++enum xe_log_component_sigids {
++	/* private: */
++#define MAKE_XE_LOG_COMPONENT_SIGID(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG##_SIGID = XE_SIGID_##_SIG, \
++	/* eod */
++	DEFINE_XE_LOG_COMPONENTS(MAKE_XE_LOG_COMPONENT_SIGID)
++#undef MAKE_XE_LOG_COMPONENT_SIGID
++};
++
++#endif
 -- 
 2.47.1
 
