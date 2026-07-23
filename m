@@ -4,49 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF9EEC531D0
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 19:45:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F3F1C531D0
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 19:51:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72A5710E5EF;
-	Thu, 23 Jul 2026 19:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB85810E2D9;
+	Thu, 23 Jul 2026 19:51:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gyuQ0vCu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I1d9Jm9R";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44E1A10E5FA;
- Thu, 23 Jul 2026 19:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:From:Reply-To; bh=EL2t/09vcN9V6Rkygrdza4kyop6teAGJd5C5hkrlR48=; b=
- gyuQ0vCuAl0iVLFGO+I4RaJhmrLPqnw0d+Vx+cjCAy914FPygO3x8xSxNcRvidrfj3JD4x6kt4r/7
- 41sXLMcyHdA1Z2NcYygsZ21bhKdoBl8FAhIFgbU4kDOzTVa+6SdRMFErsGibRRAI+rK67UtVttcCh
- 5IDcmVELfpVv5eA05rt4eCUukybY2feB0dNa2cXflAe3n5ZIXFk3FaEI8HJwcfasVoJ62xvqDrm6x
- 3rR1aNfJDxAjpuSz/rWjqsoF8tDuKIbhMN5XyhqTs103sDwFCTWUoC4aLtsODQcIP1HCbKhSgLv91
- 2C8kAdu4FtkoxUTGNx5XgC6tZLodCbNamw==;
-Received: from 179-125-91-91-dinamico.pombonet.net.br ([179.125.91.91]
- helo=quatroqueijos.lan) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wmzLM-003a1P-Uh; Thu, 23 Jul 2026 21:44:33 +0200
-From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-To: igt-dev@lists.freedesktop.org
-Cc: siqueira@igalia.com, Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>,
- maarten.lankhorst@linux.intel.com,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
-Subject: [PATCH i-g-t v5 6/7] lib/amdgpu: add amdgpu support to igt_dmem_driver
-Date: Thu, 23 Jul 2026 16:43:12 -0300
-Message-ID: <20260723194313.2748143-7-cascardo@igalia.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260723194313.2748143-1-cascardo@igalia.com>
-References: <20260723194313.2748143-1-cascardo@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5BDB10E2D9
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jul 2026 19:51:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1784836292; x=1816372292;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5dWvmfhg2abAj8AdZ9wpnDDImmDBbC3XM/3CiZFsBrI=;
+ b=I1d9Jm9RbAO8EDdU/nPyY++Q2xnOxETwyL9Osp0a1fMVrud1AIUID/xs
+ vFuI5x2qXcA2l/DLVnCQh0nNvxsEISvQzW8LlXlxZdn4GnwndTyxKfwmu
+ QwDm9ugiR8Goj1BLoHpocWi6Yrgok+SbJXgdM80iCWDqdYTomUJ/zf5I3
+ uGlqemSbQz29mLrewhtpBevrsE1hh1Yeg6fEKJuk4WBovMMnYIB0Kg6Sh
+ tFVIzIiv1uFS+XpnjwYZiP9QRePY7ZLEZ3BhoTO6gqeXCsCPfQzUgUr2q
+ kzrSnO0b5FenmKs5foO2nKhGzUeCVexTanuxy12guyZ9FyE68xHCdft4n A==;
+X-CSE-ConnectionGUID: e8UgEHJrTD+nYBh4dmjawg==
+X-CSE-MsgGUID: Pgy0DLLZTMCQzg77I/ioSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="96163951"
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="96163951"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 12:51:32 -0700
+X-CSE-ConnectionGUID: PVWazpyYQwamAdD1s7MOWw==
+X-CSE-MsgGUID: Q7Dej+IyShKyMTRHI5iGIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,181,1779174000"; d="scan'208";a="254163149"
+Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2026 12:51:28 -0700
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
+ mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
+ matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ michal.wajdeczko@intel.com, Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH] drm/xe/debugfs: Expose per-engine idle status
+Date: Fri, 24 Jul 2026 01:13:04 +0530
+Message-ID: <20260723194303.2507234-2-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,148 +68,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This allows dmem cgroups tests to run on top of amdgpu driver, adding
-support to allocate and release VRAM memory.
+Extend the existing "hw_engines" debugfs to iterate over all hardware
+engines and dump their idle state: whether the engine pipe is idle or
+busy, whether C6 entry is allowed, and (where available) the forcewake
+request status.
 
-This does this by allocating a BO from VRAM domain, which will try to
-place BOs on VRAM, but may fallback to GTT.
+v2: Use existing debugfs (Matt Brost)
 
-Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
 ---
- lib/amdgpu/amd_dmem.c | 99 +++++++++++++++++++++++++++++++++++++++++++
- lib/igt_dmem_driver.h |  1 +
- lib/meson.build       |  1 +
- 3 files changed, 101 insertions(+)
- create mode 100644 lib/amdgpu/amd_dmem.c
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 27 ++++++++++++++
+ drivers/gpu/drm/xe/xe_devcoredump.c  |  4 ++-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   | 54 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_capture.c  |  2 --
+ 4 files changed, 83 insertions(+), 4 deletions(-)
 
-diff --git a/lib/amdgpu/amd_dmem.c b/lib/amdgpu/amd_dmem.c
-new file mode 100644
-index 000000000000..5ff6437dc78a
---- /dev/null
-+++ b/lib/amdgpu/amd_dmem.c
-@@ -0,0 +1,99 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright 2026 Valve Corporation
-+ * Authors:
-+ *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-+ */
-+
-+#include <errno.h>
-+
-+#include "igt.h"
-+#include "igt_cgroup.h"
-+#include "igt_dmem_driver.h"
-+#include "lib/amdgpu/amd_memory.h"
-+
-+struct amdgpu_dmem_ctx {
-+	int fd;
-+	amdgpu_device_handle device;
-+	amdgpu_bo_handle *handles;
-+	int max_bo;
-+};
-+
-+static int amdgpu_dmem_init(void **ctx, int fd, int max_bo)
-+{
-+	struct amdgpu_dmem_ctx *actx;
-+	uint32_t major, minor;
-+	int err = -ENOMEM;
-+
-+	actx = malloc(sizeof(*actx));
-+	if (!actx)
-+		return -ENOMEM;
-+
-+	actx->handles = calloc(max_bo, sizeof(actx->handles[0]));
-+	if (!actx->handles)
-+		goto out;
-+
-+	actx->max_bo = max_bo;
-+
-+	err = amdgpu_device_initialize(fd, &major, &minor, &actx->device);
-+	if (err)
-+		goto out;
-+
-+	*ctx = actx;
-+
-+	return 0;
-+
-+out:
-+	if (actx->handles)
-+		free(actx->handles);
-+	free(actx);
-+
-+	return err;
-+}
-+
-+static void amdgpu_dmem_deinit(void *ctx)
-+{
-+	struct amdgpu_dmem_ctx *actx = ctx;
-+
-+	amdgpu_device_deinitialize(actx->device);
-+	free(actx->handles);
-+	free(actx);
-+}
-+
-+static int amdgpu_dmem_allocate_vram(void *ctx, int n_bo, size_t len)
-+{
-+	struct amdgpu_dmem_ctx *actx = ctx;
-+	amdgpu_bo_handle handle;
-+	int err;
-+
-+	if (n_bo >= actx->max_bo)
-+		return -ENOMEM;
-+
-+	err = amdgpu_bo_alloc_wrap(actx->device, len, 4096,
-+				   AMDGPU_GEM_DOMAIN_VRAM, 0, &handle);
-+	if (err)
-+		return err;
-+
-+	actx->handles[n_bo] = handle;
-+
-+	return 0;
-+}
-+
-+static void amdgpu_dmem_free_vram(void *ctx, int n_bo)
-+{
-+	struct amdgpu_dmem_ctx *actx = ctx;
-+	if (n_bo >= actx->max_bo)
-+		return;
-+	if (actx->handles[n_bo])
-+		amdgpu_bo_free(actx->handles[n_bo]);
-+	actx->handles[n_bo] = 0;
-+}
-+
-+const struct igt_dmem_driver amdgpu_dmem_driver = {
-+	.name = "amdgpu",
-+	.get_region_name = amdgpu_cgroup_region_name,
-+	.init = amdgpu_dmem_init,
-+	.deinit = amdgpu_dmem_deinit,
-+	.allocate_vram = amdgpu_dmem_allocate_vram,
-+	.free_vram = amdgpu_dmem_free_vram,
-+};
-diff --git a/lib/igt_dmem_driver.h b/lib/igt_dmem_driver.h
-index 2f4a4673ab16..d34c839740a5 100644
---- a/lib/igt_dmem_driver.h
-+++ b/lib/igt_dmem_driver.h
-@@ -20,5 +20,6 @@ struct igt_dmem_driver {
- };
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 08251c7a1a4b..accf3012bad2 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -196,6 +196,33 @@
+ #define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE	REG_BIT(14)
+ #define   FAST_CLEAR_VALIGN_FIX			REG_BIT(13)
  
- extern const struct igt_dmem_driver xe_dmem_driver;
-+extern const struct igt_dmem_driver amdgpu_dmem_driver;
++#define MSG_IDLE_CS				XE_REG(0x8000)
++#define MSG_IDLE_VCS0				XE_REG(0x8004)
++#define MSG_IDLE_VCS1				XE_REG(0x8008)
++#define MSG_IDLE_VCS2				XE_REG(0x80C0)
++#define MSG_IDLE_VCS3				XE_REG(0x80C4)
++#define MSG_IDLE_VCS4				XE_REG(0x80C8)
++#define MSG_IDLE_VCS5				XE_REG(0x80CC)
++#define MSG_IDLE_VCS6				XE_REG(0x80D0)
++#define MSG_IDLE_VCS7				XE_REG(0x80D4)
++#define MSG_IDLE_VECS0				XE_REG(0x8010)
++#define MSG_IDLE_VECS1				XE_REG(0x80D8)
++#define MSG_IDLE_VECS2				XE_REG(0x80DC)
++#define MSG_IDLE_VECS3				XE_REG(0x80E0)
++#define MSG_IDLE_BCS0				XE_REG(0x800C)
++#define MSG_IDLE_BCS1				XE_REG(0x8680)
++#define MSG_IDLE_BCS2				XE_REG(0x8684)
++#define MSG_IDLE_BCS3				XE_REG(0x8688)
++#define MSG_IDLE_BCS4				XE_REG(0x868C)
++#define MSG_IDLE_BCS5				XE_REG(0x8690)
++#define MSG_IDLE_BCS6				XE_REG(0x8694)
++#define MSG_IDLE_BCS7				XE_REG(0x8698)
++#define MSG_IDLE_BCS8				XE_REG(0x869C)
++#define MSG_IDLE_GSCCS0				XE_REG(0xA62C)
++#define   MSG_IDLE_INDICATION			REG_BIT(0)
++#define   MSG_IDLE_C6_ALLOWED			REG_BIT(1)
++#define   MSG_IDLE_FW_STATUS			REG_GENMASK(13, 9)
++
+ #define XE2LPM_CCCHKNREG1			XE_REG(0x82a8)
  
- #endif
-diff --git a/lib/meson.build b/lib/meson.build
-index 012802475de0..27177f385ae6 100644
---- a/lib/meson.build
-+++ b/lib/meson.build
-@@ -199,6 +199,7 @@ if libdrm_amdgpu.found()
- 		'amdgpu/amd_mmd_shared.c',
- 		'amdgpu/amd_jpeg_shared.c',
- 		'amdgpu/amd_utils.c',
-+		'amdgpu/amd_dmem.c',
- 		'amdgpu/amd_vcn_shared.c'
- 	]
- 	if libdrm_amdgpu.version().version_compare('> 2.4.99')
+ #define VF_PREEMPTION				XE_REG(0x83a4, XE_REG_OPTION_MASKED)
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 5f2b90b18f97..b918f046ae15 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -127,8 +127,10 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
+ 
+ 	drm_puts(&p, "\n**** HW Engines ****\n");
+ 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
+-		if (ss->hwe[i])
++		if (ss->hwe[i]) {
+ 			xe_engine_snapshot_print(ss->hwe[i], &p);
++			drm_puts(&p, "\n");
++		}
+ 
+ 	drm_puts(&p, "\n**** VM state ****\n");
+ 	xe_vm_snapshot_print(ss->vm, &p);
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index c38bcacb27e4..621d1e57e997 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+ 
++#include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+@@ -22,6 +23,7 @@
+ #include "xe_guc_hwconfig.h"
+ #include "xe_hw_engine.h"
+ #include "xe_lrc.h"
++#include "xe_mmio.h"
+ #include "xe_mocs.h"
+ #include "xe_pat.h"
+ #include "xe_pm.h"
+@@ -111,6 +113,38 @@ int xe_gt_debugfs_show_with_rpm(struct seq_file *m, void *data)
+ 
+ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
+ {
++	static const struct {
++		struct xe_reg reg;
++		bool has_fw;
++	} msg_idle_reg[XE_NUM_HW_ENGINES] = {
++		[XE_HW_ENGINE_RCS0] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_BCS0] = { MSG_IDLE_BCS0, true },
++		[XE_HW_ENGINE_BCS1] = { MSG_IDLE_BCS1, false },
++		[XE_HW_ENGINE_BCS2] = { MSG_IDLE_BCS2, false },
++		[XE_HW_ENGINE_BCS3] = { MSG_IDLE_BCS3, false },
++		[XE_HW_ENGINE_BCS4] = { MSG_IDLE_BCS4, false },
++		[XE_HW_ENGINE_BCS5] = { MSG_IDLE_BCS5, false },
++		[XE_HW_ENGINE_BCS6] = { MSG_IDLE_BCS6, false },
++		[XE_HW_ENGINE_BCS7] = { MSG_IDLE_BCS7, false },
++		[XE_HW_ENGINE_BCS8] = { MSG_IDLE_BCS8, false },
++		[XE_HW_ENGINE_VCS0] = { MSG_IDLE_VCS0, true },
++		[XE_HW_ENGINE_VCS1] = { MSG_IDLE_VCS1, true },
++		[XE_HW_ENGINE_VCS2] = { MSG_IDLE_VCS2, true },
++		[XE_HW_ENGINE_VCS3] = { MSG_IDLE_VCS3, true },
++		[XE_HW_ENGINE_VCS4] = { MSG_IDLE_VCS4, true },
++		[XE_HW_ENGINE_VCS5] = { MSG_IDLE_VCS5, true },
++		[XE_HW_ENGINE_VCS6] = { MSG_IDLE_VCS6, true },
++		[XE_HW_ENGINE_VCS7] = { MSG_IDLE_VCS7, true },
++		[XE_HW_ENGINE_VECS0] = { MSG_IDLE_VECS0, true },
++		[XE_HW_ENGINE_VECS1] = { MSG_IDLE_VECS1, true },
++		[XE_HW_ENGINE_VECS2] = { MSG_IDLE_VECS2, true },
++		[XE_HW_ENGINE_VECS3] = { MSG_IDLE_VECS3, true },
++		[XE_HW_ENGINE_CCS0] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_CCS1] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_CCS2] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_CCS3] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_GSCCS0] = { MSG_IDLE_GSCCS0, false },
++	};
+ 	struct xe_hw_engine *hwe;
+ 	enum xe_hw_engine_id id;
+ 
+@@ -118,9 +152,27 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
+ 	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL))
+ 		return -ETIMEDOUT;
+ 
+-	for_each_hw_engine(hwe, gt, id)
++	for_each_hw_engine(hwe, gt, id) {
++		struct xe_reg reg = msg_idle_reg[id].reg;
++		u32 val;
++
+ 		xe_hw_engine_print(hwe, p);
+ 
++		val = xe_mmio_read32(&gt->mmio, reg);
++
++		if (msg_idle_reg[id].has_fw)
++			drm_printf(p, "\tpipe %s, C6 %s, fw_req 0x%02x\n",
++				   val & MSG_IDLE_INDICATION ? "idle" : "busy",
++				   val & MSG_IDLE_C6_ALLOWED ? "allowed" : "not allowed",
++				   REG_FIELD_GET(MSG_IDLE_FW_STATUS, val));
++		else
++			drm_printf(p, "\tpipe %s, C6 %s\n",
++				   val & MSG_IDLE_INDICATION ? "idle" : "busy",
++				   val & MSG_IDLE_C6_ALLOWED ? "allowed" : "not allowed");
++
++		drm_puts(p, "\n");
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 82df19b304e1..5a4d085660a2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1868,8 +1868,6 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+ 		snapshot_print_by_list_order(snapshot, p, GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
+ 					     list);
+ 	}
+-
+-	drm_puts(p, "\n");
+ }
+ 
+ /**
 -- 
-2.47.3
+2.43.0
 
