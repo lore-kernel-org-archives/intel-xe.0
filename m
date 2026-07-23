@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3336DC531CB
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 11:22:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E591C531CB
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jul 2026 11:47:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7CC210E558;
-	Thu, 23 Jul 2026 11:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD1310E583;
+	Thu, 23 Jul 2026 11:47:30 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE3F10E558;
- Thu, 23 Jul 2026 11:22:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1790118003698367977=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FCBD10E583;
+ Thu, 23 Jul 2026 11:47:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe3LPD?=
- =?utf-8?q?=5F3002_DMC_v2=2E32?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_reclaim_to_the_dmem_c?=
+ =?utf-8?q?group_controller_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Jul 2026 11:22:44 -0000
-Message-ID: <178480576417.220306.13910802186373857718@6beec6c84f66>
+Date: Thu, 23 Jul 2026 11:47:28 -0000
+Message-ID: <178480724864.220541.3823464903113425610@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260723083408.1791364-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20260723083408.1791364-1-dnyaneshwar.bhadane@intel.com>
+References: <20260723100350.16895-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260723100350.16895-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,203 +40,116 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1790118003698367977==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dmc: Test Xe3LPD_3002 DMC v2.32
-URL   : https://patchwork.freedesktop.org/series/170973/
-State : success
+Series: Add reclaim to the dmem cgroup controller (rev8)
+URL   : https://patchwork.freedesktop.org/series/163970/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830_BAT -> xe-pw-170973v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ed4facacb54248512464d2c638759fc700e4bd35
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Thu Jul 23 12:03:50 2026 +0200
 
-Summary
--------
+    drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+    
+    Register the VRAM manager with the dmem cgroup reclaim infrastructure
+    so that lowering dmem.max below current VRAM usage triggers TTM
+    eviction rather than failing with -EBUSY.
+    
+    Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
+    as the TTM reclaim path passes a NULL place in cgroup drain mode.
+    
+    Use drmm_cgroup_register_region() so that the region is automatically
+    unregistered at DRM device release, after drm_dev_unplug() has already
+    made drm_dev_enter() return false.  The drm_dev_enter/exit guard in the
+    reclaim callback ensures no reclaim work touches the TTM manager after
+    driver unbind, closing the window between vram_mgr_fini() (called from
+    drm_driver.release) and the drmm cleanup that unregisters the region.
+    
+    v3:
+    - Rebased on fix for uninitialized list and buddy allocator on the
+      drmm_cgroup_register_region() error path.
+    
+    v5:
+    - Rebased on the introduction of struct dmem_cgroup_init.
+    - Clear the reclaim callback in amdgpu_vram_mgr_fini() to prevent
+      use-after-free if cgroup reclaim is triggered after driver unbind
+      while userspace holds an open DRM file descriptor. (Sashiko-bot)
+    - Switch from drmm_cgroup_register_region() to the raw
+      dmem_cgroup_register_region() and store the region in
+      amdgpu_vram_mgr.cg_region. Call dmem_cgroup_unregister_region()
+      in amdgpu_vram_mgr_fini() after ttm_resource_manager_evict_all()
+      to drain in-flight reclaim callbacks, and clear man->cg afterwards.
+      This is required because amdgpu's vram manager fini is called
+      explicitly during driver unbind, which may precede the DRM device
+      release and thus precede any drmm-based cleanup. (Sashiko-bot)
+    
+    v6:
+    - Fix mgr->cg_region never being assigned, so
+      dmem_cgroup_unregister_region() in fini silently no-ops on NULL
+      and leaks the region. (Sashiko-bot)
+    - Reorder fini to call set_used(false) and evict_all() before
+      dmem_cgroup_unregister_region(), so ttm_resource_free() can
+      uncharge via man->cg during eviction; clear man->cg after
+      unregister. (Sashiko-bot)
+    
+    v7:
+    - Move dmem_cgroup_unregister_region() before the early return on
+      evict_all() failure; not doing so leaves a dangling reclaim callback
+      pointing to the partially-torn-down VRAM manager, causing a
+      use-after-free when the cgroup later triggers reclaim. (Sashiko-bot)
+    - Switch back to drmm_cgroup_register_region() with a drm_dev_enter/
+      exit guard in the reclaim callback (matching xe), rather than manual
+      register/unregister.  drm_dev_unplug() fires before vram_mgr_fini(),
+      so drm_dev_enter() returning false prevents any reclaim from touching
+      the manager during teardown.  This also fixes the "vram" name
+      collision on multi-GPU systems, since drmm_cgroup_register_region()
+      automatically prefixes with "drm/<pci-addr>/". (Sashiko-bot)
+    
+    v8:
+    - Move the dmem cgroup region teardown back into
+      amdgpu_vram_mgr_fini(): register the region with
+      dmem_cgroup_register_region() (keeping the "drm/<unique>/vram"
+      prefix), store it in amdgpu_vram_mgr.cg_region, and unregister it
+      explicitly after ttm_resource_manager_evict_all(). The v7
+      drmm-only approach left a use-after-free on the probe-error
+      teardown path: drm_dev_unplug() is not called there, so the
+      drm_dev_enter() guard stays open while drm_driver.release destroys
+      the manager before the drmm action unregisters the region. The
+      explicit unregister drains in-flight reclaim on every teardown
+      path; the drm_dev_enter() guard is kept as defense against reclaim
+      after unplug. (Sashiko-bot)
+    
+    Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 2c64192f1ad194a53800f6dd8c779d5b4bbc1831 drm-intel
+ed174c7e12a8 drm/amdgpu: Fix init ordering in amdgpu_vram_mgr_init()
+f296621a568c cgroup/dmem: Introduce struct dmem_cgroup_init for region initialization
+4f9361555a87 cgroup/dmem: Add reclaim callback for lowering max below current usage
+eb3905d002d5 drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem controller
+-:154: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#154: FILE: drivers/gpu/drm/ttm/ttm_bo.c:679:
++	evict_walk.try_low = evict_walk.hit_low = false;
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 226 lines checked
+0c9edfb67f63 drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+-:43: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#43: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:282:
++static int xe_ttm_vram_mgr_dmem_reclaim(struct dmem_cgroup_pool_state *pool,
++					 u64 target_bytes, void *priv)
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  Additional (1): bat-bmg-1 
-  Missing    (1): bat-bmg-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-170973v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#8265])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_exec_multi_queue@exec-sanity:
-    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#8364]) +13 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_exec_multi_queue@exec-sanity.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#2229])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#1420] / [Intel XE#7590])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2245] / [Intel XE#7590])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-1:          NOTRUN -> [SKIP][8] ([Intel XE#2236] / [Intel XE#7590])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * Linux: xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830 -> xe-pw-170973v1
-
-  IGT_9020: 9020
-  xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830: 2917ea6f91d2957b4c9fa73d4631ccdb6a650830
-  xe-pw-170973v1: 170973v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/index.html
-
---===============1790118003698367977==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe3LPD_3002 DMC v2.32</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170973/">https://patchwork.freedesktop.org/series/170973/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 1 checks, 75 lines checked
+ed4facacb542 drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
 
 
-    <h1>CI Bug Log - changes from xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830_BAT -&gt; xe-pw-170973v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>Additional (1): bat-bmg-1 <br />
-  Missing    (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-170973v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@exec-sanity:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_exec_multi_queue@exec-sanity.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170973v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830 -&gt; xe-pw-170973v1</li>
-</ul>
-<p>IGT_9020: 9020<br />
-  xe-5466-2917ea6f91d2957b4c9fa73d4631ccdb6a650830: 2917ea6f91d2957b4c9fa73d4631ccdb6a650830<br />
-  xe-pw-170973v1: 170973v1</p>
-
-</body>
-</html>
-
---===============1790118003698367977==--
