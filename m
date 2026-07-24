@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FA2AC531C9
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:39:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE66BC531C9
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:39:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBDC10F49D;
-	Fri, 24 Jul 2026 21:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB9410F4A1;
+	Fri, 24 Jul 2026 21:39:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ma4Z4z0c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mzK+Uqlr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E84610F4A5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 656A610F4BE
  for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 21:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1784929175; x=1816465175;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uw2ckxu0hLFEvOwU1hMIqUYRgPP9fW/UYL6V4yHL1xA=;
- b=ma4Z4z0cBVu33wa4UQFlptY0qll55Y/gSIQlHEa+J9vh5De0JUxTnIpK
- pQiWRmcd4s7RENyIY+WVt/t4XuqRQnv1hOQl+xYUnjWah7lsX3hoP5KSA
- 2gbxYR+5DJEJEtrt/3aAmi8OsiY1CQOckIQlctwERHq2I46pnKWh4kp6Z
- 9jben+lFjwCti9xc5+BV336Rt6v4f9zJ8FWvYMlOYC3c37GMorhKCjRdP
- npKs/ahVNRvDpKbiT8Nyh5Ey49IXGBDIunzjvT2PD6yKO8w+o61LA6VUu
- lVA0F7LcPttvQohhC9H89QTMK6YYnyYpTBX4n9FbAa1KSpsI3jmAJPdPu A==;
-X-CSE-ConnectionGUID: X4laqP7XTKyMarl/EBv1eQ==
-X-CSE-MsgGUID: YCllfKHDQN+FlVLZW3RXwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144561"
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144561"
+ bh=Ztlqz9Z9wFApKoctmR//265YHk8FY4eb9wA7Rv34/1k=;
+ b=mzK+UqlrwFR4CQuCfN2lK1To/QxYe+YfuCMRQVRgaCnrzLok8cWyZznV
+ rFXzcS7rTTEZ6TvkC/gdQT0f96EaQxkbUhCjTWpFbPQApSnlUsevfBkFm
+ uFi/2PvFtSjFvnvk99m1k59hiZIihxWdASEkz23TlwdUBWbwM6FQddcWh
+ mpDOCbC3yJyBdwFmbL85byOHB2vyNLmVg76U8mL9a/8IJMUq3+od3i6mp
+ 8A6vGsUFabMLMXQAzIPm1jjvELuNDGUK6oS+pew8XMJ9+/PVQ2q10Fvr6
+ Hno6K6jmhVMy2nhjk3lxh4DlxJBJn6I5udm0ebwRj+kcOAtyOpuy/XEiT w==;
+X-CSE-ConnectionGUID: /ReLGJupRdSCjlhveyNEhg==
+X-CSE-MsgGUID: qTpw1zfCSHSqopX+4rh/JA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144566"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144566"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2026 14:39:34 -0700
-X-CSE-ConnectionGUID: HKkOow7nRL2WwNdvKgebmQ==
-X-CSE-MsgGUID: 3f6/G17VTP+NynpRHd4jxw==
+ 24 Jul 2026 14:39:35 -0700
+X-CSE-ConnectionGUID: aMc+HLAQRkqOTP72wlNA+Q==
+X-CSE-MsgGUID: QwTSj1hfQGinY/b8pw7knw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812737"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812744"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 14:39:35 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v7 07/12] drm/xe: Track pagefault worker runtime
-Date: Fri, 24 Jul 2026 14:39:23 -0700
-Message-Id: <20260724213928.1670731-8-matthew.brost@intel.com>
+Subject: [PATCH v7 10/12] drm/xe: Add debugfs pagefault_info
+Date: Fri, 24 Jul 2026 14:39:26 -0700
+Message-Id: <20260724213928.1670731-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260724213928.1670731-1-matthew.brost@intel.com>
 References: <20260724213928.1670731-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,85 +66,169 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a GT stat measuring total time spent servicing pagefault workqueue
-iterations. The counter accumulates the runtime of the pagefault worker
-in microseconds, allowing correlation of fault storms and chaining
-behavior with CPU time spent in the fault handler.
+Add a debugfs entry to dump Xe page fault queue state. The output
+includes queue geometry (entry size, total size, head/tail), per-entry
+allocation state counts, and whether each page fault worker cache is
+currently valid.
 
+This is intended to help debug page fault storms, chaining, and retry
+behaviour without needing tracing.
+
+Assisted-by: ChatGPT:gpt-5 # Documentation
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_stats.c       | 1 +
- drivers/gpu/drm/xe/xe_gt_stats_types.h | 3 +++
- drivers/gpu/drm/xe/xe_pagefault.c      | 8 ++++++++
- 3 files changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_debugfs.c   | 11 +++++
+ drivers/gpu/drm/xe/xe_pagefault.c | 67 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pagefault.h |  3 ++
+ 3 files changed, 81 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-index 789397514f3e..513fe28c0e76 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats.c
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-@@ -101,6 +101,7 @@ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
- 	DEF_STAT_STR(SVM_TLB_INVAL_US, "svm_tlb_inval_us"),
- 	DEF_STAT_STR(VMA_PAGEFAULT_COUNT, "vma_pagefault_count"),
- 	DEF_STAT_STR(VMA_PAGEFAULT_KB, "vma_pagefault_kb"),
-+	DEF_STAT_STR(PAGEFAULT_US, "pagefault_us"),
- 	DEF_STAT_STR(INVALID_PREFETCH_PAGEFAULT_COUNT, "invalid_prefetch_pagefault_count"),
- 	DEF_STAT_STR(SVM_4K_PAGEFAULT_COUNT, "svm_4K_pagefault_count"),
- 	DEF_STAT_STR(SVM_64K_PAGEFAULT_COUNT, "svm_64K_pagefault_count"),
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-index 425491bed6c4..a7021a298e3e 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-@@ -22,6 +22,8 @@
-  *   handled.
-  * @XE_GT_STATS_ID_VMA_PAGEFAULT_KB: Size (KiB) of VMAs involved in
-  *   buffer-object page fault handling.
-+ * @XE_GT_STATS_ID_PAGEFAULT_US: Cumulative time (µs) handling of all page
-+ *   faults.
-  * @XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT: GPU prefetch faults for
-  *   addresses with no valid backing.
-  *
-@@ -133,6 +135,7 @@ enum xe_gt_stats_id {
- 	XE_GT_STATS_ID_SVM_TLB_INVAL_US,
- 	XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
-+	XE_GT_STATS_ID_PAGEFAULT_US,
- 	XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_SVM_4K_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_SVM_64K_PAGEFAULT_COUNT,
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 2b0fabe29e25..65be8dd09e2f 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -296,6 +296,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 	struct xe_device *xe = pf_work->xe;
- 	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
- 	struct xe_pagefault pf;
-+	ktime_t start = xe_gt_stats_ktime_get();
-+	struct xe_gt *gt = NULL;
- 	unsigned long threshold;
- 
- #define USM_QUEUE_MAX_RUNTIME_MS      20
-@@ -307,6 +309,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		if (!pf.gt)	/* Fault squashed during reset */
- 			continue;
- 
-+		gt = pf.gt;
- 		err = xe_pagefault_service(&pf);
- 		if (err) {
- 			if (!(pf.consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
-@@ -329,6 +332,11 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		}
- 	}
- #undef USM_QUEUE_MAX_RUNTIME_MS
-+
-+	if (gt)
-+		xe_gt_stats_incr(xe_root_mmio_gt(gt_to_xe(gt)),
-+				 XE_GT_STATS_ID_PAGEFAULT_US,
-+				 xe_gt_stats_ktime_us_delta(start));
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 5a3877fcb0f0..5a7286679958 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -22,6 +22,7 @@
+ #include "xe_guc_ads.h"
+ #include "xe_hw_engine.h"
+ #include "xe_mmio.h"
++#include "xe_pagefault.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_psmi.h"
+@@ -194,6 +195,15 @@ static int sriov_info(struct seq_file *m, void *data)
+ 	return 0;
  }
  
- static int xe_pagefault_queue_init(struct xe_device *xe,
++static int pagefault_info(struct seq_file *m, void *data)
++{
++	struct xe_device *xe = node_to_xe(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
++
++	xe_pagefault_print_info(xe, &p);
++	return 0;
++}
++
+ static int workarounds(struct xe_device *xe, struct drm_printer *p)
+ {
+ 	guard(xe_pm_runtime)(xe);
+@@ -285,6 +295,7 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"info", info, 0},
+ 	{ .name = "sriov_info", .show = sriov_info, },
+ 	{ .name = "workarounds", .show = workaround_info, },
++	{ .name = "pagefault_info", .show = pagefault_info, },
+ };
+ 
+ static const struct drm_info_list pcode_info_debugfs[] = {
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index c2bb6be4ee01..8665f0646778 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -83,6 +83,8 @@
+  *	Entry is not independently serviced; it has been chained onto an
+  *	ACTIVE entry via consumer.next and will be acknowledged when the
+  *	leading fault completes.
++ * @XE_PAGEFAULT_ALLOC_STATE_COUNT:
++ *	Count of allocation states.
+  *
+  * The page fault queue provides stable storage for outstanding faults so the
+  * IRQ handler can chain new cache hits directly onto a worker's active fault.
+@@ -97,6 +99,7 @@ enum xe_pagefault_alloc_state {
+ 	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
+ 	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
+ 	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
++	XE_PAGEFAULT_ALLOC_STATE_COUNT		= 4,
+ };
+ 
+ static int xe_pagefault_entry_size(void)
+@@ -864,3 +867,67 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+ 
+ 	return full ? -ENOSPC : 0;
+ }
++
++/**
++ * xe_pagefault_print_info() - dump page fault queue/cache debug information
++ * @xe: Xe device
++ * @p: DRM printer to emit output to
++ *
++ * Print a snapshot of the page fault queue state for debugging. The output
++ * includes queue parameters (entry size, total size, head/tail), a histogram
++ * of per-entry allocation state values, and the validity of each per-worker
++ * page fault cache.
++ *
++ * This function is intended for debugfs and similar diagnostics. It acquires
++ * the page fault queue spinlock internally to serialize against IRQ-side
++ * producers and the worker consumer path, so callers must not hold the queue
++ * lock.
++ */
++void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p)
++{
++	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
++	struct xe_pagefault_work *pf_work;
++	static const char * const alloc_state_names[] = {
++		[XE_PAGEFAULT_ALLOC_STATE_FREE] = "free",
++		[XE_PAGEFAULT_ALLOC_STATE_QUEUED] = "queued",
++		[XE_PAGEFAULT_ALLOC_STATE_CHAINED] = "chained",
++		[XE_PAGEFAULT_ALLOC_STATE_ACTIVE] = "active",
++	};
++	u32 i, counts[XE_PAGEFAULT_ALLOC_STATE_COUNT] = {};
++
++	/* Driver load failure guard / USM not enabled guard */
++	if (!pf_queue->data)
++		return;
++
++	guard(spinlock_irq)(&pf_queue->lock);
++
++	drm_printf(p, "pagefault size: %u\n", xe_pagefault_entry_size());
++	drm_printf(p, "pagefault queue size: %u\n", pf_queue->size);
++	drm_printf(p, "pagefault queue head: %u\n", pf_queue->head);
++	drm_printf(p, "pagefault queue tail: %u\n", pf_queue->tail);
++
++	for (i = 0; i < pf_queue->size; i += xe_pagefault_entry_size()) {
++		struct xe_pagefault *pf = pf_queue->data + i;
++
++		if (pf->consumer.alloc_state >=
++		    XE_PAGEFAULT_ALLOC_STATE_COUNT) {
++			drm_printf(p, "pagefault[%u] corrupted alloc_state=%u\n",
++				   i, pf->consumer.alloc_state);
++			continue;
++		}
++
++		counts[pf->consumer.alloc_state]++;
++	}
++
++	for (i = 0; i < XE_PAGEFAULT_ALLOC_STATE_COUNT; ++i)
++		drm_printf(p, "pagefault queue %s count: %u\n",
++			   alloc_state_names[i], counts[i]);
++
++	for (i = 0, pf_work = xe->usm.pf_workers;
++	     i < xe->info.num_pf_work; ++i, ++pf_work) {
++		if (pf_work->cache.start == XE_PAGEFAULT_CACHE_START_INVALID)
++			drm_printf(p, "pagefault work[%u] cache invalid\n", i);
++		else
++			drm_printf(p, "pagefault work[%u] cache valid\n", i);
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
+index feaf2a69674a..e9c5d1f03760 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.h
++++ b/drivers/gpu/drm/xe/xe_pagefault.h
+@@ -8,6 +8,7 @@
+ 
+ #include "xe_pagefault_types.h"
+ 
++struct drm_printer;
+ struct xe_device;
+ struct xe_gt;
+ struct xe_pagefault;
+@@ -18,6 +19,8 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
+ 
+ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
+ 
++void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p);
++
+ #define XE_PAGEFAULT_END_ADDR_MASK	(~0xfffull)
+ 
+ /**
 -- 
 2.34.1
 
