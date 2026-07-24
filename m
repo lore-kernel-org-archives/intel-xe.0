@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DBA8C5321B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D4CBC531FC
 	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:39:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E69EF10F4B2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39B210F4B5;
 	Fri, 24 Jul 2026 21:39:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cj4ab2eS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ErT6pdta";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6FB010F4A5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAE7B10F4B5
  for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 21:39:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1784929174; x=1816465174;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Z8qU8PP0a+BtTd01VP+4S+eExyWP0cotLNvjOBbtrlM=;
- b=cj4ab2eSevoq6q1RL1Zk48vrgnXX5MoNphZkIcsJ61z0rlx0neRTv0lR
- v0V3DfSguNalSdtFcEvYtA9V0o/kziu6wIV2UqjLJp3S8HxlDDRtyzPHR
- CXZ+YVAq+dnsCMGq6gZxNqNgzlf/dMsvPT1GBKi67PCTXnCiZ4+HXbOUZ
- enB9/wrGtLEkrJ7iSrweJI7GoHqYdeXj9+xlFRpvrLtNnGLYXFqeYNikR
- o9lD461+EqNGpvVrc1PVj57mo4WGt5GkOKUkaLVg8TMaaX9wp6n5Xxjv7
- TtVywBQsHxzpXijVSzClPtjL3qTLQEf3UV6P3MxG7tnbZRiLMTE7RXdIy A==;
-X-CSE-ConnectionGUID: 5MSAVhTYQWSGQ6DX89ltHw==
-X-CSE-MsgGUID: a0kHO6u8SYCny725XYBV0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144559"
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144559"
+ bh=7DuoVVSojze+N/ugFqDpvxt6yXMlwTjznD/Ndh94VPM=;
+ b=ErT6pdtajm2VGG2t0MvXnl0CMyhzzNOhGGR4L1qcAIUIKjoF7THxmB3u
+ aiPqfqsTtsVNS/qHM6mwLuq8a2/0KHrKqXRX5AH1sbOAqXZDt1v29VKva
+ 6ckodMcic0CXL3OYrJpu9vmwwLgi/3TigcOy3RL90g+8hIxLGaIl1Hn+Y
+ 1kFYFQ+lezIwPmGzQzDyuQx589iV/4gqkNPxnQQJsWLwLo5dWmBvCsfJH
+ Tl8eh3ztV247O/fgcIkdn7/EM3aN7bXwrYrxlZg1r8tHJ7x0qJjNXJE/B
+ Yl7+gvmddlyu9RWNRh+iKEpms3CGZYrqbIrczEAocOqvHo2g7v+8c4Q1x Q==;
+X-CSE-ConnectionGUID: mdaIjptTRIWe4Xr0E6krFA==
+X-CSE-MsgGUID: oHV4WFAFQWWQrdzJvk28gQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144558"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144558"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 14:39:34 -0700
-X-CSE-ConnectionGUID: VvXkPl14SJ24ocv1PyVEJA==
-X-CSE-MsgGUID: Dxl1KDAkTO6nPad1PdTWgw==
+X-CSE-ConnectionGUID: SmOGbekERKqUGBqOeaMV8w==
+X-CSE-MsgGUID: +ASzgHfoQFSbZgaU6OyA6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812728"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812724"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 14:39:34 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v7 05/12] drm/xe: Add num_pf_work modparam
-Date: Fri, 24 Jul 2026 14:39:21 -0700
-Message-Id: <20260724213928.1670731-6-matthew.brost@intel.com>
+Subject: [PATCH v7 04/12] drm/xe: Use a single page-fault queue with multiple
+ workers
+Date: Fri, 24 Jul 2026 14:39:20 -0700
+Message-Id: <20260724213928.1670731-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260724213928.1670731-1-matthew.brost@intel.com>
 References: <20260724213928.1670731-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,181 +68,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a module parameter to control the number of page-fault work threads,
-making it easy to experiment with how different numbers of work threads
-impact performance.
+With fine-grained page-fault locking, it no longer makes sense to
+maintain multiple page-fault queues, as we no longer hash queues based
+on the VM’s ASID. Multiple workers can pull page faults from a single
+queue, eliminating any head-of-queue blocking. Refactor the structures
+and code to use a single shared queue.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_defaults.h     |  1 +
- drivers/gpu/drm/xe/xe_device.c       | 14 ++++++++++++--
- drivers/gpu/drm/xe/xe_device_types.h | 11 ++++-------
- drivers/gpu/drm/xe/xe_module.c       |  4 ++++
- drivers/gpu/drm/xe/xe_module.h       |  1 +
- drivers/gpu/drm/xe/xe_pagefault.c    |  8 ++++----
- drivers/gpu/drm/xe/xe_vm.c           |  3 ++-
- 7 files changed, 28 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h    | 12 +++---
+ drivers/gpu/drm/xe/xe_pagefault.c       | 51 +++++++++++++------------
+ drivers/gpu/drm/xe/xe_pagefault_types.h | 17 ++++++++-
+ 3 files changed, 49 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index c8ae1d5f3d60..0884224ef7c7 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -22,5 +22,6 @@
- #define XE_DEFAULT_WEDGED_MODE			XE_WEDGED_MODE_UPON_CRITICAL_ERROR
- #define XE_DEFAULT_WEDGED_MODE_STR		"upon-critical-error"
- #define XE_DEFAULT_SVM_NOTIFIER_SIZE		512
-+#define XE_DEFAULT_NUM_PF_WORK			2
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4eed9a251e65..ff24d4a00c24 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -513,6 +513,17 @@ struct xe_device *xe_device_create(struct pci_dev *pdev)
- }
- ALLOW_ERROR_INJECTION(xe_device_create, ERRNO); /* See xe_pci_probe() */
- 
-+static void xe_device_parse_modparam(struct xe_device *xe)
-+{
-+	xe->atomic_svm_timeslice_ms = 5;
-+	xe->min_run_period_lr_ms = 5;
-+	xe->info.num_pf_work = xe_modparam.num_pf_work;
-+	if (xe->info.num_pf_work < 1)
-+		xe->info.num_pf_work = 1;
-+	else if (xe->info.num_pf_work > XE_PAGEFAULT_WORK_MAX)
-+		xe->info.num_pf_work = XE_PAGEFAULT_WORK_MAX;
-+}
-+
- /**
-  * xe_device_init_early() - Initialize a new &xe_device instance
-  * @xe: the &xe_device to initialize
-@@ -539,8 +550,7 @@ int xe_device_init_early(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	xe->atomic_svm_timeslice_ms = 5;
--	xe->min_run_period_lr_ms = 5;
-+	xe_device_parse_modparam(xe);
- 
- 	err = xe_irq_init(xe);
- 	if (err)
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index bacbe70ea541..7f084a0ee8ec 100644
+index 159ee16ee6d5..bacbe70ea541 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -123,6 +123,8 @@ struct xe_device {
- 		u8 revid;
- 		/** @info.step: stepping information for each IP */
- 		struct xe_step_info step;
-+		/** @info.num_pf_work: Number of page fault work thread */
-+		int num_pf_work;
- 		/** @info.dma_mask_size: DMA address bits */
- 		u8 dma_mask_size;
- 		/** @info.vram_flags: Vram flags */
-@@ -311,14 +313,9 @@ struct xe_device {
- 		struct workqueue_struct *pagefault_wq;
- 		/** @usm.prefetch_wq: threaded prefetch work queue, unbound */
- 		struct workqueue_struct *prefetch_wq;
--		/*
--		 * We pick 4 here because, in the current implementation, it
--		 * yields the best bandwidth utilization of the kernel paging
--		 * engine.
--		 */
--#define XE_PAGEFAULT_WORK_COUNT	4
-+#define XE_PAGEFAULT_WORK_MAX	8
- 		/** @usm.pf_workers: Page fault workers */
--		struct xe_pagefault_work pf_workers[XE_PAGEFAULT_WORK_COUNT];
-+		struct xe_pagefault_work pf_workers[XE_PAGEFAULT_WORK_MAX];
- 		/** @usm.pf_queue: Page fault queue */
- 		struct xe_pagefault_queue pf_queue;
+@@ -303,8 +303,8 @@ struct xe_device {
+ 		struct xarray asid_to_vm;
+ 		/** @usm.next_asid: next ASID, used to cyclical alloc asids */
+ 		u32 next_asid;
+-		/** @usm.current_pf_queue: current page fault queue */
+-		u32 current_pf_queue;
++		/** @usm.current_pf_work: current page fault work item */
++		u32 current_pf_work;
+ 		/** @usm.lock: protects UM state */
+ 		struct rw_semaphore lock;
+ 		/** @usm.pagefault_wq: page fault work queue, unbound, high priority */
+@@ -316,9 +316,11 @@ struct xe_device {
+ 		 * yields the best bandwidth utilization of the kernel paging
+ 		 * engine.
+ 		 */
+-#define XE_PAGEFAULT_QUEUE_COUNT	4
+-		/** @usm.pf_queue: Page fault queues */
+-		struct xe_pagefault_queue pf_queue[XE_PAGEFAULT_QUEUE_COUNT];
++#define XE_PAGEFAULT_WORK_COUNT	4
++		/** @usm.pf_workers: Page fault workers */
++		struct xe_pagefault_work pf_workers[XE_PAGEFAULT_WORK_COUNT];
++		/** @usm.pf_queue: Page fault queue */
++		struct xe_pagefault_queue pf_queue;
  #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 848d65265443..4bc28dfc1992 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -29,6 +29,7 @@ struct xe_modparam xe_modparam = {
- 	.max_vfs =		XE_DEFAULT_MAX_VFS,
- #endif
- 	.wedged_mode =		XE_DEFAULT_WEDGED_MODE,
-+	.num_pf_work =		XE_DEFAULT_NUM_PF_WORK,
- 	.svm_notifier_size =	XE_DEFAULT_SVM_NOTIFIER_SIZE,
- 	/* the rest are 0 by default */
- };
-@@ -81,6 +82,9 @@ MODULE_PARM_DESC(wedged_mode,
- 		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-error, 2=upon-any-hang-no-reset "
- 		 "[default=" XE_DEFAULT_WEDGED_MODE_STR "])");
- 
-+module_param_named(num_pf_work, xe_modparam.num_pf_work, uint, 0600);
-+MODULE_PARM_DESC(num_pf_work, "Number of page fault work threads, default=2, min=1, max=8");
-+
- static int xe_check_nomodeset(void)
- {
- 	if (drm_firmware_drivers_only())
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index a0eb7db07770..6272d9e41207 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -23,6 +23,7 @@ struct xe_modparam {
- 	unsigned int max_vfs;
- #endif
- 	unsigned int wedged_mode;
-+	unsigned int num_pf_work;
- 	u32 svm_notifier_size;
- };
- 
+ 		/** @usm.dpagemap_shrinker: Shrinker for unused pagemaps */
+ 		struct drm_pagemap_shrinker *dpagemap_shrinker;
 diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index dd34ec2cb166..8198c60e960a 100644
+index fd7ef0718153..dd34ec2cb166 100644
 --- a/drivers/gpu/drm/xe/xe_pagefault.c
 +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -398,13 +398,13 @@ int xe_pagefault_init(struct xe_device *xe)
+@@ -287,8 +287,10 @@ static void xe_pagefault_save_to_vm(struct xe_device *xe, struct xe_pagefault *p
+ 
+ static void xe_pagefault_queue_work(struct work_struct *w)
+ {
+-	struct xe_pagefault_queue *pf_queue =
+-		container_of(w, typeof(*pf_queue), worker);
++	struct xe_pagefault_work *pf_work =
++		container_of(w, typeof(*pf_work), work);
++	struct xe_device *xe = pf_work->xe;
++	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
+ 	struct xe_pagefault pf;
+ 	unsigned long threshold;
+ 
+@@ -318,7 +320,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+ 		pf.producer.ops->ack_fault(&pf, err);
+ 
+ 		if (time_after(jiffies, threshold)) {
+-			queue_work(gt_to_xe(pf.gt)->usm.pagefault_wq, w);
++			queue_work(xe->usm.pagefault_wq, w);
+ 			break;
+ 		}
+ 	}
+@@ -363,7 +365,6 @@ static int xe_pagefault_queue_init(struct xe_device *xe,
+ 		xe_pagefault_entry_size(), total_num_eus, pf_queue->size);
+ 
+ 	spin_lock_init(&pf_queue->lock);
+-	INIT_WORK(&pf_queue->worker, xe_pagefault_queue_work);
+ 
+ 	pf_queue->data = drmm_kzalloc(&xe->drm, pf_queue->size, GFP_KERNEL);
+ 	if (!pf_queue->data)
+@@ -397,22 +398,28 @@ int xe_pagefault_init(struct xe_device *xe)
  
  	xe->usm.pagefault_wq = alloc_workqueue("xe_page_fault_work_queue",
  					       WQ_UNBOUND | WQ_HIGHPRI,
--					       XE_PAGEFAULT_WORK_COUNT);
-+					       xe->info.num_pf_work);
+-					       XE_PAGEFAULT_QUEUE_COUNT);
++					       XE_PAGEFAULT_WORK_COUNT);
  	if (!xe->usm.pagefault_wq)
  		return -ENOMEM;
  
  	xe->usm.prefetch_wq = alloc_workqueue("xe_prefetch_work_queue",
  					      WQ_UNBOUND,
--					      XE_PAGEFAULT_WORK_COUNT);
-+					      xe->info.num_pf_work);
+-					      XE_PAGEFAULT_QUEUE_COUNT);
++					      XE_PAGEFAULT_WORK_COUNT);
  	if (!xe->usm.prefetch_wq) {
  		err = -ENOMEM;
  		goto err_pagefault_wq;
-@@ -414,7 +414,7 @@ int xe_pagefault_init(struct xe_device *xe)
- 	if (err)
- 		goto err_out;
+ 	}
  
--	for (i = 0; i < XE_PAGEFAULT_WORK_COUNT; ++i) {
-+	for (i = 0; i < xe->info.num_pf_work; ++i) {
- 		struct xe_pagefault_work *pf_work = xe->usm.pf_workers + i;
+-	for (i = 0; i < XE_PAGEFAULT_QUEUE_COUNT; ++i) {
+-		err = xe_pagefault_queue_init(xe, xe->usm.pf_queue + i);
+-		if (err)
+-			goto err_out;
++	err = xe_pagefault_queue_init(xe, &xe->usm.pf_queue);
++	if (err)
++		goto err_out;
++
++	for (i = 0; i < XE_PAGEFAULT_WORK_COUNT; ++i) {
++		struct xe_pagefault_work *pf_work = xe->usm.pf_workers + i;
++
++		pf_work->xe = xe;
++		pf_work->id = i;
++		INIT_WORK(&pf_work->work, xe_pagefault_queue_work);
+ 	}
  
- 		pf_work->xe = xe;
-@@ -482,7 +482,7 @@ static int xe_pagefault_work_index(struct xe_device *xe)
+ 	return devm_add_action_or_reset(xe->drm.dev, xe_pagefault_fini, xe);
+@@ -456,10 +463,7 @@ static void xe_pagefault_queue_reset(struct xe_device *xe, struct xe_gt *gt,
+  */
+ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt)
  {
- 	lockdep_assert_held(&xe->usm.pf_queue.lock);
+-	int i;
+-
+-	for (i = 0; i < XE_PAGEFAULT_QUEUE_COUNT; ++i)
+-		xe_pagefault_queue_reset(xe, gt, xe->usm.pf_queue + i);
++	xe_pagefault_queue_reset(xe, gt, &xe->usm.pf_queue);
+ }
  
--	return xe->usm.current_pf_work++ % XE_PAGEFAULT_WORK_COUNT;
-+	return xe->usm.current_pf_work++ % xe->info.num_pf_work;
+ static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
+@@ -474,13 +478,11 @@ static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
+  * This function can race with multiple page fault producers, but worst case we
+  * stick a page fault on the same queue for consumption.
+  */
+-static int xe_pagefault_queue_index(struct xe_device *xe)
++static int xe_pagefault_work_index(struct xe_device *xe)
+ {
+-	u32 old_pf_queue = READ_ONCE(xe->usm.current_pf_queue);
+-
+-	WRITE_ONCE(xe->usm.current_pf_queue, (old_pf_queue + 1));
++	lockdep_assert_held(&xe->usm.pf_queue.lock);
+ 
+-	return old_pf_queue % XE_PAGEFAULT_QUEUE_COUNT;
++	return xe->usm.current_pf_work++ % XE_PAGEFAULT_WORK_COUNT;
  }
  
  /**
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index f7d68ab30adc..c38e66614730 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3228,7 +3228,8 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops,
- 	skip_threads =  op->prefetch_range.ranges_count == 1 ||
- 		(!dpagemap && !(vops->flags &
- 				XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE)) ||
--		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK);
-+		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK) ||
-+		vm->xe->info.num_pf_work == 1;
- 	thread = skip_threads ? &stack_thread : NULL;
+@@ -495,22 +497,23 @@ static int xe_pagefault_queue_index(struct xe_device *xe)
+  */
+ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+ {
+-	int queue_index = xe_pagefault_queue_index(xe);
+-	struct xe_pagefault_queue *pf_queue = xe->usm.pf_queue + queue_index;
++	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
+ 	unsigned long flags;
++	int work_index;
+ 	bool full;
  
- 	if (!skip_threads) {
+ 	spin_lock_irqsave(&pf_queue->lock, flags);
++	work_index = xe_pagefault_work_index(xe);
+ 	full = xe_pagefault_queue_full(pf_queue);
+ 	if (!full) {
+ 		memcpy(pf_queue->data + pf_queue->head, pf, sizeof(*pf));
+ 		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
+ 			pf_queue->size;
+-		queue_work(xe->usm.pagefault_wq, &pf_queue->worker);
++		queue_work(xe->usm.pagefault_wq,
++			   &xe->usm.pf_workers[work_index].work);
+ 	} else {
+ 		drm_warn(&xe->drm,
+-			 "PageFault Queue (%d) full, shouldn't be possible\n",
+-			 queue_index);
++			 "PageFault Queue full, shouldn't be possible\n");
+ 	}
+ 	spin_unlock_irqrestore(&pf_queue->lock, flags);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
+index c4ee625b93dd..64ab4ea8807b 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault_types.h
++++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
+@@ -131,8 +131,21 @@ struct xe_pagefault_queue {
+ 	u32 tail;
+ 	/** @lock: protects page fault queue */
+ 	spinlock_t lock;
+-	/** @worker: to process page faults */
+-	struct work_struct worker;
++};
++
++/**
++ * struct xe_pagefault_work - Xe page fault work item (consumer)
++ *
++ * Represents a worker that pops a &struct xe_pagefault from the page fault
++ * queue and processes it.
++ */
++struct xe_pagefault_work {
++	/** @xe: Back-pointer to the Xe device */
++	struct xe_device *xe;
++	/** @id: Identifier for this work item */
++	int id;
++	/** @work: Work item used to process the page fault */
++	struct work_struct work;
+ };
+ 
+ #endif
 -- 
 2.34.1
 
