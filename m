@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 180B6C531C9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FE58C531FC
 	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:39:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD94010F498;
-	Fri, 24 Jul 2026 21:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0266B10F49A;
+	Fri, 24 Jul 2026 21:39:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oGYTjzX1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XskhSGxP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4299B10F4BC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FD8910F4B1
  for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 21:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1784929175; x=1816465175;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UekAWgQJpKylP3811sx1aW/U0lkPYs7zq8Jq/JqYo6g=;
- b=oGYTjzX1FIiedfBu/KbMCCbE/g87PWrjG+VIpbxwFFlk/KWngXtS1ENw
- +mBlMSUrmnyPU+I/0UBsCJBFg4UeALC4V0Z6koncFK65ao+hF4CG9oISQ
- QP7S/Z/WmlzIjUuTBu2XC/sWx+Ce4leXiEWuqvaXEuBq0cOjT6ufB2+Lv
- /vuNQ1RKNoKn2BAlzlyoEhksmAVUDW3IWtX+yLqXfAiq0C7yVCLjPblrb
- omkjoVIWNgwc4No+XsoORU3J2RyEXV2kzl0BwyZR9O9Lrc0Irb5fA1Lkg
- vHkRttnidOUJHtVtJCF3EGE8qrTfZVYM2qyeVkDaEVNT8gkhzFmKK8oPw w==;
-X-CSE-ConnectionGUID: gC4khAKgQPC6N8DQLAYwxg==
-X-CSE-MsgGUID: sin45tmZT6+7Po+nCGfCIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144564"
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144564"
+ bh=9qwfuJdBVNd4J1DJsRAnPrGvj1n7zna2w5UOTyFUHVA=;
+ b=XskhSGxPP4V41Ew1Ncq2TB+JsuA1/oSXonh8IhlJQXRrZMGuPGf1/BUy
+ o3W56O6UVwHE2zoknBS5fnN4NoVmnRzOAtn1FYOutEpTmsiJJ9Wb99Ifx
+ XS13l+h4wZ2H4rXPEndK9vnks09AmFPzi55UJ74rUl6q3Fc+eyFurSuge
+ QHCsswREwlIYlM860eAqJRdZknztYPkD8SKLi6+yJPrK+CiDlpGr96JTK
+ 9NYznJsGQ6Gr3OHrCSZtvSpcM/CQ90A0PlNvKlyfUdfvgYXs5ywr3e3HB
+ BGCzfi2gr/gR0C7RDtztPrfr3b6MPH6ydfqLO1Ntzj1NBVoYHUzSF+OvC A==;
+X-CSE-ConnectionGUID: rK3kZ1ZlTBKN8mqakd+NQQ==
+X-CSE-MsgGUID: 2fWgxak2Scyi8wOWhEqJQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144570"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144570"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 14:39:35 -0700
-X-CSE-ConnectionGUID: zS0MP3cdQm2rn/Rmm/B3lg==
-X-CSE-MsgGUID: 0W9T7AFyRsi1xBEx44IAFw==
+X-CSE-ConnectionGUID: fMnEbdTpT/6LSjNfm/BeGQ==
+X-CSE-MsgGUID: 8tzEd7BsRfiq8oHsHHfHyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812741"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812750"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 14:39:35 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v7 09/12] drm/xe: Add pagefault chaining stats
-Date: Fri, 24 Jul 2026 14:39:25 -0700
-Message-Id: <20260724213928.1670731-10-matthew.brost@intel.com>
+Subject: [PATCH v7 12/12] drm/xe: Track parallel page fault activity in GT
+ stats
+Date: Fri, 24 Jul 2026 14:39:28 -0700
+Message-Id: <20260724213928.1670731-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260724213928.1670731-1-matthew.brost@intel.com>
 References: <20260724213928.1670731-1-matthew.brost@intel.com>
@@ -66,124 +67,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add GT stats to quantify pagefault chaining behavior during fault storms.
+Add a new GT statistic, PARALLEL_PAGEFAULT_COUNT, to record when
+multiple page fault workers are active concurrently.
 
-Track total chained faults, faults chained directly from the IRQ
-handler, cases where IRQ chaining also drained the queue, chained faults
-that had to be requeued due to range mismatch, and cases where the last
-serviced range allowed immediate ack.
+When a worker dequeues a fault, scan peer workers for an active
+cache entry and increment the counter if another fault is already
+in flight. This provides basic visibility into parallel fault
+handling behavior for performance analysis and tuning.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_stats.c       |  5 +++++
- drivers/gpu/drm/xe/xe_gt_stats_types.h | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_pagefault.c      | 19 +++++++++++++++++--
- 3 files changed, 38 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_stats.c       |  1 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h |  3 +++
+ drivers/gpu/drm/xe/xe_pagefault.c      | 18 +++++++++++++++++-
+ 3 files changed, 21 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-index 513fe28c0e76..f2e77df0f224 100644
+index f2e77df0f224..2a40924660ee 100644
 --- a/drivers/gpu/drm/xe/xe_gt_stats.c
 +++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-@@ -95,6 +95,11 @@ void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr)
- #define DEF_STAT_STR(ID, name) [XE_GT_STATS_ID_##ID] = name
- 
- static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
-+	DEF_STAT_STR(CHAIN_PAGEFAULT_COUNT, "chain_pagefault_count"),
-+	DEF_STAT_STR(CHAIN_IRQ_PAGEFAULT_COUNT, "chain_irq_pagefault_count"),
-+	DEF_STAT_STR(CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT, "chain_drain_irq_pagefault_count"),
-+	DEF_STAT_STR(CHAIN_MISMATCH_PAGEFAULT_COUNT, "chain_mismatch_pagefault_count"),
-+	DEF_STAT_STR(LAST_PAGEFAULT_COUNT, "last_pagefault_count"),
+@@ -99,6 +99,7 @@ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+ 	DEF_STAT_STR(CHAIN_IRQ_PAGEFAULT_COUNT, "chain_irq_pagefault_count"),
+ 	DEF_STAT_STR(CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT, "chain_drain_irq_pagefault_count"),
+ 	DEF_STAT_STR(CHAIN_MISMATCH_PAGEFAULT_COUNT, "chain_mismatch_pagefault_count"),
++	DEF_STAT_STR(PARALLEL_PAGEFAULT_COUNT, "parallel_pagefault_count"),
+ 	DEF_STAT_STR(LAST_PAGEFAULT_COUNT, "last_pagefault_count"),
  	DEF_STAT_STR(SVM_PAGEFAULT_COUNT, "svm_pagefault_count"),
  	DEF_STAT_STR(TLB_INVAL, "tlb_inval_count"),
- 	DEF_STAT_STR(SVM_TLB_INVAL_COUNT, "svm_tlb_inval_count"),
 diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-index a7021a298e3e..ab5506f915cb 100644
+index ab5506f915cb..24abeb9f2137 100644
 --- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
 +++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-@@ -10,6 +10,17 @@
- 
- /**
-  * enum xe_gt_stats_id - GT statistics identifiers
-+ * @XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT: Total page faults chained onto an
-+ *   in-flight fault instead of being queued separately.
-+ * @XE_GT_STATS_ID_CHAIN_IRQ_PAGEFAULT_COUNT: Page faults chained directly from
-+ *   the IRQ handler.
-+ * @XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT: IRQ-handler chained faults
-+ *   that also drained the fault queue.
-+ * @XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT: Chained faults requeued
-+ *   because their fault range did not match the fault they were chained onto.
-+ * @XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT: Faults whose range matched the last
-+ *   serviced range, allowing an immediate ack.
-+ *
-  * @XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT: Total SVM page faults handled.
-  * @XE_GT_STATS_ID_TLB_INVAL: Total GPU Translation Lookaside Buffer (TLB)
-  *   invalidations issued.
-@@ -129,6 +140,11 @@
-  * See Documentation/gpu/xe/xe_gt_stats.rst.
-  */
- enum xe_gt_stats_id {
-+	XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_CHAIN_IRQ_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT,
+@@ -18,6 +18,8 @@
+  *   that also drained the fault queue.
+  * @XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT: Chained faults requeued
+  *   because their fault range did not match the fault they were chained onto.
++ * @XE_GT_STATS_ID_PARALLEL_PAGEFAULT_COUNT: Faults dequeued while another page
++ *   fault worker was already handling a fault concurrently.
+  * @XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT: Faults whose range matched the last
+  *   serviced range, allowing an immediate ack.
+  *
+@@ -144,6 +146,7 @@ enum xe_gt_stats_id {
+ 	XE_GT_STATS_ID_CHAIN_IRQ_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT,
++	XE_GT_STATS_ID_PARALLEL_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT,
  	XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT,
  	XE_GT_STATS_ID_TLB_INVAL,
- 	XE_GT_STATS_ID_SVM_TLB_INVAL_COUNT,
 diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index da185d5cb350..c2bb6be4ee01 100644
+index f84619d02502..39856d162ce5 100644
 --- a/drivers/gpu/drm/xe/xe_pagefault.c
 +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -351,6 +351,8 @@ xe_pagefault_queue_unchain_requeue(struct xe_pagefault_queue *pf_queue,
- 	xe_assert(xe, pf->consumer.alloc_state ==
- 		  XE_PAGEFAULT_ALLOC_STATE_CHAINED);
+@@ -460,9 +460,10 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+ {
+ 	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
+ 					    usm.pf_queue);
+-	struct xe_pagefault_work *pf_work;
++	struct xe_pagefault_work *pf_work, *__pf_work;
+ 	struct xe_pagefault *lpf;
+ 	size_t align = SZ_2M;
++	int i;
  
-+	xe_gt_stats_incr(gt, XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT, 1);
+ 	guard(spinlock_irq)(&pf_queue->lock);
+ 
+@@ -499,6 +500,21 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+ 	pf_work->cache.pf = lpf;
+ 	lpf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_ACTIVE;
+ 
++	for (i = 0, __pf_work = xe->usm.pf_workers;
++	     i < xe->info.num_pf_work; ++i, ++__pf_work) {
++		u64 cache_start = __pf_work->cache.start;
 +
- 	pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
- 	lpf = xe_pagefault_queue_add(pf_queue, pf);
- 	if (lpf) {
-@@ -407,6 +409,10 @@ static bool xe_pagefault_try_chain(struct xe_pagefault_queue *pf_queue,
- 			xe_assert(xe, pf_work->cache.pf->consumer.alloc_state ==
- 				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
- 
-+			xe_gt_stats_incr(pf->gt,
-+					 XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT,
++		if (__pf_work == pf_work)
++			continue;
++
++		if (cache_start != XE_PAGEFAULT_CACHE_START_INVALID) {
++			xe_gt_stats_incr(xe_root_mmio_gt(xe),
++					 XE_GT_STATS_ID_PARALLEL_PAGEFAULT_COUNT,
 +					 1);
-+
- 			pf->consumer.alloc_state =
- 				XE_PAGEFAULT_ALLOC_STATE_CHAINED;
- 			pf->consumer.next = pf_work->cache.pf->consumer.next;
-@@ -581,8 +587,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		int err = 0;
- 
- 		/* Last fault same address, ack immediately */
--		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid))
-+		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid)) {
-+			xe_gt_stats_incr(gt, XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT, 1);
- 			goto ack_fault;
++			break;
 +		}
- 
- 		err = xe_pagefault_service(pf);
- 
-@@ -832,8 +840,15 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
- 			lpf->consumer.next = NULL;
- 
- 			if (xe_pagefault_try_chain(pf_queue, lpf)) {
--				if (empty)
-+				xe_gt_stats_incr(pf->gt,
-+						 XE_GT_STATS_ID_CHAIN_IRQ_PAGEFAULT_COUNT,
-+						 1);
-+				if (empty) {
-+					xe_gt_stats_incr(pf->gt,
-+							 XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT,
-+							 1);
- 					xe_pagefault_queue_advance(pf_queue);
-+				}
- 			} else {
- 				int work_index = xe_pagefault_work_index(xe);
- 
++	}
++
+ 	/* Drain queue until empty or new fault found */
+ 	while (1) {
+ 		if (xe_pagefault_queue_empty(pf_queue))
 -- 
 2.34.1
 
