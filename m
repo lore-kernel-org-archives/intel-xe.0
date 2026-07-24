@@ -4,59 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B78AFC54EFC
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jul 2026 13:37:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D85E7C5321C
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jul 2026 13:37:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0867810E3F1;
-	Mon, 27 Jul 2026 13:37:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8985410E3F1;
+	Mon, 27 Jul 2026 13:37:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=steffen.cc header.i=@steffen.cc header.b="C9gNQ1Xr";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="W2Thpkhq";
 	dkim-atps=neutral
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FF2910F313;
- Fri, 24 Jul 2026 07:33:18 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA512)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4h608V55MxzMlGk;
- Fri, 24 Jul 2026 09:33:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=steffen.cc; s=MBO0001; 
- t=1784878394;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dfsPJae40g6qK1jZzC/IxZz7ir5SsaodPqLyDpyJNZ0=;
- b=C9gNQ1XrSDQuyHT/uSywJhQjA5vuT7vaDpc75fO5lqbYVW8mz2Wy9ePY5jgjs2cDQkilZw
- D+QZ65uSXioC/o3+TvdBlGlNeFVEsDpzeOVIqxcNjelUavHY+cBqtRRylI2fTOcr2rM47+
- 8G3cFvnQ5b+nKoOzHOE6oILLrmKClwV4A0bAXQ8K+ov0NJL9vTEAVnnndLM/PNEZiUm0bP
- lVJvGxUHPaI3oK3Kizo0UY0KBzS+lLhiGW6UPFLKxHC0xe+tG6qdk9r8LRWOOHHvU+1x9C
- tK8eHxSS386LF9bWSekl5+TzRVPMof/CPIHmHFktP+ZyuvrTy1PmNQrWRkb9Vg==
-Authentication-Results: outgoing_mbo_mout; dkim=none;
- spf=pass (outgoing_mbo_mout: domain of lists@steffen.cc designates
- 2001:67c:2050:b231:465::202 as permitted sender)
- smtp.mailfrom=lists@steffen.cc
-Message-ID: <9c68a65380b440e6a51d8b3d7c9ccce53d82f13a.camel@dirkwinkel.cc>
-Subject: Re: [REGRESSION]: [PATCH 1/2] power: supply: leds: create triggers
- based on properties, not type
-From: Steffen Dirkwinkel <lists@steffen.cc>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, Sebastian
- Reichel <sre@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, ravitejax.veesam@intel.com
-Date: Fri, 24 Jul 2026 09:33:11 +0200
-In-Reply-To: <a95a2720-4092-4b49-bd9d-b700f1c2680d@intel.com>
-References: <20260625-std-power-supply-triggers-v1-0-d80db570d329@beckhoff.com>
- <20260625-std-power-supply-triggers-v1-1-d80db570d329@beckhoff.com>
- <a95a2720-4092-4b49-bd9d-b700f1c2680d@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADF8410F27E;
+ Fri, 24 Jul 2026 03:00:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1784862013; x=1785466813; i=w_armin@gmx.de;
+ bh=1mJEEvm4FbiJHeJ6b+OnPJ/M4l9XDDZkezBn7mj51to=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=W2ThpkhqtxThz+XzTFv6CUQcVsaJnFtcSiY10W1pWLsrgS2bnErX5HQ05j+qAS8j
+ Oa7dPQTPT95gaq8R8d4j5n8qABOjc9sfiqVg3KVQFOgAZ+lLpFFpski6SFScVvs77
+ 5xnu73LZhANysPADEFy7jnMyDkYbOgohgWsAAWiopLiy8WfQ+9UX8F2lMvtev9tKc
+ Cy7uRwMlgtzcFjNGin1xwcrfeYkrx6EhyMvUp3B7qA4ss2rcqcBsSLgZtBueDmboP
+ asxstc6KV/MhBmxam0ENPqK0lFzSDvOxjYV8iSTqRwKMJelGQGvQsAti9Y9J+i+sa
+ PKLIEiVpVSv5SQ5oXw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MPXhA-1wZGW645QI-00RbLf; Fri, 24
+ Jul 2026 05:00:13 +0200
+From: Armin Wolf <W_Armin@gmx.de>
+To: hansg@kernel.org,
+	ilpo.jarvinen@linux.intel.com
+Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux@weissschuh.net, rafael@kernel.org, lenb@kernel.org,
+ linux-acpi@vger.kernel.org, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ patrik.r.jakobsson@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tursulin@ursulin.net, intel-gfx@lists.freedesktop.org,
+ matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH v3 1/3] platform/wmi: Remove dependency on CONFIG_X86
+Date: Fri, 24 Jul 2026 04:59:57 +0200
+Message-Id: <20260724025959.142826-2-W_Armin@gmx.de>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20260724025959.142826-1-W_Armin@gmx.de>
+References: <20260724025959.142826-1-W_Armin@gmx.de>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 4h608V55MxzMlGk
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Z3MbxzPPYKQicaaumWy6P+M7JgBRPhBcbTCUf3GNzrYX7mY1aom
+ hw+dk0kxUxRiHu+I+WgYGrn9PYkYHR8wOh6DiuddkRLgmcSfKfT5IazyWaQNW23ROsklUVU
+ 5q0J9ytlcv3V9PzcgQ1Ih0Dm31ItduBz5Kx6hYitY+Tlk9CNd0kbZXtymhX9zwuWMB2P+L/
+ z28TS7VeDHeyYgeFxG/7A==
+UI-OutboundReport: notjunk:1;M01:P0:HSY8VWzZRVA=;XjVMKAg8CMp+03cJIcxnFTCXPPc
+ 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
+ vYNdasHA8=
 X-Mailman-Approved-At: Mon, 27 Jul 2026 13:37:32 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,345 +154,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Chaitanya,
+The aarch64-laptops project found out that some Windows-on-Arm
+notebooks contain WMI-ACPI mapping devices (PNP0C14) that work
+exactly like on x86. Remove the dependency on CONFIG_X86 to
+make it possible to build the ACPI-WMI driver on arm64.
 
-thanks for the report. This should be a fix:
-https://lore.kernel.org/all/20260724-power-supply-triggers-lockdep-v1-1-9b4=
-51b1f1916@beckhoff.com/T/#u
+Link: https://lists.linaro.org/archives/list/aarch64-laptops@lists.linaro.=
+org/thread/U2IZENSIOOHZHGXVN7GM5HX5O3FD5KCF/
+Signed-off-by: Armin Wolf <W_Armin@gmx.de>
+=2D--
+ drivers/platform/wmi/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regards
-Steffen
+diff --git a/drivers/platform/wmi/Kconfig b/drivers/platform/wmi/Kconfig
+index d62f51ff3b7f..36934b5f0194 100644
+=2D-- a/drivers/platform/wmi/Kconfig
++++ b/drivers/platform/wmi/Kconfig
+@@ -5,7 +5,7 @@
+=20
+ menuconfig ACPI_WMI
+ 	tristate "ACPI-WMI support"
+-	depends on ACPI && X86
++	depends on ACPI
+ 	select NLS
+ 	help
+ 	  This option enables support for the ACPI-WMI driver core.
+=2D-=20
+2.39.5
 
-On Fri, 2026-07-24 at 11:28 +0530, Borah, Chaitanya Kumar wrote:
-> Hello Steffen,
-> On 6/25/2026 10:37 PM, Steffen Dirkwinkel wrote:
-> > From: Steffen Dirkwinkel <s.dirkwinkel@beckhoff.com>
-> >=20
-> > Currently only battery power supplies get triggers for other properties
-> > and other supplies only get the online trigger.
-> >=20
-> > This changes it to provide the triggers for any power supply depending
-> > on what properties are available. Batteries will still get the same
-> > triggers if the properties are there, but now other power supplies can
-> > get the triggers too.
-> >=20
->=20
-> This seems to be causing regression in our linux-next CI [1] since=20
-> next-20260722.
->=20
-> <6>[   11.206334] ------------[ cut here ]------------
-> <4>[   11.206341] WARNING: drivers/power/supply/power_supply_core.c:1384=
-=20
-> at power_supply_has_property+0xed/0x100, CPU#2: (udev-worker)/324
-> ...
-> <4>[   11.206524] Call Trace:
-> <4>[   11.206526]  <TASK>
-> <4>[   11.206532]  power_supply_create_triggers+0x4b/0x150
-> <4>[   11.206541]  __power_supply_register.part.0+0x3b0/0x510
-> <4>[   11.206547]  ? __pfx_devm_power_supply_release+0x10/0x10
-> <4>[   11.206560]  devm_power_supply_register+0x75/0x100
-> <4>[   11.206569]  tps6598x_probe+0x34c/0x6c0 [tps6598x]
-> <4>[   11.206592]  i2c_device_probe+0x19c/0x3b0
-> <4>[   11.206604]  really_probe+0xf1/0x420
-> <4>[   11.206612]  __driver_probe_device+0xa2/0x1e0
-> <4>[   11.206620]  driver_probe_device+0x24/0xb0
-> <4>[   11.206627]  __driver_attach+0x110/0x240
-> <4>[   11.206632]  ? __pfx___driver_attach+0x10/0x10
-> <4>[   11.206638]  bus_for_each_dev+0x7f/0xe0
-> ...
->=20
-> Detailed log can be seen found in [2].
->=20
-> We confirmed that reverting the patch solves the issue.
->=20
-> Could you please check why the patch causes this regression and provide
-> a fix if necessary?
->=20
-> Regards
-> Chaitanya
->=20
-> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-> [2]=20
-> https://intel-gfx-ci.01.org/tree/linux-next/next-20260722/fi-kbl-8809g/bo=
-ot0.txt
->=20
-> --Bisect Logs--
->=20
-> git bisect start
-> # status: waiting for both good and bad commits
-> # good: [842870cdfa33b9191b46484a3264bd5126a90570] net: Enable BIG TCP=
-=20
-> with partial GSO
-> git bisect good 842870cdfa33b9191b46484a3264bd5126a90570
-> # status: waiting for bad commit, 1 good commit known
-> # bad: [b4515cf4156356e8f4fe6e0fdc17f59adab9772f] Add linux-next=20
-> specific files for 20260722
-> git bisect bad b4515cf4156356e8f4fe6e0fdc17f59adab9772f
-> # good: [ce3befa9786f3e9eb3990cb6f6b497710bd10ec5] Merge branch 'master'=
-=20
-> of=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.=
-git
-> git bisect good ce3befa9786f3e9eb3990cb6f6b497710bd10ec5
-> # good: [efac7c4cbbafdd21f9866476e3f4e5e5bfae8912] Merge branch=20
-> 'for-next' of=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/device-mapper/linux-dm.gi=
-t
-> git bisect good efac7c4cbbafdd21f9866476e3f4e5e5bfae8912
-> # bad: [a91e6d5412453d44dc4d59d62d3ce50b53122ad8] Merge branch=20
-> 'usb-next' of https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.=
-git
-> git bisect bad a91e6d5412453d44dc4d59d62d3ce50b53122ad8
-> # bad: [b828bb5abe65b8b73fcd49d3c92cdd3af45bfe6f] Merge branch=20
-> 'kexec-next' of=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/liveupdate/linux.git
-> git bisect bad b828bb5abe65b8b73fcd49d3c92cdd3af45bfe6f
-> # bad: [8a3f0f5b2aadc94d6300cfdd8daf3971decc1961] Merge branch=20
-> 'for-next' of=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git
-> git bisect bad 8a3f0f5b2aadc94d6300cfdd8daf3971decc1961
-> # bad: [5e64a0d36112c45c8ae0c6903ce2b1b49bea04dd] Merge branch=20
-> 'for-next' of=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.gi=
-t
-> git bisect bad 5e64a0d36112c45c8ae0c6903ce2b1b49bea04dd
-> # good: [db30c3e3e3c247b0b1e73449b7ead5dd19044c26] Merge branch=20
-> 'for-mfd-next' of=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git
-> git bisect good db30c3e3e3c247b0b1e73449b7ead5dd19044c26
-> # good: [406b652bf9c47d6e784fd2ab723e6798d322ef47] power: supply:=20
-> rt9455_charger: Remove redundant dev_err()/dev_err_probe()
-> git bisect good 406b652bf9c47d6e784fd2ab723e6798d322ef47
-> # good: [5ec27fa6b9d937188a81724f09df82707cca944e] selftests: helpers:=
-=20
-> handle multi line in test_sysfs_prop_optional_list
-> git bisect good 5ec27fa6b9d937188a81724f09df82707cca944e
-> # bad: [353438b3107d56e36a642f117c2b4accc963abbd] dt-bindings: power:=20
-> supply: maxim,max8903: add DC and USB input current-limit controls
-> git bisect bad 353438b3107d56e36a642f117c2b4accc963abbd
-> # bad: [741a9b09775517c76a5029c58a03725b414d7e20] dt-bindings: power:=20
-> reset: qcom,pon: Narrow allowed reboot modes
-> git bisect bad 741a9b09775517c76a5029c58a03725b414d7e20
-> # good: [f97d9166048ddea147b5673330f9900bf08c725d] power: supply:=20
-> sbs-battery: Add PbAc, NiZn, RAM, and ZnAr support
-> git bisect good f97d9166048ddea147b5673330f9900bf08c725d
-> # bad: [b04510c3af6dd34b2e8dcf303114d77d5e443cac] power: supply: leds:=
-=20
-> create triggers based on properties, not type
-> git bisect bad b04510c3af6dd34b2e8dcf303114d77d5e443cac
-> # first bad commit: [b04510c3af6dd34b2e8dcf303114d77d5e443cac] power:=20
-> supply: leds: create triggers based on properties, not type
->=20
->=20
-> > Signed-off-by: Steffen Dirkwinkel <s.dirkwinkel@beckhoff.com>
-> > ---
-> >   drivers/power/supply/power_supply_leds.c | 88 ++++++++++++++++-------=
----------
-> >   include/linux/power_supply.h             |  3 +-
-> >   2 files changed, 45 insertions(+), 46 deletions(-)
-> >=20
-> > diff --git a/drivers/power/supply/power_supply_leds.c b/drivers/power/s=
-upply/power_supply_leds.c
-> > index 1548aaba3362..538cc0440e53 100644
-> > --- a/drivers/power/supply/power_supply_leds.c
-> > +++ b/drivers/power/supply/power_supply_leds.c
-> > @@ -17,8 +17,6 @@
-> >  =20
-> >   #include "power_supply.h"
-> >  =20
-> > -/* Battery specific LEDs triggers. */
-> > -
-> >   struct power_supply_led_trigger {
-> >   	struct led_trigger trig;
-> >   	struct power_supply *psy;
-> > @@ -89,7 +87,7 @@ static void power_supply_unregister_led_trigger(struc=
-t led_trigger *trig)
-> >   	kfree(psy_trig);
-> >   }
-> >  =20
-> > -static void power_supply_update_bat_leds(struct power_supply *psy)
-> > +static void power_supply_update_status_leds(struct power_supply *psy)
-> >   {
-> >   	union power_supply_propval status;
-> >   	unsigned int intensity_green[3] =3D { 0, 255, 0 };
-> > @@ -102,7 +100,7 @@ static void power_supply_update_bat_leds(struct pow=
-er_supply *psy)
-> >  =20
-> >   	switch (status.intval) {
-> >   	case POWER_SUPPLY_STATUS_FULL:
-> > -		led_trigger_event(psy->trig, LED_FULL);
-> > +		led_trigger_event(psy->charging_or_full_trig, LED_FULL);
-> >   		led_trigger_event(psy->charging_trig, LED_OFF);
-> >   		led_trigger_event(psy->full_trig, LED_FULL);
-> >   		/* Going from blink to LED on requires a LED_OFF event to stop blin=
-k */
-> > @@ -114,7 +112,7 @@ static void power_supply_update_bat_leds(struct pow=
-er_supply *psy)
-> >   				     LED_FULL);
-> >   		break;
-> >   	case POWER_SUPPLY_STATUS_CHARGING:
-> > -		led_trigger_event(psy->trig, LED_FULL);
-> > +		led_trigger_event(psy->charging_or_full_trig, LED_FULL);
-> >   		led_trigger_event(psy->charging_trig, LED_FULL);
-> >   		led_trigger_event(psy->full_trig, LED_OFF);
-> >   		led_trigger_blink(psy->charging_blink_full_solid_trig, 0, 0);
-> > @@ -124,7 +122,7 @@ static void power_supply_update_bat_leds(struct pow=
-er_supply *psy)
-> >   				     LED_FULL);
-> >   		break;
-> >   	default:
-> > -		led_trigger_event(psy->trig, LED_OFF);
-> > +		led_trigger_event(psy->charging_or_full_trig, LED_OFF);
-> >   		led_trigger_event(psy->charging_trig, LED_OFF);
-> >   		led_trigger_event(psy->full_trig, LED_OFF);
-> >   		led_trigger_event(psy->charging_blink_full_solid_trig,
-> > @@ -135,21 +133,15 @@ static void power_supply_update_bat_leds(struct p=
-ower_supply *psy)
-> >   	}
-> >   }
-> >  =20
-> > -static void power_supply_remove_bat_triggers(struct power_supply *psy)
-> > -{
-> > -	power_supply_unregister_led_trigger(psy->trig);
-> > -	power_supply_unregister_led_trigger(psy->charging_trig);
-> > -	power_supply_unregister_led_trigger(psy->full_trig);
-> > -	power_supply_unregister_led_trigger(psy->charging_blink_full_solid_tr=
-ig);
-> > -	power_supply_unregister_led_trigger(psy->charging_orange_full_green_t=
-rig);
-> > -}
-> > -
-> > -static int power_supply_create_bat_triggers(struct power_supply *psy)
-> > +static int power_supply_create_status_triggers(struct power_supply *ps=
-y)
-> >   {
-> >   	int err =3D 0;
-> >  =20
-> > +	if (!power_supply_has_property(psy, POWER_SUPPLY_PROP_STATUS))
-> > +		return 0;
-> > +
-> >   	power_supply_register_led_trigger(psy, "%s-charging-or-full",
-> > -					  &psy->trig, &err);
-> > +					  &psy->charging_or_full_trig, &err);
-> >   	power_supply_register_led_trigger(psy, "%s-charging",
-> >   					  &psy->charging_trig, &err);
-> >   	power_supply_register_led_trigger(psy, "%s-full",
-> > @@ -158,15 +150,11 @@ static int power_supply_create_bat_triggers(struc=
-t power_supply *psy)
-> >   					  &psy->charging_blink_full_solid_trig, &err);
-> >   	power_supply_register_led_trigger(psy, "%s-charging-orange-full-gree=
-n",
-> >   					  &psy->charging_orange_full_green_trig, &err);
-> > -	if (err)
-> > -		power_supply_remove_bat_triggers(psy);
-> >  =20
-> >   	return err;
-> >   }
-> >  =20
-> > -/* Generated power specific LEDs triggers. */
-> > -
-> > -static void power_supply_update_gen_leds(struct power_supply *psy)
-> > +static void power_supply_update_online_leds(struct power_supply *psy)
-> >   {
-> >   	union power_supply_propval online;
-> >  =20
-> > @@ -175,43 +163,53 @@ static void power_supply_update_gen_leds(struct p=
-ower_supply *psy)
-> >  =20
-> >   	dev_dbg(&psy->dev, "%s %d\n", __func__, online.intval);
-> >  =20
-> > -	if (online.intval)
-> > -		led_trigger_event(psy->trig, LED_FULL);
-> > -	else
-> > -		led_trigger_event(psy->trig, LED_OFF);
-> > +	led_trigger_event(psy->online_trig, online.intval ? LED_FULL : LED_OF=
-F);
-> >   }
-> >  =20
-> > -static int power_supply_create_gen_triggers(struct power_supply *psy)
-> > +static int power_supply_create_online_trigger(struct power_supply *psy=
-)
-> >   {
-> > -	return power_supply_register_led_trigger(psy, "%s-online", &psy->trig=
-, NULL);
-> > -}
-> > +	int err =3D 0;
-> >  =20
-> > -static void power_supply_remove_gen_triggers(struct power_supply *psy)
-> > -{
-> > -	power_supply_unregister_led_trigger(psy->trig);
-> > -}
-> > +	if (!power_supply_has_property(psy, POWER_SUPPLY_PROP_ONLINE))
-> > +		return 0;
-> >  =20
-> > -/* Choice what triggers to create&update. */
-> > +	power_supply_register_led_trigger(psy, "%s-online", &psy->online_trig=
-,
-> > +					  &err);
-> > +
-> > +	return err;
-> > +}
-> >  =20
-> >   void power_supply_update_leds(struct power_supply *psy)
-> >   {
-> > -	if (psy->desc->type =3D=3D POWER_SUPPLY_TYPE_BATTERY)
-> > -		power_supply_update_bat_leds(psy);
-> > -	else
-> > -		power_supply_update_gen_leds(psy);
-> > +	power_supply_update_online_leds(psy);
-> > +	power_supply_update_status_leds(psy);
-> >   }
-> >  =20
-> >   int power_supply_create_triggers(struct power_supply *psy)
-> >   {
-> > -	if (psy->desc->type =3D=3D POWER_SUPPLY_TYPE_BATTERY)
-> > -		return power_supply_create_bat_triggers(psy);
-> > -	return power_supply_create_gen_triggers(psy);
-> > +	int err;
-> > +
-> > +	err =3D power_supply_create_online_trigger(psy);
-> > +	if (err)
-> > +		goto err_remove;
-> > +
-> > +	err =3D power_supply_create_status_triggers(psy);
-> > +	if (err)
-> > +		goto err_remove;
-> > +
-> > +	return 0;
-> > +
-> > +err_remove:
-> > +	power_supply_remove_triggers(psy);
-> > +	return err;
-> >   }
-> >  =20
-> >   void power_supply_remove_triggers(struct power_supply *psy)
-> >   {
-> > -	if (psy->desc->type =3D=3D POWER_SUPPLY_TYPE_BATTERY)
-> > -		power_supply_remove_bat_triggers(psy);
-> > -	else
-> > -		power_supply_remove_gen_triggers(psy);
-> > +	power_supply_unregister_led_trigger(psy->online_trig);
-> > +	power_supply_unregister_led_trigger(psy->charging_or_full_trig);
-> > +	power_supply_unregister_led_trigger(psy->charging_trig);
-> > +	power_supply_unregister_led_trigger(psy->full_trig);
-> > +	power_supply_unregister_led_trigger(psy->charging_blink_full_solid_tr=
-ig);
-> > +	power_supply_unregister_led_trigger(psy->charging_orange_full_green_t=
-rig);
-> >   }
-> > diff --git a/include/linux/power_supply.h b/include/linux/power_supply.=
-h
-> > index 7a5e4c3242a0..68b65682b14d 100644
-> > --- a/include/linux/power_supply.h
-> > +++ b/include/linux/power_supply.h
-> > @@ -346,7 +346,8 @@ struct power_supply {
-> >   #endif
-> >  =20
-> >   #ifdef CONFIG_LEDS_TRIGGERS
-> > -	struct led_trigger *trig;
-> > +	struct led_trigger *charging_or_full_trig;
-> > +	struct led_trigger *online_trig;
-> >   	struct led_trigger *charging_trig;
-> >   	struct led_trigger *full_trig;
-> >   	struct led_trigger *charging_blink_full_solid_trig;
-> >=20
