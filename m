@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E932C531C9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64859C531F9
 	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 23:26:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9AD10E0D6;
-	Fri, 24 Jul 2026 23:26:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F296210E0C0;
+	Fri, 24 Jul 2026 23:26:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XWzAarji";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OqNNr26J";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 656D210E2DD
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 23:26:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55BEB10E0C0
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 23:26:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784935566; x=1816471566;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uw2ckxu0hLFEvOwU1hMIqUYRgPP9fW/UYL6V4yHL1xA=;
- b=XWzAarjitTirAJ4Epz714MV/mcqa+ET0+vWFFwV6aZnSA3CY8R5C37UP
- LHs03xv6gNeKxU39fMwspsO0FCGBSPGIviCb1qNaBWD5MsNpHxQrwDUY6
- 8YVstyBzm4gjbuVLddl6JZmxBtFY5Efi+Lts7w7Md3MlAExwmPlLbQTOW
- I2NiiQ8p+ewQtFojg7jlIOJsjWl2EBo+pO+bIbJl1Na2WBD2NfBbafGkj
- VYl/IWdyFJ14a1+WpphuX0vLDOj/vp3trlY2RC0kDbw3hxOwmOr5h3fPN
- 7kseB31aAAbPqb39d6qMFRIvvK9bn/B7sRIt4u0n6T+ejqfI9ESHP1W9P Q==;
-X-CSE-ConnectionGUID: z2lneI4rRxSOaEWPIaYeLQ==
-X-CSE-MsgGUID: Vp+pnq2qT5and5PdyIzPmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="85652031"
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="85652031"
+ t=1784935565; x=1816471565;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=j199e5P6V6zxhF/8+tHVsNlnStxXKpP7TeginoaX2B8=;
+ b=OqNNr26JJhrmxHRL6OOSJxlHFMdayQoR1VILdb0YbYvuwj0vjWydLBBt
+ FlhjXapCLVtcKX/qey2t4jWFJu5DhK4ON6TuJ7oUluQ+ymQRtVC59c874
+ 7I0yNA+lkH+pw7WPJXy649kJqHODjNUHsjcvD0wupKIpa6NAZtoSN6lpo
+ wX+sN+M9sTX3qsRhQwUeYCyeOCQp6n1PU8RpWC8k6TazfcfbWiasz/J8B
+ nL5I1kQ7tWydzwnTMe/c+nWMfvMFQXaHDPWZxhZmIvU9Ame1zTW7NSPL/
+ mUEcE39QYOyRvK3WMgzCtg7rQ+cGFRRKU4zhFM04fLPL3nlt8cmSGwjmh Q==;
+X-CSE-ConnectionGUID: NTB4kx9CTC+AU7Et1/Od0g==
+X-CSE-MsgGUID: ZccxytwgSgKr/fmsAeFmwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="85652020"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="85652020"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 16:26:05 -0700
-X-CSE-ConnectionGUID: fAKhcAjgTIKvggvxT4KBuQ==
-X-CSE-MsgGUID: dcGDrJEWToysw6d1yVzu5w==
+X-CSE-ConnectionGUID: mcgBqndsQPCzQD60h67hIA==
+X-CSE-MsgGUID: i9+LvY86QeGKJ/pEYfUTrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="257073801"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="257073782"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 16:26:05 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v8 07/12] drm/xe: Track pagefault worker runtime
-Date: Fri, 24 Jul 2026 16:25:56 -0700
-Message-Id: <20260724232601.1753977-8-matthew.brost@intel.com>
+Subject: [PATCH v8 00/12] Fine grained fault locking, threaded prefetch,
+ storm cache
+Date: Fri, 24 Jul 2026 16:25:49 -0700
+Message-Id: <20260724232601.1753977-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260724232601.1753977-1-matthew.brost@intel.com>
-References: <20260724232601.1753977-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,85 +65,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a GT stat measuring total time spent servicing pagefault workqueue
-iterations. The counter accumulates the runtime of the pagefault worker
-in microseconds, allowing correlation of fault storms and chaining
-behavior with CPU time spent in the fault handler.
+Fine-grained fault locking provides immediate benefits: it allows page
+faults from the same VM to be processed in parallel (unless they target
+the same range) and enables a sane multi-threaded prefetch
+implementation. UMD prefetch benchmarks see 10% to 50% improvement in
+prefetch performance on BMG depending on PCIe bus speed.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_stats.c       | 1 +
- drivers/gpu/drm/xe/xe_gt_stats_types.h | 3 +++
- drivers/gpu/drm/xe/xe_pagefault.c      | 8 ++++++++
- 3 files changed, 12 insertions(+)
+Once parallel fault processing is available, the pagefault queue can be
+unified into a single queue with multiple workers pulling faults to
+process. A single queue then allows a sensible pagefault cache to be
+implemented, so that multiple faults targeting the same region can be
+batched together and acknowledged in, ideally, a single pass. This saves
+CPU cycles during pagefault handling and improves overall throughput of
+the fault handler.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-index 789397514f3e..513fe28c0e76 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats.c
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-@@ -101,6 +101,7 @@ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
- 	DEF_STAT_STR(SVM_TLB_INVAL_US, "svm_tlb_inval_us"),
- 	DEF_STAT_STR(VMA_PAGEFAULT_COUNT, "vma_pagefault_count"),
- 	DEF_STAT_STR(VMA_PAGEFAULT_KB, "vma_pagefault_kb"),
-+	DEF_STAT_STR(PAGEFAULT_US, "pagefault_us"),
- 	DEF_STAT_STR(INVALID_PREFETCH_PAGEFAULT_COUNT, "invalid_prefetch_pagefault_count"),
- 	DEF_STAT_STR(SVM_4K_PAGEFAULT_COUNT, "svm_4K_pagefault_count"),
- 	DEF_STAT_STR(SVM_64K_PAGEFAULT_COUNT, "svm_64K_pagefault_count"),
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-index 425491bed6c4..a7021a298e3e 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-@@ -22,6 +22,8 @@
-  *   handled.
-  * @XE_GT_STATS_ID_VMA_PAGEFAULT_KB: Size (KiB) of VMAs involved in
-  *   buffer-object page fault handling.
-+ * @XE_GT_STATS_ID_PAGEFAULT_US: Cumulative time (µs) handling of all page
-+ *   faults.
-  * @XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT: GPU prefetch faults for
-  *   addresses with no valid backing.
-  *
-@@ -133,6 +135,7 @@ enum xe_gt_stats_id {
- 	XE_GT_STATS_ID_SVM_TLB_INVAL_US,
- 	XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
-+	XE_GT_STATS_ID_PAGEFAULT_US,
- 	XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_SVM_4K_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_SVM_64K_PAGEFAULT_COUNT,
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 2b0fabe29e25..65be8dd09e2f 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -296,6 +296,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 	struct xe_device *xe = pf_work->xe;
- 	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
- 	struct xe_pagefault pf;
-+	ktime_t start = xe_gt_stats_ktime_get();
-+	struct xe_gt *gt = NULL;
- 	unsigned long threshold;
- 
- #define USM_QUEUE_MAX_RUNTIME_MS      20
-@@ -307,6 +309,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		if (!pf.gt)	/* Fault squashed during reset */
- 			continue;
- 
-+		gt = pf.gt;
- 		err = xe_pagefault_service(&pf);
- 		if (err) {
- 			if (!(pf.consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
-@@ -329,6 +332,11 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		}
- 	}
- #undef USM_QUEUE_MAX_RUNTIME_MS
-+
-+	if (gt)
-+		xe_gt_stats_incr(xe_root_mmio_gt(gt_to_xe(gt)),
-+				 XE_GT_STATS_ID_PAGEFAULT_US,
-+				 xe_gt_stats_ktime_us_delta(start));
- }
- 
- static int xe_pagefault_queue_init(struct xe_device *xe,
+Significant improvements in UMD pagefault benchmarks can be seen when
+utilizing this caching.
+
+v3:
+ - Fix kunit build (CI)
+v4:
+ - Actually fix kunit build (CI)
+v5:
+ - Address v4 feedback, rebase, fix several CI bugs
+v6:
+ - Address Sashiko feedback: https://sashiko.dev/#/patchset/20260723214743.1498125-1-matthew.brost%40intel.com
+ - CI fixes
+v7:
+ - Dedicated prefetch work queue (Sashiko, arch choice)
+ - Clean up unwind paths (Sashiko)
+v8:
+ - Still fighting valid Sashiko issues (unwind, locking issues, reset flows)
+
+
+Matt
+
+
+Matthew Brost (12):
+  drm/xe: Fine grained page fault locking
+  drm/xe: Allow prefetch-only VM bind IOCTLs to use VM read lock
+  drm/xe: Thread prefetch of SVM ranges
+  drm/xe: Use a single page-fault queue with multiple workers
+  drm/xe: Add num_pf_work modparam
+  drm/xe: Engine class and instance into a u8
+  drm/xe: Track pagefault worker runtime
+  drm/xe: Chain page faults via queue-resident cache to avoid fault
+    storms
+  drm/xe: Add pagefault chaining stats
+  drm/xe: Add debugfs pagefault_info
+  drm/xe: batch CT pagefault acks with periodic flush
+  drm/xe: Track parallel page fault activity in GT stats
+
+ drivers/gpu/drm/xe/xe_debugfs.c         |  11 +
+ drivers/gpu/drm/xe/xe_defaults.h        |   1 +
+ drivers/gpu/drm/xe/xe_device.c          |  14 +-
+ drivers/gpu/drm/xe/xe_device_types.h    |  23 +-
+ drivers/gpu/drm/xe/xe_gt_stats.c        |   7 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h  |  22 +
+ drivers/gpu/drm/xe/xe_guc_ct.c          |  95 +++-
+ drivers/gpu/drm/xe/xe_guc_ct.h          |  36 +-
+ drivers/gpu/drm/xe/xe_guc_pagefault.c   |  39 +-
+ drivers/gpu/drm/xe/xe_guc_types.h       |   6 +
+ drivers/gpu/drm/xe/xe_module.c          |   4 +
+ drivers/gpu/drm/xe/xe_module.h          |   1 +
+ drivers/gpu/drm/xe/xe_pagefault.c       | 689 ++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_pagefault.h       |  74 +++
+ drivers/gpu/drm/xe/xe_pagefault_types.h | 112 +++-
+ drivers/gpu/drm/xe/xe_svm.c             | 146 +++--
+ drivers/gpu/drm/xe/xe_svm.h             |  59 +-
+ drivers/gpu/drm/xe/xe_userptr.c         |  19 +-
+ drivers/gpu/drm/xe/xe_vm.c              | 285 +++++++---
+ drivers/gpu/drm/xe/xe_vm_types.h        |  42 +-
+ 20 files changed, 1376 insertions(+), 309 deletions(-)
+
 -- 
 2.34.1
 
