@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64A67C5321C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61CBBC53209
 	for <intel-xe@archiver.kernel.org>; Mon, 27 Jul 2026 13:37:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0117A10E3EF;
-	Mon, 27 Jul 2026 13:37:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C802610E3D8;
+	Mon, 27 Jul 2026 13:37:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="lV6NMqN3";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="SnxnK4K9";
 	dkim-atps=neutral
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA1FA10F27C;
- Fri, 24 Jul 2026 03:00:15 +0000 (UTC)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E76C10F282;
+ Fri, 24 Jul 2026 03:00:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1784862008; x=1785466808; i=w_armin@gmx.de;
- bh=QyWsP7Sqq/f321MW0zLkWTJO8RVqlTuampchfIxiXqE=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
- MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
+ s=s31663417; t=1784862017; x=1785466817; i=w_armin@gmx.de;
+ bh=ovJi0UjSdsGD4/T+fxPFqvkdAjjSpbB5MCW5V7fshvg=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding:cc:
  content-transfer-encoding:content-type:date:from:message-id:
  mime-version:reply-to:subject:to;
- b=lV6NMqN3XOQUWkCQBYa546XTWa8x8XCWzztfZyH3iwFFwFk8BtRDETG7O5tZRfvP
- aJ3eUJz1MQPLpWYQUxXHv8W78l55BVZfc6gbj0xeMT+8fSE375xPDbrNnP0Ir7BKJ
- XDnyivR6T+taosMEgMNBg4n2bm0S5J87asXTOSHC1fy+Lg4D1kPqJh6nqE4XYW9N7
- Az5o3Epxjq0tCavYT8LMpSIuO86eh/Fwp+v9Ma2DZNb56aIItkqwRMsl9WApSn7d4
- KbDMkeHv/YCIoyMhmck5Qib4RxVjzbnYFga5Q3UxE93ZDJ0A6dkf4Ld69DD7pIR9N
- 26tl7Q6QE9W0AKW49Q==
+ b=SnxnK4K9eDHOtycNXzGlh863BWcQt1NnVr/wkGkj0e9rzWxWSt83JfZQruk82nE5
+ IikWE/9XiBfS5PKjIy/ULFrIkR1AQCbix2/Wmjv2KQ5ICICQYFv+XncGyTc2qlXaA
+ yT/FwEweV5F3ho7OJbd/R5Fv2PNCqUt8k/qQAB20lbqL7hVX+U3652Sor51cssfuy
+ /2RkjgoCAY5fczFw2OYRmbF6zuVcm7u0yi2RdncJ7yPOGEN8QEH/i5VnRL10ChMyY
+ pZSav2/nbLaZHrpw5BGkAfhjLclhQHnaqajNbax1uObn7ewlOjMZoYc8eLvINLaxe
+ Z48fiKAQuiGAz8qyLw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M9o1v-1wsqlW2yoP-008ovN; Fri, 24
- Jul 2026 05:00:08 +0200
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M8QS2-1wrTrl1Hii-00ACSd; Fri, 24
+ Jul 2026 05:00:17 +0200
 From: Armin Wolf <W_Armin@gmx.de>
 To: hansg@kernel.org,
 	ilpo.jarvinen@linux.intel.com
@@ -46,96 +46,101 @@ Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
  tursulin@ursulin.net, intel-gfx@lists.freedesktop.org,
  matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 0/3] platform/wmi: Add aarch64 support
-Date: Fri, 24 Jul 2026 04:59:56 +0200
-Message-Id: <20260724025959.142826-1-W_Armin@gmx.de>
+Subject: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+ nvidia_wmi_ec_supported()
+Date: Fri, 24 Jul 2026 04:59:58 +0200
+Message-Id: <20260724025959.142826-3-W_Armin@gmx.de>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20260724025959.142826-1-W_Armin@gmx.de>
+References: <20260724025959.142826-1-W_Armin@gmx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:v0vGyOFR/LNhXqmzPmSmbfTpyh8udB6Vccc5cR4hyg1ygBoCzA7
- ms67npm2ala0zpowQfPHnL1u9wuv2lR3aI3rxpIgnX50r4TcA6Vz+uWEIu9RvKzDlwwILPe
- OjAZ/eltLxgPeSOYMQc55xQ24g/QR8KmH9hYbzK5SmJqJsCLgV1pK76rJ4eUGz58Gvc88sY
- Vad84EnEwsX7pmIvlt+5g==
-UI-OutboundReport: notjunk:1;M01:P0:FyrCzEHmtTk=;/tKGSc1qtiU9Lvg78bY9/w9McK2
- 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
+X-Provags-ID: V03:K1:dZfUtxnkcPwVTlzjUCQ/xt9BGxXUfnXT0Dt7PFm022luHHWqzFX
+ kZNfo7S3MUbKYDMiRN9U6mEg122Km+4liVPvmu0lRGJrKCTEkZdkkcxZaQWwV0/aEwFjZer
+ OIgFNeIykwYzmqePwQLFpEgCl4w37BAByK757kyUO5CKGvmCFCk5FjT3mVsmSHlIJViVZtP
+ AwH5bMxJaE+4UxCPwp9zQ==
+UI-OutboundReport: notjunk:1;M01:P0:qQnxKNf+8fw=;xGu1BNFZEvnE2+gc/xTM1AKFHLD
+ pyUKRE/Hc7SWmMlO+QFFp7bLB+CJ3eH/Y11VXZ1XQvIf3X83FBHkaaxqzWGw8fg5zl+QGefPn
+ eGQnT3lWU/wIA/k5/58/oowMYv0x3PxKMJpBKdM5UJG12QOlPOhMflnkAVEIUlef3YSMBfYca
+ oUa+h2V1oA8Y1/fARPDNNmbY8wWoxtvs9CqC5h0jEJJh9KaqKQBOx+Vqvx3tuxhtyMPpMlp4u
+ J1gnup/fOuY3pfuPrJpkOwTDo1FPthyYDYELpHKtzcmHXApEB6HFgXDcmEfo4VUBVOc1o17Rl
+ KkFCDTz3JoM5hFcgjYGDMUmyvLHFKZjbI/UEC6qvWcw2CeB+j1IiWa3krFTYy2vI6oCv5Gkbh
+ D6K3Vv6XfTyfp1DE94fUzRJg/tVJcZT6RF+rpWQvjYkS/R57j+j82WPLrAwyjANbxSOhV9DkF
+ 1oX2r3zalLhI+Pk8MO2hPtoBn2+c8/+C3zOsc2I7S4j3yhkybmRcEhX9dO1oLLFphT6M6VKGW
+ 4x9fAisgcoUISf40XaPWKsfZytX12c7HdGBS2ETDpuZ1x5oaZYepR/jhZwIN89FPG7G68jo3C
+ hHZbUUELZHNXGlLs1Xj+WGqttPCE7t9K3hqaVKEwsQ0bZylobJYy0zefICceYlpdk8JG427aw
+ pfbaaLaO/piWc5yT5R25bbUJhp6okuvKZzKhkj2PAN48gfK0AeUyHlxp1PBcT2MEyG2VzWksL
+ XDc/SJNM6kp5iKPUHOAukZkXll1eWIJne3WqfLQHhTLQcEtLvTJ9F6ThQnakegxqMyLuaHwpF
+ sKBvflBdpN6EUgGI/3qCPmQlA2/MQtK0fadHSYwIuKAJHJs2mkykYwclRj/1Gxd+lUp1lb3xH
+ FGOTeb/FZix72LIzgscs4XbPdNiRTe/XOLGQ18hNP7U78LSEm9fdfOelrxMzHWVk+hUPzlpLx
+ zhi5qi7MqiShjuo2FwZcwlYQTOPgd4u/COcUM23jKIFAgIDpauxuyxePxFnNR2qXp/mx3pP5g
+ z3FVSb2d41ymeRDK1E8LvwXuETU7786Vf8ohO5kh07laTIcxKX1sHatUyWi6ciBHRQ1eIQubp
+ wMuNGFuRTa6RXHIiRP0jQOw6PfDS3tzBETZ1O6jZnrK9yCA1Owrxv39jaggp3l+WZga6+4mfp
+ bI6Z82OBNz7apfdk2qPsZHs1ZjWQ2DrXarCi87AJNiy9gxZoiYDRJ+Rrc19JJfO8eBOTfqfG/
+ 1d0qitGcS+OyBwypZ1tEHcy9feItfAAgtFB3t3p+Dnrh012u0Fbni27Zq55DaNPFtTQDuc5RR
+ /GwL8ndI7H+AVzeDpWbfxosqadK0d+1//dMZJE1McciK66bN2cOoKE+aXWJXQtAqkN5Ybcw4B
+ Em/IlTr5oloxROkepB5FAy+4rE/HWpWt3AhdlK6uJqxC+0GqtmmcxAbKF9btBwUyH1ofI0Ou4
+ eRwX3YrLSNfGeWqiiE+YdUNVEtM0SwoEf/R+2eh/VuuelA8h4rE9t51ycs52T2fE4gO4Z2HPZ
+ jGa4VEQcOK4+OONw+zmDHJ6ZEyGzC55TO036rGb5c1znJTQ7MfwOXG2mcDPRsKVd27UocBM0j
+ 4jSmPv3dCoML8jZDtS4Bro5m3LpoVzzQybKi/NK30MB/3yyl1sgDS7e3XkGQ3jd5EV5nVsShO
+ j+Bpjqy/fHrD/uANPGcIL7pzgw5pP+3BKGg/C4EMKG9Dpq1kwAhdQSiZkjgDEJUq2JDC8IuEH
+ MHs8BlRab46Otsg83MrEBZLwKrb4oVCZfy2zr4YPFv0KzQlhV/gcGQWMEE65xDBo9YJiDz41j
+ XqTwiTFVE0/lS292xSuqDf/iyI8ONafo6xcl/yfmuwER0ljqku3XFNE+S3c+Whw20QutJjGBW
+ yYkVu9gfh2SKv4IovDR/EcHLVTKxPuKCgBqHRYxh8hPeGjoJwJH6aua4isN+CSqADqh+n0nR8
+ o8OIHSHqlVOMBR2GrNC2nDjx9WjDAOODPUnson6sqGCQAPuIXyOnEXTjtgEIl8lCJ/Ek9b4iD
+ h/ccj9GOu73yqt+AbV55bisZ1UgMD+iZZfsgKAJDa0/hgbe3hv4oIGAJwezw1gD5awLojZI7W
+ f9w3vB3N0gj4PuiUANszAp5tz56wIiVozURaVNFgBHWZBxjuVmNE+kSFnJaO52bQOEqcKC//3
+ 8OZ88WbkI/xYSmtOfulQylu+kFRDruoXhpmx26p+ZXdzXFrfEDsNQ18oPS893yH+LsdOYSJyl
+ Y6gldHGdUwsxXacEwAJ4+V9v4K+4iQJRfvhhFr4LB7XBiXFcmegtxUI5Y89GASf30QmchfdTk
+ +ame8E6JHW+qXjsRoMGDaVfOShLdlx30x6z2Li+YMpizqS9/PerTeMgDmsbZBvtGM5NEuy+uN
+ j1vp4AiFZ/dh50grJ8scYApCz53MneOv9EAKym04wFGKezgCw2sk3mXO1/9fSjnSDxRG/pGAJ
+ jiOXkbF9qDFVhtL894B7ZqMZLphAlGeZwjIxtcvKr+QhqYQb21aEYRtfairx0hoCYp2RF8aqq
+ 358I/TlPjumC/wgg3TQFanXMAZPBtE4fnCYlUQLyLhtVBQLdmux/zqBoSTC1qCW3BHKAJnVOc
+ 65DzbNMp4vrrSHA1Xi8ytJKlLFN1KVBfkSSRVeAV/B7+qAzFtjEJIwlWVGYE38T7u7o2y8jkC
+ PIp5TxBDWYLt7W9k1Geu3a+Y/CHFxUB3jHK2RSIdxZCsCTSbx+vlSOBhsX/HMvmj6MtFh3iIM
+ 3O40u/Yz1CpyY0VyZLNZKiZlSy71C4+9uP8R5iUSWuhgKYm1p3WJZDeNUhv+4ver4Fzg4keWX
+ SF475Rcw/RPPq+ZXlNikmT3YymnYvwySI7wTWz0hDkoigX5RyX/7rlIp9REGXPYzCzHYPZ8VD
+ 6F3VGjcXHtdlm3K9SwrtSRn9bhW3F9f6FZz3pn47xcZ+X3SgBGqOPGvJ02xbzzBM1Vso0OmyU
+ ody8Q3fxbGr6EwbQVl7grXmIEgarvnZCBKktB4T7erdxtJy8xxxH2b7xZ8orSXvJS9uABhBnd
+ IxkXk/iuOlVN5qak5wCrGoKt/YbwfMSJloSkQaJ6JjBkU/DvspCRKuwplxWyE6+yKEtTq48Vc
+ dlpgbolfZj0Jfphg/X7nl4+OxbwBZXXBJb1ztCFpyrs+6P7/zRO0m1OytLo99fh+Y84MCYDVu
+ iLmeh5KNEOGQkQN3jYakYoSKrPcimeLXd9ksUkkw+S9x91ZkM/BlLPvtdgny4AbP2Zm3Q84f8
+ olxhdb4gw0k2tPeu/OmoJc2TNCg9TKmSuqlbBEq2A4IbgDUMKT+uTY4nfCnx1AtaPQnB3fnUl
+ IBa8oU/fDBquiwUrI0Sp7u5YuBLzsIDn6d6nZ0ht2Akj7Zn0F72X7QLgWLDHjNNIP2mrBv4Co
+ riu2xXDckN2DnKAn4tCICLGzFOrNoS/HFNnqkL0RFCE4K3t73wrU2BqzrGSqdRgFL5DEgMHEw
+ LC31Cu4gCwMiSIETSLFvrYBQLKkzLrpQczOPrmtUvMUfwkU5izZPVklv5ra8IjBnnDN4W/WMu
+ 2PEacgBplSHwN4GEp9VjBCqQghP+LVJaYTvrQN79UuM3kIOGMqdxcVGyx/rg72HMbKc4RoM45
+ g/FwuuGFpulIwge0JLHP4fo1hp7/ovSX/vu627o0jsttXz0P2oKjnSvS5fFckGNOPSaN6QDcA
+ kz0O4iSfscC2s4qXI2J58xXNvXXbWyne40aW3evzDL59kZkaEHO06lTtmCdvPJIo0ggqzAyNC
+ 6jCu1UxxkY4B1FuLvrgq9NW7a/lqj62/VPVy6DLHquAEE7XqMJEvSVneJc233K+jVv7xE48Gw
+ NYOyaGrpvNaktLCQficvTCPPwXWwA9S+sZqYoB5iUTNH6T1XjtIYTIZaEKaCVsPRxbtQ8SyKz
+ Q8o/nj79DKfy0Z8zGrBAD8IeVYsVIKXUbh8egeT/to1xt+w52Sg9lalHJFJVQqftXzuVa+7YS
+ EIQ4uYJuCWusd6Kv/yR8fUzFaht0+ixQ776cVwUNcK9asiCdqY8mE138lB7yUxIJ9UjhY1J4b
+ Yf3Q+UrAAq3RsQdO/aly8fxVFmB1jzb1UJHz/khFeetT1NimC74gHEzSeFBYSuHdXTQ5cOBKo
+ IpP8DWuTQ2fPNmSFRnh9KmolNwexhVsySXdknmnFmxfAHaKJmEbhOCwiAPV1gdH93uNUkRYhB
+ yjht7LGoAl+Xhz8YK1I7GFSeXT/nSWuQXUTIdlAjzNx7pk1k4BpCzbkt7MuawluY32SB+GLt9
+ /E6V/vuPTt7C5rE6+MsR0Z+VUeXDh0MWGtTTf5RiX2ArjdWGlQsljPcIVR3H7e7f70no7NPCc
+ IRZrqfDdZIiFOQlzc8IrbXe47/ZnLKMtMPOw81IBL5EowJWNSFVfnv+7kk48P/vP7OohqkFQ4
+ G0Mb68BKvA5t2dmZjN5hNCbD/FZVwsAFz/+u+FkpZ+PM4KdAe2FTe4jWrJwCq+L078R1u7vjr
+ e3WwlrPf36rIHpKxloYbcTIBOld75dzqJENNCUE7mQCyDy2AM9STMdiYOCycvWvaKl4ylX48b
+ RLO+2wX6JTSV6AVIVcYbZegk2a75jFqrpp1QLDUWw8CidQekKwumZa2jj5U+0HU3TIt2A0f77
+ c97oIod7dwp/dBZFgBuisixTx9G2SMeBN6XxEtQUdCvqT+bnBzaiIUm8adlnCFp8oLagEtMc1
+ 41lenssyNt3kGIpD5j3uwqizwckUvJGl5NxfdS/dG0mmao5+yJ2zVWiN9U9eRwCd3f3QPplw5
+ MmQ9pUrXD7xYqGip78GxX8Gjur+dMf5djEOXxl5iuWp0uJgCz7p79MNaxZAJTLlSztS/G+T/+
+ 4st1v/AZRvm9xpowbH6FGsah66v0OWXJPPPoBWTt2icl2HS4QKG2pncGb0TBnI/mfkMKaXiJa
+ aMo1KC5vVRI3+/6dOWTTJC6a9IrRNq8ATh9LWgv63Zb5Q322s6qsYuElLTKinCmyDaaU1IZMe
+ wKmluBQfzQ57gSZzf4BVA1yjRDqBbcqIWmsDYFgaM/uhXZOu0A0EmpSEN4EntN4Rk03dwqeBV
+ fDRGt4nfHVgpx1b1acXfFfW2dJkY8K7+laSs6dwSi3IPnVCElq18Q3JLfiPsNjFMwXXsXzezC
+ 7cAB6QcRkzafyIbGWJSxs1nBhR0JdqtFo/FhiiBY0l4xOKXT4U0mh/mhhN3IEVHDBhJ3hJ/Q8
+ HhL6u8gn7/dgEsKy+9M2h89aymwqjTWimVoq+sOEsXnkKzXJgPQyceLruKebFSgFLmwkGeJxe
+ 6yOeVGy/+Dlz3cJwL2UsDoJ/aClFzw9eag9EmBQZzbEQZ11AHEgkPghmeUiI6CFQmckgyA+KC
+ 45xk3oUQhfYbPPQgpXlMfONddu++xZ5S8bzrvUFFV4kscPf2Ow6FscDUEhgXA0IW5DYX8s9hj
+ kaOc0/Q7GYOSVu9m6DboImcAkd9v8C9MASvK/2/Cl7WaIvn091/+E5iEdu7jrmtjRyGNMNODP
+ apBu7h4vms6v9eGW0o38/b1WHei3FfVDH6Kxip4mqJbo3owhpiJS3vGunyx9MR9RnuiHKDhCu
+ ejnYW810LdCyod4cDTkGvMFMPNQcttAXrCyL5ygymw7V2MiaWUrnq4HxTW2/L5S+JTtzYpUGe
+ 3IYYFq/EA5k4hROaBLBS/wjjXL7GmUXlGWrsB3Lc8tMkBb/mZVGBkPqBBNReGmEE6XECMQ7FA
+ O1GqzcialtvL6k6MejCvn/meMDm/Hgu10o1YLM1cuMV1KEdX6RaIC2sG/QYpgnqfyQTEASTiu
+ SP3icwJYaQjUfIBWBvDSXPZ823xy0HiAw2ZXtigV0jbzp1iU7jhCfZDtVBQ3cSLE=
 X-Mailman-Approved-At: Mon, 27 Jul 2026 13:37:32 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,49 +156,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The aarch64-laptops project found out that some Windows-on-Arm
-notebooks contain WMI-ACPI mapping devices (PNP0C14) that work
-exactly like on x86. Those devices however are currently not
-supported by the WMI driver core due to only supporting x86.
+The WMI-ACPI driver now supports architectures other than x86.
+Remove the CONFIG_X86 handling from video-detect and the associated
+drivers to simplify the resulting code.
 
-The first patch removes this restriction and allows the WMI
-driver core to run on all architectures that support ACPI.
-The second patch updates the acpi-video driver to take advantage
-of the improved support for architectures other than x86, and
-the last patch enables the generic WMI BMOF driver to support
-aarch64 as well.
+Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
+Signed-off-by: Armin Wolf <W_Armin@gmx.de>
+=2D--
+ drivers/acpi/Kconfig               | 2 +-
+ drivers/acpi/video_detect.c        | 8 --------
+ drivers/gpu/drm/amd/amdgpu/Kconfig | 4 +---
+ drivers/gpu/drm/gma500/Kconfig     | 1 -
+ drivers/gpu/drm/i915/Kconfig       | 1 -
+ drivers/gpu/drm/radeon/Kconfig     | 4 +---
+ drivers/gpu/drm/xe/Kconfig         | 5 ++---
+ drivers/platform/loongarch/Kconfig | 1 +
+ 8 files changed, 6 insertions(+), 20 deletions(-)
 
-All patches have been tested on a ACPI-based aarch64 VM and
-work just fine.
-
-Changes since v2:
-- fix Kconfig issue for the loongson-laptop driver
-
-Changes  since v1:
-- add additional tags
-
-Armin Wolf (3):
-  platform/wmi: Remove dependency on CONFIG_X86
-  ACPI: video: Remove CONFIG_X86 handling from nvidia_wmi_ec_supported()
-  platform/x86: wmi-bmof: Move to generic WMI code
-
- MAINTAINERS                                     |  2 +-
- drivers/acpi/Kconfig                            |  2 +-
- drivers/acpi/video_detect.c                     |  8 --------
- drivers/gpu/drm/amd/amdgpu/Kconfig              |  4 +---
- drivers/gpu/drm/gma500/Kconfig                  |  1 -
- drivers/gpu/drm/i915/Kconfig                    |  1 -
- drivers/gpu/drm/radeon/Kconfig                  |  4 +---
- drivers/gpu/drm/xe/Kconfig                      |  5 ++---
- drivers/platform/loongarch/Kconfig              |  1 +
- drivers/platform/wmi/Kconfig                    | 14 +++++++++++++-
- drivers/platform/wmi/Makefile                   |  4 ++++
- drivers/platform/{x86/wmi-bmof.c =3D> wmi/bmof.c} |  0
- drivers/platform/x86/Kconfig                    | 12 ------------
- drivers/platform/x86/Makefile                   |  3 ---
- 14 files changed, 24 insertions(+), 37 deletions(-)
- rename drivers/platform/{x86/wmi-bmof.c =3D> wmi/bmof.c} (100%)
-
+diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig
+index f165d14cf61a..cc1e58fa664b 100644
+=2D-- a/drivers/acpi/Kconfig
++++ b/drivers/acpi/Kconfig
+@@ -224,7 +224,7 @@ config ACPI_VIDEO
+ 	tristate "Video"
+ 	depends on BACKLIGHT_CLASS_DEVICE
+ 	depends on INPUT
+-	depends on ACPI_WMI || !X86
++	depends on ACPI_WMI
+ 	select THERMAL
+ 	help
+ 	  This driver implements the ACPI Extensions For Display Adapters
+diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
+index 458efa4fe9d4..af9280b244f1 100644
+=2D-- a/drivers/acpi/video_detect.c
++++ b/drivers/acpi/video_detect.c
+@@ -82,8 +82,6 @@ find_video(acpi_handle handle, u32 lvl, void *context, v=
+oid **rv)
+ 	return AE_OK;
+ }
+=20
+-/* This depends on ACPI_WMI which is X86 only */
+-#ifdef CONFIG_X86
+ static bool nvidia_wmi_ec_supported(void)
+ {
+ 	struct wmi_brightness_args args =3D {
+@@ -105,12 +103,6 @@ static bool nvidia_wmi_ec_supported(void)
+ 	 */
+ 	return args.ret =3D=3D WMI_BRIGHTNESS_SOURCE_EC;
+ }
+-#else
+-static bool nvidia_wmi_ec_supported(void)
+-{
+-	return false;
+-}
+-#endif
+=20
+ /* Force to use vendor driver when the ACPI device is known to be
+  * buggy */
+diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig b/drivers/gpu/drm/amd/amdg=
+pu/Kconfig
+index 12e4a41bf1f0..50305630f533 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/Kconfig
++++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+@@ -30,9 +30,7 @@ config DRM_AMDGPU
+ 	# ACPI_VIDEO's dependencies must also be selected.
+ 	select INPUT if ACPI
+ 	select ACPI_VIDEO if ACPI
+-	# On x86 ACPI_VIDEO also needs ACPI_WMI
+-	select X86_PLATFORM_DEVICES if ACPI && X86
+-	select ACPI_WMI if ACPI && X86
++	select ACPI_WMI if ACPI
+ 	help
+ 	  Choose this option if you have a recent AMD Radeon graphics card.
+=20
+diff --git a/drivers/gpu/drm/gma500/Kconfig b/drivers/gpu/drm/gma500/Kconf=
+ig
+index a2acaa699dd5..dc4c56638819 100644
+=2D-- a/drivers/gpu/drm/gma500/Kconfig
++++ b/drivers/gpu/drm/gma500/Kconfig
+@@ -11,7 +11,6 @@ config DRM_GMA500
+ 	select ACPI_VIDEO if ACPI
+ 	select BACKLIGHT_CLASS_DEVICE if ACPI
+ 	select INPUT if ACPI
+-	select X86_PLATFORM_DEVICES if ACPI
+ 	select ACPI_WMI if ACPI
+ 	help
+ 	  Say yes for an experimental 2D KMS framebuffer driver for the
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 5e939004b646..71426b9c91f0 100644
+=2D-- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -28,7 +28,6 @@ config DRM_I915
+ 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
+ 	select BACKLIGHT_CLASS_DEVICE if ACPI
+ 	select INPUT if ACPI
+-	select X86_PLATFORM_DEVICES if ACPI
+ 	select ACPI_WMI if ACPI
+ 	select ACPI_VIDEO if ACPI
+ 	select SYNC_FILE
+diff --git a/drivers/gpu/drm/radeon/Kconfig b/drivers/gpu/drm/radeon/Kconf=
+ig
+index c479f0c0dd5c..3cd70aef770e 100644
+=2D-- a/drivers/gpu/drm/radeon/Kconfig
++++ b/drivers/gpu/drm/radeon/Kconfig
+@@ -25,9 +25,7 @@ config DRM_RADEON
+ 	# ACPI_VIDEO's dependencies must also be selected.
+ 	select INPUT if ACPI
+ 	select ACPI_VIDEO if ACPI
+-	# On x86 ACPI_VIDEO also needs ACPI_WMI
+-	select X86_PLATFORM_DEVICES if ACPI && X86
+-	select ACPI_WMI if ACPI && X86
++	select ACPI_WMI if ACPI
+ 	help
+ 	  Choose this option if you have an ATI Radeon graphics card.  There
+ 	  are both PCI and AGP versions.  You don't need to choose this to
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 4d7dcaff2b91..502c7b3c1f16 100644
+=2D-- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -4,7 +4,6 @@ config DRM_XE
+ 	depends on DRM && PCI
+ 	depends on KUNIT || !KUNIT
+ 	depends on INTEL_VSEC || !INTEL_VSEC
+-	depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
+ 	depends on PAGE_SIZE_4KB || COMPILE_TEST || BROKEN
+ 	select INTERVAL_TREE
+ 	# we need shmfs for the swappable backing store, and in particular
+@@ -29,8 +28,8 @@ config DRM_XE
+ 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
+ 	select BACKLIGHT_CLASS_DEVICE if ACPI
+ 	select INPUT if ACPI
+-	select ACPI_VIDEO if X86 && ACPI
+-	select ACPI_WMI if X86 && ACPI
++	select ACPI_VIDEO if ACPI
++	select ACPI_WMI if ACPI
+ 	select SYNC_FILE
+ 	select CRC32
+ 	select SND_HDA_I915 if SND_HDA_CORE
+diff --git a/drivers/platform/loongarch/Kconfig b/drivers/platform/loongar=
+ch/Kconfig
+index 447528797d07..db7833842142 100644
+=2D-- a/drivers/platform/loongarch/Kconfig
++++ b/drivers/platform/loongarch/Kconfig
+@@ -23,6 +23,7 @@ config LOONGSON_LAPTOP
+ 	depends on INPUT
+ 	depends on MACH_LOONGSON64
+ 	select ACPI_VIDEO
++	select ACPI_WMI
+ 	select INPUT_SPARSEKMAP
+ 	default y
+ 	help
 =2D-=20
 2.39.5
 
