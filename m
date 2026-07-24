@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8DAEC531F9
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:25:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41F07C531C9
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:30:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A68710E5CE;
-	Fri, 24 Jul 2026 21:25:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CKBNqEnn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCE4D10E471
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 21:25:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784928300; x=1816464300;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=39qdu2moWubymrOLoWKUFZkJf3RN6SkNNMHMWIDM66s=;
- b=CKBNqEnnPGwhGccNPiJ9Z66G3M7rsBcbXBFio1xMneuQ/9KvygGQXhEX
- 5MPtaDC3Gm6lX2LcmR3kWzvuGvnLNJ9augDjNjtF4Zjkxrrp8lghOjUh4
- zcZlAtsL2onvOV+bMua6i49zXz3ZBZ2a15zKVWqo0tBTy+RHd4Qb3e8ms
- eZ7OQl9aYNbPhKkmZv78WiHf7n1K9RgQqo7RLLbH5mUkLr9mF838XgIMI
- RcCRKVl6cbS13ekq/K+/Qs9ayjpHLwROrdj1xqSencCjhwDNjAyoiHm+q
- kZoOxeqA9/ca76gHoRMkmINtXgZocTsj6yEeaGo10dZe5xie+jPH8szyY g==;
-X-CSE-ConnectionGUID: fvrCcfe2SoKRK8B6SH2pHA==
-X-CSE-MsgGUID: p7HSKzVFSGSDLPheVtMP9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="84580174"
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="84580174"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2026 14:25:00 -0700
-X-CSE-ConnectionGUID: W9Tnto75TUyEb7JZC+2YAg==
-X-CSE-MsgGUID: velsflAhQSuMaPq6Bgne6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="254886707"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2026 14:25:00 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/2] drm/xe: Changes for Xe3p_HPM media
-Date: Fri, 24 Jul 2026 14:24:52 -0700
-Message-ID: <20260724212454.2823014-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.54.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE43610F3F1;
+	Fri, 24 Jul 2026 21:30:33 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D548610F3F1;
+ Fri, 24 Jul 2026 21:30:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Changes_for_Xe3?=
+ =?utf-8?q?p=5FHPM_media_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Jul 2026 21:30:32 -0000
+Message-ID: <178492863286.225757.15300117021890171724@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260724212454.2823014-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20260724212454.2823014-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,22 +36,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reference: fdce3e20dae8 ("drm/xe/xe3p: Add support for media IP versions 35.00 & 35.03")
-Bspec: 77977
+== Series Details ==
 
-v2: Fix bug in Patch 1
+Series: drm/xe: Changes for Xe3p_HPM media (rev2)
+URL   : https://patchwork.freedesktop.org/series/171088/
+State : warning
 
-Ashutosh Dixit (2):
-  drm/xe/mcr: Take vcs1/vecs1 into account for first media slice
-  drm/xe/oa: Extend OAM unit hwe assignment for new dGfx
+== Summary ==
 
- drivers/gpu/drm/xe/xe_gt_mcr.c | 5 +++--
- drivers/gpu/drm/xe/xe_oa.c     | 7 ++++---
- 2 files changed, 7 insertions(+), 5 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ecca340ae14d5cefca91342fea1a91b59a59cf66
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Fri Jul 24 14:24:54 2026 -0700
 
--- 
-2.54.0
+    drm/xe/oa: Extend OAM unit hwe assignment for new dGfx
+    
+    dGfx vecs hwe's for media version 35.00 and later follow the same
+    assignment to OAM units as vcs engines.
+    
+    Bspec: 77977
+    
+    Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 03696c1dc9eabc0658baefcff8787dab48c89d93 drm-intel
+a23bea422291 drm/xe/mcr: Take vcs1/vecs1 into account for first media slice
+ecca340ae14d drm/xe/oa: Extend OAM unit hwe assignment for new dGfx
+-:26: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#26: FILE: drivers/gpu/drm/xe/xe_oa.c:2581:
++		 MEDIA_VERx100(gt_to_xe(hwe->gt)) < 3500 )
+
+total: 1 errors, 0 warnings, 0 checks, 14 lines checked
+
 
