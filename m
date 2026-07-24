@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78E5DC531C9
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 20:11:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1742EC531FC
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 20:11:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 273D310E0A6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B54610E0C5;
 	Fri, 24 Jul 2026 20:11:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Db5KeMGq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NFglER3Y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36DA310E0A6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1930D10E0B5
  for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 20:11:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1784923894; x=1816459894;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bw36+KMxSO+5gKkXeFJ517wVNBpTmdSP0JhEPOHdafQ=;
- b=Db5KeMGq8BMi0O2iSZzai38zm75FYBX4T7BaypgvwFYeIfvRHnE0deB/
- YGmErhjqA8qnLJ2SnA6Hy6D148/vZSutJQyTjdCA7AoHq0X49WSTdMmk9
- 6wY7EKzypoBAyszlZ0xPg0D7GxeiGTn73I1VapmNwzM+ZrYpXYmIb16dN
- UqiwKbiD71+65tadXHxaBfFClPUkq3G6FKCQy8pPpEXPywcY8lg4s7PnF
- sZB9ESN7Cizxzo6DgrL9zGTCrb6lil+0YMWGE8BQqbg/UEbzuqoJb983m
- Tjp4AFDT+AlMqqRvvtG4E9rMVIAZdXPogQLghtHOeMhWayKlfKwNvX/oB w==;
-X-CSE-ConnectionGUID: 8HErxmvlQ1aUJ5wK04AWzA==
-X-CSE-MsgGUID: W60lZrWAR/yJmGjoR6ybXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="89268050"
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="89268050"
+ bh=Mob4cEzlUDHRof/HN6/G3UotWMtgnUdOdoOO0e+SqAk=;
+ b=NFglER3YophZqrQr8wK5ke2bx2Mu4s+WCgKEpFJT/wdGCptS1sV097nU
+ mUhauI2FrAygZbe7MpSJOitBTMxZRpj1oV9ZTiZnLcUuy6X8fWSAfUQ98
+ /oM9fBsY0pIevzaRyQ43QxoFnS/Eiuhldx08pNY7KM9HNsJl/qRzGfsyS
+ 5XFVFLuwKZ0EMbB0PAwwP6Yf13PLpUXteWsITD2SKX+7MxhUMPc9p16xB
+ Or1qUy+engD9Z4Zo0XKZuzq3lrCMaMbK24AmIFtcM69vuLPmeaWEVUpiI
+ tvJn1f4lgim6356PRbgDX/a4wtbxs2LPXpA0d5iept0qR0nyZ8qqCFPZb A==;
+X-CSE-ConnectionGUID: oqrncCDeT2+9QMkmS7G5MQ==
+X-CSE-MsgGUID: 5CwoU2XfSv6slhs68YfgTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="89268051"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="89268051"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 13:11:33 -0700
-X-CSE-ConnectionGUID: Ny09Iko5THerzuMmcSpgYg==
-X-CSE-MsgGUID: w7AcyvgXRhC2Tm1unakbyg==
+X-CSE-ConnectionGUID: UhjlNLwEQeyH4jP83l+FNw==
+X-CSE-MsgGUID: QP1OCP4gTnew2C03fOjyyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="258241796"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="258241799"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 13:11:33 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 1/2] drm/xe/mcr: Take vcs1/vecs1 into account for first media
- slice
-Date: Fri, 24 Jul 2026 13:11:28 -0700
-Message-ID: <20260724201129.2814030-2-ashutosh.dixit@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 2/2] drm/xe/oa: Extend OAM unit hwe assignment for new dGfx
+Date: Fri, 24 Jul 2026 13:11:29 -0700
+Message-ID: <20260724201129.2814030-3-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260724201129.2814030-1-ashutosh.dixit@intel.com>
 References: <20260724201129.2814030-1-ashutosh.dixit@intel.com>
@@ -68,36 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-vcs1 and vecs1 may also be present on the first media slice, so take
-vcs1/vecs1 also into account when determining if the first media slice is
-absent.
+dGfx vecs hwe's for media version 35.00 and later follow the same
+assignment to OAM units as vcs engines.
 
 Bspec: 77977
 
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_mcr.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 9799ffadf85d2..d069d141b54d6 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -454,9 +454,10 @@ static void init_steering_oaddrm(struct xe_gt *gt)
- {
- 	/*
- 	 * First instance is only terminated if the entire first media slice
--	 * is absent (i.e., no VCS0 or VECS0).
-+	 * is absent (i.e., no VCS0, VCS1, VECS0 or VECS1).
- 	 */
--	if (gt->info.engine_mask & (XE_HW_ENGINE_VCS0 | XE_HW_ENGINE_VECS0))
-+	if (gt->info.engine_mask & (XE_HW_ENGINE_VCS0 | XE_HW_ENGINE_VCS1 |
-+				    XE_HW_ENGINE_VECS0 | XE_HW_ENGINE_VECS0))
- 		gt->steering[OADDRM].group_target = 0;
- 	else
- 		gt->steering[OADDRM].group_target = 1;
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 21dbd98b2521f..44dc0574f34e1 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -2624,10 +2624,11 @@ static u32 __hwe_oam_unit(struct xe_hw_engine *hwe)
+ 		return XE_OA_UNIT_INVALID;
+ 	else if (!IS_DGFX(gt_to_xe(hwe->gt)))
+ 		return XE_OAM_UNIT_SCMI_0;
+-	else if (hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE)
+-		return (hwe->instance / 2 & 0x1) + 1;
+-	else if (hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
++	else if (hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE &&
++		 MEDIA_VERx100(gt_to_xe(hwe->gt)) < 3500 )
+ 		return (hwe->instance & 0x1) + 1;
++	else
++		return (hwe->instance / 2 & 0x1) + 1;
+ 
+ 	return XE_OA_UNIT_INVALID;
+ }
 -- 
 2.54.0
 
