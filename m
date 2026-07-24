@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79E9FC531F9
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:39:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15B0EC531C9
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jul 2026 21:40:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B61A10F4A0;
-	Fri, 24 Jul 2026 21:39:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78EB010F48C;
+	Fri, 24 Jul 2026 21:40:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fqv1rsPC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mCfap5L2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A76F10F4BF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FCA910F4B5
  for <intel-xe@lists.freedesktop.org>; Fri, 24 Jul 2026 21:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1784929175; x=1816465175;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=ip1hL/d58ZGfHhenwIiVcPn4qf5mU5XiufShYTZKrf8=;
- b=fqv1rsPCF+7T9dwTczJKJ80zplaQU+tINhm6pTBbd+VRkCBsPRbtlh5e
- ErbkE8oojRr0Dl2qQzQ/wy3QLwgT2eFAV1SoFmOVzVmn3TO83Ag/gPYAo
- T6hLIcLWIdBOuQ/esU5vVLFKqkkDxrMxNT/bQxK2YlYLm9z8F0+bz6DIP
- EeewvjKYimfpWwY3Ie912cRa5MQX/kl0iJsyBFgj3hxm1dCJqTCUgaz2D
- 0c+kdnrxiuJc8TZE1VhXl4W+OyG3Ih88W+cym3T2uokHkbkK8mT0+iySx
- 7pslKbLH3KouJbUpvfcxY4TPCL3q0S5Q6FQUEarMTIEFkwP5IoOZL199Y Q==;
-X-CSE-ConnectionGUID: ntk1TT0JRNK4IX2DnIIFpQ==
-X-CSE-MsgGUID: 6355o8LMRyuNPQH0kC+TfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144569"
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144569"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xjxbGbTZgHgIJ0a/6rXAd3RBv8zIWf8n9+I70zsmAeY=;
+ b=mCfap5L2cBMO1Bk+m98mvSCj732T+h5eC+clNc+abL956VmSM5urDx0S
+ EjowsqEG7fBjpMH5hbUmlqFVNtCQG+Jgw+rBNpmwoaFnDi8OGXOVsFmWT
+ yU7T1B9ZuYm4v4QsgfdiV47R2ZvUPUwtPaKFIxVjb0Wc+nZu53s+A5k6v
+ Z0+mycet2B7gNXbAtrGR+syf22UIiyhNijf7dYvBq97lpBCW4kBe98STG
+ Lp1pfoSbQz0Zr20Hp2zX/sIuESGTXWKn3l8t4vqb2ePu12SCS0BBPKi49
+ 6jh2/CNYm6J56YNLMhmAvKMF2a1jloUcotDAD54IFOANQqsA3PYxasjKZ g==;
+X-CSE-ConnectionGUID: Ig4xzLm9QxyF33B/hia5zw==
+X-CSE-MsgGUID: I3enl3ftRSuUpJvL1Kgrkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11855"; a="111144563"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="111144563"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2026 14:39:35 -0700
-X-CSE-ConnectionGUID: TVtFNuv2Qc2Aai1phfu65g==
-X-CSE-MsgGUID: 8ovWlxVCR6atcQatzRuDSg==
+ 24 Jul 2026 14:39:34 -0700
+X-CSE-ConnectionGUID: l0GM6oEOSd+Yitz4WiQ3Ug==
+X-CSE-MsgGUID: LslCtxRiRAWfef5ZYvraJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812746"
+X-IronPort-AV: E=Sophos;i="6.25,183,1779174000"; d="scan'208";a="263812738"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jul 2026 14:39:35 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 11/12] drm/xe: batch CT pagefault acks with periodic flush
-Date: Fri, 24 Jul 2026 14:39:27 -0700
-Message-Id: <20260724213928.1670731-12-matthew.brost@intel.com>
+Cc: Copilot <223556219+Copilot@users.noreply.github.com>
+Subject: [PATCH v7 08/12] drm/xe: Chain page faults via queue-resident cache
+ to avoid fault storms
+Date: Fri, 24 Jul 2026 14:39:24 -0700
+Message-Id: <20260724213928.1670731-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260724213928.1670731-1-matthew.brost@intel.com>
 References: <20260724213928.1670731-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,461 +68,892 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pagefault storms can generate long chains of acknowledgments back to the
-GuC. Sending each ack as a full CT submission forces a barrier,
-descriptor update and doorbell per fault.
+Some Xe platforms can generate pagefault storms where many faults target
+the same address range in a short time window (e.g. many EU threads
+faulting the same page). The current worker/locking model effectively
+serializes faults for a given range and repeatedly performs VMA/range
+lookups for each fault, which creates head-of-queue blocking and wastes
+CPU in the hot path.
 
-Extend xe_guc_ct_send_locked() with a “write-only” mode that copies the
-message into the H2G ring but defers publishing the descriptor and
-ringing the doorbell. Add xe_guc_ct_send_flush() to publish pending
-writes and notify GuC once per batch. Wire this into the pagefault
-producer via new ack_fault_begin/ack_fault_end callbacks and CT lock
-wrappers.
+Introduce a page fault chaining cache that coalesces faults targeting
+the samr ASID and address range.
 
-To avoid excessive flush latency while still amortizing MMIO costs, use
-a simple periodic flush heuristic for GuC pagefault acks: batch most
-acks as write-only and force a publish at a fixed interval (e.g., every
-16th ack), with a final flush at end-of-batch.
+Each worker tracks the active fault range it is servicing. Fault entries
+reside in stable queue storage, allowing the IRQ handler to match new
+faults against the worker cache and directly chain cache hits onto the
+active entry without allocation or waiting for dequeue. Once the leading
+fault completes, the worker acknowledges the entire chain.
 
-Also increase the H2G CTB size to 16K to better absorb bursts.
+A small allocation state is added to each entry so queue, worker, and
+IRQ pathd can safely reference the same fault object. This prevents
+reuse while the fault is active and guarantees that chained faults
+remain valid until acknowledged.
+
+Fault handlers also record the serviced range so subsequent faults can
+be acknowledged without re-running the full resolution path.
+
+This removes repeated fault resolution during fault storms and
+significantly improves forward progress in SVM workloads.
+
+Since threaded prefetches now use a dedicated prefetch workqueue
+(usm.prefetch_wq) rather than sharing the page fault workqueue, page
+fault servicing can no longer deadlock on vm->lock, so this cache does
+not need an -EAGAIN retry path for a failed vm->lock acquisition.
 
 Assisted-by: ChatGPT:gpt-5 # Documentation
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c          | 95 +++++++++++++++++++------
- drivers/gpu/drm/xe/xe_guc_ct.h          | 36 +++++++++-
- drivers/gpu/drm/xe/xe_guc_pagefault.c   | 32 ++++++++-
- drivers/gpu/drm/xe/xe_guc_types.h       |  6 ++
- drivers/gpu/drm/xe/xe_pagefault.c       | 12 +++-
- drivers/gpu/drm/xe/xe_pagefault_types.h | 14 ++++
- 6 files changed, 170 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/xe/xe_pagefault.c       | 426 +++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_pagefault.h       |  71 ++++
+ drivers/gpu/drm/xe/xe_pagefault_types.h |  81 +++--
+ drivers/gpu/drm/xe/xe_svm.c             |  16 +-
+ drivers/gpu/drm/xe/xe_svm.h             |   9 +-
+ 5 files changed, 518 insertions(+), 85 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index fe70c0fd85c5..686611ddabc8 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -265,7 +265,7 @@ static bool g2h_fence_needs_alloc(struct g2h_fence *g2h_fence)
- #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
- #define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
- #define CTB_G2H_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
--#define CTB_H2G_BUFFER_SIZE	(SZ_4K)
-+#define CTB_H2G_BUFFER_SIZE	(SZ_16K)
- #define CTB_H2G_BUFFER_DWORDS	(CTB_H2G_BUFFER_SIZE / sizeof(u32))
- #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
- #define CTB_G2H_BUFFER_DWORDS	(CTB_G2H_BUFFER_SIZE / sizeof(u32))
-@@ -939,7 +939,7 @@ static bool vf_action_can_safely_fail(struct xe_device *xe, u32 action)
- #define H2G_CT_HEADERS (GUC_CTB_HDR_LEN + 1) /* one DW CTB header and one DW HxG header */
- 
- static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
--		     u32 ct_fence_value, bool want_response)
-+		     u32 ct_fence_value, bool want_response, bool write_only)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_gt *gt = ct_to_gt(ct);
-@@ -956,7 +956,6 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
--		u32 desc_tail = desc_read(xe, h2g, tail);
- 		u32 desc_head = desc_read(xe, h2g, head);
- 		u32 desc_status;
- 
-@@ -966,12 +965,6 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 			goto corrupted;
- 		}
- 
--		if (tail != desc_tail) {
--			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_MISMATCH);
--			xe_gt_err(gt, "CT write: tail was modified %u != %u\n", desc_tail, tail);
--			goto corrupted;
--		}
--
- 		if (tail > h2g->info.size) {
- 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
- 			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
-@@ -993,7 +986,10 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 			      (h2g->info.size - tail) * sizeof(u32));
- 		h2g_reserve_space(ct, (h2g->info.size - tail));
- 		h2g->info.tail = 0;
--		desc_write(xe, h2g, tail, h2g->info.tail);
-+		if (!write_only) {
-+			xe_device_wmb(xe);
-+			desc_write(xe, h2g, tail, h2g->info.tail);
-+		}
- 
- 		return -EAGAIN;
- 	}
-@@ -1024,14 +1020,15 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	/* Write H2G ensuring visible before descriptor update */
- 	xe_map_memcpy_to(xe, &map, 0, cmd, H2G_CT_HEADERS * sizeof(u32));
- 	xe_map_memcpy_to(xe, &map, H2G_CT_HEADERS * sizeof(u32), action, len * sizeof(u32));
--	xe_device_wmb(xe);
--
- 	/* Update local copies */
- 	h2g->info.tail = (tail + full_len) % h2g->info.size;
- 	h2g_reserve_space(ct, full_len);
- 
- 	/* Update descriptor */
--	desc_write(xe, h2g, tail, h2g->info.tail);
-+	if (!write_only) {
-+		xe_device_wmb(xe);
-+		desc_write(xe, h2g, tail, h2g->info.tail);
-+	}
- 
- 	/*
- 	 * desc_read() performs an VRAM read which serializes the CPU and drains
-@@ -1052,7 +1049,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 
- static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 				u32 len, u32 g2h_len, u32 num_g2h,
--				struct g2h_fence *g2h_fence)
-+				struct g2h_fence *g2h_fence, bool write_only)
- {
- 	struct xe_gt *gt = ct_to_gt(ct);
- 	u16 seqno;
-@@ -1112,7 +1109,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 	if (unlikely(ret))
- 		goto out_unlock;
- 
--	ret = h2g_write(ct, action, len, seqno, !!g2h_fence);
-+	ret = h2g_write(ct, action, len, seqno, !!g2h_fence, write_only);
- 	if (unlikely(ret)) {
- 		if (ret == -EAGAIN)
- 			goto retry;
-@@ -1120,7 +1117,8 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 	}
- 
- 	__g2h_reserve_space(ct, g2h_len, num_g2h);
--	xe_guc_notify(ct_to_guc(ct));
-+	if (!write_only)
-+		xe_guc_notify(ct_to_guc(ct));
- out_unlock:
- 	if (g2h_len)
- 		spin_unlock_irq(&ct->fast_lock);
-@@ -1196,7 +1194,7 @@ static bool guc_ct_send_wait_for_retry(struct xe_guc_ct *ct, u32 len,
- 
- static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 			      u32 g2h_len, u32 num_g2h,
--			      struct g2h_fence *g2h_fence)
-+			      struct g2h_fence *g2h_fence, bool write_only)
- {
- 	struct xe_gt *gt = ct_to_gt(ct);
- 	unsigned int sleep_period_ms = 1;
-@@ -1209,9 +1207,10 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 
- try_again:
- 	ret = __guc_ct_send_locked(ct, action, len, g2h_len, num_g2h,
--				   g2h_fence);
-+				   g2h_fence, write_only);
- 
- 	if (unlikely(ret == -EBUSY)) {
-+		xe_guc_ct_send_flush(ct);
- 		if (!guc_ct_send_wait_for_retry(ct, len, g2h_len, g2h_fence,
- 						&sleep_period_ms, &sleep_total_ms))
- 			goto broken;
-@@ -1235,7 +1234,8 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	xe_gt_assert(ct_to_gt(ct), !g2h_len || !g2h_fence);
- 
- 	mutex_lock(&ct->lock);
--	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence);
-+	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence,
-+				 false);
- 	mutex_unlock(&ct->lock);
- 
- 	return ret;
-@@ -1283,25 +1283,76 @@ int xe_guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	return ret;
- }
- 
-+/**
-+ * xe_guc_ct_send_locked() - submit a GuC CT H2G message with CT lock held
-+ * @ct: GuC CT object
-+ * @action: payload dwords (HxG header dword is expected at @action[-1])
-+ * @len: number of payload dwords in @action
-+ * @write_only: defer publishing/doorbell for batching
-+ *
-+ * Sends a single H2G message to the GuC CT buffer while the caller already
-+ * holds @ct->lock.
-+ *
-+ * If @write_only is false, the function completes the submission immediately:
-+ * it makes the payload visible to the device, updates the H2G descriptor and
-+ * rings the GuC doorbell.
-+ *
-+ * If @write_only is true, the message payload is copied into the H2G ring and
-+ * the software tail is advanced, but the descriptor update and doorbell are
-+ * deferred so multiple messages can be batched. In this mode, the caller must
-+ * eventually call xe_guc_ct_send_flush() (still holding @ct->lock) to publish
-+ * the descriptor and notify the GuC. On internal retry paths (-EBUSY), the
-+ * implementation may force a flush to ensure forward progress.
-+ *
-+ * Return: 0 on success, negative errno on failure.
-+ *
-+ * Locking:
-+ *   Must be called with @ct->lock held.
-+ */
- int xe_guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
--			  u32 g2h_len, u32 num_g2h)
-+			  bool write_only)
- {
- 	int ret;
- 
--	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, NULL);
-+	ret = guc_ct_send_locked(ct, action, len, 0, 0, NULL, write_only);
- 	if (ret == -EDEADLK)
- 		kick_reset(ct);
- 
- 	return ret;
- }
- 
-+/**
-+ * xe_guc_ct_send_flush() - flush pending GuC CT H2G writes
-+ * @ct: GuC CT instance
-+ *
-+ * Some callers batch multiple H2G writes using xe_guc_ct_send_locked() in
-+ * "write-only" mode (i.e., queue the message payloads but defer ringing the
-+ * doorbell / updating the CT descriptor). This helper completes the submission
-+ * by ensuring the payload writes are visible to the device, updating the H2G
-+ * descriptor, and ringing the GuC CT doorbell.
-+ *
-+ * Locking:
-+ *   Must be called with @ct->lock held.
-+ */
-+void xe_guc_ct_send_flush(struct xe_guc_ct *ct)
-+{
-+	struct xe_device *xe = ct_to_xe(ct);
-+	struct guc_ctb *h2g = &ct->ctbs.h2g;
-+
-+	lockdep_assert_held(&ct->lock);
-+
-+	xe_device_wmb(xe);
-+	desc_write(xe, h2g, tail, h2g->info.tail);
-+	xe_guc_notify(ct_to_guc(ct));
-+}
-+
- int xe_guc_ct_send_g2h_handler(struct xe_guc_ct *ct, const u32 *action, u32 len)
- {
- 	int ret;
- 
- 	lockdep_assert_held(&ct->lock);
- 
--	ret = guc_ct_send_locked(ct, action, len, 0, 0, NULL);
-+	ret = guc_ct_send_locked(ct, action, len, 0, 0, NULL, false);
- 	if (ret == -EDEADLK)
- 		kick_reset(ct);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 767365a33dee..b30c1f34be39 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -54,7 +54,7 @@ static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
- int xe_guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		   u32 g2h_len, u32 num_g2h);
- int xe_guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
--			  u32 g2h_len, u32 num_g2h);
-+			  bool write_only);
- int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 			u32 *response_buffer);
- static inline int
-@@ -63,6 +63,8 @@ xe_guc_ct_send_block(struct xe_guc_ct *ct, const u32 *action, u32 len)
- 	return xe_guc_ct_send_recv(ct, action, len, NULL);
- }
- 
-+void xe_guc_ct_send_flush(struct xe_guc_ct *ct);
-+
- /* This is only version of the send CT you can call from a G2H handler */
- int xe_guc_ct_send_g2h_handler(struct xe_guc_ct *ct, const u32 *action,
- 			       u32 len);
-@@ -87,4 +89,36 @@ static inline void xe_guc_ct_wake_waiters(struct xe_guc_ct *ct)
- 	wake_up_all(&ct->wq);
- }
- 
-+/**
-+ * xe_guc_ct_lock() - take the GuC CT mutex
-+ * @ct: GuC CT object
-+ *
-+ * Wrapper around mutex_lock(&ct->lock) for cases where CT operations need to be
-+ * performed from contexts that want an explicit "CT locked" pair without
-+ * exporting the lock itself.
-+ *
-+ * Return/Locking:
-+ *   Acquires @ct->lock.
-+ */
-+static inline void xe_guc_ct_lock(struct xe_guc_ct *ct)
-+__acquires(&ct->lock)
-+{
-+	mutex_lock(&ct->lock);
-+}
-+
-+/**
-+ * xe_guc_ct_unlock() - release the GuC CT mutex
-+ * @ct: GuC CT object
-+ *
-+ * Counterpart to xe_guc_ct_lock().
-+ *
-+ * Locking:
-+ *   Releases @ct->lock.
-+ */
-+static inline void xe_guc_ct_unlock(struct xe_guc_ct *ct)
-+__releases(&ct->lock)
-+{
-+	mutex_unlock(&ct->lock);
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.c b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-index 2470faf3d5d8..8f8210a732e9 100644
---- a/drivers/gpu/drm/xe/xe_guc_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-@@ -10,6 +10,22 @@
- #include "xe_pagefault.h"
- #include "xe_pagefault_types.h"
- 
-+#define XE_GUC_PAGEFAULT_FLUSH_PERIOD	BIT(4)	/* Sixteen */
-+
-+static void guc_ack_fault_begin(void *private)
-+{
-+	struct xe_guc *guc = private;
-+
-+	xe_guc_ct_lock(&guc->ct);
-+
-+	BUILD_BUG_ON(((XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1) &
-+		     XE_GUC_PAGEFAULT_FLUSH_PERIOD) != 0);
-+
-+	/* Ack the 2nd, then 18th, etc... */
-+	guc->pagefault_ack_counter =
-+		XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1;
-+}
-+
- static void guc_ack_fault(struct xe_pagefault *pf, int err)
- {
- 	u32 vfid = FIELD_GET(PFD_VFID, pf->producer.msg[2]);
-@@ -36,12 +52,26 @@ static void guc_ack_fault(struct xe_pagefault *pf, int err)
- 		FIELD_PREP(PFR_PDATA, pdata),
- 	};
- 	struct xe_guc *guc = pf->producer.private;
-+	bool write_only = guc->pagefault_ack_counter++ &
-+		(XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1);
-+
-+	xe_guc_ct_send_locked(&guc->ct, action, ARRAY_SIZE(action),
-+			      write_only);
-+}
-+
-+static void guc_ack_fault_end(void *private)
-+{
-+	struct xe_guc *guc = private;
- 
--	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
-+	if ((guc->pagefault_ack_counter & (XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1)) != 1)
-+		xe_guc_ct_send_flush(&guc->ct);
-+	xe_guc_ct_unlock(&guc->ct);
- }
- 
- static const struct xe_pagefault_ops guc_pagefault_ops = {
-+	.ack_fault_begin = guc_ack_fault_begin,
- 	.ack_fault = guc_ack_fault,
-+	.ack_fault_end = guc_ack_fault_end,
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 31a2acb63ac3..3dbcb1331690 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -122,6 +122,12 @@ struct xe_guc {
- 	struct xe_reg notify_reg;
- 	/** @params: Control params for fw initialization */
- 	u32 params[GUC_CTL_MAX_DWORDS];
-+
-+	/**
-+	 * @pagefault_ack_counter: Counter to determine when periodically ack
-+	 * pagefaults in a batch.
-+	 */
-+	u32 pagefault_ack_counter;
- };
- 
- #endif
 diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 8665f0646778..f84619d02502 100644
+index 65be8dd09e2f..da185d5cb350 100644
 --- a/drivers/gpu/drm/xe/xe_pagefault.c
 +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -412,6 +412,10 @@ static bool xe_pagefault_try_chain(struct xe_pagefault_queue *pf_queue,
- 			xe_assert(xe, pf_work->cache.pf->consumer.alloc_state ==
- 				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
+@@ -35,6 +35,70 @@
+  * xe_pagefault.c implements the consumer layer.
+  */
  
-+			if (pf->producer.private !=
-+			    pf_work->cache.pf->producer.private)
-+				continue;
++/**
++ * DOC: Xe page fault cache
++ *
++ * Some Xe hardware can trigger “fault storms,” which are many page faults to
++ * the same address within a short period of time. An example is many EU threads
++ * faulting on the same page simultaneously. With the current page fault locking
++ * structure, only one page fault for a given address range can be processed at
++ * a time. This causes head-of-queue blocking across workers, killing
++ * parallelism. If the page fault handler must repeatedly look up resources
++ * (VMAs, ranges) to determine that the pages are valid for each fault in the
++ * storm, the time complexity grows rapidly.
++ *
++ * To address this, each page fault worker maintains a cache of the active fault
++ * being processed. Subsequent faults that hit in the cache are chained to the
++ * pending fault, and all chained faults are acknowledged once the initial fault
++ * completes. This alleviates head-of-queue blocking and quickly chains faults
++ * in the upper layers, avoiding expensive lookups in the main fault-handling
++ * path.
++ *
++ * Faults are buffered in the page fault queue in a way that provides stable
++ * storage for outstanding faults. In particular, faults may be chained directly
++ * while still resident in the queue storage (i.e., outside the worker’s current
++ * head/tail dequeue position). This allows the IRQ handler to match newly
++ * arrived faults against the per-worker cache and immediately chain cache hits
++ * onto the active fault under the queue lock, without allocating memory or
++ * waiting for the worker to pop the fault first.
++ *
++ * A per-fault state field is used to assert correctness of these invariants.
++ * The state tracks whether an entry is free, queued, chained, or currently
++ * active. Transitions are performed under the page fault queue lock, and the
++ * worker acknowledges faults by walking the chain and returning entries to the
++ * free state once they are complete.
++ */
 +
- 			xe_gt_stats_incr(pf->gt,
- 					 XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT,
- 					 1);
-@@ -585,6 +589,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
++/**
++ * enum xe_pagefault_alloc_state - lifetime state for a page fault queue entry
++ * @XE_PAGEFAULT_ALLOC_STATE_FREE:
++ *	Entry is unused and may be overwritten by the producer, consumer retry
++ *	or requeue..
++ * @XE_PAGEFAULT_ALLOC_STATE_QUEUED:
++ *	Entry has been enqueued and may be dequeued by a worker.
++ * @XE_PAGEFAULT_ALLOC_STATE_ACTIVE:
++ *	Entry has been dequeued and is the worker's currently serviced fault.
++ *	The worker may attach additional faults to it via consumer.next.
++ * @XE_PAGEFAULT_ALLOC_STATE_CHAINED:
++ *	Entry is not independently serviced; it has been chained onto an
++ *	ACTIVE entry via consumer.next and will be acknowledged when the
++ *	leading fault completes.
++ *
++ * The page fault queue provides stable storage for outstanding faults so the
++ * IRQ handler can chain new cache hits directly onto a worker's active fault.
++ * Because entries may remain referenced outside the consumer dequeue window,
++ * the producer must only write into entries in the FREE state.
++ *
++ * State transitions are protected by the page fault queue lock. Workers return
++ * entries to FREE after acknowledging the fault (either as ACTIVE or CHAINED).
++ */
++enum xe_pagefault_alloc_state {
++	XE_PAGEFAULT_ALLOC_STATE_FREE		= 0,
++	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
++	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
++	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
++};
++
+ static int xe_pagefault_entry_size(void)
+ {
+ 	/*
+@@ -77,7 +141,7 @@ static int xe_pagefault_begin(struct drm_exec *exec, struct xe_vma *vma,
+ }
+ 
+ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+-				   bool atomic)
++				   struct xe_pagefault *pf, bool atomic)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct xe_tile *tile = gt_to_tile(gt);
+@@ -102,8 +166,11 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 
+ 	/* Check if VMA is valid, opportunistic check only */
+ 	if (xe_vm_has_valid_gpu_mapping(tile, vma->tile_present,
+-					vma->tile_invalidated) && !atomic)
++					vma->tile_invalidated) && !atomic) {
++		xe_pagefault_set_start_addr(pf, xe_vma_start(vma));
++		xe_pagefault_set_end_addr(pf, xe_vma_end(vma));
+ 		return 0;
++	}
+ 
+ 	do {
+ 		if (xe_vma_is_userptr(vma) &&
+@@ -141,6 +208,10 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 	} while (err == -EAGAIN);
+ 
+ 	if (!err) {
++		/* Give hint to immediately ack faults */
++		xe_pagefault_set_start_addr(pf, xe_vma_start(vma));
++		xe_pagefault_set_end_addr(pf, xe_vma_end(vma));
++
+ 		dma_fence_wait(fence, false);
+ 		dma_fence_put(fence);
+ 	}
+@@ -208,10 +279,10 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 	atomic = xe_pagefault_access_is_atomic(pf->consumer.access_type);
+ 
+ 	if (xe_vma_is_cpu_addr_mirror(vma))
+-		err = xe_svm_handle_pagefault(vm, vma, gt,
++		err = xe_svm_handle_pagefault(vm, vma, pf, gt,
+ 					      pf->consumer.page_addr, atomic);
+ 	else
+-		err = xe_pagefault_handle_vma(gt, vma, atomic);
++		err = xe_pagefault_handle_vma(gt, vma, pf, atomic);
+ 
+ unlock_vm:
+ 	up_read(&vm->lock);
+@@ -220,21 +291,221 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 	return err;
+ }
+ 
+-static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+-				   struct xe_pagefault *pf)
++#define XE_PAGEFAULT_CACHE_START_INVALID	U64_MAX
++#define xe_pagefault_cache_start_invalidate(val)	\
++	(val = XE_PAGEFAULT_CACHE_START_INVALID)
++
++static void
++xe_pagefault_cache_invalidate(struct xe_pagefault_queue *pf_queue,
++			      struct xe_pagefault_work *pf_work)
+ {
+-	bool found_fault = false;
++	lockdep_assert_held(&pf_queue->lock);
++
++	xe_pagefault_cache_start_invalidate(pf_work->cache.start);
++}
++
++static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
++{
++	lockdep_assert_held(&pf_queue->lock);
++
++	return CIRC_SPACE(pf_queue->head, pf_queue->tail,
++			  pf_queue->size) <= xe_pagefault_entry_size();
++}
++
++static struct xe_pagefault *
++xe_pagefault_queue_add(struct xe_pagefault_queue *pf_queue,
++		       struct xe_pagefault *pf)
++{
++	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
++					    usm.pf_queue);
++	struct xe_pagefault *lpf;
++
++	lockdep_assert_held(&pf_queue->lock);
++
++	do {
++		/* Not possible, warn on and drop page fault */
++		if (WARN_ON(xe_pagefault_queue_full(pf_queue)))
++			return NULL;
+ 
+-	spin_lock_irq(&pf_queue->lock);
+-	if (pf_queue->tail != pf_queue->head) {
+-		memcpy(pf, pf_queue->data + pf_queue->tail, sizeof(*pf));
+-		pf_queue->tail = (pf_queue->tail + xe_pagefault_entry_size()) %
++		lpf = (pf_queue->data + pf_queue->head);
++		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
+ 			pf_queue->size;
+-		found_fault = true;
++	} while (lpf->consumer.alloc_state != XE_PAGEFAULT_ALLOC_STATE_FREE);
++
++	xe_assert(xe, lpf != pf);
++	memcpy(lpf, pf, sizeof(*pf));
++	lpf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_QUEUED;
++
++	return lpf;
++}
++
++static struct xe_pagefault *
++xe_pagefault_queue_unchain_requeue(struct xe_pagefault_queue *pf_queue,
++				   struct xe_pagefault *pf, struct xe_gt *gt)
++{
++	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
++					    usm.pf_queue);
++	struct xe_pagefault *next = pf->consumer.next, *lpf;
++
++	lockdep_assert_held(&pf_queue->lock);
++	xe_assert(xe, pf->consumer.alloc_state ==
++		  XE_PAGEFAULT_ALLOC_STATE_CHAINED);
++
++	pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
++	lpf = xe_pagefault_queue_add(pf_queue, pf);
++	if (lpf) {
++		lpf->consumer.next = NULL;
++		lpf->consumer.fault_type_level |= XE_PAGEFAULT_REQUEUE_MASK;
++	}
++
++	return next;
++}
++
++static bool xe_pagefault_match(struct xe_pagefault *pf, u64 start,
++			       u64 end, u64 cache_asid)
++{
++	struct xe_device *xe = gt_to_xe(pf->gt);
++	u64 page_addr = pf->consumer.page_addr;
++	u32 pf_asid = pf->consumer.asid;
++
++	xe_assert(xe, pf->consumer.alloc_state !=
++		  XE_PAGEFAULT_ALLOC_STATE_FREE);
++
++	return page_addr >= start && page_addr < end &&
++		pf_asid == cache_asid;
++}
++
++static bool xe_pagefault_try_chain(struct xe_pagefault_queue *pf_queue,
++				   struct xe_pagefault *pf)
++{
++	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
++					    usm.pf_queue);
++	struct xe_pagefault_work *pf_work;
++	bool requeue = FIELD_GET(XE_PAGEFAULT_REQUEUE_MASK,
++				 pf->consumer.fault_type_level);
++	int i;
++
++	lockdep_assert_held(&pf_queue->lock);
++	xe_assert(xe, pf->consumer.alloc_state ==
++		  XE_PAGEFAULT_ALLOC_STATE_QUEUED);
++
++	/*
++	 * If this is a retry, we may already have a chain attached. In that
++	 * case, we cannot hit in the cache because chains cannot easily be
++	 * combined.
++	 */
++	if (pf->consumer.next)
++		return false;
++
++	for (i = 0, pf_work = xe->usm.pf_workers;
++	     i < xe->info.num_pf_work; ++i, ++pf_work) {
++		u64 start = pf_work->cache.start;
++		u64 end = requeue ? start + SZ_4K : pf_work->cache.end;
++		u32 asid = pf_work->cache.asid;
++
++		if (xe_pagefault_match(pf, start, end, asid)) {
++			xe_assert(xe, pf_work->cache.pf->consumer.alloc_state ==
++				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
++
++			pf->consumer.alloc_state =
++				XE_PAGEFAULT_ALLOC_STATE_CHAINED;
++			pf->consumer.next = pf_work->cache.pf->consumer.next;
++			pf_work->cache.pf->consumer.next = pf;
++
++			return true;
++		}
+ 	}
+-	spin_unlock_irq(&pf_queue->lock);
+ 
+-	return found_fault;
++	return false;
++}
++
++static void xe_pagefault_queue_advance(struct xe_pagefault_queue *pf_queue)
++{
++	lockdep_assert_held(&pf_queue->lock);
++
++	pf_queue->tail = (pf_queue->tail + xe_pagefault_entry_size()) %
++		pf_queue->size;
++}
++
++static struct xe_pagefault *
++xe_pagefault_queue_tail_fault(struct xe_pagefault_queue *pf_queue)
++{
++	lockdep_assert_held(&pf_queue->lock);
++
++	return pf_queue->data + pf_queue->tail;
++}
++
++static bool xe_pagefault_queue_empty(struct xe_pagefault_queue *pf_queue)
++{
++	lockdep_assert_held(&pf_queue->lock);
++
++	return pf_queue->head == pf_queue->tail;
++}
++
++static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
++				   struct xe_pagefault **pf, int id)
++{
++	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
++					    usm.pf_queue);
++	struct xe_pagefault_work *pf_work;
++	struct xe_pagefault *lpf;
++	size_t align = SZ_2M;
++
++	guard(spinlock_irq)(&pf_queue->lock);
++
++	for (*pf = NULL; !*pf;) {
++		if (xe_pagefault_queue_empty(pf_queue))
++			return false;
++
++		lpf = xe_pagefault_queue_tail_fault(pf_queue);
++		xe_pagefault_queue_advance(pf_queue);
++
++		if (lpf->consumer.alloc_state !=
++		    XE_PAGEFAULT_ALLOC_STATE_QUEUED)
++			continue;
++
++		if (xe_pagefault_try_chain(pf_queue, lpf))
++			continue;
++
++		*pf = lpf;	/* Hand back page fault for processing */
++	}
++
++	/*
++	 * No cache hit; allocate a new cache entry. We assume most faults
++	 * within a 2M range will hit the same pages. If this assumption proves
++	 * false, the mismatched fault is requeued after the initial fault is
++	 * acknowledged.
++	 */
++	pf_work = xe->usm.pf_workers + id;
++	if (FIELD_GET(XE_PAGEFAULT_REQUEUE_MASK,
++		      lpf->consumer.fault_type_level))
++		align = SZ_4K;
++	pf_work->cache.start = ALIGN_DOWN(lpf->consumer.page_addr, align);
++	pf_work->cache.end = pf_work->cache.start + align;
++	pf_work->cache.asid = lpf->consumer.asid;
++	pf_work->cache.pf = lpf;
++	lpf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_ACTIVE;
++
++	/* Drain queue until empty or new fault found */
++	while (1) {
++		if (xe_pagefault_queue_empty(pf_queue))
++			break;
++
++		lpf = xe_pagefault_queue_tail_fault(pf_queue);
++
++		if (lpf->consumer.alloc_state !=
++		    XE_PAGEFAULT_ALLOC_STATE_QUEUED) {
++			xe_pagefault_queue_advance(pf_queue);
++			continue;
++		}
++
++		if (!xe_pagefault_try_chain(pf_queue, lpf))
++			break;
++
++		xe_pagefault_queue_advance(pf_queue);
++	}
++
++	return true;
+ }
+ 
+ static void xe_pagefault_print(struct xe_pagefault *pf)
+@@ -295,36 +566,78 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+ 		container_of(w, typeof(*pf_work), work);
+ 	struct xe_device *xe = pf_work->xe;
+ 	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
+-	struct xe_pagefault pf;
++	struct xe_pagefault *pf;
+ 	ktime_t start = xe_gt_stats_ktime_get();
+-	struct xe_gt *gt = NULL;
+ 	unsigned long threshold;
++	u64 cache_start = XE_PAGEFAULT_CACHE_START_INVALID, cache_end = 0;
++	u32 cache_asid = 0;
+ 
+ #define USM_QUEUE_MAX_RUNTIME_MS      20
  	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
  
- 	while (xe_pagefault_queue_pop(pf_queue, &pf, pf_work->id)) {
-+		const struct xe_pagefault_ops *ops = pf->producer.ops;
-+		void *private = pf->producer.private;
- 		struct xe_gt *gt = pf->gt;
- 		u32 asid = pf->consumer.asid;
- 		int err = 0;
-@@ -621,13 +627,16 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 			  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
- 		xe_assert(xe, pf == pf_work->cache.pf);
+-	while (xe_pagefault_queue_pop(pf_queue, &pf)) {
+-		int err;
++	while (xe_pagefault_queue_pop(pf_queue, &pf, pf_work->id)) {
++		struct xe_gt *gt = pf->gt;
++		u32 asid = pf->consumer.asid;
++		int err = 0;
  
-+		ops->ack_fault_begin(private);
- 		while (pf) {
- 			xe_assert(xe, pf->consumer.alloc_state ==
- 				  XE_PAGEFAULT_ALLOC_STATE_CHAINED ||
- 				  pf->consumer.alloc_state ==
- 				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
-+			xe_assert(xe, ops == pf->producer.ops);
-+			xe_assert(xe, gt == pf->gt);
+-		if (!pf.gt)	/* Fault squashed during reset */
+-			continue;
++		/* Last fault same address, ack immediately */
++		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid))
++			goto ack_fault;
++
++		err = xe_pagefault_service(pf);
  
--			pf->producer.ops->ack_fault(pf, err);
-+			ops->ack_fault(pf, err);
- 
- 			spin_lock_irq(&pf_queue->lock);
- 
-@@ -649,6 +658,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 
- 			spin_unlock_irq(&pf_queue->lock);
+-		gt = pf.gt;
+-		err = xe_pagefault_service(&pf);
+ 		if (err) {
+-			if (!(pf.consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
+-				xe_pagefault_save_to_vm(gt_to_xe(pf.gt), &pf);
+-				xe_pagefault_print(&pf);
+-				xe_gt_info(pf.gt, "Fault response: Unsuccessful %pe\n",
++			if (!(pf->consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
++				xe_pagefault_save_to_vm(gt_to_xe(gt), pf);
++				xe_pagefault_cache_start_invalidate(cache_start);
++				xe_pagefault_print(pf);
++				xe_gt_info(pf->gt, "Fault response: Unsuccessful %pe\n",
+ 					   ERR_PTR(err));
+ 			} else {
+-				xe_gt_stats_incr(pf.gt, XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT, 1);
+-				xe_gt_dbg(pf.gt, "Prefetch Fault response: Unsuccessful %pe\n",
++				xe_gt_stats_incr(pf->gt, XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT, 1);
++				xe_gt_dbg(pf->gt, "Prefetch Fault response: Unsuccessful %pe\n",
+ 					  ERR_PTR(err));
+ 			}
++		} else {
++			/* Cache valid fault locally */
++			cache_start = xe_pagefault_start_addr(pf);
++			cache_end = xe_pagefault_end_addr(pf);
++			cache_asid = asid;
  		}
-+		ops->ack_fault_end(private);
+ 
+-		pf.producer.ops->ack_fault(&pf, err);
++ack_fault:
++		xe_assert(xe, pf->consumer.alloc_state ==
++			  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
++		xe_assert(xe, pf == pf_work->cache.pf);
++
++		while (pf) {
++			xe_assert(xe, pf->consumer.alloc_state ==
++				  XE_PAGEFAULT_ALLOC_STATE_CHAINED ||
++				  pf->consumer.alloc_state ==
++				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
++
++			pf->producer.ops->ack_fault(pf, err);
++
++			spin_lock_irq(&pf_queue->lock);
++
++			if (pf->consumer.alloc_state ==
++			    XE_PAGEFAULT_ALLOC_STATE_ACTIVE)
++				xe_pagefault_cache_invalidate(pf_queue,
++							      pf_work);
++
++			pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
++			pf = pf->consumer.next;
++
++			/*
++			 * Requeue chained faults which do not match the last
++			 * fault processed
++			 */
++			while (pf && !xe_pagefault_match(pf, cache_start,
++							 cache_end, cache_asid))
++				pf = xe_pagefault_queue_unchain_requeue(pf_queue, pf, gt);
++
++			spin_unlock_irq(&pf_queue->lock);
++		}
  
  		if (time_after(jiffies, threshold)) {
  			queue_work(xe->usm.pagefault_wq, w);
-diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-index a1fff0e47fa5..efeba5c3a58b 100644
---- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-@@ -33,6 +33,13 @@ enum xe_pagefault_type {
+@@ -333,10 +646,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+ 	}
+ #undef USM_QUEUE_MAX_RUNTIME_MS
  
- /** struct xe_pagefault_ops - Xe pagefault ops (producer) */
- struct xe_pagefault_ops {
-+	/**
-+	 * @ack_fault_begin: Ack fault begin
-+	 * @private: producer private data
-+	 *
-+	 * Page fault producer begins acknowledgment from the consumer.
-+	 */
-+	void (*ack_fault_begin)(void *private);
- 	/**
- 	 * @ack_fault: Ack fault
- 	 * @pf: Page fault
-@@ -42,6 +49,13 @@ struct xe_pagefault_ops {
- 	 * sends the result to the HW/FW interface.
- 	 */
- 	void (*ack_fault)(struct xe_pagefault *pf, int err);
-+	/**
-+	 * @ack_fault_end: Ack fault end
-+	 * @private: producer private data
-+	 *
-+	 * Page fault producer ends acknowledgment from the consumer.
-+	 */
-+	void (*ack_fault_end)(void *private);
- };
+-	if (gt)
+-		xe_gt_stats_incr(xe_root_mmio_gt(gt_to_xe(gt)),
+-				 XE_GT_STATS_ID_PAGEFAULT_US,
+-				 xe_gt_stats_ktime_us_delta(start));
++	xe_gt_stats_incr(xe_root_mmio_gt(xe), XE_GT_STATS_ID_PAGEFAULT_US,
++			 xe_gt_stats_ktime_us_delta(start));
+ }
+ 
+ static int xe_pagefault_queue_init(struct xe_device *xe,
+@@ -431,6 +742,7 @@ int xe_pagefault_init(struct xe_device *xe)
+ 
+ 		pf_work->xe = xe;
+ 		pf_work->id = i;
++		xe_pagefault_cache_start_invalidate(pf_work->cache.start);
+ 		INIT_WORK(&pf_work->work, xe_pagefault_queue_work);
+ 	}
+ 
+@@ -454,15 +766,19 @@ static void xe_pagefault_queue_reset(struct xe_device *xe, struct xe_gt *gt,
+ 
+ 	/* Squash all pending faults on the GT */
+ 
+-	spin_lock_irq(&pf_queue->lock);
+-	for (i = pf_queue->tail; i != pf_queue->head;
+-	     i = (i + xe_pagefault_entry_size()) % pf_queue->size) {
++	guard(spinlock_irq)(&pf_queue->lock);
++
++	for (i = 0; i < pf_queue->size; i += xe_pagefault_entry_size()) {
+ 		struct xe_pagefault *pf = pf_queue->data + i;
+ 
+-		if (pf->gt == gt)
+-			pf->gt = NULL;
++		if (pf->gt != gt || pf->consumer.alloc_state ==
++		    XE_PAGEFAULT_ALLOC_STATE_ACTIVE)
++			continue;
++
++		pf->consumer.alloc_state =
++			XE_PAGEFAULT_ALLOC_STATE_FREE;
++		pf->consumer.next = NULL;
+ 	}
+-	spin_unlock_irq(&pf_queue->lock);
+ }
  
  /**
+@@ -478,14 +794,6 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt)
+ 	xe_pagefault_queue_reset(xe, gt, &xe->usm.pf_queue);
+ }
+ 
+-static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
+-{
+-	lockdep_assert_held(&pf_queue->lock);
+-
+-	return CIRC_SPACE(pf_queue->head, pf_queue->tail, pf_queue->size) <=
+-		xe_pagefault_entry_size();
+-}
+-
+ /*
+  * This function can race with multiple page fault producers, but worst case we
+  * stick a page fault on the same queue for consumption.
+@@ -511,18 +819,28 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+ {
+ 	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
+ 	unsigned long flags;
+-	int work_index;
+ 	bool full;
+ 
+ 	spin_lock_irqsave(&pf_queue->lock, flags);
+-	work_index = xe_pagefault_work_index(xe);
+ 	full = xe_pagefault_queue_full(pf_queue);
+ 	if (!full) {
+-		memcpy(pf_queue->data + pf_queue->head, pf, sizeof(*pf));
+-		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
+-			pf_queue->size;
+-		queue_work(xe->usm.pagefault_wq,
+-			   &xe->usm.pf_workers[work_index].work);
++		struct xe_pagefault *lpf;
++		bool empty = xe_pagefault_queue_empty(pf_queue);
++
++		lpf = xe_pagefault_queue_add(pf_queue, pf);
++		if (lpf) {
++			lpf->consumer.next = NULL;
++
++			if (xe_pagefault_try_chain(pf_queue, lpf)) {
++				if (empty)
++					xe_pagefault_queue_advance(pf_queue);
++			} else {
++				int work_index = xe_pagefault_work_index(xe);
++
++				queue_work(xe->usm.pagefault_wq,
++					   &xe->usm.pf_workers[work_index].work);
++			}
++		}
+ 	} else {
+ 		drm_warn(&xe->drm,
+ 			 "PageFault Queue full, shouldn't be possible\n");
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
+index bd0cdf9ed37f..feaf2a69674a 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.h
++++ b/drivers/gpu/drm/xe/xe_pagefault.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_PAGEFAULT_H_
+ #define _XE_PAGEFAULT_H_
+ 
++#include "xe_pagefault_types.h"
++
+ struct xe_device;
+ struct xe_gt;
+ struct xe_pagefault;
+@@ -16,4 +18,73 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
+ 
+ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
+ 
++#define XE_PAGEFAULT_END_ADDR_MASK	(~0xfffull)
++
++/**
++ * xe_pagefault_set_end_addr() - store serviced range end for a pagefault
++ * @pf: Pagefault entry
++ * @end_addr: Inclusive end address of the serviced fault range
++ *
++ * The pagefault consumer stores the resolved fault range so subsequent faults
++ * hitting the same range can be immediately acknowledged without re-running
++ * the full fault handling path.
++ *
++ * The end address shares storage with other consumer metadata and therefore
++ * must be masked with %XE_PAGEFAULT_END_ADDR_MASK before storing. Bits outside
++ * the mask are reserved for internal state tracking and must be preserved.
++ */
++static inline void
++xe_pagefault_set_end_addr(struct xe_pagefault *pf, u64 end_addr)
++{
++	pf->consumer.end_addr &= ~XE_PAGEFAULT_END_ADDR_MASK;
++	pf->consumer.end_addr |= end_addr;
++}
++
++/**
++ * xe_pagefault_end_addr() - read serviced range end for a pagefault
++ * @pf: Pagefault entry
++ *
++ * Returns the inclusive end address of the range previously recorded by
++ * xe_pagefault_set_end_addr(). Only the bits covered by
++ * %XE_PAGEFAULT_END_ADDR_MASK are returned; other bits in the storage are
++ * reserved for internal state.
++ *
++ * Return: End address of the serviced fault range.
++ */
++static inline u64 xe_pagefault_end_addr(struct xe_pagefault *pf)
++{
++	return pf->consumer.end_addr & XE_PAGEFAULT_END_ADDR_MASK;
++}
++
++#undef XE_PAGEFAULT_END_ADDR_MASK
++
++/**
++ * xe_pagefault_set_start_addr() - store serviced range start for a pagefault
++ * @pf: Pagefault entry
++ * @start_addr: Start address of the serviced fault range
++ *
++ * The pagefault consumer stores the resolved fault range so subsequent faults
++ * hitting the same range can be immediately acknowledged without re-running
++ * the full fault handling path.
++ */
++static inline void
++xe_pagefault_set_start_addr(struct xe_pagefault *pf, u64 start_addr)
++{
++	pf->consumer.page_addr = start_addr;
++}
++
++/**
++ * xe_pagefault_start_addr() - read serviced range start for a pagefault
++ * @pf: Pagefault entry
++ *
++ * Returns the inclusive start address of the range previously recorded by
++ * xe_pagefault_set_start_addr().
++ *
++ * Return: Start address of the serviced fault range.
++ */
++static inline u64 xe_pagefault_start_addr(struct xe_pagefault *pf)
++{
++	return pf->consumer.page_addr;
++}
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
+index d349d79bc95e..a1fff0e47fa5 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault_types.h
++++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
+@@ -60,36 +60,58 @@ struct xe_pagefault {
+ 	/**
+ 	 * @consumer: State for the software handling the fault. Populated by
+ 	 * the producer and may be modified by the consumer to communicate
+-	 * information back to the producer upon fault acknowledgment.
++	 * information back to the producer upon fault acknowledgment. After
++	 * fault acknowledgment, the producer should only access consumer fields
++	 * via well defined helpers.
+ 	 */
+ 	struct {
+-		/** @consumer.page_addr: address of page fault */
+-		u64 page_addr;
+-		/** @consumer.asid: address space ID */
+-		u32 asid;
+ 		/**
+-		 * @consumer.access_type: access type and prefetch flag packed
+-		 * into a u8.
++		 * @consumer.page_addr: address of page fault, populated by
++		 * consumer after fault completion
+ 		 */
+-		u8 access_type;
++		u64 page_addr;
++		union {
++			struct {
++				/**
++				 * @consumer.alloc_state: page fault allocation
++				 * state
++				 */
++				u8 alloc_state;
++				/**
++				 * @consumer.access_type: access type, u8 rather
++				 * than enum to keep size compact
++				 */
++				u8 access_type;
+ #define XE_PAGEFAULT_ACCESS_TYPE_MASK	GENMASK(1, 0)
+ #define XE_PAGEFAULT_ACCESS_PREFETCH	BIT(7)
+-		/**
+-		 * @consumer.fault_type_level: fault type and level, u8 rather
+-		 * than enum to keep size compact
+-		 */
+-		u8 fault_type_level;
++				/**
++				 * @consumer.fault_type_level: fault type and
++				 * level, u8 rather than enum to keep size
++				 * compact
++				 */
++				u8 fault_type_level;
+ #define XE_PAGEFAULT_TYPE_LEVEL_NACK		0xff	/* Producer indicates nack fault */
+-#define XE_PAGEFAULT_LEVEL_MASK			GENMASK(3, 0)
+-#define XE_PAGEFAULT_TYPE_MASK			GENMASK(7, 4)
+-		/** @consumer.engine_class_instance: engine class and instance */
+-		u8 engine_class_instance;
++#define XE_PAGEFAULT_LEVEL_MASK			GENMASK(2, 0)
++#define XE_PAGEFAULT_TYPE_MASK			GENMASK(6, 3)
++#define XE_PAGEFAULT_REQUEUE_MASK		BIT(7)
++				/** @consumer.engine_class_instance: engine class and instance */
++				u8 engine_class_instance;
+ #define XE_PAGEFAULT_ENGINE_CLASS_MASK		GENMASK(3, 0)
+ #define XE_PAGEFAULT_ENGINE_INSTANCE_MASK	GENMASK(7, 4)
+-		/** @pad: alignment padding */
+-		u8 pad;
+-		/** @consumer.reserved: reserved bits for future expansion */
+-		u64 reserved;
++				/** @consumer.asid: address space ID */
++				u32 asid;
++			};
++			/**
++			 * @consumer.end_addr: end address of page fault,
++			 * populated by consumer after fault completion
++			 */
++			u64 end_addr;
++		};
++		/**
++		 * @consumer.next: next pagefault chained to this fault,
++		 * protected by pf_queue lock
++		 */
++		struct xe_pagefault *next;
+ 	} consumer;
+ 	/**
+ 	 * @producer: State for the producer (i.e., HW/FW interface). Populated
+@@ -131,7 +153,7 @@ struct xe_pagefault_queue {
+ 	u32 head;
+ 	/** @tail: Tail pointer in bytes, moved by consumer, protected by @lock */
+ 	u32 tail;
+-	/** @lock: protects page fault queue */
++	/** @lock: protects page fault queue, workers caches */
+ 	spinlock_t lock;
+ };
+ 
+@@ -146,6 +168,21 @@ struct xe_pagefault_work {
+ 	struct xe_device *xe;
+ 	/** @id: Identifier for this work item */
+ 	int id;
++	/**
++	 * @cache: Page fault cache for the currently processed fault
++	 *
++	 * Protected by the page fault queue lock.
++	 */
++	struct {
++		/** @cache.start: Start address of the current page fault */
++		u64 start;
++		/** @cache.end: End address of the current page fault */
++		u64 end;
++		/** @cache.asid: Address space ID of the current page fault */
++		u32 asid;
++		/** @cache.pf: Pointer to the current page fault */
++		struct xe_pagefault *pf;
++	} cache;
+ 	/** @work: Work item used to process the page fault */
+ 	struct work_struct work;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 6a470a02fee7..627a741293d5 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -15,6 +15,7 @@
+ #include "xe_gt_stats.h"
+ #include "xe_migrate.h"
+ #include "xe_module.h"
++#include "xe_pagefault.h"
+ #include "xe_pm.h"
+ #include "xe_pt.h"
+ #include "xe_svm.h"
+@@ -1264,8 +1265,8 @@ DECL_SVM_RANGE_US_STATS(bind, BIND)
+ DECL_SVM_RANGE_US_STATS(fault, PAGEFAULT)
+ 
+ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-				     struct xe_gt *gt, u64 fault_addr,
+-				     bool need_vram)
++				     struct xe_pagefault *pf, struct xe_gt *gt,
++				     u64 fault_addr, bool need_vram)
+ {
+ 	int devmem_possible = IS_DGFX(vm->xe) &&
+ 		IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
+@@ -1424,6 +1425,10 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	xe_svm_range_bind_us_stats_incr(gt, range, bind_start);
+ 
+ out:
++	/* Give hint to immediately ack faults */
++	xe_pagefault_set_start_addr(pf,  xe_svm_range_start(range));
++	xe_pagefault_set_end_addr(pf, xe_svm_range_end(range));
++
+ 	xe_svm_range_fault_us_stats_incr(gt, range, start);
+ 	mutex_unlock(&range->lock);
+ 	drm_gpusvm_range_put(&range->base);
+@@ -1446,6 +1451,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+  * xe_svm_handle_pagefault() - SVM handle page fault
+  * @vm: The VM.
+  * @vma: The CPU address mirror VMA.
++ * @pf: Pagefault structure
+  * @gt: The gt upon the fault occurred.
+  * @fault_addr: The GPU fault address.
+  * @atomic: The fault atomic access bit.
+@@ -1456,8 +1462,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+  * Return: 0 on success, negative error code on error.
+  */
+ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_gt *gt, u64 fault_addr,
+-			    bool atomic)
++			    struct xe_pagefault *pf, struct xe_gt *gt,
++			    u64 fault_addr, bool atomic)
+ {
+ 	int need_vram, ret;
+ retry:
+@@ -1465,7 +1471,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (need_vram < 0)
+ 		return need_vram;
+ 
+-	ret =  __xe_svm_handle_pagefault(vm, vma, gt, fault_addr,
++	ret =  __xe_svm_handle_pagefault(vm, vma, pf, gt, fault_addr,
+ 					 need_vram ? true : false);
+ 	if (ret == -EAGAIN) {
+ 		/*
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 46be2e5c6f7f..2a0dc0d125c9 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -21,6 +21,7 @@ struct drm_file;
+ struct xe_bo;
+ struct xe_gt;
+ struct xe_device;
++struct xe_pagefault;
+ struct xe_vram_region;
+ struct xe_tile;
+ struct xe_vm;
+@@ -109,8 +110,8 @@ void xe_svm_fini(struct xe_vm *vm);
+ void xe_svm_close(struct xe_vm *vm);
+ 
+ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_gt *gt, u64 fault_addr,
+-			    bool atomic);
++			    struct xe_pagefault *pf, struct xe_gt *gt,
++			    u64 fault_addr, bool atomic);
+ 
+ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
+ 
+@@ -298,8 +299,8 @@ void xe_svm_close(struct xe_vm *vm)
+ 
+ static inline
+ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_gt *gt, u64 fault_addr,
+-			    bool atomic)
++			    struct xe_pagefault *pf, struct xe_gt *gt,
++			    u64 fault_addr, bool atomic)
+ {
+ 	return 0;
+ }
 -- 
 2.34.1
 
