@@ -4,139 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0912C53209
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jul 2026 18:23:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DAE3C531D0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jul 2026 19:11:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AEAF10E6C8;
-	Mon, 27 Jul 2026 18:23:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B20D610E3D5;
+	Mon, 27 Jul 2026 19:11:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="cPcuBL1W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cClktGif";
 	dkim-atps=neutral
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011012.outbound.protection.outlook.com [52.101.52.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DA5A10E6A7;
- Mon, 27 Jul 2026 18:23:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29A9210E3D5
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Jul 2026 19:11:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1785179518; x=1816715518;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=AwRHax7XHvqMEEvS1bB4+sysAmCqLRrBiBpUpA+8ijo=;
+ b=cClktGif6hmUCz7JP4azADiEyp+KY45Gj0AVIgkwQpb4qzwZiD37lh2O
+ fkjob5IAkv14Ro4L5AmC4aMTo/CE3t6ODy7o5tuLZ+f9l/hNi7kHhMRju
+ ABORnAafb8rkyw/TUIVCiR/M5rGFpJhWja1wiB1sw1et5vprhu/8P0NEz
+ ukOT/fox7T9V5ngx8AWTmBc+/nnrK73fn8pa9ZSZeKz2JZs1l7E8xnQMj
+ V6Q86qQc4ZX/x0nw/al6yRQk0/LWoSuw2sqyTB0mGnlD0G88MyYDi5qxv
+ qN/5EDrihWh1UsqiQ+9wQaTjb8jAc0S5Sj+UDbFp9Vgh5Ym790aysksuP g==;
+X-CSE-ConnectionGUID: TGXQ4lUOT+aYPWMjqVKJBA==
+X-CSE-MsgGUID: rJFQ4I9sQ4WmQnhlwe555g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="108550979"
+X-IronPort-AV: E=Sophos;i="6.25,188,1779174000"; d="scan'208";a="108550979"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 12:11:57 -0700
+X-CSE-ConnectionGUID: /euH5Ll0Rsm1Ek2lnRN7WA==
+X-CSE-MsgGUID: oQeaHbOYRQSubZAjQT2v/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,188,1779174000"; d="scan'208";a="256818174"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 12:11:57 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Mon, 27 Jul 2026 12:11:57 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Mon, 27 Jul 2026 12:11:57 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.0) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Mon, 27 Jul 2026 12:11:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Zr0VCJ4MVdTOSN+MONutYPjH7qzo3Ucr21EKkYSanFNtxbkmrKSmTzuf4pBNehPxIEBLIKH1/AhS/k/BNfTylF1xP43uwDpjbYMq7VpauuFvWx8IOmkgevByvH0rKpZLFGH/4hX2sT3eCk2adv+QrOt9LpwQPIeBE9XiWTi/l05bNQ96wuD4X5SpLY8EsTlYbBshnnH6myjGZFyA2SVlaI0WcffNXbw0U8a2fWqjdAuNNQF/FReO2Q8ljZL1Ekmmk1iXuLn4gz+UDpLO8gvjI22z8hdJ/xiz8dIL5Z8I5nfiJFSc0FAUNdIqyQCzxK2va7tTDp3YSl/GDWU3tgk1kQ==
+ b=ZGhWcnJwgOYaZGdWlSiVxB1rk4YUKysle7maJmGM5zlfJ1C7OADfPLDm1CVj9xFMCNeN6cv02PfkGw301ULygJOX9OIXgXE+iX/hjTpa5NffX1PGkq6Y9QXhK6dvvUhEQhhxeTAP7MKmSjADz1PEV7Yex/N2RgIdum0EA2UXgRJoGci77FT1Mxzz0wM3JwTd3ZO0FZkQpJJRnvx+/20O4830E8lhgpb7jmJb08NiPfNxfNXE4kweaLP8vJTaPu/aWCM846cubct+S/nCfceTCwo8qyMKK+OQ02K84yPlNttq+5y0GsScF5xkJx9YGKzx0ztd+wPqwJdqFKDqH/pUeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vpauCh0IeiNpe2PnqpcFKvqw3Ocm422EzLb5euim1Bo=;
- b=y11wc2agFR1nZqkxj82Sgu92aWyXLIlKoBdo1C7ae+CUwPuZCYH1FQAoQMPWunbZ0eb3zZYTklCuiXQl44H3NZZ5VjABFXd7u+goFL5rDKU+IJQd7sR2qF9YDFUBUE2GotuKD/GfNHB+wXsNl65sbYQ1xeoRaEajZ0PJkE+DwAtJWt/DtkeZ4F0oU27TMb2VFC/cJQ9Own+GRvF+ilagSSinCNtjRhMaa2H+ZTqCdTUS1D/oOjtlli8ot1+Y+jd0IlaQELaYIfhcNCDtW55kEAlLDMCe5cFz5G3L+uKE9BOIsJEzTn2wPPjfo/qZHP9dc3wg/DYfXa70+DpubRrCHg==
+ bh=CdCX9oRo03HFaLMKbZZDqoAZk//gJxNjFLuyUJUVc0U=;
+ b=wlalhjTL7BhcC/7jB1KykQ4z+3FmYJukSAISBAVOlqgXX2pFxJWBL+X8IBIUxF93oSQJFanu6JMhaL7uURwxH9KiCLo1L8gaI53tIefaNM+TaHEoM+iEsIJGZTXLcQNWUTJhTlzvqPe2MEpGW491QYWsc+pxmzz9pYRbV6xBOvy0cWDxrpBi6bO4BGLrPHBnVYq2xuRL9shCr8rBT1yyJhz7xJC5DRDI7Wktp3WerWpGh4F7c91rMUO7Debyb2GPC38EXjJP+5jNrGcWQL9iQx8+R7vFdxJnVJZ6pim6KBYXOkpG8ims8SJa362BE4lNPLVE1vzHiXIfz6m3CqWQTw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vpauCh0IeiNpe2PnqpcFKvqw3Ocm422EzLb5euim1Bo=;
- b=cPcuBL1WYMN9kr6ys+jskHwh6yfj/51kYGSQp7fbHPFCjwDXi2F4agAHV4ttlDDD8TcTLiPLV4NXx4QVSX5Ax0nW/lcwvvzCkkQDKonvTVejuNvtb4hiqVYie2Gj/XucUQdvx3+XDcskjqnFHaf8j6aJaAALfneTPiLs7ukrT8q/WdTQURDiYoZlcsIm0Dpy0pENjU4xNMIpC39EuNTYHexpzM0IIZyDp4ARZZh/KPyOkyVJ2GDuB+PtTVnlHj3jHvjLrnSfCh2r8m25qJf2PcD5DlXK561gaioIiC9ccat/ZX9KEbg7ybuEcqaYvPGQLQekt87Eqb+8g32PZcYoXQ==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com (2603:10b6:208:40e::7)
- by SN7PR12MB6929.namprd12.prod.outlook.com (2603:10b6:806:263::11)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CY8PR11MB7267.namprd11.prod.outlook.com (2603:10b6:930:9a::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.13; Mon, 27 Jul
- 2026 18:23:37 +0000
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16]) by IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16%5]) with mapi id 15.21.0245.012; Mon, 27 Jul 2026
- 18:23:35 +0000
-From: Zi Yan <ziy@nvidia.com>
-To: "David Hildenbrand (Arm)" <david@kernel.org>
-Cc: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- "Liam R. Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Dave Airlie <airlied@redhat.com>, 
- Matthew Wilcox <willy@infradead.org>
-Subject: Re: [PATCH 1/3] mm/huge_memory: add folio_split_driver_managed()
-Date: Mon, 27 Jul 2026 14:23:33 -0400
-X-Mailer: MailMate (3.0r7024)
-Message-ID: <2FD2B991-09B3-40EE-8230-49BE3A239EEC@nvidia.com>
-In-Reply-To: <a0c06d8c-fc3a-4ede-8aba-8c7430027a35@kernel.org>
-References: <20260722044220.1110278-1-matthew.brost@intel.com>
- <DK564OOZ3JUK.292JORO9KGKEV@nvidia.com>
- <DK57FVTRTLR2.1A906PYJ2TCE4@nvidia.com>
- <a0c06d8c-fc3a-4ede-8aba-8c7430027a35@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-MS-Reactions: disallow
-X-ClientProxiedBy: MN0P223CA0028.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:52b::17) To IA0PR12MB8374.namprd12.prod.outlook.com
- (2603:10b6:208:40e::7)
+ 2026 19:11:54 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0245.012; Mon, 27 Jul 2026
+ 19:11:54 +0000
+Date: Mon, 27 Jul 2026 12:11:51 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>, Copilot
+ <223556219+Copilot@users.noreply.github.com>
+Subject: Re: [PATCH v8 03/12] drm/xe: Thread prefetch of SVM ranges
+Message-ID: <ametd1SyOn1/EtJC@gsse-cloud1.jf.intel.com>
+References: <20260724232601.1753977-1-matthew.brost@intel.com>
+ <20260724232601.1753977-4-matthew.brost@intel.com>
+ <ameMGby_tJBIi0Lv@fdugast-desk>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ameMGby_tJBIi0Lv@fdugast-desk>
+X-ClientProxiedBy: SJ0PR13CA0185.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::10) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR12MB8374:EE_|SN7PR12MB6929:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f269edb-27b8-45ec-46b6-08deec0c2bbf
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB7267:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0dd61a4-1e33-4057-7ff8-08deec12eb7e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|23010399003|366016|6133799003|22082099003|18002099003|10067099003|5023799004|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: iWjhZ+4YCnlpm1RrrarX685+qWo33bwA3tg9xZUYVcCgLqeE2eExW+lmvSTRpl8kZQlLDA0UJ8HkAQO1JtBjCZAIWenF6RHaHGWXN1/K3dbY5SF6qXoJx4AEfQzJkbNAT4wTLQq35cO9x+EqTDgU8sUNrR7TxLn6l14I+ORnvUbmEreSp/GW0GpaiPfmHHlzaRrQrTppQ5qeKcjixu3aFUjBtxS+9raMHf0a5F432ErQuCtMZpDCa+7Ceh4UhXXK5oNwqMf2gLumW+p7tUdm5C+k4x0FroXXxi3QPiLn7uWorcCou1O9hzfuRfx+vDt3I2doqJZCTZMU5DbaE9vfdVK9zFz9JQEQd4ylnNFAZB6od4lRK8SGAaMIkTLBF1K5RivAHl+iwgQ0QehazBoTMuGBDGlXh/3eX3mEucY8LY5fM6vJXGHNlMDsgLBjJszjkRdYDGKhKFADUI/i57udGw4GV7N1yCayK6m6Bep91a8efAwhLT5o/9PxWH9UXOtVLkQ+cdE++sFfZQpeZBhYoz77bcDtVaPztiatpHF7BhZWDQsua1ynZbQ0zyEsQZjzeaOGciILLoSNfS1zl7KEkb9urfpskIlHY4qiaJKZIJcnHOYW1rI108mxZ+9ArirBPeWLVVpZrpAE1n13E04sYwaXfHsFNgP1D2UfapdU5e0=
+ ARA:13230040|23010399003|366016|376014|1800799024|10067099003|6133799003|11063799006|56012099006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: zsP8bDlY9lUDs75hz2+cy+YNstLJLZM8btvVUW3nQjy86aLNVvrsQHXH80iKwEiMOoh/MP93pT3CqWMjQqxLVXJRYuesoHrtKrL3cfgw+IOEZ+WiXxhNq2pxF8TOvhF32lguD2u64ishgzM67cpGgfXYF1wqSOVdQF/xQsLM6KzMLmmHRJlb92ZWjGCkNKwDZ7kni31VzopaXqo4B1mll7iZ85NiTh/J3SHmg6WbSF7Mg2+F6S/oqkDM1lxvEqn6Nx3LTgYDA5ZHJQok+YfFZTPLg6QS0nsOC7ye/8cR6Un9CsL8ohy5qPotH5IhVh0iopU9TVJSvYnHM5erP7WMCKRmmGceytmj1G9ErXTXmNMeiYnrp0IYNt2qT0BJ+pnXVKykBL6KIg7l6i1USnZ4oi5viOPEl+ezhEMS5RuQbKbz9k2iMy0kXhaZ1d9X6JfU9aOHwVh1I+8d6zN6dTdprXHPhpYP1fNI07p0ABvdFkppIBFrKM+33DkE1b96c4VXhHuqb/oYXJBUpkrV1iIN9ptRH1jXC34fWuS4fc9zHD0ja8+fN+v6wF43hzpHO7h/94qy6EgMZTWC2ZgBNvT6XMrn8ing4ExtOVb9Rlb6G4HhLY47fmt1gpt2t8u0bqUchARgMcg4Hq9KS3QvjmlImIr8eK01svaWA8Q0GbIQlvw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR12MB8374.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(23010399003)(366016)(6133799003)(22082099003)(18002099003)(10067099003)(5023799004)(11063799006)(4143699003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(10067099003)(6133799003)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eDhuYi9ZTHRRU1lFblB2ZlJJbnBVWHloeXFwaC9SY0RDR25YN254TWVSTFFZ?=
- =?utf-8?B?Yk1ZY0FBS3BFUDlKdGNENzNBb05mV3JXOXdrQ1VXYzVYdUFKYjdudndJUHFT?=
- =?utf-8?B?TktUWnZLMjNSeWFFZlBHZDAwZGxTb3dtYmdyOFFoWHJzbjdBOVI2elhSdkZZ?=
- =?utf-8?B?VFpaTk5IY3ZwK1BSeGR2NXBZZTJUTitSdzY2Q1FWbnpKWEY0dmwyWXpoa01C?=
- =?utf-8?B?UlJJUkZ3a2FlVU9icDl6WllMb0JCd3lQc1JPRHROR2V3MmxwVVNad0g5SEtC?=
- =?utf-8?B?WGgwNVFXTS9WSWdJM3ExQVJrQ2JmZXhna3VUM3VXZElXVXppNE5wNW5RRFdn?=
- =?utf-8?B?VDBjKzNKY21mYTZ2Z1NVVnZ5dElRb2pMS2Vjall4Y241cXg5SkxnelFrUTA5?=
- =?utf-8?B?OEZzTVhFY0t3ZnBBb1pUTzVHaEVtM3VaNGY4UkNpNUJXZS8rTURoOWFlKzkv?=
- =?utf-8?B?TG44V1Zhdk16eXgrcWRmRTY2ZGZPSlR3eEl0d1pEQS9MOXlXTzJWbnFKWjJw?=
- =?utf-8?B?dXJiWlNoOFBkekgzU3FzMzMrTXUwandwSHpwS1dXQ3JEZlFkMC85cXI1Z1pz?=
- =?utf-8?B?ZVFSQlpzaGJ1SU5TRzF5OERUdW5WUXZEU0M2cmQrVEFxY05YbzQ3ZHdSM2hN?=
- =?utf-8?B?eGpKejZnQXpyVTdhK2k0NFJ6YlJ1VUx0RUtzWG85TUpVWU1mS1dSTHVtc1d3?=
- =?utf-8?B?V1dHSmFUTENPMXBTV041cThCVDhLdGR3SnZrdm1pL1pkZUJlS1pNRjdGSThy?=
- =?utf-8?B?SGRYb2ZJWVQwTVgwK3U4eHUxdlNZUXpKdzFEQzdWK3luYUpheVFMR2xsdzVD?=
- =?utf-8?B?NHJBSElqSVB2VTZmOEl3YWdKeCt6WktzMWhYTmk2RDhVNFg0ekdXWDhrYkw4?=
- =?utf-8?B?eVpTcU16b2xLcEFmOW9xNG0raHZwTERYR0xvMm5JMCtKcHJOdkkwVm9ONFVY?=
- =?utf-8?B?ZXhYM1o2QmVnUFNnUXJZZnFWN0k5R1dheDlGdHVaQW5jSGFaaGNma2VhZ3l0?=
- =?utf-8?B?bENvcWdMNy9KTktjejUvTGlnMUxjREYreWNjK3dhV2dPWDRxdnB2Z0ZrcStV?=
- =?utf-8?B?Rmw5R1JTOUNqWUlIK2p2bm5tcldZaUduelVlVzJYZXM2em9BVHIvK05vSnZn?=
- =?utf-8?B?R1ZacDlzZURPK2hBM05lVGRRYUEwQ0JvalZNWVROR3dsSzZYVUY4VVVqSmxr?=
- =?utf-8?B?ZzdiNDhmZ0J1R2duMm8wYnRIWkcyQkJRbGxPZTJYQmMrQnZRcVZiU3NLYUQ2?=
- =?utf-8?B?N1c2Z2FHbUd5bU43K1c5YjFYQlhTMktTSTZCL1pjdXhubU5sUDE2L2l6YjE0?=
- =?utf-8?B?Z1N0OEl4VVgrZStoRGhWUDU2cVdCSUNiM1oySWw2ZldJMGhFRkV6M3pIWGxh?=
- =?utf-8?B?L0p0YXNrd0ZWZVhWT1FTV01MazBkcFQ1NFZVbnlHVzFTa0lnR1NHTG5UeURk?=
- =?utf-8?B?bnJDd0VnM3BzSWZLTE1wOWdYbkhYYUNWUTBKZFh0Y2VMamN3YllDVTVyUFZO?=
- =?utf-8?B?UTFqYk03TENVMHc2eDI4aEJtcGljWnNCN1VvQjN5YW51a0xFdE5yNWVXZjFN?=
- =?utf-8?B?dU02ZjM4ZjA4MFY1VTE5SG1jZDhESTdKcldvTExYcWZmeGhrMUEva0pOSEJM?=
- =?utf-8?B?cjk5UFN5VWhSdWUxUzdrb1RRUDhWaDYyaFNNWjgwL2ljaTVRMVVYbStRYVFj?=
- =?utf-8?B?UGNKaURPcnVrYUFiVklpNGFpVXF0VWZrano3SnJsQW5BbGlWUUpGUkhXTTc0?=
- =?utf-8?B?VEdpbWVEbE1QK1lUczZYTFRIWnhPcWF4cjkyMXg2T3RoaUxSdWNyL1JiWEI2?=
- =?utf-8?B?eXBZZTB1NmVtQ3M5WHRHVzJlUDFUV240L0FWZEI4TFMvb09rM0R5M1lPamRt?=
- =?utf-8?B?R2MyVVc0bEJ6M3BzUjNqbDUyS1grRXNTT3VYcjlKZzNrVDZUcHlwaTVQZDNi?=
- =?utf-8?B?cm1DT2Urb2lLNnk4a01US21xOXl0RWtMcytqb01SNHJrNzV5ZnIzd1hnQThR?=
- =?utf-8?B?K1FvVWMveWU1U3RSYWxtZkJJcUpwYXo4UmoyQ2xXWHNkQ0lJSFlpMzBrMmpP?=
- =?utf-8?B?eDFCT05UWXlGeHEvellieTJWN1BHeHpJTGhzN1ZmbGxjQUVOMnV1dWZLdUpo?=
- =?utf-8?B?T3FoRXFaSkx4VHVqdThTWTAwVEVVb2wzR21UUDdvN3cyN3JSdi9QY1I5cmsv?=
- =?utf-8?B?RTNsYk13Q2NBeWRBSW5CeWtyL1dwUy9uUTRRTmZkYTYvMWtPLytwRU5oQkZy?=
- =?utf-8?B?c2N2Y0V3QTZ1V0x0SU5Tdmk1MGFwck4xQW9uUnlQdEJkWUI0VUJpMm96Ui9Q?=
- =?utf-8?Q?Y/FCNCb7RpSwpwMGEX?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f269edb-27b8-45ec-46b6-08deec0c2bbf
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8374.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?7K6RUC4l6ctgXj0YvKkDOn7jFMLQ2rTCIrPk+xdaZBZyzCn73et8Qdn4rP?=
+ =?iso-8859-1?Q?tbSTPN7zdHbGMAZHgjvHwiaQKx4WO2gbSIJ+930pDlqA6yP1NUwAOoJDIG?=
+ =?iso-8859-1?Q?jNbaYhHfi48hossaiz9qoiFx04mkrqoKNrNGEKGGZ24KrKpq3IBnVyxh1w?=
+ =?iso-8859-1?Q?oHZt9O20RTD0ovh2iy4eXhfHhA5tuEUS+xvkCkzO++c4cdjqFihpA+FQnp?=
+ =?iso-8859-1?Q?VtIbN4iK0luxu/rLMGSojDelHZn+xIdp0wKW3RuqmxIp/I1HpB+KSAmpFE?=
+ =?iso-8859-1?Q?n48L70oZFG/YOiXDXiaVcjiI89OGF6AuZQscaZQqAEVfEeJylJI0QBPEE9?=
+ =?iso-8859-1?Q?7Ek0iRvzc6lW0pGOhaWLXyz8dnAUSIOdBaeC6Qs/HuquAiBmpriNHSYoSy?=
+ =?iso-8859-1?Q?x4KrDRjTwfcffwfLhNLGoSdCBiNZPH9mm9fwni7IiKh/cc+Bgml2lbaI4V?=
+ =?iso-8859-1?Q?tcIIbKkX6JA7b7ssYmbjwbtsLT1Hh2uRKPW6D5LpKhL22SBQNseCegwYyL?=
+ =?iso-8859-1?Q?PLCoHsnWOuejQo86X6o4jW+MDrP1lq3Kqsd/beSHgfenhCacb25E2Op8X3?=
+ =?iso-8859-1?Q?fCIS9O4j0ooYqCh23DGJ7PQwjT62IU2rJ77PTaK/IsbXCg1Ck2uIRMie5g?=
+ =?iso-8859-1?Q?LOUiOjXJ10I1/tBHXLbVKuIIMjuJ8HBLbacjdxgfsprWpcwOzH+IqXjOnR?=
+ =?iso-8859-1?Q?1UCGvPQnQ/1ZTUbnS0+qSj9HtWaapBidrVrT3jxZnohoGCaeRAOp4BhqLT?=
+ =?iso-8859-1?Q?l68sX4TjLccUU55F67CXkYReFYVZ+yDfTHggodGKITM1+B4V605s7lmfK9?=
+ =?iso-8859-1?Q?SW1hy/Qu2kyL+BFCfwhNAReSi+zq354bseqTvQKTRzweqr9ITsespgOF/m?=
+ =?iso-8859-1?Q?zqJAXhfCosDdbA/cSxubDbT4DX5vF5RjwSXJ3jf+0jdV23+9O2rGecKrwp?=
+ =?iso-8859-1?Q?Uzra45TeFSFQe3TJHs9DQ7dX8eZ4eKIji4ehzEvVU7dGaJxpvvbdN5RqZY?=
+ =?iso-8859-1?Q?vD47sHJh0aI26H3ajI4PX1sHkAYDHR9auRZD+5oS9+i0WrHIV6tBmIqRl3?=
+ =?iso-8859-1?Q?xIK4Ts2Vkaj1zUHaBuu5aHsJCnsVtFIlFH3EnaePDUVqROPQCLzat1gg3X?=
+ =?iso-8859-1?Q?1k2X/0U7f8lRs5sWfSc7w1kIU4X7iFAlFT7Wmnil4UpXynLdI+Pu4qJYcz?=
+ =?iso-8859-1?Q?IBoW5MjYgmh1piIeBypMhdggQZAmQpZLp9TDKUovZ9B2i4pEeK5+JjrdD8?=
+ =?iso-8859-1?Q?AB5vImyVmwkWg78xqwonKna+i+v/C/sDc7JApuY/paXm39a22hI51NvHeM?=
+ =?iso-8859-1?Q?TSH3wT0W4mo/hwBGSbtV1w1pQv2Mk9nxmxQvtMnyQvjsn3PxnG0xOa7c6n?=
+ =?iso-8859-1?Q?OcphaUXxySPxrpm1RKXQuYBSczHHdg9ZodXn9HEPJE76h7wa61zZYNHJdL?=
+ =?iso-8859-1?Q?ongn8irla9yHF9bA0OmzRwUlOyt/pwr280gn4lgnRgxrE2WWp/GJ5fkrtK?=
+ =?iso-8859-1?Q?Zboz9it7Tql5qKZMEhpN2GAWfp4vTr0bazPAXAwPZakx4eMRcFs5k8ZeV7?=
+ =?iso-8859-1?Q?Fv+rGgiHyIgx8SZysm8/VMbb9n44IcvI3LoDPXWlnKeOU+Fjd80E+JLzYn?=
+ =?iso-8859-1?Q?V2zWTeXRM3na5u6Apkm7o5VDTh2dqO8bsGzHQdlfix1+xjRpsltlPMC1V0?=
+ =?iso-8859-1?Q?bnpMMgCZO6XC1gF9JMsX0NSf3sRQcur0ogtfDicf3ILVEWLJ4h5fDTkgae?=
+ =?iso-8859-1?Q?LrCz+LqlmvZMAxr7tNMkwv3TQAp6F+HVoQxZtAWY3wIwSmZ4oYvgB5Yi4c?=
+ =?iso-8859-1?Q?voFmNLZhoQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: WUnCpEinEJYmtB7YKCbGPTldIGjfO1Fgstfi0iE/6LSwilpWbwtL2qTboyxG7aORi+0aFy6cVqy2Yrh01Q3SFJ836fUEXf544Bujoo8mxKRNdjNCzOxhX4qV78/J3za1joEzDChrzgYOr9afozYVZmlKMb+wMbY2nmMS2FyowdbNxaaKvq+GNsykuZSEzUaMi4h8vb4Z3vCG8jSXuNMdfsSsSsNgTXqllielrUKaob4cVH87cwatUAEL2XgSqiJuKDfisbZF2q+BwXr+OlMRSYNuoWPCipj419cYFmNHhGAz4TRK9g5ngL1STkGMKYcmS+VH2DsOw3ML1cjunctF7Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0dd61a4-1e33-4057-7ff8-08deec12eb7e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2026 18:23:35.4128 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2026 19:11:54.0390 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SB1kxIf0RN2VXdEZEZ5Z5tyZ1mC96cT+dogv+X8tnqpqy6aNsrvfqhcnWWibskKJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6929
+X-MS-Exchange-CrossTenant-UserPrincipalName: piy50myWtSli14qCMx22kR0yPqwUA0EToBLl1/LLgyhlOJIBjq9jrmCAkub+B2UOrCGbUySmaqShfNEuISAUWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7267
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,208 +163,471 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 27 Jul 2026, at 13:33, David Hildenbrand (Arm) wrote:
+On Mon, Jul 27, 2026 at 06:49:29PM +0200, Francois Dugast wrote:
+> On Fri, Jul 24, 2026 at 04:25:52PM -0700, Matthew Brost wrote:
+> > The migrate_vma_* functions are very CPU-intensive; as a result,
+> > prefetching SVM ranges is limited by CPU performance rather than paging
+> > copy engine bandwidth. To accelerate SVM range prefetching, the step
+> > that calls migrate_vma_* is now threaded. A dedicated prefetch
+> > workqueue is used for threading so prefetch work is never mixed with
+> > page fault or garbage collector work.
+> > 
+> > Running xe_exec_system_allocator --r prefetch-benchmark, which tests
+> > 64MB prefetches, shows an increase from ~4.35 GB/s to 12.25 GB/s with
+> > this patch on drm-tip. Enabling high SLPC further increases throughput
+> > to ~15.25 GB/s, and combining SLPC with ULLS raises it to ~16 GB/s. Both
+> > of these optimizations are upcoming.
+> > 
+> > Since the dedicated prefetch workqueue is not shared with page fault
+> > or SVM garbage collector work, page fault servicing and garbage
+> > collection can keep using a plain down_read() on vm->lock: there is no
+> > risk of a blocked reader starving a worker that a pending writer is
+> > waiting to flush, because that flushing is now confined to the
+> > separate prefetch workqueue.
+> > 
+> > v2:
+> >  - Use dedicated prefetch workqueue
+> >  - Pick dedicated prefetch thread count based on profiling
+> >  - Skip threaded prefetch for only 1 range or if prefetching to SRAM
+> >  - Fully tested
+> > v3:
+> >  - Use page fault work queue
+> > v4:
+> >  - Go back to a dedicated prefetch workqueue (usm.prefetch_wq) rather
+> >    than reusing the page fault workqueue (usm.pagefault_wq), so
+> >    threaded prefetches and page fault / garbage collector work no
+> >    longer contend for the same workqueue. This removes the need for
+> >    down_read_trylock() based lock avoidance in the page fault and
+> >    garbage collector paths.
+> > 
+> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+> 
+> I believe we should go with "Assisted-by" instead of "Co-authored-by".
+> 
+> This also applies to patch #8 in the series.
+> 
 
-> On 7/22/26 17:28, Zi Yan wrote:
->> On Wed Jul 22, 2026 at 10:26 AM EDT, Zi Yan wrote:
->>> On Wed Jul 22, 2026 at 12:42 AM EDT, Matthew Brost wrote:
->>>> Add a lightweight structural split primitive for large (compound) foli=
-os
->>>> that a driver allocated with __GFP_COMP and manages entirely by itself=
-,
->>>> outside of the core mm's view.
->>>>
->>>> The existing split paths - split_folio() and folio_split_unmapped() -
->>>> are built for folios that the mm owns: they perform a refcount freeze,
->>>> walk and remap the rmap, and take the anon_vma / i_mmap locks, and
->>>> folio_split_unmapped() further assumes an anon, pagecache-style refcou=
-nt
->>>> model (nr_pages + 1). None of that applies to a folio that is:
->>>>
->>>>   - singly referenced (the caller holds the only reference),
->>>>   - not mapped through the rmap (folio_mapped() =3D=3D 0),
->>>>   - not in the page cache or swap cache (folio->mapping =3D=3D NULL),
->>>>   - not on any LRU or the deferred-split list.
->>>>
->>>> For such a folio the split is purely structural: because nothing else =
-in
->>>> the kernel can reach it, there is no need to freeze the refcount or to=
-uch
->>>> any mapping. folio_split_driver_managed() therefore performs only the
->>>
->>> I do not think so. PFN scanners like memory compaction should be able t=
-o
->>> see them, unless you mean something else about "a driver allocated with
->>> __GFP_COMP". You will need to freeze it to prevent the to-be-split
->>> folios being touched by others.
->>>
->>>
->>>> compound and split-accounting teardown via __split_unmapped_folio() an=
-d
->>>> then hands each resulting order-@new_order folio its own reference,
->>>> mirroring split_page() for compound folios. The caller keeps the origi=
-nal
->>>> reference on the first resulting folio and is responsible for freeing =
-all
->>>> of them individually.
->>>>
->>>> The immediate user is TTM's GPU page pool, which allocates higher-orde=
-r
->>>> compound pages, maps them into userspace via VM_PFNMAP (never through =
-the
->>>> rmap), and needs to split them into order-0 folios under memory pressu=
-re
->>>> so pages can be backed up to shmem and freed one at a time.
->>>>
->>>> A CONFIG_TRANSPARENT_HUGEPAGE=3Dn stub is provided so callers can buil=
-d
->>>> without the split machinery; it warns and returns -EINVAL.
->>>>
->>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>> Cc: Maxime Ripard <mripard@kernel.org>
->>>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>>> Cc: David Airlie <airlied@gmail.com>
->>>> Cc: Simona Vetter <simona@ffwll.ch>
->>>> Cc: Christian Koenig <christian.koenig@amd.com>
->>>> Cc: Huang Rui <ray.huang@amd.com>
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Andrew Morton <akpm@linux-foundation.org>
->>>> Cc: David Hildenbrand <david@kernel.org>
->>>> Cc: Lorenzo Stoakes <ljs@kernel.org>
->>>> Cc: Zi Yan <ziy@nvidia.com>
->>>> Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
->>>> Cc: "Liam R. Howlett" <liam@infradead.org>
->>>> Cc: Nico Pache <npache@redhat.com>
->>>> Cc: Ryan Roberts <ryan.roberts@arm.com>
->>>> Cc: Dev Jain <dev.jain@arm.com>
->>>> Cc: Barry Song <baohua@kernel.org>
->>>> Cc: Lance Yang <lance.yang@linux.dev>
->>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Cc: Dave Airlie <airlied@redhat.com>
->>>> Cc: dri-devel@lists.freedesktop.org
->>>> Cc: linux-kernel@vger.kernel.org
->>>> Cc: linux-mm@kvack.org
->>>> Suggested-by: Matthew Wilcox <willy@infradead.org>
->>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>> Assisted-by: GitHub-Copilot:claude-opus-4.8
->>>>
->>>> ---
->>>>
->>>> The patch is based on drm-tip rather than the core MM branches to
->>>> facilitate Intel CI testing and initial review. It can be rebased onto
->>>> the core MM branches in a subsequent revision.
->>>> ---
->>>>  include/linux/huge_mm.h |  8 ++++++
->>>>  mm/huge_memory.c        | 63 ++++++++++++++++++++++++++++++++++++++++=
-+
->>>>  2 files changed, 71 insertions(+)
->>>>
->>>> diff --git a/include/linux/huge_mm.h b/include/linux/huge_mm.h
->>>> index ad20f7f8c179..35661d82d54a 100644
->>>> --- a/include/linux/huge_mm.h
->>>> +++ b/include/linux/huge_mm.h
->>>> @@ -402,6 +402,7 @@ enum split_type {
->>>>  int __split_huge_page_to_list_to_order(struct page *page, struct list=
-_head *list,
->>>>  		unsigned int new_order);
->>>>  int folio_split_unmapped(struct folio *folio, unsigned int new_order)=
-;
->>>> +int folio_split_driver_managed(struct folio *folio, unsigned int new_=
-order);
->>>>  unsigned int min_order_for_split(struct folio *folio);
->>>>  int split_folio_to_list(struct folio *folio, struct list_head *list);
->>>>  int folio_check_splittable(struct folio *folio, unsigned int new_orde=
-r,
->>>> @@ -656,6 +657,13 @@ static inline int split_folio_to_list(struct foli=
-o *folio, struct list_head *lis
->>>>  	return -EINVAL;
->>>>  }
->>>>
->>>> +static inline int folio_split_driver_managed(struct folio *folio,
->>>> +					     unsigned int new_order)
->>>> +{
->>>> +	VM_WARN_ON_ONCE_FOLIO(1, folio);
->>>> +	return -EINVAL;
->>>> +}
->>>> +
->>>>  static inline int folio_split(struct folio *folio, unsigned int new_o=
-rder,
->>>>  		struct page *page, struct list_head *list)
->>>>  {
->>>> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
->>>> index 2bccb0a53a0a..06f9a5f35df8 100644
->>>> --- a/mm/huge_memory.c
->>>> +++ b/mm/huge_memory.c
->>>> @@ -4185,6 +4185,69 @@ int folio_split_unmapped(struct folio *folio, u=
-nsigned int new_order)
->>>>  	return ret;
->>>>  }
->>>>
->>>> +/**
->>>> + * folio_split_driver_managed() - split an exclusively-owned, off-LRU=
- folio
->>>> + * @folio: folio to split. Must be a large (compound) folio that is o=
-wned
->>>> + *         exclusively by the caller and is invisible to the core mm.
->>>> + * @new_order: the order of the folios after the split.
->>>> + *
->>>> + * This is a lightweight structural split for folios that a driver al=
-located
->>>> + * and manages itself (for example TTM's GPU page pool, which allocat=
-es
->>>> + * higher-order compound pages with __GFP_COMP and maps them into use=
-rspace
->>>> + * via VM_PFNMAP rather than through the rmap). Such folios are:
->>
->> Strickly speaking, these vm_insert*() compound pages are not folios,
->> since folios are supposed to be rmappable and they are either anonymous
->> memory or file-backed memory. I am working on separating them from
->> rmappable folios by replacing PG_private with PG_folio and marking all
->> pages in a folio with PG_folio in page_rmappable_folio().
->>
->> Hopefully, we can find a better name, like refcounted_folio, later for
->> these non-rmappable compound pages.
->
-> They wouldn't really be folios, I guess. They would likely be a simple
-> "refcounted" memtype that allows for compound pages.
+Yes, that was an oversight. I fixed somethings on the tip of the series
+and had copilot squash the fixes into the correct patches and this got
+added. Will adjust.
 
-Yes, they are not folios. But =E2=80=9Cfolio=E2=80=9D was started to replac=
-e =E2=80=9Ccompound page=E2=80=9D
-and slowly becomes rmappable anon and file-backed. People outside MM still
-thinks =E2=80=9Cfolio=E2=80=9D =3D=3D =E2=80=9Ccompound page=E2=80=9D. But =
-once I manage to remove PG_private
-and get us PG_folio, page_folio() will return NULL for non-folio compound
-pages and we will need a new type for them, =E2=80=9Crefcounted_XXX=E2=80=
-=9D. We can decide
-XXX when I get there. :)
+Matt
 
->
-> But what is the conclusion here? It sounds like "folio_split_" is the ent=
-irely
-> wrong interface for these compound pages.
-
-We probably would allow folio_split() to be used on compound pages now
-until we can make a clean distinction, e.g., using PG_folio, between them.
-
-Yes, folio_split() and its helper functions are meant for rmappable anon an=
-d
-file-backed folios. But currently =E2=80=9Cfolio=E2=80=9D is de facto =E2=
-=80=9Ccompound page=E2=80=9D, since
-for example prep_compound_head() initializes folio fields even if it is mea=
-nt
-only for compound pages.
-
-After folio and compound page are separate concepts in the code base, proba=
-bly
-we can think about how to have two split functions for them and still keep
-maximum code reuse. Namely, we could have split_compound() does the compoun=
-d
-page split (e.g., copying page flags, adjust compound head/tail/order, etc.=
-)
-and split_folio() calls split_compound() and perform extra folio operations=
-.
-The details are TBD.
-
-Best Regards,
-Yan, Zi
+> Francois
+> 
+> > ---
+> >  drivers/gpu/drm/xe/xe_device_types.h |   6 +-
+> >  drivers/gpu/drm/xe/xe_pagefault.c    |  29 ++++--
+> >  drivers/gpu/drm/xe/xe_svm.c          |   8 +-
+> >  drivers/gpu/drm/xe/xe_svm.h          |   6 +-
+> >  drivers/gpu/drm/xe/xe_vm.c           | 147 ++++++++++++++++++++-------
+> >  drivers/gpu/drm/xe/xe_vm_types.h     |  15 +--
+> >  6 files changed, 154 insertions(+), 57 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index b8d1726c0513..159ee16ee6d5 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -307,8 +307,10 @@ struct xe_device {
+> >  		u32 current_pf_queue;
+> >  		/** @usm.lock: protects UM state */
+> >  		struct rw_semaphore lock;
+> > -		/** @usm.pf_wq: page fault work queue, unbound, high priority */
+> > -		struct workqueue_struct *pf_wq;
+> > +		/** @usm.pagefault_wq: page fault work queue, unbound, high priority */
+> > +		struct workqueue_struct *pagefault_wq;
+> > +		/** @usm.prefetch_wq: threaded prefetch work queue, unbound */
+> > +		struct workqueue_struct *prefetch_wq;
+> >  		/*
+> >  		 * We pick 4 here because, in the current implementation, it
+> >  		 * yields the best bandwidth utilization of the kernel paging
+> > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+> > index 80196e874e06..fd7ef0718153 100644
+> > --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> > @@ -303,8 +303,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+> >  
+> >  		err = xe_pagefault_service(&pf);
+> >  		if (err) {
+> > -			xe_pagefault_save_to_vm(gt_to_xe(pf.gt), &pf);
+> >  			if (!(pf.consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
+> > +				xe_pagefault_save_to_vm(gt_to_xe(pf.gt), &pf);
+> >  				xe_pagefault_print(&pf);
+> >  				xe_gt_info(pf.gt, "Fault response: Unsuccessful %pe\n",
+> >  					   ERR_PTR(err));
+> > @@ -318,7 +318,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+> >  		pf.producer.ops->ack_fault(&pf, err);
+> >  
+> >  		if (time_after(jiffies, threshold)) {
+> > -			queue_work(gt_to_xe(pf.gt)->usm.pf_wq, w);
+> > +			queue_work(gt_to_xe(pf.gt)->usm.pagefault_wq, w);
+> >  			break;
+> >  		}
+> >  	}
+> > @@ -376,7 +376,8 @@ static void xe_pagefault_fini(void *arg)
+> >  {
+> >  	struct xe_device *xe = arg;
+> >  
+> > -	destroy_workqueue(xe->usm.pf_wq);
+> > +	destroy_workqueue(xe->usm.prefetch_wq);
+> > +	destroy_workqueue(xe->usm.pagefault_wq);
+> >  }
+> >  
+> >  /**
+> > @@ -394,12 +395,20 @@ int xe_pagefault_init(struct xe_device *xe)
+> >  	if (!xe->info.has_usm)
+> >  		return 0;
+> >  
+> > -	xe->usm.pf_wq = alloc_workqueue("xe_page_fault_work_queue",
+> > -					WQ_UNBOUND | WQ_HIGHPRI,
+> > -					XE_PAGEFAULT_QUEUE_COUNT);
+> > -	if (!xe->usm.pf_wq)
+> > +	xe->usm.pagefault_wq = alloc_workqueue("xe_page_fault_work_queue",
+> > +					       WQ_UNBOUND | WQ_HIGHPRI,
+> > +					       XE_PAGEFAULT_QUEUE_COUNT);
+> > +	if (!xe->usm.pagefault_wq)
+> >  		return -ENOMEM;
+> >  
+> > +	xe->usm.prefetch_wq = alloc_workqueue("xe_prefetch_work_queue",
+> > +					      WQ_UNBOUND,
+> > +					      XE_PAGEFAULT_QUEUE_COUNT);
+> > +	if (!xe->usm.prefetch_wq) {
+> > +		err = -ENOMEM;
+> > +		goto err_pagefault_wq;
+> > +	}
+> > +
+> >  	for (i = 0; i < XE_PAGEFAULT_QUEUE_COUNT; ++i) {
+> >  		err = xe_pagefault_queue_init(xe, xe->usm.pf_queue + i);
+> >  		if (err)
+> > @@ -409,7 +418,9 @@ int xe_pagefault_init(struct xe_device *xe)
+> >  	return devm_add_action_or_reset(xe->drm.dev, xe_pagefault_fini, xe);
+> >  
+> >  err_out:
+> > -	destroy_workqueue(xe->usm.pf_wq);
+> > +	destroy_workqueue(xe->usm.prefetch_wq);
+> > +err_pagefault_wq:
+> > +	destroy_workqueue(xe->usm.pagefault_wq);
+> >  	return err;
+> >  }
+> >  
+> > @@ -495,7 +506,7 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+> >  		memcpy(pf_queue->data + pf_queue->head, pf, sizeof(*pf));
+> >  		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
+> >  			pf_queue->size;
+> > -		queue_work(xe->usm.pf_wq, &pf_queue->worker);
+> > +		queue_work(xe->usm.pagefault_wq, &pf_queue->worker);
+> >  	} else {
+> >  		drm_warn(&xe->drm,
+> >  			 "PageFault Queue (%d) full, shouldn't be possible\n",
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> > index cc36addb4f4f..6a470a02fee7 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > @@ -148,7 +148,7 @@ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+> >  			      &vm->svm.garbage_collector.range_list);
+> >  	spin_unlock(&vm->svm.garbage_collector.list_lock);
+> >  
+> > -	queue_work(xe->usm.pf_wq, &vm->svm.garbage_collector.work);
+> > +	queue_work(xe->usm.pagefault_wq, &vm->svm.garbage_collector.work);
+> >  }
+> >  
+> >  static void xe_svm_tlb_inval_count_stats_incr(struct xe_gt *gt)
+> > @@ -1051,6 +1051,7 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
+> >   * @tile_mask: Mask representing the tiles to be checked
+> >   * @dpagemap: if !%NULL, the range is expected to be present
+> >   * in device memory identified by this parameter.
+> > + * @valid_pages: Pages are valid, result written back to caller
+> >   *
+> >   * The xe_svm_range_validate() function checks if a range is
+> >   * valid and located in the desired memory region.
+> > @@ -1059,7 +1060,8 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
+> >   */
+> >  bool xe_svm_range_validate(struct xe_vm *vm,
+> >  			   struct xe_svm_range *range,
+> > -			   u8 tile_mask, const struct drm_pagemap *dpagemap)
+> > +			   u8 tile_mask, const struct drm_pagemap *dpagemap,
+> > +			   bool *valid_pages)
+> >  {
+> >  	bool ret;
+> >  
+> > @@ -1071,6 +1073,8 @@ bool xe_svm_range_validate(struct xe_vm *vm,
+> >  	else
+> >  		ret = ret && !range->pages.dpagemap;
+> >  
+> > +	*valid_pages = xe_svm_range_pages_valid(range);
+> > +
+> >  	xe_svm_notifier_unlock(vm);
+> >  
+> >  	return ret;
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+> > index 0d1f1107af5f..46be2e5c6f7f 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.h
+> > +++ b/drivers/gpu/drm/xe/xe_svm.h
+> > @@ -134,7 +134,8 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range);
+> >  
+> >  bool xe_svm_range_validate(struct xe_vm *vm,
+> >  			   struct xe_svm_range *range,
+> > -			   u8 tile_mask, const struct drm_pagemap *dpagemap);
+> > +			   u8 tile_mask, const struct drm_pagemap *dpagemap,
+> > +			   bool *valid_pages);
+> >  
+> >  u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end,  struct xe_vma *vma);
+> >  
+> > @@ -376,7 +377,8 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
+> >  static inline
+> >  bool xe_svm_range_validate(struct xe_vm *vm,
+> >  			   struct xe_svm_range *range,
+> > -			   u8 tile_mask, bool devmem_preferred)
+> > +			   u8 tile_mask, const struct drm_pagemap *dpagemap,
+> > +			   bool *valid_pages)
+> >  {
+> >  	return false;
+> >  }
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index d7e6644df4bc..7eed38b78e5f 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -2525,6 +2525,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+> >  			struct drm_pagemap *dpagemap = NULL;
+> >  			u8 id, tile_mask = 0;
+> >  			u32 i;
+> > +			bool valid_pages;
+> >  
+> >  			if (xe_vma_is_userptr(vma))
+> >  				vops->flags |= XE_VMA_OPS_FLAG_MODIFIES_GPUVA;
+> > @@ -2569,9 +2570,11 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+> >  				goto unwind_prefetch_ops;
+> >  			}
+> >  
+> > -			if (xe_svm_range_validate(vm, svm_range, tile_mask, dpagemap)) {
+> > +			if (xe_svm_range_validate(vm, svm_range, tile_mask,
+> > +						  dpagemap, &valid_pages)) {
+> >  				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
+> >  				xe_svm_range_put(svm_range);
+> > +				xe_assert(vm->xe, valid_pages);
+> >  				goto check_next_range;
+> >  			}
+> >  
+> > @@ -2586,6 +2589,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+> >  
+> >  			op->prefetch_range.ranges_count++;
+> >  			vops->flags |= XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH;
+> > +			if (valid_pages)
+> > +				vops->flags |= XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE;
+> >  			xe_svm_range_debug(svm_range, "PREFETCH - RANGE CREATED");
+> >  check_next_range:
+> >  			if (range_end > xe_svm_range_end(svm_range) &&
+> > @@ -3151,16 +3156,80 @@ static int check_ufence(struct xe_vma *vma)
+> >  	return 0;
+> >  }
+> >  
+> > -static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+> > +struct prefetch_thread {
+> > +	struct work_struct work;
+> > +	struct drm_gpusvm_ctx *ctx;
+> > +	struct xe_vma *vma;
+> > +	struct xe_svm_range *svm_range;
+> > +	struct drm_pagemap *dpagemap;
+> > +	int err;
+> > +};
+> > +
+> > +static void prefetch_thread_func(struct prefetch_thread *thread)
+> > +{
+> > +	struct xe_vma *vma = thread->vma;
+> > +	struct xe_vm *vm = xe_vma_vm(vma);
+> > +	struct xe_svm_range *svm_range = thread->svm_range;
+> > +	struct drm_pagemap *dpagemap = thread->dpagemap;
+> > +	int err = 0;
+> > +
+> > +	guard(mutex)(&svm_range->lock);
+> > +
+> > +	if (xe_svm_range_is_removed(svm_range))
+> > +		return;
+> > +
+> > +	if (!dpagemap)
+> > +		xe_svm_range_migrate_to_smem(vm, svm_range);
+> > +
+> > +	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)) {
+> > +		drm_dbg(&vm->xe->drm,
+> > +			"Prefetch pagemap is %s start 0x%016lx end 0x%016lx\n",
+> > +			dpagemap ? dpagemap->drm->unique : "system",
+> > +			xe_svm_range_start(svm_range), xe_svm_range_end(svm_range));
+> > +	}
+> > +
+> > +	if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, dpagemap)) {
+> > +		err = xe_svm_alloc_vram(svm_range, thread->ctx, dpagemap);
+> > +		if (err) {
+> > +			drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
+> > +				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+> > +			return;
+> > +		}
+> > +		xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
+> > +	}
+> > +
+> > +	err = xe_svm_range_get_pages(vm, svm_range, thread->ctx);
+> > +	if (err) {
+> > +		drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
+> > +			vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+> > +		if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
+> > +			err = 0;
+> > +		thread->err = err;
+> > +		return;
+> > +	}
+> > +	xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
+> > +}
+> > +
+> > +static void prefetch_work_func(struct work_struct *w)
+> > +{
+> > +	struct prefetch_thread *thread =
+> > +		container_of(w, struct prefetch_thread, work);
+> > +
+> > +	prefetch_thread_func(thread);
+> > +}
+> > +
+> > +static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops,
+> > +			   struct xe_vma_op *op)
+> >  {
+> >  	bool devmem_possible = IS_DGFX(vm->xe) && IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
+> >  	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+> >  	struct drm_pagemap *dpagemap = op->prefetch_range.dpagemap;
+> > -	int err = 0;
+> > -
+> >  	struct xe_svm_range *svm_range;
+> >  	struct drm_gpusvm_ctx ctx = {};
+> > +	struct prefetch_thread stack_thread, *thread, *prefetches;
+> >  	unsigned long i;
+> > +	int err = 0, idx = 0;
+> > +	bool skip_threads;
+> >  
+> >  	if (!xe_vma_is_cpu_addr_mirror(vma))
+> >  		return 0;
+> > @@ -3170,42 +3239,49 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+> >  	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
+> >  	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !dpagemap);
+> >  
+> > -	/* TODO: Threading the migration */
+> > -	xa_for_each(&op->prefetch_range.range, i, svm_range) {
+> > -		guard(mutex)(&svm_range->lock);
+> > -
+> > -		if (xe_svm_range_is_removed(svm_range))
+> > -			continue;
+> > +	skip_threads =  op->prefetch_range.ranges_count == 1 ||
+> > +		(!dpagemap && !(vops->flags &
+> > +				XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE)) ||
+> > +		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK);
+> > +	thread = skip_threads ? &stack_thread : NULL;
+> >  
+> > -		if (!dpagemap)
+> > -			xe_svm_range_migrate_to_smem(vm, svm_range);
+> > +	if (!skip_threads) {
+> > +		prefetches = kvmalloc_array(op->prefetch_range.ranges_count,
+> > +					    sizeof(*prefetches), GFP_KERNEL);
+> > +		if (!prefetches)
+> > +			return -ENOMEM;
+> > +	}
+> >  
+> > -		if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)) {
+> > -			drm_dbg(&vm->xe->drm,
+> > -				"Prefetch pagemap is %s start 0x%016lx end 0x%016lx\n",
+> > -				dpagemap ? dpagemap->drm->unique : "system",
+> > -				xe_svm_range_start(svm_range), xe_svm_range_end(svm_range));
+> > +	xa_for_each(&op->prefetch_range.range, i, svm_range) {
+> > +		if (!skip_threads) {
+> > +			thread = prefetches + idx++;
+> > +			INIT_WORK(&thread->work, prefetch_work_func);
+> >  		}
+> >  
+> > -		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, dpagemap)) {
+> > -			err = xe_svm_alloc_vram(svm_range, &ctx, dpagemap);
+> > -			if (err) {
+> > -				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
+> > -					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+> > -				return -ENODATA;
+> > -			}
+> > -			xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
+> > +		thread->ctx = &ctx;
+> > +		thread->vma = vma;
+> > +		thread->svm_range = svm_range;
+> > +		thread->dpagemap = dpagemap;
+> > +		thread->err = 0;
+> > +
+> > +		if (skip_threads) {
+> > +			prefetch_thread_func(thread);
+> > +			if (thread->err)
+> > +				return thread->err;
+> > +		} else {
+> > +			queue_work(vm->xe->usm.prefetch_wq, &thread->work);
+> >  		}
+> > +	}
+> >  
+> > -		err = xe_svm_range_get_pages(vm, svm_range, &ctx);
+> > -		if (err) {
+> > -			drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
+> > -				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+> > -			if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
+> > -				err = -ENODATA;
+> > -			return err;
+> > +	if (!skip_threads) {
+> > +		for (i = 0; i < idx; ++i) {
+> > +			thread = prefetches + i;
+> > +
+> > +			flush_work(&thread->work);
+> > +			if (thread->err && !err)
+> > +				err = thread->err;
+> >  		}
+> > -		xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
+> > +		kvfree(prefetches);
+> >  	}
+> >  
+> >  	return err;
+> > @@ -3336,7 +3412,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+> >  	return err;
+> >  }
+> >  
+> > -static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops)
+> > +static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm,
+> > +					     struct xe_vma_ops *vops)
+> >  {
+> >  	struct xe_vma_op *op;
+> >  	int err;
+> > @@ -3346,7 +3423,7 @@ static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops
+> >  
+> >  	list_for_each_entry(op, &vops->list, link) {
+> >  		if (op->base.op  == DRM_GPUVA_OP_PREFETCH) {
+> > -			err = prefetch_ranges(vm, op);
+> > +			err = prefetch_ranges(vm, vops, op);
+> >  			if (err)
+> >  				return err;
+> >  		}
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index 2f5f74fed9d2..68588b624212 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -556,13 +556,14 @@ struct xe_vma_ops {
+> >  	/** @pt_update_ops: page table update operations */
+> >  	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
+> >  	/** @flag: signify the properties within xe_vma_ops*/
+> > -#define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
+> > -#define XE_VMA_OPS_FLAG_MADVISE          BIT(1)
+> > -#define XE_VMA_OPS_ARRAY_OF_BINDS	 BIT(2)
+> > -#define XE_VMA_OPS_FLAG_SKIP_TLB_WAIT	 BIT(3)
+> > -#define XE_VMA_OPS_FLAG_ALLOW_SVM_UNMAP  BIT(4)
+> > -#define XE_VMA_OPS_FLAG_MODIFIES_GPUVA	 BIT(5)
+> > -#define XE_VMA_OPS_FLAG_DOWNGRADE_LOCK	 BIT(6)
+> > +#define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH	BIT(0)
+> > +#define XE_VMA_OPS_FLAG_MADVISE			BIT(1)
+> > +#define XE_VMA_OPS_ARRAY_OF_BINDS		BIT(2)
+> > +#define XE_VMA_OPS_FLAG_SKIP_TLB_WAIT		BIT(3)
+> > +#define XE_VMA_OPS_FLAG_ALLOW_SVM_UNMAP		BIT(4)
+> > +#define XE_VMA_OPS_FLAG_MODIFIES_GPUVA		BIT(5)
+> > +#define XE_VMA_OPS_FLAG_DOWNGRADE_LOCK		BIT(6)
+> > +#define XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE	BIT(7)
+> >  	u32 flags;
+> >  #ifdef TEST_VM_OPS_ERROR
+> >  	/** @inject_error: inject error to test error handling */
+> > -- 
+> > 2.34.1
+> > 
