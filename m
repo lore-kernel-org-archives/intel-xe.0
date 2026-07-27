@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 252CCC531D0
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jul 2026 17:27:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BD9FC531D0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jul 2026 17:27:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4773E10E4AD;
-	Mon, 27 Jul 2026 17:27:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B18710E483;
+	Mon, 27 Jul 2026 17:27:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XCjyyBGl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J5Q4KZME";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF64210E491
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Jul 2026 17:27:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7511210E483
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Jul 2026 17:27:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785173238; x=1816709238;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UA+OIShJDrLsFdhPyY8Ggc5dK36ExiI8xRntOTgME+E=;
- b=XCjyyBGl4SZVRIJjtaZXZzWjZZ1U3fRbC8UwB6R2/G8GYDTvPJsUnJn+
- I7EaKMV7OJkvgSuZ0gsEq/6KFzw177T0qiUwWbLRWIwnOZLof3WzKk7ww
- k7ccvllOSz+cyPLlk/aA+BGjM3wOWdl+Pr3ruYmHLt9+Ezkj5pxV3M8+t
- AI6UtYJBggWhd9pg6dWbVbCU2X9EZ4Hj7pruXEWgBKoMS4BB1PiPczNBZ
- JZgR82eOlaxEV3Vch7hYFgS8SuvRivb5PnnC2dm4IMzXuOObaYY3o95Ui
- oEqgoI220z+zGFSynjKzpOmR4STjU3y8Le2trQ55bRv0LDf8CJHgoKX0d g==;
-X-CSE-ConnectionGUID: x/MvzobbS9eH+XNHEsnHTA==
-X-CSE-MsgGUID: UgN2N9tyRim/D4vSrq2zNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="108542897"
-X-IronPort-AV: E=Sophos;i="6.25,188,1779174000"; d="scan'208";a="108542897"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2026 10:27:17 -0700
-X-CSE-ConnectionGUID: fC/+FLWuQsqioOOEQNpLLQ==
-X-CSE-MsgGUID: X/BG422sTqe9MjpsrpcA/w==
+ t=1785173263; x=1816709263;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=RF+wUYwuIXBVx+XHbJYkn7260jP2NqnS1k69RJ0Vq+4=;
+ b=J5Q4KZME8L3Q9X/5221fP96SQLbEVVOd95VA4lZjxYa6JUqEZjfM7c+s
+ oxiEXYmRdM0hMGxlhHZyXb4u8tOUqcIZ97DZFQTKfdfJ+KVFlqnHxiBv4
+ JnNZqv6h4bW7HIyn8cyyzSKA2uIaeXKvzRl3Svb54uBt/8ZGSljeyH9nI
+ iN91bb1LQuMUpX5+XWX/X9xz6e9eZn+gLffOF2zeseWPpJZ0DVzM5teEW
+ GKBBgU9rajVDXbeV0djuaBZ7/irm1I6MpCxd8/+Q+iCezDRBniZozzTlU
+ PP3GmhUaGIh3/njm5OJ5zcMO5wWqs17uE7UIoVZZ5DVlVu96P7JqAZYzU g==;
+X-CSE-ConnectionGUID: tnqu8VORRnek0EyOXMLgyw==
+X-CSE-MsgGUID: 6mVwwa8uRzmIUJlGGo0bqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="96410164"
+X-IronPort-AV: E=Sophos;i="6.25,188,1779174000"; d="scan'208";a="96410164"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 10:27:43 -0700
+X-CSE-ConnectionGUID: yCeSbwQ4QvOUkVa6+9L1LQ==
+X-CSE-MsgGUID: ikOfM/DLQAutUX7j45kHSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,188,1779174000"; d="scan'208";a="255159388"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2026 10:27:16 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v3 1/2] drm/xe/mcr: Take vcs1/vecs1 into account for first
+X-IronPort-AV: E=Sophos;i="6.25,188,1779174000"; d="scan'208";a="262955916"
+Received: from mcapezzu-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.38.25])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 10:27:43 -0700
+Date: Mon, 27 Jul 2026 10:27:42 -0700
+Message-ID: <87jyqg7375.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH 1/2] drm/xe/mcr: Take vcs1/vecs1 into account for first
  media slice
-Date: Mon, 27 Jul 2026 10:27:11 -0700
-Message-ID: <20260727172712.2877706-2-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260727172712.2877706-1-ashutosh.dixit@intel.com>
-References: <20260727172712.2877706-1-ashutosh.dixit@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260724211859.GH2327163@mdroper-desk1.amr.corp.intel.com>
+References: <20260724201129.2814030-1-ashutosh.dixit@intel.com>	<20260724201129.2814030-2-ashutosh.dixit@intel.com>	<20260724211859.GH2327163@mdroper-desk1.amr.corp.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,44 +70,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-vcs1 and vecs1 may also be present on the first media slice, so take
-vcs1/vecs1 also into account when determining if the first media slice is
-absent.
+On Fri, 24 Jul 2026 14:18:59 -0700, Matt Roper wrote:
+>
+> On Fri, Jul 24, 2026 at 01:11:28PM -0700, Ashutosh Dixit wrote:
+> > vcs1 and vecs1 may also be present on the first media slice, so take
+> > vcs1/vecs1 also into account when determining if the first media slice is
+> > absent.
+> >
+> > Bspec: 77977
+> >
+> > Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_gt_mcr.c | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > index 9799ffadf85d2..d069d141b54d6 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > @@ -454,9 +454,10 @@ static void init_steering_oaddrm(struct xe_gt *gt)
+> >  {
+> >	/*
+> >	 * First instance is only terminated if the entire first media slice
+> > -	 * is absent (i.e., no VCS0 or VECS0).
+> > +	 * is absent (i.e., no VCS0, VCS1, VECS0 or VECS1).
+> >	 */
+> > -	if (gt->info.engine_mask & (XE_HW_ENGINE_VCS0 | XE_HW_ENGINE_VECS0))
+> > +	if (gt->info.engine_mask & (XE_HW_ENGINE_VCS0 | XE_HW_ENGINE_VCS1 |
+> > +				    XE_HW_ENGINE_VECS0 | XE_HW_ENGINE_VECS0))
+> >		gt->steering[OADDRM].group_target = 0;
+>
+> This change could break other platforms.  E.g., a BMG card with VCS1 and
+> no VCS0 would steer to SCMI 0 based on this, but on BMG each VCS/VECS is
+> in its own SCMI so we might be steering to a fused off instance.
+>
+> We may need to add details about how many engines are grouped into each
+> SCMI to xe_media_desc and then use that value here.  E.g., Xe2_HPM is
+> 1/1/1 per SCMI (bspec 67103) whereas Xe3p_HPM is 2/2/2 per SCMI (bspec
+> 77977).
 
-Bspec: 67103, 77977
+Sorry, I missed that, you are right, but I think the problem is only with
+vecs's not vcs's. Anyway, I believe I have a simple solution in v3, please
+take a look at that and see if that is sufficient. Thanks.
 
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
-v2: Bug fix
-v3: Fix for BMG (Matt Roper)
----
- drivers/gpu/drm/xe/xe_gt_mcr.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 9799ffadf85d2..8beb4006cd891 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -452,11 +452,15 @@ static void init_steering_dss(struct xe_gt *gt)
- 
- static void init_steering_oaddrm(struct xe_gt *gt)
- {
-+	u64 hwe_mask = XE_HW_ENGINE_VCS0 | XE_HW_ENGINE_VECS0;
-+
-+	if (MEDIA_VERx100(gt_to_xe(gt)) >= 3500)
-+		hwe_mask |= XE_HW_ENGINE_VCS1 | XE_HW_ENGINE_VECS1;
- 	/*
- 	 * First instance is only terminated if the entire first media slice
--	 * is absent (i.e., no VCS0 or VECS0).
-+	 * is absent (i.e., no engines in hwe_mask).
- 	 */
--	if (gt->info.engine_mask & (XE_HW_ENGINE_VCS0 | XE_HW_ENGINE_VECS0))
-+	if (gt->info.engine_mask & hwe_mask)
- 		gt->steering[OADDRM].group_target = 0;
- 	else
- 		gt->steering[OADDRM].group_target = 1;
--- 
-2.54.0
-
+>
+> >	else
+> >		gt->steering[OADDRM].group_target = 1;
+> > --
+> > 2.54.0
+> >
+>
+> --
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
