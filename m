@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1818FC53219
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 12:42:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86A34C53219
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 12:44:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A21FC10E2A4;
-	Tue, 28 Jul 2026 12:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2914810E8C7;
+	Tue, 28 Jul 2026 12:44:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dP3XjubF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YR1pWSkt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE58E10E2A4
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 12:42:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB31E10E58C;
+ Tue, 28 Jul 2026 12:44:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785242550; x=1816778550;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=u7hHYu15k/BNU0t580JUGtLK/QGVEUpvaPtN1GGLl2U=;
- b=dP3XjubFbmCRLyyiL18yZ0vu/cxhx5RPF5e7AQvcmuQNimhOV4C47nK2
- 2b48xaI8uZ0+NTydn/7T2FbbA0PLF+r3PwVmSJSmoWCqKKJx23ye9vo20
- 3LexTnUMsW/dNsuPTMZFn4+EAyA9d/efAmS8Cc1BZhz+HtGm/9GL3cc9L
- ymnptRICAhouXTZO8VgsVvwLnTD3FntwjPOd+Rr2HHGjyugVH+Z3rQQ0x
- y7KxZDN6FzBrzfS9qnVMIb/mrf+SDbMKRmJsVYnBEHbcuTwSwlp/Z0OlI
- sJzxh+ayxLJ7sBxeTAqO07fL+o9HL58QQxLCz8bWMDh+DlEg6/CSY1AVG w==;
-X-CSE-ConnectionGUID: fi1jdbBoQUChBu7VVpF3cw==
-X-CSE-MsgGUID: HwT1vs5cRiGxmuFZsHD3eg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="86013705"
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="86013705"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 05:42:30 -0700
-X-CSE-ConnectionGUID: qmqEDdUYTF6AUCx+ku/3Ew==
-X-CSE-MsgGUID: lputB6TlQ6uWTFJYBGyQ7Q==
+ t=1785242692; x=1816778692;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=x9rtrycHLAhuGgveYtFi82L0vpXSapLKIa0ZY1pd6tM=;
+ b=YR1pWSktB3KunJ+TbWK6ECappRNaBtxnRDftF7FOTr4zKbaIBmYKYKVS
+ r5Ar+RM4stNnOvo+LZz8ardAOKzhtj9GA4WgdWQMwlcxXj6KwE4Nl2jUD
+ WCNewMLxPUICz7oEEgqO4O+l6ldatfgLNcida3DVjXQXsOb7HAH05gPeX
+ yWgoHAMYU/2HX4q0o2S53jNiaeBgM/6rHVx6ZxsW3D/TDKJabO93Sr64f
+ z9UGA4KUK4n0tTxhrjuwRTuwjkDVnMflEuydcwBN+kGpFd/Oq7kO3ZUhZ
+ DNnJfH1tp7My24WZPosafPdIYYyTaSw8j13g+PA2JImxTcEW/jNLgRSd2 g==;
+X-CSE-ConnectionGUID: +Ls7bvCAR5aQ9L3JINMNtQ==
+X-CSE-MsgGUID: JiBfDG6vTWmqqUF4/cDtgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="85838493"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="85838493"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2026 05:44:51 -0700
+X-CSE-ConnectionGUID: TDZ1IMrnR1GIDRVpGLZLOA==
+X-CSE-MsgGUID: oWC5BmY2QoWaIJHJLSWh3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="259770091"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.244.120])
- ([10.245.244.120])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 05:42:29 -0700
-Message-ID: <76db8482-5393-42f3-8173-a8681a3526d0@intel.com>
-Date: Tue, 28 Jul 2026 13:42:27 +0100
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="284234883"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2026 05:44:49 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V3 0/2] Add gpu_buddy_allocated_addr_to_block helper and its
+ Kunit tests
+Date: Tue, 28 Jul 2026 18:14:39 +0530
+Message-ID: <20260728124438.2679542-4-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] drm/xe: Extract override_has_cached_pt()
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
-References: <20260724-wa_14026539277-v2-0-ad786cc6ba1e@intel.com>
- <20260724-wa_14026539277-v2-1-ad786cc6ba1e@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260724-wa_14026539277-v2-1-ad786cc6ba1e@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,63 +68,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 24/07/2026 22:44, Gustavo Sousa wrote:
-> Some platforms support cached page tables, but some workarounds might
-> require disabling the cached access on the CPU side.  One such example
-> is Wa_16029380221, but there could be others as well.  Extract the
-> code responsible for overriding xe->info.has_cached_pt into a new
-> function called override_has_cached_pt(), so that we have a common
-> place to add the necessary runtime checks specific for has_cached_pt.
-> 
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Add helper with primary purpose is to efficiently trace a specific
+memory address back to its corresponding TTM buffer object.
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Also Add KUnit tests for testing it.
 
-> ---
->   drivers/gpu/drm/xe/xe_device.c | 24 ++++++++++++++++--------
->   1 file changed, 16 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 4eed9a251e65..5189419a0593 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -831,6 +831,21 @@ int xe_device_probe_early(struct xe_device *xe)
->   }
->   ALLOW_ERROR_INJECTION(xe_device_probe_early, ERRNO); /* See xe_pci_probe() */
->   
-> +static void override_has_cached_pt(struct xe_device *xe)
-> +{
-> +	struct xe_gt *gt;
-> +	u8 id;
-> +
-> +	/*
-> +	 * Wa_16029380221: The affected GT will always use non-coherent
-> +	 * access to page tables, so we must do uncached writes from the
-> +	 * CPU.
-> +	 */
-> +	for_each_gt(gt, xe, id)
-> +		if (XE_GT_WA(gt, 16029380221))
-> +			xe->info.has_cached_pt = false;
-> +}
-> +
->   static int probe_has_flat_ccs(struct xe_device *xe)
->   {
->   	struct xe_gt *gt;
-> @@ -950,14 +965,7 @@ int xe_device_probe(struct xe_device *xe)
->   			return err;
->   	}
->   
-> -	/*
-> -	 * Wa_16029380221: The affected GT will always use non-coherent
-> -	 * access to page tables, so we must do uncached writes from the
-> -	 * CPU.
-> -	 */
-> -	for_each_gt(gt, xe, id)
-> -		if (XE_GT_WA(gt, 16029380221))
-> -			xe->info.has_cached_pt = false;
-> +	override_has_cached_pt(xe);
->   
->   	for_each_tile(tile, xe, id) {
->   		err = xe_ggtt_init_early(tile->mem.ggtt);
-> 
+v3
+- Drop unused target_addr variable
+v2
+- Drop the mutex and lockdep annotation; standalone KUnit tests do not
+  register a driver lock.
+
+Tejas Upadhyay (2):
+  drm/gpu: Add gpu_buddy_allocated_addr_to_block helper
+  gpu/tests/gpu_buddy: Add KUnit test for
+    gpu_buddy_allocated_addr_to_block
+
+ drivers/gpu/buddy.c                | 53 ++++++++++++++++++++++++++++++
+ drivers/gpu/tests/gpu_buddy_test.c | 41 +++++++++++++++++++++++
+ include/linux/gpu_buddy.h          |  2 ++
+ 3 files changed, 96 insertions(+)
+
+-- 
+2.52.0
 
