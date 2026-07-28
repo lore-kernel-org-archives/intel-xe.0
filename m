@@ -4,64 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A80CC55172
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 22:07:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC28C55171
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 22:07:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAB7510F0CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FAC210F0C6;
 	Thu, 30 Jul 2026 22:07:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ugreen.com header.i=@ugreen.com header.b="JGc2T21h";
+	dkim=pass (1024-bit key; unprotected) header.d=ugreen.com header.i=@ugreen.com header.b="IBvMuJv/";
 	dkim-atps=neutral
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.155.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A788610E52A;
- Tue, 28 Jul 2026 06:18:00 +0000 (UTC)
+X-Greylist: delayed 2311 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Jul 2026 06:56:06 UTC
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF7B010E532;
+ Tue, 28 Jul 2026 06:56:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ugreen.com;
- s=pkvm2402; t=1785219454;
- bh=IKr/xBiap9QPDPCSVpn98P0/Z/fzgZ4/NfU/RLKVtCc=;
+ s=pkvm2402; t=1785221727;
+ bh=DItCFw3ZM1/6TvIXqKKL/PLAbi+vl6KkZbM1Uo4hj7Q=;
  h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=JGc2T21hWsZTe9sKmr9UTziWlturj7SmsB8oM2o0f5XJZo2CRlvhsjgkAyzFMPiQY
- 6wcTB7dCgJI4TemJh18pQ02x8k41FsrWEv7lPsZ9xafrOuVsSrhLP7WQ+AmyquimDE
- 5ETZ5D0mpc//WoduIuDbCH0wZ9NCHMah5dVXj3AE=
-X-QQ-mid: zesmtpsz7t1785219446t70fee9d6
-X-QQ-Originating-IP: p8L3zlY7hvQavcP/y5EST1VwZSbwTEWUR43h+3UjyqY=
+ b=IBvMuJv/gaZzOPfp0t2MrR6LrSyUGxVM5XB4jxmiw3DDb9aLTF75D+SykawE4k6kQ
+ 81sOpvPPtAZy5JTuQ+Y5REEvzyZ+Mujtkkj++jmE/pXCQSgnzvnzTn9pU5WwRc4Ut9
+ iwqALUkuvxPOenUPe5bjFetKBJuYOIOhHhISv5T0=
+X-QQ-mid: esmtpgz16t1785221719tc3b98b08
+X-QQ-Originating-IP: 9innfBLIQxQZSvkaPMkFYtB2dnrE+VaVX2kptGcGCk8=
 Received: from localhost.localdomain ( [113.90.157.158])
  by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 28 Jul 2026 14:16:55 +0800 (CST)
+ id ; Tue, 28 Jul 2026 14:55:17 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 11062680780444015281
+X-BIZMAIL-ID: 2462819298408965018
 From: Neil Zhong <neil.zhong@ugreen.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 1/1] drm/xe: keep VM-bound WC BOs resident during reclaim
-Date: Tue, 28 Jul 2026 14:14:43 +0800
-Message-ID: <4BF27CE161436C73+20260728061443.33616-2-neil.zhong@ugreen.com>
+Subject: [RFC PATCH v2 1/1] drm/xe: keep VM-bound WC BOs resident during
+ reclaim
+Date: Tue, 28 Jul 2026 14:55:12 +0800
+Message-ID: <FEC04D5B1E58A204+20260728065512.59911-2-neil.zhong@ugreen.com>
 X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260728061443.33616-1-neil.zhong@ugreen.com>
-References: <20260728061443.33616-1-neil.zhong@ugreen.com>
+In-Reply-To: <20260728065512.59911-1-neil.zhong@ugreen.com>
+References: <20260728065512.59911-1-neil.zhong@ugreen.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:ugreen.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: NuZvjORXcxgLG6wmvnSq4ukANbhuoLEMKgwd/q4ObQNKuxEqYD7Xntvh
- b0Lw3nQFGCwYjr1cWl3/CgFERbzZq/gYQ3wtDOLj/k9Ph1nkXkMvp5iqwC4lnyqkl7AtXIr
- cwI57xkMUoHt8mtU/iwW6S+8TPZ+RYbhfTpMJ0I4hJj6gV1bOZzJVKpqqSncde1ocZLzkxj
- dw2Ny0VpkvpkWkbgUvhWkMcTsP320WfkGHiu4D6Rzj7itkZp7htBc/BuuOa7/+laL751CtN
- zskPXM2ztazK185J6i27TUVWrInMXqhAggTKY9QDQcj4yq+8yp4HfvSkY3+8m08IhR9izjM
- CMg9M7hoPXK55ESoWsS+tCaKNgx5X8v4CVDg/CkATxg5gwYfmWfIm0Oi33gKKZZCPseXD8c
- dz9feZAztBt2EMhv8Sz9u2lnmgy2huppzeipp4hIAMKOXRadbsumPL74wBzYAlOn8fHhrU1
- cbwCoxt60/6OMQRqaqZRKquvx+iI2BlwQa8+nYP2StZaCqmVHHZZZ6Yhzckpez1dYV9EoZm
- uDUqG6XZOzS6zcV0rbUyH1EPR+5TwF2i1LI87X6lcHEo78Pf9n7xkSfmYHfOYg2IE5rav+d
- 1dEwQ3ifwQLAVs1tef7QX3DivNslrMQ4HfD5Jxwk7ni4bBubJlWGwmE5uPJiycBs4qYPXxZ
- c/zZCdjoI7glPlJUUYBgZVX5G02MbS+4pMrEnBCE0A3S94pYVgqKaRlcdyJqXu1Fi1gJkVn
- H5A4nOnalksOyYF4KJhXA7VPEc4k+MbwRQKz4g/XhsC4LalDySrJ7fgVUHOrsuVHo1MhaWJ
- QmR7U8+n+ERFrN1l5iid1jqq159ixB1q5B8HA9fsMSE/H3KCoJGdUTnZYHYQGE75RRz1SI/
- YY74brpGkgb0UnXSobNHijN/pG9MNX70syye0DEUod0C1f4qns4jMnEM+jKjnTl4M5Du+sK
- uUyUT4Gu6Z6r4MRKZcwRDvbT2nAMLpHwZSJqK+T/FuIgVt3zknCrbxuGKXJb7DrYLRQ4NSs
- RgozFbT/KFgnbitYwr
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+Feedback-ID: esmtpgz:ugreen.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: OQhZ3T0tjf0aXvfI3wMhvPcgzynO5MSCVEVTMjx2o05qF9QC51noEaNQ
+ zZGSBKjQLaJg07Fb8tf1B82+6gNiD6vi3M/uoLRC7AviAoHzbuovY4zfKByEXD4xQ1W7KWc
+ 0/7dqNSZBkcceg2o8C4Pro3FEM4AvvqYylhjxfQOeLWCaGHyaMexq0TelY6bpZ9b+PRA3dH
+ 0Vhdx6n7hOd5k3UBpM77mOpIsD7B4jAHyftADknOax0EEWMLP2dAmp+BAI4ssizzVJkyf6R
+ TLTCPvLIiZYtjBAdEvX//CC9JDlVSbwCwzPmpQyPBp7jOrkyz8yQ3W4sY1mCLO8L3iyz4gf
+ VtX3xiIWxv2MsiZiwhguRFWeqlRj3I5bs6k7pBj+kimi79AevjBJfSeqT3bmTT9olLyIeSK
+ PM+yinuvrgyKoSe+O5prq7CXlCujy7a6KXiqF9N7ME0rEtiX5dPRN8UoK6gYpRbrbEdp5N6
+ IbSSVE31s/71LLbRS+0AsxvDumCbaVU1MjpIKBsGdIVlGlhJBoX8cPLWDqFpR8ikxquBUXg
+ x9dXLgxdfyh2b1xX0BMQ5aheO9cgbbmRHfGMcr8MCIq3nrpJ/fz0vMxG555iUooRLVhvMl7
+ LOrVm5evntfamf/D7S26W51M9kVndo4zAsDRYq7YC3OuTUS9Ow46OHRPK3D1m5MJRsDEUd1
+ u9vxz+HC2Sci5CLSfH+mUiJGamd31UhfVXUQugevVezHvW68eTMa5zS8ZEL6pl+iZiw+dLj
+ sezch/YKnsTWmAs6PrudjJCtbz2uV1tLds0s26qJ7V++i8hfyZ+YmpoZ78oQHIeztzW51KH
+ g/5dBaxX5vBar4nnVrk9D4KgwI3govOEoMmowQQVjqYMFR6L6I1Nkt+Y2mIZbJYMUE06jDu
+ bJDHB2VRllMvmRE++lu7nmslY/n9Q7ftyJNukPV/faa0/3VWMvvHcUmrEMFgfqDP/1hSOpT
+ 2Frs6fx8Ou9d9VMj2qk3cD7BxEpIbJ46x2N9ePxemDNVsDftaZSDx3eZzsfOslXDat5cePS
+ RjSGz4lypAm2X10g8sHLR5Kf871tTB1dFpNiRIiJww5opcdtmDrz/NVJOPs3N3HZvqXC8e+
+ A==
+X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
 X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Thu, 30 Jul 2026 22:07:25 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -112,6 +116,10 @@ five 24 MiB surfaces while playback continued.
 
 Signed-off-by: Neil Zhong <neil.zhong@ugreen.com>
 ---
+Changes in v2:
+- Call ttm_bo_shrink_suitable() before the Xe-specific WC predicate, so
+  ttm_bo->ttm is known to be non-NULL before checking its cache mode.
+
  drivers/gpu/drm/xe/xe_defaults.h |  1 +
  drivers/gpu/drm/xe/xe_module.c   |  6 ++++++
  drivers/gpu/drm/xe/xe_module.h   |  2 +-
@@ -171,7 +179,7 @@ index a0eb7db0..bf2c49ce 100644
  #endif
 -
 diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-index 83374cd5..caa39f39 100644
+index 83374cd5..edbc22b2 100644
 --- a/drivers/gpu/drm/xe/xe_shrinker.c
 +++ b/drivers/gpu/drm/xe/xe_shrinker.c
 @@ -11,6 +11,7 @@
@@ -213,16 +221,15 @@ index 83374cd5..caa39f39 100644
  static s64 __xe_shrinker_walk(struct xe_device *xe,
  			      struct ttm_operation_ctx *ctx,
  			      const struct xe_bo_shrink_flags flags,
-@@ -75,6 +100,9 @@ static s64 __xe_shrinker_walk(struct xe_device *xe,
- 			continue;
- 
- 		ttm_bo_lru_for_each_reserved_guarded(&curs, man, &arg, ttm_bo) {
-+			if (xe_shrinker_skip_bound_wc(ttm_bo, flags))
-+				continue;
-+
+@@ -78,6 +103,9 @@ static s64 __xe_shrinker_walk(struct xe_device *xe,
  			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
  				continue;
  
++			if (xe_shrinker_skip_bound_wc(ttm_bo, flags))
++				continue;
++
+ 			lret = xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+ 			if (lret < 0)
+ 				return lret;
 -- 
 2.50.1 (Apple Git-155)
-
