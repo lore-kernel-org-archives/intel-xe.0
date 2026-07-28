@@ -4,154 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B68C4C54F54
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 19:25:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B22BC54F52
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 19:36:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 775A910E5D7;
-	Tue, 28 Jul 2026 19:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 261E510E5E2;
+	Tue, 28 Jul 2026 19:36:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h9YOXQod";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WZa0Bl4a";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39C7D10E5D7;
- Tue, 28 Jul 2026 19:25:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785266713; x=1816802713;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=sHg7Uj9jyKhC3bUWuAcJWFSRW8DFBVo4BM40sEKo/do=;
- b=h9YOXQodmvLHtEhk6XNPI/alUIKx9fNzNXMfW9iwmPG7Y9ZlpIOzszvH
- ar2VjBnv/eXbHXdYaIgQNsSo3/GKwqLF1d/AO0wb2R03ysmex7QMUV+Lb
- N8qgmj0vWcaqfCpve/LQ0HZcCk6La5NkCKu8soPF/f9vA2r6oinFNN06r
- G/gy6flBlGjNO+3HR3R6PGJZQS9+kcTuGn3gi7Dxfof7iju3Pf1Sn9ZOs
- D1Rzyshh82VDsvtzIcJ77v+6zg0eNs/seXFmx4AzyJ8b5d8eDbo7zZdAV
- MYY059rg05/s9N+0MHxjMEVwGe3pPX1/EegRpB0LT76hZB5X8qixFQVKR w==;
-X-CSE-ConnectionGUID: Gdn9mVWUTYeHI5jR+0SU4g==
-X-CSE-MsgGUID: +OvmKkC+TsKHW/zU2D9zIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="86055772"
-X-IronPort-AV: E=Sophos;i="6.25,191,1779174000"; d="scan'208";a="86055772"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 12:25:12 -0700
-X-CSE-ConnectionGUID: +g8Rj/gfRE+5/SSQlS01Cw==
-X-CSE-MsgGUID: mjee+6v0TSmvecktjHY5vg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,191,1779174000"; d="scan'208";a="264809348"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 12:25:11 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 28 Jul 2026 12:25:10 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 28 Jul 2026 12:25:10 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.61) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 28 Jul 2026 12:25:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n3RGJlB6Ghx9GJMrcmrqqRja5gbYluDWmk3WOt5Jwgc14iChOV/hhDYmtXT6XsZhe/iPtGVdPAPtPz0HS/TviQFEsoZHOLs2L/w8pvj+f0IQBpTYvCjvRulfk1G61Kq5+tc8qdb5aX0dXD+qIXvciMh+5LjXIVbNm5Ba6zjL/mVCwIbDIv1k0CNSs2k/XRJsiWG3yl6xLdU0LzjBV5t4mSlltnx81SJ7wtG/5m9oJrZ/pFwHN9/2jp5/lRJ+829IL36isSNEAxa4j/BcfyUxUcNYEIZrodQwm22cLMz8fGIsdGxOe5/BsxIMDAQW4kTupBt+0DGHxZ0+nokijEB7sQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nZPDVV/VaJyRNddM2mxdGRgHh6zJ2knZzKxSsZsyJD4=;
- b=V9dT86uvQBpwvbzpSGZj4uPx7QqtHJXEwS6AQ1Hc6MUoUQn+aQo2NA6ozf10fOO0u6c1Xb+tYfNCU6lmEuaceif0rpqjj6zANx4O4JnTnaqBqWDv1OC6XrNt5TkIdWsMETtclNRlYP+odzmJy59yijgLy/sZ9EQ2FxD43eAYKz1fdhVf4DzK8yKMZeAeLAu04NcPHvPICQ8WSjxhsHHzKVsZ+zZT0JQFABjFaDw1r2usi3DLcEv8YFVV42xoKa1kNQwyt42qByLFwqdPEexkrta249jRLCxZJr6ZIvIhw7x1PyL6kHM6Bi0C+JnQgK9gWe/vwbdfGrCCT/vepBjQ2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by DS3PR11MB9623.namprd11.prod.outlook.com (2603:10b6:8:38e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.12; Tue, 28 Jul
- 2026 19:25:09 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0270.009; Tue, 28 Jul 2026
- 19:25:08 +0000
-Date: Tue, 28 Jul 2026 15:25:03 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <andrealmeid@igalia.com>, <christian.koenig@amd.com>, <airlied@gmail.com>,
- <simona.vetter@ffwll.ch>, <mripard@kernel.org>,
- <maarten.lankhorst@linux.intel.com>, <tzimmermann@suse.de>,
- <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <sk.anirban@intel.com>,
- <raag.jadav@intel.com>
-Subject: Re: [PATCH v12 4/4] drm/xe/ras: Use fault-inject to trigger punit
- error handler
-Message-ID: <amkCDzvNVZOXNz9N@intel.com>
-References: <20260724100302.706685-6-mallesh.koujalagi@intel.com>
- <20260724100302.706685-10-mallesh.koujalagi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260724100302.706685-10-mallesh.koujalagi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0243.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::8) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F18A10E40B;
+ Tue, 28 Jul 2026 19:36:04 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 117604029E;
+ Tue, 28 Jul 2026 19:36:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE5391F00A3A;
+ Tue, 28 Jul 2026 19:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1785267363;
+ bh=gYUR4xB4aRwXq06Gc2LEXbjTJfiKmGLAUsIcZfM4LSs=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=WZa0Bl4aUM4kIvScqfGaPW+tX9VDNsp5/KH1YZ8H5u3kxx6WFz0TXZsvUIiqnPM5Q
+ /4Yem5Vmurck8NmLF4ItsT1zeHY/0lmDIChER8jHRMx/8SKsmr5ie7l1N90sd8cYHT
+ D/3IwbdTraapcOCh/fLNka5JbqNNOg6AXLvua1eyOnneKRUGs5cDX2K1OYXANPeqiI
+ EWwvcCYr+Wts3+/Gr3EQRQ1hfsxtl1Kez7xRnDdVl7+bjyy2gUYXJP8upjUtaQT5uW
+ uAfDmQjuMPoC2ldkyHnJCHnjG0nsrvJ3bbGFzN4QRUVwirY57FfukWnmzMzgGGtj46
+ g7+0Lmz/e3lRg==
+Message-ID: <32518229-bf13-4b48-8de1-25b7bd8edeab@kernel.org>
+Date: Tue, 28 Jul 2026 21:35:58 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|DS3PR11MB9623:EE_
-X-MS-Office365-Filtering-Correlation-Id: b794fce7-c19c-4fbb-652d-08deecddef68
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|4143699003|11063799006|56012099006|10067099003|6133799003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: R9wc4tbnNEea0vqz4bXbbFGsy+VFpsob4a/4Mmd5ZzI0G23gkqoumv9JXdS2qKxlIyqQosI9pJGvi9v7m3vtfeAgd113wDDZrkDLq9cuytpy/C47MmZqU18zTvX+5TLOSLjyJxANn84nvTX2SeO+H4zsBzinz/U97cYvCjWMSUFo2FYVJ1D7UfYE/aFji7svUpREg74/UMIezn/+grI8xzMpuscmairbauavBr9kgyv3EHznX9eKpdyZx2R3i0t2KV1uCGW3UpwhEjJ4NlP54YcGBgyKDB0+UN4/ro2vURhdGV0DU6axeGwU4maHlgE4IbvnE6CuZqQypUBleKz+9cj/ZLpJuK/SVld7FH3LdRqtilcP2wlF8xfbTDbCJt+tUcvG2LmsxsRf5DfKWnoImFKdQ5plbuoY4YQ8us2qWO05nseavE24KXooMMNRZ2bG679nVQMNlZj0Am80bOtfXX4qUToHK1Mf5NodGVWOuKoAo50q+jYep9bCe8wgLysr6cFT2pRVbwvnRLENRbq+FYuoUWagDAiv/H+RcKojagtUhewKIRpx5zenOlpSGVEP+cO2SdfFza2fhsd6Pfz+m0/ItEi7eQZDkPQ8OgDJvh2XqAJGHNmasY8dvHjo2GtTeBXvonQ3AamGWJqUExFBHTIWsosX7SOrdO1Z3kGKXE0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(4143699003)(11063799006)(56012099006)(10067099003)(6133799003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?rSu4XYQ9X0+9+wVIFYc2GsEa/AjHICUk7iAIoLRWOj7t3GGPQ2TohcSSon?=
- =?iso-8859-1?Q?fShnDkDDuQDbEwqGTY5JyFsOO5kceeGDHnrX8ZqCl/fXJl81fkYLNOCdIM?=
- =?iso-8859-1?Q?Pzq3aVQtVvfOV+bB41FZFCTu3qZwbhBPr8a4+sZbX4KR4BLRFm7SdvViMn?=
- =?iso-8859-1?Q?njoAYlHx1Kbk76yyOlcmSKS5OOFvIemqLBdoJHvvIIqJJjttt9Q4IVNvMv?=
- =?iso-8859-1?Q?t9Hg4wQmI7NnNvcYyDGOnUQWyOZFiMvmqi7A3zhgUh7F0uNPztkwQhGL0V?=
- =?iso-8859-1?Q?2eI90mbVkK+bkW/9dxADVz21bL43EW7kWE10tGP0Hi3yE744H61IrGI5Nc?=
- =?iso-8859-1?Q?u835ZSBYez8l5H/3UQkhiK+DUKrr8oa+EaXfTbFq62NOBMRHulpUALALTk?=
- =?iso-8859-1?Q?l4C07Rjd63x0jLA21le9ecHLtRL1hPu3SZSUa3KlKq/NgznSHRpEnOJJOo?=
- =?iso-8859-1?Q?EcscJnhJWeE1i55SDgVhPhA8oLXKW4cLvP6wTCu4MDnDcyabKZJLklXfy0?=
- =?iso-8859-1?Q?morc37V4CdQe/codHPTUDBQv1FujEYvV8zDurtVnuzTnNrt+pAf4N+Cttx?=
- =?iso-8859-1?Q?7R+zDbRTOSeJnnvXr5WjrfLiAn/kPCxoPdN8UUQupt45/xEz13GiYUubP6?=
- =?iso-8859-1?Q?kgT72PZvOiQjrlS28capJEq8k88hY9gp/OUmhRB8jLeJR74n4tZ//AzyrP?=
- =?iso-8859-1?Q?i56wbQw8fjHMkmJ+F1dOlozBjNGR/Z4DoWsMktJ2OitobMiIGHTtNTXOpN?=
- =?iso-8859-1?Q?DjEux3qkFkymKiwooKa8qzxdLNXd8+NEkf2Lj4ejCT509XAZL4MqityhTY?=
- =?iso-8859-1?Q?VOyS594aAYK3VIIUYo9UqSf/k22f4W7qnmIjhQIXdGTJMNnL5Q1+kHizWX?=
- =?iso-8859-1?Q?aqp4CaF6Gi4+QZdXrcS2FMx6gclLGNhcPafVJCRmsS5YaS3ytSYJz3C9lK?=
- =?iso-8859-1?Q?WInu/YnUjyB7kjAKmQPZKBywj0bbhGdY7KxUF4lyDZEp8f13AaaLxlAK5f?=
- =?iso-8859-1?Q?8AOHpxC3YqjhqALA9a0JbBLmqhTff1azwLqyWsuCQFmXtQ+8A8v6neZFCl?=
- =?iso-8859-1?Q?zWv079vxSr2/ZJXybYcuIJBpBp32d+H/+DAFLsBSiKJOGyKdGyrnUAvIoI?=
- =?iso-8859-1?Q?8dHRCo6BjNwpfOccApXerPciZ+w1S+5pDU0ss4q3rqfMREryl1PGKtCaSN?=
- =?iso-8859-1?Q?k/+wYONgrrOJ1fTL4TJpyZYq4JGt1V2BC1+w5wBOIBdYhYo6JIqUgpskct?=
- =?iso-8859-1?Q?tL/KRSqp0ot6M4C3HW7h+6K40XXReCCivqJwHQU/Wh/mxNzYkRT9QjGp6f?=
- =?iso-8859-1?Q?2Ki/FryZgrG+zhFEna7OQlODdwLnYsGQiqfG0deJnlmWulM0w5/Upwz+Q+?=
- =?iso-8859-1?Q?EDLA5IZcFKlqjQ05uNaLwp02GU+9VxMj9HlsI2/KW5EH0enSN8tF2V5AJ6?=
- =?iso-8859-1?Q?VWkegoyqY+bRn+ewhq4sexdOQJqRYfm2HQViSgccNB0HCSIKj0Au0VQjR1?=
- =?iso-8859-1?Q?gckgR2mcQP9O7ZOnSi+TEq/Ag5OcSNsUTh6TdQV6pHGmpjTht62iLeQGQq?=
- =?iso-8859-1?Q?z3wvWFkCg/w1hgSTNOZdeK/q6eSXXbTZ+8xY0NHWiqn/7DK29RASGqN/fr?=
- =?iso-8859-1?Q?2hP06ezOGklbuCat2ms0hRUfkMwEW9uBGk4YBUmlfPXd73NPaoEeT9dtvd?=
- =?iso-8859-1?Q?mA/+J6zk2alc16QLBg0BDgGLxsvttVoAksHme652sKJM8pLuiIbQqhcz2T?=
- =?iso-8859-1?Q?8yQ/hLcRmZthNxXUDLqHvUlH0JSmF+TMyuhfBJSHr1mHjlAofDf1doQnUQ?=
- =?iso-8859-1?Q?JKG99iMwNg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: hQbdwLNvsecYrnJOz4gxRWAJjaOnapA5dfcJZGFGYWc/4rPQG90o9DVQs8W/f69OZF2SDcglXZM3mLem1Lt6uN716x0LS4FzuxHl6qN5yIRxBxD5oQva8FoHIIn92+6qBdThE/Fk7JXIVrXqa90qvk79fsDZYUsywcMrDMvS+ffWQ61estDs+GyvxQWm7f1m1MW+GRHQ9kzRfqR3xYA6bmIt3oUsAInx4lxM9QWWH+gRNUJCw4pZziGpdObThexX4eORIMBZgPthaOClyyim0gagMXsi3LXoixyi2nXeh/7aU1dxlhzxt2GEAphzdJHgYeV3d0pGB91rmEer0FCIgA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b794fce7-c19c-4fbb-652d-08deecddef68
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2026 19:25:08.4572 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k7mPSO2V2BYMFEyTTdt2a9+XOoxiCUjol9c1aiJpN26uHY8+A+pd/SSYVYjQXlRx07VyCmMQgYoeBzxj8gF1cA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR11MB9623
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 0/5] Migrate on fault for device pages
+To: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>, linux-mm@kvack.org
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
+References: <20260525084524.139868-1-mpenttil@redhat.com>
+ <1612d4cf-b725-4ecf-8618-51a33537f59d@kernel.org>
+ <72e2bdfd-c883-47a8-b121-42a1fe160d9d@redhat.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <72e2bdfd-c883-47a8-b121-42a1fe160d9d@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,110 +112,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 24, 2026 at 03:33:07PM +0530, Mallesh Koujalagi wrote:
-> Use fault-inject framework to trigger punit_error_handler()
-> for testing.
+On 7/16/26 15:40, Mika Penttilä wrote:
+> On 7/16/26 16:15, David Hildenbrand (Arm) wrote:
 > 
-> Usage:
->   echo 100 > .../inject_punit_error/probability
->   echo 1   > .../inject_punit_error/times
-> 
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_debugfs.c |  4 ++++
->  drivers/gpu/drm/xe/xe_debugfs.h |  2 ++
->  drivers/gpu/drm/xe/xe_ras.c     | 17 +++++++++++++++++
->  3 files changed, 23 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index 5a3877fcb0f0..5599d493feca 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -42,6 +42,7 @@
->  
->  DECLARE_FAULT_ATTR(gt_reset_failure);
->  DECLARE_FAULT_ATTR(inject_csc_hw_error);
-> +DECLARE_FAULT_ATTR(inject_punit_error);
->  
->  static bool csc_hw_error_available(struct xe_device *xe)
->  {
-> @@ -62,6 +63,8 @@ static struct {
->  	{ .name = "inject_csc_hw_error",
->  	  .attr = &inject_csc_hw_error,
->  	  .is_visible = csc_hw_error_available },
-> +	{ .name = "inject_punit_error",
-> +	  .attr = &inject_punit_error },
->  };
->  
->  /*
-> @@ -76,6 +79,7 @@ bool xe_fault_##name(void)				\
->  
->  FAULT_ACTION(gt_reset, gt_reset_failure)
->  FAULT_ACTION(csc_hw_error, inject_csc_hw_error)
-> +FAULT_ACTION(punit_error, inject_punit_error)
->  
->  static void xe_fault_inject_debugfs_register(struct xe_device *xe,
->  					     struct dentry *root)
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
-> index cd56f7442b99..dd57914dd4f2 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.h
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.h
-> @@ -13,10 +13,12 @@ struct xe_device;
->  #ifdef CONFIG_DEBUG_FS
->  bool xe_fault_gt_reset(void);
->  bool xe_fault_csc_hw_error(void);
-> +bool xe_fault_punit_error(void);
->  void xe_debugfs_register(struct xe_device *xe);
->  #else
->  static inline bool xe_fault_gt_reset(void) { return false; }
->  static inline bool xe_fault_csc_hw_error(void) { return false; }
-> +static inline bool xe_fault_punit_error(void) { return false; }
->  static inline void xe_debugfs_register(struct xe_device *xe) { }
->  #endif
->  
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 92b4181026cb..da06c16cf7ed 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -3,6 +3,7 @@
->   * Copyright � 2026 Intel Corporation
->   */
->  
-> +#include "xe_debugfs.h"
->  #include "xe_device.h"
->  #include "xe_drm_ras.h"
->  #include "xe_pm.h"
-> @@ -391,6 +392,22 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
->  	size_t rlen;
->  	int ret;
->  
-> +	/*
-> +	 * Only allow the injected PUNIT error once the DRM device is registered.
+>> On 5/25/26 10:45, mpenttil@redhat.com wrote:
+>> From: Mika Penttilä <mpenttil@redhat.com>
+>>
+>> Currently, the way device page faulting and migration works
+>> is not optimal, if you want to do both fault handling and
+>> migration at once.
+>>
+>> Being able to migrate not present pages (or pages mapped with incorrect
+>> permissions, eg. COW) to the GPU requires doing either of the
+>> following sequences:
+>>
+>> 1. hmm_range_fault() - fault in non-present pages with correct permissions, etc.
+>> 2. migrate_vma_*() - migrate the pages
+>>
+>> Or:
+>>
+>> 1. migrate_vma_*() - migrate present pages
+>> 2. If non-present pages detected by migrate_vma_*():
+>>    a) call hmm_range_fault() to fault pages in
+>>    b) call migrate_vma_*() again to migrate now present pages
+>>
+>> The problem with the first sequence is that you always have to do two
+>> page walks even when most of the time the pages are present or zero page
+>> mappings so the common case takes a performance hit.
+>>
+>> The second sequence is better for the common case, but far worse if
+>> pages aren't present because now you have to walk the page tables three
+>> times (once to find the page is not present, once so hmm_range_fault()
+>> can find a non-present page to fault in and once again to setup the
+>> migration). It is also tricky to code correctly. One page table walk
+>> could costs over 1000 cpu cycles on X86-64, which is a significant hit.
+>>
+>> We should be able to walk the page table once, faulting
+>> pages in as required and replacing them with migration entries if
+>> requested.
+>>
+>> Add a new flag to HMM APIs, HMM_PFN_REQ_MIGRATE,
+>> which tells to prepare for migration also during fault handling.
+>> Also, for the migrate_vma_setup() call paths, a flag, MIGRATE_VMA_FAULT,
+>> is added to tell to add fault handling to migrate.
+>>
+>> One extra benefit of migrating with hmm_range_fault() path
+>> is the migrate_vma.vma gets populated, so no need to
+>> retrieve that separataly.
+>>
+>> Tested in X86-64 VM with HMM test device, passing the selftests.
+>> For performance, the migrate throughput tests from the selftests
+>> show similar numbers (within error margin) as unmodified kernel.
+>> Tested also rebased on the
+>> "Remove device private pages from physical address space" series:
+>> https://lore.kernel.org/linux-mm/20260130111050.53670-1-jniethe@nvidia.com/
+>> plus a small patch to adjust with no problems.
+>>
+>> Changes v11-v12
+>>   - Fix for issue found by Intel CI in patch 3
+>>
+>> Changes v10-v11
+>>   - Fix nested mmap_read_lock in test suite
+>>   - Addressed review comments from David
+>>
+>> Changes v9-v10
+>>   - Fix for issue Intel CI found, forgotten pte_unmap() before
+>>     migration_entry_wait()
+>>
+>> Changes v8-v9
+>>   - rebase on drm-tip
+>>   - fixed uaf around  migrate_vma_split_folio() usage
+>>   - added missing pmd unlock
+>>
+>> Changes v7-v8
+>>   - rebase on 7.0
+>>   - fixed subject in two patches
+>>   - enhanced commit messages
+>>   - squashed patch 6 into patch 4 to fix kernel test robot warning
+>>   - readded dropped Cc block from cover letter
+>>   - fixed white space
+>>
+>> Changes v6-v7
+>>   - rebase on 7.0.0-rc6
+>>   - added documentation and comments
+>>   - denote to be migrated zero page as HMM_PFN_MIGRATE alone
+>>   - got rid of HMM_PFN_INOUT_FLAGS movement in patch 2
+>>   - picked up Acked-By from David for patch 1
+>>   
+>> Changes v5-v6
+>>   - rebase on 7.0.0-rc4
+>>   - use range based TLB flushing while unmapping ptes
+>>   - gate migration behind HMM_PFN_REQ_MIGRATE for fault and
+>>     migrate paths
+>>   - always infer migration flags from migrate->flags only
+>>
+>> Changes v4-v5
+>>   - rebase on 6.19
+>>   - fixed David's email address
+>>   - fixed link issue without CONFIG_TRANSPARENT_HUGEPAGE
+>>   - refactored into smaller commits
+>>   - added more comments to code
+>>
+>> Changes v3-v4:
+>>   - rebase on 6.19-rc8
+>>   - fixed issues found by kernel test robot with random configs
+>>   - fixed typos
+>>
+>> Changes v2-v3:
+>>   - rebase on 6.19-rc7
+>>   - fixed issues found by kernel test robot
+>>   - fixed smatch issues reported by Dan Carpenter <dan.carpenter@linaro.org>
+>>   - fixes to lock handling (pmd/pte) on errors
+>>   - added assertions for pmd/pte lock states
+>>   - other issues discovered by Matthew, thanks!
+>>
+>> Changes v1-v2:
+>>   - rebase on 6.19-rc6
+>>   - fixed issues found by kernel test robot
+>>   - fixed locking (pmd/ptl) to cover handle_ and prepare_ regions
+>>     parts if migrating
+>>   - other issues discovered by Matthew, thanks!
+>>
+>> Changes RFC-v1:
+>>   - rebase on 6.19-rc5
+>>   - adjust for the device THP
+>>   - changes from feedback
+>>
+>> Revisions:
+>>   - RFC https://lore.kernel.org/linux-mm/20250814072045.3637192-1-mpenttil@redhat.com/
+>>   - v1: https://lore.kernel.org/all/20260114091923.3950465-1-mpenttil@redhat.com/
+>>   - v2: https://lore.kernel.org/all/20260119112502.645059-1-mpenttil@redhat.com/
+>>   - v3: https://lore.kernel.org/all/20260126111939.1332983-2-mpenttil@redhat.com/
+>>   - v4: https://lore.kernel.org/all/20260202112622.2104213-1-mpenttil@redhat.com/
+>>   - v5: https://lore.kernel.org/linux-mm/20260211081301.2940672-1-mpenttil@redhat.com/
+>>   - v6: https://lore.kernel.org/linux-mm/20260316062407.3354636-1-mpenttil@redhat.com/
+>>   - v7: https://lore.kernel.org/linux-mm/20260330115611.347988-1-mpenttil@redhat.com/
+>>   - v8: https://lore.kernel.org/linux-mm/20260414041226.1539439-1-mpenttil@redhat.com/
+>>   - v9: https://lore.kernel.org/linux-mm/20260505051658.2219537-1-mpenttil@redhat.com/
+>>   - v10: https://lore.kernel.org/linux-mm/20260505184421.2324798-1-mpenttil@redhat.com/
+>>   - v11: https://lore.kernel.org/linux-mm/20260525050830.100254-1-mpenttil@redhat.com/
+>>
+>> Cc: David Hildenbrand <david@kernel.org>
+>> Cc: Jason Gunthorpe <jgg@nvidia.com>
+>> Cc: Leon Romanovsky <leonro@nvidia.com>
+>> Cc: Alistair Popple <apopple@nvidia.com>
+>> Cc: Balbir Singh <balbirs@nvidia.com>
+>> Cc: Zi Yan <ziy@nvidia.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Andrew Morton <akpm@linux-foundation.org>
+>> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+>> Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+>> Cc: Vlastimil Babka <vbabka@suse.cz>
+>> Cc: Mike Rapoport <rppt@kernel.org>
+>> Cc: Suren Baghdasaryan <surenb@google.com>
+>> Cc: Michal Hocko <mhocko@suse.com>
+>>
+>> Mika Penttilä (5):
+>>   mm/Kconfig: changes for migrate on fault for device pages
+>>   mm: Add helper to convert HMM pfn to migrate pfn
+>>   mm/hmm: do the plumbing for HMM to participate in migration
+>>   mm: setup device page migration in HMM pagewalk
+>>   lib/test_hmm: add a new testcase for the migrate on fault
+>>
+>>  include/linux/hmm.h                    |  19 +-
+>>  include/linux/migrate.h                |  26 +-
+>>  lib/test_hmm.c                         | 118 +++-
+>>  lib/test_hmm_uapi.h                    |  19 +-
+>>  mm/Kconfig                             |   2 +
+>>  mm/hmm.c                               | 843 +++++++++++++++++++++++--
+>>  mm/migrate_device.c                    | 583 +++--------------
+>>  tools/testing/selftests/mm/hmm-tests.c |  54 ++
+>>  8 files changed, 1086 insertions(+), 578 deletions(-)
+>> What's the status of this?
+>>
+>> Patch #3+#5 are extremely hard to review, I wonder if there could be a better
+>> way to split this up better so we get smaller changes that can be more easily
+>> reviewed.
+>>
+> I will send V13 with few fixes/improvements in couple weeks when back from PTO.
+> I will also address the recent "pmd becomes huge or cleared" affecting mainline migrate_vma_collect()
+> Not sure about the split though, patch 4 is mostly move over from migrate_device.c and patch 5 testcase.
+> But I try to see if there's some sensible way.
 
-That entirely defeats the purpose! :)
+I think #3, but especially #4 are *extremely* hard to review. Unless someone
+wants to invest a full day, review is not going to happen.
 
-Sashiko identified this corner case so I asked you to ensure that this is covered
-and to prove that you should provide a fault-inject with test case.
+There must be a better way to split this up into smaller chunks, or to move code
+with essentially no modifications, to then modify in the new place later.
 
-But then you are skipping exactly the corner case. That makes absolutely no sense.
+-- 
+Cheers,
 
-> +	 * xe_ras_process_errors() also runs during probe (via xe_ras_init()), before
-> +	 * drm_dev_register() calls device_add() on the DRM minor's kdev. At that
-> +	 * point kdev->kobj.parent is not yet linked into the sysfs hierarchy, so
-> +	 * kobject_get_path() returns "/card0" instead of the real sysfs path.
-> +	 * drm_dev_wedged_event() would then emit a KOBJ_CHANGE uevent with a wrong
-> +	 * DEVPATH that udev cannot resolve, silently dropping the event and leaving
-> +	 * the cold-reset recovery broken.
-> +	 */
-> +	if (xe->drm.registered && xe_fault_punit_error()) {
-> +		xe_err(xe, "[RAS]: PUNIT error injected\n");
-> +		punit_error_handler(xe);
-> +		return XE_RAS_RECOVERY_ACTION_DISCONNECT;
-> +	}
-> +
->  	if (!xe->info.has_sysctrl)
->  		return XE_RAS_RECOVERY_ACTION_RESET;
->  
-> -- 
-> 2.48.1
-> 
+David
