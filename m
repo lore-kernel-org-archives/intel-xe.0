@@ -4,80 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB79C54F4C
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 14:35:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C4C4C54F4C
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 14:41:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F34E10E941;
-	Tue, 28 Jul 2026 14:35:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE81D10E926;
+	Tue, 28 Jul 2026 14:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=arm.com header.i=@arm.com header.b="lkta+eSV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W8MWqqRU";
 	dkim-atps=neutral
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0925210E941
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 14:35:17 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 792E71EA6
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 07:35:12 -0700 (PDT)
-Received: from [10.2.11.34] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id
- 29F133F66F
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 07:35:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
- t=1785249316; bh=Inv7KrlemkdgK5E3nHXTAHNRQzVGjk/0dJV4TgUWtLg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=lkta+eSVyC0s3ef55ElhcoeYxxVW4vLwdSipxu36EOq+XKqlwhKlroeBhZrdMhKwt
- lzqN73MlFtHLUKAHJVIfuSFxXNj6Me8viXO13zvMR7XV/PXsuQQgWqIxoaazef7Svl
- u2tvXpH5ux6uqPrv2Wpqa+tIN8wsgWzYPk6OG8J4=
-Date: Tue, 28 Jul 2026 15:34:00 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: =?utf-8?Q?Adri=C3=A1n?= Larumbe <adrian.larumbe@collabora.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80E6610E926;
+ Tue, 28 Jul 2026 14:41:07 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 1D4E943EB1;
+ Tue, 28 Jul 2026 14:41:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7A9E1F000E9;
+ Tue, 28 Jul 2026 14:41:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1785249667;
+ bh=8KrTDtoyloyskkVI+2oRhY9vSvJbipl/205X3rPHxag=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=W8MWqqRUHTYNMV8Js/mBgaRMVlls7u73CPL69WbPgLX2kv7TFvDIFL8rBh29XQEs2
+ NpKLqtj2BHE1Pw/BLQuSbK1YLR2bTQfmrqxJCVtfLQ3QlhQLIjHvzscRhOblln+OSQ
+ yiWeOTv4bIaeU9wgUEryjeyjeO2HVTLwxc4QuWmvtqJ1QWrWjEMNsV1XuJIuq2OmOW
+ 0JxUjzBydkonKmfiAeV4RwFoe2Q7JMkEIr4sB6Olz1HKp0Zn/ivK0niPAwxt0jTTOx
+ 0caV/Q0fSjmgsdR5U7HzDtKm7ww4YavkrWb3Hhd6d1aOMu4iEu4ubDMTk/j+MxF5dN
+ PFnMxKEF4tuqQ==
+Date: Tue, 28 Jul 2026 15:40:47 +0100
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Jianmin Lv <lvjianmin@loongson.cn>, Qianhai Wu <wuqianhai@loongson.cn>,
- Huacai Chen <chenhuacai@kernel.org>, Mingcong Bai <jeffbai@aosc.io>,
- Xi Ruoyao <xry111@xry111.site>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Sandy Huang <hjc@rock-chips.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, etnaviv@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH] drm/gem: Move pages_to_sg helper into drm_gem.c
-Message-ID: <ami92JFN-yU_22xX@e142607>
-References: <20260724-get_pages-v1-1-b10e5d65628e@collabora.com>
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Christian Koenig <christian.koenig@amd.com>, 
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>,
+ Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ "Liam R. Howlett" <liam@infradead.org>, 
+ Nico Pache <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>,
+ Dev Jain <dev.jain@arm.com>, 
+ Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>, 
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Dave Airlie <airlied@redhat.com>, 
+ Matthew Wilcox <willy@infradead.org>
+Subject: Re: [PATCH 1/3] mm/huge_memory: add folio_split_driver_managed()
+Message-ID: <amiyPLdgHGK25X48@lucifer>
+References: <20260722044220.1110278-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260724-get_pages-v1-1-b10e5d65628e@collabora.com>
+In-Reply-To: <20260722044220.1110278-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,476 +69,335 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 24, 2026 at 01:08:58PM +0100, Adrián Larumbe wrote:
-> None of the semantics of the function tell of it being a PRIME-exclusive
-> entry point. In fact, most drivers seem to be using it to translate a list
-> of pages into an sg table that can be used for GPU mapping later on, rather
-> than just for sharing an object's pages with another driver.
-> 
-> Move it across files and rename accordingly.
-> 
-> Signed-off-by: Adrián Larumbe <adrian.larumbe@collabora.com>
+I know different people have different approaches but PLEASE cc- everybody
+on the whole series for context :)
+
+You may annoy the odd few who want less mail > context but that's the best
+way I think.
+
+On Tue, Jul 21, 2026 at 09:42:18PM -0700, Matthew Brost wrote:
+> Add a lightweight structural split primitive for large (compound) folios
+> that a driver allocated with __GFP_COMP and manages entirely by itself,
+> outside of the core mm's view.
+
+I don't know why you are stuck on the driver thing here, 'compound page split'
+(with a clarification it's not about folios) is clearer.
+
+Maybe split_compound_page() :)
+
+>
+> The existing split paths - split_folio() and folio_split_unmapped() -
+> are built for folios that the mm owns: they perform a refcount freeze,
+> walk and remap the rmap, and take the anon_vma / i_mmap locks, and
+> folio_split_unmapped() further assumes an anon, pagecache-style refcount
+> model (nr_pages + 1). None of that applies to a folio that is:
+>
+>   - singly referenced (the caller holds the only reference),
+>   - not mapped through the rmap (folio_mapped() == 0),
+>   - not in the page cache or swap cache (folio->mapping == NULL),
+>   - not on any LRU or the deferred-split list.
+>
+> For such a folio the split is purely structural: because nothing else in
+> the kernel can reach it, there is no need to freeze the refcount or touch
+> any mapping. folio_split_driver_managed() therefore performs only the
+> compound and split-accounting teardown via __split_unmapped_folio() and
+> then hands each resulting order-@new_order folio its own reference,
+> mirroring split_page() for compound folios. The caller keeps the original
+> reference on the first resulting folio and is responsible for freeing all
+> of them individually.
+
+Can we human-ify this wall of text please :) It's very dense.
+
+Clarity and succinctness matter.
+
+I see a wall of text like this (very common now in the LLM era) and I just
+don't want to read it, honestly.
+
+>
+> The immediate user is TTM's GPU page pool, which allocates higher-order
+> compound pages, maps them into userspace via VM_PFNMAP (never through the
+> rmap), and needs to split them into order-0 folios under memory pressure
+> so pages can be backed up to shmem and freed one at a time.
+
+OK so a user of the large pfnmap stuff?
+
+>
+> A CONFIG_TRANSPARENT_HUGEPAGE=n stub is provided so callers can build
+> without the split machinery; it warns and returns -EINVAL.
+
+Can build without the split machinery but get a kernel warning? Huh?
+
+>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Lorenzo Stoakes <ljs@kernel.org>
+> Cc: Zi Yan <ziy@nvidia.com>
+> Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+> Cc: "Liam R. Howlett" <liam@infradead.org>
+> Cc: Nico Pache <npache@redhat.com>
+> Cc: Ryan Roberts <ryan.roberts@arm.com>
+> Cc: Dev Jain <dev.jain@arm.com>
+> Cc: Barry Song <baohua@kernel.org>
+> Cc: Lance Yang <lance.yang@linux.dev>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-mm@kvack.org
+> Suggested-by: Matthew Wilcox <willy@infradead.org>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Assisted-by: GitHub-Copilot:claude-opus-4.8
+
+<an aside>
+
+Both? :)
+
+Hopefully Brauner's patch lands and you could just put 'LLM' here honestly.
+
+And ideally something like:
+
+Assisted-by: LLM # Made me breakfast and wrote 1/2 the code
+
+Or whatever the contribution was after the # :P
+
+>
 > ---
-> drm_prime_pages_to_sg() has no real dependency on PRIME/dma-buf interfaces.
-> It is a generic helper that converts a page array into a scatter/gather
-> table via dma_map_sg_attrs. Nothing in its implementation touches struct
-> dma_buf or import/export logic.
+>
+> The patch is based on drm-tip rather than the core MM branches to
+> facilitate Intel CI testing and initial review. It can be rebased onto
+> the core MM branches in a subsequent revision.
+
+This should have been sent as an RFC overall very clearly, but definitely
+if you're going to play around with bases like that even more so.
+
+I wouldn't imagine making a core change to DRM and basing it on an mm tree
+:)
+
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  6 ++---
->  drivers/gpu/drm/drm_gem.c                   | 35 ++++++++++++++++++++++++++
->  drivers/gpu/drm/drm_gem_shmem_helper.c      |  2 +-
->  drivers/gpu/drm/drm_prime.c                 | 38 -----------------------------
->  drivers/gpu/drm/etnaviv/etnaviv_gem.c       |  3 +--
->  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c |  3 ++-
->  drivers/gpu/drm/loongson/lsdc_gem.c         |  3 +--
->  drivers/gpu/drm/msm/msm_gem.c               |  2 +-
->  drivers/gpu/drm/msm/msm_gem_prime.c         |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_prime.c     |  4 +--
->  drivers/gpu/drm/panthor/panthor_gem.c       |  6 ++---
-
-For Panthor and the general rename:
-
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
-
-Best regards,
-Liviu
-
->  drivers/gpu/drm/radeon/radeon_prime.c       |  5 ++--
->  drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  6 ++---
->  drivers/gpu/drm/tegra/gem.c                 |  4 +--
->  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c         |  4 +--
->  drivers/gpu/drm/xe/xe_dma_buf.c             |  6 ++---
->  drivers/gpu/drm/xen/xen_drm_front_gem.c     |  2 +-
->  include/drm/drm_gem.h                       |  5 +++-
->  include/drm/drm_prime.h                     |  2 --
->  19 files changed, 68 insertions(+), 70 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-> index b33c300e26e2..c9a98aec7eb6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-> @@ -203,9 +203,9 @@ static struct sg_table *amdgpu_dma_buf_map(struct dma_buf_attachment *attach,
->  
->  	switch (bo->tbo.resource->mem_type) {
->  	case TTM_PL_TT:
-> -		sgt = drm_prime_pages_to_sg(obj->dev,
-> -					    bo->tbo.ttm->pages,
-> -					    bo->tbo.ttm->num_pages);
-> +		sgt = drm_pages_to_sg(obj->dev,
-> +				      bo->tbo.ttm->pages,
-> +				      bo->tbo.ttm->num_pages);
->  		if (IS_ERR(sgt))
->  			return sgt;
->  
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index 018df97d590d..22c8a3b5f667 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -780,6 +780,41 @@ void drm_gem_put_pages(struct drm_gem_object *obj, struct page **pages,
+>  include/linux/huge_mm.h |  8 ++++++
+>  mm/huge_memory.c        | 63 +++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 71 insertions(+)
+>
+> diff --git a/include/linux/huge_mm.h b/include/linux/huge_mm.h
+> index ad20f7f8c179..35661d82d54a 100644
+> --- a/include/linux/huge_mm.h
+> +++ b/include/linux/huge_mm.h
+> @@ -402,6 +402,7 @@ enum split_type {
+>  int __split_huge_page_to_list_to_order(struct page *page, struct list_head *list,
+>  		unsigned int new_order);
+>  int folio_split_unmapped(struct folio *folio, unsigned int new_order);
+> +int folio_split_driver_managed(struct folio *folio, unsigned int new_order);
+>  unsigned int min_order_for_split(struct folio *folio);
+>  int split_folio_to_list(struct folio *folio, struct list_head *list);
+>  int folio_check_splittable(struct folio *folio, unsigned int new_order,
+> @@ -656,6 +657,13 @@ static inline int split_folio_to_list(struct folio *folio, struct list_head *lis
+>  	return -EINVAL;
 >  }
->  EXPORT_SYMBOL(drm_gem_put_pages);
->  
-> +/**
-> + * drm_pages_to_sg - converts a page array into an sg list
-> + * @dev: DRM device
-> + * @pages: pointer to the array of page pointers to convert
-> + * @nr_pages: length of the page vector
-> + *
-> + * This helper creates an sg table object from a set of pages.
-> + * This is useful for implementing &drm_gem_object_funcs.get_sg_table.
-> + */
-> +struct sg_table *drm_pages_to_sg(struct drm_device *dev,
-> +				 struct page **pages, unsigned int nr_pages)
+>
+> +static inline int folio_split_driver_managed(struct folio *folio,
+> +					     unsigned int new_order)
 > +{
-> +	struct sg_table *sg;
-> +	size_t max_segment = 0;
-> +	int err;
-> +
-> +	sg = kmalloc_obj(struct sg_table);
-> +	if (!sg)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	if (dev)
-> +		max_segment = dma_max_mapping_size(drm_dev_dma_dev(dev));
-> +	if (max_segment == 0)
-> +		max_segment = UINT_MAX;
-> +	err = sg_alloc_table_from_pages_segment(sg, pages, nr_pages, 0,
-> +						(unsigned long)nr_pages << PAGE_SHIFT,
-> +						max_segment, GFP_KERNEL);
-> +	if (err) {
-> +		kfree(sg);
-> +		sg = ERR_PTR(err);
-> +	}
-> +	return sg;
-> +}
-> +EXPORT_SYMBOL(drm_pages_to_sg);
-> +
->  static int objects_lookup(struct drm_file *filp, u32 *handle, int count,
->  			  struct drm_gem_object **objs)
->  {
-> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> index 22ec52e2ffb8..144d088a477f 100644
-> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> @@ -825,7 +825,7 @@ struct sg_table *drm_gem_shmem_get_sg_table(struct drm_gem_shmem_object *shmem)
->  
->  	drm_WARN_ON(obj->dev, drm_gem_is_imported(obj));
->  
-> -	return drm_prime_pages_to_sg(obj->dev, shmem->pages, obj->size >> PAGE_SHIFT);
-> +	return drm_pages_to_sg(obj->dev, shmem->pages, obj->size >> PAGE_SHIFT);
->  }
->  EXPORT_SYMBOL_GPL(drm_gem_shmem_get_sg_table);
->  
-> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
-> index 9b44c78cd77f..54539a8929c1 100644
-> --- a/drivers/gpu/drm/drm_prime.c
-> +++ b/drivers/gpu/drm/drm_prime.c
-> @@ -835,44 +835,6 @@ static const struct dma_buf_ops drm_gem_prime_dmabuf_ops =  {
->  	.vunmap = drm_gem_dmabuf_vunmap,
->  };
->  
-> -/**
-> - * drm_prime_pages_to_sg - converts a page array into an sg list
-> - * @dev: DRM device
-> - * @pages: pointer to the array of page pointers to convert
-> - * @nr_pages: length of the page vector
-> - *
-> - * This helper creates an sg table object from a set of pages
-> - * the driver is responsible for mapping the pages into the
-> - * importers address space for use with dma_buf itself.
-> - *
-> - * This is useful for implementing &drm_gem_object_funcs.get_sg_table.
-> - */
-> -struct sg_table *drm_prime_pages_to_sg(struct drm_device *dev,
-> -				       struct page **pages, unsigned int nr_pages)
-> -{
-> -	struct sg_table *sg;
-> -	size_t max_segment = 0;
-> -	int err;
-> -
-> -	sg = kmalloc_obj(struct sg_table);
-> -	if (!sg)
-> -		return ERR_PTR(-ENOMEM);
-> -
-> -	if (dev)
-> -		max_segment = dma_max_mapping_size(drm_dev_dma_dev(dev));
-> -	if (max_segment == 0)
-> -		max_segment = UINT_MAX;
-> -	err = sg_alloc_table_from_pages_segment(sg, pages, nr_pages, 0,
-> -						(unsigned long)nr_pages << PAGE_SHIFT,
-> -						max_segment, GFP_KERNEL);
-> -	if (err) {
-> -		kfree(sg);
-> -		sg = ERR_PTR(err);
-> -	}
-> -	return sg;
-> -}
-> -EXPORT_SYMBOL(drm_prime_pages_to_sg);
-> -
->  /**
->   * drm_prime_get_contiguous_size - returns the contiguous size of the buffer
->   * @sgt: sg_table describing the buffer to check
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem.c b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> index b0436a1e103f..a8e8614f8210 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> @@ -3,7 +3,6 @@
->   * Copyright (C) 2015-2018 Etnaviv Project
->   */
->  
-> -#include <drm/drm_prime.h>
->  #include <drm/drm_print.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/shmem_fs.h>
-> @@ -104,7 +103,7 @@ struct page **etnaviv_gem_get_pages(struct etnaviv_gem_object *etnaviv_obj)
->  		unsigned int npages = etnaviv_obj->base.size >> PAGE_SHIFT;
->  		struct sg_table *sgt;
->  
-> -		sgt = drm_prime_pages_to_sg(dev, etnaviv_obj->pages, npages);
-> +		sgt = drm_pages_to_sg(dev, etnaviv_obj->pages, npages);
->  		if (IS_ERR(sgt)) {
->  			dev_err(dev->dev, "failed to allocate sgt: %ld\n",
->  				PTR_ERR(sgt));
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
-> index 6757ae6ec304..f44484325ddb 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
-> @@ -3,6 +3,7 @@
->   * Copyright (C) 2014-2018 Etnaviv Project
->   */
->  
-> +#include <drm/drm_gem.h>
->  #include <drm/drm_prime.h>
->  #include <linux/dma-buf.h>
->  #include <linux/module.h>
-> @@ -22,7 +23,7 @@ struct sg_table *etnaviv_gem_prime_get_sg_table(struct drm_gem_object *obj)
->  	if (WARN_ON(!etnaviv_obj->pages))  /* should have already pinned! */
->  		return ERR_PTR(-EINVAL);
->  
-> -	return drm_prime_pages_to_sg(obj->dev, etnaviv_obj->pages, npages);
-> +	return drm_pages_to_sg(obj->dev, etnaviv_obj->pages, npages);
->  }
->  
->  int etnaviv_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map)
-> diff --git a/drivers/gpu/drm/loongson/lsdc_gem.c b/drivers/gpu/drm/loongson/lsdc_gem.c
-> index 2fb03487c983..37160228244c 100644
-> --- a/drivers/gpu/drm/loongson/lsdc_gem.c
-> +++ b/drivers/gpu/drm/loongson/lsdc_gem.c
-> @@ -9,7 +9,6 @@
->  #include <drm/drm_dumb_buffers.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_gem.h>
-> -#include <drm/drm_prime.h>
->  #include <drm/drm_print.h>
->  
->  #include "lsdc_drv.h"
-> @@ -51,7 +50,7 @@ static struct sg_table *lsdc_gem_prime_get_sg_table(struct drm_gem_object *obj)
->  		return ERR_PTR(-ENOMEM);
->  	}
->  
-> -	return drm_prime_pages_to_sg(obj->dev, tt->pages, tt->num_pages);
-> +	return drm_pages_to_sg(obj->dev, tt->pages, tt->num_pages);
->  }
->  
->  static void lsdc_gem_object_free(struct drm_gem_object *obj)
-> diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
-> index efd3d3c9a449..7e3418290c22 100644
-> --- a/drivers/gpu/drm/msm/msm_gem.c
-> +++ b/drivers/gpu/drm/msm/msm_gem.c
-> @@ -207,7 +207,7 @@ static struct page **get_pages(struct drm_gem_object *obj)
->  
->  		msm_obj->pages = p;
->  
-> -		msm_obj->sgt = drm_prime_pages_to_sg(obj->dev, p, npages);
-> +		msm_obj->sgt = drm_pages_to_sg(obj->dev, p, npages);
->  		if (IS_ERR(msm_obj->sgt)) {
->  			void *ptr = ERR_CAST(msm_obj->sgt);
->  
-> diff --git a/drivers/gpu/drm/msm/msm_gem_prime.c b/drivers/gpu/drm/msm/msm_gem_prime.c
-> index 036d34c674d9..d25393a9e549 100644
-> --- a/drivers/gpu/drm/msm/msm_gem_prime.c
-> +++ b/drivers/gpu/drm/msm/msm_gem_prime.c
-> @@ -23,7 +23,7 @@ struct sg_table *msm_gem_prime_get_sg_table(struct drm_gem_object *obj)
->  	if (WARN_ON(!msm_obj->pages))  /* should have already pinned! */
->  		return ERR_PTR(-ENOMEM);
->  
-> -	return drm_prime_pages_to_sg(obj->dev, msm_obj->pages, npages);
-> +	return drm_pages_to_sg(obj->dev, msm_obj->pages, npages);
->  }
->  
->  int msm_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map)
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouveau/nouveau_prime.c
-> index caab60fc62f6..b95f2f07df74 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_prime.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
-> @@ -32,8 +32,8 @@ struct sg_table *nouveau_gem_prime_get_sg_table(struct drm_gem_object *obj)
->  {
->  	struct nouveau_bo *nvbo = nouveau_gem_object(obj);
->  
-> -	return drm_prime_pages_to_sg(obj->dev, nvbo->bo.ttm->pages,
-> -				     nvbo->bo.ttm->num_pages);
-> +	return drm_pages_to_sg(obj->dev, nvbo->bo.ttm->pages,
-> +			       nvbo->bo.ttm->num_pages);
->  }
->  
->  struct drm_gem_object *nouveau_gem_prime_import_sg_table(struct drm_device *dev,
-> diff --git a/drivers/gpu/drm/panthor/panthor_gem.c b/drivers/gpu/drm/panthor/panthor_gem.c
-> index 9855df738194..ec530d254fa4 100644
-> --- a/drivers/gpu/drm/panthor/panthor_gem.c
-> +++ b/drivers/gpu/drm/panthor/panthor_gem.c
-> @@ -321,8 +321,8 @@ panthor_gem_dev_map_get_sgt_locked(struct panthor_gem_object *bo)
->  	if (ret)
->  		return ERR_PTR(ret);
->  
-> -	sgt = drm_prime_pages_to_sg(bo->base.dev, bo->backing.pages,
-> -				    bo->base.size >> PAGE_SHIFT);
-> +	sgt = drm_pages_to_sg(bo->base.dev, bo->backing.pages,
-> +			      bo->base.size >> PAGE_SHIFT);
->  	if (IS_ERR(sgt))
->  		return sgt;
->  
-> @@ -702,7 +702,7 @@ static struct sg_table *panthor_gem_get_sg_table(struct drm_gem_object *obj)
->  	drm_WARN_ON_ONCE(obj->dev, !bo->backing.pages);
->  	drm_WARN_ON_ONCE(obj->dev, !refcount_read(&bo->backing.pin_count));
->  
-> -	return drm_prime_pages_to_sg(obj->dev, bo->backing.pages, obj->size >> PAGE_SHIFT);
-> +	return drm_pages_to_sg(obj->dev, bo->backing.pages, obj->size >> PAGE_SHIFT);
->  }
->  
->  static int panthor_gem_vmap_locked(struct drm_gem_object *obj,
-> diff --git a/drivers/gpu/drm/radeon/radeon_prime.c b/drivers/gpu/drm/radeon/radeon_prime.c
-> index a77881f035e7..4cfc4282a59c 100644
-> --- a/drivers/gpu/drm/radeon/radeon_prime.c
-> +++ b/drivers/gpu/drm/radeon/radeon_prime.c
-> @@ -26,6 +26,7 @@
->  
->  #include <linux/dma-buf.h>
->  
-> +#include <drm/drm_gem.h>
->  #include <drm/drm_prime.h>
->  #include <drm/radeon_drm.h>
->  
-> @@ -38,8 +39,8 @@ struct sg_table *radeon_gem_prime_get_sg_table(struct drm_gem_object *obj)
->  {
->  	struct radeon_bo *bo = gem_to_radeon_bo(obj);
->  
-> -	return drm_prime_pages_to_sg(obj->dev, bo->tbo.ttm->pages,
-> -				     bo->tbo.ttm->num_pages);
-> +	return drm_pages_to_sg(obj->dev, bo->tbo.ttm->pages,
-> +			       bo->tbo.ttm->num_pages);
->  }
->  
->  struct drm_gem_object *radeon_gem_prime_import_sg_table(struct drm_device *dev,
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-> index b188539dca0b..7897da0becf4 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-> @@ -89,8 +89,8 @@ static int rockchip_gem_get_pages(struct rockchip_gem_object *rk_obj)
->  
->  	rk_obj->num_pages = rk_obj->base.size >> PAGE_SHIFT;
->  
-> -	rk_obj->sgt = drm_prime_pages_to_sg(rk_obj->base.dev,
-> -					    rk_obj->pages, rk_obj->num_pages);
-> +	rk_obj->sgt = drm_pages_to_sg(rk_obj->base.dev,
-> +				      rk_obj->pages, rk_obj->num_pages);
->  	if (IS_ERR(rk_obj->sgt)) {
->  		ret = PTR_ERR(rk_obj->sgt);
->  		goto err_put_pages;
-> @@ -432,7 +432,7 @@ struct sg_table *rockchip_gem_prime_get_sg_table(struct drm_gem_object *obj)
->  	int ret;
->  
->  	if (rk_obj->pages)
-> -		return drm_prime_pages_to_sg(obj->dev, rk_obj->pages, rk_obj->num_pages);
-> +		return drm_pages_to_sg(obj->dev, rk_obj->pages, rk_obj->num_pages);
->  
->  	sgt = kzalloc_obj(*sgt);
->  	if (!sgt)
-> diff --git a/drivers/gpu/drm/tegra/gem.c b/drivers/gpu/drm/tegra/gem.c
-> index 436394e04812..701af672b4e5 100644
-> --- a/drivers/gpu/drm/tegra/gem.c
-> +++ b/drivers/gpu/drm/tegra/gem.c
-> @@ -17,7 +17,7 @@
->  
->  #include <drm/drm_drv.h>
->  #include <drm/drm_dumb_buffers.h>
-> -#include <drm/drm_prime.h>
-> +#include <drm/drm_gem.h>
->  
->  #include "drm.h"
->  #include "gem.h"
-> @@ -352,7 +352,7 @@ static int tegra_bo_get_pages(struct drm_device *drm, struct tegra_bo *bo)
->  
->  	bo->num_pages = bo->gem.size >> PAGE_SHIFT;
->  
-> -	bo->sgt = drm_prime_pages_to_sg(bo->gem.dev, bo->pages, bo->num_pages);
-> +	bo->sgt = drm_pages_to_sg(bo->gem.dev, bo->pages, bo->num_pages);
->  	if (IS_ERR(bo->sgt)) {
->  		err = PTR_ERR(bo->sgt);
->  		goto put_pages;
-> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-> index 39f8c46550c2..c9e7f2e3668c 100644
-> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-> @@ -28,7 +28,7 @@
->  #include "vmwgfx_bo.h"
->  #include "vmwgfx_drv.h"
->  
-> -#include "drm/drm_prime.h"
-> +#include "drm/drm_gem.h"
->  #include "drm/drm_gem_ttm_helper.h"
->  
->  #include <linux/debugfs.h>
-> @@ -76,7 +76,7 @@ static struct sg_table *vmw_gem_object_get_sg_table(struct drm_gem_object *obj)
->  	if (vmw_tt->vsgt.sgt)
->  		return vmw_tt->vsgt.sgt;
->  
-> -	return drm_prime_pages_to_sg(obj->dev, vmw_tt->dma_ttm.pages, vmw_tt->dma_ttm.num_pages);
-> +	return drm_pages_to_sg(obj->dev, vmw_tt->dma_ttm.pages, vmw_tt->dma_ttm.num_pages);
->  }
->  
->  static int vmw_gem_vmap(struct drm_gem_object *obj, struct iosys_map *map)
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 8a920e58245c..f0fe80706b79 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -118,9 +118,9 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
->  
->  	switch (bo->ttm.resource->mem_type) {
->  	case XE_PL_TT:
-> -		sgt = drm_prime_pages_to_sg(obj->dev,
-> -					    bo->ttm.ttm->pages,
-> -					    obj->size >> PAGE_SHIFT);
-> +		sgt = drm_pages_to_sg(obj->dev,
-> +				      bo->ttm.ttm->pages,
-> +				      obj->size >> PAGE_SHIFT);
->  		if (IS_ERR(sgt))
->  			return sgt;
->  
-> diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-> index eec4c1da3f9e..a4a7c7f2c91c 100644
-> --- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
-> +++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-> @@ -236,7 +236,7 @@ struct sg_table *xen_drm_front_gem_get_sg_table(struct drm_gem_object *gem_obj)
->  	if (!xen_obj->pages)
->  		return ERR_PTR(-ENOMEM);
->  
-> -	return drm_prime_pages_to_sg(gem_obj->dev,
-> +	return drm_pages_to_sg(gem_obj->dev,
->  				     xen_obj->pages, xen_obj->num_pages);
->  }
->  
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index 885244e375d3..7b9cc6335689 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -155,7 +155,7 @@ struct drm_gem_object_funcs {
->  	 * here cannot be used for sg tables pointing at driver private memory
->  	 * ranges.
->  	 *
-> -	 * See also drm_prime_pages_to_sg().
-> +	 * See also drm_pages_to_sg().
->  	 */
->  	struct sg_table *(*get_sg_table)(struct drm_gem_object *obj);
->  
-> @@ -589,6 +589,9 @@ struct page **drm_gem_get_pages(struct drm_gem_object *obj);
->  void drm_gem_put_pages(struct drm_gem_object *obj, struct page **pages,
->  		bool dirty, bool accessed);
->  
-> +struct sg_table *drm_pages_to_sg(struct drm_device *dev,
-> +				 struct page **pages, unsigned int nr_pages);
-> +
->  void drm_gem_lock(struct drm_gem_object *obj);
->  void drm_gem_unlock(struct drm_gem_object *obj);
->  
-> diff --git a/include/drm/drm_prime.h b/include/drm/drm_prime.h
-> index f50f862f0d8b..603e16a40ae7 100644
-> --- a/include/drm/drm_prime.h
-> +++ b/include/drm/drm_prime.h
-> @@ -92,8 +92,6 @@ void drm_gem_dmabuf_vunmap(struct dma_buf *dma_buf, struct iosys_map *map);
->  int drm_gem_prime_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma);
->  int drm_gem_dmabuf_mmap(struct dma_buf *dma_buf, struct vm_area_struct *vma);
->  
-> -struct sg_table *drm_prime_pages_to_sg(struct drm_device *dev,
-> -				       struct page **pages, unsigned int nr_pages);
->  struct dma_buf *drm_gem_prime_export(struct drm_gem_object *obj,
->  				     int flags);
->  
-> 
-> ---
-> base-commit: 48dd37d1fef33fbf42f1d6887c61e242fd21d00d
-> change-id: 20260724-get_pages-e2e91c53eaa3
-> 
-> Best regards,
-> --  
-> Adrián Larumbe <adrian.larumbe@collabora.com>
-> 
+> +	VM_WARN_ON_ONCE_FOLIO(1, folio);
+> +	return -EINVAL;
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+Going to fire a warning every call? You were saying that your own use case
+involves !CONFIG_THP builds?
+
+And since this is being touched by drivers, drop the VM_ on the warnings.
+
+> +}
+> +
+>  static inline int folio_split(struct folio *folio, unsigned int new_order,
+>  		struct page *page, struct list_head *list)
+>  {
+> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+> index 2bccb0a53a0a..06f9a5f35df8 100644
+> --- a/mm/huge_memory.c
+> +++ b/mm/huge_memory.c
+> @@ -4185,6 +4185,69 @@ int folio_split_unmapped(struct folio *folio, unsigned int new_order)
+>  	return ret;
+>  }
+>
+> +/**
+> + * folio_split_driver_managed() - split an exclusively-owned, off-LRU folio
+> + * @folio: folio to split. Must be a large (compound) folio that is owned
+> + *         exclusively by the caller and is invisible to the core mm.
+
+Yeah I find this 'invisible to core mm' aspect really sketchy.
+
+In what way is this invisible to core mm? You mean !rmappable fundamentally
+right?
+
+But it's reference counted?
+
+It's clearly not invisible to mm except in specific ways?
+
+> + * @new_order: the order of the folios after the split.
+> + *
+> + * This is a lightweight structural split for folios that a driver allocated
+> + * and manages itself (for example TTM's GPU page pool, which allocates
+
+Again no, please no. Maybe 'non-mm owned' but not 'driver managed'...
+
+> + * higher-order compound pages with __GFP_COMP and maps them into userspace
+> + * via VM_PFNMAP rather than through the rmap). Such folios are:
+
+We don't need this example in the comment thanks.
+
+> + *
+> + *   - singly referenced (the caller holds the only reference),
+
+Again seems really super specific to your use case. We can't add a general
+mm feature for drm alone.
+
+> + *   - not mapped through the rmap (folio_mapcount() == 0),
+
+The parens bit is pointless and you're writing here what's in the code.
+
+> + *   - not in the page cache or swap cache (folio->mapping == NULL),
+
+Err what? folio->mapping is literally the link to the rmap (anon or
+file-backed).
+
+Again the parens bit is useless.
+
+> + *   - not on any LRU or the deferred-split list.
+
+Thi sseems like a specific use case though? You're using PFN map presumably
+because in this case you have pages whose refcount you don't want touched
+by core mm but here you do want touched :)
+
+I mean we need this to make sense for general classes of allocated memory.
+
+> + *
+> + * Because nothing else in the kernel can reach the folio, this helper does
+> + * not perform the refcount freeze / remap / anon_vma & i_mmap locking dance
+> + * that split_folio() and folio_split_unmapped() require. It performs only
+> + * the compound and split-accounting teardown and then hands each resulting
+> + * folio its own reference, mirroring split_page() for compound folios.
+> + *
+> + * The caller is responsible for freeing the resulting folios individually.
+
+Overall this comment is a wall of LLM-ish dense text, please human-ify. Use
+paragraphs, try to be succinct clear etc.
+
+> + *
+> + * Context: caller holds the only reference and excludes concurrent access.
+> + * Does not sleep.
+> + *
+> + * Return: 0 on success, negative errno on failure.
+
+Nitty but 'error on failure' suffices I thnk :)
+
+> + */
+> +int folio_split_driver_managed(struct folio *folio, unsigned int new_order)
+
+split_compound_page() still my preference :)
+
+> +{
+> +	unsigned int old_order = folio_order(folio);
+> +	unsigned int split_nr = 1U << new_order;
+> +	unsigned int nr = 1U << old_order;
+
+nitty but could be folio_nr_pages(folio). Not a big deal.
+
+> +	unsigned int i;
+> +
+> +	if (new_order >= old_order)
+> +		return -EINVAL;
+> +
+> +	VM_WARN_ON_ONCE_FOLIO(folio_ref_count(folio) != 1, folio);
+
+This is meant to be a general accessor, what if an owner of a folio happens
+to set the refcount > 1? You'd probably rather just return an error no?
+
+This one doesn't seem to be in the same class of 'programmatic error' as
+the rest.
+
+> +	VM_WARN_ON_ONCE_FOLIO(folio_mapped(folio), folio);
+> +	VM_WARN_ON_ONCE_FOLIO(folio->mapping, folio);
+> +	VM_WARN_ON_ONCE_FOLIO(folio_test_swapcache(folio), folio);
+> +	VM_WARN_ON_ONCE_FOLIO(folio_test_lru(folio), folio);
+
+Firstly, I think you should bail if any of these are not true, rather than
+just warning if CONFIG_DEBUG_VM and carrying on.
+
+ESPECIALLY since drivers are involved.
+
+Also some comments here would help! It's like too much above, not enough
+here :)
+
+And I think these should be actual warnings, drivers might not ever enable
+CONFIG_DEBUG_VM, and in any case these VM_xxx() warnings are for internal
+mm stuff, not stuff controllable from a caller who might do crazy things
+(TM).
+
+I think often for this kind of thing it makes sense to have a separate
+'check_split_compound_folio_sane()' or something like that for this.
+
+> +
+> +	/*
+> +	 * Structural + split-accounting teardown only. No mapping/xarray, no
+> +	 * refcount freeze: the folio is frozen-by-ownership already.
+> +	 */
+> +	__split_unmapped_folio(folio, new_order, &folio->page, NULL, NULL,
+> +			       SPLIT_TYPE_UNIFORM);
+
+__split_unmapped_folio() -> __split_folio_to_order() ->
+
+	for (i = new_nr_pages; i < nr_pages; i += new_nr_pages) {
+		...
+		clear_compound_head(new_head);
+		if (new_order) {
+			prep_compound_page(new_head, new_order);
+			folio_set_large_rmappable(new_folio); <--- oops it's rmappable now
+		}
+
+So this is a problem.
+
+Maybe you want to split to order-0 always? Otherwise this needs a real
+rethink.
+
+> +
+> +	/*
+> +	 * Give every resulting head folio its own reference. The original
+> +	 * reference stays on the first one, exactly like split_page().
+
+Again, split_compound_page() :)
+
+I'm not sure this reference to split_page() is useful.
+
+How about:
+
+    /* Retain reference on first folio, set on new head folios. */
+
+?
+
+> +	 */
+> +	for (i = split_nr; i < nr; i += split_nr)
+> +		set_page_refcounted(folio_page(folio, i));
+
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(folio_split_driver_managed);
+
+Presumably you absolutely require this for module-built DRM driver?
+
+> +
+>  /*
+>   * This function splits a large folio into smaller folios of order @new_order.
+>   * @page can point to any page of the large folio to split. The split operation
+> --
+> 2.34.
+
+Cheers, Lorenzo
