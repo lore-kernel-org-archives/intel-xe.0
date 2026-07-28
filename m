@@ -4,56 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45964C53219
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 09:50:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD00AC531F9
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 10:07:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0776E10E556;
-	Tue, 28 Jul 2026 09:50:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794FC10E588;
+	Tue, 28 Jul 2026 10:07:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hkt6PD4d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g3/eAVDJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F4210E858
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 09:50:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB3F10E859;
+ Tue, 28 Jul 2026 10:07:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785232239; x=1816768239;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=S3VP32XZ3eQ3RcHT8YuKUFMozpN/DV+T6wqtzxCmV8Y=;
- b=hkt6PD4dOyebjTOZxMRzu+fcrGxasT6AHOnCJedq9fEW+n3gdXj9fg3F
- ac838WwqCuTYI57ciRxYcsiuU4010hkJF6BUoJcLnesk9uAuJp++P+kKS
- w1TBPgFHNXaOBAoppV+h4/4HQSyAoDpKfZU4cAVeCQXA2oeVYtdXWL59J
- MrvOuFWx6SrdSi3/vC1+rUbTr4kNbuck27iF4SYBwwaX5xEOq2U9XkNuv
- YpjzR6xlUmmFb9vYUEOH7JvVcFxShyyGwcfwn+rmc0ImRfg3LrvPH0VaC
- MYqaJHQFQmhXifuNXqDh+wU4wojhCv5Thbd7WhbyRmMrOB1lbiNhO+1/0 Q==;
-X-CSE-ConnectionGUID: d5QRKE4VSSKWuOrIImOEhw==
-X-CSE-MsgGUID: HYdkg2EjSaymUfLho0b7xw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="111357409"
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="111357409"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 02:50:38 -0700
-X-CSE-ConnectionGUID: JlwNHbWxQYai2Aj//JgWcQ==
-X-CSE-MsgGUID: R7626j/5QnKRkCgtG+xBnA==
+ t=1785233233; x=1816769233;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JGaiF4bZcDJ2OYtmcrPSHqMEIHOX0Jb//tse+ADji3A=;
+ b=g3/eAVDJXkrT4o/NnC8KlEFT2Vkr2hrgqO2wBkeQIpzcPTU1PKZ7wQx/
+ 9K09VJipY0R3x2bbRIiBIl9wl0+BFVteYAILXJx5Lko0ARkWpFIG19Z21
+ J2tfDaCTM+au8Md50GR9gBdXu6boYamE17EC3LUcvJVzajQA/HFS/2hkz
+ pTEJ6YaEOXIx0Gu1FKevjvDbCp4SWXtoVslczdv0BAuTLnpdd0SkDZxtG
+ ++J+bf6FH4TawEHRHtFkGr3NDk9TfY/+3k5UnhoRvMaRd/w+Fok8AJAD2
+ FS6vnwzhPQVW7nQLL2ZGZhixPZBsjIeCb9Mx59nKAWM70LFwLOcViNgI9 Q==;
+X-CSE-ConnectionGUID: fS2nYclqRyyoaO+4uWITvw==
+X-CSE-MsgGUID: 2djP7h6RSOSg38NK/DYiXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="85852773"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="85852773"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2026 03:07:12 -0700
+X-CSE-ConnectionGUID: PiwpZWrJSPq3Blrki/GnOQ==
+X-CSE-MsgGUID: +rt0jrK+TlGQAqp+LK07RA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="258387266"
-Received: from gsd-build.iind.intel.com ([10.190.229.141])
- by orviesa010.jf.intel.com with ESMTP; 28 Jul 2026 02:50:37 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v4 4/4] drm/xe/tests: Add KUnit tests for VF provisioning
- error handling
-Date: Tue, 28 Jul 2026 09:50:30 +0000
-Message-ID: <20260728095026.2197333-10-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260728095026.2197333-6-satyanarayana.k.v.p@intel.com>
-References: <20260728095026.2197333-6-satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="256997793"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.76])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2026 03:07:08 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Date: Tue, 28 Jul 2026 13:07:05 +0300
+Message-ID: <cb1b5a644d75589cbcdcc8ec8160968140426439@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,266 +75,331 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF relies on the PF to provide a valid hardware configuration via GuC
-KLV responses. In unlikely event of PF malfunction or misconfiguration,
-a VF may receive incomplete, zero, or out-of-range values for its
-submission contexts, doorbells, VRAM or GGTT assignment.
 
-Add KUnit test cases that use the xe_guc_mmio_send_recv() stub to inject
-bad KLV responses and verify that VF can survive without crashing for
-the invalid configuration data received.
+Hi Dave & Sima -
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-V3 -> V4:
-- Changed stub function from guc_action_query_single_klv32() and
-guc_action_query_single_klv64() to xe_guc_mmio_send_recv() (Michal W).
-- Fixed review comments (Michal W).
+Final i915 pull request for v7.3, mostly i915 and xe display.
 
-V2 -> V3:
-- Renamed the test names. (Michal W).
-- Fixed review comments (Michal W).
+BR,
+Jani.
 
-V1 -> V2:
-- Renamed the test file (Michal W).
-- Fixed review comments (Michal W).
----
- .../gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c   | 212 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |   4 +
- 2 files changed, 216 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
+drm-intel-next-2026-07-28:
+drm/i915 feature pull #2 for v7.3:
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-new file mode 100644
-index 000000000000..5444cad1eead
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-@@ -0,0 +1,212 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <kunit/static_stub.h>
-+#include <kunit/test.h>
-+
-+#include "regs/xe_guc_regs.h"
-+#include "xe_device.h"
-+#include "xe_kunit_helpers.h"
-+#include "xe_pci_test.h"
-+#include "xe_guc.h"
-+
-+#define TEST_VRAM		SZ_8G
-+#define TEST_GGTT_SIZE		SZ_2G
-+#define TEST_CTXS		1024
-+#define TEST_DBS		128
-+#define TEST_GGTT_START	0xdeadbeef00aa00ccull
-+
-+struct config {
-+	u32 orig;
-+	u32 query;
-+	int expected_ret;
-+	const char *name;
-+} vf_ctx_testcase[] = {
-+	{TEST_CTXS,	TEST_CTXS,		0,		"same",		},
-+	{0,		0,			-ENODATA,	"none",		},
-+	{0,		GUC_ID_MAX + 1,		-EPROTO,	"overflow",	},
-+	{TEST_CTXS,	0,			-EREMCHG,	"lost",		},
-+	{TEST_CTXS,	TEST_CTXS / 2,		-EREMCHG,	"reduced",	},
-+	{TEST_CTXS,	TEST_CTXS * 2,		-EREMCHG,	"increased",	},
-+}, vf_db_testcase[] = {
-+	{TEST_DBS,	TEST_DBS,		0,		"same",		},
-+	{0,		0,			-ENODATA,	"none",		},
-+	{0,		GUC_NUM_DOORBELLS + 1,	-EPROTO,	"overflow",	},
-+	{TEST_DBS,	0,			-EREMCHG,	"lost",		},
-+	{TEST_DBS,	TEST_DBS / 2,		-EREMCHG,	"reduced",	},
-+	{TEST_DBS,	GUC_NUM_DOORBELLS - 1,	-EREMCHG,	"increased",	},
-+};
-+
-+struct config_vram {
-+	u64 orig;
-+	u64 query;
-+	int expected_ret;
-+	const char *name;
-+} vf_vram_testcase[] = {
-+	{TEST_VRAM,	TEST_VRAM,		0,		"same",		},
-+	{0,		0,			-ENODATA,	"none",		},
-+	{TEST_VRAM / 2,	TEST_VRAM + SZ_1G,	-EREMCHG,	"overflow",	},
-+	{TEST_VRAM / 2,	0,			-EREMCHG,	"lost",		},
-+	{TEST_VRAM / 2,	TEST_VRAM / 4,		-EREMCHG,	"reduced",	},
-+	{TEST_VRAM / 2,	TEST_VRAM,		-EREMCHG,	"increased",	},
-+};
-+
-+struct config_ggtt {
-+	u64 start_orig;
-+	u64 start_query;
-+	u64 size_orig;
-+	u64 size_query;
-+	int expected_ret;
-+	const char *name;
-+} vf_ggtt_testcase[] = {
-+	{TEST_GGTT_START,	TEST_GGTT_START,	TEST_GGTT_SIZE,
-+		TEST_GGTT_SIZE,		0,		"same",		},
-+	{0,			0,			0,
-+		0,			-ENODATA,	"none",		},
-+	{TEST_GGTT_START,	TEST_GGTT_START,	TEST_GGTT_SIZE,
-+		TEST_GGTT_SIZE + SZ_1G, -EREMCHG,	"overflow",	},
-+	{TEST_GGTT_START,	TEST_GGTT_START,	TEST_GGTT_SIZE,
-+		0,			-ENODATA,	"lost",		},
-+	{TEST_GGTT_START,	TEST_GGTT_START,	TEST_GGTT_SIZE,
-+		TEST_GGTT_SIZE - SZ_1M,	-EREMCHG,	"reduced",	},
-+	{TEST_GGTT_START,	TEST_GGTT_START,	TEST_GGTT_SIZE,
-+		TEST_GGTT_SIZE + SZ_1M,	-EREMCHG,	"increased",	},
-+};
-+
-+KUNIT_ARRAY_PARAM_DESC(ctx_testcase, vf_ctx_testcase, name);
-+KUNIT_ARRAY_PARAM_DESC(db_testcase, vf_db_testcase, name);
-+KUNIT_ARRAY_PARAM_DESC(vram_testcase, vf_vram_testcase, name);
-+KUNIT_ARRAY_PARAM_DESC(ggtt_testcase, vf_ggtt_testcase, name);
-+
-+static int xe_guc_mmio_send_recv_stub(struct xe_guc *guc, const u32 *request,
-+				      u32 len, u32  *response_buf)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct config_vram *c_vram;
-+	const struct config_ggtt *c_ggtt;
-+	const struct config *c;
-+
-+	if ((request[0] & 0xffff) != GUC_ACTION_VF2GUC_QUERY_SINGLE_KLV)
-+		return -EINVAL;
-+
-+	switch (request[1]) {
-+	case GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY:
-+		c = test->param_value;
-+		response_buf[0] = sizeof(u32) / sizeof(u32);
-+		response_buf[1] = c->query;
-+		break;
-+
-+	case GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY:
-+		c = test->param_value;
-+		response_buf[0] = sizeof(u32) / sizeof(u32);
-+		response_buf[1] = c->query;
-+		break;
-+
-+	case GUC_KLV_VF_CFG_LMEM_SIZE_KEY:
-+		c_vram = test->param_value;
-+		response_buf[0] = sizeof(u64) / sizeof(u32);
-+		response_buf[1] = c_vram->query & 0xffffffff;
-+		response_buf[2] = (c_vram->query >> 32) & 0xffffffff;
-+		break;
-+
-+	case GUC_KLV_VF_CFG_GGTT_START_KEY:
-+		c_ggtt = test->param_value;
-+		response_buf[0] = sizeof(u64) / sizeof(u32);
-+		response_buf[1] = c_ggtt->start_query & 0xffffffff;
-+		response_buf[2] = (c_ggtt->start_query >> 32) & 0xffffffff;
-+		break;
-+
-+	case GUC_KLV_VF_CFG_GGTT_SIZE_KEY:
-+		c_ggtt = test->param_value;
-+		response_buf[0] = sizeof(u64) / sizeof(u32);
-+		response_buf[1] = c_ggtt->size_query & 0xffffffff;
-+		response_buf[2] = (c_ggtt->size_query >> 32) & 0xffffffff;
-+		break;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static void test_ctxs(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+	const struct config *c = test->param_value;
-+
-+	gt->sriov.vf.self_config.num_ctxs = c->orig;
-+	KUNIT_EXPECT_EQ(test, vf_get_ctxs_cfg(gt), c->expected_ret);
-+}
-+
-+static void test_dbs(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+	const struct config *c = test->param_value;
-+
-+	gt->sriov.vf.self_config.num_dbs = c->orig;
-+	KUNIT_EXPECT_EQ(test, vf_get_dbs_cfg(gt), c->expected_ret);
-+}
-+
-+static void test_vram(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+	const struct config_vram *c = test->param_value;
-+
-+	gt->tile->sriov.vf.self_config.lmem_size = c->orig;
-+	KUNIT_EXPECT_EQ(test, vf_get_lmem_info(gt), c->expected_ret);
-+}
-+
-+static void test_ggtt_size(struct kunit *test)
-+{
-+	const struct config_ggtt *c = test->param_value;
-+	struct xe_gt *gt = test->priv;
-+
-+	gt->tile->sriov.vf.self_config.ggtt_base = c->start_orig;
-+	gt->tile->sriov.vf.self_config.ggtt_size = c->size_orig;
-+	KUNIT_EXPECT_EQ(test, vf_get_ggtt_info(gt), c->expected_ret);
-+}
-+
-+static int vf_gt_config_test_init(struct kunit *test)
-+{
-+	struct xe_pci_fake_data fake = {
-+		.sriov_mode = XE_SRIOV_MODE_VF,
-+		.platform = XE_BATTLEMAGE, /* any random DGFX platform with SR-IOV */
-+		.subplatform = XE_SUBPLATFORM_NONE,
-+		.graphics_verx100 = 2001,
-+	};
-+	struct xe_device *xe;
-+	struct xe_gt *gt;
-+
-+	test->priv = &fake;
-+	xe_kunit_helper_xe_device_test_init(test);
-+
-+	xe = test->priv;
-+	KUNIT_ASSERT_TRUE(test, IS_SRIOV_VF(xe));
-+	KUNIT_ASSERT_TRUE(test, IS_DGFX(xe));
-+
-+	gt = xe_root_mmio_gt(xe);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, gt);
-+	test->priv = gt;
-+
-+	kunit_activate_static_stub(test, xe_guc_mmio_send_recv, xe_guc_mmio_send_recv_stub);
-+	return 0;
-+}
-+
-+static struct kunit_case vf_gt_config_test_cases[] = {
-+	KUNIT_CASE_PARAM(test_ctxs, ctx_testcase_gen_params),
-+	KUNIT_CASE_PARAM(test_dbs, db_testcase_gen_params),
-+	KUNIT_CASE_PARAM(test_vram, vram_testcase_gen_params),
-+	KUNIT_CASE_PARAM(test_ggtt_size, ggtt_testcase_gen_params),
-+	{}
-+};
-+
-+static struct kunit_suite vf_gt_config_suite = {
-+	.name = "vf_gt_config",
-+	.test_cases = vf_gt_config_test_cases,
-+	.init = vf_gt_config_test_init,
-+};
-+
-+kunit_test_suite(vf_gt_config_suite);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 69e531be15ed..dd06b23d7a9d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1661,3 +1661,7 @@ int xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
- 
- 	return atomic_read(&gt->sriov.vf.migration.fixups_complete_count);
- }
-+
-+#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_gt_sriov_vf_kunit.c"
-+#endif
--- 
-2.43.0
+Features and functionality:
+- Enable UHBR link rates on Thunderbolt tunneled links (Imre)
+- Reduce Xe3+ PM demand peak bandwidth for power savings (Vinod)
+- Add the blend mode property to all planes that support alpha blending (Ch=
+aitanya)
+- Enable pipe DMC error interrupts for display 30+ (Dibin)
+- Add KUnit tests for DP link config selection and fallback (Imre)
 
+Refactoring and cleanups:
+- Refactor DP link config selection and unify across use cases (Imre)
+- Unify i915 and xe display runtime PM calls (Jani)
+- Refactor BIOS framebuffer takeover (Ville)
+
+Fixes:
+- Fix HD audio on DP UHBR SST (Kai Vehmanen)
+- Fixes to xe driver BIOS framebuffer takeover (Ville)
+- Fix 2 pixels-per-clock CDCLK calculation to avoid underruns (Ville)
+- Fix incorrectly set VSC SDP Main Stream Attribute (Chaitanya)
+- Fix BPC and DSC selection for HDMI sinks (Alexander Kaplan)
+- Fix PCON max FRL rate selection (Alexander Kaplan)
+- Workaround Xe3P PSR2 screen corruption (Dibin)
+- Fix NVL A & B stepping vtotal setting (Suraj)
+- Fix xe DPT allocation paths (Maarten)
+- Prefer system memory instead of stolen for new framebuffers in xe (Maarte=
+n)
+- Fix transcoder mask sizes (John Harrison)
+- Clear stale UV/Y plane DDB entries on plane disable (Vinod)
+- Fix some DP AUX backlight control issues, again (Suraj)
+- Fix switching between HDCP 1.4 and 2.2 authentication (Suraj)
+- Remove unnecessary Xe2_LPD+ FBC plane width and surface size limits (Vino=
+d)
+- Ensure non-zero DSB safe window for PTL+ (Ankit)
+- Fix bandwidth calculation to account for 16 DRAM channels (Uma)
+- Fix NV12 ceiling division for bigjoiner case (Vidya)
+
+DRM core changes:
+- Add Thunderbolt UHBR tunneling support (Imre)
+
+
+The following changes since commit 8e27f752037e72ccee9c4a7c4a6202ecf3daf603:
+
+  drm/i915/ltphy: Fix SSC Enablement bit in PORT_CLOCK_CTL (2026-07-02 09:1=
+9:23 +0530)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-20=
+26-07-28
+
+for you to fetch changes up to f0cabcc880aba3f05ca59d735f6d166b7fceca80:
+
+  drm/i915/fbc: No surface size restrictions from LNL onwards (2026-07-24 1=
+1:48:36 +0300)
+
+----------------------------------------------------------------
+drm/i915 feature pull #2 for v7.3:
+
+Features and functionality:
+- Enable UHBR link rates on Thunderbolt tunneled links (Imre)
+- Reduce Xe3+ PM demand peak bandwidth for power savings (Vinod)
+- Add the blend mode property to all planes that support alpha blending (Ch=
+aitanya)
+- Enable pipe DMC error interrupts for display 30+ (Dibin)
+- Add KUnit tests for DP link config selection and fallback (Imre)
+
+Refactoring and cleanups:
+- Refactor DP link config selection and unify across use cases (Imre)
+- Unify i915 and xe display runtime PM calls (Jani)
+- Refactor BIOS framebuffer takeover (Ville)
+
+Fixes:
+- Fix HD audio on DP UHBR SST (Kai Vehmanen)
+- Fixes to xe driver BIOS framebuffer takeover (Ville)
+- Fix 2 pixels-per-clock CDCLK calculation to avoid underruns (Ville)
+- Fix incorrectly set VSC SDP Main Stream Attribute (Chaitanya)
+- Fix BPC and DSC selection for HDMI sinks (Alexander Kaplan)
+- Fix PCON max FRL rate selection (Alexander Kaplan)
+- Workaround Xe3P PSR2 screen corruption (Dibin)
+- Fix NVL A & B stepping vtotal setting (Suraj)
+- Fix xe DPT allocation paths (Maarten)
+- Prefer system memory instead of stolen for new framebuffers in xe (Maarte=
+n)
+- Fix transcoder mask sizes (John Harrison)
+- Clear stale UV/Y plane DDB entries on plane disable (Vinod)
+- Fix some DP AUX backlight control issues, again (Suraj)
+- Fix switching between HDCP 1.4 and 2.2 authentication (Suraj)
+- Remove unnecessary Xe2_LPD+ FBC plane width and surface size limits (Vino=
+d)
+- Ensure non-zero DSB safe window for PTL+ (Ankit)
+- Fix bandwidth calculation to account for 16 DRAM channels (Uma)
+- Fix NV12 ceiling division for bigjoiner case (Vidya)
+
+DRM core changes:
+- Add Thunderbolt UHBR tunneling support (Imre)
+
+----------------------------------------------------------------
+Alexander Kaplan (2):
+      drm/i915/dp: Prefer DSC over 6 bpc uncompressed output for HDMI sinks
+      drm/i915/dp: Ignore the sink's DSC max FRL rate without a PCON DSC en=
+coder
+
+Ankit Nautiyal (1):
+      drm/i915/display: Ensure a non-zero safe window from PTL onwards
+
+Chaitanya Kumar Borah (3):
+      drm/i915/display: expose blend mode on alpha-capable planes
+      drm/i915/dp: s/intel_dp_needs_vsc_sdp/intel_dp_needs_vsc_colorimetry
+      drm/i915/dp: set VSC_SDP MSA delegation only for capable sinks
+
+Colin Ian King (1):
+      drm/i915/bw: Fix spelling mistake "threshod" -> "threshold"
+
+Dibin Moolakadan Subrahmanian (2):
+      drm/i915/psr: Block DC3CO entry during active frame
+      drm/i915/dmc: Enable PIPEDMC_ERROR interrupt on display version 30+
+
+Imre Deak (40):
+      drm/i915/doc: Document DP link capabilities
+      drm/i915/dp_link_caps: Factor out helper to get link config by index
+      drm/i915/dp_link_caps: Add support for link rate, lane count iteratio=
+n orders
+      drm/i915/dp_link_caps: Add link configuration iterator
+      drm/i915/dp_link_caps: Add helper to get iteration order for a connec=
+tor
+      drm/i915/dp_link_caps: Validate max link limits
+      drm/i915/dp_link_caps: Add filter for enabled link configurations
+      drm/i915/dp_link_caps: Re-enable link configurations after a link res=
+et
+      drm/i915/dp_link_caps: Re-enable link configurations after sink caps =
+change
+      drm/i915/dp_link_caps: Drop noupdate postfix from max link limit set =
+helpers
+      drm/i915/dp_link_caps: Add debugfs entry showing allowed configuratio=
+ns
+      drm/i915/dp: Add link configuration filter for modeset computation
+      drm/i915/dp_link_caps: Add helper to query max BW link configuration
+      drm/i915/dp: Query max BW config via link_caps during mode validation
+      drm/i915/dp_tunnel: Query max BW config via link_caps for BW computat=
+ion
+      drm/i915/dp_test: Use link caps for compliance link configs
+      drm/i915/dp: Iterate configurations via link_caps for SST non-DSC
+      drm/i915/dp: Iterate configurations via link_caps for SST DSC
+      drm/i915/dp: Use link caps for eDP DSC config selection
+      drm/i915/dp_mst: Use link caps for non-DSC config selection
+      drm/i915/dp_mst: Use link caps for MST DSC config selection
+      drm/i915/dp: Remove min/max link config limits
+      drm/i915/dp_link_training: Reset the max link limits in the fallback =
+code
+      drm/i915/dp_link_training: Use config iterator for fallback
+      drm/i915/dp_link_training: Disable failed config during fallback
+      drm/i915/kunit: Enable KUnit tests
+      drm/i915/kunit: Add DP link test stub
+      drm/xe/kunit: Add display test config
+      drm/xe/kunit: Build DP link display tests
+      drm/i915/kunit: Setup DP link test context
+      drm/i915/kunit: Export link training and caps funcs for testing
+      drm/i915/kunit: DP link: add baseline fixed table reference test
+      drm/i915/kunit: DP link: add update config tests
+      drm/i915/kunit: DP link: add fallback tests
+      drm/dp_tunnel: Add UHBR tunneling support
+      drm/i915/dp: End link configuration loops properly
+      drm/i915/dp: Enable SST fallback between UHBR and non-UHBR rates
+      drm/i915/dp: Remove UHBR dependency from SST fallback kunit test
+      drm/i915/dp: Disable UHBR link configs with 1/2 lanes
+      drm/i915/dp_tunnel: Add UHBR tunneling support
+
+Jani Nikula (9):
+      drm/i915: call intel_uncore_runtime_resume() for each gt
+      drm/i915: call intel_display_power_runtime_resume() on suspend error =
+path
+      drm/i915: move some display runtime suspend operations earlier
+      drm/i915: add intel_display_driver_pm_runtime*() functions
+      drm/{i915, xe}: add new intel_display_driver_runtime_pm_{enable, disa=
+ble}()
+      drm/xe/display: separate d3cold handling from xe_display_pm_runtime_s=
+uspend_late()
+      drm/xe/display: add xe_display_pm_runtime_resume_early()
+      drm/xe/display: unify runtime suspend/resume with i915 for non-d3cold
+      drm/i915/mst: limit DP MST ESI service loop
+
+John Harrison (1):
+      drm/i915/display: Fix too few bits in transcoder mask variables
+
+Kai Vehmanen (1):
+      drm/i915/audio: treat UHBR SST like MST for cpu_transcoder signalling
+
+Maarten Lankhorst (2):
+      drm/xe: Fix DPT allocation paths.
+      drm/xe/display: Do not allocate into stolen for new framebuffers.
+
+Suraj Kandpal (3):
+      drm/i915/display: Skip TRANS_VTOTAL.Vtotal write on NVL pre-C0
+      drm/i915/backlight: Remove DP_EDP_BACKLIGHT_AUX_ENABLE_CAP check for =
+DPCD backlight
+      drm/i915/hdcp: Make hdcp2_encrypted and hdcp_encrypted mutually exclu=
+sive
+
+Uma Shankar (2):
+      drm/i915/dram: Interpret 0xF populated-channel count as 16
+      drm/i915/bw: Update bw calculation to account for 16 channels
+
+Vidya Srinivas (1):
+      drm/i915/display: Fix NV12 ceiling division for bigjoiner case
+
+Ville Syrj=C3=A4l=C3=A4 (15):
+      drm/i915: Disable the plane if initial plane config readout failed
+      drm/i915/fbdev: Extract bios_fb_ok()
+      drm/i915: Throw away the BIOS fb if has the wrong depth/bpp
+      drm/i915: Use drm_dbg_kms() for initial FB debugs
+      drm/xe: Do the initial FB size alignment earlier
+      drm/xe: Print a debug message if we have no stolen for the initial FB
+      drm/xe: Abstract the initial FB PTE checks a bit
+      drm/xe: Check the PTE local memory bit for initial FB in stolen
+      drm/xe: s/bar2/lmembar/
+      drm/i915: Fix BIOS FB memory region name debug prints
+      drm/i915: Print the phys_base in addition to the dma_addr for the BIO=
+S FB
+      drm/i915/cdclk: Use intel_cdclk_ppc() in intel_modeset_readout_hw_sta=
+te()
+      drm/i915/cdclk: Introduce HAS_2PPC()
+      drm/i915/cdclk: Introduce crtc_state->pixel_rate_cdclk
+      drm/i915/cdclk: Deal with 2 PPC hscale issues when calculating min CD=
+CLK
+
+Vinod Govindapillai (10):
+      drm/i915/wm: clear the plane ddb_y entries on plane disable
+      drm/i915/pm_demand: introduce HAS_PMDEMAND macro
+      drm/i915/display: sagv pre/post plane calls to check pmdemand support
+      drm/i915/bw: Extract icl_init_qgv_info()
+      drm/i915/bw: extract update_sagv_status()
+      drm/i915/bw: avoid replicating the update_sagv_status() calls
+      drm/i915/bw: introduce the peak bandwidth threshold
+      drm/xe/display: Expose plane max width/height helpers to global scope
+      drm/i915/fbc: No need of any hardcoded plane width limit from LNL+
+      drm/i915/fbc: No surface size restrictions from LNL onwards
+
+ .../gpu/intel-display/dp-link-capabilities.rst     |   11 +
+ Documentation/gpu/intel-display/index.rst          |    1 +
+ drivers/gpu/drm/display/drm_dp_tunnel.c            |  116 +-
+ drivers/gpu/drm/i915/.kunitconfig                  |    9 +
+ drivers/gpu/drm/i915/Kconfig.debug                 |   12 +
+ drivers/gpu/drm/i915/Makefile                      |    2 +
+ drivers/gpu/drm/i915/display/hsw_ips.c             |    2 +-
+ drivers/gpu/drm/i915/display/i9xx_plane.c          |    8 +-
+ drivers/gpu/drm/i915/display/intel_audio.c         |   55 +-
+ drivers/gpu/drm/i915/display/intel_bw.c            |  112 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c         |    6 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.h         |    1 +
+ drivers/gpu/drm/i915/display/intel_cursor.c        |    3 +
+ drivers/gpu/drm/i915/display/intel_ddi.c           |   10 +-
+ drivers/gpu/drm/i915/display/intel_display.c       |   76 +-
+ drivers/gpu/drm/i915/display/intel_display_core.h  |    2 +
+ .../gpu/drm/i915/display/intel_display_device.h    |    3 +
+ .../gpu/drm/i915/display/intel_display_driver.c    |   71 +
+ .../gpu/drm/i915/display/intel_display_driver.h    |    8 +
+ drivers/gpu/drm/i915/display/intel_display_irq.c   |    2 +-
+ drivers/gpu/drm/i915/display/intel_display_power.c |    4 +-
+ drivers/gpu/drm/i915/display/intel_display_regs.h  |    3 +
+ drivers/gpu/drm/i915/display/intel_display_types.h |   10 +-
+ drivers/gpu/drm/i915/display/intel_display_wa.c    |    4 +
+ drivers/gpu/drm/i915/display/intel_display_wa.h    |    2 +
+ drivers/gpu/drm/i915/display/intel_dmc.c           |   10 +-
+ drivers/gpu/drm/i915/display/intel_dp.c            |  407 +++---
+ drivers/gpu/drm/i915/display/intel_dp.h            |   15 +-
+ .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |    7 +-
+ drivers/gpu/drm/i915/display/intel_dp_link_caps.c  |  759 ++++++++++-
+ drivers/gpu/drm/i915/display/intel_dp_link_caps.h  |  172 ++-
+ .../gpu/drm/i915/display/intel_dp_link_training.c  |  232 ++--
+ .../gpu/drm/i915/display/intel_dp_link_training.h  |   31 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |   79 +-
+ drivers/gpu/drm/i915/display/intel_dp_test.c       |  107 +-
+ drivers/gpu/drm/i915/display/intel_dp_test.h       |    3 +-
+ drivers/gpu/drm/i915/display/intel_dp_tunnel.c     |   53 +-
+ drivers/gpu/drm/i915/display/intel_dp_tunnel.h     |   17 +
+ drivers/gpu/drm/i915/display/intel_dram.c          |   14 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c           |   21 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |   35 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c          |    2 +
+ drivers/gpu/drm/i915/display/intel_initial_plane.c |    6 +-
+ drivers/gpu/drm/i915/display/intel_modeset_setup.c |   30 +-
+ drivers/gpu/drm/i915/display/intel_plane.c         |   55 +
+ drivers/gpu/drm/i915/display/intel_plane.h         |    5 +
+ drivers/gpu/drm/i915/display/intel_pmdemand.c      |   12 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           |   16 +
+ drivers/gpu/drm/i915/display/intel_sprite.c        |   22 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c           |    6 +
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |   55 +-
+ drivers/gpu/drm/i915/display/skl_universal_plane.h |    9 +
+ drivers/gpu/drm/i915/display/skl_watermark.c       |    8 +-
+ drivers/gpu/drm/i915/display/tests/Makefile        |    7 +
+ .../drm/i915/display/tests/intel_dp_link_test.c    | 1408 ++++++++++++++++=
+++++
+ drivers/gpu/drm/i915/i915_driver.c                 |   58 +-
+ drivers/gpu/drm/i915/i915_initial_plane.c          |   12 +-
+ drivers/gpu/drm/xe/.gitignore                      |    1 +
+ drivers/gpu/drm/xe/.kunitconfig-display            |   11 +
+ drivers/gpu/drm/xe/Makefile                        |    3 +
+ drivers/gpu/drm/xe/display/tests/Makefile          |   13 +
+ drivers/gpu/drm/xe/display/xe_display.c            |   44 +-
+ drivers/gpu/drm/xe/display/xe_display.h            |    2 +
+ drivers/gpu/drm/xe/display/xe_display_bo.c         |   33 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c             |   33 +-
+ drivers/gpu/drm/xe/display/xe_initial_plane.c      |   58 +-
+ drivers/gpu/drm/xe/xe_pm.c                         |    2 +
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c             |   16 +-
+ include/drm/display/drm_dp.h                       |   12 +
+ include/drm/display/drm_dp_tunnel.h                |   21 +
+ 70 files changed, 3739 insertions(+), 716 deletions(-)
+ create mode 100644 Documentation/gpu/intel-display/dp-link-capabilities.rst
+ create mode 100644 drivers/gpu/drm/i915/.kunitconfig
+ create mode 100644 drivers/gpu/drm/i915/display/tests/Makefile
+ create mode 100644 drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+ create mode 100644 drivers/gpu/drm/xe/.kunitconfig-display
+ create mode 100644 drivers/gpu/drm/xe/display/tests/Makefile
+
+--=20
+Jani Nikula, Intel
