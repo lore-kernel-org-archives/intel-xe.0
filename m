@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9433EC54F57
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D902BC54F5C
 	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 16:11:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 359A410E983;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ECAC10E969;
 	Tue, 28 Jul 2026 16:11:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jzqqq6/l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UeWbtsZS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD42010E88A
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 16:11:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF85810E88A
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 16:11:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785255097; x=1816791097;
+ t=1785255099; x=1816791099;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=b6ek8c5cLv96AT+/oUuRxUunSXLNa/GYnuusBatFMQk=;
- b=Jzqqq6/l8hiIrEMAZmF2BpgXifEqGxViv4prNZg2O8wjGeelTSsHeyat
- Lj9okV6ZArBIFEZ5qxF2wYPIpCm02nqZsHPdEdVNAz2JJ2L7eq8456K/i
- WJ9lfYXU6R3XcfV0IR2TsDq6xN2ah0BxKiU5dGnWxWSK62D5FKObCGg4B
- xLEsHPtypskQfjRJaG7oOQJtIQwWlhb79ijAv3LFsBqIJ9+5mKS+VJhG8
- 9rET8duYGsEODRp13tAjRc4Gymm5ga5hFIsNk92bob1ZLLxSbqH9zyLt/
- pRSyFJaFL+UkKBhKJXAsyv3C4PRaB/TsfUN1E3+E0drXlqScMer1oXfgA Q==;
-X-CSE-ConnectionGUID: fsc8AufBR4iV+14xeUC4GA==
-X-CSE-MsgGUID: drfW+RGXQ7yN3/TjtNtlgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="103386296"
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="103386296"
+ bh=0jwxlfkrGrVwjVytB9u+L474s6F0gRR63bYrvGUWEMY=;
+ b=UeWbtsZSNPVdhB9x27BJqHTWKAj992YwceMy8izf2K4G9zrhha6ox3EX
+ JbyLGUBl/CFeU8UO01P4O542WA/1OA98iYOx0wTPBljVAMqjHWtKh2jsH
+ Es+I3ZN1g9hNo94oGRkDcTBnsz8JlqhzoauA4CiJPmEi06M1OtA4X6XeW
+ pRa+hLf4ZkEqupUGKhV+wl2lM1S7/a8f4lzW03ejpKugT9TYULkLLChYL
+ EGzBw8FG3K7AelP+/4EHU9HMFQS7bVYkJpVORTr4RiWza21yUq+2KldTK
+ 61GkWnUUVj7C8Y0gjUMzOM8Sx0r0u95FKleTJbzimgxQoKmCuoIuktap3 Q==;
+X-CSE-ConnectionGUID: 1ufXSkoBRRmpvxArUQ2vyg==
+X-CSE-MsgGUID: 6lVMCe9eRfyXaw6KYu/VCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="103386297"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="103386297"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 09:11:37 -0700
-X-CSE-ConnectionGUID: i0eqzPfyRKWn3aIteYM4cA==
-X-CSE-MsgGUID: hn3s6dI8RmqPJV9JZk2jjg==
+ 28 Jul 2026 09:11:39 -0700
+X-CSE-ConnectionGUID: X4y8MhgqRBS8vusl4tkmlA==
+X-CSE-MsgGUID: qJEAxmm4Rlalc/8D0O4mwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="259819427"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="259819438"
 Received: from dmagui1x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.118.167])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 09:11:35 -0700
+ 28 Jul 2026 09:11:37 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v2 17/22] drm/xe: Report 'Survivability Mode' errors using
- SIGID
-Date: Tue, 28 Jul 2026 18:10:32 +0200
-Message-ID: <20260728161039.579-18-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 18/22] drm/xe/guc: Report 'GuC mmio' errors using SIGID
+Date: Tue, 28 Jul 2026 18:10:33 +0200
+Message-ID: <20260728161039.579-19-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260728161039.579-1-michal.wajdeczko@intel.com>
 References: <20260728161039.579-1-michal.wajdeczko@intel.com>
@@ -71,98 +71,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report various 'Survivability Mode' errors using xe_log() helpers.
+Report various 'GuC mmio' errors using xe_log() helpers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_survivability_mode.c | 24 +++++++++++++---------
- 1 file changed, 14 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 4c506027fa94..788b7e8137a9 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -14,9 +14,11 @@
- #include "xe_device.h"
- #include "xe_heci_gsc.h"
- #include "xe_i2c.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4286bd05c686..c7f8bbd4cb92 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -39,6 +39,7 @@
+ #include "xe_guc_rc.h"
+ #include "xe_guc_relay.h"
+ #include "xe_guc_submit.h"
 +#include "xe_log.h"
+ #include "xe_memirq.h"
  #include "xe_mmio.h"
- #include "xe_nvm.h"
- #include "xe_pcode_api.h"
-+#include "xe_printk.h"
- #include "xe_vsec.h"
- 
- /**
-@@ -179,11 +181,11 @@ static void log_survivability_info(struct pci_dev *pdev)
- 	u32 *info = survivability->info;
- 	int id;
- 
--	dev_info(&pdev->dev, "Survivability Boot Status : Critical Failure (%d)\n",
--		 survivability->boot_status);
-+	xe_log_info(xe, SURVIVABILITY, "Boot Status : Critical Failure (%d)\n",
-+		    survivability->boot_status);
- 	for (id = 0; id < MAX_SCRATCH_REG; id++) {
- 		if (info[id])
--			dev_info(&pdev->dev, "%s: 0x%x\n", reg_map[id], info[id]);
-+			xe_log_info(xe, SURVIVABILITY, "%s: 0x%x\n", reg_map[id], info[id]);
- 	}
- }
- 
-@@ -316,7 +318,6 @@ static int create_survivability_sysfs(struct pci_dev *pdev)
- 
- static int enable_boot_survivability_mode(struct pci_dev *pdev)
- {
--	struct device *dev = &pdev->dev;
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
- 	struct xe_survivability *survivability = &xe->survivability;
- 	int ret = 0;
-@@ -342,12 +343,12 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
- 	if (ret)
- 		goto err;
- 
--	dev_err(dev, "In Survivability Mode\n");
--
-+	xe_log_emit(pdev, check_boot_failure(xe) ? CPER_SEV_FATAL : CPER_SEV_INFORMATIONAL,
-+		    XE_SIGID_SURVIVABILITY, 0, 0, 0, 0, "In Survivability Boot Mode\n");
- 	return 0;
- 
- err:
--	dev_err(dev, "Failed to enable Survivability Mode\n");
-+	xe_log_err_fatal(xe, SURVIVABILITY, ret, "Failed to enable Survivability Mode\n");
- 	survivability->mode = false;
- 	return ret;
- }
-@@ -412,7 +413,7 @@ void xe_survivability_mode_runtime_enable(struct xe_device *xe)
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
- 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform < XE_BATTLEMAGE) {
--		dev_err(&pdev->dev, "Runtime Survivability Mode not supported\n");
-+		xe_log_info(xe, SURVIVABILITY, "Runtime Mode not supported!\n");
- 		return;
+ #include "xe_platform_types.h"
+@@ -1542,8 +1543,9 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 		/* scratch registers might be cleared during FLR, try once more */
+ 		if (!header) {
+ 			if (++lost > MAX_RETRIES_ON_FLR) {
+-				xe_gt_err(gt, "GuC mmio request %#x: lost, too many retries %u\n",
+-					  request[0], lost);
++				xe_log_err(gt, GUC, -ENOLINK,
++					   "MMIO request %#x: lost, too many retries %u\n",
++					   request[0], lost);
+ 				return -ENOLINK;
+ 			}
+ 			xe_gt_dbg(gt, "GuC mmio request %#x: lost, trying again\n", request[0]);
+@@ -1551,8 +1553,8 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 			goto retry;
+ 		}
+ timeout:
+-		xe_gt_err(gt, "GuC mmio request %#x: no reply %#x\n",
+-			  request[0], header);
++		xe_log_err(gt, GUC, ret, "MMIO request %#x: no reply %#x\n",
++			   request[0], header);
+ 		return ret;
  	}
  
-@@ -422,11 +423,14 @@ void xe_survivability_mode_runtime_enable(struct xe_device *xe)
- 		dev_err(&pdev->dev, "Failed to create survivability sysfs\n");
+@@ -1607,16 +1609,16 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 			return -EREMCHG;
+ 		}
  
- 	survivability->type = XE_SURVIVABILITY_TYPE_RUNTIME;
--	dev_err(&pdev->dev, "Runtime Survivability mode enabled\n");
-+	xe_log_err_fatal(xe, SURVIVABILITY, 0, "Runtime Mode enabled!\n");
+-		xe_gt_err(gt, "GuC mmio request %#x: failure %#x hint %#x\n",
+-			  request[0], error, hint);
++		xe_log_err(gt, GUC, -ENXIO, "MMIO request %#x: failure %#x hint %#x\n",
++			   request[0], error, hint);
+ 		return -ENXIO;
+ 	}
  
- 	xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
- 	xe_device_declare_wedged(xe);
--	dev_err(&pdev->dev, "Firmware flash required, Please refer to the userspace documentation for more details!\n");
-+
-+	xe_log_err_fatal(xe, SURVIVABILITY, 0, "Firmware flash required!\n");
-+	xe_info(xe, "Please refer to the userspace documentation for more details how to flash the firmware on %s!\n",
-+		xe->info.platform_name);
- }
+ 	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) !=
+ 	    GUC_HXG_TYPE_RESPONSE_SUCCESS) {
+ proto:
+-		xe_gt_err(gt, "GuC mmio request %#x: unexpected reply %#x\n",
+-			  request[0], header);
++		xe_log_err(gt, GUC, -EPROTO, "MMIO request %#x: unexpected reply %#x\n",
++			   request[0], header);
+ 		return -EPROTO;
+ 	}
  
- /**
 -- 
 2.47.1
 
