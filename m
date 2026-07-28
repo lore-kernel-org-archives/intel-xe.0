@@ -4,158 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92795C54F54
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 19:13:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0981C53219
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 19:16:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 545C510E3E1;
-	Tue, 28 Jul 2026 19:13:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C6710E5C9;
+	Tue, 28 Jul 2026 19:16:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CRGNKv+L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cYvNg9Mo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 627AE10E3E1
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 19:13:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB1CD10E5C9
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 19:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785266019; x=1816802019;
+ t=1785266206; x=1816802206;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=8f9/QPhnYE6vkoNpARzIDI4arHrZpco2amH8GxOfcug=;
- b=CRGNKv+L2E2S7Y3+zcdisZBROlSP+CKfzM97wFsoK8LwekRGkOuns2u9
- Oqb5Vs1QE2MTszSZ66hVOXYoH0/v9g97SY1ReWyJyjtWYwg1rq6BxXC2j
- kTEeKJPVpg7GXNFMxJbcCN/7h69x3IO7wiMkUHypgrWL2zG6y89/yNMqP
- 4HjJzlw/JyjJJ4tCvtQTxTgTIOCETVzHPh3HcltrUJjYsSoSISID6LtIq
- VnX2Jf+sLNc2mg/H5dXTvEfHgamm3AwuvjPpifT8Jej03NxAWrEB6X/M9
- DeCrOKOsbEDjLJttgBf3Wi3hi33Piq0BL9ITQNVWITrfBeBIaipBXh1Gs A==;
-X-CSE-ConnectionGUID: 6kJvu2/3TWa5o/48Uu5gSg==
-X-CSE-MsgGUID: jgiLvxgQScWwRUhWDCWW6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="96220388"
-X-IronPort-AV: E=Sophos;i="6.25,191,1779174000"; d="scan'208";a="96220388"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 12:13:38 -0700
-X-CSE-ConnectionGUID: dNnLsXAsRIufYOgI5dJf6w==
-X-CSE-MsgGUID: B1NK/bCSQ/a4pcbZcKUSbA==
+ bh=JrfTDVVcPlMXXCw3nGSq9ndN3XxjibCVfYzww1xRXvM=;
+ b=cYvNg9Mo9zAiXZvkE8VhS//K+7EUF8v3BF8sEqs1kmTlw09M7Myi4oYJ
+ B+JTlNPYsslSS4JDbdnexsA/up7PqNcfE80TQf6gQF0KT1OMg3kUSmMIF
+ /xiXsLs//WHDhENqqhqiqLhPnAsUldMZCHkcekXSPM7kjANPgUBMdX1vG
+ ObZgT3Sm+/06tbS2arWmhWVH7MXrS7ZPlUBafhMMrwAD4EAbNSK2lB6AK
+ u5xpzrRB0bcQR5gIZBQTbPJGM9arfrNRjW0z1lXfn00K3ZaqVnk1M99ut
+ nRfRls9Dw1tcO6A25H9r+d0MvxYoPyBS6kwIpjJxnIVI6YKAmisMwpTEz g==;
+X-CSE-ConnectionGUID: KQuUC5d6QfeqYV2KEENJdA==
+X-CSE-MsgGUID: i1iCaosWSiurjwzjW11SfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="73401730"
+X-IronPort-AV: E=Sophos;i="6.25,191,1779174000"; d="scan'208";a="73401730"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2026 12:16:45 -0700
+X-CSE-ConnectionGUID: yN4gKhy2QDKsnJRj2ScuGA==
+X-CSE-MsgGUID: G+1E8DEuSb2Tj5bdLcCejA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,191,1779174000"; d="scan'208";a="283125641"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 12:13:37 -0700
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2026 12:16:44 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 28 Jul 2026 12:13:36 -0700
+ 15.2.2562.43; Tue, 28 Jul 2026 12:16:44 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 28 Jul 2026 12:13:36 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.47) by
+ 15.2.2562.43 via Frontend Transport; Tue, 28 Jul 2026 12:16:44 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.55) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 28 Jul 2026 12:13:36 -0700
+ 15.2.2562.43; Tue, 28 Jul 2026 12:16:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gdJ/1GAD0Ux+X596bkYEyKMn5uBYIhjRSnhYn47wgcRmpstUwRUM61NTgP+xfABzdkHODEKkmECpavaGiyLHvYiH2SqVtfaYT0U1TdJUcl3Ivl7ekJBpZRaL5R86bd0zRtzcxfpEssNdlgpNln4hIXfI4A5ZLveheJh1MPHqEn0x6Ez5cozJDBAaKpQAnuznjQHKt1ExSRzCmm1p+OQ2qHewTXmwxBegne1fzvE+dG3kAvYAVGGPxexsUCaUND/88/zOCZpv4z0qve9IrC6cZmNxq4mR71NZgygK9IiLlsdGwkIEoS0cQbNmYzj/a36cg4L4+3juRyaV+tXxDREI/g==
+ b=B2hDvF3bC2rvOp0/KJDCTtYOEDiLJNKRbXysbh1jiE9XLtixSLSah0Lb1Vm0R7E4VGebt3sNw8bGGht72xrZWtuW6vyX93Dby59HvINZf5hVRWlvexmTyBLE/Lubvm4PaZpNdjemDoumcq86B6MywREDeuqMTxNWsmsGNy67PxgQA0L///d3njRwANO/cAlX2AP4dk6WNJ7jXIEv3my9tFJElA+6B4wvdNyn5DCo9xCDGmVxl+uMi6qkSz6ZpaEDIOamaCKEQgLWhNsFACv4pEqyR1XpwC23MRgR1DLFPIjG4Auy2lB2ysCtzp3yzBwK0UVFx1lXW4jXBiiLWZFY7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iBAzuYT1atXpbppq++0kcph3oeJP3ivUd26YrAkkFHM=;
- b=gxxYbtNvaXZsxVy3wpZW7YjdbBBU3zetLB1ETlCxN/jgBhJlETetsmndfQZBjfk+TuCiP3tZJfPNC02SGHWRocsmC1+vXX2ttm6oxpCoFfsrkh4hUxqcEV1AAiRsVluso4nO0bQt9cohn4HypO/lEWqdblAWlV0ToMDzhW4ZvxIy9Y6rZeOcb0xgGLkTa80Zpt4jixaycYevDvzfv2dneTWd8G6nsdffRMwmgp7PKPiciuGlfaccpHJQC2Z3dSQaDnCQTbe5fsBwBrk4N+Wles4n9hkw2Y73xjnAUZLJ8SUXNlhTqumpMZDc1ZHcAORayoVDyn9czxoPFVWR98evNA==
+ bh=RLHPPfRkbMjsMLXygaEJHuFr/6MaWH3x+UvEEy+YitA=;
+ b=YgpcUX78mU3Mq6KYVB1tG38a/HpE3isJ0rrb5mzd7ovFqcFQdUG/RQNiNg/T12FNYBmijKCcdhhXCWhNANUvMXdT/beAsV9kMGllajun0v8fNJPZHXk6gYobxd22Yqqbpxu0a2CyhnjgxUTu3zf2fsIBSW1p7PXiTHfE4jP5Q+y/sbm/4pC2LWqeyCkn5czgZuCVx27W/4QYTr5aITOtytZKtY94ih/uqbikyraVXdoplrDiEE2teImkHIMXMHSCI+7QOKgIBuG7zM/52MHQEC+gDSG8UnYW5tHqSiQrotEt7uYOdmgqJknK8ORwrE16dG7EamV/Cjri2l1a8BwsTw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by IA4PR11MB8992.namprd11.prod.outlook.com (2603:10b6:208:56e::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.12; Tue, 28 Jul
- 2026 19:13:32 +0000
+ by SJ5PPF0D019E8BF.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::809) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.12; Tue, 28 Jul
+ 2026 19:16:35 +0000
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0270.009; Tue, 28 Jul 2026
- 19:13:32 +0000
-Date: Tue, 28 Jul 2026 15:13:28 -0400
+ 19:16:35 +0000
+Date: Tue, 28 Jul 2026 15:16:31 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Aravind Iddamsetty
  <aravind.iddamsetty@intel.com>, Mallesh Koujalagi
- <mallesh.koujalagi@intel.com>, Raag Jadav <raag.jadav@intel.com>, Riana Tauro
- <riana.tauro@intel.com>
-Subject: Re: [PATCH v2 03/22] drm/xe/log: Introduce structured
- component/location identifiers
-Message-ID: <amj_WEjs62ThicHw@intel.com>
+ <mallesh.koujalagi@intel.com>
+Subject: Re: [PATCH v2 04/22] drm/xe/log: Add component/location decorations
+ to dmesg
+Message-ID: <amkAD0VZVBTLWxLq@intel.com>
 References: <20260728161039.579-1-michal.wajdeczko@intel.com>
- <20260728161039.579-4-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"
+ <20260728161039.579-5-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260728161039.579-4-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: BY3PR05CA0019.namprd05.prod.outlook.com
- (2603:10b6:a03:254::24) To CO1PR11MB5073.namprd11.prod.outlook.com
+In-Reply-To: <20260728161039.579-5-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: BY3PR05CA0012.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::17) To CO1PR11MB5073.namprd11.prod.outlook.com
  (2603:10b6:303:92::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|IA4PR11MB8992:EE_
-X-MS-Office365-Filtering-Correlation-Id: ddbc6522-be62-4990-ca98-08deecdc5051
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|SJ5PPF0D019E8BF:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1a45a3d7-f6f5-47ea-9101-08deecdcbdcf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|4143699003|10067099003|11063799006|6133799003|56012099006|3023799007|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: pwS200rGHNcEEwaEUEy7ai5kvkaLOoQt5J2WD6v5zI+QpUtLIcPMyqUS0KdoG94zkuXt7MqbtnpJp96KjvusQs8ed6A/QOrBp2dWSqi2qWtaEqBwazFbHbpc+qtCnOV7VoOIluNCIDBllt108epNGcPMiodIU9KShYcZcu+jsRfYt3KZVEzw99YcdiSp7qaYMccINhxjJz8voPNa0wSIKHJl1N1QQUdiOHFGfZagM/SvdxYiqn2M/KthuOX6uNK+bWFpBtEDhw7qzS8ww9ydl52J4h1hV6K99z4lR48a1cieSSPw6LSlfFxQoNjkbCFHBVzT5nx0zxR1XZ7u0C8z6n/LjQOeGx7YBe0ayrYFDYEqNWfWT+lBcfNv6VA1fYx3uc4VnGEWU0sY40RycU+1i402nC9BdJONm6egJ4xPDke94HVhcnI5x6crTraT6WRo2UPWMtziQB+iex9ehkU6k18yUQDmz4dnxbAC0YXwW5ZWwGdrZ0BcrYG7CtqSi+uQKrUno2EUgCGhKUMY7tJWzXNAx7BYx1vKh4bXjx/PS2QCGY7NJBB63tcAq95HZqWA/Rv6FWxMpF075iQPZqQKmofz7KEdBgMiBSpCrpM8wOBjceEktYrr6AK+4ceLbWzzWTiW8lACf7JeGNskUx1RkiUBPojrHveGMao3GW/3/Ww=
+ ARA:13230040|376014|23010399003|366016|1800799024|6133799003|11063799006|4143699003|10067099003|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: EswVR2+4/soRHfrLul5ltTx8+lmwqrkWDXLoten1gNkN5ue11SYAFUl8fW0rpbhcbA+r+t3hULNa8MrMDManszj4rlKo9xsSw9eSbjOAS95Q8GvrIi42B223e3A3VWkAAY8rlIivY9jLd7tdu/SMGHgRdcQik+A+DEMF/T3vKM8bSJyWRYzC/1zD3+/L3Yc/X6kmaQM2yn+MllzQzD29Ts+jcwo/vVyaPKALBhvTBzZOzKwytLwucBg63cU+UwKRwAx6+jZLGvpL/wW7bhuKH2RSj2zNoBK0yqdD6okK6U2rjMiNO0RSGD4wiSAqy2XNPPofQJXVE/WhR+c/JGP2KRdJldYS6993/WvtcuqDph/wjG8U/BGvDXq3pvmQlrFq98QvW/ru0HMR35/5OMdGlkzV5OGTzpDugLTdjiC8VL3jhR27ooigA+9eHk5dNKYkbsz2mQfireF9TbYfBHg9B2oUIbKVaQQg3j1hIW6NNcm3c1+JZ29dgTxsKBUUU+wYpA4vqD/zfbZVfK4WCkWhZrR7Yxruim6NWTk77jVAi3PR9Hlc/NvQjBYPmUwaUrSNCdSFEIsdAOloCxf6OJDfSN32DILhqGVaSKiw2jsZSeGzsmtaAJKT5W9fwnU4V8cYwFFBQHAL8KvaCjffUAbT0W5tKbt2DCH/qzoS2HZtl0Q=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(4143699003)(10067099003)(11063799006)(6133799003)(56012099006)(3023799007)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(6133799003)(11063799006)(4143699003)(10067099003)(56012099006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b3dheEsxdGJ4R2dBek9ITEkrMVo2cjlyTFRaNnNGMlMxOWo3YWdnamk2Y0VQ?=
- =?utf-8?B?dFpLbW16T2U2czRZR2xKbG9WMzM2a1VwbStMUkhKRmN4THAwZW9hOG10ekJC?=
- =?utf-8?B?MW9yUUcxeGNlWTc5ZTlPemVndGxCK3FkN2R6MjVyL1Z2WEdyYzMzb2U0RFdY?=
- =?utf-8?B?WnZyN1dLNEp0TUNYUHlaamtzRjFEWHg0TFdpMitwSy80QndHd20xOU96MHdz?=
- =?utf-8?B?RXNvWmxaSlJTRzVxcC9KY1pRM0NqNDVMV2FPSEhjaWp6Q2tnSlV3akJTVWNo?=
- =?utf-8?B?aTQvajB4amdNd1VlaWVZN3JFMTRzSlF6S1U4NGdsWEhBa2lhb2s1aDhxVFhz?=
- =?utf-8?B?bEs5SjJLMUJkZGlUVERSYVN0ZWp1YU9mdUwwRmtCMjhnNnQrR3hmS25hbjlM?=
- =?utf-8?B?RVlUdVFHUml3ekR4cnBSbGkyMTByUTBDQmFKcFlLcUx0QzBMMXEwVEdMVWV4?=
- =?utf-8?B?Rkd3QlprUmxOWGYrYjRFbTJGVU1pcUR3emFrT3BIeHByVG93SWRobmNraENI?=
- =?utf-8?B?YURWM0diWkNVQVVqMGR6MGg5WnBpWHp1NnlMazdzcXBwcGkyMWFrb0s0MGRj?=
- =?utf-8?B?bzMzenF3dW5EL2REeHd4alJya3hDZlhhU05MbkZPOTJkbUl5bTAxUTFGMmc2?=
- =?utf-8?B?RXhMNEVXclYzZWJ6N1ZHakd1V29EVGxnMjlyUmlncEJISmtyd3BZRUROWThL?=
- =?utf-8?B?N2gzMTd4R1JZd1pLMnJUTjBDMm1JWFJmRi91VDBiWDEzUTdGY1p2anVjTmND?=
- =?utf-8?B?aGh2TVlKQWdNMVJneGZHR09YejN5bVZ4RzdGS0lRTGdXNTlGY25WdUx2Q3BO?=
- =?utf-8?B?UFREZ201bWVGK05IaXpvQXMxK09LalVNanp3dmlwdnJFZWdBVVhhSGUvY2Np?=
- =?utf-8?B?MXVMV0xWVmJFRWZrS3BNY2dKVWFRS0wwckNGWll0dXVQVUJ4dUI1L1phLzEz?=
- =?utf-8?B?eHpZd0NidTZWYTlUK3ArVE5ybWJjR0dZMERoLzFSN3FNbEdRS2JZcHRHT3ZE?=
- =?utf-8?B?OExMN0t3MlBaUWFlUlpKbVpMbjJ3cFRacURHY2NYbVpmSk5HZU85cGlsQkFT?=
- =?utf-8?B?djYzVnhTRUsxbmg5UUhGb0s2aHhIK0g5aHBlUjR3RXFlaFV2aThCZFZwWlNF?=
- =?utf-8?B?WDJIL2piTnZNMTdaZ0hwSnY0TjdlbENQckwxZVhYVURNTC9mRFdmTUdYaGpK?=
- =?utf-8?B?ZmtreUFXYUwxNWVhdXdUVnpTNnBCZXJRdGVHR3laRjVoWHpWc3Jsb0I3VFpa?=
- =?utf-8?B?MytRN2pNYmdpa291NzJ1clgwYmVRcXJDMjAzdFA0NTJ4aUcrRzF5SWliQW80?=
- =?utf-8?B?TGlqbUh6WHpNamJPSWpyVmhaTXhEWFNBamthV1ZXQ1RheUwrSHF6cHFoRkt2?=
- =?utf-8?B?eHE1dFF0QmtjTEtOZk9TNFFRbHBSeUhCZzliVjFiZVdFNlkrWFhtczR4RHJv?=
- =?utf-8?B?WE9TTWV1NmNxaUpyVEdLZ3NUWUEvb1d6THp0S1NSSzg0eWlpcHMwc3RQTW9l?=
- =?utf-8?B?Ni9rclR1RENwcVBhak9Eb2xMdGtuaHpZT0hhYnhKdEVrREN2N1VrOGRrSlFk?=
- =?utf-8?B?TmtDbnMzRG0wNTBxckVSdXYxNGx1U05SVXcwdWV0RXA3K0ppWnU4QjBPRGxq?=
- =?utf-8?B?b2k3ZS93ZzQ1RUJUWTUrS3pJWXRKcXorYXNna1pkV3NndXVLYk5ZR2xaSmR1?=
- =?utf-8?B?Q1hSZURNME43ZW1DR2FTcGdadFBVNmRwWVNWa29qUVpRamdRcEpaZ2V4RVpM?=
- =?utf-8?B?TFBkb20zQ2d6N3owdStIK3hmNWUwK1RhbGtybG9vM0dsQWN4bXJ0SExSMFQ1?=
- =?utf-8?B?ZDhwQk9yRVdqWjZLQVdIUEprTUFzaXA2QlRCSTZQUXBhOTVnMk1wLzhlbEp5?=
- =?utf-8?B?dGVIbTZYb1JJTExXSGJkdmh5S0tWUmoxSzgyK1kvbGZ5bTk2U29VaGpKQU83?=
- =?utf-8?B?N1ZmbXQ1d1Q4SEZneFFRMmRJQ29kV3k1TGRwRytseGRqT2lZcUhvNUlocTFE?=
- =?utf-8?B?eE54dm1uVmZDT1JVNytIT0ExZEVORTBMWU9EbzBBSUVrU2tpUWgxSUFTSHZY?=
- =?utf-8?B?ZzFUUGIxVEdMSks2R3ZnMkNIY0dFeWdoKzhzS0VjSjNVUi90b0lJdUdSRFQ5?=
- =?utf-8?B?SWRkUVh0bGg4aUhyUzNoQjJXQUoxbnFIcG1ZZnlnNXJqeVFyRDB2RXlRYVVW?=
- =?utf-8?B?cERpeDhtb0FWY1dWbjBvdmZIZEZva1VXRldJdFNJWStXOTUvY0FKOFc2Yzlt?=
- =?utf-8?B?OUhjZ0dReEcvYTQwaXNKM0lSZGhWb3JxRkZCajlHcjhHTjhnMXR4VVFjemRj?=
- =?utf-8?B?OFNwbTN0N0dEbmQxRWFjekxyRC8yQU8xd0NjQzFpZ3VRTm5pbHJWQT09?=
-X-Exchange-RoutingPolicyChecked: Ch1LvelFbYJUDjNFbXIVZbY5Lae/HhQ1j8BMmfQNDhNGfv/f70OVdY9rUX6c5lRidXKz0LAFw8VVNPwgIBF4TVE0K18TCeH03pw+HVe00tPcxqUx/6I/Gj8/QwIFSVxKs672wtzuO/jXM4FDZVFakeBWF9j2c0s+qThi7cLJ3BDiTFX8ZC9qFJlDrjaBoyZqk5tS/W/V0vDHTz4kkPunl1mJORXWszu4w+JeGa0M+Ucc9+bjyqQgLf0shKtZQt2tD2kZoH+CkxeDILrUy1lNCdsbTTmeAQLc5C6LZ47hzGJsVp9RMXfv9vg2UdocvhHoO3or4b92XzphD3LurRmqrA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddbc6522-be62-4990-ca98-08deecdc5051
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ucGBTZ5UCrWJOAUMbcBFcxQ/q0P9vTLww8Xa+JN+Aj10FfBrbc5fm3AUcH?=
+ =?iso-8859-1?Q?dF0F0uDuxCgv8D6H7bgYRN/iIQ6nhbZoFbJ+mAVGnmQHhNcS6GnoEuWpzR?=
+ =?iso-8859-1?Q?e/B9BfbYrSDxFmr3xjau2FMMOaHI3SqXYwYCJJ5BE9QXYMkZ7mPsN23Qe4?=
+ =?iso-8859-1?Q?6mceFEY3S9O6vIsv8dKf/v7khO5HVRNfFq9bO/5eleB/6aEpO9XRt5XxXr?=
+ =?iso-8859-1?Q?3ykF32V3c+ypTcr3rgzZbL4yQA/mth79Cgq1yDGqDjjqfgNWZ+TqhogsvP?=
+ =?iso-8859-1?Q?S5/zK0Rz8QwdtiYBIs9/DfY0dDlkO2pskXrOBYm+YLKcUB0PBjDKDFfJFf?=
+ =?iso-8859-1?Q?ucHUTBI+JeZOn+c8zA2x5vRJrRwTQym/CIAhsJkuJtGR5IgLBWvAwhfSHZ?=
+ =?iso-8859-1?Q?PLfZdesEy0YRwhfNQCdZfQUn4kd1+LXYROmGbjng07Q+YtKnF3LFA4iyok?=
+ =?iso-8859-1?Q?DCi1ZBZJ79dHQXQX+KDYu0v2NY7rLhTkI6G6dW6liP6V9NgsiU4azRsF8z?=
+ =?iso-8859-1?Q?cPF2QF0qawLFOZKGhtbHesLrUdoaDVRWOEtFe+ZeimxpypWTYlgticxVUD?=
+ =?iso-8859-1?Q?bs8n0o6rOynZyDEfKbl0J2kRSDQoJXSSTIZnJ+bGSsWbju807SwS4ey8c3?=
+ =?iso-8859-1?Q?iF3msRqmMmqRt++Xl3qAg+rlhrC+3OdbJNpJF9uNh5/PG7xXEAP/Dvd1an?=
+ =?iso-8859-1?Q?TEXzP90blhjm/cw0dQnKz1AT9t/3+WGNGjipwjHkwSxyCGi++L3Haq5l8E?=
+ =?iso-8859-1?Q?pkeE7TT11odcTS2VKvhBUgcHUvkyqzVv7tRN+Xr9q2775AJQn7zlnJn7dr?=
+ =?iso-8859-1?Q?ibIZV0DEaXzym+U0Ye1bb+roZnTVdCdWiYgPfo713qhIIKTs4rNQzoM52o?=
+ =?iso-8859-1?Q?dPbqej6F43jESPg1OxCAhOxW4pCL8S5/wCrDG5enkaOVoNrDQt+qDHQaC8?=
+ =?iso-8859-1?Q?xpCMHrOjiYhKurbbhNb8SId+YnEvUVuW5pSUC834upChHJxb9hn6jYV3Km?=
+ =?iso-8859-1?Q?Ij9Avqh+QfZ7h6mufgQO+tZoHDExI8t+aGXR1zP84cqX+QOHa6SoQHkvmX?=
+ =?iso-8859-1?Q?+FNjzLP25Klzjp1U2YCNW78CpJ2aodr+vK12/1o0rG3ta63dqFYk9E+0Su?=
+ =?iso-8859-1?Q?WSuLGEeqcP8Psopxcd72I+KvD/DSAYsvG5ew1sCP9tpCNqPF+p1ROX0det?=
+ =?iso-8859-1?Q?Qa6Yk/PrNtR1qcL9iFi0NSMAjyLY3wIX/HcHetndY1RTtrF9SVlL8P56xR?=
+ =?iso-8859-1?Q?wKoe/lliXzUuJ9ZiaG4kKosqBHc7Af5djoCiThUugEUJ3h8g7oOwW1bmIG?=
+ =?iso-8859-1?Q?lShH7lhCtQ6m/8qJYw1pXvOt75F5hul16BpkVja1LeifBKZ5YZq3jiRZ6P?=
+ =?iso-8859-1?Q?+eznL8w0Kr4s+uxzF3FpXIMob5jFHbpora809BCkCv8WHjySdIMh9JjgiD?=
+ =?iso-8859-1?Q?fA2nEaVfAj4L17bocJG913tu5EqjqrsvSJmdO1NY+C33flQraldYb7l4XN?=
+ =?iso-8859-1?Q?272GLaefa18Q0AQhKwFMEk14oIAl1DfiOE6MnT81w+nsciiEaDwJDejyLj?=
+ =?iso-8859-1?Q?GbSFqqVdcpKjZ30MOlW/H2SwmhAOgU7005W1CfAtmgkBa09Jy84U/qcBFN?=
+ =?iso-8859-1?Q?VCy92dtJg1PWYQ8WLuBIPzjXN5lDStK4wOSU6/79B2Q5IAUE5+hpKT5vdT?=
+ =?iso-8859-1?Q?+N54r+bO1dpiKlItK/Wzr9e8kKx5zkUaW8GKcCjFHUD7a7kyZbX2Hz1Q5A?=
+ =?iso-8859-1?Q?FIAgtVvrGaNxUj3Gz2P2oxmdAmxh/ypovG/cn8H7995oozpUuPWJ3bB1fO?=
+ =?iso-8859-1?Q?bHxWzUE+xA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: jzFkf55vw3XWltvkEj4s7/sLLjpEuGa+WKICUd7kmHthaEotSIHPfwQiw6q+FkFYMK6vLlC3ViziSVaqTIf7J40GSihLdW21DtHv/e9cMqUiioHI49LeF5/tv7lb6b2cjOH7JAi9rou44N/alMTIv6zJ8AxFTAmSF0ykHm20Uq5KzWZ3oHDg2tuu+/7hb5SbXIX44d+f56gNoEvKGZDp8t2/+XSKDDiNg6G8Agn990Lg7F8qfNQVytVvJivtgDzMGlHuPRbcWz5coycfxrcNYqWuo5eBwgQlFRQKWpg+cuH52uzXkOT3GlRJjKZo4hviT6OLi/BDvTXgCCefK3G7hQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a45a3d7-f6f5-47ea-9101-08deecdcbdcf
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2026 19:13:32.1408 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2026 19:16:35.6315 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C9Hhf8liIUpa0wJWsgApzDGqKQV9A44opQmGBHZKtgnduFjlqZMKNGgN6jcmjyMivfScWJ0UGvYVQlA9jZZ88g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB8992
+X-MS-Exchange-CrossTenant-UserPrincipalName: xlNqhww3Da/mSUDO+sSWVJApVFgzX1CupuNKhwxh1VjkUH0NF83Fy1AJQWbtFM34T0W1nKcYNlguyewCtrki3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF0D019E8BF
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,224 +161,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 28, 2026 at 06:10:18PM +0200, Michal Wajdeczko wrote:
-> Introduce structured identifiers for each component type that
-> could emit a SIGID log entry and for their locations. We plan
-> to store those IDs in the CPER records for better filtering.
-> Define also structured identifiers for the supported locations.
+On Tue, Jul 28, 2026 at 06:10:19PM +0200, Michal Wajdeczko wrote:
+> While we can't directly use our xe_tile|gt_err|info helpers to get
+> nice Tile/GT decorations, we can still add them manually based on
+> the structured location parameter. Similarly, we can add component
+> name prefix based on the component identifier.
+
+Okay, perhaps I was wrong and these levels are indeed useful info there.
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 > 
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
 > Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 > Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> Cc: Raag Jadav <raag.jadav@intel.com>
-> Cc: Riana Tauro <riana.tauro@intel.com>
 > ---
-> v2: fix typo, define reserved ids (Michal)
-> ---
->  drivers/gpu/drm/xe/abi/xe_log_abi.h | 185 ++++++++++++++++++++++++++++
->  1 file changed, 185 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/abi/xe_log_abi.h
+>  drivers/gpu/drm/xe/xe_log.c | 82 +++++++++++++++++++++++++++++++++----
+>  1 file changed, 74 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
-> new file mode 100644
-> index 000000000000..fe6e59236f72
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
-> @@ -0,0 +1,185 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
+> diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
+> index 70a41bdf1a01..a4f4f2d4e250 100644
+> --- a/drivers/gpu/drm/xe/xe_log.c
+> +++ b/drivers/gpu/drm/xe/xe_log.c
+> @@ -3,6 +3,9 @@
+>   * Copyright � 2026 Intel Corporation
+>   */
+>  
+> +#include "abi/xe_log_abi.h"
 > +
-> +#ifndef _ABI_XE_LOG_ABI_H_
-> +#define _ABI_XE_LOG_ABI_H_
+> +#include "xe_device.h"
+>  #include "xe_log.h"
+>  #include "xe_printk.h"
+>  
+> @@ -13,6 +16,65 @@ static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigi
+>  	/* TODO */
+>  }
+>  
+> +static const char *log_component_prefix(u32 component)
+> +{
+> +	switch (component) {
+> +#define MAKE_XE_LOG_COMPONENT_CASE_PREFIX(_CLASS, _ID, _TAG, _SIG, _NAME) \
+> +	case XE_LOG_COMPONENT_##_TAG: return #_TAG ": ";
+> +	DEFINE_XE_LOG_COMPONENTS(MAKE_XE_LOG_COMPONENT_CASE_PREFIX)
+> +#undef MAKE_XE_LOG_COMPONENT_CASE_PREFIX
+> +	}
+> +	return "";
+> +}
 > +
-> +#include <linux/bits.h>
-> +#include <linux/bitfield.h>
+> +static struct xe_gt *get_gt_safe(struct pci_dev *pdev, u8 id)
+> +{
+> +	struct xe_device *xe = pdev_to_xe_device(pdev);
 > +
-> +#include "abi/xe_sigid_abi.h"
+> +	return xe ? xe_device_get_gt(xe, id) : NULL;
+> +}
 > +
-> +/**
-> + * enum xe_log_component_bits - bits for components structure definitions
-> + *
-> + * Component identifiers are structured based on::
-> + *
-> + *     COMPONENT = TYPE(8b).ID(8b)
-> + *
-> + * and the structure looks like this::
-> + *
-> + *     ├── SYSTEM(0)
-> + *     │   └── ...
-> + *     ├── DRIVER(1)
-> + *     │   └── ...
-> + *     ├── FEATURE(2)
-> + *     │   └── ...
-> + *     ├── FIRMWARE(4)
-> + *     │   └── ...
-> + *     └── HARDWARE(8)
-> + *         └── ...
-> + *
-> + * Examples::
-> + *
-> + *     COMPONENT(0.type) = SYSTEM.type = system component
-> + *     COMPONENT(1.type) = DRIVER.type = driver core component
-> + *     COMPONENT(3.type) = DRIVER_FEATURE.type = driver feature
-> + *     COMPONENT(5.type) = DRIVER_FIRMWARE.type = firmware driver component
-> + *     COMPONENT(9.type) = DRIVER_HARDWARE.type = hardware driver component
-> + *
-> + */
-> +enum xe_log_component_bits {
-> +	/* private: */
-> +	XE_LOG_COMPONENT_CLASS_MASK = GENMASK_U16(7, 0),
-> +	XE_LOG_COMPONENT_TYPE_MASK = GENMASK_U16(15, 8),
-> +	/* private: component classes */
-> +	XE_LOG_COMPONENT_CLASS_SYSTEM = 0u,
-> +	XE_LOG_COMPONENT_CLASS_DRIVER = 1u,
-> +	XE_LOG_COMPONENT_CLASS_FEATURE = 2u,
-> +	XE_LOG_COMPONENT_CLASS_FIRMWARE = 4u,
-> +	XE_LOG_COMPONENT_CLASS_HARDWARE = 8u,
-> +	XE_LOG_COMPONENT_CLASS_DRIVER_FEATURE = XE_LOG_COMPONENT_CLASS_DRIVER |
-> +						XE_LOG_COMPONENT_CLASS_FEATURE,
-> +	XE_LOG_COMPONENT_CLASS_DRIVER_FIRMWARE = XE_LOG_COMPONENT_CLASS_DRIVER |
-> +						 XE_LOG_COMPONENT_CLASS_FIRMWARE,
-> +	XE_LOG_COMPONENT_CLASS_DRIVER_HARDWARE = XE_LOG_COMPONENT_CLASS_DRIVER |
-> +						 XE_LOG_COMPONENT_CLASS_HARDWARE,
-> +	/* private: reserved identifiers */
-> +	XE_LOG_COMPONENT_NONE = 0u,
-> +};
+> +static struct xe_tile *get_tile_safe(struct pci_dev *pdev, u8 id)
+> +{
+> +	struct xe_device *xe = pdev_to_xe_device(pdev);
 > +
-> +#define MAKE_XE_LOG_COMPONENT(_CLASS, type) \
-> +	(FIELD_PREP_CONST(XE_LOG_COMPONENT_CLASS_MASK, \
-> +			  XE_LOG_COMPONENT_CLASS_##_CLASS) | \
-> +	 FIELD_PREP_CONST(XE_LOG_COMPONENT_TYPE_MASK, (type)))
+> +	return xe && id < XE_MAX_TILES_PER_DEVICE ? &xe->tiles[id] : NULL;
+> +}
 > +
-> +/**
-> + * enum xe_log_location_bits - bits for location structure definitions
-> + *
-> + * Location identifiers are structured based on::
-> + *
-> + *     LOCATION = TYPE(8b).ID(8b)
-> + *
-> + * and the structure looks like this::
-> + *
-> + *     ├── DEVICE(0)
-> + *     │   └── MBZ(0)
-> + *     ├── TILE(1)
-> + *     │   ├── Tile0(0)
-> + *     │   ├── ...
-> + *     │   └── TileN(n)
-> + *     ├── GT(1)
-> + *     │   ├── GT0(0)
-> + *     │   ├── ...
-> + *     │   └── GTn(n)
-> + *     └── ...
-> + *
-> + * Examples::
-> + *
-> + *     LOCATION(0.0) = DEVICE.0 = "Device"
-> + *     LOCATION(1.2) = TILE.2 = "Tile2"
-> + *     LOCATION(2.3) = GT.3 = "GT3"
-> + *
-> + */
-> +enum xe_log_location_bits {
-> +	/* private: */
-> +	XE_LOG_LOCATION_TYPE_MASK = GENMASK_U16(7, 0),
-> +	XE_LOG_LOCATION_ID_MASK = GENMASK_U16(15, 8),
-> +	/* private: location types */
-> +	XE_LOG_LOCATION_TYPE_DEVICE = 1u,
-> +	XE_LOG_LOCATION_TYPE_TILE = 2u,
-> +	XE_LOG_LOCATION_TYPE_GT = 3u,
-> +	/* private: reserved identifiers */
-> +	XE_LOG_LOCATION_NONE = 0u,
-> +};
+> +static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char *buf, size_t size)
+> +{
+> +	u32 type = FIELD_GET(XE_LOG_LOCATION_TYPE_MASK, location);
+> +	u32 id = FIELD_GET(XE_LOG_LOCATION_ID_MASK, location);
 > +
-> +#define PREP_XE_LOG_LOCATION(type, id) \
-> +	(FIELD_PREP(XE_LOG_LOCATION_TYPE_MASK, (type)) | \
-> +	 FIELD_PREP(XE_LOG_LOCATION_ID_MASK, (id)))
+> +	if (!location || type == XE_LOG_LOCATION_TYPE_DEVICE) {
+> +		if (id)
+> +			goto unrecognized;
+> +		strscpy(buf, "", size);
+> +	} else if (type == XE_LOG_LOCATION_TYPE_TILE) {
+> +		struct xe_tile *tile = get_tile_safe(pdev, id);
 > +
-> +#define MAKE_XE_LOG_LOCATION(_TYPE, id) \
-> +	PREP_XE_LOG_LOCATION(XE_LOG_LOCATION_TYPE_##_TYPE, (id))
+> +		if (!tile)
+> +			goto unrecognized;
+> +		snprintf(buf, size, "Tile%u: ", id);
+> +	} else if (type == XE_LOG_LOCATION_TYPE_GT) {
+> +		struct xe_gt *gt = get_gt_safe(pdev, id);
 > +
-> +/**
-> + * DEFINE_XE_LOG_COMPONENTS() - Define log components.
-> + * @define: name of the inner macro to expand.
-> + *
-> + * Use this super macro to define custom code for the log components.
-> + * The following parameters are available for each component::
-> + *
-> + *     define(CLASS, ID, TAG, SIGID, NAME)
-> + *
-> + * where:
-> + *
-> + *     @ID is the unique component identifier within CLASS.SUBCLASS.CATEGORY
-> + *     @TAG is unique component tag (across all components)
-> + *     @SIGID is the default xe_sigid for the component (without the XE_SIGID_ prefix)
-> + */
-> +#define DEFINE_XE_LOG_COMPONENTS(define) \
-> +	/* */									\
-> +	define(SYSTEM, 1, PCI, SW, "Linux PCI Subsystem")			\
-> +	define(SYSTEM, 2, DRM, SW, "DRM")					\
-> +	/* */									\
-> +	define(DRIVER, 1, XE, SW, "Xe Driver")					\
-> +	define(DRIVER, 2, PROBE, PROBE, "Driver Initialization")		\
-> +	define(DRIVER, 3, WEDGED, WEDGED, "Device Malfunction")			\
-> +	define(DRIVER, 4, RTP, SW, "Register Table Processing")			\
-> +	define(DRIVER, 5, WA, SW, "Workarounds")				\
-> +	define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")			\
-> +	/* */									\
-> +	define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")			\
-> +	define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")			\
-> +	define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")		\
-> +	define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")	\
-> +	define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")		\
-> +	/* */									\
-> +	define(DRIVER_FEATURE, 1, PF, SW, "SR-IOV Physical Function")		\
-> +	define(DRIVER_FEATURE, 2, VF, SW, "SR-IOV Virtual Function")		\
-> +	define(DRIVER_FEATURE, 3, SURVIVABILITY, SURVIVABILITY, "Survivability") \
-> +	define(DRIVER_FEATURE, 4, RAS, SW, "Reliability, Accessibility, Serviceability") \
-> +	/* */									\
-> +	define(DRIVER_FIRMWARE, 1, GUC, RUNTIME_FW, "GuC")			\
-> +	define(DRIVER_FIRMWARE, 2, HUC, RUNTIME_FW, "HuC")			\
-> +	define(DRIVER_FIRMWARE, 3, GSC, RUNTIME_FW, "GSC")			\
-> +	define(DRIVER_FIRMWARE, 16, PCODE, DEVICE_FW, "PCode")			\
-> +	define(DRIVER_FIRMWARE, 17, SYSCTRL, DEVICE_FW, "System Controller")	\
-
-As I had stated before, I would prefer a simpler map of component to sig_id
-instead of this multi-level. But I believe that this data can be useful
-in future.
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-> +	/* eod */
+> +		if (!gt)
+> +			goto unrecognized;
+> +		snprintf(buf, size, "Tile%u: GT%u: ", gt->tile->id, id);
+> +	} else {
+> +		goto unrecognized;
+> +	}
 > +
-> +/**
-> + * enum xe_log_component_tags - TAGs of all supported components
-> + */
-> +enum xe_log_component_tags {
-> +	/* private: */
-> +#define MAKE_XE_LOG_COMPONENT_ENUM(_CLASS, _ID, _TAG, _SIG, _NAME) \
-> +	XE_LOG_COMPONENT_##_TAG = MAKE_XE_LOG_COMPONENT(_CLASS, (_ID)), \
-> +	XE_LOG_COMPONENT_##_CLASS##_##_ID = XE_LOG_COMPONENT_##_TAG, \
-> +	/* eod */
-> +	DEFINE_XE_LOG_COMPONENTS(MAKE_XE_LOG_COMPONENT_ENUM)
-> +#undef MAKE_XE_LOG_COMPONENT_ENUM
-> +};
+> +	return buf;
 > +
-> +/**
-> + * enum xe_log_component_sigids - SIGIDs of all supported components
-> + */
-> +enum xe_log_component_sigids {
-> +	/* private: */
-> +#define MAKE_XE_LOG_COMPONENT_SIGID(_CLASS, _ID, _TAG, _SIG, _NAME) \
-> +	XE_LOG_COMPONENT_##_TAG##_SIGID = XE_SIGID_##_SIG, \
-> +	/* eod */
-> +	DEFINE_XE_LOG_COMPONENTS(MAKE_XE_LOG_COMPONENT_SIGID)
-> +#undef MAKE_XE_LOG_COMPONENT_SIGID
-> +};
+> +unrecognized:
+> +	pci_WARN(pdev, IS_ENABLED(CONFIG_DRM_XE_DEBUG),
+> +		 "LOG: malformed location %#x\n", location);
+> +	snprintf(buf, size, "LOC%u? ID%u? ", type, id);
+> +	return buf;
+> +}
 > +
-> +#endif
+>  static bool is_hw_sigid(enum xe_sigid sigid)
+>  {
+>  	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+> @@ -71,20 +133,24 @@ static void log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sig
+>  			   u32 component, u32 location, const void *data, size_t len,
+>  			   struct va_format *vaf)
+>  {
+> +	char buf[32];
+> +	const char *loc_prefix = log_location_prefix(pdev, location, buf, sizeof(buf));
+> +	const char *comp_prefix = log_component_prefix(component);
+>  	const char *hwe_prefix = log_hwe_prefix(cper_sev, sigid);
+>  	const char *sev_prefix = log_sev_prefix(cper_sev);
+>  
+> -	/* TODO: add component/location details */
+> -
+>  	if (IS_ERR(data))
+> -		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%pe) %s%pV",
+> -				 sigid, sev_prefix, data, hwe_prefix, vaf);
+> +		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%pe) %s%s%s%pV",
+> +				 sigid, sev_prefix, data, hwe_prefix,
+> +				 loc_prefix, comp_prefix, vaf);
+>  	else if (data && len)
+> -		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%*phN) %s%pV",
+> -				 sigid, sev_prefix, (int)len, data, hwe_prefix, vaf);
+> +		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%*phN) %s%s%s%pV",
+> +				 sigid, sev_prefix, (int)len, data, hwe_prefix,
+> +				 loc_prefix, comp_prefix, vaf);
+>  	else
+> -		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s%s%pV",
+> -				 sigid, sev_prefix, hwe_prefix, vaf);
+> +		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s%s%s%s%pV",
+> +				 sigid, sev_prefix, hwe_prefix,
+> +				 loc_prefix, comp_prefix, vaf);
+>  }
+>  
+>  /**
 > -- 
 > 2.47.1
 > 
