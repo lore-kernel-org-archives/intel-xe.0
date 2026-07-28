@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3B79C53219
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 12:40:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1818FC53219
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 12:42:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B2B510E8D8;
-	Tue, 28 Jul 2026 12:40:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A21FC10E2A4;
+	Tue, 28 Jul 2026 12:42:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MwRBQbHB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dP3XjubF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0582310E2A4
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 12:40:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE58E10E2A4
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 12:42:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785242423; x=1816778423;
+ t=1785242550; x=1816778550;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=9D69Ku99ZRx1zKd6jt3/ChsPYqmi0k2NOEIlJlYny+w=;
- b=MwRBQbHB+VQvOJwHEDfNCH8/j8q6GGgbbSVsHwqP8BxjAiS2CIqpT0bc
- XNRXdyRFeb+uT2V3z3n5zwI3IIfCGiGmk6366cC+EtNlv0A+AlMA+EVcf
- a6EF7QGOQ1/ojD7Mp3uUi3Z5o/Aghs7sig5UISBbD3Y/Gi+HPRidCb1ac
- ITPsGASIoXtYcUbgjxNYkvAhSYAnPw8NkYqsUyo+ms1HB9RUDD2o3YgRD
- 28gOds4yIiGURvXGnu8E0Ua0ACsgtojjizuqO9+Q/3qiCRMwRdkX8iGhw
- UO9Zv8C9X8Lmh1iq/eozEeWVPyW5wGFK0ZO39RGBqPcp+GsWI6KIEtndK Q==;
-X-CSE-ConnectionGUID: qkZ+OMw5RlaCv0MjN+g4bA==
-X-CSE-MsgGUID: B47TJONRRh6C/HSD00qB/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="85864339"
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="85864339"
+ bh=u7hHYu15k/BNU0t580JUGtLK/QGVEUpvaPtN1GGLl2U=;
+ b=dP3XjubFbmCRLyyiL18yZ0vu/cxhx5RPF5e7AQvcmuQNimhOV4C47nK2
+ 2b48xaI8uZ0+NTydn/7T2FbbA0PLF+r3PwVmSJSmoWCqKKJx23ye9vo20
+ 3LexTnUMsW/dNsuPTMZFn4+EAyA9d/efAmS8Cc1BZhz+HtGm/9GL3cc9L
+ ymnptRICAhouXTZO8VgsVvwLnTD3FntwjPOd+Rr2HHGjyugVH+Z3rQQ0x
+ y7KxZDN6FzBrzfS9qnVMIb/mrf+SDbMKRmJsVYnBEHbcuTwSwlp/Z0OlI
+ sJzxh+ayxLJ7sBxeTAqO07fL+o9HL58QQxLCz8bWMDh+DlEg6/CSY1AVG w==;
+X-CSE-ConnectionGUID: fi1jdbBoQUChBu7VVpF3cw==
+X-CSE-MsgGUID: HwT1vs5cRiGxmuFZsHD3eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="86013705"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="86013705"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 05:40:22 -0700
-X-CSE-ConnectionGUID: 7u9RD+5rTdO2O0JyocBQcg==
-X-CSE-MsgGUID: Ap5pjmCsRhOSa3VBMbRvXQ==
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2026 05:42:30 -0700
+X-CSE-ConnectionGUID: qmqEDdUYTF6AUCx+ku/3Ew==
+X-CSE-MsgGUID: lputB6TlQ6uWTFJYBGyQ7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="259769817"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="259770091"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.244.120])
  ([10.245.244.120])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 05:40:21 -0700
-Message-ID: <9f473a8e-bb06-4fba-8ebf-da4a4f7fc912@intel.com>
-Date: Tue, 28 Jul 2026 13:40:18 +0100
+ 28 Jul 2026 05:42:29 -0700
+Message-ID: <76db8482-5393-42f3-8173-a8681a3526d0@intel.com>
+Date: Tue, 28 Jul 2026 13:42:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe: Add up-to-date implementation for
- Wa_14026539277
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
- "Souza, Jose" <jose.souza@intel.com>,
- "Mrozek, Michal" <michal.mrozek@intel.com>,
- "Zhang, Carl" <carl.zhang@intel.com>
+Subject: Re: [PATCH v2 1/3] drm/xe: Extract override_has_cached_pt()
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
 References: <20260724-wa_14026539277-v2-0-ad786cc6ba1e@intel.com>
- <20260724-wa_14026539277-v2-3-ad786cc6ba1e@intel.com>
+ <20260724-wa_14026539277-v2-1-ad786cc6ba1e@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260724-wa_14026539277-v2-3-ad786cc6ba1e@intel.com>
+In-Reply-To: <20260724-wa_14026539277-v2-1-ad786cc6ba1e@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -74,60 +70,50 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 24/07/2026 22:44, Gustavo Sousa wrote:
-> Wa_14026539277 is a temporary workaround that targets only A*
-> steppings of graphics version 35.10 and requires that we avoid using
-> 2-way coherency for device-cacheable memory accesses.  For
-> driver-internal usage, we convert those configurations to be
-> device-uncached and 1-way-coherent; on the UAPI side, we reject
-> VM_BIND/MADVISE calls that are 2-way-coherent and leave it up to
-> userspace to select the alternative option that is most appropriate to
-> their usage.
-> 
-> v2:
->    - Add missing bits to convert the PAT value to device-uncacheable in
->      wa_14026539277_fixup_pat_value(). (Sashiko)
->    - Also validate the PAT index in the DRM_XE_VM_MADVISE
->      ioctl. (Sashiko)
->    - Match against the graphics IP instead of the platform.
+> Some platforms support cached page tables, but some workarounds might
+> require disabling the cached access on the CPU side.  One such example
+> is Wa_16029380221, but there could be others as well.  Extract the
+> code responsible for overriding xe->info.has_cached_pt into a new
+> function called override_has_cached_pt(), so that we have a common
+> place to add the necessary runtime checks specific for has_cached_pt.
 > 
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
 > ---
->   drivers/gpu/drm/xe/xe_pat.h        | 10 +++++++
->   drivers/gpu/drm/xe/xe_device.c     | 16 ++++++----
->   drivers/gpu/drm/xe/xe_pat.c        | 61 ++++++++++++++++++++++++++++++++++----
->   drivers/gpu/drm/xe/xe_vm.c         |  5 ++++
->   drivers/gpu/drm/xe/xe_vm_madvise.c |  3 ++
->   drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
->   6 files changed, 84 insertions(+), 12 deletions(-)
+>   drivers/gpu/drm/xe/xe_device.c | 24 ++++++++++++++++--------
+>   1 file changed, 16 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-> index 7060f66e1d63..10374022f1d2 100644
-> --- a/drivers/gpu/drm/xe/xe_pat.h
-> +++ b/drivers/gpu/drm/xe/xe_pat.h
-> @@ -82,6 +82,16 @@ bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
->    */
->   u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index);
->   
-> +/**
-> + * xe_pat_wa_14026539277_reserved - Is this PAT index reserved from
-> + * use due to Wa_14026539277?
-> + * @xe: xe device
-> + * @pat_index: The pat_index to query
-> + *
-> + * Return: a boolean indicating whether the PAT index is reserved or not.
-> + */
-> +bool xe_pat_wa_14026539277_reserved(struct xe_device *xe, u16 pat_index);
-> +
->   #define xe_cache_pat_idx(xe, cache_mode) ({					\
->   	const struct xe_device *__xedev = (xe);					\
->   	enum xe_cache_level __mode = (cache_mode);				\
 > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 5189419a0593..c4b8023cb8a2 100644
+> index 4eed9a251e65..5189419a0593 100644
 > --- a/drivers/gpu/drm/xe/xe_device.c
 > +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -836,14 +836,18 @@ static void override_has_cached_pt(struct xe_device *xe)
+> @@ -831,6 +831,21 @@ int xe_device_probe_early(struct xe_device *xe)
+>   }
+>   ALLOW_ERROR_INJECTION(xe_device_probe_early, ERRNO); /* See xe_pci_probe() */
+>   
+> +static void override_has_cached_pt(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	u8 id;
+> +
+> +	/*
+> +	 * Wa_16029380221: The affected GT will always use non-coherent
+> +	 * access to page tables, so we must do uncached writes from the
+> +	 * CPU.
+> +	 */
+> +	for_each_gt(gt, xe, id)
+> +		if (XE_GT_WA(gt, 16029380221))
+> +			xe->info.has_cached_pt = false;
+> +}
+> +
+>   static int probe_has_flat_ccs(struct xe_device *xe)
+>   {
 >   	struct xe_gt *gt;
->   	u8 id;
+> @@ -950,14 +965,7 @@ int xe_device_probe(struct xe_device *xe)
+>   			return err;
+>   	}
 >   
 > -	/*
 > -	 * Wa_16029380221: The affected GT will always use non-coherent
@@ -135,196 +121,11 @@ On 24/07/2026 22:44, Gustavo Sousa wrote:
 > -	 * CPU.
 > -	 */
 > -	for_each_gt(gt, xe, id)
-> +	for_each_gt(gt, xe, id) {
-> +		/*
-> +		 * Wa_16029380221: The affected GT will always use
-> +		 * non-coherent access to page tables, so we must do
-> +		 * uncached writes from the CPU.
-> +		 */
->   		if (XE_GT_WA(gt, 16029380221))
->   			xe->info.has_cached_pt = false;
-> +
-> +		if (XE_GT_WA(gt, 14026539277))
-> +			xe->info.has_cached_pt = false;
-> +	}
->   }
+> -		if (XE_GT_WA(gt, 16029380221))
+> -			xe->info.has_cached_pt = false;
+> +	override_has_cached_pt(xe);
 >   
->   static int probe_has_flat_ccs(struct xe_device *xe)
-> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-> index a5fe1beec652..a9cde12eba70 100644
-> --- a/drivers/gpu/drm/xe/xe_pat.c
-> +++ b/drivers/gpu/drm/xe/xe_pat.c
-> @@ -313,6 +313,37 @@ u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index)
->   	return REG_FIELD_GET(XE2_L3_POLICY, xe->pat.table[pat_index].value);
->   }
->   
-> +bool xe_pat_wa_14026539277_reserved(struct xe_device *xe, u16 pat_index)
-> +{
-> +	struct xe_gt *gt;
-> +	u8 id;
-> +	bool has_wa = false;
-> +
-> +	for_each_gt(gt, xe, id) {
-> +		if (XE_GT_WA(gt, 14026539277)) {
-> +			has_wa = true;
-> +			break;
-> +		}
-> +	}
-> +
-> +	return has_wa && xe_pat_index_get_l3_policy(xe, pat_index) != XE_L3_POLICY_UC &&
-> +	       xe_pat_index_get_coh_mode(xe, pat_index) == XE_COH_2WAY;
-> +}
-> +
-> +static u32 wa_14026539277_fixup_pat_value(struct xe_gt *gt, u32 value)
-> +{
-> +	if (XE_GT_WA(gt, 14026539277)) {
-> +		if (REG_FIELD_GET(XE2_L3_POLICY, value) != XE_L3_POLICY_UC &&
-> +		    REG_FIELD_GET(XE2_COH_MODE, value) == XE_COH_2WAY) {
-> +			value &= ~(XE2_L3_POLICY | XE2_COH_MODE);
-> +			value |= REG_FIELD_PREP(XE2_L3_POLICY, XE_L3_POLICY_UC) |
-> +				 REG_FIELD_PREP(XE2_COH_MODE, XE_COH_1WAY);
-> +		}
-> +	}
-> +
-> +	return value;
-> +}
-> +
->   static const struct xe_pat_table_entry *gt_pta_entry(struct xe_gt *gt)
->   {
->   	struct xe_device *xe = gt_to_xe(gt);
-> @@ -373,18 +404,22 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
->   
->   	for (int i = 0; i < n_entries; i++) {
->   		struct xe_reg_mcr reg_mcr = XE_REG_MCR(_PAT_INDEX(i));
-> +		u32 pat = wa_14026539277_fixup_pat_value(gt, table[i].value);
->   
-> -		xe_gt_mcr_multicast_write(gt, reg_mcr, table[i].value);
-> +		xe_gt_mcr_multicast_write(gt, reg_mcr, pat);
->   	}
->   
->   	if (xe->pat.pat_ats)
-> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe->pat.pat_ats->value);
-> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS),
-> +					  wa_14026539277_fixup_pat_value(gt, xe->pat.pat_ats->value));
->   
->   	if (pta_entry)
-> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), pta_entry->value);
-> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA),
-> +					  wa_14026539277_fixup_pat_value(gt, pta_entry->value));
->   
->   	if (tr_pta_entry)
-> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_TR_PTA), tr_pta_entry->value);
-> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_TR_PTA),
-> +					  wa_14026539277_fixup_pat_value(gt, tr_pta_entry->value));
->   }
->   
->   static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
-> @@ -534,13 +569,16 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
->   	drm_printf(p, "PAT table: (* = reserved entry)\n");
->   
->   	for (i = 0; i < xe->pat.n_entries; i++) {
-> +		bool rsvd = !xe->pat.table[i].valid ||
-> +			    xe_pat_wa_14026539277_reserved(xe, i);
-> +
->   		if (xe_gt_is_media_type(gt))
->   			pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_INDEX(i)));
->   		else
->   			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
->   
->   		xe_pat_index_label(label, sizeof(label), i);
-> -		xe->pat.ops->entry_dump(p, label, pat, !xe->pat.table[i].valid);
-> +		xe->pat.ops->entry_dump(p, label, pat, rsvd);
->   	}
->   
->   	/*
-> @@ -747,9 +785,14 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
->   	for (u32 i = 0; i < xe->pat.n_entries; i++) {
->   		u32 pat = xe->pat.table[i].value;
->   
-> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
-> +
->   		if (GRAPHICS_VER(xe) >= 20) {
-> +			bool rsvd = !xe->pat.table[i].valid ||
-> +				    xe_pat_wa_14026539277_reserved(xe, i);
-> +
->   			xe_pat_index_label(label, sizeof(label), i);
-> -			xe->pat.ops->entry_dump(p, label, pat, !xe->pat.table[i].valid);
-> +			xe->pat.ops->entry_dump(p, label, pat, rsvd);
->   		} else if (xe->info.platform == XE_METEORLAKE) {
->   			xelpg_pat_entry_dump(p, i, pat);
->   		} else if (xe->info.platform == XE_PVC) {
-> @@ -764,6 +807,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
->   	if (pta_entry) {
->   		u32 pat = pta_entry->value;
->   
-> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
-> +
->   		drm_printf(p, "Page Table Access:\n");
->   		xe->pat.ops->entry_dump(p, "PTA_MODE", pat, false);
->   	}
-> @@ -771,6 +816,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
->   	if (tr_pta_entry) {
->   		u32 pat = tr_pta_entry->value;
->   
-> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
-> +
->   		drm_printf(p, "TRTT Page Table Access:\n");
->   		xe->pat.ops->entry_dump(p, "TR_PTA_MODE", pat, false);
->   	}
-> @@ -778,6 +825,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
->   	if (xe->pat.pat_ats) {
->   		u32 pat = xe->pat.pat_ats->value;
->   
-> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
-> +
->   		drm_printf(p, "PCIe ATS/PASID:\n");
->   		xe->pat.ops->entry_dump(p, "PAT_ATS ", pat, false);
->   	}
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 9e0176861cb6..64c03c669630 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3697,6 +3697,11 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
->   			goto free_bind_ops;
->   		}
->   
-> +		if (XE_IOCTL_DBG(xe, xe_pat_wa_14026539277_reserved(xe, pat_index))) {
-> +			err = -EINVAL;
-> +			goto free_bind_ops;
-> +		}
-> +
->   		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
->   		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
->   		    XE_IOCTL_DBG(xe, obj && (is_null || is_cpu_addr_mirror)) ||
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index 0474768a38aa..265273294756 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -500,6 +500,9 @@ static bool check_pat_args_are_sane(struct xe_device *xe,
->   	u16 coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
->   	int i;
->   
-> +	if (XE_IOCTL_DBG(xe, xe_pat_wa_14026539277_reserved(xe, pat_index)))
-> +		return false;
-> +
-
-Jose, Michal, Carl, would this approach work for you guys? Essentially 
-just don't use any 2WAY coherency PAT index on this platforms with the 
-WA. If so, could you also give an ack from UMD pov? This impacts vm_bind 
-+ madvise uAPI.
-
->   	/*
->   	 * Using coh_none with CPU cached buffers is not allowed on iGPU.
->   	 * On iGPU the GPU shares the LLC with the CPU, so with coh_none
-> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> index f02ac9bf7424..d53e7f75814b 100644
-> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> @@ -71,4 +71,5 @@
->   		GRAPHICS_VERSION(3511)
->   16029897822	MEDIA_VERSION(3500)
->   		GRAPHICS_VERSION(3510)
-> +14026539277	GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)
->   14027054324	GRAPHICS_VERSION(3511)
+>   	for_each_tile(tile, xe, id) {
+>   		err = xe_ggtt_init_early(tile->mem.ggtt);
 > 
 
