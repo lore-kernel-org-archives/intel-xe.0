@@ -4,61 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B572C53219
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 06:06:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF18AC54F4C
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 06:07:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AC3310E527;
-	Tue, 28 Jul 2026 06:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6192710E52F;
+	Tue, 28 Jul 2026 06:07:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZvxXveH8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fp5YIe0F";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1EFF10E527
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 06:06:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA97410E527
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 06:07:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785218810; x=1816754810;
+ t=1785218842; x=1816754842;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=NMcPQ5bQ9yJ3VJBrNdCjIzjKJG5seHg27XP0KRida08=;
- b=ZvxXveH8YwtCX0q900ej2AJSp0WEmO5KPrDFcToGqpw9d8DVmohEg/PA
- ST85rVOk/2KIkez71nh3ivpog0wNlZVjiu3RvQ5th675aGf9seqfiCF+p
- aBRWqoJPbh1S3fHn2xdMyZxJV+x0dLXTwSwfM1qPC+yCxkuRNigPSZEgF
- Cri3J7KeJ53nmOPyEMgVZJgPa1U5jUvvLp9fg/AHjkrsnoOJxgeKIytl6
- c2K+e+X116rKnlFNqjER+VoCHsb2V6Caq159NWrGpgLRxZaJeps0d1yW0
- /a0+O8RhCr1kcyMYN8T3EIx/dC5t8tJDKQq/Uj6s+uGE+NhrxO+ORSyLm A==;
-X-CSE-ConnectionGUID: pnSc+cljTIW+hQnhs7fWtA==
-X-CSE-MsgGUID: sKokfzLZSxWLLJjJTxIIdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="96949215"
-X-IronPort-AV: E=Sophos;i="6.25,189,1779174000"; d="scan'208";a="96949215"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2026 23:06:50 -0700
-X-CSE-ConnectionGUID: MJutFtJ5QnOxAME/Cn6poA==
-X-CSE-MsgGUID: LdZeF1SGQxWMA7hNgzENqA==
+ bh=DIwbIfkG/7TChLarxGRQHn7e2ijDfcvhtbOmyYzcUK4=;
+ b=Fp5YIe0F5L2mOJZtUakLctTDr1pN7bcVDJTueJE61oHLGnF4V1R5zlh7
+ 2uulE5o7C9FZ5h2Bqs8lJEwL3/RNAXOj6vc+e+nz4463Vjd4PUIOOpw1l
+ CSgCDOjGems3/bz94UynYKNP6S5sbSC9/JaUqVfVQvfXV7Z3YwPY3dmbo
+ IC6lrqtm52x6rARho4VZ+fFlRawZ2BoDkYXXOmUIfLMNVOSEhDbgIgAdu
+ RbzrdScg9sG2rGu5Bo9zgl6c+YcNBJ7BbEhRVErgiHHaW8kD2IMc+l8g4
+ 8XhY0WkceRma14xqt0x8Eny/D1DIlHih5Zjxyx7lUSfSVARQcMeaSWtsp Q==;
+X-CSE-ConnectionGUID: FhgQyL4WQkyKPQY/Oh1+BA==
+X-CSE-MsgGUID: n7UdT+P8Rd2ATH8jiWqaaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="111339309"
+X-IronPort-AV: E=Sophos;i="6.25,189,1779174000"; d="scan'208";a="111339309"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 23:07:21 -0700
+X-CSE-ConnectionGUID: m3KFn0Y8SxCPonTJWeB4mw==
+X-CSE-MsgGUID: 1NyNuuWERp+cXxW1yrmIRA==
 X-ExtLoop1: 1
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2026 23:06:49 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,189,1779174000"; d="scan'208";a="263926577"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 23:07:20 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 27 Jul 2026 23:06:48 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.43; Mon, 27 Jul 2026 23:07:20 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Mon, 27 Jul 2026 23:06:48 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.43) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Mon, 27 Jul 2026 23:07:20 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.38) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 27 Jul 2026 23:06:48 -0700
+ 15.2.2562.43; Mon, 27 Jul 2026 23:07:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RVlUGk/kvnJY36pKpHBciOBpjGp2NKedgVc1AqQQcKYwKv9lmBEOqvliZOU4zMpHnclEpmYiV1TTCkEn03Bb4JYMVjvTbQY8cgHjjWmRMBvg6Qog3ewdixgOD3ZchAOsFeZ38hv55iUI07fyOKZujdLDN0Ssbu8ymVDJ4+3OWjs3O6T1ca/X1E3/uxlY35Q3+fGlYGbAKeEBoijxvVD01j2SnpX0BkutznG5MiK3Ff58Z2tgSnW34XwtJHRSWYqiF/sKBtaJYOO4BiuEYXp/j0Xesniz05mwf5DDS6tA7vFSs8ejaDcmlCLIJrO1Ox4VIrDgOBAI+xylm6XHshvruQ==
+ b=XEVMuKIjFglK+no+mp7Z9ugbnOWOIc0U68uM5cD6Skyy2gw4nXVblsiMstfutbxha8wiFmA6CmO0zs9W47A+t89Qit3ByPx0+0zL3123NqgsvbJlDiZ29aKmMuXJk49BKz3ovxgHJnineXgds98QQtI1AjievJbTvdhuC2/x1L/c4fo0mfNaeZPBrcPM9oWPHwBqlPrYl7idR/BR+TZrSQ2JOV6ZAMtz6qYFnOvzuRKC7dW/bvzT43M0CDinSt9Opdxxs277hmYBLR74Dx79aHltT7oxUU8Lg6DpNEK6caiberbAJ6qSJHAVlWttQ1+sjvl5n6td9kaekcME6Vcw8Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gG8Cf0ZyOzhdeS8/XMQo8yiYGGdmsQzDWGyxLYI6wew=;
- b=xnNb8GyPgzEZWUdMq+eWSJmNkJ86S3ThhbQVCMYooHq2kD8K6UWaWnp0F86UNFZ4soOxYkitdquyHm47gsaxuSxkGmfenimSdWyyo2MW/cVxDRW/Q8dAyyuYxJsAMdEd7cDUXPhz0xXSSKwH1JdRDzkzJ8jS7Q7zJM0GbJMZARCeraVThw8hGnyEmOk9pQB4vE4igpwL0XmLwtccwHdXfKzTkwzu9Mng4h3xTMXIETWiW/QiQfhWpykw9BUOT8qUBFlpR6ljdUN9xp6VLkFuak81eUZeAhp+sVGwikeQl+/TWnQLnwsB5xoEONppGxy7aQj96/I0YbXCV3/efPpqTA==
+ bh=3HpP/k1Bm5VkpLz+UYJS2Tc4AnRc1IEzvAFOcXdb6bI=;
+ b=qLV/4vtHkpULvCqb3IR2Uwol3c/YXkr9ESb1M3eVH/hUmMHgS73E5BGu+WengutZlHfWKRhpyMZSLeOAkEGxaOs19ZKaMKpHH9slZXk8BlQ8VjnLI+Fvpr5LFF/X0C2uSEKUggA3NTpTrmj5kTyOH9toxFhvTQf4/vqtjttCe97sBSRh6uK7+84PRX1y6qjxOWMVPxXDbUIMaBydKWWx75VV2Gjjf1z8hUpIlDd6wlUYOo+MZzRPrUuFs4yRTisIdz57hcm/D+ocJgckxZxlo6tN6tw0Iyq60pRPH7lO4FJyJQJC6vt+DASNXO4iq1Nlol4Tm6hMYvssYLcN9dPZtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,90 +69,91 @@ Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a) by PH8PR11MB6973.namprd11.prod.outlook.com
  (2603:10b6:510:226::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.13; Tue, 28 Jul
- 2026 06:06:41 +0000
+ 2026 06:07:12 +0000
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0245.012; Tue, 28 Jul 2026
- 06:06:41 +0000
-Message-ID: <17e887de-faea-4020-b5b6-31309f24e043@intel.com>
-Date: Tue, 28 Jul 2026 11:36:35 +0530
+ 06:07:12 +0000
+Message-ID: <a256c585-756a-4057-87e0-9b7e953361c0@intel.com>
+Date: Tue, 28 Jul 2026 11:37:04 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/6] drm/xe/debugfs: add page-size allocation mode knob
+Subject: Re: [PATCH v9 6/6] drm/xe/tests: add live KUnit coverage for BO
+ page-size allocation modes
 To: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>,
  <intel-xe@lists.freedesktop.org>
 References: <20260728060132.4067990-1-naresh.kumar.g@intel.com>
- <20260728060132.4067990-3-naresh.kumar.g@intel.com>
+ <20260728060132.4067990-7-naresh.kumar.g@intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260728060132.4067990-3-naresh.kumar.g@intel.com>
+In-Reply-To: <20260728060132.4067990-7-naresh.kumar.g@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0123.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:11d::6) To DS4PPF691668CDD.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0059.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b8::14) To DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|PH8PR11MB6973:EE_
-X-MS-Office365-Filtering-Correlation-Id: e47e315f-8fd0-485d-dc32-08deec6e64c8
+X-MS-Office365-Filtering-Correlation-Id: 3445d2ca-3a55-4872-aafa-08deec6e7732
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|23010399003|1800799024|6133799003|4143699003|10067099003|56012099006|11063799006|3023799007|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: sOzQIDNqA1eETqgMtKUxa2yK/1UZSkhMMmFrxJXj398LSeB053EL4Qa/SX/7k6zDtGtEAUN1PmPCfdA78WOPVQecsdPxQvVBXIMd0yBcogOT+LhdsHZm1jQchoSTcSsfRYHeEDzRW+KZ8scUmNK33G2KIh6sAwWhZ88eWzO+IRCf23jvhMO/OzNbjkBY/HsCU8xwTdw6sNuMfmSNOSgmRcZ8SmS+RilboBVIjQOTe6VU3myd5A9FK75z1EvjAiItKv1qgZO7rJO+97g+NMrCESSeYGUJR3z0BvBioUfmw40vuSd01OW6WtBCvuiFDeAMiWMm9/FAhyohSKUO3br9KOI117uS71qP2JCAWjfPmej3bc0XhT+n0K/y0xJsi6Sap2Tll/4wDpCt7rubEd/H5jVLC5+NMhuXh2rwvPtTbH5iBIcU73KqS1US5LQgyJ2kM8bmSemis+uFu6CmG8utGiZjAyUMkihrjU8+N0/c1E05ZwscvUU4rtmCFBX8q5o8CmF1WAy/RDaF9Kap4uOi3FPul1EtjIH4/LmmZhJa7z90XB8UYibK4xm6YIcDt1AvaXFtoh3ekQ0ecG5QX+1SsjcVXZFgA03Q/4fXSxLi7BqOvgDADi6OIpxjI0LlGoJlb5S/g8b4HNJVasEJKuD1HwAHuYeAzJcIJMxONRRo9c8=
+ ARA:13230040|376014|366016|23010399003|1800799024|4143699003|10067099003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: QDAwtq3sR5FaWwIajWBatl5Z/HCVeipSwFqj5/Mr/Wu7nh6Q7za2gARPVQ7kMoZ+fcrjgFRvr/gx+2DmFKqKMDnFdD4BvEy217cO14by2Xy3Ycm1W/tTHwfyJnW7QvQBRO9POfm83NswdaPVDWkh6OPyLndKhPtMQyf2yX6FUd/YotQ9aoShPaccoEliXBPHHtApjhCBf+5d/SpV7pRUonSe2P37v6Y1dQe+S+8rATR6/IzBrT5mP6FvVt7YFQ5/RfNSGCugnRFDYwuKciuFAEKTHGDchRjfZ2wX3CQ+SXkIWDcZvUOe4FuYpNQgSJZCkhs4M3/KqcwdKxnKe2PPvTAv/MpNeW/oHMTqJDJOyB5uH5o62lLA1uLOygHpcC/vhb1cMO1MXF8XQ7GFcowJz0NHXr3umjUfrrMWxqyp6sfnpMwSZfRvBF/qDibpyEgkC54ZD+u1Fhv9eyL7miEE74mNSCohagxsxSP0JUFI3S8v9nZ01kxoVuH5QGtzyHflms89pXF4AmXAxBiVgZBBkgh9OgF8OSXyq88STeXE1K4YNp0TIi+ka8u0LxUchXOCEgQh9Lg8blbZ3S2hsb5nXKculkBIzBbe4UM5/qDD1FCk8sqj+iQSHND2hM0mzcFtiaTEgExuSc1ndQLEvM5aNPaKgPzJ9La8etuSy5JHUCc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(6133799003)(4143699003)(10067099003)(56012099006)(11063799006)(3023799007)(18002099003)(22082099003);
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(4143699003)(10067099003)(56012099006)(11063799006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ai9sQS9yWTlzZWViSnduaGRIS05iOFlDd0dKU2VYS0FHWGhDM1JMYnFVMFRa?=
- =?utf-8?B?RDJrT01pb0VHcmd3Rm56NHBVM1BXQnlJMWFkSWNBWUVHTm9JMGFISnEvS2NF?=
- =?utf-8?B?WXVkWEpmTDFFT29wdC9nVWFlK1ZNWllVaG4waTM1TE5zQzdYTUdROHNYUytW?=
- =?utf-8?B?ODFYTnRhQ3ZReVc5VENqUWQydDR0SmVjemp4clBFU1pYMDRPcmt4QkdQeHVP?=
- =?utf-8?B?dGlsSmpySEhVcGpLV1VtQWRKN2VxR3ZTcktxNFpCUjBPTmUyclVqd1FWU0w4?=
- =?utf-8?B?eFBVcG1vY3dIdzVaNVNZSE1zTzBPbUZBalczUEJVanhXbTdhb1VVZmtUVVVH?=
- =?utf-8?B?cjcxUThpenVoVUUxNkhYdTd0Zng5VXJSNWx4REJFYTQxVkc0Wjh3dFg4ZTBk?=
- =?utf-8?B?Vy91US8wZ2cra2hYbnZYTXRIby90SVZYdDdwQlZIUmUwS25wYTFnSVo4UzRP?=
- =?utf-8?B?ZGtSVXAraGJiOHpZRXdLQ1IzOTZUV3Z6dkpVdnhSTEg1L2puZm8yaHc1aHVx?=
- =?utf-8?B?RGxaaFVtY1g0VFkrcHBhcnlpOWYwMUU1b1NEZ1VrcUdPcHNFT1hoWnNHV3do?=
- =?utf-8?B?KytBLy83T0R2VmVaSElGQmtrUTgvNkIwS29oYWFqaUZFNUt6aDR3UiswWnYx?=
- =?utf-8?B?SkNYcG15SGlpVFJhcGNmTGZ1R3RLQzVBZzM0ZUp3b2N5YWZRNUFXcW84WEFx?=
- =?utf-8?B?dzRXZHBJN2ZuQzlqcldmNTBVTkJRR1MrTkFXMVAzZzM2M1FsMDVyOFoxbCtT?=
- =?utf-8?B?TFVXNEdqQi9ad1ZpTTJlcVl5UUpBS3JwS2FjYnVMVDlZd3ZrTFZmeUVZUHRz?=
- =?utf-8?B?b29yZEJhcmZNVXg1L3BFTkhqaXhIazk3WHEyR2VieTU0M1hhL2dVWWNxdXNn?=
- =?utf-8?B?elpoY1FXUkJoeFRjUWJ0a1VKR0hETkhPOExqR2Rib3VOV0hkbEVSY0pRV1RO?=
- =?utf-8?B?SUdHMEhYMXNEaGZKbFFaYmtCY1A5WUZ3Sjdna0dUV2FEVHdiV0VFV3JSYmdn?=
- =?utf-8?B?dXIrTEZkWjlJYkpEVzRtL3JYTERzRFp3dlFrVnVDSlRrZnFOQUhSWm5LV2Y2?=
- =?utf-8?B?MzBKSmRmL0d6a1pJbTY0OXVBaVJDR0FpTXJldnhVR3loOTN6SEV3akxyelhu?=
- =?utf-8?B?ZEZ5RytmWVdjM0VqVmJWTklmdklVRHRRellnSHhlQU1ySkFpYk85K1dITndQ?=
- =?utf-8?B?RE5GRHVCOC9JajRYaC9VZEp0M2tKSGFRejJFZWlYUmVBSDRvYmxmRWpFL0hl?=
- =?utf-8?B?MStaSDROZHpOUHdseGl1eFJiamdRK3FOeklEUXcvSW5hajR6VGJDNS80bE5k?=
- =?utf-8?B?ckh0YWZWMkp0b2NUVVZvZWRFSU1lcXRoM05rWC9ma2hoWHd2L28rZ01yd1Jk?=
- =?utf-8?B?WG1iNDdiUjF6UzBSbnhHN2ErUHpzNHBWSnRxVjNyUGtkSUQ5Z0dSZWdvSzln?=
- =?utf-8?B?MmxzTDRMT3ZVOUlPNjl3cmtyR1ZQNzNLdXp4UDJuS1FNT2wyZEN2NStJMUNV?=
- =?utf-8?B?b0JtNFpIS2RWWG9nME9Ic0tNOGt1RE1CWHBRbk84aDczblN4WDdkODFYbzR6?=
- =?utf-8?B?ckVNWVR4U2oybEkvbWpFeUpmUG5oNm1YZU9nYURzcU9sOGZJZ2RRWFpmblNt?=
- =?utf-8?B?Rzcyb0FTbEhOdFQ3anV4NmIwdCsxMkpJT2NKM3ZhQ0FZQlpUMWJJUEFtQzUy?=
- =?utf-8?B?VXdIbVJrQ3BJMHdGK1AzZUtxT1d0dzVPdXJYRUxIT2g5LzRITDhFNVN4elEz?=
- =?utf-8?B?NlV3OHZ0NUE5aUxSVTZOdlJVQzBmWktsYnhkeGpkTE94c0xleVYrbXFVanlY?=
- =?utf-8?B?RzJxRTdTb002T2dUV21hWVBRZGhyMll3a0F4WFBYdGdNL0NhbjZpM2J6c0VR?=
- =?utf-8?B?aitDUE9JMnYrcjZObGx4TDlxb002TG11T0hqd0hZL1dQY2VaQWJFY0lJUDZO?=
- =?utf-8?B?TzFIbzJxWEwyaDNiWWFGK3RmM202Q0lLc1RObk5PYnN5QkdpRG9zMEUxMXRB?=
- =?utf-8?B?MWJzSFhGdGJJbERsQk85b253QWVSMkxRQkdGUGhVUHppQlZoS2Y3MGEvTHVJ?=
- =?utf-8?B?b2dhWGNKeGFMeDZTcFhQUXJualNQNklSalQ5QWlnVVluVk1RbTV6MFdxbzB5?=
- =?utf-8?B?dzhpL0pVVml0aFlBL1NvdWt5OHd1RGxYektnN2Q5dUlvS3doZGMrWDZRRUhv?=
- =?utf-8?B?cnFQVG5idjJxeS9lR2hUZ1ZtczQ5WHhNUGlsT25LZ2g3VHJpZDRlRFZ6eVc0?=
- =?utf-8?B?T0VXVTVyYkFhcjB3TTYyYnhPNXJCRVZ0UHdQSGErQTlVRDcrRlpCWGlPeHpE?=
- =?utf-8?B?cHBSM2podHJWelk2Tnk2OEJjVzVmSkpieVFLQUlDMFg2OW1lN2hZRktSdUFs?=
- =?utf-8?Q?FtrMEQ7HOiaO+EY8=3D?=
-X-Exchange-RoutingPolicyChecked: qtCPeu49oJPtaaL/skK7SA7jPzbUfC7ZXrFMui0JAF+u0sYpTn7Pvl0lR8mNVm0quisigYihufybsBwaTOV9+R/EF5wCm57gaXWhuYCDmbfF8UEEbuwIA3003RJxfWuk4R8VFSYSs3ZkLyYnvdlEU6lWZg02dOMgl6lASKZmMKmciBVnUWh0xVvAekiaS1CbpF585cnF2eNgtITgwrCb5dC0OfgDUnLBaD9qUcBtDjT4MTCl+zl16oRnEd8TPBjyjmNfnAzCx78PPhSiBO1mOfnAXlr1dbSZolefIkW19l5YdbxlRR2Kqo+7bC4rS7Fyo7GatnlYv7+dNjxkgOdBbA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e47e315f-8fd0-485d-dc32-08deec6e64c8
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TFlCYUZIVVlSNjNrRU1SOCs1R05hVFNNZjZSclY0MiszYjg2Y0pWeU5ocVRs?=
+ =?utf-8?B?V2hZa2NPZGFsYTQ5dm9kSUJ3Vkw5bklkY0xER1JBMHpYelNCSkRxSnRBQjQ2?=
+ =?utf-8?B?aEpVTjk1S0tMcTByMVp5dmw1MEh2NjM1QnM2SzNITWJ5MmlxVGNMUVJKL0d6?=
+ =?utf-8?B?L1RpWTVlVnoxcW1zNTVnR3BRalR1MjNXQXk1bGl5U2VPMGVYWUlocU5waXUw?=
+ =?utf-8?B?WFNxazhTUGQwY3FjRkE3OVJDZGdVUndMNU5FUk1aTTRhblFtQnNwZkt0RW03?=
+ =?utf-8?B?eGlZeW5GL0JIM0pVVUVEUi8rU2VCUE9IZ05lLytSaVBVN1V5MUtJSEJFVEJ2?=
+ =?utf-8?B?bXpVblRLbkloU0hDTDArbFlZSjJBa2phU0YyYTZSM0JOakI2M3ByTjdXcWx1?=
+ =?utf-8?B?ZnZBSW5uVFN3cWlUbERZSjZwUFVLcS9QTjNRanJkZTBZMkJHRUp5RGdUK1lF?=
+ =?utf-8?B?YU9EMWRKOU1UcUQrdEIzM1pVd1VmWWk2bmF3SkFJbDBxdTdOYXpmTlNSNmdQ?=
+ =?utf-8?B?Qlg1MDRGK1phRDFKK25ncmJPWEx2aVdxM2VUZVNVdE9Pa3E2SjFqLzR2OXh3?=
+ =?utf-8?B?RjVseHovWnBLQVE2bU02R0NTbkM2cUNPeHRRN3plNGpEYnU1TjN4V3Q0dDhX?=
+ =?utf-8?B?VFhMNXNBOHhvUWRzb1RxbFFsMkVtRWY0N2VQTThHSEN3aEdzUFRuK2d0VmtW?=
+ =?utf-8?B?dDYxcHpld21mOTVUaTNIR3RvNldFbTZ1bjRXSWg0NTlBSGxqdHlyWlhPdlVY?=
+ =?utf-8?B?L3EvWU9JMzByaUtDL2g0TnVoQmxQZkRRd1MzRWFiNk5zZEF2T1NhQ3hOdTBq?=
+ =?utf-8?B?MXhoMFNMcmVLb3FtS2N3cGhHWm9IN21hbzVETndHcEVDazdNWUZzYzlJZDNk?=
+ =?utf-8?B?T1ZkWW1RYUUzMm85eGhEZ2pnNHRPZEg5NGtwSU9ZOWtiOW9tcHR5cjRiZ3hD?=
+ =?utf-8?B?Y20wMnlKY2VkOW1TWWVSdHZvREloai9IdWE0cXJSWnphWDRaUGo2NDkrdjRX?=
+ =?utf-8?B?bU0wblYyeTU3bGk4SXZwZU9LRjlIZHFQVDZKSDBMWlpycnYrdHV4aTlwbENT?=
+ =?utf-8?B?TDRSQjlGcm9GWitKNGhNSm03clJwQzI2aFBCbm56YVo2anpIZ2FjekxBamE4?=
+ =?utf-8?B?emMvcEZ4MHV4Rzl0WVc2NUJkemRvNEx2WXIrYXUzaEtGMnBLaFBCeXBqVmE3?=
+ =?utf-8?B?dkRNaWE1dEFDZFFQeWZUanlpamk2cnl5M3h6eEg4VGloK2VjWXpKRHB4TTM3?=
+ =?utf-8?B?dWhYZmI4OVJITnVPdU5Gdm44OFd3a0dCc0ppRVk2c0hFZDhqRGtjVCtYdVVl?=
+ =?utf-8?B?YU1HdURoSlNuNEdoemUzYVRYUzNrWFNlSEIxMEdLbm53VnRQRkcyZzY3clRU?=
+ =?utf-8?B?ZStmMUpxa3d5alVEcy9RR3NIWHdyeitzMXNUMThXVkNPKzBZSjRWczg4YXBm?=
+ =?utf-8?B?bHBDZk5yeitDeWkrWnJIbzI5MDV4Mkl3czJWMmxFWmUxaTBQNG5Na001NFVt?=
+ =?utf-8?B?eGt4cUdmMnMvSlVEbG81MzdSQkhSWEdpY2RNSVhFKy9ZQmVoNldOMU1RUDhV?=
+ =?utf-8?B?UTUxc1h2eUNLaGJmd3lzcGlNZGF6TW1UeXRSQW9tbU9VWVhrSzVxOFBLZHF5?=
+ =?utf-8?B?L2U3dGNBUFFlREY3MnllTGhQMHhiSHZWcTNGOVdRNG9DU1dLWU5ZSzZQbHl4?=
+ =?utf-8?B?ZXpEem14TFJaU290cWdySzcrUE5mMDZvaUZvM0Fmd2lQaUorQ3NwMFR1T2Fh?=
+ =?utf-8?B?Zm5vaERzYVZKNGdyNVVqY09ORzduaGlVTjZwQ3JPQ3ZHd2ZUb0VyWkpxZ09y?=
+ =?utf-8?B?SUFjTWo0bytyVUlRaDVuQW1XQ283WHkxdWpiU2dKYXVOVTRsaUdwMGZzNHFs?=
+ =?utf-8?B?OVNxRllHNHQyVU5Zb2NLOWZsMDFhSGVsaHZTL3dta0pjdWNMQXZSckEvVWZs?=
+ =?utf-8?B?NXpKV1NIYktMRm5SL01XYjcxQmJjb1hUeFNpNHo1R3pvcU1IK3hjbWk4MDd6?=
+ =?utf-8?B?UGFQaFZwdVBZQ2loTVdWY0psOXFFVlNXelFLYlhSWHMwbytFOEs4MmJvUnVZ?=
+ =?utf-8?B?YnJkaklLTDRqL3RWUEFIS3Z1SThBaG82THRHbVlBSUZsbzNkV3duYUtnRTdt?=
+ =?utf-8?B?UlEzK2hPK3VubkRUdHd1dC92TVJGNmJqdllsZVI2OXBZb2hsNDNuTk5pQVh1?=
+ =?utf-8?B?M3poUmFkUHhwSU9PbjhIaSs2YkFUYSt2RXFuWEtOVWZVSHhIL1YwSmN3OWVk?=
+ =?utf-8?B?SWRWcVhFVk5HaURJb1ZVUlJjVGt6azNSS051YUlYNEhNOXhycVlOcE1uMnFt?=
+ =?utf-8?B?YkNsY1RWL2MvUERraE1QU2Ftc1htMnFQMG1NODBtcVdaVFhZNC9QTVRpZjJE?=
+ =?utf-8?Q?By8VU9x/4+r7O3LE=3D?=
+X-Exchange-RoutingPolicyChecked: mU3jmvIlkHNs5WOzwJt+w+0X1Hh9NVCk50aM1jH01uh5VLbrseYvKC0H8EoYXt7gLLz5HsE3IWbJ34zjz9PLNhKnw7rp8YNwrk5UX8Jb+OxKMatmvNsLNS/1bAOX8H38Bn5dzGR1iDiIess3mB38GDUuQCy6rpP4GF+7t8ygtEVVb69lay8SKjMHCiYjWxWSp6Nc+ZQgTUe4E56Kpfz4ZT3pEuwjlEW8O2gHZZIDun9jlz4UTA69JWNvWVFLQR7nXqVMxprcNr2WeYtT1mhNE8F0cMI+ISYjWZN4iPw1Z3oIyqBD7+nO+sBRVkAFaX0HfWQuh0CPzEefm6n881ywHg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3445d2ca-3a55-4872-aafa-08deec6e7732
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2026 06:06:41.7782 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2026 06:07:12.6828 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ldzy3QSg/jSAlq/MUgwrGB/DbRRAjig5JT2er7bKwKIG+c/+qCZ98jcOSBNuEzfzv63jMY7TqPYiGphesczyqRww/5mVUDfZYInodDMCOY8=
+X-MS-Exchange-CrossTenant-UserPrincipalName: J9vtgxyuA9KiieJYD5V06rdbQMFwIA7Ec6pPb4wJW8lFjbo8Pczcsv5u8WsG2/NKpxNM/uSQ/r7XjsFHtsBNv303PdDkge/+hrh5XVcNSzc=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6973
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -171,148 +173,330 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 28-07-2026 11:31, Nareshkumar Gollakoti wrote:
-> Expose a debugfs control to override the page-size allocation mode used
-> for user BOs.
+> Add live KUnit coverage for the debug-controlled BO
+>      page-size allocation modes.
 > 
-> The interface allows switching between the default allocation policy,
-> forced 2M, forced 1G, and mixed allocation modes at runtime. This
-> provides a simple way to validate behavior and debug page-size-dependent
-> allocation flows.
+>      The new tests cover forced 2M mode, forced 1G mode,
+>      and mixed mode. They verify that user BO creation applies
+>      the expected NEEDS_* flags, that no unexpected page-size flags are
+>      added in the forced modes, that BO size is rounded as expected, and
+>      that page_alignment matches the selected leaf size.
 > 
-> The debugfs entry is built only when CONFIG_DRM_XE_DEBUG_PAGE_SIZE is
-> enabled.
+>      The mixed-mode test does not assume a strict per-allocation rotation
+>      sequence, since the device-global mixed-mode index may be perturbed by
+>      concurrent BO creation on a live system. Instead,
+>      it validates that each allocation results in
+>      one valid mixed-mode page-size outcome.
 > 
-> v2
-> - update changelog to match mutex-based cur_index handling
-> - reset cur_index when switching to mixed mode (sashiko)
+>      Treat transient VRAM allocation failures as skipped test cases so the
+>      tests can run in varying live environments without producing false
+>      failures.
 > 
-> v3
-> - add CONFIG guard for page-size allocation debugfs support (Himal)
-> - create debugfs entry under CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> 
-> v4
-> - reorderd this patch with kconfig patch to ensure patch builds
-> - Gurding this debug knob for only discrete graphics
-> 
-> v5(Himal)
-> - Guard all page size calls with CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> 
-> v8(Himal)
-> - For read/show used READ_ONCE instead lock
-> - to match Reader used WRITE_ONCE under lock protection
-> - change modes to string format to read/writer for debugfs
-> 
-> v9(Himal)
-> - Add an OOB guard for mode in page_size_alloc_mode_show().
->    This check makes the function display "unknown" if mode has been
->    maliciously altered by KMD, preventing out-of-bounds access.
->    Under normal operation, values set through debugfs are validated,
->    so OOB values should not occur.
-> - simplify mode-to-string lookup using page_size_alloc_mode_names[]
-> - use sysfs_match_string() to parse page_size_alloc_mode writes
+>      v3
+>      - address review comments
+>      - rework mixed-mode test to avoid assuming strict rotation order
+>      - reword commit message
+>      v4
+>      - skip VRAM-targeted live tests on non-dGFX devices
+>      v5
+>      - advance the mixed-mode index in the test
+>      v6
+>      - Gaurd kunit tests under CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+>      v9
+>      - consider XE_VRAM_FLAGS_NEED64K in mixed mode for certain
+>        platoform min alignment expectations.
 > 
 > Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
 > ---
->   drivers/gpu/drm/xe/xe_debugfs.c | 78 +++++++++++++++++++++++++++++++++
->   1 file changed, 78 insertions(+)
+>   drivers/gpu/drm/xe/tests/xe_bo.c            | 242 ++++++++++++++++++++
+>   drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   6 +
+>   2 files changed, 248 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index 5a3877fcb0f0..8de78cd0aa03 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -614,6 +614,72 @@ static const struct file_operations disable_late_binding_fops = {
->   	.write = disable_late_binding_set,
+> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+> index 49c95ed67d7e..6a17e13d58cf 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> @@ -22,6 +22,231 @@
+>   #include "xe_pci.h"
+>   #include "xe_pm.h"
+>   
+> +#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+> +struct page_size_alloc_saved {
+> +	enum xe_page_size_alloc_ctrl_mode mode;
+> +	u32 cur_index;
+> +};
+> +
+> +/* Caller must hold xe->page_size_alloc_ctrl.lock. */
+> +static void page_size_alloc_save(struct xe_device *xe,
+> +				 struct page_size_alloc_saved *s)
+> +{
+> +	s->mode = xe->page_size_alloc_ctrl.mode;
+> +	s->cur_index = xe->page_size_alloc_ctrl.cur_index;
+> +}
+> +
+> +static void page_size_alloc_restore(struct xe_device *xe,
+> +				    const struct page_size_alloc_saved *s)
+> +{
+> +	mutex_lock(&xe->page_size_alloc_ctrl.lock);
+> +	xe->page_size_alloc_ctrl.mode = s->mode;
+> +	xe->page_size_alloc_ctrl.cur_index = s->cur_index;
+> +	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+> +}
+> +
+> +/* Expected properties for a forced page-size allocation mode. */
+> +struct leaf_info {
+> +	u64 leaf;
+> +	u64 alloc_size;
+> +	u32 flag;
+> +	const char *name;
+> +};
+> +
+> +static const struct leaf_info leaf_2m = {
+> +	.leaf = SZ_2M,
+> +	.alloc_size = SZ_2M - PAGE_SIZE,
+> +	.flag = XE_BO_FLAG_NEEDS_2M,
+> +	.name = "2M",
+> +};
+> +
+> +static const struct leaf_info leaf_1g = {
+> +	.leaf = SZ_1G,
+> +	.alloc_size = SZ_1G - PAGE_SIZE,
+> +	.flag = XE_BO_FLAG_NEEDS_1G,
+> +	.name = "1G",
+> +};
+> +
+> +static void run_only_leaf(struct kunit *test,
+> +			  enum xe_page_size_alloc_ctrl_mode mode,
+> +			  const struct leaf_info *li)
+> +{
+> +	struct xe_device *xe = test->priv;
+> +	struct page_size_alloc_saved saved;
+> +	struct xe_bo *bo;
+> +	struct ttm_buffer_object *ttm_bo;
+> +	u32 other_flags;
+> +
+> +	if (!IS_DGFX(xe)) {
+> +		kunit_skip(test, "requires dGFX VRAM");
+> +		return;
+> +	}
+> +
+> +	mutex_lock(&xe->page_size_alloc_ctrl.lock);
+> +	page_size_alloc_save(xe, &saved);
+> +	xe->page_size_alloc_ctrl.mode = mode;
+> +	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+> +
+> +	bo = xe_bo_create_user(xe, NULL, li->alloc_size,
+> +			       DRM_XE_GEM_CPU_CACHING_WC,
+> +			       XE_BO_FLAG_VRAM0, NULL);
+> +	if (IS_ERR(bo)) {
+> +		page_size_alloc_restore(xe, &saved);
+> +		if (PTR_ERR(bo) == -ENOSPC) {
+> +			kunit_skip(test,
+> +				   "no contiguous %s VRAM available right now",
+> +				   li->name);
+> +			return;
+> +		}
+> +
+> +		KUNIT_FAIL(test, "%s BO alloc failed: %pe", li->name, bo);
+> +		return;
+> +	}
+> +
+> +	ttm_bo = &bo->ttm;
+> +
+> +	/* 1) The mode added the right NEEDS_* flag. */
+> +	KUNIT_EXPECT_TRUE_MSG(test, bo->flags & li->flag,
+> +			      "%s: flag missing, flags=0x%x",
+> +			      li->name, bo->flags);
+> +
+> +	/* 2) No other NEEDS_* flags accidentally tagged on. */
+> +	other_flags = (XE_BO_FLAG_NEEDS_64K |
+> +		       XE_BO_FLAG_NEEDS_2M |
+> +		       XE_BO_FLAG_NEEDS_1G) & ~li->flag;
+> +	KUNIT_EXPECT_FALSE_MSG(test, bo->flags & other_flags,
+> +			       "%s: stray flags=0x%x",
+> +			       li->name, bo->flags);
+> +	/* 3) BO size was rounded up to the expected leaf size. */
+> +	KUNIT_EXPECT_EQ_MSG(test, xe_bo_size(bo), li->leaf,
+> +			    "%s: bo size=%llu expected=%llu",
+> +			    li->name,
+> +			    (u64)xe_bo_size(bo),
+> +			    (u64)li->leaf);
+> +	/*
+> +	 * 4) Allocator honored the requested alignment.
+> +	 * ttm_bo->page_alignment is stored in PAGE_SIZE units, so compare against
+> +	 * the expected leaf size converted with >> PAGE_SHIFT.
+> +	 */
+> +	KUNIT_EXPECT_EQ_MSG(test, ttm_bo->page_alignment,
+> +			    li->leaf >> PAGE_SHIFT,
+> +			    "%s: page_alignment=%u pages expected=%llu pages",
+> +			    li->name, ttm_bo->page_alignment,
+> +			    (u64)(li->leaf >> PAGE_SHIFT));
+> +
+> +	xe_bo_put(bo);
+> +	page_size_alloc_restore(xe, &saved);
+> +}
+> +
+> +static void xe_bo_page_size_alloc_only_2m(struct kunit *test)
+> +{
+> +	run_only_leaf(test, XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M, &leaf_2m);
+> +}
+> +
+> +static void xe_bo_page_size_alloc_only_1g(struct kunit *test)
+> +{
+> +	run_only_leaf(test, XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G, &leaf_1g);
+> +}
+> +
+> +static void xe_bo_page_size_alloc_mixed_bos(struct kunit *test)
+> +{
+> +	struct xe_device *xe = test->priv;
+> +	struct page_size_alloc_saved saved;
+> +	struct xe_bo *bo;
+> +	struct ttm_buffer_object *ttm_bo;
+> +	u32 all_flags = XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M |
+> +			XE_BO_FLAG_NEEDS_1G;
+> +	u32 flags;
+> +	u64 expected_align;
+> +	int i;
+> +	const int n = 4;
+> +
+> +	if (!IS_DGFX(xe)) {
+> +		kunit_skip(test, "requires dGFX VRAM");
+> +		return;
+> +	}
+> +
+> +	mutex_lock(&xe->page_size_alloc_ctrl.lock);
+> +	page_size_alloc_save(xe, &saved);
+> +	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+> +
+> +	for (i = 0; i < n; i++) {
+> +		mutex_lock(&xe->page_size_alloc_ctrl.lock);
+> +		xe->page_size_alloc_ctrl.mode = XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED;
+> +		xe->page_size_alloc_ctrl.cur_index = i;
+> +		mutex_unlock(&xe->page_size_alloc_ctrl.lock);
+> +		/*
+> +		 * Request a size valid for any mixed-mode slot. Since cur_index is
+> +		 * device-global and may be perturbed by concurrent allocations on
+> +		 * a live system, do not assume this iteration will see a specific
+> +		 * slot.
+> +		 */
+> +		bo = xe_bo_create_user(xe, NULL, SZ_1G,
+> +				       DRM_XE_GEM_CPU_CACHING_WC,
+> +				       XE_BO_FLAG_VRAM0, NULL);
+> +		if (IS_ERR(bo)) {
+> +			int err = PTR_ERR(bo);
+> +
+> +			page_size_alloc_restore(xe, &saved);
+> +			if (err == -ENOSPC) {
+> +				kunit_skip(test,
+> +					   "mixed mode BO allocation unavailable: %d",
+> +					   err);
+> +				return;
+> +			}
+> +			KUNIT_FAIL(test, "iter=%d alloc failed: %pe", i, bo);
+> +			return;
+> +		}
+> +
+> +		ttm_bo = &bo->ttm;
+> +		flags = bo->flags & all_flags;
+> +		/*
+> +		 * Mixed mode may result in:
+> +		 * 0-> default platform VRAM alignment
+> +		 * XE_BO_FLAG_NEEDS_64K
+> +		 * XE_BO_FLAG_NEEDS_2M
+> +		 * XE_BO_FLAG_NEEDS_1G
+> +		 * Any other combination is invalid.
+> +		 */
+> +		if (flags == 0) {
+> +			expected_align = SZ_4K;
+> +			if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+> +				expected_align = SZ_64K;
+> +		} else if (flags == XE_BO_FLAG_NEEDS_64K) {
+> +			expected_align = SZ_64K;
+> +		} else if (flags == XE_BO_FLAG_NEEDS_2M) {
+> +			expected_align = SZ_2M;
+> +		} else if (flags == XE_BO_FLAG_NEEDS_1G) {
+> +			expected_align = SZ_1G;
+> +		} else {
+> +			KUNIT_FAIL(test,
+> +				   "iter=%d invalid mixed-mode flags: 0x%x",
+> +				   i, flags);
+> +			xe_bo_put(bo);
+> +			page_size_alloc_restore(xe, &saved);
+> +			return;
+> +		}
+> +		/*
+> +		 * BO size should remain valid for the selected mode. Since the
+> +		 * request is SZ_1G, it should remain unchanged regardless of the
+> +		 * selected page-size policy.
+> +		 */
+> +		KUNIT_EXPECT_EQ_MSG(test, xe_bo_size(bo), (u64)SZ_1G,
+> +				    "iter=%d size=%llu expected=%llu",
+> +				    i,
+> +				    (u64)xe_bo_size(bo),
+> +				    (u64)SZ_1G);
+> +		KUNIT_EXPECT_EQ_MSG(test, ttm_bo->page_alignment,
+> +				    expected_align >> PAGE_SHIFT,
+> +				    "iter=%d flags=0x%x page_alignment=%u pages expected=%llu pages",
+> +				    i, flags, ttm_bo->page_alignment,
+> +				    (u64)(expected_align >> PAGE_SHIFT));
+> +		xe_bo_put(bo);
+> +	}
+> +	page_size_alloc_restore(xe, &saved);
+> +}
+> +#endif
+> +
+>   static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+>   			    bool clear, u64 get_val, u64 assign_val,
+>   			    struct kunit *test, struct drm_exec *exec)
+> @@ -609,6 +834,23 @@ static struct kunit_case xe_bo_tests[] = {
+>   	{}
 >   };
 >   
 > +#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> +static const char * const page_size_alloc_mode_names[] = {
-> +	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_NONE]    = "none",
-> +	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M] = "only_2m",
-> +	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G] = "only_1g",
-> +	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED]   = "mixed",
+> +static struct kunit_case xe_bo_page_size_alloc_cases[] = {
+> +	KUNIT_CASE_PARAM(xe_bo_page_size_alloc_only_2m,   xe_pci_live_device_gen_param),
+> +	KUNIT_CASE_PARAM(xe_bo_page_size_alloc_only_1g,   xe_pci_live_device_gen_param),
+> +	KUNIT_CASE_PARAM(xe_bo_page_size_alloc_mixed_bos,   xe_pci_live_device_gen_param),
+> +	{}
 > +};
 > +
-> +static ssize_t page_size_alloc_mode_show(struct file *f, char __user *ubuf,
-> +					 size_t size, loff_t *pos)
-> +{
-> +	struct xe_device *xe = file_inode(f)->i_private;
-> +	char buf[32];
-> +	int len;
-> +	enum xe_page_size_alloc_ctrl_mode mode;
-> +
-> +	mode = READ_ONCE(xe->page_size_alloc_ctrl.mode);
-> +	if (mode >= ARRAY_SIZE(page_size_alloc_mode_names) ||
-> +	    !page_size_alloc_mode_names[mode])
-> +		len = scnprintf(buf, sizeof(buf), "unknown\n");
-> +	else
-> +		len = scnprintf(buf, sizeof(buf), "%s\n",
-> +				page_size_alloc_mode_names[mode]);
-> +	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-> +}
-> +
-> +static ssize_t page_size_alloc_mode_set(struct file *f, const char __user *ubuf,
-> +					size_t size, loff_t *pos)
-> +{
-> +	struct xe_device *xe = file_inode(f)->i_private;
-> +	int ret;
-> +	char buf[32];
-> +	int mode;
-> +
-> +	if (*pos)
-> +		return -ESPIPE;
-> +
-> +	if (size > sizeof(buf) - 1)
-> +		return -EINVAL;
-> +
-> +	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, pos, ubuf, size);
-> +	if (ret < 0)
-> +		return ret;
-> +	buf[ret] = '\0';
-> +
-> +	mode = sysfs_match_string(page_size_alloc_mode_names, buf);
-> +	if (mode < 0)
-> +		return mode;
-> +
-> +	mutex_lock(&xe->page_size_alloc_ctrl.lock);
-> +	if (mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED)
-> +		xe->page_size_alloc_ctrl.cur_index = 0;
-> +	WRITE_ONCE(xe->page_size_alloc_ctrl.mode,
-> +		   (enum xe_page_size_alloc_ctrl_mode)mode);
-> +	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
-> +
-> +	return size;
-> +}
-> +
-> +static const struct file_operations page_size_alloc_mode_fops = {
-> +	.owner = THIS_MODULE,
-> +	.read = page_size_alloc_mode_show,
-> +	.write = page_size_alloc_mode_set,
+> +VISIBLE_IF_KUNIT
+> +struct kunit_suite xe_bo_page_size_alloc_suite = {
+> +	.name = "xe_bo_page_size_alloc",
+> +	.test_cases = xe_bo_page_size_alloc_cases,
+> +	.init = xe_kunit_helper_xe_device_live_test_init,
 > +};
+> +EXPORT_SYMBOL_IF_KUNIT(xe_bo_page_size_alloc_suite);
 > +#endif
 > +
->   void xe_debugfs_register(struct xe_device *xe)
->   {
->   	struct ttm_device *bdev = &xe->ttm;
-> @@ -665,6 +731,18 @@ void xe_debugfs_register(struct xe_device *xe)
->   	debugfs_create_file("disable_late_binding", 0600, root, xe,
->   			    &disable_late_binding_fops);
->   
+>   VISIBLE_IF_KUNIT
+>   struct kunit_suite xe_bo_test_suite = {
+>   	.name = "xe_bo",
+> diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+> index c55e46f1ae92..87cd7db20e5f 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+> @@ -11,6 +11,9 @@ extern struct kunit_suite xe_dma_buf_test_suite;
+>   extern struct kunit_suite xe_migrate_test_suite;
+>   extern struct kunit_suite xe_mocs_test_suite;
+>   extern struct kunit_suite xe_guc_g2g_test_suite;
 > +#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> +	/*
-> +	 * Expose a debugfs knob to control user BO page-size allocation:
-> +	 * "none"    - default behavior
-> +	 * "only_2m" - force 2M page allocations
-> +	 * "only_1g" - force 1G page allocations
-> +	 * "mixed"   - select 4K, 64K, 2M, and 1G in round-robin order
-> +	 */
-> +	if (xe_debug_page_size_supported(xe))
-> +		debugfs_create_file("page_size_alloc_mode", 0600, root, xe,
-> +				    &page_size_alloc_mode_fops);
+> +extern struct kunit_suite xe_bo_page_size_alloc_suite;
 > +#endif
->   	/*
->   	 * Don't expose page reclaim configuration file if not supported by the
->   	 * hardware initially.
+>   
+>   kunit_test_suite(xe_bo_test_suite);
+>   kunit_test_suite(xe_bo_shrink_test_suite);
+> @@ -18,6 +21,9 @@ kunit_test_suite(xe_dma_buf_test_suite);
+>   kunit_test_suite(xe_migrate_test_suite);
+>   kunit_test_suite(xe_mocs_test_suite);
+>   kunit_test_suite(xe_guc_g2g_test_suite);
+> +#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+> +kunit_test_suite(xe_bo_page_size_alloc_suite);
+> +#endif
+>   
+>   MODULE_AUTHOR("Intel Corporation");
+>   MODULE_LICENSE("GPL");
 
