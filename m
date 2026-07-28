@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4B1FC531F9
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 16:11:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76CE3C54F54
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 16:11:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98C5110E87D;
-	Tue, 28 Jul 2026 16:11:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5A310E967;
+	Tue, 28 Jul 2026 16:11:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YcC7WISA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hi9cv7j6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D86A10E967
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 16:11:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B148610E87D
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 16:11:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1785255070; x=1816791070;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1/qpsND6Paq+BsAqQERwQSMmBeaK1gHrg1MqZM09YR8=;
- b=YcC7WISAoDLxYgJ/JMCBFAtXcfpitSjhDCErvNHD8gEmv4lJPJ7UXp8T
- V6S3mAIH77SiEiNib8QgsvYPLHEcRw4n4OAt3I62QyehIFwnuWAeLL9Zi
- ejPr6Z4QxuwgLpYcR827xWlw4JMwH+VMXZ3ivspkvhBxtDlZZVPveBhqp
- 1pfeL5n5ppwwbw9esJFY0WF+P90xgk2y5lJa5VOQCEVysRzLpS3kYsaz9
- HMPErzDRGCmypRjpmju1B68/RbjQmpVOojER/RwmwP7FiaY3Xt74otS58
- ZPClhezo45DWZyXln3qvqZ6fMewu9PQ4fmHcvn8gr6YR6P/RAeApaLTzZ w==;
-X-CSE-ConnectionGUID: YeJ4xr37SjOtBRN5ofmkpw==
-X-CSE-MsgGUID: luix29A9T+a2m79127ggfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="103386245"
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="103386245"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oAIjqgrpZ0TxuqCy+DwMNEktZ+7U2pk0ReBNvhu+bnA=;
+ b=Hi9cv7j65kkSxVeg3C6VZvPuFLV3GFSkVekXbiMfOBg6S4KG4TzeEP5L
+ w9GFFA3MsrAddC9uLk1LqC5cOE3iuRvwzRZrPzyp51wHk5keo7jrufFjn
+ 5bbkfw4TH8NB0XT8nf7tKcnCQBdXwhn5ZT7ZZ0PfSSncexjRR5XuDMZt0
+ IJrOPrGFESdDtg6LsgMMvVBLyFOXQZailFyOiC8oJT+aUhvkGsdA6yiLk
+ MypsVel5yXfWL+kjAjiUeedPPcdm+45JP/eiOiA6exyphvxXIPZK30sH6
+ V9YNT5ozTl5OPNZ8P7aHTd+Bk1KlPWnDgQDiLylMLS2ZptGr6/6Vv9tk6 A==;
+X-CSE-ConnectionGUID: OBc9HZBgQRmhB16NEuLerQ==
+X-CSE-MsgGUID: X+IEKkL1Rm6RaIjFBJQhPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="103386246"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="103386246"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 09:11:06 -0700
-X-CSE-ConnectionGUID: QEtrXj2fTPiNoVOOSzu1pg==
-X-CSE-MsgGUID: Fjz2eW9ERdK1mrzWAboCBA==
+ 28 Jul 2026 09:11:08 -0700
+X-CSE-ConnectionGUID: +S7wpQw1QYCOZDOXL2RQyw==
+X-CSE-MsgGUID: AXnXkVzeTwiKuCaY2dZBaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="259819176"
+X-IronPort-AV: E=Sophos;i="6.25,190,1779174000"; d="scan'208";a="259819229"
 Received: from dmagui1x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.118.167])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2026 09:11:04 -0700
+ 28 Jul 2026 09:11:06 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
- Riana Tauro <riana.tauro@intel.com>, Raag Jadav <raag.jadav@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>
-Subject: [PATCH v2 00/22] drm/xe: Add structured SIGID error logging
- infrastructure
-Date: Tue, 28 Jul 2026 18:10:15 +0200
-Message-ID: <20260728161039.579-1-michal.wajdeczko@intel.com>
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 01/22] drm/xe: Introduce xe_any helpers
+Date: Tue, 28 Jul 2026 18:10:16 +0200
+Message-ID: <20260728161039.579-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260728161039.579-1-michal.wajdeczko@intel.com>
+References: <20260728161039.579-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -74,139 +71,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Today the driver reports faults with ad-hoc drm_err()/xe_gt_err()
-strings that have no stable shape. That is readable for a human, but it
-gives fleet tooling nothing durable to match on: the wording changes
-between releases, lines can be rate-limited or dropped under an error
-storm, and there is no consistent way to ask "which recognised fault
-just happened?".
+In upcoming patches we want to define macros that will work with
+either xe_device or xe_tile or xe_gt pointers. To make them work
+and to allow compiler optimizations, introduce set of helpers
+that will return either expected pointer type or NULL or make
+necessary conversions to/from the struct xe/device/pci_dev.
 
-Introduce a signature identifier (SIGID): a small, stable integer that
-names one recognised Xe fault situation and serves as the primary handle
-for triage. A SIGID maps, through published end-user documentation, to a
-description and a recommended action; the driver only has to emit the
-right SIGID next to the usual human-readable text.
-
-Design decisions:
-
- - Software-emitted signatures only. This header enumerates just the
-   situations the driver detects and reports itself. Signatures that
-   originate in firmware or hardware are identified by those layers (via
-   their own records/counters) and are logged as received -- minting a
-   driver-side id for them would duplicate an id the reporting layer
-   already owns.
-
- - Flat catalogue, chosen per report site. Each site emits the single
-   most specific situation for that site, so a multi-layer failure
-   produces a chain of reports rather than one ambiguous classification
-   (e.g. a failed GT reset reports GT_TDR and then WEDGED). A site that
-   matches no defined situation keeps using ordinary xe_err() /
-   xe_gt_err() rather than forcing a wrong id.
-
- - Stable numbering. A single flat list numbered sequentially from 1, in
-   introduction order. Values are only ever appended, never renumbered
-   or reused.
-
- - First-order action. Each SIGID carries a coarse, in-tree resolution
-   bucket (COLLECT / RETRY / UPDATE / RECOVER) so it is actionable
-   without an external reference, and so every new id must declare what
-   to do about it.
-
- - Severity is decoupled from the SIGID and chosen at the call site via
-   xe_ras_log_fatal() / _recoverable() / _info(); the same situation can
-   be reported at different severities depending on the instance.
-
- - dmesg stays close to a normal xe error line by reusing xe_err() /
-   xe_gt_err() (and their Tile/GT decoration); the only stable,
-   machine-matchable token added is SIGID=<n>. dmesg is not an ABI --
-   the durable machine record is the CPER carrying the same SIGID (a
-   planned follow-up, left as a TODO).
-
-Wire up a representative site for each software signature so the set is
-exercised rather than merely declared:
-
- - PROBE: xe workqueue allocation failure during early init
- - WEDGED: xe_device_declare_wedged() (drop redundant "CRITICAL" + BDF)
- - SURVIVABILITY: entering boot survivability mode
- - RUNTIME_FW: GuC mmio request failure
- - DEVICE_FW: PCODE mailbox failure
- - GT_TDR: GT reset failure (which then chains into a WEDGED report)
- - MEM_FAULT: page-fault queue overflow
- - IO_BUS: PCI re-enable failure after a bus reset
-
-Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-
-v1: https://patchwork.freedesktop.org/series/171022/#rev1
-v2: component/location dmesg decorations moved away from macros
-    HW component identifiers related to RAS/FW enum values
-    CORRECTED severity rendered as an error
-    more support for const pointers
-    log 'probe blocked' as INFO
-    fix kunit device setup
-    more tests
-
-Mallesh Koujalagi (1):
-  drm/xe/log: Add structured SIGID error logging infrastructure
-
-Michal Wajdeczko (21):
-  drm/xe: Introduce xe_any helpers
-  drm/xe/log: Introduce structured component/location identifiers
-  drm/xe/log: Add component/location decorations to dmesg
-  drm/xe/log: Add SIGID log helpers for severity
-  drm/xe/log: Add SIGID log helpers for location
-  drm/xe/log: Add SIGID log helpers for location & severity
-  drm/xe/log: Add SIGID log helpers for components
-  drm/xe/log: Add SIGID log helpers for errno-only
-  drm/xe/log: Add hardware error signatures
-  drm/xe/log: Extend components list with hardware items
-  drm/xe/ras: Check RAS and LOG component definitions
-  drm/xe/kunit: Setup driver data in the test device
-  drm/xe/tests: Add Kunit tests for xe_log
-  drm/xe: Report 'probe blocked' error using SIGID
-  drm/xe: Report 'device wedged' errors using SIGID
-  drm/xe: Report 'Survivability Mode' errors using SIGID
-  drm/xe/guc: Report 'GuC mmio' errors using SIGID
-  drm/xe/pcode: Report 'Mailbox failed' error using SIGID
-  drm/xe/gt: Report 'reset failed' errors using SIGID
-  drm/xe/gt: Report 'pagefault' errors using SIGID
-  drm/xe/pci: Report 'cannot re-enable' error using SIGID
-
- Documentation/gpu/xe/index.rst              |   1 +
- Documentation/gpu/xe/xe_sigid.rst           |  14 +
- drivers/gpu/drm/xe/Makefile                 |   1 +
- drivers/gpu/drm/xe/abi/xe_log_abi.h         | 197 ++++++++
- drivers/gpu/drm/xe/abi/xe_sigid_abi.h       | 195 ++++++++
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   4 +
- drivers/gpu/drm/xe/tests/xe_log_kunit.c     | 480 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_any.h                 | 112 +++++
- drivers/gpu/drm/xe/xe_device.c              |  16 +-
- drivers/gpu/drm/xe/xe_gt.c                  |   7 +-
- drivers/gpu/drm/xe/xe_guc.c                 |  18 +-
- drivers/gpu/drm/xe/xe_log.c                 | 212 +++++++++
- drivers/gpu/drm/xe/xe_log.h                 | 158 +++++++
- drivers/gpu/drm/xe/xe_pagefault.c           |  10 +-
- drivers/gpu/drm/xe/xe_pci.c                 |   5 +-
- drivers/gpu/drm/xe/xe_pci_error.c           |   7 +-
- drivers/gpu/drm/xe/xe_pcode.c               |   5 +-
- drivers/gpu/drm/xe/xe_ras.c                 |  11 +
- drivers/gpu/drm/xe/xe_survivability_mode.c  |  24 +-
- 19 files changed, 1438 insertions(+), 39 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_sigid.rst
- create mode 100644 drivers/gpu/drm/xe/abi/xe_log_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/xe_sigid_abi.h
- create mode 100644 drivers/gpu/drm/xe/tests/xe_log_kunit.c
+---
+v2: add include (Sashiko) and const support (Mallesh)
+    reuse existing to_xe() helpers (Michal)
+---
+ drivers/gpu/drm/xe/xe_any.h | 112 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 112 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/xe_any.h
- create mode 100644 drivers/gpu/drm/xe/xe_log.c
- create mode 100644 drivers/gpu/drm/xe/xe_log.h
 
+diff --git a/drivers/gpu/drm/xe/xe_any.h b/drivers/gpu/drm/xe/xe_any.h
+new file mode 100644
+index 000000000000..a2b1e42fbc5c
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_any.h
+@@ -0,0 +1,112 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_ANY_H_
++#define _XE_ANY_H_
++
++#include "xe_device.h"
++
++/**
++ * xe_any_if_type() - Get the pointer only if it is @type pointer.
++ * @any: any pointer
++ * @type: data type to look for
++ *
++ * Return: the @type pointer or NULL.
++ */
++#define xe_any_if_type(any, type)						\
++	_Generic((any),								\
++		 type * : (any),						\
++		 const type * : (any),						\
++		 default : NULL)
++
++/**
++ * xe_any_if_gt() - Get the pointer only if it is &xe_gt.
++ * @any: any pointer
++ *
++ * Return: the @xe_gt pointer or NULL.
++ */
++#define xe_any_if_gt(any)	xe_any_if_type((any), struct xe_gt)
++
++/**
++ * xe_any_if_tile() - Get the pointer only if it is &xe_tile.
++ * @any: any pointer
++ *
++ * Return: the @xe_tile pointer or NULL.
++ */
++#define xe_any_if_tile(any)	xe_any_if_type((any), struct xe_tile)
++
++/**
++ * xe_any_if_xe() - Get the pointer only if it is &xe_device.
++ * @any: any pointer
++ *
++ * Return: the @xe_device pointer or NULL.
++ */
++#define xe_any_if_xe(any)	xe_any_if_type((any), struct xe_device)
++
++/**
++ * xe_any_if_pdev() - Get the pointer only if it is &pci_dev.
++ * @any: any pointer
++ *
++ * Return: the @pci_dev pointer or NULL.
++ */
++#define xe_any_if_pdev(any)	xe_any_if_type((any), struct pci_dev)
++
++/**
++ * xe_any_to_xe() - Obtain the &xe_device pointer.
++ * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
++ *
++ * Return: the @xe_device pointer or backpointer.
++ */
++#define xe_any_to_xe(any)								\
++	_Generic((any),									\
++		 struct xe_device * : (any),						\
++		 const struct xe_device * : (any),					\
++		 struct xe_tile * : tile_to_xe((struct xe_tile *)(any)),		\
++		 const struct xe_tile * : tile_to_xe((const struct xe_tile *)(any)),	\
++		 struct xe_gt * : gt_to_xe((struct xe_gt *)(any)),			\
++		 const struct xe_gt * : gt_to_xe((const struct xe_gt *)(any)),		\
++		 struct pci_dev * : pdev_to_xe_device((struct pci_dev *)(any)),		\
++		 struct device * : kdev_to_xe_device((struct device *)(any)))
++
++/**
++ * xe_any_to_dev() - Obtain the &device pointer.
++ * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
++ *
++ * Return: the @xe_device pointer or backpointer.
++ */
++#define xe_any_to_dev(any)							\
++	_Generic((any),								\
++		 struct device * : (any),					\
++		 default : xe_any_to_xe(any)->drm.dev)
++
++/**
++ * xe_any_to_pdev() - Obtain the &pci_dev pointer.
++ * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
++ *
++ * Return: the @pci_dev pointer or backpointer.
++ */
++#define xe_any_to_pdev(any)							\
++	_Generic((any),								\
++		 struct pci_dev * : (any),					\
++		 default : to_pci_dev(xe_any_to_dev(any)))
++
++/**
++ * xe_any_id() - Get the identifier of the underlying object.
++ * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
++ *
++ * Return: the identifier of the object, or 0 if nor applicable/available.
++ */
++#define xe_any_id(any)								\
++	_Generic((any),								\
++		 struct xe_gt * : ((struct xe_gt *)(any))->info.id,		\
++		 const struct xe_gt * : ((const struct xe_gt *)(any))->info.id,	\
++		 struct xe_tile * : ((struct xe_tile *)(any))->id,		\
++		 const struct xe_tile * : ((const struct xe_tile *)(any))->id,	\
++		 struct xe_device * : 0,					\
++		 const struct xe_device * : 0,					\
++		 struct pci_dev * : 0,						\
++		 struct device * : 0)
++
++#endif
 -- 
 2.47.1
 
