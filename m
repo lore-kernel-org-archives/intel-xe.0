@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6219DC53219
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 05:57:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4362C54F4C
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 06:01:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E33C810E4B9;
-	Tue, 28 Jul 2026 05:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7401410E52F;
+	Tue, 28 Jul 2026 06:01:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L0NqVvSM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a83HjLhA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7A9010E4B9
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 05:57:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C9AD10E52A
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Jul 2026 06:01:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785218274; x=1816754274;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0BJDv0Fj5ZwYTj4HWufxViHF33krhNlidSdJZN06qFM=;
- b=L0NqVvSM0rp16JA0G37xPXhhhPGwne6UixYt5xEB24SiDcpf1HPAYo1j
- KvyjyjohWO1moUbOs1phf85un/frky5QTIeGdFPaf0hUwEJIHYyQcaRXc
- v3p8pxE7ORBtybGspYupYpI6TZFjG8HDgXKNDfj7SJhgBadOX4QHSi8vk
- h8voEVOnciMUIga8L3KKsVDknlFjSE1qZisOiM53G8EsUvsy9WWDcSq5/
- BLszvluOqIi7U6GR9SzstTas/+YGV8OMlz41ZZ+hUciKbVGeYLTP0/Pdh
- T5rVnQRqw84nwmjRbu6IzFAKgz2/zgiqWbiKgrBpbAdbw00XEABjsgSA3 w==;
-X-CSE-ConnectionGUID: WeY3ZAiZTFSPwEpDeizQcQ==
-X-CSE-MsgGUID: 7zEUOZ8/Sg+9tKSBkVC4mQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="96150392"
-X-IronPort-AV: E=Sophos;i="6.25,189,1779174000"; d="scan'208";a="96150392"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ t=1785218501; x=1816754501;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=sCOGyebiUOaiEXZgYY/SSXa8H4S39D8IMdMqEexZNdY=;
+ b=a83HjLhA9p7natnzGLtNWmm2nsD4rw61CBka3Wild4lQMfOkPpkFW9b7
+ h3WFzI6ElSnnakLu2jVtz/8hqtE5VwI/8iBWPPMnymHM7NNgKp8H6XPze
+ 037jwLBes18NUbifcMUJwRiWjE7tQwohprIpZ7zEKMGYFOEIv98WO9V8n
+ R2s7zuHp91p6rbk54dAEneywGMwR0ZfOfzPmuAt7tQ5ULaWvrRuw/Oz/3
+ elrQfbu3BA0MkzQ7OofFelpAYjTudEsjtAN7po2GVtspxfd3GUp4sdK4B
+ n7r2HMn59DXmd0148KrsfYY8NgrtPaBEVG3a7MdPMLfFYuU1hRfTVdIL/ Q==;
+X-CSE-ConnectionGUID: 1rrhRpHKTkOzsqnXJADRaw==
+X-CSE-MsgGUID: x/CMpPDvT0m1Ul6wYY/f0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11858"; a="96150864"
+X-IronPort-AV: E=Sophos;i="6.25,189,1779174000"; d="scan'208";a="96150864"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2026 22:57:53 -0700
-X-CSE-ConnectionGUID: BsUByHCCRPm+g0oSuIuVqg==
-X-CSE-MsgGUID: ONNlfZpEQUKACRX+dsBPTQ==
+ 27 Jul 2026 23:01:40 -0700
+X-CSE-ConnectionGUID: L3vF2XRDSuWGx6HhkdLMEg==
+X-CSE-MsgGUID: lGT8029lSLO8CZYwEdhfpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,189,1779174000"; d="scan'208";a="261590699"
-Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa004.fm.intel.com with ESMTP; 27 Jul 2026 22:57:51 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,189,1779174000"; d="scan'208";a="284152410"
+Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
+ by fmviesa001.fm.intel.com with ESMTP; 27 Jul 2026 23:01:34 -0700
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Sashiko <sashiko-bot@kernel.org>
-Subject: [PATCH v2] drm/xe/pt: check no-DMA huge-pte cases before DMA segment
- test
-Date: Tue, 28 Jul 2026 11:29:17 +0530
-Message-ID: <20260728055916.593707-2-himal.prasad.ghimiray@intel.com>
+Cc: himal.prasad.ghimiray@intel.com,
+	naresh.kumar.g@intel.com
+Subject: [PATCH v9 3/6] drm/xe: add XE_BO_FLAG_NEEDS_1G for minimum page-size
+ sizing
+Date: Tue, 28 Jul 2026 11:31:29 +0530
+Message-ID: <20260728060132.4067990-4-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260728060132.4067990-1-naresh.kumar.g@intel.com>
+References: <20260728060132.4067990-1-naresh.kumar.g@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,68 +67,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On a non-range clear, curs.size is never set, so the segment test
-(next - va_curs_start > curs->size) returns false for every level > 0
-before the clear_pt short-circuit is reached. The clear then descends to
-level 0 instead of forming a huge zero-leaf, wasting page tables and
-risking -ENOMEM on unbind.
+Add XE_BO_FLAG_NEEDS_1G to mark BOs that require 1G minimum page-size
+sizing.
 
-Move the null-VMA, purged-BO and clear_pt short-circuits above the
-curs->size test. The bind path always sets curs.size, so it is unaffected.
+Update xe_bo_init_locked() to honor the new flag in the existing
+VRAM/stolen-memory minimum page-size sizing path. When
+XE_BO_FLAG_NEEDS_1G is set, the BO size is rounded up to 1G. Otherwise,
+the existing 2M and 64K sizing behavior is preserved.
 
-v2
-- Also set curs.size on the clear path so the cursor stays meaningful
-during the walk. clear_pt is only reached with range == NULL, so assert
-that invariant. (Matthew Brost)
+If multiple minimum page-size flags are set, the largest requirement
+takes precedence: 1G over 2M over 64K.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Fixes: 5b658b7e89c3 ("drm/xe: Clear scratch page on vm_bind")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+v3
+- commit message reworded
+
+Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 12 ++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h |  1 +
+ 2 files changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 598c6b2571e7..0e9d669620b9 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -443,10 +443,6 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	if (!xe_pt_covers(addr, next, level, &xe_walk->base))
- 		return false;
- 
--	/* Does the DMA segment cover the whole pte? */
--	if (next - xe_walk->va_curs_start > xe_walk->curs->size)
--		return false;
--
- 	/* null VMA's and purged BO's do not have dma addresses */
- 	if (xe_vma_is_null(xe_walk->vma) || (bo && xe_bo_is_purged(bo)))
- 		return true;
-@@ -455,6 +451,10 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	if (xe_walk->clear_pt)
- 		return true;
- 
-+	/* Does the DMA segment cover the whole pte? */
-+	if (next - xe_walk->va_curs_start > xe_walk->curs->size)
-+		return false;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index c266fa6bade1..cf0b7b35c331 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2340,8 +2340,16 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	if (flags & (XE_BO_FLAG_VRAM_MASK | XE_BO_FLAG_STOLEN) &&
+ 	    !(flags & XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE) &&
+ 	    ((xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) ||
+-	     (flags & (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M)))) {
+-		size_t align = flags & XE_BO_FLAG_NEEDS_2M ? SZ_2M : SZ_64K;
++	     (flags & (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M |
++		       XE_BO_FLAG_NEEDS_1G)))) {
++		size_t align;
 +
- 	/* Is the DMA address huge PTE size aligned? */
- 	size = next - addr;
- 	dma = addr - xe_walk->va_curs_start + xe_res_dma(xe_walk->curs);
-@@ -775,8 +775,11 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	}
++		if (flags & XE_BO_FLAG_NEEDS_1G)
++			align = SZ_1G;
++		else if (flags & XE_BO_FLAG_NEEDS_2M)
++			align = SZ_2M;
++		else
++			align = SZ_64K;
  
- 	xe_walk.needs_64K = (vm->flags & XE_VM_FLAG_64K);
--	if (clear_pt)
-+	if (clear_pt) {
-+		xe_assert(xe, !range);
-+		curs.size = xe_vma_size(vma);
- 		goto walk_pt;
-+	}
+ 		aligned_size = ALIGN(size, align);
+ 		if (type != ttm_bo_type_device)
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 7ae1d9ac0574..c6d80e1bd6e7 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -52,6 +52,7 @@
+ #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
+ #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
+ #define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
++#define XE_BO_FLAG_NEEDS_1G		BIT(27)
  
- 	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
- 		xe_walk.default_vram_pte = xe_atomic_for_vram(vm, vma) ? XE_USM_PPGTT_PTE_AE : 0;
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
 -- 
 2.43.0
 
