@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDF0AC531F9
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 10:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DF5DC54EFC
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jul 2026 11:14:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C5FF8989C;
-	Tue, 28 Jul 2026 10:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3E8E10E57B;
+	Tue, 28 Jul 2026 11:14:14 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB0428989C;
- Tue, 28 Jul 2026 10:38:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2255610E57B;
+ Tue, 28 Jul 2026 11:14:13 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2612630857518954317=="
+ boundary="===============5951925296997388312=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Page_allocation_debufs_knob?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_KUnit_test_for_VF_provision?=
+ =?utf-8?q?ing_error_handling_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Jul 2026 10:38:21 -0000
-Message-ID: <178523510182.230293.14748984142492979212@6beec6c84f66>
+Date: Tue, 28 Jul 2026 11:14:13 -0000
+Message-ID: <178523725313.230500.12476413127532514730@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260728094011.509392-1-naresh.kumar.g@intel.com>
-In-Reply-To: <20260728094011.509392-1-naresh.kumar.g@intel.com>
+References: <20260728095026.2197333-6-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260728095026.2197333-6-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2612630857518954317==
+--===============5951925296997388312==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: Page allocation debufs knob
-URL   : https://patchwork.freedesktop.org/series/171169/
+Series: KUnit test for VF provisioning error handling (rev4)
+URL   : https://patchwork.freedesktop.org/series/170198/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d_BAT -> xe-pw-171169v1_BAT
+CI Bug Log - changes from xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d_BAT -> xe-pw-170198v4_BAT
 ====================================================
 
 Summary
@@ -64,10 +65,10 @@ Summary
 
   
 
-Participating hosts (13 -> 12)
+Participating hosts (13 -> 13)
 ------------------------------
 
-  Missing    (1): bat-bmg-2 
+  No changes in participating hosts
 
 
 Changes
@@ -79,17 +80,17 @@ Changes
 Build changes
 -------------
 
-  * Linux: xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d -> xe-pw-171169v1
+  * Linux: xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d -> xe-pw-170198v4
 
   IGT_9027: 9027
   xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d: 28e3f47d47a61b5e28e7566944479e9c9715d41d
-  xe-pw-171169v1: 171169v1
+  xe-pw-170198v4: 170198v4
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171169v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v4/index.html
 
---===============2612630857518954317==
+--===============5951925296997388312==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,32 +110,32 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>Page allocation debufs knob</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171169/">https://patchwork.freedesktop.org/series/171169/</a></td></tr>
+<tr><td><b>Series:</b></td><td>KUnit test for VF provisioning error handling (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170198/">https://patchwork.freedesktop.org/series/170198/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171169v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171169v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v4/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d_BAT -&gt; xe-pw-171169v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d_BAT -&gt; xe-pw-170198v4_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-bmg-2 </p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
 <h2>Changes</h2>
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d -&gt; xe-pw-171169v1</li>
+<li>Linux: xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d -&gt; xe-pw-170198v4</li>
 </ul>
 <p>IGT_9027: 9027<br />
   xe-5491-28e3f47d47a61b5e28e7566944479e9c9715d41d: 28e3f47d47a61b5e28e7566944479e9c9715d41d<br />
-  xe-pw-171169v1: 171169v1</p>
+  xe-pw-170198v4: 170198v4</p>
 
 </body>
 </html>
 
---===============2612630857518954317==--
+--===============5951925296997388312==--
