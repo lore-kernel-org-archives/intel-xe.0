@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F622C54FD1
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 08:40:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D67D4C54FCD
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 08:40:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D47410EB0D;
-	Wed, 29 Jul 2026 08:40:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 960CB10EB16;
+	Wed, 29 Jul 2026 08:40:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8edLyCs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hH1AUeF7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D727E10EB06
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jul 2026 08:40:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9374410EB13
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jul 2026 08:40:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785314451; x=1816850451;
+ t=1785314453; x=1816850453;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lhBkzZxK5jJzoD+E7As4V0dADBTx/QOM3LOCKW4Z+Ds=;
- b=H8edLyCse5A0SQaLVtdLSf+S3kFT4nDpIXGcYslXt7VkwyvKX5NWyzOj
- LZi56MdiDEkjrb8hzmegJI7HVbgO5XHSeHDnZBGW6DT8aqVe22NEJm2MK
- V+j/RYW7mUUZAd00mvoAdC3qNuTV+VIcXcxl8stUCzjEInxVmSXTrj3++
- dNnHUr1GMWFQaJUad9R42dvUARTfxi1UD7N34NzaAvIQMeFd8rMPVZcQr
- ws3qOHPN2yOESK6kQ9EysTw5fitG229WvnIfM56ue5y0Ma7qmEQRpQVAR
- guN0XzFKxExccDdFQcIvI7wcQwqKkafSntkfDiYZm6AO1/mdqvnVs5Ig4 A==;
-X-CSE-ConnectionGUID: uCNnlYrITs6vzNPh/0wUfg==
-X-CSE-MsgGUID: 0bKziSs8QPWsAWeAyBQ7Fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="89589356"
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="89589356"
+ bh=sCOGyebiUOaiEXZgYY/SSXa8H4S39D8IMdMqEexZNdY=;
+ b=hH1AUeF7fRkAFD0wqInzqB1zwUPXRDauYn/Om9BUJGxGU6zL2ZF/lwUa
+ TKSrL1lQcT7GcRzDFGQBM+Bb/O9LLL/cLWgqs+98St4QsJPx+LZieN0aB
+ MiqF5v7GRQ8Tkqtp++xjLfuURwN+JawKuijC0sKDDJFzLih5pbDrPSUQZ
+ FImss7v8TkjqSmGgdMkUWG8YXolk6vprZdzshRVzvBg19oD06b33CPKpa
+ ZSgzdjApswqUo3uPNKigj6cvpZhZHruVXcn0MhyTIl3VQHyfen1rJtXSN
+ 6scXwXVfDCXjwY04fRZjQHDXDfBEs6dYOOdWSWuUtYoqoipLTNuvHGXf0 g==;
+X-CSE-ConnectionGUID: N/n6GymcQV+vh1R8NW8DuA==
+X-CSE-MsgGUID: YvWJa5DaTU2+ZjE+ZIB6/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="89589359"
+X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="89589359"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 01:40:51 -0700
-X-CSE-ConnectionGUID: YlqTyiE8QMCqBaKuJcVJJw==
-X-CSE-MsgGUID: vSaDh3a4S02OJZ0CZ4v96w==
+ 29 Jul 2026 01:40:53 -0700
+X-CSE-ConnectionGUID: IWJVwspNT+y6+BMh20W2hQ==
+X-CSE-MsgGUID: /bAPRAXrRZqIYkPQoACfsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="260568380"
+X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="260568397"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa009.jf.intel.com with ESMTP; 29 Jul 2026 01:40:50 -0700
+ by orviesa009.jf.intel.com with ESMTP; 29 Jul 2026 01:40:52 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
 	naresh.kumar.g@intel.com
-Subject: [PATCH v10 2/6] drm/xe/debugfs: add page-size allocation mode knob
-Date: Wed, 29 Jul 2026 14:10:42 +0530
-Message-ID: <20260729084046.1050783-3-naresh.kumar.g@intel.com>
+Subject: [PATCH v10 3/6] drm/xe: add XE_BO_FLAG_NEEDS_1G for minimum page-size
+ sizing
+Date: Wed, 29 Jul 2026 14:10:43 +0530
+Message-ID: <20260729084046.1050783-4-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260729084046.1050783-1-naresh.kumar.g@intel.com>
 References: <20260729084046.1050783-1-naresh.kumar.g@intel.com>
@@ -66,148 +67,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose a debugfs control to override the page-size allocation mode used
-for user BOs.
+Add XE_BO_FLAG_NEEDS_1G to mark BOs that require 1G minimum page-size
+sizing.
 
-The interface allows switching between the default allocation policy,
-forced 2M, forced 1G, and mixed allocation modes at runtime. This
-provides a simple way to validate behavior and debug page-size-dependent
-allocation flows.
+Update xe_bo_init_locked() to honor the new flag in the existing
+VRAM/stolen-memory minimum page-size sizing path. When
+XE_BO_FLAG_NEEDS_1G is set, the BO size is rounded up to 1G. Otherwise,
+the existing 2M and 64K sizing behavior is preserved.
 
-The debugfs entry is built only when CONFIG_DRM_XE_DEBUG_PAGE_SIZE is
-enabled.
-
-v2
-- update changelog to match mutex-based cur_index handling
-- reset cur_index when switching to mixed mode (sashiko)
+If multiple minimum page-size flags are set, the largest requirement
+takes precedence: 1G over 2M over 64K.
 
 v3
-- add CONFIG guard for page-size allocation debugfs support (Himal)
-- create debugfs entry under CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-
-v4
-- reorderd this patch with kconfig patch to ensure patch builds
-- Gurding this debug knob for only discrete graphics
-
-v5(Himal)
-- Guard all page size calls with CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-
-v8(Himal)
-- For read/show used READ_ONCE instead lock
-- to match Reader used WRITE_ONCE under lock protection
-- change modes to string format to read/writer for debugfs
-
-v9(Himal)
-- Add an OOB guard for mode in page_size_alloc_mode_show().
-  This check makes the function display "unknown" if mode has been
-  maliciously altered by KMD, preventing out-of-bounds access.
-  Under normal operation, values set through debugfs are validated,
-  so OOB values should not occur.
-- simplify mode-to-string lookup using page_size_alloc_mode_names[]
-- use sysfs_match_string() to parse page_size_alloc_mode writes
+- commit message reworded
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c | 78 +++++++++++++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 12 ++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h |  1 +
+ 2 files changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 5a3877fcb0f0..8de78cd0aa03 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -614,6 +614,72 @@ static const struct file_operations disable_late_binding_fops = {
- 	.write = disable_late_binding_set,
- };
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index c266fa6bade1..cf0b7b35c331 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2340,8 +2340,16 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	if (flags & (XE_BO_FLAG_VRAM_MASK | XE_BO_FLAG_STOLEN) &&
+ 	    !(flags & XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE) &&
+ 	    ((xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) ||
+-	     (flags & (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M)))) {
+-		size_t align = flags & XE_BO_FLAG_NEEDS_2M ? SZ_2M : SZ_64K;
++	     (flags & (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M |
++		       XE_BO_FLAG_NEEDS_1G)))) {
++		size_t align;
++
++		if (flags & XE_BO_FLAG_NEEDS_1G)
++			align = SZ_1G;
++		else if (flags & XE_BO_FLAG_NEEDS_2M)
++			align = SZ_2M;
++		else
++			align = SZ_64K;
  
-+#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-+static const char * const page_size_alloc_mode_names[] = {
-+	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_NONE]    = "none",
-+	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M] = "only_2m",
-+	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G] = "only_1g",
-+	[XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED]   = "mixed",
-+};
-+
-+static ssize_t page_size_alloc_mode_show(struct file *f, char __user *ubuf,
-+					 size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	char buf[32];
-+	int len;
-+	enum xe_page_size_alloc_ctrl_mode mode;
-+
-+	mode = READ_ONCE(xe->page_size_alloc_ctrl.mode);
-+	if (mode >= ARRAY_SIZE(page_size_alloc_mode_names) ||
-+	    !page_size_alloc_mode_names[mode])
-+		len = scnprintf(buf, sizeof(buf), "unknown\n");
-+	else
-+		len = scnprintf(buf, sizeof(buf), "%s\n",
-+				page_size_alloc_mode_names[mode]);
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
-+static ssize_t page_size_alloc_mode_set(struct file *f, const char __user *ubuf,
-+					size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	int ret;
-+	char buf[32];
-+	int mode;
-+
-+	if (*pos)
-+		return -ESPIPE;
-+
-+	if (size > sizeof(buf) - 1)
-+		return -EINVAL;
-+
-+	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, pos, ubuf, size);
-+	if (ret < 0)
-+		return ret;
-+	buf[ret] = '\0';
-+
-+	mode = sysfs_match_string(page_size_alloc_mode_names, buf);
-+	if (mode < 0)
-+		return mode;
-+
-+	mutex_lock(&xe->page_size_alloc_ctrl.lock);
-+	if (mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED)
-+		xe->page_size_alloc_ctrl.cur_index = 0;
-+	WRITE_ONCE(xe->page_size_alloc_ctrl.mode,
-+		   (enum xe_page_size_alloc_ctrl_mode)mode);
-+	mutex_unlock(&xe->page_size_alloc_ctrl.lock);
-+
-+	return size;
-+}
-+
-+static const struct file_operations page_size_alloc_mode_fops = {
-+	.owner = THIS_MODULE,
-+	.read = page_size_alloc_mode_show,
-+	.write = page_size_alloc_mode_set,
-+};
-+#endif
-+
- void xe_debugfs_register(struct xe_device *xe)
- {
- 	struct ttm_device *bdev = &xe->ttm;
-@@ -665,6 +731,18 @@ void xe_debugfs_register(struct xe_device *xe)
- 	debugfs_create_file("disable_late_binding", 0600, root, xe,
- 			    &disable_late_binding_fops);
+ 		aligned_size = ALIGN(size, align);
+ 		if (type != ttm_bo_type_device)
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 7ae1d9ac0574..c6d80e1bd6e7 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -52,6 +52,7 @@
+ #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
+ #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
+ #define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
++#define XE_BO_FLAG_NEEDS_1G		BIT(27)
  
-+#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-+	/*
-+	 * Expose a debugfs knob to control user BO page-size allocation:
-+	 * "none"    - default behavior
-+	 * "only_2m" - force 2M page allocations
-+	 * "only_1g" - force 1G page allocations
-+	 * "mixed"   - select 4K, 64K, 2M, and 1G in round-robin order
-+	 */
-+	if (xe_debug_page_size_supported(xe))
-+		debugfs_create_file("page_size_alloc_mode", 0600, root, xe,
-+				    &page_size_alloc_mode_fops);
-+#endif
- 	/*
- 	 * Don't expose page reclaim configuration file if not supported by the
- 	 * hardware initially.
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
 -- 
 2.43.0
 
