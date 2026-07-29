@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F3A0C54F52
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 12:18:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 943D1C54F51
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 12:19:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E41F10EBDC;
-	Wed, 29 Jul 2026 12:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E90A10EBE8;
+	Wed, 29 Jul 2026 12:19:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCglk9VK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KrOFmG/H";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6902A10E03C
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jul 2026 12:18:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEB6010EBE8
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jul 2026 12:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785327532; x=1816863532;
+ t=1785327539; x=1816863539;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ivJ9G92QbP4R3i6UrEaIgxiJitqgWFIEvJ5CIzXoJkY=;
- b=BCglk9VKkR1AOAv0m6juuNMqDZMGimnSb5M9O+kJS4bra2jnieoYUTnc
- dZUR/V/NxbTjsIqZrM7BoQ0OAve+s5u7wXagS1NLB5FWHwbHeIEEXFSfG
- AfqAb0iwjfEQVDjjhD3pH6abXQw+xlPBHxxEsrYrm10p1iy2L0RuSXdoj
- S5kOUAJizdkpxhQ3HYsiQBpLEyh+UkoKWGV1rB7Byn033FiuGRVRgbVie
- m2gQWDXwNDh02zxKnoBahdxfrJ0ZOF5NiA7riEuJWmJzE5NUWPTqIlt8o
- zpQ6LzSr+lWJHz9z1nKr9qWgnOpELPzx+IIak/XgBqO1CHnajJNAA26Nt g==;
-X-CSE-ConnectionGUID: KBT6t1axRveFnNCwSSmV6g==
-X-CSE-MsgGUID: nUbMyFZsQNeLhi1AumPbig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="85969000"
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="85969000"
+ bh=mddnKw0g3vNTn+TxeHQfOEWzz1h/cO0M6V2THlMmLXM=;
+ b=KrOFmG/HLW98/rA6wJ0yp8Fi3jRqKCZ2ZG3KY5IJzLiCSYd57CaztMyV
+ cwkP3dHZi34GgbtMq02JR5vdgliW/BpVnaPH6gd13nBj7cOuyTd23A/5e
+ BAsTwXMcDbhoeoQNzNNSAJ4SG7m00u23rFI4t4rSPrZZAwF0FwCnvqEHl
+ tNvoSHkjIxp53dcORbzYxLvHmCd4Yo2rogkhbG6QMAUSBCjvLLH1ZLnI6
+ yJZEXvyq0O9QWQiNIlMnY9Hgxpt7z2SZD/GJ8bBOWmLmCuKmrkMAHmrtZ
+ UbnGRMgr6yBm5K2aTyhU72hgYysPPgUbNOp2vlyj5VtBcZRNlMvGfF/Pz g==;
+X-CSE-ConnectionGUID: A83mkPqPT7mv4csMXM9msQ==
+X-CSE-MsgGUID: bZXFCa8rS0C0y3AgiIVqGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="85969013"
+X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="85969013"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 05:18:52 -0700
-X-CSE-ConnectionGUID: A2yby+YhSoOH+UVP9G9PQA==
-X-CSE-MsgGUID: 4nIxw+gTRsO1PS48fTY49Q==
+ 29 Jul 2026 05:18:58 -0700
+X-CSE-ConnectionGUID: Tlru+1BgSXSiwqQs8pA5/w==
+X-CSE-MsgGUID: mz5WGbYbSaqG/IBvH4Zn5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="260055943"
+X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="260055958"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa007.jf.intel.com with ESMTP; 29 Jul 2026 05:18:51 -0700
+ by orviesa007.jf.intel.com with ESMTP; 29 Jul 2026 05:18:58 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
 	naresh.kumar.g@intel.com
-Subject: [PATCH v10 1/6] drm/xe: add page size allocation control state to
- xe_device
-Date: Wed, 29 Jul 2026 17:48:38 +0530
-Message-ID: <20260729121843.1255891-2-naresh.kumar.g@intel.com>
+Subject: [PATCH v10 5/6] drm/xe/pt: allow selecting the bind leaf PTE level
+Date: Wed, 29 Jul 2026 17:48:42 +0530
+Message-ID: <20260729121843.1255891-6-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260729121843.1255891-1-naresh.kumar.g@intel.com>
 References: <20260729121843.1255891-1-naresh.kumar.g@intel.com>
@@ -67,232 +66,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_page_size_alloc_ctrl_mode and add page_size_alloc_ctrl
-state to struct xe_device along with mutex lock.
+Add a target_leaf_level field to the page-table bind walk and use it to
+    control the level at which leaf entries are emitted.
 
-The new control supports forcing user BO allocations to 2M pages,
-forcing them to 1G pages, or using a mixed round-robin mode across
-4K, 64K, 2M, and 1G page sizes. Track the current mixed-mode index
-in xe_device so allocation policy can be applied consistently.
+    By default, the bind walk emits level-0 leaf PTEs and relies on
+    xe_pt_hugepte_possible() to select huge mappings when possible. Add an
+    explicit target leaf level so the walk can stop earlier when the VMA
+    requests a larger mapping size.
 
-v2
-- make cur_index to atomic as update need in later patch to
-  avoid race/concurency (sashiko)
-v3
-- reworded comments
-- protect mode/index updates with a mutex for proper concurrency handling
+    Use level 1 for 2M PDE mappings and level 2 for 1G PDP mappings, while
+    keeping level 0 for normal mappings. The existing huge-page heuristic
+    is preserved for the default level-0 path.
 
-v4(sashiko)
-- move xe_debug_page_size_alloc_ctrl_init() before drm_dev_register(),
-  so mutex and control states are initialized
-  before any userspace visibility
+    This allows the bind path to emit 2M and 1G leaf entries when requested
+    by the VMA, while still validating alignment and size requirements.
 
-v5(Himal)
-- Guard all the debug page size policy code under CONFIG
-- Squash Kconfig patch to have Kconfig entry for DEBUG_PAGE_SIZE
-- Add inline to check debug page size support and exact mode
-  configured if it is supported.
+    v2
+    - avoid using max_level to control walk depth
+    - use target_leaf_level to preserve the normal walk behavior
+    - keep the default huge-page heuristic only for the level-0 path
+    - refine commit message
 
-v6 (fix CI build)
+    v3
+    - reword commit message
 
-v8 (Himal)
-- use drmm_mutex_init to avoid leak with mutex_init
-- call xe_debug_page_size_alloc_ctrl_init unconditionally
-- Add missed mixed mode check on xe_debug_page_size_mode_not_none check
-- Add xe_debug_page_size_mode_is_mixed() function
+    v4
+    - allow fallback to smaller huge-page levels for non-zero
+      target_leaf_level
+    - avoid constraining clear_pt walks by target_leaf_level
 
-v9
-- make xe_debug_page_size_alloc_ctrl_init() return int
-- fail probe if drmm_mutex_init() for page_size_alloc_ctrl.lock fails
+    v5(Himal)
+    - Restrict only intended level in debug page size policy mode
+    - Allow the normal path to proceed smoothly when
+      no debug page-size mode is selected.
+    v8 (Himal)
+    - Drop
+      https://patchwork.freedesktop.org/patch/740059/?series=168905&rev=5
+      patch and populate target_leaf_level from bo flags
+    - populate target_leaf_level if it is in debug page size mode
+      otherwise fill with 0 which is having no effect on the normal
+      flow
+    v10 (Himal)
+    - use xe_bo_is_vram() instead of raw VRAM flag checks
+      so huge-page selection is based on BO VRAM placement.
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig.debug     | 16 ++++++++++
- drivers/gpu/drm/xe/xe_device.c       | 25 +++++++++++++++
- drivers/gpu/drm/xe/xe_device.h       | 48 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device_types.h | 31 ++++++++++++++++++
- 4 files changed, 120 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c | 76 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 74 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index 01227c77f6d7..79118d9efd93 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -86,6 +86,22 @@ config DRM_XE_KUNIT_TEST
- 
- 	  If in doubt, say "N".
- 
-+config DRM_XE_DEBUG_PAGE_SIZE
-+	bool "Enable debug control for user BO page-size allocation"
-+	depends on DRM_XE_DEBUG && DEBUG_FS
-+	help
-+	  Expose a debugfs knob to override user BO page-size allocation
-+	  handling for validation and debug. Supported modes include forced
-+	  2M, forced 1G, and a mixed mode that exercises 4K, 64K, 2M, and
-+	  1G page-size paths on platforms that support them.
-+
-+	  This is an unstable debugfs interface intended for development and
-+	  validation only. Its layout, contents, and existence may change or
-+	  be removed at any time with no regression warranty.
-+
-+	  Recommended for driver developers only.
-+	  If in doubt, say "N".
-+
- config DRM_XE_DEBUG_GUC
-         bool "Enable extra GuC related debug options"
-         depends on DRM_XE_DEBUG
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4eed9a251e65..7007b6113760 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -921,6 +921,27 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
- 		xe_pm_runtime_put(xe);
- }
- 
-+#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-+static int xe_debug_page_size_alloc_ctrl_init(struct xe_device *xe)
-+{
-+	int err;
-+
-+	err = drmm_mutex_init(&xe->drm, &xe->page_size_alloc_ctrl.lock);
-+	if (err)
-+		return err;
-+
-+	xe->page_size_alloc_ctrl.mode = XE_PAGE_SIZE_ALLOC_CTRL_MODE_NONE;
-+	xe->page_size_alloc_ctrl.cur_index = 0;
-+
-+	return 0;
-+}
-+#else
-+static int xe_debug_page_size_alloc_ctrl_init(struct xe_device *xe)
-+{
-+	return 0;
-+}
-+#endif
-+
- int xe_device_probe(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
-@@ -1073,6 +1094,10 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	err = xe_debug_page_size_alloc_ctrl_init(xe);
-+	if (err)
-+		return err;
-+
- 	err = drm_dev_register(&xe->drm, 0);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index a03760d0ce38..6c4cfaebc44a 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -212,6 +212,54 @@ static inline bool xe_device_wedged(struct xe_device *xe)
- 	return atomic_read(&xe->wedged.flag);
- }
- 
-+#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-+static inline bool xe_debug_page_size_supported(struct xe_device *xe)
-+{
-+	return IS_DGFX(xe);
-+}
-+
-+static inline bool xe_debug_page_size_mode_not_none(struct xe_device *xe)
-+{
-+	enum xe_page_size_alloc_ctrl_mode mode;
-+
-+	if (!xe_debug_page_size_supported(xe))
-+		return false;
-+
-+	mode = READ_ONCE(xe->page_size_alloc_ctrl.mode);
-+
-+	return mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M ||
-+	       mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G ||
-+	       mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED;
-+}
-+
-+static inline bool xe_debug_page_size_mode_is_mixed(struct xe_device *xe)
-+{
-+	enum xe_page_size_alloc_ctrl_mode mode;
-+
-+	if (!xe_debug_page_size_supported(xe))
-+		return false;
-+
-+	mode = READ_ONCE(xe->page_size_alloc_ctrl.mode);
-+
-+	return mode == XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED;
-+}
-+#else
-+static inline bool xe_debug_page_size_supported(struct xe_device *xe)
-+{
-+	return false;
-+}
-+
-+static inline bool xe_debug_page_size_mode_not_none(struct xe_device *xe)
-+{
-+	return false;
-+}
-+
-+static inline bool xe_debug_page_size_mode_is_mixed(struct xe_device *xe)
-+{
-+	return false;
-+}
-+#endif
-+
- void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
- void xe_device_declare_wedged(struct xe_device *xe);
- int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode);
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 860ad322237f..03a7bb08adf7 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -61,6 +61,23 @@ enum xe_wedged_mode {
- 	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
- };
- 
-+#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-+/**
-+ * enum xe_page_size_alloc_ctrl_mode - User BO page-size allocation control modes
-+ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_NONE: Use the normal allocation policy
-+ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M: Force user BO allocations to 2M pages
-+ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G: Force user BO allocations to 1G pages
-+ * @XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED: Select page sizes in round-robin order
-+ *     (4K, 64K, 2M, 1G)
-+ */
-+enum xe_page_size_alloc_ctrl_mode {
-+	XE_PAGE_SIZE_ALLOC_CTRL_MODE_NONE = 0,
-+	XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_2M,
-+	XE_PAGE_SIZE_ALLOC_CTRL_MODE_ONLY_1G,
-+	XE_PAGE_SIZE_ALLOC_CTRL_MODE_MIXED
-+};
-+#endif
-+
- #define XE_BO_INVALID_OFFSET	LONG_MAX
- 
- #define GRAPHICS_VER(xe) ((xe)->info.graphics_verx100 / 100)
-@@ -478,6 +495,20 @@ struct xe_device {
- 	/** @late_bind: xe mei late bind interface */
- 	struct xe_late_bind late_bind;
- 
-+#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 0e9d669620b9..8cd89c4f49d0 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -302,6 +302,14 @@ struct xe_pt_stage_bind_walk {
+ 	bool needs_64K;
+ 	/** @clear_pt: clear page table entries during the bind walk */
+ 	bool clear_pt;
 +	/**
-+	 * @page_size_alloc_ctrl: User BO page-size allocation
-+	 * debug control state
++	 * @target_leaf_level: Page-table level at which to emit leaf PTEs
++	 * 0 for normal 4K/64K mappings, 1 for 2M huge pages, and 2 for 1G huge
++	 * pages. The walk still traverses from the root down; this field tells
++	 * xe_pt_stage_bind_entry() to treat the selected level as a leaf instead
++	 * of descending further.
 +	 */
-+	struct {
-+		/** @page_size_alloc_ctrl.mode: xe page size allocation control mode */
-+		enum xe_page_size_alloc_ctrl_mode mode;
-+		/** @page_size_alloc_ctrl.cur_index: Round-robin index used by mixed mode */
-+		u32 cur_index;
-+		/** @page_size_alloc_ctrl.lock: Protects @mode and @cur_index */
-+		struct mutex lock;
-+	} page_size_alloc_ctrl;
-+#endif
- 	/** @oa: oa observation subsystem */
- 	struct xe_oa oa;
++	u32 target_leaf_level;
+ 	/**
+ 	 * @vma: VMA being mapped
+ 	 */
+@@ -514,6 +522,39 @@ xe_pt_is_pte_ps64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
+ 	return xe_walk->found_64K;
+ }
  
++static bool xe_pt_huge_leaf_allowed(u64 addr, u64 next, unsigned int level,
++				    struct xe_pt_stage_bind_walk *xe_walk)
++{
++	if (xe_walk->clear_pt)
++		return xe_pt_hugepte_possible(addr, next, level, xe_walk);
++
++	if (!xe_debug_page_size_supported(xe_walk->vm->xe))
++		return xe_pt_hugepte_possible(addr, next, level, xe_walk);
++
++	if (!xe_walk->target_leaf_level)
++		return xe_pt_hugepte_possible(addr, next, level, xe_walk);
++
++	if (level == xe_walk->target_leaf_level)
++		return xe_pt_hugepte_possible(addr, next, level, xe_walk);
++
++	return false;
++}
++
++static bool xe_pt_exact_leaf_required_but_invalid(u64 addr, u64 next,
++						  unsigned int level,
++						  struct xe_pt_stage_bind_walk *xe_walk)
++{
++	struct xe_device *xe = xe_walk->vm->xe;
++
++	if (!xe_debug_page_size_mode_not_none(xe))
++		return false;
++
++	return !xe_walk->clear_pt &&
++		xe_walk->target_leaf_level &&
++		level == xe_walk->target_leaf_level &&
++		!xe_pt_hugepte_possible(addr, next, level, xe_walk);
++}
++
+ static int
+ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 		       unsigned int level, u64 addr, u64 next,
+@@ -531,8 +572,18 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 	int ret = 0;
+ 	u64 pte;
+ 
+-	/* Is this a leaf entry ?*/
+-	if (level == 0 || xe_pt_hugepte_possible(addr, next, level, xe_walk)) {
++	if (xe_pt_exact_leaf_required_but_invalid(addr, next, level, xe_walk))
++		return -EINVAL;
++
++	/*
++	 * Is this a leaf entry?
++	 * Always create a 4K leaf at level 0. For huge pages (level > 0),
++	 * validate alignment and size with xe_pt_hugepte_possible().
++	 * When target_leaf_level is non-zero, only that huge-page level is
++	 * accepted for normal bind walks. Clear walks remain unconstrained so
++	 * existing huge leaves can be cleared without descending further.
++	 */
++	if (level == 0 || xe_pt_huge_leaf_allowed(addr, next, level, xe_walk)) {
+ 		struct xe_res_cursor *curs = xe_walk->curs;
+ 		struct xe_bo *bo = xe_vma_bo(xe_walk->vma);
+ 		bool is_null_or_purged = xe_vma_is_null(xe_walk->vma) ||
+@@ -682,6 +733,26 @@ static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_vma *vma)
+ 				 (bo && xe_bo_has_single_placement(bo))));
+ }
+ 
++static u32 xe_pt_target_leaf_level_from_bo(struct xe_device *xe,
++					   struct xe_vma *vma)
++{
++	struct xe_bo *bo = xe_vma_bo(vma);
++
++	if (!xe_debug_page_size_mode_not_none(xe))
++		return 0;
++
++	if (!bo || !xe_bo_is_vram(bo) || !(bo->flags & XE_BO_FLAG_USER))
++		return 0;
++
++	if (bo->flags & XE_BO_FLAG_NEEDS_1G)
++		return 2;
++
++	if (bo->flags & XE_BO_FLAG_NEEDS_2M)
++		return 1;
++
++	return 0;
++}
++
+ /**
+  * xe_pt_stage_bind() - Build a disconnected page-table tree for a given address
+  * range.
+@@ -774,6 +845,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		xe_svm_notifier_unlock(vm);
+ 	}
+ 
++	xe_walk.target_leaf_level = xe_pt_target_leaf_level_from_bo(xe, vma);
+ 	xe_walk.needs_64K = (vm->flags & XE_VM_FLAG_64K);
+ 	if (clear_pt) {
+ 		xe_assert(xe, !range);
 -- 
 2.43.0
 
