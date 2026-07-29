@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDDA5C54F51
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 09:19:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A69C6C53200
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 09:25:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF1C10E641;
-	Wed, 29 Jul 2026 09:19:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ENLkoEsd";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42D1D10E028;
- Wed, 29 Jul 2026 09:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785316798; x=1816852798;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=C7rb8FTFsoinrzscbdqtrV/V6OCDZtEVNoPJOahNsS8=;
- b=ENLkoEsdCf52AYaACuzy71vZWV7xqSMVRc3iYzk5BDKDvBGlOXMcgx3a
- cQJqhllOzpiv4aqnssKc0GvqEY8vSyMyZ8a5w/wCMXPjQRvZYT27yDfUC
- uuUo9kyUXg4GsCwDeiHO8hDd1d4viXaPK9fN2vB/CEF+0fsMb20Xt9F7J
- L2cPAY9KsQbwO9xr53B77UR9idlYXCwVMw1gX0/g7ET2/S/Ujc2ZqDQMU
- tekQX9qsEYzDDedRjf2fhZaFyzydTCfrEux8zHvchrLCCIDyBlP8Zgp2s
- bHKZrTjkQUQTDakyS7xvx6WOxemLPDF0e4OilOondt92Btxwro5PUINiJ A==;
-X-CSE-ConnectionGUID: vb7fclDYRcuF8cZlf8NIBw==
-X-CSE-MsgGUID: /a9iT4tGQpqTWYGjzr56zQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="89805352"
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="89805352"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 02:19:58 -0700
-X-CSE-ConnectionGUID: TKBtRxmlTO+Iv9gpfz4SIQ==
-X-CSE-MsgGUID: Y3BKb6LfSjmCCFaXDdQItw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="260020085"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.245.23])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 02:19:54 -0700
-From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Simona Vetter <simona@ffwll.ch>,
- Joel Fernandes <joelagnelf@nvidia.com>, David Airlie <airlied@gmail.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Subject: [PATCH RESEND 2/2] gpu/tests: Add a dedicated .kunitconfig
-Date: Wed, 29 Jul 2026 11:18:17 +0200
-Message-ID: <20260729091816.27860-4-krzysztof.niemiec@intel.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260729091816.27860-2-krzysztof.niemiec@intel.com>
-References: <20260729091816.27860-2-krzysztof.niemiec@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0A010E66E;
+	Wed, 29 Jul 2026 09:25:03 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA2ED10E15A;
+ Wed, 29 Jul 2026 09:25:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_GPU_buddy_allocator_test_?=
+ =?utf-8?q?fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Krzysztof Niemiec" <krzysztof.niemiec@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Jul 2026 09:25:02 -0000
+Message-ID: <178531710288.336.12534736875944694790@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260729091816.27860-2-krzysztof.niemiec@intel.com>
+In-Reply-To: <20260729091816.27860-2-krzysztof.niemiec@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,28 +36,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a dedicated .kunitconfig for running the GPU buddy allocator tests.
+== Series Details ==
 
-Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
----
- drivers/gpu/tests/.kunitconfig | 2 ++
- 1 file changed, 2 insertions(+)
- create mode 100644 drivers/gpu/tests/.kunitconfig
+Series: GPU buddy allocator test fixes
+URL   : https://patchwork.freedesktop.org/series/171240/
+State : warning
 
-diff --git a/drivers/gpu/tests/.kunitconfig b/drivers/gpu/tests/.kunitconfig
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0d7537549c5745005f467baefded3a984bdda1ae
+Author: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Date:   Wed Jul 29 11:18:17 2026 +0200
+
+    gpu/tests: Add a dedicated .kunitconfig
+    
+    Add a dedicated .kunitconfig for running the GPU buddy allocator tests.
+    
+    Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+    Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+    Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+    Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
++ /mt/dim checkpatch 2af7be980ab54de6662090938fb20e8e2aa8c2dd drm-intel
+87eeafcc2ca0 gpu: Fix dependencies in CONFIG_GPU_BUDDY_KUNIT_TEST
+0d7537549c57 gpu/tests: Add a dedicated .kunitconfig
+-:14: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#14: 
 new file mode 100644
-index 000000000000..fd611b3dfe09
---- /dev/null
-+++ b/drivers/gpu/tests/.kunitconfig
-@@ -0,0 +1,2 @@
-+CONFIG_KUNIT=y
-+CONFIG_GPU_BUDDY_KUNIT_TEST=y
--- 
-2.45.2
+
+total: 0 errors, 1 warnings, 0 checks, 2 lines checked
+
 
