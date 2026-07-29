@@ -4,64 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBD68C53200
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 08:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CC24C53200
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 08:40:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA2F10EB06;
-	Wed, 29 Jul 2026 08:31:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2708910E004;
+	Wed, 29 Jul 2026 08:40:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="njc1tW08";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TSP1f1bk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5C4010EB06
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jul 2026 08:31:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0227C10E004
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jul 2026 08:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785313913; x=1816849913;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Eq4Ad3k4guS/gx1W6JAkGnY01IDI8GhMI946qgFoxnc=;
- b=njc1tW08cZcex+jxV5zRWMSrYjw2SVwhcpGkLuBBsA3dIDfZuDiTXsXv
- ja4NvothIgs5wQDqZigMVbGY8Kd9Uh8FH/IG6ue6LvhxnE7IHfIBVVPtH
- 6mg507N1bKOHYgUQ7P6JhW9E8c8WPzlvjK1KZ9eolXy6iX4uCA4VD4B1b
- J/Q/vvqgnEar1zpJ3KPKhMJYDiQdB7K2FbQEfz3V9DUBU+wPXWRYaNO4b
- MQhO6LqAkGmoqyo8wKAxjp/Re/3rbxQ66dIunlWZL7BqLO7kzJhNI79XJ
- oDQARJqXXlb73e6/OHU6G4+nn8WN4DwafgDT3xj+Cjt1CfQ7tcyQf2OSz w==;
-X-CSE-ConnectionGUID: x2OrZ7OTTLCxEtU3H4rCug==
-X-CSE-MsgGUID: /dKYI04vROifQHepJ7deug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="86104075"
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="86104075"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 01:31:53 -0700
-X-CSE-ConnectionGUID: y/CxJyJiR4iOPhFtZlbDHA==
-X-CSE-MsgGUID: DNKqBvQBTAqkrmeaMyPGBA==
+ t=1785314448; x=1816850448;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R8ZI27qFN4PlQQg8A05PnPO6Ohil7t2ckNbIkOZo5Bs=;
+ b=TSP1f1bk9+owr1qUPmjVb/9rRwMuZx3YIv1Q/xDGCQekAsE1/uKWOvre
+ /C5E2pm/QqQgmFlWmoMLP0s+k3HJmcVxSZAa18aHenBjVFBSGkG6JXKri
+ GKX9f81Y6fSuldPcXRpBiwQAej+QKl/Xm+iLM6vnmQYhRyztN5hcQ+tu5
+ Zt1t4/nj1JU9IKvaZLPWeGvYSKZxNVofPSu8KJRsLJ2n5VJVbUg4RqxoN
+ bzWfvN75Ba09uqyIq2etuH8Q+oIefKkjHF71namIa1GuPpVXv5tNskafy
+ 9GiRZRwWFbJIcawG3teIaLW5lFfRS2P6PvIrfHDv2UbbYR7KDoSwoJX+J Q==;
+X-CSE-ConnectionGUID: Ch89cRo6QcS1CLHmektAHQ==
+X-CSE-MsgGUID: qOM+tpapS+GXJOm6s+m74A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="89589351"
+X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="89589351"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2026 01:40:47 -0700
+X-CSE-ConnectionGUID: A0xIZPhJTm6ukyPoeSrulQ==
+X-CSE-MsgGUID: QsDLVepYRVeqtVN00M3ilA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="258180749"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.212])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 01:31:49 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, Mallesh Koujalagi
- <mallesh.koujalagi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Aravind Iddamsetty
- <aravind.iddamsetty@intel.com>, Riana Tauro <riana.tauro@intel.com>, Raag
- Jadav <raag.jadav@intel.com>, Badal Nilawar <badal.nilawar@intel.com>
-Subject: Re: [PATCH v2 00/22] drm/xe: Add structured SIGID error logging
- infrastructure
-In-Reply-To: <20260728161039.579-1-michal.wajdeczko@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260728161039.579-1-michal.wajdeczko@intel.com>
-Date: Wed, 29 Jul 2026 11:31:46 +0300
-Message-ID: <dfe82413d317aee8bd39dbbc45ece77f9b6d7610@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,192,1779174000"; d="scan'208";a="260568332"
+Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
+ by orviesa009.jf.intel.com with ESMTP; 29 Jul 2026 01:40:45 -0700
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com,
+	naresh.kumar.g@intel.com
+Subject: [PATCH v10 0/6] drm/xe: add page size allocation mode control and
+ coverage
+Date: Wed, 29 Jul 2026 14:10:40 +0530
+Message-ID: <20260729084046.1050783-1-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,162 +65,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 28 Jul 2026, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
-> Today the driver reports faults with ad-hoc drm_err()/xe_gt_err()
-> strings that have no stable shape. That is readable for a human, but it
-> gives fleet tooling nothing durable to match on: the wording changes
-> between releases, lines can be rate-limited or dropped under an error
-> storm, and there is no consistent way to ask "which recognised fault
-> just happened?".
->
-> Introduce a signature identifier (SIGID): a small, stable integer that
-> names one recognised Xe fault situation and serves as the primary handle
-> for triage. A SIGID maps, through published end-user documentation, to a
-> description and a recommended action; the driver only has to emit the
-> right SIGID next to the usual human-readable text.
->
-> Design decisions:
->
->  - Software-emitted signatures only. This header enumerates just the
->    situations the driver detects and reports itself. Signatures that
->    originate in firmware or hardware are identified by those layers (via
->    their own records/counters) and are logged as received -- minting a
->    driver-side id for them would duplicate an id the reporting layer
->    already owns.
->
->  - Flat catalogue, chosen per report site. Each site emits the single
->    most specific situation for that site, so a multi-layer failure
->    produces a chain of reports rather than one ambiguous classification
->    (e.g. a failed GT reset reports GT_TDR and then WEDGED). A site that
->    matches no defined situation keeps using ordinary xe_err() /
->    xe_gt_err() rather than forcing a wrong id.
->
->  - Stable numbering. A single flat list numbered sequentially from 1, in
->    introduction order. Values are only ever appended, never renumbered
->    or reused.
->
->  - First-order action. Each SIGID carries a coarse, in-tree resolution
->    bucket (COLLECT / RETRY / UPDATE / RECOVER) so it is actionable
->    without an external reference, and so every new id must declare what
->    to do about it.
->
->  - Severity is decoupled from the SIGID and chosen at the call site via
->    xe_ras_log_fatal() / _recoverable() / _info(); the same situation can
->    be reported at different severities depending on the instance.
->
->  - dmesg stays close to a normal xe error line by reusing xe_err() /
->    xe_gt_err() (and their Tile/GT decoration); the only stable,
->    machine-matchable token added is SIGID=3D<n>. dmesg is not an ABI --
->    the durable machine record is the CPER carrying the same SIGID (a
->    planned follow-up, left as a TODO).
->
-> Wire up a representative site for each software signature so the set is
-> exercised rather than merely declared:
->
->  - PROBE: xe workqueue allocation failure during early init
->  - WEDGED: xe_device_declare_wedged() (drop redundant "CRITICAL" + BDF)
->  - SURVIVABILITY: entering boot survivability mode
->  - RUNTIME_FW: GuC mmio request failure
->  - DEVICE_FW: PCODE mailbox failure
->  - GT_TDR: GT reset failure (which then chains into a WEDGED report)
->  - MEM_FAULT: page-fault queue overflow
->  - IO_BUS: PCI re-enable failure after a bus reset
+Some platforms support multiple page sizes for user BO allocations,
+including 4K, 64K, 2M, and 1G
 
-The idea is not new, see for example [1] and [2]. I'm not sure if that
-was ever merged, though. Would be good to know what came of it, and why.
+For validation and debug, it is useful to control the page size
+selection policy for user BOs so that specific allocation paths can be
+exercised deterministically. In particular, this makes it possible to
+force allocations into 2M-only, 1G-only, or mixed modes.
 
-There's also the printk index support already in the kernel [3]. Did you
-look into that? If not, please do. If yes, please iterate why that can't
-be used, or extended, and a local mechanism is required.
+In mixed mode, allocations are distributed across the supported page
+sizes in a round-robin manner. For example, for four user BOs, the
+selected page sizes would be:
+  - BO1: 4K
+  - BO2: 64K
+  - BO3: 2M
+  - BO4: 1G
 
-FWIW, I think merging driver local mechanisms for what should really be
-generic kernel stuff usually ends up being a maintenance PITA. It's easy
-in the beginning, a burden in the end, and even harder to migrate to
-generic mechanisms. We've seen this over and over in i915, even for
-superficially small things. Part of the reason for xe existing in the
-first place is to use common stuff instead of reinventing the weels.
+This series adds debug page-size allocation control for user BO in xe
 
-BR,
-Jani.
+This series includes:
+ - debug control state in xe_device
+ - a debugfs knob to select allocation mode
+ - 1G BO alignment flag handling
+ - debug policy application at user BO create time
+ - PT bind support for selecting leaf level (4K/64K, 2M, 1G paths)
+ - add live Kunit coverage for BO page size allocation
 
+The default path is unchanged when the debug control is not enabled.
 
-[1] https://lwn.net/Articles/464276/
-[2] https://lwn.net/Articles/492125/
-[3] https://lkml.org/lkml/2021/6/15/1053
+v2
+-- addressed v1 comments at 
+   https://patchwork.freedesktop.org/series/169640/
 
->
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> Cc: Riana Tauro <riana.tauro@intel.com>
-> Cc: Raag Jadav <raag.jadav@intel.com>
-> Cc: Badal Nilawar <badal.nilawar@intel.com>
->
-> v1: https://patchwork.freedesktop.org/series/171022/#rev1
-> v2: component/location dmesg decorations moved away from macros
->     HW component identifiers related to RAS/FW enum values
->     CORRECTED severity rendered as an error
->     more support for const pointers
->     log 'probe blocked' as INFO
->     fix kunit device setup
->     more tests
->
-> Mallesh Koujalagi (1):
->   drm/xe/log: Add structured SIGID error logging infrastructure
->
-> Michal Wajdeczko (21):
->   drm/xe: Introduce xe_any helpers
->   drm/xe/log: Introduce structured component/location identifiers
->   drm/xe/log: Add component/location decorations to dmesg
->   drm/xe/log: Add SIGID log helpers for severity
->   drm/xe/log: Add SIGID log helpers for location
->   drm/xe/log: Add SIGID log helpers for location & severity
->   drm/xe/log: Add SIGID log helpers for components
->   drm/xe/log: Add SIGID log helpers for errno-only
->   drm/xe/log: Add hardware error signatures
->   drm/xe/log: Extend components list with hardware items
->   drm/xe/ras: Check RAS and LOG component definitions
->   drm/xe/kunit: Setup driver data in the test device
->   drm/xe/tests: Add Kunit tests for xe_log
->   drm/xe: Report 'probe blocked' error using SIGID
->   drm/xe: Report 'device wedged' errors using SIGID
->   drm/xe: Report 'Survivability Mode' errors using SIGID
->   drm/xe/guc: Report 'GuC mmio' errors using SIGID
->   drm/xe/pcode: Report 'Mailbox failed' error using SIGID
->   drm/xe/gt: Report 'reset failed' errors using SIGID
->   drm/xe/gt: Report 'pagefault' errors using SIGID
->   drm/xe/pci: Report 'cannot re-enable' error using SIGID
->
->  Documentation/gpu/xe/index.rst              |   1 +
->  Documentation/gpu/xe/xe_sigid.rst           |  14 +
->  drivers/gpu/drm/xe/Makefile                 |   1 +
->  drivers/gpu/drm/xe/abi/xe_log_abi.h         | 197 ++++++++
->  drivers/gpu/drm/xe/abi/xe_sigid_abi.h       | 195 ++++++++
->  drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   4 +
->  drivers/gpu/drm/xe/tests/xe_log_kunit.c     | 480 ++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_any.h                 | 112 +++++
->  drivers/gpu/drm/xe/xe_device.c              |  16 +-
->  drivers/gpu/drm/xe/xe_gt.c                  |   7 +-
->  drivers/gpu/drm/xe/xe_guc.c                 |  18 +-
->  drivers/gpu/drm/xe/xe_log.c                 | 212 +++++++++
->  drivers/gpu/drm/xe/xe_log.h                 | 158 +++++++
->  drivers/gpu/drm/xe/xe_pagefault.c           |  10 +-
->  drivers/gpu/drm/xe/xe_pci.c                 |   5 +-
->  drivers/gpu/drm/xe/xe_pci_error.c           |   7 +-
->  drivers/gpu/drm/xe/xe_pcode.c               |   5 +-
->  drivers/gpu/drm/xe/xe_ras.c                 |  11 +
->  drivers/gpu/drm/xe/xe_survivability_mode.c  |  24 +-
->  19 files changed, 1438 insertions(+), 39 deletions(-)
->  create mode 100644 Documentation/gpu/xe/xe_sigid.rst
->  create mode 100644 drivers/gpu/drm/xe/abi/xe_log_abi.h
->  create mode 100644 drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_log_kunit.c
->  create mode 100644 drivers/gpu/drm/xe/xe_any.h
->  create mode 100644 drivers/gpu/drm/xe/xe_log.c
->  create mode 100644 drivers/gpu/drm/xe/xe_log.h
+v3
+- refactor the design
+- update patches based on review feedback
+- due to space missing after drm/xe: it created a new series
+  https://patchwork.freedesktop.org/series/170246/
 
---=20
-Jani Nikula, Intel
+v4
+- initialize page-size control state before userspace-visible registration
+- add Kconfig support before CONFIG_DRM_XE_DEBUG_PAGE_SIZE users
+- limit debugfs and BO policy handling to supported dGFX VRAM paths
+- add fast-path mode checks and ALIGN() overflow handling
+- preserve existing BO NEEDS_* flags
+- defer mixed-mode index advancement until successful
+  BO create ioctl completion
+- replace 2M/1G vma_flags propagation with stable target_leaf_level state
+- propagate target_leaf_level from bind op to VMA and into PT bind
+- allow smaller huge-page fallback and fix clear_pt handling in PT walk
+- skip VRAM-only live KUnit tests on non-dGFX
+  and restore state on all exits
+
+v5:
+- Guard debug page-size control support with CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+- Fix kernel-doc warnings in xe_device_types.h for page_size_alloc_ctrl
+- Keep the normal BO creation path unchanged when no debug mode is selected
+- Reword commit messages for clarity and to match the implementation
+
+v6:
+- Add Gaurd to kunit tests
+
+v7:
+- CI build failure
+
+v8:
+- use drmm_mutext_init instead mutex_init
+- Ensure calling xe_debug_page_size_alloc_ctrl_init
+  unconditionally
+- refactor helper routine names xe_debug_page_size_mode_not_none()
+  xe_debug_page_size_mode_is_mixed()
+- use READ_ONCE for lockless wherever needed for readers and also
+  match WRITE_ONCE to align READ_ONCE for protected writers
+- Make debugfs mode options more readable for that use string fromat like,
+  "none", "only_2m", "only_1g" and "mixed" mode
+- simplify repeatative loop of mixed mode flag and align check on
+  get_flag_from_cur_index_in_mixed_mode()
+- drop https://patchwork.freedesktop.org/patch/740059/?series=168905&rev=5
+  as this can be managed to get from bo flags on PT layer
+- populate xe_walk.target_leaf_level from bo flags through
+  xe_pt_target_leaf_level_from_bo()
+
+v9:
+- Make sure probe fail upon drmm_mutex_init failure of pagesize alloc
+  init
+- Add an OOB guard for mode in page_size_alloc_mode_show().
+  This check makes the function display "unknown" if mode has been
+  maliciously altered by KMD, preventing out-of-bounds access.
+  Under normal operation, values set through debugfs are validated,
+  so OOB values should not occur.
+- simplify mode-to-string lookup using page_size_alloc_mode_names[]
+- use sysfs_match_string() to parse page_size_alloc_mode writes
+
+v10:
+- use xe_bo_is_vram() instead of raw VRAM flag checks
+  so huge-page selection is based on BO VRAM placement.
+
+Nareshkumar Gollakoti (6):
+  drm/xe: add page size allocation control state to xe_device
+  drm/xe/debugfs: add page-size allocation mode knob
+  drm/xe: add XE_BO_FLAG_NEEDS_1G for minimum page-size sizing
+  drm/xe: apply debug page-size allocation policy to user BOs
+  drm/xe/pt: allow selecting the bind leaf PTE level
+  drm/xe/tests: add live KUnit coverage for BO page-size allocation
+    modes
+
+ drivers/gpu/drm/xe/Kconfig.debug            |  16 ++
+ drivers/gpu/drm/xe/tests/xe_bo.c            | 242 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   6 +
+ drivers/gpu/drm/xe/xe_bo.c                  | 160 ++++++++++++-
+ drivers/gpu/drm/xe/xe_bo.h                  |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c             |  78 +++++++
+ drivers/gpu/drm/xe/xe_device.c              |  25 ++
+ drivers/gpu/drm/xe/xe_device.h              |  48 ++++
+ drivers/gpu/drm/xe/xe_device_types.h        |  31 +++
+ drivers/gpu/drm/xe/xe_pt.c                  |  76 +++++-
+ 10 files changed, 679 insertions(+), 4 deletions(-)
+
+-- 
+2.43.0
+
