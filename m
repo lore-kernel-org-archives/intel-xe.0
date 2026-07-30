@@ -4,46 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 686FAC55162
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 15:27:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0645C55162
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 15:32:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22B8010E19F;
-	Thu, 30 Jul 2026 15:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE0010EF8D;
+	Thu, 30 Jul 2026 15:32:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="wQIzRx5N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BXwVTUFX";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B16610E19F
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 15:27:30 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id BE0E042DDE;
- Thu, 30 Jul 2026 15:27:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 213761F00A3A;
- Thu, 30 Jul 2026 15:27:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
- s=korg; t=1785425249;
- bh=CUTO3i5sBX9amRiISoUAELmWf7EpbgfY4QAjreas2NY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=wQIzRx5NHZid7ET+9OGK15aMedPo9lfAM7EF9i92vVRlylUWHDuCehjR6JSxsnORX
- 3R00nWz5p75wEmjtNxNkhMUbwrF117VDpbCf2f1iIgCSZfHwoEidOaXdcwWZYDvwnt
- lTMqB9BDoGXQqs9pjjC81aeVl/Q6wpxSZJ5sM5G4=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Joel Fernandes <joelagnelf@nvidia.com>, Dave Airlie <airlied@redhat.com>,
- intel-xe@lists.freedesktop.org,
- Peter Senna Tschudin <peter.senna@linux.intel.com>,
- Koen Koning <koen.koning@linux.intel.com>
-Subject: [PATCH 6.18 674/675] gpu: Fix uninitialized buddy for built-in drivers
-Date: Thu, 30 Jul 2026 16:16:44 +0200
-Message-ID: <20260730141459.487176866@linuxfoundation.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260730141445.110192266@linuxfoundation.org>
-References: <20260730141445.110192266@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2585A10EF8D
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 15:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1785425578; x=1816961578;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TKnbHe9nr/A1V17CKsgqyFBkLaD7AL4h4DKSvrT1DkQ=;
+ b=BXwVTUFX6P9vX2KxdwD4oBWmdx8Lj/3SQi/wrRk08+CNyBvgYjO8yH5G
+ nNyz+mfjl+sfgkwyMvbF7O4110MA9BjwK8FA1O5kfxhGaURdY84RS9vgC
+ 4J7mfEugfXFaxmt0dJXIoVJIWW/nFAsIeJHFQ21wI9XM2VxE5Lrb/LZP6
+ jSJcQdO4YUkX8Ee+ec7/ty7E2rRqlFkFYG/hXpIfmS2ENR8oX8Gdu26sy
+ cuisGzSbaj4WOC6tJYsUr8CPug1ZZGwq6sTiBr3q4Q0yRnf3W3jrzUMOh
+ s5zu3kwcMzGvw/HC6UNd6FBo7mSL0yEbQrFSNueQoW5tVFkd+G3kT52n9 w==;
+X-CSE-ConnectionGUID: HtclHULnT8ChvWeOC9SUXQ==
+X-CSE-MsgGUID: QOkz5lhURluiB+af8Vo2PQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="73582971"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="73582971"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 08:32:57 -0700
+X-CSE-ConnectionGUID: YNHLQxwmSLaVjlzEppR+jg==
+X-CSE-MsgGUID: Ure5dI9PT7iNhe+uHhupqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="260387482"
+Received: from psiebies-mobl1.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.94.250.135])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 08:32:55 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>, Raag Jadav <raag.jadav@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH v3 00/23] drm/xe: Add structured SIGID error logging
+ infrastructure
+Date: Thu, 30 Jul 2026 17:20:56 +0200
+Message-ID: <20260730152121.576-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,48 +74,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-6.18-stable review patch.  If anyone has any objections, please let me know.
+Today the driver reports faults with ad-hoc drm_err()/xe_gt_err()
+strings that have no stable shape. That is readable for a human, but it
+gives fleet tooling nothing durable to match on: the wording changes
+between releases, lines can be rate-limited or dropped under an error
+storm, and there is no consistent way to ask "which recognised fault
+just happened?".
 
-------------------
+Introduce a signature identifier (SIGID): a small, stable integer that
+names one recognised Xe fault situation and serves as the primary handle
+for triage. A SIGID maps, through published end-user documentation, to a
+description and a recommended action; the driver only has to emit the
+right SIGID next to the usual human-readable text.
 
-From: Koen Koning <koen.koning@linux.intel.com>
+Design decisions:
 
-commit cc27314c67516c138ee3829197d1c3b998e29fae upstream.
+ - Software-emitted signatures only. This header enumerates just the
+   situations the driver detects and reports itself. Signatures that
+   originate in firmware or hardware are identified by those layers (via
+   their own records/counters) and are logged as received -- minting a
+   driver-side id for them would duplicate an id the reporting layer
+   already owns.
 
-Move buddy to the start of the link order, so its __init runs before any
-other built-in drivers that may depend on it. Otherwise, a built-in
-driver that tries to use the buddy allocator will run into a kernel NULL
-pointer dereference because slab_blocks is uninitialized.
+ - Flat catalogue, chosen per report site. Each site emits the single
+   most specific situation for that site, so a multi-layer failure
+   produces a chain of reports rather than one ambiguous classification
+   (e.g. a failed GT reset reports GT_TDR and then WEDGED). A site that
+   matches no defined situation keeps using ordinary xe_err() /
+   xe_gt_err() rather than forcing a wrong id.
 
-Specifically, this fixes drm/xe (as built-in) running into a kernel
-panic during boot, because it uses buddy during device probe.
+ - Stable numbering. A single flat list numbered sequentially from 1, in
+   introduction order. Values are only ever appended, never renumbered
+   or reused.
 
-Fixes: ba110db8e1bc ("gpu: Move DRM buddy allocator one level up (part two)")
-Cc: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: intel-xe@lists.freedesktop.org
-Reviewed-by: Dave Airlie <airlied@redhat.com>
-Tested-by: Peter Senna Tschudin <peter.senna@linux.intel.com>
-Signed-off-by: Koen Koning <koen.koning@linux.intel.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-Link: https://patch.msgid.link/20260213152047.179628-1-koen.koning@linux.intel.com
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/Makefile |    3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ - First-order action. Each SIGID carries a coarse, in-tree resolution
+   bucket (COLLECT / RETRY / UPDATE / RECOVER) so it is actionable
+   without an external reference, and so every new id must declare what
+   to do about it.
 
---- a/drivers/gpu/Makefile
-+++ b/drivers/gpu/Makefile
-@@ -2,8 +2,9 @@
- # drm/tegra depends on host1x, so if both drivers are built-in care must be
- # taken to initialize them in the correct order. Link order is the only way
- # to ensure this currently.
-+# Similarly, buddy must come first since it is used by other drivers.
-+obj-$(CONFIG_GPU_BUDDY)	+= buddy.o
- obj-y			+= host1x/ drm/ vga/ tests/
- obj-$(CONFIG_IMX_IPUV3_CORE)	+= ipu-v3/
- obj-$(CONFIG_TRACE_GPU_MEM)		+= trace/
- obj-$(CONFIG_NOVA_CORE)		+= nova-core/
--obj-$(CONFIG_GPU_BUDDY)		+= buddy.o
+ - Severity is decoupled from the SIGID and chosen at the call site via
+   xe_ras_log_fatal() / _recoverable() / _info(); the same situation can
+   be reported at different severities depending on the instance.
 
+ - dmesg stays close to a normal xe error line by reusing xe_err() /
+   xe_gt_err() (and their Tile/GT decoration); the only stable,
+   machine-matchable token added is SIGID=<n>. dmesg is not an ABI --
+   the durable machine record is the CPER carrying the same SIGID (a
+   planned follow-up, left as a TODO).
+
+Wire up a representative site for each software signature so the set is
+exercised rather than merely declared:
+
+ - PROBE: xe workqueue allocation failure during early init
+ - WEDGED: xe_device_declare_wedged() (drop redundant "CRITICAL" + BDF)
+ - SURVIVABILITY: entering boot survivability mode
+ - RUNTIME_FW: GuC mmio request failure
+ - DEVICE_FW: PCODE mailbox failure
+ - GT_TDR: GT reset failure (which then chains into a WEDGED report)
+ - MEM_FAULT: page-fault queue overflow
+ - IO_BUS: PCI re-enable failure after a bus reset
+
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+
+v1: https://patchwork.freedesktop.org/series/171022/#rev1
+v2: https://patchwork.freedesktop.org/series/171022/#rev2
+    component/location dmesg decorations moved away from macros
+    HW component identifiers related to RAS/FW enum values
+    CORRECTED severity rendered as an error
+    more support for const pointers
+    log 'probe blocked' as INFO
+    fix kunit device setup
+    more tests
+v3: fix typos, args list and to_dev() corner case (Sashiko)
+    use assoc macros in xe_any (Jani)
+    add xe_any kunit test suite (Michal)
+    add more xe_log test cases (Michal)
+
+Mallesh Koujalagi (1):
+  drm/xe/log: Add structured SIGID error logging infrastructure
+
+Michal Wajdeczko (22):
+  drm/xe: Introduce xe_any helpers
+  drm/xe/log: Introduce structured component/location identifiers
+  drm/xe/log: Add component/location decorations to dmesg
+  drm/xe/log: Add SIGID log helpers for severity
+  drm/xe/log: Add SIGID log helpers for location
+  drm/xe/log: Add SIGID log helpers for location & severity
+  drm/xe/log: Add SIGID log helpers for components
+  drm/xe/log: Add SIGID log helpers for errno-only
+  drm/xe/log: Add hardware error signatures
+  drm/xe/log: Extend components list with hardware items
+  drm/xe/ras: Check RAS and LOG component definitions
+  drm/xe/kunit: Setup driver data in the test device
+  drm/xe/tests: Add Kunit tests for xe_log
+  drm/xe/tests: Add kunit tests for xe_any
+  drm/xe: Report 'probe blocked' error using SIGID
+  drm/xe: Report 'device wedged' errors using SIGID
+  drm/xe: Report 'Survivability Mode' errors using SIGID
+  drm/xe/guc: Report 'GuC mmio' errors using SIGID
+  drm/xe/pcode: Report 'Mailbox failed' error using SIGID
+  drm/xe/gt: Report 'reset failed' errors using SIGID
+  drm/xe/gt: Report 'pagefault' errors using SIGID
+  drm/xe/pci: Report 'cannot re-enable' error using SIGID
+
+ Documentation/gpu/xe/index.rst              |   1 +
+ Documentation/gpu/xe/xe_sigid.rst           |  14 +
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/abi/xe_log_abi.h         | 198 +++++++
+ drivers/gpu/drm/xe/abi/xe_sigid_abi.h       | 195 +++++++
+ drivers/gpu/drm/xe/tests/Makefile           |   1 +
+ drivers/gpu/drm/xe/tests/xe_any_kunit.c     | 188 +++++++
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   4 +
+ drivers/gpu/drm/xe/tests/xe_log_kunit.c     | 545 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_any.h                 | 137 +++++
+ drivers/gpu/drm/xe/xe_device.c              |  16 +-
+ drivers/gpu/drm/xe/xe_gt.c                  |   7 +-
+ drivers/gpu/drm/xe/xe_guc.c                 |  18 +-
+ drivers/gpu/drm/xe/xe_log.c                 | 232 +++++++++
+ drivers/gpu/drm/xe/xe_log.h                 | 158 ++++++
+ drivers/gpu/drm/xe/xe_pagefault.c           |  10 +-
+ drivers/gpu/drm/xe/xe_pci.c                 |   5 +-
+ drivers/gpu/drm/xe/xe_pci_error.c           |   7 +-
+ drivers/gpu/drm/xe/xe_pcode.c               |   5 +-
+ drivers/gpu/drm/xe/xe_ras.c                 |  11 +
+ drivers/gpu/drm/xe/xe_survivability_mode.c  |  24 +-
+ 21 files changed, 1738 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_sigid.rst
+ create mode 100644 drivers/gpu/drm/xe/abi/xe_log_abi.h
+ create mode 100644 drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_any_kunit.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_log_kunit.c
+ create mode 100644 drivers/gpu/drm/xe/xe_any.h
+ create mode 100644 drivers/gpu/drm/xe/xe_log.c
+ create mode 100644 drivers/gpu/drm/xe/xe_log.h
+
+-- 
+2.47.1
 
