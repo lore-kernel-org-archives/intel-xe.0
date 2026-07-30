@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2956DC531D0
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 05:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CAEFC531D0
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 06:17:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFC3110E645;
-	Thu, 30 Jul 2026 05:59:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bOFoZWxr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41A4210E645
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 05:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785391159; x=1816927159;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5nk2yKu7lILQsblPwFu5ummSHou6MZvLXc3s1PB/HlQ=;
- b=bOFoZWxrWuVsSVk0WrauNco6dcr4KuJzzufziRetsj1mu8be5O93KXpn
- 3YsGBAlLCXF5s0r+u+vofgq5bP+zanl1WijTTip7KDyx/ospn1aK1tyNX
- o8P4VkJISDlTm7g77HXTaA9wOWRd2fjZ7iCoyRJ/9Dpg6VicSs2QtMHpN
- mzX4FDG6t6EPkTAEEAKidf77b7Vkv5vAL34mCrd1wCi4ae5z/dOXrlTD0
- ivRRfYS929cRHpczDr8P1we/4WhSZQaLBnJEZejIZL9z7MY41qsfpVhrS
- a/Q2VxLKd6FqY+w+aAJ9aeP/GdxT4qqDzrCBaSTBJOHDIGOcEO6twh7wg A==;
-X-CSE-ConnectionGUID: j91nKeF/RCixv6L7CLSpCg==
-X-CSE-MsgGUID: Gk8kCRIuSrakTObkUAJlLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="96363898"
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="96363898"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 22:59:18 -0700
-X-CSE-ConnectionGUID: 1XhtGOscTfei0Z7UzrUf2A==
-X-CSE-MsgGUID: 9BCBgXPgQUK5PHmgtCx71g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="262162980"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 22:59:16 -0700
-Date: Thu, 30 Jul 2026 07:59:13 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Nitin Gote <nitin.r.gote@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: Re: [PATCH] drm/xe/pm: do not warn about missing runtime PM
- protection after hot-unplug
-Message-ID: <amroMZ8MF0PrF8dh@black.igk.intel.com>
-References: <20260730053635.1515929-2-nitin.r.gote@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01F0C10EDBC;
+	Thu, 30 Jul 2026 06:17:03 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0DD810EDBC;
+ Thu, 30 Jul 2026 06:17:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9061107180919300033=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260730053635.1515929-2-nitin.r.gote@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_make_CTX=5FTIMEST?=
+ =?utf-8?q?AMP_TOCTOU-safe_and_handle_sentinels_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gajendra Uttamchand" <gajendra.uttamchand@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Jul 2026 06:17:01 -0000
+Message-ID: <178539222165.3374.702864692411279862@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260730052343.1205472-5-gajendra.uttamchand@intel.com>
+In-Reply-To: <20260730052343.1205472-5-gajendra.uttamchand@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,15 +36,245 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 30, 2026 at 11:06:36AM +0530, Nitin Gote wrote:
-> After hot-unplug, device_del() disables runtime PM. A deferred fd close
-> can still run later during process exit and destroy remaining exec queues,
-> which may call xe_pm_runtime_get_noresume().
+--===============9061107180919300033==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This sounds like could cause many other side effects. Why not make sure
-the exec queues are taken care of as part of hot-unplug path?
+== Series Details ==
 
-Raag
+Series: drm/xe: make CTX_TIMESTAMP TOCTOU-safe and handle sentinels (rev8)
+URL   : https://patchwork.freedesktop.org/series/168394/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5507-593120331e000d147d0c405b446c82de0740c57e_BAT -> xe-pw-168394v8_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-168394v8_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-wcl-1:          NOTRUN -> [SKIP][1] ([Intel XE#7245])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-wcl-1:          NOTRUN -> [SKIP][2] ([Intel XE#8265])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@xe_evict@evict-small-multi-vm:
+    - bat-wcl-1:          NOTRUN -> [SKIP][3] ([Intel XE#7238]) +11 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_evict@evict-small-multi-vm.html
+
+  * igt@xe_exec_balancer@twice-virtual-rebind:
+    - bat-wcl-1:          NOTRUN -> [SKIP][4] ([Intel XE#7482]) +17 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_exec_balancer@twice-virtual-rebind.html
+
+  * igt@xe_exec_multi_queue@many-queues-priority:
+    - bat-wcl-1:          NOTRUN -> [SKIP][5] ([Intel XE#8364]) +13 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_exec_multi_queue@many-queues-priority.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-wcl-1:          NOTRUN -> [SKIP][6] ([Intel XE#7239]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-wcl-1:          NOTRUN -> [SKIP][7] ([Intel XE#7243])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-wcl-1:          NOTRUN -> [SKIP][8] ([Intel XE#7247] / [Intel XE#7590])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-wcl-1:          NOTRUN -> [SKIP][9] ([Intel XE#7242] / [Intel XE#7590])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-wcl-1:          NOTRUN -> [SKIP][10] ([Intel XE#7248] / [Intel XE#7590])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_module_load@load:
+    - bat-wcl-1:          [ABORT][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5507-593120331e000d147d0c405b446c82de0740c57e/bat-wcl-1/igt@xe_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_module_load@load.html
+
+  
+  [Intel XE#7238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238
+  [Intel XE#7239]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7239
+  [Intel XE#7242]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7242
+  [Intel XE#7243]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7243
+  [Intel XE#7245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7245
+  [Intel XE#7247]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7247
+  [Intel XE#7248]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7248
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9032 -> IGT_9033
+  * Linux: xe-5507-593120331e000d147d0c405b446c82de0740c57e -> xe-pw-168394v8
+
+  IGT_9032: 9032
+  IGT_9033: 9033
+  xe-5507-593120331e000d147d0c405b446c82de0740c57e: 593120331e000d147d0c405b446c82de0740c57e
+  xe-pw-168394v8: 168394v8
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/index.html
+
+--===============9061107180919300033==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: make CTX_TIMESTAMP TOCTOU-safe and handle sentinels (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168394/">https://patchwork.freedesktop.org/series/168394/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5507-593120331e000d147d0c405b446c82de0740c57e_BAT -&gt; xe-pw-168394v8_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-168394v8_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7245">Intel XE#7245</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-multi-vm:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_evict@evict-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238">Intel XE#7238</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@twice-virtual-rebind:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_exec_balancer@twice-virtual-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-queues-priority:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_exec_multi_queue@many-queues-priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7239">Intel XE#7239</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7243">Intel XE#7243</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7247">Intel XE#7247</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7242">Intel XE#7242</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7248">Intel XE#7248</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5507-593120331e000d147d0c405b446c82de0740c57e/bat-wcl-1/igt@xe_module_load@load.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168394v8/bat-wcl-1/igt@xe_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9032 -&gt; IGT_9033</li>
+<li>Linux: xe-5507-593120331e000d147d0c405b446c82de0740c57e -&gt; xe-pw-168394v8</li>
+</ul>
+<p>IGT_9032: 9032<br />
+  IGT_9033: 9033<br />
+  xe-5507-593120331e000d147d0c405b446c82de0740c57e: 593120331e000d147d0c405b446c82de0740c57e<br />
+  xe-pw-168394v8: 168394v8</p>
+
+</body>
+</html>
+
+--===============9061107180919300033==--
