@@ -4,61 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5B1FC55162
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 15:33:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B4D7C55162
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 15:33:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99E7C10EFA1;
-	Thu, 30 Jul 2026 15:33:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD48C10EFA8;
+	Thu, 30 Jul 2026 15:33:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EeQgodIk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bY3av30a";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD5D510EFA1
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 15:33:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F1B210E697
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 15:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785425582; x=1816961582;
+ t=1785425594; x=1816961594;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6zJ34wlSYwBh2tPMAP8DvOf3TmVThQHeMmrD8eY9Uqk=;
- b=EeQgodIkMv9haXoUy5QkxhYk6fYR23clbAa3rQHIoqpFS7lc91vF+pWL
- 1eF3j+HaqQyIEU+OJ2J2fNUrOJ+SLyJk1j96LLRXYgUhisuFpuhyzBZ8B
- aIH8tBghrOd0Sicm8SKk2V6hPOGw/n9Po/ijXArGN8oyI4K6UbHDxlp9l
- v9+G0lfc0wKNbnGPqkKEi/Ep+XC/q0smu4lFi3ntqSGTqJ93g10Ub/wpG
- 3cPfg3O56YjT3qaH1Li0e3CHTN9OH9l/b34fmbnxyljUKfFSlAO9OezkO
- mcNGuk98SmWhhRTk8d+qdLmogDcd/ULi8/+ws7LDzaIANPHWbxFj7WwHg w==;
-X-CSE-ConnectionGUID: 3ldIkHj9RWqU9eNE6aaQtg==
-X-CSE-MsgGUID: DU+XlcRXT+SURdc37jZatQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="73582983"
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="73582983"
+ bh=VK5xjGY+6ATuAjTJh5fUCqy3he2r7BEeYU1vLUuAaq8=;
+ b=bY3av30agMD5d8EoijqYXFHL07Zj4phZ/gRwCucSQjS/nje+TjBxpnbu
+ 7q3zsmoRCrkgpf44/vGdm4RUh57K+SEgd20NsJ/m7P9grxaT51IPZNby0
+ DfGAQDgRQSBekL9NIklvOkQ9OWhPhjEhnJTi28rlcDy/bRHzHYgkN5GMP
+ HfIakxCWJY2TMT702S1VK2wzgyOnoF2w0Au50R+xu7pltTP573a1hIAHQ
+ +Pa1GYBSJXT51evlM57gKg52jCEvS3fGgEcKmQ8axcgP9Q94kkdYWhDBV
+ VmseJGK2RVHPx1nIDQSdaPyelf0TY+6d0NCe++ETT6lrkvihYpd5Z6ACa w==;
+X-CSE-ConnectionGUID: 9oxvSm04RgSQI0fm+f18BQ==
+X-CSE-MsgGUID: I+otkzJySQC+c1pd5hzREw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="73583036"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="73583036"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 08:33:02 -0700
-X-CSE-ConnectionGUID: 74RP+wpiQuuMUYsztJApjg==
-X-CSE-MsgGUID: ioKyhv8qSTyoSwbLhl7oqQ==
+ 30 Jul 2026 08:33:13 -0700
+X-CSE-ConnectionGUID: KBvXRdUGSIC/A0C1QMKDyQ==
+X-CSE-MsgGUID: Pq3VfZRkQBW/DBXfyXFHBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="260387500"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="260387551"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 08:33:00 -0700
+ 30 Jul 2026 08:33:11 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Yoni Levitt <yoni.levitt@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
- Raag Jadav <raag.jadav@intel.com>, Riana Tauro <riana.tauro@intel.com>
-Subject: [PATCH v3 02/23] drm/xe/log: Add structured SIGID error logging
- infrastructure
-Date: Thu, 30 Jul 2026 17:20:58 +0200
-Message-ID: <20260730152121.576-3-michal.wajdeczko@intel.com>
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v3 08/23] drm/xe/log: Add SIGID log helpers for components
+Date: Thu, 30 Jul 2026 17:21:04 +0200
+Message-ID: <20260730152121.576-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260730152121.576-1-michal.wajdeczko@intel.com>
 References: <20260730152121.576-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,444 +70,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Our component list already defines relation between the component
+name, identified by the TAG, and its numerical identifier and the
+assigned SIGID. We can also already prepare location identifier
+based on the pointer type used to emit the log entry. Add helper
+that will prepare SIGID, COMPONENT and LOCATION parameters for
+xe_log_emit() using provided components TAG and the pointer.
 
-Today the driver reports faults with ad-hoc drm_err()/xe_gt_err()
-strings that have no stable shape. That is readable for a human, but it
-gives fleet tooling nothing durable to match on: the wording changes
-between releases, lines can be rate-limited or dropped under an error
-storm, and there is no consistent way to ask "which recognised fault
-just happened?".
-
-Introduce a signature identifier (SIGID): a small, stable integer that
-names one recognised Xe fault situation and serves as the primary handle
-for triage. A SIGID maps, through published end-user documentation, to a
-description and a recommended action; the driver only has to emit the
-right SIGID next to the usual human-readable text.
-
-Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Assisted-by: Copilot:Opus-4.8
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Co-developed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
-Cc: Yoni Levitt <yoni.levitt@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-v2: CORRECTED is still an error (Michal)
-    prepare to decorate dmesg with comp/loc (Michal)
+v2: rebased/simplified (Michal)
 ---
- Documentation/gpu/xe/index.rst        |   1 +
- Documentation/gpu/xe/xe_sigid.rst     |  14 ++
- drivers/gpu/drm/xe/Makefile           |   1 +
- drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 183 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_log.c           | 135 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_log.h           |  20 +++
- 6 files changed, 354 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_sigid.rst
- create mode 100644 drivers/gpu/drm/xe/abi/xe_sigid_abi.h
- create mode 100644 drivers/gpu/drm/xe/xe_log.c
- create mode 100644 drivers/gpu/drm/xe/xe_log.h
+ drivers/gpu/drm/xe/xe_log.h | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 665c0e93601c..0247a255f7e6 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -35,3 +35,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is provided by
-    xe-drm-usage-stats.rst
-    xe_configfs
-    xe_gt_stats
-+   xe_sigid
-diff --git a/Documentation/gpu/xe/xe_sigid.rst b/Documentation/gpu/xe/xe_sigid.rst
-new file mode 100644
-index 000000000000..45d84a62f185
---- /dev/null
-+++ b/Documentation/gpu/xe/xe_sigid.rst
-@@ -0,0 +1,14 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+========
-+Xe SIGID
-+========
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-+   :doc: Xe Error Signatures (SIGID)
-+
-+Signature Identifiers
-+=====================
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-+   :internal:
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 67ada1d6c2fb..7ac3954737f9 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -87,6 +87,7 @@ xe-y += xe_bb.o \
- 	xe_hw_fence.o \
- 	xe_irq.o \
- 	xe_late_bind_fw.o \
-+	xe_log.o \
- 	xe_lrc.o \
- 	xe_mem_pool.o \
- 	xe_migrate.o \
-diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-new file mode 100644
-index 000000000000..99717fdf74a6
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-@@ -0,0 +1,183 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _ABI_XE_SIGID_ABI_H_
-+#define _ABI_XE_SIGID_ABI_H_
-+
+diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
+index 916218560297..c30db02950b0 100644
+--- a/drivers/gpu/drm/xe/xe_log.h
++++ b/drivers/gpu/drm/xe/xe_log.h
+@@ -85,4 +85,22 @@ void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+ 	xe_log_from((any), CPER_SEV_INFORMATIONAL, (sig), (comp), \
+ 		    (data), (len), fmt, ##args)
+ 
 +/**
-+ * DOC: Xe Error Signatures (SIGID)
-+ *
-+ * What SIGID stands for
-+ * ---------------------
-+ *
-+ * SIGID is short for *Signature Identifier*. A SIGID is a small, stable integer
-+ * that names one *recognised Xe fault situation* -- nothing more. It is the
-+ * primary handle used for triage: a SIGID maps to a human description and a
-+ * recommended first action. A coarse first-order action is documented in-tree
-+ * per SIGID (see "First-order action" below) so the id is actionable on its
-+ * own; published end-user documentation refines it with finer, cross-product
-+ * detail. The driver's only job is to emit the right SIGID next to the usual
-+ * human-readable text.
-+ *
-+ * Why this exists
-+ * ---------------
-+ *
-+ * Today the driver reports faults with ad-hoc ``drm_err()`` / ``xe_gt_err()``
-+ * strings that have no stable shape. That is fine for a human reading dmesg,
-+ * but it gives fleet tooling nothing durable to match on: the wording changes
-+ * between releases, lines can be rate-limited or dropped under an error storm,
-+ * and there is no consistent way to ask "which recognised fault just happened?"
-+ * A SIGID answers exactly that one question, identically across driver and
-+ * firmware versions, and (eventually) across other Intel devices in a node.
-+ *
-+ * What a SIGID is (and is not)
-+ * ----------------------------
-+ *
-+ * A SIGID names *which situation* is being reported. It deliberately does not
-+ * encode the detailed reason or the outcome. Those are carried alongside it::
-+ *
-+ *   SIGID    -> which recognised situation is being reported
-+ *   severity -> how serious this instance is (see below -- not fixed per SIGID)
-+ *   errno    -> the failing operation's error, shown with %pe
-+ *   message  -> free-form human-readable context
-+ *
-+ * Severity is independent of the SIGID. The same situation can be reported at
-+ * different severities depending on the instance and the recovery taken, so a
-+ * SIGID is never tied to one severity; the reporting site chooses it by calling
-+ * the matching xe_log_*() helper (see xe_log.h).
-+ *
-+ * How to pick a SIGID (the uniqueness rule)
-+ * -----------------------------------------
-+ *
-+ * Pick per *report site*, not per incident. Each site emits the single most
-+ * specific recognised situation *for that site* -- so the question is never
-+ * "classify this whole failure", it is "what does this site detect?", which has
-+ * one answer. A single underlying failure therefore legitimately produces a
-+ * *chain* of reports from different layers, each with its own SIGID -- e.g. a
-+ * GuC communication failure is reported as %XE_SIGID_RUNTIME_FW by the firmware
-+ * path, the failed recovery as %XE_SIGID_GT_TDR by the reset path, and an
-+ * aborted bind as %XE_SIGID_PROBE by the probe path. That chain lets triage
-+ * follow a fault from origin to final effect; it is not a duplicate.
-+ *
-+ * If a site does not match any defined situation, keep using the ordinary
-+ * ``xe_err()`` / ``xe_gt_err()`` logging rather than forcing a SIGID: a wrong
-+ * or over-broad classification is harder to retire than a missing one. When a
-+ * new situation is genuinely worth triaging, add it to the list below.
-+ *
-+ * Scope: software-emitted signatures only
-+ * ---------------------------------------
-+ *
-+ * This header enumerates only the situations that the *driver itself* detects
-+ * and reports from software: probe abort, wedged, survivability, driver-
-+ * detected firmware failures, engine TDR, memory faults and IO/bus faults.
-+ * These are the only values the driver assigns.
-+ *
-+ * Signatures that *originate* in firmware or hardware are a different thing:
-+ * they are produced and identified by the firmware or the hardware itself
-+ * (e.g. via their own records or error counters), and the driver merely logs
-+ * them as they are given to us. They are deliberately *not* enumerated here --
-+ * minting a driver-side id for a firmware/hardware-reported error would only
-+ * duplicate an identifier the reporting layer already owns. The two
-+ * driver-detected firmware situations below (%XE_SIGID_RUNTIME_FW,
-+ * %XE_SIGID_DEVICE_FW) are software signatures: they mark that *the driver*
-+ * observed a firmware problem, not a signature reported by the firmware.
-+ *
-+ * Numbering
-+ * ---------
-+ *
-+ * SIGIDs are a single flat list numbered sequentially within the assigned range,
-+ * in the order the situations were introduced. Values are stable: once assigned
-+ * they are only ever appended, never renumbered or reused.
-+ *
-+ * A retired situation is deprecated in place, never re-purposed.
-+ *
-+ * First-order action (resolution buckets)
-+ * ---------------------------------------
-+ *
-+ * So that a SIGID is actionable on its own, each one is tagged with a coarse
-+ * *resolution bucket*: the first thing an operator should do on seeing it. The
-+ * bucket is a stable, driver-owned hint; external documentation may refine it,
-+ * but the in-tree value always stands on its own. Every new SIGID must pick a
-+ * bucket, which forces the question "what should someone do about this?" to be
-+ * answered up front. The buckets are::
-+ *
-+ *   COLLECT  -- capture logs and open a bug report
-+ *   RETRY    -- transient or already recovered; watch for recurrence
-+ *   UPDATE   -- a firmware update / flash is required
-+ *   RECOVER  -- an explicit recovery step is needed (rebind, bus reset)
-+ *   IGNORE   -- ignore if the SIGID severity is INFORMATIONAL
-+ *
-+ * The bucket is documentation only -- it is recorded per SIGID in the enum
-+ * kernel-doc below and is not printed on the (deliberately lean) dmesg line.
-+ *
-+ * When to use SIGID logging
-+ * -------------------------
-+ *
-+ * The xe_log_*() helpers are for these recognised fault situations only --
-+ * important, operator-relevant faults and events. They are not a replacement
-+ * for ``xe_info()`` / ``xe_dbg()`` / tracing, nor for one-off diagnostics;
-+ * using them for ordinary logging would dilute the fault stream. Not every
-+ * ``xe_err()`` needs to become a SIGID report -- only those that correspond to
-+ * a published situation.
-+ *
-+ * dmesg vs. the machine record
-+ * ----------------------------
-+ *
-+ * The dmesg line stays close to a normal xe error message so it remains
-+ * readable for admins; the only stable, machine-matchable token on it is
-+ * ``SIGID=<n>`` (``dmesg | grep SIGID=``). dmesg is not an ABI: the surrounding
-+ * text may change freely, and lines may be dropped. The durable record for
-+ * tooling is the CPER record carrying the same SIGID (generation is a planned
-+ * follow-up).
-+ */
-+
-+/*
-+ * Top level Intel Error Signature Identifiers.
-+ */
-+#define INTEL_SIGID_INVALID			0
-+#define INTEL_SIGID_GPU_START			100
-+#define INTEL_SIGID_GPU_END			999
-+
-+#define INTEL_SIGID_GPU_XE_START		100
-+#define INTEL_SIGID_GPU_XE_END			299
-+
-+#define INTEL_SIGID_GPU_XE_SOFTWARE_START	100
-+#define INTEL_SIGID_GPU_XE_SOFTWARE_END		199
-+#define INTEL_SIGID_GPU_XE_HARDWARE_START	200
-+#define INTEL_SIGID_GPU_XE_HARDWARE_END		299
-+
-+/**
-+ * enum xe_sigid - Stable Xe Error Signature Identifiers (SIGID).
-+ * @XE_SIGID_SW: Software component failure. [COLLECT]
-+ * @XE_SIGID_PROBE: Device probe/bind was aborted. [COLLECT]
-+ * @XE_SIGID_WEDGED: Device was declared wedged and is no longer usable. [RECOVER]
-+ * @XE_SIGID_SURVIVABILITY: Device entered survivability mode. [UPDATE]
-+ * @XE_SIGID_RUNTIME_FW: Driver-detected runtime firmware failure, GuC/HuC/GSC. [RETRY]
-+ * @XE_SIGID_DEVICE_FW: Driver-detected device firmware failure, PCODE/sysctrl. [RETRY]
-+ * @XE_SIGID_GT_TDR: Engine hang / timeout detection and recovery (reset). [RETRY]
-+ * @XE_SIGID_MEM_FAULT: VM bind, page fault or GTT fault. [COLLECT]
-+ * @XE_SIGID_IO_BUS: Runtime PCIe / IOMMU / MMIO access fault. [RECOVER]
-+ *
-+ * The situations the driver detects and reports in software. Values are
-+ * numbered sequentially, are only ever appended, and are never renumbered or
-+ * reused. The tag in brackets is the default resolution bucket (see the `Xe
-+ * Error Signatures (SIGID)`_ section).
-+ *
-+ * Firmware- and hardware-originated signatures are not listed here; they are
-+ * logged as reported by those layers.
-+ */
-+enum xe_sigid {
-+	XE_SIGID_SW			= INTEL_SIGID_GPU_XE_SOFTWARE_START,
-+	XE_SIGID_PROBE			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 1,
-+	XE_SIGID_WEDGED			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 2,
-+	XE_SIGID_SURVIVABILITY		= INTEL_SIGID_GPU_XE_SOFTWARE_START + 3,
-+	XE_SIGID_RUNTIME_FW		= INTEL_SIGID_GPU_XE_SOFTWARE_START + 4,
-+	XE_SIGID_DEVICE_FW		= INTEL_SIGID_GPU_XE_SOFTWARE_START + 5,
-+	XE_SIGID_GT_TDR			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 6,
-+	XE_SIGID_MEM_FAULT		= INTEL_SIGID_GPU_XE_SOFTWARE_START + 7,
-+	XE_SIGID_IO_BUS			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 8,
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
-new file mode 100644
-index 000000000000..70a41bdf1a01
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_log.c
-@@ -0,0 +1,135 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include "xe_log.h"
-+#include "xe_printk.h"
-+
-+static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+			  u32 component, u32 location, const void *data, size_t len,
-+			  struct va_format *vaf)
-+{
-+	/* TODO */
-+}
-+
-+static bool is_hw_sigid(enum xe_sigid sigid)
-+{
-+	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
-+}
-+
-+static bool is_sev_error(int cper_sev)
-+{
-+	return cper_sev != CPER_SEV_INFORMATIONAL;
-+}
-+
-+static const char *log_hwe_prefix(int cper_sev, enum xe_sigid sigid)
-+{
-+	return is_sev_error(cper_sev) && is_hw_sigid(sigid) ? HW_ERR : "";
-+}
-+
-+static const char *log_sev_prefix(int cper_sev)
-+{
-+	switch (cper_sev) {
-+	case CPER_SEV_FATAL:
-+		return "FATAL ";
-+	case CPER_SEV_RECOVERABLE:
-+		return "";
-+	case CPER_SEV_CORRECTED:
-+		return "CORRECTED ";
-+	default:
-+		return "";
-+	}
-+}
-+
-+#define __LOG_DRM_PRINTK_FMT(fmt, args...)	"[drm] " fmt, ##args
-+#define __LOG_DRM_PRINTK_ERR_FMT(fmt, args...)	__LOG_DRM_PRINTK_FMT("*ERROR* " fmt, args)
-+
-+static void log_dmesg_vprintk(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
-+{
-+	if (cper_sev == CPER_SEV_INFORMATIONAL)
-+		pci_info(pdev, __LOG_DRM_PRINTK_FMT("%pV", vaf));
-+	else
-+		pci_err(pdev, __LOG_DRM_PRINTK_ERR_FMT("%pV", vaf));
-+}
-+
-+static void log_dmesg_printf(struct pci_dev *pdev, int cper_sev, const char *fmt, ...)
-+{
-+	struct va_format vaf;
-+	va_list args;
-+
-+	va_start(args, fmt);
-+	vaf.fmt = fmt;
-+	vaf.va = &args;
-+
-+	log_dmesg_vprintk(pdev, cper_sev, &vaf);
-+
-+	va_end(args);
-+}
-+
-+static void log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+			   u32 component, u32 location, const void *data, size_t len,
-+			   struct va_format *vaf)
-+{
-+	const char *hwe_prefix = log_hwe_prefix(cper_sev, sigid);
-+	const char *sev_prefix = log_sev_prefix(cper_sev);
-+
-+	/* TODO: add component/location details */
-+
-+	if (IS_ERR(data))
-+		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%pe) %s%pV",
-+				 sigid, sev_prefix, data, hwe_prefix, vaf);
-+	else if (data && len)
-+		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%*phN) %s%pV",
-+				 sigid, sev_prefix, (int)len, data, hwe_prefix, vaf);
-+	else
-+		log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s%s%pV",
-+				 sigid, sev_prefix, hwe_prefix, vaf);
-+}
-+
-+/**
-+ * xe_log_emit() - Emit a structured SIGID log entry
-+ * @pdev: the &pci_dev device
++ * xe_log_comp() - Emit a structured SIGID log entry on the component behalf.
++ * @any: the &xe_device or &xe_tile or &xe_gt pointer this report relates to
 + * @cper_sev: CPER severity (CPER_SEV_FATAL, CPER_SEV_RECOVERABLE, ...)
-+ * @sigid: signature identifier, see &enum xe_sigid
-+ * @component: component identifer
-+ * @location: location details of the @component
++ * @TAG: the component tag to use
 + * @data: pointer to the additional details, or ERR_PTR, or NULL if not applicable
 + * @len: length of the @data in bytes, or 0 if not applicable
-+ * @fmt: printf-style format string
-+ * @...: format arguments
++ * @fmt: printf-style free text format string (not a stable interface)
++ * @args: arguments for the @fmt format string
 + *
-+ * Emits a dmesg line that includes a single stable, machine-matchable token
-+ * ``SIGID=<n>`` followed by the optional severity token (like ``FATAL``) and,
-+ * when @data pointer is set, either the error printed with %pe or a packed hex
-+ * dump of the @data binary blob. The dmesg line will also include printf-style
-+ * text message.
-+ *
-+ * Note that the full dmesg line, with the free text message, is only a debugging
-+ * aid, not an interface! Only the ``SIGID=<n>`` token is stable there.
-+ * The durable machine record is the CPER carrying the same SIGID.
-+ *
-+ * Note: generation of the CPER record is a planned follow-up.
-+ *
-+ * Examples::
-+ *
-+ *   <3> xe 0000:03:00.0: [drm] *ERROR* SIGID=104 FATAL (-EPROTO) Invalid GuC reply
-+ *   <3> xe 0000:03:00.0: [drm] *ERROR* SIGID=106 (-ETIMEDOUT) Engine 'rcs0' hung
-+ *   <6> xe 0000:03:00.0: [drm] *ERROR* SIGID=103 In survivability mode
++ * The SIGID will be determined from the component's @TAG.
++ * The component identifier will be determined from the component's @TAG.
++ * The location used to emit SIGID entry will be based on the @any pointer type.
 + */
-+void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		 u32 component, u32 location, const void *data, size_t len,
-+		 const char *fmt, ...)
-+{
-+	struct va_format vaf;
-+	va_list args;
++#define xe_log_comp(any, cper_sev, TAG, data, len, fmt, args...) \
++	xe_log_from((any), (cper_sev), (int)XE_LOG_COMPONENT_##TAG##_SIGID, \
++		    XE_LOG_COMPONENT_##TAG, (data), (len), fmt, ##args)
 +
-+	va_start(args, fmt);
-+	vaf.fmt = fmt;
-+	vaf.va = &args;
-+
-+	log_emit_dmesg(pdev, cper_sev, sigid, component, location, data, len, &vaf);
-+	log_emit_cper(pdev, cper_sev, sigid, component, location, data, len, &vaf);
-+
-+	va_end(args);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
-new file mode 100644
-index 000000000000..d475e816ee0b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_log.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_LOG_H_
-+#define _XE_LOG_H_
-+
-+#include <linux/cper.h>
-+
-+#include "abi/xe_sigid_abi.h"
-+
-+struct pci_dev;
-+
-+__printf(8, 9)
-+void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		 u32 component, u32 location, const void *data, size_t len,
-+		 const char *fmt, ...);
-+
-+#endif
+ #endif
 -- 
 2.47.1
 
