@@ -4,160 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACAF2C54FD2
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 09:49:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25D38C54FDF
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 10:11:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6769010EE73;
-	Thu, 30 Jul 2026 09:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1EE310E693;
+	Thu, 30 Jul 2026 10:11:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GzPnKnkd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VUSx2qbn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E79F10EE73
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 09:49:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2E6710E693
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 10:11:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785404978; x=1816940978;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=nxDbk0i2F468aef0d0CDuFcnX+MCsAnIFSve1QgnOz4=;
- b=GzPnKnkdL8PoQhBnvcujUb+A2PsdFz1GzHOPji6TGQv5idaux7wezhR6
- LOP6xISJIUZzq4f3l5T0y1vIxAbIki7hgyjI0tJjWVrX6lqBpWl29ZDzD
- kfJzLUe8Dkp99wHqlS2NXpUNwvAorFMpSL8kxZmhwAJIBM/A/z4eklmur
- vZeqQWdcIatuABLO+sOdPy6SdPF5wu1xVxGyJ4ZMNmW/Yy/kdiHFFbj+b
- dMMoW6Sube/6jSb5kZfeuxDItrU+lo15kdY4OIIySvFsoRlEop6hj+3de
- ZHtDX4DrO/OhkB473XYA3N6sLjzAvxFg0PDASS7wTxgN1tv+MJYmY/5iF Q==;
-X-CSE-ConnectionGUID: VhphBSb5QG2gWHFN7GZi/w==
-X-CSE-MsgGUID: KK7vlAWLQJOIAk5YnK9O9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="86035494"
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="86035494"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 02:49:38 -0700
-X-CSE-ConnectionGUID: VKYNExkFT6y5sLNlCRX/xw==
-X-CSE-MsgGUID: xzkpe63ETvW77S/1Aaj/DQ==
+ t=1785406313; x=1816942313;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QWke/OESOY+z4sq38MpfL64XG4bw/aa//pFnV3D0yGk=;
+ b=VUSx2qbnZzWZCMnUnegVWex770cQ30vesZKiL4Ww/vFhQAOgjjylqdeM
+ j0iaRlg+49rhWSq/cvuRyvPcdD7PSc5qzBi2+pCyxXoGlMK2Y0D7iL03H
+ fzqED2C2qx25wlYJM9Q/tU5t9wNVxebi2gswqp9phbZOCiPjTY3pVA4KT
+ KUTpLeqtSzi+TaMxSUwvrz40qXDOU6G04QcXAgj3Jdn59/ECT5MOb2fEI
+ M3rre+IUAfgSuRr7ZFd+pagP3n2GrxWdjUOK62dZS/efQfHuKWiVsV63h
+ 27l1AmSvv3D5fEoo0tSlGbjSqDXfz+lHsYf8EC/Ycmjs/p8T4uYO+6QXH Q==;
+X-CSE-ConnectionGUID: zbMWd7BSRHm7Xwq6kZSuPg==
+X-CSE-MsgGUID: 02nHfLBsTDOqIKJdOVZgsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="73557219"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="73557219"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 03:11:52 -0700
+X-CSE-ConnectionGUID: tV+Npt7RT0OFztSH9L2TiA==
+X-CSE-MsgGUID: sEQEnm1gRnylJ22ju5ogtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="259677222"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 02:49:37 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 30 Jul 2026 02:49:36 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 30 Jul 2026 02:49:36 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.8) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 30 Jul 2026 02:49:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OENa33KHXHy4y+D2H2Zx+mM5+2CTR2LNzTpzb01GvLV21PcsPobtVFFWlGcyEjl7vyo2sQ6/hYjYQzxuvYsrELU6w8NHDpVhezIn4UuZfVs831Pm+OG94C0SA3XlaC/HfCAp1lX8QojTJ60jxXo3S0MTwiX2ni8O0LNcvDCycl8AnjzmvWkMsCo0qYRQXkyceAXqMYoitFticgXSDr3Oc+OUE+W6WknFSfPBGZSwSl+nyugEHoWZC4NvmlEsRqkwTsL5t+WkEF6UW2QKZTtk4JfD2XkDarTdX/Fza5tN3eNMOlvBNhwElSxeGOe8n+j5CarI2SwBesbBJG+CAIi+hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qd4bMOi2qW5FgGDq4qQZbwf7XcGyBwY8WmyMiLxktfc=;
- b=aB65gkVa4SQkv56NpoFe4+3htHeMsOEpPzFM4Cs48ZDtohQJRRsCO+q3m061UO5/mQJU5rj0KZZLtF2c7ggFwuNiRzwZsHFzW5jQa/mjMiyRynK21pExapTT+EjhPKcwkNufhN6qmwiUdzvs9PenzyZh/dh9yzwE8Zwla2qi794+mjadNVSo/X4n5XHHx/b/7aq3ByRNThcFqhkuMKSD0AcGgcaKosT2PhvOvmGp8KMFeinpilWJNwLZ48NPDXws9cOhEr/9sinl2fLpeeTrh6QIe0oNGEt66H7TuEb2CPCpf3pPjYxOBSxTJGly9qbvJNGKE1lKxkRr3J5epETz3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by DS4PPF4B1ECA5EA.namprd11.prod.outlook.com (2603:10b6:f:fc02::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.15; Thu, 30 Jul
- 2026 09:49:34 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0270.012; Thu, 30 Jul 2026
- 09:49:34 +0000
-Message-ID: <54ffd2c7-4901-48c3-bfd8-00cff5852c2d@intel.com>
-Date: Thu, 30 Jul 2026 11:49:30 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] drm/xe/guc_ads: use uncached mapping for UM queue
- BO
-To: Jia Yao <jia.yao@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <matthew.auld@intel.com>, <gwan-gyeong.mun@intel.com>,
- <stable@vger.kernel.org>
-References: <20260722053410.2767369-1-jia.yao@intel.com>
- <20260730004735.344627-1-jia.yao@intel.com>
- <20260730004735.344627-4-jia.yao@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260730004735.344627-4-jia.yao@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR0102CA0094.eurprd01.prod.exchangelabs.com
- (2603:10a6:803:15::35) To LV2PR11MB6024.namprd11.prod.outlook.com
- (2603:10b6:408:17a::16)
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="256925238"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 03:11:50 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V14 0/9] Add memory page offlining support
+Date: Thu, 30 Jul 2026 15:41:22 +0530
+Message-ID: <20260730101132.2770752-11-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|DS4PPF4B1ECA5EA:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b7164d2-7923-4dc8-de85-08deee1fdc86
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|22082099003|18002099003|10067099003|56012099006|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: vs/hAJ1Hj5o5RHYuadaTT+/CZgWF5Mnw7CcIpvXJCe8kiwMiXRkE8P2O+iii+5BCuhiK7OFPs5YPVH6g0ZfPBOrItx6z/mvMnNO3ySNi3vTA9ZdjDCfN9bBS3BVzLDvXvlzGAFSSjVCWvGJ/PqKohhnVjy7+bVBAQSCEX3/l0lZECAGbcDIsAE2vP2Elgl+WgXl33hfSaOnmk4ycUFificHvmZ2/M10GOz5IWMW2o5JhBMS3tyx1Kw9A48ljQQ6J0tPar0pdsYl6zOej4pGnFL0FMByP/HbGLcX2WrNMz3e0nq9K0tr/WwTkmrEc76AzxAcla2TX5h09WNv/QXI3253XUcA62Rd+2rG1iSnhF1+7dtoaMSpXLO14sE48Fx9jrm16eQtVTQSHh6KOeEtpPfHk1IgrJVMDVgePdlDmpn6QNhSF45wf7NjCFGK83s34WCsOUPjiLLj7dk849KjViL5gGKGOThkHTPQ0QbrylhE4acSkrjCrKQTMKM3w2idiJGlCViXP9QRPb9QRpMeKYYp1g8DjF5GSZEuNfPVuhr8JvCZBxXs4bSkR5GE3bF3UFxKleM2ADm87QrBP0EHzIn8Tjl2CZyQAc8FsuvEBpHybJubG9EfNHgksKwAtHdiFkpEH6HNSB47jQywVMRj4WumVjjTif80Dp2KrawuErCU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(22082099003)(18002099003)(10067099003)(56012099006)(4143699003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXRaZ3IwaWhpRDhYOGxsdzZiS3k3b0JuVGhtY3ZGS21lUzByWFd4b2FGbkhW?=
- =?utf-8?B?ZThYaWtaS2RFUjMvdGk2N2hSdjV1ekMyVXNReEpqZEpZR1N0cGhlcjFuSC9x?=
- =?utf-8?B?cVJMNTRvbSt3VUxaRTVqWkNKOUNzUmFmd1h5Y2l5alpLRkJEait4bUpPOHI1?=
- =?utf-8?B?cHltNGY0NW1ZZFJVZjhIVUJvY1loUVFWRnhyNVNJQTducHNqbksyWTRaeU9n?=
- =?utf-8?B?ci80cDRmTzJRbFhjUHN4a1R5U0tubjNiRTRNVG5SMDZnZXljMjJLVEUxMWxQ?=
- =?utf-8?B?MUVqTjZ4akNCQzhMUGN0VTVpOFRxM0gyOG11QjdoZHI4VElJenJnNTlkZnk5?=
- =?utf-8?B?U215Q2FsM1BQVmNTNDRqM0xrc3lVZHFGc0t3ZDhBaXVvdTd0bWtMdEcwdTJY?=
- =?utf-8?B?S1cySDNjVk8zQ2JicnMyeXJMdmpHQjBqWG0yNlhibEZvSlJaV3J5K2ZKc3NI?=
- =?utf-8?B?WW5PVXFEWjZHQ0ZROHQ5SjNJVnY3TVNFUlZBMTNXVDdERWZienlKTnJ2cERm?=
- =?utf-8?B?NDY5TjlhMlpROHRrNFJlN0N6cGEwN1lNdTZSMFNSdTNtQ0RKaHU0ZW03RUcw?=
- =?utf-8?B?cm5LNWtFcjFVNWVOcjZ5SFEzUHZnZFRwRGhIcUh5STRFU1Y4dTRYS1grMEZu?=
- =?utf-8?B?TGdZRytIV3lpRmRuaU5tS0w5VkZ0M0NUTUw4VFFXU1hCb3ZnU2lGbXJEaXRP?=
- =?utf-8?B?SHJBNVhrQzh2K3pkUzRlNW1JODU2MVMxQ0dxOEtmWFNEM2FPWGJJcTJrYTh6?=
- =?utf-8?B?UnRkVFBYN01COHVjYkp0WlhuZUhBTUUxenFEUTd3NnhZQjNLNTFTTHZGY25I?=
- =?utf-8?B?MDZ2ZkNUaEtRRWtPeUc5K3F6K293bzVrVlpDMFZ5am83UnljR2lWeFJMaGFI?=
- =?utf-8?B?S28rQXdDWnVpdjNvZ1cxYVhrVU9jQkRUNHpkblB3UnFDL2pCbU5QRWhFTHZ1?=
- =?utf-8?B?NXBXbXJiWUt1ZG5SV0pnWUxzbEsvK0tLenZObE9TRUtvampCSjk0c1UzeWps?=
- =?utf-8?B?aUhodjg1OWV5Tmd2YzcwUkRDVW9tV0wvSmNraWFOd3IyZEJ1TVlqMHdxbmRj?=
- =?utf-8?B?RjhnVGtPMm5oY1MyVi9DQ2c2SXlNUzlNcGZPbDJlRDFLMUhEeXQvcTN4cm45?=
- =?utf-8?B?NzhTRTR1UVgzcWNjTGJKRHBobzVVNWlzWFVQS2FYaWs5QnBTeVh3TGd2UDNK?=
- =?utf-8?B?S2FiWmRKWGJxb2JQU09YV2llU0pZMGJnWFBCTitjM042ekp3WmNpUVhMWGpt?=
- =?utf-8?B?UUpVUnFKRlZ3dnVhNit5S0I2MDlTY21TVzdHcEo3eUFWdHRxVjVydS9iYnQy?=
- =?utf-8?B?VVBnaTBJY3EwKy9aZDhSa0p3a2FMbDNpRlNiNVBOZXZVRENqK3piTjUxSUh5?=
- =?utf-8?B?WE5ZN2NIQUxvb2YrYkRpc2UzcDY1YTJYdzdmeEhuVllFUmMzOTdaMExiVTk2?=
- =?utf-8?B?OHlVVWpneGYzZFdiaVM2MnRvQTJpNUs0eHUwY0FTYUs3RjFTWUJFcmNzdHZU?=
- =?utf-8?B?Q3Y4UFpadElDZmVjWDRybm9RWkZOQmpYNVQrOHg2RkFicDVSUXNpQ0h3cEl2?=
- =?utf-8?B?QmhwbVJ4bmoxUE1sU0libTFFODNSeWxoNVlOdTF2WlY5VlFMcU1KVnhORnZx?=
- =?utf-8?B?Ny9UWjFKdkovbDk3c09ySXZLTXhEeXpoN3N2aTgzVXozWDRYZHl3cUR2M3dO?=
- =?utf-8?B?Smx4S0FaNVpnMFZ5dU5lZXI1SFZOWHp0OEdxL0lRMmtpTTNxQkFzcFJiN2J6?=
- =?utf-8?B?V2RMZXQvOXp3YUxKYTBqbmMvY0NpZSt5b1dTZE05KzVXeE9VL2RHeGM3NzJ0?=
- =?utf-8?B?cDdVRWF2SEVzeGV2Z0ROYnpSdkxHU2hncHRySmpWRXBUMEZnMHZMYldGeUZl?=
- =?utf-8?B?N1JNUWxXTllrQ1VsOGZZNjArbnBOVk9PWEV3MG5HeVpZNVp1bW0rSzMxSEt4?=
- =?utf-8?B?c1VmWWVQazBFejdBbEgzRUo2cThxcmtNTHpqVHIwZWJGejRmYy9xWTBmcjZD?=
- =?utf-8?B?cVVBVjZEa3pPTTNrZXNSQjdJZFBrZnZVZk5FZWNzNnJabmk2eGlFd21Jb1JT?=
- =?utf-8?B?S3kwYStMSFZSeHlhVVFtUEVoeDlpRnZGbzdYeGRNVW80ZWFBWVRSd0JNTnBk?=
- =?utf-8?B?UlFjaHFGMVdGbW5vSDBCMENZY2U2K1dPWnJYMWZSVTNGWTZhTHVJTUkxcExs?=
- =?utf-8?B?ckVHK0c1cEVnSFVSVS96S3JnRkVyVEtmV3pCSEpPTW5LVVQ4Y1BzOFVNaGVX?=
- =?utf-8?B?UjhtMzJNblRvZGsvRzdwR0xyRTZFUWZhQXhxczR1ZUhLcHdoRXkzK1ZFZCtT?=
- =?utf-8?B?VmN2a0xsNVoxTFVReERqN1VqZmxvRXF4YXBYd252OE41VGQxMHdxaUQ3SDN3?=
- =?utf-8?Q?XgphYiVE9kRXUBIk=3D?=
-X-Exchange-RoutingPolicyChecked: U2u8eYYfhcD+Pa6fnRdXxqPtKRxnjGxHtMXK/qntD1ZmO24YhKaj7n8XTwkaLbAHkwsr7cNX+MIbcGQmsFxvSenRIV7GFrRT3YNX4z5lQKne+VFVJ95MEsDQ+9kQF2uaww6LfVycYHpAyV1WHIG/Lgg4yI9VD22YjabAmtcEoI2cZsxW2800pBUiZqdmcyAtuZN2nPQl/AsvJLIrgMaexslslZMxgMAUUgwd0/03zHl0NOKr7TSL5/Uol16qaxtnL4z7gWNiU7qe8s1UUcYAbsZrNthb5rgtWPKFdlhGdZQQOsJN0bGoHXI8Pw4oiPvODfuX3JXUokR8Q6OilZBVRQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b7164d2-7923-4dc8-de85-08deee1fdc86
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB6024.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2026 09:49:34.7259 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XuPmMhLdAp6IHrK5SSNnR3VtQz1Mk1rhm4UecOcNJGQiVXA0KCFggR3D4cY4HgoVttQTdqwfBxQsgDVD+Tpny4XNGeSTLcjHoyUZ9oIe61g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF4B1ECA5EA
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,45 +66,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This functionality represents a significant step in making
+the xe driver gracefully handle hardware memory degradation.
+By integrating with the DRM Buddy allocator, the driver
+can permanently "carve out" faulty memory so it isn't reused
+by subsequent allocations.
 
+This series adds memory page offlining support with following:
+1. Link VRAM object with gpu buddy
+2. Link and track ttm BO's with physical addresses
+3. Link LRC BO and its execution Queue
+4. Extend BO purge to handle vram pages as well
+5. Handle the generated physical address error by reserving addresses 4K page
+6. Add configfs for vram bad page reservation policy
+7. Sysfs entry to provide statistics of bad gpu vram pages for user info
+8. Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
+9. drm/xe: Add fault-inject based VRAM page offline injection
 
-On 7/30/2026 2:47 AM, Jia Yao wrote:
-> The HW unit that writes fault descriptors into the UM queue ring buffer
-> may not be coherent with the CPU cache.  If a descriptor write is still
-> sitting in a GPU L3 cache line when GuC reads the slot, GuC sees the
-> stale (all-zero) content from DRAM and forwards an invalid descriptor to
-> the driver (Faulted Address = 0, ASID = 0).
-> 
-> Mark the UM queue BO as uncached (XE_BO_FLAG_NEEDS_UC) so that writes
-> bypass the cache and are immediately visible to GuC.
-> 
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+v14:
+- Solve sashiko reviews
+- Remove SOFT->HARD offline patch, decision is taken based on -EEXIST
+- Dump gpu buddy allocated patch dropped
+v13:
+- Add fault inject and remove standlone debugfs
+v12:
+- Fix Sashiko review comments
+v11:
+- Add BAN reason for UMD to know about offlining
+- Add support for soft offline mode
+- Rebase and remove dummy lockdep annotation patch, as it merged from upstream
+v10:
+- Remove RFC
+v7:
+- Improve debugfs warning messages
+- Use scope_guard for locking(MattB)
+- Adapt addition of queue member of LRC BO(MattB)
+- Extend and use xe_ttm_bo_purge API for vram pages(MattB)
+- Handle dma_buf_map requests for native and remote(MattB)
+- Address if in never initialized block, set block to NULL
+- Add lockdep in gpu buddy (MattB)
+- Correct allocated_addr_to_block logic (MattA)
+V6:
+- Add more specific tests to noncritical bo sections
+- Handle smooth exit of user created exec queues
+- Break code and make purge specific static API
+V5:
+- Sysfs "max_pages" addition
+- Reset block->private NULL post purge
+- Remove wedge, return -EIO to system controller will initiate reset
+- Add debugfs tests to trigger different test scenarios manually and via igt
+- Rename addr_to_tbo to addr_to_block and move under gpu/buddy.c
+V4: API reworks, add configfs for policy reservation and apply config everywhere
+V3: use res_to_mem_region to avoid use of block->private (MattA)
+V2:
+- some fixes and clean up on errors
+- Added xe_vram_addr_to_region helper to avoid other use of block->private(MattB)
 
-note that XE_BO_FLAG_NEEDS_UC flag is not available at this point
+IGT tests for testing this via injecting simple single address and
+duplicate address fault to unit test functionality:
+https://patchwork.freedesktop.org/patch/740601/
 
-it was initially added as XE_BO_NEEDS_UC flag in a commit f15de1936f8d
-and then renamed to XE_BO_FLAG_NEEDS_UC in commit 62742d126631451
+Tejas Upadhyay (9):
+  drm/xe: Link VRAM object with gpu buddy
+  [DO NOT MERGE]drm/gpu: Add gpu_buddy_allocated_addr_to_block helper
+  drm/xe: Link LRC BO and its execution Queue
+  drm/xe: Extend BO purge to handle vram pages as well
+  drm/xe: Handle physical memory address error
+  drm/xe/configfs: Add vram bad page reservation policy
+  drm/xe/cri: Add sysfs interface for bad gpu vram pages
+  drm/xe/uapi: Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
+  drm/xe: Add fault-inject based VRAM page offline injection
 
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Jia Yao <jia.yao@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_ads.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index 53636333fb45..76029575aa45 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -412,7 +412,8 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
->  		u32 um_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile) |
->  			       XE_BO_FLAG_GGTT |
->  			       XE_BO_FLAG_GGTT_INVALIDATE |
-> -			       XE_BO_FLAG_PINNED_NORESTORE;
-> +			       XE_BO_FLAG_PINNED_NORESTORE |
-> +			       XE_BO_FLAG_NEEDS_UC;
->  
->  		bo = xe_managed_bo_create_pin_map(xe, tile, um_size, um_flags);
->  		if (IS_ERR(bo))
+ drivers/gpu/buddy.c                        |  53 ++
+ drivers/gpu/drm/xe/xe_bo.c                 |  16 +-
+ drivers/gpu/drm/xe/xe_bo.h                 |   5 +-
+ drivers/gpu/drm/xe/xe_bo_types.h           |   3 +
+ drivers/gpu/drm/xe/xe_configfs.c           |  64 ++-
+ drivers/gpu/drm/xe/xe_configfs.h           |   2 +
+ drivers/gpu/drm/xe/xe_debugfs.c            |  50 ++
+ drivers/gpu/drm/xe/xe_debugfs.h            |   2 +
+ drivers/gpu/drm/xe/xe_device_sysfs.c       |   7 +
+ drivers/gpu/drm/xe/xe_dma_buf.c            |   3 +
+ drivers/gpu/drm/xe/xe_exec_queue.c         |  14 +-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h   |   7 +-
+ drivers/gpu/drm/xe/xe_execlist.c           |   4 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c         |  32 +-
+ drivers/gpu/drm/xe/xe_lrc.c                |   1 +
+ drivers/gpu/drm/xe/xe_pt.c                 |   3 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 610 ++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   3 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  28 +
+ include/linux/gpu_buddy.h                  |   2 +
+ include/uapi/drm/xe_drm.h                  |  12 +-
+ 21 files changed, 876 insertions(+), 45 deletions(-)
+
+-- 
+2.52.0
 
