@@ -4,58 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65CA0C54FDF
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 08:57:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95517C54FDF
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 09:18:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE0B10EE49;
-	Thu, 30 Jul 2026 08:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78DE510EE61;
+	Thu, 30 Jul 2026 09:18:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J5zyyH8r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FaMBTnU4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F7E910EE49
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 08:57:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD1BF10E0F4;
+ Thu, 30 Jul 2026 09:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785401872; x=1816937872;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=xHCFGN9aLJPLuKbLkKWhD66LanX/hUh4Zd0AyLJN6OM=;
- b=J5zyyH8r5kp+KibYH6Me1Aro4chxXKPl/9sayU2/O8ivYjSPrL9wyt6G
- mf1RODrMQBH6Kjuvhac1ypOxYnnii89Y9Ve9txWVfbS4nHOUfHXcPZMQm
- E1WSQ02gRg5ebhf4M1AxnWypdMY53okKM7FIvBF4HBZgC6l0b4ErTNyrZ
- b/0bWXSPyfjpI0AeAg0nlaS7Gx3G8MNHrk0VM88KBkDkh3lDS5cv8E0oa
- 2jfFi/VW/lW8X+XS/8Db26uQOviGYME7oA9aY0PKu+x1dDLO6AlCdi6Px
- fPHuoqeKD/0xUg+cT58lDTZN/duQMATclDlrm67J7vLeZCMfD5/PPnofb A==;
-X-CSE-ConnectionGUID: RYfWgbghSO+SYHDZfy6Z8w==
-X-CSE-MsgGUID: 3kHw/hz7TYqRZofgGQIZ3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="103553455"
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="103553455"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 01:57:52 -0700
-X-CSE-ConnectionGUID: PvPEvzdoRG2m6ezpCgTUlQ==
-X-CSE-MsgGUID: IinMr40ZQ8efE30XXFIukQ==
+ t=1785403122; x=1816939122;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=8zJ2ODH7/MclepUEYWefXl8XJmxB4ORKAJ3BUMskGSY=;
+ b=FaMBTnU4k1Ossd9sgKzcSlWYga6tYIdCa9n6bS7InYYVbirZNixbyFX0
+ RBMC6rtN128JSE6dm/qtbg1rwySvQhgIPJc+ox6NYY7R1t4He7BF84OQp
+ yZghN1JLivfsXNFCSCujV9N5CU69k8rQckx7BlewHq/GqEgxNG5a2tjKB
+ O7DpcKP2ThGn48glx53rFVFComrnyLlXwqvJr3TfwnAuuhFWduefHMED8
+ 38i49E+Y9g9Y9pmQHZEL1zTWCbIz2Hhzbrz2bJ965CsBwOsDj0P1jnQHP
+ qJkw22GBezXRIpWikq67K23cvlLFUguLRJZr9f0B4YZEW6a0gTGBc3y8t Q==;
+X-CSE-ConnectionGUID: OnMv99/aTn+i/VzYn4FKtw==
+X-CSE-MsgGUID: yyi1vzhTSxCMGUHTGFHtyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="86095538"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="86095538"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 02:18:41 -0700
+X-CSE-ConnectionGUID: u3Hd7uJ7SkuIEkxuVgfJJQ==
+X-CSE-MsgGUID: grGb5ZDTR/WpsFumaqhnfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="259669459"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 01:57:50 -0700
-Date: Thu, 30 Jul 2026 10:57:47 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- matthew.brost@intel.com, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, vinay.belgaumkar@intel.com,
- riana.tauro@intel.com, karthik.poosa@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH] drm/xe/ras: Split RAS init into xe_ras_init_early and
- xe_ras_init
-Message-ID: <amsSC57qtHNAj4gs@black.igk.intel.com>
-References: <20260730065430.902562-2-mallesh.koujalagi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="264523058"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.245.93])
+ ([10.245.245.93])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 02:18:38 -0700
+Message-ID: <178a513f-2d7f-4e3a-811b-cd0d9dc309eb@linux.intel.com>
+Date: Thu, 30 Jul 2026 11:19:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260730065430.902562-2-mallesh.koujalagi@intel.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,26 +76,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 30, 2026 at 12:24:31PM +0530, Mallesh Koujalagi wrote:
-> xe_ras_init() was doing two unrelated things: setting up internal
-> bookkeeping needed before interrupts start, and querying firmware
-> errors that can only be done safely after the device is registered.
-> 
-> Split it into two functions with clear responsibilities:
-> 
-> - xe_ras_init_early(): runs early, before interrupts are enabled.
-> 
-> - xe_ras_init(): runs after the device is registered.
+Hey Dave, Sima,
 
-Why not just xe_ras_process_errors() after drm_dev_register() and keep
-the rest as is?
+drm-misc-fixes for the next -rc!
+As both Thomas and Maxime are out, I'll send -next as well.
 
-With,
+Kind regards,
+~Maarten Lankhorst
 
-Fixes: d9732e498f5f ("drm/xe/xe_ras: Query errors from system controller on probe")
+drm-misc-fixes-2026-07-30:
+drm-misc-fixes for v7.2-rc6:
+- vmwgfx:
+  - Improve various size checks and limit checks.
+  - Fix oops when submitting  invalid execbuf ioctl.
+  - Correctly lock in vmfwgx fence signaling path.
+  - More validation of execbuf ioctl.
+  - Fix oops in vmwgfx vkms init failure path.
+  - Overflow handling in shader path.
+- Improve firmware validation in panthor.
+- Fix small leak in bridge/display-connector
+- Improve imagination trace points.
+- Fix QAIC transaction length check.
+- Restrict some DP bandwidth calculations to HDMI DFP.
+The following changes since commit f5098b6bae761e346ebcd9da7f95622c04733cff:
 
-Also, IIUC process_hw_errors() suffers from the same problem after commit
-a7df563b45b0 ("drm/xe/xe_hw_error: Handle CSC Firmware reported Hardware
-errors"), which we also might want to fix at some point.
+  Linux 7.2-rc5 (2026-07-26 14:45:48 -0700)
 
-Raag
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-07-30
+
+for you to fetch changes up to d6c075f797a672a6e3bd2fd44aee713801698ec2:
+
+  accel/qaic: use sizeof(*trans_hdr) for transaction length check (2026-07-29 14:57:37 -0600)
+
+----------------------------------------------------------------
+drm-misc-fies for v7.2-rc6:
+- vmwgfx:
+  - Improve various size checks and limit checks.
+  - Fix oops when submitting  invalid execbuf ioctl.
+  - Correctly lock in vmfwgx fence signaling path.
+  - More validation of execbuf ioctl.
+  - Fix oops in vmwgfx vkms init failure path.
+  - Overflow handling in shader path.
+- Improve firmware validation in panthor.
+- Fix small leak in bridge/display-connector
+- Improve imagination trace points.
+- Fix QAIC transaction length check.
+- Restrict some DP bandwidth calculations to HDMI DFP.
+
+----------------------------------------------------------------
+Alessio Belle (1):
+      drm/imagination: Fix value of HWRT address in pvr_job_create tracepoint
+
+Alexander Kaplan (1):
+      drm/dp: Read the PCON max FRL bandwidth only for HDMI DFPs
+
+Brajesh Gupta (1):
+      drm/imagination: Update the trace point pvr_job_submit_fw()
+
+Jose Maria Casanova Crespo (1):
+      drm/vc4: Supply the overflow slot size in BPOS, not the whole bin BO size
+
+Laurent Pinchart (1):
+      drm/bridge: display-connector: Fix I2C adapter resource leak
+
+Maarten Lankhorst (1):
+      Merge remote-tracking branch 'drm/drm-fixes' into drm-misc-fixes
+
+Maíra Canal (1):
+      drm/vc4: Zero the tile state data array before each BIN job
+
+Muhammad Bilal (1):
+      accel/qaic: use sizeof(*trans_hdr) for transaction length check
+
+Osama Abdelkader (2):
+      drm/panthor: reject firmware sections with oversized data
+      drm/panthor: validate firmware interface structure sizes
+
+Zack Rusin (12):
+      drm/vmwgfx: fix guest_memory_dirty bitfield clobbered as size
+      drm/vmwgfx: reject DX_BIND_QUERY without a DX context
+      drm/vmwgfx: clamp dirty-page range with min, not max
+      drm/vmwgfx: take fman->lock around fence list mutation in fifo_down
+      drm/vmwgfx: drop dma_buf reference on foreign-fd prime import
+      drm/vmwgfx: validate DRAW_PRIMITIVES header size before division
+      drm/vmwgfx: bound DMA command body size against suffix pointer
+      drm/vmwgfx: avoid destroy_workqueue(NULL) on vkms init failure
+      drm/vmwgfx: enforce cursor size limits for MOB cursors
+      drm/vmwgfx: skip hash_del_rcu when validation context has no hash table
+      drm/vmwgfx: use check_add_overflow for shader size+offset bound
+      drm/vmwgfx: validate external BO copy bounds for both stride paths
+
+ drivers/accel/qaic/qaic_control.c            |  2 +-
+ drivers/gpu/drm/bridge/display-connector.c   | 11 +++++--
+ drivers/gpu/drm/display/drm_dp_helper.c      | 12 +++++++
+ drivers/gpu/drm/imagination/pvr_queue.c      |  7 ++--
+ drivers/gpu/drm/imagination/pvr_trace.h      | 16 +++++++--
+ drivers/gpu/drm/panthor/panthor_fw.c         | 47 ++++++++++++++++++--------
+ drivers/gpu/drm/vc4/vc4_irq.c                |  2 +-
+ drivers/gpu/drm/vc4/vc4_validate.c           | 29 ++++++++++++----
+ drivers/gpu/drm/vmwgfx/ttm_object.c          |  7 ++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_blit.c         | 39 +++++++++++++++++-----
+ drivers/gpu/drm/vmwgfx/vmwgfx_cursor_plane.c | 49 +++++++++++++++++++++++++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c      | 20 ++++++++++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.c        | 13 +++++++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c   |  4 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_resource.c     |  4 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_shader.c       | 13 +++++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_validation.c   |  3 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c         | 17 +++++-----
+ 18 files changed, 230 insertions(+), 65 deletions(-)
