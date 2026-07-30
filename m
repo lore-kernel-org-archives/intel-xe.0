@@ -4,43 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3814C55160
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 13:28:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B394C55165
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 13:30:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9062610E189;
-	Thu, 30 Jul 2026 13:28:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="k7gMXnwz";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC4C10E189
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 13:28:54 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 450CF4364D;
- Thu, 30 Jul 2026 13:28:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CC901F000E9;
- Thu, 30 Jul 2026 13:28:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
- s=korg; t=1785418134;
- bh=1uI4tJ7xGc2eMJhqniziQajONsKmGOf3FSq7Y1HXWsU=;
- h=Subject:To:Cc:From:Date;
- b=k7gMXnwzoT50XjU/oxqr8qbE7Rt3V+vBecMRpVgcR+d7cWUEPJCSmg/s2TH3y0Ce9
- H0DdVGWIAasW2OnBZokGFaSvnI9r6kWeROICPlBh9j47uxXOKhva5yB+6Tq8U1jtnq
- 70KsDICYDC8vtkh+lP9bHaobHsf+m5ywD3UXzTYU=
-Subject: Patch "gpu: Fix uninitialized buddy for built-in drivers" has been
- added to the 6.18-stable tree
-To: airlied@redhat.com, gregkh@linuxfoundation.org,
- intel-xe@lists.freedesktop.org, joelagnelf@nvidia.com,
- koen.koning@linux.intel.com, peter.senna@linux.intel.com
-Cc: <stable-commits@vger.kernel.org>
-From: <gregkh@linuxfoundation.org>
-Date: Thu, 30 Jul 2026 15:28:26 +0200
-Message-ID: <2026073026-tiny-trustless-b505@gregkh>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26C5C10EF25;
+	Thu, 30 Jul 2026 13:30:30 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54F8210EF1B;
+ Thu, 30 Jul 2026 13:30:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1110310437393890943=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_DP-HDMI_PCON_DSC_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Jul 2026 13:30:29 -0000
+Message-ID: <178541822934.5178.6174708351270394344@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260730105226.2731341-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260730105226.2731341-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,71 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1110310437393890943==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This is a note to let you know that I've just added the patch titled
+== Series Details ==
 
-    gpu: Fix uninitialized buddy for built-in drivers
+Series: DP-HDMI PCON DSC fixes
+URL   : https://patchwork.freedesktop.org/series/171346/
+State : success
 
-to the 6.18-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+== Summary ==
 
-The filename of the patch is:
-     gpu-fix-uninitialized-buddy-for-built-in-drivers.patch
-and it can be found in the queue-6.18 subdirectory.
+CI Bug Log - changes from xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd_BAT -> xe-pw-171346v1_BAT
+====================================================
 
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
+Summary
+-------
 
+  **SUCCESS**
 
-From cc27314c67516c138ee3829197d1c3b998e29fae Mon Sep 17 00:00:00 2001
-From: Koen Koning <koen.koning@linux.intel.com>
-Date: Fri, 13 Feb 2026 16:20:47 +0100
-Subject: gpu: Fix uninitialized buddy for built-in drivers
+  No regressions found.
 
-From: Koen Koning <koen.koning@linux.intel.com>
+  
 
-commit cc27314c67516c138ee3829197d1c3b998e29fae upstream.
+Participating hosts (12 -> 12)
+------------------------------
 
-Move buddy to the start of the link order, so its __init runs before any
-other built-in drivers that may depend on it. Otherwise, a built-in
-driver that tries to use the buddy allocator will run into a kernel NULL
-pointer dereference because slab_blocks is uninitialized.
-
-Specifically, this fixes drm/xe (as built-in) running into a kernel
-panic during boot, because it uses buddy during device probe.
-
-Fixes: ba110db8e1bc ("gpu: Move DRM buddy allocator one level up (part two)")
-Cc: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: intel-xe@lists.freedesktop.org
-Reviewed-by: Dave Airlie <airlied@redhat.com>
-Tested-by: Peter Senna Tschudin <peter.senna@linux.intel.com>
-Signed-off-by: Koen Koning <koen.koning@linux.intel.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-Link: https://patch.msgid.link/20260213152047.179628-1-koen.koning@linux.intel.com
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/Makefile |    3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
---- a/drivers/gpu/Makefile
-+++ b/drivers/gpu/Makefile
-@@ -2,8 +2,9 @@
- # drm/tegra depends on host1x, so if both drivers are built-in care must be
- # taken to initialize them in the correct order. Link order is the only way
- # to ensure this currently.
-+# Similarly, buddy must come first since it is used by other drivers.
-+obj-$(CONFIG_GPU_BUDDY)	+= buddy.o
- obj-y			+= host1x/ drm/ vga/ tests/
- obj-$(CONFIG_IMX_IPUV3_CORE)	+= ipu-v3/
- obj-$(CONFIG_TRACE_GPU_MEM)		+= trace/
- obj-$(CONFIG_NOVA_CORE)		+= nova-core/
--obj-$(CONFIG_GPU_BUDDY)		+= buddy.o
+  No changes in participating hosts
 
 
-Patches currently in stable-queue which might be from koen.koning@linux.intel.com are
+Changes
+-------
 
-queue-6.18/gpu-fix-uninitialized-buddy-for-built-in-drivers.patch
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd -> xe-pw-171346v1
+
+  IGT_9034: be1d1af352dbd4ca4557202a8ed0d6d60f95e0bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd: 5e24f68d311764bf343f9def49b752b509dfd5fd
+  xe-pw-171346v1: 171346v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171346v1/index.html
+
+--===============1110310437393890943==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>DP-HDMI PCON DSC fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171346/">https://patchwork.freedesktop.org/series/171346/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171346v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171346v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd_BAT -&gt; xe-pw-171346v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd -&gt; xe-pw-171346v1</li>
+</ul>
+<p>IGT_9034: be1d1af352dbd4ca4557202a8ed0d6d60f95e0bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd: 5e24f68d311764bf343f9def49b752b509dfd5fd<br />
+  xe-pw-171346v1: 171346v1</p>
+
+</body>
+</html>
+
+--===============1110310437393890943==--
