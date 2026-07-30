@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EABE9C54FDF
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 10:12:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B55DCC54FDF
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 10:18:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A840610EE9D;
-	Thu, 30 Jul 2026 10:12:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WrvHjE4b";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D31810EE81
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 10:12:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785406331; x=1816942331;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YDF5X5SgJ9n5xqT+88rqqt3D6Rb6Mmc4afuTszhbpw8=;
- b=WrvHjE4bOrWeUZys4XWegFt4BGoEQqiNATwetelXCQwMWK1flEdlYxM+
- XKOIQTg7rZJCT77mxGcu7Bw3o5j0khdYwgXDIhHSe7w2P5m/JzWa/HZKh
- JGDHwTJdp9TzsQyHX/zZc2LvFJQLbc6blAMcq7TBf223MIbffHriNBIrT
- TJPpEplM7OOPSq7WnReP7uR4JQ5qC/sii4lSlBYKU3ozpLNEVQI8j/mwp
- 1PNe+DZgUPyjkFNhAd4AqpYJL1VLtboTIYz9YxbKDDBuWYGkab95lv5J6
- Gi/O3He0hUg5OfBzhLJ1KFAnWRrXgVFPHmUQ2k41TEqV/Qi5gSdCqovoz g==;
-X-CSE-ConnectionGUID: W4uNVlhOTBGQU8gR0PFqvw==
-X-CSE-MsgGUID: PdRY89EdSjK0GJqhnZ12dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="73557251"
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="73557251"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 03:12:11 -0700
-X-CSE-ConnectionGUID: Sum1giejQWqkFGkHZKJF1g==
-X-CSE-MsgGUID: XdMImfKYT7mV6vDLH/IwoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="256925338"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 03:12:08 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>
-Subject: [PATCH V14 8/9] drm/xe/uapi: Expose ban reason in
- EXEC_QUEUE_GET_PROPERTY_BAN
-Date: Thu, 30 Jul 2026 15:41:30 +0530
-Message-ID: <20260730101132.2770752-19-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260730101132.2770752-11-tejas.upadhyay@intel.com>
-References: <20260730101132.2770752-11-tejas.upadhyay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6B610EE74;
+	Thu, 30 Jul 2026 10:18:15 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 452CD10EE74;
+ Thu, 30 Jul 2026 10:18:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_memory_page_offlining?=
+ =?utf-8?q?_support_=28rev16=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Jul 2026 10:18:14 -0000
+Message-ID: <178540669427.4530.18165291900506065051@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260730101132.2770752-11-tejas.upadhyay@intel.com>
+In-Reply-To: <20260730101132.2770752-11-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,216 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN to return a bitmask indicating
-the reason for the ban, rather than a simple boolean. This allows
-userspace to distinguish between different ban causes:
+== Series Details ==
 
-- DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG (bit 0): exec queue was banned
-  due to a GPU hang or job timeout detected by the TDR.
-- DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE (bit 1): exec queue was
-  banned because a VRAM page backing its resources was taken offline.
+Series: Add memory page offlining support (rev16)
+URL   : https://patchwork.freedesktop.org/series/161473/
+State : warning
 
-The ban_reason field is added to struct xe_exec_queue and set at the
-point where the ban is triggered:
-- In guc_exec_queue_timedout_job() for GPU hang.
-- In xe_ttm_vram_purge_page() for memory page offline, before calling
-  xe_exec_queue_kill() or xe_vm_kill().
+== Summary ==
 
-The reset_status op is updated to return u64 with the reason bitmask.
-When a queue is banned but no explicit reason was recorded (e.g., from a
-generic CAT error), it defaults to GPU_HANG for backward compatibility.
-A value of 0 means the exec queue is not banned.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5f79b71c6d86e69074cdae08b0011e0d16fc477e
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Thu Jul 30 15:41:31 2026 +0530
 
-v2(Sashiko):
-- Use atomic_t for ban_reason to fix concurrent updates from TDR and
-  page-offline
-- Guard GPU_HANG bit with !exec_queue_killed to avoid masking
-  page-offline reason
-- Clear ban_reason on queue recovery (clear_exec_queue_banned path)
-- Use atomic_read in guc_exec_queue_reset_status for lockless read
+    drm/xe: Add fault-inject based VRAM page offline injection
+    
+    Add a fault-inject based debugfs interface for testing VRAM page
+    offlining. This replaces the previous standalone debugfs approach
+    with the standard kernel fault-inject infrastructure.
+    
+    Two debugfs entries are created under the xe debugfs root for
+    CRI platforms:
+    - inject_mempage_offline/: Standard fault-inject knobs (probability,
+      times, interval, etc.) — only available with
+      CONFIG_FAULT_INJECTION_DEBUG_FS
+    - inject_mempage_offline_trigger: Write a PFN value to inject a
+      specific page, or write "0" to auto-pick the last unallocated
+      VRAM page
+    
+    The trigger accepts:
+    - "0"      : auto-pick last unallocated page
+    - "0xPFN"  : inject fault at a specific PFN address
+    
+    On kernels with CONFIG_FAULT_INJECTION_DEBUG_FS, injection is gated
+    by should_fail() (probability/times must be configured first).
+    On kernels without it, the trigger always injects directly.
+    
+    The injection reports the page as faulted via
+    xe_ttm_vram_handle_addr_fault(), exercising the full page offlining
+    path.
+    
+    Usage (with CONFIG_FAULT_INJECTION_DEBUG_FS):
+      echo 100 > inject_mempage_offline/probability
+      echo 1 > inject_mempage_offline/times
+      echo 0 > inject_mempage_offline_trigger
+    
+    Usage (without CONFIG_FAULT_INJECTION_DEBUG_FS):
+      echo 0 > inject_mempage_offline_trigger
+    
+    v2(sashiko):
+    - use cond_resched()
+    - validate input first and fix addr < 0 case
+    - validate vr, move block, found var as local to scope_guard
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 5e24f68d311764bf343f9def49b752b509dfd5fd drm-intel
+76cf3604040c drm/xe: Link VRAM object with gpu buddy
+805f3444d0c6 drm/gpu: Add gpu_buddy_allocated_addr_to_block helper
+f3a511f775fa drm/xe: Link LRC BO and its execution Queue
+d378b1954c92 drm/xe: Extend BO purge to handle vram pages as well
+f2692dfed6ae drm/xe: Handle physical memory address error
+62dc6ec4e57c drm/xe/configfs: Add vram bad page reservation policy
+7c55e51de9f3 drm/xe/cri: Add sysfs interface for bad gpu vram pages
+e6d021690468 drm/xe/uapi: Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
+-:180: ERROR:CODE_INDENT: code indent should use tabs where possible
+#180: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:562:
++                atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &q->ban_reason);$
 
-Assisted-by: Copilot:claude-opus-4.6
-Acked-by: José Roberto de Souza <jose.souza@intel.com>
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 ++++--
- drivers/gpu/drm/xe/xe_execlist.c         |  4 +--
- drivers/gpu/drm/xe/xe_guc_submit.c       | 32 ++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     | 10 +++++++-
- include/uapi/drm/xe_drm.h                | 12 ++++++++-
- 5 files changed, 54 insertions(+), 11 deletions(-)
+-:180: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#180: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:562:
++                atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &q->ban_reason);$
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 53b6c0bf4849..326c8aa4014c 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -149,6 +149,9 @@ struct xe_exec_queue {
- 	 */
- 	unsigned long flags;
- 
-+	/** @ban_reason: Bitmask of ban reasons (DRM_XE_EXEC_QUEUE_BAN_REASON_*) */
-+	atomic_t ban_reason;
-+
- 	union {
- 		/** @multi_gt_list: list head for VM bind engines if multi-GT */
- 		struct list_head multi_gt_list;
-@@ -343,8 +346,8 @@ struct xe_exec_queue_ops {
- 	 * signalled when this function is called.
- 	 */
- 	void (*resume)(struct xe_exec_queue *q);
--	/** @reset_status: check exec queue reset status */
--	bool (*reset_status)(struct xe_exec_queue *q);
-+	/** @reset_status: check exec queue ban status, returns ban reason bitmask */
-+	u64 (*reset_status)(struct xe_exec_queue *q);
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index cc33ae80e8cf..534e7c4e0099 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -452,10 +452,10 @@ static void execlist_exec_queue_resume(struct xe_exec_queue *q)
- 	/* NIY */
- }
- 
--static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
-+static u64 execlist_exec_queue_reset_status(struct xe_exec_queue *q)
- {
- 	/* NIY */
--	return false;
-+	return 0;
- }
- 
- static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 8aaed4fd13ea..bb92faf3e8c9 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -6,6 +6,7 @@
- #include "xe_guc_submit.h"
- 
- #include <linux/bitfield.h>
-+#include <uapi/drm/xe_drm.h>
- #include <linux/bitmap.h>
- #include <linux/circ_buf.h>
- #include <linux/dma-fence-array.h>
-@@ -1562,6 +1563,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	if (!exec_queue_killed(q))
- 		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
- 
-+	/*
-+	 * Only tag as GPU hang if this is the original timeout, not a
-+	 * consequence of a prior kill (e.g., page-offline).
-+	 */
-+	if (!exec_queue_killed(q))
-+		atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG, &q->ban_reason);
- 	set_exec_queue_banned(q);
- 
- 	/* Kick job / queue off hardware */
-@@ -1645,6 +1652,9 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		if (timeout_needs_gt_reset(q, job, skip_timeout_check)) {
- 			if (!xe_sched_invalidate_job(job, 2)) {
- 				clear_exec_queue_banned(q);
-+				/* protect concurrent page offline reasons */
-+				atomic_andnot(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG,
-+					      &q->ban_reason);
- 				xe_gt_reset_async(q->gt);
- 				goto rearm;
- 			}
-@@ -2521,13 +2531,25 @@ static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue *q)
- 	}
- }
- 
--static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
-+static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
- {
--	if (xe_exec_queue_is_multi_queue_secondary(q) &&
--	    guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
--		return true;
-+	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+		u64 status = guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q));
- 
--	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
-+		if (status)
-+			return status;
-+	}
-+
-+	if (exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q)) {
-+		u64 reason = atomic_read_acquire(&q->ban_reason);
-+
-+		/* If no specific reason was recorded, default to GPU hang */
-+		if (!reason)
-+			reason = DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG;
-+		return reason;
-+	}
-+
-+	return 0;
- }
- 
- /*
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index ef9b7128f28a..3f9cad4b1402 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -7,6 +7,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_buddy.h>
-+#include <uapi/drm/xe_drm.h>
- 
- #include <drm/ttm/ttm_placement.h>
- #include <drm/ttm/ttm_range_manager.h>
-@@ -541,7 +542,12 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
- 	xe_bo_unlock(bo);
- 	/*  Ban VM if BO is PPGTT */
- 	if (vm && (flags & XE_BO_FLAG_PAGETABLE)) {
-+		struct xe_exec_queue *eq;
-+
- 		down_write(&vm->lock);
-+		list_for_each_entry(eq, &vm->preempt.exec_queues, lr.link)
-+			atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &eq->ban_reason);
-+		smp_wmb(); /* Force all queue bits to be visible before killing the VM */
- 		xe_vm_kill(vm, true);
- 		up_write(&vm->lock);
- 	}
-@@ -553,7 +559,9 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
- 	/*  Ban exec queue if BO is lrc */
- 	if (q && xe_exec_queue_get_unless_zero(q)) {
- 		/* ban queue */
--		q_to_put = q;
-+                atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &q->ban_reason);
-+                smp_wmb(); /* Force bit change to finish before state change triggers */
-+                q_to_put = q;
- 	}
- 
- 	if (bo->purgeable.state == XE_MADV_PURGEABLE_PURGED) {
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 509202a7b13e..1600e8f0885a 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1503,7 +1503,17 @@ struct drm_xe_exec_queue_get_property {
- 	/** @property: property to get */
- 	__u32 property;
- 
--	/** @value: property value */
-+	/**
-+	 * @value: property value
-+	 *
-+	 * For %DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN, this is a bitmask of:
-+	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG - banned due to GPU hang/timeout
-+	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE - banned due to memory page offline
-+	 *
-+	 * Value of 0 means the exec queue is not banned.
-+	 */
-+#define DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG		(1 << 0)
-+#define DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE	(1 << 1)
- 	__u64 value;
- 
- 	/** @reserved: Reserved */
--- 
-2.52.0
+-:181: ERROR:CODE_INDENT: code indent should use tabs where possible
+#181: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:563:
++                smp_wmb(); /* Force bit change to finish before state change triggers */$
+
+-:181: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#181: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:563:
++                smp_wmb(); /* Force bit change to finish before state change triggers */$
+
+-:182: ERROR:CODE_INDENT: code indent should use tabs where possible
+#182: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:564:
++                q_to_put = q;$
+
+-:182: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#182: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:564:
++                q_to_put = q;$
+
+total: 3 errors, 3 warnings, 0 checks, 136 lines checked
+5f79b71c6d86 drm/xe: Add fault-inject based VRAM page offline injection
+
 
