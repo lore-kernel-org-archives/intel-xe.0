@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D782C55164
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E2DCC5516E
 	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 15:33:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1962110EFBF;
-	Thu, 30 Jul 2026 15:33:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E63AE10EFB7;
+	Thu, 30 Jul 2026 15:33:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W//03QQ7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNyRae26";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED7C410EFB9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5ACD10EFBB
  for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 15:33:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785425611; x=1816961611;
+ t=1785425610; x=1816961610;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3GXSV3q46jBhhhpPlFL4zvlszcNlOke4qwPvzlt5AjM=;
- b=W//03QQ7/hmXe2VEBcr3nhYWFLmiRNZazdBdc/C9qhho5o7yrOdroASI
- tYdjzsN7x4Ic2fN45yNeUxxeghxMkekAvI7X27H0ntFOmCRWBTjf8ldWt
- QmreBTRkqo4bWgN6Y9tNT2GqW4bAxcePL4HveDNZZfB+JMqXaoGmOO4M/
- sBZJi+GFkeDlNdqCFVY8ymdsx42VNSrHPXRVDfV8LqPhAdaQMZOxZCLga
- CMAwUGT3vCl6b47Emv1IKjHYke5kzqeaDNsX2zdXiIzRzMm9GLg9+w0f1
- kfTHt29uavXK/cyLZgWSQbKZOl9qf0BelO++9+12NOXzOgWHVc7af3+Wi A==;
-X-CSE-ConnectionGUID: pEcBUzD9TviyGu+7OOODzQ==
-X-CSE-MsgGUID: R18vrwf0R1q43K7Ti14hNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="73583101"
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="73583101"
+ bh=zfpw+jJoxPPRjY4U+q64S4VKA5J4OmBH+jiSSedLeJY=;
+ b=YNyRae26fnPWmftB4QSB0zyKl+ZYQRMnH6QFM4s4DHlrDfkdnc58ztn/
+ gfdrO7spXSFo2LVfkUmiSS+5lWQQQkLExqNuyTFXUjZl/j+Ft/hMRlpGC
+ dGALwy1wOGW5ABPYuHIgYCV1e5+WzbRSymCpnX7fycDDgDqVAwkC+JKaY
+ d+CGT6TV2GzFGOvUL20Sc0MaZw4x5YObgTsoJe1jPfP6O9yEaXMG4vPgf
+ KVegTY7io9BQSFSVLGZGW8S37IgSJ3jBESWrlRv1ebXCtYNW68nfJE4Zc
+ zZnRsxU3ffvRwUBLXOa4IOQMZh0NOgzq9WJ7/Qwq1ZCC0pjktmJ3NSjZ9 w==;
+X-CSE-ConnectionGUID: i7g1E4YKRm2NVZSkrELDxg==
+X-CSE-MsgGUID: VCwEkCYkRr2MiXptdT5Hww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="73583088"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="73583088"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 08:33:28 -0700
-X-CSE-ConnectionGUID: Up2MfMxaT3mx3VdKe1gT0g==
-X-CSE-MsgGUID: Mr3xbZy4QDuzNlyqZrBGcg==
+ 30 Jul 2026 08:33:27 -0700
+X-CSE-ConnectionGUID: QrLGGT3XRgaEB9J5dWXqXw==
+X-CSE-MsgGUID: lPqz2igmRa6u511E0veYpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="260387623"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="260387617"
 Received: from psiebies-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.250.135])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 08:33:27 -0700
+ 30 Jul 2026 08:33:25 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v3 17/23] drm/xe: Report 'device wedged' errors using SIGID
-Date: Thu, 30 Jul 2026 17:21:13 +0200
-Message-ID: <20260730152121.576-18-michal.wajdeczko@intel.com>
+Subject: [PATCH v3 16/23] drm/xe: Report 'probe blocked' error using SIGID
+Date: Thu, 30 Jul 2026 17:21:12 +0200
+Message-ID: <20260730152121.576-17-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260730152121.576-1-michal.wajdeczko@intel.com>
 References: <20260730152121.576-1-michal.wajdeczko@intel.com>
@@ -70,60 +70,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'device wedged' error using xe_log_err_fatal() helper.
-Use -EIO as the error cause, as nothing else is provided here.
-The hints about the recovery method and bug filling are now
-separated as it only needs to be printed once.
+Report 'probe blocked' error using xe_log_info() helper.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+v2: use info severity (Aravind)
+---
+ drivers/gpu/drm/xe/xe_pci.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4eed9a251e65..b1e9bcd9f5b4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -48,6 +48,7 @@
- #include "xe_i2c.h"
- #include "xe_irq.h"
- #include "xe_late_bind_fw.h"
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 36d62927b969..a3c4046b56cf 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -25,6 +25,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc.h"
 +#include "xe_log.h"
  #include "xe_mmio.h"
  #include "xe_module.h"
- #include "xe_nvm.h"
-@@ -1396,6 +1397,9 @@ void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
- 	xe->wedged.method = method;
- }
- 
-+#define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
-+#define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/new"
-+
- /**
-  * xe_device_declare_wedged - Declare device wedged
-  * @xe: xe device instance
-@@ -1427,12 +1431,12 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 	if (!atomic_xchg(&xe->wedged.flag, 1)) {
- 		xe->needs_flr_on_fini = true;
- 		xe_pm_runtime_get_noresume(xe);
--		drm_err(&xe->drm,
--			"CRITICAL: Xe has declared device %s as wedged.\n"
--			"IOCTLs and executions are blocked.\n"
--			"For recovery procedure, refer to https://docs.kernel.org/gpu/drm-uapi.html#device-wedging\n"
--			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
--			dev_name(xe->drm.dev));
-+
-+		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
-+		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
-+			    "For recovery procedure, refer to %s\n"
-+			    "Please file a _new_ bug report at %s\n",
-+			    WEDGED_URL, XE_BUG_URL);
+ #include "xe_pci_error.h"
+@@ -1172,8 +1173,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
  	}
  
- 	for_each_gt(gt, xe, id)
+ 	if (id_blocked(pdev->device)) {
+-		dev_info(&pdev->dev, "Probe blocked for device [%04x:%04x].\n",
+-			 pdev->vendor, pdev->device);
++		xe_log_info(pdev, PROBE, "Probe blocked for device [%04x:%04x]\n",
++			    pdev->vendor, pdev->device);
+ 		return -ENODEV;
+ 	}
+ 
 -- 
 2.47.1
 
