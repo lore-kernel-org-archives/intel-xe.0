@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A29CC53200
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jul 2026 23:56:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AEF4C53200
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 00:47:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E7DC10E03E;
-	Wed, 29 Jul 2026 23:56:19 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07F5B10E03E;
- Wed, 29 Jul 2026 23:56:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1663098370522777168=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D587310E0CB;
+	Thu, 30 Jul 2026 00:47:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XtA632ma";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4FBE10E0CB
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 00:47:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1785372465; x=1816908465;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0nstxKOPdS3ODtmDh5MBXpA3KCXgZuMU0AF34DzETs4=;
+ b=XtA632maG+e1ENU7Sv5qx2Z2zzWpdRJFH70cF1hqv7r6MocUGvroQMWU
+ NhBy0qT5+C4f0RM7EormK1YSs4pd+cXrMoYLXruGuuh2I4/1zD1Ut3OmE
+ F2MktDJOmtt7R//iJaqQhfW/ziJ6NOSCH2faAVwrHjJxxj4ITX0vkJ7GC
+ swypT5WUQl8PGp6D8pGkPwqXIWjOH3lN0VXk8I6zehGKES2vLoCmLWsYl
+ pWGq1dqdiRkq9AmKQDC12MOxSr2iHzcEQEK7oPV+iW/9B1tes8w6dbnqH
+ ywSLzIT0lkDw9USUshTWuYrGmAF8ZWjtXU/mKZ/meuo39nS5RFv1Xk6NY g==;
+X-CSE-ConnectionGUID: X4km0mHkQU+9UZ+XutyyIw==
+X-CSE-MsgGUID: i9WIcqoWTY+UW/8xjXqFPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="85935327"
+X-IronPort-AV: E=Sophos;i="6.25,193,1779174000"; d="scan'208";a="85935327"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2026 17:47:44 -0700
+X-CSE-ConnectionGUID: UXHUikiVRGKaIRB5hXkUQg==
+X-CSE-MsgGUID: JvgPKOLMS6+Feq60BRUUXw==
+X-ExtLoop1: 1
+Received: from unknown (HELO DUT6094BMGFRD.fm.intel.com) ([10.80.55.54])
+ by fmviesa003.fm.intel.com with ESMTP; 29 Jul 2026 17:47:44 -0700
+From: Jia Yao <jia.yao@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com, gwan-gyeong.mun@intel.com, stable@vger.kernel.org,
+ Jia Yao <jia.yao@intel.com>
+Subject: [PATCH v4 0/1] drm/xe/guc_ads: allocate UM queues in a separate UC BO
+Date: Thu, 30 Jul 2026 00:47:32 +0000
+Message-ID: <20260730004735.344627-1-jia.yao@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260722053410.2767369-1-jia.yao@intel.com>
+References: <20260722053410.2767369-1-jia.yao@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Changes_for_Xe3p?=
- =?utf-8?q?=5FHPM_media_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 Jul 2026 23:56:18 -0000
-Message-ID: <178536937802.2830.16533334819501092128@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260729230645.3052178-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20260729230645.3052178-1-ashutosh.dixit@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +62,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1663098370522777168==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+== Problem ==
 
-== Series Details ==
+On platforms with Unified Shared Memory (USM), the xe driver maintains
+three hardware page-fault queues (PAGE_FAULT, PAGE_FAULT_RESPONSE,
+ACCESS_COUNTER) inside the GuC Additional Data Structures (ADS) blob.
+The ADS blob is mapped WB on the CPU side.
 
-Series: drm/xe: Changes for Xe3p_HPM media (rev4)
-URL   : https://patchwork.freedesktop.org/series/171088/
-State : failure
+xe_guc_ads_populate() is called on every GT reset to reprogram the ADS
+blob; it begins with a full memset() of the blob to zero.  The zeroed
+cache lines for the UM queue region reside in the CPU cache (LLC, WB)
+but are not immediately written back to DRAM.
 
-== Summary ==
+GAM hardware writes fault descriptors to the queue via DPA - a
+non-coherent path that bypasses the CPU cache and writes directly to
+memory.  GuC reads the queue via GGTT (WB), which hits the CPU cache.
+As a result GuC sees the stale zeroed data from the CPU cache instead
+of the descriptor written to DRAM by GAM.  The driver then receives an
+all-zero fault descriptor and returns -EINVAL, causing an unnecessary
+engine reset.
 
-CI Bug Log - changes from xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc_BAT -> xe-pw-171088v4_BAT
-====================================================
+This is documented in HSD as:
+  "When Fault queue is updated by the SW (Buffer zeroed), it can reside
+   in the CPU cache (L4:WB). A non coherent write from GAM HW would not
+   consult the CPU cache and it will eventually get written into the
+   memory (depends upon eviction/flushes) and CPU cache has stale data.
+   When GUC HW reads the fault queue it gets it from the CPU cache,
+   which is stale data."
 
-Summary
--------
+The window is narrow but reliably reproducible: run xe_exec_reset
+--run-subtest gt-reset followed immediately by
+xe_exec_system_allocator --run-subtest
+threads-many-execqueues-mmap-new-race.
 
-  **FAILURE**
+== Reproduction ==
 
-  Serious unknown changes coming with xe-pw-171088v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-171088v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  # Requires a platform with has_usm (e.g. Xe3 iGFX)
+  sudo xe_exec_reset --run-subtest gt-reset
+  sudo xe_exec_system_allocator --run-subtest threads-many-execqueues-mmap-new-race
 
-  
+  Symptom in dmesg:
+    [xe] ASID: 0, Faulted Address: 0x0000000000000000, FaultType: 0
 
-Participating hosts (12 -> 12)
-------------------------------
+  The all-zero fault descriptor is the tell-tale sign of the stale
+  cache line race.
 
-  No changes in participating hosts
+== Fix ==
 
-Possible new issues
--------------------
+Allocate the UM queues in a dedicated UC BO (ads->um_queue_bo).  UC
+mapping on the CPU side ensures the memset bypasses the cache and the
+zeroed data lands in DRAM immediately.  GuC's non-coherent read then
+goes to DRAM and sees the correct descriptor written by GAM.
 
-  Here are the unknown changes that may have been introduced in xe-pw-171088v4_BAT:
+A separate BO also eliminates the secondary race where a descriptor
+written by the GPU between GDRST and GuC restart could be zeroed by the
+next call to xe_guc_ads_populate().
 
-### IGT changes ###
+On dGFX, VRAM placement is used so that xe_bo_main_addr() returns a
+real device-physical address (DPA).  The original ADS BO is explicitly
+migrated to VRAM by xe_guc_realloc_post_hwconfig(), so its
+xe_bo_main_addr() already returns a correct DPA.  A separate SYSTEM BO
+for the UM queues would not go through that migration path; on systems
+where physical pages are allocated above 4 GB the IOMMU assigns an IOVA
+that differs from the physical address, so base_dpa would be wrong and
+GuC/GAM would access the wrong memory.
 
-#### Possible regressions ####
+Why not just flush the cache after memset?
 
-  * igt@xe_module_load@load:
-    - bat-wcl-1:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc/bat-wcl-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171088v4/bat-wcl-1/igt@xe_module_load@load.html
+An earlier approach called drm_clflush_virt_range() on the UM queue
+region immediately after the memset to evict the stale zero lines from
+LLC.  This reduces the failure rate significantly but does not fully
+eliminate the race for two reasons.
 
-  
+First, the Linux kernel maintains a WB direct mapping (linear map) that
+covers all physical memory.  Even after flushing the vmap alias, the
+CPU can speculatively prefetch the same physical page through the WB
+direct-map alias, silently repopulating the cache with zeros.  LNL is
+known to be particularly susceptible to this speculative prefetch
+behaviour.  XE_BO_FLAG_NEEDS_UC calls set_memory_uc() which updates
+both the vmap PTE and the direct-map PTE to UC, closing this aliasing
+window entirely.
 
+Second, the flush approach leaves the memory mapped WB on the CPU side
+permanently.  Any future SW access - a debug read, a tracing hook, an
+inadvertent touch - can re-dirty the cache line and reintroduce the
+race.  UC mapping makes the correct behaviour unconditional and
+self-documenting.
 
-Build changes
--------------
+Changes in v4:
+- Split the single v3 patch into three logically independent patches:
+  1. Separate BO allocation (root fix for the memset-zeroing race)
+  2. VRAM placement on dGFX (fix incorrect DPA when pages are above 4 GB)
+  3. UC mapping (close the CPU cache aliasing window on iGFX)
+- Corrected the dGFX description: the original ADS BO works because
+  xe_guc_realloc_post_hwconfig() explicitly migrates it to VRAM; a
+  separate SYSTEM BO would not be migrated and its IOVA would differ
+  from the physical address for high-memory pages.  The previous
+  description incorrectly attributed this to IOVA aliasing a PCI MMIO
+  reserved window.
+- Added physical-contiguity verification for no-IOMMU iGFX systems.
+- xe_guc.c: removed the post-hwconfig reinit_in_vram call for
+  um_queue_bo now that dGFX allocates it directly in VRAM.
 
-  * Linux: xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc -> xe-pw-171088v4
+Jia Yao (3):
+  drm/xe/guc_ads: allocate UM queues in a separate BO
+  drm/xe/guc_ads: allocate UM queues in VRAM on dGFX
+  drm/xe/guc_ads: use uncached mapping for UM queue BO
 
-  IGT_9032: 9032
-  xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc: e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc
-  xe-pw-171088v4: 171088v4
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 100 +++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_guc_ads_types.h |   5 ++
+ 2 files changed, 80 insertions(+), 25 deletions(-)
 
-== Logs ==
+-- 
+2.43.0
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171088v4/index.html
-
---===============1663098370522777168==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Changes for Xe3p_HPM media (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171088/">https://patchwork.freedesktop.org/series/171088/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171088v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171088v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc_BAT -&gt; xe-pw-171088v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-171088v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-171088v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-171088v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc/bat-wcl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171088v4/bat-wcl-1/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc -&gt; xe-pw-171088v4</li>
-</ul>
-<p>IGT_9032: 9032<br />
-  xe-5506-e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc: e43bb9c0c12cffebb4fae29c6f06d0901f1b5dcc<br />
-  xe-pw-171088v4: 171088v4</p>
-
-</body>
-</html>
-
---===============1663098370522777168==--
