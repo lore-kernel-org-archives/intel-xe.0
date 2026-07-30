@@ -4,66 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD2FEC55160
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 11:07:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08DA3C55162
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 11:09:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A57810EEBA;
-	Thu, 30 Jul 2026 11:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA9F010EEBF;
+	Thu, 30 Jul 2026 11:09:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R/2OhGnW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nu+Dlbat";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 894F310EEB7
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 11:07:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D78A10EEBC;
+ Thu, 30 Jul 2026 11:09:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785409635; x=1816945635;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/o/SerpQauclJcfqXGbAFVcRHiTES4S4YrbmywNJjDQ=;
- b=R/2OhGnWQIE3DtSLvDC9iZ2eIebDdzqVZ5aB3bxd8wYO5ovdJDcCkWit
- Y75g5y6y5nMN6WnmlVDq5l1e1iBEWptWu7mMvhokomVJ3vpws624E6TLf
- xvE+B2JVOsmuk/nMIIorTCt89w2sWNJh7wrHsUUv5CLjh0ve5npygQded
- ubW8BPe2HcaRT0/HmSU3FQuoivBJHscqKavt943kvhwO4pty+nv+IdG1i
- cklTAJM6jv0ILZ91kX03oN9SQ9INXnP3OoMcWUEjx3zy80/vsihoEhaCu
- mKct6gBei8aEQfn0A7EF8YiHf6BY8KaHUtiFLS600WlLQoCojyi7b/83g w==;
-X-CSE-ConnectionGUID: WLhuiivdTYiINF5KL49e1w==
-X-CSE-MsgGUID: K8Vqz5kkQPuBZyAQJu/VHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="103563821"
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="103563821"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 04:07:13 -0700
-X-CSE-ConnectionGUID: JY0UaRYwRYmdduBRbuko5Q==
-X-CSE-MsgGUID: gBlLHJBnRWGMrUoThehMyg==
+ t=1785409769; x=1816945769;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hmt79ijGVKksiRAalD0FgMUw3UrKYGngZTMKu29Bukw=;
+ b=nu+DlbatB8pcZ/1MwDPHPRP+/1/AohTxgs9KEFQllke3RpsyBh7sqRLE
+ 93as1fbh/ZdPM7s5Joy0BxwcPcC0aP3vBVjs3vrWP/LSHSkDpICgjgGeb
+ Bo8y41RC6y1EO2yNQuKIDOkPi1rv6wrsqMk3+zKvFmPy7En0VigkT9l4w
+ fqK0l6VcAUmjC3i/jM7nsOhlHF/v8LU7XVHa/NUjC68du7/0LaB7ns6gi
+ H93GROaEkCeIxXPlskg3gnPSLGBMRcvdXJ0Pjkhe3M+swh551F5nmYPnj
+ fqq2Z6N0abNqFtoCNON8PtmVwpetfS0RDGnQ1Wc5+WWQw45EXleOkMlnl A==;
+X-CSE-ConnectionGUID: TSb1zCM1T/+6gNkS6WwhpA==
+X-CSE-MsgGUID: 1aiO9J/nRPelNG6AiMBXTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="97182394"
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="97182394"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 04:09:29 -0700
+X-CSE-ConnectionGUID: DJQe3ByARDe7Nl0aqMrVVw==
+X-CSE-MsgGUID: gqKp348mQXGqhTkD6RkXqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="260337059"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa007.jf.intel.com with ESMTP; 30 Jul 2026 04:07:11 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1001)
- id AD50599; Thu, 30 Jul 2026 13:07:09 +0200 (CEST)
-Date: Thu, 30 Jul 2026 13:07:09 +0200
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Ramesh Babu B <ramesh.babu.b@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] drm/xe/i2c: Keep the i2c controller always enabled
-Message-ID: <20260730110709.GE20844@black.igk.intel.com>
-References: <20260722133554.2079612-1-heikki.krogerus@linux.intel.com>
- <20260722133554.2079612-4-heikki.krogerus@linux.intel.com>
- <amodgov-jMqxPiwV@black.igk.intel.com>
- <amsvj5ARbbGDiWp-@black.igk.intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,194,1779174000"; d="scan'208";a="265327083"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2026 04:09:26 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: alexander.kaplan@sms-medipool.de,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/14] DP-HDMI PCON DSC fixes
+Date: Thu, 30 Jul 2026 16:22:12 +0530
+Message-ID: <20260730105226.2731341-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <amsvj5ARbbGDiWp-@black.igk.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,28 +66,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 30, 2026 at 01:03:43PM +0200, Heikki Krogerus wrote:
-> On Wed, Jul 29, 2026 at 05:34:26PM +0200, Raag Jadav wrote:
-> > On Wed, Jul 22, 2026 at 03:35:54PM +0200, Heikki Krogerus wrote:
-> > > Some platforms make an assumption that the i2c controller's
-> > > enabled state indicates also the power state of the
-> > > controller. This can create a problem when the controller is
-> > > in disabled state, because the hardware may assume
-> > > incorrectly that it is then also in low-power state.
-> > > 
-> > > To fix this, the controller is kept enabled by taking over
-> > > the IC_ENABLE register. The controller has to be disabled
-> > > when the configuration is updated and when the target
-> > > address or the slave address are assigned, so disabling it
-> > > when IC_CON, IC_TAR or IC_SAR registers are programmed, and
-> > > then re-enabling it again.
-> > > 
-> > > Fixes: f0e53aadd702 ("drm/xe: Support for I2C attached MCUs")
-> > > Cc: stable@vger.kernel.org
-> > > Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > 
-> > I'll rely on Andy and Mika's disposition on this one.
-> 
-> Mika should be back from vacation.
+The PCON mode_valid path currently does not fully account for the bandwidth
+limitations of the PCON <-> HDMI link. The DSC capability between the
+PCON and the HDMI sink also needs to be taken into account, which currently
+isn't. Furthermore, the compressed bpp chosen needs to fit the
+FRL configuration, which is also missing.
 
-Looks reasonable, no objections from me :)
+This series:
+ - reworks the HDMI DSC helpers so they can be reused across the
+   mode_valid, compute_config and FRL bandwidth check paths
+ - fixes the FRL/TMDS downstream bandwidth checks, and allows
+   PCON DSC modes through the FRL check
+ - Clamps the programmed DSC bpp to the FRL link bandwidth.
+
+Ankit Nautiyal (14):
+  drm/i915/hdmi: Use correct type for output_format parameter
+  drm/i915/display: Generalize intel_hdmi_dsc_get_num_slices helper
+  drm/i915/display: Pass bpc in intel_hdmi_dsc_get_bpp
+  drm/i915/hdmi21/mtl: Split the intel_hdmi_dsc_get_bpp()
+  drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
+  drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints
+  drm/i915/dp: Use FRL pair check for the DFP dotclock limit
+  drm/i915/dp: Use the common downstream bw check in compute_bpc
+  drm/i915/hdmi: Expose DSC min/max bpp helpers
+  drm/i915/hdmi: Add helper to check if DSC chunksize fits the sink
+    limits
+  drm/i915/dp: Allow PCON DSC modes through FRL bw check
+  drm/i915/dp: Clamp PCON DSC bpp to the FRL link bandwidth
+  drm/i915/hdmi: Add helper to get max FRL rate for an HDMI sink
+  drm/i915/dp: Use helpers for getting max FRL rate
+
+ drivers/gpu/drm/i915/display/intel_dp.c   | 173 +++++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 150 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  16 +-
+ 3 files changed, 261 insertions(+), 78 deletions(-)
+
+-- 
+2.50.1
+
