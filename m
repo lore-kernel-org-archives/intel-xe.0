@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FFD2C531D0
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 04:23:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91E6BC54FD2
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jul 2026 04:59:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5931510ED84;
-	Thu, 30 Jul 2026 04:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5064310EDB9;
+	Thu, 30 Jul 2026 04:59:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="avxlsCut";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SY6702bw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB36910EDA1
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 04:23:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A419A10EDB9
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jul 2026 04:59:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785385400; x=1816921400;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=E38oa0NMY4HJBIoOXHCjZ243HJyKDEBW0eYIjak37ls=;
- b=avxlsCut8iulx07iTM88sW8z7GzGKF3G8tA6K2JUsiQcuQzK9A3/12DF
- r5CNlDOTlQrLAk5cl512VzFZotyJJcbiKv956XdtjOS+xlvyoR8oTTAhL
- kfwZ8AK5p1iRsNL7LGnhgA0M/KW1fqHRsE5pJUoJ2NI1Hsh76mLbxGEww
- K16gEqHCgjgctqN73ZehSOAnZ43rcvSA9IVSS8yf9J0neMPH9AJZ45O2K
- kXpbBKXD9uGPyJd5DhY2GqnE3b1hTRaMXjev9Gvyz61sWPwjMy7FRz6JZ
- WkVQmIeAHl27uSnb6Yv8IA7/IVuY8vzOeDwSr9PDQS6N1lOUWZx1vC0E2 g==;
-X-CSE-ConnectionGUID: 2b+vRp9qTjSP8C9K8ii20w==
-X-CSE-MsgGUID: k8wwa5dDSz6/P0rvq2gWHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="97512656"
-X-IronPort-AV: E=Sophos;i="6.25,193,1779174000"; d="scan'208";a="97512656"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 21:23:20 -0700
-X-CSE-ConnectionGUID: +Y5eRYE6SmWKguYMkrUIPw==
-X-CSE-MsgGUID: 4ozh5ZP5QuCzNw7DuolCpA==
+ t=1785387567; x=1816923567;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=snvoXu87DwDekObyk5xbP75DvKUl48sejonWSX0EtX0=;
+ b=SY6702bw+1vRxeUDSh+Y6O5EMMmZQGV7nloCwd3JpeT6mzrfJwWYkHgy
+ KgkXOdEpgJltWqrCZl1Xh51LBLE12g57oDZ4GnrSjlnFDXXmXDZuJ+Y7Z
+ JVC8ybqxnbRhSTFpKRIaEU5zPozGOwe9hru+o1zb3DkN4frrMyExJHjGQ
+ bh70RlXFaAVACum/z25LeIcuoNq8Si5dgH+lwRCavBHwI7Thw3EJFQfCS
+ g9Q5Bb72xYphhhS53vKB5R07k1aEG1/P0ISD9Zzo0IooRdt7nT+7UfvfK
+ ALZNS/gsUgygRkA67gNsGHsxiW8/8Jp61UwuLYLQIpGs+u3d3H4fFzCE4 Q==;
+X-CSE-ConnectionGUID: cSNf+ugcT9+peUlB94Od3A==
+X-CSE-MsgGUID: im8zMDiXRwKMsyPa9/aPtg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11859"; a="73534527"
+X-IronPort-AV: E=Sophos;i="6.25,193,1779174000"; d="scan'208";a="73534527"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2026 21:59:20 -0700
+X-CSE-ConnectionGUID: lh6/Xy92S1u3yPgSARh+uA==
+X-CSE-MsgGUID: iiLlNLcnTP+iSG2KqSnPug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,193,1779174000"; d="scan'208";a="264455601"
-Received: from soc-5cg5233szh.clients.intel.com ([10.66.65.194])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2026 21:23:17 -0700
-From: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
-To: umesh.nerlige.ramappa@intel.com, matthew.brost@intel.com,
- kamil.konieczny@intel.com, rodrigo.vivi@intel.com,
- intel-xe@lists.freedesktop.org
-Cc: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
-Subject: [PATCH v7 3/3] drm/xe/lrc: Fix ABA race on engine migration in
- context timestamp read
-Date: Thu, 30 Jul 2026 04:23:04 +0000
-Message-ID: <20260730042300.1178495-8-gajendra.uttamchand@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260730042300.1178495-5-gajendra.uttamchand@intel.com>
-References: <20260730042300.1178495-5-gajendra.uttamchand@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,193,1779174000"; d="scan'208";a="255890321"
+Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
+ by fmviesa006.fm.intel.com with ESMTP; 29 Jul 2026 21:59:18 -0700
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nitin Gote <nitin.r.gote@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH] drm/xe/pm: do not warn about missing runtime PM protection
+ after hot-unplug
+Date: Thu, 30 Jul 2026 11:06:36 +0530
+Message-ID: <20260730053635.1515929-2-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,100 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_lrc_context_timestamp() reads the engine id once via
-xe_lrc_engine_id(lrc) and uses it to fetch the live CTX_TIMESTAMP MMIO
-register, then re-checks the LRC-stored value to detect whether the
-context switched out while the MMIO read was in flight. That check
-only confirms the context is (still/again) active - it does not
-confirm it is active on the *same* engine the MMIO read targeted.
+After hot-unplug, device_del() disables runtime PM. A deferred fd close
+can still run later during process exit and destroy remaining exec queues,
+which may call xe_pm_runtime_get_noresume().
 
-If the context is saved and restored onto a different engine between
-the initial engine id read and the final activity check, the
-CONTEXT_ACTIVE sentinel will be observed again (now for the new
-engine), and the stale MMIO value read from the old, now-unrelated
-engine is returned as if it were valid.
+At this point pm_runtime_get_if_in_use() fails because runtime PM has
+already been disabled, so xe_pm_runtime_get_noresume() warns with
+"Missing outer runtime PM protection". This is expected after hot-unplug
+and does not indicate a missing outer runtime PM guard from the caller.
 
-Pin the engine id used for the MMIO read and re-validate it against
-the current engine id after the final activity check. If the engine
-changed, retry the whole read (bounded by a small retry count) instead
-of trusting a timestamp sampled from an unrelated context, falling
-back to the last cached value if the context keeps migrating.
+Skip the warning when the DRM device is already unplugged.
 
-Assisted-by: GitHub-Copilot:claude-sonnet-5
-Signed-off-by: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
+Observed with new IGT core_hotunplug subtests:
+  igt@core_hotunplug@hotreplug-with-load
+  igt@core_hotunplug@hotunplug-rescan-with-load
+
+v2: Drop the drm_dev_is_unplugged() bypass from guc_exec_queue_destroy()
+    and instead exclude hot-unplug from the WARN in
+    xe_pm_runtime_get_noresume(). (Matthew Brost)
+
+Link: https://patchwork.freedesktop.org/patch/725773/?series=166744&rev=4
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Assisted-by: GitHub-Copilot:claude-sonnet-4.6
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 45 ++++++++++++++++++++-----------------
- 1 file changed, 25 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/xe_pm.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index dbdd14726b7b..e25e9ac37aed 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -2733,39 +2733,44 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
- 	return lrc->queue_timestamp;
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index a5289a9df8d2..a038687d5b2c 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -10,6 +10,7 @@
+ #include <linux/suspend.h>
+ #include <linux/dmi.h>
+ 
++#include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+ #include <drm/ttm/ttm_placement.h>
+ 
+@@ -914,7 +915,9 @@ void xe_pm_runtime_get_noresume(struct xe_device *xe)
+ 
+ 	if (!ref) {
+ 		pm_runtime_get_noresume(xe->drm.dev);
+-		drm_WARN(&xe->drm, !xe_pm_suspending_or_resuming(xe),
++		drm_WARN(&xe->drm,
++			 !drm_dev_is_unplugged(&xe->drm) &&
++			 !xe_pm_suspending_or_resuming(xe),
+ 			 "Missing outer runtime PM protection\n");
+ 	}
  }
-
-+/*
-+ * Bound the number of times we retry the full read sequence when a
-+ * context migration between engines is detected. A small bound (3)
-+ * prevents long loops; if we exhaust retries we fall back to the
-+ * last cached `lrc->ctx_timestamp`.
-+ */
-+#define CTX_TIMESTAMP_MAX_RETRIES 3
-+
- static u64 xe_lrc_context_timestamp(struct xe_lrc *lrc)
- {
- 	u64 reg_ts, new_ts = lrc->ctx_timestamp;
- 	u64 stored;
-+	u32 engine_id;
-+	int retries = CTX_TIMESTAMP_MAX_RETRIES;
-
- 	/* CTX_TIMESTAMP mmio read is invalid on VF, so return the LRC value */
- 	if (IS_SRIOV_VF(lrc_to_xe(lrc)))
- 		return xe_lrc_ctx_timestamp(lrc);
-
--	/*
--	 * Safely read CTX_TIMESTAMP: check the LRC-stored value before and
--	 * after the MMIO read to avoid a TOCTOU where a context switch makes the
--	 * MMIO value stale. If the LRC value is not `CONTEXT_ACTIVE` return it;
--	 * otherwise accept the MMIO value only if the context remained active.
--	 */
-+	do {
-+		/* Read LRC-stored timestamp before/after MMIO to avoid TOCTOU. */
-+		stored = xe_lrc_ctx_timestamp(lrc);
-+		if (stored != CONTEXT_ACTIVE)
-+			return stored;
-
--	stored = xe_lrc_ctx_timestamp(lrc);
--	if (stored != CONTEXT_ACTIVE)
--		return stored;
-+		engine_id = xe_lrc_engine_id(lrc);
-+		if (!get_ctx_timestamp(lrc, engine_id, &reg_ts))
-+			new_ts = reg_ts;
-
--	/* Context is active: read the live timestamp from the engine's MMIO register. */
--	if (!get_ctx_timestamp(lrc, xe_lrc_engine_id(lrc), &reg_ts))
--		new_ts = reg_ts;
-+		stored = xe_lrc_ctx_timestamp(lrc);
-+		if (stored != CONTEXT_ACTIVE)
-+			return stored;
-
--	/* Re-check the LRC-stored timestamp: if the context switched out while
--	 * reading MMIO the hardware saved the canonical timestamp into the LRC
--	 * during context-save, so return that value instead of the MMIO read.
--	 */
--	stored = xe_lrc_ctx_timestamp(lrc);
--	if (stored != CONTEXT_ACTIVE)
--		return stored;
-+		if (xe_lrc_engine_id(lrc) == engine_id)
-+			return new_ts;
-+	} while (--retries);
-
--	return new_ts;
-+	return lrc->ctx_timestamp;
- }
-
- static u64 xe_lrc_update_context_timestamp(struct xe_lrc *lrc, u64 *old_ts)
---
-2.43.0
+-- 
+2.50.1
 
