@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A2F1C5516F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 04:00:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C1B8C5516F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 04:00:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1A9410F149;
-	Fri, 31 Jul 2026 04:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD20410F147;
+	Fri, 31 Jul 2026 04:00:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anCIlluW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKvctKZ1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E779310F146
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Jul 2026 04:00:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7616010F147
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Jul 2026 04:00:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785470417; x=1817006417;
+ t=1785470420; x=1817006420;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DGfLf81p2dPfki4mCffHBNHe+cOgkoDWoNFDqgd6eK8=;
- b=anCIlluWcZBhx86VaF/f5nBn6yo0iIHNKrcA2JCTgOQxkxZiWubx5QZ5
- jdiQxo2zwoKVR0ImSkvaZDm2mhpbRZbsInW5z59MpOZD6vggC2J6czKow
- g9AgtA25r6w/is7EzWney+GVCrksfazb64XvACV3AvQnGOBCzeD3tABSN
- OnbPW36chZXStR2lR582mMDdCTVfLEwx/mhbag8TwGm9TNmbebDsGQd2K
- saHF58tCicLvU4FPEYHjCtaNA1N3Zt4zGns+3SuqK0pBt1dlfbJStXYum
- SFMy7BXOvYRo1y/xhciBvAw5uXES4AHRx40mbkxx3zFepzYZXEL4Ua84l g==;
-X-CSE-ConnectionGUID: Rki6Sbd9S4e1dwx53ON/MQ==
-X-CSE-MsgGUID: X/xUbe8pTmWo8P8nQwGiSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="96756104"
-X-IronPort-AV: E=Sophos;i="6.25,195,1779174000"; d="scan'208";a="96756104"
+ bh=/5AZSR6TXcq6R32xYyiaXm6ffusVdBXyZbn7eFM1N3Y=;
+ b=UKvctKZ1G4BHJwf8BLec6o2DqCtm/HzcPaJ1FY7CVLgdOAq4SiJrvmmx
+ ktEBbleXNLmQ9BjOPYz8DhDmefRGhO9zccy+1M62ZRJ60+ZE/ErEzI/uJ
+ gEoOSPi+EB0S3caFYc5LptOCOfwLsr4sjhnm5mZxzw8I9HbaeSoZkjPUx
+ EAx+hRJ8pGPADArQUP6To5l7XEghFTxJsT0b+f+xXlnbvNXgpBwajpxB3
+ FYYg5bidQ4yhs6zKoIsWg5w2D8VqMirnumhqV1g7OT9siwhkm9XEyr7rx
+ WZCe8ISP0wGLa8qBpyLQwmeA/zV8+02jcrDoLQowCEaae0WINTi9Xjr9+ A==;
+X-CSE-ConnectionGUID: qIz+ctDlQ0e+o7OeDu1KGw==
+X-CSE-MsgGUID: UpAxwstaRK+ITX9z1hjggQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="96756107"
+X-IronPort-AV: E=Sophos;i="6.25,195,1779174000"; d="scan'208";a="96756107"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 21:00:17 -0700
-X-CSE-ConnectionGUID: LoqdvLAdTsq9rr3gXA0JDw==
-X-CSE-MsgGUID: MLhI4n6nQRm7lzVJmO4t6Q==
+ 30 Jul 2026 21:00:19 -0700
+X-CSE-ConnectionGUID: gO1XaOJQRf62NIMwrm7wYA==
+X-CSE-MsgGUID: FtEy+IgFTVyTCI+AA6NOYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,195,1779174000"; d="scan'208";a="298680146"
+X-IronPort-AV: E=Sophos;i="6.25,195,1779174000"; d="scan'208";a="298680178"
 Received: from vkollerx-mobl.gar.corp.intel.com (HELO
  soc-5CG5233SZH.clients.intel.com) ([10.247.208.64])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2026 21:00:14 -0700
+ 30 Jul 2026 21:00:17 -0700
 From: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
 To: umesh.nerlige.ramappa@intel.com, matthew.brost@intel.com,
  kamil.konieczny@intel.com, rodrigo.vivi@intel.com,
  intel-xe@lists.freedesktop.org
 Cc: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
-Subject: [PATCH v9 1/3] [PATCH] drm/xe/lrc: document sentinel and make
- CTX_TIMESTAMP read TOCTOU-safe
-Date: Fri, 31 Jul 2026 04:00:06 +0000
-Message-ID: <20260731040004.1345502-6-gajendra.uttamchand@intel.com>
+Subject: [PATCH v9 2/3] drm/xe/lrc: Fix torn read of CTX_TIMESTAMP from LRC
+Date: Fri, 31 Jul 2026 04:00:07 +0000
+Message-ID: <20260731040004.1345502-7-gajendra.uttamchand@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260731040004.1345502-5-gajendra.uttamchand@intel.com>
 References: <20260731040004.1345502-5-gajendra.uttamchand@intel.com>
@@ -70,97 +69,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Problem: CTX_TIMESTAMP MMIO reads could be stale if a context
-switched out between check and read; LRC stores a sentinel while
-a context starts that must not be treated as a real timestamp.
+xe_lrc_ctx_timestamp() reads the 64-bit CTX_TIMESTAMP value stored in
+the LRC as two independent 32-bit reads (ldw, then udw). The GPU can
+concurrently overwrite this location as part of a context-save, so a
+plain back-to-back read of the two dwords can observe a torn
+combination that matches neither the previous value (e.g. the
+CONTEXT_ACTIVE sentinel written on context-restore) nor the final
+saved timestamp written by hardware. Callers such as context_active()
+and xe_lrc_context_timestamp() rely on this value being coherent to
+decide whether the context is still active, so a torn read can lead to
+an incorrect/garbage timestamp being sampled or reported.
 
-Fix: Check the LRC-stored sentinel before and after the MMIO read;
-return the LRC value if the context switched out to avoid TOCTOU.
+Make xe_lrc_ctx_timestamp() robust against torn reads by reading the
+upper 32-bit half first and re-reading the lower/upper pair until the
+upper half stabilizes across two consecutive reads (bounded to a small
+retry limit), then combine them into the final 64-bit value.
 
-Note: Keep XE_LRC_CTX_TIMESTAMP_ACTIVE in xe_lrc.h as the
-canonical sentinel.
+This fixes the problem at the source so all callers get a coherent
+timestamp, instead of patching individual callers.
 
+Assisted-by: GitHub-Copilot:claude-sonnet-5
 Signed-off-by: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 29 +++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_lrc.h |  7 +++++++
- 2 files changed, 28 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 27 +++++++++++++++++++++++----
+ 1 file changed, 23 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 3e7c995085d0..78d0456cf3c9 100644
+index 78d0456cf3c9..6f0247bdf8e4 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1096,7 +1096,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
-  * on until it is scheduled, we also read the ENGINE_ID MMIO in the WA BB and
-  * store it in the PPHSWP.
-  */
--#define CONTEXT_ACTIVE 1ULL
-+#define CONTEXT_ACTIVE XE_LRC_CTX_TIMESTAMP_ACTIVE
- static ssize_t setup_utilization_wa(struct xe_lrc *lrc,
- 				    struct xe_hw_engine *hwe,
- 				    u32 *batch,
-@@ -2726,21 +2726,34 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
- static u64 xe_lrc_context_timestamp(struct xe_lrc *lrc)
+@@ -874,14 +874,33 @@ static u64 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
  {
- 	u64 reg_ts, new_ts = lrc->ctx_timestamp;
-+	u64 stored;
+ 	struct xe_device *xe = lrc_to_xe(lrc);
+ 	struct iosys_map map;
+-	u32 ldw, udw = 0;
++	u32 ldw, udw = 0, old_ldw, old_udw;
++	int retries;
 
- 	/* CTX_TIMESTAMP mmio read is invalid on VF, so return the LRC value */
- 	if (IS_SRIOV_VF(lrc_to_xe(lrc)))
- 		return xe_lrc_ctx_timestamp(lrc);
-
--	if (context_active(lrc) &&
--	    !get_ctx_timestamp(lrc, xe_lrc_engine_id(lrc), &reg_ts))
-+	/*
-+	 * Safely read CTX_TIMESTAMP: check the LRC-stored value before and
-+	 * after the MMIO read to avoid a TOCTOU where a context switch makes the
-+	 * MMIO value stale. If the LRC value is not `CONTEXT_ACTIVE` return it;
-+	 * otherwise accept the MMIO value only if the context remained active.
-+	 */
+-	map = __xe_lrc_ctx_timestamp_map(lrc);
+-	ldw = xe_map_read32(xe, &map);
++	if (!xe->info.has_64bit_timestamp) {
++		map = __xe_lrc_ctx_timestamp_map(lrc);
++		return xe_map_read32(xe, &map);
++	}
 +
-+	stored = xe_lrc_ctx_timestamp(lrc);
-+	if (stored != CONTEXT_ACTIVE)
-+		return stored;
++	for (retries = 5; retries; --retries) {
++		map = __xe_lrc_ctx_timestamp_udw_map(lrc);
++		old_udw = xe_map_read32(xe, &map);
 +
-+	/* Context is active: read the live timestamp from the engine's MMIO register. */
-+	if (!get_ctx_timestamp(lrc, xe_lrc_engine_id(lrc), &reg_ts))
- 		new_ts = reg_ts;
-
--	/*
--	 * If context swicthed out while we were here, just return the latest
--	 * LRC CTX TIMESTAMP value.
-+	/* Re-check the LRC-stored timestamp: if the context switched out while
-+	 * reading MMIO the hardware saved the canonical timestamp into the LRC
-+	 * during context-save, so return that value instead of the MMIO read.
- 	 */
--	if (!context_active(lrc))
--		return xe_lrc_ctx_timestamp(lrc);
-+	stored = xe_lrc_ctx_timestamp(lrc);
-+	if (stored != CONTEXT_ACTIVE)
-+		return stored;
-
- 	return new_ts;
- }
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 0a3a611391ee..7be5e3da8bc8 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -9,6 +9,13 @@
-
- #include "xe_lrc_types.h"
-
-+/*
-+ * Sentinel value stored in lrc->ctx_timestamp while a context is starting.
-+ * The hardware hasn't yet written the real CTX_TIMESTAMP, so this is not a
-+ * valid elapsed-time sample and must not be used as one.
-+ */
-+#define XE_LRC_CTX_TIMESTAMP_ACTIVE 1ULL
++		map = __xe_lrc_ctx_timestamp_map(lrc);
++		old_ldw = xe_map_read32(xe, &map);
 +
- struct drm_printer;
- struct xe_bb;
- struct xe_device;
++		smp_rmb();
+
+-	if (xe->info.has_64bit_timestamp) {
+ 		map = __xe_lrc_ctx_timestamp_udw_map(lrc);
+ 		udw = xe_map_read32(xe, &map);
++
++		map = __xe_lrc_ctx_timestamp_map(lrc);
++		ldw = xe_map_read32(xe, &map);
++
++		if (udw == old_udw && ldw == old_ldw)
++			return (u64)udw << 32 | ldw;
++
++		cpu_relax();
+ 	}
+
+ 	return (u64)udw << 32 | ldw;
 --
 2.43.0
 
