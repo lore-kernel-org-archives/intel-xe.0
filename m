@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61CB2C55171
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 15:54:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B011CC54F54
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 16:00:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2004F10F2ED;
-	Fri, 31 Jul 2026 15:54:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m9EcNika";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79FC210F2EC
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Jul 2026 15:54:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785513254; x=1817049254;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bhWYd+W0CttTNgcX91dauu0Pw1MnQzuzexGKxRFURTY=;
- b=m9EcNikaGMAsUyzz9GUi67KudbwstHZsBtuh9qbGI5TswUIIbh3K7rgx
- KsXUYUUYmWvJId0G3LA4kZYHJHnGkwyyZ60bvh59xsrHXmZFIPivw7lut
- C/TlpUvZW1o9X8bwgNfk7XyDWEIAJRDZHvOdTjskLLaESjPYr2BiydAoF
- tCcXseZASNhWDPz/OabGEy7hd+ABwAlsT5lG4l6qKEDgWGwPlQ4ckCv9w
- Rpe4e8dwQRmKUj2xAeKD4Ksj9dFUo5lmPlW95VA2JfKDyrGFY5FebHnci
- GQFqt78ziqMMu6MS9jLWztTSpSSEMWpb8wLvb3dOQvY9mvywhz2N6MzkS g==;
-X-CSE-ConnectionGUID: hraw5rEnSOC6egeejOstmg==
-X-CSE-MsgGUID: 1IhcX7RJQKOw4eARdR7ykA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11861"; a="108937855"
-X-IronPort-AV: E=Sophos;i="6.25,196,1779174000"; d="scan'208";a="108937855"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2026 08:54:14 -0700
-X-CSE-ConnectionGUID: 8mkxvnaORtaVahJbR6PZ8g==
-X-CSE-MsgGUID: pdh+mev8Qw+EXQ6FMatolg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,196,1779174000"; d="scan'208";a="260665821"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.20])
- by orviesa007.jf.intel.com with ESMTP; 31 Jul 2026 08:54:14 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: julia.filipchuk@intel.com, matthew.brost@intel.com, rodrigo.vivi@intel.com,
- Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v7 1/2] drm/xe: Remove extra newlines from LRC snapshot dump
-Date: Fri, 31 Jul 2026 11:54:10 -0400
-Message-Id: <20260731155411.496975-2-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260731155411.496975-1-zhanjun.dong@intel.com>
-References: <20260731155411.496975-1-zhanjun.dong@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B35810F2EC;
+	Fri, 31 Jul 2026 16:00:13 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E49A810F2EC;
+ Fri, 31 Jul 2026 16:00:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Compress_Gu?=
+ =?utf-8?q?C_log_and_CTB_dump_with_zstd_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 31 Jul 2026 16:00:11 -0000
+Message-ID: <178551361190.9497.10525515933257507126@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260731155411.496975-1-zhanjun.dong@intel.com>
+In-Reply-To: <20260731155411.496975-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +36,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LRC snapshot printer adds an extra newline before the replay
-offset and replay length lines. This leaves blank lines in the
-HWCTX section of the dump.
+== Series Details ==
 
-Remove the stray newlines so the snapshot output remains compact
-and consistently formatted.
+Series: drm/xe/guc: Compress GuC log and CTB dump with zstd (rev3)
+URL   : https://patchwork.freedesktop.org/series/170589/
+State : warning
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 3e7c995085d0..0b5f0a6d7d13 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -2593,8 +2593,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 	}
- 
- 	drm_printf(p, "\n\t[HWCTX].length: 0x%lx\n", snapshot->lrc_size - LRC_PPHWSP_SIZE);
--	drm_printf(p, "\n\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
--	drm_printf(p, "\n\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
-+	drm_printf(p, "\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
-+	drm_printf(p, "\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
- 
- 	drm_puts(p, "\t[HWCTX].data: ");
- 	for (; i < snapshot->lrc_size; i += sizeof(u32)) {
--- 
-2.34.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 067d55f3f5ceacc80cd72f91791415c630abbdb6
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Fri Jul 31 11:54:11 2026 -0400
+
+    drm/xe/guc: Compress GuC log and CTB dump with zstd
+    
+    With the default settings, the GuC log is several megabytes in size.
+    Printing the entire log is time-consuming. In debugging scenarios,
+    printing the GuC log to dmesg while forwarding the dmesg output to a
+    serial console can take several minutes. It can also exhaust the storage
+    allocated to CI logs. Follow i915's approach and compress the GuC dump
+    data to address these issues.
+    
+    Replace the raw ascii85 dumps of GuC log snapshots with a
+    zstd-compressed ascii85 stream and reuse the same helper for CTB
+    snapshot output.
+    
+    Use zstd streaming with the default compression level of 3 and an
+    estimated source size of 0 so the compression workspace stays bounded
+    even for multi-megabyte logs.
+    
+    Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
+    GuC log and CTB dumps are compressed with ZSTD. This allows users to
+    choose between reduced dump sizes and lower memory usage.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
++ /mt/dim checkpatch f9ef9f302ee01854066ec6da30550da6ea6cb03a drm-intel
+57914a8d885c drm/xe: Remove extra newlines from LRC snapshot dump
+067d55f3f5ce drm/xe/guc: Compress GuC log and CTB dump with zstd
+-:199: CHECK:CAMELCASE: Avoid CamelCase: <cParams>
+#199: FILE: drivers/gpu/drm/xe/xe_guc_log.c:255:
++	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
+
+-:226: CHECK:CAMELCASE: Avoid CamelCase: <ZSTD_isError>
+#226: FILE: drivers/gpu/drm/xe/xe_guc_log.c:282:
++			if (ZSTD_isError(ret)) {
+
+-:228: CHECK:CAMELCASE: Avoid CamelCase: <ZSTD_getErrorName>
+#228: FILE: drivers/gpu/drm/xe/xe_guc_log.c:284:
++					  ZSTD_getErrorName(ret));
+
+total: 0 errors, 0 warnings, 3 checks, 321 lines checked
+
 
