@@ -4,27 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9B3EC55167
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 16:45:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C02EFC55167
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 16:45:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56E3610F353;
-	Fri, 31 Jul 2026 16:45:12 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6ED10F353;
- Fri, 31 Jul 2026 16:45:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3120522276027157206=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ADF010F355;
+	Fri, 31 Jul 2026 16:45:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lwn.net header.i=@lwn.net header.b="rpmROwGW";
+	dkim-atps=neutral
+Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E09A910F355
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Jul 2026 16:45:21 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 1029B408BB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+ t=1785516321; bh=MgQjTxKQch4gpOEu0R2yNHL+E8DkWmfYh/+coEXZuSo=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=rpmROwGWat/xUa0dhLMWBONfi4GIDApZVB4/9LLjseaIbzyeb0Mx0udNASPCGPmPi
+ oy9jH6sYQgrg8VWslHfLtbXf9Zodmgh9AH5ODWvPTkHvEpKC5mnuMIuyfqQVvrdUCo
+ US/FCnvMYIo6aqY+67njz0LgL40mi1lPEzYO2d6r9hd8QT9776Qm7FB18nUKz44qN2
+ wejXvM6GQW57JFBgLMKH9ZtywveQMRNcnamJuiESJ5Hf6p5IcoFzIQv3CJN4W4Zntb
+ 8PfLg4lSQTKtlph6syIaqmtRtIGBSXGPUYso415FXDUlcWmSZl9vM/hH891UZ0KZ1q
+ AQkijH8TPtlFA==
+Received: from localhost (unknown [IPv6:2601:280:4600:27b::1fe])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1)
+ server-digest SHA256) (No client certificate requested)
+ by ms.lwn.net (Postfix) with ESMTPSA id 1029B408BB;
+ Fri, 31 Jul 2026 16:45:21 +0000 (UTC)
+From: Jonathan Corbet <corbet@lwn.net>
+To: Ryszard Knop <ryszard.knop@intel.com>, Akira Yokosawa
+ <akiyks@gmail.com>, linux-doc@vger.kernel.org
+Cc: Randy Dunlap <rdunlap@infradead.org>, Shuicheng Lin
+ <shuicheng.lin@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] scripts/kernel-doc: Fix kdoc for Python 3.9-3.11
+In-Reply-To: <20260731144508.912049-1-ryszard.knop@intel.com>
+References: <20260731144508.912049-1-ryszard.knop@intel.com>
+Date: Fri, 31 Jul 2026 10:45:20 -0600
+Message-ID: <87qzkj3y73.fsf@trenco.lwn.net>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Compress_GuC_?=
- =?utf-8?q?log_and_CTB_dump_with_zstd_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Jul 2026 16:45:11 -0000
-Message-ID: <178551631149.10206.5084188602430066937@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260731155411.496975-1-zhanjun.dong@intel.com>
-In-Reply-To: <20260731155411.496975-1-zhanjun.dong@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +55,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3120522276027157206==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Ryszard Knop <ryszard.knop@intel.com> writes:
 
-== Series Details ==
+> The syntax used by the excess description suggestion change works on
+> Python 3.12+, while we need to support 3.9+.
+>
+> Signed-off-by: Ryszard Knop <ryszard.knop@intel.com>
+> ---
+>  tools/lib/python/kdoc/kdoc_parser.py | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/tools/lib/python/kdoc/kdoc_parser.py b/tools/lib/python/kdoc/kdoc_parser.py
+> index 884f42584667..9cba20f827c4 100644
+> --- a/tools/lib/python/kdoc/kdoc_parser.py
+> +++ b/tools/lib/python/kdoc/kdoc_parser.py
+> @@ -601,7 +601,8 @@ class KernelDoc:
+>          if not suggestions:
+>              return ""
+>  
+> -        return f"(did you mean one of: '{"', '".join(suggestions)}')"
+> +        joined_suggestions = "', '".join(suggestions)
+> +        return f"(did you mean one of: '{joined_suggestions}')"
+>  
 
-Series: drm/xe/guc: Compress GuC log and CTB dump with zstd (rev3)
-URL   : https://patchwork.freedesktop.org/series/170589/
-State : success
+Thanks, I'll get this applied shortly.
 
-== Summary ==
+For future reference, it needs both Fixes and Reported-by tags; I'll add
+those when I apply it.
 
-CI Bug Log - changes from xe-5515-f9ef9f302ee01854066ec6da30550da6ea6cb03a_BAT -> xe-pw-170589v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9034 -> IGT_9035
-  * Linux: xe-5515-f9ef9f302ee01854066ec6da30550da6ea6cb03a -> xe-pw-170589v3
-
-  IGT_9034: be1d1af352dbd4ca4557202a8ed0d6d60f95e0bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9035: 61674acebe1520ef02165573257f552366c2879c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5515-f9ef9f302ee01854066ec6da30550da6ea6cb03a: f9ef9f302ee01854066ec6da30550da6ea6cb03a
-  xe-pw-170589v3: 170589v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170589v3/index.html
-
---===============3120522276027157206==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Compress GuC log and CTB dump with zstd (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170589/">https://patchwork.freedesktop.org/series/170589/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170589v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170589v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5515-f9ef9f302ee01854066ec6da30550da6ea6cb03a_BAT -&gt; xe-pw-170589v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9034 -&gt; IGT_9035</li>
-<li>Linux: xe-5515-f9ef9f302ee01854066ec6da30550da6ea6cb03a -&gt; xe-pw-170589v3</li>
-</ul>
-<p>IGT_9034: be1d1af352dbd4ca4557202a8ed0d6d60f95e0bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9035: 61674acebe1520ef02165573257f552366c2879c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5515-f9ef9f302ee01854066ec6da30550da6ea6cb03a: f9ef9f302ee01854066ec6da30550da6ea6cb03a<br />
-  xe-pw-170589v3: 170589v3</p>
-
-</body>
-</html>
-
---===============3120522276027157206==--
+jon
