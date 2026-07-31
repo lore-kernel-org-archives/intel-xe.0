@@ -4,99 +4,171 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12259C5516D
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 07:08:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8241C5516D
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 07:49:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B650210F197;
-	Fri, 31 Jul 2026 07:08:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6879B10F1B3;
+	Fri, 31 Jul 2026 07:49:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DmkNVKM+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OVkG3iQP";
 	dkim-atps=neutral
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012022.outbound.protection.outlook.com [52.101.48.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E73BA10F195;
- Fri, 31 Jul 2026 07:08:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F238210F1AB;
+ Fri, 31 Jul 2026 07:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1785484169; x=1817020169;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ueOH1f0fQQ+pnBRPQ3c7IpxKGp8P/iLwLF5bDPRFSYA=;
+ b=OVkG3iQPue1rFuwXxWLS3GDOx8xJ7DIAC0Ua2/D4B7B3czAe7jSvgHpq
+ e9DaxpgRv+N54+q3ltvXseSzN38yI8Mg1VTdYdkVHL2pobq7KvuXG9XVX
+ ZY+GFv1EwkcVSDB1goo2ReC433TwXHI4TklrROIgUH74O12L3ynvSzGGD
+ yr45dAGpp1j5U3yxdZsYZVCjpgYGUT0aY66L9Mh9K3QyL38Jyf7xmBeSd
+ s7Uf4PXgj+BqVpEav2SrW+oWyDNp08BWbjjYqVFuNBHns0/8hrES+0ei4
+ Kr0wmNlCgGuO7Akw53nPxpqC0mbRH+sOfzfNBEtt8kHKLxTpBV4ZvzNJM Q==;
+X-CSE-ConnectionGUID: wrY7yWXjTgGFumiOlR/+zw==
+X-CSE-MsgGUID: PzpJ6I5USMKV0Lh54RY9qg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="96465558"
+X-IronPort-AV: E=Sophos;i="6.25,196,1779174000"; d="scan'208";a="96465558"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2026 00:49:28 -0700
+X-CSE-ConnectionGUID: gv7JLO5iT7WHv/W2l8hGyA==
+X-CSE-MsgGUID: h830DFnARI2bmonO72krjw==
+X-ExtLoop1: 1
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2026 00:49:27 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Fri, 31 Jul 2026 00:49:27 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Fri, 31 Jul 2026 00:49:27 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.65) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Fri, 31 Jul 2026 00:49:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CboVQ1LecDEY3DitU8P38dczkRD9vMjNB7Fhw2b1kUZC5ZdSTdmuY2R8dOz0AIMsLASjMsI7uTiii6vtJlSr4nPOPJ+Rfetb5dfzqBGNvr3qWbrZmfxplsbdhBAtodf2s0/3laarxHucdnweXhQzsjSGHnMpNoHLVV39EdA5xk9m1Qje0hMMO06Hoh91qAm7lsY/qHdN69ASl0I5/olC/k1bvaHy26A+Bh5gRt2KTmnKv8niW58v159+iyjaxfcHCXe9YR/xpchWZeqhH2DxdQdwMQChemK7CQcqrCFqELjxrgGWSH03MgpcPmpCALUhQdPTl66si8tulCg9eW1JdA==
+ b=gHthVedQwFiMmp3v/d22yj1TQUGz0gKsF9fPD0Y/zhx/Rm1hTV+tz2gvZpXCEe/q8TJSxNuEPxBhCNOwhCRoa/zqs0v2FBDjOrVJG+A+AbaFrMLjuDphaVwscYGuIPbTtvgeUnDRG+JbunwE2R5zQr5IfvQpBl5ZzUvgrNCZIFgjaQr/u92NkRS1n4Rbvpzy6TMJkIM/D2crFk/k9r8rpNdlytYJPes0DQ+IhEd7J+26aUF3j7WOAy5+02tH5xOHfdj6MThkvb75L5Jy/k4VgVd1MIuiPzOyV+MdCn3JnUjgI2SU5kjdoM1q+ySYm75FRjw2iCU2dEh5yYa0F+MFmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8Gxbj6K3eAy4nkuVl/mOBCMWsjqr1FFwMrayccroJ1Q=;
- b=aAolcKQkQx/vfo+mt3bKx2PeY4qbFvC1skKGyU1d6LgLIHvW8exUYfn/dF6Kgu13p7cr3H7B+fkmJjjrL0w5j7mwVwSQP6WJMNmQxa4dTV1i3mlXPl/YSz/EAE3RsK0XIsGmhVkyc5g6REJMhUAUvvZ6vohDzcEvtbhZLOv4MBMnQ5Sqd0Ldxtv483/+qi85EOcq+GyvHXiYEsivBBNEema4w7w8gJzUTZRg2X7ieQ5Hzb/euiMT6fk/Z0ZZBZ05+26MdIiimvZHvrRFyErD2RfoGw76zu0gJdLoRFh5ul8vKILPlqJukMYwv1WBudsjm9cPvg2hLgmNdRf4i3c17g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8Gxbj6K3eAy4nkuVl/mOBCMWsjqr1FFwMrayccroJ1Q=;
- b=DmkNVKM+1CdP2mJipFg03RTjZGa/blxgcWHCFHP2zKc6IddrRqZgqZ7QK096AiTccrw3ftWHI355Cpy0+ramhpNQYvhHYT8KeI5Ik+URrBS0vxtyYumh9fWDl0BhhYr96IiESzpRpJ3VkZNlZSNcL95AwPoYLorHYh7V9QhJt7M=
-Received: from BL1P223CA0012.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:2c4::17)
- by PH0PR12MB8821.namprd12.prod.outlook.com (2603:10b6:510:28d::19)
+ bh=geGiDFII9SHPfeHnb76tUhpHX9A7oFsZz4HkM0/+y24=;
+ b=dMMB2A8xdqMo6u34iRUly79Lg8YKZVw+Ll6mhMwjEp9QfjUfORBz0xhfWqyXQ+/Wj796sxZxD7j6wIXd+M2QQh6IHLZfH0iH6NIfQZEEa4s7k22bXfSVxXq0QSXB81ja/G6kb1FFf/BvGhorIWFVlzgZCKgMImFB1FbMI4espsW+DanOq+9ix+MQYrmZ3e3f1sAuWZL3j8bN7riEfguXTAiPGuKo4m6HLq5iaKTf75YjHj66e0bkQnXC6KDhBJTtcPW17e+NCAOosuBiHF2oSZQpTeOUWzVDVtRPhQvt4GqI+Pts7NZuyHgotWJmYO6NOaaeI3UecJI0YNkbs1Cm8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH7PR11MB6747.namprd11.prod.outlook.com (2603:10b6:510:1b5::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.15; Fri, 31 Jul
- 2026 07:08:01 +0000
-Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
- (2603:10b6:208:2c4:cafe::6b) by BL1P223CA0012.outlook.office365.com
- (2603:10b6:208:2c4::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.270.14 via Frontend Transport; Fri,
- 31 Jul 2026 07:08:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.292.8 via Frontend Transport; Fri, 31 Jul 2026 07:08:00 +0000
-Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 31 Jul
- 2026 02:07:55 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <matthew.auld@intel.com>, <christian.koenig@amd.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH v7 1/2] gpu/buddy: replace dual-tree/force_merge with
- decoupled dirty tracker
-Date: Fri, 31 Jul 2026 12:37:40 +0530
-Message-ID: <20260731070741.2654251-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ 2026 07:49:22 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0270.012; Fri, 31 Jul 2026
+ 07:49:22 +0000
+Date: Fri, 31 Jul 2026 00:49:18 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Dave Chinner <dgc@kernel.org>
+CC: <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, "Andrew
+ Morton" <akpm@linux-foundation.org>, Dave Chinner <david@fromorbit.com>, "Qi
+ Zheng" <zhengqi.arch@bytedance.com>, Roman Gushchin
+ <roman.gushchin@linux.dev>, Muchun Song <muchun.song@linux.dev>, "David
+ Hildenbrand" <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, "Liam R.
+ Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@kernel.org>,
+ "Mike Rapoport" <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ "Michal Hocko" <mhocko@suse.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Shakeel Butt <shakeel.butt@linux.dev>, Kairui Song <kasong@tencent.com>,
+ Barry Song <baohua@kernel.org>, Axel Rasmussen <axelrasmussen@google.com>,
+ Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>
+Subject: Re: [PATCH v6 1/2] mm: Introduce opportunistic_compaction concept to
+ vmscan and shrinkers
+Message-ID: <amxTfjc4I16J3q9P@gsse-cloud1.jf.intel.com>
+References: <20260617032218.1165929-1-matthew.brost@intel.com>
+ <20260617032218.1165929-2-matthew.brost@intel.com>
+ <ajnA83DxAFqeJ-sv@dread>
+ <ajnOvdbT5/J6q3IN@gsse-cloud1.jf.intel.com>
+ <ajoaikDrKz7JGr5h@dread>
+ <ajsCNu8mCGVS7ZwB@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
+In-Reply-To: <ajsCNu8mCGVS7ZwB@gsse-cloud1.jf.intel.com>
+X-ClientProxiedBy: MW4PR03CA0027.namprd03.prod.outlook.com
+ (2603:10b6:303:8f::32) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|PH0PR12MB8821:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d6967ec-c9a9-445f-cc44-08deeed274bf
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB6747:EE_
+X-MS-Office365-Filtering-Correlation-Id: 97a38d4c-7c91-435e-ce3e-08deeed83c16
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|36860700016|82310400026|1800799024|6133799003|10067099003|11063799006|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: B/OfgWuqBFEZhedWu6DshmCYRPRAevI9QxS9errxEK2jI0XblKaBTFDNjvbZyhFoxCfyPQldVc1XmBR2IiaTYEHjMzns25XwCfLlrJ7PqJzYW/kFZEg77Gt/jlxHgB9r2kUuIG62GMZgsJUGmQ4vJ6xOJDskRmOqeYJgEE8qaXDbn367cexIqKmZ4j0eCLa2NN+CFgo9tcC2Pf3BHSQEMOkDpXu3LnIWu8oN/ZmVNMR210YqgkMCyakCU2RHI354U7rNZKR1FK5Kt0WySaZ2xBt4jyxrAT4/63juZod/l7lhb1mdhXkEYCdXfEpXRZBI66LbxWqvSzUSMPWhJo4TFt3K+aAz1dwnaJfj9NT9gOWxApGn7Y3K/tssTMQB2ZDeD7ajAJjsi9c7LDQPAilRDJozULIXH0WOgTRvq0iqPYoDrdxHki+LnCsLyKPmgYwOCfINFom+KONrgzCxJ6p3RMj7t1qL71XyozQpaHz9AH1sYBGdWKMvpJwZpcKGFyhh/FJXjBUxVDTVB9EgtGVQmjyie0yMVlHWCijpoh41smZ+MRL94BQdApIupS+TperKjFJmmCane3d6V+yZwPE10gLhsNCacjbPXVd3KU6bXI8QB7JLD+iC8YXQ3Z0O1iBaacjAilNXwpnkYlfPigH+OHWF91btp45x48jdxS09BY6ni5ViXno67iJ6buoX2O4U8uUmhbkO0NAvEXxkt/KfFw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(36860700016)(82310400026)(1800799024)(6133799003)(10067099003)(11063799006)(56012099006)(18002099003);
+ ARA:13230040|366016|7416014|376014|1800799024|23010399003|22082099003|18002099003|10067099003|6133799003|5023799004|11063799006|4143699003|56012099006|3023799007;
+X-Microsoft-Antispam-Message-Info: zgEmxtku6ZZIyPqJsERiebg1KtG5tlsrto634IIBKANqnndhiCP5XE+gzUWFq16B+FBCWuJVbRJ15JivhtedgONo5Fycu26IxvQk9pkZZ3EzxVA3mu8lCaEtCX7ycNp8dLNdgFKFKL1s+8k5YA566Bn/pn02sq9GuMdYaUhPAhTY7XZr+Mav7kWW7P0EJ8977PVp5tByGcgem1cNWFpgldtNmHNF3KXhFqmYaaDLMD1BSx96ZdTPIdpMxlHzMcb8tE0O1t9NT32xpzOJVwiReJnU6p/YwqRFnzlvQFH0eae7pzHnDqR4noGImLH30g/GzW2VRgXtQtk3urMbRI0AHsdSvttixTTg2RKGOWqIeXvfIuULSTZpvyub6yrzaytxXZ3U0YbW0O6KvabE/izFuNOBsrNPylaFAVDj8VJyP26gQjvJDNfVUHXiBq0qI9IBhlO/M8diu6BwAA2joaJZh+hnVlONZl3pxX2LmzY+ILgyivQUZWXMQVgKIeeHWBPSw9NSCOXmLkLOg5xPw4KX1bOBiYCeQz/zIwOJBGLdjngp7ZDr3fgqzjTXfLszOiuK7UZrvnxEa/2fHP9O6LVwN9v74ZJtPnz4uG9q8vEhN3P/6x17xTjZM0SQCkzcv/5NjzD2Co9UQ5cyagnPJGMjKM81ixgWD1SIG+l9XJ8TPVo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024)(23010399003)(22082099003)(18002099003)(10067099003)(6133799003)(5023799004)(11063799006)(4143699003)(56012099006)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: LfJEddNP0zFGOKv3LTSpj3h+vnDpHqP2n7o/wAugc88Q7hZfgvnJ5coAOnvRfeO/RWxjHA5PTOjPQDCTCfJmc91JiZmXcaRqUNqEx+zdhCEhrQmOIlNVfrzQWWrgV/CtmUeUMDs91Iq8VIyoX2MeMFaWDr4DByOklNrDqdDWyZ0LjcurkkeltHGovkTb+ZShWJSMAw5qzK7jSklW1zIPW9p5JC9BrTixGJ6GYF6+fSVCg0+u5eQT+YkfY7sTD76cZTdkjIoi8T243hvuAltgZLBHyXrKFE1xPVIe6tDgE3wUdRlHGsUuHkry3SgxqbZstrydpQHeqpgCVi+HImpavAp43lhsX5kFtzmHZgiInVsfDTg+VzehEDN4eQvxLg0fQel5wOGV9rPtur+hfYTEasna0TgYR3XS5HPPx9tJy7ydY0vgqFdn+SlC3VoqaJ1J
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2026 07:08:00.1907 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d6967ec-c9a9-445f-cc44-08deeed274bf
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8821
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y0FLakk1QWE3ODQ4ajZyd1NXYTREZ2lESzM4WVZRNFMzeUo2OFlScWFGMTlP?=
+ =?utf-8?B?NGZTaDFmT2thWExTemoxWHd4aThMbDQ5dHdQOXptZzNHUkRIZ291NjdFZzYv?=
+ =?utf-8?B?QldncGZvZnorN0krYVVORklxNFA1cEl0MTIrd3NGbDFEUWZzVHFmYTNZSnlo?=
+ =?utf-8?B?L3c3ZThySmtXU0RhRmJsNmZxVTFWa3hHZTM5Y3NSMFJtby9TQnJkMzlPa1Zt?=
+ =?utf-8?B?NWJwSG83ZGp6dy9zUHRLTDE4NUR0ZXBRdGNoNWtSREtESFhISUhOQ0o5UnNU?=
+ =?utf-8?B?VzBjSGdVUmdGYVlnQ3RnRDNGZ2xJaWFXVjhuRWNHU3l2SzF4aW1jUUdoZ1pO?=
+ =?utf-8?B?RnltbXNoS3FNZWU1Tnd3RE9SV1B3TEFwT2dyOXpXUDk4c2NjUTZZTzlyeTla?=
+ =?utf-8?B?YWlYVUJGTGVSd2J4MGVYbXo2eitkWGFueGc0ZzlmbVphNnAvRU80NWpodW56?=
+ =?utf-8?B?ZnZHeUhOeDhJNjdpY2NlZS9tZnNPS0tJYVUyWitPVVBNbVgzSTR0dW8wVlV3?=
+ =?utf-8?B?akFaeW91NCtFZllnNG9EV0I5U2ZXNEo5TXFLdFo3Z25YNFdFSlhWK1Q0bnZK?=
+ =?utf-8?B?Z2NWaTlLdlRMMVhJRFlDc0tBdjJYazBqM25qL1dKcmNJYU9zeTh6MGxMZ3dr?=
+ =?utf-8?B?Ny9rajIvUjkvdWRnck5HaUhybHVHMzdLMU85a0s2UWFPakVCNFFNVmpVZGJV?=
+ =?utf-8?B?V21NQ2V1ckRaZzNEeHk0cXgyK3hZc2FBbE5hUGY2Tnc1czNWZnJSUWVJUEJw?=
+ =?utf-8?B?emZGUEVTUnBGd3NZdUE0cUYySTFSQ3RQQmd0Y1BiNiswbWN1VDg3RkltcnVO?=
+ =?utf-8?B?aUFlYkV4R2M0aG1SaVV2UG5sdHZTVXF2Y05VUEwrSVVmNE4rVkt1OUJrR1Nw?=
+ =?utf-8?B?MER2TmN6cVpreDRwcWZ4ZzQvVUFMbTl5cDBrM3gydVUvVDlnZE9kS1daM3hh?=
+ =?utf-8?B?S003bHZUNGdGbUJJVFNyT0NRdXpuN0lpR3MxMUxEdXNQb05GQWg3NWFISXlV?=
+ =?utf-8?B?dFl3VVFqWU9mWHF4K0dubzBjWGpXUkFJNGtWNDVldkZBeHNNSm9QUFlGRVhX?=
+ =?utf-8?B?U2t2YTRBTVg4cmF1STl1Q01rNkJPQlkyN3QyVnB1N0RLTTVMSXM2cFFZakFQ?=
+ =?utf-8?B?Y01RblEzd0dEWFhBZW5wVjV3cmdVRnFvc1VMaWJqK3pvUUVhbDVkNHVOWFZp?=
+ =?utf-8?B?L1hVRTJHWmVSbFNNRHlhNzJsTXRlYmJRb2hxTFBkYk9tV1lFWVlPMWcrbDFM?=
+ =?utf-8?B?R3JhcEFBcmhHOTNVYXpRNGxnQjVYbDFOTmp3endvbkh5RnRBanNqNVA2Ymg2?=
+ =?utf-8?B?YUttTU9tYmg5TU9YTTk3OHpTeTFEeTU2RUtKeHVTUzl2Y0lkRHIvYjVwZ3E2?=
+ =?utf-8?B?VUlmNE5iNk1nOThHZnhCZ3dBYy9JcWlQbjlWaFlYNWxIZ3UreFNaY1hIOEdY?=
+ =?utf-8?B?Q3RsZWhMTnRKV09LNGlucE9adG9GWHRITnRGU0hnK1hUdEVmdWpEUjBPcStE?=
+ =?utf-8?B?UTlQUy90OU5OWTQyMFBWVlFaNHdsSXVBL3hISWZic2pPVmdNZGFGUGFNUGNL?=
+ =?utf-8?B?bGp3bEoxU250WXJBQU8zY2J2MEdDekRQWjNTU3ZMbFNYVVBWYlozRXc0SGQ4?=
+ =?utf-8?B?S3RpWkhWcThGQWdGNWFtN2hsUDVON05kTDdsY3RQTTJIaEJSWlVvZm5SNGZ5?=
+ =?utf-8?B?RWV5MW1qR24xOEtkNDhzaVNLWVcxN0t4ejlzT045eTc3dVlaMFEzWDdBcjQw?=
+ =?utf-8?B?ODZKTFhYVU1GTTBJeFBmZUh4eHpLM3dwckFVSjVlSG1jbWxpT1dVckpTMTlM?=
+ =?utf-8?B?UEtnek1KUEJacFJJUEl6YWNBWUJLNXFaK0FKbG1zSXdyQlE5UzluYTZEdU9T?=
+ =?utf-8?B?azVlQm1kMFNVSG5qSG9IRGFCQjRLYjFldmZnNlU5RHRxSDUxd1k5U1BzTFY2?=
+ =?utf-8?B?UU5Sd2xwaHI1L3FnMGdyc21FSVg3dHc1VGR2K1pCN0VOUGhzbDk2NmVzODUy?=
+ =?utf-8?B?OUVZSndnWHVMeThsU2hDY04xTnBUa3BjTUl2UHdiQ2RqYm9PcWw0SHUrSHo1?=
+ =?utf-8?B?WTNrdDZQdmFGMFBNR3FVTXdtR1lOVnUvNVNRZXNyNm5tRkVKazZCWlROQlov?=
+ =?utf-8?B?czEzV284UVBTc0YvM2dtQVg3OFZzOEhzaERENXQ4dW1EMGJYa21OOThTSkxI?=
+ =?utf-8?B?YUUvcHd6MzV1NEtQZHVybDcwaWNvaHpzbmdaNGVQR3ZkTjg0dmlrV21qTjdQ?=
+ =?utf-8?B?ODBDdjNvOGZ5UG0yekdxOW9renVRQzRFaHkvaDQ1a1JNUHFiaEJXVHJ3KzRM?=
+ =?utf-8?B?c2h0dmIwVFRxN2xrN0JHQkVzWGlocDhZeDc5RkFzN20rSGtSM1hsaVQvalE0?=
+ =?utf-8?Q?LjTkWZ7vQQhw3gVY=3D?=
+X-Exchange-RoutingPolicyChecked: XhgsHbVKLfZ5XN0RSgzCDLZ3/HTsHqaXpK9wzzdh7Z+pBIaslqDkZdnhE81OfCPQ3btGwQzw6DANmIHqdtNf2EIBu32bRaIyUx//yteM4amhx8QpGhsr5px6TTMAuQ3ZfSSDSUmu0MEMUTJd7XHYKHKgXpQnQ8P0sIA/RDZN6J2JjOJrsyKylThR1ZS96rjeadaIvckkvI0a1glQPG0bBt1aVJtYrtJ3ZbVfG+c0tMk9dmVTw6OS9SmZwbsEM7afJCQkO8BbXyJSWcL+/M1/e+KxMqHpxRe4nOezYyDxd5FYhkf8FZEWxNSvjHdH3GM3Q3t9f1Xg0UxFQsRryWggTQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97a38d4c-7c91-435e-ce3e-08deeed83c16
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2026 07:49:22.3834 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n8fxANzcfj+1Cq1Oe318FeuWGZsAlAUWfXp4U+ZK0oNmPiWkOQEOPjgvxqiwEft5+cD09JqJtEwayg4sAOHFdw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6747
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,2197 +183,667 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The current buddy allocator maintains separate clear_tree[] and
-dirty_tree[] rbtrees per order, preventing coalescing between cleared
-and dirty buddies. Under mixed workloads, this creates a merge barrier:
-adjacent buddies frequently end up split across trees, forcing reliance
-on __force_merge() during allocation.
+On Tue, Jun 23, 2026 at 03:01:26PM -0700, Matthew Brost wrote:
+> On Tue, Jun 23, 2026 at 03:32:58PM +1000, Dave Chinner wrote:
+> > On Mon, Jun 22, 2026 at 05:09:33PM -0700, Matthew Brost wrote:
+> > > On Tue, Jun 23, 2026 at 09:10:43AM +1000, Dave Chinner wrote:
+> > > > On Tue, Jun 16, 2026 at 08:22:17PM -0700, Matthew Brost wrote:
+> > > > > High-order allocations using __GFP_NORETRY or __GFP_RETRY_MAYFAIL
+> > > > > are often opportunistic attempts to satisfy fragmentation-sensitive
+> > > > > allocations rather than indications of severe memory pressure. In these
+> > > > > cases, reclaim may invoke shrinkers that aggressively destroy working
+> > > > > sets even though reclaim is unlikely to materially improve the
+> > > > > allocation outcome.
+> > > > > 
+> > > > > Some shrinkers manage expensive backing or migration operations where
+> > > > > reclaim can result in substantial working set disruption despite the
+> > > > > system having sufficient free memory overall. This is particularly
+> > > > > visible in fragmentation-heavy workloads where reclaim repeatedly tears
+> > > > > down active state while kswapd attempts to satisfy higher-order
+> > > > > allocations.
+> > > > > 
+> > > > > Introduce an opportunistic_compaction hint in shrink_control that allows
+> > > > > kswapd to communicate when reclaim originates from a high-order
+> > > > > allocation context that may be fragmentation driven rather than true
+> > > > > memory pressure. Shrinkers may use this hint to avoid destructive
+> > > > > working set reclaim while still participating normally during order-0
+> > > > > or stronger reclaim conditions.
+> > > 
+> > > Thanks for the input - this is a tough problem.
+> > 
+> > Yes, that it is.
+> > 
+> 
+> This is part of what makes this fun.
+> 
+> There’s a lot to go through here—I’m going to start actively working on
+> a PoC, hopefully today. I’ll likely have more feedback as this gets
+> coded, but let’s continue to stay aligned.
+> 
+> > > > To be honest, this seems like another "push a hint through to the XE
+> > > > shrinker" mechanism under a different name. You seem so focused on
+> > > > fixing the XE reproducer that the -systemic problem- that -any-
+> > > > high-order folio demand causes is not being acknowleged.
+> > > > 
+> > > 
+> > > I'm not exactly sure I agree here. Communicating via __GFP_NORETRY or
+> > > __GFP_RETRY_MAYFAIL with a higher order implies that the caller can
+> > > handle higher-order allocation failures, so the shrinker shouldn’t try
+> > > too hard to obtain a large page (e.g., evict a working set). I agree
+> > > that Xe is currently the only shrinker making use of this, but other
+> > > shrinkers could also hook into it. This information simply isn’t
+> > > available today.
+> > 
+> > Right, but "we are doing compaction" isn't information that tells
+> > the subsystem shrinker what it needs to do. "memory compaction is
+> > occurring" isn't a well defined action like "count reclaimable
+> > objects" or "scan N objects and reclaim as many as you can without
+> > blocking".
+> > 
+> > Directed high order object reclaim should be much efficient that
+> > trying to use general memory pressure to age out enough objects to
+> > reform contiguous pages. We need to help memory compaction, and we
+> > can't really do that by layering heuristics over reclaim algorithms
+> > designed to maintain working sets efficiently.
+> > 
+> > > > e.g. we use high-order folios extensively in the page cache these
+> > > > days, and there are -many- cases where memory compaction driven by
+> > > > high-order demand cause significant performance regressions for page
+> > > > cache performance. To date, every single person who has wanted to
+> > > > fix the problem they are seeing has effectively attempted to -turn
+> > > > off compaction- via GFP flags.
+> > > 
+> > > So does that mean they clear __GFP_RECLAIM?
+> > 
+> > Usually __GFP_DIRECT_RECLAIM, as it's the overhead of direct
+> > compaction that causes the performance problems.
+> > 
+> > > That isn't really what in DRM or Xe. In former case we have pools of
+> > > lower order pages in TTM not in use that can be shrunk, potentially
+> > > freeing multiple lower orders pages so a higher order page formed, and
+> > > the later possible BOs (sets of pages) in Xe marked as purgable (not is
+> > > in working set) which can also be shrunk. Other DRM drivers have purging
+> > > concepts too.
+> > > 
+> > > I’m not very familiar with what other shrinkers or subsystems want, but
+> > > presumably other shrinkers have pools or caches that aren’t currently in
+> > > use, where they can say, “OK, I’ll give these pages up for opportunistic
+> > > compaction, but I won’t give up my working set.” Of course, as mentioned
+> > > above, if someone else explicitly requests large pages by avoiding
+> > > __GFP_NORETRY and __GFP_RETRY_MAYFAIL, the shrinker should then give up
+> > > its working set.
+> > 
+> > Most caches are slab-based, so there can be 10s of objects with
+> > different life cycles per page. There is no almost possiblity that
+> > shrinker reclaim will free pages without substantial
+> > amounts of the cache being reclaimed.
+> 
+> 
+> Yes, I agree most shrinkers are slab-based, but there are at least three
+> notable exceptions that I’m aware of—potentially more (let me know if
+> there are others which are aware of):
+> 
+> - The TTM (the most common memory allocator for DRM drivers) pool
+>   shrinker maintains pools of pages that are free (i.e., have no
+>   driver-side references).
+> - DRM driver-side shrinkers maintain both non-active pages (marked as
+>   purged by user space) and active pages that are either idle or
+>   short-term pinned via dma-fences.
+> - The deferred_split_shrinker, which holds pages in larger-order folios
+>   that have been partially unmapped.
+> 
+> All of these can free substantial amounts of memory—sometimes very
+> quickly, and sometimes with a delay (e.g., when waiting on short-term
+> pinned memory via dma-fences).
+> 
+> The deferred_split_shrinker in also seemingly has an issue where
+> it can worsen fragmentation in certain cases. For example, if we need an
+> order-9 folio and it shrinks a partially freed folio of the same or
+> smaller order, this doesn’t help and may actively make fragmentation
+> worse by shattering folios. While we’re here, this likely should be
+> addressed—unless I’m missing something.
+> 
+> > 
+> > > > I've even done that myself inside XFS to work around kvmalloc()
+> > > > issues with a lack of GFP_NOFAIL support and doing costly high order
+> > > > allocations that fail and trigger compaction before falling back to
+> > > > vmalloc().  However, these issues have since been fixed in the
+> > > > kvmalloc() code, such that it now does the right thing for most
+> > > > calling contexts (i.e. tries high-order kmalloc() without triggering
+> > > > compaction, then fall back to GFP_NOFAIL vmalloc()). This has made
+> > > > kvmalloc() more performant and better behaved for -all users-, not
+> > > > just XFS.
+> > > > 
+> > > > This is not sustainable - we need compaction to be robust and
+> > > > performant in the face of high-order folio demands, regardless of
+> > > > what subsystem is generating the demand.
+> > > > 
+> > > > So with that in mind, let me paraphrase the comment in the second
+> > > > patch in the Xe shrinker implementation:
+> > > > 
+> > > > "Shrinker reclaim is based on implementation specific object sizes
+> > > > so it is unlikely to ever acheive contiguous page reclaim in a
+> > > > manner that will measurably improve compaction rates."
+> > > > 
+> > > 
+> > > This might be slightly misworded—what I really mean is that I don’t want
+> > > to give up my working set for higher-order allocations that are allowed
+> > > to fail, but I do want to give up my cache.
+> > 
+> > Right, that's the core of the problem - compaction is the high-order
+> > reclaim trigger, the existing shrinker infrastructure reclaim is for
+> > the working-set maintenance reclaim algorithm the subsystem uses..
+> > 
+> 
+> Ok. We also need to consider how direct reclaim and compaction interact.
+> Shrinkers are currently invoked during direct reclaim, which I believe
+> is correct—this helps with compaction and is desirable. More on this
+> below.
+> 
+> > > > You also say:
+> > > > 
+> > > > > No functional changes are introduced for existing shrinkers.
+> > > > 
+> > > > Consider how many shrinkable caches the general statement above
+> > > > applies to, and then think about the fundamental impedence mismatch
+> > > > between the affected shrinkable caches and what this patch actually
+> > > > fixes.
+> > > > 
+> > > 
+> > > Yes, as mentioned above, I’m only addressing Xe here, and I agree that
+> > > this is likely an issue. Do you know of other shrinkers that have pools
+> > > or caches which can be shrunk under the conditions I’m introducing here,
+> > > but also have a working set they would prefer not to give up?
+> > 
+> > The first that comes to mind is the xfs_buf cache. This cache holds
+> > cached metadata buffers that have different sizes can each contain
+> > up 64kB of contiguous pages. The allocation algorithm uses
+> > optimisitic large folios allocation, but if that fails it falls back
+> > to vmalloc. The working set is maintained by a prioritised
+> > multi-scan LRU so that more frequently accessed metadata is held
+> > tighter by the cache than less frequently accessed (e.g. btree roots
+> > have higher retention priority than the lowest leaves).
+> > 
+> > It does not currently track buffer objects by size, by if there was
+> > a benefit to doing so then it could be implemented. I'd much prefer
+> > to have such tracking separate to the working set maintenance,
+> > especially as they will likely need some kind of balancing to
+> > prevent high-order buffers in the working set from being thrashed by
+> > compaction demand....
+> > 
+> > I know there are other caches that have variable sized objects, but
+> > I'd have to go look at the code to referesh my memory of which ones
+> > they are...
+> > 
+> 
+> I'll have to look more here to be able to respond intelligently.
+> 
+> > > If so, a
+> > > link on elixir.bootlin.com would be helpful so I can take a look. I’ll
+> > > also try to go through other shrinkers myself.
+> > 
+> > cscope is your friend.
+> > 
+> > fs/xfs/xfs_buf.c contains the XFS buffer cache and shrinker
+> > infrastructure, but looking at the code without any understanding of
+> > the filesystem structures or how it interacts with the other XFS
+> > shrinkable caches probably isn't as useful as you might think it
+> > will be.
+> 
+> Agree. Looked at some FS shrinkers and got lost quickly.
+> 
+> > 
+> > > > For example, what happens to slab-based caches if the XE cache is being
+> > > > excessively reclaimed under high-order page demand? e.g. the slab-based
+> > > > cache may have tens of objects per page and holds a system-level
+> > > > performance critical working set of objects. How do these caches
+> > > > handle the excessive reclaim demand being generated by compaction
+> > > > thrashing?
+> > > > 
+> > > > Yup, they don't.
+> > > > 
+> > > 
+> > > Agree.
+> > > 
+> > > > In the case of filesystem caches, the "reclaim and repopulate"
+> > > > pattern you describe causing the XE perf problems causes internal
+> > > > slab cache fragmentation. Not only does this not improve compaction
+> > > > rates, it also results in more memory fragmentation because slab
+> > > > pages get pinned by a small number of long lived objects and they
+> > > > won't get freed until the cache is largely emptied.  IOWs, things
+> > > > get -even worse- from a memory fragmentation POV when compaction
+> > > > thrashing causes the working set of a high-object-count-per-page
+> > > > slab cache to thrash....
+> > > > 
+> > > 
+> > > Got a link to the code which you are referring to?
+> > 
+> > Do a lore search for "dentry cache defragmentation". You should be
+> > able to find discussions that go back to around 2006 about
+> > discussions on identry cache fragmentation and approaches like
+> > slab-page based object reclaim to support internal defragmentation.
+> > 
+> > The fact that we don't have slab cache defragmentation despite many
+> > years of people wanting such functionality should tell you how
+> > complex the problem is.... :/
+> > 
+> > > That seems like a problem similar to another issue in DRM/Xe. We found
+> > > that the process of shrinking actually drove fragmentation by splitting
+> > > folios down to order-0 and then backing pages up one at a time. I have a
+> > > separate fix in flight for that.
+> > 
+> > Possibly, though the life cycle differences I'm talking about can be
+> > a few milliseconds (temporary file) vs weeks (long running database
+> > instance holding it's table files open the whole time it is
+> > running).
+> > 
+> > > Could the filesystem detect these hints and avoid shrinking in a way
+> > > that causes fragmentation?
+> > 
+> > Not really. The fragmentation problem is caused by physical object
+> > placement in the slab pages at allocation time, not the act of
+> > reclaiming the object.
+> > 
+> > i.e. we don't know what the expected cache life time of a dentry or
+> > an inode will be when we allocate it, so it just gets allocated in
+> > the next free slot in the current partial slab page. When you get a
+> > mix of dentries that are pinned by open files in long running
+> > applications and dentries for access-once files in the same page, we
+> > end up with reclaim freeing all the object slots that contained
+> > access-once files. However, the pages are still pinned by the
+> > objects for the open files that are in active use.
+> > 
+> > IOWs, LRU-based reclaim can free >90% of the objects in a cache that
+> > held millions of objects with mixed lifetimes and still not free any
+> > memory at all. There's nothing reclaim can do about it because the
+> > problem is created at allocation time when lifetime is a complete
+> > unknown.
+> > 
+> > > Alternatively, could it perform shrinking in
+> > > a way that doesn’t shatter folios, or detect long-lived objects so it
+> > > understands that shrinking isn’t going to help reduce fragmentation?
+> > 
+> > Referenced filesystem objects are not on the LRUs, so the shrinkers
+> > aren't even aware of such long lived objects. And, as per the
+> > "dentry cache defrag" comment above, we can't ask the slab to
+> > reclaim or move objects because we don't track the owners of
+> > external references to the objects themselves.
+> > 
+> > > 
+> > > > This isn't isolated to individual subsystem thrashing.  If we run a
+> > > > file-based workload that generates high-order folio demand and hence
+> > > 
+> > > What GFP flags are typical used for file-based workloads?
+> > 
+> > Mostly GFP_KERNEL, with a mix of GFP_NOFS. non-blocking paths also
+> > tend to add GFP_NOWAITS, and memory reclaim sensitive paths often
+> > use __GFP_MEMALLOC to prevent reclaim recursion. Some filesystems
+> > also make extensive use of GFP_NOFAIL (e.g. XFS).
+> > 
+> > > > compaction (e.g copy tens of GB of files between two XFS, ext4 or
+> > > > btrfs filesystems), that will -also- trash the Xe working set via
+> > > > the shrinker being hammered by memory compaction try to free up
+> > > > contiguous pages for the page cache.
+> > > >
+> > > 
+> > > I could see this.
+> > > 
+> > > > Similarly, if we run a Xe workload that generates sustained high
+> > > > order folio demand, that will trash the working set in the dentry
+> > > > and inode caches and any other shrinkable slab-based cache.
+> > > > 
+> > > 
+> > > I could also see this but DRM / Xe will set __GFP_NORETRY or
+> > > __GFP_RETRY_MAYFAIL on higer-orders so those caches should be able to
+> > > not trash its working set if looked for this hint. 
+> > 
+> > This relies on all the allocation code everywhere always doing
+> > exactly the right thing so that memory reclaim "behaves". That is
+> 
+> Yes and no. The original issue was a DRM/TTM self-feedback loop, where
+> we need some shrinking/reclaim, but not all. In general, this feedback
+> loop also occurs on CPU/GPU client paths, so running XPS alongside heavy
+> DRM/TTM with a client part is a very unlikely use case.
+> 
+> > what I've been saying is not a sustainable approach - all it takes
+> > is one allocation or one shrinker not to do the right thing, and
+> > we've got another mole to whack.  i.e. memory allocation should do
+> > the right/best thing for the system with default parameters.
+> > 
+> 
+> I agree that another allocation could shrink DRM/TTM buffers, but when
+> DRM/TTM reallocates, it won’t trigger the same feedback loop since it
+> uses the correct GFP flags. While it’s true that two conflicting
+> allocations can ping-pong, we are also working on a DRM/TTM reclaim
+> backoff mechanism and a defragmenter. However, if a self-feedback loop
+> exists, this effort becomes ineffective.
+> 
+> > > > Hence the abstracted case of the problem we need to solve is this:
+> > > > shrinker reclaim is based on x-byte objects is extremely unlikely to
+> > > > acheive contiguous page reclaim in a manner that will measurably
+> > > > improve compaction rates.
+> > > > 
+> > > > This is a problem that has to be addresses by the high level
+> > > > infrastructure level, not worked around by individual shrinkers.
+> > > > 
+> > > > IMO, compaction shouldn't trigger shrinkers unless the shrinkers are
+> > > > specifically flagged as being able to release contiguous pages of
+> > > > memory in short order. I don't think there's very many shrinkable
+> > > > caches that even hold a significant quantity of objects larger than
+> > > > a single page, so it's clearly questionable as to whether compaction
+> > > > based reclaim should run shrinker reclaim to begin with.
+> > > > 
+> > > 
+> > > Yes, sort of do this in Xe by changing '->count_objects' based on the
+> > > hint.
+> > 
+> > I know. That's the problem - it's relying on the infrastructure
+> > passing down a specific internal context hint in an existing
+> > interface so a specific subsystem can work around a specific
+> > problematic behaviour.
+> > 
+> > Indeed, for compaction we don't actually care about the count, what
+> > we largely care about is whether the subsystem has any objects the
+> > same size or larger than the current compaction demand. Efficient
+> > object reclaim for compaction has a different control variable set
+> > (e.g. find objects larger than, objects physically near to, etc),
+> > and this can't really be properly fitted into the existing
+> > count/scan shrinker reclaim algorithm.
+> > 
+> > Hence I think it needs new shrinker methods to implement
+> > effectively.
+> 
+> Looping back to direct reclaim above—would these new methods also be
+> called during direct reclaim? My thinking is yes.
+> 
+> > 
+> > > > i.e. a subsystem that can track high order folios in a shrinkable
+> > > > cache should probably have a "->compaction_scan()" method that is
+> > > > run directly from compaction context to try to free high order
+> > > 
+> > > When you say “compaction context,” which parts of the code are you
+> > > referring to? I’d like to explore this option, but I need a bit more
+> > > context.
+> > 
+> > kcompactd does background compaction, similar to how we have kswapd
+> > to do background memory reclaim.
+> > 
+> 
+> kcompactd doesn't call shrinkers - this is where we'd call compaction
+> shrinkers?
+> 
+> > Direct compaction (part of direct reclaim) via
+> > __alloc_pages_direct_compact() that will be called before direct
+> > memory reclaim in the case of a high-order allocation.
+> > 
+> 
+> So maybe this is where compaction shrinkers fits in in direct reclaim?
+> 
+> > > 
+> > > > folios. This provides a direct opt-in mechanism for a subsystem, and
+> > > > it allows subsystems that can track low- and high- order objects
+> > > > independently to efficiently free objects in a way that will help
+> > > > improve compaction rates without impacting the entire working set of
+> > > > objects in the cache.
+> > > 
+> > > 
+> > > Does this help if, for example, the cache is holding onto two order-8
+> > > folios that could be freed and merged, while the caller really wants an
+> > > order-9 folio? This seems like a possible scenario in caches and is
+> > > certainly true in TTM pools.
+> > 
+> > Depends on how the interface is implemented.
+> > 
+> > IIUC, the direct compaction code will return a right-sized page
+> > early if it creates one via compact_zone(). Hence if that path can
+> > call into shrinkers to do high-order scanning that results in two
+> > mergable order-8 objects being freed and merged into an order-9
+> > object that fulfils the compaction requirements, then it will result
+> > in compaction succeeding where it currently fails.
+> >
+> 
+> I think this answers my question above - call compaction shrinker here.
+> 
+> > And I think that kcompactd will run until certain watermarks are
+> > met, so again having a high-order shrinker that directly impacts the
+> > high order page watermarks would be much more efficient that trying
+> > to use general memory pressure to randomly shoot down enough objects
+> > to reform contiguous pages.
+> > 
+> 
+> I think this answers my question above - call compaction shrinker here.
+> 
+> > > > IOWs, this patch to inform kswapd about it's trigger (doesn't it
+> > > > already have a "reason" parameter, though?) is likely a necessary
+> > > > part of the solution - we don't want kswapd running shrinkers if it
+> > > > has been triggered to reclaim pages for compaction. This patch would
+> > > > allows kswapd to elide normal shrinker passes when it has been woken
+> > > > purely for compaction purposes. Given that the compaction code would
+> > > > be running the high-order reclaim capable shrinkers itself, this
+> > > > would avoid trashing the working set of most shrinkable caches -by
+> > > > default- under high order allocation demand....
+> > > >
+> > > 
+> > > I’m trying to parse this—are you suggesting that, one way or another, we
+> > > introduce a heuristic where shrinkers can act on a hint (whether it’s
+> > > what I have here or a new ->compaction_scan() vfunc), and then attempt
+> > > to fix all shrinkers in this series?
+> > 
+> > I don't want existing shrinkers to be touched at all.
+> > 
+> > What I want is for memory reclaim (both direct and kswapd) to elide
+> > the shrink_slab() calls into shrinkers when memory reclaim is being
+> > driven by high order allocation failure.
+> > 
 
-__force_merge() performs an O(N x max_order) scan under the VRAM manager
-lock, leading to allocation stalls and failures for large contiguous
-requests even when sufficient total free memory is available.
+I went and traced the reclaim/compaction interaction in detail before
+replying again - I don't think your suggestion works. Let me lay this out
+in detail with examples.
 
-Solution
+The premise of eliding shrink_slab() is stated a few times in your
+reply, e.g.,:
 
-Replace the dual-tree design with:
-- A single free_tree[order] rbtree for dirty and mixed free blocks
-  (fully cleared free blocks float outside this tree)
-- A lightweight out-of-band dirty tracker (gpu_dirty_tracker)
+'shrinker reclaim is based on x-byte objects is extremely unlikely to
+acheive contiguous page reclaim in a manner that will measurably
+improve compaction rates.'
 
-Fully cleared free blocks are tracked outside the buddy trees using an
-augmented interval rbtree, enabling O(log E) lookup of the largest
-cleared extents.
+This is true for some shrinkers, such as slab-based shrinkers, but it is
+clearly not true for others, such as TTM pools or GPU driver shrinkers
+that reclaim purgeable or inactive memory outside the working set.
+Additionally, XFS appears to retain significant amounts of memory
+through folios and kvmalloc allocations.
 
-Buddy coalescing is now unconditional in __gpu_buddy_free(), regardless
-of clear/dirty state. This removes the merge barrier and eliminates the
-need for __force_merge().
+This is somewhat of a moot point, though, because producing contiguous
+memory is not reclaim's responsibility during high-order allocations.
+Compaction is responsible for creating contiguous memory. Reclaim's job
+is to free enough pages for compaction to run in the first place.
 
-Benefits
+That's not my reading of intent, it's what the code says:
 
-- Correct high-order allocations after mixed clear/dirty workloads
-- Elimination of O(N x max_order) merge cost from the allocation path
-- O(log E) cleared-extent lookup replacing O(N) scans
-- Predictable allocation latency under fragmentation
-- Reduced complexity with a single tree per order
+  include/linux/compaction.h:62
 
-Test:
-dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000
+    /*
+     * Number of free order-0 pages that should be available above given
+     * watermark to make sure compaction has reasonable chance of not
+     * running out of free pages that it needs to isolate as migration
+     * target during its work.
+     */
+    static inline unsigned long compact_gap(unsigned int order)
 
-Below data is from /sys/kernel/debug/dri/1/amdgpu_vram_mm:
+  mm/vmscan.c:6064, above should_continue_reclaim()
 
-Base (dual-tree), before VKCTS test:
-  order- 6 free:   6 MiB,  blocks: 26
-  order- 5 free:   1 MiB,  blocks: 15
-  order- 4 free: 960 KiB,  blocks: 15
-  order- 3 free:   5 MiB,  blocks: 171
-  order- 2 free:   2 MiB,  blocks: 176
-  order- 1 free:   1 MiB,  blocks: 165
-  order- 0 free:  16 KiB,  blocks: 4
+    /*
+     * Reclaim/compaction is used for high-order allocation requests. It
+     * reclaims order-0 pages before compacting the zone.
+     * should_continue_reclaim() returns true if more pages should be
+     * reclaimed such that when the page allocator calls
+     * try_to_compact_pages() that it will have enough free pages to
+     * succeed.
+     */
 
-Base (dual-tree), after VKCTS test:
-  order- 6 free: 768 KiB,  blocks: 3
-  order- 5 free: 499 MiB,  blocks: 3999
-  order- 4 free: 250 MiB,  blocks: 4001
-  order- 3 free: 129 MiB,  blocks: 4157
-  order- 2 free:  65 MiB,  blocks: 4161
-  order- 1 free:  63 MiB,  blocks: 8138
-  order- 0 free:  20 KiB,  blocks: 5
+So the designed pipeline is "reclaim supplies free pages, compaction
+assembles them". Scattered order-0 freeing isn't a failure mode of that
+pipeline, it's the input to it.
 
-Dirty tracker, before VKCTS test:
-  order- 6 free:   4 MiB,  blocks: 19
-  order- 5 free:   2 MiB,  blocks: 18
-  order- 4 free: 704 KiB,  blocks: 11
-  order- 3 free:   5 MiB,  blocks: 168
-  order- 2 free:   2 MiB,  blocks: 174
-  order- 1 free:   1 MiB,  blocks: 167
-  order- 0 free:  32 KiB,  blocks: 8
+The part that makes this concrete rather than philosophical is that the
+free page supply is a hard gate on compaction, not a soft input to it:
 
-Dirty tracker, after VKCTS test:
-  order- 6 free:   4 MiB,  blocks: 19
-  order- 5 free:   2 MiB,  blocks: 18
-  order- 4 free: 704 KiB,  blocks: 11
-  order- 3 free:   5 MiB,  blocks: 168
-  order- 2 free:   2 MiB,  blocks: 174
-  order- 1 free:   1 MiB,  blocks: 167
-  order- 0 free:  28 KiB,  blocks: 7
+  mm/compaction.c:2394, __compaction_suitable()
 
-v2:
- - Code-style cleanup and minor refactoring
- - Renamed locals for clarity
+    watermark += compact_gap(order);
+    if (order > PAGE_ALLOC_COSTLY_ORDER)
+            watermark += low_wmark_pages(zone) - min_wmark_pages(zone);
+    return __zone_watermark_ok(zone, 0, watermark, highest_zoneidx,
+                               ALLOC_CMA, free_pages);
 
-v3:
- - Keep cleared blocks inside free_tree[] instead of floating them.
- - Add subtree_has_dirty rbtree augment for O(log N) dirty-first walk.
+  mm/compaction.c:2525, compaction_suit_allocation_order()
 
-v4:
- - Fixed checkpatch warnings.
- - Optimized gpu_buddy_reset_clear() to a single post-order walk that
-   flips block headers and recomputes the rbtree augment in one pass.
- - Propagate subtree_max_size top-down in insert_extent() so ancestors
-   are not left with stale values on no-rotation inserts. (sashiko)
- - Drop the whole extent in gpu_dirty_tracker_mark_dirty() when the
-   inside-split allocation fails, avoiding a stale clear claim. (sashiko)
- - Make gpu_dirty_tracker_find() alignment-aware and fall back to the
-   dirty tree on steered failure to avoid spurious -ENOSPC. (sashiko)
+    if (!compaction_suitable(zone, order, watermark, highest_zoneidx))
+            return COMPACT_SKIPPED;
 
-v5:
- - Track dirty extents instead of cleared ones: steer dirty allocs onto
-   tracked dirty windows and pick clear allocs via a free-tree augment,
-   avoiding clear-memory wastage by keeping cleared free blocks untouched
-   during dirty allocation.
+and compact_zone() bails at line 2563 on anything that isn't
+COMPACT_CONTINUE.
 
-v6:
- - Make __alloc_range_bias() return the highest/right-most address by
-   default, establishing top-down as the intended placement for
-   range-biased allocations.
- - Honour GPU_BUDDY_CLEAR_ALLOCATION in __alloc_range_bias() by steering
-   the descent towards clear subtrees for non-top-down clear
-   requests. (sashiko)
- - Skip dirty-tracker steering for offset-aligned requests so they keep
-   their min_block_size alignment. (sashiko)
- - sashiko reported that the __GFP_NOFAIL dirty-extent allocations on
-   the free path could deadlock during memory reclaim, since that is a
-   GFP_KERNEL allocation on the free path; move to a per-tracker
-   mempool so extent nodes are guaranteed without __GFP_NOFAIL.
-   (sashiko)
- - Derive each free block's clear/dirty class from the blocks already
-   in hand on split, free, alloc, trim and init instead of querying the
-   dirty tracker, removing the tracker lookups from the hot paths.
+Below that threshold compaction does not run at all. Not "runs less
+effectively" - COMPACT_SKIPPED, before the migrate and free scanners
+are ever started.
 
-v7:
- - Preserve mixed-block clear state in __gpu_buddy_free() when a mixed
-   split child is re-merged after an undone split. (sashiko)
- - Prefer a fully-clear block over a mixed one of the same order via a
-   single ordered clear-state max augment on free_tree[].
+Now let's consider two examples:
 
-Assisted-by: Claude:claude-opus-4-8
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/buddy.c                | 1318 ++++++++++++++++++++--------
- drivers/gpu/tests/gpu_buddy_test.c |   32 +-
- include/linux/gpu_buddy.h          |   97 +-
- 3 files changed, 1034 insertions(+), 413 deletions(-)
+- A memory-intensive GPU workload has run and completed, leaving pages
+  either in the TTM pool or on the driver side outside the working set.
+- XFS reclaimable cache is holding onto large amounts of memory.
 
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index dc81fe0301ce..a5d68cd8b78d 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -8,6 +8,7 @@
- #include <linux/kmemleak.h>
- #include <linux/module.h>
- #include <linux/sizes.h>
-+#include <linux/slab.h>
- 
- #include <linux/gpu_buddy.h>
- 
-@@ -34,6 +35,441 @@
- #endif
- 
- static struct kmem_cache *slab_blocks;
-+static struct kmem_cache *slab_extents;
-+
-+/*
-+ * A single reserved extent suffices. Every allocation uses GFP_KERNEL
-+ * from sleepable context, so the underlying slab alloc almost always
-+ * succeeds via reclaim; the reserve only backstops the rare case where
-+ * it still returns NULL (e.g. the current task is an OOM victim),
-+ * guaranteeing a non-NULL extent without __GFP_NOFAIL. Because each
-+ * alloc can independently wait for reclaim, the reserve need not scale
-+ * with the number of extents added in one locked section (e.g. by
-+ * gpu_buddy_reset_clear()).
-+ */
-+#define GPU_DIRTY_EXTENT_POOL_MIN 1
-+
-+/*
-+ * Dirty tracker
-+ * -------------
-+ *
-+ * The dirty tracker maintains an augmented interval rbtree of contiguous
-+ * dirty address ranges, decoupled from the buddy free trees.
-+ * Each node covers a maximal coalesced run; adjacent extents are merged
-+ * on insertion so the tree always holds the smallest possible number of
-+ * extents.  The augmentation field @subtree_max_size lets the allocator
-+ * locate the largest dirty extent in O(log E).
-+ *
-+ * Free trees (mm->free_tree[])
-+ * ----------------------------
-+ *
-+ * Per-order augmented rbtrees of FREE buddy blocks, keyed by offset.
-+ * Every node carries:
-+ *   - subtree_max_alignment: largest natural alignment in the subtree,
-+ *     used by aligned/range allocations to skip unsuitable subtrees in
-+ *     O(log N).
-+ *   - subtree_block_state: the highest clear class (DIRTY < MIXED < CLEAR)
-+ *     of any block in the subtree, maintained as a max augment. A value of
-+ *     >= MIXED means a clear-or-mixed block exists; == CLEAR means a
-+ *     fully-clear block exists.
-+ *
-+ * Block classes
-+ * -------------
-+ *
-+ * Each FREE block falls into one of three classes, determined in
-+ * mark_free() by querying the dirty tracker for the block's range:
-+ *
-+ *   clear   -- HEADER_CLEAR set; no dirty extent overlaps the range.
-+ *   mixed   -- HEADER_CLEAR unset; range has both dirty and clear bytes.
-+ *   dirty   -- HEADER_CLEAR unset; range is fully dirty.
-+ *
-+ * Clear allocation
-+ * ----------------
-+ *
-+ * A clear (CLEAR_ALLOCATION) request prefers clear -> mixed -> dirty.
-+ * Climbing from the requested order up to max_order, rbtree_last_clear_free_block()
-+ * returns, in one O(log N) descent per order, the right-most clear-or-mixed block
-+ * (fully-clear preferred over mixed) at the lowest order that has one. Only if no
-+ * clear-or-mixed block exists at any order >= the requested one does it fall back
-+ * to a dirty block.
-+ *
-+ * Clear state is reported to the driver per whole block via HEADER_CLEAR, so a
-+ * fully-clear block of the requested order lets the driver skip the clear pass.
-+ *
-+ * The effective selection order therefore depends on the driver's
-+ * free policy:
-+ *
-+ *   1) If the driver never clears freed blocks, no free block ever holds
-+ *      clear bytes, so a clear request always falls back to a dirty block.
-+ *   2) If the driver clears every freed block, cleared ranges accumulate at
-+ *      the high end of the address space, so picking the right-most block
-+ *      yields clear -> mixed -> dirty.
-+ *   3) If the driver clears freed blocks selectively, fully-clear blocks are
-+ *      still preferred over mixed ones at the same order, and the right-most
-+ *      candidate wins, giving a clear -> mixed -> dirty order.
-+ */
-+
-+static u64 extent_size(struct gpu_dirty_extent *dirty_extent)
-+{
-+	return dirty_extent->end - dirty_extent->start;
-+}
-+
-+RB_DECLARE_CALLBACKS_MAX(static, gpu_dirty_augment_cb,
-+			 struct gpu_dirty_extent, rb,
-+			 u64, subtree_max_size,
-+			 extent_size)
-+
-+static struct gpu_dirty_extent *extent_alloc(struct gpu_dirty_tracker *dirty_tracker)
-+{
-+	/*
-+	 * The void free/reset paths must record an extent and cannot handle
-+	 * failure, so the mempool reserve guarantees a non-NULL return
-+	 * without __GFP_NOFAIL. GFP_KERNEL is safe under the buddy lock: no
-+	 * driver frees buddy blocks from a shrinker, so reclaim cannot
-+	 * recurse into the lock we hold.
-+	 */
-+	return mempool_alloc(dirty_tracker->extent_pool, GFP_KERNEL);
-+}
-+
-+static void extent_free(struct gpu_dirty_tracker *dirty_tracker,
-+			struct gpu_dirty_extent *dirty_extent)
-+{
-+	mempool_free(dirty_extent, dirty_tracker->extent_pool);
-+}
-+
-+/* Return the rightmost extent whose start is strictly below @offset. */
-+static struct gpu_dirty_extent *
-+prev_extent(struct gpu_dirty_tracker *dirty_tracker, u64 offset)
-+{
-+	struct rb_node *rb = dirty_tracker->root.rb_node;
-+	struct gpu_dirty_extent *dirty_extent = NULL;
-+
-+	while (rb) {
-+		struct gpu_dirty_extent *tmp_extent =
-+			rb_entry(rb, struct gpu_dirty_extent, rb);
-+
-+		if (tmp_extent->start < offset) {
-+			dirty_extent = tmp_extent;
-+			rb = rb->rb_right;
-+		} else {
-+			rb = rb->rb_left;
-+		}
-+	}
-+
-+	return dirty_extent;
-+}
-+
-+/* Return the leftmost extent whose start is at or above @offset. */
-+static struct gpu_dirty_extent *
-+next_extent(struct gpu_dirty_tracker *dirty_tracker, u64 offset)
-+{
-+	struct rb_node *rb = dirty_tracker->root.rb_node;
-+	struct gpu_dirty_extent *dirty_extent = NULL;
-+
-+	while (rb) {
-+		struct gpu_dirty_extent *tmp_extent =
-+			rb_entry(rb, struct gpu_dirty_extent, rb);
-+
-+		if (tmp_extent->start >= offset) {
-+			dirty_extent = tmp_extent;
-+			rb = rb->rb_left;
-+		} else {
-+			rb = rb->rb_right;
-+		}
-+	}
-+
-+	return dirty_extent;
-+}
-+
-+static void insert_extent(struct gpu_dirty_tracker *dirty_tracker,
-+			  struct gpu_dirty_extent *dirty_extent)
-+{
-+	struct rb_node **link = &dirty_tracker->root.rb_node;
-+	struct rb_node *parent = NULL;
-+	u64 size = extent_size(dirty_extent);
-+
-+	while (*link) {
-+		struct gpu_dirty_extent *tmp_extent;
-+
-+		parent = *link;
-+		tmp_extent = rb_entry(parent, struct gpu_dirty_extent, rb);
-+
-+		if (tmp_extent->subtree_max_size < size)
-+			tmp_extent->subtree_max_size = size;
-+
-+		if (dirty_extent->start < tmp_extent->start)
-+			link = &parent->rb_left;
-+		else
-+			link = &parent->rb_right;
-+	}
-+
-+	dirty_extent->subtree_max_size = size;
-+	rb_link_node(&dirty_extent->rb, parent, link);
-+	rb_insert_augmented(&dirty_extent->rb, &dirty_tracker->root, &gpu_dirty_augment_cb);
-+}
-+
-+static void remove_extent(struct gpu_dirty_tracker *dirty_tracker,
-+			  struct gpu_dirty_extent *dirty_extent)
-+{
-+	rb_erase_augmented(&dirty_extent->rb, &dirty_tracker->root, &gpu_dirty_augment_cb);
-+	RB_CLEAR_NODE(&dirty_extent->rb);
-+}
-+
-+static int gpu_dirty_tracker_init(struct gpu_dirty_tracker *dirty_tracker)
-+{
-+	dirty_tracker->root = RB_ROOT;
-+	dirty_tracker->total_dirty = 0;
-+
-+	dirty_tracker->extent_pool =
-+		mempool_create_slab_pool(GPU_DIRTY_EXTENT_POOL_MIN, slab_extents);
-+	if (!dirty_tracker->extent_pool)
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+
-+static void gpu_dirty_tracker_empty(struct gpu_dirty_tracker *dirty_tracker)
-+{
-+	struct rb_node *rb;
-+
-+	while ((rb = rb_first(&dirty_tracker->root))) {
-+		struct gpu_dirty_extent *dirty_extent =
-+			rb_entry(rb, struct gpu_dirty_extent, rb);
-+
-+		remove_extent(dirty_tracker, dirty_extent);
-+		extent_free(dirty_tracker, dirty_extent);
-+	}
-+
-+	dirty_tracker->total_dirty = 0;
-+}
-+
-+static void gpu_dirty_tracker_fini(struct gpu_dirty_tracker *dirty_tracker)
-+{
-+	gpu_dirty_tracker_empty(dirty_tracker);
-+	mempool_destroy(dirty_tracker->extent_pool);
-+	dirty_tracker->extent_pool = NULL;
-+}
-+
-+/*
-+ * Mark the range [start, start + size] as dirty. Merge with the neighbour on
-+ * each side if they are contiguous, so the tree never holds two adjacent ranges.
-+ */
-+static void gpu_dirty_tracker_mark_dirty(struct gpu_dirty_tracker *dirty_tracker,
-+					 u64 start, u64 size)
-+{
-+	struct gpu_dirty_extent *left, *right, *dirty_extent;
-+	u64 end = start + size;
-+
-+	if (!size)
-+		return;
-+
-+	/* Find contiguous neighbours, if any. */
-+	left = prev_extent(dirty_tracker, start);
-+	if (left && left->end != start)
-+		left = NULL;
-+
-+	right = next_extent(dirty_tracker, end);
-+	if (right && right->start != end)
-+		right = NULL;
-+
-+	if (left && right) {
-+		/* Merge left + new + right into a single extent. */
-+		remove_extent(dirty_tracker, left);
-+		remove_extent(dirty_tracker, right);
-+		left->end = right->end;
-+		extent_free(dirty_tracker, right);
-+		insert_extent(dirty_tracker, left);
-+	} else if (left) {
-+		/* Extend left neighbour rightwards. */
-+		remove_extent(dirty_tracker, left);
-+		left->end = end;
-+		insert_extent(dirty_tracker, left);
-+	} else if (right) {
-+		/* Extend right neighbour leftwards. */
-+		remove_extent(dirty_tracker, right);
-+		right->start = start;
-+		insert_extent(dirty_tracker, right);
-+	} else {
-+		/* Standalone extent. */
-+		dirty_extent = extent_alloc(dirty_tracker);
-+		dirty_extent->start = start;
-+		dirty_extent->end   = end;
-+		insert_extent(dirty_tracker, dirty_extent);
-+	}
-+
-+	dirty_tracker->total_dirty += size;
-+}
-+
-+/*
-+ * Remove the range [start, start + size] from the dirty tracker. Punch the
-+ * range out of every overlapping dirty extent, splitting one extent in two if
-+ * the removed range falls strictly inside it.
-+ */
-+static void gpu_dirty_tracker_remove_range(struct gpu_dirty_tracker *dirty_tracker,
-+					   u64 start, u64 size)
-+{
-+	struct gpu_dirty_extent *dirty_extent, *next;
-+	u64 end = start + size;
-+
-+	if (!size)
-+		return;
-+
-+	dirty_extent = prev_extent(dirty_tracker, start + 1);
-+	if (!dirty_extent)
-+		dirty_extent = next_extent(dirty_tracker, start);
-+
-+	while (dirty_extent && dirty_extent->start < end) {
-+		struct rb_node *next_node = rb_next(&dirty_extent->rb);
-+		u64 extent_start = dirty_extent->start;
-+		u64 extent_end = dirty_extent->end;
-+
-+		if (next_node)
-+			next = rb_entry(next_node, struct gpu_dirty_extent, rb);
-+		else
-+			next = NULL;
-+
-+		/* Skip a non-overlapping neighbour returned by prev_extent(). */
-+		if (extent_end <= start) {
-+			dirty_extent = next;
-+			continue;
-+		}
-+
-+		if (extent_start < start && extent_end > end) {
-+			/*
-+			 * Removed range lies strictly inside this dirty extent:
-+			 * split it into the dirty left and right halves.
-+			 */
-+			struct gpu_dirty_extent *right = extent_alloc(dirty_tracker);
-+
-+			remove_extent(dirty_tracker, dirty_extent);
-+
-+			dirty_extent->end = start;
-+			right->start = end;
-+			right->end   = extent_end;
-+
-+			insert_extent(dirty_tracker, dirty_extent);
-+			insert_extent(dirty_tracker, right);
-+
-+			dirty_tracker->total_dirty -= size;
-+		} else if (extent_start >= start && extent_end <= end) {
-+			/* Extent fully covered: drop it. */
-+			remove_extent(dirty_tracker, dirty_extent);
-+			extent_free(dirty_tracker, dirty_extent);
-+
-+			dirty_tracker->total_dirty -= (extent_end - extent_start);
-+		} else if (extent_start < start) {
-+			/* Extent overlaps from the left: trim its right end. */
-+			remove_extent(dirty_tracker, dirty_extent);
-+			dirty_extent->end = start;
-+			insert_extent(dirty_tracker, dirty_extent);
-+
-+			dirty_tracker->total_dirty -= (extent_end - start);
-+		} else {
-+			/* Extent overlaps from the right: trim its left end. */
-+			remove_extent(dirty_tracker, dirty_extent);
-+			dirty_extent->start = end;
-+			insert_extent(dirty_tracker, dirty_extent);
-+
-+			dirty_tracker->total_dirty -= (end - extent_start);
-+		}
-+
-+		dirty_extent = next;
-+	}
-+}
-+
-+static enum gpu_block_state
-+gpu_dirty_range_state(struct gpu_dirty_tracker *dirty_tracker,
-+		      u64 start, u64 size)
-+{
-+	struct gpu_dirty_extent *dirty_extent;
-+	u64 end = start + size;
-+
-+	dirty_extent = prev_extent(dirty_tracker, start + 1);
-+	if (dirty_extent) {
-+		if (dirty_extent->start <= start && dirty_extent->end >= end)
-+			return GPU_BLOCK_DIRTY;
-+		if (dirty_extent->start < end && dirty_extent->end > start)
-+			return GPU_BLOCK_MIXED;
-+	}
-+
-+	dirty_extent = next_extent(dirty_tracker, start);
-+	if (dirty_extent && dirty_extent->start < end)
-+		return GPU_BLOCK_MIXED;
-+
-+	return GPU_BLOCK_CLEAR;
-+}
-+
-+static struct rb_node *
-+dirty_tracker_descend_right(struct rb_node *node, u64 min_size)
-+{
-+	while (node->rb_right) {
-+		struct gpu_dirty_extent *tmp_extent;
-+
-+		tmp_extent = rb_entry(node->rb_right, struct gpu_dirty_extent, rb);
-+
-+		if (tmp_extent->subtree_max_size < min_size)
-+			break;
-+		node = node->rb_right;
-+	}
-+
-+	return node;
-+}
-+
-+static struct gpu_dirty_extent *
-+gpu_dirty_tracker_find(struct gpu_dirty_tracker *dirty_tracker,
-+		       u64 min_size, u64 *aligned_start_out)
-+{
-+	struct rb_node *rb = dirty_tracker->root.rb_node;
-+	struct gpu_dirty_extent *root_extent;
-+	struct rb_node *parent;
-+
-+	if (!min_size || !is_power_of_2(min_size))
-+		return NULL;
-+
-+	if (!rb)
-+		return NULL;
-+
-+	root_extent = rb_entry(rb, struct gpu_dirty_extent, rb);
-+	if (root_extent->subtree_max_size < min_size)
-+		return NULL;
-+
-+	rb = dirty_tracker_descend_right(rb, min_size);
-+
-+	while (rb) {
-+		struct gpu_dirty_extent *dirty_extent;
-+		u64 aligned_start;
-+
-+		dirty_extent = rb_entry(rb, struct gpu_dirty_extent, rb);
-+		aligned_start = ALIGN(dirty_extent->start, min_size);
-+
-+		/* Check if a min_size block fits after the alignment skip. */
-+		if (aligned_start <= dirty_extent->end &&
-+		    dirty_extent->end - aligned_start >= min_size) {
-+			*aligned_start_out = aligned_start;
-+			return dirty_extent;
-+		}
-+
-+		if (rb->rb_left) {
-+			struct gpu_dirty_extent *tmp_extent;
-+
-+			tmp_extent = rb_entry(rb->rb_left, struct gpu_dirty_extent, rb);
-+			if (tmp_extent->subtree_max_size >= min_size) {
-+				rb = dirty_tracker_descend_right(rb->rb_left, min_size);
-+				continue;
-+			}
-+		}
-+
-+		/* Walk up until we exit a node via its right child. */
-+		parent = rb_parent(rb);
-+		while (parent && parent->rb_right != rb) {
-+			rb = parent;
-+			parent = rb_parent(rb);
-+		}
-+		rb = parent;
-+	}
-+
-+	return NULL;
-+}
- 
- static unsigned int
- gpu_buddy_block_state(struct gpu_buddy_block *block)
-@@ -67,10 +503,97 @@ static unsigned int gpu_buddy_block_offset_alignment(struct gpu_buddy_block *blo
- 	return __ffs64(offset);
- }
- 
--RB_DECLARE_CALLBACKS_MAX(static, gpu_buddy_augment_cb,
--			 struct gpu_buddy_block, rb,
--			 unsigned int, subtree_max_alignment,
--			 gpu_buddy_block_offset_alignment);
-+static inline enum gpu_block_state
-+gpu_block_cached_state(struct gpu_buddy_block *block)
-+{
-+	if (gpu_buddy_block_is_clear(block))
-+		return GPU_BLOCK_CLEAR;
-+	if (block->has_clear)
-+		return GPU_BLOCK_MIXED;
-+	return GPU_BLOCK_DIRTY;
-+}
-+
-+static inline void gpu_buddy_augment_compute(struct gpu_buddy_block *block)
-+{
-+	enum gpu_block_state block_state;
-+	struct gpu_buddy_block *right;
-+	struct gpu_buddy_block *left;
-+	unsigned int max_align;
-+
-+	max_align = gpu_buddy_block_offset_alignment(block);
-+	block_state = gpu_block_cached_state(block);
-+
-+	left = rb_entry_safe(block->rb.rb_left, struct gpu_buddy_block, rb);
-+	if (left) {
-+		if (left->subtree_max_alignment > max_align)
-+			max_align = left->subtree_max_alignment;
-+
-+		block_state = max(block_state, left->subtree_block_state);
-+	}
-+
-+	right = rb_entry_safe(block->rb.rb_right, struct gpu_buddy_block, rb);
-+	if (right) {
-+		if (right->subtree_max_alignment > max_align)
-+			max_align = right->subtree_max_alignment;
-+
-+		block_state = max(block_state, right->subtree_block_state);
-+	}
-+
-+	block->subtree_max_alignment = max_align;
-+	block->subtree_block_state = block_state;
-+}
-+
-+static void gpu_buddy_augment_propagate(struct rb_node *rb, struct rb_node *stop)
-+{
-+	while (rb != stop) {
-+		struct gpu_buddy_block *block;
-+		unsigned int old_align;
-+		enum gpu_block_state old_block_state;
-+
-+		block = rb_entry(rb, struct gpu_buddy_block, rb);
-+		old_align = block->subtree_max_alignment;
-+		old_block_state = block->subtree_block_state;
-+
-+		gpu_buddy_augment_compute(block);
-+		if (block->subtree_max_alignment == old_align &&
-+		    block->subtree_block_state == old_block_state)
-+			break;
-+
-+		rb = rb_parent(&block->rb);
-+	}
-+}
-+
-+static void gpu_buddy_augment_copy(struct rb_node *rb_old, struct rb_node *rb_new)
-+{
-+	struct gpu_buddy_block *old;
-+	struct gpu_buddy_block *new;
-+
-+	old = rb_entry(rb_old, struct gpu_buddy_block, rb);
-+	new = rb_entry(rb_new, struct gpu_buddy_block, rb);
-+
-+	new->subtree_max_alignment = old->subtree_max_alignment;
-+	new->subtree_block_state = old->subtree_block_state;
-+}
-+
-+static void gpu_buddy_augment_rotate(struct rb_node *rb_old, struct rb_node *rb_new)
-+{
-+	struct gpu_buddy_block *old;
-+	struct gpu_buddy_block *new;
-+
-+	old = rb_entry(rb_old, struct gpu_buddy_block, rb);
-+	new = rb_entry(rb_new, struct gpu_buddy_block, rb);
-+
-+	new->subtree_max_alignment = old->subtree_max_alignment;
-+	new->subtree_block_state = old->subtree_block_state;
-+
-+	gpu_buddy_augment_compute(old);
-+}
-+
-+static const struct rb_augment_callbacks gpu_buddy_augment_cb = {
-+	.propagate = gpu_buddy_augment_propagate,
-+	.copy      = gpu_buddy_augment_copy,
-+	.rotate    = gpu_buddy_augment_rotate,
-+};
- 
- static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
- 					       struct gpu_buddy_block *parent,
-@@ -81,6 +604,10 @@ static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
- 
- 	BUG_ON(order > GPU_BUDDY_MAX_ORDER);
- 
-+	/*
-+	 * GFP_KERNEL is safe under the buddy lock: no consumer runs a
-+	 * shrinker that re-enters it during direct reclaim.
-+	 */
- 	block = kmem_cache_zalloc(slab_blocks, GFP_KERNEL);
- 	if (!block)
- 		return NULL;
-@@ -101,13 +628,6 @@ static void gpu_block_free(struct gpu_buddy *mm,
- 	kmem_cache_free(slab_blocks, block);
- }
- 
--static enum gpu_buddy_free_tree
--get_block_tree(struct gpu_buddy_block *block)
--{
--	return gpu_buddy_block_is_clear(block) ?
--	       GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
--}
--
- static struct gpu_buddy_block *
- rbtree_get_free_block(const struct rb_node *node)
- {
-@@ -120,24 +640,64 @@ rbtree_last_free_block(struct rb_root *root)
- 	return rbtree_get_free_block(rb_last(root));
- }
- 
--static bool rbtree_is_empty(struct rb_root *root)
-+static struct gpu_buddy_block *
-+rbtree_last_clear_free_block(struct rb_root *root,
-+			     enum gpu_block_state min_block_state)
- {
--	return RB_EMPTY_ROOT(root);
-+	struct rb_node *node = root->rb_node;
-+	struct gpu_buddy_block *block = NULL;
-+	struct gpu_buddy_block *root_block;
-+	enum gpu_block_state target_state;
-+
-+	root_block = rbtree_get_free_block(node);
-+	if (!root_block || root_block->subtree_block_state < min_block_state)
-+		return NULL;
-+
-+	target_state = root_block->subtree_block_state;
-+
-+	while (node) {
-+		struct gpu_buddy_block *right_block;
-+		struct gpu_buddy_block *node_block;
-+
-+		node_block = rbtree_get_free_block(node);
-+		right_block = rbtree_get_free_block(node->rb_right);
-+
-+		if (right_block && right_block->subtree_block_state >= target_state) {
-+			node = node->rb_right;
-+			continue;
-+		}
-+
-+		if (gpu_block_cached_state(node_block) == target_state) {
-+			block = node_block;
-+			break;
-+		}
-+
-+		node = node->rb_left;
-+	}
-+
-+	return block;
-+}
-+
-+static inline void gpu_buddy_sync_clear_avail(struct gpu_buddy *mm)
-+{
-+	mm->clear_avail = mm->avail - mm->dirty.total_dirty;
- }
- 
- static void rbtree_insert(struct gpu_buddy *mm,
--			  struct gpu_buddy_block *block,
--			  enum gpu_buddy_free_tree tree)
-+			  struct gpu_buddy_block *block)
- {
- 	struct rb_node **link, *parent = NULL;
--	unsigned int block_alignment, order;
-+	enum gpu_block_state block_state;
- 	struct gpu_buddy_block *node;
-+	unsigned int block_alignment;
- 	struct rb_root *root;
-+	unsigned int order;
- 
- 	order = gpu_buddy_block_order(block);
- 	block_alignment = gpu_buddy_block_offset_alignment(block);
-+	block_state = gpu_block_cached_state(block);
- 
--	root = &mm->free_trees[tree][order];
-+	root = &mm->free_tree[order];
- 	link = &root->rb_node;
- 
- 	while (*link) {
-@@ -147,10 +707,12 @@ static void rbtree_insert(struct gpu_buddy *mm,
- 		 * Manual augmentation update during insertion traversal. Required
- 		 * because rb_insert_augmented() only calls rotate callback during
- 		 * rotations. This ensures all ancestors on the insertion path have
--		 * correct subtree_max_alignment values.
-+		 * correct subtree_max_alignment / subtree_block_state values.
- 		 */
- 		if (node->subtree_max_alignment < block_alignment)
- 			node->subtree_max_alignment = block_alignment;
-+		if (node->subtree_block_state < block_state)
-+			node->subtree_block_state = block_state;
- 
- 		if (gpu_buddy_block_offset(block) < gpu_buddy_block_offset(node))
- 			link = &parent->rb_left;
-@@ -159,6 +721,7 @@ static void rbtree_insert(struct gpu_buddy *mm,
- 	}
- 
- 	block->subtree_max_alignment = block_alignment;
-+	block->subtree_block_state = block_state;
- 	rb_link_node(&block->rb, parent, link);
- 	rb_insert_augmented(&block->rb, root, &gpu_buddy_augment_cb);
- }
-@@ -167,26 +730,11 @@ static void rbtree_remove(struct gpu_buddy *mm,
- 			  struct gpu_buddy_block *block)
- {
- 	unsigned int order = gpu_buddy_block_order(block);
--	enum gpu_buddy_free_tree tree;
--	struct rb_root *root;
- 
--	tree = get_block_tree(block);
--	root = &mm->free_trees[tree][order];
--
--	rb_erase_augmented(&block->rb, root, &gpu_buddy_augment_cb);
-+	rb_erase_augmented(&block->rb, &mm->free_tree[order], &gpu_buddy_augment_cb);
- 	RB_CLEAR_NODE(&block->rb);
- }
- 
--static void clear_reset(struct gpu_buddy_block *block)
--{
--	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
--}
--
--static void mark_cleared(struct gpu_buddy_block *block)
--{
--	block->header |= GPU_BUDDY_HEADER_CLEAR;
--}
--
- static void mark_allocated(struct gpu_buddy *mm,
- 			   struct gpu_buddy_block *block)
- {
-@@ -199,21 +747,36 @@ static void mark_allocated(struct gpu_buddy *mm,
- 	rbtree_remove(mm, block);
- }
- 
--static void mark_free(struct gpu_buddy *mm,
--		      struct gpu_buddy_block *block)
-+static void __mark_free(struct gpu_buddy *mm,
-+			struct gpu_buddy_block *block,
-+			enum gpu_block_state block_state)
- {
--	enum gpu_buddy_free_tree tree;
--
- 	if (gpu_buddy_block_is_allocated(block))
- 		mm->used_scoreboard[gpu_buddy_block_order(block)]--;
- 
- 	block->header &= ~GPU_BUDDY_HEADER_STATE;
- 	block->header |= GPU_BUDDY_FREE;
- 
-+	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+
-+	block->has_clear = (block_state != GPU_BLOCK_DIRTY);
-+	if (block_state == GPU_BLOCK_CLEAR)
-+		block->header |= GPU_BUDDY_HEADER_CLEAR;
-+
- 	mm->free_scoreboard[gpu_buddy_block_order(block)]++;
- 
--	tree = get_block_tree(block);
--	rbtree_insert(mm, block, tree);
-+	rbtree_insert(mm, block);
-+}
-+
-+static void mark_free(struct gpu_buddy *mm,
-+		      struct gpu_buddy_block *block)
-+{
-+	enum gpu_block_state block_state;
-+
-+	block_state = gpu_dirty_range_state(&mm->dirty,
-+					    gpu_buddy_block_offset(block),
-+					    gpu_buddy_block_size(mm, block));
-+	__mark_free(mm, block, block_state);
- }
- 
- static void mark_split(struct gpu_buddy *mm,
-@@ -253,37 +816,31 @@ __get_buddy(struct gpu_buddy_block *block)
- }
- 
- static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
--				     struct gpu_buddy_block *block,
--				     bool force_merge)
-+				     struct gpu_buddy_block *block)
- {
-+	enum gpu_block_state block_state;
- 	struct gpu_buddy_block *parent;
- 	unsigned int order;
- 
--	while ((parent = block->parent)) {
--		struct gpu_buddy_block *buddy;
-+	block_state = gpu_block_cached_state(block);
- 
--		buddy = __get_buddy(block);
-+	while ((parent = block->parent)) {
-+		struct gpu_buddy_block *buddy = __get_buddy(block);
- 
- 		if (!gpu_buddy_block_is_free(buddy))
- 			break;
- 
--		if (!force_merge) {
--			/*
--			 * Check the block and its buddy clear state and exit
--			 * the loop if they both have the dissimilar state.
--			 */
--			if (gpu_buddy_block_is_clear(block) !=
--			    gpu_buddy_block_is_clear(buddy))
--				break;
-+		if (block_state != GPU_BLOCK_MIXED) {
-+			enum gpu_block_state buddy_state;
- 
--			if (gpu_buddy_block_is_clear(block))
--				mark_cleared(parent);
-+			buddy_state = gpu_block_cached_state(buddy);
-+
-+			if (buddy_state != block_state)
-+				block_state = GPU_BLOCK_MIXED;
- 		}
- 
- 		rbtree_remove(mm, buddy);
- 		mm->free_scoreboard[gpu_buddy_block_order(buddy)]--;
--		if (force_merge && gpu_buddy_block_is_clear(buddy))
--			mm->clear_avail -= gpu_buddy_block_size(mm, buddy);
- 
- 		if (gpu_buddy_block_is_allocated(block))
- 			mm->used_scoreboard[gpu_buddy_block_order(block)]--;
-@@ -295,74 +852,11 @@ static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
- 	}
- 
- 	order = gpu_buddy_block_order(block);
--	mark_free(mm, block);
-+	__mark_free(mm, block, block_state);
- 
- 	return order;
- }
- 
--static int __force_merge(struct gpu_buddy *mm,
--			 u64 start,
--			 u64 end,
--			 unsigned int min_order)
--{
--	unsigned int tree, order;
--	int i;
--
--	if (!min_order)
--		return -ENOMEM;
--
--	if (min_order > mm->max_order)
--		return -EINVAL;
--
--	for_each_free_tree(tree) {
--		for (i = min_order - 1; i >= 0; i--) {
--			struct rb_node *iter = rb_last(&mm->free_trees[tree][i]);
--
--			while (iter) {
--				struct gpu_buddy_block *block, *buddy;
--				u64 block_start, block_end;
--
--				block = rbtree_get_free_block(iter);
--				iter = rb_prev(iter);
--
--				if (!block || !block->parent)
--					continue;
--
--				block_start = gpu_buddy_block_offset(block);
--				block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
--
--				if (!contains(start, end, block_start, block_end))
--					continue;
--
--				buddy = __get_buddy(block);
--				if (!gpu_buddy_block_is_free(buddy))
--					continue;
--
--				gpu_buddy_assert(gpu_buddy_block_is_clear(block) !=
--						 gpu_buddy_block_is_clear(buddy));
--
--				/*
--				 * Advance to the next node when the current node is the buddy,
--				 * as freeing the block will also remove its buddy from the tree.
--				 */
--				if (iter == &buddy->rb)
--					iter = rb_prev(iter);
--
--				rbtree_remove(mm, block);
--				mm->free_scoreboard[gpu_buddy_block_order(block)]--;
--				if (gpu_buddy_block_is_clear(block))
--					mm->clear_avail -= gpu_buddy_block_size(mm, block);
--
--				order = __gpu_buddy_free(mm, block, true);
--				if (order >= min_order)
--					return 0;
--			}
--		}
--	}
--
--	return -ENOMEM;
--}
--
- /**
-  * gpu_buddy_init - init memory manager
-  *
-@@ -377,7 +871,7 @@ static int __force_merge(struct gpu_buddy *mm,
-  */
- int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- {
--	unsigned int i, j, root_count = 0;
-+	unsigned int root_count = 0;
- 	u64 offset = 0;
- 
- 	if (size < chunk_size)
-@@ -411,22 +905,14 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- 	if (!mm->used_scoreboard)
- 		goto out_free_free_scoreboard;
- 
--	mm->free_trees = kmalloc_array(GPU_BUDDY_MAX_FREE_TREES,
--				       sizeof(*mm->free_trees),
--				       GFP_KERNEL);
--	if (!mm->free_trees)
-+	mm->free_tree = kcalloc(mm->max_order + 1,
-+				sizeof(struct rb_root),
-+				GFP_KERNEL);
-+	if (!mm->free_tree)
- 		goto out_free_used_scoreboard;
- 
--	for_each_free_tree(i) {
--		mm->free_trees[i] = kmalloc_array(mm->max_order + 1,
--						  sizeof(struct rb_root),
--						  GFP_KERNEL);
--		if (!mm->free_trees[i])
--			goto out_free_tree;
--
--		for (j = 0; j <= mm->max_order; ++j)
--			mm->free_trees[i][j] = RB_ROOT;
--	}
-+	if (gpu_dirty_tracker_init(&mm->dirty))
-+		goto out_free_tree;
- 
- 	mm->n_roots = hweight64(size);
- 
-@@ -452,7 +938,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- 		if (!root)
- 			goto out_free_roots;
- 
--		mark_free(mm, root);
-+		gpu_dirty_tracker_mark_dirty(&mm->dirty, offset, root_size);
-+		__mark_free(mm, root, GPU_BLOCK_DIRTY);
- 
- 		BUG_ON(root_count > mm->max_order);
- 		BUG_ON(gpu_buddy_block_size(mm, root) < chunk_size);
-@@ -474,9 +961,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- 		gpu_block_free(mm, mm->roots[root_count]);
- 	kfree(mm->roots);
- out_free_tree:
--	while (i--)
--		kfree(mm->free_trees[i]);
--	kfree(mm->free_trees);
-+	gpu_dirty_tracker_fini(&mm->dirty);
-+	kfree(mm->free_tree);
- out_free_used_scoreboard:
- 	kfree(mm->used_scoreboard);
- out_free_free_scoreboard:
-@@ -494,7 +980,7 @@ EXPORT_SYMBOL(gpu_buddy_init);
-  */
- void gpu_buddy_fini(struct gpu_buddy *mm)
- {
--	u64 root_size, size, start;
-+	u64 root_size, size;
- 	unsigned int order;
- 	int i;
- 
-@@ -502,14 +988,10 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
- 
- 	for (i = 0; i < mm->n_roots; ++i) {
- 		order = ilog2(size) - ilog2(mm->chunk_size);
--		start = gpu_buddy_block_offset(mm->roots[i]);
--		__force_merge(mm, start, start + size, order);
-+		root_size = mm->chunk_size << order;
- 
- 		gpu_buddy_assert(gpu_buddy_block_is_free(mm->roots[i]));
--
- 		gpu_block_free(mm, mm->roots[i]);
--
--		root_size = mm->chunk_size << order;
- 		size -= root_size;
- 	}
- 
-@@ -518,9 +1000,8 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
- 	for (i = 0; i <= mm->max_order; ++i)
- 		gpu_buddy_assert(!mm->used_scoreboard[i]);
- 
--	for_each_free_tree(i)
--		kfree(mm->free_trees[i]);
--	kfree(mm->free_trees);
-+	gpu_dirty_tracker_fini(&mm->dirty);
-+	kfree(mm->free_tree);
- 	kfree(mm->roots);
- 	kfree(mm->free_scoreboard);
- 	kfree(mm->used_scoreboard);
-@@ -532,6 +1013,7 @@ static int split_block(struct gpu_buddy *mm,
- {
- 	unsigned int block_order = gpu_buddy_block_order(block) - 1;
- 	u64 offset = gpu_buddy_block_offset(block);
-+	enum gpu_block_state parent_state;
- 
- 	BUG_ON(!gpu_buddy_block_is_free(block));
- 	BUG_ON(!gpu_buddy_block_order(block));
-@@ -547,17 +1029,18 @@ static int split_block(struct gpu_buddy *mm,
- 		return -ENOMEM;
- 	}
- 
-+	parent_state = gpu_block_cached_state(block);
-+
- 	mark_split(mm, block);
- 
--	if (gpu_buddy_block_is_clear(block)) {
--		mark_cleared(block->left);
--		mark_cleared(block->right);
--		clear_reset(block);
-+	if (parent_state == GPU_BLOCK_MIXED) {
-+		mark_free(mm, block->left);
-+		mark_free(mm, block->right);
-+	} else {
-+		__mark_free(mm, block->left, parent_state);
-+		__mark_free(mm, block->right, parent_state);
- 	}
- 
--	mark_free(mm, block->left);
--	mark_free(mm, block->right);
--
- 	return 0;
- }
- 
-@@ -572,42 +1055,39 @@ static int split_block(struct gpu_buddy *mm,
-  */
- void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
- {
--	enum gpu_buddy_free_tree src_tree, dst_tree;
--	u64 root_size, size, start;
--	unsigned int order;
--	int i;
-+	unsigned int i;
- 
- 	gpu_buddy_driver_lock_held(mm);
--	size = mm->size;
--	for (i = 0; i < mm->n_roots; ++i) {
--		order = ilog2(size) - ilog2(mm->chunk_size);
--		start = gpu_buddy_block_offset(mm->roots[i]);
--		__force_merge(mm, start, start + size, order);
- 
--		root_size = mm->chunk_size << order;
--		size -= root_size;
--	}
--
--	src_tree = is_clear ? GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
--	dst_tree = is_clear ? GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
-+	gpu_dirty_tracker_empty(&mm->dirty);
- 
- 	for (i = 0; i <= mm->max_order; ++i) {
--		struct rb_root *root = &mm->free_trees[src_tree][i];
- 		struct gpu_buddy_block *block, *tmp;
- 
--		rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
--			rbtree_remove(mm, block);
-+		rbtree_postorder_for_each_entry_safe(block, tmp,
-+						     &mm->free_tree[i], rb) {
- 			if (is_clear) {
--				mark_cleared(block);
--				mm->clear_avail += gpu_buddy_block_size(mm, block);
-+				if (!gpu_buddy_block_is_clear(block))
-+					block->header |= GPU_BUDDY_HEADER_CLEAR;
-+				block->has_clear = true;
-+			} else if (gpu_buddy_block_is_clear(block)) {
-+				block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+				block->has_clear = false;
-+				gpu_dirty_tracker_mark_dirty(&mm->dirty,
-+							     gpu_buddy_block_offset(block),
-+							     gpu_buddy_block_size(mm, block));
- 			} else {
--				clear_reset(block);
--				mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+				block->has_clear = false;
-+				gpu_dirty_tracker_mark_dirty(&mm->dirty,
-+							     gpu_buddy_block_offset(block),
-+							     gpu_buddy_block_size(mm, block));
- 			}
- 
--			rbtree_insert(mm, block, dst_tree);
-+			gpu_buddy_augment_compute(block);
- 		}
- 	}
-+
-+	gpu_buddy_sync_clear_avail(mm);
- }
- EXPORT_SYMBOL(gpu_buddy_reset_clear);
- 
-@@ -620,13 +1100,18 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
- void gpu_buddy_free_block(struct gpu_buddy *mm,
- 			  struct gpu_buddy_block *block)
- {
-+	u64 size = gpu_buddy_block_size(mm, block);
-+	u64 offset = gpu_buddy_block_offset(block);
-+
- 	gpu_buddy_driver_lock_held(mm);
- 	BUG_ON(!gpu_buddy_block_is_allocated(block));
--	mm->avail += gpu_buddy_block_size(mm, block);
--	if (gpu_buddy_block_is_clear(block))
--		mm->clear_avail += gpu_buddy_block_size(mm, block);
- 
--	__gpu_buddy_free(mm, block, false);
-+	mm->avail += size;
-+	if (!gpu_buddy_block_is_clear(block))
-+		gpu_dirty_tracker_mark_dirty(&mm->dirty, offset, size);
-+
-+	gpu_buddy_sync_clear_avail(mm);
-+	__gpu_buddy_free(mm, block);
- }
- EXPORT_SYMBOL(gpu_buddy_free_block);
- 
-@@ -641,9 +1126,9 @@ static void __gpu_buddy_free_list(struct gpu_buddy *mm,
- 
- 	list_for_each_entry_safe(block, on, objects, link) {
- 		if (mark_clear)
--			mark_cleared(block);
-+			block->header |= GPU_BUDDY_HEADER_CLEAR;
- 		else if (mark_dirty)
--			clear_reset(block);
-+			block->header &= ~GPU_BUDDY_HEADER_CLEAR;
- 		gpu_buddy_free_block(mm, block);
- 		cond_resched();
- 	}
-@@ -679,13 +1164,6 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
- }
- EXPORT_SYMBOL(gpu_buddy_free_list);
- 
--static bool block_incompatible(struct gpu_buddy_block *block, unsigned int flags)
--{
--	bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
--
--	return needs_clear != gpu_buddy_block_is_clear(block);
--}
--
- static void __gpu_buddy_undo_splits(struct gpu_buddy *mm,
- 				    struct gpu_buddy_block *block)
- {
-@@ -696,7 +1174,7 @@ static void __gpu_buddy_undo_splits(struct gpu_buddy *mm,
- 	     gpu_buddy_block_is_free(buddy))) {
- 		rbtree_remove(mm, block);
- 		mm->free_scoreboard[gpu_buddy_block_order(block)]--;
--		__gpu_buddy_free(mm, block, false);
-+		__gpu_buddy_free(mm, block);
- 	}
- }
- 
-@@ -704,8 +1182,7 @@ static struct gpu_buddy_block *
- __alloc_range_bias(struct gpu_buddy *mm,
- 		   u64 start, u64 end,
- 		   unsigned int order,
--		   unsigned long flags,
--		   bool fallback)
-+		   unsigned long flags)
- {
- 	u64 req_size = mm->chunk_size << order;
- 	struct gpu_buddy_block *block;
-@@ -715,7 +1192,15 @@ __alloc_range_bias(struct gpu_buddy *mm,
- 
- 	end = end - 1;
- 
--	for (i = 0; i < mm->n_roots; ++i)
-+	/*
-+	 * This range-constrained search hands back the highest/right-most
-+	 * address that satisfies the request: the roots are seeded high-to-low
-+	 * and the right (higher-address) child is descended first, making
-+	 * top-down the default placement here. A non-top-down clear request is
-+	 * the only exception, where the descent is biased towards clear or
-+	 * clear-containing subtrees to satisfy the clear preference.
-+	 */
-+	for (i = mm->n_roots - 1; i >= 0; --i)
- 		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
- 
- 	do {
-@@ -751,9 +1236,6 @@ __alloc_range_bias(struct gpu_buddy *mm,
- 				continue;
- 		}
- 
--		if (!fallback && block_incompatible(block, flags))
--			continue;
--
- 		if (contains(start, end, block_start, block_end) &&
- 		    order == gpu_buddy_block_order(block)) {
- 			/*
-@@ -771,8 +1253,38 @@ __alloc_range_bias(struct gpu_buddy *mm,
- 				goto err_undo;
- 		}
- 
--		list_add(&block->right->tmp_link, &dfs);
--		list_add(&block->left->tmp_link, &dfs);
-+		/*
-+		 * Top-down is a strict address-placement policy, so when it is
-+		 * requested we ignore clear steering and simply descend the
-+		 * right (higher-address) child first. Only a non-top-down clear
-+		 * request biases the descent towards clear/has_clear subtrees.
-+		 */
-+		if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
-+		    !(flags & GPU_BUDDY_TOPDOWN_ALLOCATION)) {
-+			struct gpu_buddy_block *prefer;
-+
-+			if (gpu_buddy_block_is_clear(block->right))
-+				prefer = block->right;
-+			else if (gpu_buddy_block_is_clear(block->left))
-+				prefer = block->left;
-+			else if (block->right->has_clear)
-+				prefer = block->right;
-+			else if (block->left->has_clear)
-+				prefer = block->left;
-+			else
-+				prefer = block->right;
-+
-+			if (prefer == block->right) {
-+				list_add(&block->left->tmp_link, &dfs);
-+				list_add(&block->right->tmp_link, &dfs);
-+			} else {
-+				list_add(&block->right->tmp_link, &dfs);
-+				list_add(&block->left->tmp_link, &dfs);
-+			}
-+		} else {
-+			list_add(&block->left->tmp_link, &dfs);
-+			list_add(&block->right->tmp_link, &dfs);
-+		}
- 	} while (1);
- 
- 	return ERR_PTR(-ENOSPC);
-@@ -787,48 +1299,32 @@ __alloc_range_bias(struct gpu_buddy *mm,
- 	return ERR_PTR(err);
- }
- 
--static struct gpu_buddy_block *
--__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
--			     u64 start, u64 end,
--			     unsigned int order,
--			     unsigned long flags)
--{
--	struct gpu_buddy_block *block;
--	bool fallback = false;
--
--	block = __alloc_range_bias(mm, start, end, order,
--				   flags, fallback);
--	if (IS_ERR(block))
--		return __alloc_range_bias(mm, start, end, order,
--					  flags, !fallback);
--
--	return block;
--}
--
-+/* Return the highest-address free block of at least @order. */
- static struct gpu_buddy_block *
- get_maxblock(struct gpu_buddy *mm,
--	     unsigned int order,
--	     enum gpu_buddy_free_tree tree)
-+	     unsigned int order)
- {
--	struct gpu_buddy_block *max_block = NULL, *block = NULL;
--	struct rb_root *root;
-+	struct gpu_buddy_block *max_block;
-+	struct gpu_buddy_block *block;
- 	unsigned int i;
- 
-+	/*
-+	 * Top-down allocation is a strict address-placement policy: the block
-+	 * is chosen purely by offset, regardless of its clear/dirty state.
-+	 * Clear state is re-derived from the dirty tracker once the allocation
-+	 * completes, and the driver is responsible for issuing the clear pass
-+	 * if a clear region is required.
-+	 */
-+	max_block = NULL;
-+
- 	for (i = order; i <= mm->max_order; ++i) {
--		root = &mm->free_trees[tree][i];
--		block = rbtree_last_free_block(root);
-+		block = rbtree_last_free_block(&mm->free_tree[i]);
- 		if (!block)
- 			continue;
- 
--		if (!max_block) {
--			max_block = block;
--			continue;
--		}
--
--		if (gpu_buddy_block_offset(block) >
--		    gpu_buddy_block_offset(max_block)) {
-+		if (!max_block ||
-+		    gpu_buddy_block_offset(block) > gpu_buddy_block_offset(max_block))
- 			max_block = block;
--		}
- 	}
- 
- 	return max_block;
-@@ -840,45 +1336,34 @@ alloc_from_freetree(struct gpu_buddy *mm,
- 		    unsigned long flags)
- {
- 	struct gpu_buddy_block *block = NULL;
--	struct rb_root *root;
--	enum gpu_buddy_free_tree tree;
- 	unsigned int tmp;
- 	int err;
- 
--	tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
--		GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
--
- 	if (flags & GPU_BUDDY_TOPDOWN_ALLOCATION) {
--		block = get_maxblock(mm, order, tree);
-+		block = get_maxblock(mm, order);
- 		if (block)
--			/* Store the obtained block order */
- 			tmp = gpu_buddy_block_order(block);
- 	} else {
--		for (tmp = order; tmp <= mm->max_order; ++tmp) {
--			/* Get RB tree root for this order and tree */
--			root = &mm->free_trees[tree][tmp];
--			block = rbtree_last_free_block(root);
--			if (block)
--				break;
-+		if (flags & GPU_BUDDY_CLEAR_ALLOCATION) {
-+			for (tmp = order; tmp <= mm->max_order; ++tmp) {
-+				block = rbtree_last_clear_free_block(&mm->free_tree[tmp],
-+								     GPU_BLOCK_MIXED);
-+				if (block)
-+					break;
-+			}
- 		}
--	}
--
--	if (!block) {
--		/* Try allocating from the other tree */
--		tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
--			GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
--
--		for (tmp = order; tmp <= mm->max_order; ++tmp) {
--			root = &mm->free_trees[tree][tmp];
--			block = rbtree_last_free_block(root);
--			if (block)
--				break;
-+		if (!block) {
-+			for (tmp = order; tmp <= mm->max_order; ++tmp) {
-+				block = rbtree_last_free_block(&mm->free_tree[tmp]);
-+				if (block)
-+					break;
-+			}
- 		}
--
--		if (!block)
--			return ERR_PTR(-ENOSPC);
- 	}
- 
-+	if (!block)
-+		return ERR_PTR(-ENOSPC);
-+
- 	BUG_ON(!gpu_buddy_block_is_free(block));
- 
- 	while (tmp != order) {
-@@ -886,7 +1371,26 @@ alloc_from_freetree(struct gpu_buddy *mm,
- 		if (unlikely(err))
- 			goto err_undo;
- 
--		block = block->right;
-+		if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
-+		    !(flags & GPU_BUDDY_TOPDOWN_ALLOCATION)) {
-+			bool right_clear, left_clear;
-+
-+			right_clear = gpu_buddy_block_is_clear(block->right);
-+			left_clear = gpu_buddy_block_is_clear(block->left);
-+
-+			if (right_clear)
-+				block = block->right;
-+			else if (left_clear)
-+				block = block->left;
-+			else if (block->right->has_clear)
-+				block = block->right;
-+			else if (block->left->has_clear)
-+				block = block->left;
-+			else
-+				block = block->right;
-+		} else {
-+			block = block->right;
-+		}
- 		tmp--;
- 	}
- 	return block;
-@@ -913,12 +1417,10 @@ static bool gpu_buddy_subtree_can_satisfy(struct rb_node *node,
- 
- static struct gpu_buddy_block *
- gpu_buddy_find_block_aligned(struct gpu_buddy *mm,
--			     enum gpu_buddy_free_tree tree,
- 			     unsigned int order,
--			     unsigned int alignment,
--			     unsigned long flags)
-+			     unsigned int alignment)
- {
--	struct rb_root *root = &mm->free_trees[tree][order];
-+	struct rb_root *root = &mm->free_tree[order];
- 	struct rb_node *rb = root->rb_node;
- 
- 	while (rb) {
-@@ -951,12 +1453,10 @@ gpu_buddy_find_block_aligned(struct gpu_buddy *mm,
- static struct gpu_buddy_block *
- gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
- 				    u64 size,
--				    u64 min_block_size,
--				    unsigned long flags)
-+				    u64 min_block_size)
- {
- 	struct gpu_buddy_block *block = NULL;
- 	unsigned int order, tmp, alignment;
--	enum gpu_buddy_free_tree tree;
- 	unsigned long pages;
- 	int err;
- 
-@@ -964,19 +1464,15 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
- 	pages = size >> ilog2(mm->chunk_size);
- 	order = fls(pages) - 1;
- 
--	tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
--		GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
--
-+	/*
-+	 * Offset-aligned allocation is a strict address-placement policy: the
-+	 * block is chosen purely by its offset alignment, regardless of its
-+	 * clear/dirty state. Clear state is re-derived from the dirty tracker
-+	 * once the allocation completes, and the driver is responsible for
-+	 * issuing the clear pass if a clear region is required.
-+	 */
- 	for (tmp = order; tmp <= mm->max_order; ++tmp) {
--		block = gpu_buddy_find_block_aligned(mm, tree, tmp,
--						     alignment, flags);
--		if (!block) {
--			tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
--				GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
--			block = gpu_buddy_find_block_aligned(mm, tree, tmp,
--							     alignment, flags);
--		}
--
-+		block = gpu_buddy_find_block_aligned(mm, tmp, alignment);
- 		if (block)
- 			break;
- 	}
-@@ -1015,6 +1511,7 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
- static int __alloc_range(struct gpu_buddy *mm,
- 			 struct list_head *dfs,
- 			 u64 start, u64 size,
-+			 unsigned long flags,
- 			 struct list_head *blocks,
- 			 u64 *total_allocated_on_err)
- {
-@@ -1051,16 +1548,33 @@ static int __alloc_range(struct gpu_buddy *mm,
- 
- 		if (contains(start, end, block_start, block_end)) {
- 			if (gpu_buddy_block_is_free(block)) {
-+				bool block_clear = false;
-+				u64 block_offset;
-+				u64 block_size;
-+
-+				block_size = gpu_buddy_block_size(mm, block);
-+				block_offset = gpu_buddy_block_offset(block);
-+
-+				if (flags & GPU_BUDDY_CLEAR_ALLOCATION)
-+					block_clear = gpu_buddy_block_is_clear(block);
-+
-+				if (!gpu_buddy_block_is_clear(block))
-+					gpu_dirty_tracker_remove_range(&mm->dirty,
-+								       block_offset,
-+								       block_size);
-+
- 				mark_allocated(mm, block);
--				total_allocated += gpu_buddy_block_size(mm, block);
--				mm->avail -= gpu_buddy_block_size(mm, block);
--				if (gpu_buddy_block_is_clear(block))
--					mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+				total_allocated += block_size;
-+				mm->avail -= block_size;
-+
-+				block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+				if (block_clear)
-+					block->header |= GPU_BUDDY_HEADER_CLEAR;
-+
-+				gpu_buddy_sync_clear_avail(mm);
-+
- 				list_add_tail(&block->link, &allocated);
- 				continue;
--			} else if (!mm->clear_avail) {
--				err = -ENOSPC;
--				goto err_free;
- 			}
- 		}
- 
-@@ -1105,6 +1619,7 @@ static int __alloc_range(struct gpu_buddy *mm,
- static int __gpu_buddy_alloc_range(struct gpu_buddy *mm,
- 				   u64 start,
- 				   u64 size,
-+				   unsigned long flags,
- 				   u64 *total_allocated_on_err,
- 				   struct list_head *blocks)
- {
-@@ -1114,20 +1629,23 @@ static int __gpu_buddy_alloc_range(struct gpu_buddy *mm,
- 	for (i = 0; i < mm->n_roots; ++i)
- 		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
- 
--	return __alloc_range(mm, &dfs, start, size,
-+	return __alloc_range(mm, &dfs, start, size, flags,
- 			     blocks, total_allocated_on_err);
- }
- 
- static int __alloc_contig_try_harder(struct gpu_buddy *mm,
- 				     u64 size,
- 				     u64 min_block_size,
-+				     unsigned long flags,
- 				     struct list_head *blocks)
- {
- 	u64 rhs_offset, lhs_offset, lhs_size, filled;
- 	struct gpu_buddy_block *block;
--	unsigned int tree, order;
- 	LIST_HEAD(blocks_lhs);
-+	struct rb_root *root;
-+	struct rb_node *iter;
- 	unsigned long pages;
-+	unsigned int order;
- 	u64 modify_size;
- 	int err;
- 
-@@ -1137,45 +1655,40 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
- 	if (order == 0)
- 		return -ENOSPC;
- 
--	for_each_free_tree(tree) {
--		struct rb_root *root;
--		struct rb_node *iter;
--
--		root = &mm->free_trees[tree][order];
--		if (rbtree_is_empty(root))
--			continue;
-+	root = &mm->free_tree[order];
-+	if (RB_EMPTY_ROOT(root))
-+		return -ENOSPC;
- 
--		iter = rb_last(root);
--		while (iter) {
--			block = rbtree_get_free_block(iter);
--
--			/* Allocate blocks traversing RHS */
--			rhs_offset = gpu_buddy_block_offset(block);
--			err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
--						       &filled, blocks);
--			if (!err || err != -ENOSPC)
--				return err;
--
--			lhs_size = max((size - filled), min_block_size);
--			if (!IS_ALIGNED(lhs_size, min_block_size))
--				lhs_size = round_up(lhs_size, min_block_size);
--
--			/* Allocate blocks traversing LHS */
--			lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
--			err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
--						       NULL, &blocks_lhs);
--			if (!err) {
--				list_splice(&blocks_lhs, blocks);
--				return 0;
--			} else if (err != -ENOSPC) {
--				gpu_buddy_free_list_internal(mm, blocks);
--				return err;
--			}
--			/* Free blocks for the next iteration */
-+	iter = rb_last(root);
-+	while (iter) {
-+		block = rbtree_get_free_block(iter);
-+
-+		/* Allocate blocks traversing RHS */
-+		rhs_offset = gpu_buddy_block_offset(block);
-+		err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
-+					       flags, &filled, blocks);
-+		if (!err || err != -ENOSPC)
-+			return err;
-+
-+		lhs_size = max((size - filled), min_block_size);
-+		if (!IS_ALIGNED(lhs_size, min_block_size))
-+			lhs_size = round_up(lhs_size, min_block_size);
-+
-+		/* Allocate blocks traversing LHS */
-+		lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
-+		err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
-+					       flags, NULL, &blocks_lhs);
-+		if (!err) {
-+			list_splice(&blocks_lhs, blocks);
-+			return 0;
-+		} else if (err != -ENOSPC) {
- 			gpu_buddy_free_list_internal(mm, blocks);
--
--			iter = rb_prev(iter);
-+			return err;
- 		}
-+		/* Free blocks for the next iteration */
-+		gpu_buddy_free_list_internal(mm, blocks);
-+
-+		iter = rb_prev(iter);
- 	}
- 
- 	return -ENOSPC;
-@@ -1209,6 +1722,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- 	struct gpu_buddy_block *block;
- 	u64 block_start, block_end;
- 	LIST_HEAD(dfs);
-+	bool was_clear;
- 	u64 new_start;
- 	int err;
- 
-@@ -1251,22 +1765,38 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- 	}
- 
- 	list_del(&block->link);
--	mark_free(mm, block);
-+
-+	was_clear = gpu_buddy_block_is_clear(block);
-+	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+
-+	if (!was_clear)
-+		gpu_dirty_tracker_mark_dirty(&mm->dirty,
-+					     gpu_buddy_block_offset(block),
-+					     gpu_buddy_block_size(mm, block));
-+
-+	__mark_free(mm, block, was_clear ? GPU_BLOCK_CLEAR : GPU_BLOCK_DIRTY);
- 	mm->avail += gpu_buddy_block_size(mm, block);
--	if (gpu_buddy_block_is_clear(block))
--		mm->clear_avail += gpu_buddy_block_size(mm, block);
-+	gpu_buddy_sync_clear_avail(mm);
- 
- 	/* Prevent recursively freeing this node */
- 	parent = block->parent;
- 	block->parent = NULL;
- 
- 	list_add(&block->tmp_link, &dfs);
--	err =  __alloc_range(mm, &dfs, new_start, new_size, blocks, NULL);
-+	err =  __alloc_range(mm, &dfs, new_start, new_size,
-+			     was_clear ? GPU_BUDDY_CLEAR_ALLOCATION : 0,
-+			     blocks, NULL);
- 	if (err) {
- 		mark_allocated(mm, block);
- 		mm->avail -= gpu_buddy_block_size(mm, block);
--		if (gpu_buddy_block_is_clear(block))
--			mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+		if (!was_clear) {
-+			gpu_dirty_tracker_remove_range(&mm->dirty,
-+						       gpu_buddy_block_offset(block),
-+						       gpu_buddy_block_size(mm, block));
-+		}
-+		if (was_clear)
-+			block->header |= GPU_BUDDY_HEADER_CLEAR;
-+		gpu_buddy_sync_clear_avail(mm);
- 		list_add(&block->link, blocks);
- 	}
- 
-@@ -1275,6 +1805,22 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- }
- EXPORT_SYMBOL(gpu_buddy_block_trim);
- 
-+static bool dirty_steer_window(struct gpu_buddy *mm, u64 req_size,
-+			       u64 *start, u64 *end, unsigned long *flags)
-+{
-+	u64 aligned_start;
-+	struct gpu_dirty_extent *ext =
-+		gpu_dirty_tracker_find(&mm->dirty, req_size, &aligned_start);
-+
-+	if (!ext)
-+		return false;
-+
-+	*start  = aligned_start;
-+	*end    = ext->end;
-+	*flags |= GPU_BUDDY_RANGE_ALLOCATION;
-+	return true;
-+}
-+
- static struct gpu_buddy_block *
- __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 			 u64 start, u64 end,
-@@ -1282,18 +1828,36 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 			 unsigned int order,
- 			 unsigned long flags)
- {
--	if (flags & GPU_BUDDY_RANGE_ALLOCATION)
-+	struct gpu_buddy_block *block;
-+	bool steered = false;
-+
-+	/* Allocate from dirty tracker */
-+	if (!(flags & GPU_BUDDY_RANGE_ALLOCATION) &&
-+	    !(flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
-+	    size >= min_block_size &&
-+	    mm->clear_avail && mm->dirty.total_dirty) {
-+		u64 block_size = mm->chunk_size << order;
-+
-+		steered = dirty_steer_window(mm, block_size,
-+					     &start, &end, &flags);
-+	}
-+
-+	if (flags & GPU_BUDDY_RANGE_ALLOCATION) {
- 		/* Allocate traversing within the range */
--		return  __gpu_buddy_alloc_range_bias(mm, start, end,
--						     order, flags);
--	else if (size < min_block_size)
-+		block = __alloc_range_bias(mm, start, end, order, flags);
-+		if (!IS_ERR(block) || !steered)
-+			return block;
-+
-+		flags &= ~GPU_BUDDY_RANGE_ALLOCATION;
-+	}
-+
-+	if (size < min_block_size)
- 		/* Allocate from an offset-aligned region without size rounding */
- 		return gpu_buddy_offset_aligned_allocation(mm, size,
--							   min_block_size,
--							   flags);
--	else
--		/* Allocate from freetree */
--		return alloc_from_freetree(mm, order, flags);
-+							   min_block_size);
-+
-+	/* Allocate from freetree */
-+	return alloc_from_freetree(mm, order, flags);
- }
- 
- /**
-@@ -1354,7 +1918,7 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 		if (!IS_ALIGNED(start | end, min_block_size))
- 			return -EINVAL;
- 
--		return __gpu_buddy_alloc_range(mm, start, size, NULL, blocks);
-+		return __gpu_buddy_alloc_range(mm, start, size, flags, NULL, blocks);
- 	}
- 
- 	original_size = size;
-@@ -1380,12 +1944,15 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 		if ((flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION) &&
- 		    !(flags & GPU_BUDDY_RANGE_ALLOCATION))
- 			return __alloc_contig_try_harder(mm, original_size,
--							 original_min_size, blocks);
-+							 original_min_size,
-+							 flags, blocks);
- 
- 		return -EINVAL;
- 	}
- 
- 	do {
-+		bool block_clear = false;
-+
- 		order = min(order, (unsigned int)fls(pages) - 1);
- 		BUG_ON(order > mm->max_order);
- 		/*
-@@ -1395,8 +1962,6 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 		BUG_ON(size >= min_block_size && order < min_order);
- 
- 		do {
--			unsigned int fallback_order;
--
- 			block = __gpu_buddy_alloc_blocks(mm, start,
- 							 end,
- 							 size,
-@@ -1406,48 +1971,48 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 			if (!IS_ERR(block))
- 				break;
- 
--			if (size < min_block_size) {
--				fallback_order = order;
--			} else if (order == min_order) {
--				fallback_order = min_order;
--			} else {
-+			if (size >= min_block_size && order > min_order) {
- 				order--;
- 				continue;
- 			}
- 
--			/* Try allocation through force merge method */
--			if (mm->clear_avail &&
--			    !__force_merge(mm, start, end, fallback_order)) {
--				block = __gpu_buddy_alloc_blocks(mm, start,
--								 end,
--								 size,
--								 min_block_size,
--								 fallback_order,
--								 flags);
--				if (!IS_ERR(block)) {
--					order = fallback_order;
--					break;
--				}
--			}
--
- 			/*
- 			 * Try contiguous block allocation through
- 			 * try harder method.
- 			 */
- 			if (flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION &&
--			    !(flags & GPU_BUDDY_RANGE_ALLOCATION))
--				return __alloc_contig_try_harder(mm,
--								 original_size,
--								 original_min_size,
--								 blocks);
-+			    !(flags & GPU_BUDDY_RANGE_ALLOCATION)) {
-+				err = __alloc_contig_try_harder(mm,
-+								original_size,
-+								original_min_size,
-+								flags,
-+								blocks);
-+				if (!err)
-+					return 0;
-+				if (err != -ENOSPC)
-+					return err;
-+				goto err_free;
-+			}
- 			err = -ENOSPC;
- 			goto err_free;
- 		} while (1);
- 
-+		if (flags & GPU_BUDDY_CLEAR_ALLOCATION)
-+			block_clear = gpu_buddy_block_is_clear(block);
-+
-+		if (!gpu_buddy_block_is_clear(block))
-+			gpu_dirty_tracker_remove_range(&mm->dirty,
-+						       gpu_buddy_block_offset(block),
-+						       gpu_buddy_block_size(mm, block));
-+
- 		mark_allocated(mm, block);
- 		mm->avail -= gpu_buddy_block_size(mm, block);
--		if (gpu_buddy_block_is_clear(block))
--			mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+
-+		block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+		if (block_clear)
-+			block->header |= GPU_BUDDY_HEADER_CLEAR;
-+
-+		gpu_buddy_sync_clear_avail(mm);
- 		kmemleak_update_trace(block);
- 		list_add_tail(&block->link, &allocated);
- 
-@@ -1542,6 +2107,7 @@ EXPORT_SYMBOL(gpu_buddy_print);
- 
- static void gpu_buddy_module_exit(void)
- {
-+	kmem_cache_destroy(slab_extents);
- 	kmem_cache_destroy(slab_blocks);
- }
- 
-@@ -1551,7 +2117,15 @@ static int __init gpu_buddy_module_init(void)
- 	if (!slab_blocks)
- 		return -ENOMEM;
- 
-+	slab_extents = KMEM_CACHE(gpu_dirty_extent, 0);
-+	if (!slab_extents)
-+		goto err_destroy_blocks;
-+
- 	return 0;
-+
-+err_destroy_blocks:
-+	kmem_cache_destroy(slab_blocks);
-+	return -ENOMEM;
- }
- 
- module_init(gpu_buddy_module_init);
-diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/gpu_buddy_test.c
-index 89698563c61b..f8e56da5058e 100644
---- a/drivers/gpu/tests/gpu_buddy_test.c
-+++ b/drivers/gpu/tests/gpu_buddy_test.c
-@@ -38,7 +38,7 @@ static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
- 	};
- 	struct list_head allocated[ARRAY_SIZE(alignments)];
- 	unsigned int i, max_subtree_align = 0;
--	int ret, tree, order;
-+	int ret, order;
- 	struct gpu_buddy mm;
- 
- 	KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-@@ -78,15 +78,11 @@ static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
- 		}
- 
- 		for (order = mm.max_order; order >= 0 && !root; order--) {
--			for (tree = 0; tree < 2; tree++) {
--				node = mm.free_trees[tree][order].rb_node;
--				if (node) {
--					root = container_of(node,
--							    struct gpu_buddy_block,
--							    rb);
--					break;
--				}
--			}
-+			node = mm.free_tree[order].rb_node;
-+			if (node)
-+				root = container_of(node,
-+						    struct gpu_buddy_block,
-+						    rb);
- 		}
- 
- 		KUNIT_ASSERT_NOT_NULL(test, root);
-@@ -97,15 +93,13 @@ static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
- 		gpu_buddy_free_list(&mm, &allocated[i], 0);
- 
- 		for (order = 0; order <= mm.max_order; order++) {
--			for (tree = 0; tree < 2; tree++) {
--				node = mm.free_trees[tree][order].rb_node;
--				if (!node)
--					continue;
--
--				block = container_of(node, struct gpu_buddy_block, rb);
--				max_subtree_align = max(max_subtree_align,
--							block->subtree_max_alignment);
--			}
-+			node = mm.free_tree[order].rb_node;
-+			if (!node)
-+				continue;
-+
-+			block = container_of(node, struct gpu_buddy_block, rb);
-+			max_subtree_align = max(max_subtree_align,
-+						block->subtree_max_alignment);
- 		}
- 
- 		KUNIT_EXPECT_GE(test, max_subtree_align, ilog2(alignments[i]));
-diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-index e037714563d8..899b84298cd8 100644
---- a/include/linux/gpu_buddy.h
-+++ b/include/linux/gpu_buddy.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/bitops.h>
- #include <linux/list.h>
-+#include <linux/mempool.h>
- #include <linux/slab.h>
- #include <linux/sched.h>
- #include <linux/rbtree.h>
-@@ -43,8 +44,8 @@
- /**
-  * GPU_BUDDY_CLEAR_ALLOCATION - Prefer pre-cleared (zeroed) memory
-  *
-- * Attempt to allocate from the clear tree first. If insufficient clear
-- * memory is available, falls back to dirty memory. Useful when the
-+ * Attempt to allocate outside dirty-tracked ranges first. If insufficient
-+ * clear memory is available, falls back to dirty memory. Useful when the
-  * caller needs zeroed memory and wants to avoid GPU clear operations.
-  */
- #define GPU_BUDDY_CLEAR_ALLOCATION		BIT(3)
-@@ -53,8 +54,8 @@
-  * GPU_BUDDY_CLEARED - Mark returned blocks as cleared
-  *
-  * Used with gpu_buddy_free_list() to indicate that the memory being
-- * freed has been cleared (zeroed). The blocks will be placed in the
-- * clear tree for future GPU_BUDDY_CLEAR_ALLOCATION requests.
-+ * freed has been cleared (zeroed). The blocks will be removed from the
-+ * dirty tracker for future GPU_BUDDY_CLEAR_ALLOCATION requests.
-  */
- #define GPU_BUDDY_CLEARED			BIT(4)
- 
-@@ -67,15 +68,6 @@
-  */
- #define GPU_BUDDY_TRIM_DISABLE			BIT(5)
- 
--enum gpu_buddy_free_tree {
--	GPU_BUDDY_CLEAR_TREE = 0,
--	GPU_BUDDY_DIRTY_TREE,
--	GPU_BUDDY_MAX_FREE_TREES,
--};
--
--#define for_each_free_tree(tree) \
--	for ((tree) = 0; (tree) < GPU_BUDDY_MAX_FREE_TREES; (tree)++)
--
- /**
-  * struct gpu_buddy_block - Block within a buddy allocator
-  *
-@@ -88,6 +80,17 @@ enum gpu_buddy_free_tree {
-  * @private: Private data owned by the allocator user (e.g., driver-specific data)
-  * @link: List node for user ownership while block is allocated
-  */
-+/*
-+ * Clear/dirty state of a free block. Ordered so a numerically larger value
-+ * is "more clear" (DIRTY < MIXED < CLEAR) which lets subtree_block_state be
-+ * maintained as a simple max-augment over the per-order free tree.
-+ */
-+enum gpu_block_state {
-+	GPU_BLOCK_DIRTY = 0,
-+	GPU_BLOCK_MIXED = 1,
-+	GPU_BLOCK_CLEAR = 2,
-+};
-+
- struct gpu_buddy_block {
- /* private: */
- 	/*
-@@ -103,6 +106,13 @@ struct gpu_buddy_block {
- #define   GPU_BUDDY_ALLOCATED	   (1 << 10)
- #define   GPU_BUDDY_FREE	   (2 << 10)
- #define   GPU_BUDDY_SPLIT	   (3 << 10)
-+/*
-+ * GPU_BUDDY_HEADER_CLEAR has two roles:
-+ *  - FREE state:      set when the block's full range is cleared (dirty
-+ *                     tracker confirmed no overlap).
-+ *  - ALLOCATED state: set when the block was served from cleared memory,
-+ *                     informing the caller that no GPU clear pass is needed.
-+ */
- #define GPU_BUDDY_HEADER_CLEAR  GENMASK_ULL(9, 9)
- /* Free to be used, if needed in the future */
- #define GPU_BUDDY_HEADER_UNUSED GENMASK_ULL(8, 6)
-@@ -128,13 +138,51 @@ struct gpu_buddy_block {
- 		struct list_head link;
- 	};
- /* private: */
--	struct list_head tmp_link;
-+	enum gpu_block_state subtree_block_state;
- 	unsigned int subtree_max_alignment;
-+	struct list_head tmp_link;
-+	bool has_clear;
- };
- 
- /* Order-zero must be at least SZ_4K */
- #define GPU_BUDDY_MAX_ORDER (63 - 12)
- 
-+/**
-+ * struct gpu_dirty_extent - a contiguous dirty address range
-+ *
-+ * Tracks a single contiguous address range whose memory content is known
-+ * to be dirty.  Extents are non-overlapping and stored in an augmented
-+ * red-black tree sorted by @start.  The augmented value @subtree_max_size
-+ * allows O(log N) search for an extent of at least a given size.
-+ */
-+struct gpu_dirty_extent {
-+/* private: */
-+	struct rb_node	rb;
-+	u64		start;
-+	u64		end;
-+	u64		subtree_max_size;
-+};
-+
-+/**
-+ * struct gpu_dirty_tracker - tracks dirty address intervals
-+ *
-+ * Maintains a set of non-overlapping dirty extents as an augmented
-+ * red-black tree.
-+ *
-+ * @total_dirty: Total bytes of dirty memory currently tracked.
-+ * @extent_pool: Mempool backing extent node allocations. sashiko reported
-+ *		 that a __GFP_NOFAIL allocation on the free path could
-+ *		 deadlock during memory reclaim, so a per-tracker mempool is
-+ *		 used to guarantee extent nodes without __GFP_NOFAIL.
-+ */
-+struct gpu_dirty_tracker {
-+/* private: */
-+	struct rb_root	root;
-+	mempool_t	*extent_pool;
-+/* public: */
-+	u64		total_dirty;
-+};
-+
- /**
-  * struct gpu_buddy - GPU binary buddy allocator
-  *
-@@ -152,20 +200,25 @@ struct gpu_buddy_block {
-  * @chunk_size: Minimum allocation granularity in bytes. Must be at least SZ_4K.
-  * @size: Total size of the address space managed by this allocator in bytes.
-  * @avail: Total free space currently available for allocation in bytes.
-- * @clear_avail: Free space available in the clear tree (zeroed memory) in bytes.
-- *               This is a subset of @avail.
-+ * @clear_avail: Free space that is clear (zeroed) in bytes. A subset of @avail.
-+ *               Maintained as @avail - dirty.total_dirty, since the tracker
-+ *               records the dirty extents. Zero at init, as a fresh pool is
-+ *               fully dirty.
-  * @lock_dep_map: Annotates gpu_buddy API with a driver provided lock.
-  */
- struct gpu_buddy {
- /* private: */
-+	/* Tracker of dirty address ranges (decoupled from free_tree). */
-+	struct gpu_dirty_tracker dirty;
- 	/*
--	 * Array of red-black trees for free block management.
--	 * Indexed as free_trees[clear/dirty][order] where:
--	 * - Index 0 (GPU_BUDDY_CLEAR_TREE): blocks with zeroed content
--	 * - Index 1 (GPU_BUDDY_DIRTY_TREE): blocks with unknown content
--	 * Each tree holds free blocks of the corresponding order.
-+	 * One RB-tree per order containing all free blocks (clear and
-+	 * dirty alike).  The augment field subtree_block_state (a max over
-+	 * the subtree of each block's state) lets clear allocations
-+	 * find the right-most fully-clear or mixed block in O(log N).
-+	 * Dirty free blocks coexist here but are also indexed by the
-+	 * @dirty tracker for fast dirty allocation lookups.
- 	 */
--	struct rb_root **free_trees;
-+	struct rb_root *free_tree;
- 	/*
- 	 * Array of root blocks representing the top-level blocks of the
- 	 * binary tree(s). Multiple roots exist when the total size is not
+If reclaim elides shrink_slab() for all high-order allocations, then on
+that system:
 
-base-commit: 9c950822f0fa923ccd344d7a143872d25efe89a3
--- 
-2.34.1
+  - the shrinker-owned memory can't be reclaimed at all
+  - LRU reclaim alone cannot lift NR_FREE_PAGES over
+    watermark + compact_gap(order),
+  - so compaction_suitable() stays false,
+  - so compaction never runs,
+  - so the high-order allocation fails without a single compaction
+    attempt having been made.
 
+Today those allocations succeed, because shrinker-freed pages clear the
+gate and compaction then does the assembly. So I think eliding
+shrink_slab() for high-order reclaim would regress high-order/THP
+allocation success rates.
+
+Hillf made essentially this point upstream in this thread and I don't
+think it got picked up:
+
+  "compaction works only when there are enough free regular pages
+   available, with nothing to do with shrinker directly"
+
+So my thesis is that shrinkers must run before compaction. We should
+give shrinkers a hint indicating whether reclaim is being performed
+opportunistically for high-order allocations, in which case it may not
+be worth evicting working set data that is expensive to save and
+restore or if shrinking actively makes fragmentation worse.
+
+I audited the shrinkers and found roughly ten that could make use of
+this hint. Perhaps the most important is the deferred split shrinker,
+which actively increases fragmentation when it runs.
+
+By the way, I have the heuristic wrong here, since vma_thp_gfp_mask()
+will not trigger the opportunistic hint, even though it should because
+it has a fallback path.
+
+So I'd like to post another revision of this series that fixes the
+heuristic and also wires the hint up to the deferred split shrinker.
+Then individual maintainers can decide whether and how to make use of
+the hint in their own shrinkers.
+
+Matt
+
+> 
+> I still think compaction shrinkers need a concept of “opportunistic”
+> versus “must free memory to compact” to avoid the self-feedback loop I
+> described. Without this, the DRM/TTM self-feedback loop would still
+> exist.
+> 
+> > i.e. high-order allocation failure should not generate shrinkable
+> > cache memory pressure because shrinkable caches in general cannot
+> > return contiguous memory that will allows compaction to make
+> 
+> Yes, I agree with “shrinkable caches in general,” aside from the
+> exceptions I outlined above (though perhaps I’m missing other
+> exceptions).
+> 
+> The risk of what you’re suggesting is that it would suddenly change the
+> entire shrinking model across Linux, and we don’t know what unforeseen
+> consequences this type of change might have. Nor could a single person
+> reasonably test a change of this scope. That’s why an incremental step,
+> like this series—which fixes DRM/TTM as opt-in—may make more sense. As
+> mentioned above, the deferred_split_shrinker is also a very likely
+> candidate for being fixed. That said, I’m going to look into your
+> suggestion as well.
+> 
+> > progress. The existing behaviour has more negative affects on system
+> > performance than positive, so we need a fix for "everyone".
+> > 
+> > I think we should provide a new opt-in ->compaction_scan() method for
+> > compaction aware subsystem shrinkers that is run from compact_zone()
+> 
+> compact_zone() appears to be called from both direct reclaim and
+> kcompactd(), so perhaps some of the questions above are already
+> answered.
+> 
+> > context. This allows subsystems that can manage high order objects
+> > to optimise the return of high order objects to the free space pool,
+> > thereby significantly improving the chance for compaction to
+> > succeed without adversely impacting the rest of the shrinkable
+> > caches in the system.
+> > 
+> > Further, we should not kick kswapd because of compaction failures
+> > because kcompactd will already be running ->compaction_scan()
+> > capable shrinkers from it's callouts to compact_zone() in the
+> > background that will do this work as efficiently as possible.
+> > 
+> > > I’m open to trying to fix other
+> > > shrinkers as well. Do you have any particular ones in mind? I count
+> > > around 45 shrinkers in Linux, so it’s unlikely I can fix every single
+> > > one, though or all shrinkers need to be fixed.
+> > 
+> > They'd all need to be fixed, which is why I suggested a new method
+> > to be added. Avoid calling the existing shrinkers in the adverse
+> > situation, call the new one from the right context where it actually
+> > benefits compaction and high-order memory allocation.
+> > 
+> 
+> OK, this seems fairly reasonable on its surface despite my concerns
+> above, but see my comment above regarding “opportunistic” vs. “must free
+> memory to compact.” Without that distinction, I don’t think my original
+> problem would be solved.
+> 
+> Given this scope / risks, can I ask for one of two things:
+> 
+> - We move ahead with this series as a stopgap fix, or
+> - Allow DRM/TTM/Xe to implement shrinker-side heuristics to break the
+>   feedback loop
+> 
+> while I work on this larger refactor. This is the type of work I enjoy
+> doing, and I typically have the flexibility to work on what I think is
+> most impactful.
+> 
+> > > On a side note, I just noticed that struct shrinker has count_objects
+> > > and scan_objects as individual vfuncs rather than using a const struct
+> > > shrinker_ops *ops. Should we change that? The latter seems cleaner and
+> > > is typically how things are done in Linux.
+> > 
+> > We probably should - the current structure is largely historical and
+> > there's only ever been two methods. If we are adding another method,
+> > then it would probably make sense to add an external ops structure
+> > to reduce the memory footprint a little.
+> > 
+> 
+> Let me look into this as well. I don’t know the exact merge flows for
+> tree-wide changes, but I can figure it out.
+> 
+> Matt
+> 
+> > -Dave.
+> > -- 
+> > Dave Chinner
+> > dgc@kernel.org
