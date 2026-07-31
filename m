@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C797BC55175
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01249C55162
 	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 02:24:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2F5310E1A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5D4B10F0E2;
 	Fri, 31 Jul 2026 02:24:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P2KZXMt+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n9jU+fPu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9129D10E131
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 778C110E111
  for <intel-xe@lists.freedesktop.org>; Fri, 31 Jul 2026 02:24:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1785464685; x=1817000685;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eUWdE98/R2Xpy7hG48uhsCeyh6fqdtCmTk+BQOaaOOU=;
- b=P2KZXMt+DxKrQpQh+qxmGyyCiyHiHFTRK4oQIX8u4EimsHWdPlegvyWz
- zyv28cLcX7B723foZupD6aRv+2b2VOxokhRFkbWv9cJGKjJbugQTYC+Ix
- jcnnr8ZYsP7pqsuLB7FWOvHF4TtGov44n2RL9kk+IB3SuIKEvPrcQbtbo
- 0dNbNwHb6jfq11X3ceJ9cZy9eWuv63GEg2lLKFdUrmIj4jMIFy9Aq+5hn
- gZ2wvkqY61SpdN2fN58jw81668cqkw8jF3XIbwecm/u+X8dVt/ySKRZcS
- 1aI2h/g+lV2c50avepmeQgowLnbB5GfLl/uf/Ud4ntRZw1Gkdzg3sUa6t g==;
-X-CSE-ConnectionGUID: RaDKEYCWQR6OWnBwkRmyBg==
-X-CSE-MsgGUID: yHF/eHjuQKqDsCR72KZaSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="88623495"
-X-IronPort-AV: E=Sophos;i="6.25,195,1779174000"; d="scan'208";a="88623495"
+ bh=3gCoC3E89Q7J+lFOuk0K8XWRTiWNCj9XqMvlVQvtRhc=;
+ b=n9jU+fPu98pLOqNOzo1JsHyTCEn5kWTL9OFTZGKrvlpku3hxWhgXfGzk
+ gU3nwQhRpknhXf5Eo3M2se5sxUEBbttXBf18gP5rj6kZX9IHvCVT5961B
+ LOeBJsmjYKdB563htVpMaZM3ieAb15MYUUzR32by6ccYwSJT7jWXrN7z0
+ CI9jPpcd0BhJuHccA/Qqb2fzUU7M6CZV0Nwzq+Ebt8/+rEsRFvkxx7VN8
+ EW5RoDJF4e6n8KIJwbXJ4wbJoG8ZOWMxjSdrs/gQ4Azp3UTZsdGdReDob
+ n9JeakrgRHiLKsoi38UQDsD9QgPPrjS3OActczba3coijPXn2nbEar46z A==;
+X-CSE-ConnectionGUID: IsyKGAdwQm2DAS+ifAptlQ==
+X-CSE-MsgGUID: vC4MaigcTSu82EvOX3ypsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11860"; a="88623493"
+X-IronPort-AV: E=Sophos;i="6.25,195,1779174000"; d="scan'208";a="88623493"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jul 2026 19:24:45 -0700
-X-CSE-ConnectionGUID: aLLt1FfHTHm/CqNhi/ahBw==
-X-CSE-MsgGUID: 1eoZQT1lRsSbbZWgOLysJw==
+X-CSE-ConnectionGUID: UqfWQgfhS3uUoF95b4MEFg==
+X-CSE-MsgGUID: gGa4yuI2Q4632Gsayghi7g==
 X-ExtLoop1: 1
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -44,10 +44,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Carlos Santa <carlos.santa@intel.com>,
 	Ryan Neph <ryanneph@google.com>
-Subject: [PATCH v6 5/8] drm/xe: Adjust BO TTM priority on DONTNEED/WILLNEED
- madvise transitions
-Date: Thu, 30 Jul 2026 19:24:36 -0700
-Message-Id: <20260731022439.2446486-6-matthew.brost@intel.com>
+Subject: [PATCH v6 4/8] drm/xe: Fix up BO TTM priority for late VM binds
+Date: Thu, 30 Jul 2026 19:24:35 -0700
+Message-Id: <20260731022439.2446486-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260731022439.2446486-1-matthew.brost@intel.com>
 References: <20260731022439.2446486-1-matthew.brost@intel.com>
@@ -67,120 +66,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The DRM_XE_MADVISE ioctl lets userspace mark a VMA's BO as DONTNEED,
-signalling that its contents are not needed right now and may be
-discarded under memory pressure (see madvise_purgeable() in
-xe_vm_madvise.c), or restore it back to WILLNEED. This is a stronger,
-explicit signal than a plain unbind: userspace has told us the BO is
-not just unused for now, but that it is actively fine to lose the
-data. There is no reason to keep such a BO competing for LRU space
-with actively used buffers, and conversely, once userspace marks it
-WILLNEED again it is back in active use and should be reprioritized
-accordingly.
+A BO's TTM priority is only ever set once, at creation time, based on
+the priority band of exec queues attached to its VM at that moment
+(xe_vm_bo_priority()), or XE_BO_PRIORITY_HIGHEST for an extobj not
+tied to any single VM. This misses the common flow of VM create -> BO
+create -> exec queue create -> VM bind: the BO is created before any
+exec queue exists on the VM (so it gets XE_BO_PRIORITY_HIGH, the "no
+exec queues yet" default), the exec queue is added afterwards
+(xe_vm_add_exec_queue() only re-prioritizes BOs already bound to the
+VM at that time), and only then is the BO bound into the VM via
+VM_BIND, leaving it stuck at a stale priority that no longer reflects
+the VM's exec queues.
 
-Adjust the BO's TTM LRU priority in xe_bo_set_purgeable_state(), the
-single point through which a BO's aggregate (VMA-count driven)
-purgeable state actually transitions between WILLNEED and DONTNEED
-(PURGED is terminal and left untouched). On a real WILLNEED -> DONTNEED
-transition, drop the BO to XE_BO_PRIORITY_LOW, the same lowest level
-xe_vma_destroy() already uses for a BO that has lost all of its VMA
-mappings. On a DONTNEED -> WILLNEED transition, restore it via
-xe_vm_bo_priority()'s existing heuristic for a private BO, or
-XE_BO_PRIORITY_HIGHEST for an extobj not tied to a single VM.
+It also misses a second flow specific to extobjs: create BO with no
+vm_id (bo->vm == NULL) -> bind -> unbind -> rebind. The unbind can
+lower the BO's priority to XE_BO_PRIORITY_LOW once it has no VMA
+mappings left anywhere (see xe_vma_destroy()), but on rebind nothing
+brought it back up, leaving a still-useful, freshly rebound extobj
+stuck at the lowest priority, an easy target for eviction/shrinking.
 
-Expose xe_bo_update_ttm_priority() (previously static to xe_vm.c) so
-xe_bo.c can safely change the BO's priority without corrupting its
-VM's TTM LRU bulk-move range, the same helper already used by
-xe_vma_destroy(), xe_vma_update_bo_priority(), and
-xe_vm_update_bo_priority(). xe_bo_set_purgeable_state() is always
-called with the BO's dma-resv held, so this is safe.
+Add xe_vma_update_bo_priority(), called from op_update_bo_priority()
+for each DRM_GPUVA_OP_MAP operation in vm_bind_ioctl_ops_fini(). For a
+BO private to the VM being bound (bo->vm == vm), recompute the current
+priority band via xe_vm_bo_priority() and, if it differs, update
+bo->ttm.priority and move the BO to the tail of its new priority's LRU
+list. For an extobj (bo->vm == NULL, potentially shared with other
+VMs), instead restore it directly to XE_BO_PRIORITY_HIGHEST, since it
+is now in active use again and extobjs aren't tied to any single VM's
+exec queue priority band.
+
+This must only run while the BO's dma-resv is locked and the BO has
+been (re)validated: some MAP ops never lock or validate the BO at bind
+time at all, e.g. invalidate_on_bind ops, or ops on a fault-mode VM
+whose bind is deferred to the page fault handler
+(vma_lock_and_validate()'s "validate" flag is false). Track whether a
+given MAP op actually locked and validated its BO in the new
+op->map.is_validated flag, set in op_lock_and_prep(), and skip the
+priority update entirely in op_update_bo_priority() when it is not
+set. To still cover the deferred-validation, fault-mode case, also call
+xe_vma_update_bo_priority() from xe_pagefault_handle_vma(), right after
+a successful xe_vma_rebind(), where the BO has just been locked and
+validated (or intentionally left unvalidated for DONTNEED/purged BOs)
+via xe_pagefault_begin().
 
 Cc: Carlos Santa <carlos.santa@intel.com>
 Cc: Ryan Neph <ryanneph@google.com>
 Assisted-by: GitHub_Copilot:claude-sonnet-5
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.c | 10 +++++++---
- drivers/gpu/drm/xe/xe_vm.h |  1 +
- 3 files changed, 25 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_pagefault.c |  2 +
+ drivers/gpu/drm/xe/xe_vm.c        | 71 +++++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h        |  2 +
+ drivers/gpu/drm/xe/xe_vm_types.h  |  6 +++
+ 4 files changed, 78 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 3d81367dc5c9..2669c487b778 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -888,6 +888,15 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
-  * transitions. Once a BO is PURGED, it cannot transition to any other state.
-  * Invalid transitions are caught with xe_assert(). Shrinker page accounting
-  * is updated automatically.
-+ *
-+ * A WILLNEED -> DONTNEED transition also lowers the BO's TTM LRU priority to
-+ * XE_BO_PRIORITY_LOW, matching xe_vma_destroy()'s handling of a BO losing
-+ * its last VMA: userspace has signaled it does not need these contents
-+ * again soon, so make it one of the first buffers considered for
-+ * eviction/shrinking. Conversely, a DONTNEED -> WILLNEED transition restores
-+ * the BO's priority to whatever xe_vm_bo_priority()'s heuristic would
-+ * otherwise dictate (or XE_BO_PRIORITY_HIGHEST for an extobj not tied to a
-+ * single VM), since the BO is back in active use.
-  */
- void xe_bo_set_purgeable_state(struct xe_bo *bo,
- 			       enum xe_madv_purgeable_state new_state)
-@@ -905,6 +914,14 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
- 	xe_assert(xe, !(bo->purgeable.state == XE_MADV_PURGEABLE_PURGED &&
- 			new_state != XE_MADV_PURGEABLE_PURGED));
- 
-+	if (new_state == XE_MADV_PURGEABLE_DONTNEED &&
-+	    bo->purgeable.state == XE_MADV_PURGEABLE_WILLNEED)
-+		xe_bo_update_ttm_priority(bo, XE_BO_PRIORITY_LOW);
-+	else if (new_state == XE_MADV_PURGEABLE_WILLNEED &&
-+		 bo->purgeable.state == XE_MADV_PURGEABLE_DONTNEED)
-+		xe_bo_update_ttm_priority(bo, bo->vm ? xe_vm_bo_priority(bo->vm) :
-+					  XE_BO_PRIORITY_HIGHEST);
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index dd3c068e1a39..c7f183bd24f4 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -133,6 +133,8 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 			xe_validation_retry_on_oom(&ctx, &err);
+ 			goto unlock_dma_resv;
+ 		}
 +
- 	bo->purgeable.state = new_state;
- 	xe_bo_set_purgeable_shrinker(bo, new_state);
- }
++		xe_vma_update_bo_priority(vma);
+ 	}
+ 
+ 	dma_fence_wait(fence, false);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a0b407bc149c..1be367b1c671 100644
+index 27da09c9ee2a..a0b407bc149c 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1232,8 +1232,10 @@ static void vma_destroy_cb(struct dma_fence *fence,
- 	queue_work(system_dfl_wq, &vma->destroy_work);
+@@ -3236,16 +3236,21 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
+-		if (!op->map.invalidate_on_bind)
++		if (!op->map.invalidate_on_bind) {
++			bool validate = !xe_vm_in_fault_mode(vm) ||
++				op->map.immediate;
++
+ 			err = vma_lock_and_validate(exec, op->map.vma,
+ 						    (struct xe_vma_lock_and_validate_flags) {
+ 							.res_evict = res_evict,
+-							.validate = !xe_vm_in_fault_mode(vm) ||
+-								    op->map.immediate,
++							.validate = validate,
+ 							.request_decompress =
+ 							op->map.request_decompress,
+ 							.check_purged = false,
+ 						    });
++			if (!err && validate)
++				op->map.is_validated = true;
++		}
+ 		break;
+ 	case DRM_GPUVA_OP_REMAP:
+ 		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
+@@ -3583,6 +3588,64 @@ static void op_add_ufence(struct xe_vm *vm, struct xe_vma_op *op,
+ 	}
  }
  
--/*
-- * Change @bo's TTM LRU priority to @priority. @bo's dma-resv must be held.
 +/**
-+ * xe_bo_update_ttm_priority() - Change a BO's TTM LRU priority
-+ * @bo: The buffer object
-+ * @priority: The new TTM LRU priority, one of the XE_BO_PRIORITY_* levels
-  *
-  * Private, user BOs of non-fault-mode VMs have bo->ttm.bulk_move set to
-  * their VM's LRU bulk-move range (see xe_bo_init_locked()), which tracks a
-@@ -1245,8 +1247,10 @@ static void vma_destroy_cb(struct dma_fence *fence,
-  * potentially crashing on a NULL bucket). Temporarily detaching the BO from
-  * its bulk-move range moves it with a plain, non-bulk LRU update instead,
-  * and reattaching afterwards re-inserts it into the new priority's bucket.
++ * xe_vma_update_bo_priority() - Bring @vma's BO's TTM priority up to date
++ * @vma: The vma whose BO's TTM priority is to be refreshed
 + *
-+ * Context: Caller must hold @bo's dma-resv lock.
-  */
--static void xe_bo_update_ttm_priority(struct xe_bo *bo, int priority)
-+void xe_bo_update_ttm_priority(struct xe_bo *bo, int priority)
++ * A BO's TTM priority is set when it is created, based on the priority band
++ * of @vma's VM's exec queues at that time (for a private BO), or to the
++ * highest level (for an extobj, bo->vm == NULL). If the BO is (re)mapped
++ * afterwards, its priority may be stale: a private BO's VM may have gained
++ * or lost exec queues since, and an extobj may have been lowered to
++ * XE_BO_PRIORITY_LOW by xe_vma_destroy() after losing all of its VMA
++ * mappings. Bring it in line with the current priority band here.
++ *
++ * The caller must hold the BO's dma-resv lock (the VM's dma-resv lock for
++ * a private BO), typically already required to (re)validate the BO before
++ * calling this function.
++ */
++void xe_vma_update_bo_priority(struct xe_vma *vma)
++{
++	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_bo *bo;
++	int priority;
++
++	bo = xe_vma_bo(vma);
++	if (!bo)
++		return;
++
++	/* Private BOs are only ever bound to the VM they were created for. */
++	xe_assert(vm->xe, !bo->vm || bo->vm == vm);
++
++	priority = bo->vm ? xe_vm_bo_priority(vm) : XE_BO_PRIORITY_HIGHEST;
++	if (bo->ttm.priority == priority)
++		return;
++
++	xe_bo_assert_held(bo);
++	xe_vm_assert_held(vm);
++	xe_bo_update_ttm_priority(bo, priority);
++}
++
++/*
++ * Refresh the BO's TTM priority for a MAP op, mirroring
++ * xe_vma_update_bo_priority(). This is only safe to do when the BO was
++ * actually locked and validated as part of this bind, i.e.
++ * op->map.is_validated is set: some MAP ops (e.g. invalidate_on_bind, or
++ * binds on a fault-mode VM that defer validation to the page fault handler)
++ * never validate the BO here, in which case the priority is instead brought
++ * up to date from xe_pagefault_handle_vma() once the BO is faulted in.
++ */
++static void op_update_bo_priority(struct xe_vm *vm, struct xe_vma_op *op)
++{
++	if (op->base.op != DRM_GPUVA_OP_MAP)
++		return;
++
++	if (!op->map.is_validated)
++		return;
++
++	xe_vma_update_bo_priority(op->map.vma);
++}
++
+ static void vm_bind_ioctl_ops_fini(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 				   struct dma_fence *fence)
  {
- 	struct ttm_lru_bulk_move *bulk = bo->ttm.bulk_move;
+@@ -3595,6 +3658,8 @@ static void vm_bind_ioctl_ops_fini(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 		if (ufence)
+ 			op_add_ufence(vm, op, ufence);
  
++		op_update_bo_priority(vm, op);
++
+ 		if (op->base.op == DRM_GPUVA_OP_UNMAP)
+ 			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), fence);
+ 		else if (op->base.op == DRM_GPUVA_OP_REMAP)
 diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index d69481ef360f..e6e8d18c04af 100644
+index 64d3665bb05a..d69481ef360f 100644
 --- a/drivers/gpu/drm/xe/xe_vm.h
 +++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -308,6 +308,7 @@ void xe_vm_kill(struct xe_vm *vm, bool unlocked);
- void xe_vm_add_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
- void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
- int xe_vm_bo_priority(struct xe_vm *vm);
-+void xe_bo_update_ttm_priority(struct xe_bo *bo, int priority);
+@@ -256,6 +256,8 @@ int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct xe_tlb_inval_batch *b
  
- /**
-  * xe_vm_assert_held(vm) - Assert that the vm's reservation object is held.
+ int xe_vm_validate_protected(struct xe_vm *vm);
+ 
++void xe_vma_update_bo_priority(struct xe_vma *vma);
++
+ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+ {
+ 	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index d75546c4eb66..b07e1da3a3d6 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -427,6 +427,12 @@ struct xe_vma_op_map {
+ 	bool invalidate_on_bind;
+ 	/** @request_decompress: schedule decompression for GPU map */
+ 	bool request_decompress;
++	/**
++	 * @is_validated: The op's BO (if any) was locked and validated as
++	 * part of this bind, so it is safe to refresh its TTM priority in
++	 * op_update_bo_priority().
++	 */
++	bool is_validated;
+ 	/** @pat_index: The pat index to use for this operation. */
+ 	u16 pat_index;
+ };
 -- 
 2.34.1
 
