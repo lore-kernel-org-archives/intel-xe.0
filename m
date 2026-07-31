@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40E2EC5516F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 23:27:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF90DC55172
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jul 2026 23:27:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF97F10E271;
-	Fri, 31 Jul 2026 23:27:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C44510E26D;
+	Fri, 31 Jul 2026 23:27:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z2FJ0Ddv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D6E+WVqX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6576210E26D
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Jul 2026 23:27:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25DCD10E26D
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Jul 2026 23:27:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785540429; x=1817076429;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xD1OEOczQyS8Sbg9M+VlhWSSX3ke+Xp66yYEXuBHmak=;
- b=Z2FJ0DdvmMlLpZruYuyZgOlsYmOGfPcy5okBlnc7suiWcMAc9I52+K62
- NfQtrogHYe9FnQcivDEKVuTQjtjKoGxfb2MHOqVYymjQ29zosmE+gU5c0
- +l7AWIeSljudNzroG8UhDmbhU9M5h1vbrW/gWFA1aCCeoEz5JCAFgT/7w
- JaZ0lWN1c1U1Q9iGGFy/gHZ/MB7HoCnAkt4SxlM2pmB7kLTIRtx2u/1QY
- E/NGsrBE1Tl0mdbGTExvfTSpN711Oeznxmmq/am+j8or8qYWMlg/P8p7L
- OHRz+ck6DgX4I+GOLBthvjQnDlb/s4abFsjbSk05AnTUUt1OU9Bi5fgCq w==;
-X-CSE-ConnectionGUID: 01XAlORUSX+FMGnXx/VmFA==
-X-CSE-MsgGUID: r2m0KDFRSIO4B6OwwNavWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11861"; a="97326543"
-X-IronPort-AV: E=Sophos;i="6.25,197,1779174000"; d="scan'208";a="97326543"
+ t=1785540430; x=1817076430;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=eXDo8G+SQ4z8eHI6JDJllul+h/+5Uho4eQQ6a2Bs5vg=;
+ b=D6E+WVqXSEYs9REz+qoNZc9OEuQlIpe4JxQ/iLx56gM2n1XdPLkHSlHN
+ xBlXXY4MPyJPIlGN6jRAFWacwutniViV0AyHV7IMfVJp01NVsnk6OWRs8
+ xsKxnf5hno0XXNxZoOor7/zYAAjRssOjGKr6UkeitpkwHsxRif0YWG+pm
+ GVmV1POJBTZJpY/BJC+dzhU5UIm/t+4UVUnJB2XIXehjlxxHwLuX3GaD+
+ 9Hff1ZfOm+7YQgVML2HAKD74dBqxsO8nBiIDS5kxjRrxTETWF5GSrlOeW
+ /id8PeAy7eosM+KN5Vla1KRzLSH9qj67+2gpFo/GL0SsaCI/qxSk8QO55 A==;
+X-CSE-ConnectionGUID: nbRpQkFqSI24Ejn3lA83TQ==
+X-CSE-MsgGUID: h65gB9dDRcuBqDNtXVojZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11861"; a="97326554"
+X-IronPort-AV: E=Sophos;i="6.25,197,1779174000"; d="scan'208";a="97326554"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2026 16:22:49 -0700
-X-CSE-ConnectionGUID: SxFLoyXEQvyTh21EFHuGPw==
-X-CSE-MsgGUID: Ez9s0IP9RKuYu0EKR7SCCQ==
+ 31 Jul 2026 16:22:52 -0700
+X-CSE-ConnectionGUID: 7i9xpHm2RPW7h4cEarbckg==
+X-CSE-MsgGUID: DMfnRl/ARo2yK7r9ZuMqGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,197,1779174000"; d="scan'208";a="261305759"
+X-IronPort-AV: E=Sophos;i="6.25,197,1779174000"; d="scan'208";a="261305772"
 Received: from dut6094bmgfrd.fm.intel.com ([10.80.55.54])
- by orviesa009.jf.intel.com with ESMTP; 31 Jul 2026 16:22:50 -0700
+ by orviesa009.jf.intel.com with ESMTP; 31 Jul 2026 16:22:52 -0700
 From: Jia Yao <jia.yao@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Jia Yao <jia.yao@intel.com>
-Subject: [PATCH v6 0/1] drm/xe/guc_ads: allocate UM queues in a separate UC BO
-Date: Fri, 31 Jul 2026 23:22:29 +0000
-Message-ID: <20260731232232.548015-1-jia.yao@intel.com>
+Cc: Jia Yao <jia.yao@intel.com>, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
+Subject: [PATCH v6 2/3] drm/xe/guc_ads: allocate UM queues in VRAM on dGFX
+Date: Fri, 31 Jul 2026 23:22:31 +0000
+Message-ID: <20260731232232.548015-3-jia.yao@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260731232232.548015-1-jia.yao@intel.com>
+References: <20260731232232.548015-1-jia.yao@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,107 +66,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Problem ==
-
-On platforms with Unified Shared Memory (USM), the xe driver maintains
-three hardware page-fault queues (PAGE_FAULT, PAGE_FAULT_RESPONSE,
-ACCESS_COUNTER) inside the GuC Additional Data Structures (ADS) blob.
-
-xe_guc_ads_populate() is called on every GT reset to reprogram the ADS
-blob; it begins with a full memset() of the blob to zero.
-
-GAM hardware writes fault descriptors to the queue via DPA - a
-non-coherent path that bypasses the cache and writes directly to memory.
-GuC reads the queue via GGTT (WB), which hit the cacheline polluted by CPU.
-As a result GuC sees the stale zeroed data from the cache instead
-of the descriptor written to DRAM by GAM.  The driver then receives an
-all-zero fault descriptor and returns -EINVAL, causing an unnecessary
-engine reset.
-
-This is documented in HSD as:
-  "When Fault queue is updated by the SW (Buffer zeroed), it can reside
-   in the CPU cache (L4:WB). A non coherent write from GAM HW would not
-   consult the CPU cache and it will eventually get written into the
-   memory (depends upon eviction/flushes) and CPU cache has stale data.
-   When GUC HW reads the fault queue it gets it from the CPU cache,
-   which is stale data."
-
-== Reproduction ==
-
-  # Requires a platform with has_usm (e.g. Xe3 iGFX)
-  sudo xe_exec_reset --run-subtest gt-reset
-  sudo xe_exec_system_allocator \
-    --run-subtest threads-many-execqueues-mmap-new-race
-
-  Symptom in dmesg:
-    [xe] ASID: 0, Faulted Address: 0x0000000000000000, FaultType: 0
-
-  The all-zero fault descriptor is the tell-tale sign of the stale
-  cacheline race.
-
-== Fix ==
-
-Move the UM queues into a dedicated UC BO (ads->um_queue_bo) and avoid
-CPU memset operations on it, which eliminates the CPU as a potential
-cacheline-polluting agent and helps maintain consistency between GAM
-writes and GuC reads.
-
 On iGPU, the UM queue BO is allocated in system memory. On dGFX, the BO
 was previously created in system memory and later reallocated in
 xe_guc_realloc_post_hwconfig().  Allocate the UM queue BO directly in
 VRAM on dGFX, where it is ultimately required.
 
-On Pre-Xe3p platform, the GAM write the UM queue through DPA using UC.
-if GuC reads the queue via GGTT (WB), stale data may be observed 
-when the cacheline has been polluted by another agent.
+Fixes: 9c57bc08652a ("drm/xe/lnl: Drop force_probe requirement")
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: <stable@vger.kernel.org> # v6.12+
+Signed-off-by: Jia Yao <jia.yao@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc.c     |  6 ------
+ drivers/gpu/drm/xe/xe_guc_ads.c | 11 ++++++-----
+ 2 files changed, 6 insertions(+), 11 deletions(-)
 
-Why not just flush the cache after memset?
-
-An earlier approach called drm_clflush_virt_range() on the UM queue
-region immediately after the memset to evict the stale zero lines from
-LLC.  This reduces the failure rate significantly but does not fully
-eliminate the race for two reasons.
-
-First, the Linux kernel maintains a WB direct mapping (linear map) that
-covers all physical memory.  Even after flushing the vmap alias, the
-CPU can speculatively prefetch the same physical page through the WB
-direct-map alias, silently repopulating the cache with zeros.  LNL is
-known to be particularly susceptible to this speculative prefetch
-behaviour.  XE_BO_FLAG_NEEDS_UC calls set_memory_uc() which updates
-both the vmap PTE and the direct-map PTE to UC, closing this aliasing
-window entirely.
-
-Second, the flush approach leaves the memory mapped WB on the CPU side
-permanently.  Any future SW access - a debug read, a tracing hook, an
-inadvertent touch - can re-dirty the cacheline and reintroduce the
-race.  UC mapping makes the correct behaviour unconditional and
-self-documenting.
-
-Changes in v4:
-- Split the single v3 patch into three logically independent patches:
-  1. Separate BO allocation
-  2. VRAM placement on dGFX
-  3. UC mapping
-
-Changes in v5:
-- Fix the patch conflict
-- Update the ASCII block diagram of ads
-- Simplify the contiguous memory check
-- Improve code comments
-
-Changes in v6:
-- Only round up UM queue size for iGPU
-- Revise commit message
-
-Jia Yao (3):
-  drm/xe/guc_ads: allocate UM queues in a separate BO
-  drm/xe/guc_ads: allocate UM queues in VRAM on dGFX
-  drm/xe/guc_ads: use uncached mapping for UM queue BO
-
- drivers/gpu/drm/xe/xe_guc_ads.c       | 100 +++++++++++++++++---------
- drivers/gpu/drm/xe/xe_guc_ads_types.h |   5 ++
- 2 files changed, 73 insertions(+), 32 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4f132bf8539d..4286bd05c686 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -732,12 +732,6 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (guc->ads.um_queue_bo) {
+-		ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ads.um_queue_bo);
+-		if (ret)
+-			return ret;
+-	}
+-
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 46c4d702d1f3..a69ec584cc0f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -456,11 +456,12 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+ 				 roundup_pow_of_two(GUC_UM_QUEUE_SIZE *
+ 						    GUC_UM_HW_QUEUE_MAX);
+ 
+-		bo = xe_managed_bo_create_pin_map(xe, tile, um_size,
+-						  XE_BO_FLAG_SYSTEM |
+-						  XE_BO_FLAG_GGTT |
+-						  XE_BO_FLAG_GGTT_INVALIDATE |
+-						  XE_BO_FLAG_PINNED_NORESTORE);
++		u32 um_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++			       XE_BO_FLAG_GGTT |
++			       XE_BO_FLAG_GGTT_INVALIDATE |
++			       XE_BO_FLAG_PINNED_NORESTORE;
++
++		bo = xe_managed_bo_create_pin_map(xe, tile, um_size, um_flags);
+ 		if (IS_ERR(bo))
+ 			return PTR_ERR(bo);
+ 
 -- 
 2.43.0
 
