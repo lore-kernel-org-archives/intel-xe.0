@@ -4,159 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9106C55196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 18:48:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A21B4C55196
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 19:19:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2F98876A;
-	Mon,  3 Aug 2026 18:48:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 515AF10E780;
+	Mon,  3 Aug 2026 19:19:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jn7gnQOm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IgdEI0HZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D8810E77A;
- Mon,  3 Aug 2026 18:48:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C64FA10E783
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 19:19:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785782891; x=1817318891;
+ t=1785784767; x=1817320767;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=FEvsqek4MqSIT7wmQFOBw2R0Pt+rFIRmPU4JcWGC8WE=;
- b=Jn7gnQOmr3w0Re3/lDbbJgenUYSHkGHchhdCyXZ03cGclV61IMiUKLUu
- 5aMrik/r5g0L+n5+Oo2GpLhO/JTOTuZCpYYyd2FMWQtiJDDTcNELp/in8
- KwY5YGJmHIln50+K7O3hWRpXxFTak0QZrt1R8X1eiOVmhJlZRpZIVuc6v
- Ij9BwMXioEBHV9RBF0pD4pTiAQs2tvA0nJZ/QR1kL6VYv1Auxy5oZ2JmW
- KWgzknlUWL7lq6EuGOPJfE6Ib/t4/1PJ491d/4NefHcsiexTu20OiPJyl
- eMNUfsXv4FgV6c/0r/ifNhDTR6iev7n9Jry36JMHe/OJMxYlOxs62BTOg w==;
-X-CSE-ConnectionGUID: TLs+4WS/S3KoncIkVkv2pg==
-X-CSE-MsgGUID: 0/Mp61vZSJKrrAqYQMt2bA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="103731554"
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="103731554"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 11:48:11 -0700
-X-CSE-ConnectionGUID: n/t/EYyEQ+K68gK08mZjbg==
-X-CSE-MsgGUID: LdHhuF2LQV+jYu4vOgYQiw==
+ bh=oPBrsqWh7EMJ1zj1WOBzdi0WUl6l3gl3tpTNyEbSD3M=;
+ b=IgdEI0HZKI/mI/6k71QE0ymJrJF5b76ZAHgGRMYCWs8+QCQmqgARee7y
+ 44L6ApDGaTUgqByArGbX3taq7w6mcN5+gUtL9D8a6k0vkwASnzh8VIL9r
+ rY3YY0DUrY4z/6tXOqSLdZcZgONtbaWJNmDV6zz39YcMclRK2xBRshMHq
+ oRlzZYKNL5HeQXGl6mmxSh7ABY9GPf2lAgcmT1ReupNeTMt6pqpGD9afP
+ bmCf9HoqIamCcdIEkIWKVe5zgorm6sEmeyOu5z7HrBWFaK/o/Drm0jBzF
+ bsjkrlX6efgIfSvQT1k5PxZddOGsFLrjGdiroF4kp2y2dOrixbB7enVwQ g==;
+X-CSE-ConnectionGUID: Hpqz+0+0QWid8rlChLCQ6Q==
+X-CSE-MsgGUID: uQ1VLCZQSPK9MVUWUSNGtg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="111885825"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="111885825"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 12:19:27 -0700
+X-CSE-ConnectionGUID: /qgYYUjeRluZRgVHtjSLgA==
+X-CSE-MsgGUID: BSkVrrcHSVyYK+A9CuommQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="299519656"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 11:48:07 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="259508998"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 12:19:27 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 3 Aug 2026 11:48:06 -0700
+ 15.2.2562.45; Mon, 3 Aug 2026 12:19:26 -0700
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Mon, 3 Aug 2026 11:48:06 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.30)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Mon, 3 Aug 2026 12:19:26 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.67) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 3 Aug 2026 11:48:05 -0700
+ 15.2.2562.45; Mon, 3 Aug 2026 12:19:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dqKQKogDPFX4YoHQbENtiSi9yyvryoMVlSdXu3iqe2YbhaqcekH5JSC7NfULE51Pr/yoKu4oC8ismAQxKLK2yAjj5eLDGBOmTazVktaUtZitxfn5Kd3CUfM9mfUZWiqVlou8ncQVV21xtzyqjDnSy4CRbVIWkRiZ8F2VQVgFHCAfdX2i+kHiRGmBiYysv2OzRgxrgkGQ5QwF6azZnJCdjuXbA9kRmb62z1aVezNYtD/pIreX4Z+0V2EFpQsimg5tc1PVk8aP9HqSVklc7Le0PKFfgpWrZ6Ek9s8QdRvAy8s8lnS+nw9DlYrQtkbO9r/inA+6oh2Oi84pD3EAqo59ig==
+ b=AZ0eUZGXaDMaE11GwTM6cmYD5EZLfovrQY1MDYBQ5Vptyx1o1sYOQN2EDnuj5X41mWP+6q2Tpx9dHrsdz+l514z/pZqRiDQd4ueuoxGwGmQUvsPd5RE93EIfoGCx8EPEsN1WJW4K741+hP/OhvVaJFUrl6GNQWF4IOK/Ofv52mj1SNJcSEmWEr/chQ9M6C0FYy2EQt1bJfz9om0NccwVUi7dkNq/miQA32W2b7rd3NG+DSfXJMkv1HybLHI/3LHywahGOGML9Mv57n2tcNVfO612r/XOiEimO0DJDqjrz/GhcjMrUTQ/3PSbXxIsi33t1Zy4TbNWxOZB1y3VexcQAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pyZIpUi1IHRWDfgL+54cSMIw2XB1pJ2ujLim5OuOzhc=;
- b=bYMDvXnp2mBQvyuFZvIh/AjXDeR9d10woqIpbrGielEaiGs7CE0qlQbJyMFef82wec6W+lIv/0e9dMN/uMR138D6hxGDbrcAbBiGxaETjugWAsyaQy9GbHeU17BVSL9YNxyVEHyG1kh7hlN4q+I85+VBy1pWI7uiZoGk9p2S/ra0Q5DKoTh/rdOuDBLqNMLeb656DqWXQhLbcOfYnHeyrlp+B10uvpa+H1+AtpwUTrCRpIoFgtA4tLBCTPwkVj8Gok/9qhdiPhqSaSL9pdHKeTVdExeXXgppaQasE8s8hkNL//2vK8fx/uQgt66ihszRoh8WgNHhn6mPE8clZdXc3w==
+ bh=qEPDQQd0dpwO685agpjDdDWoRjE6S9yYjdrTG/Jabf4=;
+ b=vAr2h2ZWoADo9RcN0wA8oFIV2lblVrEY3IuRzLldzF1clTo01NaCp/HBL5s68JqkFpyiqWY71U3m+9wFnvnlRKlSKpWi1oLmVF5DGfn3ZOENWxJoxIwz2MBb+6/+uXHNdA8slPzosDF2+fhb/H4yhq049pdJ4Qy9nlV4tSZPYrE02ypX5kC9CQn3S+sHBercg4Jc6Wc6fX2tx4FrY900KDzCOhH3Gpb9pNV+cFdxkYBEwA+uTVc70raqY0vKTqhQInHe7RayJSqYfJD4lVk9a/YQiGe7ZuVfEfkwwzGQKYEhm3Rhbv/D9vys/kKgzrSAnDawD+D7pKWzh/dwAnFnBg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA0PR11MB4749.namprd11.prod.outlook.com (2603:10b6:806:9a::23)
+ by PH0PR11MB5125.namprd11.prod.outlook.com (2603:10b6:510:3e::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.17; Mon, 3 Aug
- 2026 18:48:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.18; Mon, 3 Aug
+ 2026 19:19:24 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0270.016; Mon, 3 Aug 2026
- 18:48:03 +0000
-Date: Mon, 3 Aug 2026 11:47:59 -0700
+ 19:19:24 +0000
+Date: Mon, 3 Aug 2026 12:19:22 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Huang Rui <ray.huang@amd.com>, Matthew Auld
- <matthew.auld@intel.com>, Andrew Morton <akpm@linux-foundation.org>, "David
- Hildenbrand" <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, Zi Yan
- <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, "Liam R.
- Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>, Ryan Roberts
- <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>, Barry Song
- <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Dave Airlie <airlied@redhat.com>, Matthew Wilcox
- <willy@infradead.org>
-Subject: Re: [PATCH 3/3] drm/ttm: allocate pool pages as compound (__GFP_COMP)
-Message-ID: <anDiX4L3Oz8fKJCW@gsse-cloud1.jf.intel.com>
-References: <20260722044220.1110278-1-matthew.brost@intel.com>
- <20260722044220.1110278-3-matthew.brost@intel.com>
- <80fdf249-6f24-4cc7-bc9a-91bf23293497@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 3/4] drm/xe/multi_queue: track and recover lost CGP
+ updates across VF migration
+Message-ID: <anDpuohdptVIRcAG@gsse-cloud1.jf.intel.com>
+References: <20260731232625.3313657-6-niranjana.vishwanathapura@intel.com>
+ <20260731232625.3313657-9-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <80fdf249-6f24-4cc7-bc9a-91bf23293497@amd.com>
-X-ClientProxiedBy: MW4PR03CA0176.namprd03.prod.outlook.com
- (2603:10b6:303:8d::31) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20260731232625.3313657-9-niranjana.vishwanathapura@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0223.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::18) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4749:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0bf27c39-3ef9-4014-a222-08def18fbf93
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB5125:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3bbc5293-4082-4e58-ad21-08def19420dc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|366016|23010399003|18002099003|22082099003|4143699003|56012099006|11063799006|10067099003;
-X-Microsoft-Antispam-Message-Info: q4GmUfpsSmBTfMgfDCQpzj8HfwY8ZP+gOfSMmCmFejyIcnqa9g778j47gPrHuApW/EZ0LzIsgZO3xw5f6ZxLvrztouUZdmmyq7jRAwMaBF64hKMKUynevFIJidm8KPY6POP+GbENsMUMMvWAp1Gd9ASqitCZdHQt1E2HNrsgvyFS9MZkOYLnCuGvBy3Grmw4uYf6SerpF1QgoaYAFkvdmjkPaNXtUhpfJazyh5D7kajttnrfOb+wtsa8Nbqt4jVIJGz/mhTdn38gBnsJ1urHsdYPazr5f3hgczCez4w2JiYvpouNbI/y/nzAe8jkVQYn2lIau4zLRP5By6BAM8E2EV++H22EzfJXDJM0DdjP1jml05u7pspHF+ACMkT8oD1FwGcHGCl641+rF62b7VsynstnidcRx3MwrUyR5N6t56QxVac88nwovxxgGoDnsMUcsQAxSHWlExbbh1COLSf+a1bqJIT0UXo6cpJGAiNWpaaB4DiZ4K3/NVHs/C0cUIuV2Xk2A0mIZtZtRgBwsHqkn9HDqbVbIpL3q7LNkP7kBYr9sTh4vX/yxS+tssBdq5ePfQhyunyYFbuc72mtaH3HeMaeEAcqB/FRb2a2b4T3RDU0MpZalFCV9EppNEK8Vt6oEN4/ae2ISgC9sAgcrJFyr2UPj1RuIYlsKv5Z+G+EZLA=
+ ARA:13230040|23010399003|376014|1800799024|366016|56012099006|4143699003|11063799006|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: kRXt03Kb1x2MVbCAhDt1/nI0g+nQqq0ZzjBiP1v3mk4GAOXGRYNVDhVxFt8bfZ/BJzoLy+ZmYaKGDYs/Px7vXFaWADzF0ouzCLONsVO4iu+x+cCLJIdDmdEIG3ITbJqFRBM5COO/JDBLnZFi6nKXPzVFTJmNqEuHr22FUiL6q0ag3phxLz1C6p0myZkqrzgmP3EH2GYXOpeWr5QOO5D2B50kizRRaFXUXOl3g9OOyD+hVQhG5YAvUynHinnJ1qlxpJUX13n+SYjpBRTvrK9/RGAHVzdDmEIUZJoAvqbkpZxy7ljTR/fvxKxhS/dVv8KgSwuoJvB3e7eBd0F1elOK5+Bp3saSulWNKsJFcD+uMIMtussV/glZ42umtm2TbpY9zaNky9nuoZeCpob/zAnXTb4ybMg9E/38PIrqcrnYHf7zuW3aHwJLYKqD663Nxt1ntmWBUEFtsFOZyHSj4ohhHGLpCW1LNkFGhbZ1ApS8Dpx7GR0ZO7aX7a2h1tLZYXCNbmbachIcdZsKjz2duJ7MPpZQVJQLi3YfE56RFD45fsRWgkmDfn/yYFCKLjmdtxlzqCbTcKK5ap1tykaE29dlMYtzSmMV3sTfVgwTKwg+D0NwVfpGuoWduyV5TKAlv8K+6kTfyTBXMEf8enRAqQGLZpIsU/izS5Q/7mtBjY28PsY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016)(23010399003)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(10067099003);
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(56012099006)(4143699003)(11063799006)(10067099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?yvb2IOYcte7duJ+YkFbcxfzIQk+FixE3wM/1NDTgWEjMwCZ7myRJBkNBPH?=
- =?iso-8859-1?Q?7QWK159CP2IkzA+kvdbIbQE9aG5guzndETZ485/wVrJfu9gNIVWJs8xz7E?=
- =?iso-8859-1?Q?LO4OlsBJnHTeQVXDMWmCyBcnHkJ7Z3nOMbhuIwvkeOSBNhuLS80ks78/As?=
- =?iso-8859-1?Q?a8MEPL2M/TxuZbZiOYbohkDhunf+xyN1YpxodrYik6Uj3aqRtReOUmZgMJ?=
- =?iso-8859-1?Q?dC2MYkNI3xn+178hXOi41FAQgVVU55O2NAqwbu9QVFTCT6oKx7V+tK3vC/?=
- =?iso-8859-1?Q?xs/KfIw2dcVrrI9N14/u7/B5vNdfYOEqUODt+n6kU7z/CBc9xsm6dk9LMx?=
- =?iso-8859-1?Q?MEKxuIWHqcyYoLz0T3WaGZtWc27eqfHDMAouLpST5PdG4G0oJ3IggYL67k?=
- =?iso-8859-1?Q?HJEXGr23CdfbB+J4ZZFBnif2NfFDmrk9PgZnXuf6YWzebIz+erZdkFEG9d?=
- =?iso-8859-1?Q?s/D0SaScQLNB3m/CEqLuTxIFmggaqNK/wS9l5c8ZsXEUgKFVeYDR8DMxBG?=
- =?iso-8859-1?Q?EFXqJ6lq0Dd28jtabp+TJVhC6QDXm7zbKkwdw+zLy3ee6RG7OpkbM5NjJT?=
- =?iso-8859-1?Q?fSJ7Q6mIaktFYpK0OnrLv+SLgUByabwqLLPUCBkpBOCbTbAidEIsC9d47T?=
- =?iso-8859-1?Q?5EMT+5IEAKayHO8YH6xNZJBaQldc23gFSju7jrOQXZMr5C9graHb3Q0SxG?=
- =?iso-8859-1?Q?63vjquT1NNSCjMMZbwiDT7K3smxn64o+VAxEqaxP/bWjWnk9d9raPyDHxk?=
- =?iso-8859-1?Q?v2/ZBOjK+1x1LYf97i75O1GoLA18ScIbkIro4KiRD6Pxuv1yl/AIOo8OBi?=
- =?iso-8859-1?Q?KeU5YPWFWk9RIqF1umYryC9k+ZLUmkjKkzI2xueqh4wkDprL1Ha7IlGwRB?=
- =?iso-8859-1?Q?R0ctWiUaERaiKr9HFA796UojG8ae/L4LWo3leaZyFVehUWY/0MfAX3Q4Z5?=
- =?iso-8859-1?Q?GtoTT5oZLG/ruLkCjMm5NZRW7o+NJfemiZlL4VYNTHUYtxkhhROaQ9FD9f?=
- =?iso-8859-1?Q?dqrufAl8ogyivSTIx8XxI2sU25HxwJXBoCSxHND1g1MWpbEVVcrR7sI8j4?=
- =?iso-8859-1?Q?p7nJKX8jrDZBZ89Ayebt7ieDienvDxU1D8ngAi6TWpQpGF3wEVWa7P15ar?=
- =?iso-8859-1?Q?lhB/ZiQR2Un1eniv1qmI3ijSayTqHKIi2DOZx3l9I92HDd6/fbBv9vOIGM?=
- =?iso-8859-1?Q?5nTDgX/UGdgHiORMjPHg97jg2jujAMBGk71VfRI7F/1vAjGvOU1NgM5+rS?=
- =?iso-8859-1?Q?tbIMGoRM9WglW5Hp0Ag0EWNjFm00gvW9NFjETuT3hjsKc3c8n7kFprc/u5?=
- =?iso-8859-1?Q?qvV91Vjx7mYVtec8FKN1KcOJN9F6KVtPXv2wcEK2L3uzmKQqu5b45/aejP?=
- =?iso-8859-1?Q?ffavsxiCpp7G6FIZJ1BDaEbMa6b1G6r0WW+mln8rlWkQhnWbbzZAwWyclB?=
- =?iso-8859-1?Q?edKBFsp9Lrpjn5yNrfzAmNMWe+l77Dw4yDjc56qAOnbHK5zMWwn9FyukQs?=
- =?iso-8859-1?Q?W/IaA3QWhRztczCGzuYz8j7Hp12v20uhS8CYUKOA3+AuLcaA/2fyq3TjRZ?=
- =?iso-8859-1?Q?NswXCrakSjrGWKd9sB7gLYWLBOYz/c2Z3/4f0DceG5cEGlZ/b0G+ArDBWx?=
- =?iso-8859-1?Q?sM/syD2MG2w4Wkz979dkr3t6tvmCosFsHifsYjDrxMEw5QLS3Oqx0x0/gz?=
- =?iso-8859-1?Q?A/yF7WysXgR/KXhn/oPbW6EfmtEkMG5+Rwk8rFzHKeyqRMatkVCwKBx3BZ?=
- =?iso-8859-1?Q?hC+vg0b+KqjwO0O7KLecxjg//4pCKDQ5q4xRxoU8qURGXKjboRMGysrC6B?=
- =?iso-8859-1?Q?NBjPa81Ngw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: QoNI5YSH6ke9EfMNcr3slYzTj9rs2xuBSGWSyiqOs7h2RL8O06L+sSuyQbMFqIqVShTHfPjLlrU/eIeGuosZ3VrUaSGRQlZZIq4aZLRFeIYNom1otBxpVXg7DO+MCtGLvrxljbRfkwMXLd4u2RRbD+/SeFpiDFeWXw3oZZ0XuUFPtTKbD5cwevqKsm3J3Yty6ljQ8Gfms22ki3bENAqovEYXdWWMSk/ntRyg+DpI2l6ExOs5vKNoUG4PIWgCThmgtHHGg7ZBvR/d2UfdIcf0aigxTtt874TyGRJFgHDd8NxldvmNVJi0Yha8I+M0OFO35yXcSI1/MnWNWVgrBHLmTQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0bf27c39-3ef9-4014-a222-08def18fbf93
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VHNKTnJTSlBOUGdIMlFDTlZlVVFCaWZnb29zMG45OWJKMjVQT2dobG9GQS9m?=
+ =?utf-8?B?Z0F1dUdVc1RPYzdBYU1nTnFGUER2NHAvRnhkdWVmcnYyWmlpOGtPSFBBWDU4?=
+ =?utf-8?B?dkVCN2QvTjB2Z3JpZXNSMUY3M202Y25lc21QWEw3ZWV5eW5ES0JDTXJYQWt2?=
+ =?utf-8?B?Y2xCbDN4OVFjYlgxL1d3eFR2TFFjOVdsTDNPTWJhTlRMQlVBRXlDZ281MXdT?=
+ =?utf-8?B?cEk4bUpHcTBleEdKdnlrVFJiZmEvVUM5UU15UTdRSkUrSXZQVGFlT25LMnNU?=
+ =?utf-8?B?ZHNmMURIVGNkTk5wNjgwenlsSlZUajJDRG4ydVcrNnl0ZlAra3dwU0o4Z3hr?=
+ =?utf-8?B?eWpHVzltL2J5cUlHY2RvTHNRMHVWY09ISHhjZ004ZWhjS2tWYzdTemFUMXhq?=
+ =?utf-8?B?WThCQkNUUXJQUjV3bGtWK2tSWE8rMWRza2ludGVGL01BemZPWmVGU1pITU5v?=
+ =?utf-8?B?WDEvUlZ5azhKUmFuc2dqbmlGeTVLUUJUTVlCNml1WG5mSlB1MXlQYWFxeGVF?=
+ =?utf-8?B?by9CVTNDQXFIVHp2MTZ5ZnpWNE9ieGplYWZHZE9aVEtaZ0FOSDloRDVmR0Fj?=
+ =?utf-8?B?dDlEY3dzWmViNVFIYnBGRm5FcXQrSklVWG1QcWdRWDFkVXZVajBVMkNMbitD?=
+ =?utf-8?B?bzZ0a2RSb3FmU3pBK3YwNkpaYjJxNzNOMFpzQ01OQ2sxZkZzRGxzVFgvcmxN?=
+ =?utf-8?B?clA2bnlCaTB1QjZtTGVlSy9KMExkTTJoNktWNk1TMVpYcnloRGFuQzRSVU9o?=
+ =?utf-8?B?Wm9DdVpXOWlmMGcvSXVONlUvbGVuR1ZlUTlmY0x3d1orNnoyY1FlbmpTdFBk?=
+ =?utf-8?B?eldsbE5zTS9YVlR6YzlKVS9jVk15OFM3MzdESHJjRzc2TWV0NzB0c3E5ODhO?=
+ =?utf-8?B?bzZQajhOckJtRmJ6aEl4YWF3RFU2ajFURGNsK1ZOMFp0SERTcjJPTHpyck05?=
+ =?utf-8?B?aFovRHhlRzhXVWp6TW4xWTdVckxoMzdVcmlxRld1bkFnb1FsWEZtMHY1RlJ4?=
+ =?utf-8?B?TG1tb3ZYeDVENnlmdFFQM2FYSVpYcElndDdrT0xBWTNGcnY3VGJMV2FYeGxh?=
+ =?utf-8?B?dytXZUJNZnQvb2pjM3R2NnAydVFKZG1WOVlGTzVTOGJ3VkR4Sk9xcUEwVmY5?=
+ =?utf-8?B?L0VQWlVjZlpLeENqQW9nWHFMMlFrU2pKRjR2dnZKSngwZGdLZUtWY3ZKakpH?=
+ =?utf-8?B?Z21TV3UxanhQYjk0TnZkZWNBZjJiRnRTaWpOY0NaalBzYW9hSUlhMGZQczBa?=
+ =?utf-8?B?V2pmS2prSW8ydUs1ZjZGTERjck9Ob2ZvTWM4SCtibW1EWnU5TnNhVE1uZ3d6?=
+ =?utf-8?B?NlFrMklYWUxYY1FtUkV6VTNuK0ZNL0RUeVdpcXgybWVtWkZqbVlYT2g5TlBX?=
+ =?utf-8?B?Vis1enIzaWQvcE9aRHpJRkZTaURMdUx0NlhkVHdQdlllcXVwYVhNb1hkSWxl?=
+ =?utf-8?B?ZXYxVUF0MGErNGZodmNPenp3SE1ka2JONEEwb1dJTEl6MTVrRGJHbldiV0hI?=
+ =?utf-8?B?S0gvVUsyWFBXbTgyMjFvKy9MOEVnTlZmSUFqR1lnRUw4eEFOZmk1d3hpU2Zw?=
+ =?utf-8?B?U3YvMCtnOFo0b08zRWliOTNla0JQd3R2TU5takNvUGtLWVh1eWY3NGwyV1NV?=
+ =?utf-8?B?YXJFSlg2bEt0Yi9OakRuRmxDYnZUQndrSmZIYVpLeGY3MzBFcWd3dys1NGNv?=
+ =?utf-8?B?OUFMS3lMM2ZXVUF6cndkS3R5YUttR1BpMERpNTg1S0I0Y0h1TjUyN2xVMm9P?=
+ =?utf-8?B?SVQrSHJNQVQzaGRna21DYTVuK01VZTZzQ1gwalRxN0kzMVlVbjd4WFRINGJl?=
+ =?utf-8?B?WWYrTlo5UjZvMElNV1lpck9jY1VRMktaZGpGVlQvZVRPTWFsVU83UVhQZm11?=
+ =?utf-8?B?TWsyRVRiZ290eWp0NDVmTk4zYk1zK1UyOFFZR2ZzQVhiUmNpWEdrZVd0Y3Fo?=
+ =?utf-8?B?bEtDSlkrWlVGM3dRQndTTk51ZGhRSUJ6bXRoUTZQNXVJbThVbjdCUm04TXNj?=
+ =?utf-8?B?eGZDSzdmY056bmV1cG9ETFJaVHZpWUdzT3J3UWhGblpTdGtMK3MwaTIxWUIz?=
+ =?utf-8?B?V3ZBdzBLSU9wMDBTK283bGF1QUFFdzNhZTJvQ3JFR2RpVFNiWWtzRU1FZ3l5?=
+ =?utf-8?B?alFwUUk4UXNXVW4vN1pCNlllRzZwNDl0ek9QbVhESi8yVGFQVGs4bkVPRmNu?=
+ =?utf-8?B?YVFpbHIzUURROGNhaUFqNE1qalRoajN4RVB6UWhpY3pLK090bjVwYnJHR3k0?=
+ =?utf-8?B?d245LzZYOXFFNFE1NG9pbThQRUQxNTV5ZGlIdHVZVnNtbUwzVXZZTFFtU2pi?=
+ =?utf-8?B?SWVBUHpza3YyZTlhSDVEVFoxNHdmV2pyS0x0ZktjNG10cHZPcDBldz09?=
+X-Exchange-RoutingPolicyChecked: MD93TSi4VvYCRXK4iyiHv+qwrapLJKfZCvcjQ8j3bIl1Fy6tLnFJRokJYZD2s8XuDq3RAIRB3x9fBPALispUjyeEzQwVyH4P6gvQDVfARn+aa1oipSttlAEeSYoPSIA/lr7p74CbjW6WoZB8auCb1d0qqy67TF1TSayad8XpPPigylolTxSBVH8sL45SL8Jl0xTArJKkQh7KvxUdcIEz5by4SgwMjks1h5i95He+jsBi7Sc1rGcx4gjNmGdbFdFH1K3Jv6VoHZknGOc3Sac+dWj6fjcOwowQgGoEYEzmR87nNg4IKok0Eq9f3LSBEkE33WCbzVDU451MhBCXN6k9SA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bbc5293-4082-4e58-ad21-08def19420dc
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2026 18:48:03.2242 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2026 19:19:24.3852 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PzeqzX02C5F1a6wjhX0LVrZYXLVsQve5mf43u+BNJUt4GGumDen12KJO18IHtqzzPBb/jTYVUx92KQyuaD3NKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4749
+X-MS-Exchange-CrossTenant-UserPrincipalName: hUmNwhx1K3TQIMlz12t/K54b7UPt85TfBJxx8yJSb/elvyZajAWgT2JSjzjvjp4xXWpllZfkprDwh2DfZ+0+Bg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5125
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,274 +168,293 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 03, 2026 at 03:54:27PM +0200, Christian K�nig wrote:
-> On 7/22/26 06:42, Matthew Brost wrote:
-> > Historically ttm_pool_alloc_page() deliberately avoided __GFP_COMP for
-> > higher-order allocations and instead stashed the allocation order in
-> > page->private. The stated reason was that mapping a TTM page into a
-> > userspace process and having that process call put_page() on it would be
-> > illegal on a compound page, because the stray reference would fold into
-> > the compound head and could free the whole block behind TTM's back.
-> > 
-> > That hazard no longer applies to the non-DMA path. TTM faults its pages
-> > into userspace via VM_PFNMAP (see ttm_bo_vm_fault_reserved() /
-> > vmf_insert_pfn_prot()), so the core mm never takes a struct page
-> > reference on them and GUP rejects the range; a stray userspace put_page()
-> > cannot reach these pages at all.
+On Fri, Jul 31, 2026 at 04:26:26PM -0700, Niranjana Vishwanathapura wrote:
+> When a CGP_SYNC (or REGISTER_CONTEXT_MULTI_QUEUE with CGP) is in flight
+> during VF migration, GuC loses the message and never sends CGP_SYNC_DONE.
+> Two failure modes exist:
 > 
-> Yeah unfortunately I clearly have to reject that.
+> 1. The send was already issued (CGP_SYNC_DONE not received):
+>    group->sync_pending stays set and cgp_update_q points to the queue
+>    that owns the outstanding sync.
 > 
-> This is exactly what we have thought before but that doesn't hold true. Especially KVM completely broke our neck here.
->
-
-I haven't tried KVM, but it's entirely possible that KVM or another part
-of the kernel breaks TTM usage here.
-
-It didn't take me long to put this together after it was brought up in
-the other thread. It makes TTM a bit clearer and also simplifies my
-defrag series quite a bit, since that series included several extra
-steps because there's currently no reliable way to determine whether a
-page is the head page without native compound-page support or
-reinventing this in TTM.
-
-Xe appeared to work correctly with these changes, which is why I decided
-to post them.
-
-> But let's continue the discussion on the other thread.
+> 2. The wait woke early (send not issued):
+>    The queue returned from xe_guc_exec_queue_group_cgp_sync() without
+>    sending after vf_recovery() became true.
 > 
-
-+1, I saw your response there. Hopefully we can figure it out, as I'd
-very much consider this a nice-to-have cleanup.
-
-Matt
-
-> Regards,
-> Christian.
+> Track which kind of sync is outstanding (registering_cgp / updating_cgp)
+> and the owning queue (cgp_update_q) so
+> guc_exec_queue_revert_pending_state_change()
+> can recover both cases:
+> - A registration-time CGP bails or is lost  → clear registered flag so
+>   run_job re-registers after unpause (re_register / registering_cgp paths).
+> - A dynamic CGP update bails or is lost → set needs_cgp_sync so replay
+>   re-issues the update after unpause (re_update / updating_cgp paths).
 > 
+> Tag all registration call sites with CGP_SYNC_REGISTRATION so the bail
+> path distinguishes them from dynamic updates.
 > 
-> > 
-> > Convert the !ttm_pool_uses_dma_alloc() path to allocate compound pages
-> > with __GFP_COMP and recover the order via folio_order() instead of
-> > page->private:
-> > 
-> >   - ttm_pool_alloc_page(): add __GFP_COMP, drop the page->private write.
-> >   - ttm_pool_page_order() / ttm_pool_unmap_and_free(): read the order
-> >     from folio_order() for the non-DMA case.
-> >   - ttm_pool_split_for_swap(): for compound folios, split via the new
-> >     folio_split_driver_managed() helper rather than split_page(), which
-> >     rejects compound pages. Each resulting order-0 folio is then freed
-> >     individually as it is backed up.
-> >   - Drop the now-dead page->private = 0 clears on the purge and
-> >     full-backup free paths.
-> > 
-> > The DMA path is intentionally left unchanged: dma_alloc_attrs() does not
-> > produce compound pages, so it keeps split_page() and the page->private
-> > order stash.
-> > 
-> > folio_split_driver_managed() lives in the THP split machinery
-> > (mm/huge_memory.c), which only builds when CONFIG_TRANSPARENT_HUGEPAGE
-> > is enabled. Drivers that drive the TTM shrinker and therefore reach the
-> > split path must select TRANSPARENT_HUGEPAGE.
-> > 
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona@ffwll.ch>
-> > Cc: Christian Koenig <christian.koenig@amd.com>
-> > Cc: Huang Rui <ray.huang@amd.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > Cc: David Hildenbrand <david@kernel.org>
-> > Cc: Lorenzo Stoakes <ljs@kernel.org>
-> > Cc: Zi Yan <ziy@nvidia.com>
-> > Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
-> > Cc: "Liam R. Howlett" <liam@infradead.org>
-> > Cc: Nico Pache <npache@redhat.com>
-> > Cc: Ryan Roberts <ryan.roberts@arm.com>
-> > Cc: Dev Jain <dev.jain@arm.com>
-> > Cc: Barry Song <baohua@kernel.org>
-> > Cc: Lance Yang <lance.yang@linux.dev>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> > Cc: Dave Airlie <airlied@redhat.com>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: linux-mm@kvack.org
-> > Suggested-by: Matthew Wilcox <willy@infradead.org>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Assisted-by: GitHub-Copilot:claude-opus-4.8
-> > ---
-> >  drivers/gpu/drm/ttm/tests/ttm_pool_test.c | 23 +++++++++---
-> >  drivers/gpu/drm/ttm/ttm_backup.c          |  8 ++--
-> >  drivers/gpu/drm/ttm/ttm_pool.c            | 46 +++++++++++++++--------
-> >  3 files changed, 53 insertions(+), 24 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/ttm/tests/ttm_pool_test.c b/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
-> > index be75c8abf388..771ed257778c 100644
-> > --- a/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
-> > +++ b/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
-> > @@ -169,7 +169,14 @@ static void ttm_pool_alloc_basic(struct kunit *test)
-> >  			KUNIT_ASSERT_NOT_NULL(test, (void *)fst_page->private);
-> >  			KUNIT_ASSERT_NOT_NULL(test, (void *)last_page->private);
-> >  		} else {
-> > -			KUNIT_ASSERT_EQ(test, fst_page->private, params->order);
-> > +			/*
-> > +			 * The non-DMA path allocates compound pages, so the
-> > +			 * order is recovered from the folio rather than from
-> > +			 * page->private.
-> > +			 */
-> > +			KUNIT_ASSERT_EQ(test,
-> > +					folio_order(page_folio(fst_page)),
-> > +					params->order);
-> >  		}
-> >  	} else {
-> >  		if (ttm_pool_uses_dma_alloc(pool)) {
-> > @@ -177,13 +184,19 @@ static void ttm_pool_alloc_basic(struct kunit *test)
-> >  			KUNIT_ASSERT_NULL(test, (void *)last_page->private);
-> >  		} else {
-> >  			/*
-> > -			 * We expect to alloc one big block, followed by
-> > -			 * order 0 blocks
-> > +			 * We expect to alloc one or more max-order compound
-> > +			 * blocks. page_folio() on any subpage resolves to the
-> > +			 * compound head, so both the first and last pages
-> > +			 * report the max block order.
-> >  			 */
-> > -			KUNIT_ASSERT_EQ(test, fst_page->private,
-> > +			KUNIT_ASSERT_EQ(test,
-> > +					folio_order(page_folio(fst_page)),
-> > +					min_t(unsigned int, MAX_PAGE_ORDER,
-> > +					      params->order));
-> > +			KUNIT_ASSERT_EQ(test,
-> > +					folio_order(page_folio(last_page)),
-> >  					min_t(unsigned int, MAX_PAGE_ORDER,
-> >  					      params->order));
-> > -			KUNIT_ASSERT_EQ(test, last_page->private, 0);
-> >  		}
-> >  	}
-> >  
-> > diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
-> > index 3c067aadc52d..9194747a1dff 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_backup.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_backup.c
-> > @@ -72,9 +72,11 @@ int ttm_backup_copy_page(struct file *backup, struct page *dst,
-> >   * ttm_backup_backup_folio() - Backup a folio
-> >   * @backup: The struct backup pointer to use.
-> >   * @folio: The folio to back up.
-> > - * @order: The allocation order of @folio.  Since TTM allocates higher-order
-> > - *         pages without __GFP_COMP, folio_nr_pages(@folio) would always
-> > - *         return 1; the caller must pass the true order explicitly.
-> > + * @order: The allocation order of @folio, passed explicitly. For the DMA
-> > + *         path TTM allocates higher-order pages without __GFP_COMP, so
-> > + *         folio_order(@folio) would return 0 rather than the true order;
-> > + *         the caller therefore passes the order explicitly. (The non-DMA
-> > + *         path allocates compound pages, for which the two agree.)
-> >   * @writeback: Whether to perform immediate writeback of the folio's pages.
-> >   * This may have performance implications.
-> >   * @idx: A unique integer for the first page of the folio and each struct backup.
-> > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> > index 1bf37023fed6..364cc7ec7469 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> > @@ -168,9 +168,11 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
-> >  	struct page *p;
-> >  	void *vaddr;
-> >  
-> > -	/* Don't set the __GFP_COMP flag for higher order allocations.
-> > -	 * Mapping pages directly into an userspace process and calling
-> > -	 * put_page() on a TTM allocated page is illegal.
-> > +	/*
-> > +	 * For higher-order allocations be a good citizen: don't dip into
-> > +	 * memory reserves, don't retry hard, don't warn on failure and stay
-> > +	 * on the local node. The non-DMA path additionally sets __GFP_COMP
-> > +	 * below; the DMA path allocates via dma_alloc_attrs().
-> >  	 */
-> >  	if (order)
-> >  		gfp_flags |= __GFP_NOMEMALLOC | __GFP_NORETRY | __GFP_NOWARN |
-> > @@ -189,11 +191,9 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
-> >  	}
-> >  
-> >  	if (!ttm_pool_uses_dma_alloc(pool)) {
-> > -		p = alloc_pages_node(pool->nid, gfp_flags, order);
-> > -		if (p) {
-> > -			p->private = order;
-> > +		p = alloc_pages_node(pool->nid, gfp_flags | __GFP_COMP, order);
-> > +		if (p)
-> >  			mod_lruvec_page_state(p, NR_GPU_ACTIVE, 1 << order);
-> > -		}
-> >  		return p;
-> >  	}
-> >  
-> > @@ -482,7 +482,7 @@ static unsigned int ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
-> >  		return dma->vaddr & ~PAGE_MASK;
-> >  	}
-> >  
-> > -	return p->private;
-> > +	return folio_order(page_folio(p));
-> >  }
-> >  
-> >  /*
-> > @@ -493,15 +493,31 @@ static unsigned int ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
-> >  static void ttm_pool_split_for_swap(struct ttm_pool *pool, struct page *p)
-> >  {
-> >  	unsigned int order = ttm_pool_page_order(pool, p);
-> > -	pgoff_t nr;
-> >  
-> >  	if (!order)
-> >  		return;
-> >  
-> > -	split_page(p, order);
-> > -	nr = 1UL << order;
-> > -	while (nr--)
-> > -		(p++)->private = 0;
-> > +	if (ttm_pool_uses_dma_alloc(pool)) {
-> > +		pgoff_t nr;
-> > +
-> > +		/*
-> > +		 * DMA-alloc pages are not compound; split the plain
-> > +		 * higher-order allocation and clear the per-page private
-> > +		 * (which held the order for the non-compound case).
-> > +		 */
-> > +		split_page(p, order);
-> > +		nr = 1UL << order;
-> > +		while (nr--)
-> > +			(p++)->private = 0;
-> > +		return;
-> > +	}
-> > +
-> > +	/*
-> > +	 * The non-DMA path allocates compound folios (__GFP_COMP). Split the
-> > +	 * driver-owned, off-LRU, unmapped folio into order-0 folios so each
-> > +	 * page can be freed as soon as it has been backed up.
-> > +	 */
-> > +	folio_split_driver_managed(page_folio(p), 0);
-> >  }
-> >  
-> >  /**
-> > @@ -548,7 +564,7 @@ static pgoff_t ttm_pool_unmap_and_free(struct ttm_pool *pool, struct page *page,
-> >  
-> >  		pt = ttm_pool_select_type(pool, caching, order);
-> >  	} else {
-> > -		order = page->private;
-> > +		order = folio_order(page_folio(page));
-> >  		nr = (1UL << order);
-> >  	}
-> >  
-> > @@ -1124,7 +1140,6 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
-> >  					       num_pages);
-> >  			if (flags->purge) {
-> >  				shrunken += num_pages;
-> > -				page->private = 0;
-> >  				__free_pages_gpu_account(page, order, false);
-> >  				memset(tt->pages + i, 0,
-> >  				       num_pages * sizeof(*tt->pages));
-> > @@ -1214,7 +1229,6 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
-> >  		}
-> >  
-> >  		/* Fully backed up: free at native order. */
-> > -		page->private = 0;
-> >  		__free_pages_gpu_account(page, order, false);
-> >  	}
-> >  
+> Assisted-by: Github-Copilot:Claude-opus-4.8
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> ---
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h     |   7 ++
+>  drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  30 +++++
+>  drivers/gpu/drm/xe/xe_guc_submit.c           | 112 +++++++++++++++++--
+>  3 files changed, 141 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 53b6c0bf4849..b2276559c2f6 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -70,6 +70,13 @@ struct xe_exec_queue_group {
+>  	spinlock_t suspend_lock;
+>  	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
+>  	bool sync_pending;
+> +	/**
+> +	 * @cgp_update_q: Queue that issued the currently outstanding (sent)
+> +	 * CGP_SYNC or REGISTER_CONTEXT_MULTI_QUEUE; NULL when none is
+> +	 * outstanding. Used during VF recovery to identify and replay the
+> +	 * message whose CGP_SYNC_DONE was not received.
+> +	 */
+> +	struct xe_exec_queue *cgp_update_q;
+>  	/** @banned: Group banned */
+>  	bool banned;
+>  	/** @stopped: Group is stopped, protected by list_lock */
+> diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> index acdc24d1a6bd..573b920edb41 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> @@ -76,6 +76,36 @@ struct xe_guc_exec_queue {
+>  	 * recovery.
+>  	 */
+>  	bool needs_resume;
+> +	/** @multi_queue: multi-queue group CGP state for VF post migration recovery */
+> +	struct {
+> +		/**
+> +		 * @multi_queue.needs_cgp_sync: Needs a CGP_SYNC (dynamic CGP
+> +		 * update) message replayed during recovery.
+> +		 */
+> +		u8 needs_cgp_sync:1;
+> +		/**
+> +		 * @multi_queue.re_register: A registration-time CGP update was
+> +		 * interrupted by recovery; the queue must be re-registered.
+> +		 */
+> +		u8 re_register:1;
+> +		/**
+> +		 * @multi_queue.re_update: A dynamic CGP update was interrupted
+> +		 * by recovery; the CGP update must be replayed.
+> +		 */
+> +		u8 re_update:1;
+> +		/**
+> +		 * @multi_queue.registering_cgp: This queue's currently
+> +		 * outstanding CGP_SYNC is a registration (matched against
+> +		 * group->cgp_update_q in revert).
+> +		 */
+> +		u8 registering_cgp:1;
+> +		/**
+> +		 * @multi_queue.updating_cgp: This queue's currently outstanding
+> +		 * CGP_SYNC is a dynamic update (matched against
+> +		 * group->cgp_update_q in revert).
+> +		 */
+> +		u8 updating_cgp:1;
+> +	} multi_queue;
+>  };
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 13d0ab8052e5..c018bc0d8d6f 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -800,9 +800,12 @@ static void xe_guc_exec_queue_group_cgp_update(struct xe_device *xe,
+>  	}
+>  }
+>  
+> +#define CGP_SYNC_REGISTRATION			BIT(0)
+> +
+>  static void xe_guc_exec_queue_group_cgp_sync(struct xe_guc *guc,
+>  					     struct xe_exec_queue *q,
+> -					     const u32 *action, u32 len)
+> +					     const u32 *action, u32 len,
+> +					     unsigned int flags)
+>  {
+>  	struct xe_exec_queue_group *group = q->multi_queue.group;
+>  	struct xe_device *xe = guc_to_xe(guc);
+> @@ -829,17 +832,45 @@ static void xe_guc_exec_queue_group_cgp_sync(struct xe_guc *guc,
+>  		return;
+>  	}
+>  
+> +	/*
+> +	 * If woken by VF migration recovery, do not touch the CGP or send: the
+> +	 * message would be lost and, for a registration, GuC must (re-)register
+> +	 * the context before its CGP entry may be read. Flag the queue so revert
+> +	 * replays it - a registration by re-registration, a dynamic update by a
+> +	 * replayed CGP_SYNC - and bail.
+> +	 */
+> +	if (vf_recovery(guc)) {
+> +		if (flags & CGP_SYNC_REGISTRATION)
+> +			q->guc->multi_queue.re_register = true;
+> +		else
+> +			q->guc->multi_queue.re_update = true;
+> +		return;
+> +	}
+> +
+>  	scoped_guard(spinlock, &q->multi_queue.lock)
+>  		priority = q->multi_queue.priority;
+>  
+>  	xe_lrc_set_multi_queue_priority(q->lrc[0], priority);
+>  	xe_guc_exec_queue_group_cgp_update(xe, q);
+>  
+> +	/*
+> +	 * Record the nature of this outstanding sync so revert can replay it if
+> +	 * its CGP_SYNC_DONE is lost across a migration: a registration is
+> +	 * recovered by re-registration, a dynamic update by a replayed CGP_SYNC.
+> +	 */
+> +	if (flags & CGP_SYNC_REGISTRATION) {
+> +		q->guc->multi_queue.registering_cgp = true;
+> +		q->guc->multi_queue.updating_cgp = false;
+> +	} else {
+> +		q->guc->multi_queue.updating_cgp = true;
+> +		q->guc->multi_queue.registering_cgp = false;
+> +	}
+> +	WRITE_ONCE(group->cgp_update_q, q);
+>  	WRITE_ONCE(group->sync_pending, true);
+>  	xe_guc_ct_send(&guc->ct, action, len, G2H_LEN_DW_MULTI_QUEUE_CONTEXT, 1);
+>  }
+>  
+> -static void guc_exec_queue_send_cgp_sync(struct xe_exec_queue *q)
+> +static void guc_exec_queue_send_cgp_sync(struct xe_exec_queue *q, unsigned int flags)
+>  {
+>  #define MAX_MULTI_QUEUE_CGP_SYNC_SIZE	(2)
+>  	struct xe_guc *guc = exec_queue_to_guc(q);
+> @@ -853,7 +884,7 @@ static void guc_exec_queue_send_cgp_sync(struct xe_exec_queue *q)
+>  	xe_gt_assert(guc_to_gt(guc), len <= MAX_MULTI_QUEUE_CGP_SYNC_SIZE);
+>  #undef MAX_MULTI_QUEUE_CGP_SYNC_SIZE
+>  
+> -	xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
+> +	xe_guc_exec_queue_group_cgp_sync(guc, q, action, len, flags);
+>  }
+>  
+>  static void __register_exec_queue_group(struct xe_exec_queue *q,
+> @@ -881,7 +912,8 @@ static void __register_exec_queue_group(struct xe_exec_queue *q,
+>  	 * XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE response
+>  	 * from guc.
+>  	 */
+> -	xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
+> +	xe_guc_exec_queue_group_cgp_sync(guc, q, action, len,
+> +					 CGP_SYNC_REGISTRATION);
+>  }
+>  
+>  static void __register_mlrc_exec_queue(struct xe_guc *guc,
+> @@ -1041,7 +1073,7 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+>  		init_policies(guc, q);
+>  
+>  	if (xe_exec_queue_is_multi_queue_secondary(q))
+> -		guc_exec_queue_send_cgp_sync(q);
+> +		guc_exec_queue_send_cgp_sync(q, CGP_SYNC_REGISTRATION);
+>  }
+>  
+>  static u32 wq_space_until_wrap(struct xe_exec_queue *q)
+> @@ -1923,7 +1955,7 @@ static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
+>  	struct xe_exec_queue *q = msg->private_data;
+>  
+>  	if (guc_exec_queue_allowed_to_change_state(q))
+> -		guc_exec_queue_send_cgp_sync(q);
+> +		guc_exec_queue_send_cgp_sync(q, 0);
+>  
+>  	kfree(msg);
+>  }
+> @@ -2716,6 +2748,57 @@ static void guc_exec_queue_revert_pending_state_change(struct xe_guc *guc,
+>  			  q->guc->id);
+>  	}
+>  
+> +	/*
+> +	 * A registration time CGP update that bailed when woken by VF recovery.
+> +	 * Re-register the queue.
+> +	 */
+> +	if (q->guc->multi_queue.re_register) {
+> +		clear_exec_queue_registered(q);
+> +		q->guc->multi_queue.re_register = false;
+> +		xe_gt_dbg(guc_to_gt(guc), "Replay REGISTER (cgp) - guc_id=%d",
+> +			  q->guc->id);
+> +	}
+> +
+> +	/*
+> +	 * If a CGP update gets dropped during migration, CGP_SYNC_DONE will not
+> +	 * be received (sync_pending still set and this queue owns it). Recover
+> +	 * it the same way and clear the stuck sync_pending.
+> +	 */
+> +	if (xe_exec_queue_is_multi_queue(q)) {
+> +		struct xe_exec_queue_group *group = q->multi_queue.group;
+> +
+> +		if (q == READ_ONCE(group->cgp_update_q) &&
+> +		    READ_ONCE(group->sync_pending)) {
+> +			if (q->guc->multi_queue.registering_cgp) {
+> +				clear_exec_queue_registered(q);
+> +				xe_gt_dbg(guc_to_gt(guc), "Replay REGISTER (cgp sync) - guc_id=%d",
+> +					  q->guc->id);
+> +			} else if (q->guc->multi_queue.updating_cgp) {
+> +				q->guc->multi_queue.needs_cgp_sync = true;
+> +				xe_gt_dbg(guc_to_gt(guc), "Replay CGP_SYNC - guc_id=%d",
+> +					  q->guc->id);
+> +			}
+> +			q->guc->multi_queue.registering_cgp = false;
+> +			q->guc->multi_queue.updating_cgp = false;
+> +			WRITE_ONCE(group->cgp_update_q, NULL);
+> +			WRITE_ONCE(group->sync_pending, false);
+> +		}
+> +	}
+> +
+> +	/*
+> +	 * A dynamic-time CGP update that bailed when woken by VF recovery.
+> +	 * Replay the dynamic CGP update unless the queue is registered or being
+> +	 * re-registered, which re-does the CGP anyway.
+> +	 */
+> +	if (q->guc->multi_queue.re_update) {
+> +		q->guc->multi_queue.re_update = false;
+> +		if (exec_queue_registered(q)) {
+> +			q->guc->multi_queue.needs_cgp_sync = true;
+> +			xe_gt_dbg(guc_to_gt(guc), "Replay CGP_SYNC (re-update) - guc_id=%d",
+> +				  q->guc->id);
+> +		}
+> +	}
+> +
+>  	q->guc->resume_time = 0;
+>  }
+>  
+> @@ -3424,7 +3507,8 @@ int xe_guc_exec_queue_cgp_context_error_handler(struct xe_guc *guc, u32 *msg,
+>  int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>  {
+>  	struct xe_device *xe = guc_to_xe(guc);
+> -	struct xe_exec_queue *q;
+> +	struct xe_exec_queue_group *group;
+> +	struct xe_exec_queue *q, *upd_q;
+>  	u32 guc_id = msg[0];
+>  
+>  	if (unlikely(len < 1)) {
+> @@ -3441,8 +3525,20 @@ int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 le
+>  		return -EPROTO;
+>  	}
+>  
+> +	/*
+> +	 * The outstanding CGP update is now confirmed; clear the owning queue's
+> +	 * tracking so a later migration does not needlessly replay it.
+> +	 */
+> +	group = q->multi_queue.group;
+> +	upd_q = READ_ONCE(group->cgp_update_q);
+> +	if (upd_q) {
+> +		upd_q->guc->multi_queue.registering_cgp = false;
+> +		upd_q->guc->multi_queue.updating_cgp = false;
+> +		WRITE_ONCE(group->cgp_update_q, NULL);
+> +	}
+> +
+>  	/* Wakeup the serialized cgp update wait */
+> -	WRITE_ONCE(q->multi_queue.group->sync_pending, false);
+> +	WRITE_ONCE(group->sync_pending, false);
+>  	xe_guc_ct_wake_waiters(&guc->ct);
+>  
+>  	return 0;
+> -- 
+> 2.43.0
 > 
