@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3D7CC55196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 21:50:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF783C55182
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 21:50:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F2A410E120;
-	Mon,  3 Aug 2026 21:50:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFEC10E2CC;
+	Mon,  3 Aug 2026 21:50:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j8EeGzgx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bj7CstSP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E02710E095;
- Mon,  3 Aug 2026 21:50:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48A4610E095;
+ Mon,  3 Aug 2026 21:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785793823; x=1817329823;
+ t=1785793831; x=1817329831;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XKZF1+8gJ6t0FMsjfKBFmMRvhXWSm57DLz8/RqdCai4=;
- b=j8EeGzgxGREurOxloPo2eK0/zxob8q8kcdWWFGq0E4HR97xKAtDO4DCa
- 8ZCZbmFvNkTg1ofJExy70vXGPG5nwfUvq0NykfsmZXGpnpV2k2djbrjbq
- 76rxwbGz2BZ5tN5CND7GgRqGt27/lbNiZ7nVa5T42Qj8khG5K9hRAfiv4
- oX3Oq2wjrXVnqL0kdLfDprzNbRapgsunqCQglFQg511JEEfu+S9BlcdGE
- rScKi0oA79HLxCGpAowfjkqs8s/cE2Hp+J+u9qZ8fH5Rol/iWm0HOq53K
- iqMkHilCDn/eiPsL2j426v+5tAsvDRvlWC97n0LnDBmNqSs7z79hbxIo/ A==;
-X-CSE-ConnectionGUID: gAMzR4kSTt+mxwPIutysGg==
-X-CSE-MsgGUID: ea1DYmJQQl24iMuBrg8DUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="97849135"
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="97849135"
+ bh=HzaK7DOSVqzZw61WFb5Hq6mDpi5YizHNaf+HgYvriZ4=;
+ b=bj7CstSPsQczcVpmJJ5mmwX35v3vkm9/jKFRWA48lAY8XBJhVlm/Veff
+ 7mgsNQsiVtVsx0bH9sk11GfFnx1Xm4l+fxB0u+2YV6r8ZMouMejy7Jazh
+ 9T376kkHRX+AppCRWSyIuZ0OUtC+17wVTxx2b0CCEkHlVArs7t6zgVIJC
+ 4mHzn5FSLoMkj78aWfJWOxAsZ0pobUozD1jEPZdggsWUNYUwn9p5GYr53
+ jlzZuERCwy2tewHIXp0mYs1PbZre99dc9iVRPXeZWBOge0cuNmJaxpTb0
+ oAxinvI2xaMDhIW8e97Si7lRhsflWpH9LmbtQUumOItFfv/Ma+iPKS5Zh A==;
+X-CSE-ConnectionGUID: n6gb9IaCQpe5Bq3/Mz9Jiw==
+X-CSE-MsgGUID: gjgsY+GDTbKLtrFI+M48fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="97849145"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="97849145"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 14:50:23 -0700
-X-CSE-ConnectionGUID: XNKpUau9TK6LHTqo2NWDYA==
-X-CSE-MsgGUID: cHXxfqkBROCmoLG7hxFepQ==
+ 03 Aug 2026 14:50:31 -0700
+X-CSE-ConnectionGUID: EwuJoKOhRaSBFDf84GMkbA==
+X-CSE-MsgGUID: nNMjd0dpSrOuClCD3y7KAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="291272059"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="291272078"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 03 Aug 2026 14:50:22 -0700
+ by orviesa002.jf.intel.com with ESMTP; 03 Aug 2026 14:50:29 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 1/4] drm/i915/display: fix SKL_DSSM register macros
-Date: Mon,  3 Aug 2026 23:49:06 +0200
-Message-ID: <20260803214909.3076716-2-michal.grzelak@intel.com>
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ stable@vger.kernel.org
+Subject: [PATCH v2 2/4] drm/i915/3dlut: disable 3D LUT for pre-GLK
+Date: Mon,  3 Aug 2026 23:49:07 +0200
+Message-ID: <20260803214909.3076716-3-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260803214909.3076716-1-michal.grzelak@intel.com>
 References: <20260803214909.3076716-1-michal.grzelak@intel.com>
@@ -70,36 +72,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Indent SKL_DSSM register macros. Define mask and register values with
-REG_GENMASK() and REG_FIELD_PREP() instead of bit shifts.
+GLK+ hardware supports 3D LUT. Disable the feature for pre-GLK
+platforms.
+
+Add .has_3dlut field into struct intel_display_runtime_info. Use the
+field to store whether 3D LUT is enabled. Initialize the field to 1 on
+GLK+.
+
+Add macro for checking 3D LUT's support. Use it while checking whether
+CRTC has 3D LUT enabled.
 
 v1->v2
-- s/REG_GENMASK/REG_FIELD_PREP/ (Jani)
+- use either runtime info flag or display version check (Jani)
+- don't initialize runtime info flag to 0 (Jani)
 
+Bspec: 15585
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: <stable@vger.kernel.org>
+Fixes: 65db7a1f9cf7 ("drm/i915/color: Add 3D LUT to color pipeline")
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_regs.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c          | 3 +++
+ drivers/gpu/drm/i915/display/intel_display_device.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_display_device.h | 2 ++
+ 3 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 0f5018482497..740331ead20a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -1779,10 +1779,10 @@
- #define   XE2LPD_DE_CAP_SCALER_SINGLE	1
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 87ced9f6ff40..ffdefb51a264 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -4258,6 +4258,9 @@ intel_color_load_plane_luts(struct intel_dsb *dsb,
+ bool
+ intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe)
+ {
++	if (!HAS_3DLUT(display))
++		return false;
++
+ 	if (DISPLAY_VER(display) >= 12)
+ 		return pipe == PIPE_A || pipe == PIPE_B;
+ 	else
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index f17fc2c68472..4c09f35644ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -864,6 +864,7 @@ static const struct platform_desc glk_desc = {
+ 		GLK_COLORS,
  
- #define SKL_DSSM				_MMIO(0x51004)
--#define ICL_DSSM_CDCLK_PLL_REFCLK_MASK		(7 << 29)
--#define ICL_DSSM_CDCLK_PLL_REFCLK_24MHz		(0 << 29)
--#define ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	(1 << 29)
--#define ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	(2 << 29)
-+#define   ICL_DSSM_CDCLK_PLL_REFCLK_MASK	REG_GENMASK(31, 29)
-+#define   ICL_DSSM_CDCLK_PLL_REFCLK_24MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 0)
-+#define   ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 1)
-+#define   ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 2)
+ 		.__runtime_defaults.ip.ver = 10,
++		.__runtime_defaults.has_3dlut = 1,
+ 	},
+ 	STEP_INFO(glk_steppings),
+ };
+@@ -899,6 +900,7 @@ static const struct platform_desc glk_desc = {
+ 	ICL_COLORS, \
+ 	\
+ 	.__runtime_defaults.ip.ver = 11, \
++	.__runtime_defaults.has_3dlut = 1, \
+ 	.__runtime_defaults.has_dmc = 1, \
+ 	.__runtime_defaults.has_dsc = 1, \
+ 	.__runtime_defaults.has_hdcp = 1, \
+@@ -990,6 +992,7 @@ static const struct platform_desc ehl_desc = {
+ 	ICL_COLORS, \
+ 	\
+ 	.__runtime_defaults.ip.ver = 12, \
++	.__runtime_defaults.has_3dlut = 1, \
+ 	.__runtime_defaults.has_dmc = 1, \
+ 	.__runtime_defaults.has_dsc = 1, \
+ 	.__runtime_defaults.has_hdcp = 1, \
+@@ -1156,6 +1159,7 @@ static const struct platform_desc adl_s_desc = {
+ 	TGL_CURSOR_OFFSETS,							\
+ 										\
+ 	.__runtime_defaults.ip.ver = 13,					\
++	.__runtime_defaults.has_3dlut = 1,					\
+ 	.__runtime_defaults.has_dmc = 1,					\
+ 	.__runtime_defaults.has_dsc = 1,					\
+ 	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),			\
+@@ -1335,6 +1339,7 @@ static const struct platform_desc dg2_desc = {
+ 		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
+ 		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
+ 	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),	\
++	.__runtime_defaults.has_3dlut = 1,					\
+ 	.__runtime_defaults.has_dmc = 1,					\
+ 	.__runtime_defaults.has_dsc = 1,					\
+ 	.__runtime_defaults.has_hdcp = 1,					\
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 7121e7cd9512..5300c6ab99e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -147,6 +147,7 @@ struct intel_display_platforms {
  
- /*GEN11 chicken */
- #define _PIPEA_CHICKEN				0x70038
+ #define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
+ #define HAS_2PPC(__display)		(DISPLAY_VER(__display) >= 10)
++#define HAS_3DLUT(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_3dlut)
+ #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+ #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+ #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+@@ -304,6 +305,7 @@ struct intel_display_runtime_info {
+ 
+ 	u8 fbc_mask;
+ 
++	bool has_3dlut;
+ 	bool has_hdcp;
+ 	bool has_dmc;
+ 	bool has_dsc;
 -- 
 2.45.2
 
