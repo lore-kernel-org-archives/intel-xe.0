@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 918D3C55182
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 22:41:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA884C55184
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 23:05:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA4C10E0E5;
-	Mon,  3 Aug 2026 22:41:23 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 586C810E0E5;
- Mon,  3 Aug 2026 22:41:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6287318203031761686=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2595810E3C7;
+	Mon,  3 Aug 2026 23:05:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGRKSOnx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A571E10E071
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 23:05:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1785798339; x=1817334339;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JKCag0fA4IYpVNbjru2EeZSMLxy2NhgIks7N/W2prTQ=;
+ b=EGRKSOnxOe7kK/ZuzKGty85MSTF+iaK/rv+EomEOY3VuI9FxGDcv/7nh
+ IXEJBQd+L4DRrPUovjEQ4QcsH932b2/M7BAkuYzxWb066Vy56ld/AS46A
+ QrgnfhgrxGUVYEz9UmQETmTyRUvTmv+st4tvfPbJt/mOStcCRVgqq50Vz
+ MLsHjAO9PGwSih6cLvlFl8nD2t6ohT0F6LltBe3utAsGciz6bwTSRGnnC
+ bQl5SVmuKOASAn6ob4UqRWUDCEQs98dD6j50jWzQ0F/TWoF7PW9Z4cdWy
+ CEo96EuLwPW4CRkmQW63R5OTBHH0HtD2E0RaJcpSzeGH4ddv2mLci2Ltc w==;
+X-CSE-ConnectionGUID: OjlTJtmZS+CvfGyC0SfEzA==
+X-CSE-MsgGUID: zstnmyieTkGxr9wyESfddQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="111899765"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="111899765"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 16:05:38 -0700
+X-CSE-ConnectionGUID: y0QvawfMSTG5MK2G/nXQiQ==
+X-CSE-MsgGUID: TtE3yuxQQz6tNIGUy9wPZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="255054425"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 16:05:37 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com
+Subject: [PATCH v3 0/4] drm/xe/multi_queue: Handle lost message during VF
+ migration
+Date: Mon,  3 Aug 2026 16:05:29 -0700
+Message-ID: <20260803230528.3428029-6-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/xe/guc=5Fads=3A_alloca?=
- =?utf-8?q?te_UM_queues_in_a_separate_UC_BO_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jia Yao" <jia.yao@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 03 Aug 2026 22:41:22 -0000
-Message-ID: <178579688235.15418.12434271249950814784@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260803200838.98826-1-jia.yao@intel.com>
-In-Reply-To: <20260803200838.98826-1-jia.yao@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6287318203031761686==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+During VF migration, CGP_SYNC message to GuC might get lost.
+Handle it by resending the message again.
+Also handle cgp_sync wait woken up by vf migration.
 
-== Series Details ==
+v2: Redesign to cover all corner cases
 
-Series: drm/xe/guc_ads: allocate UM queues in a separate UC BO (rev5)
-URL   : https://patchwork.freedesktop.org/series/169535/
-State : success
+Assisted-by: Github-Copilot:Claude-opus-4.8
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-== Summary ==
+Niranjana Vishwanathapura (4):
+  drm/xe: split VF pause into prepare and revert phases
+  drm/xe/multi_queue: handle CGP_SYNC wait timeout during VF recovery
+  drm/xe/multi_queue: track and recover lost CGP updates across VF
+    migration
+  drm/xe/multi_queue: replay dynamic CGP updates lost during VF
+    migration
 
-CI Bug Log - changes from xe-5522-6c9c07af6c046bba0eb99704274f74038fc5e6a8_FULL -> xe-pw-169535v5_FULL
-====================================================
+ drivers/gpu/drm/xe/xe_exec_queue_types.h     |   7 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  32 +++-
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 173 +++++++++++++++++--
+ 3 files changed, 196 insertions(+), 16 deletions(-)
 
-Summary
--------
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (0 -> 0)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5522-6c9c07af6c046bba0eb99704274f74038fc5e6a8 -> xe-pw-169535v5
-
-  IGT_9036: 9036
-  xe-5522-6c9c07af6c046bba0eb99704274f74038fc5e6a8: 6c9c07af6c046bba0eb99704274f74038fc5e6a8
-  xe-pw-169535v5: 169535v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v5/index.html
-
---===============6287318203031761686==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc_ads: allocate UM queues in a separate UC BO (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169535/">https://patchwork.freedesktop.org/series/169535/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169535v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5522-6c9c07af6c046bba0eb99704274f74038fc5e6a8_FULL -&gt; xe-pw-169535v5_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (0 -&gt; 0)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5522-6c9c07af6c046bba0eb99704274f74038fc5e6a8 -&gt; xe-pw-169535v5</li>
-</ul>
-<p>IGT_9036: 9036<br />
-  xe-5522-6c9c07af6c046bba0eb99704274f74038fc5e6a8: 6c9c07af6c046bba0eb99704274f74038fc5e6a8<br />
-  xe-pw-169535v5: 169535v5</p>
-
-</body>
-</html>
-
---===============6287318203031761686==--
