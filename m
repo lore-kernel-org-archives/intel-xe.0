@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F2C7C55ABA
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 23:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F763C5518F
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 23:05:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D54110E7F0;
-	Mon,  3 Aug 2026 23:05:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C5E010E471;
+	Mon,  3 Aug 2026 23:05:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jm6l/NyT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VICV36+n";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3796210E471
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 23:05:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8E4C10E3C7
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 23:05:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1785798339; x=1817334339;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=veVTQ9quVbs+GBGU1zz97MIq4m7koRSre0OStZSy9oc=;
- b=Jm6l/NyTEGmcn3ulXJJhvdGsqPHm2gQ1zM12iqxegsghtC0mw5YovniO
- HLQyfp10rjNIyH9HZ2rsmcTMHseGJ7kZzD5jqTCUZ7vnYQtdzwMjOE7GR
- I/ZIxcZAPe80sP3rKbIYdNlBIoVnIbq/zK9wKqQ71cBdsslOAqraEe9jw
- VpojOpBQ0aEJWbu/u6Q7JtgGRAnZeffkplwRgxJ3Zakh5wK3SGcMN13ra
- KqPU8t6OI6SxtyFIwRL14cG6mkbrszsf7XUKQKR6I6C7AySvuRVQV3/oH
- X6yZt95tGl53oUUcg0AabnUBT9pp258HnZGCcPn9QYKvp2eXzS1hFyrey Q==;
-X-CSE-ConnectionGUID: 6nrki2k2Si2c+LteMSpS/A==
-X-CSE-MsgGUID: pRuZ71R3Rxm+7eNbhSASGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="111899769"
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="111899769"
+ bh=5N/uctwRCnT5T7RvdARjy86dCABzWs/esRtooP318HU=;
+ b=VICV36+nNnCDfeT8jJHd5GJz9PshXRK8DogCVixEAR+Dr45XkAqFs/lM
+ fBdVlFNCQK68xVg2ntIoB+mS9Zqdhr+erYCF4x1sqY1JYTEWwnxZvtHV8
+ t5yqNuvNV66KzOacUBOgareCpphMrx3TalaARAHPMgxtbXVMRKJCWx5KU
+ LsuuU9EmgKadT+Bx5dQpWAi6wDHyUjTClOAI0usABCgnj46icHwLBHsME
+ rKV8elbT0qDJHEfQb/NgKsETE0WwXChNgqPwv2PbHhoDwSAG/wVOrQ5oV
+ XYIt3MWlFaV9SPzobo7AU3zaWj45yhOHZzXtmWw23JdhlNXPnywIkEB7i w==;
+X-CSE-ConnectionGUID: bmS2dvDCTsKrsUTspYsGTQ==
+X-CSE-MsgGUID: Fr8sGKmmTGWza2l3UL0oEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="111899766"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="111899766"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Aug 2026 16:05:38 -0700
-X-CSE-ConnectionGUID: A1LD5PJrT/6f9mYm+nAFNw==
-X-CSE-MsgGUID: X9/gJB82TEaEBZBVYdr7og==
+X-CSE-ConnectionGUID: 1J+qeER7SIqg1ZkVidvt7w==
+X-CSE-MsgGUID: JQ01QKCvRZigOeSzwMNoBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="255054437"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="255054428"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Aug 2026 16:05:37 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com
-Subject: [PATCH v3 4/4] drm/xe/multi_queue: replay dynamic CGP updates lost
- during VF migration
-Date: Mon,  3 Aug 2026 16:05:33 -0700
-Message-ID: <20260803230528.3428029-10-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v3 1/4] drm/xe: split VF pause into prepare and revert phases
+Date: Mon,  3 Aug 2026 16:05:30 -0700
+Message-ID: <20260803230528.3428029-7-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260803230528.3428029-6-niranjana.vishwanathapura@intel.com>
 References: <20260803230528.3428029-6-niranjana.vishwanathapura@intel.com>
@@ -67,101 +66,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When guc_exec_queue_revert_pending_state_change() sets needs_cgp_sync for
-a queue, replay that update during unpause by injecting a CGP_SYNC_MSG
-static message at the head of the scheduler queue.
+Extract xe_sched_submission_stop() + cancel_delayed_work_sync() into a
+new guc_exec_queue_pause_prepare() helper, then call it in a first pass
+over all queues before the existing revert loop in
+xe_guc_submit_pause_vf().
 
-The message handler __guc_exec_queue_process_msg_cgp_sync() calls
-guc_exec_queue_send_cgp_sync() which re-reads the current priority from
-q->multi_queue.priority and re-issues the CGP write + CGP_SYNC H2G, so
-the queue's CGP entry is restored to the correct value after migration.
+In a multi-queue group a secondary's run_job() can register the primary
+queue, which must not race an in-progress revert of a sibling queue.
+Stopping every scheduler before reverting any queue prevents that race.
+
+No functional change outside the VF migration path.
 
 Assisted-by: Github-Copilot:Claude-opus-4.8
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c           | 28 ++++++++++++++++++++
- 2 files changed, 29 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 26 +++++++++++++++++++++++---
+ 1 file changed, 23 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 573b920edb41..d27826b36649 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -36,7 +36,7 @@ struct xe_guc_exec_queue {
- 	 * a message needs to sent through the GPU scheduler but memory
- 	 * allocations are not allowed.
- 	 */
--#define MAX_STATIC_MSG_TYPE	3
-+#define MAX_STATIC_MSG_TYPE	4
- 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
- 	/** @destroy_async: do final destroy async from this worker */
- 	struct work_struct destroy_async;
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index c018bc0d8d6f..9036f89dff7d 100644
+index 8aaed4fd13ea..314747336fb9 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1960,11 +1960,25 @@ static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
- 	kfree(msg);
- }
+@@ -2737,17 +2737,24 @@ static void lrc_parallel_clear(struct xe_lrc *lrc)
+  * during VF resume flows. The function scans the queue state, make adjustments
+  * as needed, and queues jobs / messages which replayed upon unpause.
+  */
+-static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
++static void guc_exec_queue_pause_prepare(struct xe_guc *guc, struct xe_exec_queue *q)
+ {
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+-	struct xe_sched_job *job;
+-	int i;
  
-+static void __guc_exec_queue_process_msg_cgp_sync(struct xe_sched_msg *msg)
-+{
-+	struct xe_exec_queue *q = msg->private_data;
-+
-+	/*
-+	 * Replay a dynamic CGP update lost across VF migration by re-issuing the
-+	 * CGP update + CGP_SYNC (re-applies the current priority from
-+	 * q->multi_queue.priority).
-+	 */
-+	if (guc_exec_queue_allowed_to_change_state(q))
-+		guc_exec_queue_send_cgp_sync(q, 0);
+ 	lockdep_assert_held(&guc->submission_state.lock);
+ 
+ 	/* Stop scheduling + flush any DRM scheduler operations */
+ 	xe_sched_submission_stop(sched);
+ 	cancel_delayed_work_sync(&sched->base.work_tdr);
 +}
 +
- #define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
- #define SET_SCHED_PROPS			2
- #define SUSPEND				3
- #define RESUME				4
- #define SET_MULTI_QUEUE_PRIORITY	5
-+#define CGP_SYNC_MSG			6
- #define OPCODE_MASK	0xf
- #define MSG_LOCKED	BIT(8)
- #define MSG_HEAD	BIT(9)
-@@ -1991,6 +2005,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	case SET_MULTI_QUEUE_PRIORITY:
- 		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
- 		break;
-+	case CGP_SYNC_MSG:
-+		__guc_exec_queue_process_msg_cgp_sync(msg);
-+		break;
- 	default:
- 		XE_WARN_ON("Unknown message type");
- 	}
-@@ -2160,6 +2177,7 @@ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
- #define STATIC_MSG_CLEANUP	0
- #define STATIC_MSG_SUSPEND	1
- #define STATIC_MSG_RESUME	2
-+#define STATIC_MSG_CGP_SYNC	3
- static void guc_exec_queue_destroy(struct xe_exec_queue *q)
- {
- 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
-@@ -3024,6 +3042,16 @@ static void guc_exec_queue_replay_pending_state_change(struct xe_exec_queue *q)
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
- 	struct xe_sched_msg *msg;
++static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
++{
++	struct xe_gpu_scheduler *sched = &q->guc->sched;
++	struct xe_sched_job *job;
++	int i;
++
++	lockdep_assert_held(&guc->submission_state.lock);
  
-+	if (q->guc->multi_queue.needs_cgp_sync) {
-+		msg = q->guc->static_msgs + STATIC_MSG_CGP_SYNC;
+ 	guc_exec_queue_revert_pending_state_change(guc, q);
+ 
+@@ -2806,6 +2813,19 @@ void xe_guc_submit_pause_vf(struct xe_guc *guc)
+ 	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
+ 
+ 	mutex_lock(&guc->submission_state.lock);
++	/*
++	 * Stop all schedulers before reverting any queue: in a multi-queue
++	 * group a secondary's run_job() can register the primary, which must
++	 * not race an in-progress revert.
++	 */
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		/* Prevent redundant attempts to stop parallel queues */
++		if (q->guc->id != index)
++			continue;
 +
-+		xe_sched_msg_lock(sched);
-+		guc_exec_queue_try_add_msg_head(q, msg, CGP_SYNC_MSG);
-+		xe_sched_msg_unlock(sched);
-+
-+		q->guc->multi_queue.needs_cgp_sync = false;
++		guc_exec_queue_pause_prepare(guc, q);
 +	}
 +
- 	if (q->guc->needs_cleanup) {
- 		msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
- 
+ 	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
+ 		/* Prevent redundant attempts to stop parallel queues */
+ 		if (q->guc->id != index)
 -- 
 2.43.0
 
