@@ -4,59 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77687C55184
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 11:56:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F9EC55182
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 12:31:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38B9110E320;
-	Mon,  3 Aug 2026 11:56:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAE210E04E;
+	Mon,  3 Aug 2026 12:31:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXHM7tR/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WA71T8nK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2AC10E320;
- Mon,  3 Aug 2026 11:56:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785758203; x=1817294203;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=v5FvKabSVMOOiJYoJxo8hA3kvvtrcKFkg9PyEOygQtU=;
- b=FXHM7tR/wc/bVjTGmS9rcHKYqTsU+9rRKKYc9+1fmGjB0AOhlYnykEoc
- BEPr/BzMk1331inSS1NWTC/+znM/Kt7opERol2KyUzMhKsMDD45Oi2Yx4
- gQwaa22FpbXqs8NMv12P/v3+sdEw3Rr5JcGAwsDti9bYjpHskmYsBfthf
- BtsdssrwvdxV43z+d50BagXai8NV1WLWs0J5uABv1vo67QNKLYkBNjnbw
- 5cAGbxIr+e8bybaxcXKi74pB5+UQjD8QI7qpLGxFaP6RYCgDGyw5Ecm+5
- VMvPlz5aQ3J0zksQrM4M4V1qpV1yEqw0xLMdkuW/usNSqE5Y3tLNqdVgG A==;
-X-CSE-ConnectionGUID: Tq8A0PSDRZyswH1JoZuNIg==
-X-CSE-MsgGUID: kqBH6QJyS7Oq8b2zmYMcCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="86303640"
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="86303640"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 04:56:40 -0700
-X-CSE-ConnectionGUID: 0zpe4s95SCSYIz/+8swaLw==
-X-CSE-MsgGUID: TBSAMJxhTyOmkfLQtPApkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="257853959"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.30])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 04:54:21 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3] drm/{i915,
- xe}/display: add core workaround query to display parent interface
-Date: Mon,  3 Aug 2026 14:54:17 +0300
-Message-ID: <20260803115417.1760484-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010009.outbound.protection.outlook.com [52.101.61.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1690310E00A;
+ Mon,  3 Aug 2026 12:31:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jl3u7mxRTL0exnG7E5G6uSoLG/nu/VuhLnI6NkYbmqyL41I5UYu6OyoUNWLmxjDTOcdEELLFU7Yvc3SvA5z8cU8fFHG/3JlIX2Hhq9PgMWiLqgjS8fgGkSzsHkW2BNs5aWdSoxiWSGjX0QuaRQGhM8Ek2K17kEPuRM83cAV4sd+3T+D0x6wd7A7SBw64b4j9eAvKRMm1a345oHb075ZnGo/j0dG4OFoJ78WXasm1GDa35VqUH4aohS0np68Vl/aAA76QCM9W35bscbmJHwk/YIMEXXJYBhiJhg6ydlIN1e7+xfkMlsg4PzfWzN7/GXkfDndSA3scr1ij0madq+OJSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s/Qb8vfqR7j38gjpFqRgGe+P/ND8LjiTd/nJ6eEvLy8=;
+ b=iKGdBf5Bq2YXna/SaScMFmYLxoLEsVQ7wivnu7K2WlCShKfczeQFJWFHbayB06MW4y7Mu9iqKK8ZO63F5Ji4DWozFCWFOLlKWvbPD/5RL50xuITWgRfwDpsZUJClTbTFUJN63WfdDbe7yTjrEdpcOng05hWNZ0DgSUeX8+V7xo2dzQM69FbaURXa1mu1k+NG1eWlei6juY2gSbt7IS9gG7Ne2QJTPwyIkUc45EeSMRCLuhu+9BbAhjBd+sqseAlWmoeGvoSUfd3CssfrrZOgrvaSQM888T83QmcF8AT6ZOao5yeIwqVvWILBOyBmEopeHwD53H3L30BmOmNn+VR4Gg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s/Qb8vfqR7j38gjpFqRgGe+P/ND8LjiTd/nJ6eEvLy8=;
+ b=WA71T8nKAUrf/C1oO5Iiu9rDIQB7SQ3EnT7rMuO5L/bsZc/ww/FKC8YI9oxnJYEdnG9Yb+s+NEgyiuvb81gl2pOX1Z7ig53fw+eONFeovpkfrtUV9BNt00pvnb92Z9BJ/tv5m4tu9/xH62xEQ3okA2IMgIKAVgpefKjjlwklxZM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA1PR12MB6994.namprd12.prod.outlook.com (2603:10b6:806:24d::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.18; Mon, 3 Aug
+ 2026 12:31:04 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0270.017; Mon, 3 Aug 2026
+ 12:31:04 +0000
+Message-ID: <c46ea663-756c-4575-be30-60c8b7d15c06@amd.com>
+Date: Mon, 3 Aug 2026 14:30:55 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/6] drm/amdgpu: Fix init ordering in
+ amdgpu_vram_mgr_init()
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Sashiko-bot <sashiko-bot@kernel.org>,
+ Friedrich Vock <friedrich.vock@gmx.de>, Maarten Lankhorst
+ <dev@lankhorst.se>, Tejun Heo <tj@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Alex Deucher
+ <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
+ Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
+ =?UTF-8?Q?Michal_Koutn=C3=BD?= <mkoutny@suse.com>, cgroups@vger.kernel.org,
+ Huang Rui <ray.huang@amd.com>, Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org
+References: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
+ <20260703130541.2686-2-thomas.hellstrom@linux.intel.com>
+ <9eae1a5c-d2ef-4d75-a581-58299ca37a1f@amd.com>
+ <9c8b4367-c029-4731-8ea8-b8263e11ada1@amd.com>
+ <2e50a938-af3d-4495-926f-fbe084aaae9a@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <2e50a938-af3d-4495-926f-fbe084aaae9a@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0197.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e5::7) To SJ0PR12MB5673.namprd12.prod.outlook.com
+ (2603:10b6:a03:42b::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB6994:EE_
+X-MS-Office365-Filtering-Correlation-Id: d473c0cc-f706-4b1a-8f66-08def15b1567
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|7416014|376014|23010399003|18002099003|22082099003|4143699003|56012099006|11063799006|6133799003|10067099003;
+X-Microsoft-Antispam-Message-Info: PgbvhTyu5nP6A5GcBL1AkFySyTgM9iBFkanudPTqhllr9iHgHjt0F0eoEY4wNJuFXGgd+xccKLts7rgTtmu2KTB9ugAvB3BevPqqkulaIJqAPdTEOmoH4AcuUo6G8ERGqDJX89Ws075qYHpanSI992amCTA0Nt3EHAKwSo7wCqjrzabUwZuBKtJhGTkOlUZxZMuJrrHhicrYhy2TpnHQPESGRCDGLQksF+Z0GuLm7jlQv6RAycJ/JS/UhRG8fJ2e6eRvALPmEE9rV2iBEHGdcmzr/H0dbEiS/N3Y32Hw7y69S62Sl2G7qNiti+4DX+94qJiq+hUoUiLyBJkkrKJd9fJC1YgafVuOzJSE6t4eRrfL5FlR1+xdlRWX+CnzMLzg8RXRrXWCfubI2BKsMCL9hRQuNDpTd3JIGsiw269usCP/xjefE9icLeIW+XrrtRaZQ8EZKVAvwdRLSZP1N99kCQKolsm6F9uRjvuGfTsAPwN2K45lRSpxFBrKZb3T3u4utEY5GYajzIWVgloe3rtMyh+7u+UXB9/IMTMgUmY6LibKqIfQrq4UmyQTeLwtm2wrmpERM/DJxLEGV/wBTQF5Ut6jZ571jOQTm3hx1DHdHZQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014)(23010399003)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(6133799003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T01PQ0ZyN1cvenZjekIrNEZtSGVLOHZZeU9ZQmFPbmExbE0rTk1VU1RLQyts?=
+ =?utf-8?B?YVNXZFA0U3RkNEE4NUc0VTRSUDBVaFkxbVplbStRN1BzN3NObE9nK1JtMENt?=
+ =?utf-8?B?R2FwbFJyaG5tOE9aZTdUTy9zWjJPSDNtTmJxSkN5ZzZjaWVCOHNXRHBGWEJk?=
+ =?utf-8?B?V0R6L1hScGpqOUtuNG10b0o0RnlwL0FUV3hrWUJJL2ZLZkJ2ZXZsdGcxNDhG?=
+ =?utf-8?B?VXE0dXpueloxUVAzSlVjWTZwSmdPRG91V3M5SDFOZWdIWDkrQWg1UnFtbHl5?=
+ =?utf-8?B?Q1M0TGJ3eUVCMUF1Wmh3RnpvWnJpYlZaTHFodTE3cFpobEN5Z3MvUjFPZlMv?=
+ =?utf-8?B?WWxBbytVS0lqZ3BuM1dIb3JwUXhTT2pOS2VPb3NZNE1TemQ4TUZLS1plVC8r?=
+ =?utf-8?B?amR3ZHNrMHZ0ai9FMWF5SWFONlpNTDkraUNQRjVyVlJobWlNTEtuKzJSVTdh?=
+ =?utf-8?B?dWxjYkE5M0RpYTlkU0l2aE5pNnlxRlZyU2RsRWdFczUxbnRXOUF6Z21TOWpW?=
+ =?utf-8?B?ek9XS3ErN2hvUGpJNENldExqNzA4QjBibHNDaVMxbkxTQWJVZGc1djd0cTcy?=
+ =?utf-8?B?TG0wbTlsb0tBekdaWExmVFpmYVdORXpVYVYyYXZ4eVNFazZJQmhON2JvQ05Z?=
+ =?utf-8?B?eFBQZHhIc0xFMExJOWVBaWNFQ1NjTzV0ZTBpR0NZZFdVWWxMeUVnWnpUYzVo?=
+ =?utf-8?B?bHNlekJSeFN4N21SR1ZTRlRXR2ZPSFlNNnNvL0ZVOWlUZ2RwVlA3V0JYS1Fo?=
+ =?utf-8?B?Q2tsWHM4ZVBBVU5tWThKWXRSR3QxQXAxeE83U2EzSm1FbUZlMnlZVkM2M3N3?=
+ =?utf-8?B?cU5VNzVTM0svcWhmUEFSem9ya2xaTUltOSsrY3NRU2g3SVZldXZBL04wOGJp?=
+ =?utf-8?B?eVlpSk1UN1RkL2ZlVnljcVBuelJudmQrTkVZdjNjMWNLc0svSjVoQ01wT2NW?=
+ =?utf-8?B?YWVVcTZmUndBS1BvV1liSUNMRXA1d0QrQk83ZkRWQjZ6SUFOL29qL1FFdzBD?=
+ =?utf-8?B?ZldBTWlUaVREV3hTdXdKREpqaE83d0xUUXJGRFhGbElJY2tHTWVDNG01YVhp?=
+ =?utf-8?B?NnFzMlQwUkp6VGFSa3V2ZklKS1B1a2x2YW5VeWE0S0tCaDlQK1QrWkRjaGw1?=
+ =?utf-8?B?ZlAyaVVjczl0UlZPdGRFNmgzbUc5ckdzTERVZjlWNXBIcGtVQ0FWaXRXZURy?=
+ =?utf-8?B?dzNVd3RFMmpBWjBVQlh0VG1mWlZURkRMSXczR1U0aXpGdUU3UjJYTVFvYzdD?=
+ =?utf-8?B?YnRxdjZEalNoNHp4LzdrSmxBZFBoa0liNTRxd3JnMmQyWlgrK05KbjZmZEx5?=
+ =?utf-8?B?RnBpT0NsU1M2TEtmTG56MHpNZHI1WUsvWnJrRDdSdC9obzZ0Mndmc1JNSTBt?=
+ =?utf-8?B?OW5vZWhGNGFGTnRFL0J2cDBSMWx0RW40Z1Y1bXUraTlkVWpzdXplM3l0Nzll?=
+ =?utf-8?B?ZnUrT1YzVFhudXNlNFhZdVU1TXIxT00wOWdjdnM4RGxVNzE2RnpSYyswN0tG?=
+ =?utf-8?B?WGNIeHZwdnB5NGcyZDQ4bkF1dU1SamM0QVluZzdQOEU5clh0dHVvU1Zad21s?=
+ =?utf-8?B?b2lOUU5IL2hPajdBU1h1L1hoTmF0b1VDTHF5Q2IxWnhuYVQ4S29aUC9ySHFj?=
+ =?utf-8?B?MWx3NW5QY25SYVk1WlFhMGN5bjRVN3NVWlNTeEQ3bEtTREtyWmp2RUVjUW1K?=
+ =?utf-8?B?dERkcy9UVWpLSHg3MlFCY2lCRnA2cWlYV2pqeWJweTljVndJMmhOYXRHcWV3?=
+ =?utf-8?B?a0FNWVNOZFFDWlUwTk4rMWc5MkNwNXhyWGJ2OXNVV24vQnhkb0R1MTh1WVNm?=
+ =?utf-8?B?MndqTXBBUUE2eEpyKzFVbnpDTW9LUmNtMGoyWkRsYjJ1U3pGbEVqWkJ3RDlr?=
+ =?utf-8?B?N0tnS2EzcXVoZUFSdTF6VEticWJIcnQyWE5Pdk5EYmQ2QkdiTlNYaGpUYm1D?=
+ =?utf-8?B?Zk1yOEtvc1Jsak1wY2c0TzI1MEJ3Ti9ubWJqLzliTnpHNktROTl4TVNGMG1q?=
+ =?utf-8?B?WVE4eEJWSDR0V1VnWE1rUXhpb3ZlVW5DQmY2eGR5VFhWeDBzMFU3dzgxaFRF?=
+ =?utf-8?B?OUtEdVVaTWxUZUMyU3d3Z1BkTHZ6MzZVdCtOOUFtT1VweWZkRHVYMm9hZjVu?=
+ =?utf-8?B?eCtmZWNScjRPcTM5ZEJIZkZRUVdQSFhoOE45RjRtU0ROYUM3N3BlOEpBaE9K?=
+ =?utf-8?B?MW9pRVozVDdjMDVWc2s4Um9HQ2ZUb3pvcmx6N0JaMFhrWk4zYTkvVUpsUWpQ?=
+ =?utf-8?B?Z2hMVHg1Yy9vazAzMW1Xei9tYUtBdE1oNG41SjVmWVRhVUo3cC9ZZ241VndS?=
+ =?utf-8?Q?7VLnCTrxcaCdROJhE1?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d473c0cc-f706-4b1a-8f66-08def15b1567
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5673.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2026 12:31:04.0066 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: su/K/Zw+KbYt0IbQlljmnngsqqy+JTrMYqvU4xquS4LlVgCPSuoi5C6hZzzrdNDB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6994
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,166 +154,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are workarounds display needs to apply depending on information
-only available to the core driver. Add a display parent interface for
-the query. For starters, there's only one workaround like this, so keep
-it simple instead of over-engineering.
+On 7/21/26 13:46, Maarten Lankhorst wrote:
+> Hey,
+> 
+> Can I merge this through drm-misc-next together with the rest of the series?
 
-This lets us drop an #ifdef I915 as well as xe dependency on some
-display headers.
+Sure go ahead, sorry for the delay I was on vacation for a while.
 
-v2: git add xe_display_wa.h
+Regards,
+Christian.
 
-v3: Add a comments about usage (Suraj)
-
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_wa.c |  4 +++-
- drivers/gpu/drm/i915/display/intel_display_wa.h |  9 ---------
- drivers/gpu/drm/xe/display/xe_display.c         |  2 ++
- drivers/gpu/drm/xe/display/xe_display_wa.c      | 13 +++++++++----
- drivers/gpu/drm/xe/display/xe_display_wa.h      |  9 +++++++++
- include/drm/intel/display_parent_interface.h    | 10 ++++++++++
- 6 files changed, 33 insertions(+), 14 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/display/xe_display_wa.h
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 3662e0f17c69..888676693f5e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- #include <drm/intel/step.h>
- 
- #include "intel_de.h"
-@@ -131,7 +132,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 	case INTEL_DISPLAY_WA_16011863758:
- 		return DISPLAY_VER(display) >= 11;
- 	case INTEL_DISPLAY_WA_16023588340:
--		return intel_display_needs_wa_16023588340(display);
-+		/* This is a GT workaround. */
-+		return display->parent->wa && display->parent->wa->wa_16023588340(display->drm);
- 	case INTEL_DISPLAY_WA_16025573575:
- 		return intel_display_needs_wa_16025573575(display);
- 	case INTEL_DISPLAY_WA_16025596647:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 338b32e4162d..425a300840aa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -12,15 +12,6 @@ struct intel_display;
- 
- void intel_display_wa_apply(struct intel_display *display);
- 
--#ifdef I915
--static inline bool intel_display_needs_wa_16023588340(struct intel_display *display)
--{
--	return false;
--}
--#else
--bool intel_display_needs_wa_16023588340(struct intel_display *display);
--#endif
--
- /*
-  * This enum lists display workarounds; each entry here must have a
-  * corresponding case in __intel_display_wa().  Keep both sorted by lineage
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 5f5e79505b3d..0293d316669e 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -37,6 +37,7 @@
- #include "xe_display_bo.h"
- #include "xe_display_pcode.h"
- #include "xe_display_rpm.h"
-+#include "xe_display_wa.h"
- #include "xe_dsb_buffer.h"
- #include "xe_fb_pin.h"
- #include "xe_frontbuffer.h"
-@@ -472,6 +473,7 @@ static const struct intel_display_parent_interface parent = {
- 	.pcode = &xe_display_pcode_interface,
- 	.rpm = &xe_display_rpm_interface,
- 	.stolen = &xe_display_stolen_interface,
-+	.wa = &xe_display_wa_interface,
- 	.has_auxccs = has_auxccs,
- 	.transient_data_flush = transient_data_flush,
- };
-diff --git a/drivers/gpu/drm/xe/display/xe_display_wa.c b/drivers/gpu/drm/xe/display/xe_display_wa.c
-index 2aa1b8c03411..46e41e8a3304 100644
---- a/drivers/gpu/drm/xe/display/xe_display_wa.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_wa.c
-@@ -3,17 +3,22 @@
-  * Copyright © 2024 Intel Corporation
-  */
- 
--#include "intel_display_core.h"
--#include "intel_display_wa.h"
-+#include <drm/intel/display_parent_interface.h>
-+
- #include "xe_device.h"
-+#include "xe_display_wa.h"
- #include "xe_wa.h"
- 
- #include <generated/xe_wa_oob.h>
- 
--bool intel_display_needs_wa_16023588340(struct intel_display *display)
-+static bool intel_display_needs_wa_16023588340(struct drm_device *drm)
- {
--	struct xe_device *xe = to_xe_device(display->drm);
-+	struct xe_device *xe = to_xe_device(drm);
- 	struct xe_gt *wa_gt = xe_root_mmio_gt(xe);
- 
- 	return wa_gt && XE_GT_WA(wa_gt, 16023588340);
- }
-+
-+const struct intel_display_wa_interface xe_display_wa_interface = {
-+	.wa_16023588340 = intel_display_needs_wa_16023588340,
-+};
-diff --git a/drivers/gpu/drm/xe/display/xe_display_wa.h b/drivers/gpu/drm/xe/display/xe_display_wa.h
-new file mode 100644
-index 000000000000..0262b463916d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/display/xe_display_wa.h
-@@ -0,0 +1,9 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2026 Intel Corporation */
-+
-+#ifndef __XE_DISPLAY_WA_H__
-+#define __XE_DISPLAY_WA_H__
-+
-+extern const struct intel_display_wa_interface xe_display_wa_interface;
-+
-+#endif
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 8b25107615ea..d7d06dcaa699 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -230,6 +230,10 @@ struct intel_display_vlv_iosf_interface {
- 	int (*write)(struct drm_device *drm, enum vlv_iosf_sb_unit unit, u32 addr, u32 val);
- };
- 
-+struct intel_display_wa_interface {
-+	bool (*wa_16023588340)(struct drm_device *drm);
-+};
-+
- /**
-  * struct intel_display_parent_interface - services parent driver provides to display
-  *
-@@ -291,6 +295,12 @@ struct intel_display_parent_interface {
- 	/** @vlv_iosf: VLV IOSF sideband. Optional. */
- 	const struct intel_display_vlv_iosf_interface *vlv_iosf;
- 
-+	/**
-+	 * @wa: Display workarounds query. Use only for workarounds that require
-+	 * information only available to the parent driver. Optional.
-+	 */
-+	const struct intel_display_wa_interface *wa;
-+
- 	/* Generic independent functions */
- 	struct {
- 		/** @fence_priority_display: Set display priority. Optional. */
--- 
-2.47.3
+> 
+> Kind regards
+> ~Maarten
+> 
+> On 7/7/26 20:05, Arunpravin Paneer Selvam wrote:
+>>
+>>
+>> On 7/3/2026 6:38 PM, Christian König wrote:
+>>> Arun please take a look at this.
+>> Sure Christian. This fix looks correct to me.
+>> Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>>
+>> Thanks,
+>> Arun.
+>>>
+>>> Thanks,
+>>> Christian.
+>>>
+>>> On 7/3/26 15:05, Thomas Hellström wrote:
+>>>> drmm_cgroup_register_region() is called before INIT_LIST_HEAD() and
+>>>> gpu_buddy_init() in amdgpu_vram_mgr_init(). If it fails, the function
+>>>> returns early and bypasses those initializations.
+>>>>
+>>>> Since adev->mman.initialized is set to true before amdgpu_vram_mgr_init()
+>>>> is called, a failure triggers amdgpu_ttm_fini(), which calls
+>>>> amdgpu_vram_mgr_fini(), which then:
+>>>>
+>>>>   - Calls list_for_each_entry_safe() on reservations_pending and
+>>>>     reserved_pages, whose list_head::next pointers are zero-initialized
+>>>>     (NULL). The loop does not recognize them as empty and dereferences NULL.
+>>>>
+>>>>   - Calls gpu_buddy_fini(), which iterates free_trees[] unconditionally
+>>>>     via for_each_free_tree(). Since mm->free_trees is NULL
+>>>>     (never allocated), this dereferences NULL.
+>>>>
+>>>> Both result in a kernel panic on the module load error path.
+>>>>
+>>>> Fix by moving drmm_cgroup_register_region() to after the list and buddy
+>>>> allocator are fully initialized, so the teardown path is safe to run.
+>>>>
+>>>> Reported-by: Sashiko-bot <sashiko-bot@kernel.org>
+>>>> Closes: https://sashiko.dev/#/patchset/20260428073116.15687-1-thomas.hellstrom@linux.intel.com?part=4
+>>>> Fixes: 2b624a2c1865 ("drm/ttm: Handle cgroup based eviction in TTM")
+>>>> Cc: Friedrich Vock <friedrich.vock@gmx.de>
+>>>> Cc: Maarten Lankhorst <dev@lankhorst.se>
+>>>> Cc: Tejun Heo <tj@kernel.org>
+>>>> Cc: Maxime Ripard <mripard@kernel.org>
+>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>>>> Cc: amd-gfx@lists.freedesktop.org
+>>>> Cc: dri-devel@lists.freedesktop.org
+>>>> Cc: <stable@vger.kernel.org> # v6.14+
+>>>> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+>>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 7 ++++---
+>>>>   1 file changed, 4 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>>> index 2a241a5b12c4..ac3f71d77140 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>>> @@ -918,9 +918,6 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
+>>>>       struct ttm_resource_manager *man = &mgr->manager;
+>>>>       int err;
+>>>>   -    man->cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram", adev->gmc.real_vram_size);
+>>>> -    if (IS_ERR(man->cg))
+>>>> -        return PTR_ERR(man->cg);
+>>>>       ttm_resource_manager_init(man, &adev->mman.bdev,
+>>>>                     adev->gmc.real_vram_size);
+>>>>   @@ -935,6 +932,10 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
+>>>>       if (err)
+>>>>           return err;
+>>>>   +    man->cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram", adev->gmc.real_vram_size);
+>>>> +    if (IS_ERR(man->cg))
+>>>> +        return PTR_ERR(man->cg);
+>>>> +
+>>>>       ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
+>>>>       ttm_resource_manager_set_used(man, true);
+>>>>       return 0;
+>>
+> 
 
