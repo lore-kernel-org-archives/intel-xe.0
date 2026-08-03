@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCA96C55196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 21:50:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3D7CC55196
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 21:50:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73D6510E0A1;
-	Mon,  3 Aug 2026 21:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F2A410E120;
+	Mon,  3 Aug 2026 21:50:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gz8V+p6u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j8EeGzgx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C339510E0A1;
- Mon,  3 Aug 2026 21:50:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E02710E095;
+ Mon,  3 Aug 2026 21:50:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785793818; x=1817329818;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JzUo1gtCuMBso6ppq+b0G4Da4kc80X1UMx6ul2AgCsk=;
- b=gz8V+p6uhNUtuule+e5BU8YM4lbB5CVw1I0gnoA1QZtBqtrlb5+D+fp/
- 9ZQzn7tsB/FNV9KY8Aag1AaZe8sG/Ys215XgYrKWdu3DKTRtjL6c2ik8S
- gJhqXQT9XD7/nCHf9F7LzswdcOxUwmGQpIQbHp95BB33YQMFotu7NUito
- LY7ygrNpg02Lu+Z1HkvVcD79mB0nA+W5sA6OWiVuNTNehP6myCwOkMBPt
- /vUIPl3DbaxzIiO1uZigfDUEbRI8qjMoAnT5oTEhUXxXRwO8LCm349Lsp
- y0ocDzexDBE2LiQqnDyCRUFonu5Ze+zCtNHw/VayhOQF/JUcLVU6bFNEb A==;
-X-CSE-ConnectionGUID: C1tdebIUTZeFcU/gHYZcWg==
-X-CSE-MsgGUID: 7F7OzsTWRsWZ1oB1QsO3jQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="97849127"
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="97849127"
+ t=1785793823; x=1817329823;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XKZF1+8gJ6t0FMsjfKBFmMRvhXWSm57DLz8/RqdCai4=;
+ b=j8EeGzgxGREurOxloPo2eK0/zxob8q8kcdWWFGq0E4HR97xKAtDO4DCa
+ 8ZCZbmFvNkTg1ofJExy70vXGPG5nwfUvq0NykfsmZXGpnpV2k2djbrjbq
+ 76rxwbGz2BZ5tN5CND7GgRqGt27/lbNiZ7nVa5T42Qj8khG5K9hRAfiv4
+ oX3Oq2wjrXVnqL0kdLfDprzNbRapgsunqCQglFQg511JEEfu+S9BlcdGE
+ rScKi0oA79HLxCGpAowfjkqs8s/cE2Hp+J+u9qZ8fH5Rol/iWm0HOq53K
+ iqMkHilCDn/eiPsL2j426v+5tAsvDRvlWC97n0LnDBmNqSs7z79hbxIo/ A==;
+X-CSE-ConnectionGUID: gAMzR4kSTt+mxwPIutysGg==
+X-CSE-MsgGUID: ea1DYmJQQl24iMuBrg8DUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="97849135"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="97849135"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 14:50:18 -0700
-X-CSE-ConnectionGUID: M1gl3P/IShqYi/7zLeyWAQ==
-X-CSE-MsgGUID: UleSWNoKTw+C6YFzhdQsOQ==
+ 03 Aug 2026 14:50:23 -0700
+X-CSE-ConnectionGUID: XNKpUau9TK6LHTqo2NWDYA==
+X-CSE-MsgGUID: cHXxfqkBROCmoLG7hxFepQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="291272046"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="291272059"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 03 Aug 2026 14:50:17 -0700
+ by orviesa002.jf.intel.com with ESMTP; 03 Aug 2026 14:50:22 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 0/4] SKL_DSSM / DE_CAP fixes
-Date: Mon,  3 Aug 2026 23:49:05 +0200
-Message-ID: <20260803214909.3076716-1-michal.grzelak@intel.com>
+Subject: [PATCH v2 1/4] drm/i915/display: fix SKL_DSSM register macros
+Date: Mon,  3 Aug 2026 23:49:06 +0200
+Message-ID: <20260803214909.3076716-2-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260803214909.3076716-1-michal.grzelak@intel.com>
+References: <20260803214909.3076716-1-michal.grzelak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
@@ -68,32 +70,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Next version of [1].
+Indent SKL_DSSM register macros. Define mask and register values with
+REG_GENMASK() and REG_FIELD_PREP() instead of bit shifts.
 
-BR,
-Michał
-
-[1] https://lore.kernel.org/intel-gfx/20260727222125.2459634-1-michal.grzelak@intel.com/
-
----
-Changelog:
 v1->v2
 - s/REG_GENMASK/REG_FIELD_PREP/ (Jani)
-- use either runtime info flag or display version check (Jani)
-- don't initialize runtime info flag to 0 (Jani)
 
-Michał Grzelak (4):
-  drm/i915/display: fix SKL_DSSM register macros
-  drm/i915/3dlut: disable 3D LUT for pre-GLK
-  drm/i915/3dlut: log 3D LUT's status
-  drm/i915/3dlut: disable 3D LUT if unsupported
+Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_regs.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_color.c          |  3 +++
- drivers/gpu/drm/i915/display/intel_display_device.c | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_display_device.h |  2 ++
- drivers/gpu/drm/i915/display/intel_display_regs.h   |  9 +++++----
- 4 files changed, 20 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 0f5018482497..740331ead20a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -1779,10 +1779,10 @@
+ #define   XE2LPD_DE_CAP_SCALER_SINGLE	1
+ 
+ #define SKL_DSSM				_MMIO(0x51004)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_MASK		(7 << 29)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_24MHz		(0 << 29)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	(1 << 29)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	(2 << 29)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_MASK	REG_GENMASK(31, 29)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_24MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 0)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 1)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 2)
+ 
+ /*GEN11 chicken */
+ #define _PIPEA_CHICKEN				0x70038
 -- 
 2.45.2
 
