@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64617C5518F
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 10:30:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ADC1C5518F
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 10:30:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 205AC10E5A6;
-	Mon,  3 Aug 2026 10:30:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4772610E5A4;
+	Mon,  3 Aug 2026 10:30:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bEApntbT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SNmKYYw5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE17310E5A6
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 10:30:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6583210E5A5
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 10:30:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785753025; x=1817289025;
+ t=1785753032; x=1817289032;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ziAp1mnde7H3MaUN5dqlCIeSsUbwfTYMy5TP04p+19M=;
- b=bEApntbTGFwRw31x4HjuWTFzRKde1kLWNPCLmEepdmU2t3WJr1Noyfr4
- W3DvdWenavtQ4qDvJk2WN7peM2TAxViFn8RJSGhQwcAMkLXD0R23MPt2U
- duihdPOLULZpSALsFHlGUQ1AKtT3xEYc0aCVQl9HsxyKqPrxJjnuUKUc1
- 0KIR9kMLTPfLCFO4JOHhEjQNtgDkTJGt73zSD9hg8UtYzty9bWvXJ1SlU
- 0jl2I107b/2UmfUpbjA/fV6tZCcorKghwhocj0b8meDxA7xTUgzgKFnWF
- 9kco1WYTHsHxKK0kDWvj3MQ0Q7TB9uNhDM2pwuaFq46INMW2MZgXUmFd2 w==;
-X-CSE-ConnectionGUID: aZHcGgxvTVqW/GYJ4wKMcg==
-X-CSE-MsgGUID: /tc4yzTCSmm/7TXa+8oRsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="97446133"
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="97446133"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 03:30:25 -0700
-X-CSE-ConnectionGUID: C2vhqzKSTn6uSiS+x2bXHg==
-X-CSE-MsgGUID: KPw2AzVvQ0GN3CztIof6xA==
+ bh=Jc9ezVgCCeYzRms3oEKKtkNwbEmHiSp2OS+gnMOLnXA=;
+ b=SNmKYYw511vkz8NvAGdudKcUz1S6mAPs4ZzMmVBftlzvH6FEWo1yCJQv
+ b4W2qpNYQ8wb2Q7CkIT1/mBECMrZdOXVY/PE7bBNPzlEvcAl6szPoJXvi
+ YoRLdigv2TGT0++WelTYpx9DrHnUUKLbFeCkCjEAh5eiK40RpxMM5LTml
+ pxinWUasIQDE4tDATl6RXPY7moberyO9yAkh9tDPBdgAOuLNtpyWQxeFY
+ Dfp70+Yn/KsrJ4hR3WphTdfwvboig+UwTYS5iu4HYy0Hn6gFiDztLidjg
+ 9MIfLViIgECHfT+PD0oqDqx1UPkvEnEKq2vEBwwuJRdzkfOfXfwbSJN62 w==;
+X-CSE-ConnectionGUID: h+ZZCgwYRQ2H5obSHMqF6g==
+X-CSE-MsgGUID: bN0quN5qTleNqZr4Zqg/lA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="109080990"
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="109080990"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 03:30:32 -0700
+X-CSE-ConnectionGUID: FDbvWnJdTZar+Wh3N+v27w==
+X-CSE-MsgGUID: Q7t6uBkWQrG7T+EAG9uQNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="284566538"
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="299410205"
 Received: from soc-5cg43972f8.clients.intel.com (HELO localhost)
  ([172.28.182.68])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 03:30:22 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 03:30:28 -0700
 From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 To: Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
  linux-kernel@vger.kernel.org
@@ -51,10 +51,10 @@ Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 2/3] PCI/IOV: Restore initial VF ReBAR sizes on SR-IOV
- disable/failure
-Date: Mon,  3 Aug 2026 12:30:06 +0200
-Message-ID: <20260803103007.209625-3-marcin.bernatowicz@linux.intel.com>
+Subject: [PATCH v2 3/3] PCI/IOV: Restore initial VF ReBAR sizes on PF driver
+ remove
+Date: Mon,  3 Aug 2026 12:30:07 +0200
+Message-ID: <20260803103007.209625-4-marcin.bernatowicz@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260803103007.209625-1-marcin.bernatowicz@linux.intel.com>
 References: <20260505170010.3414074-1-marcin.bernatowicz@linux.intel.com>
@@ -75,177 +75,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PF drivers can resize a VF BAR via pci_iov_vf_bar_set_size(). The new
-size persists in config space. A subsequent reprobe/unplug-rescan may
-then cause the PCI core to reserve MMIO based on the inflated VF BAR
-registers in the SR-IOV capability, often multiplied by TotalVFs.
-On platforms with tight apertures, later SR-IOV enable can fail due to
-lack of space.
+sriov_disable() and sriov_enable() error paths restore the per-VF BAR
+sizes saved at probe time. They do not cover the case where the PF
+driver is detached while VF BARs were resized but SR-IOV was never
+enabled (or was already disabled).
 
-Restore the initial VF BAR sizes saved at SR-IOV init time when SR-IOV
-is disabled and when SR-IOV enable fails. This covers both the resource
-allocation failures later in sriov_enable() and the earlier validation
-failures that can otherwise leave a resized VF BAR in hardware while
-num_VFs remains zero.
+Restore the initial sizes from pci_iov_remove() as well. That hook runs
+on driver detach while the device is still live, unlike sriov_release()
+which runs later from the pci_dev release path.
 
-Restore is only performed when VF Memory Space is disabled, which is the
-precondition of pci_iov_vf_bar_set_size() and is true at all the new
-call sites.
+Skip the restore when the PF driver leaves SR-IOV enabled; in that case
+VF memory decoding is still active and pci_iov_vf_bar_set_size() cannot
+safely change the VF BAR size.
 
-Note: this changes user-visible behavior for drivers that rely on the
-resized VF BAR persisting across an enable/disable cycle. After this
-change drivers must call pci_iov_vf_bar_set_size() before each
-pci_enable_sriov() if a non-default size is desired.
-
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5937
 Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 ---
- drivers/pci/iov.c | 79 ++++++++++++++++++++++++++++++++++++++++-------
- 1 file changed, 68 insertions(+), 11 deletions(-)
+ drivers/pci/iov.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-index ae9309fc6dd7..999938163ce9 100644
+index 999938163ce9..3739825c84e9 100644
 --- a/drivers/pci/iov.c
 +++ b/drivers/pci/iov.c
-@@ -646,6 +646,46 @@ static int sriov_add_vfs(struct pci_dev *dev, u16 num_vfs)
- 	return rc;
- }
+@@ -1085,8 +1085,12 @@ void pci_iov_remove(struct pci_dev *dev)
+ 		return;
  
-+static void sriov_restore_vf_rebar_initial_sizes(struct pci_dev *dev)
-+{
-+	struct pci_sriov *iov = dev->sriov;
-+	u16 ctrl;
-+	int i;
-+
-+	if (!iov || !iov->vf_rebar_cap)
+ 	iov->driver_max_VFs = iov->total_VFs;
+-	if (iov->num_VFs)
++	if (iov->num_VFs) {
+ 		pci_warn(dev, "driver left SR-IOV enabled after remove\n");
 +		return;
-+
-+	/* Skip if device is inaccessible (surprise-removed, D3cold). */
-+	pci_read_config_word(dev, iov->pos + PCI_SRIOV_CTRL, &ctrl);
-+	if (PCI_POSSIBLE_ERROR(ctrl))
-+		return;
-+
-+	for (i = 0; i < PCI_SRIOV_NUM_BARS; i++) {
-+		int resno = pci_resource_num_from_vf_bar(i);
-+		resource_size_t orig_sz = iov->barsz_orig[i];
-+		resource_size_t cur_sz = iov->barsz[i];
-+		int size, cur, rc;
-+
-+		if (!orig_sz || cur_sz == orig_sz)
-+			continue;
-+
-+		size = pci_rebar_bytes_to_size(orig_sz);
-+		rc = pci_iov_vf_bar_set_size(dev, resno, size);
-+		if (!rc)
-+			continue;
-+
-+		pci_warn(dev, "failed to restore %s size %#llx -> %#llx: %d\n",
-+			 pci_resource_name(dev, resno),
-+			 (unsigned long long)cur_sz,
-+			 (unsigned long long)orig_sz, rc);
-+
-+		/* Re-sync in-memory size with what hardware actually has. */
-+		cur = pci_rebar_get_current_size(dev, resno);
-+		if (cur >= 0)
-+			iov->barsz[i] = pci_rebar_size_to_bytes(cur);
 +	}
-+}
 +
- static int sriov_enable(struct pci_dev *dev, int nr_virtfn)
- {
- 	int rc;
-@@ -666,12 +706,16 @@ static int sriov_enable(struct pci_dev *dev, int nr_virtfn)
- 
- 	pci_read_config_word(dev, iov->pos + PCI_SRIOV_INITIAL_VF, &initial);
- 	if (initial > iov->total_VFs ||
--	    (!(iov->cap & PCI_SRIOV_CAP_VFM) && (initial != iov->total_VFs)))
--		return -EIO;
-+	    (!(iov->cap & PCI_SRIOV_CAP_VFM) && (initial != iov->total_VFs))) {
-+		rc = -EIO;
-+		goto err_restore;
-+	}
- 
- 	if (nr_virtfn < 0 || nr_virtfn > iov->total_VFs ||
--	    (!(iov->cap & PCI_SRIOV_CAP_VFM) && (nr_virtfn > initial)))
--		return -EINVAL;
-+	    (!(iov->cap & PCI_SRIOV_CAP_VFM) && (nr_virtfn > initial))) {
-+		rc = -EINVAL;
-+		goto err_restore;
-+	}
- 
- 	nres = 0;
- 	for (i = 0; i < PCI_SRIOV_NUM_BARS; i++) {
-@@ -687,36 +731,42 @@ static int sriov_enable(struct pci_dev *dev, int nr_virtfn)
- 	}
- 	if (nres != iov->nres) {
- 		pci_err(dev, "not enough MMIO resources for SR-IOV\n");
--		return -ENOMEM;
-+		rc = -ENOMEM;
-+		goto err_restore;
- 	}
- 
- 	bus = pci_iov_virtfn_bus(dev, nr_virtfn - 1);
- 	if (bus > dev->bus->busn_res.end) {
- 		pci_err(dev, "can't enable %d VFs (bus %02x out of range of %pR)\n",
- 			nr_virtfn, bus, &dev->bus->busn_res);
--		return -ENOMEM;
-+		rc = -ENOMEM;
-+		goto err_restore;
- 	}
- 
- 	if (pci_enable_resources(dev, bars)) {
- 		pci_err(dev, "SR-IOV: IOV BARS not allocated\n");
--		return -ENOMEM;
-+		rc = -ENOMEM;
-+		goto err_restore;
- 	}
- 
- 	if (iov->link != dev->devfn) {
- 		pdev = pci_get_slot(dev->bus, iov->link);
--		if (!pdev)
--			return -ENODEV;
-+		if (!pdev) {
-+			rc = -ENODEV;
-+			goto err_restore;
-+		}
- 
- 		if (!pdev->is_physfn) {
- 			pci_dev_put(pdev);
--			return -ENOSYS;
-+			rc = -ENOSYS;
-+			goto err_restore;
- 		}
- 
- 		rc = sysfs_create_link(&dev->dev.kobj,
- 					&pdev->dev.kobj, "dep_link");
- 		pci_dev_put(pdev);
- 		if (rc)
--			return rc;
-+			goto err_restore;
- 	}
- 
- 	iov->initial_VFs = initial;
-@@ -758,6 +808,12 @@ static int sriov_enable(struct pci_dev *dev, int nr_virtfn)
- 		sysfs_remove_link(&dev->dev.kobj, "dep_link");
- 
- 	pci_iov_set_numvfs(dev, 0);
-+	sriov_restore_vf_rebar_initial_sizes(dev);
-+	return rc;
-+
-+err_restore:
-+	/* pcibios_sriov_enable() was not called on these early-exit paths. */
-+	sriov_restore_vf_rebar_initial_sizes(dev);
- 	return rc;
- }
- 
-@@ -791,6 +847,7 @@ static void sriov_disable(struct pci_dev *dev)
- 
- 	iov->num_VFs = 0;
- 	pci_iov_set_numvfs(dev, 0);
 +	sriov_restore_vf_rebar_initial_sizes(dev);
  }
  
- static int sriov_init(struct pci_dev *dev, int pos)
+ /**
 -- 
 2.43.0
 
