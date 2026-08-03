@@ -4,42 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2164C55179
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 11:17:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522D5C55179
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 11:54:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC6810E14B;
-	Mon,  3 Aug 2026 11:17:55 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71F7310E14B
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 11:17:53 +0000 (UTC)
-Received: from [192.168.10.92] (unknown [39.110.247.193])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 619953F202;
- Mon,  3 Aug 2026 13:17:46 +0200 (CEST)
-Message-ID: <be4bffdc-7e41-4fa9-a8df-c41dc6357225@hogyros.de>
-Date: Mon, 3 Aug 2026 20:17:42 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id E38C710E295;
+	Mon,  3 Aug 2026 11:54:28 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 376F610E021;
+ Mon,  3 Aug 2026 11:54:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] PCI/IOV: Restore initial VF BAR sizing after VF
- ReBAR
-To: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20260505170010.3414074-1-marcin.bernatowicz@linux.intel.com>
- <20260803103007.209625-1-marcin.bernatowicz@linux.intel.com>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <20260803103007.209625-1-marcin.bernatowicz@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/tests/gpu=5Fbuddy=3A_?=
+ =?utf-8?q?fix_interleaving_in_buffer_clearance_test_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 03 Aug 2026 11:54:28 -0000
+Message-ID: <178575806822.13594.3407051861149480320@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260803065656.2960810-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20260803065656.2960810-1-Arunpravin.PaneerSelvam@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,27 +36,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 8/3/26 7:30 PM, Marcin Bernatowicz wrote:
-> PF drivers can resize a VF BAR using VF Resizable BAR (ReBAR) support via
-> pci_iov_vf_bar_set_size(). The new size persists in the SR-IOV capability
-> config space. A later reprobe / unplug-rescan / next pci_enable_sriov()
-> then sees the inflated VF BAR registers, and the PCI core reserves MMIO
-> based on that size multiplied by TotalVFs.
+Series: drm/tests/gpu_buddy: fix interleaving in buffer clearance test (rev2)
+URL   : https://patchwork.freedesktop.org/series/170880/
+State : warning
 
-Would it make sense for pci_enable_sriov() to check for a ReBAR 
-capability in the VF and set it to the smallest possible setting, so we 
-get the same behaviour regardless of whether this was cleaned up correctly?
+== Summary ==
 
-Also, should it be "previous" or "smallest" size (in order to not make a 
-missed cleanup permanent)?
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e1999fb2e1afafb907c63d0a40a02c8db3e2d540
+Author: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Date:   Mon Aug 3 12:26:56 2026 +0530
 
-I'm a bit worried about POWER, while we do have lots of MMIO space, we 
-also use kexec() quite a lot because on several machines, the bootloader 
-is some ancient minimal Linux system.
+    drm/tests/gpu_buddy: fix interleaving in buffer clearance test
+    
+    The resume clearance test skipped every other allocation, expecting an
+    interleaved clear/dirty layout. But the buddy allocator hands out blocks
+    contiguously, so this just allocated half the pages in one chunk and never
+    exercised gpu_buddy_reset_clear()'s force-merge of opposite-state buddies.
+    Allocate all pages into two lists instead and free one cleared, one dirty,
+    to build a truly interleaved pattern.
+    
+    v2: Use for loops instead of do-while for the allocation loops (Jani Nikula)
+    
+    Fixes: e3335ccbf4da ("drm/tests/gpu_buddy: add a new test case for buffer clearance during resume")
+    Reported-by: Sashiko-bot <sashiko-bot@kernel.org>
+    Closes: https://sashiko.dev/#/patchset/20260721114236.507578-1-Arunpravin.PaneerSelvam@amd.com?part=1
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Christian König <christian.koenig@amd.com>
+    Assisted-by: GitHub_Copilot:claude-opus-4.8
+    Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
++ /mt/dim checkpatch f8d080b47819f01011c1b9c3c875badbb67ec955 drm-intel
+e1999fb2e1af drm/tests/gpu_buddy: fix interleaving in buffer clearance test
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#17: 
+v2: Use for loops instead of do-while for the allocation loops (Jani Nikula)
 
-    Simon
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
+
+
