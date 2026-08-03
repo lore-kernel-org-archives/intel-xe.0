@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89BD3C55175
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 09:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13462C55175
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 09:42:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFE710E55D;
-	Mon,  3 Aug 2026 09:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BECEE10E569;
+	Mon,  3 Aug 2026 09:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKYaRw1D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BDDusmM1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C77A10E55C;
- Mon,  3 Aug 2026 09:32:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EF0C10E569
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 09:42:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785749535; x=1817285535;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=lUWpOA7QwiP0dm/R4n6v/C3FhK0IGDRGZaxrKHyjDjw=;
- b=iKYaRw1DfTEokND38m2t+gIrddfAEAjULJkWg9n4GnhzVX+mKLZ6spth
- 7IhYAlfaIlesD3VbFGRkCKWuywzgWg7ZIPO38Q6E3CDGqWhwRZNj1rUYu
- 8LBPS0jFa3GD+BK4t4NXFWDlx8ORyV9w6C+mMMMprWkJ5PG9lJyJn+9rn
- IiKeMuYv0Jud2u+HLEuMo8JeWwM1p6GKypZfMUb+QabAYLiI9VNmsTntz
- F+Wq/TF9C5atP42sLRPMo72Y/5QUOYP3D3cJQemFA5W0nwt01y/wumAv4
- 7zL/byjPMV8D/0kcSuId6rncwnmoU9X1BzQpISM3NPYxF2mc052q7ASdE w==;
-X-CSE-ConnectionGUID: pf3ZTkImTmqMxMH8/6UFzA==
-X-CSE-MsgGUID: vUN/LlFtRRqNpxNqdiVzXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="103822108"
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="103822108"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 02:32:15 -0700
-X-CSE-ConnectionGUID: nGrYSPJYTH6g6lxg/l99Yw==
-X-CSE-MsgGUID: 7UgvbTV8QgOL889zgUlsqw==
+ t=1785750142; x=1817286142;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=87Huh8H+VGuMV57D0XHoXx4P2Ici57SNrQnk3MhZyjs=;
+ b=BDDusmM1/Ry05Qp5xe2TxVk8cUAe0qQtg3HpNmeqCczWAvAqTL5z1YgD
+ kpzb5JDQrTFlLVfC2XJ+U8oPRAFgyhJaw78j5LNZMF2+TaJVMU5ITmPHg
+ 3JRI62E9R9yWyCMTuLTkitGrE6ICPP2WYrJd9EiN+lSzw8ucIgAtxxWla
+ V0EWY7ptywYRqNHLUbBpaGCY3AY1lNoKn7RM52UUdY8sYIoLf+VlhkMeh
+ dBriakFKAcJphO42gc6sZ1XCVvunYZ8FeZpG4uYgCBYxvYEcCDj6zdXf7
+ ZEFzMi6o13SPLY3F6W94/TgYIiOIqNKsvnSsDXdjf70PJmHCWaq1rT/1a g==;
+X-CSE-ConnectionGUID: q3TCOfJLTKSwKyb0d8hgaA==
+X-CSE-MsgGUID: 79iWzd+5Sw6Y7gMjywQ+/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="97655743"
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="97655743"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 02:42:22 -0700
+X-CSE-ConnectionGUID: xafPScmAQUWMliF6PszsBw==
+X-CSE-MsgGUID: 4Gcobj9qRbiv3U4miB0b9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="284556915"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.30])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 02:32:13 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/{i915, xe}/display: move transient data flush call
- to display parent interface
-In-Reply-To: <DS4PPFE901A304F6EDF1624AEE15EE3E411E3D52@DS4PPFE901A304F.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260728170029.608289-1-jani.nikula@intel.com>
- <DS4PPFE901A304F6EDF1624AEE15EE3E411E3D52@DS4PPFE901A304F.namprd11.prod.outlook.com>
-Date: Mon, 03 Aug 2026 12:32:11 +0300
-Message-ID: <e16a7c76b87ce1a4f138e53638b8787eaaa7319c@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="265007911"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 02:42:21 -0700
+Date: Mon, 3 Aug 2026 11:42:17 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ riana.tauro@intel.com, matthew.d.roper@intel.com,
+ mallesh.koujalagi@intel.com
+Subject: Re: [PATCH v1] drm/xe/drm_ras: Move has_drm_ras check to drm_ras layer
+Message-ID: <anBieRFD1ECvBD3c@black.igk.intel.com>
+References: <20260803080823.1166925-1-raag.jadav@intel.com>
+ <3f8aeb27-ab03-424b-a320-45ad137944dd@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3f8aeb27-ab03-424b-a320-45ad137944dd@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,259 +69,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 03 Aug 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> Subject: [PATCH] drm/{i915, xe}/display: move transient data flush call =
-to display
->> parent interface
->>=20
->> Move the core driver TDF call to display parent interface to avoid direc=
-t calls
->> from display to xe driver.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> LGTM,
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+On Mon, Aug 03, 2026 at 11:03:11AM +0200, Michal Wajdeczko wrote:
+> On 8/3/2026 10:08 AM, Raag Jadav wrote:
+> > has_drm_ras flag is meant to facilitate drm_ras feature. Move it to the
+> > correct layer where it belogs.
+> 
+> typo: belongs
 
-Thanks, pushed to din.
+Good catch.
 
-BR,
-Jani.
+> > Fixes: 63dfab5786ca ("drm/xe/xe_ras: Add drm_ras feature flag")
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_drm_ras.c | 3 +++
+> >  drivers/gpu/drm/xe/xe_ras.c     | 3 ---
+> >  2 files changed, 3 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+> > index 4afa2ad98300..a23cfb49361b 100644
+> > --- a/drivers/gpu/drm/xe/xe_drm_ras.c
+> > +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+> > @@ -233,6 +233,9 @@ int xe_drm_ras_init(struct xe_device *xe)
+> >  	struct drm_ras_node *node;
+> >  	int err;
+> >  
+> > +	if (!xe->info.has_drm_ras)
+> > +		return 0;
+> > +
+> >  	node = drmm_kcalloc(&xe->drm, DRM_XE_RAS_ERR_SEV_MAX, sizeof(*node), GFP_KERNEL);
+> >  	if (!node)
+> >  		return -ENOMEM;
+> > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> > index 28123f08e513..f7af4da8172c 100644
+> > --- a/drivers/gpu/drm/xe/xe_ras.c
+> > +++ b/drivers/gpu/drm/xe/xe_ras.c
+> > @@ -816,9 +816,6 @@ void xe_ras_init(struct xe_device *xe)
+> >  {
+> >  	int ret;
+> >  
+> > -	if (!xe->info.has_drm_ras)
+> > -		return;
+> > -
+> >  	xe_drm_ras_init(xe);
+> 
+> btw, shouldn't we handle xe_drm_ras_init() errors here?
+> 
+> hmm, and it looks that xe_ras_init() ignores all errors,
+> which is kind of against the "all-or-nothing" driver rule
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c  |  4 +--
->> .../gpu/drm/i915/display/intel_frontbuffer.c  |  3 +--
->>  drivers/gpu/drm/i915/display/intel_parent.c   |  6 +++++
->>  drivers/gpu/drm/i915/display/intel_parent.h   |  1 +
->>  drivers/gpu/drm/i915/display/intel_tdf.h      | 25 -------------------
->>  drivers/gpu/drm/xe/Makefile                   |  3 +--
->>  drivers/gpu/drm/xe/display/xe_display.c       | 15 +++++++++++
->>  drivers/gpu/drm/xe/display/xe_tdf.c           | 15 -----------
->>  include/drm/intel/display_parent_interface.h  |  3 +++
->>  9 files changed, 29 insertions(+), 46 deletions(-)  delete mode 100644
->> drivers/gpu/drm/i915/display/intel_tdf.h
->>  delete mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
->> b/drivers/gpu/drm/i915/display/intel_display.c
->> index 9dfd095f325f..bf838834b89f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -107,6 +107,7 @@
->>  #include "intel_modeset_verify.h"
->>  #include "intel_overlay.h"
->>  #include "intel_panel.h"
->> +#include "intel_parent.h"
->>  #include "intel_pch_display.h"
->>  #include "intel_pch_refclk.h"
->>  #include "intel_pfit.h"
->> @@ -119,7 +120,6 @@
->>  #include "intel_sdvo.h"
->>  #include "intel_snps_phy.h"
->>  #include "intel_tc.h"
->> -#include "intel_tdf.h"
->>  #include "intel_tv.h"
->>  #include "intel_vblank.h"
->>  #include "intel_vdsc.h"
->> @@ -7506,7 +7506,7 @@ static void intel_atomic_commit_tail(struct
->> intel_atomic_state *state)
->>=20
->>  	intel_atomic_commit_fence_wait(state);
->>=20
->> -	intel_td_flush(display);
->> +	intel_parent_transient_data_flush(display);
->>=20
->>  	intel_atomic_prepare_plane_clear_colors(state);
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->> b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->> index 705742e117ca..70aae6ffa3fe 100644
->> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->> @@ -66,7 +66,6 @@
->>  #include "intel_frontbuffer.h"
->>  #include "intel_parent.h"
->>  #include "intel_psr.h"
->> -#include "intel_tdf.h"
->>=20
->>  /**
->>   * frontbuffer_flush - flush frontbuffer @@ -95,7 +94,7 @@ static void
->> frontbuffer_flush(struct intel_display *display,
->>  	trace_intel_frontbuffer_flush(display, frontbuffer_bits, origin);
->>=20
->>  	might_sleep();
->> -	intel_td_flush(display);
->> +	intel_parent_transient_data_flush(display);
->>  	intel_drrs_flush(display, frontbuffer_bits);
->>  	intel_psr_flush(display, frontbuffer_bits, origin);
->>  	intel_fbc_flush(display, frontbuffer_bits, origin); diff --git
->> a/drivers/gpu/drm/i915/display/intel_parent.c
->> b/drivers/gpu/drm/i915/display/intel_parent.c
->> index a5e41ea66921..ffc1f5e0518c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_parent.c
->> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
->> @@ -451,6 +451,12 @@ bool intel_parent_has_fenced_regions(struct
->> intel_display *display)
->>  	return display->parent->has_fenced_regions && display->parent-
->> >has_fenced_regions(display->drm);
->>  }
->>=20
->> +void intel_parent_transient_data_flush(struct intel_display *display) {
->> +	if (display->parent->transient_data_flush)
->> +		display->parent->transient_data_flush(display->drm);
->> +}
->> +
->>  bool intel_parent_vgpu_active(struct intel_display *display)  {
->>  	return display->parent->vgpu_active && display->parent-
->> >vgpu_active(display->drm);
->> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h
->> b/drivers/gpu/drm/i915/display/intel_parent.h
->> index 595d4148b8eb..c817a826169c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_parent.h
->> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
->> @@ -155,6 +155,7 @@ int intel_parent_vlv_iosf_write(struct intel_display
->> *display, enum vlv_iosf_sb_
->>  /* generic */
->>  bool intel_parent_has_auxccs(struct intel_display *display);  bool
->> intel_parent_has_fenced_regions(struct intel_display *display);
->> +void intel_parent_transient_data_flush(struct intel_display *display);
->>  bool intel_parent_vgpu_active(struct intel_display *display);  void
->> intel_parent_fence_priority_display(struct intel_display *display, struct
->> dma_fence *fence);
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_tdf.h
->> b/drivers/gpu/drm/i915/display/intel_tdf.h
->> deleted file mode 100644
->> index 0862c2bfd9cd..000000000000
->> --- a/drivers/gpu/drm/i915/display/intel_tdf.h
->> +++ /dev/null
->> @@ -1,25 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright =C2=A9 2024 Intel Corporation
->> - */
->> -
->> -#ifndef __INTEL_TDF_H__
->> -#define __INTEL_TDF_H__
->> -
->> -/*
->> - * TDF (Transient-Data-Flush) is needed for Xe2+ where special L3:XD ca=
-ching
->> can
->> - * be enabled through various PAT index modes. Idea is to use this cach=
-ing
->> mode
->> - * when for example rendering onto the display surface, with the promis=
-e that
->> - * KMD will ensure transient cache entries are always flushed by the ti=
-me we
->> do
->> - * the display flip, since display engine is never coherent with CPU/GP=
-U caches.
->> - */
->> -
->> -struct intel_display;
->> -
->> -#ifdef I915
->> -static inline void intel_td_flush(struct intel_display *display) {} -#e=
-lse -void
->> intel_td_flush(struct intel_display *display); -#endif
->> -
->> -#endif
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile i=
-ndex
->> 67ada1d6c2fb..44ed055439d4 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -228,8 +228,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
->>  	display/xe_hdcp_gsc.o \
->>  	display/xe_initial_plane.o \
->>  	display/xe_panic.o \
->> -	display/xe_stolen.o \
->> -	display/xe_tdf.o
->> +	display/xe_stolen.o
->>=20
->>  # Display code shared with i915
->>  xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
->> diff --git a/drivers/gpu/drm/xe/display/xe_display.c
->> b/drivers/gpu/drm/xe/display/xe_display.c
->> index 8da4c457a4a0..5f5e79505b3d 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display.c
->> @@ -446,6 +446,20 @@ static bool has_auxccs(struct drm_device *drm)
->>  	return xe->info.platform =3D=3D XE_ALDERLAKE_P;  }
->>=20
->> +/*
->> + * TDF (Transient-Data-Flush) is needed for Xe2+ where special L3:XD
->> +caching can
->> + * be enabled through various PAT index modes. Idea is to use this
->> +caching mode
->> + * when for example rendering onto the display surface, with the
->> +promise that
->> + * KMD will ensure transient cache entries are always flushed by the
->> +time we do
->> + * the display flip, since display engine is never coherent with CPU/GP=
-U caches.
->> + */
->> +static void transient_data_flush(struct drm_device *drm) {
->> +	struct xe_device *xe =3D to_xe_device(drm);
->> +
->> +	xe_device_td_flush(xe);
->> +}
->> +
->>  static const struct intel_display_parent_interface parent =3D {
->>  	.bo =3D &xe_display_bo_interface,
->>  	.dsb =3D &xe_display_dsb_interface,
->> @@ -459,6 +473,7 @@ static const struct intel_display_parent_interface p=
-arent
->> =3D {
->>  	.rpm =3D &xe_display_rpm_interface,
->>  	.stolen =3D &xe_display_stolen_interface,
->>  	.has_auxccs =3D has_auxccs,
->> +	.transient_data_flush =3D transient_data_flush,
->>  };
->>=20
->>  /**
->> diff --git a/drivers/gpu/drm/xe/display/xe_tdf.c
->> b/drivers/gpu/drm/xe/display/xe_tdf.c
->> deleted file mode 100644
->> index 78bda4c47874..000000000000
->> --- a/drivers/gpu/drm/xe/display/xe_tdf.c
->> +++ /dev/null
->> @@ -1,15 +0,0 @@
->> -// SPDX-License-Identifier: MIT
->> -/*
->> - * Copyright =C2=A9 2024 Intel Corporation
->> - */
->> -
->> -#include "intel_display_core.h"
->> -#include "intel_tdf.h"
->> -#include "xe_device.h"
->> -
->> -void intel_td_flush(struct intel_display *display) -{
->> -	struct xe_device *xe =3D to_xe_device(display->drm);
->> -
->> -	xe_device_td_flush(xe);
->> -}
->> diff --git a/include/drm/intel/display_parent_interface.h
->> b/include/drm/intel/display_parent_interface.h
->> index de395df9ca30..8b25107615ea 100644
->> --- a/include/drm/intel/display_parent_interface.h
->> +++ b/include/drm/intel/display_parent_interface.h
->> @@ -302,6 +302,9 @@ struct intel_display_parent_interface {
->>  		/** @has_fenced_regions: Support legacy fencing? Optional. */
->>  		bool (*has_fenced_regions)(struct drm_device *drm);
->>=20
->> +		/** @transient_data_flush: Transient data flush. Optional. */
->> +		void (*transient_data_flush)(struct drm_device *drm);
->> +
->>  		/** @vgpu_active: Is vGPU active? Optional. */
->>  		bool (*vgpu_active)(struct drm_device *drm);
->>  	};
->> --
->> 2.47.3
->
+The discussion[1] at the time was that we shouldn't let the driver suffer
+for the failures of non-critical features.
 
---=20
-Jani Nikula, Intel
+I don't mind refactoring now, but this'll require some consensus.
+
+[1] https://lore.kernel.org/intel-xe/ae9a0aee-d81b-4532-ab36-8025c50ae69a@intel.com/
+
+Raag
