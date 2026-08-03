@@ -4,63 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ADC1C5518F
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 10:30:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 769BDC5518E
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 10:34:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4772610E5A4;
-	Mon,  3 Aug 2026 10:30:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB6310E594;
+	Mon,  3 Aug 2026 10:34:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SNmKYYw5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iPyWl/jm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6583210E5A5
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 10:30:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B162010E594
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 10:34:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785753032; x=1817289032;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Jc9ezVgCCeYzRms3oEKKtkNwbEmHiSp2OS+gnMOLnXA=;
- b=SNmKYYw511vkz8NvAGdudKcUz1S6mAPs4ZzMmVBftlzvH6FEWo1yCJQv
- b4W2qpNYQ8wb2Q7CkIT1/mBECMrZdOXVY/PE7bBNPzlEvcAl6szPoJXvi
- YoRLdigv2TGT0++WelTYpx9DrHnUUKLbFeCkCjEAh5eiK40RpxMM5LTml
- pxinWUasIQDE4tDATl6RXPY7moberyO9yAkh9tDPBdgAOuLNtpyWQxeFY
- Dfp70+Yn/KsrJ4hR3WphTdfwvboig+UwTYS5iu4HYy0Hn6gFiDztLidjg
- 9MIfLViIgECHfT+PD0oqDqx1UPkvEnEKq2vEBwwuJRdzkfOfXfwbSJN62 w==;
-X-CSE-ConnectionGUID: h+ZZCgwYRQ2H5obSHMqF6g==
-X-CSE-MsgGUID: bN0quN5qTleNqZr4Zqg/lA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="109080990"
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="109080990"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 03:30:32 -0700
-X-CSE-ConnectionGUID: FDbvWnJdTZar+Wh3N+v27w==
-X-CSE-MsgGUID: Q7t6uBkWQrG7T+EAG9uQNQ==
+ t=1785753241; x=1817289241;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=uykY8r9B54oJs3WhicX8D2dSjTZf8770X/PAW2GBqRo=;
+ b=iPyWl/jmwJ6dZPs1cnZi4HLdiz6Mc6LhG6nD8aPGpqO5OQd91L+a9XN8
+ ssbOMXXT705kOq3GDSkuv+dHxYwB5zbgMKqcdgZZ1JdmFK4Yut6w7XXJm
+ cGogXC9SuNlBDVq9mk/xyFC085CIg9cGfPW9FZs2e07fUwZblCZwUFRrl
+ FZY7QEk7vQPmBQD4g2N3qYmIl6FvXI0jA74WlVsYaByekTcGnNNcxcpof
+ bkKF23a7g73B792+WxlP9YZ8EgxCfhxwOCY9vnbvFwRPZRp31jHvJD1gz
+ WAeU9OBNn1iEJIxJNiVE+NhoUWqN2vFW00VuS001vkwJT+SzDUjzzrQDO g==;
+X-CSE-ConnectionGUID: Z02AzPySShCBNBO3Z9zSlw==
+X-CSE-MsgGUID: bV6UgIqzR3O+4HHEH70Z6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="96646553"
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="96646553"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 03:34:00 -0700
+X-CSE-ConnectionGUID: 8/70OJjVR/Og5XXSjCUceA==
+X-CSE-MsgGUID: hlSC6oXVRoa3bHwbn10uRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="299410205"
-Received: from soc-5cg43972f8.clients.intel.com (HELO localhost)
- ([172.28.182.68])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 03:30:28 -0700
-From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 3/3] PCI/IOV: Restore initial VF ReBAR sizes on PF driver
- remove
-Date: Mon,  3 Aug 2026 12:30:07 +0200
-Message-ID: <20260803103007.209625-4-marcin.bernatowicz@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260803103007.209625-1-marcin.bernatowicz@linux.intel.com>
-References: <20260505170010.3414074-1-marcin.bernatowicz@linux.intel.com>
- <20260803103007.209625-1-marcin.bernatowicz@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="254907638"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.245.45])
+ ([10.245.245.45])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 03:30:22 -0700
+Message-ID: <b0765ccb-0460-4561-9fde-b9ad2de299f3@intel.com>
+Date: Mon, 3 Aug 2026 11:30:20 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/3] drm/xe/guc_ads: allocate UM queues in a separate BO
+To: Jia Yao <jia.yao@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, stable@vger.kernel.org
+References: <20260731232232.548015-1-jia.yao@intel.com>
+ <20260731232232.548015-2-jia.yao@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260731232232.548015-2-jia.yao@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,42 +70,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-sriov_disable() and sriov_enable() error paths restore the per-VF BAR
-sizes saved at probe time. They do not cover the case where the PF
-driver is detached while VF BARs were resized but SR-IOV was never
-enabled (or was already disabled).
+On 01/08/2026 00:22, Jia Yao wrote:
+> Move the UM queues into a dedicated UC BO (ads->um_queue_bo) and avoid
+> CPU memset operations on it, which eliminates the CPU as a potential
+> cacheline-polluting agent and helps maintain consistency between GAM
+> writes and GuC reads.
+> 
+> Fixes: 9c57bc08652a ("drm/xe/lnl: Drop force_probe requirement")
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.12+
+> Signed-off-by: Jia Yao <jia.yao@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_guc.c           |  6 ++
+>   drivers/gpu/drm/xe/xe_guc_ads.c       | 91 +++++++++++++++++----------
+>   drivers/gpu/drm/xe/xe_guc_ads_types.h |  5 ++
+>   3 files changed, 70 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 4286bd05c686..4f132bf8539d 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -732,6 +732,12 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+>   	if (ret)
+>   		return ret;
+>   
+> +	if (guc->ads.um_queue_bo) {
+> +		ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ads.um_queue_bo);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>   	return 0;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+> index f0ac00586d3a..46c4d702d1f3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> @@ -8,6 +8,7 @@
+>   #include <linux/fault-inject.h>
+>   
+>   #include <drm/drm_managed.h>
+> +#include <drm/drm_prime.h>
+>   
+>   #include <generated/xe_wa_oob.h>
+>   
+> @@ -64,10 +65,14 @@ ads_to_map(struct xe_guc_ads *ads)
+>   
+>   /*
+>    * The Additional Data Struct (ADS) has pointers for different buffers used by
+> - * the GuC. One single gem object contains the ADS struct itself (guc_ads) and
+> - * all the extra buffers indirectly linked via the ADS struct's entries.
+> + * the GuC. One gem object (ads->bo) contains the ADS struct itself (guc_ads)
+> + * and most of the extra buffers linked via the ADS struct's entries.  The UM
+> + * fault queues (PAGE_FAULT, PAGE_FAULT_RESPONSE, ACCESS_COUNTER rings) are
+> + * kept in a separate BO (ads->um_queue_bo) so that the full memset of ads->bo
+> + * performed on every GT reset does not discard fault descriptors already
+> + * written into the rings by the GPU.
+>    *
+> - * Layout of the ADS blob allocated for the GuC:
+> + * Layout of the ADS blob (ads->bo):
+>    *
+>    *      +---------------------------------------+ <== base
+>    *      | guc_ads                               |
+> @@ -99,10 +104,6 @@ ads_to_map(struct xe_guc_ads *ads)
+>    *      +---------------------------------------+
+>    *      | padding                               |
+>    *      +---------------------------------------+ <== 4K aligned
+> - *      | UM queues                             |
+> - *      +---------------------------------------+
+> - *      | padding                               |
+> - *      +---------------------------------------+ <== 4K aligned
+>    *      | private data                          |
+>    *      +---------------------------------------+
+>    *      | padding                               |
+> @@ -156,16 +157,6 @@ static size_t guc_ads_capture_size(struct xe_guc_ads *ads)
+>   	return PAGE_ALIGN(ads->capture_size);
+>   }
+>   
+> -static size_t guc_ads_um_queues_size(struct xe_guc_ads *ads)
+> -{
+> -	struct xe_device *xe = ads_to_xe(ads);
+> -
+> -	if (!xe->info.has_usm)
+> -		return 0;
+> -
+> -	return GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX;
+> -}
+> -
+>   static size_t guc_ads_private_data_size(struct xe_guc_ads *ads)
+>   {
+>   	return PAGE_ALIGN(ads_to_guc(ads)->fw.private_data_size);
+> @@ -206,22 +197,12 @@ static size_t guc_ads_capture_offset(struct xe_guc_ads *ads)
+>   	return PAGE_ALIGN(offset);
+>   }
+>   
+> -static size_t guc_ads_um_queues_offset(struct xe_guc_ads *ads)
+> -{
+> -	u32 offset;
+> -
+> -	offset = guc_ads_capture_offset(ads) +
+> -		 guc_ads_capture_size(ads);
+> -
+> -	return PAGE_ALIGN(offset);
+> -}
+> -
+>   static size_t guc_ads_private_data_offset(struct xe_guc_ads *ads)
+>   {
+>   	size_t offset;
+>   
+> -	offset = guc_ads_um_queues_offset(ads) +
+> -		guc_ads_um_queues_size(ads);
+> +	offset = guc_ads_capture_offset(ads) +
+> +		guc_ads_capture_size(ads);
+>   
+>   	return PAGE_ALIGN(offset);
+>   }
+> @@ -461,6 +442,46 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+>   
+>   	ads->bo = bo;
+>   
+> +	if (xe->info.has_usm) {
+> +		/*
+> +		 * Allocate a separate BO for the HW fault ring (UM queues).
+> +		 *
+> +		 * Round the size up to the next power of two so that on iGPU
+> +		 * (system memory, no IOMMU) the TTM pool issues a single
+> +		 * alloc_pages(order=N) call, maximising the chance of getting
+> +		 * a physically contiguous block.  GuC requires contiguous DPA.
+> +		 */
+> +		size_t um_size = IS_DGFX(xe) ?
+> +				 GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX :
+> +				 roundup_pow_of_two(GUC_UM_QUEUE_SIZE *
+> +						    GUC_UM_HW_QUEUE_MAX);
 
-Restore the initial sizes from pci_iov_remove() as well. That hook runs
-on driver detach while the device is still live, unlike sriov_release()
-which runs later from the pci_dev release path.
+I think the suggestion was to put this into patch 2, otherwise at this 
+point it is still in system memory so would still need the roundup even 
+on dgpu.
 
-Skip the restore when the PF driver leaves SR-IOV enabled; in that case
-VF memory decoding is still active and pci_iov_vf_bar_set_size() cannot
-safely change the VF BAR size.
-
-Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
----
- drivers/pci/iov.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-index 999938163ce9..3739825c84e9 100644
---- a/drivers/pci/iov.c
-+++ b/drivers/pci/iov.c
-@@ -1085,8 +1085,12 @@ void pci_iov_remove(struct pci_dev *dev)
- 		return;
- 
- 	iov->driver_max_VFs = iov->total_VFs;
--	if (iov->num_VFs)
-+	if (iov->num_VFs) {
- 		pci_warn(dev, "driver left SR-IOV enabled after remove\n");
-+		return;
-+	}
-+
-+	sriov_restore_vf_rebar_initial_sizes(dev);
- }
- 
- /**
--- 
-2.43.0
+> +
+> +		bo = xe_managed_bo_create_pin_map(xe, tile, um_size,
+> +						  XE_BO_FLAG_SYSTEM |
+> +						  XE_BO_FLAG_GGTT |
+> +						  XE_BO_FLAG_GGTT_INVALIDATE |
+> +						  XE_BO_FLAG_PINNED_NORESTORE);
+> +		if (IS_ERR(bo))
+> +			return PTR_ERR(bo);
+> +
+> +		/*
+> +		 * On pre-Xe3p platforms, GAM (not GuC) accesses the UM queue
+> +		 * ring via base_dpa, which must be a contiguous DMA address
+> +		 * range.  Verify that the allocated pages are contiguous in
+> +		 * DMA address space.
+> +		 */
+> +		if (xe_bo_sg(bo) &&
+> +		    !xe_guc_using_main_gamctrl_queues(ads_to_guc(ads)) &&
+> +		    unlikely(drm_prime_get_contiguous_size(xe_bo_sg(bo)) <
+> +			     GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX)) {
+> +			drm_err(&xe->drm,
+> +				"UM fault queue memory is not contiguous in DMA address space; GAM requires contiguous DPA\n");
+> +			return -ENOMEM;
+> +		}
+> +
+> +		ads->um_queue_bo = bo;
+> +	}
+> +
+>   	return 0;
+>   }
+>   ALLOW_ERROR_INJECTION(xe_guc_ads_init, ERRNO); /* See xe_pci_probe() */
+> @@ -893,7 +914,7 @@ static void guc_mmio_reg_state_init(struct xe_guc_ads *ads)
+>   
+>   static void guc_um_init_params(struct xe_guc_ads *ads)
+>   {
+> -	u32 um_queue_offset = guc_ads_um_queues_offset(ads);
+> +	struct xe_bo *um_bo = ads->um_queue_bo;
+>   	struct xe_guc *guc = ads_to_guc(ads);
+>   	struct xe_device *xe = ads_to_xe(ads);
+>   	u64 base_dpa;
+> @@ -903,8 +924,14 @@ static void guc_um_init_params(struct xe_guc_ads *ads)
+>   
+>   	with_dpa = !xe_guc_using_main_gamctrl_queues(guc);
+>   
+> -	base_ggtt = xe_bo_ggtt_addr(ads->bo) + um_queue_offset;
+> -	base_dpa = xe_bo_main_addr(ads->bo, PAGE_SIZE) + um_queue_offset;
+> +	if (um_bo) {
+> +		/* All USM platforms: UM queues in dedicated um_queue_bo */
+> +		base_ggtt = xe_bo_ggtt_addr(um_bo);
+> +		base_dpa = xe_bo_main_addr(um_bo, PAGE_SIZE);
+> +	} else {
+> +		/* Platform does not support USM: no UM queues, nothing to do */
+> +		return;
+> +	}
+>   
+>   	for (i = 0; i < GUC_UM_HW_QUEUE_MAX; ++i) {
+>   		/*
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads_types.h b/drivers/gpu/drm/xe/xe_guc_ads_types.h
+> index 48a8e092023f..845c1fbd93a4 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads_types.h
+> @@ -16,6 +16,11 @@ struct xe_bo;
+>   struct xe_guc_ads {
+>   	/** @bo: Xe BO for GuC ads blob */
+>   	struct xe_bo *bo;
+> +	/**
+> +	 * @um_queue_bo: Dedicated BO for the HW fault ring (UM queues).
+> +	 * NULL if the platform does not support USM.
+> +	 */
+> +	struct xe_bo *um_queue_bo;
+>   	/** @golden_lrc_size: golden LRC size */
+>   	size_t golden_lrc_size;
+>   	/** @regset_size: size of register set passed to GuC for save/restore */
 
