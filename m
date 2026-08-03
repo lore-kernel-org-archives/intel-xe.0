@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B5B7C55184
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 09:26:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89BD3C55175
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 09:32:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D09F10E545;
-	Mon,  3 Aug 2026 09:26:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFE710E55D;
+	Mon,  3 Aug 2026 09:32:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DHubBIfb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKYaRw1D";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D52A610E4CE;
- Mon,  3 Aug 2026 09:26:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C77A10E55C;
+ Mon,  3 Aug 2026 09:32:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785749170; x=1817285170;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7ApJxpghE5189vMhIV1uwj6o4/orNLiT5hOsQOpnWf0=;
- b=DHubBIfbuhL6KLP8VjnehYck54bVPOL2943mQhmYLkh/JxTgr7Y5PPGY
- 1/5YVj50navUr/yI/9ekZKd/Do+UEhdxtbbsZtYyTLsgWh+Oth7i5d+Vn
- EYtMvdQifVtUAJdKFwQJTzi0KjnEP7nqt3rg4LqMV2jD55ktSCQo0dPpd
- flW4BgwYPrLTT9NRXbe3qzDN7l/uxaKSaxy+LEnlIe087fqFhfKCVYLt1
- SmPa42VW2fYuSafUrqAHzczr6xN4iLKajC4YPjXWCdbTpETo6zlzkUb8V
- ZpsKEqQMbPSiy3RhI2yJki/6g7xJTtRIVYVB3AS4RU+1RQLW5CKDqpgdQ w==;
-X-CSE-ConnectionGUID: GufuLy9yS5iDeOMDhzctTA==
-X-CSE-MsgGUID: OQLf5b6iQ0uvHblGJCgtkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="97654358"
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="97654358"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 02:26:09 -0700
-X-CSE-ConnectionGUID: HUWD9Lj+T3iFoJQt2ZQctA==
-X-CSE-MsgGUID: zaY7xjpYRqqSqqiIdc86lw==
+ t=1785749535; x=1817285535;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=lUWpOA7QwiP0dm/R4n6v/C3FhK0IGDRGZaxrKHyjDjw=;
+ b=iKYaRw1DfTEokND38m2t+gIrddfAEAjULJkWg9n4GnhzVX+mKLZ6spth
+ 7IhYAlfaIlesD3VbFGRkCKWuywzgWg7ZIPO38Q6E3CDGqWhwRZNj1rUYu
+ 8LBPS0jFa3GD+BK4t4NXFWDlx8ORyV9w6C+mMMMprWkJ5PG9lJyJn+9rn
+ IiKeMuYv0Jud2u+HLEuMo8JeWwM1p6GKypZfMUb+QabAYLiI9VNmsTntz
+ F+Wq/TF9C5atP42sLRPMo72Y/5QUOYP3D3cJQemFA5W0nwt01y/wumAv4
+ 7zL/byjPMV8D/0kcSuId6rncwnmoU9X1BzQpISM3NPYxF2mc052q7ASdE w==;
+X-CSE-ConnectionGUID: pf3ZTkImTmqMxMH8/6UFzA==
+X-CSE-MsgGUID: vUN/LlFtRRqNpxNqdiVzXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11863"; a="103822108"
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="103822108"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 02:32:15 -0700
+X-CSE-ConnectionGUID: nGrYSPJYTH6g6lxg/l99Yw==
+X-CSE-MsgGUID: 7UgvbTV8QgOL889zgUlsqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="261223906"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 02:26:06 -0700
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, himal.prasad.ghimiray@intel.com
-Subject: [PATCH] drm/pagemap: Prevent double migration of device pages
-Date: Mon,  3 Aug 2026 14:55:53 +0530
-Message-ID: <20260803092553.4117408-1-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.25,202,1779174000"; d="scan'208";a="284556915"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.30])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 02:32:13 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/{i915, xe}/display: move transient data flush call
+ to display parent interface
+In-Reply-To: <DS4PPFE901A304F6EDF1624AEE15EE3E411E3D52@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260728170029.608289-1-jani.nikula@intel.com>
+ <DS4PPFE901A304F6EDF1624AEE15EE3E411E3D52@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Date: Mon, 03 Aug 2026 12:32:11 +0300
+Message-ID: <e16a7c76b87ce1a4f138e53638b8787eaaa7319c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,306 +72,259 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A device page migrated to system memory by a CPU fault can remain
-referenced for a short time after migration completes. During this
-window, the raw-PFN eviction path can select the same device PFN and
-migrate it again.
+On Mon, 03 Aug 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: [PATCH] drm/{i915, xe}/display: move transient data flush call =
+to display
+>> parent interface
+>>=20
+>> Move the core driver TDF call to display parent interface to avoid direc=
+t calls
+>> from display to xe driver.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-The first migration has already moved the memcg charge away from the
-source folio. Migrating that source again can create an uncharged system
-folio. Adding such a folio to the LRU can spin indefinitely in
-folio_lruvec_lock_irqsave(), resulting in a soft lockup and an RCU stall.
+Thanks, pushed to din.
 
-Track successfully migrated device PFNs in drm_pagemap_zdd for the
-lifetime of the device-mapping generation.
+BR,
+Jani.
 
-Record successful migrations in both the CPU-fault and raw-PFN eviction
-paths.
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display.c  |  4 +--
+>> .../gpu/drm/i915/display/intel_frontbuffer.c  |  3 +--
+>>  drivers/gpu/drm/i915/display/intel_parent.c   |  6 +++++
+>>  drivers/gpu/drm/i915/display/intel_parent.h   |  1 +
+>>  drivers/gpu/drm/i915/display/intel_tdf.h      | 25 -------------------
+>>  drivers/gpu/drm/xe/Makefile                   |  3 +--
+>>  drivers/gpu/drm/xe/display/xe_display.c       | 15 +++++++++++
+>>  drivers/gpu/drm/xe/display/xe_tdf.c           | 15 -----------
+>>  include/drm/intel/display_parent_interface.h  |  3 +++
+>>  9 files changed, 29 insertions(+), 46 deletions(-)  delete mode 100644
+>> drivers/gpu/drm/i915/display/intel_tdf.h
+>>  delete mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>> b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 9dfd095f325f..bf838834b89f 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -107,6 +107,7 @@
+>>  #include "intel_modeset_verify.h"
+>>  #include "intel_overlay.h"
+>>  #include "intel_panel.h"
+>> +#include "intel_parent.h"
+>>  #include "intel_pch_display.h"
+>>  #include "intel_pch_refclk.h"
+>>  #include "intel_pfit.h"
+>> @@ -119,7 +120,6 @@
+>>  #include "intel_sdvo.h"
+>>  #include "intel_snps_phy.h"
+>>  #include "intel_tc.h"
+>> -#include "intel_tdf.h"
+>>  #include "intel_tv.h"
+>>  #include "intel_vblank.h"
+>>  #include "intel_vdsc.h"
+>> @@ -7506,7 +7506,7 @@ static void intel_atomic_commit_tail(struct
+>> intel_atomic_state *state)
+>>=20
+>>  	intel_atomic_commit_fence_wait(state);
+>>=20
+>> -	intel_td_flush(display);
+>> +	intel_parent_transient_data_flush(display);
+>>=20
+>>  	intel_atomic_prepare_plane_clear_colors(state);
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+>> b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+>> index 705742e117ca..70aae6ffa3fe 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+>> @@ -66,7 +66,6 @@
+>>  #include "intel_frontbuffer.h"
+>>  #include "intel_parent.h"
+>>  #include "intel_psr.h"
+>> -#include "intel_tdf.h"
+>>=20
+>>  /**
+>>   * frontbuffer_flush - flush frontbuffer @@ -95,7 +94,7 @@ static void
+>> frontbuffer_flush(struct intel_display *display,
+>>  	trace_intel_frontbuffer_flush(display, frontbuffer_bits, origin);
+>>=20
+>>  	might_sleep();
+>> -	intel_td_flush(display);
+>> +	intel_parent_transient_data_flush(display);
+>>  	intel_drrs_flush(display, frontbuffer_bits);
+>>  	intel_psr_flush(display, frontbuffer_bits, origin);
+>>  	intel_fbc_flush(display, frontbuffer_bits, origin); diff --git
+>> a/drivers/gpu/drm/i915/display/intel_parent.c
+>> b/drivers/gpu/drm/i915/display/intel_parent.c
+>> index a5e41ea66921..ffc1f5e0518c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_parent.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
+>> @@ -451,6 +451,12 @@ bool intel_parent_has_fenced_regions(struct
+>> intel_display *display)
+>>  	return display->parent->has_fenced_regions && display->parent-
+>> >has_fenced_regions(display->drm);
+>>  }
+>>=20
+>> +void intel_parent_transient_data_flush(struct intel_display *display) {
+>> +	if (display->parent->transient_data_flush)
+>> +		display->parent->transient_data_flush(display->drm);
+>> +}
+>> +
+>>  bool intel_parent_vgpu_active(struct intel_display *display)  {
+>>  	return display->parent->vgpu_active && display->parent-
+>> >vgpu_active(display->drm);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h
+>> b/drivers/gpu/drm/i915/display/intel_parent.h
+>> index 595d4148b8eb..c817a826169c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_parent.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
+>> @@ -155,6 +155,7 @@ int intel_parent_vlv_iosf_write(struct intel_display
+>> *display, enum vlv_iosf_sb_
+>>  /* generic */
+>>  bool intel_parent_has_auxccs(struct intel_display *display);  bool
+>> intel_parent_has_fenced_regions(struct intel_display *display);
+>> +void intel_parent_transient_data_flush(struct intel_display *display);
+>>  bool intel_parent_vgpu_active(struct intel_display *display);  void
+>> intel_parent_fence_priority_display(struct intel_display *display, struct
+>> dma_fence *fence);
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_tdf.h
+>> b/drivers/gpu/drm/i915/display/intel_tdf.h
+>> deleted file mode 100644
+>> index 0862c2bfd9cd..000000000000
+>> --- a/drivers/gpu/drm/i915/display/intel_tdf.h
+>> +++ /dev/null
+>> @@ -1,25 +0,0 @@
+>> -/* SPDX-License-Identifier: MIT */
+>> -/*
+>> - * Copyright =C2=A9 2024 Intel Corporation
+>> - */
+>> -
+>> -#ifndef __INTEL_TDF_H__
+>> -#define __INTEL_TDF_H__
+>> -
+>> -/*
+>> - * TDF (Transient-Data-Flush) is needed for Xe2+ where special L3:XD ca=
+ching
+>> can
+>> - * be enabled through various PAT index modes. Idea is to use this cach=
+ing
+>> mode
+>> - * when for example rendering onto the display surface, with the promis=
+e that
+>> - * KMD will ensure transient cache entries are always flushed by the ti=
+me we
+>> do
+>> - * the display flip, since display engine is never coherent with CPU/GP=
+U caches.
+>> - */
+>> -
+>> -struct intel_display;
+>> -
+>> -#ifdef I915
+>> -static inline void intel_td_flush(struct intel_display *display) {} -#e=
+lse -void
+>> intel_td_flush(struct intel_display *display); -#endif
+>> -
+>> -#endif
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile i=
+ndex
+>> 67ada1d6c2fb..44ed055439d4 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -228,8 +228,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>>  	display/xe_hdcp_gsc.o \
+>>  	display/xe_initial_plane.o \
+>>  	display/xe_panic.o \
+>> -	display/xe_stolen.o \
+>> -	display/xe_tdf.o
+>> +	display/xe_stolen.o
+>>=20
+>>  # Display code shared with i915
+>>  xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c
+>> b/drivers/gpu/drm/xe/display/xe_display.c
+>> index 8da4c457a4a0..5f5e79505b3d 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> @@ -446,6 +446,20 @@ static bool has_auxccs(struct drm_device *drm)
+>>  	return xe->info.platform =3D=3D XE_ALDERLAKE_P;  }
+>>=20
+>> +/*
+>> + * TDF (Transient-Data-Flush) is needed for Xe2+ where special L3:XD
+>> +caching can
+>> + * be enabled through various PAT index modes. Idea is to use this
+>> +caching mode
+>> + * when for example rendering onto the display surface, with the
+>> +promise that
+>> + * KMD will ensure transient cache entries are always flushed by the
+>> +time we do
+>> + * the display flip, since display engine is never coherent with CPU/GP=
+U caches.
+>> + */
+>> +static void transient_data_flush(struct drm_device *drm) {
+>> +	struct xe_device *xe =3D to_xe_device(drm);
+>> +
+>> +	xe_device_td_flush(xe);
+>> +}
+>> +
+>>  static const struct intel_display_parent_interface parent =3D {
+>>  	.bo =3D &xe_display_bo_interface,
+>>  	.dsb =3D &xe_display_dsb_interface,
+>> @@ -459,6 +473,7 @@ static const struct intel_display_parent_interface p=
+arent
+>> =3D {
+>>  	.rpm =3D &xe_display_rpm_interface,
+>>  	.stolen =3D &xe_display_stolen_interface,
+>>  	.has_auxccs =3D has_auxccs,
+>> +	.transient_data_flush =3D transient_data_flush,
+>>  };
+>>=20
+>>  /**
+>> diff --git a/drivers/gpu/drm/xe/display/xe_tdf.c
+>> b/drivers/gpu/drm/xe/display/xe_tdf.c
+>> deleted file mode 100644
+>> index 78bda4c47874..000000000000
+>> --- a/drivers/gpu/drm/xe/display/xe_tdf.c
+>> +++ /dev/null
+>> @@ -1,15 +0,0 @@
+>> -// SPDX-License-Identifier: MIT
+>> -/*
+>> - * Copyright =C2=A9 2024 Intel Corporation
+>> - */
+>> -
+>> -#include "intel_display_core.h"
+>> -#include "intel_tdf.h"
+>> -#include "xe_device.h"
+>> -
+>> -void intel_td_flush(struct intel_display *display) -{
+>> -	struct xe_device *xe =3D to_xe_device(display->drm);
+>> -
+>> -	xe_device_td_flush(xe);
+>> -}
+>> diff --git a/include/drm/intel/display_parent_interface.h
+>> b/include/drm/intel/display_parent_interface.h
+>> index de395df9ca30..8b25107615ea 100644
+>> --- a/include/drm/intel/display_parent_interface.h
+>> +++ b/include/drm/intel/display_parent_interface.h
+>> @@ -302,6 +302,9 @@ struct intel_display_parent_interface {
+>>  		/** @has_fenced_regions: Support legacy fencing? Optional. */
+>>  		bool (*has_fenced_regions)(struct drm_device *drm);
+>>=20
+>> +		/** @transient_data_flush: Transient data flush. Optional. */
+>> +		void (*transient_data_flush)(struct drm_device *drm);
+>> +
+>>  		/** @vgpu_active: Is vGPU active? Optional. */
+>>  		bool (*vgpu_active)(struct drm_device *drm);
+>>  	};
+>> --
+>> 2.47.3
+>
 
-Make raw-PFN eviction skip retired PFNs, preventing an already migrated
-device page from being handed to the migration path a second time.
-
-Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Assisted-by: Claude:claude-opus-4-8
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c | 188 +++++++++++++++++++++++++++++++++-
- 1 file changed, 186 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 7a056592ac66..f7040fc0dea6 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -7,6 +7,7 @@
- #include <linux/dma-mapping.h>
- #include <linux/migrate.h>
- #include <linux/pagemap.h>
-+#include <linux/xarray.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_pagemap.h>
- #include <drm/drm_pagemap_util.h>
-@@ -66,6 +67,8 @@
-  * @refcount: Reference count for the zdd
-  * @devmem_allocation: device memory allocation
-  * @dpagemap: Refcounted pointer to the underlying struct drm_pagemap.
-+ * @retired: Device PFNs already migrated to RAM. Entries remain until this
-+ * mapping generation is destroyed.
-  *
-  * This structure serves as a generic wrapper installed in
-  * page->zone_device_data. It provides infrastructure for looking up a device
-@@ -78,6 +81,7 @@ struct drm_pagemap_zdd {
- 	struct kref refcount;
- 	struct drm_pagemap_devmem *devmem_allocation;
- 	struct drm_pagemap *dpagemap;
-+	struct xarray retired;
- };
- 
- /**
-@@ -101,6 +105,7 @@ drm_pagemap_zdd_alloc(struct drm_pagemap *dpagemap)
- 	kref_init(&zdd->refcount);
- 	zdd->devmem_allocation = NULL;
- 	zdd->dpagemap = drm_pagemap_get(dpagemap);
-+	xa_init(&zdd->retired);
- 
- 	return zdd;
- }
-@@ -137,6 +142,7 @@ static void drm_pagemap_zdd_destroy(struct kref *ref)
- 		if (devmem->ops->devmem_release)
- 			devmem->ops->devmem_release(devmem);
- 	}
-+	xa_destroy(&zdd->retired);
- 	kfree(zdd);
- 	drm_pagemap_put(dpagemap);
- }
-@@ -1102,12 +1108,169 @@ void drm_pagemap_put(struct drm_pagemap *dpagemap)
- }
- EXPORT_SYMBOL(drm_pagemap_put);
- 
-+/**
-+ * drm_pagemap_is_devmem_page() - Is @page a drm_pagemap device page
-+ * @page: The page to test
-+ *
-+ * Return: true for device-private or device-coherent pages, which carry a
-+ * struct drm_pagemap_zdd in their zone_device_data.
-+ */
-+static bool drm_pagemap_is_devmem_page(const struct page *page)
-+{
-+	return is_device_private_page(page) || is_device_coherent_page(page);
-+}
-+
-+static void
-+drm_pagemap_release_retired_reservations(unsigned long *src_pfns,
-+					 unsigned long npages)
-+{
-+	unsigned long i = 0;
-+
-+	while (i < npages) {
-+		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-+		struct drm_pagemap_zdd *zdd;
-+		struct folio *folio;
-+		unsigned long pfn, nr, j;
-+
-+		if (!page || !(src_pfns[i] & MIGRATE_PFN_MIGRATE) ||
-+		    !drm_pagemap_is_devmem_page(page)) {
-+			i++;
-+			continue;
-+		}
-+
-+		folio = page_folio(page);
-+		zdd = drm_pagemap_page_zone_device_data(page);
-+		pfn = folio_pfn(folio);
-+		nr = folio_nr_pages(folio);
-+
-+		for (j = 0; j < nr; j++)
-+			xa_release(&zdd->retired, pfn + j);
-+
-+		i += nr;
-+	}
-+}
-+
-+/**
-+ * drm_pagemap_reserve_retired_pages() - Pre-reserve retirement slots
-+ * @src_pfns: migrate_vma source array after migrate_vma_setup()
-+ * @npages: number of entries in @src_pfns
-+ *
-+ * Reserve every base PFN because migration may split a large source
-+ * folio. Recording the result must not allocate.
-+ */
-+static int drm_pagemap_reserve_retired_pages(unsigned long *src_pfns,
-+					     unsigned long npages)
-+{
-+	unsigned long i = 0;
-+	int err;
-+
-+	while (i < npages) {
-+		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-+		struct drm_pagemap_zdd *zdd;
-+		unsigned long pfn, nr, k;
-+
-+		if (!page || !(src_pfns[i] & MIGRATE_PFN_MIGRATE) ||
-+		    !drm_pagemap_is_devmem_page(page)) {
-+			i++;
-+			continue;
-+		}
-+
-+		zdd = drm_pagemap_page_zone_device_data(page);
-+		pfn = folio_pfn(page_folio(page));
-+		nr = folio_nr_pages(page_folio(page));
-+
-+		for (k = 0; k < nr; k++) {
-+			err = xa_reserve(&zdd->retired, pfn + k, GFP_KERNEL);
-+			if (err) {
-+				drm_pagemap_release_retired_reservations(src_pfns,
-+									 npages);
-+				return err;
-+			}
-+		}
-+
-+		i += nr;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * drm_pagemap_retire_migrated_pages() - Retire CPU-migrated device PFNs
-+ * @src_pfns: migrate_vma source array, valid after migrate_vma_pages()
-+ * @npages: number of entries in @src_pfns
-+ *
-+ * Record successful migrations before finalize unlocks the sources.
-+ * Release reservations for pages that were not migrated.
-+ */
-+static void drm_pagemap_retire_migrated_pages(unsigned long *src_pfns,
-+					      unsigned long npages)
-+{
-+	unsigned long i = 0;
-+
-+	while (i < npages) {
-+		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-+		struct drm_pagemap_zdd *zdd;
-+		unsigned long pfn, nr, k;
-+		bool migrated;
-+
-+		if (!page || !drm_pagemap_is_devmem_page(page)) {
-+			i++;
-+			continue;
-+		}
-+
-+		zdd = drm_pagemap_page_zone_device_data(page);
-+		pfn = folio_pfn(page_folio(page));
-+		nr = folio_nr_pages(page_folio(page));
-+		migrated = src_pfns[i] & MIGRATE_PFN_MIGRATE;
-+
-+		/* Keep later folio splits covered. */
-+		for (k = 0; k < nr; k++) {
-+			if (migrated)
-+				WARN_ON_ONCE(xa_err(xa_store(&zdd->retired,
-+							     pfn + k,
-+							     xa_mk_value(1),
-+							     GFP_NOWAIT)));
-+			else
-+				xa_release(&zdd->retired, pfn + k);
-+		}
-+
-+		i += nr;
-+	}
-+}
-+
-+/**
-+ * drm_pagemap_skip_retired_pages() - Drop retired PFNs from a raw-PFN eviction
-+ * @src_pfns: source array after migrate_device_pfns() (MIGRATE_PFN encoded)
-+ * @npages: number of entries in @src_pfns
-+ *
-+ * Skip source PFNs already migrated to RAM by either migration path.
-+ */
-+static void drm_pagemap_skip_retired_pages(unsigned long *src_pfns,
-+					   unsigned long npages)
-+{
-+	unsigned long i;
-+
-+	for (i = 0; i < npages; i++) {
-+		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-+		struct drm_pagemap_zdd *zdd;
-+
-+		if (!page || !(src_pfns[i] & MIGRATE_PFN_MIGRATE) ||
-+		    !drm_pagemap_is_devmem_page(page))
-+			continue;
-+
-+		zdd = drm_pagemap_page_zone_device_data(page);
-+		if (xa_load(&zdd->retired, folio_pfn(page_folio(page))))
-+			src_pfns[i] &= ~MIGRATE_PFN_MIGRATE;
-+	}
-+}
-+
- /**
-  * drm_pagemap_evict_to_ram() - Evict GPU SVM range to RAM
-  * @devmem_allocation: Pointer to the device memory allocation
-  *
-- * Similar to __drm_pagemap_migrate_to_ram but does not require mmap lock and
-- * migration done via migrate_device_* functions.
-+ * Similar to __drm_pagemap_migrate_to_ram(), but uses the
-+ * migrate_device_* helpers and does not require the mmap lock. Device
-+ * PFNs already migrated by a CPU fault are skipped.
-  *
-  * Return: 0 on success, negative error code on failure.
-  */
-@@ -1149,6 +1312,17 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
- 	if (err)
- 		goto err_free;
- 
-+	drm_pagemap_skip_retired_pages(src, npages);
-+
-+	/*
-+	 * Reserve retirement entries before migration so recording successful
-+	 * PFNs cannot fail. Otherwise, a retry could select and migrate the same
-+	 * PFN again.
-+	 */
-+	err = drm_pagemap_reserve_retired_pages(src, npages);
-+	if (err)
-+		goto err_finalize;
-+
- 	err = drm_pagemap_migrate_populate_ram_pfn(NULL, NULL, npages, &mpages,
- 						   src, dst, 0);
- 	if (err || !mpages)
-@@ -1179,6 +1353,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
- 	if (err)
- 		drm_pagemap_migration_unlock_put_pages(npages, dst);
- 	migrate_device_pages(src, dst, npages);
-+	drm_pagemap_retire_migrated_pages(src, npages);
- 	migrate_device_finalize(src, dst, npages);
- 	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
- 					DMA_FROM_DEVICE, &state);
-@@ -1276,6 +1451,14 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
- 	if (!migrate.cpages)
- 		goto err_free;
- 
-+	/*
-+	 * Reserve retirement entries before migration so recording successful
-+	 * PFNs cannot fail. On failure, finalize can still restore the sources.
-+	 */
-+	err = drm_pagemap_reserve_retired_pages(migrate.src, npages);
-+	if (err)
-+		goto err_finalize;
-+
- 	ops = zdd->devmem_allocation->ops;
- 	dev = zdd->devmem_allocation->dev;
- 
-@@ -1309,6 +1492,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
- 	if (err)
- 		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
- 	migrate_vma_pages(&migrate);
-+	drm_pagemap_retire_migrated_pages(migrate.src, npages);
- 	migrate_vma_finalize(&migrate);
- 	if (dev)
- 		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr, migrate.dst,
--- 
-2.43.0
-
+--=20
+Jani Nikula, Intel
