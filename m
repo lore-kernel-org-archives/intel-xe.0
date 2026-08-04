@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2460C55822
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 04:35:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF043C55184
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 04:40:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6329D10E640;
-	Tue,  4 Aug 2026 04:35:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DCCB10E0ED;
+	Tue,  4 Aug 2026 04:40:59 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A214710E6CC;
- Tue,  4 Aug 2026 04:35:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB7010E0ED;
+ Tue,  4 Aug 2026 04:40:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Migrate_on_fault_for_device_pa?=
- =?utf-8?q?ges_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_DONOT-Review=3A_Pin_vram_?=
+ =?utf-8?q?limit?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: mpenttil@redhat.com
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Aug 2026 04:35:53 -0000
-Message-ID: <178581815365.15902.540429025012339040@61270ab9df2a>
+Date: Tue, 04 Aug 2026 04:40:58 -0000
+Message-ID: <178581845858.15902.11850936131688777253@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260804042631.2175585-1-mpenttil@redhat.com>
-In-Reply-To: <20260804042631.2175585-1-mpenttil@redhat.com>
+References: <20260804043713.1259279-2-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260804043713.1259279-2-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,48 +42,129 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Migrate on fault for device pages (rev5)
-URL   : https://patchwork.freedesktop.org/series/165953/
-State : failure
+Series: DONOT-Review: Pin vram limit
+URL   : https://patchwork.freedesktop.org/series/171544/
+State : warning
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../mm/filemap.c:45:
-../include/linux/migrate.h: In function ‘hmm_range_fault_mm’:
-../include/linux/migrate.h:230:49: error: invalid use of undefined type ‘struct mmu_interval_notifier’
-  230 |         return range->notifier ? range->notifier->mm : range->migrate->vma->vm_mm;
-      |                                                 ^~
-make[4]: *** [../scripts/Makefile.build:289: mm/filemap.o] Error 1
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:549: mm] Error 2
-make[3]: *** Waiting for unfinished jobs....
-In file included from ../fs/iomap/buffered-io.c:10:
-../include/linux/migrate.h: In function ‘hmm_range_fault_mm’:
-../include/linux/migrate.h:230:49: error: invalid use of undefined type ‘struct mmu_interval_notifier’
-  230 |         return range->notifier ? range->notifier->mm : range->migrate->vma->vm_mm;
-      |                                                 ^~
-make[5]: *** [../scripts/Makefile.build:289: fs/iomap/buffered-io.o] Error 1
-make[5]: *** Waiting for unfinished jobs....
-make[4]: *** [../scripts/Makefile.build:549: fs/iomap] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:549: fs] Error 2
-make[2]: *** [/kernel/Makefile:2187: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 37d4b38b758e4446ec7289ea0e06c753bd87dc50
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Tue Aug 4 10:07:14 2026 +0530
 
-[04:35:19] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[04:35:24] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+    DONOT-Review: Pin vram limit
+    
+    drm/xe/dma-buf: propagate pin error
+    
+    Return the error from xe_bo_pin_external() instead of asserting
+    success, so callers observe failures such as -ENOSPC from the pin limit.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe: add pin_vram_percent modparam
+    
+    Add a module parameter that caps the percentage of each VRAM region
+    which may be pinned via dma-buf. A value of 0 disables the limit.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe/vram: add pinned vram counters
+    
+    Add per-region counters tracking dma-buf and total pinned VRAM bytes
+    along with the enforced dma-buf pin limit.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe/vram: init dma-buf pin limit
+    
+    Derive the per-region dma-buf pin limit from pin_vram_percent during
+    VRAM manager initialization.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe/bo: account dma-buf pinned vram
+    
+    Track dma-buf pinned VRAM in the per-region counters on external
+    pin and unpin.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe/bo: account kernel pinned vram
+    
+    Track kernel pinned VRAM in the per-region total counter on pin
+    and unpin.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe/bo: enforce dma-buf pin limit
+    
+    Reject external VRAM pins that would exceed the per-region dma-buf
+    limit with -ENOSPC.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe/vram: show pinned vram in debug
+    
+    Expose the pinned VRAM counters and the dma-buf limit in the VRAM
+    manager debug output.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    
+    drm/xe/tests: add VRAM pin limit KUnit tests
+    
+    Test under-limit success, over-limit rejection, counter recovery after
+    unpin, and the limit=0 unlimited case in xe_bo tests. Add an end-to-end
+    dma-buf pin limit test in xe_dma_buf tests.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch c2d24e2eda55d74743f0d99a98805bf0b596beef drm-intel
+37d4b38b758e DONOT-Review: Pin vram limit
+-:18: WARNING:BAD_SIGN_OFF: Duplicate signature
+#18: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:25: WARNING:BAD_SIGN_OFF: Duplicate signature
+#25: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:32: WARNING:BAD_SIGN_OFF: Duplicate signature
+#32: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:39: WARNING:BAD_SIGN_OFF: Duplicate signature
+#39: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:46: WARNING:BAD_SIGN_OFF: Duplicate signature
+#46: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:53: WARNING:BAD_SIGN_OFF: Duplicate signature
+#53: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:60: WARNING:BAD_SIGN_OFF: Duplicate signature
+#60: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:68: WARNING:BAD_SIGN_OFF: Duplicate signature
+#68: 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+-:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#90: FILE: drivers/gpu/drm/xe/tests/xe_bo.c:835:
++static struct xe_ttm_vram_mgr *pin_limit_get_mgr(struct xe_device *xe,
++						  struct kunit *test)
+
+total: 0 errors, 8 warnings, 1 checks, 512 lines checked
 
 
