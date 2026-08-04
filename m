@@ -4,51 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA02BC55184
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 15:03:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D9CAC55822
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 15:19:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9198910EACC;
-	Tue,  4 Aug 2026 15:03:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15EE110EAE5;
+	Tue,  4 Aug 2026 15:19:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GnnHYydf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KqeJ9+2u";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 283A710EACD
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Aug 2026 15:03:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF1910EAE5
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Aug 2026 15:19:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785855794; x=1817391794;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yH+oSiAthjkR+vcrhOUeqsaGN41Wv4FPVumm+8XVDpY=;
- b=GnnHYydfMk1drRWpO1/HYCDSfTfaf0hEQNMnRmikKrx8gkf5mykqkWga
- ++3TOjQSlzEw4VuMaNBwY8SMTPiwOFdQAHBDRlKA8gyunb9J9m5VpuEkK
- xI/iLvBKZ+LGpKYb0yGxBJDjvK0VnXF0dDviyO3X9XL1of4e9VIoNKKwD
- 9h9e3AOI90iGdZMwuaPmOBifV5r+wiC0efK3IN+nktgk/rBmnoZz537R1
- 1gwo+ANRPs9lDUUDQ/rzuwlGUi8NYe9FYDks9QCyyKcLSmsv9zPnS/nL4
- c+1DpiE6+tB1hUGR6MRRrf6kCeywZv3V6VboeNzvois7s0VA3U6roTlu3 g==;
-X-CSE-ConnectionGUID: kCRzobjhSxGA8DDHawCQLA==
-X-CSE-MsgGUID: NVZfZUH0Sr6Z19Xw7z+Ouw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="97569072"
-X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="97569072"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2026 08:03:13 -0700
-X-CSE-ConnectionGUID: q9UhRu6QSi+pI2xRlKTy3A==
-X-CSE-MsgGUID: 1c0crd/TTkKNG6xz/FdhgQ==
+ t=1785856785; x=1817392785;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=f4PF/mI+O4avenwNOJROWTycihnEJM+eYbPx2A531h0=;
+ b=KqeJ9+2uw+CR1rxpRI4YdvbjNotGNwULVgCaKNvNa968Okno+8jjSvbg
+ v9vYNVIFy1JlpAU+Oc5Uy1KSbt9yjV3Q5DBAIklQFUcmYnnQgfR0ivssd
+ NyE4qpVSNDdQhtJ1sDsTeKtzGM0/ZsbSpEL4TiO44Ng6lC38y6uUsLKb6
+ CTpT7eYukWZrG8mHUd04S13RxTphUpgxNe1H0hkbdsmfHRFfl3emdp6if
+ Rtu2XrPhiHTatR5aqy7wL5TxcFffpxkI27b4ZPkV1tl4GnEbGFs3CY/7m
+ nrQ+pT/ospAooIjnLLIcfEeothjVvOUjuMxmIIOG0iN63k7mtZHMOuFj+ Q==;
+X-CSE-ConnectionGUID: OEK/r+bCRrOPmkdlEPjNhQ==
+X-CSE-MsgGUID: OQPCR4MsQKeZMMz15GGR8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="90221171"
+X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="90221171"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 08:19:24 -0700
+X-CSE-ConnectionGUID: /8Vzv518QZqQK4ACAN9wgg==
+X-CSE-MsgGUID: dp5mOmq4QciAcDv6A6V7sw==
 X-ExtLoop1: 1
-Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa003.fm.intel.com with ESMTP; 04 Aug 2026 08:03:11 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v3] [CI-ONLY] DONOT-Review: Pin vram limit
-Date: Tue,  4 Aug 2026 20:34:37 +0530
-Message-ID: <20260804150444.1304980-2-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="260275673"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 08:19:24 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Tue, 4 Aug 2026 08:19:23 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Tue, 4 Aug 2026 08:19:23 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.25) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Tue, 4 Aug 2026 08:19:23 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nPoAVb7tuhEqj8CHTJFQmcrj7Op3pPcvQEedQWhGaXEjGt2pPzom19y5RZYANXaLTjPTIpOxZE4AKu0JN4p2BxMIQrSi7RHe3XCZBHCN4ZdZsfEoxpjfNhYqjLHwOi8ImYDQSox32H0S9uIAIu2ThnLdXXHDT/wu3kSdLkpMZ20tp0TJb20apWryVnSmqywWEiLFcbwlmhEsV73wtucJPtfYEw1IJIJl9QPwYzlyfCwlc9vJtHDsTgQLZcIgV3Yp/FYud0L+82NI8vqLnihNgqy+fIfYf0/yVSGh7E9jjqwIwjEigOIU9vQIT46GlnJzeiVmMsafjadUsCjXO3LrGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8eiFF6IrzDtAoUVQvuErLJ4GrcaEieucCiIHV5if8+o=;
+ b=T8knZO9qRRNnzj4AYwciyP1N5RTn32QvGu7zVup1NqL4ugn+OQGYK6BDQrCs8VRAoz1TLqKqucSNZ9t6wMhXguCx/u4VdygycXX0aE+XsYzNyPLWYZdoNylkLHfaEahqjFV7lnyGj62vTe/Jn5afsUPf8XwM1oPhK0gPlav5OeJoMSyEMcGQ9qUzw16mlFY49O+b2c5jOhjw72p8nurlJuxnB4+uSaAwTXo2enNo5wWjmeogutkvGpC6MdLPAqZ4Vf0TqUoeJv9c4MOPtclTCQ5FzrR/Q9rO898DzOj9eQUfu66DOiTP+4rODOr7i41hoBgiG+E4qVzZTE2OjL4O+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by SJ5PPFBD6B1667A.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::84f) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.18; Tue, 4 Aug
+ 2026 15:19:19 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0292.015; Tue, 4 Aug 2026
+ 15:19:19 +0000
+Message-ID: <e84496d6-d47f-4319-b2ed-c0a862d1b80c@intel.com>
+Date: Tue, 4 Aug 2026 17:19:16 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 03/23] drm/xe/log: Introduce structured
+ component/location identifiers
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Aravind Iddamsetty
+ <aravind.iddamsetty@intel.com>, Raag Jadav <raag.jadav@intel.com>, "Riana
+ Tauro" <riana.tauro@intel.com>
+References: <20260730152121.576-1-michal.wajdeczko@intel.com>
+ <20260730152121.576-4-michal.wajdeczko@intel.com>
+ <e58bf20d-6583-44ad-83b1-69950b766c45@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <e58bf20d-6583-44ad-83b1-69950b766c45@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VIUP296CA0088.AUTP296.PROD.OUTLOOK.COM
+ (2603:10a6:800:35c::12) To LV2PR11MB6024.namprd11.prod.outlook.com
+ (2603:10b6:408:17a::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SJ5PPFBD6B1667A:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbac4a9f-264d-4781-e244-08def23bc116
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|376014|1800799024|6133799003|56012099006|11063799006|10067099003|4143699003|3023799007|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: kNGLeeNJYDKQxs2m0VPIchq2lCBtzbY2spt80Q3EPwKTOeQF510WMHJ95wv1bdbLHKG7WenJtTsB7tRiMoU3vpG39sWn8r6/b97oIJy6JjmUTRrSrCe38ePsGg7EGrL0i6d9L3fiDZExXhsg/N0m+lOM0rRHkYTdz9DcsJHZGsLBbiJqnqOFrtXQqYYOeKq8MMVNJMv3jxnMmZe0f099ocYkGkI0ViwkcOPCPmwGeko2yV/4iqip2tICdOd7a8CNIZOLu9Vf/ncgth6a00vy86JUzevQT7VaE2ImzBfQEJYgUKGtF0mQrd6V9XdCIl/1Z03A5NyCdKYmuU6wx//8WbSrz/1dmsxwx6fOou0Ui6lM9UXiTWVsHaP6TGcPTb9fj3BWhBCbd9LSU8mX4wMxcEU73PV6GVILB7tUw8jyPYnMdryBNm7GmE1QSl8RyzaEy9ScUe60uJShqMkEGHq6FqZoqypYu7Sci0c0OeCG/OvuGVzAOr223fbfeRUXYVIAIfGGFj792APyI4ey1VLo9e1chuQPWXmHSQmHf0cCnfFo8CwC6GHnj+C0kVpVELQXaRAH6wnzQHUJj5A/pGgecmlRUWXg6O3uvVJGjb0TLh8MvWcwGNHeufriKBlMuBXS5S6aj5ypZyYtVY7sNHg+w9NWuJGgpRYoqO9OUCvaxvw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(6133799003)(56012099006)(11063799006)(10067099003)(4143699003)(3023799007)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SW85YW5EamF5OVBYL1dpVmN3VDAwNTdxN241d0pnLzViOTFaOXdKbURiR1g2?=
+ =?utf-8?B?b2ZNMGZFemN3OVZkc1R4QmVUOG1NRy9md0tUL0hxVmdGVFlUYUkvQk13NE9H?=
+ =?utf-8?B?YVdCdWNiNWhmcE5NZHRLZzErNk84ZlNJeDFXdzJhVjl4dGk3L3pIRktZRUwr?=
+ =?utf-8?B?V1hGSGZPdmxpaFE0TDNZWXhibW9McU9YTC9HVHM3UWJyMTY4WlR2d2xTaWgx?=
+ =?utf-8?B?UjIwMjVpdC92WjQ3SVE3czdZYXZVT1Qza2RZK1RKdHkrdDFYSmVyMU9Lb3Fp?=
+ =?utf-8?B?U3VKd1hGUng1NlJqeDhYcFVOS3RFN3pBQlBORGI0ZGJoV08yZWRhK3M3UHEr?=
+ =?utf-8?B?dkFWcWp4TUdVWGkxTzJ2Y1hpM1VmcWxoRFFDOThFbVZMKzR3UjZieTlLLzY2?=
+ =?utf-8?B?WTlMcTVpODFjU2dFQzMvek9xdHhVKzZUK2ZQT3dPdWt0ZldWMnVMRTlHK1k4?=
+ =?utf-8?B?a1pMbmthY3pnWHc0Vy81djlWZ3BOb21zSVQzZG9IMWNwcU5lWE1jZHNEVDFQ?=
+ =?utf-8?B?WW16dmdjSy9BWDVCS3dWaWxQaDdMNzhuRnEzL2R1S0VlS3Ruc3dDR1JtQnRp?=
+ =?utf-8?B?MS9HcjdET2FwQkw3ZTNYN2xNOWdFUU9KWDlQR2dLcGVqNUg2TG5EemIxOTBT?=
+ =?utf-8?B?Z0EwaHpGYllYNFlMUXk0UndoWTR4UjB2alc4MzlIVmlHM3ZMTnpuZWRaSXNn?=
+ =?utf-8?B?QmZXZ0QxWHFrRVFyOGRmNFdrNFRqT0JpeG1pT0NpNlA4TmRGMU9Ma3h5cDR5?=
+ =?utf-8?B?YUhRK1ZJVmZoOXF0aWxIVS81Yk9RUmRqTGd6VUQ3WEZrVjRwN0lDMytRUjNO?=
+ =?utf-8?B?MTB2NVJqd25JSE54ZXo4UXdrTVpxZXdmcTFhWlBWN1pydCtTRFVjRmdjeXVE?=
+ =?utf-8?B?T0dkcWxHaFZnVzdxNWRGTHRWUjkreW5mOE1QNUx3SkR6SUloUHBXL1U2bmZV?=
+ =?utf-8?B?MlZ6ODBVQnNpZUV3cFl4eHpwdjNIRnJOWkRYdnFQNjRQMFpxVlg5VmQzSXh2?=
+ =?utf-8?B?SUtBKzlTWW9HNjlROTlydmQ3VEU2T2V6REh2MUw0MXptUVVyQW1uNGNUTDJQ?=
+ =?utf-8?B?MDZOc3NFL1NnYUxjTnBwWDJaeWxBckpCckV2S0Mycm9TdUVxT0dJQnRGdWR5?=
+ =?utf-8?B?Z1R1eTloWUZDQnl5d3N6YW1RNUZLVFhBMFlKQjhFQVhhY0VnWDNlZXpjY1J5?=
+ =?utf-8?B?QjN6M0xzbEJGSlNwU29RdXBUb0R0K0VkY1NWRzJvZTN3SEptdy9meWpmL2wy?=
+ =?utf-8?B?eFFXcDM0NW9GcUg2cjY3K1J3OVZUNktEMVhaSVkrSHRUUUc1ZlV3OFpmZTZ6?=
+ =?utf-8?B?elF1NzBlUWFZMkNhZ0RJNEs0NVN5RWpmSC8zN0hSMzQyZHJKZ0RGRWVJR2tY?=
+ =?utf-8?B?T0xaYXZ6WGU5TXhpdUZaVWdsRGd4Myt0QVBVV1A1cGdiY1FCVG5JR0M3aXF6?=
+ =?utf-8?B?dGpBN0lzL1Z2K0ZDTnRkRHhPUGpiMVZ5cGJGNjJXblUyR3ZERkpIZ0hlYm9t?=
+ =?utf-8?B?RG9ud1VpOVRJYzE0Z0lFN3ZsRHdsU1FwZk82a2RJNlYxSHUzTjFkditaQ1VT?=
+ =?utf-8?B?YzN2cHA2MlNEU1RJRTVIYnA1MUFSM0FnZ2hFN3EydytaUWQ1TkxxMDRZWmxQ?=
+ =?utf-8?B?OGFJTjhWMUVuQ1VjaEw3V0dTQmpsSVlKS2kyVEZYelhrVTlFZVRJeE1sb2pG?=
+ =?utf-8?B?Z05FQ3F3K2M3ZVdCMnBYS2pkUjcya01tSWhVbEhFZkRWT2VDTExhVTYra2cx?=
+ =?utf-8?B?VHhka2ZqUURpaUF5RG93dXR5cU9ja1hub0hMeElLaXhZTzhDcVBSYWhoakVL?=
+ =?utf-8?B?ZlVjczVBSWJaVy9wNEFXUTJlRVFzSGpnNWNsajVVeHVoNU5MbFJDNnlXK2RI?=
+ =?utf-8?B?RG1ibHdFbU82dW1XU1hnT3lHdWlJQUY3ampEVlgvM2pONXBidUtmTDVrcUR0?=
+ =?utf-8?B?YmhCSi9hVVo1LzVtdmsxQ0dJKzhhei8rWFVnSkRwOWNsOU16M1FVYlhDTzgr?=
+ =?utf-8?B?QzF6NGMyUUNmbHFUVU16OVFLSzNUaGRiWXcraE9DeHNYYVY2YmliZmNMZ1Zz?=
+ =?utf-8?B?WThuZ0JHYkxPWk45YlRvaHVvQlE2eUVXN0hEaDdESXFxdWZWOXd3QWxZc2Vz?=
+ =?utf-8?B?YkVCMVVBc3lrQ0tjZ0REdU9lQkpseFh3WnpySEs5dm1PWDlWcnB5RjJOamdZ?=
+ =?utf-8?B?T2pCaitmNWlYMk5UOTI4cEdaR1dNb0VsNWtwOHFCZ3VoSUFsY1NHRzNsZlow?=
+ =?utf-8?B?OTdpa0tOeVNHdTRBQkgzYlZ2K2VHVG8xZ2R6SDJmSmkxQitMYWkzcFNqd1l2?=
+ =?utf-8?B?dUNUSHJyMCtiS1l6ajlCZUhFekN1Nm85Ly94d3hWZ0crbkdQS3UwQ3JoQ1BI?=
+ =?utf-8?Q?3j3pzMPDCHzqTNZo=3D?=
+X-Exchange-RoutingPolicyChecked: oalbNA52HAOnxOx5K1/xWtT9FAGmusUZMr+CoQGnFOAutL3hyT/dRnfYVfeg64aspjmJKzInqXOCmMPf/Lt6DmGnlMO1RRIbE7AHh3k5bOFqSqTkLxe6izGMXA0vND+apKUb3shZn9hIZCEBzJztYcaueB88LgrloHE/fmQcmi37BJqw3uvslHjr148BgVkwDrV+Ia2Y/WsGx/XjFpuctDuuLLMiA4sC3jQP2WoyFHtSqFXYrGcDBXNKRzNgeRecOeMbeKms6nwM19uBjQKiGRg4M8DHBjJ0nVrFiwGpnhjsLDkeSqaSi0ihY7+HtXlmdFBSseZR+neAgzW2CV77dg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbac4a9f-264d-4781-e244-08def23bc116
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB6024.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2026 15:19:19.5265 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6Lq1rRmxkWHyd/KEjdlXTSlLaM98dhU76PPIMVgysdifFAmfGZe7r1AASrjeW55ClMud6p8NXG1ROP8hDgKIGfw7sEzXYAI8iDMrvhUjtzI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFBD6B1667A
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,712 +174,262 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm/xe/dma-buf: propagate pin error
 
-Return the error from xe_bo_pin_external() instead of asserting
-success, so callers observe failures such as -ENOSPC from the pin limit.
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+On 8/3/2026 10:00 AM, Mallesh, Koujalagi wrote:
+> 
+> On 30-07-2026 08:50 pm, Michal Wajdeczko wrote:
+>> Introduce structured identifiers for each component type that
+>> could emit a SIGID log entry and for their locations. We plan
+>> to store those IDs in the CPER records for better filtering.
+>> Define also structured identifiers for the supported locations.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> ---
+>> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+>> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+>> Cc: Raag Jadav <raag.jadav@intel.com>
+>> Cc: Riana Tauro <riana.tauro@intel.com>
+>> ---
+>> v2: fix typo, define reserved ids (Michal)
+>> v3: fix kernel-doc to match code (Sashiko)
+>> ---
+>>   drivers/gpu/drm/xe/abi/xe_log_abi.h | 186 ++++++++++++++++++++++++++++
+>>   1 file changed, 186 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/xe/abi/xe_log_abi.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+>> new file mode 100644
+>> index 000000000000..4861a5b58c10
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+>> @@ -0,0 +1,186 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2026 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _ABI_XE_LOG_ABI_H_
+>> +#define _ABI_XE_LOG_ABI_H_
+>> +
+>> +#include <linux/bits.h>
+>> +#include <linux/bitfield.h>
+>> +
+>> +#include "abi/xe_sigid_abi.h"
+>> +
+>> +/**
+>> + * enum xe_log_component_bits - bits for components structure definitions
+>> + *
+>> + * Component identifiers are structured based on::
+>> + *
+>> + *     COMPONENT = CLASS(8b).TYPE(8b)
+>> + *
+> 
+> Are 8b sufficient for CLASS and TYPE?  In future we need to increase that.
 
-drm/xe: add pin_vram_percent modparam
+we can make it 16b and 16b (as component parameter is already u32)
 
-Add a module parameter that caps the percentage of each VRAM region
-which may be pinned via dma-buf. A value of 0 disables the limit.
+but ...
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+are you sure that we will define anytime soon more than 255 component types per class, or have more than 255 classes?
 
-drm/xe/vram: add pinned vram counters
+> 
+>> + * and the structure looks like this::
+>> + *
+>> + *     ├── SYSTEM(0)
+>> + *     │   └── ...
+>> + *     ├── DRIVER(1)
+>> + *     │   └── ...
+>> + *     ├── FEATURE(2)
+>> + *     │   └── ...
+>> + *     ├── FIRMWARE(4)
+>> + *     │   └── ...
+>> + *     └── HARDWARE(8)
+>> + *         └── ...
+>> + *
+>> + * Examples::
+>> + *
+>> + *     COMPONENT(0.type) = SYSTEM.type = system component
+>> + *     COMPONENT(1.type) = DRIVER.type = driver core component
+>> + *     COMPONENT(3.type) = DRIVER_FEATURE.type = driver feature
+>> + *     COMPONENT(5.type) = DRIVER_FIRMWARE.type = firmware driver component
+>> + *     COMPONENT(9.type) = DRIVER_HARDWARE.type = hardware driver component
+>> + *
+>> + */
+>> +enum xe_log_component_bits {
+>> +    /* private: */
+>> +    XE_LOG_COMPONENT_CLASS_MASK = GENMASK_U16(7, 0),
+>> +    XE_LOG_COMPONENT_TYPE_MASK = GENMASK_U16(15, 8),
+>> +    /* private: component classes */
+>> +    XE_LOG_COMPONENT_CLASS_SYSTEM = 0u,
+>> +    XE_LOG_COMPONENT_CLASS_DRIVER = 1u,
+>> +    XE_LOG_COMPONENT_CLASS_FEATURE = 2u,
+>> +    XE_LOG_COMPONENT_CLASS_FIRMWARE = 4u,
+>> +    XE_LOG_COMPONENT_CLASS_HARDWARE = 8u,
+>> +    XE_LOG_COMPONENT_CLASS_DRIVER_FEATURE = XE_LOG_COMPONENT_CLASS_DRIVER |
+>> +                        XE_LOG_COMPONENT_CLASS_FEATURE,
+>> +    XE_LOG_COMPONENT_CLASS_DRIVER_FIRMWARE = XE_LOG_COMPONENT_CLASS_DRIVER |
+>> +                         XE_LOG_COMPONENT_CLASS_FIRMWARE,
+>> +    XE_LOG_COMPONENT_CLASS_DRIVER_HARDWARE = XE_LOG_COMPONENT_CLASS_DRIVER |
+>> +                         XE_LOG_COMPONENT_CLASS_HARDWARE,
+>> +    /* private: reserved identifiers */
+>> +    XE_LOG_COMPONENT_NONE = 0u,
+>> +};
+>> +
+>> +#define MAKE_XE_LOG_COMPONENT(_CLASS, type) \
+>> +    (FIELD_PREP_CONST(XE_LOG_COMPONENT_CLASS_MASK, \
+>> +              XE_LOG_COMPONENT_CLASS_##_CLASS) | \
+>> +     FIELD_PREP_CONST(XE_LOG_COMPONENT_TYPE_MASK, (type)))
+>> +
+>> +/**
+>> + * enum xe_log_location_bits - bits for location structure definitions
+>> + *
+>> + * Location identifiers are structured based on::
+>> + *
+>> + *     LOCATION = TYPE(8b).ID(8b)
+>> + *
+> 
+> Are 8b sufficient for Type and ID?
 
-Add per-region counters tracking dma-buf and total pinned VRAM bytes
-along with the enforced dma-buf pin limit.
+we can make it 16b & 16b (as location parameter is already u32)
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+but ...
 
-drm/xe/vram: init dma-buf pin limit
+do you have any new location candidates in mind that would require more than 255 IDs or that we would need to define more than 255 location types?
 
-Derive the per-region dma-buf pin limit from pin_vram_percent during
-VRAM manager initialization.
+currently we have:
+	TILE	max ID = XE_MAX_TILES_PER_DEVICE(2) = 2
+	GT	max ID = XE_MAX_GT_PER_TILE(2) * XE_MAX_TILES_PER_DEVICE(2) = 4
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+even if we add:
+	VF	max ID = 63
 
-drm/xe/bo: account dma-buf pinned vram
+still everything < 255
 
-Track dma-buf pinned VRAM in the per-region counters on external
-pin and unpin.
+unless we would like to use someday:
+	PASID	-> 20b 
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+but then 16b/16b wont work either
 
-drm/xe/bo: account kernel pinned vram
+I can change location bits to TYPE(8b) and ID(24b) if you think it is required now
 
-Track kernel pinned VRAM in the per-region total counter on pin
-and unpin.
-
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
-drm/xe/bo: enforce dma-buf pin limit
-
-Reject external VRAM pins that would exceed the per-region dma-buf
-limit with -ENOSPC.
-
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
-drm/xe/vram: show pinned vram in debug
-
-Expose the pinned VRAM counters and the dma-buf limit in the VRAM
-manager debug output.
-
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
-drm/xe/tests: add VRAM pin limit KUnit tests
-
-Test under-limit success, over-limit rejection, counter recovery after
-unpin, and the limit=0 unlimited case in xe_bo tests. Add an end-to-end
-dma-buf pin limit test in xe_dma_buf tests.
-
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_bo.c           | 230 +++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_dma_buf.c      |  96 +++++++++
- drivers/gpu/drm/xe/xe_bo.c                 |  52 ++++-
- drivers/gpu/drm/xe/xe_defaults.h           |   1 +
- drivers/gpu/drm/xe/xe_dma_buf.c            |   5 +-
- drivers/gpu/drm/xe/xe_module.c             |   5 +
- drivers/gpu/drm/xe/xe_module.h             |   1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       |  21 ++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |   9 +
- 9 files changed, 415 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 6a17e13d58cf..5e951614c5f1 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -17,7 +17,9 @@
- #include "tests/xe_pci_test.h"
- #include "tests/xe_test.h"
- 
-+#include "xe_bo.h"
- #include "xe_bo_evict.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_gt.h"
- #include "xe_pci.h"
- #include "xe_pm.h"
-@@ -828,9 +830,237 @@ static void xe_bo_shrink_kunit(struct kunit *test)
- 	shrink_test_run_device(xe);
- }
- 
-+/* Returns NULL if the device has no VRAM (skips the test). */
-+static struct xe_ttm_vram_mgr *pin_limit_get_mgr(struct xe_device *xe,
-+						  struct kunit *test)
-+{
-+	struct ttm_resource_manager *man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
-+
-+	if (!man) {
-+		kunit_skip(test, "no VRAM\n");
-+		return NULL;
-+	}
-+	return to_xe_ttm_vram_mgr(man);
-+}
-+
-+static struct xe_bo *pin_limit_bo_create(struct xe_device *xe,
-+					 struct kunit *test, u64 size)
-+{
-+	struct xe_bo *bo = xe_bo_create_user(xe, NULL, size,
-+					     DRM_XE_GEM_CPU_CACHING_WC,
-+					     XE_BO_FLAG_VRAM0, NULL);
-+	if (IS_ERR(bo))
-+		KUNIT_FAIL(test, "bo create err=%pe\n", bo);
-+	return bo;
-+}
-+
-+static void xe_bo_pin_limit_under_kunit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_ttm_vram_mgr *mgr;
-+	struct xe_bo *bo;
-+	u64 orig_limit;
-+	int err;
-+
-+	guard(xe_pm_runtime)(xe);
-+
-+	mgr = pin_limit_get_mgr(xe, test);
-+	if (!mgr)
-+		return;
-+
-+	bo = pin_limit_bo_create(xe, test, SZ_64K);
-+	if (IS_ERR(bo))
-+		return;
-+
-+	spin_lock(&xe->pinned.lock);
-+	orig_limit = mgr->pin.dmabuf_limit;
-+	/* limit = current usage + exactly one BO */
-+	mgr->pin.dmabuf_limit = mgr->pin.dmabuf_used + SZ_64K;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	xe_bo_lock(bo, false);
-+	err = xe_bo_pin_external(bo, false, XE_VALIDATION_OPT_OUT);
-+	xe_bo_unlock(bo);
-+	KUNIT_EXPECT_EQ(test, err, 0);
-+
-+	xe_bo_lock(bo, false);
-+	xe_bo_unpin_external(bo);
-+	xe_bo_unlock(bo);
-+
-+	spin_lock(&xe->pinned.lock);
-+	/* dmabuf_used must be back to what it was before the pin */
-+	KUNIT_EXPECT_EQ(test, mgr->pin.dmabuf_used,
-+			mgr->pin.dmabuf_limit - SZ_64K);
-+	mgr->pin.dmabuf_limit = orig_limit;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	xe_bo_put(bo);
-+}
-+
-+static void xe_bo_pin_limit_reject_kunit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_ttm_vram_mgr *mgr;
-+	struct xe_bo *bo;
-+	u64 orig_limit;
-+	int err;
-+
-+	guard(xe_pm_runtime)(xe);
-+
-+	mgr = pin_limit_get_mgr(xe, test);
-+	if (!mgr)
-+		return;
-+
-+	bo = pin_limit_bo_create(xe, test, SZ_64K);
-+	if (IS_ERR(bo))
-+		return;
-+
-+	spin_lock(&xe->pinned.lock);
-+	orig_limit = mgr->pin.dmabuf_limit;
-+	/* limit = current usage + less than one BO, forcing rejection */
-+	mgr->pin.dmabuf_limit = mgr->pin.dmabuf_used + SZ_4K;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	xe_bo_lock(bo, false);
-+	err = xe_bo_pin_external(bo, false, XE_VALIDATION_OPT_OUT);
-+	xe_bo_unlock(bo);
-+	KUNIT_EXPECT_EQ(test, err, -ENOSPC);
-+
-+	spin_lock(&xe->pinned.lock);
-+	/* dmabuf_used must be unchanged — no partial charge on rejection */
-+	KUNIT_EXPECT_EQ(test, mgr->pin.dmabuf_used,
-+			mgr->pin.dmabuf_limit - SZ_4K);
-+	mgr->pin.dmabuf_limit = orig_limit;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	xe_bo_put(bo);
-+}
-+
-+static void xe_bo_pin_limit_unpin_restores_kunit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_ttm_vram_mgr *mgr;
-+	struct xe_bo *bo_a, *bo_b;
-+	u64 orig_limit;
-+	int err;
-+
-+	guard(xe_pm_runtime)(xe);
-+
-+	mgr = pin_limit_get_mgr(xe, test);
-+	if (!mgr)
-+		return;
-+
-+	bo_a = pin_limit_bo_create(xe, test, SZ_64K);
-+	if (IS_ERR(bo_a))
-+		return;
-+
-+	bo_b = pin_limit_bo_create(xe, test, SZ_64K);
-+	if (IS_ERR(bo_b)) {
-+		xe_bo_put(bo_a);
-+		return;
-+	}
-+
-+	spin_lock(&xe->pinned.lock);
-+	orig_limit = mgr->pin.dmabuf_limit;
-+	/* limit = current usage + exactly one BO */
-+	mgr->pin.dmabuf_limit = mgr->pin.dmabuf_used + SZ_64K;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	xe_bo_lock(bo_a, false);
-+	err = xe_bo_pin_external(bo_a, false, XE_VALIDATION_OPT_OUT);
-+	xe_bo_unlock(bo_a);
-+	KUNIT_EXPECT_EQ(test, err, 0);
-+	if (err)
-+		goto out;
-+
-+	/* Second pin must be rejected while first is held. */
-+	xe_bo_lock(bo_b, false);
-+	err = xe_bo_pin_external(bo_b, false, XE_VALIDATION_OPT_OUT);
-+	xe_bo_unlock(bo_b);
-+	KUNIT_EXPECT_EQ(test, err, -ENOSPC);
-+
-+	xe_bo_lock(bo_a, false);
-+	xe_bo_unpin_external(bo_a);
-+	xe_bo_unlock(bo_a);
-+
-+	/* After unpin, the second BO must fit. */
-+	xe_bo_lock(bo_b, false);
-+	err = xe_bo_pin_external(bo_b, false, XE_VALIDATION_OPT_OUT);
-+	xe_bo_unlock(bo_b);
-+	KUNIT_EXPECT_EQ(test, err, 0);
-+
-+	xe_bo_lock(bo_b, false);
-+	xe_bo_unpin_external(bo_b);
-+	xe_bo_unlock(bo_b);
-+
-+out:
-+	spin_lock(&xe->pinned.lock);
-+	mgr->pin.dmabuf_limit = orig_limit;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	xe_bo_put(bo_b);
-+	xe_bo_put(bo_a);
-+}
-+
-+static void xe_bo_pin_limit_zero_unlimited_kunit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_ttm_vram_mgr *mgr;
-+	struct xe_bo *bo;
-+	u64 orig_limit;
-+	int err;
-+
-+	guard(xe_pm_runtime)(xe);
-+
-+	mgr = pin_limit_get_mgr(xe, test);
-+	if (!mgr)
-+		return;
-+
-+	/* BO is 2x SZ_64K so it would fail if limit were SZ_64K */
-+	bo = pin_limit_bo_create(xe, test, 2 * SZ_64K);
-+	if (IS_ERR(bo))
-+		return;
-+
-+	spin_lock(&xe->pinned.lock);
-+	orig_limit = mgr->pin.dmabuf_limit;
-+	/* limit = current usage + one BO; 2*SZ_64K BO will be rejected */
-+	mgr->pin.dmabuf_limit = mgr->pin.dmabuf_used + SZ_64K;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	/* Confirm this size is rejected when a limit is set. */
-+	xe_bo_lock(bo, false);
-+	err = xe_bo_pin_external(bo, false, XE_VALIDATION_OPT_OUT);
-+	xe_bo_unlock(bo);
-+	KUNIT_EXPECT_EQ(test, err, -ENOSPC);
-+
-+	spin_lock(&xe->pinned.lock);
-+	mgr->pin.dmabuf_limit = 0; /* now disable limit */
-+	spin_unlock(&xe->pinned.lock);
-+
-+	/* Same BO must succeed once limit is cleared. */
-+	xe_bo_lock(bo, false);
-+	err = xe_bo_pin_external(bo, false, XE_VALIDATION_OPT_OUT);
-+	xe_bo_unlock(bo);
-+	KUNIT_EXPECT_EQ(test, err, 0);
-+
-+	xe_bo_lock(bo, false);
-+	xe_bo_unpin_external(bo);
-+	xe_bo_unlock(bo);
-+
-+	spin_lock(&xe->pinned.lock);
-+	mgr->pin.dmabuf_limit = orig_limit;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	xe_bo_put(bo);
-+}
-+
- static struct kunit_case xe_bo_tests[] = {
- 	KUNIT_CASE_PARAM(xe_ccs_migrate_kunit, xe_pci_live_device_gen_param),
- 	KUNIT_CASE_PARAM(xe_bo_evict_kunit, xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_bo_pin_limit_under_kunit, xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_bo_pin_limit_reject_kunit, xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_bo_pin_limit_unpin_restores_kunit, xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_bo_pin_limit_zero_unlimited_kunit, xe_pci_live_device_gen_param),
- 	{}
- };
- 
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-index 0be8440b3976..f97dd9516b81 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-@@ -13,6 +13,7 @@
- 
- #include "xe_pci.h"
- #include "xe_pm.h"
-+#include "xe_ttm_vram_mgr.h"
- 
- static bool p2p_enabled(struct dma_buf_test_params *params)
- {
-@@ -285,8 +286,103 @@ static void xe_dma_buf_kunit(struct kunit *test)
- 	dma_buf_run_device(xe);
- }
- 
-+static void xe_dma_buf_pin_limit_kunit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct ttm_resource_manager *man;
-+	struct xe_ttm_vram_mgr *mgr;
-+	/* dynamic importer + force_different_devices required for dma_buf_pin */
-+	struct dma_buf_test_params p = {
-+		.base.id = XE_TEST_LIVE_DMA_BUF,
-+		.mem_mask = XE_BO_FLAG_VRAM0,
-+		.attach_ops = &xe_dma_buf_attach_ops,
-+		.force_different_devices = true,
-+	};
-+	struct drm_gem_object *import;
-+	struct dma_buf_attachment *attach;
-+	struct dma_buf *dmabuf;
-+	struct xe_bo *bo;
-+	u64 orig_limit;
-+	int err;
-+
-+	guard(xe_pm_runtime)(xe);
-+
-+	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
-+	if (!man) {
-+		kunit_skip(test, "no VRAM\n");
-+		return;
-+	}
-+	mgr = to_xe_ttm_vram_mgr(man);
-+
-+	test->priv = &p;
-+	bo = xe_bo_create_user(xe, NULL, SZ_64K,
-+			       DRM_XE_GEM_CPU_CACHING_WC,
-+			       XE_BO_FLAG_VRAM0, NULL);
-+	if (IS_ERR(bo)) {
-+		KUNIT_FAIL(test, "bo create err=%pe\n", bo);
-+		return;
-+	}
-+
-+	dmabuf = xe_gem_prime_export(&bo->ttm.base, 0);
-+	if (IS_ERR(dmabuf)) {
-+		KUNIT_FAIL(test, "export err=%pe\n", dmabuf);
-+		goto put_bo;
-+	}
-+	bo->ttm.base.dma_buf = dmabuf;
-+
-+	import = xe_gem_prime_import(&xe->drm, dmabuf);
-+	if (IS_ERR(import)) {
-+		KUNIT_FAIL(test, "import err=%pe\n", import);
-+		goto put_dmabuf;
-+	}
-+
-+	attach = list_first_entry_or_null(&dmabuf->attachments,
-+					  typeof(*attach), node);
-+	if (!attach) {
-+		KUNIT_FAIL(test, "no attachment\n");
-+		goto put_import;
-+	}
-+
-+	/* dma_buf_pin requires dmabuf->resv to be held */
-+	xe_bo_lock(bo, false);
-+
-+	/* Force reject: limit = current used + less than one BO */
-+	spin_lock(&xe->pinned.lock);
-+	orig_limit = mgr->pin.dmabuf_limit;
-+	mgr->pin.dmabuf_limit = mgr->pin.dmabuf_used + SZ_4K;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	err = dma_buf_pin(attach);
-+	KUNIT_EXPECT_EQ(test, err, -ENOSPC);
-+
-+	/* Lift limit: pin must succeed */
-+	spin_lock(&xe->pinned.lock);
-+	mgr->pin.dmabuf_limit = 0;
-+	spin_unlock(&xe->pinned.lock);
-+
-+	err = dma_buf_pin(attach);
-+	KUNIT_EXPECT_EQ(test, err, 0);
-+	if (!err)
-+		dma_buf_unpin(attach);
-+
-+	xe_bo_unlock(bo);
-+
-+	spin_lock(&xe->pinned.lock);
-+	mgr->pin.dmabuf_limit = orig_limit;
-+	spin_unlock(&xe->pinned.lock);
-+
-+put_import:
-+	drm_gem_object_put(import);
-+put_dmabuf:
-+	bo->ttm.base.dma_buf = NULL;
-+	dma_buf_put(dmabuf);
-+put_bo:
-+	xe_bo_put(bo);
-+}
-+
- static struct kunit_case xe_dma_buf_tests[] = {
- 	KUNIT_CASE_PARAM(xe_dma_buf_kunit, xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_dma_buf_pin_limit_kunit, xe_pci_live_device_gen_param),
- 	{}
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index dde309821237..eca6f7c11ee0 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -31,6 +31,7 @@
- #include "xe_pat.h"
- #include "xe_pm.h"
- #include "xe_preempt_fence.h"
-+#include "xe_printk.h"
- #include "xe_pxp.h"
- #include "xe_res_cursor.h"
- #include "xe_shrinker.h"
-@@ -38,6 +39,7 @@
- #include "xe_tile.h"
- #include "xe_trace_bo.h"
- #include "xe_ttm_stolen_mgr.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- #include "xe_vram_types.h"
- 
-@@ -3119,6 +3121,16 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
- 	return 0;
- }
- 
-+static struct xe_ttm_vram_mgr *xe_bo_pin_vram_mgr(struct xe_bo *bo)
-+{
-+	struct ttm_resource *res = bo->ttm.resource;
-+
-+	if (!res || !mem_type_is_vram(res->mem_type))
-+		return NULL;
-+
-+	return to_xe_ttm_vram_mgr(ttm_manager_type(bo->ttm.bdev, res->mem_type));
-+}
-+
- /**
-  * xe_bo_pin_external - pin an external BO
-  * @bo: buffer object to be pinned
-@@ -3140,13 +3152,36 @@ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec)
- 	xe_assert(xe, xe_bo_is_user(bo));
- 
- 	if (!xe_bo_is_pinned(bo)) {
-+		struct xe_ttm_vram_mgr *mgr;
-+		u64 size = xe_bo_size(bo);
-+
- 		if (!in_place) {
- 			err = xe_bo_validate(bo, NULL, false, exec);
- 			if (err)
- 				return err;
- 		}
- 
-+		mgr = xe_bo_pin_vram_mgr(bo);
- 		spin_lock(&xe->pinned.lock);
-+		if (mgr && mgr->pin.dmabuf_limit &&
-+		    mgr->pin.dmabuf_used + size > mgr->pin.dmabuf_limit) {
-+			u64 used = mgr->pin.dmabuf_used;
-+			u64 limit = mgr->pin.dmabuf_limit;
-+
-+			spin_unlock(&xe->pinned.lock);
-+			xe_err_ratelimited(xe,
-+					   "dma-buf VRAM pin limit reached (used %lluM, limit %lluM), rejecting with -ENOSPC\n",
-+					   used >> 20, limit >> 20);
-+			/*
-+			 * No SMEM fallback: non-P2P callers migrate to TT before
-+			 * reaching here; a VRAM mgr means VRAM is genuinely required.
-+			 */
-+			return -ENOSPC;
-+		}
-+		if (mgr) {
-+			mgr->pin.dmabuf_used += size;
-+			mgr->pin.total_used += size;
-+		}
- 		list_add_tail(&bo->pinned_link, &xe->pinned.late.external);
- 		spin_unlock(&xe->pinned.lock);
- 	}
-@@ -3201,7 +3236,11 @@ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec)
- 		return err;
- 
- 	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
-+		struct xe_ttm_vram_mgr *mgr = xe_bo_pin_vram_mgr(bo);
-+
- 		spin_lock(&xe->pinned.lock);
-+		if (mgr)
-+			mgr->pin.total_used += xe_bo_size(bo);
- 		if (bo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE)
- 			list_add_tail(&bo->pinned_link, &xe->pinned.late.kernel_bo_present);
- 		else
-@@ -3235,14 +3274,21 @@ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec)
- void xe_bo_unpin_external(struct xe_bo *bo)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ttm_vram_mgr *mgr = xe_bo_pin_vram_mgr(bo);
-+	u64 size = xe_bo_size(bo);
- 
- 	xe_assert(xe, !bo->vm);
- 	xe_assert(xe, xe_bo_is_pinned(bo));
- 	xe_assert(xe, xe_bo_is_user(bo));
- 
- 	spin_lock(&xe->pinned.lock);
--	if (bo->ttm.pin_count == 1 && !list_empty(&bo->pinned_link))
-+	if (bo->ttm.pin_count == 1 && !list_empty(&bo->pinned_link)) {
-+		if (mgr) {
-+			mgr->pin.dmabuf_used -= size;
-+			mgr->pin.total_used -= size;
-+		}
- 		list_del_init(&bo->pinned_link);
-+	}
- 	spin_unlock(&xe->pinned.lock);
- 
- 	ttm_bo_unpin(&bo->ttm);
-@@ -3265,7 +3311,11 @@ void xe_bo_unpin(struct xe_bo *bo)
- 	xe_assert(xe, xe_bo_is_pinned(bo));
- 
- 	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
-+		struct xe_ttm_vram_mgr *mgr = xe_bo_pin_vram_mgr(bo);
-+
- 		spin_lock(&xe->pinned.lock);
-+		if (mgr)
-+			mgr->pin.total_used -= xe_bo_size(bo);
- 		xe_assert(xe, !list_empty(&bo->pinned_link));
- 		list_del_init(&bo->pinned_link);
- 		spin_unlock(&xe->pinned.lock);
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index c8ae1d5f3d60..cb1b58e48484 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -22,5 +22,6 @@
- #define XE_DEFAULT_WEDGED_MODE			XE_WEDGED_MODE_UPON_CRITICAL_ERROR
- #define XE_DEFAULT_WEDGED_MODE_STR		"upon-critical-error"
- #define XE_DEFAULT_SVM_NOTIFIER_SIZE		512
-+#define XE_DEFAULT_PIN_VRAM_PERCENT		50
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index bf0728838ead..b9d00aff0a9b 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -80,10 +80,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
- 		}
- 	}
- 
--	ret = xe_bo_pin_external(bo, !allow_vram, exec);
--	xe_assert(xe, !ret);
--
--	return 0;
-+	return xe_bo_pin_external(bo, !allow_vram, exec);
- }
- 
- static void xe_dma_buf_unpin(struct dma_buf_attachment *attach)
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 848d65265443..296a1466ae95 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -30,6 +30,7 @@ struct xe_modparam xe_modparam = {
- #endif
- 	.wedged_mode =		XE_DEFAULT_WEDGED_MODE,
- 	.svm_notifier_size =	XE_DEFAULT_SVM_NOTIFIER_SIZE,
-+	.pin_vram_percent =	XE_DEFAULT_PIN_VRAM_PERCENT,
- 	/* the rest are 0 by default */
- };
- 
-@@ -37,6 +38,10 @@ module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600)
- MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size in MiB, must be power of 2 "
- 		 "[default=" __stringify(XE_DEFAULT_SVM_NOTIFIER_SIZE) "]");
- 
-+module_param_named(pin_vram_percent, xe_modparam.pin_vram_percent, uint, 0600);
-+MODULE_PARM_DESC(pin_vram_percent, "Max percent of VRAM pinnable via dma-buf per region (0=unlimited) "
-+		 "[default=" __stringify(XE_DEFAULT_PIN_VRAM_PERCENT) "]");
-+
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- module_param_named(probe_display, xe_modparam.probe_display, bool, 0444);
- MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's left untouched "
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index a0eb7db07770..716f92944dbb 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -24,6 +24,7 @@ struct xe_modparam {
- #endif
- 	unsigned int wedged_mode;
- 	u32 svm_notifier_size;
-+	unsigned int pin_vram_percent;
- };
- 
- extern struct xe_modparam xe_modparam;
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index b518f7dec680..9e2ce93ccd06 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -8,11 +8,14 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_buddy.h>
- 
-+#include <linux/math64.h>
-+
- #include <drm/ttm/ttm_placement.h>
- #include <drm/ttm/ttm_range_manager.h>
- 
- #include "xe_bo.h"
- #include "xe_device.h"
-+#include "xe_module.h"
- #include "xe_res_cursor.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vram_types.h"
-@@ -190,8 +193,17 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
- static void xe_ttm_vram_mgr_debug(struct ttm_resource_manager *man,
- 				  struct drm_printer *printer)
- {
-+	struct xe_device *xe = ttm_to_xe_device(man->bdev);
- 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
- 	struct gpu_buddy *mm = &mgr->mm;
-+	u64 dmabuf_used, dmabuf_limit, total_used;
-+
-+	/* snapshot pin counters under their own lock before sleeping on mgr->lock */
-+	spin_lock(&xe->pinned.lock);
-+	dmabuf_used  = mgr->pin.dmabuf_used;
-+	dmabuf_limit = mgr->pin.dmabuf_limit;
-+	total_used   = mgr->pin.total_used;
-+	spin_unlock(&xe->pinned.lock);
- 
- 	mutex_lock(&mgr->lock);
- 	drm_printf(printer, "default_page_size: %lluKiB\n",
-@@ -200,6 +212,12 @@ static void xe_ttm_vram_mgr_debug(struct ttm_resource_manager *man,
- 		   (u64)mgr->visible_avail >> 20);
- 	drm_printf(printer, "visible_size: %lluMiB\n",
- 		   (u64)mgr->visible_size >> 20);
-+	drm_printf(printer, "pin_dmabuf_used: %lluMiB\n",
-+		   dmabuf_used >> 20);
-+	drm_printf(printer, "pin_dmabuf_limit: %lluMiB\n",
-+		   dmabuf_limit >> 20);
-+	drm_printf(printer, "pin_total_used: %lluMiB\n",
-+		   total_used >> 20);
- 
- 	drm_buddy_print(mm, printer);
- 	mutex_unlock(&mgr->lock);
-@@ -309,6 +327,9 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 
- 	man->func = &xe_ttm_vram_mgr_func;
- 	mgr->mem_type = mem_type;
-+	if (xe_modparam.pin_vram_percent)
-+		mgr->pin.dmabuf_limit =
-+			mul_u64_u32_div(size, xe_modparam.pin_vram_percent, 100);
- 	err = drmm_mutex_init(&xe->drm, &mgr->lock);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 9106da056b49..459e3135b26c 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -29,6 +29,15 @@ struct xe_ttm_vram_mgr {
- 	struct mutex lock;
- 	/** @mem_type: The TTM memory type */
- 	u32 mem_type;
-+	/** @pin: pinned VRAM accounting in bytes, protected by xe->pinned.lock */
-+	struct {
-+		/** @pin.dmabuf_limit: max bytes pinnable via dma-buf, 0 = unlimited */
-+		u64 dmabuf_limit;
-+		/** @pin.dmabuf_used: bytes currently pinned via dma-buf */
-+		u64 dmabuf_used;
-+		/** @pin.total_used: bytes currently pinned via any path */
-+		u64 total_used;
-+	} pin;
- };
- 
- /**
--- 
-2.43.0
+> 
+> Everything else looks good.
+> 
+> Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> 
+>> + * and the structure looks like this::
+>> + *
+>> + *     ├── DEVICE(0)
+>> + *     │   └── MBZ(0)
+>> + *     ├── TILE(1)
+>> + *     │   ├── Tile0(0)
+>> + *     │   ├── ...
+>> + *     │   └── TileN(n)
+>> + *     ├── GT(1)
+>> + *     │   ├── GT0(0)
+>> + *     │   ├── ...
+>> + *     │   └── GTn(n)
+>> + *     └── ...
+>> + *
+>> + * Examples::
+>> + *
+>> + *     LOCATION(0.0) = NONE
+>> + *     LOCATION(1.0) = DEVICE.0 = "Device"
+>> + *     LOCATION(2.1) = TILE.1 = "Tile1"
+>> + *     LOCATION(3.2) = GT.2 = "GT2"
+>> + *
+>> + */
+>> +enum xe_log_location_bits {
+>> +    /* private: */
+>> +    XE_LOG_LOCATION_TYPE_MASK = GENMASK_U16(7, 0),
+>> +    XE_LOG_LOCATION_ID_MASK = GENMASK_U16(15, 8),
+>> +    /* private: location types */
+>> +    XE_LOG_LOCATION_TYPE_DEVICE = 1u,
+>> +    XE_LOG_LOCATION_TYPE_TILE = 2u,
+>> +    XE_LOG_LOCATION_TYPE_GT = 3u,
+>> +    /* private: reserved identifiers */
+>> +    XE_LOG_LOCATION_NONE = 0u,
+>> +};
+>> +
+>> +#define PREP_XE_LOG_LOCATION(type, id) \
+>> +    (FIELD_PREP(XE_LOG_LOCATION_TYPE_MASK, (type)) | \
+>> +     FIELD_PREP(XE_LOG_LOCATION_ID_MASK, (id)))
+>> +
+>> +#define MAKE_XE_LOG_LOCATION(_TYPE, id) \
+>> +    PREP_XE_LOG_LOCATION(XE_LOG_LOCATION_TYPE_##_TYPE, (id))
+>> +
+>> +/**
+>> + * DEFINE_XE_LOG_COMPONENTS() - Define log components.
+>> + * @define: name of the inner macro to expand.
+>> + *
+>> + * Use this super macro to define custom code for the log components.
+>> + * The following parameters are available for each component::
+>> + *
+>> + *     define(CLASS, ID, TAG, SIGID, NAME)
+>> + *
+>> + * where:
+>> + *
+>> + *     @ID is the unique component identifier within CLASS.SUBCLASS.CATEGORY
+>> + *     @TAG is unique component tag (across all components)
+>> + *     @SIGID is the default xe_sigid for the component (without the XE_SIGID_ prefix)
+>> + */
+>> +#define DEFINE_XE_LOG_COMPONENTS(define) \
+>> +    /* */                                    \
+>> +    define(SYSTEM, 1, PCI, SW, "Linux PCI Subsystem")            \
+>> +    define(SYSTEM, 2, DRM, SW, "DRM")                    \
+>> +    /* */                                    \
+>> +    define(DRIVER, 1, XE, SW, "Xe Driver")                    \
+>> +    define(DRIVER, 2, PROBE, PROBE, "Driver Initialization")        \
+>> +    define(DRIVER, 3, WEDGED, WEDGED, "Device Malfunction")            \
+>> +    define(DRIVER, 4, RTP, SW, "Register Table Processing")            \
+>> +    define(DRIVER, 5, WA, SW, "Workarounds")                \
+>> +    define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")            \
+>> +    /* */                                    \
+>> +    define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")            \
+>> +    define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")            \
+>> +    define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")        \
+>> +    define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")    \
+>> +    define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")        \
+>> +    /* */                                    \
+>> +    define(DRIVER_FEATURE, 1, PF, SW, "SR-IOV Physical Function")        \
+>> +    define(DRIVER_FEATURE, 2, VF, SW, "SR-IOV Virtual Function")        \
+>> +    define(DRIVER_FEATURE, 3, SURVIVABILITY, SURVIVABILITY, "Survivability") \
+>> +    define(DRIVER_FEATURE, 4, RAS, SW, "Reliability, Accessibility, Serviceability") \
+>> +    /* */                                    \
+>> +    define(DRIVER_FIRMWARE, 1, GUC, RUNTIME_FW, "GuC")            \
+>> +    define(DRIVER_FIRMWARE, 2, HUC, RUNTIME_FW, "HuC")            \
+>> +    define(DRIVER_FIRMWARE, 3, GSC, RUNTIME_FW, "GSC")            \
+>> +    define(DRIVER_FIRMWARE, 16, PCODE, DEVICE_FW, "PCode")            \
+>> +    define(DRIVER_FIRMWARE, 17, SYSCTRL, DEVICE_FW, "System Controller")    \
+>> +    /* eod */
+>> +
+>> +/**
+>> + * enum xe_log_component_tags - TAGs of all supported components
+>> + */
+>> +enum xe_log_component_tags {
+>> +    /* private: */
+>> +#define MAKE_XE_LOG_COMPONENT_ENUM(_CLASS, _ID, _TAG, _SIG, _NAME) \
+>> +    XE_LOG_COMPONENT_##_TAG = MAKE_XE_LOG_COMPONENT(_CLASS, (_ID)), \
+>> +    XE_LOG_COMPONENT_##_CLASS##_##_ID = XE_LOG_COMPONENT_##_TAG, \
+>> +    /* eod */
+>> +    DEFINE_XE_LOG_COMPONENTS(MAKE_XE_LOG_COMPONENT_ENUM)
+>> +#undef MAKE_XE_LOG_COMPONENT_ENUM
+>> +};
+>> +
+>> +/**
+>> + * enum xe_log_component_sigids - SIGIDs of all supported components
+>> + */
+>> +enum xe_log_component_sigids {
+>> +    /* private: */
+>> +#define MAKE_XE_LOG_COMPONENT_SIGID(_CLASS, _ID, _TAG, _SIG, _NAME) \
+>> +    XE_LOG_COMPONENT_##_TAG##_SIGID = XE_SIGID_##_SIG, \
+>> +    /* eod */
+>> +    DEFINE_XE_LOG_COMPONENTS(MAKE_XE_LOG_COMPONENT_SIGID)
+>> +#undef MAKE_XE_LOG_COMPONENT_SIGID
+>> +};
+>> +
+>> +#endif
 
