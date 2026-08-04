@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F763C5518F
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Aug 2026 23:05:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21C0BC55184
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 01:19:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C5E010E471;
-	Mon,  3 Aug 2026 23:05:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VICV36+n";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8E4C10E3C7
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Aug 2026 23:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785798339; x=1817334339;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5N/uctwRCnT5T7RvdARjy86dCABzWs/esRtooP318HU=;
- b=VICV36+nNnCDfeT8jJHd5GJz9PshXRK8DogCVixEAR+Dr45XkAqFs/lM
- fBdVlFNCQK68xVg2ntIoB+mS9Zqdhr+erYCF4x1sqY1JYTEWwnxZvtHV8
- t5yqNuvNV66KzOacUBOgareCpphMrx3TalaARAHPMgxtbXVMRKJCWx5KU
- LsuuU9EmgKadT+Bx5dQpWAi6wDHyUjTClOAI0usABCgnj46icHwLBHsME
- rKV8elbT0qDJHEfQb/NgKsETE0WwXChNgqPwv2PbHhoDwSAG/wVOrQ5oV
- XYIt3MWlFaV9SPzobo7AU3zaWj45yhOHZzXtmWw23JdhlNXPnywIkEB7i w==;
-X-CSE-ConnectionGUID: bmS2dvDCTsKrsUTspYsGTQ==
-X-CSE-MsgGUID: Fr8sGKmmTGWza2l3UL0oEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="111899766"
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="111899766"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 16:05:38 -0700
-X-CSE-ConnectionGUID: 1J+qeER7SIqg1ZkVidvt7w==
-X-CSE-MsgGUID: JQ01QKCvRZigOeSzwMNoBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="255054428"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 16:05:37 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com
-Subject: [PATCH v3 1/4] drm/xe: split VF pause into prepare and revert phases
-Date: Mon,  3 Aug 2026 16:05:30 -0700
-Message-ID: <20260803230528.3428029-7-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260803230528.3428029-6-niranjana.vishwanathapura@intel.com>
-References: <20260803230528.3428029-6-niranjana.vishwanathapura@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A78E910E0C8;
+	Tue,  4 Aug 2026 01:19:11 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACCB810E0BF;
+ Tue,  4 Aug 2026 01:19:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3160504437637631495=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_SKL=5FDSSM_/_DE=5FCAP_fixe?=
+ =?utf-8?q?s?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 04 Aug 2026 01:19:10 -0000
+Message-ID: <178580635070.15430.13478975722196419663@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260803214909.3076716-1-michal.grzelak@intel.com>
+In-Reply-To: <20260803214909.3076716-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,79 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extract xe_sched_submission_stop() + cancel_delayed_work_sync() into a
-new guc_exec_queue_pause_prepare() helper, then call it in a first pass
-over all queues before the existing revert loop in
-xe_guc_submit_pause_vf().
+--===============3160504437637631495==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-In a multi-queue group a secondary's run_job() can register the primary
-queue, which must not race an in-progress revert of a sibling queue.
-Stopping every scheduler before reverting any queue prevents that race.
+== Series Details ==
 
-No functional change outside the VF migration path.
+Series: SKL_DSSM / DE_CAP fixes
+URL   : https://patchwork.freedesktop.org/series/171533/
+State : success
 
-Assisted-by: Github-Copilot:Claude-opus-4.8
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 26 +++++++++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 8aaed4fd13ea..314747336fb9 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2737,17 +2737,24 @@ static void lrc_parallel_clear(struct xe_lrc *lrc)
-  * during VF resume flows. The function scans the queue state, make adjustments
-  * as needed, and queues jobs / messages which replayed upon unpause.
-  */
--static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
-+static void guc_exec_queue_pause_prepare(struct xe_guc *guc, struct xe_exec_queue *q)
- {
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
--	struct xe_sched_job *job;
--	int i;
- 
- 	lockdep_assert_held(&guc->submission_state.lock);
- 
- 	/* Stop scheduling + flush any DRM scheduler operations */
- 	xe_sched_submission_stop(sched);
- 	cancel_delayed_work_sync(&sched->base.work_tdr);
-+}
-+
-+static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
-+{
-+	struct xe_gpu_scheduler *sched = &q->guc->sched;
-+	struct xe_sched_job *job;
-+	int i;
-+
-+	lockdep_assert_held(&guc->submission_state.lock);
- 
- 	guc_exec_queue_revert_pending_state_change(guc, q);
- 
-@@ -2806,6 +2813,19 @@ void xe_guc_submit_pause_vf(struct xe_guc *guc)
- 	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
- 
- 	mutex_lock(&guc->submission_state.lock);
-+	/*
-+	 * Stop all schedulers before reverting any queue: in a multi-queue
-+	 * group a secondary's run_job() can register the primary, which must
-+	 * not race an in-progress revert.
-+	 */
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-+		/* Prevent redundant attempts to stop parallel queues */
-+		if (q->guc->id != index)
-+			continue;
-+
-+		guc_exec_queue_pause_prepare(guc, q);
-+	}
-+
- 	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
- 		/* Prevent redundant attempts to stop parallel queues */
- 		if (q->guc->id != index)
--- 
-2.43.0
+CI Bug Log - changes from xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12_FULL -> xe-pw-171533v1_FULL
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (0 -> 0)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12 -> xe-pw-171533v1
+
+  IGT_9036: 9036
+  xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12: 9a93ab75c5956f84bedf22b5bb3385ab9add0d12
+  xe-pw-171533v1: 171533v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171533v1/index.html
+
+--===============3160504437637631495==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>SKL_DSSM / DE_CAP fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171533/">https://patchwork.freedesktop.org/series/171533/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171533v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171533v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12_FULL -&gt; xe-pw-171533v1_FULL</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (0 -&gt; 0)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12 -&gt; xe-pw-171533v1</li>
+</ul>
+<p>IGT_9036: 9036<br />
+  xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12: 9a93ab75c5956f84bedf22b5bb3385ab9add0d12<br />
+  xe-pw-171533v1: 171533v1</p>
+
+</body>
+</html>
+
+--===============3160504437637631495==--
