@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9A77C55172
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 08:00:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3256C5518F
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 08:02:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 906C610E465;
-	Tue,  4 Aug 2026 08:00:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3DF710E8C1;
+	Tue,  4 Aug 2026 08:02:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iGR2wIc+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G89Ltv6m";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACF9B10E465
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Aug 2026 08:00:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7930A10E465;
+ Tue,  4 Aug 2026 08:02:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785830431; x=1817366431;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bxxDHF65seIJMxjDIKhSes/GkCL6B4WamWEeXMOXKJk=;
- b=iGR2wIc+yWlTgKuYNvGAMd4cigVByl8ZXV1hyue6Pqri+aDuA+WLAoZP
- 0CqsVXWTFE2bokmbyffOF81yuonU7DuAkILKF5vyRaCx/I/yb5YtIonC8
- yWZLwf3zHAcdqQfw1zEPvAy4hoy6pLapL/Rescsbh+CBOLZ6/gl9ZuW3d
- nd5+3NMXoZ1ie2uMSTqeV+uWqfo8RCArgpjYS3+WoweJgVDmWNvBwnXzf
- 4v4uyYDCzuOrWx5Fa7F2we1XiXJQY62uzTDGmgPd9TI4D72IlpCHRJ8kT
- +h4AaELDoAuS4O8TJFRmJudAqiCQtWQje7qjxQUr6KPfIzsBCfB5oPJIT A==;
-X-CSE-ConnectionGUID: I2g7YOzxSK6Ww2w7kx8cbg==
-X-CSE-MsgGUID: jcAPskW0QLamMxtLuKW/Mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="88899447"
-X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="88899447"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2026 01:00:23 -0700
-X-CSE-ConnectionGUID: hxnoTGS/T0qk2/i+svR35w==
-X-CSE-MsgGUID: 75TBj57YTWSjJwBQ8MgKJQ==
+ t=1785830523; x=1817366523;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=A2dJd325c/8oP9tRzfmxUxGTaNU9FYLVEH8cZe8YXBA=;
+ b=G89Ltv6mn81bvWnvqYrhPEd5abGHxzX1P6MPLS+d1EKS/Pzgx9uzGtdF
+ UZf1B5653XqgyrUAZVjv5mQjvQdM4x5OQ2OGB3DK3YF86Yql/qWi8FCs+
+ UPSws5TFhF5yZ/FZ/94GRXzLCpcIIK9gDIB7QL2zupjGrr9NQ3Iz92Nkv
+ Mr5JtaiVmWEEOkOt5WzEa5Ea8sn6JGnBUehJQJX0ppqtnekSvABOhV3wJ
+ MauZx0lpeAK2tEEYYfihIcT7hKs+4NF/U+CGbyXD9KoQNTQ/zBobLIl0t
+ bTcpLMu0AGK4FGlI72diJ9t7PqYBk3k0X2msI/MENRfg9DH2fYiyhp4up w==;
+X-CSE-ConnectionGUID: whbMV9O9RPKrQpoj6mZi7A==
+X-CSE-MsgGUID: IX5CQlnnRkCPyeagFlR4Lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="86573828"
+X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="86573828"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 01:02:02 -0700
+X-CSE-ConnectionGUID: l80Y0IwrRo6pgGJGwkgZcA==
+X-CSE-MsgGUID: r4sagKthSGWP7Nrrb9ly3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="264938600"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.172])
- ([10.245.245.172])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2026 01:00:21 -0700
-Message-ID: <fff60c87-460c-4713-a65a-e9c3841bbf2b@intel.com>
-Date: Tue, 4 Aug 2026 09:00:19 +0100
+X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="286092533"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.151])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 01:02:00 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
+Subject: Re: [PATCH v2 1/4] drm/i915/display: fix SKL_DSSM register macros
+In-Reply-To: <20260803214909.3076716-2-michal.grzelak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260803214909.3076716-1-michal.grzelak@intel.com>
+ <20260803214909.3076716-2-michal.grzelak@intel.com>
+Date: Tue, 04 Aug 2026 11:01:58 +0300
+Message-ID: <058226c5ce1d9063891372679b15fd14ba4dc29f@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/3] drm/xe/guc_ads: allocate UM queues in a separate BO
-To: Jia Yao <jia.yao@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, stable@vger.kernel.org
-References: <20260803200838.98826-1-jia.yao@intel.com>
- <20260803200838.98826-2-jia.yao@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260803200838.98826-2-jia.yao@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,213 +71,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 03/08/2026 21:08, Jia Yao wrote:
-> Move the UM queues into a dedicated UC BO (ads->um_queue_bo) and avoid
-> CPU memset operations on it, which eliminates the CPU as a potential
-> cacheline-polluting agent and helps maintain consistency between GAM
-> writes and GuC reads.
-> 
-> Fixes: 9c57bc08652a ("drm/xe/lnl: Drop force_probe requirement")
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.12+
-> Signed-off-by: Jia Yao <jia.yao@intel.com>
+On Mon, 03 Aug 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
+> Indent SKL_DSSM register macros. Define mask and register values with
+> REG_GENMASK() and REG_FIELD_PREP() instead of bit shifts.
+
+Nitpick, in subject, "fix" is misleading. This is just cleanup without
+functional changes.
+
+No need to resend for this.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+>
+> v1->v2
+> - s/REG_GENMASK/REG_FIELD_PREP/ (Jani)
+>
+> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_guc.c           |  6 ++
->   drivers/gpu/drm/xe/xe_guc_ads.c       | 89 +++++++++++++++++----------
->   drivers/gpu/drm/xe/xe_guc_ads_types.h |  5 ++
->   3 files changed, 68 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 4286bd05c686..4f132bf8539d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -732,6 +732,12 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
->   	if (ret)
->   		return ret;
->   
-> +	if (guc->ads.um_queue_bo) {
-> +		ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ads.um_queue_bo);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index f0ac00586d3a..ef8e9cc35c8c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -8,6 +8,7 @@
->   #include <linux/fault-inject.h>
->   
->   #include <drm/drm_managed.h>
-> +#include <drm/drm_prime.h>
->   
->   #include <generated/xe_wa_oob.h>
->   
-> @@ -64,10 +65,14 @@ ads_to_map(struct xe_guc_ads *ads)
->   
->   /*
->    * The Additional Data Struct (ADS) has pointers for different buffers used by
-> - * the GuC. One single gem object contains the ADS struct itself (guc_ads) and
-> - * all the extra buffers indirectly linked via the ADS struct's entries.
-> + * the GuC. One gem object (ads->bo) contains the ADS struct itself (guc_ads)
-> + * and most of the extra buffers linked via the ADS struct's entries.  The UM
-> + * fault queues (PAGE_FAULT, PAGE_FAULT_RESPONSE, ACCESS_COUNTER rings) are
-> + * kept in a separate BO (ads->um_queue_bo) so that the full memset of ads->bo
-> + * performed on every GT reset does not discard fault descriptors already
-> + * written into the rings by the GPU.
->    *
-> - * Layout of the ADS blob allocated for the GuC:
-> + * Layout of the ADS blob (ads->bo):
->    *
->    *      +---------------------------------------+ <== base
->    *      | guc_ads                               |
-> @@ -99,10 +104,6 @@ ads_to_map(struct xe_guc_ads *ads)
->    *      +---------------------------------------+
->    *      | padding                               |
->    *      +---------------------------------------+ <== 4K aligned
-> - *      | UM queues                             |
-> - *      +---------------------------------------+
-> - *      | padding                               |
-> - *      +---------------------------------------+ <== 4K aligned
->    *      | private data                          |
->    *      +---------------------------------------+
->    *      | padding                               |
-> @@ -156,16 +157,6 @@ static size_t guc_ads_capture_size(struct xe_guc_ads *ads)
->   	return PAGE_ALIGN(ads->capture_size);
->   }
->   
-> -static size_t guc_ads_um_queues_size(struct xe_guc_ads *ads)
-> -{
-> -	struct xe_device *xe = ads_to_xe(ads);
-> -
-> -	if (!xe->info.has_usm)
-> -		return 0;
-> -
-> -	return GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX;
-> -}
-> -
->   static size_t guc_ads_private_data_size(struct xe_guc_ads *ads)
->   {
->   	return PAGE_ALIGN(ads_to_guc(ads)->fw.private_data_size);
-> @@ -206,22 +197,12 @@ static size_t guc_ads_capture_offset(struct xe_guc_ads *ads)
->   	return PAGE_ALIGN(offset);
->   }
->   
-> -static size_t guc_ads_um_queues_offset(struct xe_guc_ads *ads)
-> -{
-> -	u32 offset;
-> -
-> -	offset = guc_ads_capture_offset(ads) +
-> -		 guc_ads_capture_size(ads);
-> -
-> -	return PAGE_ALIGN(offset);
-> -}
-> -
->   static size_t guc_ads_private_data_offset(struct xe_guc_ads *ads)
->   {
->   	size_t offset;
->   
-> -	offset = guc_ads_um_queues_offset(ads) +
-> -		guc_ads_um_queues_size(ads);
-> +	offset = guc_ads_capture_offset(ads) +
-> +		guc_ads_capture_size(ads);
->   
->   	return PAGE_ALIGN(offset);
->   }
-> @@ -461,6 +442,44 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
->   
->   	ads->bo = bo;
->   
-> +	if (xe->info.has_usm) {
-> +		/*
-> +		 * Allocate a separate BO for the HW fault ring (UM queues).
-> +		 *
-> +		 * Round the size up to the next power of two so that
-> +		 * (system memory, no IOMMU) the TTM pool issues a single
-> +		 * alloc_pages(order=N) call, maximising the chance of getting
-> +		 * a physically contiguous block.  GuC requires contiguous DPA.
-> +		 */
-> +		size_t um_size = roundup_pow_of_two(GUC_UM_QUEUE_SIZE *
-> +						    GUC_UM_HW_QUEUE_MAX);
-> +
-> +		bo = xe_managed_bo_create_pin_map(xe, tile, um_size,
-> +						  XE_BO_FLAG_SYSTEM |
-> +						  XE_BO_FLAG_GGTT |
-> +						  XE_BO_FLAG_GGTT_INVALIDATE |
-> +						  XE_BO_FLAG_PINNED_NORESTORE);
-> +		if (IS_ERR(bo))
-> +			return PTR_ERR(bo);
-> +
-> +		/*
-> +		 * On pre-Xe3p platforms, GAM (not GuC) accesses the UM queue
-> +		 * ring via base_dpa, which must be a contiguous DMA address
-> +		 * range.  Verify that the allocated pages are contiguous in
-> +		 * DMA address space.
-> +		 */
-> +		if (xe_bo_sg(bo) &&
+>  drivers/gpu/drm/i915/display/intel_display_regs.h | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/=
+gpu/drm/i915/display/intel_display_regs.h
+> index 0f5018482497..740331ead20a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -1779,10 +1779,10 @@
+>  #define   XE2LPD_DE_CAP_SCALER_SINGLE	1
+>=20=20
+>  #define SKL_DSSM				_MMIO(0x51004)
+> -#define ICL_DSSM_CDCLK_PLL_REFCLK_MASK		(7 << 29)
+> -#define ICL_DSSM_CDCLK_PLL_REFCLK_24MHz		(0 << 29)
+> -#define ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	(1 << 29)
+> -#define ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	(2 << 29)
+> +#define   ICL_DSSM_CDCLK_PLL_REFCLK_MASK	REG_GENMASK(31, 29)
+> +#define   ICL_DSSM_CDCLK_PLL_REFCLK_24MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_=
+PLL_REFCLK_MASK, 0)
+> +#define   ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	REG_FIELD_PREP(ICL_DSSM_CDCL=
+K_PLL_REFCLK_MASK, 1)
+> +#define   ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	REG_FIELD_PREP(ICL_DSSM_CDCL=
+K_PLL_REFCLK_MASK, 2)
+>=20=20
+>  /*GEN11 chicken */
+>  #define _PIPEA_CHICKEN				0x70038
 
-
-There is a comment from Sashiko that there might not be a valid tt for 
-vram buffers, so perhaps just make this check !xe_bo_is_vram() instead?
-
-> +		    !xe_guc_using_main_gamctrl_queues(ads_to_guc(ads)) &&
-> +		    unlikely(drm_prime_get_contiguous_size(xe_bo_sg(bo)) <
-> +			     GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX)) {
-> +			drm_err(&xe->drm,
-> +				"UM fault queue memory is not contiguous in DMA address space; GAM requires contiguous DPA\n");
-> +			return -ENOMEM;
-> +		}
-> +
-> +		ads->um_queue_bo = bo;
-> +	}
-> +
->   	return 0;
->   }
->   ALLOW_ERROR_INJECTION(xe_guc_ads_init, ERRNO); /* See xe_pci_probe() */
-> @@ -893,7 +912,7 @@ static void guc_mmio_reg_state_init(struct xe_guc_ads *ads)
->   
->   static void guc_um_init_params(struct xe_guc_ads *ads)
->   {
-> -	u32 um_queue_offset = guc_ads_um_queues_offset(ads);
-> +	struct xe_bo *um_bo = ads->um_queue_bo;
->   	struct xe_guc *guc = ads_to_guc(ads);
->   	struct xe_device *xe = ads_to_xe(ads);
->   	u64 base_dpa;
-> @@ -903,8 +922,14 @@ static void guc_um_init_params(struct xe_guc_ads *ads)
->   
->   	with_dpa = !xe_guc_using_main_gamctrl_queues(guc);
->   
-> -	base_ggtt = xe_bo_ggtt_addr(ads->bo) + um_queue_offset;
-> -	base_dpa = xe_bo_main_addr(ads->bo, PAGE_SIZE) + um_queue_offset;
-> +	if (um_bo) {
-> +		/* All USM platforms: UM queues in dedicated um_queue_bo */
-> +		base_ggtt = xe_bo_ggtt_addr(um_bo);
-> +		base_dpa = xe_bo_main_addr(um_bo, PAGE_SIZE);
-> +	} else {
-> +		/* Platform does not support USM: no UM queues, nothing to do */
-> +		return;
-> +	}
->   
->   	for (i = 0; i < GUC_UM_HW_QUEUE_MAX; ++i) {
->   		/*
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads_types.h b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> index 48a8e092023f..845c1fbd93a4 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> @@ -16,6 +16,11 @@ struct xe_bo;
->   struct xe_guc_ads {
->   	/** @bo: Xe BO for GuC ads blob */
->   	struct xe_bo *bo;
-> +	/**
-> +	 * @um_queue_bo: Dedicated BO for the HW fault ring (UM queues).
-> +	 * NULL if the platform does not support USM.
-> +	 */
-> +	struct xe_bo *um_queue_bo;
->   	/** @golden_lrc_size: golden LRC size */
->   	size_t golden_lrc_size;
->   	/** @regset_size: size of register set passed to GuC for save/restore */
-
+--=20
+Jani Nikula, Intel
