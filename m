@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E61CC55172
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 05:04:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88B7EC55172
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 05:12:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCA3B10E0E8;
-	Tue,  4 Aug 2026 05:04:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB0FD10E0EF;
+	Tue,  4 Aug 2026 05:12:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nw/IcfM1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rzp5+pw9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5EC110E0E8
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Aug 2026 05:03:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35EE710E0EF
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Aug 2026 05:12:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785819840; x=1817355840;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=QPctwPrGc+XxZ4Ua16hjjHd2jeZcZoZy5cpGsPZpIGs=;
- b=Nw/IcfM1ptKJVuKVjV0QWCDguQwcDvoMbVqsvq4ntvInztrZgu4v2Ht6
- iXWEtygjrSW2nn3ayoA8R+Q5oCCp9Y8cTPCFKfahix2+4GosnZp3Dqi4h
- kCSHWXMdMlbVyPPMxwB02+b3hj5fdiiRt8z84MHIJ7dKtEJGV2/QUJ/vP
- xDwfmS8y8agVpPShDXSuZU4uM0YBDXdRK1Y4tlZ2CQ6j+uXsbfaX8suz7
- HLMcNDD/tD5aEzX2zj3RwtlDBUrQCahh6Bh9b4E9cRSf8Z73hwYN9ORLU
- pyEdQ2G19lVF7oFpgzYv94EHMfEveiGzMeCePsPeTIgIm4u/CMB3yZZBn w==;
-X-CSE-ConnectionGUID: +AecgEYKTcqcLBpBAVtpWA==
-X-CSE-MsgGUID: lY4shWKFTzeON7PPgf3+Iw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="86131761"
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="86131761"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2026 22:03:59 -0700
-X-CSE-ConnectionGUID: hozoTgDsQXOJiBG02LCzRA==
-X-CSE-MsgGUID: 8WQVxf0NT2i/9O+thDumTw==
+ t=1785820351; x=1817356351;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=enkYIvpGbSNpw9Dn6DCmUBfjQKCOmvidUjPx3//q2tA=;
+ b=Rzp5+pw9tvJrq0NZiBE6slBwBgOKEIYO57zEnMDZWFEKpNG9O7eaI82x
+ FXmJnjBvI75nUEG+VMJYPRc4LvzL29Yi7FwEyyKvyWKMV55yww4Ipfdm7
+ tzHOPkvtz4xZbXaQ5WjNnFZBD2nVEmHZzfTH99hn7FnqNZ+5NVWNM6UIL
+ vYLkxEL/UjgSb6vtsMCIXdF14qKB96tjkEE8ljvpkcFsOxD+/+KX56BiN
+ GJ5tZmSEVAREuHk4RPxbzApPZM/oH44dfE2zLxcc0Ze3K7s5XN4cIElRK
+ pMiGFGfewsoW/8lULfaRlo+FyAj18/rtzsqHJISiBnQMyx47pZHiU7ICe g==;
+X-CSE-ConnectionGUID: WEbeFrjLRVqeelqxc4/40w==
+X-CSE-MsgGUID: Wb2JclkvSqi1Hk2YyoXb+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11864"; a="86374917"
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="86374917"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2026 22:12:30 -0700
+X-CSE-ConnectionGUID: qaUJMPK+QRekyMfEQYRLJg==
+X-CSE-MsgGUID: CaBEysCRSbWPnbRlTuCczQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="286057611"
-Received: from lkp-server01.sh.intel.com (HELO 6eda058d650d) ([10.239.97.150])
- by fmviesa001.fm.intel.com with ESMTP; 03 Aug 2026 22:03:56 -0700
-Received: from kbuild by 6eda058d650d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wr7Ji-000000008yr-1ncV;
- Tue, 04 Aug 2026 05:03:54 +0000
-Date: Tue, 04 Aug 2026 13:03:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Piotr =?utf-8?Q?Pi=C3=B3rkowski"?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 0dcdade9472358d1889d9040e5648c18ca86d075
-Message-ID: <202608041304.v8ZeFnyi-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-IronPort-AV: E=Sophos;i="6.25,203,1779174000"; d="scan'208";a="257519582"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa010.fm.intel.com with ESMTP; 03 Aug 2026 22:12:29 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com,
+ matthew.d.roper@intel.com, soham.purkait@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe/ras: Fix invalid health error code
+Date: Tue,  4 Aug 2026 10:42:14 +0530
+Message-ID: <20260804051214.1202957-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,79 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 0dcdade9472358d1889d9040e5648c18ca86d075  drm/xe/mert: Rate limit VF LMTT fault debug log
+We use -EBADMSG for corrupted responses from sysctrl. Fix the error code.
 
-elapsed time: 729m
+Fixes: 53a7115f9862 ("drm/xe/xe_ras: Add RAS GPU health indicator")
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ras.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-configs tested: 60
-configs skipped: 0
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index f7af4da8172c..bdad0621ae12 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -700,7 +700,7 @@ static ssize_t gpu_health_show(struct device *dev, struct device_attribute *attr
+ 	if (response.health >= XE_RAS_HEALTH_MAX) {
+ 		xe_err(xe, "sysctrl: invalid health state %u\n",
+ 		       response.health);
+-		return -EIO;
++		return -EBADMSG;
+ 	}
+ 
+ 	health = gpu_health_states[response.health];
+@@ -753,7 +753,7 @@ static ssize_t gpu_health_store(struct device *dev, struct device_attribute *att
+ 	if (response.health >= XE_RAS_HEALTH_MAX) {
+ 		xe_err(xe, "sysctrl: invalid health state %u\n",
+ 		       response.health);
+-		return -EIO;
++		return -EBADMSG;
+ 	}
+ 
+ 	health = gpu_health_states[response.health];
+-- 
+2.43.0
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                            allnoconfig    gcc-16.1.0
-alpha                           allyesconfig    gcc-16.1.0
-alpha                              defconfig    gcc-16.1.0
-arc                             allmodconfig    gcc-16.1.0
-arc                             allyesconfig    gcc-16.1.0
-arc                  randconfig-001-20260804    gcc-15.2.0
-arc                  randconfig-002-20260804    gcc-8.5.0
-arm                  randconfig-001-20260804    gcc-10.5.0
-arm                  randconfig-002-20260804    gcc-15.2.0
-arm                  randconfig-003-20260804    clang-17
-arm                  randconfig-004-20260804    gcc-8.5.0
-csky                            allmodconfig    gcc-16.1.0
-csky                 randconfig-001-20260804    gcc-9.5.0
-csky                 randconfig-002-20260804    gcc-11.5.0
-hexagon              randconfig-001-20260804    clang-24
-hexagon              randconfig-002-20260804    clang-24
-i386                            allmodconfig    gcc-14
-i386                          randconfig-001    clang-22
-i386                 randconfig-001-20260804    gcc-14
-i386                 randconfig-002-20260804    gcc-14
-i386                 randconfig-003-20260804    gcc-14
-i386                 randconfig-004-20260804    gcc-14
-i386                 randconfig-005-20260804    gcc-14
-i386                 randconfig-006-20260804    clang-22
-i386                 randconfig-007-20260804    gcc-14
-loongarch                          defconfig    clang-24
-loongarch            randconfig-001-20260804    clang-24
-loongarch            randconfig-002-20260804    gcc-16.1.0
-nios2                           allmodconfig    gcc-11.5.0
-nios2                            allnoconfig    gcc-11.5.0
-nios2                randconfig-001-20260804    gcc-8.5.0
-nios2                randconfig-002-20260804    gcc-11.5.0
-parisc                          allmodconfig    gcc-16.1.0
-parisc                          allyesconfig    gcc-16.1.0
-parisc                             defconfig    gcc-16.1.0
-parisc               randconfig-002-20260804    gcc-8.5.0
-powerpc              randconfig-001-20260804    clang-24
-powerpc              randconfig-002-20260804    gcc-11.5.0
-powerpc                    tqm8541_defconfig    clang-24
-powerpc64            randconfig-002-20260804    gcc-8.5.0
-riscv                randconfig-002-20260804    gcc-13.4.0
-s390                 randconfig-002-20260804    clang-18
-sh                                 defconfig    gcc-16.1.0
-sh                   randconfig-001-20260804    gcc-16.1.0
-sh                   randconfig-002-20260804    gcc-16.1.0
-sparc                randconfig-001-20260804    gcc-16.1.0
-sparc                randconfig-002-20260804    gcc-16.1.0
-sparc64              randconfig-001-20260804    clang-24
-sparc64              randconfig-002-20260804    clang-20
-um                   randconfig-001-20260804    gcc-14
-um                   randconfig-002-20260804    gcc-14
-x86_64     buildonly-randconfig-001-20260804    gcc-14
-x86_64     buildonly-randconfig-002-20260804    clang-22
-x86_64     buildonly-randconfig-003-20260804    gcc-14
-x86_64     buildonly-randconfig-004-20260804    gcc-14
-x86_64     buildonly-randconfig-005-20260804    clang-22
-x86_64     buildonly-randconfig-006-20260804    clang-22
-x86_64               randconfig-001-20260804    gcc-14
-xtensa               randconfig-001-20260804    gcc-8.5.0
-xtensa               randconfig-002-20260804    gcc-14.3.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
