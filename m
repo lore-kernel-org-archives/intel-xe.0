@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8530EC55822
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 15:56:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D34ECC55184
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Aug 2026 16:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26AAD10EAFF;
-	Tue,  4 Aug 2026 15:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63B6810EB19;
+	Tue,  4 Aug 2026 16:02:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JpuuXSMZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKypuGZr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F49010EAFF
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Aug 2026 15:56:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E0E910EB0E
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Aug 2026 16:02:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785859012; x=1817395012;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=pjFCbo3mCU9nqjvXrjvhv9Pv4fnrZ3/wO/MJmZGD9xg=;
- b=JpuuXSMZm264WjkaSzjrGO2xi6krvS7FZVSKLoXjhvaq+7a/fHX4QLFQ
- TN2RPznWGQOHrie9VssEf1NECGHE4LCrElgdGlAdKCzs7jUQEzYrNJJSN
- 3aOPgu6/gI2U5RgNaAGr8mS5MV6D2WPgTvv86X1WmxCWH3WyRGd9uCevk
- ktrJjy6L2tuWKLU+i2+nyskAjVsl3wByiMlMSTMEkVP0XmgHaZuEsranc
- tRBZzfkZEs7oy8MwRBCNQFqeQSpAWTJct0vxcbCfKQLPDzMh+d9y0pCCD
- xD/xIjPRhMMwyGyu2yN23BbXzBpllL8goG8+vevVRdSLIrYif+dSf5bYf w==;
-X-CSE-ConnectionGUID: BRczoHuBRlata2pnMpSxSg==
-X-CSE-MsgGUID: /YI9pz7xQbewZzMLooe/Og==
-X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="86358527"
-X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="86358527"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2026 08:56:49 -0700
-X-CSE-ConnectionGUID: 1hSBc4gbS9OWS/oGy60C6A==
-X-CSE-MsgGUID: jqRe54IRS3aDbKxf3TTZeA==
+ t=1785859341; x=1817395341;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=aHBnNMMlEYVjinkN4mrEITTKH2qbYdT03FuZjOMXmm0=;
+ b=UKypuGZrkK2I+60y5/Rl3aD7D2CjNLxQg0Le81Erm0Mn43eQ4eLAF+bm
+ XDRBaOWNEQBz93mm7Am4e3x9Fa0AwsWiMrOzIlQEV0kbAwiPBe1lYhOc+
+ 3+fXgKDuBO/uBqgk1Ls7zV5OfxPBjIVZ/0hKJzkdT+juWmAed/Orr9dUx
+ 6RjTQWEECq/ECOJgPEf8Sx0UFjnQ0BXVn1L2dQ+p2vN8iay31cjm+5W08
+ h2nj8OOchLJmhoH/Ifwn4rQWj/7/bI0nupDZzKC8Prd74CP7N9ixRaf+p
+ IJo25onCltcsD7HTF3j//PzygGN+Pbdhqiunc0co++eZStqH8pJSZtAps w==;
+X-CSE-ConnectionGUID: KY5kmLwiTmCxPf0POhv5qQ==
+X-CSE-MsgGUID: MUZyj/CGR8eCWTFRaHBnOw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="97008867"
+X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="97008867"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 09:02:16 -0700
+X-CSE-ConnectionGUID: vXRc/jVAQa6/at3VnkJMtw==
+X-CSE-MsgGUID: aV2umQ6ZQzaQ/aWmO2Cz5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="258196659"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2026 08:56:22 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,204,1779174000"; d="scan'208";a="266665770"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 09:01:01 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 4 Aug 2026 08:56:22 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.45; Tue, 4 Aug 2026 09:01:01 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Tue, 4 Aug 2026 08:56:22 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.2) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Tue, 4 Aug 2026 09:01:01 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.66) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 4 Aug 2026 08:56:22 -0700
+ 15.2.2562.45; Tue, 4 Aug 2026 09:01:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xzm1SgXFCvYbkgqjrDImqJfTE7Ig010YbWj7wFPTkIvqX+lYTaBuVKUCmA2nhFBsMqx3I97zndrJCIduXEZmG6QckNk/WKrHaT9VL3U+SeTnHvL/kYp1moPaaB3p8Z4wMDo3PTkZ28Ms0XXkPEMDTaEEUBJXUILdogpZXSsilFBh1WtRcwWIBscte4P7orU+6Tw+Hz1nwDwbqRqGx/DxdrXMpWTcxDawcOOdregYFBw88/iIRGbTYhXH6vBDsfCkDI0kX4HrVOLSTcvtnmazPJLUAs1fbYfwB4+SmgyK+PLJm5T1TN3QiyJ54mhpsJ9zWKxpfrGfcse4D1YLFXdo3A==
+ b=xcAH4demmLVQJnAeboQJoR7W48Lnlbbe3mWSZDTfzz7jBLG5ipwAeoUDpp0AKqcZZz2NoFOvusMICyJHL3rHvMF3gkujHGG3bp78qEtUZQBm2h2A4yTT6Tt7Gjp0STY8EAjOx0Z7QGHhLcoWyE2QApE6NJlyVDKQ+alT6BUjNY2jUT+njDFNH8vk5Psa0afnsXZnt4rIeMfYVDJ5VD6DrLHKjWqke7mQdwWP+hBf9Z9nFuq1aWQUemAxe6UjhRNQ535F5UVfYQEtJYg/MSZ2NBL6TNX1/4P7RT7t6pxxhf4VoUqj9JQbT/YzwFsebT4tEJWKkFoAtKRfTycCQcC3oQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I1xyDVWxZn6YORPmI3HjpUK4IuhGowyaLg05cZLjqNk=;
- b=Jj0VHOQKXfWW8bdcolYkoXIcCCCtKjCWF4PtlVhxSTmbEQehcc3TzbeKK9Qi2+I4BrOdd0ihVS4uSofEAbTimnM8+X9eVGfX+Wj98lTzqvfWh3wC8O9XMh0c2v+P2YwdHPDkIC7Xq1EMc5bS23ZjvWguxWopHqVtFjAfRlDkUXEvzdF2bKVxZd5amMST7pBjI/qV9zBRORh+/+1RORgrJIdjRsd9BjvDiFaRwoyan8rga0tlv722AY0iBRG+i6XExVrTW9twCqto+u4QD3tLCZWxaa4PVQ/IH+XgddKCiy0dVwvv9Wu/mpetMF9IrLnGH8Z14mBzQ3Z/rSQ00IWW7g==
+ bh=rOM8lSeJ3B/jRjlr7qdiZ9c9ml8Ztsq+M8ZfSDgKWSI=;
+ b=oKpvfIBPNuCLtk8zJlOrs8CwZCQRoXI9LBKy3Wn9ewHJKDDeBUMj3TtHRrE4q/LY66YcI71pueDbfz9lU9jy8uud3kMs4bPeHn9TSCYXyZW0VKxxn8pZzkrGgyMKRAX8wSydxQJhmpTFNHqP1Ez7AUU9QKpcsA6LRpScHJ+AmtPifLTPsTKq49aUruCauEVGLCVxjMsHNti1DvZdqORkgsfcYrgC0GplVHq6oKVQ2YP48I6Ww4vAvRAWINGBEZZx7WHuLwwJ/kUi9K2p5/wjhRijHiGONSTzNZ3HNCAl8e37OQlmSwOnxLPBwPwfb2gw1Lqerz+62WBM26gIHj2Aqg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,92 +69,90 @@ Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
  by MN2PR11MB4712.namprd11.prod.outlook.com (2603:10b6:208:264::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.16; Tue, 4 Aug
- 2026 15:56:19 +0000
+ 2026 16:00:58 +0000
 Received: from MN0PR11MB6011.namprd11.prod.outlook.com
  ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
  ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0292.015; Tue, 4 Aug 2026
- 15:56:19 +0000
-Message-ID: <d9b9afb1-7e39-4ad0-9e8a-ad6888238ab6@intel.com>
-Date: Tue, 4 Aug 2026 17:56:16 +0200
+ 16:00:57 +0000
+Message-ID: <1d19f766-b3d8-4846-a7a7-cbffc8da436d@intel.com>
+Date: Tue, 4 Aug 2026 18:00:55 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/23] drm/xe/log: Add hardware error signatures
-To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>,
- <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: Yoni Levitt <yoni.levitt@intel.com>
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5CQVQ6IGZhaWx1cmUgZm9yIGRybS94ZTogQWRk?=
+ =?UTF-8?Q?_structured_SIGID_error_logging_infrastructure_=28rev3=29?=
+To: <intel-xe@lists.freedesktop.org>
 References: <20260730152121.576-1-michal.wajdeczko@intel.com>
- <20260730152121.576-11-michal.wajdeczko@intel.com>
- <9e60e8e5-3942-4537-bb10-ac5a3bc72c69@intel.com>
+ <178542826381.5683.18273263562090224594@61270ab9df2a>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <9e60e8e5-3942-4537-bb10-ac5a3bc72c69@intel.com>
+In-Reply-To: <178542826381.5683.18273263562090224594@61270ab9df2a>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR06CA0139.eurprd06.prod.outlook.com
- (2603:10a6:803:a0::32) To LV2PR11MB6024.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0150.eurprd06.prod.outlook.com
+ (2603:10a6:803:a0::43) To LV2PR11MB6024.namprd11.prod.outlook.com
  (2603:10b6:408:17a::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|MN2PR11MB4712:EE_
-X-MS-Office365-Filtering-Correlation-Id: ada951a8-5f18-457b-cd48-08def240ec01
+X-MS-Office365-Filtering-Correlation-Id: 0df846d8-616f-47ae-a9f8-08def2419262
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|56012099006|11063799006|4143699003|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: +qI6OcE80Yy/Nc6Kfw8/6mDqtmggRoYkAR8QfXRHd33PAPk83xFtl0mEIeXrGCMEnbRSWX8m4BOe5QP8N7RwDfBs3CbUOx9qQwAiTYrzS5pjT8RtjxaaWjP9Hwhc55zO4iPfCC6ZqaDax8WWaCGoEsT6yZcilpxmTf6/smL6wlwOglk/BZdNWnrhgSqC1yLsVmH49AN/NLidVpqpOFtGZK66M0eyYx0qrFXEh1tJqbwzkO+h7I51UwQn9DKHfiueOhNSRFj7UmEW959gid009BbR6gJIvQ70K/JaKVIDFUpNXjxgQFe30JDJriK91O5D8/MDa1NmLM7z7F85I0UO/9JZ6nIQNa5zQtf5azgSJaQe4BSDwRP6ySQjKbWdg1jvg4XA1mqpuqCB1JEoqJ5Ssnu5kvk6dJYCLf7zgFPXM8y0kVqlrQThcnXKG7J3C/BXFuW+Qooaa3dSQxOu0lKUbyfwWHs2auz5s9zGjcdRPaN4S2QdoPYPwQAkFEOo9oAeKkV2byFja/hRDWeb9q0kom/e2vB6zfUez0C6YBjWDnDsokqbdNl1ZmgUoCsYpUNOHyiUxwjNA4aA2s+z24KZ9HhYz1fcCLoZ7ca4+eBuc+RzLyvZxpf3B3KuGaOwHNxN
+ ARA:13230040|1800799024|366016|376014|23010399003|56012099006|5023799004|11063799006|4143699003|10067099003|6133799003|18002099003|22082099003|13003099007;
+X-Microsoft-Antispam-Message-Info: V514o9a2U23ItfVL26yocwfdJVFnH2Vj0AcXKDIV7xrOWoG28IhmD+Kjn4OL3fUlntM6EzYPPcORK6i4msqPLKLWzGIuJtLmHBdADpuDgeR+mT3PyHodznQVyCSAalUhU6rD3Vi+F33FLf4NdSfc1/yAbOYa4wEOKi47h9dHsJF34X+gnEw9RUQHez7N7nifrW2t8NVXQGNFiVVJI96xrstQ1xOnrz7lQ8GMUU4rNqI7olFB507qlE28tEZDJ35B2m4xu5bmdTBdjO57DAK1m2potJ382NjUot5qvbabjyB09skVIQIAlr3VtOPmnl8Wo1hIWJNCcH328IcoNbGXe7dxa7L5ezNtRzyrTyX7Kdc+nGzJDFeZsQXcwvb6ovfVGs3hIoFTRy+PMo5sozJzmTh0X25EKrr8IpzX0y8eTv/GTnVIZnW14By5DwADpbORcHtkyvAVxiTUKxQsVhssieVg1h1hSyktiU4lrHncJRVz13nnoGprGtZVCsMqgF6weXHH3W6bhntVWWZZYNlCk7AhA3eAQ22Mk4CmVMEt2WoVo6nguBfDHAyMNYN1uKu+WU+W4pHSrwAWD0IhZASI6Pf1x+XoFs/2i5Mibh6iv+Q=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(56012099006)(11063799006)(4143699003)(10067099003)(18002099003)(22082099003);
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(56012099006)(5023799004)(11063799006)(4143699003)(10067099003)(6133799003)(18002099003)(22082099003)(13003099007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?KzZQSWNrTnFzNUExVjVJTTFsTDVXbm9LSHBnL1lrVzEzMEhad1NEWHZweEY0?=
- =?utf-8?B?aUk0cFo5NXhGeHJ3a2JNWjZCdEFZdFhOVXRETmNzMlZ5elRPOW1lVDc3VmFj?=
- =?utf-8?B?YnpuTFRIc0RacGZaMko1Wk8yakQzbjdaL2tKNW9MNE5XeG5jYkc4d1JkZTFX?=
- =?utf-8?B?MXEwVThIeHdST2x5RDBWRW9sZHl6TlZNQmhiS2FsOTZ3VjhUTDlOaWtrZWtM?=
- =?utf-8?B?U2ZLQmdvMGhnRVNUS0RlV1EwbFhTN1BkbWVzdjc2bUlvVnBNazEvTVBqVlp2?=
- =?utf-8?B?UU9PZXJZZnlrR1Bub2g4WHBlZy9YaW9vcm0vcnhiQ0pqTmovaEJmL0hzRkUr?=
- =?utf-8?B?YU42OFcyZ3lmYWhuMGk4TjlWZ1dGMzQzRzcyNTdkbHh3L01qR1RDYjZzSlNh?=
- =?utf-8?B?NTVtdG1VRGR0ZGFHbm5aNGpOOU4wMis0MS9EYzhzRE5TelFjQmxEYk4xNnNO?=
- =?utf-8?B?WUt5Q3hlVEE1bGtUMFB2QTBXSU53VERQTmtTUHZlNklzM2Q3bkFIb0FKd1Ex?=
- =?utf-8?B?dGtad3RmT3o4Y0ExZ2p5dTZFNHNkSHUxb0IveVA4UndyY1Z0OGNvUjhRSERQ?=
- =?utf-8?B?K0tRU1BzNTZvclk3RjdndTlsckhCOUpSSTM0Z0YwSVlGZkpPcWd6UWFiOEFY?=
- =?utf-8?B?OGtNdWZOY2dqUHNNQkFmaVlGSGRzMlozdjBtK3Ayai9UVU9FZ1l4NXIySkdK?=
- =?utf-8?B?akNLMTh6ajdhc0N4SXE1WlNVZzdrb05laE1nZWtYR29qa1o0NEM2Z3ptY0Zj?=
- =?utf-8?B?ZHlYN1RmRnRnVWFsTVdzMmlsM0JWRjlsUjQvSk5GNW9vSTEyWlhxZlowMGZ4?=
- =?utf-8?B?dU15TXN3R3JzR1hKRWUwTmVab1lzSWE3a1BpaWgvYzVLajRGc0JHamNFMkh1?=
- =?utf-8?B?TDFQUnF2SU5jVHJpTHJEVk9XTC9mSHAvVHpiYVBRdHBoSFpKUC9hdEkyM3RZ?=
- =?utf-8?B?SDlSQVVmTTQrNVBvazg3TitLTHRoeDFXQjBZbmRRaitVVThSS3U0U29jdjQv?=
- =?utf-8?B?MkUzZ2VyLzJvWEYrRVZIcEpvVHFMS1o3clVtTmo0VFhXejRKVENtNVo2eE1w?=
- =?utf-8?B?SHF3QUwwOU1sYURRa2llWlFyTWdBSkJxQ01lV1MrOUZYVW56ZWl1Y216K1Np?=
- =?utf-8?B?dEkya0hFeFJEQzA0bXJMWGxHQlZOMGJXanFiUWtUYkFKaFVFYnYyKzZYSTRn?=
- =?utf-8?B?RFE1cHBvWVYvN2ZvcGxqaEJwK0tYSHlTWVd5eFNUYmc2NWNDRSsrMXdBM21D?=
- =?utf-8?B?bXZhOHFXSi9CbUNlN0syVFRiUlVPZnEwVW4zVkx0d1hqaHZONStGNmJHa0s0?=
- =?utf-8?B?UnJucVNrSGkxRXJjWHJOdnRFMWdqbDVjTG50ZEFwblNWYjFZa0tJRUN6TkV6?=
- =?utf-8?B?N1pGaUU3S1gwaGprdXlKdktOVlp4TjljWFVXVERyY2xiOEM1YlVUNzJ3THdk?=
- =?utf-8?B?T1AycmJzbHFtV2t1U2ErZnZwZ3Zkdk5mb2czWVpGVWFkNmlENVp6OWtCTnBC?=
- =?utf-8?B?amoyQy8wem56Z0FNR3pjSndYK0RxQkR4ZzVxaTB3SlFqWDhSeTB6Tkw5akpw?=
- =?utf-8?B?bXlibjJjTDFKTlNDZW1ZZDQvcDY5eVVYdlRLbzNyQXZ1QlFmV3k2cFVtU2Nt?=
- =?utf-8?B?RjgvSjBjUnVEUUdEdUZVRDNWZFU4UFBkVnRwRWp5K0t3b2V0L004K3VmNDRq?=
- =?utf-8?B?YzJxS2ptdGdrb2VlSjNQMC8yYlVLQjJhSm51dnBxYTFXVVdHeFZGT3lVQW5X?=
- =?utf-8?B?R1Flclc5NDBvTTM3dGJTSSs1MnNoMGtYaDVEZlNlNG01TnVERGowRFZsdHh0?=
- =?utf-8?B?TEdaZEJlVFVad2FTbjQ5MmpXczM1L3lWd3dWcWpTdnB1bzBrVWNqTldVZG8v?=
- =?utf-8?B?U0lmTTFMaERlcDBvRXBxQk5OSEdZSzA2cXNtci90ZXFERFZNaDhxREE1d2Fy?=
- =?utf-8?B?SGFXUWdtMGZ1bFc5T2k4U1N5SnpxTTlqYWlFQ3BtbVdlMFVNN2xEL3BsUWFO?=
- =?utf-8?B?SUV6Uk1LM2R6ekZ2bEVSSHBhbkxYRGhPNllGRnhRSjViRFJUbjZ3SGN3UVp5?=
- =?utf-8?B?K3J4VDMreGo4TEFsRDAzVW52Z3ZoU0Nnd0JGVWdieGdldFlBc2FHQ2svSTVQ?=
- =?utf-8?B?aEhrL0ZkWTZRQ1dhazdXeFl6Z1VvM3ZUTGoreGVUbWNrRGQzM25hNTRCazdL?=
- =?utf-8?B?TVZxOEdFZk1hMDFyVlRyc1Vmd2N3cGNncTNjY0VoM2NjSmp3NW9BOVdaY2pv?=
- =?utf-8?B?VnF2L28rVTdOQ21pZis2Wnh1aWlkbjVIU3Eydk9oMGpaNW40ZmdCN1RINEp3?=
- =?utf-8?B?enZRZmFYQk0vOThHM0lzYmdjY3htZEdVSDNFeHh3ZUhaWnVaaHBUbWpvSnVi?=
- =?utf-8?Q?oEjfwP8BkyRuYBc0=3D?=
-X-Exchange-RoutingPolicyChecked: pNf32tChZLmQO8ToiTLje3lgjhklSsrQmmPvOmo21StTQaVFsa6lcJQvxwXaG0S3cc0hcyYYC6LOb/BtbnDdDSSDuaN49jRmXBHHWHTMopCtueUyc4ND/aFsdMh3NrbLF3lsS9GSxq6vKjqgXHpknQXd0227D/b2qWlCIRi7IJLvEuPhSY/xa8hvo5x0uJ9TaFNDLwxdR2OivBRyFyv2DgzhYSJucUgr+TOm3aovtb/nEVui3lBnZRZOQBbUCYbHwal3/DSGEqrcG5QkA0PgYDR9ESTAqm2ieUqLwNXsJ/nt+vcMRlZneZieDfY6xx15srU3ayDt9FFOMxb2xhP2Eg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ada951a8-5f18-457b-cd48-08def240ec01
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SUt6TGs2aGNUVURoSGlOVjMyYVMxVTd2ZGs3eDRlRm9xcEcrRGVJM2VnbDZ1?=
+ =?utf-8?B?UWZHcVl6TjVmb2YrNDUwbGtwQU5jNUg3a09SQmtaenVZTHF5eEw0dlBxK1A1?=
+ =?utf-8?B?N2FzbnNVVUw3VVJQZS8wN25mci90Q3dKc2xvZnBLV29GU0NiZnd1QVlLZHN6?=
+ =?utf-8?B?R3A5b2QzVEFCSzJJWkxVQnNTN2MrVjVYT0xUQ2YxNmZ6TE5FY0s3enZWRnow?=
+ =?utf-8?B?ZmZtT1ZxbFQ4UmFjeGRCQ1owOWNQQUp6STYwcms3aVd6V1pib1VZT3E4WFZP?=
+ =?utf-8?B?NGpZOTBSUHpTWitkY2ttaFQvOWhCb1JGekxubjk0RURPaDE0Q2xiZlY4aGpD?=
+ =?utf-8?B?bytDRi9WMHBneFlmNW9oWjdGa3Ara0trNFE3L2xGQTRLaUFiV1dxZ2NkcSt3?=
+ =?utf-8?B?WkRZVkNxMTB2cE4xdHJaWm91bGd6SC8xRVZUeFZ0azBxSGVHSUlsMHMrMnBS?=
+ =?utf-8?B?Uk1JNm1DckZQblNEcndHY05JOWdvWUg3cVdkb0lYOHV2STByUjZzaXdHWkZK?=
+ =?utf-8?B?S05BNHJsTGRXZWN1a3haL0NnV0RrTHlPbk1vSHliUW9YZmFUVnY2d2dQdzYr?=
+ =?utf-8?B?VVk4WmUxdXNaMCtyZThvbGJIM254YUNyVHh4R2JCMTRxYTlLWGRneUxvR2h6?=
+ =?utf-8?B?bDNkVEEvN2lseS83RTJKUWlBckRUWUhncHdkYUVIeW5vclk0U2dMMGk2NFAy?=
+ =?utf-8?B?RXlZMldMYUdlZmdxMGJFcjA1N0ZpK1M3VVVHc0dNN2dqMGF3SEVmSlQzQWhi?=
+ =?utf-8?B?NXZLbTg2UGdxUnljNlE3OUc4eDFmc2o5UG0xV3pDZ2hvb3dydXp2MTdLbTVp?=
+ =?utf-8?B?NmEwRlhIRzRrRmJOVVJpVXZoYnNJOUtnRmd0V1RrMm15NlRkeEJES2VIUjBW?=
+ =?utf-8?B?TUdaZk1jQk53STFaK1VQTFVKZG8xVlhMVnJ2d0loSllvSk9tM3pTZVI3bWtV?=
+ =?utf-8?B?NGtPWFdJRlFUSGJ0Yks2bTU3dVE3VkNKOVNLeHI5YmlZRDF3WThFNW04WTlP?=
+ =?utf-8?B?WlJyQ1JTdTY2cHVnNzR5RmEwK200ZWtYd1ZjUFoyN3pHNjlqRTR5VEZQYUg1?=
+ =?utf-8?B?R3QrZTBHTDlYZ1R4NWtQRlpONE1rb3lDS3U0QmNYMllQQjBtVzdRek9qaHFN?=
+ =?utf-8?B?UmlUV1M0UFd6Mk9mVXh4YVNrTTJxelhjdXZYMjRzYmhxZ2R6U1dqbUkzVGsy?=
+ =?utf-8?B?R2NVOUhHbkZBUWE5WUprd3JwYnN1alY2NzJYREk1bHl6ZGQrWXRnazMrZEJo?=
+ =?utf-8?B?NTNjRlJtdGE4cEJDZEFjUW5MTEhRZzUzc0wvUkNxQThpVkNqVy9SZTdWQUh2?=
+ =?utf-8?B?dVluVUJPeDVJa0tSYzk4SlVZajNtbXNPM2RzQ1JNZkFZSkFLa2Rabm1TLzlK?=
+ =?utf-8?B?K0JmOUlYNm96YytsWUdJdlVkT2R4allRNkVPaC8xcWdDSWtBZ1oyQjBkOVdn?=
+ =?utf-8?B?Y3FIakluWlk2RjFkUGlGNkcwTENKaFlTUlU3UlNYczd2V01aYyszZW9WMFh3?=
+ =?utf-8?B?eExxdW9xZWd3d2g1WFVXUVg0V1RIOWx1MFdVeUdGd0JFc0c0V2V5TUhoZUZo?=
+ =?utf-8?B?T2laeTVlclFKV1dnNzdaWmgvWUY5QnlSQ1ZzZWJHWVNWQzVGMUJxUGYzbDZt?=
+ =?utf-8?B?WitERXJVRzFTNjdPcHdPQUlwN1hJQU1YVy8zYitvWTRFRENTTzFENXMxeGR2?=
+ =?utf-8?B?dkNRYU9HQXh0T25ITmdwRHZWSWRUcitwcUhOYUdmZGZGbHBjRUExVmJtbjNJ?=
+ =?utf-8?B?MlNEbXlBYXMzb2toYVZqN05BRlk0ZnNUMG5YaFVtU21LaEpHb3M3ZzNDL2lS?=
+ =?utf-8?B?akl6Z1pvWWlvbzZ1K3pSK1pIMjBqUy9NTDZJUUw0dVZKV3JYQW8xN3dNbnd0?=
+ =?utf-8?B?Rm4vNGJuYS9ISXZzRnlDbDVaYXVVK2Z1Vi96WHR2R05IaXAvRzRZUGE0Mmlp?=
+ =?utf-8?B?Z0QvOEVDMm93b1dTbExPd2NMSkFEKys4dzA4dVR0NTFORmFGQ04rb1dhYjBl?=
+ =?utf-8?B?MHIrTVZUVURaZ3JCM0wvc3dSKzFObEpJajFWMEp0UGpqdHhpMGdBWjM1NWVJ?=
+ =?utf-8?B?eEF6QnRrczdjQ25xUWZCSllvcFg5YVprSksxQnpWMks0REEwM0hPalc3czk0?=
+ =?utf-8?B?UVNEVjBEZ3k0Rk9abEtLUGZhdUVJSzUwNEJxZE9FVHp3cXIzellLL2FkODJp?=
+ =?utf-8?B?bzNrekRTbWkxa2FKOGFSd0dJOWNjU1BZSzlFNTZlMjNOdVRXbExaMURMSkVD?=
+ =?utf-8?B?aEtVSXFnK2lVWEJMSkhYTEpzbllEMEExc251Y2owMGF0RWdmWjF0ZjRqcHV4?=
+ =?utf-8?B?V1NyRTlpZGxnZjkvcUJNbnVRTWJySHNaT3NlbDErdFpKbytnUnk0ME5wNzFJ?=
+ =?utf-8?Q?EAN7UvF8/KDdgAaM=3D?=
+X-Exchange-RoutingPolicyChecked: ZHzfhQ8HB6793R67+uw9aTkF1bbegXM0uXq0TkBNvSv5RYHbkcfADaLxy55+OUu3cv/jpZrUL4p+v7g0CTqXLCOXROaRi52ME04+yo8JTtYN1Lp7dq5qCB/diROaG/esG7qtikeReP2foIumFI645qvYSvcKC/dhV8ttpsbNKMJWVxEpGR/UJXbJAqBBMjAE3BgjEohBI3cxnWZ05gIG+ZW2OXHoZLjkGAV7W1jwWUQ0TJKYz7lb9lUZ/o6dec7nRhQjNw9Wbc6FSweNdc30vFawEBHIsuNbVu0Cy+O6HEe0ErqRtkG9HqpsDr0o6JrDUypHfpVaq8mU2AJVbWRAmg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0df846d8-616f-47ae-a9f8-08def2419262
 X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB6024.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2026 15:56:18.9366 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2026 16:00:57.9079 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IrMikqNMoL4vpG7R1cXX5b6keWL8bxFwPKLMWQwfYmWTdTsu+kGiFdU1y8jh/a9BCW/K/FMPgGBOE3faG6L4El9srNx3Uzn6YaGFyUJ6oYU=
+X-MS-Exchange-CrossTenant-UserPrincipalName: BQurSAhDqx+dMlIArJ/axJ1k9ctsGznK6Qm8QuK7cj8tx9kKc4UdjoU8v83lRGQ3C0BWs0N3MubRIqwfoKXWPj41phGL0Jym9U5QHJt0WgY=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4712
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -173,75 +171,100 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 7/31/2026 1:41 PM, Mallesh, Koujalagi wrote:
+On 7/30/2026 6:17 PM, Patchwork wrote:
+> *Patch Details*
+> *Series:*	drm/xe: Add structured SIGID error logging infrastructure (rev3)
+> *URL:*	https://patchwork.freedesktop.org/series/171022/ <https://patchwork.freedesktop.org/series/171022/>
+> *State:*	failure
+> *Details:*	https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/index.html <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/index.html>
 > 
-> On 30-07-2026 08:51 pm, Michal Wajdeczko wrote:
->> Extend our error signatures definitions xe_sigid to cover also
->> hardware-originated errors and make them distinguishable from
->> initially defined software-initiated errors.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Yoni Levitt <yoni.levitt@intel.com>
->> ---
->> v2: update comment (Sashiko)
->> ---
->>   drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 16 ++++++++++++++--
->>   1 file changed, 14 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->> index 99717fdf74a6..69cce4b45635 100644
->> --- a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->> +++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->> @@ -159,14 +159,19 @@
->>    * @XE_SIGID_GT_TDR: Engine hang / timeout detection and recovery (reset). [RETRY]
->>    * @XE_SIGID_MEM_FAULT: VM bind, page fault or GTT fault. [COLLECT]
->>    * @XE_SIGID_IO_BUS: Runtime PCIe / IOMMU / MMIO access fault. [RECOVER]
->> + * @XE_SIGID_HW: Generic hardware failure.
->> + * @XE_SIGID_PCIE: PCIe interface errors.
->> + * @XE_SIGID_DEVICE_MEMORY: Device memory errors
-> Add . @ end
->> + * @XE_SIGID_CORE_COMPUTE: Compute/shader core errors.
->> + * @XE_SIGID_FABRIC: Fabric errors.
->> + * @XE_SIGID_SOC_INTERNAL: SoC-internal errors.
->>    *
->>    * The situations the driver detects and reports in software. Values are
->>    * numbered sequentially, are only ever appended, and are never renumbered or
->>    * reused. The tag in brackets is the default resolution bucket (see the `Xe
->>    * Error Signatures (SIGID)`_ section).
->>    *
->> - * Firmware- and hardware-originated signatures are not listed here; they are
->> - * logged as reported by those layers.
->> + * Firmware- and hardware-originated signatures are numbered separately.
->>    */
->>   enum xe_sigid {
->>       XE_SIGID_SW            = INTEL_SIGID_GPU_XE_SOFTWARE_START,
->> @@ -178,6 +183,13 @@ enum xe_sigid {
->>       XE_SIGID_GT_TDR            = INTEL_SIGID_GPU_XE_SOFTWARE_START + 6,
->>       XE_SIGID_MEM_FAULT        = INTEL_SIGID_GPU_XE_SOFTWARE_START + 7,
->>       XE_SIGID_IO_BUS            = INTEL_SIGID_GPU_XE_SOFTWARE_START + 8,
->> +
->> +    XE_SIGID_HW            = INTEL_SIGID_GPU_XE_HARDWARE_START,
->> +    XE_SIGID_PCIE            = INTEL_SIGID_GPU_XE_HARDWARE_START + 1,
->> +    XE_SIGID_DEVICE_MEMORY        = INTEL_SIGID_GPU_XE_HARDWARE_START + 2,
->> +    XE_SIGID_CORE_COMPUTE        = INTEL_SIGID_GPU_XE_HARDWARE_START + 3,
->> +    XE_SIGID_FABRIC            = INTEL_SIGID_GPU_XE_HARDWARE_START + 4,
->> +    XE_SIGID_SOC_INTERNAL        = INTEL_SIGID_GPU_XE_HARDWARE_START + 5,
 > 
-> Since we've resolution bucket for SW sigid so do we need resolution bucket for HW sigid as well? If so how are we going to put HW sigid to resolution bucket?
-there was discussion about this already [1]
+>   CI Bug Log - changes from xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd_BAT -> xe-pw-171022v3_BAT
+> 
+> 
+>     Summary
+> 
+> *FAILURE*
+> 
+> Serious unknown changes coming with xe-pw-171022v3_BAT absolutely need to be
+> verified manually.
+> 
+> If you think the reported changes have nothing to do with the changes
+> introduced in xe-pw-171022v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+> 
+> 
+>     Participating hosts (12 -> 12)
+> 
+> No changes in participating hosts
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in xe-pw-171022v3_BAT:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   *
+> 
+>     igt@xe_exec_fault_mode@invalid-va:
+> 
+>       o bat-bmg-1: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-bmg-1/igt@xe_exec_fault_mode@invalid-va.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-bmg-1/igt@xe_exec_fault_mode@invalid-va.html> +1 other test dmesg-warn
+>       o bat-lnl-2: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-lnl-2/igt@xe_exec_fault_mode@invalid-va.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-lnl-2/igt@xe_exec_fault_mode@invalid-va.html> +1 other test dmesg-warn
+>       o bat-wcl-1: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-wcl-1/igt@xe_exec_fault_mode@invalid-va.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-wcl-1/igt@xe_exec_fault_mode@invalid-va.html> +1 other test dmesg-warn
+>       o bat-ptl-1: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-ptl-1/igt@xe_exec_fault_mode@invalid-va.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-ptl-1/igt@xe_exec_fault_mode@invalid-va.html> +1 other test dmesg-warn
+>       o bat-ptl-vm: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-ptl-vm/igt@xe_exec_fault_mode@invalid-va.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-ptl-vm/igt@xe_exec_fault_mode@invalid-va.html> +1 other test dmesg-warn
+>       o bat-lnl-1: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-lnl-1/igt@xe_exec_fault_mode@invalid-va.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-lnl-1/igt@xe_exec_fault_mode@invalid-va.html> +1 other test dmesg-warn
 
-and I guess we can add [COLLECT] here as an overall recommendation for all HW SIGIDs,
-as likely all such errors will sooner or later be reported as separate SW incidents with its own resolutions
-and official documentation will have more detailed recommendations (out of our scope here)
+a kind of expected new error signature with just introduced SIGID error:
 
-[1] https://patchwork.freedesktop.org/patch/742246/?series=171022&rev=1#comment_1368419
+<6> [153.466714] xe 0000:03:00.0: [drm] Tile0: GT0: 
+	ASID: 538
+	Faulted Address: 0x0000fffffffff000
+	FaultType: 0
+	AccessType: 1
+	FaultLevel: 3
+	EngineClass: 0 rcs
+	EngineInstance: 0
+<3> [153.466720] xe 0000:03:00.0: [drm] *ERROR* SIGID=107 (-EINVAL) Tile0: GT0: PAGEFAULT: Fault response: Unsuccessful
+<6> [153.477174] xe 0000:03:00.0: [drm] Tile0: GT0: Engine memory CAT error [18]: class=rcs, logical_mask: 0x1, guc_id=2
+
+previously all this was reported as info level:
+
+<6> [157.848707] xe 0000:03:00.0: [drm] Tile0: GT0: 
+	ASID: 538
+	Faulted Address: 0x0000fffffffff000
+	FaultType: 0
+	AccessType: 1
+	FaultLevel: 3
+	EngineClass: 0 rcs
+	EngineInstance: 0
+<6> [157.848713] xe 0000:03:00.0: [drm] Tile0: GT0: Fault response: Unsuccessful -EINVAL
+<6> [157.848773] xe 0000:03:00.0: [drm] Tile0: GT0: Engine memory CAT error [18]: class=rcs, logical_mask: 0x1, guc_id=2
+
+>   *
+> 
+>     igt@xe_exec_system_allocator@fault:
+> 
+>       o bat-wcl-2: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-wcl-2/igt@xe_exec_system_allocator@fault.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-wcl-2/igt@xe_exec_system_allocator@fault.html> +1 other test dmesg-warn
+>       o bat-bmg-vm: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-bmg-vm/igt@xe_exec_system_allocator@fault.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-bmg-vm/igt@xe_exec_system_allocator@fault.html> +1 other test dmesg-warn
+>       o bat-ptl-2: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd/bat-ptl-2/igt@xe_exec_system_allocator@fault.html> -> DMESG-WARN <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171022v3/bat-ptl-2/igt@xe_exec_system_allocator@fault.html> +1 other test dmesg-warn
+
+ditto
+
 
 > 
-> Thanks,
 > 
-> -/Mallesh
+>     Build changes
 > 
->>   };
->>     #endif
+>   * Linux: xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd -> xe-pw-171022v3
+> 
+> IGT_9034: be1d1af352dbd4ca4557202a8ed0d6d60f95e0bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+> xe-5508-5e24f68d311764bf343f9def49b752b509dfd5fd: 5e24f68d311764bf343f9def49b752b509dfd5fd
+> xe-pw-171022v3: 171022v3
+> 
 
