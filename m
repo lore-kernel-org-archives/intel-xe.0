@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56AC1C55174
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 10:13:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5633DC55822
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 10:21:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E821510EDC2;
-	Wed,  5 Aug 2026 10:13:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OZ2PVG+y";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70B4010EDC2
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Aug 2026 10:13:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785924788; x=1817460788;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iSbd7cDl7pLs/QxFi/f7TlAvKWEHm1sAkiE739O4r2g=;
- b=OZ2PVG+yKQG5jCrdpeuHrweODehCV6zxpk5J/GrffzlK4EhFn2b8rbpH
- v4ZEeRFBgyb0iXwAtlW3LkiPwZWCkQ1HmPanc9OHtyzIE+c+0Sc8F8rIP
- rSNym3FlzZZ/FCLwZFs13bECJziHXbDlz6lvpMA/S/cCZgeB7/LysmNpe
- wYNM/58nQ7h5/uY3kiZiZCaiu2p1VGyuoII7laWI8nlYMZCvpCpgTFoZZ
- E2bvH3ZqF7DO+HLQ/Docq9xUnMbDTNFuu59T2TZ7H8r/AfbZ87c1QEREJ
- 4ol/mqlMZRL3x15PX9Owc9OiZtzsKgYPSCbdGlpyH8TmMZvf+gyivDOQE Q==;
-X-CSE-ConnectionGUID: gsHt9vJCSx6RolSeI7GT8Q==
-X-CSE-MsgGUID: 1HWGFLB2S9W6glE8RtC+nA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="85619740"
-X-IronPort-AV: E=Sophos;i="6.25,206,1779174000"; d="scan'208";a="85619740"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2026 03:13:07 -0700
-X-CSE-ConnectionGUID: WixlzjGwTw+Vzr3wkp2o9A==
-X-CSE-MsgGUID: d+eTCsJHSPOVbQRAGgACJA==
-X-ExtLoop1: 1
-Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2026 03:13:04 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
- raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- michael.j.ruhl@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH] drm/xe/xe_debugfs: Expose G-State and PCIe link state debugfs
- for CRI
-Date: Wed,  5 Aug 2026 15:52:26 +0530
-Message-Id: <20260805102226.1764-1-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1011F10E206;
+	Wed,  5 Aug 2026 10:21:59 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA1C10E206;
+ Wed,  5 Aug 2026 10:21:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Enabl?=
+ =?utf-8?q?e_AS_SDP_Skip_Frames_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 05 Aug 2026 10:21:58 -0000
+Message-ID: <178592531804.21461.1063354767705331943@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260803185305.562609-1-uma.shankar@intel.com>
+In-Reply-To: <20260803185305.562609-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,97 +36,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose G-State and PCIe link state through debugfs for CRI. The PMT
-offsets for these metrics are identical to those used on BMG, so
-remove the BMG_ prefix from the corresponding offset macros to make
-them platform-agnostic.
+== Series Details ==
 
-Also enable these debugfs support on all dGPU platforms from BMG onward.
+Series: drm/i915/display: Enable AS SDP Skip Frames (rev3)
+URL   : https://patchwork.freedesktop.org/series/162015/
+State : warning
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_pmt.h | 20 ++++++++++----------
- drivers/gpu/drm/xe/xe_debugfs.c  | 20 ++++++++++----------
- 2 files changed, 20 insertions(+), 20 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
-index a62ab05c6b4c..54df1c8a9f8f 100644
---- a/drivers/gpu/drm/xe/regs/xe_pmt.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
-@@ -20,15 +20,15 @@
- #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
- #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
- 
--#define BMG_MODS_RESIDENCY_OFFSET		(0x4D0)
--#define BMG_G2_RESIDENCY_OFFSET		(0x530)
--#define BMG_G6_RESIDENCY_OFFSET		(0x538)
--#define BMG_G7_RESIDENCY_OFFSET		(0x4B0)
--#define BMG_G8_RESIDENCY_OFFSET		(0x540)
--#define BMG_G10_RESIDENCY_OFFSET		(0x548)
--
--#define BMG_PCIE_LINK_L0_RESIDENCY_OFFSET	(0x570)
--#define BMG_PCIE_LINK_L1_RESIDENCY_OFFSET	(0x578)
--#define BMG_PCIE_LINK_L1_2_RESIDENCY_OFFSET	(0x580)
-+#define MODS_RESIDENCY_OFFSET		(0x4D0)
-+#define G2_RESIDENCY_OFFSET		(0x530)
-+#define G6_RESIDENCY_OFFSET		(0x538)
-+#define G7_RESIDENCY_OFFSET		(0x4B0)
-+#define G8_RESIDENCY_OFFSET		(0x540)
-+#define G10_RESIDENCY_OFFSET		(0x548)
-+
-+#define PCIE_LINK_L0_RESIDENCY_OFFSET	(0x570)
-+#define PCIE_LINK_L1_RESIDENCY_OFFSET	(0x578)
-+#define PCIE_LINK_L1_2_RESIDENCY_OFFSET	(0x580)
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 8de78cd0aa03..9cc104046756 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -241,12 +241,12 @@ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
- 		u32 offset;
- 		const char *name;
- 	} residencies[] = {
--		{BMG_G2_RESIDENCY_OFFSET, "Package G2"},
--		{BMG_G6_RESIDENCY_OFFSET, "Package G6"},
--		{BMG_G7_RESIDENCY_OFFSET, "Package G7"},
--		{BMG_G8_RESIDENCY_OFFSET, "Package G8"},
--		{BMG_G10_RESIDENCY_OFFSET, "Package G10"},
--		{BMG_MODS_RESIDENCY_OFFSET, "Package ModS"}
-+		{G2_RESIDENCY_OFFSET, "Package G2"},
-+		{G6_RESIDENCY_OFFSET, "Package G6"},
-+		{G7_RESIDENCY_OFFSET, "Package G7"},
-+		{G8_RESIDENCY_OFFSET, "Package G8"},
-+		{G10_RESIDENCY_OFFSET, "Package G10"},
-+		{MODS_RESIDENCY_OFFSET, "Package ModS"}
- 	};
- 
- 	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
-@@ -270,9 +270,9 @@ static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
- 		u32 offset;
- 		const char *name;
- 	} residencies[] = {
--		{BMG_PCIE_LINK_L0_RESIDENCY_OFFSET, "PCIE LINK L0 RESIDENCY"},
--		{BMG_PCIE_LINK_L1_RESIDENCY_OFFSET, "PCIE LINK L1 RESIDENCY"},
--		{BMG_PCIE_LINK_L1_2_RESIDENCY_OFFSET, "PCIE LINK L1.2 RESIDENCY"}
-+		{PCIE_LINK_L0_RESIDENCY_OFFSET, "PCIE LINK L0 RESIDENCY"},
-+		{PCIE_LINK_L1_RESIDENCY_OFFSET, "PCIE LINK L1 RESIDENCY"},
-+		{PCIE_LINK_L1_2_RESIDENCY_OFFSET, "PCIE LINK L1.2 RESIDENCY"}
- 	};
- 
- 	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
-@@ -695,7 +695,7 @@ void xe_debugfs_register(struct xe_device *xe)
- 				 ARRAY_SIZE(debugfs_list),
- 				 root, minor);
- 
--	if (xe->info.platform == XE_BATTLEMAGE && !IS_SRIOV_VF(xe)) {
-+	if (IS_DGFX(xe) && xe->info.platform >= XE_BATTLEMAGE && !IS_SRIOV_VF(xe)) {
- 		drm_debugfs_create_files(debugfs_residencies,
- 					 ARRAY_SIZE(debugfs_residencies),
- 					 root, minor);
--- 
-2.25.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0ef50e0de27f0438fb05fd9b5014a2a8c42469bd
+Author: Uma Shankar <uma.shankar@intel.com>
+Date:   Tue Aug 4 00:23:05 2026 +0530
+
+    drm/i915/display: Keep AS SDP flowing when skip frames is enabled
+    
+    The AS SDP skip-frame mechanism relies on the AS SDP still being
+    transmitted (just less often) while Panel Replay is active, so the source
+    must not stop sending it in the PR active state, nor enter the DC3CO idle
+    protocol which would suppress it entirely.
+    
+    When a non-zero skip-frame count is programmed, leave both
+    PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE and
+    PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL cleared. The previous behaviour
+    (honouring disable_as_sdp_when_pr_active and the DC3CO idle protocol) is
+    retained for the non skip-frame case.
+    
+    Assisted-by: Claude:claude-opus-4-8
+    Signed-off-by: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
+    Signed-off-by: Uma Shankar <uma.shankar@intel.com>
++ /mt/dim checkpatch 4c13a67db118ee0019231dbc1362bcb8115ac660 drm-intel
+7be27ce4e242 drm/i915/display: Enable AS SDP Skip Frames
+-:90: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#90: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:455:
++				pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_SKIP_FRAMES(
+
+-:105: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
+#105: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:280:
++#define  PR_ALPM_CTL_AS_SDP_SKIP_FRAMES(frames)			REG_FIELD_PREP(PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK, (frames))
+
+total: 0 errors, 1 warnings, 1 checks, 65 lines checked
+0ef50e0de27f drm/i915/display: Keep AS SDP flowing when skip frames is enabled
+-:55: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:462:
++					pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+
 
