@@ -4,147 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBAF5C55838
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 01:07:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C5EAC55838
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 01:36:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77E4210EC3C;
-	Wed,  5 Aug 2026 01:07:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1446710E139;
+	Wed,  5 Aug 2026 01:36:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4d96fte";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OX6HQ4ez";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2D8410EC3C
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Aug 2026 01:07:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DFE210E122
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Aug 2026 01:36:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785892075; x=1817428075;
+ t=1785893787; x=1817429787;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=bj7B/cUW8Ir7cCZ1VcpgzCMEDDf84b/CJUvcp+tcS0o=;
- b=C4d96ftewtqW7yf02iWSZvjZsSB+Ec0d0a259AJ5XgABeG/Nyt9h8Zyy
- puj3fX2cK7dvP1XCDFTuO0KfuCD28cZvVVOcTVhh1GfDEceyeAWleA2UE
- hZouSFb32mFyQE94VD88K6kM5yCHjb/xAlFh/SzsROs1wnK3O4E/eLFX/
- iWNfdnqLqG8VjifLNcsemJoXQIlHKk7OR90CqSQt9/wvE1fPE/SmHX3xu
- l64LljLpnG6Zaj4eaGcKv88LvFmOBIG90Mw49QJduHeUZiwW7XyHs55nn
- 5MXLmnu3O7A4vpseHWzKrNPhljkAOCXpFFGXfejl261FbjuLwAAPcjCY1 Q==;
-X-CSE-ConnectionGUID: J/qFWwi+R9aC0weuIThOOQ==
-X-CSE-MsgGUID: WMTr1SksRNW4IqebMbR01g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="103860353"
-X-IronPort-AV: E=Sophos;i="6.25,205,1779174000"; d="scan'208";a="103860353"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2026 18:07:53 -0700
-X-CSE-ConnectionGUID: zIQGtnerTWi4P8N1gy+7wQ==
-X-CSE-MsgGUID: 4b/1DBG0RJSPfUDN8kRFeQ==
+ bh=CDurxS3Rhx6S7BGYuNsDgKauSMVXTi6xt3Kpcxm3ODM=;
+ b=OX6HQ4ezg1yvK09D0koZtHGlszKwFDxJQhbRGskcErZtpKVDijTZzb8h
+ N8eM96th4NEfUcErhhBbnRn3sKDar8j2+/EtdAQ3YFXY4BeQqLiUF6VAL
+ T+LkRvP0V2IQk7eIQz2BeDICYGJfr4HtS72KPazMokpu7Q1xrSMtC1pJY
+ EWIMZlJK5w7Ex2weFM3VrTvDNQeaT12e9R0sDnB4M/N3J6r+kl/G1ljUq
+ cTaXKBpaLTPbaQYsB1Lr+xkcp6mbEFyUBjTWaXjsuWqxy4jKsn0sAR19s
+ P1dqQ/u6fVT3iDlGonPgTS/DBzMiYPyO65QU9EYjxyEwM6mkBqJ+XUVwY Q==;
+X-CSE-ConnectionGUID: xP91/CS3Q46gN/9NGBITlw==
+X-CSE-MsgGUID: 5sA07HpfTl2yaKmOZiyCQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="90133082"
+X-IronPort-AV: E=Sophos;i="6.25,205,1779174000"; d="scan'208";a="90133082"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 18:36:26 -0700
+X-CSE-ConnectionGUID: 6IH4HZHHTiui3kvffkYAZg==
+X-CSE-MsgGUID: uS3S25irTRGl6hlMF2+HDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,205,1779174000"; d="scan'208";a="261724071"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2026 18:07:53 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,205,1779174000"; d="scan'208";a="261098716"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2026 18:36:25 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 4 Aug 2026 18:07:52 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.45; Tue, 4 Aug 2026 18:36:24 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Tue, 4 Aug 2026 18:07:52 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.1) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Tue, 4 Aug 2026 18:36:24 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.32) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 4 Aug 2026 18:07:51 -0700
+ 15.2.2562.45; Tue, 4 Aug 2026 18:36:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PB7XLYiUilHKEvTh76jSqW5zcPcarrOthXoPSXyXfqnuCP1LW8+MU+GDD7xeKr7Tod4AunxxxfblVC8pwI8+TtRNki+0z/68H7dCWvLkOwcIF+CMBEdX+TP4AbA1VQsx3csWbhZ0BSTjWkTUzBji3ZKQgKrGDraVh+hdWc0drE/WOosLrVS3I5qepew3kXXdrXY9ISXGe9sZSe9w136i8QpDxHB3gKbYxwYEt20CuafKhwYvJ15IXph3zNz+RH5VYEgkrDtiqDbpCBbhflffsdN7gvz+EEiWG1BNj7LoHDncHCJS7jRwBoO10AIBCvQY+q3wuQ9mpSr0Ziztv88B8Q==
+ b=eirrBudTwV5AMC5bYs9jT2JD4s4LVpEn4gv5JgDJNoyTTCpwnpZ35pfdXEWO/YZ3i1wjQ6x/J47FfDmwSIvm1OpChRQTA7JVkJ/jnceLD3sivnJxCmgRGZr/9IHz4Rddq4hmrHoUo31CZtLddx51JxhX9VOO3S2LQh4GFwsWz+w109VGbH2BQTRby4aAjg+mC9sg6QhC07Qn98Pu+bYES/pkfb5Q8R9Zh5tuy4Mi27ZKnC5cNXCghzK7Qr1PUllrp3Hw12WomCQM0z7D0Lur1DarEcOOD3poLEAzEI2TqFpwe4oZPPA5kABHfW9FhknQe8TBVzofXXCCHOc0ypVwQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WOTqpFPioIfI0zfZUKmwC9bT9xx95HAhuS28Amx6bfc=;
- b=CJyH5QZczCS0JRr1lYVYfQrvJ1Pm2HW65wCWPCc0yuDMC6zRiprA2VBT4i27nfkj9fFIvkH2GMUD+D1EnlGZz5+ND4lasKYR5XnGROxZbtysk5XRLJ47zioGH3AnYpEeTBERGFWpzv6Dkb6hIaBnszuLm5RTrhfvsG/V9mblk3zX3rUyPEdLEozczUFUeR8GiB3GfGSZfHgv09x8YLbENaPvQq0oZ1bTv2Az02+G6tPO/Sy8bNlwXpyjTjGYOv0b9zThZksBDXO9NKftQGsGuN3j6Qy1ALyYt4AboizebkZN8wj7BdNUt/yUz77EwRv+Y82miQ4iNKaNnl0c2DLy4A==
+ bh=TDohISPJbuPTu4Sn0QvOVB1rMqJptZRtqxZyFhbeBgQ=;
+ b=ycwYyBuP99JGuq+ZadG0FTuCEDIJ8iMVG3gYafZ1zPNVx6WJTE4/ATyaIc2LWNbPm+VIR7bp2IjpYSuoVGqKkwi3OSMCUnNom7INsE/Jt3n6To/OwM1m80nTIHTUto2D7N9i+D3Ko5gXyqdwdAC7FkVpc2mr0SYFwLAQ5VvCd0glUQ3TdxFNXX3uNtAwsGaWPLl4b1YRhTx034GaVgPhs/qyJkNTODhnqMSfSPF3ramJY0qHggAF1E64ssx3yugoceacF4lOV6KmnRYXVpfiH9b9n7D3Gv/5Hb+hM0kJeLtaoBL1017OT5d7+tRZWqKYKFXA8M0Ri0ivmw4OgG53GA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by PH0PR11MB9610.namprd11.prod.outlook.com (2603:10b6:510:3b0::6)
+ by PH0PR11MB9727.namprd11.prod.outlook.com (2603:10b6:510:399::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.17; Wed, 5 Aug
- 2026 01:07:49 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.15; Wed, 5 Aug
+ 2026 01:36:21 +0000
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe%7]) with mapi id 15.21.0292.013; Wed, 5 Aug 2026
- 01:07:49 +0000
-Date: Tue, 4 Aug 2026 21:07:44 -0400
+ 01:36:21 +0000
+Date: Tue, 4 Aug 2026 21:36:16 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Zhanjun Dong <zhanjun.dong@intel.com>, "Souza, Jose" <jose.souza@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <julia.filipchuk@intel.com>,
- <matthew.brost@intel.com>
-Subject: Re: [PATCH v7 2/2] drm/xe/guc: Compress GuC log and CTB dump with zstd
-Message-ID: <anKM4GH-zVs3u6ez@intel.com>
-References: <20260731155411.496975-1-zhanjun.dong@intel.com>
- <20260731155411.496975-3-zhanjun.dong@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Wajdeczko, Michal" <michal.wajdeczko@intel.com>, "Tauro, Riana"
+ <riana.tauro@intel.com>, "Koujalagi, Mallesh" <mallesh.koujalagi@intel.com>,
+ "Jadav, Raag" <raag.jadav@intel.com>, "Iddamsetty, Aravind"
+ <aravind.iddamsetty@intel.com>, "Levitt, Yoni" <yoni.levitt@intel.com>
+Subject: Re: [PATCH v3 02/23] drm/xe/log: Add structured SIGID error logging
+ infrastructure
+Message-ID: <anKTkC-thNA53RWy@intel.com>
+References: <20260730152121.576-1-michal.wajdeczko@intel.com>
+ <20260730152121.576-3-michal.wajdeczko@intel.com>
+ <522ab2835b03dcd101d52fb752b3fb839ed0c15c.camel@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260731155411.496975-3-zhanjun.dong@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0178.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::33) To CO1PR11MB5073.namprd11.prod.outlook.com
+In-Reply-To: <522ab2835b03dcd101d52fb752b3fb839ed0c15c.camel@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0144.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::29) To CO1PR11MB5073.namprd11.prod.outlook.com
  (2603:10b6:303:92::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|PH0PR11MB9610:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc6904b8-c836-4e10-24ee-08def28df706
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|PH0PR11MB9727:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06186949-8a13-4b2c-2d00-08def291f398
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|3023799007|6133799003|10067099003|11063799006|5023799004|56012099006|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: ZzqVojhHDnEqmwyQq4mzz/KnTN/iDjkG75QBHFtoDNBuLfy+8Q82BnZbhhLeSe6XMzGS5Rdid+2Vf0OGajxNSy4dsFAFB5Tn1+kcc9SebMdUzBvhVL50Z6ONcST6rkU0p+ZvSHop9yytzlddB0GdS0TAbOwcx9mP4m98AED4X83w4WsgkWumdKB5AodDqLR5jj6+pg/soJjJi+LG8ZKL7Wn7k0fwmtDC6rVgvRUCAnygM03qBX/aWGfd/Nr2Rz+/NvApwVEBvU+TjFzUYb8Olq+/W1bc57J4Mt2aBTOeAVmridP6ePl6QLkyvRgU6Hf7urkZCQAZmSlv/J0btH87hqawj83I1b5ihGIWHVTZk9qj9vw+/1v92H668K97doIFuH4apBCU2LiMceBz0Woki7TzamAYbynYqYRnPvL3/lFsUKNgu/02Urdn1sYRSsoL0g9OEiXZOM42c2wPq+1RjBfXchmsprjElfw6+Dn7tpPO9YG9K1z8FVz8zv14UI5Vge7EdpJLsI6VJ8EKQUn8iQ+Bn/iuLMBjfFkSSB+8cBYWjHCyEK8yYEuYyAsLo8mGQfugcvmTaOT+jfD0FhAXM7+zS6KkWBr2bs9tMqf3rhICMWpJ/CDsKKVJc+UQBSOjXeI2Y+Kf0TnIJDnlo4bY7r6XAh7Yf4+CcakoZ7kwIz8=
+ ARA:13230040|366016|23010399003|1800799024|376014|56012099006|4143699003|5023799004|3023799007|11063799006|10067099003|6133799003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: Q7BtXaWOacflrRskK6s6XCQpBWxllLxvVb4VE/GceWtPAgpuy3f81dB3rpI/BMuBXLqC6BkPvLN0UyfEvoTBAZKORbpabZyr+0aDsYT1OiCfQ79fAROeKf8WK9mdPF6woRPDfXLDIOoDc1stWhYmGvupN3KfodoL6YOYSOL8sF5e4s0pnyhft4nTRrToD4Lu4p/j7rvQxkhPHGLKb4Y266d+Hxt/waFqG8FB9RRbKxWaVb6pIsJsWgFdobUvPPE8SycHij9eHrI5gvrLlS0VZRtFubgr9qv2wWjlrNGART5GfSPBoZu7B4qqAFw8bL68AB6qJzb8RdSdm5yCdnNWlnmDqtV1C5+deR+DHkpX4E6t7DrjZdGXnivABsILuSpM4zMi0c7fcqksJDPeIhkbgJiAb6YRjQCivupVSlGsDTwZUfnuNHpVBidaIvbKToP7lbTzUgj3u+FnYWHjv6EpETFdUkFDG6m1D+ahKnjGUmbq3D0uaZCAwmF+GkMBQzWr4rpJ3YDU/Q4vHXqXhLP/o3lQK1mWk9PAuvjd2bhjKf4qyaEREkpbzrO03Ss8ESExVoh+fXx9oyricct+mSVYNNoL44ZSQzoYy2UlLb7j+ddJ4zJ7etI7n7Mx5AokDJsm87M+ZRnLfoFriA4zEXoEUSlx0biFcxHn5SbnMCVWz+4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(3023799007)(6133799003)(10067099003)(11063799006)(5023799004)(56012099006)(4143699003)(22082099003)(18002099003);
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(56012099006)(4143699003)(5023799004)(3023799007)(11063799006)(10067099003)(6133799003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?EQzQiVFWlh7JQC69tLKHcbBpodOdGjcfzhYVnN5OpZaLVVIj7Ja0eOhnm/?=
- =?iso-8859-1?Q?pDHV1yGCAM734f/f4/J6OUY7MCm0kqR1UOLT/qmZeeur2CCI1SyfZgyhcy?=
- =?iso-8859-1?Q?GuFNvalRKYhLKeCx96dnKimjuYkfdF+l/DDOJSZdPpLgInYgp8LUSKVIwX?=
- =?iso-8859-1?Q?N017boDhySxyH99sENvQ0FSVOD4KgywK/k63OmTZ/CcEma/N5NM1Az7pz8?=
- =?iso-8859-1?Q?NP4aots0o7mBBj5OjEVn9Wd5Rrbuzasp2Ce/wzXOwx3H1V0j8gYhWEDI9n?=
- =?iso-8859-1?Q?x+qppc6WaU1D1jH8Rm08SZp44MW7ZOxdr2H6JhhgTjcQKZqgRUH6r5oFBo?=
- =?iso-8859-1?Q?E7whiMvrpA4BIzf1mMrlQsM6DR0Pu8wkfGFLIsgacuTBTQRtMvqUU0eJ52?=
- =?iso-8859-1?Q?S2oTokUuB/4SRX3ka+l/38zzdCUKe7mjm/Vv3iNklM3yhZRmOuxRW+jxq9?=
- =?iso-8859-1?Q?YHLsBQOvNI7Ykb4QqFGY7vUB9qo5/aS5/rvYzBr0dC330QFZTn7SCMPVrl?=
- =?iso-8859-1?Q?5CODYGMvGTaFKcDcc49r2VCj42b4OBfdNcvVzcrPuvPss+tcJMRADzEdzt?=
- =?iso-8859-1?Q?MGP+TSj6YJF3k6/kvh1kLmBSQkyfZ+SRAPoAkj1qWwsTlcTbZ0NSTpj/vr?=
- =?iso-8859-1?Q?0Z8OVp25xnHXRsqyDBm8ZHgWfh03vwCycFRAtgjSkSBZ/xd1WR4QhpG0Py?=
- =?iso-8859-1?Q?cHJ3F12++bcDtQuQtXBMkyXqPWjAnrxF0CqUorfLbY9VmUbacqAxgZ3dd2?=
- =?iso-8859-1?Q?Goq3bvyxaaOlrFoNIKQpFDSUxnFd8VUPWppUSF4KEL6PRnanKmx04gho8C?=
- =?iso-8859-1?Q?SDJ5pE2XD6f9COE+P9ZLr7U3tHafghNN6Cf5bcWMfw9ezvnGPFgUJps4Fd?=
- =?iso-8859-1?Q?LqmbfZCWk0ZpVRDlsssxasgPWhhB1k1p5IC5R8qB3ISfVYXRsddWJ5TNyR?=
- =?iso-8859-1?Q?awaQ5bfQUsYS1Fi8wYLpSP7ShSZgTsLVd7jdTAEvNTuiGJDSNaJKXic024?=
- =?iso-8859-1?Q?+PakLOjvQOwnrW+XI4iYv60JdnBx/bx6roqAiziZl+oWGDmRP4KgCNAtwl?=
- =?iso-8859-1?Q?FdUp+jazccYfd6LtZYKIXciGKG1LPvimBdZC2ArIR8dMF9Tl0lroBFErHx?=
- =?iso-8859-1?Q?tKN7H5M6ohT+gfjI9m2qgRTSwH6LTuAfXnS8GfniZNIVjsoRoPiNvP9R1W?=
- =?iso-8859-1?Q?GPzi9QTRYD4lMMn8bRv+hSez/SdMjNRGL5XAc8FQat+XVgyxWRa9Yvzv/4?=
- =?iso-8859-1?Q?mmYMF5UrQTVb0XEYxl6rtTilB0DEnIwUUuJOR0JQ6QwAb9RwdnQV9jEb/N?=
- =?iso-8859-1?Q?MRlV1b9yjtMA6x5OGXMk1GoRvJq+ce6YVShcms2b33EPoMLF3kFvZh+lkS?=
- =?iso-8859-1?Q?nrFfO0ElZUqmXStn0+7ZRmlNHvLaZYuJRHdVk7QjcqLaLNQ+3XFb1Gj7Vr?=
- =?iso-8859-1?Q?vW/f4zUSBz2quavZFimVgDBn/yAU4Xhh+xxBAXfGwMCMrcw5PbPv6okgqp?=
- =?iso-8859-1?Q?VTLdoibSh+ggaqz2YtZy2AZ2aRa4z1yq9o+CryJ3ZK0FZiVz1+FuxtJdUx?=
- =?iso-8859-1?Q?fElxuhm6B5gTRug1LkAISGQ1+jJi8RqGoWMKhtmNKJfdQ6HbsIDmCixT2w?=
- =?iso-8859-1?Q?2XZNtOhURGNFLg0pU+mOpAiUNlCso5Hq2sXnTuVb+Y9qXByB4hezNQt6As?=
- =?iso-8859-1?Q?kBqK7wvMpgfhdmBC540DPw9qDzPXBjd9mV4F3V1qSwTli7kp+Dvx9L7ebI?=
- =?iso-8859-1?Q?8La3ugtFvprouZTAvwtHdOPgwAR6DxA1kGPijRoUzJ0+7jPXqw0BStJbIE?=
- =?iso-8859-1?Q?l0hh9DqC/Q=3D=3D?=
-X-Exchange-RoutingPolicyChecked: B8A5usjy+fOgwPBzI5T6ORGcAK7uV/UOkWJX7iojLUl5mu1E7jMAi1UQtHX6z9BNSXf1u8yictirEPGhSGCNq/9IkwyMmeXli5EMEHojnZ3iDdiLpJbQl70fTTlj1/QM6KaGKeTabraSpikqVdUCk1mw9m5WDZsVL2mftGDD44C7EeXvFf3dmJr0TBZWiD0ka78JApzuJ0t1EFn2CpfA/9hadtUb8kS4K4AzXh8J+Qqs9ieIRLaKGZCX4m6/Cu8Ky0NQUlonePGKCbets7Joj7Cd38OQs5a7WK0ka9bNy9BZ2A+upKFUdtZgd9KaEh0xP6bcKtF9Yz7jRXJDRiWF3A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc6904b8-c836-4e10-24ee-08def28df706
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?/wyr+VXQaHiRFytACZKKQpS/9DE9c16wqCyFt4vAozQml7psK8ZI+U6n6Y?=
+ =?iso-8859-1?Q?awD/wnI4wD3CWecNuzbp2VSWo0T6pF2oceb5PO74MOyQT3kkw9jLMH205T?=
+ =?iso-8859-1?Q?zhux/ObyNLOBLCWswmcUxcy2kDWM5HAchQjOZVxmc4H1xy/P0hIQ2hc+Zx?=
+ =?iso-8859-1?Q?+VPChot7h14sfxLtV+4B7x6L2amifyr/QOfYYxJeSnZEhgB7TWwKHZiEzj?=
+ =?iso-8859-1?Q?DtRD3oUXzBRCiftmz7Ph6zlm4NWmqQJqEUVzCHgkifkDxWRE+jVVyGpJJy?=
+ =?iso-8859-1?Q?e800eUZHjfxDP/FwWRrg8kWn9h/odXI9oIodCEdr+kYBprS4zoXy1+0cac?=
+ =?iso-8859-1?Q?pZrOXdT6t4mgoAe+Tp0FcYo4cMl4vc9ASCTFeDe7slHBLxExrj9BglGRjo?=
+ =?iso-8859-1?Q?lovOjgPbgLx1GTLF+x3ccxfHig7zQo4oeN0ArnaSA9sbh7BU7XusuT/G3u?=
+ =?iso-8859-1?Q?inQXM07kKf5fduZucyGNR5bu8MQY2ngH0Wq08kHAaFIperbVViw5Sd894f?=
+ =?iso-8859-1?Q?gm5JR3r1Orip3nyCvvIvCzF/GCifpCevv999OFJJwDWrmC234+SzKxPK8i?=
+ =?iso-8859-1?Q?/4Gp0HjW1p9WukGk3IzeK6JVL9zCwmNVCUrO3pqCxrqvXNhCGKCKr614pe?=
+ =?iso-8859-1?Q?tLmz62zBxxnPGWS6ft/V4RAvNALnK1CDsP/kUyXZRGLwdoEWIAMFMOUP0i?=
+ =?iso-8859-1?Q?BKFGTHz7KNokiZoW/nfFAjMsPjH+lR+tnIH0/7FoUnaBZgrAMhjp8rE0xa?=
+ =?iso-8859-1?Q?rZTNUM3YulORVFR/+I2/ZIaw/CvYjweBI7Gd+xKNdRVh54yyc3Qgfq6JpR?=
+ =?iso-8859-1?Q?k3R09r24RAFek6TX9tfvAR6JibtG/tG8I929OME5uhAaK5kxwH0HGT0cgn?=
+ =?iso-8859-1?Q?Zb+4BGcZxRDqB+r522jngwJC/ka9hsi8k2vs7IOFigLPV+WsJDoSZui1u0?=
+ =?iso-8859-1?Q?lCqTPEXIbAxiBrNoFCW92fxQDq0VwLz5G3wAPjZWrH1VLZZKZsOExE+Jed?=
+ =?iso-8859-1?Q?Ul60YvHv8OywUx8ZS6NxnEkihC8HrxircQnlw5RPbyCriAYvCltGp1ZbVU?=
+ =?iso-8859-1?Q?lKUusiZ1LLyDEl4y9Ag0BebIWLARiRfcUv3N5flUFh8kQFL7QnWCPew/rw?=
+ =?iso-8859-1?Q?cNffv0k+2img4blDgLgz7uBFxMHBAay2rTMNx4AbWwi1xViwz7xQ7ZpING?=
+ =?iso-8859-1?Q?un7uUyhkxEYm4hGhxMRwSHkwFx3vERw+m+pRSRM0af8gPyFQUink733ELS?=
+ =?iso-8859-1?Q?6fVLxH2H106Celm5G2zQdCaq4Z9sU1OOh2W2zvuqQTM1g3jDik0xj973xf?=
+ =?iso-8859-1?Q?N1yJ7Qd3HDyLGaZ+Ur4LuiY7Tnim8neDpFPO8ec0zjICr/AR4J2LA+Rimm?=
+ =?iso-8859-1?Q?IO7EPZUZ8Z/daxlSShyqqpvjQ+6OJSn36vo/DB7i+f2GLk1RLjLWzZlIav?=
+ =?iso-8859-1?Q?Uet829hobeSIF5eiay2iy59pcQFMSAa3iAR6iaceURmCFjCXDiF2NrGzTq?=
+ =?iso-8859-1?Q?2mdOak7Ou2KrIP5R27vxlaObglig9Y1ynRDtFBWE61YyKxQhWzSoOeZ/cg?=
+ =?iso-8859-1?Q?tajBWuL2JbKqS/VKMpE0M1i2L6up/Rj1AcJiOLZFZRD/dFW39E22fvx+q3?=
+ =?iso-8859-1?Q?9XNxlN7WtzWvahDok0GN6WI50CtllseCzNseBVIv8ZXTcgJzFwB/6sb1hH?=
+ =?iso-8859-1?Q?7hzwPeGqox/jN9ZWwtytdHJE6zJi6m2XCpFgwGh3GCIbDAMMdyaT7Bn4Zq?=
+ =?iso-8859-1?Q?8u1z6O5/3RjrvKGCffg/TqK6/N9fqESkR+bF1XtcHO5MJukXamF0rtu8W6?=
+ =?iso-8859-1?Q?Oh9SM5/qmw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: NB+lV0KR6VqBHqEYXMZ6SeGGQysIXTb462RbD3iMVYvmFwrJ5RVLGLN8tx9fafXZ7J90o4rQYpafX9U2UMy/DP+q693JEiS42G3FHMIdaF/UHtp+lYCcz/FWN4R6E1vjYYAsrb/j8E0CZdH1+AD9a5iD0O1fC3tsjepgRYsRYPigQNL+UTeJax80NPgxriFAc+zcGGPNvQqIFwOgnZlF/qupSYwlNVpwvv+gjbAVGRLMQTnw444Rk8fvsgkR+LPCiAS9Bkj7RrHIWAjD9gdAwbJ2jY6sC45MkZ4HiOwXNY+PSG1TeRvR/Du4iVxUIXVi2wG6BEsmh1gQcPMlfXDffQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06186949-8a13-4b2c-2d00-08def291f398
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2026 01:07:49.3263 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2026 01:36:21.1133 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: X7636ckJDg3GVy7h7UhdkCiFFhVCz98UILIHs5kBHKtzwy5jVpNGcIDuZQWMf2EGDGhZ8yCs6SjhbFja0Cqkkw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB9610
+X-MS-Exchange-CrossTenant-UserPrincipalName: MFhpBhrom7GIHFDXHsOfYGbDWLjcvDFnHr0DrDgUomrtOY5J1svExWCAKOMadVuS1R23HtuFAEqCksZWV7ep5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB9727
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,431 +165,638 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 31, 2026 at 11:54:11AM -0400, Zhanjun Dong wrote:
-> With the default settings, the GuC log is several megabytes in size.
-> Printing the entire log is time-consuming.
+On Tue, Aug 04, 2026 at 05:21:05PM -0400, Summers, Stuart wrote:
+> On Thu, 2026-07-30 at 17:20 +0200, Michal Wajdeczko wrote:
+> > From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> > 
+> > Today the driver reports faults with ad-hoc drm_err()/xe_gt_err()
+> > strings that have no stable shape. That is readable for a human, but
+> > it
+> > gives fleet tooling nothing durable to match on: the wording changes
+> > between releases, lines can be rate-limited or dropped under an error
+> > storm, and there is no consistent way to ask "which recognised fault
+> > just happened?".
+> > 
+> > Introduce a signature identifier (SIGID): a small, stable integer
+> > that
+> > names one recognised Xe fault situation and serves as the primary
+> > handle
+> > for triage. A SIGID maps, through published end-user documentation,
+> > to a
+> > description and a recommended action; the driver only has to emit the
+> > right SIGID next to the usual human-readable text.
+> 
+> I'm a little worried
 
-I'm not sure printing is the right/good wording here to be honest.
+I understand your feeling. We've been all through that:
 
-Stepping back a bit, is opening the file with uncompressed log time
-consuming?
-But then if you need to see the GuC log don't you have to go there
-decompress and then open anyway?
+https://lore.kernel.org/intel-xe/amqhoFzQaf1HsuFq@intel.com/
 
-What is actually the problem in the regular handling of GuC log?
+> we're introducing some ABI with this that isn't
+> really maintainable in the long term:
 
-> In debugging scenarios,
-> printing the GuC log to dmesg while forwarding the dmesg output to a
+I understand the fear and indeed the first proposals I got was
+unmaintainable. My first record of pushing back on having something
+like this was November last year.
 
-Okay, kernel buf log was not made for that. This is an abuse anyway.
+But I respectfully disagree here. This latest version is imho
+organized and concise.
 
-> serial console can take several minutes. It can also exhaust the storage
-> allocated to CI logs.
+> we might decide to change the
+> flow or change the way an error is reported or the situation that
+> triggers this error from firmware or hardware might change for some
+> reason.
 
-But well, I understand the need. In some machines where the bug happened
-perhaps the serial is the only output we can collect before the
-machine is completely dead. This is why the GuC logs from dmesg was
-never completely removed, but only hidden behind a config flag.
+You are right, dmesg is not ABI and it will never be. these logs
+are aimed for developers and developers are free to change them as
+needed. This was a big counter-requirement I gave to the original
+idea.
 
-But well, if this is the problematic case, why can't we compress only when
-we are spitting that to the kernel buf log? And leave devcoredump as is?
+We are not moving all the logs to this format we are not promising
+dmesg stability.
 
-> Follow i915's approach and compress the GuC dump
-> data to address these issues.
+The numbering stability however needs to be somewhat stable for
+the CPER log in tracefs, that's the ABI. But then that meaning
+shouldn't change if the code has to change. A new number should
+be needed if the component/location/severity or recommended
+recovery needs to be different.
 
-2 wrong don't make 1 right!
+But like I told Raag as well, no developer needs to invent any
+number, if they don't know just use regular log messages.
+We are not going to move all the logs towards this thing.
+Also, the location of the issue is what triggers the ID...
+it is very simple by nature. And we need to keep it simple.
+
+> Does this lock us into a solution for all of this? I still need
+> to go through the full patch series...
+
+Yes, please take a look to the series. All reviews are welcomed.
 
 > 
-> Replace the raw ascii85 dumps of GuC log snapshots with a
-> zstd-compressed ascii85 stream and reuse the same helper for CTB
-> snapshot output.
-> 
-> Use zstd streaming with the default compression level of 3 and an
-> estimated source size of 0 so the compression workspace stays bounded
-> even for multi-megabyte logs.
-> 
-> Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
-> GuC log and CTB dumps are compressed with ZSTD. This allows users to
-> choose between reduced dump sizes and lower memory usage.
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> The dmesg entries are generally for human debuggability. I get the
+> desire to make these easier to parse for an AI tool or generated
+> script, but we also don't want to prevent debug related changes for
+> error handling and reporting.
 
-Cc: José Roberto de Souza <jose.souza@intel.com>
+We are not promising this. The stable ABI is only the CPER on tracefs.
 
-Jose, would this break the mesa decode tool or it is transparent
-to that?
+We need to always keep this in mind as stated in
+Documentation/core-api/printk-index.rst:
 
-For Mesa use case, compressed GuC log works?
+"""
+The kernel messages are evolving together with the code. As a result,
+particular kernel messages are not KABI and never will be!
+"""
 
-> ---
->  drivers/gpu/drm/xe/Kconfig          |  15 +++
->  drivers/gpu/drm/xe/xe_devcoredump.c |   4 +-
->  drivers/gpu/drm/xe/xe_guc_ct.c      |  19 ++--
->  drivers/gpu/drm/xe/xe_guc_ct.h      |   4 +-
->  drivers/gpu/drm/xe/xe_guc_log.c     | 161 +++++++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_guc_log.h     |   9 +-
->  6 files changed, 183 insertions(+), 29 deletions(-)
+Thanks,
+Rodrigo.
+
 > 
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 4d7dcaff2b91..18a682a44b31 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -33,6 +33,7 @@ config DRM_XE
->  	select ACPI_WMI if X86 && ACPI
->  	select SYNC_FILE
->  	select CRC32
-> +	select ZSTD_COMPRESS if DRM_XE_COMPRESS_DUMP
->  	select SND_HDA_I915 if SND_HDA_CORE
->  	select CEC_CORE if CEC_NOTIFIER
->  	select VMAP_PFN
-> @@ -101,6 +102,20 @@ config DRM_XE_PAGEMAP
->  
->  	  If in doubt say "Y".
->  
-> +config DRM_XE_COMPRESS_DUMP
-> +	bool "Enable ZSTD compression for error dumps"
-> +	depends on DRM_XE
-> +	default y
-> +	help
-> +	  Enable this option to compress GuC log and CTB dumps with ZSTD
-> +	  compression. This can significantly reduce the size of error dumps
-> +	  but requires additional memory for compression workspace.
-> +
-> +	  Disable this option if you want to save memory or prefer uncompressed
-> +	  error dumps for debugging.
-> +
-> +	  If in doubt say "Y".
-> +
->  config DRM_XE_FORCE_PROBE
->  	string "Force probe xe for selected Intel hardware IDs"
->  	depends on DRM_XE
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-> index 5f2b90b18f97..27473c25aad2 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> @@ -115,9 +115,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
->  	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
->  
->  	drm_puts(&p, "\n**** GuC Log ****\n");
-> -	xe_guc_log_snapshot_print(ss->guc.log, &p);
-> +	xe_guc_log_snapshot_print(ss->guc.log, &p, ss->gt);
->  	drm_puts(&p, "\n**** GuC CT ****\n");
-> -	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
-> +	xe_guc_ct_snapshot_print(ss->guc.ct, &p, ss->gt);
->  
->  	drm_puts(&p, "\n**** Contexts ****\n");
->  	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index fe70c0fd85c5..19314184798c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -2135,11 +2135,12 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct)
->   * xe_guc_ct_snapshot_print - Print out a given GuC CT snapshot.
->   * @snapshot: GuC CT snapshot object.
->   * @p: drm_printer where it will be printed out.
-> + * @gt: GT structure for error reporting
->   *
->   * This function prints out a given GuC CT snapshot object.
->   */
->  void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
-> -			      struct drm_printer *p)
-> +			      struct drm_printer *p, struct xe_gt *gt)
->  {
->  	if (!snapshot)
->  		return;
-> @@ -2153,11 +2154,10 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
->  		drm_printf(p, "\tg2h outstanding: %d\n",
->  			   snapshot->g2h_outstanding);
->  
-> -		if (snapshot->ctb) {
-> -			drm_printf(p, "[CTB].length: 0x%zx\n", snapshot->ctb_size);
-> -			xe_print_blob_ascii85(p, "[CTB].data", '\n',
-> -					      snapshot->ctb, 0, snapshot->ctb_size);
-> -		}
-> +		if (snapshot->ctb)
-> +			xe_guc_print_blob(gt, p, "[CTB]", "[CTB].data",
-> +					  &snapshot->ctb, 1,
-> +					  snapshot->ctb_size, snapshot->ctb_size);
->  	} else {
->  		drm_puts(p, "CT disabled\n");
->  	}
-> @@ -2191,9 +2191,10 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
->  {
->  	struct xe_guc_ct_snapshot *snapshot;
-> +	struct xe_gt *gt = ct_to_gt(ct);
->  
->  	snapshot = guc_ct_snapshot_capture(ct, false, want_ctb);
-> -	xe_guc_ct_snapshot_print(snapshot, p);
-> +	xe_guc_ct_snapshot_print(snapshot, p, gt);
->  	xe_guc_ct_snapshot_free(snapshot);
->  }
->  
-> @@ -2291,10 +2292,10 @@ static void ct_dead_print(struct xe_dead_ct *dead)
->  	drm_printf(&lp, "\tTile: %d\n", gt->tile->id);
->  
->  	drm_puts(&lp, "**** GuC Log ****\n");
-> -	xe_guc_log_snapshot_print(dead->snapshot_log, &lp);
-> +	xe_guc_log_snapshot_print(dead->snapshot_log, &lp, gt);
->  
->  	drm_puts(&lp, "**** GuC CT ****\n");
-> -	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp);
-> +	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp, gt);
->  
->  	drm_puts(&lp, "Done.\n");
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 767365a33dee..2005d1a0cd6c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -10,6 +10,7 @@
->  
->  struct drm_printer;
->  struct xe_device;
-> +struct xe_gt;
->  
->  int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
->  int xe_guc_ct_init(struct xe_guc_ct *ct);
-> @@ -24,7 +25,8 @@ void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
->  void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
->  
->  struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
-> -void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
-> +void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p,
-> +			      struct xe_gt *gt);
->  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-> index 538d4df0f7aa..aaeb0f76af30 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-> @@ -6,6 +6,9 @@
->  #include "xe_guc_log.h"
->  
->  #include <linux/fault-inject.h>
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +#include <linux/zstd.h>
-> +#endif
->  
->  #include <linux/utsname.h>
->  #include <drm/drm_managed.h>
-> @@ -225,16 +228,148 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log,
->  	return snapshot;
->  }
->  
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p,
-> +					 const char *length_label, const char *data_label,
-> +					 void **chunks, int num_chunks,
-> +					 size_t chunk_size, size_t total_size)
-> +{
-> +	zstd_parameters params;
-> +	zstd_cstream *cstream;
-> +	zstd_out_buffer outbuf;
-> +	size_t wksp_size, dst_size;
-> +	size_t remain, ret;
-> +	void *wksp = NULL;
-> +	char *dst = NULL;
-> +	int i;
-> +
-> +	/*
-> +	 * Pass 0 as estimated_src_size to use zstd level-3 defaults
-> +	 * (windowLog=18, 256KB window). Passing the full total_size would
-> +	 * cause zstd to inflate windowLog proportionally (e.g. windowLog=24
-> +	 * for a 19MB log), making the workspace tens of MB.  With 0, the
-> +	 * workspace stays ~1.5MB, well within kmalloc limits.
-> +	 */
-> +	params = zstd_get_params(3, 0);
-> +
-> +	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
-> +	wksp = kvzalloc(wksp_size, GFP_KERNEL);
-> +	if (!wksp)
-> +		goto err;
-> +
-> +	dst_size = zstd_compress_bound(total_size);
-> +	dst = kvzalloc(dst_size, GFP_KERNEL);
-> +	if (!dst)
-> +		goto err;
-> +
-> +	cstream = zstd_init_cstream(&params, 0, wksp, wksp_size);
-> +	if (!cstream) {
-> +		xe_gt_err(gt, "failed to init zstd cstream\n");
-> +		goto err;
-> +	}
-> +
-> +	outbuf.dst = dst;
-> +	outbuf.size = dst_size;
-> +	outbuf.pos = 0;
-> +
-> +	remain = total_size;
-> +	for (i = 0; i < num_chunks && remain; i++) {
-> +		size_t size = min(chunk_size, remain);
-> +		zstd_in_buffer inbuf = { .src = chunks[i], .size = size, .pos = 0 };
-> +
-> +		while (inbuf.pos < inbuf.size) {
-> +			ret = zstd_compress_stream(cstream, &outbuf, &inbuf);
-> +			if (ZSTD_isError(ret)) {
-> +				xe_gt_err(gt, "zstd_compress_stream failed: %s\n",
-> +					  ZSTD_getErrorName(ret));
-> +				goto err;
-> +			}
-> +		}
-> +		remain -= size;
-> +	}
-> +
-> +	do {
-> +		ret = zstd_end_stream(cstream, &outbuf);
-> +		if (ZSTD_isError(ret)) {
-> +			xe_gt_err(gt, "zstd_end_stream failed: %s\n",
-> +				  ZSTD_getErrorName(ret));
-> +			goto err;
-> +		}
-> +	} while (ret > 0 && outbuf.pos < outbuf.size);
-> +
-> +	drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
-> +		   length_label, total_size, outbuf.pos);
-> +	xe_print_blob_ascii85(p, data_label, '\n', dst, 0,
-> +			      DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32));
-> +	goto out;
-> +
-> +err:
-> +	drm_printf(p, "%s.length: 0x%zx Algo: ERROR (compression failed)\n",
-> +		   length_label, total_size);
-> +out:
-> +	kvfree(dst);
-> +	kvfree(wksp);
-> +}
-> +#endif
-> +
->  /**
-> - * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-> - * @snapshot: a snapshot of the GuC log
-> - * @p: the printer object to output to
-> + * xe_guc_print_blob - Print binary data (compressed or uncompressed) as ascii85
-> + * @gt: GT structure for error reporting
-> + * @p: drm_printer for output
-> + * @length_label: label prefix for the length/metadata line (e.g. "[LOG]" or "[CTB]")
-> + * @data_label: label for the ascii85 blob (e.g. "[LOG].data" or "[CTB].data")
-> + * @chunks: array of pointers to source data chunks
-> + * @num_chunks: number of elements in @chunks
-> + * @chunk_size: nominal size of each chunk; the last chunk may hold fewer valid bytes
-> + * @total_size: total uncompressed byte count across all chunks
-> + *
-> + * If CONFIG_DRM_XE_COMPRESS_DUMP is enabled, compresses @total_size bytes using
-> + * zstd level-3 streaming compression and prints the result via @p using ascii85
-> + * encoding. Otherwise, directly prints the uncompressed data.
-> + * On failure the function returns without printing the data blob.
->   */
-> -void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
-> +void xe_guc_print_blob(struct xe_gt *gt __maybe_unused, struct drm_printer *p,
-> +		       const char *length_label, const char *data_label,
-> +		       void **chunks, int num_chunks,
-> +		       size_t chunk_size, size_t total_size)
->  {
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +	xe_guc_print_blob_compressed(gt, p, length_label, data_label,
-> +				     chunks, num_chunks, chunk_size, total_size);
-> +#else
->  	size_t remain;
->  	int i;
->  
-> +	drm_printf(p, "%s.length: 0x%zx Algo: RAW\n", length_label, total_size);
-> +
-> +	/*
-> +	 * Print each chunk directly without merging into a single buffer.
-> +	 * xe_print_blob_ascii85() supports multiple calls - use suffix=0
-> +	 * for all but the last chunk to omit the newline between chunks.
-> +	 */
-> +	remain = total_size;
-> +	for (i = 0; i < num_chunks && remain; i++) {
-> +		size_t size = min(chunk_size, remain);
-> +		const char *prefix = i ? NULL : data_label;
-> +		/* Add suffix only on the last chunk */
-> +		char suffix = (remain == size) ? '\n' : 0;
-> +
-> +		xe_print_blob_ascii85(p, prefix, suffix, chunks[i], 0,
-> +				      DIV_ROUND_UP(size, sizeof(u32)) * sizeof(u32));
-> +		remain -= size;
-> +	}
-> +#endif
-> +}
-> +
-> +/**
-> + * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-> + * @snapshot: a snapshot of the GuC log
-> + * @p: the printer object to output to
-> + * @gt: GT structure of the GuC log
-> + */
-> +void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-> +			       struct xe_gt *gt)
-> +{
->  	if (!snapshot) {
->  		drm_printf(p, "GuC log snapshot not allocated!\n");
->  		return;
-> @@ -248,16 +383,9 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
->  	drm_printf(p, "GuC timestamp: 0x%08llX [%llu]\n", snapshot->stamp, snapshot->stamp);
->  	drm_printf(p, "Log level: %u\n", snapshot->level);
->  
-> -	drm_printf(p, "[LOG].length: 0x%zx\n", snapshot->size);
-> -	remain = snapshot->size;
-> -	for (i = 0; i < snapshot->num_chunks; i++) {
-> -		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-> -		const char *prefix = i ? NULL : "[LOG].data";
-> -		char suffix = i == snapshot->num_chunks - 1 ? '\n' : 0;
-> -
-> -		xe_print_blob_ascii85(p, prefix, suffix, snapshot->copy[i], 0, size);
-> -		remain -= size;
-> -	}
-> +	xe_guc_print_blob(gt, p, "[LOG]", "[LOG].data",
-> +			  snapshot->copy, snapshot->num_chunks,
-> +			  GUC_LOG_CHUNK_SIZE, snapshot->size);
->  }
->  
->  static inline void lfd_output_binary(struct drm_printer *p, char *buf, int buf_size)
-> @@ -598,12 +726,13 @@ void xe_guc_log_print_dmesg(struct xe_guc_log *log)
->  void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
->  {
->  	struct xe_guc_log_snapshot *snapshot;
-> +	struct xe_gt *gt = log_to_gt(log);
->  
->  	drm_printf(p, "**** GuC Log ****\n");
->  
->  	snapshot = xe_guc_log_snapshot_capture(log, false);
-> -	drm_printf(p, "CS reference clock: %u\n", log_to_gt(log)->info.reference_clock);
-> -	xe_guc_log_snapshot_print(snapshot, p);
-> +	drm_printf(p, "CS reference clock: %u\n", gt->info.reference_clock);
-> +	xe_guc_log_snapshot_print(snapshot, p, gt);
->  	xe_guc_log_snapshot_free(snapshot);
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-> index 4649a260755e..3e97647ee8b5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
-> @@ -11,6 +11,7 @@
->  
->  struct drm_printer;
->  struct xe_device;
-> +struct xe_gt;
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
->  #define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_16M
-> @@ -59,7 +60,13 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
->  void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
->  void xe_guc_log_print_dmesg(struct xe_guc_log *log);
->  struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
-> -void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
-> +
-> +void xe_guc_print_blob(struct xe_gt *gt, struct drm_printer *p, const char *length_label,
-> +		       const char *data_label, void **chunks, int num_chunks,
-> +		       size_t chunk_size, size_t total_size);
-> +
-> +void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-> +			       struct xe_gt *gt);
->  void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
->  
->  static inline u32
-> -- 
-> 2.34.1
+> Thanks,
+> Stuart
+> 
+> > 
+> > Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> > Assisted-by: Copilot:Opus-4.8
+> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Co-developed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > ---
+> > Cc: Yoni Levitt <yoni.levitt@intel.com>
+> > Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> > Cc: Raag Jadav <raag.jadav@intel.com>
+> > Cc: Riana Tauro <riana.tauro@intel.com>
+> > ---
+> > v2: CORRECTED is still an error (Michal)
+> >     prepare to decorate dmesg with comp/loc (Michal)
+> > ---
+> >  Documentation/gpu/xe/index.rst        |   1 +
+> >  Documentation/gpu/xe/xe_sigid.rst     |  14 ++
+> >  drivers/gpu/drm/xe/Makefile           |   1 +
+> >  drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 183
+> > ++++++++++++++++++++++++++
+> >  drivers/gpu/drm/xe/xe_log.c           | 135 +++++++++++++++++++
+> >  drivers/gpu/drm/xe/xe_log.h           |  20 +++
+> >  6 files changed, 354 insertions(+)
+> >  create mode 100644 Documentation/gpu/xe/xe_sigid.rst
+> >  create mode 100644 drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> >  create mode 100644 drivers/gpu/drm/xe/xe_log.c
+> >  create mode 100644 drivers/gpu/drm/xe/xe_log.h
+> > 
+> > diff --git a/Documentation/gpu/xe/index.rst
+> > b/Documentation/gpu/xe/index.rst
+> > index 665c0e93601c..0247a255f7e6 100644
+> > --- a/Documentation/gpu/xe/index.rst
+> > +++ b/Documentation/gpu/xe/index.rst
+> > @@ -35,3 +35,4 @@ The display, or :ref:`drm-kms`, support for drm/xe
+> > is provided by
+> >     xe-drm-usage-stats.rst
+> >     xe_configfs
+> >     xe_gt_stats
+> > +   xe_sigid
+> > diff --git a/Documentation/gpu/xe/xe_sigid.rst
+> > b/Documentation/gpu/xe/xe_sigid.rst
+> > new file mode 100644
+> > index 000000000000..45d84a62f185
+> > --- /dev/null
+> > +++ b/Documentation/gpu/xe/xe_sigid.rst
+> > @@ -0,0 +1,14 @@
+> > +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +
+> > +========
+> > +Xe SIGID
+> > +========
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> > +   :doc: Xe Error Signatures (SIGID)
+> > +
+> > +Signature Identifiers
+> > +=====================
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> > +   :internal:
+> > diff --git a/drivers/gpu/drm/xe/Makefile
+> > b/drivers/gpu/drm/xe/Makefile
+> > index 67ada1d6c2fb..7ac3954737f9 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -87,6 +87,7 @@ xe-y += xe_bb.o \
+> >         xe_hw_fence.o \
+> >         xe_irq.o \
+> >         xe_late_bind_fw.o \
+> > +       xe_log.o \
+> >         xe_lrc.o \
+> >         xe_mem_pool.o \
+> >         xe_migrate.o \
+> > diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> > b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> > new file mode 100644
+> > index 000000000000..99717fdf74a6
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> > @@ -0,0 +1,183 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _ABI_XE_SIGID_ABI_H_
+> > +#define _ABI_XE_SIGID_ABI_H_
+> > +
+> > +/**
+> > + * DOC: Xe Error Signatures (SIGID)
+> > + *
+> > + * What SIGID stands for
+> > + * ---------------------
+> > + *
+> > + * SIGID is short for *Signature Identifier*. A SIGID is a small,
+> > stable integer
+> > + * that names one *recognised Xe fault situation* -- nothing more.
+> > It is the
+> > + * primary handle used for triage: a SIGID maps to a human
+> > description and a
+> > + * recommended first action. A coarse first-order action is
+> > documented in-tree
+> > + * per SIGID (see "First-order action" below) so the id is
+> > actionable on its
+> > + * own; published end-user documentation refines it with finer,
+> > cross-product
+> > + * detail. The driver's only job is to emit the right SIGID next to
+> > the usual
+> > + * human-readable text.
+> > + *
+> > + * Why this exists
+> > + * ---------------
+> > + *
+> > + * Today the driver reports faults with ad-hoc ``drm_err()`` /
+> > ``xe_gt_err()``
+> > + * strings that have no stable shape. That is fine for a human
+> > reading dmesg,
+> > + * but it gives fleet tooling nothing durable to match on: the
+> > wording changes
+> > + * between releases, lines can be rate-limited or dropped under an
+> > error storm,
+> > + * and there is no consistent way to ask "which recognised fault
+> > just happened?"
+> > + * A SIGID answers exactly that one question, identically across
+> > driver and
+> > + * firmware versions, and (eventually) across other Intel devices in
+> > a node.
+> > + *
+> > + * What a SIGID is (and is not)
+> > + * ----------------------------
+> > + *
+> > + * A SIGID names *which situation* is being reported. It
+> > deliberately does not
+> > + * encode the detailed reason or the outcome. Those are carried
+> > alongside it::
+> > + *
+> > + *   SIGID    -> which recognised situation is being reported
+> > + *   severity -> how serious this instance is (see below -- not
+> > fixed per SIGID)
+> > + *   errno    -> the failing operation's error, shown with %pe
+> > + *   message  -> free-form human-readable context
+> > + *
+> > + * Severity is independent of the SIGID. The same situation can be
+> > reported at
+> > + * different severities depending on the instance and the recovery
+> > taken, so a
+> > + * SIGID is never tied to one severity; the reporting site chooses
+> > it by calling
+> > + * the matching xe_log_*() helper (see xe_log.h).
+> > + *
+> > + * How to pick a SIGID (the uniqueness rule)
+> > + * -----------------------------------------
+> > + *
+> > + * Pick per *report site*, not per incident. Each site emits the
+> > single most
+> > + * specific recognised situation *for that site* -- so the question
+> > is never
+> > + * "classify this whole failure", it is "what does this site
+> > detect?", which has
+> > + * one answer. A single underlying failure therefore legitimately
+> > produces a
+> > + * *chain* of reports from different layers, each with its own SIGID
+> > -- e.g. a
+> > + * GuC communication failure is reported as %XE_SIGID_RUNTIME_FW by
+> > the firmware
+> > + * path, the failed recovery as %XE_SIGID_GT_TDR by the reset path,
+> > and an
+> > + * aborted bind as %XE_SIGID_PROBE by the probe path. That chain
+> > lets triage
+> > + * follow a fault from origin to final effect; it is not a
+> > duplicate.
+> > + *
+> > + * If a site does not match any defined situation, keep using the
+> > ordinary
+> > + * ``xe_err()`` / ``xe_gt_err()`` logging rather than forcing a
+> > SIGID: a wrong
+> > + * or over-broad classification is harder to retire than a missing
+> > one. When a
+> > + * new situation is genuinely worth triaging, add it to the list
+> > below.
+> > + *
+> > + * Scope: software-emitted signatures only
+> > + * ---------------------------------------
+> > + *
+> > + * This header enumerates only the situations that the *driver
+> > itself* detects
+> > + * and reports from software: probe abort, wedged, survivability,
+> > driver-
+> > + * detected firmware failures, engine TDR, memory faults and IO/bus
+> > faults.
+> > + * These are the only values the driver assigns.
+> > + *
+> > + * Signatures that *originate* in firmware or hardware are a
+> > different thing:
+> > + * they are produced and identified by the firmware or the hardware
+> > itself
+> > + * (e.g. via their own records or error counters), and the driver
+> > merely logs
+> > + * them as they are given to us. They are deliberately *not*
+> > enumerated here --
+> > + * minting a driver-side id for a firmware/hardware-reported error
+> > would only
+> > + * duplicate an identifier the reporting layer already owns. The two
+> > + * driver-detected firmware situations below (%XE_SIGID_RUNTIME_FW,
+> > + * %XE_SIGID_DEVICE_FW) are software signatures: they mark that *the
+> > driver*
+> > + * observed a firmware problem, not a signature reported by the
+> > firmware.
+> > + *
+> > + * Numbering
+> > + * ---------
+> > + *
+> > + * SIGIDs are a single flat list numbered sequentially within the
+> > assigned range,
+> > + * in the order the situations were introduced. Values are stable:
+> > once assigned
+> > + * they are only ever appended, never renumbered or reused.
+> > + *
+> > + * A retired situation is deprecated in place, never re-purposed.
+> > + *
+> > + * First-order action (resolution buckets)
+> > + * ---------------------------------------
+> > + *
+> > + * So that a SIGID is actionable on its own, each one is tagged with
+> > a coarse
+> > + * *resolution bucket*: the first thing an operator should do on
+> > seeing it. The
+> > + * bucket is a stable, driver-owned hint; external documentation may
+> > refine it,
+> > + * but the in-tree value always stands on its own. Every new SIGID
+> > must pick a
+> > + * bucket, which forces the question "what should someone do about
+> > this?" to be
+> > + * answered up front. The buckets are::
+> > + *
+> > + *   COLLECT  -- capture logs and open a bug report
+> > + *   RETRY    -- transient or already recovered; watch for
+> > recurrence
+> > + *   UPDATE   -- a firmware update / flash is required
+> > + *   RECOVER  -- an explicit recovery step is needed (rebind, bus
+> > reset)
+> > + *   IGNORE   -- ignore if the SIGID severity is INFORMATIONAL
+> > + *
+> > + * The bucket is documentation only -- it is recorded per SIGID in
+> > the enum
+> > + * kernel-doc below and is not printed on the (deliberately lean)
+> > dmesg line.
+> > + *
+> > + * When to use SIGID logging
+> > + * -------------------------
+> > + *
+> > + * The xe_log_*() helpers are for these recognised fault situations
+> > only --
+> > + * important, operator-relevant faults and events. They are not a
+> > replacement
+> > + * for ``xe_info()`` / ``xe_dbg()`` / tracing, nor for one-off
+> > diagnostics;
+> > + * using them for ordinary logging would dilute the fault stream.
+> > Not every
+> > + * ``xe_err()`` needs to become a SIGID report -- only those that
+> > correspond to
+> > + * a published situation.
+> > + *
+> > + * dmesg vs. the machine record
+> > + * ----------------------------
+> > + *
+> > + * The dmesg line stays close to a normal xe error message so it
+> > remains
+> > + * readable for admins; the only stable, machine-matchable token on
+> > it is
+> > + * ``SIGID=<n>`` (``dmesg | grep SIGID=``). dmesg is not an ABI: the
+> > surrounding
+> > + * text may change freely, and lines may be dropped. The durable
+> > record for
+> > + * tooling is the CPER record carrying the same SIGID (generation is
+> > a planned
+> > + * follow-up).
+> > + */
+> > +
+> > +/*
+> > + * Top level Intel Error Signature Identifiers.
+> > + */
+> > +#define INTEL_SIGID_INVALID                    0
+> > +#define INTEL_SIGID_GPU_START                  100
+> > +#define INTEL_SIGID_GPU_END                    999
+> > +
+> > +#define INTEL_SIGID_GPU_XE_START               100
+> > +#define INTEL_SIGID_GPU_XE_END                 299
+> > +
+> > +#define INTEL_SIGID_GPU_XE_SOFTWARE_START      100
+> > +#define INTEL_SIGID_GPU_XE_SOFTWARE_END                199
+> > +#define INTEL_SIGID_GPU_XE_HARDWARE_START      200
+> > +#define INTEL_SIGID_GPU_XE_HARDWARE_END                299
+> > +
+> > +/**
+> > + * enum xe_sigid - Stable Xe Error Signature Identifiers (SIGID).
+> > + * @XE_SIGID_SW: Software component failure. [COLLECT]
+> > + * @XE_SIGID_PROBE: Device probe/bind was aborted. [COLLECT]
+> > + * @XE_SIGID_WEDGED: Device was declared wedged and is no longer
+> > usable. [RECOVER]
+> > + * @XE_SIGID_SURVIVABILITY: Device entered survivability mode.
+> > [UPDATE]
+> > + * @XE_SIGID_RUNTIME_FW: Driver-detected runtime firmware failure,
+> > GuC/HuC/GSC. [RETRY]
+> > + * @XE_SIGID_DEVICE_FW: Driver-detected device firmware failure,
+> > PCODE/sysctrl. [RETRY]
+> > + * @XE_SIGID_GT_TDR: Engine hang / timeout detection and recovery
+> > (reset). [RETRY]
+> > + * @XE_SIGID_MEM_FAULT: VM bind, page fault or GTT fault. [COLLECT]
+> > + * @XE_SIGID_IO_BUS: Runtime PCIe / IOMMU / MMIO access fault.
+> > [RECOVER]
+> > + *
+> > + * The situations the driver detects and reports in software. Values
+> > are
+> > + * numbered sequentially, are only ever appended, and are never
+> > renumbered or
+> > + * reused. The tag in brackets is the default resolution bucket (see
+> > the `Xe
+> > + * Error Signatures (SIGID)`_ section).
+> > + *
+> > + * Firmware- and hardware-originated signatures are not listed here;
+> > they are
+> > + * logged as reported by those layers.
+> > + */
+> > +enum xe_sigid {
+> > +       XE_SIGID_SW                     =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START,
+> > +       XE_SIGID_PROBE                  =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 1,
+> > +       XE_SIGID_WEDGED                 =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 2,
+> > +       XE_SIGID_SURVIVABILITY          =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 3,
+> > +       XE_SIGID_RUNTIME_FW             =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 4,
+> > +       XE_SIGID_DEVICE_FW              =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 5,
+> > +       XE_SIGID_GT_TDR                 =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 6,
+> > +       XE_SIGID_MEM_FAULT              =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 7,
+> > +       XE_SIGID_IO_BUS                 =
+> > INTEL_SIGID_GPU_XE_SOFTWARE_START + 8,
+> > +};
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_log.c
+> > b/drivers/gpu/drm/xe/xe_log.c
+> > new file mode 100644
+> > index 000000000000..70a41bdf1a01
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_log.c
+> > @@ -0,0 +1,135 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#include "xe_log.h"
+> > +#include "xe_printk.h"
+> > +
+> > +static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum
+> > xe_sigid sigid,
+> > +                         u32 component, u32 location, const void
+> > *data, size_t len,
+> > +                         struct va_format *vaf)
+> > +{
+> > +       /* TODO */
+> > +}
+> > +
+> > +static bool is_hw_sigid(enum xe_sigid sigid)
+> > +{
+> > +       return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+> > +}
+> > +
+> > +static bool is_sev_error(int cper_sev)
+> > +{
+> > +       return cper_sev != CPER_SEV_INFORMATIONAL;
+> > +}
+> > +
+> > +static const char *log_hwe_prefix(int cper_sev, enum xe_sigid sigid)
+> > +{
+> > +       return is_sev_error(cper_sev) && is_hw_sigid(sigid) ? HW_ERR
+> > : "";
+> > +}
+> > +
+> > +static const char *log_sev_prefix(int cper_sev)
+> > +{
+> > +       switch (cper_sev) {
+> > +       case CPER_SEV_FATAL:
+> > +               return "FATAL ";
+> > +       case CPER_SEV_RECOVERABLE:
+> > +               return "";
+> > +       case CPER_SEV_CORRECTED:
+> > +               return "CORRECTED ";
+> > +       default:
+> > +               return "";
+> > +       }
+> > +}
+> > +
+> > +#define __LOG_DRM_PRINTK_FMT(fmt, args...)     "[drm] " fmt, ##args
+> > +#define __LOG_DRM_PRINTK_ERR_FMT(fmt,
+> > args...) __LOG_DRM_PRINTK_FMT("*ERROR* " fmt, args)
+> > +
+> > +static void log_dmesg_vprintk(struct pci_dev *pdev, int cper_sev,
+> > struct va_format *vaf)
+> > +{
+> > +       if (cper_sev == CPER_SEV_INFORMATIONAL)
+> > +               pci_info(pdev, __LOG_DRM_PRINTK_FMT("%pV", vaf));
+> > +       else
+> > +               pci_err(pdev, __LOG_DRM_PRINTK_ERR_FMT("%pV", vaf));
+> > +}
+> > +
+> > +static void log_dmesg_printf(struct pci_dev *pdev, int cper_sev,
+> > const char *fmt, ...)
+> > +{
+> > +       struct va_format vaf;
+> > +       va_list args;
+> > +
+> > +       va_start(args, fmt);
+> > +       vaf.fmt = fmt;
+> > +       vaf.va = &args;
+> > +
+> > +       log_dmesg_vprintk(pdev, cper_sev, &vaf);
+> > +
+> > +       va_end(args);
+> > +}
+> > +
+> > +static void log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum
+> > xe_sigid sigid,
+> > +                          u32 component, u32 location, const void
+> > *data, size_t len,
+> > +                          struct va_format *vaf)
+> > +{
+> > +       const char *hwe_prefix = log_hwe_prefix(cper_sev, sigid);
+> > +       const char *sev_prefix = log_sev_prefix(cper_sev);
+> > +
+> > +       /* TODO: add component/location details */
+> > +
+> > +       if (IS_ERR(data))
+> > +               log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%pe)
+> > %s%pV",
+> > +                                sigid, sev_prefix, data, hwe_prefix,
+> > vaf);
+> > +       else if (data && len)
+> > +               log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s(%*phN)
+> > %s%pV",
+> > +                                sigid, sev_prefix, (int)len, data,
+> > hwe_prefix, vaf);
+> > +       else
+> > +               log_dmesg_printf(pdev, cper_sev, "SIGID=%u %s%s%pV",
+> > +                                sigid, sev_prefix, hwe_prefix, vaf);
+> > +}
+> > +
+> > +/**
+> > + * xe_log_emit() - Emit a structured SIGID log entry
+> > + * @pdev: the &pci_dev device
+> > + * @cper_sev: CPER severity (CPER_SEV_FATAL, CPER_SEV_RECOVERABLE,
+> > ...)
+> > + * @sigid: signature identifier, see &enum xe_sigid
+> > + * @component: component identifer
+> > + * @location: location details of the @component
+> > + * @data: pointer to the additional details, or ERR_PTR, or NULL if
+> > not applicable
+> > + * @len: length of the @data in bytes, or 0 if not applicable
+> > + * @fmt: printf-style format string
+> > + * @...: format arguments
+> > + *
+> > + * Emits a dmesg line that includes a single stable, machine-
+> > matchable token
+> > + * ``SIGID=<n>`` followed by the optional severity token (like
+> > ``FATAL``) and,
+> > + * when @data pointer is set, either the error printed with %pe or a
+> > packed hex
+> > + * dump of the @data binary blob. The dmesg line will also include
+> > printf-style
+> > + * text message.
+> > + *
+> > + * Note that the full dmesg line, with the free text message, is
+> > only a debugging
+> > + * aid, not an interface! Only the ``SIGID=<n>`` token is stable
+> > there.
+> > + * The durable machine record is the CPER carrying the same SIGID.
+> > + *
+> > + * Note: generation of the CPER record is a planned follow-up.
+> > + *
+> > + * Examples::
+> > + *
+> > + *   <3> xe 0000:03:00.0: [drm] *ERROR* SIGID=104 FATAL (-EPROTO)
+> > Invalid GuC reply
+> > + *   <3> xe 0000:03:00.0: [drm] *ERROR* SIGID=106 (-ETIMEDOUT)
+> > Engine 'rcs0' hung
+> > + *   <6> xe 0000:03:00.0: [drm] *ERROR* SIGID=103 In survivability
+> > mode
+> > + */
+> > +void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid
+> > sigid,
+> > +                u32 component, u32 location, const void *data,
+> > size_t len,
+> > +                const char *fmt, ...)
+> > +{
+> > +       struct va_format vaf;
+> > +       va_list args;
+> > +
+> > +       va_start(args, fmt);
+> > +       vaf.fmt = fmt;
+> > +       vaf.va = &args;
+> > +
+> > +       log_emit_dmesg(pdev, cper_sev, sigid, component, location,
+> > data, len, &vaf);
+> > +       log_emit_cper(pdev, cper_sev, sigid, component, location,
+> > data, len, &vaf);
+> > +
+> > +       va_end(args);
+> > +}
+> > diff --git a/drivers/gpu/drm/xe/xe_log.h
+> > b/drivers/gpu/drm/xe/xe_log.h
+> > new file mode 100644
+> > index 000000000000..d475e816ee0b
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_log.h
+> > @@ -0,0 +1,20 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_LOG_H_
+> > +#define _XE_LOG_H_
+> > +
+> > +#include <linux/cper.h>
+> > +
+> > +#include "abi/xe_sigid_abi.h"
+> > +
+> > +struct pci_dev;
+> > +
+> > +__printf(8, 9)
+> > +void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid
+> > sigid,
+> > +                u32 component, u32 location, const void *data,
+> > size_t len,
+> > +                const char *fmt, ...);
+> > +
+> > +#endif
 > 
