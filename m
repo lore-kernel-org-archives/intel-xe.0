@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1343C5AC76
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18923C56209
 	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 23:20:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8894010F049;
-	Wed,  5 Aug 2026 23:20:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C53B510F03C;
+	Wed,  5 Aug 2026 23:20:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z1fw9si8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oGIW4xCO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F191E10E0A3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D918D10F037
  for <intel-xe@lists.freedesktop.org>; Wed,  5 Aug 2026 23:20:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1785972026; x=1817508026;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HPuPvNk2rRAiqzofcWQhsxVjtoUGcl08/pKfySmqOo4=;
- b=Z1fw9si8v2NBj7UpeoBkDJdRTBydRWofGrM7tZDPAaktSCRXuCSBl8wf
- RHnnRTFe9Vle/jRdPeCxbGV3qPrNUhruJxJ9Fudjz5PZ2Qr1ShWAFNSJ0
- L5h3qbpckXVJlh/1YiCQ8852HxrktTG+fIFkbDYSmfpl9uqOA0sXYN0Du
- C5+yBX54JwBTbh83YdZw3uJykGrIdcVG7Jqpu32Wd5Qb/bXWn/V/KOWCz
- MR80I8qkuOv6I02BPV6nAV+7l9C5sMKuQWEFvjvOK9MOJE5/Eythzb2X9
- MDR+qCjp+5Bn5MbsKFf4nNpoYDhTjFK+QEpEyljpuKvvINk8ldJMbyaPf w==;
-X-CSE-ConnectionGUID: xFxrdG+OQU+0IBhIj2PSxA==
-X-CSE-MsgGUID: jp7M6TKDSiK+pqLeoL1kGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="97206430"
-X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="97206430"
+ bh=RFJ88dYMz2ZM32kyTAvIzB6Mlc3435Szr0Sf8iJ1BH4=;
+ b=oGIW4xCOM0U0RVGCgHpOlkJgid9Bdw2Q8r/z9v8ijGQRljgGJAjPD+pX
+ 4ip5aZV0nxfBB6Dgn3uvMaw/43ikhiej81N9JoaP9OZc/6HwZ/kmexNUi
+ hCjzepLSZzX6O7jxrPHCocgizJShcwtt165LO94Rwns6rL7EpP1UKN4GU
+ ooeW6TR6J4CCz+oPZ9q/dPjIbEm3sst+DbSGVMq+Br50aQhifI4PprWrf
+ t+rglRZKg8MoY/ROOHNndu/noC9UXwpMx/unqKcpM9huMrv5ZBSSzkUXe
+ Gxber8EChRCG9sV510vZ/ilvtB1R4QOe/fGadBD/by/m2O74NZ4gZgVRM A==;
+X-CSE-ConnectionGUID: m3lReaDYSW+QZXV3w2VoNw==
+X-CSE-MsgGUID: M1qQRLJ4TnKTjvA0G0Z+yA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="97206428"
+X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="97206428"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2026 16:20:25 -0700
-X-CSE-ConnectionGUID: ZGTpXnPgR52upgyjGY6Okg==
-X-CSE-MsgGUID: sVyg7ODOS1KTemRCCHNUKA==
+X-CSE-ConnectionGUID: oUifak8tScGlgmLilXAJUg==
+X-CSE-MsgGUID: V7pBTwJkQe64X7lcsCbKNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="261395884"
+X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="261395881"
 Received: from dut4475arls.fm.intel.com ([10.105.10.28])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2026 16:20:26 -0700
@@ -48,10 +48,10 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  Michal.Wajdeczko@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 10/10] drm/xe: Taint kernel when debug configfs parameters are
- set
-Date: Wed,  5 Aug 2026 23:20:31 +0000
-Message-ID: <20260805232021.337103-22-stuart.summers@intel.com>
+Subject: [PATCH 09/10] drm/xe: Migrate existing debug configfs entries to
+ params infrastructure
+Date: Wed,  5 Aug 2026 23:20:30 +0000
+Message-ID: <20260805232021.337103-21-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260805232021.337103-12-stuart.summers@intel.com>
 References: <20260805232021.337103-12-stuart.summers@intel.com>
@@ -71,112 +71,552 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Writing any debug configfs attribute indicates the system is running
-in a non-standard configuration that may mask bugs or produce misleading
-behaviour. Taint the kernel with TAINT_TEST on each successful write so
-bug reports clearly reflect when debug settings were active.
+Move the existing debug configfs entries whose semantics fit the
+generic show/store template into the new parameter list.
+
+Add validators for the guc_log_level and guc_log_target.
+
+Add a custom getter for the guc_log_level to fall back to the modparam.
+
+The new parameters are intentionally longer than the normal 80
+character limit for readability.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Assisted-by: Copilot:claude-sonnet-4.6,claude-sonnet-5
+Assisted-by: Copilot:claude-sonnet-4.6,claude-opus-4.7,claude-sonnet-5
 ---
- drivers/gpu/drm/xe/xe_configfs_debug.c        | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_configfs_debug_params.c |  6 ++++++
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c              |  17 +-
+ drivers/gpu/drm/xe/xe_configfs_debug.c        | 277 +-----------------
+ drivers/gpu/drm/xe/xe_configfs_debug.h        |  20 +-
+ drivers/gpu/drm/xe/xe_configfs_debug_params.c |   1 +
+ drivers/gpu/drm/xe/xe_configfs_debug_params.h |  22 +-
+ drivers/gpu/drm/xe/xe_configfs_types.h        |   7 +-
+ drivers/gpu/drm/xe/xe_guc.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_psmi.c                  |   2 +-
+ drivers/gpu/drm/xe/xe_rtp.c                   |   2 +-
+ 9 files changed, 47 insertions(+), 303 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index c5d5017cd506..62d3406c61b6 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -100,11 +100,9 @@ const struct xe_config_device xe_configfs_device_defaults = {
+ 	.debug = {
+ 		.engines_allowed = U64_MAX,
+ 		.gt_types_allowed = U64_MAX,
+-		.guc_log_level = XE_GUC_LOG_LEVEL_UNSET,
+-		.guc_log_target = XE_DEFAULT_GUC_LOG_TARGET,
+-		.enable_multi_queue = true,
+-		.enable_psmi = false,
+-		.survivability_mode = false,
++		.params = {
++			XE_CONFIGFS_DEBUG_PARAMS_DEFAULTS
++		},
+ 	},
+ #endif
+ 	.sriov = {
+@@ -420,11 +418,10 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+ 	PRI_CUSTOM_ATTR("%llx", debug.engines_allowed);
+ 	PRI_CUSTOM_ATTR("%llx", debug.gt_types_allowed);
+-	PRI_CUSTOM_ATTR("%d", debug.guc_log_level);
+-	PRI_CUSTOM_ATTR("%d", debug.guc_log_target);
+-	PRI_CUSTOM_ATTR("%d", debug.enable_multi_queue);
+-	PRI_CUSTOM_ATTR("%d", debug.enable_psmi);
+-	PRI_CUSTOM_ATTR("%d", debug.survivability_mode);
++#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
++	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
++	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DUMP)
++#undef _XE_PARAM_DUMP
+ #endif
+ 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
+ 
 diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
-index 6060abe66e73..13ab9422b9c1 100644
+index 052607d89a9a..6060abe66e73 100644
 --- a/drivers/gpu/drm/xe/xe_configfs_debug.c
 +++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
-@@ -8,6 +8,7 @@
- #include <linux/module.h>
- #include <linux/cleanup.h>
- #include <linux/find.h>
-+#include <linux/panic.h>
- #include <linux/pci.h>
- #include <linux/string.h>
+@@ -792,280 +792,21 @@ static ssize_t gt_types_allowed_store(struct config_item *item, const char *page
+ 	return len;
+ }
  
-@@ -33,6 +34,10 @@
-  * and driver debugging and are not stable ABI. Using them is "at your own
-  * risk".
+-/**
+- * xe_configfs_get_guc_log_level - get configfs guc_log_level setting
+- * @pdev: pci device
+- *
+- * Returns the guc_log_level value configured via configfs. If the configfs
+- * value is negative (the default is %XE_GUC_LOG_LEVEL_UNSET, -1), the value
+- * of the ``guc_log_level`` module parameter is returned instead, allowing
+- * the configfs entry to override the module parameter without affecting
+- * users that rely solely on the module parameter.
+- *
+- * Return: GuC log level to use for this device.
+- */
+-int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_device(pdev);
+-	int level = xe_modparam.guc_log_level;
+-
+-	if (!dev)
+-		goto out;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		if (dev->config.debug.guc_log_level >= 0)
+-			level = dev->config.debug.guc_log_level;
+-
+-	config_group_put(&dev->group);
+-out:
+-	return level;
+-}
+-
+-static ssize_t guc_log_level_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
+-
+-	return sprintf(page, "%d\n", dev->debug.guc_log_level);
+-}
+-
+-static ssize_t guc_log_level_store(struct config_item *item, const char *page, size_t len)
+-{
+-	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
+-	int val;
+-	int ret;
+-
+-	ret = kstrtoint(page, 0, &val);
+-	if (ret)
+-		return ret;
+-
+-	if (val != XE_GUC_LOG_LEVEL_UNSET &&
+-	    (val < 0 || val > GUC_LOG_LEVEL_MAX))
+-		return -EINVAL;
+-
+-	guard(mutex)(&dev->lock);
+-	if (xe_configfs_is_bound(dev))
+-		return -EBUSY;
+-
+-	dev->config.debug.guc_log_level = val;
+-
+-	return len;
+-}
+-
+-/**
+- * xe_configfs_get_guc_log_target - get configfs GuC log target attribute
+- * @pdev: pci device
+- *
+- * Return: guc_log_target attribute in configfs
+- */
+-u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_device(pdev);
+-	u8 target;
+-
+-	if (!dev)
+-		return xe_configfs_device_defaults.debug.guc_log_target;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		target = dev->config.debug.guc_log_target;
+-	config_group_put(&dev->group);
+-
+-	return target;
+-}
+-
+-static ssize_t guc_log_target_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
+-
+-	return sprintf(page, "%d\n", dev->debug.guc_log_target);
+-}
+-
+-static ssize_t guc_log_target_store(struct config_item *item, const char *page, size_t len)
+-{
+-	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
+-	u8 guc_log_target;
+-	int ret;
+-
+-	ret = kstrtou8(page, 0, &guc_log_target);
+-	if (ret)
+-		return ret;
+-
+-	if (guc_log_target > GUC_LOG_TARGET_MAX)
+-		return -EINVAL;
+-
+-	guard(mutex)(&dev->lock);
+-	if (xe_configfs_is_bound(dev))
+-		return -EBUSY;
+-
+-	dev->config.debug.guc_log_target = guc_log_target;
+-
+-	return len;
+-}
+-
+-/**
+- * xe_configfs_get_enable_multi_queue - get configfs enable_multi_queue setting
+- * @pdev: pci device
+- *
+- * Return: true if multi-queue is enabled for this device (the default),
+- * false if it has been force-disabled via configfs.
+- */
+-bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_device(pdev);
+-	bool ret;
+-
+-	if (!dev)
+-		return xe_configfs_device_defaults.debug.enable_multi_queue;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		ret = dev->config.debug.enable_multi_queue;
+-	config_group_put(&dev->group);
+-
+-	return ret;
+-}
+-
+-static ssize_t enable_multi_queue_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
+-
+-	return sprintf(page, "%d\n", dev->debug.enable_multi_queue);
+-}
+-
+-static ssize_t enable_multi_queue_store(struct config_item *item, const char *page, size_t len)
+-{
+-	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
+-	bool val;
+-	int ret;
+-
+-	ret = kstrtobool(page, &val);
+-	if (ret)
+-		return ret;
+-
+-	guard(mutex)(&dev->lock);
+-	if (xe_configfs_is_bound(dev))
+-		return -EBUSY;
+-
+-	dev->config.debug.enable_multi_queue = val;
+-
+-	return len;
+-}
+-
+-/**
+- * xe_configfs_get_psmi_enabled - get configfs enable_psmi setting
+- * @pdev: pci device
+- *
+- * Return: enable_psmi setting in configfs
+- */
+-bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_device(pdev);
+-	bool ret;
+-
+-	if (!dev)
+-		return false;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		ret = dev->config.debug.enable_psmi;
+-	config_group_put(&dev->group);
+-
+-	return ret;
+-}
+-
+-static ssize_t enable_psmi_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
+-
+-	return sprintf(page, "%d\n", dev->debug.enable_psmi);
+-}
+-
+-static ssize_t enable_psmi_store(struct config_item *item, const char *page, size_t len)
+-{
+-	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
+-	bool val;
+-	int ret;
+-
+-	ret = kstrtobool(page, &val);
+-	if (ret)
+-		return ret;
+-
+-	guard(mutex)(&dev->lock);
+-	if (xe_configfs_is_bound(dev))
+-		return -EBUSY;
+-
+-	dev->config.debug.enable_psmi = val;
+-
+-	return len;
+-}
+-
+-/**
+- * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
+- * @pdev: pci device
+- *
+- * Return: survivability_mode attribute in configfs
+- */
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_device(pdev);
+-	bool mode;
+-
+-	if (!dev)
+-		return xe_configfs_device_defaults.debug.survivability_mode;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		mode = dev->config.debug.survivability_mode;
+-	config_group_put(&dev->group);
+-
+-	return mode;
+-}
+-
+-static ssize_t survivability_mode_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
+-
+-	return sprintf(page, "%d\n", dev->debug.survivability_mode);
+-}
+-
+-static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
+-{
+-	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
+-	bool survivability_mode;
+-	int ret;
+-
+-	ret = kstrtobool(page, &survivability_mode);
+-	if (ret)
+-		return ret;
+-
+-	guard(mutex)(&dev->lock);
+-	if (xe_configfs_is_bound(dev))
+-		return -EBUSY;
+-
+-	dev->config.debug.survivability_mode = survivability_mode;
+-
+-	return len;
+-}
+-
+ CONFIGFS_ATTR(, ctx_restore_mid_bb);
+ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, engines_allowed);
+ CONFIGFS_ATTR(, gt_types_allowed);
+-CONFIGFS_ATTR(, guc_log_level);
+-CONFIGFS_ATTR(, guc_log_target);
+-CONFIGFS_ATTR(, enable_multi_queue);
+-CONFIGFS_ATTR(, enable_psmi);
+-CONFIGFS_ATTR(, survivability_mode);
+ 
+ static struct configfs_attribute *xe_configfs_debug_attrs[] = {
+ 	&attr_ctx_restore_mid_bb,
+ 	&attr_ctx_restore_post_bb,
+ 	&attr_engines_allowed,
+ 	&attr_gt_types_allowed,
+-	&attr_guc_log_level,
+-	&attr_guc_log_target,
+-	&attr_enable_multi_queue,
+-	&attr_enable_psmi,
+-	&attr_survivability_mode,
++	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_ATTR_PTR)
+ 	NULL,
+ };
+ 
++
+ /*
+  * Per-parameter visibility predicates.
   *
-+ * Writing any debug attribute taints the kernel with ``TAINT_TEST``. This
-+ * makes it visible in bug reports when a non-standard or unsafe configuration
-+ * was active.
-+ *
-  * See the top-level ``Xe Configfs`` documentation in ``xe_configfs.c``
-  * for how to create, probe and remove configfs devices. Once a device
-  * directory exists, the driver populates it with a ``debug/`` subdirectory
-@@ -528,6 +533,7 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
+@@ -1084,16 +825,18 @@ static struct configfs_attribute *xe_configfs_debug_attrs[] = {
+ static bool xe_configfs_debug_is_visible(struct config_item *item,
+ 					 struct configfs_attribute *attr, int n)
+ {
+-	if (attr == &attr_survivability_mode) {
+-		struct xe_config_group_device *dev =
+-			xe_configfs_to_group_device(item->ci_parent);
+-
+-		return dev->desc->is_dgfx && dev->desc->platform >= XE_BATTLEMAGE;
+-	}
++#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
++	if (attr == &attr_##_name) \
++		return _vis(item);
++	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_VIS_CHECK)
++#undef _XE_PARAM_VIS_CHECK
  
- 	if (!count) {
- 		memset(wa_bb, 0, sizeof(tmp_wa_bb));
-+		add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
- 		return len;
- 	}
- 
-@@ -547,6 +553,8 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
- 
- 	memcpy(wa_bb, tmp_wa_bb, sizeof(tmp_wa_bb));
- 
-+	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
-+
- 	return len;
+ 	return true;
  }
  
-@@ -699,6 +707,8 @@ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
- 
- 	dev->config.debug.engines_allowed = val;
- 
-+	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
++#undef XE_PARAM_VISIBLE_ALWAYS
++#undef XE_PARAM_VISIBLE_SURVIVABILITY
 +
- 	return len;
- }
+ static struct configfs_group_operations xe_configfs_debug_group_ops = {
+ 	.is_visible	= xe_configfs_debug_is_visible,
+ };
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
+index b97a7fff6652..375ddc17ba36 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_debug.h
++++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
+@@ -7,7 +7,7 @@
  
-@@ -789,6 +799,8 @@ static ssize_t gt_types_allowed_store(struct config_item *item, const char *page
+ #include <linux/types.h>
  
- 	dev->config.debug.gt_types_allowed = typemask;
+-#include "xe_defaults.h"
++#include "xe_configfs_debug_params.h"
+ #include "xe_hw_engine_types.h"
+ #include "xe_module.h"
  
-+	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
-+
- 	return len;
- }
+@@ -26,11 +26,7 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
+ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+-int xe_configfs_get_guc_log_level(struct pci_dev *pdev);
+-u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev);
+-bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
+-bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
++XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_DECLARE_GETTER)
+ #else
+ /*
+  * Dummy values here are not used since these function accesses are always
+@@ -46,17 +42,7 @@ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+ static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
+ static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
+-static inline int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
+-{
+-	return xe_modparam.guc_log_level;
+-}
+-static inline u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
+-{
+-	return XE_DEFAULT_GUC_LOG_TARGET;
+-}
+-static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
+-static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+-static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
++XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_DECLARE_GETTER_STUB)
+ #endif
  
+ #endif /* _XE_CONFIGFS_DEBUG_H_ */
 diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.c b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-index c868e3f49ea4..482363833e13 100644
+index 00e5ff175c0a..c868e3f49ea4 100644
 --- a/drivers/gpu/drm/xe/xe_configfs_debug_params.c
 +++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-@@ -29,11 +29,15 @@
-  * This file also generates the xe_configfs_get_<name>() accessors used
-  * by the rest of the driver to read a parameter's effective value; see
-  * the DOC section below.
-+ *
-+ * Setting these parameters taints the kernel since these are intended
-+ * for debug and testing purposes only.
+@@ -40,6 +40,7 @@
+ 
+ #include "xe_configfs_debug_params.h"
+ #include "xe_configfs.h"
++#include "xe_configfs_debug.h"
+ 
+ #define _XE_PARAM_DEFINE_OPS_NUMERIC(_T, _name, _kstrto, _fmt, _validator) \
+ static ssize_t _name##_show(struct config_item *item, char *page) \
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.h b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
+index 954ca4343136..f1de27c04f8b 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_debug_params.h
++++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
+@@ -10,6 +10,12 @@
+ #include <linux/errno.h>
+ #include <linux/types.h>
+ 
++#include "abi/guc_log_abi.h"
++#include "xe_defaults.h"
++#include "xe_guc_fwif.h"
++#include "xe_guc_log.h"
++#include "xe_module.h"
++
+ struct pci_dev;
+ 
+ /*
+@@ -49,6 +55,12 @@ struct pci_dev;
   */
+ #define XE_PARAM_VALIDATE_NONE(_v)		(0)
  
- #include <linux/cleanup.h>
- #include <linux/configfs.h>
- #include <linux/kernel.h>
-+#include <linux/panic.h>
- #include <linux/pci.h>
- #include <linux/string.h>
- #include <linux/sysfs.h>
-@@ -65,6 +69,7 @@ static ssize_t _name##_store(struct config_item *item, const char *page, size_t
- 	if (xe_configfs_is_bound(dev)) \
- 		return -EBUSY; \
- 	dev->config.debug.params._name = val; \
-+	add_taint(TAINT_TEST, LOCKDEP_STILL_OK); \
- 	return len; \
++#define XE_PARAM_VALIDATE_GUC_LOG_LEVEL(_v) \
++	(((_v) == XE_GUC_LOG_LEVEL_UNSET || \
++	  ((_v) >= 0 && (_v) <= GUC_LOG_LEVEL_MAX)) ? 0 : -EINVAL)
++#define XE_PARAM_VALIDATE_GUC_LOG_TARGET(_v) \
++	(((_v) <= GUC_LOG_TARGET_MAX) ? 0 : -EINVAL)
++
+ /*
+  * Per-parameter getter helpers.
+  *
+@@ -71,6 +83,10 @@ struct pci_dev;
+  */
+ #define XE_PARAM_GETTER_READ(_dev, _name)	((_dev)->config.debug.params._name)
+ 
++#define XE_PARAM_GETTER_GUC_LOG_LEVEL(_dev, _name) \
++	({ typeof((_dev)->config.debug.params._name) __v = (_dev)->config.debug.params._name; \
++	   __v >= 0 ? __v : xe_modparam.guc_log_level; })
++
+ /**
+  * XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH - iterate over debug configfs params
+  * @param: function-like macro called as
+@@ -106,7 +122,11 @@ struct pci_dev;
+  * at runtime if needed.
+  */
+ #define XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(param) \
+-	/* No parameters yet - add entries above this line. */
++	param(int,  guc_log_level,      XE_GUC_LOG_LEVEL_UNSET,    XE_PARAM_VALIDATE_GUC_LOG_LEVEL,  XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_GUC_LOG_LEVEL, xe_modparam.guc_log_level) \
++	param(u8,   guc_log_target,     XE_DEFAULT_GUC_LOG_TARGET, XE_PARAM_VALIDATE_GUC_LOG_TARGET, XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          XE_DEFAULT_GUC_LOG_TARGET) \
++	param(bool, enable_multi_queue, true,                      XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          true) \
++	param(bool, enable_psmi,        false,                     XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          false) \
++	param(bool, survivability_mode, false,                     XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_SURVIVABILITY, XE_PARAM_GETTER_READ,          false)
+ 
+ /* Generate the struct that backs all debug params in xe_config_device. */
+ #define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
+diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
+index 1123f6e2a668..c6eb90573866 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_types.h
++++ b/drivers/gpu/drm/xe/xe_configfs_types.h
+@@ -9,6 +9,7 @@
+ #include <linux/mutex.h>
+ #include <linux/types.h>
+ 
++#include "xe_configfs_debug_params.h"
+ #include "xe_hw_engine_types.h"
+ #include "xe_pci_types.h"
+ #include "xe_sriov_types.h"
+@@ -38,11 +39,7 @@ struct xe_config_group_device {
+ 			struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+ 			u64 engines_allowed;
+ 			u64 gt_types_allowed;
+-			int guc_log_level;
+-			u8 guc_log_target;
+-			bool enable_multi_queue;
+-			bool enable_psmi;
+-			bool survivability_mode;
++			struct xe_configfs_debug_params params;
+ 		} debug;
+ #endif
+ 		struct {
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 599134d3d027..83266ad78eea 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -99,7 +99,7 @@ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
+ 	if (!xe->info.skip_guc_pc)
+ 		flags |= GUC_CTL_ENABLE_SLPC;
+ 
+-	if (xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev)))
++	if (xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev)))
+ 		flags |= GUC_CTL_ENABLE_PSMI_LOGGING;
+ 
+ 	if (xe_guc_using_main_gamctrl_queues(guc))
+diff --git a/drivers/gpu/drm/xe/xe_psmi.c b/drivers/gpu/drm/xe/xe_psmi.c
+index 59af3d145418..ff9a14949339 100644
+--- a/drivers/gpu/drm/xe/xe_psmi.c
++++ b/drivers/gpu/drm/xe/xe_psmi.c
+@@ -34,7 +34,7 @@
+ 
+ static bool psmi_enabled(struct xe_device *xe)
+ {
+-	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
++	return xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev));
  }
  
-@@ -101,6 +106,7 @@ static ssize_t _name##_store(struct config_item *item, const char *page, size_t
- 	if (xe_configfs_is_bound(dev)) \
- 		return -EBUSY; \
- 	dev->config.debug.params._name = val; \
-+	add_taint(TAINT_TEST, LOCKDEP_STILL_OK); \
- 	return len; \
+ static void psmi_free_object(struct xe_bo *bo)
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 62068189320f..3ead1eac93f5 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -450,7 +450,7 @@ bool xe_rtp_match_psmi_enabled(const struct xe_device *xe,
+ 			       const struct xe_gt *gt,
+ 			       const struct xe_hw_engine *hwe)
+ {
+-	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
++	return xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev));
  }
  
+ bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
 -- 
 2.43.0
 
