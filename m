@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D567C55174
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 11:33:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A5CC56209
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 11:33:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21E2110EE10;
-	Wed,  5 Aug 2026 11:33:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F25710EE1C;
+	Wed,  5 Aug 2026 11:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HzsXHKGV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lCSs2NsA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBA3810EDFE;
- Wed,  5 Aug 2026 11:33:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1940C10EDFE;
+ Wed,  5 Aug 2026 11:33:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1785929626; x=1817465626;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZxPU7quEySN5Hl4qRC5WeOO+MTXBZUcrGg6kx4/kNtY=;
- b=HzsXHKGVVE66jmwwKlkP+56gBeVECnObgEulVQe6aL1+9DE07nic8+04
- 3DLkE61T9tnHGZ9qg93T0wcWmTLqRAELdhjdgaTU6PwQbjkd6LZQx+wDX
- eZKn7Z+HLfb3C3k9o6/A2ihWy41/PcSr3LzG5nbCaXki53V1x/9Njf6pU
- 6XmfPYGxnTc7utZbz4Dq2oy/K4DaOkQc/iujFfZPgPSrMTX8pPt8pXNih
- YPPnVR13IPQDpUguDLocMNBYTpLR33gr/TYGjVwf9HyMfhz+2r5UXkWN2
- W4NgChfuwoH9Q1a63OMRVabYN1T1cOhqKDDrqxSUgg+EPgXBlqgfUonz+ g==;
-X-CSE-ConnectionGUID: Eb9QOtsvQ6mb96ja1BTD8Q==
-X-CSE-MsgGUID: JdiaT49LRneUc0ux8rlcuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="86358191"
-X-IronPort-AV: E=Sophos;i="6.25,206,1779174000"; d="scan'208";a="86358191"
+ bh=xRlcIXHSrwF2uzzkzRuCIueeNRYGGHl04MyQZjBITUE=;
+ b=lCSs2NsAQIsg5L1myq1tq6/ixoP1A3rAyc6fnZbRegABYPGebAtUgAXL
+ CaiymCzJRl0MuTyMxQyKL1cKIBsuJHGwCcM7VU4iVnSrJaOTGrta+1vTh
+ BMMO5zYo1M+f/wqRj5SLXP46aNLYKZoKdnrAIA/IRQx+pEqaVPqTNZSjD
+ n2PX+f5UN3fCzPGDg5vRshVkK5WVAzfSUtm+6q46r90rZoj5qXNM9mgDc
+ zszYj4czm+HQMIeqgi9CBksL88kckNc1eMznv0eETrqWRdM9GYE2gBAZW
+ p5Zueff2wtUAJrhGkdedxlzrMq8+IHe0uLw4BDA4/dy2TQWNQQ/ynu90C A==;
+X-CSE-ConnectionGUID: fVAXLvO/QTKnM3976kxuHA==
+X-CSE-MsgGUID: acPd1Iq/RsqWjUT20fzrqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11865"; a="86358222"
+X-IronPort-AV: E=Sophos;i="6.25,206,1779174000"; d="scan'208";a="86358222"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2026 04:33:45 -0700
-X-CSE-ConnectionGUID: TlTSTTbZQ92hntgr1WOfMQ==
-X-CSE-MsgGUID: X+D8wfZAS76OZrI13c7G0A==
+X-CSE-ConnectionGUID: 0VOchQ9WTgCogTvfZhN3EQ==
+X-CSE-MsgGUID: LjdTZIqWRfKlmWbwkV99CQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,206,1779174000"; d="scan'208";a="265289747"
+X-IronPort-AV: E=Sophos;i="6.25,206,1779174000"; d="scan'208";a="265289753"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2026 04:33:45 -0700
@@ -61,10 +61,10 @@ Cc: Andrew Morton <akpm@linux-foundation.org>,
  Simona Vetter <simona@ffwll.ch>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Francois Dugast <francois.dugast@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 2/4] mm/migrate_device: Apply the fault reference to the
- correct folio
-Date: Wed,  5 Aug 2026 04:33:36 -0700
-Message-Id: <20260805113338.3742178-3-matthew.brost@intel.com>
+Subject: [PATCH 4/4] drm/pagemap: Add fault injection for higher-order RAM
+ folio allocation
+Date: Wed,  5 Aug 2026 04:33:38 -0700
+Message-Id: <20260805113338.3742178-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260805113338.3742178-1-matthew.brost@intel.com>
 References: <20260805113338.3742178-1-matthew.brost@intel.com>
@@ -85,29 +85,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-__migrate_device_pages() computed extra_cnt once, from the head page of
-the source folio, and then passed the same value to
-folio_migrate_mapping() for every one of the @nr sub-folios produced by
-migrate_vma_split_unmapped_folio().
+Migrating a device-private THP back to system memory has two distinct
+paths in __migrate_device_pages(): the fast path where both source and
+destination carry MIGRATE_PFN_COMPOUND, and the fallback path where the
+destination could only be satisfied with order-0 folios and the source
+THP therefore has to be split via migrate_vma_split_unmapped_folio().
 
-The extra reference the CPU fault holds only exists on the single folio
-that ends up containing the fault page. Claiming it for all of them
-makes folio_migrate_mapping() expect one reference too many on every
-other sub-folio, so it returns -EAGAIN and MIGRATE_PFN_MIGRATE is
-cleared for them. Only the fault page would migrate; the remaining
-HPAGE_PMD_NR - 1 pages would be restored to device memory, and the
-faulting access would immediately fault again.
+The fallback path only triggers under genuine memory pressure, which
+makes it both rare and awkward to reproduce, yet it is the path where
+the interesting refcounting happens (the CPU fault holds an extra
+reference on the device folio taken by do_huge_pmd_device_private()).
 
-Compute extra_cnt per sub-folio instead, comparing against the source
-page for that entry.
+Add a fault_attr, modelled on backup_fault_inject in ttm_pool.c, that
+forces the higher-order allocation in
+drm_pagemap_migrate_populate_ram_pfn() to fail so the existing order-0
+fallback is taken deterministically.
 
-While at it, use the sub-folio's own mapping rather than the mapping
-that was read from the pre-split folio.
+The attribute is exposed at /sys/kernel/debug/drm_pagemap_fault_inject
+and requires CONFIG_FAULT_INJECTION_DEBUG_FS. With
+CONFIG_FAULT_INJECTION disabled the helper compiles out to a constant
+false and the injection has no cost.
 
-This has been latent so far because the split it depends on could never
-succeed while the fault reference was held.
-
-Fixes: 4265d67e405a ("mm/migrate_device: add THP splitting during migration")
 Cc: Andrew Morton <akpm@linux-foundation.org>
 Cc: David Hildenbrand <david@kernel.org>
 Cc: Lorenzo Stoakes <ljs@kernel.org>
@@ -141,52 +139,77 @@ Cc: stable@vger.kernel.org
 Assisted-by: GitHub Copilot:claude-opus-5
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- mm/migrate_device.c | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/drm_pagemap.c | 36 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 1 deletion(-)
 
-diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index d1d81bbbf795..65a6a15dba4d 100644
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@ -1191,7 +1191,7 @@ static void __migrate_device_pages(unsigned long *src_pfns,
- 		struct page *page = migrate_pfn_to_page(src_pfns[i]);
- 		struct address_space *mapping;
- 		struct folio *newfolio, *folio;
--		int r, extra_cnt = 0;
-+		int r;
- 		unsigned long nr = 1;
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index 7610e233d238..01eb29ef023c 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2024-2025 Intel Corporation
+  */
  
- 		if (!newpage) {
-@@ -1296,13 +1296,25 @@ static void __migrate_device_pages(unsigned long *src_pfns,
++#include <linux/debugfs.h>
+ #include <linux/dma-fence.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/migrate.h>
+@@ -12,6 +13,27 @@
+ #include <drm/drm_pagemap_util.h>
+ #include <drm/drm_print.h>
  
- 		BUG_ON(folio_test_writeback(folio));
- 
--		if (migrate && migrate->fault_page == page)
--			extra_cnt = 1;
- 		for (j = 0; j < nr && i + j < npages; j++) {
--			folio = page_folio(migrate_pfn_to_page(src_pfns[i+j]));
-+			struct page *src_page = migrate_pfn_to_page(src_pfns[i+j]);
-+			int extra_cnt = 0;
++#ifdef CONFIG_FAULT_INJECTION
++#include <linux/fault-inject.h>
++static DECLARE_FAULT_ATTR(migrate_to_ram_fault_inject);
 +
-+			folio = page_folio(src_page);
- 			newfolio = page_folio(migrate_pfn_to_page(dst_pfns[i+j]));
- 
--			r = folio_migrate_mapping(mapping, newfolio, folio, extra_cnt);
-+			/*
-+			 * The CPU fault holds an extra reference on the folio
-+			 * containing the fault page. @folio may have been
-+			 * split above, so the fault page only accounts for an
-+			 * extra reference on the folio it actually ended up
-+			 * in, not on every folio of the original THP.
-+			 */
-+			if (migrate && migrate->fault_page == src_page)
-+				extra_cnt = 1;
++/*
++ * Force a higher-order destination folio allocation to fail in
++ * drm_pagemap_migrate_populate_ram_pfn(), exercising the order-0 fallback
++ * (and, in turn, the THP split path in __migrate_device_pages()) without
++ * having to drive the system into actual memory pressure.
++ */
++static bool drm_pagemap_fault_inject_folio(void)
++{
++	return should_fail(&migrate_to_ram_fault_inject, 1);
++}
++#else
++static bool drm_pagemap_fault_inject_folio(void)
++{
++	return false;
++}
++#endif
 +
-+			r = folio_migrate_mapping(folio_mapping(folio), newfolio,
-+						  folio, extra_cnt);
- 			if (r)
- 				src_pfns[i+j] &= ~MIGRATE_PFN_MIGRATE;
- 			else
+ /**
+  * DOC: Overview
+  *
+@@ -946,7 +968,9 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
+ 		if (order)
+ 			gfp |= __GFP_NOWARN;
+ 
+-		if (vas)
++		if (order && drm_pagemap_fault_inject_folio())
++			folio = NULL;
++		else if (vas)
+ 			folio = vma_alloc_folio(gfp, order, vas, addr);
+ 		else
+ 			folio = folio_alloc(gfp, order);
+@@ -1540,6 +1564,16 @@ void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim
+ 		kfree(dpagemap);
+ }
+ 
++static int __init drm_pagemap_module_init(void)
++{
++#if defined(CONFIG_DEBUG_FS) && defined(CONFIG_FAULT_INJECTION)
++	fault_create_debugfs_attr("drm_pagemap_fault_inject", NULL,
++				  &migrate_to_ram_fault_inject);
++#endif
++	return 0;
++}
++module_init(drm_pagemap_module_init);
++
+ static void drm_pagemap_exit(void)
+ {
+ 	flush_work(&drm_pagemap_work);
 -- 
 2.34.1
 
