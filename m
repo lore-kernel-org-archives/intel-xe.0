@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCB33C56205
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 19:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB85FC55174
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 19:35:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6363210EFC0;
-	Wed,  5 Aug 2026 19:35:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78EC510EFC9;
+	Wed,  5 Aug 2026 19:35:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aFXJ7nl8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c4xhq9kk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F1EE10E0FB;
- Wed,  5 Aug 2026 19:35:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 453F210E0FB;
+ Wed,  5 Aug 2026 19:35:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1785958543; x=1817494543;
+ t=1785958544; x=1817494544;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0YG7iyYcbF3G1EFKh9ioNjadG3W1OhFnqKUemvuHbQY=;
- b=aFXJ7nl8Xmg/f4pCVnXKOv7sXt4lReF8lalt/qP/NJB1GLFaD1E/Ee0M
- 77FxEdEW6ED11ZWvmeW9/N3jCf/pnzfvNqMX6YUkeh5TLHM6e129WVbAT
- JLWdrx2lt6QzKT7t7KefTmqQBmdcGTJ2oW4gpXEamLPgRdIAbTbhAcUYG
- LXX2Bbe9Q7XXL4ML91YIhM7MFPYJqsBGNCUV2+q1aU3GnCfgqEppplu4j
- KddoZM1nS95jjSXqm96W+GEadsKDLGRT+jALzSsHMujNU4ISrHe5Q5x3o
- iEl2OPBjvoqW19ec5H7zvVpE4h6uBL1sM22bLC3shLOXLfPZ0jdQfJNhs g==;
-X-CSE-ConnectionGUID: 9Vxu77AJQIKmzxOyR45zOw==
-X-CSE-MsgGUID: ga2vXmbKSJaLLooI7GYldw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="109332919"
-X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="109332919"
+ bh=DwXjrp0YOMKqBIa0CyQY66LJvCKzj79JzvSlROjOOxA=;
+ b=c4xhq9kkjFjzbnuCgiK9xudiX7k3PGRahsUiZeTYFoLxqVwOWQ7c7uSN
+ 2cTkGMMRW23UYcT+wXe5u3Wa6W0sMsGCz5agbyfz59brvecH4NKA+beRA
+ /mtNtn0eCbBWQeZzxB3UxywM4F7o0w0yStqvRJUikfboD7kc7ymbaTJAk
+ +EKJm7QZsMY8nkuKImCckleaMZTYnkoX8cXDamCoYAOJXWnBI1A3qOmWC
+ wYaoqMZDz5RwlLxzzsyw3OQ5HIXZzRXvrGhuK0IJrGoZmts5o2InslBeK
+ CFIPGg7q/lI9t7ERT19m3RUgB+yVOzF/nDoITkbPEul4tsthYohodFTh2 Q==;
+X-CSE-ConnectionGUID: d6ro364NRLSuA7FccJzeOg==
+X-CSE-MsgGUID: fcKVpC24QYW5YDLR3rCrLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="109332957"
+X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="109332957"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2026 12:35:42 -0700
-X-CSE-ConnectionGUID: +IlgXOyXTU+bAoeSzcnfsg==
-X-CSE-MsgGUID: aH+F8fM8RHmiW/7pNd/qeA==
+ 05 Aug 2026 12:35:44 -0700
+X-CSE-ConnectionGUID: CujDtT0BQmaBotcPTuJkwA==
+X-CSE-MsgGUID: sX6rfqqERo6FgsdinoenMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="285263519"
+X-IronPort-AV: E=Sophos;i="6.25,207,1779174000"; d="scan'208";a="285263527"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2026 12:35:42 -0700
+ 05 Aug 2026 12:35:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Cc: Sashiko <sashiko-bot@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
+Cc: Andrew Morton <akpm@linux-foundation.org>,
  David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
  Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
  "Liam R . Howlett" <liam@infradead.org>, Nico Pache <nico.pache@linux.dev>,
@@ -62,10 +61,10 @@ Cc: Sashiko <sashiko-bot@kernel.org>,
  Simona Vetter <simona@ffwll.ch>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Francois Dugast <francois.dugast@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v2 1/5] mm/migrate_device: Clear MIGRATE_PFN_MIGRATE on all
- sub-folios of a split THP
-Date: Wed,  5 Aug 2026 12:35:32 -0700
-Message-Id: <20260805193536.3756457-2-matthew.brost@intel.com>
+Subject: [PATCH v2 3/5] mm/migrate_device: Apply the fault reference to the
+ correct folio
+Date: Wed,  5 Aug 2026 12:35:34 -0700
+Message-Id: <20260805193536.3756457-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260805193536.3756457-1-matthew.brost@intel.com>
 References: <20260805193536.3756457-1-matthew.brost@intel.com>
@@ -86,17 +85,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-migrate_vma_split_unmapped_folio() propagates MIGRATE_PFN_MIGRATE from
-the head entry to all HPAGE_PMD_NR entries of src_pfns[]. The two
-bailouts below it in __migrate_device_pages() only cleared the head, and
-the "next" label then advances by @nr, so the tails keep the flag and a
-valid destination without ever going through folio_migrate_mapping().
-migrate_vma_finalize() then maps unpopulated destination folios into
-userspace.
+__migrate_device_pages() computed extra_cnt once, from the head page of
+the source folio, and then passed the same value to
+folio_migrate_mapping() for every one of the @nr sub-folios produced by
+migrate_vma_split_unmapped_folio().
 
-Clear the flag across the whole @nr range at both bailouts.
+The extra reference the CPU fault holds only exists on the single folio
+that ends up containing the fault page. Claiming it for all of them
+makes folio_migrate_mapping() expect one reference too many on every
+other sub-folio, so it returns -EAGAIN and MIGRATE_PFN_MIGRATE is
+cleared for them. Only the fault page would migrate; the remaining
+HPAGE_PMD_NR - 1 pages would be restored to device memory, and the
+faulting access would immediately fault again.
 
-Reported-by: Sashiko <sashiko-bot@kernel.org>
+Compute extra_cnt per sub-folio instead, comparing against the source
+page for that entry.
+
+While at it, use the sub-folio's own mapping rather than the mapping
+that was read from the pre-split folio.
+
+This has been latent so far because the split it depends on could never
+succeed while the fault reference was held.
+
 Fixes: 4265d67e405a ("mm/migrate_device: add THP splitting during migration")
 Cc: Andrew Morton <akpm@linux-foundation.org>
 Cc: David Hildenbrand <david@kernel.org>
@@ -131,39 +141,52 @@ Cc: stable@vger.kernel.org
 Assisted-by: GitHub_Copilot:claude-opus-5
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- mm/migrate_device.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ mm/migrate_device.c | 22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
 
 diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index 908d2d4ec43a..d37a96cc6335 100644
+index 142920a464d8..4ee09801efe6 100644
 --- a/mm/migrate_device.c
 +++ b/mm/migrate_device.c
-@@ -1199,10 +1199,14 @@ static void __migrate_device_pages(unsigned long *src_pfns,
- 				 * device private or coherent memory.
- 				 *
- 				 * Try to get rid of swap cache if possible.
-+				 *
-+				 * @folio may have been split into @nr folios
-+				 * above, so clear all of them.
- 				 */
- 				if (!folio_test_anon(folio) ||
- 				    !folio_free_swap(folio)) {
--					src_pfns[i] &= ~MIGRATE_PFN_MIGRATE;
-+					for (j = 0; j < nr && i + j < npages; j++)
-+						src_pfns[i+j] &= ~MIGRATE_PFN_MIGRATE;
- 					goto next;
- 				}
- 			}
-@@ -1210,7 +1214,8 @@ static void __migrate_device_pages(unsigned long *src_pfns,
- 			/*
- 			 * Other types of ZONE_DEVICE page are not supported.
- 			 */
--			src_pfns[i] &= ~MIGRATE_PFN_MIGRATE;
-+			for (j = 0; j < nr && i + j < npages; j++)
-+				src_pfns[i+j] &= ~MIGRATE_PFN_MIGRATE;
- 			goto next;
- 		}
+@@ -1191,7 +1191,7 @@ static void __migrate_device_pages(unsigned long *src_pfns,
+ 		struct page *page = migrate_pfn_to_page(src_pfns[i]);
+ 		struct address_space *mapping;
+ 		struct folio *newfolio, *folio;
+-		int r, extra_cnt = 0;
++		int r;
+ 		unsigned long nr = 1;
  
+ 		if (!newpage) {
+@@ -1301,13 +1301,25 @@ static void __migrate_device_pages(unsigned long *src_pfns,
+ 
+ 		BUG_ON(folio_test_writeback(folio));
+ 
+-		if (migrate && migrate->fault_page == page)
+-			extra_cnt = 1;
+ 		for (j = 0; j < nr && i + j < npages; j++) {
+-			folio = page_folio(migrate_pfn_to_page(src_pfns[i+j]));
++			struct page *src_page = migrate_pfn_to_page(src_pfns[i+j]);
++			int extra_cnt = 0;
++
++			folio = page_folio(src_page);
+ 			newfolio = page_folio(migrate_pfn_to_page(dst_pfns[i+j]));
+ 
+-			r = folio_migrate_mapping(mapping, newfolio, folio, extra_cnt);
++			/*
++			 * The CPU fault holds an extra reference on the folio
++			 * containing the fault page. @folio may have been
++			 * split above, so the fault page only accounts for an
++			 * extra reference on the folio it actually ended up
++			 * in, not on every folio of the original THP.
++			 */
++			if (migrate && migrate->fault_page == src_page)
++				extra_cnt = 1;
++
++			r = folio_migrate_mapping(folio_mapping(folio), newfolio,
++						  folio, extra_cnt);
+ 			if (r)
+ 				src_pfns[i+j] &= ~MIGRATE_PFN_MIGRATE;
+ 			else
 -- 
 2.34.1
 
