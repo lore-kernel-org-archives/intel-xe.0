@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F420AC55174
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 06:05:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02263C55822
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 06:07:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9B910E1B0;
-	Wed,  5 Aug 2026 06:05:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A62910E1B0;
+	Wed,  5 Aug 2026 06:07:41 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE5C310E175;
- Wed,  5 Aug 2026 06:05:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF83210E175;
+ Wed,  5 Aug 2026 06:07:39 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============8916567454328788543=="
+ boundary="===============7144674597870044751=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/=7Bi915=2C_xe=7D/displa?=
- =?utf-8?q?y=3A_add_core_workaround_query_to_display_parent_interface_=28rev?=
- =?utf-8?q?3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/pagemap=3A_Prevent_doub?=
+ =?utf-8?q?le_migration_of_device_pages?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 05 Aug 2026 06:05:19 -0000
-Message-ID: <178590991990.20166.16494953311664900566@61270ab9df2a>
+Date: Wed, 05 Aug 2026 06:07:39 -0000
+Message-ID: <178591005984.20166.2602841039949471181@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260803115417.1760484-1-jani.nikula@intel.com>
-In-Reply-To: <20260803115417.1760484-1-jani.nikula@intel.com>
+References: <20260803092553.4117408-1-arvind.yadav@intel.com>
+In-Reply-To: <20260803092553.4117408-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,15 +40,15 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8916567454328788543==
+--===============7144674597870044751==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/{i915, xe}/display: add core workaround query to display parent interface (rev3)
-URL   : https://patchwork.freedesktop.org/series/171199/
+Series: drm/pagemap: Prevent double migration of device pages
+URL   : https://patchwork.freedesktop.org/series/171495/
 State : failure
 
 == Summary ==
@@ -58,9 +57,9 @@ ERROR: The runconfig 'xe-5521-f8d080b47819f01011c1b9c3c875badbb67ec955_BAT' does
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171199v3/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171495v1/index.html
 
---===============8916567454328788543==
+--===============7144674597870044751==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -80,11 +79,11 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/{i915, xe}/display: add core workaround query to display parent interface (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171199/">https://patchwork.freedesktop.org/series/171199/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/pagemap: Prevent double migration of device pages</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171495/">https://patchwork.freedesktop.org/series/171495/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171199v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171199v3/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171495v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171495v1/index.html</a></td></tr>
 
 </table>
 
@@ -94,4 +93,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============8916567454328788543==--
+--===============7144674597870044751==--
