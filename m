@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E80D9C55822
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 05:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB29C55822
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Aug 2026 06:00:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA2010ECDD;
-	Wed,  5 Aug 2026 05:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4752D10E175;
+	Wed,  5 Aug 2026 06:00:46 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E86510ECDC;
- Wed,  5 Aug 2026 05:58:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF27210E175;
+ Wed,  5 Aug 2026 06:00:44 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7186002442666792020=="
+ boundary="===============7573478513555988101=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/ras=3A_Fix_invalid_h?=
- =?utf-8?q?ealth_error_code?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_SKL=5FDSSM_/_DE=5FCAP_fixes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 05 Aug 2026 05:58:26 -0000
-Message-ID: <178590950605.20166.15492101995298266426@61270ab9df2a>
+Date: Wed, 05 Aug 2026 06:00:44 -0000
+Message-ID: <178590964471.20166.3581667421659103046@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260804051214.1202957-1-raag.jadav@intel.com>
-In-Reply-To: <20260804051214.1202957-1-raag.jadav@intel.com>
+References: <20260803214909.3076716-1-michal.grzelak@intel.com>
+In-Reply-To: <20260803214909.3076716-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +39,26 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7186002442666792020==
+--===============7573478513555988101==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe/ras: Fix invalid health error code
-URL   : https://patchwork.freedesktop.org/series/171545/
+Series: SKL_DSSM / DE_CAP fixes
+URL   : https://patchwork.freedesktop.org/series/171533/
 State : failure
 
 == Summary ==
 
-ERROR: The runconfig 'xe-5525-c2d24e2eda55d74743f0d99a98805bf0b596beef_BAT' does not exist in the database
+ERROR: The runconfig 'xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12_BAT' does not exist in the database
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171545v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171533v1/index.html
 
---===============7186002442666792020==
+--===============7573478513555988101==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,18 +78,18 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe/ras: Fix invalid health error code</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171545/">https://patchwork.freedesktop.org/series/171545/</a></td></tr>
+<tr><td><b>Series:</b></td><td>SKL_DSSM / DE_CAP fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171533/">https://patchwork.freedesktop.org/series/171533/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171545v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171545v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171533v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171533v1/index.html</a></td></tr>
 
 </table>
 
 
-    <p>ERROR: The runconfig 'xe-5525-c2d24e2eda55d74743f0d99a98805bf0b596beef_BAT' does not exist in the database</p>
+    <p>ERROR: The runconfig 'xe-5523-9a93ab75c5956f84bedf22b5bb3385ab9add0d12_BAT' does not exist in the database</p>
 
 </body>
 </html>
 
---===============7186002442666792020==--
+--===============7573478513555988101==--
