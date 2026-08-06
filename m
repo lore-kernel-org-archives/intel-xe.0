@@ -4,158 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B29DC56208
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 20:18:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2953C56208
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 20:22:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A70A10E37C;
-	Thu,  6 Aug 2026 20:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89E0F10E386;
+	Thu,  6 Aug 2026 20:22:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WOkFBYFY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hynVvmV1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E9ED10E37C
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 20:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786047517; x=1817583517;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=SVUEhAvvv2GivTOWRobv0BrN/nqDf3d5ajg5cf8WRbw=;
- b=WOkFBYFYnR7cvXWay7yx1nWDYoAVLpDELX1lWfDj6vM0pHwCFNhfYQR+
- 8VrknBD5EbLEt6E6O28M0WWUQE+B8vbVt/mQ9jAqDYtWZ5Syhn0ozxM/c
- /wkclwvujVIbRthf/mXCkH7v51bQ6H2iYUnV4mJgcpzN0C4UEmizvtU/F
- bm7oqFkC7F4XJhNfaTukUdfomv8dH8w3Zghi70m/niNhcCe+mwp1A9lEI
- iA2KoGZU/kzjE0EmS5eZkuriN7FWe02ZHyof/PtEhmNlNeSgmntvtpyFk
- Jk5J5SBpJ0+vV78Ide2ptcFqRNMph7Uvf6uQn6Pn8zvhb15gzDwPaHbg6 g==;
-X-CSE-ConnectionGUID: 6yHV/vKUTHSVaHzMGGCTmQ==
-X-CSE-MsgGUID: SKM834EwQBO/MCPPkuZKqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="90470768"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="90470768"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 13:18:36 -0700
-X-CSE-ConnectionGUID: rmudbQ74QhK+qgsPcDQAxg==
-X-CSE-MsgGUID: iiTFoeG3SBKS99C2+TyW2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="262267135"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 13:18:37 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 13:18:35 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 6 Aug 2026 13:18:35 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.49) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 13:18:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kjesZQaR16f/t2iWATRP1NthHz9Vb4EzkkXlHdMraPd9QTadeB0ZFjUHqaufLRsaaZNz5jeK7EHsTUL/f6PWjxN4TA2/7mp19q8kXAN0jarbFFShINhUIUhiU6BEgl/4pfxgBFiLcvY8ArctyZkMESyf/t36y0vxlkdKjis6EAv5yeseQVAXxIrJLN5heVnU5mx4LN3g6z1d4qwbhhsgYLF3rWDUNOfWpscRH3HDh2w9SNGxvCPntgbjefY74RKxvcw6yre4m/qrku2RnWgKbnB0JQZLdD8jk/CXhvx5EOFntA1Eflv71rjw6an0e0FlzMe9f/GIQHM3lAr6763kCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DC2Hew1wBakSlQVkUQWC4tWo8NHOCuV0pLVU02M1YYc=;
- b=aNf+0xUsVkP2ohBb8cu+0I0xTaBamaY2X1ze0eAyD/hsPQIgq486WqxsJ+L+k+aNsQdvJnWSD/afW3xrAIlsXflC1etSnGHFTDO5BpWrjHFbWrgQcmPT1h2HHcopTKqzNjMcVaIjuFiEGppKYT3Z1mfWJNZZdHRTGWY7p9SyWJVIOuN5IHDbDdk3MEq3ZwluDbov/tkfiFN81O4q3SPNRGt4Ek7BOa+HJKd3RwXJLsnc7eCP4bQ2fpo1BVrvaD4mAMR4KbpDHLy2Ljtb9FeoATMN371E9rUJyKMsCCTmljjF8BJypmezptRO9uT7oOJuhXtLt3MwdPCQJ9jnaYSTMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB9534.namprd11.prod.outlook.com (2603:10b6:510:39f::22)
- by MW6PR11MB8311.namprd11.prod.outlook.com (2603:10b6:303:241::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.19; Thu, 6 Aug
- 2026 20:18:25 +0000
-Received: from PH8PR11MB9534.namprd11.prod.outlook.com
- ([fe80::16ca:6958:c9e9:a266]) by PH8PR11MB9534.namprd11.prod.outlook.com
- ([fe80::16ca:6958:c9e9:a266%5]) with mapi id 15.21.0292.018; Thu, 6 Aug 2026
- 20:18:25 +0000
-Date: Thu, 6 Aug 2026 22:18:21 +0200
-From: Francois Dugast <francois.dugast@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v9 11/12] drm/xe: batch CT pagefault acks with periodic
- flush
-Message-ID: <anTsDcQ8CtJjjiVw@fdugast-desk>
-References: <20260806185202.3922432-1-matthew.brost@intel.com>
- <20260806185202.3922432-12-matthew.brost@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260806185202.3922432-12-matthew.brost@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: DU2PR04CA0326.eurprd04.prod.outlook.com
- (2603:10a6:10:2b5::31) To PH8PR11MB9534.namprd11.prod.outlook.com
- (2603:10b6:510:39f::22)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0232C10E386;
+ Thu,  6 Aug 2026 20:22:11 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id E83F06004E;
+ Thu,  6 Aug 2026 20:22:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1BAB1F000E9;
+ Thu,  6 Aug 2026 20:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1786047730;
+ bh=jcHucSQGZG2mJUgxwNPfPL6Y2CV6Qk0U4YRTMIGE4LU=;
+ h=From:Subject:Date:To:Cc;
+ b=hynVvmV1NpBBoEEy0gO/z1/Pv3PFrDsPl4hf9m+UEGBSnZr6Ek6+d0acIjKSwcaBg
+ h8+GeFzduD0e91UFgdI9JzhbvN9FcGy/a9DqFg8VL/iaSIeyeh9clqw9pUWC9TY5ng
+ MTu67puVBIgFxiv+CWu+3yze3m5SIrDGzufxCnV++QAesxeVv66YeC7Qbf5Cl5C+qH
+ yJO7CcZ1Kc3GclTNFxadXFVKdd5HYgu7jDd23K5pPgJMsvGk4SG/6NkNf9VNF+bJkR
+ D0RNHDtOiNlao1Em6A4/ZjGPjmcoaKwxSyCX6J6SyhK7RIkiadq3U17T5zk37unfUF
+ myzUvJaBpBmNw==
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+Subject: [PATCH v4 00/20] mm/rmap: index MAP_PRIVATE file-backed folios by
+ anonymous pgoff
+Date: Thu, 06 Aug 2026 21:21:25 +0100
+Message-Id: <20260806-b4-scalable-cow-virt-pgoff-v4-0-ab318a350404@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB9534:EE_|MW6PR11MB8311:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bb8e92c-9e6b-4a7c-f7a5-08def3f7df00
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|22082099003|18002099003|56012099006|5023799004|11063799006|4143699003|6133799003|10067099003;
-X-Microsoft-Antispam-Message-Info: pmpn7xmP/hMXOG2oo+hxTFeOfOaBVFgFzWs3l76jtZHbW7uBoMSVRq2C0dbHYACR6V6MQ94YHdwJsZz/NvRNSLZ29mLqK3BXtaienT7kdfR9sPIpuUFkUmdQjFWRL0jopbGaw+HEBZrQnK9ulacYU2hhgzI4eOhYMYeEUTZPGJmEyuh7Yk3mWbJUBSAgWwkoArbM1g7Y7cayrWONUW9YFsFvo2SNWc0JwXBhGJNS7vrwk8lwyD7U6D/WVQLKCT15uuy0jmSKmRJSHsLtGSY1iT40M2ak5mlmV9CixA0/dJXDj4wVAPlNGCs2HGJcG9uBAXilrdrpbVc5Q9s9p+D+/F1LPcCvuI2Q1PuIZE80ub71Uv3g16OpuTSgReO2wVx9La4pIv3n4RtVd4nhy+LJYtxguRB5epuQn+9ukuNgWuvJC15QOYUAcfUhE3paNk8E9qWLbmywL18949Zy9Zqc+3/i2uxCQmssyDdiETplXSWam5uqzY1l1VHY+bGnLHQxC3qHC+XXYcrdKeeYFtSXITnjVrHWIchDGaXwfQHZzAE7WM6OM//etf9TnSOo/k8X7c1NZzPCzgfV0qqHYaGzm/tQbTpEErjEAYld8U905RthzF9fZIFtqDkzNQixIrMMytA0YmCtdbGIQTHfj1okbN4/sBF7xkepgCMf6QzZ0fM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB9534.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(22082099003)(18002099003)(56012099006)(5023799004)(11063799006)(4143699003)(6133799003)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y1hCdWZzcUdJUXlPNkNsL1FrdTBNd1NyeFBlOGUyUlNvWkg1VlhYSUtRdDcv?=
- =?utf-8?B?VllJMmhSc1Bwd3BpRUszc2RqTkczVWtBSnRDcWFMbU15TjY0RUxhZEliV3pO?=
- =?utf-8?B?WWZpMjRSVEdudTR1N0VpcDdiSnY1ZFBYeEVZeWtBT3J2cTBBNVljTDFrYlNT?=
- =?utf-8?B?N3dORHR6VHRZWnExcEEwN1pOaE5rMUVReW4yditoaGc0WS9FKzF1QUxoeGJD?=
- =?utf-8?B?aW43UnlKRm1wcUQybUVSTWM0QXVoT3hXbXg3U3NldEVuUkJya1FsdjhQK0s4?=
- =?utf-8?B?aXdQbXhWM01vOEtCMlJ3Mm1RR05VNWN2bThPK2FEeUVRQ0xLbmxjSFl3L3Vu?=
- =?utf-8?B?NkZydENIaTBDMTRKcWRxK2dvekNzQjZua1VLbkcwZWdJcVUvelVRQnByOHp1?=
- =?utf-8?B?RTEyTmhHbk1CQzNrdFQwVVRTQ2xrOGR0ZjhIcGFGOTU4UEpsL0lZYWIzdVk3?=
- =?utf-8?B?cU9yUVlCbGpEQXBZMktyeXBDVzl2M0ZmUlNRMWtVYUwxZGlMWGsvamdLMXJ2?=
- =?utf-8?B?RG9BRjZaSGhZZzFxYnZ6S3E5QlkySlo2c0poYWRkRk45Q2ZXY3BlM3YyeUcv?=
- =?utf-8?B?eWNidGt3bFdPSkdOMzZxT1pyeGRoaGpnNlNHeXBnallHSU50UWVzWUR2LzZL?=
- =?utf-8?B?MzFQODg1b3Z4aUwrazhoNlpJRnRsMG1qckZiaXQxaWp3RGRBY0hHc1pvYlUz?=
- =?utf-8?B?bzZRWjdBNnVyOXRna2FncmtHOVdSSFBMd3VTZTdTZWFpa2s4WUV5Q1R5UXZu?=
- =?utf-8?B?a1FjcUtCTkQ0akdqcGlhTHhseFhOVWR3YzdDZ0FBa2FaZm9GR2VmeW9FSW9I?=
- =?utf-8?B?K21FMXNkNllWSjZMaW5oUXVmYk1HUzFFdEJONkVDK2VERi81OExoS3NaM3NC?=
- =?utf-8?B?VTBHQmZkVisyWmV4RFhVRzU3RXBSWmxOeFFncGZ6ZkJvZzFxa0IzQ0d4WURr?=
- =?utf-8?B?NUdFNmNxdU1SSzQvRVNVQm9sVlMzRmhBV1hyZTNBNXNndWJ5UWFFWjFvRUZm?=
- =?utf-8?B?MzNvUVZTM05kVkdaQVVGa3NXUlN1Y3VxYk5VRTkzM0FLeFRTcU5OaURKZ3RG?=
- =?utf-8?B?TWVDdzZCVEhieXJMeWFuVXpqL2d3Q3lDalh5OWxhcU5sakc4emRXblVwaWhY?=
- =?utf-8?B?Qkd3NUlWMUcrRGFwZmFNaFU4Ukg5UUJQSXFPUC9VS2VTNksrdkhMc3BOM3lI?=
- =?utf-8?B?NFdaeUl4TlZJL2Q1cHFqVDN2NWNRM2RZSFlxS01rM1dxdXdpYkpCU0VMV0dV?=
- =?utf-8?B?aGdBSVhpVUQxQkwxZnV2NmtSc09sVHNxMWt6L3Y2TFlHOGJweC9NbVVxTjBj?=
- =?utf-8?B?SkM4NFQ0VTE5TTBaVTdaM2M4WHpPZ25sbjVOblV5ZVkzZ21qcDlTZUdJS2s2?=
- =?utf-8?B?TTY4WU5yR1lycWxYN3V2U3lLZXM2eE5ndWZKdjJrUDI4MlptbFpqMFpBRDRM?=
- =?utf-8?B?R1A4N1BJcVBTOWdmVG5FcHZXL09MU2N3clVuVE9EanJIK1Nxb3ZhdERSMGNx?=
- =?utf-8?B?SEhrd09teGhqUW1zVms3TmRJL08yZVVqcHEzQ3pCM2RCV0twdHRGNEdTbEJi?=
- =?utf-8?B?cGNFQlZRdGpMckhtOFhUMFFmd3FYL2llaUVRb0JZbDk4OTJodFl1blFqdGM4?=
- =?utf-8?B?TkI1eVBac1dpQVo3Q3JYZEFocUN4UmVhajVkVTJ4QVJtMUR6MGJlV1E0MWV4?=
- =?utf-8?B?VTFqcWR5bHNkalhEN1NsU2ZOWVlDVmt5QUhTVHJkYXNBeU9NTkg5aXlUV0hI?=
- =?utf-8?B?UWpxRnpyRjQ4d2ZuMlpzaFpGV3lTZTVibEpHY0xlL2FvUS82dDdPYXh0UkRt?=
- =?utf-8?B?OXRITndaNzBROGZ4N1VrckExNElaNXREaEFJcmozN3ZCVkZ5WUtlZmZtcm01?=
- =?utf-8?B?UTk1M2xXZzBGS0tUWlZGQUJUM25FZ0FHYVN0bFhPTjVTVUlCdi9CRXFTZ2lK?=
- =?utf-8?B?ZmI0UGs5NjlDRVBDaWQ1VGlpYXJaZjQ5bDRMbVNWV2RPMkhJcExPaWZpOHlo?=
- =?utf-8?B?M1htalo0MTh2WlZnTFNUaCs3M040emZFMkVVWGZUbFdvRkhBUS9XUTYxVEov?=
- =?utf-8?B?WGpxUk03M3hXWVI3UzdlU3NGZ0Jhd0VkbTJJVE00clRJU2ZlTTQ4UVR3OGRO?=
- =?utf-8?B?NUhHTGlyYmM5VzlUNWg1UXlPK0lqbmcxODFPZnUrdXN2OVNXc3kxRVBqRXhp?=
- =?utf-8?B?WlZ6elBNZW1TbUJwNUJvUk5hMmMyUHd5RTFCeWZiYmxmd24xNWFHVFNWZTZj?=
- =?utf-8?B?emNtRFZDSnBNekRkMDhHVGh1d0pJUzBBWnJ4ZDg5YXNRMEt5WmtFdEVFa2Ur?=
- =?utf-8?B?dERuck1BVWZiV0Fya3l4VTNXK0tsa1VFS2RiUjJSYk8zM2d2aThqS21qZTlv?=
- =?utf-8?Q?hpYHskCKvSxXwOkQ=3D?=
-X-Exchange-RoutingPolicyChecked: agBq1X6WdrxQSrntUElEu8zfYUn3mot96aSoiSq1XyJA14e55xhYyLF5+r7z2uOKkKaiBx7ZhbSLCvfkrqcYqCxtLBY1TzLMBs/V/WvyJty1JKSG2xvCAZoSATp0C27V+DfAcp3T4s9l3WJ6Y+RMCo2gC1owsUw9i9kJuzcH0UfsK0QOeyK7BwmR3FiWsdmqYj3ST9D9C3b3PyqE+TI3L8vrt26ohoL0OFb+MAKSAbkTSqnGd1hRBNdIoNoNQTaE9rCmB9e3p8I51aWFfBt91EHjQYNb7I3Wu941gxnlF10sBuV7lU3fAusiffFhT8SB1lsWFJZJMnEjCcy/VnJKhQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bb8e92c-9e6b-4a7c-f7a5-08def3f7df00
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB9534.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2026 20:18:25.8685 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2TO87x07pYn9oJGZk5aWw2tjn9I1/aHlM8q/+JfPS+ydABe+gJ338jwjdlcKLowKb8gvmGEmmRN/jnNQN6FWeri3fSPZjiN26TEPYIrs0s8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8311
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAMbsdGoC/33OQW7DIBAF0KtErIMFGBu7q96jygImg0NimQhc0
+ iry3QNOFqkqefmlmff/nUQMDiP52N1JwOSi81MOcr8jcNLTgNQdcyaCiZYpzqmRNIIetRmRgr/
+ R5MJMr4O3lmoGwNBwaaAlGbgGtO5nxb8Ozxy/zRlhLmK5OLk4+/C7tide7gj4hKHiqhNKNrypq
+ 8HN1XiOnxcME46VD0P5fO1RW3sSp4yCFbLnDC3r5btRBiWxVj4twTYtkS1xbGSvGqVVa/9Z9bv
+ Vb1p1trBDsGhRd1z8sZZleQDfWDMMlgEAAA==
+X-Change-ID: 20260711-b4-scalable-cow-virt-pgoff-a0cc0eb14bc6
+To: Andrew Morton <akpm@linux-foundation.org>, 
+ David Hildenbrand <david@kernel.org>, 
+ "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, 
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
+ Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>, 
+ Pedro Falcato <pfalcato@suse.de>, 
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jan Kara <jack@suse.cz>, 
+ Miaohe Lin <linmiaohe@huawei.com>, 
+ Naoya Horiguchi <nao.horiguchi@gmail.com>, Rik van Riel <riel@surriel.com>, 
+ Harry Yoo <harry@kernel.org>, Lance Yang <lance.yang@linux.dev>, 
+ Kees Cook <kees@kernel.org>, Zi Yan <ziy@nvidia.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Nico Pache <npache@redhat.com>, 
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>, 
+ Barry Song <baohua@kernel.org>, Usama Arif <usama.arif@linux.dev>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Joshua Hahn <joshua.hahnjy@gmail.com>, Rakie Kim <rakie.kim@sk.com>, 
+ Byungchul Park <byungchul@sk.com>, Gregory Price <gourry@gourry.net>, 
+ Ying Huang <ying.huang@linux.alibaba.com>, 
+ Alistair Popple <apopple@nvidia.com>, Peter Xu <peterx@redhat.com>, 
+ Xu Xin <xu.xin16@zte.com.cn>, Chengming Zhou <chengming.zhou@linux.dev>, 
+ Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Christian Borntraeger <borntraeger@linux.ibm.com>, 
+ Janosch Frank <frankja@linux.ibm.com>, 
+ Claudio Imbrenda <imbrenda@linux.ibm.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+ Sven Schnelle <svens@linux.ibm.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, 
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
+ Adrian Hunter <adrian.hunter@intel.com>, 
+ James Clark <james.clark@linaro.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ John Hubbard <jhubbard@nvidia.com>, Muchun Song <muchun.song@linux.dev>, 
+ Oscar Salvador <osalvador@suse.de>, Chris Li <chrisl@kernel.org>, 
+ Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
+ Nhat Pham <nphamcs@gmail.com>, Baoquan He <baoquan.he@linux.dev>, 
+ Youngjun Park <youngjun.park@lge.com>
+Cc: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>, linux-mm@kvack.org, 
+ linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kvm@vger.kernel.org, 
+ linux-s390@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-perf-users@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
+ syzbot@syzkaller.appspotmail.com
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=19421; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=36K49AEfeagBmppZKl01/mLZsA6meHDNHWRaA8PXigM=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLJK3px+sEIowkzr5yH/mRMUWLckys6MWsbpFNtyW/XGp
+ EuB8vbrOkpZGMS4GGTFFFmefxHfHyQSNq/zgr8bzBxWJpAhDFycAjCROBWGv3JPav8vvbVf94j0
+ j8a2i2Gyrja/VaKOxqtcyN1+zfu+ajojw33n4suR/0MS5L/Nlrv7dLJtI7Ox+yuOvrbIl3dWJpp
+ cZwEA
+X-Developer-Key: i=ljs@kernel.org; a=openpgp;
+ fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,477 +126,389 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 06, 2026 at 11:52:01AM -0700, Matthew Brost wrote:
-> Pagefault storms can generate long chains of acknowledgments back to the
-> GuC. Sending each ack as a full CT submission forces a barrier,
-> descriptor update and doorbell per fault.
-> 
-> Extend xe_guc_ct_send_locked() with a “defer-flush” mode that copies the
-> message into the H2G ring but defers publishing the descriptor and
-> ringing the doorbell. Add xe_guc_ct_send_flush() to publish pending
-> writes and notify GuC once per batch. Wire this into the pagefault
-> producer via new ack_fault_begin/ack_fault_end callbacks and CT lock
-> wrappers.
-> 
-> To avoid excessive flush latency while still amortizing MMIO costs, use
-> a simple periodic flush heuristic for GuC pagefault acks: batch most
-> acks as defer-flush and force a publish at a fixed interval (e.g., every
-> 16th ack), with a final flush at end-of-batch.
-> 
-> Also increase the H2G CTB size to 16K to better absorb bursts.
-> 
-> Assisted-by: ChatGPT:gpt-5 # Documentation
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+In memory management we've managed to manufacture a great deal of confusion
+around the concept of anonymous memory. We have:
 
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+1. 'Pure anon' memory - anonymous VMAs whose folios are anonymous and
+   swap-backed (thus for reclaim purposes, treated as anonymous). These are
+   simple enough.
 
-> 
-> ---
-> v9:
->  - s/write_only/defer_flush
->  - include <linux/mutex.h>
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c          | 95 +++++++++++++++++++------
->  drivers/gpu/drm/xe/xe_guc_ct.h          | 38 +++++++++-
->  drivers/gpu/drm/xe/xe_guc_pagefault.c   | 32 ++++++++-
->  drivers/gpu/drm/xe/xe_guc_types.h       |  6 ++
->  drivers/gpu/drm/xe/xe_pagefault.c       | 12 +++-
->  drivers/gpu/drm/xe/xe_pagefault_types.h | 14 ++++
->  6 files changed, 172 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index fe70c0fd85c5..5c4733da385c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -265,7 +265,7 @@ static bool g2h_fence_needs_alloc(struct g2h_fence *g2h_fence)
->  #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
->  #define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
->  #define CTB_G2H_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
-> -#define CTB_H2G_BUFFER_SIZE	(SZ_4K)
-> +#define CTB_H2G_BUFFER_SIZE	(SZ_16K)
->  #define CTB_H2G_BUFFER_DWORDS	(CTB_H2G_BUFFER_SIZE / sizeof(u32))
->  #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
->  #define CTB_G2H_BUFFER_DWORDS	(CTB_G2H_BUFFER_SIZE / sizeof(u32))
-> @@ -939,7 +939,7 @@ static bool vf_action_can_safely_fail(struct xe_device *xe, u32 action)
->  #define H2G_CT_HEADERS (GUC_CTB_HDR_LEN + 1) /* one DW CTB header and one DW HxG header */
->  
->  static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
-> -		     u32 ct_fence_value, bool want_response)
-> +		     u32 ct_fence_value, bool want_response, bool defer_flush)
->  {
->  	struct xe_device *xe = ct_to_xe(ct);
->  	struct xe_gt *gt = ct_to_gt(ct);
-> @@ -956,7 +956,6 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
->  
->  	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-> -		u32 desc_tail = desc_read(xe, h2g, tail);
->  		u32 desc_head = desc_read(xe, h2g, head);
->  		u32 desc_status;
->  
-> @@ -966,12 +965,6 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  			goto corrupted;
->  		}
->  
-> -		if (tail != desc_tail) {
-> -			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_MISMATCH);
-> -			xe_gt_err(gt, "CT write: tail was modified %u != %u\n", desc_tail, tail);
-> -			goto corrupted;
-> -		}
-> -
->  		if (tail > h2g->info.size) {
->  			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
->  			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
-> @@ -993,7 +986,10 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  			      (h2g->info.size - tail) * sizeof(u32));
->  		h2g_reserve_space(ct, (h2g->info.size - tail));
->  		h2g->info.tail = 0;
-> -		desc_write(xe, h2g, tail, h2g->info.tail);
-> +		if (!defer_flush) {
-> +			xe_device_wmb(xe);
-> +			desc_write(xe, h2g, tail, h2g->info.tail);
-> +		}
->  
->  		return -EAGAIN;
->  	}
-> @@ -1024,14 +1020,15 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	/* Write H2G ensuring visible before descriptor update */
->  	xe_map_memcpy_to(xe, &map, 0, cmd, H2G_CT_HEADERS * sizeof(u32));
->  	xe_map_memcpy_to(xe, &map, H2G_CT_HEADERS * sizeof(u32), action, len * sizeof(u32));
-> -	xe_device_wmb(xe);
-> -
->  	/* Update local copies */
->  	h2g->info.tail = (tail + full_len) % h2g->info.size;
->  	h2g_reserve_space(ct, full_len);
->  
->  	/* Update descriptor */
-> -	desc_write(xe, h2g, tail, h2g->info.tail);
-> +	if (!defer_flush) {
-> +		xe_device_wmb(xe);
-> +		desc_write(xe, h2g, tail, h2g->info.tail);
-> +	}
->  
->  	/*
->  	 * desc_read() performs an VRAM read which serializes the CPU and drains
-> @@ -1052,7 +1049,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  
->  static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
->  				u32 len, u32 g2h_len, u32 num_g2h,
-> -				struct g2h_fence *g2h_fence)
-> +				struct g2h_fence *g2h_fence, bool defer_flush)
->  {
->  	struct xe_gt *gt = ct_to_gt(ct);
->  	u16 seqno;
-> @@ -1112,7 +1109,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
->  	if (unlikely(ret))
->  		goto out_unlock;
->  
-> -	ret = h2g_write(ct, action, len, seqno, !!g2h_fence);
-> +	ret = h2g_write(ct, action, len, seqno, !!g2h_fence, defer_flush);
->  	if (unlikely(ret)) {
->  		if (ret == -EAGAIN)
->  			goto retry;
-> @@ -1120,7 +1117,8 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
->  	}
->  
->  	__g2h_reserve_space(ct, g2h_len, num_g2h);
-> -	xe_guc_notify(ct_to_guc(ct));
-> +	if (!defer_flush)
-> +		xe_guc_notify(ct_to_guc(ct));
->  out_unlock:
->  	if (g2h_len)
->  		spin_unlock_irq(&ct->fast_lock);
-> @@ -1196,7 +1194,7 @@ static bool guc_ct_send_wait_for_retry(struct xe_guc_ct *ct, u32 len,
->  
->  static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  			      u32 g2h_len, u32 num_g2h,
-> -			      struct g2h_fence *g2h_fence)
-> +			      struct g2h_fence *g2h_fence, bool defer_flush)
->  {
->  	struct xe_gt *gt = ct_to_gt(ct);
->  	unsigned int sleep_period_ms = 1;
-> @@ -1209,9 +1207,10 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  
->  try_again:
->  	ret = __guc_ct_send_locked(ct, action, len, g2h_len, num_g2h,
-> -				   g2h_fence);
-> +				   g2h_fence, defer_flush);
->  
->  	if (unlikely(ret == -EBUSY)) {
-> +		xe_guc_ct_send_flush(ct);
->  		if (!guc_ct_send_wait_for_retry(ct, len, g2h_len, g2h_fence,
->  						&sleep_period_ms, &sleep_total_ms))
->  			goto broken;
-> @@ -1235,7 +1234,8 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	xe_gt_assert(ct_to_gt(ct), !g2h_len || !g2h_fence);
->  
->  	mutex_lock(&ct->lock);
-> -	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence);
-> +	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence,
-> +				 false);
->  	mutex_unlock(&ct->lock);
->  
->  	return ret;
-> @@ -1283,25 +1283,76 @@ int xe_guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	return ret;
->  }
->  
-> +/**
-> + * xe_guc_ct_send_locked() - submit a GuC CT H2G message with CT lock held
-> + * @ct: GuC CT object
-> + * @action: payload dwords (HxG header dword is expected at @action[-1])
-> + * @len: number of payload dwords in @action
-> + * @defer_flush: defer publishing/doorbell for batching
-> + *
-> + * Sends a single H2G message to the GuC CT buffer while the caller already
-> + * holds @ct->lock.
-> + *
-> + * If @defer_flush is false, the function completes the submission immediately:
-> + * it makes the payload visible to the device, updates the H2G descriptor and
-> + * rings the GuC doorbell.
-> + *
-> + * If @defer_flush is true, the message payload is copied into the H2G ring and
-> + * the software tail is advanced, but the descriptor update and doorbell are
-> + * deferred so multiple messages can be batched. In this mode, the caller must
-> + * eventually call xe_guc_ct_send_flush() (still holding @ct->lock) to publish
-> + * the descriptor and notify the GuC. On internal retry paths (-EBUSY), the
-> + * implementation may force a flush to ensure forward progress.
-> + *
-> + * Return: 0 on success, negative errno on failure.
-> + *
-> + * Locking:
-> + *   Must be called with @ct->lock held.
-> + */
->  int xe_guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
-> -			  u32 g2h_len, u32 num_g2h)
-> +			  bool defer_flush)
->  {
->  	int ret;
->  
-> -	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, NULL);
-> +	ret = guc_ct_send_locked(ct, action, len, 0, 0, NULL, defer_flush);
->  	if (ret == -EDEADLK)
->  		kick_reset(ct);
->  
->  	return ret;
->  }
->  
-> +/**
-> + * xe_guc_ct_send_flush() - flush pending GuC CT H2G writes
-> + * @ct: GuC CT instance
-> + *
-> + * Some callers batch multiple H2G writes using xe_guc_ct_send_locked() in
-> + * "write-only" mode (i.e., queue the message payloads but defer ringing the
-> + * doorbell / updating the CT descriptor). This helper completes the submission
-> + * by ensuring the payload writes are visible to the device, updating the H2G
-> + * descriptor, and ringing the GuC CT doorbell.
-> + *
-> + * Locking:
-> + *   Must be called with @ct->lock held.
-> + */
-> +void xe_guc_ct_send_flush(struct xe_guc_ct *ct)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
-> +
-> +	lockdep_assert_held(&ct->lock);
-> +
-> +	xe_device_wmb(xe);
-> +	desc_write(xe, h2g, tail, h2g->info.tail);
-> +	xe_guc_notify(ct_to_guc(ct));
-> +}
-> +
->  int xe_guc_ct_send_g2h_handler(struct xe_guc_ct *ct, const u32 *action, u32 len)
->  {
->  	int ret;
->  
->  	lockdep_assert_held(&ct->lock);
->  
-> -	ret = guc_ct_send_locked(ct, action, len, 0, 0, NULL);
-> +	ret = guc_ct_send_locked(ct, action, len, 0, 0, NULL, false);
->  	if (ret == -EDEADLK)
->  		kick_reset(ct);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 767365a33dee..3ddc665ab84a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -6,6 +6,8 @@
->  #ifndef _XE_GUC_CT_H_
->  #define _XE_GUC_CT_H_
->  
-> +#include <linux/mutex.h>
-> +
->  #include "xe_guc_ct_types.h"
->  
->  struct drm_printer;
-> @@ -54,7 +56,7 @@ static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
->  int xe_guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  		   u32 g2h_len, u32 num_g2h);
->  int xe_guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
-> -			  u32 g2h_len, u32 num_g2h);
-> +			  bool defer_flush);
->  int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  			u32 *response_buffer);
->  static inline int
-> @@ -63,6 +65,8 @@ xe_guc_ct_send_block(struct xe_guc_ct *ct, const u32 *action, u32 len)
->  	return xe_guc_ct_send_recv(ct, action, len, NULL);
->  }
->  
-> +void xe_guc_ct_send_flush(struct xe_guc_ct *ct);
-> +
->  /* This is only version of the send CT you can call from a G2H handler */
->  int xe_guc_ct_send_g2h_handler(struct xe_guc_ct *ct, const u32 *action,
->  			       u32 len);
-> @@ -87,4 +91,36 @@ static inline void xe_guc_ct_wake_waiters(struct xe_guc_ct *ct)
->  	wake_up_all(&ct->wq);
->  }
->  
-> +/**
-> + * xe_guc_ct_lock() - take the GuC CT mutex
-> + * @ct: GuC CT object
-> + *
-> + * Wrapper around mutex_lock(&ct->lock) for cases where CT operations need to be
-> + * performed from contexts that want an explicit "CT locked" pair without
-> + * exporting the lock itself.
-> + *
-> + * Return/Locking:
-> + *   Acquires @ct->lock.
-> + */
-> +static inline void xe_guc_ct_lock(struct xe_guc_ct *ct)
-> +__acquires(&ct->lock)
-> +{
-> +	mutex_lock(&ct->lock);
-> +}
-> +
-> +/**
-> + * xe_guc_ct_unlock() - release the GuC CT mutex
-> + * @ct: GuC CT object
-> + *
-> + * Counterpart to xe_guc_ct_lock().
-> + *
-> + * Locking:
-> + *   Releases @ct->lock.
-> + */
-> +static inline void xe_guc_ct_unlock(struct xe_guc_ct *ct)
-> +__releases(&ct->lock)
-> +{
-> +	mutex_unlock(&ct->lock);
-> +}
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.c b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-> index 2470faf3d5d8..8f8210a732e9 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-> @@ -10,6 +10,22 @@
->  #include "xe_pagefault.h"
->  #include "xe_pagefault_types.h"
->  
-> +#define XE_GUC_PAGEFAULT_FLUSH_PERIOD	BIT(4)	/* Sixteen */
-> +
-> +static void guc_ack_fault_begin(void *private)
-> +{
-> +	struct xe_guc *guc = private;
-> +
-> +	xe_guc_ct_lock(&guc->ct);
-> +
-> +	BUILD_BUG_ON(((XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1) &
-> +		     XE_GUC_PAGEFAULT_FLUSH_PERIOD) != 0);
-> +
-> +	/* Ack the 2nd, then 18th, etc... */
-> +	guc->pagefault_ack_counter =
-> +		XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1;
-> +}
-> +
->  static void guc_ack_fault(struct xe_pagefault *pf, int err)
->  {
->  	u32 vfid = FIELD_GET(PFD_VFID, pf->producer.msg[2]);
-> @@ -36,12 +52,26 @@ static void guc_ack_fault(struct xe_pagefault *pf, int err)
->  		FIELD_PREP(PFR_PDATA, pdata),
->  	};
->  	struct xe_guc *guc = pf->producer.private;
-> +	bool write_only = guc->pagefault_ack_counter++ &
-> +		(XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1);
-> +
-> +	xe_guc_ct_send_locked(&guc->ct, action, ARRAY_SIZE(action),
-> +			      write_only);
-> +}
-> +
-> +static void guc_ack_fault_end(void *private)
-> +{
-> +	struct xe_guc *guc = private;
->  
-> -	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
-> +	if ((guc->pagefault_ack_counter & (XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1)) != 1)
-> +		xe_guc_ct_send_flush(&guc->ct);
-> +	xe_guc_ct_unlock(&guc->ct);
->  }
->  
->  static const struct xe_pagefault_ops guc_pagefault_ops = {
-> +	.ack_fault_begin = guc_ack_fault_begin,
->  	.ack_fault = guc_ack_fault,
-> +	.ack_fault_end = guc_ack_fault_end,
->  };
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-> index 31a2acb63ac3..3dbcb1331690 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_types.h
-> @@ -122,6 +122,12 @@ struct xe_guc {
->  	struct xe_reg notify_reg;
->  	/** @params: Control params for fw initialization */
->  	u32 params[GUC_CTL_MAX_DWORDS];
-> +
-> +	/**
-> +	 * @pagefault_ack_counter: Counter to determine when periodically ack
-> +	 * pagefaults in a batch.
-> +	 */
-> +	u32 pagefault_ack_counter;
->  };
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-> index d77a7d76b444..af19cd82e014 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> @@ -412,6 +412,10 @@ static bool xe_pagefault_try_chain(struct xe_pagefault_queue *pf_queue,
->  			xe_assert(xe, pf_work->cache.pf->consumer.alloc_state ==
->  				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
->  
-> +			if (pf->producer.private !=
-> +			    pf_work->cache.pf->producer.private)
-> +				continue;
-> +
->  			xe_gt_stats_incr(pf->gt,
->  					 XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT,
->  					 1);
-> @@ -585,6 +589,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
->  	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
->  
->  	while (xe_pagefault_queue_pop(pf_queue, &pf, pf_work->id)) {
-> +		const struct xe_pagefault_ops *ops = pf->producer.ops;
-> +		void *private = pf->producer.private;
->  		struct xe_gt *gt = pf->gt;
->  		u32 asid = pf->consumer.asid;
->  		int err = 0;
-> @@ -622,11 +628,14 @@ static void xe_pagefault_queue_work(struct work_struct *w)
->  			  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
->  		xe_assert(xe, pf == pf_work->cache.pf);
->  
-> +		ops->ack_fault_begin(private);
->  		while (pf) {
->  			xe_assert(xe, pf->consumer.alloc_state ==
->  				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
-> +			xe_assert(xe, ops == pf->producer.ops);
-> +			xe_assert(xe, gt == pf->gt);
->  
-> -			pf->producer.ops->ack_fault(pf, err);
-> +			ops->ack_fault(pf, err);
->  
->  			spin_lock_irq(&pf_queue->lock);
->  
-> @@ -654,6 +663,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
->  
->  			spin_unlock_irq(&pf_queue->lock);
->  		}
-> +		ops->ack_fault_end(private);
->  
->  		if (time_after(jiffies, threshold)) {
->  			queue_work(xe->usm.pagefault_wq, w);
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> index a1fff0e47fa5..efeba5c3a58b 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> @@ -33,6 +33,13 @@ enum xe_pagefault_type {
->  
->  /** struct xe_pagefault_ops - Xe pagefault ops (producer) */
->  struct xe_pagefault_ops {
-> +	/**
-> +	 * @ack_fault_begin: Ack fault begin
-> +	 * @private: producer private data
-> +	 *
-> +	 * Page fault producer begins acknowledgment from the consumer.
-> +	 */
-> +	void (*ack_fault_begin)(void *private);
->  	/**
->  	 * @ack_fault: Ack fault
->  	 * @pf: Page fault
-> @@ -42,6 +49,13 @@ struct xe_pagefault_ops {
->  	 * sends the result to the HW/FW interface.
->  	 */
->  	void (*ack_fault)(struct xe_pagefault *pf, int err);
-> +	/**
-> +	 * @ack_fault_end: Ack fault end
-> +	 * @private: producer private data
-> +	 *
-> +	 * Page fault producer ends acknowledgment from the consumer.
-> +	 */
-> +	void (*ack_fault_end)(void *private);
->  };
->  
->  /**
-> -- 
-> 2.34.1
-> 
+2. shmem - file-backed VMAs, file-backed folios (from rmap perspective) so
+   present in the page cache and mapped by an address_space object, but
+   whose folios are also swap-backed (thus treated as anonymous for reclaim
+   purposes).
+
+3. MAP_PRIVATE-mapped /dev/zero - a strange beast whose VMAs have
+   vma->vm_file set, but which clears vma->vm_ops to satisfy
+   vma_is_anonymous(), resulting in VMAs that were mmap()'d referencing a
+   file, but are in every other sense anonymous, including the folios.
+
+4. Other MAP_PRIVATE-file backed mappings - These possess file-backed VMAs
+   and have file-backed folios until CoW'd, at which point those CoW'd
+   folios are anonymous.
+
+This series fixes issues 3 and 4.
+
+In order for us to traverse VMAs using the reverse mapping, we require two
+fields - folio->mapping and folio->index. The first tells the rmap code
+where to look for VMAs, and the second tells it at which offset the folio
+starts within the referenced object.
+
+For anonymous folios, folio->mapping points at an anon_vma object. For
+file-backed folios, it points at an address_space. And:
+
+* For file-backed folios folio->index is simply the page offset of the start
+  of the folio within the file.
+
+* For anonymous folios belonging to pure anon mappings, folio->index is
+  equal to the anonymous page offset of the folio.
+
+* For anonymous folios belonging to file-backed mappings (i.e. CoW'd folios
+  of a MAP_PRIVATE file-backed mapping), folio->index is equal to the file
+  page offset.
+
+This series establishes a new anonymous page offset property of VMAs to
+allow us to map anonymous folios at their anonymous page offset, consistent
+with pure anon.
+
+The purpose of doing so is to lay the foundations for the scalable CoW
+work. This is necessary because scalable CoW looks in the maple tree for
+the VMA located at folio->index << PAGE_SHIFT, before falling back to
+looking up tracked remaps if necessary.
+
+The MAP_PRIVATE file-backed case means that folio indices will very often
+conflict with one another and this remap tracking becomes substantially
+more contended, and of course the fast path can never be used.
+
+This also makes it possible, in future, to unshare anonymously mapped
+folios with deep fork hierarchies on remap, eliminating the need for remap
+tracking in the vast majority of cases.
+
+Similar to page offset of pure anonymous VMAs, we update the anonymous page
+offset of unfaulted file-backed VMAs on remap, but do not once
+CoW'd (i.e. vma->anon_vma is non-NULL).
+
+Overall, there is little impact on mergeability, which remains exactly the same
+for pure anonymous and shared file-backed mappings, with the only impact being
+on MAP_PRIVATE-mapped file-backed mappings, which must now match on anonymous
+page offset as well as file page offset to be merged.
+
+To fail to merge like this would require CoW'ing the mapping, then finding
+another VMA with identical file and compatible page offset to remap next
+to.
+
+This is therefore very much an edge case that should have very little
+impact (and which scalable CoW may very well address in any case).
+
+We also address the outlier case of MAP_PRIVATE-/dev/zero mappings which
+have file page offset but satisfy vma_is_anonymous() by making them truly
+anonymous.
+
+This is low-risk as for anything meaningful these mappings behave
+anonymously, but it is very beneficial to do so as we eliminate an odd
+corner case, and those are notorious for attracting subtle bugs.
+
+Signed-off-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
+---
+v4:
+- Updated tags (thanks everyone!)
+- Adjusted some prose as per David.
+- Adjusted whitespace to 2 tabs in 2/15 as per David.
+- Improved linear_page_index(), __linear_anon_page_index() to be more
+  succinct in 2/15 as per David and updated commit message to reflect it.
+- Added commit to provide vma_[flags_]is_cow_mapping() - nearly all callers
+  are calling is_cow_mapping() as is_cow_mapping(vma->vm_flags) so just
+  provide a helper to do this for them.
+- In the same commit update all is_cow_mapping() callers and remove the
+  now-unused function.
+- Change linear_anon_page_index() to assert on !CoW mapping using
+  vma_is_cow_mapping() in 2/15 as per David.
+- Updated 4/15 to output index differently depending on whether the VMA is
+  a CoW mapping or not or whether the file index differs from the anon
+  index as per Gregory.
+- Updated 6/15 to change the 'update page offset' logic in copy_vma() to
+  not be gated on CoW or VMA_SHARED_BIT as discussed with David.
+- Updated 6/15 to improve the 'faulted in anon vma' assert stuff. It was
+  very unclear so rename the variable sensibly and update the comment.
+- Added a separate commit to fix the mess that is the faulted_in_anon_vma
+  and the VM_WARN_ON_ONCE_VMA() assert in copy_vma() - make it actually
+  only update the vmap in cases where the VMA was replaced (backwards
+  remap), update the checks to reflect this in a way that's actually
+  understandable and improve the comment.
+- Updated needs_adjacent_anon_gpoff() in 9/15 to use
+  vma_flags_is_cow_mapping() as per David. Updated the comment to reflect
+  it.
+- Broke out changes to vma_address_end() into a separate patch as per David.
+- Eliminated pgoff in vma_address_end() as it adds confusion - just use
+  pgoff_end, which was what pgoff used to be (confusingly).
+- Placed more variables in vma_address_end() as constants at the start of
+  the function.
+- Dropped KSM comment in 9/15 as per David.
+- Dropped linear_folio_page_index() patch altogether as per
+  David.
+- Realised all off uffd is only anon so use linear_anon_page_index()
+  throughout there and also the huge memory case for the same reason.
+- Added a patch to make remove_migration_pmd() accept a folio instead of a
+  page.
+- Added a patch to calculate large folio index using PFN as suggested by
+  David, eliminating the need for linear page index lookup at all.
+- Added a patch to add self merge VMA userland tests.
+
+v3:
+- Renamed virtual page offset to anonymous page offset across the series as
+  per David and adjusted prose to reflect it.
+- As part of the rename, eliminated  vma_anon_pgoff_addr() and the
+  conflicting vma_[start, end]_anon_pgoff() functions by passing anon pgoff
+  to the merge logic and having that figure out which page offset to use,
+  significantly simplifying things.
+- Introduced needs_adjacent_anon_pgoff() to be really clear about what the
+  merge logic is doing.
+- Passing through the anon pgoff fixes the issue Sashiko raised with shared
+  file-backed mappings having incorrect anon pgoff (inconsequential but a
+  wrinkle nonetheless).
+- Dropped unnecessary needs_rmap_locks change in 9/15 - this checks to see
+  if rmap locks need to be taken due to the range being moved
+  backwards. Since both file-backed and anon page offset are updated on
+  such a move, it suffices to check only the former. Updated commit message
+  to reflect it.
+- Sashiko complained about a couple missing .is_anon_walk entries in
+  pvmw's - page_mapped_in_vma() and migrate_vma_collect_huge_pmd() -
+  however neither impact anything - the field is only meaningful for
+  vma_address_end() if nr_pages > 1 and neither site is impacted. Moreover,
+  neither site sets pgoff either. Update the commit message to explain
+  this.
+- Renamed is_anon_walk to pgoff_is_anon and document that pvmw->pgoff is
+  only meaningful if pvmw->nr_pages > 1.
+- Highlighted the user-visible changes to /dev/zero being true-anon in the
+  relevant commit message as per Yang.
+- Fixed a bug in the proc-self-map-files-00[1,2].c procfs selftests - the
+  code was trying to MAP_PRIVATE 'an arbitrary file' then asserts that
+  file-backed procfs entries exist, but happened to choose
+  /dev/zero. Updated to the guaranteed-available /proc/self/exe, as
+  reported by Mark.
+- Fixed an issue with drivers that intentionally mark vma->vm_ops as NULL
+  (using the legacy ->mmap callback). If they do this set dummy ops, which
+  is what they meant. The mmap_prepare case is fine as nobody does this
+  there and this will be fixed when all drivers are finally converted to
+  mmap_prepare. As reported by Sashiko.
+- Added some missed VMA selftest vma_start_[anon]_pgoff() conversions in
+  the merge test commit as per Sashiko.
+- Various small prose/comment fixups.
+https://patch.msgid.link/20260729-b4-scalable-cow-virt-pgoff-v3-0-e8ecfefea812@kernel.org
+
+v2:
+- Removed incorrect assert on always-NULL folio from 7/15, as per syzbot.
+- Updated 2/15 so linear_virt_page_index() checks for vma_is_anonymous() as
+  well to be cautious about 'special' (VDSO, VVAR, etc.) VMAs accidentally
+  being asserted when CONFIG_DEBUG_VM is set, as per Sashiko.
+- Updated commit message of 9/15 to mention the subtle change in NUMA
+  interleaving behaviour, as per Sashiko.
+- Updated 10/15 to assert virtual page offset for adjacent VMAs for various
+  VMA userland tests, as per Sashiko.
+- Updated 13/15 to remove the !vma->vm_file check altogether after
+  MAP_PRIVATE-/dev/zero is made pure anon in vma_start_virt_pgoff().
+- Updated 12/15 to check that the /dev/zero device is a character device
+  since it turns out that block and character devices have their own
+  separate major/minor device number namespaces... :) as per Sashiko.
+- Updated 12/15 to fix a bisection hazard where vma->vm_ops would be
+  overwritten by vma_dummy_vm_ops for MAP_PRIVATE-/dev/zero, as per
+  Sashiko.
+- Updated 12/15 to fix another bisection hazard (...!) due to
+  ordering of vma_set_anonymous(). Removed in 13/15.
+- Added comments to __vm_virt_pgoff[lo, hi] fields referencing
+  vma_start_virt_pgoff()'s comment to be clearer what these are as per
+  Xu Xin in 1/15.
+- Various typo fixes + cleanups in prose.
+- Updated the cover letter to point out that the MAP_PRIVATE-/dev/zero
+  issue is addressed in this series too.
+https://patch.msgid.link/20260720-b4-scalable-cow-virt-pgoff-v2-0-2d549757a76f@kernel.org
+
+v1:
+- Rebased onto mm-new.
+- Dependent series heavily reviewed and looks highly likely to land, so
+  un-RFC.
+- Added explicit check for /dev/zero and removed ability for arbitrary
+  mmap/mmap_prepare hooks to make themselves anonymous.
+- Made MAP_PRIVATE-/dev/zero mappings truly anonymous.
+- Added MAP_PRIVATE file-backed mapping merge test to selftests.
+- Added a MAP_PRIVATE-/dev/zero VMA userland test to assert that the VMA
+  really is made anonymous.
+- Added MAP_PRIVATE-/dev/zero merge tests to selftests.
+- Fixed missed virtual page index site in try_to_merge_with_ksm_page().
+- Updated folio_within_range() to use virtual page offset for anon
+  folio. This had no impact as it is only called for large folios at the
+  moment (and MAP_PRIVATE-file backed mappings can't currently be backed by
+  a large folio) but making the change now protects us for the future.
+- Fixed typos etc.
+https://patch.msgid.link/20260717-b4-scalable-cow-virt-pgoff-v1-0-cf24910ef094@kernel.org
+
+RFC:
+https://patch.msgid.link/cover.1782745153.git.ljs@kernel.org
+
+To: Andrew Morton <akpm@linux-foundation.org>
+To: David Hildenbrand <david@kernel.org>
+To: "Liam R. Howlett" <liam@infradead.org>
+To: Vlastimil Babka <vbabka@kernel.org>
+To: Mike Rapoport <rppt@kernel.org>
+To: Suren Baghdasaryan <surenb@google.com>
+To: Michal Hocko <mhocko@suse.com>
+To: Jann Horn <jannh@google.com>
+To: Pedro Falcato <pfalcato@suse.de>
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+To: Jan Kara <jack@suse.cz>
+To: Miaohe Lin <linmiaohe@huawei.com>
+To: Naoya Horiguchi <nao.horiguchi@gmail.com>
+To: Rik van Riel <riel@surriel.com>
+To: Harry Yoo <harry@kernel.org>
+To: Lance Yang <lance.yang@linux.dev>
+To: Kees Cook <kees@kernel.org>
+To: Zi Yan <ziy@nvidia.com>
+To: Baolin Wang <baolin.wang@linux.alibaba.com>
+To: Nico Pache <npache@redhat.com>
+To: Ryan Roberts <ryan.roberts@arm.com>
+To: Dev Jain <dev.jain@arm.com>
+To: Barry Song <baohua@kernel.org>
+To: Usama Arif <usama.arif@linux.dev>
+To: Matthew Brost <matthew.brost@intel.com>
+To: Joshua Hahn <joshua.hahnjy@gmail.com>
+To: Rakie Kim <rakie.kim@sk.com>
+To: Byungchul Park <byungchul@sk.com>
+To: Gregory Price <gourry@gourry.net>
+To: Ying Huang <ying.huang@linux.alibaba.com>
+To: Alistair Popple <apopple@nvidia.com>
+To: Peter Xu <peterx@redhat.com>
+To: Xu Xin <xu.xin16@zte.com.cn>
+To: Chengming Zhou <chengming.zhou@linux.dev>
+To: Arnd Bergmann <arnd@arndb.de>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Christian Borntraeger <borntraeger@linux.ibm.com>
+To: Janosch Frank <frankja@linux.ibm.com>
+To: Claudio Imbrenda <imbrenda@linux.ibm.com>
+To: Alexander Gordeev <agordeev@linux.ibm.com>
+To: Gerald Schaefer <gerald.schaefer@linux.ibm.com>
+To: Heiko Carstens <hca@linux.ibm.com>
+To: Vasily Gorbik <gor@linux.ibm.com>
+To: Sven Schnelle <svens@linux.ibm.com>
+To: Alex Deucher <alexander.deucher@amd.com>
+To: Christian König <christian.koenig@amd.com>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+To: Steven Price <steven.price@arm.com>
+To: Liviu Dudau <liviu.dudau@arm.com>
+To: Huang Rui <ray.huang@amd.com>
+To: Matthew Auld <matthew.auld@intel.com>
+To: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Masami Hiramatsu <mhiramat@kernel.org>
+To: Oleg Nesterov <oleg@redhat.com>
+To: Peter Zijlstra <peterz@infradead.org>
+To: Ingo Molnar <mingo@redhat.com>
+To: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Namhyung Kim <namhyung@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Alexander Shishkin <alexander.shishkin@linux.intel.com>
+To: Jiri Olsa <jolsa@kernel.org>
+To: Ian Rogers <irogers@google.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+To: James Clark <james.clark@linaro.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+To: John Hubbard <jhubbard@nvidia.com>
+To: Muchun Song <muchun.song@linux.dev>
+To: Oscar Salvador <osalvador@suse.de>
+To: Chris Li <chrisl@kernel.org>
+To: Kairui Song <kasong@tencent.com>
+To: Kemeng Shi <shikemeng@huaweicloud.com>
+To: Nhat Pham <nphamcs@gmail.com>
+To: Baoquan He <baoquan.he@linux.dev>
+To: Youngjun Park <youngjun.park@lge.com>
+Cc: ljs@kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-fsdevel@vger.kernel.org
+Cc: linux-kselftest@vger.kernel.org
+Cc: kvm@vger.kernel.org
+Cc: linux-s390@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-perf-users@vger.kernel.org
+Cc: linux-trace-kernel@vger.kernel.org
+
+---
+Lorenzo Stoakes (ARM) (20):
+      mm/vma: introduce VMA anon page offset field and add helpers
+      mm: provide vma_[flags_]is_cow_mapping() and remove is_cow_mapping()
+      mm: introduce linear_anon_page_index()
+      mm: abstract vma_address() and introduce vma_anon_address()
+      mm: update print_bad_page_map() to show anon index if appropriate
+      mm: introduce and use vma_filebacked_address()
+      mm/vma: fix self-merge check in copy_vma()
+      tools/testing/vma: add tests for copy_vma() self-merge
+      mm: propagate VMA anonymous page offset on map, remap, split + merge
+      mm/rmap: track whether the page VMA mapped pgoff is anonymous
+      mm: clean up vma_address_end()
+      mm/huge_memory: update remove_migration_pmd() to accept a folio
+      mm/migrate: calculate large folio page index using PFN
+      mm/rmap: use anon pgoff to track MAP_PRIVATE file-backed anon folios
+      tools/testing/vma: expand VMA merge tests to assert anon pgoff
+      tools/testing/selftests/mm: test anonymous page offset merge behaviour
+      mm/vma: only permit MAP_PRIVATE /dev/zero to be mapped anonymous
+      mm/vma: make MAP_PRIVATE-mapped /dev/zero mappings truly anonymous
+      tools/testing/vma: add test to assert MAP_PRIVATE-/dev/zero is anon
+      tools/testing/selftests/mm: add MAP_PRIVATE-/dev/zero merge tests
+
+ arch/s390/mm/gmap_helpers.c                        |   2 +-
+ drivers/char/mem.c                                 |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |   4 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |   2 +-
+ drivers/gpu/drm/panthor/panthor_gem.c              |   2 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   2 +-
+ drivers/gpu/drm/xe/xe_device.c                     |   2 +-
+ fs/proc/task_mmu.c                                 |   2 +-
+ include/linux/mm.h                                 |  89 +++++++++--
+ include/linux/mm_types.h                           |  12 ++
+ include/linux/pagemap.h                            |  39 ++++-
+ include/linux/rmap.h                               |   4 +-
+ include/linux/swapops.h                            |   6 +-
+ kernel/events/uprobes.c                            |   2 +-
+ mm/gup.c                                           |   2 +-
+ mm/huge_memory.c                                   |  26 ++--
+ mm/hugetlb.c                                       |   2 +-
+ mm/internal.h                                      |  89 +++++++----
+ mm/interval_tree.c                                 |   4 +-
+ mm/ksm.c                                           |   6 +-
+ mm/memory-failure.c                                |   4 +-
+ mm/memory.c                                        |  38 +++--
+ mm/mempolicy.c                                     |   2 +-
+ mm/migrate.c                                       |  21 ++-
+ mm/mremap.c                                        |   6 +-
+ mm/page_vma_mapped.c                               |   6 +-
+ mm/rmap.c                                          |  22 +--
+ mm/userfaultfd.c                                   |   4 +-
+ mm/vma.c                                           | 165 ++++++++++++++++-----
+ mm/vma.h                                           |  92 +++++++-----
+ mm/vma_exec.c                                      |   2 +-
+ mm/vma_init.c                                      |   1 +
+ mm/vma_internal.h                                  |   1 +
+ tools/testing/selftests/mm/merge.c                 | 161 ++++++++++++++++++++
+ .../selftests/proc/proc-self-map-files-001.c       |   2 +-
+ .../selftests/proc/proc-self-map-files-002.c       |   2 +-
+ tools/testing/vma/include/dup.h                    |  98 +++++++++++-
+ tools/testing/vma/shared.c                         |   3 +-
+ tools/testing/vma/tests/merge.c                    |  49 ++++--
+ tools/testing/vma/tests/mmap.c                     |  50 +++++++
+ tools/testing/vma/tests/vma.c                      |  50 ++++++-
+ tools/testing/vma/vma_internal.h                   |   1 +
+ 42 files changed, 865 insertions(+), 220 deletions(-)
+---
+base-commit: 5093dba1014c1d7f7e247fd118f0fa8f22136046
+change-id: 20260711-b4-scalable-cow-virt-pgoff-a0cc0eb14bc6
+
+Cheers,
+-- 
+Lorenzo Stoakes (ARM) <ljs@kernel.org>
+
