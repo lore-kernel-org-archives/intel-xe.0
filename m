@@ -4,166 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25B81C55ABF
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 11:31:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D30EC55ABF
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 11:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C682310F18D;
-	Thu,  6 Aug 2026 11:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF11510E30D;
+	Thu,  6 Aug 2026 11:32:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DsPVYI++";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="z98vwWYv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F06A10E31F
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 11:31:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786015889; x=1817551889;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=lkqR2PNXGkDQjYjFuOnHAEoql9108urqKN4/6u7p3GY=;
- b=DsPVYI++bC/P1uv/vbLFeFNSFofJzJMmOSgPJ7R4Tt9XkcdEB9yLOWhl
- s5FcBPHbHxvCndu1chcCOSeN0olS76IIzBq8TOCbZ/LGlUsejSM+vjERX
- JWZcqrMldz3wCBMkaMefLacxXE6IkK8QU10AzAz6gcbpOT4R0eJhOCxJJ
- 48QUuE+ayM3RjmWNEV4uAuzxUlh4yXHMw8AJTSEGpX4WfJV3IR6+ddBpX
- WKLXtbvFxHbth5EGZy6pG055yY7NW04YEWXoJwdBz/I46Twa9jmtCum+2
- kCqPw4vzb/So3FQ+AypX31m7whquHTppH58aQLMFUNxOGOBF9VKAIZ+f9 w==;
-X-CSE-ConnectionGUID: Q7Jhl3KbTTum1DdDgA+muA==
-X-CSE-MsgGUID: S7SfUBvKQJOpD9KABsHSwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="86618161"
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="86618161"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 04:31:29 -0700
-X-CSE-ConnectionGUID: aj+rym4BRGOqOYjCa1WwNA==
-X-CSE-MsgGUID: qqY81s6bTsKRYanpDCB0tA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="258755502"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 04:31:28 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 04:31:28 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 6 Aug 2026 04:31:28 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.16) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 04:31:27 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012017.outbound.protection.outlook.com [52.101.43.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DFF510E30A;
+ Thu,  6 Aug 2026 11:32:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MuGa4oeelfByTtWt3YHViXk5OyXhchyDAIhHNwlYriOYVoe2dOLJW0bu5rt9njpD+pZl1z1Y0cshXUboUJONGPAVm/syHf9E0lmP/p5rqIXMLesM/E+pNASd9Y5pqmnc3SHmmOtjgDRxlh1fiuCA31OoOtYQ4rZLIMWrXlGCMUmImBsRrTvDdDGsP11cwoxJOsaKjVMYB3r591WF2PaGigGnsuLV7VK/Lgy6F4DMHJLxYST9bbhPerMFVhUXkN8FSyyJJyQeAyUnb+Zh501WOkk8dA3m3rLPOgPBJyOb/ZF2xeTA8A4Pm+fFxAMt2brGvPSvjS3JnR04x9aQ7r1cQg==
+ b=jDmuRPB8qAOm39GbBVZNP8pnNerp8fD9vUHMYWv8FIKDBak1LFJH3WGmmBvGYk5UXjd2gi2B+7V3U3/yPyka3OBKej+3+usK/u43RJj5tKuv8ritsXG/qhngzYlpy+6SiBDzUrSBIcNm6afoOYAjqa81ioMSnWFpjQrKFZdh5ny1O1xi+msgwx11pKofhOfbexNeMK8RTQd2IIMZvOFRitRPkqlojjGWaew0pomDbX7xoVJwRMWwxekPQM6CDhpx37W7adpIVcK6pk5Nn2klbdUdSdvpWtuIB5l9L/A4CV/xkQuPUApq5uyfiEWmpevcyrxsi1fMIp/+q6/UFLKvpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+MXlSKbSlqO1J3RQ45jnTHwP4dDzmsAOY2J+mLiC1a0=;
- b=SPDEmX1CJ6HmB3obQV8FnBzap8fACW7/jUiyTB2dEqtAFqSfVYb/M8aPGqq2Pp9isJk7JfVR+w9bvPKy9sRjXAkpzHHMy+g0HqVg3rOlePgNr5B9C7BTmPaC43WbQyE8qnqO1wOyvWd50NvP4IfpVSR9WDRCD+YqGaDiaKl6gG6TkfF7Lhss+W+s90kRLhxvlkI4pRcTOmCuf9SwrITty/s7nVP6StnKKW11o0rxIuKUpBy7zNwqJQ+kGgiofvn5fW2wr+tZ3TFvxGjJdtMocIougx3k9EK0oaGImGUbeTvH/ViMMYTxlYbbGRLNxS5mDgDdpzd+JPwKK1m1lT0aoA==
+ bh=eBTMInjPmxuttSEGqa5Xf4crMZTPLZ+peR7GhP0Luo4=;
+ b=l5DgohdX68UFGdlZDSaB2LnESPVW/SJvQeWASg8ENedR32+eXu8I1Dzj7sNszmYu8Wsx9RsE26AeV42uR907FLcPoDPjDeYi6w3NbDGOVLqUzVUgnPklRuGEi6q1gUkK9H/5FV459ZjhXS09HA0mugeGRsIphbc1rrvSo8temBwfaA4HI/6rWHrQARDcmpxIWK+qAbKOrDJokpHDRR9G58BjxOA0lpOv4fDJg2cimxw6Zt1P+DNM/BWxp7ypDyNI8CSWKPsrN24CtoFDPEsyIeSPERpAgVFjVc8JtcydsWKUsE1IIJJiPGSzCOdHEEkXlFm4dG0khdUGaZ5FmhEb8Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eBTMInjPmxuttSEGqa5Xf4crMZTPLZ+peR7GhP0Luo4=;
+ b=z98vwWYvROBZ1nWzKO9E0xmonQsWIC/uE6mkJruKfsyz6VJ+8R7tnjPaPHo6MWDjFPaKJfE0b6ttKszeER/NbKg1he6U2mWgegaOFqSf+VH9CXQNu/luKGlj1CWg4MubZppnFvTFZXq7rEqXRS3zI+TobYqwiVr07MSGUGt8jJM=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SJ5PPFC4905B1D0.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::855) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.18; Thu, 6 Aug
- 2026 11:31:24 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0292.018; Thu, 6 Aug 2026
- 11:31:24 +0000
-Message-ID: <8e65c45f-a8c0-40fe-96a3-da93d8e95aaa@intel.com>
-Date: Thu, 6 Aug 2026 13:31:20 +0200
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
+ by CH8PR12MB9792.namprd12.prod.outlook.com (2603:10b6:610:2b5::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.19; Thu, 6 Aug
+ 2026 11:32:25 +0000
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d%3]) with mapi id 15.21.0292.019; Thu, 6 Aug 2026
+ 11:32:25 +0000
+Message-ID: <843f7781-d75c-4f01-a977-04cf74ceb724@amd.com>
+Date: Thu, 6 Aug 2026 17:02:15 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/23] drm/xe/log: Add structured SIGID error logging
- infrastructure
-To: "Summers, Stuart" <stuart.summers@intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Tauro, 
- Riana" <riana.tauro@intel.com>, "Koujalagi, Mallesh"
- <mallesh.koujalagi@intel.com>, "Jadav, Raag" <raag.jadav@intel.com>, "Levitt, 
- Yoni" <yoni.levitt@intel.com>, "Iddamsetty, Aravind"
- <aravind.iddamsetty@intel.com>
-References: <20260730152121.576-1-michal.wajdeczko@intel.com>
- <20260730152121.576-3-michal.wajdeczko@intel.com>
- <522ab2835b03dcd101d52fb752b3fb839ed0c15c.camel@intel.com>
- <anKTkC-thNA53RWy@intel.com>
- <b9e4c2b0ff6cb92797e75bd53a303f514b73322f.camel@intel.com>
+Subject: Re: [PATCH V4 2/2] gpu/tests/gpu_buddy: Add KUnit test for
+ gpu_buddy_allocated_addr_to_block
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "Auld, Matthew" <matthew.auld@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+References: <20260806053624.3215216-4-tejas.upadhyay@intel.com>
+ <20260806053624.3215216-6-tejas.upadhyay@intel.com>
+ <5675a0ee-a5ee-480e-9a02-b71225c1d86d@intel.com>
+ <DS0PR11MB87188855F06D221DCF900AD381D22@DS0PR11MB8718.namprd11.prod.outlook.com>
+ <002dcde7-5dc4-4fc4-93d9-984fe5e6344a@intel.com>
+ <dc702b3c-fc47-4fb2-9619-c4115cbff5b8@amd.com>
+ <DS0PR11MB8718001019A9FCB196EC1AD081D22@DS0PR11MB8718.namprd11.prod.outlook.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <b9e4c2b0ff6cb92797e75bd53a303f514b73322f.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <DS0PR11MB8718001019A9FCB196EC1AD081D22@DS0PR11MB8718.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR04CA0135.eurprd04.prod.outlook.com
- (2603:10a6:803:f0::33) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+X-ClientProxiedBy: PN4PR01CA0029.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:273::15) To CH0PR12MB5026.namprd12.prod.outlook.com
+ (2603:10b6:610:e1::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SJ5PPFC4905B1D0:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f4927fe-b400-43b1-0513-08def3ae3f0f
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|CH8PR12MB9792:EE_
+X-MS-Office365-Filtering-Correlation-Id: 87ba2157-5935-40df-f45b-08def3ae6135
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|11063799006|10067099003|4143699003|6133799003|5023799004|56012099006|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: Qr1DKt1n1qiz8NjiK97eBbfQRXshBS8aW/aObSBA6HUQZJcDuahFph8xfoOzIEcTn/fVXkeUgJxM6HCSDTVJdpbEBd7lMtsACPoUFcgGzXCblA1q2lWFpPBbB9QKAbo7sXTbtGlj/XHI9VU1FgCbClE8+dbhIFjEWMjht7uwMr2JfVSx5p/VUJDk3Y2UG0yOanPoKdQwn8lfD+H7XQeKqBAsDUpO2Jpe5sMpNqoHo/AK2rHLTcV4jjgd+fxhQzd524sCILZ8O+4mE0/Ex6xB/0HlB+0C/ZVoj+DKVE+gQU7FkQTe+R6dIXrAzxNBhTgGetV3n3CnbG2wqXbh5Rjxjd3hVkwKYvV/DbpBLllZ7zxC7oWD0Y18eQm7iQdep0Ness3E+Ez3bRM7gnQ4zpEIsymqoyhzb32u0WW4Iw1Faf3jNkNt6VmbXhNbmEQitIleiKLFhU3j17riwsTDwsa/LSF+v3vJC+DUk3dU7r+g0NwjdSB9kPtzt+/cK5l8GgBcHsbh6Tiky9sJV+mDswM+t3mQJZPzm4iRZgvu5B1ZCQzmCKyLQBdtR+8E48YAN4db7xOKvQNE46WIpi8FdYl6jXnVdcNqyehQjy7Veg7OFZIW/t9sVfrUeEfcT8XG5ahIICWfCX5U4TIDtnGe0vGPfHUxF5R2s84uJi0HCG7xz5A=
+ ARA:13230040|1800799024|366016|23010399003|376014|22082099003|18002099003|11063799006|4143699003|10067099003|56012099006;
+X-Microsoft-Antispam-Message-Info: wsga04A5dN4Wnv/w385kCH1RytxuyWaMBO+ZZXdl4WZUd1LzNvFUK+NybDH/Ma2l/6/BXBTIK/2ugvxB3rHWwB86znNh3BikBJnE/X7z+Sf0QY65DJtvHffwM57N81TNO4TUfvyEhfOE3UqK/kSmpOMWY9QyftpFAaA+aaiwG1ua8yUZ8rutsot61ToASxT2LDdTZY4EVlh/LGY5s0yWMDCU7Ie+tHMwVVOpRLhsHO9aLexfe1MK/M/x6iaOCup4Wyvvod/z8JROWQSUvF2ZIs5ttpnUBU57VVsueeNHs4ehDrbWGQFCWhX0lYPLN7EDakhqEuEk/s38UjCp9H4/nY8Tw9zFuhyws1Lz4ABdqJ43guO59c+PGlMZbLmROgKZ3Aw49XzCrHDCKlv6STiE1Jx2myOo8CZlo2yOCh3bQRuhMaqEX7fmRR4qQR3U0WcT4FntILoizP5j9MHaWMevTYO39I0E8vU5Dipwf7qgG4SmdFLE3sE/9874RLOsoGEGbydtl1qO1A181RQ6xY97WZ82sHyITL4KvR+6OfkCvlyopcqNQ8qVnuj02+JxldIeJbeMuPPCtz3SdQzDaXaWiw+NZLBSDISnUMHPlHMtuojZBRkQp+BIlRM322S2+jwXewCPf+v/4ByO0613GlEF1FsQk/ASoQIm4j7Zk/8KtQo=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(11063799006)(10067099003)(4143699003)(6133799003)(5023799004)(56012099006)(18002099003)(22082099003)(3023799007);
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(22082099003)(18002099003)(11063799006)(4143699003)(10067099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUtkTXRhSVBvN1RvOWhDYlZ2WDRWbW95dEZHVFlxTm9YTGJ5VytTVWx6ZDZB?=
- =?utf-8?B?a2ZCWW05WEdiVE5oU0ZzRE0rbCtrYmZhZE9HMUR2c0xCQkZia2MvK2dkR0tQ?=
- =?utf-8?B?Y2Q5M0tTRWhxTUM1M0RPWVBRU2M2UWkzRCtrWVhXdUNTVHBHMHpDcmhLU05U?=
- =?utf-8?B?SGwvdmJPME5wV1FTd3pveU5xanNNTTR5VmM5TU9ncHl6elZsVUxxY1cwb3dN?=
- =?utf-8?B?d2tqQjRQQVRzcEMxSWJEaEUwMEhYUXFzandKZFhYTzRUSFltWXJZaXRTM1VM?=
- =?utf-8?B?UWlRbGJ5U0hkNE5CQUZlMVFGTkRrbXZuamNFNlpmK04wNkQzWG1XOVdJSndP?=
- =?utf-8?B?YXNzeGowMU9iaUVVdS9qUkFkQWpJaDkwOHdOVS9vb1Vja1VJNFlFSHhkanYw?=
- =?utf-8?B?c2J5SkJLUVZtNE9MVm9nVDhReXBCdGhRSGtZbDhUZ3NRbkFNMm5Gd2RNWWlw?=
- =?utf-8?B?c2Jwa2IwV0d6Rk1YOFVCVUlnRzlYWVcyak9CK2phZ2plOThvcWNLbmlrSU5F?=
- =?utf-8?B?dHI4Lzliczg4M2l4WEZrK2dVMUJYaHBwaXhhZXpacmpTQUhlb0J0bjhMOThq?=
- =?utf-8?B?WC9rcDAzbXo3ZUNlZ003ZnBHOTB2Ujh4YVMybzRmNjdyZldoNlJQSmRVN0lx?=
- =?utf-8?B?WkJUSW5OTWF2QldVMXlnUWJ0OXl2ZzROUFlKVHoyQndldmZWRnUxTHN1bmJ5?=
- =?utf-8?B?YmNJaVRyR1BaY2JNRTNJTy94NERZNkV3WWYrRmZJL3JOOWo5S0g1VlNrSUVG?=
- =?utf-8?B?UUhZM0loNDBDQ0VMSFdXMkpVR0t0NjltdHhJMDVnSFpZYnlNOHR1cXAycHox?=
- =?utf-8?B?Ry9zZ0twMWU3U2wwUVNSZGdSazV0UmR6aXpjV0ZhaTBIcFRSRjkyMWxTSkpO?=
- =?utf-8?B?MzY1YTNqMzdja0F2VTRqbm9GaGhmZ05sZW4vRkI2cXhOanpyaTFwWXE0Z2d5?=
- =?utf-8?B?cFI5Ukp3eXRaSFI3NStCUFo4MldUcktMS1NiRFpGMUl5YXUySlJpeXVDUmFp?=
- =?utf-8?B?MWU0Z1hkZFVVNVQ1V1Z2WGtPSytMNUpUWmhBVDl4d0p3T1ByODJaTEZBSjEz?=
- =?utf-8?B?QmlvRHBLNUJaa3FScWp4NmtIYUp6bzE5RWIwb25EWWZ5a2RFbDYrU1RaeWVN?=
- =?utf-8?B?ZHo2SUIwUXdJMTZkVkVMSFNVbWIrbDdQYkh1TEkxSmVCS1QyZDdiaS9SY0hG?=
- =?utf-8?B?b2djbVdZTjloTitpQzdWNHVoZ2tUQUJhL3FVTVJhamZIRjUzUWNLQ1NhRkFE?=
- =?utf-8?B?SXJrZHJVNWFmMTUwLy9aMXMxOWhSUTZGSlpDbWpOUnMvOWF0WmczdlNveHhC?=
- =?utf-8?B?YUZFemc5dWJiYTZGMUovV2p2cEJnRjYrR2xUWFRMSGFRQ2hWTCtiUkxkM0g4?=
- =?utf-8?B?UnJCZENhYXhWcEoyWUtQRjN1WVV3MUVQN2RTdVFja0s4WndUa0duMGh1T2F1?=
- =?utf-8?B?cFdOaURyNXRPYXNxclpxTGR2cS85Mm4ra3A2dzRsZlpSQVpZc2Y0U3kvMXhS?=
- =?utf-8?B?eHk0UkZuZmxzZVFzTEZtMEI1NVN5cDdqc2xUMGRYWUxZamZPcG9PRWdSbXVR?=
- =?utf-8?B?NmppcHQxUGw4Z2s3TlFTbkVEOUVYdHBkOEdxQUZJdDBBeU5hMm9yM0ZSbFRS?=
- =?utf-8?B?OUloUHgyem1VTEROcVpVMDN1VzNFUUpBUjF3endnWXFGNEY0ODE5QzRxVENl?=
- =?utf-8?B?TllZUEdZcFNidGlLdmEyNVRZeWs4Zi9LcFVMaDdqc2wyU3NEenhnYmlCSHlF?=
- =?utf-8?B?MWp1WFI2OWl0aVFocGFMYjZSYW9KdUNvY0ZndXVseG1NcG4wY1Axc21CZkFC?=
- =?utf-8?B?OWtwNVk3TXNhcDNoa1NBYUdGVU52eE92a0lJd293S244Uk5vczhLcXdsQ3Zj?=
- =?utf-8?B?cUJ2ZVJrS1NnYTN0aElFclNta3JsLzRyZVQyZGI2dmpraElsMG5Idm4xVmE5?=
- =?utf-8?B?KytCV3EwRzlPUU1vZFpOYitaQWJJWnBxYTdLMHh6VlV0aE9aVDlBbTZ4MXBs?=
- =?utf-8?B?VC9Tc3d1WEtSSDNONy9aN3hLVW9EK3NyKzhmUk5FWGpodEJhZmxZdC9wUkx1?=
- =?utf-8?B?OTFrTGlOditrVzFJK1NGUGFEM3hHNXFSL3NXQUpxbzdUQTBiR09ZM1F4ODN3?=
- =?utf-8?B?YndsWE1XRjZiNUlDWWZEUnh1R1BPRStaNVBkRFRBWnYzZmFOTmZoOWxLQ2I3?=
- =?utf-8?B?Qk1zazdmSkRiL0FZM3hIaTl3UUNOaEJ5UmRHOG5YTEcvWDNhOEhoYVc1b1dN?=
- =?utf-8?B?bG5lSC9EUEVVaGhPdm9SeG55eFRvdlBiLzNrZERibjJSUUZjUVAwOWhMQ2V3?=
- =?utf-8?B?eWN6d1JJRkZlcFJuVWVhSkR2eXVWNGoybmc0TlV1cVVEUmEyZlNsWHo5U3RB?=
- =?utf-8?Q?tdoOt8yser6lcL74=3D?=
-X-Exchange-RoutingPolicyChecked: mAVduK+Lgu3/iyRxtKaI1nkdC55SWYbe0QAf4XKxETpap47xz02hlyCiDaal5tdmImC30vxWm9GvtG3mOlcz3u+0K5zVV6bVXOptmOy8XQezor+3uuN4ezCK+QMZqxoTaWD88/8InKEVqkUaEIASVu6jQlluy4jSdkiQwOuRa/q1nSUgmyH8yEC4Ivxr35iDm3Jx/CpBg0eE5/iHgOLtUSzNTq8RfXJ6VHFlRKVb08Iu2MH5009rAe1NsbOV6GNk1O03G707Aq2MszGSdUJbvTA/raWHBp1U58c80u3JSuPLUL6zMCZiiFFG/2cXd+ftV1jF73OeN4KL8Vc8Ums+hQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f4927fe-b400-43b1-0513-08def3ae3f0f
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RkN0cUx3Nk1ENnpkeWh2Y3BVY2IvNUgrNWpUaGZ5cFNDVE9tMXhQRks2TDNu?=
+ =?utf-8?B?RVZMaHZYcTc3bTBsTW44ZW5RRlpPYlY1emVkRlBTY1BNeE13eGI4UjdKenU4?=
+ =?utf-8?B?WXJWQlVxQVZHMXVtOS9zSDJUejFaYWhGWktwLy9XbitSZDdLaEVNYzV1WmtC?=
+ =?utf-8?B?cmtvWlc1NGZVNUVzVVlhY0VSbHVNbWY1ZW15am5NRENYRG11amw2dDcwRVFE?=
+ =?utf-8?B?L2xaV2hOSVh6SWU2ejcvY08wQnY1aElOQk5lVTRWNWpoL0JyelRPNlZLOGVa?=
+ =?utf-8?B?a2VuTzJjTVh2TjlKQTRGQ3JWZWZWS21kRVZPcUhYSHN1azZaYzVMVzdxd0Vh?=
+ =?utf-8?B?NzE5Njh2T3NxTlJ0N2lSSU03MXZ1NWxISS9jRk1oSzVsSURTVXFmb3ZTOW1E?=
+ =?utf-8?B?WUlrTnRaRGpNZ2tNdUpkNm9BOWUyeHZqL1JwOWtlVnlpcnVHZUpLdTMxSVVQ?=
+ =?utf-8?B?MEN0WCtjckdGb2F0QXZkNXZLb1pxS1lrNW8zYy9IbWR2T2k4QUY0V28rSDdJ?=
+ =?utf-8?B?K09DcEVqMFlaSXRlZUpXcWJ0UFNBRmtucXN3RldwOTdQdlhJNGFWQzRPZDRt?=
+ =?utf-8?B?cHMwYTM3VXRrek9Mc211L0dRTllDamNGNVFoQTJQZ0ZvQjNoWnR1cVhqNThX?=
+ =?utf-8?B?Y1ZaRU9EU1Uxa2p0VjFveEhGdlBaa3Z6SUlKczhaSUg3eU0wRWJpeDdjZW1P?=
+ =?utf-8?B?dWxaVVRiNVkwZWZuQ210U3pFMXRpQ2VReVoxMnB5WWRZTkhvMlMwdFdUWEc0?=
+ =?utf-8?B?cWREdURHSmsxWTdQeWpCN0txRkthZTJQRm9HelNIVWVUWVY0OVI2Nk4xeHFE?=
+ =?utf-8?B?dWZCellmZG14L29iampvdVJnMVVpVzJkSWZXQkNDUEJIenVjSWRDUlYrWE1B?=
+ =?utf-8?B?MVdQYTAxa0pBQ1M3UWxPRUlNZ1lVY0ZhY0hQNEMyWVhZamx0NU9icWIwQVVZ?=
+ =?utf-8?B?TGtzeFluamJnN2NDTUpZZ0EwZ3NudEpubkR1ODNFd3RMRjlpUElOU2JYNnRR?=
+ =?utf-8?B?dXNRUGlDSkVnQ1VyTGdMajBGdHNIbVZ6dmtlMkwrT1RpN3ZscmppZ2pJU2NX?=
+ =?utf-8?B?bUtNUFNqUXFhTVNDTHk0UXgwdUFJVzhoUG1ETlc2R1NWWDJIYjBFeXdXMEl0?=
+ =?utf-8?B?MFpWdzlRcXQ1clFrdDJZTTlVWTNrWDZnRmpwU3BocHArcTZjc1JvL2plblFM?=
+ =?utf-8?B?K1dFSEVKb2pKenUyNkRVQWhpL3JqWmM0bHlvc1pSQkFWOGRCV2hmOHphckJZ?=
+ =?utf-8?B?bDE3TStTZUg4ZXRWTFc1SFdoaEVxVmFQMWg4ZUpyYXZpNi9vSHIzVmdJcEhN?=
+ =?utf-8?B?dUQva3hNano2UiszTFZQdHg5L0JkRm1YUCtMS1pGSFlveEZLdEtrOTJOM1Ir?=
+ =?utf-8?B?cVY4bzlpbFExd3Fkd0VuVjZyRWFTUjZRcUY2YjV6UlppUjZ0VjNCeHhMZFp0?=
+ =?utf-8?B?NnRqb2hsMTJwOGhVUnJvcmxLeVhaRVQ2Ulp0NkhzZFdVdXMzYzNsYzhVVitG?=
+ =?utf-8?B?RnBLanpjOWlpWXJFT2M0djIzbWp5Mk12c2RjRklhdWNMaWwrWmxhSkZKRnBY?=
+ =?utf-8?B?Qnc5blFkQkQxTmVTUzVES0ZWblQ1cS9pa3FmcXZoVmpGdjZNRVFuendoUEFS?=
+ =?utf-8?B?aFh5TWlDZU1YSWkyazA4VEdqeldiQ0dwU01xdmhzbmFjMXNCb1BLK3pGZGQr?=
+ =?utf-8?B?eERKS2wzTzhURm1UZEYyeU9OOW9ramo1M3ZpSmo5NUNLNENpUUJjWHg4MGdI?=
+ =?utf-8?B?SktrVGY1aHB0eDhQSWpwYWhNRXFRTVk3VFpFR2ZrME1lTExmT0htbGROL2hT?=
+ =?utf-8?B?U0xHMXJtVDB6UE84ZzVrYk9OT0pCb0VxKy9mdERhbklSYjVKek8vbnpUVXNC?=
+ =?utf-8?B?RFRPTlk3ZnpoRVV1cjl1SnlJdHpmd3Y1SXNGQy9Dditud3QwNTFMK3cxcjZQ?=
+ =?utf-8?B?K2p0dlhiNjRna1h1cUYyUHVUWkVXMjVON0pTclVaSk14VWNYKzBnOGhLTWpE?=
+ =?utf-8?B?L0paRWtmVXdFQWpnQkRNa2MwMmtCQjMxTlA0OHMvOUpLZkViQW44UUhtdlha?=
+ =?utf-8?B?UXFYaUdtWjZMMTdJbS82S2o0UEVSVCtHQzd0VExrVVJJb3hHeTVxbWVYOGRB?=
+ =?utf-8?B?ZlZFd1RtdDFxckZOWTI2TmgwTThlbDBSN3I3RU1BSWw2WFMrMWJRSndvNVZY?=
+ =?utf-8?B?WFd3ZXlMeUZGeDV0czNZajRyRzRuQ20yd2VXOW10anR6OThtcXR6cnd4elR3?=
+ =?utf-8?B?Y0NQWnhvVG1aUUVmMG5WNVRMSTU4ajBqTEkwTnRDMVNmZDhRRk02U2hDWTNy?=
+ =?utf-8?B?eWRlNmtwK0pzcEFuL0xVR1dYMmk1TlFqdEZOeWt3L1I4MCtvQ1dTQT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87ba2157-5935-40df-f45b-08def3ae6135
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5026.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2026 11:31:24.3203 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2026 11:32:25.6327 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BOrpuy2fyFGZe7ij9I464yQrt0nDDw7BZmC7/QY7jKjIQZVxJVnYr9vVlB9CuO5V4V3Wx260YEj+elZH+OKpWwkKpiXR+zoElGebTeOQem8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFC4905B1D0
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: uiwx5DIyAO8Ic9lYVa0H10PslqhzyChJSsfQGEy/a7gYwAMQ/nNzez+9v6EKYUFgKBNAVjNJ6Ha88+sNaczIFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH8PR12MB9792
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,478 +144,155 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 8/6/2026 12:24 AM, Summers, Stuart wrote:
-> On Tue, 2026-08-04 at 21:36 -0400, Rodrigo Vivi wrote:
->> On Tue, Aug 04, 2026 at 05:21:05PM -0400, Summers, Stuart wrote:
->>> On Thu, 2026-07-30 at 17:20 +0200, Michal Wajdeczko wrote:
->>>> From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+On 8/6/2026 4:48 PM, Upadhyay, Tejas wrote:
+>
+>> -----Original Message-----
+>> From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+>> Sent: 06 August 2026 16:43
+>> To: Auld, Matthew <matthew.auld@intel.com>; Upadhyay, Tejas
+>> <tejas.upadhyay@intel.com>; intel-xe@lists.freedesktop.org; dri-
+>> devel@lists.freedesktop.org
+>> Subject: Re: [PATCH V4 2/2] gpu/tests/gpu_buddy: Add KUnit test for
+>> gpu_buddy_allocated_addr_to_block
+>>
+>>
+>>
+>> On 8/6/2026 3:49 PM, Matthew Auld wrote:
+>>> On 06/08/2026 10:46, Upadhyay, Tejas wrote:
 >>>>
->>>> Today the driver reports faults with ad-hoc drm_err()/xe_gt_err()
->>>> strings that have no stable shape. That is readable for a human,
->>>> but
->>>> it
->>>> gives fleet tooling nothing durable to match on: the wording
->>>> changes
->>>> between releases, lines can be rate-limited or dropped under an
->>>> error
->>>> storm, and there is no consistent way to ask "which recognised
->>>> fault
->>>> just happened?".
+>>>>> -----Original Message-----
+>>>>> From: Auld, Matthew <matthew.auld@intel.com>
+>>>>> Sent: 06 August 2026 14:31
+>>>>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>>>>> xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+>>>>> Cc: arunpravin.paneerselvam@amd.com
+>>>>> Subject: Re: [PATCH V4 2/2] gpu/tests/gpu_buddy: Add KUnit test for
+>>>>> gpu_buddy_allocated_addr_to_block
+>>>>>
+>>>>> On 06/08/2026 06:36, Tejas Upadhyay wrote:
+>>>>>> Add a new KUnit test gpu_test_buddy_addr_to_block() that validates
+>>>>>> the
+>>>>>> gpu_buddy_allocated_addr_to_block() helper which traces a address
+>>>>>> back to its allocated buddy block.
+>>>>>>
+>>>>>> The test covers:
+>>>>>> - Exact address matching returns the correct allocated block
+>>>>>> - An unallocated address inside the manager should return NULL
+>>>>>> - An address outside the manager should return -ENXIO
+>>>>>>
+>>>>>> v4(MattA):
+>>>>>> - Add test for unaligned address
+>>>>>> v3(Sashiko):
+>>>>>> - remove unused target_addr variable
+>>>>>> v2(Sashiko):
+>>>>>> - Drop the mutex and lockdep annotation; standalone KUnit tests do
+>>>>>>      not register a driver lock.
+>>>>>>
+>>>>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>>>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>>>> Hi Matt,
 >>>>
->>>> Introduce a signature identifier (SIGID): a small, stable integer
->>>> that
->>>> names one recognised Xe fault situation and serves as the primary
->>>> handle
->>>> for triage. A SIGID maps, through published end-user
->>>> documentation,
->>>> to a
->>>> description and a recommended action; the driver only has to emit
->>>> the
->>>> right SIGID next to the usual human-readable text.
->>>
->>> I'm a little worried
+>>>> Thanks for review. Since I don’t have merge rights on drm-tip, Would
+>>>> you please help merging this series.
+>>> I think Arun normally merges these. Arun, any objections? We need this
+>>> for an upcoming driver feature (patches on the list), so wanted to
+>>> land this API ahead of time. I don't think this will conflict much
+>>> with the big rework you were doing.
+>> No objections. Do you want me to merge the series below into drm-misc-
+>> next?
 >>
->> I understand your feeling. We've been all through that:
->>
->> https://lore.kernel.org/intel-xe/amqhoFzQaf1HsuFq@intel.com/
->>
->>> we're introducing some ABI with this that isn't
->>> really maintainable in the long term:
->>
->> I understand the fear and indeed the first proposals I got was
->> unmaintainable. My first record of pushing back on having something
->> like this was November last year.
->>
->> But I respectfully disagree here. This latest version is imho
->> organized and concise.
->>
->>> we might decide to change the
->>> flow or change the way an error is reported or the situation that
->>> triggers this error from firmware or hardware might change for some
->>> reason.
->>
->> You are right, dmesg is not ABI and it will never be. these logs
->> are aimed for developers and developers are free to change them as
->> needed. This was a big counter-requirement I gave to the original
->> idea.
->>
->> We are not moving all the logs to this format we are not promising
->> dmesg stability.
->>
->> The numbering stability however needs to be somewhat stable for
->> the CPER log in tracefs, that's the ABI. But then that meaning
->> shouldn't change if the code has to change. A new number should
->> be needed if the component/location/severity or recommended
->> recovery needs to be different.
->>
->> But like I told Raag as well, no developer needs to invent any
->> number, if they don't know just use regular log messages.
->> We are not going to move all the logs towards this thing.
->> Also, the location of the issue is what triggers the ID...
->> it is very simple by nature. And we need to keep it simple.
->>
->>> Does this lock us into a solution for all of this? I still need
->>> to go through the full patch series...
->>
->> Yes, please take a look to the series. All reviews are welcomed.
->>
->>>
->>> The dmesg entries are generally for human debuggability. I get the
->>> desire to make these easier to parse for an AI tool or generated
->>> script, but we also don't want to prevent debug related changes for
->>> error handling and reporting.
->>
->> We are not promising this. The stable ABI is only the CPER on
->> tracefs.
->>
->> We need to always keep this in mind as stated in
->> Documentation/core-api/printk-index.rst:
->>
->> """
->> The kernel messages are evolving together with the code. As a result,
->> particular kernel messages are not KABI and never will be!
->> """
->>
->> Thanks,
->> Rodrigo.
->>
->>>
->>> Thanks,
->>> Stuart
->>>
->>>>
->>>> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
->>>> Assisted-by: Copilot:Opus-4.8
->>>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>> Co-developed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>> ---
->>>> Cc: Yoni Levitt <yoni.levitt@intel.com>
->>>> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
->>>> Cc: Raag Jadav <raag.jadav@intel.com>
->>>> Cc: Riana Tauro <riana.tauro@intel.com>
->>>> ---
->>>> v2: CORRECTED is still an error (Michal)
->>>>     prepare to decorate dmesg with comp/loc (Michal)
->>>> ---
->>>>  Documentation/gpu/xe/index.rst        |   1 +
->>>>  Documentation/gpu/xe/xe_sigid.rst     |  14 ++
->>>>  drivers/gpu/drm/xe/Makefile           |   1 +
->>>>  drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 183
->>>> ++++++++++++++++++++++++++
->>>>  drivers/gpu/drm/xe/xe_log.c           | 135 +++++++++++++++++++
->>>>  drivers/gpu/drm/xe/xe_log.h           |  20 +++
->>>>  6 files changed, 354 insertions(+)
->>>>  create mode 100644 Documentation/gpu/xe/xe_sigid.rst
->>>>  create mode 100644 drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->>>>  create mode 100644 drivers/gpu/drm/xe/xe_log.c
->>>>  create mode 100644 drivers/gpu/drm/xe/xe_log.h
->>>>
->>>> diff --git a/Documentation/gpu/xe/index.rst
->>>> b/Documentation/gpu/xe/index.rst
->>>> index 665c0e93601c..0247a255f7e6 100644
->>>> --- a/Documentation/gpu/xe/index.rst
->>>> +++ b/Documentation/gpu/xe/index.rst
->>>> @@ -35,3 +35,4 @@ The display, or :ref:`drm-kms`, support for
->>>> drm/xe
->>>> is provided by
->>>>     xe-drm-usage-stats.rst
->>>>     xe_configfs
->>>>     xe_gt_stats
->>>> +   xe_sigid
->>>> diff --git a/Documentation/gpu/xe/xe_sigid.rst
->>>> b/Documentation/gpu/xe/xe_sigid.rst
->>>> new file mode 100644
->>>> index 000000000000..45d84a62f185
->>>> --- /dev/null
->>>> +++ b/Documentation/gpu/xe/xe_sigid.rst
->>>> @@ -0,0 +1,14 @@
->>>> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +
->>>> +========
->>>> +Xe SIGID
->>>> +========
->>>> +
->>>> +.. kernel-doc:: drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->>>> +   :doc: Xe Error Signatures (SIGID)
->>>> +
->>>> +Signature Identifiers
->>>> +=====================
->>>> +
->>>> +.. kernel-doc:: drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->>>> +   :internal:
->>>> diff --git a/drivers/gpu/drm/xe/Makefile
->>>> b/drivers/gpu/drm/xe/Makefile
->>>> index 67ada1d6c2fb..7ac3954737f9 100644
->>>> --- a/drivers/gpu/drm/xe/Makefile
->>>> +++ b/drivers/gpu/drm/xe/Makefile
->>>> @@ -87,6 +87,7 @@ xe-y += xe_bb.o \
->>>>         xe_hw_fence.o \
->>>>         xe_irq.o \
->>>>         xe_late_bind_fw.o \
->>>> +       xe_log.o \
->>>>         xe_lrc.o \
->>>>         xe_mem_pool.o \
->>>>         xe_migrate.o \
->>>> diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->>>> b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->>>> new file mode 100644
->>>> index 000000000000..99717fdf74a6
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
->>>> @@ -0,0 +1,183 @@
->>>> +/* SPDX-License-Identifier: MIT */
->>>> +/*
->>>> + * Copyright © 2026 Intel Corporation
->>>> + */
->>>> +
->>>> +#ifndef _ABI_XE_SIGID_ABI_H_
->>>> +#define _ABI_XE_SIGID_ABI_H_
->>>> +
->>>> +/**
->>>> + * DOC: Xe Error Signatures (SIGID)
->>>> + *
->>>> + * What SIGID stands for
->>>> + * ---------------------
->>>> + *
->>>> + * SIGID is short for *Signature Identifier*. A SIGID is a
->>>> small,
->>>> stable integer
->>>> + * that names one *recognised Xe fault situation* -- nothing
->>>> more.
->>>> It is the
->>>> + * primary handle used for triage: a SIGID maps to a human
->>>> description and a
->>>> + * recommended first action. A coarse first-order action is
->>>> documented in-tree
->>>> + * per SIGID (see "First-order action" below) so the id is
->>>> actionable on its
->>>> + * own; published end-user documentation refines it with finer,
->>>> cross-product
->>>> + * detail. The driver's only job is to emit the right SIGID next
->>>> to
->>>> the usual
->>>> + * human-readable text.
->>>> + *
->>>> + * Why this exists
->>>> + * ---------------
->>>> + *
->>>> + * Today the driver reports faults with ad-hoc ``drm_err()`` /
->>>> ``xe_gt_err()``
->>>> + * strings that have no stable shape. That is fine for a human
->>>> reading dmesg,
->>>> + * but it gives fleet tooling nothing durable to match on: the
->>>> wording changes
->>>> + * between releases, lines can be rate-limited or dropped under
->>>> an
->>>> error storm,
->>>> + * and there is no consistent way to ask "which recognised fault
->>>> just happened?"
->>>> + * A SIGID answers exactly that one question, identically across
->>>> driver and
->>>> + * firmware versions, and (eventually) across other Intel
->>>> devices in
->>>> a node.
->>>> + *
->>>> + * What a SIGID is (and is not)
->>>> + * ----------------------------
->>>> + *
->>>> + * A SIGID names *which situation* is being reported. It
->>>> deliberately does not
->>>> + * encode the detailed reason or the outcome. Those are carried
->>>> alongside it::
->>>> + *
->>>> + *   SIGID    -> which recognised situation is being reported
->>>> + *   severity -> how serious this instance is (see below -- not
->>>> fixed per SIGID)
->>>> + *   errno    -> the failing operation's error, shown with %pe
->>>> + *   message  -> free-form human-readable context
->>>> + *
->>>> + * Severity is independent of the SIGID. The same situation can
->>>> be
->>>> reported at
->>>> + * different severities depending on the instance and the
->>>> recovery
->>>> taken, so a
->>>> + * SIGID is never tied to one severity; the reporting site
->>>> chooses
->>>> it by calling
->>>> + * the matching xe_log_*() helper (see xe_log.h).
->>>> + *
->>>> + * How to pick a SIGID (the uniqueness rule)
->>>> + * -----------------------------------------
->>>> + *
->>>> + * Pick per *report site*, not per incident. Each site emits the
->>>> single most
->>>> + * specific recognised situation *for that site* -- so the
->>>> question
->>>> is never
->>>> + * "classify this whole failure", it is "what does this site
->>>> detect?", which has
->>>> + * one answer. A single underlying failure therefore
->>>> legitimately
->>>> produces a
->>>> + * *chain* of reports from different layers, each with its own
->>>> SIGID
->>>> -- e.g. a
->>>> + * GuC communication failure is reported as %XE_SIGID_RUNTIME_FW
->>>> by
->>>> the firmware
->>>> + * path, the failed recovery as %XE_SIGID_GT_TDR by the reset
->>>> path,
->>>> and an
->>>> + * aborted bind as %XE_SIGID_PROBE by the probe path. That chain
->>>> lets triage
->>>> + * follow a fault from origin to final effect; it is not a
->>>> duplicate.
->>>> + *
->>>> + * If a site does not match any defined situation, keep using
->>>> the
->>>> ordinary
->>>> + * ``xe_err()`` / ``xe_gt_err()`` logging rather than forcing a
->>>> SIGID: a wrong
->>>> + * or over-broad classification is harder to retire than a
->>>> missing
->>>> one. When a
->>>> + * new situation is genuinely worth triaging, add it to the list
->>>> below.
->>>> + *
->>>> + * Scope: software-emitted signatures only
->>>> + * ---------------------------------------
->>>> + *
->>>> + * This header enumerates only the situations that the *driver
->>>> itself* detects
->>>> + * and reports from software: probe abort, wedged,
->>>> survivability,
->>>> driver-
->>>> + * detected firmware failures, engine TDR, memory faults and
->>>> IO/bus
->>>> faults.
->>>> + * These are the only values the driver assigns.
->>>> + *
->>>> + * Signatures that *originate* in firmware or hardware are a
->>>> different thing:
->>>> + * they are produced and identified by the firmware or the
->>>> hardware
->>>> itself
->>>> + * (e.g. via their own records or error counters), and the
->>>> driver
->>>> merely logs
->>>> + * them as they are given to us. They are deliberately *not*
->>>> enumerated here --
->>>> + * minting a driver-side id for a firmware/hardware-reported
->>>> error
->>>> would only
->>>> + * duplicate an identifier the reporting layer already owns. The
->>>> two
->>>> + * driver-detected firmware situations below
->>>> (%XE_SIGID_RUNTIME_FW,
->>>> + * %XE_SIGID_DEVICE_FW) are software signatures: they mark that
->>>> *the
->>>> driver*
->>>> + * observed a firmware problem, not a signature reported by the
->>>> firmware.
->>>> + *
->>>> + * Numbering
->>>> + * ---------
->>>> + *
->>>> + * SIGIDs are a single flat list numbered sequentially within
->>>> the
->>>> assigned range,
->>>> + * in the order the situations were introduced. Values are
->>>> stable:
->>>> once assigned
->>>> + * they are only ever appended, never renumbered or reused.
->>>> + *
->>>> + * A retired situation is deprecated in place, never re-
->>>> purposed.
->>>> + *
->>>> + * First-order action (resolution buckets)
->>>> + * ---------------------------------------
->>>> + *
->>>> + * So that a SIGID is actionable on its own, each one is tagged
->>>> with
->>>> a coarse
->>>> + * *resolution bucket*: the first thing an operator should do on
->>>> seeing it. The
->>>> + * bucket is a stable, driver-owned hint; external documentation
->>>> may
->>>> refine it,
->>>> + * but the in-tree value always stands on its own. Every new
->>>> SIGID
->>>> must pick a
->>>> + * bucket, which forces the question "what should someone do
->>>> about
->>>> this?" to be
->>>> + * answered up front. The buckets are::
->>>> + *
->>>> + *   COLLECT  -- capture logs and open a bug report
->>>> + *   RETRY    -- transient or already recovered; watch for
->>>> recurrence
->>>> + *   UPDATE   -- a firmware update / flash is required
->>>> + *   RECOVER  -- an explicit recovery step is needed (rebind,
->>>> bus
->>>> reset)
->>>> + *   IGNORE   -- ignore if the SIGID severity is INFORMATIONAL
->>>> + *
->>>> + * The bucket is documentation only -- it is recorded per SIGID
->>>> in
->>>> the enum
->>>> + * kernel-doc below and is not printed on the (deliberately
->>>> lean)
->>>> dmesg line.
->>>> + *
->>>> + * When to use SIGID logging
->>>> + * -------------------------
->>>> + *
->>>> + * The xe_log_*() helpers are for these recognised fault
->>>> situations
->>>> only --
->>>> + * important, operator-relevant faults and events. They are not
->>>> a
->>>> replacement
->>>> + * for ``xe_info()`` / ``xe_dbg()`` / tracing, nor for one-off
->>>> diagnostics;
->>>> + * using them for ordinary logging would dilute the fault
->>>> stream.
->>>> Not every
->>>> + * ``xe_err()`` needs to become a SIGID report -- only those
->>>> that
->>>> correspond to
->>>> + * a published situation.
->>>> + *
->>>> + * dmesg vs. the machine record
->>>> + * ----------------------------
->>>> + *
->>>> + * The dmesg line stays close to a normal xe error message so it
->>>> remains
->>>> + * readable for admins; the only stable, machine-matchable token
->>>> on
->>>> it is
->>>> + * ``SIGID=<n>`` (``dmesg | grep SIGID=``). dmesg is not an ABI:
->>>> the
->>>> surrounding
->>>> + * text may change freely, and lines may be dropped. The durable
->>>> record for
->>>> + * tooling is the CPER record carrying the same SIGID
->>>> (generation is
->>>> a planned
->>>> + * follow-up).
-> 
-> Ok I realize I'm coming late to the party here - I just haven't had the
+>> https://patchwork.freedesktop.org/series/171145/
+> Thanks. Yes, you pointed to the right series.
+Done. Merged into drm-misc-next.
+>
+> Tejas
+>> Regards,
+>> Arun.
+>>>> Tejas
+>>>>>> ---
+>>>>>>     drivers/gpu/tests/gpu_buddy_test.c | 45
+>>>>> ++++++++++++++++++++++++++++++
+>>>>>>     1 file changed, 45 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/tests/gpu_buddy_test.c
+>>>>>> b/drivers/gpu/tests/gpu_buddy_test.c
+>>>>>> index 7df5c2ae83bb..04e425eb8bdd 100644
+>>>>>> --- a/drivers/gpu/tests/gpu_buddy_test.c
+>>>>>> +++ b/drivers/gpu/tests/gpu_buddy_test.c
+>>>>>> @@ -1381,6 +1381,50 @@ static void
+>>>>> gpu_test_buddy_alloc_exceeds_max_order(struct kunit *test)
+>>>>>>         gpu_buddy_fini(&mm);
+>>>>>>     }
+>>>>>>
+>>>>>> +static void gpu_test_buddy_addr_to_block(struct kunit *test) {
+>>>>>> +    struct gpu_buddy_block *allocated_block, *found_block;
+>>>>>> +    LIST_HEAD(allocated_list);
+>>>>>> +    const u64 test_size = SZ_4M + SZ_2M;
+>>>>>> +    const u64 alloc_start = SZ_4M;
+>>>>>> +    const u64 alloc_size = SZ_4K;
+>>>>>> +    const u64 chunk_size = SZ_4K;
+>>>>>> +    struct gpu_buddy mm;
+>>>>>> +
+>>>>>> +    KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, test_size,
+>>>>> chunk_size),
+>>>>>> +                   "buddy_init failed\n");
+>>>>>> +
+>>>>>> +    KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_alloc_blocks(&mm,
+>>>>> alloc_start,
+>>>>>> + alloc_start +
+>>>>> alloc_size,
+>>>>>> + alloc_size,
+>>>>> chunk_size,
+>>>>>> + &allocated_list, 0),
+>>>>>> +                   "buddy_alloc failed\n");
+>>>>>> +
+>>>>>> +    allocated_block = list_first_entry(&allocated_list, struct
+>>>>> gpu_buddy_block, link);
+>>>>>> +    KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(allocated_block),
+>>>>> alloc_start);
+>>>>>> +    KUNIT_EXPECT_EQ(test, gpu_buddy_block_size(&mm,
+>>>>> allocated_block),
+>>>>>> +alloc_size);
+>>>>>> +
+>>>>>> +    found_block = gpu_buddy_allocated_addr_to_block(&mm,
+>>>>> alloc_start);
+>>>>>> +    KUNIT_EXPECT_PTR_EQ(test, found_block, allocated_block);
+>>>>>> +
+>>>>>> +    /* Unaligned address inside the allocated block (should
+>>>>>> resolve to the
+>>>>> same block) */
+>>>>>> +    found_block = gpu_buddy_allocated_addr_to_block(&mm,
+>>>>>> +alloc_start
+>>>>> + 16);
+>>>>>> +    KUNIT_EXPECT_PTR_EQ(test, found_block, allocated_block);
+>>>>>> +
+>>>>>> +    /* An unallocated address inside the manager should return
+>>>>>> NULL. */
+>>>>>> +    found_block = gpu_buddy_allocated_addr_to_block(&mm,
+>>>>>> +                            alloc_start -
+>>>>> chunk_size);
+>>>>>> +    KUNIT_EXPECT_NULL(test, found_block);
+>>>>>> +
+>>>>>> +    /* An address outside the manager should return -ENXIO. */
+>>>>>> +    found_block = gpu_buddy_allocated_addr_to_block(&mm,
+>>>>>> +test_size);
+>>>>>> +    KUNIT_EXPECT_EQ(test, PTR_ERR(found_block), -ENXIO);
+>>>>>> +
+>>>>>> +    /* 3. Standard inline cleanup flow */
+>>>>>> +    gpu_buddy_free_list(&mm, &allocated_list, 0);
+>>>>>> +    gpu_buddy_fini(&mm);
+>>>>>> +}
+>>>>>> +
+>>>>>>     static int gpu_buddy_suite_init(struct kunit_suite *suite)
+>>>>>>     {
+>>>>>>         while (!random_seed)
+>>>>>> @@ -1405,6 +1449,7 @@ static struct kunit_case gpu_buddy_tests[] =
+>>>>>> {
+>>>>>>         KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
+>>>>>>         KUNIT_CASE(gpu_test_buddy_offset_aligned_allocation),
+>>>>>> KUNIT_CASE(gpu_test_buddy_subtree_offset_alignment_stress),
+>>>>>> +    KUNIT_CASE(gpu_test_buddy_addr_to_block),
+>>>>>>         {}
+>>>>>>     };
+>>>>>>
 
-(no worries, I was late too)
-
-> time to review this in detail. I really don't like having this ABI-
-> adjacent implementation. It feels like we will be on the hook for
-> maintaining things in the future that will limit our ability to
-> implement changes and debug. I get the notes that Rodrigo has above,
-> but this just feels like the wrong approach to me.
-> 
-> That said, I don't want to block the work here. I know we have some
-> users looking for this for their own debug.
-> 
-> You have "dmesg is not ABI" here which is a start. What happens if we
-> decide to drop one of these messages? 
-
-we don't require any use of xe_log() to be permanent (see below)
-it can changed or dropped or replaced back with xe_err() any time.
-
-> Is it only the ID itself that we
-> want to be stable and monotonically incrementing? 
-
-correct, just use of the same SIGID in the log will always mean the same
-
-> Or is the message
-> itself supposed to be stable? 
-
-message can be changed any time, like in regular xe_err()
-
-it is just an additional hint for debug (together with SEVERITY
-and reported errno)
-
->If we drop all references to a particular
-> ID is that ok? 
-
-yes, if the ID is no longer applicable
-and this was already stated in DOC
-
->What if we have 10s of IDs or more that have no use in
-> the future and we move on to the next section? We don't care about
-> cleanup of this kind of thing? 
-
-legacy SIGIDs stays forever, there will be no ID value reuse
-(also see DOC) but due to the way they are defined, it is unlikely
-that we will drop them
-
-> Or the line above about "dmesg is not
-> ABI" means we can really do whatever we want with it?
-
-I assume the only new requirement for us would be that we
-should not drop all xe_logs for any SIGID which is still
-applicable (and was not replaced with other SIGID)
-
-> 
-> Thanks,
-> Stuart
-> 
