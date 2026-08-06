@@ -4,40 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E54BFC56208
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 20:25:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69C76C56208
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 20:26:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AAF410F2AB;
-	Thu,  6 Aug 2026 20:25:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 286F910F2B1;
+	Thu,  6 Aug 2026 20:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Rwpgts6a";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XLaBEEfi";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5971D10F2A5;
- Thu,  6 Aug 2026 20:25:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ADBA10F2AC;
+ Thu,  6 Aug 2026 20:25:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 40AB34055F;
+ by sea.source.kernel.org (Postfix) with ESMTP id E53A74087E;
+ Thu,  6 Aug 2026 20:25:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A10771F00A3D;
  Thu,  6 Aug 2026 20:25:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E51301F000E9;
- Thu,  6 Aug 2026 20:25:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786047938;
- bh=rfET70ipzKCzRF0stqGxwRTRCOBi9eCntG9G5yTBiQI=;
+ s=k20260515; t=1786047958;
+ bh=9aEc+GpTkQ0+PyuSQU7RLIhs+vRcJAzmQsvl5QanIRU=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=Rwpgts6aRwCIO2Kmj6JKXNMNjMTQ/36LbfymWahUV9Jp/Rc317EiIZxpcRjgbNRt8
- onP3R0fJJJd/Fy+rQCpEA6DzvgM9nbiXbXo00W2j8kPrdNAHUmlFYjv0JJ/qEp3pqw
- qZ9IgAQj54bNZum3sqmIZdj0WZGMAS1iQyW1mWChHLna9KIp5Ww52DkIXCvIhgo3ZH
- oI6KknHximElYnwTT71n1K0TlQp/LftDplGxhqvxeJmKsYGSomwKQCM30ncNpsv1cn
- KKtV1/2eMxlKC97bDY/XLdI6Yu1TJjxaRUTJDxeTk3Mde/KA7CGI1zub1O8S/Uf7x0
- rwd7tzzDKmtpw==
+ b=XLaBEEfisdymhdMAkrk6t/WHMuk76cQnpPqVJx/MdqUpfsyAOq8O9FcCUK5GppgIp
+ w7FnNc6qQQ0UNCMPFsuI6Jax1IE0OYNlqFucf6RWEoE2XlOgVc4Rk3vK5+CSDdUmY8
+ p44YMxs/hfqSJ1P1IdejNuBo1hKTQF2e8eNGUSsxRik61Rl6PY8NtTMk8b3JbCFjKp
+ m5QGQy3/se94DfwMWTn7kQEjqaguvLEJoU8xj1Q/GGWvwP5FJuQZCK96QJNd1NVz/R
+ D8qLVd0suYrx9nGQDf1i8x/ZxFpE+E1WIcwD3tJYm9/xVPBEWRE1uUcx2IsGZD9/k2
+ SVtiXx///mnLw==
 From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Date: Thu, 06 Aug 2026 21:21:35 +0100
-Subject: [PATCH v4 10/20] mm/rmap: track whether the page VMA mapped pgoff
- is anonymous
+Date: Thu, 06 Aug 2026 21:21:36 +0100
+Subject: [PATCH v4 11/20] mm: clean up vma_address_end()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260806-b4-scalable-cow-virt-pgoff-v4-10-ab318a350404@kernel.org>
+Message-Id: <20260806-b4-scalable-cow-virt-pgoff-v4-11-ab318a350404@kernel.org>
 References: <20260806-b4-scalable-cow-virt-pgoff-v4-0-ab318a350404@kernel.org>
 In-Reply-To: <20260806-b4-scalable-cow-virt-pgoff-v4-0-ab318a350404@kernel.org>
 To: Andrew Morton <akpm@linux-foundation.org>, 
@@ -99,12 +98,12 @@ Cc: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>, linux-mm@kvack.org,
  dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-perf-users@vger.kernel.org, linux-trace-kernel@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2286; i=ljs@kernel.org;
- h=from:subject:message-id; bh=gUsQ8Jm4b1wdTqyWtNbp+uv3FdHISPYvdCAHWw1Td6A=;
- b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLJK3lzYqhX/vp1DaYfVrK8yHf8mRQl15L+UXOP1faHKs
- tIp88y+dJSyMIhxMciKKbI8/yK+P0gkbF7nBX83mDmsTCBDGLg4BWAi2jMYGXY+7NBwvuTCv77V
- Oc5PO9T8ivKlrYIXOWrLf8XVRBX1LGL4H7jIvHfq8//zGvLsjxw7yWO050nNpzOy0qKHWLNnvZi
- byQ0A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1986; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=p3P1FLjNmsKquOfKyZ9JRZehrfWrVy9CMy59xXBf5Js=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLJK3lz4rtf2q3xF3rGaAu1zfh9Zdudted1+r7vBoOHDr
+ 6uNy3O3d5SyMIhxMciKKbI8/yK+P0gkbF7nBX83mDmsTCBDGLg4BWAiTFMZ/mc+EX+ZtKmTb31U
+ z6fvdm+/6MbrG2Xmsr7RP2Yf8Krx4mWG/66pky2Xek6cYnxu+bc7N/frhYs8qT6pY3HlUo7Wbpb
+ dVowA
 X-Developer-Key: i=ljs@kernel.org; a=openpgp;
  fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -121,77 +120,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update the page_vma_mapped_walk structure to track whether the pgoff being
-tracked is an anonymous pgoff or not and update the comments to reflect
-this.
+vma_address_end() is a confusing function with a lot of moving parts so
+clean it up prior to extending it for anon page indexed mappings.
 
-This is necessary in order to determine the correct VMA page
-offset in vma_address_end() when pvmw->nr_pages > 1.
+Const-ify some variables and establish pgoff_vma_start and pgoff_end
+variables to clearly identify the page offset for the start of the VMA and
+the end of the page offset range specified by the page walk.
 
-Also document that pvmw->pgoff is meaningless for pvmw->nr_pages == 1 and
-for KSM.
-
-Do not set this field where pgoff is not specified.
-
-This is laying the groundwork for eventually using anonymous page offsets
-as the index for all anonymous folios.
+This simplifies the function significantly and lays the groundwork for a
+future change to update this function to account for anonymously page
+indexed folios.
 
 No functional change intended.
 
 Signed-off-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
 ---
- include/linux/rmap.h | 4 +++-
- mm/rmap.c            | 2 ++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ mm/internal.h | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/include/linux/rmap.h b/include/linux/rmap.h
-index 8dc0871e5f00..0574537a355c 100644
---- a/include/linux/rmap.h
-+++ b/include/linux/rmap.h
-@@ -864,13 +864,14 @@ struct page *make_device_exclusive(struct mm_struct *mm, unsigned long addr,
- struct page_vma_mapped_walk {
- 	unsigned long pfn;
- 	unsigned long nr_pages;
+diff --git a/mm/internal.h b/mm/internal.h
+index 03145b8d0d56..98b067472ceb 100644
+--- a/mm/internal.h
++++ b/mm/internal.h
+@@ -1079,22 +1079,24 @@ static inline unsigned long vma_anon_address(const struct vm_area_struct *vma,
+ }
+ 
+ /*
+- * Then at what user virtual address will none of the range be found in vma?
++ * At what user virtual address will none of the range be found in vma?
+  * Assumes that vma_address() already returned a good starting address.
+  */
+ static inline unsigned long vma_address_end(struct page_vma_mapped_walk *pvmw)
+ {
+-	struct vm_area_struct *vma = pvmw->vma;
 -	pgoff_t pgoff;
-+	pgoff_t pgoff;	/* Only meaningful if nr_pages > 1 and not a KSM walk */
- 	struct vm_area_struct *vma;
++	const pgoff_t pgoff_end = pvmw->pgoff + pvmw->nr_pages;
++	const struct vm_area_struct *vma = pvmw->vma;
++	pgoff_t pgoff_vma_start;
  	unsigned long address;
- 	pmd_t *pmd;
- 	pte_t *pte;
- 	spinlock_t *ptl;
- 	unsigned int flags;
-+	bool pgoff_is_anon : 1;
- };
  
- #define DEFINE_FOLIO_VMA_WALK(name, _folio, _vma, _address, _flags)	\
-@@ -881,6 +882,7 @@ struct page_vma_mapped_walk {
- 		.vma = _vma,						\
- 		.address = _address,					\
- 		.flags = _flags,					\
-+		.pgoff_is_anon = folio_test_anon(_folio),		\
- 	}
+ 	/* Common case, plus ->pgoff is invalid for KSM */
+ 	if (pvmw->nr_pages == 1)
+ 		return pvmw->address + PAGE_SIZE;
  
- static inline void page_vma_mapped_walk_done(struct page_vma_mapped_walk *pvmw)
-diff --git a/mm/rmap.c b/mm/rmap.c
-index 5798427d007f..ab3f879454de 100644
---- a/mm/rmap.c
-+++ b/mm/rmap.c
-@@ -1240,6 +1240,7 @@ static bool mapping_wrprotect_range_one(struct folio *folio,
- 		.vma		= vma,
- 		.address	= address,
- 		.flags		= PVMW_SYNC,
-+		.pgoff_is_anon	= false,
- 	};
- 
- 	state->cleaned += page_vma_mkclean_one(&pvmw);
-@@ -1317,6 +1318,7 @@ int pfn_mkclean_range(unsigned long pfn, unsigned long nr_pages, pgoff_t pgoff,
- 		.pgoff		= pgoff,
- 		.vma		= vma,
- 		.flags		= PVMW_SYNC,
-+		.pgoff_is_anon	= false,
- 	};
- 
- 	if (invalid_mkclean_vma(vma, NULL))
+-	pgoff = pvmw->pgoff + pvmw->nr_pages;
++	pgoff_vma_start = vma_start_pgoff(vma);
++
+ 	address = vma->vm_start +
+-		((pgoff - vma_start_pgoff(vma)) << PAGE_SHIFT);
++		((pgoff_end - pgoff_vma_start) << PAGE_SHIFT);
+ 	/* Check for address beyond vma (or wrapped through 0?) */
+ 	if (address < vma->vm_start || address > vma->vm_end)
+ 		address = vma->vm_end;
 
 -- 
 2.55.0
