@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90949C5AC9E
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 18:52:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4688AC5AC67
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 18:52:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31F1410E37D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7D2810F295;
 	Thu,  6 Aug 2026 18:52:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dMGVl6QJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lxm3/VMj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE6110E37D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 175DB10E36A
  for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 18:52:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1786042333; x=1817578333;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AZi8HJDTm+crgHQKMLhXfFc0KldMvG3jHphyqP2sO2Q=;
- b=dMGVl6QJPWR0Q9vZJNkEtBYWrygyTVuKErHuwUgHnSg7iaP9vqS70v0+
- OLRsCYObBsDKudJ6mwpsY0em6kflGKMVa6iS2FGgabjbxQOiJ0G2UHDiB
- g2dzn4SFHBTW6WqkeR65aq0mpy8tPOyaPdOO3fhEXi2iGuMhus0+mc4yg
- nYdZl++Qmx9lgJjDz0aaQRw0ZEA4q6oXYsiYaMsZlIfNhd33MTz6Lq/g0
- NnXdBbev58qBd4b8YPfJ4/xtAQtAli2ysEG8PRAoWc9GtcnTLe7Z2MsfJ
- F7rWusQvmGyG8+RRgYV1c6kdUplvEYlWAjxXB3FcsokptEidninjT5rSp g==;
-X-CSE-ConnectionGUID: 7Urc7ByYS0q8kqwZKIYsoA==
-X-CSE-MsgGUID: C/8UVKo9RGyWkxAFASTr1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86854814"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86854814"
+ bh=8tKoK4K2TMsjthAef1faMZ2GFLbbd9Ge0EmuypAZrts=;
+ b=Lxm3/VMj3qJjb8CLnvpfqEoijvps/b4J2muqeA/qjoVS2hgVdT7tmwiY
+ jfGGDJXk/8wMA4vYd5A89lDflY6rD6Igfu2F3YeUOXgmzN8YW2GWlQM8i
+ yhZViHeH+3FD/xAoRoiWdZ3HU8CvpmMtMEN56Tb+WCyCr0xRkHn2exa4H
+ mFZRLir+R+1/bomJktSeq8kLrMgT6mFrErm2pQI3A7LTZUDaXEApMsn6Z
+ 9rjR/BaKtqqTMOLqkBU/DuaOtTYQ/XbIjG712U8w4bSTht9yJ+djfCeul
+ RJmxmniVr4bkHuO7xZ30UC3MoWendgNenS0eyHeLz9RbaLw4ufRzYZ6P9 w==;
+X-CSE-ConnectionGUID: Bzgnp4HuS966pOHJfZok4w==
+X-CSE-MsgGUID: 7dG7SRAQSTGWoNm6qN7gmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86854813"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86854813"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Aug 2026 11:52:11 -0700
-X-CSE-ConnectionGUID: O4uZg12wQiCya8Y6ZfL5jw==
-X-CSE-MsgGUID: QqeMFFLaS9CjU405YpGvww==
+X-CSE-ConnectionGUID: CI2kpMcmQtK3+IqLKqtBSA==
+X-CSE-MsgGUID: ttU+gikdT1yHtTvnWRV5YQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="266414621"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="266414623"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Aug 2026 11:52:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v9 09/12] drm/xe: Add pagefault chaining stats
-Date: Thu,  6 Aug 2026 11:51:59 -0700
-Message-Id: <20260806185202.3922432-10-matthew.brost@intel.com>
+Subject: [PATCH v9 10/12] drm/xe: Add debugfs pagefault_info
+Date: Thu,  6 Aug 2026 11:52:00 -0700
+Message-Id: <20260806185202.3922432-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260806185202.3922432-1-matthew.brost@intel.com>
 References: <20260806185202.3922432-1-matthew.brost@intel.com>
@@ -66,124 +66,169 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add GT stats to quantify pagefault chaining behavior during fault storms.
+Add a debugfs entry to dump Xe page fault queue state. The output
+includes queue geometry (entry size, total size, head/tail), per-entry
+allocation state counts, and whether each page fault worker cache is
+currently valid.
 
-Track total chained faults, faults chained directly from the IRQ
-handler, cases where IRQ chaining also drained the queue, chained faults
-that had to be requeued due to range mismatch, and cases where the last
-serviced range allowed immediate ack.
+This is intended to help debug page fault storms, chaining, and retry
+behaviour without needing tracing.
 
+Assisted-by: ChatGPT:gpt-5 # Documentation
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_stats.c       |  5 +++++
- drivers/gpu/drm/xe/xe_gt_stats_types.h | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_pagefault.c      | 19 +++++++++++++++++--
- 3 files changed, 38 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c   | 11 +++++
+ drivers/gpu/drm/xe/xe_pagefault.c | 67 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pagefault.h |  3 ++
+ 3 files changed, 81 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-index 513fe28c0e76..f2e77df0f224 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats.c
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-@@ -95,6 +95,11 @@ void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr)
- #define DEF_STAT_STR(ID, name) [XE_GT_STATS_ID_##ID] = name
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 8de78cd0aa03..eeceab4a9901 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -22,6 +22,7 @@
+ #include "xe_guc_ads.h"
+ #include "xe_hw_engine.h"
+ #include "xe_mmio.h"
++#include "xe_pagefault.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_psmi.h"
+@@ -194,6 +195,15 @@ static int sriov_info(struct seq_file *m, void *data)
+ 	return 0;
+ }
  
- static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
-+	DEF_STAT_STR(CHAIN_PAGEFAULT_COUNT, "chain_pagefault_count"),
-+	DEF_STAT_STR(CHAIN_IRQ_PAGEFAULT_COUNT, "chain_irq_pagefault_count"),
-+	DEF_STAT_STR(CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT, "chain_drain_irq_pagefault_count"),
-+	DEF_STAT_STR(CHAIN_MISMATCH_PAGEFAULT_COUNT, "chain_mismatch_pagefault_count"),
-+	DEF_STAT_STR(LAST_PAGEFAULT_COUNT, "last_pagefault_count"),
- 	DEF_STAT_STR(SVM_PAGEFAULT_COUNT, "svm_pagefault_count"),
- 	DEF_STAT_STR(TLB_INVAL, "tlb_inval_count"),
- 	DEF_STAT_STR(SVM_TLB_INVAL_COUNT, "svm_tlb_inval_count"),
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-index a7021a298e3e..ab5506f915cb 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
-@@ -10,6 +10,17 @@
++static int pagefault_info(struct seq_file *m, void *data)
++{
++	struct xe_device *xe = node_to_xe(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
++
++	xe_pagefault_print_info(xe, &p);
++	return 0;
++}
++
+ static int workarounds(struct xe_device *xe, struct drm_printer *p)
+ {
+ 	guard(xe_pm_runtime)(xe);
+@@ -285,6 +295,7 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"info", info, 0},
+ 	{ .name = "sriov_info", .show = sriov_info, },
+ 	{ .name = "workarounds", .show = workaround_info, },
++	{ .name = "pagefault_info", .show = pagefault_info, },
+ };
  
- /**
-  * enum xe_gt_stats_id - GT statistics identifiers
-+ * @XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT: Total page faults chained onto an
-+ *   in-flight fault instead of being queued separately.
-+ * @XE_GT_STATS_ID_CHAIN_IRQ_PAGEFAULT_COUNT: Page faults chained directly from
-+ *   the IRQ handler.
-+ * @XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT: IRQ-handler chained faults
-+ *   that also drained the fault queue.
-+ * @XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT: Chained faults requeued
-+ *   because their fault range did not match the fault they were chained onto.
-+ * @XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT: Faults whose range matched the last
-+ *   serviced range, allowing an immediate ack.
-+ *
-  * @XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT: Total SVM page faults handled.
-  * @XE_GT_STATS_ID_TLB_INVAL: Total GPU Translation Lookaside Buffer (TLB)
-  *   invalidations issued.
-@@ -129,6 +140,11 @@
-  * See Documentation/gpu/xe/xe_gt_stats.rst.
-  */
- enum xe_gt_stats_id {
-+	XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_CHAIN_IRQ_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT,
-+	XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT,
- 	XE_GT_STATS_ID_TLB_INVAL,
- 	XE_GT_STATS_ID_SVM_TLB_INVAL_COUNT,
+ static const struct drm_info_list pcode_info_debugfs[] = {
 diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index a8aba4aab9d0..776c4cc8c3e1 100644
+index 776c4cc8c3e1..d77a7d76b444 100644
 --- a/drivers/gpu/drm/xe/xe_pagefault.c
 +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -351,6 +351,8 @@ xe_pagefault_queue_unchain_requeue(struct xe_pagefault_queue *pf_queue,
- 	xe_assert(xe, pf->consumer.alloc_state ==
- 		  XE_PAGEFAULT_ALLOC_STATE_CHAINED);
+@@ -83,6 +83,8 @@
+  *	Entry is not independently serviced; it has been chained onto an
+  *	ACTIVE entry via consumer.next and will be acknowledged when the
+  *	leading fault completes.
++ * @XE_PAGEFAULT_ALLOC_STATE_COUNT:
++ *	Count of allocation states.
+  *
+  * The page fault queue provides stable storage for outstanding faults so the
+  * IRQ handler can chain new cache hits directly onto a worker's active fault.
+@@ -97,6 +99,7 @@ enum xe_pagefault_alloc_state {
+ 	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
+ 	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
+ 	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
++	XE_PAGEFAULT_ALLOC_STATE_COUNT		= 4,
+ };
  
-+	xe_gt_stats_incr(gt, XE_GT_STATS_ID_CHAIN_MISMATCH_PAGEFAULT_COUNT, 1);
+ static int xe_pagefault_entry_size(void)
+@@ -873,3 +876,67 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+ 
+ 	return full ? -ENOSPC : 0;
+ }
 +
- 	pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
- 	lpf = xe_pagefault_queue_add(pf_queue, pf);
- 	if (lpf) {
-@@ -407,6 +409,10 @@ static bool xe_pagefault_try_chain(struct xe_pagefault_queue *pf_queue,
- 			xe_assert(xe, pf_work->cache.pf->consumer.alloc_state ==
- 				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
- 
-+			xe_gt_stats_incr(pf->gt,
-+					 XE_GT_STATS_ID_CHAIN_PAGEFAULT_COUNT,
-+					 1);
++/**
++ * xe_pagefault_print_info() - dump page fault queue/cache debug information
++ * @xe: Xe device
++ * @p: DRM printer to emit output to
++ *
++ * Print a snapshot of the page fault queue state for debugging. The output
++ * includes queue parameters (entry size, total size, head/tail), a histogram
++ * of per-entry allocation state values, and the validity of each per-worker
++ * page fault cache.
++ *
++ * This function is intended for debugfs and similar diagnostics. It acquires
++ * the page fault queue spinlock internally to serialize against IRQ-side
++ * producers and the worker consumer path, so callers must not hold the queue
++ * lock.
++ */
++void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p)
++{
++	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
++	struct xe_pagefault_work *pf_work;
++	static const char * const alloc_state_names[] = {
++		[XE_PAGEFAULT_ALLOC_STATE_FREE] = "free",
++		[XE_PAGEFAULT_ALLOC_STATE_QUEUED] = "queued",
++		[XE_PAGEFAULT_ALLOC_STATE_CHAINED] = "chained",
++		[XE_PAGEFAULT_ALLOC_STATE_ACTIVE] = "active",
++	};
++	u32 i, counts[XE_PAGEFAULT_ALLOC_STATE_COUNT] = {};
 +
- 			pf->consumer.alloc_state =
- 				XE_PAGEFAULT_ALLOC_STATE_CHAINED;
- 			pf->consumer.next = pf_work->cache.pf->consumer.next;
-@@ -582,8 +588,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		bool invalidated = false;
- 
- 		/* Last fault same address, ack immediately */
--		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid))
-+		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid)) {
-+			xe_gt_stats_incr(gt, XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT, 1);
- 			goto ack_fault;
++	/* Driver load failure guard / USM not enabled guard */
++	if (!pf_queue->data)
++		return;
++
++	guard(spinlock_irq)(&pf_queue->lock);
++
++	drm_printf(p, "pagefault size: %u\n", xe_pagefault_entry_size());
++	drm_printf(p, "pagefault queue size: %u\n", pf_queue->size);
++	drm_printf(p, "pagefault queue head: %u\n", pf_queue->head);
++	drm_printf(p, "pagefault queue tail: %u\n", pf_queue->tail);
++
++	for (i = 0; i < pf_queue->size; i += xe_pagefault_entry_size()) {
++		struct xe_pagefault *pf = pf_queue->data + i;
++
++		if (pf->consumer.alloc_state >=
++		    XE_PAGEFAULT_ALLOC_STATE_COUNT) {
++			drm_printf(p, "pagefault[%u] corrupted alloc_state=%u\n",
++				   i, pf->consumer.alloc_state);
++			continue;
 +		}
++
++		counts[pf->consumer.alloc_state]++;
++	}
++
++	for (i = 0; i < XE_PAGEFAULT_ALLOC_STATE_COUNT; ++i)
++		drm_printf(p, "pagefault queue %s count: %u\n",
++			   alloc_state_names[i], counts[i]);
++
++	for (i = 0, pf_work = xe->usm.pf_workers;
++	     i < xe->info.num_pf_work; ++i, ++pf_work) {
++		if (pf_work->cache.start == XE_PAGEFAULT_CACHE_START_INVALID)
++			drm_printf(p, "pagefault work[%u] cache invalid\n", i);
++		else
++			drm_printf(p, "pagefault work[%u] cache valid\n", i);
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
+index feaf2a69674a..e9c5d1f03760 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.h
++++ b/drivers/gpu/drm/xe/xe_pagefault.h
+@@ -8,6 +8,7 @@
  
- 		err = xe_pagefault_service(pf);
+ #include "xe_pagefault_types.h"
  
-@@ -841,8 +849,15 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
- 			lpf->consumer.next = NULL;
++struct drm_printer;
+ struct xe_device;
+ struct xe_gt;
+ struct xe_pagefault;
+@@ -18,6 +19,8 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
  
- 			if (xe_pagefault_try_chain(pf_queue, lpf)) {
--				if (empty)
-+				xe_gt_stats_incr(pf->gt,
-+						 XE_GT_STATS_ID_CHAIN_IRQ_PAGEFAULT_COUNT,
-+						 1);
-+				if (empty) {
-+					xe_gt_stats_incr(pf->gt,
-+							 XE_GT_STATS_ID_CHAIN_DRAIN_IRQ_PAGEFAULT_COUNT,
-+							 1);
- 					xe_pagefault_queue_advance(pf_queue);
-+				}
- 			} else {
- 				int work_index = xe_pagefault_work_index(xe);
+ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
  
++void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p);
++
+ #define XE_PAGEFAULT_END_ADDR_MASK	(~0xfffull)
+ 
+ /**
 -- 
 2.34.1
 
