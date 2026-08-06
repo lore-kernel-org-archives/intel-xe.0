@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16E04C56205
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 12:07:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A70CC55ABF
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 12:09:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBBFA10F1BD;
-	Thu,  6 Aug 2026 12:07:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2F9A10F1B2;
+	Thu,  6 Aug 2026 12:09:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/kcIvin";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CO1rG1p8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E896F10F1BD
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 12:07:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82F21892F6
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 12:09:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786018024; x=1817554024;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yJJLrkJcp9YOktZUKzjDxbySQ83N3uJHQor/BtNEXiQ=;
- b=U/kcIvin/P46kH6wnz0VXX4P3qOejMDOubN6EchI52h1M+ivN4C4JjqF
- zddltnlEY6P7oqYve3228n/ZY/l2++eYA5Q09WMSeRybMoV4XPwyGnO91
- SV6Wsg9kWFoIJtmarRt5wOfEt8wl6nnjz4cd1ncxCA11Oq8tnjPUIouCL
- yV4fDLakE4IomSukiPqjTfgR3yhl2FLZT4myK5pV/lcH/AwVjBjjz6gUo
- QYUgiOr0S4qL4QY5VhY8oRBnrNc5if6FKCJqFjRUhsZzq4+lA4UxykETB
- 0IuFTWz3mlzmlZ1DB68L6x/ui6K6xvaeRJdOeOxMR98BtAdbPzJzvju9u A==;
-X-CSE-ConnectionGUID: er0KAcIVRl++CLQD5DcqIg==
-X-CSE-MsgGUID: 24z7zJTiRiKBgW/yHlnWrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="86459580"
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="86459580"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 05:07:03 -0700
-X-CSE-ConnectionGUID: F5aJ6hwISFu7wMFCVshx9Q==
-X-CSE-MsgGUID: 69p7WiG5TkqXALg0B6u/ZQ==
+ t=1786018177; x=1817554177;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=a/l0H9iKu++0TKGsPqsrEfS8qvmDtZ5RjpdBq6hMcqM=;
+ b=CO1rG1p8Ci27DCthHMNR9ipdsILSGeTnat1zuPdBmXHwNriCGV6Qk+Df
+ z32YNHGmFWw77w1Wx+dGEnKrEc3J/yAY40NHPzXVRvEDYTk7W9p16Knro
+ u/8bufbq48yoH83Y+eFTqpoCQNfdYJ9Ne/Ty2GqFGGGp4kpkV9bKja5vv
+ TpJyG2Iqzz0xKvzAvYNjkBpzNHktt/4wyYGuKWcA2UBD63nLC8gsJYIUI
+ kZZWCLogcHGtmttyrQOQGuSQjJAy2vd7Sko22XTgjJxcIF6ursg1xT7tX
+ 4dkAJPtiILUY6eFCdzEgdBXXgQ+/AaTIZ63iZsdRsGFZvL7Ned7LWsuFd g==;
+X-CSE-ConnectionGUID: iKm/o6RwTNaVQpUcQt+WeQ==
+X-CSE-MsgGUID: VegRZk3RQYiFX0akMoWZWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="96961489"
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="96961489"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2026 05:09:37 -0700
+X-CSE-ConnectionGUID: Qd0Cdh/ZQESN3SbC18pWzQ==
+X-CSE-MsgGUID: cCdS0OS4SzmZ9biT472HdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="260826795"
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="260320982"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 05:07:00 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2026 05:09:32 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,15 +48,11 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v6 2/2] drm/xe/sysctrl: Add helper to check oCode firmware
- readiness
-Date: Thu,  6 Aug 2026 05:06:51 -0700
-Message-ID: <20260806120650.2068636-6-anoop.c.vijay@intel.com>
+Subject: [PATCH v6 0/2] drm/xe/sysctrl: Add helper to query application status
+Date: Thu,  6 Aug 2026 05:09:30 -0700
+Message-ID: <20260806120930.2072613-4-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260806120650.2068636-4-anoop.c.vijay@intel.com>
-References: <20260806120650.2068636-4-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,78 +70,60 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add xe_sysctrl_is_oobmsm_fw_ready(), a convenience wrapper around
-xe_sysctrl_check_app_status() to check oCode application readiness.
+This series adds helpers to query the readiness state of individual
+System Controller (sysctrl) firmware applications via the
+get_app_status_by_id mailbox command.
 
-Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
----
-v6:
-- New patch — split oCode application readiness helper out of the
-  original patch into its own commit
----
- drivers/gpu/drm/xe/xe_sysctrl.c               | 19 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |  1 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  2 ++
- 3 files changed, 22 insertions(+)
+xe_sysctrl_check_app_status() maps an xe_sysctrl_app_id to its firmware
+application identifier and returns the reported application state:
+not supported, communication failure, booted, or fully initialized.
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 35b8b8b85a48..8eac58647265 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -175,6 +175,25 @@ xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
- 	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
- }
- 
-+/**
-+ * xe_sysctrl_is_oobmsm_fw_ready() - Check if oCode firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if oCode firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if oCode is initialized or sysctrl is not present, false otherwise
-+ */
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe)
-+{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_OCODE);
-+
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+}
-+
- /**
-  * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is fully initialized
-  * @xe: xe device instance
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index 8dc576796890..b69a3f474236 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -20,6 +20,7 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
- int xe_sysctrl_init(struct xe_device *xe);
- void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
- void xe_sysctrl_pm_resume(struct xe_device *xe);
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe);
- bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 5e39d2a9c2b0..b507e1553cbb 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -95,9 +95,11 @@ enum xe_sysctrl_fw_status {
- /**
-  * enum xe_sysctrl_app_id - Known System Controller application identifiers
-  *
-+ * @XE_SYSCTRL_APP_OCODE: oCode application (firmware ID 12)
-  * @XE_SYSCTRL_APP_DIAG: diag application (firmware ID 13)
-  */
- enum xe_sysctrl_app_id {
-+	XE_SYSCTRL_APP_OCODE	= 0x0C,
- 	XE_SYSCTRL_APP_DIAG	= 0x0D,
- };
- 
+Convenience wrappers are added on top of this helper to check
+readiness of the Diagnostics (diag) and oCode firmware applications.
+The initial consumers of these wrappers are added in the series
+https://patchwork.freedesktop.org/series/171728/
+
+---
+v2: (Badal)
+- Return SysCtrl firmware application states instead of errno for
+  application lifecycle conditions
+
+v3: (Riana, Badal)
+- Replace string-based app identifiers with enum xe_sysctrl_app_id
+- Use get_app_status_by_id (opcode 0x05)
+- Move mailbox definitions to xe_sysctrl_mailbox_types.h
+- Return enum xe_sysctrl_fw_status consistently
+- Map communication failures to COMM_FAILURE
+- Add INITIALIZED state and status helpers
+- Fix Diagnostics typo
+
+v4: (Anshuman)
+- Make xe_sysctrl_check_app_status() internal
+- Remove unused app identifier
+
+v5: (Anshuman)
+- Rename OOBMSM status helper to use xe_sysctrl_* prefix
+- Remove xe_is_diag_fw_ready() helper
+
+v6: (Riana)
+- Use xe_sysctrl_create_command() helper instead of manual FIELD_PREP
+  header packing
+- Rename xe_sysctrl_get_app_status_by_id_{req,resp} to shorter names
+- Use hex constant for application ID
+- Split oCode application readiness helper into its own patch
+- Add xe_sysctrl_is_diag_fw_ready() helper; consumer lands in the RAS
+  error-injection series
+---
+
+Anoop Vijay (2):
+  drm/xe/sysctrl: Add helper to query application status
+  drm/xe/sysctrl: Add helper to check oCode firmware readiness
+
+ drivers/gpu/drm/xe/xe_sysctrl.c               | 82 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.h               |  2 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 65 +++++++++++++++
+ 3 files changed, 149 insertions(+)
+
 -- 
 2.43.0
 
