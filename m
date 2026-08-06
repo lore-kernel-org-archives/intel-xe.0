@@ -4,148 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F7D3C56205
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 17:24:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E48ACC5AC7C
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 17:25:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE3B610E360;
-	Thu,  6 Aug 2026 17:23:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C05410F26F;
+	Thu,  6 Aug 2026 17:25:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cRTorpeT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RN+RkDW5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F3F610E360
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 17:23:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B736010F268;
+ Thu,  6 Aug 2026 17:25:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786037038; x=1817573038;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=RzdBta5dD29846FHY2GJHdm/6c1i2at3O4c6wAcNbXE=;
- b=cRTorpeTO+AGR3e778iWyKrqQtO58l+wu3v6Xium0B9a75uCa+DZTged
- 7Jxba+lnmAyTfYuJe3BrgJUeUOPaiLwn1euUvjnVE3nVHlGnOOv4E6iBI
- rx1PACHxLy6qpWHhGnuBlxjz4wsyIVeRY6oG6P6rEujHuAYICU4mOBRAe
- PBUGYB7hCZ06AmKPAmgzlapijQsymJMS5ORSXtHebWj1MMliBe3Ziwz1k
- oH9mUZ0engbgJ9Ccxbv2SUXKKpPtPr77rKzdhSDygufSe9HQ8D+zEFOIo
- YWs1L4W8gk8YTf9ypOWxhHnZAUKNgAUrAg7QHRXfsoOfUvMNmEZO8+w8u A==;
-X-CSE-ConnectionGUID: hWUzA2niRF6STWc+UgTYmg==
-X-CSE-MsgGUID: uiXkVzomQc+6I6vnhP0Q+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="96993061"
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="96993061"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 10:23:57 -0700
-X-CSE-ConnectionGUID: ky1B0agvRuebbucoycAyjw==
-X-CSE-MsgGUID: cA7ImDsOS1mAlF8iGKIMCw==
+ t=1786037102; x=1817573102;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=CSyxaGWkDPBa2iXwn+2jUVzTZZ6jvOj+P1sKL5WS39E=;
+ b=RN+RkDW5+k6UOgHVvkG8eq4mrgUTPGI7pDWMmoDa/YeC4YhL/mIBLzxY
+ ftDPui4lG1kqqHWz+4NLHk+oHUCCrun2O0e3QLdh4Yhs0tDHVpIRuInqL
+ kp+KMWPOPN36Vv1g5UhmqXzl9IEJ3mwk0Va+r8uSCcyrETWT2HgH6FIU9
+ uPluO9Ej69b7Wk2auelQKUf+TL1zheRMzW7g7umKzTWrEI/j6L/gtV5tb
+ eu1Qr7fhN6zjY/Zh0OD7N9ituKPgRFSql0+iMFXd462fb3iajSB4bB5Im
+ +m+IP6hF1ekTS48kSn355q5SxUgcsnykvDNioSsLlXk3/eRoNhJr/271e Q==;
+X-CSE-ConnectionGUID: CrIPEJGcSxKSCxeCwxa68w==
+X-CSE-MsgGUID: EIPABhsKSEKj28t3/tcO7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86515739"
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="86515739"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2026 10:25:01 -0700
+X-CSE-ConnectionGUID: KMz5fDKhQyCSpSU//5ISOg==
+X-CSE-MsgGUID: 20dknRlhS0i81gS1J+D53A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="285536631"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 10:23:57 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 10:23:56 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 6 Aug 2026 10:23:56 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.10) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 10:23:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w1jnTAuFTTgVUaPq9teKaNFLdpBFx5a6/lCMUVhVK0wZgsIP5GXwSM36r1Odyk2xmNKyKWQZc/RuMFNuXDwySwLzYbc21kbOuPESC65dKLS2x0GZbMQYx3/AnhimxWYgE386HNK301/puUo2rvHYZox2bj4r0Yf4X/Y6acgNL7iCG8fUqREo/8R2DOd1UjYh8ZOQZvxpsJF3DdsrKB4KMZNakj7liknc+kyTuYkWP1KfNDpclNiLtG3CyfVJMAxm8BsWTR31VHO0akQRyG/HCZCIawfDqS+f/zA6SUX8/P7bHmQN4XACor2fPkgIgEuxhXdMKC/XCy8ZhCYStBbTrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b+ql+XgAT0PCroD6QbChYOgNDaT7WQhIKOEP8j057gA=;
- b=AHy9tBMUBeTNuB9qkDmiwQuA8YuDB50pgXjjgsUekEXhE9DAqgmo6sfql0abKtLPwlF9gS5VgUrcnVJOdpZGKVQJgjYW5p/1RTB/KPqzQ2uldhOVdhqyN7dJMB21F5/whrh/v/fpG7ManGzU3tc1GvYcqt/FMXOwp+9RFx62b7/2CjvvSFZZOcEs5exL2xxGAXoNjdXFnXG/G+HMd/UzQmrW1MpH40EUg44esxHVHz5t6zNgGSY7MZirTtrt2iZ1EQLoTttc1QMEFH5UomdOdx7ZnIwcgkWbKglzcNFYAEbq2evUM3V+dy9zbUF4YDyTVicb18/JKO1iwXpU916n5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by IA1PR11MB8198.namprd11.prod.outlook.com (2603:10b6:208:453::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.19; Thu, 6 Aug
- 2026 17:23:54 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%7]) with mapi id 15.21.0292.013; Thu, 6 Aug 2026
- 17:23:53 +0000
-Date: Thu, 6 Aug 2026 13:23:49 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
- <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>,
- <soham.purkait@intel.com>, <michael.j.ruhl@intel.com>
-Subject: Re: [PATCH] drm/xe/xe_debugfs: Expose G-State and PCIe link state
- debugfs for CRI
-Message-ID: <anTDJb2uaydZzxD_@intel.com>
-References: <20260805102226.1764-1-karthik.poosa@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260805102226.1764-1-karthik.poosa@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0064.namprd05.prod.outlook.com
- (2603:10b6:a03:332::9) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="266013576"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.11])
+ ([10.245.245.11])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2026 10:25:00 -0700
+Message-ID: <cabc4308-ceca-4d1e-b6c5-3838498cc3a2@intel.com>
+Date: Thu, 6 Aug 2026 18:24:57 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|IA1PR11MB8198:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c580559-bcf4-4005-94d8-08def3df7d0f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|22082099003|18002099003|11063799006|56012099006|6133799003|10067099003;
-X-Microsoft-Antispam-Message-Info: h+GaMhkj4APtOorXbFijybd+8IDBQG4I5O1/XVjHOSnRLitBQnbudEkc3PBAkMa4CnuO1mKaqV+s7FMuza3ZWdyjO2jI92hDodvVa35XU7GRYEy/M02AHwfHAZ1C6F4u69ohNnL9184t585Glp3HN0whj0VjcEFqWST0OvoUc0UZC/j9+LjCzLYLqR1OoHiCtHgmMzkJr+OVLp+VtIOYQ6phjDuG7IwReJkQcf1MEnQFR/viZ0R5YdHTrW8p1UIdzuLO/rlUXA+P67MlykiruhF2OyHDSuqUk0jZ4pNW/eG4iYcXjHzdfmqZnJ6zFzKf0YPa8GmB03+OtKWCc4CK7KX91CKF0CZyu/n4UCGbSRnLhq93ftL4ld9SBb8iZziYEBQXV7Z7dUDp+dFf32Z3FpY7+TB+Qv0KWR+bI74E4h/Aeuqh6DXwEQwFNIYYZEO4wExbOsbuZngZvoJMXl1BoHIxLNGDp7twP7Z1IsQQKDXkLID2ou4BEdxMrLbN8qXATS5xPJzYNORGfgwx7nCHXbqf0sDyuxmx/sPQTSdiDZlgcS/3oaNv64N0tJgwMvnghg+4ale74hDgWFA+0rOAh1MA64umaAtu5cbeSeV/nm8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(22082099003)(18002099003)(11063799006)(56012099006)(6133799003)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?eBs2ruBojRcpwgO4sWrt2oqxDhE37O5KlZNgW0zDi9Ee3oPKiAiinPYyDQDc?=
- =?us-ascii?Q?VzugbhZKe5/t3blJY67+wSJ0sGH91CO+b/PXy/9oQYVJ8Lr/0nUUOQdS5zVN?=
- =?us-ascii?Q?S45hhT9IkQDlxYRe18nL2aD6GIFsAujidBtVDy7Z/SA/ab+M3RrkB4EBYWtf?=
- =?us-ascii?Q?osj2Sfi3SVPQUkLt+lfPk6NYbJcoGgin/Mc5uGeLacZJo7tkcycinz2DDBob?=
- =?us-ascii?Q?iA+mVa3OxDDiEVjMuArQBAyUeH2O95EKtv8F6vmIXcXVmKUHMh58g7Hp2/Gm?=
- =?us-ascii?Q?z6i/iOR80VSsg7QJ2hs0g6ETq7CMA2BKLCx+GlP18a4B6Spl61jEGUGM/evl?=
- =?us-ascii?Q?tpMjiUfRSxgaLaYTz9kFlHTMpxqv88tH/wyPvf3ZERhZjlbM/4zeF69Tz4/3?=
- =?us-ascii?Q?+ZX/02n6+Lbf//nC8Jy+XQrIrQzbBbM7c8nU8BjK63FnnmUYZh4H5uUqqobh?=
- =?us-ascii?Q?sW5QjkbIxoDjCtxJGmmGerZuguoIphm28OhSO/v/NBOfpiLHh27EbDpLAPmJ?=
- =?us-ascii?Q?MO+MOzwDDNXI9ClJaXTcFqqpy0FdOdD06SP2306U2PU5ZN7YVoUwlOSAtYc6?=
- =?us-ascii?Q?RwuW1GnDITaLDWtdzTqpbkwEN935tQuLBVQv0kooMoHXlyaLlpBBQIxaG1U+?=
- =?us-ascii?Q?5hFOFvyUIbjY0W5NGqjXxFatJq7FMR/oCjL+8PTf3qtaTv//dCK3yLz0GF58?=
- =?us-ascii?Q?w1vOmAzTiOVGHHEUzJpgupMwLTSSyA/SxE/3jsMzqUrbb7DWkp5KaaDzWwFc?=
- =?us-ascii?Q?qeTM513N3WJyr6Akx4hHrtPP/dXpKdi5FqgdZQD+HEV+i0vsaNVwD1Rm0Aj7?=
- =?us-ascii?Q?ek9c5x6U6P+GHxeP4jPP3GiAeMwoy/zhs8CVzzigl9rJLNc9UxiMx1dycoE0?=
- =?us-ascii?Q?s2UfnY4RXOUmoFbHlpbiMHPFspMR+lnSj2Y5/DEfkm0q3eXJCvekyw2yvO57?=
- =?us-ascii?Q?bppO59tRrUP2+hlHdlRIgttZPKSWtKRdi/TbLKHCYzM2kD/P9lDCeIN0V6Ls?=
- =?us-ascii?Q?15P7VG7KImTsIwBDlZHmwwpRApcuKAqbqP6XOAVLhl11QqeAQStsJTEpqP52?=
- =?us-ascii?Q?vEMBqxDEKKugpP2/NKxVwbDUVKLpF+JDlD+0/SYKT1H43cHHiEA+n/OiLShR?=
- =?us-ascii?Q?+KnAOawhy0DceZYzd4Bz2+ceLh+Hu363TZZ0bDulN1ZnyAOmD4Zqt+ELdfQ/?=
- =?us-ascii?Q?WNz3L0qRVr2PWQymO3j3jv35J3BgflgQJbR4Ran6g2eLjDaMP9jW5+hli8l9?=
- =?us-ascii?Q?LF7/724Af8eDgi6V0Z1omFUt37riPR2ndhAxKEScVBN7LaTG1ouK9Qr0zwei?=
- =?us-ascii?Q?nWUBkENxy36aLBI6BOTuI++AE7RR/dGzMKQQhinLv7k/dNFawDCVoLLtkdFP?=
- =?us-ascii?Q?cuI5ASc1eWXRP9tQGYV8abgcTdZhS7MxQSVPXdaOYYKduA/DIL7yQIjhICvZ?=
- =?us-ascii?Q?Bf6OS1XtoMgGfACwtkz6w90PQJ9fr39iL7HqzUDTFk9wJH28TN+EWLmGYINf?=
- =?us-ascii?Q?CVANJ79c/eEYU4rptDjUPbJpgmklybl6t2CR7/W2nUvVrKZVmjarLCZgQfYw?=
- =?us-ascii?Q?sgnOl3X//z111H3jyxVxihWmkGbfEVLewFBwd46sPiKv1kuWw5nuzy8zHBzS?=
- =?us-ascii?Q?Th9MPPGclQlbE2zr9uXYVNeKgdER5BOsETaSPDSDUoVOnZRdhDfeqv0UCIDa?=
- =?us-ascii?Q?bEmiV9T0FWyAaTFFh8GPEWT4IBGMmNhLBHVE+EWWETLLpzLfcE5QhWQLPhtC?=
- =?us-ascii?Q?uRZCjVs+yQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: oqlE8YWH/qzy5TP8MlNYIgSLA0Zm79FmN8r+jwItTbwIEFPNR49Hr6SdNC5lJj8QPyGfPBM26VNI+WOOo4z4MMAfewtHuCGASSUHO4mxzzGrEaTR6B13WZRr4KeqaO5amAIvK0qQidKmO1jo2SIfDqT1K1jV1cNdJb0la4aNIyleKiiDP09CYVYZuM7bTNf+aXkNQsn8X9oBtTS2ECg9L+rd6XIQjmi9WgojuUeed5xPrLQucdTKCo0/foPiPDXXr71RyVaWJaOyMiM3IGplt0qzXzkBa9Acp4bNvUri7tJVKEJ4YTB3263TzJWNZlNQ398BExQHYKHMpBgMz0ho/g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c580559-bcf4-4005-94d8-08def3df7d0f
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2026 17:23:53.7381 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /RtT8P7AFir3ENV7Ui6uoM/fFoI1loU4xqt4V3mfEHWLR+yEypE0eib87Y8u6l1Uql2lCDCvmjzXTWw/V/RfQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8198
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/2] gpu/buddy: replace dual-tree/force_merge with
+ decoupled dirty tracker
+From: Matthew Auld <matthew.auld@intel.com>
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20260731070741.2654251-1-Arunpravin.PaneerSelvam@amd.com>
+ <7d2e8cbf-ff8e-491c-8a59-d05025df8565@intel.com>
+Content-Language: en-GB
+In-Reply-To: <7d2e8cbf-ff8e-491c-8a59-d05025df8565@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,103 +74,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 05, 2026 at 03:52:26PM +0530, Karthik Poosa wrote:
-> Expose G-State and PCIe link state through debugfs for CRI. The PMT
-> offsets for these metrics are identical to those used on BMG, so
-> remove the BMG_ prefix from the corresponding offset macros to make
-> them platform-agnostic.
+On 06/08/2026 17:45, Matthew Auld wrote:
+> On 31/07/2026 08:07, Arunpravin Paneer Selvam wrote:
+>> The current buddy allocator maintains separate clear_tree[] and
+>> dirty_tree[] rbtrees per order, preventing coalescing between cleared
+>> and dirty buddies. Under mixed workloads, this creates a merge barrier:
+>> adjacent buddies frequently end up split across trees, forcing reliance
+>> on __force_merge() during allocation.
+>>
+>> __force_merge() performs an O(N x max_order) scan under the VRAM manager
+>> lock, leading to allocation stalls and failures for large contiguous
+>> requests even when sufficient total free memory is available.
+>>
+>> Solution
+>>
+>> Replace the dual-tree design with:
+>> - A single free_tree[order] rbtree for dirty and mixed free blocks
+>>    (fully cleared free blocks float outside this tree)
+>> - A lightweight out-of-band dirty tracker (gpu_dirty_tracker)
+>>
+>> Fully cleared free blocks are tracked outside the buddy trees using an
+>> augmented interval rbtree, enabling O(log E) lookup of the largest
+>> cleared extents.
+>>
+>> Buddy coalescing is now unconditional in __gpu_buddy_free(), regardless
+>> of clear/dirty state. This removes the merge barrier and eliminates the
+>> need for __force_merge().
+>>
+>> Benefits
+>>
+>> - Correct high-order allocations after mixed clear/dirty workloads
+>> - Elimination of O(N x max_order) merge cost from the allocation path
+>> - O(log E) cleared-extent lookup replacing O(N) scans
+>> - Predictable allocation latency under fragmentation
+>> - Reduced complexity with a single tree per order
+>>
+>> Test:
+>> dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000
+>>
+>> Below data is from /sys/kernel/debug/dri/1/amdgpu_vram_mm:
+>>
+>> Base (dual-tree), before VKCTS test:
+>>    order- 6 free:   6 MiB,  blocks: 26
+>>    order- 5 free:   1 MiB,  blocks: 15
+>>    order- 4 free: 960 KiB,  blocks: 15
+>>    order- 3 free:   5 MiB,  blocks: 171
+>>    order- 2 free:   2 MiB,  blocks: 176
+>>    order- 1 free:   1 MiB,  blocks: 165
+>>    order- 0 free:  16 KiB,  blocks: 4
+>>
+>> Base (dual-tree), after VKCTS test:
+>>    order- 6 free: 768 KiB,  blocks: 3
+>>    order- 5 free: 499 MiB,  blocks: 3999
+>>    order- 4 free: 250 MiB,  blocks: 4001
+>>    order- 3 free: 129 MiB,  blocks: 4157
+>>    order- 2 free:  65 MiB,  blocks: 4161
+>>    order- 1 free:  63 MiB,  blocks: 8138
+>>    order- 0 free:  20 KiB,  blocks: 5
+>>
+>> Dirty tracker, before VKCTS test:
+>>    order- 6 free:   4 MiB,  blocks: 19
+>>    order- 5 free:   2 MiB,  blocks: 18
+>>    order- 4 free: 704 KiB,  blocks: 11
+>>    order- 3 free:   5 MiB,  blocks: 168
+>>    order- 2 free:   2 MiB,  blocks: 174
+>>    order- 1 free:   1 MiB,  blocks: 167
+>>    order- 0 free:  32 KiB,  blocks: 8
+>>
+>> Dirty tracker, after VKCTS test:
+>>    order- 6 free:   4 MiB,  blocks: 19
+>>    order- 5 free:   2 MiB,  blocks: 18
+>>    order- 4 free: 704 KiB,  blocks: 11
+>>    order- 3 free:   5 MiB,  blocks: 168
+>>    order- 2 free:   2 MiB,  blocks: 174
+>>    order- 1 free:   1 MiB,  blocks: 167
+>>    order- 0 free:  28 KiB,  blocks: 7
+>>
+>> v2:
+>>   - Code-style cleanup and minor refactoring
+>>   - Renamed locals for clarity
+>>
+>> v3:
+>>   - Keep cleared blocks inside free_tree[] instead of floating them.
+>>   - Add subtree_has_dirty rbtree augment for O(log N) dirty-first walk.
+>>
+>> v4:
+>>   - Fixed checkpatch warnings.
+>>   - Optimized gpu_buddy_reset_clear() to a single post-order walk that
+>>     flips block headers and recomputes the rbtree augment in one pass.
+>>   - Propagate subtree_max_size top-down in insert_extent() so ancestors
+>>     are not left with stale values on no-rotation inserts. (sashiko)
+>>   - Drop the whole extent in gpu_dirty_tracker_mark_dirty() when the
+>>     inside-split allocation fails, avoiding a stale clear claim. 
+>> (sashiko)
+>>   - Make gpu_dirty_tracker_find() alignment-aware and fall back to the
+>>     dirty tree on steered failure to avoid spurious -ENOSPC. (sashiko)
+>>
+>> v5:
+>>   - Track dirty extents instead of cleared ones: steer dirty allocs onto
+>>     tracked dirty windows and pick clear allocs via a free-tree augment,
+>>     avoiding clear-memory wastage by keeping cleared free blocks 
+>> untouched
+>>     during dirty allocation.
+>>
+>> v6:
+>>   - Make __alloc_range_bias() return the highest/right-most address by
+>>     default, establishing top-down as the intended placement for
+>>     range-biased allocations.
+>>   - Honour GPU_BUDDY_CLEAR_ALLOCATION in __alloc_range_bias() by steering
+>>     the descent towards clear subtrees for non-top-down clear
+>>     requests. (sashiko)
+>>   - Skip dirty-tracker steering for offset-aligned requests so they keep
+>>     their min_block_size alignment. (sashiko)
+>>   - sashiko reported that the __GFP_NOFAIL dirty-extent allocations on
+>>     the free path could deadlock during memory reclaim, since that is a
+>>     GFP_KERNEL allocation on the free path; move to a per-tracker
+>>     mempool so extent nodes are guaranteed without __GFP_NOFAIL.
+>>     (sashiko)
+>>   - Derive each free block's clear/dirty class from the blocks already
+>>     in hand on split, free, alloc, trim and init instead of querying the
+>>     dirty tracker, removing the tracker lookups from the hot paths.
+>>
+>> v7:
+>>   - Preserve mixed-block clear state in __gpu_buddy_free() when a mixed
+>>     split child is re-merged after an undone split. (sashiko)
+>>   - Prefer a fully-clear block over a mixed one of the same order via a
+>>     single ordered clear-state max augment on free_tree[].
+>>
+>> Assisted-by: Claude:claude-opus-4-8
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 > 
-> Also enable these debugfs support on all dGPU platforms from BMG onward.
+> <snip>
 > 
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_pmt.h | 20 ++++++++++----------
->  drivers/gpu/drm/xe/xe_debugfs.c  | 20 ++++++++++----------
->  2 files changed, 20 insertions(+), 20 deletions(-)
+>> @@ -620,13 +1100,18 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
+>>   void gpu_buddy_free_block(struct gpu_buddy *mm,
+>>                 struct gpu_buddy_block *block)
+>>   {
+>> +    u64 size = gpu_buddy_block_size(mm, block);
+>> +    u64 offset = gpu_buddy_block_offset(block);
+>> +
+>>       gpu_buddy_driver_lock_held(mm);
+>>       BUG_ON(!gpu_buddy_block_is_allocated(block));
+>> -    mm->avail += gpu_buddy_block_size(mm, block);
+>> -    if (gpu_buddy_block_is_clear(block))
+>> -        mm->clear_avail += gpu_buddy_block_size(mm, block);
+>> -    __gpu_buddy_free(mm, block, false);
+>> +    mm->avail += size;
+>> +    if (!gpu_buddy_block_is_clear(block))
+>> +        gpu_dirty_tracker_mark_dirty(&mm->dirty, offset, size);
+>> +
+>> +    gpu_buddy_sync_clear_avail(mm);
+>> +    __gpu_buddy_free(mm, block);
+>>   }
+>>   EXPORT_SYMBOL(gpu_buddy_free_block);
+>> @@ -641,9 +1126,9 @@ static void __gpu_buddy_free_list(struct 
+>> gpu_buddy *mm,
+>>       list_for_each_entry_safe(block, on, objects, link) {
+>>           if (mark_clear)
+>> -            mark_cleared(block);
+>> +            block->header |= GPU_BUDDY_HEADER_CLEAR;
+>>           else if (mark_dirty)
+>> -            clear_reset(block);
+>> +            block->header &= ~GPU_BUDDY_HEADER_CLEAR;
+>>           gpu_buddy_free_block(mm, block);
 > 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
-> index a62ab05c6b4c..54df1c8a9f8f 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_pmt.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
-> @@ -20,15 +20,15 @@
->  #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
->  #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
->  
-> -#define BMG_MODS_RESIDENCY_OFFSET		(0x4D0)
-> -#define BMG_G2_RESIDENCY_OFFSET		(0x530)
-> -#define BMG_G6_RESIDENCY_OFFSET		(0x538)
-> -#define BMG_G7_RESIDENCY_OFFSET		(0x4B0)
-> -#define BMG_G8_RESIDENCY_OFFSET		(0x540)
-> -#define BMG_G10_RESIDENCY_OFFSET		(0x548)
-> -
-> -#define BMG_PCIE_LINK_L0_RESIDENCY_OFFSET	(0x570)
-> -#define BMG_PCIE_LINK_L1_RESIDENCY_OFFSET	(0x578)
-> -#define BMG_PCIE_LINK_L1_2_RESIDENCY_OFFSET	(0x580)
-> +#define MODS_RESIDENCY_OFFSET		(0x4D0)
-> +#define G2_RESIDENCY_OFFSET		(0x530)
-> +#define G6_RESIDENCY_OFFSET		(0x538)
-> +#define G7_RESIDENCY_OFFSET		(0x4B0)
-> +#define G8_RESIDENCY_OFFSET		(0x540)
-> +#define G10_RESIDENCY_OFFSET		(0x548)
-> +
-> +#define PCIE_LINK_L0_RESIDENCY_OFFSET	(0x570)
-> +#define PCIE_LINK_L1_RESIDENCY_OFFSET	(0x578)
-> +#define PCIE_LINK_L1_2_RESIDENCY_OFFSET	(0x580)
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index 8de78cd0aa03..9cc104046756 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -241,12 +241,12 @@ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
->  		u32 offset;
->  		const char *name;
->  	} residencies[] = {
-> -		{BMG_G2_RESIDENCY_OFFSET, "Package G2"},
-> -		{BMG_G6_RESIDENCY_OFFSET, "Package G6"},
-> -		{BMG_G7_RESIDENCY_OFFSET, "Package G7"},
-> -		{BMG_G8_RESIDENCY_OFFSET, "Package G8"},
-> -		{BMG_G10_RESIDENCY_OFFSET, "Package G10"},
-> -		{BMG_MODS_RESIDENCY_OFFSET, "Package ModS"}
-> +		{G2_RESIDENCY_OFFSET, "Package G2"},
-> +		{G6_RESIDENCY_OFFSET, "Package G6"},
-> +		{G7_RESIDENCY_OFFSET, "Package G7"},
-> +		{G8_RESIDENCY_OFFSET, "Package G8"},
-> +		{G10_RESIDENCY_OFFSET, "Package G10"},
-> +		{MODS_RESIDENCY_OFFSET, "Package ModS"}
->  	};
->  
->  	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
-> @@ -270,9 +270,9 @@ static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
->  		u32 offset;
->  		const char *name;
->  	} residencies[] = {
-> -		{BMG_PCIE_LINK_L0_RESIDENCY_OFFSET, "PCIE LINK L0 RESIDENCY"},
-> -		{BMG_PCIE_LINK_L1_RESIDENCY_OFFSET, "PCIE LINK L1 RESIDENCY"},
-> -		{BMG_PCIE_LINK_L1_2_RESIDENCY_OFFSET, "PCIE LINK L1.2 RESIDENCY"}
-> +		{PCIE_LINK_L0_RESIDENCY_OFFSET, "PCIE LINK L0 RESIDENCY"},
-> +		{PCIE_LINK_L1_RESIDENCY_OFFSET, "PCIE LINK L1 RESIDENCY"},
-> +		{PCIE_LINK_L1_2_RESIDENCY_OFFSET, "PCIE LINK L1.2 RESIDENCY"}
->  	};
->  
->  	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
-> @@ -695,7 +695,7 @@ void xe_debugfs_register(struct xe_device *xe)
->  				 ARRAY_SIZE(debugfs_list),
->  				 root, minor);
->  
-> -	if (xe->info.platform == XE_BATTLEMAGE && !IS_SRIOV_VF(xe)) {
-> +	if (IS_DGFX(xe) && xe->info.platform >= XE_BATTLEMAGE && !IS_SRIOV_VF(xe)) {
+> Just a thought, not a blocker or anything. It looks possible that as you 
+> loop through the blocks here you could easily extend the extent range if 
+> you keep finding something contig to the current extent, and then turn 
+> that into fewer mark_dirty() calls. If you ever encounter something non- 
+> contig you call mark_dirty() with whatever extent range you have now, 
+> and then start again. Obvious case is if you had a contig allocation 
+> which is more than one block, which could be turned into one mark_dirty().
 
-nit, can we have a if VF return separate clause before this dgfx && > bmg?
+For example: 
+https://gitlab.freedesktop.org/mwa/kernel/-/commit/f58b83b638fd2203de6d06a0eb0994fbe4ec046a
 
-Perhaps we should have a .has_g_states in the platform flags so if the next
-platform changes we would already be protected. Even Sashiko knows that :)
-
-https://sashiko.dev/#/patchset/20260805102226.1764-1-karthik.poosa%40intel.com
-
->  		drm_debugfs_create_files(debugfs_residencies,
->  					 ARRAY_SIZE(debugfs_residencies),
->  					 root, minor);
-> -- 
-> 2.25.1
 > 
+
