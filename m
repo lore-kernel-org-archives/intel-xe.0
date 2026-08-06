@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A70CC55ABF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53A86C56208
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 12:09:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2F9A10F1B2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD92D892F6;
 	Thu,  6 Aug 2026 12:09:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CO1rG1p8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F21892F6
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 12:09:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786018177; x=1817554177;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=a/l0H9iKu++0TKGsPqsrEfS8qvmDtZ5RjpdBq6hMcqM=;
- b=CO1rG1p8Ci27DCthHMNR9ipdsILSGeTnat1zuPdBmXHwNriCGV6Qk+Df
- z32YNHGmFWw77w1Wx+dGEnKrEc3J/yAY40NHPzXVRvEDYTk7W9p16Knro
- u/8bufbq48yoH83Y+eFTqpoCQNfdYJ9Ne/Ty2GqFGGGp4kpkV9bKja5vv
- TpJyG2Iqzz0xKvzAvYNjkBpzNHktt/4wyYGuKWcA2UBD63nLC8gsJYIUI
- kZZWCLogcHGtmttyrQOQGuSQjJAy2vd7Sko22XTgjJxcIF6ursg1xT7tX
- 4dkAJPtiILUY6eFCdzEgdBXXgQ+/AaTIZ63iZsdRsGFZvL7Ned7LWsuFd g==;
-X-CSE-ConnectionGUID: iKm/o6RwTNaVQpUcQt+WeQ==
-X-CSE-MsgGUID: VegRZk3RQYiFX0akMoWZWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="96961489"
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="96961489"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 05:09:37 -0700
-X-CSE-ConnectionGUID: Qd0Cdh/ZQESN3SbC18pWzQ==
-X-CSE-MsgGUID: cCdS0OS4SzmZ9biT472HdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="260320982"
-Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 05:09:32 -0700
-From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
- riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
- michael.j.ruhl@intel.com, paul.e.luse@intel.com,
- mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v6 0/2] drm/xe/sysctrl: Add helper to query application status
-Date: Thu,  6 Aug 2026 05:09:30 -0700
-Message-ID: <20260806120930.2072613-4-anoop.c.vijay@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1C4F892F6;
+ Thu,  6 Aug 2026 12:09:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/sysctrl=3A_Add_fwc?=
+ =?utf-8?q?tl_support_for_System_Controller?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 06 Aug 2026 12:09:36 -0000
+Message-ID: <178601817692.25208.11645796402446871291@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260806120310.2054212-4-anoop.c.vijay@intel.com>
+In-Reply-To: <20260806120310.2054212-4-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,65 +36,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anoop Vijay <anoop.c.vijay@intel.com>
+== Series Details ==
 
-This series adds helpers to query the readiness state of individual
-System Controller (sysctrl) firmware applications via the
-get_app_status_by_id mailbox command.
+Series: drm/xe/sysctrl: Add fwctl support for System Controller
+URL   : https://patchwork.freedesktop.org/series/171728/
+State : warning
 
-xe_sysctrl_check_app_status() maps an xe_sysctrl_app_id to its firmware
-application identifier and returns the reported application state:
-not supported, communication failure, booted, or fully initialized.
+== Summary ==
 
-Convenience wrappers are added on top of this helper to check
-readiness of the Diagnostics (diag) and oCode firmware applications.
-The initial consumers of these wrappers are added in the series
-https://patchwork.freedesktop.org/series/171728/
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2fd72f0df0d57872501470d25ac4019f3c401397
+Author: Anoop Vijay <anoop.c.vijay@intel.com>
+Date:   Thu Aug 6 05:03:12 2026 -0700
 
----
-v2: (Badal)
-- Return SysCtrl firmware application states instead of errno for
-  application lifecycle conditions
+    drm/xe/sysctrl: Add fwctl support for System Controller
+    
+    Add fwctl support for Xe System Controller (sysctrl), a
+    firmware-managed entity that provides platform-level control and
+    coordination on Intel Xe3p discrete GPUs.
+    
+    Register a XE_SYSCTRL device to allow userspace to query sysctrl
+    capabilities and issue RPCs through /dev/fwctl/fwctlN. Initial
+    RPCs support ECC status queries and RAS error injection.
+    
+    Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
++ /mt/dim checkpatch 0c5c2db8c2dc01242496cc2ad63ca8ff787d6a40 drm-intel
+0d55485a08bb drm/xe/sysctrl: Add System Controller get application status
+2fd72f0df0d5 drm/xe/sysctrl: Add fwctl support for System Controller
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
 
-v3: (Riana, Badal)
-- Replace string-based app identifiers with enum xe_sysctrl_app_id
-- Use get_app_status_by_id (opcode 0x05)
-- Move mailbox definitions to xe_sysctrl_mailbox_types.h
-- Return enum xe_sysctrl_fw_status consistently
-- Map communication failures to COMM_FAILURE
-- Add INITIALIZED state and status helpers
-- Fix Diagnostics typo
+-:228: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (0, 0)
+#228: FILE: drivers/gpu/drm/xe/xe_sysctrl_fwctl.c:25:
++DEFINE_FREE(xe_sysctrl_fwctl, struct xe_sysctrl_fwctl_dev *, if (_T) fwctl_put(&_T->fwctl))
+[...]
++struct xe_sysctrl_fwctl_uctx {
 
-v4: (Anshuman)
-- Make xe_sysctrl_check_app_status() internal
-- Remove unused app identifier
+total: 0 errors, 2 warnings, 0 checks, 645 lines checked
 
-v5: (Anshuman)
-- Rename OOBMSM status helper to use xe_sysctrl_* prefix
-- Remove xe_is_diag_fw_ready() helper
-
-v6: (Riana)
-- Use xe_sysctrl_create_command() helper instead of manual FIELD_PREP
-  header packing
-- Rename xe_sysctrl_get_app_status_by_id_{req,resp} to shorter names
-- Use hex constant for application ID
-- Split oCode application readiness helper into its own patch
-- Add xe_sysctrl_is_diag_fw_ready() helper; consumer lands in the RAS
-  error-injection series
----
-
-Anoop Vijay (2):
-  drm/xe/sysctrl: Add helper to query application status
-  drm/xe/sysctrl: Add helper to check oCode firmware readiness
-
- drivers/gpu/drm/xe/xe_sysctrl.c               | 82 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |  2 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 65 +++++++++++++++
- 3 files changed, 149 insertions(+)
-
--- 
-2.43.0
 
