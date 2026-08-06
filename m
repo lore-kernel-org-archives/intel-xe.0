@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 483FCC55174
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 00:36:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8E22C55174
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 00:37:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E295F10E1D3;
-	Thu,  6 Aug 2026 00:36:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 647A810E1D3;
+	Thu,  6 Aug 2026 00:37:57 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C1C10E1D3;
- Thu,  6 Aug 2026 00:36:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0897210E1D3;
+ Thu,  6 Aug 2026 00:37:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6159707062996488717=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Modify_the_SW_tail_logic_?=
- =?utf-8?q?in_OA_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_new_debug_infrastructur?=
+ =?utf-8?q?e_for_configfs_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+To: "Stuart Summers" <stuart.summers@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Aug 2026 00:36:55 -0000
-Message-ID: <178597661539.23279.16257144075524737463@61270ab9df2a>
+Date: Thu, 06 Aug 2026 00:37:56 -0000
+Message-ID: <178597667602.22834.6888372041080252701@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260730233539.3140839-5-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20260730233539.3140839-5-umesh.nerlige.ramappa@intel.com>
+References: <20260805232021.337103-12-stuart.summers@intel.com>
+In-Reply-To: <20260805232021.337103-12-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,44 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6159707062996488717==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Modify the SW tail logic in OA (rev2)
-URL   : https://patchwork.freedesktop.org/series/171393/
-State : warning
+Series: Add new debug infrastructure for configfs (rev4)
+URL   : https://patchwork.freedesktop.org/series/165879/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ea1c1ba153fcc1288bafa3bf18a2fe8f5320ecb7
-Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Date:   Thu Jul 30 16:35:43 2026 -0700
+CI Bug Log - changes from xe-5548-ff9b76577dfe70713faaa2f19a30424ec9a51a18_BAT -> xe-pw-165879v4_BAT
+====================================================
 
-    drm/xe/xe_oa: Add a lag to the reports that is exported to user
-    
-    When running heavy workloads, reading the OA reports too soon does not
-    guarantee that the report has landed in memory. To make sure correct
-    reports are copied to user buffer, only return reports that lag the
-    current HW_TAIL register by 32 reports. This is an empirical number
-    based on a heavy render workload and several test iterations.
-    
-    Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-+ /mt/dim checkpatch 4cbb5eb24c6169972847aa946c5206f97c4880a5 drm-intel
-4c3ff3191d37 drm/xe/xe_oa: Clear status only if relevant bits are set
-702b5c50b273 drm/xe/xe_oa: Avoid checking and setting fields in the OA report
-ea1c1ba153fc drm/xe/xe_oa: Add a lag to the reports that is exported to user
--:48: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#48: FILE: drivers/gpu/drm/xe/xe_oa.c:250:
-+		stream->oa_buffer.tail = xe_oa_circ_diff(stream, hw_tail, LAG_REPORTS * report_size);
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 31 lines checked
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5548-ff9b76577dfe70713faaa2f19a30424ec9a51a18 -> xe-pw-165879v4
+
+  IGT_9039: 9039
+  xe-5548-ff9b76577dfe70713faaa2f19a30424ec9a51a18: ff9b76577dfe70713faaa2f19a30424ec9a51a18
+  xe-pw-165879v4: 165879v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165879v4/index.html
+
+--===============6159707062996488717==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add new debug infrastructure for configfs (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165879/">https://patchwork.freedesktop.org/series/165879/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165879v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165879v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5548-ff9b76577dfe70713faaa2f19a30424ec9a51a18_BAT -&gt; xe-pw-165879v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5548-ff9b76577dfe70713faaa2f19a30424ec9a51a18 -&gt; xe-pw-165879v4</li>
+</ul>
+<p>IGT_9039: 9039<br />
+  xe-5548-ff9b76577dfe70713faaa2f19a30424ec9a51a18: ff9b76577dfe70713faaa2f19a30424ec9a51a18<br />
+  xe-pw-165879v4: 165879v4</p>
+
+</body>
+</html>
+
+--===============6159707062996488717==--
