@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 781AAC5AC67
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 19:25:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFA15C56205
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 19:38:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1528410E382;
-	Thu,  6 Aug 2026 19:25:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEKcUfjN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 040EE10E35A;
- Thu,  6 Aug 2026 19:25:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786044323; x=1817580323;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=fFam/XsBi8UE8h7AfBNJxg1SISJykiA0yfSogHKdG/k=;
- b=OEKcUfjNZPHsHtpiQuVncWQ7N3CMoXcewSHp0tY0mZpVQh8PSjYzGY6p
- HmfJptMItQ9dPHDLqPo0zhXlwFUlh0bki/1prl3ZqsZzf6cfKWkbSUjEW
- vFss6uP6yifKqD4miKtv2MzJtm8gZ8oGuxPM3SKjBeur02U5CM/9KKel7
- Pz+axcOwiTQkoFT4wEux+chzxXPkas7VhuMxuHFjx4jyTGfK9PQNbO8KC
- 0myYKF17+Nv++zA6Z8fc/KWEYNzyo9Pc/0RVgnVy+InAHEnq36px1eNUx
- 5DUHUQoiW6JcjexlH8mr9+KmmMBZe36JXdEnWBWXSPcaBI2WKD/H8E2T+ g==;
-X-CSE-ConnectionGUID: ECgcDql9TxOKSLQIfXIGkg==
-X-CSE-MsgGUID: aLMZrKfeTtGbG2e8s7IMLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86659991"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86659991"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 12:25:22 -0700
-X-CSE-ConnectionGUID: Ee/oRbV8TGadROQDJFo1qg==
-X-CSE-MsgGUID: XARNJuPRQrqLZlA/WlMmaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="286867284"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.210])
- ([10.245.244.210])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 12:25:18 -0700
-Message-ID: <415659f6-5199-4078-8319-22d7529e777d@linux.intel.com>
-Date: Thu, 6 Aug 2026 21:26:19 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FA1210E37C;
+	Thu,  6 Aug 2026 19:38:14 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2F30891D7;
+ Thu,  6 Aug 2026 19:38:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1022781938227885973=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fine_grained_fault_locking?=
+ =?utf-8?q?=2C_threaded_prefetch=2C_storm_cache_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 06 Aug 2026 19:38:12 -0000
+Message-ID: <178604509279.26654.7912448199024403634@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260806185202.3922432-1-matthew.brost@intel.com>
+In-Reply-To: <20260806185202.3922432-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,65 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+--===============1022781938227885973==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Here's the pull request for v7.2-rc6!
-Other maintainers are still out, so I'll followup with drm-misc-next once I applied the dmem cgroup eviction patch series.
+== Series Details ==
 
-Kind regards,
-~Maarten Lankhorst
+Series: Fine grained fault locking, threaded prefetch, storm cache (rev9)
+URL   : https://patchwork.freedesktop.org/series/162167/
+State : success
 
-drm-misc-fixes-2026-08-06:
-drm-misc-fixes for v7.2-rc6:
-- panthor & shmem helpers: Check vma range inside pmd fault handler.
-- panthor: handle empty firmware sections correctly.
-- bridge/ps8640: Forward aux transfer errors.
-- amdxdna: Improve error handling in amdxdna_insert_pages.
-The following changes since commit d6c075f797a672a6e3bd2fd44aee713801698ec2:
+== Summary ==
 
-  accel/qaic: use sizeof(*trans_hdr) for transaction length check (2026-07-29 14:57:37 -0600)
+CI Bug Log - changes from xe-5559-315143829f142ea471e5f358dd92e2658c89ffef_BAT -> xe-pw-162167v9_BAT
+====================================================
 
-are available in the Git repository at:
+Summary
+-------
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-08-06
+  **SUCCESS**
 
-for you to fetch changes up to e0d2b5902c5c0d3943af95728753aae165ed1346:
+  No regressions found.
 
-  drm/panthor: Check VMA boundaries for PMD mappings (2026-08-06 09:44:35 +0200)
+  
 
-----------------------------------------------------------------
-drm-misc-fixes for v7.2-rc6:
-- panthor & shmem helpers: Check vma range inside pmd fault handler.
-- panthor: handle empty firmware sections correctly.
-- bridge/ps8640: Forward aux transfer errors.
-- amdxdna: Improve error handling in amdxdna_insert_pages.
+Participating hosts (13 -> 13)
+------------------------------
 
-----------------------------------------------------------------
-Christian A. Ehrhardt (2):
-      drm/shmem_helper: Check VMA boundaries for PMD mappings
-      drm/panthor: Check VMA boundaries for PMD mappings
+  No changes in participating hosts
 
-Lizhi Hou (2):
-      accel/amxdna: Fix page-insertion errors in amdxdna_insert_pages()
-      accel/amdxdna: Fix locally exploitable BUG_ON in amdxdna_insert_pages()
 
-Maíra Canal (1):
-      drm/v3d: Serialize the scheduler timeout handlers
+Changes
+-------
 
-Osama Abdelkader (1):
-      drm/panthor: skip zero-sized firmware sections
+  No changes found
 
-Pengpeng Hou (1):
-      drm/bridge: ps8640: propagate AUX transfer register errors
 
- drivers/accel/amdxdna/amdxdna_gem.c    | 47 +++++++++++++++++++---------------
- drivers/gpu/drm/bridge/parade-ps8640.c | 27 ++++++++++++++-----
- drivers/gpu/drm/drm_gem_shmem_helper.c |  6 ++++-
- drivers/gpu/drm/panthor/panthor_fw.c   |  3 +++
- drivers/gpu/drm/panthor/panthor_gem.c  |  6 ++++-
- drivers/gpu/drm/v3d/v3d_drv.h          |  6 +++++
- drivers/gpu/drm/v3d/v3d_sched.c        |  9 ++++++-
- 7 files changed, 74 insertions(+), 30 deletions(-)
+Build changes
+-------------
+
+  * Linux: xe-5559-315143829f142ea471e5f358dd92e2658c89ffef -> xe-pw-162167v9
+
+  IGT_9043: 9043
+  xe-5559-315143829f142ea471e5f358dd92e2658c89ffef: 315143829f142ea471e5f358dd92e2658c89ffef
+  xe-pw-162167v9: 162167v9
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v9/index.html
+
+--===============1022781938227885973==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fine grained fault locking, threaded prefetch, storm cache (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162167/">https://patchwork.freedesktop.org/series/162167/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162167v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5559-315143829f142ea471e5f358dd92e2658c89ffef_BAT -&gt; xe-pw-162167v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5559-315143829f142ea471e5f358dd92e2658c89ffef -&gt; xe-pw-162167v9</li>
+</ul>
+<p>IGT_9043: 9043<br />
+  xe-5559-315143829f142ea471e5f358dd92e2658c89ffef: 315143829f142ea471e5f358dd92e2658c89ffef<br />
+  xe-pw-162167v9: 162167v9</p>
+
+</body>
+</html>
+
+--===============1022781938227885973==--
