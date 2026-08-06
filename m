@@ -4,163 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 080DEC5AC7C
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 17:52:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4722C56205
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 17:56:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA2010F27C;
-	Thu,  6 Aug 2026 17:52:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86AFC10F284;
+	Thu,  6 Aug 2026 17:56:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQf4OXfq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VUMkNGPL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA6810F27C
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 17:52:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB5B10F27C;
+ Thu,  6 Aug 2026 17:56:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786038761; x=1817574761;
+ t=1786038980; x=1817574980;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=PVM43HNVrgOIKNk4IcZIN49j5TJ+J6FS4C1m4Hl8M0o=;
- b=CQf4OXfqtULeGyKqyfCehvwynCPtBpI1mmvotwXig9H9XUNGXe0XLfFT
- Byv9HX16gr8xtMzkjgXQHQNRp9K0Ig4SFAxX4/hR2ghSXhKMejoCNffcF
- o+XZyhxrgDi+PFZeQICCyEIBlfMaWZpjWE2qzHFxXrKChJ/Q6HsJOOgK+
- dQ69kZkiLTWcVnCl+DgBs+7Gg/QIPFa1O/eWM49Y5ayG6SbEv7rWfIDT7
- an2v+qRrMkhqbp6eMcwHfFBRcIeG3jsjqcbcQtGaxcBMZGF7QiGwQ6VGZ
- R5xnRBgLxYhs4mZdwJZgr2u9SbzEfKLjWuNTRzjOuBrLmJ16V/gZltIPS w==;
-X-CSE-ConnectionGUID: xnvxMUTXT2GQTR92Cc2OMw==
-X-CSE-MsgGUID: cEA6PqJNRZ+4s+imrD9rjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="104045659"
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="104045659"
+ bh=vtsoPbXEY7gtiqVgYgPi+pJi3jGAU39n2bDrspFSDzM=;
+ b=VUMkNGPLjuztexots1GlNN90naQM1KlFoXG5c33WXM4i16ipvEWIj9Hp
+ Q/EFBnRxZPRxF9cow13zEtrQ1eYstr4y6XgsYK3fys7mKXte5RlicXLJc
+ CkF6EJ1JbD+XNCcGhuJr7J0tERvlkFUF1Ep30g68zG/MJvjt7xoalgpEt
+ ReQMGW6q3+qhXi5zBBZjtifOCAL5JmH2ABwurTxOUFJOcXy3L6HI15dvV
+ eD+mxuLAg9r/Jr/Yzb+ZD29o2BCCk++15b7CWqmaElvZQqeOF3HDP8xE1
+ pKndCCwO5JAoxCjM7vO4XCNLXE7mX9qVSd6fsuTmFKjpJ4JrBYFgGE9kq A==;
+X-CSE-ConnectionGUID: 5OeW081YToqdpjb/EI4YmA==
+X-CSE-MsgGUID: wkyUfE+PS0ax51dcCnBBeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="104046127"
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="104046127"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 10:52:40 -0700
-X-CSE-ConnectionGUID: hXK5mcBpQ+i9vzWIEfwbzA==
-X-CSE-MsgGUID: S51Sq8j/SiOpycJ4d3Z1Tw==
+ 06 Aug 2026 10:56:19 -0700
+X-CSE-ConnectionGUID: +iMecG6+RbqZToID48ByNw==
+X-CSE-MsgGUID: xyXhZ9UvQxOmDqvITp6rkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="266395896"
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="266396760"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 10:52:40 -0700
+ 06 Aug 2026 10:56:19 -0700
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 10:52:39 -0700
+ 15.2.2562.45; Thu, 6 Aug 2026 10:56:17 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 6 Aug 2026 10:52:39 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.34) by
+ 15.2.2562.45 via Frontend Transport; Thu, 6 Aug 2026 10:56:17 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.25) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 6 Aug 2026 10:52:38 -0700
+ 15.2.2562.45; Thu, 6 Aug 2026 10:56:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iqNVMXc+AFPt6YKVk7HK0GxUsO2eG5KR7MzFhq3++WdvptOKT9ofAmg8zAWq3WAi69U/NvpoabIbSSezx/OCFyIuqdb7w8lSYp0LhYSQIGlqboEodEXSfUUg05vkBhpF+HZUMdJjhLow00vQpWVdVwfu0f0V7HAL3i6J+BN6ghhXVX3e5KkO+D204243So3HxaBJy9D5y04p1blqm+w+Mx9Nf1i3A2mkVKQ50FfktdD+BluBscjBtkuzqw09Syn0mik3JZCX6PCoBJx1mQox6psJI3WBX4oqh7t99omB1XO2o4MBU757rObCyf+2nU+dHrrD808SYm2q5UVZSJy/kA==
+ b=FPXzVfnQcc5ivLqCAQXaz0oTm+qx5CCpyvlyjhk4vyofqRHNliWE17L7A6AKGHh4t5FqQ58XFudHUlISOtPkvNYCzV4WtbJl3JY9BpmOcwAQiDmJvGEIvo9iDvAyXBlXvRIHb6Qmrowzn3y/HUprJxDMGOIUGU5PfQdWBQrZVt07Ex39HdHoKEWSdLxFd93+ustExaQ09mfn5RcZ48Pra4C0noepMjMA52Ozhe0ohROycXpD+m1K8oSgemzEmSSYA3TorzIu++TWbqkswGD1kBg1UMx4212e14Pf8Tqhu2twohFoZG9JVrx7yQ4xSPFJXKSp02xtf/vRUcf9poZ6QA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CY6FWPT9TdUeNtuMTOnzfoEbaRJBP2mv1RKZfbMtqRE=;
- b=vtwug2i7T0VH87F/M9gq2w4IvtQUcNg7Z9OXgOqUmMP5nmGAsKsJXCKAktXkLp93/aTolwzuMj2YALexY+lp7DXqdg8yZZr0B818ln5rTDrUejqcDmpIDqf7xYHe8ng586jBGMs/c5C0RLm+kELn8gKG/Ly7zZ53ThapApoNRmbPh+PSl5g3KCpisbAbmdmOhlK/T63mUYcqB/SwQ1xqPRMJ8OErOfKbYR7ESu8z1JpA953eqTJ4a5GNhN5NgCfHrBxIoguUBZk7Xng+AfNxMjRxLi+HkM5DyfrR4gn/1S6yHXyJqDZjfE2PY/7/fd9RScJSEplMiVWutB9Srp2yIg==
+ bh=1Qf+MRtnLHHR5DNRKqdTehLoQsRcUJDRYTYCqQX9nKk=;
+ b=o5TE/Znhgi8dkrhSQIL0H3AGxQZb8l2j2qSOn7rjbl8Z7I8Pl0k0GRE+5FrNbSKfdBImFzwUvA+G3QNx1n3Riah0akBXFAYaQByiHvErSyNsHNkelX228Rtj+HE4hiy1iPeRTbPRdHzPUlWpY8aGVksnUdzPy7gqhRoylN/6646SOys7AHDRK6oe7hG7vHGFn9YnqAwLsJ4m7QyUPo73ti3hHKFInb/bFuNBVBDew970xc4iZUSJU/FMEXpO54z8vCVb9VsXym90LbjXAn3FBZUANWkASBK15y6S8caFAF7zebBAg3MZbf6wgKDiSs3LJJkRY772wzVTVaPXvYSzOg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by PH8PR11MB6950.namprd11.prod.outlook.com (2603:10b6:510:226::9)
+Received: from CO1PR11MB4979.namprd11.prod.outlook.com (2603:10b6:303:99::16)
+ by IA3PR11MB8938.namprd11.prod.outlook.com (2603:10b6:208:581::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.21; Thu, 6 Aug
- 2026 17:52:36 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0292.018; Thu, 6 Aug 2026
- 17:52:36 +0000
-Message-ID: <4592d2a2-f241-4ff2-b922-997a3ef81cdb@intel.com>
-Date: Thu, 6 Aug 2026 19:52:32 +0200
+ 2026 17:56:15 +0000
+Received: from CO1PR11MB4979.namprd11.prod.outlook.com
+ ([fe80::ed0a:e4ab:fde6:edcc]) by CO1PR11MB4979.namprd11.prod.outlook.com
+ ([fe80::ed0a:e4ab:fde6:edcc%2]) with mapi id 15.21.0292.019; Thu, 6 Aug 2026
+ 17:56:14 +0000
+Message-ID: <a467ef01-f69a-444c-9718-286df60f47d9@intel.com>
+Date: Thu, 6 Aug 2026 10:56:12 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/xe: Use xe_log SIGID API for probe-path error
- reporting
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+Subject: Re: [RFC PATCH 0/3] drm/xe: diagnostics and workaround for GuC TLB
+ invalidation ack stalls on ARL
+To: =?UTF-8?Q?Tales_A=2E_Mendon=C3=A7a?= <talesam@gmail.com>, Matthew Brost
  <matthew.brost@intel.com>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <vinay.belgaumkar@intel.com>, <riana.tauro@intel.com>,
- <karthik.poosa@intel.com>, <sk.anirban@intel.com>, <raag.jadav@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>
-References: <20260806110039.1245282-6-mallesh.koujalagi@intel.com>
- <20260806110039.1245282-8-mallesh.koujalagi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <dri-devel@lists.freedesktop.org>
+References: <20260804021441.3054424-1-talesam@gmail.com>
+ <CAHBRX4GYEKniGb8jw-h=QYPi=FpbWRKwHHnfw-K5wYiy6AWfJA@mail.gmail.com>
+ <anJZt4PzCE5t49Qg@gsse-cloud1.jf.intel.com>
+ <anOcGqIyrA8LUHo/@gsse-cloud1.jf.intel.com>
+ <CAHBRX4FpsT3CwSrpbLA7dUEpasJOFJxdHTNkU7W81RcQw50AOg@mail.gmail.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260806110039.1245282-8-mallesh.koujalagi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VIXP296CA0014.AUTP296.PROD.OUTLOOK.COM
- (2603:10a6:800:36c::17) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <CAHBRX4FpsT3CwSrpbLA7dUEpasJOFJxdHTNkU7W81RcQw50AOg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0P220CA0030.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::6) To CO1PR11MB4979.namprd11.prod.outlook.com
+ (2603:10b6:303:99::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|PH8PR11MB6950:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f3236fc-e8ac-49e8-f0c7-08def3e37fe3
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4979:EE_|IA3PR11MB8938:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc8bb1bc-a403-4fe3-9462-08def3e401c4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|366016|1800799024|6133799003|56012099006|10067099003|4143699003|11063799006|5023799004|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 6WM3jfA2bsT8lE93BOPeh4gc49rawjEY0E4cWe8AL04KPSV8nREw3ne5/9OASt0Neneb3ivIFXc9Lwm/zdXuVRTUxsWRQxh6RswxeXxtSrl7pFdZ5tS13dPQXeR6uz0rYJYPyXjtzivmeWbEwAX61njPSMLRQGCKws8KrUSdyft/NqWP6ZbPsZd2uciJ7L+teFoiqw0z9EuiKNgVCe+/E46Nx7mhqFvq9Y1XhZmOD2ep+pMtccFnmS8fuu6Y1nhAoBjVtt5MVKZFj7bsMliXMSlcGGxCrnFPdcF4bkPTGvsxvZcXXxnHGque3+t2VQ1u5iCmVsjRhp5K/ix4p74H9MLZJOjW7uSDEE/GOXFmNdZ4vc7MnKrpm3hSXy9YIzvOGIF4naAoUfPQtjPM+N0mW8f7JfmR7yQjOLVFVjAeGLZPSnZ0UjLVKpVVyFRvrKK+43yWkEq4cq4r3Obv+6T1sE/Rexg3zTripjDyNtX6/iM6UEKSwT32tWyfk/4ETB9hUUTAegj4zRJh76CBpzB/OG2l0I3OmrhCE4MVvAb2Hcm1ZyHNAOOCQxMfG3eGMrnK7o5BzoMyuKdsJiK+EV5R0kUyC4GzUZ4S4Vr8mMxffOeD20lvVXnIlGLoPCMqJprITymgJpi+YhtAatO3yQEL5nTSsrrzFk4HIuz+LywKeaM=
+ ARA:13230040|23010399003|366016|376014|1800799024|6133799003|10067099003|56012099006|11063799006|4143699003|18002099003|22082099003|3023799007;
+X-Microsoft-Antispam-Message-Info: 3nPiTl1Ozn0hVK1DdGDFhILEeogoADfC8X+NLBHGDikHQ2BiJ1Mkx4quTXY9/bOKvhEgxlnU/kb9iaKhVQ8riYAHI0eESIsXNBQt8gGNtOJpqngDYJD+G0B4BiS5JbusZTSjFq1Yj2iSs8Z/Z9CFwAbMMoQzb1mF9torEASEdcobUkGCwdmkJa+KarGnoJk09IPUhwhf/m3uBaZIPmHfoB3LC5N+BcdCMqj4dqg4Q/z8SHGmpFBMB7XFZfYpK5txxB0cFPEOyOZk4lJp2CP5RKNUJ8t9890XSozbXr7cLYG0jlbObO7RQMvQ9cgHkBixYCUgqc2xZgxz/836jm9bmVCND/2pZmatsMPhNrgkiiS8aqanPBlPHkoGWJ2mlCzOsolehMuXiU6bLqjkiG2Zl6GAYnX1aUhxLqM7vdBWyCUn33e/8neruuM4Uv1fBv7SMIwHER0R8I0MLzWJQimOXHvaL58FAyKE7Es1S0oj4QfCMk+5V4a6PjCgwpPzmlHiVMpwkn657ieeYzfSp9JYM9Z43tIDNFe8kRk3TDI5hAUIvey3EGyF0uc5SuiaCkljvET5Zi7nCmsLg9Cq1Yc9CYGMGrLee9huL3ElIVHg641yk2wa1IcEVYuJq/8HfPVZHN/92+EbtBkdjkL2tz0lfQO4OyebbTkqgI9B06kOjIc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(6133799003)(56012099006)(10067099003)(4143699003)(11063799006)(5023799004)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4979.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(6133799003)(10067099003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z25RR1c5TWFYS0xMVFBNT005ZUFPZnJjMmVVSmIzZlVyZTVKdGYxdnVXbTlw?=
- =?utf-8?B?STdPR3hsQ052a3dicTlKZGg5VXlLN09oOFFDbDdiQk5UL24yVlhqWDJkNXVY?=
- =?utf-8?B?eHBiTGtBY1J4OXc0MnJLT20vYkxTZUl5SjZ5ZVowVzRSTFhPd0tyTUVYL1gw?=
- =?utf-8?B?L3lzUXRGbmI4QWc2NFB0UTFpWkd0MnY4TDJCR3IrWENhbmZYL0NDQXdDUUhx?=
- =?utf-8?B?VXZPV0FUb28xLzYyWDJ0ZDdOU3U5VWlOaEhlSjRCYy9aZkZKb2o3Z0VhbWpV?=
- =?utf-8?B?SHN5aXlxU1V2eEp0TGdnYnZyWGtsQ3pNN2d0WlFaQzdxbWJEYmFCK2IvL2g4?=
- =?utf-8?B?UTdpZnVGWWZOSnpRNFg2dFFvSzU5VUZ2ZU5lZHBubTFqOGt4WUdWSEQvT2VC?=
- =?utf-8?B?bXRyV2NqWk9nRitKYStkYkVoODFQTitGVldGUDJHalFDdExtUUQ2dkRJWVR5?=
- =?utf-8?B?MW11Nk5TWEJLZzlqVmh1VFlZU2xTZWcxajhlNlIyUE9aOWF3ZG1GWEpQWW1q?=
- =?utf-8?B?eFlCSjFwUHhSQStsWkZ6YmNMekR1c0ROa05BV3h6ZFdoMjVJV2d6VWxZM3Iw?=
- =?utf-8?B?VEk4L2x6d0VMbC8xcFQ4dS9WV2hBb0RzKytzRC9MYy95azBuT0NoTWRLL1Q1?=
- =?utf-8?B?aHduUEROY2tWbHlRcXE5ZHBpekdNOGFrNmFHRUJPK0I5V2c2TUE5Zjk2dEx4?=
- =?utf-8?B?MkorQnlSRmp5dEpkY0tQV3BLQlU0dnZlQWdXUXhTVnlRUC9iMng5RENZYU15?=
- =?utf-8?B?akE0TG1jSlhueFpTNlBmWGFOTFN3Wm04NGJlajYrUlpDTHFWVmcxUEVheDhX?=
- =?utf-8?B?VGpUUjV2WWd3K1lYQjFHQ1VuaDZSWENjSHNhMTZneEljWFl1dkdld1BXRlpE?=
- =?utf-8?B?K01WRW5SRTdoL0JzbURpeFIxbFNpR3RobzV6MWRUS3JCMENJVjNGNzFGbmNT?=
- =?utf-8?B?QTZDMWhzUXZvZTJGR3dDOVhrMHp4V2p3by82SzZHU21RTUNCNjJ6M3J2OFZW?=
- =?utf-8?B?TGhaQ2VZL2VTYmxWYnlSMUxmOCtpVmE0MHpmbVQ5Sms2MFhBS1JMdG9GUlZG?=
- =?utf-8?B?RFN3OHkwZTh2aE5HN0xIaWc0K1EvNWp3a2xDc2JYeVY2cWUwYzF4d1BsZXZw?=
- =?utf-8?B?dS80dGc0TzJsN2FhdzlDT2JrWk54S1lPZlVLL3BxSjE4TTZtUnREdDVYS1lt?=
- =?utf-8?B?Qms4NnJJZmhhUDNWMXZJMVlWbis1ZmMvYktIRmR4RU83ZTRXSGRneGt6MnFk?=
- =?utf-8?B?RDRiQUZMY3A3b2JYQ25FTTFPaDJncFBFZ0JrdW5kemZVYklnZWVZUnZISlll?=
- =?utf-8?B?RjBveTl5U2QvTkxuMDY0R0I4d0p2YjFFZXkvZTVocm9SYzEveGg3TU5kT2lK?=
- =?utf-8?B?Y1NKYllJOVc3RnltVW9hN1IrOGh0aW5yWlZrN2R5YVU1M1E2emxMN2pYK1FY?=
- =?utf-8?B?dERhblE2VEVEMWcxMUh1dDJSZTI3bTMwQkJidkdkVVpMODNwTVQwOUlidHU0?=
- =?utf-8?B?djYraEVpVUNKdkc2QUJmWlNtUFA4dG1BZ2pYak8vcVpZQjRQZXE4NEhyZkdJ?=
- =?utf-8?B?Z2p6aXFRZ0dxY3FsR3phbzc0Y2ZCcWRoNm40KzA1VzM4MWt6cEpCRnJhd3ZK?=
- =?utf-8?B?VlF2SXBteTlJQWVWeUR0VHBYbWtuS1lWL0VGM1dZSDkrd2NzWHpOVS9TVEdi?=
- =?utf-8?B?eGQvMXNubXhhWVB5TzcyM04vSU5yN2Jzd3dyNVBpT3huanJ2WG5aZGQzcU5U?=
- =?utf-8?B?QklIOU1rT21SUzdrbm5mK2FReE5xL2Y4VjU2UzNPblBpUG9uYS9sRXV0alVv?=
- =?utf-8?B?cldJOW9FamNMZjMwOUJYb0xJV1hqeDlGMTJrb2pCdUlBQWhiZnlid1JKSDRv?=
- =?utf-8?B?a1ZOTTRNL1BGaVNhdzNocCtIVlZraWp0VmJ3TGphUXNSallnaHI3cDk3RGkr?=
- =?utf-8?B?T1NqdE1VenNmbU1YQmVNaGxqM3pYYVhzRWRWY2JkYXgxTlVHeStFMzVuRC9J?=
- =?utf-8?B?Tk9scjVMbWtMdXdibU15QlZBMmJNNjQ0K0lrSDI5c01leFFoM281UXFSaUU5?=
- =?utf-8?B?VmlDRFR3VUFhZFR2bHB0RGtkSEh6MjdOK0tUd3RsTVRDa1RYQWNLdnJHaTJw?=
- =?utf-8?B?N3Z1cDk3WEN6Uk1jUURKNW9sY2ZaeWVSQ0JMZElKK1h5RDNTUkJjaHlNcFR6?=
- =?utf-8?B?Ukpwdm9ISGR5UXZqbmQrNFZrNFk0RXN4ZDROT3lkdmVZKzQzSFNjelBlZGs2?=
- =?utf-8?B?SXpWVEFuKzFOT3J3SXJjRjlSZXJjMWUzVDFYUFl4cFRSMWorNGlrVXhyVlZy?=
- =?utf-8?B?c21pUE9jSEJoVUxMUHI4cnpIN1d2TFNJOU1mS2lNQ1FhYktqQ2x6WDBUV3cx?=
- =?utf-8?Q?/N4edWFksv76pwHw=3D?=
-X-Exchange-RoutingPolicyChecked: eK8QFSVsCfe/LbPA/n7zjuqdRrh9XAW/psYgWQMiohoIBv4WiCNqEZwsuZ/ntvugPmGkOmfnCGORE7PWcBHIWfMt9+KrbI/Gz98KyYu6dYPB4Kp30IGaaQOeelTqYy4TlB1rbUbm1HTXI8a8n1sVNSy8XJPJywusLZq2UZA0xyXFBqCGsnR8IggWUgUivLm23Kg6byic4/rbMDCe5hfZ6EpoBScjJmp073Sck7KIdgisPC1NKr9zDeeAsfQE2UuxMV58lIs0F/fxoXziHfzDuLDd48QhsuZx5WMCH/oq9k841b0JYIsveHcPWTHEyJ41MuH9X0FASO7KWK/CVZ6MJQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f3236fc-e8ac-49e8-f0c7-08def3e37fe3
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MGdoN1RhM3ViaDd3dDdjU0ZXQWxzam9ISWJaNEkybWlTZ1ZVTjBWeVlCdDAz?=
+ =?utf-8?B?UWhYdzhrWWlJYWxESDhBcnFFN3haWEV6RmRBS213azdrSEpCeVRKWjU1K1o0?=
+ =?utf-8?B?RzZDZzVTNm9LV0JQdmdldjBLMmwwWk1jR203TGJsc2ZGVXJqbEpkc3RySU1i?=
+ =?utf-8?B?RE9KSk5rVVphWVJZandiR3doTSszRVBQYktyeU13NnRPT1RjeitEbEFUR0NK?=
+ =?utf-8?B?eXN1WTFpblVoRDBlWndaak9nUVZkSWlZOStKNG5JOXJwOGVWWURBeU5nbDhE?=
+ =?utf-8?B?bzZiVWpCUGpXOHA0WVY5Q3hKbzlXZ2dDV0Z5elVZWUViTnNRS0lSWVJFaGZO?=
+ =?utf-8?B?NFVwelVEKzNaZ0FzRzhwSkJrNExNN1ptWlROM1o0ekFVaVVNcnJmTCtqR1dn?=
+ =?utf-8?B?NVBOeUJZY1ZMVGtCdEljZTlDSzdCTzlhdGxTb2NZOVNhc2Q1VFhObDdqTm9I?=
+ =?utf-8?B?ZGpPd2Q1MlZoaGtzUzJmTWFtVTdxUnN4WDIweDk0MVlZM2ZNYmg2RzFkZHk1?=
+ =?utf-8?B?ODZsTHFkTDR6VWV5dnBJT0V4MmdONE1rd1lEb1NOSlhGa3k3aWFvaFF0WmNK?=
+ =?utf-8?B?OXFMVE5sb3Q1Nk0ycENRckNUbG1lWWFHeFhJc1R2YkJYYmJhTW1BMCtJWnVq?=
+ =?utf-8?B?cmI4eXpyK0lqcGVXd29iZjcwaGJDK1g1Z25kU3NUbHlrQWJ3UmRKa1hRcENL?=
+ =?utf-8?B?MDRNYzFzTGh5aXBsMVpzOENFOTl0cjBpVjRFU3l2K1U4bit3UFo2cU9lZ2NF?=
+ =?utf-8?B?K2xsMkU2Rm1ab3FlQjJycWs3aVV5UHJsZzYzUERuWm15RGY3T2tSYlRmTHpS?=
+ =?utf-8?B?TkZqTjRwQXlJYUcrUGQyT01sVVcrTWdkRmNrODdLUGVXWWZZdVU5byttV3hx?=
+ =?utf-8?B?aHZMMGVpbERvMzdFV2pUMXlubDd3cnJQQmQrQlNZRXR3cHFOeGd5UmhjdE1U?=
+ =?utf-8?B?Tk80UElNVVJPUzduTTBlWW9BL1Z0eTFCbm4zbzZjc2FXWmRsQVRyMUpnRUdt?=
+ =?utf-8?B?S2hXRElBd3owM0VEWUVlcGowL2drZXl2ZElhd1dnbm1TUWdlTjd0NFFRMWFF?=
+ =?utf-8?B?Tm95eEFFT2EvRU41ekxWOVdvaTZIWGtIc1pmeEpxekh6RjVWNktPZmRiQjJq?=
+ =?utf-8?B?VVZ1MXVrdkxNdzZIVitUd3lLVnM4YlhxaldxUlhMQWl0L0Z3VTArZ2pEQk9N?=
+ =?utf-8?B?TTBZSWpBNE9BZnFlWDZkWXJtN2VRZXBiYkJjcUUzOGtjYjRYcnpJa2svTzhN?=
+ =?utf-8?B?TXNJZDVaMWpaOU9wUVQ3OWt3KzI1Zm1Cd0VjbUR6cVNiQVJrclA0ZGlwN20w?=
+ =?utf-8?B?bmVlNTNkWWNsMy9nWnVBb2RlWXFpb2hYSmRjZktjd2Zrd0NpcGJEUEk2QlRP?=
+ =?utf-8?B?UER5anRSWlhUaEhPNVNXUWE4VEkxUE8zN0pqa0Y1MXVhT2Q0VE81Y1NjbHl6?=
+ =?utf-8?B?bXVvY2krcTRMZ2xha24vbDVRUFdyVHJZMlZ5Q3Z0Q2tFRzd4VHltb05jWm1m?=
+ =?utf-8?B?WmI0SnRmeXorMUQxL3F6UUJPL2I5SjloM0Y3Y1lQL0c1dExUUlVrTDN5a2NI?=
+ =?utf-8?B?YXJWSllLeU12SU9UME9GRitCUDNvVVlhNm9BZmMzNVNpMWVSSTZNSmJRbG5s?=
+ =?utf-8?B?L0hsYzB3ZGI2QWVvY2gvZmxaZ01zRDJWK1pWZmJmNzMySGNxY09VcjZoSmNE?=
+ =?utf-8?B?ZU5Eb1piRWFHaUpIelI2MHZ1V25sZ0ora3dFQnZ0eC9HU3BaNlJNRG1Rb2dv?=
+ =?utf-8?B?UXdpSnRlcU5oK25LTm80UVE2NkhSSlZEOWNhaCtBb21TdXNNc3hldktJcXRy?=
+ =?utf-8?B?dk5tbU1Tc0VqNnZsRlMvMzh6MWl0RUhPR3lZN2ZCdURBNEo0L1B4Y1JqQjZD?=
+ =?utf-8?B?VGkrcXZPdlFZcHVqbTFYU3dIUGoyL1lDWXpVZEY5b0pTaE1SZmRNMVFOaHI5?=
+ =?utf-8?B?d2NTWG82MnpvOUJDZlZCQ3JMaDZkSk10THg0Ky82dWRXQ3lDMUg2bGY5NjFu?=
+ =?utf-8?B?SGw4UGpFc1hDK2JYTm1GUlljTXpnRDVSaWRZVVkyTWxvbkVYRUNSN25jNHRv?=
+ =?utf-8?B?cXVpQi9GMGhpQ2E0OHRmTG9SbGoxRVJOeElYQTdSRkxNSFlSNnVqOGI1Y1B0?=
+ =?utf-8?B?MU81bTVYb3VBTVlMM0RQK1BBTnkvUHlNRGY2MG52cllFNFFyc3p2c3dDNUJk?=
+ =?utf-8?B?SnM5WjYxQlMrdkxZTXAzbjFnQTVuZmNiZUxYMC82NDdHOVZESUF3UUgxNlgv?=
+ =?utf-8?B?QldhL0xZN3RjZ0FscWFGN1NHQ3FueU1INitlQzZCVTk1V2FvRWJpOFdHSUlw?=
+ =?utf-8?B?NU9odzFCbDVFRTlQNmluUDJQZnkyc3dsZ3ZnNnV0eE01SFFvVjNsS016dGla?=
+ =?utf-8?Q?30gsZbaeZkupiYog=3D?=
+X-Exchange-RoutingPolicyChecked: qM4wTqpAC7FIzzNZBPpp/7El1Zw3p04NqcT2S6NMEwnuUfUjM5S2rvNawPmtCkZGT8/G3kJWsayo4ZXc89De3ueL1BT8cRREEJRTEqK3G+73+W4gpNeuPHgiD9iqP44BC8FaSOD41tUkGi+FnbrReqKV7KozFUiKVU7zdbMEqK1i5bpX34GVaWUGrkVWbe/VbqAcgZQSuZwH+LfbCe5gi/Tf0ukPU4YA2nh8YNyB5KImxNsdmhe+xZbVLAsck7uY2YuPxU9F4VzeUMINpcw3sKI9xVnKeq5iO/nXuJE4g9UntbwBvHFwXX8zjxwW5My8WecfMDhZ8blWiTHQP9HSOQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc8bb1bc-a403-4fe3-9462-08def3e401c4
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4979.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2026 17:52:36.4636 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2026 17:56:14.2711 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G3sjROMzMXVyyWB1Giq/VXsP96EGPCbVTNBbMjUyKFhTbgfDObPMAoTyBHuTWgu8ecysMg00CTVaVLqJ0BlnfP4SnT2WvlrhVLksTUYE4l8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6950
+X-MS-Exchange-CrossTenant-UserPrincipalName: mO4SUF+HYwFEQVzaWeqAaJcQ3dOTMrpfB/aWqVz9UZ2u3xRfVcEyGjFVERNpy2Au9wcOntvrjl/jjA4Y8hzI6F5ajGkY39OMbMvv7NLdX1E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB8938
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,339 +177,153 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 8/6/2026 1:00 PM, Mallesh Koujalagi wrote:
-> From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-> 
-> Replace ad-hoc drm_err()/xe_err() calls in the probe path with
-> structured SIGID logging helpers. This gives fleet tooling a stable,
-> machine-parseable identifier (SIGID) for each recognised fault
-> situation rather than relying on fragile string matching.
-> 
-> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c |  6 ++++--
->  drivers/gpu/drm/xe/xe_hwmon.c  |  4 +++-
->  drivers/gpu/drm/xe/xe_irq.c    |  9 +++++----
->  drivers/gpu/drm/xe/xe_mmio.c   |  5 +++--
->  drivers/gpu/drm/xe/xe_pat.c    |  6 ++++--
->  drivers/gpu/drm/xe/xe_pci.c    | 14 +++++++++-----
->  drivers/gpu/drm/xe/xe_pcode.c  |  5 +++--
->  drivers/gpu/drm/xe/xe_vram.c   |  5 +++--
->  8 files changed, 34 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index d25d02b24898..52bafe708d74 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -48,6 +48,7 @@
->  #include "xe_i2c.h"
->  #include "xe_irq.h"
->  #include "xe_late_bind_fw.h"
-> +#include "xe_log.h"
->  #include "xe_mmio.h"
->  #include "xe_module.h"
->  #include "xe_nvm.h"
-> @@ -586,7 +587,8 @@ int xe_device_init_early(struct xe_device *xe)
->  		 * Cleanup done in xe_device_destroy via
->  		 * drmm_add_action_or_reset register above
->  		 */
-> -		drm_err(&xe->drm, "Failed to allocate xe workqueues\n");
-> +		xe_log_err_fatal(xe, PROBE, -ENOMEM, "Failed to allocate xe workqueues\n");
+On 8/6/2026 10:37 AM, Tales A. Mendonça wrote:
+>> You've been approved in our CI for future revs.
+> Thanks!
+>
+>> Also I came across this issue on i915 for MTL [1] which appears to
+>> indicate the same issue (ARL and MTL are very close and share the same GuC
+>> firmware), the suggestion is to disable rc6. Unfortunately Xe
+>> doesn't have a knob for this, but per [1] you can turn off rc6
+>> in the BIOS. Maybe worth trying.
+> Good find - that does look like the same ~2.3s signature, and it being
+> visible on i915/MTL too is an important data point (Daniele asked
+> exactly that in the other subthread).
 
-OOM errors will be already printed by the MM, we likely shouldn't have this drm_err here...
+I am not sure if 14469 is the same issue. In that one it seems like the 
+GuC just stops processing incoming messages (i.e., the H2G CTB has 
+unprocessed data in it), while AFAIU in your case the GuC is still 
+processing new commands and it is just being slow. It might be different 
+manifestations of the same underlying issue, but it might also be 
+completely separate bugs.
 
-can't we just leave it as-is and add xe_log_err somewhere in xe_pci_probe()?
-also, maybe we should wait with submitting more patches that use xe_log() until we actually get some agreement and merge that first?
+>
+> On the rc6 angle: I ran an A/B experiment earlier that should be
+> equivalent to disabling rc6 at the GT level - holding forcewake across
+> the whole GT for hours (C6 residency pinned at 0ms for the entire
+> window, verified) - and still hit 9 timeouts in a row, with the same
+> ~2.3s request-to-ack. So at least keeping the GT out of RC6 does not
+> avoid the stall here. If the BIOS suggestion covers more than GT RC6
+> (e.g. package C-states), that would be a different experiment - my
+> consumer ASUS BIOS does not expose an rc6 knob, but I can look for
+> C-state options if you think it is worth isolating.
 
-> +
->  		return -ENOMEM;
->  	}
->  
-> @@ -717,7 +719,7 @@ static int xe_set_dma_info(struct xe_device *xe)
->  	return 0;
->  
->  mask_err:
-> -	drm_err(&xe->drm, "Can't set DMA mask/consistent mask (%d)\n", err);
-> +	xe_log_err(xe, PROBE, err, "Can't set DMA mask/consistent mask\n");
->  	return err;
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index de3f2aeffc3f..e4c319598dd0 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -15,6 +15,7 @@
->  #include "regs/xe_pcode_regs.h"
->  #include "xe_device.h"
->  #include "xe_hwmon.h"
-> +#include "xe_log.h"
->  #include "xe_mmio.h"
->  #include "xe_pcode.h"
->  #include "xe_pcode_api.h"
-> @@ -1575,7 +1576,8 @@ int xe_hwmon_register(struct xe_device *xe)
->  								&hwmon_chip_info,
->  								hwmon_groups);
->  	if (IS_ERR(hwmon->hwmon_dev)) {
-> -		drm_err(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_dev);
-> +		xe_log_err(xe, PROBE, PTR_ERR(hwmon->hwmon_dev),
-> +			   "Failed to register xe hwmon\n");
+The fact that keeping the GT awake didn't help also indicates that this 
+likely isn't the same 14469.
 
-while this is during the probe, shouldn't we use HWMON as a component?
-we allow chained SIGID reports from different layers, and this error
-will eventually lead to final xe_log_err(PROBE) anyway
+Daniele
 
-also, there are at least 2 other cases where hwmon initialization can fail
-why only this one is so special that requires use of xe_log ?
-
-and IMO it would be good to add each new SIGID usage (across
-different files) in separate patches
-
->  		xe->hwmon = NULL;
->  		return PTR_ERR(hwmon->hwmon_dev);
->  	}
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index 9e49e2241da4..74d2b63cd505 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -19,6 +19,7 @@
->  #include "xe_hw_engine.h"
->  #include "xe_hw_error.h"
->  #include "xe_i2c.h"
-> +#include "xe_log.h"
->  #include "xe_memirq.h"
->  #include "xe_mert.h"
->  #include "xe_mmio.h"
-> @@ -759,14 +760,14 @@ static int xe_irq_msi_request_irqs(struct xe_device *xe)
->  
->  	irq_handler = xe_irq_handler(xe);
->  	if (!irq_handler) {
-> -		drm_err(&xe->drm, "No supported interrupt handler");
-> +		xe_log_err(xe, PROBE, -EINVAL, "No supported interrupt handler\n");
-
-this is already a dead code, as xe_irq_handler() never returns NULL
-we can use xe_assert instead
-
->  		return -EINVAL;
->  	}
->  
->  	irq = pci_irq_vector(pdev, 0);
->  	err = request_irq(irq, irq_handler, IRQF_SHARED, DRIVER_NAME, xe);
->  	if (err < 0) {
-> -		drm_err(&xe->drm, "Failed to request MSI IRQ %d\n", err);
-> +		xe_log_err(xe, PROBE, err, "Failed to request MSI IRQ\n");
->  		return err;
->  	}
->  
-> @@ -822,7 +823,7 @@ int xe_irq_install(struct xe_device *xe)
->  
->  	err = pci_alloc_irq_vectors(pdev, nvec, nvec, irq_flags);
->  	if (err < 0) {
-> -		drm_err(&xe->drm, "Failed to allocate IRQ vectors: %d\n", err);
-> +		xe_log_err(xe, PROBE, err, "Failed to allocate IRQ vectors\n");
->  		return err;
->  	}
->  
-> @@ -891,7 +892,7 @@ static int xe_irq_msix_init(struct xe_device *xe)
->  		return 0;  /* MSI */
->  
->  	if (nvec < 0) {
-> -		drm_err(&xe->drm, "Failed getting MSI-X vectors count: %d\n", nvec);
-> +		xe_log_err(xe, PROBE, nvec, "Failed getting MSI-X vectors count\n");
-
-maybe we should have IRQ component with SIGID_SW and use it here?
-
->  		return nvec;
->  	}
->  
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 7fa18dfcb5a2..bcf36a381424 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -15,6 +15,7 @@
->  #include "regs/xe_bars.h"
->  #include "xe_device.h"
->  #include "xe_gt_sriov_vf.h"
-> +#include "xe_log.h"
->  #include "xe_printk.h"
->  #include "xe_sriov.h"
->  #include "xe_tile_printk.h"
-> @@ -105,13 +106,13 @@ int xe_mmio_probe_early(struct xe_device *xe)
->  
->  	xe->mmio.regs = pcim_iomap(pdev, GTTMMADR_BAR, 0);
->  	if (!xe->mmio.regs) {
-> -		xe_err(xe, "Failed to map GTTMMADR_BAR\n");
-> +		xe_log_err(xe, PROBE, -EIO, "Failed to map GTTMMADR_BAR\n");
-
-shouldn't we use REGS component (SIGID_IO_BUS) here?
-
-and this is a FATAL error, no?
-
->  		return -EIO;
->  	}
->  
->  	xe->mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
->  	if (xe->mmio.size < SZ_16M) {
-> -		xe_err(xe, "GTTMMADR_BAR is too small: %zu\n", xe->mmio.size);
-> +		xe_log_err(xe, PROBE, -EIO, "GTTMMADR_BAR is too small: %zu\n", xe->mmio.size);
-
-ditto
-
->  		return -EIO;
->  	}
->  
-> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-> index a5fe1beec652..aad15a4b0ac3 100644
-> --- a/drivers/gpu/drm/xe/xe_pat.c
-> +++ b/drivers/gpu/drm/xe/xe_pat.c
-> @@ -16,6 +16,7 @@
->  #include "xe_force_wake.h"
->  #include "xe_gt.h"
->  #include "xe_gt_mcr.h"
-> +#include "xe_log.h"
->  #include "xe_mmio.h"
->  #include "xe_sriov.h"
->  #include "xe_wa.h"
-> @@ -686,8 +687,9 @@ void xe_pat_init_early(struct xe_device *xe)
->  		 * raise an error rather than trying to silently inherit the
->  		 * most recent platform's behavior.
->  		 */
-> -		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%02d!\n",
-> -			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
-> +		xe_log_err(xe, PROBE, -ENODEV,
-> +			   "Missing PAT table for platform with graphics version %d.%02d!\n",
-> +			   GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
-
-this here is pure SW gap and it is broken as right after
-logging this error we might crash in the xe_assert() below
-or later in xe_pat_init() as xe->pat.ops is NULL
-
-maybe instead of blindly adding xe_log_err we can just
-fix that first and return some error to abort the probe?
-
-also maybe we should add PAT component (with SIGID_IO_BUS?) 
-
->  	}
->  
->  	xe_assert(xe, xe->pat.ops->dump);
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 36d62927b969..3c452f399e6d 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -25,6 +25,7 @@
->  #include "xe_gt_printk.h"
->  #include "xe_gt_sriov_vf.h"
->  #include "xe_guc.h"
-> +#include "xe_log.h"
->  #include "xe_mmio.h"
->  #include "xe_module.h"
->  #include "xe_pci_error.h"
-> @@ -718,8 +719,9 @@ static int handle_gmdid(struct xe_device *xe,
->  
->  	*graphics_ip = find_graphics_ip(ver);
->  	if (!*graphics_ip) {
-> -		drm_err(&xe->drm, "Hardware reports unknown graphics version %u.%02u\n",
-> -			ver / 100, ver % 100);
-> +		xe_log_err(xe, PROBE, -ENODEV,
-> +			   "Hardware reports unknown graphics version %u.%02u\n",
-> +			   ver / 100, ver % 100);
-
-maybe use REGS component here (SIGID_IO_BUS)
-
-also, isn't that actually broken?
-with graphics_ip = NULL set here we will crash later in xe_info_init()
->  	}
->  
->  	ret = read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
-> @@ -732,8 +734,9 @@ static int handle_gmdid(struct xe_device *xe,
->  
->  	*media_ip = find_media_ip(ver);
->  	if (!*media_ip) {
-> -		drm_err(&xe->drm, "Hardware reports unknown media version %u.%02u\n",
-> -			ver / 100, ver % 100);
-> +		xe_log_err(xe, PROBE, -ENODEV,
-> +			   "Hardware reports unknown media version %u.%02u\n",
-> +			   ver / 100, ver % 100);
->  	}
->  
->  	return 0;
-> @@ -1088,7 +1091,8 @@ static int xe_info_init(struct xe_device *xe,
->  		 * required for VRAM management).
->  		 */
->  		if (!tile->primary_gt) {
-> -			drm_err(&xe->drm, "Cannot probe device with without a primary GT\n");
-> +			xe_log_err_fatal(xe, PROBE, -ENODEV,
-> +					 "Cannot probe device without a primary GT\n");
->  			return -ENODEV;
->  		}
->  
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index ccc3bdeed6bb..c492737242d3 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -14,6 +14,7 @@
->  #include "regs/xe_pmt.h"
->  #include "xe_assert.h"
->  #include "xe_device.h"
-> +#include "xe_log.h"
->  #include "xe_mmio.h"
->  #include "xe_pcode_api.h"
->  #include "xe_pm.h"
-> @@ -320,8 +321,8 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
->  		mutex_unlock(&tile->pcode.lock);
->  
->  	if (ret)
-> -		drm_err(&xe->drm,
-> -			"PCODE initialization timedout after: 3 min\n");
-> +		xe_log_err(xe, PCODE, -ret,
-> +			   "PCODE initialization timedout after: 3 min\n");
-
-drop "PCODE" prefix
-and move to separate patch
-
->  
->  	return ret;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index 23eb7edbdd57..dada430d7ed5 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
-> @@ -17,6 +17,7 @@
->  #include "xe_device.h"
->  #include "xe_force_wake.h"
->  #include "xe_gt_mcr.h"
-> +#include "xe_log.h"
->  #include "xe_mmio.h"
->  #include "xe_sriov.h"
->  #include "xe_tile_sriov_vf.h"
-> @@ -43,7 +44,7 @@ static int determine_lmem_bar_size(struct xe_device *xe, struct xe_vram_region *
->  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->  
->  	if (!resource_is_valid(pdev, LMEM_BAR)) {
-> -		drm_err(&xe->drm, "pci resource is not valid\n");
-> +		xe_log_err(xe, PROBE, -ENXIO, "pci resource is not valid\n");
-
-shouldn't we use REGS here ? (SIGID_IO_BUS)
-or add VRAM component (also SIGID_IO_BUS?)
-
->  		return -ENXIO;
->  	}
->  
-> @@ -237,7 +238,7 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
->  	vram->io_size = min_t(u64, usable_size, remain_io_size);
->  
->  	if (!vram->io_size) {
-> -		drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-> +		xe_log_err(xe, PROBE, -ENODEV, "Tile without any CPU visible VRAM. Aborting.\n");
-
-we should first fix the vram_region_init() as now it is used
-in two scenarios: to init each tile region, and to init device
-level region info
-
-and this error is meaningful for tile-based usage, where
-we should use tile as a location
-
->  		return -ENODEV;
->  	}
->  
+>
+> Next on my side: switching to the GuC 70.72.1 build Daniele posted and
+> reporting back, plus GuC logs from severe stalls are now attached to
+> the gitlab issue.
+>
+> Thanks,
+> Tales
+>
+> Em qua., 5 de ago. de 2026 às 17:25, Matthew Brost
+> <matthew.brost@intel.com> escreveu:
+>> On Tue, Aug 04, 2026 at 02:29:27PM -0700, Matthew Brost wrote:
+>>> On Tue, Aug 04, 2026 at 01:34:19PM -0300, Tales A. Mendonça wrote:
+>>>> Patchwork reports my address is not on the CI allowlist, so CI was not
+>>>> triggered for this series:
+>>>>
+>>>>      Series author address 'talesam@gmail.com' is not on the allowlist,
+>>>> which prevents CI from being automatically triggered.
+>>>>
+>>>>    Could one of the project owners click 'retest' on the series (and/or
+>>>> add me to the allowlist)? Series URL:
+>>>>
+>>>>      https://patchwork.freedesktop.org/series/171539/
+>>>>
+>>> We'd have to resend this ourselves. I can do this, but I've requested
+>>> for you to be on our allow list as well. I'll ping here once that goes
+>>> through.
+>>>
+>> You are approved on our CI for future patches.
+>>
+>> Also I came across this issue in the i915 for MTL [1] which seems to
+>> indicate the same issue (ARL and MTL are very close and share same GuC
+>> firmware), the suggestion there is turn off rc6. Unfortunately Xe
+>> doesn't have a knob to do this but according to [1] you can turn off rc6
+>> in the BIOS. Might be worth a try.
+>>
+>> Matt
+>>
+>> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/14469
+>>
+>>> Matt
+>>>
+>>>>    Thanks!
+>>>>    Tales
+>>>>
+>>>>
+>>>> Em seg., 3 de ago. de 2026 às 23:14, Tales A. Mendonça
+>>>> <talesam@gmail.com> escreveu:
+>>>>> Hi,
+>>>>>
+>>>>> This series is a follow-up to the TLB invalidation ack stall I have
+>>>>> been debugging on ARL, tracked in:
+>>>>>
+>>>>>    https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
+>>>>>
+>>>>> Summary of the issue: with GuC 70.53.0 on ARL (reproduced on 7d51 and
+>>>>> 7dd1 machines here, plus an independent Arc Pro 130T report on the
+>>>>> issue above), TLB invalidation acks intermittently stall for ~2.3s.
+>>>>> The H2G request is consumed from the CTB immediately and the G2H CTB
+>>>>> is empty the whole time - the firmware simply does not send the ack
+>>>>> until much later. The fence timeout fires at 2.25s and the ack lands
+>>>>> tens of ms after it. Userspace blocked on the invalidation (compositor
+>>>>> buffer unmaps etc.) hitches for the full window.
+>>>>>
+>>>>> Patch 1 adds xe_devcoredump_gt() so this kind of hang - which has no
+>>>>> exec queue or job to blame - leaves a devcoredump with the GuC log and
+>>>>> CT state behind (Matt suggested capturing devcoredumps when we
+>>>>> discussed the issue; devcoredumps from both machines are attached to
+>>>>> the issue above).
+>>>>>
+>>>>> Patch 2 logs when the ack for a timed out invalidation finally
+>>>>> arrives. This is what established that the acks are late rather than
+>>>>> lost.
+>>>>>
+>>>>> Patch 3 is the RFC part: a delayed work that pokes the GuC (status
+>>>>> register read, CT flush, doorbell ring) every 250ms while an ack is
+>>>>> overdue. On my machines this converts the guaranteed 2.3s stall into a
+>>>>> sub-500ms hiccup for the majority of occurrences; a minority of severe
+>>>>> episodes ignore 8-9 consecutive doorbells, which points at the GuC
+>>>>> firmware being internally blocked for the whole window. Full data on
+>>>>> the issue. I am happy to rework the approach (different delay,
+>>>>> tying it to the G2H handler, dropping the status read, etc.) - mainly
+>>>>> I would like the firmware side investigated, since no host-side poke
+>>>>> can fix the severe cases.
+>>>>>
+>>>>> Based on drm-tip. Tested for several days on both ARL machines under
+>>>>> desktop and VM-heavy workloads.
+>>>>>
+>>>>> Thanks,
+>>>>> Tales
+>>>>>
+>>>>> Tales A. Mendonça (3):
+>>>>>    drm/xe: Capture devcoredump on TLB invalidation timeout
+>>>>>    drm/xe: Log when a timed out TLB invalidation ack finally arrives
+>>>>>    drm/xe: Kick GuC while TLB invalidation acks are overdue
+>>>>>
+>>>>>   drivers/gpu/drm/xe/xe_devcoredump.c     |  68 ++++++++++++
+>>>>>   drivers/gpu/drm/xe/xe_devcoredump.h     |   6 ++
+>>>>>   drivers/gpu/drm/xe/xe_tlb_inval.c       | 131 +++++++++++++++++++++++-
+>>>>>   drivers/gpu/drm/xe/xe_tlb_inval_types.h |  42 ++++++++
+>>>>>   4 files changed, 243 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> --
+>>>>> 2.55.0
+>>>>>
+>>>>
+>>>> --
+>>>> Com os cumprimentos,
+>>>>
+>>>> Tales A. Mendonça
+>>>> talesam.org
+>>>> communitybig.org
+>
+>
 
