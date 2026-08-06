@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A22F7C5AC81
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 593A2C5AC7C
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 18:52:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC5C10E36A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3779C10E384;
 	Thu,  6 Aug 2026 18:52:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OOkjNU2s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OT4vILBK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F22910E384
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75DC210E36A
  for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 18:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1786042332; x=1817578332;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PP9YOizjVWt/KI2eP4MYFBvLVFWq6flMixfrLDinxhc=;
- b=OOkjNU2sT02mhm5iTHle4X/azdfiZCCPoMwNkebBGJEkpKimV2ABsM5V
- mFJixIxgTYFaZbK+2Xl53nutk8ciOueKsfK8DVreqHuafkosuJzDWwDDh
- WhCupQ3UHSbD8zL/8TJe6VHrCE1RPLEr71bVst6ODghSacp9nNgEzVDK5
- h0vXs/Z3v1SzqHqd3DiAw4FTZfxuYG0x4C59ivTt7z+i+6QCkY/Kdl8kl
- v1lkb7ajEoDWFl3HeBz4lrHCoo0Ak843DOqzRTTYc9kniuM+it6zKsOae
- e0AJTaXMlJfGqMmhlSgHaTu1cXCn0b1kOPfC4KqNTMt/hAkO9CAy70qb1 A==;
-X-CSE-ConnectionGUID: ChRU+AHIT9iLELEM7IIUZw==
-X-CSE-MsgGUID: AW7CwNdcSYinJZUybrqdiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86854808"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86854808"
+ bh=t5zi5pSIbnBFxBG6WdX276z0lVBSEY9KL35hAAu4OBg=;
+ b=OT4vILBK1a3JxcMbXvQ1/oHMLgWAnmPIApuBo+Iq8ki70i8gInZc2EZm
+ ShPhHTPxXmbOmRQZ9rln3r5JwLdriY0AGMa+YlbM4tkjxhSxkhRGpDBb0
+ LK+Gi9DokjclYp0azRJMbM9anUHCsIOJVQ9aeKC16QRvXft5ZoEVemUGf
+ yhlkG7qteEg4wvahchtqLztIb1JrjTyko79fkTB5zp6gvl2QtXXUfxxlO
+ t9nZF+hD1iJt7ofBV9+tOiHc+5i+WticRePNcsm1Ncvbdp2OKXOSk+fcp
+ G1Vu65qRk/j2xpI36oeWXfXn5ku4F+t4/j5pbPa8YcOb4IyhkNaHj1GA/ w==;
+X-CSE-ConnectionGUID: w5kD7DDLRgKfU5NZiIYylg==
+X-CSE-MsgGUID: l1uFkMHkQxOzqd/Bl5qcaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86854804"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86854804"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Aug 2026 11:52:11 -0700
-X-CSE-ConnectionGUID: IC/HqrWlT8urhOECNVx0tA==
-X-CSE-MsgGUID: jhDL6EL2Rka9f5F/JOerFg==
+X-CSE-ConnectionGUID: jTPgahFQRJq+1lS9/6DUwA==
+X-CSE-MsgGUID: 1Dha4bzoRM6o3Gk1sZ8ZrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="266414609"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="266414600"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Aug 2026 11:52:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v9 05/12] drm/xe: Add num_pf_work modparam
-Date: Thu,  6 Aug 2026 11:51:55 -0700
-Message-Id: <20260806185202.3922432-6-matthew.brost@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Subject: [PATCH v9 02/12] drm/xe: Allow prefetch-only VM bind IOCTLs to use VM
+ read lock
+Date: Thu,  6 Aug 2026 11:51:52 -0700
+Message-Id: <20260806185202.3922432-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260806185202.3922432-1-matthew.brost@intel.com>
 References: <20260806185202.3922432-1-matthew.brost@intel.com>
@@ -66,181 +67,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a module parameter to control the number of page-fault work threads,
-making it easy to experiment with how different numbers of work threads
-impact performance.
+Prefetch-only VM bind IOCTLs do not modify VMAs or use userptr pages.
+Downgrade vm->lock to read mode once setup is complete.
+
+Lays the groundwork for prefetch IOCTLs to use threaded migration.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_defaults.h     |  1 +
- drivers/gpu/drm/xe/xe_device.c       | 14 ++++++++++++--
- drivers/gpu/drm/xe/xe_device_types.h | 11 ++++-------
- drivers/gpu/drm/xe/xe_module.c       |  4 ++++
- drivers/gpu/drm/xe/xe_module.h       |  1 +
- drivers/gpu/drm/xe/xe_pagefault.c    |  8 ++++----
- drivers/gpu/drm/xe/xe_vm.c           |  3 ++-
- 7 files changed, 28 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 36 +++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_vm_types.h |  2 ++
+ 2 files changed, 33 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index c8ae1d5f3d60..0884224ef7c7 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -22,5 +22,6 @@
- #define XE_DEFAULT_WEDGED_MODE			XE_WEDGED_MODE_UPON_CRITICAL_ERROR
- #define XE_DEFAULT_WEDGED_MODE_STR		"upon-critical-error"
- #define XE_DEFAULT_SVM_NOTIFIER_SIZE		512
-+#define XE_DEFAULT_NUM_PF_WORK			2
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index d25d02b24898..7ca39ce2e0a2 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -513,6 +513,17 @@ struct xe_device *xe_device_create(struct pci_dev *pdev)
- }
- ALLOW_ERROR_INJECTION(xe_device_create, ERRNO); /* See xe_pci_probe() */
- 
-+static void xe_device_parse_modparam(struct xe_device *xe)
-+{
-+	xe->atomic_svm_timeslice_ms = 5;
-+	xe->min_run_period_lr_ms = 5;
-+	xe->info.num_pf_work = xe_modparam.num_pf_work;
-+	if (xe->info.num_pf_work < 1)
-+		xe->info.num_pf_work = 1;
-+	else if (xe->info.num_pf_work > XE_PAGEFAULT_WORK_MAX)
-+		xe->info.num_pf_work = XE_PAGEFAULT_WORK_MAX;
-+}
-+
- /**
-  * xe_device_init_early() - Initialize a new &xe_device instance
-  * @xe: the &xe_device to initialize
-@@ -539,8 +550,7 @@ int xe_device_init_early(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	xe->atomic_svm_timeslice_ms = 5;
--	xe->min_run_period_lr_ms = 5;
-+	xe_device_parse_modparam(xe);
- 
- 	err = xe_irq_init(xe);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 1b17dff8a3db..180d450a6deb 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -140,6 +140,8 @@ struct xe_device {
- 		u8 revid;
- 		/** @info.step: stepping information for each IP */
- 		struct xe_step_info step;
-+		/** @info.num_pf_work: Number of page fault work thread */
-+		int num_pf_work;
- 		/** @info.dma_mask_size: DMA address bits */
- 		u8 dma_mask_size;
- 		/** @info.vram_flags: Vram flags */
-@@ -328,14 +330,9 @@ struct xe_device {
- 		struct workqueue_struct *pagefault_wq;
- 		/** @usm.prefetch_wq: threaded prefetch work queue, unbound */
- 		struct workqueue_struct *prefetch_wq;
--		/*
--		 * We pick 4 here because, in the current implementation, it
--		 * yields the best bandwidth utilization of the kernel paging
--		 * engine.
--		 */
--#define XE_PAGEFAULT_WORK_COUNT	4
-+#define XE_PAGEFAULT_WORK_MAX	8
- 		/** @usm.pf_workers: Page fault workers */
--		struct xe_pagefault_work pf_workers[XE_PAGEFAULT_WORK_COUNT];
-+		struct xe_pagefault_work pf_workers[XE_PAGEFAULT_WORK_MAX];
- 		/** @usm.pf_queue: Page fault queue */
- 		struct xe_pagefault_queue pf_queue;
- #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 848d65265443..4bc28dfc1992 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -29,6 +29,7 @@ struct xe_modparam xe_modparam = {
- 	.max_vfs =		XE_DEFAULT_MAX_VFS,
- #endif
- 	.wedged_mode =		XE_DEFAULT_WEDGED_MODE,
-+	.num_pf_work =		XE_DEFAULT_NUM_PF_WORK,
- 	.svm_notifier_size =	XE_DEFAULT_SVM_NOTIFIER_SIZE,
- 	/* the rest are 0 by default */
- };
-@@ -81,6 +82,9 @@ MODULE_PARM_DESC(wedged_mode,
- 		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-error, 2=upon-any-hang-no-reset "
- 		 "[default=" XE_DEFAULT_WEDGED_MODE_STR "])");
- 
-+module_param_named(num_pf_work, xe_modparam.num_pf_work, uint, 0600);
-+MODULE_PARM_DESC(num_pf_work, "Number of page fault work threads, default=2, min=1, max=8");
-+
- static int xe_check_nomodeset(void)
- {
- 	if (drm_firmware_drivers_only())
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index a0eb7db07770..6272d9e41207 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -23,6 +23,7 @@ struct xe_modparam {
- 	unsigned int max_vfs;
- #endif
- 	unsigned int wedged_mode;
-+	unsigned int num_pf_work;
- 	u32 svm_notifier_size;
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index dd34ec2cb166..8198c60e960a 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -398,13 +398,13 @@ int xe_pagefault_init(struct xe_device *xe)
- 
- 	xe->usm.pagefault_wq = alloc_workqueue("xe_page_fault_work_queue",
- 					       WQ_UNBOUND | WQ_HIGHPRI,
--					       XE_PAGEFAULT_WORK_COUNT);
-+					       xe->info.num_pf_work);
- 	if (!xe->usm.pagefault_wq)
- 		return -ENOMEM;
- 
- 	xe->usm.prefetch_wq = alloc_workqueue("xe_prefetch_work_queue",
- 					      WQ_UNBOUND,
--					      XE_PAGEFAULT_WORK_COUNT);
-+					      xe->info.num_pf_work);
- 	if (!xe->usm.prefetch_wq) {
- 		err = -ENOMEM;
- 		goto err_pagefault_wq;
-@@ -414,7 +414,7 @@ int xe_pagefault_init(struct xe_device *xe)
- 	if (err)
- 		goto err_out;
- 
--	for (i = 0; i < XE_PAGEFAULT_WORK_COUNT; ++i) {
-+	for (i = 0; i < xe->info.num_pf_work; ++i) {
- 		struct xe_pagefault_work *pf_work = xe->usm.pf_workers + i;
- 
- 		pf_work->xe = xe;
-@@ -482,7 +482,7 @@ static int xe_pagefault_work_index(struct xe_device *xe)
- {
- 	lockdep_assert_held(&xe->usm.pf_queue.lock);
- 
--	return xe->usm.current_pf_work++ % XE_PAGEFAULT_WORK_COUNT;
-+	return xe->usm.current_pf_work++ % xe->info.num_pf_work;
- }
- 
- /**
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 4b4036da089e..82fad6818c82 100644
+index a39854fbd3a2..25736c952304 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3255,7 +3255,8 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops,
- 	skip_threads =  op->prefetch_range.ranges_count == 1 ||
- 		(!dpagemap && !(vops->flags &
- 				XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE)) ||
--		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK);
-+		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK) ||
-+		vm->xe->info.num_pf_work == 1;
- 	thread = skip_threads ? &stack_thread : NULL;
+@@ -2451,10 +2451,12 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 			.map.gem.offset = bo_offset_or_userptr,
+ 		};
  
- 	if (!skip_threads) {
++		vops->flags |= XE_VMA_OPS_FLAG_MODIFIES_GPUVA;
+ 		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, &map_req);
+ 		break;
+ 	}
+ 	case DRM_XE_VM_BIND_OP_UNMAP:
++		vops->flags |= XE_VMA_OPS_FLAG_MODIFIES_GPUVA;
+ 		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
+ 		break;
+ 	case DRM_XE_VM_BIND_OP_PREFETCH:
+@@ -2463,6 +2465,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 	case DRM_XE_VM_BIND_OP_UNMAP_ALL:
+ 		xe_assert(vm->xe, bo);
+ 
++		vops->flags |= XE_VMA_OPS_FLAG_MODIFIES_GPUVA;
+ 		err = xe_bo_lock(bo, true);
+ 		if (err)
+ 			return ERR_PTR(err);
+@@ -2524,6 +2527,9 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 			u32 i;
+ 			bool need_put;
+ 
++			if (xe_vma_is_userptr(vma))
++				vops->flags |= XE_VMA_OPS_FLAG_MODIFIES_GPUVA;
++
+ 			if (!xe_vma_is_cpu_addr_mirror(vma)) {
+ 				op->prefetch.region = prefetch_region;
+ 				continue;
+@@ -2715,10 +2721,12 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ {
+ 	int err = 0;
+ 
+-	xe_vm_assert_write_mode_or_garbage_collector(vm);
++	lockdep_assert_held(&vm->lock);
+ 
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
++		xe_vm_assert_write_mode_or_garbage_collector(vm);
++
+ 		err |= xe_vm_insert_vma(vm, op->map.vma);
+ 		if (!err)
+ 			op->flags |= XE_VMA_OP_COMMITTED;
+@@ -2728,6 +2736,8 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 		u8 tile_present =
+ 			gpuva_to_vma(op->base.remap.unmap->va)->tile_present;
+ 
++		xe_vm_assert_write_mode_or_garbage_collector(vm);
++
+ 		prep_vma_destroy(vm, gpuva_to_vma(op->base.remap.unmap->va),
+ 				 true);
+ 		op->flags |= XE_VMA_OP_COMMITTED;
+@@ -2762,6 +2772,8 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 		break;
+ 	}
+ 	case DRM_GPUVA_OP_UNMAP:
++		xe_vm_assert_write_mode_or_garbage_collector(vm);
++
+ 		prep_vma_destroy(vm, gpuva_to_vma(op->base.unmap.va), true);
+ 		op->flags |= XE_VMA_OP_COMMITTED;
+ 		break;
+@@ -2986,10 +2998,12 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 			     bool post_commit, bool prev_post_commit,
+ 			     bool next_post_commit)
+ {
+-	xe_vm_assert_write_mode_or_garbage_collector(vm);
++	lockdep_assert_held(&vm->lock);
+ 
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
++		xe_vm_assert_write_mode_or_garbage_collector(vm);
++
+ 		if (op->map.vma) {
+ 			prep_vma_destroy(vm, op->map.vma, post_commit);
+ 			xe_vma_destroy_unlocked(op->map.vma);
+@@ -2999,6 +3013,8 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 	{
+ 		struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
+ 
++		xe_vm_assert_write_mode_or_garbage_collector(vm);
++
+ 		if (vma) {
+ 			xe_svm_notifier_lock(vm);
+ 			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
+@@ -3012,6 +3028,8 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 	{
+ 		struct xe_vma *vma = gpuva_to_vma(op->base.remap.unmap->va);
+ 
++		xe_vm_assert_write_mode_or_garbage_collector(vm);
++
+ 		if (op->remap.prev) {
+ 			prep_vma_destroy(vm, op->remap.prev, prev_post_commit);
+ 			xe_vma_destroy_unlocked(op->remap.prev);
+@@ -3596,7 +3614,7 @@ static struct dma_fence *vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 	struct dma_fence *fence;
+ 	int err = 0;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	lockdep_assert_held(&vm->lock);
+ 
+ 	xe_validation_guard(&ctx, &vm->xe->val, &exec,
+ 			    ((struct xe_val_flags) {
+@@ -3919,7 +3937,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	u32 num_syncs, num_ufence = 0;
+ 	struct xe_sync_entry *syncs = NULL;
+ 	struct drm_xe_vm_bind_op *bind_ops = NULL;
+-	struct xe_vma_ops vops;
++	struct xe_vma_ops vops = { .flags = 0, };
+ 	struct dma_fence *fence;
+ 	int err;
+ 	int i;
+@@ -4094,6 +4112,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto unwind_ops;
+ 	}
+ 
++	if (!(vops.flags & XE_VMA_OPS_FLAG_MODIFIES_GPUVA)) {
++		vops.flags |= XE_VMA_OPS_FLAG_DOWNGRADE_LOCK;
++		downgrade_write(&vm->lock);
++	}
++
+ 	err = xe_vma_ops_alloc(&vops, args->num_binds > 1);
+ 	if (err)
+ 		goto unwind_ops;
+@@ -4130,7 +4153,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ free_bos:
+ 	kvfree(bos);
+ release_vm_lock:
+-	up_write(&vm->lock);
++	if (vops.flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK)
++		up_read(&vm->lock);
++	else
++		up_write(&vm->lock);
+ put_exec_queue:
+ 	if (q)
+ 		xe_exec_queue_put(q);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index b94eb018d532..2f5f74fed9d2 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -561,6 +561,8 @@ struct xe_vma_ops {
+ #define XE_VMA_OPS_ARRAY_OF_BINDS	 BIT(2)
+ #define XE_VMA_OPS_FLAG_SKIP_TLB_WAIT	 BIT(3)
+ #define XE_VMA_OPS_FLAG_ALLOW_SVM_UNMAP  BIT(4)
++#define XE_VMA_OPS_FLAG_MODIFIES_GPUVA	 BIT(5)
++#define XE_VMA_OPS_FLAG_DOWNGRADE_LOCK	 BIT(6)
+ 	u32 flags;
+ #ifdef TEST_VM_OPS_ERROR
+ 	/** @inject_error: inject error to test error handling */
 -- 
 2.34.1
 
