@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 573BCC56205
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 12:09:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CFF8C56205
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Aug 2026 12:09:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16B2A10F1BA;
-	Thu,  6 Aug 2026 12:09:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47CA710F1BD;
+	Thu,  6 Aug 2026 12:09:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gdEbtqnr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GhN7/gDu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8716A10F1BA
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 12:09:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D3510F1BD
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Aug 2026 12:09:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786018180; x=1817554180;
+ t=1786018184; x=1817554184;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nFTvB6YJQqubL82TtPL+f16kQzlVipebHHs57wBqMhU=;
- b=gdEbtqnra21wu/x7RZ6Da+T7ViMwI6jKmT/dRvJc3Ballqn8wUX2p680
- LgF39rTsvdPPrf++FtM+bos48VR3d/8tMxl9u5hPnlaYeWKcKS6EyJDmr
- abI2VPLPhGXB8SAJJ6MsL7j5vCQ/CLbrFOkQiiAzbH8wnQPKiN6YlSu51
- Mo/fLwh+a3vtHBcc8jxzISgLM0XmfJ1LqE69ZYSGhwxkbOKUK+maP30Lk
- KsOZWIYYeEYGXiz1s6jt7l2lpwiOvPGUoK3gIZVIbyY6V0w/MwDVKxpJL
- icfJSNlz7+hL4QWxec/yZ3LMgOtsKHQ80F6wsR9Zs3yXI+yjKLaoKXxzN g==;
-X-CSE-ConnectionGUID: lAHF5qnqSfy1vp9dXkk7XA==
-X-CSE-MsgGUID: H7tWvmQrRvecedo9S6sGPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="96961501"
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="96961501"
+ bh=yJJLrkJcp9YOktZUKzjDxbySQ83N3uJHQor/BtNEXiQ=;
+ b=GhN7/gDuBRWlGFLwc1oxqn6cZsKLQWL+nVVyOGsXOCuPjn7aSXtvwehp
+ SJk2vYTEDEAoDb4Z+SCfuVO+y6bSrXrZ5a3FX6O2vgjOiSG+/655EPt9x
+ 61clHm5LtVXhrSqNXAqxgBDagw/oYWfwDEnzOlnH7oKiCpZ+2Zexy5jyT
+ +Vdz0bJ9w+AlLL0s0Pn/Vu9dSrEX/k4QDzj7I6d0YBJPtbJzkpAjChjHx
+ UedGXYFh9XUH5v/8fjROhrl0qdFolxtP7QaxlK+1roBVKLFpA4WzvSz+t
+ /zvdoSqnMmul+E1n0rwJq70OofaU+Obz3fJown1K7Xcy5ek4vj1pmzg+u A==;
+X-CSE-ConnectionGUID: 4S0GtWyVQi+wf/F76GhCdw==
+X-CSE-MsgGUID: cTv+GZuMSvqYtDtgvf94yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11866"; a="96961504"
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="96961504"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 05:09:40 -0700
-X-CSE-ConnectionGUID: 4CykoDA2SxmKpVPM1szIqA==
-X-CSE-MsgGUID: 2BCop0crQ0GAlf6TRDrHkw==
+ 06 Aug 2026 05:09:43 -0700
+X-CSE-ConnectionGUID: tb2eZJTzTrCGPcy5027q1Q==
+X-CSE-MsgGUID: vh6AvRQpS/+rRHAvkiGnvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="260320993"
+X-IronPort-AV: E=Sophos;i="6.25,208,1779174000"; d="scan'208";a="260321005"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 05:09:36 -0700
+ 06 Aug 2026 05:09:39 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,13 +48,15 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v6 1/2] drm/xe/sysctrl: Add helper to query application status
-Date: Thu,  6 Aug 2026 05:09:31 -0700
-Message-ID: <20260806120930.2072613-5-anoop.c.vijay@intel.com>
+Subject: [PATCH v6 2/2] drm/xe/sysctrl: Add helper to check oCode firmware
+ readiness
+Date: Thu,  6 Aug 2026 05:09:32 -0700
+Message-ID: <20260806120930.2072613-6-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260806120930.2072613-4-anoop.c.vijay@intel.com>
 References: <20260806120930.2072613-4-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,225 +74,78 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add xe_sysctrl_check_app_status() to query the state of a System
-Controller application using get_app_status_by_id mailbox command.
-
-The helper maps xe_sysctrl_app_id values to firmware application
-IDs and returns the reported application state. Add a convenience
-wrapper to check diag firmware application readiness.
+Add xe_sysctrl_is_oobmsm_fw_ready(), a convenience wrapper around
+xe_sysctrl_check_app_status() to check oCode application readiness.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
-v2: (Badal)
-- Return SysCtrl firmware application states instead of errno for
-  application lifecycle conditions
-
-v3: (Riana, Badal)
-- Replace string-based app identifiers with enum xe_sysctrl_app_id
-- Use get_app_status_by_id (opcode 0x05)
-- Move mailbox definitions to xe_sysctrl_mailbox_types.h
-- Return enum xe_sysctrl_fw_status consistently
-- Map communication failures to COMM_FAILURE
-- Add INITIALIZED state and status helpers
-- Fix Diagnostics typo
-
-v4: (Anshuman)
-- Make xe_sysctrl_check_app_status() internal
-- Remove unused app identifier
-
-v5: (Anshuman)
-- Rename OOBMSM status helper to use xe_sysctrl_* prefix
-- Remove xe_is_diag_fw_ready() helper
-
-v6: (Riana)
-- Use xe_sysctrl_create_command() helper instead of manual FIELD_PREP
-  header packing
-- Rename xe_sysctrl_get_app_status_by_id_{req,resp} to shorter names
-- Use hex constant for application ID
-- Move oCode application readiness helper to a separate patch
-- Add xe_sysctrl_is_diag_fw_ready() helper.
+v6:
+- New patch — split oCode application readiness helper out of the
+  original patch into its own commit
 ---
- drivers/gpu/drm/xe/xe_sysctrl.c               | 63 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.c               | 19 +++++++++++++++++++
  drivers/gpu/drm/xe/xe_sysctrl.h               |  1 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 63 +++++++++++++++++++
- 3 files changed, 127 insertions(+)
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  2 ++
+ 3 files changed, 22 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 1db20be8158b..35b8b8b85a48 100644
+index 35b8b8b85a48..8eac58647265 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -13,9 +13,11 @@
- #include "xe_device.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
-+#include "xe_printk.h"
- #include "xe_soc_remapper.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
- #include "xe_sysctrl_types.h"
- 
- /**
-@@ -130,3 +132,64 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
- 
- 	xe_sysctrl_mailbox_init(sc);
+@@ -175,6 +175,25 @@ xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
+ 	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
  }
-+
-+static enum xe_sysctrl_fw_status
-+xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
-+{
-+	struct xe_sysctrl_app_status_req req = {};
-+	struct xe_sysctrl_app_status_resp resp = {};
-+	struct xe_sysctrl_mailbox_command cmd = {};
-+	size_t out_len = 0;
-+	u32 flags;
-+	int ret;
-+
-+	if (!xe->info.has_sysctrl)
-+		return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+
-+	req.app_id = (u8)app_id;
-+
-+	xe_sysctrl_create_command(&cmd, XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID,
-+				  &req, sizeof(req), &resp, sizeof(resp));
-+
-+	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
-+	if (ret)
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
-+
-+	if (out_len != sizeof(resp)) {
-+		xe_err(xe, "sysctrl: unexpected get app status response length %zu (expected %zu)\n",
-+		       out_len, sizeof(resp));
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
-+	}
-+
-+	flags = resp.flags;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
-+		return XE_SYSCTRL_FIRMWARE_APP_INVALID;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
-+		return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
-+
-+	if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
-+		return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
-+
-+	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
-+}
-+
+ 
 +/**
-+ * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is fully initialized
++ * xe_sysctrl_is_oobmsm_fw_ready() - Check if oCode firmware is fully initialized
 + * @xe: xe device instance
 + *
-+ * Returns true if diag firmware has reached the initialized state, indicating
++ * Returns true if oCode firmware has reached the initialized state, indicating
 + * it is ready to handle requests. Returns true also on platforms without System
 + * Controller support, as there is no firmware gate to wait on.
 + *
-+ * Return: true if diag firmware is initialized or sysctrl is not present, false otherwise
++ * Return: true if oCode is initialized or sysctrl is not present, false otherwise
 + */
-+bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe)
++bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe)
 +{
 +	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
++		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_OCODE);
 +
 +	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
 +	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
 +}
++
+ /**
+  * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is fully initialized
+  * @xe: xe device instance
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index 090dffb6d55f..8dc576796890 100644
+index 8dc576796890..b69a3f474236 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -20,5 +20,6 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
+@@ -20,6 +20,7 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
  int xe_sysctrl_init(struct xe_device *xe);
  void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
  void xe_sysctrl_pm_resume(struct xe_device *xe);
-+bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
++bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe);
+ bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
  
  #endif
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index d0341538ad05..5e39d2a9c2b0 100644
+index 5e39d2a9c2b0..b507e1553cbb 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -14,9 +14,11 @@
-  * enum xe_sysctrl_group - System Controller command groups
+@@ -95,9 +95,11 @@ enum xe_sysctrl_fw_status {
+ /**
+  * enum xe_sysctrl_app_id - Known System Controller application identifiers
   *
-  * @XE_SYSCTRL_GROUP_GFSP: GFSP group
-+ * @XE_SYSCTRL_GROUP_CORE: Core group
++ * @XE_SYSCTRL_APP_OCODE: oCode application (firmware ID 12)
+  * @XE_SYSCTRL_APP_DIAG: diag application (firmware ID 13)
   */
- enum xe_sysctrl_group {
- 	XE_SYSCTRL_GROUP_GFSP			= 0x01,
-+	XE_SYSCTRL_GROUP_CORE			= 0xFF,
+ enum xe_sysctrl_app_id {
++	XE_SYSCTRL_APP_OCODE	= 0x0C,
+ 	XE_SYSCTRL_APP_DIAG	= 0x0D,
  };
  
- /**
-@@ -38,6 +40,67 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
- };
- 
-+/**
-+ * enum xe_sysctrl_core_cmd - Commands supported by Core group
-+ *
-+ * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
-+ */
-+enum xe_sysctrl_core_cmd {
-+	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
-+};
-+
-+/**
-+ * struct xe_sysctrl_app_status_req - Get application status request
-+ *
-+ * @app_id: Application ID for which to retrieve status
-+ */
-+struct xe_sysctrl_app_status_req {
-+	u8 app_id;
-+} __packed;
-+
-+/**
-+ * struct xe_sysctrl_app_status_resp - Get application status response
-+ * @flags: Application status flags (see XE_SYSCTRL_APP_RESP_* definitions)
-+ */
-+struct xe_sysctrl_app_status_resp {
-+	u32 flags;
-+} __packed;
-+
-+/** XE_SYSCTRL_APP_RESP_VALID - app_id is recognized by System Controller firmware */
-+#define XE_SYSCTRL_APP_RESP_VALID		BIT(0)
-+/** XE_SYSCTRL_APP_RESP_BOOTED - application has completed its boot sequence */
-+#define XE_SYSCTRL_APP_RESP_BOOTED		BIT(1)
-+/** XE_SYSCTRL_APP_RESP_INITIALIZED - application has completed all post-boot initialization */
-+#define XE_SYSCTRL_APP_RESP_INITIALIZED		BIT(2)
-+
-+/**
-+ * enum xe_sysctrl_fw_status - System Controller firmware application lifecycle states
-+ *
-+ * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by firmware
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has not yet booted
-+ * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed, post-boot init pending
-+ * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully operational
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available on this device
-+ * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System Controller firmware failed
-+ */
-+enum xe_sysctrl_fw_status {
-+	XE_SYSCTRL_FIRMWARE_APP_INVALID,
-+	XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
-+	XE_SYSCTRL_FIRMWARE_APP_BOOTED,
-+	XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
-+	XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
-+	XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
-+};
-+
-+/**
-+ * enum xe_sysctrl_app_id - Known System Controller application identifiers
-+ *
-+ * @XE_SYSCTRL_APP_DIAG: diag application (firmware ID 13)
-+ */
-+enum xe_sysctrl_app_id {
-+	XE_SYSCTRL_APP_DIAG	= 0x0D,
-+};
-+
- /**
-  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
-  */
 -- 
 2.43.0
 
