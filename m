@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21284C5AC7C
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 12:15:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 507DCC5ACAB
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 12:15:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9D6410F4A1;
-	Fri,  7 Aug 2026 12:15:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA21910F4A9;
+	Fri,  7 Aug 2026 12:15:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dj2rXEeV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hRNHAwVO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4880910F4A1;
- Fri,  7 Aug 2026 12:15:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88DAE10F4A4;
+ Fri,  7 Aug 2026 12:15:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786104944; x=1817640944;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ss0H7nUkjOgMM3ujPQ3L3EZ67Y/7KSOmHNauN9PZwLI=;
- b=dj2rXEeV3XsbL1W7/NNzn/WPWI/njOKVuTs6V5SLqgYnmK3uygQL86nV
- MWPgcQGXy2NE4RzzMTEIDUuN7eo7KPZoSoiKf1KnDDcFBx5JfR8MV4Tpx
- a24Ffdr7LjkBRIbptUasPjf4qB5Sv9fHkL05iE7WNT7+wZqpHza7e7hHi
- 8Y2+BiXFbnRk2HBIbjwiuhyTAHme5pKDo5rS04ES0j9Uiee942pjkMdzy
- 0/EHxRWq2NNxjayeUhTi/eequIbkfELSs0JCh1qrMoCayLGsPBxtK7Lhy
- ggft2lMxbbY7Km0PmyUzShZ6qM0ZhwWC9bHi/gwtd0SYq4H6H0silQIQA w==;
-X-CSE-ConnectionGUID: 1mbONPhkRnK4TuezTDdgpg==
-X-CSE-MsgGUID: C6Hi5iFGQau2yvHQ6lO50w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86562841"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86562841"
+ t=1786104946; x=1817640946;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RZhufdFT0QbKDUZlF+CWQtRNGB6XONlnVgOVERwpA6s=;
+ b=hRNHAwVOd1WG/aIVly5qeUfJ145qY/5nwGXVjoM6JsFzmEoaQSTE/6Zj
+ 21kNs1G3k9D45bSoo4sckpCJsKgoxoWyVSgO++y9yjETBtRJQUzzNApvP
+ zGtusaSR0Dwtvo3vXMAWFuMDQsZYK8BSADW7QLpolh6BKDrIzgURDo7nb
+ eTQETSt8u8qV/eaaifoZzCIciENHf3IUsmqG47hosxNzWjy4liIHDZluM
+ 8ng1MSnyhX91PALmF/UU/Zjlo1UIhFNcQgoXDrrNl2XN7iAKHrvFgJfIX
+ 6lzlzUaQ1bEex9F0tMZbtbBN0pOjPxrCAaJa0HokrLtuKdeKkwp2OJ7qq w==;
+X-CSE-ConnectionGUID: jP3klyBISmqQutLQl7Ps+A==
+X-CSE-MsgGUID: xW2qGJsSTAyoxGh0lVwUCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86562844"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86562844"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 05:15:44 -0700
-X-CSE-ConnectionGUID: opB80UT0Sj+6P0GXuDFhsw==
-X-CSE-MsgGUID: yY+mlzkBS1ePgODdZvAYuw==
+ 07 Aug 2026 05:15:46 -0700
+X-CSE-ConnectionGUID: HlaKlTCGRTWlyep2PxHdAw==
+X-CSE-MsgGUID: /BdTJeBkS4iMh87pRYExIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="260611601"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="260611618"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 07 Aug 2026 05:15:43 -0700
+ by orviesa006.jf.intel.com with ESMTP; 07 Aug 2026 05:15:45 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 0/3] drm/i915/display: fix flipq pipe CRC mismatch in
- kms_cursor_crc
-Date: Fri,  7 Aug 2026 12:15:37 +0000
-Message-ID: <20260807121540.2032283-1-mika.kahola@intel.com>
+Subject: [PATCH 2/3] drm/i915/display: Restrict flipq to simple single-plane
+ updates
+Date: Fri,  7 Aug 2026 12:15:39 +0000
+Message-ID: <20260807121540.2032283-3-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260807121540.2032283-1-mika.kahola@intel.com>
+References: <20260807121540.2032283-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,35 +67,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-kms_cursor_crc's cursor-alpha-opaque subtest fails igt_assert_crc_equal()
-once flipq is enabled. Flipq commits complete asynchronously via pipe
-DMC, but frontbuffer tracking isn't notified when the queued update
-actually lands, so a CRC taken right after can observe stale state.
+Our flipq eligibility check is too loose: it still lets through
+commits that change the active/enabled plane mask, or need extra
+pipe/M-N/LRR/watermark programming. Those aren't simple queued plane
+updates and have no business going through flipq.
 
-Patch 1 fixes that by deferring the frontbuffer flip notification until
-the flipq commit has actually completed. Patches 2 and 3 close two
-related eligibility gaps found while tracking this down: flipq being
-selected for commits more complex than a simple queued plane update,
-and a stale use_flipq surviving into a duplicated crtc state, letting a
-legacy cursor commit slip through without re-evaluating eligibility.
+Found this chasing a CRC mismatch in kms_cursor_crc's
+cursor-alpha-opaque: a plane enable/disable commit slipped through
+flipq ahead of the plane-content commit the CRC actually checks.
 
-Tested on pixel with kms_cursor_crc and kms_frontbuffer_tracking.
+Reject flipq for anything touching more than one plane, changing the
+active/enabled plane masks, or needing async flip, VRR, PSR, color,
+pipe, M/N, LRR or watermark updates. More conservative than strictly
+necessary in some cases, but better safe than racy.
 
-Mika Kahola (3):
-  drm/i915/display: Flush frontbuffer tracking on flipq completion
-  drm/i915/display: Restrict flipq to simple single-plane updates
-  drm/i915/display: Reset use_flipq when duplicating crtc state
+Assisted-by: Copilot:claude-sonnet-5
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 53 +++++++++++++++++---
+ 1 file changed, 46 insertions(+), 7 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_atomic.c   |  1 +
- drivers/gpu/drm/i915/display/intel_crtc.c     |  3 +
- drivers/gpu/drm/i915/display/intel_display.c  | 56 ++++++++++++++--
- .../drm/i915/display/intel_display_types.h    |  9 +++
- drivers/gpu/drm/i915/display/intel_dsb.c      | 65 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dsb.h      |  2 +
- drivers/gpu/drm/i915/display/intel_fbc.c      | 21 ++++++
- drivers/gpu/drm/i915/display/intel_fbc.h      |  1 +
- 8 files changed, 151 insertions(+), 7 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 5cdaa59f005e..2483c031631c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7323,6 +7323,51 @@ static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *s
+ 	}
+ }
+ 
++static bool intel_flipq_commit_is_eligible(struct intel_atomic_state *state,
++					   struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(state);
++	const struct intel_crtc_state *old_crtc_state =
++		intel_atomic_get_old_crtc_state(state, crtc);
++	const struct intel_crtc_state *new_crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++
++	if (!intel_flipq_supported(display))
++		return false;
++
++	if (intel_crtc_needs_modeset(new_crtc_state) ||
++	    intel_crtc_needs_fastset(new_crtc_state) ||
++	    intel_crtc_needs_color_update(new_crtc_state))
++		return false;
++
++	if (!new_crtc_state->update_planes ||
++	    !is_power_of_2(new_crtc_state->update_planes))
++		return false;
++
++	if (new_crtc_state->do_async_flip ||
++	    new_crtc_state->vrr.enable ||
++	    new_crtc_state->has_psr)
++		return false;
++
++	if (old_crtc_state->active_planes != new_crtc_state->active_planes ||
++	    old_crtc_state->enabled_planes != new_crtc_state->enabled_planes)
++		return false;
++
++	/*
++	 * Flipq is only suitable for simple queued single-plane updates
++	 * that do not change plane topology and do not require additional
++	 * pipe/timing/watermark programming.
++	 */
++	if (new_crtc_state->update_pipe ||
++	    new_crtc_state->update_m_n ||
++	    new_crtc_state->update_lrr ||
++	    new_crtc_state->update_wm_pre ||
++	    new_crtc_state->update_wm_post)
++		return false;
++
++	return true;
++}
++
+ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
+ 				     struct intel_crtc *crtc)
+ {
+@@ -7338,13 +7383,7 @@ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
+ 
+ 	/* FIXME deal with everything */
+ 	new_crtc_state->use_flipq =
+-		intel_flipq_supported(display) &&
+-		!new_crtc_state->do_async_flip &&
+-		!new_crtc_state->vrr.enable &&
+-		!new_crtc_state->has_psr &&
+-		!intel_crtc_needs_modeset(new_crtc_state) &&
+-		!intel_crtc_needs_fastset(new_crtc_state) &&
+-		!intel_crtc_needs_color_update(new_crtc_state);
++		intel_flipq_commit_is_eligible(state, crtc);
+ 
+ 	new_crtc_state->use_dsb =
+ 		!new_crtc_state->use_flipq &&
 -- 
 2.43.0
 
