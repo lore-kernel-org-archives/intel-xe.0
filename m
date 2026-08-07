@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE815C5AC9E
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:32:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CC2AC2A09B
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:32:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60AE910F394;
-	Fri,  7 Aug 2026 04:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE0CA10F396;
+	Fri,  7 Aug 2026 04:32:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lYarMRmO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DIiKq8K3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3966910F391;
- Fri,  7 Aug 2026 04:32:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D5D10F39A;
+ Fri,  7 Aug 2026 04:32:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786077142; x=1817613142;
+ t=1786077145; x=1817613145;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kB/ATi8JpHA7usLNOeNpylb4tWRufyjTNngeMSpfQVw=;
- b=lYarMRmO68KFgk+qTPUzlIbXMxrs8Nl7cZHb8tU3DeVYfktzr4jtq5ZY
- 2VLTVdOmQus35WkvwJShrZWinnFzCp6ZabCldDr/iV2/xPlgqQCiUUNBU
- QUgnWZEwj8IpktCHMuL6lbMOle4vL7yIGMOIcGT2fO343dWyHfj9rtyXI
- LVxzQKbCkn9Cbzhg2RWQ/94FWO5/giSJxD6WybMJlzz/Py15o7fqLIGbT
- t9ZDuqRH1o7DP3HiXswZC9ZYYrMdejVzw/gSqbrEPj5UJSHY9pKDmIPpG
- i8BfxvMGHg5pPVgbASWiPP9G0QRfCTTrYLVXA6Kl8yZglMkHeXsXOj6sl Q==;
-X-CSE-ConnectionGUID: Zssvs9UXS92jtdQSQ982pA==
-X-CSE-MsgGUID: cVgGy2lwSpSGQPObzNm+rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619321"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619321"
+ bh=F8hkHDd44mYgxaOg10xNkf+mn+1pLvUSikpQWKibZcM=;
+ b=DIiKq8K3MuMrkmh+5LnhDnqYiGWKTbK8Qzg8qumyKU+zpSXvMETs0py7
+ GK6cFvgViqQtLKsZ23sQXpvpTGeQyG556EL1E8NOcbcFVgoK9qoAqdB3i
+ cUEstGal5RjLu8uu+QEs3aRaGJr7Uy2f/dZzPU9XgvBi1rXDk6DB+0hRC
+ 8OIy2rUZRSbRKVR/xVIvPVeCz8DbP8aq+Vy3OkS9HmxgVaTiynwV2QAOX
+ +Yb2hQTEd6ocAYoOBjKp62U0e9mpJwYXdnTGOkQHf+ObaMgYJ+J09qOnd
+ oNnuEc5bWyQ9FWWPFOU5pRZVyB+puCnvqlyLZRqm4BZiDOTa0sU9qkmSk w==;
+X-CSE-ConnectionGUID: B2OTvrzXTZG1kMaa4IHjEw==
+X-CSE-MsgGUID: os9Ikj8nTSaWiBg61wTucw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619341"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619341"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:32:19 -0700
-X-CSE-ConnectionGUID: UsJUPJiVRDa1Zj1vGhuObA==
-X-CSE-MsgGUID: ZHHYS0gVTLC9NDllYzI17g==
+ 06 Aug 2026 21:32:24 -0700
+X-CSE-ConnectionGUID: pBiE1XWrR+m+8w+u5VKnzg==
+X-CSE-MsgGUID: B4EX1UtXSBiMsM2oFwuj2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666236"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666315"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:32:17 -0700
+ 06 Aug 2026 21:32:22 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH 20/44] drm/i915/ltphy: Add safegaurd when calculation HDMI FRL
- state
-Date: Fri,  7 Aug 2026 09:44:05 +0530
-Message-ID: <20260807041430.229038-21-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 22/44] drm/i915/ltphy: Verify HDMI FRL tables
+Date: Fri,  7 Aug 2026 09:44:07 +0530
+Message-ID: <20260807041430.229038-23-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
 References: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
@@ -72,30 +71,29 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-intel_lt_phy_pll_calc_state() will also take into account the
-HDMI FRL tables and use them when the DPLL matches. We
-still add a safegaurd to not calculate hdmi pll state if we are
-using HDMI FRL.
+Verify the HDMI FRL tables now that they are defined.
+Also skip recalculating the HDMI state via port clock for HDMI
+FRL use case.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index a16401e42ed9..88b86510e28a 100644
+index 918ecb14fb5c..2c1da689fe00 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -2042,7 +2042,8 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 		}
- 	}
+@@ -2628,6 +2628,9 @@ static void intel_lt_phy_pll_verify_params(struct intel_display *display,
+ 	if (!pll_params->is_hdmi)
+ 		return;
  
--	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-+	    !intel_hdmi_is_frl(crtc_state->port_clock)) {
- 		hw_state->ltpll.lane_count = crtc_state->lane_count;
- 		return intel_lt_phy_calculate_hdmi_state(&hw_state->ltpll,
- 							 crtc_state->port_clock);
++	if (intel_hdmi_is_frl(pll_params->clock_rate))
++		return;
++
+ 	if (intel_lt_phy_calculate_hdmi_state(&pll_state, pll_params->clock_rate) != 0)
+ 		return;
+ 
 -- 
 2.50.1
 
