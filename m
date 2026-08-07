@@ -4,56 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90E02C5AC7C
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 08:12:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 078D8C5AC7A
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 08:16:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E40610F3E3;
-	Fri,  7 Aug 2026 08:12:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 802BA10F3E3;
+	Fri,  7 Aug 2026 08:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2wTpzpc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U9exeJC8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 311F310F3E3;
- Fri,  7 Aug 2026 08:12:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6BB10F414;
+ Fri,  7 Aug 2026 08:16:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786090376; x=1817626376;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NCQpnV7K8uJgarIb880S0h/yTjGVSqfoYbI0wk9aoYs=;
- b=X2wTpzpcfzZc9z+jLGFFg3pK+etXexKpkGncHqqVSzfxJK0AHwz3YbDO
- cxkHjVRghQ0OFXuoh3FXje74HMMP76m/3ldTmAgBHXjB2xcZoQY250cWr
- b8Zm5aZ8gq6q2wE06uYw8fpkJO1f2dhOegeQggIcYcxQcsnlZFKQYfWXU
- tge4fb5jz0b2OeMDzi4Z43vM7UVy5cWhXfj3kQ1ndT6Z9Heu+5fqKY4Aj
- RP6UIHI9voZsBLpcaxMyzPT70RWaNHK1Tip2o0mbknpJ3k4OGTgrh2RTn
- StvPBs9LZXcy9hn7nzD0d9GcyL2at7BS3KC9po+My1NKWWDZ+VuQ8wDwZ A==;
-X-CSE-ConnectionGUID: FfPE9C6+S4iyzlOpxcaAvA==
-X-CSE-MsgGUID: e9cTSGBOTX+OV+FZSsBrZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86634770"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86634770"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 01:12:55 -0700
-X-CSE-ConnectionGUID: Ze03zpLtTtuKzAc9nvD0UQ==
-X-CSE-MsgGUID: FEblLcQHQxaKJuUADk+FSw==
+ t=1786090581; x=1817626581;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7RaIsYf+UTGUT4z5tV+g0b1pkDpVZx68MiJ1p1mD60M=;
+ b=U9exeJC8BJME8t2GidjVIMQiEfNFRZMz81d5uS3XN5vuXRL11bTXaMcH
+ QUlsLtF6o2SYaMSGaUr5YY82JLtHuapsK+JxfZsK+gHH3aKWwBByHQ0Fw
+ S2KybG6QiFWuPr17D+DX24luDY7BiO2JKvCnP4YX78C1qJUr2JdcxYIYt
+ owCVMjzBd9t/QXd7XXvKgM2fRDzvfOXBEAUy/RkBAgmisB8FCT2cWKd2l
+ +xDl7slCtPOaVkbG/go7xBkksDw6+x6fYZHewmF6ZW0QFQpQOedphZcDV
+ tSjHb+piHj98SRvQa3LNOEdD4aWa0wnvv9GeC1k54RmIUEqzH7aHU0nZi w==;
+X-CSE-ConnectionGUID: Tc99L741RwiiZNNgOINPwQ==
+X-CSE-MsgGUID: nkGSz5V/QsqD9BiRfK2HiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="97046597"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="97046597"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2026 01:16:20 -0700
+X-CSE-ConnectionGUID: ZfcjSKWhQDm4SfzL4HGiZg==
+X-CSE-MsgGUID: ncp7DqjyRaCzWKQc4SRXuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="266572808"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 01:12:52 -0700
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, himal.prasad.ghimiray@intel.com
-Subject: [PATCH v4] drm/pagemap: Prevent double migration of device pages
-Date: Fri,  7 Aug 2026 13:42:44 +0530
-Message-ID: <20260807081244.2229191-1-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="256110813"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.152])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2026 01:16:19 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>
+Subject: RE: [PATCH] drm/i915/cmtg: Disable CMTG after PSR exit to avoid
+ disable timeout
+In-Reply-To: <DS0PR11MB8049B57E8E753BDDBEBE62E9F9D12@DS0PR11MB8049.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260807055452.2997983-1-animesh.manna@intel.com>
+ <220f80c2de131ecf25a869bd9218af30fbbe4b54@intel.com>
+ <DS0PR11MB8049B57E8E753BDDBEBE62E9F9D12@DS0PR11MB8049.namprd11.prod.outlook.com>
+Date: Fri, 07 Aug 2026 11:16:16 +0300
+Message-ID: <636908b4af9b34f638e05e574e18438ef4f28bc2@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,339 +74,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A device-private folio migrated to system memory by a CPU fault can
-remain reachable through the raw-PFN eviction path until migration
-finalization drops the source reference.
+On Fri, 07 Aug 2026, "Manna, Animesh" <animesh.manna@intel.com> wrote:
+>> -----Original Message-----
+>> From: Jani Nikula <jani.nikula@linux.intel.com>
+>> Sent: Friday, August 7, 2026 1:33 PM
+>> To: Manna, Animesh <animesh.manna@intel.com>; intel-
+>> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Manna, Animesh <animesh.manna@intel.com>; Dibin Moolakadan
+>> Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>; Shankar,
+>> Uma <uma.shankar@intel.com>
+>> Subject: Re: [PATCH] drm/i915/cmtg: Disable CMTG after PSR exit to avoid
+>> disable timeout
+>> 
+>> On Fri, 07 Aug 2026, Animesh Manna <animesh.manna@intel.com> wrote:
+>> > CMTG is enabled in sync-to-port mode, so its running state
+>> > (CMTG_STATE) can only clear while the port is actively timing. In
+>> > hsw_crtc_disable() the CMTG was torn down at the very beginning of the
+>> > sequence, before the encoders were disabled. At that point PSR may
+>> > still be active on the eDP, leaving the port timing generator idle. As
+>> > a result, after clearing CMTG_ENABLE the wait for CMTG_STATE to clear
+>> never completes and triggers:
+>> >
+>> >   xe 0000:00:02.0: [drm] CMTG: A disable timeout
+>> >   WARNING: drivers/gpu/drm/i915/display/intel_cmtg.c:205
+>> > intel_cmtg_disable+0x331/0x3d0 [xe]
+>> >
+>> > This is intermittently seen with igt@kms_hdr@bpc-switch-suspend, which
+>> > repeatedly cycles the eDP in and out of PSR across suspend/resume.
+>> >
+>> > Move the CMTG disable to after intel_encoders_disable() (so PSR is
+>> > exited) but before intel_encoders_post_disable()/intel_dpll_disable(),
+>> > so the transcoder timing generator and port PLL are still active while
+>> > CMTG_STATE is polled. The ordering requirement of disabling CMTG
+>> > before the transcoder and port PLL are brought down is preserved.
+>> >
+>> > Cc: Dibin Moolakadan Subrahmanian
+>> > <dibin.moolakadan.subrahmanian@intel.com>
+>> > Cc: Uma Shankar <uma.shankar@intel.com>
+>> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> 
+>> Fixes: ?
+>> Cc: stable ?
+>
+> Sure, will add in next version.
 
-If eviction selects the same device folio during this window, it can
-attempt to migrate the folio again. The second migration can leave an
-uncharged folio on an LRU list, causing folio_lruvec_lock_irqsave() to
-retry indefinitely and resulting in a soft lockup and RCU stall.
+If there is no next version otherwise, you don't have to and should not
+send a new version just to amend these trailers. Just reply with them to
+the patch.
 
-Mark successfully migrated device folios using a low bit of their
-zone_device_data before migration finalization. Make raw-PFN eviction
-skip folios carrying this flag.
+BR,
+Jani.
 
-Mask the flag when retrieving the drm_pagemap_zdd pointer and preserve
-it when a device folio is split. Keeping the state on the physical folio
-also avoids depending on a virtual address that may change before a
-fault occurs.
+>
+> Regards,
+> Animesh
+>> 
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++++----
+>> >  1 file changed, 14 insertions(+), 4 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>> > b/drivers/gpu/drm/i915/display/intel_display.c
+>> > index 829d7a411dcc..cc4d20fdda44 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> > @@ -1791,15 +1791,25 @@ static void hsw_crtc_disable(struct
+>> intel_atomic_state *state,
+>> >  		intel_atomic_get_old_crtc_state(state, crtc);
+>> >  	struct intel_crtc *pipe_crtc;
+>> >
+>> > -	if (crtc->cmtg.enabled && intel_cmtg_is_allowed(old_crtc_state)) {
+>> > -		intel_cmtg_set_clk_select(old_crtc_state);
+>> > -		intel_cmtg_disable(old_crtc_state);
+>> > -	}
+>> >  	/*
+>> >  	 * FIXME collapse everything to one hook.
+>> >  	 * Need care with mst->ddi interactions.
+>> >  	 */
+>> >  	intel_encoders_disable(state, crtc);
+>> > +
+>> > +	/*
+>> > +	 * Disable CMTG after the encoders are disabled (so PSR is exited) but
+>> > +	 * before the transcoder timing generator and port PLL are torn down
+>> in
+>> > +	 * intel_encoders_post_disable()/intel_dpll_disable(). CMTG is
+>> synced to
+>> > +	 * the port, so its running state (CMTG_STATE) can only clear while
+>> the
+>> > +	 * port is actively timing. Doing this while PSR is still active leaves
+>> > +	 * the port idle and makes the CMTG_STATE clear wait time out.
+>> > +	 */
+>> > +	if (crtc->cmtg.enabled && intel_cmtg_is_allowed(old_crtc_state)) {
+>> > +		intel_cmtg_set_clk_select(old_crtc_state);
+>> > +		intel_cmtg_disable(old_crtc_state);
+>> > +	}
+>> > +
+>> >  	intel_encoders_post_disable(state, crtc);
+>> >
+>> >  	intel_dpll_disable(old_crtc_state);
+>> 
+>> --
+>> Jani Nikula, Intel
 
-v2:
-- Replace the retired-PFN XArray with an embedded bitmap.(Matthew Brost)
-- Mark every base page covered by a migrated folio so retirement remains
-  valid if the folio is later split.
-
-v3:
-- Store the migrated state in a low bit of zone_device_data instead of
-  adding virtual-range and bitmap tracking to the ZDD. (Matthew Brost)
-- Mask the flag when retrieving the ZDD and preserve it when splitting
-  a folio.
-- Drop the pre-existing fixes already covered by Matthew Brost's series:
-  https://patchwork.freedesktop.org/series/171651/
-
-v4:
-- Advance by the folio size only for migration entries marked with
-  MIGRATE_PFN_COMPOUND. (Sashiko)
-
-The lockup was observed as:
-[10109.860465] watchdog: BUG: soft lockup - CPU#9 stuck for 26s! [kworker/u65:5:6557]
-[10109.860524] Tainted: [S]=CPU_OUT_OF_SPEC, [O]=OOT_MODULE
-[10109.860524] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
-[10109.860525] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_work [xe]
-[10109.860644] RIP: 0010:_raw_spin_unlock_irqrestore+0x57/0x80
-[10109.860655] Call Trace:
-[10109.860655]  <TASK>
-[10109.860657]  folio_lruvec_lock_irqsave+0x216/0x220
-[10109.860661]  ? __pfx_lru_add+0x10/0x10
-[10109.860665]  folio_batch_move_lru+0xc8/0x450
-[10109.860670]  ? lock_acquire+0xc4/0x2d0
-[10109.860674]  ? __folio_batch_add_and_move+0x60/0x2e0
-[10109.860677]  ? folio_migrate_mapping+0xa6/0x110
-[10109.860679]  ? folio_migrate_flags+0x13b/0x1b0
-[10109.860681]  ? __pfx_lru_add+0x10/0x10
-[10109.860683]  __folio_batch_add_and_move+0xe7/0x2e0
-[10109.860685]  ? dma_iova_try_alloc+0xb0/0x140
-[10109.860689]  folio_add_lru+0x64/0x80
-[10109.860691]  __migrate_device_finalize+0x12c/0x270
-[10109.860695]  migrate_device_finalize+0x10/0x20
-[10109.860698]  drm_pagemap_evict_to_ram+0x185/0x370 [drm_gpusvm_helper]
-[10109.860704]  ? drm_pagemap_evict_to_ram+0x96/0x370 [drm_gpusvm_helper]
-[10109.860709]  xe_svm_bo_evict+0x15/0x20 [xe]
-[10109.860819]  ? xe_svm_bo_evict+0x15/0x20 [xe]
-[10109.860921]  xe_bo_move+0x107e/0x1570 [xe]
-[10109.860992]  ? xe_ttm_tt_create+0x168/0x340 [xe]
-[10109.861059]  ? __up_read+0x98/0x2b0
-[10109.861061]  ? lock_is_held_type+0xa3/0x130
-[10109.861067]  ttm_bo_handle_move_mem+0xe8/0x1e0 [ttm]
-[10109.861075]  ttm_bo_evict+0x141/0x1c0 [ttm]
-[10109.861081]  ttm_bo_evict_cb+0x9f/0x100 [ttm]
-[10109.861086]  ttm_lru_walk_for_evict+0x84/0x190 [ttm]
-[10109.861091]  ? xe_ttm_vram_mgr_new+0x258/0x3a0 [xe]
-[10109.861198]  ttm_bo_alloc_resource+0x219/0x750 [ttm]
-[10109.861203]  ? ttm_bo_alloc_resource+0xa9/0x750 [ttm]
-[10109.861208]  ? lock_acquire+0xc4/0x2d0
-[10109.861214]  ttm_bo_validate+0x94/0x1c0 [ttm]
-[10109.861218]  ? ww_mutex_trylock+0x19d/0x3d0
-[10109.861219]  ? _raw_write_unlock+0x22/0x50
-[10109.861223]  ttm_bo_init_reserved+0x17d/0x1f0 [ttm]
-[10109.861228]  xe_bo_init_locked+0x20a/0x620 [xe]
-[10109.861294]  ? __pfx_xe_ttm_bo_destroy+0x10/0x10 [xe]
-[10109.861359]  ? mark_held_locks+0x46/0x90
-[10109.861361]  ? __create_object+0x68/0xc0
-[10109.861366]  __xe_bo_create_locked+0x384/0xa20 [xe]
-[10109.861432]  ? lock_acquire+0xc4/0x2d0
-[10109.861434]  ? xe_drm_pagemap_populate_mm+0xd3/0x340 [xe]
-[10109.861542]  xe_bo_create_locked+0x23/0x40 [xe]
-[10109.861609]  xe_drm_pagemap_populate_mm+0x12e/0x340 [xe]
-[10109.861707]  ? __lock_acquire+0x43e/0x2930
-[10109.861716]  drm_pagemap_populate_mm+0x74/0xe0 [drm_gpusvm_helper]
-[10109.861720]  xe_svm_alloc_vram+0xb5/0x2c0 [xe]
-[10109.861817]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
-[10109.861819]  ? ktime_get+0x23/0x130
-[10109.861821]  ? trace_hardirqs_on+0x22/0xe0
-[10109.861823]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
-[10109.861826]  __xe_svm_handle_pagefault+0x77d/0xbf0 [xe]
-[10109.861924]  ? rwsem_down_write_slowpath+0x43a/0x9a0
-[10109.861926]  ? _raw_spin_unlock_irq+0x27/0x70
-[10109.861928]  ? rwsem_down_write_slowpath+0x43a/0x9a0
-[10109.861929]  ? trace_hardirqs_on+0x22/0xe0
-[10109.861931]  ? _raw_spin_unlock_irq+0x27/0x70
-[10109.861933]  ? rwsem_down_write_slowpath+0x459/0x9a0
-[10109.861937]  xe_svm_handle_pagefault+0x3d/0xb0 [xe]
-[10109.862030]  xe_pagefault_queue_work+0x1a9/0x520 [xe]
-[10109.862122]  process_one_work+0x239/0x730
-[10109.862127]  worker_thread+0x200/0x3f0
-[10109.862130]  ? __pfx_worker_thread+0x10/0x10
-[10109.862132]  kthread+0x10d/0x150
-[10109.862133]  ? __pfx_kthread+0x10/0x10
-[10109.862135]  ret_from_fork+0x3bd/0x470
-[10109.862138]  ? __pfx_kthread+0x10/0x10
-[10109.862140]  ret_from_fork_asm+0x1a/0x30
-[10109.862146]  </TASK>
-
-Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Assisted-by: Claude:claude-opus-4-8
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c | 124 ++++++++++++++++++++++++++++++++--
- include/drm/drm_pagemap.h     |   8 ++-
- 2 files changed, 127 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 892b325fa99b..c1112d492d64 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -1102,12 +1102,119 @@ void drm_pagemap_put(struct drm_pagemap *dpagemap)
- }
- EXPORT_SYMBOL(drm_pagemap_put);
- 
-+/**
-+ * drm_pagemap_page_get_flags() - Read the drm_pagemap flags of a device folio
-+ * @page: Pointer to a page of the device folio
-+ *
-+ * Return: The DRM_PAGEMAP_ZDD_FLAG_* bits encoded in zone_device_data.
-+ */
-+static unsigned long drm_pagemap_page_get_flags(struct page *page)
-+{
-+	struct folio *folio = page_folio(page);
-+
-+	return (unsigned long)folio_zone_device_data(folio) &
-+		DRM_PAGEMAP_ZDD_FLAG_MASK;
-+}
-+
-+/**
-+ * drm_pagemap_page_set_flags() - Set the drm_pagemap flags of a device folio
-+ * @page: Pointer to a page of the device folio
-+ * @flags: DRM_PAGEMAP_ZDD_FLAG_* bits to set
-+ *
-+ * Preserve any flags already encoded alongside the ZDD pointer.
-+ */
-+static void drm_pagemap_page_set_flags(struct page *page,
-+				       unsigned long flags)
-+{
-+	struct folio *folio = page_folio(page);
-+	struct drm_pagemap_zdd *zdd;
-+
-+	if (WARN_ON_ONCE(flags & ~DRM_PAGEMAP_ZDD_FLAG_MASK))
-+		return;
-+
-+	zdd = drm_pagemap_page_zone_device_data(page);
-+	flags |= drm_pagemap_page_get_flags(page);
-+	folio_set_zone_device_data(folio,
-+				   (void *)((unsigned long)zdd | flags));
-+}
-+
-+/**
-+ * drm_pagemap_retire_migrated_pages() - Record migrated device folios
-+ * @src_pfns: source array after migrate_vma_pages() or migrate_device_pages()
-+ * @npages: number of entries in @src_pfns
-+ *
-+ * Flag device folios that were successfully migrated to RAM before finalize
-+ * unlocks the sources. The migrated state is stored in the physical folio, so
-+ * it survives later folio splits and a subsequent raw-PFN eviction can skip it.
-+ */
-+static void drm_pagemap_retire_migrated_pages(unsigned long *src_pfns,
-+					      unsigned long npages)
-+{
-+	unsigned long i = 0;
-+
-+	while (i < npages) {
-+		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-+		unsigned long nr = 1;
-+
-+		if (!page) {
-+			i++;
-+			continue;
-+		}
-+
-+		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
-+			nr = folio_nr_pages(page_folio(page));
-+
-+		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
-+		    is_device_private_page(page))
-+			drm_pagemap_page_set_flags(page,
-+						   DRM_PAGEMAP_ZDD_FLAG_MIGRATED);
-+
-+		i += nr;
-+	}
-+}
-+
-+/**
-+ * drm_pagemap_skip_retired_pages() - Drop retired PFNs from a raw-PFN eviction
-+ * @src_pfns: source array after migrate_device_pfns() (MIGRATE_PFN encoded)
-+ * @npages: number of entries in @src_pfns
-+ *
-+ * Skip source folios already migrated to RAM, identified by the migrated flag
-+ * stored in the physical folio's zone_device_data.
-+ */
-+static void drm_pagemap_skip_retired_pages(unsigned long *src_pfns,
-+					   unsigned long npages)
-+{
-+	unsigned long i = 0;
-+
-+	while (i < npages) {
-+		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-+		unsigned long nr = 1;
-+
-+		if (!page) {
-+			i++;
-+			continue;
-+		}
-+
-+		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
-+			nr = folio_nr_pages(page_folio(page));
-+
-+		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
-+		    is_device_private_page(page) &&
-+		    (drm_pagemap_page_get_flags(page) &
-+		     DRM_PAGEMAP_ZDD_FLAG_MIGRATED))
-+			src_pfns[i] &= ~MIGRATE_PFN_MIGRATE;
-+
-+		i += nr;
-+	}
-+}
-+
- /**
-  * drm_pagemap_evict_to_ram() - Evict GPU SVM range to RAM
-  * @devmem_allocation: Pointer to the device memory allocation
-  *
-- * Similar to __drm_pagemap_migrate_to_ram but does not require mmap lock and
-- * migration done via migrate_device_* functions.
-+ * Similar to __drm_pagemap_migrate_to_ram(), but uses the
-+ * migrate_device_* helpers and does not require the mmap lock. Device
-+ * PFNs already migrated to RAM by either migration path are skipped.
-  *
-  * Return: 0 on success, negative error code on failure.
-  */
-@@ -1148,6 +1255,8 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
- 	if (err)
- 		goto err_free;
- 
-+	drm_pagemap_skip_retired_pages(src, npages);
-+
- 	err = drm_pagemap_migrate_populate_ram_pfn(NULL, NULL, npages, &mpages,
- 						   src, dst, 0);
- 	if (err || !mpages)
-@@ -1178,6 +1287,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
- 	if (err)
- 		drm_pagemap_migration_unlock_put_pages(npages, dst);
- 	migrate_device_pages(src, dst, npages);
-+	drm_pagemap_retire_migrated_pages(src, npages);
- 	migrate_device_finalize(src, dst, npages);
- 	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
- 					DMA_FROM_DEVICE, &state);
-@@ -1308,6 +1418,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
- 	if (err)
- 		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
- 	migrate_vma_pages(&migrate);
-+	drm_pagemap_retire_migrated_pages(migrate.src, npages);
- 	migrate_vma_finalize(&migrate);
- 	if (dev)
- 		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr, migrate.dst,
-@@ -1360,13 +1471,18 @@ static vm_fault_t drm_pagemap_migrate_to_ram(struct vm_fault *vmf)
- static void drm_pagemap_folio_split(struct folio *orig_folio, struct folio *new_folio)
- {
- 	struct drm_pagemap_zdd *zdd;
-+	struct page *page;
-+	unsigned long flags;
- 
- 	if (!new_folio)
- 		return;
- 
- 	new_folio->pgmap = orig_folio->pgmap;
--	zdd = folio_zone_device_data(orig_folio);
--	folio_set_zone_device_data(new_folio, drm_pagemap_zdd_get(zdd));
-+	page = folio_page(orig_folio, 0);
-+	zdd = drm_pagemap_page_zone_device_data(page);
-+	flags = drm_pagemap_page_get_flags(page);
-+	folio_set_zone_device_data(new_folio,
-+				   (void *)((unsigned long)drm_pagemap_zdd_get(zdd) | flags));
- }
- 
- static const struct dev_pagemap_ops drm_pagemap_pagemap_ops = {
-diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-index 95eb4b66b057..ebbd3b0ddf36 100644
---- a/include/drm/drm_pagemap.h
-+++ b/include/drm/drm_pagemap.h
-@@ -2,6 +2,7 @@
- #ifndef _DRM_PAGEMAP_H_
- #define _DRM_PAGEMAP_H_
- 
-+#include <linux/bits.h>
- #include <linux/dma-direction.h>
- #include <linux/hmm.h>
- #include <linux/memremap.h>
-@@ -339,6 +340,9 @@ struct drm_pagemap_migrate_details {
- 
- #if IS_ENABLED(CONFIG_ZONE_DEVICE)
- 
-+#define DRM_PAGEMAP_ZDD_FLAG_MIGRATED	BIT(0)
-+#define DRM_PAGEMAP_ZDD_FLAG_MASK	DRM_PAGEMAP_ZDD_FLAG_MIGRATED
-+
- int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
- 				  struct mm_struct *mm,
- 				  unsigned long start, unsigned long end,
-@@ -373,7 +377,9 @@ static inline struct drm_pagemap_zdd *drm_pagemap_page_zone_device_data(struct p
- {
- 	struct folio *folio = page_folio(page);
- 
--	return folio_zone_device_data(folio);
-+	return (struct drm_pagemap_zdd *)
-+		((unsigned long)folio_zone_device_data(folio) &
-+		 ~DRM_PAGEMAP_ZDD_FLAG_MASK);
- }
- 
- #else
 -- 
-2.43.0
-
+Jani Nikula, Intel
