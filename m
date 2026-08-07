@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2240BC2A09B
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 14:56:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39EA7C5ACAB
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 14:56:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7C1810E424;
-	Fri,  7 Aug 2026 14:56:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8C9110E429;
+	Fri,  7 Aug 2026 14:56:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nidkn3GG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NU++PDUA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B891910E36A
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Aug 2026 14:56:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D33910E424
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Aug 2026 14:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786114599; x=1817650599;
+ t=1786114604; x=1817650604;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EbOYhruMkXmrxQe+49Fx/1nZ+ekGJ2gQ40NkzCYn1Ac=;
- b=Nidkn3GGHGc51wEs4VCGHYnnoUc6GeJxV6pUKqQW1mRolwFlwSItOyJd
- PyzIweS3i/9I2Sa6GJNJ4M7/KaNyCk2IRsbNALOOinwc2zJrRHui/bTps
- 3HQ8MqPF7nNUoXYAc9I6Y1XXVEmwsIVV48PtLwklp4zHHX34pmAtfuZW4
- cFgxz6/Rxna57HpdEhQW+9Ezmn3RAGHRLU5/sVNvhhyFpwgg7GkkI20hf
- H/6ZdBx8gh7x4vxc710dhmy23buA49dTiSnpY8TivTa3EGp3m/5kEA+Ql
- c3bSUZA+0zngWE74QUQocSkIRSq2YElDHsyrbDuSlopp1L7pYNw5zH7ZK w==;
-X-CSE-ConnectionGUID: qb3ECmCjRoGXQbJ5+a/npA==
-X-CSE-MsgGUID: czuSMiAjREyDttkdR29xAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11868"; a="90604294"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="90604294"
+ bh=xrZoikK7YTNmkuTyFjn0R3lAWapf3u80g65qq96/EK0=;
+ b=NU++PDUAVWJtTy18+vCT2oVESDrzivS0ly1n8Bfip+g7rnT0/e933KQM
+ wf5QMRtB90Z6TfCkfl/1fy6yUw/agv+AMgE02wXscvqd/XznERxKMZCcZ
+ hNeP4qahGFsD5t2/Kq0Jwd8jzncHPF/ymdM4mjpKXtKBax/KKYj5WOQj6
+ w8vWIIuIYmHjzXIkuZrLE7ATg/oMJKW08SjmhugCrQGVAWKYkHUDxrX80
+ TTI+l+AXmH+ekdhfie7PII1nnNbOFu0DHdqJwa5T2iXuVvVIfUnwR7D53
+ qL1F3vmNwvcFUUYWZgUkFdqrzcgd6RwO8p7bpaNRirGSYJblICUng4+wr w==;
+X-CSE-ConnectionGUID: otaU9O2iQ8eRHFlgCJUiBw==
+X-CSE-MsgGUID: fkFS/WXmQ1u8tOQ/aO0/xw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11868"; a="90604302"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="90604302"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 07:56:35 -0700
-X-CSE-ConnectionGUID: 56BrijXhQguWKaAB9b2oYg==
-X-CSE-MsgGUID: UeHvEJGRRC+ckxX2zfnVUA==
+ 07 Aug 2026 07:56:43 -0700
+X-CSE-ConnectionGUID: tEZ4SFKuSSKiOGHU1lO7HQ==
+X-CSE-MsgGUID: j2hN5goZS8SvISUWTbs/Ew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="258116205"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="258116263"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 07:56:28 -0700
+ 07 Aug 2026 07:56:39 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,10 +48,10 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v3 1/4] drm/xe/sysctrl: Add System Controller get application
- status
-Date: Fri,  7 Aug 2026 07:56:22 -0700
-Message-ID: <20260807145621.2938848-7-anoop.c.vijay@intel.com>
+Subject: [PATCH v3 4/4] drm/xe/sysctrl: Add RAS error injection debugfs
+ interface
+Date: Fri,  7 Aug 2026 07:56:25 -0700
+Message-ID: <20260807145621.2938848-10-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260807145621.2938848-6-anoop.c.vijay@intel.com>
 References: <20260807145621.2938848-6-anoop.c.vijay@intel.com>
@@ -73,213 +73,242 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Do not review, CI only.
+Add debugfs interface for exercising System Controller's RAS error
+injection command, used to validate RAS error detection and recovery
+paths.
+
+Command details:
+- Group ID: 0x02 (diag group)
+- Command ID: 0x7E (XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT)
+- Usage: echo "<ras_block_id> <ras_sub_block_id> <err_type> [params]" \
+             > /sys/kernel/debug/dri/0/sc/ras_error_inject
+         cat /sys/kernel/debug/dri/0/sc/ras_error_inject
+
+This command requires the diag application to have completed firmware
+boot and initialization (late-bind loaded); writes are rejected with
+-ENODEV until xe_sysctrl_is_diag_fw_ready() reports the diag firmware
+as ready.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sysctrl.c               | 82 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |  2 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 65 +++++++++++++++
- 3 files changed, 149 insertions(+)
+ drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 123 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  31 +++++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h         |   3 +
+ 3 files changed, 157 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 1db20be8158b..8eac58647265 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -13,9 +13,11 @@
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+index 2144d9d43fba..7b8846d739cb 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+@@ -10,6 +10,7 @@
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+ #include <linux/string.h>
++#include <linux/string_choices.h>
+ #include <linux/uaccess.h>
+ 
  #include "xe_device.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
-+#include "xe_printk.h"
- #include "xe_soc_remapper.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
- #include "xe_sysctrl_types.h"
+@@ -122,6 +123,124 @@ static const struct file_operations xe_sysctrl_loopback_fops = {
+ 	.release = single_release,
+ };
  
- /**
-@@ -130,3 +132,83 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
- 
- 	xe_sysctrl_mailbox_init(sc);
- }
-+
-+static enum xe_sysctrl_fw_status
-+xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
++static ssize_t xe_sysctrl_ras_error_inject_write(struct file *file, const char __user *ubuf,
++						 size_t len, loff_t *offp)
 +{
-+	struct xe_sysctrl_app_status_req req = {};
-+	struct xe_sysctrl_app_status_resp resp = {};
++	char *kbuf __free(kfree) = NULL;
++	struct seq_file *m = file->private_data;
++	struct xe_sysctrl_debugfs_entry *entry = m->private;
++	struct xe_device *xe = sc_to_xe(entry->sc);
++	struct xe_sysctrl_diag_ras_err_inj_req req = {};
 +	struct xe_sysctrl_mailbox_command cmd = {};
++	u8 resp_hdr_only[sizeof(u32)];
++	unsigned int nfields = 0;
++	char *token, *tmp;
++	unsigned long val;
 +	size_t out_len = 0;
-+	u32 flags;
-+	int ret;
 +
-+	if (!xe->info.has_sysctrl)
-+		return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+
-+	req.app_id = (u8)app_id;
-+
-+	xe_sysctrl_create_command(&cmd, XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID,
-+				  &req, sizeof(req), &resp, sizeof(resp));
-+
-+	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
-+	if (ret)
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
-+
-+	if (out_len != sizeof(resp)) {
-+		xe_err(xe, "sysctrl: unexpected get app status response length %zu (expected %zu)\n",
-+		       out_len, sizeof(resp));
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
++	if (!xe_sysctrl_is_diag_fw_ready(xe)) {
++		xe_err(xe, "sysctrl: diag firmware not ready, cannot inject RAS error\n");
++		return -ENODEV;
 +	}
 +
-+	flags = resp.flags;
++	if (len == 0 || len >= PAGE_SIZE)
++		return -EINVAL;
 +
-+	if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
-+		return XE_SYSCTRL_FIRMWARE_APP_INVALID;
++	kbuf = kmalloc(len + 1, GFP_KERNEL);
++	if (!kbuf)
++		return -ENOMEM;
 +
-+	if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
-+		return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
++	if (copy_from_user(kbuf, ubuf, len))
++		return -EFAULT;
++	kbuf[len] = '\0';
 +
-+	if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
-+		return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
++	tmp = kbuf;
++	while ((token = strsep(&tmp, " \t\n")) != NULL) {
++		if (*token == '\0')
++			continue;
 +
-+	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
++		if (kstrtoul(token, 0, &val))
++			goto inval;
++
++		switch (nfields) {
++		case 0:
++			if (val > U16_MAX)
++				goto inval;
++			req.ras_block_id = val;
++			break;
++		case 1:
++			if (val > U16_MAX)
++				goto inval;
++			req.ras_sub_block_id = val;
++			break;
++		case 2:
++			if (val > U16_MAX)
++				goto inval;
++			req.err_type = val;
++			break;
++		case 3:
++			if (val > U32_MAX)
++				goto inval;
++			req.params = val;
++			break;
++		default:
++			xe_err(xe, "sysctrl: too many ras_error_inject arguments\n");
++			return -EINVAL;
++		}
++		nfields++;
++	}
++
++	if (nfields < 3) {
++		xe_err(xe,
++		       "sysctrl: usage: <ras_block_id> <ras_sub_block_id> <err_type> [params]\n");
++		return -EINVAL;
++	}
++
++	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
++				  &req, sizeof(req), resp_hdr_only,
++				  sizeof(resp_hdr_only));
++
++	guard(xe_pm_runtime)(xe);
++	entry->status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
++
++	return entry->status ? entry->status : len;
++
++inval:
++	xe_err(xe, "sysctrl: invalid ras_error_inject token '%s'\n", token);
++	return -EINVAL;
 +}
 +
-+/**
-+ * xe_sysctrl_is_oobmsm_fw_ready() - Check if oCode firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if oCode firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if oCode is initialized or sysctrl is not present, false otherwise
-+ */
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe)
++static int xe_sysctrl_ras_error_inject_show(struct seq_file *m, void *data)
 +{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_OCODE);
++	struct xe_sysctrl_debugfs_entry *entry = m->private;
++	struct xe_device *xe = sc_to_xe(entry->sc);
 +
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
++	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n", entry->group, entry->command);
++	seq_printf(m, "Diag firmware ready: %s\n",
++		   str_yes_no(xe_sysctrl_is_diag_fw_ready(xe)));
++	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ? "FAILED" : "SUCCESS");
++
++	seq_puts(m, "\nUsage:\n");
++	seq_puts(m, "  echo \"<ras_block_id> <ras_sub_block_id> <err_type> [params]\" > ras_error_inject\n");
++	seq_puts(m, "  cat ras_error_inject\n");
++
++	return 0;
 +}
 +
-+/**
-+ * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if diag firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if diag firmware is initialized or sysctrl is not present, false otherwise
-+ */
-+bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe)
++static int xe_sysctrl_ras_error_inject_open(struct inode *inode, struct file *file)
 +{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
-+
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
++	return single_open(file, xe_sysctrl_ras_error_inject_show, inode->i_private);
 +}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index 090dffb6d55f..b69a3f474236 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -20,5 +20,7 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
- int xe_sysctrl_init(struct xe_device *xe);
- void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
- void xe_sysctrl_pm_resume(struct xe_device *xe);
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe);
-+bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
- 
- #endif
++
++static const struct file_operations xe_sysctrl_ras_error_inject_fops = {
++	.owner = THIS_MODULE,
++	.open = xe_sysctrl_ras_error_inject_open,
++	.read = seq_read,
++	.write = xe_sysctrl_ras_error_inject_write,
++	.llseek = seq_lseek,
++	.release = single_release,
++};
++
+ static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_debugfs_entry *entry,
+ 				      struct xe_sysctrl *sc, const char *name,
+ 				      u8 group, u8 command,
+@@ -154,4 +273,8 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
+ 	xe_sysctrl_register_entry(root, &sc->debugfs.loopback, sc, "loopback",
+ 				  XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_LOOPBACK,
+ 				  &xe_sysctrl_loopback_fops);
++
++	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
++				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
++				  &xe_sysctrl_ras_error_inject_fops);
+ }
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index d0341538ad05..b507e1553cbb 100644
+index ed80fe63e1c4..43ae0049b316 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -14,9 +14,11 @@
+@@ -14,10 +14,12 @@
   * enum xe_sysctrl_group - System Controller command groups
   *
   * @XE_SYSCTRL_GROUP_GFSP: GFSP group
-+ * @XE_SYSCTRL_GROUP_CORE: Core group
++ * @XE_SYSCTRL_GROUP_DIAG: Diag group
+  * @XE_SYSCTRL_GROUP_CORE: Core group
   */
  enum xe_sysctrl_group {
  	XE_SYSCTRL_GROUP_GFSP			= 0x01,
-+	XE_SYSCTRL_GROUP_CORE			= 0xFF,
++	XE_SYSCTRL_GROUP_DIAG			= 0x02,
+ 	XE_SYSCTRL_GROUP_CORE			= 0xFF,
  };
  
- /**
-@@ -38,6 +40,69 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
+@@ -51,6 +53,35 @@ enum xe_sysctrl_core_cmd {
+ 	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
  };
  
 +/**
-+ * enum xe_sysctrl_core_cmd - Commands supported by Core group
++ * enum xe_sysctrl_diag_cmd - Commands supported by Diag group
 + *
-+ * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
++ * @XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT: RAS error injection
 + */
-+enum xe_sysctrl_core_cmd {
-+	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
++enum xe_sysctrl_diag_cmd {
++	XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT		= 0x7E,
 +};
 +
 +/**
-+ * struct xe_sysctrl_app_status_req - Get application status request
++ * struct xe_sysctrl_diag_ras_err_inj_req - DIAG_RAS_ERR_INJECT request payload
 + *
-+ * @app_id: Application ID for which to retrieve status
++ * Request payload for XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT. The mailbox layer
++ * prepends the application message header before sending.
++ *
++ * @ras_block_id: RAS block (subsystem) to inject the error into
++ * @ras_sub_block_id: RAS sub-block (IP) within @ras_block_id
++ * @err_type: Type of test error to inject
++ * @reserved: Must be zero
++ * @params: Optional injection parameters (default 0)
 + */
-+struct xe_sysctrl_app_status_req {
-+	u8 app_id;
++struct xe_sysctrl_diag_ras_err_inj_req {
++	u16 ras_block_id;
++	u16 ras_sub_block_id;
++	u16 err_type;
++	u16 reserved;
++	u32 params;
 +} __packed;
-+
-+/**
-+ * struct xe_sysctrl_app_status_resp - Get application status response
-+ * @flags: Application status flags (see XE_SYSCTRL_APP_RESP_* definitions)
-+ */
-+struct xe_sysctrl_app_status_resp {
-+	u32 flags;
-+} __packed;
-+
-+/** XE_SYSCTRL_APP_RESP_VALID - app_id is recognized by System Controller firmware */
-+#define XE_SYSCTRL_APP_RESP_VALID		BIT(0)
-+/** XE_SYSCTRL_APP_RESP_BOOTED - application has completed its boot sequence */
-+#define XE_SYSCTRL_APP_RESP_BOOTED		BIT(1)
-+/** XE_SYSCTRL_APP_RESP_INITIALIZED - application has completed all post-boot initialization */
-+#define XE_SYSCTRL_APP_RESP_INITIALIZED		BIT(2)
-+
-+/**
-+ * enum xe_sysctrl_fw_status - System Controller firmware application lifecycle states
-+ *
-+ * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by firmware
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has not yet booted
-+ * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed, post-boot init pending
-+ * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully operational
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available on this device
-+ * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System Controller firmware failed
-+ */
-+enum xe_sysctrl_fw_status {
-+	XE_SYSCTRL_FIRMWARE_APP_INVALID,
-+	XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
-+	XE_SYSCTRL_FIRMWARE_APP_BOOTED,
-+	XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
-+	XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
-+	XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
-+};
-+
-+/**
-+ * enum xe_sysctrl_app_id - Known System Controller application identifiers
-+ *
-+ * @XE_SYSCTRL_APP_OCODE: oCode application (firmware ID 12)
-+ * @XE_SYSCTRL_APP_DIAG: diag application (firmware ID 13)
-+ */
-+enum xe_sysctrl_app_id {
-+	XE_SYSCTRL_APP_OCODE	= 0x0C,
-+	XE_SYSCTRL_APP_DIAG	= 0x0D,
-+};
 +
  /**
-  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
-  */
+  * struct xe_sysctrl_app_status_req - Get application status request
+  *
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+index 53d82e61383a..3a97a10d1b7d 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+@@ -68,6 +68,9 @@ struct xe_sysctrl {
+ 
+ 		/** @debugfs.loopback: Loopback test entry */
+ 		struct xe_sysctrl_debugfs_entry loopback;
++
++		/** @debugfs.ras_error_inject: RAS error injection test entry */
++		struct xe_sysctrl_debugfs_entry ras_error_inject;
+ 	} debugfs;
+ };
+ 
 -- 
 2.43.0
 
