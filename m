@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDF10C2A09B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E412AC5AC80
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 19:45:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4D510E47F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B34910E44E;
 	Fri,  7 Aug 2026 19:45:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="msuWDC/N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nR9AAKLB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCF6C10E24A
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Aug 2026 19:45:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07EC410E315
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Aug 2026 19:45:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1786131922; x=1817667922;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UBB6lUORGL+2faagLa6Qogw54Tv0T2mOYBoEeAe9LOk=;
- b=msuWDC/NQhjy7qwkTTKJ6PKTzlpV4AH2Zc82BCFSG8mH17G/wnHn6QjE
- Jfy1KDTVr+KVFoDxiTKQRH2ssXuyftvYNRiXbXfxZwHN5angWFnVwI/HW
- E3N1jP47fDlWspYO3o37keIt/SiuDiqGaY0TyrBHB6/q4AxSb2hBrTRzg
- eLA5GQXAB/uSJDd6uS5NvKIG0rP+YSE0kx7voHLLBOlZgDIFopIVIbgV9
- qZB++SMOrCFWD2RBNhYmMrMpThtvHKF+XlznXj2c+epgtk7TdYqvQfPfv
- +5ZMAX5Flx/ugsxQQt+tdPNVQuEYj7GEdNbZeNbvyQZkVUDD4lfu+aDji w==;
-X-CSE-ConnectionGUID: V75i7WxKRh+YIbFNGHxpUg==
-X-CSE-MsgGUID: GFCnfSLWS3WobJPNS6hyhw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11868"; a="86758825"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86758825"
+ bh=2dCPhSGV9T36gPKV/++H5hoAos1/u09U2FGRZuD+Psc=;
+ b=nR9AAKLBAihbL7HYTsNV9deVl/VwWDPYKFDUEfyK0Qt/hXK+YCsNJLyc
+ f9llZ1WZx5QJJpW/3hpMgrnWtJbsptqycb4u9VWCUlqA/F9uPl6rvIQGN
+ XT0NaytSeaaCcISnxhx7S4Ir/roWLJgtw985CJ6fZqwIRla7beaTtl0TF
+ ox/CLzdZdPYimU2yZwZVx/d4mDGZPV7MLWCOADelZZIjJ5MoSU6VpBQfc
+ EDlFqf736r0I0nxddPWtC7CY0mOLarCCZC+hXYMJHGHHyNoU6Tgzl1fVP
+ 8MdtljEWwpBbmDo9I5MmtfxrHmpz/yK5Se7C4Q59nmFTXFGXIhNSdR56X A==;
+X-CSE-ConnectionGUID: uhvkU3KQTZ63CuF5DOMShA==
+X-CSE-MsgGUID: rv2eM5VxQlu+vGP235t7yQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11868"; a="86758827"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86758827"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2026 12:45:21 -0700
-X-CSE-ConnectionGUID: s0HKOzxBQ5KLEq1zu0f/kg==
-X-CSE-MsgGUID: cftMPrs9SMqoj6d/FiJjfA==
+X-CSE-ConnectionGUID: pipE8AEsRAOf1nUBpUAWWw==
+X-CSE-MsgGUID: HobX2AHpS+qTOk/Lvv1iVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="258174100"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="258174105"
 Received: from dut4475arls.fm.intel.com ([10.105.10.116])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2026 12:45:20 -0700
@@ -48,9 +48,9 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  Michal.Wajdeczko@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 06/10] drm/xe/guc: Add configfs support for guc_log_level
-Date: Fri,  7 Aug 2026 19:45:23 +0000
-Message-ID: <20260807194518.9474-18-stuart.summers@intel.com>
+Subject: [PATCH 08/10] drm/xe: Add infrastructure for debug configfs parameters
+Date: Fri,  7 Aug 2026 19:45:25 +0000
+Message-ID: <20260807194518.9474-20-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260807194518.9474-12-stuart.summers@intel.com>
 References: <20260807194518.9474-12-stuart.summers@intel.com>
@@ -71,264 +71,418 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow the GuC log level to be selected per-device via configfs in
-addition to the existing 'guc_log_level' module parameter. The configfs
-attribute lives under the new 'debug' configfs subdirectory:
+Borrow the X-macro pattern from i915_debugfs_params.c and adapt it to
+the Xe debug configfs interface, so future debug-only configfs entries
+can be added with a single line.
 
-  /sys/kernel/config/xe/<bdf>/debug/guc_log_level
+Add a new header xe_configfs_debug_params.h that defines:
 
-When the configfs attribute is set to a valid level (0-5), it overrides
-the module parameter for that device. The default value is -1
-(XE_GUC_LOG_LEVEL_UNSET), which means 'unset' and falls back to the
-'guc_log_level' module parameter, ensuring existing users that rely
-solely on the module parameter are unaffected by this change.
+  XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(param)
 
-The module parameter implementation itself is untouched.
+invoked as
+'param(type, name, default, validator, visibility, getter, fallback)'
+for each debug configfs parameter. The matching backing struct, default
+initializer fragment, configfs_attribute objects, show/store handlers,
+entries in xe_configfs_debug_attrs[] and the xe_configfs_get_<name>()
+accessor are all generated from this single list.
 
-Note that the expectation is a user will only set the log level when
-CONFIG_DRM_XE_DEBUG is set.
+Supported type tokens are int, bool, u8, u16, u32 and u64. Sized
+unsigned types are used directly rather than mirroring i915's
+int/unsigned int (which exists there only because those debugfs
+entries shadow module_param values, and module_param itself does not
+support sized types).
+
+The validator slot is a function-like macro that takes the parsed
+typed value and returns 0 or a negative errno. XE_PARAM_VALIDATE_NONE
+is provided for parameters whose full type range is acceptable.
+Function-like macros (rather than function pointers) let the compiler
+fold trivial validators away entirely.
+
+The visibility slot is a function-like macro that takes a config_item
+and returns whether the attribute should be visible.
+
+The getter and fallback slots drive the generated
+xe_configfs_get_<name>(pdev) accessor: getter(dev, name) computes the
+return value from a found device group, while fallback is returned
+when no device group matches. Most parameters just read the stored
+value and repeat their default as the fallback (XE_PARAM_GETTER_READ);
+a parameter can override either slot when its accessor needs different
+behavior.
+
+The auto-generated handlers, configfs_attribute objects and getters
+live in a new xe_configfs_debug_params.c so they do not crowd the
+hand-written entries in xe_configfs_debug.c. The attribute objects are
+non-static (declared 'extern' in the header) so xe_configfs_debug.c can
+splice them into xe_configfs_debug_attrs[] and reference them from
+is_visible().
+
+The parameter list is intentionally empty in this patch; converting
+existing entries (or adding new ones) is left to follow-up changes so
+this infrastructure can be reviewed in isolation.
+
+Note that the expectation is a user will only set these debug
+parameters when CONFIG_DRM_XE_DEBUG is set; the entire facility lives
+behind that Kconfig.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Assisted-by: Copilot:claude-sonnet-4.6,claude-opus-4.7,claude-sonnet-5,claude-opus-5
+Assisted-by: Copilot:claude-sonnet-4.6,claude-opus-4.7,claude-sonnet-5
 ---
- drivers/gpu/drm/xe/xe_configfs.c       |  2 +
- drivers/gpu/drm/xe/xe_configfs_debug.c | 84 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs_debug.h |  7 +++
- drivers/gpu/drm/xe/xe_configfs_types.h |  1 +
- drivers/gpu/drm/xe/xe_defaults.h       |  3 +
- drivers/gpu/drm/xe/xe_guc_log.c        |  3 +-
- 6 files changed, 99 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Makefile                   |   2 +-
+ drivers/gpu/drm/xe/xe_configfs_debug_params.c | 151 +++++++++++++++
+ drivers/gpu/drm/xe/xe_configfs_debug_params.h | 173 ++++++++++++++++++
+ 3 files changed, 325 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug_params.c
+ create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug_params.h
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 111aacce8a84..ea09d5f9e925 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -100,6 +100,7 @@ const struct xe_config_device xe_configfs_device_defaults = {
- 	.debug = {
- 		.engines_allowed = U64_MAX,
- 		.gt_types_allowed = U64_MAX,
-+		.guc_log_level = XE_GUC_LOG_LEVEL_UNSET,
- 		.enable_multi_queue = true,
- 		.enable_psmi = false,
- 		.survivability_mode = false,
-@@ -418,6 +419,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- 	PRI_CUSTOM_ATTR("%llx", debug.engines_allowed);
- 	PRI_CUSTOM_ATTR("%llx", debug.gt_types_allowed);
-+	PRI_CUSTOM_ATTR("%d", debug.guc_log_level);
- 	PRI_CUSTOM_ATTR("%d", debug.enable_multi_queue);
- 	PRI_CUSTOM_ATTR("%d", debug.enable_psmi);
- 	PRI_CUSTOM_ATTR("%d", debug.survivability_mode);
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
-index b2667573efbe..eb3c3bd9c33e 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.c
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
-@@ -17,6 +17,7 @@
- #include "xe_configfs_debug.h"
- #include "xe_configfs_types.h"
- #include "xe_gt_types.h"
-+#include "xe_guc_log.h"
- #include "xe_hw_engine_types.h"
- #include "xe_pci_types.h"
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index f41bba567122..fd48e07f1df7 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -162,7 +162,7 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
  
-@@ -44,6 +45,7 @@
-  *	        ├── ctx_restore_post_bb
-  *	        ├── engines_allowed
-  *	        ├── gt_types_allowed
-+ *	        ├── guc_log_level
-  *	        ├── enable_multi_queue
-  *	        ├── enable_psmi
-  *	        └── survivability_mode
-@@ -167,6 +169,27 @@
-  *
-  *	# echo '' > /sys/kernel/config/xe/0000:03:00.0/debug/gt_types_allowed
-  *
-+ * GuC log level:
-+ * --------------
-+ *
-+ * Set the GuC firmware logging verbosity for this device. Accepted values
-+ * match the ``guc_log_level`` module parameter:
-+ *
-+ *   - 0: disable
-+ *   - 1: normal (non-verbose)
-+ *   - 2..%GUC_LOG_LEVEL_MAX: verbose levels
-+ *
-+ * Example::
-+ *
-+ *	# echo 3 > /sys/kernel/config/xe/0000:03:00.0/debug/guc_log_level
-+ *
-+ * The default value is %XE_GUC_LOG_LEVEL_UNSET (-1), which means the value
-+ * of the ``guc_log_level`` module parameter is used. Any value greater
-+ * than -1 written to this attribute overrides the module parameter for
-+ * this device.
-+ *
-+ * This attribute can only be set before binding to the device.
-+ *
-  * Enable multi-queue
-  * ------------------
-  *
-@@ -758,6 +781,65 @@ static ssize_t gt_types_allowed_store(struct config_item *item, const char *page
- 	return len;
- }
+ xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+ xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
+-xe_debug_configfs_obj-$(CONFIG_DRM_XE_DEBUG) := xe_configfs_debug.o
++xe_debug_configfs_obj-$(CONFIG_DRM_XE_DEBUG) := xe_configfs_debug.o xe_configfs_debug_params.o
+ xe-$(CONFIG_CONFIGFS_FS) += $(xe_debug_configfs_obj-y)
  
-+/**
-+ * xe_configfs_get_guc_log_level - get configfs guc_log_level setting
-+ * @pdev: pci device
-+ *
-+ * Returns the guc_log_level value configured via configfs. If the configfs
-+ * value is negative (the default is %XE_GUC_LOG_LEVEL_UNSET, -1), the value
-+ * of the ``guc_log_level`` module parameter is returned instead, allowing
-+ * the configfs entry to override the module parameter without affecting
-+ * users that rely solely on the module parameter.
-+ *
-+ * Return: GuC log level to use for this device.
+ # graphics virtualization (SR-IOV) support
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.c b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
+new file mode 100644
+index 000000000000..00e5ff175c0a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
+@@ -0,0 +1,151 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
 + */
-+int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_device(pdev);
-+	int level = xe_modparam.guc_log_level;
 +
-+	if (!dev)
-+		return level;
++/*
++ * Auto-generated debug configfs parameters.
++ *
++ * This file expands XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH() (defined in
++ * xe_configfs_debug_params.h) to define the show/store handlers and
++ * configfs_attribute objects for every parameter in the list.
++ *
++ * Per-type ops generators are provided for the simple scalar types
++ * supported by &struct xe_configfs_debug_params: int, bool, u8, u16,
++ * u32, u64. The integer template is parameterised on the kstrto helper
++ * and the printf format string; bool gets its own template because
++ * kstrtobool() has a different signature.
++ *
++ * Each store handler invokes the per-parameter validator (a
++ * function-like macro from the X-macro list), allowing range or
++ * sentinel checks to be expressed declaratively next to the parameter
++ * definition.
++ *
++ * Generated configfs_attribute objects are non-static so that
++ * xe_configfs_debug.c can reference them by symbol (attr_<name>) when
++ * assembling its xe_configfs_debug_attrs[] array and its is_visible()
++ * callback.
++ *
++ * This file also generates the xe_configfs_get_<name>() accessors used
++ * by the rest of the driver to read a parameter's effective value; see
++ * the DOC section below.
++ */
 +
-+	scoped_guard(mutex, &dev->lock)
-+		if (dev->config.debug.guc_log_level >= 0)
-+			level = dev->config.debug.guc_log_level;
++#include <linux/cleanup.h>
++#include <linux/configfs.h>
++#include <linux/kernel.h>
++#include <linux/pci.h>
++#include <linux/string.h>
++#include <linux/sysfs.h>
 +
-+	config_group_put(&dev->group);
-+out:
-+	return level;
++#include "xe_configfs_debug_params.h"
++#include "xe_configfs.h"
++
++#define _XE_PARAM_DEFINE_OPS_NUMERIC(_T, _name, _kstrto, _fmt, _validator) \
++static ssize_t _name##_show(struct config_item *item, char *page) \
++{ \
++	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
++	XE_PARAM_TYPE_##_T val; \
++	scoped_guard(mutex, &dev->lock) \
++		val = dev->config.debug.params._name; \
++	return sprintf(page, _fmt "\n", val); \
++} \
++static ssize_t _name##_store(struct config_item *item, const char *page, size_t len) \
++{ \
++	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
++	XE_PARAM_TYPE_##_T val; \
++	int ret = _kstrto(page, 0, &val); \
++	if (ret) \
++		return ret; \
++	ret = _validator(val); \
++	if (ret) \
++		return ret; \
++	guard(mutex)(&dev->lock); \
++	if (xe_configfs_is_bound(dev)) \
++		return -EBUSY; \
++	dev->config.debug.params._name = val; \
++	return len; \
 +}
 +
-+static ssize_t guc_log_level_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
-+
-+	return sprintf(page, "%d\n", dev->debug.guc_log_level);
++#define _XE_PARAM_DEFINE_OPS_int(_name, _validator) \
++	_XE_PARAM_DEFINE_OPS_NUMERIC(int, _name, kstrtoint, "%d", _validator)
++#define _XE_PARAM_DEFINE_OPS_u8(_name, _validator) \
++	_XE_PARAM_DEFINE_OPS_NUMERIC(u8,  _name, kstrtou8,  "%u", _validator)
++#define _XE_PARAM_DEFINE_OPS_u16(_name, _validator) \
++	_XE_PARAM_DEFINE_OPS_NUMERIC(u16, _name, kstrtou16, "%u", _validator)
++#define _XE_PARAM_DEFINE_OPS_u32(_name, _validator) \
++	_XE_PARAM_DEFINE_OPS_NUMERIC(u32, _name, kstrtou32, "%u", _validator)
++#define _XE_PARAM_DEFINE_OPS_u64(_name, _validator) \
++	_XE_PARAM_DEFINE_OPS_NUMERIC(u64, _name, kstrtou64, "%llu", _validator)
++#define _XE_PARAM_DEFINE_OPS_bool(_name, _validator) \
++static ssize_t _name##_show(struct config_item *item, char *page) \
++{ \
++	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
++	bool val; \
++	scoped_guard(mutex, &dev->lock) \
++		val = dev->config.debug.params._name; \
++	return sprintf(page, "%d\n", val); \
++} \
++static ssize_t _name##_store(struct config_item *item, const char *page, size_t len) \
++{ \
++	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
++	bool val; \
++	int ret = kstrtobool(page, &val); \
++	if (ret) \
++		return ret; \
++	ret = _validator(val); \
++	if (ret) \
++		return ret; \
++	guard(mutex)(&dev->lock); \
++	if (xe_configfs_is_bound(dev)) \
++		return -EBUSY; \
++	dev->config.debug.params._name = val; \
++	return len; \
 +}
 +
-+static ssize_t guc_log_level_store(struct config_item *item, const char *page, size_t len)
-+{
-+	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
-+	int val;
-+	int ret;
++#define _XE_PARAM_DEFINE_OPS(_T, _name, _def, _validator, _vis, _get, _fallback) \
++	_XE_PARAM_DEFINE_OPS_##_T(_name, _validator)
++XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DEFINE_OPS)
 +
-+	ret = kstrtoint(page, 0, &val);
-+	if (ret)
-+		return ret;
++/*
++ * Define the configfs_attribute objects. These are non-static so they
++ * can be referenced from xe_configfs_debug.c.
++ */
++#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
++struct configfs_attribute attr_##_name = {                              \
++	.ca_name	= __stringify(_name),                           \
++	.ca_owner	= THIS_MODULE,                                  \
++	.ca_mode	= 0644,                                         \
++	.show		= _name##_show,                                 \
++	.store		= _name##_store,                                \
++};
 +
-+	if (val != XE_GUC_LOG_LEVEL_UNSET &&
-+	    (val < 0 || val > GUC_LOG_LEVEL_MAX))
-+		return -EINVAL;
++XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DEFINE_ATTR)
 +
-+	guard(mutex)(&dev->lock);
-+	if (xe_configfs_is_bound(dev))
-+		return -EBUSY;
++/**
++ * DOC: Debug configfs parameter getters
++ *
++ * xe_configfs_get_<name>() accessors for every parameter declared via
++ * XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH() are generated below from that
++ * same list. Each looks up the &xe_config_group_device matching @pdev,
++ * applies the parameter's "getter" macro to compute the return value,
++ * and drops the reference before returning. If no matching device
++ * group exists, the parameter's "fallback" value is returned instead.
++ *
++ * The CONFIG_DRM_XE_DEBUG=n stub for each of these accessors is
++ * generated separately, in xe_configfs_debug.h.
++ */
++#define _XE_PARAM_DEFINE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
++XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
++{ \
++	struct xe_config_group_device *dev = xe_configfs_find_group_device(pdev); \
++	XE_PARAM_TYPE_##_T ret; \
++	if (!dev) \
++		return (_fallback); \
++	scoped_guard(mutex, &dev->lock) \
++		ret = _get(dev, _name); \
++	config_group_put(&dev->group); \
++	return ret; \
++}
++XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DEFINE_GETTER)
++#undef _XE_PARAM_DEFINE_GETTER
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.h b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
+new file mode 100644
+index 000000000000..954ca4343136
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
+@@ -0,0 +1,173 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
 +
-+	dev->config.debug.guc_log_level = val;
++#ifndef _XE_CONFIGFS_DEBUG_PARAMS_H_
++#define _XE_CONFIGFS_DEBUG_PARAMS_H_
 +
-+	return len;
++#include <linux/configfs.h>
++#include <linux/errno.h>
++#include <linux/types.h>
++
++struct pci_dev;
++
++/*
++ * Internal type/format aliases resolved by XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH().
++ *
++ * Each parameter declares its type using one of these tokens; the helper
++ * macros below and in xe_configfs_debug_params.c resolve the token to the
++ * underlying C type, printf format, and kstrto helper.
++ *
++ * Supported type tokens: int, bool, u8, u16, u32, u64. Add new types by
++ * defining matching XE_PARAM_TYPE_<token> and XE_PARAM_FMT_<token> here,
++ * plus an ops generator in xe_configfs_debug_params.c.
++ */
++#define XE_PARAM_TYPE_int		int
++#define XE_PARAM_TYPE_bool		bool
++#define XE_PARAM_TYPE_u8		u8
++#define XE_PARAM_TYPE_u16		u16
++#define XE_PARAM_TYPE_u32		u32
++#define XE_PARAM_TYPE_u64		u64
++
++#define XE_PARAM_FMT_int		"%d"
++#define XE_PARAM_FMT_bool		"%d"
++#define XE_PARAM_FMT_u8			"%u"
++#define XE_PARAM_FMT_u16		"%u"
++#define XE_PARAM_FMT_u32		"%u"
++#define XE_PARAM_FMT_u64		"%llu"
++
++/*
++ * Per-parameter validators
++ *
++ * A validator is a function-like macro that takes the (already-parsed)
++ * typed value and expands to an int expression: 0 if the value is
++ * acceptable, a negative errno (typically -EINVAL) otherwise.
++ *
++ * XE_PARAM_VALIDATE_NONE is the no-op validator for parameters whose
++ * full type range is acceptable.
++ */
++#define XE_PARAM_VALIDATE_NONE(_v)		(0)
++
++/*
++ * Per-parameter getter helpers.
++ *
++ * "getter" is a function-like macro invoked as ``getter(dev, name)``,
++ * where @dev is a non-NULL, already-looked-up &xe_config_group_device;
++ * it expands to the value xe_configfs_get_<name>() should return.
++ * XE_PARAM_GETTER_READ is the default for parameters with no special
++ * behavior: read the value straight out of the stored params struct.
++ *
++ * "fallback" is the value xe_configfs_get_<name>() returns when no
++ * device group is found for the given PCI device, and unconditionally
++ * when CONFIG_DRM_XE_DEBUG is disabled (the generated accessor is then
++ * a static inline stub in xe_configfs_debug.h, with no device group to
++ * look up at all). Because it must be evaluable in both of those
++ * contexts, it must never reference @dev or &xe_config_group_device.
++ * It is usually just the parameter's default value; override it when
++ * the "nothing configured" value differs from the initial stored
++ * value, as with guc_log_level falling back to the guc_log_level
++ * module parameter.
++ */
++#define XE_PARAM_GETTER_READ(_dev, _name)	((_dev)->config.debug.params._name)
++
++/**
++ * XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH - iterate over debug configfs params
++ * @param: function-like macro called as
++ *	   ``param(type, name, default, validator, visibility, getter, fallback)``
++ *
++ *   type:      parameter type token, one of {int, bool, u8, u16, u32, u64}
++ *   name:      parameter name; appears as a configfs file at
++ *              /sys/kernel/config/xe/<bdf>/debug/<name>
++ *   default:   initial/default value of the parameter
++ *   validator: function-like macro ``v -> int`` returning 0 or a negative
++ *              errno; use XE_PARAM_VALIDATE_NONE when no extra constraints
++ *              apply beyond the underlying type's range
++ *   visibility: function-like macro ``item -> bool`` returning true when
++ *              the attribute should be visible; evaluated in
++ *              xe_configfs_debug.c where the platform descriptor is
++ *              accessible; use XE_PARAM_VISIBLE_ALWAYS for unconditional
++ *              visibility
++ *   getter:    function-like macro ``(dev, name) -> value``; use
++ *              XE_PARAM_GETTER_READ unless the accessor needs bespoke
++ *              behavior
++ *   fallback:  value returned when there is no configfs override to
++ *              consult; usually just repeat the default
++ *
++ * To add a new debug-only configfs parameter, append a single line to
++ * this list. The infrastructure auto-generates the struct member,
++ * default initialization, configfs attribute (show/store), inclusion in
++ * the debug attrs[] array, the xe_configfs_get_<name>() accessor (both
++ * its CONFIG_DRM_XE_DEBUG=y implementation and its =n stub), and the
++ * diagnostic dump in dump_custom_dev_config().
++ *
++ * Generated configfs files use the default permissions provided by the
++ * configfs core (read-write); a system administrator can restrict them
++ * at runtime if needed.
++ */
++#define XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(param) \
++	/* No parameters yet - add entries above this line. */
++
++/* Generate the struct that backs all debug params in xe_config_device. */
++#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
++struct xe_configfs_debug_params {
++	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_MEMBER)
++};
++
++#undef _XE_PARAM_MEMBER
++
++/*
++ * Designated-initializer fragment for &xe_configfs_device_defaults. Use as:
++ *
++ *	.debug.params = {
++ *		XE_CONFIGFS_DEBUG_PARAMS_DEFAULTS
++ *	},
++ */
++#define _XE_PARAM_DEFAULT_INIT(_T, _name, _def, _val, _vis, _get, _fallback)	._name = (_def),
++#define XE_CONFIGFS_DEBUG_PARAMS_DEFAULTS \
++	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DEFAULT_INIT)
++
++/*
++ * Forward declarations of the per-parameter configfs_attribute objects.
++ *
++ * The objects themselves are defined in xe_configfs_debug_params.c (as
++ * non-static so they can be referenced from xe_configfs_debug.c's
++ * xe_configfs_debug_attrs[] array and is_visible() callback). They live
++ * in the same translation unit as the X-macro-generated show/store
++ * handlers; consumers should reference them via attr_<name>.
++ */
++#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
++	extern struct configfs_attribute attr_##_name;
++XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DECLARE_ATTR)
++#undef _XE_PARAM_DECLARE_ATTR
++
++/*
++ * Helper used by xe_configfs_debug.c to splice the auto-generated
++ * attribute pointers into its xe_configfs_debug_attrs[] array.
++ */
++#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) &attr_##_name,
++
++/*
++ * Declarations of the per-parameter xe_configfs_get_<name>() accessors.
++ *
++ * The CONFIG_DRM_XE_DEBUG=y implementations are generated alongside the
++ * show/store handlers in xe_configfs_debug_params.c; see the DOC section
++ * there for what they do. xe_configfs_debug.h uses this macro to declare
++ * the matching prototypes for its callers.
++ */
++#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
++	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
++
++/*
++ * CONFIG_DRM_XE_DEBUG=n stub for xe_configfs_get_<name>(). There is no
++ * configfs facility to consult in this configuration, so the accessor
++ * unconditionally returns its "fallback" value. Used by
++ * xe_configfs_debug.h.
++ */
++#define XE_PARAM_DECLARE_GETTER_STUB(_T, _name, _def, _val, _vis, _get, _fallback) \
++static inline XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
++{ \
++	return _fallback; \
 +}
 +
- /**
-  * xe_configfs_get_enable_multi_queue - get configfs enable_multi_queue setting
-  * @pdev: pci device
-@@ -904,6 +986,7 @@ CONFIGFS_ATTR(, ctx_restore_mid_bb);
- CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
-+CONFIGFS_ATTR(, guc_log_level);
- CONFIGFS_ATTR(, enable_multi_queue);
- CONFIGFS_ATTR(, enable_psmi);
- CONFIGFS_ATTR(, survivability_mode);
-@@ -913,6 +996,7 @@ static struct configfs_attribute *xe_configfs_debug_attrs[] = {
- 	&attr_ctx_restore_post_bb,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
-+	&attr_guc_log_level,
- 	&attr_enable_multi_queue,
- 	&attr_enable_psmi,
- 	&attr_survivability_mode,
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
-index 4a027ea2082d..5fe39bb72f00 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
-@@ -7,7 +7,9 @@
- 
- #include <linux/types.h>
- 
-+#include "xe_defaults.h"
- #include "xe_hw_engine_types.h"
-+#include "xe_module.h"
- 
- struct pci_dev;
- struct xe_config_device;
-@@ -24,6 +26,7 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
- bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
-+int xe_configfs_get_guc_log_level(struct pci_dev *pdev);
- bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
-@@ -42,6 +45,10 @@ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
- static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
-+static inline int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
-+{
-+	return xe_modparam.guc_log_level;
-+}
- static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
- static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
- static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
-diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
-index 6e8ba6f85fad..e9460c3de891 100644
---- a/drivers/gpu/drm/xe/xe_configfs_types.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_types.h
-@@ -38,6 +38,7 @@ struct xe_config_group_device {
- 			struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
- 			u64 engines_allowed;
- 			u64 gt_types_allowed;
-+			int guc_log_level;
- 			bool enable_multi_queue;
- 			bool enable_psmi;
- 			bool survivability_mode;
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index c8ae1d5f3d60..df88078e84b8 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -13,6 +13,9 @@
- #define XE_DEFAULT_GUC_LOG_LEVEL		1
- #endif
- 
-+/* Sentinel value for guc_log_level configfs: not set, fall back to module param */
-+#define XE_GUC_LOG_LEVEL_UNSET			-1
-+
- #define XE_DEFAULT_PROBE_DISPLAY		IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #define XE_DEFAULT_VRAM_BAR_SIZE		0
- #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 538d4df0f7aa..531b9759d520 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -13,6 +13,7 @@
- #include "abi/guc_lfd_abi.h"
- #include "regs/xe_guc_regs.h"
- #include "xe_bo.h"
-+#include "xe_configfs_debug.h"
- #include "xe_devcoredump.h"
- #include "xe_force_wake.h"
- #include "xe_gt_printk.h"
-@@ -637,7 +638,7 @@ int xe_guc_log_init(struct xe_guc_log *log)
- 
- 	xe_map_memset(xe, &bo->vmap, 0, 0, xe_bo_size(bo));
- 	log->bo = bo;
--	log->level = xe_modparam.guc_log_level;
-+	log->level = xe_configfs_get_guc_log_level(to_pci_dev(xe->drm.dev));
- 
- 	return 0;
- }
++#endif /* _XE_CONFIGFS_DEBUG_PARAMS_H_ */
 -- 
 2.43.0
 
