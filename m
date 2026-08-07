@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A694C2A09B
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:31:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81EF1C5AC81
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:31:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3904C10F337;
-	Fri,  7 Aug 2026 04:31:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02EB710F349;
+	Fri,  7 Aug 2026 04:31:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AKjNoLun";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8RywNL7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D864A10F326;
- Fri,  7 Aug 2026 04:31:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2AD910F342;
+ Fri,  7 Aug 2026 04:31:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786077088; x=1817613088;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eUhWUcXQTutgORprU3xdfeDnD5Wma5+eHKz1FjriSfE=;
- b=AKjNoLunnmi3eo9g+Fklli5324DSitfqMgFgpQDaMk2cWqo6Ajr4R0OW
- yoTn0uoaOUTIKMABsR5SCRag//dZGcDmSxKWS4L5PmFHp6TakTOMfsCix
- yJbNjtcMBYsXxAvs1vcHbnS20M/Ce9kumPfwKUnMTIko9wYZgvGkGrb4E
- hM/tWTEXSE786ch0dIBcHfd9wkQauKMHo5bbA6nhDnUBFjTl5oxGT2GXt
- Z6xosvDr31LJKyEx0Ob7xYP4tkP0ezWaGf9IcO0sUo4+iU8KV0v/GoX+M
- PKuCD1WLUtCsxCVNo+/AgfvR5fHwivfGRqn0GXM536i/oOHRPeX7JPItu A==;
-X-CSE-ConnectionGUID: wOw4BsoLR4eMneEX2fDhjw==
-X-CSE-MsgGUID: vD+O/EniSf6mtibhrMDnoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619229"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619229"
+ t=1786077090; x=1817613090;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=e0P7AKuUX1LvMAIFwgeEgC2jXHbS9qzRUOL0AFOOdfA=;
+ b=Q8RywNL7gqI2d+fM+J1xz3UWNtmKcDmFluyH73flTTLlvYKQ4CdVdPzE
+ dyLIoMMHhgC9nxXGz8+ewYAFnK1zUWOxZEnkxamL7277+RP8OtPhIyIdc
+ Dukyaq9Bgs5yGt5JD9e/4cRztqfEFtUvp+YA3gF0Q7ryr/oXyrFPIhEzN
+ Z+nl3hAA0D+ouXLfNbJ+drDJL6TCLXfq2840ZywdGFtWVRAzIRUecCFct
+ m9Ibk75rSZj3Zpd8bzYmWYjakvd4BEFCQTGhIZdaiuTA6DO2M2SBBCxeL
+ iysmV4dzh8wwsNXWw5sVW+0Wlavo4P6s8Df7z4V5BkLd7Wns5WUrrY2Bk w==;
+X-CSE-ConnectionGUID: X2opfasBR1+rUtjykrmS4Q==
+X-CSE-MsgGUID: jXpHX9GmQIqTHdlxpfnMww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619233"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619233"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:31:27 -0700
-X-CSE-ConnectionGUID: YUfP3+mPQp62TbhziOJ2BA==
-X-CSE-MsgGUID: 9bNQ05+hRXyl23/6L1Bjhg==
+ 06 Aug 2026 21:31:29 -0700
+X-CSE-ConnectionGUID: 7g0v9c7MSTmqbW5ZB8JoTw==
+X-CSE-MsgGUID: jNCFWTleQOiZEkNxJN1wCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666022"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666026"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:31:24 -0700
+ 06 Aug 2026 21:31:27 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH 00/44] Enable HDMI FRL for MTL+
-Date: Fri,  7 Aug 2026 09:43:45 +0530
-Message-ID: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/44] drm/i915/hdmi: Parse frl max link rate from vbt
+Date: Fri,  7 Aug 2026 09:43:46 +0530
+Message-ID: <20260807041430.229038-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
+References: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,114 +69,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series adds support for HDMI Fixed Rate Link (FRL) on MTL+ platforms.
-FRL is a high-bandwidth transmission mode required for modes that exceed
-the TMDS bandwidth limit.
+From: Vandita Kulkarni <vandita.kulkarni@intel.com>
 
-The series covers the core enabling:
-- SCDC helper additions for FRL link training
-- FRL link training state machine (LTS:2, LTS:3, LTS:P)
-- DDI enable/disable sequence updates for FRL mode
-- DFM (Data Flow Metering) computation and register programming
-- PHY (CX0/LT PHY) support for FRL rates
-- Mode validation and clock computation for FRL
+Parse the maximum FRL link rate from VBT and store it for use
+during FRL mode selection and link training.
 
-This is a work in progress. The primary goal at this stage is to get the
-overall design reviewed and the foundational patches landed before building
-on top.
+Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     | 53 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bios.h     |  1 +
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  7 +++
+ 3 files changed, 61 insertions(+)
 
-Lightly tested on PTL. Modes like 4K@120 are working. Higher resolution
-modes (e.g. 8K) require DSC which is not yet covered in this series, that
-work is ongoing.
-
-Testing on other MTL+ platforms is also ongoing.
-Known gaps:
-- DSC over FRL not yet supported
-- Testing limited to MTL, PTL so far
-
-Feedback on the design and approach is welcome.
-
-Ankit Nautiyal (28):
-  drm/i915/hdmi: Add new data members for FRL configuration
-  drm/i915/hdmi: Add FRL link rate cap
-  drm/drm_scdc_helper: Add SCDC helper funcs for FRL
-  drm/i915/display: Add registers for HDMI FRL configuration
-  drm/i915/display: Add new members in crtc_state for FRL configuration
-  drm/i915/intel_cx0_phy_regs: Add HDMI FRL SHIFT EN bit in
-    PORT_BUF_CTL_1
-  drm/i915/ddi: Update Transcoder/DDI registers with the frl bits
-  drm/i915/hdmi: Enable Scrambling only for TMDS mode
-  drm/i915/ddi: Simplify intel_ddi_enable()
-  drm/i915/ddi: Factor out common transcoder/vblank enable sequence
-  drm/i915/ddi: Update HDMI modeset sequence for MTL+
-  drm/i915/hdmi: Add function to prepare registers for FRL mode
-  drm/i915/hdmi: Add functions for FRL training state machine
-  drm/i915/intel_hdmi: Add helper to disable FRL
-  drm/i915/hdmi: Reduce FRL rate cap on rate change during training
-  drm/i915/hdmi: Add provision for FRL mode while computing output
-    format
-  drm/i915/cx0: Add helper to check if the FRL rate is valid
-  drm/i915/lt_phy: Add helper to check if the FRL rate is valid
-  drm/i915/hdmi_frl_dfm: Add support for DFM calculation with DSC
-  drm/i915/hdmi: Add helper to write FRL CFG register
-  drm/i915/hdmi_frl_dfm: Add helpers to read/write FRL DFM registers
-  drm/i915/hdmi_frl_dfm: Add function to compute FRL DFM config
-  drm/i915/hdmi: Add FRL clock computation based on DFM
-  drm/i915/hdmi: Add support for sending uevent to user for FRL training
-    failure
-  drm/i915/ddi: Wire FRL into the HDMI DDI enable/disable path
-  drm/i915/hdmi: Add read out for FRL state
-  drm/i915/display: Add FRL members to the state checker
-  drm/i915/hdmi: Compute output format for HDMI FRL mode
-
-Suraj Kandpal (7):
-  drm/i915/hdmi: Introduce intel_hdmi_frl_level() for per-lane TxFFE
-  drm/i915/hdmi: Drive per-lane TxFFE during FRL link training
-  drm/i915/ltphy: Add PLL tables for HDMI FRL
-  drm/i915/ltphy: Add safegaurd when calculation HDMI FRL state
-  drm/i915/ltphy: Calculate port clock for HDMI FRL
-  drm/i915/ltphy: Verify HDMI FRL tables
-  drm/i915/ddi_buf: Add Vswing table for HDMI FRL
-
-Vandita Kulkarni (9):
-  drm/i915/hdmi: Parse frl max link rate from vbt
-  drm/i915/hdmi: Rename port clock limit to specify tmds clock
-  drm/i915/hdmi: Rename port clock valid to specify tmds clock
-  drm/i915/hdmi: Add FRL port and mode clock valid
-  drm/i915/hdmi_frl_dfm_regs: Define DFM registers
-  drm/i915/hdmi_frl_dfm: Define frl_dfm structure
-  drm/i915/hdmi_frl_dfm: Add non dsc frl capacity computation helpers
-  drm/i915/hdmi_frl_dfm: Handle FRL Link M/N
-  drm/i915/hdmi: Enable FRL based mode clock valid
-
- drivers/gpu/drm/display/drm_scdc_helper.c     | 212 +++++
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_bios.c     |  53 ++
- drivers/gpu/drm/i915/display/intel_bios.h     |   1 +
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  23 +
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   1 +
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      | 162 +++-
- .../drm/i915/display/intel_ddi_buf_trans.c    |  25 +
- drivers/gpu/drm/i915/display/intel_display.c  |   9 +
- .../gpu/drm/i915/display/intel_display_regs.h |  26 +
- .../drm/i915/display/intel_display_types.h    |  38 +
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 808 +++++++++++++++-
- drivers/gpu/drm/i915/display/intel_hdmi.h     |  14 +-
- .../gpu/drm/i915/display/intel_hdmi_frl_dfm.c | 892 ++++++++++++++++++
- .../gpu/drm/i915/display/intel_hdmi_frl_dfm.h | 126 +++
- .../i915/display/intel_hdmi_frl_dfm_regs.h    |  36 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 315 ++++++-
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |   1 +
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |   7 +
- drivers/gpu/drm/xe/Makefile                   |   1 +
- include/drm/display/drm_scdc.h                |  26 +
- include/drm/display/drm_scdc_helper.h         |  22 +
- 23 files changed, 2704 insertions(+), 96 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 97cbae2e547e..6354fa4041dc 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2734,6 +2734,43 @@ static bool is_port_valid(struct intel_display *display, enum port port)
+ 	return true;
+ }
+ 
++static int _intel_bios_hdmi_max_frl_rate(const struct intel_bios_encoder_data *devdata)
++{
++	struct intel_display *display = devdata->display;
++
++	if (display->vbt.version >= 237 &&
++	    devdata->child.hdmi_max_frl_rate_valid) {
++		switch (devdata->child.hdmi_max_frl_rate) {
++		default:
++		case HDMI_MAX_FRL_RATE_PLATFORM:
++			drm_dbg_kms(display->drm,
++				    "HDMI limited to support only TMDS modes\n");
++			return 0;
++		case HDMI_MAX_FRL_RATE_3G:
++			return 3000000;
++		case HDMI_MAX_FRL_RATE_6G:
++			return 6000000;
++		case HDMI_MAX_FRL_RATE_8G:
++			return 8000000;
++		case HDMI_MAX_FRL_RATE_10G:
++			return 10000000;
++		case HDMI_MAX_FRL_RATE_12G:
++			return 12000000;
++		}
++	}
++
++	/*
++	 * When hdmi_max_frl_rate_valid is 0
++	 * Don't consider the hdmi_max_frl_rate for
++	 * limiting the FRL Rates on FRL-capable displays
++	 */
++	if (display->vbt.version >= 237 &&
++	    display->platform.meteorlake)
++		return 12000000;
++
++	return 0;
++}
++
+ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ {
+ 	struct intel_display *display = devdata->display;
+@@ -2741,6 +2778,7 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
+ 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
+ 	enum port port;
++	int hdmi_max_frl_rate;
+ 
+ 	port = intel_bios_encoder_port(devdata);
+ 	if (port == PORT_NONE)
+@@ -2806,6 +2844,12 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ 			    "Port %c VBT DP max link rate: %d\n",
+ 			    port_name(port), dp_max_link_rate);
+ 
++	hdmi_max_frl_rate = _intel_bios_hdmi_max_frl_rate(devdata);
++	if (hdmi_max_frl_rate)
++		drm_dbg_kms(display->drm,
++			    "VBT HDMI max frl rate for port %c: %d\n",
++			    port_name(port), hdmi_max_frl_rate);
++
+ 	/*
+ 	 * FIXME need to implement support for VBT
+ 	 * vswing/preemph tables should this ever trigger.
+@@ -3879,3 +3923,12 @@ void intel_bios_debugfs_register(struct intel_display *display)
+ 	debugfs_create_file("i915_vbt", 0444, display->drm->debugfs_root,
+ 			    display, &intel_bios_vbt_fops);
+ }
++
++int intel_bios_hdmi_max_frl_rate(struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	const struct intel_bios_encoder_data *devdata;
++
++	devdata = intel_bios_encoder_data_lookup(display, encoder->port);
++	return _intel_bios_hdmi_max_frl_rate(devdata);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index 75dff27b4228..53d46c9fa6e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -102,6 +102,7 @@ int intel_bios_hdmi_max_tmds_clock(const struct intel_bios_encoder_data *devdata
+ void intel_bios_for_each_encoder(struct intel_display *display,
+ 				 void (*func)(struct intel_display *display,
+ 					      const struct intel_bios_encoder_data *devdata));
++int intel_bios_hdmi_max_frl_rate(struct intel_encoder *encoder);
+ 
+ void intel_bios_debugfs_register(struct intel_display *display);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index 0dc13d080e8a..db7484542dc0 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -381,6 +381,13 @@ struct bdb_general_features {
+ #define HDMI_MAX_DATA_RATE_340		4			/* 249+ */
+ #define HDMI_MAX_DATA_RATE_300		5			/* 249+ */
+ 
++#define HDMI_MAX_FRL_RATE_PLATFORM	0			/* 237 */
++#define HDMI_MAX_FRL_RATE_3G		1			/* 237 */
++#define HDMI_MAX_FRL_RATE_6G		2			/* 237 */
++#define HDMI_MAX_FRL_RATE_8G		3			/* 237 */
++#define HDMI_MAX_FRL_RATE_10G		4			/* 237 */
++#define HDMI_MAX_FRL_RATE_12G		5			/* 237 */
++
+ #define LEGACY_CHILD_DEVICE_CONFIG_SIZE		33
+ 
+ /* DDC Bus DDI Type 155+ */
 -- 
 2.50.1
 
