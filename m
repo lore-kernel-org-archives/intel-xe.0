@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73BD9C5ACA8
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:31:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13877C5ACAE
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:31:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5455310F34B;
-	Fri,  7 Aug 2026 04:31:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74CFB10F356;
+	Fri,  7 Aug 2026 04:31:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E7QEJrxs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jl+ST/Ok";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2834C10F349;
- Fri,  7 Aug 2026 04:31:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFD0510F352;
+ Fri,  7 Aug 2026 04:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786077092; x=1817613092;
+ t=1786077095; x=1817613095;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VyL5SRfscyvQK6Oe9/rhtwTlSz5NQxJTIXROjeSb/wE=;
- b=E7QEJrxsX4tV2g+Vfofk9+VhyBlg1klxilvzdIY7hg2LsIOS4fZsKYff
- H7i63Cfx8RsjzJjzpRZXhoX3STdk8DR7EagDeGOy0L7eRlmAEu7pumxx7
- qNQ9LTZL/V7NxdFUQcz/iMg63bCNi5HnVFgwcc97N807DLN0CAc9MwBxi
- MH4XVSE3C+xO8eIz9CUIObebxCsrbamp9thUzUCYEpM2jkXk7v0YyYDL6
- XY8ixeYw4O4iBHqqY8g3Kk4u3dN0vjg+cu/USrewH1xJxxZStadvCIfBH
- gj4g/Uwx9wOitVMRxLDjPz2J8MZWlnDyqNj2v+jo69XO9q9L7NDD+T+pI g==;
-X-CSE-ConnectionGUID: qO5LqCoYQD+KDO+YWcDueQ==
-X-CSE-MsgGUID: 5PDRdq0+T+O2kk+yALRNUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619235"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619235"
+ bh=iB1zeKW7WLZ+81BexQmZi2CxtZtc5aT8IO7XhSFIEPA=;
+ b=jl+ST/OkvQ8VgTlJmkwXDJeV6Tjp6UuTGVs7Vx9tZsl2Pegt+wj4rtgV
+ ALrw+Q8UVH7DvJ2b3uFCfCuy8HO+/RAcogbNoHeZXlYoLX7nr+uNCT3I5
+ yOUZyFmb5BTUdq41b0+5ADeGA10wrJPzwOV6kBD1Ed2rkNdMdj499MlRL
+ HlqWLwLnwJ5of6rwCRkCc4xk9ZNteBGxfgFWNtry6+j6zrwHj9WYYedAK
+ BRZEYwnn1urnbAqZfuRZPBz8LhuPQOfcmwLQ2Djhdq69bFLGfTR+4l4X8
+ yoc+iDlluUbGwb7hPrbCcosIqbooPvhAWikRbmekxFpL7DIZc7LNVUGh1 A==;
+X-CSE-ConnectionGUID: pFsvngRXTpWJoe2I+YanYw==
+X-CSE-MsgGUID: 7nzMiz+/QLWdr8fJFvk7vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619237"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619237"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:31:32 -0700
-X-CSE-ConnectionGUID: Ggk2TfxAR9WwCWsDKjJeRA==
-X-CSE-MsgGUID: 0DzjlOxVSkS2f5zCFx28Fg==
+ 06 Aug 2026 21:31:35 -0700
+X-CSE-ConnectionGUID: YWU8oLGVQzS8KKgvkGxwVA==
+X-CSE-MsgGUID: QQyiSfMeTnGimM1P9sPtmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666040"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666054"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:31:29 -0700
+ 06 Aug 2026 21:31:32 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH 02/44] drm/i915/hdmi: Add new data members for FRL
- configuration
-Date: Fri,  7 Aug 2026 09:43:47 +0530
-Message-ID: <20260807041430.229038-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 03/44] drm/i915/hdmi: Add FRL link rate cap
+Date: Fri,  7 Aug 2026 09:43:48 +0530
+Message-ID: <20260807041430.229038-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
 References: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
@@ -70,102 +69,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-HDMI supports higher resolutions using Fixed Rate Link.
-Source needs to do FRL link training on the 4 lanes before video
-stream transmission.
+Add a member rate_cap to store the highest FRL rate the link is believed
+to sustain. This is initially set based on the source and sink FRL
+capabilities, and updated only when the capabilities change. To achieve
+this, the reset is gated by a reset_rate_cap flag, so that rate_cap is
+left as is on a plain re-probe.
 
-Add the members to crtc_state and intel_hdmi for identifying the FRL
-supporting HDMI sink and to maintain the FRL training information after
-successful training.
+Also reset the rate cap when the status changes to disconnected, so that
+a re-plug of the same sink starts again from the full capability.
+
+Later during a Link training failure at a specific rate, rate_cap can be
+lowered, and since it is retained across a re-probe, the next training
+attempt will honor the reduced cap. No user for now, this will be used
+in the later changes.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../drm/i915/display/intel_display_types.h    |  9 +++++
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 36 +++++++++++++++++++
- 2 files changed, 45 insertions(+)
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 33 ++++++++++++++++---
+ 2 files changed, 30 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 20a07ea06b5e..76fa6debb852 100644
+index 76fa6debb852..ba51de6c4e57 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1687,8 +1687,17 @@ struct intel_hdmi {
- 		enum drm_dp_dual_mode_type type;
- 		int max_tmds_clock;
- 	} dp_dual_mode;
-+	bool has_sink_hdmi_21;
-+	int max_frl_rate;
-+	int max_dsc_frl_rate;
- 	struct intel_connector *attached_connector;
- 	struct cec_notifier *cec_notifier;
-+	struct {
-+		bool trained;
-+		int lanes;
-+		int rate_gbps;
-+		int ffe_level;
-+	} frl;
+@@ -1697,6 +1697,8 @@ struct intel_hdmi {
+ 		int lanes;
+ 		int rate_gbps;
+ 		int ffe_level;
++		int rate_cap;
++		bool reset_rate_cap;
+ 	} frl;
  };
  
- struct intel_dp_mst_encoder;
 diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 9b637e38a1a5..65d91fc9f9ce 100644
+index 65d91fc9f9ce..18d4e79ac54c 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2485,6 +2485,8 @@ intel_hdmi_unset_edid(struct drm_connector *_connector)
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(connector);
+@@ -2567,14 +2567,30 @@ intel_hdmi_init_frl_config(struct intel_connector *connector)
+ 		intel_hdmi_sink_dsc_max_frl_rate(&connector->base);
+ 	int max_sink_frl_rate =
+ 		intel_hdmi_sink_max_frl_rate(&connector->base);
++	int max_frl_rate, max_dsc_frl_rate;
  
-+	intel_hdmi->has_sink_hdmi_21 = false;
+ 	intel_hdmi->has_sink_hdmi_21 = max_sink_frl_rate > 0;
+ 
+-	intel_hdmi->max_frl_rate = min(max_sink_frl_rate,
+-				       max_src_frl_rate);
++	max_frl_rate = min(max_sink_frl_rate, max_src_frl_rate);
+ 
+-	intel_hdmi->max_dsc_frl_rate = min(max_sink_dsc_frl_rate,
+-					   max_src_frl_rate);
++	max_dsc_frl_rate = min(max_sink_dsc_frl_rate,
++			       max_src_frl_rate);
++	/*
++	 * Set the FRL rate cap on connect / capability change only.
++	 * Leaving it untouched on a plain re-probe lets a future
++	 * training-driven reduction persist across the retry.
++	 */
++	if (max_frl_rate != intel_hdmi->max_frl_rate ||
++	    max_dsc_frl_rate != intel_hdmi->max_dsc_frl_rate)
++		intel_hdmi->frl.reset_rate_cap = true;
 +
- 	intel_hdmi->dp_dual_mode.type = DRM_DP_DUAL_MODE_NONE;
- 	intel_hdmi->dp_dual_mode.max_tmds_clock = 0;
++	intel_hdmi->max_frl_rate = max_frl_rate;
++	intel_hdmi->max_dsc_frl_rate = max_dsc_frl_rate;
++
++	if (intel_hdmi->frl.reset_rate_cap) {
++		intel_hdmi->frl.rate_cap = max(max_frl_rate, max_dsc_frl_rate);
++		intel_hdmi->frl.reset_rate_cap = false;
++	}
  
-@@ -2545,6 +2547,38 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *_connector)
- 	}
+ 	intel_hdmi_reset_frl_config(intel_hdmi);
  }
+@@ -2656,9 +2672,16 @@ intel_hdmi_detect(struct drm_connector *_connector, bool force)
+ out:
+ 	intel_display_power_put(display, POWER_DOMAIN_GMBUS, wakeref);
  
-+static void
-+intel_hdmi_reset_frl_config(struct intel_hdmi *intel_hdmi)
-+{
-+	intel_hdmi->frl.trained = false;
-+	intel_hdmi->frl.lanes = 0;
-+	intel_hdmi->frl.rate_gbps = 0;
-+	intel_hdmi->frl.ffe_level = 0;
-+}
-+
-+static void
-+intel_hdmi_init_frl_config(struct intel_connector *connector)
-+{
-+	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(connector);
-+	struct intel_encoder *encoder = &hdmi_to_dig_port(intel_hdmi)->base;
-+	int max_src_frl_rate =
-+		DIV_ROUND_UP(intel_bios_hdmi_max_frl_rate(encoder), 1000000) * 4;
-+	int max_sink_dsc_frl_rate =
-+		intel_hdmi_sink_dsc_max_frl_rate(&connector->base);
-+	int max_sink_frl_rate =
-+		intel_hdmi_sink_max_frl_rate(&connector->base);
-+
-+	intel_hdmi->has_sink_hdmi_21 = max_sink_frl_rate > 0;
-+
-+	intel_hdmi->max_frl_rate = min(max_sink_frl_rate,
-+				       max_src_frl_rate);
-+
-+	intel_hdmi->max_dsc_frl_rate = min(max_sink_dsc_frl_rate,
-+					   max_src_frl_rate);
-+
-+	intel_hdmi_reset_frl_config(intel_hdmi);
-+}
-+
- static bool
- intel_hdmi_set_edid(struct drm_connector *_connector)
- {
-@@ -2576,6 +2610,8 @@ intel_hdmi_set_edid(struct drm_connector *_connector)
- 	if (drm_edid_is_digital(drm_edid)) {
- 		intel_hdmi_dp_dual_mode_detect(&connector->base);
+-	if (status != connector_status_connected)
++	if (status != connector_status_connected) {
+ 		cec_notifier_phys_addr_invalidate(intel_hdmi->cec_notifier);
  
-+		intel_hdmi_init_frl_config(connector);
++		/*
++		 * Reset the rate cap so that the next connect re-initializes
++		 * frl.rate_cap to the capability ceiling.
++		 */
++		intel_hdmi->frl.reset_rate_cap = true;
++	}
 +
- 		connected = true;
- 	}
+ 	return status;
+ }
  
 -- 
 2.50.1
