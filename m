@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 676DFC5ACA8
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:32:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69B2BC5AC81
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 04:32:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A7A10F3C0;
-	Fri,  7 Aug 2026 04:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFE6A10F3BB;
+	Fri,  7 Aug 2026 04:32:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="klU9RNir";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gzgEUrla";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 722D410F3B7;
- Fri,  7 Aug 2026 04:32:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66E4210F3BB;
+ Fri,  7 Aug 2026 04:32:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786077159; x=1817613159;
+ t=1786077164; x=1817613164;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YSvoo45S4/G8V4hYGULawh20CywhVRvOzPfS72VozNs=;
- b=klU9RNirgc6Xfx6Xd1KIbMNx7N/MLnjovio/vg4nA6RRLLosXB8i6sqz
- sgAoH5sswNb+wtkmPtMFyxOzXszMf3dxdEgLKSkM5dmmiCRl019FCwMBe
- 4y/hgQPiVvpdGUgYFPnfDS/wmykD2K7e+fEV072w0FAE9PSJiPq09HLYH
- ixFwOXAe0ZuKsh9/3w57A9ioHxe1cJy2IKtbMoTIMS1W2diMUn5IRlM7m
- JJol7A1czSlnz04RkK5AxR9MpNBZH1dpjQzn0G74dn2P5UjFbexw6L0xf
- uZZGe1YoCCSJmRleF9C3OTCa+BgzpgCOIaZKPz5eYPM2p282ovoz5STxb g==;
-X-CSE-ConnectionGUID: HRPM9WKbTX23upXiKPSxhQ==
-X-CSE-MsgGUID: XErCjaWIS7in4E4u60Q0RA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619354"
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619354"
+ bh=w065VMrjy391/TRCuqGOI/huMLewLyvhh6aRajdaMGw=;
+ b=gzgEUrlaPbmfE0GmrKtyJQo758XgT1E/ztCg9//jIXnDvCUJWaOOvfPd
+ Le8t88dsEXCGMGGFMqmql5WEHO2H1E5zLTdqnetFE4YTAhCgn/utdI/yl
+ eZ6YpMPAEvbUqvrHqdNIPk76VvB1MIdXhTHsXldmQqUc5WV7mC2Z/I+08
+ 133NtYhi8cWo0WssSApLDiaAhK4v94sAysV+Sp3WGMJo7A9BGuo773J1c
+ PdbVZvkuXsEzG8AX4bqkB3BXDhIxkNO4yIixGzZP2uzznqw5ltP75DgEL
+ mqdcNk3VPXpASexPkBeH2Enehlk+eohFGhbVH6eKKlqzHtzJZQo04K2Xb Q==;
+X-CSE-ConnectionGUID: DYFYstSZRfOxJiYhClBaNA==
+X-CSE-MsgGUID: dbo4ahFcQqqiJBzEbMdtpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86619359"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="86619359"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:32:39 -0700
-X-CSE-ConnectionGUID: bSTk5G8XQiqwo3VB6P4+yw==
-X-CSE-MsgGUID: 0i6nAPGYRJu6lK62Xr0FJw==
+ 06 Aug 2026 21:32:44 -0700
+X-CSE-ConnectionGUID: 3msrh3maRA+if1vaPh/4Pg==
+X-CSE-MsgGUID: /uSWqYgbSPCj41mYljRLpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666439"
+X-IronPort-AV: E=Sophos;i="6.25,209,1779174000"; d="scan'208";a="285666474"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2026 21:32:36 -0700
+ 06 Aug 2026 21:32:41 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH 28/44] drm/i915/hdmi: Rename port clock valid to specify tmds
- clock
-Date: Fri,  7 Aug 2026 09:44:13 +0530
-Message-ID: <20260807041430.229038-29-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 30/44] drm/i915/hdmi_frl_dfm_regs: Define DFM registers
+Date: Fri,  7 Aug 2026 09:44:15 +0530
+Message-ID: <20260807041430.229038-31-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
 References: <20260807041430.229038-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,56 +72,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Vandita Kulkarni <vandita.kulkarni@intel.com>
 
-The existing port clock valid function takes care of the TMDS mode of
-transmission. Specify the port clock valid type explicitly as tmds.
-This will pave way to add a separate port clock valid function for
-FRL mode.
+Add defines for HDMI FRL dataflow metering registers
+to take care of DFM values.
 
 Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ .../i915/display/intel_hdmi_frl_dfm_regs.h    | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index fe5a092a1f0a..5a3241c054f7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1884,9 +1884,9 @@ static int hdmi_port_tmds_clock_limit(struct intel_hdmi *hdmi,
- }
- 
- static enum drm_mode_status
--hdmi_port_clock_valid(struct intel_hdmi *hdmi,
--		      int clock, bool respect_downstream_limits,
--		      bool has_hdmi_sink)
-+hdmi_port_tmds_clock_valid(struct intel_hdmi *hdmi,
-+			   int clock, bool respect_downstream_limits,
-+			   bool has_hdmi_sink)
- {
- 	struct intel_display *display = to_intel_display(hdmi);
- 	struct intel_encoder *encoder = &hdmi_to_dig_port(hdmi)->base;
-@@ -2010,7 +2010,7 @@ intel_hdmi_mode_clock_valid(struct drm_connector *_connector, int clock,
- 						  sink_format))
- 			continue;
- 
--		status = hdmi_port_clock_valid(hdmi, tmds_clock, true, has_hdmi_sink);
-+		status = hdmi_port_tmds_clock_valid(hdmi, tmds_clock, true, has_hdmi_sink);
- 		if (status == MODE_OK)
- 			return MODE_OK;
- 	}
-@@ -2186,9 +2186,9 @@ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
- 						       crtc_state->sink_format);
- 
- 		if (hdmi_bpc_possible(crtc_state, bpc) &&
--		    hdmi_port_clock_valid(intel_hdmi, tmds_clock,
--					  respect_downstream_limits,
--					  crtc_state->has_hdmi_sink) == MODE_OK)
-+		    hdmi_port_tmds_clock_valid(intel_hdmi, tmds_clock,
-+					       respect_downstream_limits,
-+					       crtc_state->has_hdmi_sink) == MODE_OK)
- 			return bpc;
- 	}
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h b/drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
+new file mode 100644
+index 000000000000..bb5cb76b3806
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef __INTEL_HDMI_FRL_DFM_REGS_H__
++#define __INTEL_HDMI_FRL_DFM_REGS_H__
++
++#include "intel_display_reg_defs.h"
++
++#define _TRANS_HDMI_FRL_DFMRDCTL_A			0x600bc
++#define TRANS_HDMI_FRL_DFMRDCTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
++								     trans, \
++								     _TRANS_HDMI_FRL_DFMRDCTL_A)
++#define   TB_DIFF_MAX_OFFSET_MASK			REG_GENMASK(8, 0)
++#define   TB_DIFF_MAX_OFFSET(val)			REG_FIELD_PREP(TB_DIFF_MAX_OFFSET_MASK, val)
++
++#define _TRANS_HDMI_FRL_DFMWRCTL_A			0x600c0
++#define TRANS_HDMI_FRL_DFMWRCTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
++								     trans, \
++								     _TRANS_HDMI_FRL_DFMWRCTL_A)
++#define  TB_ACTUAL_OFFSET_MASK				REG_GENMASK(8, 0)
++#define  TB_ACTUAL_OFFSET(val)				REG_FIELD_PREP(TB_ACTUAL_OFFSET_MASK, val)
++
++#define _TRANS_HDMI_FRL_DFMTHRSH_A			0x600c4
++#define TRANS_HDMI_FRL_DFMTHRSH(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
++								     trans, \
++								     _TRANS_HDMI_FRL_DFMTHRSH_A)
++#define  RUN_LEN_THRESHOLD_MASK				REG_GENMASK(31, 24)
++#define  RUN_LEN_THRESHOLD(val)				REG_FIELD_PREP(RUN_LEN_THRESHOLD_MASK, val)
++#define  TB_MAX_THRESHOLD_MASK				REG_GENMASK(21, 12)
++#define  TB_MAX_THRESHOLD(val)				REG_FIELD_PREP(TB_MAX_THRESHOLD_MASK, val)
++#define  TB_MIN_THESHOLD_MASK				REG_GENMASK(9, 0)
++#define  TB_MIN_THESHOLD(val)				REG_FIELD_PREP(TB_MIN_THESHOLD_MASK, val)
++
++#endif /* __INTEL_HDMI_FRL_DFM_REGS_H__ */
 -- 
 2.50.1
 
