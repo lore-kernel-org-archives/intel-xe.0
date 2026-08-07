@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7331EC5AC81
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 12:34:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDD79C5AC7A
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 12:34:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16F2810F4AA;
-	Fri,  7 Aug 2026 12:34:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64E7C10F4AD;
+	Fri,  7 Aug 2026 12:34:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eZ8Q9yLf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NkHD8QWn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 935F610F4A9;
- Fri,  7 Aug 2026 12:34:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4249010F4AD;
+ Fri,  7 Aug 2026 12:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786106066; x=1817642066;
+ t=1786106070; x=1817642070;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w3giVvmUDhAYxfbFtr7T400GMClul/VpdLObRUcGAPE=;
- b=eZ8Q9yLfC9s813Y0bZjrTuiw/2TQf8a4NbiD6I33frEpp6RsJe7TAPBo
- O7Huvgh/VW5oDt8DswYo70PD1Dd3nKK9Gmx7AqLVMG/NV4+AqfO0Pb0qv
- bZWHd8QbAczbGu7Nz1wN02tfcMdzE5yQdgCczIkX9dRWVjEV11RxQ5fwe
- m0GSdijxN4f1OHccVjN1siALkzAxUVvKU/6zLymjEzJVgTChhYh6L1HvN
- vSkdQjBI3UmDOkeiW/3mPU+wyyikSNkSnY92KHNV/636qapaEgqD3N8b+
- 3g2rBJ5tgxwprx5pv0v+dSujkr+Vvn+0ZYWOuSjoScde2SAseWjL5TA0I Q==;
-X-CSE-ConnectionGUID: iNfCCXNjRGak5kwgb0Am+g==
-X-CSE-MsgGUID: kqN0mIpXQcWlqTkAeBeqbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86824038"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86824038"
+ bh=kyMXz8aL+znRSmfMCj6kLaZQXoBfPtvFsHANQoz836o=;
+ b=NkHD8QWnJaDeRSjmh3rFBvgZdaxzvXG07xsBmNESTdGGZYSfoaea2Gjw
+ kd1vd41J1taDt4DUhXORn39mDe3/geaWPMPh+F3tgmjssqN2yjPJOKiV1
+ O1B3tej3VPT0/T3uvPBzWH/WeQ1MG7683qY7CMBBd/VJtKk55z6wjX1OR
+ IHgoH8lFSSJT80K+SwW5MUCxsrYhGTRlCu+SMFnKZGjsRXGJ8x9Sg32u7
+ X/m6Zp65zMqir70eTDsLTYcobm1kRrV37+x9VnBWaKzjzMqJl4fvr+gfe
+ ALACMu9kKW2L/nQ5j+k+ys0sDEFAsN7niq/yejnefvmqVO8n4ATuJ9glh w==;
+X-CSE-ConnectionGUID: llXYReQKQt2YA7V6dwb/Vw==
+X-CSE-MsgGUID: bvOBgcw3RC6FL0KkI6qRiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86824041"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86824041"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 05:34:26 -0700
-X-CSE-ConnectionGUID: hn4T05APQYeZjOKBE62Ukw==
-X-CSE-MsgGUID: +8l6m3cCQw+g3/BvY/rzdA==
+ 07 Aug 2026 05:34:30 -0700
+X-CSE-ConnectionGUID: ZD/AwhCIQY+STJP28jwsgw==
+X-CSE-MsgGUID: XvE8OpsyQtKJjrcz5v3gRA==
 X-ExtLoop1: 1
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.152])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 05:34:25 -0700
+ 07 Aug 2026 05:34:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH 3/4] drm/i915/dp: Limit compute config joining to pipes that
- can actually join
-Date: Fri,  7 Aug 2026 15:34:06 +0300
-Message-ID: <dc1c7fc45d4da7d3fd1bd8b94c30c78d69aa0742.1786105831.git.jani.nikula@intel.com>
+Subject: [PATCH 4/4] drm/i915/debugfs: Reject invalid force_joined_pipes harder
+Date: Fri,  7 Aug 2026 15:34:07 +0300
+Message-ID: <df39b8f30d27a441465b4d9bd42d4db982e5db2b.1786105831.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1786105831.git.jani.nikula@intel.com>
 References: <cover.1786105831.git.jani.nikula@intel.com>
@@ -71,57 +70,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Skip joining for pipes that can't work as joiner primary pipe for the
-number of pipes being joined. This limits the invalid combos early,
-instead of ending up with crtc_state->joiner_pipes that would fail
-during modeset. Before, crtc_state->joiner pipes could have ended up
-including pipes that do not exist on the platform.
+Reject invalid joiner forcing more thoroughly, taking into account
+whether bigjoiner or uncompressed joiner is available, and whether the
+requested number of pipes can actually be joined.
 
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 5 +++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++++
- 2 files changed, 9 insertions(+)
+ .../drm/i915/display/intel_display_debugfs.c  | 19 ++++---------------
+ 1 file changed, 4 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e1604bc895e5..6b60e0a1c8ee 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2910,6 +2910,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 			     struct drm_connector_state *conn_state,
- 			     bool respect_downstream_limits)
- {
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
-@@ -2924,6 +2925,10 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 		return -EINVAL;
- 
- 	for_each_joiner_candidate(connector, adjusted_mode, num_joined_pipes) {
-+		/* If the pipe can't be a joiner primary, skip early. */
-+		if (!(intel_joiner_valid_primary_pipe_mask(display, num_joined_pipes) & BIT(crtc->pipe)))
-+			continue;
-+
- 		/*
- 		 * NOTE:
- 		 * The crtc_state->joiner_pipes should have been set at the end
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 3be1643f8d03..379666692bc8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -770,6 +770,10 @@ static int mst_stream_compute_config(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 2bbf4760dc30..3e302f23f247 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1285,22 +1285,11 @@ static ssize_t i915_joiner_write(struct file *file,
+ 	if (ret < 0)
  		return ret;
  
- 	for_each_joiner_candidate(connector, adjusted_mode, num_joined_pipes) {
-+		/* If the pipe can't be a joiner primary, skip early. */
-+		if (!(intel_joiner_valid_primary_pipe_mask(display, num_joined_pipes) & BIT(crtc->pipe)))
-+			continue;
+-	switch (force_joined_pipes) {
+-	case 0:
+-	case 1:
+-	case 2:
+-		connector->force_joined_pipes = force_joined_pipes;
+-		break;
+-	case 4:
+-		if (HAS_ULTRAJOINER(display)) {
+-			connector->force_joined_pipes = force_joined_pipes;
+-			break;
+-		}
+-
+-		fallthrough;
+-	default:
++	if (force_joined_pipes &&
++	    !intel_joiner_valid_primary_pipe_mask(display, force_joined_pipes))
+ 		return -EINVAL;
+-	}
 +
- 		if (num_joined_pipes > 1)
- 			pipe_config->joiner_pipes = GENMASK(crtc->pipe + num_joined_pipes - 1,
- 							    crtc->pipe);
++	connector->force_joined_pipes = force_joined_pipes;
+ 
+ 	*offp += len;
+ 
 -- 
 2.47.3
 
