@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522DDC5AC80
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7D16C5ACD1
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 19:45:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B99F210F5A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C105910F5A2;
 	Fri,  7 Aug 2026 19:45:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RXnExnz3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uj7YPDMc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C34710E44E
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Aug 2026 19:45:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 415A210E24A
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Aug 2026 19:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786131922; x=1817667922;
+ t=1786131921; x=1817667921;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=07QtCYmxif9piuN8uEbzBNKZmJaexeQ59T9NIkc8G+4=;
- b=RXnExnz3Fc2B7DpwLUFPWBDe+906xK7crtBrDteIsMtK50QkHbkodtlF
- PcHIH9mWAxN5uZ3rIlB34BLwDkJi3xchc5J0912VeC5DpAUfNVSFJlin4
- 3rVXnKf+ONzQW5hmKe7SSxCrm/kboOI5OOYOCPZ3Q9rgc5OJ7feHCa4Ii
- LhN3BLFdC/9tObTwnUYv1efF3N5qV2Ef0LnmJMKcJsEMHkVC17O8guIJA
- gsSY72z6kVRjUGBFYSt0b7Vvd1QgJ2o2J0cz/8ix0WfW0I9Nf5NY4Lf1V
- ihhkRuNl49UOCA5XvLTJQe0bLbGebASDlk6w3dBv4inZ/3ywsPTM+TXwV g==;
-X-CSE-ConnectionGUID: VmVY3ZttR2qXnAatfzj31A==
-X-CSE-MsgGUID: yDJ7zJRGSOOOIEQjG5SiQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11868"; a="86758828"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86758828"
+ bh=q4uxpOArWJciLlSW3Gm3YegOrz3GNssQLzDUxthuR64=;
+ b=Uj7YPDMcVD38wTuSSqYLlbpVYPa/GrEih/3epOgJFdOG9naAIAs6xC3Q
+ AkAYxnirjMwwFRUtj3GfC987yzzYb5nENgM6bg+KAs0NX4U82SfjZwDDs
+ bM5K35WBl4iOb7gwnhnd6lbj/Ulj8EPIfYvRuV0K4k4sqasqE1j21N0L9
+ iwScWzuK9JzTPSZHcHt4Nw7wnyCTv9V7NOnNYC4WnBkgfsXWpzKS6dIo1
+ HvJdu8r4qv2g78joX6MFl21anzBT0oU4iLidlzVUiBCq46Y98xOdoYyuC
+ NOHxW+DTi88kiiYdEWBxgp048D9uNyOpwwAYvuHm9gWjNJ8IcbV1XvXjS A==;
+X-CSE-ConnectionGUID: zzDJ2UyVSreujyUZwP2XGA==
+X-CSE-MsgGUID: TBAzcSEVSQ60r3o1QhxBNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11868"; a="86758821"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86758821"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 12:45:22 -0700
-X-CSE-ConnectionGUID: 6MmB0UdMS1WOYPRKGtplMw==
-X-CSE-MsgGUID: J15yKuudRFuvXrr6cJO1/A==
+ 07 Aug 2026 12:45:21 -0700
+X-CSE-ConnectionGUID: S1T5ctG7TZm/aMY/F+YZEQ==
+X-CSE-MsgGUID: Aho9oyyfSDauel5lwGLLsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="258174109"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="258174088"
 Received: from dut4475arls.fm.intel.com ([10.105.10.116])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2026 12:45:20 -0700
@@ -47,15 +47,16 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com, umesh.nerlige.ramappa@intel.com,
  Michal.Wajdeczko@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 09/10] drm/xe: Migrate existing debug configfs entries to
- params infrastructure
-Date: Fri,  7 Aug 2026 19:45:26 +0000
-Message-ID: <20260807194518.9474-21-stuart.summers@intel.com>
+ Stuart Summers <stuart.summers@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH 02/10] drm/xe: Sort xe_config_device fields
+Date: Fri,  7 Aug 2026 19:45:19 +0000
+Message-ID: <20260807194518.9474-14-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260807194518.9474-12-stuart.summers@intel.com>
 References: <20260807194518.9474-12-stuart.summers@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,180 +72,1172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the existing debug configfs entries whose semantics fit the
-generic show/store template into the new parameter list.
-
-Add validators for the guc_log_level and guc_log_target.
-
-Add a custom getter for the guc_log_level to fall back to the modparam.
-
-The new parameters are intentionally longer than the normal 80
-character limit for readability.
+As we're planning more configfs entries over time, let's add
+some sorting rules to make sure this stays clean and easy to
+manage. Sorting first by type and then name for readability.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Assisted-by: Copilot:claude-sonnet-4.6,claude-opus-4.7,claude-sonnet-5
+Assisted-by: Copilot:claude-sonnet-4.6,claude-opus-4.7
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c              |  17 +-
- drivers/gpu/drm/xe/xe_configfs_debug.c        | 277 +-----------------
- drivers/gpu/drm/xe/xe_configfs_debug.h        |  20 +-
- drivers/gpu/drm/xe/xe_configfs_debug_params.c |   1 +
- drivers/gpu/drm/xe/xe_configfs_debug_params.h |  22 +-
- drivers/gpu/drm/xe/xe_configfs_types.h        |   7 +-
- drivers/gpu/drm/xe/xe_guc.c                   |   2 +-
- drivers/gpu/drm/xe/xe_psmi.c                  |   2 +-
- drivers/gpu/drm/xe/xe_rtp.c                   |   2 +-
- 9 files changed, 47 insertions(+), 303 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 1092 +++++++++++++++---------------
+ drivers/gpu/drm/xe/xe_configfs.h |   24 +-
+ 2 files changed, 564 insertions(+), 552 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index c5d5017cd506..62d3406c61b6 100644
+index 0a85043a9dd0..cb6ab1fcb8c1 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -100,11 +100,9 @@ const struct xe_config_device xe_configfs_device_defaults = {
- 	.debug = {
- 		.engines_allowed = U64_MAX,
- 		.gt_types_allowed = U64_MAX,
--		.guc_log_level = XE_GUC_LOG_LEVEL_UNSET,
--		.guc_log_target = XE_DEFAULT_GUC_LOG_TARGET,
--		.enable_multi_queue = true,
--		.enable_psmi = false,
--		.survivability_mode = false,
-+		.params = {
-+			XE_CONFIGFS_DEBUG_PARAMS_DEFAULTS
-+		},
- 	},
- #endif
- 	.sriov = {
-@@ -420,11 +418,10 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- 	PRI_CUSTOM_ATTR("%llx", debug.engines_allowed);
- 	PRI_CUSTOM_ATTR("%llx", debug.gt_types_allowed);
--	PRI_CUSTOM_ATTR("%d", debug.guc_log_level);
--	PRI_CUSTOM_ATTR("%d", debug.guc_log_target);
--	PRI_CUSTOM_ATTR("%d", debug.enable_multi_queue);
--	PRI_CUSTOM_ATTR("%d", debug.enable_psmi);
--	PRI_CUSTOM_ATTR("%d", debug.survivability_mode);
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-+	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DUMP)
-+#undef _XE_PARAM_DUMP
- #endif
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
+@@ -58,10 +58,11 @@
+  *	│   └── ...
+  *	:
+  *	└── 0000:03:00.0
+- *	    ├── survivability_mode
+- *	    ├── gt_types_allowed
+  *	    ├── engines_allowed
+- *	    └── enable_psmi
++ *	    ├── gt_types_allowed
++ *	    ├── enable_multi_queue
++ *	    ├── enable_psmi
++ *	    └── survivability_mode
+  *
+  * After configuring the attributes as per next section, the device can be
+  * probed with::
+@@ -73,13 +74,82 @@
+  * Configure Attributes
+  * ====================
+  *
+- * Survivability mode:
+- * -------------------
++
++ * Context restore BB
++ * ------------------
+  *
+- * Enable survivability mode on supported cards. This setting only takes
+- * effect when probing the device. Example to enable it::
++ * Allow to execute a batch buffer during any context switches. When the
++ * GPU is restoring the context, it executes additional commands. It's useful
++ * for testing additional workarounds and validating certain HW behaviors: it's
++ * not intended for normal execution and will taint the kernel with TAINT_TEST
++ * when used.
+  *
+- *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
++ * The syntax allows to pass straight instructions to be executed by the engine
++ * in a batch buffer or set specific registers.
++ *
++ * #. Generic instruction::
++ *
++ *	<engine-class> cmd <instr> [[dword0] [dword1] [...]]
++ *
++ * #. Simple register setting::
++ *
++ *	<engine-class> reg <address> <value>
++ *
++ * Commands are saved per engine class: all instances of that class will execute
++ * those commands during context switch. The instruction, dword arguments,
++ * addresses and values are in hex format like in the examples below.
++ *
++ * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 after the
++ *    normal context restore::
++ *
++ *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
++ *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
++ *
++ * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 at the
++ *    beginning of the context restore::
++ *
++ *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
++ *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_mid_bb
++
++ * #. Load certain values in a couple of registers (it can be used as a simpler
++ *    alternative to the `cmd`) action::
++ *
++ *	# cat > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb <<EOF
++ *	rcs reg 4F100 DEADBEEF
++ *	rcs reg 4F104 FFFFFFFF
++ *	EOF
++ *
++ *    .. note::
++ *
++ *       When using multiple lines, make sure to use a command that is
++ *       implemented with a single write syscall, like HEREDOC.
++ *
++ * Currently this is implemented only for post and mid context restore and
++ * these attributes can only be set before binding to the device.
++ *
++ * Allowed engines:
++ * ----------------
++ *
++ * Allow only a set of engine(s) to be available, disabling the other engines
++ * even if they are available in hardware. This is applied after HW fuses are
++ * considered on each tile. Examples:
++ *
++ * Allow only one render and one copy engines, nothing else::
++ *
++ *	# echo 'rcs0,bcs0' > /sys/kernel/config/xe/0000:03:00.0/engines_allowed
++ *
++ * Allow only compute engines and first copy engine::
++ *
++ *	# echo 'ccs*,bcs0' > /sys/kernel/config/xe/0000:03:00.0/engines_allowed
++ *
++ * Note that the engine names are the per-GT hardware names. On multi-tile
++ * platforms, writing ``rcs0,bcs0`` to this file would allow the first render
++ * and copy engines on each tile.
++ *
++ * The requested configuration may not be supported by the platform and driver
++ * may fail to probe. For example: if at least one copy engine is expected to be
++ * available for migrations, but it's disabled. This is intended for debugging
++ * purposes only.
+  *
+  * This attribute can only be set before binding to the device.
+  *
+@@ -121,29 +191,15 @@
+  *
+  *	# echo '' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+  *
+- * Allowed engines:
+- * ----------------
+- *
+- * Allow only a set of engine(s) to be available, disabling the other engines
+- * even if they are available in hardware. This is applied after HW fuses are
+- * considered on each tile. Examples:
+- *
+- * Allow only one render and one copy engines, nothing else::
+- *
+- *	# echo 'rcs0,bcs0' > /sys/kernel/config/xe/0000:03:00.0/engines_allowed
+- *
+- * Allow only compute engines and first copy engine::
+- *
+- *	# echo 'ccs*,bcs0' > /sys/kernel/config/xe/0000:03:00.0/engines_allowed
++ * Enable multi-queue
++ * ------------------
+  *
+- * Note that the engine names are the per-GT hardware names. On multi-tile
+- * platforms, writing ``rcs0,bcs0`` to this file would allow the first render
+- * and copy engines on each tile.
++ * Multi-queue support on the device is enabled by default where the
++ * hardware supports it. Writing 0 force-disables multi-queue support:
++ * multi-queue exec-queue group creation via ioctl is refused, and the
++ * GuC feature is disabled::
+  *
+- * The requested configuration may not be supported by the platform and driver
+- * may fail to probe. For example: if at least one copy engine is expected to be
+- * available for migrations, but it's disabled. This is intended for debugging
+- * purposes only.
++ *	# echo 0 > /sys/kernel/config/xe/0000:03:00.0/enable_multi_queue
+  *
+  * This attribute can only be set before binding to the device.
+  *
+@@ -159,57 +215,15 @@
+  *
+  * This attribute can only be set before binding to the device.
+  *
+- * Context restore BB
+- * ------------------
+- *
+- * Allow to execute a batch buffer during any context switches. When the
+- * GPU is restoring the context, it executes additional commands. It's useful
+- * for testing additional workarounds and validating certain HW behaviors: it's
+- * not intended for normal execution and will taint the kernel with TAINT_TEST
+- * when used.
+- *
+- * The syntax allows to pass straight instructions to be executed by the engine
+- * in a batch buffer or set specific registers.
+- *
+- * #. Generic instruction::
+- *
+- *	<engine-class> cmd <instr> [[dword0] [dword1] [...]]
+- *
+- * #. Simple register setting::
+- *
+- *	<engine-class> reg <address> <value>
+- *
+- * Commands are saved per engine class: all instances of that class will execute
+- * those commands during context switch. The instruction, dword arguments,
+- * addresses and values are in hex format like in the examples below.
+- *
+- * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 after the
+- *    normal context restore::
+- *
+- *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+- *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
+- *
+- * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 at the
+- *    beginning of the context restore::
+- *
+- *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+- *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_mid_bb
+-
+- * #. Load certain values in a couple of registers (it can be used as a simpler
+- *    alternative to the `cmd`) action::
+- *
+- *	# cat > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb <<EOF
+- *	rcs reg 4F100 DEADBEEF
+- *	rcs reg 4F104 FFFFFFFF
+- *	EOF
++ * Survivability mode:
++ * -------------------
+  *
+- *    .. note::
++ * Enable survivability mode on supported cards. This setting only takes
++ * effect when probing the device. Example to enable it::
+  *
+- *       When using multiple lines, make sure to use a command that is
+- *       implemented with a single write syscall, like HEREDOC.
++ *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
+  *
+- * Currently this is implemented only for post and mid context restore and
+- * these attributes can only be set before binding to the device.
++ * This attribute can only be set before binding to the device.
+  *
+  * Max SR-IOV Virtual Functions
+  * ----------------------------
+@@ -237,18 +251,6 @@
+  *
+  * This setting only takes effect when probing the device.
+  *
+- * Enable multi-queue
+- * ------------------
+- *
+- * Multi-queue support on the device is enabled by default where the
+- * hardware supports it. Writing 0 force-disables multi-queue support:
+- * multi-queue exec-queue group creation via ioctl is refused, and the
+- * GuC feature is disabled::
+- *
+- *	# echo 0 > /sys/kernel/config/xe/0000:03:00.0/enable_multi_queue
+- *
+- * This attribute can only be set before binding to the device.
+- *
+  * Remove devices
+  * ==============
+  *
+@@ -267,14 +269,19 @@ struct xe_config_group_device {
+ 	struct config_group group;
+ 	struct config_group sriov;
  
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
-index 75c07ebc042d..6060abe66e73 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.c
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
-@@ -792,280 +792,21 @@ static ssize_t gt_types_allowed_store(struct config_item *item, const char *page
++	/*
++	 * Fields sorted by type (largest first) then name: struct arrays,
++	 * u64, u32/unsigned int, u8, bool, sub-structs last. Within each
++	 * type, entries are sorted alphabetically.
++	 */
+ 	struct xe_config_device {
+-		u64 gt_types_allowed;
+-		u64 engines_allowed;
+-		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+ 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+-		bool survivability_mode;
+-		bool enable_psmi;
++		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
++		u64 engines_allowed;
++		u64 gt_types_allowed;
+ 		bool enable_multi_queue;
++		bool enable_psmi;
++		bool survivability_mode;
+ 		struct {
+ 			unsigned int max_vfs;
+ 			bool admin_only_pf;
+@@ -290,11 +297,11 @@ struct xe_config_group_device {
+ };
+ 
+ static const struct xe_config_device device_defaults = {
+-	.gt_types_allowed = U64_MAX,
+ 	.engines_allowed = U64_MAX,
+-	.survivability_mode = false,
+-	.enable_psmi = false,
++	.gt_types_allowed = U64_MAX,
+ 	.enable_multi_queue = true,
++	.enable_psmi = false,
++	.survivability_mode = false,
+ 	.sriov = {
+ 		.max_vfs = XE_DEFAULT_MAX_VFS,
+ 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
+@@ -371,247 +378,60 @@ static bool is_bound(struct xe_config_group_device *dev)
+ 	return ret;
+ }
+ 
+-static ssize_t survivability_mode_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = to_xe_config_device(item);
+-
+-	return sprintf(page, "%d\n", dev->survivability_mode);
+-}
++static struct xe_config_group_device *find_xe_config_group_device(struct pci_dev *pdev);
+ 
+-static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
++/**
++ * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
++ * @pdev: pci device
++ * @class: hw engine class
++ * @cs: pointer to the bb to use - only valid during probe
++ *
++ * Return: Number of dwords used in the mid_ctx_restore setting in configfs
++ */
++u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
++				       enum xe_engine_class class,
++				       const u32 **cs)
+ {
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+-	bool survivability_mode;
+-	int ret;
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u32 len;
+ 
+-	ret = kstrtobool(page, &survivability_mode);
+-	if (ret)
+-		return ret;
++	if (!dev)
++		return 0;
+ 
+-	guard(mutex)(&dev->lock);
+-	if (is_bound(dev))
+-		return -EBUSY;
++	scoped_guard(mutex, &dev->lock) {
++		if (cs)
++			*cs = dev->config.ctx_restore_mid_bb[class].cs;
+ 
+-	dev->config.survivability_mode = survivability_mode;
++		len = dev->config.ctx_restore_mid_bb[class].len;
++	}
++	config_group_put(&dev->group);
+ 
  	return len;
  }
  
--/**
-- * xe_configfs_get_guc_log_level - get configfs guc_log_level setting
-- * @pdev: pci device
-- *
-- * Returns the guc_log_level value configured via configfs. If the configfs
-- * value is negative (the default is %XE_GUC_LOG_LEVEL_UNSET, -1), the value
-- * of the ``guc_log_level`` module parameter is returned instead, allowing
-- * the configfs entry to override the module parameter without affecting
-- * users that rely solely on the module parameter.
-- *
-- * Return: GuC log level to use for this device.
-- */
--int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
--{
--	struct xe_config_group_device *dev = find_device(pdev);
--	int level = xe_modparam.guc_log_level;
+-static ssize_t gt_types_allowed_show(struct config_item *item, char *page)
++/**
++ * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
++ * @pdev: pci device
++ * @class: hw engine class
++ * @cs: pointer to the bb to use - only valid during probe
++ *
++ * Return: Number of dwords used in the post_ctx_restore setting in configfs
++ */
++u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
++					enum xe_engine_class class,
++					const u32 **cs)
+ {
+-	struct xe_config_device *dev = to_xe_config_device(item);
+-	char *p = page;
 -
--	if (!dev)
--		return level;
--
--	scoped_guard(mutex, &dev->lock)
--		if (dev->config.debug.guc_log_level >= 0)
--			level = dev->config.debug.guc_log_level;
--
--	config_group_put(&dev->group);
--out:
--	return level;
+-	for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++)
+-		if (dev->gt_types_allowed & BIT_ULL(gt_types[i].type))
+-			p += sprintf(p, "%s\n", gt_types[i].name);
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u32 len;
+ 
+-	return p - page;
 -}
--
--static ssize_t guc_log_level_show(struct config_item *item, char *page)
++	if (!dev)
++		return 0;
+ 
+-static ssize_t gt_types_allowed_store(struct config_item *item, const char *page,
+-				      size_t len)
 -{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+-	char *buf __free(kfree) = kstrdup(page, GFP_KERNEL);
+-	char *p = buf;
+-	u64 typemask = 0;
 -
--	return sprintf(page, "%d\n", dev->debug.guc_log_level);
--}
+-	if (!buf)
+-		return -ENOMEM;
 -
--static ssize_t guc_log_level_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	int val;
--	int ret;
+-	while (p) {
+-		char *typename = strsep(&p, ",\n");
+-		bool matched = false;
 -
--	ret = kstrtoint(page, 0, &val);
--	if (ret)
--		return ret;
+-		if (typename[0] == '\0')
+-			continue;
 -
--	if (val != XE_GUC_LOG_LEVEL_UNSET &&
--	    (val < 0 || val > GUC_LOG_LEVEL_MAX))
--		return -EINVAL;
+-		for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++) {
+-			if (strcmp(typename, gt_types[i].name) == 0) {
+-				typemask |= BIT(gt_types[i].type);
+-				matched = true;
+-				break;
+-			}
+-		}
+-
+-		if (!matched)
+-			return -EINVAL;
+-	}
 -
 -	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
+-	if (is_bound(dev))
 -		return -EBUSY;
 -
--	dev->config.debug.guc_log_level = val;
+-	dev->config.gt_types_allowed = typemask;
 -
 -	return len;
 -}
 -
--/**
-- * xe_configfs_get_guc_log_target - get configfs GuC log target attribute
-- * @pdev: pci device
+-static ssize_t engines_allowed_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = to_xe_config_device(item);
+-	char *p = page;
+-
+-	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+-		u64 mask = engine_info[i].mask;
+-
+-		if ((dev->engines_allowed & mask) == mask) {
+-			p += sprintf(p, "%s*\n", engine_info[i].cls);
+-		} else if (mask & dev->engines_allowed) {
+-			u16 bit0 = __ffs64(mask), bit;
+-
+-			mask &= dev->engines_allowed;
+-
+-			for_each_set_bit(bit, (const unsigned long *)&mask, 64)
+-				p += sprintf(p, "%s%u\n", engine_info[i].cls,
+-					     bit - bit0);
+-		}
+-	}
+-
+-	return p - page;
+-}
+-
+-/*
+- * Lookup engine_info. If @mask is not NULL, reduce the mask according to the
+- * instance in @pattern.
 - *
-- * Return: guc_log_target attribute in configfs
+- * Examples of inputs:
+- * - lookup_engine_info("rcs0", &mask): return "rcs" entry from @engine_info and
+- *   mask == BIT_ULL(XE_HW_ENGINE_RCS0)
+- * - lookup_engine_info("rcs*", &mask): return "rcs" entry from @engine_info and
+- *   mask == XE_HW_ENGINE_RCS_MASK
+- * - lookup_engine_info("rcs", NULL): return "rcs" entry from @engine_info
 - */
--u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
+-static const struct engine_info *lookup_engine_info(const char *pattern, u64 *mask)
 -{
--	struct xe_config_group_device *dev = find_device(pdev);
--	u8 target;
+-	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+-		u8 instance;
+-		u16 bit;
 -
--	if (!dev)
--		return xe_configfs_device_defaults.debug.guc_log_target;
+-		if (!str_has_prefix(pattern, engine_info[i].cls))
+-			continue;
 -
--	scoped_guard(mutex, &dev->lock)
--		target = dev->config.debug.guc_log_target;
--	config_group_put(&dev->group);
+-		pattern += strlen(engine_info[i].cls);
+-		if (!mask)
+-			return *pattern ? NULL : &engine_info[i];
 -
--	return target;
+-		if (!strcmp(pattern, "*")) {
+-			*mask = engine_info[i].mask;
+-			return &engine_info[i];
+-		}
+-
+-		if (kstrtou8(pattern, 10, &instance))
+-			return NULL;
+-
+-		bit = __ffs64(engine_info[i].mask) + instance;
+-		if (bit >= fls64(engine_info[i].mask))
+-			return NULL;
+-
+-		*mask = BIT_ULL(bit);
+-		return &engine_info[i];
+-	}
+-
+-	return NULL;
 -}
 -
--static ssize_t guc_log_target_show(struct config_item *item, char *page)
+-static int parse_engine(const char *s, const char *end_chars, u64 *mask,
+-			const struct engine_info **pinfo)
 -{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
+-	char buf[MAX_ENGINE_CLASS_CHARS + MAX_ENGINE_INSTANCE_CHARS + 1];
+-	const struct engine_info *info;
+-	size_t len;
 -
--	return sprintf(page, "%d\n", dev->debug.guc_log_target);
+-	len = strcspn(s, end_chars);
+-	if (len >= sizeof(buf))
+-		return -EINVAL;
+-
+-	memcpy(buf, s, len);
+-	buf[len] = '\0';
+-
+-	info = lookup_engine_info(buf, mask);
+-	if (!info)
+-		return -ENOENT;
+-
+-	if (pinfo)
+-		*pinfo = info;
+-
+-	return len;
 -}
 -
--static ssize_t guc_log_target_store(struct config_item *item, const char *page, size_t len)
+-static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+-				     size_t len)
 -{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	u8 guc_log_target;
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+-	ssize_t patternlen, p;
+-	u64 mask, val = 0;
+-
+-	for (p = 0; p < len; p += patternlen + 1) {
+-		patternlen = parse_engine(page + p, ",\n", &mask, NULL);
+-		if (patternlen < 0)
+-			return -EINVAL;
+-
+-		val |= mask;
++	scoped_guard(mutex, &dev->lock) {
++		*cs = dev->config.ctx_restore_post_bb[class].cs;
++		len = dev->config.ctx_restore_post_bb[class].len;
+ 	}
+-
+-	guard(mutex)(&dev->lock);
+-	if (is_bound(dev))
+-		return -EBUSY;
+-
+-	dev->config.engines_allowed = val;
+-
+-	return len;
+-}
+-
+-static ssize_t enable_psmi_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = to_xe_config_device(item);
+-
+-	return sprintf(page, "%d\n", dev->enable_psmi);
+-}
+-
+-static ssize_t enable_psmi_store(struct config_item *item, const char *page, size_t len)
+-{
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+-	bool val;
 -	int ret;
 -
--	ret = kstrtou8(page, 0, &guc_log_target);
+-	ret = kstrtobool(page, &val);
 -	if (ret)
 -		return ret;
 -
--	if (guc_log_target > GUC_LOG_TARGET_MAX)
--		return -EINVAL;
--
 -	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
+-	if (is_bound(dev))
 -		return -EBUSY;
 -
--	dev->config.debug.guc_log_target = guc_log_target;
+-	dev->config.enable_psmi = val;
 -
 -	return len;
+-}
+-
+-static ssize_t enable_multi_queue_show(struct config_item *item, char *page)
+-{
+-	struct xe_config_device *dev = to_xe_config_device(item);
+-
+-	return sprintf(page, "%d\n", dev->enable_multi_queue);
+-}
+-
+-static ssize_t enable_multi_queue_store(struct config_item *item, const char *page,
+-					size_t len)
+-{
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+-	bool val;
+-	int ret;
+-
+-	ret = kstrtobool(page, &val);
+-	if (ret)
+-		return ret;
+-
+-	guard(mutex)(&dev->lock);
+-	if (is_bound(dev))
+-		return -EBUSY;
+-
+-	dev->config.enable_multi_queue = val;
++	config_group_put(&dev->group);
+ 
+ 	return len;
+ }
+@@ -718,6 +538,9 @@ static ssize_t parse_hex(const char *line, u32 *pval)
+ 	return p - line;
+ }
+ 
++static int parse_engine(const char *s, const char *end_chars, u64 *mask,
++			const struct engine_info **pinfo);
++
+ /*
+  * Parse lines with the format
+  *
+@@ -802,70 +625,439 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
+ 		return count;
+ 
+ 	guard(mutex)(&dev->lock);
+-
++
++	if (is_bound(dev))
++		return -EBUSY;
++
++	/*
++	 * 2. Allocate a u32 array and set the pointers to the right positions
++	 * according to the length of each class' wa_bb
++	 */
++	tmp = krealloc(wa_bb[0].cs, count * sizeof(u32), GFP_KERNEL);
++	if (!tmp)
++		return -ENOMEM;
++
++	if (!count) {
++		memset(wa_bb, 0, sizeof(tmp_wa_bb));
++		return len;
++	}
++
++	for (class = 0, count = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
++		tmp_wa_bb[class].cs = tmp + count;
++		count += tmp_wa_bb[class].len;
++		tmp_wa_bb[class].len = 0;
++	}
++
++	/* 3. Parse wa_bb lines again, this time saving the values */
++	count = parse_wa_bb_lines(page, tmp_wa_bb);
++	if (count < 0)
++		return count;
++
++	memcpy(wa_bb, tmp_wa_bb, sizeof(tmp_wa_bb));
++
++	return len;
++}
++
++static ssize_t ctx_restore_mid_bb_store(struct config_item *item,
++					const char *data, size_t sz)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++
++	return wa_bb_store(dev->config.ctx_restore_mid_bb, dev, data, sz);
++}
++
++static ssize_t ctx_restore_post_bb_store(struct config_item *item,
++					 const char *data, size_t sz)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++
++	return wa_bb_store(dev->config.ctx_restore_post_bb, dev, data, sz);
++}
++
++/**
++ * xe_configfs_get_engines_allowed - get engine allowed mask from configfs
++ * @pdev: pci device
++ *
++ * Return: engine mask with allowed engines set in configfs
++ */
++u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u64 engines_allowed;
++
++	if (!dev)
++		return device_defaults.engines_allowed;
++
++	scoped_guard(mutex, &dev->lock)
++		engines_allowed = dev->config.engines_allowed;
++	config_group_put(&dev->group);
++
++	return engines_allowed;
++}
++
++static ssize_t engines_allowed_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++	char *p = page;
++
++	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
++		u64 mask = engine_info[i].mask;
++
++		if ((dev->engines_allowed & mask) == mask) {
++			p += sprintf(p, "%s*\n", engine_info[i].cls);
++		} else if (mask & dev->engines_allowed) {
++			u16 bit0 = __ffs64(mask), bit;
++
++			mask &= dev->engines_allowed;
++
++			for_each_set_bit(bit, (const unsigned long *)&mask, 64)
++				p += sprintf(p, "%s%u\n", engine_info[i].cls,
++					     bit - bit0);
++		}
++	}
++
++	return p - page;
++}
++
++/*
++ * Lookup engine_info. If @mask is not NULL, reduce the mask according to the
++ * instance in @pattern.
++ *
++ * Examples of inputs:
++ * - lookup_engine_info("rcs0", &mask): return "rcs" entry from @engine_info and
++ *   mask == BIT_ULL(XE_HW_ENGINE_RCS0)
++ * - lookup_engine_info("rcs*", &mask): return "rcs" entry from @engine_info and
++ *   mask == XE_HW_ENGINE_RCS_MASK
++ * - lookup_engine_info("rcs", NULL): return "rcs" entry from @engine_info
++ */
++static const struct engine_info *lookup_engine_info(const char *pattern, u64 *mask)
++{
++	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
++		u8 instance;
++		u16 bit;
++
++		if (!str_has_prefix(pattern, engine_info[i].cls))
++			continue;
++
++		pattern += strlen(engine_info[i].cls);
++		if (!mask)
++			return *pattern ? NULL : &engine_info[i];
++
++		if (!strcmp(pattern, "*")) {
++			*mask = engine_info[i].mask;
++			return &engine_info[i];
++		}
++
++		if (kstrtou8(pattern, 10, &instance))
++			return NULL;
++
++		bit = __ffs64(engine_info[i].mask) + instance;
++		if (bit >= fls64(engine_info[i].mask))
++			return NULL;
++
++		*mask = BIT_ULL(bit);
++		return &engine_info[i];
++	}
++
++	return NULL;
++}
++
++static int parse_engine(const char *s, const char *end_chars, u64 *mask,
++			const struct engine_info **pinfo)
++{
++	char buf[MAX_ENGINE_CLASS_CHARS + MAX_ENGINE_INSTANCE_CHARS + 1];
++	const struct engine_info *info;
++	size_t len;
++
++	len = strcspn(s, end_chars);
++	if (len >= sizeof(buf))
++		return -EINVAL;
++
++	memcpy(buf, s, len);
++	buf[len] = '\0';
++
++	info = lookup_engine_info(buf, mask);
++	if (!info)
++		return -ENOENT;
++
++	if (pinfo)
++		*pinfo = info;
++
++	return len;
++}
++
++static ssize_t engines_allowed_store(struct config_item *item, const char *page,
++				     size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	ssize_t patternlen, p;
++	u64 mask, val = 0;
++
++	for (p = 0; p < len; p += patternlen + 1) {
++		patternlen = parse_engine(page + p, ",\n", &mask, NULL);
++		if (patternlen < 0)
++			return -EINVAL;
++
++		val |= mask;
++	}
++
++	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
++	dev->config.engines_allowed = val;
++
++	return len;
++}
++
++static u64 get_gt_types_allowed(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u64 mask;
++
++	if (!dev)
++		return device_defaults.gt_types_allowed;
++
++	scoped_guard(mutex, &dev->lock)
++		mask = dev->config.gt_types_allowed;
++	config_group_put(&dev->group);
++
++	return mask;
++}
++
++/**
++ * xe_configfs_primary_gt_allowed - determine whether primary GTs are supported
++ * @pdev: pci device
++ *
++ * Return: True if primary GTs are enabled, false if they have been disabled via
++ *     configfs.
++ */
++bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev)
++{
++	return get_gt_types_allowed(pdev) & BIT_ULL(XE_GT_TYPE_MAIN);
++}
++
++/**
++ * xe_configfs_media_gt_allowed - determine whether media GTs are supported
++ * @pdev: pci device
++ *
++ * Return: True if the media GTs are enabled, false if they have been disabled
++ *     via configfs.
++ */
++bool xe_configfs_media_gt_allowed(struct pci_dev *pdev)
++{
++	return get_gt_types_allowed(pdev) & BIT_ULL(XE_GT_TYPE_MEDIA);
++}
++
++static ssize_t gt_types_allowed_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++	char *p = page;
++
++	for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++)
++		if (dev->gt_types_allowed & BIT_ULL(gt_types[i].type))
++			p += sprintf(p, "%s\n", gt_types[i].name);
++
++	return p - page;
++}
++
++static ssize_t gt_types_allowed_store(struct config_item *item, const char *page,
++				      size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	char *buf __free(kfree) = kstrdup(page, GFP_KERNEL);
++	char *p = buf;
++	u64 typemask = 0;
++
++	if (!buf)
++		return -ENOMEM;
++
++	while (p) {
++		char *typename = strsep(&p, ",\n");
++		bool matched = false;
++
++		if (typename[0] == '\0')
++			continue;
++
++		for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++) {
++			if (strcmp(typename, gt_types[i].name) == 0) {
++				typemask |= BIT(gt_types[i].type);
++				matched = true;
++				break;
++			}
++		}
++
++		if (!matched)
++			return -EINVAL;
++	}
++
++	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
++	dev->config.gt_types_allowed = typemask;
++
++	return len;
++}
++
++/**
++ * xe_configfs_get_enable_multi_queue - get configfs enable_multi_queue setting
++ * @pdev: pci device
++ *
++ * Return: true if multi-queue is enabled for this device (the default),
++ * false if it has been force-disabled via configfs.
++ */
++bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	bool ret;
++
++	if (!dev)
++		return true;
++
++	scoped_guard(mutex, &dev->lock)
++		ret = dev->config.enable_multi_queue;
++	config_group_put(&dev->group);
++
++	return ret;
++}
++
++static ssize_t enable_multi_queue_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++
++	return sprintf(page, "%d\n", dev->enable_multi_queue);
++}
++
++static ssize_t enable_multi_queue_store(struct config_item *item, const char *page,
++					size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	bool val;
++	int ret;
++
++	ret = kstrtobool(page, &val);
++	if (ret)
++		return ret;
++
++	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
++	dev->config.enable_multi_queue = val;
++
++	return len;
++}
++
++/**
++ * xe_configfs_get_psmi_enabled - get configfs enable_psmi setting
++ * @pdev: pci device
++ *
++ * Return: enable_psmi setting in configfs
++ */
++bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	bool ret;
++
++	if (!dev)
++		return false;
++
++	scoped_guard(mutex, &dev->lock)
++		ret = dev->config.enable_psmi;
++	config_group_put(&dev->group);
++
++	return ret;
++}
++
++static ssize_t enable_psmi_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++
++	return sprintf(page, "%d\n", dev->enable_psmi);
++}
++
++static ssize_t enable_psmi_store(struct config_item *item, const char *page, size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	bool val;
++	int ret;
++
++	ret = kstrtobool(page, &val);
++	if (ret)
++		return ret;
++
++	guard(mutex)(&dev->lock);
+ 	if (is_bound(dev))
+ 		return -EBUSY;
+ 
+-	/*
+-	 * 2. Allocate a u32 array and set the pointers to the right positions
+-	 * according to the length of each class' wa_bb
+-	 */
+-	tmp = krealloc(wa_bb[0].cs, count * sizeof(u32), GFP_KERNEL);
+-	if (!tmp)
+-		return -ENOMEM;
++	dev->config.enable_psmi = val;
+ 
+-	if (!count) {
+-		memset(wa_bb, 0, sizeof(tmp_wa_bb));
+-		return len;
+-	}
++	return len;
++}
+ 
+-	for (class = 0, count = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
+-		tmp_wa_bb[class].cs = tmp + count;
+-		count += tmp_wa_bb[class].len;
+-		tmp_wa_bb[class].len = 0;
+-	}
++/**
++ * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
++ * @pdev: pci device
++ *
++ * Return: survivability_mode attribute in configfs
++ */
++bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	bool mode;
+ 
+-	/* 3. Parse wa_bb lines again, this time saving the values */
+-	count = parse_wa_bb_lines(page, tmp_wa_bb);
+-	if (count < 0)
+-		return count;
++	if (!dev)
++		return device_defaults.survivability_mode;
+ 
+-	memcpy(wa_bb, tmp_wa_bb, sizeof(tmp_wa_bb));
++	scoped_guard(mutex, &dev->lock)
++		mode = dev->config.survivability_mode;
++	config_group_put(&dev->group);
+ 
+-	return len;
++	return mode;
+ }
+ 
+-static ssize_t ctx_restore_mid_bb_store(struct config_item *item,
+-					const char *data, size_t sz)
++static ssize_t survivability_mode_show(struct config_item *item, char *page)
+ {
+-	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	struct xe_config_device *dev = to_xe_config_device(item);
+ 
+-	return wa_bb_store(dev->config.ctx_restore_mid_bb, dev, data, sz);
++	return sprintf(page, "%d\n", dev->survivability_mode);
+ }
+ 
+-static ssize_t ctx_restore_post_bb_store(struct config_item *item,
+-					 const char *data, size_t sz)
++static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
+ {
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	bool survivability_mode;
++	int ret;
+ 
+-	return wa_bb_store(dev->config.ctx_restore_post_bb, dev, data, sz);
++	ret = kstrtobool(page, &survivability_mode);
++	if (ret)
++		return ret;
++
++	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
++	dev->config.survivability_mode = survivability_mode;
++
++	return len;
+ }
+ 
+ CONFIGFS_ATTR(, ctx_restore_mid_bb);
+ CONFIGFS_ATTR(, ctx_restore_post_bb);
+-CONFIGFS_ATTR(, enable_multi_queue);
+-CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, engines_allowed);
+ CONFIGFS_ATTR(, gt_types_allowed);
++CONFIGFS_ATTR(, enable_multi_queue);
++CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, survivability_mode);
+ 
+ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_ctx_restore_mid_bb,
+ 	&attr_ctx_restore_post_bb,
+-	&attr_enable_multi_queue,
+-	&attr_enable_psmi,
+ 	&attr_engines_allowed,
+ 	&attr_gt_types_allowed,
++	&attr_enable_multi_queue,
++	&attr_enable_psmi,
+ 	&attr_survivability_mode,
+ 	NULL,
+ };
+@@ -1138,8 +1330,8 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 				 dev->config.attr_); \
+ 	} while (0)
+ 
+-	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+ 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
++	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+ 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+ 	PRI_CUSTOM_ATTR("%d", survivability_mode);
+@@ -1171,186 +1363,6 @@ void xe_configfs_check_device(struct pci_dev *pdev)
+ 	config_group_put(&dev->group);
+ }
+ 
+-/**
+- * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
+- * @pdev: pci device
+- *
+- * Return: survivability_mode attribute in configfs
+- */
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	bool mode;
+-
+-	if (!dev)
+-		return device_defaults.survivability_mode;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		mode = dev->config.survivability_mode;
+-	config_group_put(&dev->group);
+-
+-	return mode;
+-}
+-
+-static u64 get_gt_types_allowed(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	u64 mask;
+-
+-	if (!dev)
+-		return device_defaults.gt_types_allowed;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		mask = dev->config.gt_types_allowed;
+-	config_group_put(&dev->group);
+-
+-	return mask;
+-}
+-
+-/**
+- * xe_configfs_primary_gt_allowed - determine whether primary GTs are supported
+- * @pdev: pci device
+- *
+- * Return: True if primary GTs are enabled, false if they have been disabled via
+- *     configfs.
+- */
+-bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev)
+-{
+-	return get_gt_types_allowed(pdev) & BIT_ULL(XE_GT_TYPE_MAIN);
+-}
+-
+-/**
+- * xe_configfs_media_gt_allowed - determine whether media GTs are supported
+- * @pdev: pci device
+- *
+- * Return: True if the media GTs are enabled, false if they have been disabled
+- *     via configfs.
+- */
+-bool xe_configfs_media_gt_allowed(struct pci_dev *pdev)
+-{
+-	return get_gt_types_allowed(pdev) & BIT_ULL(XE_GT_TYPE_MEDIA);
+-}
+-
+-/**
+- * xe_configfs_get_engines_allowed - get engine allowed mask from configfs
+- * @pdev: pci device
+- *
+- * Return: engine mask with allowed engines set in configfs
+- */
+-u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	u64 engines_allowed;
+-
+-	if (!dev)
+-		return device_defaults.engines_allowed;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		engines_allowed = dev->config.engines_allowed;
+-	config_group_put(&dev->group);
+-
+-	return engines_allowed;
+-}
+-
+-/**
+- * xe_configfs_get_psmi_enabled - get configfs enable_psmi setting
+- * @pdev: pci device
+- *
+- * Return: enable_psmi setting in configfs
+- */
+-bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+-{
+-	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	bool ret;
+-
+-	if (!dev)
+-		return false;
+-
+-	scoped_guard(mutex, &dev->lock)
+-		ret = dev->config.enable_psmi;
+-	config_group_put(&dev->group);
+-
+-	return ret;
 -}
 -
 -/**
@@ -256,367 +1249,132 @@ index 75c07ebc042d..6060abe66e73 100644
 - */
 -bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
 -{
--	struct xe_config_group_device *dev = find_device(pdev);
+-	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
 -	bool ret;
 -
 -	if (!dev)
--		return xe_configfs_device_defaults.debug.enable_multi_queue;
+-		return true;
 -
 -	scoped_guard(mutex, &dev->lock)
--		ret = dev->config.debug.enable_multi_queue;
+-		ret = dev->config.enable_multi_queue;
 -	config_group_put(&dev->group);
 -
 -	return ret;
 -}
 -
--static ssize_t enable_multi_queue_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.enable_multi_queue);
--}
--
--static ssize_t enable_multi_queue_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	bool val;
--	int ret;
--
--	ret = kstrtobool(page, &val);
--	if (ret)
--		return ret;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.enable_multi_queue = val;
--
--	return len;
--}
--
 -/**
-- * xe_configfs_get_psmi_enabled - get configfs enable_psmi setting
+- * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
 - * @pdev: pci device
+- * @class: hw engine class
+- * @cs: pointer to the bb to use - only valid during probe
 - *
-- * Return: enable_psmi setting in configfs
+- * Return: Number of dwords used in the mid_ctx_restore setting in configfs
 - */
--bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+-u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+-				       enum xe_engine_class class,
+-				       const u32 **cs)
 -{
--	struct xe_config_group_device *dev = find_device(pdev);
--	bool ret;
+-	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	u32 len;
 -
 -	if (!dev)
--		return false;
+-		return 0;
 -
--	scoped_guard(mutex, &dev->lock)
--		ret = dev->config.debug.enable_psmi;
--	config_group_put(&dev->group);
+-	scoped_guard(mutex, &dev->lock) {
+-		if (cs)
+-			*cs = dev->config.ctx_restore_mid_bb[class].cs;
 -
--	return ret;
--}
--
--static ssize_t enable_psmi_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.enable_psmi);
--}
--
--static ssize_t enable_psmi_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	bool val;
--	int ret;
--
--	ret = kstrtobool(page, &val);
--	if (ret)
--		return ret;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.enable_psmi = val;
--
--	return len;
--}
--
--/**
-- * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
-- * @pdev: pci device
-- *
-- * Return: survivability_mode attribute in configfs
-- */
--bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
--{
--	struct xe_config_group_device *dev = find_device(pdev);
--	bool mode;
--
--	if (!dev)
--		return xe_configfs_device_defaults.debug.survivability_mode;
--
--	scoped_guard(mutex, &dev->lock)
--		mode = dev->config.debug.survivability_mode;
--	config_group_put(&dev->group);
--
--	return mode;
--}
--
--static ssize_t survivability_mode_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.survivability_mode);
--}
--
--static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	bool survivability_mode;
--	int ret;
--
--	ret = kstrtobool(page, &survivability_mode);
--	if (ret)
--		return ret;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.survivability_mode = survivability_mode;
--
--	return len;
--}
--
- CONFIGFS_ATTR(, ctx_restore_mid_bb);
- CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
--CONFIGFS_ATTR(, guc_log_level);
--CONFIGFS_ATTR(, guc_log_target);
--CONFIGFS_ATTR(, enable_multi_queue);
--CONFIGFS_ATTR(, enable_psmi);
--CONFIGFS_ATTR(, survivability_mode);
- 
- static struct configfs_attribute *xe_configfs_debug_attrs[] = {
- 	&attr_ctx_restore_mid_bb,
- 	&attr_ctx_restore_post_bb,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
--	&attr_guc_log_level,
--	&attr_guc_log_target,
--	&attr_enable_multi_queue,
--	&attr_enable_psmi,
--	&attr_survivability_mode,
-+	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_ATTR_PTR)
- 	NULL,
- };
- 
-+
- /*
-  * Per-parameter visibility predicates.
-  *
-@@ -1084,16 +825,18 @@ static struct configfs_attribute *xe_configfs_debug_attrs[] = {
- static bool xe_configfs_debug_is_visible(struct config_item *item,
- 					 struct configfs_attribute *attr, int n)
- {
--	if (attr == &attr_survivability_mode) {
--		struct xe_config_group_device *dev =
--			xe_configfs_to_group_device(item->ci_parent);
--
--		return dev->desc->is_dgfx && dev->desc->platform >= XE_BATTLEMAGE;
+-		len = dev->config.ctx_restore_mid_bb[class].len;
 -	}
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &attr_##_name) \
-+		return _vis(item);
-+	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_VIS_CHECK)
-+#undef _XE_PARAM_VIS_CHECK
- 
- 	return true;
- }
- 
-+#undef XE_PARAM_VISIBLE_ALWAYS
-+#undef XE_PARAM_VISIBLE_SURVIVABILITY
-+
- static struct configfs_group_operations xe_configfs_debug_group_ops = {
- 	.is_visible	= xe_configfs_debug_is_visible,
- };
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
-index b97a7fff6652..375ddc17ba36 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
-@@ -7,7 +7,7 @@
- 
- #include <linux/types.h>
- 
--#include "xe_defaults.h"
-+#include "xe_configfs_debug_params.h"
- #include "xe_hw_engine_types.h"
- #include "xe_module.h"
- 
-@@ -26,11 +26,7 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
- bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
--int xe_configfs_get_guc_log_level(struct pci_dev *pdev);
--u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev);
--bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
--bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
--bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
-+XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_DECLARE_GETTER)
- #else
- /*
-  * Dummy values here are not used since these function accesses are always
-@@ -46,17 +42,7 @@ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
- static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
--static inline int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
--{
--	return xe_modparam.guc_log_level;
+-	config_group_put(&dev->group);
+-
+-	return len;
 -}
--static inline u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
+-
+-/**
+- * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
+- * @pdev: pci device
+- * @class: hw engine class
+- * @cs: pointer to the bb to use - only valid during probe
+- *
+- * Return: Number of dwords used in the post_ctx_restore setting in configfs
+- */
+-u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+-					enum xe_engine_class class,
+-					const u32 **cs)
 -{
--	return XE_DEFAULT_GUC_LOG_TARGET;
+-	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	u32 len;
+-
+-	if (!dev)
+-		return 0;
+-
+-	scoped_guard(mutex, &dev->lock) {
+-		*cs = dev->config.ctx_restore_post_bb[class].cs;
+-		len = dev->config.ctx_restore_post_bb[class].len;
+-	}
+-	config_group_put(&dev->group);
+-
+-	return len;
 -}
--static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
--static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
--static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
-+XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_DECLARE_GETTER_STUB)
- #endif
- 
- #endif /* _XE_CONFIGFS_DEBUG_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.c b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-index 00e5ff175c0a..c868e3f49ea4 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-@@ -40,6 +40,7 @@
- 
- #include "xe_configfs_debug_params.h"
- #include "xe_configfs.h"
-+#include "xe_configfs_debug.h"
- 
- #define _XE_PARAM_DEFINE_OPS_NUMERIC(_T, _name, _kstrto, _fmt, _validator) \
- static ssize_t _name##_show(struct config_item *item, char *page) \
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.h b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
-index 954ca4343136..f1de27c04f8b 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug_params.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
-@@ -10,6 +10,12 @@
- #include <linux/errno.h>
- #include <linux/types.h>
- 
-+#include "abi/guc_log_abi.h"
-+#include "xe_defaults.h"
-+#include "xe_guc_fwif.h"
-+#include "xe_guc_log.h"
-+#include "xe_module.h"
-+
- struct pci_dev;
- 
- /*
-@@ -49,6 +55,12 @@ struct pci_dev;
-  */
- #define XE_PARAM_VALIDATE_NONE(_v)		(0)
- 
-+#define XE_PARAM_VALIDATE_GUC_LOG_LEVEL(_v) \
-+	(((_v) == XE_GUC_LOG_LEVEL_UNSET || \
-+	  ((_v) >= 0 && (_v) <= GUC_LOG_LEVEL_MAX)) ? 0 : -EINVAL)
-+#define XE_PARAM_VALIDATE_GUC_LOG_TARGET(_v) \
-+	(((_v) <= GUC_LOG_TARGET_MAX) ? 0 : -EINVAL)
-+
- /*
-  * Per-parameter getter helpers.
-  *
-@@ -71,6 +83,10 @@ struct pci_dev;
-  */
- #define XE_PARAM_GETTER_READ(_dev, _name)	((_dev)->config.debug.params._name)
- 
-+#define XE_PARAM_GETTER_GUC_LOG_LEVEL(_dev, _name) \
-+	({ typeof((_dev)->config.debug.params._name) __v = (_dev)->config.debug.params._name; \
-+	   __v >= 0 ? __v : xe_modparam.guc_log_level; })
-+
+-
+ #ifdef CONFIG_PCI_IOV
  /**
-  * XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH - iterate over debug configfs params
-  * @param: function-like macro called as
-@@ -106,7 +122,11 @@ struct pci_dev;
-  * at runtime if needed.
-  */
- #define XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(param) \
--	/* No parameters yet - add entries above this line. */
-+	param(int,  guc_log_level,      XE_GUC_LOG_LEVEL_UNSET,    XE_PARAM_VALIDATE_GUC_LOG_LEVEL,  XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_GUC_LOG_LEVEL, xe_modparam.guc_log_level) \
-+	param(u8,   guc_log_target,     XE_DEFAULT_GUC_LOG_TARGET, XE_PARAM_VALIDATE_GUC_LOG_TARGET, XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          XE_DEFAULT_GUC_LOG_TARGET) \
-+	param(bool, enable_multi_queue, true,                      XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          true) \
-+	param(bool, enable_psmi,        false,                     XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          false) \
-+	param(bool, survivability_mode, false,                     XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_SURVIVABILITY, XE_PARAM_GETTER_READ,          false)
- 
- /* Generate the struct that backs all debug params in xe_config_device. */
- #define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
-index 1123f6e2a668..c6eb90573866 100644
---- a/drivers/gpu/drm/xe/xe_configfs_types.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_types.h
-@@ -9,6 +9,7 @@
- #include <linux/mutex.h>
- #include <linux/types.h>
- 
-+#include "xe_configfs_debug_params.h"
- #include "xe_hw_engine_types.h"
- #include "xe_pci_types.h"
- #include "xe_sriov_types.h"
-@@ -38,11 +39,7 @@ struct xe_config_group_device {
- 			struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
- 			u64 engines_allowed;
- 			u64 gt_types_allowed;
--			int guc_log_level;
--			u8 guc_log_target;
--			bool enable_multi_queue;
--			bool enable_psmi;
--			bool survivability_mode;
-+			struct xe_configfs_debug_params params;
- 		} debug;
- #endif
- 		struct {
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 599134d3d027..83266ad78eea 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -99,7 +99,7 @@ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
- 	if (!xe->info.skip_guc_pc)
- 		flags |= GUC_CTL_ENABLE_SLPC;
- 
--	if (xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev)))
-+	if (xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev)))
- 		flags |= GUC_CTL_ENABLE_PSMI_LOGGING;
- 
- 	if (xe_guc_using_main_gamctrl_queues(guc))
-diff --git a/drivers/gpu/drm/xe/xe_psmi.c b/drivers/gpu/drm/xe/xe_psmi.c
-index 59af3d145418..ff9a14949339 100644
---- a/drivers/gpu/drm/xe/xe_psmi.c
-+++ b/drivers/gpu/drm/xe/xe_psmi.c
-@@ -34,7 +34,7 @@
- 
- static bool psmi_enabled(struct xe_device *xe)
+  * xe_configfs_admin_only_pf() - Get PF's operational mode.
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 4fbbeafba473..bba592fb612c 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -18,18 +18,18 @@ struct pci_dev;
+ int xe_configfs_init(void);
+ void xe_configfs_exit(void);
+ void xe_configfs_check_device(struct pci_dev *pdev);
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+-bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
+-bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+-u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+-bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+-bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
+ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 				       enum xe_engine_class class,
+ 				       const u32 **cs);
+ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ 					enum xe_engine_class class,
+ 					const u32 **cs);
++u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
++bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
++bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
++bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
++bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
++bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+ #ifdef CONFIG_PCI_IOV
+ unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
+ bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+@@ -38,18 +38,18 @@ bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+ static inline int xe_configfs_init(void) { return 0; }
+ static inline void xe_configfs_exit(void) { }
+ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+-static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
+-static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
+-static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
+-static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+-static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+-static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
+ static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 						     enum xe_engine_class class,
+ 						     const u32 **cs) { return 0; }
+ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ 						      enum xe_engine_class class,
+ 						      const u32 **cs) { return 0; }
++static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
++static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
++static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
++static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
++static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
++static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
+ #ifdef CONFIG_PCI_IOV
+ static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
  {
--	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
-+	return xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev));
- }
- 
- static void psmi_free_object(struct xe_bo *bo)
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 62068189320f..3ead1eac93f5 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -450,7 +450,7 @@ bool xe_rtp_match_psmi_enabled(const struct xe_device *xe,
- 			       const struct xe_gt *gt,
- 			       const struct xe_hw_engine *hwe)
- {
--	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
-+	return xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev));
- }
- 
- bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
 -- 
 2.43.0
 
