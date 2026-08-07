@@ -4,153 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17B67C5AC7C
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 08:09:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90E02C5AC7C
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 08:12:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B105510F371;
-	Fri,  7 Aug 2026 08:09:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E40610F3E3;
+	Fri,  7 Aug 2026 08:12:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bfpYyRo3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2wTpzpc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF9D110F371;
- Fri,  7 Aug 2026 08:09:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 311F310F3E3;
+ Fri,  7 Aug 2026 08:12:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786090164; x=1817626164;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=N2W/5z8QOqwpPv7KPi36rYTF07Oela+emc9nv/wMxZk=;
- b=bfpYyRo3L9l15oieOA8reTrwUdGqJf1M6fSCTBzDSbKx/+48tFNPoI8d
- ZaoyqbIeVT964SiW28kvox3Ru8R6RX8fcKe9W7rxVrT188wbiIaeT6yWS
- RG7EIAixNVoxttfptp2CjpGoyWexg7LNfHu9PnTCJWyCKbQElKmTqNowV
- rvGJeudiWoyD+Hiq5G7I9cybv+/GF9PLvOzF2CfvKrq7KWUvc0FXMXtrU
- LQgYNLV5JNohib8KcnNV5JalKDznfmg+kW6KinL3IXVl7k19hprXGFQ/c
- wl6lAhYIN8BBPym7URqheuAbJ2pgMbknKH4URGS9rAM0dooVzhMDF5MHW Q==;
-X-CSE-ConnectionGUID: WGlwfuJQQxuEiAAwvbBtvA==
-X-CSE-MsgGUID: Jg/AoZTCT8a0B51+dkngbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86634105"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86634105"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ t=1786090376; x=1817626376;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NCQpnV7K8uJgarIb880S0h/yTjGVSqfoYbI0wk9aoYs=;
+ b=X2wTpzpcfzZc9z+jLGFFg3pK+etXexKpkGncHqqVSzfxJK0AHwz3YbDO
+ cxkHjVRghQ0OFXuoh3FXje74HMMP76m/3ldTmAgBHXjB2xcZoQY250cWr
+ b8Zm5aZ8gq6q2wE06uYw8fpkJO1f2dhOegeQggIcYcxQcsnlZFKQYfWXU
+ tge4fb5jz0b2OeMDzi4Z43vM7UVy5cWhXfj3kQ1ndT6Z9Heu+5fqKY4Aj
+ RP6UIHI9voZsBLpcaxMyzPT70RWaNHK1Tip2o0mbknpJ3k4OGTgrh2RTn
+ StvPBs9LZXcy9hn7nzD0d9GcyL2at7BS3KC9po+My1NKWWDZ+VuQ8wDwZ A==;
+X-CSE-ConnectionGUID: FfPE9C6+S4iyzlOpxcaAvA==
+X-CSE-MsgGUID: e9cTSGBOTX+OV+FZSsBrZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11867"; a="86634770"
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="86634770"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 01:09:24 -0700
-X-CSE-ConnectionGUID: /46QnES2QkOuY9+67NMRxA==
-X-CSE-MsgGUID: jjlaTS14TeGbsNr0G+jg7A==
+ 07 Aug 2026 01:12:55 -0700
+X-CSE-ConnectionGUID: Ze03zpLtTtuKzAc9nvD0UQ==
+X-CSE-MsgGUID: FEblLcQHQxaKJuUADk+FSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="259006177"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 01:09:23 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Fri, 7 Aug 2026 01:09:22 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Fri, 7 Aug 2026 01:09:22 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.38) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Fri, 7 Aug 2026 01:09:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lMB7SmtLxSbJrcKJg4DNrgoeNjGscRIybSeyd+XaONggpGmSQYDqVUM21zBnXajbCsvciPg2tTY+b4D7F5nRkU6vNYknc98zTt6Emc+/4Q9UmiKD16JVQ5pja8lS/yABAV7BhZRweTHY3UMoBKHVmMer8ya4d60sGoQPcOUSXADKEAjW94T6/0UHL2K53GnZ5CZQerxh1ZMnPqbG47ZBs8zVnGx2bms3gns7Uh022I8NfJWG1dKOQ04Me5q59lSv74/oesvmRA0p+kj7mY5dkcffOv+hzVxE/fYxch4APEUqYtGqilg6elGfwZXgCdPk2ShN4IOCrRPyUSCLcdvX5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I+hk+HkvPV4rxPNb7z4WNc81JDsL2J45ZVpqA3P2sV4=;
- b=XitBf/4Oa+3qQG6+UzQjCYHzzvBUpmGVgluqI/ZFIF4UufH1WLdxjLfVKjDlPAdBYYZBW6wxJG1S1omjqXEIsgSe5/YdqOae+ZFcWauPWusXhGxDm4OhTi1QVOmQRo4J6ws/JaQ5yS27jAVGaQbn2zNdZlVxrlI5GV3qAjkGsG2ibRLhFHZFLLXpOyaYFmURUJOLIomXg3wVQEqNtouLQr4Jjc1RT7mRISbERgKpa5o8+oIVT+6Uv23ybJiHHETzBqH1uSqmBR4OdYKjysrY6ZFdyZrkQkow1GipUm3uLFuBk/FH7A1J7q1cjvjwrTVBxGP2nryUQ5eE0UzjGaGKbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
- IA1PR11MB6466.namprd11.prod.outlook.com (2603:10b6:208:3a6::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.21; Fri, 7 Aug
- 2026 08:09:20 +0000
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb]) by DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb%6]) with mapi id 15.21.0270.016; Fri, 7 Aug 2026
- 08:09:20 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Subject: RE: [PATCH] drm/i915/cmtg: Disable CMTG after PSR exit to avoid
- disable timeout
-Thread-Topic: [PATCH] drm/i915/cmtg: Disable CMTG after PSR exit to avoid
- disable timeout
-Thread-Index: AQHdJjZFYOq1TsypMU+g00F8WbtuebaSOcoAgAABiWA=
-Date: Fri, 7 Aug 2026 08:09:19 +0000
-Message-ID: <DS0PR11MB8049B57E8E753BDDBEBE62E9F9D12@DS0PR11MB8049.namprd11.prod.outlook.com>
-References: <20260807055452.2997983-1-animesh.manna@intel.com>
- <220f80c2de131ecf25a869bd9218af30fbbe4b54@intel.com>
-In-Reply-To: <220f80c2de131ecf25a869bd9218af30fbbe4b54@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|IA1PR11MB6466:EE_
-x-ms-office365-filtering-correlation-id: 65d0a002-94d7-469f-774d-08def45b2ef1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|23010399003|376014|1800799024|38070700021|6133799003|56012099006|10067099003|11063799006|4143699003|18002099003|22082099003;
-x-microsoft-antispam-message-info: CxVwXCOrPFnmAWc0tTiNdpfsJ+ktybMLOEWk7CeWx1attidDQwx2+Fk8X/Vw1YYvoDDCvAWVnmiFZOrMN25UFB6ZGz2tQx4G4BmFAbcMBUD2fzkg3QFNoYjhCIBECtmnwSOlwyl+vm1/ifkkZmMW1/Ta4w7E/ssIJWkuI5K4SHHu4yyW66w1X5Q8I/PLYJ5cmb77TziwiZqW6euZCD8aznuTLqVbJkbTOzuHPRmjKjZxJaqxyNO7jeOjWyvY1KiN58ZGNsGVhuNggsStiUdVI+uN0uxLy/ptaY65oP0M1LdhQf27uwIPbTUplafOAeVnd9xrH+6XKNn9+MHc/lLqE8SHINgoS/5MPSvpC3PQzdbMKdBVee9Oux64IGLe+IwfIQmg6GPxsgg3VyXWN8lQ1oVNbLP/na/YgQ7YaxAPolvXNekaUXVYkH2wUqT3jOCAm1FVbbHQEiGUjXRURMetv/PuSbCopeECDdSwmPZuKUCbceG2pV8cVL+efjYGZjEMUjASqHtYLuXu+tCXzDldOEoh5niuWrjOo3jVWk1mj4R3FaE8/DroZ9Bx3I3ZNgS4WuS7O6VmkzUR01JJICsezHR0FwyW9fIQPu/hZkCGpr/BOPA4uHcNkhTCg7xEnu/nPRV8d8apnpomzhRlzdavZPOvIuAjCcnoYrMiEFI71ZKqKdN5B8GkWvu3Jp0QEDt2qMIZhsQi9MQd/2iqhJBRPNtvH59VT03vER4BVOKyhKo=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(38070700021)(6133799003)(56012099006)(10067099003)(11063799006)(4143699003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9Zh/LfLDnodXiEK0X95idq/1mZ30dDtn9tmQTnwZgCY3+OpfHUV6OiBHtJ5g?=
- =?us-ascii?Q?pO/3nqFkUNgCozb+WxeCMxwAETdua5oHuTME6+xy/ogDRBnDCcJgjMMIL8k2?=
- =?us-ascii?Q?qTywwIzXE4w7hmpYfO/Kgz7adExx2hbwuone9DBWVO3nrtSl+zxq3yT3re0j?=
- =?us-ascii?Q?APsOS4PZa09RfgEYh4sSZCy/tPHRinbuS15EAqQVXRUwL2g8nwT7XAifEnBa?=
- =?us-ascii?Q?tBHLOlaHusD5prxn+7lODIXWwvr0nl8VIP7Tod2bevAYSVmQozomp0yB2k1b?=
- =?us-ascii?Q?V9jaDC+QQ/iFTtS6YiT29MeJ68cd/MyS0m6eusNl7T2h5PVUQoFLV7pDjpms?=
- =?us-ascii?Q?clSXwN6nx0xe4xQuuDLwHLC/zV88oimtsx5LZYuSO5+k+wWETgAjUHIbzZTt?=
- =?us-ascii?Q?LPQflUW3ddViu1y3YbxAOuSiGjCgDl6Ex2u53j4fapOczTHltlnl95tmcj7I?=
- =?us-ascii?Q?8panfy5aVycZBrQFgY52xn9pN0aE1cdvjGyqbUyx5D417FiFx6kx5dgh4Egh?=
- =?us-ascii?Q?Q98RjS5/ZOFZs1+8Ks4zLAD/h1J8JWfxR2h0570TjG+Cpoeo8uyOWLmAVIBp?=
- =?us-ascii?Q?jVbLAxfExFgyLa592q8kPq33gqvzuxsnHToCb+zeA5UTAl92l8hU00EZHlI0?=
- =?us-ascii?Q?ufwcR0v4iMGEd3GankaHewecAcUsMRqVkyV0EcE37I5KS68Lg10TiUzd1YQo?=
- =?us-ascii?Q?eNJPncmlmzxu2l+wyGjLRMZ24m90+NWJuIjaeJg+mdNRmX657QyPHoxuM22b?=
- =?us-ascii?Q?rsvvkDMN7wActT4DEIoX17BEgHKpqpWjV7x6V+k86iNUd/ytBvbEtmt1xwJQ?=
- =?us-ascii?Q?If5U0rfGV/KL5w90x50FVRLvoTfA8ai95CZI4jgypELhqz54F3J/ouBI6kj1?=
- =?us-ascii?Q?YGBxIfi47+G72VyvvnYL7nmNSZA95xwGdyceuvVzlZdZEyE67llxT9d5Zqgv?=
- =?us-ascii?Q?gtmQ1xqgwyQIzvXytRLb3XgdIaJxHUP9dZCPLmRsv45aHESqVbfsXtx6aaQ+?=
- =?us-ascii?Q?1MLewK+g8RmlxADI8fNm/GohHSLauGKJnzE7nU64WX9f9xAQns4Y0vIIaJSb?=
- =?us-ascii?Q?HbwmR1R03x7oQCYaLUJh3W6wrL5MZE7AI2Toszua2g0MLfi8UTXfo5Ih+POJ?=
- =?us-ascii?Q?83N3xE0c2HsJKRrEaAE+f3mJAxsrVvsR3eYjodMudSojtrnDoyt/wO56PAQi?=
- =?us-ascii?Q?PDmR987miwxHCMcDPRmu0JBs4Wpe9U1aJBoWQVu1gWMJB13+TugP6hzKk7eH?=
- =?us-ascii?Q?cjk6mwAATgrpY5GVEpqIa/M2r9zTf9KkyB2E+vqnwkaoM/if1+ejltFgWgwk?=
- =?us-ascii?Q?P+7X04BXLepOgL9X/K0J+70Hf3cMCOsir3sVyL8tKz6O4oWZn4s+p3hq6Y3n?=
- =?us-ascii?Q?ntDyunQEaotfWt4s2kb6trvcRu9WxbzrxRFyRPT84252RZSQMSdKfu8Wk6Cj?=
- =?us-ascii?Q?T0g5GzavJyLl4Ud2LMy6xvkJiz5M7PAKutL0AieCP3Yoe6A+nVDMXl3R0M2N?=
- =?us-ascii?Q?6y8NKkfzgeAbmKGsngVlsEUamK7wrgKBCARLXrQdUZVhfzJX63ptfjG5qUky?=
- =?us-ascii?Q?D15K4GI3889FUHxIHvHlZXXGmDB/wdBY8kqDkr+H8/vDUbXlyb32yfRcnZ1x?=
- =?us-ascii?Q?BITfh3jiy2gbyZ6ad81ZvXDv/ulMFM1Kv+dbXX9FRWIvOMShkh6ynJHIs7QZ?=
- =?us-ascii?Q?jnGZON2D5sKRYecYlxxJibZ4a+GgyvhQUmFoWc68Js3t/PrbdJn/++9toGKw?=
- =?us-ascii?Q?UGIHFEPpwQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="266572808"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2026 01:12:52 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, himal.prasad.ghimiray@intel.com
+Subject: [PATCH v4] drm/pagemap: Prevent double migration of device pages
+Date: Fri,  7 Aug 2026 13:42:44 +0530
+Message-ID: <20260807081244.2229191-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: HI1YlxJU0MUYrXPDztuATEFh8fnoBjXwhPGgQHqskbiNefMTTGSWw8A4nOwdVg3m2cYaksihFRTousvtj8z5h1STboUZECGFTefGFeUZSdSz5F8w/O/cs4EzF2gVFsfYb1cd8cJIExnhQn0VwwwlR7hBY2/yz1J1a87os09JzJ7Oe7ZAOqmY90dsMDbWyLp7AIwlxHzoBFy6wTP34wv8wzheMZuD72eT0H25N2VPLMUgLA+3GkUGf8OFa7ol50qXVEfawJbRwMaQXdkXYAO2YnINLOBjdaB5LnZF/VgjpRlY01yBLNz7oI73y6zKVAinT6ZZ82bxK+kc/aZqQxtPdg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65d0a002-94d7-469f-774d-08def45b2ef1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2026 08:09:19.9517 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NwWigJJAF9IgLuqJO+xg4T+aQSnrph6sQ9FKjrs9K0cUOW0ac2w2MFkUIFvMKX/dGI+Fqc6yoZNbY/WEXSxamw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6466
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,99 +68,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+A device-private folio migrated to system memory by a CPU fault can
+remain reachable through the raw-PFN eviction path until migration
+finalization drops the source reference.
 
+If eviction selects the same device folio during this window, it can
+attempt to migrate the folio again. The second migration can leave an
+uncharged folio on an LRU list, causing folio_lruvec_lock_irqsave() to
+retry indefinitely and resulting in a soft lockup and RCU stall.
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Friday, August 7, 2026 1:33 PM
-> To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Manna, Animesh <animesh.manna@intel.com>; Dibin Moolakadan
-> Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>; Shankar,
-> Uma <uma.shankar@intel.com>
-> Subject: Re: [PATCH] drm/i915/cmtg: Disable CMTG after PSR exit to avoid
-> disable timeout
->=20
-> On Fri, 07 Aug 2026, Animesh Manna <animesh.manna@intel.com> wrote:
-> > CMTG is enabled in sync-to-port mode, so its running state
-> > (CMTG_STATE) can only clear while the port is actively timing. In
-> > hsw_crtc_disable() the CMTG was torn down at the very beginning of the
-> > sequence, before the encoders were disabled. At that point PSR may
-> > still be active on the eDP, leaving the port timing generator idle. As
-> > a result, after clearing CMTG_ENABLE the wait for CMTG_STATE to clear
-> never completes and triggers:
-> >
-> >   xe 0000:00:02.0: [drm] CMTG: A disable timeout
-> >   WARNING: drivers/gpu/drm/i915/display/intel_cmtg.c:205
-> > intel_cmtg_disable+0x331/0x3d0 [xe]
-> >
-> > This is intermittently seen with igt@kms_hdr@bpc-switch-suspend, which
-> > repeatedly cycles the eDP in and out of PSR across suspend/resume.
-> >
-> > Move the CMTG disable to after intel_encoders_disable() (so PSR is
-> > exited) but before intel_encoders_post_disable()/intel_dpll_disable(),
-> > so the transcoder timing generator and port PLL are still active while
-> > CMTG_STATE is polled. The ordering requirement of disabling CMTG
-> > before the transcoder and port PLL are brought down is preserved.
-> >
-> > Cc: Dibin Moolakadan Subrahmanian
-> > <dibin.moolakadan.subrahmanian@intel.com>
-> > Cc: Uma Shankar <uma.shankar@intel.com>
-> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->=20
-> Fixes: ?
-> Cc: stable ?
+Mark successfully migrated device folios using a low bit of their
+zone_device_data before migration finalization. Make raw-PFN eviction
+skip folios carrying this flag.
 
-Sure, will add in next version.
+Mask the flag when retrieving the drm_pagemap_zdd pointer and preserve
+it when a device folio is split. Keeping the state on the physical folio
+also avoids depending on a virtual address that may change before a
+fault occurs.
 
-Regards,
-Animesh
->=20
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++++----
-> >  1 file changed, 14 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 829d7a411dcc..cc4d20fdda44 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -1791,15 +1791,25 @@ static void hsw_crtc_disable(struct
-> intel_atomic_state *state,
-> >  		intel_atomic_get_old_crtc_state(state, crtc);
-> >  	struct intel_crtc *pipe_crtc;
-> >
-> > -	if (crtc->cmtg.enabled && intel_cmtg_is_allowed(old_crtc_state)) {
-> > -		intel_cmtg_set_clk_select(old_crtc_state);
-> > -		intel_cmtg_disable(old_crtc_state);
-> > -	}
-> >  	/*
-> >  	 * FIXME collapse everything to one hook.
-> >  	 * Need care with mst->ddi interactions.
-> >  	 */
-> >  	intel_encoders_disable(state, crtc);
-> > +
-> > +	/*
-> > +	 * Disable CMTG after the encoders are disabled (so PSR is exited) bu=
-t
-> > +	 * before the transcoder timing generator and port PLL are torn down
-> in
-> > +	 * intel_encoders_post_disable()/intel_dpll_disable(). CMTG is
-> synced to
-> > +	 * the port, so its running state (CMTG_STATE) can only clear while
-> the
-> > +	 * port is actively timing. Doing this while PSR is still active leav=
-es
-> > +	 * the port idle and makes the CMTG_STATE clear wait time out.
-> > +	 */
-> > +	if (crtc->cmtg.enabled && intel_cmtg_is_allowed(old_crtc_state)) {
-> > +		intel_cmtg_set_clk_select(old_crtc_state);
-> > +		intel_cmtg_disable(old_crtc_state);
-> > +	}
-> > +
-> >  	intel_encoders_post_disable(state, crtc);
-> >
-> >  	intel_dpll_disable(old_crtc_state);
->=20
-> --
-> Jani Nikula, Intel
+v2:
+- Replace the retired-PFN XArray with an embedded bitmap.(Matthew Brost)
+- Mark every base page covered by a migrated folio so retirement remains
+  valid if the folio is later split.
+
+v3:
+- Store the migrated state in a low bit of zone_device_data instead of
+  adding virtual-range and bitmap tracking to the ZDD. (Matthew Brost)
+- Mask the flag when retrieving the ZDD and preserve it when splitting
+  a folio.
+- Drop the pre-existing fixes already covered by Matthew Brost's series:
+  https://patchwork.freedesktop.org/series/171651/
+
+v4:
+- Advance by the folio size only for migration entries marked with
+  MIGRATE_PFN_COMPOUND. (Sashiko)
+
+The lockup was observed as:
+[10109.860465] watchdog: BUG: soft lockup - CPU#9 stuck for 26s! [kworker/u65:5:6557]
+[10109.860524] Tainted: [S]=CPU_OUT_OF_SPEC, [O]=OOT_MODULE
+[10109.860524] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
+[10109.860525] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_work [xe]
+[10109.860644] RIP: 0010:_raw_spin_unlock_irqrestore+0x57/0x80
+[10109.860655] Call Trace:
+[10109.860655]  <TASK>
+[10109.860657]  folio_lruvec_lock_irqsave+0x216/0x220
+[10109.860661]  ? __pfx_lru_add+0x10/0x10
+[10109.860665]  folio_batch_move_lru+0xc8/0x450
+[10109.860670]  ? lock_acquire+0xc4/0x2d0
+[10109.860674]  ? __folio_batch_add_and_move+0x60/0x2e0
+[10109.860677]  ? folio_migrate_mapping+0xa6/0x110
+[10109.860679]  ? folio_migrate_flags+0x13b/0x1b0
+[10109.860681]  ? __pfx_lru_add+0x10/0x10
+[10109.860683]  __folio_batch_add_and_move+0xe7/0x2e0
+[10109.860685]  ? dma_iova_try_alloc+0xb0/0x140
+[10109.860689]  folio_add_lru+0x64/0x80
+[10109.860691]  __migrate_device_finalize+0x12c/0x270
+[10109.860695]  migrate_device_finalize+0x10/0x20
+[10109.860698]  drm_pagemap_evict_to_ram+0x185/0x370 [drm_gpusvm_helper]
+[10109.860704]  ? drm_pagemap_evict_to_ram+0x96/0x370 [drm_gpusvm_helper]
+[10109.860709]  xe_svm_bo_evict+0x15/0x20 [xe]
+[10109.860819]  ? xe_svm_bo_evict+0x15/0x20 [xe]
+[10109.860921]  xe_bo_move+0x107e/0x1570 [xe]
+[10109.860992]  ? xe_ttm_tt_create+0x168/0x340 [xe]
+[10109.861059]  ? __up_read+0x98/0x2b0
+[10109.861061]  ? lock_is_held_type+0xa3/0x130
+[10109.861067]  ttm_bo_handle_move_mem+0xe8/0x1e0 [ttm]
+[10109.861075]  ttm_bo_evict+0x141/0x1c0 [ttm]
+[10109.861081]  ttm_bo_evict_cb+0x9f/0x100 [ttm]
+[10109.861086]  ttm_lru_walk_for_evict+0x84/0x190 [ttm]
+[10109.861091]  ? xe_ttm_vram_mgr_new+0x258/0x3a0 [xe]
+[10109.861198]  ttm_bo_alloc_resource+0x219/0x750 [ttm]
+[10109.861203]  ? ttm_bo_alloc_resource+0xa9/0x750 [ttm]
+[10109.861208]  ? lock_acquire+0xc4/0x2d0
+[10109.861214]  ttm_bo_validate+0x94/0x1c0 [ttm]
+[10109.861218]  ? ww_mutex_trylock+0x19d/0x3d0
+[10109.861219]  ? _raw_write_unlock+0x22/0x50
+[10109.861223]  ttm_bo_init_reserved+0x17d/0x1f0 [ttm]
+[10109.861228]  xe_bo_init_locked+0x20a/0x620 [xe]
+[10109.861294]  ? __pfx_xe_ttm_bo_destroy+0x10/0x10 [xe]
+[10109.861359]  ? mark_held_locks+0x46/0x90
+[10109.861361]  ? __create_object+0x68/0xc0
+[10109.861366]  __xe_bo_create_locked+0x384/0xa20 [xe]
+[10109.861432]  ? lock_acquire+0xc4/0x2d0
+[10109.861434]  ? xe_drm_pagemap_populate_mm+0xd3/0x340 [xe]
+[10109.861542]  xe_bo_create_locked+0x23/0x40 [xe]
+[10109.861609]  xe_drm_pagemap_populate_mm+0x12e/0x340 [xe]
+[10109.861707]  ? __lock_acquire+0x43e/0x2930
+[10109.861716]  drm_pagemap_populate_mm+0x74/0xe0 [drm_gpusvm_helper]
+[10109.861720]  xe_svm_alloc_vram+0xb5/0x2c0 [xe]
+[10109.861817]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
+[10109.861819]  ? ktime_get+0x23/0x130
+[10109.861821]  ? trace_hardirqs_on+0x22/0xe0
+[10109.861823]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
+[10109.861826]  __xe_svm_handle_pagefault+0x77d/0xbf0 [xe]
+[10109.861924]  ? rwsem_down_write_slowpath+0x43a/0x9a0
+[10109.861926]  ? _raw_spin_unlock_irq+0x27/0x70
+[10109.861928]  ? rwsem_down_write_slowpath+0x43a/0x9a0
+[10109.861929]  ? trace_hardirqs_on+0x22/0xe0
+[10109.861931]  ? _raw_spin_unlock_irq+0x27/0x70
+[10109.861933]  ? rwsem_down_write_slowpath+0x459/0x9a0
+[10109.861937]  xe_svm_handle_pagefault+0x3d/0xb0 [xe]
+[10109.862030]  xe_pagefault_queue_work+0x1a9/0x520 [xe]
+[10109.862122]  process_one_work+0x239/0x730
+[10109.862127]  worker_thread+0x200/0x3f0
+[10109.862130]  ? __pfx_worker_thread+0x10/0x10
+[10109.862132]  kthread+0x10d/0x150
+[10109.862133]  ? __pfx_kthread+0x10/0x10
+[10109.862135]  ret_from_fork+0x3bd/0x470
+[10109.862138]  ? __pfx_kthread+0x10/0x10
+[10109.862140]  ret_from_fork_asm+0x1a/0x30
+[10109.862146]  </TASK>
+
+Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Assisted-by: Claude:claude-opus-4-8
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+---
+ drivers/gpu/drm/drm_pagemap.c | 124 ++++++++++++++++++++++++++++++++--
+ include/drm/drm_pagemap.h     |   8 ++-
+ 2 files changed, 127 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index 892b325fa99b..c1112d492d64 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -1102,12 +1102,119 @@ void drm_pagemap_put(struct drm_pagemap *dpagemap)
+ }
+ EXPORT_SYMBOL(drm_pagemap_put);
+ 
++/**
++ * drm_pagemap_page_get_flags() - Read the drm_pagemap flags of a device folio
++ * @page: Pointer to a page of the device folio
++ *
++ * Return: The DRM_PAGEMAP_ZDD_FLAG_* bits encoded in zone_device_data.
++ */
++static unsigned long drm_pagemap_page_get_flags(struct page *page)
++{
++	struct folio *folio = page_folio(page);
++
++	return (unsigned long)folio_zone_device_data(folio) &
++		DRM_PAGEMAP_ZDD_FLAG_MASK;
++}
++
++/**
++ * drm_pagemap_page_set_flags() - Set the drm_pagemap flags of a device folio
++ * @page: Pointer to a page of the device folio
++ * @flags: DRM_PAGEMAP_ZDD_FLAG_* bits to set
++ *
++ * Preserve any flags already encoded alongside the ZDD pointer.
++ */
++static void drm_pagemap_page_set_flags(struct page *page,
++				       unsigned long flags)
++{
++	struct folio *folio = page_folio(page);
++	struct drm_pagemap_zdd *zdd;
++
++	if (WARN_ON_ONCE(flags & ~DRM_PAGEMAP_ZDD_FLAG_MASK))
++		return;
++
++	zdd = drm_pagemap_page_zone_device_data(page);
++	flags |= drm_pagemap_page_get_flags(page);
++	folio_set_zone_device_data(folio,
++				   (void *)((unsigned long)zdd | flags));
++}
++
++/**
++ * drm_pagemap_retire_migrated_pages() - Record migrated device folios
++ * @src_pfns: source array after migrate_vma_pages() or migrate_device_pages()
++ * @npages: number of entries in @src_pfns
++ *
++ * Flag device folios that were successfully migrated to RAM before finalize
++ * unlocks the sources. The migrated state is stored in the physical folio, so
++ * it survives later folio splits and a subsequent raw-PFN eviction can skip it.
++ */
++static void drm_pagemap_retire_migrated_pages(unsigned long *src_pfns,
++					      unsigned long npages)
++{
++	unsigned long i = 0;
++
++	while (i < npages) {
++		struct page *page = migrate_pfn_to_page(src_pfns[i]);
++		unsigned long nr = 1;
++
++		if (!page) {
++			i++;
++			continue;
++		}
++
++		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
++			nr = folio_nr_pages(page_folio(page));
++
++		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
++		    is_device_private_page(page))
++			drm_pagemap_page_set_flags(page,
++						   DRM_PAGEMAP_ZDD_FLAG_MIGRATED);
++
++		i += nr;
++	}
++}
++
++/**
++ * drm_pagemap_skip_retired_pages() - Drop retired PFNs from a raw-PFN eviction
++ * @src_pfns: source array after migrate_device_pfns() (MIGRATE_PFN encoded)
++ * @npages: number of entries in @src_pfns
++ *
++ * Skip source folios already migrated to RAM, identified by the migrated flag
++ * stored in the physical folio's zone_device_data.
++ */
++static void drm_pagemap_skip_retired_pages(unsigned long *src_pfns,
++					   unsigned long npages)
++{
++	unsigned long i = 0;
++
++	while (i < npages) {
++		struct page *page = migrate_pfn_to_page(src_pfns[i]);
++		unsigned long nr = 1;
++
++		if (!page) {
++			i++;
++			continue;
++		}
++
++		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
++			nr = folio_nr_pages(page_folio(page));
++
++		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
++		    is_device_private_page(page) &&
++		    (drm_pagemap_page_get_flags(page) &
++		     DRM_PAGEMAP_ZDD_FLAG_MIGRATED))
++			src_pfns[i] &= ~MIGRATE_PFN_MIGRATE;
++
++		i += nr;
++	}
++}
++
+ /**
+  * drm_pagemap_evict_to_ram() - Evict GPU SVM range to RAM
+  * @devmem_allocation: Pointer to the device memory allocation
+  *
+- * Similar to __drm_pagemap_migrate_to_ram but does not require mmap lock and
+- * migration done via migrate_device_* functions.
++ * Similar to __drm_pagemap_migrate_to_ram(), but uses the
++ * migrate_device_* helpers and does not require the mmap lock. Device
++ * PFNs already migrated to RAM by either migration path are skipped.
+  *
+  * Return: 0 on success, negative error code on failure.
+  */
+@@ -1148,6 +1255,8 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
+ 	if (err)
+ 		goto err_free;
+ 
++	drm_pagemap_skip_retired_pages(src, npages);
++
+ 	err = drm_pagemap_migrate_populate_ram_pfn(NULL, NULL, npages, &mpages,
+ 						   src, dst, 0);
+ 	if (err || !mpages)
+@@ -1178,6 +1287,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
+ 	if (err)
+ 		drm_pagemap_migration_unlock_put_pages(npages, dst);
+ 	migrate_device_pages(src, dst, npages);
++	drm_pagemap_retire_migrated_pages(src, npages);
+ 	migrate_device_finalize(src, dst, npages);
+ 	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
+ 					DMA_FROM_DEVICE, &state);
+@@ -1308,6 +1418,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
+ 	if (err)
+ 		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
+ 	migrate_vma_pages(&migrate);
++	drm_pagemap_retire_migrated_pages(migrate.src, npages);
+ 	migrate_vma_finalize(&migrate);
+ 	if (dev)
+ 		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr, migrate.dst,
+@@ -1360,13 +1471,18 @@ static vm_fault_t drm_pagemap_migrate_to_ram(struct vm_fault *vmf)
+ static void drm_pagemap_folio_split(struct folio *orig_folio, struct folio *new_folio)
+ {
+ 	struct drm_pagemap_zdd *zdd;
++	struct page *page;
++	unsigned long flags;
+ 
+ 	if (!new_folio)
+ 		return;
+ 
+ 	new_folio->pgmap = orig_folio->pgmap;
+-	zdd = folio_zone_device_data(orig_folio);
+-	folio_set_zone_device_data(new_folio, drm_pagemap_zdd_get(zdd));
++	page = folio_page(orig_folio, 0);
++	zdd = drm_pagemap_page_zone_device_data(page);
++	flags = drm_pagemap_page_get_flags(page);
++	folio_set_zone_device_data(new_folio,
++				   (void *)((unsigned long)drm_pagemap_zdd_get(zdd) | flags));
+ }
+ 
+ static const struct dev_pagemap_ops drm_pagemap_pagemap_ops = {
+diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+index 95eb4b66b057..ebbd3b0ddf36 100644
+--- a/include/drm/drm_pagemap.h
++++ b/include/drm/drm_pagemap.h
+@@ -2,6 +2,7 @@
+ #ifndef _DRM_PAGEMAP_H_
+ #define _DRM_PAGEMAP_H_
+ 
++#include <linux/bits.h>
+ #include <linux/dma-direction.h>
+ #include <linux/hmm.h>
+ #include <linux/memremap.h>
+@@ -339,6 +340,9 @@ struct drm_pagemap_migrate_details {
+ 
+ #if IS_ENABLED(CONFIG_ZONE_DEVICE)
+ 
++#define DRM_PAGEMAP_ZDD_FLAG_MIGRATED	BIT(0)
++#define DRM_PAGEMAP_ZDD_FLAG_MASK	DRM_PAGEMAP_ZDD_FLAG_MIGRATED
++
+ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
+ 				  struct mm_struct *mm,
+ 				  unsigned long start, unsigned long end,
+@@ -373,7 +377,9 @@ static inline struct drm_pagemap_zdd *drm_pagemap_page_zone_device_data(struct p
+ {
+ 	struct folio *folio = page_folio(page);
+ 
+-	return folio_zone_device_data(folio);
++	return (struct drm_pagemap_zdd *)
++		((unsigned long)folio_zone_device_data(folio) &
++		 ~DRM_PAGEMAP_ZDD_FLAG_MASK);
+ }
+ 
+ #else
+-- 
+2.43.0
+
