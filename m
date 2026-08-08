@@ -4,74 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A46F0C5AC67
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 13:17:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D074BC5AC67
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 16:23:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6E710E4BA;
-	Sat,  8 Aug 2026 13:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8D2510E060;
+	Sat,  8 Aug 2026 16:23:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bKwHgXhF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ro3/+Rm/";
 	dkim-atps=neutral
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
- [209.85.167.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF53110E4E4
- for <intel-xe@lists.freedesktop.org>; Sat,  8 Aug 2026 13:17:52 +0000 (UTC)
-Received: by mail-lf1-f44.google.com with SMTP id
- 2adb3069b0e04-5b14d1f9315so320102e87.2
- for <intel-xe@lists.freedesktop.org>; Sat, 08 Aug 2026 06:17:52 -0700 (PDT)
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC6B10E03C
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Aug 2026 14:49:27 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-2cc61541f8cso33551055ad.0
+ for <intel-xe@lists.freedesktop.org>; Sat, 08 Aug 2026 07:49:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1786195071; x=1786799871; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:mime-version:message-id:date
- :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=4181ND2NJKpOA2iMOnWqdVFW1veQb7Y9g4ph6yKkU/4=;
- b=bKwHgXhFxt91W1Y0AE5shO+Pn1M7wUNzkJ0NrgoCuDAHYtycV5isViau1WjwuaRlsb
- OrFKbTEjK9IwgNckegrLOOYJx7e6dKloo+6cqnH9gniFNmMPde64+fZp/9xGoLl+plg6
- aOThOtgLn/ZNWMlJuwrahN4h5AwDQz4ZVi7ITGU3mM2NheUe3G7c9bOEx7YudW0sut1t
- lRboCraq+wnAZPS5l/tKiQMeDlfIRmnuGhFWMhxEuLmMxkwM2aV+H38V9Z3YSG5J2LSk
- nDoY4eD6toDr/ZjgHMFlrwiYl6/U0eOyaLdnAjDmwNJfV19w1hE3qh3556m8EMvh0oF/
- qNqw==
+ d=gmail.com; s=20251104; t=1786200567; x=1786805367; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=oj+LpxJwmFVdLd+RvTFySlTh8hVfSNWlJ1ThruNqG6Q=;
+ b=ro3/+Rm/rq3gZyYvYLmbCpGs5HSqry3+MjeLxDsevMsPfQNfls9aHQXR6MhlV0r2Es
+ lM5pVge4K2KvhEX8p7sj+QSKn2Ky6TxJ4KfGOdIM9bNOsSWYpZ0+ARkHUXvzHeVwFTuU
+ Uc6Bc4YpBFkynjYPt1ufCgxtwoFW3u1tAX5/dBQXWRWdHcU8VjpdruieanFfWHRodnoA
+ vvgHgyiiyfLzXCMtjCEVshcsgUFJL+d1l3nLUGJ0maPFsDXZJXMWmNd/RAXG7ailmacX
+ ztw1aEwE6X8HZ7F+2RnwzqEk2dlhhFDm2PT8aYyE9gNXcV7Yxu2dW7ND9AE9QlpS/QpD
+ yCaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1786195071; x=1786799871;
- h=content-transfer-encoding:content-type:mime-version:message-id:date
- :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=4181ND2NJKpOA2iMOnWqdVFW1veQb7Y9g4ph6yKkU/4=;
- b=oVZv/xvfsQyLcmrL6broWUqxU9sl1sqoRirRyd6jJFKbMHXBUsfOEorjl0neOGzAZV
- CRaAYWkPECVQ4n407Sop+6V83uLZGdfHxeemInysZuu3lv9bMN70zPEdN/wF9hzONJAd
- PjUTBRY1Db07FvadikJ90edm/dWICM9uPcLHszXaL3HIhjaui2yAxtCXLBwXe/ySvhvN
- ARGcws5I/4tbYTC5EVmGTiBCY78Wcpi3I7UL2Tzd4X5JGnB3gppkE79oOo55+zD1SRtD
- VypRnVyD/Y0z37zbuxaQMwnQIaMSJAO72JwUF/LymzqMLUYuXv1iJeShSpNf56I0Qvlf
- trWw==
-X-Gm-Message-State: AOJu0YzNuFjNm/87ZZA4LIWA8mAPrmZ96P7wshW3Ow3p3bSWv7pv/Dim
- dxJtzjEISaRv/iRaUtUpkf3e4k3uNZOVAqOJJKd/t8/oUOFYqcEcUkLPPoAi6TqStYI=
-X-Gm-Gg: AR+sD11UVqc912ZeisY9cGJAJZl9aTUqbLhQ4kClu9XxNtJKt09CXCh356NfQvWKmER
- +A+yKLoH+tVajXjVGRpbJ+L8eICfmkavKI9KMIXz3WBGU2KI9fFMbsF/ZWD1uvXfbOdOA91KiHb
- MrCXkuTWlNHB5MMAUyoSketug2B3yDYwohZHIIypySs9wgNtgIDWHmMgmydgygSw4S6dMhOre3V
- V6BdKNgq0zNAz+v4oMj7/448gVLrdij/+8PmhmRGENyKKS+i42HNd3QJPg/4/tYOLNQFIIneuyf
- OCWzORniaQdAv/tHkA2pjk9AuCTSq27bRpdKqmA6qZ6eFOmsRvz8tUa8xv750330g8VEVuDnPq3
- 9dseM/HvT/vliD1YVelKnzZyfpLdgyf8/uvweGh+5N7pChz9EFuSARE5AK0eoiPK/utVF9A9SU3
- nOAxsWo3zMbuf7wb5xvI+uWQXoTjR4Voet9o7T6OPb5DCHM+/GKYOsE0or170ADDCHdQVYNU1Jc
- jnNwfAS/Z2RKuuFa8K51kHWzQ==
-X-Received: by 2002:a05:6512:2520:b0:5b2:d160:f9d7 with SMTP id
- 2adb3069b0e04-5b2f4cc12admr4271530e87.33.1786195070726; 
- Sat, 08 Aug 2026 06:17:50 -0700 (PDT)
-Received: from NUC.lan (danayer.ru. [78.109.43.71])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5b3050d011asm947987e87.32.2026.08.08.06.17.48
+ d=1e100.net; s=20251104; t=1786200567; x=1786805367;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=oj+LpxJwmFVdLd+RvTFySlTh8hVfSNWlJ1ThruNqG6Q=;
+ b=dmpKsHLzYk1DAc+9bGLGKPXCrH385WNhwZz96FGtNTyBBvLLay88+/sPzMUxkEX+DM
+ 9x7VpJC5K2jyEhB/ZBFx7JBw6crw5HJumN7WyykBa5LUh3EAoMp2bUyT9cn7e56hbjnT
+ Z2yPNcOXLxvVcAR1YLlpgg+AudDR1LE/eGsTFd7hQyUaTTKeY/HGNyFWrY7rfPwNMNj4
+ gqJ1zLkerw3vfHxE7iusc4P06hTFFYm0wQawWbUe+n9kgjQwblSiPZN7oMVBD+JNxdWF
+ YwaibiS7F7gB8Lu59F4Bdx1kaiNfAuKy2bdh4C6rOy9dyS8Dr5ejOF43VNtjrmEwgEWr
+ rvAQ==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RrIRchE69r+WLeMlBuaGJGC97nmPi2OzEHojv7AihN/Qk04U+eS2qqAj3QzKC+CBtNHST0hOda6ug==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx62rTFrXVVCWifcMif9EEdkKpDcgzQRPgLXGwj5OVicsgXpKRb
+ PWDsr9QaJ/ZupFR+2y+utMV//QXGP+KtQMW69A3PDsamIJLUz/kDfCMS
+X-Gm-Gg: AR+sD13eQxbDVJJWRhLfguFEutHKWOvDvt98UdykkaPIzzsU4Z8YP/DFI1RrzApJe0o
+ 66B1jmyh6+uNCrUQpfN3z+TXbzW+pjSDhckhrBla0k/hy3EThp0LCFSKOSpkE3M+xnCTmnE9FHl
+ IgnYM/DddqTPXu4nCuR5us059q7SRWsqCquTFIMu434ZnJVSoD+v6wNHKg8lZb/BpKOMv0Dg3od
+ Q69xRKo8rCLpC5ckKNeCx6KwSM+nUqHEk2kurFVGsVx0CTi/dae7XEs8Z8VMiLdNhVT7KYfgp6N
+ t/ClFvHogrLp0t7hZUTt1fHVbrXD5mSjOtVJ+q/eyKtiHCsTEfYml1QHuqTFjX5cH4Ui6cTCfQC
+ zjfbzIoh+/6K3SWtiDMq8tIi8/ORG+uLnTLBQnvEfe62AsYUP20xQ0EERIQETkOFydnXxBpcC0K
+ JXLNijiqCe001iC/q2yYCB6fpTJ2y/OWYNdupHVZp4adNQK6SEqw==
+X-Received: by 2002:a17:90a:ec86:b0:390:b3c5:e2c9 with SMTP id
+ 98e67ed59e1d1-392846fd57fmr2663920a91.17.1786200566741; 
+ Sat, 08 Aug 2026 07:49:26 -0700 (PDT)
+Received: from lgs.. ([36.255.223.70]) by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-3925fd95270sm6365730a91.5.2026.08.08.07.49.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Aug 2026 06:17:50 -0700 (PDT)
-From: Daniil Seliverstov Denisovich <daniil.seliverstov2003@gmail.com>
-X-Google-Original-From: Daniil Seliverstov Denisovich
- <Danayerofficial@yandex.ru>
-To: i915-ci-infra@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: =?UTF-8?q?Please=20add=20my=20email=20to=20Intel=20GFX=20CI=20allowlist=20=E2=80=94=20Patchwork=20series=20171463?=
-Date: Sat,  8 Aug 2026 21:17:02 +0800
-Message-ID: <20260808131721.42273-1-Danayerofficial@yandex.ru>
-X-Mailer: git-send-email 2.55.0
+ Sat, 08 Aug 2026 07:49:26 -0700 (PDT)
+From: Guangshuo Li <lgs201920130244@gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Guangshuo Li <lgs201920130244@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] drm/xe: fix autosuspend cleanup during teardown
+Date: Sat,  8 Aug 2026 22:49:07 +0800
+Message-ID: <20260808144907.2918746-1-lgs201920130244@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 08 Aug 2026 16:23:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,29 +89,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+xe_pm_runtime_init() calls pm_runtime_use_autosuspend(), but
+xe_pm_runtime_fini() does not call the matching
+pm_runtime_dont_use_autosuspend() during teardown.
 
-Could you please add my email address to the Intel GFX CI allowlist?
+If the autosuspend delay is set to a negative value while autosuspend
+is enabled, the runtime PM core increments usage_count to prevent
+runtime suspend. Without calling pm_runtime_dont_use_autosuspend()
+during teardown, this reference is not dropped.
 
-Email:
-daniil.seliverstov2003@gmail.com
+The documentation for pm_runtime_use_autosuspend() also notes that it
+is important to undo it with pm_runtime_dont_use_autosuspend() at
+driver exit time, unless runtime PM was initially enabled with
+devm_pm_runtime_enable().
 
-My Patchwork series is:
+Add the missing pm_runtime_dont_use_autosuspend() call to the runtime
+PM teardown path.
 
-171463 — [v4] drm/xe: add DG2 HuC GSC support and MEI integration
+This issue was found by manual code inspection.
 
-Patchwork reports:
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: stable@vger.kernel.org
+Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+---
+ drivers/gpu/drm/xe/xe_pm.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-LGCI.VerificationFailed
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 99562f691080..301789adaa21 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -518,6 +518,7 @@ static void xe_pm_runtime_fini(struct xe_device *xe)
+ 	if (IS_SRIOV_VF(xe))
+ 		return;
+ 
++	pm_runtime_dont_use_autosuspend(dev);
+ 	pm_runtime_get_sync(dev);
+ 	pm_runtime_forbid(dev);
+ }
+-- 
+2.43.0
 
-Series author address 'daniil.seliverstov2003@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
-
-CI job:
-xe_pw_trigger/1236617
-
-The series has been waiting since August 3, and the CI tests have not actually run because validation stops at the allowlist check.
-
-Could you please add the address to the allowlist and, if possible, trigger a retest for series 171463?
-
-Thanks!
-Daniil
