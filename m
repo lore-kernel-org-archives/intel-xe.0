@@ -4,150 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81E80C5AD2B
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Aug 2026 23:07:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAEE2C5AD05
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 00:20:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3283A10E3E1;
-	Fri,  7 Aug 2026 23:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2095B10E483;
+	Sat,  8 Aug 2026 00:20:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O/fthJEO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YoY3rNr9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F276310E3E1;
- Fri,  7 Aug 2026 23:07:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786144061; x=1817680061;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=2EpfaSNgVB3UHNToJ75MF9XN/jT9ZXgvfC/b9VpeGt0=;
- b=O/fthJEO/ZtmsH0LwFUDc1Qq6y+hEStwFK3yNsAhSgC9T4gkrL+OApAj
- J86gxI1jU2hE++9mCy5OpUMsYLI1Z2Y2NQaR9eZjQaycG1Fcj/ZDUYuFH
- +kKy6wKLnLnfoFhhi7OcdfhxuR2DnM2yjgAg32KYNDd3nrhDHU1LLc0HL
- Qa8ybrTYIwLMifrNj84Tbnb3TyQsLWby9HpI41fAAothu0hBRFWobDAMu
- StDb8QbDkOVbqAAMZm/f6Gsi1/YKAAhM2qUB/FNaUOkY5Maz/LAPsFPMJ
- jS0RFIPvbmrZM7DYRZIZUa3gka0Gy72Uiiu3A6hxHcZBttixn3/djVBCE w==;
-X-CSE-ConnectionGUID: mlDUEwxfSriPPx4+9zv4zg==
-X-CSE-MsgGUID: Sl85Jz7zTFaHb/QdSWv/WA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11868"; a="74297130"
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="74297130"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 16:07:40 -0700
-X-CSE-ConnectionGUID: Uo56y95RQjGn/PmJr+/H2A==
-X-CSE-MsgGUID: zWiqsK85RxGYflsa3EWSAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,210,1779174000"; d="scan'208";a="263140228"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2026 16:07:40 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Fri, 7 Aug 2026 16:07:39 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Fri, 7 Aug 2026 16:07:39 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.43) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Fri, 7 Aug 2026 16:07:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vWPaSUEeJ3PJszdz5mfi3VUI8DLNnUxFJ4bl11s1q+VocUDfhdczm0Pj3yma3slF3uQJHZa2FxIXlH+NfSnJ+kXd3JKtCKRMbbh4XOjaMQEA1pPVq88S349WgEDMQjAuUNTPd0zk+IpX0dZGGkK/hK14y57k0RFZ9Mm7GeshG2FhFCFr08y5/L6YUYHkYMsNMOU54A3zkMFBrkdVag+FqjYkMe68Rvk6Jl28CYtw7cC5wdxGcduz+AqZCg7F5D9LVrWiROh0xD2/S0y1QKGyysCdsbYhvaJZulCrk3GmYlOJXLMSNef4eIJJTPSDzq+Jl3kA5RBJDHF430JwkCbH5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TQX0+mkTg1aAElBC1n3/tmihX9zkug7TTXK6fhoKNyw=;
- b=oDl9N286pXIP03rCHJyv5W56dYV1P+/3qAYyXgNP+D9VqiOQS1/DzRZaBsDyAMzUepgrXlrOGV2d7Pke0nHN+OA4dKbOcQs5d8fxKp3pGGsvZQCkTQbrUYH9Cb9nqyJe/87RdT2cjMgZvI4721OWuek7lovcNUDns+uyO/BleGsjcb9C9ntysahFtF9QIpBy6fdAa3cQOikHqJyAMKy/IZ9Bq8rmZshRF8M0zludId8I4WdSxD0gF29P9kEaaAISOTLRJzDIGDLHJVxyU4r9Uc4Z8vmMBg3ni/41dm+lxem5g8Z4uniEEE8dKfdV3Cyo2KbwToZf3xnDZ0aCMZ7kqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CH3PR11MB8659.namprd11.prod.outlook.com (2603:10b6:610:1cf::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.21; Fri, 7 Aug
- 2026 23:07:29 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0292.022; Fri, 7 Aug 2026
- 23:07:26 +0000
-Date: Fri, 7 Aug 2026 16:07:24 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Arvind Yadav <arvind.yadav@intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <thomas.hellstrom@linux.intel.com>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v4] drm/pagemap: Prevent double migration of device pages
-Message-ID: <anZlLADT45F75WKQ@gsse-cloud1.jf.intel.com>
-References: <20260807081244.2229191-1-arvind.yadav@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260807081244.2229191-1-arvind.yadav@intel.com>
-X-ClientProxiedBy: BY3PR10CA0020.namprd10.prod.outlook.com
- (2603:10b6:a03:255::25) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
+ [209.85.128.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46B7810E487
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Aug 2026 00:20:16 +0000 (UTC)
+Received: by mail-yw1-f170.google.com with SMTP id
+ 00721157ae682-80dc4a68e4aso962807b3.0
+ for <intel-xe@lists.freedesktop.org>; Fri, 07 Aug 2026 17:20:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1786148415; cv=none;
+ d=google.com; s=arc-20260327;
+ b=lPtSks4yDQSCJgTK/+uHSoFmWxu0II6WoVr4h4r4fwOrvjCG9I5pb864APdKLaxAnf
+ VnBfmPopOdWCOM77hU8RYyvsz7x+MymnHhueU/U5+l2o1kXx+R2FCnXV2vjoaTwyiovz
+ hYgBlSpUdD3Np+ocPaf0dUoLRvmBJz40dFGzfizKPFuys/GxhhyZYqrJ1axUS7X7WAGz
+ KMEuATIuudoIXP3flHLFi1bzA01nAOhYf+sTkqVobjwDtQHL+xbQn4K4EvQMfockc5xC
+ 6YBS0rVEv9CU//HrUNZqFn6HRcwJt0Z1QgCe/Dmvi4YneEBBq53pfYBXTB+T6WET/pc/
+ rNMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=2u5jjR5iXR3lur7Zog6dJ9FPCRfJz+Qyevx2Sqi6KCo=;
+ fh=djJ7QzJWSC/fttHD5xA+LMkUieM6jCYYAXq5D4B1gB0=;
+ b=ChmFMeWhyVdPyT/idxSPW2SFVL5QSryhiXMiZlK5IYtorXnIEVxZBmVERmuDhZ5V+g
+ rMs0au/4YmUCgFQG0i80/LBRgBxedi8Fz7dBIN4sT/L8XBCFBpwOlNpV/x4yTEMIpnnm
+ Q83tuQZ1nP0ecUPVwX8rJipGSzoitzK8TdrKH3Zhnl2aHxTACDVozqzJwX6h1AcSateZ
+ HwRD8dWQXOWcHMk4U2wqkoGTqPHYCPMZcli/x3B1+PnTCiK+DbgnTw1k6uRizv0Kr0Sp
+ hkRVNEFjofFTyXrD7DqzMcfuBVVhYg0xQx+tyggHKe2/bT1HHJzPJMSdokWNFny4zU8o
+ N4bQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1786148415; x=1786753215; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=2u5jjR5iXR3lur7Zog6dJ9FPCRfJz+Qyevx2Sqi6KCo=;
+ b=YoY3rNr9SiDSEUXPUYrtW05zVgV3x2IcNu80FtskZ4ak0yy/b5kNL6162tLNl//YN8
+ UjcVH+aPHPzHXGy0nVl7fUyPLJOt8D0rv2oy/9cKD9TzyKe7vkBYiwpmhXRn0CymB3mi
+ KPI5sJTthpXa2kg2RDBSFXh6O6bFbt7JyEs9i8LVC9wC8wbnIukRoCtWX0e2dOOKD1qu
+ Csg6135wmt2JfGzv2k5j5CACBPmhGyMpS5xLSr9f1ba7bV81iaHbp7QGEA4/6Xnevpqq
+ eC/usIFTdm7g3EasSfjqc7iM6yJJI8OOvu7Fe9DsPYwcQvm9c5Z1STjJ0UiQOLvPNT/V
+ ueIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1786148415; x=1786753215;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=2u5jjR5iXR3lur7Zog6dJ9FPCRfJz+Qyevx2Sqi6KCo=;
+ b=Tq3TY96w43J/xBg4zilW92OD/syWduGMUCt6peSBHRLihllQ+J6RFO6h2oEY9wPKSg
+ 9K2HFitnGdrmKx7XJcKk+kltDJmfljsbGLHAADY2maL6+tuss2uB22/8AEXbysk3A1q8
+ 7u2HQQ9uSkXiOpBpjStnElwJFOJsCsO+kpasKeo8v7gDExDMZE+n5G9f6B7JFPzEtkBF
+ W6TaedA0ZGAoit1sacJkijOZMlEXucwPgRlj6AU2maLJMC47Ku65YHvwObBjEpFhg0w6
+ W7OwgvB8Bse4oBBrB7sIpHykU0puI7M4yEE0yx3dFfbkIv2Hlt17HIzs5W/RCfk9diig
+ HmAw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rrg3bYGALsfhrs6SUKPVxHxWejGo43prD33WX7RKIu+/ByB/eKd3kwvcUJcCBRxHLZVx/HMeTpdNw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxzozn20GJPz/U14qws9L5zTiutr/1AbmLze4ldR5+LP5Gm0wWb
+ YLNvnmHzsp2QeuJUB5/xY4ypk6vlEEIEt4SHSelObtLOKebUY+sT/rZWuJoRx0cmphuTI7MfXDJ
+ LdK6lTTdEUJl28wQg3VsT6PBxrXyLMJU=
+X-Gm-Gg: AR+sD11aH2QBZFj4qSydMokYqGBLMD1TqQ3AprrltdYIK58cpK0oyrp/Ov72PmRavmh
+ VvANS01v1RiUqG3tKmK1F891+wSADGT4+//aZCTNLgQJT68FFVXSWUnH2Sg+WHA1C3rqdzHQO2Z
+ NXv/yq66xLxsa1T6hkNFjOzK88hIcRBaNstMiarnx82YX1fQjYm+PqxUMQ2tW/VF41wU9CLdA7U
+ AdMReADFs9Idlxfnc+oAv0n2edGZXuxy2GxZMQjelyEgaqFM9uR+FTOH3TRcMDSw4admi6gT5S6
+ HE8OHejUUuubU5V3FR32gikbmWiifgrxMxyXGx8aGEdfPucQe7HrlmFL0OvcrQSrWQSGIJ8OL/0
+ qRqnVJwbMrjSu23U+SEIWLrHCXAB6ubc=
+X-Received: by 2002:a05:690c:7243:b0:81e:eebb:8e4a with SMTP id
+ 00721157ae682-820222bbe28mr156048637b3.12.1786148414792; Fri, 07 Aug 2026
+ 17:20:14 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH3PR11MB8659:EE_
-X-MS-Office365-Filtering-Correlation-Id: b26fdb9e-69e6-46e3-1c24-08def4d8a5c9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|18002099003|22082099003|11063799006|5023799004|3023799007|56012099006|6133799003|10067099003;
-X-Microsoft-Antispam-Message-Info: P6yOwJM1xu5PFoKdd4ud5aNs6kx2HvpQ7dPtHV2bUgZ6bhYGZyL/ILJZeoyGiZdm0PHG8H9Sb4RIBtBEEV6tlxr/ZwBz0FZW2V4X6V4/KQRCyjm/w4Ocwd1JmHR1CsP9nnc+edFxQ1xTU+gK+JbuInrkgakVc+Cq0QW8YAOqemQnUSImiXGjX1he+VsTXZZt1M3MFV30wccpmDGTCrvjUOXUvFgZeRc2kh4LVxLuAOCLReCQqbluYHP+9O4Y/4Y9xcZR7zd32Yrgns2B53ibGHG5NdPYiROpo2UQd+K3Ry4OWeQbw3BcS/p1/ep++rbUyarf+YoWpJIy789OZoMn9zzse813c0A+Rbo1zcGnr3a961in07Fwj9rp5A73jn+7rNWABlIZ/Gnk/yFh22CeFPCs/bv9oCuOMaA7n+48O6lMoR5cF4+Q56fkxhSUV1ufwyTkb/3DkYIl8JoKi8t5b6hJMdQ6GYcJ3v83pFE5GNuFt4kM9R/EPe6lROKD9YEH6ew8Euz9qAuAg5It8bk/NqV2u897U+StHHxot9B1unPX0eokWoN6K+jcicbA9sn+twTnqzBKVWkJrlEZocrq/+0cm1ktdm4Jla36IQNeJbW/m1oTU267EsVohoYtnd2fwFuwv7sokpwZo0heiqPw+VYNNztvyVs9Ae5sXcO2e90=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(18002099003)(22082099003)(11063799006)(5023799004)(3023799007)(56012099006)(6133799003)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?H2911nNGcAqJOaPA6fYA12BtlMUW0PhsqRMzq1e1BE3eDiNQaXHi20qC1O?=
- =?iso-8859-1?Q?7Fzi5xAbENP2c+VP6/GJ+36cfNALBnG4/9EXhH7CbTG8PfUmA4NETTfSPX?=
- =?iso-8859-1?Q?DHDEUbWEI/e3IfYSgo3oUCK3X4T2M0vAct1LcF9LIeve9xd5OXKe2vqZqE?=
- =?iso-8859-1?Q?xb3qHjvfEc9/Cr+KO68uNxHwHxHSsXyi6JRMhYg1HFpBfGJOxknuy/sprN?=
- =?iso-8859-1?Q?WPbq0UbuBr5jCNNFNiCg2uK/irAnvew824hxRW4Id4aqBBbQOyg1daHVcV?=
- =?iso-8859-1?Q?yZbeYXAIV4h+YYM3yvxr5K7T/1fpi2grd6l7L7Q8KuXZvzl10cv5EEY7AE?=
- =?iso-8859-1?Q?j53mb1duC5yBl7SRnfnsVMcuiLxLCDd/qJdi9E+5row6vw8Jl+E66NIgG8?=
- =?iso-8859-1?Q?rQm2maQOeo+16aZsBBprKmTNtfS/7ItrBfC4KWdwaOYt8UATpy2rBRAxYa?=
- =?iso-8859-1?Q?fKZ0otDUK4SVplvU0wClf9ViR3DbE9vBoQUoyXrHZXMC8hjCuGfeAJYGID?=
- =?iso-8859-1?Q?EHWnsljsB6aWrjBjtyw4Msm1nMT0un4AQKmlWyQdldQV7x7iBHi4KFOtRJ?=
- =?iso-8859-1?Q?Bj74knxqwD/XEI/ZRPrv0brBbIVdq6yF4SM7IUSM6wEGeMy+UoRyyxLZRs?=
- =?iso-8859-1?Q?oETrEQ2syLf9QPLfSigXndcNQ1I1xBpOVtbagCwbn8KBy0aOS3psAievQB?=
- =?iso-8859-1?Q?lNzgJnkBGvA2jaYCno7Nf86ituCKDTh57GpnhXIuiXBzhU95OgPzuEc5rE?=
- =?iso-8859-1?Q?U/TxszzA6EjWeU1rkE/QYFPtO1520CotivR2Bnm4twbD0VYYKWGSeRrX6X?=
- =?iso-8859-1?Q?6nWmaz8DHCU3e1K0PtYtuTfo5v7goj3CJi3WNo8nRd/TPWM4m9xB1Tf2rq?=
- =?iso-8859-1?Q?pniFuffj5vNwalBqyVrcMy0nWE85gPUVwlULqEa1rxvTWuXRzZHIkZvd2I?=
- =?iso-8859-1?Q?nhPoyGFYF5a9uHfuSAQAB59izO3CVBRNRf571vGMVm98vniWWCA3I6ffdK?=
- =?iso-8859-1?Q?ol2Je1AlaIXBmV/aZtlqQToijBv0bvjJeFKyZGTRz+UMKTDZd0vTmO5RpF?=
- =?iso-8859-1?Q?0+LTq6t+fatOhjLBqKQ1a4OSs3gFvmehYsQ9FPl0tZ0l1Wzs6ofgF+E6ZZ?=
- =?iso-8859-1?Q?Cw5sN5bHWUPtu1HnTm3Ee5QFWvIGno1gW9q8x1+9LNwoWixEhclkQjc1SK?=
- =?iso-8859-1?Q?NEcQvnUJdxnZrOQOSsATt0xGfDjDFCjeCpyOUKExO4eIE33opVzBhi+tgC?=
- =?iso-8859-1?Q?X+i9eQ5dFgsQLHpqHHvNpehY3mQC50i8j/G6cAu6w1rnx2M3UU9bdtnPJx?=
- =?iso-8859-1?Q?ZxP7Nx5bA3QDtSb5I1YSasPgXWHmf7MsU4vo8SvAF2b1yT3zODgNu+DShm?=
- =?iso-8859-1?Q?szbfSSTUMy9P1QR4pqsW7Ay5ogUEiRtk1pZDrHDVtL0un0X9rTUahMuykF?=
- =?iso-8859-1?Q?qYwrTQkstdeF33vhBfSRL345gw11usZZ9P/SlhfoQmrsSEsCwbQA0IrpGS?=
- =?iso-8859-1?Q?avCwaN0fn+o5Q4ZDmuQDwrvRovmU5k51BbNsVS1zfvt6SZxH9Xk86kHDon?=
- =?iso-8859-1?Q?FsQe/0UspObRXJkmDmOJiyQgKzq0cF3Ql2G+D+uuwmEKv+figCpixjt0KZ?=
- =?iso-8859-1?Q?3j4rj8XAKYtwrazl6tEMiLkqg908keODTkiIimxn+1/7hfdIRtg4TSyDkB?=
- =?iso-8859-1?Q?sb3vaxQcjKXVTbWWdGKzLp8FmF8oFoZjDfvBPb5JnIdpliniutvb64nn9Z?=
- =?iso-8859-1?Q?kdxXKIPDXhy2WoYvt+pZ0BX1ZlSEEVKBpxinpWUWIQneNalyd4sAME5r1g?=
- =?iso-8859-1?Q?eEgBW9THlr46yIs8b9hQLg9QTVcXwwQ=3D?=
-X-Exchange-RoutingPolicyChecked: cndZv3bCZ5ozJhGE4syjAg2OCy1qoVG+UXu/HrKA2ZtktVQ/B0eKiHbWL3DpjPVRfzearysdaYAjG7QCt0DSXiT9MyYvTRQfOvkoaJLQm3R9g/xKLJ8qplph3r8ZHYSQdktFHgyR2//BL8WYaRyRDceXyRQ1RTStd6D2hiVjMbo6opup/yf0SlJ82Pvh2f/chbY7YctoV1MnX3ubZxqXcMkUpcz3p3btYMP5pUvjMuY1eUSKLwJHy9l8WHMSXYoDefBJkGqN8MtYacMBCCp1Q1LkWHTpNvADytuPCO8zj+ck4TFwAIS4724qNZylBBqXo7InWTLKffnw0FtOVfcQ9g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b26fdb9e-69e6-46e3-1c24-08def4d8a5c9
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2026 23:07:26.6959 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8A8nP4U8JB9NDr2WTbQytqc/N2DM5rH+N2hi4cTrQGVSdMC78Hbce7Y3wVEzRr12HNJuXmBLGZJZF0YU5zv8RA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8659
-X-OriginatorOrg: intel.com
+References: <20260804021441.3054424-1-talesam@gmail.com>
+ <c0c50dff0f9b64a2db8e1470d75e450ba35cccde.camel@intel.com>
+ <anJZSDD+lmzbaE7b@gsse-cloud1.jf.intel.com>
+ <176e54adc75dc9b947caadbf95333df1b60c0240.camel@intel.com>
+ <cb06c8e0-0cf8-4dc2-a586-77aafc95f0c0@intel.com>
+ <CAHBRX4ErWF0e4X9DCXyycyqJUHaVcv36J=X0PRrNANqZxrzidg@mail.gmail.com>
+ <49792f00-d8e3-41c7-ab2d-1d7efe4b5aca@intel.com>
+ <CAHBRX4ELrBJcRj-8LLryKT_0Jnc-8R0ZFLc4N4fu6yDb6f=wDQ@mail.gmail.com>
+ <3ee610ea-1707-4ab7-b0cf-20852b7c971f@intel.com>
+In-Reply-To: <3ee610ea-1707-4ab7-b0cf-20852b7c971f@intel.com>
+From: =?UTF-8?B?VGFsZXMgQS4gTWVuZG9uw6dh?= <talesam@gmail.com>
+Date: Fri, 7 Aug 2026 21:20:02 -0300
+X-Gm-Features: AUfX_mzJwn3INOrm7FnRfGguCRPTKw4YPeoHm-to37KcUpHPv5YSAtm5TFlL8Ps
+Message-ID: <CAHBRX4HQpJ-zdx8LGswU7PYN7_kiTjCqWgDdiMNCMQxZEp_XCA@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/3] drm/xe: diagnostics and workaround for GuC TLB
+ invalidation ack stalls on ARL
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: "Summers, Stuart" <stuart.summers@intel.com>, "Brost,
+ Matthew" <matthew.brost@intel.com>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, 
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>, 
+ "Filipchuk, Julia" <julia.filipchuk@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,384 +120,407 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 07, 2026 at 01:42:44PM +0530, Arvind Yadav wrote:
-> A device-private folio migrated to system memory by a CPU fault can
-> remain reachable through the raw-PFN eviction path until migration
-> finalization drops the source reference.
-> 
-> If eviction selects the same device folio during this window, it can
-> attempt to migrate the folio again. The second migration can leave an
-> uncharged folio on an LRU list, causing folio_lruvec_lock_irqsave() to
-> retry indefinitely and resulting in a soft lockup and RCU stall.
-> 
-> Mark successfully migrated device folios using a low bit of their
-> zone_device_data before migration finalization. Make raw-PFN eviction
-> skip folios carrying this flag.
-> 
-> Mask the flag when retrieving the drm_pagemap_zdd pointer and preserve
-> it when a device folio is split. Keeping the state on the physical folio
-> also avoids depending on a virtual address that may change before a
-> fault occurs.
-> 
-> v2:
-> - Replace the retired-PFN XArray with an embedded bitmap.(Matthew Brost)
-> - Mark every base page covered by a migrated folio so retirement remains
->   valid if the folio is later split.
-> 
-> v3:
-> - Store the migrated state in a low bit of zone_device_data instead of
->   adding virtual-range and bitmap tracking to the ZDD. (Matthew Brost)
-> - Mask the flag when retrieving the ZDD and preserve it when splitting
->   a folio.
-> - Drop the pre-existing fixes already covered by Matthew Brost's series:
->   https://patchwork.freedesktop.org/series/171651/
-> 
-> v4:
-> - Advance by the folio size only for migration entries marked with
->   MIGRATE_PFN_COMPOUND. (Sashiko)
-> 
-> The lockup was observed as:
-> [10109.860465] watchdog: BUG: soft lockup - CPU#9 stuck for 26s! [kworker/u65:5:6557]
-> [10109.860524] Tainted: [S]=CPU_OUT_OF_SPEC, [O]=OOT_MODULE
-> [10109.860524] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
-> [10109.860525] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_work [xe]
-> [10109.860644] RIP: 0010:_raw_spin_unlock_irqrestore+0x57/0x80
-> [10109.860655] Call Trace:
-> [10109.860655]  <TASK>
-> [10109.860657]  folio_lruvec_lock_irqsave+0x216/0x220
-> [10109.860661]  ? __pfx_lru_add+0x10/0x10
-> [10109.860665]  folio_batch_move_lru+0xc8/0x450
-> [10109.860670]  ? lock_acquire+0xc4/0x2d0
-> [10109.860674]  ? __folio_batch_add_and_move+0x60/0x2e0
-> [10109.860677]  ? folio_migrate_mapping+0xa6/0x110
-> [10109.860679]  ? folio_migrate_flags+0x13b/0x1b0
-> [10109.860681]  ? __pfx_lru_add+0x10/0x10
-> [10109.860683]  __folio_batch_add_and_move+0xe7/0x2e0
-> [10109.860685]  ? dma_iova_try_alloc+0xb0/0x140
-> [10109.860689]  folio_add_lru+0x64/0x80
-> [10109.860691]  __migrate_device_finalize+0x12c/0x270
-> [10109.860695]  migrate_device_finalize+0x10/0x20
-> [10109.860698]  drm_pagemap_evict_to_ram+0x185/0x370 [drm_gpusvm_helper]
-> [10109.860704]  ? drm_pagemap_evict_to_ram+0x96/0x370 [drm_gpusvm_helper]
-> [10109.860709]  xe_svm_bo_evict+0x15/0x20 [xe]
-> [10109.860819]  ? xe_svm_bo_evict+0x15/0x20 [xe]
-> [10109.860921]  xe_bo_move+0x107e/0x1570 [xe]
-> [10109.860992]  ? xe_ttm_tt_create+0x168/0x340 [xe]
-> [10109.861059]  ? __up_read+0x98/0x2b0
-> [10109.861061]  ? lock_is_held_type+0xa3/0x130
-> [10109.861067]  ttm_bo_handle_move_mem+0xe8/0x1e0 [ttm]
-> [10109.861075]  ttm_bo_evict+0x141/0x1c0 [ttm]
-> [10109.861081]  ttm_bo_evict_cb+0x9f/0x100 [ttm]
-> [10109.861086]  ttm_lru_walk_for_evict+0x84/0x190 [ttm]
-> [10109.861091]  ? xe_ttm_vram_mgr_new+0x258/0x3a0 [xe]
-> [10109.861198]  ttm_bo_alloc_resource+0x219/0x750 [ttm]
-> [10109.861203]  ? ttm_bo_alloc_resource+0xa9/0x750 [ttm]
-> [10109.861208]  ? lock_acquire+0xc4/0x2d0
-> [10109.861214]  ttm_bo_validate+0x94/0x1c0 [ttm]
-> [10109.861218]  ? ww_mutex_trylock+0x19d/0x3d0
-> [10109.861219]  ? _raw_write_unlock+0x22/0x50
-> [10109.861223]  ttm_bo_init_reserved+0x17d/0x1f0 [ttm]
-> [10109.861228]  xe_bo_init_locked+0x20a/0x620 [xe]
-> [10109.861294]  ? __pfx_xe_ttm_bo_destroy+0x10/0x10 [xe]
-> [10109.861359]  ? mark_held_locks+0x46/0x90
-> [10109.861361]  ? __create_object+0x68/0xc0
-> [10109.861366]  __xe_bo_create_locked+0x384/0xa20 [xe]
-> [10109.861432]  ? lock_acquire+0xc4/0x2d0
-> [10109.861434]  ? xe_drm_pagemap_populate_mm+0xd3/0x340 [xe]
-> [10109.861542]  xe_bo_create_locked+0x23/0x40 [xe]
-> [10109.861609]  xe_drm_pagemap_populate_mm+0x12e/0x340 [xe]
-> [10109.861707]  ? __lock_acquire+0x43e/0x2930
-> [10109.861716]  drm_pagemap_populate_mm+0x74/0xe0 [drm_gpusvm_helper]
-> [10109.861720]  xe_svm_alloc_vram+0xb5/0x2c0 [xe]
-> [10109.861817]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
-> [10109.861819]  ? ktime_get+0x23/0x130
-> [10109.861821]  ? trace_hardirqs_on+0x22/0xe0
-> [10109.861823]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
-> [10109.861826]  __xe_svm_handle_pagefault+0x77d/0xbf0 [xe]
-> [10109.861924]  ? rwsem_down_write_slowpath+0x43a/0x9a0
-> [10109.861926]  ? _raw_spin_unlock_irq+0x27/0x70
-> [10109.861928]  ? rwsem_down_write_slowpath+0x43a/0x9a0
-> [10109.861929]  ? trace_hardirqs_on+0x22/0xe0
-> [10109.861931]  ? _raw_spin_unlock_irq+0x27/0x70
-> [10109.861933]  ? rwsem_down_write_slowpath+0x459/0x9a0
-> [10109.861937]  xe_svm_handle_pagefault+0x3d/0xb0 [xe]
-> [10109.862030]  xe_pagefault_queue_work+0x1a9/0x520 [xe]
-> [10109.862122]  process_one_work+0x239/0x730
-> [10109.862127]  worker_thread+0x200/0x3f0
-> [10109.862130]  ? __pfx_worker_thread+0x10/0x10
-> [10109.862132]  kthread+0x10d/0x150
-> [10109.862133]  ? __pfx_kthread+0x10/0x10
-> [10109.862135]  ret_from_fork+0x3bd/0x470
-> [10109.862138]  ? __pfx_kthread+0x10/0x10
-> [10109.862140]  ret_from_fork_asm+0x1a/0x30
-> [10109.862146]  </TASK>
-> 
-> Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+Results from a full day on GuC 70.72.1 under my normal workload:
 
-Mostly nits.
+  59 stall events / 20 fence timeouts in ~20.6h, worst
+  request-to-ack=3D2346ms, severe episodes still ignoring 8-9
+  consecutive H2G interrupts.
 
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Assisted-by: Claude:claude-opus-4-8
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
-> ---
->  drivers/gpu/drm/drm_pagemap.c | 124 ++++++++++++++++++++++++++++++++--
->  include/drm/drm_pagemap.h     |   8 ++-
->  2 files changed, 127 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> index 892b325fa99b..c1112d492d64 100644
-> --- a/drivers/gpu/drm/drm_pagemap.c
-> +++ b/drivers/gpu/drm/drm_pagemap.c
-> @@ -1102,12 +1102,119 @@ void drm_pagemap_put(struct drm_pagemap *dpagemap)
->  }
->  EXPORT_SYMBOL(drm_pagemap_put);
->  
-> +/**
-> + * drm_pagemap_page_get_flags() - Read the drm_pagemap flags of a device folio
-> + * @page: Pointer to a page of the device folio
-> + *
-> + * Return: The DRM_PAGEMAP_ZDD_FLAG_* bits encoded in zone_device_data.
-> + */
-> +static unsigned long drm_pagemap_page_get_flags(struct page *page)
-> +{
-> +	struct folio *folio = page_folio(page);
-> +
-> +	return (unsigned long)folio_zone_device_data(folio) &
-> +		DRM_PAGEMAP_ZDD_FLAG_MASK;
-> +}
-> +
-> +/**
-> + * drm_pagemap_page_set_flags() - Set the drm_pagemap flags of a device folio
-> + * @page: Pointer to a page of the device folio
-> + * @flags: DRM_PAGEMAP_ZDD_FLAG_* bits to set
-> + *
-> + * Preserve any flags already encoded alongside the ZDD pointer.
-> + */
-> +static void drm_pagemap_page_set_flags(struct page *page,
-> +				       unsigned long flags)
-> +{
-> +	struct folio *folio = page_folio(page);
-> +	struct drm_pagemap_zdd *zdd;
-> +
-> +	if (WARN_ON_ONCE(flags & ~DRM_PAGEMAP_ZDD_FLAG_MASK))
-> +		return;
-> +
-> +	zdd = drm_pagemap_page_zone_device_data(page);
-> +	flags |= drm_pagemap_page_get_flags(page);
-> +	folio_set_zone_device_data(folio,
-> +				   (void *)((unsigned long)zdd | flags));
+Statistically identical to 70.53.0 - the firmware version changes
+nothing, which matches your decode (GuC handling everything in time).
+I attached to the gitlab issue the full dmesg of the day plus a fresh
+devcoredump taken on 70.72.1 (same debug-sized GuC log buffers), in
+case you want to confirm the decode on the new firmware too.
 
-One could write this like:
+That leaves the GT1 cache-line theory (Wa_22016122933) as the main
+suspect. I have a kernel built with XE_BO_FLAG_NEEDS_UC added to both
+CTB allocations as you suggested (blunt version: both directions, all
+GTs - just to test causality) and I am booting it tonight, with the
+firmware reverted to stock 70.53.0 so only one variable changes.
+Results tomorrow.
 
-unsigned long old;
+If the stalls disappear, I would be happy to help turn this into a
+proper Wa_22016122933 implementation for xe, mirroring what i915 does
+(scoped to the media GT on the affected platforms) - with guidance
+from Matt/Thomas on the preferred shape.
 
-old = (unsigned long)folio_zone_device_data(folio);
-folio_set_zone_device_data(folio, (void *)(old | flags));
+Thanks,
+Tales
 
-> +}
-> +
-> +/**
-> + * drm_pagemap_retire_migrated_pages() - Record migrated device folios
-> + * @src_pfns: source array after migrate_vma_pages() or migrate_device_pages()
-> + * @npages: number of entries in @src_pfns
-> + *
-> + * Flag device folios that were successfully migrated to RAM before finalize
-> + * unlocks the sources. The migrated state is stored in the physical folio, so
-> + * it survives later folio splits and a subsequent raw-PFN eviction can skip it.
-> + */
-> +static void drm_pagemap_retire_migrated_pages(unsigned long *src_pfns,
-> +					      unsigned long npages)
-> +{
-> +	unsigned long i = 0;
-> +
-> +	while (i < npages) {
-> +		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-> +		unsigned long nr = 1;
-> +
-> +		if (!page) {
-> +			i++;
-> +			continue;
-> +		}
-> +
-> +		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
-> +			nr = folio_nr_pages(page_folio(page));
+Em qui., 6 de ago. de 2026 =C3=A0s 18:13, Daniele Ceraolo Spurio
+<daniele.ceraolospurio@intel.com> escreveu:
+>
+>
+>
+> On 8/6/2026 10:36 AM, Tales A. Mendon=C3=A7a wrote:
+> >> That would definitely help, because if the issue does not happen on i9=
+15
+> >> it likely means that we're missing a WA or something like that in Xe.
+> > Two data points on that, pulling in different directions:
+> >
+> > * My second ARL machine (7dd1) has been running i915 for 7 days now,
+> >    with the same GuC 70.53.0, and there is not a single TLB invalidatio=
+n
+> >    timeout or GuC error in its logs. Caveat: i915's TLB invalidation
+> >    timeout is longer than xe's 2.25s, so short stalls could be silent
+> >    there.
+> >
+> > * However, Matt just pointed at i915 MTL issue 14469, which looks like
+> >    the same problem on i915 - so it may not be xe-specific after all.
+> >
+> > If it helps I can also boot i915 on the primary machine (7d51), where I
+> > can compare against days of xe statistics on identical workloads.
+> >
+> >> Just a bit of a terminology update here, to make sure we're on the sam=
+e
+> >> page: we usually refer to the notification you're sending to the GuC a=
+s
+> >> an H2G interrupt and not a doorbell.
+> > Thanks for the correction - I will use H2G interrupt from here on and
+> > fix the terminology in v2.
+> >
+> >> It feels like when the
+> >> issue occurs something is stuck in HW rather than GuC FW and triggerin=
+g
+> >> the interrupt causes the HW to get unstuck.
+> > That fits a pattern I can now see clearly with more data. Since
+> > enabling the bigger GuC logs (~1.5 days, 35 stalls): 12 stalls were
+> > unstuck by one of the H2G interrupts within 0.3-1.5s, but 23 ignored
+> > 8-9 consecutive interrupts and ran to the end. And in those severe
+> > cases the request-to-ack time is nearly constant: 2.28-2.34s, every
+> > single time. It does not look like congestion - it looks like a fixed
+> > internal timeout expiring somewhere and releasing things.
+> >
+> > Related: an A/B experiment I ran earlier (holding forcewake across the
+> > whole GT, C6 residency pinned at 0ms for the whole window) still hit 9
+> > timeouts in a row, so GT-level RC6 avoidance alone does not prevent it.
+> >
+> >> Also, would you be able to capture the GuC logs when the issue occurs?
+> > Done. I rebuilt with the debug-sized log buffers (8M event data / 1M
+> > crash dump / 1M state capture) and xe.guc_log_level=3D3, and the series=
+'
+> > patch 1 (devcoredump on TLB invalidation timeout) captures the GuC log
+> > at the exact moment the timeout fires. I attached three devcoredumps
+> > (4-8.7MB each, containing the full GuC log around severe stalls that
+> > ignored 8-9 H2G interrupts) to the gitlab issue:
+> >
+> >    https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
+> >
+> > I have more captures if useful (9 so far).
+>
+> Do you happen to have the matching dmesg for those? I decoded the logs
+> but there are thousands of invalidation calls in them; I looked at the
+> last few but from the GuC POV they've all been handled quickly. Dmesg
+> error should log exactly which invalidations were delayed from the
+> driver POV so I can just look at what happens around those.
+> Also, I have noticed that the failures seems to all be on GT1. On MTL,
+> there is a caching bug on GT1 and we do not implement the WA for that in
+> Xe (Wa_22016122933). Not sure if this is the actual root cause, but the
+> fact that it only happens on GT1 makes me suspicious (i.e., it is
+> possible that the GuC is replying in time but CPU doesn't see the reply
+> because the cache-line is not correctly updated, or vice versa). Not
+> sure if there is an easy way to implement this in Xe to test, that's not
+> really my field of expertise; maybe adding XE_BO_FLAG_FORCE_WC or
+> XE_BO_FLAG_NEEDS_UC to the CTB allocation could work as a quick hack?
+> But I'd like either Matt or Thomas to confirm.
+>
+> Daniele
+>
+> >
+> >> I have pushed the latest GuC FW for MTL here in case you want to give =
+it
+> >> a go:
+> > Downloaded and staged - I will switch to 70.72.1 via
+> > xe.guc_firmware_path today and report back with a few days of data
+> > (this machine currently reproduces 20-35 stalls/day under my normal
+> > workload, so the signal should be quick).
+> >
+> > Thanks,
+> > Tales
+> >
+> > Em ter., 4 de ago. de 2026 =C3=A0s 20:50, Daniele Ceraolo Spurio
+> > <daniele.ceraolospurio@intel.com> escreveu:
+> >>
+> >>
+> >> On 8/4/2026 4:00 PM, Tales A. Mendon=C3=A7a wrote:
+> >>>> Are we seeing this on i915?
+> >>> I have not tested i915 on the affected machines yet - the
+> >>> instrumentation that measured the stalls (late-ack logging, kick
+> >>> results) is xe-only, so I have no comparable i915 data. I can boot on=
+e
+> >>> of the ARL machines with i915 for a few days and watch for TLB
+> >>> invalidation timeouts there, if that data helps.
+> >> That would definitely help, because if the issue does not happen on i9=
+15
+> >> it likely means that we're missing a WA or something like that in Xe.
+> >>
+> >>> More generally: both machines here reproduce reliably (~1 stall/hour
+> >>> on a desktop workload, much more under memory pressure), so I am happ=
+y
+> >>> to test anything on them - including any GuC build the firmware team
+> >>> would like data on.
+> >>>
+> >>> On Stuart's masking concern: fully agreed, that is why patch 3 is
+> >>> marked RFC. Patches 1-2 are pure diagnostics and stand on their own; =
+I
+> >>> am fine holding patch 3 until the firmware side has been looked at.
+> >>> The data point it adds is that a doorbell ring unblocks the ack in th=
+e
+> >>> majority of episodes, while the severe ones ignore 8-9 consecutive
+> >>> rings - hopefully that narrows where to look inside the GuC.
+> >> Just a bit of a terminology update here, to make sure we're on the sam=
+e
+> >> page: we usually refer to the notification you're sending to the GuC a=
+s
+> >> an H2G interrupt and not a doorbell. I'm making this clarification
+> >> because the GuC supports a separate per-context notification mechanism
+> >> that is referred to as doorbell and which we currently do not implemen=
+t
+> >> in neither i915 nor Xe.
+> >>
+> >> When receiving the H2G interrupt, the only thing that the GuC does is
+> >> look into the CTB and process anything in there; however, you've said
+> >> that the contents of the H2G CTB are processed immediately, so the
+> >> follow up interrupt should result in the GuC just bailing out and doin=
+g
+> >> nothing because there is no data to process. It feels like when the
+> >> issue occurs something is stuck in HW rather than GuC FW and triggerin=
+g
+> >> the interrupt causes the HW to get unstuck.
+> >>
+> >> I have pushed the latest GuC FW for MTL here in case you want to give =
+it
+> >> a go:
+> >> https://gitlab.com/dceraolo/drm-firmware/-/blob/f783b931555be057dafc24=
+00b7eb4d445c953fec/i915/mtl_guc_70.72.1.bin
+> >> . You can override the GuC firmware used by the driver via the
+> >> xe.guc_firmware_path modparam; the path is relative to /lib/firmware/
+> >> and the firmware needs to be in initramfs for the driver to find it at
+> >> boot. Note that we haven't tested this image on MTL, so it might have
+> >> unexpected results.
+> >>
+> >> Also, would you be able to capture the GuC logs when the issue occurs?
+> >> The default guc log size is relatively small, so you'd have to capture
+> >> right when the issue happens. However, you can make them bigger by
+> >> building the kernel with CONFIG_DRM_XE_DEBUG or by simply modifying th=
+e
+> >> xe_guc_log.h file to pick the bigger size by default. If you go with t=
+he
+> >> latter, please also set xe.guc_log_level=3D3 on the command line (this=
+ is
+> >> automatically added by the kconfig).
+> >>
+> >> Thanks,
+> >> Daniele
+> >>
+> >>> I will send a v2 addressing Matt's review comments (the
+> >>> __xe_devcoredump unification and the fixes on patch 2).
+> >>>
+> >>> Thanks,
+> >>> Tales
+> >>>
+> >>> Em ter., 4 de ago. de 2026 =C3=A0s 19:08, Daniele Ceraolo Spurio
+> >>> <daniele.ceraolospurio@intel.com> escreveu:
+> >>>>
+> >>>> On 8/4/2026 2:33 PM, Summers, Stuart wrote:
+> >>>>> On Tue, 2026-08-04 at 14:27 -0700, Matthew Brost wrote:
+> >>>>>> On Tue, Aug 04, 2026 at 03:02:44PM -0600, Summers, Stuart wrote:
+> >>>>>>> On Mon, 2026-08-03 at 23:14 -0300, Tales A. Mendon=C3=A7a wrote:
+> >>>>>>>> Hi,
+> >>>>>>>>
+> >>>>>>>> This series is a follow-up to the TLB invalidation ack stall I
+> >>>>>>>> have
+> >>>>>>>> been debugging on ARL, tracked in:
+> >>>>>>>>
+> >>>>>>>>      https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8=
+678
+> >>>>>>>>
+> >>>>>>>> Summary of the issue: with GuC 70.53.0 on ARL (reproduced on 7d5=
+1
+> >>>>>>>> and
+> >>>>>>>> 7dd1 machines here, plus an independent Arc Pro 130T report on
+> >>>>>>>> the
+> >>>>>>>> issue above), TLB invalidation acks intermittently stall for
+> >>>>>>>> ~2.3s.
+> >>>>>>>> The H2G request is consumed from the CTB immediately and the G2H
+> >>>>>>>> CTB
+> >>>>>>>> is empty the whole time - the firmware simply does not send the
+> >>>>>>>> ack
+> >>>>>>>> until much later. The fence timeout fires at 2.25s and the ack
+> >>>>>>>> lands
+> >>>>>>>> tens of ms after it. Userspace blocked on the invalidation
+> >>>>>>>> (compositor
+> >>>>>>>> buffer unmaps etc.) hitches for the full window.
+> >>>>>>> Firstly, thanks for the patch!
+> >>>>>>>
+> >>>>>>> I haven't looked in to all the details of the sighting you were
+> >>>>>>> debugging, but we have had similar issues that were fixed in a
+> >>>>>>> later
+> >>>>>>> GuC version. I think around 70.60.0? It might be worth trying on
+> >>>>>>> something later than that to see if that helps... (+Daniele)
+> >>>>>>>
+> >>>>>> I think this would require an AR on our end to make a new firmware
+> >>>>>> version available.
+> >>>>>>
+> >>>>>> The upstream repo only has 70.53.0 available for ARL [1] (iirc, AR=
+L
+> >>>>>> aliases to MTL for firmware). (+Julia too).
+> >>>>>>
+> >>>>>> Presumably, the GuC changelogs should indicate whether an issue
+> >>>>>> related
+> >>>>>> this has been fixed. If so, we need to update all GuC versions acr=
+oss
+> >>>>>> both i915 and Xe.
+> >>>>> Right... I guess I'd still like to see if we can test this in GuC (=
+or
+> >>>>> get confirmation we can't for some reason) before committing someth=
+ing.
+> >>>>> My worry is we will prevent bug reports like this by working around=
+ it
+> >>>>> and miss critical bugs that need to be fixed in the right component=
+.
+> >>>>>
+> >>>>>> [1]
+> >>>>>> https://gitlab.com/kernel-firmware/linux-firmware/-/blob/main/i915=
+/mtl_guc_70.bin?ref_type=3Dheads
+> >>>>>>
+> >>>>>>>> Patch 1 adds xe_devcoredump_gt() so this kind of hang - which ha=
+s
+> >>>>>>>> no
+> >>>>>>> Is there a reason we don't just re-use the main xe_devcoredump()?
+> >>>>>>>
+> >>>>>> This is my suggestion: the main devcoredump infrastructure is job-
+> >>>>>> based,
+> >>>>>> so it cannot be used for hangs that are not associated with a job.
+> >>>>>>
+> >>>>>> In my opinion, this is a gap on our end. Introducing something lik=
+e
+> >>>>>> `xe_devcoredump_gt()`, which can be used for non-job-based hangs
+> >>>>>> (e.g.,
+> >>>>>> TLB invalidation timeouts like those addressed in this series, or
+> >>>>>> more
+> >>>>>> generally any GuC protocol hang), makes sense to me.
+> >>>>> Ok makes sense. We can do that here. It would be nice to have a mor=
+e
+> >>>>> inclusive implementation that lets us call this from anywhere so we
+> >>>>> aren't duplicating things around for different use cases. But not a
+> >>>>> blocker here.
+> >>>>>
+> >>>>>> I haven't looked at the patch yet, but at a high level, adding
+> >>>>>> `xe_devcoredump_gt()` seems like a reasonable approach.
+> >>>>>>
+> >>>>>>>> exec queue or job to blame - leaves a devcoredump with the GuC
+> >>>>>>>> log
+> >>>>>>>> and
+> >>>>>>>> CT state behind (Matt suggested capturing devcoredumps when we
+> >>>>>>>> discussed the issue; devcoredumps from both machines are attache=
+d
+> >>>>>>>> to
+> >>>>>>>> the issue above).
+> >>>>>>>>
+> >>>>>>>> Patch 2 logs when the ack for a timed out invalidation finally
+> >>>>>>>> arrives. This is what established that the acks are late rather
+> >>>>>>>> than
+> >>>>>>>> lost.
+> >>>>>>>>
+> >>>>>>>> Patch 3 is the RFC part: a delayed work that pokes the GuC
+> >>>>>>>> (status
+> >>>>>>>> register read, CT flush, doorbell ring) every 250ms while an ack
+> >>>>>>>> is
+> >>>>>>>> overdue. On my machines this converts the guaranteed 2.3s stall
+> >>>>>>>> into
+> >>>>>>> I'm a little worried we're just papering over something here that
+> >>>>>>> needs
+> >>>>>>> to be addressed in GuC, particularly around GT going to sleep or
+> >>>>>>> something around the time we're expecting a response, so the ping=
+s
+> >>>>>>> on
+> >>>>>>> registers might be prematurely waking things up which is somethin=
+g
+> >>>>>>> we'd
+> >>>>>>> want to happen in GuC, not the KMD.
+> >>>>>>>
+> >>>>>> In general, I agree with this. We should avoid papering over the
+> >>>>>> issue
+> >>>>>> and instead fix it properly in the GuC. That said, this workaround
+> >>>>>> provides a pretty strong data point, since it appears to get the T=
+LB
+> >>>>>> invalidation unstuck.
+> >>>>> So if we hit this issue I guess we're already going to have some
+> >>>>> performance degredation and the workaround makes that better. I nee=
+d to
+> >>>>> look at the implementation, but we could be potentially introducing
+> >>>>> performance penalties in other areas doing these pings.
+> >>>>>
+> >>>>> Again, I'd like to see if we can fix this in the right place before
+> >>>>> implementing a workaround for it. Hopefully Daniele or Julia can gi=
+ve
+> >>>>> some direction there.
+> >>>> Are we seeing this on i915 at all? Given that Xe does not officially
+> >>>> support MTL/ARL and is missing several critical WAs for those platfo=
+rms,
+> >>>> the approach so far has been to only update the GuC FW if it is requ=
+ired
+> >>>> for i915.
+> >>>> Looking at the GuC release notes, there have been a couple of
+> >>>> TLB-related fixes after 70.53, but they're both marked as only affec=
+ting
+> >>>> PVC and Xe2+ platforms, so no fixes seem to be available for ARL (or=
+ at
+> >>>> least they're not listed in the release notes).
+> >>>>
+> >>>> Daniele
+> >>>>
+> >>>>> Thanks,
+> >>>>> Stuart
+> >>>>>
+> >>>>>> Matt
+> >>>>>>
+> >>>>>>> Thanks,
+> >>>>>>> Stuart
+> >>>>>>>
+> >>>>>>>> a
+> >>>>>>>> sub-500ms hiccup for the majority of occurrences; a minority of
+> >>>>>>>> severe
+> >>>>>>>> episodes ignore 8-9 consecutive doorbells, which points at the
+> >>>>>>>> GuC
+> >>>>>>>> firmware being internally blocked for the whole window. Full dat=
+a
+> >>>>>>>> on
+> >>>>>>>> the issue. I am happy to rework the approach (different delay,
+> >>>>>>>> tying it to the G2H handler, dropping the status read, etc.) -
+> >>>>>>>> mainly
+> >>>>>>>> I would like the firmware side investigated, since no host-side
+> >>>>>>>> poke
+> >>>>>>>> can fix the severe cases.
+> >>>>>>>>
+> >>>>>>>> Based on drm-tip. Tested for several days on both ARL machines
+> >>>>>>>> under
+> >>>>>>>> desktop and VM-heavy workloads.
+> >>>>>>>>
+> >>>>>>>> Thanks,
+> >>>>>>>> Tales
+> >>>>>>>>
+> >>>>>>>> Tales A. Mendon=C3=A7a (3):
+> >>>>>>>>      drm/xe: Capture devcoredump on TLB invalidation timeout
+> >>>>>>>>      drm/xe: Log when a timed out TLB invalidation ack finally
+> >>>>>>>> arrives
+> >>>>>>>>      drm/xe: Kick GuC while TLB invalidation acks are overdue
+> >>>>>>>>
+> >>>>>>>>     drivers/gpu/drm/xe/xe_devcoredump.c     |  68 ++++++++++++
+> >>>>>>>>     drivers/gpu/drm/xe/xe_devcoredump.h     |   6 ++
+> >>>>>>>>     drivers/gpu/drm/xe/xe_tlb_inval.c       | 131
+> >>>>>>>> +++++++++++++++++++++++-
+> >>>>>>>>     drivers/gpu/drm/xe/xe_tlb_inval_types.h |  42 ++++++++
+> >>>>>>>>     4 files changed, 243 insertions(+), 4 deletions(-)
+> >>>>>>>>
+> >
+>
 
-You could omit the 'src_pfns[i] & MIGRATE_PFN_COMPOUND' check as
-folio_nr_pages returns 1 for non-compound pages.
 
-> +
-> +		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
-> +		    is_device_private_page(page))
+--=20
+Com os cumprimentos,
 
-When this called from drm_pagemap_evict_to_ram this could be a coherrent
-page. I'd just drop the page type check.
-
-> +			drm_pagemap_page_set_flags(page,
-> +						   DRM_PAGEMAP_ZDD_FLAG_MIGRATED);
-> +
-> +		i += nr;
-
-You could drop nr and just make this:
-
-i += folio_nr_pages(page_folio(page));
-
-> +	}
-> +}
-> +
-> +/**
-> + * drm_pagemap_skip_retired_pages() - Drop retired PFNs from a raw-PFN eviction
-> + * @src_pfns: source array after migrate_device_pfns() (MIGRATE_PFN encoded)
-> + * @npages: number of entries in @src_pfns
-> + *
-> + * Skip source folios already migrated to RAM, identified by the migrated flag
-> + * stored in the physical folio's zone_device_data.
-> + */
-> +static void drm_pagemap_skip_retired_pages(unsigned long *src_pfns,
-> +					   unsigned long npages)
-> +{
-> +	unsigned long i = 0;
-> +
-> +	while (i < npages) {
-> +		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-> +		unsigned long nr = 1;
-> +
-> +		if (!page) {
-> +			i++;
-> +			continue;
-> +		}
-> +
-> +		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
-> +			nr = folio_nr_pages(page_folio(page));
-
-Same as above wrt MIGRATE_PFN_COMPOUND check not being needed.
-
-> +
-> +		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
-> +		    is_device_private_page(page) &&
-
-Same as above wrt device_private_page.
-
-> +		    (drm_pagemap_page_get_flags(page) &
-> +		     DRM_PAGEMAP_ZDD_FLAG_MIGRATED))
-> +			src_pfns[i] &= ~MIGRATE_PFN_MIGRATE;
-> +
-> +		i += nr;
-
-Same as above about dropping NR.
-
-> +	}
-> +}
-> +
->  /**
->   * drm_pagemap_evict_to_ram() - Evict GPU SVM range to RAM
->   * @devmem_allocation: Pointer to the device memory allocation
->   *
-> - * Similar to __drm_pagemap_migrate_to_ram but does not require mmap lock and
-> - * migration done via migrate_device_* functions.
-> + * Similar to __drm_pagemap_migrate_to_ram(), but uses the
-> + * migrate_device_* helpers and does not require the mmap lock. Device
-> + * PFNs already migrated to RAM by either migration path are skipped.
->   *
->   * Return: 0 on success, negative error code on failure.
->   */
-> @@ -1148,6 +1255,8 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->  	if (err)
->  		goto err_free;
->  
-> +	drm_pagemap_skip_retired_pages(src, npages);
-> +
->  	err = drm_pagemap_migrate_populate_ram_pfn(NULL, NULL, npages, &mpages,
->  						   src, dst, 0);
->  	if (err || !mpages)
-> @@ -1178,6 +1287,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->  	if (err)
->  		drm_pagemap_migration_unlock_put_pages(npages, dst);
->  	migrate_device_pages(src, dst, npages);
-> +	drm_pagemap_retire_migrated_pages(src, npages);
-
-Since we retire the pages here too, should the
-__drm_pagemap_migrate_to_ram also call drm_pagemap_skip_retired_pages?
-
->  	migrate_device_finalize(src, dst, npages);
->  	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
->  					DMA_FROM_DEVICE, &state);
-> @@ -1308,6 +1418,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
->  	if (err)
->  		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
->  	migrate_vma_pages(&migrate);
-> +	drm_pagemap_retire_migrated_pages(migrate.src, npages);
->  	migrate_vma_finalize(&migrate);
->  	if (dev)
->  		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr, migrate.dst,
-> @@ -1360,13 +1471,18 @@ static vm_fault_t drm_pagemap_migrate_to_ram(struct vm_fault *vmf)
->  static void drm_pagemap_folio_split(struct folio *orig_folio, struct folio *new_folio)
->  {
->  	struct drm_pagemap_zdd *zdd;
-> +	struct page *page;
-> +	unsigned long flags;
->  
->  	if (!new_folio)
->  		return;
->  
->  	new_folio->pgmap = orig_folio->pgmap;
-> -	zdd = folio_zone_device_data(orig_folio);
-> -	folio_set_zone_device_data(new_folio, drm_pagemap_zdd_get(zdd));
-> +	page = folio_page(orig_folio, 0);
-> +	zdd = drm_pagemap_page_zone_device_data(page);
-> +	flags = drm_pagemap_page_get_flags(page);
-
-folio_set_zone_device_data(new_folio, folio_zone_device_data(orig_folio));
-
-?
-
-Matt
-
-> +	folio_set_zone_device_data(new_folio,
-> +				   (void *)((unsigned long)drm_pagemap_zdd_get(zdd) | flags));
->  }
->  
->  static const struct dev_pagemap_ops drm_pagemap_pagemap_ops = {
-> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-> index 95eb4b66b057..ebbd3b0ddf36 100644
-> --- a/include/drm/drm_pagemap.h
-> +++ b/include/drm/drm_pagemap.h
-> @@ -2,6 +2,7 @@
->  #ifndef _DRM_PAGEMAP_H_
->  #define _DRM_PAGEMAP_H_
->  
-> +#include <linux/bits.h>
->  #include <linux/dma-direction.h>
->  #include <linux/hmm.h>
->  #include <linux/memremap.h>
-> @@ -339,6 +340,9 @@ struct drm_pagemap_migrate_details {
->  
->  #if IS_ENABLED(CONFIG_ZONE_DEVICE)
->  
-> +#define DRM_PAGEMAP_ZDD_FLAG_MIGRATED	BIT(0)
-> +#define DRM_PAGEMAP_ZDD_FLAG_MASK	DRM_PAGEMAP_ZDD_FLAG_MIGRATED
-> +
->  int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
->  				  struct mm_struct *mm,
->  				  unsigned long start, unsigned long end,
-> @@ -373,7 +377,9 @@ static inline struct drm_pagemap_zdd *drm_pagemap_page_zone_device_data(struct p
->  {
->  	struct folio *folio = page_folio(page);
->  
-> -	return folio_zone_device_data(folio);
-> +	return (struct drm_pagemap_zdd *)
-> +		((unsigned long)folio_zone_device_data(folio) &
-> +		 ~DRM_PAGEMAP_ZDD_FLAG_MASK);
->  }
->  
->  #else
-> -- 
-> 2.43.0
-> 
+Tales A. Mendon=C3=A7a
+talesam.org
+communitybig.org
