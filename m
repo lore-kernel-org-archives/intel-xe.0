@@ -4,71 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5920EC55174
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 16:23:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13479C5AD44
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 16:23:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C22FF10E036;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E610310E081;
 	Sat,  8 Aug 2026 16:23:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ugreen.com header.i=@ugreen.com header.b="RIbvT0iK";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LMzi6hmK";
 	dkim-atps=neutral
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6018010E00F;
- Sat,  8 Aug 2026 09:35:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ugreen.com;
- s=pkvm2402; t=1786181659;
- bh=C5llPHgg+WJXBlm8wjJbJ5566rhpI9Np0sHlFHEa6w0=;
- h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=RIbvT0iKOM0eOZYuiYr0B0cK/NXxL6CWQTM14ot7lRHNWVrcarKOvr81FMNW5pyN6
- c0J8FpYpW9Ej0W9sQ7hj+9tAvdC+w/r1HNi1wOrB7FF7Eri7kyjY8xu97BOOSBMFq5
- BO74FU+M16Jk7ufVu29II0yS6ISXj02ZQKBUBkJ0=
-X-QQ-mid: zesmtpgz4t1786181652t33ce22c6
-X-QQ-Originating-IP: 1VykBWxJV+I9skzak7YyUX27ze/NQDYkwRcicFEpW7k=
-Received: from localhost.localdomain ( [113.90.157.158])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Sat, 08 Aug 2026 17:34:11 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 11190497938159396211
-From: Neil Zhong <neil.zhong@ugreen.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/1] drm/xe: keep VM-bound WC BOs resident during
- reclaim
-Date: Sat,  8 Aug 2026 17:34:04 +0800
-Message-ID: <0AC9B69C6E8FB7B2+20260808093408.79701-1-neil.zhong@ugreen.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <am2Lkcid3rLuqLFL@gsse-cloud1.jf.intel.com>
-References: <20260728065512.59911-1-neil.zhong@ugreen.com>
- <FEC04D5B1E58A204+20260728065512.59911-2-neil.zhong@ugreen.com>
- <amv8Ll7+CJOcZ222@gsse-cloud1.jf.intel.com>
- <amwL8o5BcWmaC5Xs@gsse-cloud1.jf.intel.com>
- <2177DDCA3446E482+20260801053934.26608-1-neil.zhong@ugreen.com>
- <am2Lkcid3rLuqLFL@gsse-cloud1.jf.intel.com>
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FC6210E4A2
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Aug 2026 09:58:20 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-47f611b3af9so39201f8f.3
+ for <intel-xe@lists.freedesktop.org>; Sat, 08 Aug 2026 02:58:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1786183099; x=1786787899; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=LUzFgsK+uW+0joiMTH75XmXXqtMHA5YYrGPdzifhZ7c=;
+ b=LMzi6hmKkjY30H/HAiya9mjZtxSw1K/PSze3hZHfE9vDCp1WvDwsuVoHadGRNH5Ue5
+ U9CQ1pLZoA5/igVTGbaH4C3oSgrK9AR2y/6XP3f929PXDjHjQDwz7VF9sQBdjGqGBDDP
+ 5KVyx0zmRvL0PbFszj/e8YtYf2A5dfFPmq2soyjD3+NCQ852EGks6MyRbs4llois9AaF
+ wvQtEkGLLgEPxLVd1U/tEAHEAXGLkB7atLhls5mzWxwVuylk9FKzPRX9oDF6sARcuMKf
+ L+GFtU3xtT4t7ogb5KJf9eWVFwSKYsVPGoz/p7v65Y3MlgzCMt2uE7VOBjGcFRvkAaLo
+ pPeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1786183099; x=1786787899;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=LUzFgsK+uW+0joiMTH75XmXXqtMHA5YYrGPdzifhZ7c=;
+ b=R6sRdPNAEAfw+PKMFHtjOIc1cNHcfNEK5a8ivMTUqGgYfB9RBz2sRCaPPGy2Qzbg5w
+ 9X1O4bnliXMwiiP2o/FgEd/c7IbvR+vYpYHx3CUui4+57vRRoZEsRapGsS4UFU1l9gSC
+ XtZs25x4rQdXAYCtCCVLWtRorZqFw4fjRH5W4eLCCMBgyHNmw4jSxh8X5krVqOmNHnJg
+ CK8nYE2YJgoynOUGi1zSilbw24aeGsHB98fTiqy8k6KUtpzonXUBImAH3F2NgcRkDXl/
+ 2DvRM3/u/sb8c0ZD3WzmUuBpMmpUBJIiQzwARDoI5hQyJILvjdJE1aAUMnUp8lnpE5+H
+ Qiqg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rr1l4mmN43iHJr9Kqy3pVASLSTIyUncTZSaxKMtg22rpM0TtxP36+fO604L8kz1zwEhLehG6JqWZQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxrSMSlOFriCP7OnZJar2UX4Zfln8nZbPnDE4x4zSKE5clFRtE6
+ Ffih6GXn2da6IQ58M5YBNahQ/tloqwPbgYTf544YmvVWlv1/iRcrB8VV
+X-Gm-Gg: AR+sD11TR1N1j5LWAqE1laPEFnUDJZZCf93JUxzJbI1TLDmg6mQeVBGaaDxFsosSNMF
+ +tMWz8boOavBVMp8xe6VUc1Cfgw2u5Q2Dt/3Rg0/f8bjJBYqv8f/+s/2IaMlZdkB2VlbR+9Oquk
+ +VzJG/IY4MWJDySmAhjIGaurMX3OI02A7QT4TxpuqLJUJGDUu/H2fuqAJSl58Pezv7AqiwqFPP+
+ dAsUq3d4ICBmP61f9H6gtRimKrpL93tFEg0R77Wehqfnp1AgoxE0/o80cUz1+Z1vNTjXkzt7H2+
+ 0/WdLqR94S3b3oz6pGFNvBuro0PSaDaMLgYlGylGUiTn5yKt/HdjJpzK3Ph3eLzYTkVSnr8OxdK
+ KAUXHpKOPQGYpBQplgeIz5iy6SZYQVJb8+TIJkJQ8xsBmoMNUCdxgu80g85lSDqGOlcZ207l+SF
+ UxYHu1yFOpz/RHtwgU7/ipNwOTSlNZisvoxpq/CZiGa3v4nhGo5RnYxAygl/f4NViIkRuHZ22kD
+ sInwIlWK/+8iUt9u6F5SvyqObS7OeNkcJGdWe1BRzlhxxJvdTd81RH7BzCZEagTzFR8Og==
+X-Received: by 2002:a05:6000:410e:b0:47f:e8af:7687 with SMTP id
+ ffacd0b85a97d-47fec4ea9f6mr15258182f8f.1.1786183098980; 
+ Sat, 08 Aug 2026 02:58:18 -0700 (PDT)
+Received: from OrangePi5-Plus.BB-HOME
+ (20014C4E1B8E20009911270F4BEC2300.dsl.pool.telekom.hu.
+ [2001:4c4e:1b8e:2000:9911:270f:4bec:2300])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-480020be8f3sm13255725f8f.0.2026.08.08.02.58.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 08 Aug 2026 02:58:18 -0700 (PDT)
+From: Igor Paunovic <royalnet026@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Igor Paunovic <royalnet026@gmail.com>
+Subject: [PATCH 1/5] drm/dp: Add drm_dp_hdr_metadata_infoframe_sdp_pack()
+Date: Sat,  8 Aug 2026 11:57:20 +0200
+Message-ID: <20260808095749.9428-2-royalnet026@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260808095749.9428-1-royalnet026@gmail.com>
+References: <20260808095749.9428-1-royalnet026@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:ugreen.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: Nl7eTg5yGHnwuiaqE1IpzB6xT7xJ7YEyLcZu12DizdgNOqu7AypBVAQ6
- agh8Q3pOoxeeA0KquWls6/7cBWDiPXoSzbQktEnsXLVUbKCpNFPC6D9EHoNIs1krln87dGg
- FpwLOEKHPe5ciJo1OaTlezWYF7821EvAsksTPi+gdvQw8YuRrsFMG91nbO+c8/uo7Cs/k2Q
- oLf0FKt2f8Ale2QLdH4fz3IVmEaDdFKru3ePcphEa9BcYoU8efRJxtWy/vhVE4RRvBeNC8t
- OOOJucoNV/OtrWsvhPFUhYsjkuyRqoeXdmjSaWL6D3Q0xUaCfeKQpdBgcwfmmwkWkz1habx
- Uq7qepJt+A0OzWzOpSjFfszIdBgsvJiiu92VnJPKl33gZBaoIzi5CXaWJ0ADS1xmNVVum0U
- Bci8wQYUl/CISLEsC67zTKe4fB8uyZq9gm0mZpaJ/y+bgBS4Q1aytdQhB17czPY3blevEzB
- 6oOKKMIY5FpmC6WrmNg2pXA70f9D/DjJrG9+ixvYPr5V+aAIf1qGVrMoclyxy8K2CoAAiaL
- Yit2qjcNhfQhlNzsKS/V/hvQZAXxoT5yo2tezaGziyO7JG3ulZBBtK3m+qnZE8c4FHsh6iF
- fwjojG58DaeXLHZizuhnnEV7SqA1Y5TVDGA+sDWBoQEI+XW1WmpEtIFf10MB2zNIx5Jg4aR
- aWOsyac7XTX/f1nc4JaXVMmuGl9dIKqgIekfN/ZeH0WZlAIQxfFTlc+uNgNiKebIOjikmDe
- pmBPt2x/Iw8KP+y6BT4eADcef5GV1fB9vC8MjbRrEZbVja8O9xXRybjzkGHwJF/41U4Kq0e
- 3hRFZbeWZKBUbnMxsUg7ZlQpE1nBR72hSRlaqWmqDyI5XqZ9LpWZavHMyVjRos1TWTiIPzP
- 6PVPMqqUZAnVA/qBIKjlRR0cVRTycEJZWeSQj4/65nNra+68fc/m8MDVl+BhheplEH40KWV
- H9G+xkYDhdU3xMoHARaK0s0tawCJep4E52DuvRi3ZvaVlgc5oZPLlks7Mav5lIxsgBnK7IE
- vKdNph2nH5zsdQMYxSxTl86aSeMyFlGUNVaIuVoO/2uyD1BySB
-X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
-X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Sat, 08 Aug 2026 16:23:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,177 +116,260 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 31, 2026 at 11:00:49PM -0700, Matthew Brost wrote:
-> This actually roughly what downstream customers are carrying :).
->
-> It is basically these 3 patches [9] [10] [11] implemented directly in
-> the Xe shrinker code to avoid touching the MM or TTM...
->
-> Alas I got nack'd by someone outside my subsystem on this approach.
->
-> I think if you use the reference patches above to implement a heuristic
-> in Xe, or come up with a similar one, it will likely solve this issue.
->
-> Since you're on 6.18, you may also be missing some Xe/TTM changes
-> related to this problem that have already been merged into drm-tip.
-> There are a couple of one-line fixes that should help somewhat, but the
-> heuristic is what I think will actually address the root cause.
->
-> As heads up, I've started looking at this again and pushing to get
-> something upstream as this at least 5th time someone or org has flagged
-> this as a problem. Any data you can provide will help us push towards a
-> solution.
+i915 packs HDR static metadata into an HDR Metadata InfoFrame SDP
+(DP 1.4a spec, Table 2-100 and Table 2-101) with a driver-private
+helper, intel_dp_hdr_metadata_infoframe_sdp_pack(). Nothing in it is
+i915 specific: it converts a generic struct hdmi_drm_infoframe into a
+generic struct dp_sdp.
 
-Hi Matt,
+Move it to drm_dp_helper.c as drm_dp_hdr_metadata_infoframe_sdp_pack(),
+next to drm_dp_vsc_sdp_pack(), and convert i915 to the new helper. The
+Synopsys DesignWare DisplayPort bridge driver (dw-dp) needs to send the
+same SDP to support HDR and should not have to duplicate the packing
+code.
 
-Thanks. I tested [9]-[13] on the same machine and the fragmentation
-heuristic does reduce the frequency of the problem. However, after these
-tests I would like to clarify my actual requirement, since my previous
-watermark-based proposal did not express it correctly.
+The helper takes a struct drm_device pointer in place of the i915
+display pointer for its two debug messages, and an i915-specific
+comment about GEN11+ GMP register sizes is dropped. No functional
+change.
 
-For BOs that belong to a latency-critical visual processing working set,
-I think userspace should be able to mark them as non-shrinkable, and Xe
-should not back them up under any memory-reclaim condition while that mark
-is held. This would be a hard residency contract, not another reclaim
-priority or a fragmentation hint.
+Signed-off-by: Igor Paunovic <royalnet026@gmail.com>
+---
+ drivers/gpu/drm/display/drm_dp_helper.c | 88 +++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c | 84 +----------------------
+ include/drm/display/drm_dp_helper.h     |  4 ++
+ 3 files changed, 95 insertions(+), 81 deletions(-)
 
-Why a hard contract is useful for visual workloads
---------------------------------------------------
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index 9c31e14cc413..7b3b079403c4 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -25,6 +25,7 @@
+ #include <linux/dynamic_debug.h>
+ #include <linux/errno.h>
+ #include <linux/export.h>
++#include <linux/hdmi.h>
+ #include <linux/i2c.h>
+ #include <linux/init.h>
+ #include <linux/iopoll.h>
+@@ -3672,6 +3673,93 @@ ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+ }
+ EXPORT_SYMBOL(drm_dp_vsc_sdp_pack);
+ 
++/**
++ * drm_dp_hdr_metadata_infoframe_sdp_pack() - pack HDR Metadata InfoFrame SDP
++ * @dev: DRM device
++ * @drm_infoframe: HDMI DRM infoframe carrying the HDR static metadata
++ * @sdp: valid handle to the generic dp_sdp which will be packed
++ * @size: valid size of the passed sdp handle
++ *
++ * Pack a CTA-861 Dynamic Range and Mastering infoframe into an HDR
++ * Metadata InfoFrame SDP, as defined in DP 1.4a spec, Table 2-100 and
++ * Table 2-101.
++ *
++ * Returns: length of sdp on success and error code on failure
++ */
++ssize_t drm_dp_hdr_metadata_infoframe_sdp_pack(struct drm_device *dev,
++					       const struct hdmi_drm_infoframe *drm_infoframe,
++					       struct dp_sdp *sdp,
++					       size_t size)
++{
++	size_t length = sizeof(struct dp_sdp);
++	const int infoframe_size = HDMI_INFOFRAME_HEADER_SIZE + HDMI_DRM_INFOFRAME_SIZE;
++	unsigned char buf[HDMI_INFOFRAME_HEADER_SIZE + HDMI_DRM_INFOFRAME_SIZE];
++	ssize_t len;
++
++	if (size < length)
++		return -ENOSPC;
++
++	memset(sdp, 0, size);
++
++	len = hdmi_drm_infoframe_pack_only(drm_infoframe, buf, sizeof(buf));
++	if (len < 0) {
++		drm_dbg_kms(dev,
++			    "buffer size is smaller than hdr metadata infoframe\n");
++		return -ENOSPC;
++	}
++
++	if (len != infoframe_size) {
++		drm_dbg_kms(dev, "wrong static hdr metadata size\n");
++		return -ENOSPC;
++	}
++
++	/*
++	 * Set up the infoframe sdp packet for HDR static metadata.
++	 * Prepare VSC Header for SU as per DP 1.4a spec,
++	 * Table 2-100 and Table 2-101
++	 */
++
++	/* Secondary-Data Packet ID, 00h for non-Audio INFOFRAME */
++	sdp->sdp_header.HB0 = 0;
++	/*
++	 * Packet Type 80h + Non-audio INFOFRAME Type value
++	 * HDMI_INFOFRAME_TYPE_DRM: 0x87
++	 * - 80h + Non-audio INFOFRAME Type value
++	 * - InfoFrame Type: 0x07
++	 *    [CTA-861-G Table-42 Dynamic Range and Mastering InfoFrame]
++	 */
++	sdp->sdp_header.HB1 = drm_infoframe->type;
++	/*
++	 * Least Significant Eight Bits of (Data Byte Count – 1)
++	 * infoframe_size - 1
++	 */
++	sdp->sdp_header.HB2 = 0x1D;
++	/* INFOFRAME SDP Version Number */
++	sdp->sdp_header.HB3 = (0x13 << 2);
++	/* CTA Header Byte 2 (INFOFRAME Version Number) */
++	sdp->db[0] = drm_infoframe->version;
++	/* CTA Header Byte 3 (Length of INFOFRAME): HDMI_DRM_INFOFRAME_SIZE */
++	sdp->db[1] = drm_infoframe->length;
++	/*
++	 * Copy HDMI_DRM_INFOFRAME_SIZE size from a buffer after
++	 * HDMI_INFOFRAME_HEADER_SIZE
++	 */
++	BUILD_BUG_ON(sizeof(sdp->db) < HDMI_DRM_INFOFRAME_SIZE + 2);
++	memcpy(&sdp->db[2], &buf[HDMI_INFOFRAME_HEADER_SIZE],
++	       HDMI_DRM_INFOFRAME_SIZE);
++
++	/*
++	 * Size of DP infoframe sdp packet for HDR static metadata consists of
++	 * - DP SDP Header(struct dp_sdp_header): 4 bytes
++	 * - Two Data Blocks: 2 bytes
++	 *    CTA Header Byte2 (INFOFRAME Version Number)
++	 *    CTA Header Byte3 (Length of INFOFRAME)
++	 * - HDMI_DRM_INFOFRAME_SIZE: 26 bytes
++	 */
++	return sizeof(struct dp_sdp_header) + 2 + HDMI_DRM_INFOFRAME_SIZE;
++}
++EXPORT_SYMBOL(drm_dp_hdr_metadata_infoframe_sdp_pack);
++
+ /**
+  * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
+  * @dpcd: DisplayPort configuration data
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 6e3fa6662cbe..093a3b7961f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5157,84 +5157,6 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
+ 	return length;
+ }
+ 
+-static ssize_t
+-intel_dp_hdr_metadata_infoframe_sdp_pack(struct intel_display *display,
+-					 const struct hdmi_drm_infoframe *drm_infoframe,
+-					 struct dp_sdp *sdp,
+-					 size_t size)
+-{
+-	size_t length = sizeof(struct dp_sdp);
+-	const int infoframe_size = HDMI_INFOFRAME_HEADER_SIZE + HDMI_DRM_INFOFRAME_SIZE;
+-	unsigned char buf[HDMI_INFOFRAME_HEADER_SIZE + HDMI_DRM_INFOFRAME_SIZE];
+-	ssize_t len;
+-
+-	if (size < length)
+-		return -ENOSPC;
+-
+-	memset(sdp, 0, size);
+-
+-	len = hdmi_drm_infoframe_pack_only(drm_infoframe, buf, sizeof(buf));
+-	if (len < 0) {
+-		drm_dbg_kms(display->drm,
+-			    "buffer size is smaller than hdr metadata infoframe\n");
+-		return -ENOSPC;
+-	}
+-
+-	if (len != infoframe_size) {
+-		drm_dbg_kms(display->drm, "wrong static hdr metadata size\n");
+-		return -ENOSPC;
+-	}
+-
+-	/*
+-	 * Set up the infoframe sdp packet for HDR static metadata.
+-	 * Prepare VSC Header for SU as per DP 1.4a spec,
+-	 * Table 2-100 and Table 2-101
+-	 */
+-
+-	/* Secondary-Data Packet ID, 00h for non-Audio INFOFRAME */
+-	sdp->sdp_header.HB0 = 0;
+-	/*
+-	 * Packet Type 80h + Non-audio INFOFRAME Type value
+-	 * HDMI_INFOFRAME_TYPE_DRM: 0x87
+-	 * - 80h + Non-audio INFOFRAME Type value
+-	 * - InfoFrame Type: 0x07
+-	 *    [CTA-861-G Table-42 Dynamic Range and Mastering InfoFrame]
+-	 */
+-	sdp->sdp_header.HB1 = drm_infoframe->type;
+-	/*
+-	 * Least Significant Eight Bits of (Data Byte Count – 1)
+-	 * infoframe_size - 1
+-	 */
+-	sdp->sdp_header.HB2 = 0x1D;
+-	/* INFOFRAME SDP Version Number */
+-	sdp->sdp_header.HB3 = (0x13 << 2);
+-	/* CTA Header Byte 2 (INFOFRAME Version Number) */
+-	sdp->db[0] = drm_infoframe->version;
+-	/* CTA Header Byte 3 (Length of INFOFRAME): HDMI_DRM_INFOFRAME_SIZE */
+-	sdp->db[1] = drm_infoframe->length;
+-	/*
+-	 * Copy HDMI_DRM_INFOFRAME_SIZE size from a buffer after
+-	 * HDMI_INFOFRAME_HEADER_SIZE
+-	 */
+-	BUILD_BUG_ON(sizeof(sdp->db) < HDMI_DRM_INFOFRAME_SIZE + 2);
+-	memcpy(&sdp->db[2], &buf[HDMI_INFOFRAME_HEADER_SIZE],
+-	       HDMI_DRM_INFOFRAME_SIZE);
+-
+-	/*
+-	 * Size of DP infoframe sdp packet for HDR static metadata consists of
+-	 * - DP SDP Header(struct dp_sdp_header): 4 bytes
+-	 * - Two Data Blocks: 2 bytes
+-	 *    CTA Header Byte2 (INFOFRAME Version Number)
+-	 *    CTA Header Byte3 (Length of INFOFRAME)
+-	 * - HDMI_DRM_INFOFRAME_SIZE: 26 bytes
+-	 *
+-	 * Prior to GEN11's GMP register size is identical to DP HDR static metadata
+-	 * infoframe size. But GEN11+ has larger than that size, write_infoframe
+-	 * will pad rest of the size.
+-	 */
+-	return sizeof(struct dp_sdp_header) + 2 + HDMI_DRM_INFOFRAME_SIZE;
+-}
+-
+ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+ 			       const struct intel_crtc_state *crtc_state,
+ 			       unsigned int type)
+@@ -5253,9 +5175,9 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+ 		len = drm_dp_vsc_sdp_pack(&crtc_state->infoframes.vsc, &sdp);
+ 		break;
+ 	case HDMI_PACKET_TYPE_GAMUT_METADATA:
+-		len = intel_dp_hdr_metadata_infoframe_sdp_pack(display,
+-							       &crtc_state->infoframes.drm.drm,
+-							       &sdp, sizeof(sdp));
++		len = drm_dp_hdr_metadata_infoframe_sdp_pack(display->drm,
++							     &crtc_state->infoframes.drm.drm,
++							     &sdp, sizeof(sdp));
+ 		break;
+ 	case DP_SDP_ADAPTIVE_SYNC:
+ 		len = intel_dp_as_sdp_pack(&crtc_state->infoframes.as_sdp, &sdp,
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index ab16c1be3900..c158628f0d38 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -32,6 +32,7 @@
+ struct drm_device;
+ struct drm_dp_aux;
+ struct drm_panel;
++struct hdmi_drm_infoframe;
+ 
+ bool drm_dp_channel_eq_ok(const u8 link_status[DP_LINK_STATUS_SIZE],
+ 			  int lane_count);
+@@ -1029,6 +1030,9 @@ int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
+ int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes);
+ 
+ ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc, struct dp_sdp *sdp);
++ssize_t drm_dp_hdr_metadata_infoframe_sdp_pack(struct drm_device *dev,
++					       const struct hdmi_drm_infoframe *drm_infoframe,
++					       struct dp_sdp *sdp, size_t size);
+ int drm_dp_link_symbol_cycles(int lane_count, int pixels, int dsc_slice_count,
+ 			      int bpp_x16, int symbol_size, bool is_mst);
+ 
+-- 
+2.43.0
 
-The reproducer is continuous 4K60 HDR playback. Every decoded frame is
-imported through DMA-BUF and processed by libplacebo/OpenGL for HDR tone
-mapping before presentation. The active BO set contains decoded video
-surfaces, intermediate render targets and presentation-related surfaces.
-
-At 60 Hz the complete frame interval is 16.667 ms. If glFlush() is blocked
-for longer than this, the application misses at least one presentation
-deadline. Repeated missed deadlines are perceived directly as dropped
-frames or visible stutter. A 100-500 ms reclaim/restore storm is an
-obvious freeze, even if the system eventually recovers and its average
-throughput looks normal.
-
-Fence-idle is not equivalent to cold for this workload. A video surface
-can have no active fence in the small gap between two frames and still be
-part of the application's current visual working set. The next frame can
-need the same BO immediately.
-
-The trace demonstrates exactly this case. In one sequence, kswapd
-completed backup of an 8,208-page BO and the rendering thread started
-restoring the exact same ttm_tt about 33 microseconds later. The kernel
-copied about 32 MiB to shmem, dropped the WC pages, then immediately had
-to allocate pages, copy the data back and reapply WC.
-
-In the ten-minute default-watermark capture:
-
-  successful ttm_tt_backup:                 4,853
-  ttm_tt_restore:                           4,810
-  minimum backup+restore copy traffic: 50,436.105 MiB
-  Flush > 16.667 ms:                         209
-  Flush > 100 ms:                             65
-  maximum trace-aligned Flush:           223.195 ms
-
-Of 4,791 restores matched to the same preceding backup, 4,279 happened
-within 100 ms and 4,753 within one second. kswapd0 performed 4,839 of the
-4,853 backups, while the player's rendering thread performed most of the
-restores. Of the 209 Flush calls over one frame interval, 205 contained
-ttm_tt_restore() and all 209 contained set_pages_array_wc().
-
-This is not useful recovery of cold memory. It is destruction and
-immediate reconstruction of the visible working set.
-
-What the heuristic test showed
-------------------------------
-
-I backported [9]-[13], extended the fragmentation check to direct reclaim,
-and tested a `high + min` watermark threshold. In a follow-up run with the
-same kernel, video and playback configuration, I set vm.min_free_kbytes to
-50000. This lowered the Normal-zone `high + min` threshold from about
-379.8 MiB to 255.1 MiB.
-
-With the lower threshold, the fragmentation helper returned true more
-often and Xe working-set churn fell by about 90%:
-
-  successful ttm_tt_backup:        4,853 -> 443
-  ttm_tt_restore:                  4,810 -> 435
-  Flush > 16.667 ms:                 209 -> 19
-  Flush > 100 ms:                     65 -> 3
-
-This confirms that preventing working-set backup prevents the visual
-stalls. It does not make the individual restore path cheaper. When the
-heuristic still allowed a storm, the maximum Flush was 191.655 ms and
-contained 25 restores and 23 WC conversions.
-
-I do not think tuning global watermarks is the right solution. More
-importantly, I no longer think that protection for explicitly identified
-visual BOs should depend on whether reclaim was caused by fragmentation
-or genuine low memory. Once userspace has declared a bounded set as
-presentation-critical, violating that residency guarantee produces an
-immediate and user-visible failure.
-
-Possible explicit marking mechanism
------------------------------------
-
-Could Xe provide an opt-in, mlock-like mechanism for this purpose?
-
-One possible interface would be a new DRM_IOCTL_XE_MADVISE VMA attribute,
-for example DRM_XE_VMA_ATTR_RECLAIM_POLICY, with states similar to:
-
-  DRM_XE_VMA_RECLAIM_DEFAULT
-  DRM_XE_VMA_RECLAIM_NO_SHRINK
-
-NO_SHRINK would mean that the backing BO is excluded from the Xe shrinker
-while at least one protected VMA holds the attribute. Userspace would set
-it when a video/render surface enters the active visual pipeline and clear
-it after the surface leaves that working set. Unbind, VM destruction or
-file close would also release the holder automatically.
-
-For a BO shared by multiple VMAs, Xe could maintain a BO-level
-no_shrink_count, similar to the holder accounting already used for
-purgeable state. The shrinker would skip a BO with a non-zero count. I
-would prefer a separate shrinker-specific count rather than exposing TTM
-pin_count, because pinning also affects placement and migration, which is
-broader than the requested guarantee.
-
-The existing WILLNEED state does not provide this contract: it prevents
-purging of the contents, but the non-purge shrinker may still back up and
-unpopulate the BO. It also cannot simply be redefined because WILLNEED is
-the default state for all VMAs. SCANOUT is not sufficient either, since
-many HDR intermediate and imported video surfaces are not scanout BOs.
-
-I understand that an unprivileged client must not be allowed to make an
-unbounded amount of memory unreclaimable. Like mlock, this could be
-controlled by an explicit per-file, per-client or cgroup byte limit, and
-possibly by a privilege check. If the requested protected set exceeds the
-configured limit, the madvise should fail rather than silently accepting
-the mark and later violating it under pressure. The application or system
-service would then decide which visual surfaces to protect or release.
-
-Within that bounded contract, however, I think NO_SHRINK should remain a
-hard guarantee even in genuine low-memory reclaim. Under pressure the
-kernel may reclaim unmarked BOs and other memory, reject additional
-NO_SHRINK requests, or require the application/service to release part of
-its protected set. Backing up an already accepted presentation-critical
-BO and stalling a frame by hundreds of milliseconds defeats the purpose
-of the interface.
-
-For comparison, my original workaround approximated such a hard contract
-by excluding VM-bound WC BOs from non-purge shrinking. In a 21-minute
-capture, no XE_EXEC, VM_BIND or DMA-BUF ioctl exceeded the 16.7 ms frame
-interval; their maxima were 348 us, 136 us and 20 us. The call rate of
-set_pages_array_wc fell to 0.179/s. That automatic VM-bound WC rule is too
-broad, but an explicit and bounded userspace mark could provide the same
-latency guarantee only for the BOs that actually need it.
-
-Would an explicit, bounded NO_SHRINK/latency-critical VMA attribute be a
-reasonable Xe UAPI direction? If so, I can prototype the BO holder
-accounting and shrinker exclusion, then modify the video/Mesa path to mark
-only the active visual working set and collect another strict A/B trace.
-
-[9] https://patchwork.freedesktop.org/patch/720030/?series=165329&rev=1
-[10] https://patchwork.freedesktop.org/patch/720036/?series=165329&rev=1
-[11] https://patchwork.freedesktop.org/patch/720031/?series=165329&rev=1
-[12] https://patchwork.freedesktop.org/patch/732698/?series=168466&rev=1
-[13] https://patchwork.freedesktop.org/patch/732420/?series=168389&rev=1
-
-Thanks,
-Neil
