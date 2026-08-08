@@ -4,145 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4794BC5AC67
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 16:23:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A5D0C5AD56
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 16:23:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBE9210E4D8;
-	Sat,  8 Aug 2026 16:23:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7B810E4F9;
+	Sat,  8 Aug 2026 16:23:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="AR+k+BOq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ST42Sa1V";
 	dkim-atps=neutral
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDEB10E45A;
- Fri,  7 Aug 2026 21:03:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1786136612; x=1786741412; i=w_armin@gmx.de;
- bh=ynAuYqRxpHHvvBQeKkL2i31ZDhBcUSyqeTHmWhd2yWU=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:From:To:
- Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=AR+k+BOqNe6TJTuONOW6tClhewKZVZLP7jbbvFlTzJgsdyZ+YDYSyznu/xemrSYh
- 5e3+pW7SxrSJ/p8ELKiaGXpfr8iYaNDd/jkZOt6BwArfREv1hnnMDCr/dl/i8x2nP
- 1wL06078VNW9W+KDxy9kHX1JdQX2nDf5vtGmKPu0uFEjnVq/PGWhuLjm/h+7le5+5
- fqxoJ2r80IKgLFOMLoRo+XURUowQ4WDtyCmfue+l9dm+qV1MhjrFB4QayzLf5R66x
- EIp4glIBRoVsfxK2JQZCFwXOW5j9Nn4ruZ8zaRNfcMNjGIpDrSGddp/ATZNdKmcdF
- fK+cUeQ3Ur0DbrouVQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MEm2D-1whDaB1b6x-008ngS; Fri, 07
- Aug 2026 23:03:32 +0200
-Message-ID: <59aadf0f-953c-4b7c-8c92-9dd9bc4f89de@gmx.de>
-Date: Fri, 7 Aug 2026 23:03:29 +0200
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5FB610E4A2
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Aug 2026 09:58:24 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-47fe45db360so32574f8f.2
+ for <intel-xe@lists.freedesktop.org>; Sat, 08 Aug 2026 02:58:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1786183103; x=1786787903; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=bygF4+CGk1HszXnKQxQkJUMmXmQwnL2yRQrBPqNom6w=;
+ b=ST42Sa1VqmdePuhIQ3TQ8avga47TvKxamNgKy+GrqNX62SdNtt+uicmxQ11eddcIIQ
+ r9we2fjf6sLe8eea5vQKgRC7IyyTKQK0rhIhsHryy8FIZWhbGh2Rjin3ZRM+YraLHsV3
+ Nn0knDawzBXY0NTBM5EdC5ediBhpYDcI8EyORCCPvN5o8VM4AmOA10BAmh6E9crequkM
+ n7Y+fI1xmHKlyCgHrii12jNfvOdoQMZiA87Kv/ds+bRS0Zw4649TL2RnkTcMqVjHoMaT
+ j0soDag6Gk9HdQBFi54S8yuKziw1UuKmV6w3kbEl1ppspJDmUi1N9FrRJUcQEYXtD0Vz
+ cRMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1786183103; x=1786787903;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=bygF4+CGk1HszXnKQxQkJUMmXmQwnL2yRQrBPqNom6w=;
+ b=o2eooXHzbCaDfqM1+J+XEOdGRjkC8hAx1rlYfMU56HnfjKkMJasnhA3OOcFQUxgowU
+ 4sDvQLEBscMcZwGLPNFQLdak+O2KruiAHf5Io+KJuecHiOxeZNyM5HcTL/HWCliHQKpO
+ wZeoMFnJJKHmtfxapqq/JUhLudNBJpYNOOoL6RDAju+k32k6O1oJHBY9covjCpcrNZll
+ +VWU8l2suwAeOorG7ftIiuY6vLWOutRGKaaOj1Eani+tnHVhAVIA0siCBBQqFg4zzytn
+ MYTk47bznhOch+0fLHc5ZQ1b1nSfIkPL40qu8ZJNcevaYcz1/RGpg8XogDUXZv/23avY
+ MADg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqHfOZLK9wP2XnEWNoCuM2cymB2ZMVASbew8jO/sIBy4/SEpxrnAxdiEp3uQk/a6FXyGBuf4O4HOQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxCc8x355cRiJP9NFfqqsmDXyzflkFfb2QEQmZRvxBK5FCma2QA
+ BIJxbrv8Hgfreiw2F7L1GwBMv2nmPp1l5Ae9Xujzoh0QYAjb3cZ2/CWM
+X-Gm-Gg: AR+sD10+qximefshKCOF1k7HtRc/t8bqFb8M5ibHtkcG/G1rPjK+ocMkd/wTYbfkQZV
+ /jpAglY5z2RLbWxnPufGlkWBmWN/s/hnVczJ/29M8y+R+tMrmD1gIIQwyipp4eWmsEGI+uLLkPT
+ Rt7azBJYR495ZE18QSfHTtm+o7ilBFvh3z4p7gadLqZGdZmuPZLyotDe0/amaapq4mcNrEFiaHp
+ kmZTskZy+utsEgtFc3mo5bccbYkG7d9nuRxZAdwav4uU1v9U463PtorbaP4oFoTEhrHp0e3EIod
+ 6oTYXrN9FARkxz4mK8eJ+2xpXX7TabcFdoIXYgC0mK5xUakQe3Mn8DH2vUCremhx9buBBJdMAMd
+ gr7iKMjW+O3TmlzLyamo0N4mx10miF4PtPoN5jK4VaWMS9p+y+ymQBLXGsaBqA2c4Y/FG2ISVZt
+ IBXcQFhGLnlq4s/QnDMynUNyTNbSXTYdVWVIWiJuOkL3E7VNsvZEK87fb5P7Zlh5faR3fMEkbmB
+ WyusCf/W23VTQkTA6hPJ3BbWT82sLYVJWpXCxfuTn0LapWsXU4VvI3JiRaYoJ9DFoz7CQ==
+X-Received: by 2002:a05:6000:401f:b0:47f:7e91:3d55 with SMTP id
+ ffacd0b85a97d-47fec520b24mr21741731f8f.2.1786183103128; 
+ Sat, 08 Aug 2026 02:58:23 -0700 (PDT)
+Received: from OrangePi5-Plus.BB-HOME
+ (20014C4E1B8E20009911270F4BEC2300.dsl.pool.telekom.hu.
+ [2001:4c4e:1b8e:2000:9911:270f:4bec:2300])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-480020be8f3sm13255725f8f.0.2026.08.08.02.58.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 08 Aug 2026 02:58:22 -0700 (PDT)
+From: Igor Paunovic <royalnet026@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Igor Paunovic <royalnet026@gmail.com>
+Subject: [PATCH 3/5] drm/rockchip: dw_dp: Attach "max bpc" connector property
+Date: Sat,  8 Aug 2026 11:57:22 +0200
+Message-ID: <20260808095749.9428-4-royalnet026@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260808095749.9428-1-royalnet026@gmail.com>
+References: <20260808095749.9428-1-royalnet026@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] platform/wmi: Add aarch64 support
-From: Armin Wolf <W_Armin@gmx.de>
-To: hansg@kernel.org, ilpo.jarvinen@linux.intel.com
-Cc: platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux@weissschuh.net, rafael@kernel.org, lenb@kernel.org,
- linux-acpi@vger.kernel.org, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- patrik.r.jakobsson@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tursulin@ursulin.net, intel-gfx@lists.freedesktop.org,
- matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- intel-xe@lists.freedesktop.org
-References: <20260724025959.142826-1-W_Armin@gmx.de>
-Content-Language: en-US
-In-Reply-To: <20260724025959.142826-1-W_Armin@gmx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:XhWPv/JKs4wg1ltPcjA54qJdjyQYAJWIMSfQd03vtac47SDDNdn
- 8VjSCgQ806r+Ys3YKucEiQIL6op5LNfCWBUZDrl74GW7ZUgltIaCaMdRFjvzDehSkQw395p
- XczQ0QCmtsEuQdRBq5uIyd2jW+EGD5vAIMZ8U2Ap4lGYlriV3kCZW5LqiU6SoK0v0LfamzK
- 17YvP00mXx/53FXvjRA3w==
-UI-OutboundReport: notjunk:1;M01:P0:JHOuLfo+bYw=;LeVQ+PkhJUxE5EPezqlRlsmB6Tn
- 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
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 08 Aug 2026 16:23:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,54 +114,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 24.07.26 um 04:59 schrieb Armin Wolf:
+The dw-dp bridge already filters candidate output formats on
+conn_state->max_bpc in dw_dp_bridge_atomic_get_output_bus_fmts() and
+validates the result against the link bandwidth, but the connector
+never exposes the "max bpc" property, so userspace cannot limit the
+bit depth. Attach the property with a range of 6 to 10, matching
+dw_dp_output_formats[]: the smallest entry is 6 bpc RGB and the
+deepest entries are 10 bpc.
 
-> The aarch64-laptops project found out that some Windows-on-Arm
-> notebooks contain WMI-ACPI mapping devices (PNP0C14) that work
-> exactly like on x86. Those devices however are currently not
-> supported by the WMI driver core due to only supporting x86.
->
-> The first patch removes this restriction and allows the WMI
-> driver core to run on all architectures that support ACPI.
-> The second patch updates the acpi-video driver to take advantage
-> of the improved support for architectures other than x86, and
-> the last patch enables the generic WMI BMOF driver to support
-> aarch64 as well.
->
-> All patches have been tested on a ACPI-based aarch64 VM and
-> work just fine.
+drm_connector_attach_max_bpc_property() initializes
+connector->state->max_requested_bpc and therefore requires the
+connector to have a state. Rockchip binds its components before
+drm_mode_config_reset() runs, so the freshly created bridge connector
+does not have one yet - create the connector state before attaching
+the property, exactly like drmm_connector_hdmi_init() does for HDMI
+bridge connectors. The later drm_mode_config_reset() then re-creates
+the connector state, and the preceding patch makes
+drm_bridge_connector_create_state() restore max_requested_bpc from
+connector->max_bpc, so clients that never set the property (fbcon in
+particular) keep the full range instead of ending up with 0.
 
-Any thoughts about this series from the GPU driver people?
+With the property attached, compositors such as KWin write "max bpc"
+on every atomic modeset; any in-range value is handled by the existing
+format filter and bandwidth checks.
 
-Thanks,
-Armin Wolf
+Signed-off-by: Igor Paunovic <royalnet026@gmail.com>
+---
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c | 26 +++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
->
-> Changes since v2:
-> - fix Kconfig issue for the loongson-laptop driver
->
-> Changes  since v1:
-> - add additional tags
->
-> Armin Wolf (3):
->    platform/wmi: Remove dependency on CONFIG_X86
->    ACPI: video: Remove CONFIG_X86 handling from nvidia_wmi_ec_supported()
->    platform/x86: wmi-bmof: Move to generic WMI code
->
->   MAINTAINERS                                     |  2 +-
->   drivers/acpi/Kconfig                            |  2 +-
->   drivers/acpi/video_detect.c                     |  8 --------
->   drivers/gpu/drm/amd/amdgpu/Kconfig              |  4 +---
->   drivers/gpu/drm/gma500/Kconfig                  |  1 -
->   drivers/gpu/drm/i915/Kconfig                    |  1 -
->   drivers/gpu/drm/radeon/Kconfig                  |  4 +---
->   drivers/gpu/drm/xe/Kconfig                      |  5 ++---
->   drivers/platform/loongarch/Kconfig              |  1 +
->   drivers/platform/wmi/Kconfig                    | 14 +++++++++++++-
->   drivers/platform/wmi/Makefile                   |  4 ++++
->   drivers/platform/{x86/wmi-bmof.c => wmi/bmof.c} |  0
->   drivers/platform/x86/Kconfig                    | 12 ------------
->   drivers/platform/x86/Makefile                   |  3 ---
->   14 files changed, 24 insertions(+), 37 deletions(-)
->   rename drivers/platform/{x86/wmi-bmof.c => wmi/bmof.c} (100%)
->
+diff --git a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+index 770ab042a187..4dc29963b5d8 100644
+--- a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+@@ -172,6 +172,32 @@ static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *
+ 				     "Failed to init bridge connector\n");
+ 	}
+ 
++	/*
++	 * The components are bound before drm_mode_config_reset() runs, so
++	 * the connector has no state yet, but
++	 * drm_connector_attach_max_bpc_property() requires one. Create the
++	 * connector state first, like drmm_connector_hdmi_init() does.
++	 */
++	if (connector->funcs->atomic_create_state) {
++		struct drm_connector_state *state;
++
++		state = connector->funcs->atomic_create_state(connector);
++		if (IS_ERR(state)) {
++			dw_dp_unbind(dp->base);
++			return PTR_ERR(state);
++		}
++
++		connector->state = state;
++	} else if (connector->funcs->reset) {
++		connector->funcs->reset(connector);
++	}
++
++	ret = drm_connector_attach_max_bpc_property(connector, 6, 10);
++	if (ret) {
++		dw_dp_unbind(dp->base);
++		return ret;
++	}
++
+ 	return 0;
+ }
+ 
+-- 
+2.43.0
+
