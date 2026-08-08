@@ -4,76 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D074BC5AC67
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5920EC55174
 	for <intel-xe@archiver.kernel.org>; Sat,  8 Aug 2026 16:23:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8D2510E060;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C22FF10E036;
 	Sat,  8 Aug 2026 16:23:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ro3/+Rm/";
+	dkim=pass (1024-bit key; unprotected) header.d=ugreen.com header.i=@ugreen.com header.b="RIbvT0iK";
 	dkim-atps=neutral
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC6B10E03C
- for <intel-xe@lists.freedesktop.org>; Sat,  8 Aug 2026 14:49:27 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-2cc61541f8cso33551055ad.0
- for <intel-xe@lists.freedesktop.org>; Sat, 08 Aug 2026 07:49:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1786200567; x=1786805367; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=oj+LpxJwmFVdLd+RvTFySlTh8hVfSNWlJ1ThruNqG6Q=;
- b=ro3/+Rm/rq3gZyYvYLmbCpGs5HSqry3+MjeLxDsevMsPfQNfls9aHQXR6MhlV0r2Es
- lM5pVge4K2KvhEX8p7sj+QSKn2Ky6TxJ4KfGOdIM9bNOsSWYpZ0+ARkHUXvzHeVwFTuU
- Uc6Bc4YpBFkynjYPt1ufCgxtwoFW3u1tAX5/dBQXWRWdHcU8VjpdruieanFfWHRodnoA
- vvgHgyiiyfLzXCMtjCEVshcsgUFJL+d1l3nLUGJ0maPFsDXZJXMWmNd/RAXG7ailmacX
- ztw1aEwE6X8HZ7F+2RnwzqEk2dlhhFDm2PT8aYyE9gNXcV7Yxu2dW7ND9AE9QlpS/QpD
- yCaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1786200567; x=1786805367;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=oj+LpxJwmFVdLd+RvTFySlTh8hVfSNWlJ1ThruNqG6Q=;
- b=dmpKsHLzYk1DAc+9bGLGKPXCrH385WNhwZz96FGtNTyBBvLLay88+/sPzMUxkEX+DM
- 9x7VpJC5K2jyEhB/ZBFx7JBw6crw5HJumN7WyykBa5LUh3EAoMp2bUyT9cn7e56hbjnT
- Z2yPNcOXLxvVcAR1YLlpgg+AudDR1LE/eGsTFd7hQyUaTTKeY/HGNyFWrY7rfPwNMNj4
- gqJ1zLkerw3vfHxE7iusc4P06hTFFYm0wQawWbUe+n9kgjQwblSiPZN7oMVBD+JNxdWF
- YwaibiS7F7gB8Lu59F4Bdx1kaiNfAuKy2bdh4C6rOy9dyS8Dr5ejOF43VNtjrmEwgEWr
- rvAQ==
-X-Forwarded-Encrypted: i=1;
- AHgh+RrIRchE69r+WLeMlBuaGJGC97nmPi2OzEHojv7AihN/Qk04U+eS2qqAj3QzKC+CBtNHST0hOda6ug==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx62rTFrXVVCWifcMif9EEdkKpDcgzQRPgLXGwj5OVicsgXpKRb
- PWDsr9QaJ/ZupFR+2y+utMV//QXGP+KtQMW69A3PDsamIJLUz/kDfCMS
-X-Gm-Gg: AR+sD13eQxbDVJJWRhLfguFEutHKWOvDvt98UdykkaPIzzsU4Z8YP/DFI1RrzApJe0o
- 66B1jmyh6+uNCrUQpfN3z+TXbzW+pjSDhckhrBla0k/hy3EThp0LCFSKOSpkE3M+xnCTmnE9FHl
- IgnYM/DddqTPXu4nCuR5us059q7SRWsqCquTFIMu434ZnJVSoD+v6wNHKg8lZb/BpKOMv0Dg3od
- Q69xRKo8rCLpC5ckKNeCx6KwSM+nUqHEk2kurFVGsVx0CTi/dae7XEs8Z8VMiLdNhVT7KYfgp6N
- t/ClFvHogrLp0t7hZUTt1fHVbrXD5mSjOtVJ+q/eyKtiHCsTEfYml1QHuqTFjX5cH4Ui6cTCfQC
- zjfbzIoh+/6K3SWtiDMq8tIi8/ORG+uLnTLBQnvEfe62AsYUP20xQ0EERIQETkOFydnXxBpcC0K
- JXLNijiqCe001iC/q2yYCB6fpTJ2y/OWYNdupHVZp4adNQK6SEqw==
-X-Received: by 2002:a17:90a:ec86:b0:390:b3c5:e2c9 with SMTP id
- 98e67ed59e1d1-392846fd57fmr2663920a91.17.1786200566741; 
- Sat, 08 Aug 2026 07:49:26 -0700 (PDT)
-Received: from lgs.. ([36.255.223.70]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3925fd95270sm6365730a91.5.2026.08.08.07.49.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Aug 2026 07:49:26 -0700 (PDT)
-From: Guangshuo Li <lgs201920130244@gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6018010E00F;
+ Sat,  8 Aug 2026 09:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ugreen.com;
+ s=pkvm2402; t=1786181659;
+ bh=C5llPHgg+WJXBlm8wjJbJ5566rhpI9Np0sHlFHEa6w0=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=RIbvT0iKOM0eOZYuiYr0B0cK/NXxL6CWQTM14ot7lRHNWVrcarKOvr81FMNW5pyN6
+ c0J8FpYpW9Ej0W9sQ7hj+9tAvdC+w/r1HNi1wOrB7FF7Eri7kyjY8xu97BOOSBMFq5
+ BO74FU+M16Jk7ufVu29II0yS6ISXj02ZQKBUBkJ0=
+X-QQ-mid: zesmtpgz4t1786181652t33ce22c6
+X-QQ-Originating-IP: 1VykBWxJV+I9skzak7YyUX27ze/NQDYkwRcicFEpW7k=
+Received: from localhost.localdomain ( [113.90.157.158])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Sat, 08 Aug 2026 17:34:11 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 11190497938159396211
+From: Neil Zhong <neil.zhong@ugreen.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Guangshuo Li <lgs201920130244@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] drm/xe: fix autosuspend cleanup during teardown
-Date: Sat,  8 Aug 2026 22:49:07 +0800
-Message-ID: <20260808144907.2918746-1-lgs201920130244@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Subject: Re: [RFC PATCH v2 1/1] drm/xe: keep VM-bound WC BOs resident during
+ reclaim
+Date: Sat,  8 Aug 2026 17:34:04 +0800
+Message-ID: <0AC9B69C6E8FB7B2+20260808093408.79701-1-neil.zhong@ugreen.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <am2Lkcid3rLuqLFL@gsse-cloud1.jf.intel.com>
+References: <20260728065512.59911-1-neil.zhong@ugreen.com>
+ <FEC04D5B1E58A204+20260728065512.59911-2-neil.zhong@ugreen.com>
+ <amv8Ll7+CJOcZ222@gsse-cloud1.jf.intel.com>
+ <amwL8o5BcWmaC5Xs@gsse-cloud1.jf.intel.com>
+ <2177DDCA3446E482+20260801053934.26608-1-neil.zhong@ugreen.com>
+ <am2Lkcid3rLuqLFL@gsse-cloud1.jf.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:ugreen.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: Nl7eTg5yGHnwuiaqE1IpzB6xT7xJ7YEyLcZu12DizdgNOqu7AypBVAQ6
+ agh8Q3pOoxeeA0KquWls6/7cBWDiPXoSzbQktEnsXLVUbKCpNFPC6D9EHoNIs1krln87dGg
+ FpwLOEKHPe5ciJo1OaTlezWYF7821EvAsksTPi+gdvQw8YuRrsFMG91nbO+c8/uo7Cs/k2Q
+ oLf0FKt2f8Ale2QLdH4fz3IVmEaDdFKru3ePcphEa9BcYoU8efRJxtWy/vhVE4RRvBeNC8t
+ OOOJucoNV/OtrWsvhPFUhYsjkuyRqoeXdmjSaWL6D3Q0xUaCfeKQpdBgcwfmmwkWkz1habx
+ Uq7qepJt+A0OzWzOpSjFfszIdBgsvJiiu92VnJPKl33gZBaoIzi5CXaWJ0ADS1xmNVVum0U
+ Bci8wQYUl/CISLEsC67zTKe4fB8uyZq9gm0mZpaJ/y+bgBS4Q1aytdQhB17czPY3blevEzB
+ 6oOKKMIY5FpmC6WrmNg2pXA70f9D/DjJrG9+ixvYPr5V+aAIf1qGVrMoclyxy8K2CoAAiaL
+ Yit2qjcNhfQhlNzsKS/V/hvQZAXxoT5yo2tezaGziyO7JG3ulZBBtK3m+qnZE8c4FHsh6iF
+ fwjojG58DaeXLHZizuhnnEV7SqA1Y5TVDGA+sDWBoQEI+XW1WmpEtIFf10MB2zNIx5Jg4aR
+ aWOsyac7XTX/f1nc4JaXVMmuGl9dIKqgIekfN/ZeH0WZlAIQxfFTlc+uNgNiKebIOjikmDe
+ pmBPt2x/Iw8KP+y6BT4eADcef5GV1fB9vC8MjbRrEZbVja8O9xXRybjzkGHwJF/41U4Kq0e
+ 3hRFZbeWZKBUbnMxsUg7ZlQpE1nBR72hSRlaqWmqDyI5XqZ9LpWZavHMyVjRos1TWTiIPzP
+ 6PVPMqqUZAnVA/qBIKjlRR0cVRTycEJZWeSQj4/65nNra+68fc/m8MDVl+BhheplEH40KWV
+ H9G+xkYDhdU3xMoHARaK0s0tawCJep4E52DuvRi3ZvaVlgc5oZPLlks7Mav5lIxsgBnK7IE
+ vKdNph2nH5zsdQMYxSxTl86aSeMyFlGUNVaIuVoO/2uyD1BySB
+X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
+X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Sat, 08 Aug 2026 16:23:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,44 +84,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_pm_runtime_init() calls pm_runtime_use_autosuspend(), but
-xe_pm_runtime_fini() does not call the matching
-pm_runtime_dont_use_autosuspend() during teardown.
+On Fri, Jul 31, 2026 at 11:00:49PM -0700, Matthew Brost wrote:
+> This actually roughly what downstream customers are carrying :).
+>
+> It is basically these 3 patches [9] [10] [11] implemented directly in
+> the Xe shrinker code to avoid touching the MM or TTM...
+>
+> Alas I got nack'd by someone outside my subsystem on this approach.
+>
+> I think if you use the reference patches above to implement a heuristic
+> in Xe, or come up with a similar one, it will likely solve this issue.
+>
+> Since you're on 6.18, you may also be missing some Xe/TTM changes
+> related to this problem that have already been merged into drm-tip.
+> There are a couple of one-line fixes that should help somewhat, but the
+> heuristic is what I think will actually address the root cause.
+>
+> As heads up, I've started looking at this again and pushing to get
+> something upstream as this at least 5th time someone or org has flagged
+> this as a problem. Any data you can provide will help us push towards a
+> solution.
 
-If the autosuspend delay is set to a negative value while autosuspend
-is enabled, the runtime PM core increments usage_count to prevent
-runtime suspend. Without calling pm_runtime_dont_use_autosuspend()
-during teardown, this reference is not dropped.
+Hi Matt,
 
-The documentation for pm_runtime_use_autosuspend() also notes that it
-is important to undo it with pm_runtime_dont_use_autosuspend() at
-driver exit time, unless runtime PM was initially enabled with
-devm_pm_runtime_enable().
+Thanks. I tested [9]-[13] on the same machine and the fragmentation
+heuristic does reduce the frequency of the problem. However, after these
+tests I would like to clarify my actual requirement, since my previous
+watermark-based proposal did not express it correctly.
 
-Add the missing pm_runtime_dont_use_autosuspend() call to the runtime
-PM teardown path.
+For BOs that belong to a latency-critical visual processing working set,
+I think userspace should be able to mark them as non-shrinkable, and Xe
+should not back them up under any memory-reclaim condition while that mark
+is held. This would be a hard residency contract, not another reclaim
+priority or a fragmentation hint.
 
-This issue was found by manual code inspection.
+Why a hard contract is useful for visual workloads
+--------------------------------------------------
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: stable@vger.kernel.org
-Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
----
- drivers/gpu/drm/xe/xe_pm.c | 1 +
- 1 file changed, 1 insertion(+)
+The reproducer is continuous 4K60 HDR playback. Every decoded frame is
+imported through DMA-BUF and processed by libplacebo/OpenGL for HDR tone
+mapping before presentation. The active BO set contains decoded video
+surfaces, intermediate render targets and presentation-related surfaces.
 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 99562f691080..301789adaa21 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -518,6 +518,7 @@ static void xe_pm_runtime_fini(struct xe_device *xe)
- 	if (IS_SRIOV_VF(xe))
- 		return;
- 
-+	pm_runtime_dont_use_autosuspend(dev);
- 	pm_runtime_get_sync(dev);
- 	pm_runtime_forbid(dev);
- }
--- 
-2.43.0
+At 60 Hz the complete frame interval is 16.667 ms. If glFlush() is blocked
+for longer than this, the application misses at least one presentation
+deadline. Repeated missed deadlines are perceived directly as dropped
+frames or visible stutter. A 100-500 ms reclaim/restore storm is an
+obvious freeze, even if the system eventually recovers and its average
+throughput looks normal.
 
+Fence-idle is not equivalent to cold for this workload. A video surface
+can have no active fence in the small gap between two frames and still be
+part of the application's current visual working set. The next frame can
+need the same BO immediately.
+
+The trace demonstrates exactly this case. In one sequence, kswapd
+completed backup of an 8,208-page BO and the rendering thread started
+restoring the exact same ttm_tt about 33 microseconds later. The kernel
+copied about 32 MiB to shmem, dropped the WC pages, then immediately had
+to allocate pages, copy the data back and reapply WC.
+
+In the ten-minute default-watermark capture:
+
+  successful ttm_tt_backup:                 4,853
+  ttm_tt_restore:                           4,810
+  minimum backup+restore copy traffic: 50,436.105 MiB
+  Flush > 16.667 ms:                         209
+  Flush > 100 ms:                             65
+  maximum trace-aligned Flush:           223.195 ms
+
+Of 4,791 restores matched to the same preceding backup, 4,279 happened
+within 100 ms and 4,753 within one second. kswapd0 performed 4,839 of the
+4,853 backups, while the player's rendering thread performed most of the
+restores. Of the 209 Flush calls over one frame interval, 205 contained
+ttm_tt_restore() and all 209 contained set_pages_array_wc().
+
+This is not useful recovery of cold memory. It is destruction and
+immediate reconstruction of the visible working set.
+
+What the heuristic test showed
+------------------------------
+
+I backported [9]-[13], extended the fragmentation check to direct reclaim,
+and tested a `high + min` watermark threshold. In a follow-up run with the
+same kernel, video and playback configuration, I set vm.min_free_kbytes to
+50000. This lowered the Normal-zone `high + min` threshold from about
+379.8 MiB to 255.1 MiB.
+
+With the lower threshold, the fragmentation helper returned true more
+often and Xe working-set churn fell by about 90%:
+
+  successful ttm_tt_backup:        4,853 -> 443
+  ttm_tt_restore:                  4,810 -> 435
+  Flush > 16.667 ms:                 209 -> 19
+  Flush > 100 ms:                     65 -> 3
+
+This confirms that preventing working-set backup prevents the visual
+stalls. It does not make the individual restore path cheaper. When the
+heuristic still allowed a storm, the maximum Flush was 191.655 ms and
+contained 25 restores and 23 WC conversions.
+
+I do not think tuning global watermarks is the right solution. More
+importantly, I no longer think that protection for explicitly identified
+visual BOs should depend on whether reclaim was caused by fragmentation
+or genuine low memory. Once userspace has declared a bounded set as
+presentation-critical, violating that residency guarantee produces an
+immediate and user-visible failure.
+
+Possible explicit marking mechanism
+-----------------------------------
+
+Could Xe provide an opt-in, mlock-like mechanism for this purpose?
+
+One possible interface would be a new DRM_IOCTL_XE_MADVISE VMA attribute,
+for example DRM_XE_VMA_ATTR_RECLAIM_POLICY, with states similar to:
+
+  DRM_XE_VMA_RECLAIM_DEFAULT
+  DRM_XE_VMA_RECLAIM_NO_SHRINK
+
+NO_SHRINK would mean that the backing BO is excluded from the Xe shrinker
+while at least one protected VMA holds the attribute. Userspace would set
+it when a video/render surface enters the active visual pipeline and clear
+it after the surface leaves that working set. Unbind, VM destruction or
+file close would also release the holder automatically.
+
+For a BO shared by multiple VMAs, Xe could maintain a BO-level
+no_shrink_count, similar to the holder accounting already used for
+purgeable state. The shrinker would skip a BO with a non-zero count. I
+would prefer a separate shrinker-specific count rather than exposing TTM
+pin_count, because pinning also affects placement and migration, which is
+broader than the requested guarantee.
+
+The existing WILLNEED state does not provide this contract: it prevents
+purging of the contents, but the non-purge shrinker may still back up and
+unpopulate the BO. It also cannot simply be redefined because WILLNEED is
+the default state for all VMAs. SCANOUT is not sufficient either, since
+many HDR intermediate and imported video surfaces are not scanout BOs.
+
+I understand that an unprivileged client must not be allowed to make an
+unbounded amount of memory unreclaimable. Like mlock, this could be
+controlled by an explicit per-file, per-client or cgroup byte limit, and
+possibly by a privilege check. If the requested protected set exceeds the
+configured limit, the madvise should fail rather than silently accepting
+the mark and later violating it under pressure. The application or system
+service would then decide which visual surfaces to protect or release.
+
+Within that bounded contract, however, I think NO_SHRINK should remain a
+hard guarantee even in genuine low-memory reclaim. Under pressure the
+kernel may reclaim unmarked BOs and other memory, reject additional
+NO_SHRINK requests, or require the application/service to release part of
+its protected set. Backing up an already accepted presentation-critical
+BO and stalling a frame by hundreds of milliseconds defeats the purpose
+of the interface.
+
+For comparison, my original workaround approximated such a hard contract
+by excluding VM-bound WC BOs from non-purge shrinking. In a 21-minute
+capture, no XE_EXEC, VM_BIND or DMA-BUF ioctl exceeded the 16.7 ms frame
+interval; their maxima were 348 us, 136 us and 20 us. The call rate of
+set_pages_array_wc fell to 0.179/s. That automatic VM-bound WC rule is too
+broad, but an explicit and bounded userspace mark could provide the same
+latency guarantee only for the BOs that actually need it.
+
+Would an explicit, bounded NO_SHRINK/latency-critical VMA attribute be a
+reasonable Xe UAPI direction? If so, I can prototype the BO holder
+accounting and shrinker exclusion, then modify the video/Mesa path to mark
+only the active visual working set and collect another strict A/B trace.
+
+[9] https://patchwork.freedesktop.org/patch/720030/?series=165329&rev=1
+[10] https://patchwork.freedesktop.org/patch/720036/?series=165329&rev=1
+[11] https://patchwork.freedesktop.org/patch/720031/?series=165329&rev=1
+[12] https://patchwork.freedesktop.org/patch/732698/?series=168466&rev=1
+[13] https://patchwork.freedesktop.org/patch/732420/?series=168389&rev=1
+
+Thanks,
+Neil
