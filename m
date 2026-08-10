@@ -4,149 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD53DC5B567
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 19:16:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73019C5AD55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 19:43:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 774A610E985;
-	Mon, 10 Aug 2026 19:16:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 026C810E226;
+	Mon, 10 Aug 2026 19:43:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mgWp64DU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DZ27Lnns";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69BCA10E983;
- Mon, 10 Aug 2026 19:16:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50D5E10E1C1;
+ Mon, 10 Aug 2026 19:43:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786389396; x=1817925396;
+ t=1786390996; x=1817926996;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=2F5/lxxZlAygvDTSdlkT2Jds4fO9XTdvddSBXyZUaE4=;
- b=mgWp64DUu0EeI+QD04dc5tcSRPQqEJGhj0c6kkCNkZhQHXfYL4afjXUY
- oDCFSmd/LTDx9iDxI8sUp7nyFOu6PKG58jLRXonmixYRL2s7KdA81ld2r
- iem0HRyueONp7miRnNxG/pz8ritJL4UtuSYatTLJHT8J2aVxeDu5gXWO/
- 3iH7eEPaBynq5jghutdbDx5PS3KIRBHE+IPIxBroc89z1CjvOJJeH1RHh
- ZnhWaE6FXaj3dhq2O/xd4LiUN6KvoLvV2qYV8NUjI9raPRAIO240fytz0
- 2vnfZdm4Qe45xNsBFg8DCO/tMTXtmkeenyCdofDaCk3+9OIlOXyKdbZV/ g==;
-X-CSE-ConnectionGUID: qOghjDVsSWKt+pTSx14AuQ==
-X-CSE-MsgGUID: MkIqUMA/SUucMlmi1byGKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="90593066"
-X-IronPort-AV: E=Sophos;i="6.25,216,1779174000"; d="scan'208";a="90593066"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2026 12:16:36 -0700
-X-CSE-ConnectionGUID: Wh9yJHgMTxKsPHJlujFDjw==
-X-CSE-MsgGUID: 4UF7dEoAQo6nL3Bu1gwDiQ==
+ bh=jBbd49PEfrMh50OwNryqk0kCAVljFj8QQ/HYVp4T6iw=;
+ b=DZ27Lnns4P+5OTLrw1kMxnggQJbRLy+cHlwhErMa9kI3jvhySrs5ntFu
+ E/62UVHpJ0DHjDEmdx0ZmAo6Z6OVtETV7tWj7xWLzSFf6NC20n1WhF3ko
+ 3EuQGdf//BOswpeHYJCJolAkTWsnw7o4Nm+eicCFyDeBXbybJaxkkzzs1
+ I/mBYCd8IJLLmLsbuZyrHWB2Cwa62/sSzmW/CaKyX3UAPqyNfjmrv8dyn
+ S9oxvhUCyK4cSsGexQFK3/d4FM2SaMaq/6BrOGvy/stemGxvPxLfalyDv
+ WftLeZLaXJ/gD8hO0zSu99bKxgdYRzkbmjbmwzZrbo8EZ5Eb+o5wCmRGU Q==;
+X-CSE-ConnectionGUID: zTHiVvcKQpq0g9BB2eF1Uw==
+X-CSE-MsgGUID: cknrHoULRPmHtUXSJtZgdA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="97569875"
+X-IronPort-AV: E=Sophos;i="6.25,216,1779174000"; d="scan'208";a="97569875"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2026 12:43:15 -0700
+X-CSE-ConnectionGUID: Ng5pt5wDQU6V0+7Z/YkzXA==
+X-CSE-MsgGUID: F3eT68b4R52JQBeEjc2GBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,216,1779174000"; d="scan'208";a="266615035"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2026 12:16:36 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,216,1779174000"; d="scan'208";a="263728134"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2026 12:43:15 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 10 Aug 2026 12:16:35 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.45; Mon, 10 Aug 2026 12:43:14 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Mon, 10 Aug 2026 12:16:35 -0700
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.51) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Mon, 10 Aug 2026 12:43:14 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.20) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 10 Aug 2026 12:16:34 -0700
+ 15.2.2562.45; Mon, 10 Aug 2026 12:43:14 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hOZXrJkRWg0qbAoBktQr6TlTPpKYJv+OfEfY482bbHeoyMurF6VXVEf48L+0fQNOCWNkLmy+QozGwKnckbOTW9s8YyjwszEyq8soypunWLuqWp90B5fIULFbSY9ncwEIfO0IroYesB7sjTb7ZxGKC3S5/lKbltkDpyfEqU//vr929urOUeUZctDgiMm9tvfPDbsibo9DXtc72WZoctM78D3HiTlRiT4NFwMA92w0P+OuRM/1qE8gLxFuHTKFl3tGPcJ6S2UZzQ11lgh7Pxbu0NBdnGZKByuOmgcB5Qy60ZGNprhJC3erB6nCLcLCkm2GFtIbD+MAj0HMMXGMk0/fog==
+ b=T/+yu3Q1yuNF/HWaU42Ul7m4I2O7z59ouHrH000wgCoE/DFwxoEGzSOdnCah4y+42qNLTqm0AJlwZ85l7KgaPkzQDq9K15VxxZJmqEG3Ntxp6Q/pxu54l2acbM4tYbluHM+74Gfr8UKnINU3eCk/fV9AbKe7zXqt6z3Qav/zk3b3fKalXOdIdqHuP+/hZQk+wTVKWSt8473dWTGMljyJZRsuZC6xMJnDR+Tq91zxXnf5HFbiH+YKHRCtQ+ybNknErQSbSrQ8eh6Bx1vnSauD/uL0cOLaD853GXBii84x8DEjPcTvYu7XKsSys7+KUGHkMtSzdfNMr1FkuZGL3Wl2dQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Raafac+kHWPJXY59vJrPGjnowGUmkHclXnaqxQ1eru8=;
- b=U+DfCpHrh3vp2GvREIOwEKcjugQASX8sXzQCRVwrYfkze7A11BGLp3HLPrC9YO0/T3G2PfU3mzhFCQycWa5LsrlhkO3Ee78btlTKgeH10CnuuOXzfThG3C73yLaTgbcKUmUQc6tywjPBuO20O49RjSuL5bouN6c+gpqqqrd0XZqPiYLKBvtMl+CcvyVFVoHD/Srx/QzqW9bmK2/rWkvAzNVrtBfXtYFne4fYhAkZpWv8trP7ykfJTSwus2eIY1V9VMaCmfvERPriXk+f5ATne393ggZ3G1/U/Ohwls6C5lc2eJ5CTAifo+xbi5H4xAg03Qbw6+HXDp3KNzUNpL7jNg==
+ bh=Np7CEVaAU2LKyiR5XV8sO9+N9tRFpIBRCPaAH9kT/5A=;
+ b=rAKgZ5ZVygoq6T2l8AagyOXkZVRy+ueNFPV7NH2i6E901r6qpINeOFhMAmpYc9+5/LpWLD4q+pPHOqYWEfNTgzDvN6Dvv1JSddgQKv38abxPl0GLVFbI2gOgZPr+1S7a+OO3RHm3qkJ1X0RhbEwni4lhdOcojx7DQrVW4qvpMfV/kN99pJo6hrVH7Uo9yog/RkP3LTH1AFeRkpgK3ew81q4pkPqkbXKGPkVsIfVtgEAJLgvetjjk7tUt8DJ6EDj1/5InBkFsQCrByI6N2Re8yKRBEjS7Vai3j42o3+bNQY7zxZqcRcBJN2DrnxlOwD8gJM44eLWVZHX4SGMiPU2HKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM3PR11MB8760.namprd11.prod.outlook.com (2603:10b6:0:4b::19) with
- Microsoft SMTP Server (version=TLS1_2,
+ by CHAPR11MB9630.namprd11.prod.outlook.com (2603:10b6:610:301::11)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.25; Mon, 10 Aug
- 2026 19:16:30 +0000
+ 2026 19:43:12 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0292.024; Mon, 10 Aug 2026
- 19:16:30 +0000
-Date: Mon, 10 Aug 2026 12:16:27 -0700
+ 19:43:11 +0000
+Date: Mon, 10 Aug 2026 12:43:08 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Arvind Yadav <arvind.yadav@intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <thomas.hellstrom@linux.intel.com>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v6] drm/pagemap: Prevent double migration of device pages
-Message-ID: <anoji9hN/ifeoMwl@gsse-cloud1.jf.intel.com>
-References: <20260810092845.2776097-1-arvind.yadav@intel.com>
+To: "Huang, Ying" <ying.huang@linux.alibaba.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>, "Lorenzo
+ Stoakes" <ljs@kernel.org>, Zi Yan <ziy@nvidia.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, "Liam R . Howlett" <liam@infradead.org>,
+ Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>, "Dev
+ Jain" <dev.jain@arm.com>, Barry Song <baohua@kernel.org>, Lance Yang
+ <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>, Joshua Hahn
+ <joshua.hahnjy@gmail.com>, Rakie Kim <rakie.kim@sk.com>, Byungchul Park
+ <byungchul@sk.com>, Gregory Price <gourry@gourry.net>, Alistair Popple
+ <apopple@nvidia.com>, Balbir Singh <balbirs@nvidia.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Francois Dugast
+ <francois.dugast@intel.com>, <stable@vger.kernel.org>
+Subject: Re: [PATCH v3 3/6] mm/migrate_device: Fix THP splitting of a CPU
+ faulted device private folio
+Message-ID: <anopzF3Hk/RRh8kC@gsse-cloud1.jf.intel.com>
+References: <20260805231041.3791771-1-matthew.brost@intel.com>
+ <20260805231041.3791771-4-matthew.brost@intel.com>
+ <87ik5in224.fsf@DESKTOP-5N7EMDA>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260810092845.2776097-1-arvind.yadav@intel.com>
-X-ClientProxiedBy: MW4P221CA0005.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::10) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <87ik5in224.fsf@DESKTOP-5N7EMDA>
+X-ClientProxiedBy: MW4PR04CA0178.namprd04.prod.outlook.com
+ (2603:10b6:303:85::33) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM3PR11MB8760:EE_
-X-MS-Office365-Filtering-Correlation-Id: 42aa2396-2504-47e7-d5b4-08def713e231
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CHAPR11MB9630:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4606da85-1120-4877-e1a1-08def7179c97
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|11063799006|56012099006|10067099003|6133799003|3023799007|13003099007|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: neDG2eYIWoZ53Q0AgFGkaUCo+ne1JSHN26xAMYIEx5Sp2mH2yhP6PhkbsP3YwtjVgg4aqRAGJH992M1Si/wv9nTjtDSWpXayK1+nBFOX4Kn3O9Q/JsVBe26ZuCIEXSJa4ogz2f3IK5HC37BMvFzuSlKKqVbAaG4tnQEqxNj/ecRCx6Jxyhiu/GJxxXtqEY6I3+v/lKKG9/1Ay0imK/MRDBIGoGhEeGdCFxmWbU451fVM9079AR/6fY7ENPnl6WcbybmRoyw5NNysYdHCsGtdXRFPgp5GnAzQTa0xBdL3OVKVtW65II5wa52yRNGQWOiNxvt4eHa7M3niM5M8aH5GD/IUcEp/MIxu16H1rDg7H4wacQIxH5jJ4MXL4Ypgb1kkrGZIqL1RmHgwmm1MOocqij7phCciYVojQ5vUIQ1EntH86arnodZrJdrLEA+7hjKiuMaCFKXBokDi2p8HGc8Z9FiMrmgUxKqfPdn2MkwndkARMeWrah6pSsYVInZnuRl2eK0fi4v9KwRvowg0yLOyFnVCnn+a0wq/LcYGB/dZ2PyUQ4QrG85x1zKqGSWLwCelCeFTH6Vk0YCUvgMrwySBFPqplHU7BnCMBY2wMBZolY26/OQmQDxASeXhkpQt1EjS
+ ARA:13230040|376014|7416014|366016|1800799024|23010399003|6133799003|4143699003|11063799006|56012099006|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: bVVZnqnfy52dloSagqEmmwKAyb7RG8VHiHbcFwc/NqFMfF5ZV6UMo5WDAiAPLqQVW6z9lKROY/rkvWX1pjI5Yx9x7DZBX6YA0rOlyPVeOalHme0DrsSc5+zYcYdeqhUhThyr3lTOz98nB79AVh63Tbr/f3JhkgLmlIsqAKxt/r3/HU744B+FfM+aaPske02tWWtSB0KPJ4vseFJNCWepb7UfCKZwvMM332Q35+fIF7NELlBJoXja9B/kINawMqlpG3HMCjJAuw9yGwkixbrMUhXEG7Ka+uRA4ZI3EKv8MgpMvqLIdl1rKkdv1BMbCdk7cITQblZ/y8wzMdCzZbu3M2QgmqSKOl9zwqS727fGQ+/0tLJ6vG5NtdZ36CGPtl6nulQZFcePiDxf/Ub8U5ziCQmYn0GQ7WlcONrFf4EnKQazFuBhP7g6ufW6/4Oh4KAljthRPCPL57eXWns3LKPONYTFX1kDOXFnRXWZEhHpxJI6m5w3rK48ZsjeWNHdocpwhzb42qL9rugLl31ymBxpI6gbgOOr9RDlCvAOvLApARE1t2I8cSMhVBrwG+Cyo2sQk+/pR5Oq6sogvyMkqHiotUcYnkcUWo/aLVvZyiabQ8A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(11063799006)(56012099006)(10067099003)(6133799003)(3023799007)(13003099007)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024)(23010399003)(6133799003)(4143699003)(11063799006)(56012099006)(10067099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?+PRTyqIXcYe+cEXW4Kh/CW2EwcWQgxirtgayspYTNYWdFz/27mwQc8gBO/?=
- =?iso-8859-1?Q?HfJxTdgOs6MjAIF6p/FSPjKYqAlAqPntonHmFyVEQtl+H19Xw+b5bv9ObY?=
- =?iso-8859-1?Q?PGooOgbYi4Rzwccr2OvWbTlR+bv5pogD1JniUYT5FBgKdmKDWqbfnfG2+w?=
- =?iso-8859-1?Q?Fx6DkQK/2MYiEGWQ091owVZyLZqB4laz9L5d0x4/7sJrPiLRShe7yhyd2K?=
- =?iso-8859-1?Q?mWXnDARPmqUu0A/Xt3y8MUb/1k4KXGuy4l2WJGr6OamIKnV3LsBkJqbbW8?=
- =?iso-8859-1?Q?mwAhBkVzWUiXUNG+OdjVUJsQWG0s1mNJ9mv76toryzGVtHu7K+HgTK9E3w?=
- =?iso-8859-1?Q?eogJWwsc7YzFXsgAo0YH59U3urGwcdKXdKYmgMsSskn69pi5GvlDGj4Oy1?=
- =?iso-8859-1?Q?AMMuvvLm1RxER7Btw/0YtyW34NqxC97DFpFqx69vNnaXt38lOD0jmr5bLq?=
- =?iso-8859-1?Q?xV9kzlYhbIFlyDVQKOnFTNIq3WhykWN0DY5AQhGkLLUJ4ldxx3Rl1iDiG0?=
- =?iso-8859-1?Q?sE8QZ4qDEeJ4Azm+q4pXEzii0aFodfqnn7Ji7ZGhkGhAPCTuhe7c9ymSqm?=
- =?iso-8859-1?Q?+03aIqW9r3YvdP8lTQHOHn8aqwQQGxJApToAn1rgfij5k+2HAmMQnpfuFq?=
- =?iso-8859-1?Q?Iek0AQqKphL2AvQBMoyc9ZKVlP0feuPhfz75Ayb0EJ5jBI8xd3DX+glBBJ?=
- =?iso-8859-1?Q?NM2uBnyzM3HkSBUh83kbzSIBYkvtVaWDpq9PlDyTxT5cFzOweLstgiCUTw?=
- =?iso-8859-1?Q?lE8m47PojONgOrQ2JUkeQbs+JYIFLpaCNbt3LzT8iuY6QkAFv5A0lmm8hK?=
- =?iso-8859-1?Q?0fPB7/7Ez5NDkcdRhxnmeojBqA0eVGeH5jCHhuhegFbUpczowKS92qit8s?=
- =?iso-8859-1?Q?qZpIVhzlN0GdWT4AQ67L499EtyOid6fRT1Ezb8qq8i92Z8jitJoFu5CQ+6?=
- =?iso-8859-1?Q?vatPsjd76ZkIe0B27KjXcsgJ9seba2R/YPkK8v36Wfm8MJGxji6UoqxWck?=
- =?iso-8859-1?Q?f/K0pJwp73AiLQsQTexbPOX6eKZxXAy8FwQfN+wX15MmICFP2xTvr6BSvF?=
- =?iso-8859-1?Q?q7lx0rcXX5vBhnv0tlQXwbUxk4JUuOT/qj5QnQ4B2uwAV2GhCsosiYtDQ1?=
- =?iso-8859-1?Q?ORAdEEg88f+raXtcq+Rn6Gaq4/KGjpzBlT8defj9zp88+9htj2yov5YQ3j?=
- =?iso-8859-1?Q?rZd8iHz3Qmj5ZXn4tFj5DBHuM5KN8pxo8c/LstzffegsmqZo3Clf5EibtA?=
- =?iso-8859-1?Q?LonxkOVp5Zag6AHlr0ly2KNydHI4KcnACuE9Jq8aklrbtT4kXEXg5jmSbu?=
- =?iso-8859-1?Q?fAXVdnAoNPPVA2JuoezKARMRDCyjgSUODsR94+PuTR+N2M0w/cTGJAu2UA?=
- =?iso-8859-1?Q?JCo/bsg7JVi4MT3CIJaG9qQkR7/ALZCdt/AZ9nhLpY+S6gp34UgznzIUr1?=
- =?iso-8859-1?Q?TQjp6xTE1YY3zUi20X2x24D1IZQfoyAW88709R9pSrfp3h8lSGkNTKo5L3?=
- =?iso-8859-1?Q?tiXLU+iNHyBKhvxR47+p1kqv90mf83/Jj/W2e+YHCywChNKAHKFZyWvPve?=
- =?iso-8859-1?Q?UHIkroG0BogeTL+WtQT+KTWEI9vv/L/Fu3RG7mEQG0P1ThtKyNAHtG2Zml?=
- =?iso-8859-1?Q?tfpW9e6AXicfDUgGNxW2Ju8ncFiKESMxIBLj/3IOzlHikBN9X16JxpP5BG?=
- =?iso-8859-1?Q?fjQ6vY/wZojfW4naOkUkMGPWah5DONKAFOt5Qf+jytOg4LLRjNr2oBwkpn?=
- =?iso-8859-1?Q?ccxfsEREpGU1OL2ct/6VvqxflvEtnpU5AvdypHX+kT20nsG/mBjl4ajiM+?=
- =?iso-8859-1?Q?f4l/GuD8Vw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: jWmFT9OqHh2GELHioB8uyrczWxULQxXaUAOpXuzDlZkMQ60rcEcR5G794ffKSBsG/v8S9v4BsyHYKoWVxstBGtX8pigvbqPZfAB3SG/irQYUFSTFMwm5hDxJnEkM5vr2f1PAd3NVUKMgtjhy0e16Ter8x1C2xa8OUiF8A/j8wP9ML+0YGjZHLil+JisRBS3WHK5umXu6pKMICiDI8Ry2r57i0fUX9ui6b2jCFeTrqx/Q2ETU/5QvZVuOnOVKDUCge7bSfLvUbd+qHu1hJ56mIinbdc2xpA2hlsA+AdlzkUZjy/fD3mve00CWXtYRJfUDciU8SdWbXBWVFOtmD16q4Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42aa2396-2504-47e7-d5b4-08def713e231
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?JcPwuV0O8M7f/gSj6x/ExKBgqcNF2bLSXn4x2ITza51hd85EjhwmCV6Koi?=
+ =?iso-8859-1?Q?DUUxSIkINfemk4Asfb02N8X899v2p7Dq1TgRp7pb65nNXPqrH6b24Lql9d?=
+ =?iso-8859-1?Q?pt+VCEHBQpTeiwPhe0/9+QQ/SiACkdKizz5BG1BQt0vcszfkpyKvK4VpcE?=
+ =?iso-8859-1?Q?f+/ed8+BWaXLIc6kHKO4iFyFCroRP3GSqWK4M7HA8ZhwBr83+0TdM4OYEX?=
+ =?iso-8859-1?Q?Ub8InjX5EjYT64Kbf9dgK6e6Di8JDXi06VG+L2Z2WTOFOUkF8+M/g6kaIT?=
+ =?iso-8859-1?Q?kDujrSmMpdasxX1gqkgMsjhBRJ+7WKM3J7zAwlZZXkSpKG8DBZyN8GAHYd?=
+ =?iso-8859-1?Q?89dsP6xaAG5LQQSRehH24KiHwTn/q/qMcvu5HtQ1Hq3WaJffJFHBz+l4yj?=
+ =?iso-8859-1?Q?ON1Cyw6RPKz8k8sSgo80zU9JQw3vEGVxp6Xs20ukYkSpkMc8RLIdLrslYv?=
+ =?iso-8859-1?Q?NFpjSi6h6SzfA3iGoqGUnmzpiFuv7zOEeieKgXGLKxRtLr1U69O+0FRFDb?=
+ =?iso-8859-1?Q?n3UOnk49c+v5pPSMUxOLqPS3tMvBjcnqM0jfQMOWWUusBWningP//dP2n0?=
+ =?iso-8859-1?Q?CieoxrZeMg4dCDTOwQm+/4hUfCm7xG9JD1MbC4SOUQVt1hPp/XlnBkerng?=
+ =?iso-8859-1?Q?gMXna9lYOEvPrvFjKW9x7aJXna+5LAsGqZ9awOpIcRcYcI3b2C+qxdXBgW?=
+ =?iso-8859-1?Q?pR9Kw2OJuYiOgliQ0TTUKBOrFfF5zDHypAkiIEeprJfqzDj9rA9/Tv6VRA?=
+ =?iso-8859-1?Q?gQz5fRHd1cHbPDHv7THNOjCbmagHXNft4lVzr+9IolptF1E8uxba6hzrgC?=
+ =?iso-8859-1?Q?q87eCYuHR20Mzv62LpzGtGq+1NU9TH0r91BTjK4LaC7SleVO+KCOu1NIxg?=
+ =?iso-8859-1?Q?SKSNPG6wm6XOYB1NEnoYAi1c5k1ctZRXLyK3b0TbRjaLenODa9JjL5vo97?=
+ =?iso-8859-1?Q?185o5sLNB8XkbFiwilewVFWiNUnzapDmrCqh03m2HV0I0+L6emcn4eZ3wv?=
+ =?iso-8859-1?Q?43BOFNUWn4Z5GIEF+96Bc7RU5iUEkwB/JAci+f8b0K8TDlwqhIny4d61Mq?=
+ =?iso-8859-1?Q?HnJ152qdn3fV3l9A8ogWIi6oEQWbZzaoeDVoBHTR/riLkRdLbj/SdcRz9C?=
+ =?iso-8859-1?Q?/plNJJGgS4rB2WZnnG3uPBRaxcZOX2Ad2r9AI/vd260Es4dTjwbjjXB3Qi?=
+ =?iso-8859-1?Q?jI8Gtd1tDUNoentbBZzBWQXP0BGQ/4Bjmn+QERKfNkbSg3PW/xG2THUq9+?=
+ =?iso-8859-1?Q?RQYi1TFsU6xsJiZSoOBljxoA+d+qUy6WOrzkv4J64jrQiR+u1Q8qKLccn1?=
+ =?iso-8859-1?Q?hsYMq/uU7nFafA0wE0AsHaCEYGO4oY3QgFUyHrDo5QHFN+MSffo3a3eer+?=
+ =?iso-8859-1?Q?NOxwxAoH3EJITvhmDwFGSA5gGaSoGjPz8c/HMuke1nbD4U9RGZjvs7zgK8?=
+ =?iso-8859-1?Q?1FYjF//CpKtiZodSn59uQlA2RcTA0rBVcqJuQtyu+uZjomD5IWYdh2xd3H?=
+ =?iso-8859-1?Q?qwQR/e/ABBUctc0A/W0xjXpQJMhdlMRUWMhZ8kd8X6habFy6Cfm/3B/rWt?=
+ =?iso-8859-1?Q?7Tw3lsfRJPzaSoc++KiJ+3ijfIsvYWHlu6A0OGHZZcDJdoJX2I3Dx/612J?=
+ =?iso-8859-1?Q?FCi7DDf6XgFIGr8SsTR9Y2WIvY2t8ORC6w4jcw45AKLiW6DA0EHD98F4/n?=
+ =?iso-8859-1?Q?5hwyg63lWj0M0eUFn0PQvq9TzQr29h0y7yxIyVLlwygdiEeBG7UvJ8WnaD?=
+ =?iso-8859-1?Q?mI7bEicsdU5NYh3hvsHAHdnYe+VK1EE0iIemxxgLCQnCUxZKY3kj78dRpG?=
+ =?iso-8859-1?Q?3SkYGsW9RIrmjp7N+Ey3CGqtpPPoU0U=3D?=
+X-Exchange-RoutingPolicyChecked: aS3Qw5RM/4NhlcsZcMkLo183lOtgRoM90vfJq1DVS629QtUrW323wPZoke9BlQ7KKHAS0j3o8jWIa4Iacq4/NJbVLm/K7xc/n7lFhB2SCkDjDVKDYmDoNgd95rgWmo69TM4LcY8c0+ACVyFnI3AtiQbishP7aoDxn687+PbmRGrJbjw4tXOLe9E2lEfeMAkCZV9ekLOmX9dRcQIUCesFRn2O4+KYE0rqZ6faLhI/LCu4yNxv/B1sURW/wNW/1VpWuehgZeXnVA8pU6pSSS2Lhdo3uisDzjGTAJxkAJ5YX6isrn1/tfx2/XaXABx/POBkSIPpmFQCHdDAg5BjUkiT2A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4606da85-1120-4877-e1a1-08def7179c97
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2026 19:16:30.6577 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2026 19:43:11.8648 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9dqWXidTvp7+UTNDMfyRSMEALmHO7u7q3w8U5rwB/5nrfKq8ZA9MWjWTkfup60yxm0ICYN3BI1ZwxAA/vl1LYA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8760
+X-MS-Exchange-CrossTenant-UserPrincipalName: DjeMxMn34jcqgdj1EUufgL4m9wcYW5ww4uaC10Cd3olJz+2RT94tFqWE5YcR1Ga72WbB6PkGua4zVf9a0WVAGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CHAPR11MB9630
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,371 +176,315 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 10, 2026 at 02:58:45PM +0530, Arvind Yadav wrote:
-> A device-private folio migrated to system memory by a CPU fault can
-> remain reachable through the raw-PFN eviction path until migration
-> finalization drops the source reference.
+On Mon, Aug 10, 2026 at 10:26:27AM +0800, Huang, Ying wrote:
+> Hi, Matthew,
 > 
-> If eviction selects the same device-private folio during this window,
-> it can attempt to migrate the folio again. The second migration can leave
-> an uncharged folio on an LRU list, causing folio_lruvec_lock_irqsave() to
-> retry indefinitely and resulting in a soft lockup and RCU stall.
+> Matthew Brost <matthew.brost@intel.com> writes:
 > 
-> Mark successfully migrated device-private folios using a low bit of
-> their zone_device_data before migration finalization. Make both CPU-fault
-> and raw-PFN migration paths skip device-private folios carrying this
-> flag.
+> > When a CPU faults on a device private PMD and the device driver can only
+> > allocate order-0 destination folios, __migrate_device_pages() has to
+> > split the source THP via migrate_vma_split_unmapped_folio(). That path
+> > is broken in two independent ways when the fault is what triggered the
+> > migration.
+> >
+> > First, the split never succeeds. At the point folio_split_unmapped() is
+> > called the folio carries two references beyond the ones it is
+> > entitled to:
+> >
+> >   1 - taken by do_huge_pmd_device_private() for the duration of the
+> >       ->migrate_to_ram() callback
+> >   2 - taken by migrate_vma_collect_huge_pmd() when the folio was
+> >       collected
+> >
+> > (the mapping reference having been dropped by set_pmd_migration_entry()).
+> >
+> > folio_split_unmapped() requires folio_expected_ref_count(folio) ==
+> > folio_ref_count(folio) - 1, i.e. it tolerates exactly one caller
+> > reference. With both of the above held the check sees 2 against an
+> > expected 0 and returns -EAGAIN, so the migration is abandoned and the
+> > CPU fault makes no progress.
+> >
+> > The PTE-based split path does not have this problem:
+> > migrate_vma_split_folio() is called before any collect reference is
+> > taken and explicitly skips folio_get() for the fault folio, so the fault
+> > reference is the single caller reference the split expects.
+> >
+> > Fix it by dropping the fault reference across the split and re-taking it
+> > afterwards. do_huge_pmd_device_private() derives the fault page from the
+> > PMD entry, so it is always the head page of the folio and always ends up
+> > in the head folio of an uniform split to order 0; re-taking the
+> > reference on the folio therefore puts it back exactly where
+> > do_huge_pmd_device_private() will release it. The folio cannot be freed
+> > while the reference is dropped because the collect reference is still
+> > held.
+> >
+> > Second, the folio is split globally but the page tables were demoted
+> > only locally:
+> >
+> > 	split_huge_pmd_address(migrate->vma, addr, true);
+> > 	ret = folio_split_unmapped(folio, 0);
+> >
+> > migrate_device_unmap() unmaps via try_to_migrate(folio, 0), deliberately
+> > without TTU_SPLIT_HUGE_PMD, so every VMA that PMD maps the folio is left
+> > holding a PMD sized migration entry. A folio that was PMD mapped in more
+> > than one VMA -- after fork(), for example -- therefore keeps huge
+> > migration entries in all the other VMAs while only migrate->vma is
+> > demoted.
+> >
+> > folio_split_unmapped() does not notice: the folio is fully unmapped, so
+> > it only looks at the refcount and happily splits to order 0. The other
+> > VMAs are then left pointing a huge PMD at an order-0 folio, and
+> > migrate_vma_finalize() -> remove_migration_ptes() walks into it:
+> >
+> >   page dumped because: VM_BUG_ON_FOLIO(folio_test_hugetlb(folio) ||
+> >                                        !folio_test_pmd_mappable(folio))
+> >   kernel BUG at mm/migrate.c:368!
+> >   RIP: 0010:remove_migration_pte+0x56a/0x9b0
+> >   Call Trace:
+> >    rmap_walk_anon+0xfc/0x260
+> >    remove_migration_ptes+0x79/0xb0
+> >    __migrate_device_finalize+0x113/0x290
+> >    __drm_pagemap_migrate_to_ram+0x278/0x360 [drm_gpusvm_helper]
+> >    drm_pagemap_migrate_to_ram+0x5c/0x80 [drm_gpusvm_helper]
+> >    do_huge_pmd_device_private+0x160/0x280
 > 
-> Mask the flag when retrieving the drm_pagemap_zdd pointer and preserve
-> it when a device-private folio is split. Keeping the state on the physical
-> folio also avoids depending on a virtual address that may change before a
-> fault occurs.
+> Which is the branch your patchset based on?  I found that
+> drm_pagemap_migrate_populate_ram_pfn() in mm-everything-2026-08-08-07-08
+> still don't support fallback to single pages if THP allocation fails as
+> in the following comments,
 > 
-> v2:
-> - Replace the retired-PFN XArray with an embedded bitmap. (Matthew Brost)
-> - Mark every base page covered by a migrated folio so retirement remains
->   valid if the folio is later split.
-> 
-> v3:
-> - Store the migrated state in a low bit of zone_device_data instead of
->   adding virtual-range and bitmap tracking to the ZDD. (Matthew Brost)
-> - Mask the flag when retrieving the ZDD and preserve it when splitting
->   a folio.
-> - Drop the pre-existing fixes already covered by Matthew Brost's series:
->   https://patchwork.freedesktop.org/series/171651/
-> 
-> v4:
-> - Advance by the folio size only for migration entries marked with
->   MIGRATE_PFN_COMPOUND. (Sashiko)
-> 
-> v5:
-> - Simplify ZDD flag updates and folio iteration. (Matthew Brost)
-> - Skip retired device-private folios in the CPU-fault path. (Matthew Brost)
-> - Preserve flag bits while taking a new ZDD reference for split folios.
-> 
-> v6:
-> - Restore MIGRATE_PFN_COMPOUND-aware stepping so non-compound migration
->   entries are processed one at a time. (Sashiko)
-> - Drop the pre-existing fixes already covered by Matthew Brost's series:
->   https://patchwork.freedesktop.org/series/171651/
-> 
-> The lockup was observed as:
-> [10109.860465] watchdog: BUG: soft lockup - CPU#9 stuck for 26s! [kworker/u65:5:6557]
-> [10109.860524] Tainted: [S]=CPU_OUT_OF_SPEC, [O]=OOT_MODULE
-> [10109.860524] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
-> [10109.860525] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_work [xe]
-> [10109.860644] RIP: 0010:_raw_spin_unlock_irqrestore+0x57/0x80
-> [10109.860655] Call Trace:
-> [10109.860655]  <TASK>
-> [10109.860657]  folio_lruvec_lock_irqsave+0x216/0x220
-> [10109.860661]  ? __pfx_lru_add+0x10/0x10
-> [10109.860665]  folio_batch_move_lru+0xc8/0x450
-> [10109.860670]  ? lock_acquire+0xc4/0x2d0
-> [10109.860674]  ? __folio_batch_add_and_move+0x60/0x2e0
-> [10109.860677]  ? folio_migrate_mapping+0xa6/0x110
-> [10109.860679]  ? folio_migrate_flags+0x13b/0x1b0
-> [10109.860681]  ? __pfx_lru_add+0x10/0x10
-> [10109.860683]  __folio_batch_add_and_move+0xe7/0x2e0
-> [10109.860685]  ? dma_iova_try_alloc+0xb0/0x140
-> [10109.860689]  folio_add_lru+0x64/0x80
-> [10109.860691]  __migrate_device_finalize+0x12c/0x270
-> [10109.860695]  migrate_device_finalize+0x10/0x20
-> [10109.860698]  drm_pagemap_evict_to_ram+0x185/0x370 [drm_gpusvm_helper]
-> [10109.860704]  ? drm_pagemap_evict_to_ram+0x96/0x370 [drm_gpusvm_helper]
-> [10109.860709]  xe_svm_bo_evict+0x15/0x20 [xe]
-> [10109.860819]  ? xe_svm_bo_evict+0x15/0x20 [xe]
-> [10109.860921]  xe_bo_move+0x107e/0x1570 [xe]
-> [10109.860992]  ? xe_ttm_tt_create+0x168/0x340 [xe]
-> [10109.861059]  ? __up_read+0x98/0x2b0
-> [10109.861061]  ? lock_is_held_type+0xa3/0x130
-> [10109.861067]  ttm_bo_handle_move_mem+0xe8/0x1e0 [ttm]
-> [10109.861075]  ttm_bo_evict+0x141/0x1c0 [ttm]
-> [10109.861081]  ttm_bo_evict_cb+0x9f/0x100 [ttm]
-> [10109.861086]  ttm_lru_walk_for_evict+0x84/0x190 [ttm]
-> [10109.861091]  ? xe_ttm_vram_mgr_new+0x258/0x3a0 [xe]
-> [10109.861198]  ttm_bo_alloc_resource+0x219/0x750 [ttm]
-> [10109.861203]  ? ttm_bo_alloc_resource+0xa9/0x750 [ttm]
-> [10109.861208]  ? lock_acquire+0xc4/0x2d0
-> [10109.861214]  ttm_bo_validate+0x94/0x1c0 [ttm]
-> [10109.861218]  ? ww_mutex_trylock+0x19d/0x3d0
-> [10109.861219]  ? _raw_write_unlock+0x22/0x50
-> [10109.861223]  ttm_bo_init_reserved+0x17d/0x1f0 [ttm]
-> [10109.861228]  xe_bo_init_locked+0x20a/0x620 [xe]
-> [10109.861294]  ? __pfx_xe_ttm_bo_destroy+0x10/0x10 [xe]
-> [10109.861359]  ? mark_held_locks+0x46/0x90
-> [10109.861361]  ? __create_object+0x68/0xc0
-> [10109.861366]  __xe_bo_create_locked+0x384/0xa20 [xe]
-> [10109.861432]  ? lock_acquire+0xc4/0x2d0
-> [10109.861434]  ? xe_drm_pagemap_populate_mm+0xd3/0x340 [xe]
-> [10109.861542]  xe_bo_create_locked+0x23/0x40 [xe]
-> [10109.861609]  xe_drm_pagemap_populate_mm+0x12e/0x340 [xe]
-> [10109.861707]  ? __lock_acquire+0x43e/0x2930
-> [10109.861716]  drm_pagemap_populate_mm+0x74/0xe0 [drm_gpusvm_helper]
-> [10109.861720]  xe_svm_alloc_vram+0xb5/0x2c0 [xe]
-> [10109.861817]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
-> [10109.861819]  ? ktime_get+0x23/0x130
-> [10109.861821]  ? trace_hardirqs_on+0x22/0xe0
-> [10109.861823]  ? seqcount_lockdep_reader_access.constprop.0+0x9f/0xc0
-> [10109.861826]  __xe_svm_handle_pagefault+0x77d/0xbf0 [xe]
-> [10109.861924]  ? rwsem_down_write_slowpath+0x43a/0x9a0
-> [10109.861926]  ? _raw_spin_unlock_irq+0x27/0x70
-> [10109.861928]  ? rwsem_down_write_slowpath+0x43a/0x9a0
-> [10109.861929]  ? trace_hardirqs_on+0x22/0xe0
-> [10109.861931]  ? _raw_spin_unlock_irq+0x27/0x70
-> [10109.861933]  ? rwsem_down_write_slowpath+0x459/0x9a0
-> [10109.861937]  xe_svm_handle_pagefault+0x3d/0xb0 [xe]
-> [10109.862030]  xe_pagefault_queue_work+0x1a9/0x520 [xe]
-> [10109.862122]  process_one_work+0x239/0x730
-> [10109.862127]  worker_thread+0x200/0x3f0
-> [10109.862130]  ? __pfx_worker_thread+0x10/0x10
-> [10109.862132]  kthread+0x10d/0x150
-> [10109.862133]  ? __pfx_kthread+0x10/0x10
-> [10109.862135]  ret_from_fork+0x3bd/0x470
-> [10109.862138]  ? __pfx_kthread+0x10/0x10
-> [10109.862140]  ret_from_fork_asm+0x1a/0x30
-> [10109.862146]  </TASK>
-> 
-> Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+This entire series, on drm-tip (i.e., the 6 patches posted here [1]).
 
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Assisted-by: Claude:claude-opus-4-8
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+[1] https://patchwork.freedesktop.org/series/171651/
+
+> 	/* TODO: Support fallback to single pages if THP allocation fails */
+> 
+> 
+> > Without CONFIG_DEBUG_VM the VM_BUG_ON_FOLIO() is compiled out and
+> > remove_migration_pmd() installs a huge PMD pointing at an order-0 page
+> > instead, along with add_mm_counter(mm, MM_ANONPAGES, HPAGE_PMD_NR). The
+> > victim mm then maps 2MB of address space onto a single 4K page, which
+> > shows up later as bad rss-counter state, leaked page tables and page
+> > allocator freelist corruption in unrelated processes.
+> >
+> > Note this second problem was latent before the refcount fix above: the
+> > split always failed, and the failed attempt left migrate->vma demoted,
+> > so the retried fault took the PTE path, where __folio_split() unmaps
+> > with TTU_SPLIT_HUGE_PMD and demotes every VMA.
+> >
+> > Fix it by walking the rmap and demoting every PMD sized migration entry
+> > mapping the folio before splitting it. Demote with freeze = false: entry
+> > creation in __split_huge_pmd_locked() is dispatched on
+> > pmd_is_migration_entry(), not on freeze, so a migration PMD becomes PTE
+> > sized migration entries either way, and freeze only controls a trailing
+> > put_page(). With freeze = false there is no refcount change at all,
+> > which makes the demotion idempotent across N VMAs.
+> >
+> > rmap_walk_control.anon_lock is deliberately left unset:
+> > folio_lock_anon_vma_read() depends on folio_mapped(), and the folio is
+> > already fully unmapped here. This mirrors remove_migration_ptes().
+> >
+> > Finally, refuse the split for a folio that is not anonymous. The rmap
+> > walk would otherwise reach a file backed VMA, where
+> > split_huge_pmd_address() zaps the PMD instead of demoting it.
+> >
+> > Fixes: 4265d67e405a ("mm/migrate_device: add THP splitting during migration")
+> > Cc: Andrew Morton <akpm@linux-foundation.org>
+> > Cc: David Hildenbrand <david@kernel.org>
+> > Cc: Lorenzo Stoakes <ljs@kernel.org>
+> > Cc: Zi Yan <ziy@nvidia.com>
+> > Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+> > Cc: Liam R. Howlett <liam@infradead.org>
+> > Cc: Nico Pache <nico.pache@linux.dev>
+> > Cc: Ryan Roberts <ryan.roberts@arm.com>
+> > Cc: Dev Jain <dev.jain@arm.com>
+> > Cc: Barry Song <baohua@kernel.org>
+> > Cc: Lance Yang <lance.yang@linux.dev>
+> > Cc: Usama Arif <usama.arif@linux.dev>
+> > Cc: Joshua Hahn <joshua.hahnjy@gmail.com>
+> > Cc: Rakie Kim <rakie.kim@sk.com>
+> > Cc: Byungchul Park <byungchul@sk.com>
+> > Cc: Gregory Price <gourry@gourry.net>
+> > Cc: Ying Huang <ying.huang@linux.alibaba.com>
+> > Cc: Alistair Popple <apopple@nvidia.com>
+> > Cc: Balbir Singh <balbirs@nvidia.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: David Airlie <airlied@gmail.com>
+> > Cc: Simona Vetter <simona@ffwll.ch>
+> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Cc: Francois Dugast <francois.dugast@intel.com>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: linux-mm@kvack.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: stable@vger.kernel.org
+> > Assisted-by: GitHub_Copilot:claude-opus-5
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  mm/migrate_device.c | 98 ++++++++++++++++++++++++++++++++++++++++-----
+> >  1 file changed, 89 insertions(+), 9 deletions(-)
+> >
+> > diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+> > index ae9027421b80..ae17bd516d24 100644
+> > --- a/mm/migrate_device.c
+> > +++ b/mm/migrate_device.c
+> > @@ -899,22 +899,104 @@ static int migrate_vma_insert_huge_pmd_page(struct migrate_vma *migrate,
+> >  	return 0;
+> >  }
+> >  
+> > +static bool migrate_vma_split_pmd_one(struct folio *folio,
+> > +				      struct vm_area_struct *vma,
+> > +				      unsigned long addr, void *arg)
+> > +{
+> > +	DEFINE_FOLIO_VMA_WALK(pvmw, folio, vma, addr, PVMW_SYNC | PVMW_MIGRATION);
+> > +
+> > +	while (page_vma_mapped_walk(&pvmw)) {
+> > +		if (pvmw.pte)
+> > +			continue;
+> > +
+> > +		addr = pvmw.address;
+> > +		page_vma_mapped_walk_done(&pvmw);
+> > +
+> > +		/*
+> > +		 * Demote with freeze = false: the PMD already holds a
+> > +		 * migration entry, so __split_huge_pmd_locked() creates PTE
+> > +		 * sized migration entries from it and leaves the refcount
+> > +		 * alone. There is at most one PMD mapping @folio per VMA, so
+> > +		 * stop the walk here.
+> > +		 */
+> > +		split_huge_pmd_address(vma, addr, false);
+> > +		break;
+> > +	}
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +/*
+> > + * Demote every PMD sized migration entry that maps @folio to PTE sized ones.
+> > + *
+> > + * migrate_device_unmap() unmaps with try_to_migrate(folio, 0), i.e. without
+> > + * TTU_SPLIT_HUGE_PMD, so a folio that was PMD mapped in several VMAs -- after
+> > + * fork(), for instance -- ends up with a PMD sized migration entry in every one
+> > + * of them. folio_split_unmapped() below does not care, it only looks at the
+> > + * refcount, so splitting the folio without demoting all of those first would
+> > + * leave the other VMAs pointing a huge PMD at what is now an order-0 folio.
+> > + * remove_migration_ptes() trips over that in migrate_vma_finalize().
+> > + */
+> > +static void migrate_vma_split_pmd_mappings(struct folio *folio)
+> > +{
+> > +	struct rmap_walk_control rwc = {
+> > +		.rmap_one = migrate_vma_split_pmd_one,
+> > +	};
+> > +
+> > +	/*
+> > +	 * Do not pass .anon_lock: folio_lock_anon_vma_read() requires
+> > +	 * folio_mapped(), and @folio is already fully unmapped here.
+> > +	 */
+> > +	rmap_walk(folio, &rwc);
+> > +}
+> > +
+> >  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
+> > -					    unsigned long idx, unsigned long addr,
+> > +					    unsigned long idx,
+> >  					    struct folio *folio)
+> >  {
+> >  	unsigned long i;
+> >  	unsigned long pfn;
+> >  	unsigned long flags;
+> > +	bool fault_folio;
+> >  	int ret = 0;
+> >  
+> >  	/*
+> > -	 * take a reference, since split_huge_pmd_address() with freeze = true
+> > -	 * drops a reference at the end.
+> > +	 * migrate_vma_split_pmd_mappings() walks the rmap, and
+> > +	 * split_huge_pmd_address() zaps rather than demotes a PMD in a VMA that
+> > +	 * is not anonymous. migrate_vma_collect_huge_pmd() does not check the
+> > +	 * VMA type, so a file THP can reach here; the rest of the migrate_vma()
+> > +	 * machinery only supports anonymous memory anyway.
+> >  	 */
+> > -	folio_get(folio);
+> > -	split_huge_pmd_address(migrate->vma, addr, true);
+> > +	if (!folio_test_anon(folio))
+> > +		return -EINVAL;
+> > +
+> > +	/*
+> > +	 * A CPU fault on a device private PMD holds an extra reference on the
+> > +	 * folio, taken by do_huge_pmd_device_private(). folio_split_unmapped()
+> > +	 * only tolerates a single caller reference, so the split would always
+> > +	 * fail with -EAGAIN while this fault reference is held.
+> > +	 *
+> > +	 * do_huge_pmd_device_private() derives the fault page from the PMD
+> > +	 * entry, so it is always the head page of @folio, and therefore always
+> > +	 * ends up in the head folio after an uniform split to order 0. Drop
+> > +	 * the reference across the split and re-take it on the head folio
+> > +	 * afterwards, leaving the reference exactly where it is expected to be
+> > +	 * released.
+> > +	 *
+> > +	 * The folio cannot go away while the reference is dropped: the
+> > +	 * reference taken by migrate_vma_collect_huge_pmd() is still held.
+> > +	 */
+> > +	fault_folio = migrate->fault_page &&
+> > +		page_folio(migrate->fault_page) == folio;
+> > +
+> > +	migrate_vma_split_pmd_mappings(folio);
+> > +
+> > +	if (fault_folio)
+> > +		folio_put(folio);
+> >  	ret = folio_split_unmapped(folio, 0);
+> > +	if (fault_folio)
+> > +		folio_get(folio);
+> > +
+> 
+> Is it better to pass "extra_cnt" to folio_split_unmapped()?  This
+> follows the coding style of the other migrate functions better, like
+> that in __migrate_device_pages().
+> 
+
+That is an option. To be minimally invasive, I went this route. I also
+didn't know offhand what would happen if our head page had an extra
+reference and we then called folio_split_unmapped() with "extra_cnt", or
+how that would affect the reference counts of the newly split pages
+(i.e., whether we would need to adjust the reference counts of all split
+pages after folio_split_unmapped() returns). However, I could quickly
+reason that dropping the reference and then reacquiring it was
+functionally correct and safe.
+
+Matt
+
+> >  	if (ret)
+> >  		return ret;
+> >  	migrate->src[idx] &= ~MIGRATE_PFN_COMPOUND;
+> > @@ -935,7 +1017,7 @@ static int migrate_vma_insert_huge_pmd_page(struct migrate_vma *migrate,
+> >  }
+> >  
+> >  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
+> > -					    unsigned long idx, unsigned long addr,
+> > +					    unsigned long idx,
+> >  					    struct folio *folio)
+> >  {
+> >  	return 0;
+> > @@ -1103,7 +1185,6 @@ static void __migrate_device_pages(unsigned long *src_pfns,
+> >  	struct mmu_notifier_range range;
+> >  	unsigned long i, j;
+> >  	bool notified = false;
+> > -	unsigned long addr;
+> >  
+> >  	for (i = 0; i < npages; ) {
+> >  		struct page *newpage = migrate_pfn_to_page(dst_pfns[i]);
+> > @@ -1177,8 +1258,7 @@ static void __migrate_device_pages(unsigned long *src_pfns,
+> >  					goto next;
+> >  				}
+> >  				nr = 1 << folio_order(folio);
+> > -				addr = migrate->start + i * PAGE_SIZE;
+> > -				if (migrate_vma_split_unmapped_folio(migrate, i, addr, folio)) {
+> > +				if (migrate_vma_split_unmapped_folio(migrate, i, folio)) {
+> >  					src_pfns[i] &= ~(MIGRATE_PFN_MIGRATE |
+> >  							 MIGRATE_PFN_COMPOUND);
+> >  					goto next;
+> 
 > ---
->  drivers/gpu/drm/drm_pagemap.c | 127 ++++++++++++++++++++++++++++++++--
->  include/drm/drm_pagemap.h     |   8 ++-
->  2 files changed, 129 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> index 7a056592ac66..097a900cf55d 100644
-> --- a/drivers/gpu/drm/drm_pagemap.c
-> +++ b/drivers/gpu/drm/drm_pagemap.c
-> @@ -1102,12 +1102,117 @@ void drm_pagemap_put(struct drm_pagemap *dpagemap)
->  }
->  EXPORT_SYMBOL(drm_pagemap_put);
->  
-> +/**
-> + * drm_pagemap_page_get_flags() - Read flags from a device-private folio
-> + * @page: Pointer to a page of the device-private folio
-> + *
-> + * Return: The DRM_PAGEMAP_ZDD_FLAG_* bits encoded in zone_device_data.
-> + */
-> +static unsigned long drm_pagemap_page_get_flags(struct page *page)
-> +{
-> +	struct folio *folio = page_folio(page);
-> +
-> +	return (unsigned long)folio_zone_device_data(folio) &
-> +		DRM_PAGEMAP_ZDD_FLAG_MASK;
-> +}
-> +
-> +/**
-> + * drm_pagemap_page_set_flags() - Set flags on a device-private folio
-> + * @page: Pointer to a page of the device-private folio
-> + * @flags: DRM_PAGEMAP_ZDD_FLAG_* bits to set
-> + *
-> + * Preserve any flags already encoded alongside the ZDD pointer.
-> + */
-> +static void drm_pagemap_page_set_flags(struct page *page,
-> +				       unsigned long flags)
-> +{
-> +	struct folio *folio = page_folio(page);
-> +	unsigned long old;
-> +
-> +	if (WARN_ON_ONCE(flags & ~DRM_PAGEMAP_ZDD_FLAG_MASK))
-> +		return;
-> +
-> +	old = (unsigned long)folio_zone_device_data(folio);
-> +	folio_set_zone_device_data(folio, (void *)(old | flags));
-> +}
-> +
-> +/**
-> + * drm_pagemap_retire_migrated_pages() - Record migrated device-private folios
-> + * @src_pfns: source array after migrate_vma_pages() or migrate_device_pages()
-> + * @npages: number of entries in @src_pfns
-> + *
-> + * Flag device-private folios successfully migrated to RAM before finalize
-> + * unlocks the sources. The migrated state is stored in the physical folio, so
-> + * it survives later folio splits and subsequent migrations can skip it.
-> + */
-> +static void drm_pagemap_retire_migrated_pages(unsigned long *src_pfns,
-> +					      unsigned long npages)
-> +{
-> +	unsigned long i = 0;
-> +
-> +	while (i < npages) {
-> +		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-> +		unsigned long nr = 1;
-> +
-> +		if (!page) {
-> +			i++;
-> +			continue;
-> +		}
-> +
-> +		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
-> +			nr = folio_nr_pages(page_folio(page));
-> +
-> +		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
-> +		    is_device_private_page(page))
-> +			drm_pagemap_page_set_flags(page,
-> +						   DRM_PAGEMAP_ZDD_FLAG_MIGRATED);
-> +
-> +		i += nr;
-> +	}
-> +}
-> +
-> +/**
-> + * drm_pagemap_skip_retired_pages() - Skip retired device-private folios
-> + * @src_pfns: MIGRATE_PFN-encoded source array
-> + * @npages: number of entries in @src_pfns
-> + *
-> + * Skip source folios already migrated to RAM, identified by the migrated flag
-> + * stored in the physical folio's zone_device_data.
-> + */
-> +static void drm_pagemap_skip_retired_pages(unsigned long *src_pfns,
-> +					   unsigned long npages)
-> +{
-> +	unsigned long i = 0;
-> +
-> +	while (i < npages) {
-> +		struct page *page = migrate_pfn_to_page(src_pfns[i]);
-> +		unsigned long nr = 1;
-> +
-> +		if (!page) {
-> +			i++;
-> +			continue;
-> +		}
-> +
-> +		if (src_pfns[i] & MIGRATE_PFN_COMPOUND)
-> +			nr = folio_nr_pages(page_folio(page));
-> +
-> +		if ((src_pfns[i] & MIGRATE_PFN_MIGRATE) &&
-> +		    is_device_private_page(page) &&
-> +		    (drm_pagemap_page_get_flags(page) &
-> +		     DRM_PAGEMAP_ZDD_FLAG_MIGRATED))
-> +			src_pfns[i] &= ~MIGRATE_PFN_MIGRATE;
-> +
-> +		i += nr;
-> +	}
-> +}
-> +
->  /**
->   * drm_pagemap_evict_to_ram() - Evict GPU SVM range to RAM
->   * @devmem_allocation: Pointer to the device memory allocation
->   *
-> - * Similar to __drm_pagemap_migrate_to_ram but does not require mmap lock and
-> - * migration done via migrate_device_* functions.
-> + * Similar to __drm_pagemap_migrate_to_ram(), but uses the
-> + * migrate_device_* helpers and does not require the mmap lock.
-> + * Device-private PFNs already migrated to RAM by either path are skipped.
->   *
->   * Return: 0 on success, negative error code on failure.
->   */
-> @@ -1149,6 +1254,8 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->  	if (err)
->  		goto err_free;
->  
-> +	drm_pagemap_skip_retired_pages(src, npages);
-> +
->  	err = drm_pagemap_migrate_populate_ram_pfn(NULL, NULL, npages, &mpages,
->  						   src, dst, 0);
->  	if (err || !mpages)
-> @@ -1179,6 +1286,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->  	if (err)
->  		drm_pagemap_migration_unlock_put_pages(npages, dst);
->  	migrate_device_pages(src, dst, npages);
-> +	drm_pagemap_retire_migrated_pages(src, npages);
->  	migrate_device_finalize(src, dst, npages);
->  	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
->  					DMA_FROM_DEVICE, &state);
-> @@ -1276,13 +1384,15 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
->  	if (!migrate.cpages)
->  		goto err_free;
->  
-> +	drm_pagemap_skip_retired_pages(migrate.src, npages);
-> +
->  	ops = zdd->devmem_allocation->ops;
->  	dev = zdd->devmem_allocation->dev;
->  
->  	err = drm_pagemap_migrate_populate_ram_pfn(vas, page, npages, &mpages,
->  						   migrate.src, migrate.dst,
->  						   start);
-> -	if (err)
-> +	if (err || !mpages)
->  		goto err_finalize;
->  
->  	err = drm_pagemap_migrate_map_system_pages(dev, pagemap_addr,
-> @@ -1309,6 +1419,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
->  	if (err)
->  		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
->  	migrate_vma_pages(&migrate);
-> +	drm_pagemap_retire_migrated_pages(migrate.src, npages);
->  	migrate_vma_finalize(&migrate);
->  	if (dev)
->  		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr, migrate.dst,
-> @@ -1361,13 +1472,19 @@ static vm_fault_t drm_pagemap_migrate_to_ram(struct vm_fault *vmf)
->  static void drm_pagemap_folio_split(struct folio *orig_folio, struct folio *new_folio)
->  {
->  	struct drm_pagemap_zdd *zdd;
-> +	unsigned long orig_data, new_data;
->  
->  	if (!new_folio)
->  		return;
->  
->  	new_folio->pgmap = orig_folio->pgmap;
-> -	zdd = folio_zone_device_data(orig_folio);
-> -	folio_set_zone_device_data(new_folio, drm_pagemap_zdd_get(zdd));
-> +
-> +	orig_data = (unsigned long)folio_zone_device_data(orig_folio);
-> +	zdd = (struct drm_pagemap_zdd *)(orig_data & ~DRM_PAGEMAP_ZDD_FLAG_MASK);
-> +
-> +	new_data = (unsigned long)drm_pagemap_zdd_get(zdd);
-> +	new_data |= orig_data & DRM_PAGEMAP_ZDD_FLAG_MASK;
-> +	folio_set_zone_device_data(new_folio, (void *)new_data);
->  }
->  
->  static const struct dev_pagemap_ops drm_pagemap_pagemap_ops = {
-> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-> index 95eb4b66b057..ebbd3b0ddf36 100644
-> --- a/include/drm/drm_pagemap.h
-> +++ b/include/drm/drm_pagemap.h
-> @@ -2,6 +2,7 @@
->  #ifndef _DRM_PAGEMAP_H_
->  #define _DRM_PAGEMAP_H_
->  
-> +#include <linux/bits.h>
->  #include <linux/dma-direction.h>
->  #include <linux/hmm.h>
->  #include <linux/memremap.h>
-> @@ -339,6 +340,9 @@ struct drm_pagemap_migrate_details {
->  
->  #if IS_ENABLED(CONFIG_ZONE_DEVICE)
->  
-> +#define DRM_PAGEMAP_ZDD_FLAG_MIGRATED	BIT(0)
-> +#define DRM_PAGEMAP_ZDD_FLAG_MASK	DRM_PAGEMAP_ZDD_FLAG_MIGRATED
-> +
->  int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
->  				  struct mm_struct *mm,
->  				  unsigned long start, unsigned long end,
-> @@ -373,7 +377,9 @@ static inline struct drm_pagemap_zdd *drm_pagemap_page_zone_device_data(struct p
->  {
->  	struct folio *folio = page_folio(page);
->  
-> -	return folio_zone_device_data(folio);
-> +	return (struct drm_pagemap_zdd *)
-> +		((unsigned long)folio_zone_device_data(folio) &
-> +		 ~DRM_PAGEMAP_ZDD_FLAG_MASK);
->  }
->  
->  #else
-> -- 
-> 2.43.0
-> 
+> Best Regards,
+> Huang, Ying
