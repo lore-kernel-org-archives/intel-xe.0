@@ -4,157 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 579BBC5AE49
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 05:15:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 331E4C5AC82
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 05:53:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74CFE10E169;
-	Mon, 10 Aug 2026 05:15:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6E5510E156;
+	Mon, 10 Aug 2026 05:53:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AoHFh8hD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ksjjRw6Q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56AD010E038;
- Mon, 10 Aug 2026 05:15:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE56B10E156
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Aug 2026 05:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786338947; x=1817874947;
- h=from:to:cc:subject:date:message-id:references:
+ t=1786341231; x=1817877231;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=FN0eLzFd7yB9YmauuSXINfHMj/Y4AdBZ6hJ4J50iHFk=;
- b=AoHFh8hDzN8hxqB3sWXcHWZfu/S670YKJDD3u/6FzM17UvMByxMF8Hqa
- ZfL+umtiwVLbdjIyW9N/mVJEkpTTZtlUXtzhnzsRAtlev77CVWJiNkyY4
- OGk15L0+C5CAp14hDyga7cLrjamwbnvvQfMn/2QiNCFEEMiE98934qCat
- yImQf96TAM7EinFn+V5NqHb4yNMOwxLTfOXKeoJlRoNZKY1FvxDfsIAkC
- 4i18IqbrXNQnjurmlbz28zhK1g0ypbxa1PD8MLFUPvmkBxXjeiIm1El87
- G0CxOHVbJETU0V5KapTJtnGyPPF/MJkGdULrJwQl2350k6eKnaMbS67Re Q==;
-X-CSE-ConnectionGUID: fIhbL3Q7TxOjNwKqz3SYjw==
-X-CSE-MsgGUID: VIUpegHmR3CfRsF8beTzVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11870"; a="104236885"
-X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="104236885"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2026 22:15:41 -0700
-X-CSE-ConnectionGUID: GCx68pmjRU6ndP27sz9Yng==
-X-CSE-MsgGUID: Vt+1TYsFQWG3C8To2/pt6g==
+ bh=CLaIRat04LDO04j0rENSPN1QEd2jK20k0vnH+14A0Ig=;
+ b=ksjjRw6QPFfYc6ENI8V2a6xsj1ept51LfsutQ21xGrHHDVZ2/SQDQWu6
+ 01VyC978gYIYQowDKPEIOH7F9nQRnOUgg3zvztNJjrtGYw1zThnqL1T4S
+ 8CS/xzMqescdfZN0hWn7ezBHY+K2PP24kGNlKsQhvBl1OMaqfISNiB/+A
+ YnddnI46Z6ZnXDsXQYBgEdDZktmD6xlMudZ2iort4ur9cJ71uRc02sBVW
+ V1jbjcZDzmhp4tevRmJP5tCyL/j7B5JfhZ+4JhNKRJpQ4uue4dj3v7ayg
+ dtqBFIhj1I/vVfT/QfjNQGZfDkviPSSH4SgfgN4kH/tCrrhQe1iZpqIz6 A==;
+X-CSE-ConnectionGUID: VMixE2IZQ66YdUHZuumLrQ==
+X-CSE-MsgGUID: 1rclE9W6QJifD5ghvmoClQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11870"; a="74381416"
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="74381416"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2026 22:53:50 -0700
+X-CSE-ConnectionGUID: UWzxusxZQYaqndlIkKjfbA==
+X-CSE-MsgGUID: j89H6PQzQFCXXNfN4anm1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="266789465"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2026 22:15:41 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="286365715"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2026 22:53:50 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Sun, 9 Aug 2026 22:15:40 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.45; Sun, 9 Aug 2026 22:53:49 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Sun, 9 Aug 2026 22:15:40 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.43) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Sun, 9 Aug 2026 22:53:49 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.45) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Sun, 9 Aug 2026 22:15:40 -0700
+ 15.2.2562.45; Sun, 9 Aug 2026 22:53:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HX14Jl2gJtLxFnhGRw/wEj2TdFkic3hkVsrSFtGm8rQduhBaMY8oijd31MIGk+/FpF/Hl4uqxI9rUbEj4TqSH9NVF7BnUQdUWUfKEETyf39UjDw9eRbLffQ0fUTkNkgLymbF5mo8C8x5sXyK4v+bE0BwY6JO1jcCRer7d2iM3s2xXEEijp21QAE4M/diBTr4xBCA4/voZfHI28I1N6Gh0bMKXnOFzCmzxo69zfZ1wZycoT/h7/1MWDphSER/WFRvGNt/66wsVhan418Qfx61Gv9rkyGgxqqJvoJ+Q3oj/EpKCVR7gqyAcdqBQvDXWW0KSpLQanCS1kKb2sYVWwJKaQ==
+ b=Qkcnq2uI09ZhwXnday6SCWuAiauhCcN7Fp80AjdViCRox4SoSAbsEjbd6p9zqLWxVnwuHaKw7tGlbfqnMBlPIK6vd7GNvAoWdqLlHOegExJ8Yf/5l4qEwgtMa5IIOWGkkGe9AuQJcTCvOwehUze2JZdXTfq10Mt3gpQPOpVvT8tNwaRvhQvnRxU7kPZBPRen0USjgQ0JQC3cGOoAGktxHw5/faGT84M9Rb0gnL2xV0KErOtGvsAo4DYaYYWmYA4koRm3G7ngKyNKnxj81YfTosYJ3fqOzNk5pQ0SmStzoKJzwZEy0luuKjcuaGGmO0q7of/fIEml1trWkpJYvnbomg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ee6O5Wp6A9WQTW7eJ93ZeAN0DSx4UseNvg+eguPkr+w=;
- b=SD4hsQEaLNWrHBr1/Cnfqxq58C3hgLCIdiaMuZDSilSIphoOBAt2BWQaHJE5D0In0XtQUmc/jxvg5Z/dqFR7jtnIFViqKdTDl/NoP4a0z37Cgo8XhEBYGh4+YnDwPdPTOV2v0EOtXyzXWeKTH4ZaqcRnYeRaopJcs7fQl5dr9vUilDWZunwXHa9c9AxPC23Ao9z+uej24r2dwvfK+J5Z1nXg9s5pZF5GkiMuBQc6hjAQqZBScrJ9PaAeg522EU8v4RcIMDzY9VacLoPMZm0aaJQka5qYjJNwr4h7CXQG9qyfsTPXkojCIIF2i/i4Bc2tSh2FeuIJVor5i6p+8nZ1eA==
+ bh=LrHYudG+gEw/km1eyQM1//vX8Ub7H4dONxiu+R5SPSM=;
+ b=KasQvFuQpaBlVn7l2+G2CL2CExERj+Zolqsp9zesi8mR5j0U83p7rK5/5F+3LTsURGem7QtxlHHDoGptQefm4BD7esk7/t6xk7VigHEYS6EvbrpQoJi4M8N4JpvIJGoI5Dr2mNIFuCUg2dUIttdpzaK38RkXdZFmxtuknaicq4zmaFfFa7XDI2cEfUS8xpw/T0KMaypUej1IUZu9ErSD/DxZhDmTw4DEkI2cdEfu2XklsjbJbVtgMv5PnXkFmPRxAAfMmx9irU9KmPf7MDtxUg9dp0bgvMBb9qhowB5GzVOnk9AGnS4+wCPuKIVADMKU8aeqOGoweR3tHg9OmRHQLg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by PH7PR11MB7146.namprd11.prod.outlook.com
- (2603:10b6:510:1ed::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.25; Mon, 10 Aug
- 2026 05:15:37 +0000
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::5be7:2ceb:99ef:6334]) by DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::5be7:2ceb:99ef:6334%8]) with mapi id 15.21.0292.024; Mon, 10 Aug 2026
- 05:15:36 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Werner Sembach <wse@tuxedocomputers.com>, "jani.nikula@linux.intel.com"
- <jani.nikula@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>, "airlied@gmail.com"
- <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>, "Nautiyal, Ankit K"
- <ankit.k.nautiyal@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v4 1/1] drm/i915/display: Add quirk to force backlight
- type on some TUXEDO devices
-Thread-Topic: [PATCH v4 1/1] drm/i915/display: Add quirk to force backlight
- type on some TUXEDO devices
-Thread-Index: AQHdJqhlIZhAapHlg0OOGBbOOXMHEbaWwMYQ
-Date: Mon, 10 Aug 2026 05:15:36 +0000
-Message-ID: <DS4PPFE901A304F2015FECB30801D611C79E3DE2@DS4PPFE901A304F.namprd11.prod.outlook.com>
-References: <20260807200709.464343-1-wse@tuxedocomputers.com>
- <20260807200709.464343-2-wse@tuxedocomputers.com>
-In-Reply-To: <20260807200709.464343-2-wse@tuxedocomputers.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|PH7PR11MB7146:EE_
-x-ms-office365-filtering-correlation-id: 84bc67aa-1278-4448-1840-08def69e6965
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|366016|23010399003|22082099003|18002099003|11063799006|56012099006|3023799007|38070700021|4143699003|10067099003|921020;
-x-microsoft-antispam-message-info: qhBGCwC/k3DjQmlTaJdEpXSGuB8HQovfVMTYrgEkvCNt95j5Xa9KFHViVtuM+RTOJvomDzyzpJiTfg4tf63DZusVqyqwOt5Fsz5iDAcTn/INVnnUv10LBecBCrhXtHtapen1xc4DFw1zj7K+H7wokxyOBQXNUgCpSLzmYPF7hKEzBoMMtJJ2LehkawWWVda1AUjLKozxSAnQ/+WqPIERl3ltXJ4LU8BwEuOQ/4tez2HRk3jZpHj94TOf+wYWs4ZgZ6s8dY7LK3DH+JyoFo/5SqDcf8yKCu8zSCVNjBB2rV9eucrCOqrpAxtAGYtBQzJD7W+sojZNVXRev4CRmN0QDJoy5mqU5r1jOvw1JlE6ixWBOBFKNyGLRsjxsc48sYpmNwJMmd/1PefmcKQj1iMm00PdVFMZ4ddxJjdM+FFekLZBXfwXDB+5s4V0G1nk3+PnMakCKrz1bR+9EYHL8idKZn+MFqm9gq2zoBfHNEt05IaayAMhi+TIxJ7txLsOwNpTbFr+9wexdvbHey9Mx1uIGPxZRh41wpxuPfPzJLW3DEKueyBYdebcOiyCoDXG6iHxSWW4ubxz8c6z9FlbRh2wuBkRwRNj6eOxzd8ZsjeVYcZmZj6XySTF9JIPyzZWHe3TjWuIyWcoBYxF4MiIZfWlpfiPhaRrBXPVjXQNJKvho4Uak+YXPadk94IzU7i4rPJmaJuS6Ip7QGYYT2Xas3X9JU+XrsXN4wR0Fjq/d0f7M0aRGp6yWU/wMQgSsnTgFV60
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016)(23010399003)(22082099003)(18002099003)(11063799006)(56012099006)(3023799007)(38070700021)(4143699003)(10067099003)(921020);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?uwaBnRxvJGdrcyU0SFWxTAWGLf2le1rQzvhkJDvyBSZLmglrJgKXwmRAodfB?=
- =?us-ascii?Q?PZ6fbKz6EUcMNb3IkjrZc2Dr6phOHXdcHTbnbuWJI3gZAW7WKmSM8yFXdOfv?=
- =?us-ascii?Q?oCPKoKOPkFow4idwITrAeDvkUbBHKfJxCG2QJVdquz+dSXWc8iWh2l0Agop4?=
- =?us-ascii?Q?QExVDngMNIF4JiNqXBlHKRTcnCOhUODMJAoKzzByG45Xaiu/HAS9dY/X2mhw?=
- =?us-ascii?Q?dtCl5ekbAS2FCkg7JOukozxyvhyh4hrqskN/KlSk45pcqwAkXB3LVTTh9TAd?=
- =?us-ascii?Q?BmBDpfrl10Kw7EKXo65VQXq0WsCCwsLsyE68Hus0+klzkprSQQ8sZiyf4tz+?=
- =?us-ascii?Q?/gaaW+ZMR848VFoDPm1MH3jiPU91zw5KYSuHLNaNjGkpaYKBD+Iea39i3EL1?=
- =?us-ascii?Q?B4bDNpJr7eUGA99RbPiJ4AAa9TUhf2nbQJdsdrEA0ft2FzeYIVzExc60hCiB?=
- =?us-ascii?Q?IIFHbKAPp5MNP3m3szI5rtxufkwHq7sdWgKhLDKQ+JHy3aPLl6s59zLxZMGD?=
- =?us-ascii?Q?ZSZJk8pyu4Z8VU94sZV2dbBux9l1hjikZ56c8emPPLIOC1zvdwzikIgh2zUK?=
- =?us-ascii?Q?VQMYwd4j0eVZHXBYjJ58VdvvVGWIFNoOsna/fL8J3ISFMjvY/U3qCFRswQ/H?=
- =?us-ascii?Q?7oYzgNbyw+tnL0t9N845XRmvH28Qc9i/AQf60r+igzS05G4Ne4K1aPEIUQPx?=
- =?us-ascii?Q?pT2cfZT04p3Gzrwzt6vWpjlkQtqI+T9GjdYwSIgOcjNGqgVx1XSABZurSkq1?=
- =?us-ascii?Q?+GZnwpxCkewPt63yNfpZoSYao5nIjBksBVNj7KVJ+4MGxhon4O2ffdsFJnuV?=
- =?us-ascii?Q?zqNGQkGV4MEr16KVE6XNwBmyhS/nqcMz3dv4zcQlH0Puwq65+eY4I/LzZUIA?=
- =?us-ascii?Q?37TdTtiCMcXLrEEpuK6JSxerukkf7bvxQZG9gY3aAkCYiGPpCXO6da2gH29/?=
- =?us-ascii?Q?HPJ746GvCCyncrMCcuyj0JI3ccs9GMeywAcaMY5Jk+BOeiC2Akq+GxEukmjg?=
- =?us-ascii?Q?2iwVDULwjTj6reS3TPPEompJl48361uBiiGutJ7Bxsrdd/dRILv1Jp/6NykQ?=
- =?us-ascii?Q?vV6NIr00M4OlH90F1QUPjxMaNlaYlprgQgaPxmXNJZxpx13/9nB76nX75NDB?=
- =?us-ascii?Q?LtA7zv+aGSpuhcikWo7YKV55rNENkqgsIBoDR7Y31ulf6+53WJOpnMTwhzHU?=
- =?us-ascii?Q?sBWkB4SO64CEMK9Nn+3JojCV/xFKS6hApkmHHh3DLamNCeGlCbuFD8MEM5h0?=
- =?us-ascii?Q?aTZ9UpADHtM6vsNYJOlC288nrmjqBBlcCRt9WHoVX/Fk1DpDScReWrf47uak?=
- =?us-ascii?Q?dOLpbLUXD8kpzK7fu1TZ03f5h4LUIQpbJJkJfgM+8l0efQDA3IUhRvXiBgVU?=
- =?us-ascii?Q?2F/phs1BgKZgOsWXxMwBhYTuImK3LHe9upM+j+it7VrqqtaZ6MfqjWFU1GOG?=
- =?us-ascii?Q?ntFSUyZ+3A7OBmhgzcEW1KuFEquS9bgl9XQqwgkO+8I2qurH+47CrheFOVO0?=
- =?us-ascii?Q?ERexhdnZ5rg5Hvy7FMS4pj+1BNWDiN5Es8ekjK94bXmfQIVAl6Retx/o/la5?=
- =?us-ascii?Q?val1G0q+sOmqDZZ/hMA8zlfEJ2E9kLqycSTdNfbVW/5+zeMoPV98dIHvsMz7?=
- =?us-ascii?Q?RoNVsEwXiOLpOPV/m8V1NlYFKNGEL/7R/McNbiEAW02PneQ5Nz43RZgHswqF?=
- =?us-ascii?Q?HXVdWxsxGWa0YEocdCOjk8wZEx28QesTxa5COe1KPRgJccCGifCn8GmfD7mx?=
- =?us-ascii?Q?65AsyEn7cw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
+ by DS7PR11MB7885.namprd11.prod.outlook.com (2603:10b6:8:d8::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.25; Mon, 10 Aug
+ 2026 05:53:47 +0000
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0292.024; Mon, 10 Aug 2026
+ 05:53:46 +0000
+Message-ID: <027a204a-82fe-4146-9e33-3fda70406906@intel.com>
+Date: Mon, 10 Aug 2026 11:23:36 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/9] drm/xe/hwmon: preserve fan user table across
+ suspend resume
+To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
+ <raag.jadav@intel.com>, <riana.tauro@intel.com>, <sk.anirban@intel.com>,
+ <mallesh.koujalagi@intel.com>, <soham.purkait@intel.com>
+References: <20260717041757.2759084-1-karthik.poosa@intel.com>
+ <20260717041757.2759084-9-karthik.poosa@intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20260717041757.2759084-9-karthik.poosa@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0179.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1af::11) To LV0PR11MB9792.namprd11.prod.outlook.com
+ (2603:10b6:408:385::5)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: RDC3HjwSuF0LSs8fq7jymuS/uZMMcqc3qH8hKSmw50siqA9B/Vw4uzCjQByUprAJ2izFo+JL2kZrR88XCXOFYWXn0m0t+07CJ55xQpmSMaWs/BOG/FygdGp4PK36OpdQQ0/5UTTQW+Z9If/biZvME6tn4ujT51b9xcDkbzChZ+58UbBs8OjEXKhm/atI8Dsc5IyDZwQg6muRgEBqE0NClPi5lZo529vbC2Tq6ez4FMUoQXgtyaZku2zU2ITItntrctZyKkGEv3mBgeMnz+mpuPrL86A2zJJFo+n77od0Qeqp/iWE+SzbJszM81AqSwOePxw+ckFx4Y1h+QIioR8LZg==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|DS7PR11MB7885:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb664fba-2cd8-4f4b-83d2-08def6a3be08
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|23010399003|376014|56012099006|11063799006|5023799004|10067099003|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: Lm1VIfFNrAa64yU7bk7EBa9K5q4rbe5FLhLRsyWeadZ2FLmm9+JinLmr1d3LOUA5C+eCN3SVGSs0OTbCRE3vOp7tu5DLyLtbnnfE13RBYvVyuh9xYYF50qJf2RjSFs8CS0QHf6bAfIzHI/YLpivLkt2XEaf6DQhAB+QGGP18sl+cyANsUqZSgWzhWlrM6xqwfdk5O+Y6Am0Rh8nAJcfvdEtWWnIbmfD7kF0dqXrbbzdACEAVSN/lLo/BPlmROzxDEDYicT7NFniIo2xeBf6dlpNmnQ204+1zzaEaxiQucYZlSwsckmwQSBxItmGD5zhKgMTCsDdDr6cctc/gyDTZlyUiX5uEvWBbdH9WY0W9ALrnFIiNpuqxn13oKP1hJMQDrhq2fh9ldg8gsMfRw0QyMEkFGE4Bzu/CdC/h3SREPBVaZ0i4rfdEvTkKF7i217HR+Jf3KxvIbRJMUyRhPWK8rMYq+3LfSSVCqTKqsqVddvFNSzvjdLoq4k+3FecyoG6NZeZQSUglMuky0VbGCIDRPsbsNJZqaAgMzmMdhyb80SI7xiD9NeKuzhMGTXFBI4KJD1vSCTUfvL3TEd2YJSBaSbj4t5cbnZpyNjmtKkPUoSw98HdYlgBcv/s+AIQ/snwXZY7dq0vPbrdYLpktua0ZwwlPXHuZ7MIpFk3O6w+uiwk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(56012099006)(11063799006)(5023799004)(10067099003)(4143699003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZzVHb1czWk5SaW8wRjhlbmpnUWQ1QXlFdFFlSkcrbUJOSTJXaytTWkQvQndR?=
+ =?utf-8?B?RnlIa3BLN2phcWRmbHhyRHRzTHQ4Q3lpOUR1VjkrVmZWTmxSMk0vZURxNkdy?=
+ =?utf-8?B?RHg1cWVRS2NrZm5tMld6WURLcndjRnRQTnpLSkR2L2JOQVpVZHVkM2dESmQr?=
+ =?utf-8?B?YnloaVE3UU1ZdEV6aTBWdUlncGJ1cWtPekg1UWRQTG42YWZKR2Zqa1BERWVI?=
+ =?utf-8?B?Ri9aYUJhZDlZZ3Njakx2VHVCMjdNZFNCaStIOVppMHowY3hpSFd5ZFpMNUxa?=
+ =?utf-8?B?OUJ3QmZZTFU5aFBibHlFTjA4bldRODk1YTB0d2xZU2VaeERnbmw4ZzlKWHNV?=
+ =?utf-8?B?dGJJSElvbyt0bzRWbDQ0a2JuQm0xS0xuNjRXMHBUbUhNdHUwWHZxMStoUkFa?=
+ =?utf-8?B?Z05NRVdCYzcwdEtZcnh4bGlFM2VvWjZSaFYzakJQWm5rTkFMSGNuMHkxYjJP?=
+ =?utf-8?B?VU5hS202ekxzaG1iYkh6RW9CaGI2SFhISCszY3Y0dmlQbXRkZDNxN3JxZzR0?=
+ =?utf-8?B?Ry85VndtOWlSWjRVUkFibmk5SXNMZ0xQblNISXZjcmR4UEFBUlNjOWFWZ0Qx?=
+ =?utf-8?B?amRvNFdUNnhnaTFDTFJoMHRwOEpSaExtNGZ3QmJCekFQaFEzYzVEOS95MlR2?=
+ =?utf-8?B?alNVTm11RE03QjlYNWNLQWtnNDNrQ296VnJkU1N1SGZNVE9Qcnk3MUUvNVVJ?=
+ =?utf-8?B?K3NWSmdsVzdsTVQ5SldDVXBSTURSR1Rhc2VkQlU3TTQ0VEdKazdKcnQxckw0?=
+ =?utf-8?B?WjVOd0RKRzlSOU0rd3k4UVgxL21BUjBjY25JeVdMeWUvQlVKaE4xRHM0OWFk?=
+ =?utf-8?B?SVloQ1hwYmZRbklMcS9tYzYxSUwxOXg3UTRSTnVCL3liWVlIODkwYjM0K1ZK?=
+ =?utf-8?B?dkhkUGtZdTJ4QzFHRS92U1BoWnNRcWVwLzZPUkVLd3M5aCt6YlA1cDFldDJw?=
+ =?utf-8?B?dVpOdWFMWDN1TXhZNHU4VjZSWDhMc0ZRQjhCOGZNUnBKU2lzN01NYytXaW5P?=
+ =?utf-8?B?WHBWbUwxeEhXMllOMHczTFpjQ0xxalIxL1dDbkhLYXIwY1lRK2ljVFNWVlBv?=
+ =?utf-8?B?WjB0NFV0U2hTUXlMZ0xNcG5DYmd2UXQvRGVwRU9BTThxeXhlSTR0TVUvTWN3?=
+ =?utf-8?B?MmFwczdPbGx1VEZJOTE0QllpYTFEb043akQ3bjAvY1NCa1E2RW9SL3NjRzV1?=
+ =?utf-8?B?S0NHTHNETGFGNEJ2VHJZV2hyVGFhay9yMSticlZtTDROMEhJVXIvd1hVMkFx?=
+ =?utf-8?B?YzFkK1VXYlRQUDVtcUgxemRLS0xoQlRiZTRhWEkwUStLL3hETjFMalI3TlNH?=
+ =?utf-8?B?TWtuUk51UURodlZQUzN3eVlkMG9IbSt3S09pdWhTbkRCUGMrYy8vTVJCNkMz?=
+ =?utf-8?B?QUtPRE50V2xnM1VuNTVOUk9rUTF4dlpsU0xXcDl4MTVqY3AyU0lFU0czVVRR?=
+ =?utf-8?B?emhqd24wOTRJUDUveG5kVkJ3UUtYVi9xWU5naDZ0SVMzMmRJc1k1THVwSktE?=
+ =?utf-8?B?eCsvNlptZVkySFdNUFg5SUlSVWNXTHlZVUt3VmZFUVpaYmJXaHRBenRXSzJL?=
+ =?utf-8?B?aEtURGVkaGxieWlSRFlKd05BYTNnQUxhYUpobS9QRnAvV09jZ0J3RmtaUHVp?=
+ =?utf-8?B?R2FzaW02V0JsQTlSRFRjMDlwRDZsUjU3ZFNDZ3FBdGE2Q3h2cllNM2RCVExO?=
+ =?utf-8?B?eG1yUE40MWpPZUdjUjR3WlI4YVEvemwwY3MxVWNMdkFNakRTdFRuWFdnamsy?=
+ =?utf-8?B?Uzdzb2EzMUZOUFpQanJNRTdDbUZSRVhvQnBDbE5EbkFha05zcHpVcWRQL0kv?=
+ =?utf-8?B?aEJrUmVWNUtBTENTLzd5bWlzTWJPUmNzMis4MFVWeEp2WGttaDUxOGpWMVhk?=
+ =?utf-8?B?V1VOc1BBSUN4UGtNeDRTb29ZTjNFUmRrMlQzTGdqa3dSd3cvMHp5NUE2M3BH?=
+ =?utf-8?B?aVhSWkZSMnZMWlROdE9RcEZFTGxGMWdEdVdjUFJGQndCMm8yM2JhMGU5YnJR?=
+ =?utf-8?B?Zi9qbDJQMFFieFF3dHRWeUl4eGFpKzdkNWh2NUpCNGtISERvVmZaSW5sSW9o?=
+ =?utf-8?B?WHJQTzVVK1d1SERPMEs4YW5oc3NXd0tmQWtyNnV0cEV2WTZSVzZNNGtDN2Rw?=
+ =?utf-8?B?QVYwSFBBNzBVTVpzdm14MzVkRVlYTGtQT09NVXBwLzgvVmFhcEdYOHFIN3pQ?=
+ =?utf-8?B?K0JYQmNKSGFhSFdyd1pETzZxMkNhZXZTL2kxTzhLUThwdmw0OXUyNSswUXdR?=
+ =?utf-8?B?WlEyMEVJUExCaG5lQjFSUGh6N0dQSW9RVWtRWGtqWDk5QXBESllDUng1b2Ro?=
+ =?utf-8?B?UTNsRTkzYUlqaEJoVUpFNVdNWGRBbWMrQitVMVhyNm95ZGxSbnVWZz09?=
+X-Exchange-RoutingPolicyChecked: d7kRgyaRt6ERj9NrclnESRtDCZIcXfl551joJ692shIi32vXaDK0uYG3Y6uW1tOdAg5vNrhdCg+8ClaXlMvu8L+pRjxLtVTyqzxyHk7oNWtupQEciNHfO5X2Pxl0J1f9VBqSO/gnRDeonpsouiGPseiYKFDHOp6lFZ54eVEt519aEVdAjrd4SNbH5x3M72AQWX0gyplgpMNNZqPewvFlo+Fm9zMpxcFitreqi7tMo8i+/qmi7Zp9K0ewz5XKICZva0e9nKm/Hx7wGHrQiWLTGhpqurRPplMr+uWtmcYFuJoANiCyb2yeMmaEpUipyG24kK+xDF1Yj++tOa8RRbCBKw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb664fba-2cd8-4f4b-83d2-08def6a3be08
+X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84bc67aa-1278-4448-1840-08def69e6965
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2026 05:15:36.6206 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MhsnCDyTanTl2bhscJOG9CVGszw770iQOE8jjrh0GXz2cAh0aSxaWyjGdMkynlEOAv2qgqrRBLuvjQSnE0E//w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7146
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2026 05:53:46.4527 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y0ZmN2BK0dEqMJt3rtz/YFetbCPYW/EN1Y1ODb/Mn/aFrF8ZhREhPZgfYOf8pYntsd+NaMZeLWLM+rlJPwPN4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7885
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,160 +171,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH v4 1/1] drm/i915/display: Add quirk to force backlight ty=
-pe on
-> some TUXEDO devices
->=20
-> The display backlight on TUXEDO DX1708 and InsanityBook 15 v1 have a brok=
-en
-> VBT in the AUO 12701 and AUO 12701 panels, but not others. They are
-> advertising INTEL_BACKLIGHT_DISPLAY_DDI, but are actually failing to use =
-the
-> Intel interface. Adding a fallback to the VESA interface gives these devi=
-ces a
-> working backlight for both the broken and non broken panel VBTs.
->=20
-> Forcing the fallback can already be achieved via a module parameter, but =
-this
-> patch adds a quirk to apply this by default on the mentioned devices.
->=20
-> This patch does not actually test for the exact panels as the ID that is =
-used in
 
-We don't refer to the current code as patch but as a commit because as soon=
- as it gets merged
-It's a commit. No need to send the patch again this can be fixed while merg=
-ing.
-
-Other than that
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-> the intel_dpcd_quirks list is sadly zeroed on the devices, but afaik all =
-these
-> devices use try_intel_interface first anyway so all the quirk does is to =
-add the
-> fallback to try_vesa_interface, so the behaviour on the devices not needi=
-ng the
-> quirk and fallback should functionally stay the same.
->=20
-> Fixes: f30fddb44023 ("Revert "drm/i915/backlight: Remove
-> try_vesa_interface"")
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15679
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+On 17-07-2026 09:47, Karthik Poosa wrote:
+> Save and restore active fan user tables over suspend/resume via new
+> xe_hwmon PM hooks, and run restore, only when d3cold is allowed.
+>
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Assisted-by: Codex:gpt-5-3
 > ---
->  .../drm/i915/display/intel_dp_aux_backlight.c | 22 ++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_quirks.c   | 24 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
->  3 files changed, 46 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 266e042e00237..d84def79c4bfb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -41,6 +41,7 @@
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
->  #include "intel_dp_aux_backlight.h"
-> +#include "intel_quirks.h"
->=20
->  /*
->   * DP AUX registers for Intel's proprietary HDR backlight interface. We =
-define
-> @@ -687,11 +688,30 @@ int intel_dp_aux_init_backlight_funcs(struct
-> intel_connector *connector)
->  	struct drm_device *dev =3D connector->base.dev;
->  	struct intel_panel *panel =3D &connector->panel;
->  	bool try_intel_interface =3D false, try_vesa_interface =3D false;
-> +	int enable_dpcd_backlight;
+>   drivers/gpu/drm/xe/xe_hwmon.c | 133 ++++++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_hwmon.h |   4 +
+>   drivers/gpu/drm/xe/xe_pm.c    |   9 +++
+>   3 files changed, 146 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 770f07fb6511..65f356c741f5 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -229,6 +229,8 @@ struct xe_hwmon_fan_info {
+>   	u8 pwm_enable_mode;
+>   	/** @is_full_speed: flag indicating if fan is in full speed */
+>   	bool is_full_speed;
+> +	/** @restore_user_table: restore user fan table on next resume */
+> +	bool restore_user_table;
+>   };
+>   
+>   /**
+> @@ -2785,4 +2787,135 @@ int xe_hwmon_register(struct xe_device *xe)
+>   
+>   	return 0;
+>   }
+> +
+> +/**
+> + * xe_hwmon_suspend - Save hwmon state before suspend
+> + * @xe: xe device instance
+> + *
+> + * Save any hwmon runtime state that must survive PM suspend transitions.
+> + */
+> +void xe_hwmon_suspend(struct xe_device *xe)
+> +{
+> +	struct xe_hwmon *hwmon = xe->hwmon;
+> +	struct xe_tile *root_tile;
+> +	int fan;
+> +
+> +	if (!hwmon || !xe->info.has_fan_control)
+> +		return;
 > +
 > +	/*
-> +	 * Some devices have a broken VBT in some Panels, but not others,
-> +	 * advertising INTEL_BACKLIGHT_DISPLAY_DDI, but actually failing to
-> use
-> +	 * the Intel interface. Adding a fallback to the Vesa interface gives
-> +	 * these devices a working backlight for both the broken and non
-> broken
-> +	 * panel VBTs.
-> +	 *
-> +	 * This fallback can not be made the general default as this has broken
-> +	 * other devices in the past whose VBT correctly reports
-> +	 * INTEL_BACKLIGHT_DISPLAY_DDI and whose PWM path is the actual
-> +	 * backlight control, but whose DPCD optimistically advertises
-> +	 * DP_EDP_BACKLIGHT_AUX_ENABLE_CAP /
-> _BRIGHTNESS_AUX_SET_CAP.
+> +	 * User fan-table restore is limited to d3cold flows, so skip snapshot
+> +	 * work when d3cold is not allowed for this device.
 > +	 */
-> +	enable_dpcd_backlight =3D display->params.enable_dpcd_backlight;
-> +	if (enable_dpcd_backlight =3D=3D INTEL_DP_AUX_BACKLIGHT_AUTO &&
-> +	    intel_has_dpcd_quirk(intel_dp, QUIRK_ENABLE_DPCD_BACKLIGHT))
-> +		enable_dpcd_backlight =3D INTEL_DP_AUX_BACKLIGHT_ON;
->=20
->  	/* Check the VBT and user's module parameters to figure out which
->  	 * interfaces to probe
->  	 */
-> -	switch (display->params.enable_dpcd_backlight) {
-> +	switch (enable_dpcd_backlight) {
->  	case INTEL_DP_AUX_BACKLIGHT_OFF:
->  		return -ENODEV;
->  	case INTEL_DP_AUX_BACKLIGHT_AUTO:
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c
-> b/drivers/gpu/drm/i915/display/intel_quirks.c
-> index 33245f44c0d50..89d82364ae45d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-> @@ -100,6 +100,14 @@ static void quirk_disable_psr2(struct intel_display
-> *display)
->  	drm_info(display->drm, "PSR2 support not currently available for this
-> setup, applying disable PSR2 quirk\n");  }
->=20
-> +static void quirk_enable_dpcd_backlight(struct intel_dp *intel_dp) {
-> +	struct intel_display *display =3D to_intel_display(intel_dp);
+> +	if (!xe->d3cold.allowed) {
+> +		xe_dbg(xe, "d3cold not allowed, skipping fan user-table snapshot\n");
+> +		return;
+> +	}
 > +
-> +	intel_set_dpcd_quirk(intel_dp, QUIRK_ENABLE_DPCD_BACKLIGHT);
-> +	drm_info(display->drm, "Applying Enable DPCD Backlight quirk\n"); }
+> +	root_tile = xe_device_get_root_tile(hwmon->xe);
 > +
->  struct intel_quirk {
->  	int device;
->  	int subsystem_vendor;
-> @@ -286,6 +294,22 @@ static const struct intel_dpcd_quirk
-> intel_dpcd_quirks[] =3D {
->  		.sink_oui =3D SINK_OUI(0x00, 0x22, 0xb9),
->  		.hook =3D quirk_disable_edp_panel_replay,
->  	},
-> +	/* TUXEDO InsanityBook 15 v1 */
-> +	{
-> +		.device =3D 0x591b,
-> +		.subsystem_vendor =3D 0x1558,
-> +		.subsystem_device =3D 0x9501,
-> +		.sink_oui =3D SINK_OUI(0x38, 0xec, 0x11),
-> +		.hook =3D quirk_enable_dpcd_backlight,
-> +	},
-> +	/* TUXEDO DX1708 */
-> +	{
-> +		.device =3D 0x3e9b,
-> +		.subsystem_vendor =3D 0x1558,
-> +		.subsystem_device =3D 0x8500,
-> +		.sink_oui =3D SINK_OUI(0x38, 0xec, 0x11),
-> +		.hook =3D quirk_enable_dpcd_backlight,
-> +	},
->  };
->=20
->  void intel_init_quirks(struct intel_display *display) diff --git
-> a/drivers/gpu/drm/i915/display/intel_quirks.h
-> b/drivers/gpu/drm/i915/display/intel_quirks.h
-> index 970a4fe52fafc..4996419ae76bd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-> @@ -23,6 +23,7 @@ enum intel_quirk_id {
->  	QUIRK_EDP_LIMIT_RATE_HBR2,
->  	QUIRK_DISABLE_EDP_PANEL_REPLAY,
->  	QUIRK_DISABLE_PSR2,
-> +	QUIRK_ENABLE_DPCD_BACKLIGHT,
->  };
->=20
->  void intel_init_quirks(struct intel_display *display);
-> --
-> 2.43.0
+> +	mutex_lock(&hwmon->hwmon_lock);
+> +
+> +	for (fan = 0; fan < hwmon->num_fans; fan++) {
+> +		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
+> +		u32 point_count;
+> +		int ret;
+> +
+> +		/*
+> +		 * Record whether this fan was using the user table
+> +		 * so resume can restore it if firmware state is reset.
+> +		 */
+> +		fi->restore_user_table = (fi->pwm_enable_mode != XE_FAN_PWM_AUTO_STOCK_TABLE);
+> +
+> +		xe_dbg(hwmon->xe, "fan %d user table restore flag set to %d\n", fan,
+> +		       fi->restore_user_table);
+> +
+> +		if (!fi->restore_user_table)
+> +			continue;
+> +
+> +		ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, USER_FAN_TABLE);
+> +		if (ret || !point_count) {
+> +			xe_warn(hwmon->xe,
+> +				"fan %d point count read before suspend failed, ret=%d, val =%u\n",
+> +				fan, ret, point_count);
+> +			continue;
+> +		}
+> +
+> +		fi->fan_table[USER_FAN_TABLE].fan_control_point_count =
+> +			min_t(u32, point_count, MAX_FAN_CONTROL_POINTS);
+> +
+> +		for (int point = 0; point < fi->fan_table[USER_FAN_TABLE].fan_control_point_count;
+> +		     point++) {
+> +			u32 fcp = FCP_INDEX(USER_FAN_TABLE, point);
+> +
+> +			ret = xe_pcode_read_timeout(root_tile,
+> +						    PCODE_MBOX(FAN_SPEED_CONTROL,
+> +							       FSC_READ_FAN_TABLE, fan),
+> +						    &fcp, NULL,
+> +						    XE_PCODE_FAN_CONTROL_TIMEOUT_MS);
+> +			if (ret) {
+> +				xe_warn(hwmon->xe,
+> +					"fan %d user point %d before suspend failed, ret=%d\n",
+> +					fan, point, ret);
+> +				continue;
+> +			}
+> +
+> +			fi->fan_table[USER_FAN_TABLE].fcp[point].temp =
+> +				REG_FIELD_GET(FAN_CONTROL_POINT_TEMP_MASK, fcp);
+> +			fi->fan_table[USER_FAN_TABLE].fcp[point].speed =
+> +				REG_FIELD_GET(FAN_CONTROL_POINT_SPEED_MASK, fcp);
+> +		}
+> +		xe_dbg(hwmon->xe,
+> +		       "fan %d user table snapshot taken before suspend, point_count=%u\n", fan,
+> +		       fi->fan_table[USER_FAN_TABLE].fan_control_point_count);
+> +	}
 
+The above loop appears to save the fan table when restore_user_table is 
+set. Is this required? It seems restoring the table during resume should 
+be sufficient, as the fan points are already cached.
+
+Thanks,
+Badal
+
+> +
+> +	mutex_unlock(&hwmon->hwmon_lock);
+> +}
+> +
+> +/**
+> + * xe_hwmon_resume - Restore hwmon state after resume
+> + * @xe: xe device instance
+> + *
+> + * Restore any hwmon runtime state that was saved across suspend.
+> + */
+> +void xe_hwmon_resume(struct xe_device *xe)
+> +{
+> +	struct xe_hwmon *hwmon = xe->hwmon;
+> +	int fan;
+> +
+> +	if (!hwmon || !xe->info.has_fan_control)
+> +		return;
+> +
+> +	if (!xe->d3cold.allowed) {
+> +		xe_dbg(xe, "d3cold not allowed, skipping fan user-table restore\n");
+> +		return;
+> +	}
+> +
+> +	mutex_lock(&hwmon->hwmon_lock);
+> +
+> +	for (fan = 0; fan < hwmon->num_fans; fan++) {
+> +		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
+> +		int ret;
+> +
+> +		if (!fi->restore_user_table) {
+> +			xe_dbg(xe, "fan %d user table restore not required\n", fan);
+> +			continue;
+> +		}
+> +
+> +		/* Re-program cached user-table settings for fans active before suspend. */
+> +		ret = xe_hwmon_activate_user_fan_table(hwmon, fan,
+> +						       fi->is_full_speed,
+> +						       USER_FAN_TABLE);
+> +		if (ret)
+> +			xe_warn(xe, "failed to restore fan %d user table after resume, ret=%d\n",
+> +				fan, ret);
+> +
+> +		xe_dbg(xe, "fan %d user table restored\n", fan);
+> +		fi->restore_user_table = false;
+> +	}
+> +
+> +	mutex_unlock(&hwmon->hwmon_lock);
+> +}
+> +
+>   MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.h b/drivers/gpu/drm/xe/xe_hwmon.h
+> index d02c1bfe8c0a..6c6f30208508 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.h
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.h
+> @@ -12,8 +12,12 @@ struct xe_device;
+>   
+>   #if IS_REACHABLE(CONFIG_HWMON)
+>   int xe_hwmon_register(struct xe_device *xe);
+> +void xe_hwmon_suspend(struct xe_device *xe);
+> +void xe_hwmon_resume(struct xe_device *xe);
+>   #else
+>   static inline int xe_hwmon_register(struct xe_device *xe) { return 0; };
+> +static inline void xe_hwmon_suspend(struct xe_device *xe) {}
+> +static inline void xe_hwmon_resume(struct xe_device *xe) {}
+>   #endif
+>   
+>   #endif /* _XE_HWMON_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index 99562f691080..23a78fa4a71e 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -23,6 +23,7 @@
+>   #include "xe_i2c.h"
+>   #include "xe_irq.h"
+>   #include "xe_late_bind_fw.h"
+> +#include "xe_hwmon.h"
+>   #include "xe_pcode.h"
+>   #include "xe_printk.h"
+>   #include "xe_pxp.h"
+> @@ -189,6 +190,8 @@ int xe_pm_suspend(struct xe_device *xe)
+>   	for_each_gt(gt, xe, id)
+>   		xe_gt_suspend_prepare(gt);
+>   
+> +	xe_hwmon_suspend(xe);
+> +
+>   	xe_display_pm_suspend(xe);
+>   
+>   	/* FIXME: Super racey... */
+> @@ -290,6 +293,8 @@ int xe_pm_resume(struct xe_device *xe)
+>   
+>   	xe_late_bind_fw_load(&xe->late_bind);
+>   
+> +	xe_hwmon_resume(xe);
+> +
+>   	drm_dbg(&xe->drm, "Device resumed\n");
+>   	xe_pm_block_end_signalling();
+>   	return 0;
+> @@ -615,6 +620,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>   	if (err)
+>   		goto out;
+>   
+> +	xe_hwmon_suspend(xe);
+> +
+>   	/*
+>   	 * Applying lock for entire list op as xe_ttm_bo_destroy and xe_bo_move_notify
+>   	 * also checks and deletes bo entry from user fault list.
+> @@ -724,6 +731,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+>   
+>   	xe_pxp_pm_resume(xe->pxp);
+>   
+> +	xe_hwmon_resume(xe);
+> +
+>   	if (IS_VF_CCS_READY(xe))
+>   		xe_sriov_vf_ccs_register_context(xe);
+>   
