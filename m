@@ -4,62 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA4E4C5AD55
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 02:32:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A073BC5AD55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 03:21:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43BB410E11C;
-	Mon, 10 Aug 2026 02:32:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 233FF10E11C;
+	Mon, 10 Aug 2026 03:21:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="owWR/O3f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WNrYvpHo";
 	dkim-atps=neutral
-X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
- Mon, 10 Aug 2026 02:32:06 UTC
-Received: from out30-119.freemail.mail.aliyun.com
- (out30-119.freemail.mail.aliyun.com [115.124.30.119])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEECF10E11C;
- Mon, 10 Aug 2026 02:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1786329124; h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
- bh=Z66FNj1Gk/lVU2/TFM20u7dHoZyCIxI/2tZTiSwFfZA=;
- b=owWR/O3frFYjyQz7ethittKm4NxAzjTP7w7XKeYNv8du2bzA0HpgAELiEphLhbvxl/6Rril98Ff2C7FwcYzepY5AdjM88+re4pCfTGLX/409fBJ8V1wMJyPTNaazItQoFlUZcK3aUCiCE4I+s/ctmklC36GJHyjq6RTrXgy3e98=
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R181e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033045133197;
- MF=ying.huang@linux.alibaba.com; NM=1; PH=DS; RN=31; SR=0;
- TI=SMTPD_---0X8c5z5d_1786328789; 
-Received: from DESKTOP-5N7EMDA(mailfrom:ying.huang@linux.alibaba.com
- fp:SMTPD_---0X8c5z5d_1786328789 cluster:ay36) by smtp.aliyun-inc.com;
- Mon, 10 Aug 2026 10:26:58 +0800
-From: "Huang, Ying" <ying.huang@linux.alibaba.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org,  dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org,  linux-kernel@vger.kernel.org,  Andrew Morton
- <akpm@linux-foundation.org>,  David Hildenbrand <david@kernel.org>,
- Lorenzo Stoakes <ljs@kernel.org>,  Zi Yan <ziy@nvidia.com>,  Baolin Wang
- <baolin.wang@linux.alibaba.com>,  "Liam R . Howlett" <liam@infradead.org>,
- Nico Pache <nico.pache@linux.dev>,  Ryan Roberts <ryan.roberts@arm.com>,
- Dev Jain <dev.jain@arm.com>,  Barry Song <baohua@kernel.org>,  Lance Yang
- <lance.yang@linux.dev>,  Usama Arif <usama.arif@linux.dev>,  Joshua Hahn
- <joshua.hahnjy@gmail.com>,  Rakie Kim <rakie.kim@sk.com>,  Byungchul Park
- <byungchul@sk.com>,  Gregory Price <gourry@gourry.net>,  Alistair Popple
- <apopple@nvidia.com>,  Balbir Singh <balbirs@nvidia.com>,  Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>,  Maxime Ripard
- <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>,  David
- Airlie <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Thomas
- =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,  Francois
- Dugast <francois.dugast@intel.com>,  stable@vger.kernel.org
-Subject: Re: [PATCH v3 3/6] mm/migrate_device: Fix THP splitting of a CPU
- faulted device private folio
-In-Reply-To: <20260805231041.3791771-4-matthew.brost@intel.com> (Matthew
- Brost's message of "Wed, 5 Aug 2026 16:10:38 -0700")
-References: <20260805231041.3791771-1-matthew.brost@intel.com>
- <20260805231041.3791771-4-matthew.brost@intel.com>
-Date: Mon, 10 Aug 2026 10:26:27 +0800
-Message-ID: <87ik5in224.fsf@DESKTOP-5N7EMDA>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90E8610E11C
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Aug 2026 03:21:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1786332092; x=1817868092;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ mime-version; bh=da/w91DtiUSX/vomMnGJyCyeu+UtxX6JqakxCg+ybgg=;
+ b=WNrYvpHoeWE4kD+hVAgOPGder+tjo3dLOhhar7VsRLJIiOhmctLQ7uVx
+ xkcCSO4fgMz/Shege31Q+c6i97xOoxr8XfO71utqVue2gwzDtJeGEnGy3
+ m06JBvlPXOFywK+ga8tr/RL4e2ugCaG8vMmRCkMQEC+E7YitDnoM6DK4e
+ JoU3TWn20liHkxIVbzi4EPs+B0ETjTuc+D9NOegItJ1wfpntHZ89mfME7
+ 3YxkXD7s/KxyD9CFNM74feD2BSgfJlWujs8m4TuDKc/IRmGMiTgfsG725
+ DKxBU9zM83cJsDMQY/9Vkeb1yLlh7d+U77jdpVlOH4eUop9AOv+f3ph8E Q==;
+X-CSE-ConnectionGUID: Stlb94hwRHCVlrbIubvtgg==
+X-CSE-MsgGUID: U3uUblzNR9KIMQ4uTv03PA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11870"; a="97437720"
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208,217";a="97437720"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2026 20:21:32 -0700
+X-CSE-ConnectionGUID: CMDpyKZVQ1+sBf5aLddoUA==
+X-CSE-MsgGUID: A4bIMlBySjiDVCMrBKvLbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; 
+ d="scan'208,217";a="256705433"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2026 20:21:32 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Sun, 9 Aug 2026 20:21:31 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Sun, 9 Aug 2026 20:21:31 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.10) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Sun, 9 Aug 2026 20:21:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oR/nXK7U2dxXumBbWMo63sekN9zs/hOnNzQE5hjvUsEbcbOlog5GOzpFx0pb8sz+EmP/Z03bRr1FfhcFyaRU0P/zarUiQSQ8eAhBaymXdSEteDtx91jwa/M6Q1F5gPzxFR1Fea9HWmYBsdrmAXqYarXF6aesgpwlq8ic8vTEyHMlMu2bVZ6aojOCDKOwXUC+h+FDFN07KxrI2Y9iI34kGhj+MdCffoxTnUR6iEKre7STKuO8J5BaYr/HuVWjrMFNXmKadEbtBNVTvBac2hp7rHmK9V1kZGYU7xDDPIIoygZnckHMTNGNAxWykSsGbz+ZD3+43FsUiRoMHn5dcex8qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=X3mGH5kdgW7f4aoVvByad2ElI+dZ9vMQM96vwvEyUWo=;
+ b=EeUn0wQnhomK56GMvyZQ9qxojzgRiU5p4mzD4KTZVjy1eXIsjx32cVDAWUfRhvCJ4//a1THoZKYK2IbFYFpieVZRfsNXSMiLo9XOsAHI9wcOWj1BJ8wzM5kBIChfCOaWLV+0TVP7MjwHpCKCyKi4QKt1bl7bLp6xWrfjROQucm7SFb7IVww5Z7s26LCja6HrPnIEllvEW6KJqASg/mUkF+gxP3Btky+zqe8gpUovAd/zjLEvVWn7x4mfBZxgW4OVkmooaHDNybwUQo8WKyxvqUfskSnCQVWhEpQsCFhkEM3L1ETL8DE/9AoKidJ3tmZl00nHyhMGGL8VzxpFhukOfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV3PR11MB8695.namprd11.prod.outlook.com (2603:10b6:408:211::15)
+ by PH9PR11MB126636.namprd11.prod.outlook.com (2603:10b6:510:3e9::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.25; Mon, 10 Aug
+ 2026 03:21:28 +0000
+Received: from LV3PR11MB8695.namprd11.prod.outlook.com
+ ([fe80::ccc3:3fd6:58f5:927]) by LV3PR11MB8695.namprd11.prod.outlook.com
+ ([fe80::ccc3:3fd6:58f5:927%5]) with mapi id 15.21.0292.024; Mon, 10 Aug 2026
+ 03:21:28 +0000
+Content-Type: multipart/alternative;
+ boundary="------------gm6t3HdLWzVqN9tZEWsjR0gQ"
+Message-ID: <6c3e540d-c044-4e58-a3e0-1d79036af582@intel.com>
+Date: Mon, 10 Aug 2026 08:51:23 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm/xe/pf: Add _locked variant of the doorbells
+ bulk config function
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20260805154733.604-4-michal.wajdeczko@intel.com>
+ <20260807164826.5650-1-michal.wajdeczko@intel.com>
+Content-Language: en-US
+From: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260807164826.5650-1-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: MA0PR01CA0028.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:b8::16) To LV3PR11MB8695.namprd11.prod.outlook.com
+ (2603:10b6:408:211::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV3PR11MB8695:EE_|PH9PR11MB126636:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1b6ee4ce-ce0e-4a15-f55d-08def68e7766
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|23010399003|6133799003|4143699003|11063799006|56012099006|10067099003|8096899003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: HhB1n2d5fXmftWy7SwTAwZsdH25JP1QRKP9uK8HuDexNy4jJGr8FQVRKqyf2NFBeJH5sN70QO0kZHANJHQK7EGSDr/4JPy2qMHgVZl+lCJ5Dvus7BLlK+A+Eb/FYRXNGsd59ZSdkhYY76EwJeBnTyHR60Kh9x/ixKwjRSy2girGpUcbFWEQYvTjfsyP7IuChS0BBNBueIR+Dy0BjDLO1RIQjS65+y7b3ZsXuLvoK/wPwI8SzfAAzAiNXj7k8tuptP8bgJ+QTWqlicJgil0HREM6FEuly1wlEqzpI2e4JEeU/X+7IePOFczk87gXH3Vt13AmLQtus6U32+Tz9pJrLhLmJmVHlGhXWTXciphqSUfICzPqvggpVFjwk8IO8NkEWir1h36NYl3EKumOMFWIYWeJWWEG1OdqCk+23YgM/aC/09q6VWsjJkAXncsptKRVK54/2VACJIfI0YqrFloGU6jXFdvBdYtkSX+MOKqOjN6/mK2wmRPjBfNOs0P2F9IGd4jACg+dv4PxPiD+3XhcRqUt6Kvnd24vJhEUmxOmYLbbEHcuNcM+SS2F8e8mKbRoFnNpBxz3moRII1Vrdpym2zKYoM2orXSwfrc0Lc2OSgdkumFsBhPNqC+HDGDxIJnBVLEr1rK5OKDwn+hSMg1gz8ggzGXxcaAWOtz/RBT8u1Hs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV3PR11MB8695.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(6133799003)(4143699003)(11063799006)(56012099006)(10067099003)(8096899003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ajQvNDhqektSY3RCdmtZZENEam5iWXBqVEx1WW9ZTHZ0MVNzdEc3a201YlJI?=
+ =?utf-8?B?NE5LTHhodGtpd3JCaVo4bTIzSnF4emVCL3NQTWE3bis4ZHM0elBWQ1NMbHhI?=
+ =?utf-8?B?R1hOR1Uxb0MwcGpmVXdyMG5PdEZKL2pNTENPb3cvTGRwaDJyUU1xcFU0azMz?=
+ =?utf-8?B?QnBBYWZ2N3d5d214ZEhINmtCL29Sak9CU1J6SWJOUEUrSm9WSjRIWC9lWUFa?=
+ =?utf-8?B?M043dksxOXpRMGJVQUY5OXZQSjZubzlERnVrK09ucGxhOEFJWkFZWXJzb3FU?=
+ =?utf-8?B?R3VqZzNGbHc2WmJ1a2dmUFpLVExFY2RUamt3OFFTZmQ1TU0yMVoyL0ZpT1JO?=
+ =?utf-8?B?b1ZMZXFHQjhjUi9qY0l0TFZUMGY2ekN1dGtVUDA5Q1F1bkdTYlNqYTkwbnEx?=
+ =?utf-8?B?S3d0d2FqL29kbm5yZUx3Nk9tOGF5ZHlSNU5QSzhSbkEwbmJkbXhGVnJmRGEx?=
+ =?utf-8?B?cThZU2I2dEJhOENuN0FMRElVRzd6MkJlZjlKTDhiZjFLMzJwbmlSZ0g3dlNo?=
+ =?utf-8?B?Y1dPREV6dWFsRWZlS1VZbXhXSHM3d1dxdmVTbnAyUWVwYkhGMmIzeVNmRzh5?=
+ =?utf-8?B?NE9oYWEyUWdlRlRMbXBRdVEvNUpLL3pUTktqc3NTUGJJWHJpQUt5cTgzNTIz?=
+ =?utf-8?B?MVp6eldNS1YxOW1Rdk5zNzI0TUpBbVFCOTNRTlBZOGI4S1NibE9vOUVIbU00?=
+ =?utf-8?B?cnVjQmtQOUx5dEJmemVBc3RtNWo0RG9Tc25hQlgvUlpYY0hXSmVYSEM4TXA1?=
+ =?utf-8?B?aTY1c1poOFZidW5JLzA4MDd1ZXRPcE5xdFU5eUZKUGRIOUI4RDlYMWVvMmkx?=
+ =?utf-8?B?NktRN2s2M092ZTJHRXR4bnJLTXkzWW9EdHlRdCtLWGJaSkxWQS9XaHVWRWdC?=
+ =?utf-8?B?dUlEUVpJdDRqajN3ME1wOWY1eDY3T2xvNmxia0pRWEVvT0xvTmhpbGdrVHdK?=
+ =?utf-8?B?NkpHZEZOTkx5bklWZTFORzFNcHlrYWdqUXFybnFhNSsvT0xWTyszNlhKditn?=
+ =?utf-8?B?MnJNVGRQdGZ1Q2gvL2p1QlBUb0dkZzcveXBocUMvZUR6TW1XYXdCOVZVWlRC?=
+ =?utf-8?B?c1ZtUy9DZ3BFVWNIbUU3RmozRnRVQ3hxbXVDVXh3UzFVMnlnc2Q4QWIzMFBN?=
+ =?utf-8?B?VHZjSDMvSEtGSURtTGZxTTVZNFBBWDJvZFhFTjE3cmowVDR4VUd1V0JPS21Z?=
+ =?utf-8?B?OE9IVXg0NGhvWmNuTnNja2ZRVTlxV0QvOWVuczRwVTV2V0FUZFdmajAyQXZt?=
+ =?utf-8?B?R3BMbzEwV2kyWFlZb1JXcnBCVVVDSnJ2czJrUk1mYnB3bVJ3WTR4UVVTLzJr?=
+ =?utf-8?B?dkVOUVRPVUQrY3FmRVFQa0wvT00wWHNHSnRPd254bitsdWNFMUMzNHRpU1JW?=
+ =?utf-8?B?UnVaWFpwWXN4ZGh2WnJBUnZyVGFkcmxGV3RHMkFjQ1JOUmdWS3JMYk82UERR?=
+ =?utf-8?B?bGl3MW9xQUo4WjNyenJpNmVtRHVDNTZhRWtLVG4rY2RDbDVVZWV1ejZDakpO?=
+ =?utf-8?B?eXYwMDBPYnAwdWpHSEExTXZvdUlPUlBtOHlMeW5rZ05BcnYxSjBjMkcvSW12?=
+ =?utf-8?B?M1pjYnNSS1k3STlIWE9ocGk2UnEwY3Z2YWNXSXl2SWg4bFYwTm9CTy8zaXZo?=
+ =?utf-8?B?K1J4eDkzNFBSSHpyOGVkRTJGMnVSQStVR01zOU9qdnJva2pmdlZ4a1lyN3Ni?=
+ =?utf-8?B?Wm5QSFVXTXFyTFdYNTF3RWZseWl5M3FNRWNSbGZBSlFjK1RjT2JGVmVFOTB2?=
+ =?utf-8?B?QmI3Z1ZSajdGeWE3ZHQ0bllSWVhIWEVlQjh0d1p3ZUlURUpGbTg4cnVNaVFN?=
+ =?utf-8?B?d3dLRVFXNWlOUlVBWU15OERDUUpwSm5hRUxoNHk3cGtHMVQ3akM1MFR5N3hB?=
+ =?utf-8?B?Rno4cmYxQlRYcWtuUi9QZm9MS0RUQVU4ZFg1STRkNE5EdHZmOHhNcEcyczFN?=
+ =?utf-8?B?Yi9Tc3l1dW5hcXJPRFZuZDZGd3F4R2dld2FCUWJXZkdPeGViQWRLdFlZK1Rl?=
+ =?utf-8?B?QU9UNGI5bGR2L0xzWk9pN3BVVE54L0doOHU4Rjc4WlJRazRWcml0Mmt5OVNJ?=
+ =?utf-8?B?VjZQRStFWDFhMEc1c05uSTFvZldPVnkxOTdXWlF0bStoTXVNdGNrYldSalRL?=
+ =?utf-8?B?VWxkMUVRMnRrenF6VnZIUnhSNndiT1FoMFN5cm9RUmFXV1N5azhPYUFTOGM0?=
+ =?utf-8?B?QUNvSjlxN3Y4N3c4ZEVXWU5wSS83UDQrb05nV2w3d0VMTFdKNktrY2ZwcFF0?=
+ =?utf-8?B?R1cyQ1FJTTJaaXRxc041WTJRdHFpMEtUZkpBdzdWZkw2bmp5S2VUVm9BSEdL?=
+ =?utf-8?B?QUlrMUJ4NU1jc2NIY2ZWUXN2SnU0aXdXelN5WlM0YTU0VEwyNkpyMm5kUVph?=
+ =?utf-8?Q?Kf6rWQz9BRe2OHhM=3D?=
+X-Exchange-RoutingPolicyChecked: gYToeturJsGg+zxlQ7pXATNAKFlk5BGe07oSIEEVUJkfmnE3aZF1o6LdQ5nH3tKvq8MbP6vvCd18Y00Mqw4W46CIpHwlvWZtTcaP8A9tQ5pCahFiazRvNQsxF2tRm1qtw+W5cldUsrx4qUwLSHGfiOmUZCNjfhjRNnZThsTuOgdYaDg7WYdP3L2LUMLyv4YzyOHl7YvR1N2qgAZlZT4A+nODAgjAQoZGrNKzu6Bd0BoHbSJxEZhIZhkciOqHm7ecx2apCUVIbL0ncz1vId2J5sLKn3yVPo/57Tz/4IDg27wLNFKDcOJSocy3mroEGNCptIGj6p9tXj3ecK4VyA+/tQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b6ee4ce-ce0e-4a15-f55d-08def68e7766
+X-MS-Exchange-CrossTenant-AuthSource: LV3PR11MB8695.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2026 03:21:28.5758 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3GaGuLvET+J35JB55lssCsbOROPnBRddSGRzjfoY7IkxtmnpS+4V/3Frsag/NaQCqeJP23H2xTrKTCb+0Zwkr455xOJOhjqqcMQzLsCd+gA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH9PR11MB126636
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,310 +170,291 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matthew,
+--------------gm6t3HdLWzVqN9tZEWsjR0gQ
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Matthew Brost <matthew.brost@intel.com> writes:
-
-> When a CPU faults on a device private PMD and the device driver can only
-> allocate order-0 destination folios, __migrate_device_pages() has to
-> split the source THP via migrate_vma_split_unmapped_folio(). That path
-> is broken in two independent ways when the fault is what triggered the
-> migration.
+> We will soon want to provision all VFs, including their GuC doorbell
+> IDs config, in one step. Split existing doorbells bulk configuration
+> function into two functions, one of which will expect the master lock
+> to be already taken. Use this new function in the fair GuC doorbells
+> provisioning.
 >
-> First, the split never succeeds. At the point folio_split_unmapped() is
-> called the folio carries two references beyond the ones it is
-> entitled to:
->
->   1 - taken by do_huge_pmd_device_private() for the duration of the
->       ->migrate_to_ram() callback
->   2 - taken by migrate_vma_collect_huge_pmd() when the folio was
->       collected
->
-> (the mapping reference having been dropped by set_pmd_migration_entry()).
->
-> folio_split_unmapped() requires folio_expected_ref_count(folio) =3D=3D
-> folio_ref_count(folio) - 1, i.e. it tolerates exactly one caller
-> reference. With both of the above held the check sees 2 against an
-> expected 0 and returns -EAGAIN, so the migration is abandoned and the
-> CPU fault makes no progress.
->
-> The PTE-based split path does not have this problem:
-> migrate_vma_split_folio() is called before any collect reference is
-> taken and explicitly skips folio_get() for the fault folio, so the fault
-> reference is the single caller reference the split expects.
->
-> Fix it by dropping the fault reference across the split and re-taking it
-> afterwards. do_huge_pmd_device_private() derives the fault page from the
-> PMD entry, so it is always the head page of the folio and always ends up
-> in the head folio of an uniform split to order 0; re-taking the
-> reference on the folio therefore puts it back exactly where
-> do_huge_pmd_device_private() will release it. The folio cannot be freed
-> while the reference is dropped because the collect reference is still
-> held.
->
-> Second, the folio is split globally but the page tables were demoted
-> only locally:
->
-> 	split_huge_pmd_address(migrate->vma, addr, true);
-> 	ret =3D folio_split_unmapped(folio, 0);
->
-> migrate_device_unmap() unmaps via try_to_migrate(folio, 0), deliberately
-> without TTU_SPLIT_HUGE_PMD, so every VMA that PMD maps the folio is left
-> holding a PMD sized migration entry. A folio that was PMD mapped in more
-> than one VMA -- after fork(), for example -- therefore keeps huge
-> migration entries in all the other VMAs while only migrate->vma is
-> demoted.
->
-> folio_split_unmapped() does not notice: the folio is fully unmapped, so
-> it only looks at the refcount and happily splits to order 0. The other
-> VMAs are then left pointing a huge PMD at an order-0 folio, and
-> migrate_vma_finalize() -> remove_migration_ptes() walks into it:
->
->   page dumped because: VM_BUG_ON_FOLIO(folio_test_hugetlb(folio) ||
->                                        !folio_test_pmd_mappable(folio))
->   kernel BUG at mm/migrate.c:368!
->   RIP: 0010:remove_migration_pte+0x56a/0x9b0
->   Call Trace:
->    rmap_walk_anon+0xfc/0x260
->    remove_migration_ptes+0x79/0xb0
->    __migrate_device_finalize+0x113/0x290
->    __drm_pagemap_migrate_to_ram+0x278/0x360 [drm_gpusvm_helper]
->    drm_pagemap_migrate_to_ram+0x5c/0x80 [drm_gpusvm_helper]
->    do_huge_pmd_device_private+0x160/0x280
-
-Which is the branch your patchset based on?  I found that
-drm_pagemap_migrate_populate_ram_pfn() in mm-everything-2026-08-08-07-08
-still don't support fallback to single pages if THP allocation fails as
-in the following comments,
-
-	/* TODO: Support fallback to single pages if THP allocation fails */
-
-
-> Without CONFIG_DEBUG_VM the VM_BUG_ON_FOLIO() is compiled out and
-> remove_migration_pmd() installs a huge PMD pointing at an order-0 page
-> instead, along with add_mm_counter(mm, MM_ANONPAGES, HPAGE_PMD_NR). The
-> victim mm then maps 2MB of address space onto a single 4K page, which
-> shows up later as bad rss-counter state, leaked page tables and page
-> allocator freelist corruption in unrelated processes.
->
-> Note this second problem was latent before the refcount fix above: the
-> split always failed, and the failed attempt left migrate->vma demoted,
-> so the retried fault took the PTE path, where __folio_split() unmaps
-> with TTU_SPLIT_HUGE_PMD and demotes every VMA.
->
-> Fix it by walking the rmap and demoting every PMD sized migration entry
-> mapping the folio before splitting it. Demote with freeze =3D false: entry
-> creation in __split_huge_pmd_locked() is dispatched on
-> pmd_is_migration_entry(), not on freeze, so a migration PMD becomes PTE
-> sized migration entries either way, and freeze only controls a trailing
-> put_page(). With freeze =3D false there is no refcount change at all,
-> which makes the demotion idempotent across N VMAs.
->
-> rmap_walk_control.anon_lock is deliberately left unset:
-> folio_lock_anon_vma_read() depends on folio_mapped(), and the folio is
-> already fully unmapped here. This mirrors remove_migration_ptes().
->
-> Finally, refuse the split for a folio that is not anonymous. The rmap
-> walk would otherwise reach a file backed VMA, where
-> split_huge_pmd_address() zaps the PMD instead of demoting it.
->
-> Fixes: 4265d67e405a ("mm/migrate_device: add THP splitting during migrati=
-on")
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Lorenzo Stoakes <ljs@kernel.org>
-> Cc: Zi Yan <ziy@nvidia.com>
-> Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
-> Cc: Liam R. Howlett <liam@infradead.org>
-> Cc: Nico Pache <nico.pache@linux.dev>
-> Cc: Ryan Roberts <ryan.roberts@arm.com>
-> Cc: Dev Jain <dev.jain@arm.com>
-> Cc: Barry Song <baohua@kernel.org>
-> Cc: Lance Yang <lance.yang@linux.dev>
-> Cc: Usama Arif <usama.arif@linux.dev>
-> Cc: Joshua Hahn <joshua.hahnjy@gmail.com>
-> Cc: Rakie Kim <rakie.kim@sk.com>
-> Cc: Byungchul Park <byungchul@sk.com>
-> Cc: Gregory Price <gourry@gourry.net>
-> Cc: Ying Huang <ying.huang@linux.alibaba.com>
-> Cc: Alistair Popple <apopple@nvidia.com>
-> Cc: Balbir Singh <balbirs@nvidia.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Francois Dugast <francois.dugast@intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-mm@kvack.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: stable@vger.kernel.org
-> Assisted-by: GitHub_Copilot:claude-opus-5
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Michal Wajdeczko<michal.wajdeczko@intel.com>
+> Cc: Satyanarayana K V P<satyanarayana.k.v.p@intel.com>
 > ---
->  mm/migrate_device.c | 98 ++++++++++++++++++++++++++++++++++++++++-----
->  1 file changed, 89 insertions(+), 9 deletions(-)
+> v2: fix kernel-doc (Satya)
+> ---
+>   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 37 ++++++++++++++++------
+>   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  2 ++
+>   2 files changed, 29 insertions(+), 10 deletions(-)
 >
-> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-> index ae9027421b80..ae17bd516d24 100644
-> --- a/mm/migrate_device.c
-> +++ b/mm/migrate_device.c
-> @@ -899,22 +899,104 @@ static int migrate_vma_insert_huge_pmd_page(struct=
- migrate_vma *migrate,
->  	return 0;
->  }
->=20=20
-> +static bool migrate_vma_split_pmd_one(struct folio *folio,
-> +				      struct vm_area_struct *vma,
-> +				      unsigned long addr, void *arg)
-> +{
-> +	DEFINE_FOLIO_VMA_WALK(pvmw, folio, vma, addr, PVMW_SYNC | PVMW_MIGRATIO=
-N);
-> +
-> +	while (page_vma_mapped_walk(&pvmw)) {
-> +		if (pvmw.pte)
-> +			continue;
-> +
-> +		addr =3D pvmw.address;
-> +		page_vma_mapped_walk_done(&pvmw);
-> +
-> +		/*
-> +		 * Demote with freeze =3D false: the PMD already holds a
-> +		 * migration entry, so __split_huge_pmd_locked() creates PTE
-> +		 * sized migration entries from it and leaves the refcount
-> +		 * alone. There is at most one PMD mapping @folio per VMA, so
-> +		 * stop the walk here.
-> +		 */
-> +		split_huge_pmd_address(vma, addr, false);
-> +		break;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +/*
-> + * Demote every PMD sized migration entry that maps @folio to PTE sized =
-ones.
-> + *
-> + * migrate_device_unmap() unmaps with try_to_migrate(folio, 0), i.e. wit=
-hout
-> + * TTU_SPLIT_HUGE_PMD, so a folio that was PMD mapped in several VMAs --=
- after
-> + * fork(), for instance -- ends up with a PMD sized migration entry in e=
-very one
-> + * of them. folio_split_unmapped() below does not care, it only looks at=
- the
-> + * refcount, so splitting the folio without demoting all of those first =
-would
-> + * leave the other VMAs pointing a huge PMD at what is now an order-0 fo=
-lio.
-> + * remove_migration_ptes() trips over that in migrate_vma_finalize().
-> + */
-> +static void migrate_vma_split_pmd_mappings(struct folio *folio)
-> +{
-> +	struct rmap_walk_control rwc =3D {
-> +		.rmap_one =3D migrate_vma_split_pmd_one,
-> +	};
-> +
-> +	/*
-> +	 * Do not pass .anon_lock: folio_lock_anon_vma_read() requires
-> +	 * folio_mapped(), and @folio is already fully unmapped here.
-> +	 */
-> +	rmap_walk(folio, &rwc);
-> +}
-> +
->  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
-> -					    unsigned long idx, unsigned long addr,
-> +					    unsigned long idx,
->  					    struct folio *folio)
->  {
->  	unsigned long i;
->  	unsigned long pfn;
->  	unsigned long flags;
-> +	bool fault_folio;
->  	int ret =3D 0;
->=20=20
->  	/*
-> -	 * take a reference, since split_huge_pmd_address() with freeze =3D true
-> -	 * drops a reference at the end.
-> +	 * migrate_vma_split_pmd_mappings() walks the rmap, and
-> +	 * split_huge_pmd_address() zaps rather than demotes a PMD in a VMA that
-> +	 * is not anonymous. migrate_vma_collect_huge_pmd() does not check the
-> +	 * VMA type, so a file THP can reach here; the rest of the migrate_vma()
-> +	 * machinery only supports anonymous memory anyway.
->  	 */
-> -	folio_get(folio);
-> -	split_huge_pmd_address(migrate->vma, addr, true);
-> +	if (!folio_test_anon(folio))
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * A CPU fault on a device private PMD holds an extra reference on the
-> +	 * folio, taken by do_huge_pmd_device_private(). folio_split_unmapped()
-> +	 * only tolerates a single caller reference, so the split would always
-> +	 * fail with -EAGAIN while this fault reference is held.
-> +	 *
-> +	 * do_huge_pmd_device_private() derives the fault page from the PMD
-> +	 * entry, so it is always the head page of @folio, and therefore always
-> +	 * ends up in the head folio after an uniform split to order 0. Drop
-> +	 * the reference across the split and re-take it on the head folio
-> +	 * afterwards, leaving the reference exactly where it is expected to be
-> +	 * released.
-> +	 *
-> +	 * The folio cannot go away while the reference is dropped: the
-> +	 * reference taken by migrate_vma_collect_huge_pmd() is still held.
-> +	 */
-> +	fault_folio =3D migrate->fault_page &&
-> +		page_folio(migrate->fault_page) =3D=3D folio;
-> +
-> +	migrate_vma_split_pmd_mappings(folio);
-> +
-> +	if (fault_folio)
-> +		folio_put(folio);
->  	ret =3D folio_split_unmapped(folio, 0);
-> +	if (fault_folio)
-> +		folio_get(folio);
-> +
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index 4976d8c018ce..be0a413ee17c 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -1397,7 +1397,7 @@ int xe_gt_sriov_pf_config_set_dbs(struct xe_gt *gt, unsigned int vfid, u32 num_d
+>   }
+>   
+>   /**
+> - * xe_gt_sriov_pf_config_bulk_set_dbs - Provision many VFs with GuC context IDs.
+> + * xe_gt_sriov_pf_config_bulk_set_dbs_locked() - Provision many VFs with GuC doorbells.
+>    * @gt: the &xe_gt
+>    * @vfid: starting VF identifier (can't be 0)
+>    * @num_vfs: number of VFs to provision
+> @@ -1407,30 +1407,48 @@ int xe_gt_sriov_pf_config_set_dbs(struct xe_gt *gt, unsigned int vfid, u32 num_d
+>    *
+>    * Return: 0 on success or a negative error code on failure.
+>    */
+> -int xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int vfid,
+> -				       unsigned int num_vfs, u32 num_dbs)
+> +int xe_gt_sriov_pf_config_bulk_set_dbs_locked(struct xe_gt *gt, unsigned int vfid,
+> +					      unsigned int num_vfs, u32 num_dbs)
+>   {
+>   	unsigned int n;
+>   	int err = 0;
+>   
+>   	xe_gt_assert(gt, vfid);
+> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+>   
+>   	if (!num_vfs)
+>   		return 0;
+>   
+> -	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+>   	for (n = vfid; n < vfid + num_vfs; n++) {
+>   		err = pf_provision_vf_dbs(gt, n, num_dbs);
+>   		if (err)
+>   			break;
+>   	}
+> -	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+>   
+>   	return pf_config_bulk_set_u32_done(gt, vfid, num_vfs, num_dbs,
+> -					   xe_gt_sriov_pf_config_get_dbs,
+> +					   pf_get_vf_config_dbs,
+>   					   "GuC doorbell IDs", no_unit, n, err); } +/** + * xe_gt_sriov_pf_config_bulk_set_dbs() - 
+> Provision many VFs with GuC doorbells. + * @gt: the &xe_gt + * @vfid: 
+> starting VF identifier (can't be 0) + * @num_vfs: number of VFs to 
+> provision + * @num_dbs: requested number of GuC doorbell IDs (0 to 
+> release) + * + * This function can only be called on PF. + * + * 
+> Return: 0 on success or a negative error code on failure. + */ +int 
+> xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int 
+> vfid, + unsigned int num_vfs, u32 num_dbs) +{ + 
+> guard(mutex)(xe_gt_sriov_pf_master_mutex(gt)); + + return 
+> xe_gt_sriov_pf_config_bulk_set_dbs_locked(gt, vfid, num_vfs, num_dbs); 
+> +} + static u32 pf_profile_fair_dbs(struct xe_gt *gt, unsigned int 
+> num_vfs) { bool admin_only_pf = xe_sriov_pf_admin_only(gt_to_xe(gt)); 
+> @@ -1480,10 +1498,9 @@ int xe_gt_sriov_pf_config_set_fair_dbs(struct 
+> xe_gt *gt, unsigned int vfid, xe_gt_assert(gt, vfid); xe_gt_assert(gt, 
+> num_vfs); - mutex_lock(xe_gt_sriov_pf_master_mutex(gt)); + 
+> guard(mutex)(xe_gt_sriov_pf_master_mutex(gt)); + fair = 
+> pf_estimate_fair_dbs(gt, num_vfs); - 
+> mutex_unlock(xe_gt_sriov_pf_master_mutex(gt)); - if (!fair) return 
+> -ENOSPC; @@ -1492,7 +1509,7 @@ int 
+> xe_gt_sriov_pf_config_set_fair_dbs(struct xe_gt *gt, unsigned int 
+> vfid, xe_gt_sriov_info(gt, "Using non-profile provisioning (%s %u vs %u)\n",
+>   				 "GuC doorbell IDs", fair, profile);
+>   
+> -	return xe_gt_sriov_pf_config_bulk_set_dbs(gt, vfid, num_vfs, fair);
+> +	return xe_gt_sriov_pf_config_bulk_set_dbs_locked(gt, vfid, num_vfs, fair);
+>   }
+>   
+>   static u64 pf_get_lmem_alignment(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> index a14ca7bf7e4d..a56e63f3660a 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> @@ -34,6 +34,8 @@ int xe_gt_sriov_pf_config_set_dbs(struct xe_gt *gt, unsigned int vfid, u32 num_d
+>   int xe_gt_sriov_pf_config_set_fair_dbs(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
+>   int xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs,
+>   				       u32 num_dbs);
+> +int xe_gt_sriov_pf_config_bulk_set_dbs_locked(struct xe_gt *gt, unsigned int vfid,
+> +					      unsigned int num_vfs, u32 num_dbs);
+>   
+>   u64 xe_gt_sriov_pf_config_get_lmem(struct xe_gt *gt, unsigned int vfid);
+>   int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u64 size);
 
-Is it better to pass "extra_cnt" to folio_split_unmapped()?  This
-follows the coding style of the other migrate functions better, like
-that in __migrate_device_pages().
+LGTM.
 
->  	if (ret)
->  		return ret;
->  	migrate->src[idx] &=3D ~MIGRATE_PFN_COMPOUND;
-> @@ -935,7 +1017,7 @@ static int migrate_vma_insert_huge_pmd_page(struct m=
-igrate_vma *migrate,
->  }
->=20=20
->  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
-> -					    unsigned long idx, unsigned long addr,
-> +					    unsigned long idx,
->  					    struct folio *folio)
->  {
->  	return 0;
-> @@ -1103,7 +1185,6 @@ static void __migrate_device_pages(unsigned long *s=
-rc_pfns,
->  	struct mmu_notifier_range range;
->  	unsigned long i, j;
->  	bool notified =3D false;
-> -	unsigned long addr;
->=20=20
->  	for (i =3D 0; i < npages; ) {
->  		struct page *newpage =3D migrate_pfn_to_page(dst_pfns[i]);
-> @@ -1177,8 +1258,7 @@ static void __migrate_device_pages(unsigned long *s=
-rc_pfns,
->  					goto next;
->  				}
->  				nr =3D 1 << folio_order(folio);
-> -				addr =3D migrate->start + i * PAGE_SIZE;
-> -				if (migrate_vma_split_unmapped_folio(migrate, i, addr, folio)) {
-> +				if (migrate_vma_split_unmapped_folio(migrate, i, folio)) {
->  					src_pfns[i] &=3D ~(MIGRATE_PFN_MIGRATE |
->  							 MIGRATE_PFN_COMPOUND);
->  					goto next;
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
+--------------gm6t3HdLWzVqN9tZEWsjR0gQ
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+  </head>
+  <body>
+    <blockquote type=3D"cite" cite=3D"mid:20260807164826.5650-1-michal.wajd=
+eczko@intel.com">
+      <pre wrap=3D"" class=3D"moz-quote-pre">We will soon want to provision=
+ all VFs, including their GuC doorbell
+IDs config, in one step. Split existing doorbells bulk configuration
+function into two functions, one of which will expect the master lock
+to be already taken. Use this new function in the fair GuC doorbells
+provisioning.
+
+Signed-off-by: Michal Wajdeczko <a class=3D"moz-txt-link-rfc2396E" href=3D"=
+mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
+Cc: Satyanarayana K V P <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:s=
+atyanarayana.k.v.p@intel.com">&lt;satyanarayana.k.v.p@intel.com&gt;</a>
 ---
-Best Regards,
-Huang, Ying
+v2: fix kernel-doc (Satya)
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 37 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  2 ++
+ 2 files changed, 29 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/x=
+e/xe_gt_sriov_pf_config.c
+index 4976d8c018ce..be0a413ee17c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1397,7 +1397,7 @@ int xe_gt_sriov_pf_config_set_dbs(struct xe_gt *gt, u=
+nsigned int vfid, u32 num_d
+ }
+=20
+ /**
+- * xe_gt_sriov_pf_config_bulk_set_dbs - Provision many VFs with GuC contex=
+t IDs.
++ * xe_gt_sriov_pf_config_bulk_set_dbs_locked() - Provision many VFs with G=
+uC doorbells.
+  * @gt: the &amp;xe_gt
+  * @vfid: starting VF identifier (can't be 0)
+  * @num_vfs: number of VFs to provision
+@@ -1407,30 +1407,48 @@ int xe_gt_sriov_pf_config_set_dbs(struct xe_gt *gt,=
+ unsigned int vfid, u32 num_d
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int vfid=
+,
+-				       unsigned int num_vfs, u32 num_dbs)
++int xe_gt_sriov_pf_config_bulk_set_dbs_locked(struct xe_gt *gt, unsigned i=
+nt vfid,
++					      unsigned int num_vfs, u32 num_dbs)
+ {
+ 	unsigned int n;
+ 	int err =3D 0;
+=20
+ 	xe_gt_assert(gt, vfid);
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+=20
+ 	if (!num_vfs)
+ 		return 0;
+=20
+-	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+ 	for (n =3D vfid; n &lt; vfid + num_vfs; n++) {
+ 		err =3D pf_provision_vf_dbs(gt, n, num_dbs);
+ 		if (err)
+ 			break;
+ 	}
+-	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+=20
+ 	return pf_config_bulk_set_u32_done(gt, vfid, num_vfs, num_dbs,
+-					   xe_gt_sriov_pf_config_get_dbs,
++					   pf_get_vf_config_dbs,
+ 					   &quot;GuC doorbell IDs<a class=3D"moz-txt-link-rfc2396E" href=3D"m=
+ailto:,no_unit,n,err);}+/**+*xe_gt_sriov_pf_config_bulk_set_dbs()-Provision=
+manyVFswithGuCdoorbells.+*@gt:the&amp;xe_gt+*@vfid:startingVFidentifier(can=
+'tbe0)+*@num_vfs:numberofVFstoprovision+*@num_dbs:requestednumberofGuCdoorb=
+ellIDs(0torelease)+*+*ThisfunctioncanonlybecalledonPF.+*+*Return:0onsuccess=
+oranegativeerrorcodeonfailure.+*/+intxe_gt_sriov_pf_config_bulk_set_dbs(str=
+uctxe_gt*gt,unsignedintvfid,+unsignedintnum_vfs,u32num_dbs)+{+guard(mutex)(=
+xe_gt_sriov_pf_master_mutex(gt));++returnxe_gt_sriov_pf_config_bulk_set_dbs=
+_locked(gt,vfid,num_vfs,num_dbs);+}+staticu32pf_profile_fair_dbs(structxe_g=
+t*gt,unsignedintnum_vfs){booladmin_only_pf=3Dxe_sriov_pf_admin_only(gt_to_x=
+e(gt));@@-1480,10+1498,9@@intxe_gt_sriov_pf_config_set_fair_dbs(structxe_gt=
+*gt,unsignedintvfid,xe_gt_assert(gt,vfid);xe_gt_assert(gt,num_vfs);-mutex_l=
+ock(xe_gt_sriov_pf_master_mutex(gt));+guard(mutex)(xe_gt_sriov_pf_master_mu=
+tex(gt));+fair=3Dpf_estimate_fair_dbs(gt,num_vfs);-mutex_unlock(xe_gt_sriov=
+_pf_master_mutex(gt));-if(!fair)return-ENOSPC;@@-1492,7+1509,7@@intxe_gt_sr=
+iov_pf_config_set_fair_dbs(structxe_gt*gt,unsignedintvfid,xe_gt_sriov_info(=
+gt,">&quot;, no_unit, n, err);
+ }
+=20
++/**
++ * xe_gt_sriov_pf_config_bulk_set_dbs() - Provision many VFs with GuC door=
+bells.
++ * @gt: the &amp;xe_gt
++ * @vfid: starting VF identifier (can't be 0)
++ * @num_vfs: number of VFs to provision
++ * @num_dbs: requested number of GuC doorbell IDs (0 to release)
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int vfid=
+,
++				       unsigned int num_vfs, u32 num_dbs)
++{
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	return xe_gt_sriov_pf_config_bulk_set_dbs_locked(gt, vfid, num_vfs, num_d=
+bs);
++}
++
+ static u32 pf_profile_fair_dbs(struct xe_gt *gt, unsigned int num_vfs)
+ {
+ 	bool admin_only_pf =3D xe_sriov_pf_admin_only(gt_to_xe(gt));
+@@ -1480,10 +1498,9 @@ int xe_gt_sriov_pf_config_set_fair_dbs(struct xe_gt =
+*gt, unsigned int vfid,
+ 	xe_gt_assert(gt, vfid);
+ 	xe_gt_assert(gt, num_vfs);
+=20
+-	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
+ 	fair =3D pf_estimate_fair_dbs(gt, num_vfs);
+-	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+-
+ 	if (!fair)
+ 		return -ENOSPC;
+=20
+@@ -1492,7 +1509,7 @@ int xe_gt_sriov_pf_config_set_fair_dbs(struct xe_gt *=
+gt, unsigned int vfid,
+ 		xe_gt_sriov_info(gt, &quot;</a>Using non-profile provisioning (%s %u vs =
+%u)\n&quot;,
+ 				 &quot;GuC doorbell IDs&quot;, fair, profile);
+=20
+-	return xe_gt_sriov_pf_config_bulk_set_dbs(gt, vfid, num_vfs, fair);
++	return xe_gt_sriov_pf_config_bulk_set_dbs_locked(gt, vfid, num_vfs, fair)=
+;
+ }
+=20
+ static u64 pf_get_lmem_alignment(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/x=
+e/xe_gt_sriov_pf_config.h
+index a14ca7bf7e4d..a56e63f3660a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -34,6 +34,8 @@ int xe_gt_sriov_pf_config_set_dbs(struct xe_gt *gt, unsig=
+ned int vfid, u32 num_d
+ int xe_gt_sriov_pf_config_set_fair_dbs(struct xe_gt *gt, unsigned int vfid=
+, unsigned int num_vfs);
+ int xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int vfid=
+, unsigned int num_vfs,
+ 				       u32 num_dbs);
++int xe_gt_sriov_pf_config_bulk_set_dbs_locked(struct xe_gt *gt, unsigned i=
+nt vfid,
++					      unsigned int num_vfs, u32 num_dbs);
+=20
+ u64 xe_gt_sriov_pf_config_get_lmem(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u6=
+4 size);</pre>
+    </blockquote>
+    <p>LGTM.</p>
+    <p><span style=3D"font-family:Menlo">Reviewed-by: </span><span style=3D=
+"font-family:Aptos">Satyanarayana
+        K V P <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:satyanaraya=
+na.k.v.p@intel.com">&lt;satyanarayana.k.v.p@intel.com&gt;</a></span></p>
+    <blockquote type=3D"cite" cite=3D"mid:20260807164826.5650-1-michal.wajd=
+eczko@intel.com">
+      <pre wrap=3D"" class=3D"moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------gm6t3HdLWzVqN9tZEWsjR0gQ--
