@@ -4,44 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94E81C5CFEE
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54D2AC5B572
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E150D10F0BF;
-	Wed, 12 Aug 2026 17:41:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15C0810F0B8;
+	Wed, 12 Aug 2026 17:41:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lHy4VP2+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bXZwcmiM";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74C5610EFAC
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 13:02:54 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id DE7A260A85;
- Wed, 12 Aug 2026 13:02:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 812FF1F000E9;
- Wed, 12 Aug 2026 13:02:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786539773;
- bh=NyrGKEhniS2DeSL6hLVGd3IpKT7kvyu58FcmBcE1e3w=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lHy4VP2+veeYVT1lNj1q6xUh8YWT/Zu9U1LnHWtgqJO/f6YtL3q3OcQynV7PA0I85
- ZS134hzWrEjKGoKX6wX1fyw5PovZ4Oeys81BFYkHwwCP6vWjJXTO3oqW2U3YPcatEJ
- AOaAquTFTg8h146HAez6geIFntIm+U2X6TqVFkJ+zzU5wetf9XZn8PdjRFSYbFLL7o
- OsT6nGYHRsmmAvMvx/HM+JtXJSpbnH975GEp+b95R04v0zX8nxRWQjfV5mQvqkFx0+
- IZc3P7opWwIIywuY6bmdOlfdPUxeKzYujrfxGDAx7q1VzzksNH8Nq22cfbi6JCoZRP
- Y2ZUI9X91D2UA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 6/7] drm/xe/vf: Add bounds checking for queried VRAM
- size
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812124313.1377582-15-satyanarayana.k.v.p@intel.com>
-References: <20260812124313.1377582-9-satyanarayana.k.v.p@intel.com>
- <20260812124313.1377582-15-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 13:02:52 +0000
-Message-Id: <20260812130253.812FF1F000E9@smtp.kernel.org>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED70810E1C1;
+ Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8FF4A40DB4;
+ Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 68BDFC19425;
+ Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1786390367;
+ bh=53zYKk5OPNgWivY8AjmUk+khFvdcVLLZssE7+OqycN0=;
+ h=From:Date:Subject:To:Cc:Reply-To:From;
+ b=bXZwcmiMKu5YY7aX9Uez7dlQ4LLTeDVL2RI8E54we/TisKvnFpbegtSyLfMjlSrjq
+ ulFXdXWgqq9r5Xbzsuh2oXDSLomrWV1GJMHpZ0CULsG03nBm+NQOPCfE03T6dZRUI+
+ Egm+2G5DDxct9amitO0PGJUH2MtOY2bQfhyl/xEngLMkWPIZsWjYY7eIvxbDXuCqHO
+ SMwpl55MKLE/W57mQIM56ga5MW6VHR5sKZKmapR4uHZIfjy9QNe48BlyV1L0udYFP6
+ wHN6t1NJbA6+G0DAQn6+C0RvH3IB3rhMlzz/OA2EIAgxQY8lnlUCE28Xg11HDokbb8
+ YPPYcYjYLLcew==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by smtp.lore.kernel.org (Postfix) with ESMTP id 4EF90C5AD55;
+ Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
+From: Zhenyu Yang via B4 Relay <devnull+haruki.seu.edu.cn@kernel.org>
+Date: Tue, 11 Aug 2026 03:32:37 +0800
+Subject: [PATCH] drm/xe: Exclude wopcm region from stolen memory on TGL/DG1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260811-fix-xe-ttm-v1-1-8d58b08f02b3@seu.edu.cn>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMyw5AMBCF4VeRWZukRRSvIhZVg5G4pC2RiHdXL
+ L+cnP8CR5bJQRVdYOlgx+sSIOMIzKiXgZC7YEhEkotCSuz5xJPQ+xkzXSqZdsoYXUI4bJbC+sX
+ q5rfb24mMfwtw3w9iBrXybgAAAA==
+X-Change-ID: 20260811-fix-xe-ttm-4a9713d7cca9
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, 
+ Sanjay Yadav <sanjay.kumar.yadav@intel.com>, 
+ Lucas De Marchi <demarchi@kernel.org>, Zhenyu Yang <haruki@seu.edu.cn>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1786390365; l=1557;
+ i=haruki@seu.edu.cn; s=20260810; h=from:subject:message-id;
+ bh=MR427Mkv+jciFjssrVFmackeIc2s7Un5r4gv3vpAeQo=;
+ b=ZZ4mSkXpLj1hHTBkIU4V6FHUvr02o/TjpaiNSKWOGknZFsj0qu7+3SkTyaDlh1GF8mZ42zO1M
+ h2qnkL26JQ7DNVv6AzduMMwbSe+dw5fzyM7SQZj85NJP8AV/hPVu+/2
+X-Developer-Key: i=haruki@seu.edu.cn; a=ed25519;
+ pk=Rh6scJJVrfKi0fDllLpvJXubmo9YB57MLrju0xpHeIk=
+X-Endpoint-Received: by B4 Relay for haruki@seu.edu.cn/20260810 with
+ auth_id=935
+X-Original-From: Zhenyu Yang <haruki@seu.edu.cn>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 17:41:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,60 +72,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: haruki@seu.edu.cn
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+From: Zhenyu Yang <haruki@seu.edu.cn>
 
-Pre-existing issues:
-- [High] Missing upper bounds check for queried VRAM size
---
+Top of DSM contains the WOPCM which shouldn't be accessed. Carve it out
+from the stolen memory on TGL/DG1 as well.  This fixes excessive ATS faults
+on an RPL laptop since v7.2-rc1.
 
---- Patch [6]: [PATCH v6 6/7] drm/xe/vf: Add bounds checking for queried VR=
-AM size ---
-commit 2089489a65d04a75b7e07c3d3903caf61610c1eb
-Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Fixes: 1c76fa517214 ("drm/xe: Convert stolen memory over to ttm_range_manager")
+Signed-off-by: Zhenyu Yang <haruki@seu.edu.cn>
+---
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-drm/xe/vf: Add bounds checking for queried VRAM size
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 5e9070739e65..75f4d064d711 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -180,12 +180,22 @@ extern struct resource intel_graphics_stolen_res;
+ static u64 detect_stolen(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+ #ifdef CONFIG_X86
++	u64 stolen_size, wopcm_size;
++
+ 	/* Map into GGTT */
+ 	mgr->io_base = pci_resource_start(to_pci_dev(xe->drm.dev), 2);
+ 
+ 	/* Stolen memory is x86 only */
+ 	mgr->stolen_base = intel_graphics_stolen_res.start;
+-	return resource_size(&intel_graphics_stolen_res);
++	stolen_size = resource_size(&intel_graphics_stolen_res);
++
++	/* Carve out the top of DSM as it contains the reserved WOPCM region */
++	wopcm_size = get_wopcm_size(xe);
++	if (drm_WARN_ON(&xe->drm, !wopcm_size))
++		return 0;
++
++	xe_assert(xe, stolen_size >= wopcm_size);
++	return stolen_size - wopcm_size;
+ #else
+ 	return 0;
+ #endif
 
-This commit attempts to add checks for the VRAM size queried from the PF
-to protect VF initialization from invalid configuration data.
+---
+base-commit: db2ddb87143519e20a95aa36c60b36107b736a58
+change-id: 20260811-fix-xe-ttm-4a9713d7cca9
 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_=
-gt_sriov_vf.c
-> index d805c064377c3..be932ebe6a8d0 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -574,6 +574,12 @@ static int vf_get_lmem_info(struct xe_gt *gt)
->  		return -EREMCHG;
->  	}
-> =20
-> +	if (!IS_ALIGNED(size, SZ_2M)) {
-> +		xe_gt_sriov_err(gt, "Unaligned LMEM size %llu, expected %llu\n",
-> +				size, ALIGN(size, SZ_2M));
-> +		return -EINVAL;
-> +	}
-> +
 
-[Severity: High]
-This is a pre-existing issue, but the commit message states this patch adds
-"bounds checking" to reject invalid configuration data, while this code
-only implements an alignment check.
-
-Does vf_get_lmem_info() also need an upper bounds check for the queried siz=
-e?
-
-If a misconfigured or compromised PF provides an artificially large VRAM
-size, there doesn't appear to be a check against the VF's PCI LMEM BAR
-size here. Could this unverified size propagate to vram->usable_size and
-allow userspace to allocate VRAM beyond physical capacity, leading to
-out-of-bounds memory accesses?
-
->  	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
->  	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812124313.1377=
-582-9-satyanarayana.k.v.p@intel.com?part=3D6
