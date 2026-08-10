@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9795C5AD55
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 12:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADB7AC5AD7B
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 12:41:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58E7510E805;
-	Mon, 10 Aug 2026 12:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6954910E80E;
+	Mon, 10 Aug 2026 12:41:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WumG0Fq9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OKoDX5Bk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF7710E816
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Aug 2026 12:38:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 655D710E80B
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Aug 2026 12:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786365520; x=1817901520;
+ t=1786365679; x=1817901679;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=vFHxzaqONPX8VxvDD5NsHouMuokIULmGMJUM0IIyEq0=;
- b=WumG0Fq9g5ZHfP1moHY8OlSBzxmSGqyPlePMHwLGW2kGfu1BBjvz/53M
- PKsHQNrQ5Cg3dz6+XLSVZpOdMZWy18W/oTEbV0vZ2nWJsS/68XY1EbHIL
- KbXQsoHXTgnCwF/++PNNst7MZCQ6IC2oNiYpp7MI6HynYgE9V0j4n2At3
- 1/R57MM9n3O5sFfIU9B6kGWEfhwnVR5Ol+j8RRMs2TXy+2yDmy20AmFIB
- nmYEUz7PbhwdkJFq90oA35sF2HR+L1nGZC1Xgd6SW8SI06jzxp+Y+VX9+
- 9oYEAkvCCzAt/IvQCcgKRRIEWJBZKtUE3avEDy362yyyJxMQvsPJ38X11 A==;
-X-CSE-ConnectionGUID: eFk+HAXUSvGazWH5rqXMlA==
-X-CSE-MsgGUID: yMsL8nUDT1a49VUFUbZbCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11870"; a="86755236"
-X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="86755236"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2026 05:38:39 -0700
-X-CSE-ConnectionGUID: izTflOdtSHe3YVP8v3JMUQ==
-X-CSE-MsgGUID: Na+ihMqvRE+t/asjaKiI9g==
+ bh=NXDbl4LOcHffZvY0/41aVpUXylDVjakGDT2D3g0x/0c=;
+ b=OKoDX5BkcrPz569FaBjU/qxrhZ2j46rgztR8tIuJvygRj/F5iDl7jjjJ
+ kPpb3WxUOeijQlW8CKFo+L/eh2rFIbvfl0fG2kDUFyx6TdPWh+FG26Yhm
+ E03dRWxUMgHupTrDZHLk5bVY5/8eUNHw7NsouSaZ9iREx81f1S1LlRsmO
+ EO2upyySGvY1udlTMIKkLH5Zf1sknsz0SV6lq3jUyQkbxqnAU0hL1hBd2
+ H+Teru4XEYZO+7M4ar0s3Uv/YMYjF0yWZ+kMemKAiKQw05HifUkaHGs2F
+ eNxU397UGP1D37W1h/7sICjLDCe/fW8mbpS5RW4hA5ceoEFJRnVpvYUNp Q==;
+X-CSE-ConnectionGUID: TGnxFUQJSq6XR1W42sePRQ==
+X-CSE-MsgGUID: JgcxY+n+SUaM37SMHgcDrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11870"; a="86729858"
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="86729858"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2026 05:41:18 -0700
+X-CSE-ConnectionGUID: 2fN3yeMZRqqaql5Nsap2uQ==
+X-CSE-MsgGUID: g6pRtyraRjCzBelMNNZAyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="262513238"
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="258759649"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa008.jf.intel.com with ESMTP; 10 Aug 2026 05:38:36 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 10 Aug 2026 05:41:16 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- Raag Jadav <raag.jadav@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v1] drm/xe: Fix xe_device_probe() failure
-Date: Mon, 10 Aug 2026 18:08:20 +0530
-Message-ID: <20260810123821.105605-1-raag.jadav@intel.com>
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com,
+ matthew.d.roper@intel.com, mallesh.koujalagi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2] drm/xe/drm_ras: Move has_drm_ras check to drm_ras layer
+Date: Mon, 10 Aug 2026 18:11:01 +0530
+Message-ID: <20260810124101.105832-1-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,54 +65,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently, xe_device_probe() jumps to err_unregister_display label in case
-of failure except for its last call, which directly returns the error
-without required cleanup handling. This results in stale drm device that
-isn't cleaned up on unwind. Fix it.
+has_drm_ras flag is meant to facilitate drm_ras feature. Move it to the
+correct layer where it belongs.
 
-[  810.194180] sysfs: cannot create duplicate filename '/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128'
-[  810.194183] CPU: 9 UID: 0 PID: 5616 Comm: modprobe Kdump: loaded Tainted: G S   U      E       7.2.0-rc2-xe #382 PREEMPT(full)
-[  810.194185] Tainted: [S]=CPU_OUT_OF_SPEC, [U]=USER, [E]=UNSIGNED_MODULE
-[  810.194186] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 1805 10/30/2024
-[  810.194186] Call Trace:
-[  810.194187]  <TASK>
-[  810.194188]  dump_stack_lvl+0xe0/0x100
-[  810.194195]  dump_stack+0x14/0x20
-[  810.194197]  sysfs_warn_dup+0x5f/0x80
-[  810.194204]  sysfs_create_dir_ns+0xbe/0xd0
-[  810.194210]  kobject_add_internal+0xbc/0x2b0
-[  810.194215]  kobject_add+0x7c/0xe0
-[  810.194220]  ? get_device_parent+0xcf/0x1e0
-[  810.194227]  device_add+0xe3/0x870
-[  810.194231]  ? __pfx_drm_gem_name_info+0x10/0x10 [drm]
-[  810.194280]  drm_minor_register+0x73/0x130 [drm]
-[  810.194322]  drm_dev_register+0x76/0x2a0 [drm]
-
-Cc: stable@vger.kernel.org
-Fixes: da3799c97572 ("drm/xe: Use GuC to do GGTT invalidations for the GuC firmware")
+Fixes: 63dfab5786ca ("drm/xe/xe_ras: Add drm_ras feature flag")
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+v2: Fix typo (Michal, Riana)
+---
+ drivers/gpu/drm/xe/xe_drm_ras.c | 3 +++
+ drivers/gpu/drm/xe/xe_ras.c     | 3 ---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index e327c7d35ca3..cad531009721 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1165,7 +1165,12 @@ int xe_device_probe(struct xe_device *xe)
- 	 * xe_device_wedged_fini() is registered.
- 	 */
- 	xe_ras_process_errors(xe);
--	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
-+
-+	err = devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
-+	if (err)
-+		goto err_unregister_display;
-+
-+	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+index 4afa2ad98300..a23cfb49361b 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras.c
++++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+@@ -233,6 +233,9 @@ int xe_drm_ras_init(struct xe_device *xe)
+ 	struct drm_ras_node *node;
+ 	int err;
  
- err_unregister_display:
- 	xe_display_unregister(xe);
++	if (!xe->info.has_drm_ras)
++		return 0;
++
+ 	node = drmm_kcalloc(&xe->drm, DRM_XE_RAS_ERR_SEV_MAX, sizeof(*node), GFP_KERNEL);
+ 	if (!node)
+ 		return -ENOMEM;
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index db8bd19ad28b..4fc1b301a91b 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -816,9 +816,6 @@ void xe_ras_init(struct xe_device *xe)
+ {
+ 	int ret;
+ 
+-	if (!xe->info.has_drm_ras)
+-		return;
+-
+ 	xe_drm_ras_init(xe);
+ 
+ 	if (!xe->info.has_sysctrl)
 -- 
 2.43.0
 
