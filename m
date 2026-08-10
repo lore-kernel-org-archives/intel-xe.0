@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 941AFC5AC82
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 08:06:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7FC9C5AD4E
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 08:07:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5241A10E717;
-	Mon, 10 Aug 2026 08:06:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 650EA10E194;
+	Mon, 10 Aug 2026 08:07:00 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02E5510E708;
- Mon, 10 Aug 2026 08:06:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6114006833922828906=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90ED110E194;
+ Mon, 10 Aug 2026 08:06:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/pagemap=3A_Prevent_doub?=
- =?utf-8?q?le_migration_of_device_pages_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_make_CTX=5FTIME?=
+ =?utf-8?q?STAMP_TOCTOU-safe_and_handle_sentinels?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
+To: "Gajendra Uttamchand" <gajendra.uttamchand@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Aug 2026 08:06:52 -0000
-Message-ID: <178634921200.33188.155367470904298087@61270ab9df2a>
+Date: Mon, 10 Aug 2026 08:06:58 -0000
+Message-ID: <178634921858.33188.9123983800007099709@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260810070240.2721317-1-arvind.yadav@intel.com>
-In-Reply-To: <20260810070240.2721317-1-arvind.yadav@intel.com>
+References: <20260810071812.213358-3-gajendra.uttamchand@intel.com>
+In-Reply-To: <20260810071812.213358-3-gajendra.uttamchand@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,53 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6114006833922828906==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/pagemap: Prevent double migration of device pages (rev6)
-URL   : https://patchwork.freedesktop.org/series/171495/
-State : success
+Series: drm/xe: make CTX_TIMESTAMP TOCTOU-safe and handle sentinels
+URL   : https://patchwork.freedesktop.org/series/171909/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5568-9c14709d79cf144f0990551a124af7615bdd97be_BAT -> xe-pw-171495v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2cfa5cbe637bd134f760adc9e9e4250ab1b1550e
+Author: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
+Date:   Mon Aug 10 07:18:14 2026 +0000
 
-Summary
--------
+    drm/xe/lrc: document sentinel and make CTX_TIMESTAMP read TOCTOU-safe
+    
+    Problem: CTX_TIMESTAMP MMIO reads could be stale if a context
+    switched out between check and read; LRC stores a sentinel while
+    a context starts that must not be treated as a real timestamp.
+    
+    Fix: Check the LRC-stored sentinel before and after the MMIO read;
+    return the LRC value if the context switched out to avoid TOCTOU.
+    
+    Fixes: d243ef6a39c6 ("drm/xe/lrc: Refactor xe_lrc_timestamp to simplify
+    logic")
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7956
+    
+    Note: Keep XE_LRC_CTX_TIMESTAMP_ACTIVE in xe_lrc.h as the
+    canonical sentinel.
+    
+    Assisted-by: GitHub-Copilot:claude-sonnet-5
+    Signed-off-by: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
+    Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+    Acked-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 9c14709d79cf144f0990551a124af7615bdd97be drm-intel
+2cfa5cbe637b drm/xe/lrc: document sentinel and make CTX_TIMESTAMP read TOCTOU-safe
+-:14: WARNING:BAD_FIXES_TAG: Please use correct Fixes: style 'Fixes: <12+ chars of sha1> ("<title line>")' - ie: 'Fixes: d243ef6a39c6 ("drm/xe/lrc: Refactor xe_lrc_timestamp to simplify logic")'
+#14: 
+Fixes: d243ef6a39c6 ("drm/xe/lrc: Refactor xe_lrc_timestamp to simplify
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5568-9c14709d79cf144f0990551a124af7615bdd97be -> xe-pw-171495v6
-
-  IGT_9047: 9047
-  xe-5568-9c14709d79cf144f0990551a124af7615bdd97be: 9c14709d79cf144f0990551a124af7615bdd97be
-  xe-pw-171495v6: 171495v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171495v6/index.html
-
---===============6114006833922828906==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 55 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/pagemap: Prevent double migration of device pages (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171495/">https://patchwork.freedesktop.org/series/171495/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171495v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171495v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5568-9c14709d79cf144f0990551a124af7615bdd97be_BAT -&gt; xe-pw-171495v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5568-9c14709d79cf144f0990551a124af7615bdd97be -&gt; xe-pw-171495v6</li>
-</ul>
-<p>IGT_9047: 9047<br />
-  xe-5568-9c14709d79cf144f0990551a124af7615bdd97be: 9c14709d79cf144f0990551a124af7615bdd97be<br />
-  xe-pw-171495v6: 171495v6</p>
-
-</body>
-</html>
-
---===============6114006833922828906==--
