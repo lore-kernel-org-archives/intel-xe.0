@@ -4,43 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B97C1C5AC82
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 12:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9795C5AD55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Aug 2026 12:38:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EFFB10E816;
-	Mon, 10 Aug 2026 12:21:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58E7510E805;
+	Mon, 10 Aug 2026 12:38:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kfz33SqO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WumG0Fq9";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10DBB10E809
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Aug 2026 12:21:31 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 53EFC402B7;
- Mon, 10 Aug 2026 12:21:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EF7C1F000E9;
- Mon, 10 Aug 2026 12:21:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786364490;
- bh=IxI/vt2/f/d3YphvP4EGKxd1bbv8IgLn9lJqpFOfxpo=;
- h=Date:From:To:Cc:Subject;
- b=kfz33SqOrd14HbpuO32yTGa573tadl4oKRqbcQ+Xdgh24RAZOnVFeZ4Oc/G01YGUb
- c9a9lD1Qj/dmbYn2Y/eSNjFNQK2l964KG75ssYqbAeiin1k5Zpn0EviQW+SCxQG0yH
- icxNG9XZK9r4zGLX80JKbnVzIWDqxXxU/8lyawYJ3A5Y0u1GTdurvtR9ojPIeBk3OV
- eSvSf/r0PV6H+uxHBJfzL+6FiSGG7So+iMSVUVRJK+4x9/KioD7F48d0l0rlQc81iO
- 3nR39eE+rqOBSaS7Md4M4f6K4OguC4DuhUAg5V7ZRP8U8CX/LPkbly/j8F6UOU3ozv
- lyEItUvEJLLoA==
-Date: Mon, 10 Aug 2026 13:21:26 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: linux-kernel@vger.kernel.org, linux-next@vger.kernel.org
-Subject: Unexpected files in the drm-xe tree
-Message-ID: <annCRqegoQ9PBClJ@sirena.org.uk>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF7710E816
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Aug 2026 12:38:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1786365520; x=1817901520;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vFHxzaqONPX8VxvDD5NsHouMuokIULmGMJUM0IIyEq0=;
+ b=WumG0Fq9g5ZHfP1moHY8OlSBzxmSGqyPlePMHwLGW2kGfu1BBjvz/53M
+ PKsHQNrQ5Cg3dz6+XLSVZpOdMZWy18W/oTEbV0vZ2nWJsS/68XY1EbHIL
+ KbXQsoHXTgnCwF/++PNNst7MZCQ6IC2oNiYpp7MI6HynYgE9V0j4n2At3
+ 1/R57MM9n3O5sFfIU9B6kGWEfhwnVR5Ol+j8RRMs2TXy+2yDmy20AmFIB
+ nmYEUz7PbhwdkJFq90oA35sF2HR+L1nGZC1Xgd6SW8SI06jzxp+Y+VX9+
+ 9oYEAkvCCzAt/IvQCcgKRRIEWJBZKtUE3avEDy362yyyJxMQvsPJ38X11 A==;
+X-CSE-ConnectionGUID: eFk+HAXUSvGazWH5rqXMlA==
+X-CSE-MsgGUID: yMsL8nUDT1a49VUFUbZbCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11870"; a="86755236"
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="86755236"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2026 05:38:39 -0700
+X-CSE-ConnectionGUID: izTflOdtSHe3YVP8v3JMUQ==
+X-CSE-MsgGUID: Na+ihMqvRE+t/asjaKiI9g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; d="scan'208";a="262513238"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa008.jf.intel.com with ESMTP; 10 Aug 2026 05:38:36 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ Raag Jadav <raag.jadav@intel.com>, stable@vger.kernel.org
+Subject: [PATCH v1] drm/xe: Fix xe_device_probe() failure
+Date: Mon, 10 Aug 2026 18:08:20 +0530
+Message-ID: <20260810123821.105605-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="lU089JkQTfLxtWQT"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,33 +65,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Currently, xe_device_probe() jumps to err_unregister_display label in case
+of failure except for its last call, which directly returns the error
+without required cleanup handling. This results in stale drm device that
+isn't cleaned up on unwind. Fix it.
 
---lU089JkQTfLxtWQT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[  810.194180] sysfs: cannot create duplicate filename '/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128'
+[  810.194183] CPU: 9 UID: 0 PID: 5616 Comm: modprobe Kdump: loaded Tainted: G S   U      E       7.2.0-rc2-xe #382 PREEMPT(full)
+[  810.194185] Tainted: [S]=CPU_OUT_OF_SPEC, [U]=USER, [E]=UNSIGNED_MODULE
+[  810.194186] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 1805 10/30/2024
+[  810.194186] Call Trace:
+[  810.194187]  <TASK>
+[  810.194188]  dump_stack_lvl+0xe0/0x100
+[  810.194195]  dump_stack+0x14/0x20
+[  810.194197]  sysfs_warn_dup+0x5f/0x80
+[  810.194204]  sysfs_create_dir_ns+0xbe/0xd0
+[  810.194210]  kobject_add_internal+0xbc/0x2b0
+[  810.194215]  kobject_add+0x7c/0xe0
+[  810.194220]  ? get_device_parent+0xcf/0x1e0
+[  810.194227]  device_add+0xe3/0x870
+[  810.194231]  ? __pfx_drm_gem_name_info+0x10/0x10 [drm]
+[  810.194280]  drm_minor_register+0x73/0x130 [drm]
+[  810.194322]  drm_dev_register+0x76/0x2a0 [drm]
 
-Commit
+Cc: stable@vger.kernel.org
+Fixes: da3799c97572 ("drm/xe: Use GuC to do GGTT invalidations for the GuC firmware")
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-  ac3baea883dab ("drm/panel: find_panel_by_fwnode() return a counted reference")
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index e327c7d35ca3..cad531009721 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1165,7 +1165,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	 * xe_device_wedged_fini() is registered.
+ 	 */
+ 	xe_ras_process_errors(xe);
+-	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
++
++	err = devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
++	if (err)
++		goto err_unregister_display;
++
++	return 0;
+ 
+ err_unregister_display:
+ 	xe_display_unregister(xe);
+-- 
+2.43.0
 
-added this unexpected file:
-
- drivers/gpu/drm/drm_panel.c.orig
-
-
---lU089JkQTfLxtWQT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmp5wkUACgkQJNaLcl1U
-h9C2MQf/eVfCccz2uaGeuQ4KeJkF2L2CP7dkkd8xKWF0oLevELx0TCWmdd0CZJwa
-pEDZXLi614ubFk0L6KJshfJXqYPBLpSBNgAiHntjiCsaF8T8f6j2PNo4Pa5DabRy
-JeHQtusr/3SkruAFYKaDeCw5wJzc6erXnLDPE42hOoURCWRW/JEi6qWvThV2LVaJ
-pY/bOBzdub/de/hxL29X3HsJ4vrEkWYGiJL9ZojzlVLKZgWYMc4q0z9CmZ7DKtmB
-MPcNVHSEH1RGhJdNjRUIKcCf0qP+LXSdQ/Ga43l+uzEYmnKsOMMBuluWnXCESUkN
-CtqUb04Jbnm+aMnIeGCH6adeBSr8ZQ==
-=qa5E
------END PGP SIGNATURE-----
-
---lU089JkQTfLxtWQT--
