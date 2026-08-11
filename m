@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9673C5B572
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 04:59:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 510C4C5AC67
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 04:59:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A47D10EA5F;
-	Tue, 11 Aug 2026 04:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10D6A10EA6C;
+	Tue, 11 Aug 2026 04:59:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iLpy8vCb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yo4gFxxr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 649E810EA60;
- Tue, 11 Aug 2026 04:59:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39F1410EA6A;
+ Tue, 11 Aug 2026 04:59:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786424377; x=1817960377;
+ t=1786424379; x=1817960379;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JEfxvJOSq2RC7llUpkp6Vv2MdZu65Q8KHNABvtYe5dk=;
- b=iLpy8vCbqVANs2aS/p36Oys7Zz/RkLgu1bjU0AZe0ZpBY0yKagO3YLm9
- F4XDV2nZhBXs2G7v4J52kHFuVvyszB/x1GGEOdLeb6jDg2gvhP7Eexold
- twIKew5V7f2wYo0Yrekc9UJPL1/jUjitxUaAHPVsa0XxlLMk2pXfA016K
- mUpkR9jM4z0IhjodVSbSVq92ShmBF4VhpCyOpAEbLi3bm9Y3vUqdLjvfl
- 6hehNxmBw62eeH/oM2BJb+7eYjPdIBDr9AHz/WUk2KMcXhN9lzx0cOnt2
- mBB1alVszaNvfPziPQKHKQlo9q0MqJLJRZn5xrycyU/yc1la7kq3cm0mQ w==;
-X-CSE-ConnectionGUID: VOGEvsPWRKW5MtpF/AteIQ==
-X-CSE-MsgGUID: pv81q879QQeMh01Dg9Rg/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="86708333"
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="86708333"
+ bh=5CJVaCBhA5lwZER+iDPB4PhsyvZtUUMhMPqtcxCyQhQ=;
+ b=Yo4gFxxrEl/saV/xCX/m1jwVH/Bji7SZ/B9Q9UnOPLtvmWJppP5u146I
+ YZ4ktKQsbgQYJbxGQ19vgOZ5UWsFxMA8g60apmOO+1dyyRyAQpo3092JF
+ D/21T/1FNVxM1CxHmJr1nTyggBe40DrN1VL7FLN6PDkMDRaIjSVjuZndc
+ tiqJuDQRm9epEuBtoxkL14gGlrvVbyX/iVw3SEY4DmYBamcupFiefiQ/d
+ N4IH95TwtxL4CDWnxx2sPOuPPJODeGhJYFYbySzOeoOC99m2jQifEVFou
+ OZiR0WgX3aFnfkx1/SqZ1bRmPPDuhrGhIA7NZgSXoIcyiJYw2cap/s6ek w==;
+X-CSE-ConnectionGUID: zwTLtBeFTPCedS7rg7XgOw==
+X-CSE-MsgGUID: KG7XmGyDSxmLj2EaASkWRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="86708335"
+X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="86708335"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2026 21:59:37 -0700
-X-CSE-ConnectionGUID: 19P3EIedTFeGFYbEnrKFyw==
-X-CSE-MsgGUID: d1U2c8jPQVKbrR+7xStleg==
+ 10 Aug 2026 21:59:39 -0700
+X-CSE-ConnectionGUID: woh5sjCjSXCArlMzN53EPA==
+X-CSE-MsgGUID: G46pQwnkTpKfZJBep5UAiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="267082758"
+X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="267082761"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2026 21:59:35 -0700
+ 10 Aug 2026 21:59:37 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: alexander.kaplan@sms-medipool.de, suraj.kandpal@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v2 6/8] drm/i915/hdmi: Add helper to check if DSC chunksize
- fits the sink limits
-Date: Tue, 11 Aug 2026 10:12:32 +0530
-Message-ID: <20260811044234.593986-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 7/8] drm/i915/dp: Allow PCON DSC modes through FRL bw check
+Date: Tue, 11 Aug 2026 10:12:33 +0530
+Message-ID: <20260811044234.593986-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260811044234.593986-1-ankit.k.nautiyal@intel.com>
 References: <20260811044234.593986-1-ankit.k.nautiyal@intel.com>
@@ -69,77 +68,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce the helper intel_hdmi_dsc_bpp_fits_chunk_bytes() to check
-whether the chunksize computed for the given slice configuration is with
-in the sink's max chunksize limits.
+intel_dp_frl_bw_valid() rejects any mode whose uncompressed FRL
+bandwidth exceeds the PCON/sink max FRL bandwidth, even though we are
+capable of enabling PCON DSC encoding at modeset time. As a result,
+high-bandwidth HDMI2.1 modes (e.g. 4K120, 8K60) get pruned for sinks
+behind a PCON, despite the PCON + sink being able to carry them with
+DSC compression.
+
+Now, that the HDMI DSC helpers no longer depend on intel_crtc_state,
+reuse them from the FRL bandwidth check. When uncompressed transport does
+not fit, compute the lowest compressed bpp allowed for the output format
+and verify it:
+ - fits the sink's per-scanline chunk-bytes limit and
+ - resulets in the required FRL bandwidth within the PCON/sink limits.
+
+This takes care of the existing FIXME in the FRL bandwidth check.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 25 ++++++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_hdmi.h |  2 ++
- 2 files changed, 24 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 80 ++++++++++++++++++++++---
+ 1 file changed, 71 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index ee6a559762c5..6ab62a9e941c 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3369,11 +3369,30 @@ intel_hdmi_dsc_get_min_max_bpp(enum intel_output_format output_format, u8 bpc,
- 		*max_dsc_bpp = min(*max_dsc_bpp, 12);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 652215fdb1a7..938e11bc6a46 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -125,6 +125,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
+ 
+ static void intel_dp_unset_edid(struct intel_dp *intel_dp);
+ static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
++static bool intel_dp_is_hdmi_2_1_sink(struct intel_dp *intel_dp);
+ 
+ /* Is link rate UHBR and thus 128b/132b? */
+ bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
+@@ -1179,8 +1180,58 @@ static int frl_required_bw(int clock, int bpc,
+ 	return clock * bpc * 3;
  }
  
-+/*
-+ * intel_hdmi_dsc_bpp_fits_chunk_bytes - check if a given compressed bpp keeps
-+ * the per-scanline chunk size within the sink's max_chunk_bytes limit.
-+ *
-+ * @bpp: compressed bits per pixel to test
-+ * @num_slices: num of slices supported by the source and sink
-+ * @slice_width: dsc slice width supported by the source and sink
-+ * @hdmi_max_chunk_bytes: max bytes in a line of chunks supported by sink
-+ *
-+ * @return: true if the resulting chunk size fits the sink limit
-+ */
-+bool
-+intel_hdmi_dsc_bpp_fits_chunk_bytes(int bpp, int num_slices, int slice_width,
-+				    int hdmi_max_chunk_bytes)
++static int frl_required_bw_dsc(int target_clock, int comp_bpp_x16)
 +{
-+	int target_bytes = DIV_ROUND_UP((num_slices * slice_width * bpp), 8);
-+
-+	return target_bytes <= hdmi_max_chunk_bytes;
++	return DIV_ROUND_UP(target_clock * comp_bpp_x16, 16);
 +}
 +
- static int
- get_dsc_compressed_bpp(int num_slices, int slice_width, int hdmi_max_chunk_bytes,
- 		       int src_fractional_bpp, int min_dsc_bpp, int max_dsc_bpp)
++static bool
++intel_dp_pcon_dsc_fits_frl_bw(struct intel_dp *intel_dp,
++			      const struct drm_display_mode *mode,
++			      int bpc, enum intel_output_format sink_format,
++			      int max_frl_bw)
++{
++	struct intel_connector *connector = intel_dp->attached_connector;
++	const struct drm_display_info *info = &connector->base.display_info;
++	int min_dsc_bpp, max_dsc_bpp;
++	int num_slices, slice_width;
++	int hdmi_max_chunk_bytes;
++	int pcon_max_slices, pcon_max_slice_width;
++
++	/* PCON and HDMI sink must both support DSC 1.2 */
++	if (!info->hdmi.dsc_cap.v_1p2 ||
++	    !drm_dp_pcon_enc_is_dsc_1_2(intel_dp->pcon_dsc_dpcd))
++		return false;
++
++	pcon_max_slices = drm_dp_pcon_dsc_max_slices(intel_dp->pcon_dsc_dpcd);
++	pcon_max_slice_width = drm_dp_pcon_dsc_max_slice_width(intel_dp->pcon_dsc_dpcd);
++
++	num_slices = intel_hdmi_dsc_get_num_slices(mode, sink_format,
++						   pcon_max_slices,
++						   pcon_max_slice_width,
++						   info->hdmi.dsc_cap.max_slices,
++						   info->hdmi.dsc_cap.clk_per_slice);
++	if (!num_slices)
++		return false;
++
++	slice_width = DIV_ROUND_UP(mode->hdisplay, num_slices);
++
++	intel_hdmi_dsc_get_min_max_bpp(sink_format, bpc, info->hdmi.dsc_cap.all_bpp,
++				       &min_dsc_bpp, &max_dsc_bpp);
++
++	/* Use the lowest allowed compressed bpp for the best-case bandwidth */
++	hdmi_max_chunk_bytes = info->hdmi.dsc_cap.total_chunk_kbytes * 1024;
++	if (!intel_hdmi_dsc_bpp_fits_chunk_bytes(min_dsc_bpp, num_slices, slice_width,
++						 hdmi_max_chunk_bytes))
++		return false;
++
++	return frl_required_bw_dsc(mode->clock, min_dsc_bpp * 16) <= max_frl_bw;
++}
++
+ static enum drm_mode_status
+-intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
++intel_dp_frl_bw_valid(struct intel_dp *intel_dp,
++		      const struct drm_display_mode *mode,
++		      int target_clock,
+ 		      int bpc, enum intel_output_format sink_format,
+ 		      bool respect_downstream_limits)
  {
--	int target_bytes;
- 	bool bpp_found = false;
- 	int bpp_decrement_x16;
- 	int bpp_target;
-@@ -3408,8 +3427,8 @@ get_dsc_compressed_bpp(int num_slices, int slice_width, int hdmi_max_chunk_bytes
- 		int bpp;
+@@ -1199,11 +1250,19 @@ intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
+ 	/* converting bw from Gbps to Kbps*/
+ 	max_frl_bw = max_frl_bw * 1000000;
  
- 		bpp = DIV_ROUND_UP(bpp_target_x16, 16);
--		target_bytes = DIV_ROUND_UP((num_slices * slice_width * bpp), 8);
--		if (target_bytes <= hdmi_max_chunk_bytes) {
-+		if (intel_hdmi_dsc_bpp_fits_chunk_bytes(bpp, num_slices, slice_width,
-+							hdmi_max_chunk_bytes)) {
- 			bpp_found = true;
- 			break;
- 		}
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index 3ab75ef4836e..db87656eb27f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -59,6 +59,8 @@ int intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width,
- 			   int bpc, bool hdmi_all_bpp, int hdmi_max_chunk_bytes);
- void intel_hdmi_dsc_get_min_max_bpp(enum intel_output_format output_format, u8 bpc,
- 				    bool hdmi_all_bpp, int *min_dsc_bpp, int *max_dsc_bpp);
-+bool intel_hdmi_dsc_bpp_fits_chunk_bytes(int bpp, int num_slices, int slice_width,
-+					 int hdmi_max_chunk_bytes);
- int intel_hdmi_dsc_get_num_slices(const struct drm_display_mode *mode,
- 				  enum intel_output_format output_format,
- 				  int src_max_slices, int src_max_slice_width,
+-	/* #FIXME check bandwidth with DSC if both PCON and HDMI sink support DSC */
+-	if (target_bw > max_frl_bw)
+-		return MODE_CLOCK_HIGH;
++	if (target_bw <= max_frl_bw)
++		return MODE_OK;
+ 
+-	return MODE_OK;
++	/*
++	 * Uncompressed transport doesn't fit; if both PCON and HDMI sink
++	 * support DSC, check whether DSC compression brings it within limits.
++	 */
++	if (intel_dp_is_hdmi_2_1_sink(intel_dp) &&
++	    intel_dp_pcon_dsc_fits_frl_bw(intel_dp, mode, bpc, sink_format,
++					  max_frl_bw))
++		return MODE_OK;
++
++	return MODE_CLOCK_HIGH;
+ }
+ 
+ static bool
+@@ -1215,13 +1274,14 @@ intel_dp_pcon_sink_support_frl(struct intel_dp *intel_dp)
+ 
+ static enum drm_mode_status
+ intel_dp_hdmi_bw_valid(struct intel_dp *intel_dp,
++		       const struct drm_display_mode *mode,
+ 		       int target_clock, int bpc,
+ 		       enum intel_output_format sink_format,
+ 		       bool respect_downstream_limits)
+ {
+ 	if (intel_dp_pcon_sink_support_frl(intel_dp))
+-		return intel_dp_frl_bw_valid(intel_dp, target_clock, bpc,
+-					     sink_format,
++		return intel_dp_frl_bw_valid(intel_dp, mode,
++					     target_clock, bpc, sink_format,
+ 					     respect_downstream_limits);
+ 
+ 	return intel_dp_tmds_clock_valid(intel_dp, target_clock, bpc, sink_format,
+@@ -1241,7 +1301,8 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ 	    target_clock > intel_dp->dfp.max_dotclock)
+ 		return MODE_CLOCK_HIGH;
+ 
+-	return intel_dp_hdmi_bw_valid(intel_dp, target_clock, bpc, sink_format, true);
++	return intel_dp_hdmi_bw_valid(intel_dp, mode, target_clock, bpc,
++				      sink_format, true);
+ }
+ 
+ static enum drm_mode_status
+@@ -1661,7 +1722,8 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
+ 	for (; bpc >= 8; bpc -= 2) {
+ 		if (intel_hdmi_bpc_possible(crtc_state, bpc,
+ 					    intel_dp_has_hdmi_sink(intel_dp)) &&
+-		    intel_dp_hdmi_bw_valid(intel_dp, clock, bpc, crtc_state->sink_format,
++		    intel_dp_hdmi_bw_valid(intel_dp, &crtc_state->hw.adjusted_mode,
++					   clock, bpc, crtc_state->sink_format,
+ 					   respect_downstream_limits) == MODE_OK)
+ 			return bpc;
+ 	}
 -- 
 2.50.1
 
