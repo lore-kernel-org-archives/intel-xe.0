@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4BFC5AC67
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF728C5B56A
 	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 12:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A76A510EB9B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D77310EB90;
 	Tue, 11 Aug 2026 12:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/Nci38+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bq9NA1XH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0F0B10EB90
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Aug 2026 12:40:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 157F310EB90
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Aug 2026 12:40:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786452055; x=1817988055;
+ t=1786452056; x=1817988056;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LEITulVzj/AJynt0O1MMUlf8j6Xo1Z3NtF6SvV5arPY=;
- b=T/Nci38+0447lihv3Hpi5HCBxvUJpJIGw0FlWuYDkicl2ehK8wicVt7S
- 3EVbX6AX0nx9GJgopPBgoG78Wvgxb2vpQnSNAH2GJ0X49PG51+ryc9Gsj
- XnXK+ru+BAiugyIzJSa/HDg4VhEXU7ShWuYWo4xrH125sv7WFQPpIqg3C
- ey8s1Sx1v0aWcBxNetZCsWmfh7xVsPIaFyDOt+UphttchL9WqzamHDEHv
- O0hH7072YA2trxBbfUJm2ZagNT4QNJ1cBD2vu3TMPWv1NktxsEzXUyp6X
- ejTdPQOQKQXjQPdvDVchDd1Ms8J3GOV+oV5rHfMuwM4zwUIvxxqGxCEXs w==;
-X-CSE-ConnectionGUID: MFRNYtIeRJejuQf8TD6tPA==
-X-CSE-MsgGUID: qraW6yXHRuyFblUNatYQHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="86913019"
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="86913019"
+ bh=RnKsBeDvAPulyFXtlBB+k2HY9xyaYq8CmpBCftGG1oQ=;
+ b=bq9NA1XHFZwoBYZMwM+Y+pVKKFbGeTPFvAZv4RodGH1tGquiSx3mdjWT
+ 5/Sz5aXsRpInEToyC6e96PoYWAVWE+XpjjhhG2mN2Nxv126XDfrXLm8L5
+ q3eel88ZYztKBbnBZjhXgtGo2zq5foQ+O7gsU+FKfG0p0+tLoh0tJUEzu
+ pTNfBQyh5vMIqvvFIIlvzUfm59m6yDX8UQ9J9NXtyrzBUHO/eDX8qV1gu
+ TXHHUq8z/zu6X+TIC4bxGoNE4823brR17E6l+mWG9SqlcSc2lnofVhwaq
+ EwoCX0CB6tGLVE4st0IPVEa9ypF5FNjTWcexIWHfFdcOP4Knw07jsVjtw w==;
+X-CSE-ConnectionGUID: 58nJ/Ad0QTmtU/aLxUbYcg==
+X-CSE-MsgGUID: 5sD0FmSTT6OktsE+THfeXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="86913023"
+X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="86913023"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2026 05:40:55 -0700
-X-CSE-ConnectionGUID: igmfFKiLSvK1kwN4IJ4ytA==
-X-CSE-MsgGUID: P9ETdDPMS5upkyWO9nz4VA==
+ 11 Aug 2026 05:40:56 -0700
+X-CSE-ConnectionGUID: GNvbnkuxTOWhSeiwxqVTOQ==
+X-CSE-MsgGUID: JgyX2v/RTNe702SvP2ihJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="265329983"
+X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="265329990"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2026 05:40:53 -0700
+ 11 Aug 2026 05:40:55 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>
-Subject: [PATCH V15 13/14] drm/xe/uapi: Expose ban reason in
- EXEC_QUEUE_GET_PROPERTY_BAN
-Date: Tue, 11 Aug 2026 18:10:17 +0530
-Message-ID: <20260811124016.3614699-29-tejas.upadhyay@intel.com>
+Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V15 14/14] drm/xe: Add fault-inject based VRAM page offline
+ injection
+Date: Tue, 11 Aug 2026 18:10:18 +0530
+Message-ID: <20260811124016.3614699-30-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260811124016.3614699-16-tejas.upadhyay@intel.com>
 References: <20260811124016.3614699-16-tejas.upadhyay@intel.com>
@@ -71,213 +69,239 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN to return a bitmask indicating
-the reason for the ban, rather than a simple boolean. This allows
-userspace to distinguish between different ban causes:
+Add a fault-inject based debugfs interface for testing VRAM page
+offlining. This replaces the previous standalone debugfs approach
+with the standard kernel fault-inject infrastructure.
 
-- DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG (bit 0): exec queue was banned
-  due to a GPU hang or job timeout detected by the TDR.
-- DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE (bit 1): exec queue was
-  banned because a VRAM page backing its resources was taken offline.
+Two debugfs entries are created under the xe debugfs root for
+CRI platforms:
+- inject_mempage_offline/: Standard fault-inject knobs (probability,
+  times, interval, etc.) — only available with
+  CONFIG_FAULT_INJECTION_DEBUG_FS
+- inject_mempage_offline_trigger: Write a PFN value to inject a
+  specific page, or write "0" to auto-pick the last unallocated
+  VRAM page
 
-The ban_reason field is added to struct xe_exec_queue and set at the
-point where the ban is triggered:
-- In guc_exec_queue_timedout_job() for GPU hang.
-- In xe_ttm_vram_purge_page() for memory page offline, before calling
-  xe_exec_queue_kill() or xe_vm_kill().
+The trigger accepts:
+- "0"      : auto-pick last unallocated page
+- "0xPFN"  : inject fault at a specific PFN address
 
-The reset_status op is updated to return u64 with the reason bitmask.
-When a queue is banned but no explicit reason was recorded (e.g., from a
-generic CAT error), it defaults to GPU_HANG for backward compatibility.
-A value of 0 means the exec queue is not banned.
+On kernels with CONFIG_FAULT_INJECTION_DEBUG_FS, injection is gated
+by should_fail() (probability/times must be configured first).
+On kernels without it, the trigger always injects directly.
 
-v2(Sashiko):
-- Use atomic_t for ban_reason to fix concurrent updates from TDR and
-  page-offline
-- Guard GPU_HANG bit with !exec_queue_killed to avoid masking
-  page-offline reason
-- Clear ban_reason on queue recovery (clear_exec_queue_banned path)
-- Use atomic_read in guc_exec_queue_reset_status for lockless read
+The injection reports the page as faulted via
+xe_ttm_vram_handle_addr_fault(), exercising the full page offlining
+path.
 
-Assisted-by: Copilot:claude-opus-4.6
-Acked-by: José Roberto de Souza <jose.souza@intel.com>
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
+Usage (with CONFIG_FAULT_INJECTION_DEBUG_FS):
+  echo 100 > inject_mempage_offline/probability
+  echo 1 > inject_mempage_offline/times
+  echo 0 > inject_mempage_offline_trigger
+
+Usage (without CONFIG_FAULT_INJECTION_DEBUG_FS):
+  echo 0 > inject_mempage_offline_trigger
+
+v2(sashiko):
+- use cond_resched()
+- validate input first and fix addr < 0 case
+- validate vr, move block, found var as local to scope_guard
+
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 ++++--
- drivers/gpu/drm/xe/xe_execlist.c         |  4 +--
- drivers/gpu/drm/xe/xe_guc_submit.c       | 32 ++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     | 10 +++++++-
- include/uapi/drm/xe_drm.h                | 12 ++++++++-
- 5 files changed, 54 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c      | 50 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_debugfs.h      |  2 ++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 52 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
+ 4 files changed, 105 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index b2276559c2f6..a21916359e2f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -156,6 +156,9 @@ struct xe_exec_queue {
- 	 */
- 	unsigned long flags;
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index eeceab4a9901..2fd1ff806864 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -32,6 +32,7 @@
+ #include "xe_sriov_vf.h"
+ #include "xe_step.h"
+ #include "xe_tile_debugfs.h"
++#include "xe_ttm_vram_mgr.h"
+ #include "xe_vsec.h"
+ #include "xe_wa.h"
  
-+	/** @ban_reason: Bitmask of ban reasons (DRM_XE_EXEC_QUEUE_BAN_REASON_*) */
-+	atomic_t ban_reason;
+@@ -43,12 +44,18 @@
+ 
+ DECLARE_FAULT_ATTR(gt_reset_failure);
+ DECLARE_FAULT_ATTR(inject_csc_hw_error);
++DECLARE_FAULT_ATTR(inject_mempage_offline);
+ 
+ static bool csc_hw_error_available(struct xe_device *xe)
+ {
+ 	return !IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE;
+ }
+ 
++static bool is_crescent_island(struct xe_device *xe)
++{
++	return xe->info.platform == XE_CRESCENTISLAND;
++}
 +
- 	union {
- 		/** @multi_gt_list: list head for VM bind engines if multi-GT */
- 		struct list_head multi_gt_list;
-@@ -350,8 +353,8 @@ struct xe_exec_queue_ops {
- 	 * signalled when this function is called.
- 	 */
- 	void (*resume)(struct xe_exec_queue *q);
--	/** @reset_status: check exec queue reset status */
--	bool (*reset_status)(struct xe_exec_queue *q);
-+	/** @reset_status: check exec queue ban status, returns ban reason bitmask */
-+	u64 (*reset_status)(struct xe_exec_queue *q);
+ /*
+  * Fault injection table.  Each entry registers a debugfs attribute; add a
+  * matching FAULT_ACTION() below for every entry added here.
+@@ -63,6 +70,9 @@ static struct {
+ 	{ .name = "inject_csc_hw_error",
+ 	  .attr = &inject_csc_hw_error,
+ 	  .is_visible = csc_hw_error_available },
++	{ .name = "inject_mempage_offline",
++	  .attr = &inject_mempage_offline,
++	  .is_visible = is_crescent_island },
  };
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index cc33ae80e8cf..534e7c4e0099 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -452,10 +452,10 @@ static void execlist_exec_queue_resume(struct xe_exec_queue *q)
- 	/* NIY */
- }
- 
--static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
-+static u64 execlist_exec_queue_reset_status(struct xe_exec_queue *q)
- {
- 	/* NIY */
--	return false;
-+	return 0;
- }
- 
- static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9036f89dff7d..f52577de1ac2 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -6,6 +6,7 @@
- #include "xe_guc_submit.h"
- 
- #include <linux/bitfield.h>
-+#include <uapi/drm/xe_drm.h>
- #include <linux/bitmap.h>
- #include <linux/circ_buf.h>
- #include <linux/dma-fence-array.h>
-@@ -1593,6 +1594,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	if (!exec_queue_killed(q))
- 		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
- 
-+	/*
-+	 * Only tag as GPU hang if this is the original timeout, not a
-+	 * consequence of a prior kill (e.g., page-offline).
-+	 */
-+	if (!exec_queue_killed(q))
-+		atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG, &q->ban_reason);
- 	set_exec_queue_banned(q);
- 
- 	/* Kick job / queue off hardware */
-@@ -1676,6 +1683,9 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		if (timeout_needs_gt_reset(q, job, skip_timeout_check)) {
- 			if (!xe_sched_invalidate_job(job, 2)) {
- 				clear_exec_queue_banned(q);
-+				/* protect concurrent page offline reasons */
-+				atomic_andnot(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG,
-+					      &q->ban_reason);
- 				xe_gt_reset_async(q->gt);
- 				goto rearm;
- 			}
-@@ -2570,13 +2580,25 @@ static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue *q)
- 	}
- }
- 
--static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
-+static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
- {
--	if (xe_exec_queue_is_multi_queue_secondary(q) &&
--	    guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
--		return true;
-+	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+		u64 status = guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q));
- 
--	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
-+		if (status)
-+			return status;
-+	}
-+
-+	if (exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q)) {
-+		u64 reason = atomic_read_acquire(&q->ban_reason);
-+
-+		/* If no specific reason was recorded, default to GPU hang */
-+		if (!reason)
-+			reason = DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG;
-+		return reason;
-+	}
-+
-+	return 0;
- }
- 
  /*
+@@ -77,6 +87,41 @@ bool xe_fault_##name(void)				\
+ 
+ FAULT_ACTION(gt_reset, gt_reset_failure)
+ FAULT_ACTION(csc_hw_error, inject_csc_hw_error)
++FAULT_ACTION(mempage_offline, inject_mempage_offline)
++
++static ssize_t inject_mempage_offline_trigger(struct file *f,
++					      const char __user *ubuf,
++					      size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_vram_region *vr = tile->mem.vram;
++	u64 pfn;
++	int ret;
++
++	if (!vr)
++		return -ENODEV;
++
++	ret = kstrtou64_from_user(ubuf, size, 0, &pfn);
++	if (ret)
++		return ret;
++
++	if (IS_ENABLED(CONFIG_FAULT_INJECTION_DEBUG_FS) &&
++	    !should_fail(&inject_mempage_offline, 1))
++		return size;
++
++	if (pfn == 0)
++		return xe_ttm_vram_inject_fault(xe) ?: size;
++
++	/* User provided PFN — convert to DPA and inject */
++	return xe_ttm_vram_handle_addr_fault(xe,
++					     (pfn << PAGE_SHIFT) + vr->dpa_base) ?: size;
++}
++
++static const struct file_operations inject_mempage_offline_fops = {
++	.owner = THIS_MODULE,
++	.write = inject_mempage_offline_trigger,
++};
+ 
+ static void xe_fault_inject_debugfs_register(struct xe_device *xe,
+ 					     struct dentry *root)
+@@ -91,6 +136,11 @@ static void xe_fault_inject_debugfs_register(struct xe_device *xe,
+ 		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
+ 					  xe_fault_inject_entry[i].attr);
+ 	}
++
++	if (is_crescent_island(xe)) {
++		debugfs_create_file("inject_mempage_offline_trigger", 0200,
++				    root, xe, &inject_mempage_offline_fops);
++	}
+ }
+ 
+ static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
+index cd56f7442b99..727747f13101 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.h
++++ b/drivers/gpu/drm/xe/xe_debugfs.h
+@@ -13,10 +13,12 @@ struct xe_device;
+ #ifdef CONFIG_DEBUG_FS
+ bool xe_fault_gt_reset(void);
+ bool xe_fault_csc_hw_error(void);
++bool xe_fault_mempage_offline(void);
+ void xe_debugfs_register(struct xe_device *xe);
+ #else
+ static inline bool xe_fault_gt_reset(void) { return false; }
+ static inline bool xe_fault_csc_hw_error(void) { return false; }
++static inline bool xe_fault_mempage_offline(void) { return false; }
+ static inline void xe_debugfs_register(struct xe_device *xe) { }
+ #endif
+ 
 diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index c22669955147..5bb66c7b5505 100644
+index 5bb66c7b5505..c985d633c10b 100644
 --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -7,6 +7,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_buddy.h>
-+#include <uapi/drm/xe_drm.h>
+@@ -834,6 +834,58 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
+ }
+ EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
  
- #include <drm/ttm/ttm_placement.h>
- #include <drm/ttm/ttm_range_manager.h>
-@@ -541,7 +542,12 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
- 	xe_bo_unlock(bo);
- 	/*  Ban VM if BO is PPGTT */
- 	if (vm && (flags & XE_BO_FLAG_PAGETABLE)) {
-+		struct xe_exec_queue *eq;
++/**
++ * xe_ttm_vram_inject_fault - Inject a VRAM page fault for testing
++ * @xe: xe device instance
++ *
++ * Picks the last unallocated VRAM page and reports it as faulted
++ * via xe_ttm_vram_handle_addr_fault(). Used by the fault-inject
++ * debugfs interface for testing page offlining.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int xe_ttm_vram_inject_fault(struct xe_device *xe)
++{
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_vram_region *vr = tile->mem.vram;
++	struct xe_ttm_vram_mgr *vram_mgr = &vr->ttm;
++	struct gpu_buddy *mm = &vram_mgr->mm;
++	u64 addr;
 +
- 		down_write(&vm->lock);
-+		list_for_each_entry(eq, &vm->preempt.exec_queues, lr.link)
-+			atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &eq->ban_reason);
-+		smp_wmb(); /* Force all queue bits to be visible before killing the VM */
- 		xe_vm_kill(vm, true);
- 		up_write(&vm->lock);
- 	}
-@@ -553,7 +559,9 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
- 	/*  Ban exec queue if BO is lrc */
- 	if (q && xe_exec_queue_get_unless_zero(q)) {
- 		/* ban queue */
--		q_to_put = q;
-+                atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &q->ban_reason);
-+                smp_wmb(); /* Force bit change to finish before state change triggers */
-+                q_to_put = q;
- 	}
++	if (vr->actual_physical_size < SZ_4K)
++		return -ENOSPC;
++
++	addr = vr->actual_physical_size - SZ_4K;
++	while (addr < vr->actual_physical_size) {
++		struct gpu_buddy_block *block;
++		bool found = false;
++
++		scoped_guard(mutex, &vram_mgr->lock) {
++			block = gpu_buddy_allocated_addr_to_block(mm, addr);
++			if (!block)
++				found = true;
++		}
++
++		/*
++		 * Intentional race window: xe_ttm_vram_handle_addr_fault()
++		 * re-acquires vram_mgr->lock internally, so we cannot hold
++		 * it here. A concurrent allocation claiming this page between
++		 * the two calls is an acceptable false negative for this
++		 * test-only path.
++		 */
++		if (found)
++			return xe_ttm_vram_handle_addr_fault(xe, addr + vr->dpa_base);
++
++		cond_resched();
++		if (addr == 0)
++			break;
++		addr -= SZ_4K;
++	}
++
++	return -ENOSPC;
++}
++EXPORT_SYMBOL(xe_ttm_vram_inject_fault);
++
+ static size_t serialize_bad_pages(struct xe_ttm_vram_mgr *mgr, char *buf, size_t max_len)
+ {
+ 	struct xe_ttm_vram_offline_resource *pos;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index eb55b0f74ef3..9feb999a1f8d 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
  
- 	if (bo->purgeable.state == XE_MADV_PURGEABLE_PURGED) {
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 509202a7b13e..1600e8f0885a 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1503,7 +1503,17 @@ struct drm_xe_exec_queue_get_property {
- 	/** @property: property to get */
- 	__u32 property;
- 
--	/** @value: property value */
-+	/**
-+	 * @value: property value
-+	 *
-+	 * For %DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN, this is a bitmask of:
-+	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG - banned due to GPU hang/timeout
-+	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE - banned due to memory page offline
-+	 *
-+	 * Value of 0 means the exec queue is not banned.
-+	 */
-+#define DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG		(1 << 0)
-+#define DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE	(1 << 1)
- 	__u64 value;
- 
- 	/** @reserved: Reserved */
+ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr);
++int xe_ttm_vram_inject_fault(struct xe_device *xe);
+ int xe_ttm_vram_sysfs_init(struct xe_device *xe);
+ static inline struct xe_ttm_vram_mgr_resource *
+ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
 -- 
 2.52.0
 
