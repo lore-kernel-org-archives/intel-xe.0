@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 697EAC5B572
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 16:20:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB187C5B56A
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 16:44:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C72610ECC2;
-	Tue, 11 Aug 2026 16:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD6C10E33D;
+	Tue, 11 Aug 2026 16:44:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="D9zlC8Ue";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hHVkB6GY";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F64110E330;
- Tue, 11 Aug 2026 16:19:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E916110E338;
+ Tue, 11 Aug 2026 16:44:24 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C6AE8402EC;
- Tue, 11 Aug 2026 16:19:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D44F91F000E9;
- Tue, 11 Aug 2026 16:19:33 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id A100C41735;
+ Tue, 11 Aug 2026 16:44:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 955941F000E9;
+ Tue, 11 Aug 2026 16:44:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786465198;
- bh=D7CISCZNOUacwFken/zE3V4XA36dbwptL0r4v8Me1CY=;
+ s=k20260515; t=1786466664;
+ bh=2nDP2yo4Z7/8hyrcK4LHPjnUI6OonoDg03U38JzRLms=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=D9zlC8Ue7xyoRzrsbwUuTAn1JU7oiR5DVZid6WO7JwmYfxYK7juv4wK4YWA3jvPG9
- fMNh6tkMCQAiV+0Zo803pEDObPx++QRzDbMTeqC8FVs213MQc6MHYwYbGM82/YGtMG
- tumFrAoC8OmH0ntJar3oMIJddzwnBWGwpC3au/UO2THkmABUJaTyb0scTymw68IjPu
- kkzGIAx14f0Jo7Xj9f/5/MjJGsLzrZgyFQOhYEJ9un76PSAbLqN1pq7gCZuqWWpzIm
- 6wtuElC4RxaAl6cqVD+qTUPqAZdGhDYxOoD/cQsukiy/qeg4CvEDax1X263j94k9PW
- qvRYNgLu9hing==
-Message-ID: <1d8cd29b-8a4d-454c-8dce-121b97e9d52b@kernel.org>
-Date: Tue, 11 Aug 2026 18:19:31 +0200
+ b=hHVkB6GYhX+6ZWhhsgZFxKzOnkGl2RYOjzFptgt0LCOOUol9ozVzcavLD6CvDQydn
+ dD7uSwc6jau6XFfSmk+IKexK6u8o6CeKGHkCuKXrrZ5ZTjQpBaNq7q2BAxRoNZpfbB
+ DFn7OzDXW1vNtKFqNmrCGSpgV8QZYUsLSUd8vGpNzrrwVHH9yLjObobUtS5Znirks1
+ g0F47R8DNocE+LgLop8peVMqvNZ90+CL5I6DyccMXHmwf3Ag+Y2iz6YFiIln1mRPt7
+ UdIgWjZ1qv52eMMvDlYKcast9now6cuY+C80b4nyZpyoCm5Lw8Zk1YHCZaDr08uci1
+ VSMkUMM/zhr7g==
+Message-ID: <3a0a9aaf-20f5-4f92-b848-00ab702e8fe2@kernel.org>
+Date: Tue, 11 Aug 2026 18:44:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/20] mm: introduce linear_anon_page_index()
+Subject: Re: [PATCH v4 07/20] mm/vma: fix self-merge check in copy_vma()
 To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>,
  Andrew Morton <akpm@linux-foundation.org>,
  "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>,
@@ -94,7 +94,7 @@ Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
  intel-xe@lists.freedesktop.org, linux-perf-users@vger.kernel.org,
  linux-trace-kernel@vger.kernel.org
 References: <20260806-b4-scalable-cow-virt-pgoff-v4-0-ab318a350404@kernel.org>
- <20260806-b4-scalable-cow-virt-pgoff-v4-3-ab318a350404@kernel.org>
+ <20260806-b4-scalable-cow-virt-pgoff-v4-7-ab318a350404@kernel.org>
 From: "David Hildenbrand (Arm)" <david@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=david@kernel.org; keydata=
@@ -141,7 +141,7 @@ Autocrypt: addr=david@kernel.org; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <20260806-b4-scalable-cow-virt-pgoff-v4-3-ab318a350404@kernel.org>
+In-Reply-To: <20260806-b4-scalable-cow-virt-pgoff-v4-7-ab318a350404@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -158,36 +158,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 8/6/26 22:21, Lorenzo Stoakes (ARM) wrote:
-> This function provides the anonymous equivalent of linear_page_index(),
-> instead offsetting based on the anonymous page offset of the VMA.
 > 
-> It is valid only for anonymous or MAP_PRIVATE file-backed mappings, in
-> other words CoW mappings.
+> Since copy_vma_and_data() which calls copy_vma() intends to reference the
+> old VMA after the merge, it must have this pointer updated.
 > 
-> For pure anon VMAs, this will be equal to linear_page_index().
+> This kind of self-merge is not possible with a succeeding merge, as the
+> merge always prefers to expand the preceding VMA if possible.
 > 
-> Assert that both of these invariants are true In linear_anon_page_index()
-> and implement the algorithm in __linear_anon_page_index().
+> copy_vma() accounts for this by explicitly checking to see if a self-merge
+> occurred and updating the vmap pointer if so. However it incorrect did so
+> even for a subsequent merge (this is simply a noop so it had no impact).
+
+Took me longer than it should to find out that this is no real fix ;)
+
 > 
-> Note that MAP_PRIVATE-/dev/zero mappings will satisfy vma_is_anonymous()
-> but not fulfill this invariant, so when asserting this we check
-> vma->vm_file to account for this.
+> So change this to only check for the case which matters - a backwards
+> merge - and rearrange the parameters to make it clearer we're doing that -
+> i.e. check new_vma->vm_start < old_vma_start (having already renamed
+> vma_start to old_vma_start to make it clear this is the previous VMA).
 > 
-> We do not update callsites yet, so no functional change intended.
+> Also update the existing wall-of-text comment to be a lot clearer.
 > 
-> Also const-ify vma_is_anonymous() to make it compatible with the
-> const-ified linear_anon_page_index().
+> While we're here, replace the VM_BUG_ON_VMA() with a VM_WARN_ON_ONCE_VMA()
+> and update the VMA userland tests accordingly.
 > 
-> While we're here, update linear_page_index() to be more succinct.
+> No functional change intended.
 > 
-> VMA userland tests are also updated accordingly.
-> 
-> Reviewed-by: Gregory Price (Meta) <gourry@gourry.net>
 > Signed-off-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
 > ---
-
-Acked-by: David Hildenbrand (Arm) <david@kernel.org>
+I skimmed over it, looks correct, but the merging stuff is way over my head to
+confidentially give a RB tag her :)
 
 -- 
 Cheers,
