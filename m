@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50250C5CFE7
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 17:58:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D523C5CFE7
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 17:58:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C832310E361;
-	Tue, 11 Aug 2026 17:58:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA8210E379;
+	Tue, 11 Aug 2026 17:58:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PfgHJ8QF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bpKwTjuI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EBE110E34F;
- Tue, 11 Aug 2026 17:58:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B25F610E368;
+ Tue, 11 Aug 2026 17:58:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786471132; x=1818007132;
+ t=1786471135; x=1818007135;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ih2iEDi9Z55k51HWGJURAxp7Qdn173899FbvVRRH3P4=;
- b=PfgHJ8QFcJ/72RPmw1QAHpKJqSuqLUBFrA9uwY2V44IvNBOAlYXeilk7
- GnyEqCC/KX2GI3EXLzWcoIreYYtWwzEdmHQCtJhOt8oACrKYSkOS6p/d/
- edPiXRkmNJ7c0hCSJpvuP21TQ91pA97ofkHCsBxaeMYLnUhnxhdSlgi6A
- nTKjxpDVZkeU197EM38Ai31c4HtJGfwMJvtyn5hsOyCL5paeHP/92+XCz
- fcZCfqMOC0QaZMD+K9PJoFppvTX+aZ0B2vHQXHMFrg5jSrFFHvsPGvGg6
- 9gMGEY2B81kZ8jH4buQkQlLU2n5MUa49DrwE7ti9eph9KJ8q2hSEY/iCi g==;
-X-CSE-ConnectionGUID: RjLFEbdLR4WWFYw5e5RMJQ==
-X-CSE-MsgGUID: pcPRbQ7USXiTVktDzI37bQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="86941287"
-X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="86941287"
+ bh=CW8EtTjjKdBAh255LYrcmAl35V8dRQkUFK3Dm+XSiBk=;
+ b=bpKwTjuIrItwkySlzI+DqORlhSwUTW2GwrsKi6X+HBbTIRUDWiDqGECP
+ s7ZcXRJzQ0YR9OgHkTObYFlEJgxInX7Yqh5pXpl+3/pz017Ws5MFtCtll
+ IvVb+Yd7SlmewlN8hA9KCFLScxzQhDEWhOQ/ogn1D8JSqujmDGa/ZXC4n
+ xhPfmACalhymJYtQQ+SyQLULOsVmazlC6c9k6MW7fw/rRhOPWdsSVWmj0
+ Ca4qPJ39H43PPmDQtz1TLL/1QCIp8B4eISwhxB0OFz4rAp7/r32t8zQvi
+ ialv0/9+Xk2TTjqXI1wNhNEDufC0Y8oPQkcYl38jupnI5y30ThN+bY4+N g==;
+X-CSE-ConnectionGUID: 0ew8YRIWRsmHk2kIHeaA9w==
+X-CSE-MsgGUID: 7ZopkGsxS3Oo1Wj3HcnvaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="86941290"
+X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="86941290"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2026 10:58:52 -0700
-X-CSE-ConnectionGUID: qgteCVU4R2679cErbxvAlA==
-X-CSE-MsgGUID: H/fCD/LpQ6ORbk9r92WUdQ==
+ 11 Aug 2026 10:58:55 -0700
+X-CSE-ConnectionGUID: /QMrZEYnRhiq/bGdn8lAKw==
+X-CSE-MsgGUID: x0btudytRBavc3We6Zi2bA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="260083593"
+X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="260083628"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa007.fm.intel.com with ESMTP; 11 Aug 2026 10:58:50 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 11 Aug 2026 10:58:53 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com,
 	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 1/3] drm/i915/ddi: add helper to compute DDI clock frequency
-Date: Tue, 11 Aug 2026 23:28:42 +0530
-Message-Id: <20260811175844.2613721-2-suraj.kandpal@intel.com>
+Subject: [PATCH v2 3/3] drm/i915/lt_phy: program DDI_CLK_VALFREQ with DDI
+ clock frequency
+Date: Tue, 11 Aug 2026 23:28:44 +0530
+Message-Id: <20260811175844.2613721-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260811175844.2613721-1-suraj.kandpal@intel.com>
 References: <20260811175844.2613721-1-suraj.kandpal@intel.com>
@@ -67,60 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add intel_ddi_link_symbol_clock() to return the DDI clock frequency for
-a given port clock:
-  DP 8b/10b : rate
-  DP 128b/132b (UHBR) : (10 / 32) * rate
-  HDMI FRL  : (10 / 18) * rate
-  HDMI TMDS : rate
+DDI_CLK_VALFREQ is programmed with the port clock, which for DP is the
+symbol clock computed assuming 8b/10b encoding (link_rate / 10). For
+DP 128b/132b (UHBR) rates and for HDMI FRL the port clock needs to
+be modified.
+On silicon DDI_CLK_VALFREQ is a scratch register with no
+functional impact, so the bug is not observed.
+Use intel_ddi_link_symbol_clock() to write the correct DDI clock in
+kHz
 
-The DP case reuses intel_dp_link_symbol_clock().
-This will help in upcoming commits to decide value to be written
-in DDI_CLK_VALFREQ.
-
+Fixes: 5ec58d714935 ("drm/i915/lt_phy: Add .enable_clock hook on DDI")
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
-v1 -> v2
--Update commit message with correct formula (Jani)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_ddi.c | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_ddi.h |  1 +
- 2 files changed, 12 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index bf5788c5bbd3..dd9064592ec9 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1529,6 +1529,17 @@ int intel_ddi_level(struct intel_encoder *encoder,
- 	return level;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 8fc6d230493f..86492651b01d 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -1976,7 +1976,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 		 * Change. We handle this step in bxt_set_cdclk().
+ 		 */
+ 		/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
+-		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), port_clock);
++		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
++			       intel_ddi_link_symbol_clock(encoder, port_clock));
  
-+int intel_ddi_link_symbol_clock(struct intel_encoder *encoder, int clock)
-+{
-+	if (intel_encoder_is_dp(encoder))
-+		return intel_dp_link_symbol_clock(clock);
-+
-+	if (intel_hdmi_is_frl(clock))
-+		return DIV_ROUND_CLOSEST(clock * 10, 18);
-+
-+	return clock;
-+}
-+
- static void
- hsw_set_signal_levels(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-index 580ecb09b8b6..239d5a403f91 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-@@ -81,6 +81,7 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
- int intel_ddi_level(struct intel_encoder *encoder,
- 		    const struct intel_crtc_state *crtc_state,
- 		    int lane);
-+int intel_ddi_link_symbol_clock(struct intel_encoder *encoder, int clock);
- void intel_ddi_update_active_dpll(struct intel_atomic_state *state,
- 				  struct intel_encoder *encoder,
- 				  struct intel_crtc *crtc);
+ 		/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
+ 		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
+@@ -2023,7 +2024,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 			     lane_phy_pulse_status,
+ 			     lane_phy_pulse_status);
+ 	} else {
+-		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), port_clock);
++		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
++			       intel_ddi_link_symbol_clock(encoder, port_clock));
+ 	}
+ 
+ 	/*
 -- 
 2.34.1
 
