@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF728C5B56A
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 12:40:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C49C6C5AC67
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 12:47:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D77310EB90;
-	Tue, 11 Aug 2026 12:40:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C0F110EB96;
+	Tue, 11 Aug 2026 12:47:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bq9NA1XH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CB2qib/l";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 157F310EB90
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Aug 2026 12:40:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 096C210E310;
+ Tue, 11 Aug 2026 12:47:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786452056; x=1817988056;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RnKsBeDvAPulyFXtlBB+k2HY9xyaYq8CmpBCftGG1oQ=;
- b=bq9NA1XHFZwoBYZMwM+Y+pVKKFbGeTPFvAZv4RodGH1tGquiSx3mdjWT
- 5/Sz5aXsRpInEToyC6e96PoYWAVWE+XpjjhhG2mN2Nxv126XDfrXLm8L5
- q3eel88ZYztKBbnBZjhXgtGo2zq5foQ+O7gsU+FKfG0p0+tLoh0tJUEzu
- pTNfBQyh5vMIqvvFIIlvzUfm59m6yDX8UQ9J9NXtyrzBUHO/eDX8qV1gu
- TXHHUq8z/zu6X+TIC4bxGoNE4823brR17E6l+mWG9SqlcSc2lnofVhwaq
- EwoCX0CB6tGLVE4st0IPVEa9ypF5FNjTWcexIWHfFdcOP4Knw07jsVjtw w==;
-X-CSE-ConnectionGUID: 58nJ/Ad0QTmtU/aLxUbYcg==
-X-CSE-MsgGUID: 5sD0FmSTT6OktsE+THfeXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="86913023"
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="86913023"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2026 05:40:56 -0700
-X-CSE-ConnectionGUID: GNvbnkuxTOWhSeiwxqVTOQ==
-X-CSE-MsgGUID: JgyX2v/RTNe702SvP2ihJA==
+ t=1786452438; x=1817988438;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=At6ZvWakObPfztgs6wy9qm0SPB07gBrF5J8Vz6wmO5A=;
+ b=CB2qib/lCgX3F7jpxMz2H00pYlMMhDj3N4x9FxTYMBHcElnJ8REhmcdZ
+ YtqF0R5KTW92iXSLhqoXgaBhvArES8rdck2P2elknNAg6OK0oTAOsdeHL
+ NQOQzlCFBt+tx1xphomHgt7Q4RYYcM7Y2FGSiJg7qQD4SJ1greRyrXzll
+ 7huEAx5EQ6Y0UeZ7xiVM23BzQDRyg6lid/WMQezr3C7xxzP+O9lODk35a
+ 4vPEUlihw65jDQNbNsDC9KsV+nO70ffjVN5mIcc2ZVDGRUn6/qdBM+MnS
+ 6XPRv6a72InXH3jNW3U8UJGTE6oXLVooPlp34oOTcjnLI9FnZ5p/MWC08 w==;
+X-CSE-ConnectionGUID: 3VO6Dm9PT8yeA7IvixO5ew==
+X-CSE-MsgGUID: 7vIiZVppRMGgBaS5u3ecWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="98340797"
+X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="98340797"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2026 05:47:17 -0700
+X-CSE-ConnectionGUID: CFLh46aXSu2xyJH8IxEl4Q==
+X-CSE-MsgGUID: A6+qgFfeQcC2MVu33Ar0VQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="265329990"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2026 05:40:55 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V15 14/14] drm/xe: Add fault-inject based VRAM page offline
- injection
-Date: Tue, 11 Aug 2026 18:10:18 +0530
-Message-ID: <20260811124016.3614699-30-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260811124016.3614699-16-tejas.upadhyay@intel.com>
-References: <20260811124016.3614699-16-tejas.upadhyay@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; d="scan'208";a="260723226"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.254])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2026 05:47:16 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/4] drm/i915/display: Limit max joined dotclock on
+ joiner pipes available
+In-Reply-To: <98b730a6-d459-4ee5-a38c-81ad1c830b6c@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cover.1786105831.git.jani.nikula@intel.com>
+ <3c615440f018af779a3a522f14637d2993f7af03.1786105831.git.jani.nikula@intel.com>
+ <98b730a6-d459-4ee5-a38c-81ad1c830b6c@intel.com>
+Date: Tue, 11 Aug 2026 15:47:14 +0300
+Message-ID: <3f42097b08dd26e10108c3a1f549dd615514cab6@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,239 +70,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a fault-inject based debugfs interface for testing VRAM page
-offlining. This replaces the previous standalone debugfs approach
-with the standard kernel fault-inject infrastructure.
+On Mon, 10 Aug 2026, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> On 8/7/2026 6:04 PM, Jani Nikula wrote:
+>> Multiplying the max dotclock based on joiner availability on the
+>> platform alone does not take into account the actual pipes (possibly
+>> with some fused) available for joining.
+>>
+>> Limit the max joined dotclock based on the actual pipes available for
+>> joining. Add helpers for figuring out the valid primary pipes, based on
+>> having the required joiners and amount of consecutive pipes available.
+>>
+>> v2: Check for consecutive pipes available (Ankit)
+>>
+>> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c | 51 +++++++++++++++++++-
+>>   drivers/gpu/drm/i915/display/intel_display.h |  1 +
+>>   2 files changed, 50 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 829d7a411dcc..c958b2a92cc7 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -193,6 +193,53 @@ is_trans_port_sync_mode(const struct intel_crtc_state *crtc_state)
+>>   		is_trans_port_sync_slave(crtc_state);
+>>   }
+>>   
+>> +/*
+>> + * Return a bitmask of all the start indices of consecutive bitfields of size
+>> + * width in mask.
+>> + */
+>> +static unsigned long find_consecutive_bits(unsigned long mask, int width)
+>> +{
+>> +	unsigned long bit, out_mask = 0;
+>> +
+>> +	if (!width)
+>> +		return 0;
+>> +
+>> +	for_each_set_bit(bit, &mask, BITS_PER_TYPE(mask)) {
+>> +		/* For each set bit, see if the following bits are set also */
+>> +		unsigned long bitfield = GENMASK(bit + width - 1, bit);
+>> +
+>> +		if ((mask & bitfield) == bitfield)
+>> +			out_mask |= BIT(bit);
+>> +	}
+>> +
+>> +	return out_mask;
+>
+> This is very clever!
+>
+> This fits very nicely with the part where we want to check if joiner is 
+> supported "for a specific crtc" during compute_config phase.
 
-Two debugfs entries are created under the xe debugfs root for
-CRI platforms:
-- inject_mempage_offline/: Standard fault-inject knobs (probability,
-  times, interval, etc.) — only available with
-  CONFIG_FAULT_INJECTION_DEBUG_FS
-- inject_mempage_offline_trigger: Write a PFN value to inject a
-  specific page, or write "0" to auto-pick the last unallocated
-  VRAM page
+Yay, thanks!
 
-The trigger accepts:
-- "0"      : auto-pick last unallocated page
-- "0xPFN"  : inject fault at a specific PFN address
+> This works even for width = 1 as well, but it's better to handle the 
+> case separately as you have already done, it's intuitive and avoids 
+> iterating through the bits.
+>
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-On kernels with CONFIG_FAULT_INJECTION_DEBUG_FS, injection is gated
-by should_fail() (probability/times must be configured first).
-On kernels without it, the trigger always injects directly.
+Thanks for the review, pushed the lot to din.
 
-The injection reports the page as faulted via
-xe_ttm_vram_handle_addr_fault(), exercising the full page offlining
-path.
+BR,
+Jani.
 
-Usage (with CONFIG_FAULT_INJECTION_DEBUG_FS):
-  echo 100 > inject_mempage_offline/probability
-  echo 1 > inject_mempage_offline/times
-  echo 0 > inject_mempage_offline_trigger
+>
+>
+>> +}
+>> +
+>> +/*
+>> + * Return a bitmask of all valid joiner primary pipes for joining
+>> + * num_joined_pipes pipes. For completeness, return all valid pipes for
+>> + * num_joined_pipes == 1.
+>> + *
+>> + * Return 0 if the platform doesn't support joining for the requested number of
+>> + * pipes, or there are not enough consecutive pipes available.
+>> + */
+>> +u8 intel_joiner_valid_primary_pipe_mask(struct intel_display *display, int num_joined_pipes)
+>> +{
+>> +	if (num_joined_pipes == 1) {
+>> +		return DISPLAY_RUNTIME_INFO(display)->pipe_mask;
+>> +	} else if (num_joined_pipes == 2) {
+>> +		if (!HAS_UNCOMPRESSED_JOINER(display) && !HAS_BIGJOINER(display))
+>> +			return 0;
+>> +	} else if (num_joined_pipes == 4) {
+>> +		if (!HAS_ULTRAJOINER(display))
+>> +			return 0;
+>> +	} else {
+>> +		return 0;
+>> +	}
+>> +
+>> +	return find_consecutive_bits(DISPLAY_RUNTIME_INFO(display)->pipe_mask, num_joined_pipes);
+>> +}
+>> +
+>>   static enum pipe joiner_primary_pipe(const struct intel_crtc_state *crtc_state)
+>>   {
+>>   	return ffs(crtc_state->joiner_pipes) - 1;
+>> @@ -8113,9 +8160,9 @@ static int max_dotclock(struct intel_display *display)
+>>   {
+>>   	int max_dotclock = display->cdclk.max_dotclk_freq;
+>>   
+>> -	if (HAS_ULTRAJOINER(display))
+>> +	if (intel_joiner_valid_primary_pipe_mask(display, 4))
+>>   		max_dotclock *= 4;
+>> -	else if (HAS_UNCOMPRESSED_JOINER(display) || HAS_BIGJOINER(display))
+>> +	else if (intel_joiner_valid_primary_pipe_mask(display, 2))
+>>   		max_dotclock *= 2;
+>>   
+>>   	return max_dotclock;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+>> index 57ea4f2edf2a..e7ecae9d2d21 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> @@ -373,6 +373,7 @@ intel_cpu_transcoder_mode_valid(struct intel_display *display,
+>>   enum phy intel_port_to_phy(struct intel_display *display, enum port port);
+>>   bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
+>>   bool is_trans_port_sync_master(const struct intel_crtc_state *state);
+>> +u8 intel_joiner_valid_primary_pipe_mask(struct intel_display *display, int num_joined_pipes);
+>>   u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state);
+>>   bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
+>>   bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
 
-Usage (without CONFIG_FAULT_INJECTION_DEBUG_FS):
-  echo 0 > inject_mempage_offline_trigger
-
-v2(sashiko):
-- use cond_resched()
-- validate input first and fix addr < 0 case
-- validate vr, move block, found var as local to scope_guard
-
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c      | 50 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_debugfs.h      |  2 ++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 52 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
- 4 files changed, 105 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index eeceab4a9901..2fd1ff806864 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -32,6 +32,7 @@
- #include "xe_sriov_vf.h"
- #include "xe_step.h"
- #include "xe_tile_debugfs.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vsec.h"
- #include "xe_wa.h"
- 
-@@ -43,12 +44,18 @@
- 
- DECLARE_FAULT_ATTR(gt_reset_failure);
- DECLARE_FAULT_ATTR(inject_csc_hw_error);
-+DECLARE_FAULT_ATTR(inject_mempage_offline);
- 
- static bool csc_hw_error_available(struct xe_device *xe)
- {
- 	return !IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE;
- }
- 
-+static bool is_crescent_island(struct xe_device *xe)
-+{
-+	return xe->info.platform == XE_CRESCENTISLAND;
-+}
-+
- /*
-  * Fault injection table.  Each entry registers a debugfs attribute; add a
-  * matching FAULT_ACTION() below for every entry added here.
-@@ -63,6 +70,9 @@ static struct {
- 	{ .name = "inject_csc_hw_error",
- 	  .attr = &inject_csc_hw_error,
- 	  .is_visible = csc_hw_error_available },
-+	{ .name = "inject_mempage_offline",
-+	  .attr = &inject_mempage_offline,
-+	  .is_visible = is_crescent_island },
- };
- 
- /*
-@@ -77,6 +87,41 @@ bool xe_fault_##name(void)				\
- 
- FAULT_ACTION(gt_reset, gt_reset_failure)
- FAULT_ACTION(csc_hw_error, inject_csc_hw_error)
-+FAULT_ACTION(mempage_offline, inject_mempage_offline)
-+
-+static ssize_t inject_mempage_offline_trigger(struct file *f,
-+					      const char __user *ubuf,
-+					      size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	struct xe_vram_region *vr = tile->mem.vram;
-+	u64 pfn;
-+	int ret;
-+
-+	if (!vr)
-+		return -ENODEV;
-+
-+	ret = kstrtou64_from_user(ubuf, size, 0, &pfn);
-+	if (ret)
-+		return ret;
-+
-+	if (IS_ENABLED(CONFIG_FAULT_INJECTION_DEBUG_FS) &&
-+	    !should_fail(&inject_mempage_offline, 1))
-+		return size;
-+
-+	if (pfn == 0)
-+		return xe_ttm_vram_inject_fault(xe) ?: size;
-+
-+	/* User provided PFN — convert to DPA and inject */
-+	return xe_ttm_vram_handle_addr_fault(xe,
-+					     (pfn << PAGE_SHIFT) + vr->dpa_base) ?: size;
-+}
-+
-+static const struct file_operations inject_mempage_offline_fops = {
-+	.owner = THIS_MODULE,
-+	.write = inject_mempage_offline_trigger,
-+};
- 
- static void xe_fault_inject_debugfs_register(struct xe_device *xe,
- 					     struct dentry *root)
-@@ -91,6 +136,11 @@ static void xe_fault_inject_debugfs_register(struct xe_device *xe,
- 		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
- 					  xe_fault_inject_entry[i].attr);
- 	}
-+
-+	if (is_crescent_island(xe)) {
-+		debugfs_create_file("inject_mempage_offline_trigger", 0200,
-+				    root, xe, &inject_mempage_offline_fops);
-+	}
- }
- 
- static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
-index cd56f7442b99..727747f13101 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.h
-+++ b/drivers/gpu/drm/xe/xe_debugfs.h
-@@ -13,10 +13,12 @@ struct xe_device;
- #ifdef CONFIG_DEBUG_FS
- bool xe_fault_gt_reset(void);
- bool xe_fault_csc_hw_error(void);
-+bool xe_fault_mempage_offline(void);
- void xe_debugfs_register(struct xe_device *xe);
- #else
- static inline bool xe_fault_gt_reset(void) { return false; }
- static inline bool xe_fault_csc_hw_error(void) { return false; }
-+static inline bool xe_fault_mempage_offline(void) { return false; }
- static inline void xe_debugfs_register(struct xe_device *xe) { }
- #endif
- 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 5bb66c7b5505..c985d633c10b 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -834,6 +834,58 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
- }
- EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
- 
-+/**
-+ * xe_ttm_vram_inject_fault - Inject a VRAM page fault for testing
-+ * @xe: xe device instance
-+ *
-+ * Picks the last unallocated VRAM page and reports it as faulted
-+ * via xe_ttm_vram_handle_addr_fault(). Used by the fault-inject
-+ * debugfs interface for testing page offlining.
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
-+int xe_ttm_vram_inject_fault(struct xe_device *xe)
-+{
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	struct xe_vram_region *vr = tile->mem.vram;
-+	struct xe_ttm_vram_mgr *vram_mgr = &vr->ttm;
-+	struct gpu_buddy *mm = &vram_mgr->mm;
-+	u64 addr;
-+
-+	if (vr->actual_physical_size < SZ_4K)
-+		return -ENOSPC;
-+
-+	addr = vr->actual_physical_size - SZ_4K;
-+	while (addr < vr->actual_physical_size) {
-+		struct gpu_buddy_block *block;
-+		bool found = false;
-+
-+		scoped_guard(mutex, &vram_mgr->lock) {
-+			block = gpu_buddy_allocated_addr_to_block(mm, addr);
-+			if (!block)
-+				found = true;
-+		}
-+
-+		/*
-+		 * Intentional race window: xe_ttm_vram_handle_addr_fault()
-+		 * re-acquires vram_mgr->lock internally, so we cannot hold
-+		 * it here. A concurrent allocation claiming this page between
-+		 * the two calls is an acceptable false negative for this
-+		 * test-only path.
-+		 */
-+		if (found)
-+			return xe_ttm_vram_handle_addr_fault(xe, addr + vr->dpa_base);
-+
-+		cond_resched();
-+		if (addr == 0)
-+			break;
-+		addr -= SZ_4K;
-+	}
-+
-+	return -ENOSPC;
-+}
-+EXPORT_SYMBOL(xe_ttm_vram_inject_fault);
-+
- static size_t serialize_bad_pages(struct xe_ttm_vram_mgr *mgr, char *buf, size_t max_len)
- {
- 	struct xe_ttm_vram_offline_resource *pos;
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index eb55b0f74ef3..9feb999a1f8d 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
- 			  u64 *used, u64 *used_visible);
- 
- int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr);
-+int xe_ttm_vram_inject_fault(struct xe_device *xe);
- int xe_ttm_vram_sysfs_init(struct xe_device *xe);
- static inline struct xe_ttm_vram_mgr_resource *
- to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
 -- 
-2.52.0
-
+Jani Nikula, Intel
