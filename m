@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E215AC5AC67
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 23:53:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2703CC5CFCF
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 23:53:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE9A10E3A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6FE410EDD7;
 	Tue, 11 Aug 2026 23:53:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kEE8XAnF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AtdBE/vn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE6B510E3A7
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Aug 2026 23:53:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7921010E3A7
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Aug 2026 23:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786492385; x=1818028385;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IJ8pNuwRjgUgSXr1fxDDG+EPo7h5oKRsdJESznV9W0A=;
- b=kEE8XAnFj3vVmjqwSZ/0HDC467UkH7tBKp7ZKzHxkOqULTW9WlljG+ZK
- prnMfxeRhoGC9RM8E75Ct/HnsGt/k9VJ8lVMOhzEXv1ZQOIsMZppwhYwC
- qKflqO+okmgFrr9pkSibVPOPUtRtgpx1RMi4znKRxKKjiOHUCfMZJ0A/x
- PUauoX+23ypPD6IWM//4ww9GbxXBHPd6a1qDrEvi9lYaMA3WvNuCy5TFM
- aLNBV72hwQikQiGCYfmqYcg2i/tfqwe3W8D1HpPGqW/iA9FzW/sx0TqV0
- GWXq1yc3n2xb7ETbzNCR0YJzx3BmC0vCGdBEp35LjZWFvpif/aGo7cpce g==;
-X-CSE-ConnectionGUID: EYsn4CJuSsSt8JCv3sUG4w==
-X-CSE-MsgGUID: wKV7YnOsSMSBtTSFut4vFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="98183264"
-X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="98183264"
+ t=1786492386; x=1818028386;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=v7DK7qEBe7rGmkNtXNVa9z9KUDXuhNmXvat/1hM7Wr0=;
+ b=AtdBE/vneZvBSP5NmXrz0vVMwaNhk95jfFs3AsR2Lfn7iZv6SUawo4Pz
+ P7JLIF5J4bfxBxKM91Nyr6pkAvcWgO+ST/xJJce4K/hT4QnT3X3VF5d7A
+ Wr5wKp9zS5aj9ripzfeLDOplU0hHfyLRlTm9bBKtZ1BU29cCgC5e1Jbud
+ TQqzhh8S4C7m7WgDpjCrf+Tq8pOfADecXWCMM36dDwP72InIWVu49RyH5
+ ldyDQf5qQgZ4ASSiQjT2NV34N+4WDvpZgbNIzCcjpJ4UNWAh33nZWv3Xz
+ QYvURyDDKhHZcfLDewINonkP8fxh+flkube2gIalPQ5r6PHyPbPz3Q2gK Q==;
+X-CSE-ConnectionGUID: gu7lAJesT/ehdZlGa/H8Sg==
+X-CSE-MsgGUID: RGo8zD1ZRvaapLJqv4O5tg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="98183267"
+X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="98183267"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2026 16:53:05 -0700
-X-CSE-ConnectionGUID: jIzgyRmASOWIOxv+CITMRg==
-X-CSE-MsgGUID: 5bPBFjCdQnmaZGK8MAHbHg==
+X-CSE-ConnectionGUID: k3agcKodSzK8QO5gzzev8A==
+X-CSE-MsgGUID: Xo9XQ/zRRFywI7KqGLVBAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="261729318"
+X-IronPort-AV: E=Sophos;i="6.25,218,1779174000"; d="scan'208";a="261729329"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2026 16:53:05 -0700
@@ -45,10 +45,12 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@linux.intel.com, mallesh.koujalagi@intel.com
-Subject: [PATCH 0/4] Use SIGID API for PCODE and CSC
-Date: Tue, 11 Aug 2026 16:52:55 -0700
-Message-ID: <20260811235254.153783-6-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 3/4] drm/xe/pcode: Report pcode errors using SIGID
+Date: Tue, 11 Aug 2026 16:52:58 -0700
+Message-ID: <20260811235254.153783-9-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260811235254.153783-6-umesh.nerlige.ramappa@intel.com>
+References: <20260811235254.153783-6-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,47 +67,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For PCODE and CSC, this series uses xe_log SIGID API introduced in:
-
-https://patchwork.freedesktop.org/series/171022/
-
-Note that PCODE changes are partially present in the below series and
-may be picked up by their future revisions.
-
-https://patchwork.freedesktop.org/series/171725/
-https://patchwork.freedesktop.org/series/171022/
-
-The purpose of this series is to ensure all relevant logs are reported
-for CSC and PCODE.
+Use xe_log_err() to report pcode errors using SIGID.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pcode.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-Mallesh Koujalagi (1):
-  drm/xe/log: DO NOT REVIEW
-
-Umesh Nerlige Ramappa (3):
-  drm/xe/pcode: Use int instead of u32 for mailbox status
-  drm/xe/pcode: Report pcode errors using SIGID
-  drm/xe/ras: Report CSC errors using SIGID
-
- Documentation/gpu/xe/index.rst        |   1 +
- Documentation/gpu/xe/xe_sigid.rst     |  14 ++
- drivers/gpu/drm/xe/Makefile           |   1 +
- drivers/gpu/drm/xe/abi/xe_log_abi.h   | 198 +++++++++++++++++++++++
- drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 195 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_any.h           | 142 +++++++++++++++++
- drivers/gpu/drm/xe/xe_log.c           | 221 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_log.h           | 158 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_pcode.c         |  17 +-
- drivers/gpu/drm/xe/xe_ras.c           |  16 +-
- 10 files changed, 952 insertions(+), 11 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_sigid.rst
- create mode 100644 drivers/gpu/drm/xe/abi/xe_log_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/xe_sigid_abi.h
- create mode 100644 drivers/gpu/drm/xe/xe_any.h
- create mode 100644 drivers/gpu/drm/xe/xe_log.c
- create mode 100644 drivers/gpu/drm/xe/xe_log.h
-
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index e9125341481b..b35c1a77effd 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -14,6 +14,7 @@
+ #include "regs/xe_pmt.h"
+ #include "xe_assert.h"
+ #include "xe_device.h"
++#include "xe_log.h"
+ #include "xe_mmio.h"
+ #include "xe_pcode_api.h"
+ #include "xe_pm.h"
+@@ -61,9 +62,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
+ 	}
+ 
+ 	if (err) {
+-		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
+-			err_decode, err_str);
+-
++		xe_log_err(tile, PCODE, err_decode, "Mailbox failed: %s\n", err_str);
+ 		return err_decode;
+ 	}
+ 
+@@ -225,6 +224,9 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
+ 				true, 50 * 1000, true);
+ 	preempt_enable();
+ 
++	if (!status && ret)
++		xe_log_err(tile, PCODE, ret, "Request timed out on retry");
++
+ out:
+ 	mutex_unlock(&tile->pcode.lock);
+ 	return status ? status : ret;
+@@ -319,8 +321,8 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+ 		mutex_unlock(&tile->pcode.lock);
+ 
+ 	if (ret)
+-		drm_err(&xe->drm,
+-			"PCODE initialization timedout after: 3 min\n");
++		xe_log_err(xe, PCODE, -ret,
++			"Initialization timed out after: %d min\n", timeout_us / 60000000);
+ 
+ 	return ret;
+ }
 -- 
 2.51.0
 
