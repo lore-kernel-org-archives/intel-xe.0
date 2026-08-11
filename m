@@ -4,129 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5408EC5B574
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 07:59:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18E96C5CFCF
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Aug 2026 08:41:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08E2E10EAD8;
-	Tue, 11 Aug 2026 07:59:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9335D10EAC0;
+	Tue, 11 Aug 2026 08:41:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="F7pj/nhg";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Q1MYPfiA";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ChZFwsCs";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="vnBQfVUf";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HneO5wKc";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9572110EABE
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Aug 2026 07:59:33 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 19DE03DF6;
- Tue, 11 Aug 2026 07:59:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1786435147; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mEb+iFVnsjF8sWnvUeIiIZLGSrKk7a/zXl6CXhr7ddA=;
- b=F7pj/nhg4OrBsuuN3sF6gkB5SOa+ub4F5TMRS00XFyGqkjLRfYepSQ2zyLT5RzJ3ycw4Wa
- u6cCNLABe37M3Y5NIUm9Vv9+OMda3ylInNkSxajXk7wEKgNQP5kugPA4upISBQXMIiww9f
- XB++b1znrIfVv0CJQd8OBT9Y01h2EHs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1786435147;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mEb+iFVnsjF8sWnvUeIiIZLGSrKk7a/zXl6CXhr7ddA=;
- b=Q1MYPfiAO/sJkiTgetv99j6Gqm6jse/osv//p/dHm4pk+6GQ2Ur5sWJEYAVtWShtpm+y80
- LN3mL9ZQFm+ZAYDQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1786435143; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mEb+iFVnsjF8sWnvUeIiIZLGSrKk7a/zXl6CXhr7ddA=;
- b=ChZFwsCskUHR6N5QkSEA11Cvvv0XhdRKd0Vltx+tMzZL00SkD1UJZoFoDQBmb91IT0OOd1
- vu9tncT7ffPsmeI3I82yTE62UdOTq/nibhhFEm91HQ+nGla9vahJHjGEvYXIPGB5VorM3H
- p6nzQkPh0R063oFY47lasweIjkP/ykU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1786435143;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mEb+iFVnsjF8sWnvUeIiIZLGSrKk7a/zXl6CXhr7ddA=;
- b=vnBQfVUf+vBm9sJMsNomwC+My0J1s6WKSuW7gyYmSV9wvUSfBoYMzj3zhtmAs9LSkOSYJF
- 9pePizGkRX9IVrDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BEB14779B2;
- Tue, 11 Aug 2026 07:59:02 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id tkI3LUbWemrGJAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 11 Aug 2026 07:59:02 +0000
-Message-ID: <df01989a-04fc-4f1d-8942-51f937fc8d97@suse.de>
-Date: Tue, 11 Aug 2026 09:58:21 +0200
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551CC10E2B3;
+ Tue, 11 Aug 2026 08:41:26 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 7477F600AE;
+ Tue, 11 Aug 2026 08:41:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B8E21F000E9;
+ Tue, 11 Aug 2026 08:41:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1786437685;
+ bh=B9oyw8VGrdnmKGUbtduBgbxCRdwpvdeLqgkhrCXDNKQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=HneO5wKcZdSzCZgiPL7O6y0hkp8NxpOysOwjQ1/0p5DZJDgbHmr8oIIto+qbUqUP8
+ QSncbqQais7NDR31QFmgQ7SJeueG1RlsaCn/ugXce/uqztMKctFvKx1+vcfyXCvqNZ
+ VJEHlmRInootV9fshr8tYk5LG1afiv/E+UOYl58uNgPRApc4UGU+ngmdh3PqQBdarD
+ Za9aH05yjKoWK0cBkN69Xhhb9cMAk62gCUKpXkd+IC3tlRx4y1qZ5QJ3SYz3eWJwWJ
+ /V1P5kbBwkgzwAFtJUA4uuFpLGZnK495BJYq41HQc15Y/yGaMH9StOXlfO1t3CLsMy
+ Wo0bc8EiRjuEw==
+Date: Tue, 11 Aug 2026 09:40:50 +0100
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: David Hildenbrand <david@kernel.org>, 
+ "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, 
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
+ Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, 
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jan Kara <jack@suse.cz>,
+ Miaohe Lin <linmiaohe@huawei.com>, 
+ Naoya Horiguchi <nao.horiguchi@gmail.com>, Rik van Riel <riel@surriel.com>,
+ Harry Yoo <harry@kernel.org>, 
+ Lance Yang <lance.yang@linux.dev>, Kees Cook <kees@kernel.org>,
+ Zi Yan <ziy@nvidia.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Nico Pache <npache@redhat.com>, 
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, 
+ Usama Arif <usama.arif@linux.dev>, Matthew Brost <matthew.brost@intel.com>, 
+ Joshua Hahn <joshua.hahnjy@gmail.com>, Rakie Kim <rakie.kim@sk.com>,
+ Byungchul Park <byungchul@sk.com>, 
+ Gregory Price <gourry@gourry.net>, Ying Huang <ying.huang@linux.alibaba.com>, 
+ Alistair Popple <apopple@nvidia.com>, Peter Xu <peterx@redhat.com>,
+ Xu Xin <xu.xin16@zte.com.cn>, 
+ Chengming Zhou <chengming.zhou@linux.dev>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>, 
+ Janosch Frank <frankja@linux.ibm.com>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+ Sven Schnelle <svens@linux.ibm.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, 
+ Liviu Dudau <liviu.dudau@arm.com>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
+ Adrian Hunter <adrian.hunter@intel.com>, James Clark <james.clark@linaro.org>, 
+ Jason Gunthorpe <jgg@ziepe.ca>, John Hubbard <jhubbard@nvidia.com>, 
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
+ Chris Li <chrisl@kernel.org>, 
+ Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
+ Nhat Pham <nphamcs@gmail.com>, Baoquan He <baoquan.he@linux.dev>, 
+ Youngjun Park <youngjun.park@lge.com>, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, 
+ linux-fsdevel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kvm@vger.kernel.org, 
+ linux-s390@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-perf-users@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 02/20] mm: provide vma_[flags_]is_cow_mapping() and
+ remove is_cow_mapping()
+Message-ID: <anrfA56ZIL7QQqvk@lucifer>
+References: <20260806-b4-scalable-cow-virt-pgoff-v4-0-ab318a350404@kernel.org>
+ <20260806-b4-scalable-cow-virt-pgoff-v4-2-ab318a350404@kernel.org>
+ <ann-vS6MYT9kuXqu@lucifer>
+ <20260810151007.c1cfbcf46d498d2f8ce566f9@linux-foundation.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/i915/display: Handle struct
- drm_plane_state.ignore_damage_clips
-To: ville.syrjala@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, sashiko-reviews@lists.linux.dev,
- Javier Martinez Canillas <javierm@redhat.com>
-References: <20260721095454.404298-1-tzimmermann@suse.de>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260721095454.404298-1-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-0.997]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[intel.com,linux.intel.com,ursulin.net,gmail.com,ffwll.ch];
- RCPT_COUNT_TWELVE(0.00)[12]; MID_RHS_MATCH_FROM(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid, suse.de:email, suse.com:url,
- imap1.dmz-prg2.suse.org:helo]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260810151007.c1cfbcf46d498d2f8ce566f9@linux-foundation.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,91 +117,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-gentle ping to review this change
+On Mon, Aug 10, 2026 at 03:10:07PM -0700, Andrew Morton wrote:
+> On Mon, 10 Aug 2026 18:59:34 +0100 "Lorenzo Stoakes (ARM)" <ljs@kernel.org> wrote:
+>
+> > Hi Andrew - would it be possible to insert the comments added below? Trying
+> > to avoid a respin if possible :)
+>
+> np, like this?
 
-Am 21.07.26 um 11:54 schrieb Thomas Zimmermann:
-> Call drm_atomic_helper_check_plane_damage() in plane_atomic_check()
-> before copying the damage information to guarantees that ignore_damage_clips
-> from struct drm_plane_state has the correct value. Although i915 does not
-> directly modify or use the flag, DRM's damage iterator will soon rely on
-> it.
->
-> As a side effect, if the CRTC has been marked for a full modeset before
-> the call to drm_atomic_helper_check_plane_damage() happens, the plane now
-> ignores all damage clips and does a full update.
->
-> Git commit 35ed38d58257 ("drm: Allow drivers to indicate the damage
-> helpers to ignore damage clips") introduced ignore_damage_clips to
-> selectively ignore damage clipping for certain framebuffer changes. The
-> mode-setting pipeline can disabled damage clippings for an atomic commit
-> by setting ignore_damage_clips in struct drm_plane_state. The atomic
-> commit will then do a full display update.
->
-> Future directions: there's currently a multitude of options that affect
-> damage clipping; with different places seeing different state. In order
-> to unify this, drm_atomic_helper_check_plane_state() will soon evaluate
-> all options in a single place and set ignore_damage_clips accordingly. All
-> later stages of the mode-setting pipeline will only look at this field.
->
-> v3:
-> - fix the call to drm_atomic_helper_check_plane_state()
-> - use primary-CRTC's plane state (Sashiko)
-> - note full-plane updates in commit description
-> v2:
-> - move _check_plane_damage() before reading damage first time (Sashiko)
-> - expand commit description
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
-> Taken with updates from the series at
->
->    https://lore.kernel.org/dri-devel/20260610152505.260172-1-tzimmermann@suse.de/
-> ---
->   drivers/gpu/drm/i915/display/intel_plane.c | 10 +++++++++-
->   1 file changed, 9 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-> index a440f92ff00c..d64f151ce410 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-> @@ -850,7 +850,7 @@ static int plane_atomic_check(struct intel_atomic_state *state,
->   		intel_atomic_get_new_plane_state(state, plane);
->   	const struct intel_plane_state *old_plane_state =
->   		intel_atomic_get_old_plane_state(state, plane);
-> -	const struct intel_plane_state *new_primary_crtc_plane_state;
-> +	struct intel_plane_state *new_primary_crtc_plane_state;
->   	const struct intel_plane_state *old_primary_crtc_plane_state;
->   	struct intel_crtc *crtc = intel_crtc_for_pipe(display, plane->pipe);
->   	const struct intel_crtc_state *old_crtc_state =
-> @@ -873,6 +873,14 @@ static int plane_atomic_check(struct intel_atomic_state *state,
->   		old_primary_crtc_plane_state = old_plane_state;
->   	}
->   
-> +	/*
-> +	 * Prepare plane-damage state before using it; do this on all
-> +	 * display versions to keep the underlying DRM plane state in
-> +	 * good shape.
-> +	 */
-> +	drm_atomic_helper_check_plane_damage(&state->base,
-> +					     &new_primary_crtc_plane_state->uapi);
-> +
->   	intel_plane_copy_uapi_plane_damage(new_plane_state,
->   					   old_primary_crtc_plane_state,
->   					   new_primary_crtc_plane_state);
->
-> base-commit: fcaba3bc017906059b910ece3f83185e93010581
-> prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
-> prerequisite-patch-id: a5a973e527c88a5b47053d7a72aefe0b550197cb
-> prerequisite-patch-id: b9adc9622920a3e70168e672c2c92795b3e3a106
-> prerequisite-patch-id: 5030de433a01c2e99056cadb676a8e2ba35f055a
+Great thanks!
 
--- 
+Just one minor edit below (being pedantic here but kinda what the comment
+needs I think :)
+
+>
+> From: Andrew Morton <akpm@linux-foundation.org>
+> Subject: mm-provide-vma_is_cow_mapping-and-remove-is_cow_mapping-fix
+> Date: Mon Aug 10 03:07:02 PM PDT 2026
+>
+> add comments, per Lorenzo
+>
+> Link: https://lore.kernel.org/ann-vS6MYT9kuXqu@lucifer
+> Cc: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+> Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+> ---
+>
+>  include/linux/mm.h |   57 +++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>
+> --- a/include/linux/mm.h~mm-provide-vma_is_cow_mapping-and-remove-is_cow_mapping-fix
+> +++ a/include/linux/mm.h
+> @@ -2271,17 +2271,74 @@ void unpin_user_pages(struct page **page
+>  void unpin_user_folio(struct folio *folio, unsigned long npages);
+>  void unpin_folios(struct folio **folios, unsigned long nfolios);
+>
+> +/**
+> + * vma_flags_is_cow_mapping() - Do these VMA flags imply a CoW mapping?
+> + * @flags: The VMA flags to check.
+> + *
+> + * Mappings which could be CoW'd (subject to Copy-On-Write faults) are
+> + * described as CoW mappings.
+> + *
+> + * All mappings backed by anonymous folios (all anonymous mappings and most
+> + * MAP_PRIVATE-file backed ranges) are CoW mappings.
+> + *
+> + * All other mappings (including all writable MAP_SHARED mappings) are
+> + * non-CoW.
+
+I ummed and ahhed over how to put this but now I think this could cause
+confusion so could you replace the paragraph with:
+
+ * All other mappings (including all MAP_SHARED mappings) are non-CoW.
+
+It's _all_ MAP_SHARED mappings not just writable, I thought people would
+automatically assume read-only wasn't included plus drivers could in theory
+do crazy things (I have a pending series to fix that though) but it's
+clearer just to say all.
+
+> + *
+> + * The criteria are !VMA_SHARED_BIT, VMA_MAYWRITE_BIT.
+> + *
+> + * VMA_MAYWRITE_BIT is checked instead of VMA_WRITE_BIT to account for both
+> + * future mprotect() calls which can render a read-only mapping writable, and
+> + * GUP with FOLL_FORCE (e.g. ptrace) which can CoW a read-only mapping.
+> + *
+> + * - No anonymous mapping can ever clear VMA_MAYWRITE_BIT.
+> + *
+> + * - Writes to anonymous mappings do not immediately result in CoW faults but
+> + *   may do so after the process is forked or if a read is followed by a
+> + *   write.
+> + *
+> + * - Writes to MAP_PRIVATE file-backed mappings result in CoW faults and may
+> + *   do so again after fork.
+> + *
+> + * - MAP_SHARED mappings of a file opened read-only are transformed into
+> + *   VMA_MAYSHARE_BIT, !VMA_SHARED_BIT, !VMA_MAYWRITE_BIT mappings, so remain
+> + *   non-CoW.
+> + *
+> + * - Drivers may clear VMA_MAYWRITE_BIT but do so at mmap() time and cannot
+> + *   mark themselves anonymous. Having cleared this flag it is not valid for
+> + *   them to leave the VMA_WRITE_BIT flag set.
+> + *
+> + * As a consequence, the anonymous reverse mapping only tracks CoW mappings.
+> + *
+> + * Returns: true if the flags indicate a CoW mapping, otherwise false.
+> + */
+>  static inline bool vma_flags_is_cow_mapping(const vma_flags_t *flags)
+>  {
+>  	return vma_flags_test(flags, VMA_MAYWRITE_BIT) &&
+>  		!vma_flags_test(flags, VMA_SHARED_BIT);
+>  }
+>
+> +/**
+> + * vma_is_cow_mapping() - Is this VMA a CoW mapping?
+> + * @desc: The VMA to check.
+> + *
+> + * See vma_flags_is_cow_mapping() for details.
+> + *
+> + * Returns: true if the VMA is a CoW mapping, otherwise false.
+> + */
+>  static inline bool vma_is_cow_mapping(const struct vm_area_struct *vma)
+>  {
+>  	return vma_flags_is_cow_mapping(&vma->flags);
+>  }
+>
+> +/**
+> + * vma_desc_is_cow_mapping() - Is this VMA descriptor a CoW mapping?
+> + * @desc: The VMA descriptor to check.
+> + *
+> + * See vma_flags_is_cow_mapping() for details.
+> + *
+> + * Returns: true if the VMA descriptor describes a CoW mapping, otherwise
+> + * false.
+> + */
+>  static inline bool vma_desc_is_cow_mapping(struct vm_area_desc *desc)
+>  {
+>  	return vma_flags_is_cow_mapping(&desc->vma_flags);
+> _
+>
+
 --
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
-
-
+Cheers, Lorenzo
