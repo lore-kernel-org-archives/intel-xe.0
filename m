@@ -4,161 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2ED6C5B56A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 18:02:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6497C5B572
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 18:05:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7828510E2AF;
-	Wed, 12 Aug 2026 18:02:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B7010E331;
+	Wed, 12 Aug 2026 18:05:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i/wSVsfv";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iMlFlWiO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9E0B10E2AF
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 18:02:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786557760; x=1818093760;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=FtG5Xd2Z7T7+mzSdoXaQivOqFqK7r4qxr0Eo4179Z6s=;
- b=i/wSVsfvjYZ9iBA2fhDEpB4gO+iyKLgWEm8LLO0WwlnVW8btNweyBe/F
- wQbvifitNLMdGJEZCttQ0CS0j3+lYLjarfNT//ZfllejCRy7LWyB33rI4
- 2tBi4cEO0YWlTLdYFVNjF1AKP3EByeG3RtltjjFPgUk/G+OmcIRWd5pFY
- q05JBcppzKD/3WHQ+A7nWFrseyYH0Mbv2zL/GhssRmYnfGTQYy1Fo4NME
- xWesZoy4G4LCyhZIMVlN7o5uQaAqHdX3z29f111o4/t8dXxZqDOVrUIqy
- fKbinkYddrrHoUIjt8chZAJlvhfaFmZ6qaU2iI7w8fCwo5Rwnih4qJzi4 g==;
-X-CSE-ConnectionGUID: 0+dW/mm2QPSdOtOOi6zTMg==
-X-CSE-MsgGUID: todqbp1dSSKrVcFwxCOoHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="112665116"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="112665116"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 11:02:39 -0700
-X-CSE-ConnectionGUID: L2erLvX3TeeHDn6pFM9HmQ==
-X-CSE-MsgGUID: Oh/vkrLNQwK2sSPsjkaruQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="262400172"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 11:02:39 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 12 Aug 2026 11:02:38 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Wed, 12 Aug 2026 11:02:38 -0700
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.18) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 12 Aug 2026 11:02:38 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xrgl1d0rCojHTWt/0lS2JrLlRPi71s49CNxIpxCPyeFsbIZZ7Qk2a6L/3HOwL+Vc8J/NAIKXcJluNSU3zSANPR1ndXKD6bSK4+fhd/BGK4F3QrgYPjbRgWpIInKivrg003L4XxxjNhBGeZjL+rKhVuw+1iXZM/3SisMi9mAInubJnGnNy1RfOu7bc3xjd20d4akVtBjCcPqC/L9VvVmAUbNt2d113aiBLql4ZM2vMuV2bK+pXNfsHdPfnRcZYA3kHgkT4MCLUqBoIDqBA1eIaJ0w8MzN5rnAM28tdg2BBWzxGEZt4lfnyoyvUMuDdsGXxbapVS1HZgikp/an5ECkjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=roYk40rtQbqKdqrUZbc1vfOlHXkT0fYdPYNk7QWUFHc=;
- b=k38ylZd3K+npxfVwgOq6vBTrsPPL6bvBsMJ/IQnM9aibyF7ZLyQLOBc72ZcEfgrw4Llx6wGkXM0n9GWJsv1Z0SVOSySQ1wfiYa+tI+DwJjwa9+pygbZOYLuzQxc6HWyO0DYFtkkg6/NFPfS5GQyRt28Hagquj+IQOzjWXW02wVmBZK+l5M3b4dIxtcy9Lg6KSdOsjJshE/5uJdaPb7VtBB6DAMj0W4sX7gtfsW5Or83HJBkup7mIdwyDnPdglzIaePR9VPM6ky/n+nFi7WuVfzxvt9I0l6WrQiyf93BJlqrmc1imfduDEamnJcpoeeeYiqExb9ho/vPhQIUJKfFRKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
- by SJ0PR11MB4877.namprd11.prod.outlook.com (2603:10b6:a03:2d9::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.12; Wed, 12 Aug
- 2026 18:02:36 +0000
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.21.0315.008; Wed, 12 Aug 2026
- 18:02:35 +0000
-Date: Wed, 12 Aug 2026 11:02:32 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <matthew.brost@intel.com>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <vinay.belgaumkar@intel.com>,
- <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <sk.anirban@intel.com>,
- <raag.jadav@intel.com>, <michal.wajdeczko@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <dnyaneshwar.bhadane@intel.com>
-Subject: Re: [PATCH v2 2/3] drm/xe/pcode: Improve PCODE logging using xe_log
- helper
-Message-ID: <any1OAOi9Xriy+lB@soc-5CG1426VCC.clients.intel.com>
-References: <20260812123449.239480-5-mallesh.koujalagi@intel.com>
- <20260812123449.239480-7-mallesh.koujalagi@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20260812123449.239480-7-mallesh.koujalagi@intel.com>
-X-ClientProxiedBy: MW4PR04CA0333.namprd04.prod.outlook.com
- (2603:10b6:303:8a::8) To DS0PR11MB7408.namprd11.prod.outlook.com
- (2603:10b6:8:136::15)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC67893ED;
+ Wed, 12 Aug 2026 18:05:58 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id A45F860A7D;
+ Wed, 12 Aug 2026 18:05:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E6721F000E9;
+ Wed, 12 Aug 2026 18:05:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1786557957;
+ bh=3/7RbMilH1SQLqxI0qjfmo29u73H3ZEX1a3tHj6F58Q=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=iMlFlWiOG7V80XsD8e/VPQUn7ardDYHVj/V2qqphOmG39UXaBzt+ciuEjM4pCq13c
+ KkdlhOQZbPus0Qg5akVir+wkEmhoBp1Hd/oKIZxUK/WGgcsVsln0Js4gnpuKa0qJWt
+ 6j56sic26KIoSFTWpI22QnWLIJNewo9nZzjBRmwRJ0/6N1WF5OweJ9xiHBijuYvlta
+ FCRXonsxANMAsLRKJtPHb/mgnvzXYTHBJmyC1CwkGwghANvBFNJonhU3iMY2juLEgY
+ XSseaGY0jujdVRI9hdZXlfIru2Ia50ODO2wMl9h3qKe8x8Kh4Jkz9AJpqD65tVKPkE
+ Bk/WOaiwH/quA==
+Date: Wed, 12 Aug 2026 19:05:21 +0100
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: "David Hildenbrand (Arm)" <david@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>, 
+ "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, 
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
+ Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, 
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jan Kara <jack@suse.cz>,
+ Miaohe Lin <linmiaohe@huawei.com>, 
+ Naoya Horiguchi <nao.horiguchi@gmail.com>, Rik van Riel <riel@surriel.com>,
+ Harry Yoo <harry@kernel.org>, 
+ Lance Yang <lance.yang@linux.dev>, Kees Cook <kees@kernel.org>,
+ Zi Yan <ziy@nvidia.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Nico Pache <npache@redhat.com>, 
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, 
+ Usama Arif <usama.arif@linux.dev>, Matthew Brost <matthew.brost@intel.com>, 
+ Joshua Hahn <joshua.hahnjy@gmail.com>, Rakie Kim <rakie.kim@sk.com>,
+ Byungchul Park <byungchul@sk.com>, 
+ Gregory Price <gourry@gourry.net>, Ying Huang <ying.huang@linux.alibaba.com>, 
+ Alistair Popple <apopple@nvidia.com>, Peter Xu <peterx@redhat.com>,
+ Xu Xin <xu.xin16@zte.com.cn>, 
+ Chengming Zhou <chengming.zhou@linux.dev>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>, 
+ Janosch Frank <frankja@linux.ibm.com>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+ Sven Schnelle <svens@linux.ibm.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, 
+ Liviu Dudau <liviu.dudau@arm.com>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
+ Adrian Hunter <adrian.hunter@intel.com>, James Clark <james.clark@linaro.org>, 
+ Jason Gunthorpe <jgg@ziepe.ca>, John Hubbard <jhubbard@nvidia.com>, 
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
+ Chris Li <chrisl@kernel.org>, 
+ Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
+ Nhat Pham <nphamcs@gmail.com>, Baoquan He <baoquan.he@linux.dev>, 
+ Youngjun Park <youngjun.park@lge.com>, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, 
+ linux-fsdevel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kvm@vger.kernel.org, 
+ linux-s390@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-perf-users@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 17/20] mm/vma: only permit MAP_PRIVATE /dev/zero to be
+ mapped anonymous
+Message-ID: <anyst_4LGm6bpWdq@lucifer>
+References: <20260806-b4-scalable-cow-virt-pgoff-v4-0-ab318a350404@kernel.org>
+ <20260806-b4-scalable-cow-virt-pgoff-v4-17-ab318a350404@kernel.org>
+ <c7930f14-5978-4709-bac2-54950c988883@kernel.org>
+ <ant1xwiG3djtoXoe@lucifer>
+ <14a06774-4157-4629-8327-b1a6bae24ab7@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|SJ0PR11MB4877:EE_
-X-MS-Office365-Filtering-Correlation-Id: 09e54b30-8a10-4657-c3ce-08def89be37e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|23010399003|4143699003|11063799006|56012099006|6133799003|18002099003|10067099003|22082099003;
-X-Microsoft-Antispam-Message-Info: uZdSkyTstI4i2LLZeka4x51M9IaQAFR5nZzth1SWfc3V8iaKzQCuia31FET0dlT+qmiwHfKvEU2X51gzngsyH9zOMiKy0zomX3yBgj6DdbTAjwfi8jLM4Sa4gNo/yoDwZZcv1EezPp6twCy6WBA/fqSTtrHkkeN0kqTfio9D8HbNSHbF+QKu95QK9TMI6u4lOBl0yr3Tq2JC8EvuXX+5/pXUU9+x6pCWsX6IX/4cMRWdgV4o8mC8lkJHCr87vOHqu7oXwjr2eWt6wTuwmVrfbrNhriVGtw3lpMYfKFCycFFMCQ2vgOQRcOsa0rqNfw6bn84KLCetzk9J3o4GFe4Zkr2z1fv29hnKDalB3CxF0nLo0KDXnDl+Tn3oFzBIfBgyE90tAVYx0Q0gQJTIkh7384GZ/Ss3Xp8jLcsYM30Fab64TRCxw3zSKCZbNSfIT28WnxBpHsk2FgIGJDnCqrQcBTUCzCkGNvFlzX5zucU+cZ1V26tEANck2mvCKNn7ISeXpPZ/pUB9iZKYA06FJw1it+Y+1tkpiMvpupyq/u0Shq/tbYqGm0lV9cviG++BgZh5HEevFAqXb2A6Xw2zBeieMQ1oBdUngiazXsPhBXGFznQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(4143699003)(11063799006)(56012099006)(6133799003)(18002099003)(10067099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RWVFRTh0anM5NUhXajkxRjh1WGlwYjkyNEZsK1dTS2FqS2dJSzloZXZyNkp5?=
- =?utf-8?B?TGtNMzlQNkZjSzRnVmoreWFyNUhHZUluQXJVdWp5dllIcEdzZWlMSG5Wcjl0?=
- =?utf-8?B?dlgyVHMxLzgvbGJMc2djODhmNnd6dEc1RHFXM3ZVek9DVDJuUEQyd0M0cHFX?=
- =?utf-8?B?cVd4WXhQbFd3RVBvaUZjRGtiZ1pVTVF4MXlBdWVBOTNxVGZXNDZya083WG1j?=
- =?utf-8?B?WDU2OE9Dc1VzZUM3QWVDNVhiazhOT1hWSW02bDM5SzV4SWRweFJyc2NPVy9W?=
- =?utf-8?B?NDB6c29LSkNodVVlWCtrb1RWY044OWNleVJVZko0WWxmZUJYa0c4MlpndEJ3?=
- =?utf-8?B?OE5KWHZ6M2hkMnpKTzNnM1o5R1ZMSXBOYk9VVm0reStrZXphWHlhNjRyazVt?=
- =?utf-8?B?MkRHSHZkOENENWRJNXZqS0ZjTXZkMVRLdW9FZlNjT0NHWUhQbmRDdXRIdnBZ?=
- =?utf-8?B?MWZCZCt1TTY4R0RyZU9FQWcycExZb3pGY082Qm93ektSR2JUdW1ZSTdBQk85?=
- =?utf-8?B?cnhCczlseElkOFBUVW1LbjEyaDkvdlFBQTNlOVlzV01FTnBSTHJFTlplQmgw?=
- =?utf-8?B?SzdxckZrcDR0V0RPMklVdWRYUEZHb1ZoR1VnQ2hvVXFUbEc4UnVhcGlhWDYz?=
- =?utf-8?B?OVVVTkN0ZTZFS2NmOEZjSytMM0twZituOTlncmdXZUJXcEhHRkR2V2JnN0dV?=
- =?utf-8?B?dVlzRGhzMFdUUEJoZHJtRW51akdBTUFmNENEMlM4ekRXdUNrQk9sTEtHY3Zq?=
- =?utf-8?B?VnkxZHlEbUpaSklOdENMVXNEZjRTY1hLamhKaytsb3FFbUJyREJ4LzJFU3JG?=
- =?utf-8?B?YWR0TWkzZGp2c1BML3oyQ3R2RDVtUUJ2TWozcmtzV3dqSXZyTHI5T3J6VzNH?=
- =?utf-8?B?TWRGcnFJNDR1WUVxTjcxN1NXMTBXcFBMTm8zSGtmYWQ4Tmlib2F5ZStnN0Jj?=
- =?utf-8?B?QkdxN0NRSGZTQzlqeGZRRGlWRlplRU02akU1Yi9NeVU1SUt3VG1wd2JWU05k?=
- =?utf-8?B?T0tQTmhlekxJYUJpdndhYm9zRWJjS1ZpQXJzWXU1QVlDY3diZHJRUVRHMlpx?=
- =?utf-8?B?QVpwb2ZHNkNMcUtmcTZ6ZnEzNVVNVnJTYjE4cUN1R0Y0RkpYSGJsMDVrWWN6?=
- =?utf-8?B?TlhWNnVpbUpGd1J4dEJLS0pmT1dxNmpCZk1XUFkwRWVNV2hjQWY2dXdocVM0?=
- =?utf-8?B?c3AxTC9PYUR1aE8yS0ZTUzVwdXAvTTROSDluUDJ4NnFUM2lzSHZ4QzI3cGli?=
- =?utf-8?B?ZGU1cEg4UTArRGZkUGMyeGFJUkFaRzYwWDFsN2hBVmE1NENDTGFWRkVNbUZi?=
- =?utf-8?B?QWI1bCtnUGhtNmN2R25JUVpGMUtBWENXazZEVUh0OXh0WjE5azRtZFNsQnRD?=
- =?utf-8?B?VkRSRjIyWHF2bDZnTE51aFRwSVE4a0lkdzlMck1HT3R3Z0llN1Y3L1FpYmhC?=
- =?utf-8?B?aVpXYVpoZ2ZxNk1jSEVjUDUyK2k5d0R1ZFZMY1p0SHdrazg3MEljVjVEZEpV?=
- =?utf-8?B?VXY2eHRGNG1sUEorVW0vSHJ3WkhjUmxra2lESlZsdEJGT3k1UXhHUWI4Lzg3?=
- =?utf-8?B?TWlUdkJxdTV0VHdGYWw4Q0ZjTnpoeHlZYWRBdVFXUDVSV3ozRUJWQ2poT003?=
- =?utf-8?B?VEJDQjU1Sjgyazh6dVpvNW9aeU5remFVdEhCWDJodUNHczIxY3IyZHhEdTFy?=
- =?utf-8?B?eUdodnArNEFCeFlya2crWFVxSEJ6VnM1NWpLVDZWYmZreDJiL1VPNkkrbWtS?=
- =?utf-8?B?U1BpTE5Ndm5NSDdURWRZVmV5OVRwS016Q0lyT0RMZFB1dzhpYW5pbWljdjho?=
- =?utf-8?B?dklkMWZ0ajJMMVdxaFMvMXZPVXg4ekZ2ZVZ3czBTYUwyT1NRR1ZWMHl4S1l4?=
- =?utf-8?B?VXJYSlN6dUZTdVNtUHRqdFB6RU9UYkpHY1BXYTFNYnNxQmR5ZXhlRFVweldl?=
- =?utf-8?B?UkVlYmQwZnd1UzdwVG16eUgyWW1lazF2cEM5YUJIOGg2cVdIVEFTWXdIeDZo?=
- =?utf-8?B?cHc1cWtnVEMxTGwxV0Q3MXFMZ2Exdm5TcS9pd0hyRlpUMUN5UnExZzdNR0NT?=
- =?utf-8?B?aVhsYURiNU1DdkdvOHZrVlRmYWtLKzRZekJXM2FYOXFhQWNXQ2hGZFVLbGR1?=
- =?utf-8?B?eERTbXJaUXV4YjhESUYvVzllaDV1TjhPZ2trNEhDZXlPMnJjRVB1YkJPaXZP?=
- =?utf-8?B?b3crUDk5UDhQNGs4Y2lqN2ExeG5qb1VEUjM4bi9mWTZnQU5DNmZ6THo2WHNh?=
- =?utf-8?B?a1VBcXZnYlh6dmF6TlFGN1ROcTEvRXUzVmZrczFTZzU5TlhmekF2bllnQXdi?=
- =?utf-8?B?MzBvOGQ1T3lQVTFHanlZZUl4WHgzWFduVUx2K2VsdTdiVkVBelZRazBoWFcv?=
- =?utf-8?Q?rUi1Mw8wVKixslKySBywwcktv//IVZZG8vt1n?=
-X-Exchange-RoutingPolicyChecked: Orj+C5Lg5VAgTDk1PIjuspzM4S3SSu+oNX77ZatzXjyUoKa95A/A5bJ6ZHasEBJcpxplcO+BfbSUauU6Hbj3vz2YpVCInvDlc/BTQOBW57tM4UUgFQOpjVmC6AcRrNxl1rF2OHCVBnJccOQ8qNIJi4gHGB1EjV0iby6MUN1B8iU7pu9bYEj8lXqi2PjRead8ki1idUoupSLNWzxK4HCnOIlG7EdFPsoXqTaAvibHeMHeDiwTK0W0SCmNEab28xp/rx+jf+Onh/mI+8zHX7AAiwThsRjmCZy+uftfEZWep2KG2xEu/p7/s5DxPe2MkWUwCZS5cimGkkXE6zH8oP6dTA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09e54b30-8a10-4657-c3ce-08def89be37e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2026 18:02:35.6789 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /bTmCpzK48wxmqnFlrVqoJo+6v9GcC39VGM8x0QLjGSt53MsWHesjx5YyymS1h5ipLRQ6ZDLl2HIb6xz0bztefqE4N8VUjIsp2oklpOsT40=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4877
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <14a06774-4157-4629-8327-b1a6bae24ab7@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,65 +118,400 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 12, 2026 at 06:04:52PM +0530, Mallesh Koujalagi wrote:
->Use xe_log helper for PCODE errors instead of drm_err(). This
->adds PCODE component tag, making issues easier to detect and
->track with automated tools.
->
->Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
->---
->v2:
->- s/pcode/PCODE. (Michal)
->- Drop PCODE in xe_log_err.
->---
-> drivers/gpu/drm/xe/xe_pcode.c | 9 +++++----
-> 1 file changed, 5 insertions(+), 4 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
->index ccc3bdeed6bb..c69440ea477b 100644
->--- a/drivers/gpu/drm/xe/xe_pcode.c
->+++ b/drivers/gpu/drm/xe/xe_pcode.c
->@@ -14,6 +14,7 @@
-> #include "regs/xe_pmt.h"
-> #include "xe_assert.h"
-> #include "xe_device.h"
->+#include "xe_log.h"
-> #include "xe_mmio.h"
-> #include "xe_pcode_api.h"
-> #include "xe_pm.h"
->@@ -219,8 +220,8 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
-> 	 * requests, and for any quirks of the PCODE firmware that delays
-> 	 * the request completion.
-> 	 */
->-	drm_err(&tile_to_xe(tile)->drm,
->-		"PCODE timeout, retrying with preemption disabled\n");
->+	xe_log_err(tile, PCODE, -ETIMEDOUT,
->+		   "Timeout, retrying with preemption disabled\n");
-> 	preempt_disable();
-> 	ret = pcode_try_request(tile, mbox, request, reply_mask, reply, &status,
-> 				true, 50 * 1000, true);
+TL;DR - either we need to find a way to uniquely identify it (keep my approach
+or move it to core mm) or we should drop this patch.
 
-After this code does a retry, there can still be a failure which the 
-current code does not log. I think we should use an xe_log_err after the 
-retry fails rather than the above. Here's what I mean:
+Given we're late in the cycle + you stringly objective to my approach I think
+maybe best to drop it and respin?
 
-https://patchwork.freedesktop.org/patch/745830/?series=172039&rev=1
+Can do a follow up to add unique identification later, somehow.
 
-Thanks,
-Umesh
+The key change of 'make anon-assigned file-backed MAP_PRIVATE mappings not
+special snowflakes' will still be achieved in the other patches (but have to
+rework them a little obviously).
 
-
->@@ -320,8 +321,8 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
-> 		mutex_unlock(&tile->pcode.lock);
+On Wed, Aug 12, 2026 at 07:15:05PM +0200, David Hildenbrand (Arm) wrote:
+> >>
+> >> My brain is a bit slow after digging through this series.
+> >>
+> >> We identify shmem, for example, through shmem_vm_ops/shmem_anon_vm_ops.
+> >>
+> >> So naturally I am wondering: couldn't we do something similar to identify that?
+> >> Like, checking for zero_fops?
+> >
+> > We don't assign vm_ops for a MAP_PRIVATE-/dev/zero mapping. So that won't work.
+> >
+> > We could expose zero->f_ops but then it's literally in drivers/char/ and that's
+> > just weird to expose in mm.h or whatever.
 >
-> 	if (ret)
->-		drm_err(&xe->drm,
->-			"PCODE initialization timedout after: 3 min\n");
->+		xe_log_err(xe, PCODE, ret,
->+			   "Initialization timedout after: 3 min\n");
+> Thinking out loud: could we use a dummy (empty) vm_ops?
 >
-> 	return ret;
-> }
->-- 
->2.48.1
+> We'd place it in mm.h (zero_vm_ops) and just use it in drivers/char/.
+
+The entire purpose of this patch is to _uniquely identify_ MAP_PRIVATE-mapped
+/dev/zero and only permit this to make a mapping anonymous.
+
+As per the commit message: 'mm/vma: only permit MAP_PRIVATE /dev/zero to be
+mapped anonymous'
+
+MAP_PRIVATE-/dev/zero to anon is a historical abberation. This is why it is a
+unique case where semantics don't make sense.
+
+Doing things by semantics makes sense if the semantics are a _class_ of
+thing. This is not a class of thing it is a one of one.
+
+Yes the method used is ugly, but the alternatives (I can think of) are:
+
+1. (your proposal) allow any in-tree non-module mmap_prepare() driver to map
+   anonymous pages, creating an entirely new semantic for memory mapping.
+
+   (this is currently something that is possible, unfortunately).
+
+   To be safe we would have to implement then a series of checks to prevent true
+   insanities, because doing that would permit broken madness like a PFN map
+   being treated as anon.
+
+   Once this stuff is out there as an API, even in-tree, even non-module, people
+   will abuse it because it'll go through some random tree and we'll have to
+   support it.
+
+   I mean we may as well just not make a change in this case other than maybe
+   preventing .mmap from being able to do this.
+
+2. My solution - ugly but uniquely identifies the single permitted situation
+   where this behaviour is desired.
+
+3. Export something from drivers/char/mem.c to mm - horrific for multiple
+   reasons, violates separation of concerns etc. etc.
+
+4. Move the driver code just for /dev/zero to mm - I thought a pretty horrible
+   idea, but maybe we could have some mm/ bit and some driver/char bit like
+   hugetlbfs or uffd? But I'm not sure there is a not-ugly way of doing this.
+   MAP_SHARED /dev/zero does shmem stuff so maybe could live there.
+
+Drivers not being able to get anon pages is a baked-in assumption in the kernel
+(excepting MAP_PRIVATE-/dev/zero).
+
+Anyway I don't want this to hold up the series so maybe I'll just drop the
+patch and we can retain the current broken mess.
+
 >
+> See below.
+>
+> >
+> > I'm giving a really minimal possible thing to export, which is the DEVZERO_MINOR
+> > number which avoids all kinds of weirdness like that. No driver stuff exported,
+> > just a number :) MEM_MAJOR is already available.
+> >
+> > So I think it's the least bad choice in this one, very very specific scenario.
+>
+> I'd hope we find something cleaner than the DEVZERO_MINOR thingy.
+
+I think your objection here again is mistaking this for a class of thing rather
+than a one-of-one.
+
+>
+> Something slightly cleaned up chloppedi-schlop on top of mm-unstable.
+>
+> vma tests seems to still work, but I haven't boot-tested this.
+
+Yeah I don't love it :)
+
+I mean this change eliminates the purpose of this patch, and we already handle
+the /dev/zero MAP_PRIVATE like this:
+
+static int mmap_zero_prepare(struct vm_area_desc *desc)
+{
+#ifndef CONFIG_MMU
+	return -ENOSYS;
+#endif
+	if (vma_desc_test(desc, VMA_SHARED_BIT))
+		return shmem_zero_setup_desc(desc);
+
+	/*
+	 * This is a highly unique situation where we mark a MAP_PRIVATE mapping
+	 * of /dev/zero anonymous, despite it not being.
+	 */
+	vma_desc_set_anonymous(desc);
+	return 0;
+}
+
+I'm not sure what the difference is between having to do
+vma_desc_set_anonymous() and this new vm_ops (which would then get cleared which
+is really weird).
+
+>
+>
+> From 3cdc1d205a8e10dedd99b21a5f4f3f570ba24469 Mon Sep 17 00:00:00 2001
+> From: "David Hildenbrand (Arm)" <david@kernel.org>
+> Date: Wed, 12 Aug 2026 19:13:32 +0200
+> Subject: [PATCH] tmp
+>
+> Signed-off-by: David Hildenbrand (Arm) <david@kernel.org>
+> ---
+>  drivers/char/mem.c              |  5 +++--
+>  include/linux/mm.h              |  4 +---
+>  mm/init-mm.c                    |  1 +
+>  mm/vma.c                        | 10 +--------
+>  mm/vma_internal.h               |  1 -
+>  tools/testing/vma/include/dup.h | 38 +--------------------------------
+>  tools/testing/vma/shared.c      |  1 +
+>  tools/testing/vma/tests/mmap.c  | 10 +++------
+>  8 files changed, 11 insertions(+), 59 deletions(-)
+>
+> diff --git a/drivers/char/mem.c b/drivers/char/mem.c
+> index dcfd896b733d8..147568c65c1be 100644
+> --- a/drivers/char/mem.c
+> +++ b/drivers/char/mem.c
+> @@ -506,7 +506,8 @@ static int mmap_zero_prepare(struct vm_area_desc *desc)
+>  	if (vma_desc_test(desc, VMA_SHARED_BIT))
+>  		return shmem_zero_setup_desc(desc);
+>
+> -	/* MAP_PRIVATE semantics are taken care for us by core mm. */
+> +	/* Indicate MAP_PRIVATE mappings, so core mm can do the right thing. */
+> +	desc->vm_ops = &zero_vm_ops;
+>  	return 0;
+>  }
+>
+> @@ -694,7 +695,7 @@ static const struct memdev {
+>  #ifdef CONFIG_DEVPORT
+>  	[4] = { "port", &port_fops, 0, 0 },
+>  #endif
+> -	[DEVZERO_MINOR] = { "zero", &zero_fops, FMODE_NOWAIT, 0666 },
+> +	[5] = { "zero", &zero_fops, FMODE_NOWAIT, 0666 },
+>  	[7] = { "full", &full_fops, 0, 0666 },
+>  	[8] = { "random", &random_fops, FMODE_NOWAIT, 0666 },
+>  	[9] = { "urandom", &urandom_fops, FMODE_NOWAIT, 0666 },
+> diff --git a/include/linux/mm.h b/include/linux/mm.h
+> index f940d20551d53..29f13cc6b52a2 100644
+> --- a/include/linux/mm.h
+> +++ b/include/linux/mm.h
+> @@ -740,9 +740,6 @@ static inline bool fault_flag_allow_retry_first(enum fault_flag flags)
+>  	{ FAULT_FLAG_INTERRUPTIBLE,	"INTERRUPTIBLE" }, \
+>  	{ FAULT_FLAG_VMA_LOCK,		"VMA_LOCK" }
+>
+> -/* /dev/zero minor device number. Special due to MAP_PRIVATE semantics. */
+> -#define DEVZERO_MINOR	5
+
+All of this to avoid this single #define...!
+
+> -
+>  /*
+>   * vm_fault is filled by the pagefault handler and passed to the vma's
+>   * ->fault function. The vma's ->fault is responsible for returning a bitmask
+> @@ -990,6 +987,7 @@ static inline void mm_flags_clear_all(struct mm_struct *mm)
+>  }
+>
+>  extern const struct vm_operations_struct vma_dummy_vm_ops;
+> +extern const struct vm_operations_struct zero_vm_ops;
+
+See below but this is really not a great place to put it. Now we invite people
+to invent new mad CoW schemes with anon pages... 'set a vm_ops that we clear' is
+not great semantically either.
+
+vma_dummy_vma_ops is set and then kept or overwritten with explicit meaning 'is
+non-anon but does no special vm_ops stuff'.
+
+>
+>  static inline void vma_init(struct vm_area_struct *vma, struct mm_struct *mm)
+>  {
+> diff --git a/mm/init-mm.c b/mm/init-mm.c
+> index 3e792aad76261..2030f8e47a98a 100644
+> --- a/mm/init-mm.c
+> +++ b/mm/init-mm.c
+> @@ -18,6 +18,7 @@
+>  #endif
+>
+>  const struct vm_operations_struct vma_dummy_vm_ops;
+> +const struct vm_operations_struct zero_vm_ops;
+
+Already this creates a brand new class of vm_ops.
+
+Other *_vm_ops have meaning in belonging to a specific mapping (hugetlb, etc.)
+but they are _defined in the relevant files_ though maybe have extern vars I guess.
+
+But this one is set once _then cleared_ by the core mm mmap code.
+
+It's really weird and obscure and 'just so'.
+
+So I don't think it's the right method.
+
+>
+>  /*
+>   * For dynamically allocated mm_structs, there is a dynamically sized cpumask
+> diff --git a/mm/vma.c b/mm/vma.c
+> index e7c8b6cb8347e..4f9b78791daf9 100644
+> --- a/mm/vma.c
+> +++ b/mm/vma.c
+> @@ -2623,15 +2623,7 @@ static int __mmap_new_file_vma(struct mmap_state *map,
+>
+>  static bool map_is_dev_zero(const struct mmap_state *map)
+>  {
+> -	const struct file *file = map->file;
+> -	struct inode *inode;
+> -
+> -	if (!file)
+> -		return false;
+> -	inode = file_inode(file);
+> -	if (!S_ISCHR(inode->i_mode))
+> -		return false;
+> -	return imajor(inode) == MEM_MAJOR && iminor(inode) == DEVZERO_MINOR;
+> +	return map->vm_ops == &zero_vm_ops;
+
+Err no, the function name is completely wrong now. This just tells you somebody
+set a vm_ops you're about to remove (badly named too!)
+
+>  }
+>
+>  static void map_set_anon(struct mmap_state *map)
+> diff --git a/mm/vma_internal.h b/mm/vma_internal.h
+> index 385c0ab137774..4d300e7bbaf4c 100644
+> --- a/mm/vma_internal.h
+> +++ b/mm/vma_internal.h
+> @@ -23,7 +23,6 @@
+>  #include <linux/ksm.h>
+>  #include <linux/khugepaged.h>
+>  #include <linux/list.h>
+> -#include <linux/major.h>
+
+Again all this to avoid simple include...
+
+>  #include <linux/maple_tree.h>
+>  #include <linux/mempolicy.h>
+>  #include <linux/mm.h>
+> diff --git a/tools/testing/vma/include/dup.h b/tools/testing/vma/include/dup.h
+> index 41203b1c2323d..8457fabf53452 100644
+> --- a/tools/testing/vma/include/dup.h
+> +++ b/tools/testing/vma/include/dup.h
+> @@ -7,6 +7,7 @@ struct vm_area_struct;
+>  static inline void vma_start_write(struct vm_area_struct *vma);
+>
+>  extern const struct vm_operations_struct vma_dummy_vm_ops;
+> +extern const struct vm_operations_struct zero_vm_ops;
+>  extern unsigned long stack_guard_gap;
+>  extern const struct vm_operations_struct vma_dummy_vm_ops;
+>  extern unsigned long rlimit(unsigned int limit);
+> @@ -15,21 +16,6 @@ struct task_struct *get_current(void);
+>  #define MMF_HAS_MDWE	28
+>  #define current get_current()
+>
+> -#define MINORBITS	20
+> -#define MINORMASK	((1U << MINORBITS) - 1)
+> -
+> -#define MAJOR(dev)	((unsigned int) ((dev) >> MINORBITS))
+> -#define MINOR(dev)	((unsigned int) ((dev) & MINORMASK))
+> -#define MKDEV(ma, mi)	(((ma) << MINORBITS) | (mi))
+> -
+> -#define S_IFMT  00170000
+> -#define S_IFCHR  0020000
+> -
+> -#define S_ISCHR(m)	(((m) & S_IFMT) == S_IFCHR)
+> -
+> -#define MEM_MAJOR		1
+> -#define DEVZERO_MINOR	5
+> -
+>  /*
+>   * Define the task command name length as enum, then it can be visible to
+>   * BPF programs.
+> @@ -38,8 +24,6 @@ enum {
+>  	TASK_COMM_LEN = 16,
+>  };
+>
+> -typedef unsigned short		umode_t;
+> -
+>  /* PARTIALLY implemented types. */
+>  struct mm_struct {
+>  	struct maple_tree mm_mt;
+> @@ -62,10 +46,6 @@ struct address_space {
+>  	unsigned long		flags;
+>  	atomic_t		i_mmap_writable;
+>  };
+> -struct inode {
+> -	umode_t			i_mode;
+> -	dev_t			i_rdev;
+> -};
+>  struct file_operations {
+>  	int (*mmap)(struct file *, struct vm_area_struct *);
+>  	int (*mmap_prepare)(struct vm_area_desc *);
+> @@ -73,7 +53,6 @@ struct file_operations {
+>  struct file {
+>  	struct address_space	*f_mapping;
+>  	const struct file_operations	*f_op;
+> -	struct inode			*f_inode;
+>  };
+>  struct anon_vma_chain {
+>  	struct anon_vma *anon_vma;
+> @@ -1665,18 +1644,3 @@ static inline pgoff_t linear_anon_page_index(const struct vm_area_struct *vma,
+>
+>  	return pgoff;
+>  }
+> -
+> -static inline struct inode *file_inode(const struct file *f)
+> -{
+> -	return f->f_inode;
+> -}
+> -
+> -static inline unsigned iminor(const struct inode *inode)
+> -{
+> -	return MINOR(inode->i_rdev);
+> -}
+> -
+> -static inline unsigned imajor(const struct inode *inode)
+> -{
+> -	return MAJOR(inode->i_rdev);
+> -}
+> diff --git a/tools/testing/vma/shared.c b/tools/testing/vma/shared.c
+> index 4a39c9d504896..46d8d2e96bd71 100644
+> --- a/tools/testing/vma/shared.c
+> +++ b/tools/testing/vma/shared.c
+> @@ -9,6 +9,7 @@ unsigned long dac_mmap_min_addr = CONFIG_DEFAULT_MMAP_MIN_ADDR;
+>  unsigned long stack_guard_gap = 256UL<<PAGE_SHIFT;
+>
+>  const struct vm_operations_struct vma_dummy_vm_ops;
+> +const struct vm_operations_struct zero_vm_ops;
+>  struct anon_vma dummy_anon_vma;
+>  struct task_struct __current;
+>
+> diff --git a/tools/testing/vma/tests/mmap.c b/tools/testing/vma/tests/mmap.c
+> index ebe01362e530c..a63069d34a5a8 100644
+> --- a/tools/testing/vma/tests/mmap.c
+> +++ b/tools/testing/vma/tests/mmap.c
+> @@ -45,8 +45,9 @@ static bool test_mmap_region_basic(void)
+>  	return true;
+>  }
+>
+> -static int dummy_mmap_prepare(struct vm_area_desc *desc)
+> +static int zero_mmap_prepare(struct vm_area_desc *desc)
+>  {
+> +	desc->vm_ops = &zero_vm_ops;
+>  	return 0;
+>  }
+>
+> @@ -55,14 +56,9 @@ static bool test_pure_anon_dev_zero(void)
+>  	const vma_flags_t vma_flags = mk_vma_flags(VMA_READ_BIT, VMA_WRITE_BIT,
+>  			VMA_MAYREAD_BIT, VMA_MAYWRITE_BIT);
+>  	const struct file_operations f_op = {
+> -		.mmap_prepare = dummy_mmap_prepare,
+> -	};
+> -	struct inode inode = {
+> -		.i_mode = S_IFCHR,
+> -		.i_rdev = MKDEV(MEM_MAJOR, DEVZERO_MINOR),
+> +		.mmap_prepare = zero_mmap_prepare,
+>  	};
+>  	struct file file = {
+> -		.f_inode = &inode,
+>  		.f_op = &f_op,
+>  	};
+>  	struct mm_struct mm = {};
+> --
+> 2.43.0
+>
+>
+>
+> --
+> Cheers,
+>
+> David
+
+--
+Cheers, Lorenzo
