@@ -4,62 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60F81C5AD5A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 08:20:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ADAFC5B56A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 08:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0A8210E3DF;
-	Wed, 12 Aug 2026 08:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE6A610E3E7;
+	Wed, 12 Aug 2026 08:21:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="bUgn30XR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nCyopDZk";
 	dkim-atps=neutral
-Received: from out30-111.freemail.mail.aliyun.com
- (out30-111.freemail.mail.aliyun.com [115.124.30.111])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B587C10E3DF;
- Wed, 12 Aug 2026 08:20:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1786522826; h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
- bh=dZwyBpP0jzX3a5Q2lOIvsQUOtf394j7jNdT0AZlAj7A=;
- b=bUgn30XRPoE1SyXlP8flX1owUpf5itBmqksn6wX1hsD8vJ4O/lQhpplxL8PspRSukx92qSmos31XHi+8HzOD+RyTXu5JQ6pF43pDvQfGLSGv0Qml7e9hMOIHvj3zzKO2luPO0WaJ66qHoy/JBCIokIjwqHir6Vb1lm7Z4i/wZCw=
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R171e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033045133197;
- MF=ying.huang@linux.alibaba.com; NM=1; PH=DS; RN=31; SR=0;
- TI=SMTPD_---0X8r2pwU_1786522823; 
-Received: from DESKTOP-5N7EMDA(mailfrom:ying.huang@linux.alibaba.com
- fp:SMTPD_---0X8r2pwU_1786522823 cluster:ay36) by smtp.aliyun-inc.com;
- Wed, 12 Aug 2026 16:20:24 +0800
-From: "Huang, Ying" <ying.huang@linux.alibaba.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>,  <dri-devel@lists.freedesktop.org>,
- <linux-mm@kvack.org>,  <linux-kernel@vger.kernel.org>,  Andrew Morton
- <akpm@linux-foundation.org>,  David Hildenbrand <david@kernel.org>,
- "Lorenzo Stoakes" <ljs@kernel.org>,  Zi Yan <ziy@nvidia.com>,  Baolin
- Wang <baolin.wang@linux.alibaba.com>,  "Liam R . Howlett"
- <liam@infradead.org>,  Nico Pache <nico.pache@linux.dev>,  Ryan Roberts
- <ryan.roberts@arm.com>,  "Dev Jain" <dev.jain@arm.com>,  Barry Song
- <baohua@kernel.org>,  Lance Yang <lance.yang@linux.dev>,  Usama Arif
- <usama.arif@linux.dev>,  Joshua Hahn <joshua.hahnjy@gmail.com>,  Rakie Kim
- <rakie.kim@sk.com>,  Byungchul Park <byungchul@sk.com>,  Gregory Price
- <gourry@gourry.net>,  Alistair Popple <apopple@nvidia.com>,  Balbir Singh
- <balbirs@nvidia.com>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
- <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Thomas Hellstrm
- <thomas.hellstrom@linux.intel.com>,  Francois Dugast
- <francois.dugast@intel.com>,  <stable@vger.kernel.org>
-Subject: Re: [PATCH v3 3/6] mm/migrate_device: Fix THP splitting of a CPU
- faulted device private folio
-In-Reply-To: <anopzF3Hk/RRh8kC@gsse-cloud1.jf.intel.com> (Matthew Brost's
- message of "Mon, 10 Aug 2026 12:43:08 -0700")
-References: <20260805231041.3791771-1-matthew.brost@intel.com>
- <20260805231041.3791771-4-matthew.brost@intel.com>
- <87ik5in224.fsf@DESKTOP-5N7EMDA>
- <anopzF3Hk/RRh8kC@gsse-cloud1.jf.intel.com>
-Date: Wed, 12 Aug 2026 16:20:22 +0800
-Message-ID: <87cxvnn41l.fsf@DESKTOP-5N7EMDA>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09EAC10E3E5;
+ Wed, 12 Aug 2026 08:21:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1786522881; x=1818058881;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=XnNpBZ13UkxHg+2HBZQvJ0H/bEPUHRKu13EQzK90NY8=;
+ b=nCyopDZkQs3ErdOFNitoT5P8mD1PakDMcYHcpSZ65uToUhZ8Cj3fQ6fi
+ sagJz9istlpQjPOtBLiS5vf05hRC0JH/eR5tOTZtKbswYorCrF6mtmtDj
+ e0v85eqf0tJAMkzACMlY0i1ZkqiDkzlmbACXwtQylTvqmFMTAclbgvtFT
+ FkQsyQKAGco9rhNk+sL9O5ry04tM4Z45iZgN6evsysNyVDxmHiAsZAur8
+ u8lBVjBOX1BMpcM4yBUZPdFLfHFmC7g7ecgcGzGu0pFThKUqZIbxmuQ5u
+ a6CHeYJOejrsl6al1MiKGJaLSZUY9drPnyA4OqcIF6bgMMuN3JJCUtfu5 Q==;
+X-CSE-ConnectionGUID: aK2csaAYTuWWF+X5PSF2Ew==
+X-CSE-MsgGUID: NYVwEB0PS0CkSdLajqM3mA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="109856300"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="109856300"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 01:21:20 -0700
+X-CSE-ConnectionGUID: A+Fst3ryTyeGw9NDV2rhAA==
+X-CSE-MsgGUID: z8wH+A2mRMyGYFem2/Ka+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="288319173"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.141])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 01:21:17 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>, Kai Vehmanen
+ <kai.vehmanen@linux.intel.com>, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Vinod Govindapillai
+ <vinod.govindapillai@intel.com>, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>
+Subject: Re: [v3 2/2] drm/i915/audio: Prune ELD SADs based on HDMI audio
+ bandwidth
+In-Reply-To: <20260812065427.3154985-3-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260812065427.3154985-1-chaitanya.kumar.borah@intel.com>
+ <20260812065427.3154985-3-chaitanya.kumar.borah@intel.com>
+Date: Wed, 12 Aug 2026 11:21:13 +0300
+Message-ID: <44efde31ad9f5dc4368bb84cc082f5d97dd8ec20@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ascii
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,330 +77,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Matthew Brost <matthew.brost@intel.com> writes:
-
-> On Mon, Aug 10, 2026 at 10:26:27AM +0800, Huang, Ying wrote:
->> Hi, Matthew,
->> 
->> Matthew Brost <matthew.brost@intel.com> writes:
->> 
->> > When a CPU faults on a device private PMD and the device driver can only
->> > allocate order-0 destination folios, __migrate_device_pages() has to
->> > split the source THP via migrate_vma_split_unmapped_folio(). That path
->> > is broken in two independent ways when the fault is what triggered the
->> > migration.
->> >
->> > First, the split never succeeds. At the point folio_split_unmapped() is
->> > called the folio carries two references beyond the ones it is
->> > entitled to:
->> >
->> >   1 - taken by do_huge_pmd_device_private() for the duration of the
->> >       ->migrate_to_ram() callback
->> >   2 - taken by migrate_vma_collect_huge_pmd() when the folio was
->> >       collected
->> >
->> > (the mapping reference having been dropped by set_pmd_migration_entry()).
->> >
->> > folio_split_unmapped() requires folio_expected_ref_count(folio) ==
->> > folio_ref_count(folio) - 1, i.e. it tolerates exactly one caller
->> > reference. With both of the above held the check sees 2 against an
->> > expected 0 and returns -EAGAIN, so the migration is abandoned and the
->> > CPU fault makes no progress.
->> >
->> > The PTE-based split path does not have this problem:
->> > migrate_vma_split_folio() is called before any collect reference is
->> > taken and explicitly skips folio_get() for the fault folio, so the fault
->> > reference is the single caller reference the split expects.
->> >
->> > Fix it by dropping the fault reference across the split and re-taking it
->> > afterwards. do_huge_pmd_device_private() derives the fault page from the
->> > PMD entry, so it is always the head page of the folio and always ends up
->> > in the head folio of an uniform split to order 0; re-taking the
->> > reference on the folio therefore puts it back exactly where
->> > do_huge_pmd_device_private() will release it. The folio cannot be freed
->> > while the reference is dropped because the collect reference is still
->> > held.
->> >
->> > Second, the folio is split globally but the page tables were demoted
->> > only locally:
->> >
->> > 	split_huge_pmd_address(migrate->vma, addr, true);
->> > 	ret = folio_split_unmapped(folio, 0);
->> >
->> > migrate_device_unmap() unmaps via try_to_migrate(folio, 0), deliberately
->> > without TTU_SPLIT_HUGE_PMD, so every VMA that PMD maps the folio is left
->> > holding a PMD sized migration entry. A folio that was PMD mapped in more
->> > than one VMA -- after fork(), for example -- therefore keeps huge
->> > migration entries in all the other VMAs while only migrate->vma is
->> > demoted.
->> >
->> > folio_split_unmapped() does not notice: the folio is fully unmapped, so
->> > it only looks at the refcount and happily splits to order 0. The other
->> > VMAs are then left pointing a huge PMD at an order-0 folio, and
->> > migrate_vma_finalize() -> remove_migration_ptes() walks into it:
->> >
->> >   page dumped because: VM_BUG_ON_FOLIO(folio_test_hugetlb(folio) ||
->> >                                        !folio_test_pmd_mappable(folio))
->> >   kernel BUG at mm/migrate.c:368!
->> >   RIP: 0010:remove_migration_pte+0x56a/0x9b0
->> >   Call Trace:
->> >    rmap_walk_anon+0xfc/0x260
->> >    remove_migration_ptes+0x79/0xb0
->> >    __migrate_device_finalize+0x113/0x290
->> >    __drm_pagemap_migrate_to_ram+0x278/0x360 [drm_gpusvm_helper]
->> >    drm_pagemap_migrate_to_ram+0x5c/0x80 [drm_gpusvm_helper]
->> >    do_huge_pmd_device_private+0x160/0x280
->> 
->> Which is the branch your patchset based on?  I found that
->> drm_pagemap_migrate_populate_ram_pfn() in mm-everything-2026-08-08-07-08
->> still don't support fallback to single pages if THP allocation fails as
->> in the following comments,
->> 
+On Wed, 12 Aug 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com=
+> wrote:
+> Add bandwidth check to determine whether a given audio sample rate and
+> channel count can be carried within the hblank period for HDMI TMDS mode.
 >
-> This entire series, on drm-tip (i.e., the 6 patches posted here [1]).
+> Use this check to prune unsupported sample rates from each SAD in the
+> ELD during intel_audio_compute_config(). SADs with no remaining
+> supported rates are removed entirely.
 >
-> [1] https://patchwork.freedesktop.org/series/171651/
-
-Thanks!
-
->> 	/* TODO: Support fallback to single pages if THP allocation fails */
->> 
->> 
->> > Without CONFIG_DEBUG_VM the VM_BUG_ON_FOLIO() is compiled out and
->> > remove_migration_pmd() installs a huge PMD pointing at an order-0 page
->> > instead, along with add_mm_counter(mm, MM_ANONPAGES, HPAGE_PMD_NR). The
->> > victim mm then maps 2MB of address space onto a single 4K page, which
->> > shows up later as bad rss-counter state, leaked page tables and page
->> > allocator freelist corruption in unrelated processes.
->> >
->> > Note this second problem was latent before the refcount fix above: the
->> > split always failed, and the failed attempt left migrate->vma demoted,
->> > so the retried fault took the PTE path, where __folio_split() unmaps
->> > with TTU_SPLIT_HUGE_PMD and demotes every VMA.
->> >
->> > Fix it by walking the rmap and demoting every PMD sized migration entry
->> > mapping the folio before splitting it. Demote with freeze = false: entry
->> > creation in __split_huge_pmd_locked() is dispatched on
->> > pmd_is_migration_entry(), not on freeze, so a migration PMD becomes PTE
->> > sized migration entries either way, and freeze only controls a trailing
->> > put_page(). With freeze = false there is no refcount change at all,
->> > which makes the demotion idempotent across N VMAs.
->> >
->> > rmap_walk_control.anon_lock is deliberately left unset:
->> > folio_lock_anon_vma_read() depends on folio_mapped(), and the folio is
->> > already fully unmapped here. This mirrors remove_migration_ptes().
->> >
->> > Finally, refuse the split for a folio that is not anonymous. The rmap
->> > walk would otherwise reach a file backed VMA, where
->> > split_huge_pmd_address() zaps the PMD instead of demoting it.
->> >
->> > Fixes: 4265d67e405a ("mm/migrate_device: add THP splitting during migration")
->> > Cc: Andrew Morton <akpm@linux-foundation.org>
->> > Cc: David Hildenbrand <david@kernel.org>
->> > Cc: Lorenzo Stoakes <ljs@kernel.org>
->> > Cc: Zi Yan <ziy@nvidia.com>
->> > Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
->> > Cc: Liam R. Howlett <liam@infradead.org>
->> > Cc: Nico Pache <nico.pache@linux.dev>
->> > Cc: Ryan Roberts <ryan.roberts@arm.com>
->> > Cc: Dev Jain <dev.jain@arm.com>
->> > Cc: Barry Song <baohua@kernel.org>
->> > Cc: Lance Yang <lance.yang@linux.dev>
->> > Cc: Usama Arif <usama.arif@linux.dev>
->> > Cc: Joshua Hahn <joshua.hahnjy@gmail.com>
->> > Cc: Rakie Kim <rakie.kim@sk.com>
->> > Cc: Byungchul Park <byungchul@sk.com>
->> > Cc: Gregory Price <gourry@gourry.net>
->> > Cc: Ying Huang <ying.huang@linux.alibaba.com>
->> > Cc: Alistair Popple <apopple@nvidia.com>
->> > Cc: Balbir Singh <balbirs@nvidia.com>
->> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> > Cc: Maxime Ripard <mripard@kernel.org>
->> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> > Cc: David Airlie <airlied@gmail.com>
->> > Cc: Simona Vetter <simona@ffwll.ch>
->> > Cc: Thomas Hellstrm <thomas.hellstrom@linux.intel.com>
->> > Cc: Francois Dugast <francois.dugast@intel.com>
->> > Cc: dri-devel@lists.freedesktop.org
->> > Cc: linux-mm@kvack.org
->> > Cc: linux-kernel@vger.kernel.org
->> > Cc: stable@vger.kernel.org
->> > Assisted-by: GitHub_Copilot:claude-opus-5
->> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> > ---
->> >  mm/migrate_device.c | 98 ++++++++++++++++++++++++++++++++++++++++-----
->> >  1 file changed, 89 insertions(+), 9 deletions(-)
->> >
->> > diff --git a/mm/migrate_device.c b/mm/migrate_device.c
->> > index ae9027421b80..ae17bd516d24 100644
->> > --- a/mm/migrate_device.c
->> > +++ b/mm/migrate_device.c
->> > @@ -899,22 +899,104 @@ static int migrate_vma_insert_huge_pmd_page(struct migrate_vma *migrate,
->> >  	return 0;
->> >  }
->> >  
->> > +static bool migrate_vma_split_pmd_one(struct folio *folio,
->> > +				      struct vm_area_struct *vma,
->> > +				      unsigned long addr, void *arg)
->> > +{
->> > +	DEFINE_FOLIO_VMA_WALK(pvmw, folio, vma, addr, PVMW_SYNC | PVMW_MIGRATION);
->> > +
->> > +	while (page_vma_mapped_walk(&pvmw)) {
->> > +		if (pvmw.pte)
->> > +			continue;
->> > +
->> > +		addr = pvmw.address;
->> > +		page_vma_mapped_walk_done(&pvmw);
->> > +
->> > +		/*
->> > +		 * Demote with freeze = false: the PMD already holds a
->> > +		 * migration entry, so __split_huge_pmd_locked() creates PTE
->> > +		 * sized migration entries from it and leaves the refcount
->> > +		 * alone. There is at most one PMD mapping @folio per VMA, so
->> > +		 * stop the walk here.
->> > +		 */
->> > +		split_huge_pmd_address(vma, addr, false);
->> > +		break;
->> > +	}
->> > +
->> > +	return true;
->> > +}
->> > +
->> > +/*
->> > + * Demote every PMD sized migration entry that maps @folio to PTE sized ones.
->> > + *
->> > + * migrate_device_unmap() unmaps with try_to_migrate(folio, 0), i.e. without
->> > + * TTU_SPLIT_HUGE_PMD, so a folio that was PMD mapped in several VMAs -- after
->> > + * fork(), for instance -- ends up with a PMD sized migration entry in every one
->> > + * of them. folio_split_unmapped() below does not care, it only looks at the
->> > + * refcount, so splitting the folio without demoting all of those first would
->> > + * leave the other VMAs pointing a huge PMD at what is now an order-0 folio.
->> > + * remove_migration_ptes() trips over that in migrate_vma_finalize().
->> > + */
->> > +static void migrate_vma_split_pmd_mappings(struct folio *folio)
->> > +{
->> > +	struct rmap_walk_control rwc = {
->> > +		.rmap_one = migrate_vma_split_pmd_one,
->> > +	};
->> > +
->> > +	/*
->> > +	 * Do not pass .anon_lock: folio_lock_anon_vma_read() requires
->> > +	 * folio_mapped(), and @folio is already fully unmapped here.
->> > +	 */
->> > +	rmap_walk(folio, &rwc);
->> > +}
->> > +
->> >  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
->> > -					    unsigned long idx, unsigned long addr,
->> > +					    unsigned long idx,
->> >  					    struct folio *folio)
->> >  {
->> >  	unsigned long i;
->> >  	unsigned long pfn;
->> >  	unsigned long flags;
->> > +	bool fault_folio;
->> >  	int ret = 0;
->> >  
->> >  	/*
->> > -	 * take a reference, since split_huge_pmd_address() with freeze = true
->> > -	 * drops a reference at the end.
->> > +	 * migrate_vma_split_pmd_mappings() walks the rmap, and
->> > +	 * split_huge_pmd_address() zaps rather than demotes a PMD in a VMA that
->> > +	 * is not anonymous. migrate_vma_collect_huge_pmd() does not check the
->> > +	 * VMA type, so a file THP can reach here; the rest of the migrate_vma()
->> > +	 * machinery only supports anonymous memory anyway.
->> >  	 */
->> > -	folio_get(folio);
->> > -	split_huge_pmd_address(migrate->vma, addr, true);
->> > +	if (!folio_test_anon(folio))
->> > +		return -EINVAL;
->> > +
->> > +	/*
->> > +	 * A CPU fault on a device private PMD holds an extra reference on the
->> > +	 * folio, taken by do_huge_pmd_device_private(). folio_split_unmapped()
->> > +	 * only tolerates a single caller reference, so the split would always
->> > +	 * fail with -EAGAIN while this fault reference is held.
->> > +	 *
->> > +	 * do_huge_pmd_device_private() derives the fault page from the PMD
->> > +	 * entry, so it is always the head page of @folio, and therefore always
->> > +	 * ends up in the head folio after an uniform split to order 0. Drop
->> > +	 * the reference across the split and re-take it on the head folio
->> > +	 * afterwards, leaving the reference exactly where it is expected to be
->> > +	 * released.
->> > +	 *
->> > +	 * The folio cannot go away while the reference is dropped: the
->> > +	 * reference taken by migrate_vma_collect_huge_pmd() is still held.
->> > +	 */
->> > +	fault_folio = migrate->fault_page &&
->> > +		page_folio(migrate->fault_page) == folio;
->> > +
->> > +	migrate_vma_split_pmd_mappings(folio);
->> > +
->> > +	if (fault_folio)
->> > +		folio_put(folio);
->> >  	ret = folio_split_unmapped(folio, 0);
->> > +	if (fault_folio)
->> > +		folio_get(folio);
->> > +
->> 
->> Is it better to pass "extra_cnt" to folio_split_unmapped()?  This
->> follows the coding style of the other migrate functions better, like
->> that in __migrate_device_pages().
->> 
+> Sample rates are pruned rather than channel counts, since compressed
+> formats (e.g. AC-3) are associated with specific channel counts.
 >
-> That is an option. To be minimally invasive, I went this route. I also
-> didn't know offhand what would happen if our head page had an extra
-> reference and we then called folio_split_unmapped() with "extra_cnt", or
-> how that would affect the reference counts of the newly split pages
-> (i.e., whether we would need to adjust the reference counts of all split
-> pages after folio_split_unmapped() returns). However, I could quickly
-> reason that dropping the reference and then reacquiring it was
-> functionally correct and safe.
-
-This makes sense for me.  Thanks!
-
-I have another question.  If we have to split the large folio when
-migrating from device to ram, should we still migrate all pages of the
-original large folio, or should we migrate only the faulting
-normal-sized page of the original large folio instead?
-
----
-Best Regards,
-Huang, Ying
-
-> Matt
+> v2:
+>  - Use DIV64_U64_ROUND_UP() instead of DIV_ROUND_UP_ULL() to avoid
+>    do_div() truncating the 64-bit divisor to 32-bit, which caused
+>    audio_packets_line to be wildly inflated and all SADs to be pruned.
+>  - Guard intel_audio_hdmi_eld_compute_config() against HDMI FRL modes.
+>    (Remove it when BW calculations for FRL are added.)
 >
->> >  	if (ret)
->> >  		return ret;
->> >  	migrate->src[idx] &= ~MIGRATE_PFN_COMPOUND;
->> > @@ -935,7 +1017,7 @@ static int migrate_vma_insert_huge_pmd_page(struct migrate_vma *migrate,
->> >  }
->> >  
->> >  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
->> > -					    unsigned long idx, unsigned long addr,
->> > +					    unsigned long idx,
->> >  					    struct folio *folio)
->> >  {
->> >  	return 0;
->> > @@ -1103,7 +1185,6 @@ static void __migrate_device_pages(unsigned long *src_pfns,
->> >  	struct mmu_notifier_range range;
->> >  	unsigned long i, j;
->> >  	bool notified = false;
->> > -	unsigned long addr;
->> >  
->> >  	for (i = 0; i < npages; ) {
->> >  		struct page *newpage = migrate_pfn_to_page(dst_pfns[i]);
->> > @@ -1177,8 +1258,7 @@ static void __migrate_device_pages(unsigned long *src_pfns,
->> >  					goto next;
->> >  				}
->> >  				nr = 1 << folio_order(folio);
->> > -				addr = migrate->start + i * PAGE_SIZE;
->> > -				if (migrate_vma_split_unmapped_folio(migrate, i, addr, folio)) {
->> > +				if (migrate_vma_split_unmapped_folio(migrate, i, folio)) {
->> >  					src_pfns[i] &= ~(MIGRATE_PFN_MIGRATE |
->> >  							 MIGRATE_PFN_COMPOUND);
->> >  					goto next;
->> 
->> ---
->> Best Regards,
->> Huang, Ying
+> v3:
+>  - Rebase
+>
+> BSpec: 68944
+> Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> Assisted-by: GitHub-Copilot:claude-opus-4.6
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c | 149 +++++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm=
+/i915/display/intel_audio.c
+> index eae76e961105..d59acb390f8a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -39,6 +39,7 @@
+>  #include "intel_display_types.h"
+>  #include "intel_display_wa.h"
+>  #include "intel_dp.h"
+> +#include "intel_hdmi.h"
+>  #include "intel_lpe_audio.h"
+>=20=20
+>  /**
+> @@ -697,6 +698,151 @@ static void ibx_audio_codec_enable(struct intel_enc=
+oder *encoder,
+>  	mutex_unlock(&display->audio.mutex);
+>  }
+>=20=20
+> +static bool hdmi_audio_rate_supported(const struct intel_crtc_state *crt=
+c_state,
+> +				      int available_tmds,
+> +				      int audio_rate, int channels)
+> +{
+> +	const struct drm_display_mode *mode =3D &crtc_state->hw.adjusted_mode;
+> +	int pixel_clk_max_hz;
+> +	int audio_pkt_factor;
+> +	u64 audio_pkt_rate_x4_x1000;
+> +	int audio_packets_line;
+> +	int hblank_overhead;
+> +	int required_tmds;
+> +
+> +	/*
+> +	 * Part 2: Calculate TMDS clock cycles required for Audio Bandwidth
+> +	 *
+> +	 * Step 1: pixelclk_max =3D nominal_pixel_rate * (1 + 0.5%)
+> +	 * crtc_clock (kHz) * 1000 * 1.005 =3D crtc_clock * 1005 (Hz)
+> +	 */
+> +	pixel_clk_max_hz =3D mode->crtc_clock * 1005;
+> +
+> +	/*
+> +	 * Steps 3-4: Audio Packet Rate.
+> +	 *   R_AP =3D (audio_rate * AP + 2 * acrrate_max) * (1 + 1000 / 1e6)
+> +	 *        =3D (audio_rate * AP + 2*1500) * 1.001
+> +	 *
+> +	 * AP =3D 0.25 (2ch) or 1.0 (3-8ch); acrrate_max =3D 1500 Hz (max ACR
+> +	 * packet transmission rate per HDMI spec)
+> +	 *
+> +	 * Scale by 4*1000 to stay integer:
+> +	 *  x4: eliminates AP=3D0.25 -> audio_pkt_factor=3D1(2ch) or 4(3-8ch),
+> +	 *      scaled acrrate_max: 2 * 1500 * 4 =3D 12000
+> +	 *  x1000: eliminates 1.001 -> *1000*1.001 =3D *1001
+> +	 *
+> +	 * R_AP * 4 * 1000 =3D (audio_rate * audio_pkt_factor + 12000) * 1001
+> +	 */
+> +	audio_pkt_factor =3D (channels <=3D 2) ? 1 : 4;
+> +	audio_pkt_rate_x4_x1000 =3D (u64)(audio_rate * audio_pkt_factor + 12000=
+) * 1001;
+> +
+> +	/*
+> +	 * Steps 2+5-6: Audio packets per line.
+> +	 *   AudioPackets_Line =3D CEIL[R_AP * htotal / f_pixelclk_max]
+> +	 *
+> +	 * With audio_pkt_rate_x4_x1000 =3D R_AP * 4 * 1000:
+> +	 *   =3D CEIL[audio_pkt_rate_x4_x1000 * htotal / (4 * 1000 * pixel_clk_=
+max_hz)]
+> +	 */
+> +	audio_packets_line =3D DIV64_U64_ROUND_UP(audio_pkt_rate_x4_x1000 * mod=
+e->htotal,
+> +						(u64)4 * 1000 * pixel_clk_max_hz);
+> +
+> +	/*
+> +	 * Steps 7-9: Hblank overhead.
+> +	 * Standard:  2*dip_guardband + 2*control_period + video_guardband
+> +	 *          =3D 2*2 + 2*12 + 2 =3D 30
+> +	 * HDCP 1.x:  rekey_period + dip_guardband + control_period + video_gua=
+rdband
+> +	 *          =3D 58 + 2 + 12 + 2 =3D 74
+> +	 *
+> +	 * Always use HDCP 1.x worst case (74) since HDCP can be toggled
+> +	 * via fastset without compute_config.
+> +	 */
+> +	hblank_overhead =3D 74;
+> +
+> +	/*
+> +	 * Step 10: Required TMDS cycles for Audio.
+> +	 *  32 TMDS clock cycles per audio packet.
+> +	 *   Hblank_audio_min =3D 32 * AudioPackets_Line + Hblank_overhead
+> +	 */
+> +	required_tmds =3D 32 * audio_packets_line + hblank_overhead;
+> +
+> +	/*
+> +	 * Part 3: audio supported if Hblank_audio_min <=3D TB_blank and
+> +	 * audio packets per line <=3D Maximum allowed packets per line (18)
+> +	 */
+> +
+> +	return required_tmds <=3D available_tmds && audio_packets_line <=3D 18;
+> +}
+> +
+> +static void intel_audio_hdmi_eld_compute_config(struct intel_crtc_state =
+*crtc_state)
+> +{
+> +	static const int sad_freqs[] =3D {
+> +		32000, 44100, 48000, 88200, 96000, 176400, 192000
+> +	};
+> +	const struct drm_display_mode *mode =3D &crtc_state->hw.adjusted_mode;
+> +	int hblank =3D mode->htotal - mode->hdisplay;
+> +	int bpc =3D crtc_state->pipe_bpp / 3;
+> +	int ycbcr_420_divider =3D (crtc_state->output_format =3D=3D INTEL_OUTPU=
+T_FORMAT_YCBCR420) ? 2 : 1;
+> +	int available_tmds;
+> +	u8 *eld =3D crtc_state->eld;
+> +	int mnl =3D drm_eld_mnl(eld);
+> +	int sad_count =3D drm_eld_sad_count(eld);
+> +	int i =3D 0;
+> +
+> +	/* Only applies to HDMI TMDS, not FRL */
+> +	if (intel_hdmi_is_frl(crtc_state->port_clock))
+> +		return;
+> +	/*
+> +	 * Part 1: Calculate available TMDS clock cycles (TB_blank).
+> +	 *
+> +	 * TB_blank =3D CEILING[hblank * K_CD / K_420]
+> +	 *
+> +	 * K_CD =3D 1 for YCbCr4:2:2, bpc / 8 otherwise.
+> +	 * K_420 =3D 2 for YCbCr4:2:0, 1 otherwise.
+> +	 * Rearranged: CEILING[hblank * bpc / (8 * K_420)]
+> +	 *
+> +	 * TODO: As and when support for YCbCr4:2:2 is added, set bpc =3D 8
+> +	 * to achieve K_CD =3D 1
+> +	 */
+> +	available_tmds =3D DIV_ROUND_UP(hblank * bpc, 8 * ycbcr_420_divider);
+> +
+> +	while (i < sad_count) {
+> +		int sad_offset =3D DRM_ELD_CEA_SAD(mnl, i);
+> +		int channels =3D (eld[sad_offset] & 0x7) + 1;
+> +		u8 freq_mask =3D eld[sad_offset + 1];
+> +		u8 new_freq_mask =3D 0;
+> +		int bit;
+> +
+> +		for (bit =3D 0; bit < 7; bit++) {
+> +			if (!(freq_mask & BIT(bit)))
+> +				continue;
+> +			if (hdmi_audio_rate_supported(crtc_state, available_tmds,
+> +						      sad_freqs[bit], channels))
+> +				new_freq_mask |=3D BIT(bit);
+> +		}
+> +
+> +		eld[sad_offset + 1] =3D new_freq_mask;
+> +
+> +		if (!new_freq_mask) {
+> +			/* Remove this SAD by compacting the rest */
+> +			memmove(&eld[DRM_ELD_CEA_SAD(mnl, i)],
+> +				&eld[DRM_ELD_CEA_SAD(mnl, i + 1)],
+> +				(sad_count - i - 1) * 3);
+
+What if there is no SAD i + 1?
+
+> +			memset(&eld[DRM_ELD_CEA_SAD(mnl, sad_count - 1)], 0, 3);
+> +			sad_count--;
+> +			continue;
+> +		}
+> +		i++;
+
+I believe it would all be more readable and robust if you used a for
+loop to go through all the sads, without modifing the end conditions
+while iterating, and used a separate destination index for when you have
+to move sads over. And only moved the sads one at a time as you iterate,
+not all the time.
+
+Sometimes decrementing the sad_count and sometimes incrementing i makes
+this difficult to reason.
+
+> +	}
+> +
+> +	/* Update SAD count in ELD header */
+> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] &=3D ~DRM_ELD_SAD_COUNT_MASK;
+> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] |=3D sad_count << DRM_ELD_SAD_COUNT_SH=
+IFT;
+> +
+> +	/* Recalculate baseline ELD length (in dwords) */
+> +	eld[DRM_ELD_BASELINE_ELD_LEN] =3D
+> +		DIV_ROUND_UP(drm_eld_calc_baseline_block_size(eld), 4);
+> +}
+> +
+>  static
+>  bool intel_audio_needs_cpu_transcoder_id(const struct intel_crtc_state *=
+crtc_state)
+>  {
+> @@ -725,6 +871,9 @@ bool intel_audio_compute_config(struct intel_encoder =
+*encoder,
+>  	BUILD_BUG_ON(sizeof(crtc_state->eld) !=3D sizeof(connector->eld));
+>  	memcpy(crtc_state->eld, connector->eld, sizeof(crtc_state->eld));
+>=20=20
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> +		intel_audio_hdmi_eld_compute_config(crtc_state);
+> +
+>  	crtc_state->eld[6] =3D drm_av_sync_delay(connector, adjusted_mode) / 2;
+>  	mutex_unlock(&connector->eld_mutex);
+
+--=20
+Jani Nikula, Intel
