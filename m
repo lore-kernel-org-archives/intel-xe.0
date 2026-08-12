@@ -4,58 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B089C5CFDB
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:38:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EC41C5AD5A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:45:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FDBA10F0F1;
-	Wed, 12 Aug 2026 19:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CBF710E44B;
+	Wed, 12 Aug 2026 19:45:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V64FoE33";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZFijQJWv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88EBF10F0D8
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:38:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F60010E44B
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:45:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786563485; x=1818099485;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=IOKiwFNjbHnbqCsb82mD1JMVgqjKGrZNaDwRxHQr+8c=;
- b=V64FoE33VG403Qhh4/1FzMTIrySTGyzzBZIwlvkB6pDRHxzKLnJPk2LC
- L5EnpQunQKXHSUMu1ZirMWFS6sqCXyn7KW8LvqqwLOqpZeoYoQeZvNMdJ
- HR77KFmWFqyONo2w3fY5sBoXNhZ4FyxZytFROZSxnNK9XbFwjLUyfFNvl
- grw5aAe1PpHkkf8WfDTOrEOsLeh+PCvfBmA6zSgsN8floxh8GJJBk4iP3
- ix9U9SHu+8PbVej1QsTS2asRtJMCW4XY2TOqEoLKyfERwsNB1+YGKGZTe
- Zz1a03I4Fg+T4JSlITtyPsSXuNd29+xu2o6U9VHD+gELLZaR9zj1c9E5U A==;
-X-CSE-ConnectionGUID: GCMn9OlYSoC7xui2OQz8qg==
-X-CSE-MsgGUID: 4j4zP9HNS4mNs8bZwxVcqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="104515418"
-X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="104515418"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:38:04 -0700
-X-CSE-ConnectionGUID: DR4XfSPkT6avLkFzQin2LA==
-X-CSE-MsgGUID: BOVt9lt0QM+zr+oXouWtgA==
+ t=1786563949; x=1818099949;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=MkAYik4J+8otFUtW/n3m1WnWNxFPPK3GszLzeI9TrQs=;
+ b=ZFijQJWvzDWvb2blAt1tNdJegdpRC4+/kvyViWf5VbfZ8KBoPI82oLqp
+ UHFY3DLvZ+eDDpUzjCGHgN7h0KTctBcy3XL8/YM0LwwpySER3P1laN3mi
+ StDMzsLg4fKhIeWtbhVmqI5MyM7FgtaF/+YWuIdse2F7tVvoUrZmYsJt3
+ RV4uGpSK6ox9mSCmr8ExUIyHhRIXjD7JmDVx1Tla8URCiu4zPTevDUNZs
+ ejnBnv4+dX1HxHWddfGwD/miDm/3/ud7tbWWrxCPl7OPAu+5s7eK+OXMJ
+ aQJjnI+NFaXkize3RALpTWXBOiAi769drxGOcChl4pp7tbp1458qt+94H Q==;
+X-CSE-ConnectionGUID: saDi9RIzSCOzCCnH+9esWQ==
+X-CSE-MsgGUID: 53XkglPGQQKMfUUzBut/yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="109918771"
+X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="109918771"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 12:45:49 -0700
+X-CSE-ConnectionGUID: Jn63heIqQ8KBjj6sZqXP+Q==
+X-CSE-MsgGUID: PuMVIxrGQmezR1ci/gLDhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="263779960"
-Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:38:04 -0700
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
- hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
- anoop.c.vijay@intel.com, badal.nilawar@intel.com,
- matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v2 09/10] drm/xe/vsec: Support late bind fw information
-Date: Wed, 12 Aug 2026 12:37:50 -0700
-Message-ID: <20260812193742.2170188-21-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260812193742.2170188-12-michael.j.ruhl@intel.com>
-References: <20260812193742.2170188-12-michael.j.ruhl@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="263269387"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 12:45:49 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Wed, 12 Aug 2026 12:45:48 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Wed, 12 Aug 2026 12:45:48 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.1) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Wed, 12 Aug 2026 12:45:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FjqgGthrTPrYNo/l0zm25pbOFK7JzADFVie1g/4Of2sZlaWCgSryaO44dpZJiKZA1E+kjbvoNTIhLlqQ6gw/2ED5YRstx4MW68n+2zNWQCyUImOqRtywL+/oc8BvPvjEuIDtnnwo7h9Sc72orrr0YUz4cNMdkfi19H0M1gJutKXQgyFOCMwiTP1/kbP5zsay66Ztwk5b97sspM+9t857VOvQ7OHwBwkvLoEJGsmKrOuYNpPfVEsKuqpBTbUl1inmLxPFg2Td0wAD1CGvOD2M4L02o8AltrUEtCG6C+evpn7SaQOio8fQPVuejYLzi1IXojDOzBzvPKqr+7LMTDytFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3T5EmeZ/p/BH+mcGun777kP3SEFexQJgUMnMQefgXzc=;
+ b=gfWRmuh1ahQWlOag/AlGLjlW68bUEnk29L8BqV20d+YlgmWLRlJyVUUdM6hCuGSynhEKjpGRkc2bamVegrtgCusambgymbtDolK2UXlfuu1Tdv2iFp13JrMa2lVjxdJ6dnty7znF3/XOlSXjOQGOlngJi/p5+aUT8e1DTJXO7WOfEiIoYdjVCV+oxqHiuj+UldcuUJrPQyMQVNmhAMDdBMZ/hrNG93+yieG5y6njTS3GRS+6xt9WQIhJ+Won09sFcBbm9VA02rgDpbN46rxqDgOTGGhkwzGhHwalescQ+BR1Ck/740YCCy2B3mX8WnPO7oHx74XXPZOiEhMPU91gGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by DS3PR11MB9647.namprd11.prod.outlook.com (2603:10b6:8:38e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.25; Wed, 12 Aug
+ 2026 19:45:45 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0315.011; Wed, 12 Aug 2026
+ 19:45:45 +0000
+Message-ID: <1ffbb6ac-dfba-4873-8a47-76a5b6e66bb8@intel.com>
+Date: Wed, 12 Aug 2026 21:45:40 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] drm/xe/pcode: Report pcode errors using SIGID
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>, "Nilawar, Badal"
+ <badal.nilawar@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <riana.tauro@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <mallesh.koujalagi@intel.com>
+References: <20260811235254.153783-6-umesh.nerlige.ramappa@intel.com>
+ <20260811235254.153783-9-umesh.nerlige.ramappa@intel.com>
+ <a0ba4234-5767-4c63-a0e8-1d05540faf99@intel.com>
+ <any2bd4cNnfwj0O5@soc-5CG1426VCC.clients.intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <any2bd4cNnfwj0O5@soc-5CG1426VCC.clients.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: WA1PEPF00005B92.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d8::63a) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|DS3PR11MB9647:EE_
+X-MS-Office365-Filtering-Correlation-Id: a0de0b48-fa53-4d5a-adbd-08def8aa4ca4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|4143699003|56012099006|11063799006|10067099003|18002099003|6133799003|22082099003;
+X-Microsoft-Antispam-Message-Info: CYDU82ul4P46cm1S4xPHQqv83LtdllPyv2+W7/oXGY3tt1Ac0G/Ur0bWb35SDKVtOJwnZqtBZV1PawX6RlpyBl99xeye83jMvLEd/9qEFV2USQ69L92NQ7VEVWLwdJT+7EM79DMCfuWs8DuXU/t8CW15atEO4sAQKQqGuDmakU1BTFWCPS4UdPThxVy4Z1JisQN+Gh1XwSXwGN/yfzNAir9psgwofrjvOxJYmY3QFZq9X0/5e36zA+du9JMf597/gggXZ8F3uzFJ6zPKQwLW/+kR/yhzxtXL804nmHhsOkUcTsMkJVosSxECy9c1/I/pYTrbYA63fCQBw6Ewf3FBbUpXAgVrb5FS79eVpyYbMFGHZJv/ebdhWuoJP4G0Ye/QqEwlHVbpalj40iRkhpk+sN5K5h+dM9t1Ci9CoywkPmV7ynVRp1TC4uzFRmJmbyTCNhfxr+goKk87hSisKXir55OPDlvZ/utfPBxH/qtrV3mFbPyB39hav6zhaoPCMZGu69/lZkesTOd4e0h5vYV4Zv9Bup2J3fMv6F5v3vqDH93UzJHsxBJyEBjFJ0KDPnwmghLJyLvxc4LeehHu1IStEgpsc/jOa/Oej53odl72UQo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(4143699003)(56012099006)(11063799006)(10067099003)(18002099003)(6133799003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjNpY05xK25ndmprUFE1ZmNiK1hrTzQ1TkRMSGhnWXBQVDJIeXZhVFlnUk5G?=
+ =?utf-8?B?bHNtalVQUmlDVlhCT1g3VWdqS0Ntdm9vUDVwMzFuTTJjWUM1bXh6Zms0NjFS?=
+ =?utf-8?B?VWVtb3ZiTjQzM0RlOWNpYlpKd3BHemwyL1Y5UGg3cDlpdnUyT3AyNjVIYlEz?=
+ =?utf-8?B?eUJUTER5c3BFSkJlV0xiejQ5emFRVXI1b1F5ZTQ2RVBWcDNOcWl5WjAvQnAv?=
+ =?utf-8?B?ZUZzbGxROFVPb25IV1BVTmZXdzFDdXNtV1VISFk3MnVFbVdtRTh1VnlKZ0p2?=
+ =?utf-8?B?c1M3Y1RaSE5vUVFxdnBZOTEydHFQSlh3SUp1VHIrdFFkYmduR3phdzZ3b1RS?=
+ =?utf-8?B?d2NmdFQxQmxZSlZiZ29YNVhlU091RFZMVGZsVUlxRTRCNnN5UTVmRnBiTHlS?=
+ =?utf-8?B?Sm0xTVRobThpZ2NzaEplUGozS1dBK29ocXh1Z256cDFHYUYwNDJxM3YyMDNr?=
+ =?utf-8?B?SkpUdCtJOVczdG5TZldVUFN4Q0xDbU8vOExrOHJmUnhUdk1veUYrU2ZwTDh5?=
+ =?utf-8?B?NlBwc3ZRQXBCR3BYNkNJZmF5QWozT0lHQVRMb2tmWGVYMmtMc0t5VE1xY1RV?=
+ =?utf-8?B?QkdTOVk3ZzEzSUpWcitUWFhwSTZobWczZlhmYXRtOEJHU2hlak94VGU0UGpQ?=
+ =?utf-8?B?cUJWUWRvQzdtODlTcmtzcTBSYUxaaGlFNVBoZkdEUXF6eU5XL3pEUDQwclh2?=
+ =?utf-8?B?OFdQOFBHckFxZDVlSjNJRnN6NXFZS05PWHNnQTFYVU51SWxPWWpyT2VSVWI4?=
+ =?utf-8?B?cFVDVEFRS3JIaUZoQXpHd0Z1d0wwRncvdENjdmVtNitkcEFReTFmcDFjRUtT?=
+ =?utf-8?B?dU1hc29LUExVajJCZFZSbGw1NGpiZk1ZaHFqOUNJb1UyUGYydlVRNmlzOWlM?=
+ =?utf-8?B?R2Mzd0hMNVo2d3ZIa3Y1VXhGRnNqbjVZams2Snl2SHd5dUNvUElPN0JnVk9y?=
+ =?utf-8?B?Qk10cUdibkpmRjd2NWxSNkxqbGg0UTZyalQzbCtPdEgrcWMxbi9wUDBhYTV4?=
+ =?utf-8?B?SFFYaGVYc20xSjEwWld6NTYzRW10bUMwV1djMU5BbGZFMDdFbEtHTGZSNTF3?=
+ =?utf-8?B?SGJnK1phdmlYNmZTWUExaWxSaG9ScHZYMWowUDhUVThoaTVTdWVGR1FUWGxK?=
+ =?utf-8?B?MHRobnhHVjZOZHZneTZXeFNIU0t3THlOK2FadHJSaEJqT1pXeU1vWVkzZlo1?=
+ =?utf-8?B?d0J5RmhmRmhEd2ZmY1lHV0ZhRlh4MmlaSWVPTEFadGVEMU43WEpoS3ZOMW01?=
+ =?utf-8?B?ZVJWTS9mV3c2RHhuSHhERW56aGw3MjJiaEF0NUtsbFEzSDNCWUttTWpXK1cv?=
+ =?utf-8?B?MmFsOG1oeHEvcjBXZWd0dE9XYnRnV21WSlJhV1NhYktrUjU2ZTlYTlZuZlF4?=
+ =?utf-8?B?YUxxTVE4TDU0Q3YrL1BxMitIaWJaK1lNYlh1ekcvNkpuLzhuSW1MQVkrakll?=
+ =?utf-8?B?cU0xV2IyVEdDUzB3NC9WWFBIK3dJQmIrMWFleUIyTTJNSGdaQ2M5S3R5QkFx?=
+ =?utf-8?B?czFDbXJETVpNL2JTSmFoeHVmb2xJdXcrcmcya0dlUXY0L2FuSHhYVVMvNlQr?=
+ =?utf-8?B?aHVkZ3ViMmNKVXRDUE01NVV3V3JmdElpOU5CYmhPdEVFeUlOWU04a1ZQeXlK?=
+ =?utf-8?B?YXdBdUU5S1pKbEY3VjJoTktMVG9VM0RtY3dsaVVGTThDSDFGR3pCcHM2dnhO?=
+ =?utf-8?B?Y2VBeUtibFROakhxVGtwK01ZY1RTcDNhbStEQ1dRMm9valZTVmVQcCs3WUly?=
+ =?utf-8?B?aWhMSkR0UUg4RFhERWtOcWlZOUw3YWF5ZXVGdEFyblVCL00yYldUNmhLdWI1?=
+ =?utf-8?B?ZzF4aE5tOWs1Y0R0NXhpRmlvMGZzdXFhcmZNSitKNlB4YU9MZmdQTmg1RGo0?=
+ =?utf-8?B?ZXlQZUYyZXAydXBZSlVhSWk0M1BaSWRkbGU0RUdpbWc1RVdVdDJicE1tNFJC?=
+ =?utf-8?B?b2JKSFI1MFdPV0ZuU2dRU0tlSE0xcHk1a3R3NEp0YmFJZlBEYlRTRllHNGtk?=
+ =?utf-8?B?elRZK3ZLQnZkTTNXQkdXVGo2eDZIZk1QcGpQeGREcno0RUNoUXEzQVA3VEYy?=
+ =?utf-8?B?TXFZNWZMc1RUWkpIQkZDdTBqT0FoZi9WSm9zUmpra3RjQkxaR1RIYTl3SWVt?=
+ =?utf-8?B?dnJ1c0tvVUhrK0huV0gwVnhyNTFGWGlLL3Q0N0pVV0lVQVRNaE1vcWVqY1Bp?=
+ =?utf-8?B?WThISjdRZk52UHlWbmtVcjZwRGtLSUgxZGVMaDZlMEZqNm16YXRNcjdURTZ5?=
+ =?utf-8?B?dmtxYmtsTlVRWnhpb3VXWXhmdytuZmw4M1lvd0NzYVM0WERIUlpJZ0ZHQlBG?=
+ =?utf-8?B?TlU3NzY2eGQ2bVJnYks2aDc4THJQd0c5bnVNcjB3d2FteGFZNzN3QXBXY3NB?=
+ =?utf-8?Q?pidTVmaDknHvDfII=3D?=
+X-Exchange-RoutingPolicyChecked: fFpeNs8h/QJqyPRaCnh1gu6IvjYNiSoaow4TlB0MFLf959tjVUHcID/RHfRcQ5BKSualiY3LAJjx1f3o0RUsXX6vCD3gji4i1dc7/bZNuTYtbr96njsC/vrGg43q7mf0klikogvbNNYppRV0hiehIaEwKlRXReKMgqCp8h5nGfgTC769D7aCrKURfe3Va8C7P4IRiHnnJp2Z4LPgFjboyvNr19+/pMG1VY5ID0AEiYNjyXEe8FkR3A7r6uyCyE/OO8srXWw5TbQ4HMTvUeFYovk2B9xlPnhThwUBmd2XNM5V0zeJvZraXq4b7jCmsC5lfu14p5pDfrrgyDFRUSGsOw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0de0b48-fa53-4d5a-adbd-08def8aa4ca4
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2026 19:45:44.9276 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QnlsLoTcZAnaJ398yDXnG/LN6LpzYJzJef/aTuKS0shREMK0sMaEHxxbCShXajVuo3cUItBgfw5XoKr72U1T42Mw4omLOr2e2u51PaIcta0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR11MB9647
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,324 +174,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CRI FW is loaded on power on.  Because of this, access to
-the FW cannot be done until it is running.
 
-Update the XE PMT probe and access to check for late bind
-devices, verify, and wait for the appropriate FW state
-before probe or access.
 
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c       |   4 +-
- drivers/gpu/drm/xe/xe_device_types.h |   4 +
- drivers/gpu/drm/xe/xe_vsec.c         | 142 +++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vsec.h         |   2 +-
- 4 files changed, 144 insertions(+), 8 deletions(-)
+On 8/12/2026 8:07 PM, Umesh Nerlige Ramappa wrote:
+> On Wed, Aug 12, 2026 at 07:05:35PM +0530, Nilawar, Badal wrote:
+>> Hi Umesh,
+>>
+>> On 12-08-2026 05:22, Umesh Nerlige Ramappa wrote:
+>>> Use xe_log_err() to report pcode errors using SIGID.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 71111ad32465..df6716a975fb 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1139,7 +1139,9 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
- 
--	xe_vsec_init(xe);
-+	err = xe_vsec_init(xe);
-+	if (err)
-+		goto err_unregister_display;
- 
- 	err = xe_sriov_init_late(xe);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 3f1a70813a99..5d9e6e66c665 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -468,6 +468,10 @@ struct xe_device {
- 		struct mutex lock;
- 		/** @pmt.base_offset: device specific base offset */
- 		u64 base_offset;
-+		/** @pmt.work: support late-bind probe */
-+		struct delayed_work work;
-+		/** @pmt.retry_count: late-bind probe retry */
-+		u32 retry_count;
- 	} pmt;
- 
- 	/** @soc_remapper: SoC remapper object */
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 578d59048b39..bed5103dac19 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -3,6 +3,7 @@
- #include <linux/bitfield.h>
- #include <linux/bits.h>
- #include <linux/cleanup.h>
-+#include <linux/delay.h>
- #include <linux/errno.h>
- #include <linux/intel_vsec.h>
- #include <linux/module.h>
-@@ -17,6 +18,7 @@
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
- #include "xe_pm.h"
-+#include "xe_sysctrl.h"
- #include "xe_vsec.h"
- 
- #include "regs/xe_pmt.h"
-@@ -162,6 +164,14 @@ enum capability {
- 	WATCHER,
- };
- 
-+/*
-+ * Late bind will delay 100msec for up to 20 seconds
-+ */
-+#define VSEC_LATE_BIND_DELAY_MSEC	(100)
-+#define VSEC_LATE_BIND_RETRY		(200)
-+
-+static void cri_late_bind_probe(struct xe_device *xe);
-+
- static int bmg_guid_decode(u32 guid, int *index, u32 *offset)
- {
- 	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
-@@ -272,6 +282,56 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
- 	return -ENODEV;
- }
- 
-+#define WAITING_FOR_SYCTLR
-+#ifdef WAITING_FOR_SYCTLR
-+static bool xe_is_oobmsm_fw_ready(struct xe_device *xe)
-+{
-+	return true;
-+}
-+#endif
-+
-+static void cri_late_bind_probe_work(struct work_struct *work)
-+{
-+	struct xe_device *xe = container_of(work, struct xe_device, pmt.work.work);
-+
-+	if (xe_is_oobmsm_fw_ready(xe)) {
-+		cri_late_bind_probe(xe);
-+		xe_pm_runtime_put(xe);
-+		return;
-+	}
-+
-+	xe->pmt.retry_count++;
-+
-+	/* wait up to 20 seconds */
-+	if (xe->pmt.retry_count == VSEC_LATE_BIND_RETRY) {
-+		drm_warn(&xe->drm, "PMT probe: Late Binding failed to complete\n");
-+		xe_pm_runtime_put(xe);
-+		return;
-+	}
-+
-+	if (!schedule_delayed_work(&xe->pmt.work, msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC)))
-+		xe_pm_runtime_put(xe);
-+}
-+
-+static bool wait_for_fw(struct xe_device *xe)
-+{
-+	int retries = VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
-+
-+	if (xe->info.platform != XE_CRESCENTISLAND)
-+		return true;
-+
-+	while (retries--) {
-+		if (xe_is_oobmsm_fw_ready(xe))
-+			return true;
-+
-+		msleep(VSEC_LATE_BIND_DELAY_MSEC);
-+	}
-+
-+	drm_warn(&xe->drm, "Late Binding failed to complete\n");
-+
-+	return false;
-+}
-+
- /*
-  * xe_pmt_telem_read is a callback API.  I.e this can be accessed external to
-  * XE driver (PMT driver scope).  Because of this, DRM hotplug needs to be
-@@ -318,6 +378,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 		goto dev_exit;
- 	}
- 
-+	if (!wait_for_fw(xe)) {
-+		ret = -ENODATA;
-+		goto runtime_exit;
-+	}
-+
- 	mutex_lock(&xe->pmt.lock);
- 
- 	/* set SoC re-mapper index register based on GUID memory region */
-@@ -327,6 +392,7 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 
- 	mutex_unlock(&xe->pmt.lock);
- 
-+runtime_exit:
- 	xe_pm_runtime_put(xe);
- 
- dev_exit:
-@@ -374,6 +440,10 @@ static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 offset)
- 	disc_addr += CRI_DISCOVERY_OFFSET + inst + offset;
- 
- 	xe_pm_runtime_get(xe);
-+	if (!wait_for_fw(xe)) {
-+		ret = -ENODATA;
-+		goto runtime_exit;
-+	}
- 	mutex_lock(&xe->pmt.lock);
- 
- 	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-@@ -381,6 +451,8 @@ static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 offset)
- 	memcpy_fromio(reg, disc_addr, sizeof(*reg));
- 
- 	mutex_unlock(&xe->pmt.lock);
-+
-+runtime_exit:
- 	xe_pm_runtime_put(xe);
- 
- dev_exit:
-@@ -416,6 +488,10 @@ static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 offset)
- 	disc_addr += CRI_DISCOVERY_OFFSET + inst + offset;
- 
- 	xe_pm_runtime_get(xe);
-+	if (!wait_for_fw(xe)) {
-+		ret = -ENODATA;
-+		goto runtime_exit;
-+	}
- 	mutex_lock(&xe->pmt.lock);
- 
- 	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-@@ -425,6 +501,9 @@ static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 offset)
- 	mutex_unlock(&xe->pmt.lock);
- 	xe_pm_runtime_put(xe);
- 
-+runtime_exit:
-+	xe_pm_runtime_put(xe);
-+
- dev_exit:
- 	drm_dev_exit(idx);
- 
-@@ -454,12 +533,44 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
- 	return vsec_platforms[xe->info.platform];
- }
- 
-+static void cri_late_bind_probe(struct xe_device *xe)
-+{
-+	struct intel_vsec_platform_info *info;
-+	struct device *dev = xe->drm.dev;
-+	enum xe_vsec platform;
-+
-+	platform = get_platform_info(xe);
-+	if (platform != XE_VSEC_CRI)
-+		return;
-+
-+	info = &xe_vsec_info[platform];
-+	if (!info->headers)
-+		return;
-+
-+	info->priv_data = &xe_cri_pmt_cb;
-+	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+
-+	intel_vsec_register(dev, info);
-+}
-+
-+static void vsec_disable_late_bind_work(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	/*
-+	 * If was work was cancelled while it was still pending, we need to
-+	 * take care of releasing the runtime reference
-+	 */
-+	if (disable_delayed_work_sync(&xe->pmt.work))
-+		xe_pm_runtime_put(xe);
-+}
-+
- /**
-  * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
-  * interface
-  * @xe: valid xe instance
-  */
--void xe_vsec_init(struct xe_device *xe)
-+int xe_vsec_init(struct xe_device *xe)
- {
- 	struct intel_vsec_platform_info *info;
- 	struct device *dev = xe->drm.dev;
-@@ -467,30 +578,44 @@ void xe_vsec_init(struct xe_device *xe)
- 
- 	platform = get_platform_info(xe);
- 	if (platform == XE_VSEC_UNKNOWN)
--		return;
-+		return 0;
- 
- 	info = &xe_vsec_info[platform];
- 	if (!info->headers)
--		return;
-+		return 0;
- 
- 	switch (platform) {
- 	case XE_VSEC_BMG:
- 		if (!xe->soc_remapper.set_telem_region)
--			return;
-+			return 0;
- 		xe->pmt.base_offset = BMG_TELEMETRY_OFFSET;
- 		info->priv_data = &xe_bmg_pmt_cb;
- 		break;
- 
- 	case XE_VSEC_CRI:
- 		if (!xe->soc_remapper.set_telem_region)
--			return;
-+			return 0;
- 		xe->pmt.base_offset = CRI_TELEMETRY_OFFSET;
-+
-+		xe->pmt.retry_count = 0;
-+		INIT_DELAYED_WORK(&xe->pmt.work, cri_late_bind_probe_work);
-+
-+		xe_pm_runtime_get_noresume(xe);
-+		if (!xe_is_oobmsm_fw_ready(xe)) {
-+			schedule_delayed_work(&xe->pmt.work,
-+					      msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC));
-+			return devm_add_action_or_reset(xe->drm.dev,
-+							vsec_disable_late_bind_work,
-+							xe);
-+		}
-+
- 		info->priv_data = &xe_cri_pmt_cb;
- 		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
- 		break;
- 
- 	default:
--		break;
-+		drm_err(&xe->drm, "Unsupported platform: %u\n", platform);
-+		return 0;
- 	}
- 
- 	/*
-@@ -498,5 +623,10 @@ void xe_vsec_init(struct xe_device *xe)
- 	 * resources.
- 	 */
- 	intel_vsec_register(dev, info);
-+
-+	if (platform == XE_VSEC_CRI)
-+		xe_pm_runtime_put(xe);
-+
-+	return 0;
- }
- MODULE_IMPORT_NS("INTEL_VSEC");
-diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
-index a25b4e6e681b..c4a1e2fc67d8 100644
---- a/drivers/gpu/drm/xe/xe_vsec.h
-+++ b/drivers/gpu/drm/xe/xe_vsec.h
-@@ -9,7 +9,7 @@
- struct device;
- struct xe_device;
- 
--void xe_vsec_init(struct xe_device *xe);
-+int xe_vsec_init(struct xe_device *xe);
- int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset, u32 count);
- 
- #endif
--- 
-2.43.0
+hmm, it looks that there is overlap with my series [1]
+
+I guess we should hold on with adding more SIGID usages until
+we complete review of the infrastructure patches and first set
+of SIGID usages that will act as 'golden' examples
+
+[1] https://patchwork.freedesktop.org/series/171022/#rev4
+
+>>>
+>>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_pcode.c | 12 +++++++-----
+>>>  1 file changed, 7 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+>>> index e9125341481b..b35c1a77effd 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pcode.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+>>> @@ -14,6 +14,7 @@
+>>>  #include "regs/xe_pmt.h"
+>>>  #include "xe_assert.h"
+>>>  #include "xe_device.h"
+>>> +#include "xe_log.h"
+>>>  #include "xe_mmio.h"
+>>>  #include "xe_pcode_api.h"
+>>>  #include "xe_pm.h"
+>>> @@ -61,9 +62,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
+>>>      }
+>>>      if (err) {
+>>> -        drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
+>>> -            err_decode, err_str);
+>>> -
+>>> +        xe_log_err(tile, PCODE, err_decode, "Mailbox failed: %s\n", err_str);
+>>>          return err_decode;
+>>>      }
+>>> @@ -225,6 +224,9 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
+>>>                  true, 50 * 1000, true);
+>>>      preempt_enable();
+>>> +    if (!status && ret)
+>>> +        xe_log_err(tile, PCODE, ret, "Request timed out on retry");
+>>> +
+>>>  out:
+>>>      mutex_unlock(&tile->pcode.lock);
+>>>      return status ? status : ret;
+>>> @@ -319,8 +321,8 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+>>>          mutex_unlock(&tile->pcode.lock);
+>>>      if (ret)
+>>> -        drm_err(&xe->drm,
+>>> -            "PCODE initialization timedout after: 3 min\n");
+>>> +        xe_log_err(xe, PCODE, -ret,
+>>> +            "Initialization timed out after: %d min\n", timeout_us / 60000000);
+>>
+>> Is a SIGID needed here? My understanding is that this failure is translated into survivability mode, at least during probe.
+
+IMO yes, it's a FW error, for which there is SIGID, so we have to report it
+what will come next (wedge/survivability) is not to be decided here
+we should report per site, not per condition
+
+>> Also is it correct to log CPER_SEV_RECOVERABLE for this error?
+
+initial documentation was reserving FATAL only for real PROBE errors
+or for SURVIVABILITY mode, but at least for the latter it is no longer true ;)
+
+> 
+> I thought all FW errors should be reported based on this conversation:
+> https://patchwork.freedesktop.org/patch/744654/?series=171725&rev=1
+
+that's also my understanding
+
+> 
+> fwiu, the chain of errors leading to the eventual failure is still useful, but not entirely clear on what's needed and what's not.
+
+IMO if for given error case there is a matching SIGID we should use xe_log to report it
+
+but we should still check if existing error makes sense ...
+
+that's why in my series I'm splitting almost each new SIGID
+usage addition to new patch to have proper discussion
+
+> 
+> @Mallesh, thoughts?
+> 
+> Thanks,
+> Umesh
+> 
+>>
+>> Thanks,
+>> Badal
+>>
+>>>      return ret;
+>>>  }
 
