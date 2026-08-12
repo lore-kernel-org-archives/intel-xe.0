@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35CB5C5DF64
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:16:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B20DC5CFEB
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:22:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E396410F0F9;
-	Wed, 12 Aug 2026 19:16:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BdoJUtZv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89A2710F0F9
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:16:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562160; x=1818098160;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uyyiJOMxikUXEDJXZKHj4gfg/blNd8zpm9VVDqx3L6g=;
- b=BdoJUtZv0LPRG6F7LJ3V3eK/ga+aj01+EFGOKJ0+WqtjDhJShIQFB8Pk
- UfZUymaCaoBItvP3EQgRDbl3zySgYOOovYUQ4zBSV6J2zc4uTmjVwQWCi
- zGN1Q9qmXz7EA+tHp5e5roHjIj+ckU0xJagqpzqhXAXduHQdgiMSOok4G
- MALDvVF97H2OJZwwWR3AcgemeEvWCp0QicHxIVI7etjV5G77MsYtTSPIx
- e6YkTw3ivOjgkUj4DL7L9DR5zfsiy8Of8Dvu6OczFMA8qqia9VHp+E71h
- YVY+X+NrJXSsq7WvsiSNAxBn/THjq5x2wmrAe7AR7dy8ykzXwQUzOIZJ/ w==;
-X-CSE-ConnectionGUID: 2pggEY2gQ72B8WXtpQo+Sw==
-X-CSE-MsgGUID: EuNUfBJVTvi+5Wnr97wGrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987629"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987629"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:16:00 -0700
-X-CSE-ConnectionGUID: lBsCcpMUTeaCQ2ahmM0RlQ==
-X-CSE-MsgGUID: gWO1tjmJRi2/UvYBuRo3gg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892143"
-Received: from miqurash-mobl2.amr.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.246.17.41])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:58 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
- Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 32/32] drm/xe/pci: Report 'cannot re-enable' error using
- SIGID
-Date: Wed, 12 Aug 2026 21:14:48 +0200
-Message-ID: <20260812191450.11690-33-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
-References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E624610E44D;
+	Wed, 12 Aug 2026 19:22:47 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5488310E44D;
+ Wed, 12 Aug 2026 19:22:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_structured_?=
+ =?utf-8?q?SIGID_error_logging_infrastructure_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 12 Aug 2026 19:22:46 -0000
+Message-ID: <178656256633.45178.11556270000843312123@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,50 +36,544 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'cannot re-enable PCI device' error using xe_log() helper.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
----
- drivers/gpu/drm/xe/xe_pci_error.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Series: drm/xe: Add structured SIGID error logging infrastructure (rev4)
+URL   : https://patchwork.freedesktop.org/series/171022/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index e41af2ac7f23..fb965f52be5e 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -7,6 +7,7 @@
- 
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_log.h"
- #include "xe_pci.h"
- #include "xe_pm.h"
- #include "xe_printk.h"
-@@ -90,13 +91,15 @@ static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
- {
- 	const struct pci_device_id *ent = pci_match_id(pdev->driver->id_table, pdev);
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	int err;
- 
- 	xe_info(xe, "PCI error: slot reset\n");
- 
- 	pci_restore_state(pdev);
- 
--	if (pci_enable_device(pdev)) {
--		xe_err(xe, "Cannot re-enable PCI device after reset\n");
-+	err = pci_enable_device(pdev);
-+	if (err) {
-+		xe_log_err_fatal(xe, PCI, err, "Cannot re-enable PCI device after reset\n");
- 		return PCI_ERS_RESULT_DISCONNECT;
- 	}
- 
--- 
-2.47.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 08c65472290df95ed8b8b2f9230739e07a5c91e6
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Aug 12 21:14:48 2026 +0200
+
+    drm/xe/pci: Report 'cannot re-enable' error using SIGID
+    
+    Report 'cannot re-enable PCI device' error using xe_log() helper.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Riana Tauro <riana.tauro@intel.com>
+    Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+    Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
++ /mt/dim checkpatch 43db79ba5c8eac68b393cca2faa0b13a6505de1a drm-intel
+9a9e651fdd25 drm/xe: Introduce xe_any helpers
+-:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#24: 
+new file mode 100644
+
+-:39: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#39: FILE: drivers/gpu/drm/xe/xe_any.h:11:
++#define __xe_any_to_self_assoc(type, any) \
++	const type * : (any), \
++	type * : (any)
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#39: FILE: drivers/gpu/drm/xe/xe_any.h:11:
++#define __xe_any_to_self_assoc(type, any) \
++	const type * : (any), \
++	type * : (any)
+
+-:50: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#50: FILE: drivers/gpu/drm/xe/xe_any.h:22:
++#define xe_any_if_type(any, type)						\
++	_Generic((any),								\
++		 __xe_any_to_self_assoc(type, (any)),				\
++		 default : NULL)
+
+-:53: WARNING:TABSTOP: Statements should start on a tabstop
+#53: FILE: drivers/gpu/drm/xe/xe_any.h:25:
++		 default : NULL)
+
+-:53: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#53: FILE: drivers/gpu/drm/xe/xe_any.h:25:
++		 default : NULL)
+
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'const' - possible side-effects?
+#87: FILE: drivers/gpu/drm/xe/xe_any.h:59:
++#define __xe_any_to_other_assoc(const, from, other, p) \
++	const struct from * : __##from##_to_##other((const struct from *)(p))
+
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'from' - possible side-effects?
+#87: FILE: drivers/gpu/drm/xe/xe_any.h:59:
++#define __xe_any_to_other_assoc(const, from, other, p) \
++	const struct from * : __##from##_to_##other((const struct from *)(p))
+
+-:87: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'from' may be better as '(from)' to avoid precedence issues
+#87: FILE: drivers/gpu/drm/xe/xe_any.h:59:
++#define __xe_any_to_other_assoc(const, from, other, p) \
++	const struct from * : __##from##_to_##other((const struct from *)(p))
+
+-:103: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#103: FILE: drivers/gpu/drm/xe/xe_any.h:75:
++#define xe_any_to_xe(any)							\
++	_Generic((any),								\
++		 __xe_any_to_self_assoc(struct xe_device, (any)),		\
++		 __xe_any_to_other_assoc(/* */, xe_tile, xe_device, (any)),	\
++		 __xe_any_to_other_assoc(const, xe_tile, xe_device, (any)),	\
++		 __xe_any_to_other_assoc(/* */, xe_gt, xe_device, (any)),	\
++		 __xe_any_to_other_assoc(const, xe_gt, xe_device, (any)),	\
++		 __xe_any_to_other_assoc(, drm_device, xe_device, (any)),	\
++		 __xe_any_to_other_assoc(, pci_dev, xe_device, (any)),		\
++		 __xe_any_to_other_assoc(, device, xe_device, (any)))
+
+-:120: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#120: FILE: drivers/gpu/drm/xe/xe_any.h:92:
++#define xe_any_to_drm(any)							\
++	_Generic((any),								\
++		 __xe_any_to_self_assoc(struct drm_device, (any)),		\
++		 default : &xe_any_to_xe(any)->drm)
+
+-:123: WARNING:TABSTOP: Statements should start on a tabstop
+#123: FILE: drivers/gpu/drm/xe/xe_any.h:95:
++		 default : &xe_any_to_xe(any)->drm)
+
+-:123: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#123: FILE: drivers/gpu/drm/xe/xe_any.h:95:
++		 default : &xe_any_to_xe(any)->drm)
+
+-:131: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#131: FILE: drivers/gpu/drm/xe/xe_any.h:103:
++#define xe_any_to_dev(any)							\
++	_Generic((any),								\
++		 __xe_any_to_self_assoc(struct device, (any)),			\
++		 __xe_any_to_other_assoc(, pci_dev, device, (any)),		\
++		 default : xe_any_to_drm(any)->dev)
+
+-:135: WARNING:TABSTOP: Statements should start on a tabstop
+#135: FILE: drivers/gpu/drm/xe/xe_any.h:107:
++		 default : xe_any_to_drm(any)->dev)
+
+-:135: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#135: FILE: drivers/gpu/drm/xe/xe_any.h:107:
++		 default : xe_any_to_drm(any)->dev)
+
+-:143: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#143: FILE: drivers/gpu/drm/xe/xe_any.h:115:
++#define xe_any_to_pdev(any)							\
++	_Generic((any),								\
++		 __xe_any_to_self_assoc(struct pci_dev, (any)),			\
++		 default : to_pci_dev(xe_any_to_dev(any)))
+
+-:146: WARNING:TABSTOP: Statements should start on a tabstop
+#146: FILE: drivers/gpu/drm/xe/xe_any.h:118:
++		 default : to_pci_dev(xe_any_to_dev(any)))
+
+-:146: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#146: FILE: drivers/gpu/drm/xe/xe_any.h:118:
++		 default : to_pci_dev(xe_any_to_dev(any)))
+
+-:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#157: FILE: drivers/gpu/drm/xe/xe_any.h:129:
++#define xe_any_id(any)								\
++	_Generic((any),								\
++		 __xe_any_to_other_assoc(/* */, xe_tile, id, (any)),		\
++		 __xe_any_to_other_assoc(const, xe_tile, id, (any)),		\
++		 __xe_any_to_other_assoc(/* */, xe_gt, id, (any)),		\
++		 __xe_any_to_other_assoc(const, xe_gt, id, (any)),		\
++		 default : 0)
+
+-:163: WARNING:TABSTOP: Statements should start on a tabstop
+#163: FILE: drivers/gpu/drm/xe/xe_any.h:135:
++		 default : 0)
+
+-:163: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#163: FILE: drivers/gpu/drm/xe/xe_any.h:135:
++		 default : 0)
+
+total: 6 errors, 6 warnings, 10 checks, 137 lines checked
+e4feac4d1fa3 drm/xe/log: Add structured SIGID error logging infrastructure
+-:37: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#37: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 342 lines checked
+70d69beed1d4 drm/xe/log: Introduce structured component/location identifiers
+-:18: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#18: 
+new file mode 100644
+
+-:154: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#154: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:132:
++#define DEFINE_XE_LOG_COMPONENTS(define) \
++	/* */									\
++	define(SYSTEM, 1, PCI, SW, "Linux PCI Subsystem")			\
++	define(SYSTEM, 2, DRM, SW, "DRM")					\
++	/* */									\
++	define(DRIVER, 1, XE, SW, "Xe Driver")					\
++	define(DRIVER, 2, PROBE, PROBE, "Driver Initialization")		\
++	define(DRIVER, 3, WEDGED, WEDGED, "Device Malfunction")			\
++	define(DRIVER, 4, RTP, SW, "Register Table Processing")			\
++	define(DRIVER, 5, WA, SW, "Workarounds")				\
++	define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")			\
++	/* */									\
++	define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")			\
++	define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")			\
++	define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")		\
++	define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")	\
++	define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")		\
++	/* */									\
++	define(DRIVER_FEATURE, 1, PF, SW, "SR-IOV Physical Function")		\
++	define(DRIVER_FEATURE, 2, VF, SW, "SR-IOV Virtual Function")		\
++	define(DRIVER_FEATURE, 3, SURVIVABILITY, SURVIVABILITY, "Survivability") \
++	define(DRIVER_FEATURE, 4, RAS, SW, "Reliability, Accessibility, Serviceability") \
++	/* */									\
++	define(DRIVER_FIRMWARE, 1, GUC, RUNTIME_FW, "GuC")			\
++	define(DRIVER_FIRMWARE, 2, HUC, RUNTIME_FW, "HuC")			\
++	define(DRIVER_FIRMWARE, 3, GSC, RUNTIME_FW, "GSC")			\
++	define(DRIVER_FIRMWARE, 16, PCODE, DEVICE_FW, "PCode")			\
++	define(DRIVER_FIRMWARE, 17, SYSCTRL, DEVICE_FW, "System Controller")	\
++	/* eod */
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:154: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'define' - possible side-effects?
+#154: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:132:
++#define DEFINE_XE_LOG_COMPONENTS(define) \
++	/* */									\
++	define(SYSTEM, 1, PCI, SW, "Linux PCI Subsystem")			\
++	define(SYSTEM, 2, DRM, SW, "DRM")					\
++	/* */									\
++	define(DRIVER, 1, XE, SW, "Xe Driver")					\
++	define(DRIVER, 2, PROBE, PROBE, "Driver Initialization")		\
++	define(DRIVER, 3, WEDGED, WEDGED, "Device Malfunction")			\
++	define(DRIVER, 4, RTP, SW, "Register Table Processing")			\
++	define(DRIVER, 5, WA, SW, "Workarounds")				\
++	define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")			\
++	/* */									\
++	define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")			\
++	define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")			\
++	define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")		\
++	define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")	\
++	define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")		\
++	/* */									\
++	define(DRIVER_FEATURE, 1, PF, SW, "SR-IOV Physical Function")		\
++	define(DRIVER_FEATURE, 2, VF, SW, "SR-IOV Virtual Function")		\
++	define(DRIVER_FEATURE, 3, SURVIVABILITY, SURVIVABILITY, "Survivability") \
++	define(DRIVER_FEATURE, 4, RAS, SW, "Reliability, Accessibility, Serviceability") \
++	/* */									\
++	define(DRIVER_FIRMWARE, 1, GUC, RUNTIME_FW, "GuC")			\
++	define(DRIVER_FIRMWARE, 2, HUC, RUNTIME_FW, "HuC")			\
++	define(DRIVER_FIRMWARE, 3, GSC, RUNTIME_FW, "GSC")			\
++	define(DRIVER_FIRMWARE, 16, PCODE, DEVICE_FW, "PCode")			\
++	define(DRIVER_FIRMWARE, 17, SYSCTRL, DEVICE_FW, "System Controller")	\
++	/* eod */
+
+-:189: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#189: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:167:
++#define MAKE_XE_LOG_COMPONENT_ENUM(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG = MAKE_XE_LOG_COMPONENT(_CLASS, (_ID)), \
++	XE_LOG_COMPONENT_##_CLASS##_##_ID = XE_LOG_COMPONENT_##_TAG, \
++	/* eod */
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:189: WARNING:MACRO_ARG_UNUSED: Argument '_SIG' is not used in function-like macro
+#189: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:167:
++#define MAKE_XE_LOG_COMPONENT_ENUM(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG = MAKE_XE_LOG_COMPONENT(_CLASS, (_ID)), \
++	XE_LOG_COMPONENT_##_CLASS##_##_ID = XE_LOG_COMPONENT_##_TAG, \
++	/* eod */
+
+-:189: WARNING:MACRO_ARG_UNUSED: Argument '_NAME' is not used in function-like macro
+#189: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:167:
++#define MAKE_XE_LOG_COMPONENT_ENUM(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG = MAKE_XE_LOG_COMPONENT(_CLASS, (_ID)), \
++	XE_LOG_COMPONENT_##_CLASS##_##_ID = XE_LOG_COMPONENT_##_TAG, \
++	/* eod */
+
+-:202: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#202: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:180:
++#define MAKE_XE_LOG_COMPONENT_SIGID(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG##_SIGID = XE_SIGID_##_SIG, \
++	/* eod */
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:202: WARNING:MACRO_ARG_UNUSED: Argument '_CLASS' is not used in function-like macro
+#202: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:180:
++#define MAKE_XE_LOG_COMPONENT_SIGID(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG##_SIGID = XE_SIGID_##_SIG, \
++	/* eod */
+
+-:202: WARNING:MACRO_ARG_UNUSED: Argument '_ID' is not used in function-like macro
+#202: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:180:
++#define MAKE_XE_LOG_COMPONENT_SIGID(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG##_SIGID = XE_SIGID_##_SIG, \
++	/* eod */
+
+-:202: WARNING:MACRO_ARG_UNUSED: Argument '_NAME' is not used in function-like macro
+#202: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:180:
++#define MAKE_XE_LOG_COMPONENT_SIGID(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	XE_LOG_COMPONENT_##_TAG##_SIGID = XE_SIGID_##_SIG, \
++	/* eod */
+
+total: 3 errors, 6 warnings, 1 checks, 187 lines checked
+f3feb2a7198b drm/xe/log: Add component/location decorations to dmesg
+-:40: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#40: FILE: drivers/gpu/drm/xe/xe_log.c:26:
++#define MAKE_XE_LOG_COMPONENT_CLASS_PREFIX(_CLASS) \
++	case XE_LOG_COMPONENT_CLASS_##_CLASS: return #_CLASS "? ";
+
+-:55: WARNING:MACRO_ARG_UNUSED: Argument '_CLASS' is not used in function-like macro
+#55: FILE: drivers/gpu/drm/xe/xe_log.c:41:
++#define MAKE_XE_LOG_COMPONENT_CASE_PREFIX(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return #_TAG ": ";
+
+-:55: WARNING:MACRO_ARG_UNUSED: Argument '_ID' is not used in function-like macro
+#55: FILE: drivers/gpu/drm/xe/xe_log.c:41:
++#define MAKE_XE_LOG_COMPONENT_CASE_PREFIX(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return #_TAG ": ";
+
+-:55: WARNING:MACRO_ARG_UNUSED: Argument '_SIG' is not used in function-like macro
+#55: FILE: drivers/gpu/drm/xe/xe_log.c:41:
++#define MAKE_XE_LOG_COMPONENT_CASE_PREFIX(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return #_TAG ": ";
+
+-:55: WARNING:MACRO_ARG_UNUSED: Argument '_NAME' is not used in function-like macro
+#55: FILE: drivers/gpu/drm/xe/xe_log.c:41:
++#define MAKE_XE_LOG_COMPONENT_CASE_PREFIX(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return #_TAG ": ";
+
+-:55: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#55: FILE: drivers/gpu/drm/xe/xe_log.c:41:
++#define MAKE_XE_LOG_COMPONENT_CASE_PREFIX(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return #_TAG ": ";
+
+total: 0 errors, 6 warnings, 0 checks, 126 lines checked
+0a8ebef72139 drm/xe/log: Add SIGID log helpers for severity
+5506af2cffb2 drm/xe/log: Add SIGID log helpers for location
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'any' - possible side-effects?
+#45: FILE: drivers/gpu/drm/xe/xe_log.h:49:
++#define xe_log_location(any) \
++	PREP_XE_LOG_LOCATION(xe_log_location_type(any), xe_any_id(any))
+
+total: 0 errors, 0 warnings, 1 checks, 47 lines checked
+21f7f0662e9c drm/xe/log: Add SIGID log helpers for location & severity
+f8c4ed0492d0 drm/xe/log: Add SIGID log helpers for components
+8002a547f86a drm/xe/log: Add SIGID log helpers for component & severity
+e3ba2be7f884 drm/xe/log: Add SIGID log helpers for errno-only
+03b62a1d302f drm/xe/log: Index all SIGID printk messages
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+  <3> drivers/gpu/drm/xe/xe_log.c:142 log_dmesg_vprintk "%s %s: [drm] *ERROR* %pV"
+
+-:65: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#65: FILE: drivers/gpu/drm/xe/xe_log.h:23:
++#define __xe_log_emit_printk_index(fmt) \
++	dev_printk_index_emit(NULL, "[drm]%s SIGID=%u %s(%s)%s%s%s: " fmt);
+
+-:68: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#68: FILE: drivers/gpu/drm/xe/xe_log.h:26:
++#define xe_log_emit(pdev, sev, sig, comp, loc, data, len, fmt, args...) ({		\
++	__xe_log_emit_printk_index(fmt);						\
++	__xe_log_emit((pdev), (sev), (sig), (comp), (loc), (data), (len), fmt, ##args); \
++})
+
+total: 0 errors, 2 warnings, 1 checks, 40 lines checked
+eec656f53be3 drm/xe/log: Add hardware error signatures
+dc9453a92f4f drm/xe/log: Extend components list with hardware items
+-:25: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#25: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:136:
++#define DEFINE_XE_LOG_SOFTWARE_COMPONENTS(define) \
+ 	/* */									\
+ 	define(SYSTEM, 1, PCI, SW, "Linux PCI Subsystem")			\
+ 	define(SYSTEM, 2, DRM, SW, "DRM")					\
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'define' - possible side-effects?
+#25: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:136:
++#define DEFINE_XE_LOG_SOFTWARE_COMPONENTS(define) \
+ 	/* */									\
+ 	define(SYSTEM, 1, PCI, SW, "Linux PCI Subsystem")			\
+ 	define(SYSTEM, 2, DRM, SW, "DRM")					\
+
+-:34: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#34: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:165:
++#define DEFINE_XE_LOG_HARDWARE_COMPONENTS(define) \
++	define(HARDWARE, 1, DEVICE_MEMORY, DEVICE_MEMORY, "Device Memory")	\
++	define(HARDWARE, 2, CORE_COMPUTE, CORE_COMPUTE, "Core Compute")		\
++	/*     HARDWARE, 3, RESERVED */						\
++	define(HARDWARE, 4, PCIE, PCIE, "PCIe Interface")			\
++	define(HARDWARE, 5, FABRIC, FABRIC, "Fabric")				\
++	define(HARDWARE, 6, SOC_INTERNAL, SOC_INTERNAL, "SoC Internal")		\
+ 	/* eod */
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'define' - possible side-effects?
+#34: FILE: drivers/gpu/drm/xe/abi/xe_log_abi.h:165:
++#define DEFINE_XE_LOG_HARDWARE_COMPONENTS(define) \
++	define(HARDWARE, 1, DEVICE_MEMORY, DEVICE_MEMORY, "Device Memory")	\
++	define(HARDWARE, 2, CORE_COMPUTE, CORE_COMPUTE, "Core Compute")		\
++	/*     HARDWARE, 3, RESERVED */						\
++	define(HARDWARE, 4, PCIE, PCIE, "PCIe Interface")			\
++	define(HARDWARE, 5, FABRIC, FABRIC, "Fabric")				\
++	define(HARDWARE, 6, SOC_INTERNAL, SOC_INTERNAL, "SoC Internal")		\
+ 	/* eod */
+
+total: 2 errors, 0 warnings, 2 checks, 24 lines checked
+da1d6bdfd18d drm/xe/ras: Check RAS and LOG component definitions
+ccbcce25c8fd drm/xe/kunit: Setup driver data in the test device
+8c4626206f98 drm/xe/tests: Add Kunit tests for xe_log
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
+
+-:48: WARNING:MACRO_ARG_UNUSED: Argument '_CLASS' is not used in function-like macro
+#48: FILE: drivers/gpu/drm/xe/tests/xe_log_kunit.c:28:
++#define make_component_tag_case(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return _NAME;
+
+-:48: WARNING:MACRO_ARG_UNUSED: Argument '_ID' is not used in function-like macro
+#48: FILE: drivers/gpu/drm/xe/tests/xe_log_kunit.c:28:
++#define make_component_tag_case(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return _NAME;
+
+-:48: WARNING:MACRO_ARG_UNUSED: Argument '_SIG' is not used in function-like macro
+#48: FILE: drivers/gpu/drm/xe/tests/xe_log_kunit.c:28:
++#define make_component_tag_case(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return _NAME;
+
+-:48: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#48: FILE: drivers/gpu/drm/xe/tests/xe_log_kunit.c:28:
++#define make_component_tag_case(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return _NAME;
+
+total: 0 errors, 5 warnings, 0 checks, 575 lines checked
+11ca6a01a930 drm/xe/tests: Add kunit tests for xe_any
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 220 lines checked
+dfaafa58c78f drm/xe: Report 'probe blocked' error using SIGID
+9ca9593a8fd5 drm/xe: Report all probe errors using SIGID
+ab7260857768 drm/xe/survivability: Report 'boot status' using SIGID
+a1ae329226c7 drm/xe/survivability: Report 'sysfs failure' error using SIGID
+acb7a9ddca31 drm/xe/survivability: Report 'Boot Mode enabled' status using SIGID
+9555113f1179 drm/xe/survivability: Report 'Runtime Mode enabled' status using SIGID
+1460c28e63a1 drm/xe: Report 'device wedged' errors using SIGID
+227ad65d2228 drm/xe/pcode: Report 'Mailbox failed' error using SIGID
+ed915805975b drm/xe/pcode: Report 'timeout, retrying' error using SIGID
+19b535f69317 drm/xe/pcode: Report 'initialization timedout' error using SIGID
+6ec7ae86f36b drm/xe/guc: Report 'GuC mmio' errors using SIGID
+5cf4606f7590 drm/xe/gt: Report 'reset failed' errors using SIGID
+9811f3d47640 drm/xe/gt: Report 'Fault response' pagefault error using SIGID
+5e1412781ea6 drm/xe/gt: Report 'Queue full' pagefault error using SIGID
+08c65472290d drm/xe/pci: Report 'cannot re-enable' error using SIGID
+
 
