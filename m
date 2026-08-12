@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AD0FC5DF64
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9225DC5AD5A
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8C410F0F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE3510F0F7;
 	Wed, 12 Aug 2026 19:15:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oexi7seD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GSC9X1St";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74C6410F0F1
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F4A810F0F2
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562150; x=1818098150;
+ t=1786562152; x=1818098152;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NUFYw3/WDLrucEcQXUg1oR1hY+ObvtBmG7JVCk3IUwI=;
- b=Oexi7seDr1vagV/L2qZLl+Kl6GSi/zVvCAEie/bOzxULa8N0Ze75RlqG
- Gj4fxwsqMtfR11ZQaaHKqF2mpT9Hi/KlPua9UVYJ2FboXfC5kuPfJu6Bw
- zW2iyaPlVH+bW6eAk38TvLjsnpgyizeZIeL1DsxcEwMAyNemp6VeDpaCD
- SyZ3lFo8UWcT8fdsss9kacvAT6F2qGG0dx2u65HFTeSasWIEGk0fRgR8D
- 2/8tp8woxKVhfkxO0vGibu9O8Autw1isHnIDAul3dpXCNdEbbdhc9eQFv
- 0Gy5I0d3BgzfngTgCVrVZrTdPa1QTrxyqwQkqm4gsTZcWMRZte4TDZebi g==;
-X-CSE-ConnectionGUID: XSYY123VQ3SEofShC2KMtQ==
-X-CSE-MsgGUID: Vj812s9yR1OIBER47bKgMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987602"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987602"
+ bh=ut5r1yKqg6J7hQUklMcnZ6bRW0wrnE3yZ7XP5M8UnY4=;
+ b=GSC9X1Stp3gxlf7RhY7GavyCiOzFDflpeJ6xtHEWQli4OctXjBSAU50/
+ oeYNHLO+swjFYZygPy1ylmXUP3Ibe4aQF0yIq470sg35SKaGhPjC1ptyF
+ taf8EQU6g2LXfpC/NjtFPW5jOWC1uZTCNYGDtTwUVRg2aVclUvAeyOjEY
+ kA+31fKK3ORIYcf4+IeSqPXP7MRESEaEP0E8VlOO+a5kaUIi8MKMPFaGc
+ Jz5vPSBpmHLo4Vb5qaD5I92Q5YwAFJ10WXCPg33HQZhlX2NVfZzHUPJhN
+ ZGBfFpL43XbCkU/yK6CoESqmAhxQyxMle28oSNARK9WzYJFEGLNKYkpmO w==;
+X-CSE-ConnectionGUID: HR81ALZHR7uL9T2ZaR08RA==
+X-CSE-MsgGUID: mg2W7z4ZS0yNe4b+N2MuYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987604"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987604"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:50 -0700
-X-CSE-ConnectionGUID: Lmrx1YH8QpyKtA1CZMZrqw==
-X-CSE-MsgGUID: LK4Dk3rTTaihesZfUWDsPQ==
+ 12 Aug 2026 12:15:52 -0700
+X-CSE-ConnectionGUID: CWckVlB4QH2DioT/A7Rfpw==
+X-CSE-MsgGUID: xKU4inETTZeNKTft1IFUdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892084"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892091"
 Received: from miqurash-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:48 -0700
+ 12 Aug 2026 12:15:50 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH v4 27/32] drm/xe/pcode: Report 'initialization timedout' error
- using SIGID
-Date: Wed, 12 Aug 2026 21:14:43 +0200
-Message-ID: <20260812191450.11690-28-michal.wajdeczko@intel.com>
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v4 28/32] drm/xe/guc: Report 'GuC mmio' errors using SIGID
+Date: Wed, 12 Aug 2026 21:14:44 +0200
+Message-ID: <20260812191450.11690-29-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
@@ -72,42 +71,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'initialization timedout' error using xe_log_err() helper.
+Report various 'GuC mmio' errors using xe_log() helpers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pcode.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 14b13a11d1d6..e1b8062541a9 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -297,7 +297,7 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
- {
- 	u32 status, request = DGFX_GET_INIT_STATUS;
- 	struct xe_tile *tile = xe_device_get_root_tile(xe);
--	int timeout_us = 180000000; /* 3 min */
-+	long timeout_us = 3 * 60 * USEC_PER_SEC; /* 3 min */
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4286bd05c686..c7f8bbd4cb92 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -39,6 +39,7 @@
+ #include "xe_guc_rc.h"
+ #include "xe_guc_relay.h"
+ #include "xe_guc_submit.h"
++#include "xe_log.h"
+ #include "xe_memirq.h"
+ #include "xe_mmio.h"
+ #include "xe_platform_types.h"
+@@ -1542,8 +1543,9 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 		/* scratch registers might be cleared during FLR, try once more */
+ 		if (!header) {
+ 			if (++lost > MAX_RETRIES_ON_FLR) {
+-				xe_gt_err(gt, "GuC mmio request %#x: lost, too many retries %u\n",
+-					  request[0], lost);
++				xe_log_err(gt, GUC, -ENOLINK,
++					   "MMIO request %#x: lost, too many retries %u\n",
++					   request[0], lost);
+ 				return -ENOLINK;
+ 			}
+ 			xe_gt_dbg(gt, "GuC mmio request %#x: lost, trying again\n", request[0]);
+@@ -1551,8 +1553,8 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 			goto retry;
+ 		}
+ timeout:
+-		xe_gt_err(gt, "GuC mmio request %#x: no reply %#x\n",
+-			  request[0], header);
++		xe_log_err(gt, GUC, ret, "MMIO request %#x: no reply %#x\n",
++			   request[0], header);
+ 		return ret;
+ 	}
  
- 	if (xe->info.skip_pcode)
-@@ -318,8 +318,8 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
- 		mutex_unlock(&tile->pcode.lock);
+@@ -1607,16 +1609,16 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 			return -EREMCHG;
+ 		}
  
- 	if (ret)
--		drm_err(&xe->drm,
--			"PCODE initialization timedout after: 3 min\n");
-+		xe_log_err(tile, PCODE, ret, "initialization timedout after %ld seconds\n",
-+			   timeout_us / USEC_PER_SEC);
+-		xe_gt_err(gt, "GuC mmio request %#x: failure %#x hint %#x\n",
+-			  request[0], error, hint);
++		xe_log_err(gt, GUC, -ENXIO, "MMIO request %#x: failure %#x hint %#x\n",
++			   request[0], error, hint);
+ 		return -ENXIO;
+ 	}
  
- 	return ret;
- }
+ 	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) !=
+ 	    GUC_HXG_TYPE_RESPONSE_SUCCESS) {
+ proto:
+-		xe_gt_err(gt, "GuC mmio request %#x: unexpected reply %#x\n",
+-			  request[0], header);
++		xe_log_err(gt, GUC, -EPROTO, "MMIO request %#x: unexpected reply %#x\n",
++			   request[0], header);
+ 		return -EPROTO;
+ 	}
+ 
 -- 
 2.47.1
 
