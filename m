@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B89DC5B572
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA6F5C5AD5A
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCA7F10F0F2;
-	Wed, 12 Aug 2026 19:15:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74AD310F0F6;
+	Wed, 12 Aug 2026 19:15:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXPKeCDc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ApBRC+H3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 482CE10F0F2
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5176C10F0F2
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562154; x=1818098154;
+ t=1786562156; x=1818098156;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UZRELeTKaag89o6X+s+iChzDhRdRkp0e+0oAJI6cNXQ=;
- b=EXPKeCDciHaxTqtyTKQEPPjsdWHAzZp1ymlQDbNyNuq1nqXL+cHlvYxB
- ZDqwL0xL6Mn1d08LnHrzjQ3myH9YqWUkkngzY4dYpn/qtwb4WlTeXv2RH
- Mb4rNrMChyHT0D0eSpj35BRSMLbquwB5H3yIT/K8pwFUuO5/kaaUvPLOv
- P4tMRcxplOxZTBdwMsR1d8nnWksiId8Kk5tCr8zr+mJHiqPE4LnxPC1Av
- 6LpPGlPl8wu144pnRg94s0sPZU7si1GATKSrGFzXEOmVXSIcrme7yvure
- rqC8t/Nr2m/8ZMjHXud6jjF+xZL55Xsr7H4gFGErJyFZBctb8cEVmiyfD A==;
-X-CSE-ConnectionGUID: mucwbjgrRQK34+s+k3s2dQ==
-X-CSE-MsgGUID: G+Pm639jQ/SJqA5mLKhIwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987612"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987612"
+ bh=4uXcAYdiUqdMgXNAuWK+DkaissNYSq8gZp68UBuYxxQ=;
+ b=ApBRC+H36zIZrHc13jmMuNuQvWjnZPahSCNIxtYMn3meQcJcYfOM+nR9
+ rkNaewjf+KanPWzexrKn1ce/35GwNw/vNXCNAQulrvVb5kvnxkE4CggVZ
+ ZHyf5iYVmqNmyHl4/LWQJWGiFiiaGzx0kvJfgqLP8bxPmcfW05SEd9JVu
+ cxXVDmmn4aFTxZyHpX2zMR/vzxgCORgELquuUh8TwZ/ClMv5LVoyt3U+W
+ kDFKNZZh9zaU9q0jZOdO+RLMFzsqfXJfCisHdwMaAVABsGS5wBwfInG3v
+ dTWVyfh7DGXf/W5zjWP6c7u5ztF11aoAJyrSg4DD1OIfrpYvTdB6mrvHo g==;
+X-CSE-ConnectionGUID: sYlXArCPTGygwh9/3bVmvQ==
+X-CSE-MsgGUID: 9vVl0ASFRdOUX2GccCF5rQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987618"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987618"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:54 -0700
-X-CSE-ConnectionGUID: fg/ClW5DTbSFNwosAPpd1A==
-X-CSE-MsgGUID: IJd/o0uDSa++klAwDInAWw==
+ 12 Aug 2026 12:15:56 -0700
+X-CSE-ConnectionGUID: UHZPyq0BRwGMFX9PXB38ag==
+X-CSE-MsgGUID: bNbpf3ZBSl+D6H7pzLmX+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892107"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892126"
 Received: from miqurash-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:52 -0700
+ 12 Aug 2026 12:15:54 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
@@ -50,9 +50,10 @@ Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 29/32] drm/xe/gt: Report 'reset failed' errors using SIGID
-Date: Wed, 12 Aug 2026 21:14:45 +0200
-Message-ID: <20260812191450.11690-30-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 30/32] drm/xe/gt: Report 'Fault response' pagefault error
+ using SIGID
+Date: Wed, 12 Aug 2026 21:14:46 +0200
+Message-ID: <20260812191450.11690-31-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
@@ -72,7 +73,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'reset' related err/info messages using xe_log() helpers.
+Report 'Unsuccessful response' error using xe_log_err() helper.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
@@ -80,50 +81,34 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+v2: rebased (Michal) reword message (Mallesh)
+---
+ drivers/gpu/drm/xe/xe_pagefault.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index dfdacc0f6de9..6805e0d3bf21 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -48,6 +48,7 @@
- #include "xe_hw_engine_class_sysfs.h"
- #include "xe_irq.h"
- #include "xe_lmtt.h"
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index 7e829c61387f..eb600c466187 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -14,6 +14,7 @@
+ #include "xe_gt_types.h"
+ #include "xe_gt_stats.h"
+ #include "xe_hw_engine.h"
 +#include "xe_log.h"
- #include "xe_lrc.h"
- #include "xe_map.h"
- #include "xe_migrate.h"
-@@ -925,7 +926,7 @@ static void gt_reset_worker(struct work_struct *w)
- 	if (!xe_device_uc_enabled(gt_to_xe(gt)))
- 		goto err_pm_put;
- 
--	xe_gt_info(gt, "reset started\n");
-+	xe_log_info(gt, GT, "reset started\n");
- 
- 	if (xe_fault_gt_reset()) {
- 		err = -ECANCELED;
-@@ -964,7 +965,7 @@ static void gt_reset_worker(struct work_struct *w)
- 	/* Pair with get while enqueueing the work in xe_gt_reset_async() */
- 	xe_pm_runtime_put(gt_to_xe(gt));
- 
--	xe_gt_info(gt, "reset done\n");
-+	xe_log_info(gt, GT, "reset done\n");
- 
- 	return;
- 
-@@ -973,7 +974,7 @@ static void gt_reset_worker(struct work_struct *w)
- 	XE_WARN_ON(xe_uc_start(&gt->uc));
- 
- err_fail:
--	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
-+	xe_log_err_fatal(gt, GT, err, "reset failed\n");
- 	xe_device_declare_wedged(gt_to_xe(gt));
- err_pm_put:
- 	xe_pm_runtime_put(gt_to_xe(gt));
+ #include "xe_pagefault.h"
+ #include "xe_pagefault_types.h"
+ #include "xe_svm.h"
+@@ -625,8 +626,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+ 				xe_pagefault_save_to_vm(gt_to_xe(gt), pf);
+ 				xe_pagefault_cache_start_invalidate(cache_start);
+ 				xe_pagefault_print(pf);
+-				xe_gt_info(pf->gt, "Fault response: Unsuccessful %pe\n",
+-					   ERR_PTR(err));
++				xe_log_err(pf->gt, PAGEFAULT, err, "Unsuccessful response\n");
+ 			} else {
+ 				xe_gt_stats_incr(pf->gt, XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT, 1);
+ 				xe_gt_dbg(pf->gt, "Prefetch Fault response: Unsuccessful %pe\n",
 -- 
 2.47.1
 
