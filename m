@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20E9DC5DF68
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24F8DC5DF6A
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 22:17:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C6A10F148;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F083010F14A;
 	Wed, 12 Aug 2026 22:17:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Pgc1PeFp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UV5JCjZL";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2E7E10E44A
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:51:50 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A253A10E44A
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:51:29 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 662E760A7D;
- Wed, 12 Aug 2026 19:51:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E569F1F000E9;
- Wed, 12 Aug 2026 19:51:49 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 72C1842E33;
+ Wed, 12 Aug 2026 19:51:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 359891F000E9;
+ Wed, 12 Aug 2026 19:51:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786564310;
- bh=fN9TfEzpkTu9L+CW95dmcmEkK/vv26zrBVVf7jRRj3o=;
+ s=k20260515; t=1786564289;
+ bh=NNsD7SpPAj/P4wUCK8EyCGd+KDJ5amSUawh7ch3GorI=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Pgc1PeFpaN3HUPs4hjHcwT4tzfCUnS+MUNgRshG1BCv9JpmTlRE+lcMkS20CUzhux
- tRfO+89VubWVVe8yq4edoA9y7aIutEz1oiCY+Dhch0ft+QeIzCJQDj1VukAnrFDjv+
- taRsoYoGiGPJvt1Uv39B7ZAMNacFsADUXKgDHI9gNBtvqkQ6ZD+5FvRBLdmQWQoKHq
- ZHc9qM33o6iJIJJpeOugfH4UskY8EXcaBPqOmt4cqz0bJsJ43ZwffQtALTet5KkKUZ
- VFWOiRmPd+jxTHDZrsVLvKyiCBZ9hd7V53WzT+UYVPDvU9JiJdup3gFZd4KvjpSqOG
- Pcwiq6j+VNXmw==
+ b=UV5JCjZLgFZFxQogSREcvUM74s4J6USn3jz0EBpY8ywwQ6yPffm7iAXmHL1g0qEQg
+ Hqj/ahLk2Xj9f84bSorx+eccbMIHCFB1zQxSlHFhZsPX8GUSiDNjM3ELX1o5MrY9Yd
+ /p/RA5KJstBTcnBGJ/xqIXgqSgGGlAggzQ3ubMSeqFKvCSt8Y8idw/g0djcnqRcb5D
+ nWbZsyVfLy+dIf+zWOtLvlRTd+BZL4bQNaYBjWHRhblEl0lr5WOteFjQhfGxIbnlNK
+ XQkhQMbZ6TsFx8uG+jjfbhgeovhmGJYLSAsfWY+P0s4o9GmDiliKmUIPmWjMjD5RG+
+ IKy5zk8rnXePw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 05/10] drm/xe/vsec: Support possible hotplug exit
+Subject: Re: [PATCH v2 07/10] drm/xe/vsec: Crescent Island PMT decode
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812193742.2170188-17-michael.j.ruhl@intel.com>
+In-Reply-To: <20260812193742.2170188-19-michael.j.ruhl@intel.com>
 References: <20260812193742.2170188-12-michael.j.ruhl@intel.com>
- <20260812193742.2170188-17-michael.j.ruhl@intel.com>
+ <20260812193742.2170188-19-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 19:51:49 +0000
-Message-Id: <20260812195149.E569F1F000E9@smtp.kernel.org>
+Date: Wed, 12 Aug 2026 19:51:28 +0000
+Message-Id: <20260812195129.359891F000E9@smtp.kernel.org>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 22:17:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,80 +57,115 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
 
+New issues:
+- [Medium] The Crescent Island (CRI) PMT initialization is inaccessible due=
+ to missing platform integration in the initialization path, rendering the =
+new decode logic dead code.
+
 Pre-existing issues:
-- [High] The `xe_pmt_telem_read` function performs a `memcpy_fromio` withou=
-t validating that the requested telemetry read fits within the `xe->mmio.re=
-gs` mapped region. The `user_offset` and `count` parameters passed from the=
- sysfs interface are bounded by `entry->size` (derived from the device's PM=
-T discovery header). However, the hardware-provided size is implicitly trus=
-ted and never validated against the driver's actual MMIO mapping limits. A =
-malicious or buggy hardware device could advertise an artificially large `h=
-eader->size`, bypassing the `sysfs` offset limits. Because `xe_pmt_telem_re=
-ad` calculates `telem_addr =3D xe->mmio.regs + offset + user_offset` and pe=
-rforms `memcpy_fromio`, this permits an out-of-bounds read past the end of =
-the `xe->mmio.regs` mapping. Reading arbitrary unmapped physical memory or =
-unrelated device registers could cause a system crash, leak sensitive hardw=
-are state, or trigger unintended side effects from read-sensitive registers.
+- [High] Unhandled cap_type and instance combinations in guid_decode functi=
+ons silently return success with a 0 offset, leading to incorrect base regi=
+ster reads.
 --
 
---- Patch [5]: [PATCH v2 05/10] drm/xe/vsec: Support possible hotplug exit =
----
-commit 240693c221b75275ccbcc4f83244797a5eb5edf9
+--- Patch [7]: [PATCH v2 07/10] drm/xe/vsec: Crescent Island PMT decode ---
+commit 8ae722df1dc1347897983eec5f487f23bc897a93
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Support possible hotplug exit
+drm/xe/vsec: Crescent Island PMT decode
 
-This patch adds drm_dev_enter() and drm_dev_exit() to xe_pmt_telem_read()
-to verify the device is valid in the hotplug context before accessing it. It
-also updates error handling to properly exit the DRM device context on fail=
-ure.
+This commit adds support for decoding the PMT data area on Crescent
+Island (CRI) devices. It introduces new magic numbers, a new decode
+function for CRI, and updates the telemetry read callback to use a
+device-specific base offset.
 
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index 6345b0b4b26b8..dc42b9492428a 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
 [ ... ]
-> @@ -148,14 +155,20 @@ int xe_pmt_telem_read(struct device *dev, u32 guid,=
- u64 *data, loff_t user_offse
->  	u32 cap_type =3D FIELD_GET(GUID_CAP_TYPE, guid);
->  	u32 mem_region;
->  	u32 offset;
-> -	int ret;
-> +	int ret =3D 0;
-> +	int idx;
+> @@ -138,45 +162,92 @@ enum capability {
+>  	WATCHER,
+>  };
 > =20
-> -	if (!xe->soc_remapper.set_telem_region)
-> +	if (!drm_dev_enter(&xe->drm, &idx))
->  		return -ENODEV;
+> -static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+> +static int bmg_guid_decode(u32 guid, int *index, u32 *offset)
+>  {
+>  	u32 record_id =3D FIELD_GET(GUID_RECORD_ID, guid);
+>  	u32 cap_type  =3D FIELD_GET(GUID_CAP_TYPE, guid);
+[ ... ]
+>  	switch (record_id) {
+>  	case PUNIT:
+> -		*index =3D 0;
+> +		*index =3D BMG_IDX_TELEM_PUNIT;
+>  		if (cap_type =3D=3D TELEMETRY)
+> -			*offset =3D PUNIT_TELEMETRY_OFFSET;
+> +			*offset =3D BMG_PUNIT_TELEMETRY_OFFSET;
+>  		else
+> -			*offset =3D PUNIT_WATCHER_OFFSET;
+> +			*offset =3D BMG_PUNIT_WATCHER_OFFSET;
+>  		break;
 > =20
-> +	if (!xe->soc_remapper.set_telem_region) {
-> +		ret =3D -EINVAL;
-> +		goto dev_exit;
-> +	}
-> +
->  	ret =3D xe_guid_decode(guid, &mem_region, &offset);
->  	if (ret)
-> -		return ret;
-> +		goto dev_exit;
-> =20
->  	telem_addr +=3D offset + user_offset;
+>  	case OOBMSM_0:
+> -		*index =3D 1;
+> +		*index =3D BMG_IDX_TELEM_OOBMSM;
+>  		if (cap_type =3D=3D WATCHER)
+> -			*offset =3D OOBMSM_0_WATCHER_OFFSET;
+> +			*offset =3D BMG_OOBMSM_0_WATCHER_OFFSET;
+>  		break;
 
 [Severity: High]
-This is a pre-existing issue, but does this code need to validate that the
-requested telemetry read fits within the xe->mmio.size limit?
+This is a pre-existing issue, but if cap_type is not WATCHER here, this
+case silently falls through, leaves offset as 0, and returns 0 indicating
+success.
 
-If a device provides a malicious or buggy PMT discovery header that adverti=
-ses a
-large entry->size, the sysfs offset limits would allow large user_offset and
-count values.
+Will this misdirect reads to the base PMT offset since offset remains 0,
+potentially leaking data or causing hardware hangs?
 
-Could the subsequent memcpy_fromio(data, telem_addr, count) further down in=
- this
-function then read past the end of the xe->mmio.regs mapping, potentially
-causing a crash or leaking state from unmapped or read-sensitive registers?
+> +static int cri_guid_decode(u32 guid, int *index, u32 *offset)
+> +{
+[ ... ]
+> +	case OOBMSM_0:
+> +		*index =3D CRI_IDX_TELEM_OOBMSM;
+> +		switch (instance) {
+> +		case 0:
+> +			if (cap_type =3D=3D WATCHER) {
+> +				*index =3D CRI_IDX_WATCHER_OOBMSM;
+> +				*offset =3D CRI_OOBMSM_WATCHER_OFFSET;
+> +			}
+> +			break;
+
+[Severity: High]
+Similarly, in this newly added function, if cap_type is not WATCHER for
+instance 0, it silently breaks and returns 0.
+
+Should this code return an error code like -EINVAL instead of falling
+through to a success return with an offset of 0?
+
+[ ... ]
+> @@ -286,6 +374,7 @@ void xe_vsec_init(struct xe_device *xe)
+>  	case XE_VSEC_BMG:
+>  		if (!xe->soc_remapper.set_telem_region)
+>  			return;
+> +		xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
+>  		info->priv_data =3D &xe_pmt_cb;
+>  		break;
+>  	default:
+
+[Severity: Medium]
+Is the XE_VSEC_CRI case missing from this switch statement?
+
+If get_platform_info() correctly returns XE_VSEC_CRI, there appears to be
+no case here to handle it, meaning base_offset and the pmt callbacks will
+remain uninitialized.
+
+Additionally, if get_platform_info() still filters out platforms greater
+than XE_BATTLEMAGE, does it also need to be updated to allow the CRI
+platform to be returned so this initialization path can be reached?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812193742.2170=
-188-12-michael.j.ruhl@intel.com?part=3D5
+188-12-michael.j.ruhl@intel.com?part=3D7
