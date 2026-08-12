@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E973C5AD5A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F27E1C5B572
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB84710E42E;
-	Wed, 12 Aug 2026 19:15:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC1110E45F;
+	Wed, 12 Aug 2026 19:15:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lInSeH/1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ImOjQ7Xw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A324310F0E6
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABEF410F0F2
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562129; x=1818098129;
+ t=1786562128; x=1818098128;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1K5OFowb3Zq2PDxiFgoXWB05WxkPkU1WpxdHmGokcpo=;
- b=lInSeH/1EYVkjRSy96m4SEC25v2w+92mP7KUASCNgaH40WrV4+liedlZ
- KVJk1PU4Pf5Oe5rIfuQs/H1SbmZg2HBJdPmL9jzyfTaESVe4uzykb68Ih
- 5q5e3IXkq0chIZ5VDmZUEKRi7nnun8ZONrIWtAlyDRyKDnIaXqmfyiNvQ
- sQDgfMjNsB9CPHAuFi155yNTeVGqwFQku97qU8kuBeLFDs5d9af2Xupxh
- xrkHmxdkRqhs1PzqdqbaYFonjBsIzkizMPDW4/ePUl0D2uiOF9Fiu7H2Z
- +4ui3xeoiCKcP8okdhKVdTEqd/FMW4sxYR7Zn9dszQQLmwM3BEg9xW3q1 w==;
-X-CSE-ConnectionGUID: gYT9559uR+mDUF2MhIP+1w==
-X-CSE-MsgGUID: Yu9BBcPlSBmG3fZ26b7S4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987549"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987549"
+ bh=qgNFZ2H3igsBOhQfL7f5WznSaT5zm15JvlbuWYN5OlA=;
+ b=ImOjQ7XwyOS4UJK4NsVeoe+SJscJ3lUINoZya6dq0eIJOs4torjwsEaO
+ fmaGouNPTRsy6kFs1Cxl9kSFN0VNkqgGYBTkLYZkKvT98o5nUEIHJMqbE
+ uEa5TAI/cMSRlevTroYi872xlT0AdZfqEmE/4iVWMHdvuy9c4EtasBHoH
+ u/RhnAWwWuYwH6Gg93Qtk/15t71ZCGpnDnoFE5Bm7Bs1HgZfodZekFUig
+ vSVdhdXcNe1prLLfmUd2OareMfXzU3Wjn8dstaz0bETNsxUbhD8NSdOy5
+ LcZ4+dE4ZliWkLPvsr9Wx49cicRxl56o64qjGDteN6ixUYwvbDaYejeq9 A==;
+X-CSE-ConnectionGUID: TMk4A5gXT2W8vByY/U8rBw==
+X-CSE-MsgGUID: zM0pARdIQI2WRTtRTghvTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987546"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987546"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:28 -0700
-X-CSE-ConnectionGUID: ZiqM8CjbTd6EB2saxhxMzQ==
-X-CSE-MsgGUID: S5oL0exJQLy0fzlC+KrD8A==
+ 12 Aug 2026 12:15:27 -0700
+X-CSE-ConnectionGUID: ILq93+e4TK6972+f+i+MAg==
+X-CSE-MsgGUID: MIRxn+eERGWBKSxYD5AEBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268891985"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268891980"
 Received: from miqurash-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:27 -0700
+ 12 Aug 2026 12:15:25 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 15/32] drm/xe/kunit: Setup driver data in the test device
-Date: Wed, 12 Aug 2026 21:14:31 +0200
-Message-ID: <20260812191450.11690-16-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 14/32] drm/xe/ras: Check RAS and LOG component definitions
+Date: Wed, 12 Aug 2026 21:14:30 +0200
+Message-ID: <20260812191450.11690-15-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
@@ -68,32 +70,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While we have helpers pdev_to_xe_device() and kdev_to_xe_device()
-to obtain the xe_device pointer from the struct device pointer or
-from the struct pci_dev pointer, we must also setup the drm_device
-pointer as driver data in the device to make them work.
+While not strictly required, we want to make sure that components
+definitions used by the RAS firmware are in the same fixed relation
+with HW components definitions used by the LOG infrastructure to
+allow code simplification. Add static asserts to enforce that.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 4 ++++
- 1 file changed, 4 insertions(+)
+v2: rebased after comp tag renames (Michal)
+---
+ drivers/gpu/drm/xe/xe_ras.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-index bc5156966ce9..27740b40c8ae 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -39,6 +39,10 @@ struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
- 					       struct xe_device,
- 					       drm, DRIVER_GEM);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 93e45ef49bae..18f05a55fc61 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_device.h"
+ #include "xe_drm_ras.h"
++#include "xe_log.h"
+ #include "xe_pm.h"
+ #include "xe_printk.h"
+ #include "xe_ras.h"
+@@ -45,6 +46,16 @@ enum xe_ras_component {
+ 	XE_RAS_COMP_MAX
+ };
+ 
++#define CHECK_COMPONENT(RAS_COMP, LOG_COMP) \
++	static_assert(MAKE_XE_LOG_COMPONENT(HARDWARE, (RAS_COMP)) == (LOG_COMP))
++	/* make sure components definitions maintain stable relation */
++	CHECK_COMPONENT(XE_RAS_COMP_DEVICE_MEMORY, XE_LOG_COMPONENT_DEVICE_MEMORY);
++	CHECK_COMPONENT(XE_RAS_COMP_CORE_COMPUTE, XE_LOG_COMPONENT_CORE_COMPUTE);
++	CHECK_COMPONENT(XE_RAS_COMP_PCIE, XE_LOG_COMPONENT_PCIE);
++	CHECK_COMPONENT(XE_RAS_COMP_FABRIC, XE_LOG_COMPONENT_FABRIC);
++	CHECK_COMPONENT(XE_RAS_COMP_SOC_INTERNAL, XE_LOG_COMPONENT_SOC_INTERNAL);
++#undef CHECK_COMPONENT
 +
-+	dev_set_drvdata(xe->drm.dev, &xe->drm);
-+	KUNIT_ASSERT_PTR_EQ(test, xe, kdev_to_xe_device(dev));
-+
- 	return xe;
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_alloc_xe_device);
+ /* RAS response status codes */
+ enum xe_ras_response_status {
+ 	XE_RAS_STATUS_SUCCESS = 0,
 -- 
 2.47.1
 
