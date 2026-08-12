@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D2FFC5DF6B
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 22:17:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A0FC5AD5A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 22:17:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A8B10F14C;
-	Wed, 12 Aug 2026 22:17:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 408D610F13A;
+	Wed, 12 Aug 2026 22:17:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Kbr4ytKh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CfQ+oxRY";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F2B10E45F
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:51:04 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 607AB10E44B
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:35:28 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id E60D7600AD;
- Wed, 12 Aug 2026 19:51:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7368C1F000E9;
- Wed, 12 Aug 2026 19:51:03 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 4902340B29;
+ Wed, 12 Aug 2026 19:35:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 025B51F000E9;
+ Wed, 12 Aug 2026 19:35:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786564263;
- bh=rWBGW//HxQB+cewbn1cwSNGSpAK+5iQba9uwxUzxLH0=;
+ s=k20260515; t=1786563328;
+ bh=x6IGBbIUvWtQwnk3iKJX36AQ5UDeGdBb6DM77dyjoII=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Kbr4ytKhcGm4JzOS3wn3qEHn6D7QzshriaWu1hEO6VUnXyQgFfs8mARoA/T8VNaAt
- C3gHNwGlVhXgIo5pkQPereA/L6HvuNLXWYROZY46Ez3mNNKm/5ImACJ+2JZTpLLN5s
- /S4Y0JKWBQ5rZ05AqwHI0YNH+DfFb9joZkhZs24tKdGqMQEpjD86n5Vihj+9dz6SoN
- p+FzpzQufKmqFHjXrleo1FFTLZVkAeUflkKWzMXfeEh2xRKaLesYb8K8bvzPxOH1az
- flSC+9qJP6CoBVpVrChSTmG7Q1gowuMBQ33wev228KnFrfeWzu3YODQIexat086JL2
- j3ySMZ2btSIjw==
+ b=CfQ+oxRYfFsUVgKrkuG1+1pY3Yo9Pm0LPyre+DsaZdEUiw5maqb7XhldIBvILKg32
+ iMwmYqunnfjECd/Nhia/Pev14CN1ZuPCXj6nCPKnTf+y59n/v4rTKUOBaakqEZ3mRb
+ 2BLszBL4ak/2H9NQimPRSoBuhX45EszoenYaWOd6N7bEXrb3pqAFoE8W5LRaJkyVWX
+ CJBiy2LLOIVb6CTYYIdBmef4Bl2yHaMlYVyZlTzKE8du2xJuRmNx/oNNgVOmGJ69H3
+ 2O8GtLp5eubCOgKNGzVu8w7IUD5vaZaji2AICKMBkrL2iQyukRb9Znq8AXZW4ki5lO
+ qWrJ+iolp/kOA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 26/32] drm/xe/pcode: Report 'timeout, retrying' error
- using SIGID
+Subject: Re: [PATCH v4 11/32] drm/xe/log: Index all SIGID printk messages
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812191450.11690-27-michal.wajdeczko@intel.com>
+In-Reply-To: <20260812191450.11690-12-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
- <20260812191450.11690-27-michal.wajdeczko@intel.com>
+ <20260812191450.11690-12-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 19:51:03 +0000
-Message-Id: <20260812195103.7368C1F000E9@smtp.kernel.org>
+Date: Wed, 12 Aug 2026 19:35:27 +0000
+Message-Id: <20260812193528.025B51F000E9@smtp.kernel.org>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 22:17:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,74 +59,60 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Uncapped exponential backoff causes udelay() to exceed architectur=
-e limits, risking integer overflow and undefined delay times.
+- [Medium] The generic format string injected into the printk index does no=
+t structurally match the actual strings emitted to dmesg, breaking userspac=
+e log matching.
 --
 
---- Patch [26]: [PATCH v4 26/32] drm/xe/pcode: Report 'timeout, retrying' e=
-rror using SIGID ---
-commit 75f6f9c4d8c1d251fab2b4d894d2352070119c43
+--- Patch [11]: [PATCH v4 11/32] drm/xe/log: Index all SIGID printk message=
+s ---
+commit f6d6ae64e4098e49206f6df0c6d973a867e46f50
 Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-drm/xe/pcode: Report 'timeout, retrying' error using SIGID
+drm/xe/log: Index all SIGID printk messages
 
-This commit replaces a drm_err message with the xe_log_err helper to report=
-=20
-PCODE timeout retries using the SIGID tagging infrastructure.
+This commit explicitly generates printk index entries using
+dev_printk_index_emit() for xe_log_emit() messages. This ensures that
+device level printk messages generated with varying prefixes are correctly
+indexed for audit.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index 014632e113388..14b13a11d1d6d 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-[ ... ]
-> @@ -218,8 +218,7 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, =
-u32 request,
->  	 * requests, and for any quirks of the PCODE firmware that delays
->  	 * the request completion.
->  	 */
-> -	drm_err(&tile_to_xe(tile)->drm,
-> -		"PCODE timeout, retrying with preemption disabled\n");
-> +	xe_log_err(tile, PCODE, ret, "timeout, retrying with preemption disable=
-d\n");
->  	preempt_disable();
->  	ret =3D pcode_try_request(tile, mbox, request, reply_mask, reply, &stat=
-us,
->  				true, 50 * 1000, true);
+> diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
+> index 0928b08666171..53fe2bb7ddd37 100644
+> --- a/drivers/gpu/drm/xe/xe_log.h
+> +++ b/drivers/gpu/drm/xe/xe_log.h
+> @@ -16,9 +16,17 @@
+>  struct pci_dev;
+> =20
+>  __printf(8, 9)
+> -void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+> -		 u32 component, u32 location, const void *data, size_t len,
+> -		 const char *fmt, ...);
+> +void __xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sig=
+id,
+> +		   u32 component, u32 location, const void *data, size_t len,
+> +		   const char *fmt, ...);
+> +
+> +#define __xe_log_emit_printk_index(fmt) \
+> +	dev_printk_index_emit(NULL, "[drm]%s SIGID=3D%u %s(%s)%s%s%s: " fmt);
 
-[Severity: High]
-This is a pre-existing issue, but does this 50ms atomic timeout risk
-integer overflow in udelay?
+[Severity: Medium]
+Does this hardcoded format string structurally diverge from the actual stri=
+ngs
+emitted to dmesg?
 
-Looking at pcode_try_request, which is called here with atomic set to true:
+Looking at log_emit_dmesg() in drivers/gpu/drm/xe/xe_log.c, when the data
+parameter is NULL, the format string dynamically omits the parentheses:
 
-static int pcode_try_request(..., bool atomic, int timeout_us, ...)
-{
-        int slept, wait =3D 10;
-        ...
-        for (slept =3D 0; slept < timeout_us; slept +=3D wait) {
-                ...
-                if (atomic)
-                        udelay(wait);
-                else
-                        usleep_range(wait, wait << 1);
-                wait <<=3D 1;
-        }
-        ...
-}
+	else
+		log_dmesg_printf(pdev, cper_sev, "SIGID=3D%u %s%s%s%s%pV",
+				 sigid, sev_prefix, hwe_prefix,
+				 loc_prefix, comp_prefix, vaf);
 
-The wait variable grows exponentially without a cap. For a 50,000us timeout
-loop, wait will repeatedly double and can reach well over 20,000us before t=
-he
-timeout expires. This significantly exceeds typical architecture limits for
-udelay, which are often around 1 to 2 milliseconds.
-
-Can this uncapped exponential growth cause internal timer math to overflow
-and trigger the hard lockup detector when firmware becomes unresponsive?
-
->  	preempt_enable();
+Since the static string registered here contains literal parentheses and a
+trailing colon, but these characters are dynamically omitted when data is
+NULL or component is 0, will this mismatch cause regexes or exact-match
+parsers generated from the index to fail to match the logs?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812191450.1169=
-0-1-michal.wajdeczko@intel.com?part=3D26
+0-1-michal.wajdeczko@intel.com?part=3D11
