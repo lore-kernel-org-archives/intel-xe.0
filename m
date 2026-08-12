@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA590C5DF64
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94E81C5CFEE
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0490C10F0C1;
-	Wed, 12 Aug 2026 17:41:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E150D10F0BF;
+	Wed, 12 Aug 2026 17:41:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CqCX9bwL";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lHy4VP2+";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D985C10E413
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 12:55:16 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74C5610EFAC
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 13:02:54 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5B454404F6;
- Wed, 12 Aug 2026 12:55:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C9CC1F00ACA;
- Wed, 12 Aug 2026 12:55:16 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id DE7A260A85;
+ Wed, 12 Aug 2026 13:02:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 812FF1F000E9;
+ Wed, 12 Aug 2026 13:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786539316;
- bh=Ibh87rvCZyYheY0JdqGLILoYbCGHyL0KmLKcqou7qCg=;
+ s=k20260515; t=1786539773;
+ bh=NyrGKEhniS2DeSL6hLVGd3IpKT7kvyu58FcmBcE1e3w=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=CqCX9bwLETmOpNi8i+DF/b2v3lld0cd4DPapBy1/gIlQ7gkbbwvCoEuFx1ebLAmwq
- rRsn4PVSL/+rfJzHqji6R1jKT+mZvCLO55adm9us7tIK6iIK4SLa++bAVnovHQZ/x3
- uL27FU7nsvrvZmRGRY6aPd1D87IApTvNMPK2S3HPxM3aUK5zolHRqdpIERC2rkvlOe
- 2BKiBf+ch2J2c+WuSj8yKAKdEtoIi4XRSNNijXV/ifJOljTnMpX177GFWXr48lP6uz
- 7KWyQawdtWoj5HY3ZPXuZi/NHKT2Zx+KG/GonWxkON8OwT/Ua6dBytJTiRIB0TB/LZ
- I65x12yCf50fw==
+ b=lHy4VP2+veeYVT1lNj1q6xUh8YWT/Zu9U1LnHWtgqJO/f6YtL3q3OcQynV7PA0I85
+ ZS134hzWrEjKGoKX6wX1fyw5PovZ4Oeys81BFYkHwwCP6vWjJXTO3oqW2U3YPcatEJ
+ AOaAquTFTg8h146HAez6geIFntIm+U2X6TqVFkJ+zzU5wetf9XZn8PdjRFSYbFLL7o
+ OsT6nGYHRsmmAvMvx/HM+JtXJSpbnH975GEp+b95R04v0zX8nxRWQjfV5mQvqkFx0+
+ IZc3P7opWwIIywuY6bmdOlfdPUxeKzYujrfxGDAx7q1VzzksNH8Nq22cfbi6JCoZRP
+ Y2ZUI9X91D2UA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 4/7] drm/xe: Introduce helpers for xe_vram size
+Subject: Re: [PATCH v6 6/7] drm/xe/vf: Add bounds checking for queried VRAM
+ size
 To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812124313.1377582-13-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260812124313.1377582-15-satyanarayana.k.v.p@intel.com>
 References: <20260812124313.1377582-9-satyanarayana.k.v.p@intel.com>
- <20260812124313.1377582-13-satyanarayana.k.v.p@intel.com>
+ <20260812124313.1377582-15-satyanarayana.k.v.p@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 12:55:15 +0000
-Message-Id: <20260812125516.1C9CC1F00ACA@smtp.kernel.org>
+Date: Wed, 12 Aug 2026 13:02:52 +0000
+Message-Id: <20260812130253.812FF1F000E9@smtp.kernel.org>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 17:41:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,52 +60,54 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] `query_mem_regions()` now reports VRAM `min_page_size` as `SZ_4K` =
-instead of `PAGE_SIZE` on architectures with `PAGE_SIZE > 4K`, leading to u=
-serspace allocation failures.
+
+Pre-existing issues:
+- [High] Missing upper bounds check for queried VRAM size
 --
 
---- Patch [4]: [PATCH v6 4/7] drm/xe: Introduce helpers for xe_vram size ---
-commit 8d2aa91dbef321fc3453eaed963150727bdc7dd0
+--- Patch [6]: [PATCH v6 6/7] drm/xe/vf: Add bounds checking for queried VR=
+AM size ---
+commit 2089489a65d04a75b7e07c3d3903caf61610c1eb
 Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-drm/xe: Introduce helpers for xe_vram size
+drm/xe/vf: Add bounds checking for queried VRAM size
 
-This commit introduces xe_vram_alignment() and xe_vram_needs_64k() helpers.
-It updates various files in the xe driver to use these new helpers instead =
-of
-directly checking the XE_VRAM_FLAGS_NEED64K flag.
+This commit attempts to add checks for the VRAM size queried from the PF
+to protect VF initialization from invalid configuration data.
 
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index dc975f5953683..9af98f08b0e59 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -289,8 +289,7 @@ static int query_mem_regions(struct xe_device *xe,
->  			mem_regions->mem_regions[mem_regions->num_mem_regions].instance =3D
->  				mem_regions->num_mem_regions;
->  			mem_regions->mem_regions[mem_regions->num_mem_regions].min_page_size =
-=3D
-> -				xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ?
-> -				SZ_64K : PAGE_SIZE;
-> +				xe_vram_alignment(xe);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_=
+gt_sriov_vf.c
+> index d805c064377c3..be932ebe6a8d0 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -574,6 +574,12 @@ static int vf_get_lmem_info(struct xe_gt *gt)
+>  		return -EREMCHG;
+>  	}
+> =20
+> +	if (!IS_ALIGNED(size, SZ_2M)) {
+> +		xe_gt_sriov_err(gt, "Unaligned LMEM size %llu, expected %llu\n",
+> +				size, ALIGN(size, SZ_2M));
+> +		return -EINVAL;
+> +	}
+> +
 
 [Severity: High]
-Does this code report the minimum page size correctly on architectures where
-PAGE_SIZE is greater than 4K?
+This is a pre-existing issue, but the commit message states this patch adds
+"bounds checking" to reject invalid configuration data, while this code
+only implements an alignment check.
 
-The previous code returned PAGE_SIZE when 64K alignment was not needed, but
-xe_vram_alignment() now always returns SZ_4K in that case.
+Does vf_get_lmem_info() also need an upper bounds check for the queried siz=
+e?
 
-If userspace uses this 4K value to size its allocations, could those
-allocations be rejected in xe_gem_create_ioctl()?
+If a misconfigured or compromised PF provides an artificially large VRAM
+size, there doesn't appear to be a check against the VF's PCI LMEM BAR
+size here. Could this unverified size propagate to vram->usable_size and
+allow userspace to allocate VRAM beyond physical capacity, leading to
+out-of-bounds memory accesses?
 
-drivers/gpu/drm/xe/xe_bo.c:xe_gem_create_ioctl() {
-        ...
-        if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
-                return -EINVAL;
-        ...
-}
+>  	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
+>  	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812124313.1377=
-582-9-satyanarayana.k.v.p@intel.com?part=3D4
+582-9-satyanarayana.k.v.p@intel.com?part=3D6
