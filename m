@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5A56C5DF67
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8206BC5DF66
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 22:17:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE88A10F146;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95A5A10F145;
 	Wed, 12 Aug 2026 22:17:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZXockr5U";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="anEKCeic";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1138B10E452
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:49:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC9C110E452
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:49:06 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id ED6AD419B6;
- Wed, 12 Aug 2026 19:49:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B531F000E9;
- Wed, 12 Aug 2026 19:49:37 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 707C44360F;
+ Wed, 12 Aug 2026 19:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29AB51F000E9;
+ Wed, 12 Aug 2026 19:49:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786564177;
- bh=lqOvWFyajdSkHDxnBxgBXUg1l9UCeoFQ+vhDJDrESjs=;
+ s=k20260515; t=1786564146;
+ bh=mIiYCyunHSAru4MR+UWnqBBkttfdqRgo+95iD8ilCBc=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=ZXockr5UeKDNqg9IN8XykGOFWTa2WKh8lfduHr8l7GfKXgo4SHHlHwTufJfZ/ZNTn
- AzomSNgcZMORD0vsbB+Njtgi+VyqRt9IztqdyLyO8Q1OM9WYcIrQdjh9V8dYKzqYJt
- 34dArB/88YCyNe6E+e72+Hzr5ioE4ygTsEZ4V15mji77EFW9vvAW3pBhhYpa6plcJj
- fmt4AH/vZEpdXDnZspmtygLGG8mEzF+eGTrt2UOypjGoabLDlnmoLy6sgKtlMaKCtt
- sa7snWxX0NXAg7pNw52ijDB/nD0J8hKJi87q35zO0Foy5IJORhc/WIPxWXLT61z+pt
- aK40TO2Zk+/mw==
+ b=anEKCeicrCRn4Q+6f0m1J8yPclz8t1Q+WbhPGWLlwG4P+qyYldrrSoU4DOT146jFs
+ iO7F3jMGKEtGi1A6JzKJ8FIw3YtGgCJlcDGgTOt2GoJVZvBiHqZqEOW9IdhlrIHhOH
+ jd4WCCj0vnmf2eSzcbNxWWnXpIVN4EOMeoAUKJUsVJF5t4C0AcibI9MAFKsCeC4y0t
+ 253zmoFhd7834Ex+E3u0Suh7tJFgXSCHXfZvNSLItMoCyc6GOqtWg2H27/pSYlLW5c
+ YXrvdftYIzHKRyg0jbgueodkb/VoLNckhzOf/adbpUgqHfkW3QB/4hlD8I7ar1c0OC
+ Ia+0Kfe9fUfGQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 27/32] drm/xe/pcode: Report 'initialization timedout'
- error using SIGID
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Subject: Re: [PATCH v2 02/10] platform/x86/intel/pmt: Add register access
+ callbacks
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812191450.11690-28-michal.wajdeczko@intel.com>
-References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
- <20260812191450.11690-28-michal.wajdeczko@intel.com>
+In-Reply-To: <20260812193742.2170188-14-michael.j.ruhl@intel.com>
+References: <20260812193742.2170188-12-michael.j.ruhl@intel.com>
+ <20260812193742.2170188-14-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 19:49:37 +0000
-Message-Id: <20260812194937.A6B531F000E9@smtp.kernel.org>
+Date: Wed, 12 Aug 2026 19:49:05 +0000
+Message-Id: <20260812194906.29AB51F000E9@smtp.kernel.org>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 22:17:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,78 +60,106 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Uncapped exponential backoff causes massive over-sleeping and pote=
-ntial kernel panic.
+- [Medium] Missing error propagation in pmt_crashlog_rmw and pmt_crashlog_r=
+c when register callbacks fail.
 --
 
---- Patch [27]: [PATCH v4 27/32] drm/xe/pcode: Report 'initialization timed=
-out' error using SIGID ---
-commit 3feb217014d673b0d9d119f4debacacb0e357e77
-Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+--- Patch [2]: [PATCH v2 02/10] platform/x86/intel/pmt: Add register access=
+ callbacks ---
+commit 63beb7f9cb719c6439cef978b14d03ae4aa7a626
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/pcode: Report 'initialization timedout' error using SIGID
+platform/x86/intel/pmt: Add register access callbacks
 
-This commit updates the PCODE initialization timeout error to use the
-xe_log_err() helper instead of drm_err(). It also refactors the 3 minute
-timeout constant to use USEC_PER_SEC.
+This commit augments the PMT callback infrastructure to allow registered
+drivers to customize read and write access to the control paths.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index 14b13a11d1d6d..e1b8062541a91 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -297,7 +297,7 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform=
+/x86/intel/pmt/crashlog.c
+> index f936daf99e4d2..5923ad7abbd98 100644
+> --- a/drivers/platform/x86/intel/pmt/crashlog.c
+> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
+> @@ -129,7 +129,19 @@ static void pmt_crashlog_rmw(struct crashlog_entry *=
+crashlog, u32 bit, bool set)
+>  {
+>  	const struct crashlog_control *control =3D &crashlog->info->control;
+>  	struct intel_pmt_entry *entry =3D &crashlog->entry;
+> -	u32 reg =3D readl(entry->disc_table + control->offset);
+> +	u32 guid =3D entry->header.guid;
+> +	u32 reg;
+> +	int err;
+> +
+> +	if (entry->cb && entry->cb->read_reg) {
+> +		err =3D entry->cb->read_reg(entry->dev, guid, &reg, control->offset);
+> +		if (err) {
+> +			pr_err("%s: failed to read reg: %d\n", __func__, err);
+> +			return;
+
+[Severity: Medium]
+Should pmt_crashlog_rmw() be updated to return an int so that this error co=
+de
+can be propagated to the caller?=20
+
+Since it currently returns void, any sysfs write handlers that trigger this
+path will silently swallow the error and falsely report success to userspac=
+e if
+the underlying hardware access fails.
+
+> +		}
+> +	} else {
+> +		reg =3D readl(entry->disc_table + control->offset);
+> +	}
+
 [ ... ]
->  	if (locked)
->  		mutex_lock(&tile->pcode.lock);
-> =20
->  	ret =3D pcode_try_request(tile, DGFX_PCODE_STATUS, request,
->  				DGFX_INIT_STATUS_COMPLETE,
->  				DGFX_INIT_STATUS_COMPLETE,
->  				&status, false, timeout_us, locked);
 
-[Severity: High]
-This is a pre-existing issue, but can the 3-minute timeout passed here
-trigger a kernel panic via the Hung Task Detector if PCODE is unresponsive?
+> -	writel(reg, entry->disc_table + control->offset);
+> +	if (entry->cb && entry->cb->write_reg) {
+> +		err =3D entry->cb->write_reg(entry->dev, guid, reg, control->offset);
+> +		if (err) {
+> +			pr_err("%s: failed to write reg: %d\n", __func__, err);
+> +			return;
 
-Looking at pcode_try_request() in drivers/gpu/drm/xe/xe_pcode.c, the wait
-duration is exponentially increased without any cap:
+[Severity: Medium]
+Similarly, should the error code be propagated here rather than returning
+without notifying the caller of the failure?
 
-	usleep_range(wait, wait << 1);
-	wait <<=3D 1;
-
-When the timeout is 180,000,000 us (3 minutes), the polling loop doubles the
-wait variable every iteration. When the total slept time reaches ~167 secon=
-ds,
-the wait variable becomes ~83.8 seconds. The loop then executes:
-
-	usleep_range(83886080, 167772160);
-
-Since usleep_range() sleeps in TASK_UNINTERRUPTIBLE, sleeping for up to 167=
-.7
-seconds exceeds the default 120-second hung task watchdog timeout, causing a
-panic. Furthermore, if atomic=3Dtrue was used with a large timeout, it would
-result in a massive udelay(), violating architectural limits with preemption
-disabled.
-
-Could a cap be added to the maximum wait time in pcode_try_request() to
-prevent massive over-sleeping?
-
-> =20
->  	if (locked)
->  		mutex_unlock(&tile->pcode.lock);
-> =20
->  	if (ret)
-> -		drm_err(&xe->drm,
-> -			"PCODE initialization timedout after: 3 min\n");
-> +		xe_log_err(tile, PCODE, ret, "initialization timedout after %ld second=
-s\n",
-> +			   timeout_us / USEC_PER_SEC);
-> =20
->  	return ret;
+> +		}
+> +	} else {
+> +		writel(reg, entry->disc_table + control->offset);
+> +	}
 >  }
+> =20
+>  /* Read the status register and see if the specified @bit is set */
+>  static bool pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit)
+>  {
+>  	const struct crashlog_status *status =3D &crashlog->info->status;
+> -	u32 reg =3D readl(crashlog->entry.disc_table + status->offset);
+> +	struct intel_pmt_entry *entry =3D &crashlog->entry;
+> +	u32 guid =3D entry->header.guid;
+> +	u32 reg;
+> +	int err;
+> +
+> +	if (entry->cb && entry->cb->read_reg) {
+> +		err =3D entry->cb->read_reg(entry->dev, guid, &reg, status->offset);
+> +		if (err) {
+> +			pr_err("%s: failed to read reg: %d\n", __func__, err);
+> +			return false;
+
+[Severity: Medium]
+Is returning false the correct behavior when the read callback fails?=20
+
+This masks the error code from the caller and treats the read failure as if
+the bit is unset. This could lead to incorrect evaluations, for example cau=
+sing
+sysfs read handlers to return an inaccurate hardware state. Should we propa=
+gate
+the error instead?
+
+> +		}
+> +	} else {
+> +		reg =3D readl(crashlog->entry.disc_table + status->offset);
+> +	}
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812191450.1169=
-0-1-michal.wajdeczko@intel.com?part=3D27
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812193742.2170=
+188-12-michael.j.ruhl@intel.com?part=3D2
