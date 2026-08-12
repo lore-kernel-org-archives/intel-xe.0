@@ -4,63 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54D2AC5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AC13C5DF61
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15C0810F0B8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C220410F0CC;
 	Wed, 12 Aug 2026 17:41:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bXZwcmiM";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cpyqvTDX";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED70810E1C1;
- Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 8FF4A40DB4;
- Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 68BDFC19425;
- Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1786390367;
- bh=53zYKk5OPNgWivY8AjmUk+khFvdcVLLZssE7+OqycN0=;
- h=From:Date:Subject:To:Cc:Reply-To:From;
- b=bXZwcmiMKu5YY7aX9Uez7dlQ4LLTeDVL2RI8E54we/TisKvnFpbegtSyLfMjlSrjq
- ulFXdXWgqq9r5Xbzsuh2oXDSLomrWV1GJMHpZ0CULsG03nBm+NQOPCfE03T6dZRUI+
- Egm+2G5DDxct9amitO0PGJUH2MtOY2bQfhyl/xEngLMkWPIZsWjYY7eIvxbDXuCqHO
- SMwpl55MKLE/W57mQIM56ga5MW6VHR5sKZKmapR4uHZIfjy9QNe48BlyV1L0udYFP6
- wHN6t1NJbA6+G0DAQn6+C0RvH3IB3rhMlzz/OA2EIAgxQY8lnlUCE28Xg11HDokbb8
- YPPYcYjYLLcew==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 4EF90C5AD55;
- Mon, 10 Aug 2026 19:32:47 +0000 (UTC)
-From: Zhenyu Yang via B4 Relay <devnull+haruki.seu.edu.cn@kernel.org>
-Date: Tue, 11 Aug 2026 03:32:37 +0800
-Subject: [PATCH] drm/xe: Exclude wopcm region from stolen memory on TGL/DG1
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260811-fix-xe-ttm-v1-1-8d58b08f02b3@seu.edu.cn>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMyw5AMBCF4VeRWZukRRSvIhZVg5G4pC2RiHdXL
- L+cnP8CR5bJQRVdYOlgx+sSIOMIzKiXgZC7YEhEkotCSuz5xJPQ+xkzXSqZdsoYXUI4bJbC+sX
- q5rfb24mMfwtw3w9iBrXybgAAAA==
-X-Change-ID: 20260811-fix-xe-ttm-4a9713d7cca9
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, 
- Sanjay Yadav <sanjay.kumar.yadav@intel.com>, 
- Lucas De Marchi <demarchi@kernel.org>, Zhenyu Yang <haruki@seu.edu.cn>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1786390365; l=1557;
- i=haruki@seu.edu.cn; s=20260810; h=from:subject:message-id;
- bh=MR427Mkv+jciFjssrVFmackeIc2s7Un5r4gv3vpAeQo=;
- b=ZZ4mSkXpLj1hHTBkIU4V6FHUvr02o/TjpaiNSKWOGknZFsj0qu7+3SkTyaDlh1GF8mZ42zO1M
- h2qnkL26JQ7DNVv6AzduMMwbSe+dw5fzyM7SQZj85NJP8AV/hPVu+/2
-X-Developer-Key: i=haruki@seu.edu.cn; a=ed25519;
- pk=Rh6scJJVrfKi0fDllLpvJXubmo9YB57MLrju0xpHeIk=
-X-Endpoint-Received: by B4 Relay for haruki@seu.edu.cn/20260810 with
- auth_id=935
-X-Original-From: Zhenyu Yang <haruki@seu.edu.cn>
-X-Mailman-Approved-At: Wed, 12 Aug 2026 17:41:21 +0000
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E69C010E3A7
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 00:01:21 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id D3135431D7;
+ Wed, 12 Aug 2026 00:01:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 988771F000E9;
+ Wed, 12 Aug 2026 00:01:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1786492880;
+ bh=MxbgxhHn8enXwDpB7m8Y0jxKmhDaOF3SvwiMz67Jy2A=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=cpyqvTDXcS7JJRkDGfG0q+JaBRCJidGERMCpb70xU5f3/aemHJKxglS6LSCHn0ZBr
+ BbjhxxLlXD4icyMPwwNnI03J9wKZ/BkSI56e7959LdLhhnpptZk7PW2E8hatmQiao4
+ S+Nrfyzyaeoan+nUGOISeP8EFs35FhwKjQGn0zeRry/G2jQU2Q5fpXED1VHDpxlSQ4
+ WqcRX7pg2UrDLy73WwQPPUIbzuuMJCiUf+OLAqr6fwmHkRIDFERg1llRkCGyvylKcT
+ Q500x+Z7DjubFYXlLouj8+UAANyWUvqhVe+xgNZ/5DT8ILF1OOnBsZyh3r4Mx4mfQf
+ JU6BmPPYWp2lA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 3/4] drm/xe/pcode: Report pcode errors using SIGID
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260811235254.153783-9-umesh.nerlige.ramappa@intel.com>
+References: <20260811235254.153783-6-umesh.nerlige.ramappa@intel.com>
+ <20260811235254.153783-9-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 12 Aug 2026 00:01:20 +0000
+Message-Id: <20260812000120.988771F000E9@smtp.kernel.org>
+X-Mailman-Approved-At: Wed, 12 Aug 2026 17:41:20 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,53 +53,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: haruki@seu.edu.cn
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Zhenyu Yang <haruki@seu.edu.cn>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] Passing a negated error code (`-ret`) to `xe_log_err()` in `xe_p=
+code_ready()` creates a positive value, causing the internal `IS_ERR()` che=
+ck to fail and silently drop the error code from the log output.
+- [Low] Missing newline (`\n`) in the format string for `xe_log_err()` in `=
+xe_pcode_request()`.
+--
 
-Top of DSM contains the WOPCM which shouldn't be accessed. Carve it out
-from the stolen memory on TGL/DG1 as well.  This fixes excessive ATS faults
-on an RPL laptop since v7.2-rc1.
+--- Patch [3]: [PATCH 3/4] drm/xe/pcode: Report pcode errors using SIGID ---
+commit d093d9ae2e2b45793c1c50dd19b274f80a9f8387
+Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Fixes: 1c76fa517214 ("drm/xe: Convert stolen memory over to ttm_range_manager")
-Signed-off-by: Zhenyu Yang <haruki@seu.edu.cn>
----
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+drm/xe/pcode: Report pcode errors using SIGID
 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 5e9070739e65..75f4d064d711 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -180,12 +180,22 @@ extern struct resource intel_graphics_stolen_res;
- static u64 detect_stolen(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- {
- #ifdef CONFIG_X86
-+	u64 stolen_size, wopcm_size;
-+
- 	/* Map into GGTT */
- 	mgr->io_base = pci_resource_start(to_pci_dev(xe->drm.dev), 2);
- 
- 	/* Stolen memory is x86 only */
- 	mgr->stolen_base = intel_graphics_stolen_res.start;
--	return resource_size(&intel_graphics_stolen_res);
-+	stolen_size = resource_size(&intel_graphics_stolen_res);
-+
-+	/* Carve out the top of DSM as it contains the reserved WOPCM region */
-+	wopcm_size = get_wopcm_size(xe);
-+	if (drm_WARN_ON(&xe->drm, !wopcm_size))
-+		return 0;
-+
-+	xe_assert(xe, stolen_size >= wopcm_size);
-+	return stolen_size - wopcm_size;
- #else
- 	return 0;
- #endif
+This commit replaces direct drm_err() logging calls with the xe_log_err()
+wrapper in the pcode component. This updates the driver to report pcode=20
+errors using the SIGID mechanism.
 
----
-base-commit: db2ddb87143519e20a95aa36c60b36107b736a58
-change-id: 20260811-fix-xe-ttm-4a9713d7cca9
+> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+> index e9125341481b7..b35c1a77effd1 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode.c
+> +++ b/drivers/gpu/drm/xe/xe_pcode.c
 
+[ ... ]
 
+> @@ -225,6 +224,9 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, =
+u32 request,
+>  				true, 50 * 1000, true);
+>  	preempt_enable();
+> =20
+> +	if (!status && ret)
+> +		xe_log_err(tile, PCODE, ret, "Request timed out on retry");
+
+[Severity: Low]
+This isn't a bug, but should this format string end with a newline character
+(\n) to prevent subsequent kernel log messages from being appended to the
+same line?
+
+> +
+>  out:
+>  	mutex_unlock(&tile->pcode.lock);
+>  	return status ? status : ret;
+
+[ ... ]
+
+> @@ -319,8 +321,8 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+>  		mutex_unlock(&tile->pcode.lock);
+> =20
+>  	if (ret)
+> -		drm_err(&xe->drm,
+> -			"PCODE initialization timedout after: 3 min\n");
+> +		xe_log_err(xe, PCODE, -ret,
+> +			"Initialization timed out after: %d min\n", timeout_us / 60000000);
+
+[Severity: Medium]
+The xe_log_err() macro wraps the passed error code in ERR_PTR(). If ret is
+already a negative error code (such as -ETIMEDOUT), does passing -ret create
+a positive value that will fail the internal IS_ERR() check inside the
+logging framework and silently drop the error code?
+
+> =20
+>  	return ret;
+>  }
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260811235254.1537=
+83-6-umesh.nerlige.ramappa@intel.com?part=3D3
