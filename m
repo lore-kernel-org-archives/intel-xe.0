@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55AA0C5AD5A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 09:23:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A16FC5B56A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 09:23:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1BD210EF1A;
-	Wed, 12 Aug 2026 09:22:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D787010EF1D;
+	Wed, 12 Aug 2026 09:23:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OhScD2KZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ju6ys+/J";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C38F10EF11;
- Wed, 12 Aug 2026 09:22:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F9F510EF11;
+ Wed, 12 Aug 2026 09:22:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786526578; x=1818062578;
+ t=1786526579; x=1818062579;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6qIrsl6KBMX4ufH0HVzmoQjl6NqvplxTHizQlambSUo=;
- b=OhScD2KZzHvad1O1L6kus9DMlKenJJHNadxLVzHvU4nAKMo+o/D1AplD
- Hsh9Vt8zmvJo6eQAC0h3Mhno/Pc16SIC4gYr4REyrnuijsp69lg+br5iX
- hq+78afckqrPH4OYaQNYAdb4ALcn2d2wNizMPpaauAPWkjInyWz5GlU8A
- x1OJk5vC3PMz8ZxjHbxMBg9QyTBddYsZakF0zpw2drFuPgChPScs5ICxF
- YMU/vnf8mTBR+b/Vl5aa+VrKYFnwwQCsj//adOcW7viKGAO1930lwFXQn
- LAz+Jq/EspeQctxPi4CER/K0/MLc7xFV7+wqdUGdPW75+lIFQUcceFN2X w==;
-X-CSE-ConnectionGUID: KCCbvXy2SQmKc/IjVzIEPw==
-X-CSE-MsgGUID: qEUxViJmRI64oo5v4vpSLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="86928540"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86928540"
+ bh=WneP4+mK3b/MgcVxOiyZn6szJwlgEY+Hy/jTG9oTiUk=;
+ b=Ju6ys+/JGmh+U9jEpLhWEuRAGW4BMhsYjt8UDAi7zcIEXck8sacLQuyE
+ Uyjdb0yLhC0cncktjtMEYbBCxWYaiTpeDVvmi+VWsZ89zFks7p8SNXq3J
+ RUMrk9EN7lZ0s5qkya63YeKB1GF267JEsMAGvZ9Br1UtuJ1nCv/Z4Xi3J
+ EKJStv5rPDedHgRYMwmPMhBujBla6LAOj45Pyhfdm51s3nH1w52t7d3tu
+ ibUwYcuezInQIyKnl2K8J1BWAi0QVL+ZuvxXMmJpWXfDA1F/c68MpY8gr
+ keFN57GIICLnXBYnI62kausMLWXn/bmZV678LHutfZhv6SpzcaKQsncb8 w==;
+X-CSE-ConnectionGUID: aKVcoRFaTGip+rzxT6p0rA==
+X-CSE-MsgGUID: 0MPWuGB9T/SUMFsn3CpMkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="86928544"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86928544"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 02:22:58 -0700
-X-CSE-ConnectionGUID: 6+vDLGCqSuissSiaFiECuw==
-X-CSE-MsgGUID: fUDdVgCBSmOLRTUZroWhHQ==
+ 12 Aug 2026 02:22:59 -0700
+X-CSE-ConnectionGUID: vcF11Z+fSg6iUnbErJHSZA==
+X-CSE-MsgGUID: D5bYPTRSQCiSJVjqDEbAww==
 X-ExtLoop1: 1
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa003.fm.intel.com with ESMTP; 12 Aug 2026 02:22:56 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 12 Aug 2026 02:22:58 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: [PATCH 1/2] [DO_NOT_REVIEW] drm/i915/color: Add color pipeline
- support for SDR planes
-Date: Wed, 12 Aug 2026 14:29:07 +0530
-Message-ID: <20260812085908.3159828-2-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH 2/2] drm/i915/color: Add YUV buffer support on HDR planes
+Date: Wed, 12 Aug 2026 14:29:08 +0530
+Message-ID: <20260812085908.3159828-3-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260812085908.3159828-1-chaitanya.kumar.borah@intel.com>
 References: <20260812085908.3159828-1-chaitanya.kumar.borah@intel.com>
@@ -66,749 +65,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch is a squashed version of series [1]
+Add the INTEL_PLANE_CB_CSC_FF (fixed function CSC) color block as the
+first stage for the HDR planes. This enables YUV-to-RGB color space
+conversion on HDR planes via the color pipeline.
 
-https://lore.kernel.org/intel-gfx/20260804123107.2256124-1-chaitanya.kumar.borah@intel.com/
+Also in icl_program_input_csc(), account for the color pipeline
+programming, in addition to FB format.
 
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/drm_atomic.c                  |   4 +
- drivers/gpu/drm/drm_atomic_uapi.c             |   7 +
- drivers/gpu/drm/drm_colorop.c                 | 107 +++++++++++++++
- drivers/gpu/drm/i915/display/intel_color.c    |  76 ++++++++---
- .../drm/i915/display/intel_color_pipeline.c   |  30 ++++-
- .../drm/i915/display/intel_display_limits.h   |   1 +
- .../drm/i915/display/intel_display_types.h    |   1 +
- drivers/gpu/drm/i915/display/intel_plane.c    |  53 +++++++-
- .../drm/i915/display/skl_universal_plane.c    |  42 +++---
- include/drm/drm_colorop.h                     | 127 ++++++++++++++++++
- include/uapi/drm/drm_mode.h                   |  12 ++
- 11 files changed, 420 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color_pipeline.c | 2 ++
+ drivers/gpu/drm/i915/display/skl_universal_plane.c  | 3 ++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index e5c8ef06caed..45df6376f408 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -925,6 +925,10 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
- 				  drm_get_colorop_lut3d_interpolation_name(state->lut3d_interpolation));
- 		drm_printf_indent(p, 1, "data blob id=%d\n", state->data ? state->data->base.id : 0);
- 		break;
-+	case DRM_COLOROP_FIXED_MATRIX:
-+		drm_printf_indent(p, 1, "fixed_matrix_type=%s\n",
-+				  drm_get_colorop_fixed_matrix_type_name(state->fixed_matrix_type));
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 1050dddadb17..d52504d823bc 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -786,6 +786,11 @@ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
- 		return drm_atomic_color_set_data_property(colorop, state,
- 							  property, val,
- 							  replaced);
-+	} else if (property == colorop->fixed_matrix_type_property) {
-+		if (state->fixed_matrix_type != val) {
-+			state->fixed_matrix_type = val;
-+			*replaced = true;
-+		}
- 	} else {
- 		drm_dbg_atomic(colorop->dev,
- 			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
-@@ -818,6 +823,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
- 		*val = state->lut3d_interpolation;
- 	else if (property == colorop->data_property)
- 		*val = (state->data) ? state->data->base.id : 0;
-+	else if (property == colorop->fixed_matrix_type_property)
-+		*val = state->fixed_matrix_type;
- 	else
- 		return -EINVAL;
- 
-diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
-index 682fcc651525..95da03d6c65c 100644
---- a/drivers/gpu/drm/drm_colorop.c
-+++ b/drivers/gpu/drm/drm_colorop.c
-@@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
- 	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
- 	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
- 	{ DRM_COLOROP_3D_LUT, "3D LUT"},
-+	{ DRM_COLOROP_FIXED_MATRIX, "Fixed Matrix"},
- };
- 
- static const char * const colorop_curve_1d_type_names[] = {
-@@ -90,6 +91,15 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
- 	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
- };
- 
-+static const char * const colorop_fixed_matrix_type_names[] = {
-+	[DRM_COLOROP_FM_YCBCR601_FULL_RGB] = "YCbCr 601 Full to RGB",
-+	[DRM_COLOROP_FM_YCBCR601_LIMITED_RGB] = "YCbCr 601 Limited to RGB",
-+	[DRM_COLOROP_FM_YCBCR709_FULL_RGB] = "YCbCr 709 Full to RGB",
-+	[DRM_COLOROP_FM_YCBCR709_LIMITED_RGB] = "YCbCr 709 Limited to RGB",
-+	[DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB] = "YCbCr 2020 NC Full to RGB",
-+	[DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB] = "YCbCr 2020 NC Limited to RGB",
-+};
-+
- /* Init Helpers */
- 
- static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
-@@ -453,6 +463,80 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
- }
- EXPORT_SYMBOL(drm_plane_colorop_3dlut_init);
- 
-+/**
-+ * drm_plane_colorop_fixed_matrix_init - Initialize a DRM_COLOROP_FIXED_MATRIX
-+ *
-+ * @dev: DRM device
-+ * @colorop: The drm_colorop object to initialize
-+ * @plane: The associated drm_plane
-+ * @funcs: control functions for the new colorop
-+ * @supported_fm: A bitfield of supported drm_colorop_fixed_matrix_type enum values,
-+ *               created using BIT(fixed_matrix_type) and combined with the OR '|'
-+ *               operator.
-+ * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
-+ * @return zero on success, -E value on failure
-+ */
-+int drm_plane_colorop_fixed_matrix_init(struct drm_device *dev, struct drm_colorop *colorop,
-+					struct drm_plane *plane,
-+					const struct drm_colorop_funcs *funcs,
-+					u64 supported_fm, uint32_t flags)
-+{
-+	struct drm_prop_enum_list enum_list[DRM_COLOROP_FM_COUNT];
-+	int i, len;
-+	struct drm_property *prop;
-+	int ret;
-+
-+	if (!supported_fm) {
-+		drm_err(dev,
-+			"No supported FM type op for new Fixed Matrix colorop on [PLANE:%d:%s]\n",
-+			plane->base.id, plane->name);
-+		return -EINVAL;
-+	}
-+
-+	if ((supported_fm & -BIT(DRM_COLOROP_FM_COUNT)) != 0) {
-+		drm_err(dev, "Unknown Fixed Matrix provided on [PLANE:%d:%s]\n",
-+			plane->base.id, plane->name);
-+		return -EINVAL;
-+	}
-+
-+	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_FIXED_MATRIX, flags);
-+	if (ret)
-+		return ret;
-+
-+	len = 0;
-+	for (i = 0; i < DRM_COLOROP_FM_COUNT; i++) {
-+		if ((supported_fm & BIT(i)) == 0)
-+			continue;
-+
-+		enum_list[len].type = i;
-+		enum_list[len].name = colorop_fixed_matrix_type_names[i];
-+		len++;
-+	}
-+
-+	if (WARN_ON(len <= 0))
-+		return -EINVAL;
-+
-+	prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC, "FIXED_MATRIX_TYPE",
-+					enum_list, len);
-+
-+	if (!prop)
-+		return -ENOMEM;
-+
-+	colorop->fixed_matrix_type_property = prop;
-+	/*
-+	 * Default to the first supported CSC mode as provided by the driver.
-+	 * Intuitively this should be something that keeps the colorop in pixel bypass
-+	 * mode but that is already handled via the standard colorop bypass
-+	 * property.
-+	 */
-+	drm_object_attach_property(&colorop->base, colorop->fixed_matrix_type_property,
-+				   enum_list[0].type);
-+	drm_colorop_reset(colorop);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_plane_colorop_fixed_matrix_init);
-+
- static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop,
- 							struct drm_colorop_state *state)
- {
-@@ -533,6 +617,13 @@ static void __drm_colorop_state_init(struct drm_colorop_state *colorop_state,
- 							   &val))
- 			colorop_state->lut3d_interpolation = val;
- 	}
-+
-+	if (colorop->fixed_matrix_type_property) {
-+		if (!drm_object_property_get_default_value(&colorop->base,
-+							   colorop->fixed_matrix_type_property,
-+							   &val))
-+			colorop_state->fixed_matrix_type = val;
-+	}
- }
- 
- /**
-@@ -596,6 +687,7 @@ static const char * const colorop_type_name[] = {
- 	[DRM_COLOROP_CTM_3X4] = "3x4 Matrix",
- 	[DRM_COLOROP_MULTIPLIER] = "Multiplier",
- 	[DRM_COLOROP_3D_LUT] = "3D LUT",
-+	[DRM_COLOROP_FIXED_MATRIX] = "Fixed Matrix",
- };
- 
- static const char * const colorop_lu3d_interpolation_name[] = {
-@@ -652,6 +744,21 @@ const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_inte
- 	return colorop_lu3d_interpolation_name[type];
- }
- 
-+/**
-+ * drm_get_colorop_fixed_matrix_type_name: return a string for fixed matrix type
-+ * @type: fixed matrix type to compute name of
-+ *
-+ * In contrast to the other drm_get_*_name functions this one here returns a
-+ * const pointer and hence is threadsafe.
-+ */
-+const char *drm_get_colorop_fixed_matrix_type_name(enum drm_colorop_fixed_matrix_type type)
-+{
-+	if (WARN_ON(type >= ARRAY_SIZE(colorop_fixed_matrix_type_names)))
-+		return "unknown";
-+
-+	return colorop_fixed_matrix_type_names[type];
-+}
-+
- /**
-  * drm_colorop_set_next_property - sets the next pointer
-  * @colorop: drm colorop
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 87ced9f6ff40..f1df0f9ba762 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -3998,25 +3998,17 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
- }
- 
- static void
--xelpd_program_plane_post_csc_lut(struct intel_dsb *dsb,
--				 const struct intel_plane_state *plane_state)
-+xelpd_load_hdr_post_csc_lut(struct intel_display *display,
-+			    struct intel_dsb *dsb,
-+			    enum pipe pipe,
-+			    enum plane_id plane,
-+			    const struct drm_color_lut32 *post_csc_lut)
- {
--	struct intel_display *display = to_intel_display(plane_state);
--	const struct drm_plane_state *state = &plane_state->uapi;
--	enum pipe pipe = to_intel_plane(state->plane)->pipe;
--	enum plane_id plane = to_intel_plane(state->plane)->id;
--	const struct drm_color_lut32 *post_csc_lut = plane_state->hw.gamma_lut->data;
- 	int i, lut_size = 32;
- 	u32 lut_val;
- 
--	if (!icl_is_hdr_plane(display, plane))
--		return;
--
- 	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, 0),
- 			   PLANE_PAL_PREC_AUTO_INCREMENT);
--	/* TODO: Add macro */
--	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, 0),
--			   PLANE_PAL_PREC_AUTO_INCREMENT);
- 
- 	for (i = 0; i < lut_size + 3; i++) {
- 		if (post_csc_lut) {
-@@ -4036,8 +4028,62 @@ xelpd_program_plane_post_csc_lut(struct intel_dsb *dsb,
- 	}
- 
- 	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, 0), 0);
--	intel_de_write_dsb(display, dsb,
--			   PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, 0), 0);
-+}
-+
-+static void
-+xelpd_load_sdr_post_csc_lut(struct intel_display *display,
-+			    struct intel_dsb *dsb,
-+			    enum pipe pipe,
-+			    enum plane_id plane,
-+			    const struct drm_color_lut32 *post_csc_lut)
-+{
-+	int i, lut_size = 32;
-+	u32 lut_val;
-+
-+	/*
-+	 * First 3 planes are HDR, so reduce by 3 to get to the right
-+	 * SDR plane offset
-+	 */
-+	plane = plane - 3;
-+
-+	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX(pipe, plane, 0),
-+			   PLANE_PAL_PREC_AUTO_INCREMENT);
-+
-+	for (i = 0; i < lut_size + 3; i++) {
-+		if (post_csc_lut) {
-+			if (i < lut_size)
-+				lut_val = drm_color_lut32_extract(post_csc_lut[i].green, 16);
-+			/* else duplicate last lut_val */
-+		} else {
-+			if (i < lut_size)
-+				lut_val = (i * ((1 << 16) - 1)) / (lut_size - 1);
-+			else
-+				lut_val = 1 << 16;
-+		}
-+
-+		intel_de_write_dsb(display, dsb,
-+				   PLANE_POST_CSC_GAMC_DATA(pipe, plane, 0),
-+				   lut_val);
-+	}
-+
-+	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX(pipe, plane, 0), 0);
-+}
-+
-+static void
-+xelpd_program_plane_post_csc_lut(struct intel_dsb *dsb,
-+				 const struct intel_plane_state *plane_state)
-+{
-+	struct intel_display *display = to_intel_display(plane_state);
-+	const struct drm_plane_state *state = &plane_state->uapi;
-+	enum pipe pipe = to_intel_plane(state->plane)->pipe;
-+	enum plane_id plane = to_intel_plane(state->plane)->id;
-+	const struct drm_color_lut32 *post_csc_lut = plane_state->hw.gamma_lut ?
-+		plane_state->hw.gamma_lut->data : NULL;
-+
-+	if (icl_is_hdr_plane(display, plane))
-+		xelpd_load_hdr_post_csc_lut(display, dsb, pipe, plane, post_csc_lut);
-+	else
-+		xelpd_load_sdr_post_csc_lut(display, dsb, pipe, plane, post_csc_lut);
- }
- 
- static void
 diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-index 6cf8080ee800..38cfd6ed585d 100644
+index 38cfd6ed585d..3f76b8d80430 100644
 --- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
 +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-@@ -43,6 +43,19 @@ static const enum intel_color_block hdr_plane_pipeline[] = {
- 	INTEL_PLANE_CB_POST_CSC_LUT,
- };
- 
-+static const enum intel_color_block sdr_plane_yuv_pipeline[] = {
+@@ -31,6 +31,7 @@ static const struct drm_colorop_funcs intel_colorop_funcs = {
+  * the pipeline totally unusable.
+  */
+ static const enum intel_color_block xe3plpd_primary_plane_pipeline[] = {
 +	INTEL_PLANE_CB_CSC_FF,
-+	INTEL_PLANE_CB_POST_CSC_LUT,
-+};
-+
-+static const u64 intel_plane_supported_csc_ff =
-+		BIT(DRM_COLOROP_FM_YCBCR601_FULL_RGB) |
-+		BIT(DRM_COLOROP_FM_YCBCR601_LIMITED_RGB) |
-+		BIT(DRM_COLOROP_FM_YCBCR709_FULL_RGB) |
-+		BIT(DRM_COLOROP_FM_YCBCR709_LIMITED_RGB) |
-+		BIT(DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB) |
-+		BIT(DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB);
-+
- static bool plane_has_3dlut(struct intel_display *display, enum pipe pipe,
- 			    struct drm_plane *plane)
- {
-@@ -92,6 +105,12 @@ struct intel_colorop *intel_color_pipeline_plane_add_colorop(struct drm_plane *p
- 							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
- 							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
- 		break;
-+	case INTEL_PLANE_CB_CSC_FF:
-+		ret = drm_plane_colorop_fixed_matrix_init(dev, &colorop->base, plane,
-+							  &intel_colorop_funcs,
-+							  intel_plane_supported_csc_ff,
-+							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
- 	default:
- 		drm_err(plane->dev, "Invalid colorop id [%d]", id);
- 		ret = -EINVAL;
-@@ -126,9 +145,12 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
- 	if (plane_has_3dlut(display, pipe, plane)) {
- 		pipeline = xe3plpd_primary_plane_pipeline;
- 		pipeline_len = ARRAY_SIZE(xe3plpd_primary_plane_pipeline);
--	} else {
-+	} else if (icl_is_hdr_plane(display, to_intel_plane(plane)->id)) {
- 		pipeline = hdr_plane_pipeline;
- 		pipeline_len = ARRAY_SIZE(hdr_plane_pipeline);
-+	} else {
-+		pipeline = sdr_plane_yuv_pipeline;
-+		pipeline_len = ARRAY_SIZE(sdr_plane_yuv_pipeline);
- 	}
- 
- 	for (i = 0; i < pipeline_len; i++) {
-@@ -155,17 +177,11 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
- 
- int intel_color_pipeline_plane_init(struct drm_plane *plane, enum pipe pipe)
- {
--	struct drm_device *dev = plane->dev;
--	struct intel_display *display = to_intel_display(dev);
- 	struct drm_prop_enum_list pipelines[MAX_COLOR_PIPELINES] = {};
- 	int len = 0;
- 	int ret = 0;
- 	int i;
- 
--	/* Currently expose pipeline only for HDR planes */
--	if (!icl_is_hdr_plane(display, to_intel_plane(plane)->id))
--		return 0;
--
- 	/* Add pipeline consisting of transfer functions */
- 	ret = _intel_color_pipeline_plane_init(plane, &pipelines[len], pipe);
- 	if (ret)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h b/drivers/gpu/drm/i915/display/intel_display_limits.h
-index ea89473c177f..7ba7360c574e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_limits.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
-@@ -169,6 +169,7 @@ enum aux_ch {
- enum intel_color_block {
  	INTEL_PLANE_CB_PRE_CSC_LUT,
  	INTEL_PLANE_CB_CSC,
-+	INTEL_PLANE_CB_CSC_FF,
- 	INTEL_PLANE_CB_POST_CSC_LUT,
  	INTEL_PLANE_CB_3DLUT,
+@@ -38,6 +39,7 @@ static const enum intel_color_block xe3plpd_primary_plane_pipeline[] = {
+ };
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 20a07ea06b5e..beb0169cabef 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -683,6 +683,7 @@ struct intel_plane_state {
- 		enum drm_color_range color_range;
- 		enum drm_scaling_filter scaling_filter;
- 		struct drm_property_blob *ctm, *degamma_lut, *gamma_lut, *lut_3d;
-+		bool csc_ff_enable;
- 	} hw;
- 
- 	struct i915_vma *ggtt_vma;
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index d0f99a87c42e..25ca049009ef 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -462,6 +462,42 @@ intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
- 	return false;
- }
- 
-+static u32
-+fixedmatrix_colorop_to_encoding(enum drm_colorop_fixed_matrix_type fm_type)
-+{
-+	switch (fm_type) {
-+	case DRM_COLOROP_FM_YCBCR709_FULL_RGB:
-+	case DRM_COLOROP_FM_YCBCR709_LIMITED_RGB:
-+		return DRM_COLOR_YCBCR_BT709;
-+
-+	case DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB:
-+	case DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB:
-+		return DRM_COLOR_YCBCR_BT2020;
-+
-+	case DRM_COLOROP_FM_YCBCR601_FULL_RGB:
-+	case DRM_COLOROP_FM_YCBCR601_LIMITED_RGB:
-+	default:
-+		return DRM_COLOR_YCBCR_BT601;
-+	}
-+}
-+
-+static u32
-+fixedmatrix_colorop_to_range(enum drm_colorop_fixed_matrix_type fm_type)
-+{
-+	switch (fm_type) {
-+	case DRM_COLOROP_FM_YCBCR601_FULL_RGB:
-+	case DRM_COLOROP_FM_YCBCR709_FULL_RGB:
-+	case DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB:
-+		return DRM_COLOR_YCBCR_FULL_RANGE;
-+
-+	case DRM_COLOROP_FM_YCBCR601_LIMITED_RGB:
-+	case DRM_COLOROP_FM_YCBCR709_LIMITED_RGB:
-+	case DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB:
-+	default:
-+		return DRM_COLOR_YCBCR_LIMITED_RANGE;
-+	}
-+}
-+
- static void
- intel_plane_color_copy_uapi_to_hw_state(struct intel_atomic_state *state,
- 					struct intel_plane_state *plane_state,
-@@ -474,6 +510,7 @@ intel_plane_color_copy_uapi_to_hw_state(struct intel_atomic_state *state,
- 	struct drm_property_blob *blob;
- 	struct intel_crtc_state *new_crtc_state = state ?
- 		intel_atomic_get_new_crtc_state(state, crtc) : NULL;
-+	enum drm_colorop_fixed_matrix_type fm_type;
- 	bool changed = false;
- 	int i = 0;
- 
-@@ -485,11 +522,23 @@ intel_plane_color_copy_uapi_to_hw_state(struct intel_atomic_state *state,
- 	while (iter_colorop) {
- 		for_each_new_colorop_in_state(&state->base, colorop, new_colorop_state, i) {
- 			if (new_colorop_state->colorop == iter_colorop) {
--				blob = new_colorop_state->bypass ? NULL : new_colorop_state->data;
- 				intel_colorop = to_intel_colorop(colorop);
--				changed |= intel_plane_colorop_replace_blob(plane_state,
-+				if (intel_colorop->id == INTEL_PLANE_CB_CSC_FF) {
-+					fm_type = new_colorop_state->fixed_matrix_type;
-+
-+					plane_state->hw.csc_ff_enable =
-+						!new_colorop_state->bypass;
-+					plane_state->hw.color_encoding =
-+						fixedmatrix_colorop_to_encoding(fm_type);
-+					plane_state->hw.color_range =
-+						fixedmatrix_colorop_to_range(fm_type);
-+				} else {
-+					blob = new_colorop_state->bypass ?
-+						NULL : new_colorop_state->data;
-+					changed |= intel_plane_colorop_replace_blob(plane_state,
- 									    intel_colorop,
- 									    blob);
-+				}
- 			}
- 		}
- 		iter_colorop = iter_colorop->next;
+ static const enum intel_color_block hdr_plane_pipeline[] = {
++	INTEL_PLANE_CB_CSC_FF,
+ 	INTEL_PLANE_CB_PRE_CSC_LUT,
+ 	INTEL_PLANE_CB_CSC,
+ 	INTEL_PLANE_CB_POST_CSC_LUT,
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 07a683293352..222c3b6bbe46 100644
+index 222c3b6bbe46..9da91d0a00f0 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1240,37 +1240,47 @@ static u32 glk_plane_color_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return plane_color_ctl;
- }
+@@ -1621,7 +1621,8 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
+ 	intel_de_write_dsb(display, dsb, PLANE_COLOR_CTL(pipe, plane_id),
+ 			   plane_color_ctl);
  
--static u32 glk_plane_color_ctl(const struct intel_plane_state *plane_state)
-+static u32 glk_plane_color_ctl_input_csc(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
--	u32 plane_color_ctl = 0;
-+	bool color_pipeline = !!plane_state->uapi.color_pipeline;
-+	bool needs_csc = color_pipeline ? plane_state->hw.csc_ff_enable : fb->format->is_yuv;
-+	u32 ctl = 0;
+-	if (fb->format->is_yuv && icl_is_hdr_plane(display, plane_id))
++	if (icl_is_hdr_plane(display, plane_id) &&
++	    (fb->format->is_yuv || plane_state->hw.csc_ff_enable))
+ 		icl_program_input_csc(dsb, plane, plane_state);
  
--	plane_color_ctl |= PLANE_COLOR_PLANE_GAMMA_DISABLE;
--	plane_color_ctl |= glk_plane_color_ctl_alpha(plane_state);
-+	if (!needs_csc)
-+		return 0;
- 
--	if (fb->format->is_yuv && !icl_is_hdr_plane(display, plane->id)) {
-+	if (!icl_is_hdr_plane(display, plane->id)) {
- 		switch (plane_state->hw.color_encoding) {
- 		case DRM_COLOR_YCBCR_BT709:
--			plane_color_ctl |= PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
-+			ctl |= PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
- 			break;
- 		case DRM_COLOR_YCBCR_BT2020:
--			plane_color_ctl |=
--				PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
-+			ctl |= PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
- 			break;
- 		default:
--			plane_color_ctl |=
--				PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601;
-+			ctl |= PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601;
- 		}
--		if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
--			plane_color_ctl |= PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
--	} else if (fb->format->is_yuv) {
--		plane_color_ctl |= PLANE_COLOR_INPUT_CSC_ENABLE;
--		if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
--			plane_color_ctl |= PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
-+	} else {
-+		ctl |= PLANE_COLOR_INPUT_CSC_ENABLE;
- 	}
- 
-+	if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
-+		ctl |= PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
-+
-+	return ctl;
-+}
-+
-+static u32 glk_plane_color_ctl(const struct intel_plane_state *plane_state)
-+{
-+	u32 plane_color_ctl = 0;
-+
-+	plane_color_ctl |= PLANE_COLOR_PLANE_GAMMA_DISABLE;
-+	plane_color_ctl |= glk_plane_color_ctl_alpha(plane_state);
-+	plane_color_ctl |= glk_plane_color_ctl_input_csc(plane_state);
-+
- 	if (plane_state->force_black)
- 		plane_color_ctl |= PLANE_COLOR_PLANE_CSC_ENABLE;
- 
-diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
-index 224fae40ed2b..26ef67c835e2 100644
---- a/include/drm/drm_colorop.h
-+++ b/include/drm/drm_colorop.h
-@@ -134,6 +134,114 @@ enum drm_colorop_curve_1d_type {
- 	DRM_COLOROP_1D_CURVE_COUNT
- };
- 
-+/**
-+ * enum drm_colorop_fixed_matrix_type - type of Fixed Matrix
-+ *
-+ * Describes a Fixed Matrix operation to be applied by the DRM_COLOROP_FIXED_MATRIX
-+ */
-+enum drm_colorop_fixed_matrix_type {
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR601_FULL_RGB:
-+	 *
-+	 * enum string "YCbCr 601 Full to RGB"
-+	 *
-+	 * Converts full-range YCbCr into full-range RGB using the BT.601
-+	 * coefficients. Y is normalized to [0, 1] and Cb, Cr are centered
-+	 * at 0 (the nominal 0.5 offset removed) before the matrix::
-+	 *
-+	 *   | R |   | 1.0   0.000000   1.402000 |   | Y  |
-+	 *   | G | = | 1.0  -0.344136  -0.714136 | x | Cb |
-+	 *   | B |   | 1.0   1.772000   0.000000 |   | Cr |
-+	 */
-+	DRM_COLOROP_FM_YCBCR601_FULL_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR601_LIMITED_RGB:
-+	 *
-+	 * enum string "YCbCr 601 Limited to RGB"
-+	 *
-+	 * Converts limited- (narrow-) range YCbCr into full-range RGB using
-+	 * the BT.601 coefficients. Before the matrix Y is offset by 16/255
-+	 * and Cb, Cr are centered at 0, following the studio-range
-+	 * convention of ITU-R BT.601::
-+	 *
-+	 *   | R |   | 1.164384   0.000000   1.596027 |   | Y - 16/255 |
-+	 *   | G | = | 1.164384  -0.391762  -0.812968 | x | Cb         |
-+	 *   | B |   | 1.164384   2.017232   0.000000 |   | Cr         |
-+	 */
-+	DRM_COLOROP_FM_YCBCR601_LIMITED_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR709_FULL_RGB:
-+	 *
-+	 * enum string "YCbCr 709 Full to RGB"
-+	 *
-+	 * Converts full-range YCbCr into full-range RGB using the BT.709
-+	 * coefficients. Y is normalized to [0, 1] and Cb, Cr are centered
-+	 * at 0 (the nominal 0.5 offset removed) before the matrix::
-+	 *
-+	 *   | R |   | 1.0   0.000000   1.574800 |   | Y  |
-+	 *   | G | = | 1.0  -0.187324  -0.468124 | x | Cb |
-+	 *   | B |   | 1.0   1.855600   0.000000 |   | Cr |
-+	 */
-+	DRM_COLOROP_FM_YCBCR709_FULL_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR709_LIMITED_RGB:
-+	 *
-+	 * enum string "YCbCr 709 Limited to RGB"
-+	 *
-+	 * Converts limited- (narrow-) range YCbCr into full-range RGB using
-+	 * the BT.709 coefficients. Before the matrix Y is offset by 16/255
-+	 * and Cb, Cr are centered at 0, following the studio-range
-+	 * convention of ITU-R BT.709::
-+	 *
-+	 *   | R |   | 1.164384   0.000000   1.792741 |   | Y - 16/255 |
-+	 *   | G | = | 1.164384  -0.213249  -0.532909 | x | Cb         |
-+	 *   | B |   | 1.164384   2.112402   0.000000 |   | Cr         |
-+	 */
-+	DRM_COLOROP_FM_YCBCR709_LIMITED_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB:
-+	 *
-+	 * enum string "YCbCr 2020 NC Full to RGB"
-+	 *
-+	 * Converts full-range YCbCr into full-range RGB using the BT.2020
-+	 * non-constant luminance coefficients. Y is normalized to [0, 1]
-+	 * and Cb, Cr are centered at 0 (the nominal 0.5 offset removed)
-+	 * before the matrix::
-+	 *
-+	 *   | R |   | 1.0   0.000000   1.474600 |   | Y  |
-+	 *   | G | = | 1.0  -0.164553  -0.571353 | x | Cb |
-+	 *   | B |   | 1.0   1.881400   0.000000 |   | Cr |
-+	 */
-+	DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB:
-+	 *
-+	 * enum string "YCbCr 2020 NC Limited to RGB"
-+	 *
-+	 * Converts limited- (narrow-) range YCbCr into full-range RGB using
-+	 * the BT.2020 non-constant luminance coefficients. Before the matrix
-+	 * Y is offset by 16/255 and Cb, Cr are centered at 0, following the
-+	 * studio-range convention of ITU-R BT.2020::
-+	 *
-+	 *   | R |   | 1.164384   0.000000   1.678674 |   | Y - 16/255 |
-+	 *   | G | = | 1.164384  -0.187326  -0.650424 | x | Cb         |
-+	 *   | B |   | 1.164384   2.141772   0.000000 |   | Cr         |
-+	 */
-+	DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_COUNT:
-+	 *
-+	 * enum value denoting the size of the enum
-+	 */
-+	DRM_COLOROP_FM_COUNT
-+};
-+
- /**
-  * struct drm_colorop_state - mutable colorop state
-  */
-@@ -197,6 +305,13 @@ struct drm_colorop_state {
- 	 */
- 	enum drm_colorop_lut3d_interpolation_type lut3d_interpolation;
- 
-+	/**
-+	 * @fixed_matrix_type:
-+	 *
-+	 * Type of Fixed Matrix operation.
-+	 */
-+	enum drm_colorop_fixed_matrix_type fixed_matrix_type;
-+
- 	/** @state: backpointer to global drm_atomic_commit */
- 	struct drm_atomic_commit *state;
- };
-@@ -366,6 +481,13 @@ struct drm_colorop {
- 	 */
- 	struct drm_property *data_property;
- 
-+	/**
-+	 * @fixed_matrix_type_property:
-+	 *
-+	 * Sub-type for DRM_COLOROP_FIXED_MATRIX type.
-+	 */
-+	struct drm_property *fixed_matrix_type_property;
-+
- 	/**
- 	 * @next_property:
- 	 *
-@@ -422,6 +544,10 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
- 				 uint32_t lut_size,
- 				 enum drm_colorop_lut3d_interpolation_type interpolation,
- 				 uint32_t flags);
-+int drm_plane_colorop_fixed_matrix_init(struct drm_device *dev, struct drm_colorop *colorop,
-+					struct drm_plane *plane,
-+					const struct drm_colorop_funcs *funcs,
-+					u64 supported_fm, uint32_t flags);
- 
- struct drm_colorop_state *
- drm_atomic_helper_colorop_create_state(struct drm_colorop *colorop);
-@@ -480,6 +606,7 @@ drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_ty
- 
- const char *
- drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
-+const char *drm_get_colorop_fixed_matrix_type_name(enum drm_colorop_fixed_matrix_type type);
- 
- void drm_colorop_set_next_property(struct drm_colorop *colorop, struct drm_colorop *next);
- 
-diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-index bd435effdcee..ed1a660a3dfd 100644
---- a/include/uapi/drm/drm_mode.h
-+++ b/include/uapi/drm/drm_mode.h
-@@ -955,6 +955,18 @@ enum drm_colorop_type {
- 	 *         color = lut3d[index]
- 	 */
- 	DRM_COLOROP_3D_LUT,
-+
-+	/**
-+	 * @DRM_COLOROP_FIXED_MATRIX:
-+	 *
-+	 * enum string "Fixed Matrix"
-+	 *
-+	 * A Colorop block that performs a pre-defined matrix operation selected
-+	 * via the FIXED_MATRIX_TYPE enum property. The driver advertises the supported
-+	 * operations through this property.
-+	 */
-+	DRM_COLOROP_FIXED_MATRIX,
-+
- };
- 
- /**
+ 	skl_write_plane_wm(dsb, plane, crtc_state);
 -- 
 2.50.1
 
