@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9E24C5DF66
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA590C5DF64
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1177210F0C4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0490C10F0C1;
 	Wed, 12 Aug 2026 17:41:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Y7io69MY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CqCX9bwL";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 615E710EFAC
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 13:00:55 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D985C10E413
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 12:55:16 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 6E81060A92;
- Wed, 12 Aug 2026 13:00:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFABB1F000E9;
- Wed, 12 Aug 2026 13:00:53 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 5B454404F6;
+ Wed, 12 Aug 2026 12:55:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C9CC1F00ACA;
+ Wed, 12 Aug 2026 12:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786539654;
- bh=/Iwr7giYgJPKzsAX1U1XVVmAKPj7uBpQqyJtFBFl1q4=;
+ s=k20260515; t=1786539316;
+ bh=Ibh87rvCZyYheY0JdqGLILoYbCGHyL0KmLKcqou7qCg=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Y7io69MYnJCvti5Ob8ILFS5VsfMsNKVZyKDy7FPUznw6J00R+5h5Qy27xhc4HdvQd
- Kz4Gppq4vz2OiTRy7I9R2GyWtJ1KMt+BoMm0hUFcwI9uwiXuc3nfzP9451Ooli60GN
- Z7GFxSbTPrjy/qW7BiMtp+oLkJ2G0+XDU4ZtxQ8olM2lxX2jlg8xg0w4iIHO1ckhus
- A/hF/oBblq1B7wl4N/zT0yZmdbRy+fVLVe16hGJm0FESqUwqmY6czNVXEbnjsUKYfs
- MxsYa7tsGXa8Op4dBgO371ZynDgfALMfVLDBZ7/J2rixYahehfeYbT8dCNO0JN55J7
- s3Rr9ChQ6j/Zg==
+ b=CqCX9bwLETmOpNi8i+DF/b2v3lld0cd4DPapBy1/gIlQ7gkbbwvCoEuFx1ebLAmwq
+ rRsn4PVSL/+rfJzHqji6R1jKT+mZvCLO55adm9us7tIK6iIK4SLa++bAVnovHQZ/x3
+ uL27FU7nsvrvZmRGRY6aPd1D87IApTvNMPK2S3HPxM3aUK5zolHRqdpIERC2rkvlOe
+ 2BKiBf+ch2J2c+WuSj8yKAKdEtoIi4XRSNNijXV/ifJOljTnMpX177GFWXr48lP6uz
+ 7KWyQawdtWoj5HY3ZPXuZi/NHKT2Zx+KG/GonWxkON8OwT/Ua6dBytJTiRIB0TB/LZ
+ I65x12yCf50fw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 7/7] drm/xe/tests: Add KUnit tests for VF
- provisioning error handling
+Subject: Re: [PATCH v6 4/7] drm/xe: Introduce helpers for xe_vram size
 To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812124313.1377582-16-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260812124313.1377582-13-satyanarayana.k.v.p@intel.com>
 References: <20260812124313.1377582-9-satyanarayana.k.v.p@intel.com>
- <20260812124313.1377582-16-satyanarayana.k.v.p@intel.com>
+ <20260812124313.1377582-13-satyanarayana.k.v.p@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 13:00:53 +0000
-Message-Id: <20260812130053.EFABB1F000E9@smtp.kernel.org>
+Date: Wed, 12 Aug 2026 12:55:15 +0000
+Message-Id: <20260812125516.1C9CC1F00ACA@smtp.kernel.org>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 17:41:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,81 +59,52 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] The GGTT initialization path skips alignment validation and perfor=
-ms partial state updates before validation completes, which the new KUnit t=
-ests fail to detect.
+- [High] `query_mem_regions()` now reports VRAM `min_page_size` as `SZ_4K` =
+instead of `PAGE_SIZE` on architectures with `PAGE_SIZE > 4K`, leading to u=
+serspace allocation failures.
 --
 
---- Patch [7]: [PATCH v6 7/7] drm/xe/tests: Add KUnit tests for VF provisio=
-ning error handling ---
-commit 5074ef2c8cf15b0dd4c9cdf94819ab386e4100b7
+--- Patch [4]: [PATCH v6 4/7] drm/xe: Introduce helpers for xe_vram size ---
+commit 8d2aa91dbef321fc3453eaed963150727bdc7dd0
 Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-drm/xe/tests: Add KUnit tests for VF provisioning error handling
+drm/xe: Introduce helpers for xe_vram size
 
-This commit adds KUnit test cases for VF provisioning error handling. It
-uses the xe_guc_mmio_send_recv() stub to inject bad KLV responses and
-verifies that the VF can handle invalid configuration data.
+This commit introduces xe_vram_alignment() and xe_vram_needs_64k() helpers.
+It updates various files in the xe driver to use these new helpers instead =
+of
+directly checking the XE_VRAM_FLAGS_NEED64K flag.
 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c b/drivers/gp=
-u/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-> new file mode 100644
-> index 0000000000000..8cb7f3cebb311
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-[ ... ]
-> +struct config_ggtt {
-> +	u64 start_orig;
-> +	u64 start_query;
-> +	u64 size_orig;
-> +	u64 size_query;
-> +	int expected_ret;
-> +	int ret;
-> +	int flags;
-> +	const char *name;
-> +} vf_ggtt_testcase[] =3D {
-[ ... ]
-> +	{
-> +		.start_orig =3D TEST_GGTT_START,		.start_query =3D TEST_GGTT_START,
-> +		.size_orig =3D TEST_GGTT_SIZE - SZ_2K,	.size_query =3D TEST_GGTT_SIZE =
-- SZ_2K,
-> +		.expected_ret =3D -EINVAL,		.flags =3D 0,
-> +		.name =3D "unaligned_size_4K",
-> +
-> +	},
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index dc975f5953683..9af98f08b0e59 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -289,8 +289,7 @@ static int query_mem_regions(struct xe_device *xe,
+>  			mem_regions->mem_regions[mem_regions->num_mem_regions].instance =3D
+>  				mem_regions->num_mem_regions;
+>  			mem_regions->mem_regions[mem_regions->num_mem_regions].min_page_size =
+=3D
+> -				xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ?
+> -				SZ_64K : PAGE_SIZE;
+> +				xe_vram_alignment(xe);
 
 [Severity: High]
-This is a pre-existing issue, but the new KUnit tests unintentionally mask
-a bug in the early return path of vf_get_ggtt_info().
+Does this code report the minimum page size correctly on architectures where
+PAGE_SIZE is greater than 4K?
 
-By setting size_orig to a non-zero value (TEST_GGTT_SIZE - SZ_2K) in this
-unaligned test case, the test avoids the initial provisioning path. If
-size_orig was set to 0 (which reflects the actual initial provisioning stat=
-e),
-the test would fail because vf_get_ggtt_info() incorrectly returns 0 instead
-of -EINVAL.
+The previous code returned PAGE_SIZE when 64K alignment was not needed, but
+xe_vram_alignment() now always returns SZ_4K in that case.
 
-Looking at vf_get_ggtt_info() in drivers/gpu/drm/xe/xe_gt_sriov_vf.c:
+If userspace uses this 4K value to size its allocations, could those
+allocations be rejected in xe_gem_create_ioctl()?
 
-	xe_tile_sriov_vf_ggtt_base_store(tile, start);
-	ggtt_size =3D xe_tile_sriov_vf_ggtt(tile);
-	if (!ggtt_size) {
-		/* ... */
-		xe_tile_sriov_vf_ggtt_store(tile, size);
-		return 0;
-	}
-
-During initial provisioning (when ggtt_size is 0), unvalidated start and si=
-ze
-values are stored and the function returns early, completely bypassing the
-IS_ALIGNED validation checks that occur later in the function.
-
-Should the alignment checks in vf_get_ggtt_info() be moved before this early
-return, and should these KUnit tests be updated to include scenarios where
-size_orig is 0 to verify the initial provisioning path?
+drivers/gpu/drm/xe/xe_bo.c:xe_gem_create_ioctl() {
+        ...
+        if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
+                return -EINVAL;
+        ...
+}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812124313.1377=
-582-9-satyanarayana.k.v.p@intel.com?part=3D7
+582-9-satyanarayana.k.v.p@intel.com?part=3D4
