@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8206BC5DF66
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21BD3C5DF65
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 22:17:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95A5A10F145;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89D0010F143;
 	Wed, 12 Aug 2026 22:17:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="anEKCeic";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UZ0yDiuu";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC9C110E452
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:49:06 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F21010F0D9
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:29:57 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 707C44360F;
- Wed, 12 Aug 2026 19:49:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29AB51F000E9;
- Wed, 12 Aug 2026 19:49:06 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 8AB1460A7D;
+ Wed, 12 Aug 2026 19:29:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F791F000E9;
+ Wed, 12 Aug 2026 19:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786564146;
- bh=mIiYCyunHSAru4MR+UWnqBBkttfdqRgo+95iD8ilCBc=;
+ s=k20260515; t=1786562996;
+ bh=fqOWXkdkpR8bH9so9Xl8TfCPkU11y7ijjjs79zR/dEU=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=anEKCeicrCRn4Q+6f0m1J8yPclz8t1Q+WbhPGWLlwG4P+qyYldrrSoU4DOT146jFs
- iO7F3jMGKEtGi1A6JzKJ8FIw3YtGgCJlcDGgTOt2GoJVZvBiHqZqEOW9IdhlrIHhOH
- jd4WCCj0vnmf2eSzcbNxWWnXpIVN4EOMeoAUKJUsVJF5t4C0AcibI9MAFKsCeC4y0t
- 253zmoFhd7834Ex+E3u0Suh7tJFgXSCHXfZvNSLItMoCyc6GOqtWg2H27/pSYlLW5c
- YXrvdftYIzHKRyg0jbgueodkb/VoLNckhzOf/adbpUgqHfkW3QB/4hlD8I7ar1c0OC
- Ia+0Kfe9fUfGQ==
+ b=UZ0yDiuuW7AQe6C1HUK4KDy0LXhXqblLY7zJgwFAxY8GA4UG7OQtuhdpVakyuSm5e
+ lcryRHUnpUzxfYlEd4Mm3ZgLo39aweOlyw97i7gDl0ebUQdytdE0nA5SmfPn2+Xwj9
+ HfuKeIoPgunt5/zeCNv0Z6yTgT/65kiSYxrtfp7mSLha9HasveSRxGVv4DKvme90Hj
+ sEgyX3w5VQyN9nsoQivmbeScOtw0PfL87RqOUmKpfT0olidgQyd9ZI0PcfAbJxmMzw
+ fyVXWmYo2bR+mMPGnKMtqrVQKqTLWx2KDOZWHlDTGYKs70yBt2KP9TcyBk96UGf0RA
+ GjuQUpFcfRGVw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 02/10] platform/x86/intel/pmt: Add register access
- callbacks
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Subject: Re: [PATCH v4 01/32] drm/xe: Introduce xe_any helpers
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812193742.2170188-14-michael.j.ruhl@intel.com>
-References: <20260812193742.2170188-12-michael.j.ruhl@intel.com>
- <20260812193742.2170188-14-michael.j.ruhl@intel.com>
+In-Reply-To: <20260812191450.11690-2-michal.wajdeczko@intel.com>
+References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
+ <20260812191450.11690-2-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 19:49:05 +0000
-Message-Id: <20260812194906.29AB51F000E9@smtp.kernel.org>
+Date: Wed, 12 Aug 2026 19:29:55 +0000
+Message-Id: <20260812192956.20F791F000E9@smtp.kernel.org>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 22:17:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,108 +57,121 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] Missing error propagation in pmt_crashlog_rmw and pmt_crashlog_r=
-c when register callbacks fail.
+- [Low] Macros xe_any_to_drm, xe_any_to_dev, and xe_any_to_pdev fail to com=
+pile when passed const pointers due to a C11 constraint violation in the un=
+derlying xe_any_to_xe macro.
+- [Low] The macros xe_any_if_type and xe_any_id silently discard side effec=
+ts for unmatched types.
 --
 
---- Patch [2]: [PATCH v2 02/10] platform/x86/intel/pmt: Add register access=
- callbacks ---
-commit 63beb7f9cb719c6439cef978b14d03ae4aa7a626
-Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+--- Patch [1]: [PATCH v4 01/32] drm/xe: Introduce xe_any helpers ---
+commit 933eba9892b749844655f0d89de25fa2cfc22f5b
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: drm/xe: Introduce xe_any helpers
 
-platform/x86/intel/pmt: Add register access callbacks
+This commit introduces a set of macros using _Generic to convert between
+xe_device, xe_tile, xe_gt, drm_device, pci_dev, and device pointers. It
+provides type-checking helpers and object identifier retrievals across the
+xe driver.
 
-This commit augments the PMT callback infrastructure to allow registered
-drivers to customize read and write access to the control paths.
+> diff --git a/drivers/gpu/drm/xe/xe_any.h b/drivers/gpu/drm/xe/xe_any.h
+> new file mode 100644
+> index 0000000000000..5d97afa76915a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_any.h
+[ ... ]
+> +/**
+> + * xe_any_if_type() - Get the pointer only if it is @type pointer.
+> + * @any: any pointer
+> + * @type: data type to look for
+> + *
+> + * Return: the @type pointer or NULL.
+> + */
+> +#define xe_any_if_type(any, type)						\
+> +	_Generic((any),								\
+> +		 __xe_any_to_self_assoc(type, (any)),				\
+> +		 default : NULL)
 
-> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform=
-/x86/intel/pmt/crashlog.c
-> index f936daf99e4d2..5923ad7abbd98 100644
-> --- a/drivers/platform/x86/intel/pmt/crashlog.c
-> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-> @@ -129,7 +129,19 @@ static void pmt_crashlog_rmw(struct crashlog_entry *=
-crashlog, u32 bit, bool set)
->  {
->  	const struct crashlog_control *control =3D &crashlog->info->control;
->  	struct intel_pmt_entry *entry =3D &crashlog->entry;
-> -	u32 reg =3D readl(entry->disc_table + control->offset);
-> +	u32 guid =3D entry->header.guid;
-> +	u32 reg;
-> +	int err;
-> +
-> +	if (entry->cb && entry->cb->read_reg) {
-> +		err =3D entry->cb->read_reg(entry->dev, guid, &reg, control->offset);
-> +		if (err) {
-> +			pr_err("%s: failed to read reg: %d\n", __func__, err);
-> +			return;
+[Severity: Low]
+Could this macro discard side effects for unmatched types?
 
-[Severity: Medium]
-Should pmt_crashlog_rmw() be updated to return an int so that this error co=
-de
-can be propagated to the caller?=20
+If a caller passes an expression with side effects, like a function call or
+pointer increment, to xe_any_if_type() or any macro that uses it, the side
+effects will be evaluated if the type matches.
 
-Since it currently returns void, any sysfs write handlers that trigger this
-path will silently swallow the error and falsely report success to userspac=
-e if
-the underlying hardware access fails.
-
-> +		}
-> +	} else {
-> +		reg =3D readl(entry->disc_table + control->offset);
-> +	}
+However, if the type falls to the default branch, the side effects will be
+completely discarded because (any) is not evaluated in the default : NULL
+association.
 
 [ ... ]
-
-> -	writel(reg, entry->disc_table + control->offset);
-> +	if (entry->cb && entry->cb->write_reg) {
-> +		err =3D entry->cb->write_reg(entry->dev, guid, reg, control->offset);
-> +		if (err) {
-> +			pr_err("%s: failed to write reg: %d\n", __func__, err);
-> +			return;
-
-[Severity: Medium]
-Similarly, should the error code be propagated here rather than returning
-without notifying the caller of the failure?
-
-> +		}
-> +	} else {
-> +		writel(reg, entry->disc_table + control->offset);
-> +	}
->  }
-> =20
->  /* Read the status register and see if the specified @bit is set */
->  static bool pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit)
->  {
->  	const struct crashlog_status *status =3D &crashlog->info->status;
-> -	u32 reg =3D readl(crashlog->entry.disc_table + status->offset);
-> +	struct intel_pmt_entry *entry =3D &crashlog->entry;
-> +	u32 guid =3D entry->header.guid;
-> +	u32 reg;
-> +	int err;
+> +/**
+> + * xe_any_to_xe() - Obtain the &xe_device pointer.
+> + * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
+> + *
+> + * Return: the @xe_device pointer or backpointer.
+> + */
+> +#define xe_any_to_xe(any)							\
+> +	_Generic((any),								\
+> +		 __xe_any_to_self_assoc(struct xe_device, (any)),		\
+> +		 __xe_any_to_other_assoc(/* */, xe_tile, xe_device, (any)),	\
+> +		 __xe_any_to_other_assoc(const, xe_tile, xe_device, (any)),	\
+> +		 __xe_any_to_other_assoc(/* */, xe_gt, xe_device, (any)),	\
+> +		 __xe_any_to_other_assoc(const, xe_gt, xe_device, (any)),	\
+> +		 __xe_any_to_other_assoc(, drm_device, xe_device, (any)),	\
+> +		 __xe_any_to_other_assoc(, pci_dev, xe_device, (any)),		\
+> +		 __xe_any_to_other_assoc(, device, xe_device, (any)))
 > +
-> +	if (entry->cb && entry->cb->read_reg) {
-> +		err =3D entry->cb->read_reg(entry->dev, guid, &reg, status->offset);
-> +		if (err) {
-> +			pr_err("%s: failed to read reg: %d\n", __func__, err);
-> +			return false;
+> +/**
+> + * xe_any_to_drm() - Obtain the &drm_device pointer.
+> + * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
+> + *
+> + * Return: the @drm_device pointer or backpointer.
+> + */
+> +#define xe_any_to_drm(any)							\
+> +	_Generic((any),								\
+> +		 __xe_any_to_self_assoc(struct drm_device, (any)),		\
+> +		 default : &xe_any_to_xe(any)->drm)
 
-[Severity: Medium]
-Is returning false the correct behavior when the read callback fails?=20
+[Severity: Low]
+Will this cause a C11 constraint violation during compilation if the parame=
+ter
+is a const struct drm_device pointer?
 
-This masks the error code from the caller and treats the read failure as if
-the bit is unset. This could lead to incorrect evaluations, for example cau=
-sing
-sysfs read handlers to return an inaccurate hardware state. Should we propa=
-gate
-the error instead?
+When xe_any_to_drm is called with a const struct drm_device pointer, it fal=
+ls
+to the default branch which contains xe_any_to_xe(any).
 
-> +		}
-> +	} else {
-> +		reg =3D readl(crashlog->entry.disc_table + status->offset);
-> +	}
+The xe_any_to_xe macro lacks const associations for drm_device, pci_dev, and
+device, and it does not have a default branch. This will cause compilation =
+to
+fail even though it is inside an unselected branch of the outer _Generic bl=
+ock.
+
+[ ... ]
+> +/**
+> + * xe_any_id() - Get the identifier of the underlying object.
+> + * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
+> + *
+> + * Return: the identifier of the object, or 0 if not applicable/availabl=
+e.
+> + */
+> +#define xe_any_id(any)								\
+> +	_Generic((any),								\
+> +		 __xe_any_to_other_assoc(/* */, xe_tile, id, (any)),		\
+> +		 __xe_any_to_other_assoc(const, xe_tile, id, (any)),		\
+> +		 __xe_any_to_other_assoc(/* */, xe_gt, id, (any)),		\
+> +		 __xe_any_to_other_assoc(const, xe_gt, id, (any)),		\
+> +		 default : 0)
+
+[Severity: Low]
+Does this macro also discard side effects for unmatched types, similar to
+xe_any_if_type?
+
+If (any) is an expression with side effects, they are evaluated if the type
+matches, but are lost in the default : 0 branch because (any) is omitted.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812193742.2170=
-188-12-michael.j.ruhl@intel.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812191450.1169=
+0-1-michal.wajdeczko@intel.com?part=3D1
