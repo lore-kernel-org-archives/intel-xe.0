@@ -4,156 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D533C5B56A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 12:01:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C99C5AD5A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 12:15:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3548989E36;
-	Wed, 12 Aug 2026 12:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAF4610E3BC;
+	Wed, 12 Aug 2026 12:15:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQLFzq4V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nVQnUrOf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63A0F10EF86
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 12:01:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C55DA10E3BC
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 12:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786536094; x=1818072094;
+ t=1786536902; x=1818072902;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=9TkUZxb8RxCyfQtdCog3OhTwIC6QeIVnw12HZ0Jf3x4=;
- b=CQLFzq4V5O5IT1sAqKRahTBqq9jli3j+g7W/kP9saAL72y7eNoMGoveV
- EoiqCi5xJYK2f/udxyNmqc50INhsZCP9HOqW340UiekfMAeiY7GumPJin
- uquN4IE+GAbTfpwKMwDjJMy6PDlpgxdn2544D70sHh1Y5ihW82zd0tr8d
- 9j2pxL6B5QOewDaFwZJBwVQG6G2CfvffwdkcvQfOA5ixz+w7IZjFFMuR0
- Ve3RT2Gcs51Qcg10fxnHo0OQzP+rSPaXcoqdqGh8ZI9MM5rvHVmSPI4L+
- sSvcD3sHSxALcckJkPxBwxhe07mrulKZbDW3xwa572lsmaDz2828edPg+ w==;
-X-CSE-ConnectionGUID: MmBr3GKRToG0Aj0aWXkOSA==
-X-CSE-MsgGUID: 38wbYf5zQiG9X0ZNAdyTGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="104620464"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="104620464"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 05:01:34 -0700
-X-CSE-ConnectionGUID: 8xbwgGpmRVivIub+IKoMEA==
-X-CSE-MsgGUID: 5E6vCjV0ThKYYKlUmoLYmQ==
+ bh=n/dZn6b/y0V9LTJf6ZNCijs04MCRvvVZwkHaKTqPCvg=;
+ b=nVQnUrOfTlN9XcsHGf3sLI9ULdT6oFI42gUYQSIGAhmZbKVjoJrABSq8
+ hjFDdNRwEx1EJWmr8SoucfORcBV7QLlX59RoUdfGxs0Ta6cQ18bUoecKY
+ Gxz1JuwWpjplUnxPi6zq++1YMQnrtN886pxlmVmV11+ucJmCe7fSU90kQ
+ MHte16Vst7H1ACk7B+rLipRNdPhPfN00lNqZTNQ+c+C4MVs+PxiVNccZY
+ eRrASjUBsPvc47Urwm6VbSxSkwuVZe0JwQNnSYBkLa6i4FzddVZF0OouA
+ WNil2sDgd6JiZFcCxhfAWaSolLtsDmXEo6llZRJ1E5kLnfaNFri5XStuF w==;
+X-CSE-ConnectionGUID: IKh85DkFSj+P5dyd6qZpsA==
+X-CSE-MsgGUID: UBwIyCkoQ92AbB4jw/W6pw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="104469681"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="104469681"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 05:15:02 -0700
+X-CSE-ConnectionGUID: /rBRPvUARE6UJhDjw82H6w==
+X-CSE-MsgGUID: RVexpGYVRW+YC4LD+fgZOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="259797348"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 05:01:34 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="265626216"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 05:15:02 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 12 Aug 2026 05:01:33 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.45; Wed, 12 Aug 2026 05:15:01 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Wed, 12 Aug 2026 05:01:33 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.41) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Wed, 12 Aug 2026 05:15:01 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.6) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 12 Aug 2026 05:01:33 -0700
+ 15.2.2562.45; Wed, 12 Aug 2026 05:15:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XOPfiYJXzg9v17CJ6bvgyo6O9qSfmnIce/iOmD/nW/G+6z7GjbUWT9ctgSwdoaO/nu0c7Odh4HnCNiTyjK7f0kawy4vVp/ZXPnFWbzSDWHJf+9Q3dQNqSY1gXtplgYLFBDMuMZIHIhPGvD9agx5pFyKJY4SgaPrg6Qq78AJNzRQwPrMwRFpcVwHFmwE0AWsC5MPncLzNIxQ6jer5Cecy48o6Klk7Hc+i40JhN85NTGCecuXT5VMnHe64hm/gwDR4JitwPXdLivLVlAdxw55AdmcTSjbJdQCM7QR71K+hYsJBJ4Ywd/UL+uYPR1MWDyXknICtfFNSDpgJ3I3qH53PZQ==
+ b=QTbuwq0Yk6I73+omjCmgKvjObq4iJRghuu6f6I41KyjQnqBri/gkR3rdmt0n4QaUE93FMPcUx09/vKQ9npPxbZ5g7npkT8Mi4DsFolx+qyBHcllyGK09qa7Y3mgkjdVizgNITMhiX44vMQ0xB0n+uqGtPX9Ofw6nR65l3DJsR01GnhTLPLFeJsi5f/ZjmnfN62tHK1ClaVfYK7uVCTyYv/HTpDTHSx8LviUDYoAYTA9+DBYCqbyF6XpwVGz+arjAmCY0LI4iH+G1ozEpTapHpgMD1feLy01ea6It/d69LgkPBKHHfQ2d41Nwyiin5Pw9aTHSIOmgsyLuVbAd6fgbBg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vpiD17LscclSkSBh6F6K+K0LUSDCafQoRSnGRn6Yq0Q=;
- b=GqxVhDFPEJ9q1RCduE7UJa2wbDT1t3ASB8ZWLcF6fdUyoJjucFF/nCasPu3dDYUUhwfGLQK0F9mj2bF0RKrzhEMZOWw7m9VDvRsWNKVAeYiGZI9qeUH+m7rw/zuxhz3ubMPxrGR02wzKr4YTzoz9TebAB3bLPWoBL5eAP26WqYF2zUmjCnKJR5shCZUH6zitAPQF6zigNTh7vFFKUtvgXLgi1zqpPMDVS2mQjdt9+8UXM0U72jcPMGq7pp0R6UZzZqI7u4nIGfk5b5ku8SBj2zvCnUbzPwIS7FeBFjOH3G8pzZfdJ+Yf9HtTkWiz2eFZEZai4FHMIOQqjdE9JlVptA==
+ bh=5bE1KYm5kOHYaaqBBznG1BGL/PRh9gnQ+suj1kQMPLY=;
+ b=kMHrwif5mvkzmqKqkDc46rnWOCaSOruGrloGlDpBz8u5Mgv+QxvuTykBsgVhn2mr67QH5SHZbVZw2TIuADmrh5TcJlvfeCZHlU0+nEIjVXe4aYvNuXoG9LQ8OsAudiRAREcG/UwtFjkka7/st6nQapn3jh9GikQljXTGiVQXpJ4pVpak83SggBSQkgXkSRglF1wkQlxD1UXzYsqVc4UYBQmJtRM0G3UAH4CssmEZMW9vQ09547tkOLsrGzC4nVZrE4afdt8OYaBYqkAJloV4k7V0m7IKhg6X0FcbNDHC+rrdIHQrAvFLKK9cxhWb7/d9RacOP2IRu91s4pjy87Fu4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::2a) by MW4PR11MB5911.namprd11.prod.outlook.com
- (2603:10b6:303:16b::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.11; Wed, 12 Aug
- 2026 12:01:29 +0000
+ (2603:10b6:f:fc02::2a) by IA1PR11MB7872.namprd11.prod.outlook.com
+ (2603:10b6:208:3fe::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.13; Wed, 12 Aug
+ 2026 12:14:56 +0000
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0270.017; Wed, 12 Aug 2026
- 12:01:25 +0000
-Message-ID: <f6b491df-d74c-4540-8db5-6b028c85bf25@intel.com>
-Date: Wed, 12 Aug 2026 17:31:17 +0530
+ 12:14:56 +0000
+Message-ID: <e768c091-fa7a-4ce5-b8d1-4f9d45ac2916@intel.com>
+Date: Wed, 12 Aug 2026 17:44:47 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V15 08/14] drm/xe/vram: Add page offline data structures
- and lifecycle
+Subject: Re: [PATCH V15 11/14] drm/xe/vram: Use RCU for lock-free sysfs reads
+ of bad page lists
 To: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20260811124016.3614699-16-tejas.upadhyay@intel.com>
- <20260811124016.3614699-24-tejas.upadhyay@intel.com>
+ <20260811124016.3614699-27-tejas.upadhyay@intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260811124016.3614699-24-tejas.upadhyay@intel.com>
+In-Reply-To: <20260811124016.3614699-27-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0005.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:174::9) To DS4PPF691668CDD.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5P287CA0037.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:175::17) To DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|MW4PR11MB5911:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c300274-217c-49ce-4f09-08def8696f13
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|IA1PR11MB7872:EE_
+X-MS-Office365-Filtering-Correlation-Id: 344ada3f-2f6d-45eb-88a4-08def86b5237
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|56012099006|10067099003|4143699003|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: rPcjOs4DEkxyNI3MMxkEnYvX16ie/TjO6XA2MyTD/29G9N0OV2uuunizTYXlcGvA2sBKxYTPFrlNI/do2aO8dTsDr9v3P3rNK4lGIf1WfteD2now0QN3O1dLNAQw26fAQS5xNpKqlBbp7At64p6EPR/K45cOMvVH/axLkC4EW/YbHm5NZSkW7k73tImBiohHyDXUvZB16sd+Hu0Xw3XSpOZoRdl09YvwSw4ApO8VskR1OfgZQuCZ3Ft4eBU8Wxvgt9tYm1wzvP0c27xF3+mhXcuM46geVQGwHkbFUBKX5yfCSht9JEqC1/W8BAnaPe7aRWAL1i7+OfEoWCw4qJegq37l2Gole4wW5AHENif/rSYaDFSzhnR0GTAFJ8M8MZELg3vJXSQM2wb8DXzeWWOJ5TRRPmZGkXusaRDMEa3ZEadNz+jlC44sG7MkupahbazQQm2dkDHjV30sILGuEaJcwjMEwfdyP8gpgKK/hs0jDbvteuoHX4yB0GZY/wBcIcKpBrrKIQJkNc1fj4vn4Hm8oi/LnSHQpXNjDR4lqDW2Ft+d0pyq90PZCVy5i1cdZN+LZmnUpERhgR0Ru8zG3FpCC9/sXyzo45fL5tPogdWqk9ronn/G8nt3tzkYWX03mYmTngxPSAx97CG4PT7FSW85IwaucLKZptlO08nQh+KHjAQ=
+ ARA:13230040|1800799024|366016|23010399003|376014|56012099006|11063799006|10067099003|22082099003|18002099003|3023799007|4143699003;
+X-Microsoft-Antispam-Message-Info: 8/SJplWKNRA4SKPyf8ibtREqeRLR/shnyU81jngYSEyYEQE0wgTycrKck50TR7DxwRg7DrMK4B6OUiwKduPpOh3xEiJ6Z7hiMvC8y0qvOeCnjE2OLJRiVrR0Nxl5vtCnn9ZcQwIvLNCyBU2e0l7CK1eW3+M3pJIQSXaJkx7e/2NEeyG0xDfMidY2melFbK6CSIeM8dnFAO4+jLudes7iv+NRSJDR+Qaz4zXzEc/izFIg8if1DxycbnUSjVD2PzKh2V9yIqguR7asthjXjh4NHH2iJJc4phCgrmoqF7x7IO9CCgQIOVP3i7j35g5Ryr9IvI+lcjS0+dp+o6Rhig/fs0Ss2hsccYzL466q2dj0vioRyjiRzBWnt6MlQCIxboFAM5qojtt/wxEcjTfGzVvdICpY4f3xCo/mN8yqhnGhqBssPUM1hFayo3E3kYHnscNVEyauVLUuS6UcDwP1QGoGZc8ShljW7fUIoZnTYR3vy6DxqCSm9iJlFB9J8Z+4yly1qr43ypae7/NOpS+VYqh81VfSfDXP1FBbZCsxbHeYSMIwMOMz/FoPMIeBcZdbHhhoieEb3l5l/iRVBizAwIFjfvzQ4gpWeuMGI4EzsFe5hT5xWmZ6x5A2q7hVJV+U3f7tRa43MzLj10yx1GWaYSAOxA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(56012099006)(10067099003)(4143699003)(11063799006)(18002099003)(22082099003);
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(56012099006)(11063799006)(10067099003)(22082099003)(18002099003)(3023799007)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c29BUktNN1drbTlvMit4K0c3Sm9Gb3VrUi8wQUN3Z3ROaUZ5ZmdpMXVueGdS?=
- =?utf-8?B?aDl5Z1NMRlJIbTlWbnlNWUpvcjJpZzFudUsvZldoMk5vb0lmMUNXcnhVSmFt?=
- =?utf-8?B?OXlid3FxbitXYUhHRkhIaUM5RWlSc2JYV1h1dHFIRzVjUGY2aUdxZVRjSC9s?=
- =?utf-8?B?SHpKWWdCMGJQZW0yN1BVZE9EVGN3VjdUSEJucHpScS9WZ0t3MU9TVk1EV0dY?=
- =?utf-8?B?czBRYlRPdnVCcFhTUWFnZk5KZlRpU3RxZSs1VVpoTW82OWNXT1NLTksrbWlB?=
- =?utf-8?B?bzJoYncyT2FDVzV5bi9NUDlxRTBNS055bDllR2haWjEvNGs5cHN1UzA0UEV1?=
- =?utf-8?B?SllOZVJzNDBzT05CMVErVWMzdno5bThvcXl5OElvNWxxM1Y5N2M1YUFoK1lz?=
- =?utf-8?B?MnB0Q01TTWg5aTFKK2wzYkhUWExxcGZiUWU1UjNTaGYvdkIvNEozbnNNa21V?=
- =?utf-8?B?ckFwU1VUWVdjeGNBZW9YZ2ZNaXFnQWZGNk5iTFpsb1JvMnNWS0pjUm1OSm9H?=
- =?utf-8?B?cmNINUYzcVNJamhHOHUwaXdxeWRYdklZbHNxbnVkazZEUXdVa2J0STU3Vkpt?=
- =?utf-8?B?NGE4T2FqZHIxVG1KNXJYU3ZHUGd6L1Y0MjJtd1dzSkZ1eERHeTEwYUhkQitZ?=
- =?utf-8?B?dEk2Y24zTG1qVzU2QkVYbkl5OHp3YzZsY1A5dnlEem9HNGhENEM0QlQwa2Vq?=
- =?utf-8?B?aXN6Tk5ocnlCZjZVT1l0VnFKNk5PR3FjamV0dXZBaFdWV0dPU0Zrd2MrNEpP?=
- =?utf-8?B?djZpSGtNMWtHRGxhWkpRVnBqZy9WVWVSdFRQekFDMnFYOTc0UzZIcnd0aDNL?=
- =?utf-8?B?dDc5My9ZSWRjUXNnTkJkemhFUUhWeWt5SE5MUXJjN0kvSVBlUEpha0FyS2do?=
- =?utf-8?B?cmxNR3Zsd1laakJQTEJxeXpSYnVodisrWEtyV0hMNm1Qa2hrWkpUbFNURStl?=
- =?utf-8?B?R01MdGtXOWtkRU8rT085YzNtYkR0Sk9aR3I4MUVXL1RRVm1rTXBwN2dsV2Rn?=
- =?utf-8?B?clVPS3NaMG15cDhHNkxxQklKWHRScXpyMk03NEhHall0VmxhNjFRaFlYMFQ5?=
- =?utf-8?B?RS9XREtVeXVLWXQ0OWFFWHFRTmp0Vnh4QjVvVTQxemNGbVZ0UG9XZFJjSlRS?=
- =?utf-8?B?Q1lLbWVXejdwL2h4c2I0RE9BOWE3Snpvbm9tL3BaWm9wcGhoT1N5eFhOaHc0?=
- =?utf-8?B?SFJHUG5oa01OVms1ZXFlNDNXcDJxT1Q4RVU2aEU1VVk4NXRFRy81SmtyS3Bt?=
- =?utf-8?B?RjJvV21mTHd1d05iU2E0TlM4bTNxYWFNcDF1cjc1YlhCZ1grWXdaMFpMMTdB?=
- =?utf-8?B?bnBuNlNZK1JpRUNOL2xlTHJoeThiVk1wUzZQVk9KbTNabGpTTW1vZVlQOERD?=
- =?utf-8?B?SmZ4emNaS3ZtWUpzYUFzME41dHc5MENhRk9BaGVNemprekkrb0tGODNGZjAx?=
- =?utf-8?B?MlZCSkhmaVR2eXl5UGEzU3JIem02VW1SRFlKaTR1RnBZa2JDYUFWWXU4Tkox?=
- =?utf-8?B?d2lJTi9JTXNDcmtrY1piUHVSVmVKOGkrUTd3enJuYXJ2SXJJQWdsWmVTWVo0?=
- =?utf-8?B?SS9pZlNFdzhHdm1MYkdOQlRJbnd1MXpTSGh4ZVBwUS9hdlRZcmNqVEVpVXV5?=
- =?utf-8?B?b3lrL0xHSDgxVGxvSjJqNndZMHozcHZQY3l4OU9HQ2VTS0x4Vy83YnRxdHZm?=
- =?utf-8?B?ZStMVGZkQUIxczlBYlkza0E0eFU2S3JNcjRvS0g2Y2pabmlnQitBdGJGQlk2?=
- =?utf-8?B?U0wxZGZFWVJkTFBta0xUT1lvc1IzRHl0Mm5CTHl0Z2xuN09IVkZkUVpDNEVq?=
- =?utf-8?B?emZLK2tzZlRFVzlNaVZmRUt0YVVCZStXMHZpVzBJeTNSamxLVUExUVBJcC9q?=
- =?utf-8?B?a1lpRFNyYzNvbEdMeEFRS3orNnphcTZydGd3VnlIanptN25hQ1pCZkRFelpX?=
- =?utf-8?B?cFJnZnNsQmRSclFYZWUyUUxieHpzL08raktUdVZVZU9aYUpVT083eW1NYUs0?=
- =?utf-8?B?YU14dE5saThnNEtvYTFyMnFaM2RmNDVrNWpMQ0VTZjFJcHcrcmVpbW55SWN6?=
- =?utf-8?B?SlZtdEwxOW1hcDVzTkw3ZlFhR0hDMTFGNzY4cUF4WDhiUldXR0g5emtqRmcz?=
- =?utf-8?B?NVdFVUFKVTRMRU5oU3U5ZGxGK01zMFFYVmY3c2s0dGpmTDdLUVFsMXQ2cExu?=
- =?utf-8?B?OHNSUGlPaThmQW9GbHM1UnFPVmFMbkJ5TTI4QitzMEUwZmtJK3AybTRQdk1F?=
- =?utf-8?B?azN3b29BaHBiYnRJaEtHM0xteDlIY0NXVmVyeC9IdXQ3aXduWjdCaG5ZQTc1?=
- =?utf-8?B?R054M1o2eFFiMWtKN25RWGZEc1lCRDlJRmMwM3Z0by9Fc3NSQXNndDg4OGZV?=
- =?utf-8?Q?suZFyM2dBJazeub4=3D?=
-X-Exchange-RoutingPolicyChecked: BWqo/+3IXjCc5g8OBsM35wifU6odEXz4iT/iYF/ViPVw3f4B86YFnEY9amgjDfpg0oA/INyASG5WJj0y9i2yrtX3FXxT2ivgkgralyoH4ODsoGxX02INrtinC2Gx65PokSbqcUc1OLx8IgMAqrhK48G+X7GOodtLEZW0ES/1dGr6IcCXtyWYR7RqZ5nZfV/xxfxfQuCOtBTJyYS2C4J26Zs4pSAijA56tVfISUdbF10pt63X/YqXT+dhCsYgiylQ2cIak7KJsI6KthZGcWRgZMZIMDjD+2BrSwfb0dUWJQnvS2y2kJJaoeKD1O1csvq1EOPhe6X0OJg6iKi5fIITrQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c300274-217c-49ce-4f09-08def8696f13
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TUVXbXpMU2w1TlVJaC8vbmx2K2duQzJTU0ZrSXluWURodkYrNXF5U1pTbG5j?=
+ =?utf-8?B?aE40a1VkenJjUmdxQm95MWhxY2p2cWJhbnlSUDhzSmJjbWJwNnBuSXlHK0hs?=
+ =?utf-8?B?RFE1U0ZkSkU4cEwzYTgza1VPL1pMb1M1c0E3N2pqajN1SDlwSDUvWGdVa2hu?=
+ =?utf-8?B?ZG9nczNPZUVRWnpCVzhkaW12ZVNqclpFSk4xekgyRFNENWw1MHg2MXhOcUFF?=
+ =?utf-8?B?RlVrTjJHTS94ZlpLTHZIaUNwNmMxcEdTQ1F1dDVGb1psTVBPME1aOFVpdFBq?=
+ =?utf-8?B?Q25NNDllcVZ2YW5wQXpXZi8xWSs1WWtTYldURlpyeUpINFpGUTFxMVBEZm5W?=
+ =?utf-8?B?c1FTeUlJem1xYm53bVZkKzdFUW5VRS9NWjYvL3BUc2txMWVVdmg1d0pvRHZP?=
+ =?utf-8?B?cVo3R0RkdDRtSkFrdGkzVkt6Yy8zN0d5K0YvLzBqOFNvWDM2bUtZSjN6UUtZ?=
+ =?utf-8?B?Vlg5ZldyWU5vM2d2cmNyVnNHSXZNNTYwN3RhQ0xiYUNRNUEybVJ4Smd4ZzRk?=
+ =?utf-8?B?Um1DWEJ3RUwweTlYaDJWeXVvdmJCWjhNajdYa2M4TnRlcFFXTUNMNElOVkU0?=
+ =?utf-8?B?SVdxTmYrL2pKVmZGdzQ4NlptcSs2OEZOd3Vob3gvK2ZVM3FJejZvMHplamdu?=
+ =?utf-8?B?OFV2b3dEdW5FYkNWcGR4am5RK05vY0gzb0hVQ3RVTWJEVlU3V01TZW8yNUVB?=
+ =?utf-8?B?VDN6Rm9iWHBsUDRIeCtSMlVTUHI3U1ZxM0lLMHJMTXNRNSs4WFdlaU9wRVBT?=
+ =?utf-8?B?bmFzUGdDODBmQUxLRXN6eUhZd096M001Mmc3d3NmUVlwYkQvY3BDcGdURktB?=
+ =?utf-8?B?TjZKaWt0ZHQrYXNhbUdtc01ka0xuSFRxaTJrVnREaGdNU1Q1RHZnd0Z6bkx6?=
+ =?utf-8?B?L1ZMeXRJQ3pjM3MvQVNob2lrNGN4dDVvS3l1UVJYN0lhclpWQVpxZzJQWlRB?=
+ =?utf-8?B?K2pGTHhoNlcxWEloUytrRWEzM2NDZGN4SHd4M2hKeFdCazk1MlpFNGhoTGE1?=
+ =?utf-8?B?djJ3R0lDSThFYVB0QjNndTRaTWtwUGp2N3BYcGM5ek5zUU5LTTZpbUs5K21a?=
+ =?utf-8?B?ejJRcUVGbEdISzVtT2tCbnZLeFNieTJ5NFc3d0NRdmtDWEMzeXpZRUFJREhk?=
+ =?utf-8?B?RFE0ckczSlR0ZWZ3Y3VJRFZIUHg3NmZDS09YUDJxNEVIUVlPdEFPQnhKdFhM?=
+ =?utf-8?B?RnZDemJXRUJvYlVHYmdYV1N5S0l6aEhXclg2dWVZRFFWNWhlbFhrdUZ2TmlT?=
+ =?utf-8?B?WVF3NjF4ZldNZDhhekI0RWIxdHdUczZudTBObFdWY1BkZExtWmwwS1IvWk5j?=
+ =?utf-8?B?OHkrcUoxN2FFNGcxZjV3akd6Z1VpL3dTdmFlRTBtVkJFd2Q4YTBYWnh6MURQ?=
+ =?utf-8?B?Z08ySkNiYUk2QTIxRkxrUXpxSXpQZ2t6QTlRR0lrR1VHRHpjN1pvRWZLb2Yr?=
+ =?utf-8?B?MGhraVNHZVpuSk9TQnVHTllJOFF5RHBWQTc0MWNteERteCttSFZUMEI5U2Rh?=
+ =?utf-8?B?WGx2alUyNCtneVVnU3piYVJDK0krck1LMXRSL1FuaDZ2alRMRTMvZFFRd1E0?=
+ =?utf-8?B?a242VjFVamtjbnkvWEJ4a3RyQUQzSzlVaXJTVWtqbmZlZnMyN2JMOEVnejJQ?=
+ =?utf-8?B?SVJ1OFR3TjhQSTJWT3dENys4YlNYb0xKYmFjYW14WlQ3SlFrZEY1U1JOWTVr?=
+ =?utf-8?B?Zm02L1FET1Z4anJuRjdQUGplMDBES2xtdGlNYTBsVmRiVy9NNno2R3BJVlg4?=
+ =?utf-8?B?NEt6RGRpak1qWmx3b2haU3hIZFZZSlUyeUV1c2k1SWVtWVpxL0lUaFB6Mmpp?=
+ =?utf-8?B?SDBhcWQrSlRZTTRuSWFZN2cyZDFJcXVMbGFNMTlMc0o3QmlJNlBlNlJTZ0Mw?=
+ =?utf-8?B?Z0dVbmpadzdmN3JLTlUyZ0p4M2tRQzVwbzVNMXB0V3pVZTMzcm1VQTRTZ1A0?=
+ =?utf-8?B?R2N3SjBaSWFjanNxK1h4Um5IbjFybittNVlrSnpOcldnQkhXbG9SSGhiVlNY?=
+ =?utf-8?B?Y29MeXErbXpOWGNFUzZhdCtzY2lyWm02Q0ZWNm5rSktYOWJIVmFkdkZnYWhX?=
+ =?utf-8?B?c0xuYUlGY3V1eEdQYVJ1Tm9mSUN4bEZ1U3pHNlNQdTl0N2NCOHRmZlAxN05D?=
+ =?utf-8?B?MHRGQWlnL1Qza3VYcHdZaE95M2ZDN0FNMVFrR1lhSjA3b09QTXgvVTZ5SlBz?=
+ =?utf-8?B?dk1NeVJ2c3F6cFprc1hQZFZlMUVDVkpsNXNMMTNKZ2x2NFE5WWh6L1RON1FS?=
+ =?utf-8?B?dUV4amtsbEt0bTVsOHg2TkJKcDdSWm1MSytzdCtiTzFGbXkrVTVuVm1pcGFx?=
+ =?utf-8?B?NDEyR2s1dS9HOTNUMHpqcFBPY05ONE1kLzB4cHZFUkY2TXpOVjNydmQ0Z3hv?=
+ =?utf-8?Q?w5jXmFkCq8Uk/vyQ=3D?=
+X-Exchange-RoutingPolicyChecked: ec22DuAIJIIKGg4lab50DbvVffZRRj+oYX7N3EQ8BRI53xBp8asICPsP4oeXaG6gukdRqE35BlHE/6tkCHvp1JAnhRgojtdtWXTIeCKVO9bJFvHmPW/O+Znjz/g8Dr9hLp3sweo4ZzEq6jdGFB9vz52OaaqLGx9OIQVnTkH5lvMw+VAoNcfEw7r/Y3XApzsj33SDdabaeaPBDSQBKDXsLaLSxBaTHly4+r6QL6QGOAoDW9Hp6XsHdIx5hn2ibXzesP8qTT5aCNyKuSYMbHRLn/5pzg0me2AaH4FQm2Z/a6YWqDI0ASEoNyTkAVbvMaBNJKHYbcwQfCDs7ximJ31ezQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 344ada3f-2f6d-45eb-88a4-08def86b5237
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2026 12:01:25.5944 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2026 12:14:56.2162 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RPvuKRIjf1mQM87bbPsP5R2DdLlAl9J39YzYdiwKPRKRG/P9r+mvfnGx6DcNBdAvfV6oLkgQMn7JwyEs+X/F8bIOOMFFClBp1UiqwLFXp60=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5911
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0wLHCYXPHQj7gRMPAxfWBI0kHfXrfPp7Poy8Ld5JVGf4zXLO0/5E9aGZ0IkKP6cVaBYd+Ja+m/xwQLM6Khr6yNlJiMDB6o2st6hMJCEdHdM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7872
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,123 +172,279 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 11-08-2026 18:10, Tejas Upadhyay wrote:
-> Add xe_ttm_vram_offline_resource to track individual offlined VRAM
-> pages, and extend xe_ttm_vram_mgr with offlined_pages/queued_pages
-> lists and their counters.
+> The sysfs vram_bad_pages reader previously held mgr->lock while
+> formatting the entire output, blocking normal VRAM alloc/free
+> operations for the duration of the read.
 > 
-> Initialize the lists in __xe_ttm_vram_mgr_init() and add
-> xe_ttm_vram_free_bad_pages() to release all tracked pages during
-> xe_ttm_vram_mgr_fini() teardown.
+> Switch to RCU-protected list traversal for the sysfs read path:
+> 
+> Writer side (page offline, under mgr->lock):
+>    - list_add()  -> list_add_rcu()
+>    - list_del()  -> list_del_rcu()
+>    - kfree()     -> kfree_rcu()
+> 
+> Reader side (sysfs serialize_bad_pages):
+>    - Drop mgr->lock entirely
+>    - Use rcu_read_lock() + list_for_each_entry_rcu()
+>    - Use READ_ONCE() for entry counters
+> 
+> The writer-side xe_ttm_vram_page_already_processed() keeps
+> lockdep_assert_held(&mgr->lock) since it requires serialization
+> against concurrent page offline operations.
+
+The patch is doing much more than its meant to do.
+
+Better handle >    - list_add()  -> list_add_rcu()
+ >    - list_del()  -> list_del_rcu()
+ >    - kfree()     -> kfree_rcu()
+
+in original patch [8]
+
+Sysfs handling should move to next patch.
+
 > 
 > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 24 ++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h | 26 ++++++++++++++++++++++
->   2 files changed, 50 insertions(+)
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 161 +++++++++++++++++++--
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |   4 +
+>   2 files changed, 155 insertions(+), 10 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index 49eeec90a470..2813ae68325e 100644
+> index 6280886e2ebb..c22669955147 100644
 > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -300,6 +300,24 @@ static const struct ttm_resource_manager_func xe_ttm_vram_mgr_func = {
->   	.debug	= xe_ttm_vram_mgr_debug
->   };
+> @@ -312,15 +312,15 @@ static void xe_ttm_vram_free_bad_pages(struct drm_device *dev, struct xe_ttm_vra
 >   
-> +static void xe_ttm_vram_free_bad_pages(struct drm_device *dev, struct xe_ttm_vram_mgr *mgr)
-> +{
-
-Don't see dev being used ?
-
-> +	struct xe_ttm_vram_offline_resource *pos, *n;
+>   	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
+>   		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
+> -		list_del(&pos->offlined_link);
+> +		list_del_rcu(&pos->offlined_link);
+>   		--mgr->n_offlined_pages;
+> -		kfree(pos);
+> +		kfree_rcu(pos, rcu);
+>   	}
+>   	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
+>   		xe_ttm_vram_buddy_free(mgr, &pos->blocks, 0);
+> -		list_del(&pos->queued_link);
+> +		list_del_rcu(&pos->queued_link);
+>   		--mgr->n_queued_pages;
+> -		kfree(pos);
+> +		kfree_rcu(pos, rcu);
+>   	}
+>   }
+>   
+> @@ -657,7 +657,7 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+>   				break;
+>   			}
+>   			++vram_mgr->n_queued_pages;
+> -			list_add(&nentry->queued_link, &vram_mgr->queued_pages);
+> +			list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
+>   		}
+>   	}
+>   
+> @@ -702,11 +702,11 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+>   			list_for_each_entry_safe(pos, n, &vram_mgr->queued_pages, queued_link) {
+>   				if (pos->addr == nentry->addr) {
+>   					--vram_mgr->n_queued_pages;
+> -					list_del(&pos->queued_link);
+> +					list_del_rcu(&pos->queued_link);
+>   					break;
+>   				}
+>   			}
+> -			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
+> +			list_add_rcu(&nentry->offlined_link, &vram_mgr->offlined_pages);
+>   			/* RAS will send command to FW for offlining page based on ret value */
+>   			++vram_mgr->n_offlined_pages;
+>   			return ret;
+> @@ -716,7 +716,7 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+>   
+>   		scoped_guard(mutex, &vram_mgr->lock) {
+>   			++vram_mgr->n_queued_pages;
+> -			list_add(&nentry->queued_link, &vram_mgr->queued_pages);
+> +			list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
+>   			ret = xe_ttm_vram_buddy_alloc(vram_mgr, addr, addr + size,
+>   						      size, size, &nentry->blocks,
+>   						      GPU_BUDDY_RANGE_ALLOCATION,
+> @@ -732,12 +732,12 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+>   			list_for_each_entry_safe(pos, n, &vram_mgr->queued_pages, queued_link) {
+>   				if (pos->addr == nentry->addr) {
+>   					--vram_mgr->n_queued_pages;
+> -					list_del(&pos->queued_link);
+> +					list_del_rcu(&pos->queued_link);
+>   					break;
+>   				}
+>   			}
+>   			++vram_mgr->n_offlined_pages;
+> -			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
+> +			list_add_rcu(&nentry->offlined_link, &vram_mgr->offlined_pages);
+>   			/* RAS will send command to FW for offlining page based on ret value */
+>   		}
+>   	}
+> @@ -825,3 +825,144 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
+>   	return xe_ttm_vram_reserve_page_at_addr(xe, addr, vram_mgr, mm);
+>   }
+>   EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
 > +
-> +	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-> +		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
-> +		list_del(&pos->offlined_link);
-> +		--mgr->n_offlined_pages;
-> +		kfree(pos);
+> +static size_t serialize_bad_pages(struct xe_ttm_vram_mgr *mgr, char *buf, size_t max_len)
+> +{
+> +	struct xe_ttm_vram_offline_resource *pos;
+> +	struct gpu_buddy_block *block;
+> +	size_t s = 0;
+> +	int printed;
+> +	int count = 0;
+> +
+> +	rcu_read_lock();
+> +
+> +	printed = scnprintf(buf + s, max_len - s, "max_pages: %d\n", mgr->max_pages);
+> +	s += printed;
+> +
+> +	list_for_each_entry_rcu(pos, &mgr->offlined_pages, offlined_link) {
+> +		if (count >= 10000 || s >= max_len)
+> +			break;
+> +
+> +		block = list_first_entry_or_null(&pos->blocks, struct gpu_buddy_block, link);
+> +		if (!block)
+> +			continue;
+> +
+> +		printed = scnprintf(buf + s, max_len - s, "0x%016llx : 0x%016llx : %c\n",
+> +				    gpu_buddy_block_offset(block) >> PAGE_SHIFT,
+> +				    gpu_buddy_block_size(&mgr->mm, block), 'R');
+> +		s += printed;
+> +		count++;
 > +	}
-
-This can be racy, better to use
-list_del_rcu() + kfree_rcu()
-
-> +	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-> +		xe_ttm_vram_buddy_free(mgr, &pos->blocks, 0);
-
-Nit: pos->used_visible_size is always 0, hardcoding is Ok. comment it ?
-
-> +		list_del(&pos->queued_link);
-> +		--mgr->n_queued_pages;
-> +		kfree(pos);
+> +	list_for_each_entry_rcu(pos, &mgr->queued_pages, queued_link) {
+> +		u64 pfn, blk_size;
+> +
+> +		if (count >= 10000 || s >= max_len)
+> +			break;
+> +
+> +		block = list_first_entry_or_null(&pos->blocks, struct gpu_buddy_block, link);
+> +		if (block) {
+> +			pfn = gpu_buddy_block_offset(block) >> PAGE_SHIFT;
+> +			blk_size = gpu_buddy_block_size(&mgr->mm, block);
+> +		} else {
+> +			pfn = pos->addr >> PAGE_SHIFT;
+> +			blk_size = PAGE_SIZE;
+> +		}
+> +
+> +		printed = scnprintf(buf + s, max_len - s, "0x%016llx : 0x%016llx : %c\n",
+> +				    pfn, blk_size, pos->status ? 'F' : 'P');
+> +		s += printed;
+> +		count++;
 > +	}
+> +
+> +	rcu_read_unlock();
+> +	return s;
 > +}
 > +
->   static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
->   {
->   	struct xe_device *xe = to_xe_device(dev);
-> @@ -311,6 +329,10 @@ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
->   	if (ttm_resource_manager_evict_all(&xe->ttm, man))
->   		return;
->
-
-
-potential leak here due to early return ?
-
-> +	mutex_lock(&mgr->lock);
-> +	xe_ttm_vram_free_bad_pages(dev, mgr);
-> +	mutex_unlock(&mgr->lock);
+> +static ssize_t vram_bad_pages_bin_read(struct file *filp, struct kobject *kobj,
+> +				       const struct bin_attribute *attr, char *buf,
+> +				       loff_t off, size_t count)
+> +{
+> +	struct device *dev = kobj_to_dev(kobj);
+> +	struct pci_dev *pdev = to_pci_dev(dev);
+> +	struct ttm_resource_manager *man;
+> +	struct xe_ttm_vram_mgr *mgr;
+> +	size_t allocation_size;
+> +	struct xe_device *xe;
+> +	size_t full_data_len;
+> +	int active_entries;
+> +	char *temp_buf;
 > +
->   	WARN_ON_ONCE(mgr->visible_avail != mgr->visible_size);
->   
->   	gpu_buddy_fini(&mgr->mm);
-> @@ -338,6 +360,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
->   	err = drmm_mutex_init(&xe->drm, &mgr->lock);
->   	if (err)
->   		return err;
-> +	INIT_LIST_HEAD(&mgr->offlined_pages);
-> +	INIT_LIST_HEAD(&mgr->queued_pages);
->   	mgr->default_page_size = default_page_size;
->   	mgr->visible_size = io_size;
->   	mgr->visible_avail = io_size;
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> index 9106da056b49..bdfdf6ec1218 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> @@ -19,6 +19,14 @@ struct xe_ttm_vram_mgr {
->   	struct ttm_resource_manager manager;
->   	/** @mm: DRM buddy allocator which manages the VRAM */
->   	struct gpu_buddy mm;
-> +	/** @offlined_pages: List of offlined pages */
-> +	struct list_head offlined_pages;
-> +	/** @n_offlined_pages: Number of offlined pages */
-> +	u16 n_offlined_pages;
-> +	/** @queued_pages: List of queued pages */
-> +	struct list_head queued_pages;
-> +	/** @n_queued_pages: Number of queued pages */
-> +	u16 n_queued_pages;
->   	/** @visible_size: Proped size of the CPU visible portion */
->   	u64 visible_size;
->   	/** @visible_avail: CPU visible portion still unallocated */
-> @@ -45,4 +53,22 @@ struct xe_ttm_vram_mgr_resource {
->   	unsigned long flags;
->   };
->   
-> +/**
-> + * struct xe_ttm_vram_offline_resource - Tracks a single offlined VRAM page
-> + */
-> +struct xe_ttm_vram_offline_resource {
-> +	/** @offlined_link: Link into mgr->offlined_pages */
-> +	struct list_head offlined_link;
-> +	/** @queued_link: Link into mgr->queued_pages */
-> +	struct list_head queued_link;
-> +	/** @blocks: Buddy blocks reserved for this page */
-> +	struct list_head blocks;
-> +	/** @used_visible_size: CPU-visible bytes consumed */
-> +	u64 used_visible_size;
-> +	/** @addr: Faulty DPA reported by HW */
-> +	u64 addr;
-> +	/** @status: Reservation status (0=pending, 1=fail) */
-> +	bool status;
+> +	xe = pdev_to_xe_device(pdev);
+> +	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
+> +	if (!man)
+> +		return -ENODEV;
+> +	mgr = to_xe_ttm_vram_mgr(man);
+> +
+> +	active_entries = READ_ONCE(mgr->n_offlined_pages) + READ_ONCE(mgr->n_queued_pages);
+> +
+> +	if (active_entries > 10000)
+> +		active_entries = 10000;
+> +
+> +	allocation_size = 64 + (active_entries * 48);
+> +
+> +	temp_buf = kvmalloc(allocation_size, GFP_KERNEL);
+> +	if (!temp_buf)
+> +		return -ENOMEM;
+> +
+> +	/* serialize_bad_pages uses rcu_read_lock internally */
+> +	full_data_len = serialize_bad_pages(mgr, temp_buf, allocation_size);
+> +
+> +	if (off >= full_data_len) {
+> +		kvfree(temp_buf);
+> +		return 0;
+> +	}
+> +
+> +	if (off + count > full_data_len)
+> +		count = full_data_len - off;
+> +
+> +	memcpy(buf, temp_buf + off, count);
+> +
+> +	kvfree(temp_buf);
+> +	return count;
+> +}
+> +
+> +static const struct bin_attribute bin_attr_vram_bad_pages = {
+> +	.attr = { .name = "vram_bad_pages", .mode = 0444 },
+> +	.read = vram_bad_pages_bin_read,
+> +	.size = 0,
 > +};
 > +
+> +static void xe_ttm_vram_sysfs_fini(void *arg)
+> +{
+> +	struct xe_device *xe = arg;
+> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +
+> +	sysfs_remove_bin_file(&pdev->dev.kobj, &bin_attr_vram_bad_pages);
+> +}
+> +
+> +/**
+> + * xe_ttm_vram_sysfs_init - Initialize vram bad pages sysfs binary file
+> + * @xe: Xe Device object
+> + *
+> + * Creates a binary sysfs file under the PCI device for reading
+> + * offlined and queued VRAM pages. Supports large entry counts
+> + * via offset/count pagination.
+> + *
+> + * Returns: 0 on success, negative error code on error.
+> + */
+> +int xe_ttm_vram_sysfs_init(struct xe_device *xe)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +	int err;
+> +
+> +	err = sysfs_create_bin_file(&pdev->dev.kobj, &bin_attr_vram_bad_pages);
+> +	if (err) {
+> +		dev_err(&pdev->dev,
+> +			"Failed to create vram_bad_pages sysfs: %d\n",
+> +			err);
+> +		return err;
+> +	}
+> +
+> +	return devm_add_action_or_reset(&pdev->dev, xe_ttm_vram_sysfs_fini, xe);
+> +}
+> +EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> index bdfdf6ec1218..003d3a7cb1dd 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> @@ -37,6 +37,8 @@ struct xe_ttm_vram_mgr {
+>   	struct mutex lock;
+>   	/** @mem_type: The TTM memory type */
+>   	u32 mem_type;
+> +	/** @max_pages: max pages that can be in offline queue retrieved from FW */
+> +	u16 max_pages;
+>   };
+>   
+>   /**
+> @@ -69,6 +71,8 @@ struct xe_ttm_vram_offline_resource {
+>   	u64 addr;
+>   	/** @status: Reservation status (0=pending, 1=fail) */
+>   	bool status;
+> +	/** @rcu: RCU head for deferred freeing */
+> +	struct rcu_head rcu;
+>   };
+>   
 >   #endif
 
