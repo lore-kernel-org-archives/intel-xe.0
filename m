@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE354C5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B96B9C5AD5A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA9910F0D7;
-	Wed, 12 Aug 2026 19:15:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2C810F0DF;
+	Wed, 12 Aug 2026 19:15:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7xblIoB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IdBMAeNN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 319E110F107
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1634110F0DF
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562134; x=1818098134;
+ t=1786562139; x=1818098139;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B7IUjTmNQaxgCZJZj6OPvPdaQ1dEgkYrfOJqZGtl8vM=;
- b=W7xblIoB1AZdzRCxl+rm+6PXdiecyUZ1VQLhcpKkeYzkVVCkXx++aw9x
- hph6+6MB1pa38uMhkPEmx7PdCfEZ6TCC0jnTjCEG/jG4JWqpCWVzHbM8I
- wZQlaf708wfzjABIXab0OVvheSEnjNQmlmxu6wvnAKUHIlqw3aemU1p2J
- IMjYKy0dMTjA3T9UH7wxFeoKzlPG9WBxNhe3VqBflkZgu8bAkwWY7OAUR
- mx92jPKHAxMP9LatIDX0W1SION9k+1VxH1RSZCnRuq02omm0Eb6Sn1dD3
- Dlvl4hn6+teoqFZsA88WFJLXkNFpa6qAJesDyg+V8GCPwPNVkk20R1cHF Q==;
-X-CSE-ConnectionGUID: wZo59uwzSEeYIPnqvuXgng==
-X-CSE-MsgGUID: kJQ7uxu4Q3uRdq9Ori3zcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987557"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987557"
+ bh=oMR+OWjRwL5c6AjISI99amRy9CDmTX9GfGzBv3gkrZU=;
+ b=IdBMAeNNw/jQ3mzDwd90zWwQoI4omy/8OKWgxjhq5xNsdfqJ0iYMm21y
+ 1r/uoYPuVk3S9SYUMdIODhAcLpsY/7nABuFLPpBb9UrZpCJoVKmzC9Vji
+ AvhjtdnUQKqBbQz87qd+EGAoYwApivYDoIp37mCutZiUzdPppTtCBKIfI
+ eY0WkEfU65/Nrlob03FWpPsBVgpVEX7GalY4t1ooDRZaiw9pfroiMP0MI
+ xVlGzbQqz4oIjMm7fRdrs8/U4ozJgx9mInwv5YdxhWFOKZR7sE7usmkJJ
+ ASMpiZ9omMecAURzl1B8/wZBSbqT1mJof03HdyYLw8fv9ZEM9MsJR46cZ A==;
+X-CSE-ConnectionGUID: 9RW/W9A9TimV3l2HGXm3Yw==
+X-CSE-MsgGUID: eTayNvNnRai0RYM6woCbDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987567"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987567"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:34 -0700
-X-CSE-ConnectionGUID: rg3aPjMfQlyVL/KJZESzOA==
-X-CSE-MsgGUID: G5kDNWj7SW+7tUVsnn28Ow==
+ 12 Aug 2026 12:15:39 -0700
+X-CSE-ConnectionGUID: wI1P82omRrO8dvobScGOHQ==
+X-CSE-MsgGUID: 0L2Ds8e+RfuXzvPe942Enw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892009"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892037"
 Received: from miqurash-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:32 -0700
+ 12 Aug 2026 12:15:37 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 18/32] drm/xe: Report 'probe blocked' error using SIGID
-Date: Wed, 12 Aug 2026 21:14:34 +0200
-Message-ID: <20260812191450.11690-19-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 21/32] drm/xe/survivability: Report 'sysfs failure' error
+ using SIGID
+Date: Wed, 12 Aug 2026 21:14:37 +0200
+Message-ID: <20260812191450.11690-22-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
@@ -70,43 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'driver loading blocked' error using xe_log_info() helper.
+Report 'failed to create sysfs files' error using xe_log_err() helper
+from all sysfs failure points and for all call sites.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-v2: use info severity (Aravind)
-v3: drop "Probe " prefix (Mallesh)
-    drop redundant vendor code, update message (Michal)
----
- drivers/gpu/drm/xe/xe_pci.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 36d62927b969..b19efef1c5cd 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -25,6 +25,7 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
-+#include "xe_log.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
- #include "xe_pci_error.h"
-@@ -1172,8 +1173,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index 85b4c125a217..2d8c532157fd 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -280,24 +280,26 @@ static int create_survivability_sysfs(struct pci_dev *pdev)
+ 	int ret;
+ 
+ 	ret = device_create_file(dev, &dev_attr_survivability_mode);
+-	if (ret) {
+-		dev_warn(dev, "Failed to create survivability sysfs files\n");
+-		return ret;
+-	}
++	if (ret)
++		goto failed;
+ 
+ 	ret = devm_add_action_or_reset(xe->drm.dev,
+ 				       xe_survivability_mode_fini, xe);
+ 	if (ret)
+-		return ret;
++		goto failed;
+ 
+ 	/* Survivability info is not required if enabled via configfs */
+ 	if (!xe_configfs_get_survivability_mode(pdev)) {
+ 		ret = devm_device_add_group(dev, &survivability_info_group);
+ 		if (ret)
+-			return ret;
++			goto failed;
  	}
  
- 	if (id_blocked(pdev->device)) {
--		dev_info(&pdev->dev, "Probe blocked for device [%04x:%04x].\n",
--			 pdev->vendor, pdev->device);
-+		xe_log_info(pdev, PROBE, "driver loading blocked for device '%04x'\n",
-+			    pdev->device);
- 		return -ENODEV;
+ 	return 0;
++
++failed:
++	xe_log_err(xe, SURVIVABILITY, ret, "Failed to create sysfs files!\n");
++	return ret;
+ }
+ 
+ static int enable_boot_survivability_mode(struct pci_dev *pdev)
+@@ -403,9 +405,7 @@ void xe_survivability_mode_runtime_enable(struct xe_device *xe)
  	}
  
+ 	populate_survivability_info(xe);
+-
+-	if (create_survivability_sysfs(pdev))
+-		dev_err(&pdev->dev, "Failed to create survivability sysfs\n");
++	create_survivability_sysfs(pdev);
+ 
+ 	survivability->type = XE_SURVIVABILITY_TYPE_RUNTIME;
+ 	dev_err(&pdev->dev, "Runtime Survivability mode enabled\n");
 -- 
 2.47.1
 
