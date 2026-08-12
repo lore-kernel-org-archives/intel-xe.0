@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3608C5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E973C5AD5A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A82610F0D9;
-	Wed, 12 Aug 2026 19:15:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB84710E42E;
+	Wed, 12 Aug 2026 19:15:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D1s/qG70";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lInSeH/1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCEFB10F0DF
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A324310F0E6
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562124; x=1818098124;
+ t=1786562129; x=1818098129;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1hcl0FqZkBz4+EyBM1tl3j9BQLYoQBj7q1Tv/+jW48I=;
- b=D1s/qG70XK/zRHaQUnf71wCTTEJ36oN6vPTrehbfG5GhPZrrxSoByP2E
- ARyd8jvVQUU+XZX5DFdBJLuMuvh2S16PIDBBzI8ZqKYvce74NsmRYMQjd
- BCWVp1weu6osyUJQYfbWY3tkWehr1EtOYuuUly86sxlwwNt/aX5FymiSV
- sn3rdVibtg59yh35mNq3lA883EbOm6VSx5TyFpcetXZ+euAjJ7UrACXl1
- yDnf4Sa1ejRvRQZCvKDnyHf0LBlTojogmhN5VSTzgY6oJFpyXDwMI/As3
- ig4+FzLBvkPmY/fgZGU8h9OIJ7BewnxDZGCaG3RboxPuWcbKA2dY1VvJ6 Q==;
-X-CSE-ConnectionGUID: WWwWpA8oRAizgJxpZhRCsQ==
-X-CSE-MsgGUID: ml11inyxSPWt/qRql0E3yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987539"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987539"
+ bh=1K5OFowb3Zq2PDxiFgoXWB05WxkPkU1WpxdHmGokcpo=;
+ b=lInSeH/1EYVkjRSy96m4SEC25v2w+92mP7KUASCNgaH40WrV4+liedlZ
+ KVJk1PU4Pf5Oe5rIfuQs/H1SbmZg2HBJdPmL9jzyfTaESVe4uzykb68Ih
+ 5q5e3IXkq0chIZ5VDmZUEKRi7nnun8ZONrIWtAlyDRyKDnIaXqmfyiNvQ
+ sQDgfMjNsB9CPHAuFi155yNTeVGqwFQku97qU8kuBeLFDs5d9af2Xupxh
+ xrkHmxdkRqhs1PzqdqbaYFonjBsIzkizMPDW4/ePUl0D2uiOF9Fiu7H2Z
+ +4ui3xeoiCKcP8okdhKVdTEqd/FMW4sxYR7Zn9dszQQLmwM3BEg9xW3q1 w==;
+X-CSE-ConnectionGUID: gYT9559uR+mDUF2MhIP+1w==
+X-CSE-MsgGUID: Yu9BBcPlSBmG3fZ26b7S4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987549"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987549"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:23 -0700
-X-CSE-ConnectionGUID: DtS6/D8GR8igVfCi+J9C7g==
-X-CSE-MsgGUID: aByt8v4oTQ+nJiDenfZCtA==
+ 12 Aug 2026 12:15:28 -0700
+X-CSE-ConnectionGUID: ZiqM8CjbTd6EB2saxhxMzQ==
+X-CSE-MsgGUID: S5oL0exJQLy0fzlC+KrD8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268891960"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268891985"
 Received: from miqurash-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:22 -0700
+ 12 Aug 2026 12:15:27 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Yoni Levitt <yoni.levitt@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 12/32] drm/xe/log: Add hardware error signatures
-Date: Wed, 12 Aug 2026 21:14:28 +0200
-Message-ID: <20260812191450.11690-13-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 15/32] drm/xe/kunit: Setup driver data in the test device
+Date: Wed, 12 Aug 2026 21:14:31 +0200
+Message-ID: <20260812191450.11690-16-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
@@ -69,59 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend our error signatures definitions xe_sigid to cover also
-hardware-originated errors and make them distinguishable from
-initially defined software-initiated errors.
+While we have helpers pdev_to_xe_device() and kdev_to_xe_device()
+to obtain the xe_device pointer from the struct device pointer or
+from the struct pci_dev pointer, we must also setup the drm_device
+pointer as driver data in the device to make them work.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Yoni Levitt <yoni.levitt@intel.com>
-Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-v2: update comment (Sashiko)
-v3: rebased
----
- drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-index 93967183ae51..8e3c7ef579b9 100644
---- a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-+++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-@@ -137,12 +137,18 @@
-  * @XE_SIGID_GT_TDR: Engine hang / timeout detection and recovery (reset).
-  * @XE_SIGID_MEM_FAULT: VM bind, page fault or GTT fault.
-  * @XE_SIGID_IO_BUS: Runtime PCIe / IOMMU / MMIO access fault.
-+ * @XE_SIGID_HW: Generic hardware failure.
-+ * @XE_SIGID_PCIE: PCIe interface errors.
-+ * @XE_SIGID_DEVICE_MEMORY: Device memory errors.
-+ * @XE_SIGID_CORE_COMPUTE: Compute/shader core errors.
-+ * @XE_SIGID_FABRIC: Fabric errors.
-+ * @XE_SIGID_SOC_INTERNAL: SoC-internal errors.
-  *
-  * Each SIGID represents the report sites the driver detects and reports.
-  * Values are numbered sequentially, are only ever appended, and are never
-  * renumbered or reused.
-  *
-- * Firmware- and hardware-originated signatures are not listed yet here.
-+ * Firmware- and hardware-originated signatures are numbered separately.
-  */
- enum xe_sigid {
- 	XE_SIGID_SW			= INTEL_SIGID_GPU_XE_SOFTWARE_START,
-@@ -154,6 +160,13 @@ enum xe_sigid {
- 	XE_SIGID_GT_TDR			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 6,
- 	XE_SIGID_MEM_FAULT		= INTEL_SIGID_GPU_XE_SOFTWARE_START + 7,
- 	XE_SIGID_IO_BUS			= INTEL_SIGID_GPU_XE_SOFTWARE_START + 8,
+diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
+index bc5156966ce9..27740b40c8ae 100644
+--- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
++++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
+@@ -39,6 +39,10 @@ struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
+ 					       struct xe_device,
+ 					       drm, DRIVER_GEM);
+ 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
 +
-+	XE_SIGID_HW			= INTEL_SIGID_GPU_XE_HARDWARE_START,
-+	XE_SIGID_PCIE			= INTEL_SIGID_GPU_XE_HARDWARE_START + 1,
-+	XE_SIGID_DEVICE_MEMORY		= INTEL_SIGID_GPU_XE_HARDWARE_START + 2,
-+	XE_SIGID_CORE_COMPUTE		= INTEL_SIGID_GPU_XE_HARDWARE_START + 3,
-+	XE_SIGID_FABRIC			= INTEL_SIGID_GPU_XE_HARDWARE_START + 4,
-+	XE_SIGID_SOC_INTERNAL		= INTEL_SIGID_GPU_XE_HARDWARE_START + 5,
- };
- 
- #endif
++	dev_set_drvdata(xe->drm.dev, &xe->drm);
++	KUNIT_ASSERT_PTR_EQ(test, xe, kdev_to_xe_device(dev));
++
+ 	return xe;
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_alloc_xe_device);
 -- 
 2.47.1
 
