@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95D43C5AD5A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0A3CC5B572
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D10E10F0B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6579610F0D8;
 	Wed, 12 Aug 2026 19:15:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RCUzcwEh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aW15twXx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D64F10F0D8
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01AEC10F0B9
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562117; x=1818098117;
+ t=1786562119; x=1818098119;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=m7MFDQMVxWWjJUPVh0cuWP/PTHFP09eEo4PJDyupf/w=;
- b=RCUzcwEhf2Qve7PhCiewi8F4FYXdLwOu7S2QuTaKfrl+2IOlw9OuPFh3
- pxA3HCQ1JGG+ozCd7whLhaG5J7NHj5PN+AE89o23x4PRINXEe5qZWtnaQ
- I4w3kUMziqG8Zs8j2Rcx3RXyERBmfqRjG9OSbIg5nNUbcn6+cGGeUYh6x
- LxPpgM4mVQn3IWbUSOGXI+XZyyTufWZx+y0WReGqMM5OJ7Dnhk7az/UGF
- +dsyioVw/pMZMgfV+JiRAxWNAyCEAvZyF3hfHiZcI/h5cjPATtlS0SUWB
- NvKrsRYNUkVMt6el7yzICz2mxFVG1sWYqyM1eHTWeQdCbMYQ7sW5McLLb A==;
-X-CSE-ConnectionGUID: vyxoAGiURwmCa7O9KXPVwg==
-X-CSE-MsgGUID: 8WcnoSxlTTmfgoKnDZARBA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987521"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987521"
+ bh=ySNUcdhJDnwIAhfSIRlhs7gejQhMeG6IVBg0DZbi0gk=;
+ b=aW15twXxMLGM3oNqO7E3eRVHLmNWZmUflw697OCt6GFg/fKlvqYbBV61
+ AzTPEZn3xfYuYFIocg5k+3FGGhhM6gupRmPynZSrZWHqrz8FzsS2DP0zz
+ Y7qrHIx/3mGL2X9MeW+ADHvCJHUXvo0FVeKn5X4JsoGqjS5OUE6pDReCD
+ ivmtgJeWF0t8bEV45dDXobkzCYO8fP/1/SAQq2ZLLrrY6gDAmtNw261yp
+ xHxpVArRUmHcRTfWbI0FdmkWa3ZuJdg8+6gu3KShIanBPaCa0FJQQS1Fk
+ qqnAAc2pgAD27f2Nuxfg4clLtxkZmKO8EPAgda9dmMJbQxJFF8pT4+fF3 g==;
+X-CSE-ConnectionGUID: Vp/IsSQWTfeg8+IX/pj+kw==
+X-CSE-MsgGUID: ggDGClm0SWu4tkcNPQ4/PQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987528"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987528"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:17 -0700
-X-CSE-ConnectionGUID: 1PQGRMm7QMeee8tCcIJxbA==
-X-CSE-MsgGUID: X+ERH/AWSqevv9D/sdG0JA==
+ 12 Aug 2026 12:15:19 -0700
+X-CSE-ConnectionGUID: n8FLnkceQ/OG2mhkxoox3Q==
+X-CSE-MsgGUID: MXK3KDc+QBeSNEAMKicFuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268891934"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268891940"
 Received: from miqurash-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:16 -0700
+ 12 Aug 2026 12:15:17 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Subject: [PATCH v4 08/32] drm/xe/log: Add SIGID log helpers for components
-Date: Wed, 12 Aug 2026 21:14:24 +0200
-Message-ID: <20260812191450.11690-9-michal.wajdeczko@intel.com>
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v4 09/32] drm/xe/log: Add SIGID log helpers for component &
+ severity
+Date: Wed, 12 Aug 2026 21:14:25 +0200
+Message-ID: <20260812191450.11690-10-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
@@ -70,49 +70,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Our component list already defines relation between the component
-name, identified by the TAG, and its numerical identifier and the
-assigned SIGID. We can also already prepare location identifier
-based on the pointer type used to emit the log entry. Add helper
-that will prepare SIGID, COMPONENT and LOCATION parameters for
-xe_log_emit() using provided components TAG and the pointer.
+There are only few CPER severity levels defined, add some helpers
+to avoid forcing developers to write full CPER severity enum name
+in every macro call.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
----
-v2: rebased/simplified (Michal)
----
- drivers/gpu/drm/xe/xe_log.h | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/gpu/drm/xe/xe_log.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
-index 916218560297..c30db02950b0 100644
+index c30db02950b0..c56306a183e7 100644
 --- a/drivers/gpu/drm/xe/xe_log.h
 +++ b/drivers/gpu/drm/xe/xe_log.h
-@@ -85,4 +85,22 @@ void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
- 	xe_log_from((any), CPER_SEV_INFORMATIONAL, (sig), (comp), \
- 		    (data), (len), fmt, ##args)
+@@ -103,4 +103,16 @@ void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+ 	xe_log_from((any), (cper_sev), (int)XE_LOG_COMPONENT_##TAG##_SIGID, \
+ 		    XE_LOG_COMPONENT_##TAG, (data), (len), fmt, ##args)
  
-+/**
-+ * xe_log_comp() - Emit a structured SIGID log entry on the component behalf.
-+ * @any: the &xe_device or &xe_tile or &xe_gt pointer this report relates to
-+ * @cper_sev: CPER severity (CPER_SEV_FATAL, CPER_SEV_RECOVERABLE, ...)
-+ * @TAG: the component tag to use
-+ * @data: pointer to the additional details, or ERR_PTR, or NULL if not applicable
-+ * @len: length of the @data in bytes, or 0 if not applicable
-+ * @fmt: printf-style free text format string (not a stable interface)
-+ * @args: arguments for the @fmt format string
-+ *
-+ * The SIGID will be determined from the component's @TAG.
-+ * The component identifier will be determined from the component's @TAG.
-+ * The location used to emit SIGID entry will be based on the @any pointer type.
-+ */
-+#define xe_log_comp(any, cper_sev, TAG, data, len, fmt, args...) \
-+	xe_log_from((any), (cper_sev), (int)XE_LOG_COMPONENT_##TAG##_SIGID, \
-+		    XE_LOG_COMPONENT_##TAG, (data), (len), fmt, ##args)
++#define xe_log_comp_fatal(any, TAG, data, len, fmt, args...) \
++	xe_log_comp((any), CPER_SEV_FATAL, TAG, (data), (len), fmt, ##args)
++
++#define xe_log_comp_recoverable(any, TAG, data, len, fmt, args...) \
++	xe_log_comp((any), CPER_SEV_RECOVERABLE, TAG, (data), (len), fmt, ##args)
++
++#define xe_log_comp_corrected(any, TAG, data, len, fmt, args...) \
++	xe_log_comp((any), CPER_SEV_CORRECTED, TAG, (data), (len), fmt, ##args)
++
++#define xe_log_comp_info(any, TAG, data, len, fmt, args...) \
++	xe_log_comp((any), CPER_SEV_INFORMATIONAL, TAG, (data), (len), fmt, ##args)
 +
  #endif
 -- 
