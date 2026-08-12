@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21BD3C5DF65
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 22:17:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49C3EC5DF69
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 22:17:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89D0010F143;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF30410F149;
 	Wed, 12 Aug 2026 22:17:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UZ0yDiuu";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eufxawFp";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F21010F0D9
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:29:57 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EDCC10F127;
+ Wed, 12 Aug 2026 22:08:54 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8AB1460A7D;
- Wed, 12 Aug 2026 19:29:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F791F000E9;
- Wed, 12 Aug 2026 19:29:56 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id C618D41901;
+ Wed, 12 Aug 2026 22:08:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73EEF1F000E9;
+ Wed, 12 Aug 2026 22:08:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786562996;
- bh=fqOWXkdkpR8bH9so9Xl8TfCPkU11y7ijjjs79zR/dEU=;
+ s=k20260515; t=1786572533;
+ bh=a3qGFz47d9tRqfTr/CL2zuwTvComG4Do3HqW+E3BCi4=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=UZ0yDiuuW7AQe6C1HUK4KDy0LXhXqblLY7zJgwFAxY8GA4UG7OQtuhdpVakyuSm5e
- lcryRHUnpUzxfYlEd4Mm3ZgLo39aweOlyw97i7gDl0ebUQdytdE0nA5SmfPn2+Xwj9
- HfuKeIoPgunt5/zeCNv0Z6yTgT/65kiSYxrtfp7mSLha9HasveSRxGVv4DKvme90Hj
- sEgyX3w5VQyN9nsoQivmbeScOtw0PfL87RqOUmKpfT0olidgQyd9ZI0PcfAbJxmMzw
- fyVXWmYo2bR+mMPGnKMtqrVQKqTLWx2KDOZWHlDTGYKs70yBt2KP9TcyBk96UGf0RA
- GjuQUpFcfRGVw==
+ b=eufxawFpsmEiiUaXsCALx7Ki8kf3H7IUYSuZsMRbzmwGRNgPndJrhc6KKHOKhq+T4
+ cfkgakzPGwD8kcYnKcXLFWi0Qea1C9KKGlNWhKfh++8VYBfVEMRDsYrqJMWNKTHO5A
+ Gvu8fyWvBg/JNQhSK/GRoNW28UsTz19GmHOBaPjMThmFjU6+YnKelY1A0irRIGVso1
+ j/KS/0N8EqOSB751AtfOkTdclSJYaKcYRlm3PisxlcQuxJgvIUvzpcTqwqFG1hfD1R
+ fp1BSViwj9bQAxfJqVJj7/9xmNRu0V6TScBG6UX+S8kTUkwXTpDDyHdohjkG6OKt5V
+ ABjnQiR8kCYbQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 01/32] drm/xe: Introduce xe_any helpers
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260812191450.11690-2-michal.wajdeczko@intel.com>
-References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
- <20260812191450.11690-2-michal.wajdeczko@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/fbc: fbc_dirty_rect restrictions and logging
+To: "Austin Hu" <austin.hu@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20260812215350.3753102-2-austin.hu@intel.com>
+References: <20260812215350.3753102-1-austin.hu@intel.com>
+ <20260812215350.3753102-2-austin.hu@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 19:29:55 +0000
-Message-Id: <20260812192956.20F791F000E9@smtp.kernel.org>
+Date: Wed, 12 Aug 2026 22:08:52 +0000
+Message-Id: <20260812220853.73EEF1F000E9@smtp.kernel.org>
 X-Mailman-Approved-At: Wed, 12 Aug 2026 22:17:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,119 +59,94 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Low] Macros xe_any_to_drm, xe_any_to_dev, and xe_any_to_pdev fail to com=
-pile when passed const pointers due to a C11 constraint violation in the un=
-derlying xe_any_to_xe macro.
-- [Low] The macros xe_any_if_type and xe_any_id silently discard side effec=
-ts for unmatched types.
+- [High] Incorrect coordinate space math in the 180-degree rotation branch =
+causes the FBC dirty rectangle to collapse, breaking FBC tracking.
+- [Medium] The 'FBC dirty rect out of range' debug warning will trigger spu=
+riously on almost every frame when the plane is rotated 180 degrees.
 --
 
---- Patch [1]: [PATCH v4 01/32] drm/xe: Introduce xe_any helpers ---
-commit 933eba9892b749844655f0d89de25fa2cfc22f5b
-Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: drm/xe: Introduce xe_any helpers
+--- Patch [1]: [PATCH 1/2] drm/i915/fbc: fbc_dirty_rect restrictions and lo=
+gging ---
+commit 234fb7237db4bb8e467458e88cc6ed3f6e850511
+Author: Charlton Lin <charlton.lin@intel.com>
 
-This commit introduces a set of macros using _Generic to convert between
-xe_device, xe_tile, xe_gt, drm_device, pci_dev, and device pointers. It
-provides type-checking helpers and object identifier retrievals across the
-xe driver.
+drm/i915/fbc: fbc_dirty_rect restrictions and logging
 
-> diff --git a/drivers/gpu/drm/xe/xe_any.h b/drivers/gpu/drm/xe/xe_any.h
-> new file mode 100644
-> index 0000000000000..5d97afa76915a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_any.h
-[ ... ]
-> +/**
-> + * xe_any_if_type() - Get the pointer only if it is @type pointer.
-> + * @any: any pointer
-> + * @type: data type to look for
-> + *
-> + * Return: the @type pointer or NULL.
-> + */
-> +#define xe_any_if_type(any, type)						\
-> +	_Generic((any),								\
-> +		 __xe_any_to_self_assoc(type, (any)),				\
-> +		 default : NULL)
+Clamp the FBC dirty rectangle coordinates to the valid frame buffer
+range [y_offset, y_end] to prevent out-of-bounds coordinates, and
+log a debug message when clamping occurs.
 
-[Severity: Low]
-Could this macro discard side effects for unmatched types?
-
-If a caller passes an expression with side effects, like a function call or
-pointer increment, to xe_any_if_type() or any macro that uses it, the side
-effects will be evaluated if the type matches.
-
-However, if the type falls to the default branch, the side effects will be
-completely discarded because (any) is not evaluated in the default : NULL
-association.
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index f61b4a218d6ef..c0fed695af0da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
 
 [ ... ]
-> +/**
-> + * xe_any_to_xe() - Obtain the &xe_device pointer.
-> + * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
-> + *
-> + * Return: the @xe_device pointer or backpointer.
-> + */
-> +#define xe_any_to_xe(any)							\
-> +	_Generic((any),								\
-> +		 __xe_any_to_self_assoc(struct xe_device, (any)),		\
-> +		 __xe_any_to_other_assoc(/* */, xe_tile, xe_device, (any)),	\
-> +		 __xe_any_to_other_assoc(const, xe_tile, xe_device, (any)),	\
-> +		 __xe_any_to_other_assoc(/* */, xe_gt, xe_device, (any)),	\
-> +		 __xe_any_to_other_assoc(const, xe_gt, xe_device, (any)),	\
-> +		 __xe_any_to_other_assoc(, drm_device, xe_device, (any)),	\
-> +		 __xe_any_to_other_assoc(, pci_dev, xe_device, (any)),		\
-> +		 __xe_any_to_other_assoc(, device, xe_device, (any)))
+
+> @@ -1535,11 +1538,41 @@ __intel_fbc_prepare_dirty_rect(const struct intel=
+_plane_state *plane_state,
+>  		return;
+>  	}
+> =20
+> -	if (drm_rect_visible(damage))
+> -		*fbc_dirty_rect =3D *damage;
+> -	else
+> +	if (drm_rect_visible(damage)) {
+> +		int y1, y2;
 > +
-> +/**
-> + * xe_any_to_drm() - Obtain the &drm_device pointer.
-> + * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
-> + *
-> + * Return: the @drm_device pointer or backpointer.
-> + */
-> +#define xe_any_to_drm(any)							\
-> +	_Generic((any),								\
-> +		 __xe_any_to_self_assoc(struct drm_device, (any)),		\
-> +		 default : &xe_any_to_xe(any)->drm)
+> +		if (plane_state->hw.rotation & DRM_MODE_ROTATE_180) {
+> +			/* Under 180 degree rotation, coordinate system is inverted */
+> +			int inv_y1 =3D height - damage->y2;
+> +			int inv_y2 =3D height - damage->y1;
+> +
+> +			y1 =3D clamp(y_offset + inv_y1, y_offset, y_end);
+> +			y2 =3D clamp(y_offset + inv_y2, y_offset, y_end);
 
-[Severity: Low]
-Will this cause a C11 constraint violation during compilation if the parame=
-ter
-is a const struct drm_device pointer?
+[Severity: High]
+Can this math result in collapsed dirty rectangles?
 
-When xe_any_to_drm is called with a const struct drm_device pointer, it fal=
+Because damage->y2 already includes the absolute y_offset, height - damage-=
+>y2
+yields a large negative number. When y_offset is added back, the result fal=
 ls
-to the default branch which contains xe_any_to_xe(any).
+well below y_offset, causing both y1 and y2 to unconditionally clamp to
+y_offset.
 
-The xe_any_to_xe macro lacks const associations for drm_device, pci_dev, and
-device, and it does not have a default branch. This will cause compilation =
-to
-fail even though it is inside an unselected branch of the outer _Generic bl=
-ock.
+This collapses the FBC dirty rectangle to a 0-height region starting at
+y_offset, entirely missing the actual damaged pixels.
 
-[ ... ]
-> +/**
-> + * xe_any_id() - Get the identifier of the underlying object.
-> + * @any: the &pci_dev or the &xe_device or &xe_tile or &xe_gt pointer
-> + *
-> + * Return: the identifier of the object, or 0 if not applicable/availabl=
-e.
-> + */
-> +#define xe_any_id(any)								\
-> +	_Generic((any),								\
-> +		 __xe_any_to_other_assoc(/* */, xe_tile, id, (any)),		\
-> +		 __xe_any_to_other_assoc(const, xe_tile, id, (any)),		\
-> +		 __xe_any_to_other_assoc(/* */, xe_gt, id, (any)),		\
-> +		 __xe_any_to_other_assoc(const, xe_gt, id, (any)),		\
-> +		 default : 0)
+> +		} else {
+> +			y1 =3D clamp(damage->y1, y_offset, y_end);
+> +			y2 =3D clamp(damage->y2, y_offset, y_end);
+> +		}
+> +
+> +		/*
+> +		 * Clamp dirty rect to the valid FB range [y_offset, y_end].
+> +		 * Per Bspec:
+> +		 *   start_line >=3D y_offset
+> +		 *   end_line <=3D y_offset + plane_height
+> +		 */
+> +		if (y1 !=3D damage->y1 || y2 !=3D damage->y2)
+> +			drm_dbg_kms(display->drm,
+> +				    "[PLANE:%d:%s] FBC dirty rect out of range: y1=3D%d y2=3D%d clam=
+ped to y1=3D%d y2=3D%d (y_offset=3D%d y_end=3D%d)\n",
+> +				    plane->base.base.id, plane->base.name,
+> +				    damage->y1, damage->y2, y1, y2, y_offset, y_end);
 
-[Severity: Low]
-Does this macro also discard side effects for unmatched types, similar to
-xe_any_if_type?
+[Severity: Medium]
+Will this warning trigger spuriously on almost every frame when the plane is
+rotated 180 degrees?
 
-If (any) is an expression with side effects, they are evaluated if the type
-matches, but are lost in the default : 0 branch because (any) is omitted.
+For 180-degree planes, the code intentionally alters y1 and y2 to represent
+inverted coordinates. The warning condition compares these new inverted
+coordinates directly against the original, non-inverted coordinates.
+
+Because an inverted coordinate will inherently mismatch a non-inverted one,
+this condition evaluates to true on nearly every atomic update involving da=
+mage
+for rotated planes.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812191450.1169=
-0-1-michal.wajdeczko@intel.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812215350.3753=
+102-1-austin.hu@intel.com?part=3D1
