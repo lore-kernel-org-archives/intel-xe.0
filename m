@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9B1C5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AD0FC5DF64
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 19:15:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76A910F0F1;
-	Wed, 12 Aug 2026 19:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8C410F0F5;
+	Wed, 12 Aug 2026 19:15:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f6YLEFdb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oexi7seD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7192710F0EF
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74C6410F0F1
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 19:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786562146; x=1818098146;
+ t=1786562150; x=1818098150;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Hu8ndf68w7bsIbrst+SQD3QyeZFgqI3QktcrFSnODtg=;
- b=f6YLEFdbaNkhRq6usSfRNHww5bfqTFyfVxvC8bgtkUHoDB6DxVmQdNOv
- +Hb9e4WcBb6DqzqFYI7ZPUWyJLxmngOY/+4FbW/w9g+wESSL0IMPuKfji
- MJmwhLMfKEt6lytS0q3kcZkJ4khth/Y9cw4ztSyd1VDtsQCgrOh36NcYq
- M66ADSVxtzUiDVqMCzyG7/jn5hQMKcGOK0vAfY+37hQeYFS7CMaB3OwZv
- TZTgv3Aa99+caHUb+5vz/0s9zDwqRIXGvifKdj7t7msUJB4H864ENcWuz
- HOwipgReztauIlxmTB9OwgitYTkWA5pbiu3cE5QMB2MvxfDV8JziN5NKW Q==;
-X-CSE-ConnectionGUID: 7tzfpTWqTYGWjwj4Rpc6Pw==
-X-CSE-MsgGUID: uNQkCRonR/Skw6aBfFCn3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987592"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987592"
+ bh=NUFYw3/WDLrucEcQXUg1oR1hY+ObvtBmG7JVCk3IUwI=;
+ b=Oexi7seDr1vagV/L2qZLl+Kl6GSi/zVvCAEie/bOzxULa8N0Ze75RlqG
+ Gj4fxwsqMtfR11ZQaaHKqF2mpT9Hi/KlPua9UVYJ2FboXfC5kuPfJu6Bw
+ zW2iyaPlVH+bW6eAk38TvLjsnpgyizeZIeL1DsxcEwMAyNemp6VeDpaCD
+ SyZ3lFo8UWcT8fdsss9kacvAT6F2qGG0dx2u65HFTeSasWIEGk0fRgR8D
+ 2/8tp8woxKVhfkxO0vGibu9O8Autw1isHnIDAul3dpXCNdEbbdhc9eQFv
+ 0Gy5I0d3BgzfngTgCVrVZrTdPa1QTrxyqwQkqm4gsTZcWMRZte4TDZebi g==;
+X-CSE-ConnectionGUID: XSYY123VQ3SEofShC2KMtQ==
+X-CSE-MsgGUID: Vj812s9yR1OIBER47bKgMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="86987602"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="86987602"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:46 -0700
-X-CSE-ConnectionGUID: 6ZRlGW6BSP+TkY9Z2Ko3Ig==
-X-CSE-MsgGUID: 6DMcmRpYSKuIVTyeSLLMfw==
+ 12 Aug 2026 12:15:50 -0700
+X-CSE-ConnectionGUID: Lmrx1YH8QpyKtA1CZMZrqw==
+X-CSE-MsgGUID: LK4Dk3rTTaihesZfUWDsPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892062"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="268892084"
 Received: from miqurash-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 12:15:44 -0700
+ 12 Aug 2026 12:15:48 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 25/32] drm/xe/pcode: Report 'Mailbox failed' error using
- SIGID
-Date: Wed, 12 Aug 2026 21:14:41 +0200
-Message-ID: <20260812191450.11690-26-michal.wajdeczko@intel.com>
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v4 27/32] drm/xe/pcode: Report 'initialization timedout' error
+ using SIGID
+Date: Wed, 12 Aug 2026 21:14:43 +0200
+Message-ID: <20260812191450.11690-28-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260812191450.11690-1-michal.wajdeczko@intel.com>
 References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
@@ -71,43 +72,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'Mailbox failed' error using xe_log_err() helper.
+Report 'initialization timedout' error using xe_log_err() helper.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Riana Tauro <riana.tauro@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v2: say xe_log_err() in commit msg (Mallesh)
----
- drivers/gpu/drm/xe/xe_pcode.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_pcode.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index ccc3bdeed6bb..014632e11338 100644
+index 14b13a11d1d6..e1b8062541a9 100644
 --- a/drivers/gpu/drm/xe/xe_pcode.c
 +++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -14,6 +14,7 @@
- #include "regs/xe_pmt.h"
- #include "xe_assert.h"
- #include "xe_device.h"
-+#include "xe_log.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
- #include "xe_pm.h"
-@@ -61,9 +62,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
- 	}
+@@ -297,7 +297,7 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+ {
+ 	u32 status, request = DGFX_GET_INIT_STATUS;
+ 	struct xe_tile *tile = xe_device_get_root_tile(xe);
+-	int timeout_us = 180000000; /* 3 min */
++	long timeout_us = 3 * 60 * USEC_PER_SEC; /* 3 min */
+ 	int ret;
  
- 	if (err) {
--		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
--			err_decode, err_str);
--
-+		xe_log_err(tile, PCODE, err_decode, "Mailbox failed: %s\n", err_str);
- 		return err_decode;
- 	}
+ 	if (xe->info.skip_pcode)
+@@ -318,8 +318,8 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+ 		mutex_unlock(&tile->pcode.lock);
  
+ 	if (ret)
+-		drm_err(&xe->drm,
+-			"PCODE initialization timedout after: 3 min\n");
++		xe_log_err(tile, PCODE, ret, "initialization timedout after %ld seconds\n",
++			   timeout_us / USEC_PER_SEC);
+ 
+ 	return ret;
+ }
 -- 
 2.47.1
 
