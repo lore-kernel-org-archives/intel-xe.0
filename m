@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8975C5CFDB
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 12:24:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAC74C5B572
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 12:27:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D41D10EF9D;
-	Wed, 12 Aug 2026 12:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA9110EF9B;
+	Wed, 12 Aug 2026 12:27:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NRNlhLr1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c8b1++Ow";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C883710EF9B
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 12:24:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0B6C10EF9B
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 12:27:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786537488; x=1818073488;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=u76odiA+9lG3WK/OIn4KSC34zFQQ54r/u/e4JpuCFdk=;
- b=NRNlhLr1K6IpBr7mCIK1BSMwE7OWS49v7nIOi7/P/3bfdFGwG3t662xd
- cUzJQUuRwu/2woYJQ13CpSJgAROPHM+1b5+usY/a04PKj0Csf6chUEXZ5
- 6kttzsPlHB0Qj2wnoTjtHkBB8ps0quY4Xz9k2QghRVIIB+Tp8vqiCza7u
- e4TTVX7n/cNG77Oebkp3KBoVOvNCZqOPz6q648dar0f3rD2GqeQopMwmT
- GNTHwQm2EQRwkrQWXEsSnrE2uADcGkMuCqGp6GkmtfiHtndv0QQMTAh6r
- 5oh1yj1hNC4o9TnGHZ9O8UOKsPhm73PVK7pHOG63e/IIcr6c1wB9R0MRz g==;
-X-CSE-ConnectionGUID: DWk0EWe9TcmPkQfJ7Xl0PA==
-X-CSE-MsgGUID: PfhPtt/JTY+3d+YydurpEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="97676621"
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="97676621"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 05:24:47 -0700
-X-CSE-ConnectionGUID: Y11kDnhGRl2pVpEeEVieLA==
-X-CSE-MsgGUID: cgAShk4TRGSaeVD91w0Lug==
+ t=1786537654; x=1818073654;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=7/TPrkRlWJW67Sb6UkHDIXJQVJcYtAamMXe3lYuScoI=;
+ b=c8b1++OwCX4uBHDmyLiqcyWTh9GY0GlU+0+BoXEx0IHZIrpp9UyOCnUN
+ 0mwKFj0ZJ9PRnpv46QjLhE44ricF8t3wyV/lX/nKKCyO7eW9J2hGh+m24
+ ccT7XqmKoiB/TwVmLnGsA+tX1r/jvv9cyup0a8IL72ilGDz6j9tsSx68N
+ pCtdUN7VGgxAROFdn8v3v+hVldopojoTUGyOM9yoSJD6GO3Ue0jS53UTR
+ A6hvO4Bs0entoGUWmLRzMcmUODo5TMrJSCvEj6+/tCbveoVvB5hRuU+l9
+ AHcpIY1eu+MFoFaxhFROAq3biiKAm95oTih0JnTMHZ14t7rZxeU3IlXIw Q==;
+X-CSE-ConnectionGUID: pGG7OtUASMio+vslgbwIwA==
+X-CSE-MsgGUID: PTycnUPaReirPSJ64LRpQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11872"; a="90965425"
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="90965425"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 05:27:27 -0700
+X-CSE-ConnectionGUID: 09mvpogYRYy2GG+lxvXGbQ==
+X-CSE-MsgGUID: ij5yd+jER7GrfIgr0qq0+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="257431578"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2026 05:24:47 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 12 Aug 2026 05:24:46 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+X-IronPort-AV: E=Sophos;i="6.25,219,1779174000"; d="scan'208";a="259379233"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2026 05:27:25 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Wed, 12 Aug 2026 05:24:46 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.59) by
+ 15.2.2562.45; Wed, 12 Aug 2026 05:27:24 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Wed, 12 Aug 2026 05:27:24 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.17) by
  edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 12 Aug 2026 05:24:45 -0700
+ 15.2.2562.45; Wed, 12 Aug 2026 05:27:23 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c95LfF/JoaZOmqgMkoJtHVlTXl44Jzjgsh3VYCRtBiXbUZgk/V7lIafAf1vNVfG6vPwoEFxA5MhOc8blhPT3g+mCl6DPnGrVNmDSANxu8tLQ5YLsw9hHxuYoLfTsl+6QtAYR7ky9UUsrDtt/A7ZCsgXUqGgUsE290sb/hipgBiLXGtUwMRuz7n2AWZ/vYK6mh1vHOC0ueDBNkfeaeMF761LWZNSIniCvd8kIP6n+Kbu6yMLSJ5+CCMQ3zqSqhVvBq/noG/NXj18uzhbgUfuQCJb+2bzQThlPX+8X2RpG1uB+FTNyxh/BgdDXR53PLCfsdym263lj3dobB/efT5Wn6g==
+ b=AtjixShx2PlA3VgaNZA0+WJ8KRe9REgDJwZwnRKcQhA6iElexcutCB6EBp4Ly8ifRIRj+rttXHV86SL82viTIHLcwiEXLYiJBIOFTXufyzwabPaFiXUGy0ZlLIzXZrh565pUmPBKVbtpFSD6nrPq/g/jcz+v9S9y+pq6Q5fWcwqr3OerEal4Qnh7wFul6JPgOXvxr6j7nIVYwUlYpemtG7aTI25mZjM2ZTJTl2M56EWShz9L+KYnoEDgkqdXOqsah3erbmzVzJKlgtNhauj4+CoaM5wZf/5yvrXTvKizBxBd0OtvIUJvE2fxmzaiAgm7UUvyprOB7AmRfJYM6Y4xzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=81xdwNqdcrsqxv5g+RXf9Tf3Ajmch25XGDQxIKJxWJQ=;
- b=MgSx66MnjZRDtMaJBDZOomxEV7wDM5knmNQsKFSn4H1HXV+a24M92aRx9s8pwSHGQAd3VL3A9Q7ID/PBRIrP6iCCeOamd6ia93tPY4qpgI5H9SK2t07OT9WfISbSNpzccrxIr55UReDrilJtO4R4WV1wyta7odNa8h0AZQo4RBtOzbGpnE+Sdqy7I0JMDSP9CznSWRUNHee7raWgnCIrIlju+FhEyNBAnsz9xFPTAJAqk3ZrJkxbHjsUQR6d0uPx4OYWWvbzibtg2MyDk5kDBcHandB1MKhRklyHeaxhw1iH1FWpLO4pp8zv3x/PVwBv2eRYlDx5KvzBf/nQezsN0w==
+ bh=VLBj3zfg3g8MgwbQ6xpwIVcqEeQRG1vlsBPhSHbnOu4=;
+ b=M3cl8uxhpiPPRBPmDWurImHWHFla6HdWKqdSYS3yLcrP3r9moSr4wlrUc43ep0k57dditPxVdZpMc5eq/KdcM9bPPO6vN0ZeVCyTbzQkpD0O9as21yTR61Oop4L69LGe/rIGBpyufuJ7m/RJSfLTDSfqzuX9s1NfsKZOhziDmMwQWioKqlSM6zT/+DSu3axD/klxI+5OLlVwDFwdDK4X0NIp0UlclK+ItGBNPVTcl3n50BRbBDQuOEoMJZMDHSiPqzMZB/BIrUBJjd0R3iADAISP4toCw+C/qpUWK7QGOavpDjoMmm1ZoeXyeWMvp8OEpDHW+I5QixBH/b5Cugbczg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,92 +69,90 @@ Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a) by LV2PR11MB6048.namprd11.prod.outlook.com
  (2603:10b6:408:178::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.12; Wed, 12 Aug
- 2026 12:24:37 +0000
+ 2026 12:27:20 +0000
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0270.017; Wed, 12 Aug 2026
- 12:24:37 +0000
-Message-ID: <7134f9ad-1244-478e-9e0f-7c4eccc8de1b@intel.com>
-Date: Wed, 12 Aug 2026 17:54:28 +0530
+ 12:27:20 +0000
+Message-ID: <4b127841-ac30-4920-b624-7b04f75e173b@intel.com>
+Date: Wed, 12 Aug 2026 17:57:11 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V15 13/14] drm/xe/uapi: Expose ban reason in
- EXEC_QUEUE_GET_PROPERTY_BAN
+Subject: Re: [PATCH V15 12/14] drm/xe: Add sysfs interface for bad gpu vram
+ pages
 To: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>, "Michal
- Mrozek" <michal.mrozek@intel.com>
 References: <20260811124016.3614699-16-tejas.upadhyay@intel.com>
- <20260811124016.3614699-29-tejas.upadhyay@intel.com>
+ <20260811124016.3614699-28-tejas.upadhyay@intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260811124016.3614699-29-tejas.upadhyay@intel.com>
+In-Reply-To: <20260811124016.3614699-28-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0231.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1f4::18) To DS4PPF691668CDD.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA1PR01CA0172.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:d::16) To DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|LV2PR11MB6048:EE_
-X-MS-Office365-Filtering-Correlation-Id: 611fd3a0-e50e-4a89-571b-08def86cace7
+X-MS-Office365-Filtering-Correlation-Id: 3577389f-2114-425a-5d2b-08def86d0dd0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|6133799003|22082099003|18002099003|11063799006|4143699003|56012099006|10067099003;
-X-Microsoft-Antispam-Message-Info: zkgWmQvXXDuP4NSvnRxMy8tgG/f5+Y4F2K0Wh1bdoTek9L40lK8ZNpFm7cAdVboIu/OPQMYPIBUpl9g/JFvIZmAvcjy2aSoZFo2vSS66G2yE84583dy58neL06YDxch57FQJl3AOzgr1BI3IDZCYt1wZqCPUoXbnRlnQ2S91mNIbnvnQJW7zVXWUlzVsE9yMemAD3BtS4O0i3/Y5si3CsocWVZ1hgwdRSbCaYHAqgGux/ZVLcZYUrqnHCQohM43j/rvG6+YSD/4UPyla0DuzldJuCVmsFXIWEcPx3RIlP1Ehx1Fn/swpPtVsZSxQ9s3EltVo4UNG1O+5gVy/waalHqmuhGKVRlJuvNEhSRAquNASWmpGlmrHajjI2evo4w7f3DI8qcgpfoUeX5P14x7aNd0ruip14zea/VcDZ3iu8iEpV7nY6bGllex9Cymabx0jAmlMXlHQOA7MTV0Aeduxqh7KzwTnqySKlpeEA7CIrN7uMfsgH+N5hX3Lw5uoAHP1V3mY148V87xknTd5jAz7Bo9IsMHAuqSUGjr00lY1HH6TA3rZQo5+oQlH1PzwjEvRV6gFesKWJGL/Jq682o45NPo7rT5Soyc4jW1YcZlZ9E6FzK15rwZbVkNlU5azAaGDU8Wfi1khKdXoea/T75Or9P3/TzsgsAWw0I2l55xmUlc=
+ ARA:13230040|366016|376014|1800799024|23010399003|6133799003|22082099003|18002099003|11063799006|4143699003|5023799004|56012099006|10067099003;
+X-Microsoft-Antispam-Message-Info: qEQvkITCHEy/w4va4GbzEeIVD7KUKtgel1qPlnTlEwS0vfriUO3wW3KuFmScYb4mUxa+okuFLos+YjMJez0+JbQ2N3H1Y0g+g31tzvahFBO2WT5ylGhTuC8lTU60QSQPi2hKbCvALtO/5YLPTOTg1dP2H7cjjjUiLOOIBnOSW81HSAMniXo0yqshUwvK4GvRBRupzp8CVlNDStgFYmNDx1pYp0EGkRtCw/L3STG1kFnkJ5kRPigHJwlVHS4LDBeK8RFoYLrPyXWoMVsK0dYG6eJ51rjJbfXhRF7k7aVI0i1tzxuMUh+hgKcBiWFIYlLUqTmuzHlf0YXeArSX4fu7va2CvNcu5XwcVGiUTfIbBWWyJvp1mGXrPglQn7UBhAAsbpZCO2wd2lRgNddqyxc3d6vZbKgzz/YnZSMUzLy0mL/nC8QZuvGZWWLcAkMWe+xDWZsxpXzEVRYkqtBWav9VqC02GawWvWgYrTT05XoFkfplCQkIsahaIv9ooc9UGZd/6n9NbWRvZZMiMInL0qdWkbM9ONMb/QmM4zvHccD79cBVAXaLOC8U26Xvaf4A+NE8xo935NEB7g/hyNhMt5FByR3KUJQMr+VHCdEdxKa1tUSCqC8bq173fI0hDdIsxLWkeV1aG9nbgCA2HMaek+T0YE9UPsRLBJsfmc5xs7AtwP4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(6133799003)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006)(10067099003);
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(6133799003)(22082099003)(18002099003)(11063799006)(4143699003)(5023799004)(56012099006)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHBoNFBieS95ZVpvMzkyb2RQcWpVOHRyZXhvdm1vUjQ2ckpSN01JaDFyaG5h?=
- =?utf-8?B?M0cvME5UWFFaWEs3U0lKYXBkUUtHR1RPZjNGSExEQ1JiU1U3K0tyYngxQ1N0?=
- =?utf-8?B?a0t2cnFoQ1NPQWJkZmhnU0s3OGdUamphRUJkRXZMQVBSNWxxYiszeWZRNjB6?=
- =?utf-8?B?T0dMYURwQjVSSHAxbUZ1clJScDUwM3ZqQmdrdDBWRXhZaFpvY2dWKzBzcTRF?=
- =?utf-8?B?Qml6cWRqdjRoMklUeFUxSzhuTGhkY2lGWjBSYVl6R1g5Y0ZJRzMyNXQyZTNn?=
- =?utf-8?B?S0FydVRZUThiTEVXMmtOemVINFU3SWNZeWNlclpVOW9lcEZoNlBRMmVKNDU2?=
- =?utf-8?B?SzdzYWxSMGNLREJ3UG1tWFdGdnJDYTV6MzZEMGV2Z3hWTkd4emhFWit4cm9U?=
- =?utf-8?B?Y0loUnpKZlFGdWIwbU55K2J0VS9DV0NqbWo2RWx2L0Q2RUlPRnBhNk91OVEy?=
- =?utf-8?B?QVZOcEtmRnY2SkRsSnNzT083ZTVra0phUVl0L3F6T3c4TXgzOHpLcWJWclc2?=
- =?utf-8?B?aHIrY2dIaTRzK2JqUzM4Zkl2QXpwdUpNMXltSjE2N1Y3Sm9Gb2ZKQk5xYXlt?=
- =?utf-8?B?b2piSmRqT2gwMEZ0YXFQRDZqNHV0RHNReVgrYlRPMEViQmVNZWhEZnFTNi90?=
- =?utf-8?B?NkQ0NGxwSXRudk1yTEJ2OXdrWmxzOFhDbzl5ZXB3SVlJOFhWZ2ZNSWVEbXh5?=
- =?utf-8?B?UmNDTHZWL2RTbW1FVm9GdGZEN1RoYTh6NHVheUl6Q25zZkZRZXFmWGdSdUlE?=
- =?utf-8?B?MjBscmNiamtucXEzaUtTOE9XdXJScWRTbCszVEdXUS81Z21pdU9TOVEySWdM?=
- =?utf-8?B?MFUxYVBKWUxWTVJKc05RZXUwRTJkK0FIS1FxYStQRldINklKWHU0aW0rRXpp?=
- =?utf-8?B?aUJzSG5LNDR1UEo5SnpDbFJUMzJKK2I5dlV5aG9JR05QenNiS3Z0c0RQeC9o?=
- =?utf-8?B?RlNlekQyaU5icFJRYUwwTDJ0QStsNkZJTWRMd1hxRmNwc2xldDlib0FQVEpE?=
- =?utf-8?B?c1J1L01HMGdTRGgvcXNrM2ZzTGVvME9wazBUZktNb2JiOFA4aS9aS2xsSklZ?=
- =?utf-8?B?SEMxUm5zNldBS05DRFhDYUdoWkorVUxvOW9HV2diRmlJZnplVFMySFdZUG0x?=
- =?utf-8?B?VzhQQU82TGFsaTAzWmxnaWtQQWRUR2x3dzRING00T3hXZW05a1J1eXlTYXpC?=
- =?utf-8?B?QUlWMEZCM3RTUWtvcVVDUlQ1K2ZGMkRwNUZpcTBIK1c1dlZNVUdUNkFuTW9u?=
- =?utf-8?B?cVVPcnF0MFN4V3MzZ2xvK3M1dTJwNExEUjZDNjJGdHlTK3dYMklHSnRaQ3Er?=
- =?utf-8?B?ekJtNHk2emtiYXc4YTJZRUpCcTh5Z2prUmtTZ0tHZEpNMXJHU3F4ZnpOdXZM?=
- =?utf-8?B?N1orSTBrRHVOWUFZdVBUUC9UWVlmSTNwR3Q2TnQvWGhWTjd6YTlnb2ZLQnR6?=
- =?utf-8?B?ZVl4czNCVHgvelZ1R2RrdFF1ZU43bnlCaDM1OEZMWDZlZ0EwVUJrSjNYYnZm?=
- =?utf-8?B?L3NJUU1jMDVNZlZSVE1NaHJuMmNRb2RwYkFrU3pXZU4vdE5XY0p2WVZLYzFS?=
- =?utf-8?B?Rk5sQjBZZEhMcGJROHJ1Qzl2bW00REhCLzBTK29PeXNIQW5BL0dIakY4aUVv?=
- =?utf-8?B?Z2FkTkZwekRBbHZNbWU2VkRpWG91VUtPQk1jQVg5aTRRLy9sWFVEUCtib3ds?=
- =?utf-8?B?ZnROTjFBL1JaVUVnNE11azJnWjZGYmp1NFBCbCtvazBYS1l3bHg5NStkOFQr?=
- =?utf-8?B?dEsydzIwSHd6Qzl3ZWt6TTA3VzVRNGYxQ1g4dFhkUjh5ZFd1TW9FNDBiOUUr?=
- =?utf-8?B?UmNyYytjOEI1aGZsdkZ2d1JyTU5IbXBkTXJTeGx3NW82TVMrR3BmRm8ySCsw?=
- =?utf-8?B?MXEwQnR6c1crNHZjNnY3bnNTYlFIT1dHcW1QTWNURlBIUlVqZkdHeU84MXNJ?=
- =?utf-8?B?L2dxbFBTaVFoWkIyS01JanI5azR0ZlVkdytGNlRWL3BwVUdGZkh1Rlp4V1FB?=
- =?utf-8?B?VFNKRnpFTHZLbnFIcThITmw1OUZMRmJiMmoxMm5hRVpGdTBITVRZQXdrMjc3?=
- =?utf-8?B?MEhDcDVHTUJldXROenRQOVBSaGYxeE5ORjM3b2N0d012aW9BOU4xdFFPQVV0?=
- =?utf-8?B?ODd0RXVHQy9aSDQyaUtERE5lZ0ZBTHdEWGhLbVo1Q3ZVMS9hcWliNnlwWFJp?=
- =?utf-8?B?UkNiOGlDQjNHbDYzSmlzaHh3OEx0ajZRL2dYWTdSZHh6TTd1KzgyeitUUG5i?=
- =?utf-8?B?RytXNnZhOXdxNDhBdGlmdTEyOTZpYmgzVVhZRlQ0RHcremJMa2pYNHNFWjRw?=
- =?utf-8?B?ZGxrcEVyMGh6ZFNUcE5uNjRvUW13SVhFaTQ4alV5TERLTHlEa2x0RVBXWGF5?=
- =?utf-8?Q?dpD9RvVFLCw8GrPs=3D?=
-X-Exchange-RoutingPolicyChecked: P/ttCTqVM3hf/gaTkmJNXpZ/4MGGJL82D31QC/4/C5owCJRpDIHdLPKsGPHlXL58xCXeYlQrA8JS4doAKU98bQllqr4l5/JiAhqgg92SkB07+frVab/MRsn1Ay7si6hVk5V9PiSXm2VG7N+JZd9kuheACoyZaoXPEnHl2JopBG5Ywn+EXkt8vCLZS3dK3X36QL3xJpJrcQn+bNXttOkHc8FSF83X0QiZyxZmRQtomtra1A7xiGavey1DFijmxWOSIePK6QEuUULao0vKuckylgb8yaq7UtynzCwdgANUeu1LUIzLAfRchcCYsbfudS6Kjd1+dNHadvTQ1LaqJ0Qi1Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 611fd3a0-e50e-4a89-571b-08def86cace7
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDJTWkhDUWpLZVk2RS9JQmtDTU1UUkZ2ZkwvYXpPM2daWElFTnU1bml1Vnc1?=
+ =?utf-8?B?dHZhcjd4SnFkd0U5L3U2TU5valFwOHhqTS9aa2RLQWRwa0VOWnRHS1VqcHFL?=
+ =?utf-8?B?VmtXc3gxYTZmblFLVUZmeXdNTHQxeld5QjRaUk4rZUZhelE2aHBSYXVJT2pR?=
+ =?utf-8?B?YkdObVQ1aXhUQUpMOEErNUFJbmcrdGdaaWtNd0tHdnpZeE5hRzlCYTFTZkVJ?=
+ =?utf-8?B?WThWZjFsNy9wcG9BKzhUcnJqUVpkdjNHWElwenZJWW9mMlgwbjBOZnBCR1hz?=
+ =?utf-8?B?Q1hHaWxxaEgrN0xWWStqZnpSL2N1amQzcURZMGcyWVdGcjdlZmo5UzRZSk5v?=
+ =?utf-8?B?SXI2R0JiK2JSMGd0Mzh4QU9MdHRXL1hQcTN6UlpQODlETWR0L1VySURLTHNI?=
+ =?utf-8?B?N2xmQWpGNGR2WTZVT3lKa05MMFBEV09CTXhCTDFYMThwb2oyaENMUUJEVU9s?=
+ =?utf-8?B?UW0yZ1kvaldZYmFEaVVFR2xKUUwyZjVHNEdQUmkvUU5FU3dFZlBrRC9ISEZJ?=
+ =?utf-8?B?SWVIUXpqdUNldFRRQ2pYTk8wMlNwNGQ1UDV6OWU5LzVBUURMS1BPRURNdUJW?=
+ =?utf-8?B?Z0RlZllYQW9vMnVXYWNUamZPWU1OMXM3ZFFwOU1ocHpkQWZueE9QMGEwWk4r?=
+ =?utf-8?B?ODkzdHd0VGcvWVFLd1BlVCt0R2ZuNHhJbDAzZEYyMWNvZU00ZWxvNW1XeW5Q?=
+ =?utf-8?B?WG9WUFV6dHdpL3dKb1hxekJSV085Vm9sWjYraEVoV2VnSjFJUTR0RGxjQ2NO?=
+ =?utf-8?B?NzFNdkRXYUpnWHNxQzROYXh6cVgzKzRFSzdKR0txM2lMQ0w0YlJuWUdlMmZT?=
+ =?utf-8?B?OEwxWjJlQzBSY2d0MUhPaEh5U1dtTHplelJpeGlVKzNuY0I1MEc1djFSamdQ?=
+ =?utf-8?B?a09XNklTN3M2ZTF2alVxVThlbkI5ZFJ2K0hHMHJ5R0pBR0I1dzdmOUpDemx1?=
+ =?utf-8?B?TDZXUGJYZS9HeElkK0lqQmJNdmg0dEx1WTNOZnVPRVpPRFVCMmh5UGxiYWtZ?=
+ =?utf-8?B?WGl5ejlzUU9LRGJJOVgySHNlR0xQaXpzamlmelhqcDlISkh3V01QYlNva0tF?=
+ =?utf-8?B?ZUxJQjh3bWZGamtmODZjV28rL0c1cVRSV2M4bUxYWWhZUFd6UHBCY2E1OHRH?=
+ =?utf-8?B?QS85M1dRekRhcTJSU3RvcVhSQi84anQ3a2c3WmNKOGZzekF6WWNDa25BLzNa?=
+ =?utf-8?B?REtGNWJZaXFxalhwSG81NGJVZGYvTHBIVG5Vd2MzZFNYTFN0WHhpQllEYm1F?=
+ =?utf-8?B?RzBlOWlscW8xWGYycE51MTBHUGVEd2ZtRTYwWnordXhSVlpxQlBaOHNzT0NH?=
+ =?utf-8?B?OUJBL2RYYjJJUWNzZnFJdGk4RDNiQTNFOVN0ckVQNTQ2ZElIMzVQbXhvQ2Zl?=
+ =?utf-8?B?YnVTdWwzazFEWWhtVFJGMXN0L1hNY3Foc3QrdUhjS0xtNDFqdWJrd3ErVmtN?=
+ =?utf-8?B?YkwxMTMyRUxQNnpYcEdHeDNVVEJ5dkdzeHUzVCtQM29DUUQvaHVINFowSkt0?=
+ =?utf-8?B?Y3JJS2RVRzNWWmVDZ0tDQnE0b2tMUExYWEtCWEVpd1hoaEdwYURJQUpVdlFI?=
+ =?utf-8?B?UG9MQzJ2a2pWMkc0eVUxVFNXeXN0OHQ1eHc3T2pOWlF2clhpdTRUQUplWUQy?=
+ =?utf-8?B?bVVTcWFqWVhNZnVmMEl2RGl1OTdFRmRWMFUxM1o2bGlzZHNxZzFjQ3ZPcC85?=
+ =?utf-8?B?MldqSS9VT0NrekFBMGxQdTJNT0h1bmc4TWlFcWc4U1puSjJ4OCtPZWZpVldl?=
+ =?utf-8?B?WXhFMXhCejY3bm1HQlR2RXVyNCszTkR4MVdWaklSZnJjZCtqSEM1aWVwTTMz?=
+ =?utf-8?B?d2tkZWNYcHhKT3JjNUFGZmE4Vm5IeXpBMitJQlFVMHpEL2RMbW1MeUJsRW5K?=
+ =?utf-8?B?aWU2dUFJd1Boa21QZnFZTWJ2VnZCK0RDMUJabC9VeWVTL3dZdTloUDhUQlVJ?=
+ =?utf-8?B?b2tXNjUxRVpvc2ljbU96alQ0VkQ0d0pmNUI1aGlPRCs3eEErRWJGK012K0xE?=
+ =?utf-8?B?NlZkSklYNUJ5R3FYTVk1eGZ6K1I2MVcwcCs5ZkJvU0VHWktNV0VjakVOc1ZR?=
+ =?utf-8?B?K0dKVHkzeWNQdkhUWTNDY2Y5bzRDbjdrNzJnRUJOdFN2YWJ2N2xibHRPWnF0?=
+ =?utf-8?B?OWxjN25aaXpkelJlM2g5V3N3YzVGdlJnaWI3amtuNjB3VFYxQ0d2b2dtY00z?=
+ =?utf-8?B?N0hjMzBWeTRwR0tXa2dOZUc4ODJjV3V6WEpTWUU1RWV5SmtIcmVOU0R2clBR?=
+ =?utf-8?B?ZlJjd3NXK2hBMHBNZG85VzBWbTNkWmNEcjlwK0lnaVRUcm8va3IwSGhxUFlh?=
+ =?utf-8?B?S0U5NjU3Zng3WVVTdldkekZobFpPY09aL3lVUUxzcmg4Z1NhR0M1K1h0TGdX?=
+ =?utf-8?Q?MpvHQR8JOfeljefo=3D?=
+X-Exchange-RoutingPolicyChecked: PvsXXNgA+ktzZae/2YcK0RuwCP/YOTa4dm+MQb6VhF2Kg4PpK822iFQWPUW9g0Uaybu15g+9xPoHRmlJRyo8bcuzGyE28BEzSXR2p8wbMogA3aZSi8r/Sm0wA8snzPgrGiVEi7L7ivIYoseZvHJiXtHPyJnl7t+bUGm64WaK0KFHZIXasCC3Teq1Ud8p3KoVXLt6PTm7RV/hOAnb1xkMXtZbGZ0WCQOarKqoEtSib+x9zYl8PnzEc3IYJWEAn6UXkISxG5Gxlr+9ebUly/ySAsmCUN0D/zfsvYfIKbhKaqlNWjpqdrHJE8cRS1Rbmhp9g1kOHqJvtzbKM1IgEM7dRg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3577389f-2114-425a-5d2b-08def86d0dd0
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2026 12:24:37.6053 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2026 12:27:20.4308 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4SvzQh6iaODBFhntOQfdLomWgtZy192l/ufM2hIqB1K6c8tOpPqtKIHK4lYrbLLVxKrEYmAvg1uzUHEX/qRnMJd+V1jQKq0Vbt7v7UC2uU8=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0J+XCVZLwuCVc/We80xYa8KzWOH8Fia0ODJTUzJdagJUZOc4eS8NQf+3zvClNTmL0GNAx37S9lvppRTpVzlPMO+g0l9X03xYao4e4NIcU0k=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6048
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -174,214 +172,88 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 11-08-2026 18:10, Tejas Upadhyay wrote:
-> Extend DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN to return a bitmask indicating
-> the reason for the ban, rather than a simple boolean. This allows
-> userspace to distinguish between different ban causes:
+> Include a sysfs interface designed to expose information about bad
+> VRAM pages — those identified as having hardware faults (e.g., ECC
+> errors). This interface allows userspace tools and administrators to
+> monitor the health of the GPU's local memory and track the status of
+> page retirement. Details on bad gpu vram pages can be found under
+> /sys/bus/pci/devices/<bdf>/vram_bad_pages.
 > 
-> - DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG (bit 0): exec queue was banned
->    due to a GPU hang or job timeout detected by the TDR.
-> - DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE (bit 1): exec queue was
->    banned because a VRAM page backing its resources was taken offline.
+> The format is: pfn : gpu_page_size : flags
 > 
-> The ban_reason field is added to struct xe_exec_queue and set at the
-> point where the ban is triggered:
-> - In guc_exec_queue_timedout_job() for GPU hang.
-> - In xe_ttm_vram_purge_page() for memory page offline, before calling
->    xe_exec_queue_kill() or xe_vm_kill().
+> flags:
+>    R: reserved, this gpu page is reserved.
+>    P: pending for reserve, this gpu page is marked as bad, will be
+>       reserved in next window of page_reserve.
+>    F: unable to reserve, this gpu page can't be reserved due to some
+>       reasons.
 > 
-> The reset_status op is updated to return u64 with the reason bitmask.
-> When a queue is banned but no explicit reason was recorded (e.g., from a
-> generic CAT error), it defaults to GPU_HANG for backward compatibility.
-> A value of 0 means the exec queue is not banned.
+> For example, cat /sys/bus/pci/devices/<bdf>/vram_bad_pages:
+>    max_pages : 10000
+>    0x0000000000000000 : 0x0000000000001000 : R
+>    0x0000000000001234 : 0x0000000000001000 : P
 > 
-> v2(Sashiko):
-> - Use atomic_t for ban_reason to fix concurrent updates from TDR and
->    page-offline
-> - Guard GPU_HANG bit with !exec_queue_killed to avoid masking
->    page-offline reason
-> - Clear ban_reason on queue recovery (clear_exec_queue_banned path)
-> - Use atomic_read in guc_exec_queue_reset_status for lockless read
+> The sysfs binary attribute is created under the PCI device kobject
+> when the platform supports it and the configfs bad_page_reservation
+> policy is enabled. Uses RCU-protected list traversal so reads never
+> block normal VRAM allocation operations.
 > 
-> Assisted-by: Copilot:claude-opus-4.6
-> Acked-by: José Roberto de Souza <jose.souza@intel.com>
-> Acked-by: Michal Mrozek <michal.mrozek@intel.com>
 > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
 > ---
->   drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 ++++--
->   drivers/gpu/drm/xe/xe_execlist.c         |  4 +--
->   drivers/gpu/drm/xe/xe_guc_submit.c       | 32 ++++++++++++++++++++----
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     | 10 +++++++-
->   include/uapi/drm/xe_drm.h                | 12 ++++++++-
->   5 files changed, 54 insertions(+), 11 deletions(-)
+>   drivers/gpu/drm/xe/xe_device_sysfs.c | 7 +++++++
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.h | 1 +
+>   2 files changed, 8 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index b2276559c2f6..a21916359e2f 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -156,6 +156,9 @@ struct xe_exec_queue {
->   	 */
->   	unsigned long flags;
+> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> index a73e0e957cb0..47c5be4180fe 100644
+> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> @@ -8,12 +8,14 @@
+>   #include <linux/pci.h>
+>   #include <linux/sysfs.h>
 >   
-> +	/** @ban_reason: Bitmask of ban reasons (DRM_XE_EXEC_QUEUE_BAN_REASON_*) */
-> +	atomic_t ban_reason;
-> +
->   	union {
->   		/** @multi_gt_list: list head for VM bind engines if multi-GT */
->   		struct list_head multi_gt_list;
-> @@ -350,8 +353,8 @@ struct xe_exec_queue_ops {
->   	 * signalled when this function is called.
->   	 */
->   	void (*resume)(struct xe_exec_queue *q);
-> -	/** @reset_status: check exec queue reset status */
-> -	bool (*reset_status)(struct xe_exec_queue *q);
-> +	/** @reset_status: check exec queue ban status, returns ban reason bitmask */
-> +	u64 (*reset_status)(struct xe_exec_queue *q);
->   };
+> +#include "xe_configfs.h"
+>   #include "xe_device.h"
+>   #include "xe_device_sysfs.h"
+>   #include "xe_mmio.h"
+>   #include "xe_pcode_api.h"
+>   #include "xe_pcode.h"
+>   #include "xe_pm.h"
+> +#include "xe_ttm_vram_mgr.h"
 >   
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-> index cc33ae80e8cf..534e7c4e0099 100644
-> --- a/drivers/gpu/drm/xe/xe_execlist.c
-> +++ b/drivers/gpu/drm/xe/xe_execlist.c
-> @@ -452,10 +452,10 @@ static void execlist_exec_queue_resume(struct xe_exec_queue *q)
->   	/* NIY */
->   }
->   
-> -static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
-> +static u64 execlist_exec_queue_reset_status(struct xe_exec_queue *q)
+>   /**
+>    * DOC: Xe device sysfs
+> @@ -267,6 +269,7 @@ static const struct attribute_group auto_link_downgrade_attr_group = {
+>   int xe_device_sysfs_init(struct xe_device *xe)
 >   {
->   	/* NIY */
-> -	return false;
-> +	return 0;
->   }
+>   	struct device *dev = xe->drm.dev;
+> +	bool policy;
+>   	int ret;
 >   
->   static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 9036f89dff7d..f52577de1ac2 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -6,6 +6,7 @@
->   #include "xe_guc_submit.h"
->   
->   #include <linux/bitfield.h>
-> +#include <uapi/drm/xe_drm.h>
->   #include <linux/bitmap.h>
->   #include <linux/circ_buf.h>
->   #include <linux/dma-fence-array.h>
-> @@ -1593,6 +1594,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->   	if (!exec_queue_killed(q))
->   		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
->   
-> +	/*
-> +	 * Only tag as GPU hang if this is the original timeout, not a
-> +	 * consequence of a prior kill (e.g., page-offline).
-> +	 */
-> +	if (!exec_queue_killed(q))
-> +		atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG, &q->ban_reason);
->   	set_exec_queue_banned(q);
->   
->   	/* Kick job / queue off hardware */
-> @@ -1676,6 +1683,9 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->   		if (timeout_needs_gt_reset(q, job, skip_timeout_check)) {
->   			if (!xe_sched_invalidate_job(job, 2)) {
->   				clear_exec_queue_banned(q);
-> +				/* protect concurrent page offline reasons */
-> +				atomic_andnot(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG,
-> +					      &q->ban_reason);
->   				xe_gt_reset_async(q->gt);
->   				goto rearm;
->   			}
-> @@ -2570,13 +2580,25 @@ static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue *q)
+>   	if (xe->d3cold.capable) {
+> @@ -285,5 +288,9 @@ int xe_device_sysfs_init(struct xe_device *xe)
+>   			return ret;
 >   	}
->   }
 >   
-> -static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
-> +static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
+> +	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(dev));
+> +	if (xe->info.platform == XE_CRESCENTISLAND && policy)
+> +		xe_ttm_vram_sysfs_init(xe);
+> +
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> index d5392beff30c..eb55b0f74ef3 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> @@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+>   			  u64 *used, u64 *used_visible);
+>   
+>   int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr);
+> +int xe_ttm_vram_sysfs_init(struct xe_device *xe);
+
+Move implementation to this patch.
+
+>   static inline struct xe_ttm_vram_mgr_resource *
+>   to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
 >   {
-> -	if (xe_exec_queue_is_multi_queue_secondary(q) &&
-> -	    guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
-> -		return true;
-> +	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-> +		u64 status = guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q));
->   
-> -	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
-> +		if (status)
-> +			return status;
-> +	}
-> +
-> +	if (exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q)) {
-> +		u64 reason = atomic_read_acquire(&q->ban_reason);
-> +
-> +		/* If no specific reason was recorded, default to GPU hang */
-> +		if (!reason)
-> +			reason = DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG;
-> +		return reason;
-> +	}
-> +
-> +	return 0;
->   }
->   
->   /*
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index c22669955147..5bb66c7b5505 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -7,6 +7,7 @@
->   #include <drm/drm_managed.h>
->   #include <drm/drm_drv.h>
->   #include <drm/drm_buddy.h>
-> +#include <uapi/drm/xe_drm.h>
->   
->   #include <drm/ttm/ttm_placement.h>
->   #include <drm/ttm/ttm_range_manager.h>
-> @@ -541,7 +542,12 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
->   	xe_bo_unlock(bo);
->   	/*  Ban VM if BO is PPGTT */
->   	if (vm && (flags & XE_BO_FLAG_PAGETABLE)) {
-> +		struct xe_exec_queue *eq;
-> +
->   		down_write(&vm->lock);
-> +		list_for_each_entry(eq, &vm->preempt.exec_queues, lr.link)
-> +			atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &eq->ban_reason);
-> +		smp_wmb(); /* Force all queue bits to be visible before killing the VM */
->   		xe_vm_kill(vm, true);
->   		up_write(&vm->lock);
->   	}
-> @@ -553,7 +559,9 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
->   	/*  Ban exec queue if BO is lrc */
->   	if (q && xe_exec_queue_get_unless_zero(q)) {
->   		/* ban queue */
-> -		q_to_put = q;
-> +                atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &q->ban_reason);
-> +                smp_wmb(); /* Force bit change to finish before state change triggers */
-> +                q_to_put = q;
->   	}
->   
->   	if (bo->purgeable.state == XE_MADV_PURGEABLE_PURGED) {
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 509202a7b13e..1600e8f0885a 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -1503,7 +1503,17 @@ struct drm_xe_exec_queue_get_property {
->   	/** @property: property to get */
->   	__u32 property;
->   
-> -	/** @value: property value */
-> +	/**
-> +	 * @value: property value
-> +	 *
-> +	 * For %DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN, this is a bitmask of:
-> +	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG - banned due to GPU hang/timeout
-> +	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE - banned due to memory page offline
-> +	 *
-> +	 * Value of 0 means the exec queue is not banned.
-> +	 */
-> +#define DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG		(1 << 0)
-> +#define DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE	(1 << 1)
->   	__u64 value;
->   
->   	/** @reserved: Reserved */
 
