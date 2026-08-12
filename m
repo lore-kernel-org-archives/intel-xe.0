@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ABCAC5DF60
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 168B5C5B56A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Aug 2026 17:41:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFB1610F0C8;
-	Wed, 12 Aug 2026 17:41:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D072310F0B7;
+	Wed, 12 Aug 2026 17:41:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IyilsgXO";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Po1YtSDv";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F258B10E3A7
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Aug 2026 00:04:32 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A18A910EF58;
+ Wed, 12 Aug 2026 10:15:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id F2FD8600E2;
- Wed, 12 Aug 2026 00:04:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 813A91F000E9;
- Wed, 12 Aug 2026 00:04:31 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 53E0F406FC;
+ Wed, 12 Aug 2026 10:15:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBE491F000E9;
+ Wed, 12 Aug 2026 10:15:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786493071;
- bh=m0ECAVUU3qiMZeZ5HNh5E9naz1Mf2ibt7FFQQ+282Gc=;
+ s=k20260515; t=1786529759;
+ bh=vkRLcXnVuMhVDZKH1ZqfIQ9iJC7YJbehr0LTA0vFh+M=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=IyilsgXOH+j+b73/4siBwIDbXDMDCVYe7lAXK2CyieI2lw7kzplYyarn0o6Yywlip
- JjQQsmNEB8MEoZalvkszYmDWw/L7FQmIkQ9wWCLOsbmaCHoVRNkyhaztM1HjwIbrj1
- QwxChEWxUJjQKGFrd3PwUJKy32nmlKR9dHZlgINL7lRitDvX3u8JUJg8YgZtv912s4
- ybANqZXciV6t4koNVkhajjHkSCyBam8tUWddkh/ppG3uMK825rbKACRhuULr5BEVa9
- /l80D+2iUnj84/C85t6iJYWollkXW490JRoD4buK/1ttRgzCF5XvMsBcqWw6vavY6U
- nC6ADglvnkhoQ==
+ b=Po1YtSDviQLs7eL/UE32S+0zegQ+JN3P8NnbMCd40K4+ZmE6FKEy+p82pTn1zJXOo
+ IU+6WIhvRXzL1rpe9RMJMesXdiabvihYoaaZCB0XGDRDqAwjZxEut2Yi04QaRqIsud
+ fhp13b3GDOhRINCts7xE69K34qoWvC20Ir8FYNqD1hqGIhpSreh0wN5XYHguWUi5Ks
+ 1s/Kjqc3IqWD+BzKQZGcr8ydjKpA/Yo7sg9gbAE1I6mzl8PUnMdDTt8KYJbf35Kwc0
+ EtSVTM7uHKVZzgM7NMKmEgRHUaUbUbz123Z5Cu1gvTOfijmu5EGujrdB9f7IvPPKLt
+ Bmyj/u3NG5tKQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/4] drm/xe/pcode: Use int instead of u32 for mailbox
- status
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260811235254.153783-8-umesh.nerlige.ramappa@intel.com>
-References: <20260811235254.153783-6-umesh.nerlige.ramappa@intel.com>
- <20260811235254.153783-8-umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane
+ disable
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20260812094547.1808459-1-nemesa.garg@intel.com>
+References: <20260812094547.1808459-1-nemesa.garg@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 12 Aug 2026 00:04:31 +0000
-Message-Id: <20260812000431.813A91F000E9@smtp.kernel.org>
-X-Mailman-Approved-At: Wed, 12 Aug 2026 17:41:20 +0000
+Date: Wed, 12 Aug 2026 10:15:58 +0000
+Message-Id: <20260812101558.DBE491F000E9@smtp.kernel.org>
+X-Mailman-Approved-At: Wed, 12 Aug 2026 17:41:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,101 +57,72 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
-New issues:
-- [High] The patch causes an incompatible pointer type build warning/error =
-because it fails to update the caller `xe_pcode_ready()`.
-
 Pre-existing issues:
-- [High] The polling loop in `pcode_try_request()` corrupts the original re=
-quest payload by overwriting it with the hardware reply.
-- [High] Uncapped exponential backoff causes massively oversized `usleep_ra=
-nge` and illegal `udelay` values.
+- [High] The fix for orphaned selective fetch enable bits is incomplete, mi=
+ssing the identical flaw in the cursor plane disable logic (`i9xx_cursor_di=
+sable_sel_fetch_arm()`).
 --
 
---- Patch [2]: [PATCH 2/4] drm/xe/pcode: Use int instead of u32 for mailbox=
- status ---
-commit 4ff550781bd5498e3e5ce5f24fbf2a211b0938c1
-Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+--- Patch [1]: [PATCH] drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane=
+ disable ---
+commit e0077c037f1d1d0137a05dcfc36800e4add084cd
+Author: Nemesa Garg <nemesa.garg@intel.com>
+drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable
 
-drm/xe/pcode: Use int instead of u32 for mailbox status
+This commit fixes an issue where disabling a plane after selective fetch
+was turned off would leave the SEL_FETCH_PLANE_CTL enable bit set in
+hardware. It changes the early return condition to check for hardware
+support rather than the current state.
 
-This commit changes the status parameter in pcode_try_request() and
-xe_pcode_request() from u32 to int. Mailbox status is of type int,
-and using u32 was likely a typo.
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8739
 
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index ccc3bdeed6bb2..e9125341481b7 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -149,7 +149,7 @@ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32=
- *val, u32 *val1)
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
+/gpu/drm/i915/display/skl_universal_plane.c
+> index 07a6832933521..afc1df1b84a4a 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -885,7 +885,13 @@ static void icl_plane_disable_sel_fetch_arm(struct i=
+ntel_dsb *dsb,
+>  	struct intel_display *display =3D to_intel_display(plane);
+>  	enum pipe pipe =3D plane->pipe;
 > =20
->  static int pcode_try_request(struct xe_tile *tile, u32 mbox,
->  			     u32 request, u32 reply_mask, u32 reply,
-> -			     u32 *status, bool atomic, int timeout_us, bool locked)
-> +			     int *status, bool atomic, int timeout_us, bool locked)
-
-[Severity: High]
-Does this change cause a compile failure? In xe_pcode_ready(), status is
-still defined as a u32 and passed as an argument to pcode_try_request():
-
-xe_pcode_ready() {
-	u32 status, request =3D DGFX_GET_INIT_STATUS;
-	...
-	ret =3D pcode_try_request(tile, DGFX_PCODE_STATUS, request,
-				DGFX_INIT_STATUS_COMPLETE,
-				DGFX_INIT_STATUS_COMPLETE,
-				&status, false, timeout_us, locked);
-	...
-}
-
-This results in passing a u32 pointer where an int pointer is expected.
-
-[Severity: High]
-This is a pre-existing issue, but does the polling loop in
-pcode_try_request() corrupt the original request payload by overwriting it
-with the hardware reply?
-
-In pcode_try_request(), the request parameter is passed by reference to
-__pcode_mailbox_rw() (and pcode_mailbox_rw()):
-
-	*status =3D __pcode_mailbox_rw(tile, mbox, &request, NULL, 1, true,
-				     atomic);
-
-If the initial hardware poll fails, since return_data=3Dtrue, the function
-overwrites the request variable with the data read from PCODE_DATA0. On
-subsequent loop iterations, corrupted data will be sent to the PCODE
-hardware instead of the original request.
-
-[Severity: High]
-This is also a pre-existing issue, but does the uncapped exponential backoff
-in pcode_try_request() cause oversized usleep_range() and illegal udelay()
-values?
-
-In the polling loop:
-
-	if (atomic)
-		udelay(wait);
-	else
-		usleep_range(wait, wait << 1);
-	wait <<=3D 1;
-
-The wait variable unconditionally doubles without an upper bound. When
-called from xe_pcode_ready() with a 3-minute timeout, wait grows to over
-83 million, causing usleep_range() to sleep for up to 167 seconds at a
-time. When called from xe_pcode_request() with atomic=3Dtrue and a 50ms
-timeout, wait reaches 20,480, resulting in udelay(20480), which violates
-kernel latency guidelines for atomic contexts.
-
->  {
->  	int slept, wait =3D 10;
+> -	if (!crtc_state->enable_psr2_sel_fetch)
+> +	/*
+> +	 * Clear this whenever the hardware has selective fetch, not just when
+> +	 * the current state uses it. The plane may have been enabled with
+> +	 * selective fetch earlier and had its enable bit orphaned when the
+> +	 * feature was switched off.
+> +	 */
+> +	if (!HAS_PSR2_SEL_FETCH(display))
+>  		return;
 > =20
+>  	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), =
+0);
 
-[ ... ]
+[Severity: High]
+This is a pre-existing issue, but does this fix need to be applied to the
+cursor plane logic as well?=20
+
+Looking at drivers/gpu/drm/i915/display/intel_cursor.c, the function
+i9xx_cursor_disable_sel_fetch_arm() still uses the old state-based early
+return:
+
+	if (!crtc_state->enable_psr2_sel_fetch)
+		return;
+
+	intel_de_write_dsb(display, dsb, SEL_FETCH_CUR_CTL(pipe), 0);
+
+If selective fetch is dynamically disabled while a cursor plane is active,
+and then the cursor is disabled, this early return will leave the
+SEL_FETCH_CUR_CTL bit set in hardware.=20
+
+If selective fetch is later re-enabled, could the hardware mistakenly resume
+fetching for the disabled cursor and keep its old Display Data Buffer range
+reserved, potentially starving other planes?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260811235254.1537=
-83-6-umesh.nerlige.ramappa@intel.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260812094547.1808=
+459-1-nemesa.garg@intel.com?part=3D1
