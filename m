@@ -4,33 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBB24C5CFEB
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 08:21:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EAE7C5AC67
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 08:31:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 770F910E4DC;
-	Thu, 13 Aug 2026 08:21:01 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D11010E4DC;
- Thu, 13 Aug 2026 08:21:00 +0000 (UTC)
-Received: from 37-136-223-217.rev.dnainternet.fi ([37.136.223.217]
- helo=[192.168.101.111])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wuQ1q-00000002ZHu-3txj; Thu, 13 Aug 2026 10:39:08 +0300
-Message-ID: <4a5cad537812990f7a35792ecd1d7188f948d64e.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: =?UTF-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>, Luca Coelho
- <luciano.coelho@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Thu, 13 Aug 2026 10:39:05 +0300
-In-Reply-To: <fb91bb75-3da8-c0cb-f97e-5b79afcf917f@intel.com>
-References: <20260609095525.570614-5-luciano.coelho@intel.com>
- <fb91bb75-3da8-c0cb-f97e-5b79afcf917f@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-10 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10DDE10E449;
+	Thu, 13 Aug 2026 08:31:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DEjaV+sD";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="iiBT25hf";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD61910E449
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 08:31:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1786609875;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=mOaM89HDkhz0YSMPBacVagDnalThEgWQpZeX3ZxGlSw=;
+ b=DEjaV+sDa8IZJ5OzZIVmNuRVpatyzHteI601bJJFnQAqGhkomLwUw6FoGlrghOCgcUkQS/
+ hbvEKu3WPGskgMLnhlgqKCmm62WGl3r9W8oHCykyZqkNiIrw8A4G/evyz/JFYD9qEEqvdI
+ NpnTcMDonpZHrxGRdaa9m6vGJAjOJz8=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-219-49sizyUlP1aqiIg0ahMtYQ-1; Thu, 13 Aug 2026 04:31:14 -0400
+X-MC-Unique: 49sizyUlP1aqiIg0ahMtYQ-1
+X-Mimecast-MFC-AGG-ID: 49sizyUlP1aqiIg0ahMtYQ_1786609873
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-47f2de3ba47so1241483f8f.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 01:31:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1786609873; x=1787214673; darn=lists.freedesktop.org;
+ h=content-disposition:content-type:mime-version:message-id:subject:cc
+ :to:from:date:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=mOaM89HDkhz0YSMPBacVagDnalThEgWQpZeX3ZxGlSw=;
+ b=iiBT25hf/G5XoRlXBwRUBu7um3l9ZvvabxE3mh3EQd8hdNS4NCgvlX1gLKbKy3EMOL
+ mqPISAt7LtHqiIRUxN9MlL7brdca/gzFcx0sytk8j+nZ518nBgRY0fc7RsbGDRkXecZX
+ cPCDvsN37Z/PRD/LEn8Hlz25ZTxagS3W0CdDr1kjO7AXdSjnqCkWtLrMRh+BDXpv02mt
+ P6OF5uVOAPQms0f7QNIOors/uqZi+7czHtP11azl2GVlgRlyk66b5Qtwf7jS3lzVT4ZY
+ Ae4bwVAuVPpNdBBD3ZhU8rOQHvWDR2ayhO1MeN/lXlQ6iZveuSAYH7anb0O0Lm6Fuqgj
+ dQ0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1786609873; x=1787214673;
+ h=content-disposition:content-type:mime-version:message-id:subject:cc
+ :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=mOaM89HDkhz0YSMPBacVagDnalThEgWQpZeX3ZxGlSw=;
+ b=PmCYRUmeXr5P+e6mgw3ki8UshFOuXLMTGyvYTdnqEqvaoymiNoAIydvoSg8E69zfqY
+ 5ED0ITQSyoanRFzl7RfEeIznNAg8+C5MnI0Uq6jzeCpOQ6vJUvKWM7dFs8MZSJppTUOj
+ k3QchxSY3iUuZhRnIxcAzFyMHUs9bAoBGmSH9sblucnVHV0GQ//sV0Nxnw5hLbgWa8Vy
+ HJNX16t64nELVlHmJLrhLN18TbUN2vSh3FephC9xIWOfYe1ixLqU9JVzi7t1RxOgh7A3
+ vuZ5tDLNN6TXL50TYz6PheBI/BVQL4Ge+0glFPchcSluJBKCVAI6zl8hsKy/kW6w2EeL
+ HABg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqXq5wTG5/g52zjKlKsmNdXRkKzLWVDY1G5Av2gAGdLeNAt/L6FW1jzbAV8YZktZZQ2jIsigwKVPA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzAzMiz49awvccHfkzFWN54JGKaQrE26J+dgKH2zB90pIKCnW2v
+ 48NLzt/w99doXcleTSoP5BdHTQvkhAysGZAZpRJEQUtCP+S4AGia92hMnfNeeXQsBYpiY6Pez/l
+ Zj9Z16x6xK7Nf2Kqc+opKSRvQtbDfWBj4Dpy/27ssovUKVp/CSPHkzuu/7qFbnwd051Dx
+X-Gm-Gg: AR+sD12i6SP5TWwLPYI3xEsKPyWoDhDe9isfxn5aJweAv+ABxlhAibtMXPcEwi7E7Z3
+ TQy08KFmuyGoDDF2QRPHOK4BpiLbOhgVKPV7is6LxhTUn8NADKWZPmlNr14awPUbI3M87L/JN7L
+ S4ZmjMzXrCdLSFxBjnzU39VJ1oR1/fi69PXbhJwt3BKR5Ib96E51P2WtwGCEhdABJWJGF+W3fnw
+ KMksXBWRO/NXiZlAOxbZJTiX2H/PgaBCpeAi90R2cgE/0JsHiCa2gTTZH1vADTlg+JLwRPfDbMT
+ icaeRAU5KwXgakmU/UqzmV6nBItlOIQ8zGBdUIg/WEP29oRKo0qC1VOVCF+R2knrD4lYejNB
+X-Received: by 2002:a5d:5e0f:0:b0:47f:f002:3652 with SMTP id
+ ffacd0b85a97d-48159ec134bmr3757716f8f.12.1786609872452; 
+ Thu, 13 Aug 2026 01:31:12 -0700 (PDT)
+X-Received: by 2002:a5d:5e0f:0:b0:47f:f002:3652 with SMTP id
+ ffacd0b85a97d-48159ec134bmr3757608f8f.12.1786609871940; 
+ Thu, 13 Aug 2026 01:31:11 -0700 (PDT)
+Received: from localhost ([193.32.126.230]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-4815a569c2bsm4834411f8f.12.2026.08.13.01.31.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 13 Aug 2026 01:31:11 -0700 (PDT)
+Date: Thu, 13 Aug 2026 10:31:10 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20260813-shrewd-ocelot-of-research-aa3caa@houat>
 MIME-Version: 1.0
-Subject: Re: [v6,4/4] drm/i915/display: remove unnecessary PHY_NONE definition
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="suhigkbeilmgqoi7"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,100 +112,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-07-01 at 20:36 +0200, Micha=C5=82 Grzelak wrote:
-> On Tue, 9 Jun 2026, Luca Coelho wrote:
-> > PHY_NONE is not really used, but we define it and, thus, need to check
-> > for it in a few places we use phy.  The only potential places where
->=20
-> double space: s/  / /
->=20
-> > phy may become PHY_NONE, is in intel_port_to_phy(), where it derives
-> > from port, which can be PORT_NONE.  Many of its callers don't check
->=20
-> double space: s/  / /
->=20
-> > for PHY_NONE, which can cause unknown behavior.  Additionally, this
->=20
-> double space: s/  / /
->=20
-> > can only happen if the encoder used has PORT_NONE, which should not be
-> > the case either, without unexpected consequences.
-> >=20
-> > Remove the PHY_NONE definition entirely and add a couple of WARNs at
-> > the relevant places, just to be sure.
-> >=20
-> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > ---
-> > drivers/gpu/drm/i915/display/intel_display.c           | 10 ++++++----
-> > drivers/gpu/drm/i915/display/intel_display.h           |  2 --
-> > .../gpu/drm/i915/display/intel_display_power_well.c    |  6 +++++-
-> > drivers/gpu/drm/i915/display/intel_hti.c               |  3 ---
-> > 4 files changed, 11 insertions(+), 10 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index bdf02b67c1d8..58713ad04d37 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -1810,9 +1810,7 @@ static void hsw_crtc_disable(struct intel_atomic_=
-state *state,
-> > /* Prefer intel_encoder_is_combo() */
-> > bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
-> > {
-> > -	if (phy =3D=3D PHY_NONE)
-> > -		return false;
-> > -	else if (display->platform.alderlake_s)
-> > +	if (display->platform.alderlake_s)
-> > 		return phy <=3D PHY_E;
-> > 	else if (display->platform.dg1 || display->platform.rocketlake)
-> > 		return phy <=3D PHY_D;
-> > @@ -1866,7 +1864,7 @@ bool intel_phy_is_snps(struct intel_display *disp=
-lay, enum phy phy)
-> > 	 * For DG2, and for DG2 only, all four "combo" ports and the TC1 port
-> > 	 * (PHY E) use Synopsis PHYs. See intel_phy_is_tc().
-> > 	 */
-> > -	return display->platform.dg2 && phy > PHY_NONE && phy <=3D PHY_E;
-> > +	return display->platform.dg2 && phy <=3D PHY_E;
-> > }
-> >=20
-> > /* Prefer intel_encoder_to_phy() */
-> > @@ -1884,6 +1882,10 @@ enum phy intel_port_to_phy(struct intel_display =
-*display, enum port port)
-> > 		 port =3D=3D PORT_D)
-> > 		return PHY_A;
-> >=20
-> > +	if (drm_WARN(display->drm, port < 0,
-> > +		     "PHY is invalid if port < 0 (%d), assuming PHY_A\n", port))
-> > +		return PHY_A;
-> > +
-> > 	return PHY_A + port - PORT_A;
-> > }
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu=
-/drm/i915/display/intel_display.h
-> > index 98b589e8360d..a4f621934b33 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > @@ -136,8 +136,6 @@ enum tc_port {
-> > };
-> >=20
-> > enum phy {
-> > -	PHY_NONE =3D -1,
-> > -
-> > 	PHY_A =3D 0,
->=20
-> I'm wondering if with this change we could remove the assignment above
-> (PHY_A =3D 0), since I think enums are starting from 0 by default;
 
-Yeah, the assignment to 0 is now redundant, I'll remove it.
+--suhigkbeilmgqoi7
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-next-fixes
+MIME-Version: 1.0
 
+Hi,
 
-> but again I might be missing common codestyle guidelines. Anyways:
->=20
-> Reviewed-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+Here's this week drm-misc-next-fixes PR
 
-Thank you!
+Maxime
 
---
-Cheers,
-Luca.
+drm-misc-next-fixes-2026-08-13:
+A single patch to remove a .orig file introduced by accident.
+The following changes since commit bd4f284df04d76fd65e57141cb1e6e7a49e4c3cb:
+
+  drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager (2026-08-06 23:38:04 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2026-08-13
+
+for you to fetch changes up to 651b0bd0922b265c6c58d9dc84ef3fd00782a0cd:
+
+  drm/panel: remove accidentally committed .orig file (2026-08-11 09:52:43 +0200)
+
+----------------------------------------------------------------
+A single patch to remove a .orig file introduced by accident.
+
+----------------------------------------------------------------
+Jani Nikula (1):
+      drm/panel: remove accidentally committed .orig file
+
+ drivers/gpu/drm/drm_panel.c.orig | 722 ---------------------------------------
+ 1 file changed, 722 deletions(-)
+ delete mode 100644 drivers/gpu/drm/drm_panel.c.orig
+
+--suhigkbeilmgqoi7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCan2AzgAKCRAnX84Zoj2+
+dia+AYCP0BltvwyQ7/SqoocphlEHhiDyAjvq+dDu9CFmXSdQOB1lRjFEwC47joGA
+25uFrlwBgLiZ39Yp78hmd7fnOHuL+iLCnGHba969jDwOPPbYHXPJSaiCOdVOWJS+
+NkdPK3EBBQ==
+=Y1KQ
+-----END PGP SIGNATURE-----
+
+--suhigkbeilmgqoi7--
+
