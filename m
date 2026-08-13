@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA5CC5CFCF
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 16:18:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2688C5CFCF
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 16:20:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3246A10E4E6;
-	Thu, 13 Aug 2026 16:18:55 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7044510E4E6;
- Thu, 13 Aug 2026 16:18:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Vswing_/_Pre-emphasis_Ove?=
- =?utf-8?q?rride_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Aug 2026 16:18:54 -0000
-Message-ID: <178663793445.49153.16455339547611654397@61270ab9df2a>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6E610F43F;
+	Thu, 13 Aug 2026 16:20:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="K04JyL34";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D5710F3FC;
+ Thu, 13 Aug 2026 16:20:21 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7D9CC40161;
+ Thu, 13 Aug 2026 16:20:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 359871F000E9;
+ Thu, 13 Aug 2026 16:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1786638021;
+ bh=wH2pY0ou+GcKxFiHVDzm6ao5CtB1B8jnL2LnzxOEsWg=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=K04JyL34A9m1conTFBYlf2TSs5qEqzCXzI2ghCTfDmvacHOKLBOjGcI+Wo6oBDROa
+ HWdcTJNARWNpSGax641MBSZfJf3Kl0+CBm8PXC/q5vbooI3mPlop7aCjfIB1P+AE/b
+ Z8I2elvhXFISeLGPUopqhjb1Fo9BUHTLiZU4lG/5kesX9ZA4bhrNVZte17yHJj74bm
+ uSrgxYZ9sSCeC+kU0LKerjWY8l/vxbGThYbkiJAUa/8dqEVrVKNfv55Lv8BySfT/0T
+ AHdBVxc7a9ZxQ9YrtR9egijnkXjtQrXbOMUaz8nI9b9FRDDZIgiBy+5mttjT2H8Pz3
+ BDp8F85oBWcew==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v11 2/8] drm/i915/bios: store VBT #57's metadata in
+ intel_vbt_data
+To: =?utf-8?b?TWljaGHFgiBHcnplbGFr?= <michal.grzelak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20260813160918.918857-3-michal.grzelak@intel.com>
 References: <20260813160918.918857-1-michal.grzelak@intel.com>
-In-Reply-To: <20260813160918.918857-1-michal.grzelak@intel.com>
+ <20260813160918.918857-3-michal.grzelak@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 13 Aug 2026 16:20:20 +0000
+Message-Id: <20260813162021.359871F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,64 +53,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Out-of-bounds Read due to Missing VBT Block Size Validation and Ha=
+rdware Assumptions
+- [High] Undefined Behavior from Unaligned Pointer Cast of Packed Struct Me=
+mber
+--
 
-Series: Vswing / Pre-emphasis Override (rev6)
-URL   : https://patchwork.freedesktop.org/series/167570/
-State : warning
+--- Patch [2]: [PATCH v11 2/8] drm/i915/bios: store VBT #57's metadata in i=
+ntel_vbt_data ---
+commit ecc48f16388bfb4ef7b96b15e355044be1dd9fb7
+Author: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
 
-== Summary ==
+drm/i915/bios: store VBT #57's metadata in intel_vbt_data
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ee8ab2006e28c9d12064bac9d2d3ea3b3bece221
-Author: Michał Grzelak <michal.grzelak@intel.com>
-Date:   Thu Aug 13 18:09:18 2026 +0200
+This commit stores VBT #57 (VS/PE-O) metadata inside a new vspeo struct
+in intel_vbt_data. It also introduces a helper to calculate the number of
+rows based on the display version, assigning 16 rows to MTL+ and 10 rows
+to older platforms.
 
-    drm/i915/bios: remove VS/PE-O warning
-    
-    There is not much use of warning when port asks to override default
-    VS/PE since it is already logged. Remove drm_WARN() and child_device
-    from print_ddi_port() since drm_WARN() was the only user of it.
-    
-    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
-    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-+ /mt/dim checkpatch 12a74df2314c42325731297e95b9aafd9329a20d drm-intel
-c95ca7776f76 drm/i915/bios: search for VBT #57 by default
-c93fea0d9fbf drm/i915/bios: store VBT #57's metadata in intel_vbt_data
-e58330f0bbd1 drm/i915/bios: print VS/PE-O port info
-b512c109498d drm/i915/bios: de/allocate VS/PE-O buffers for each port
-2c1425da598f drm/i915/buf_trans: add vfunc for VS/PE-O
--:54: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#54: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:293:
-+								    const struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index ece4df4a9d62a..06a8dd7581bb8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2205,6 +2205,11 @@ parse_compression_parameters(struct intel_display =
+*display)
+>  	}
+>  }
+> =20
+> +static int vswing_preemph_num_rows(struct intel_display *display)
+> +{
+> +	return DISPLAY_VER(display) >=3D 14 ? 16 : 10;
+> +}
+> +
+>  static void
+>  parse_vswing_preemph_override(struct intel_display *display)
+>  {
+> @@ -2218,6 +2223,11 @@ parse_vswing_preemph_override(struct intel_display=
+ *display)
+>  	/* pre-ICL GOPs don't have VBT #57 */
+>  	if (!block)
+>  		return;
+> +
+> +	display->vbt.vspeo.tables =3D block->tables;
+> +	display->vbt.vspeo.num_tables =3D block->num_tables;
+> +	display->vbt.vspeo.num_columns =3D block->num_columns;
+> +	display->vbt.vspeo.num_rows =3D vswing_preemph_num_rows(display);
 
-total: 0 errors, 1 warnings, 0 checks, 22 lines checked
-a36fb5bbc69b drm/i915: override Snps's VS/PE when requested
-8f39e6efbf86 drm/i915: override Combo's VS/PE when requested
--:245: CHECK:BRACES: braces {} should be used on all arms of this statement
-#245: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1883:
-+		if (display->platform.jasperlake) {
-[...]
-+			encoder->get_buf_trans_override = jsl_get_combo_buf_trans_override;
-[...]
--		else if (intel_encoder_is_combo(encoder))
-[...]
-+		} else if (intel_encoder_is_combo(encoder))
-[...]
+[Severity: High]
+Does this code perform an out-of-bounds read if the VBT block is smaller
+than expected?
 
-total: 0 errors, 0 warnings, 1 checks, 168 lines checked
-ee8ab2006e28 drm/i915/bios: remove VS/PE-O warning
+The parser reads num_tables and num_columns from the untrusted VBT block,
+and hardcodes num_rows to 16 for DISPLAY_VER >=3D 14 via
+vswing_preemph_num_rows().
 
+However, it doesn't validate whether get_blocksize(block) is large enough
+to contain num_tables * num_columns * num_rows * sizeof(u32) bytes.
 
+Additionally, if a platform with DISPLAY_VER >=3D 14 lacks a C20 PHY and
+legitimately provides a smaller 10-row VBT block, this hardcoded 16-row
+assumption will cause the driver to read past the end of the block.
+
+>  }
+> =20
+>  static u8 translate_iboost(struct intel_display *display, u8 val)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
+gpu/drm/i915/display/intel_display_core.h
+> index 7e988b7b1fe7a..c80b4a2f74f9e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -244,6 +244,13 @@ struct intel_vbt_data {
+>  	struct list_head display_devices;
+>  	struct list_head bdb_blocks;
+> =20
+> +	struct {
+> +		const u32 *tables;
+
+[Severity: High]
+Will assigning the packed array to this pointer cause undefined behavior?
+
+In struct bdb_vswing_preemph, the tables array is part of a __packed
+structure, meaning it can be unaligned. When block->tables is assigned
+to this standard const u32 * pointer in parse_vswing_preemph_override(),
+the compiler's __packed annotations are dropped.
+
+Any subsequent array accesses through vspeo.tables will assume standard
+alignment, which can cause unaligned memory reads and UBSAN alignment fault=
+s.
+
+> +		int num_tables;
+> +		int num_columns;
+> +		int num_rows;
+> +	} vspeo;
+> +
+>  	struct sdvo_device_mapping {
+>  		u8 initialized;
+>  		u8 dvo_port;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260813160918.9188=
+57-1-michal.grzelak@intel.com?part=3D2
