@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EBE0C5B572
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 16:10:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AC21C5CFCF
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 16:10:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D2F10F3FC;
-	Thu, 13 Aug 2026 16:10:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDC0710F40A;
+	Thu, 13 Aug 2026 16:10:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lc10SKMI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IcGxeMl2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5AC110F40A;
- Thu, 13 Aug 2026 16:10:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B0A310F406;
+ Thu, 13 Aug 2026 16:10:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786637418; x=1818173418;
+ t=1786637420; x=1818173420;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LaJFOK0G6yNH0L366sJ2vLhoutyHXH4l/rzJyXu94wo=;
- b=Lc10SKMIUDwVTaTFY8qwPIIIg/5KU+c9I6kw+e7xcav16ecQ71VIxDtr
- tow+MDPalVt3r7xu6StCu5s3/oIzUdj/S92esRTlwFej2F9/ltpwFZxY9
- kuDv3El1HNyP93TFlakboJBpIA8sSbm8Cz/4SnURYqhAQBJsdhA/kFhEv
- o/EWqR66cFOXPrmERFTylPBnEH4PxnWjDQnhAIYTVXofLgxdrww9WS/ul
- UykpgMYqYSEN88snAg9DI8giO9msL825a8cL1DrKC94RaHWIlENeCQzcg
- 76BNHdSESUlxpA0LqA6zE4tUV8AemW7C+g81xPd+Vd80AjwnsP83wFiBY A==;
-X-CSE-ConnectionGUID: NWT6R4oBQkaGuzzKbNEhsA==
-X-CSE-MsgGUID: ZBEZo9OoRv6bPorYSCoGNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11874"; a="97882447"
-X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="97882447"
+ bh=7CYBBn1LbBws0Fww23hBnzxoNjePOm/Ne6sBGmw5798=;
+ b=IcGxeMl2umrDRb6p+Hm1KytAXYsp3q0rQTl8DMJE6+O+6fgnaiJayq5q
+ yzbCQjfxRmAjA3B6aGqtOY4jPr86P9hzCo0Lbu7WyoiEHMaUdAczm5uQ/
+ zzaEUKZ/2A2sOnu53dBB2SmEmFRr/7RoquQoRUgv1gFw6eRkMrQgVXzIZ
+ X5zQ1Kfxvcl2exZue4VGeCvYbu/pEzJuZ2XuQoinhUH41x4+ku+C8por6
+ /he76Z6eRw/CeHJrSiO35eMj35emTnQwLt2cw5eaES6A6RLxj/EUjjEmb
+ 4bQk7M+Y4v3cF7j9bHTQQE0q9ePHQFh6kwTKCmy41iy2TC4w5P/NmIymw Q==;
+X-CSE-ConnectionGUID: BvmjnMVMTSquz8CC1qLFlQ==
+X-CSE-MsgGUID: 4G0yR7KAT9GMChzs6MwMGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11874"; a="97882453"
+X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="97882453"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2026 09:10:18 -0700
-X-CSE-ConnectionGUID: Mlm1wS8qTK27immwyECs3Q==
-X-CSE-MsgGUID: jXl1FV3rTtaxX/6Wy1idVg==
+ 13 Aug 2026 09:10:20 -0700
+X-CSE-ConnectionGUID: PfGdTpzvS++WE/rW0abADQ==
+X-CSE-MsgGUID: 78rvfFQfQhOvzCtiVGa+5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="260175393"
+X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="260175399"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa010.fm.intel.com with ESMTP; 13 Aug 2026 09:10:17 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 13 Aug 2026 09:10:19 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v11 5/8] drm/i915/buf_trans: add vfunc for VS/PE-O
-Date: Thu, 13 Aug 2026 18:09:15 +0200
-Message-ID: <20260813160918.918857-6-michal.grzelak@intel.com>
+Subject: [PATCH v11 6/8] drm/i915: override Snps's VS/PE when requested
+Date: Thu, 13 Aug 2026 18:09:16 +0200
+Message-ID: <20260813160918.918857-7-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260813160918.918857-1-michal.grzelak@intel.com>
 References: <20260813160918.918857-1-michal.grzelak@intel.com>
@@ -71,60 +71,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Choosing correct table for Vswing / Pre-emphasis Override is platform
-specific. It also requires different checks that are already used for
-choosing predefined tables.
+Add accessor function for Snps to read requested table from VBT #57.
+Parse the requested table and transform data into port's buffer.
 
-Add new get_buf_trans_override() vfunc into intel_encoder returning
-deparsed table from VBT#57. In next patches, set it inside already
-present if-ladder from intel_ddi_buf_trans_init() instead of duplicating
-it.
+Actual data is fully stored in the lowest byte although each entry is 4
+bytes wide. Thus convert u32 into u8 and store the data.
 
-Note that get_buf_trans() cannot be overwritten since there are cases
-when we need to rollback although VS/PE-O was requested, eg. DP is not
-connected or feature is not yet implemented for the platform. Assume
-that vfunc returns NULL on rollback and return predefined tables.
+Choose appropriate accessor function in intel_ddi_buf_trans_get() based
+on display version and PHY type.
 
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
+For C20, use 6th table if encoder supports DP 2.0 or higher. Otherwise
+use 5th table for DP.
+
+For C20, tables 1-4 are not used at all and are most likely to be
+zeroed. 5th table is used for any mode below DP 2.0 (exclusive). 6th
+table is used for any mode above DP 2.0 (inclusive).
+
+For C10, use 2nd table for external DP if encoder supports any mode
+beyond or including HBR2. Use 1st table if external DP encoder supports
+anything lower than HBR2. For eDP, use 4th table if encoder supports
+HBR3. Otherwise use 3rd table for eDP.
+
+For C10, 1st table is used for external DP with modes below HBR2
+(exclusive). 1st table is also used as a fallback for non-DPs. 2nd
+table is used for external DP with modes higher than HBR2 (inclusive).
+3rd table is used for eDP with modes lower than HBR3 (exclusive). 4th
+table is used for eDP with modes higher than HBR3 (inclusive).
+
+Indices for other tables have not yet been observed to be used as of
+now.
+
+There are no changes to intel_ddi_dp_level() since selection of correct
+row of intel_ddi_buf_trans_entry is same as when no override request has
+been done.
+
+v10->v11
+- remove no-longer-relevant check for NULL devdata (Jani)
+- initialize local variables at declaration block (Jani)
+- branch with 'else` instead of initializing twice (Jani)
+- use blank line before 'return` (Jani)
+
+v9->v10
+- call dedicated VS/PE-O vfunc
+- drop deconstifying default tables (Suraj, Jani)
+- cache `entries` into const field after data is overwritten (Jani)
+
+v8->v9
+- init vspeo before using it
+- deconstify intel_ddi_buf_trans_entry
+
+v7->v8
+- remove comments (Suraj)
+- add check for LT (Suraj)
+
+v6->v7
+- handle VS/PE-O's VBT details in intel_bios_* functions (Jani)
+- remove vspeo's cast to (void *) (Jani)
+- check devdata->vspeo if VS/PE-O was requested
+- call encoder->get_buf_trans() once (Jani)
+- return NULL from intel_bios_get_* when using default (Jani)
+- validate VS/PE-O in intel_bios.c (Jani)
+- inline mtl_{c10,c20}_get_vspeo_buf_trans()
+- remove temporarily LT
+
+v4->v5
+- blend index computation with table parsing
+- remove enums entirely
+- change funcs prefix from snps_ to mtl_ (Suraj)
+- add spaces around operators (Suraj)
+- remove spaces after type casting (Suraj)
+- remove INTEL_DISPLAY_STATE_WARN (Suraj)
+
+v3->v4
+- stick to solely changing VBT data into current structures (Jani)
+- move iterator declaration to declaration block (Suraj)
+
+v2->v3
+- remove unnecessary braces from if block (Suraj)
+- return -EINVAL instead of -1 (Suraj)
+
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c     | 93 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bios.h     |  7 ++
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 37 +++++++-
+ 3 files changed, 135 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 4cd1e4d76c7af..f31283a0331b7 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1857,5 +1857,13 @@ const struct intel_ddi_buf_trans *intel_ddi_buf_trans_get(struct intel_encoder *
- 							  const struct intel_crtc_state *crtc_state,
- 							  int *n_entries)
- {
-+	if (encoder->get_buf_trans_override) {
-+		const struct intel_ddi_buf_trans *override;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index a491b85006117..56b4aacff7763 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -3881,6 +3881,99 @@ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devda
+ 	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
+ }
+ 
++static bool
++validate_vspeo(const struct intel_bios_encoder_data *devdata, bool has_dp)
++{
++	struct intel_ddi_buf_trans *vspeo;
 +
-+		override = encoder->get_buf_trans_override(encoder, crtc_state, n_entries);
-+		if (override)
-+			return intel_get_buf_trans(override, n_entries);
++	vspeo = devdata->vspeo;
++	if (!vspeo)
++		return false;
++
++	if (!has_dp)
++		return false;
++
++	return true;
++}
++
++const struct intel_ddi_buf_trans *
++intel_bios_get_c20_vspeo(const struct intel_bios_encoder_data *devdata,
++			 bool has_dp, bool is_uhbr)
++{
++	struct intel_display *display = devdata->display;
++	union intel_ddi_buf_trans_entry *entries = devdata->entries;
++	struct intel_ddi_buf_trans *vspeo = devdata->vspeo;
++	const u32 *tables = display->vbt.vspeo.tables;
++	int num_columns = display->vbt.vspeo.num_columns;
++	int num_rows = display->vbt.vspeo.num_rows;
++	int idx = is_uhbr ? 5 : 4;
++	size_t offset = 0;
++	int level;
++
++	if (!validate_vspeo(devdata, has_dp))
++		return NULL;
++
++	offset += idx * num_rows * num_columns;
++
++	for (level = 0; level < num_rows; level++) {
++		u32 vswing = tables[offset];
++		u32 pre_cursor = tables[offset + 1];
++		u32 post_cursor = tables[offset + 2];
++
++		entries[level].snps.vswing = vswing;
++		entries[level].snps.pre_cursor = pre_cursor;
++		entries[level].snps.post_cursor = post_cursor;
++
++		offset += num_columns;
 +	}
 +
- 	return encoder->get_buf_trans(encoder, crtc_state, n_entries);
++	vspeo->entries = entries;
++	vspeo->num_entries = num_rows;
++
++	return vspeo;
++}
++
++const struct intel_ddi_buf_trans *
++intel_bios_get_c10_vspeo(const struct intel_bios_encoder_data *devdata,
++			 bool has_dp, int port_clock, bool has_edp)
++{
++	struct intel_display *display = devdata->display;
++	union intel_ddi_buf_trans_entry *entries = devdata->entries;
++	struct intel_ddi_buf_trans *vspeo = devdata->vspeo;
++	const u32 *tables = display->vbt.vspeo.tables;
++	int num_columns = display->vbt.vspeo.num_columns;
++	int num_rows = display->vbt.vspeo.num_rows;
++	size_t offset = 0;
++	int level, idx;
++
++	if (!validate_vspeo(devdata, has_dp))
++		return NULL;
++
++	if (has_edp)
++		idx = port_clock > 540000 ? 3 : 2;
++	else
++		idx = port_clock > 270000 ? 1 : 0;
++
++	offset += idx * num_rows * num_columns;
++
++	for (level = 0; level < num_rows; level++) {
++		u32 vswing = tables[offset];
++		u32 pre_cursor = tables[offset + 1];
++		u32 post_cursor = tables[offset + 2];
++
++		entries[level].snps.vswing = vswing;
++		entries[level].snps.pre_cursor = pre_cursor;
++		entries[level].snps.post_cursor = post_cursor;
++
++		offset += num_columns;
++	}
++
++	vspeo->entries = entries;
++	vspeo->num_entries = num_rows;
++
++	return vspeo;
++}
++
+ bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
+ {
+ 	return devdata->display->vbt.version >= 264 &&
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index 7a50a272cd27d..49acf8c405e2b 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -73,6 +73,13 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+ const struct intel_bios_encoder_data *
+ intel_bios_encoder_data_lookup(struct intel_display *display, enum port port);
+ 
++const struct intel_ddi_buf_trans *
++intel_bios_get_c20_vspeo(const struct intel_bios_encoder_data *devdata,
++			 bool has_dp, bool is_uhbr);
++const struct intel_ddi_buf_trans *
++intel_bios_get_c10_vspeo(const struct intel_bios_encoder_data *devdata,
++			 bool has_dp, int port_clock, bool has_edp);
++
+ bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_supports_hdmi(const struct intel_bios_encoder_data *devdata);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index f31283a0331b7..92c0d0f933ab4 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1784,6 +1784,36 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 20a07ea06b5ef..bad3ff471423c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -289,6 +289,9 @@ struct intel_encoder {
- 	 */
- 	enum icl_port_dpll_id (*port_pll_type)(struct intel_encoder *encoder,
- 					       const struct intel_crtc_state *crtc_state);
-+	const struct intel_ddi_buf_trans *(*get_buf_trans_override)(struct intel_encoder *encoder,
-+								    const struct intel_crtc_state *crtc_state,
-+								    int *n_entries);
- 	const struct intel_ddi_buf_trans *(*get_buf_trans)(struct intel_encoder *encoder,
- 							   const struct intel_crtc_state *crtc_state,
- 							   int *n_entries);
+ 
++static const struct intel_ddi_buf_trans *
++mtl_get_c10_buf_trans_override(struct intel_encoder *encoder,
++			       const struct intel_crtc_state *crtc_state,
++			       int *n_entries)
++{
++	const struct intel_bios_encoder_data *devdata = encoder->devdata;
++	bool has_edp, has_dp;
++	int port_clock;
++
++	has_edp = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP);
++	has_dp = intel_crtc_has_dp_encoder(crtc_state);
++	port_clock = crtc_state->port_clock;
++
++	return intel_bios_get_c10_vspeo(devdata, has_dp, port_clock, has_edp);
++}
++
++static const struct intel_ddi_buf_trans *
++mtl_get_c20_buf_trans_override(struct intel_encoder *encoder,
++			       const struct intel_crtc_state *crtc_state,
++			       int *n_entries)
++{
++	const struct intel_bios_encoder_data *devdata = encoder->devdata;
++	bool has_dp, is_uhbr;
++
++	has_dp = intel_crtc_has_dp_encoder(crtc_state);
++	is_uhbr = intel_dp_is_uhbr(crtc_state);
++
++	return intel_bios_get_c20_vspeo(devdata, has_dp, is_uhbr);
++}
++
+ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -1791,10 +1821,13 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ 	if (HAS_LT_PHY(display)) {
+ 		encoder->get_buf_trans = xe3plpd_get_lt_buf_trans;
+ 	} else if (DISPLAY_VER(display) >= 14) {
+-		if (intel_encoder_is_c10phy(encoder))
++		if (intel_encoder_is_c10phy(encoder)) {
+ 			encoder->get_buf_trans = mtl_get_c10_buf_trans;
+-		else
++			encoder->get_buf_trans_override = mtl_get_c10_buf_trans_override;
++		} else {
+ 			encoder->get_buf_trans = mtl_get_c20_buf_trans;
++			encoder->get_buf_trans_override = mtl_get_c20_buf_trans_override;
++		}
+ 	} else if (display->platform.dg2) {
+ 		encoder->get_buf_trans = dg2_get_snps_buf_trans;
+ 	} else if (display->platform.alderlake_p) {
 -- 
 2.45.2
 
