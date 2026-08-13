@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D6C2C5AD5A
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 00:18:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F92CC5CFCF
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 00:21:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCEBF10E47B;
-	Thu, 13 Aug 2026 00:18:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3617710E480;
+	Thu, 13 Aug 2026 00:21:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mzcl9GCn";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="azHH6Iip";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0799810E47B
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 00:18:07 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E43C410E480
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 00:21:48 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 43453600AD;
- Thu, 13 Aug 2026 00:18:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF26C1F000E9;
- Thu, 13 Aug 2026 00:18:04 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 7D59E40A2F;
+ Thu, 13 Aug 2026 00:21:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04EC51F000E9;
+ Thu, 13 Aug 2026 00:21:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786580285;
- bh=dAY3eLxBLdo6uur59AVjGwouA2Q2KHYAcAte9adsDAY=;
+ s=k20260515; t=1786580507;
+ bh=oYoHHH0LSxuRROanO5q/rnj4Fy0FSxGKSFMnhFRmpgc=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=mzcl9GCn/XwgUSlLI7uhpfamK33zXx5iSLfTODgj2GuR1i3K2Yh1uw0ke2Nv4TuGm
- IKeH7Rmm47FLRwD6VCJ7sOFaRfjg95zwlnjxx8frFe+BkYQBY7fLEMe/j1koPn2OGN
- u6J4VBqYeQEk2w+PFPshVOCYEhAhw30Lqz3iJHlWySyKeuekKhqLnZ/LyA2MOn4qwd
- hhb3a8IBwp8xeFsjmcvMaC/HyI4o5PybaYy0Oo4yzPbZ4ddFqIJpcZCQ8ws7WPe/u/
- snrqq49QSxkiuOA6cPykdN8PcUohRoQeRrWqmjQAXf1mRUGKFtk86sf4FfegTlANXq
- qIYbq50T5/1rQ==
+ b=azHH6IipndWHJkoflcmTQdG5F73q1yC2T8KCkvJJJUyXusdeTTvKtSuA8VdNpzCSU
+ qOizvEmdwACp6LkdvLT4AlmxB1Oie7ol7YgVCcia3qDeQlEAE0JyPAdBqcVcXdelzE
+ ul3IObNHzA4YC4Fh9yD75GV2x0mQpQPrOJntv5dMQJpvkt/dpNayxqfP/kT7zShfyh
+ yFBvWVhLsstvrGJDDqdXHQqMtV6S8cVfAvoDW6eMfAmDWUDgBAOs9M4BzQJoSD4fyR
+ zHxdC8LtkaIdjcpmku6IhpElaBCY4+t5AZkb9GsXu5biKqJ/5MqGrH3rY1kDVVVWfD
+ zcBmaNDZFON5Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/4] drm/xe/forcewake: enable configurable delayed
- forcewake release
+Subject: Re: [PATCH v5 1/4] drm/xe/forcewake: synchronize engine-cycle
+ access with unplug
 To: "Zongyao Bai" <zongyao.bai@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260813000654.2712317-5-zongyao.bai@intel.com>
+In-Reply-To: <20260813000654.2712317-2-zongyao.bai@intel.com>
 References: <20260601213804.707256-1-zongyao.bai@intel.com>
  <20260813000654.2712317-1-zongyao.bai@intel.com>
- <20260813000654.2712317-5-zongyao.bai@intel.com>
+ <20260813000654.2712317-2-zongyao.bai@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 13 Aug 2026 00:18:04 +0000
-Message-Id: <20260813001804.CF26C1F000E9@smtp.kernel.org>
+Date: Thu, 13 Aug 2026 00:21:46 +0000
+Message-Id: <20260813002147.04EC51F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +58,119 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Low] The function `query_engine_cycles` mixes goto-based error handling =
-with scope-based cleanup macros.
+
+Pre-existing issues:
+- [High] Incomplete device unplug synchronization in query ioctls leading t=
+o potential MMIO access after unplug.
+- [Medium] Missing array_index_nospec() on user-provided indices creates Sp=
+ectre v1 gadgets.
 --
 
---- Patch [4]: [PATCH v5 4/4] drm/xe/forcewake: enable configurable delayed=
- forcewake release ---
-commit 7d3e5746e331fb4da88407a96b40b25e06abf763
+--- Patch [1]: [PATCH v5 1/4] drm/xe/forcewake: synchronize engine-cycle ac=
+cess with unplug ---
+commit cd6f1d67df5ef0b65b3a0c38b2fc6c7bd6e42c60
 Author: Zongyao Bai <zongyao.bai@intel.com>
 
-drm/xe/forcewake: enable configurable delayed forcewake release
+drm/xe/forcewake: synchronize engine-cycle access with unplug
 
-This commit introduces a configurable delayed forcewake release for
-engine-cycle queries to avoid repeated wake and ACK cycles during bursts.
-It adds a configfs attribute to control the hold interval before releasing
-an idle forcewake domain.
+This patch adds drm_dev_enter() and drm_dev_exit() to query_engine_cycles()
+to protect forcewake and MMIO accesses against device unplug operations. It
+also updates the probe failure path to use drm_dev_unplug() to ensure proper
+synchronization.
 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 71111ad324658..81b31325e5817 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+
+[ ... ]
+
+> @@ -1166,7 +1166,7 @@ int xe_device_probe(struct xe_device *xe)
+> =20
+>  err_unregister_display:
+>  	xe_display_unregister(xe);
+> -	drm_dev_unregister(&xe->drm);
+> +	drm_dev_unplug(&xe->drm);
+> =20
+>  	return err;
+>  }
 > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index dc975f5953683..3c356bc48e2ab 100644
 > --- a/drivers/gpu/drm/xe/xe_query.c
 > +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -168,7 +168,7 @@ query_engine_cycles(struct xe_device *xe,
+
+[ ... ]
+
+> @@ -143,28 +145,44 @@ query_engine_cycles(struct xe_device *xe,
+>  		return -EINVAL;
 > =20
->  	fw_domain =3D xe_hw_engine_to_fw_domain(hwe);
+>  	eci =3D &resp.eci;
+> +	if (!drm_dev_enter(&xe->drm, &dev_idx))
+> +		return -ENODEV;
+> +
+
+[Severity: High]
+This is a pre-existing issue, but since this patch introduces device unplug
+synchronization for query_engine_cycles(), should similar protection be add=
+ed
+to other queries like query_pxp_status() and query_oa_units()?
+
+In xe_query.c, query_pxp_status() accesses hardware status without SRCU
+protection:
+
+query_pxp_status()
+    xe_pxp_get_readiness_status(xe->pxp);
+
+Similarly, query_oa_units() reads MMIO indirectly:
+
+query_oa_units()
+    xe_oa_timestamp_frequency()
+        xe_mmio_read32()
+
+Without drm_dev_enter() protection, can these queries cause page faults if a
+userspace process calls DRM_IOCTL_XE_DEVICE_QUERY concurrently with a device
+unplug event?
+
+>  	gt =3D xe_device_get_gt(xe, eci->gt_id);
+> -	if (!gt)
+> -		return -EINVAL;
+> +	if (!gt) {
+> +		err =3D -EINVAL;
+> +		goto out;
+> +	}
 > =20
-> -	xe_with_force_wake(fw_ref, gt_to_fw(gt), fw_domain) {
-> +	xe_with_force_wake_delay(fw_ref, gt_to_fw(gt), fw_domain) {
->  		if (!xe_force_wake_ref_has_domain(fw_ref.domains, fw_domain)) {
->  			err =3D -EIO;
->  			goto out;
+> -	if (eci->engine_class >=3D ARRAY_SIZE(user_to_xe_engine_class))
+> -		return -EINVAL;
+> +	if (eci->engine_class >=3D ARRAY_SIZE(user_to_xe_engine_class)) {
+> +		err =3D -EINVAL;
+> +		goto out;
+> +	}
+> =20
+>  	hwe =3D xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
+>  			      eci->engine_instance, true);
 
-[Severity: Low]
-Does this code mix goto-based error handling with scope-based cleanup macro=
-s?
+[Severity: Medium]
+This is a pre-existing issue, but does the engine_class array access need
+mitigation against speculative execution?
 
-According to the cleanup subsystem guidelines, the expectation is that usag=
-e of
-goto and cleanup helpers is never mixed in the same function.
+The eci->engine_class index comes directly from userspace and is used
+to access the user_to_xe_engine_class array after a bounds check.
+Could this be used to bypass bounds checks speculatively and leak
+information via cache side channels?
 
-The function query_engine_cycles() uses goto out; for manual drm_dev_exit()
-cleanup while simultaneously using the xe_with_force_wake_delay() macro, wh=
-ich
-internally uses the scope-based CLASS() cleanup macro. While jumping out of=
- the
-loop block correctly invokes the scope destructor here without causing a
-double-free or resource leak, it violates the subsystem structural guidelin=
-es
-against mixing these cleanup styles.
+Additionally, earlier in this function xe_device_get_gt() is called with
+eci->gt_id, which also originates from userspace:
+
+xe_device_get_gt()
+    if (gt_id >=3D xe->info.tile_count * xe->info.max_gt_per_tile)
+        return NULL;
+    tile =3D &xe->tiles[gt_id / xe->info.max_gt_per_tile];
+
+Should array_index_nospec() be used for these userspace-provided indices?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260813000654.2712=
-317-1-zongyao.bai@intel.com?part=3D4
+317-1-zongyao.bai@intel.com?part=3D1
