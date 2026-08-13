@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0860CC5B572
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 20:19:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAA08C5B572
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 20:21:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B196B10E06E;
-	Thu, 13 Aug 2026 20:19:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pi9kPLth";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7298C10E06E
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 20:19:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786652352; x=1818188352;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xe+bTZQiRalGcsfSwaBZbLZp1dOkcxaHGUqJ61nJ5UM=;
- b=Pi9kPLthFbV3LQdmcvzfPlw1eOWEr9IsTIavtdQm0e1hfAcINEdAK+SI
- dDDW7qw/XJvVHToH7VpAkOsgCf3DXO34RI/GvknJUiyfEzThYhjHeu8+N
- EkkzpZ/8C7oLAXsgYFVRnUvPM8HN9etu9H/Usq2KRzBx4HpVdmDsWl/V+
- uoSZgcF7HcuaUDvMPg51Oj5c+HDvC3g/MKoSt8T3OLHmJfUX6kKNwXJIh
- 5GEVuHjLNpytbMCDXabkQER9iyyKmjJTtYGu0y3ALG8xO0mca5LvJafTW
- pQBHN07kvyk4ZTRVA9tqAuy/VvgilCN1MwxESQsl96xAxPO8iQ6NCl/US g==;
-X-CSE-ConnectionGUID: 0/GePkZQSACNqvtAk4g3OQ==
-X-CSE-MsgGUID: gyylQ/FATDC2MpvYHdoPng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11874"; a="87365391"
-X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="87365391"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2026 13:19:12 -0700
-X-CSE-ConnectionGUID: yvenISiRTSmuDHTUNVN1MQ==
-X-CSE-MsgGUID: TaQJDuEnS5W3KAz1NWH5Qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="261395895"
-Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2026 13:19:11 -0700
-From: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: niranjana.vishwanathapura@intel.com,
- Jagmeet Randhawa <jagmeet.randhawa@intel.com>
-Subject: [PATCH] drm/xe/guc: Fix race around q->guc->suspend_pending access
-Date: Fri, 14 Aug 2026 04:18:48 +0800
-Message-ID: <20260813201847.201867-2-jagmeet.randhawa@intel.com>
-X-Mailer: git-send-email 2.53.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7578410F50C;
+	Thu, 13 Aug 2026 20:21:14 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C01110F50C;
+ Thu, 13 Aug 2026 20:21:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0971610266173876382=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Enable_pack?=
+ =?utf-8?q?age_and_vram_temperatures_for_CRI_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 13 Aug 2026 20:21:13 -0000
+Message-ID: <178665247310.49493.17417589817407654441@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260813193546.511093-1-karthik.poosa@intel.com>
+In-Reply-To: <20260813193546.511093-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,115 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-q->guc->suspend_pending is accessed without any common lock.
-__suspend_fence_signal(), called from guc_exec_queue_kill() and the
-suspend-timeout ban path, clears the flag asynchronously. Meanwhile
-handle_sched_done(), guc_exec_queue_stop() and
-__guc_exec_queue_process_msg_suspend() check the flag and then call
-suspend_fence_signal(), which asserts that it is still set.
+--===============0971610266173876382==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-As the check and suspend_fence_signal() are not atomic, the clear can
-land in between and trip the xe_gt_assert(q->guc->suspend_pending).
+== Series Details ==
 
-The flag is already set and read under the per-queue msg_lock
-(xe_sched_msg_lock()) on the suspend and resume paths. Extend that same
-lock to the clear paths (kill and ban) and to the three check-then-act
-sites so the check and the signal are atomic with respect to the clear.
-In __guc_exec_queue_process_msg_suspend() only the non-sleeping branch is
-wrapped, since the other branch waits. In handle_sched_done() the flag is
-snapshotted under the lock and deregister_exec_queue() is kept outside it.
+Series: drm/xe/hwmon: Enable package and vram temperatures for CRI (rev2)
+URL   : https://patchwork.freedesktop.org/series/171891/
+State : success
 
-Signed-off-by: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 29 ++++++++++++++++++++++++-----
- 1 file changed, 24 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9036f89dff7d..c565c1d32d3a 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1928,9 +1928,13 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- 			set_exec_queue_suspended(q);
- 			disable_scheduling(q, false);
- 		}
--	} else if (q->guc->suspend_pending) {
--		set_exec_queue_suspended(q);
--		suspend_fence_signal(q);
-+	} else {
-+		xe_sched_msg_lock(&q->guc->sched);
-+		if (q->guc->suspend_pending) {
-+			set_exec_queue_suspended(q);
-+			suspend_fence_signal(q);
-+		}
-+		xe_sched_msg_unlock(&q->guc->sched);
- 	}
- }
- 
-@@ -2130,7 +2134,9 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
- {
- 	trace_xe_exec_queue_kill(q);
- 	set_exec_queue_killed(q);
-+	xe_sched_msg_lock(&q->guc->sched);
- 	__suspend_fence_signal(q);
-+	xe_sched_msg_unlock(&q->guc->sched);
- 	xe_guc_exec_queue_trigger_cleanup(q);
- }
- 
-@@ -2392,11 +2398,15 @@ static void guc_exec_queue_suspend_timeout_ban(struct xe_exec_queue *q)
- 	 */
- 	if (xe_exec_queue_is_multi_queue(q)) {
- 		set_exec_queue_group_banned(q);
-+		xe_sched_msg_lock(&q->guc->sched);
- 		__suspend_fence_signal(q);
-+		xe_sched_msg_unlock(&q->guc->sched);
- 		xe_guc_exec_queue_group_trigger_cleanup(q);
- 	} else {
- 		set_exec_queue_banned(q);
-+		xe_sched_msg_lock(&q->guc->sched);
- 		__suspend_fence_signal(q);
-+		xe_sched_msg_unlock(&q->guc->sched);
- 		xe_guc_exec_queue_trigger_cleanup(q);
- 	}
- }
-@@ -2614,10 +2624,12 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 		if (exec_queue_destroyed(q))
- 			do_destroy = true;
- 	}
-+	xe_sched_msg_lock(sched);
- 	if (q->guc->suspend_pending) {
- 		set_exec_queue_suspended(q);
- 		suspend_fence_signal(q);
- 	}
-+	xe_sched_msg_unlock(sched);
- 	atomic_and(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_BANNED |
- 		   EXEC_QUEUE_STATE_KILLED | EXEC_QUEUE_STATE_DESTROYED |
- 		   EXEC_QUEUE_STATE_SUSPENDED,
-@@ -3222,13 +3234,20 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 		smp_wmb();
- 		wake_up_all(&guc->ct.wq);
- 	} else {
-+		bool was_pending;
-+
- 		xe_gt_assert(guc_to_gt(guc), runnable_state == 0);
- 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_disable(q));
- 
--		if (q->guc->suspend_pending) {
-+		xe_sched_msg_lock(&q->guc->sched);
-+		was_pending = q->guc->suspend_pending;
-+		if (was_pending) {
- 			clear_exec_queue_pending_disable(q);
- 			suspend_fence_signal(q);
--		} else {
-+		}
-+		xe_sched_msg_unlock(&q->guc->sched);
-+
-+		if (!was_pending) {
- 			if (exec_queue_banned(q)) {
- 				smp_wmb();
- 				wake_up_all(&guc->ct.wq);
--- 
-2.53.0
+CI Bug Log - changes from xe-5593-12a74df2314c42325731297e95b9aafd9329a20d_BAT -> xe-pw-171891v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9054 -> IGT_9055
+  * Linux: xe-5593-12a74df2314c42325731297e95b9aafd9329a20d -> xe-pw-171891v2
+
+  IGT_9054: 3d819a8f511b2bcd844647bcf7e433b9407d058e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9055: 8484e14a094150b500aeeb9bfb0db2ee0de862ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5593-12a74df2314c42325731297e95b9aafd9329a20d: 12a74df2314c42325731297e95b9aafd9329a20d
+  xe-pw-171891v2: 171891v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171891v2/index.html
+
+--===============0971610266173876382==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Enable package and vram temperatures for CRI (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171891/">https://patchwork.freedesktop.org/series/171891/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171891v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171891v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5593-12a74df2314c42325731297e95b9aafd9329a20d_BAT -&gt; xe-pw-171891v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9054 -&gt; IGT_9055</li>
+<li>Linux: xe-5593-12a74df2314c42325731297e95b9aafd9329a20d -&gt; xe-pw-171891v2</li>
+</ul>
+<p>IGT_9054: 3d819a8f511b2bcd844647bcf7e433b9407d058e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9055: 8484e14a094150b500aeeb9bfb0db2ee0de862ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5593-12a74df2314c42325731297e95b9aafd9329a20d: 12a74df2314c42325731297e95b9aafd9329a20d<br />
+  xe-pw-171891v2: 171891v2</p>
+
+</body>
+</html>
+
+--===============0971610266173876382==--
