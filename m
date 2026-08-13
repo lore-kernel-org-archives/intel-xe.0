@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35EA5C5CFCF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59AD1C5AD5A
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 00:07:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E191410F153;
-	Thu, 13 Aug 2026 00:07:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 029F710F15B;
+	Thu, 13 Aug 2026 00:07:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QqvfxBNw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V/czeXgr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 660E810E480
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A49F10E488
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 00:06:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786579619; x=1818115619;
+ t=1786579620; x=1818115620;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ylDlH6Vqgc8YwE4t8MUCERZPII70sgQecyZGGH0w+lQ=;
- b=QqvfxBNwp+rC8XkUYOucCuVe2fqe5y82BRMhb43cbNAW7UITg0xNp+CW
- BQDFmiSZsDzYQ3zQaW18YQ4uKFvY+G3wC5lv/uug7xeCsfcpdxEVBiCsl
- lf6KBDKhkWLdlFaO0AjVUzcY3Kp4x3j+v9MnxqTKPDqbVuNhA9kLbpczK
- SSLneVztFS2NcVvkC14cFXtuBym7P/69PwvLUBzO2Y6OdeZtOjWH9nRvL
- TBta9u6VNGnswAxr0T2kxGzn3xcWEuOvoHUKEDy0GoBo1w9e3dqSshfby
- V4u7N5OY0YZB0F4WqkcLxxQa8YQHHi+RJRxteTHMbdKy556GSCkshVZAv w==;
-X-CSE-ConnectionGUID: NyWzE5tTTPail5AFYyXjhw==
-X-CSE-MsgGUID: VkKwk5PKQcOtnBVZRi0O9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="89670930"
-X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="89670930"
+ bh=bulshFf1QnJ1K3hjO5Kebww4QJf5W3P5wJuoYgpZTmQ=;
+ b=V/czeXgrwuiN+qh0+daE/3c2CurtFUOBZNJ3J5wSk5QFUkHQgbeqzXir
+ d8AN1bBlhan0U/2yI9R7GDbv4fhHjJ6HiQOcw7iU896YUNjwH3OO0WfO9
+ cfWRXmyXuZJiVhhE2f5V/J9nxvLVQPfIREr1yw/mnneuhwm6KpWJSsM+e
+ ZNmYs1KtdKVoDCSFjoa5yBdtHuT0Smh2BOuBQxUw4s+ZACH05gtko/ln9
+ QqZEi5/RMB/f6t4EBebvhxI8p3x4s5qCymp0wYmvx9LSoIOSX9NbJZbsc
+ TWc2Z3C1JTreqQBfuJeSnzLvPHpUKVVCRsZJg0B5pfsrEeo4dej95CHFy A==;
+X-CSE-ConnectionGUID: oVzZ8ZdjQVul0nmGdLi7cQ==
+X-CSE-MsgGUID: Pe7UN/k5R8GPmXtY1bh1kQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11873"; a="89670932"
+X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="89670932"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Aug 2026 17:06:58 -0700
-X-CSE-ConnectionGUID: r0AdHj1STr2f2/+VpVtvcA==
-X-CSE-MsgGUID: ynwJ9HIKSvyI7onD6GKqKA==
+X-CSE-ConnectionGUID: NbS5NT5uQ22hASovkRRSSA==
+X-CSE-MsgGUID: /HOMFlzJSJGL7YomXnE7OQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="302048064"
+X-IronPort-AV: E=Sophos;i="6.25,220,1779174000"; d="scan'208";a="302048070"
 Received: from dut4072bmgfrd.fm.intel.com ([10.105.8.119])
  by orviesa001.jf.intel.com with ESMTP; 12 Aug 2026 17:06:58 -0700
 From: Zongyao Bai <zongyao.bai@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jia.yao@intel.com, matthew.brost@intel.com,
  Zongyao Bai <zongyao.bai@intel.com>
-Subject: [PATCH v5 2/4] drm/xe/forcewake: add delayed-release state machine
-Date: Thu, 13 Aug 2026 00:06:52 +0000
-Message-ID: <20260813000654.2712317-3-zongyao.bai@intel.com>
+Subject: [PATCH v5 4/4] drm/xe/forcewake: enable configurable delayed
+ forcewake release
+Date: Thu, 13 Aug 2026 00:06:54 +0000
+Message-ID: <20260813000654.2712317-5-zongyao.bai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260813000654.2712317-1-zongyao.bai@intel.com>
 References: <20260601213804.707256-1-zongyao.bai@intel.com>
@@ -67,470 +68,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add an opt-in forcewake release path that keeps an idle domain awake
-for a short hold interval. A subsequent get can reuse the domain
-without issuing another wake request or waiting for its ACK. Without a
-recorded delayed-release request, normal puts release immediately.
+Enable delayed forcewake release for engine-cycle queries used by
+tools such as VTune and PTI. Bursts of queries can reuse an already
+awake domain, avoiding another wake request and ACK wait. Only
+engine-cycle queries request delayed release; all other forcewake users
+continue to request immediate release.
 
-If a delayed release is requested while other references remain,
-whichever put drops the final reference honors that request.(Matt)
-
-Use a per-domain hrtimer and state protected by the forcewake lock to
-preserve a newer hold interval armed while an older timer callback is
-running. Remember delayed-release requests while other references
-remain, and reconcile timer-issued sleep acknowledgments before a
-subsequent wake.(Sashiko, Matt)
-
-Register a devm cleanup action to synchronously cancel the timers
-before the forcewake state is destroyed.(Sashiko, Matt)
-
-This patch provides only the infrastructure; no caller opts in yet.
+Add the bind-time configfs forcewake_hold_delay_us attribute to control
+the hold interval. It defaults to 100 us and accepts values from 1 to
+U32_MAX microseconds. Runtime and system suspend cancel and settle
+outstanding delayed releases before power-off. Longer intervals trade
+higher power use for more opportunities to reuse an awake domain.
 
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Assisted-by: GitHub-Copilot:gpt-5.6-sol
+Assisted-by: GitHub-Copilot:claude-opus-4.8
 Signed-off-by: Zongyao Bai <zongyao.bai@intel.com>
 ---
- drivers/gpu/drm/xe/xe_defaults.h         |   1 +
- drivers/gpu/drm/xe/xe_device.c           |   2 +
- drivers/gpu/drm/xe/xe_device_types.h     |   3 +
- drivers/gpu/drm/xe/xe_force_wake.c       | 166 ++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_force_wake.h       |  23 +++-
- drivers/gpu/drm/xe/xe_force_wake_types.h |  26 +++-
- drivers/gpu/drm/xe/xe_gt.c               |   5 +-
- 7 files changed, 204 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c   | 72 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h   |  5 +++
+ drivers/gpu/drm/xe/xe_device.c     |  3 +-
+ drivers/gpu/drm/xe/xe_force_wake.c |  2 +-
+ drivers/gpu/drm/xe/xe_query.c      |  2 +-
+ 5 files changed, 81 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index 0884224ef7c7..de009af8c77f 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -22,6 +22,7 @@
- #define XE_DEFAULT_WEDGED_MODE			XE_WEDGED_MODE_UPON_CRITICAL_ERROR
- #define XE_DEFAULT_WEDGED_MODE_STR		"upon-critical-error"
- #define XE_DEFAULT_SVM_NOTIFIER_SIZE		512
-+#define XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US	100
- #define XE_DEFAULT_NUM_PF_WORK			2
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 052cce962161..3d8cd6fb165e 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -249,6 +249,23 @@
+  *
+  * This attribute can only be set before binding to the device.
+  *
++ * Force wake hold delay
++ * ---------------------
++ *
++ * Delay in microseconds before an idle forcewake domain is put to sleep after
++ * an opt-in delayed release. Currently, only engine-cycle queries use this
++ * interval; normal forcewake puts remain immediate. Keeping the domain awake
++ * for this short window lets rapid back-to-back accesses reuse it without
++ * paying for another wake + ACK cycle. The default is 100 microseconds. Valid
++ * values range from 1 through U32_MAX microseconds; zero is rejected with
++ * -EINVAL. Runtime and system suspend cancel outstanding hold intervals before
++ * power-off. Large values may increase power use while the device remains
++ * active. Example::
++ *
++ *	# echo 100 > /sys/kernel/config/xe/0000:03:00.0/forcewake_hold_delay_us
++ *
++ * This attribute can only be set before binding to the device.
++ *
+  * Remove devices
+  * ==============
+  *
+@@ -275,6 +292,7 @@ struct xe_config_group_device {
+ 		bool survivability_mode;
+ 		bool enable_psmi;
+ 		bool enable_multi_queue;
++		u32 forcewake_hold_delay_us;
+ 		struct {
+ 			unsigned int max_vfs;
+ 			bool admin_only_pf;
+@@ -295,6 +313,7 @@ static const struct xe_config_device device_defaults = {
+ 	.survivability_mode = false,
+ 	.enable_psmi = false,
+ 	.enable_multi_queue = true,
++	.forcewake_hold_delay_us = XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US,
+ 	.sriov = {
+ 		.max_vfs = XE_DEFAULT_MAX_VFS,
+ 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
+@@ -616,6 +635,36 @@ static ssize_t enable_multi_queue_store(struct config_item *item, const char *pa
+ 	return len;
+ }
  
- #endif
++static ssize_t forcewake_hold_delay_us_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++
++	return sprintf(page, "%u\n", dev->forcewake_hold_delay_us);
++}
++
++static ssize_t forcewake_hold_delay_us_store(struct config_item *item,
++					     const char *page, size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	u32 val;
++	int ret;
++
++	ret = kstrtouint(page, 0, &val);
++	if (ret)
++		return ret;
++
++	if (!val)
++		return -EINVAL;
++
++	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
++	dev->config.forcewake_hold_delay_us = val;
++
++	return len;
++}
++
+ static bool wa_bb_read_advance(bool dereference, char **p,
+ 			       const char *append, size_t len,
+ 			       size_t *max_size)
+@@ -856,6 +905,7 @@ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, enable_multi_queue);
+ CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, engines_allowed);
++CONFIGFS_ATTR(, forcewake_hold_delay_us);
+ CONFIGFS_ATTR(, gt_types_allowed);
+ CONFIGFS_ATTR(, survivability_mode);
+ 
+@@ -865,6 +915,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_enable_multi_queue,
+ 	&attr_enable_psmi,
+ 	&attr_engines_allowed,
++	&attr_forcewake_hold_delay_us,
+ 	&attr_gt_types_allowed,
+ 	&attr_survivability_mode,
+ 	NULL,
+@@ -1143,6 +1194,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+ 	PRI_CUSTOM_ATTR("%d", survivability_mode);
++	PRI_CUSTOM_ATTR("%u", forcewake_hold_delay_us);
+ 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
+ 
+ #undef PRI_CUSTOM_ATTR
+@@ -1290,6 +1342,26 @@ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
+ 	return ret;
+ }
+ 
++/**
++ * xe_configfs_get_forcewake_hold_delay_us - get configfs forcewake_hold_delay_us setting
++ * @pdev: pci device
++ *
++ * Return: forcewake_hold_delay_us setting in configfs
++ */
++u32 xe_configfs_get_forcewake_hold_delay_us(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u32 ret;
++
++	if (!dev)
++		return device_defaults.forcewake_hold_delay_us;
++
++	ret = dev->config.forcewake_hold_delay_us;
++	config_group_put(&dev->group);
++
++	return ret;
++}
++
+ /**
+  * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
+  * @pdev: pci device
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 4fbbeafba473..77abc83a6f70 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -24,6 +24,7 @@ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
++u32 xe_configfs_get_forcewake_hold_delay_us(struct pci_dev *pdev);
+ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 				       enum xe_engine_class class,
+ 				       const u32 **cs);
+@@ -44,6 +45,10 @@ static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return t
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+ static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+ static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
++static inline u32 xe_configfs_get_forcewake_hold_delay_us(struct pci_dev *pdev)
++{
++	return XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US;
++}
+ static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 						     enum xe_engine_class class,
+ 						     const u32 **cs) { return 0; }
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 81b31325e581..21d02809c3a4 100644
+index d69fd8236b0f..196eaa3973e9 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -552,6 +552,8 @@ int xe_device_init_early(struct xe_device *xe)
+@@ -552,7 +552,8 @@ int xe_device_init_early(struct xe_device *xe)
  
  	xe_device_parse_modparam(xe);
  
-+	xe->forcewake_hold_delay_us = XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US;
-+
+-	xe->forcewake_hold_delay_us = XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US;
++	xe->forcewake_hold_delay_us =
++		xe_configfs_get_forcewake_hold_delay_us(to_pci_dev(xe->drm.dev));
+ 
  	err = xe_irq_init(xe);
  	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 180d450a6deb..4c16bb7e44bb 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -568,6 +568,9 @@ struct xe_device {
- 	/** @min_run_period_pf_ms: LR VM (page fault mode) timeslice */
- 	u32 min_run_period_pf_ms;
- 
-+	/** @forcewake_hold_delay_us: Delayed forcewake release window in microseconds. */
-+	u32 forcewake_hold_delay_us;
-+
- #ifdef TEST_VM_OPS_ERROR
- 	/**
- 	 * @vm_inject_error_position: inject errors at different places in VM
 diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 197e2197bd0a..3f5013c7424c 100644
+index ef43899e1f7d..dc25f77d5f83 100644
 --- a/drivers/gpu/drm/xe/xe_force_wake.c
 +++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -6,12 +6,17 @@
- #include "xe_force_wake.h"
- 
- #include <drm/drm_util.h>
-+#include <linux/cleanup.h>
-+#include <linux/device.h>
-+#include <linux/hrtimer.h>
- 
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_reg_defs.h"
-+#include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_mmio.h"
-+#include "xe_pm.h"
- #include "xe_sriov.h"
- 
- #define XE_FORCE_WAKE_ACK_TIMEOUT_MS	50
-@@ -27,6 +32,8 @@ static void mark_domain_initialized(struct xe_force_wake *fw,
- 	fw->initialized_domains |= BIT(id);
+@@ -375,7 +375,7 @@ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
  }
  
-+static enum hrtimer_restart xe_force_wake_domain_timer(struct hrtimer *timer);
-+
- static void init_domain(struct xe_force_wake *fw,
- 			enum xe_force_wake_domain_id id,
- 			struct xe_reg reg, struct xe_reg ack)
-@@ -38,11 +45,24 @@ static void init_domain(struct xe_force_wake *fw,
- 	domain->reg_ack = ack;
- 	domain->val = FORCEWAKE_MT(FORCEWAKE_KERNEL);
- 	domain->mask = FORCEWAKE_MT_MASK(FORCEWAKE_KERNEL);
-+	domain->fw_back = fw;
-+	hrtimer_setup(&domain->sleep_timer, xe_force_wake_domain_timer,
-+		      CLOCK_MONOTONIC, HRTIMER_MODE_REL);
- 
- 	mark_domain_initialized(fw, id);
- }
- 
--void xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
-+static void xe_force_wake_fini(void *arg)
-+{
-+	struct xe_force_wake *fw = arg;
-+	struct xe_force_wake_domain *domain;
-+	unsigned int tmp;
-+
-+	for_each_fw_domain(domain, fw, tmp)
-+		hrtimer_cancel(&domain->sleep_timer);
-+}
-+
-+int xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 
-@@ -58,6 +78,8 @@ void xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
- 			    FORCEWAKE_GT,
- 			    FORCEWAKE_ACK_GT);
- 	}
-+
-+	return devm_add_action_or_reset(xe->drm.dev, xe_force_wake_fini, fw);
- }
- 
- void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
-@@ -148,6 +170,59 @@ static int domain_sleep_wait(struct xe_gt *gt,
- 	return __domain_wait(gt, domain, false);
- }
- 
-+static void assert_domain_state(struct xe_force_wake *fw,
-+				struct xe_force_wake_domain *domain)
-+{
-+	unsigned int domain_mask = BIT(domain->id);
-+
-+	lockdep_assert_held(&fw->lock);
-+	xe_gt_assert(fw->gt,
-+		     !domain->delayed_release_requested || domain->ref);
-+	xe_gt_assert(fw->gt,
-+		     !(fw->delayed_release_domains & domain_mask) ||
-+		     !domain->ref);
-+	xe_gt_assert(fw->gt,
-+		     !(fw->sleep_ack_pending_domains & domain_mask) ||
-+		     !domain->ref);
-+	xe_gt_assert(fw->gt,
-+		     !(fw->sleep_ack_pending_domains & domain_mask) ||
-+		     !(fw->awake_domains & domain_mask));
-+	xe_gt_assert(fw->gt,
-+		     !(fw->sleep_ack_pending_domains & domain_mask) ||
-+		     !(fw->delayed_release_domains & domain_mask));
-+}
-+
-+static enum hrtimer_restart xe_force_wake_domain_timer(struct hrtimer *timer)
-+{
-+	struct xe_force_wake_domain *domain =
-+		container_of(timer, struct xe_force_wake_domain, sleep_timer);
-+	struct xe_force_wake *fw = domain->fw_back;
-+	struct xe_gt *gt = fw->gt;
-+
-+	xe_gt_assert(gt, !xe_pm_runtime_suspended(gt_to_xe(gt)));
-+
-+	guard(spinlock_irqsave)(&fw->lock);
-+	assert_domain_state(fw, domain);
-+
-+	if (!(fw->delayed_release_domains & BIT(domain->id)) || domain->ref)
-+		return HRTIMER_NORESTART;
-+
-+	/*
-+	 * The core dequeues an expiring timer before invoking its callback, so
-+	 * a queued timer here is a newer hold interval armed by put().
-+	 */
-+	if (hrtimer_is_queued(timer))
-+		return HRTIMER_NORESTART;
-+
-+	fw->delayed_release_domains &= ~BIT(domain->id);
-+	fw->sleep_ack_pending_domains |= BIT(domain->id);
-+	domain_sleep(gt, domain);
-+	fw->awake_domains &= ~BIT(domain->id);
-+	assert_domain_state(fw, domain);
-+
-+	return HRTIMER_NORESTART;
-+}
-+
  /**
-  * xe_force_wake_get() : Increase the domain refcount
-  * @fw: struct xe_force_wake
-@@ -176,6 +251,7 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
- 	struct xe_gt *gt = fw->gt;
- 	struct xe_force_wake_domain *domain;
- 	unsigned int ref_incr = 0, awake_rqst = 0, awake_failed = 0;
-+	unsigned int sleep_failed = 0;
- 	unsigned int tmp, ref_rqst;
- 	unsigned long flags;
- 
-@@ -186,11 +262,29 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
- 	ref_rqst = (domains == XE_FORCEWAKE_ALL) ? fw->initialized_domains : domains;
- 	spin_lock_irqsave(&fw->lock, flags);
- 	for_each_fw_domain_masked(domain, ref_rqst, fw, tmp) {
-+		assert_domain_state(fw, domain);
- 		if (!domain->ref++) {
--			awake_rqst |= BIT(domain->id);
--			domain_wake(gt, domain);
-+			if (fw->sleep_ack_pending_domains & BIT(domain->id)) {
-+				if (domain_sleep_wait(gt, domain))
-+					sleep_failed |= BIT(domain->id);
-+				fw->sleep_ack_pending_domains &= ~BIT(domain->id);
-+				awake_rqst |= BIT(domain->id);
-+				domain_wake(gt, domain);
-+			} else if ((fw->awake_domains & BIT(domain->id)) &&
-+				   (fw->delayed_release_domains & BIT(domain->id))) {
-+				fw->delayed_release_domains &= ~BIT(domain->id);
-+				/*
-+				 * A running callback will re-check the cleared bit and
-+				 * nonzero reference under fw->lock before issuing sleep.
-+				 */
-+				hrtimer_try_to_cancel(&domain->sleep_timer);
-+			} else {
-+				awake_rqst |= BIT(domain->id);
-+				domain_wake(gt, domain);
-+			}
- 		}
- 		ref_incr |= BIT(domain->id);
-+		assert_domain_state(fw, domain);
- 	}
- 	for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
- 		if (domain_wake_wait(gt, domain) == 0) {
-@@ -203,6 +297,9 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
- 	ref_incr &= ~awake_failed;
- 	spin_unlock_irqrestore(&fw->lock, flags);
- 
-+	xe_gt_WARN(gt, sleep_failed,
-+		   "Forcewake domain%s %#x failed to acknowledge pending sleep request\n",
-+		   str_plural(hweight_long(sleep_failed)), sleep_failed);
- 	xe_gt_WARN(gt, awake_failed, "Forcewake domain%s %#x failed to acknowledge awake request\n",
- 		   str_plural(hweight_long(awake_failed)), awake_failed);
- 
-@@ -212,23 +309,14 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
- 	return ref_incr;
- }
- 
--/**
-- * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
-- * @fw: Pointer to the force wake structure
-- * @fw_ref: return of xe_force_wake_get()
-- *
-- * This function reduces the reference counts for domains in fw_ref. If
-- * refcount for any of the specified domain reaches 0, it puts the domain to sleep
-- * and waits for acknowledgment for domain to sleep within 50 milisec timeout.
-- * Warns in case of timeout of ack from domain.
-- */
--void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
-+static void __xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref,
-+				bool delayed_release)
- {
- 	struct xe_gt *gt = fw->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_force_wake_domain *domain;
--	unsigned int tmp, sleep = 0;
-+	unsigned int tmp, sleep = 0, ack_fail = 0;
- 	unsigned long flags;
--	int ack_fail = 0;
- 
- 	/*
- 	 * Avoid unnecessary lock and unlock when the function is called
-@@ -242,12 +330,24 @@ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
- 
- 	spin_lock_irqsave(&fw->lock, flags);
- 	for_each_fw_domain_masked(domain, fw_ref, fw, tmp) {
-+		assert_domain_state(fw, domain);
- 		xe_gt_assert(gt, domain->ref);
- 
- 		if (!--domain->ref) {
--			sleep |= BIT(domain->id);
--			domain_sleep(gt, domain);
-+			if (delayed_release || domain->delayed_release_requested) {
-+				domain->delayed_release_requested = false;
-+				fw->delayed_release_domains |= BIT(domain->id);
-+				hrtimer_start(&domain->sleep_timer,
-+					      us_to_ktime(xe->forcewake_hold_delay_us),
-+					      HRTIMER_MODE_REL);
-+			} else {
-+				sleep |= BIT(domain->id);
-+				domain_sleep(gt, domain);
-+			}
-+		} else if (delayed_release) {
-+			domain->delayed_release_requested = true;
- 		}
-+		assert_domain_state(fw, domain);
- 	}
- 	for_each_fw_domain_masked(domain, sleep, fw, tmp) {
- 		if (domain_sleep_wait(gt, domain) == 0)
-@@ -261,6 +361,36 @@ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
- 		   str_plural(hweight_long(ack_fail)), ack_fail);
- }
- 
-+/**
-+ * xe_force_wake_put - Release forcewake domains
-+ * @fw: Pointer to the force wake structure
-+ * @fw_ref: Result from xe_force_wake_get()
-+ *
-+ * Drops the referenced domains. The final put requests sleep and waits for
-+ * its ACK, unless a delayed release was previously recorded for the domain.
-+ */
-+void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
-+{
-+	__xe_force_wake_put(fw, fw_ref, false);
-+}
-+
-+/**
-+ * xe_force_wake_put_delay - Release forcewake after a delay
-+ * @fw: Pointer to the force wake structure
-+ * @fw_ref: Result from xe_force_wake_get()
-+ *
-+ * Drops references like xe_force_wake_put(), but delays the sleep request
-+ * when the final reference is released. A get before the timer expires reuses
-+ * the awake domain without forcewake MMIO; otherwise the timer requests sleep.
-+ *
-+ * If references remain, the delayed release is recorded and honored by the
-+ * put that releases the final reference.
-+ */
-+void xe_force_wake_put_delay(struct xe_force_wake *fw, unsigned int fw_ref)
-+{
-+	__xe_force_wake_put(fw, fw_ref, true);
-+}
-+
- const char *xe_force_wake_domain_to_str(enum xe_force_wake_domain_id id)
- {
- 	switch (id) {
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
-index e2721f205d6c..8da675d8db0b 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.h
-+++ b/drivers/gpu/drm/xe/xe_force_wake.h
-@@ -11,13 +11,14 @@
- 
- struct xe_gt;
- 
--void xe_force_wake_init_gt(struct xe_gt *gt,
--			   struct xe_force_wake *fw);
-+int xe_force_wake_init_gt(struct xe_gt *gt,
-+			  struct xe_force_wake *fw);
- void xe_force_wake_init_engines(struct xe_gt *gt,
- 				struct xe_force_wake *fw);
- unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
- 					    enum xe_force_wake_domains domains);
- void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref);
-+void xe_force_wake_put_delay(struct xe_force_wake *fw, unsigned int fw_ref);
- 
- const char *xe_force_wake_domain_to_str(enum xe_force_wake_domain_id id);
- 
-@@ -103,6 +104,24 @@ DEFINE_CLASS(xe_force_wake, struct xe_force_wake_ref,
- #define xe_with_force_wake(ref, fw, domains) \
- 	__xe_with_force_wake(ref, fw, domains, __UNIQUE_ID(done))
- 
-+/*
-+ * Same as xe_with_force_wake(), but releases forcewake via
-+ * xe_force_wake_put_delay() instead of xe_force_wake_put() on scope exit.
-+ * Only use this for hot paths where the caller expects forcewake to be
-+ * re-acquired again shortly.
-+ */
-+DEFINE_CLASS(xe_force_wake_delay, struct xe_force_wake_ref,
-+	     xe_force_wake_put_delay(_T.fw, _T.domains),
-+	     xe_force_wake_constructor(fw, domains),
-+	     struct xe_force_wake *fw, unsigned int domains);
-+
-+#define __xe_with_force_wake_delay(ref, fw, domains, done) \
-+	for (CLASS(xe_force_wake_delay, ref)(fw, domains), *(done) = NULL; \
-+	     !(done); (done) = (void *)1)
-+
-+#define xe_with_force_wake_delay(ref, fw, domains) \
-+	__xe_with_force_wake_delay(ref, fw, domains, __UNIQUE_ID(done))
-+
- /*
-  * Used when xe_force_wake_constructor() has already been called by another
-  * function and the current function is responsible for releasing the forcewake
-diff --git a/drivers/gpu/drm/xe/xe_force_wake_types.h b/drivers/gpu/drm/xe/xe_force_wake_types.h
-index 14b7b86e801b..28c6f6dc87a3 100644
---- a/drivers/gpu/drm/xe/xe_force_wake_types.h
-+++ b/drivers/gpu/drm/xe/xe_force_wake_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_FORCE_WAKE_TYPES_H_
- #define _XE_FORCE_WAKE_TYPES_H_
- 
-+#include <linux/hrtimer.h>
- #include <linux/mutex.h>
- #include <linux/types.h>
- 
-@@ -51,6 +52,8 @@ enum xe_force_wake_domains {
- 	XE_FORCEWAKE_ALL	= BIT(XE_FW_DOMAIN_ID_COUNT)
- };
- 
-+struct xe_force_wake;
-+
- /**
-  * struct xe_force_wake_domain - Xe force wake power domain
+- * xe_force_wake_put_delay - Release forcewake after a delay
++ * xe_force_wake_put_delay - Release forcewake after a configurable delay
+  * @fw: Pointer to the force wake structure
+  * @fw_ref: Result from xe_force_wake_get()
   *
-@@ -76,12 +79,23 @@ struct xe_force_wake_domain {
- 	struct xe_reg reg_ctl;
- 	/** @reg_ack: domain ack register address */
- 	struct xe_reg reg_ack;
-+	/** @sleep_timer: hrtimer for the delayed sleep request */
-+	struct hrtimer sleep_timer;
-+	/** @fw_back: back pointer to parent xe_force_wake */
-+	struct xe_force_wake *fw_back;
- 	/** @val: domain wake write value */
- 	u32 val;
- 	/** @mask: domain mask */
- 	u32 mask;
--	/** @ref: domain reference */
-+	/** @ref: domain reference, protected by @fw_back->lock */
- 	u32 ref;
-+	/**
-+	 * @delayed_release_requested: xe_force_wake_put_delay() was called
-+	 * while the domain still had other references held; whichever call
-+	 * drops the last reference must honor the delayed-release request.
-+	 * Protected by @fw_back->lock.
-+	 */
-+	bool delayed_release_requested;
- };
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 3c356bc48e2a..628d587e79e1 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -168,7 +168,7 @@ query_engine_cycles(struct xe_device *xe,
  
- /**
-@@ -101,6 +115,16 @@ struct xe_force_wake {
- 	spinlock_t lock;
- 	/** @awake_domains: mask of all domains awake */
- 	unsigned int awake_domains;
-+	/**
-+	 * @delayed_release_domains: mask of domains in DELAYED HOLD.
-+	 * Protected by @lock.
-+	 */
-+	unsigned int delayed_release_domains;
-+	/**
-+	 * @sleep_ack_pending_domains: mask of domains in SLEEP SENT.
-+	 * Protected by @lock.
-+	 */
-+	unsigned int sleep_ack_pending_domains;
- 	/** @initialized_domains: mask of all initialized domains */
- 	unsigned int initialized_domains;
- 	/** @domains: force wake domains */
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index dfdacc0f6de9..efe425dbcc85 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -512,7 +512,10 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 	fw_domain = xe_hw_engine_to_fw_domain(hwe);
  
- 	xe_wa_process_gt_oob(gt);
- 
--	xe_force_wake_init_gt(gt, gt_to_fw(gt));
-+	err = xe_force_wake_init_gt(gt, gt_to_fw(gt));
-+	if (err)
-+		return err;
-+
- 	spin_lock_init(&gt->global_invl_lock);
- 
- 	err = xe_gt_tlb_inval_init_early(gt);
+-	xe_with_force_wake(fw_ref, gt_to_fw(gt), fw_domain) {
++	xe_with_force_wake_delay(fw_ref, gt_to_fw(gt), fw_domain) {
+ 		if (!xe_force_wake_ref_has_domain(fw_ref.domains, fw_domain)) {
+ 			err = -EIO;
+ 			goto out;
 -- 
 2.43.0
 
