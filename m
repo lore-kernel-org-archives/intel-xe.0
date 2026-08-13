@@ -4,45 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84A80C5CFCF
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 00:23:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBF08C5AD5A
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 01:55:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44D7810E480;
-	Thu, 13 Aug 2026 00:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C95C10E487;
+	Thu, 13 Aug 2026 01:55:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Gbgd4Wr+";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="fxAZiqWM";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8A9F10E480
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 00:23:34 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 5E324600AD;
- Thu, 13 Aug 2026 00:23:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA04F1F000E9;
- Thu, 13 Aug 2026 00:23:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786580614;
- bh=VE8B8uVhH8SKxGikj6Ip7f2P9l51vSsh2hfRLZ7bmsI=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Gbgd4Wr+RyFn347s9PSKdWd9hrirQFhqUuErdNKWdra+UtC6UA1kdjTylPlATaakL
- PSueJpby5BbKrKQS7GYi459zYGEt5nzxPSz8IFAYbSqBWKWRui1fLaPBtIb8P8TCA0
- GJOYC3QIrnZU/DgWixS5ELlwdoTcETDBgP6n1bHpmej3B403NozTtPX4A26bLqFTHR
- Pv6jUFJLldV6MqVtdVlPmSMOTSmjqFrZug/IKtOgAbB28bqvNzhZTdw2tHX5WKKrIa
- FnT5+mKmt4ubQj2Cr23j/ukJFvPJ/3LjdnUay5z1C9VudZPvhVea7RZRvgePNKEvt/
- /By9gzeJsSk0g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 3/4] drm/xe/forcewake: flush delayed release at power
- boundaries
-To: "Zongyao Bai" <zongyao.bai@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260813000654.2712317-4-zongyao.bai@intel.com>
-References: <20260601213804.707256-1-zongyao.bai@intel.com>
- <20260813000654.2712317-1-zongyao.bai@intel.com>
- <20260813000654.2712317-4-zongyao.bai@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 13 Aug 2026 00:23:33 +0000
-Message-Id: <20260813002333.EA04F1F000E9@smtp.kernel.org>
+Received: from out30-101.freemail.mail.aliyun.com
+ (out30-101.freemail.mail.aliyun.com [115.124.30.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB8BB10E487;
+ Thu, 13 Aug 2026 01:55:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1786586101; h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+ bh=HWTr9GGWou2wILH7gAUz4fVjSCuDbXDcFYOAh+gtggk=;
+ b=fxAZiqWMoYuhwgjOaJL6Y7jwh+yJpuspMn25sjdY/6IevsusntDULFxOOH1OYsKm+AuMfcpHDaAIKT8V6YRv2graE/+XZHEbBrEOlWfaqdU0s6ni3citHHZt5o6sgFIfgETE1Ox8muDr6yBaW/Axk/LK8AALUZTOEj/ipBFucR4=
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R101e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033037009110;
+ MF=ying.huang@linux.alibaba.com; NM=1; PH=DS; RN=31; SR=0;
+ TI=SMTPD_---0X8skf38_1786586080; 
+Received: from DESKTOP-5N7EMDA(mailfrom:ying.huang@linux.alibaba.com
+ fp:SMTPD_---0X8skf38_1786586080 cluster:ay36) by smtp.aliyun-inc.com;
+ Thu, 13 Aug 2026 09:54:59 +0800
+From: "Huang, Ying" <ying.huang@linux.alibaba.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>,  <dri-devel@lists.freedesktop.org>,
+ <linux-mm@kvack.org>,  <linux-kernel@vger.kernel.org>,  Andrew Morton
+ <akpm@linux-foundation.org>,  David Hildenbrand <david@kernel.org>,
+ "Lorenzo Stoakes" <ljs@kernel.org>,  Zi Yan <ziy@nvidia.com>,  Baolin
+ Wang <baolin.wang@linux.alibaba.com>,  "Liam R . Howlett"
+ <liam@infradead.org>,  Nico Pache <nico.pache@linux.dev>,  Ryan Roberts
+ <ryan.roberts@arm.com>,  "Dev Jain" <dev.jain@arm.com>,  Barry Song
+ <baohua@kernel.org>,  Lance Yang <lance.yang@linux.dev>,  Usama Arif
+ <usama.arif@linux.dev>,  Joshua Hahn <joshua.hahnjy@gmail.com>,  Rakie Kim
+ <rakie.kim@sk.com>,  Byungchul Park <byungchul@sk.com>,  Gregory Price
+ <gourry@gourry.net>,  Alistair Popple <apopple@nvidia.com>,  Balbir Singh
+ <balbirs@nvidia.com>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
+ <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Thomas Hellstrm
+ <thomas.hellstrom@linux.intel.com>,  Francois Dugast
+ <francois.dugast@intel.com>,  <stable@vger.kernel.org>
+Subject: Re: [PATCH v3 3/6] mm/migrate_device: Fix THP splitting of a CPU
+ faulted device private folio
+In-Reply-To: <an0CxFPPnvPWljyp@gsse-cloud1.jf.intel.com> (Matthew Brost's
+ message of "Wed, 12 Aug 2026 16:33:24 -0700")
+References: <20260805231041.3791771-1-matthew.brost@intel.com>
+ <20260805231041.3791771-4-matthew.brost@intel.com>
+ <87ik5in224.fsf@DESKTOP-5N7EMDA>
+ <anopzF3Hk/RRh8kC@gsse-cloud1.jf.intel.com>
+ <87cxvnn41l.fsf@DESKTOP-5N7EMDA>
+ <an0CxFPPnvPWljyp@gsse-cloud1.jf.intel.com>
+Date: Thu, 13 Aug 2026 09:54:39 +0800
+Message-ID: <87bjb67pk0.fsf@DESKTOP-5N7EMDA>
+User-Agent: Gnus/5.13 (Gnus v5.13)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,122 +73,369 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+Matthew Brost <matthew.brost@intel.com> writes:
 
-Pre-existing issues:
-- [High] PMU events hold long-lived forcewake references that outlive devic=
-e teardown and suspend boundaries, defeating the patch's attempt to quiesce=
- forcewake accesses before power-off.
---
+> On Wed, Aug 12, 2026 at 04:20:22PM +0800, Huang, Ying wrote:
+>> Matthew Brost <matthew.brost@intel.com> writes:
+>> 
+>> > On Mon, Aug 10, 2026 at 10:26:27AM +0800, Huang, Ying wrote:
+>> >> Hi, Matthew,
+>> >> 
+>> >> Matthew Brost <matthew.brost@intel.com> writes:
+>> >> 
+>> >> > When a CPU faults on a device private PMD and the device driver can only
+>> >> > allocate order-0 destination folios, __migrate_device_pages() has to
+>> >> > split the source THP via migrate_vma_split_unmapped_folio(). That path
+>> >> > is broken in two independent ways when the fault is what triggered the
+>> >> > migration.
+>> >> >
+>> >> > First, the split never succeeds. At the point folio_split_unmapped() is
+>> >> > called the folio carries two references beyond the ones it is
+>> >> > entitled to:
+>> >> >
+>> >> >   1 - taken by do_huge_pmd_device_private() for the duration of the
+>> >> >       ->migrate_to_ram() callback
+>> >> >   2 - taken by migrate_vma_collect_huge_pmd() when the folio was
+>> >> >       collected
+>> >> >
+>> >> > (the mapping reference having been dropped by set_pmd_migration_entry()).
+>> >> >
+>> >> > folio_split_unmapped() requires folio_expected_ref_count(folio) ==
+>> >> > folio_ref_count(folio) - 1, i.e. it tolerates exactly one caller
+>> >> > reference. With both of the above held the check sees 2 against an
+>> >> > expected 0 and returns -EAGAIN, so the migration is abandoned and the
+>> >> > CPU fault makes no progress.
+>> >> >
+>> >> > The PTE-based split path does not have this problem:
+>> >> > migrate_vma_split_folio() is called before any collect reference is
+>> >> > taken and explicitly skips folio_get() for the fault folio, so the fault
+>> >> > reference is the single caller reference the split expects.
+>> >> >
+>> >> > Fix it by dropping the fault reference across the split and re-taking it
+>> >> > afterwards. do_huge_pmd_device_private() derives the fault page from the
+>> >> > PMD entry, so it is always the head page of the folio and always ends up
+>> >> > in the head folio of an uniform split to order 0; re-taking the
+>> >> > reference on the folio therefore puts it back exactly where
+>> >> > do_huge_pmd_device_private() will release it. The folio cannot be freed
+>> >> > while the reference is dropped because the collect reference is still
+>> >> > held.
+>> >> >
+>> >> > Second, the folio is split globally but the page tables were demoted
+>> >> > only locally:
+>> >> >
+>> >> > 	split_huge_pmd_address(migrate->vma, addr, true);
+>> >> > 	ret = folio_split_unmapped(folio, 0);
+>> >> >
+>> >> > migrate_device_unmap() unmaps via try_to_migrate(folio, 0), deliberately
+>> >> > without TTU_SPLIT_HUGE_PMD, so every VMA that PMD maps the folio is left
+>> >> > holding a PMD sized migration entry. A folio that was PMD mapped in more
+>> >> > than one VMA -- after fork(), for example -- therefore keeps huge
+>> >> > migration entries in all the other VMAs while only migrate->vma is
+>> >> > demoted.
+>> >> >
+>> >> > folio_split_unmapped() does not notice: the folio is fully unmapped, so
+>> >> > it only looks at the refcount and happily splits to order 0. The other
+>> >> > VMAs are then left pointing a huge PMD at an order-0 folio, and
+>> >> > migrate_vma_finalize() -> remove_migration_ptes() walks into it:
+>> >> >
+>> >> >   page dumped because: VM_BUG_ON_FOLIO(folio_test_hugetlb(folio) ||
+>> >> >                                        !folio_test_pmd_mappable(folio))
+>> >> >   kernel BUG at mm/migrate.c:368!
+>> >> >   RIP: 0010:remove_migration_pte+0x56a/0x9b0
+>> >> >   Call Trace:
+>> >> >    rmap_walk_anon+0xfc/0x260
+>> >> >    remove_migration_ptes+0x79/0xb0
+>> >> >    __migrate_device_finalize+0x113/0x290
+>> >> >    __drm_pagemap_migrate_to_ram+0x278/0x360 [drm_gpusvm_helper]
+>> >> >    drm_pagemap_migrate_to_ram+0x5c/0x80 [drm_gpusvm_helper]
+>> >> >    do_huge_pmd_device_private+0x160/0x280
+>> >> 
+>> >> Which is the branch your patchset based on?  I found that
+>> >> drm_pagemap_migrate_populate_ram_pfn() in mm-everything-2026-08-08-07-08
+>> >> still don't support fallback to single pages if THP allocation fails as
+>> >> in the following comments,
+>> >> 
+>> >
+>> > This entire series, on drm-tip (i.e., the 6 patches posted here [1]).
+>> >
+>> > [1] https://patchwork.freedesktop.org/series/171651/
+>> 
+>> Thanks!
+>> 
+>> >> 	/* TODO: Support fallback to single pages if THP allocation fails */
+>> >> 
+>> >> 
+>> >> > Without CONFIG_DEBUG_VM the VM_BUG_ON_FOLIO() is compiled out and
+>> >> > remove_migration_pmd() installs a huge PMD pointing at an order-0 page
+>> >> > instead, along with add_mm_counter(mm, MM_ANONPAGES, HPAGE_PMD_NR). The
+>> >> > victim mm then maps 2MB of address space onto a single 4K page, which
+>> >> > shows up later as bad rss-counter state, leaked page tables and page
+>> >> > allocator freelist corruption in unrelated processes.
+>> >> >
+>> >> > Note this second problem was latent before the refcount fix above: the
+>> >> > split always failed, and the failed attempt left migrate->vma demoted,
+>> >> > so the retried fault took the PTE path, where __folio_split() unmaps
+>> >> > with TTU_SPLIT_HUGE_PMD and demotes every VMA.
+>> >> >
+>> >> > Fix it by walking the rmap and demoting every PMD sized migration entry
+>> >> > mapping the folio before splitting it. Demote with freeze = false: entry
+>> >> > creation in __split_huge_pmd_locked() is dispatched on
+>> >> > pmd_is_migration_entry(), not on freeze, so a migration PMD becomes PTE
+>> >> > sized migration entries either way, and freeze only controls a trailing
+>> >> > put_page(). With freeze = false there is no refcount change at all,
+>> >> > which makes the demotion idempotent across N VMAs.
+>> >> >
+>> >> > rmap_walk_control.anon_lock is deliberately left unset:
+>> >> > folio_lock_anon_vma_read() depends on folio_mapped(), and the folio is
+>> >> > already fully unmapped here. This mirrors remove_migration_ptes().
+>> >> >
+>> >> > Finally, refuse the split for a folio that is not anonymous. The rmap
+>> >> > walk would otherwise reach a file backed VMA, where
+>> >> > split_huge_pmd_address() zaps the PMD instead of demoting it.
+>> >> >
+>> >> > Fixes: 4265d67e405a ("mm/migrate_device: add THP splitting during migration")
+>> >> > Cc: Andrew Morton <akpm@linux-foundation.org>
+>> >> > Cc: David Hildenbrand <david@kernel.org>
+>> >> > Cc: Lorenzo Stoakes <ljs@kernel.org>
+>> >> > Cc: Zi Yan <ziy@nvidia.com>
+>> >> > Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+>> >> > Cc: Liam R. Howlett <liam@infradead.org>
+>> >> > Cc: Nico Pache <nico.pache@linux.dev>
+>> >> > Cc: Ryan Roberts <ryan.roberts@arm.com>
+>> >> > Cc: Dev Jain <dev.jain@arm.com>
+>> >> > Cc: Barry Song <baohua@kernel.org>
+>> >> > Cc: Lance Yang <lance.yang@linux.dev>
+>> >> > Cc: Usama Arif <usama.arif@linux.dev>
+>> >> > Cc: Joshua Hahn <joshua.hahnjy@gmail.com>
+>> >> > Cc: Rakie Kim <rakie.kim@sk.com>
+>> >> > Cc: Byungchul Park <byungchul@sk.com>
+>> >> > Cc: Gregory Price <gourry@gourry.net>
+>> >> > Cc: Ying Huang <ying.huang@linux.alibaba.com>
+>> >> > Cc: Alistair Popple <apopple@nvidia.com>
+>> >> > Cc: Balbir Singh <balbirs@nvidia.com>
+>> >> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> >> > Cc: Maxime Ripard <mripard@kernel.org>
+>> >> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>> >> > Cc: David Airlie <airlied@gmail.com>
+>> >> > Cc: Simona Vetter <simona@ffwll.ch>
+>> >> > Cc: Thomas Hellstrm <thomas.hellstrom@linux.intel.com>
+>> >> > Cc: Francois Dugast <francois.dugast@intel.com>
+>> >> > Cc: dri-devel@lists.freedesktop.org
+>> >> > Cc: linux-mm@kvack.org
+>> >> > Cc: linux-kernel@vger.kernel.org
+>> >> > Cc: stable@vger.kernel.org
+>> >> > Assisted-by: GitHub_Copilot:claude-opus-5
+>> >> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>> >> > ---
+>> >> >  mm/migrate_device.c | 98 ++++++++++++++++++++++++++++++++++++++++-----
+>> >> >  1 file changed, 89 insertions(+), 9 deletions(-)
+>> >> >
+>> >> > diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+>> >> > index ae9027421b80..ae17bd516d24 100644
+>> >> > --- a/mm/migrate_device.c
+>> >> > +++ b/mm/migrate_device.c
+>> >> > @@ -899,22 +899,104 @@ static int migrate_vma_insert_huge_pmd_page(struct migrate_vma *migrate,
+>> >> >  	return 0;
+>> >> >  }
+>> >> >  
+>> >> > +static bool migrate_vma_split_pmd_one(struct folio *folio,
+>> >> > +				      struct vm_area_struct *vma,
+>> >> > +				      unsigned long addr, void *arg)
+>> >> > +{
+>> >> > +	DEFINE_FOLIO_VMA_WALK(pvmw, folio, vma, addr, PVMW_SYNC | PVMW_MIGRATION);
+>> >> > +
+>> >> > +	while (page_vma_mapped_walk(&pvmw)) {
+>> >> > +		if (pvmw.pte)
+>> >> > +			continue;
+>> >> > +
+>> >> > +		addr = pvmw.address;
+>> >> > +		page_vma_mapped_walk_done(&pvmw);
+>> >> > +
+>> >> > +		/*
+>> >> > +		 * Demote with freeze = false: the PMD already holds a
+>> >> > +		 * migration entry, so __split_huge_pmd_locked() creates PTE
+>> >> > +		 * sized migration entries from it and leaves the refcount
+>> >> > +		 * alone. There is at most one PMD mapping @folio per VMA, so
+>> >> > +		 * stop the walk here.
+>> >> > +		 */
+>> >> > +		split_huge_pmd_address(vma, addr, false);
+>> >> > +		break;
+>> >> > +	}
+>> >> > +
+>> >> > +	return true;
+>> >> > +}
+>> >> > +
+>> >> > +/*
+>> >> > + * Demote every PMD sized migration entry that maps @folio to PTE sized ones.
+>> >> > + *
+>> >> > + * migrate_device_unmap() unmaps with try_to_migrate(folio, 0), i.e. without
+>> >> > + * TTU_SPLIT_HUGE_PMD, so a folio that was PMD mapped in several VMAs -- after
+>> >> > + * fork(), for instance -- ends up with a PMD sized migration entry in every one
+>> >> > + * of them. folio_split_unmapped() below does not care, it only looks at the
+>> >> > + * refcount, so splitting the folio without demoting all of those first would
+>> >> > + * leave the other VMAs pointing a huge PMD at what is now an order-0 folio.
+>> >> > + * remove_migration_ptes() trips over that in migrate_vma_finalize().
+>> >> > + */
+>> >> > +static void migrate_vma_split_pmd_mappings(struct folio *folio)
+>> >> > +{
+>> >> > +	struct rmap_walk_control rwc = {
+>> >> > +		.rmap_one = migrate_vma_split_pmd_one,
+>> >> > +	};
+>> >> > +
+>> >> > +	/*
+>> >> > +	 * Do not pass .anon_lock: folio_lock_anon_vma_read() requires
+>> >> > +	 * folio_mapped(), and @folio is already fully unmapped here.
+>> >> > +	 */
+>> >> > +	rmap_walk(folio, &rwc);
+>> >> > +}
+>> >> > +
+>> >> >  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
+>> >> > -					    unsigned long idx, unsigned long addr,
+>> >> > +					    unsigned long idx,
+>> >> >  					    struct folio *folio)
+>> >> >  {
+>> >> >  	unsigned long i;
+>> >> >  	unsigned long pfn;
+>> >> >  	unsigned long flags;
+>> >> > +	bool fault_folio;
+>> >> >  	int ret = 0;
+>> >> >  
+>> >> >  	/*
+>> >> > -	 * take a reference, since split_huge_pmd_address() with freeze = true
+>> >> > -	 * drops a reference at the end.
+>> >> > +	 * migrate_vma_split_pmd_mappings() walks the rmap, and
+>> >> > +	 * split_huge_pmd_address() zaps rather than demotes a PMD in a VMA that
+>> >> > +	 * is not anonymous. migrate_vma_collect_huge_pmd() does not check the
+>> >> > +	 * VMA type, so a file THP can reach here; the rest of the migrate_vma()
+>> >> > +	 * machinery only supports anonymous memory anyway.
+>> >> >  	 */
+>> >> > -	folio_get(folio);
+>> >> > -	split_huge_pmd_address(migrate->vma, addr, true);
+>> >> > +	if (!folio_test_anon(folio))
+>> >> > +		return -EINVAL;
+>> >> > +
+>> >> > +	/*
+>> >> > +	 * A CPU fault on a device private PMD holds an extra reference on the
+>> >> > +	 * folio, taken by do_huge_pmd_device_private(). folio_split_unmapped()
+>> >> > +	 * only tolerates a single caller reference, so the split would always
+>> >> > +	 * fail with -EAGAIN while this fault reference is held.
+>> >> > +	 *
+>> >> > +	 * do_huge_pmd_device_private() derives the fault page from the PMD
+>> >> > +	 * entry, so it is always the head page of @folio, and therefore always
+>> >> > +	 * ends up in the head folio after an uniform split to order 0. Drop
+>> >> > +	 * the reference across the split and re-take it on the head folio
+>> >> > +	 * afterwards, leaving the reference exactly where it is expected to be
+>> >> > +	 * released.
+>> >> > +	 *
+>> >> > +	 * The folio cannot go away while the reference is dropped: the
+>> >> > +	 * reference taken by migrate_vma_collect_huge_pmd() is still held.
+>> >> > +	 */
+>> >> > +	fault_folio = migrate->fault_page &&
+>> >> > +		page_folio(migrate->fault_page) == folio;
+>> >> > +
+>> >> > +	migrate_vma_split_pmd_mappings(folio);
+>> >> > +
+>> >> > +	if (fault_folio)
+>> >> > +		folio_put(folio);
+>> >> >  	ret = folio_split_unmapped(folio, 0);
+>> >> > +	if (fault_folio)
+>> >> > +		folio_get(folio);
+>> >> > +
+>> >> 
+>> >> Is it better to pass "extra_cnt" to folio_split_unmapped()?  This
+>> >> follows the coding style of the other migrate functions better, like
+>> >> that in __migrate_device_pages().
+>> >> 
+>> >
+>> > That is an option. To be minimally invasive, I went this route. I also
+>> > didn't know offhand what would happen if our head page had an extra
+>> > reference and we then called folio_split_unmapped() with "extra_cnt", or
+>> > how that would affect the reference counts of the newly split pages
+>> > (i.e., whether we would need to adjust the reference counts of all split
+>> > pages after folio_split_unmapped() returns). However, I could quickly
+>> > reason that dropping the reference and then reacquiring it was
+>> > functionally correct and safe.
+>> 
+>> This makes sense for me.  Thanks!
+>> 
+>> I have another question.  If we have to split the large folio when
+>> migrating from device to ram, should we still migrate all pages of the
+>> original large folio, or should we migrate only the faulting
+>> normal-sized page of the original large folio instead?
+>> 
+>
+> This is a choice made by the upper layers that call the migrate_vma_*
+> functions and populate the migrate_vma arguments. In gpusvm/pagemap, we
+> still migrate the entire 2 MB region of memory as 512 4 KB pages upon
+> higher order failure, matching what we did prior to having 2 MB device
+> pages.
+> 
+> The reasoning is that migrations are expensive due to the CPU overhead of
+> migrate_vma_* and because GPU copies are issued, requiring larger transfer
+> sizes to achieve the full bandwidth of the bus. For example, a 4 KB copy
+> provides less than 1 GB/s of bandwidth regardless of PCIe speed, whereas
+> a 2 MB copy can nearly reach the theoretical maximum bandwidth of PCIe.
+> 
+> Early in the development of gpusvm/pagemap, I had a knob that forced only
+> single-page 4 KB faults and migrations, along with a test case that
+> measured the fault time in user space for a 2 MB buffer. If I recall
+> correctly, it was about 58 slower than batching 512 4 KB pages together
+> into a single fault and migration on a low-end BMG part.
+>
+> So on higher order page allocation failure, the preference is still do
+> the larger migration.
 
---- Patch [3]: [PATCH v5 3/4] drm/xe/forcewake: flush delayed release at po=
-wer boundaries ---
-commit 137d6a969747b4828385eae977e1c1ba6eb0b98d
-Author: Zongyao Bai <zongyao.bai@intel.com>
+Got it!  Thanks for detailed explanation!
 
-drm/xe/forcewake: flush delayed release at power boundaries
-   =20
-Add a synchronous forcewake flush that cancels per-domain timers and
-settles pending sleep acknowledgments. Provide a scoped cleanup class
-so the final put is always followed by the flush before the caller
-continues toward power-off.
+I think that another added complexity is that we need to split the 2MB
+page table of the GPU side.
 
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_f=
-orce_wake.c
-> index 3f5013c7424c8..ef43899e1f7d3 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.c
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
-> @@ -391,6 +391,55 @@ void xe_force_wake_put_delay(struct xe_force_wake *f=
-w, unsigned int fw_ref)
->  	__xe_force_wake_put(fw, fw_ref, true);
->  }
-> =20
-> +/**
-> + * xe_force_wake_flush - Flush delayed forcewake releases
-> + * @fw: Pointer to the force wake structure
-> + *
-> + * Synchronously cancels delayed-release timers and completes pending sl=
-eep
-> + * requests and ACK waits. This must be called after the final forcewake=
- put
-> + * and before power-off because the timer callback accesses MMIO.
-> + *
-> + * The caller must ensure no forcewake reference outlives this call and
-> + * serialize against new delayed releases or final puts that consume a
-> + * recorded delayed-release request. Timers are canceled before taking
-> + * fw->lock because their callbacks acquire the same lock.
-> + */
-> +void xe_force_wake_flush(struct xe_force_wake *fw)
-> +{
-> +	struct xe_gt *gt =3D fw->gt;
-> +	struct xe_force_wake_domain *domain;
-> +	unsigned int tmp, sleep, ack_fail =3D 0;
-> +	unsigned long flags;
-> +
-> +	for_each_fw_domain(domain, fw, tmp)
-> +		hrtimer_cancel(&domain->sleep_timer);
-> +
-> +	spin_lock_irqsave(&fw->lock, flags);
-> +	sleep =3D fw->sleep_ack_pending_domains;
-> +	for_each_fw_domain(domain, fw, tmp) {
-> +		assert_domain_state(fw, domain);
-> +		domain->delayed_release_requested =3D false;
-> +		if ((fw->delayed_release_domains & BIT(domain->id)) &&
-> +		    !domain->ref) {
+---
+Best Regards,
+Huang, Ying
 
-[Severity: High]
-This is a pre-existing issue, but does this flush mechanism fail to quiesce
-active PMU references before power-off?
-
-If a user opens a PMU event (e.g., engine-active-ticks) and acquires a
-forcewake reference, it can outlive device teardown or suspend. When
-xe_force_wake_flush() runs, it skips the domain because domain->ref > 0.
-
-If the device is unplugged or suspended while the PMU event is open, the do=
-main
-is not put to sleep due to the active reference, and the hardware loses pow=
-er.
-On resume, software may incorrectly believe the domain is awake, failing to=
- send
-wake requests and causing hardware timeouts or hangs on subsequent accesses.
-
-Furthermore, on unplug, mmio_fini sets regs =3D NULL. When the user finally
-closes the PMU event fd, xe_pmu_event_destroy() releases forcewake:
-
-drivers/gpu/drm/xe/xe_pmu.c:xe_pmu_event_destroy() {
-    ...
-    xe_force_wake_put(gt_to_fw(gt), *fw_ref);
-    ...
-}
-
-Will this cause a use-after-unmap logic hitting a WARN_ON_ONCE in
-mmio_available when accessing the unmapped MMIO?
-
-> +			fw->delayed_release_domains &=3D ~BIT(domain->id);
-> +			sleep |=3D BIT(domain->id);
-> +			domain_sleep(gt, domain);
-> +		}
-> +		assert_domain_state(fw, domain);
-> +	}
-> +	for_each_fw_domain_masked(domain, sleep, fw, tmp) {
-> +		fw->sleep_ack_pending_domains &=3D ~BIT(domain->id);
-> +		if (domain_sleep_wait(gt, domain) =3D=3D 0)
-> +			fw->awake_domains &=3D ~BIT(domain->id);
-> +		else
-> +			ack_fail |=3D BIT(domain->id);
-> +	}
-> +	spin_unlock_irqrestore(&fw->lock, flags);
-> +
-> +	xe_gt_WARN(gt, ack_fail, "Forcewake domain%s %#x failed to acknowledge =
-sleep request\n",
-> +		   str_plural(hweight_long(ack_fail)), ack_fail);
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260813000654.2712=
-317-1-zongyao.bai@intel.com?part=3D3
+> Matt
+>
+>> ---
+>> Best Regards,
+>> Huang, Ying
+>> 
+>> > Matt
+>> >
+>> >> >  	if (ret)
+>> >> >  		return ret;
+>> >> >  	migrate->src[idx] &= ~MIGRATE_PFN_COMPOUND;
+>> >> > @@ -935,7 +1017,7 @@ static int migrate_vma_insert_huge_pmd_page(struct migrate_vma *migrate,
+>> >> >  }
+>> >> >  
+>> >> >  static int migrate_vma_split_unmapped_folio(struct migrate_vma *migrate,
+>> >> > -					    unsigned long idx, unsigned long addr,
+>> >> > +					    unsigned long idx,
+>> >> >  					    struct folio *folio)
+>> >> >  {
+>> >> >  	return 0;
+>> >> > @@ -1103,7 +1185,6 @@ static void __migrate_device_pages(unsigned long *src_pfns,
+>> >> >  	struct mmu_notifier_range range;
+>> >> >  	unsigned long i, j;
+>> >> >  	bool notified = false;
+>> >> > -	unsigned long addr;
+>> >> >  
+>> >> >  	for (i = 0; i < npages; ) {
+>> >> >  		struct page *newpage = migrate_pfn_to_page(dst_pfns[i]);
+>> >> > @@ -1177,8 +1258,7 @@ static void __migrate_device_pages(unsigned long *src_pfns,
+>> >> >  					goto next;
+>> >> >  				}
+>> >> >  				nr = 1 << folio_order(folio);
+>> >> > -				addr = migrate->start + i * PAGE_SIZE;
+>> >> > -				if (migrate_vma_split_unmapped_folio(migrate, i, addr, folio)) {
+>> >> > +				if (migrate_vma_split_unmapped_folio(migrate, i, folio)) {
+>> >> >  					src_pfns[i] &= ~(MIGRATE_PFN_MIGRATE |
+>> >> >  							 MIGRATE_PFN_COMPOUND);
+>> >> >  					goto next;
+>> >> 
+>> >> ---
+>> >> Best Regards,
+>> >> Huang, Ying
