@@ -4,43 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCE35C5B572
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 16:50:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 200A4C5B572
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 16:51:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8052B10E4E5;
-	Thu, 13 Aug 2026 16:50:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A29E710F32D;
+	Thu, 13 Aug 2026 16:51:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NGK5/mH0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gx4O2ehJ";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E02310E4E5;
- Thu, 13 Aug 2026 16:50:18 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 9D76843870;
- Thu, 13 Aug 2026 16:50:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B5141F000E9;
- Thu, 13 Aug 2026 16:50:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786639817;
- bh=8Ky09McAots0CgJ3ElyGU75R+O91ZYko9YLt8OcgxaI=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=NGK5/mH0p7nO40WwilHciFjIVghfqy7GZ3a50NJfxbW0T9yIDuwQxDvlzJ/0lwVbB
- KBLb1K6iSovZqajHzmk50DgzjUdLZ9dNva21bazPKPuGb4RObZhXseHR3DV/sG3DnF
- 7f9m18m6akQ7DwNGAkhQRgLrwmXSASZ18eG4o8z84AOP3GVTCQZLB3ViD7/ypYrQV2
- aGBJgL5e3wNfrb/TGlaYGhDm63CgCEq1TsXV1bAH9z0L8VhOsh5+bmbWqoxdZA1tRU
- kcmRx3wNAmGuYR8fV2dAFvV2zuq5F3IcE6xxrvxEQ9Ky/IL85gGTxDfVhtS6NgAXhX
- Q70z80OtzceTg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 7/8] drm/i915: override Combo's VS/PE when requested
-To: =?utf-8?b?TWljaGHFgiBHcnplbGFr?= <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260813160918.918857-8-michal.grzelak@intel.com>
-References: <20260813160918.918857-1-michal.grzelak@intel.com>
- <20260813160918.918857-8-michal.grzelak@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 13 Aug 2026 16:50:16 +0000
-Message-Id: <20260813165017.4B5141F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C64310E503
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 16:51:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1786639886; x=1818175886;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=+Odb/SQUTAq4TdRm5uFtK38V3jcgl6vAV/5ApW2Gwxs=;
+ b=gx4O2ehJxCN64DJoz7GxJfvDCiJiMQIVm3s1DSjNSfvnKJUjuVknHqSE
+ c+wxdj6UGzvSM2Rcja7fQJky6oFYRmIE/IXu0LCJPN/z7BCYxFqicDu7q
+ bJ+gnMw8qStRUumUHdkcU4s+LTYxf6pMP1Vp24VnIr5AxuNFk4XX+db1M
+ 1HAroC01GU9YpHIgkvC8jrdOtXZUgrAfXL5252x/eCo1Kt0Q5CCHtKPUs
+ WCOFJJMs+oCW4oK/SFIgR2BEX0kcBU6ivkxl9T+pr7a4Nzw5yaOtTaL8A
+ TZobM+Dd3abUFS28G9b1JaOyLWnL9tSU3jsk+7YTPAk3QOzm6wdLpdPs4 g==;
+X-CSE-ConnectionGUID: poiHtpo9TUWT8xfPTb4TkA==
+X-CSE-MsgGUID: 2slPkw7lSuqpyJueXJsChg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11874"; a="87437183"
+X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="87437183"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2026 09:51:24 -0700
+X-CSE-ConnectionGUID: SCuuJjapRQWoxEp9OWJpdQ==
+X-CSE-MsgGUID: yrBQmCPcTQKTWjMCB9sqvA==
+X-ExtLoop1: 1
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2026 09:51:24 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 13 Aug 2026 09:51:19 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Thu, 13 Aug 2026 09:51:19 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.30) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 13 Aug 2026 09:51:19 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=q3/CIQ1EPt3DqrqXzQEFgHkstbPainLE0bCyzK/NHU482W7mv9uL4tndbJEkuApnmT56I//rX9wD42mUmNEUhmQHqwlcKvN+NlxJ51VV8uy6SsrjRGA6gip2a7OUoSOpC6i0wL+CP92PeQVZRgkbDIfamzu5MGvSbJWY3R7BPorQnz+wucu0V5U+H61WN+w+mLPbg7zv7O04zvBPsVfyJw5H8lqfadiLN+T60lW5XgMNn0gZwdZc+kCrRhv+Llo7cS0CafXcTX5/nSwRlvSKn5KkDSsWGGz02SZMO7FcLRQKJj1vqqbTq7lL21e+ePXYczvAu6k2GCT89phq5xErzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+Odb/SQUTAq4TdRm5uFtK38V3jcgl6vAV/5ApW2Gwxs=;
+ b=X5MRNUkaCttvEO+A2+5hSSOMMkGn6chWOrz0GKDdkhX70bpXhK0JcoytStz2ubvE+x41OzdjZR1C1+ziC3H4sHK0u8OiXWSic1mh2WRiM0P8/PnXDKvA+dxRGNpNlwuJ4oreP4G3sUmaNmj2Ik//gfjIdlSpdqoChlMqTxt9cNKEC/WWtvQtqXKonV1TYFQ5lGowx6pN6QHziqlPWQu0RVAsO9OQ9n/EIdn/tR3zMu3wCUNf6Id++0b9xyqzXylfuJZrhFNSO9I3Mn6KD4D2cPLEJ9HlVsf02mBYk5uxhgrwYr6fj69EGeUGFfz9org5wTINF0LAMmcOBTLG9qSmzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com (2603:10b6:208:3aa::18)
+ by MN2PR11MB4597.namprd11.prod.outlook.com (2603:10b6:208:268::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.15; Thu, 13 Aug
+ 2026 16:51:15 +0000
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::b831:13bc:a1c9:2628]) by IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::b831:13bc:a1c9:2628%4]) with mapi id 15.21.0315.012; Thu, 13 Aug 2026
+ 16:51:12 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: "sashiko-reviews@lists.linux.dev" <sashiko-reviews@lists.linux.dev>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v2 08/10] drm/xe/vsec: Crescent Island PMT callbacks
+Thread-Topic: [PATCH v2 08/10] drm/xe/vsec: Crescent Island PMT callbacks
+Thread-Index: AQHdKpIo3+ofk7XMPk2/Jk3zAEG1iraa1F+AgAFeHjA=
+Date: Thu, 13 Aug 2026 16:51:12 +0000
+Message-ID: <IA1PR11MB64188482F342399132A766FCC1DB2@IA1PR11MB6418.namprd11.prod.outlook.com>
+References: <20260812193742.2170188-12-michael.j.ruhl@intel.com>
+ <20260812193742.2170188-20-michael.j.ruhl@intel.com>
+ <20260812195710.42D571F000E9@smtp.kernel.org>
+In-Reply-To: <20260812195710.42D571F000E9@smtp.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6418:EE_|MN2PR11MB4597:EE_
+x-ms-office365-filtering-correlation-id: 6df9470c-32f3-4707-e546-08def95b152e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|38070700021|10067099003|4143699003|11063799006|56012099006|18002099003|22082099003;
+x-microsoft-antispam-message-info: tBAHyaWnZJjSaUsTGpck3eZfKmkFJ0rW9TID0FzNkNByU396JJMVwTZ3xIEP8qZGSm+I2p4nBL8sq8dtcqpa9Y0UrUSrItmlElkutTzLqNphANS8JMdcFnd2Q/EsL4I8f7b738++noaMFRinyCLvYN7qCeb9+nEOLQRrLMCkbkggpJkzvMYOelLXIKLpVKlcfGIENZr54n/XKKGp9Q09t0n0aZhp0axpnFBWeEWvT1KC7dKXZbyh3RiG0/BwvqH20vK7RCwfg4BG1pXHo4WNptS/HnpIQUWnJWmFBnkqylGSSflyDwBivshtYw36KKtJZwnmBkfQ+dKU7mty5i+oBLykzWZuE6bi8Xqmz4BV6ZG6p5Dl0v9eV/ZvImdMNY4wtsu+Q1ztyy+WnDuRT7sfYCQo+UnEphhjKZ/l+iui9Hwye/Lpw8naWX1OFFJo2NsMGlg7KaxYV2jrFGKVtG/d3hGi+xdJCYK2WTFTPb7wOz1nMZhDA09XBN0YOHMLlKLODDZxKTHkCGkq8DEr25b5bvMkIV60rNS23/6WPyPJ1MntTl3f0m0Pz4VYnMFV0+brAGhpqLf81qXOiR09jXwt7aGlAJ7p3aC40/ui72hngiuBQ8yRxIHOLygh/Ssossb4saOVCivjcq6gp6fFyAcwYFdw7YMbdZEX5CyvgqgMZXA=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6418.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(38070700021)(10067099003)(4143699003)(11063799006)(56012099006)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?YkJWc042RTUwRzhDOS9lMHhVVlI4VmViWGhadmxZSi93cnpEQ2dBbjNWdk1s?=
+ =?utf-8?B?N3ltMWV5YmNYODhpTktPTHBobFJJQ0RqYzBueXRRSHFSaDRKWVA1ckV4K1c2?=
+ =?utf-8?B?dWx2VmV3OUFtTlVnZzlkcTVvSytFeGs1bjVqR0dDanBVSlJSTFFDT2xLd1Uz?=
+ =?utf-8?B?UDM0Vjg0SmVsQWxFbkt4eXpqWHo5SlBsMG1JeDIvRWU4VFdvZWFodDhUNUUr?=
+ =?utf-8?B?TjFyN0wwdXo3VDNFTUp2djlWeVZGVlVnM05YWkI2MnZrYWJ1V1VoSGh5T25t?=
+ =?utf-8?B?SFQxb1RsUmh5SVZmaVNRNGowVU54QldGZjlGcGRpbHZ0Z0Y4SmhJb1NrVFlB?=
+ =?utf-8?B?Q0hrT240cS9SWlhHZDFPS0Q5UVZnQmp1V3ZrYllERElLeUdNbm1uZHNoWEJ6?=
+ =?utf-8?B?WFNPVnA4c2pVRWFFSzRiTEFGNGZ6Q0dsa05lU2xpS1YzYlFxL2VtUXA1TEJS?=
+ =?utf-8?B?NExFajRhRFRxdTc0L0pFME96dnhOQjl4NjdqWUFreFlCWm1FSU54a3FHeG9t?=
+ =?utf-8?B?UVY2eXlLbWZsRHBzRmk5TnZ1WDYrQ3hGcllSaWZBSWZhcTVYQWx0OG5walBS?=
+ =?utf-8?B?bjdCWUdDK0c3L09IZTZHNTdHMEY4Q2I2SnUyak1ZdkgyOU1WU0dhOWd2R0VJ?=
+ =?utf-8?B?Sk5zYkowUDkyV2VMUEYvZEVITksxTWR5K0Z6NDgySk5kUDFrT3NVS2tpM3lI?=
+ =?utf-8?B?cGY1VXlsejRlYWZBT0xzRFNGSEM2UUhuKzk4VTQwMDdJa3M4Zy96dWdqOFBG?=
+ =?utf-8?B?WWcvaW80ZFhjNWQ4VnlyWEhneFg1cnRZL0V2Wk4wRlI4eWVSUVBKb0ZlWi84?=
+ =?utf-8?B?ZXdiNjExWFR2ZDU5T1NTdU5MZXZqSHg3TUpwMWlRZm41alBKMUErcGs5WWlB?=
+ =?utf-8?B?Wm5FYlNCVW5VSlhINjdrMTRSdG54ZjJmdmg0YWNvSG5YSDJJNFZQZzZBc1Qw?=
+ =?utf-8?B?dGIrYUY2Rzl3UXU1dTM4N1BGVXQ2TmFSSVVoRkN0dnQyZ2hPRTIySjNJR0oz?=
+ =?utf-8?B?MkY3ZTFYaWkxdWNmWmVYTVZOUmNqMHFBYmx1RDlwOU85SjdybWVVQ2grUnNx?=
+ =?utf-8?B?K2ZBZ0VRTkZEY3QxanpKdkY1YXJYL1NEdm5JbDdlSFdJUjlsZlF5L054aWtM?=
+ =?utf-8?B?dTR6Y0N5ZFcwWTNqaUUzZGQzeW9kMmpXdXNPSkdNMTV5MGRmcGpjRlpJVjEw?=
+ =?utf-8?B?Y1dCTUtXL0x0dlNINGtuU2I2V25NaEpoQm15MzBwOFZLU2VMV2RtWnZ0MG5y?=
+ =?utf-8?B?cVNBbFJxbUtrVEIwS2dtVWc1UG1ENmlETmJJZzZtYmhReG53OUZzZnQxeUlq?=
+ =?utf-8?B?Y3gvQjNHREhzY2MzMUxHc2RlL3F4TFpFRVhwa3FLd0Jyc2FKNE8xWnhGTEhw?=
+ =?utf-8?B?Z3VyMWJ4cFpCQkM0U0VFWkxuSnA4aUlxMFppbUJkYVJ4VWV0ZitxdVhUNXQ2?=
+ =?utf-8?B?OVhpRExXdUZncG9LUHQvQVNZS1o3WmtGR0ZjTzNKNE5ybGhHK1crdW51V0JC?=
+ =?utf-8?B?SXI5U0p2Yzh4YlJkRlAvVGFwWi9NM2doczZ2cDhwcEgwNFdDcXV2RjdqUkMv?=
+ =?utf-8?B?eVE2N2Z6L2psbitIcHNRaklmbmtDL2wvenNEdXFEZjRJaHVpZ0FaYTEzS2pH?=
+ =?utf-8?B?TzZaSDFMOXZUMS90SmhDendJeVJIOEF3SkhPaWxiaEdTVC9zMmgxY25DVUZp?=
+ =?utf-8?B?ay9rQ3lPdm85ZkRzbzEyMG9YeVB6dUNBbThuU1ZOajl4Z0pTcXNvSjVYek1B?=
+ =?utf-8?B?ZXQ3VS96TDlmK2hmbmNsdS9VanVJVmVydDkvU0dTK2UrMjlKUlZHSzBIRGEv?=
+ =?utf-8?B?d0dQOXhPaDduMkRMOEEvaTlmTDlKNGkwMk0wM3RJWkVWdEpsUkwxdWhHa0NQ?=
+ =?utf-8?B?bFRTR2lLS0t3YWI3Vm5sMXkxclgrdC9CNEIwL09xU2VVYnBLcEtTWTJuSjBF?=
+ =?utf-8?B?WEdRZnkrbk5nWFRoVGdqUmtEeXk2WHQvTjEvblAxTnNrd3RmU1B3aUJiSXBO?=
+ =?utf-8?B?UEtzUE41K3o1cklKcXFGUTFBZFlGZEI4c2VVT3VBakIvZ0N5UjBNY0ExWUJK?=
+ =?utf-8?B?Ny9LN2pnTldkQmkwdm5DSVUvMXovb1hDdUZTRXJlUlUyeG1ScDIyd2ZWbUFL?=
+ =?utf-8?B?UnkrS1A1RGdJK3A2SDBGVHpKZmZEc2VCYXpjY1UzQ0JVbEJXaDRGbGpGTlRt?=
+ =?utf-8?B?OC92ZENocmZWOFJNdmZ6YzMwazJrNjZJMkNGdDlRUy9ueGM1QVNJOUlPVjdH?=
+ =?utf-8?B?ZmlwVSt4bDNWcUdwL05tRjZmbHpPM0tkU2IwVG1PNWh0elNnOVFPdmFxajBr?=
+ =?utf-8?B?TUhJa1lJbmIrblpuVHh4TFA0VkZOWFVVR1JZajZRZ1dFS0hVNUFvZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: MRf1dLqX2hK5fBYi2sEWYeJ2B502P7rQjB6iq1OG8LwABKGdFbeZScwAcGCsFGI7taVJFfNNtmGb9wLmDzGz1nooFhzrCq49/2SRM7rhS9u+W7PaFv0x5/dG5PGgm5eQ+R5JKg9Ck4pvNodXzo8cfsosFVB4RoQbk52ZLlHW8kIm1kXsuO7nCMRPgeyRA3Y8TxGJnShBVoJ6MC2QMN/RcZlE+O8RB2tsMbROpERDDZJUbg/bYgUFHZ+A+RS09rUFgeIHE4UjNjtFdNxqUKPoGCVXKjvp4HtnIdZ0Rk3mVshm/SPG9AI0Q506Q/vHL8BbhQFHI4jLmRaMiDPfUq33NA==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6418.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6df9470c-32f3-4707-e546-08def95b152e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2026 16:51:12.4972 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6ZfQa4lvcj9e+fXZeeukhSt6HjSc9qQNvYHQgAzE7kZSw0i5m9SwS9b6lIUjULtko3/EbOhF9jMcdndiPafVeRchzsIzAii/zdQimMFkxlg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4597
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,159 +166,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] EHL PHY override logic incorrectly applies 'low_vswing' settings t=
-o non-low_vswing eDP panels
-- [Medium] Potential out-of-bounds read during VBT 'tables' parsing
-- [Medium] JSL PHY override logic is reversed for HBR2 vs lower port clocks=
- compared to intended behavior
-- [Medium] Memory allocated for `devdata->entries` is leaked on early retur=
-n in vspeo retrieval functions
---
-
---- Patch [7]: [PATCH v11 7/8] drm/i915: override Combo's VS/PE when reques=
-ted ---
-commit 3f316b5929dec8d0ea8bb76e4cb8983db3b9bf70
-Author: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
-drm/i915: override Combo's VS/PE when requested
-
-This commit adds accessor functions for the Combo PHY to read requested
-VS/PE tables from the VBT. It parses the requested table and transforms
-the data to override the port's buffer settings based on platform (EHL/JSL)
-and port capabilities.
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-
-[ ... ]
-
-> +const struct intel_ddi_buf_trans *
-> +intel_bios_get_ehl_combo_vspeo(const struct intel_bios_encoder_data *dev=
-data,
-> +			       bool has_dp, int port_clock, bool has_edp)
-> +{
-
-[ ... ]
-
-> +	if (!validate_vspeo(devdata, has_dp))
-> +		return NULL;
-
-[Severity: Medium]
-Does this early return (and the similar one in intel_bios_get_jsl_combo_vsp=
-eo)
-cause a memory leak of the devdata->entries buffer?
-
-During teardown in intel_bios_driver_remove(), the driver attempts to free
-this memory using kfree(devdata->vspeo->entries). Since vspeo->entries is
-assigned much later in this function, returning NULL here leaves
-devdata->vspeo->entries uninitialized or NULL. This would cause the teardown
-code to skip freeing the memory allocated to devdata->entries.
-
-> +
-> +	if (has_edp)
-> +		idx =3D port_clock > 540000 ? 2 : 1;
-> +	else
-> +		idx =3D port_clock > 270000 ? 1 : 0;
-
-[Severity: High]
-The commit message indicates that for EHL, eDP configurations using low
-vswing should behave differently from eDP configurations not using low
-vswing. However, does this logic unconditionally apply the same table index
-logic to all eDP configurations?
-
-It seems intel_bios_get_ehl_combo_vspeo() does not receive or check a
-low_vswing parameter (like the JSL equivalent does), applying the same
-fallback logic to all eDP panels.
-
-> +
-> +	offset +=3D idx * num_rows * num_columns;
-> +
-> +	for (level =3D 0; level < num_rows; level++) {
-> +		u32 dw2_swing_sel =3D tables[offset];
-> +		u32 dw7_n_scalar =3D tables[offset + 1];
-> +		u32 dw4_cursor_coeff =3D tables[offset + 2];
-> +		u32 dw4_post_cursor_2 =3D tables[offset + 3];
-> +		u32 dw4_post_cursor_1 =3D tables[offset + 4];
-
-[Severity: Medium]
-Can this loop read out of bounds if the VBT is malformed?
-
-The parsing calculation offset =3D idx * num_rows * num_columns followed by
-direct accesses up to tables[offset + 4] doesn't appear to validate that
-num_columns is at least 5, or that the overall VBT tables buffer is
-sized adequately to support the calculated offset and rows.
-
-[ ... ]
-
-> +const struct intel_ddi_buf_trans *
-> +intel_bios_get_jsl_combo_vspeo(const struct intel_bios_encoder_data *dev=
-data,
-> +			       bool has_dp, int port_clock, bool low_vswing_edp)
-> +{
-
-[ ... ]
-
-> +	if (low_vswing_edp) {
-> +		if (port_clock > 540000)
-> +			idx =3D 0;
-> +		else if (port_clock > 270000)
-> +			idx =3D 1;
-> +		else
-> +			idx =3D 2;
-> +	}
-
-[Severity: Medium]
-Is this table selection logic reversed compared to the commit message?
-
-The commit message states: "When encoder supports HBR2 choose 3rd table.
-When encoder supports modes lower than HBR2 choose 2nd table."
-
-However, the code assigns idx =3D 1 (2nd table) for port_clock > 270000 (HB=
-R2)
-and idx =3D 2 (3rd table) for lower modes.
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers=
-/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-
-[ ... ]
-
-> +static const struct intel_ddi_buf_trans *
-> +ehl_get_combo_buf_trans_override(struct intel_encoder *encoder,
-> +				 const struct intel_crtc_state *crtc_state,
-> +				 int *n_entries)
-> +{
-> +	const struct intel_bios_encoder_data *devdata =3D encoder->devdata;
-> +	bool has_edp, has_dp;
-> +	int port_clock;
-> +
-> +	has_edp =3D intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP);
-> +	has_dp =3D intel_crtc_has_dp_encoder(crtc_state);
-> +	port_clock =3D crtc_state->port_clock;
-> +
-> +	return intel_bios_get_ehl_combo_vspeo(devdata, has_dp, port_clock, has_=
-edp);
-> +}
-
-[Severity: High]
-Should this override function be checking use_edp_low_vswing(encoder)
-similar to how it is checked in jsl_get_combo_buf_trans_override()?
-
-The current implementation omits the low_vswing context entirely, passing
-only has_edp down to intel_bios_get_ehl_combo_vspeo(), which prevents the
-distinction between low vswing and normal eDP configurations from being mad=
-e.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260813160918.9188=
-57-1-michal.grzelak@intel.com?part=3D7
+Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogc2FzaGlrby1ib3RAa2VybmVsLm9y
+ZyA8c2FzaGlrby1ib3RAa2VybmVsLm9yZz4NCj5TZW50OiBXZWRuZXNkYXksIEF1Z3VzdCAxMiwg
+MjAyNiAzOjU3IFBNDQo+VG86IFJ1aGwsIE1pY2hhZWwgSiA8bWljaGFlbC5qLnJ1aGxAaW50ZWwu
+Y29tPg0KPkNjOiBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj5TdWJqZWN0OiBSZTog
+W1BBVENIIHYyIDA4LzEwXSBkcm0veGUvdnNlYzogQ3Jlc2NlbnQgSXNsYW5kIFBNVCBjYWxsYmFj
+a3MNCj4NCj5UaGFuayB5b3UgZm9yIHlvdXIgY29udHJpYnV0aW9uISBTYXNoaWtvIEFJIHJldmll
+dyBmb3VuZCAxIHBvdGVudGlhbCBpc3N1ZShzKSB0bw0KPmNvbnNpZGVyOg0KPi0gW0hpZ2hdIElt
+cHJvcGVyIE1NSU8gYWNjZXNzIGZvciAzMi1iaXQgY29udHJvbCByZWdpc3RlcnMgdXNpbmcgYnl0
+ZS13aXNlDQo+Y29waWVzIChtZW1jcHlfdG9pby9tZW1jcHlfZnJvbWlvKS4NCj4tLQ0KPg0KPi0t
+LSBQYXRjaCBbOF06IFtQQVRDSCB2MiAwOC8xMF0gZHJtL3hlL3ZzZWM6IENyZXNjZW50IElzbGFu
+ZCBQTVQgY2FsbGJhY2tzIC0tLQ0KPmNvbW1pdCA2NjRhYjc3MTQ3ZGU2ZjQ1NmFmMGNlYWVhZTZh
+OTk2ZGRkM2Q2YTQwDQo+QXV0aG9yOiBNaWNoYWVsIEouIFJ1aGwgPG1pY2hhZWwuai5ydWhsQGlu
+dGVsLmNvbT4NCj5kcm0veGUvdnNlYzogQ3Jlc2NlbnQgSXNsYW5kIFBNVCBjYWxsYmFja3MNCj4N
+Cj5UaGlzIGNvbW1pdCBpbnRyb2R1Y2VzIGNhbGxiYWNrcyB0byBnZXQgdGhlIHN0YXR1cyBhbmQg
+Y29udHJvbCBpbmZvcm1hdGlvbg0KPmZvciBDUkkgUE1UIHVzYWdlLiBJdCBhZGRzIHRoZSBnbHVl
+IGxvZ2ljIHRvIHJlZ2lzdGVyIHRoZSBDUkkgUE1UDQo+ZnVuY3Rpb25hbGl0eSBpbiB0aGUgeGUg
+ZHJpdmVyLg0KPg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV92c2VjLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0veGUveGVfdnNlYy5jDQo+PiBpbmRleCBkYzQyYjk0OTI0MjhhLi41
+NzhkNTkwNDhiMzljIDEwMDY0NA0KPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3ZzZWMu
+Yw0KPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3ZzZWMuYw0KPg0KPlsgLi4uIF0NCj4N
+Cj4+ICtzdGF0aWMgaW50IHhlX3BtdF9yZWFkX3JlZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHUzMiBn
+dWlkLCB1MzIgKnJlZywgdTMyDQo+b2Zmc2V0KQ0KPj4gK3sNCj4NCj5bIC4uLiBdDQo+DQo+PiAr
+CXhlX3BtX3J1bnRpbWVfZ2V0KHhlKTsNCj4+ICsJbXV0ZXhfbG9jaygmeGUtPnBtdC5sb2NrKTsN
+Cj4+ICsNCj4+ICsJeGUtPnNvY19yZW1hcHBlci5zZXRfdGVsZW1fcmVnaW9uKHhlLCBDUklfSURY
+X1RFTEVNX0RJU0NPVkVSWSk7DQo+PiArDQo+PiArCW1lbWNweV9mcm9taW8ocmVnLCBkaXNjX2Fk
+ZHIsIHNpemVvZigqcmVnKSk7DQo+DQo+W1NldmVyaXR5OiBIaWdoXQ0KPldpbGwgdGhpcyBjYXVz
+ZSB1bnN1cHBvcnRlZCByZXF1ZXN0cyBvciByZXR1cm4gZ2FyYmFnZSBvbiBzb21lIHBsYXRmb3Jt
+cz8NCj4NCj5Vc2luZyBtZW1jcHlfZnJvbWlvKCkgZm9yIGEgMzItYml0IHJlZ2lzdGVyIHJlYWQg
+b2Z0ZW4gZmFsbHMgYmFjayB0bw0KPmJ5dGUtd2lzZSB0cmFuc2FjdGlvbnMgKGxpa2UgcmVwIG1v
+dnNiKSBpbnN0ZWFkIG9mIGEgc2luZ2xlIDMyLWJpdCBhdG9taWMNCj50cmFuc2FjdGlvbi4gRm9y
+IE1NSU8gY29udHJvbCByZWdpc3RlcnMsIGlzc3VpbmcgZm91ciAxLWJ5dGUgUENJZQ0KPnRyYW5z
+YWN0aW9ucyBjYW4gY2F1c2UgdGhlIGhhcmR3YXJlIHRvIGRyb3AgdGhlIHJlcXVlc3QuDQo+DQo+
+U2hvdWxkIHRoaXMgdXNlIHJlYWRsKCkgb3IgdGhlIGRyaXZlcidzIHhlX21taW9fcmVhZDMyKCkg
+d3JhcHBlciBpbnN0ZWFkDQo+dG8gZ3VhcmFudGVlIHRoZSBjb3JyZWN0IDMyLWJpdCB0cmFuc2Fj
+dGlvbiB3aWR0aD8NCg0KDQp4ZV9tbWlvX3JlYWQzMiBtYWtlcyBzZW5zZS4gIEkgd2lsbCB1cGRh
+dGUuDQoNCk0NCg0KPj4gKw0KPj4gKwltdXRleF91bmxvY2soJnhlLT5wbXQubG9jayk7DQo+PiAr
+CXhlX3BtX3J1bnRpbWVfcHV0KHhlKTsNCj4+ICsNCj4+ICtkZXZfZXhpdDoNCj4+ICsJZHJtX2Rl
+dl9leGl0KGlkeCk7DQo+PiArDQo+PiArCXJldHVybiByZXQ7DQo+PiArfQ0KPj4gKw0KPj4gK3N0
+YXRpYyBpbnQgeGVfcG10X3dyaXRlX3JlZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHUzMiBndWlkLCB1
+MzIgcmVnLCB1MzINCj5vZmZzZXQpDQo+PiArew0KPg0KPlsgLi4uIF0NCj4NCj4+ICsJeGVfcG1f
+cnVudGltZV9nZXQoeGUpOw0KPj4gKwltdXRleF9sb2NrKCZ4ZS0+cG10LmxvY2spOw0KPj4gKw0K
+Pj4gKwl4ZS0+c29jX3JlbWFwcGVyLnNldF90ZWxlbV9yZWdpb24oeGUsIENSSV9JRFhfVEVMRU1f
+RElTQ09WRVJZKTsNCj4+ICsNCj4+ICsJbWVtY3B5X3RvaW8oZGlzY19hZGRyLCAmcmVnLCBzaXpl
+b2YocmVnKSk7DQo+DQo+W1NldmVyaXR5OiBIaWdoXQ0KPkRvZXMgdGhpcyBoYXZlIHRoZSBzYW1l
+IGJ5dGUtd2lzZSB0cmFuc2FjdGlvbiBpc3N1ZT8NCj4NCj5TaW1pbGFyIHRvIHRoZSByZWFkIHBh
+dGggYWJvdmUsIHVzaW5nIG1lbWNweV90b2lvKCkgZm9yIGEgc2luZ2xlIDMyLWJpdA0KPnJlZ2lz
+dGVyIHdyaXRlIGNhbiByZXN1bHQgaW4gNCBieXRlLXNpemVkIE1NSU8gd3JpdGVzLiBTaG91bGQg
+dGhpcyB1c2UNCj53cml0ZWwoKSBvciB4ZV9tbWlvX3dyaXRlMzIoKSB0byBlbnN1cmUgYSBzaW5n
+bGUgMzItYml0IGF0b21pYyB3cml0ZT8NCg0Kd2lsbCB1cGRhdGUgdG8geGVfbW1pb193cml0ZTMy
+KCkuDQoNCk0NCg0KPj4gKw0KPj4gKwltdXRleF91bmxvY2soJnhlLT5wbXQubG9jayk7DQo+PiAr
+CXhlX3BtX3J1bnRpbWVfcHV0KHhlKTsNCj4+ICsNCj4+ICtkZXZfZXhpdDoNCj4+ICsJZHJtX2Rl
+dl9leGl0KGlkeCk7DQo+PiArDQo+PiArCXJldHVybiByZXQ7DQo+PiArfQ0KPg0KPlsgLi4uIF0N
+Cj4NCj4tLQ0KPlNhc2hpa28gQUkgcmV2aWV3IMK3DQo+aHR0cHM6Ly9zYXNoaWtvLmRldi8jL3Bh
+dGNoc2V0LzIwMjYwODEyMTkzNzQyLjIxNzAxODgtMTItDQo+bWljaGFlbC5qLnJ1aGxAaW50ZWwu
+Y29tP3BhcnQ9OA0K
