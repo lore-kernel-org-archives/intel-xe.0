@@ -4,27 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 202B6C5B572
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 13:13:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F241C5CFEB
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 13:13:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEFE810F31E;
-	Thu, 13 Aug 2026 13:13:25 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60EAB10F31E;
- Thu, 13 Aug 2026 13:13:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4917100691762010466=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0D010F31F;
+	Thu, 13 Aug 2026 13:13:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="DznBg7uA";
+	dkim-atps=neutral
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B199110F324
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 13:13:56 +0000 (UTC)
+Received: by mail-wr1-f52.google.com with SMTP id
+ ffacd0b85a97d-471eeac43bfso613323f8f.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 06:13:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin.net; s=google; t=1786626835; x=1787231635; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=MPyU5ZJiB+TH6nScuEMS6HFMIAgdMXUb5U4J4ksDT3I=;
+ b=DznBg7uAq5foiXSeTmJUhVPJJ2/YvJsk/6LaknGda1XRkqRGJ3uuMqb2ZNHRgzWNsI
+ p3j4ndfR3KO/5s3IsTU+fjzGsgP5jikvHCvkeADGEhT0RVq1QcCARU60BlHnIGM8T10M
+ ChIz9j2+1mPZnSNdqM+X1rhKfvPSCka7Ap8TYOEiBqtj5KinGwY5T44Kl2gxCsfK2A+4
+ BstAD//3usfue/TwNLM+16VJYmw7obHr4HQDxz4zExcANE6EV5tUlVn5w2vF9zxKdlV9
+ Nx6ncv2uVk5MrzIXIphJJ1rRM/SwwpKOmY/1HpfUe6rj57Uqb6gDZrlt366i0mhMpVky
+ xaMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1786626835; x=1787231635;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=MPyU5ZJiB+TH6nScuEMS6HFMIAgdMXUb5U4J4ksDT3I=;
+ b=i7i9NAW71v34lk6BFxtbshzbLVmwHvJWGIREzV0G2ljcUYsbDh5kr6H9A+WVGU/5/P
+ AUZyCYYEMp62H0q5XSY5ii7Z71qFS5vBDvCZoa8MKD7iB1Pb6yrFyX7WP9L/7hynmU5o
+ R03cXAo10vzSMrvLtiAqgG4fQ2iRMt5TspN4QXnw0GR94hDAOvTP1mLdRxEghV7Haz89
+ amlp2MOF/25ZlrZxNLs3wF4p8s3a6/1GmFYgGpS+RzMQYJTCbTCWvgwmGLY63Bo4J9ok
+ qVXreTiJQJIn+170YxlFcdc5MIbPLlwN7UZiXYgP3UqSGWoXuKwYwoimEJBKq5xhuvD5
+ hT2A==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RpOnEBjY9+YFTqpeK8iONBLZbCYxW/9kkZlE73g1Xp3V5/W8wbarKN+NwCsjOWsf0YWjdYjqhfEHQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzsELJEFFiBWyh08dF1iJKsvksKLUJKLHBJs+0qWTGsq1IYw4RO
+ RsDKAhbCwSA+ZGJbRLCzk5v7iWnZXtWjaNOkM3wtHbNIhdA3nEcqRXZNvYA6xquihi8=
+X-Gm-Gg: AR+sD101Du40hJeMgPNXmwfAax0aan6VvQ1lUukj6DPtjm90Fylscs8LetzAgU96fg9
+ bbl5xjkhVA8l0MMrFqT2snZCXjpH/tYflgDgPi3VuNz3c8AzirPxjKXRGCNugDo/pcz6NWUjCuh
+ uYziiIWGvGBe/QUEpCrKLjeycS8Tk5NGUq245KZ5Es7CyDj45XbGbGHprpnmcVbmyFES8AEA8xf
+ /68heskaOdI5XTrfNKrfnjQTG67j++1ZlwAB3D2e0KsUBdXvJKnSEHu8sfcEaX7eODTtZnEHuNY
+ 7TPw3OPxeaaTqsEOgYe+fbZZSS5WriBMUWUsM6GXnSBR4RCaf+DlslDGupWVe6nsb8yIjbmqEMh
+ owZ+rH1M9oPY7wvHcyOzEOEnKShVW2cCxlTZeesZs4E0YHewTUqnnOPLzyOP7yOl7KYUQD46cOB
+ U3uSb9Qr8l4XoudhHCDvtvSFxL/CKqUJeX5Vp1a8FuB4hhLBn6/tEpDXADZaRjW87A9pIDa5Wgx
+ R2OQ0F+z6N8q+s=
+X-Received: by 2002:a5d:530e:0:b0:47f:5ec2:d54 with SMTP id
+ ffacd0b85a97d-48159ccd3ccmr6423946f8f.5.1786626834819; 
+ Thu, 13 Aug 2026 06:13:54 -0700 (PDT)
+Received: from [192.168.0.116] ([81.79.79.1]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-4815a5c2308sm7097101f8f.33.2026.08.13.06.13.54
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 13 Aug 2026 06:13:54 -0700 (PDT)
+Message-ID: <92009e34-6467-4a78-a3fc-32a39b381f55@ursulin.net>
+Date: Thu, 13 Aug 2026 14:13:53 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/audio=3A_Add_HDMI_?=
- =?utf-8?q?TMDS_audio_bandwidth_check_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Aug 2026 13:13:24 -0000
-Message-ID: <178662680438.48115.15737094604462510348@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260813120016.3444891-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260813120016.3444891-1-chaitanya.kumar.borah@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH i-g-t v5 4/7] lib/xe: Introduce dmem driver and implement
+ Xe support
+To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ igt-dev@lists.freedesktop.org
+Cc: siqueira@igalia.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Christian Koenig <christian.koenig@amd.com>,
+ maarten.lankhorst@linux.intel.com,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>, Natalie Vock <natalie.vock@gmx.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
+References: <20260723194313.2748143-1-cascardo@igalia.com>
+ <20260723194313.2748143-5-cascardo@igalia.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20260723194313.2748143-5-cascardo@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +98,261 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4917100691762010466==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 23/07/2026 20:43, Thadeu Lima de Souza Cascardo wrote:
+> In order to be reuse the same dmem tests with multiple drivers, we need to
+> abstract a few operations. That includes getting the region name, and
+> allocating and releasing VRAM. As there is some initialization also when
+> multiple allocations are done, also provide init and deinit functions.
+> 
+> The Xe implementation was based on the original operations from
+> xe_cgroups.c written by Thomas Hellström. However, instead of doing a
+> deferred backing, followed by a bind, it does a simple non-deferred GEM
+> object creation on the VRAM region.
+> 
+> Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+> ---
+>   lib/igt_dmem_driver.h |  24 ++++++++
+>   lib/meson.build       |   1 +
+>   lib/xe/xe_dmem.c      | 139 ++++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 164 insertions(+)
+>   create mode 100644 lib/igt_dmem_driver.h
+>   create mode 100644 lib/xe/xe_dmem.c
+> 
+> diff --git a/lib/igt_dmem_driver.h b/lib/igt_dmem_driver.h
+> new file mode 100644
+> index 000000000000..2f4a4673ab16
+> --- /dev/null
+> +++ b/lib/igt_dmem_driver.h
+> @@ -0,0 +1,24 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright 2026 Valve Corporation
+> + * Authors:
+> + *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+> + */
+> +
+> +#ifndef __IGT_DMEM_DRIVER_H__
+> +#define __IGT_DMEM_DRIVER_H__
+> +
+> +#include <stdlib.h>
+> +
+> +struct igt_dmem_driver {
+> +	const char *name;
+> +	char * (*get_region_name)(int fd);
+> +	int (*init)(void **ctx, int fd, int max_bo);
+> +	void (*deinit)(void *ctx);
+> +	int (*allocate_vram)(void *ctx, int n_bo, size_t len);
+> +	void (*free_vram)(void *ctx, int n_bo);
 
-Series: drm/i915/audio: Add HDMI TMDS audio bandwidth check (rev4)
-URL   : https://patchwork.freedesktop.org/series/169701/
-State : success
+I expect IGT maintainers might ask for kerneldoc for these.
 
-== Summary ==
+> +};
+> +
+> +extern const struct igt_dmem_driver xe_dmem_driver;
+> +
+> +#endif
+> diff --git a/lib/meson.build b/lib/meson.build
+> index 868220408f8c..012802475de0 100644
+> --- a/lib/meson.build
+> +++ b/lib/meson.build
+> @@ -126,6 +126,7 @@ lib_sources = [
+>   	'igt_msm.c',
+>   	'igt_dsc.c',
+>   	'igt_hook.c',
+> +	'xe/xe_dmem.c',
+>   	'xe/xe_gt.c',
+>   	'xe/xe_ioctl.c',
+>   	'xe/xe_legacy.c',
+> diff --git a/lib/xe/xe_dmem.c b/lib/xe/xe_dmem.c
+> new file mode 100644
+> index 000000000000..1dec8cf8b0a1
+> --- /dev/null
+> +++ b/lib/xe/xe_dmem.c
+> @@ -0,0 +1,139 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright 2026 Valve Corporation
+> + * Authors:
+> + *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+> + */
+> +
+> +#include <errno.h>
+> +
+> +#include "igt.h"
+> +#include "igt_cgroup.h"
+> +#include "igt_dmem_driver.h"
+> +#include "xe_drm.h"
+> +#include "xe/xe_ioctl.h"
+> +#include "xe/xe_query.h"
+> +
+> +static char * xe_dmem_get_region_name(int fd)
+> +{
+> +	uint64_t vram_region = 0;
+> +	uint64_t region;
+> +	char *cg_region;
+> +
+> +	/* Find first VRAM region */
+> +	xe_for_each_mem_region(fd, all_memory_regions(fd), region) {
+> +		if (xe_region_class(fd, region) == DRM_XE_MEM_REGION_CLASS_VRAM) {
+> +			vram_region = region;
+> +			break;
+> +		}
+> +	}
 
-CI Bug Log - changes from xe-5588-ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98_BAT -> xe-pw-169701v4_BAT
-====================================================
+FWIW it looks like that from here..
 
-Summary
--------
+> +	if (!vram_region)
+> +		return NULL;
+> +
+> +	cg_region = xe_cgroup_region_name(fd, vram_region);
+> +
+> +	return cg_region;
 
-  **SUCCESS**
+.. to here could be simplified as return xe_cgroup_region_name(...), 
+given the helper returns NULL for non-VRAM regions. Or even return 
+straight from the above loop instead of the break. Up to you which of 
+the three options you prefer, just thinking out loud.
 
-  No regressions found.
+> +}
+> +
+> +struct xe_bo {
+> +	uint32_t handle;
+> +	size_t len;
+> +};
+> +
+> +struct xe_dmem_ctx {
+> +	int fd;
+> +	struct xe_bo *bos;
+> +	uint64_t vram_region;
+> +	int max_bo;
+> +};
+> +
+> +static int xe_dmem_init(void **ctx, int fd, int max_bo)
+> +{
+> +	struct xe_dmem_ctx *xe_ctx;
+> +	uint64_t region;
+> +
+> +	xe_ctx = malloc(sizeof(*xe_ctx));
+> +	if (!xe_ctx)
+> +		return -ENOMEM;
+> +
+> +	xe_ctx->bos = calloc(max_bo, sizeof(xe_ctx->bos[0]));
+> +	if (!xe_ctx->bos)
+> +		goto out;
+> +	memset(xe_ctx->bos, 0, max_bo * sizeof(xe_ctx->bos[0]));
 
-  
+calloc already zeroes the memory.
 
-Participating hosts (13 -> 13)
-------------------------------
+> +	xe_ctx->max_bo = max_bo;
 
-  No changes in participating hosts
+Could the need for max_bo input parameter be avoided if the arrays were 
+allocated in chunks and grown? More complex implementation but a simpler 
+API.
 
+> +
+> +	xe_ctx->vram_region = 0;
+> +	/* Find first VRAM region */
+> +	xe_for_each_mem_region(fd, all_memory_regions(fd), region) {
+> +		if (xe_region_class(fd, region) == DRM_XE_MEM_REGION_CLASS_VRAM) {
+> +			xe_ctx->vram_region = region;
+> +			break;
+> +		}
+> +	}
+> +	if (!xe_ctx->vram_region)
+> +		goto out;
+> +
+> +	xe_ctx->fd = fd;
+> +
+> +	*ctx = xe_ctx;
+> +
+> +	return 0;
+> +
+> +out:
+> +	if (xe_ctx->bos)
+> +		free(xe_ctx->bos);
+> +	free(xe_ctx);
+> +
+> +	return -ENOMEM;
+> +}
+> +
+> +static void xe_dmem_deinit(void *ctx)
+> +{
+> +	struct xe_dmem_ctx *xe_ctx = ctx;
+> +
+> +	free(xe_ctx->bos);
+> +	free(xe_ctx);
 
-Changes
--------
+Handle cleanup is not desirable?
 
-  No changes found
+> +}
+> +
+> +static int xe_dmem_allocate_vram(void *ctx, int n_bo, size_t len)
 
+Is the last patch in the series the only user of this API? I am thinking 
+whether the n_bo input parameter is required and it wouldn't be simpler 
+to just return a handle (or null) and grow the internal count. Ie. is 
+there a use case for callers to precisely need to control "allocate/free 
+at this index"?
 
-Build changes
--------------
+> +{
+> +	struct xe_dmem_ctx *xe_ctx = ctx;
+> +	uint32_t handle;
+> +	int err;
+> +
+> +	if (n_bo >= xe_ctx->max_bo)
+> +		return -ENOMEM;
 
-  * Linux: xe-5588-ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98 -> xe-pw-169701v4
+If the max_bo approach remains, I'd be tempted to igt_assert here since 
+it is a test writer error to hit it.
 
-  IGT_9054: 3d819a8f511b2bcd844647bcf7e433b9407d058e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5588-ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98: ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98
-  xe-pw-169701v4: 169701v4
+Also, return error if a valid handle is already at the requested index?
 
-== Logs ==
+> +
+> +	err = __xe_bo_create(xe_ctx->fd, 0, len, xe_ctx->vram_region, 0,
+> +			     NULL, &handle);
+> +	if (err)
+> +		goto out;
+> +
+> +	xe_ctx->bos[n_bo].handle = handle;
+> +	xe_ctx->bos[n_bo].len = len;
+> +
+> +out:
+> +	return err;
+> +}
+> +
+> +static void xe_dmem_free_vram(void *ctx, int n_bo)
+> +{
+> +	struct xe_dmem_ctx *xe_ctx = ctx;
+> +	size_t len;
+> +	if (n_bo >= xe_ctx->max_bo)
+> +		return;
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v4/index.html
+Same assert or not comment as above.
 
---===============4917100691762010466==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> +	len = xe_ctx->bos[n_bo].len;
+> +	if (len) {
+> +		gem_close(xe_ctx->fd, xe_ctx->bos[n_bo].handle);
+> +		xe_ctx->bos[n_bo].len = 0;
+> +	}
 
+It looks like the len local is superflous and handle also needs clearing.
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +}
+> +
+> +const struct igt_dmem_driver xe_dmem_driver = {
+> +	.name = "xe",
+> +	.get_region_name = xe_dmem_get_region_name,
+> +	.init = xe_dmem_init,
+> +	.deinit = xe_dmem_deinit,
+> +	.allocate_vram = xe_dmem_allocate_vram,
+> +	.free_vram = xe_dmem_free_vram,
+> +};
 
+Regards,
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/audio: Add HDMI TMDS audio bandwidth check (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169701/">https://patchwork.freedesktop.org/series/169701/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Tvrtko
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5588-ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98_BAT -&gt; xe-pw-169701v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5588-ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98 -&gt; xe-pw-169701v4</li>
-</ul>
-<p>IGT_9054: 3d819a8f511b2bcd844647bcf7e433b9407d058e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5588-ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98: ce212c90b6b1f5c50c99d1ad8770d4e45ea19c98<br />
-  xe-pw-169701v4: 169701v4</p>
-
-</body>
-</html>
-
---===============4917100691762010466==--
