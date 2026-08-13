@@ -4,149 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDACFC5CFCF
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 17:26:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7334DC5CFCF
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Aug 2026 17:33:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74C2810F44F;
-	Thu, 13 Aug 2026 17:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1059610E4BE;
+	Thu, 13 Aug 2026 17:33:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FI4TsXSX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MnH57lFP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ECF810F44F
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Aug 2026 17:26:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786641960; x=1818177960;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=9B1UEZ+IP2VaRszfnpI8TPbA39XDoHxVg+uLp6NbowQ=;
- b=FI4TsXSXvbPCg/VNoUp0DlADIxxsI/u6VPewten2sGytzqSGk6Qh/Lki
- sBkh8zwZLYjOzJQavWw6qLK1fW/r1/wvONzyPjAHi2xAaAreOXu/jGeRt
- vRH4NoQR/vJPt9XonywbvVjbRrAUaCbVpL/EjOMppjq6siVHIw2LjsY0j
- 2ywKsqKTsO8gawkB2lrbj7q5qL115q6H30++eTfyFE+ilf+hmnl6tDZVZ
- xrBqGpThPZEHIGBd3/Gkc5ncQRCx/sps2QeNv3x3joaWWuGPwsd3fZj3a
- dz8M92d5/o/TpGT91g7FcHTnOsF9WgSz8A3yzmZVsaHpGKAo2600L6sn/ g==;
-X-CSE-ConnectionGUID: SZV85lI8TSyd+Bzcgo7Auw==
-X-CSE-MsgGUID: bhXMn7BYSymsWNtcd042Hg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11874"; a="97809522"
-X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="97809522"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2026 10:26:00 -0700
-X-CSE-ConnectionGUID: S5kC6y2HTB6w+P/EIcbqsw==
-X-CSE-MsgGUID: jEZmyczTTBCF4EaCz445ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,221,1779174000"; d="scan'208";a="259760122"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2026 10:25:58 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 13 Aug 2026 10:25:53 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 13 Aug 2026 10:25:53 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.5) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 13 Aug 2026 10:25:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Yh5WsycVqeayS5LkT+HqVtHyjpOvy1673+00HjsgyGaf4Od6t39eV2NuO4XT1wdmqSW8Qqx3ATFrl5Q1t41r91yqA/l4D1jlucfwpSJ7HZZQpsLKPZa9I3FQuJU2v/i6Q8aSTfqiuc+K1ALvLRpE1ie5l5JiWR3Z0lgGgpMgfWi5smXk+hHMEpGYb7/MhHScq2x39w2AnxWy0eoponoiT3KUxLLHv24RnS2M9/0EMtTYKfgTvJNKLLDdfDQPTjKKIxPX6qvwguJfMLDwNtBSaRWS7ld4T7voF85k8EEyzmS79DFyZGGV+a3xEng1stm2Z7juno39mKDnt8vEHelVlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eIriO9RUMFKvKGVWPf6cq9ewkyQ5m72xUmnDHfMaFUI=;
- b=jmPZFXw5S9KTjYq91CSybQAjR6R4/LeCrUA80RcsVoC9jC6NgV2Y5Hbf2e3mV0K8IdQG/df6atFneDu+XVKZrnbvuYyLwm2utx4MMNPB9/GfMgaWloybLI9+VWl6LRmA1aaTkv7VGT85zu4NGfEsGhXlWwOgy+Hy+SxHov/BxQr4C96ZMzj4bsikUYjUXisK1/fXxyvziGNGANkM0yft0SOFn6C4nbjMpl2AyxOggYhMP7sqTLAZ9QyhZBU7cankujtV65iKMmcEu8J1lU5otznLFs5nNufetEIE5WSbs0dCzzPLKRFFo8zOydxD4fAUtqD3mCC4ieKirxiyXO1NWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by DM4PR11MB6358.namprd11.prod.outlook.com (2603:10b6:8:b7::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.12; Thu, 13 Aug
- 2026 17:25:50 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%7]) with mapi id 15.21.0315.014; Thu, 13 Aug 2026
- 17:25:50 +0000
-Date: Thu, 13 Aug 2026 13:25:47 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matthew Brost <matthew.brost@intel.com>, 
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Aravind Iddamsetty <aravind.iddamsetty@intel.com>, Mallesh Koujalagi
- <mallesh.koujalagi@intel.com>
-Subject: Re: [PATCH v4 31/32] drm/xe/gt: Report 'Queue full' pagefault error
- using SIGID
-Message-ID: <an3-G8O8Ab7vUejd@intel.com>
-References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
- <20260812191450.11690-32-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260812191450.11690-32-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0215.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::10) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFDC810E4BE;
+ Thu, 13 Aug 2026 17:33:03 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8B60B438C8;
+ Thu, 13 Aug 2026 17:33:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24A2D1F000E9;
+ Thu, 13 Aug 2026 17:32:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1786642383;
+ bh=8RH4X65GrcOStx5k2qJG9rtw4kTKZnFMRsh/QcJAqJ4=;
+ h=From:Subject:Date:To:Cc;
+ b=MnH57lFP93+xSdu/gTRBJQrkrD0IiTywTYN+RKwOpv6idf2cg3mFB8EXfoKXcxNo2
+ PYFhl3lTvwildblP0XGg6sfZEpkHzcZe2rkyqSrFAkqk1SUcpCu7nA1sepWGf6S6Zc
+ mZWLM1xLvzQwyfznp6l1ynUPQTVUrUE4kkGIC4HcsquTFREEMnpV3+hAv+dpLumCs0
+ X7oHDjU54jfLo3rkoUKgK4R6mfzWZEyPLtFly3ulG7qbhfzIIi7U4wdmyjlVtBFI1s
+ E/fGPkj/3GqRJ0ojInPzuVY1V+5YOKquk7UsInbYfxZiUhcgVYNxcIANTA6L5l05em
+ 6VmYMSG2ZxarA==
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+Subject: [PATCH v5 00/16] mm/rmap: index MAP_PRIVATE file-backed folios by
+ anonymous pgoff
+Date: Thu, 13 Aug 2026 18:32:17 +0100
+Message-Id: <20260813-b4-scalable-cow-virt-pgoff-v5-0-c21581c0c3c8@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|DM4PR11MB6358:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b4c82eb-ae79-4df4-dbf4-08def95febc0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|22082099003|18002099003|11063799006|4143699003|56012099006|10067099003;
-X-Microsoft-Antispam-Message-Info: MsGPeXsvN/WEpd9UO0ByFSA2cw2cTdWod5Re9p3/FG6to8VXMS1v2zL3GmsORO17NTbtaxQjpF2oP8bjURvHXBBgd0fN4bXgaeZPuBpvcds0ocY323XleXHaRyHxDlm6jwtifEyz2apcqH2Ar2fWMuj46B7/GoVCbyi+6mNCn7IEKkBDFdhYG6wxJAwmy5SJXHbEHc5HMUWF465AiLPJCX0gMNykea1ZYos9CZTiXKJjJKsHr6YcQJhQwMuS6jQrByJO8TPnMDn5NEmrXy5NhkYpAhXTrURZ5tCvlR5vrg6gGP3iEIJdsQwBktJHbZJeNXYsSCbvKfOUzo090jMJg775dL4iTdf0ww168tgc3BjD4datr7aXEcsGapMGNDCNn6ZC6tnIQesXRnOrK0VlKTFHInOfC6+1qhs6d5oLCNftH9+b2T/4bv61ooSqNx5WWmIFbtGvZ5tgjmob261ZrqQLlwMgP1JP/JfUCYSGqexmg+qlt49mV5P6hhM3dFxl7OjxCFZbe8l+l4NBFbF6orT6o4MkTZU3/6NHoXmNO04GD6DO5g4ld7i6SLf0L/XfxFYeMNGUI1/7aPVJqXEC+biPc4RmV6Dw/e8rGx356Vxo2W88M0YK33hWKqS8v02UGOwV3VThmwF+5Pku/47TdJWN7TNBznt8VGKlBiLzVMM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kVNZ39ls2nlAiYKgqgO7GuM0AYSFUmRmxszIwIF/jMslFTnLxiIEzx7SUEKd?=
- =?us-ascii?Q?oT1M/SFosoYdGdDr1UW3BkrIh7jl66kNZE9dvcc3QxizdThfuNxFo8v9If47?=
- =?us-ascii?Q?POfrvrL7x0JDxZM42lTPLQnKuIM5u3S5MUvni8xupQ2SHBKWxE+C/4zgDJsJ?=
- =?us-ascii?Q?Mr4PGPdWfAqNW6387FMmrMZGbjCuOzrd4407H8y2YIlj8f82xyfbrFJ9cEqt?=
- =?us-ascii?Q?DK1iWl97SkAOOnboS9bcG9IWUVdOEIa4EyvPkzfQoRA7AjsEGKSTjiSVffNN?=
- =?us-ascii?Q?vtHNppjsHLf7ulPFYg7sToiENKvRtLbIlGn2WNTL3LTt3DbOSOU7TkRyFNat?=
- =?us-ascii?Q?8zdONn7rCPN3HX3mRZdwcYG0DhYYOknEVjA3ePRDYOP3YG4lWEGy1eKN/Ja/?=
- =?us-ascii?Q?NpSYuZbHOVx7X8a/ti4xEOi3fwDtXtg3sgtHvw1kS+W2Kq+RCWYLthmagsgC?=
- =?us-ascii?Q?2H+JxEzBlGhZ2VguSvOa9cABidv4CgMr28O/NoLXXfQjVWzbjmnWiUCMLeMs?=
- =?us-ascii?Q?jwW89YpKSCQ9rXIJkYS3GjBy4iVhOeX/hCas0UXD2u4nxCP6NpexKV2AWK46?=
- =?us-ascii?Q?Dlj2jYTRG4Lo6qnzPKMLJLiezH4nSmFB/SB1lAMpl5WD3M1TSE5M5qgrun1t?=
- =?us-ascii?Q?M1xFLa6FlwkJ5MvPR2UrrJmCZvV+kdsz64+athBV8/46u+COArUsttcMP5e5?=
- =?us-ascii?Q?balFbet4HgzpA0Cts8k7G4pq+hMODFcFpcO7FtPIrl0wzBiojYEVkCq+qJkG?=
- =?us-ascii?Q?Y6sUWL9c0aU0N15RAF946+Y5hQ9yOnAP1zdPxjaa8/WoEcS5IFX5/ZN04fdV?=
- =?us-ascii?Q?i5PR2OPePUzghsC+QpFL25+1hnA/C1KRKGvZbnDV3wT73mdFPeg/i5lg5/sx?=
- =?us-ascii?Q?HoVOH0kEbR6f89cjblK/p1H8bOOPbK5v2bhp6fC2n7UMKs11KiaDeWKNqmv8?=
- =?us-ascii?Q?8wk2nAT6P+OVy81lrb686BXiX/d89a7L0+CwId1Si687XbFhgvZvmd+6+Xqf?=
- =?us-ascii?Q?PbzE2AbV3S/dfZCb7Zrw9yXbr1GsiqB2dNITg3M5hfxpg9erM30wZrOABE7s?=
- =?us-ascii?Q?9r2TZmJz1E2wLjRVcJPHHwC3xJHMumiKeWt9fH7cBNVnyvhfcVQVoJrIbJyK?=
- =?us-ascii?Q?B+DoZN9u+ms/KThFtrMrRAV/3MdfxcgODuiQQRTRXBfVyOZVfrZQgIqsp8BV?=
- =?us-ascii?Q?gateA0gHh0wNxnQHOXl+AdaMNNbh6v/8cOBhNSzxLsT4U9TBmZLTMd6UHZQh?=
- =?us-ascii?Q?bXyuW8J56nwwI/HZRsUfgb9sEqUizQRv5+80tp7FBmO1rk9K3nsxvr8Vs6VE?=
- =?us-ascii?Q?7YxI96+LPTQUJ9h5tSEQ/oTl7WadTloDrT0O23+d/0cVzFZoBkeQ29hd6fz4?=
- =?us-ascii?Q?HU/yBvEwipMQ/T4ws0tPmRdQA9kfDBrDXb44HIol2xKPtPzN5E4JAr7YMSq7?=
- =?us-ascii?Q?ngTfzuoBJF+Xzj0xjTf6KG6mzJglU7QYeeGemi9JC0uHNv/hAqZHkUeuSbGP?=
- =?us-ascii?Q?Te2QPhMoLA9lEaOVXWhQm9pmQ70ASkXmD1Ihe/WHJL35LOs3QEAocKEQ2DlA?=
- =?us-ascii?Q?pm9UJ6CNXeZd3mn1C39E2QiFA7bHBMipxMpKD0g3Ff3ei/pmbLeL8QdPLq9u?=
- =?us-ascii?Q?Aj7QIBC9WC9s7D7bwHM+5u2GRcGVOdOGGBz61TILwjY0iSEGKKqYGnFUk91a?=
- =?us-ascii?Q?2XHiZ/Dam/DIvUNwTxafyl4nJ2UC6OHlo2rElfqouCoOtTlP4oLyUYAKGY96?=
- =?us-ascii?Q?0yztoXcL6A=3D=3D?=
-X-Exchange-RoutingPolicyChecked: R7bMMe2KBthBrL6DK0masVydS6PZi2fBtmZy0X3NwHmmx/mmhZOe7huDlOoIFM3Cj72u4AbVyn46Q0MRqCP3G/mi8RIXxlrBOu/UHC/NeKFHbqhVY6FJ5LEFwHiMBSPICLwqFXNzGaPL0A/Nwc4MUOayY3AXhI9GumKqHEKu/YGuqBzGVovGhUQr8AJL7BYaGyMeHx9DPX1UaPTWJSP0pL+XLTBx0VE4sGtczI0+7G2yMD0UrODH2OUp5s2lUYAvOhd79UWkFKyB8JT2DUyxhojS+bV7H4AGYJ1JMlTgUpBhHKHkeQ5/+8IxoB4wuTUlK7+kqTsUz3aEQ9/jClc4IQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b4c82eb-ae79-4df4-dbf4-08def95febc0
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2026 17:25:50.7387 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HREcf8hMYEzVQQcUrqw3RxYTReuo868QiHCESPZ3oML0VhutaMDDfyU9o3fVgdktYikFtHQFvBR+YeOULOczlw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6358
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKH/fWoC/33PTU7DMBAF4KtUXuNo/BcnrLgHYmG749Qliis7G
+ FCVu+OkSBRVyvJJM9+8uZKMKWAmz4crSVhCDnGqQT0diDuZaUAajjUTDrwFzRi1kmZnRmNHpC5
+ +0hLSTC9D9J4acA7QMmldSypwSejD14a/vt1y/rBndPMqrhOnkOeYvrfrha1zxMWCqWG641oqp
+ kQzhLkZz/nlHdOEYxPTsG7+9tF7fQqjQJ3nsmeAHnp5b6yFCt9O3iwOuxavFj8q2WuljW79gyX
+ urX7XEtXCDp1Hj6Zj/MGSf1YH7a4lq2WsYJ0RCiT8/3FZlh94SJuq4gEAAA==
+X-Change-ID: 20260711-b4-scalable-cow-virt-pgoff-a0cc0eb14bc6
+To: Andrew Morton <akpm@linux-foundation.org>, 
+ David Hildenbrand <david@kernel.org>, 
+ "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, 
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
+ Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>, 
+ Pedro Falcato <pfalcato@suse.de>, 
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jan Kara <jack@suse.cz>, 
+ Miaohe Lin <linmiaohe@huawei.com>, 
+ Naoya Horiguchi <nao.horiguchi@gmail.com>, Rik van Riel <riel@surriel.com>, 
+ Harry Yoo <harry@kernel.org>, Lance Yang <lance.yang@linux.dev>, 
+ Kees Cook <kees@kernel.org>, Zi Yan <ziy@nvidia.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Nico Pache <npache@redhat.com>, 
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>, 
+ Barry Song <baohua@kernel.org>, Usama Arif <usama.arif@linux.dev>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Joshua Hahn <joshua.hahnjy@gmail.com>, Rakie Kim <rakie.kim@sk.com>, 
+ Byungchul Park <byungchul@sk.com>, Gregory Price <gourry@gourry.net>, 
+ Ying Huang <ying.huang@linux.alibaba.com>, 
+ Alistair Popple <apopple@nvidia.com>, Peter Xu <peterx@redhat.com>, 
+ Xu Xin <xu.xin16@zte.com.cn>, Chengming Zhou <chengming.zhou@linux.dev>, 
+ Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Christian Borntraeger <borntraeger@linux.ibm.com>, 
+ Janosch Frank <frankja@linux.ibm.com>, 
+ Claudio Imbrenda <imbrenda@linux.ibm.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+ Sven Schnelle <svens@linux.ibm.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, 
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
+ Adrian Hunter <adrian.hunter@intel.com>, 
+ James Clark <james.clark@linaro.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ John Hubbard <jhubbard@nvidia.com>, Muchun Song <muchun.song@linux.dev>, 
+ Oscar Salvador <osalvador@suse.de>, Chris Li <chrisl@kernel.org>, 
+ Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
+ Nhat Pham <nphamcs@gmail.com>, Baoquan He <baoquan.he@linux.dev>, 
+ Youngjun Park <youngjun.park@lge.com>
+Cc: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>, linux-mm@kvack.org, 
+ linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kvm@vger.kernel.org, 
+ linux-s390@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-perf-users@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
+ syzbot@syzkaller.appspotmail.com
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=18697; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=I8nvhkifFuzM+dzqc8VyZ2gykJFKxYtFhzKUvlMRyb4=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLJq/68W9lD4o77nwYFA7px5j6aU+q50FfsS9fjGsnU8f
+ wXW/uUJ6ChlYRDjYpAVU2R5/kV8f5BI2LzOC/5uMHNYmUCGMHBxCsBEjscw/LN4xyq3qVv5YK2V
+ iNBDbS2heafVHhRN3X5eJNTsTebM5zwM/z0rzNLub1k180LGvIcSAuJO5v0pzmIyrn8f3/Wcdv7
+ iLXYA
+X-Developer-Key: i=ljs@kernel.org; a=openpgp;
+ fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,42 +126,385 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 12, 2026 at 09:14:47PM +0200, Michal Wajdeczko wrote:
-> Report 'Queue full' error using xe_log_err() helper.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pagefault.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-> index eb600c466187..f0e173a251e4 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> @@ -328,8 +328,10 @@ xe_pagefault_queue_add(struct xe_pagefault_queue *pf_queue,
->  
->  	do {
->  		/* Not possible, warn on and drop page fault */
-> -		if (WARN_ON(xe_pagefault_queue_full(pf_queue)))
-> +		if (WARN_ON_ONCE(xe_pagefault_queue_full(pf_queue))) {
+In memory management we've managed to manufacture a great deal of confusion
+around the concept of anonymous memory. We have:
 
-Please mention in the commit message that we are replacing the WARN_ON
-per WARN_ON_ONCE to avoid the extra noise and also because once is
-enough anyway.
+1. 'Pure anon' memory - anonymous VMAs whose folios are anonymous and
+   swap-backed (thus for reclaim purposes, treated as anonymous). These are
+   simple enough.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+2. shmem - file-backed VMAs, file-backed folios (from rmap perspective) so
+   present in the page cache and mapped by an address_space object, but
+   whose folios are also swap-backed (thus treated as anonymous for reclaim
+   purposes).
 
-> +			xe_log_err(xe, PAGEFAULT, -ENOSPC, "Queue full!\n");
->  			return NULL;
-> +		}
->  
->  		lpf = (pf_queue->data + pf_queue->head);
->  		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
-> -- 
-> 2.47.1
-> 
+3. MAP_PRIVATE-mapped /dev/zero - a strange beast whose VMAs have
+   vma->vm_file set, but which clears vma->vm_ops to satisfy
+   vma_is_anonymous(), resulting in VMAs that were mmap()'d referencing a
+   file, but are in every other sense anonymous, including the folios.
+
+4. Other MAP_PRIVATE-file backed mappings - These possess file-backed VMAs
+   and have file-backed folios until CoW'd, at which point those CoW'd
+   folios are anonymous.
+
+This series fixes issue 3.
+
+In order for us to traverse VMAs using the reverse mapping, we require two
+fields - folio->mapping and folio->index. The first tells the rmap code
+where to look for VMAs, and the second tells it at which offset the folio
+starts within the referenced object.
+
+For anonymous folios, folio->mapping points at an anon_vma object. For
+file-backed folios, it points at an address_space. And:
+
+* For file-backed folios folio->index is simply the page offset of the start
+  of the folio within the file.
+
+* For anonymous folios belonging to pure anon mappings, folio->index is
+  equal to the anonymous page offset of the folio.
+
+* For anonymous folios belonging to file-backed mappings (i.e. CoW'd folios
+  of a MAP_PRIVATE file-backed mapping), folio->index is equal to the file
+  page offset.
+
+This series establishes a new anonymous page offset property of VMAs to
+allow us to map anonymous folios at their anonymous page offset, consistent
+with pure anon.
+
+The purpose of doing so is to lay the foundations for the scalable CoW
+work. This is necessary because scalable CoW looks in the maple tree for
+the VMA located at folio->index << PAGE_SHIFT, before falling back to
+looking up tracked remaps if necessary.
+
+The MAP_PRIVATE file-backed case means that folio indices will very often
+conflict with one another and this remap tracking becomes substantially
+more contended, and of course the fast path can never be used.
+
+This also makes it possible, in future, to unshare anonymously mapped
+folios with deep fork hierarchies on remap, eliminating the need for remap
+tracking in the vast majority of cases.
+
+Similar to page offset of pure anonymous VMAs, we update the anonymous page
+offset of unfaulted file-backed VMAs on remap, but do not once
+CoW'd (i.e. vma->anon_vma is non-NULL).
+
+Overall, there is little impact on mergeability, which remains exactly the same
+for pure anonymous and shared file-backed mappings, with the only impact being
+on MAP_PRIVATE-mapped file-backed mappings, which must now match on anonymous
+page offset as well as file page offset to be merged.
+
+To fail to merge like this would require CoW'ing the mapping, then finding
+another VMA with identical file and compatible page offset to remap next
+to.
+
+This is therefore very much an edge case that should have very little
+impact (and which scalable CoW may very well address in any case).
+
+Signed-off-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
+---
+v5:
+* Accumulated tags (thanks everybody!)
+* Removed the final 4 patches to be handled later as there are nuances with
+  the /dev/zero stuff we need to figure out, as discussed with David.
+* Updated the cover letter to reflect this.
+* Added comments to vma_flags_is_cow_mapping(),
+  vma_[desc_]is_cow_mapping() as per Suren.
+* Correct typo as per Suren.
+* Reworded test comment in patch 16 from 'fault in' to 'trigger a CoW
+  fault' as per David.
+* Fix -> 75 char limit in patch 12's commit msg.
+
+v4:
+- Updated tags (thanks everyone!)
+- Adjusted some prose as per David.
+- Adjusted whitespace to 2 tabs in 2/15 as per David.
+- Improved linear_page_index(), __linear_anon_page_index() to be more
+  succinct in 2/15 as per David and updated commit message to reflect it.
+- Added commit to provide vma_[flags_]is_cow_mapping() - nearly all callers
+  are calling is_cow_mapping() as is_cow_mapping(vma->vm_flags) so just
+  provide a helper to do this for them.
+- In the same commit update all is_cow_mapping() callers and remove the
+  now-unused function.
+- Change linear_anon_page_index() to assert on !CoW mapping using
+  vma_is_cow_mapping() in 2/15 as per David.
+- Updated 4/15 to output index differently depending on whether the VMA is
+  a CoW mapping or not or whether the file index differs from the anon
+  index as per Gregory.
+- Updated 6/15 to change the 'update page offset' logic in copy_vma() to
+  not be gated on CoW or VMA_SHARED_BIT as discussed with David.
+- Updated 6/15 to improve the 'faulted in anon vma' assert stuff. It was
+  very unclear so rename the variable sensibly and update the comment.
+- Added a separate commit to fix the mess that is the faulted_in_anon_vma
+  and the VM_WARN_ON_ONCE_VMA() assert in copy_vma() - make it actually
+  only update the vmap in cases where the VMA was replaced (backwards
+  remap), update the checks to reflect this in a way that's actually
+  understandable and improve the comment.
+- Updated needs_adjacent_anon_gpoff() in 9/15 to use
+  vma_flags_is_cow_mapping() as per David. Updated the comment to reflect
+  it.
+- Broke out changes to vma_address_end() into a separate patch as per David.
+- Eliminated pgoff in vma_address_end() as it adds confusion - just use
+  pgoff_end, which was what pgoff used to be (confusingly).
+- Placed more variables in vma_address_end() as constants at the start of
+  the function.
+- Dropped KSM comment in 9/15 as per David.
+- Dropped linear_folio_page_index() patch altogether as per
+  David.
+- Realised all off uffd is only anon so use linear_anon_page_index()
+  throughout there and also the huge memory case for the same reason.
+- Added a patch to make remove_migration_pmd() accept a folio instead of a
+  page.
+- Added a patch to calculate large folio index using PFN as suggested by
+  David, eliminating the need for linear page index lookup at all.
+- Added a patch to add self merge VMA userland tests.
+https://patch.msgid.link/20260806-b4-scalable-cow-virt-pgoff-v4-0-ab318a350404@kernel.org
+
+v3:
+- Renamed virtual page offset to anonymous page offset across the series as
+  per David and adjusted prose to reflect it.
+- As part of the rename, eliminated  vma_anon_pgoff_addr() and the
+  conflicting vma_[start, end]_anon_pgoff() functions by passing anon pgoff
+  to the merge logic and having that figure out which page offset to use,
+  significantly simplifying things.
+- Introduced needs_adjacent_anon_pgoff() to be really clear about what the
+  merge logic is doing.
+- Passing through the anon pgoff fixes the issue Sashiko raised with shared
+  file-backed mappings having incorrect anon pgoff (inconsequential but a
+  wrinkle nonetheless).
+- Dropped unnecessary needs_rmap_locks change in 9/15 - this checks to see
+  if rmap locks need to be taken due to the range being moved
+  backwards. Since both file-backed and anon page offset are updated on
+  such a move, it suffices to check only the former. Updated commit message
+  to reflect it.
+- Sashiko complained about a couple missing .is_anon_walk entries in
+  pvmw's - page_mapped_in_vma() and migrate_vma_collect_huge_pmd() -
+  however neither impact anything - the field is only meaningful for
+  vma_address_end() if nr_pages > 1 and neither site is impacted. Moreover,
+  neither site sets pgoff either. Update the commit message to explain
+  this.
+- Renamed is_anon_walk to pgoff_is_anon and document that pvmw->pgoff is
+  only meaningful if pvmw->nr_pages > 1.
+- Highlighted the user-visible changes to /dev/zero being true-anon in the
+  relevant commit message as per Yang.
+- Fixed a bug in the proc-self-map-files-00[1,2].c procfs selftests - the
+  code was trying to MAP_PRIVATE 'an arbitrary file' then asserts that
+  file-backed procfs entries exist, but happened to choose
+  /dev/zero. Updated to the guaranteed-available /proc/self/exe, as
+  reported by Mark.
+- Fixed an issue with drivers that intentionally mark vma->vm_ops as NULL
+  (using the legacy ->mmap callback). If they do this set dummy ops, which
+  is what they meant. The mmap_prepare case is fine as nobody does this
+  there and this will be fixed when all drivers are finally converted to
+  mmap_prepare. As reported by Sashiko.
+- Added some missed VMA selftest vma_start_[anon]_pgoff() conversions in
+  the merge test commit as per Sashiko.
+- Various small prose/comment fixups.
+https://patch.msgid.link/20260729-b4-scalable-cow-virt-pgoff-v3-0-e8ecfefea812@kernel.org
+
+v2:
+- Removed incorrect assert on always-NULL folio from 7/15, as per syzbot.
+- Updated 2/15 so linear_virt_page_index() checks for vma_is_anonymous() as
+  well to be cautious about 'special' (VDSO, VVAR, etc.) VMAs accidentally
+  being asserted when CONFIG_DEBUG_VM is set, as per Sashiko.
+- Updated commit message of 9/15 to mention the subtle change in NUMA
+  interleaving behaviour, as per Sashiko.
+- Updated 10/15 to assert virtual page offset for adjacent VMAs for various
+  VMA userland tests, as per Sashiko.
+- Updated 13/15 to remove the !vma->vm_file check altogether after
+  MAP_PRIVATE-/dev/zero is made pure anon in vma_start_virt_pgoff().
+- Updated 12/15 to check that the /dev/zero device is a character device
+  since it turns out that block and character devices have their own
+  separate major/minor device number namespaces... :) as per Sashiko.
+- Updated 12/15 to fix a bisection hazard where vma->vm_ops would be
+  overwritten by vma_dummy_vm_ops for MAP_PRIVATE-/dev/zero, as per
+  Sashiko.
+- Updated 12/15 to fix another bisection hazard (...!) due to
+  ordering of vma_set_anonymous(). Removed in 13/15.
+- Added comments to __vm_virt_pgoff[lo, hi] fields referencing
+  vma_start_virt_pgoff()'s comment to be clearer what these are as per
+  Xu Xin in 1/15.
+- Various typo fixes + cleanups in prose.
+- Updated the cover letter to point out that the MAP_PRIVATE-/dev/zero
+  issue is addressed in this series too.
+https://patch.msgid.link/20260720-b4-scalable-cow-virt-pgoff-v2-0-2d549757a76f@kernel.org
+
+v1:
+- Rebased onto mm-new.
+- Dependent series heavily reviewed and looks highly likely to land, so
+  un-RFC.
+- Added explicit check for /dev/zero and removed ability for arbitrary
+  mmap/mmap_prepare hooks to make themselves anonymous.
+- Made MAP_PRIVATE-/dev/zero mappings truly anonymous.
+- Added MAP_PRIVATE file-backed mapping merge test to selftests.
+- Added a MAP_PRIVATE-/dev/zero VMA userland test to assert that the VMA
+  really is made anonymous.
+- Added MAP_PRIVATE-/dev/zero merge tests to selftests.
+- Fixed missed virtual page index site in try_to_merge_with_ksm_page().
+- Updated folio_within_range() to use virtual page offset for anon
+  folio. This had no impact as it is only called for large folios at the
+  moment (and MAP_PRIVATE-file backed mappings can't currently be backed by
+  a large folio) but making the change now protects us for the future.
+- Fixed typos etc.
+https://patch.msgid.link/20260717-b4-scalable-cow-virt-pgoff-v1-0-cf24910ef094@kernel.org
+
+RFC:
+https://patch.msgid.link/cover.1782745153.git.ljs@kernel.org
+
+To: Andrew Morton <akpm@linux-foundation.org>
+To: David Hildenbrand <david@kernel.org>
+To: "Liam R. Howlett" <liam@infradead.org>
+To: Vlastimil Babka <vbabka@kernel.org>
+To: Mike Rapoport <rppt@kernel.org>
+To: Suren Baghdasaryan <surenb@google.com>
+To: Michal Hocko <mhocko@suse.com>
+To: Jann Horn <jannh@google.com>
+To: Pedro Falcato <pfalcato@suse.de>
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+To: Jan Kara <jack@suse.cz>
+To: Miaohe Lin <linmiaohe@huawei.com>
+To: Naoya Horiguchi <nao.horiguchi@gmail.com>
+To: Rik van Riel <riel@surriel.com>
+To: Harry Yoo <harry@kernel.org>
+To: Lance Yang <lance.yang@linux.dev>
+To: Kees Cook <kees@kernel.org>
+To: Zi Yan <ziy@nvidia.com>
+To: Baolin Wang <baolin.wang@linux.alibaba.com>
+To: Nico Pache <npache@redhat.com>
+To: Ryan Roberts <ryan.roberts@arm.com>
+To: Dev Jain <dev.jain@arm.com>
+To: Barry Song <baohua@kernel.org>
+To: Usama Arif <usama.arif@linux.dev>
+To: Matthew Brost <matthew.brost@intel.com>
+To: Joshua Hahn <joshua.hahnjy@gmail.com>
+To: Rakie Kim <rakie.kim@sk.com>
+To: Byungchul Park <byungchul@sk.com>
+To: Gregory Price <gourry@gourry.net>
+To: Ying Huang <ying.huang@linux.alibaba.com>
+To: Alistair Popple <apopple@nvidia.com>
+To: Peter Xu <peterx@redhat.com>
+To: Xu Xin <xu.xin16@zte.com.cn>
+To: Chengming Zhou <chengming.zhou@linux.dev>
+To: Arnd Bergmann <arnd@arndb.de>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Christian Borntraeger <borntraeger@linux.ibm.com>
+To: Janosch Frank <frankja@linux.ibm.com>
+To: Claudio Imbrenda <imbrenda@linux.ibm.com>
+To: Alexander Gordeev <agordeev@linux.ibm.com>
+To: Gerald Schaefer <gerald.schaefer@linux.ibm.com>
+To: Heiko Carstens <hca@linux.ibm.com>
+To: Vasily Gorbik <gor@linux.ibm.com>
+To: Sven Schnelle <svens@linux.ibm.com>
+To: Alex Deucher <alexander.deucher@amd.com>
+To: Christian König <christian.koenig@amd.com>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+To: Steven Price <steven.price@arm.com>
+To: Liviu Dudau <liviu.dudau@arm.com>
+To: Huang Rui <ray.huang@amd.com>
+To: Matthew Auld <matthew.auld@intel.com>
+To: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Masami Hiramatsu <mhiramat@kernel.org>
+To: Oleg Nesterov <oleg@redhat.com>
+To: Peter Zijlstra <peterz@infradead.org>
+To: Ingo Molnar <mingo@redhat.com>
+To: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Namhyung Kim <namhyung@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Alexander Shishkin <alexander.shishkin@linux.intel.com>
+To: Jiri Olsa <jolsa@kernel.org>
+To: Ian Rogers <irogers@google.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+To: James Clark <james.clark@linaro.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+To: John Hubbard <jhubbard@nvidia.com>
+To: Muchun Song <muchun.song@linux.dev>
+To: Oscar Salvador <osalvador@suse.de>
+To: Chris Li <chrisl@kernel.org>
+To: Kairui Song <kasong@tencent.com>
+To: Kemeng Shi <shikemeng@huaweicloud.com>
+To: Nhat Pham <nphamcs@gmail.com>
+To: Baoquan He <baoquan.he@linux.dev>
+To: Youngjun Park <youngjun.park@lge.com>
+Cc: ljs@kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-fsdevel@vger.kernel.org
+Cc: linux-kselftest@vger.kernel.org
+Cc: kvm@vger.kernel.org
+Cc: linux-s390@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-perf-users@vger.kernel.org
+Cc: linux-trace-kernel@vger.kernel.org
+
+---
+Lorenzo Stoakes (ARM) (16):
+      mm/vma: introduce VMA anon page offset field and add helpers
+      mm: provide vma_[flags_]is_cow_mapping() and remove is_cow_mapping()
+      mm: introduce linear_anon_page_index()
+      mm: abstract vma_address() and introduce vma_anon_address()
+      mm: update print_bad_page_map() to show anon index if appropriate
+      mm: introduce and use vma_filebacked_address()
+      mm/vma: fix self-merge check in copy_vma()
+      tools/testing/vma: add tests for copy_vma() self-merge
+      mm: propagate VMA anonymous page offset on map, remap, split + merge
+      mm/rmap: track whether the page VMA mapped pgoff is anonymous
+      mm: clean up vma_address_end()
+      mm/huge_memory: update remove_migration_pmd() to accept a folio
+      mm/migrate: calculate large folio page index using PFN
+      mm/rmap: use anon pgoff to track MAP_PRIVATE file-backed anon folios
+      tools/testing/vma: expand VMA merge tests to assert anon pgoff
+      tools/testing/selftests/mm: test anonymous page offset merge behaviour
+
+ arch/s390/mm/gmap_helpers.c             |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c |   4 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c  |   2 +-
+ drivers/gpu/drm/panthor/panthor_gem.c   |   2 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c         |   2 +-
+ drivers/gpu/drm/xe/xe_device.c          |   2 +-
+ fs/proc/task_mmu.c                      |   2 +-
+ include/linux/mm.h                      | 132 ++++++++++++++++++++++++++++++--
+ include/linux/mm_types.h                |  12 +++
+ include/linux/pagemap.h                 |  40 +++++++++-
+ include/linux/rmap.h                    |   4 +-
+ include/linux/swapops.h                 |   6 +-
+ kernel/events/uprobes.c                 |   2 +-
+ mm/gup.c                                |   2 +-
+ mm/huge_memory.c                        |  26 +++----
+ mm/hugetlb.c                            |   2 +-
+ mm/internal.h                           |  72 ++++++++++++-----
+ mm/interval_tree.c                      |   4 +-
+ mm/ksm.c                                |   6 +-
+ mm/memory-failure.c                     |   4 +-
+ mm/memory.c                             |  38 +++++----
+ mm/mempolicy.c                          |   2 +-
+ mm/migrate.c                            |  21 +++--
+ mm/mremap.c                             |   6 +-
+ mm/page_vma_mapped.c                    |   6 +-
+ mm/rmap.c                               |  22 +++---
+ mm/userfaultfd.c                        |   4 +-
+ mm/vma.c                                | 113 +++++++++++++++++++--------
+ mm/vma.h                                |  89 +++++++++++++--------
+ mm/vma_exec.c                           |   2 +-
+ mm/vma_init.c                           |   1 +
+ tools/testing/selftests/mm/merge.c      |  57 ++++++++++++++
+ tools/testing/vma/include/dup.h         |  62 ++++++++++++++-
+ tools/testing/vma/shared.c              |   3 +-
+ tools/testing/vma/tests/merge.c         |  49 +++++++++---
+ tools/testing/vma/tests/vma.c           |  50 +++++++++++-
+ tools/testing/vma/vma_internal.h        |   1 +
+ 37 files changed, 667 insertions(+), 187 deletions(-)
+---
+base-commit: 5093dba1014c1d7f7e247fd118f0fa8f22136046
+change-id: 20260711-b4-scalable-cow-virt-pgoff-a0cc0eb14bc6
+
+Cheers,
+-- 
+Lorenzo Stoakes (ARM) <ljs@kernel.org>
+
