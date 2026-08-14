@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57F16C5B572
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 00:15:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C95D9C5DF66
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 00:54:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E318F10F5A8;
-	Fri, 14 Aug 2026 00:15:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3DD10E120;
+	Fri, 14 Aug 2026 00:54:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gMSGPN8S";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IT0TPz5n";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 313DD10F408;
- Fri, 14 Aug 2026 00:15:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D460310E120
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 00:54:04 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id EE21E42A7E;
- Fri, 14 Aug 2026 00:15:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 047071F000E9;
- Fri, 14 Aug 2026 00:15:24 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 90B184160B;
+ Fri, 14 Aug 2026 00:54:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5234C1F000E9;
+ Fri, 14 Aug 2026 00:54:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786666525;
- bh=YzPAAS/A9UrNGVNsI/JuS8STP2hnc4Y4oqajK05GBI0=;
+ s=k20260515; t=1786668844;
+ bh=L/TlWDnRGJX6KcLSGVZYj6QRKMSl+LnuHR7hKZyQShw=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=gMSGPN8SgfcqRd8qT0DMAKNyarNqv0FrVpYzcUtooIV711y/vcX66f+uk9h4sGOwJ
- jeQc+LjHKF6StmqcmaVRUtezXMURIp21EKCLkrb9973W4CMBwU7t+rp/uWr108QRHN
- ziL9aEaLatyWoCnN+50mG86ItQsI7Uyi/DwarCDxGpWAbOfOqSBQ9X1R9r8VKizPiG
- boMiER3jTE0fHiG5Ci7LBwKhgmWp19N7yFPsU9gbZKvQ660XwdnxMLzDPcCpk5ylxf
- 0HQhRPltkCB2TVftkUh+amnatxoyDgZ9FnEH0DJ0zvrUEeolYdsq3HTNJxhzooi29z
- z1y0yPyZxB/fw==
+ b=IT0TPz5ngOT+uU8G8hGXz/20wLQG6WNknlqRt9EuzOrBDspjGN1KgzuVT1Afcb1aN
+ 5ofrxasbU13JAj3nnHY7YjVkvL+QbNYwnCQ/sxVFU/Ww/3Yn1dccfOJvBecBdW8SMJ
+ 28+jrURwYYVSj991sZ4ZXiQD0X09BFpY7RqjogIFoO5xxU24FGLBsgpCoVQu27yRDq
+ w9gcfZyfPG7xdvXnCM0lI3MYUJp/RXlsqySb3w09lUFriAs8r6mdja3nzSLCZ86DKN
+ Acmq2B40Ucv1UCLfRESDzCNj5U1PVUyBBI4Ow2AhatFuNpo/+CirzOPi9WicEY1WS5
+ L9AiGXbLI+s7g==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC 04/12] drm/i915/display: Switch to
- drmm_mode_config_init() and drop manual cleanup
-To: "Kory Maincent" <kory.maincent@bootlin.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260409-feat_link_cap-v1-4-7069e8199ce2@bootlin.com>
-References: <20260409-feat_link_cap-v1-4-7069e8199ce2@bootlin.com>
+Subject: Re: [PATCH v2] drm/xe/hwmon: Enable package and vram temperatures
+ for CRI
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260813193546.511093-1-karthik.poosa@intel.com>
+References: <20260813193546.511093-1-karthik.poosa@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 14 Aug 2026 00:15:24 +0000
-Message-Id: <20260814001525.047071F000E9@smtp.kernel.org>
+Date: Fri, 14 Aug 2026 00:54:02 +0000
+Message-Id: <20260814005404.5234C1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +58,52 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Deferring `intel_mode_config_cleanup` to a `drmm` action causes Us=
-e-After-Free (UAF) crashes during driver teardown because dependent resourc=
-es are prematurely destroyed.
+
+Pre-existing issues:
+- [High] Potential division by zero in `get_mc_temp` when the thermal senso=
+r count is 3.
 --
 
---- Patch [4]: [PATCH RFC 04/12] drm/i915/display: Switch to drmm_mode_conf=
-ig_init() and drop manual cleanup ---
-commit 6ace97a8635ec8a367a634fb62172f65c853696d
-Author: Kory Maincent <kory.maincent@bootlin.com>
+--- Patch [1]: [PATCH v2] drm/xe/hwmon: Enable package and vram temperature=
+s for CRI ---
+commit 7fa6b15888cc9f0808566087b3307d62fbda4703
+Author: Karthik Poosa <karthik.poosa@intel.com>
 
-drm/i915/display: Switch to drmm_mode_config_init() and drop manual cleanup
+drm/xe/hwmon: Enable package and vram temperatures for CRI
 
-Replace drm_mode_config_init() with drmm_mode_config_init() in
-intel_mode_config_init(). Remove the manual intel_mode_config_cleanup()
-calls during teardown since the managed variant registers the cleanup with
-devres automatically. Register intel_atomic_global_obj_cleanup() as a devres
-action to run before drm_mode_config_cleanup().
+This commit enables package and vram temperatures support from hwmon on the
+CRI platform. It updates the hwmon register mapping to use the same MMIO
+offsets as BMG.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
-s/gpu/drm/i915/display/intel_display_driver.c
-> index 23bfecc983e8d..d02393053cef4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index de3f2aeffc3fb..30059f1de5a82 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
 
 [ ... ]
 
-> @@ -618,8 +631,6 @@ void intel_display_driver_remove_noirq(struct intel_d=
-isplay *display)
+>  static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+>  {
+>  	struct xe_tile *root_tile =3D xe_device_get_root_tile(hwmon->xe);
+
+[ ... ]
+
+>  	for (i =3D TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++)
+>  		average +=3D hwmon->temp.value[i];
 > =20
->  	intel_hdcp_component_fini(display);
-> =20
-> -	intel_mode_config_cleanup(display);
-> -
->  	intel_dp_tunnel_mgr_cleanup(display);
-> =20
->  	intel_overlay_cleanup(display);
+>  	average /=3D (hwmon->temp.count - TEMP_INDEX_MCTRL - 1);
 
 [Severity: High]
-Does deferring intel_mode_config_cleanup() here cause a use-after-free duri=
-ng
-driver teardown?
+This isn't a bug introduced by this patch, but is it possible for a division
+by zero to occur here in get_mc_temp()?
 
-Because intel_mode_config_cleanup() is removed here, mode config cleanup (w=
-hich=20
-frees connectors and encoders) is deferred to the asynchronous drmm phase.=
-=20
-However, intel_dp_tunnel_mgr_cleanup() and the destruction of the display
-workqueues (which occur later in this function) still happen synchronously.
+If the hardware or firmware provides a thermal sensor count of 3, and
+TEMP_INDEX_MCTRL is 2, the denominator evaluates to 0.
 
-This inverts the teardown order so the tunnel manager and workqueues are fr=
-eed
-before the encoders that depend on them. When the deferred=20
-drm_mode_config_cleanup() finally runs, it destroys encoders which triggers
-intel_dp_tunnel_destroy(). This dereferences the dangling dp->tunnel pointe=
-r and=20
-the already freed tunnel->group->mgr.
-
-Additionally, because delayed works (like intel_dp->pps.panel_vdd_work) are=
-=20
-only cancelled during the deferred encoder cleanup in intel_pps_vdd_off_syn=
-c(),=20
-their timers may fire after destroy_workqueue() has already freed the workq=
-ueue,=20
-causing queue_work() to panic.
+Since the sysfs file for CHANNEL_MCTRL is visible as long as count > 0,
+could a local unprivileged user reading the sysfs attribute trigger a kernel
+panic if this condition is met?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260409-feat_link_=
-cap-v1-0-7069e8199ce2@bootlin.com?part=3D4
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260813193546.5110=
+93-1-karthik.poosa@intel.com?part=3D1
