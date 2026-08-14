@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B9CDC5CFDB
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:18:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5CD2C5CFC1
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:18:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C72EF10F6D1;
-	Fri, 14 Aug 2026 17:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96A9810F6D4;
+	Fri, 14 Aug 2026 17:18:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WQU7pK52";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iQ+zWk3f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1AE610F6CF
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:18:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04D2910F6CB
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1786727931; x=1818263931;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fLBfQJc4o/JgmJacDNy9OZ2UQJ8+e5WmGMtSmhgpsAE=;
- b=WQU7pK527Vo9cUnhJBhPYlNRewV+wUxzaBCLBtugIG+vNMk19ZNofluJ
- lU16NClK7wDDDdzLMzZ3FLwgDKgOyJp0Pa+k/kGRL4RJiZAQfGb7HCrfJ
- hq1dz9UvvwP2vFBnUW5QvoHGdOmR4ijJYScrsWgCCqeQ/R3goW3woy+Qq
- E5tBESWtnU5gPyZ/uaNZu3fzhPKkjsrbNcjC84H5JHsKSAIeQWVLLGsAR
- zVUpJjYuwxfJuK/NJ4QP8nOsBlSvdUn7EWc7rz+Tt6mJHthUWh9kF4nqf
- pUWWWWqWmbeSwx+KWmrTMw8gVz+IXyputH0Pazh8KzzrMD+sCNHoYIgKB g==;
-X-CSE-ConnectionGUID: bPceShw4QyyROSu6fBRR4A==
-X-CSE-MsgGUID: SmWouzS9ToyS4Y2qg2mtDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464065"
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464065"
+ bh=3fYR3QiOxie50jy29EuBxqB4T8fnqgkPHBKvPDFbOmA=;
+ b=iQ+zWk3fbKzsomU8abHJ6GQyLNnKs6buqOcwqUHxFD15sTxy4y9zLCeg
+ 77HVNWWVg5+kwoxZIeSOOc+uQLNcCr+YngxIImomtHevGEf9//bkbXMeT
+ a378MbaJEzOXAd5DIBbcyj4+PC3MdLYaRsm01ze4N1xqxSTnlX8n+Gtu6
+ 3GRB15Vf3i9T+ZHLpKLosFWczYVVuH2Iz7a26bIOh2Uan3g1uuMq8FYaK
+ tPbUdcKBUyui6UAjMZiIMBnHkksExgO/ro4oagxer0OPjsjRq4tjjrf4F
+ SpmkhqiQCGQ6jyd8oFGUOvycsdAE66bpDAzptuYWtAf23xfYfrGRZTdJw g==;
+X-CSE-ConnectionGUID: Y7BcHlBlTQq7ehoOf3vq8A==
+X-CSE-MsgGUID: 1SA3S/P/ToqHSxnkVuso/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464062"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464062"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Aug 2026 10:18:51 -0700
-X-CSE-ConnectionGUID: QJBKbSDgS1a9x3TPxz070Q==
-X-CSE-MsgGUID: 91YBaBY+Rv+Mr1YLejkHtQ==
+X-CSE-ConnectionGUID: XThyWivgReKnzfNYShWtlQ==
+X-CSE-MsgGUID: OdkLKz3tTMKzcL7p3uT0Jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946245"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946222"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 10:18:50 -0700
+ 14 Aug 2026 10:18:47 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v5 19/33] drm/xe: Report all probe errors using SIGID
-Date: Fri, 14 Aug 2026 19:17:45 +0200
-Message-ID: <20260814171801.13347-20-michal.wajdeczko@intel.com>
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v5 17/33] drm/xe/tests: Add kunit tests for xe_any
+Date: Fri, 14 Aug 2026 19:17:43 +0200
+Message-ID: <20260814171801.13347-18-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260814171801.13347-1-michal.wajdeczko@intel.com>
 References: <20260814171801.13347-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,72 +69,250 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For completeness, we should catch and report all probe errors, not
-just the ones that have explicit error message. Split xe_pci_probe()
-function after a display check to avoid reporting -EPROBE_DEFER and
-use xe_log_err_fatal() helper to report all returned errors.
+Add simple sanity tests for all xe_any macros to make sure they
+are working as expected.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+v2: add test_if_pdev, check drm casts (Mallesh)
 ---
- drivers/gpu/drm/xe/xe_pci.c | 27 +++++++++++++++++++++------
- 1 file changed, 21 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/tests/Makefile       |   1 +
+ drivers/gpu/drm/xe/tests/xe_any_kunit.c | 213 ++++++++++++++++++++++++
+ 2 files changed, 214 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_any_kunit.c
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index b19efef1c5cd..ab4da1d9a9f1 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -1147,17 +1147,12 @@ static void xe_pci_remove(struct pci_dev *pdev)
-  * caller. Therefore there is no consequence on those specific callers when
-  * function error injection skips the whole function.
-  */
-+static int __xe_pci_probe(struct pci_dev *pdev, const struct xe_device_desc *desc);
- static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
--	struct xe_probed_info probed_info = {};
- 	const struct xe_device_desc *desc = (const void *)ent->driver_data;
--	const struct xe_subplatform_desc *subplatform_desc;
--	struct xe_device *xe;
--	void *group;
- 	int err;
- 
--	subplatform_desc = find_subplatform(desc, pdev->device);
--
- 	xe_configfs_check_device(pdev);
- 
- 	if (desc->require_force_probe && !id_forced(pdev->device)) {
-@@ -1181,6 +1176,26 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (xe_display_driver_probe_defer(pdev))
- 		return -EPROBE_DEFER;
- 
-+	err = __xe_pci_probe(pdev, desc);
-+	if (err) {
-+		xe_log_err_fatal(pdev, PROBE, err, "driver loading failed for device '%04x'\n",
-+				 pdev->device);
-+		return err;
-+	}
+diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
+index f7aa47f11a36..0b809a252cfa 100644
+--- a/drivers/gpu/drm/xe/tests/Makefile
++++ b/drivers/gpu/drm/xe/tests/Makefile
+@@ -7,6 +7,7 @@ xe_live_test-y = xe_live_test_mod.o
+ # Normal kunit tests
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += xe_test.o
+ xe_test-y = xe_test_mod.o \
++	xe_any_kunit.o \
+ 	xe_args_test.o \
+ 	xe_pci_test.o \
+ 	xe_rtp_tables_test.o \
+diff --git a/drivers/gpu/drm/xe/tests/xe_any_kunit.c b/drivers/gpu/drm/xe/tests/xe_any_kunit.c
+new file mode 100644
+index 000000000000..0a5f28894cd2
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_any_kunit.c
+@@ -0,0 +1,213 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2026 Intel Corporation
++ */
 +
-+	return 0;
++#include <kunit/test.h>
++
++#include "tests/xe_kunit_helpers.h"
++#include "tests/xe_pci_test.h"
++#include "xe_any.h"
++#include "xe_device.h"
++
++static void test_to_xe(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++	const struct xe_device *cxe = xe;
++	const struct xe_tile *ctile = tile;
++	const struct xe_gt *cgt = gt;
++
++	KUNIT_EXPECT_PTR_EQ(test, xe, xe_any_to_xe(xe));
++	KUNIT_EXPECT_PTR_EQ(test, xe, xe_any_to_xe(tile));
++	KUNIT_EXPECT_PTR_EQ(test, xe, xe_any_to_xe(gt));
++	KUNIT_EXPECT_PTR_EQ(test, xe, xe_any_to_xe(drm));
++	KUNIT_EXPECT_PTR_EQ(test, xe, xe_any_to_xe(dev));
++	KUNIT_EXPECT_PTR_EQ(test, xe, xe_any_to_xe(pdev));
++
++	KUNIT_EXPECT_PTR_EQ(test, cxe, xe_any_to_xe(cxe));
++	KUNIT_EXPECT_PTR_EQ(test, cxe, xe_any_to_xe(ctile));
++	KUNIT_EXPECT_PTR_EQ(test, cxe, xe_any_to_xe(cgt));
 +}
 +
-+static int __xe_pci_probe(struct pci_dev *pdev, const struct xe_device_desc *desc)
++static void test_to_pdev(struct kunit *test)
 +{
-+	const struct xe_subplatform_desc *subplatform_desc;
-+	struct xe_probed_info probed_info = {};
-+	struct xe_device *xe;
-+	void *group;
-+	int err;
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
 +
-+	subplatform_desc = find_subplatform(desc, pdev->device);
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(xe));
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(tile));
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(gt));
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(drm));
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(dev));
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(pdev));
 +
- 	/* Group all devres so xe_pci_error_slot_reset() can release them as a unit. */
- 	group = devres_open_group(&pdev->dev, NULL, GFP_KERNEL);
- 	if (!group)
++	/* mimic early probe stage */
++	dev_set_drvdata(xe->drm.dev, NULL);
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(dev));
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_to_pdev(pdev));
++}
++
++static void test_to_dev(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(xe));
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(tile));
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(gt));
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(drm));
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(dev));
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(pdev));
++
++	/* mimic early probe stage */
++	dev_set_drvdata(xe->drm.dev, NULL);
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(dev));
++	KUNIT_EXPECT_PTR_EQ(test, dev, xe_any_to_dev(pdev));
++}
++
++static void test_to_drm(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++
++	KUNIT_EXPECT_PTR_EQ(test, drm, xe_any_to_drm(xe));
++	KUNIT_EXPECT_PTR_EQ(test, drm, xe_any_to_drm(tile));
++	KUNIT_EXPECT_PTR_EQ(test, drm, xe_any_to_drm(gt));
++	KUNIT_EXPECT_PTR_EQ(test, drm, xe_any_to_drm(drm));
++	KUNIT_EXPECT_PTR_EQ(test, drm, xe_any_to_drm(dev));
++	KUNIT_EXPECT_PTR_EQ(test, drm, xe_any_to_drm(pdev));
++}
++
++static void test_if_pdev(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++
++	KUNIT_EXPECT_TRUE(test, xe && drm && tile && gt && dev && pdev);
++	KUNIT_EXPECT_NULL(test, xe_any_if_pdev(xe));
++	KUNIT_EXPECT_NULL(test, xe_any_if_pdev(tile));
++	KUNIT_EXPECT_NULL(test, xe_any_if_pdev(gt));
++	KUNIT_EXPECT_NULL(test, xe_any_if_pdev(drm));
++	KUNIT_EXPECT_NULL(test, xe_any_if_pdev(dev));
++	KUNIT_EXPECT_PTR_EQ(test, pdev, xe_any_if_pdev(pdev));
++}
++
++static void test_if_xe(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++
++	KUNIT_EXPECT_TRUE(test, xe && drm && tile && gt && dev && pdev);
++	KUNIT_EXPECT_PTR_EQ(test, xe, xe_any_if_xe(xe));
++	KUNIT_EXPECT_NULL(test, xe_any_if_xe(tile));
++	KUNIT_EXPECT_NULL(test, xe_any_if_xe(gt));
++	KUNIT_EXPECT_NULL(test, xe_any_if_xe(drm));
++	KUNIT_EXPECT_NULL(test, xe_any_if_xe(dev));
++	KUNIT_EXPECT_NULL(test, xe_any_if_xe(pdev));
++}
++
++static void test_if_tile(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++
++	KUNIT_EXPECT_TRUE(test, xe && drm && tile && gt && dev && pdev);
++	KUNIT_EXPECT_NULL(test, xe_any_if_tile(xe));
++	KUNIT_EXPECT_PTR_EQ(test, tile, xe_any_if_tile(tile));
++	KUNIT_EXPECT_NULL(test, xe_any_if_tile(gt));
++	KUNIT_EXPECT_NULL(test, xe_any_if_tile(drm));
++	KUNIT_EXPECT_NULL(test, xe_any_if_tile(dev));
++	KUNIT_EXPECT_NULL(test, xe_any_if_tile(pdev));
++}
++
++static void test_if_gt(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct drm_device *drm = &xe->drm;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++
++	KUNIT_EXPECT_TRUE(test, xe && drm && tile && gt && dev && pdev);
++	KUNIT_EXPECT_NULL(test, xe_any_if_gt(xe));
++	KUNIT_EXPECT_NULL(test, xe_any_if_gt(tile));
++	KUNIT_EXPECT_PTR_EQ(test, gt, xe_any_if_gt(gt));
++	KUNIT_EXPECT_NULL(test, xe_any_if_gt(drm));
++	KUNIT_EXPECT_NULL(test, xe_any_if_gt(dev));
++	KUNIT_EXPECT_NULL(test, xe_any_if_gt(pdev));
++}
++
++static void test_to_id(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_gt *gt = tile->primary_gt;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++	const struct xe_device *cxe = xe;
++	const struct xe_tile *ctile = tile;
++	const struct xe_gt *cgt = gt;
++
++	tile->id = 1;
++	gt->info.id = 2;
++
++	KUNIT_EXPECT_EQ(test, 0, xe_any_id(xe));
++	KUNIT_EXPECT_EQ(test, 1, xe_any_id(tile));
++	KUNIT_EXPECT_EQ(test, 2, xe_any_id(gt));
++	KUNIT_EXPECT_EQ(test, 0, xe_any_id(dev));
++	KUNIT_EXPECT_EQ(test, 0, xe_any_id(pdev));
++	KUNIT_EXPECT_EQ(test, 0, xe_any_id(cxe));
++	KUNIT_EXPECT_EQ(test, 1, xe_any_id(ctile));
++	KUNIT_EXPECT_EQ(test, 2, xe_any_id(cgt));
++}
++
++static struct kunit_case xe_any_tests[] = {
++	KUNIT_CASE(test_to_xe),
++	KUNIT_CASE(test_to_dev),
++	KUNIT_CASE(test_to_pdev),
++	KUNIT_CASE(test_to_drm),
++	KUNIT_CASE(test_if_pdev),
++	KUNIT_CASE(test_if_xe),
++	KUNIT_CASE(test_if_tile),
++	KUNIT_CASE(test_if_gt),
++	KUNIT_CASE(test_to_id),
++	{}
++};
++
++static struct kunit_suite xe_any_test_suite = {
++	.name = "xe_any",
++	.test_cases = xe_any_tests,
++	.init = xe_kunit_helper_xe_device_test_init,
++};
++
++kunit_test_suite(xe_any_test_suite);
 -- 
 2.47.1
 
