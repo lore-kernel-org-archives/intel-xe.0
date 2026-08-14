@@ -4,48 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39FBC5CFCF
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 20:56:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19780C5CFC1
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 21:08:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83C3610E5CC;
-	Fri, 14 Aug 2026 20:56:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC0A610F735;
+	Fri, 14 Aug 2026 21:08:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="faVlqrLB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MNAqGY1U";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB0B10E5CC;
- Fri, 14 Aug 2026 20:56:04 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0229E40A25;
- Fri, 14 Aug 2026 20:56:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 497061F00A3A;
- Fri, 14 Aug 2026 20:56:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786740963;
- bh=fTfUDQrgJ3Y+t0RXMYFXkxKPnYej7d4+iN1qSmhzYRY=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=faVlqrLBEhwneawuv22KUSZLYCX7unkodfOtf3Hcy0hRJXpLl3IrOplgOC9ywccXK
- /vk5qU0qILftzpV2Z7wUjZLsodfwUxICqs6/i8/CUNzSkAv9eMhVbmhJYDgyIO1sFz
- /vw2D90gMNhpA5V7nvcO2ezHZLgrc+4Pexmc4Rx48OQcgcqOgowpqtXddb6/IaOYEq
- 8PhWN/CHhCzvr6WLO+6UFekETFGShIvJYIG1le4FZ+XixW3npDsdzUeZOMRgLiMApa
- QmNJghPBd6iqva7/1NKcD+XRgPOmQteFxxCjrDZO0mxUkdbG6sX+inC02wD0bucfHX
- T9S1jtidwcOhQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/5] drm/vblank: Use drm_for_each_crtc() in
- drm_vblank_init()
-To: "Lyude Paul" <lyude@redhat.com>
-Cc: imx@lists.linux.dev, intel-xe@lists.freedesktop.org,
- neil.armstrong@linaro.org, intel-gfx@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
- dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- wsa+renesas@sang-engineering.com, Frank.Li@kernel.org
-In-Reply-To: <20260814203542.1405135-5-lyude@redhat.com>
-References: <20260814203542.1405135-1-lyude@redhat.com>
- <20260814203542.1405135-5-lyude@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 14 Aug 2026 20:56:02 +0000
-Message-Id: <20260814205603.497061F00A3A@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32F5A10F735
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 21:08:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1786741698; x=1818277698;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+AiPYeWGOCtbtz0dWoF9Ud8R6XixWh2qOrSOId5c6H8=;
+ b=MNAqGY1UfzsOb+s3imw2s/CG+zp8lMHdweX/GdDKRteXjOUeq6FEqX6c
+ 5Lh4sXwacK43JVil65dSYPClu6YsqBLetKeGxf1OqkmXeWpG0+iC1wfZz
+ nVtp4YMcMBvAq4a9vYrtg5B+FLRT/lbtf0OsYu1Y6UmIJZzfvUicVF3Q1
+ j0vwrAoUsP1vOrsWNMpgFRevdUWahyFg9G0lUPCUuEPqjh9OlkpDkvVKG
+ 7RYO8vPzyiG0ofG1QcSG9QGmn97nLOVv1YtDp/bSKjyXNtEfB+87/Nh8u
+ hzGJ99ig9dOdUvXTW5WvYNDSW4OHEb788qvXfrD1TuTExWjiXZH7BwHwC g==;
+X-CSE-ConnectionGUID: gO+S0Q/hQjqSVDYr9nDEtQ==
+X-CSE-MsgGUID: X29GjsR1T3uT9Q8eHn6OWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="87183339"
+X-IronPort-AV: E=Sophos;i="6.25,224,1779174000"; d="scan'208";a="87183339"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2026 14:08:17 -0700
+X-CSE-ConnectionGUID: VPgryKybSBGXzLzhmeNitg==
+X-CSE-MsgGUID: 6bvdEp02TwKfH6f0KIZ2IQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,224,1779174000"; d="scan'208";a="264939031"
+Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2026 14:08:16 -0700
+From: Julia Filipchuk <julia.filipchuk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+Subject: [PATCH 1/2] drm/xe/guc: Test GuC v70.74.0 for BMG, LNL, PTL, NVL-S/U/H
+Date: Fri, 14 Aug 2026 14:07:50 -0700
+Message-ID: <20260814210758.2779837-3-julia.filipchuk@intel.com>
+X-Mailer: git-send-email 2.51.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,88 +61,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Critical] Calling `drm_vblank_init` before creating CRTCs results in a z=
-ero-size allocation, leading to a kernel crash when vblank features are lat=
-er used.
---
+UAPI compatibility version 1.38.4
 
---- Patch [4]: [PATCH 4/5] drm/vblank: Use drm_for_each_crtc() in drm_vblan=
-k_init() ---
-commit 4aec980231f556c8a36b5294d67b3d582d49d623
-Author: Lyude Paul <lyude@redhat.com>
+This patch is for testing only. If testing is successful the binary
+blobs will replace the major versioned *_guc_70.bin files for given
+platforms.
 
-drm/vblank: Use drm_for_each_crtc() in drm_vblank_init()
+Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-This patch updates drm_vblank_init() to use the drm_for_each_crtc() iterator
-instead of manually counting the number of CRTCs.
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index e29878b255ba..c60f5203df2e 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -118,10 +118,10 @@ struct fw_blobs_by_type {
+ 	fw_def(NOVALAKE_P,	GT_TYPE_MAIN,	mmp_ver(xe,	guc,	nvlpg,	70, 70, 0))	\
+ 	fw_def(NOVALAKE_P,	GT_TYPE_MEDIA,	mmp_ver(xe,	guc,	nvlpm,	70, 70, 0))	\
+ 	fw_def(CRESCENTISLAND,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	cri,	70, 70, 0))	\
+-	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	major_ver(xe,	guc,	nvl,	70, 71, 0))	\
+-	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
+-	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
+-	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 53, 0))	\
++	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 74, 0))	\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 74, 0))	\
++	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	bmg,	70, 74, 0))	\
++	fw_def(LUNARLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	lnl,	70, 74, 0))	\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	mtl,	70, 53, 0))	\
+ 	fw_def(PVC,		GT_TYPE_ANY,	mmp_ver(xe,	guc,	pvc,	70, 44, 1))	\
+ 	fw_def(DG2,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg2,	70, 53, 0))	\
+-- 
+2.51.0
 
-> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-> index 17283e8920378..d57405050554f 100644
-> --- a/drivers/gpu/drm/drm_vblank.c
-> +++ b/drivers/gpu/drm/drm_vblank.c
-> @@ -547,19 +547,20 @@ static void drm_vblank_init_release(struct drm_devi=
-ce *dev, void *ptr)
->  int drm_vblank_init(struct drm_device *dev)
->  {
->  	int ret;
-> -	unsigned int num_crtcs =3D dev->mode_config.num_crtc;
-> -	unsigned int i;
-> +	struct drm_crtc *crtc;
-> =20
->  	spin_lock_init(&dev->vbl_lock);
->  	spin_lock_init(&dev->vblank_time_lock);
-> =20
-> -	dev->vblank =3D drmm_kcalloc(dev, num_crtcs, sizeof(*dev->vblank), GFP_=
-KERNEL);
-> +	dev->vblank =3D drmm_kcalloc(dev, dev->mode_config.num_crtc,
-> +				   sizeof(*dev->vblank), GFP_KERNEL);
->  	if (!dev->vblank)
->  		return -ENOMEM;
-> =20
->  	dev->has_hw_vblank =3D true;
-> =20
-> -	for (i =3D 0; i < num_crtcs; i++) {
-> +	drm_for_each_crtc(crtc, dev) {
-
-[Severity: Critical]
-Could this change lead to an uninitialized vblank array and subsequent page
-fault for drivers that initialize vblank before creating CRTCs?
-
-For example, in vkms_drv.c:vkms_create(), drm_vblank_init() is called before
-vkms_modeset_init() creates the CRTCs:
-
-	ret =3D drm_vblank_init(&vkms_device->drm);
-	if (ret) {
-		DRM_ERROR("Failed to vblank\n");
-		goto out_devres;
-	}
-
-	ret =3D vkms_modeset_init(vkms_device);
-
-Because the CRTCs are not yet created at this point, dev->mode_config.num_c=
-rtc
-is 0. The allocation for the vblank array becomes a 0-byte allocation,
-returning ZERO_SIZE_PTR (0x10). The drm_for_each_crtc() loop then executes 0
-times, and drm_vblank_init() successfully returns 0.
-
-When userspace later calls DRM_IOCTL_WAIT_VBLANK, the kernel looks up the
-CRTC using drm_vblank_crtc(dev, pipe). This returns a pointer into the arra=
-y,
-which evaluates to ZERO_SIZE_PTR + pipe * sizeof(...).
-
-Will dereferencing this pointer cause an immediate kernel OOPS?
-
-> +		unsigned int i =3D crtc->index;
->  		struct drm_vblank_crtc *vblank =3D drm_vblank_crtc(dev, i);
-> =20
->  		vblank->dev =3D dev;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260814203542.1405=
-135-1-lyude@redhat.com?part=3D4
