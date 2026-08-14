@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7606C5CFC1
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:18:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B197C5CFCF
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:18:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE39610F6C6;
-	Fri, 14 Aug 2026 17:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF61D10F6C2;
+	Fri, 14 Aug 2026 17:18:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HXXmhYEh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWCp7VFB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33D2110F6CE
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:18:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CEA410F6D1
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786727919; x=1818263919;
+ t=1786727926; x=1818263926;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/O9p2HZ8enGRBiqncRgluvI6bgX8N9SOVparUjGixGg=;
- b=HXXmhYEhr0qEgxqs5C9lBw4p7Acy7f83TAdmR6gOdIYbPl5LGYWru+Kt
- DHOHdjTOC12xGI51danE696FvXO6lgYZ36ynYDxJklO0uHZM48+L9ME+X
- pDXMdDlhOioNMB8IfvERq47PKeEVSXIIwV+l1GQzEmzuGxZLM24ueNDix
- XBMdpwAIIogYlx4MzRhQzNewKfntr3GrxbbNeiiKHj8OKu8lxStv8Zq1l
- D8gHjWXZX7sTVB+CrDW5KygaAk27gm2nIa0m8U2/R2BFbuFLOpmw5h67U
- sfv9+Z3+4z+M0V9YH6+glgk86E2QGlmI7pLOAStlahNSO6DS/Cr2y94M9 g==;
-X-CSE-ConnectionGUID: cl8hqYC2RZOLK/Es+QcjJQ==
-X-CSE-MsgGUID: x43M5uXnQVWRaBVc09lyEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464040"
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464040"
+ bh=FhWHyGoucadnoZY+WsQ0b95pmpHrd+H7rjUkQiAFINI=;
+ b=VWCp7VFB1G7X4R6zIgWppOxahMQRuZSRl0P9xSv9m3TuPz7rwFIdeJQS
+ A2okW3iGTbhX4d4RQAHXUqCGn43q9O4k5HvBWVU3eGQnlcCuZaKBGuVDZ
+ OVeCyatmkpjM3kF+r2RqvuH7qbSdoB7wt3boCjfAEpi6GpMukAO0N2FkI
+ dxdDyA4kz6vnmxES6u4JU21WK95S+6NPWyU4CsuoVMIYsEaNGs4ClsK0L
+ FR4K8mr0A1wVQyaSOUwU2qG7vIRbuHAY0/OWE+pg9l3PG5+upZESvNbKP
+ iBwYqnL0TNeVAJNxyKJu/MhzVGvBlExTDTtyYh+1qIHeJwXQVJsh2YeXR w==;
+X-CSE-ConnectionGUID: VqZRfI8KRkK+jODKSIcQ7w==
+X-CSE-MsgGUID: PPhd6hubSL+sCm9rsuUPpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464051"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464051"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 10:18:39 -0700
-X-CSE-ConnectionGUID: QicGDkXuQ9utPnhzFT3BZA==
-X-CSE-MsgGUID: puYdY8o7SY+YsdDz4FlZ+g==
+ 14 Aug 2026 10:18:46 -0700
+X-CSE-ConnectionGUID: jmOUzgmxS/y4Yq+tJgDUlg==
+X-CSE-MsgGUID: kTIXKQihRuqko0c6Uy6u2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946168"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946217"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 10:18:34 -0700
+ 14 Aug 2026 10:18:42 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v5 11/33] drm/xe/log: Index all SIGID printk messages
-Date: Fri, 14 Aug 2026 19:17:37 +0200
-Message-ID: <20260814171801.13347-12-michal.wajdeczko@intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
+ Yoni Levitt <yoni.levitt@intel.com>
+Subject: [PATCH v5 16/33] drm/xe/tests: Add Kunit tests for xe_log
+Date: Fri, 14 Aug 2026 19:17:42 +0200
+Message-ID: <20260814171801.13347-17-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260814171801.13347-1-michal.wajdeczko@intel.com>
 References: <20260814171801.13347-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,87 +72,628 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When CONFIG_PRINTK_INDEX is enabled, it is expected that all device
-level printk messages are indexed for audit. While usually this is
-done automatically behind the scenes when code is using regular
-dev_printk macros, since we are generating different dmesg messages
-inside xe_log_emit() based on the severity, component and location,
-we only get those entries in /sys/kernel/debug/printk/index/xe:
+All dmesg log lines generated by the xe_log() functions or helper
+macros are expected to have a stable format. Add tests to verify
+that generated output is not accidentally changed. Add demo pseudo
+tests to show how to use all variants of the xe_log() helpers.
 
-  <3> drivers/gpu/drm/xe/xe_log.c:142 log_dmesg_vprintk "%s %s: [drm] *ERROR* %pV"
-  <6> drivers/gpu/drm/xe/xe_log.c:140 log_dmesg_vprintk "%s %s: [drm] %pV"
-
-Explicitly generate printk index using dev_printk_index_emit() with
-some generic prefix that includes the SIGID tag.
-
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-v2: use simpler/more generic format (Sashiko)
-    convert const severity to level (Michal)
-    use do { } while (Mallesh)
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Yoni Levitt <yoni.levitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_log.c |  8 ++++----
- drivers/gpu/drm/xe/xe_log.h | 17 ++++++++++++++---
- 2 files changed, 18 insertions(+), 7 deletions(-)
+v2: less demos/more tests (Michal)
+v3: expect tile.id is already set (Michal)
+    add invalid params test (Michal)
+v4: move/drop err local var (Mallesh/Michal)
+v5: add test case for xe_log_err_info (Michal)
+---
+ drivers/gpu/drm/xe/tests/xe_log_kunit.c | 553 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_log.c             |  11 +
+ 2 files changed, 564 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_log_kunit.c
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_log_kunit.c b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
+new file mode 100644
+index 000000000000..56c36c8a08e1
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
+@@ -0,0 +1,553 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <kunit/static_stub.h>
++#include <kunit/test.h>
++#include <kunit/test-bug.h>
++
++#include "tests/xe_kunit_helpers.h"
++#include "tests/xe_pci_test.h"
++#include "xe_device.h"
++#include "xe_log.h"
++
++static void nop_dmesg_vprintk(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
++{
++}
++
++static void nop_emit_cper(struct pci_dev *pdev, int cper_sev,
++			  enum xe_sigid sigid, u32 component, u32 location,
++			  const void *data, size_t len, struct va_format *vaf)
++{
++}
++
++static const char *component_name(u32 component)
++{
++	switch (component) {
++#define make_component_tag_case(_CLASS, _ID, _TAG, _SIG, _NAME) \
++	case XE_LOG_COMPONENT_##_TAG: return _NAME;
++	DEFINE_XE_LOG_COMPONENTS(make_component_tag_case)
++#undef make_component_tag_case
++	}
++	return component ? "???" : "";
++}
++
++static const char *location_type(u32 location)
++{
++	u32 type = FIELD_GET(XE_LOG_LOCATION_TYPE_MASK, location);
++
++	return type == XE_LOG_LOCATION_TYPE_DEVICE ? "DEVICE" :
++	       type == XE_LOG_LOCATION_TYPE_TILE ? "TILE" :
++	       type == XE_LOG_LOCATION_TYPE_GT ? "GT" :
++	       location ? "?" : "";
++}
++
++static void fake_emit_cper(struct pci_dev *pdev, int cper_sev,
++			   enum xe_sigid sigid, u32 component, u32 location,
++			   const void *data, size_t len, struct va_format *vaf)
++{
++	char msg[64];
++	int n;
++
++	pr_info("\n");
++	pr_info("CPER SEV=%u SIGID=%u\n", cper_sev, sigid);
++	pr_info("CPER DEVICE=%s\n", dev_name(&pdev->dev));
++	if (location)
++		pr_info("CPER LOCATION=%#x \t# %s.%u\n",
++			location, location_type(location),
++			FIELD_GET(XE_LOG_LOCATION_ID_MASK, location));
++	if (component)
++		pr_info("CPER COMPONENT=%#x \t# %s\n",
++			component, component_name(component));
++	if (IS_ERR(data))
++		pr_info("CPER ERR=%ld \t\t# %pe\n", PTR_ERR(data), data);
++	else if (len)
++		print_hex_dump(KERN_INFO, "CPER BIN=", DUMP_PREFIX_OFFSET,
++			       16, 1, data, len, false);
++
++	n = vscnprintf(msg, sizeof(msg), vaf->fmt, *vaf->va);
++	print_hex_dump(KERN_INFO, "CPER MSG=", DUMP_PREFIX_OFFSET, 16, 1, msg, n, true);
++	pr_info("CPER END\n");
++}
++
++static const u8 blob[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
++static const u8 dead[] = { 0xde, 0xad, 0xbe, 0xef };
++
++static struct xe_tile *to_tile_safe(struct xe_device *xe)
++{
++	return xe ? &xe->tiles[1] : NULL;
++}
++
++static struct xe_gt *to_gt_safe(struct xe_device *xe)
++{
++	return xe ? to_tile_safe(xe)->primary_gt : NULL;
++}
++
++static struct pci_dev *to_pdev_safe(struct xe_device *xe)
++{
++	return xe ? xe_any_to_pdev(xe) : NULL;
++}
++
++static void demo(struct xe_device *xe)
++{
++	struct pci_dev *pdev = xe_any_to_pdev(xe);
++	struct xe_tile *tile = to_tile_safe(xe);
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	/* SW errno */
++	xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PROBE,
++		    XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++		    ERR_PTR(-ENODEV), 0, "testing %s signature\n", "software");
++
++	xe_log_err(tile, PROBE, -ENODEV, "testing %s signature\n", "software");
++	xe_log_err_corrected(gt, PROBE, -ENODEV, "testing %s signature\n", "software");
++	xe_log_info(gt, PROBE, "testing %s signature\n", "software");
++
++	/* HW data */
++	xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PCIE,
++		    XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++		    blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
++	xe_log_emit_recoverable(pdev, XE_SIGID_FABRIC,
++				XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++				blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
++	xe_log_from_corrected(tile, XE_SIGID_DEVICE_MEMORY, XE_LOG_COMPONENT_NONE,
++			      blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
++	xe_log_from_info(gt, XE_SIGID_CORE_COMPUTE, XE_LOG_COMPONENT_NONE,
++			 blob, sizeof(blob), "testing %s signature\n", "HARDWARE");
++}
++
++static void demo_dmesg(struct kunit *test)
++{
++	kunit_activate_static_stub(test, log_emit_cper, nop_emit_cper);
++	demo(test->priv);
++}
++
++static void demo_cper(struct kunit *test)
++{
++	kunit_activate_static_stub(test, log_emit_cper, fake_emit_cper);
++	kunit_activate_static_stub(test, log_dmesg_vprintk, nop_dmesg_vprintk);
++	demo(test->priv);
++}
++
++static const char *test_fatal(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_emit_fatal(pdev, XE_SIGID_PROBE,
++				  XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++				  NULL, 0, "testing %d\n", 123);
++	return "SIGID=101 FATAL testing 123\n";
++}
++
++static const char *test_fatal_tile(struct xe_device *xe)
++{
++	struct xe_tile *tile = to_tile_safe(xe);
++
++	if (tile)
++		xe_log_from_fatal(tile, XE_SIGID_PROBE, XE_LOG_COMPONENT_NONE,
++				  ERR_PTR(-ENODEV), 0, "testing %d\n", 123);
++	return "SIGID=101 FATAL (-ENODEV) Tile1: testing 123\n";
++}
++
++static const char *test_fatal_gt(struct xe_device *xe)
++{
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (gt)
++		xe_log_from_fatal(gt, XE_SIGID_PROBE, XE_LOG_COMPONENT_NONE,
++				  ERR_PTR(-ENODEV), 0, "testing %d\n", 123);
++	return "SIGID=101 FATAL (-ENODEV) Tile1: GT1: testing 123\n";
++}
++
++static const char *test_fatal_comp(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_err_fatal(pdev, PROBE, -ENODEV, "testing %d\n", 123);
++	return "SIGID=101 FATAL (-ENODEV) PROBE: testing 123\n";
++}
++
++static const char *test_fatal_comp_tile(struct xe_device *xe)
++{
++	struct xe_tile *tile = to_tile_safe(xe);
++
++	if (tile)
++		xe_log_err_fatal(tile, PROBE, -ENODEV, "testing %d\n", 123);
++	return "SIGID=101 FATAL (-ENODEV) Tile1: PROBE: testing 123\n";
++}
++
++static const char *test_fatal_comp_gt(struct xe_device *xe)
++{
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (gt)
++		xe_log_err_fatal(gt, PROBE, -ENODEV, "testing %d\n", 123);
++	return "SIGID=101 FATAL (-ENODEV) Tile1: GT1: PROBE: testing 123\n";
++}
++
++static const char *test_fatal_all(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (pdev)
++		xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PROBE,
++			    XE_LOG_COMPONENT_PROBE, MAKE_XE_LOG_LOCATION(GT, gt->info.id),
++			    ERR_PTR(-ENODEV), 0, "testing %d\n", 123);
++	return "SIGID=101 FATAL (-ENODEV) Tile1: GT1: PROBE: testing 123\n";
++}
++
++static const char *test_recoverable(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_emit_recoverable(pdev, XE_SIGID_RUNTIME_FW,
++					XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++					ERR_PTR(-EIO), 0, "testing %d\n", 123);
++	return "SIGID=104 (-EIO) testing 123\n";
++}
++
++static const char *test_recoverable_tile(struct xe_device *xe)
++{
++	struct xe_tile *tile = to_tile_safe(xe);
++
++	if (tile)
++		xe_log_from_recoverable(tile, XE_SIGID_RUNTIME_FW, XE_LOG_COMPONENT_NONE,
++					ERR_PTR(-EIO), 0, "testing %d\n", 123);
++	return "SIGID=104 (-EIO) Tile1: testing 123\n";
++}
++
++static const char *test_recoverable_gt(struct xe_device *xe)
++{
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (gt)
++		xe_log_from_recoverable(gt, XE_SIGID_RUNTIME_FW, XE_LOG_COMPONENT_NONE,
++					ERR_PTR(-EIO), 0, "testing %d\n", 123);
++	return "SIGID=104 (-EIO) Tile1: GT1: testing 123\n";
++}
++
++static const char *test_recoverable_comp(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_err(pdev, GUC, -EIO, "testing %d\n", 123);
++	return "SIGID=104 (-EIO) GUC: testing 123\n";
++}
++
++static const char *test_recoverable_comp_tile(struct xe_device *xe)
++{
++	struct xe_tile *tile = to_tile_safe(xe);
++
++	if (tile)
++		xe_log_err(tile, GUC, -EIO, "testing %d\n", 123);
++	return "SIGID=104 (-EIO) Tile1: GUC: testing 123\n";
++}
++
++static const char *test_recoverable_comp_gt(struct xe_device *xe)
++{
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (gt)
++		xe_log_err(gt, GUC, -EIO, "testing %d\n", 123);
++	return "SIGID=104 (-EIO) Tile1: GT1: GUC: testing 123\n";
++}
++
++static const char *test_recoverable_all(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (pdev)
++		xe_log_emit(pdev, CPER_SEV_RECOVERABLE, XE_SIGID_RUNTIME_FW,
++			    XE_LOG_COMPONENT_GUC, MAKE_XE_LOG_LOCATION(GT, gt->info.id),
++			    ERR_PTR(-EIO), 0, "testing %d\n", 123);
++	return "SIGID=104 (-EIO) Tile1: GT1: GUC: testing 123\n";
++}
++
++static const char *test_info(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_emit(pdev, CPER_SEV_INFORMATIONAL, XE_SIGID_DEVICE_FW,
++			    XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++			    NULL, 0, "testing %d\n", 123);
++	return "SIGID=105 testing 123\n";
++}
++
++static const char *test_info_tile(struct xe_device *xe)
++{
++	struct xe_tile *tile = to_tile_safe(xe);
++
++	if (tile)
++		xe_log_from_info(tile, XE_SIGID_DEVICE_FW, XE_LOG_COMPONENT_NONE,
++				 NULL, 0, "testing %d\n", 123);
++	return "SIGID=105 Tile1: testing 123\n";
++}
++
++static const char *test_info_gt(struct xe_device *xe)
++{
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (gt)
++		xe_log_from_info(gt, XE_SIGID_DEVICE_FW, XE_LOG_COMPONENT_NONE,
++				 NULL, 0, "testing %d\n", 123);
++	return "SIGID=105 Tile1: GT1: testing 123\n";
++}
++
++static const char *test_info_err(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_err_info(pdev, PCODE, -EPROTO, "testing %d\n", 123);
++	return "SIGID=105 (-EPROTO) PCODE: testing 123\n";
++}
++
++static const char *test_info_comp(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_info(pdev, PCODE, "testing %d\n", 123);
++	return "SIGID=105 PCODE: testing 123\n";
++}
++
++static const char *test_info_comp_tile(struct xe_device *xe)
++{
++	struct xe_tile *tile = to_tile_safe(xe);
++
++	if (tile)
++		xe_log_info(tile, PCODE, "testing %d\n", 123);
++	return "SIGID=105 Tile1: PCODE: testing 123\n";
++}
++
++static const char *test_info_comp_gt(struct xe_device *xe)
++{
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (gt)
++		xe_log_info(gt, PCODE, "testing %d\n", 123);
++	return "SIGID=105 Tile1: GT1: PCODE: testing 123\n";
++}
++
++static const char *test_info_all(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++	struct xe_gt *gt = to_gt_safe(xe);
++
++	if (pdev)
++		xe_log_emit(pdev, CPER_SEV_INFORMATIONAL, XE_SIGID_DEVICE_FW,
++			    XE_LOG_COMPONENT_PCODE, MAKE_XE_LOG_LOCATION(GT, gt->info.id),
++			    NULL, 0, "testing %d\n", 123);
++	return "SIGID=105 Tile1: GT1: PCODE: testing 123\n";
++}
++
++static const char *test_hw_fatal(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_emit_fatal(pdev, XE_SIGID_PCIE,
++				  XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++				  dead, sizeof(dead), "testing %d\n", 123);
++	return "SIGID=201 FATAL (deadbeef) " HW_ERR "testing 123\n";
++}
++
++static const char *test_hw_recoverable(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_emit_recoverable(pdev, XE_SIGID_DEVICE_MEMORY,
++					XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++					dead, sizeof(dead), "testing %d\n", 123);
++	return "SIGID=202 (deadbeef) " HW_ERR "testing 123\n";
++}
++
++static const char *test_hw_corrected(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_emit_corrected(pdev, XE_SIGID_DEVICE_MEMORY,
++				      XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++				      dead, sizeof(dead), "testing %d\n", 123);
++	return "SIGID=202 CORRECTED (deadbeef) " HW_ERR "testing 123\n";
++}
++
++static const char *test_hw_informational(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pdev_safe(xe);
++
++	if (pdev)
++		xe_log_emit_info(pdev, XE_SIGID_DEVICE_MEMORY,
++				 XE_LOG_COMPONENT_NONE, XE_LOG_LOCATION_NONE,
++				 dead, sizeof(dead), "testing %d\n", 123);
++	return "SIGID=202 (deadbeef) testing 123\n";
++}
++
++static const struct log_test_param {
++	const char *(*func)(struct xe_device *xe);
++} log_test_params[] = {
++	{ .func = test_fatal },
++	{ .func = test_fatal_tile },
++	{ .func = test_fatal_gt },
++	{ .func = test_fatal_comp },
++	{ .func = test_fatal_comp_tile },
++	{ .func = test_fatal_comp_gt },
++	{ .func = test_fatal_all },
++	{ .func = test_recoverable },
++	{ .func = test_recoverable_tile },
++	{ .func = test_recoverable_gt },
++	{ .func = test_recoverable_comp },
++	{ .func = test_recoverable_comp_tile },
++	{ .func = test_recoverable_comp_gt },
++	{ .func = test_recoverable_all },
++	{ .func = test_info },
++	{ .func = test_info_tile },
++	{ .func = test_info_gt },
++	{ .func = test_info_err },
++	{ .func = test_info_comp },
++	{ .func = test_info_comp_tile },
++	{ .func = test_info_comp_gt },
++	{ .func = test_info_all },
++	{ .func = test_hw_fatal },
++	{ .func = test_hw_recoverable },
++	{ .func = test_hw_corrected },
++	{ .func = test_hw_informational },
++};
++
++static void log_param_get_desc(const struct log_test_param *p, char *desc)
++{
++	snprintf(desc, KUNIT_PARAM_DESC_SIZE, "%ps", p->func);
++}
++
++KUNIT_ARRAY_PARAM(log, log_test_params, log_param_get_desc);
++
++static void check_dmesg_vprintk(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
++{
++	struct kunit *test = kunit_get_current_test();
++	const struct log_test_param *param = test->param_value;
++	const char *exp = param->func(NULL);
++	char msg[64];
++	int n;
++
++	n = vsnprintf(msg, sizeof(msg), vaf->fmt, *vaf->va);
++	KUNIT_EXPECT_LT(test, n, sizeof(msg));
++	KUNIT_EXPECT_STREQ(test, msg, exp);
++}
++
++static void test_dmesg(struct kunit *test)
++{
++	const struct log_test_param *param = test->param_value;
++
++	kunit_activate_static_stub(test, log_emit_cper, nop_emit_cper);
++	kunit_activate_static_stub(test, log_dmesg_vprintk, check_dmesg_vprintk);
++
++	param->func(test->priv);
++}
++
++#define INVALID_TILEID	(XE_MAX_TILES_PER_DEVICE + 1)
++#define INVALID_GTID	(XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE + 1)
++
++#define PREP_TEST_LOCATION(type, id) \
++	(FIELD_PREP_CONST(XE_LOG_LOCATION_TYPE_MASK, (type)) | \
++	 FIELD_PREP_CONST(XE_LOG_LOCATION_ID_MASK, (id)))
++#define PREP_TEST_COMPONENT(class, type) \
++	(FIELD_PREP_CONST(XE_LOG_COMPONENT_CLASS_MASK, (class)) | \
++	 FIELD_PREP_CONST(XE_LOG_COMPONENT_TYPE_MASK, (type)))
++
++static const struct {
++	u32 comp;
++	u32 loc;
++	const char *name;
++} invalid_params[] = {
++	{	.name = "no-component no-location no-warn" },
++	{	.loc = PREP_TEST_LOCATION(0, 1),
++		.name = "reserved location" },
++	{	.loc = PREP_TEST_LOCATION(255, 0),
++		.name = "unknown location" },
++	{	.loc = PREP_TEST_LOCATION(XE_LOG_LOCATION_TYPE_DEVICE, 1),
++		.name = "nonzero-device-id location" },
++	{	.loc = PREP_TEST_LOCATION(XE_LOG_LOCATION_TYPE_TILE, INVALID_TILEID),
++		.name = "invalid-tile-id location" },
++	{	.loc = PREP_TEST_LOCATION(XE_LOG_LOCATION_TYPE_GT, INVALID_GTID),
++		.name = "invalid-gt-id location" },
++	{	.comp = PREP_TEST_COMPONENT(255, 0),
++		.name = "unknown component class" },
++	{	.comp = PREP_TEST_COMPONENT(XE_LOG_COMPONENT_CLASS_SYSTEM, 255),
++		.name = "unknown system component" },
++	{	.comp = PREP_TEST_COMPONENT(XE_LOG_COMPONENT_CLASS_HARDWARE, 255),
++		.name = "unknown hardware component" },
++	{	.comp = PREP_TEST_COMPONENT(255, 1),
++		.loc = PREP_TEST_LOCATION(255, 1),
++		.name = "unknown component and location" },
++};
++
++KUNIT_ARRAY_PARAM_DESC(invalid_param, invalid_params, name);
++
++static void test_invalid(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	typeof(invalid_params[0]) *param = test->param_value;
++
++	struct pci_dev *pdev = xe_any_to_pdev(xe);
++
++	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG))
++		kunit_skip(test, "requires CONFIG_DRM_XE_DEBUG\n");
++
++	kunit_activate_static_stub(test, log_emit_cper, nop_emit_cper);
++	kunit_activate_static_stub(test, log_dmesg_vprintk, nop_dmesg_vprintk);
++
++	kunit_warning_suppress(test) {
++		xe_log_emit(pdev, CPER_SEV_FATAL, XE_SIGID_PROBE,
++			    param->comp, param->loc,
++			    NULL, 0, "testing %s\n", param->name);
++		KUNIT_EXPECT_SUPPRESSED_WARNING_COUNT(test, !!param->comp + !!param->loc);
++	}
++}
++
++static int xe_log_test_init(struct kunit *test)
++{
++	struct xe_pci_fake_data fake = {
++		.platform = XE_PVC, /* with max_remote_tiles != 0 */
++		.subplatform = XE_SUBPLATFORM_NONE,
++		.graphics_verx100 = 2001,
++		.media_verx100 = 2001,
++	};
++	struct xe_device *xe;
++
++	test->priv = &fake;
++	xe_kunit_helper_xe_device_test_init(test);
++	xe = test->priv;
++
++	KUNIT_ASSERT_NOT_NULL(test, to_tile_safe(xe));
++	KUNIT_ASSERT_NOT_NULL(test, to_gt_safe(xe));
++	KUNIT_EXPECT_EQ(test, 1, xe_any_id(to_tile_safe(xe)));
++	KUNIT_EXPECT_EQ(test, 1, xe_any_id(to_gt_safe(xe)));
++
++	return 0;
++}
++
++static struct kunit_case xe_log_test_cases[] = {
++	KUNIT_CASE(demo_cper),
++	KUNIT_CASE(demo_dmesg),
++	KUNIT_CASE_PARAM(test_dmesg, log_gen_params),
++	KUNIT_CASE_PARAM(test_invalid, invalid_param_gen_params),
++	{}
++};
++
++static struct kunit_suite xe_log_suite = {
++	.name = "xe_log",
++	.test_cases = xe_log_test_cases,
++	.init = xe_log_test_init,
++};
++
++kunit_test_suites(&xe_log_suite);
 diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
-index 0b4f791a490f..015a9f734e77 100644
+index 015a9f734e77..5549ef6966fd 100644
 --- a/drivers/gpu/drm/xe/xe_log.c
 +++ b/drivers/gpu/drm/xe/xe_log.c
-@@ -177,7 +177,7 @@ static void log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sig
+@@ -3,6 +3,9 @@
+  * Copyright © 2026 Intel Corporation
+  */
+ 
++#include <kunit/static_stub.h>
++#include <kunit/visibility.h>
++
+ #include "abi/xe_log_abi.h"
+ 
+ #include "xe_device.h"
+@@ -13,6 +16,8 @@ static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigi
+ 			  u32 component, u32 location, const void *data, size_t len,
+ 			  struct va_format *vaf)
+ {
++	KUNIT_STATIC_STUB_REDIRECT(log_emit_cper, pdev, cper_sev, sigid,
++				   component, location, data, len, vaf);
+ 	/* TODO */
  }
  
- /**
-- * xe_log_emit() - Emit a structured SIGID log entry
-+ * __xe_log_emit() - Emit a structured SIGID log entry
-  * @pdev: the &pci_dev device
-  * @cper_sev: CPER severity (CPER_SEV_FATAL, CPER_SEV_RECOVERABLE, ...)
-  * @sigid: signature identifier, see &enum xe_sigid
-@@ -206,9 +206,9 @@ static void log_emit_dmesg(struct pci_dev *pdev, int cper_sev, enum xe_sigid sig
-  *   <3> xe 0000:03:00.0: [drm] *ERROR* SIGID=106 (-ETIMEDOUT) Engine 'rcs0' hung
-  *   <6> xe 0000:03:00.0: [drm] SIGID=103 In survivability mode
-  */
--void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
--		 u32 component, u32 location, const void *data, size_t len,
--		 const char *fmt, ...)
-+void __xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		   u32 component, u32 location, const void *data, size_t len,
-+		   const char *fmt, ...)
+@@ -132,6 +137,8 @@ static const char *log_sev_prefix(int cper_sev)
+ 
+ static void log_dmesg_vprintk(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
  {
- 	struct va_format vaf;
- 	va_list args;
-diff --git a/drivers/gpu/drm/xe/xe_log.h b/drivers/gpu/drm/xe/xe_log.h
-index 8c74f809fb5b..bb1185143589 100644
---- a/drivers/gpu/drm/xe/xe_log.h
-+++ b/drivers/gpu/drm/xe/xe_log.h
-@@ -16,9 +16,20 @@
- struct pci_dev;
++	KUNIT_STATIC_STUB_REDIRECT(log_dmesg_vprintk, pdev, cper_sev, vaf);
++
+ 	if (cper_sev == CPER_SEV_INFORMATIONAL)
+ 		pci_info(pdev, __LOG_DRM_PRINTK_FMT("%pV", vaf));
+ 	else
+@@ -222,3 +229,7 @@ void __xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
  
- __printf(8, 9)
--void xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
--		 u32 component, u32 location, const void *data, size_t len,
--		 const char *fmt, ...);
-+void __xe_log_emit(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+		   u32 component, u32 location, const void *data, size_t len,
-+		   const char *fmt, ...);
+ 	va_end(args);
+ }
 +
-+#define __xe_log_const_sev_to_level(sev) \
-+	(__builtin_constant_p(sev) ? (sev) == CPER_SEV_INFORMATIONAL ? KERN_INFO : KERN_ERR : NULL)
-+
-+#define __xe_log_emit_printk_index(level, fmt) \
-+	dev_printk_index_emit(level, "%s SIGID=%u %s" fmt);
-+
-+#define xe_log_emit(pdev, sev, sig, comp, loc, data, len, fmt, args...) do {		\
-+	__xe_log_emit_printk_index(__xe_log_const_sev_to_level(sev), fmt);		\
-+	__xe_log_emit((pdev), (sev), (sig), (comp), (loc), (data), (len), fmt, ##args); \
-+} while (0)
- 
- #define xe_log_emit_fatal(pdev, sig, comp, loc, data, len, fmt, args...) \
- 	xe_log_emit((pdev), CPER_SEV_FATAL, (sig), (comp), (loc), \
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_log_kunit.c"
++#endif
 -- 
 2.47.1
 
