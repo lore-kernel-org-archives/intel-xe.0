@@ -4,44 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2321BC5CFCF
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 14:45:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 822EAC5CFCF
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 14:46:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B608C10E57B;
-	Fri, 14 Aug 2026 14:45:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41AE510E57C;
+	Fri, 14 Aug 2026 14:46:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="frVgo/ju";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="U3uvyxw2";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6260A10E57B
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 14:45:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE72610F60E
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 14:46:22 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0FA2143E19;
- Fri, 14 Aug 2026 14:45:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8CC01F00A3A;
- Fri, 14 Aug 2026 14:45:15 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 9AB104075C;
+ Fri, 14 Aug 2026 14:46:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 544A41F000E9;
+ Fri, 14 Aug 2026 14:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786718715;
- bh=OPBDQhRkBu/cFmxqGs/MB0vQqMRbNyItPlhvsZpLduI=;
+ s=k20260515; t=1786718782;
+ bh=Cl7CjRP9heVtYKUkiEXj9yGu1wKXoLG1tyjqhXN46CA=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=frVgo/juiYeI9CWWJs7ZOQROdHTcDfAWSLDLyJxibP4kwp074Tl+eBpvwairlrY3+
- Y5XpN3Pnv2hyC1VN7c8AOY4JyPidhtGC7JwQ9tQk9qQLLLpU34R8eJylzKV4rH40r9
- 3vBgu+YM9UvevpdaqEONNwW62Te/IXmZzJohqM9NctalJ0dZTGu+EjAYbDW1r18zwY
- TvMXq4+dKAtNDeyRO0tyZvoN1GizL8rSf9pYFxpJckAmfu2ZOS7e1UrdR/37aYd4sY
- uc6+EtUxnOyk29NyvW5sDUYcZ34gXw/BH7dZbix/wP2sy/HeIea8SEhZtIrM2iGGut
- bDarAq41WS4eA==
+ b=U3uvyxw2vKFyethkVc6zlGmZ6LU8UmJ/otoYrPBXVhYMln6h4QiD74Fu9BZjiXHr6
+ 2ONryppmRq1lomrVaJ4NEBQsovEz06yk3LDxjTuVx2ntlwqRHKeDr2ieiuyqoEChND
+ iY50INox6UGTdVRJOK+mdy67kh6SmjXYktKn60SZ9cXAOxboAEB1+UXDxRqWziqBUE
+ Cj4y6+PHt3sLPQkvwx2qTwlinA+hZShQsXCgr9HyrxqbbpPAIxVxxJeyyRcgmzg5Ds
+ TBFZSIkw2+dYmgWXT95LAId4DKZkFK6o3/Sghuo27Q+U9KK76mA5/ZS5A4Uq+meugT
+ w5pcWdIFU77/Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] drm/xe: Update shrinker batch size based on
- average BO size
-To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v1] drm/xe/pci_error: Allow debugging PCI errors
+To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260814143737.49684-3-thomas.hellstrom@linux.intel.com>
-References: <20260814143737.49684-1-thomas.hellstrom@linux.intel.com>
- <20260814143737.49684-3-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260814143121.390791-1-raag.jadav@intel.com>
+References: <20260814143121.390791-1-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 14 Aug 2026 14:45:15 +0000
-Message-Id: <20260814144515.C8CC01F00A3A@smtp.kernel.org>
+Date: Fri, 14 Aug 2026 14:46:21 +0000
+Message-Id: <20260814144622.544A41F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,64 +57,64 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Concurrent read-modify-write of the shared shrinker batch size w=
-ithout synchronization causes a data race.
+- [High] Returning PCI_ERS_RESULT_DISCONNECT does not prevent bus reset on =
+fatal AER errors and causes the PCI core to tear down the device, defeating=
+ the patch's debugging goal.
 --
 
---- Patch [2]: [PATCH v2 2/2] drm/xe: Update shrinker batch size based on a=
-verage BO size ---
-commit 93a100ad39134ef7ca30d7a7dc94040b4d8bbe71
-Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+--- Patch [1]: [PATCH v1] drm/xe/pci_error: Allow debugging PCI errors ---
+commit bd082f56247e27f219ffa1505be8bdbb355ef59d
+Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/xe: Update shrinker batch size based on average BO size
+drm/xe/pci_error: Allow debugging PCI errors
 
-This commit updates the preferred vmscan batch size based on the average
-number of pages per GEM object. It adjusts the batch size as an exponential
-moving average to avoid firing the shrinker for requests that are too small
-to free an average-sized object.
+XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging hangs.
+Disconnect the device on AER and prevent bus reset, so that it is available
+to the user for debugging.
 
-> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shr=
-inker.c
-> index cded230f5459c..284fce207705c 100644
-> --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-[ ... ]
-> @@ -157,8 +159,32 @@ xe_shrinker_count(struct shrinker *shrink, struct sh=
-rink_control *sc)
->  		num_pages =3D 0;
+> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pc=
+i_error.c
+> --- a/drivers/gpu/drm/xe/xe_pci_error.c
+> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
+> @@ -63,6 +63,12 @@ static pci_ers_result_t xe_pci_error_detected(struct p=
+ci_dev *pdev, pci_channel_
+>  	if (xe_survivability_mode_is_boot_enabled(xe) || xe_device_wedged(xe))
+>  		return PCI_ERS_RESULT_DISCONNECT;
 > =20
->  	num_pages +=3D shrinker->purgeable_pages;
-> +	total_pages =3D shrinker->shrinkable_pages + shrinker->purgeable_pages;
-> +	populated_tts =3D shrinker->populated_tts;
->  	read_unlock(&shrinker->lock);
-> =20
-> +	/*
-> +	 * Update our preferred vmscan batch size for the next pass.
-[ ... ]
-> +	 */
-> +	if (populated_tts) {
-> +		unsigned long avg =3D 2 * total_pages / populated_tts;
-> +
-> +		shrinker->shrink->batch =3D
-> +			max((shrinker->shrink->batch + avg) >> 1,
-> +			    128UL /* default SHRINK_BATCH */);
-
-[Severity: Medium]
-Will this concurrent update cause a data race?
-
-Since the lock is released with read_unlock just before this block, multiple
-tasks entering xe_shrinker_count during direct reclaim or kswapd could
-perform this read-modify-write concurrently.
-
-While occasional lost updates to this heuristic might be functionally benig=
-n,
-could this unprotected access trigger concurrency sanitizers?
-
+> +	/* User wants to debug the error, prevent reset */
+> +	if (xe->wedged.mode =3D=3D XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
+> +		xe_device_declare_wedged(xe);
+> +		return PCI_ERS_RESULT_DISCONNECT;
 > +	}
 > +
->  	return num_pages ? num_pages : SHRINK_EMPTY;
->  }
+
+[Severity: High]
+Does returning PCI_ERS_RESULT_DISCONNECT actually prevent the bus reset
+and keep the device available for debugging?
+
+Looking at the PCI core in pcie_do_recovery(), if the error is fatal=20
+(state =3D=3D pci_channel_io_frozen), a bus reset is issued unconditionally=
+=20
+regardless of the result returned by the driver's error_detected() callback:
+
+drivers/pci/pcie/err.c:pcie_do_recovery() {
+	...
+	status =3D report_error_detected(dev, state, &pci_ers_result_none);
+
+	if (status =3D=3D PCI_ERS_RESULT_NEED_RESET ||
+	    state =3D=3D pci_channel_io_frozen) {
+		if (reset_subordinates(bridge) !=3D PCI_ERS_RESULT_RECOVERED) {
+	...
+}
+
+Furthermore, returning PCI_ERS_RESULT_DISCONNECT means the status is not
+PCI_ERS_RESULT_RECOVERED. This forces the PCI core to jump to its failure
+path, which notifies the driver with pci_channel_io_perm_failure and
+subsequently tears down the device.
+
+Will this unintentionally destroy the very state the user is trying
+to debug, rather than keeping the device available?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260814143737.4968=
-4-1-thomas.hellstrom@linux.intel.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260814143121.3907=
+91-1-raag.jadav@intel.com?part=3D1
