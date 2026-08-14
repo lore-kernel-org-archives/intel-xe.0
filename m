@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7AD9C5DF66
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 02:26:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 733ECC5DF66
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 02:28:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5102310E4DE;
-	Fri, 14 Aug 2026 02:26:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1565910E24F;
+	Fri, 14 Aug 2026 02:28:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L44UI8HM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BYnOCaHx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEC2410E4DE
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 02:26:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27E3D10E24F
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 02:27:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786674418; x=1818210418;
+ t=1786674478; x=1818210478;
  h=date:from:to:cc:subject:message-id;
- bh=hUebBYqAWJ06DDlzz6odpDV2cLQXJwUnv2c/5BMJ+pk=;
- b=L44UI8HMNk/V9mpk+76Y2Vu+RC6/v3nqoGRCIh25V16W2PQd27ws64Lj
- IuivcIFx/OgWUpiOxbStP13ZCaH2UEk+S2Kc6C09rSjq1Z1FM69bz5mVe
- S0UCb7+aTxyJlPBIcYbGuiUd3whxnZkD5wKSaw/1MGQsM5/BzNl1x1BER
- xs/Wmw8jbQGdtvAWCpJapMelT/ZzOXGXd/AmOoFbcCYvt6Rg3y8HB4gJB
- AGt9avuqTDwqn+7H2gY7Hz37EnS75Q/4V1eRHjZmivnXE86X599PnjZvv
- j1ihyc7KH+I+B00hQkXaGN5T6a/UnghiorztTKC2O9z+6llKJuEeX0AXN Q==;
-X-CSE-ConnectionGUID: PPST3kXOQwuWr3pdjpYeyA==
-X-CSE-MsgGUID: PjLPDHYzT22UP6mf/t0UVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11874"; a="98613633"
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98613633"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2026 19:26:57 -0700
-X-CSE-ConnectionGUID: GuqqLiIwRIeAbVpmDJhOzA==
-X-CSE-MsgGUID: IzAyxYUuR5S51Vax2Q1NHQ==
+ bh=ice2nGg5ojESOJfaLynO/BXzawQhdWCsRA40DOg4M0o=;
+ b=BYnOCaHxIraJuh7jpeYVy5yrQBDfr5bHKSdQbLIxgnPg1MluCOWGRSyd
+ dMMhhQPLBoEEtwHY+vhHJriYH2hAZBbE6NFRXh1hAUKZ9SBdjfFaEm8XI
+ osS/a5aUMe+8lrImjDP14eTit9A7So6EI+jwMLbD8PxtUDh9rYHNp9tXv
+ xqYSfzZ5M/dovr9yMf2v73dEssS1C+m4hutkfTrYtt0yI7e+j5GR2hQst
+ Xf6pFusfE4HbvD4k0S3Ht+rUMRgeCvpSq3Z1nYJkNvKTvuxq49cjkMn1c
+ m4Yb46iDJV+IlpifTCfmtATVJwFGdx8Yc4ZmuJKBxTLil5tB+QOmAnbyN w==;
+X-CSE-ConnectionGUID: 6sCMhygoSu2OJHOn7m/rCA==
+X-CSE-MsgGUID: xGGDxjGaSy2Lu5VsYY9zMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11874"; a="87118096"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="87118096"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2026 19:27:58 -0700
+X-CSE-ConnectionGUID: DJL/vo2WQaa1LO/TSg1pqg==
+X-CSE-MsgGUID: cEejbwBBTniKowCnnJ3tqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="267594039"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="288893216"
 Received: from lkp-server01.sh.intel.com (HELO 6eda058d650d) ([10.239.97.150])
- by orviesa003.jf.intel.com with ESMTP; 13 Aug 2026 19:26:56 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 13 Aug 2026 19:27:56 -0700
 Received: from kbuild by 6eda058d650d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wuhdG-00000000XSS-1IDV;
- Fri, 14 Aug 2026 02:26:54 +0000
-Date: Fri, 14 Aug 2026 10:26:49 +0800
+ (envelope-from <lkp@intel.com>) id 1wuheE-00000000XSY-1Wwe;
+ Fri, 14 Aug 2026 02:27:54 +0000
+Date: Fri, 14 Aug 2026 10:27:03 +0800
 From: kernel test robot <lkp@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- f29c2bd7eaeb73afcdbd4e3bbf54d6f8799a9b06
-Message-ID: <202608141038.Y7n0avFC-lkp@intel.com>
+Subject: [drm-xe:drm-xe-next-fixes] BUILD SUCCESS
+ 1c4d0c45d762539f174cf1d74b2cb21d18e71363
+Message-ID: <202608141052.Jiyq7SIv-lkp@intel.com>
 User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,8 +64,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: f29c2bd7eaeb73afcdbd4e3bbf54d6f8799a9b06  drm/xe/ras: Use fault-inject to trigger cold-reset wedge
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next-fixes
+branch HEAD: 1c4d0c45d762539f174cf1d74b2cb21d18e71363  drm/xe/mcr: Take vcs1/vecs1 into account for first media slice
 
 elapsed time: 745m
 
@@ -76,21 +76,21 @@ The following configs have been built successfully.
 More configs may be tested in the coming days.
 
 tested configs:
-alpha       allnoconfig    gcc-16.1.0
-alpha      allyesconfig    gcc-16.1.0
-alpha         defconfig    gcc-16.1.0
-arc        allmodconfig    gcc-16.1.0
-arc        allyesconfig    gcc-16.1.0
-csky       allmodconfig    gcc-16.1.0
-i386       allmodconfig    gcc-14
-loongarch     defconfig    clang-24
-nios2      allmodconfig    gcc-11.5.0
-nios2       allnoconfig    gcc-11.5.0
-parisc     allmodconfig    gcc-16.1.0
-parisc     allyesconfig    gcc-16.1.0
-parisc        defconfig    gcc-16.1.0
-parisc64   alldefconfig    gcc-16.1.0
-sh            defconfig    gcc-16.1.0
+alpha         allnoconfig    gcc-16.1.0
+alpha        allyesconfig    gcc-16.1.0
+alpha           defconfig    gcc-16.1.0
+arc          allmodconfig    gcc-16.1.0
+arc          allyesconfig    gcc-16.1.0
+csky         allmodconfig    gcc-16.1.0
+i386         allmodconfig    gcc-14
+loongarch       defconfig    clang-24
+mips       rs90_defconfig    gcc-16.1.0
+nios2        allmodconfig    gcc-11.5.0
+nios2         allnoconfig    gcc-11.5.0
+parisc       allmodconfig    gcc-16.1.0
+parisc       allyesconfig    gcc-16.1.0
+parisc          defconfig    gcc-16.1.0
+sh              defconfig    gcc-16.1.0
 
 --
 0-DAY CI Kernel Test Service
