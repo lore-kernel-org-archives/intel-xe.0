@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DB8CC5CFC1
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA9BEC5CFC1
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:39:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 294DB10E589;
-	Fri, 14 Aug 2026 17:34:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70B5110E589;
+	Fri, 14 Aug 2026 17:39:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mOs8TaMt";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A1VthAdv";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98A9F10E589
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:34:54 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3694510E589
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:39:30 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5582C42E88;
- Fri, 14 Aug 2026 17:34:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15BC01F000E9;
- Fri, 14 Aug 2026 17:34:54 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 5D6DD601DE;
+ Fri, 14 Aug 2026 17:39:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 925011F000E9;
+ Fri, 14 Aug 2026 17:39:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786728894;
- bh=UMf0RQEIf1OaZz6IxkogDg83XVvfSXkqWAAwckUQ4vc=;
+ s=k20260515; t=1786729169;
+ bh=CukmcqyUIkxTX3YExhhMnR6/vYnM1gKPYu7hhI6wDxA=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=mOs8TaMtEblU/IhvuDKuxFjdU2XqM/bUWQ3Pdz5U3LLYm8PIAy+X1HBzhdyy/Ro2A
- kMtWdfZhKm//aNHoiR9+185aq9BIZrj6ers3yuOk3B3P9PGO3ZS1b3cftvjJcOb/Vw
- 4EWwHHBSeyRpjhIbDxhZJlrbxktjDuh2mV/GVeNcMjTtBPmrEuJ3n8UNnVyOn3oigr
- GkJEZGkY6v3DLHrx8CDDvHQJz9OrliiaSa7kCq58IcQyqdxtCiI/6SJk7Q34iBJL1g
- KgewLCWWQ5EisdAPtdOjgyZ6tVJhQnVb50ULDYatLACBx5lfaAXFEm2wcrWU8+UTFK
- 18sKYRkFIlH0g==
+ b=A1VthAdvY17uU7f1uZGPto99j34i4grQrA93lY7Oxqp6x2x6q98isJW/zm6856yPO
+ xir658FcA8Saqg+4hpoefPzPKOzjgGBcQGq9J6NWJVI1ouXQynadz0Iq98qWx4y21u
+ PoKdLgGJsJGzioUVW0W2PSH95xMbIrRP6WODGmCBHt0f6RzJeF/phGa9Z9shJDztZz
+ Z3GnVBDJcZVRyOq8M067q3W6u2bQSqADJ6ddeqkUrNXsZwQblSANYyk5NWFLVezj9v
+ ITGY9ECqTJ4FAIC7lE4DjbT1qcvr8nfmz2EeOrX5m2fYW5nJz8ijGCvu8nzbCc8+aL
+ Lfcnc09ZMeoJA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 32/33] drm/xe/gt: Report 'Queue full' pagefault error
- using SIGID
+Subject: Re: [PATCH v5 22/33] drm/xe/survivability: Report 'boot status' on
+ sysfs failure
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260814171801.13347-33-michal.wajdeczko@intel.com>
+In-Reply-To: <20260814171801.13347-23-michal.wajdeczko@intel.com>
 References: <20260814171801.13347-1-michal.wajdeczko@intel.com>
- <20260814171801.13347-33-michal.wajdeczko@intel.com>
+ <20260814171801.13347-23-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 14 Aug 2026 17:34:53 +0000
-Message-Id: <20260814173454.15BC01F000E9@smtp.kernel.org>
+Date: Fri, 14 Aug 2026 17:39:27 +0000
+Message-Id: <20260814173928.925011F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,56 +57,94 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Log spam under an IRQ-disabled spinlock due to WARN_ON_ONCE semant=
-ics
+
+Pre-existing issues:
+- [High] The `csc_hw_error_work` workqueue item is never canceled during dr=
+iver teardown, leading to a potential Use-After-Free.
+- [High] Hardware-controlled infinite loop while traversing the auxiliary i=
+nfo register linked list.
 --
 
---- Patch [32]: [PATCH v5 32/33] drm/xe/gt: Report 'Queue full' pagefault e=
-rror using SIGID ---
-commit 3d4e7bc115e30aa20f0155c869055081a51002d3
+--- Patch [22]: [PATCH v5 22/33] drm/xe/survivability: Report 'boot status'=
+ on sysfs failure ---
+commit 24540c4b13c7579fcae729221e696b114366060f
 Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-drm/xe/gt: Report 'Queue full' pagefault error using SIGID
+drm/xe/survivability: Report 'boot status' on sysfs failure
 
-This patch replaces a WARN_ON with WARN_ON_ONCE when handling a full page
-fault queue, aiming to reduce extra noise. It also adds a call to
-xe_log_err() to report the queue full error.
+If we fail to create any of the survivability sysfs files, the user
+can't view boot status registers any more. Report them into dmesg
+instead using our existing SIGID helper.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pa=
-gefault.c
-> index 8b1f6f5448baf..9e89d7b373953 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> @@ -328,8 +328,10 @@ xe_pagefault_queue_add(struct xe_pagefault_queue *pf=
-_queue,
+> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm=
+/xe/xe_survivability_mode.c
+> index 8b74bbc963903..e14553295171d 100644
+> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+[ ... ]
+> @@ -329,6 +330,9 @@ static int create_survivability_sysfs(struct pci_dev =
+*pdev)
 > =20
->  	do {
->  		/* Not possible, warn on and drop page fault */
-> -		if (WARN_ON(xe_pagefault_queue_full(pf_queue)))
-> +		if (WARN_ON_ONCE(xe_pagefault_queue_full(pf_queue))) {
-> +			xe_log_err(xe, PAGEFAULT, -ENOSPC, "Queue full!\n");
+>  failed:
+>  	xe_err(xe, "Failed to create survivability sysfs files: %pe\n", ERR_PTR=
+(ret));
+> +	/* no sysfs, dump Survivability info to dmesg instead */
+> +	if (needs_info)
+> +		log_survivability_info(xe);
+>  	return ret;
+>  }
 
 [Severity: High]
-Does this actually reduce the noise when the queue is full?
+This is a pre-existing issue, but can this loop run infinitely if the hardw=
+are
+returns corrupted or circular data?
 
-The WARN_ON_ONCE() macro prints the backtrace only the first time it is hit,
-but it still evaluates to true every time the condition is met. Because
-xe_log_err() is inside the if block, it will print a message every single
-time the queue is full, defeating the intent of reducing extra noise.
+drivers/gpu/drm/xe/xe_survivability_mode.c:populate_survivability_info() {
+    ...
+		for (id =3D REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
+		     id >=3D AUX_INFO0 && id < MAX_SCRATCH_REG;
+		     id =3D  REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, info[id]))
+			set_survivability_info(mmio, info, id);
+    ...
+}
 
-Because this runs under a spinlock with IRQs disabled, could this lead to
-severe log spam that might cause CPU soft lockups or system unresponsivenes=
-s,
-especially during a GPU page fault storm?
+Since survivability mode handles wedged or failing firmware, the hardware m=
+ight
+return an AUXINFO_HISTORY_OFFSET that points to the current or a previously
+visited index.
 
->  			return NULL;
-> +		}
-> =20
->  		lpf =3D (pf_queue->data + pf_queue->head);
->  		pf_queue->head =3D (pf_queue->head + xe_pagefault_entry_size()) %
+Does this traversal need a bound or cycle detection to prevent hanging a ke=
+rnel
+thread?
+
+[Severity: High]
+This is a pre-existing issue, but is there a potential use-after-free during
+driver teardown if this work item is not canceled?
+
+drivers/gpu/drm/xe/xe_hw_error.c:xe_hw_error_init() {
+    ...
+	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
+    ...
+}
+
+The work item is initialized without a corresponding teardown action
+(like devm_add_action_or_reset) to cancel it on driver unbind.
+
+If the driver is unloaded while hardware error processing is queued, the wo=
+rker
+could execute after the tile and xe structures are freed:
+
+drivers/gpu/drm/xe/xe_hw_error.c:csc_hw_error_work() {
+	struct xe_tile *tile =3D container_of(work, typeof(*tile), csc_hw_error_wo=
+rk);
+
+	xe_hw_error_print(tile, CSC_HW_ERROR);
+}
+
+Does the driver need a cancel_work_sync() during teardown to prevent this?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260814171801.1334=
-7-1-michal.wajdeczko@intel.com?part=3D32
+7-1-michal.wajdeczko@intel.com?part=3D22
