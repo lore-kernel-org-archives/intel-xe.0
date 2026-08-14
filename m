@@ -4,46 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E52E3C5CFCF
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 16:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B85EC5CFC1
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 16:14:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F1A010E17B;
-	Fri, 14 Aug 2026 16:12:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="R4TmGhSe";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49A8310E17B
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 16:12:49 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 05D6D4069F;
- Fri, 14 Aug 2026 16:12:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3824B1F000E9;
- Fri, 14 Aug 2026 16:12:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786723968;
- bh=6BOQblVE+aBrQQmgDPShW0rHG4WBbczQEC174od5f6Y=;
- h=Date:From:To:Cc:Subject;
- b=R4TmGhSevOXFiT9FuVIAonW0TU1/hXbOqS2HbvhL/jsrGsrq1WEmvnDpXFMuBXvmq
- vUKgZAfkS/CSIQ9Jx1MRUoHiDA5ZUHP+s42z8Em76eVqA22el110nrQuW8c5cdc/WZ
- vaCeYdUch1JLL+bdglySJCzECsfiv3md8bAB3qenLaY8zllTKpVgXLwmnlwjbgBYJP
- +u3bbEzdZS6hhwl7irfwjcvJg6cgXwjAiKvGx26BPJWgb9UND2jGKWfN5Zm/pSR5V5
- Bf7PRZLKqxkZCp7hvfdcg4aHOZptvVyIFwqEuzaqJaCuvvNeaZd+CmPKR6IcYc7U/m
- OHTfWO0DNJc3w==
-Date: Fri, 14 Aug 2026 17:12:44 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Matt Roper <matthew.d.roper@intel.com>, Raag Jadav <raag.jadav@intel.com>,
- Riana Tauro <riana.tauro@intel.com>
-Subject: linux-next: manual merge of the drm-xe tree with the drm-fixes tree
-Message-ID: <an8-fFKBQKlJ3tQ1@sirena.org.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED51110E188;
+	Fri, 14 Aug 2026 16:14:11 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA67D10E188;
+ Fri, 14 Aug 2026 16:14:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0964965371633814411=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="oA4ZQ81ut1kslhao"
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Adjust_the_bo_shr?=
+ =?utf-8?q?inker_batch_size_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Aug 2026 16:14:10 -0000
+Message-ID: <178672405082.53533.17136441586350631397@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260814143737.49684-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260814143737.49684-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,117 +36,169 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0964965371633814411==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---oA4ZQ81ut1kslhao
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: drm/xe: Adjust the bo shrinker batch size (rev2)
+URL   : https://patchwork.freedesktop.org/series/166426/
+State : failure
 
-Today's linux-next merge of the drm-xe tree got a conflict in:
+== Summary ==
 
-  drivers/gpu/drm/xe/xe_device.c
+CI Bug Log - changes from xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079_BAT -> xe-pw-166426v2_BAT
+====================================================
 
-between commit:
+Summary
+-------
 
-  ef526d122b62a ("drm/xe: Fix xe_device_probe() failure")
+  **FAILURE**
 
-=66rom the drm-fixes tree and commits:
+  Serious unknown changes coming with xe-pw-166426v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-166426v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-  5ce3042c67c53 ("drm/xe: Fix xe_device_probe() failure")
-  20bc4883c7c0e ("drm/xe/ras: Fix boot-time ras error processing")
+  
 
-=66rom the drm-xe tree.
+Participating hosts (12 -> 12)
+------------------------------
 
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+  No changes in participating hosts
 
-diff --combined drivers/gpu/drm/xe/xe_device.c
-index 2bf38a7684c64,71111ad324658..0000000000000
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@@ -282,7 -282,7 +282,7 @@@ static vm_fault_t barrier_fault(struct=20
-  	pgprot_t prot;
-  	int idx;
- =20
- -	prot =3D vm_get_page_prot(vma->vm_flags);
- +	prot =3D vma_get_page_prot(vma);
- =20
-  	if (drm_dev_enter(dev, &idx)) {
-  		unsigned long pfn;
-@@@ -331,7 -331,7 +331,7 @@@ static int xe_pci_barrier_mmap(struct f
-  	if (vma->vm_end - vma->vm_start > SZ_4K)
-  		return -EINVAL;
- =20
- -	if (is_cow_mapping(vma->vm_flags))
- +	if (vma_is_cow_mapping(vma))
-  		return -EINVAL;
- =20
-  	if (vma->vm_flags & (VM_READ | VM_EXEC))
-@@@ -513,6 -513,17 +513,17 @@@ struct xe_device *xe_device_create(stru
-  }
-  ALLOW_ERROR_INJECTION(xe_device_create, ERRNO); /* See xe_pci_probe() */
- =20
-+ static void xe_device_parse_modparam(struct xe_device *xe)
-+ {
-+ 	xe->atomic_svm_timeslice_ms =3D 5;
-+ 	xe->min_run_period_lr_ms =3D 5;
-+ 	xe->info.num_pf_work =3D xe_modparam.num_pf_work;
-+ 	if (xe->info.num_pf_work < 1)
-+ 		xe->info.num_pf_work =3D 1;
-+ 	else if (xe->info.num_pf_work > XE_PAGEFAULT_WORK_MAX)
-+ 		xe->info.num_pf_work =3D XE_PAGEFAULT_WORK_MAX;
-+ }
-+=20
-  /**
-   * xe_device_init_early() - Initialize a new &xe_device instance
-   * @xe: the &xe_device to initialize
-@@@ -539,8 -550,7 +550,7 @@@ int xe_device_init_early(struct xe_devi
-  	if (err)
-  		return err;
- =20
-- 	xe->atomic_svm_timeslice_ms =3D 5;
-- 	xe->min_run_period_lr_ms =3D 5;
-+ 	xe_device_parse_modparam(xe);
- =20
-  	err =3D xe_irq_init(xe);
-  	if (err)
-@@@ -1141,6 -1151,13 +1151,13 @@@ int xe_device_probe(struct xe_device *x
-  	if (err)
-  		goto err_unregister_display;
- =20
-+ 	/*
-+ 	 * Process and log any errors detected by hardware. Possible results can
-+ 	 * include declaring the device as wedged, which must be done only after
-+ 	 * xe_device_wedged_fini() is registered.
-+ 	 */
-+ 	xe_ras_process_errors(xe);
-+=20
-  	err =3D devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
-  	if (err)
-  		goto err_unregister_display;
+Possible new issues
+-------------------
 
---oA4ZQ81ut1kslhao
-Content-Type: application/pgp-signature; name="signature.asc"
+  Here are the unknown changes that may have been introduced in xe-pw-166426v2_BAT:
 
------BEGIN PGP SIGNATURE-----
+### IGT changes ###
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmp/PnsACgkQJNaLcl1U
-h9CJngf+LN+wwQNpQMyo4dyiLgR68aNcK5+6kb7sONHNDk3f21ll2VEMUb3Y/Z0L
-MeMRIGYvqBP8gRs6Zx6hjhcmA9yXGPU8VwciL7xJ7HljQLLBDdU59Ow7O3CFOlvF
-68KrwgReukxv2AfL9dHTvcwhqz97P0ErT9NntsHhRWHPvTIB/kcv/bC0+aqPw4yi
-rmczDwN7f+UX8usUQyzbZ0CTM/yfZHxHXH4iaqxGrRNCLYMiNqxMQHaL5FqRsdN/
-Fi1Ii1r+wBvq8L4bnUXmhx2PHHosrnBd1ee7C0IJUdmLX37Pg3eL1Z286UB8OXZd
-jEXxUl4yWaMm8Q2SKOU1/GLVaTVnpw==
-=+y20
------END PGP SIGNATURE-----
+#### Possible regressions ####
 
---oA4ZQ81ut1kslhao--
+  * igt@fbdev@eof:
+    - bat-wcl-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079/bat-wcl-1/igt@fbdev@eof.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v2/bat-wcl-1/igt@fbdev@eof.html
+
+  * igt@xe_module_load@load:
+    - bat-wcl-1:          [PASS][3] -> [TIMEOUT][4] +1 other test timeout
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079/bat-wcl-1/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v2/bat-wcl-1/igt@xe_module_load@load.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079_BAT and xe-pw-166426v2_BAT:
+
+### New IGT tests (1) ###
+
+  * igt@fbdev:
+    - Statuses :
+    - Exec time: [None] s
+
+  
+
+
+
+Build changes
+-------------
+
+  * Linux: xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079 -> xe-pw-166426v2
+
+  IGT_9056: 9056
+  xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079: 7e32cf3d0659b7cd8dae18ce40e418e0cb525079
+  xe-pw-166426v2: 166426v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v2/index.html
+
+--===============0964965371633814411==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Adjust the bo shrinker batch size (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166426/">https://patchwork.freedesktop.org/series/166426/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079_BAT -&gt; xe-pw-166426v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-166426v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-166426v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-166426v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079/bat-wcl-1/igt@fbdev@eof.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v2/bat-wcl-1/igt@fbdev@eof.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079/bat-wcl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v2/bat-wcl-1/igt@xe_module_load@load.html">TIMEOUT</a> +1 other test timeout</li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079_BAT and xe-pw-166426v2_BAT:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@fbdev:<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079 -&gt; xe-pw-166426v2</li>
+</ul>
+<p>IGT_9056: 9056<br />
+  xe-5598-7e32cf3d0659b7cd8dae18ce40e418e0cb525079: 7e32cf3d0659b7cd8dae18ce40e418e0cb525079<br />
+  xe-pw-166426v2: 166426v2</p>
+
+</body>
+</html>
+
+--===============0964965371633814411==--
