@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 905D7C5CFC1
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:19:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF484C5CFDB
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:19:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50D4C10F6E1;
-	Fri, 14 Aug 2026 17:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8002710F6DB;
+	Fri, 14 Aug 2026 17:19:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bb9ZiBjG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UnAVG3ZV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2401910F6E6
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:19:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4426F10F6D5
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:19:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786727951; x=1818263951;
+ t=1786727953; x=1818263953;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ut5r1yKqg6J7hQUklMcnZ6bRW0wrnE3yZ7XP5M8UnY4=;
- b=Bb9ZiBjGdY25/Uu3BvF2lxCDF/0myBJkJg9DANuD3LgBdV12kvVkSg9O
- ixL6Y4C9jR8LSu1s/eeEbWwDW+MREEuA0PaEvs+QARluCg0ZRYLgU8ooM
- KY2FBCpH3gC9/SdsY7GNK2/gUW2Gm1zkLr/omDU20TG39R9eDVLe1HsMT
- piZgtWIQp+YUIUEO1DgujDv2ildIXTH0CgElqQyDktbQxh0hbA84CpjAt
- LjF/BFCZ9P9ng6sAVSPwfp8uwEPZoHgvnVAb5Pco9rx44p11JPgYXT2Pv
- Yt0H6iMi42V8tjZg3DbwWjvdrIU2afU+ZkGCpDq4Blyih1VNhTWEAKdri A==;
-X-CSE-ConnectionGUID: d4vPBJOqQviHu0M5xK5/vA==
-X-CSE-MsgGUID: qB9fNmlwTvymAEuq6iPr+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464118"
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464118"
+ bh=UZRELeTKaag89o6X+s+iChzDhRdRkp0e+0oAJI6cNXQ=;
+ b=UnAVG3ZVe2dEdzYacEZP8Xo9/P5RJ6RPDV3jx5EvUpneiB205PLi1D0B
+ 0ehaOqZB28TvUKWYNSx6gd0P6ssZU6YhcJAT3KF7XNFQLjQrpcii/hOBn
+ B4hstcszqe4QqaIXhwz1+4nLMEpFIWRuMuz7hBJJN+x/6ako8PaRP2tcz
+ ndvc4wRhjQyFR8OvJEQSDen/MYswqPIgX/SURVXC/oH1Y3wfU+sfc3eUP
+ aEVK5iQ8gPdwZIe58ooOQAQG+f2ZdNLTgJEjdmz8r4dQ3O1B1DvugFacx
+ 9oFPpgHOHFdxQZFuoMor1RwIaiW3IJj0+Ce+BdZy3LSS88H/DPzgX75el A==;
+X-CSE-ConnectionGUID: imhDahqDSS2F8pXYat3D6Q==
+X-CSE-MsgGUID: PUQ9ToiFREWtRcrnTXp/CQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464120"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464120"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 10:19:11 -0700
-X-CSE-ConnectionGUID: GZ188356Ql65CkPi49+nzg==
-X-CSE-MsgGUID: YTtSLM+SSbmD2r4OnfITmw==
+ 14 Aug 2026 10:19:13 -0700
+X-CSE-ConnectionGUID: IixcYXMkRRinM91tpHqHWw==
+X-CSE-MsgGUID: Gw5nwfP2QZmmG1ZCOiW8WA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946365"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946371"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 10:19:10 -0700
+ 14 Aug 2026 10:19:11 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v5 29/33] drm/xe/guc: Report 'GuC mmio' errors using SIGID
-Date: Fri, 14 Aug 2026 19:17:55 +0200
-Message-ID: <20260814171801.13347-30-michal.wajdeczko@intel.com>
+Subject: [PATCH v5 30/33] drm/xe/gt: Report 'reset failed' errors using SIGID
+Date: Fri, 14 Aug 2026 19:17:56 +0200
+Message-ID: <20260814171801.13347-31-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260814171801.13347-1-michal.wajdeczko@intel.com>
 References: <20260814171801.13347-1-michal.wajdeczko@intel.com>
@@ -71,74 +72,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report various 'GuC mmio' errors using xe_log() helpers.
+Report 'reset' related err/info messages using xe_log() helpers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 4286bd05c686..c7f8bbd4cb92 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -39,6 +39,7 @@
- #include "xe_guc_rc.h"
- #include "xe_guc_relay.h"
- #include "xe_guc_submit.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index dfdacc0f6de9..6805e0d3bf21 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -48,6 +48,7 @@
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_irq.h"
+ #include "xe_lmtt.h"
 +#include "xe_log.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
-@@ -1542,8 +1543,9 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		/* scratch registers might be cleared during FLR, try once more */
- 		if (!header) {
- 			if (++lost > MAX_RETRIES_ON_FLR) {
--				xe_gt_err(gt, "GuC mmio request %#x: lost, too many retries %u\n",
--					  request[0], lost);
-+				xe_log_err(gt, GUC, -ENOLINK,
-+					   "MMIO request %#x: lost, too many retries %u\n",
-+					   request[0], lost);
- 				return -ENOLINK;
- 			}
- 			xe_gt_dbg(gt, "GuC mmio request %#x: lost, trying again\n", request[0]);
-@@ -1551,8 +1553,8 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 			goto retry;
- 		}
- timeout:
--		xe_gt_err(gt, "GuC mmio request %#x: no reply %#x\n",
--			  request[0], header);
-+		xe_log_err(gt, GUC, ret, "MMIO request %#x: no reply %#x\n",
-+			   request[0], header);
- 		return ret;
- 	}
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+ #include "xe_migrate.h"
+@@ -925,7 +926,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 	if (!xe_device_uc_enabled(gt_to_xe(gt)))
+ 		goto err_pm_put;
  
-@@ -1607,16 +1609,16 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 			return -EREMCHG;
- 		}
+-	xe_gt_info(gt, "reset started\n");
++	xe_log_info(gt, GT, "reset started\n");
  
--		xe_gt_err(gt, "GuC mmio request %#x: failure %#x hint %#x\n",
--			  request[0], error, hint);
-+		xe_log_err(gt, GUC, -ENXIO, "MMIO request %#x: failure %#x hint %#x\n",
-+			   request[0], error, hint);
- 		return -ENXIO;
- 	}
+ 	if (xe_fault_gt_reset()) {
+ 		err = -ECANCELED;
+@@ -964,7 +965,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 	/* Pair with get while enqueueing the work in xe_gt_reset_async() */
+ 	xe_pm_runtime_put(gt_to_xe(gt));
  
- 	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) !=
- 	    GUC_HXG_TYPE_RESPONSE_SUCCESS) {
- proto:
--		xe_gt_err(gt, "GuC mmio request %#x: unexpected reply %#x\n",
--			  request[0], header);
-+		xe_log_err(gt, GUC, -EPROTO, "MMIO request %#x: unexpected reply %#x\n",
-+			   request[0], header);
- 		return -EPROTO;
- 	}
+-	xe_gt_info(gt, "reset done\n");
++	xe_log_info(gt, GT, "reset done\n");
  
+ 	return;
+ 
+@@ -973,7 +974,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 	XE_WARN_ON(xe_uc_start(&gt->uc));
+ 
+ err_fail:
+-	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
++	xe_log_err_fatal(gt, GT, err, "reset failed\n");
+ 	xe_device_declare_wedged(gt_to_xe(gt));
+ err_pm_put:
+ 	xe_pm_runtime_put(gt_to_xe(gt));
 -- 
 2.47.1
 
