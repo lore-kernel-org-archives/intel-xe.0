@@ -4,58 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F740C5CFC1
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 14:00:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BCB2C5CFC1
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 14:00:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3009A10F5F7;
-	Fri, 14 Aug 2026 14:00:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7AEB10F5DC;
+	Fri, 14 Aug 2026 14:00:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1yGlzMZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B7cDO5V4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F98D10F5F9;
- Fri, 14 Aug 2026 14:00:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 082C210F5DC
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 14:00:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786716009; x=1818252009;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=TQCVbJzN093KkdDUdao1srurBeR5qvLyrNvei/7fvE4=;
- b=P1yGlzMZaPM2Zw+gFrdXF6y8quTRDrOA7NkqAf5bnxInCBC7qFX8FmVV
- JHoBw4p5JFMCEZJHV9J7bwc1tQAErBNE0AEZ5W1IpmzHc1BC8uCB5bQ5Z
- 3WxlkO0oDcQgwvaIVZc/yaaJu0prQ3qPuR3iog2o7VJcISGKCw0f6cDrr
- rzCFqrhyz6mOUOeE7dmxD49G15tq8U4Yf6DOI6ZhfyoGM1l79Spy9eQnb
- DLmYoOakjKEo3Nq83i3hmM3ZCxBXjsdAYfNxPKHlm4OnqSv9OGG7n7nIL
- JIO9haY5YrPKjspZc0SonWnwpSFjWTgmzSZI/xykK6cTwxM1Fiq+HSOex w==;
-X-CSE-ConnectionGUID: j1/vavYDQ9esVoTj9uAMWQ==
-X-CSE-MsgGUID: wFntQP+vQWuahGN7vDB1KQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="87316337"
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="87316337"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ t=1786716023; x=1818252023;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=AxiiBpDzLOx66FOBEQX9yKcjdA12d9KHui655chrraY=;
+ b=B7cDO5V4U9uL5DjPONy6plZkApqoJlCiosPh0smAVxxBgWN8x9GXPaNc
+ 83e30XM+hDqyydjL8xtyM/JmZBBBuj2Vg/ocWDpc5AkJOiGKInaxmO+kY
+ JGh/H1kJLNYjC+pK9Z6foAlXPGmH1KTnBTEdr1Kuqc8MbtJv3t0RyIVLd
+ 62QdPJlC9fWxTRebmdfP0zYVXg5nc7W0aKutcmN42FGXlqd8wAwRF/33B
+ CfR+4sdw6FHI3ukJo3KWFhp5RY0dHJxQ4gu3faaO7pF3+Gw6aHpDfQiFR
+ Qhxi+TIAwA5eHkyu9q3kJY2HGYNsEm/WsijMKDJtPxc5DaR9nh6hmmFB6 g==;
+X-CSE-ConnectionGUID: /vL7vrnQR5a1UweGzwAXZA==
+X-CSE-MsgGUID: uY9W8WoWThK+bqQblflG0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="87316375"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="87316375"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 07:00:09 -0700
-X-CSE-ConnectionGUID: J+37JIwMT1i/d5Cefxbd/A==
-X-CSE-MsgGUID: tBCcGRqrRruokPPv24d6kw==
+ 14 Aug 2026 07:00:23 -0700
+X-CSE-ConnectionGUID: nwtwKMEPQIupeZ8MseblPg==
+X-CSE-MsgGUID: WMZ5jv1mSA2NDCBo80S1tQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="269418457"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.164])
- ([10.245.244.164])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 07:00:07 -0700
-Message-ID: <89b0b1f748a8e971d4f066dcc51c47f167215261.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/ttm: Represent LRU bulk moves as nested sublists
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Fri, 14 Aug 2026 16:00:05 +0200
-In-Reply-To: <20260814134602.9AD981F000E9@smtp.kernel.org>
-References: <20260814133231.3193-1-thomas.hellstrom@linux.intel.com>
- <20260814134602.9AD981F000E9@smtp.kernel.org>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="289032237"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2026 07:00:23 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Fri, 14 Aug 2026 07:00:22 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Fri, 14 Aug 2026 07:00:22 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.28) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Fri, 14 Aug 2026 07:00:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zEZMpEaycEuL2kN3zQRmAo0aYvRErulLUACXCsFRJJgUw5xfxhz27zXJAp2mjwrN5KAMUS8sviOHBrVH03TDE4mKCQdnFXR1r5ye8AT3s9AyFWskzLA4iEZw6ZmZ48jOEw+tW2qlgSGlOuz0oH02WJN7v3+hW02KUCL5/kR2us+mPlObGgOcCnOJhMV+ITLERmuJD5yG/6MzsvtKoKJTh6w9GBEtzBiXXTe6VQmgXDCrhwaR6K5cxGa3yUUBPeW91j0nKFvEejWeVWBwTXCuHr8ri2zOdWHoRW8tkB4OWFSItz3mlINgjSvJrl/wSUIOb/zv1+d/TDZybhLKWykXaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KkkEmvvkxkwVDagOjnpSUE1Se0wqt72h1tTyjUzG+Mk=;
+ b=nH+VMth6bsseUZnGMHNM6/pkewROacQ63DAU5Kq4FZ8/V+fVdYftIxphvhiVzoJN4Tk96JnsekkTHK7eAwrUrpjWBUN6hrNqCJ55VE6Rr3nRAJK+LiIdrCHULBeix/UuUjDF/DScWHiTBYuKeRVEQ4ztLMirSp0CqkZaozCIqg8Bk3g6o28gYSFK1hcVWEELzNA8K3yAGaZGV04A4ZWyc2yvmQfRPd9pvd1c8L6lJyEb5x2dDwxOhAjxNd7/1SQcwtf99kvIBohDHJkP7oRuW1hUua4PtlK8a4hPnTL4xVo/QoVP7CD51+8lhG+4X8yeb3woBnwYHrxuWuGPfS5wiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by DM6PR11MB4755.namprd11.prod.outlook.com (2603:10b6:5:2ae::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.16; Fri, 14 Aug
+ 2026 14:00:14 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0315.011; Fri, 14 Aug 2026
+ 14:00:14 +0000
+Message-ID: <8bad01f5-be2f-4253-b2bc-7a814a33f0ce@intel.com>
+Date: Fri, 14 Aug 2026 16:00:10 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/32] drm/xe/log: Add structured SIGID error logging
+ infrastructure
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Mallesh Koujalagi <mallesh.koujalagi@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>, Stuart Summers
+ <stuart.summers@intel.com>, Yoni Levitt <yoni.levitt@intel.com>, "Aravind
+ Iddamsetty" <aravind.iddamsetty@intel.com>, Raag Jadav <raag.jadav@intel.com>
+References: <20260812191450.11690-1-michal.wajdeczko@intel.com>
+ <20260812191450.11690-3-michal.wajdeczko@intel.com>
+ <860e37e3-40b8-4606-a294-0e572812de74@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <860e37e3-40b8-4606-a294-0e572812de74@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA3PEPF00000512.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d8::666) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|DM6PR11MB4755:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1e84de0-0d3b-42c6-277f-08defa0c5d3b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|23010399003|22082099003|18002099003|56012099006|6133799003|4143699003|11063799006|10067099003;
+X-Microsoft-Antispam-Message-Info: nrJqzrfvsVynQgAClUHtIGRjTVEWXmPSXwaYxdjurV74ld7BHYTJl4BzuIe9UiyHrI/wP+gXBQTp9RzzkgYVd0FeG2PP7N4c5tizmPa0w4KMarL0d6R57yYAh0uMAIF02ZKU17tSuQkiAE/6jkVgWiBViAUaWJpNk+s4Wi5DvFV5SfQxmrbFn8cS+7/iqc07HBKFevZduTinoMjh30taipvvIkQ2yUg4xIobG5PNyCKop7b8gxst5Sct8mT7udqZPpoRSkQhxHza8JlIE19Na4aX3UtfbzaNgwazocYrpgkhP3q/oZVKm04ZXvFLIF65VUuHeRVtjSmxER2nTIPt0QdfgT7HSlbfKHLWPyTn4zyDYRwTghRddT5gTiRvRV8fq8EYLSmcNsK1mEiPTY31m7bK5nAYTW4GVDQ0tPFrVlvCnXFwOOSVUMnLmmMy7oGQoGjztAS1O9i4ePOTGX6p5gT6Kq+rfBM0ICIClNTDSRRiuju+6m2QgJTG1w/6tjTayqA7vU3BRAMznz8mPdlQqsknL12QQzO5hlr6sdSbts/inxwKLhv6KPUNSpMIMl/q48S6DfpRdFPpu3jPt8sjRy36wywXFf/RbAde+KJg16WNF/kLHkD13D7aTI4Co6YNbKLLyfR9iuWpPVHpEc/o0ZxaLs82TB7YmsQfqF1phaI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(22082099003)(18002099003)(56012099006)(6133799003)(4143699003)(11063799006)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEZoazkybTRaN0pNcm1VZDR1N0FkSTJHUDduMGVEeC9VeCt6UG5iUkRMUldN?=
+ =?utf-8?B?LzRKZ3YwRmVpQytDTXR5ckQyeWtuR2Y2N3o0aDZPZjBCRVp6ejB6N3cwakt0?=
+ =?utf-8?B?eGNuUlp6YWpnUGVjUkFmUWFNVW5MaVltS3FyMG1xRmY4RG1WNHZqQTQ1ZnAr?=
+ =?utf-8?B?UitsL2U4ZVE3djEvT3ZISTIyZmVpdStVNmFTSTFkLzM2b2hYRTlBekUwYzR6?=
+ =?utf-8?B?c0NXcEppbEd6T0dwVkh6Y1UyZG5DR3U4OTNvZnFSTFo2a3hGTGdoK3RqT3JG?=
+ =?utf-8?B?bTdOVWcvYzBMdXZwZ0p2a2VsYnozYTdlbjZ1MlR2cllyUEE1QjNnVXZWTHY4?=
+ =?utf-8?B?NzAveC9sREVMVGlBU3pnZmNyMUVKRWlXT2xCNlc2NGhmN0xLUk0ybW9Sb3VF?=
+ =?utf-8?B?NnpmeXdBMHpQdnRORjZGZUxXWlBVaEpKb01tTk96R0g0dVBNQlpOVi9Pdm9p?=
+ =?utf-8?B?SE1JRWlNekxhZU55YnhNZnJTazY4bEhaWEJ2VWdkTGI2ZnBhOGlCNUpvQW83?=
+ =?utf-8?B?REttcldrdU5ScWpHcDkvUXFJUXh4aCtMTGp0YU5ZaFRTUTZETEt5Z0g3bTZj?=
+ =?utf-8?B?TEovQjVlSzhhRVNlUkg4cmJZTkhQNXpBdFpObEVGY2hFeGFxaTlXaGhJSDJW?=
+ =?utf-8?B?VncwMnBTNzV3bW5YSnBxVVZOQ1V4emNIcGlLSFhEdTVOV2wvNmo2ditXMUh1?=
+ =?utf-8?B?VGNqQTZJZkFnUEI3ZWs5YmZudkRROUhHbE5XZXp1MkRFb1pQYkpyQ04vQVVC?=
+ =?utf-8?B?ZkJjbThhbzdCcmtBODcvVmY2Z1NybmRhS1RkRkxXZnh6TEdrMWZHMEQ0QkNT?=
+ =?utf-8?B?QUdTdzlITVR3V1RmMHJCcUNGRk85N3I4NEF2Z0NPVGdrTU53UVBKYUlsNUcz?=
+ =?utf-8?B?SG1UbTBhZ091R2pPOEJzaUR1cFBTMUc2eWlYcUFlVStva1FNblRDOElUWkdu?=
+ =?utf-8?B?TmxxTVFxVDVrZm5RM3pSWlEvckorWmgrK0FVUW1lM3d4cGl0dTh2RzdPSGxD?=
+ =?utf-8?B?TS9QeGpZSXVieUtOQkpBNUYvSk1xeWl4djNyNFFXdUlBREdiaWo3VmZ4Q1Zi?=
+ =?utf-8?B?RUFvZ3k3T004TU1EQzV4VEhNVkwrNFdaZXNXdkNBUklDRVFYeFUxYjFwZm5a?=
+ =?utf-8?B?T2RraGZDVWZTaUh2NmVhMkFjTU1BU3JOVW56SVVYMnFzaHFhQ2ZQMldZMCts?=
+ =?utf-8?B?ZlI2cG9qQUNMMlRLNnV2dlY4NUJFT0lpTks1VUU2L0lUTElLTGRWcE1WdzE1?=
+ =?utf-8?B?UjB6cFVvL3FtR1lRTm5hZlpCNENFT09yV3MvZk53di82blllcm9aQ1A1KzVG?=
+ =?utf-8?B?L1lMVlcxWVo2ZnVHbldyT3ZJL1BtTWliK0hNN0VlbXpmclFCcnl0c2REclQw?=
+ =?utf-8?B?bC9hazJvaml0Y0RWUVNwNURKdGo3UzRlYkVVWUhhWEFiekdaSzNFUmJ5N1RO?=
+ =?utf-8?B?dDhHV1NsNENkWW12WDc2S1pqNUVLbkJhSlNBb2cwZndDeHVzOE1lQWJLdWtG?=
+ =?utf-8?B?U3QwRmtNVnFsOHhvYWNPZmFqVU5oQ2ZoNkRNYWpCc21MdEFnTmpGNDVOcVFm?=
+ =?utf-8?B?ZEo0RG5CeFd4aTJsNHZNRnI5ZmpQM2hrOGxMSUhuTWljTTZINGVYdnZIN29w?=
+ =?utf-8?B?ME9rYWhlQW9KSGlTcDhOdVA5b2FDdzFNSk5ZVTdyaHVqODVYdHllOVgxTE9a?=
+ =?utf-8?B?eW1nSHppQnpaUFRKSVovQzFRMUZsamtWenBrYTZxWWNFTEdRMmFvU2Eyd1R6?=
+ =?utf-8?B?NzlMcjgyaU1TRjFnd1pkNnVZTlE3OGhzcHN4RURLU28yejcyYUcvd0FrVlM5?=
+ =?utf-8?B?TzdPRGR6TEZEY1JFKzgyQkRrM2xRQmI2QWR6R2FKcnUwa0EvTlJMQzJVM3d3?=
+ =?utf-8?B?b0cxR1ZVM1RDV3J4MGVZNitaZFFWZ3RxNENJSHFmaGVaNlZFZ2ozWVBwTURT?=
+ =?utf-8?B?YzFXZnpyYzJ1QUFBUi9WUWlZTWFPZ015NWFRK08rRnhnZnNxOG5JSHU5UUtU?=
+ =?utf-8?B?aE41OHczSTVTMU5NanFxMFpPTE9WVklqWDFONi90U3I4SzRVWHpvb0pmRVg2?=
+ =?utf-8?B?dE9xbU5hRjlKQ0RDVjg3MmM2SStjY2NLSldNbFR6bUFJYzZ0c2NtdDlLa0ky?=
+ =?utf-8?B?dExiL0RuV3dRdjFjeGVBS3UwalYyRXdvRGFIWWt1NlZERExUNTlrVnJkVVMr?=
+ =?utf-8?B?a2dZOTVKMW85NjdQdzR6NFBSOU1EOHVlVmtVNDk0czMxV0ZCb1pEYkdmY29V?=
+ =?utf-8?B?MVYvZXd3L2hhMm94dTJHVzJqYSttSHR2WlNGWGtmSjNoUFYrU1UrK2tySkdt?=
+ =?utf-8?B?Z00rWTFOaFpBK3BiUUpwbGVvOWJEWlFqcTRzSVErN09SYjhpS1hwVVE1dUxn?=
+ =?utf-8?Q?QUF/lblSdMsKRqZ8=3D?=
+X-Exchange-RoutingPolicyChecked: Q9w7wxuUYhk937ClLf0WoIrNNn78EwUixhHiwbWat2117655SX2w8NjWgLIz0m/xUG0g3nSWESEGxHc2lI4/W8wgkN3hFhrTizOwjOBcF9l7lYDQvQBBErD6WD1wAAuXIOVeog45FpNukfdBQ3hHLRxdTTbtzymsidZPQd0JKBHR/Z8LBwAZaHCZvyaSLfW1D+DC4xWJgkwu4pKvOAhU+3Dw8XOksrWOgtrkAi3kQd/XPCTkGZa9KTKPSDfuvalonkDcT5FdThQ3lDsRbI9FNC7co08zL+JfXlOgil49/IgI9gsy1OamnTVHaG/GIhNptTK7S1iv7r+KCfgG3CTu9g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1e84de0-0d3b-42c6-277f-08defa0c5d3b
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2026 14:00:14.6107 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T5SFBNn2iAdQ5BZzSeIGzRJ5FfC0FiIYt3ljNWlj4/z5fIpkP+8H3nIW+Bo0uO55AqnAI+7equ54r296gPpoWCeTA0jvUDRKcjKNsZjXkYU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4755
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,166 +175,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-08-14 at 13:46 +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential
-> issue(s) to consider:
-> - [High] Missing cursor adjustment in `ttm_lru_bulk_move_add` when
-> re-seeding an empty bulk move anchor causes recently-used resources
-> to be prematurely evicted.
-> - [Medium] Computing `&man->lru[j]` when `man` is NULL in
-> `ttm_bulk_move_drop_cursors` invokes Undefined Behavior and will
-> trigger UBSAN panics.
-
-Both issues verified as real and reachable. Will update for v3.
-
-Thanks,
-Thomas
 
 
-> --
->=20
-> --- Patch [1]: [PATCH] drm/ttm: Represent LRU bulk moves as nested
-> sublists ---
-> commit b97657bee6dc1cddf7841bc260d33b4b040368e4
-> Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Subject: drm/ttm: Represent LRU bulk moves as nested sublists
->=20
-> This patch changes the LRU bulk move mechanism to track each group as
-> a
-> real nested sublist instead of ranges. Each group gets a persistent
-> anchor
-> node linked on the manager LRU list along with a sublist holding its
-> member
-> resources, simplifying cursor tracking and eliminating range-
-> corruption bugs.
->=20
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/5387
->=20
-> > diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
-> > b/drivers/gpu/drm/ttm/ttm_resource.c
-> > index 4e6d3d658d858..195f960b2d738 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_resource.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_resource.c
->=20
-> [ ... ]
->=20
-> > +static void ttm_bulk_move_drop_cursors(struct ttm_device *bdev,
-> > +					struct ttm_lru_bulk_move
-> > *bulk)
-> > +{
-> > +	unsigned int i, j;
-> > +
-> > +	for (i =3D 0; i < TTM_NUM_MEM_TYPES; ++i) {
-> > +		struct ttm_resource_manager *man =3D
-> > ttm_manager_type(bdev, i);
-> > +
-> > +		for (j =3D 0; j < TTM_MAX_BO_PRIORITY; ++j) {
-> > +			struct ttm_lru_bulk_move_pos *pos =3D &bulk-
-> > >pos[i][j];
-> > +			struct ttm_lru_item *lru, *next;
-> > +
-> > +			list_for_each_entry_safe(lru, next, &pos-
-> > >sublist, link) {
-> > +				struct ttm_resource_cursor
-> > *cursor;
-> > +
-> > +				if (ttm_lru_item_is_res(lru)) {
-> > +					WARN_ON_ONCE(1);
-> > +					continue;
-> > +				}
-> > +				/*
-> > +				 * This cursor descended here; its
-> > main hitch
-> > +				 * already sits on the manager
-> > list, so just
-> > +				 * detach it from this sublist.
-> > +				 */
-> > +				cursor =3D container_of(lru,
-> > typeof(*cursor),
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > sublist_hitch);
-> > +				cursor->cur_list =3D &man->lru[j];
-> > +				list_del_init(&lru->link);
-> > +			}
-> > +			list_splice_tail_init(&pos->sublist, &man-
-> > >lru[j]);
->=20
-> [Severity: Medium]
-> When ttm_manager_type() returns NULL for unused memory types, doesn't
-> the
-> pointer arithmetic &man->lru[j] result in undefined behavior?
->=20
-> If the kernel is compiled with UBSAN, this can trigger a panic even
-> if the
-> list operations don't actually dereference the pointer. Should there
-> be a
-> check like if (!man) continue; before the inner loop?
->=20
-> > +			list_del_init(&pos->marker.link);
-> > +		}
-> > +	}
-> > +}
->=20
-> [ ... ]
->=20
-> > +/* Add the resource to a bulk_move sublist */
-> > =C2=A0static void ttm_lru_bulk_move_add(struct ttm_lru_bulk_move *bulk,
-> > =C2=A0				=C2=A0 struct ttm_resource *res)
-> > =C2=A0{
-> > =C2=A0	struct ttm_lru_bulk_move_pos *pos =3D
-> > ttm_lru_bulk_move_pos(bulk, res);
-> > +	struct ttm_resource *first =3D
-> > ttm_lru_first_res_or_null(&pos->sublist);
-> > +	struct ttm_buffer_object *bo =3D res->bo;
-> > +	struct ttm_resource_manager *man =3D
-> > +		ttm_manager_type(bo->bdev, res->mem_type);
-> > =C2=A0
-> > -	if (!pos->first) {
-> > -		pos->first =3D res;
-> > -		pos->last =3D res;
-> > +	if (first) {
-> > -		WARN_ON(pos->first->bo->base.resv !=3D res->bo-
-> > >base.resv);
-> > -		ttm_lru_bulk_move_pos_tail(pos, res);
-> > +		WARN_ON(first->bo->base.resv !=3D res->bo-
-> > >base.resv);
-> > =C2=A0	} else {
-> > +		/*
-> > +		 * Group empty (first activation, or all members
-> > were pinned
-> > +		 * or swapped out); re-seed the anchor at the tail
-> > so it
-> > +		 * counts as recently used.
-> > +		 */
-> > +		list_move_tail(&pos->marker.link, &man->lru[bo-
-> > >priority]);
-> > =C2=A0	}
->=20
-> [Severity: High]
-> If an active LRU traversal cursor has descended into this sublist and
-> all
-> resources are subsequently removed, the sublist becomes empty except
-> for the
-> cursor's hitch.
->=20
-> When a new resource is added and 'first' is NULL, we re-seed the
-> anchor to
-> the tail of the manager's LRU list. However, could this leave the
-> descended
-> cursor parked in the sublist without adjusting it?
->=20
-> If ttm_lru_bulk_move_pos_adjust_cursors() is not called to detach it,
-> the
-> resumed traversal might immediately process and evict this newly
-> added
-> resource, violating the LRU guarantee.
->=20
-> > +	/*
-> > +	 * The resource may still be on another list (manager LRU
-> > or
-> > +	 * bdev->unevictable); move it unconditionally to keep
-> > group
-> > +	 * membership consistent.
-> > +	 */
-> > +	list_move_tail(&res->lru.link, &pos->sublist);
-> > =C2=A0}
+On 8/14/2026 3:32 PM, Nilawar, Badal wrote:
+> Adding a few more review comments.
+> 
+> On 13-08-2026 00:44, Michal Wajdeczko wrote:
+>> From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+>>
+
+...
+
+>> +
+>> +static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+>> +			  u32 component, u32 location, const void *data, size_t len,
+>> +			  struct va_format *vaf)
+>> +{
+>> +	/* TODO */
+> 
+> Just for information, CPER log construction for hardware errors involves a system controller mailbox interaction, with the error_class passed via the data payload.
+> 
+>> +}
+>> +
+>> +static bool is_hw_sigid(enum xe_sigid sigid)
+>> +{
+>> +	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+>> +}
+>> +
+>> +static bool is_sev_error(int cper_sev)
+>> +{
+>> +	return cper_sev != CPER_SEV_INFORMATIONAL;
+>> +}
+>> +
+>> +static const char *log_hwe_prefix(int cper_sev, enum xe_sigid sigid)
+>> +{
+>> +	return is_sev_error(cper_sev) && is_hw_sigid(sigid) ? HW_ERR : "";
+>> +}
+>> +
+>> +static const char *log_sev_prefix(int cper_sev)
+>> +{
+>> +	switch (cper_sev) {
+>> +	case CPER_SEV_FATAL:
+>> +		return "FATAL ";
+>> +	case CPER_SEV_RECOVERABLE:
+>> +		return "";
+> 
+> Can we print "RECOVERABLE" here? In my earlier comment I mistakenly used "CORRECTABLE"; I meant "RECOVERABLE".
+
+but this is to some extend redundant information:
+if it isn't a FATAL or CORRECTED, then it must be RECOVERABLE, no?
+
+the same as we don't add "INFORMATIONAL" since dmesg
+is already using KERN_INFO level
+
+> 
+> Thanks,
+> Badal
+> 
+>> +	case CPER_SEV_CORRECTED:
+>> +		return "CORRECTED ";
+>> +	case CPER_SEV_INFORMATIONAL:
+>> +		return "";
+>> +	default:
+>> +		WARN(IS_ENABLED(CONFIG_DRM_XE_DEBUG), "LOG: unknown severity %d\n", cper_sev);
+>> +		return "";
+>> +	}
+>> +}
+>> +
