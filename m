@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C9CC5DF6A
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:18:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 035B5C5CFCF
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Aug 2026 17:18:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E61CD10F6D2;
-	Fri, 14 Aug 2026 17:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B14CD10F6B1;
+	Fri, 14 Aug 2026 17:18:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gYyXce2o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsiIXwJs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B90810F6CC
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:18:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3519110F6B1
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Aug 2026 17:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786727933; x=1818263933;
+ t=1786727937; x=1818263937;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=z9ELffBUJkF2Bph0mCP6OD2bh3ISAHeyrVPj8zPU98A=;
- b=gYyXce2oAYX1/hHXXFhyojlWiS4Jkb3EwDFijpPm3Gu3cB+TbHYmTlau
- CXbwyHEy+X/yIK+Y8UZalt7mDmTa7jBdUIQrVB6QEHTe2aGxbRGz9Sz5a
- BuEWBkKh11ijhN9B/8pOZj4N7HZqUohQe2oyNmss3Y0ZsfvNYWpKSPzxF
- BIWBILJpFVwUEpn3UM0prnQzjgv7tT/myTSOPUS4+nRwgBUyTUoqkUdZm
- DlibClr1E7y9Uf5YHrWm3xi3KYCqThVgo67lyNu0ghstzoDzi0+OVM40B
- V/TvXfIHv7qcqsVS9gtUSVimPte1AyVxOuhRC2gHUxjTxzHUNdEjiwe6B w==;
-X-CSE-ConnectionGUID: XukCY1/cSIeRcKQb3lk4IQ==
-X-CSE-MsgGUID: 8z1UdInYQ5evsOwwtP+fIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464072"
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464072"
+ bh=eyf7bZx7PU9Fy0/ZIn7Dpw65psqFMoreARaaNu0xH9M=;
+ b=gsiIXwJsXASTTWOGcMmu7Ox5mek/SCAnX8ZOXOZuXEh0nL+EddOzB7Wd
+ u9zJ+FQXINISnZjp2crSMrOP1CUvWqjHI48uzGpTSTfjDcje3lA8nS4Y9
+ 7cbdD7Qp06zVKcu3lozLx3sgf6X5hUbBAHSXkNu9/ZkJUx5os0YvI7fpU
+ yQ+iVqHRll1ph20FznFiqQ6UjrELm/X6we/WgJ0KUqPaHEsY56NI2B1M9
+ KfAhet+dNebEUaf/231ME9nu4yp06onDYsBcuP/K4+eJy2JyNJ7ZCw4Mr
+ IsbPptDA6XBZhx4qt7n/Xe6F5AzuIfc0emKohS2b/+HWAUbZo2u+zWg6t w==;
+X-CSE-ConnectionGUID: 0gPKK85HTvujZPws1dsrhQ==
+X-CSE-MsgGUID: SyXnO/txRGuZagHBte8KGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11875"; a="98464084"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="98464084"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 10:18:53 -0700
-X-CSE-ConnectionGUID: fgF+idLwRRmq6IDs+dugiQ==
-X-CSE-MsgGUID: aSNqkuVbRwmt3RKvZgRxMg==
+ 14 Aug 2026 10:18:57 -0700
+X-CSE-ConnectionGUID: HtFp8QtlTUOJFPZTXuNNwg==
+X-CSE-MsgGUID: moQ1mwjzQCmJvbnkwFhkug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946253"
+X-IronPort-AV: E=Sophos;i="6.25,222,1779174000"; d="scan'208";a="262946272"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2026 10:18:52 -0700
+ 14 Aug 2026 10:18:56 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v5 20/33] drm/xe/survivability: Report 'boot status' using
- SIGID
-Date: Fri, 14 Aug 2026 19:17:46 +0200
-Message-ID: <20260814171801.13347-21-michal.wajdeczko@intel.com>
+Subject: [PATCH v5 22/33] drm/xe/survivability: Report 'boot status' on sysfs
+ failure
+Date: Fri, 14 Aug 2026 19:17:48 +0200
+Message-ID: <20260814171801.13347-23-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260814171801.13347-1-michal.wajdeczko@intel.com>
 References: <20260814171801.13347-1-michal.wajdeczko@intel.com>
@@ -71,81 +71,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report 'boot status' and other scratch registers details using
-the xe_log_info() macros. While around, add helper to decode
-boot status code and change pdev parameter to xe.
+If we fail to create any of the survivability sysfs files, the user
+can't view boot status registers any more. Report them into dmesg
+instead using our existing SIGID helper.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com> #v1
 ---
-v2: make helper more even flexible (Michal)
----
- drivers/gpu/drm/xe/xe_survivability_mode.c | 29 ++++++++++++++++------
- 1 file changed, 22 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 4c506027fa94..0ace10ae500a 100644
+index 8b74bbc96390..e14553295171 100644
 --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
 +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -14,6 +14,7 @@
- #include "xe_device.h"
- #include "xe_heci_gsc.h"
- #include "xe_i2c.h"
-+#include "xe_log.h"
- #include "xe_mmio.h"
- #include "xe_nvm.h"
- #include "xe_pcode_api.h"
-@@ -172,18 +173,32 @@ static void populate_survivability_info(struct xe_device *xe)
- 	}
- }
+@@ -305,8 +305,10 @@ static const struct attribute_group survivability_info_group = {
  
--static void log_survivability_info(struct pci_dev *pdev)
-+static const char *boot_status_str(u8 boot_status)
-+{
-+	switch (boot_status) {
-+	case CRITICAL_FAILURE:
-+		return "Critical Failure";
-+	case NON_CRITICAL_FAILURE:
-+		return "Non Critical Failure";
-+	default:
-+		return "Other";
-+	}
-+}
-+
-+static void log_survivability_info(struct xe_device *xe)
+ static int create_survivability_sysfs(struct pci_dev *pdev)
  {
--	struct xe_device *xe = pdev_to_xe_device(pdev);
- 	struct xe_survivability *survivability = &xe->survivability;
- 	u32 *info = survivability->info;
- 	int id;
+-	struct device *dev = &pdev->dev;
++	/* Survivability info is required if not enabled via configfs */
++	bool needs_info = !xe_configfs_get_survivability_mode(pdev);
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
++	struct device *dev = &pdev->dev;
+ 	int ret;
  
--	dev_info(&pdev->dev, "Survivability Boot Status : Critical Failure (%d)\n",
--		 survivability->boot_status);
-+	xe_log_info(xe, SURVIVABILITY, "Boot Status: %#x (%s)\n",
-+		    survivability->boot_status,
-+		    boot_status_str(survivability->boot_status));
-+
- 	for (id = 0; id < MAX_SCRATCH_REG; id++) {
--		if (info[id])
--			dev_info(&pdev->dev, "%s: 0x%x\n", reg_map[id], info[id]);
-+		if (!info[id])
-+			continue;
-+		xe_log_info(xe, SURVIVABILITY, "%s: %#x\n", reg_map[id], info[id]);
- 	}
- }
+ 	ret = device_create_file(dev, &dev_attr_survivability_mode);
+@@ -318,8 +320,7 @@ static int create_survivability_sysfs(struct pci_dev *pdev)
+ 	if (ret)
+ 		goto failed;
  
-@@ -452,7 +467,7 @@ int xe_survivability_mode_boot_enable(struct xe_device *xe)
- 	 * v2 supports survivability mode for critical errors
- 	 */
- 	if (survivability->version < 2  && survivability->boot_status == CRITICAL_FAILURE) {
--		log_survivability_info(pdev);
+-	/* Survivability info is not required if enabled via configfs */
+-	if (!xe_configfs_get_survivability_mode(pdev)) {
++	if (needs_info) {
+ 		ret = devm_device_add_group(dev, &survivability_info_group);
+ 		if (ret)
+ 			goto failed;
+@@ -329,6 +330,9 @@ static int create_survivability_sysfs(struct pci_dev *pdev)
+ 
+ failed:
+ 	xe_err(xe, "Failed to create survivability sysfs files: %pe\n", ERR_PTR(ret));
++	/* no sysfs, dump Survivability info to dmesg instead */
++	if (needs_info)
 +		log_survivability_info(xe);
- 		return -ENXIO;
- 	}
+ 	return ret;
+ }
  
 -- 
 2.47.1
