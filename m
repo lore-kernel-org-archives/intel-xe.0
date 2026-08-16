@@ -4,156 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41494C5DF6D
-	for <intel-xe@archiver.kernel.org>; Sun, 16 Aug 2026 15:14:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6659CC5B572
+	for <intel-xe@archiver.kernel.org>; Sun, 16 Aug 2026 15:37:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8D7F10E31C;
-	Sun, 16 Aug 2026 15:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C07B10E31B;
+	Sun, 16 Aug 2026 15:37:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e20bOw0j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PA5Bj/h7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680F310E31C
- for <intel-xe@lists.freedesktop.org>; Sun, 16 Aug 2026 15:14:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E628710E31B;
+ Sun, 16 Aug 2026 15:37:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786893276; x=1818429276;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=sbLFfid2pheHxE2F+as1BtmNBaplvb1tBPmLOmEomqU=;
- b=e20bOw0jA92q6GppIa1SzZJ6MjBvZzSvwl5K7hNCCnYME0Imsb7TpEeA
- cIH37SooFcB4i2Zd6HkZOC1qZrS/qeHggO9bTmeauDa7+RZ7pl86KaFqG
- k8xIC06G6TbqzkH5v4ElD5cwdJkU/iYwhi4b5x6MfNCv+geYpgq3EymOW
- EJBAXYSuzGTt6eb6r88J9KzZrxMEOWVZwgWjHoOdmXwzzGgc/mZeUb3QM
- iQPaxLsZI6aAI8cJc0rBFrg1uKLXJUMgh0itvg4MVvUPJ1N9P/E/7gbvl
- MTzGHjr4wHGAFnJUuJFopwxj8e+7ENpmoCFM0/s9CQxW9ZeL+Pvp8gXfo w==;
-X-CSE-ConnectionGUID: IDPu0cK7TQqZ934GW4EM2w==
-X-CSE-MsgGUID: y5e/arclToqtTTOfDhDtxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="87408089"
-X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="87408089"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2026 08:14:36 -0700
-X-CSE-ConnectionGUID: mCs9Arc0RY2Mma3XW+CVtw==
-X-CSE-MsgGUID: EDQO5YCCRbmHcWcdA9AJsQ==
+ t=1786894624; x=1818430624;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=4lKeGD0s/eqkGRVHfdpNhWB7TH2+1Fhzt8s8M42qJxc=;
+ b=PA5Bj/h79qsVP+axBWWS7fyMGlmuDlKWJUeM78KccZopvenPYFG6X4vA
+ TY5kGWbgEqjURXh/h4pAyocXIjFRNSypLXV2QfTDJ098nS0dTijRHYgzq
+ +TgjY9YlVqrMIu8d3B86iOyTxGyCzzN5t79UdODdyIeCrfM7HGzAMLwYX
+ ++YwmjilHv92CabnzeqFBLfjHWF1vSHW20qIBbPbMvgn7kywQL+6JdtK8
+ ZHRlzndfXgKWYSxIpEZClLmgwTaG7g2TNs+NR9anWYt0PRSGmFS8hlEPk
+ vWjyyrbWjDSyu84GO9irZDmrwx2/K61cleGWbyFn8sHZ2TIAHRAEbA9za Q==;
+X-CSE-ConnectionGUID: jgyeWTHNQYG12uiBIBi1TQ==
+X-CSE-MsgGUID: Ma5bW50TRceAMCeJlaGGcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="91260000"
+X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="91260000"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2026 08:37:04 -0700
+X-CSE-ConnectionGUID: o7iTDN+sQS+WvmOlefINlQ==
+X-CSE-MsgGUID: rfStUcNrR8y9OJ6R1TJNVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="260470365"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2026 08:14:35 -0700
+X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="268182402"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2026 08:37:03 -0700
 Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Sun, 16 Aug 2026 08:14:35 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Sun, 16 Aug 2026 08:14:35 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.43) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.45; Sun, 16 Aug 2026 08:37:02 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Sun, 16 Aug 2026 08:14:35 -0700
+ 15.2.2562.45 via Frontend Transport; Sun, 16 Aug 2026 08:37:02 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.30) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Sun, 16 Aug 2026 08:37:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=twkETAlo0KpXTHUfrqF/nnoAGCiGFsFAr/VDsYaJyhzalm3c8FFmMfeEd8WbopoNIBnE/e0S9+njWkCFOjazUNnX6GmqcHZdswSN2BYtS2jCz1IzbomK2SPp/QvDdY3GYplPsHf43ZdLSEisYBGRfMOUSAnJuKrQAk7XB3DzVWcYskgSEmc7zGWnIJI4vVH0uElN5JLCPomoEC6hyZUnPuddNzzKYCerEsjsPjS1nfZSak6c9UPFOIuUsjxhOsnrU65XEjKGSii585f5+05P2Jbz5/uJUhEBjNqWOICUkagmmWRsDkrxB5kGVnZp9i5rbP+i+i536yHUTEnSW8Za0Q==
+ b=CSYx7bRJfM/7+u2qwLUmAYWqXy70obkhBpRsAl8hwMpd/tu5xz4w4nLt3Ga+iwro4W8akyTQYoABIV5nvs65jWl5rPLdrUqUWwbcZDqqNGr2iwfROj6sRrFtcX2r9NAjbVhFaV/39tvv/iXmXIOfmXbB2oIQFJ5JItoGx3OBvEBzp+MdrY3/zOXL5bFlD4p+iNASAzNu8nIsJLB0SgtaK4+3/pZYaYX0t0cD9623khH1P9C22+gNA1jSfalVRCjMDijIPnDDD84MkTuKcLMpxLdTDhRWWzelVXdtJytlfyQrlXtAutDlSRVAW+k3phucmnhXwY/J1XZEyb3EYXSStw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xpZr+/5U8vj66Z5XP0jcrwwvS+8NzoA72p6aLfHEw1U=;
- b=FqnHmmiJMbPzGSSEJ5licSzn12OeWxFcbZCW/w3ZosPtoJRCDL+NthDtdVRGVjCsEiiKefv09oxv3wp3aQlaMT/imLxAqOVh1SPeKqWFs54SR/ggrAEkAAmsi92g27Wul1+seDlk5yravBYVFs3roYcFylykCM3r9D3jVYs5TDWNFSckat0xU3S37BWQGEd6ljz2u0AK2INTfB32lDl6Vl5ye87a8xZWY8DERFB6YLh3SMe/jF0w0xThjlw4V1H3bIriclLFXPGNWLQ29VfOScN3MwEaITwPElxJlMIOpaAKErEPqroFrwk3u9WGCXFUwwtbo9T92El0Yl0ESr1BPA==
+ bh=9w3J8x0rYQr6MAoHAyAxTU+IuzJUl7yXIcSQywkgeqw=;
+ b=xcJgYvRee2RacmthpRdA5XfpzfILGRIJZ+Prhucug+yUSJtnEqk0FeZDFiBfL+RAx2jNebd8KuMgXQwwfXyZcHLjcKAk8Su/IsU/asA9RDa7t7bvzZkv0HRjrg+Oqgw4BQPGJLZigTzM2PTqzYC/tUrpiyWUl++uh9AUepYz6G7V603HRnVul2h+9gYhXJqITPbidAbiPxn/kFpd9PccXEgOX3gsRVBOJa1M5zYX2qCSTv5rqc3fGHZfsgPG6Ka7r0TZVCdse7SQ3nIZRWUyVT7r7mascvoX3/o3qW69h/q/1OzqyeFe6n5yNt7Wo1SY7OdrXUASKk+ZMsrHozQN6g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::2a) by CH3PR11MB403477.namprd11.prod.outlook.com
- (2603:10b6:610:366::11) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:f:fc02::2a) by DM3PR11MB8670.namprd11.prod.outlook.com
+ (2603:10b6:0:3d::6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.17; Sun, 16 Aug
- 2026 15:14:27 +0000
+ 2026 15:36:59 +0000
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0315.016; Sun, 16 Aug 2026
- 15:14:27 +0000
-Message-ID: <bc7357ee-e7f2-442b-a367-b3be2be6559e@intel.com>
-Date: Sun, 16 Aug 2026 20:44:21 +0530
+ 15:36:59 +0000
+Message-ID: <0e197017-7054-468a-b641-1b5a00d77db2@intel.com>
+Date: Sun, 16 Aug 2026 21:06:44 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] drm/pagemap: Add fault injection for higher-order
- RAM folio allocation
-To: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 5/6] drm/pagemap: Fix folio allocation fallback and
+ use-after-put
+To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <dri-devel@lists.freedesktop.org>, <linux-mm@kvack.org>,
+ <linux-kernel@vger.kernel.org>
+CC: Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand
+ <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, Zi Yan
+ <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, "Liam R .
+ Howlett" <liam@infradead.org>, Nico Pache <nico.pache@linux.dev>, "Ryan
+ Roberts" <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>, Barry Song
+ <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>, Usama Arif
+ <usama.arif@linux.dev>, Joshua Hahn <joshua.hahnjy@gmail.com>, Rakie Kim
+ <rakie.kim@sk.com>, Byungchul Park <byungchul@sk.com>, Gregory Price
+ <gourry@gourry.net>, Ying Huang <ying.huang@linux.alibaba.com>, "Alistair
+ Popple" <apopple@nvidia.com>, Balbir Singh <balbirs@nvidia.com>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Francois Dugast <francois.dugast@intel.com>, <stable@vger.kernel.org>
 References: <20260805231041.3791771-1-matthew.brost@intel.com>
- <20260805231041.3791771-7-matthew.brost@intel.com>
+ <20260805231041.3791771-6-matthew.brost@intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260805231041.3791771-7-matthew.brost@intel.com>
+In-Reply-To: <20260805231041.3791771-6-matthew.brost@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0238.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b1::11) To DS4PPF691668CDD.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0071.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b7::16) To DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|CH3PR11MB403477:EE_
-X-MS-Office365-Filtering-Correlation-Id: 285916f5-fac9-44bf-0d11-08defba91035
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|DM3PR11MB8670:EE_
+X-MS-Office365-Filtering-Correlation-Id: 579508dd-0d89-4b47-7b01-08defbac35a3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|6133799003|56012099006|10067099003|4143699003|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: cbd+f0Xq6oDyOObb9zT61EFNsLp8QBFTQ1eFB8ZIxHPbasiQQGGAhMGJWUuyb9xkcUmDCU3EAgx2kYNs3ROaBv2YvE6ipsJrXNyxV4cyLG3P14THDBKRggNsXpnUCgOeTQoqUSfqPmD9XAB8Yh764Zo7eOe/MEmVNfLvXrKD1vUzjQiJl+prGdMtIBhd+X4xS0+3U0YyIIgY9LAIZ4Kmd+7c+jTN1cDe8uKsMngGD32iEH0wE5IBWUQ8nLKcCS42Qw36Jo0csDf+wTbGeu4DCQLoU0QA5UgZLJlBHGgYCI7MwWvYT7MyGWM7NLSUFA/WjWgCv8wqnqG8TfHplGm/jFyiRztYmVojHZ8SoYgSIJ9cHAHmcSJjbyjsIpFFqnCMbZfDAZMzy711w/8ytN0CCkLYtCXydSH7GbfW0TP8WzXrPi0PhhlN5w7uph/kK/JM+/krkh8yGaPYdxRKbvN+j/ytTenxsn1dVHHxDdMjBpwNMV4bTtfc8LNAHiyW86wM2Go0lAbH62L91nS2wKuwDz7BhJ20cFUkWcSWDGRSvQwxV/lhJGws4rQAE9H3kb0lvjXUBTtze9p/DemdAndx7yEcsuL9celRw/aOYX5HR8gnB2G5Wqlo4N0t8vcoD6yQjsbkMVnKYPqCz7z4M8nIWDV2MWcZr4oQPFpPEI4yWCE=
+ ARA:13230040|23010399003|7416014|376014|1800799024|366016|10067099003|11063799006|56012099006|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 2Za2nTYCOop+k42sD4gE8Kj3u91sCMd+laLX/AMokeXh6fqn8s2tuz5OmwHLz4c9YufCg2Jd9lyyStqq6CGHtASNgw91BUkCVWVrXjRVLzr0Uf3oDbm7bpV4h7Ze5a/i0hTj3X8UjTnP/RwnmGEEi4nDvVmO+nTo+N8XCH+5b7PKyUbd0hhLlwDmU1QGWIBqsMB3pXKp1DSJU1kDi0DtbafstGbmGZ+/My0Bb4/T1ceGJt4oIr5GI9KOBD99W53Ia4c7Rud0+Oa3eOeZ4wUcRtQNGxN4TDMrptbu6cmUssuvtFQFZ5Og6oJYgXBaiWYN0JwyuRPgPPoeRovnG9Dn1eXr1SHPF9knXedcgTRKwmoa1A4VgR+k46+5e/gcOnmPcs48WANmMZltKxl4RXK5WnJ3nnyJgbG4NHq6jmKzc5qIc5D2NzYVdTRxgLZNqM6mnN4S9ixiBkOf0HyIfxRpEQiqpV2voV8if358OZwLB1yuybWIijAFbO6sRfzNbhWwk6K7qtufGAON9GdbpNFPu5Ditn9YrY+329dC+5Kw7+UvjLZoss5DiXZpMYI2fCColYz0Qwhcl1DSB+JaYY7/tuaAKqj2D6jOFhHAVOaeKknA5uOPCGpkv3Ppc/y4HYIiHlTw2ycz5zikwuaWhXjwWRTz6tWp2iOe0BNcCuUmb0A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(6133799003)(56012099006)(10067099003)(4143699003)(11063799006)(18002099003)(22082099003);
+ SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(366016)(10067099003)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVZFSEZuY28vUGhBMFk5NWZXQm84U0wraTd2NWpBbUMyay9IUGJwcEY3ckRH?=
- =?utf-8?B?OEtqUHdpOU1NNjJjczRya3dxZFZXWW1yUW43ejlvVDY5TWFkdWNvNGpXVGRt?=
- =?utf-8?B?bklkMmgzMGZyNzdFM2pESVZRWHUvT3dnQTl0V3JPaFN1MENJNlptVktldUhH?=
- =?utf-8?B?MkFPSDF6Qkl0TDR3QzU5dzQ0cHRjMGo4dTVaVUNtaGVOMW1hc2FrZG1OcFJq?=
- =?utf-8?B?MWowclhqQWI5SkoyMmdUUlE2MmpRZm1XdzNQQXZLV1QwS0V5QUQ1RzBlaG9s?=
- =?utf-8?B?T05nZWFFSjJwcWtFaTdqajhtcFIzbGw1UlNad2FBRFJsNnpyQjNIVnFTVlpH?=
- =?utf-8?B?YUtJSENjdWgvVnJ6cThjb0JETmwyc3V2SGJPYjRUL3o0UnI5QUQ2d3F3czd4?=
- =?utf-8?B?NjQwc3lqMUwrcDRyKzRJcmlOWmpjN1VCZ21lRHRnZTN6VzA2ZXVMWFhxUjJn?=
- =?utf-8?B?dHBmbThMNjB4MXZvRGQvb3RhTUFTYjhhekZzZEZob3RxUmhzWm5wSlFvTE1Q?=
- =?utf-8?B?VUVmU1VUVFpwMTQ5MndyNjhlcTNGKzdWdWtIVzdyL2N3dlRKMVlPYmM1ZUF2?=
- =?utf-8?B?c2xVdWdOcUhHbXZHNkkwcTBYQUs4Ukxsd0dOSmllK1pId3oxMXVVMnlYaFlP?=
- =?utf-8?B?VGZoa3ZQRUJOV3E2M1BOZ2IwL0hLK3dSVWRtOEx5a2ZCcFRLNGdDTDFTVTZm?=
- =?utf-8?B?Rjh4ZnhUTTlUSzlzU3BUR0lDSTVaclN6N2habVZDeEhlQnpoY0IxRjlqa3lW?=
- =?utf-8?B?Q0R6T3d0UTdLSSt5UHcralpzSXNOVmdYbnJQMDZnbjVNYjlPMm9yUmFRVlUv?=
- =?utf-8?B?azlJalJ3TU5pNDRRMVV4ai9pTXZ1eTl0K3BhRUIwMnArak91UzlLZldkUXkr?=
- =?utf-8?B?RmZDSzFGUkZTN2JxU2hMZ1dzT3I3bjg3czJnOE5YRUIvdTExWlhCemhOamZ5?=
- =?utf-8?B?WW9OdlNPYnlhY09GQkxUWXdIMzdOM0JoMGFIbmkwTEpWY1Z0Vm51eCt1cFhw?=
- =?utf-8?B?ZXlGbHVqYlExWUxtRU54MjJ0NlNXaFlyTVhhOGdkT0t1RWZhcUE5aEVzWGFr?=
- =?utf-8?B?UlF3VGVrczJCbEh2OE5TWjlJMGE0UFhUU0h2TjBKUzlwVFRud2pGa3hIeDhO?=
- =?utf-8?B?ZmNrZ1VtdDVrNEtadklWTnorVXBsNVYvLzNNWTRmc05zZXZBNEFobTFOdUg1?=
- =?utf-8?B?MGJCTktWQ0VsUk9yc2lBL0drWmdhdkxOaS91V1Q3RWxES1U5STFuTU8vSjlN?=
- =?utf-8?B?cDQxak03dm9lV2s5dlVMRE55L1JrTlc3WlFyTk1ZVTZmYnoyZFJ0S1YzMnAr?=
- =?utf-8?B?Vm8vVU9vWVV4RWNrVEpPS3U1SnF0NGhXYm10WWc4S3JuaGRJZEVxVUZneUdu?=
- =?utf-8?B?S0xrWWswbFB2bm5hQjRjZGhhOHo3VGd0b1RReUR4Z2NxWTJVdm1oZjNIbnhj?=
- =?utf-8?B?TitPY3pZSDVXRnpoVUxIaUxOdGZxajEzVzZlSW5PSFh5MzkvOE05QUliQzBs?=
- =?utf-8?B?NDN2c045VFEvRjBvRHdoYlErQTJZaDdSTUtQV0Z6akpuaFpHL1pjNzU1RWxr?=
- =?utf-8?B?amFRM0hXb25qd2RPQm9nNXhvcVpGSzJoQ21ZSnZwN2tCTTNhVGpVaExBdGd4?=
- =?utf-8?B?ODduMUtYSldPNkwrbjZPWXVESFNiWFV5emQvSGZhNmpLdUUyek5KRGhTVUc5?=
- =?utf-8?B?bGlDRXM4eDdiSms1WmZIaTBxS0pMY2J2RmU1c1RiUnJmcm5Ob2RvWTJqWm5O?=
- =?utf-8?B?aVk5YlNOT0FIK3A0am5IU25QVDRyK2FlT1FtaUlBcFRlZUI5Ykc3N0Q2aElj?=
- =?utf-8?B?NUhjdjdOajNrVmR0dTBDS0J4ZGtHazlQSUErUUs5amVNZXc3K2tWL3pPamtO?=
- =?utf-8?B?VjlVLzhvdDl6dmJtNXNqVnVrM0RXYWVkalVrOUpLVEwvaHVqcExCYjVHOS9I?=
- =?utf-8?B?b2NOcy81d2VKVi93YllKYWkwMC84MnpsVkFlOFozN3pyRFlHMEVGK3RzL3NG?=
- =?utf-8?B?b1NzZ1FMdUFhVWdrMWR3elpWdWxoZFRXMEQ2UE5iS2J6TU0zaHEvWWVMbzgr?=
- =?utf-8?B?ZUNrZ1JEako0WlFKcWs2ZTVKVm85c1BIMEliRVBRRHRJZmJuQnVsdVRMVldw?=
- =?utf-8?B?WHBrQTRDOE5sSndVTjdYR09aU3FSQlhmNlpFRHhiSXg1dWlFc3hyVVdXRkRj?=
- =?utf-8?B?b1dIbHh5K3FPZ1M1Qy8vR0ZQY0kwSURFV0pFN0pyRmw3eFpIUlRqbyszK08w?=
- =?utf-8?B?clVFSnM5TTRqQk1ReXVacUhZMm5MaVBJZUk3SjhVUkFlMUJzcHpSWFo3UlQ5?=
- =?utf-8?B?N2s5WXZ5MnBDbXV1NFVGSkpvWTE3dVhLR2YrSUNqblZLVWVJTW9hMFlqSHZF?=
- =?utf-8?Q?ozFnnqymnYSmn5v4=3D?=
-X-Exchange-RoutingPolicyChecked: h8RIVuTu7/IPdkyJNyqG0EKUQu7WaAYsQANjTGocOyhpOwEMx01YtLvZThGrypgPRBsQCSJPrK8aAt2Eic3MSrZLs9HjDGtVzAXUbtYriJ1Y/yfBLAzNRBc8bx85uKoPGMo4mBr1IFeg1X1KXYZgIcNWAM/J0MYXhJsTZfosqAmD7JsaL55j9tDASPy/G40Qj+rS5IrGvGHBvyLmbs971MU0FHRlk6MgSo58pP66tOGL0/MAZx/MK6+1rydpz/0ua5vrSyoErARYlYldn5LfT+cXVAVnjup4MEloo9DfNFdtkDtLdsGcXpWQRgr8MueoW40hSb77L4Y79j6C+TSmmw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 285916f5-fac9-44bf-0d11-08defba91035
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aXhwZ2JoOEg4ZVpYeDdqMEVITVZDMXF2QlRUczJFNVJVK2NrcWlCTEgzUE1W?=
+ =?utf-8?B?SUhQbSsza0FkaThuMkNFWjlQNDlrOVdPUyszL3I2U1VUWEdUSHZTeDYyWnlP?=
+ =?utf-8?B?V0Q2VnZPRWV4aFY2Q2dlcEl2R1o0MFNpUDBVWFdQRUZDVWxvblJoWHNVVHBh?=
+ =?utf-8?B?VEpQcjArUmpkQitwQmR1UkU4RHROVUlwRHN3Z093Ym5wNVpkTG5DUVVrOCth?=
+ =?utf-8?B?NE51ODBINnBtVzJUOW1mbU1pVEVBQkI3MGt0OHBuTVJrREsrY1ZlL1Nqd2FB?=
+ =?utf-8?B?eU93WGpZL1Z6NVloak84UUJpR3ZUMjZ2Qmxia0hnams2b051eUlvRmxuT1dZ?=
+ =?utf-8?B?WE9QeGZ6RktyL3o2Y3JyL056NTZidk1pQ1lXc1piTmxwdnB4Y1dqdWV0N1Nk?=
+ =?utf-8?B?Sm5NUTFVdk1oSkkvVno5T3MxZC91aTRJSTRPSGRhKzhOL1NFMWJReTNTb3ps?=
+ =?utf-8?B?SlJYR0ZtL1ZkSXZGdEtCOC9RYy96aW5hZ0tCRTFKc3J3OFpsSmNhUURSM1hM?=
+ =?utf-8?B?Nm1YRHhDRkRMVnZhYVhpTmdUUUpWV0tpTXhEeEY2ZHd4RExUOTBBRWJWdFZI?=
+ =?utf-8?B?ZHNuRGJubXdCUG4xUU1lOGI4c0tuWjVaN2J4bmptdTR0MHR1bjJSUGtxb1Rl?=
+ =?utf-8?B?Z2Jvdmc2L0owRTNNM01WZ1dVMlpuOUFZNytpTFMzZkU0azgwMW5ZSjExdWIw?=
+ =?utf-8?B?Z1gxbC9IdHpvUDlkUlBQOFhtakpHdzdsaFlYdHR3SkpTM3lWaWRTNVNFNFA3?=
+ =?utf-8?B?TFlBKzRoeWV2cFlhQjZHdzh6Z0h2VmZjbExnS3puSUlaODJzVGkyZW1JNDg1?=
+ =?utf-8?B?MnlrdXdQa1ozUkNXdkpna3BFd3V3TDREb3llU2NRUGVpaDhaTUZzYVNsb1dM?=
+ =?utf-8?B?VkVNRG83T3dCOFAyNWlQWjI1TTVPNjBQU0RpSkdsY0JNeVNZR2lLWmxXalR4?=
+ =?utf-8?B?VGI2cnVKNDg5cDBzZFFrbk1HMDZlQTN3MXJXR1VNSmtZeWQzQzYzM1VFdFN0?=
+ =?utf-8?B?OG9iS1BWNmR1a21mMUo1RGpHRTNVa3VUTHZjcGo2YnRudmNEU3dIb1p1SExO?=
+ =?utf-8?B?KzRHZVE1MENmSGNlOE9EVHBCMjlRSG1aOFRZcjlwRDJpd3B3MlZ3TVNZTGxv?=
+ =?utf-8?B?QmlRYk5OOFlhb0xHWUlVZ1RRWmtTT0htN21SVFY2R0Z0YWhvTWUwOWJPVTlZ?=
+ =?utf-8?B?RFQvYk1iR2hrdDAwL1NDQzluZG5GajYxYkpsbzlHSXF5clYyWTZWYUxPVzhI?=
+ =?utf-8?B?dU1lT3Y2QzhERVZpMkU4WjhWZUppNGQ4Rm9McXQyOXBwd3FuSG01ZWRxSm9G?=
+ =?utf-8?B?TVFTTVRNVUhLWVdQWEswdGV1MlIxampjdlBTajI2amdXeWlDVDlCaTdZSDVS?=
+ =?utf-8?B?OXFHTUM5Q0Y0ZTJKeGlPMi9EZmNYM3RndDFpVnVIQ2lsZ2RJbVovekw1Nkli?=
+ =?utf-8?B?eXF2MFNYZWVoZjdML3FtaVkrZUdFSHdYc3FrK0dFdGs1dkloSjB2U1U4Rmp5?=
+ =?utf-8?B?Y1NpNWhKem9Cd2ZDcG12KzlmV093czJseHB1NkVHSHVuN2gxanBSOUFaTkVM?=
+ =?utf-8?B?K2VzdTdxL1J1M1ZLczNYYVNvZ003dEp1WlhWV1JYbVNUU1FERHgwQ1dmUDcx?=
+ =?utf-8?B?bHZqdGJvWXB2T0RSajE3RzYyS01UWG1xRjYzZlp2NEp5L3h6RkM3WEtjRjZX?=
+ =?utf-8?B?UXNGL0lNaVRHdTdtOUQ1R2tWVnQySUdXMWs1eEtnTDVNQ2Jkb3AvOFRkc3o0?=
+ =?utf-8?B?VUoxMklXMGlZaGFyUFM1MU13NXJNb3RBNUZrNHVIL2R4UnFXUTZPa0o1TWFu?=
+ =?utf-8?B?dTNCNEVGNXdLM2Naa1hVSEdGMFo1NzFsNTBsNzJsem1HTkhRVDZxSHpvTlhI?=
+ =?utf-8?B?QUhHMVIrSEVtY3BnZTVKeE5VVkJLUk5MQklZRUI1TVpENG54dWdxcEJnZktD?=
+ =?utf-8?B?Smg1M1YwODBzNStFbkwzNDhzN1RiNC9wVk5vb1N6aTExV2c5YVB3bHAvUVp3?=
+ =?utf-8?B?U1BhTnJVNmdXOTBaUENVTnlGbGhDL3VMY01uYXpQMmtOalo4bnN3TmppWEZI?=
+ =?utf-8?B?cVMwMVhDWmFIQ2NJZ0kvdWM5N1pnTkJVWU5jSENtdUVySFQ3TG5BYlBHSGpn?=
+ =?utf-8?B?Q1B5WFdGVkpCWCtvOEZoYk1OUTZNY0N0ZTRYMjIvQk1CN25CbDErQU5FM0RC?=
+ =?utf-8?B?MjhuYUtscU5mUEZPNzdnNElSczUwTXB6VDY2dVl1Qyt2cnJvZmd0UURlUG1l?=
+ =?utf-8?B?aG5ZdVNuNWRxOGNPeHRTKzgxaCtPZkpSN2xaL0lyNlIzOHo0ODA2TmxvRjVq?=
+ =?utf-8?B?eW5rVXpkOG9TbFJQVVFzcUtXbkJvU3RIWFdsMlRGcWhZWnQ5VStCc21pWStD?=
+ =?utf-8?Q?S5WURLyoReIZqjW0=3D?=
+X-Exchange-RoutingPolicyChecked: Rd5+s4sK8WF59Aj9hQ1PJnQMh5TFirezffF0cH6Fn0JF6CZCFd5QHy34yhcG5LROo0CohZxDvhiVuyNQs73yHdpxBEYsfxGCl1SKpB4aEZHbiwNulbgkhPL/jUMUCSHZE5YnsiKQEDKcuFA4Wm1/f+9EN+9QFCdMDM2boU9L8bbidVTfRi1rQa5RuiVw+UYbDNBPLCfaO8OBMBQVIwiNgOoj34B2ujg11n3TNoS9dRGjhKABeZXouqvAtYKmq81N1+yj7XIxeOtxFkIOWPS74QkqUmDl90vSxW1jMlr1CNL/EFL+ejp9nh47dDQSk5JskA7PnoI02x0BMCrlY5MjLw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 579508dd-0d89-4b47-7b01-08defbac35a3
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2026 15:14:27.5228 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2026 15:36:59.0298 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fFn55u64KJMCy9wyj+d7olaibBND9FdZN7SHwz7K/fMsHxWe4y//040z41cDV+ctZg9eH1r30GAE5C1qNBYbl5jLVC1sIywIKMj0zykpPsI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB403477
+X-MS-Exchange-CrossTenant-UserPrincipalName: UhhlHBuJ3wbMDzfyC8q0bnIxmZk/hr0skWJPyYFKrXPp0FGljNalU7ToCaHtx76kSQ/IrrktmGnGiSlSHcwPOt2vFAY7aym5CnQxHUjjdXI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8670
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,27 +189,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 06-08-2026 04:40, Matthew Brost wrote:
-> Migrating a device-private THP back to system memory has two distinct
-> paths in __migrate_device_pages(): the fast path where both source and
-> destination carry MIGRATE_PFN_COMPOUND, and the fallback path where the
-> destination could only be satisfied with order-0 folios and the source
-> THP therefore has to be split via migrate_vma_split_unmapped_folio().
+> drm_pagemap_migrate_populate_ram_pfn() had two issues when populating
+> RAM PFNs with higher-order folios:
 > 
-> The fallback path only triggers under genuine memory pressure, which
-> makes it both rare and awkward to reproduce, yet it is the path where
-> the interesting refcounting happens (the CPU fault holds an extra
-> reference on the device folio taken by do_huge_pmd_device_private()).
+> 1. The higher-order vma_alloc_folio()/folio_alloc() calls did not pass
+>     __GFP_NOWARN, so a THP allocation failure under memory pressure
+>     would spam the kernel log, and there was no fallback path despite a
+>     TODO comment stating one was needed. Add __GFP_NOWARN to the
+>     higher-order allocation and, on failure, fall back to order-0
+>     allocations for the entire range originally covered by the failed
+>     higher-order allocation, leaving MIGRATE_PFN_COMPOUND unset for
+>     those PFNs.
 > 
-> Add a fault_attr, modelled on backup_fault_inject in ttm_pool.c, that
-> forces the higher-order allocation in
-> drm_pagemap_migrate_populate_ram_pfn() to fail so the existing order-0
-> fallback is taken deterministically.
+> 2. In the free_pages error path, order was computed via
+>     folio_order(page_folio(page)) *after* put_page(page) had already
+>     dropped the reference, resulting in a use-after-free/put when that
+>     was the last reference on the page. Compute order before releasing
+>     the page.
 > 
-> The attribute is exposed at /sys/kernel/debug/drm_pagemap_fault_inject
-> and requires CONFIG_FAULT_INJECTION_DEBUG_FS. With
-> CONFIG_FAULT_INJECTION disabled the helper compiles out to a constant
-> false and the injection has no cost.
+> Introducing the fallback in 1. also requires the source page array
+> handed to ->copy_to_ram() to be built differently. Both callers only
+> populated the entry at the head of each source folio, relying on the
+> copy callback to derive the rest of the folio from the order recorded
+> in the matching drm_pagemap_addr. Once the destination has been demoted
+> to order-0 folios the drm_pagemap_addr entries are per-page, so a source
+> page is needed for every one of them; leaving them NULL makes the copy
+> callback stop after the first page and the remainder of the range is
+> never copied.
 > 
+> The source folio is only split later, by migrate_vma_pages() /
+> migrate_device_pages(), so its order cannot be used to detect the
+> demotion - test the destination for MIGRATE_PFN_COMPOUND instead. Factor
+> the array population out into drm_pagemap_migrate_populate_src_pages()
+> and use it from both drm_pagemap_evict_to_ram() and
+> __drm_pagemap_migrate_to_ram().
+> 
+> Fixes: ddeda6136038 ("drm/pagemap: Allocate folios when possible")
 > Cc: Andrew Morton <akpm@linux-foundation.org>
 > Cc: David Hildenbrand <david@kernel.org>
 > Cc: Lorenzo Stoakes <ljs@kernel.org>
@@ -222,82 +254,214 @@ On 06-08-2026 04:40, Matthew Brost wrote:
 > Cc: dri-devel@lists.freedesktop.org
 > Cc: linux-mm@kvack.org
 > Cc: linux-kernel@vger.kernel.org
+> Cc: stable@vger.kernel.org
 > Assisted-by: GitHub_Copilot:claude-opus-5
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> 
 > ---
->   drivers/gpu/drm/drm_pagemap.c | 36 ++++++++++++++++++++++++++++++++++-
->   1 file changed, 35 insertions(+), 1 deletion(-)
+>   v2: Add THP-mid-PMD invariant (Sashiko)
+> ---
+>   drivers/gpu/drm/drm_pagemap.c | 128 +++++++++++++++++++++++++++-------
+>   1 file changed, 103 insertions(+), 25 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> index 51c6f12e4256..6ae8c9aa36cc 100644
+> index aef1fcea663d..51c6f12e4256 100644
 > --- a/drivers/gpu/drm/drm_pagemap.c
 > +++ b/drivers/gpu/drm/drm_pagemap.c
-> @@ -3,6 +3,7 @@
->    * Copyright © 2024-2025 Intel Corporation
->    */
->   
-> +#include <linux/debugfs.h>
->   #include <linux/dma-fence.h>
->   #include <linux/dma-mapping.h>
->   #include <linux/migrate.h>
-> @@ -12,6 +13,27 @@
->   #include <drm/drm_pagemap_util.h>
->   #include <drm/drm_print.h>
->   
-> +#ifdef CONFIG_FAULT_INJECTION
-> +#include <linux/fault-inject.h>
-> +static DECLARE_FAULT_ATTR(migrate_to_ram_fault_inject);
-> +
-> +/*
-> + * Force a higher-order destination folio allocation to fail in
-> + * drm_pagemap_migrate_populate_ram_pfn(), exercising the order-0 fallback
-> + * (and, in turn, the THP split path in __migrate_device_pages()) without
-> + * having to drive the system into actual memory pressure.
-> + */
-> +static bool drm_pagemap_fault_inject_folio(void)
-> +{
-> +	return should_fail(&migrate_to_ram_fault_inject, 1);
-> +}
-> +#else
-> +static bool drm_pagemap_fault_inject_folio(void)
-> +{
-> +	return false;
-> +}
-> +#endif
-> +
->   /**
->    * DOC: Overview
->    *
-> @@ -960,7 +982,9 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
->   		if (order)
->   			gfp |= __GFP_NOWARN;
->   
-> -		if (vas)
-> +		if (order && drm_pagemap_fault_inject_folio())
-> +			folio = NULL;
-> +		else if (vas)
->   			folio = vma_alloc_folio(gfp, order, vas, addr);
->   		else
->   			folio = folio_alloc(gfp, order);
-> @@ -1554,6 +1578,16 @@ void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim
->   		kfree(dpagemap);
+> @@ -383,6 +383,58 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
+>   	return 0;
 >   }
 >   
-> +static int __init drm_pagemap_module_init(void)
+> +/**
+> + * drm_pagemap_migrate_populate_src_pages() - Populate the source page array
+> + * @pages: Array of source pages to populate
+> + * @src_mpfn: Source array of migrate PFNs
+> + * @dst_mpfn: Destination array of migrate PFNs
+> + * @npages: Number of pages in the arrays
+> + *
+> + * Populate @pages with the device pages the copy callback is to read from.
+> + *
+> + * Entries are normally only populated at the head of each source folio, with
+> + * the copy callback deriving the rest of the folio from the order recorded in
+> + * the corresponding drm_pagemap_addr. That does not work where
+> + * drm_pagemap_migrate_populate_ram_pfn() had to demote a higher-order source
+> + * folio to order-0 destination folios: the drm_pagemap_addr entries are then
+> + * per-page, and the copy callback needs a source page for each of them.
+> + * Populate every entry for those ranges.
+> + *
+> + * Note that the source folio itself is only split later, by
+> + * migrate_vma_pages() / migrate_device_pages(), so its order cannot be used to
+> + * detect the demotion - the destination has to be inspected instead.
+> + */
+> +static void drm_pagemap_migrate_populate_src_pages(struct page **pages,
+> +						   unsigned long *src_mpfn,
+> +						   unsigned long *dst_mpfn,
+> +						   unsigned long npages)
 > +{
-> +#if defined(CONFIG_DEBUG_FS) && defined(CONFIG_FAULT_INJECTION)
-> +	fault_create_debugfs_attr("drm_pagemap_fault_inject", NULL,
-> +				  &migrate_to_ram_fault_inject);
-> +#endif
-> +	return 0;
-> +}
-> +module_init(drm_pagemap_module_init);
+> +	unsigned long i;
 > +
->   static void drm_pagemap_exit(void)
->   {
+> +	for (i = 0; i < npages;) {
+> +		struct page *page = migrate_pfn_to_page(src_mpfn[i]);
+> +		unsigned int order = 0;
+> +		unsigned long j, nr;
+> +
+> +		if (!page) {
+> +			i++;
+> +			continue;
+> +		}
+> +
+> +		order = folio_order(page_folio(page));
+> +		nr = NR_PAGES(order);
+> +
+> +		if (order && !(dst_mpfn[i] & MIGRATE_PFN_COMPOUND)) {
+> +			for (j = 0; j < nr && i + j < npages; j++)
+> +				pages[i + j] = folio_page(page_folio(page), j);
+> +		} else {
+> +			pages[i] = page;
+> +		}
+> +
+> +		i += nr;
+> +	}
+> +}
+> +
+>   /**
+>    * drm_pagemap_migrate_unmap_pages() - Unmap pages previously mapped for GPU SVM migration
+>    * @dev: The device for which the pages were mapped
+> @@ -875,6 +927,7 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
+>   		struct page *page = NULL, *src_page;
+>   		struct folio *folio;
+>   		unsigned int order = 0;
+> +		gfp_t gfp = GFP_HIGHUSER;
+>   
+>   		if (!(src_mpfn[i] & MIGRATE_PFN_MIGRATE))
+>   			goto next;
+> @@ -891,11 +944,51 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
+>   
+>   		order = folio_order(page_folio(src_page));
+>   
+> -		/* TODO: Support fallback to single pages if THP allocation fails */
+> +		/*
+> +		 * A large source folio is always collected whole, at its head
+> +		 * page, PMD aligned and flagged MIGRATE_PFN_COMPOUND: anything
+> +		 * else is split before it reaches us, either by
+> +		 * migrate_vma_collect_pmd() or, for the eviction path, by
+> +		 * migrate_device_pfns(). Both the order-0 fallback below and
+> +		 * drm_pagemap_migrate_populate_src_pages() rely on that, as
+> +		 * they index the folio from @i.
+> +		 */
+> +		WARN_ON_ONCE(order &&
+> +			     (src_page != folio_page(page_folio(src_page), 0) ||
+> +			      !(src_mpfn[i] & MIGRATE_PFN_COMPOUND)));
+> +
+> +		if (order)
+> +			gfp |= __GFP_NOWARN;
+> +
+>   		if (vas)
+> -			folio = vma_alloc_folio(GFP_HIGHUSER, order, vas, addr);
+> +			folio = vma_alloc_folio(gfp, order, vas, addr);
+>   		else
+> -			folio = folio_alloc(GFP_HIGHUSER, order);
+> +			folio = folio_alloc(gfp, order);
+> +
+> +		if (!folio && order) {
+> +			/*
+> +			 * Higher-order allocation failed, fall back to
+> +			 * order-0 allocations for the entire range covered
+> +			 * by the original higher-order allocation, without
+> +			 * setting MIGRATE_PFN_COMPOUND, until we move past
+> +			 * that range.
+> +			 */
+> +			unsigned long nr = NR_PAGES(order);
+> +			unsigned long j;
+> +
+> +			gfp &= ~__GFP_NOWARN;
+> +			for (j = 0; j < nr && i < npages; j++, i++, addr += PAGE_SIZE) {
+> +				folio = vas ?
+> +					vma_alloc_folio(gfp, 0, vas, addr) :
+> +					folio_alloc(gfp, 0);
+> +				if (!folio)
+> +					goto free_pages;
+> +
+> +				page = folio_page(folio, 0);
+> +				mpfn[i] = migrate_pfn(page_to_pfn(page));
+> +			}
+> +			continue;
+> +		}
+>   
+>   		if (!folio)
+>   			goto free_pages;
+> @@ -940,11 +1033,11 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
+>   		if (!page)
+>   			goto next_put;
+>   
+> +		order = folio_order(page_folio(page));
+> +
+>   		put_page(page);
+>   		mpfn[i] = 0;
+>   
+> -		order = folio_order(page_folio(page));
+> -
+>   next_put:
+>   		i += NR_PAGES(order);
+>   	}
+> @@ -1120,7 +1213,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
+>   	unsigned long *src, *dst;
+>   	struct drm_pagemap_addr *pagemap_addr;
+>   	void *buf;
+> -	int i, err = 0;
+> +	int err = 0;
+>   	unsigned int retry_count = 2;
+>   
+>   	npages = devmem_allocation->size >> PAGE_SHIFT;
+> @@ -1160,15 +1253,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
+>   	if (err)
+>   		goto err_finalize;
+>   
+> -	for (i = 0; i < npages;) {
+> -		unsigned int order = 0;
+> -
+> -		pages[i] = migrate_pfn_to_page(src[i]);
+> -		if (pages[i])
+> -			order = folio_order(page_folio(pages[i]));
+> -
+> -		i += NR_PAGES(order);
+> -	}
+> +	drm_pagemap_migrate_populate_src_pages(pages, src, dst, npages);
+>   
+>   	err = ops->copy_to_ram(pages, pagemap_addr, npages, NULL);
+>   	if (err)
+> @@ -1235,7 +1320,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
+>   	struct drm_pagemap_addr *pagemap_addr;
+>   	unsigned long start, end;
+>   	void *buf;
+> -	int i, err = 0;
+> +	int err = 0;
+>   
+>   	zdd = drm_pagemap_page_zone_device_data(page);
+>   	if (time_before64(get_jiffies_64(), zdd->devmem_allocation->timeslice_expiration))
+> @@ -1290,15 +1375,8 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
+>   	if (err)
+>   		goto err_finalize;
+>   
+> -	for (i = 0; i < npages;) {
+> -		unsigned int order = 0;
+> -
+> -		pages[i] = migrate_pfn_to_page(migrate.src[i]);
+> -		if (pages[i])
+> -			order = folio_order(page_folio(pages[i]));
+> -
+> -		i += NR_PAGES(order);
+> -	}
+> +	drm_pagemap_migrate_populate_src_pages(pages, migrate.src, migrate.dst,
+> +	
 
-Missed fault injection debugfs removal ?
 
-Sashiko flags it and looks valid concern.
->   	flush_work(&drm_pagemap_work);
+LGTM
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+
+				       npages);
+>   
+>   	err = ops->copy_to_ram(pages, pagemap_addr, npages, NULL);
+>   	if (err)
 
