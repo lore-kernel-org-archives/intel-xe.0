@@ -4,156 +4,174 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03793C5B572
-	for <intel-xe@archiver.kernel.org>; Sun, 16 Aug 2026 14:35:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29599C5DF6D
+	for <intel-xe@archiver.kernel.org>; Sun, 16 Aug 2026 15:04:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 451C110E248;
-	Sun, 16 Aug 2026 14:35:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B40A10E317;
+	Sun, 16 Aug 2026 15:04:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nHMlE5uK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="doBg41iP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C83A410E321
- for <intel-xe@lists.freedesktop.org>; Sun, 16 Aug 2026 14:35:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96D3A10E248;
+ Sun, 16 Aug 2026 15:04:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786890940; x=1818426940;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=Hlp36pO6/icJ7MulcF6vjEbPlVG/OJHqNR/hutCutdU=;
- b=nHMlE5uKT+4IgtMc6Rgd4ZohsHSa2zTcbmTIg5dr5suTfbDtRTDbNWox
- ctf6Dgdcr5dhgC5GsD1gBB5znqUE3KjiRBQ0VfsUaRsVVOO1L8s/eHLxi
- R4Bnbv8JMhV93B/gCqPix2dPsux5W7cnCkC2rjw4Ydvge3xLZv4maoU3g
- 5atUrQOwqx5/TdBgM3e1iLvXMdeU5I1sqwA6b3DZw5gPCw7sSy4PN+uSU
- khKWpJu2xJ+JNdevixHATpHDRUocHbffcmcvMIPW0ZC5rVTG8rHVXce/Z
- 3SKZTR2pNBRrWlhT3jRu1Kfgz3pXQVKYJM6X1Jul1A/tXxOcc37vk1nzZ w==;
-X-CSE-ConnectionGUID: VeAAer5YT8C5EM8SJMylIA==
-X-CSE-MsgGUID: iFj4EYkoR52jazrVVI74rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="98902651"
-X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="98902651"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2026 07:35:40 -0700
-X-CSE-ConnectionGUID: T58b2LfcRGe9Oc+iYfaHnw==
-X-CSE-MsgGUID: heYcywPgSciJhpIEu+IcaA==
+ t=1786892666; x=1818428666;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=wMF1CVn10o8VhdSBV++w0DB3yMAtKPrNZCNDiQx4ooM=;
+ b=doBg41iPVN9KxoLbITy2kQ2RX6lSJP67h9LIIHVT1lpxSAkobJVDVmng
+ Z39o8w19Csc9fp7Kb2TIMg1QKH8+G516JVI2xYT9l+UumV8jZuL0XDCXD
+ jPWhaPk3Z2z6PKmBlLEbXzQjzjF+MacQ55GmHFFThMq2vLL2HdU5W83kr
+ 7yvgff/38/K5pVM+sWyFk81fZwFO+BaC1UPbWMEtNYV/7cQELAgF4vqcH
+ qmL7/DnW/9odug+JWjTpgx8kTJuGGTLdTsZk57RomXED0BunFvx0HtdTV
+ RZmW8kuu0MWuJmo1nNnIbzufYNC87igB1l2irYHWoXKGDLvQh+7HbrRik w==;
+X-CSE-ConnectionGUID: I74MsvXFQde/UTvUFo4G2A==
+X-CSE-MsgGUID: MfeAdET/Qji8pUiwA0n7Dw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="112932067"
+X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="112932067"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2026 08:04:25 -0700
+X-CSE-ConnectionGUID: M33YmcpXQKC+TCE83pc8dg==
+X-CSE-MsgGUID: ygr7i+oWQxa19HOmzSmDUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="262040139"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2026 07:35:39 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,227,1779174000"; d="scan'208";a="268535707"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2026 08:04:25 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Sun, 16 Aug 2026 07:35:38 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.45; Sun, 16 Aug 2026 08:04:24 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Sun, 16 Aug 2026 07:35:38 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.16) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Sun, 16 Aug 2026 08:04:24 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.55) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Sun, 16 Aug 2026 07:35:37 -0700
+ 15.2.2562.45; Sun, 16 Aug 2026 08:04:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gR5TDhezQIxhigo0eFLNFg82m2YRw6xhAWsXMmkT3i8YU15JDmktMA/kARG/PjpIl54zjmxqOGEfHjshy1Qkx8BxqclTXQgrjPbvd45jgqvDzG2oKjT/sz2+ZjZvv/kfDeLxwH5+H/UaPwyOlEOcHAlKp2H9PRFlizcKl6gGYDKQ2GkGXKOuO/UfoHuQRFEkDDBXapTVdgMU6U3Zx0ONgjYd6g2LoImGWTLsmGcHrz15NhRyzTWb1rSNiFjamACcQK9DOeXkfVUW7ApZ5tt5k6TROYTC8Fw/gQHfa7NCbEuc2JdFZDs9TGV6LNFs9gWymRgrRoBDd6dfr+F+r2o+SA==
+ b=UF/VyoyODSmaIrWEskqI4ipqdHl8y69hm9q1TjoQdlGXoB9YXuLMXkjMPO/5poZppZTxWWsPNbqIn13P6dCNn9T3zipNVov+xc8gHGmA/CLDHxrGmfTtU9x5YvFeFgZm804lMsJ2nBBPX9DsBiJeRO25An7OANBM1utnEH4L5PlUqhZLDrY+ZvDAUuhGSSHK1DDpDaUoQcem0p7FBD/sxdocz5qKorNQ7HugZkgfkdbIcfm3hfJ7hX1GVyscTffzUnCnlwehAczOQ6KaKJ64EEcef6z3ReLr4f1PugOl16YaRBKcVc+sR9yGxTebvGfZzbsWce/Im7Ia57tvIiy5mw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gcefQfFr5hGv9IrFUGNoxADTJqS+F4JrVIVKBipuUzs=;
- b=k657QnJVFD8bEiBGs0szX7LNkx2eBUQWj9B128r/a+dKGNrqCnCCuuv4+u2z3ko5OqrxVTJCLd2KH0+7uzKuPN08X/KsMnxJ6m7q/0FhYT++YkuqD6A7H3as2f4XKC4bo+hNzdQaqjTuG1CPpt90+s9qDRCKIFnDWTJTZdi5yaN9kgyMl2eGSalcIyFN+4bzrwTo8eeo26Y57wxOku7+waJv8WQqZfsALk7g5943t+0oeGoofEPxXEeEG/18hwKnq9oMhMscgGBtP/towaXV5SfLBor5jcCbs13CPgiLfugDEUy/EqFxF/hP/eHqnA6M8hKAtmaxR/29T3F1nRPd5g==
+ bh=MgoiTqLSmuPuQaSwT8viA9jFigFV26MHK13gzYRgYdI=;
+ b=juW26+ZnvtTk6Xq0BkaFb4vUGnqwbKlH+ytu95Af67d2dAzwyEHM4bQyrZqngWRvKEtNfAhNAYqRY2+TX+WqaUtxkPinvG//FezdwQRGQYQEzrx7LK7CX4GghJiLPHEc6cNJ/swz0eNZWjWKxU3qKAD6ra5AVqvLrZSwa47BtWCsXcNMNV04lm1SfD8CTcdrHHREwoLmenrWjAyAxFHZuCdgQwnIu1/O4gXLVamIFH4Sf044JfB2HoUTm3HWVXYg3E80x0OtWS2nmhdIQ2/886cEmHhChppbX4PG+s40Yttk90Vsp7ch9qa+obPZzaaLIL5cL9di3GH1e+cRayHz8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::2a) by SJ5PPFF8B526086.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::862) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:f:fc02::2a) by DM3PPF74831EF4B.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f2e) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.17; Sun, 16 Aug
- 2026 14:35:29 +0000
+ 2026 15:04:21 +0000
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0315.016; Sun, 16 Aug 2026
- 14:35:27 +0000
-Message-ID: <d8e4019f-238a-4bd6-b6f1-6e2b3bfea612@intel.com>
-Date: Sun, 16 Aug 2026 20:05:20 +0530
+ 15:04:21 +0000
+Message-ID: <9e986d7c-d561-4a63-8b14-6380ac289db5@intel.com>
+Date: Sun, 16 Aug 2026 20:34:06 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V15 14/14] drm/xe: Add fault-inject based VRAM page
- offline injection
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20260811124016.3614699-16-tejas.upadhyay@intel.com>
- <20260811124016.3614699-30-tejas.upadhyay@intel.com>
+Subject: Re: [PATCH v3 4/6] drm/pagemap: dma-unmap pages before handling
+ migration errors
+To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <dri-devel@lists.freedesktop.org>, <linux-mm@kvack.org>,
+ <linux-kernel@vger.kernel.org>
+CC: Sashiko <sashiko-bot@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>, "Lorenzo
+ Stoakes" <ljs@kernel.org>, Zi Yan <ziy@nvidia.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, "Liam R . Howlett" <liam@infradead.org>,
+ Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>, "Dev
+ Jain" <dev.jain@arm.com>, Barry Song <baohua@kernel.org>, Lance Yang
+ <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>, Joshua Hahn
+ <joshua.hahnjy@gmail.com>, Rakie Kim <rakie.kim@sk.com>, Byungchul Park
+ <byungchul@sk.com>, Gregory Price <gourry@gourry.net>, Ying Huang
+ <ying.huang@linux.alibaba.com>, Alistair Popple <apopple@nvidia.com>, "Balbir
+ Singh" <balbirs@nvidia.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Francois Dugast
+ <francois.dugast@intel.com>, <stable@vger.kernel.org>
+References: <20260805231041.3791771-1-matthew.brost@intel.com>
+ <20260805231041.3791771-5-matthew.brost@intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260811124016.3614699-30-tejas.upadhyay@intel.com>
+In-Reply-To: <20260805231041.3791771-5-matthew.brost@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0104.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:af::10) To DS4PPF691668CDD.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0P287CA0003.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:d9::20) To DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|SJ5PPFF8B526086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 411d1dd8-9c3f-4c42-f64f-08defba39d67
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|DM3PPF74831EF4B:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64f7cbc1-a7b4-4ca7-e471-08defba7a6ce
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|6133799003|10067099003|4143699003|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: ySh6iGwb/ofcvywuelQZZW2mCbuqV6X4h2Q8Sp6TuY90Ceiad0j6wZs3g58SVUAm5RuIMcMVn+WIoAf80wSH6qp1CS9Qe8p34AMiAD7EuaiOFUpWGKLyEDvvoSbM/zjjmWy7EM9MfauDR485t3cTaZisGF56fes1qmHs/vUTpOubhUsn6KJ3HGqp7C9puq8/I9qETSa6x7WZIzHcjSARpZBVwEcPgiMITxeMwsJ1SH5GXeUI4zBCJsF9gtkVcZm8FGSBwhAc766kngzyacx+Qqk3ojoWKt5mhrWdYiD4ZcmmNsSbV2bg8X8oY6NK6N53X0NBvXdZ2VYSk7BE5NoTy66gdI0GFJXhIpt0OEhgr0aki4sEplQVonuve9uC7n0wzWJCS4EF06CX9W+I9ybLji3frBTIBx9CKHPc6CR6Yzl21TnNfAzY/bXAMGcxrShrg+Cvp02msAwHWkdUDAYUlz4KSshHBpw0xBVCUyDhR19kIJJ6y07sv37iIQXgDt8mGsdqn+7U6j3AnPhbqR6XznjUFoaBm9sK2Hsh8ms5HcNAlWXVhBAcy2pRiD0NxFtddkIP7DKq6w/+6185NDhakXKIRalgThZ1KGv1+1DWcK9sZ4mNmv+a5dUUuFDNw/1qNJv+P0/scB8r6t99r4gNyqfpMuoc2S7s0PKWNlunofA=
+ ARA:13230040|7416014|23010399003|376014|366016|1800799024|10067099003|4143699003|11063799006|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: sycKyIegXa5EzPuP5Fa3RYet4m/dm1KzieNSqZtt2WP8UHW8BaoXF5+XuT1cRIKB2nDKR6IN3upf90UrpMXI1TQLJEoE8cS66icy7xZFtN96TLHZJjbJQ28qm3XDOg9GgzIQXkwkUo46HxcbB5LU2jFqqN8rmxrkfZ2zNhdFWZhjZ32mfGfkYvmVZ0ghaLFU2xyVgdfZ4sNFk3LyjT8wznq6VrBzOJaqgJvcFyjypzfkBWGt1W3Y6t5zxNJmKSfhw0R7OGX4VO74PWVUoX8PqI98XLLlYVoUhmYKruKaX3736y1ywC1qnN+L7OrqlbPU0t0ThEsW4Euu9DzwgMtg/yjdZLBvsbID+t9+rPB+FEcvfriykdkNN6ws4niG4xgiVARGZvyM6MjEBw0ZrHvXywqCwecmID7egmc+QBQERaQi8h2z6EUzu+9KEQWfgLEWgT5NbxlFuxrFk6eVPQEKMlMvAN4/hiXD+Qc6EmFs15R9BHFoJUVbP2y8IX8SsFhjAnvr86KIet872EnlbPNRxPsl51Rq9IxHzlbvxErr8skGOgsSnDsbBOskJXEj/pG+xArpqrz/SM6UASBs6gYKw34t3CFUl8Z6DBI7NgfADdVGwm/Uf7gcZJkoyFMDhk6utm8h1y2LrjpCPD91KBMWgY8QgHZBjMaZvndiVhgkYdc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(6133799003)(10067099003)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003);
+ SFS:(13230040)(7416014)(23010399003)(376014)(366016)(1800799024)(10067099003)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VGNBRWE3Rjg4eTNVUFNTY3hvTTAvSU81dzhma2g0RkRyNGhXR1pFM3NJS2t4?=
- =?utf-8?B?bGp1dVJ2eTJCRExqeGFTVXdJZXpKSGNXbDQyT3ZJRlhLTkNnSldWdXl1QXBB?=
- =?utf-8?B?NUVxTUtVU092UUJlWGxKbjBqOWZncmlxVnNxWlpabWdMVUxFVnJYYzVxeGRJ?=
- =?utf-8?B?UTdycm9hVVdWNGVlK2ZyUC9FeXFucUtaVkhDblRVc1NoSUpiL0VvWXlPOElB?=
- =?utf-8?B?MFhKMmZiUktENlg4alNBYTIwSnBTUmpPL294bnpaeThnKzN0alNjNnpzcW8z?=
- =?utf-8?B?ZHhmZE5rakhTeFgvdUpRRFZwWHd5ME9WVW9SeXFuSUErQWlsMWZjeFc2Y3g0?=
- =?utf-8?B?WVhmMVcrbzc0S3AvSFV0cGpTdnk4TkJoakYyZXAvSVFsT2FOc1IyWDlBem0z?=
- =?utf-8?B?c3c3aVI5bTVPZllGZzlLR1FmSUJBaENoSjJNL3NLU29LeE1yVkVwaEp6MEtl?=
- =?utf-8?B?ajZRcGhwcTRkcVAxei9VRCtJZ29tcVZWVHprcUlWN3RxNVJBMkpoUkVUYk9M?=
- =?utf-8?B?dllLZG1lY2g2ZlY2b21ueFRqekl5R1dsTlFsRHBwT09ySERBb05MTmZkSWVB?=
- =?utf-8?B?Z2h4ajhZSFptcythbGxnVnp1cDBZVC9uS2VIT0RIdlYzTmJhQlU2aUZpaDZD?=
- =?utf-8?B?elVadDlFWW0ycDA2c3VaalFqc2dPb2UyU0k0NkpCMFdqekdlS2NKZkc5cmxR?=
- =?utf-8?B?MWdBWlVzK0pNNWUvZjVnVlNJVm5GNGJOMVI3MlFYVkpNRzZjVGZQTWFzMzRi?=
- =?utf-8?B?SzBuZ0F4K096T1BQRUpRM3UvS3FjaXh4ZnFUeElEZTRnZDRwSWkzdVFUOStV?=
- =?utf-8?B?MDZKanM4eGpodHRzTDB5SStEUTMyajc2YTRCSGxERjdNNlVMWGtFY2ZFT2tT?=
- =?utf-8?B?RDBjeFppNUYxbWl4bE82Ym1lb0d3TDQyZnRUNWV6Y0J5VkhkME51QWFrT3Jy?=
- =?utf-8?B?OTB4QXVRWThJNHNDaGRISzZVNmZHR3VFOHJ5eUZqQU9naDFCaEdNWmRKeXZY?=
- =?utf-8?B?d3RBMm9GZ0VFdGJqaTRTblp0bzY4VE9ZTVJreENzdmdCeVFuTTJrR3hXSkV0?=
- =?utf-8?B?L0I5QVlRZVEyYlJDc1hyNnRhRm1YRmxlbE5PT3Zpa3V6S1pQREEvR21JcndO?=
- =?utf-8?B?Z1ZiemNOS1NaYW5yYTZ4Ymp4OU1ocUFzRW9BYzRob05hdmhKdVk4elNNajEv?=
- =?utf-8?B?WWxxaWxJOC9PeXVvRFEzUDNONXlWY0FQOE5LNFR4Q2dibkwzR04rdHplWnYr?=
- =?utf-8?B?NU8zYUR3RHNYM2tXYk5ab3BxWW16NVIyRExJNjlnUXJ1RnczM1ZpdGxZSUNu?=
- =?utf-8?B?UExhWUg0aVZjZGtQTndPK3FuU2YzMllNNzFWSmpxMjhHb3Z2UVh1SUlyUXdI?=
- =?utf-8?B?K1piSTlOb2wwR0dRa1JlT005Nkt1TEc3YmpXaWxodlNrSG15dnhOaWp0WkY1?=
- =?utf-8?B?ck9XdU5JdS9ubDhxKzBJTVpyWWlGdDJiVVp1U2htSzNrNWxXL2hDVXI5Skta?=
- =?utf-8?B?cU81ZWNuWFBjWVZXZy9NemRoZXRJcW12ck1CeWF6TFpDaTdoNktsclhYNHR1?=
- =?utf-8?B?TWZxeC9OSCtDL2FySGpDZFA5VjZwMjc2cU1yNHRoakhOdEd5WXYrS2tkeUF4?=
- =?utf-8?B?UHZXNWVCanFXMkZOcEZFNjEyZ0F2RDh0VGxIQW4vcVd5cU9SSTdOb0U5cmNt?=
- =?utf-8?B?OVZuOFoxTkhrbmdkNGxLazdpR0ppK2VWWkNBckw5L1pKTEtWUUhnai9XanFU?=
- =?utf-8?B?VFNqR0hpSk1qb25yWm92dG85bWhvMzRZeTBJY1pPVk1IamdPQ2dqejR0L1pK?=
- =?utf-8?B?VFk4ajhSMm1IVEZQS2hkemhJald2REZqN2NqcmhrQkZYaFNJMTlpZjhad1pM?=
- =?utf-8?B?b2xnTDVhbFVma1VMeE9LSjJKZm5Vb2RxY3VONTlSSHAxeFZLY1NjQWtxRFBq?=
- =?utf-8?B?ZGVPNEtsZHZGR2lIYmhncXZsK1k3V0NWYUtvcVE3dHJhS3FYNUpFUjMxeFBU?=
- =?utf-8?B?Z1QvTng5ZFBGRXhlZ3NIMy95Wmk4QWY3K0NESU41SFNNblJGVFAzMmNBWGNF?=
- =?utf-8?B?azh2WFR2RXhJQkhKYkI1SDllbGpwRWdnVDFzdHkwcjFCVUtzb0pGbmFzZk9w?=
- =?utf-8?B?NzVzcS96SXN3ekJhLzhDN0J6RWN5V2gvaHREYm04MS8rQzUvL3hIQ1Z2VWVo?=
- =?utf-8?B?Y2Y4Qk9sbERORUJwbG4zY0Joc012NjUzRWduTUpsRytDZ3dIRlBLRVhHMDVR?=
- =?utf-8?B?enREMjFiTUR0ZmpQd3FUamxuQUVYYlNIc0VmRzF2VWx1a3lLVXhac3NNMm5m?=
- =?utf-8?B?TmxEVW0zMkYybGtPYk4vcElLNmlBWXpab1Jla2hYVEJYVXZOSGZwYWgwSXlh?=
- =?utf-8?Q?bIQ7rRlWE7SCsAvY=3D?=
-X-Exchange-RoutingPolicyChecked: YRgrpPousHVidQvqNZccWclrAMDKYWII2WVmxFdMGIRXHpVFNtR8bs/5Jm50qNOC+hmfvzDUWVLp6Z1vam1ok+Ahjucgh5seUQXPUYQiWjkVh0zr5ZfaVG9C9DEtzaX02yMO8orwaBXj3OKvjTITT3gVKxbqMJKtVVg82/Nz1XGBD+b5Ggz4dHPZOXhYd5c2TK70lfE4tiTm9Ga/+0zpRQQPCEXVimZeALoXgm3IewdY7vdsLpvkWrpS4SSFbRUb8Q0MQzQuQ4CEeMwoMvv8hPiOSb67LBe1dJkUJLhLyhLXOfhrXKL8/RAQnubjhd3jqNhb4G3dPThs9cGqT3JnRA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 411d1dd8-9c3f-4c42-f64f-08defba39d67
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ODFObDduVkV6UWphSUQvejN1c00zQmo5UldQclpoOGhpSDk3U2lYTGdHR2tF?=
+ =?utf-8?B?RzBTbW5JQThmRW5rWm4waFJYenRaTkhmUXhVb25vYm1kd082RWVmSkYvLzNF?=
+ =?utf-8?B?SFBYOSs1QzhleEVxazltakRvVGE1S2lGUkh0VlhmbUJva2tlZmEwNlJtMkw2?=
+ =?utf-8?B?aTRUTk1HM2ZLTHk0QS9rSTlQOWFncHMvQkxLSHgvQ1RyWHZPMDA2SlVLRlR5?=
+ =?utf-8?B?ZFdORHd0czN2NW1NWmFrZG1ONmxPWWRnemg2RTlqbUZJUFAyQVhFaVV6dmJD?=
+ =?utf-8?B?cDVaVnVkTGIzUExpZkxzYWlSOVVYYmVQZ2JoVzRMZ2lGZ1IxL0lsZnVwZTZS?=
+ =?utf-8?B?Ui9Td0RodzZuQjlrei9jdGZlc241YVBvU1pZcDZ5OUZURlYyM0tGd3lrRzRk?=
+ =?utf-8?B?eUp6cmI2RFZqNldVTjVkRUd4d016TDltbzRPeFdVa1FWa2pHcnVZZXhRR2Np?=
+ =?utf-8?B?K2hvbGNnNERWQW93ckNUSGgzak1CcW0yeVk2MFlLdEduTUR1Z0drak1iYnlk?=
+ =?utf-8?B?RlpGYzJxSUNDa0c2cjlEMEZPY2RTRXlRdnNEcWFocGFKVjBJd3lqL3Uxcjdw?=
+ =?utf-8?B?NU8zckorYlgrVHhEakMvL0ZMaEc5bTVEeWQ2V0ZGM1RtQmpteFJnd3ZSVlZ6?=
+ =?utf-8?B?WjlQT0JqNmVqblFiUTZOd0o5WjRXSGEvdENDYmVCVHM1WHJjcFVhN1RURDZQ?=
+ =?utf-8?B?Zm13R0NJa25mYjFBa3cxUWJ6ZkRNLzVnLzZ4bThRdkZLZzlZcjhQZ1loQjYw?=
+ =?utf-8?B?YXVNbVpEVmVNZSsrZGREM3h6ZlJyMEZPc0RHNzNVa2hkRkVWdmM3SzRNbXpT?=
+ =?utf-8?B?OVZPYTNLSXBQRm0za3RrUG9peW5WeHVmSUo5aFF4TFhJaUxySkFuZ2dicDhY?=
+ =?utf-8?B?ZURpUW5lNnJKczRVQ3Z6U21RVWx5aUw3M2t2R1RVMjFERm5mc3p0YXFFeWpQ?=
+ =?utf-8?B?ajZHT204a213SStCVXFEc2l6cm9US3hqWDVKWnZBQ1NqTlg1bVFSUlJhR2o2?=
+ =?utf-8?B?WjErZll6Z3ZYaEhBMmV1QjVFQk91NU1TOXorM1BsREVTemVRT1VuLzZYU0tj?=
+ =?utf-8?B?MzM3T2gyNVhEOFRrUXJmUUk5NksvM29JaVdUVCtYajVYckhNWklKS3dGQVgy?=
+ =?utf-8?B?Mlhpa1JqUDZQL0tXRXMrcWp6NmxmS3NrZlhSS2pnSkVHdXI2T0RUaVU0YmlE?=
+ =?utf-8?B?MnFuemVjNTdwQ0lYTy96MmQ3dURxRWJTL1pGbHJobGxMOHlXTjNwMFVEaURS?=
+ =?utf-8?B?eTJ0SVlxZ2dPblBFcmFMeUlETXVSMHZjZGloV3ZaUzNkRUp2dEpSRUNFM2lk?=
+ =?utf-8?B?bGYweEx3aVI4UnhEV3NtU3J4SzhhU1ZvcTI5Nkp1amFmS0hZNThDM25Fb3ps?=
+ =?utf-8?B?cFY0RTRuTHFvbEh6RlhrcUNIU0c1UUpUWjhOVWNYU1l3T0JsWHlGem83RjNT?=
+ =?utf-8?B?Wm9iN2loRVYzMzAzRzU2eE5zWktKbmVGYS91ZUIzZEJWbWxnYkVLNFNiY3Q3?=
+ =?utf-8?B?RTlHRWNXOHRUNGhyMHRRTzJONGw0MmZldGpEZmJndFErMDI0K0xIZ01CTlRZ?=
+ =?utf-8?B?WlBwT0tmM01iYUFndlA1b25IUUV6Q1RETW5DVWgyZmNvTkdScFNmdklidHV1?=
+ =?utf-8?B?NnppZmV0RlJhVWp6OFJkT2VRWTRhRExjMHVmMUVDMEpiTHE1TnBHanVlOXg0?=
+ =?utf-8?B?OFlCSWlGZjhraFV5S2hEcVdaaG5UKzN1YnZxem4xL0w1RUpiYTYxclNnSHZy?=
+ =?utf-8?B?MjM2MTRZMlk0RmtvV1o0clhUUDV1Y0FZMERpeE1HRkM4ZWM0SElCUDdRY1hn?=
+ =?utf-8?B?NjUwTVRlR2pyVVUrencvcE1iMXpmbExVcVFEU0lXNXFVUTAwQzhLNnYvQm02?=
+ =?utf-8?B?RFFHb2gxbGZFRzdobUUwWURoQlBJMkhiL2I0c1VUV290cXlhb3BoeWF0bFRZ?=
+ =?utf-8?B?dlFRQ05kQnphM0xqbldHbktKNExUMkwvbVdacnI3SzVMYWNWNTNGSHBHNGov?=
+ =?utf-8?B?anlhUUE2ZEdLNllSb0ptRERObnpWUGNFSzdRWlFVUVJzaDBPOTdzVUpNaVQ2?=
+ =?utf-8?B?YnlMcmpRYVk0Q0k2UXNncWdmZ25aZXk3ZlRUQ0tyVVZ4Wlh4NkpZclo2WVVE?=
+ =?utf-8?B?K3h0VXJTTUJJRUFLaExiMGM4eUpNb1ovOTZJMzJyTitwNkpnQWJIbkhULy9R?=
+ =?utf-8?B?dHpTaFd2TnQ1S3VWSFhyRXVqN28xL1RRNDd3NjQyb296amUxVFZXT2h2Z0Jj?=
+ =?utf-8?B?dmJXdm9yRit4MHZhbjBTb1JwT2tlSUUvWmtSVmZPby9GaFE2K3lXREZsMmln?=
+ =?utf-8?B?WUNaZ1M1WURFc1VwQWhtaWZCQVRpaTdDTlFkbVNJdDArL1hUWXlTNFBGcWZG?=
+ =?utf-8?Q?f+NxFgWIiSnSDxwE=3D?=
+X-Exchange-RoutingPolicyChecked: hvwsUJwkNmjyYqQhHJ2gg77pl0BE3wHxu5l9Nc3TCeDfJ2VEHckV0p5rnkc91g/z52UJb9qWeNP4387c5xKYCl3rv1GgYKFPgQBYRpS/rKA1LgY8eNooWQrdJqLKECSDLGwKGLe9li1Sd6k4h29RiJQTeTaxnsFwxN7228rXefJkqrizVScGtqxnds1l1G/7m0Va70kJyMfWQqxkcwUUbyCVwUMBWZvftte08wGpgsAz9rldgN0ha3DqhT1dUPfpnVH0Y6BdAVWLijpXE5lbWhbqqMmeg3NdFIv8CkODw3wNzauubu7JqWov4/5L7qrTSK56gikF4OM/YcNxtz/Iow==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64f7cbc1-a7b4-4ca7-e471-08defba7a6ce
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2026 14:35:27.7622 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2026 15:04:21.1783 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 39s1dVwO5Fzpprd1WK1bH5mjLXsU8ksUXrxpgYu5wZh3l4ve4Q6bIbOCDsYsNw6jg0p6lfUC/lbeD0jLU7H4kKTN3HNj4kCmTmi8+5ZJsbc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFF8B526086
+X-MS-Exchange-CrossTenant-UserPrincipalName: +JctoxGkPP5Ef/oEaAqk04xcm51j18W2ptTwCjEyVMLiORdeEmMgePDD7gF4OjZHaQOXWC0smdMn174o9tXi+O92ntQmkUlEDYIoOO0KqwA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF74831EF4B
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,241 +189,94 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 11-08-2026 18:10, Tejas Upadhyay wrote:
-> Add a fault-inject based debugfs interface for testing VRAM page
-> offlining. This replaces the previous standalone debugfs approach
-> with the standard kernel fault-inject infrastructure.
+On 06-08-2026 04:40, Matthew Brost wrote:
+> drm_pagemap_migrate_unmap_pages() relies on the pages array to determine
+> which pages require DMA unmapping. However,
+> drm_pagemap_migration_unlock_put_pages() clears the array as part of its
+> cleanup, leaving drm_pagemap_migrate_unmap_pages() with no valid page
+> information if it is called afterward.
 > 
-> Two debugfs entries are created under the xe debugfs root for
-> CRI platforms:
-> - inject_mempage_offline/: Standard fault-inject knobs (probability,
->    times, interval, etc.) — only available with
->    CONFIG_FAULT_INJECTION_DEBUG_FS
-> - inject_mempage_offline_trigger: Write a PFN value to inject a
->    specific page, or write "0" to auto-pick the last unallocated
->    VRAM page
+> Call drm_pagemap_migrate_unmap_pages() before
+> drm_pagemap_migration_unlock_put_pages() so the pages array remains
+> valid during DMA unmapping.
 > 
-> The trigger accepts:
-> - "0"      : auto-pick last unallocated page
-> - "0xPFN"  : inject fault at a specific PFN address
-> 
-> On kernels with CONFIG_FAULT_INJECTION_DEBUG_FS, injection is gated
-> by should_fail() (probability/times must be configured first).
-> On kernels without it, the trigger always injects directly.
-> 
-> The injection reports the page as faulted via
-> xe_ttm_vram_handle_addr_fault(), exercising the full page offlining
-> path.
-> 
-> Usage (with CONFIG_FAULT_INJECTION_DEBUG_FS):
->    echo 100 > inject_mempage_offline/probability
->    echo 1 > inject_mempage_offline/times
->    echo 0 > inject_mempage_offline_trigger
-> 
-> Usage (without CONFIG_FAULT_INJECTION_DEBUG_FS):
->    echo 0 > inject_mempage_offline_trigger
-> 
-> v2(sashiko):
-> - use cond_resched()
-> - validate input first and fix addr < 0 case
-> - validate vr, move block, found var as local to scope_guard
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> Reported-by: Sashiko <sashiko-bot@kernel.org>
+> Fixes: f86ad0ed620c ("drm/gpusvm, drm/pagemap: Move migration functionality to drm_pagemap")
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Lorenzo Stoakes <ljs@kernel.org>
+> Cc: Zi Yan <ziy@nvidia.com>
+> Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+> Cc: Liam R. Howlett <liam@infradead.org>
+> Cc: Nico Pache <nico.pache@linux.dev>
+> Cc: Ryan Roberts <ryan.roberts@arm.com>
+> Cc: Dev Jain <dev.jain@arm.com>
+> Cc: Barry Song <baohua@kernel.org>
+> Cc: Lance Yang <lance.yang@linux.dev>
+> Cc: Usama Arif <usama.arif@linux.dev>
+> Cc: Joshua Hahn <joshua.hahnjy@gmail.com>
+> Cc: Rakie Kim <rakie.kim@sk.com>
+> Cc: Byungchul Park <byungchul@sk.com>
+> Cc: Gregory Price <gourry@gourry.net>
+> Cc: Ying Huang <ying.huang@linux.alibaba.com>
+> Cc: Alistair Popple <apopple@nvidia.com>
+> Cc: Balbir Singh <balbirs@nvidia.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Francois Dugast <francois.dugast@intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-mm@kvack.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_debugfs.c      | 50 ++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_debugfs.h      |  2 ++
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 52 ++++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
->   4 files changed, 105 insertions(+)
+>   drivers/gpu/drm/drm_pagemap.c | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index eeceab4a9901..2fd1ff806864 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -32,6 +32,7 @@
->   #include "xe_sriov_vf.h"
->   #include "xe_step.h"
->   #include "xe_tile_debugfs.h"
-> +#include "xe_ttm_vram_mgr.h"
->   #include "xe_vsec.h"
->   #include "xe_wa.h"
+> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+> index 892b325fa99b..aef1fcea663d 100644
+> --- a/drivers/gpu/drm/drm_pagemap.c
+> +++ b/drivers/gpu/drm/drm_pagemap.c
+> @@ -1175,12 +1175,12 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
+>   		goto err_finalize;
 >   
-> @@ -43,12 +44,18 @@
+>   err_finalize:
+> +	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
+> +					DMA_FROM_DEVICE, &state);
+>   	if (err)
+>   		drm_pagemap_migration_unlock_put_pages(npages, dst);
+>   	migrate_device_pages(src, dst, npages);
+>   	migrate_device_finalize(src, dst, npages);
+> -	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
+> -					DMA_FROM_DEVICE, &state);
 >   
->   DECLARE_FAULT_ATTR(gt_reset_failure);
->   DECLARE_FAULT_ATTR(inject_csc_hw_error);
-> +DECLARE_FAULT_ATTR(inject_mempage_offline);
+>   err_free:
+>   	kvfree(buf);
+> @@ -1305,14 +1305,14 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
+>   		goto err_finalize;
 >   
->   static bool csc_hw_error_available(struct xe_device *xe)
->   {
->   	return !IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE;
->   }
->   
-> +static bool is_crescent_island(struct xe_device *xe)
-> +{
-> +	return xe->info.platform == XE_CRESCENTISLAND;
-> +}
-> +
->   /*
->    * Fault injection table.  Each entry registers a debugfs attribute; add a
->    * matching FAULT_ACTION() below for every entry added here.
-> @@ -63,6 +70,9 @@ static struct {
->   	{ .name = "inject_csc_hw_error",
->   	  .attr = &inject_csc_hw_error,
->   	  .is_visible = csc_hw_error_available },
-> +	{ .name = "inject_mempage_offline",
-> +	  .attr = &inject_mempage_offline,
-> +	  .is_visible = is_crescent_island },
->   };
->   
->   /*
-> @@ -77,6 +87,41 @@ bool xe_fault_##name(void)				\
->   
->   FAULT_ACTION(gt_reset, gt_reset_failure)
->   FAULT_ACTION(csc_hw_error, inject_csc_hw_error)
-> +FAULT_ACTION(mempage_offline, inject_mempage_offline)
-> +
-> +static ssize_t inject_mempage_offline_trigger(struct file *f,
-> +					      const char __user *ubuf,
-> +					      size_t size, loff_t *pos)
-> +{
-> +	struct xe_device *xe = file_inode(f)->i_private;
-> +	struct xe_tile *tile = xe_device_get_root_tile(xe);
-> +	struct xe_vram_region *vr = tile->mem.vram;
-> +	u64 pfn;
-> +	int ret;
-> +
-> +	if (!vr)
-> +		return -ENODEV;
-> +
-> +	ret = kstrtou64_from_user(ubuf, size, 0, &pfn);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (IS_ENABLED(CONFIG_FAULT_INJECTION_DEBUG_FS) &&
-> +	    !should_fail(&inject_mempage_offline, 1))
-> +		return size;
+>   err_finalize:
+> -	if (err)
+> -		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
+> -	migrate_vma_pages(&migrate);
+> -	migrate_vma_finalize(&migrate);
+>   	if (dev)
+>   		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr, migrate.dst,
+>   						npages, DMA_FROM_DEVICE,
+>   						&state);
+> +	if (err)
+> +		drm_pagemap_migration_unlock_put_pages(npages, migrate.dst);
+> +	migrate_vma_pages(&migrate);
+> +	migrate_vma_finalize(&migrate);
 
-Use the FAULT_ACTION xe_fault_mempage_offline generated above.
+LGTM
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-> +
-> +	if (pfn == 0)
-> +		return xe_ttm_vram_inject_fault(xe) ?: size;
-> +
-> +	/* User provided PFN — convert to DPA and inject */
-> +	return xe_ttm_vram_handle_addr_fault(xe,
-> +					     (pfn << PAGE_SHIFT) + vr->dpa_base) ?: size;
-> +}
-> +
-> +static const struct file_operations inject_mempage_offline_fops = {
-> +	.owner = THIS_MODULE,
-> +	.write = inject_mempage_offline_trigger,
-> +};
->   
->   static void xe_fault_inject_debugfs_register(struct xe_device *xe,
->   					     struct dentry *root)
-> @@ -91,6 +136,11 @@ static void xe_fault_inject_debugfs_register(struct xe_device *xe,
->   		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
->   					  xe_fault_inject_entry[i].attr);
->   	}
-> +
-> +	if (is_crescent_island(xe)) {
-> +		debugfs_create_file("inject_mempage_offline_trigger", 0200,
-> +				    root, xe, &inject_mempage_offline_fops);
-> +	}
->   }
->   
->   static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
-> index cd56f7442b99..727747f13101 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.h
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.h
-> @@ -13,10 +13,12 @@ struct xe_device;
->   #ifdef CONFIG_DEBUG_FS
->   bool xe_fault_gt_reset(void);
->   bool xe_fault_csc_hw_error(void);
-> +bool xe_fault_mempage_offline(void);
->   void xe_debugfs_register(struct xe_device *xe);
->   #else
->   static inline bool xe_fault_gt_reset(void) { return false; }
->   static inline bool xe_fault_csc_hw_error(void) { return false; }
-> +static inline bool xe_fault_mempage_offline(void) { return false; }
->   static inline void xe_debugfs_register(struct xe_device *xe) { }
->   #endif
->   
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index 5bb66c7b5505..c985d633c10b 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -834,6 +834,58 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
->   }
->   EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
->   
-> +/**
-> + * xe_ttm_vram_inject_fault - Inject a VRAM page fault for testing
-> + * @xe: xe device instance
-> + *
-> + * Picks the last unallocated VRAM page and reports it as faulted
-> + * via xe_ttm_vram_handle_addr_fault(). Used by the fault-inject
-> + * debugfs interface for testing page offlining.
-> + *
-> + * Return: 0 on success, negative error code on failure.
-> + */
-> +int xe_ttm_vram_inject_fault(struct xe_device *xe)
-> +{
-> +	struct xe_tile *tile = xe_device_get_root_tile(xe);
-> +	struct xe_vram_region *vr = tile->mem.vram;
-> +	struct xe_ttm_vram_mgr *vram_mgr = &vr->ttm;
-> +	struct gpu_buddy *mm = &vram_mgr->mm;
-> +	u64 addr;
-> +
-> +	if (vr->actual_physical_size < SZ_4K)
-> +		return -ENOSPC;
-> +
-> +	addr = vr->actual_physical_size - SZ_4K;
-> +	while (addr < vr->actual_physical_size) {
-> +		struct gpu_buddy_block *block;
-> +		bool found = false;
-> +
-> +		scoped_guard(mutex, &vram_mgr->lock) {
-> +			block = gpu_buddy_allocated_addr_to_block(mm, addr);
-> +			if (!block)
-> +				found = true;
-> +		}
-> +
-> +		/*
-> +		 * Intentional race window: xe_ttm_vram_handle_addr_fault()
-> +		 * re-acquires vram_mgr->lock internally, so we cannot hold
-> +		 * it here. A concurrent allocation claiming this page between
-> +		 * the two calls is an acceptable false negative for this
-> +		 * test-only path.
-> +		 */
-> +		if (found)
-> +			return xe_ttm_vram_handle_addr_fault(xe, addr + vr->dpa_base);
-> +
-> +		cond_resched();
-> +		if (addr == 0)
-> +			break;
-> +		addr -= SZ_4K;
-> +	}
-> +
-> +	return -ENOSPC;
-> +}
-> +EXPORT_SYMBOL(xe_ttm_vram_inject_fault);
-> +
->   static size_t serialize_bad_pages(struct xe_ttm_vram_mgr *mgr, char *buf, size_t max_len)
->   {
->   	struct xe_ttm_vram_offline_resource *pos;
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> index eb55b0f74ef3..9feb999a1f8d 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> @@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
->   			  u64 *used, u64 *used_visible);
->   
->   int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr);
-> +int xe_ttm_vram_inject_fault(struct xe_device *xe);
->   int xe_ttm_vram_sysfs_init(struct xe_device *xe);
->   static inline struct xe_ttm_vram_mgr_resource *
->   to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+>   err_free:
+>   	kvfree(buf);
+>   err_out:
 
