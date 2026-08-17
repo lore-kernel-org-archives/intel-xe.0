@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D4B7C5DF70
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 09:29:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05971C5DF66
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 09:29:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D165F10E6FC;
-	Mon, 17 Aug 2026 09:29:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8C6210E700;
+	Mon, 17 Aug 2026 09:29:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZD+9kP76";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MHNLS378";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58BAB10E6FD;
- Mon, 17 Aug 2026 09:29:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50E310E702;
+ Mon, 17 Aug 2026 09:29:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786958971; x=1818494971;
+ t=1786958974; x=1818494974;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=roLJoPtKRfW4V/tDa9JYQdVqNVg88H3jLoAksLmym7M=;
- b=ZD+9kP76uBmTk2kEW8EK2WSMjOhSSfDsax/T1Ma1/kg1/o66d+we5+4a
- 2ZAizr2K1ohl2FcpOAsZNTn8GHXNCZDhqfGttwQqa+255z3vRcBswb/hq
- pO18HAfaQwmxvKS3TzliQ42nsigSwlP+pBqp6jUuO4VPbdIvHStCmxH01
- yshAcUmcUzKLerFOHIdxRbhCILROng4q4YH+nRR6VSid1VNHXED901MGn
- 6BqCAATPWI5dktPZ49l8ENG3Udwpg5PBGjQEH9V+1cQHh7WGLibat1Ugw
- Eb/zL6z6ImPMWUVOvq3/b4YwCkG5sNDrU7sq0K1lDNAfRzv/fp73jO4g/ A==;
-X-CSE-ConnectionGUID: lKJx+AEzQfu3G+dGsi+9SQ==
-X-CSE-MsgGUID: PHcA6qisShSlEcPGJ1PUXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="87189998"
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="87189998"
+ bh=IsDZA3ehFShCGEDVvLajl/0MsTXNdnPWU3St2aOplj4=;
+ b=MHNLS37870SuBEOO3UQWq9bP1PHws4UQTbBsBBN6pW+yQ7n9QJoil0BY
+ OQPVZQ4xkS5pqGsv/b53hWTptL2YWXE5YkM8ayByRYnUhNVP6/c0OkvW5
+ h0O/74zAHhVXHA1wVcQz+byD8C0yojJ+wNg+lkUcDuA6UFXQPK/bfbG7b
+ WdvM/hfP0Y/tFVWuyeiJqgW7joMeyuD9GPY7Wlr6w3B789sk2RujzVcxM
+ gZyMxpwvE2KwwE8EmW3ekQiIZXC2IWBwS3XQNOy+83SRnJfqX/csnc3gi
+ 3ZzKunZbWZNuo2wOXzv+QAo9iZj1UgtWPIqBbpqnficqi3LQLWosxpk6x Q==;
+X-CSE-ConnectionGUID: sCXtJTSDRi+Z4BtxYU7eEw==
+X-CSE-MsgGUID: /OAH4GoXS7WjRLKBsplpJQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="87190000"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="87190000"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 02:29:31 -0700
-X-CSE-ConnectionGUID: LWQ2n527S5akZ2dQhiPhPQ==
-X-CSE-MsgGUID: a35JfjHaRBaZEb3BzZqeRw==
+ 17 Aug 2026 02:29:34 -0700
+X-CSE-ConnectionGUID: IHFhv0onS0CYKPSR2PlwxQ==
+X-CSE-MsgGUID: MtbvEx8RRy6sUmVgVvTB3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="268348875"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="268348882"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.245.136])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 02:29:29 -0700
+ 17 Aug 2026 02:29:32 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	jani.nikula@linux.intel.com
-Subject: [PATCH v3 3/5] drm/i915/display: remove unnecessary clock_gating
- include from intel_display.c
-Date: Mon, 17 Aug 2026 12:26:22 +0300
-Message-ID: <20260817092911.342072-4-luciano.coelho@intel.com>
+Subject: [PATCH v3 5/5] drm/i915/display: split part of
+ intel_display_reset_finish() to a new function
+Date: Mon, 17 Aug 2026 12:26:24 +0300
+Message-ID: <20260817092911.342072-6-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260817092911.342072-1-luciano.coelho@intel.com>
 References: <20260817092911.342072-1-luciano.coelho@intel.com>
@@ -69,26 +69,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We don't use any of the functions inclued in intel_clock_gating.h in
-the intel_display.c code anymore.  Remove the respective include.
+In the intel_display_reset_finish() function, we are currently calling
+the non-display function intel_clock_gating_init(), creating an
+unnecessary dependency.
+
+In order to avoid this, split out the function calls that happen
+before the call to intel_clock_gating_init() to a new function that
+can be directly called by intel_gt_reset_global(), which then calls
+intel_clock_gating_init() itself, if needed.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 1 -
- 1 file changed, 1 deletion(-)
+ .../drm/i915/display/intel_display_reset.c    | 19 +++++++++++++------
+ .../drm/i915/display/intel_display_reset.h    |  1 +
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  5 +++++
+ 3 files changed, 19 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 553c60d452dd..fc30a455bed3 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -60,7 +60,6 @@
- #include "intel_bo.h"
- #include "intel_bw.h"
- #include "intel_cdclk.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index 504ec7043cd9..529dd1c1fa5d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -8,7 +8,6 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_print.h>
+ 
 -#include "intel_clock_gating.h"
- #include "intel_cmtg.h"
- #include "intel_color.h"
- #include "intel_crt.h"
+ #include "intel_cx0_phy.h"
+ #include "intel_display_core.h"
+ #include "intel_display_driver.h"
+@@ -73,6 +72,17 @@ void intel_display_reset_prepare(struct intel_display *display)
+ 	state->acquire_ctx = ctx;
+ }
+ 
++bool intel_display_reset_reinit(struct intel_display *display)
++{
++	if (!display->restore.modeset_state)
++		return false;
++
++	intel_pps_unlock_regs_wa(display);
++	intel_display_driver_init_hw(display);
++
++	return true;
++}
++
+ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ {
+ 	struct drm_modeset_acquire_ctx *ctx = &display->restore.reset_ctx;
+@@ -94,12 +104,9 @@ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ 		}
+ 	} else {
+ 		/*
+-		 * The display has been reset as well,
+-		 * so need a full re-initialization.
++		 * The display has been reset as well, so complete the
++		 * re-initialization started by intel_display_reset_reinit().
+ 		 */
+-		intel_pps_unlock_regs_wa(display);
+-		intel_display_driver_init_hw(display);
+-		intel_clock_gating_init(display->drm);
+ 		intel_cx0_pll_power_save_wa(display);
+ 		intel_hpd_init(display);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
+index b88c330a3441..e741e969d877 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.h
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
+@@ -13,6 +13,7 @@ struct intel_display;
+ bool intel_display_reset_supported(struct intel_display *display);
+ bool intel_display_reset_test(struct intel_display *display);
+ void intel_display_reset_prepare(struct intel_display *display);
++bool intel_display_reset_reinit(struct intel_display *display);
+ void intel_display_reset_finish(struct intel_display *display, bool test_only);
+ 
+ void intel_display_reset_debugfs_register(struct intel_display *display);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 6053f3e8aa27..be282cfbe615 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -24,6 +24,7 @@
+ #include "i915_reg.h"
+ #include "i915_wait_util.h"
+ #include "intel_breadcrumbs.h"
++#include "intel_clock_gating.h"
+ #include "intel_engine_pm.h"
+ #include "intel_engine_regs.h"
+ #include "intel_gt.h"
+@@ -1445,6 +1446,10 @@ static void intel_gt_reset_global(struct intel_gt *gt,
+ 
+ 		intel_gt_reset(gt, engine_mask, reason);
+ 
++		if (need_display_reset &&
++		    intel_display_reset_reinit(display))
++			intel_clock_gating_init(&i915->drm);
++
+ 		if (reset_display)
+ 			intel_display_reset_finish(display, !need_display_reset);
+ 	}
 -- 
 2.53.0
 
