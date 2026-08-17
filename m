@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA00C5DF66
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 09:24:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04B2CC5DF66
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 09:24:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50F6110E3F3;
-	Mon, 17 Aug 2026 09:24:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3C9E10E3F3;
+	Mon, 17 Aug 2026 09:24:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="a3M/DrOO";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OUWFDSlL";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A779C10E3F3
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Aug 2026 09:24:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC9F10E3F3
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Aug 2026 09:24:36 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 4ECAE406CA;
- Mon, 17 Aug 2026 09:24:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07EA41F000E9;
- Mon, 17 Aug 2026 09:23:59 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 06EBF41AE2;
+ Mon, 17 Aug 2026 09:24:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF06D1F000E9;
+ Mon, 17 Aug 2026 09:24:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1786958640;
- bh=JyT1HZO2VcuN/PCDgOybSL6Gh74FWLzN3SzvTe56i1A=;
+ s=k20260515; t=1786958675;
+ bh=tlFy8LQ3AOtJhxjFVZms0sLBdtAVVereypFnFryPMV4=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=a3M/DrOOzALcA2OukFFrpKwn1U5CNIZhQB+Nq9YkhbaQXYg9xjBtgH9aUu5g1xZqO
- r8/QGbsVZKpv39K91AmZf6t9+XZx0Cub5Tqj0BR37TE+EnRmbjMqYe7uJZ67yzXW1d
- Rj8VbkHa4aiukfToJw5isW+SQMDXwDxTuWpPSGlYeNz6PYKWXspDkkeDpDRA/DoMXW
- mIQqeFFuXTmDlFJHXRWwtRBKfojyTowqjepCXBs4oemJKkmqJkaCi8ScQevrShkqBs
- 1RHDj8hO5R7q490BjWZwL1ZWQcwx3vcNcqLLqbcinfxchVMok+QslAZUPrm+t85yqg
- VGrH1IR1hgB/Q==
+ b=OUWFDSlL84HG/6OPh14OXnqxf6/YUkEAeL/Zq+uaA9MQaH7k5F0ouL9nPUXwfSy5i
+ FLDE0rchuHL5wbXSy57Y7coswHVTyfL3moZaBNELcBauwv2Wq5kS1cc2P5r3uE56PQ
+ lLNvZDVzNOq+dTR+tMa+js1mzEUFAyHZJNh7rDyionbfso21v7H4BnM+ctf0nmdogQ
+ mzWHcdsQ1mN/c8vRUmxSCk8FKjyfdkx2pO4k7fHAYdd7QOL1dwlEY92RV9WxTsaUbj
+ wmZ8wuefZg1uUdk1gD/+XHKwiqSPB69FRqu8IFTj2qbJ1N2TEnS9dXDi2PnWsay7IL
+ HtgZOUWCcdyPA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/4] drm/xe/kunit: Extend GuC ID manager split-pool
- coverage
+Subject: Re: [PATCH v2 4/4] drm/xe/pf: Explicitly use shareable GuC IDs for
+ VFs provisioning
 To: =?utf-8?b?UGnDs3Jrb3dza2ksIFBpb3Ry?= <piotr.piorkowski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260817091013.280173-3-piotr.piorkowski@intel.com>
+In-Reply-To: <20260817091013.280173-5-piotr.piorkowski@intel.com>
 References: <20260817091013.280173-1-piotr.piorkowski@intel.com>
- <20260817091013.280173-3-piotr.piorkowski@intel.com>
+ <20260817091013.280173-5-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 17 Aug 2026 09:23:59 +0000
-Message-Id: <20260817092400.07EA41F000E9@smtp.kernel.org>
+Date: Mon, 17 Aug 2026 09:24:35 +0000
+Message-Id: <20260817092435.BF06D1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,161 +57,121 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Out-of-bounds memory write via `bitmap_clear()` if a resource allo=
-cation fails during KUnit tests.
+- [Medium] The `spare` quota enforcement in `idm_reserve_chunk_shareable_lo=
+cked` mathematically miscalculates quota and incorrectly rejects allocation=
+s.
+- [Medium] The `check_quota` kunit test was modified to use non-overlapping=
+ pools, completely bypassing the quota enforcement logic it is supposed to =
+test.
 --
 
---- Patch [2]: [PATCH v2 2/4] drm/xe/kunit: Extend GuC ID manager split-poo=
-l coverage ---
-commit de07034d7b51f00db6617697a552f2ac15c74f32
+--- Patch [4]: [PATCH v2 4/4] drm/xe/pf: Explicitly use shareable GuC IDs f=
+or VFs provisioning ---
+commit 249a1c056e1b8b61fd7f66cd23baf1408b302ed8
 Author: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
 
-drm/xe/kunit: Extend GuC ID manager split-pool coverage
+drm/xe/pf: Explicitly use shareable GuC IDs for VFs provisioning
 
-Expand the GuC ID manager KUnit coverage to exercise the new
-usable/shareable pool model.
+Switch PF VF-context provisioning to explicitly allocate IDs from
+the dedicated shareable ID pool. Also, lets remove the legacy GuC ID
+reservation API now that all VFs provisioning paths use the shareable
+allocation helpers.
 
 > diff --git a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c b/drivers/gpu/=
 drm/xe/tests/xe_guc_id_mgr_test.c
-> index 103ea82d278e3..295c17dbc21fb 100644
+> index f21d3341b5033..3e6d289f7d7a0 100644
 > --- a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
 > +++ b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-
 [ ... ]
-
-> +static void check_used_usable(struct kunit *test)
-> +{
-> +	struct xe_guc_id_mgr *idm =3D test->priv;
-> +	int id;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 8, 8));
-> +
-> +	mutex_lock(idm_mutex(idm));
-> +
-> +	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 0);
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
-> +
-> +	id =3D xe_guc_id_mgr_reserve_usable_locked(idm, 2);
-> +	KUNIT_EXPECT_GE(test, id, 0);
-
-[Severity: High]
-The commit message notes that KUNIT_EXPECT is used instead of KUNIT_ASSERT =
-to
-avoid leaking the mutex on failure. However, if the reservation fails and
-returns a negative error code, KUNIT_EXPECT_GE() will allow execution to
-continue.
-
-Since idm_release_chunk_locked() takes an unsigned int for the start positi=
-on,
-will passing a negative id result in an implicit cast to a huge unsigned
-integer, causing an out-of-bounds write in bitmap_clear() when the chunk is
-released below?
-
-Would it be better to use a conditional check to handle the error and unlock
-the mutex before returning, rather than letting the test continue with a
-negative id?
-
-> +
-> +	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 2);
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
-> +	KUNIT_EXPECT_EQ(test, idm_used_total(idm), 2);
-> +
-> +	idm_release_chunk_locked(idm, id, 2);
-> +	KUNIT_EXPECT_EQ(test, idm_used_total(idm), 0);
-> +
-> +	mutex_unlock(idm_mutex(idm));
-> +}
-> +
-> +static void check_used_shareable(struct kunit *test)
-> +{
-> +	struct xe_guc_id_mgr *idm =3D test->priv;
-> +	unsigned int shareable_start;
-> +	int id;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 8, 8));
-> +
-> +	mutex_lock(idm_mutex(idm));
-> +	shareable_start =3D idm_shareable_start(idm);
-> +
-> +	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 0);
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
-> +
-> +	id =3D xe_guc_id_mgr_reserve_shareable_locked(idm, 3, 0);
-> +	KUNIT_EXPECT_EQ(test, id, shareable_start);
-
-[Severity: High]
-Could the same out-of-bounds write happen here if id is a negative error
-code? KUNIT_EXPECT_EQ() does not abort the test, so idm_release_chunk_locke=
-d()
-would process a negative id.
-
-> +
-> +	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 0);
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 3);
-> +	KUNIT_EXPECT_EQ(test, idm_used_total(idm), 3);
-> +
-> +	idm_release_chunk_locked(idm, id, 3);
-> +	KUNIT_EXPECT_EQ(test, idm_used_total(idm), 0);
-> +
-> +	mutex_unlock(idm_mutex(idm));
-> +}
-
-[ ... ]
-
-> +static void check_shareable_spare(struct kunit *test)
-> +{
-> +	struct xe_guc_id_mgr *idm =3D test->priv;
-> +	unsigned int pools_size =3D (GUC_ID_MAX / 3) * 2;
-> +	unsigned int shareable_start;
-> +	unsigned int overlap_size;
-> +	unsigned int shared_tail;
-> +	int id_tail, id_overlap;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, pools_size, pools_size));
-> +
-> +	mutex_lock(idm_mutex(idm));
-> +	shareable_start =3D idm_shareable_start(idm);
-> +	overlap_size =3D idm->usable - shareable_start;
-> +	shared_tail =3D idm_total(idm) - idm->usable;
-> +
-> +	KUNIT_EXPECT_GT(test, overlap_size, 0);
-> +	KUNIT_EXPECT_GT(test, shared_tail, 0);
-> +
-> +	id_tail =3D xe_guc_id_mgr_reserve_shareable_locked(idm, shared_tail, 1);
-> +	KUNIT_EXPECT_EQ(test, id_tail, idm->usable);
-
-[Severity: High]
-Similar to the above, if id_tail is assigned a negative error code upon fai=
-lure,
-it will eventually be passed to idm_release_chunk_locked() since KUNIT_EXPE=
-CT_EQ()
-does not halt execution.
-
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), shared_tail);
-> +
-> +	id_overlap =3D xe_guc_id_mgr_reserve_shareable_locked(idm, overlap_size=
- - 1, 1);
-> +	KUNIT_EXPECT_EQ(test, id_overlap, shareable_start + 1);
-
-[Severity: High]
-If id_overlap is negative, will this also result in an out-of-bounds write
-when calling idm_release_chunk_locked() later in the function?
-
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), idm->shareable - 1);
-> +
-> +	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_shareable_locked(idm, 1, 1)=
+> @@ -153,26 +160,31 @@ static void check_quota(struct kunit *test)
+>  {
+>  	struct xe_guc_id_mgr *idm =3D test->priv;
+>  	unsigned int n;
+> +	unsigned int max;
+> =20
+> -	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 0));
+> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 2));
+> +	max =3D xe_guc_id_mgr_max_shareable(idm);
+> =20
+>  	mutex_lock(idm_mutex(idm));
+> =20
+> -	for (n =3D 0; n < idm_total(idm) - 1; n++) {
+> +	for (n =3D 0; n < max - 1; n++) {
+>  		kunit_info(test, "n=3D%u", n);
+> -		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, idm_total(idm))=
 , -EDQUOT);
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), idm->shareable - 1);
-> +
-> +	idm_release_chunk_locked(idm, id_tail, shared_tail);
-> +	idm_release_chunk_locked(idm, id_overlap, overlap_size - 1);
-> +	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
-> +
-> +	mutex_unlock(idm_mutex(idm));
-> +}
+> +		KUNIT_EXPECT_GE(test,
+> +				xe_guc_id_mgr_reserve_shareable_locked(idm, 1, max), 0);
+
+[Severity: Medium]
+Does changing the initialization to idm_init(idm, 2, 2) bypass the quota
+enforcement logic this function is supposed to test?
+
+Because usable (2) + shareable (2) is less than GUC_ID_MAX, these pools are
+configured as non-overlapping. Non-overlapping pools intentionally bypass t=
+he
+spare quota check.
+
+With the test now receiving successful allocations instead of -EDQUOT, it
+appears the assertions were inverted (expecting >=3D 0 instead of -EDQUOT),
+which removes the test's coverage for the quota enforcement feature entirel=
+y.
+
+> +		KUNIT_EXPECT_GE(test,
+> +				xe_guc_id_mgr_reserve_shareable_locked(idm, 1, max - n), 0);
+>  		KUNIT_EXPECT_EQ(test,
+> -				idm_reserve_chunk_locked(idm, 1, idm_total(idm) - n),
+> -				-EDQUOT);
+> +				xe_guc_id_mgr_reserve_shareable_locked(idm, max - n, 1),
+> +				-ENOSPC);
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm=
+/xe/xe_gt_sriov_pf_config.c
+> index b4f4a7aa21c78..79535f7478e96 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+[ ... ]
+> @@ -889,7 +889,7 @@ static int pf_reserve_ctxs(struct xe_gt *gt, u32 num)
+>  	struct xe_guc_id_mgr *idm =3D &gt->uc.guc.submission_state.idm;
+>  	unsigned int spare =3D pf_get_spare_ctxs(gt);
+> =20
+> -	return xe_guc_id_mgr_reserve(idm, num, spare);
+> +	return xe_guc_id_mgr_reserve_shareable(idm, num, spare);
+
+[Severity: Medium]
+Will this switch to xe_guc_id_mgr_reserve_shareable() expose a mathematical
+error in the spare quota calculation?
+
+Looking at idm_reserve_chunk_shareable_locked() in xe_guc_id_mgr.c:
+
+	if (spare) {
+		unsigned int used_overlap =3D bitmap_weight(idm->bitmap, idm->usable) -
+					    bitmap_weight(idm->bitmap, shareable_start);
+		...
+		unsigned int need_overlap =3D count > free_tail ? count - free_tail : 0;
+		unsigned int overlap =3D idm->usable - shareable_start;
+
+		if (used_overlap + need_overlap + spare > overlap)
+			return -EDQUOT;
+	}
+
+This logic calculates quota based entirely on the overlap region, effective=
+ly
+ignoring free IDs in the PF-exclusive region.
+
+While this may be masked in production because the PF currently initializes
+the manager with full overlap (GUC_ID_MAX, GUC_ID_MAX), any partial overlap
+configuration (e.g., usable =3D 65536, shareable =3D 2) will incorrectly fa=
+il
+allocations with -EDQUOT whenever spare > overlap, regardless of the actual
+number of free usable IDs available.
+
+>  }
+> =20
+>  static void pf_release_ctxs(struct xe_gt *gt, u32 start, u32 num)
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260817091013.2801=
-73-1-piotr.piorkowski@intel.com?part=3D2
+73-1-piotr.piorkowski@intel.com?part=3D4
