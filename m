@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D831C5DF66
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 10:15:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B76DDC5DF70
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 10:17:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC8B10E723;
-	Mon, 17 Aug 2026 10:15:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73C8610E726;
+	Mon, 17 Aug 2026 10:17:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IHYq2TqV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ble1LdFO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D55F10E3E8;
- Mon, 17 Aug 2026 10:15:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27D9010E721;
+ Mon, 17 Aug 2026 10:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786961713; x=1818497713;
+ t=1786961844; x=1818497844;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=0OMIofAuNsvMJS9RfW4fD/q4L5JyaBHovAEqzCrJ0QM=;
- b=IHYq2TqVnGLkSBxp/uIzDIwNuMxGuSgE7GkQABM9rtsfJ323rMH4pQAo
- g40KA2AXITJFGgUyh4YIkIXFzzGEupaj2uUMPhPCpskvHoa4LaW6Pb8nU
- c/vAd5IJIRD/zly/vczK+rpjHQbzWbmPQcSmsM9QzpGh3FyZruGI7Q6Lo
- 6BoZ2gPUzbZM4vAyqeyqrrWaVRyUticAwlK3UmmGxaeN+ndKf1e7vUyzW
- GNi1tGvOKn19bgXI3fukk9asArgLSX5MuyTPXpItpPPLAU9J6hxQxwaGp
- we68U6YcrryKCIaLAclc+rV0M8pL0TFHzRmT03UoboUkK5eizElNK8tLP w==;
-X-CSE-ConnectionGUID: 8FT5SxItTqufzTR4/8nr+Q==
-X-CSE-MsgGUID: fG2fA4YrRkuNTtAcoGo6Qw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="91305863"
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="91305863"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 03:15:13 -0700
-X-CSE-ConnectionGUID: 8uqtr4s1Ss6GcQappU4XKg==
-X-CSE-MsgGUID: MSbm+RqcSqqMLigpSlhs4Q==
+ bh=hnmDe2dhkDSO9j9jjb/c2arrQ6taveerGTMNUE2ZMBs=;
+ b=ble1LdFOA/w/zPVzsY1m09zpZuQr/Giiwa2tOAeLOXpxeiQRpH/Klp1F
+ qytOlU6wff5c7PNojDROVmGsgT2f3Hf1ty5x1CMvzIwuZgYlzPTStSJOR
+ VrB+zZDAt8q1Y80ko/jpdgrWR40hDBQVET++GHiFI4IEC3bZ2iWcAXdFL
+ rblWH9ZFhm9QsrD8xa8Vn581glEU5SX/INSLtgC1w1KRZEYh86JZjjeV5
+ qoKo0z7zY+EBVXuyC46/TFLLqzmZwfIr/qvOPIcL75eNLUJF6Gq+Ixc+e
+ 9NsV48Q5JZJr7hsK7/KhT1MsYbeky+AMNBDRzQNT5NYqmATt9Bmd7sTOn w==;
+X-CSE-ConnectionGUID: jGrquajvS36rqQYWvwJqhw==
+X-CSE-MsgGUID: 9eE04MVnQLWwPGrFOD0btA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="91248045"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="91248045"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2026 03:17:24 -0700
+X-CSE-ConnectionGUID: YOWcWp3ZS+ikHVHxcovg0w==
+X-CSE-MsgGUID: 5ODw45Q1Q0iG39gUC/192g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="260655935"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="261132750"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.110])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 03:15:11 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2026 03:17:22 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, imre.deak@intel.com
-Subject: Re: [RFC PATCH 5/5] drm/i915/display: skip HPD polling if PME is
- supported
-In-Reply-To: <20260816224005.886035-6-vinod.govindapillai@intel.com>
+Subject: Re: [RFC PATCH 1/5] drm/xe/pm: add xe_pm_pme_supported() helper
+In-Reply-To: <20260816224005.886035-2-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260816224005.886035-1-vinod.govindapillai@intel.com>
- <20260816224005.886035-6-vinod.govindapillai@intel.com>
-Date: Mon, 17 Aug 2026 13:15:08 +0300
-Message-ID: <3927e15f2e02fd03c8101cf626866a56e13c8d01@intel.com>
+ <20260816224005.886035-2-vinod.govindapillai@intel.com>
+Date: Mon, 17 Aug 2026 13:17:19 +0300
+Message-ID: <97a6578c8d52c2ae8c179e8be3c1a92359f0e311@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -72,90 +71,64 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Mon, 17 Aug 2026, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> A display hotplug can generate a PM_PME which in turn will
-> trigger pm_runtime_resume call on a device. So we don't need
-> to resort to HPD polling on pm_runtime_suspend calls. But on
-> pm_runtime_resume call we would need to still resort to the
-> intel_hpd_poll_disable() as the i915_hpd_poll_detect_connectors()
-> catches the hotplugs that occurred during suspend.
+> Introduce the helper to check if the device can signal a wakeup event
+> while runtime suspended. This can avoid scheduling the HPD polling.
 >
 > Assisted-by: GitHub_Copilot:claude-opus-5
 > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  .../drm/i915/display/intel_display_driver.c   | 21 ++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/xe/xe_pm.c | 21 +++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_pm.h |  1 +
+>  2 files changed, 22 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 70d112fd4287..b7e25b7ea32e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -34,6 +34,7 @@
->  #include "intel_display_driver.h"
->  #include "intel_display_irq.h"
->  #include "intel_display_power.h"
-> +#include "intel_display_rpm.h"
->  #include "intel_display_types.h"
->  #include "intel_display_utils.h"
->  #include "intel_display_wa.h"
-> @@ -931,6 +932,10 @@ void intel_display_driver_pm_runtime_suspend_late(struct intel_display *display)
->  		intel_opregion_notify_adapter(display, PCI_D1);
->  	}
->  
-> +	/* No need of HPD polling if the device is PME capable */
-> +	if (intel_display_rpm_pme_capable(display))
-> +		return;
-> +
-
-It's really messy to just return here. We may add more stuff into this
-function, and it will be a PITA.
-
->  	if (!display->platform.valleyview && !display->platform.cherryview)
->  		intel_hpd_poll_enable(display);
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index a5289a9df8d2..635bfb1c7f78 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -937,6 +937,27 @@ bool xe_pm_runtime_resume_and_get(struct xe_device *xe)
+>  	return pm_runtime_resume_and_get(xe->drm.dev) >= 0;
 >  }
-> @@ -951,10 +956,20 @@ void intel_display_driver_pm_runtime_resume(struct intel_display *display)
->  	 * power well, so hpd is reinitialized from there. For
->  	 * everyone else do it here.
->  	 */
-> -	if (!display->platform.valleyview && !display->platform.cherryview) {
-> +	if (display->platform.valleyview || display->platform.cherryview)
-> +		goto out;
-
-Ditto. The function is about runtime resume. Don't make it about dodging
-hpd poll.
-
-> +
-> +	/* For PME capable devices we would not have resorted into HPD polling */
-
-These comments are a nuisance. This makes you stop for more questions
-than what it answers.
-
-> +	if (intel_hpd_polling_enabled(display))
->  		intel_hpd_init(display);
-
-Why is this not called unconditionally?
-
-> -		intel_hpd_poll_disable(display);
-> -	}
-
-Maybe PME is an hpd implementation detail that should be hidden inside
-intel_hpd_poll_enable/disable? Maybe it should not be poll
-enable/disable at all, but hpd runtime suspend/resume, and that can do
-whatever needs doing internally?
-
 >  
+> +/**
+> + * xe_pm_pme_supported - Can the device signal PME from its suspend target state?
+> + * @xe: xe device instance
+> + *
+> + * Determine whether the device can generate a Power Management Event while
+> + * runtime suspended.
+> + *
+> + * Return: true if PME is supported from the target state, false otherwise.
+> + */
+> +bool xe_pm_pme_supported(struct xe_device *xe)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +
 > +	/*
-> +	 * Regardless of PME capable path, call the HPD polling disable, the
-> +	 * poll_init_work, i915_hpd_poll_detect_connectors reprobe catches the
-> +	 * hotplug that occurred while suspended
+> +	 * pci_dev_run_wake() checks dev->pme_support, verifies
+> +	 * pci_pme_capable() against the state pci_target_state() picks, and
+> +	 * walks upstream to confirm the wake can actually be routed.
 
-Ditto about the comment. It's nonsensical.
+Is this comment helpful? pci_dev_run_wake() has a kernel-doc comment
+that explains what it does?
 
 > +	 */
-> +	intel_hpd_poll_disable(display);
+> +	return pci_dev_run_wake(pdev);
+> +}
 > +
-> +out:
->  	skl_watermark_ipc_update(display);
->  }
+>  /**
+>   * xe_pm_assert_unbounded_bridge - Disable PM on unbounded pcie parent bridge
+>   * @xe: xe device instance
+> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+> index 6d5ab09cb769..16b8699e59ec 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.h
+> +++ b/drivers/gpu/drm/xe/xe_pm.h
+> @@ -30,6 +30,7 @@ bool xe_pm_runtime_get_if_active(struct xe_device *xe);
+>  bool xe_pm_runtime_get_if_in_use(struct xe_device *xe);
+>  void xe_pm_runtime_get_noresume(struct xe_device *xe);
+>  bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
+> +bool xe_pm_pme_supported(struct xe_device *xe);
+>  void xe_pm_assert_unbounded_bridge(struct xe_device *xe);
+>  int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold);
+>  void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
 
 -- 
 Jani Nikula, Intel
