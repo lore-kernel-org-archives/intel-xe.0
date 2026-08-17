@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 907E8C5DF66
-	for <intel-xe@archiver.kernel.org>; Sun, 16 Aug 2026 23:26:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76F3EC5CFC1
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 06:51:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD6410E37C;
-	Sun, 16 Aug 2026 23:26:16 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5268910E023;
- Sun, 16 Aug 2026 23:26:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1230998459450126680=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F2C910E65C;
+	Mon, 17 Aug 2026 06:51:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlZkYtQ1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DC5310E65C
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Aug 2026 06:51:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1786949470; x=1818485470;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=23cp58wCo+ew3O9RlUPh+DeEXILqlXDjfHYtq4BlIto=;
+ b=RlZkYtQ1KRicjbgWaV8yg7OSZkOqOwTel/K3K/UsTAvmsEosa8lud998
+ Pw615I8Anh//IPL+Kmkl9QT3WOdz2o4qOAG+dmx3xjZsAqtDXh4mGU0xE
+ m3RZ6/VjNjRuoc/oWC4XfYAvXV5lPBMJXdnR4owNwLF46/HVJq1rCRWbU
+ 46PEHjNKNzsj765p0SziAklzlaZwXSICIJiaR8dusfmQmLaCCbormd479
+ mBnc/zYWBe+6XQ6JRvfsMTFB8W7x4JNHaFjbXZNCGpB85nFgwpoYUP9sD
+ BK3vr4yXbMevTdR7+qxEqVm6Ycxqe4vyiQGbwQLRKSmxRklknqWcuaL/Y Q==;
+X-CSE-ConnectionGUID: RB9FkMgVTpKdG/KctqSi1A==
+X-CSE-MsgGUID: krdydgD9Q5Glct2ycqboZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="91289536"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="91289536"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2026 23:51:10 -0700
+X-CSE-ConnectionGUID: wvJvBchaSfuvU1rqMeARrA==
+X-CSE-MsgGUID: lU7vgfTiStODPT+MosBgBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="264383763"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2026 23:51:08 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V16 00/12] Add memory page offlining support
+Date: Mon, 17 Aug 2026 12:20:55 +0530
+Message-ID: <20260817065055.3734576-14-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_pm=5Fpme_support_on_display?=
- =?utf-8?q?_hotplug?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 16 Aug 2026 23:26:15 -0000
-Message-ID: <178692277533.57258.14476598534438203908@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260816224005.886035-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20260816224005.886035-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,302 +63,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1230998459450126680==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This functionality represents a significant step in making
+the xe driver gracefully handle hardware memory degradation.
+By integrating with the DRM Buddy allocator, the driver
+can permanently "carve out" faulty memory so it isn't reused
+by subsequent allocations.
 
-== Series Details ==
+IGT tests for testing this via injecting simple single address and
+duplicate address fault to unit test functionality:
+https://patchwork.freedesktop.org/patch/740601/
 
-Series: pm_pme support on display hotplug
-URL   : https://patchwork.freedesktop.org/series/172305/
-State : failure
+v16:
+- Correct sysfs patches with moving code with rcu lock
+- In case purge fail let next alloc decide final failure
+- Remove addr_to_block API, its being pulled from drm-tip
+- Remove some unused code and replace where existing API can be used
+v15:
+- Split few big patches into small
+- Avoid vram_mgr lock in sysfs
+- fix missing queue_pages counter increment
+v14:
+- Solve sashiko reviews
+- Remove SOFT->HARD offline patch, decision is taken based on -EEXIST
+- Dump gpu buddy allocated patch dropped
+v13:
+- Add fault inject and remove standlone debugfs
+v12:
+- Fix Sashiko review comments
+v11:
+- Add BAN reason for UMD to know about offlining
+- Add support for soft offline mode
+- Rebase and remove dummy lockdep annotation patch, as it merged from upstream
+v10:
+- Remove RFC
+v7:
+- Improve debugfs warning messages
+- Use scope_guard for locking(MattB)
+- Adapt addition of queue member of LRC BO(MattB)
+- Extend and use xe_ttm_bo_purge API for vram pages(MattB)
+- Handle dma_buf_map requests for native and remote(MattB)
+- Address if in never initialized block, set block to NULL
+- Add lockdep in gpu buddy (MattB)
+- Correct allocated_addr_to_block logic (MattA)
+V6:
+- Add more specific tests to noncritical bo sections
+- Handle smooth exit of user created exec queues
+- Break code and make purge specific static API
+V5:
+- Sysfs "max_pages" addition
+- Reset block->private NULL post purge
+- Remove wedge, return -EIO to system controller will initiate reset
+- Add debugfs tests to trigger different test scenarios manually and via igt
+- Rename addr_to_tbo to addr_to_block and move under gpu/buddy.c
+V4: API reworks, add configfs for policy reservation and apply config everywhere
+V3: use res_to_mem_region to avoid use of block->private (MattA)
+V2:
+- some fixes and clean up on errors
+- Added xe_vram_addr_to_region helper to avoid other use of block->private(MattB)
 
-== Summary ==
+Tejas Upadhyay (12):
+  drm/xe: Link VRAM object with gpu buddy
+  drm/xe: Link LRC BO and its execution Queue
+  drm/xe: Extend BO purge to handle vram pages as well
+  drm/xe/bo: Make xe_bo_is_user() public
+  drm/xe: Guard teardown paths against purged BOs
+  drm/xe/vram: Extract buddy alloc and free helpers
+  drm/xe/vram: Add page offline data structures and lifecycle
+  drm/xe/vram: Add VRAM page offline fault handler
+  drm/xe/configfs: Add vram bad page reservation policy
+  drm/xe: Add sysfs interface for bad gpu vram pages
+  drm/xe/uapi: Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
+  drm/xe: Add fault-inject based VRAM page offline injection
 
-CI Bug Log - changes from xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8_BAT -> xe-pw-172305v1_BAT
-====================================================
+ drivers/gpu/drm/xe/xe_bo.c                 |  13 +-
+ drivers/gpu/drm/xe/xe_bo.h                 |   5 +-
+ drivers/gpu/drm/xe/xe_bo_types.h           |   3 +
+ drivers/gpu/drm/xe/xe_configfs.c           |  67 ++-
+ drivers/gpu/drm/xe/xe_configfs.h           |   2 +
+ drivers/gpu/drm/xe/xe_debugfs.c            |  50 ++
+ drivers/gpu/drm/xe/xe_debugfs.h            |   2 +
+ drivers/gpu/drm/xe/xe_device_sysfs.c       |   7 +
+ drivers/gpu/drm/xe/xe_dma_buf.c            |   3 +
+ drivers/gpu/drm/xe/xe_exec_queue.c         |  14 +-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h   |   7 +-
+ drivers/gpu/drm/xe/xe_execlist.c           |   4 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c         |  32 +-
+ drivers/gpu/drm/xe/xe_lrc.c                |   1 +
+ drivers/gpu/drm/xe/xe_pt.c                 |   5 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 603 ++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   3 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  40 ++
+ include/uapi/drm/xe_drm.h                  |  18 +-
+ 19 files changed, 834 insertions(+), 45 deletions(-)
 
-Summary
--------
+-- 
+2.52.0
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-172305v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-172305v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-nvls-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-172305v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-nvls-2:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172305v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-nvls-1:         NOTRUN -> [SKIP][3] ([Intel XE#8757])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-nvls-1:         NOTRUN -> [SKIP][4] ([Intel XE#8759])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@xe_evict@evict-small-multi-vm:
-    - bat-nvls-1:         NOTRUN -> [SKIP][5] ([Intel XE#8777]) +9 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_evict@evict-small-multi-vm.html
-
-  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
-    - bat-nvls-1:         NOTRUN -> [SKIP][6] ([Intel XE#8744]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-
-  * igt@xe_exec_balancer@twice-virtual-userptr-invalidate:
-    - bat-nvls-1:         NOTRUN -> [SKIP][7] ([Intel XE#8741]) +17 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html
-
-  * igt@xe_exec_multi_queue@many-queues-userptr-invalidate:
-    - bat-nvls-1:         NOTRUN -> [SKIP][8] ([Intel XE#8377]) +13 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-nvls-1:         NOTRUN -> [SKIP][9] ([Intel XE#8746])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_huc_copy@huc_copy.html
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-nvls-1:         NOTRUN -> [SKIP][10] ([Intel XE#8792])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-nvls-1:         NOTRUN -> [SKIP][11] ([Intel XE#8791] / [Intel XE#8792])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-nvls-1:         NOTRUN -> [SKIP][12] ([Intel XE#8791])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-nvls-1:         NOTRUN -> [SKIP][13] ([Intel XE#8747])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-nvls-1:         NOTRUN -> [SKIP][14] ([Intel XE#8748])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-nvls-1:         NOTRUN -> [SKIP][15] ([Intel XE#8743])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-nvls-1:         NOTRUN -> [SKIP][16] ([Intel XE#8745])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#8377]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377
-  [Intel XE#8741]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741
-  [Intel XE#8743]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743
-  [Intel XE#8744]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744
-  [Intel XE#8745]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745
-  [Intel XE#8746]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746
-  [Intel XE#8747]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747
-  [Intel XE#8748]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748
-  [Intel XE#8757]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757
-  [Intel XE#8759]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8759
-  [Intel XE#8777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777
-  [Intel XE#8791]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791
-  [Intel XE#8792]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792
-
-
-Build changes
--------------
-
-  * Linux: xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8 -> xe-pw-172305v1
-
-  IGT_9057: 8f7d5198bdb1c5af7c97b967a0bcbe77b653e8a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8: ceef0899403ceea5643d80a02bfdf9587f3845b8
-  xe-pw-172305v1: 172305v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/index.html
-
---===============1230998459450126680==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>pm_pme support on display hotplug</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172305/">https://patchwork.freedesktop.org/series/172305/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8_BAT -&gt; xe-pw-172305v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-172305v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-172305v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-nvls-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-172305v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172305v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757">Intel XE#8757</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8759">Intel XE#8759</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-multi-vm:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_evict@evict-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777">Intel XE#8777</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744">Intel XE#8744</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@twice-virtual-userptr-invalidate:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741">Intel XE#8741</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-userptr-invalidate:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377">Intel XE#8377</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746">Intel XE#8746</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747">Intel XE#8747</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748">Intel XE#8748</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743">Intel XE#8743</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v1/bat-nvls-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745">Intel XE#8745</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8 -&gt; xe-pw-172305v1</li>
-</ul>
-<p>IGT_9057: 8f7d5198bdb1c5af7c97b967a0bcbe77b653e8a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5603-ceef0899403ceea5643d80a02bfdf9587f3845b8: ceef0899403ceea5643d80a02bfdf9587f3845b8<br />
-  xe-pw-172305v1: 172305v1</p>
-
-</body>
-</html>
-
---===============1230998459450126680==--
