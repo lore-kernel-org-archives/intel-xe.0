@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AF46C5B572
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 09:10:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95B4BC5DF70
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 09:10:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E699D10E3F3;
-	Mon, 17 Aug 2026 09:10:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61EB10E6E8;
+	Mon, 17 Aug 2026 09:10:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jXakyxtZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fFA57NhQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF62810E3F3
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Aug 2026 09:10:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9B7C10E6E5
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Aug 2026 09:10:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786957844; x=1818493844;
+ t=1786957848; x=1818493848;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=20prR0FhRgpj0fWdoQZMttMlA5yyh2bKA0t9zcN3ce0=;
- b=jXakyxtZVhHgfqLIsusOgazclro+7K9+oqGckWg/ETl4eEV6+c78DzXr
- eRQWU9cK5isO9VFqN+EoneVeLKOc9wLMf6H/shsTP+sSo/4wA0anuqelB
- ubEVeEh7S5jjeL5nT7xyntMxnTt+qb/+Z/XCU3VRwxrhw0sxfaYuXu0ny
- MBEPhYzPrxUiB2pYPLkMmpC4Hz7fvsVLbuqTrcSn33apFUk3dTrF9308c
- NJohkUtH0SpJXv6PW8EILTwwS7wPxHHi5L+5fpPrSAmxYM+yN3bOoRAjD
- 5uPHMNLDadexG8W6jsLYikRBL1Pxm5VFJdFF82ZsKJRbwjlrpe/gu48lS w==;
-X-CSE-ConnectionGUID: QBooU6i3Qp+hw2Zn2uEVIg==
-X-CSE-MsgGUID: 1pLIQGhXQ4qTrmodOBi64Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="104962868"
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="104962868"
+ bh=Uxz/DWPu+l+at0PTy9i0zzeujBAxaMVzzsuUGHro1XY=;
+ b=fFA57NhQ80t5J9FE2gHWt91y6ymBomB90lkd+1N03LYiLhohRi/9rQa+
+ TsyUIDV4DzPQtAFqZo/OYRu4SR/6u+1WMWFxwIar8EaODNG8l2J20bie0
+ n7Ju3a3+GnluWCxRKbWAQQYUxnSt2O2DL+8uzixncgfJFWbBW+8D4944c
+ 8Rcj1L4ISrDilz8Vv613p8znk6jnYDZWGc+RQ7l9/iOmDK4nu5DF9pmJ7
+ mtd0lmnpZZipsdTK7vt33F+LVzCJTZ4iMybeRQwfYuFvNSUBTFdlhqwX2
+ NCaC8EvQ6XnmKtzvqma8nFvAyOgXpYwj/zdAdlBvS/zZ2oZmt6qZCOdJQ w==;
+X-CSE-ConnectionGUID: gQL6f7S3TwmZjxbfEgJGgQ==
+X-CSE-MsgGUID: ZnP0DoSaSPi+02Omul1jHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="104962881"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="104962881"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 02:10:43 -0700
-X-CSE-ConnectionGUID: mIbnHPLZSUGBthid/uJX2w==
-X-CSE-MsgGUID: dFfZxojcTa6MlZ7oW6LCIw==
+ 17 Aug 2026 02:10:48 -0700
+X-CSE-ConnectionGUID: 6sWX635fT4y2ytzSpbw9Gg==
+X-CSE-MsgGUID: UeNK7u0gSB+zKH3hBOYijg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="268703710"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="268703741"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 02:10:43 -0700
+ 17 Aug 2026 02:10:48 -0700
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 17 Aug 2026 02:10:42 -0700
+ 15.2.2562.45; Mon, 17 Aug 2026 02:10:47 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Mon, 17 Aug 2026 02:10:42 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.16) by
+ 15.2.2562.45 via Frontend Transport; Mon, 17 Aug 2026 02:10:47 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.66) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 17 Aug 2026 02:10:41 -0700
+ 15.2.2562.45; Mon, 17 Aug 2026 02:10:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Yw8RtB3KKLdcd5CGXRsK1GGyLmnM8g6SSE186b6/6JLutx+zwQLYXoMvtrOO2l8fhiWoCJf6+cLq0+vsVFqesw8NTwuyVT/JkIX45chcES5WpbC7coAaGv2KUOxOE0W26/ach5YAYyVw/dx0kVWCloUEj+pdMt5U0NRPIQmEr5gLaX5NdAeYVr/edy6mxvzRPHq6Ri+cQDDXR0FpyFDk+ZER69dlb7Tt5xU3GtG5sFkIyRQghkTAVORTC+EVzzvP2FTTgHAvRDR5+cwrb4vYHX8NsdBV00K0peK124NZyxuMXIIlMXEccY5lFz35TaviW3yYD/2IW6RDRgd+rKJvkQ==
+ b=M7SJNfI529qQUrSA1eVPUplqPAsVc394OtctJOQZD+IgteDzjuxeHcgjEg2Bd2OBbOKRbV+KMJe5mNKNHp90K6gH6RPOj9N/d1NnYVC1moE85Jr/0rOR1xLHAkd4lrMcaEeDBsTP4RgIhyhQePLoD3DrT3f/Ca+Pa15/A1SIXEfCjMo8vgAPFEX7yGMnnTATpRiMUNVrih8SIp7B4RiSk90bPXoRqTeMq1r2HblFD2rsTzW8wntN5EZcUIvoqcwbdQBltdDLva+2CZTAjWeByVNZY0EVzfT7Te+lzr9DA7qAFxS8eZ0Lkq9XPp4tBFzIFe0DZO97j1HG3ib9gu8tbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lBvMfRQR8QP/ddVn+dV2lpZd8lTqh528bWXUnkM4Ov8=;
- b=ySwVwNX6NOznHlu9iPu7KqBLvJTnrxhlkr5zPGzJVj5U969+6Hm1JYvaIBnEC421xKQsfLCz/BqHfzeSRydhXJodNmQmHUwS/xhkJPZIy9y0FTtmS0Z3Hppaxy5pHrLkAr0HUgXjuclYsz6J/RzYNtoZqHvpABoAuWRUnpo8F1MZJ3DqIVFhJu+OJT0/Ay4ecjqWRnYOGgPW1zwttyyKpoU4EMrrUeQ/OkVRGrgkM4VsXuGQZvB1mE+YMQXG64r1cxg6xiqZhpxjYRcwuw2ELocHBtP86/2uakTMJ591U445OrsBEXeCG9RfSf1xRznr2jgJMTwnHRDn74WnL3hL3w==
+ bh=vfZ1V10Sr61U7xO51X2wF2RC5aXpI0r6/p4e3FRyq1g=;
+ b=ZS9vmBAAv9DGeJB/YeiO9tevRU9OBQf8pbDVcuAxHUbn0LPTZnizjmFNedH1GWwNVTer/wkyDPiJVLfwNY0voU0h/4c/TimmjEbZYv7HKXTyXZjExZCTA2fEDKR9EJtIP/IzRG070WvK6c1JTKgbesIEbXJdwphxZK37wqJQe50j257PO81C26XHyg+LDmmOAEWiMROo/Cynt25EgzE1iFdlE+PuZS5N3hlDtz6RZruIXHjR0D9+RbLTBZO+Md0se7RtTuwjNI8WQdTjpGV5BmPNgAi9odGBDrv8YFzrO5zOOcot7ojKrXo6586vGheLKNIRaXal/u/C+PhrxCRgiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,90 +69,90 @@ Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
  by LV8PR11MB8485.namprd11.prod.outlook.com (2603:10b6:408:1e6::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.17; Mon, 17 Aug
- 2026 09:10:39 +0000
+ 2026 09:10:44 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0315.016; Mon, 17 Aug 2026
- 09:10:39 +0000
+ 09:10:43 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Michal
  Wajdeczko" <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 3/4] drm/xe/guc: Start use explicitly usable GuC IDs for
- for submission
-Date: Mon, 17 Aug 2026 11:10:12 +0200
-Message-ID: <20260817091013.280173-4-piotr.piorkowski@intel.com>
+Subject: [PATCH v2 4/4] drm/xe/pf: Explicitly use shareable GuC IDs for VFs
+ provisioning
+Date: Mon, 17 Aug 2026 11:10:13 +0200
+Message-ID: <20260817091013.280173-5-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260817091013.280173-1-piotr.piorkowski@intel.com>
 References: <20260817091013.280173-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: WA1P291CA0013.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:19::16) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: VI1PR04CA0136.eurprd04.prod.outlook.com
+ (2603:10a6:803:f0::34) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|LV8PR11MB8485:EE_
-X-MS-Office365-Filtering-Correlation-Id: d91218d7-aa42-4255-02f6-08defc3f67c1
+X-MS-Office365-Filtering-Correlation-Id: f103129f-8780-48aa-c887-08defc3f6aad
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|11063799006|56012099006|10067099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: pwTsxkgDF9OnHKXvDfXTL1jx4tg4EcSdVk1zP2gbEFWpfbfwzlWV2LTJfEZwkgUlc+P+f47Gmii+wRY6DAA++z0LD+de0QSxq4/sHrjQBthc4NIg09dutuTsgB+705DTMznICpvufOB1sQVvM8c6d18hCnXtdwT7N3oZUZk8z2APScqsqzN0Gq7JhsU5DAS7JamT042zB2Yd2VEkHKcnIo7N6/2A0lZtm8Fz60XqKXH0MkDMVZuwuffSQjSX2xhmvM4HfYDj68S8WEXijdIhz50dB5lIGgdMId6diSXzyzmD/eJaHfSYFf3xya2nbjpUN1INch597SD8uyxqovMiMdULVk4QMAgdFu1VztN4FNWh9sZJOTXleBBc2VbTnLCDVRiZqKJZCJw1ufzkYjisefTnlk9GH79C8NpR4Mnk9DmCERLs5JCAK4Bmy6dQxKRFewTGP/89le3kovlIknQ4vWco1AxlR5GzIXhFCowNltZrsQjOsrof+TsCvDeKGaOjtu3DZNmuyZy4YINTpxG99bzgvhVEv8IQKvvDCI+zlJupayjaS7xm38u4R3Buf7a07T1OJaRNN89EmKN+tz1nZjrtW91fL27kJQEq2GZ1GCsmYzNp+8J6l2SK+lWXD94aPlQr58Gmf5Git2F3idnRdEQuDZKcuCsrKCd8Gb9VnP8=
+ ARA:13230040|23010399003|366016|1800799024|376014|11063799006|56012099006|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: QKeYpnTCGPi8BEud8skgGDQjAhnBKf2mz9PLgYV3mSaTEoR5I0PQ5RYLssaSQiAnraEj2ErmbPK1yJOiGL0ovygmcx5ftv5daykZdoWmUGhAAatNE8YPvqVML6r+xW0aEvYbeq76MaW7IJiCZczbZJEvEutLzrWpqd3qksU+TgpCEFt/kMgt1jpo0hMmh9hJxIkNvBBf1941K1VPbZ/PWATZ9w/hYj0jzY/dCJYFgIU34pvyTBqpPzhCQYhdA/LShWjlWpTB9tU6Xa7oxVBwzPNJ4RZ1uGD5tZx5+RT9pt3OaBdQqpKxFtfhLCVYsWa14EZ/7N1t/gUfF34ecyyJ2mQZRqXUUjowrWy+ve7viBaupHYDYnZNEkqN8qWobxpS7kEpi0HRdC8va5YhYyVqpJP5tuIMpfHCqYA8nX9zLa59tIfQ6UscyLdyTw5I3BBWFacH4ioH3+rXbcYSI/MRaK4Q0aWmcv7aOMKfhBjP4uT/29E3YIEcjTspltceFTz7BX6TIifASr3CPCIcweI5lMIA6mcnNRCYiyRKqUhAUdvurUs5bkrqbwYt7e1saj0iUR09XfzcEwpuHGCjBr6fUeX36SPJ6zPhWtZbqXF4GZL+Meleb0IiqlS5Aa0ZpxMOoa2w80exJ/nlcv41QhDPhfhJ3S7y0w3hBhuzar+BfBU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(11063799006)(56012099006)(10067099003)(18002099003)(22082099003)(6133799003);
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(11063799006)(56012099006)(10067099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V2lQcHlNN2lmOGtIYTIvMEUyN3NUOXo1dGgxY0JOSFNUUkQ2M0U3cHIzeUZQ?=
- =?utf-8?B?M2d5N1VBdlh5V1BVUWViMVpsQTVIeTc0T1NXSmY1M25CM2xyZkdnb2dCQm5F?=
- =?utf-8?B?b2JBUzVSdU1Qd0hWdlFqdWdaK0IvdGhVY0ZOTWI3MThMTkdFMEhPVmxlYkZP?=
- =?utf-8?B?R0Mxb0ppRG1UV3YrcjlhMC9Jd3dReVVUM2JGUWVTQU5xdm1tMmZvZzhhNW4z?=
- =?utf-8?B?MTFUWnNkdDZhTzRmemtuR3VQeFpkMzZIMjJWeDJkNmM1eitBbUQ4N3Z1QmJR?=
- =?utf-8?B?K1pZYTdQVE9QKzZQaFlPT3pTUHZyT1pBbDBJVTlYejkwTGEyVkdVemFDTVU2?=
- =?utf-8?B?QmlHQVhiMHdLYnRSZ1BCY1NNVktPZkthMWF6RmNUek5YSHdQcGpmODNlamVR?=
- =?utf-8?B?VU1jU29wU2pQYzdHOFVMOXpFNk10UmVKMlpXdXhDZ1lpYkJCRXVIenZuQU1T?=
- =?utf-8?B?dW9wT1phMjdUNU9nT1R4QzNNYkl6RFg1QzAvSUFqQmx2bmg1bmp6NHNGcXAw?=
- =?utf-8?B?QTBhTG5qd1BNVE11dkJyNUM5OXdmSGg5SjJOa0g3UGFGTnJNV0xRa2M1YWg3?=
- =?utf-8?B?L3E0alFncnBKck1uaXF3TXdwWUlMYzZiSGpxR2lrVDk4eW1zN2tqR2pPSzFB?=
- =?utf-8?B?L0MyUmtGbG9BdHpiN1EyRGJuamVLSzdtK2lxUEdBelUyNUR0bWxBT2E1YWpR?=
- =?utf-8?B?RnBZRzRDMjlodFFQR0tzb1Z6V3ZaWnhpbHlDaDFER2NKV0tteW10ZGYwUVZU?=
- =?utf-8?B?a3JieFNyNTRyQ3BWRi85SThud2JwVnE4WmZMSjJKaFAvSDZBaFFQWXVSUzNX?=
- =?utf-8?B?OGlGbzdydXVHdUJiKzlFTG1SamxWcEN2MkkzdVRrbWtwUUdWYk5PS3JVM1lv?=
- =?utf-8?B?M24vUHZMYUJiRE0rYUNmR0FoT1pOSk0zYy9LMDJ4Znlid0lQWExtN0cxTFpl?=
- =?utf-8?B?YWZYWjNUenpxZGpsTkVSNjJ6MjJCRVRoNmhzd0plZm0wc0NmOVlSNWx5UTAy?=
- =?utf-8?B?N2o1emw3SDVqRTcwbXNpWnFKemsxRklORGZpdGplNWs0Q3duNHpTM2h6Snpl?=
- =?utf-8?B?UE54YWdLdEg3akhNMFc3OUdCblF1SXBnS1ZieGh1MVZJeU12c0Y3SnJqUUNJ?=
- =?utf-8?B?dzl1eFQrVUJJNWhZWi82L3d0VnRwRndob1BIZGxETU5QYWp2ci90WU9VYUgx?=
- =?utf-8?B?a1JPem1MeisrQnJzNzlNajJsT3N5OS9lOUpmR25zWlpaWmFZVmV0eDVRdFRU?=
- =?utf-8?B?M2hqRHZWd1J5aUpkRWtIWGp1WUVTc1ZPMW5UZitBZ3FNNVU0VlA1dmhuYVhs?=
- =?utf-8?B?aDhZcHFlZ1JtYytpdUZ4LzV4RU5LZmt6ZjNUNHlrMFBxNklHT1lQeUR6Z1Jj?=
- =?utf-8?B?djV3bE9NU21SSGFiYmgyTVY3U2YwRUdxdVhiTlBhVVQ0TVR1RXRDQ0JqUVV1?=
- =?utf-8?B?STQvQ2tBNXhiekVqUFI4ZlNhR3llNWN4ZWZIbzl3QXpQT1EwTnlUZ0lQZTc5?=
- =?utf-8?B?dGd6ZXY0WTNtZUFCUDVYK3BkZkJyY2dJYlpZdmtWUjRLQjdPYWFNTHE0Q3l6?=
- =?utf-8?B?WTFjZk9RUjlOTmZxak1Hdm5pQmdmMUpKRkRSTFRpTGNUVnZLell6KzA5eDZG?=
- =?utf-8?B?S2cyTG80MllrT1A4OFZpdnNGNzBGUDlua015QklaZlAwcXlMMENzMkl2MVRr?=
- =?utf-8?B?cDlrSzYxK1dPRTN0S2o3czVjM2o3TlErbGRFSmV4S2FtSFlqOXZNOUU1blJL?=
- =?utf-8?B?K3V2bkJCVFdBU2pGeVJqOGFWV0w0TG0yUnEvK3JkTWdManJONEw1K1JYQUg1?=
- =?utf-8?B?L1diZ1hNQXBGUGpsbGRXbG9lWXBTa3BDNXE0a3plL1FkSlFlUnhMdXVBRkNw?=
- =?utf-8?B?NVl0WUh3RW5PTGN2SzZUUUpnNThkbVNmeWxsK0xDdEdLZjBaRnpuc0dYcGNl?=
- =?utf-8?B?YjZzQ2FLOFh5ZmJpdnhWamFpR01YR3ZaL0tZZmpXQ3JVamwyYVMxWSs0bXVD?=
- =?utf-8?B?R1ExcGN1SGlWTEx5SWJUV3N1Yi9YajArNGF0eWZwZ09QeUdLSWdMekJDbzlV?=
- =?utf-8?B?dktrYmxMYlkzczZMcG1xYXdVdlFLd2lLREgvM2g3MTBVMjFJM05CY0VTR1Q3?=
- =?utf-8?B?U1V5aGUvVjlMc29mOWJxMlJaWVFPdUR5NmsxeUltcEM2bDFocUUxeGFzZjdi?=
- =?utf-8?B?ZDdGcnJLT292WUFuZlJDYzdRTENmMG02NGZCZndwOW1TNEVCQ0o4VW1zd0RW?=
- =?utf-8?B?UTMyTXgzY1dtZjFvbW50MjFuRHhyUG9VcmZDbmloOW5jS240YXc3ZEhrb2hX?=
- =?utf-8?B?YkFhcHhLaHgwK1pxNWw0aHdIZ2JJUFdhOUFBeTZ1Y09GUWk0dXIxdXNsc0Q5?=
- =?utf-8?Q?sNe16NuU7EpbEWlI=3D?=
-X-Exchange-RoutingPolicyChecked: MUMyAZAwszxonuA8bAkrEwWz1Xsyrj8/AydEiEaJWdJWH33oT6zM62kcwOAKVtibA+P/FG6YGqz0M0VN5xKq4n9cp5i22T94DqTorpONac4DbO3FJcc/nI0UctNGQnCFU9lQEpJFvIJz7oXm+5Sj2a1WY3lJBMDmHa5wRzgu725hsHfoMFcmddOQ1VmAWR3pL8NMXJyMTt08mHKjKT2a6j3DfF0xdYwL8luHPSTZiMhdKbTKx5li8fCkpSkA7y00MCzgNrI0JRke2jddpRY5luvmrxkPZPo3hJA5mlWqwPpHKHQJssz4Nhy+x5q/xl5pvT4WzJ6Wyorvm1r5KkB3WA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d91218d7-aa42-4255-02f6-08defc3f67c1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UkxybXd6VjBOdEs5K0Z0eitVS3BCVzlYTFNxVEJOdGpqTVlBY2ZEV1dhNDNi?=
+ =?utf-8?B?T2N5Z0JWMVFsaWE0bENuekREdFJQM09ydjBTOXJUOUJLbzhpdzhNU0JVcWdR?=
+ =?utf-8?B?elNzdDNWYmtwUEJDM3Y1dHJVc2NnSkJUUXJmWnFUV0dUdnlFYXIxckdQRytF?=
+ =?utf-8?B?NDNNeklTOEpvdGUwZ01xZXJVQnVOMUVqaXM4V1gyZ0hDU0dPREkwdUMxczZJ?=
+ =?utf-8?B?cXo3eWtHcWF6dnlNbFQ1R2F4Z28zcDYzMlR4K0FySjJkYyt6Z3NFSDA5TEox?=
+ =?utf-8?B?K08vMzBTZUFiRU44WEt1elExL1JBMjB2YStxdExhNjhUZ29MeEZRekM4NlZI?=
+ =?utf-8?B?L2JwUjA3UjIwNDlWVmY2OS93UDhYTWdPQ1N5b2tvVUdNZStYQThJUnNpdExr?=
+ =?utf-8?B?aG43YnpLRU41K1p1QkorMzBaU3I3dDBLSU1IRGQ0S25rZExQdXQ4Z2NQYzZR?=
+ =?utf-8?B?N3EvVDdPa0JIclhxdU1kQ1FheE8yR3NLVW9RcEZ0TnJrRUMyL0t2c2NqaVpy?=
+ =?utf-8?B?Mjg2R2pncXRRaFpnUW9VbWRXYkxrOHBmN1NGVnZrMW9reFVUZzlkaHJoZW1W?=
+ =?utf-8?B?dmZmanZzZUZlQ1N2M2FZSkVadUpZNVdBeEdjRVpIcmtFSUFBVzdKSTYzbDBp?=
+ =?utf-8?B?dFNpVmRJK05hNE8yaUZRM1dTUzJHSjJNY29PQmxuWlBNdXZqV2pSTmFHOTZB?=
+ =?utf-8?B?Slg0OXZObE9maGNtcjJnYis4a2RBMWxZNTN3NW9PenN0bjFOQmpQc0JNUnc5?=
+ =?utf-8?B?ei9EV2tuWnhjb28yczRwaVNjMUVKck5BL0ltcUo0QTZLT2NwZnBWK2prbGM2?=
+ =?utf-8?B?VXBDVGZSRlNWVWZXRnVtaFZDa0dZZkFNZnRPNSt6eWU1ckx3cWhITG54aEpw?=
+ =?utf-8?B?aXdwRExpeUF1cjd2cVptcWdsWldKc0xXM2NFYmpyU0diRTFHRHlvaXgvVVNV?=
+ =?utf-8?B?dkFLcUcvTU1aSHR0cytqVEY4eWl6bDRJdGJNNzFuaFdQeUJKTDd1LzlFR2xu?=
+ =?utf-8?B?RjA3ZG5zSUFhYmpTaW51U281U1lMU3prdi9DSXFwSEszZWlIMTdZQk5pcDRP?=
+ =?utf-8?B?L1Z6enB6eU5xMFp2bDlkL09wMWtLWk9jUGREZ3cvcUNUK2xWZW5Td3JSbktw?=
+ =?utf-8?B?VlMzMjB4ZG55bjJGOFdqdU5OdzJiZHdzUnU1dFhGYXVNbnVtYU9SbXNFOXN0?=
+ =?utf-8?B?Q2NXMHBHeEgrUlB0YXZFS0xpeGsxMDROUjhyYk9JSW9OdHFvSTBtLytqL21i?=
+ =?utf-8?B?S3JpV3lBZm9YV00vZWpScFMyR0E0YjFpZ1hnL1NXL2VsL2NYVUpvOFdCSG9I?=
+ =?utf-8?B?UzRPSnZIQUlPVTY2QTZSR01KRWpQaC92UU1iODk4WGI1VCtBT0hWcC9oUTNS?=
+ =?utf-8?B?dmJpRVVwQXlUbnhqd1VWcUVPQ3BKdEhjdlJHQS9vV29PMXRMUVR1VW1VMkFX?=
+ =?utf-8?B?UUVIVGhPQVJxUXJFc0FYbEovYU1ta1Rxa1hrclNSL2lSd1c2YVJUcXpXMVFD?=
+ =?utf-8?B?T3lGUmU4ZEhTa3A2eFNvOXdtUDNRN2JZWmNKS1BoRzU1SE9PY1FYSVg1cFYr?=
+ =?utf-8?B?V0dQL0JDdE5UYmR3MjVXVnZRRnJONDlFbGNmM2sycS8zRjJDWGg4U2ppeWY1?=
+ =?utf-8?B?cC9QNzFoV2FEZy9xNXE5UDFsSUxSZmxIZzlWS2szbHgxTjVyMmlIZWo2NkI0?=
+ =?utf-8?B?M1c5aWpvM3hYNFdkNSt2anNleEdEUTR3N3ZJV0hWWXZ2eUtOcDQ4WDYwT1VL?=
+ =?utf-8?B?UWFnU2VDRlp6SDRZQ05Ec0FmZmxqeFNZSU41VlhiWS9LUlFSc1NnRG4wU3g2?=
+ =?utf-8?B?aGhZL0Y4S0NBSnZRRE0zVFJBbHJrVGVjd2s2NEJuRzBXQTVhSUJvaTZ6a2Rz?=
+ =?utf-8?B?NWFRSDZ5eWlrTHlVQUJNcG95bkdGZmRjbE1obGwyNHJWd0lsNnRqM1lLTUFP?=
+ =?utf-8?B?Y3hFLy9RQ3VOQmRVYXZCSFNjOU1hZ0JyS0gzdHFhUVJNOC9rVTlHRTNhbWor?=
+ =?utf-8?B?bW9SSldYWXlqa2N5R0dVL3lnemhSblp5Q2RncTdMQTgvajZJb2l2cFRmamZz?=
+ =?utf-8?B?Zk5UcUs3a3k1WWJFcG11dUljc01lL1cwNkc3UnVCbTkwYmNya05MK2pSNSt3?=
+ =?utf-8?B?eGR5NlRSMVZNdFl3TWJZLzFWbE10L1pkaHBZa3c1bWxiclFaa2FpUHkzK0xY?=
+ =?utf-8?B?WHN5Y3N1TkpXbkZTR09TRUFLN2pLV0gxZWFLNVlkVy9GMEs1dGRwdUNLQThh?=
+ =?utf-8?B?Y2YvalVVK0VwSkxLLzJMUlNuYXo4cHBqTjk5S0JHZEc1ZW9YTTV2R2JQOGpD?=
+ =?utf-8?B?cUZpVWtSTTM0ZGdaVGVOSUtaTEZSampTSmNtZlpvRWxXVC9pK1BqUlBHZTV3?=
+ =?utf-8?Q?wmwfMQptXPU/CGKQ=3D?=
+X-Exchange-RoutingPolicyChecked: U5/2wbd8KPFZs1Pw9wfmVFCAADO/dZG7ljQAohsDXr3EoVfFnSwUQQSG2Sajcp1U2pxVLkgsTWW5PyvyzSN8JUgIINBXpCWI6dulg4bJESfA57I+ZHn808D3wHdkEdvHMWF9vCBS/xdy8JPu+Eh+UnJGClGmKdWVrIxf3AdhHPkG/Wz0ribV1ETAkXCeLDdY2RAnYQmllixi+dz2AMM7KaQlaMul/sKnwzisXQOuNh8BU3fVgMQD1B3u08HQ96AYdj0SCnCFpWZ0JNfatRkUok8fsOYP7vNWY1bFCc14WTPQIutNSU6ziENIu8Fs3hcrTzLK7go9piAM8bfWkJKFig==
+X-MS-Exchange-CrossTenant-Network-Message-Id: f103129f-8780-48aa-c887-08defc3f6aad
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2026 09:10:39.0555 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2026 09:10:43.9296 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fd50qXl3iKfBCaIIOlIE8x9miaGvRhN4c7g+Nx0gAwPPT2uf00f+qlc/V28tus62IKNFgUcdXow9A+c+T3gsuc3xFsczRrdsYMFJ5mkFSbM=
+X-MS-Exchange-CrossTenant-UserPrincipalName: V0VhyDJ5P4Q6KsKb9f2nNh94siT8C42bkaA9ogwtZNJyd5ws3PzKBMLZfiqoXivtsC89kC75FflDg5ctruIZ5DtD24oF2QdnhcGYyNNmhqs=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8485
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -171,441 +171,276 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Switch GuC submission to explicitly allocate IDs from the usable
-ID pool.
-Also lets configure the GuC ID manager according to the device operating
-mode during submission initialization. Use dedicated initialization
-paths for native, PF and VF modes to expose the appropriate usable and
-shareable GuC ID ranges.
-
-v2: Use xe_root_mmio_gt() to get the primary GT so no NULL check is
-    needed (Sashiko).
+Switch PF VF-context provisioning to explicitly allocate IDs from
+the dedicated shareable ID pool.
+Also, lets remove the legacy GuC ID reservation API now that all VFs
+provisioning paths use the shareable allocation helpers.
 
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c | 106 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_guc.c                   |   4 +-
- drivers/gpu/drm/xe/xe_guc_id_mgr.c            |  73 +++++++-----
- drivers/gpu/drm/xe/xe_guc_id_mgr.h            |  14 ++-
- drivers/gpu/drm/xe/xe_guc_submit.c            |  27 +++--
- drivers/gpu/drm/xe/xe_guc_submit.h            |   2 +-
- 6 files changed, 178 insertions(+), 48 deletions(-)
+ .../xe/tests/xe_gt_sriov_pf_config_kunit.c    |  5 ++
+ drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c | 36 ++++++----
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 14 ++--
+ drivers/gpu/drm/xe/xe_guc_id_mgr.c            | 71 -------------------
+ drivers/gpu/drm/xe/xe_guc_id_mgr.h            |  1 -
+ 5 files changed, 37 insertions(+), 90 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+index e6eaa94d4d30..4d72411cd570 100644
+--- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+@@ -68,6 +68,7 @@ static int pf_gt_config_test_init(struct kunit *test)
+ 		.graphics_verx100 = 2001,
+ 	};
+ 	struct xe_vram_region *vram;
++	struct xe_guc_id_mgr *idm;
+ 	struct xe_device *xe;
+ 	struct xe_gt *gt;
+ 
+@@ -102,6 +103,10 @@ static int pf_gt_config_test_init(struct kunit *test)
+ 	pf_set_admin_mode(xe, false);
+ 	KUNIT_ASSERT_EQ(test, xe_sriov_init(xe), 0);
+ 
++	idm = &gt->uc.guc.submission_state.idm;
++	mutex_init(&gt->uc.guc.submission_state.lock);
++	KUNIT_ASSERT_EQ(test, xe_guc_id_mgr_init_shared(idm), 0);
++
+ 	/* more sanity checks */
+ 	KUNIT_EXPECT_EQ(test, GUC_ID_MAX + 1, SZ_64K);
+ 	KUNIT_EXPECT_EQ(test, GUC_NUM_DOORBELLS, SZ_256);
 diff --git a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-index 295c17dbc21f..f21d3341b503 100644
+index f21d3341b503..3e6d289f7d7a 100644
 --- a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
 +++ b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-@@ -7,19 +7,42 @@
- 
- #include "xe_device.h"
- #include "xe_kunit_helpers.h"
-+#include "xe_pci_test.h"
- 
- static int guc_id_mgr_test_init(struct kunit *test)
- {
- 	struct xe_guc_id_mgr *idm;
- 
- 	xe_kunit_helper_xe_device_test_init(test);
--	idm = &xe_device_get_gt(test->priv, 0)->uc.guc.submission_state.idm;
-+	idm = &xe_root_mmio_gt(test->priv)->uc.guc.submission_state.idm;
- 
- 	mutex_init(idm_mutex(idm));
- 	test->priv = idm;
- 	return 0;
- }
- 
-+#ifdef CONFIG_PCI_IOV
-+static int guc_id_mgr_pf_test_init(struct kunit *test)
-+{
-+	struct xe_pci_fake_data fake = {
-+		.sriov_mode = XE_SRIOV_MODE_PF,
-+		.platform = XE_TIGERLAKE, /* some random platform */
-+		.subplatform = XE_SUBPLATFORM_NONE,
-+	};
-+	struct xe_guc_id_mgr *idm;
-+
-+	test->priv = &fake;
-+	xe_kunit_helper_xe_device_test_init(test);
-+	KUNIT_ASSERT_TRUE(test, IS_SRIOV_PF(test->priv));
-+
-+	idm = &xe_root_mmio_gt(test->priv)->uc.guc.submission_state.idm;
-+	mutex_init(idm_mutex(idm));
-+	test->priv = idm;
-+
-+	return 0;
-+}
-+#endif
-+
- static void bad_init(struct kunit *test)
- {
- 	struct xe_guc_id_mgr *idm = test->priv;
-@@ -33,7 +56,7 @@ static void no_init(struct kunit *test)
- 	struct xe_guc_id_mgr *idm = test->priv;
- 
- 	mutex_lock(idm_mutex(idm));
--	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_locked(idm, 0));
-+	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_usable_locked(idm, 0));
+@@ -59,7 +59,7 @@ static void no_init(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_usable_locked(idm, 0));
  	mutex_unlock(idm_mutex(idm));
  
- 	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve(idm, 1, 1));
-@@ -51,6 +74,59 @@ static void init_fini(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, idm_total(idm), 0);
+-	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve(idm, 1, 1));
++	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_shareable(idm, 1, 1));
  }
  
-+static void check_init_native(struct kunit *test)
+ static void init_fini(struct kunit *test)
+@@ -127,6 +127,13 @@ static void check_init_shared(struct kunit *test)
+ }
+ #endif
+ 
++static unsigned int idm_used_total(struct xe_guc_id_mgr *idm)
 +{
-+	struct xe_guc_id_mgr *idm = test->priv;
++	lockdep_assert_held(idm_mutex(idm));
 +
-+	KUNIT_ASSERT_EQ(test, xe_guc_id_mgr_init(idm), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_usable(idm), GUC_ID_MAX);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_shareable(idm), 0);
-+	KUNIT_EXPECT_EQ(test, idm_total(idm), GUC_ID_MAX);
-+
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 1), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable(idm, 0, 1), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_shareable(idm, 1, 0), -ENODATA);
++	return bitmap_weight(idm->bitmap, idm_total(idm));
 +}
-+
-+static void check_init_small(struct kunit *test)
-+{
-+	struct xe_guc_id_mgr *idm = test->priv;
-+	unsigned int count = 8;
-+
-+	KUNIT_ASSERT_EQ(test, xe_guc_id_mgr_init_small(idm, count), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_usable(idm), count);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_shareable(idm), 0);
-+	KUNIT_EXPECT_EQ(test, idm_total(idm), count);
-+
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, count), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 1), -ENOSPC);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable(idm, 0, count), 0);
-+}
-+
-+#ifdef CONFIG_PCI_IOV
-+static void check_init_shared(struct kunit *test)
-+{
-+	struct xe_guc_id_mgr *idm = test->priv;
-+	int usable_id, shareable_id;
-+
-+	KUNIT_ASSERT_TRUE(test, IS_SRIOV_PF(idm_to_xe(idm)));
-+
-+	KUNIT_ASSERT_EQ(test, xe_guc_id_mgr_init_shared(idm), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_usable(idm), GUC_ID_MAX);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_shareable(idm), GUC_ID_MAX);
-+	KUNIT_EXPECT_EQ(test, idm_total(idm), GUC_ID_MAX);
-+
-+	usable_id = xe_guc_id_mgr_reserve_usable(idm, 1);
-+	KUNIT_ASSERT_GE(test, usable_id, 0);
-+
-+	shareable_id = xe_guc_id_mgr_reserve_shareable(idm, 1, 0);
-+	KUNIT_ASSERT_GE(test, shareable_id, 0);
-+
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable(idm, usable_id, 1), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_shareable(idm, shareable_id, 1), 0);
-+}
-+#endif
 +
  static void check_used(struct kunit *test)
  {
  	struct xe_guc_id_mgr *idm = test->priv;
-@@ -63,7 +139,7 @@ static void check_used(struct kunit *test)
- 	for (n = 0; n < idm_total(idm); n++) {
+@@ -153,26 +160,31 @@ static void check_quota(struct kunit *test)
+ {
+ 	struct xe_guc_id_mgr *idm = test->priv;
+ 	unsigned int n;
++	unsigned int max;
+ 
+-	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 0));
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 2));
++	max = xe_guc_id_mgr_max_shareable(idm);
+ 
+ 	mutex_lock(idm_mutex(idm));
+ 
+-	for (n = 0; n < idm_total(idm) - 1; n++) {
++	for (n = 0; n < max - 1; n++) {
  		kunit_info(test, "n=%u", n);
- 		KUNIT_EXPECT_EQ(test, idm_used_total(idm), n);
--		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 0), 0);
-+		KUNIT_EXPECT_GE(test, xe_guc_id_mgr_reserve_usable_locked(idm, 1), 0);
- 		KUNIT_EXPECT_EQ(test, idm_used_total(idm), n + 1);
+-		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, idm_total(idm)), -EDQUOT);
++		KUNIT_EXPECT_GE(test,
++				xe_guc_id_mgr_reserve_shareable_locked(idm, 1, max), 0);
++		KUNIT_EXPECT_GE(test,
++				xe_guc_id_mgr_reserve_shareable_locked(idm, 1, max - n), 0);
+ 		KUNIT_EXPECT_EQ(test,
+-				idm_reserve_chunk_locked(idm, 1, idm_total(idm) - n),
+-				-EDQUOT);
++				xe_guc_id_mgr_reserve_shareable_locked(idm, max - n, 1),
++				-ENOSPC);
+ 		KUNIT_EXPECT_EQ(test,
+-				idm_reserve_chunk_locked(idm, idm_total(idm) - n, 1),
+-				-EDQUOT);
+-		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 1), 0);
++				xe_guc_id_mgr_reserve_shareable_locked(idm, 1, 1), -ENOSPC);
  	}
- 	KUNIT_EXPECT_EQ(test, idm_used_total(idm), idm_total(idm));
-@@ -97,7 +173,6 @@ static void check_quota(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, idm_used_total(idm), idm_total(idm));
- 	idm_release_chunk_locked(idm, 0, idm_total(idm));
+-	KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0));
+-	KUNIT_EXPECT_EQ(test, idm_used_total(idm), idm_total(idm));
+-	idm_release_chunk_locked(idm, 0, idm_total(idm));
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_reserve_shareable_locked(idm, 1, 0), -ENOSPC);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), max);
++	idm_release_chunk_locked(idm, idm_shareable_start(idm), max);
  	KUNIT_EXPECT_EQ(test, idm_used_total(idm), 0);
--
++
  	mutex_unlock(idm_mutex(idm));
  }
  
-@@ -111,7 +186,7 @@ static void check_all(struct kunit *test)
- 	mutex_lock(idm_mutex(idm));
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index f4725af59fc5..01b8463693c7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -889,7 +889,7 @@ static int pf_set_spare_ctxs(struct xe_gt *gt, u32 spare)
+ 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
+ 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
  
- 	for (n = 0; n < idm_total(idm); n++)
--		KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0));
-+		KUNIT_EXPECT_GE(test, xe_guc_id_mgr_reserve_usable_locked(idm, 1), 0);
- 	KUNIT_EXPECT_EQ(test, idm_used_total(idm), idm_total(idm));
- 	for (n = 0; n < idm_total(idm); n++)
- 		idm_release_chunk_locked(idm, n, 1);
-@@ -493,6 +568,8 @@ static struct kunit_case guc_id_mgr_test_cases[] = {
- 	KUNIT_CASE(bad_init),
- 	KUNIT_CASE(no_init),
- 	KUNIT_CASE(init_fini),
-+	KUNIT_CASE(check_init_native),
-+	KUNIT_CASE(check_init_small),
- 	KUNIT_CASE(check_used),
- 	KUNIT_CASE(check_quota),
- 	KUNIT_CASE(check_limits),
-@@ -520,4 +597,23 @@ static struct kunit_suite guc_id_mgr_suite = {
- 	.exit = NULL,
- };
+-	if (spare > GUC_ID_MAX)
++	if (spare > xe_guc_id_mgr_max_shareable(&gt->uc.guc.submission_state.idm))
+ 		return -EINVAL;
  
-+#ifdef CONFIG_PCI_IOV
-+static struct kunit_case guc_id_mgr_pf_test_cases[] = {
-+	KUNIT_CASE(check_init_shared),
-+	{}
-+};
-+
-+static struct kunit_suite guc_id_mgr_pf_suite = {
-+	.name = "guc_idm_pf",
-+	.test_cases = guc_id_mgr_pf_test_cases,
-+
-+	.init = guc_id_mgr_pf_test_init,
-+	.exit = NULL,
-+};
-+#endif
-+
-+#ifdef CONFIG_PCI_IOV
-+kunit_test_suites(&guc_id_mgr_suite, &guc_id_mgr_pf_suite);
-+#else
- kunit_test_suites(&guc_id_mgr_suite);
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index c7f8bbd4cb92..f1c802d53987 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -853,7 +853,7 @@ static int vf_guc_init_post_hwconfig(struct xe_guc *guc)
- {
- 	int err;
+ 	if (spare && spare < pf_get_min_spare_ctxs(gt))
+@@ -906,7 +906,7 @@ static int pf_reserve_ctxs(struct xe_gt *gt, u32 num)
+ 	struct xe_guc_id_mgr *idm = &gt->uc.guc.submission_state.idm;
+ 	unsigned int spare = pf_get_spare_ctxs(gt);
  
--	err = xe_guc_submit_init(guc, xe_gt_sriov_vf_guc_ids(guc_to_gt(guc)));
-+	err = xe_guc_submit_init(guc);
- 	if (err)
- 		return err;
+-	return xe_guc_id_mgr_reserve(idm, num, spare);
++	return xe_guc_id_mgr_reserve_shareable(idm, num, spare);
+ }
  
-@@ -897,7 +897,7 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+ static void pf_release_ctxs(struct xe_gt *gt, u32 start, u32 num)
+@@ -933,7 +933,7 @@ static int pf_provision_vf_ctxs(struct xe_gt *gt, unsigned int vfid, u32 num_ctx
  
- 	guc_init_params_post_hwconfig(guc);
+ 	xe_gt_assert(gt, vfid);
  
--	ret = xe_guc_submit_init(guc, ~0);
-+	ret = xe_guc_submit_init(guc);
- 	if (ret)
- 		return ret;
+-	if (num_ctxs > GUC_ID_MAX)
++	if (num_ctxs > xe_guc_id_mgr_max_shareable(&gt->uc.guc.submission_state.idm))
+ 		return -EINVAL;
  
+ 	if (config->num_ctxs) {
+@@ -1173,9 +1173,11 @@ static u32 pf_profile_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
+ 	bool admin_only_pf = xe_sriov_pf_admin_only(gt_to_xe(gt));
+ 
+ 	if (admin_only_pf && num_vfs == 1)
+-		return ALIGN_DOWN(GUC_ID_MAX, SZ_1K);
++		return ALIGN_DOWN(xe_guc_id_mgr_max_shareable(&gt->uc.guc.submission_state.idm),
++				  SZ_1K);
+ 
+-	return rounddown_pow_of_two(GUC_ID_MAX / num_vfs);
++	return rounddown_pow_of_two(xe_guc_id_mgr_max_shareable(&gt->uc.guc.submission_state.idm) /
++								num_vfs);
+ }
+ 
+ static u32 pf_estimate_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
+@@ -1186,7 +1188,7 @@ static u32 pf_estimate_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
+ 	int ret;
+ 
+ 	for (; fair; --fair) {
+-		ret = xe_guc_id_mgr_reserve(idm, fair * num_vfs, spare);
++		ret = xe_guc_id_mgr_reserve_shareable(idm, fair * num_vfs, spare);
+ 		if (ret < 0)
+ 			continue;
+ 		xe_guc_id_mgr_release(idm, ret, fair * num_vfs);
 diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.c b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-index 08e72af2735f..31425011a311 100644
+index 31425011a311..ddf4338f742b 100644
 --- a/drivers/gpu/drm/xe/xe_guc_id_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-@@ -131,29 +131,63 @@ static int idm_init(struct xe_guc_id_mgr *idm, unsigned int usable, unsigned int
+@@ -62,13 +62,6 @@ static unsigned int idm_used_shareable(struct xe_guc_id_mgr *idm)
+ 	       bitmap_weight(idm->bitmap, idm_shareable_start(idm));
  }
  
- /**
-- * xe_guc_id_mgr_init() - Initialize GuC context ID Manager.
-+ * xe_guc_id_mgr_init() - Initialize GuC ID manager for native.
-  * @idm: the &xe_guc_id_mgr to initialize
-- * @limit: number of IDs to manage
-  *
-- * The bare-metal or PF driver can pass ~0 as &limit to indicate that all
-- * context IDs supported by the GuC firmware are available for use.
-+ * This function initializes the GuC ID manager to manage the full range of
-+ * GuC context IDs (0..GUC_ID_MAX) for use by the GuC submission code.
-+ * No GuC context IDs will be reserved for sharing with VFs.
-+ *
-+ * Can only be called when the device is not in SR-IOV mode.
-  *
-  * Only VF drivers will have to provide explicit number of context IDs
-  * that they can use.
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit)
-+int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm)
- {
--	if (limit == ~0)
--		limit = GUC_ID_MAX;
--	else if (limit > GUC_ID_MAX)
--		return -ERANGE;
--	else if (!limit)
--		return -EINVAL;
- 
--	return idm_init(idm, limit, IS_SRIOV_PF(idm_to_xe(idm)) ? limit : 0);
-+	xe_gt_assert(idm_to_gt(idm), !IS_SRIOV(idm_to_xe(idm)));
-+
-+	return idm_init(idm, GUC_ID_MAX, 0);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_init_small() - Initialize GuC ID manager for small count.
-+ * @idm: the &xe_guc_id_mgr to initialize
-+ * @count: the number of usable GuC context IDs
-+ *
-+ * This function initializes the GuC ID manager to manage a small number of
-+ * GuC context IDs (0..count-1) for use by the GuC submission code.
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_init_small(struct xe_guc_id_mgr *idm, unsigned int count)
-+{
-+	return idm_init(idm, count, 0);
-+}
-+
-+#ifdef CONFIG_PCI_IOV
-+/**
-+ * xe_guc_id_mgr_init_shared() - Initialize GuC ID manager for PF.
-+ * @idm: the &xe_guc_id_mgr to initialize
-+ *
-+ * This function initializes the GuC ID manager to manage the full range of
-+ * GuC context IDs (0..GUC_ID_MAX) for use by the GuC submission code.
-+ * All GuC context IDs will be shareable with VFs.
-+ *
-+ * Can only be called when the device is in SR-IOV PF mode.
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_init_shared(struct xe_guc_id_mgr *idm)
-+{
-+	xe_gt_assert(idm_to_gt(idm), IS_SRIOV_PF(idm_to_xe(idm)));
-+
-+	return idm_init(idm, GUC_ID_MAX, GUC_ID_MAX);
- }
-+#endif /* CONFIG_PCI_IOV */
- 
- /**
-  * xe_guc_id_mgr_max_usable() - Get maximum number of usable GuC context IDs.
-@@ -381,21 +415,6 @@ int xe_guc_id_mgr_reserve_shareable_locked(struct xe_guc_id_mgr *idm, unsigned i
- 	return idm_reserve_chunk_shareable_locked(idm, count, spare);
- }
- 
--/**
-- * xe_guc_id_mgr_reserve_locked() - Reserve one or more GuC context IDs.
-- * @idm: the &xe_guc_id_mgr
-- * @count: number of IDs to allocate (can't be 0)
-- *
-- * This function is dedicated for the use by the GuC submission code,
-- * where submission lock is already taken.
-- *
-- * Return: ID of allocated GuC context or a negative error code on failure.
-- */
--int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count)
+-static unsigned int idm_used_total(struct xe_guc_id_mgr *idm)
 -{
--	return idm_reserve_chunk_locked(idm, count, 0);
+-	lockdep_assert_held(idm_mutex(idm));
+-
+-	return bitmap_weight(idm->bitmap, idm_total(idm));
+-}
+-
+ static void __fini_idm(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_guc_id_mgr *idm = arg;
+@@ -345,43 +338,6 @@ static int idm_release_chunk_in_range_locked(struct xe_guc_id_mgr *idm,
+ 	return 0;
+ }
+ 
+-static int idm_reserve_chunk_locked(struct xe_guc_id_mgr *idm, unsigned int count,
+-				    unsigned int retain)
+-{
+-	int id;
+-
+-	idm_assert(idm, count);
+-	lockdep_assert_held(idm_mutex(idm));
+-
+-	if (!idm_total(idm))
+-		return -ENODATA;
+-
+-	if (retain) {
+-		/*
+-		 * For IDs reservations (used on PF for VFs) we want to make
+-		 * sure there will be at least 'retain' available for the PF
+-		 */
+-		if (idm_used_total(idm) + count + retain > idm_total(idm))
+-			return -EDQUOT;
+-		/*
+-		 * ... and we want to reserve highest IDs close to the end.
+-		 */
+-		id = idm_find_last_zero_area_in_range(idm->bitmap, 0, idm_total(idm), count);
+-	} else {
+-		/*
+-		 * For regular IDs reservations (used by submission code)
+-		 * we start searching from the lower range of IDs.
+-		 */
+-		id = bitmap_find_next_zero_area(idm->bitmap, idm_total(idm), 0, count, 0);
+-	}
+-	if (id >= idm_total(idm))
+-		return -ENOSPC;
+-
+-	bitmap_set(idm->bitmap, id, count);
+-
+-	return id;
 -}
 -
  /**
-  * xe_guc_id_mgr_release_locked() - Release one or more GuC context IDs.
+  * xe_guc_id_mgr_reserve_usable_locked() - Reserve one or more GuC context IDs.
   * @idm: the &xe_guc_id_mgr
+@@ -499,33 +455,6 @@ int xe_guc_id_mgr_reserve_shareable(struct xe_guc_id_mgr *idm, unsigned int coun
+ 
+ 	return idm_reserve_chunk_shareable_locked(idm, count, spare);
+ }
+-/**
+- * xe_guc_id_mgr_reserve() - Reserve a range of GuC context IDs.
+- * @idm: the &xe_guc_id_mgr
+- * @count: number of GuC context IDs to reserve (can't be 0)
+- * @retain: number of GuC context IDs to keep available (can't be 0)
+- *
+- * This function is dedicated for the use by the PF driver which expects that
+- * reserved range of IDs will be contiguous and that there will be at least
+- * &retain IDs still available for the PF after this reservation.
+- *
+- * Return: starting ID of the allocated GuC context ID range or
+- *         a negative error code on failure.
+- */
+-int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm,
+-			  unsigned int count, unsigned int retain)
+-{
+-	int ret;
+-
+-	idm_assert(idm, count);
+-	idm_assert(idm, retain);
+-
+-	mutex_lock(idm_mutex(idm));
+-	ret = idm_reserve_chunk_locked(idm, count, retain);
+-	mutex_unlock(idm_mutex(idm));
+-
+-	return ret;
+-}
+ 
+ /**
+  * xe_guc_id_mgr_release() - Release a range of GuC context IDs.
 diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.h b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
-index b2b4c1212a8c..f7ab753070da 100644
+index f7ab753070da..844d68440b0a 100644
 --- a/drivers/gpu/drm/xe/xe_guc_id_mgr.h
 +++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
-@@ -6,10 +6,21 @@
- #ifndef _XE_GUC_ID_MGR_H_
- #define _XE_GUC_ID_MGR_H_
- 
-+#include <linux/errno.h>
-+
- struct drm_printer;
- struct xe_guc_id_mgr;
- 
--int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int count);
-+int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm);
-+int xe_guc_id_mgr_init_small(struct xe_guc_id_mgr *idm, unsigned int count);
-+#ifdef CONFIG_PCI_IOV
-+int xe_guc_id_mgr_init_shared(struct xe_guc_id_mgr *idm);
-+#else
-+static inline int xe_guc_id_mgr_init_shared(struct xe_guc_id_mgr *idm)
-+{
-+	return -ENODEV;
-+}
-+#endif
- 
- unsigned int xe_guc_id_mgr_max_usable(struct xe_guc_id_mgr *idm);
- unsigned int xe_guc_id_mgr_max_shareable(struct xe_guc_id_mgr *idm);
-@@ -20,7 +31,6 @@ int xe_guc_id_mgr_reserve_shareable_locked(struct xe_guc_id_mgr *idm, unsigned i
+@@ -31,7 +31,6 @@ int xe_guc_id_mgr_reserve_shareable_locked(struct xe_guc_id_mgr *idm, unsigned i
  					   unsigned int spare);
  int xe_guc_id_mgr_reserve_shareable(struct xe_guc_id_mgr *idm, unsigned int count,
  				    unsigned int spare);
--int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count);
- int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count, unsigned int retain);
+-int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count, unsigned int retain);
  void xe_guc_id_mgr_release_locked(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count);
  int xe_guc_id_mgr_release_usable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9036f89dff7d..36dd5dfd51cb 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -282,20 +282,26 @@ static void primelockdep(struct xe_guc *guc)
- 	fs_reclaim_release(GFP_KERNEL);
- }
- 
-+static int guc_id_mgr_init(struct xe_guc *guc)
-+{
-+	if (IS_SRIOV_PF(guc_to_xe(guc)))
-+		return xe_guc_id_mgr_init_shared(&guc->submission_state.idm);
-+	else if (IS_SRIOV_VF(guc_to_xe(guc)))
-+		return xe_guc_id_mgr_init_small(&guc->submission_state.idm,
-+						xe_gt_sriov_vf_guc_ids(guc_to_gt(guc)));
-+	else
-+		return xe_guc_id_mgr_init(&guc->submission_state.idm);
-+}
-+
- /**
-  * xe_guc_submit_init() - Initialize GuC submission.
-  * @guc: the &xe_guc to initialize
-- * @num_ids: number of GuC context IDs to use
-- *
-- * The bare-metal or PF driver can pass ~0 as &num_ids to indicate that all
-- * GuC context IDs supported by the GuC firmware should be used for submission.
-  *
-- * Only VF drivers will have to provide explicit number of GuC context IDs
-- * that they can use for submission.
-+ * This function initializes the GuC submission state.
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids)
-+int xe_guc_submit_init(struct xe_guc *guc)
- {
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_gt *gt = guc_to_gt(guc);
-@@ -305,7 +311,7 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids)
- 	if (err)
- 		return err;
- 
--	err = xe_guc_id_mgr_init(&guc->submission_state.idm, num_ids);
-+	err = guc_id_mgr_init(guc);
- 	if (err)
- 		return err;
- 
-@@ -411,8 +417,7 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
- 	int ret, i;
- 
- 	mutex_lock(&guc->submission_state.lock);
--	ret = xe_guc_id_mgr_reserve_locked(&guc->submission_state.idm,
--					   q->width);
-+	ret = xe_guc_id_mgr_reserve_usable_locked(&guc->submission_state.idm, q->width);
- 	mutex_unlock(&guc->submission_state.lock);
- 	if (ret < 0)
- 		return ret;
-@@ -3170,7 +3175,7 @@ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct xe_exec_queue *q;
- 
--	if (unlikely(guc_id >= GUC_ID_MAX)) {
-+	if (unlikely(guc_id >= xe_guc_id_mgr_max_usable(&guc->submission_state.idm))) {
- 		xe_gt_err(gt, "Invalid guc_id %u\n", guc_id);
- 		return NULL;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index ccade320dc69..07682f174aa8 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -12,7 +12,7 @@ struct drm_printer;
- struct xe_exec_queue;
- struct xe_guc;
- 
--int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids);
-+int xe_guc_submit_init(struct xe_guc *guc);
- int xe_guc_submit_enable(struct xe_guc *guc);
- void xe_guc_submit_disable(struct xe_guc *guc);
- 
+ 					unsigned int count);
 -- 
 2.34.1
 
