@@ -4,60 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8D7DC5CFC1
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 06:51:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6216BC5DF66
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Aug 2026 09:10:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82B6910E65F;
-	Mon, 17 Aug 2026 06:51:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D957C10E3E6;
+	Mon, 17 Aug 2026 09:10:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m512TZbl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlKeMtKh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18A1510E660
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Aug 2026 06:51:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A423B10E3E6
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Aug 2026 09:10:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1786949489; x=1818485489;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KzsFpD9FfxOBJqelBMbq60djEYOfZQihnQi6Kn2B4qQ=;
- b=m512TZbljpqb8rulOlMUybd8hi27W/ub+b5Qxjq8juCbVmCidqfhK5Vy
- xeFu1XS/5g9mKc2rvOhoYCcCRqRkbpAhetDyv/rT2mE9gnOfhqNi5jUyi
- avqX0iW5GTluOryUkox5GgBN9UEokFgPFMxDpf4aXKH5YfkTguGmBDHGX
- VMXnXvFrbMKoo7AmiZTj2RKD2FT6Rv4PWlO1ECUU+zjNC6uUWNhfRIVnX
- hnFrOvYowTk0PnGiwDWJ9I4b3eqpri8TXCTGq8w/v/tHuUwMtbBV3Dy6I
- mvlGeEa81QGDiILmxjl41rIxppb81q7TfnIUnQ1+3NlBFkGOLoWQllceY Q==;
-X-CSE-ConnectionGUID: 4nNSq4ZbSTOpGk7ykD9xMg==
-X-CSE-MsgGUID: ztZUnsalSSm5RT2fCL+dvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="91289572"
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="91289572"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2026 23:51:29 -0700
-X-CSE-ConnectionGUID: dL6TYDxeSKuBnfPyhj62ew==
-X-CSE-MsgGUID: I/2dGMBTSCOrxs1QHSkZDg==
+ t=1786957844; x=1818493844;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=nnx4hlvpSEVplFCNtExvUrwVt/hDgXqpYbIjDyfQTdQ=;
+ b=mlKeMtKhAeTLjHfXM0ZXDlxprBAs4XyhfYLTvO6uHJW/qw13OUK2oWHC
+ 6JZhFdVfikfPL0jPOU4zQ5nMhNcfy7wrN66N4VdSOoltQsj3ORHNmT+vx
+ Z1kmEo+MvMUV4hthp4tnwoav+u24+/jpkAlpmq18hDokfDIkMTC+VCHQC
+ 9bNCeh2E3SC+JRi6yD01Z4FtU7ein7FysxipCMBo4GOhjoX6wMz4l3vfx
+ 8Su9ESzluBrygUGr8je3bFLaqXhX0d1kzkCdHAnAXxlQmX7+aJx+1wRrW
+ xdtwqRYlmNQ00458s7Sf1V7g17msQk/A+VMdXtlS06nbaL3tN5NvUcmZl g==;
+X-CSE-ConnectionGUID: drAVwtcCTSmUXMsSoS/v4g==
+X-CSE-MsgGUID: Ifeiio9LTXmyHNA1fd+QCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="104962867"
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="104962867"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2026 02:10:43 -0700
+X-CSE-ConnectionGUID: sd5XLq5QRSyUUVbvc/52cA==
+X-CSE-MsgGUID: 3CkzJ1HXQ6qK7u8rNTb3Jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="264383854"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2026 23:51:26 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH V16 11/12] drm/xe/uapi: Expose ban reason in
- EXEC_QUEUE_GET_PROPERTY_BAN
-Date: Mon, 17 Aug 2026 12:21:06 +0530
-Message-ID: <20260817065055.3734576-25-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260817065055.3734576-14-tejas.upadhyay@intel.com>
-References: <20260817065055.3734576-14-tejas.upadhyay@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.25,228,1779174000"; d="scan'208";a="268703706"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2026 02:10:43 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Mon, 17 Aug 2026 02:10:29 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Mon, 17 Aug 2026 02:10:29 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.51)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Mon, 17 Aug 2026 02:10:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JgY8CgbXaeNBBsXs71WJ6njbCzWJfxCB04cRzU3X0l4T3VTAPwH/z9KBz48A8iV8NXbZfJ3vaFHlgwQh5KP57Vc4JXTprpVsYazAYhxLvtg7g0DGL45tJpyKXXyE9LT3rs42qkNVDVj1RJCRCh53Ad5wg4FNR9Xr+xzZwsCi8AfnMsBQ2Rpqxlz7PE84lQuyzSgaHAEts+2Snbv52k32o0ohbSCFVMDc1Sqz5UY8g/OmGQHfcXJAAOFKpkEBbB6MF/mzZUUNoFgg/8HZqgatfWLYqoK4z4I7VVjDwD6IHIKkwXp+yME03CNU5cdKZ6sgd+qDpOO1qRfbQY6kGbuLqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3NRFbnMhuLDNOkgrnWSgJsMYOz6jaCeS3x6KIFwBepg=;
+ b=gehBb9zdoEC8UL8wbfWBgB/BmC/WclnsjPKRGZN+uUd8kXXgyyR3WuxS/28osriZ3F7klhBh8ayucJJcEXNIn/KnrzCcZYNcA6X/FniFQxniOVtQeovULXKCfzMfA+7ztOygZodTh5cIvDtvphwq8gt12E79cPiul5oN7z0gHFjeRjH4gOGtkU69xsucg4OQF0lgFJmrtGjFfJFUrkfsWLukRUlpGGCKnUlpRzUuEqOe9lt3mGvyWG1tsC6Jl05oPJGLZy3TGF1/BOb9nLjb3c4ifjdMrGMQyyfvV3Y47uh4pgO6O1zcITi50jyxGsRaSeqO3PeSFUkAWkd3QbL9kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
+ by LV8PR11MB8485.namprd11.prod.outlook.com (2603:10b6:408:1e6::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.17; Mon, 17 Aug
+ 2026 09:10:27 +0000
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0315.016; Mon, 17 Aug 2026
+ 09:10:26 +0000
+From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 0/4] Split GuC ID space into usable and shareable pools
+Date: Mon, 17 Aug 2026 11:10:09 +0200
+Message-ID: <20260817091013.280173-1-piotr.piorkowski@intel.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: WA1PEPF00005B76.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d8::61a) To PH8PR11MB8039.namprd11.prod.outlook.com
+ (2603:10b6:510:25f::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|LV8PR11MB8485:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3a38fa15-d36f-4efa-03ce-08defc3f60a2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|1800799024|376014|11063799006|56012099006|10067099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: 4090jaaOtqjRy7wh7PWV1txEwyMZ4OYAJCMgI8lMyHE5hnm8DX42iglPMA/4Bf3VbxwDiP3KO8VdmQjXfwwuvWi2CthyudCeUNDtma7RhN9krmi4zPkt3mTtwZ0LTxk+Ef5UytGSPP/oGbfzaKSoBDGRnJ1QwnA0V5teoWqHAFFW03ml9XXSDfJEHZ5JlC6BpcgjlOxGdVJGozgn+drFk/5CQPgHw3CCf+QbDAWbjcWE8/0r+0m8cFYKp0WvJe92LINU1pJOdMRfTo0MrY4FIawPcP9kU3rxvyDieKwWyq2nuUFasEOjJiRUlHhacfWa6PmHaOqvMV2q9YyNuuDohxN/RsPX+0qiDoLXqfOEdxSe+/RNPk++WeSjlzgx/yBuYy3m77J0STakJaKBIMv69IOknjzlu0nr4nnP/w6Y9QwvhqCPwgdj2uSYM++FDdtoqyeTjdAZZgtCcs2IWpBgWNkugmJ8JnEFsw0BtiriKiMiyFlRI1arNXv/rnRESu6G5r/UF3Izxws/Q+TnPH38hwwgRtQuWr60ltT9ZDVo45iv1OWs1puwoFYQ1lCP/Jx9sKEYJjA6bSO1Apb4VFfG+1G1nH4dsAIaJ7PkHnENciFwA1ntL0lKEM73+O0l0M7HRL931NfqOUgsXVY0u3d9eWRd8aWe7ymPuE2FHDZnZJk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(11063799006)(56012099006)(10067099003)(18002099003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2lUVWpqN09qWjMvS1RNcEN0QWFCd3pRTVBtOFR5U2NrdVgxeHFibWpITEo2?=
+ =?utf-8?B?bTBtNnBNbytsNW5XZUd0c0hhTHdqVUtzd040WDhHcHZ0SjNPd293ZXRYbUk2?=
+ =?utf-8?B?SVVxT2lDenVqd3REUzZBempTcW5JTmxocUZGMTJRZ0xwWEZhWXdpN0NsbXQ4?=
+ =?utf-8?B?aTdUTnZXRjdvT3BQOXBnckcrQW9IbjRqSnpPZ00xK3NLWnZ0dU5DRTFqZjJk?=
+ =?utf-8?B?TllyY3BRSWJNcHk0WWJpbEUzTWZsNk5iajErbFM3R3B5QnRmdEhYbmlTVjk1?=
+ =?utf-8?B?ZVVYZExlWlRVZXM0VWhSelRGbkdWaXBoN0NDa2dEU3VoZHlHNHBoNWVrd2xk?=
+ =?utf-8?B?SlBCUmVhYWU4ajVvQlc2WHdLd2FLV3Y2MU8vNnNkb3FoVGRFYStHTDFpbU5L?=
+ =?utf-8?B?SytKd1cySXZra0FSZW1mVG9DVVU5cXZkekU1emxWOUdQNk11N3oxYXg1SG82?=
+ =?utf-8?B?cVl0aUhCckRCT0dyZVlNUkJvVGl3MGpYY2xYdlZZRlBoNVVIRFZ2TXhLOU9R?=
+ =?utf-8?B?SkJFYzNTTWVmYzFGZmd3YkdJTGpTd0tDKy8xbjVWK2FRbVdiTHVrQlM4Smly?=
+ =?utf-8?B?c0liRWp3Y3lPYXROMWVNaXFZRXdQdU5PWnRQM1pUbU54aGtoN2lqb0wyelI2?=
+ =?utf-8?B?OW9Za0hnOTZxTm9tM3lCUUM3L3dQUlU1UnNzZW1nWUJ3Qy83K3EybnoxMXJu?=
+ =?utf-8?B?d09ZclpMT0VYMkx3M1ErUUxxNk1EL3hSN2FmY2lmYmcycEVDOGNCZEx0OFpM?=
+ =?utf-8?B?OGp0MTVlTGtkVCsxOHVVSkpEYndCeGwxQnFURUxvYWFLcHVJWnJuaVlkMjhX?=
+ =?utf-8?B?dFA3OHZ0NElMRGJ0YituZzl0M0R5Y05DLzlLQVFmWFRWRFY5UWh5Ynd5RnU4?=
+ =?utf-8?B?ZjdCendyMVR6OGtnTWhsRW04czlrOFk0VmNpRTdnOThJZHM0SjhZSHlpSnZj?=
+ =?utf-8?B?dzVNMDRXNTZyTmViU3MwR0RZbHJYZ3JmblpIZDJVMndiTW1DcWhLemYyWjlU?=
+ =?utf-8?B?bkp3N1lEZFV0ekp5d1hXcmxycTRNSG5mT0I3TlZiYTI4YkxFT2FidTBrYjNH?=
+ =?utf-8?B?bTdsQzlQUDNhbXlYMjFsWHVybXNKQXovYk40VjQyOWpTKzZ1bEl0b0s0UmFX?=
+ =?utf-8?B?eFZtRXlLL0xIUStEWjlKeDF2bmU5U0NKT0x5NExsdnIzUWJUZk9YN1NYTzFK?=
+ =?utf-8?B?Q2VFRUNCcEZETmQwNEU1VktOY2I2VzZjWGZHNmwwUk5WSjQ2clhwa3Zhck9C?=
+ =?utf-8?B?RXczWjV5Vm9WUFU5SXBqZ0g3SlczUUE0M1cwbnJrT29Xdi9DQmgwQVMzdUVj?=
+ =?utf-8?B?bFJvWmhhMGRlcEpLdUxqcTlpNDNNQmhHbnZOYVFZeGlBRGpWZmo1eWlkZ3h0?=
+ =?utf-8?B?cWs3STNNam1ZMHlBTXh5TjJ3eDNLR3lJMm5ZMDZQRXZVaXJuVUgrRmdsTXZz?=
+ =?utf-8?B?VW9WUFdCUCtkWURhQm9Sd0o2S1JkRDk2SFlTZWxxaUZnaXQvYUVYZHBEeXRH?=
+ =?utf-8?B?ZXp2M2x6b3k4T3JpRXB1di9zVVpDNFE2bzI2bWgzcW9xSmg1K3A0Z0xpTkg1?=
+ =?utf-8?B?TnZpeGU5YkRwcURnUjRuaHlKSHUwd2RvN0xOdUcySFVGZ0g2RE5FV29FOG1F?=
+ =?utf-8?B?T0YySkpPNzBvODlGQWgrNllTSHN0TUw2UzJQeVFVLzU0STA4ZS9QSzdraXIw?=
+ =?utf-8?B?bndsa1BOVHF2ODNRdzQ3emphcm5uRUdtU2loVEQ3bTh1WFh2dnFGTHVwNVh6?=
+ =?utf-8?B?ZmNiazJ0U2dMOExnSVhGUmhSZnNuSVBKNWkwL0ZFMFROaVMwcnN4cko0NjVj?=
+ =?utf-8?B?VG5Eczk5Rll5b0ttcjBwWEJGb0hiRzNkQWs4V0NpYTRyVndUOTJRamhtUUc0?=
+ =?utf-8?B?V1Z1cFNXcEtFbW9ZS0VwVFpubmZKMzFPQ3kvcEpUKzVzOHptN1hwUUZBT2ZS?=
+ =?utf-8?B?YkhmRkVvRm1tS0ozRVl5RzBsR296MEJjMDVRZmc1U0VDbkkvMmFvWHBQUnN6?=
+ =?utf-8?B?eWlVT3p3QThDSXZvMHVld3VYU2hjZTYvMkFYSkhJbFhFK3diN0wrT0RtdklM?=
+ =?utf-8?B?SnAyOGVHUVZsV2wwOUJhUDFBR2hIYUovZ3Zxd0srRi9Dc1ordmxidmJ2R1B4?=
+ =?utf-8?B?b2E1bDlXdVBJbW1VYURNdVE0OUQxamg2MTlYaTUvRnFzUTJzb2pYMlQ0VnR0?=
+ =?utf-8?B?THB2UEZOYm1mRXQ1b24rMDc0a3p4N0VJTnV1N2tYMFBLRUJvblhtMlc5Qm1G?=
+ =?utf-8?B?WTVzVnpoazZ1c005aVpFYXR0Sk9nTWVSVFpZei8rV0RtL1l1L3NTZ3NHME9J?=
+ =?utf-8?B?OGV2ekQwem9jQ2d0aUpVQ2J2eDBuc3FUTTN3MC9FN2JDSUZyUFFIS29peVdI?=
+ =?utf-8?Q?JahGEe64FtHyfZeQ=3D?=
+X-Exchange-RoutingPolicyChecked: sVMtm4zDDrEMCSF8qOieTEIyT+MHD2CO+25yPWT+kqe4gfnggbzk55e9bL33Ml5MJAMbKY7lJLYhLzGmfJoLF4ZXyKqtPdH9IYb0/jOovTy25tzFUMnH4jS3+2klL1IqcW9ItgiCTecpQB6yqhC3KU54IjK9OIRVCfRr5VrjVYvqWmlrnMSdn1z9mR/QohB2a0Dj73x73H7T9Fdfm40v4WzP+Li2QRQvzlM1QdQfx78Gi6iuSSoOgsYxQAjXwu6YsX+GLLyewDPrZqXRyFBSM8ZwmDSYtGyvNbZGx+qgg4n4mTjgokomiw6+0RjJ0aZz80I+Vhl+zTX/tOfbTvmTnQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a38fa15-d36f-4efa-03ce-08defc3f60a2
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2026 09:10:26.9147 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aI2IxPF9+kyDFLfPLaqfLYlzTp9MdETE1sciQAq8bSE4Xj1CkD6ZxQ0SkAoP66KArW0NRNhl3uCKrkDgkXuHhHwO0Fnz4B/FyiRfTmrOoS8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8485
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,228 +165,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN to return a bitmask indicating
-the reason for the ban, rather than a simple boolean. This allows
-userspace to distinguish between different ban causes:
+From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-- DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG (bit 0): exec queue was banned
-  due to a GPU hang or job timeout detected by the TDR.
-- DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE (bit 1): exec queue was
-  banned because a VRAM page backing its resources was taken offline.
+The GuC ID manager currently treats all GuC IDs as a single pool shared
+between GuC submission and SR-IOV related allocations.
 
-The ban_reason field is added to struct xe_exec_queue and set at the
-point where the ban is triggered:
-- In guc_exec_queue_timedout_job() for GPU hang.
-- In xe_ttm_vram_purge_page() for memory page offline, before calling
-  xe_exec_queue_kill() or xe_vm_kill().
+This series introduces explicit separation between IDs that can be used
+for GuC submission and IDs that can be shared with VFs. The ID manager
+gains support for independent usable and shareable pools, dedicated
+allocation interfaces, pool-specific accounting and validation, and
+extended test coverage.
 
-The reset_status op is updated to return u64 with the reason bitmask.
-When a queue is banned but no explicit reason was recorded (e.g., from a
-generic CAT error), it defaults to GPU_HANG for backward compatibility.
-A value of 0 means the exec queue is not banned.
+To preserve existing behaviour, both pools continue to map onto the same
+GuC ID space where appropriate. GuC submission is updated to explicitly
+allocate IDs from the usable pool, while ID manager initialization is
+adapted to expose the correct ID ranges for native, PF and VF operating
+modes.
 
-v3(Rodrigo):
-- Add doc in xe_drm.h
-v2(Sashiko):
-- Use atomic_t for ban_reason to fix concurrent updates from TDR and
-  page-offline
-- Guard GPU_HANG bit with !exec_queue_killed to avoid masking
-  page-offline reason
-- Clear ban_reason on queue recovery (clear_exec_queue_banned path)
-- Use atomic_read in guc_exec_queue_reset_status for lockless read
+v1 -> v2:
+ - Fix issues reported by Sashiko (top-down VF ID search, KUNIT_EXPECT in
+   locked sections, xe_root_mmio_gt() for the primary GT).
 
-Assisted-by: Copilot:claude-opus-4.6
-Acked-by: José Roberto de Souza <jose.souza@intel.com>
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 ++++--
- drivers/gpu/drm/xe/xe_execlist.c         |  4 +--
- drivers/gpu/drm/xe/xe_guc_submit.c       | 32 ++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     |  8 ++++++
- include/uapi/drm/xe_drm.h                | 18 ++++++++++++-
- 5 files changed, 59 insertions(+), 10 deletions(-)
+Piotr Piórkowski (4):
+  drm/xe/guc: Split GuC ID manager into usable and shareable pools
+  drm/xe/kunit: Extend GuC ID manager split-pool coverage
+  drm/xe/guc: Start use explicitly usable GuC IDs for for submission
+  drm/xe/pf: Explicitly use shareable GuC IDs for VFs provisioning
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index b2276559c2f6..a21916359e2f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -156,6 +156,9 @@ struct xe_exec_queue {
- 	 */
- 	unsigned long flags;
- 
-+	/** @ban_reason: Bitmask of ban reasons (DRM_XE_EXEC_QUEUE_BAN_REASON_*) */
-+	atomic_t ban_reason;
-+
- 	union {
- 		/** @multi_gt_list: list head for VM bind engines if multi-GT */
- 		struct list_head multi_gt_list;
-@@ -350,8 +353,8 @@ struct xe_exec_queue_ops {
- 	 * signalled when this function is called.
- 	 */
- 	void (*resume)(struct xe_exec_queue *q);
--	/** @reset_status: check exec queue reset status */
--	bool (*reset_status)(struct xe_exec_queue *q);
-+	/** @reset_status: check exec queue ban status, returns ban reason bitmask */
-+	u64 (*reset_status)(struct xe_exec_queue *q);
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index cc33ae80e8cf..534e7c4e0099 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -452,10 +452,10 @@ static void execlist_exec_queue_resume(struct xe_exec_queue *q)
- 	/* NIY */
- }
- 
--static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
-+static u64 execlist_exec_queue_reset_status(struct xe_exec_queue *q)
- {
- 	/* NIY */
--	return false;
-+	return 0;
- }
- 
- static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9036f89dff7d..f52577de1ac2 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -6,6 +6,7 @@
- #include "xe_guc_submit.h"
- 
- #include <linux/bitfield.h>
-+#include <uapi/drm/xe_drm.h>
- #include <linux/bitmap.h>
- #include <linux/circ_buf.h>
- #include <linux/dma-fence-array.h>
-@@ -1593,6 +1594,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	if (!exec_queue_killed(q))
- 		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
- 
-+	/*
-+	 * Only tag as GPU hang if this is the original timeout, not a
-+	 * consequence of a prior kill (e.g., page-offline).
-+	 */
-+	if (!exec_queue_killed(q))
-+		atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG, &q->ban_reason);
- 	set_exec_queue_banned(q);
- 
- 	/* Kick job / queue off hardware */
-@@ -1676,6 +1683,9 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		if (timeout_needs_gt_reset(q, job, skip_timeout_check)) {
- 			if (!xe_sched_invalidate_job(job, 2)) {
- 				clear_exec_queue_banned(q);
-+				/* protect concurrent page offline reasons */
-+				atomic_andnot(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG,
-+					      &q->ban_reason);
- 				xe_gt_reset_async(q->gt);
- 				goto rearm;
- 			}
-@@ -2570,13 +2580,25 @@ static void guc_exec_queue_multi_queue_drop_suspend(struct xe_exec_queue *q)
- 	}
- }
- 
--static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
-+static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
- {
--	if (xe_exec_queue_is_multi_queue_secondary(q) &&
--	    guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
--		return true;
-+	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+		u64 status = guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q));
- 
--	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
-+		if (status)
-+			return status;
-+	}
-+
-+	if (exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q)) {
-+		u64 reason = atomic_read_acquire(&q->ban_reason);
-+
-+		/* If no specific reason was recorded, default to GPU hang */
-+		if (!reason)
-+			reason = DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG;
-+		return reason;
-+	}
-+
-+	return 0;
- }
- 
- /*
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 73cd06c22d37..2731bbc50864 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -7,6 +7,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_buddy.h>
-+#include <uapi/drm/xe_drm.h>
- 
- #include <drm/ttm/ttm_placement.h>
- #include <drm/ttm/ttm_range_manager.h>
-@@ -542,7 +543,12 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
- 	xe_bo_unlock(bo);
- 	/*  Ban VM if BO is PPGTT */
- 	if (vm && (flags & XE_BO_FLAG_PAGETABLE)) {
-+		struct xe_exec_queue *eq;
-+
- 		down_write(&vm->lock);
-+		list_for_each_entry(eq, &vm->preempt.exec_queues, lr.link)
-+			atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &eq->ban_reason);
-+		smp_wmb(); /* Force all queue bits to be visible before killing the VM */
- 		xe_vm_kill(vm, true);
- 		up_write(&vm->lock);
- 	}
-@@ -554,6 +560,8 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
- 	/*  Ban exec queue if BO is lrc */
- 	if (q && xe_exec_queue_get_unless_zero(q)) {
- 		/* ban queue */
-+		atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE, &q->ban_reason);
-+		smp_wmb(); /* Force bit change to finish before state change triggers */
- 		q_to_put = q;
- 	}
- 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 509202a7b13e..ee4a921b2e6e 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1491,6 +1491,12 @@ struct drm_xe_exec_queue_destroy {
-  *
-  * The @property can be:
-  *  - %DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN
-+ *
-+ * For %DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN, @value is a bitmask of ban reasons:
-+ *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG - banned due to GPU hang/timeout
-+ *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE - banned due to memory page offline
-+ *
-+ * A @value of 0 means the exec queue is not banned.
-  */
- struct drm_xe_exec_queue_get_property {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -1503,7 +1509,17 @@ struct drm_xe_exec_queue_get_property {
- 	/** @property: property to get */
- 	__u32 property;
- 
--	/** @value: property value */
-+	/**
-+	 * @value: property value
-+	 *
-+	 * For %DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN, this is a bitmask of:
-+	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG - banned due to GPU hang/timeout
-+	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE - banned due to memory page offline
-+	 *
-+	 * Value of 0 means the exec queue is not banned.
-+	 */
-+#define DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG		(1 << 0)
-+#define DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE	(1 << 1)
- 	__u64 value;
- 
- 	/** @reserved: Reserved */
+ .../xe/tests/xe_gt_sriov_pf_config_kunit.c    |   5 +
+ drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c | 557 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  16 +-
+ drivers/gpu/drm/xe/xe_guc.c                   |   4 +-
+ drivers/gpu/drm/xe/xe_guc_id_mgr.c            | 448 +++++++++++---
+ drivers/gpu/drm/xe/xe_guc_id_mgr.h            |  31 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  27 +-
+ drivers/gpu/drm/xe/xe_guc_submit.h            |   2 +-
+ drivers/gpu/drm/xe/xe_guc_types.h             |   8 +-
+ 9 files changed, 953 insertions(+), 145 deletions(-)
+
 -- 
-2.52.0
+2.34.1
 
