@@ -4,27 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E74D6C5DF81
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 17:18:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFBA0C5DF7D
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 17:41:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84A6A10EC1E;
-	Tue, 18 Aug 2026 17:18:10 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 269A610EC0D;
- Tue, 18 Aug 2026 17:18:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC7F210E522;
+	Tue, 18 Aug 2026 17:41:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MmM0tpCr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0F910E514
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 17:41:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787074890; x=1818610890;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=qAWZ/gGaL+D+vVJyfgEMkLP2jEk+6YbIGfEqMzLejI8=;
+ b=MmM0tpCrQhJ5fWrLh5MpLhwcCRn+PgKpV7eXKw9OxW2fpkT1oLoC+WWi
+ /yT7ki2jxVcI6wQIjrMmMLa7oMEG3tfM+t00OT3XmGg0R4rbdIMrLWlOs
+ soVrIPvi8ESk5dHb0x9qgVDLVDPAvgFZSqikoc638o/gtUkhYgxkLVTzd
+ ZxxzvNotnPhCfz9G5vh98iXTYveAr9zGGvE0zYcu3p7hqpTrKF9hIj0AV
+ QiI0qr1UbKFNvD2Xgy0yuoxbdXkIXt8Buhr8rkb1Rrv8VTgj0CRZJRnYQ
+ 8P/Cq8c89jjwq884z3WBjf6lGxBJ9TfV8zwW4UZkjuj20EEDl4gkJHXu2 g==;
+X-CSE-ConnectionGUID: /f8MMORYSO2XqA2dUN6yPg==
+X-CSE-MsgGUID: tdjCF/2dSrWdedcIjGCpvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="87780852"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208,217";a="87780852"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 10:41:30 -0700
+X-CSE-ConnectionGUID: K7Ael/XNSzyrDkhNqlH0wQ==
+X-CSE-MsgGUID: YRK9RY9cQSKR0Wkl+ifQkg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; 
+ d="scan'208,217";a="261083232"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 10:41:30 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Tue, 18 Aug 2026 10:41:29 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Tue, 18 Aug 2026 10:41:29 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.50) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Tue, 18 Aug 2026 10:41:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rpn9nrlytYFXMTQEzxAHrSEztNelRx2i1JN4hqaeyOTHWitxpH5Iz2fRAmzKckl8vauokIPQCnAYCMY1cdb64fiQNEbRRMVIFo8mMCHhxxIpNfgyBPClZs4x5Q9yaEPnVZ9lWnWS3ob89IQnIAC/DsotwQVZUOX2As9LCR43kk/03fnyhJhVFvfn7dTycKxtZ2hSPXVWLGwvv1Sfg2zK9sy0qSfKtNwWcCMraosAfCi4YkxrQ1M3fqNq2iejlKRW27BuuP0iRnzHVaGlJItay8jTDQJXINbaQj9lAAqIzceTcKcoj4mQ9nUc51Ib7FGIZo7bj8dFR9PbpB+byIISQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K555bGPpeifjXvxOah46D8rLC5kBxz+6lG+CXWaY/S4=;
+ b=r/s7M7H21O5vqPLef08qIVT/M2rLapMMFIoO0iQ2Tc+0lyS0sgINOcTjpL9zpJ3P/5Hbbd/vYwcTKjFYWbjpcIhy/IyC4lkjeSnY1nbWkYmQVsNq8FKTymjw3vPvFLe80d80W17jhkwO4C+ia4L1tygaDLbMmBmnqHHJ1nKprecdYeQl3+DV+UR66C4h3+7KDYI5ylwC6Q+1os06YENEDBLrTeV7EbbEFDxOU5D0wwjAJpoMDYcXL69XK5OXUU6rW8/9HplMpSXAGq7x74qvAmGxxZEw/ahewwKcKtVVwf7UtEs+jMjwHbu6QYSMLGcBnQY9Wz3aUDtvGa7FoS1BZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA3PR11MB7556.namprd11.prod.outlook.com (2603:10b6:806:31f::21)
+ by CH3PR11MB7723.namprd11.prod.outlook.com (2603:10b6:610:127::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Tue, 18 Aug
+ 2026 17:41:23 +0000
+Received: from SA3PR11MB7556.namprd11.prod.outlook.com
+ ([fe80::3b95:cfb:be21:788c]) by SA3PR11MB7556.namprd11.prod.outlook.com
+ ([fe80::3b95:cfb:be21:788c%6]) with mapi id 15.21.0315.016; Tue, 18 Aug 2026
+ 17:41:22 +0000
 Content-Type: multipart/alternative;
- boundary="===============5073019465288969522=="
+ boundary="------------n65QOvVZNh3gtg0UXHL4wnYS"
+Message-ID: <026e7bf1-080f-4d95-965b-83c2afaf6660@intel.com>
+Date: Tue, 18 Aug 2026 23:11:13 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/2] drm/xe/sysctrl: Add helper to query application
+ status
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <badal.nilawar@intel.com>,
+ <rodrigo.vivi@intel.com>, <aravind.iddamsetty@intel.com>,
+ <riana.tauro@intel.com>, <anshuman.gupta@intel.com>,
+ <matthew.d.roper@intel.com>, <michael.j.ruhl@intel.com>,
+ <paul.e.luse@intel.com>, <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
+References: <20260814095306.2482289-4-anoop.c.vijay@intel.com>
+ <20260814095306.2482289-5-anoop.c.vijay@intel.com>
+ <an+G21kQjK+AUI9K@soc-5CG1426VCC.clients.intel.com>
+Content-Language: en-US
+From: Anoop Vijay <anoop.c.vijay@intel.com>
+In-Reply-To: <an+G21kQjK+AUI9K@soc-5CG1426VCC.clients.intel.com>
+X-ClientProxiedBy: MA5P287CA0232.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b1::16) To SA3PR11MB7556.namprd11.prod.outlook.com
+ (2603:10b6:806:31f::21)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/xe/xe3p=5Fhpm=3A_Remov?=
- =?utf-8?q?e_WA_14025883347_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Aug 2026 17:18:09 -0000
-Message-ID: <178707348914.64181.12971100621265039024@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260818095748.1512800-2-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20260818095748.1512800-2-balasubramani.vivekanandan@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA3PR11MB7556:EE_|CH3PR11MB7723:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2cf0672-9d15-4cb1-c094-08defd4feb41
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|366016|1800799024|6133799003|3023799007|56012099006|10067099003|4143699003|11063799006|8096899003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: ec6TtMQ8LIumhIuvqt0BuZoRa4kQ4JMTXeYAmn4byGCTIuslGelLfNEOCAgZ8DcE0a9NVe2G/ksGpcXOs5vRIRn/X7fYvVvSinvz5wRG4HYq5ADbANPOq3Ir1Eh0be5zfUSgIdzccaqOPT1pOT6fAQwmyz1/3QYZg9mmHqbxTPELaIdARSqlzbltMOYyE+pILgI7oWlicwIYkp09+a4FGl3V3b4/p0lVAVett+ce/JqsqxI/zvSL0PEQfxqOVCqwCbV/4UrmuUBe/Ub0eLBt0pqkZf3azxNEtTuU8gVf/smWkwElBz85Sx7D82jdd0WTYOwGrCerR3RA31SGWKoCgjBN4Y5zfekPp/zcNUwI/yklOhXDvhmAZMNFR2Hy4+HrDCmEtuR4kBMbOq6GljE/cYD8No/MXRGM8NORWoh60U5HBa8OGKi3K3JLFcf4h8InyVMttnZICDpCqhG4XcEKi1RYilxbeB9W4Puool5Hj1y9AGLR4F7TQ3ADns/O2PJwMJ/IKzICCygwCVI+4RMbFWSMj0/jtB64pw+cFXvMfFAEc+a9VgoRaT70C63rBuOuDvQzVr4FQjFWLX1Qd78Naod48VO4XeALQnlBD2WmJPyOnVLl96d8VM8BjbR6vGugz9OBNACTwyY5kT4KN7VqmbH9Hnon9CfLD1u982TlwXM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA3PR11MB7556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(6133799003)(3023799007)(56012099006)(10067099003)(4143699003)(11063799006)(8096899003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TmUxbUcvcFlkUDh6dXlIV2ZiSDkxODRITE5LSEZMMTczZ1hZcC93akZsWit1?=
+ =?utf-8?B?M0ZOOUpOTGdwK2lBY3ErNzFjcnFOaXVLR0liQlFEZVBDaEtqVjhjWU9aMXRn?=
+ =?utf-8?B?dEFoZy9XWDVIQ1hLcW5MZ3NrTjdaZWs3ZXRkdTFWYmpuRTF6NUN5SW1abkJO?=
+ =?utf-8?B?UzlsTkZJOEswWW8rWFlxZk9HdzdZOGUvOG45U1JseHJNSDgyZ2hsRnJQRVJj?=
+ =?utf-8?B?bW9KZjJDMXdIT05SNHpydjdiVXBSejZsdVRKcjhxNzhDd3JUY3NENEgzdWhQ?=
+ =?utf-8?B?enhqazIxRURuTzVveHNhUHNXUHFVeHdvYWJWK2NjU09jMHpKTHJZM205Z01l?=
+ =?utf-8?B?cjIvTGpzVUdETFFRa0dMSjVxU0c2Y0Y3VlkyL1FrMTV5ZWZnM3JES1ZjdU1s?=
+ =?utf-8?B?Q09BQmpaTjl4emJVRGRHTFFyYUQzejY2WlJDcU00N2daSTBaRnovN21lQUs1?=
+ =?utf-8?B?ZDY3SHlrVEovYVh2RXplTjVLR3RKRTVkdGNpMEFhR21vVGJFODlKRU5Qc1Yy?=
+ =?utf-8?B?WStVa1RrQ0d1QTRjRlMrVnNRSUxpcEtjaTVBSXlWRlZJTDBSVlhWVC9vQzk1?=
+ =?utf-8?B?SUk5VzEyTEllcFFDdWFEY1g5K3MvUzdKZVBGNXcxRWFaL1RYVEc4aEtSNzlJ?=
+ =?utf-8?B?N3dEWVkxUG95ODFmK2tPTHU3VUJuV0V0MFdMbHJuemxscFcwY0h2SG5EaGlQ?=
+ =?utf-8?B?TnRJOTZTMm45L2xPRzYxK2JDZUJmWkJOaW12Z3JSSHFWNHZiQ3l2SjVEUzlX?=
+ =?utf-8?B?MHFxS3h2VkZ5aDU3cG44NGh0YTBVaVovd3FlWGU0d3E3a0NjZmhkOUo5bnhC?=
+ =?utf-8?B?aldvL3pDZXhZQlJ5NHdwSWIxa0diWitpeDBoQzhhOVRHT0Fkc0dJZmRoVzhx?=
+ =?utf-8?B?TGk2b3BhekpXZmNhbEpUa0liVEZ5NG5XZmtXdTBpcGRIcUZMb2d0bXVCY0lr?=
+ =?utf-8?B?cU45YjhVTjViVmxMdTMvdlJ6Q2tDM3A5ejY5bmN5SnNjOWxqRUlnVVBnWElw?=
+ =?utf-8?B?N2tvRmNIZHFsQTNaU3U4NDR3YUZ1c1htYk1RSDJSQ2ZxNXRiZmFnUmRGWitp?=
+ =?utf-8?B?amVkZjAxT0xtblk3SzRZZ2pkVUtDbmFlc3k5cmU3SE9keFhoam1pekhGSTAr?=
+ =?utf-8?B?T1U1dFdVWUszOXg2WllOZ0t4Z3dQQUdnejZxdUVneEMwQzJycEJheUFwN2dl?=
+ =?utf-8?B?TnZhYmhodmZ1MDdNS0JZeXZxWTdmWmtUdElwQ1MrOWQvS3RMdS9Ld0V5TkhR?=
+ =?utf-8?B?a2FDTlAwdENoeHZLeSt0VnpyK08rblFINDVod2NRaWlIQlVZNHEvamtqVDhZ?=
+ =?utf-8?B?cVowOUdhNUJOZDlOK0R1encvb0VTWmJPZmIzQjU1MmVKTlRrclBBTDVQU1BV?=
+ =?utf-8?B?TFZhZmdlZWdQUGRVaTBsNGlXNlpaNTMrNEpadEpjVE5UUW5UNjZ1cGhCaDBx?=
+ =?utf-8?B?TEdBNHN4UGMzdEpGU2trWHg3N3FCWlBNOUZwQStTU21rbmxScWVNTGlBUGda?=
+ =?utf-8?B?ZDRxd3NPcDhKaGN4bGxkQkZyVHIrbW9KMGEvZDVhT3JpVStjWkRpZEV0dzV0?=
+ =?utf-8?B?cDhGdXd6OHdpYmFzK0lRS0R2SFVRUWZ1dngwRmxpdHR4WWdmSTI2bkRlZFdm?=
+ =?utf-8?B?djhnQStHdU1kZE1tcnZ3UzlRdmtmb1g0Q01VSDY3WUY0WjdwT2dWY3NCSVh6?=
+ =?utf-8?B?QStyRjEvVE9IekZwSHkvejlJV0xsbWtoQkhZdkJvQlN2bVVBV2xJOHhEeXly?=
+ =?utf-8?B?QWppUlBrS1dyRlBEeElrYVZmTGJvRzJ3dUhMcW01MGlwd2d1Ni84SEJMMkJL?=
+ =?utf-8?B?YS9MTXZXSTFQS0FjSHlld2RQeVlrTGlBbGZGQW5tc2dKWk90TnV1MGFQaU0z?=
+ =?utf-8?B?aExlWStMQlI0Vy9wZVhpQmlLVzZ3Mm4zV3dsTGo5QXQzaG9UN1hKWjQwZC9j?=
+ =?utf-8?B?OFVkS20vU1lITmlvZWNYWloreTNaSW1seUM3YnNmM2J5aWFRekdrY1lQYWV0?=
+ =?utf-8?B?VEtMd0xVZFpHcDdybXg1L0xESG54OXhVdVl4MDRzaXRMV2lDSWY5R05TZWJN?=
+ =?utf-8?B?T251cXpDaHdGVEhBMzA3UjdEckJySDd2dWEwZ3RuNWdJU2FJUDc0U3Q3bitl?=
+ =?utf-8?B?bWZmQ2lZdHA2SlAzMXhScE9zOFp2dzN1ZG9RVTJUMFJybDBNMnhHUlBZcmkx?=
+ =?utf-8?B?bytrcG1Pb2U2a3FKQWhLMWltMElVNXJRNU1CY3Zaa0tocE5GSU9jY0RXNk5x?=
+ =?utf-8?B?TmR1SldmQWk2TEZlMENqY1BXSDJ4dVVBQzZIZTk1aWJCRUZDVUZ5SWlUOUw2?=
+ =?utf-8?B?NElCYzRlQUY0SWJaODR0NStpM0hsY0gvc2EwOXlpY2dkcnZ2TDk0ZG9xVThh?=
+ =?utf-8?Q?LfrqAinfm/3gIq8c=3D?=
+X-Exchange-RoutingPolicyChecked: CpyNZAdq/img89HA/S4pQLRAOGUjxuvsZq5+vgMnmN0bfOJrRqPDQot8c1DZQYgvIQ5HAm3tlTG5PfxaCjw1syWlX/7TGd1xU7Cl3L6g+leaTGe3vV1H0vcQoo+tU9wWXq9RQBRcM0ExgY2QCjX/XTQRia5N2jzoAtibsjRrz5uCdvpfJUFaMZiTXT7hYG9osUerz6KPqgIfvawJtRIQoXXVz4XronbmUluKlPQ2YKOsONiuR9K1bqIWlWPWcEEJYjS9jEKw/L3v1uR77KVebJ1G3x+vrMJi7y1HWIT2M7wTdKnxuttRbfIkhdLpSCC3ujKKp1nDepBAX8VR7waLPg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2cf0672-9d15-4cb1-c094-08defd4feb41
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7556.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2026 17:41:22.8055 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iZoNO4NP87zaOHHhALe/s7qA5212JawsUMCksCYdZfmx7mTwrpJPCPbDH29+CT6OPMV2ISPEbZLe6L+sgGhbKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7723
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,563 +173,898 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5073019465288969522==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/xe/xe3p_hpm: Remove WA 14025883347 (rev2)
-URL   : https://patchwork.freedesktop.org/series/172379/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef_FULL -> xe-pw-172379v2_FULL
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172379v2_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_big_fb@4-tiled-32bpp-rotate-90:
-    - shard-bmg:          NOTRUN -> [SKIP][1] ([Intel XE#2327])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_big_fb@4-tiled-32bpp-rotate-90.html
-
-  * igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180:
-    - shard-bmg:          NOTRUN -> [SKIP][2] ([Intel XE#1124])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180.html
-
-  * igt@kms_chamelium_frames@dp-crc-multiple:
-    - shard-bmg:          NOTRUN -> [SKIP][3] ([Intel XE#2252]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_chamelium_frames@dp-crc-multiple.html
-
-  * igt@kms_cursor_crc@cursor-sliding-32x10:
-    - shard-bmg:          NOTRUN -> [SKIP][4] ([Intel XE#2320])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_cursor_crc@cursor-sliding-32x10.html
-
-  * igt@kms_dsc@dsc-fractional-bpp-with-bpc-bigjoiner:
-    - shard-bmg:          NOTRUN -> [SKIP][5] ([Intel XE#8265])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_dsc@dsc-fractional-bpp-with-bpc-bigjoiner.html
-
-  * igt@kms_feature_discovery@display-4x:
-    - shard-bmg:          NOTRUN -> [SKIP][6] ([Intel XE#1138] / [Intel XE#7344])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_feature_discovery@display-4x.html
-
-  * igt@kms_flip@2x-plain-flip-ts-check:
-    - shard-bmg:          [PASS][7] -> [FAIL][8] ([Intel XE#6266]) +1 other test fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-1/igt@kms_flip@2x-plain-flip-ts-check.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@kms_flip@2x-plain-flip-ts-check.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@c-edp1:
-    - shard-lnl:          [PASS][9] -> [FAIL][10] ([Intel XE#301] / [Intel XE#3149])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-
-  * igt@kms_frontbuffer_tracking@drrs-1p-primscrn-spr-indfb-fullscreen:
-    - shard-bmg:          NOTRUN -> [SKIP][11] ([Intel XE#2311]) +4 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_frontbuffer_tracking@drrs-1p-primscrn-spr-indfb-fullscreen.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-onoff:
-    - shard-bmg:          NOTRUN -> [SKIP][12] ([Intel XE#4141])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-onoff.html
-
-  * igt@kms_frontbuffer_tracking@fbc-abgr161616f-draw-mmap-wc:
-    - shard-bmg:          NOTRUN -> [SKIP][13] ([Intel XE#7061] / [Intel XE#7356])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_frontbuffer_tracking@fbc-abgr161616f-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@psrhdr-modesetfrombusy:
-    - shard-bmg:          NOTRUN -> [SKIP][14] ([Intel XE#2313]) +6 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_frontbuffer_tracking@psrhdr-modesetfrombusy.html
-
-  * igt@kms_joiner@basic-ultra-joiner:
-    - shard-bmg:          NOTRUN -> [SKIP][15] ([Intel XE#6911] / [Intel XE#7378])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_joiner@basic-ultra-joiner.html
-
-  * igt@kms_mst@mst-suspend-read-crc:
-    - shard-bmg:          NOTRUN -> [SKIP][16] ([Intel XE#8348])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_mst@mst-suspend-read-crc.html
-
-  * igt@kms_pm_backlight@brightness-with-dpms:
-    - shard-bmg:          NOTRUN -> [SKIP][17] ([Intel XE#2938] / [Intel XE#7376] / [Intel XE#7760])
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_pm_backlight@brightness-with-dpms.html
-
-  * igt@kms_psr2_sf@fbc-psr2-overlay-plane-move-continuous-exceed-fully-sf:
-    - shard-bmg:          NOTRUN -> [SKIP][18] ([Intel XE#1489])
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_psr2_sf@fbc-psr2-overlay-plane-move-continuous-exceed-fully-sf.html
-
-  * igt@kms_psr@fbc-pr-no-drrs:
-    - shard-bmg:          NOTRUN -> [SKIP][19] ([Intel XE#2234] / [Intel XE#2850]) +1 other test skip
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_psr@fbc-pr-no-drrs.html
-
-  * igt@kms_sharpness_filter@invalid-filter-with-plane:
-    - shard-bmg:          NOTRUN -> [SKIP][20] ([Intel XE#6503])
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_sharpness_filter@invalid-filter-with-plane.html
-
-  * igt@sriov_basic@pf-unbind-with-vf-probed:
-    - shard-bmg:          NOTRUN -> [ABORT][21] ([Intel XE#8868])
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@sriov_basic@pf-unbind-with-vf-probed.html
-
-  * igt@xe_evict@evict-mixed-many-threads-small:
-    - shard-bmg:          [PASS][22] -> [INCOMPLETE][23] ([Intel XE#6321] / [Intel XE#8355])
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-8/igt@xe_evict@evict-mixed-many-threads-small.html
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@xe_evict@evict-mixed-many-threads-small.html
-
-  * igt@xe_evict@evict-small-multi-queue-priority:
-    - shard-bmg:          NOTRUN -> [SKIP][24] ([Intel XE#8370])
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@xe_evict@evict-small-multi-queue-priority.html
-
-  * igt@xe_exec_fault_mode@many-execqueues-multi-queue-userptr-invalidate-imm:
-    - shard-bmg:          NOTRUN -> [SKIP][25] ([Intel XE#8374]) +1 other test skip
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@xe_exec_fault_mode@many-execqueues-multi-queue-userptr-invalidate-imm.html
-
-  * igt@xe_exec_multi_queue@few-execs-preempt-mode-dyn-priority:
-    - shard-bmg:          NOTRUN -> [SKIP][26] ([Intel XE#8364]) +4 other tests skip
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@xe_exec_multi_queue@few-execs-preempt-mode-dyn-priority.html
-
-  * igt@xe_exec_threads@threads-multi-queue-mixed-fd-rebind:
-    - shard-bmg:          NOTRUN -> [SKIP][27] ([Intel XE#8378]) +1 other test skip
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@xe_exec_threads@threads-multi-queue-mixed-fd-rebind.html
-
-  * igt@xe_pxp@pxp-stale-bo-bind-post-rpm:
-    - shard-bmg:          NOTRUN -> [SKIP][28] ([Intel XE#4733] / [Intel XE#7417])
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@xe_pxp@pxp-stale-bo-bind-post-rpm.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_atomic_transition@plane-all-modeset-transition-fencing:
-    - shard-bmg:          [INCOMPLETE][29] ([Intel XE#6819] / [Intel XE#8174]) -> [PASS][30] +1 other test pass
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-3/igt@kms_atomic_transition@plane-all-modeset-transition-fencing.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_atomic_transition@plane-all-modeset-transition-fencing.html
-
-  * igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs:
-    - shard-bmg:          [INCOMPLETE][31] ([Intel XE#7084] / [Intel XE#8150]) -> [PASS][32] +1 other test pass
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-10/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@a-edp1:
-    - shard-lnl:          [FAIL][33] ([Intel XE#301]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-
-  * igt@kms_setmode@basic:
-    - shard-bmg:          [FAIL][35] ([Intel XE#8618]) -> [PASS][36] +1 other test pass
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-5/igt@kms_setmode@basic.html
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@kms_setmode@basic.html
-
-  * igt@kms_setmode@basic@pipe-c-hdmi-a-3:
-    - shard-bmg:          [FAIL][37] -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-5/igt@kms_setmode@basic@pipe-c-hdmi-a-3.html
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@kms_setmode@basic@pipe-c-hdmi-a-3.html
-
-  * igt@xe_evict@evict-beng-mixed-many-threads-small:
-    - shard-bmg:          [INCOMPLETE][39] ([Intel XE#6321] / [Intel XE#8355]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-1/igt@xe_evict@evict-beng-mixed-many-threads-small.html
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@xe_evict@evict-beng-mixed-many-threads-small.html
-
-  * igt@xe_pmu@engine-activity-accuracy-50@engine-drm_xe_engine_class_video_enhance0:
-    - shard-bmg:          [FAIL][41] ([Intel XE#8555]) -> [PASS][42] +2 other tests pass
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-2/igt@xe_pmu@engine-activity-accuracy-50@engine-drm_xe_engine_class_video_enhance0.html
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-10/igt@xe_pmu@engine-activity-accuracy-50@engine-drm_xe_engine_class_video_enhance0.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions:
-    - shard-lnl:          [SKIP][43] ([Intel XE#309] / [Intel XE#7343] / [Intel XE#7935]) -> [SKIP][44] ([Intel XE#309] / [Intel XE#7343])
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic:
-    - shard-bmg:          [FAIL][45] ([Intel XE#7571]) -> [FAIL][46] ([Intel XE#7809])
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-10/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-4/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-lnl:          [FAIL][47] ([Intel XE#301]) -> [FAIL][48] ([Intel XE#301] / [Intel XE#3149])
-   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank.html
-   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank.html
-
-  * igt@kms_tiled_display@basic-test-pattern:
-    - shard-bmg:          [SKIP][49] ([Intel XE#2426] / [Intel XE#5848]) -> [FAIL][50] ([Intel XE#1729] / [Intel XE#7424])
-   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-6/igt@kms_tiled_display@basic-test-pattern.html
-   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-1/igt@kms_tiled_display@basic-test-pattern.html
-
-  * igt@kms_tiled_display@basic-test-pattern-with-chamelium:
-    - shard-bmg:          [SKIP][51] ([Intel XE#2509] / [Intel XE#7437]) -> [SKIP][52] ([Intel XE#2426] / [Intel XE#5848])
-   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-4/igt@kms_tiled_display@basic-test-pattern-with-chamelium.html
-   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-8/igt@kms_tiled_display@basic-test-pattern-with-chamelium.html
-
-  
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#1138]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1138
-  [Intel XE#1489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489
-  [Intel XE#1729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1729
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
-  [Intel XE#2311]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311
-  [Intel XE#2313]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313
-  [Intel XE#2320]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320
-  [Intel XE#2327]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327
-  [Intel XE#2426]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426
-  [Intel XE#2509]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2509
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#2938]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2938
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#309]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/309
-  [Intel XE#3149]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149
-  [Intel XE#4141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141
-  [Intel XE#4733]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733
-  [Intel XE#5848]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5848
-  [Intel XE#6266]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6266
-  [Intel XE#6321]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6321
-  [Intel XE#6503]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503
-  [Intel XE#6819]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6819
-  [Intel XE#6911]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6911
-  [Intel XE#7061]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061
-  [Intel XE#7084]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7084
-  [Intel XE#7343]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7343
-  [Intel XE#7344]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7344
-  [Intel XE#7356]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356
-  [Intel XE#7376]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7376
-  [Intel XE#7378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7378
-  [Intel XE#7417]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7417
-  [Intel XE#7424]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7424
-  [Intel XE#7437]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7437
-  [Intel XE#7571]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7571
-  [Intel XE#7760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7760
-  [Intel XE#7809]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7809
-  [Intel XE#7935]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7935
-  [Intel XE#8150]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8150
-  [Intel XE#8174]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8174
-  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
-  [Intel XE#8348]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8348
-  [Intel XE#8355]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8355
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-  [Intel XE#8370]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8370
-  [Intel XE#8374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8374
-  [Intel XE#8378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8378
-  [Intel XE#8555]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8555
-  [Intel XE#8618]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8618
-  [Intel XE#8868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8868
-
-
-Build changes
--------------
-
-  * Linux: xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef -> xe-pw-172379v2
-
-  IGT_9059: f5a4ff79434df36db1d6b13deb37c90a6602565e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef: 275df33dcf4c5d018717867a0b29ed1d3b62c1ef
-  xe-pw-172379v2: 172379v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/index.html
-
---===============5073019465288969522==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe3p_hpm: Remove WA 14025883347 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172379/">https://patchwork.freedesktop.org/series/172379/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef_FULL -&gt; xe-pw-172379v2_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172379v2_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@4-tiled-32bpp-rotate-90:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_big_fb@4-tiled-32bpp-rotate-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327">Intel XE#2327</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@dp-crc-multiple:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_chamelium_frames@dp-crc-multiple.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252">Intel XE#2252</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-sliding-32x10:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_cursor_crc@cursor-sliding-32x10.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-fractional-bpp-with-bpc-bigjoiner:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_dsc@dsc-fractional-bpp-with-bpc-bigjoiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_feature_discovery@display-4x:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_feature_discovery@display-4x.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1138">Intel XE#1138</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7344">Intel XE#7344</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-plain-flip-ts-check:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-1/igt@kms_flip@2x-plain-flip-ts-check.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@kms_flip@2x-plain-flip-ts-check.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6266">Intel XE#6266</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@c-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-1p-primscrn-spr-indfb-fullscreen:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_frontbuffer_tracking@drrs-1p-primscrn-spr-indfb-fullscreen.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-onoff:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-abgr161616f-draw-mmap-wc:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_frontbuffer_tracking@fbc-abgr161616f-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356">Intel XE#7356</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psrhdr-modesetfrombusy:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_frontbuffer_tracking@psrhdr-modesetfrombusy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_joiner@basic-ultra-joiner:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_joiner@basic-ultra-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6911">Intel XE#6911</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7378">Intel XE#7378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_mst@mst-suspend-read-crc:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_mst@mst-suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8348">Intel XE#8348</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@brightness-with-dpms:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_pm_backlight@brightness-with-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2938">Intel XE#2938</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7376">Intel XE#7376</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7760">Intel XE#7760</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-overlay-plane-move-continuous-exceed-fully-sf:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_psr2_sf@fbc-psr2-overlay-plane-move-continuous-exceed-fully-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@fbc-pr-no-drrs:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_psr@fbc-pr-no-drrs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_sharpness_filter@invalid-filter-with-plane:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_sharpness_filter@invalid-filter-with-plane.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503">Intel XE#6503</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@pf-unbind-with-vf-probed:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@sriov_basic@pf-unbind-with-vf-probed.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8868">Intel XE#8868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-mixed-many-threads-small:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-8/igt@xe_evict@evict-mixed-many-threads-small.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@xe_evict@evict-mixed-many-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6321">Intel XE#6321</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8355">Intel XE#8355</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-multi-queue-priority:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@xe_evict@evict-small-multi-queue-priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8370">Intel XE#8370</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@many-execqueues-multi-queue-userptr-invalidate-imm:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@xe_exec_fault_mode@many-execqueues-multi-queue-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8374">Intel XE#8374</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@few-execs-preempt-mode-dyn-priority:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@xe_exec_multi_queue@few-execs-preempt-mode-dyn-priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-multi-queue-mixed-fd-rebind:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@xe_exec_threads@threads-multi-queue-mixed-fd-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8378">Intel XE#8378</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pxp@pxp-stale-bo-bind-post-rpm:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@xe_pxp@pxp-stale-bo-bind-post-rpm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733">Intel XE#4733</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7417">Intel XE#7417</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_atomic_transition@plane-all-modeset-transition-fencing:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-3/igt@kms_atomic_transition@plane-all-modeset-transition-fencing.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6819">Intel XE#6819</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8174">Intel XE#8174</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-3/igt@kms_atomic_transition@plane-all-modeset-transition-fencing.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-10/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7084">Intel XE#7084</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8150">Intel XE#8150</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-9/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@a-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-5/igt@kms_setmode@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8618">Intel XE#8618</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@kms_setmode@basic.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-5/igt@kms_setmode@basic@pipe-c-hdmi-a-3.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@kms_setmode@basic@pipe-c-hdmi-a-3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-mixed-many-threads-small:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-1/igt@xe_evict@evict-beng-mixed-many-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6321">Intel XE#6321</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8355">Intel XE#8355</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-7/igt@xe_evict@evict-beng-mixed-many-threads-small.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pmu@engine-activity-accuracy-50@engine-drm_xe_engine_class_video_enhance0:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-2/igt@xe_pmu@engine-activity-accuracy-50@engine-drm_xe_engine_class_video_enhance0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8555">Intel XE#8555</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-10/igt@xe_pmu@engine-activity-accuracy-50@engine-drm_xe_engine_class_video_enhance0.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/309">Intel XE#309</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7343">Intel XE#7343</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7935">Intel XE#7935</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/309">Intel XE#309</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7343">Intel XE#7343</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-10/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7571">Intel XE#7571</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-4/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7809">Intel XE#7809</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_tiled_display@basic-test-pattern:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-6/igt@kms_tiled_display@basic-test-pattern.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426">Intel XE#2426</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5848">Intel XE#5848</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-1/igt@kms_tiled_display@basic-test-pattern.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1729">Intel XE#1729</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7424">Intel XE#7424</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_tiled_display@basic-test-pattern-with-chamelium:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/shard-bmg-4/igt@kms_tiled_display@basic-test-pattern-with-chamelium.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2509">Intel XE#2509</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7437">Intel XE#7437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172379v2/shard-bmg-8/igt@kms_tiled_display@basic-test-pattern-with-chamelium.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426">Intel XE#2426</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5848">Intel XE#5848</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef -&gt; xe-pw-172379v2</li>
-</ul>
-<p>IGT_9059: f5a4ff79434df36db1d6b13deb37c90a6602565e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef: 275df33dcf4c5d018717867a0b29ed1d3b62c1ef<br />
-  xe-pw-172379v2: 172379v2</p>
-
-</body>
+--------------n65QOvVZNh3gtg0UXHL4wnYS
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+On 15-08-2026 02:51, Umesh Nerlige Ramappa wrote:
+> On Fri, Aug 14, 2026 at 02:53:06AM -0700, Anoop, Vijay wrote:
+>> From: Anoop Vijay <anoop.c.vijay@intel.com>
+>>
+>> Add xe_sysctrl_check_app_status() to query the state of a System
+>> Controller application using get_app_status_by_id mailbox command.
+>>
+>> The helper maps xe_sysctrl_app_id values to firmware application
+>> IDs and returns the reported application state. Add a convenience
+>> wrapper to check diag firmware application readiness.
+>>
+>> Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+>> ---
+>> v2: (Badal)
+>> - Return SysCtrl firmware application states instead of errno for
+>>  application lifecycle conditions
+>>
+>> v3: (Riana, Badal)
+>> - Replace string-based app identifiers with enum xe_sysctrl_app_id
+>> - Use get_app_status_by_id (opcode 0x05)
+>> - Move mailbox definitions to xe_sysctrl_mailbox_types.h
+>> - Return enum xe_sysctrl_fw_status consistently
+>> - Map communication failures to COMM_FAILURE
+>> - Add INITIALIZED state and status helpers
+>> - Fix Diagnostics typo
+>>
+>> v4: (Anshuman)
+>> - Make xe_sysctrl_check_app_status() internal
+>> - Remove unused app identifier
+>>
+>> v5: (Anshuman)
+>> - Rename OOBMSM status helper to use xe_sysctrl_* prefix
+>> - Remove xe_is_diag_fw_ready() helper
+>>
+>> v6: (Riana)
+>> - Use xe_sysctrl_create_command() helper instead of manual FIELD_PREP
+>>  header packing
+>> - Rename xe_sysctrl_get_app_status_by_id_{req,resp} to shorter names
+>> - Use hex constant for application ID
+>> - Move oCode application readiness helper to a separate patch
+>> - Add xe_sysctrl_is_diag_fw_ready() helper.
+>>
+>> v7: (Umesh)
+>> - Clarify xe_sysctrl_is_diag_fw_ready() comment for sysctrl-less 
+>> platforms
+>> - Move XE_SYSCTRL_APP_RESP_* flags and enum xe_sysctrl_app_id to 
+>> xe_sysctrl.c
+>> ---
+>> drivers/gpu/drm/xe/xe_sysctrl.c               | 80 +++++++++++++++++++
+>> drivers/gpu/drm/xe/xe_sysctrl.h               |  1 +
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 47 +++++++++++
+>> 3 files changed, 128 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c 
+>> b/drivers/gpu/drm/xe/xe_sysctrl.c
+>> index 1db20be8158b..c53a26af3189 100644
+>> --- a/drivers/gpu/drm/xe/xe_sysctrl.c
+>> +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+>> @@ -13,9 +13,11 @@
+>> #include "xe_device.h"
+>> #include "xe_mmio.h"
+>> #include "xe_pm.h"
+>> +#include "xe_printk.h"
+>> #include "xe_soc_remapper.h"
+>> #include "xe_sysctrl.h"
+>> #include "xe_sysctrl_mailbox.h"
+>> +#include "xe_sysctrl_mailbox_types.h"
+>> #include "xe_sysctrl_types.h"
+>>
+>> /**
+>> @@ -29,6 +31,20 @@
+>>  * This module provides initialization and support code for interacting
+>>  * with System Controller through the mailbox interface.
+>>  */
+>> +
+>> +/* Application status flags reported in 
+>> xe_sysctrl_app_status_resp.flags */
+>> +#define XE_SYSCTRL_APP_RESP_VALID    BIT(0)
+>> +#define XE_SYSCTRL_APP_RESP_BOOTED    BIT(1)
+>> +#define XE_SYSCTRL_APP_RESP_INITIALIZED    BIT(2)
+>> +
+>> +/*
+>> + * Known System Controller application identifiers, keyed by firmware
+>> + * application ID.
+>> + */
+>> +enum xe_sysctrl_app_id {
+>> +    XE_SYSCTRL_APP_DIAG    = 0x0D,
+>> +};
+>> +
+>> static void sysctrl_fini(void *arg)
+>> {
+>>     struct xe_device *xe = arg;
+>> @@ -130,3 +146,67 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
+>>
+>>     xe_sysctrl_mailbox_init(sc);
+>> }
+>> +
+>> +static enum xe_sysctrl_fw_status
+>> +xe_sysctrl_check_app_status(struct xe_device *xe, enum 
+>> xe_sysctrl_app_id app_id)
+>> +{
+>> +    struct xe_sysctrl_app_status_req req = {};
+>> +    struct xe_sysctrl_app_status_resp resp = {};
+>> +    struct xe_sysctrl_mailbox_command cmd = {};
+>> +    size_t out_len = 0;
+>> +    u32 flags;
+>> +    int ret;
+>> +
+>> +    if (!xe->info.has_sysctrl)
+>> +        return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+>> +
+>> +    req.app_id = (u8)app_id;
+>> +
+>> +    xe_sysctrl_create_command(&cmd, XE_SYSCTRL_GROUP_CORE, 
+>> XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID,
+>> +                  &req, sizeof(req), &resp, sizeof(resp));
+>> +
+>> +    ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
+>> +    if (ret)
+>> +        return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
+>> +
+>> +    if (out_len != sizeof(resp)) {
+>> +        xe_err(xe, "sysctrl: unexpected get app status response 
+>> length %zu (expected %zu)\n",
+>> +               out_len, sizeof(resp));
+>> +        return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
+>> +    }
+>> +
+>> +    flags = resp.flags;
+>> +
+>> +    if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
+>> +        return XE_SYSCTRL_FIRMWARE_APP_INVALID;
+>> +
+>> +    if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
+>> +        return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
+>> +
+>> +    if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
+>> +        return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
+>> +
+>> +    return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
+>> +}
+>> +
+>> +/**
+>> + * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is fully 
+>> initialized
+>> + * @xe: xe device instance
+>> + *
+>> + * Returns true if diag firmware has reached the initialized state, 
+>> indicating
+>> + * it is ready to handle requests. On platforms without System 
+>> Controller
+>> + * support there is no System Controller mailbox to gate on, so diag 
+>> firmware
+>> + * readiness is not tracked through this path; the function 
+>> unconditionally
+>> + * returns true so callers are not blocked by this check on such 
+>> platforms.
+>
+> I am still not clear how the caller will handle the 2 scenarios - (1) 
+> SC is present, but diag app is not initialized vs (2) SC and mailbox 
+> are not available and hence Diag App is not supported. The caller will 
+> just see true in both cases.
+>
+> Instead I would see this as 2 helpers:
+>
+> xe_sysctrl_is_diag_fw_supported() that returns
+> status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+>
+> and
+>
+> xe_sysctrl_is_diag_fw_ready() that returns
+> status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
+>
+> That would be clearer to the caller.
+>
+> Thanks,
+> Umesh
+>
+All current/planned callers of xe_sysctrl_is_oobmsm_fw_ready() / 
+xe_sysctrl_is_diag_fw_ready() (xe_vsec.c retry/gate logic, 
+xe_sysctrl_debugfs.c RAS injection gate, xe_sysctrl_fwctl.c capability 
+gate) only need a yes/no answer to "Can this functionality be used now?" 
+  and treat NOTSUPP and 'not yet initialized' the same way.
+
+Folding NOTSUPP into 'ready' is intentional. It lets sysctrl-less 
+platforms skip straight through.
+
+Splitting into is_supported() + is_ready() wouldn't change any caller's 
+behavior, but would require every caller to do '!supported() || ready()' 
+check. This risks a caller checking only is_ready(), resulting in 
+unnecessary retries or failures on a NOTSUPP platform.
+
+Given the current usage, I'd prefer to keep the combined helper and add 
+a more granular status/support helper in the future if a real consumer 
+requires that distinction.
+
+Thanks,
+Anoop
+>
+>> + *
+>> + * Return: true if diag firmware is initialized, or if System 
+>> Controller is
+>> + * not present on this platform; false otherwise
+>> + */
+>> +bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe)
+>> +{
+>> +    enum xe_sysctrl_fw_status status =
+>> +        xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
+>> +
+>> +    return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
+>> +           status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h 
+>> b/drivers/gpu/drm/xe/xe_sysctrl.h
+>> index 090dffb6d55f..8dc576796890 100644
+>> --- a/drivers/gpu/drm/xe/xe_sysctrl.h
+>> +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+>> @@ -20,5 +20,6 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
+>> int xe_sysctrl_init(struct xe_device *xe);
+>> void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
+>> void xe_sysctrl_pm_resume(struct xe_device *xe);
+>> +bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
+>>
+>> #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h 
+>> b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>> index d0341538ad05..f1e4253fda4b 100644
+>> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>> @@ -14,9 +14,11 @@
+>>  * enum xe_sysctrl_group - System Controller command groups
+>>  *
+>>  * @XE_SYSCTRL_GROUP_GFSP: GFSP group
+>> + * @XE_SYSCTRL_GROUP_CORE: Core group
+>>  */
+>> enum xe_sysctrl_group {
+>>     XE_SYSCTRL_GROUP_GFSP            = 0x01,
+>> +    XE_SYSCTRL_GROUP_CORE            = 0xFF,
+>> };
+>>
+>> /**
+>> @@ -38,6 +40,51 @@ enum xe_sysctrl_gfsp_cmd {
+>>     XE_SYSCTRL_CMD_SET_HEALTH        = 0x0C,
+>> };
+>>
+>> +/**
+>> + * enum xe_sysctrl_core_cmd - Commands supported by Core group
+>> + *
+>> + * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status 
+>> by ID
+>> + */
+>> +enum xe_sysctrl_core_cmd {
+>> +    XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID        = 0x05,
+>> +};
+>> +
+>> +/**
+>> + * struct xe_sysctrl_app_status_req - Get application status request
+>> + *
+>> + * @app_id: Application ID for which to retrieve status
+>> + */
+>> +struct xe_sysctrl_app_status_req {
+>> +    u8 app_id;
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct xe_sysctrl_app_status_resp - Get application status response
+>> + * @flags: Application status flags interpreted by 
+>> xe_sysctrl_check_app_status()
+>> + */
+>> +struct xe_sysctrl_app_status_resp {
+>> +    u32 flags;
+>> +} __packed;
+>> +
+>> +/**
+>> + * enum xe_sysctrl_fw_status - System Controller firmware 
+>> application lifecycle states
+>> + *
+>> + * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by 
+>> firmware
+>> + * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has 
+>> not yet booted
+>> + * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed, 
+>> post-boot init pending
+>> + * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully operational
+>> + * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available 
+>> on this device
+>> + * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System 
+>> Controller firmware failed
+>> + */
+>> +enum xe_sysctrl_fw_status {
+>> +    XE_SYSCTRL_FIRMWARE_APP_INVALID,
+>> +    XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
+>> +    XE_SYSCTRL_FIRMWARE_APP_BOOTED,
+>> +    XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
+>> +    XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
+>> +    XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
+>> +};
+>> +
+>> /**
+>>  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
+>>  */
+>> -- 
+>> 2.43.0
+>>
+--------------n65QOvVZNh3gtg0UXHL4wnYS
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 15-08-2026 02:51, Umesh Nerlige
+      Ramappa wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:an+G21kQjK+AUI9K@soc-5CG1426VCC.clients.intel.com">On
+      Fri, Aug 14, 2026 at 02:53:06AM -0700, Anoop, Vijay wrote:
+      <br>
+      <blockquote type="cite">From: Anoop Vijay
+        <a class="moz-txt-link-rfc2396E" href="mailto:anoop.c.vijay@intel.com">&lt;anoop.c.vijay@intel.com&gt;</a>
+        <br>
+        <br>
+        Add xe_sysctrl_check_app_status() to query the state of a System
+        <br>
+        Controller application using get_app_status_by_id mailbox
+        command.
+        <br>
+        <br>
+        The helper maps xe_sysctrl_app_id values to firmware application
+        <br>
+        IDs and returns the reported application state. Add a
+        convenience
+        <br>
+        wrapper to check diag firmware application readiness.
+        <br>
+        <br>
+        Signed-off-by: Anoop Vijay <a class="moz-txt-link-rfc2396E" href="mailto:anoop.c.vijay@intel.com">&lt;anoop.c.vijay@intel.com&gt;</a>
+        <br>
+        ---
+        <br>
+        v2: (Badal)
+        <br>
+        - Return SysCtrl firmware application states instead of errno
+        for
+        <br>
+        &nbsp;application lifecycle conditions
+        <br>
+        <br>
+        v3: (Riana, Badal)
+        <br>
+        - Replace string-based app identifiers with enum
+        xe_sysctrl_app_id
+        <br>
+        - Use get_app_status_by_id (opcode 0x05)
+        <br>
+        - Move mailbox definitions to xe_sysctrl_mailbox_types.h
+        <br>
+        - Return enum xe_sysctrl_fw_status consistently
+        <br>
+        - Map communication failures to COMM_FAILURE
+        <br>
+        - Add INITIALIZED state and status helpers
+        <br>
+        - Fix Diagnostics typo
+        <br>
+        <br>
+        v4: (Anshuman)
+        <br>
+        - Make xe_sysctrl_check_app_status() internal
+        <br>
+        - Remove unused app identifier
+        <br>
+        <br>
+        v5: (Anshuman)
+        <br>
+        - Rename OOBMSM status helper to use xe_sysctrl_* prefix
+        <br>
+        - Remove xe_is_diag_fw_ready() helper
+        <br>
+        <br>
+        v6: (Riana)
+        <br>
+        - Use xe_sysctrl_create_command() helper instead of manual
+        FIELD_PREP
+        <br>
+        &nbsp;header packing
+        <br>
+        - Rename xe_sysctrl_get_app_status_by_id_{req,resp} to shorter
+        names
+        <br>
+        - Use hex constant for application ID
+        <br>
+        - Move oCode application readiness helper to a separate patch
+        <br>
+        - Add xe_sysctrl_is_diag_fw_ready() helper.
+        <br>
+        <br>
+        v7: (Umesh)
+        <br>
+        - Clarify xe_sysctrl_is_diag_fw_ready() comment for sysctrl-less
+        platforms
+        <br>
+        - Move XE_SYSCTRL_APP_RESP_* flags and enum xe_sysctrl_app_id to
+        xe_sysctrl.c
+        <br>
+        ---
+        <br>
+        drivers/gpu/drm/xe/xe_sysctrl.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 80
+        +++++++++++++++++++
+        <br>
+        drivers/gpu/drm/xe/xe_sysctrl.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 1 +
+        <br>
+        drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 47 +++++++++++
+        <br>
+        3 files changed, 128 insertions(+)
+        <br>
+        <br>
+        diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c
+        b/drivers/gpu/drm/xe/xe_sysctrl.c
+        <br>
+        index 1db20be8158b..c53a26af3189 100644
+        <br>
+        --- a/drivers/gpu/drm/xe/xe_sysctrl.c
+        <br>
+        +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+        <br>
+        @@ -13,9 +13,11 @@
+        <br>
+        #include &quot;xe_device.h&quot;
+        <br>
+        #include &quot;xe_mmio.h&quot;
+        <br>
+        #include &quot;xe_pm.h&quot;
+        <br>
+        +#include &quot;xe_printk.h&quot;
+        <br>
+        #include &quot;xe_soc_remapper.h&quot;
+        <br>
+        #include &quot;xe_sysctrl.h&quot;
+        <br>
+        #include &quot;xe_sysctrl_mailbox.h&quot;
+        <br>
+        +#include &quot;xe_sysctrl_mailbox_types.h&quot;
+        <br>
+        #include &quot;xe_sysctrl_types.h&quot;
+        <br>
+        <br>
+        /**
+        <br>
+        @@ -29,6 +31,20 @@
+        <br>
+        &nbsp;* This module provides initialization and support code for
+        interacting
+        <br>
+        &nbsp;* with System Controller through the mailbox interface.
+        <br>
+        &nbsp;*/
+        <br>
+        +
+        <br>
+        +/* Application status flags reported in
+        xe_sysctrl_app_status_resp.flags */
+        <br>
+        +#define XE_SYSCTRL_APP_RESP_VALID&nbsp;&nbsp;&nbsp; BIT(0)
+        <br>
+        +#define XE_SYSCTRL_APP_RESP_BOOTED&nbsp;&nbsp;&nbsp; BIT(1)
+        <br>
+        +#define XE_SYSCTRL_APP_RESP_INITIALIZED&nbsp;&nbsp;&nbsp; BIT(2)
+        <br>
+        +
+        <br>
+        +/*
+        <br>
+        + * Known System Controller application identifiers, keyed by
+        firmware
+        <br>
+        + * application ID.
+        <br>
+        + */
+        <br>
+        +enum xe_sysctrl_app_id {
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_APP_DIAG&nbsp;&nbsp;&nbsp; = 0x0D,
+        <br>
+        +};
+        <br>
+        +
+        <br>
+        static void sysctrl_fini(void *arg)
+        <br>
+        {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;struct xe_device *xe = arg;
+        <br>
+        @@ -130,3 +146,67 @@ void xe_sysctrl_pm_resume(struct xe_device
+        *xe)
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;xe_sysctrl_mailbox_init(sc);
+        <br>
+        }
+        <br>
+        +
+        <br>
+        +static enum xe_sysctrl_fw_status
+        <br>
+        +xe_sysctrl_check_app_status(struct xe_device *xe, enum
+        xe_sysctrl_app_id app_id)
+        <br>
+        +{
+        <br>
+        +&nbsp;&nbsp;&nbsp; struct xe_sysctrl_app_status_req req = {};
+        <br>
+        +&nbsp;&nbsp;&nbsp; struct xe_sysctrl_app_status_resp resp = {};
+        <br>
+        +&nbsp;&nbsp;&nbsp; struct xe_sysctrl_mailbox_command cmd = {};
+        <br>
+        +&nbsp;&nbsp;&nbsp; size_t out_len = 0;
+        <br>
+        +&nbsp;&nbsp;&nbsp; u32 flags;
+        <br>
+        +&nbsp;&nbsp;&nbsp; int ret;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (!xe-&gt;info.has_sysctrl)
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; req.app_id = (u8)app_id;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; xe_sysctrl_create_command(&amp;cmd, XE_SYSCTRL_GROUP_CORE,
+        XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID,
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;req, sizeof(req), &amp;resp,
+        sizeof(resp));
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; ret = xe_sysctrl_send_command(&amp;xe-&gt;sc, &amp;cmd,
+        &amp;out_len);
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (ret)
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (out_len != sizeof(resp)) {
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_err(xe, &quot;sysctrl: unexpected get app status response
+        length %zu (expected %zu)\n&quot;,
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out_len, sizeof(resp));
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
+        <br>
+        +&nbsp;&nbsp;&nbsp; }
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; flags = resp.flags;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (!(flags &amp; XE_SYSCTRL_APP_RESP_VALID))
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return XE_SYSCTRL_FIRMWARE_APP_INVALID;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (!(flags &amp; XE_SYSCTRL_APP_RESP_BOOTED))
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (!(flags &amp; XE_SYSCTRL_APP_RESP_INITIALIZED))
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
+        <br>
+        +}
+        <br>
+        +
+        <br>
+        +/**
+        <br>
+        + * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is
+        fully initialized
+        <br>
+        + * @xe: xe device instance
+        <br>
+        + *
+        <br>
+        + * Returns true if diag firmware has reached the initialized
+        state, indicating
+        <br>
+        + * it is ready to handle requests. On platforms without System
+        Controller
+        <br>
+        + * support there is no System Controller mailbox to gate on, so
+        diag firmware
+        <br>
+        + * readiness is not tracked through this path; the function
+        unconditionally
+        <br>
+        + * returns true so callers are not blocked by this check on
+        such platforms.
+        <br>
+      </blockquote>
+      <br>
+      I am still not clear how the caller will handle the 2 scenarios -
+      (1) SC is present, but diag app is not initialized vs (2) SC and
+      mailbox are not available and hence Diag App is not supported. The
+      caller will just see true in both cases.
+      <br>
+      <br>
+      Instead I would see this as 2 helpers:
+      <br>
+      <br>
+      xe_sysctrl_is_diag_fw_supported() that returns
+      <br>
+      status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+      <br>
+      <br>
+      and
+      <br>
+      <br>
+      xe_sysctrl_is_diag_fw_ready() that returns
+      <br>
+      status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
+      <br>
+      <br>
+      That would be clearer to the caller.
+      <br>
+      <br>
+      Thanks,
+      <br>
+      Umesh
+      <br>
+      <br>
+    </blockquote>
+    All current/planned callers of xe_sysctrl_is_oobmsm_fw_ready() /
+    xe_sysctrl_is_diag_fw_ready() (xe_vsec.c retry/gate logic,
+    xe_sysctrl_debugfs.c RAS injection gate, xe_sysctrl_fwctl.c
+    capability gate) only need a yes/no answer to &quot;Can this
+    functionality be used now?&quot;
+    <style>a {
+    text-decoration: none;
+    color: #464feb;
+}tr th, tr td {
+    border: 1px solid #e6e6e6;
+}tr th {
+    background-color: #f5f5f5;
+</style>&nbsp;and treat NOTSUPP and 'not yet initialized' the same way.<br>
+    <br>
+    Folding NOTSUPP into 'ready' is intentional. It lets sysctrl-less
+    platforms skip straight through.<br>
+    <br>
+    Splitting into is_supported() + is_ready() wouldn't change any
+    caller's behavior, but would require every caller to do
+    '!supported() || ready()' check. This risks a caller checking only
+    is_ready(), resulting in unnecessary retries or failures on a
+    NOTSUPP platform.<br>
+    <br>
+    Given the current usage, I'd prefer to keep the combined helper and
+    add a more granular status/support helper in the future if a real
+    consumer requires that distinction.<br>
+    <br>
+    Thanks,<br>
+    Anoop
+    <blockquote type="cite" cite="mid:an+G21kQjK+AUI9K@soc-5CG1426VCC.clients.intel.com"><br>
+      <blockquote type="cite">+ *
+        <br>
+        + * Return: true if diag firmware is initialized, or if System
+        Controller is
+        <br>
+        + * not present on this platform; false otherwise
+        <br>
+        + */
+        <br>
+        +bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe)
+        <br>
+        +{
+        <br>
+        +&nbsp;&nbsp;&nbsp; enum xe_sysctrl_fw_status status =
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
+        <br>
+        +
+        <br>
+        +&nbsp;&nbsp;&nbsp; return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+        <br>
+        +}
+        <br>
+        diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h
+        b/drivers/gpu/drm/xe/xe_sysctrl.h
+        <br>
+        index 090dffb6d55f..8dc576796890 100644
+        <br>
+        --- a/drivers/gpu/drm/xe/xe_sysctrl.h
+        <br>
+        +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+        <br>
+        @@ -20,5 +20,6 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
+        <br>
+        int xe_sysctrl_init(struct xe_device *xe);
+        <br>
+        void xe_sysctrl_irq_handler(struct xe_device *xe, u32
+        master_ctl);
+        <br>
+        void xe_sysctrl_pm_resume(struct xe_device *xe);
+        <br>
+        +bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
+        <br>
+        <br>
+        #endif
+        <br>
+        diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+        b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+        <br>
+        index d0341538ad05..f1e4253fda4b 100644
+        <br>
+        --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+        <br>
+        +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+        <br>
+        @@ -14,9 +14,11 @@
+        <br>
+        &nbsp;* enum xe_sysctrl_group - System Controller command groups
+        <br>
+        &nbsp;*
+        <br>
+        &nbsp;* @XE_SYSCTRL_GROUP_GFSP: GFSP group
+        <br>
+        + * @XE_SYSCTRL_GROUP_CORE: Core group
+        <br>
+        &nbsp;*/
+        <br>
+        enum xe_sysctrl_group {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;XE_SYSCTRL_GROUP_GFSP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0x01,
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_GROUP_CORE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0xFF,
+        <br>
+        };
+        <br>
+        <br>
+        /**
+        <br>
+        @@ -38,6 +40,51 @@ enum xe_sysctrl_gfsp_cmd {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;XE_SYSCTRL_CMD_SET_HEALTH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0x0C,
+        <br>
+        };
+        <br>
+        <br>
+        +/**
+        <br>
+        + * enum xe_sysctrl_core_cmd - Commands supported by Core group
+        <br>
+        + *
+        <br>
+        + * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application
+        status by ID
+        <br>
+        + */
+        <br>
+        +enum xe_sysctrl_core_cmd {
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0x05,
+        <br>
+        +};
+        <br>
+        +
+        <br>
+        +/**
+        <br>
+        + * struct xe_sysctrl_app_status_req - Get application status
+        request
+        <br>
+        + *
+        <br>
+        + * @app_id: Application ID for which to retrieve status
+        <br>
+        + */
+        <br>
+        +struct xe_sysctrl_app_status_req {
+        <br>
+        +&nbsp;&nbsp;&nbsp; u8 app_id;
+        <br>
+        +} __packed;
+        <br>
+        +
+        <br>
+        +/**
+        <br>
+        + * struct xe_sysctrl_app_status_resp - Get application status
+        response
+        <br>
+        + * @flags: Application status flags interpreted by
+        xe_sysctrl_check_app_status()
+        <br>
+        + */
+        <br>
+        +struct xe_sysctrl_app_status_resp {
+        <br>
+        +&nbsp;&nbsp;&nbsp; u32 flags;
+        <br>
+        +} __packed;
+        <br>
+        +
+        <br>
+        +/**
+        <br>
+        + * enum xe_sysctrl_fw_status - System Controller firmware
+        application lifecycle states
+        <br>
+        + *
+        <br>
+        + * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized
+        by firmware
+        <br>
+        + * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known
+        but has not yet booted
+        <br>
+        + * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed,
+        post-boot init pending
+        <br>
+        + * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully
+        operational
+        <br>
+        + * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not
+        available on this device
+        <br>
+        + * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System
+        Controller firmware failed
+        <br>
+        + */
+        <br>
+        +enum xe_sysctrl_fw_status {
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_FIRMWARE_APP_INVALID,
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_FIRMWARE_APP_BOOTED,
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
+        <br>
+        +&nbsp;&nbsp;&nbsp; XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
+        <br>
+        +};
+        <br>
+        +
+        <br>
+        /**
+        <br>
+        &nbsp;* struct xe_sysctrl_mailbox_command - System Controller mailbox
+        command
+        <br>
+        &nbsp;*/
+        <br>
+        --&nbsp;<br>
+        2.43.0
+        <br>
+        <br>
+      </blockquote>
+    </blockquote>
+  </body>
 </html>
 
---===============5073019465288969522==--
+--------------n65QOvVZNh3gtg0UXHL4wnYS--
