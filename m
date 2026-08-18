@@ -4,47 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43694C5DF85
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 13:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2511EC5DF7D
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 13:10:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F209E10EB6F;
-	Tue, 18 Aug 2026 13:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB5E910EB66;
+	Tue, 18 Aug 2026 13:10:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OP1kGnuz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TcmK/PpV";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97CA110EB6C;
- Tue, 18 Aug 2026 13:09:17 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C90B06020E;
- Tue, 18 Aug 2026 13:09:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 110771F000E9;
- Tue, 18 Aug 2026 13:09:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787058556;
- bh=L5WWSul3RAEl4/t2hhe1a784y/wIeSmloPtBdMqkhuo=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=OP1kGnuz6HJmfYAqQO1vUfRp8kcRYMm9SlHlPPadXtfuvXGSoFCxoT5Chughq2ZSO
- ymFWhX7Rnr/MVtnaoYsTZYt8zn8ULhGv0WBIDFEB4Kysz3LSJXD8qFAj2ay6IIQeME
- RxDiTLQVrZ96syZDo6mYF08edvsChPw4qAEAbCuEuhPxAMn4Li2vRptJoR+9TRTTeR
- Q4CaZqh680IHhAmQYDyX5uXlj0Zv0/RRoJLUgtgRmNR/en69VpSHKI08pzUPW1Ogzd
- NWPcaT2vkr6jrK2Rr4+4GGPTRQtGbyORrPxiXRLggStGEOfvHY/Ezb9E2Y3D3MvKDi
- Xpu+VfWoiDJWA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 06/12] drm/panic: Pass global module parameters to
- drm_panic_dispatch()
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-xe@lists.freedesktop.org, ojeda@kernel.org,
- linux-hyperv@vger.kernel.org, Frank.Li@kernel.org,
- intel-gfx@lists.freedesktop.org, wsa+renesas@sang-engineering.com,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-In-Reply-To: <20260818125012.468092-7-tzimmermann@suse.de>
-References: <20260818125012.468092-1-tzimmermann@suse.de>
- <20260818125012.468092-7-tzimmermann@suse.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 18 Aug 2026 13:09:15 +0000
-Message-Id: <20260818130916.110771F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6B5F10EB66
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 13:10:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787058612; x=1818594612;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6BiwlLNjvIXRe7eik9YBfC1iLGWwrolrLGkxv3Z6pEA=;
+ b=TcmK/PpVLnN5thW13qq15fK2QylWeqNzgXo92TL5nZ944VbG8QDZtjx9
+ lycj1KVYczU+m0WcRPyoR+CQOhQK3S35YoIkc4jrK09UuppFFGxeXroap
+ rnVLawOv88bl71hbgtMHauvuV2qG9p1M854X5gdeJoj2JUvbV+u+8EUnM
+ ORiZB6wjeLFFl5i7Rl+raDjbdoFrWkZHm1dAROqSvLxkkkoH+aBLT1pc1
+ d9h9HQPqTgzfeYh+YnXDzF2jSdjgoTfVsy38fZnEU07wzV8vXhBEpJ1hm
+ 2W+bE4KyZjkOmk+ZpS2DLF5kXNKq/Jk2KSi/K2vPW6ZyxoucJeTDJtefI Q==;
+X-CSE-ConnectionGUID: 45bqno20QkazJSd1RAPtEA==
+X-CSE-MsgGUID: ArIpYH7fRYWH/MK4J0ju9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="91419979"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="91419979"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 06:10:11 -0700
+X-CSE-ConnectionGUID: o76TtyBTQMGsvhxfr8X8yA==
+X-CSE-MsgGUID: cTYD5k42QLa1ZXBA4Oi/gQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="269063040"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa004.jf.intel.com with ESMTP; 18 Aug 2026 06:10:07 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ sk.anirban@intel.com, raag.jadav@intel.com, michal.wajdeczko@intel.com,
+ aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
+ dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v3] drm/xe/sysctrl: Add better sysctrl error reporting
+Date: Tue, 18 Aug 2026 18:40:04 +0530
+Message-ID: <20260818131003.495053-2-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,106 +66,168 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+Switch sysctrl error messages to xe_log_err() with SYSCTRL tags so
+tools can reliably detect and categorize common sysctrl failures.
 
-Pre-existing issues:
-- [High] Concurrent debugfs writes or KUnit tests across multiple DRM devic=
-es race on global static buffers without adequate synchronization.
---
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+---
+v2:
+- Use -EOVERFLOW.
+- Drop sysctrl in xe_log_err. (Michal)
+- Drop redundant %pe.
+- Print response->count.
 
---- Patch [6]: [PATCH 06/12] drm/panic: Pass global module parameters to dr=
-m_panic_dispatch() ---
-commit 9f2a1b5158feac614c09a17c83f387591642e034
-Author: Thomas Zimmermann <tzimmermann@suse.de>
+v3:
+- Rebase.
+---
+ drivers/gpu/drm/xe/xe_sysctrl_event.c   | 12 ++++++----
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 29 ++++++++++++++++---------
+ 2 files changed, 27 insertions(+), 14 deletions(-)
 
-drm/panic: Pass global module parameters to drm_panic_dispatch()
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+index da395148ee9d..4341ea99cdc3 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_device.h"
+ #include "xe_irq.h"
++#include "xe_log.h"
+ #include "xe_printk.h"
+ #include "xe_ras.h"
+ #include "xe_sysctrl.h"
+@@ -25,13 +26,15 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
+ 
+ 		ret = xe_sysctrl_send_command(sc, command, &len);
+ 		if (ret) {
+-			xe_err(xe, "sysctrl: failed to get pending event %d\n", ret);
++			xe_log_err(xe, SYSCTRL, ret,
++				   "failed to get pending event\n");
+ 			return;
+ 		}
+ 
+ 		if (len != sizeof(*response)) {
+-			xe_err(xe, "sysctrl: unexpected event response length %zu (expected %zu)\n",
+-			       len, sizeof(*response));
++			xe_log_err(xe, SYSCTRL, -EMSGSIZE,
++				   "unexpected event response length %zu (expected %zu)\n",
++				   len, sizeof(*response));
+ 			return;
+ 		}
+ 
+@@ -41,7 +44,8 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
+ 			xe_warn(xe, "sysctrl: unexpected event %#x\n", response->event);
+ 
+ 		if (!--count) {
+-			xe_err(xe, "sysctrl: event flooding\n");
++			xe_log_err(xe, SYSCTRL, -EOVERFLOW,
++				   "event flooding: %u\n", response->count);
+ 			return;
+ 		}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+index e13eebaac1d0..a96ef2864526 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+@@ -11,6 +11,7 @@
+ 
+ #include "regs/xe_sysctrl_regs.h"
+ #include "xe_device.h"
++#include "xe_log.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_printk.h"
+@@ -115,7 +116,8 @@ static int sysctrl_prepare_command(struct xe_device *xe,
+ 	xe_assert(xe, command <= SYSCTRL_HDR_COMMAND_MAX);
+ 
+ 	if (data_in_len > XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr)) {
+-		xe_err(xe, "sysctrl: Input data too large: %zu bytes\n", data_in_len);
++		xe_log_err(xe, SYSCTRL, -EINVAL,
++			   "Input data too large: %zu bytes\n", data_in_len);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -149,7 +151,7 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+ 	total_frames = DIV_ROUND_UP(cmd_size, XE_SYSCTRL_MB_FRAME_SIZE);
+ 
+ 	if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
+-		xe_err(xe, "sysctrl: Mailbox busy\n");
++		xe_log_err(xe, SYSCTRL, -EBUSY, "Mailbox busy\n");
+ 		return -EBUSY;
+ 	}
+ 
+@@ -160,7 +162,8 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+ 		frame_size = min_t(size_t, cmd_size - bytes_sent, XE_SYSCTRL_MB_FRAME_SIZE);
+ 
+ 		if (sysctrl_write_frame(sc, mbox_cmd + bytes_sent, frame_size)) {
+-			xe_err(xe, "sysctrl: Failed to write frame %u\n", frame);
++			xe_log_err(xe, SYSCTRL, -EIO,
++				   "Failed to write frame %u\n", frame);
+ 			sc->phase_bit = 0;
+ 			return -EIO;
+ 		}
+@@ -174,7 +177,8 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+ 		xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
+ 
+ 		if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
+-			xe_err(xe, "sysctrl: Frame %u acknowledgment timeout\n", frame);
++			xe_log_err(xe, SYSCTRL, -ETIMEDOUT,
++				   "Frame %u acknowledgment timeout\n", frame);
+ 			sc->phase_bit = 0;
+ 			return -ETIMEDOUT;
+ 		}
+@@ -194,7 +198,8 @@ static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
+ 	int ret;
+ 
+ 	if (!sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
+-		xe_err(xe, "sysctrl: Response frame timeout\n");
++		xe_log_err(xe, SYSCTRL, -ETIMEDOUT,
++			   "Response frame timeout\n");
+ 		return -ETIMEDOUT;
+ 	}
+ 
+@@ -249,13 +254,15 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
+ 	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
+ 	    XE_SYSCTRL_HDR_GROUP_ID(hdr) != XE_SYSCTRL_HDR_GROUP_ID(req) ||
+ 	    XE_SYSCTRL_HDR_COMMAND(hdr) != XE_SYSCTRL_HDR_COMMAND(req)) {
+-		xe_err(xe, "sysctrl: Response header mismatch\n");
++		xe_log_err(xe, SYSCTRL, -EPROTO,
++			   "Response header mismatch\n");
+ 		return -EPROTO;
+ 	}
+ 
+ 	if (XE_SYSCTRL_HDR_RESULT(hdr) != 0) {
+-		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
+-		       XE_SYSCTRL_HDR_RESULT(hdr));
++		xe_log_err(xe, SYSCTRL, -EIO,
++			   "Firmware error: 0x%02lx\n",
++			   XE_SYSCTRL_HDR_RESULT(hdr));
+ 		return -EIO;
+ 	}
+ 
+@@ -381,7 +388,8 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+ 				      cmd->data_in, cmd->data_in_len,
+ 				      &mbox_cmd, &cmd_size);
+ 	if (ret) {
+-		xe_err(xe, "sysctrl: Failed to prepare command: %pe\n", ERR_PTR(ret));
++		xe_log_err(xe, SYSCTRL, ret,
++			   "Failed to prepare command\n");
+ 		return ret;
+ 	}
+ 
+@@ -391,7 +399,8 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+ 				   cmd->data_out, cmd->data_out_len, rdata_len,
+ 				   XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS);
+ 	if (ret)
+-		xe_err(xe, "sysctrl: Mailbox command failed: %pe\n", ERR_PTR(ret));
++		xe_log_err(xe, SYSCTRL, ret,
++			   "Mailbox command failed\n");
+ 
+ 	kfree(mbox_cmd);
+ 
+-- 
+2.48.1
 
-This patch sets the panic type and QR version in draw_panic_plane() as a si=
-ngle
-point of truth, passing these values into the individual drawing functions.
-In the test case, it always creates a QR code with version 40.
-
-> diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-> index ede620b27515a..12c39217cbcb5 100644
-> --- a/drivers/gpu/drm/drm_panic.c
-> +++ b/drivers/gpu/drm/drm_panic.c
-[ ... ]
-> @@ -951,6 +955,11 @@ static void draw_panic_plane(struct drm_plane *plane=
-, const char *description)
->  #else
->  	u32 bg_color =3D 0x00000000;
->  #endif
-> +#if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
-> +	unsigned int qr_version =3D panic_qr_version;
-> +#else
-> +	unsigned int qr_version =3D 0;
-> +#endif
-> =20
->  	if (!drm_panic_trylock(plane->dev, flags))
->  		return;
-> @@ -966,7 +975,7 @@ static void draw_panic_plane(struct drm_plane *plane,=
- const char *description)
-> =20
->  	drm_panic_set_description(description);
-> =20
-> -	ret =3D draw_panic_dispatch(&sb, fg_color, bg_color);
-> +	ret =3D draw_panic_dispatch(&sb, drm_panic_type, fg_color, bg_color, qr=
-_version);
-
-[Severity: High]
-This is a pre-existing issue, but does the per-device locking in
-drm_panic_trylock() adequately protect the global buffers?
-
-Since the lock is per-device (plane->dev->mode_config.panic_lock), concurre=
-nt
-debugfs writes across multiple DRM devices can still race and mutate global
-static variables, such as the zlib stream workspace (struct z_stream_s stre=
-am)
-or qrbuf1 and qrbuf2.
-
-If a real kernel panic occurs while a debugfs write is concurrently using t=
-hese
-buffers, the true panic handler could inherit a corrupted zlib workspace st=
-ate,
-which might lead to a recursive fault and failure to display the panic scre=
-en.
-
-Could this be protected by a global lock for non-panic paths?
-
-[ ... ]
-> diff --git a/drivers/gpu/drm/tests/drm_panic_test.c b/drivers/gpu/drm/tes=
-ts/drm_panic_test.c
-> index 969a096ec840f..196496238d231 100644
-> --- a/drivers/gpu/drm/tests/drm_panic_test.c
-> +++ b/drivers/gpu/drm/tests/drm_panic_test.c
-> @@ -58,7 +58,7 @@ static int draw_panic_screen_kmsg_default(struct drm_sc=
-anout_buffer *sb)
->  #if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
->  static int draw_panic_screen_qr_code_default(struct drm_scanout_buffer *=
-sb)
->  {
-> -	return draw_panic_screen_qr_code(sb, 0x00ffffff, 0x00000000);
-> +	return draw_panic_screen_qr_code(sb, 0x00ffffff, 0x00000000, 40);
->  }
->  #endif
-
-[Severity: High]
-This isn't a bug introduced by this patch, but do the KUnit tests safely ac=
-cess
-the global drawing state?
-
-It appears the KUnit tests bypass draw_panic_plane() entirely and directly =
-call
-drawing functions like draw_panic_screen_qr_code() without acquiring any lo=
-cks.
-Could running the tests race on the global buffers and corrupt the zlib
-workspace?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260818125012.4680=
-92-1-tzimmermann@suse.de?part=3D6
