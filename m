@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A1DFC5DF82
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 08:47:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAF0EC5DF82
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 08:53:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDBA810EA70;
-	Tue, 18 Aug 2026 08:47:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LQuazna1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3D3D10EA6F;
- Tue, 18 Aug 2026 08:47:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787042863; x=1818578863;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QLyniBuPnXXfB3ONUbRMJU1YYD8XZC4S9xosPyYsXGE=;
- b=LQuazna1UfJiQs+Ptyn1xGUDix6Tw5UEhZ54MvKDK2n+LxaRMYbMfZbY
- /AlGQoITRH+EOQZiI471U08965ccieHeITbs+Y8g6IBbD4NAhPokBAXC6
- W+kHQNtgOsflQ8RTPalI1QFTZC8f5QR3boQlO5xiss1MeKzu/w19zT+5A
- AoUjTzyCtDRHDb25zLWra2FThfsvrEV3MhYd1qfHDB13ZgeFQf72qlOuz
- TV3XGEXNQ60eoxoTQqbAyYvihPHDA2Rhx1diP44dkiq/v7dANSDe+8GSn
- oj8QwRXwwrSUUAk8/oIhVeCkMJJb9DeJqwlwlWOZpCrDLzcmFOzAjsUot w==;
-X-CSE-ConnectionGUID: DSrURm5pQ5+FhxLmPomL3A==
-X-CSE-MsgGUID: MfrkfKPjSjeS5ugoM4xVKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="87403794"
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="87403794"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 01:47:43 -0700
-X-CSE-ConnectionGUID: PxWFyGPsTRmf9elyWPHKIg==
-X-CSE-MsgGUID: 2Tm8QM0HRUCxH5/QMx3Sgg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="267136691"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa004.fm.intel.com with ESMTP; 18 Aug 2026 01:47:41 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com,
-	Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 6/6] drm/i915/cursor: Allow joiner cursor fast path update
-Date: Tue, 18 Aug 2026 14:12:36 +0530
-Message-Id: <20260818084236.2168580-7-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260818084236.2168580-1-nemesa.garg@intel.com>
-References: <20260818084236.2168580-1-nemesa.garg@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B1A110E395;
+	Tue, 18 Aug 2026 08:53:35 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49B5910E395;
+ Tue, 18 Aug 2026 08:53:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_joiner_cursor_fast?=
+ =?utf-8?q?_updates_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Aug 2026 08:53:34 -0000
+Message-ID: <178704321429.60987.16019370486275002368@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260818084236.2168580-1-nemesa.garg@intel.com>
+In-Reply-To: <20260818084236.2168580-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,41 +36,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The legacy cursor path forced all joiner updates to the
-slow path by checking joiner_pipes.
-Drop the condition so that joiner cursor updates can use
-the fast path.
+== Series Details ==
 
-v4: Trimmed to only the joiner_pipes gate drop. [Chaitanya]
+Series: Enable joiner cursor fast updates (rev5)
+URL   : https://patchwork.freedesktop.org/series/165272/
+State : warning
 
-Assisted-by: Claude:claude-sonnet-4.6
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 8599b39b033e..7a0026acdb21 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -902,13 +902,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	 * PSR2 selective fetch also requires the slow path as
- 	 * PSR2 plane and transcoder registers can only be updated during
- 	 * vblank.
--	 *
--	 * FIXME joiner fastpath would be good
- 	 */
- 	if (!crtc_state->hw.active ||
- 	    intel_crtc_needs_modeset(crtc_state) ||
--	    intel_crtc_needs_fastset(crtc_state) ||
--	    crtc_state->joiner_pipes)
-+	    intel_crtc_needs_fastset(crtc_state))
- 		goto slow;
- 
- 	/*
--- 
-2.25.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 126d13a8caa9028d73e47527654f65590bb9d128
+Author: Nemesa Garg <nemesa.garg@intel.com>
+Date:   Tue Aug 18 14:12:36 2026 +0530
+
+    drm/i915/cursor: Allow joiner cursor fast path update
+    
+    The legacy cursor path forced all joiner updates to the
+    slow path by checking joiner_pipes.
+    Drop the condition so that joiner cursor updates can use
+    the fast path.
+    
+    v4: Trimmed to only the joiner_pipes gate drop. [Chaitanya]
+    
+    Assisted-by: Claude:claude-sonnet-4.6
+    Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
++ /mt/dim checkpatch 275df33dcf4c5d018717867a0b29ed1d3b62c1ef drm-intel
+16d67db3d2b8 drm/i915/cursor: Check joiner cursor commit status
+6788c5f7daa1 drm/i915/cursor: Add helper to update cursor plane
+75f1e17e2f4d drm/i915/cursor: Handle secondary cursor state
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#21: 
+v4: Fold parallel arrays into struct intel_cursor_joiner_state joined_pipe_state[].
+
+-:147: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#147: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:993:
++		intel_frontbuffer_track(to_intel_frontbuffer(joined_pipe_state[i].old_plane_state->hw.fb),
+
+-:148: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#148: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:994:
++					to_intel_frontbuffer(joined_pipe_state[i].new_plane_state->hw.fb),
+
+-:152: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#152: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:998:
++		joined_pipe_state[i].plane->base.state = &joined_pipe_state[i].new_plane_state->uapi;
+
+-:208: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#208: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1076:
++							  &joined_pipe_state[i].old_plane_state->uapi);
+
+total: 0 errors, 5 warnings, 0 checks, 172 lines checked
+5c583d10b7af drm/i915/cursor: Program secondary cursor planes
+-:72: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1055:
++			intel_plane_disable_arm(NULL, joined_pipe_state[i].plane, joined_pipe_state[i].crtc_state);
+
+total: 0 errors, 1 warnings, 0 checks, 55 lines checked
+b3d093b2a2a6 drm/i915/cursor: Schedule cursor unpin per joined pipe
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+joined_pipe_state[] array so each pipe's old cursor framebuffer is scheduled for
+
+total: 0 errors, 1 warnings, 0 checks, 44 lines checked
+126d13a8caa9 drm/i915/cursor: Allow joiner cursor fast path update
+
 
