@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BCE7C5DF7E
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 10:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7223AC5DF70
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 10:42:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEFD410EABF;
-	Tue, 18 Aug 2026 10:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2685310EAC4;
+	Tue, 18 Aug 2026 10:42:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="liEvAsSJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kpzjgO29";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FAA710EABA
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 10:42:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBB2110EAC4
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 10:42:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787049723; x=1818585723;
+ t=1787049727; x=1818585727;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=U0rZ3KD4khbUoqd+GFGbx5KAbRr9kumFlq7PT1saUoE=;
- b=liEvAsSJtWqij+FD0Ev2lvwiUQOjkPoTKfCiXc9xW7ixczguGmUHtASN
- CggKMYrXuHkJe0YLxV4r38umN8j6+euUrtgO7aiRqyqij+b5z7+8tK5SX
- x9h4biMi9TXvdxReLdQ6qLrN4VEmkYr0OR6Wy4aRIgT3ryPdwp5Yrax8n
- OxVouHW2xqqHjQnR2JqA6dAxU61Fp5E3ZgKIuVjkCZ5bw3hpPY9Yy/f17
- Ga7qD3C8corpiiJVjnVewK3wGRMVe3wyRe+ctoBbJZitkvxiW4ixw1+51
- YqS77poaPpphFCfBD2GjpUyTjr7QeZXVOebvKv88JQGs30uADm9qUaXJn Q==;
-X-CSE-ConnectionGUID: gYmeRHWARQmvfRyIdeRmbw==
-X-CSE-MsgGUID: +vtdKIMLTYGPY/trX7MjyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="98691896"
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="98691896"
+ bh=DU0ny++sWMcLvKl69PWTYPciSutxEMXDXJntl/R6CUE=;
+ b=kpzjgO29JDttagiRq12I/eZ12rur46Zq6Z9+WXjRFsAckdn31iVVtYOI
+ EVUqCNch5PDk91hWSLKchjKnipD6dmmFmLcW+VDD0jdiNpb6CjqI6xVVy
+ +RAvCNP1dkEtWXfuzpsbHdiwNc35djx1Hs8OAH4PKi2gfgSnPyED9PuHC
+ u4nF2FxiZqE7iFwTTj2gQSfj0uVLXl7CarocNy0fvcTv7NcNmfDwAMN4G
+ hTt7W8aVZRiNH/tVt6QVe7uwYCkQIDuzHSIf0YK+4kRhQ/IwPN5ck93UK
+ afsCZef3r+Ne35smgd0j4N4qujUZsfOgkQKm6mTUcvkjqEUcvjTDH+opg Q==;
+X-CSE-ConnectionGUID: DpKsvqD/SIyyHnV1BmG1YA==
+X-CSE-MsgGUID: 781dzaPxQIiZJqtFMbE2AA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="98691906"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="98691906"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 03:42:03 -0700
-X-CSE-ConnectionGUID: Ggt+aa/sR2CHBUnj3PH6LA==
-X-CSE-MsgGUID: 2TRBZnUXRQK5Ulvuhc852Q==
+ 18 Aug 2026 03:42:07 -0700
+X-CSE-ConnectionGUID: mRO8p1WpS6yxiXeffmO1Xg==
+X-CSE-MsgGUID: 4+geolUrTfizyxH+9QfqoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="295117562"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="295117581"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 03:42:01 -0700
+ 18 Aug 2026 03:42:05 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V17 04/12] drm/xe/bo: Make xe_bo_is_user() public
-Date: Tue, 18 Aug 2026 16:10:59 +0530
-Message-ID: <20260818104055.3833974-18-tejas.upadhyay@intel.com>
+Subject: [PATCH V17 07/12] drm/xe/vram: Add page offline data structures and
+ lifecycle
+Date: Tue, 18 Aug 2026 16:11:02 +0530
+Message-ID: <20260818104055.3833974-21-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260818104055.3833974-14-tejas.upadhyay@intel.com>
 References: <20260818104055.3833974-14-tejas.upadhyay@intel.com>
@@ -67,48 +68,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Export xe_bo_is_user() so it can be used by the VRAM page offline
-code to distinguish user-created BOs from kernel BOs when deciding
-whether a faulty page can be safely purged or requires a full reset.
+Add xe_ttm_vram_offline_resource to track individual offlined VRAM
+pages, and extend xe_ttm_vram_mgr with offlined_pages/queued_pages
+lists and their counters.
 
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Initialize the lists in __xe_ttm_vram_mgr_init() and add
+xe_ttm_vram_free_bad_pages() to release all tracked pages during
+xe_ttm_vram_mgr_fini() teardown.
+
+v2(Himal):
+- Address possible leak in xe_ttm_vram_mgr_fini()
+- Remove unused dev and add comment for used_visible_size 0
+
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
- drivers/gpu/drm/xe/xe_bo.h | 1 +
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 25 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h | 28 ++++++++++++++++++++++
+ 2 files changed, 53 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 52f81e972ada..b077d137da57 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -158,7 +158,13 @@ bool xe_bo_is_vm_bound(struct xe_bo *bo)
- 	return !list_empty(&bo->ttm.base.gpuva.list);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 16ecea497780..5513dc014f3e 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -338,12 +338,35 @@ static void xe_ttm_vram_mgr_set_unused(struct drm_device *dev, void *arg)
+ 	ttm_resource_manager_set_used(man, false);
  }
  
--static bool xe_bo_is_user(struct xe_bo *bo)
-+/**
-+ * xe_bo_is_user - Check if BO is user-created
-+ * @bo: The BO
-+ *
-+ * Returns: true if @bo was created by userspace
-+ */
-+bool xe_bo_is_user(struct xe_bo *bo)
++static void xe_ttm_vram_free_bad_pages(struct xe_ttm_vram_mgr *mgr)
++{
++	struct xe_ttm_vram_offline_resource *pos, *n;
++
++	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
++		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
++		list_del_rcu(&pos->offlined_link);
++		--mgr->n_offlined_pages;
++		kfree_rcu(pos, rcu);
++	}
++	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
++		/* queued entries have no buddy reservation yet */
++		xe_ttm_vram_buddy_free(mgr, &pos->blocks, 0);
++		list_del_rcu(&pos->queued_link);
++		--mgr->n_queued_pages;
++		kfree_rcu(pos, rcu);
++	}
++}
++
+ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
  {
- 	return bo->flags & XE_BO_FLAG_USER;
- }
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 90b15fff36c7..eede678ad303 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -601,6 +601,7 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
- 		  const struct xe_bo_shrink_flags flags,
- 		  unsigned long *scanned);
- int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
-+bool xe_bo_is_user(struct xe_bo *bo);
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	struct xe_ttm_vram_mgr *mgr = arg;
+ 	struct ttm_resource_manager *man = &mgr->manager;
  
- /**
-  * xe_bo_is_mem_type - Whether the bo currently resides in the given
++	mutex_lock(&mgr->lock);
++	xe_ttm_vram_free_bad_pages(mgr);
++	mutex_unlock(&mgr->lock);
++
+ 	if (ttm_resource_manager_evict_all(&xe->ttm, man))
+ 		return;
+ 
+@@ -370,6 +393,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	err = drmm_mutex_init(&xe->drm, &mgr->lock);
+ 	if (err)
+ 		return err;
++	INIT_LIST_HEAD(&mgr->offlined_pages);
++	INIT_LIST_HEAD(&mgr->queued_pages);
+ 	mgr->default_page_size = default_page_size;
+ 	mgr->visible_size = io_size;
+ 	mgr->visible_avail = io_size;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index 9106da056b49..9dc6fc5a3c38 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -19,6 +19,14 @@ struct xe_ttm_vram_mgr {
+ 	struct ttm_resource_manager manager;
+ 	/** @mm: DRM buddy allocator which manages the VRAM */
+ 	struct gpu_buddy mm;
++	/** @offlined_pages: List of offlined pages */
++	struct list_head offlined_pages;
++	/** @n_offlined_pages: Number of offlined pages */
++	u16 n_offlined_pages;
++	/** @queued_pages: List of queued pages */
++	struct list_head queued_pages;
++	/** @n_queued_pages: Number of queued pages */
++	u16 n_queued_pages;
+ 	/** @visible_size: Proped size of the CPU visible portion */
+ 	u64 visible_size;
+ 	/** @visible_avail: CPU visible portion still unallocated */
+@@ -45,4 +53,24 @@ struct xe_ttm_vram_mgr_resource {
+ 	unsigned long flags;
+ };
+ 
++/**
++ * struct xe_ttm_vram_offline_resource - Tracks a single offlined VRAM page
++ */
++struct xe_ttm_vram_offline_resource {
++	/** @offlined_link: Link into mgr->offlined_pages */
++	struct list_head offlined_link;
++	/** @queued_link: Link into mgr->queued_pages */
++	struct list_head queued_link;
++	/** @blocks: Buddy blocks reserved for this page */
++	struct list_head blocks;
++	/** @used_visible_size: CPU-visible bytes consumed */
++	u64 used_visible_size;
++	/** @addr: Faulty DPA reported by HW */
++	u64 addr;
++	/** @status: Reservation status (0=pending, 1=fail) */
++	bool status;
++	/** @rcu: RCU head for deferred freeing */
++	struct rcu_head rcu;
++};
++
+ #endif
 -- 
 2.52.0
 
