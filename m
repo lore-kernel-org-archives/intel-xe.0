@@ -4,146 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 990F0C5DF7D
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 21:06:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2656C5DF81
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 21:32:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0DC10ED00;
-	Tue, 18 Aug 2026 21:06:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E1410E06D;
+	Tue, 18 Aug 2026 21:32:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k7Ts/z5O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LJzEbIoT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA1F10ECD9
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 21:06:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B38F10E06D
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 21:32:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787087169; x=1818623169;
+ t=1787088731; x=1818624731;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=DbCzuFBKfwyK3tWsJUkZ4VhwxNPnDVAWJepJ0NeVfAU=;
- b=k7Ts/z5OBi+HiEGxbMK6aH9R7R9rB8itsgIUFkz22fQV5cBW13MsNJuH
- YUdEmB2bizV5Q70+OU0byjqqjikPpi3D7Dfwm28VlCni4bM/3lmt4FUgC
- cRLIXZ4Aqa5J2EB8rf7jcwEhkj/Kr64lfrMOh1AkhaHQy3gTWmP0SVmsA
- j2mgl26Pli36gS/xLInf2MR5rkUR+EHOYvf7rYJtxyn2Q16bt9w1i+hUi
- 5L4M8TnDm1dVbU4BdGBTHRIPFhp+O9Qy01+U0cq6DnEwnc4G4WVSCEN5l
- in5hBy++/SF8/NzzA9XOCQZMAxuuCORdZTuBZkeEUNgZW1GQ50bpQ9iFe g==;
-X-CSE-ConnectionGUID: 4cQPun6ERfiN/jTkz49QKQ==
-X-CSE-MsgGUID: Cn8dMvhmRQ+073HTWp/A/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="90107615"
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="90107615"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 14:06:08 -0700
-X-CSE-ConnectionGUID: ogEOWRLXTNGdEeB5Ns1g/Q==
-X-CSE-MsgGUID: k/yeJX+KS++48w/51ueRUw==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=H38roO+6vRr7JPYJS21BfKofJ+/k7/WVT2bXfoDQ04U=;
+ b=LJzEbIoTKEhYuMnfYGnsaTn6AYZXf4nH0qWq72JmIwyK5nLu7+IYpFUV
+ XlvJCQ2iDawE+tV5peN4d/EUOvxMpPULdgTvGtdLrC5UClEAEOsl2q2k/
+ +r0cBxsEZHCzLI99pMQjfttEDu4/Y3XGh0BjrJFIgmA2ObRezD0+L9cGt
+ CMYz4Q5EvQgRZ3SmXTE6iweJf0OG8kefOx5Tjl82fce/L6YIMt9V9FS4n
+ pB+joDqdX+s2azJZvjg85Xc3QNDT9kFQX9s/nMyegs5S7Cqd4b0ZJg5a0
+ NmNTSbp5iA8NQdnZKV6I6HXJcRoS2BGzJBRamrJWz3SqJbTrWuBjLxBvJ Q==;
+X-CSE-ConnectionGUID: PGFNltDXQ4izWxqi8f3mvA==
+X-CSE-MsgGUID: pbtfzA5WQJmWxXuLjAE+Iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="97930819"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="97930819"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 14:32:10 -0700
+X-CSE-ConnectionGUID: EIsiTezOSZesBjfwHId5EA==
+X-CSE-MsgGUID: fyhWs9P5RNiVcotMD99CgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="261592519"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 14:06:08 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="269183774"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 14:32:11 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 18 Aug 2026 14:06:07 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.45; Tue, 18 Aug 2026 14:32:10 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Tue, 18 Aug 2026 14:06:07 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.21) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Tue, 18 Aug 2026 14:32:10 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.31) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 18 Aug 2026 14:06:05 -0700
+ 15.2.2562.45; Tue, 18 Aug 2026 14:32:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mgRW+M1+/INMsmgL84YBX4ngTnH0ofAyaCZ1MkTh8Fs+6eQv3zz0PVfDrGg6jJZSJjwTFODwF2pDIeSbtFfzRukJtDg4BZtYlN5vX364FmAJJGqD3ktQbyIk4+MOcB5n5NgKt7Oix9v7PbxOME2ApyiVqGLcbwpPfRSRYOAWawxFp0udmDDadEuSFtesOsq4m0osNHnAMSkSISswVsGwL9WfpmPc6RdXZ/iPtGhmOS6FskpDhgTQUfg4j3lC2igkIUYEQpib9w2BLuQTEIhIiauGK4KC9P3eZaQwp6nju5JwGkDUIB8a0he7nMc+xoPYujvrXK/9+su3DkoZo1ezjQ==
+ b=Mr1KnVEu6vpWTEy6xHpzl7FB4Y/gwasW0zGJEdgktW57YF0RkytVMEBb96KXxnYaLoembBiT74EZjtAK+xWq1ADolO+kuI6RUOfyepsBUuXUfzQw3tVWWtgQrZ3Oe76N0OGbJdpTmyEltekXhoqcwoPys1O4dJM/kD0j/rtTapest3ZLuNu8/bbP3X1aV2YCF7tLV2zhIe9Fnko4zULumiDeRsZWfuMTWUKlE12d9aiKw7Z5LT6xBVLU13BgVL/4mlXpRlgGpSnrCwOXZexmqcR7o/3oUeQOlhBSfL3XYA1ab7cXsqI1KYuf1I4OlDKNucKa/45y3j/MNEVzp7G0eQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tjBEiNJOT5M56EK0LQrn7kXfOiJt2a4YFDyErtHTSPE=;
- b=E/m55S3mHPqaY6drb/RmF0ysvnizMKAPFhF/LiJJfEV8mBaFYpSC4Zl/oSxds55oS52UKuwYPUIHbAuTJo0kdzpN/OS4QKnEpxoswhD7jcM0+nuqE/hKvQNuYZn/+HgJKrQ93WfLoEUQMXaDCXJS/QLNX7fPafovXDZ0WJ1+yeLRYnIrJRRRms51BnTUw8B5Hr225lvfcMIBE68EnVmuWzXyNDEcLtmlKy+YbPDZTYh68wSH5OV7HZnEXaYFBaHPJXrRd3g6hET8eKLtMqhZMly02v3yxzcxtVytWg5T7FOmobsKXlCpevikQTa93axmWZDK6WXy4zNSCOzRJOlO/A==
+ bh=qhlr9pIVGPtpuy3VWjfLm+u/xgc9rbiaCgT3nZTXOHs=;
+ b=yO13FUFBH6NIQ6G2VzXDoDIH8wM637hyzEPAstZQMSAnxmH+o4pk+SzaHUU9rIntvimFWhzzCX0d5iSIw91rOcISOe4A2dyI+4Fmqf8bSFVMehCfMlMJ+Ao/zYmWpNs8ArAjCpFEiKV9bvjM8diCYDQaASL/m9fUjIyzvNzCRUY5uv3ccRNLXvts8Dt+MqPcd0spkwWDKC8mEbLTqA5a/EGuz4dbUWV/cOsBi9KeYFRQdiTPRdB8OsMPbo7kl6fgGh9uPdNKipuPQiMm7P077nCpNOBqi69w9JLlWp1ZByiA4UWCkYdEq3qojy4B0ZW3gRpkjHGooE9EXa9dojD/vQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA3PR11MB925731.namprd11.prod.outlook.com (2603:10b6:806:530::5)
+ by SA7PR11MB9594.namprd11.prod.outlook.com (2603:10b6:806:4cf::24)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.17; Tue, 18 Aug
- 2026 21:06:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Tue, 18 Aug
+ 2026 21:32:06 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0315.016; Tue, 18 Aug 2026
- 21:06:03 +0000
-Date: Tue, 18 Aug 2026 14:06:01 -0700
+ 21:32:06 +0000
+Date: Tue, 18 Aug 2026 14:32:04 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-CC: Jagmeet Randhawa <jagmeet.randhawa@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2] drm/xe/guc: Fix race around q->guc->suspend_pending
- access
-Message-ID: <aoTJOSrzjx1tiF9d@gsse-cloud1.jf.intel.com>
-References: <20260818183838.273486-2-jagmeet.randhawa@intel.com>
- <aoTGO2iyIgHK-QMd@nvishwa1-desk>
-Content-Type: text/plain; charset="us-ascii"
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe: Update shrinker batch size based on
+ average BO size
+Message-ID: <aoTPVO57T1xKhOub@gsse-cloud1.jf.intel.com>
+References: <20260814143737.49684-1-thomas.hellstrom@linux.intel.com>
+ <20260814143737.49684-3-thomas.hellstrom@linux.intel.com>
+ <an+jlUmNfwnh44Pl@gsse-cloud1.jf.intel.com>
+ <723431d70f8cdc1534a040416fe93b4f9bdab529.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <aoTGO2iyIgHK-QMd@nvishwa1-desk>
-X-ClientProxiedBy: SJ0PR03CA0009.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::14) To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <723431d70f8cdc1534a040416fe93b4f9bdab529.camel@linux.intel.com>
+X-ClientProxiedBy: SJ0PR13CA0100.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::15) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA3PR11MB925731:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b982442-c7e8-4776-2f2b-08defd6c8373
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA7PR11MB9594:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01aa8bca-d9bd-4f8f-3484-08defd7026bd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|6133799003|10067099003|56012099006|11063799006|4143699003|5023799004|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: cXz7GxRGu+e4U7FIkSciegyvCHC4IEmftpi3BLTDzN8d+ROitvrUWz8w4WxEO+pBk/FizJ/A+lhW6ZUF4GG1eu0tifOdxYdtCypFOBYhpEzVnu2hmRrpZ/az0Bf7NkmPx7gGWxM1hxyFogKreNoNPQmpB0CWmqgJsxe4rM21I191LheT1+U2rSfPuXTHkEG8OEJwBWnxisYHU03hSfZjzi2tU/0XYIBRLRdoak4dM2L6cLRvww1HA6lY195NB+OLxHlhPrRY8lUYJ0EQk9fAPlXUbJe2i1DOzOP1TS4m5lfA8VhZXQr6QhRbo0yBnUDu2pn2ka62dSsd9KJ5ifyZ2XZEZgXQhX4gk2+zgg1v+X0XhvEbSly9raL5RomDVy3QUaKFG+TiBP2G9doqpRZh3J/XSzQBV1+3lJVCWI72DI4g7NMBozA4m37+/Uo8cMUq+KJTNahfZfCqK+W5wyAgfVcMiipatB29L1Y82Az/plHPiCGkwI/ZBFYY43hk1zrGrCPRT2TLGwZJIGjriM2PeR0Of83/JzOwpVXTel+28lbtZQ7d9rmuA6oL8GIW3NxKakjVxg/tU08QPZgU5h9Unwk0f+HoCNZrsWAOh+/j+YzG9a1OmLO5B/U5Bq2zF4q4L1s92F8wngPsR5vDMH2S0IFMIGlgFhCBUKhRFGFSEUk=
+ ARA:13230040|23010399003|366016|376014|1800799024|6133799003|10067099003|56012099006|11063799006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: XTKDqbVhy8LzORxL5LswFZBjvdsejsvhe2/KFT2g4Dbbc919caGFu++prvt1CQY0OeeZCkms5kOR9d4+RnKzkCHQ9XzlAD7QwTjkUdgknqysS6/MJbyObBQbQo/ey7lcpxPDcXvInlm/msCPF9k8AIBOQSpNhN6Ghtwrv7aZi2IS+5HIJg8ns2xNOyu/1IVK407UT+Zwh2ROMpQUZmn/ksiM6oFubsWZIYOV8hltRJt7hnG/8bowIZHZY695bZ0Nd0FxqEr/p+dr/Xgjd0erAiB8FxPSYp/2SdFpVtEtkKO5z5xb5DwCH4o42IkxQ8899MboGXE+s/gZDeAtVmRcYYIymMCe9z+jbaq93esHFHWBl+ZaW1AaHAOO0Yt0E0uUpFu0AL8vCcRH6amiLJqtpQn5SVzDT6uicarYbSjY0TpmcYHU5Pa/Ua266Tyysy7t+rleoumn1LliXDdsRqp0r671t9+e3A7DTjh8Uryoki+j38DiD7a3vOBssXhqs+nSiZcb1ku2mYf1Z9sFw9XjiB5HUQ8aLx93HWElS+K8v4lYJWlOBG7mk5pFYugg4qk14Fd+xzCCIIxuEVQ+8wZiLSVT/xWih7l4GDnGlJSJG1Z+AEmw4/zixwU75fbpzgMuRAhQ8gPWC0GtULIVMzxIEZzcToIBn/IPeX8PCy3Gmqw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(6133799003)(10067099003)(56012099006)(11063799006)(4143699003)(5023799004)(18002099003)(22082099003);
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(6133799003)(10067099003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SALKg7uMjvoJHB0gzO91Iuibo0CR7XGcpyj23Dl+pimrTuZKI9J3VMggRity?=
- =?us-ascii?Q?Eve5k5HElNIGim+PKrGLYJx7A+dg2LlHFPyvdheOnZasWzb9ANfyNmAPmyY/?=
- =?us-ascii?Q?PUiBpWfBdqjQueqYTva3ypHPlUCU+QbsF0zKap7iN84eFMLRDnVgQIKXhhNf?=
- =?us-ascii?Q?QH1/X3xwP7NEA0pUDg7dDvjahbg3NehT6ej4DcGh4MIzn2/07BnNE3cO0tYv?=
- =?us-ascii?Q?IuGtJgp+HR3HmBaJcgMIRR0KOCCjskRH+oTcStcuKcHwqJ7be+Au0TqxjXOq?=
- =?us-ascii?Q?+PfaiWOIazJ0e3cX948dLVVxD/W9kQeYeHUoKQ8nIGoVOIqaeYfbZDHcXAWw?=
- =?us-ascii?Q?2hTeG7CEA7qaJmlbV9Ig20UjnaGZB+vW7lhu2yFbKKlhuBrbfkRa9Zd9GY8Y?=
- =?us-ascii?Q?/BT71/gTtAZFYJFkR1R+zdFO4ThU8W9ukcCGzW1sLtRqnwo7of7Lif7UEAok?=
- =?us-ascii?Q?h8K6h1OhFpI6XI119IosYc+0UKQ7Y1Yg9rox8ZyJ7QQKnBbnzx3LWIwISt5O?=
- =?us-ascii?Q?bsc1uRFUxv7xfkZkOXy4wq1UdOUU5+sHuCipVtSJbWBGICkPiNbsjyQgGMSu?=
- =?us-ascii?Q?s16R6nlELNDcEvLO+2BTEgQHjs9CCAqOPLn/n4kV1vlBWy1v1kCKztTQkSGc?=
- =?us-ascii?Q?nhkdbAPQUO4mvJXIsmx40yugSBvoe/GCkuQnxUdlXNBzIwj6k/yHSOKz3tjX?=
- =?us-ascii?Q?Tl2RimH4VoAbW0QRM5z9cXxvqBlAZwCXz9RvrecagmE3xy2jbYSM6YQLBkYw?=
- =?us-ascii?Q?/DWyexBuFLvyAqEphHpg4zn4xaowsH/mEPzshXoRl0r9EKv0ZF36onbg8Q/G?=
- =?us-ascii?Q?r1Dmzc2Jdg468MtFgJN9DmCz1uE4E/R2TMzEHJTXPietYtyDQgE3ziXFJIhh?=
- =?us-ascii?Q?kv4IzOq6mk7B5lsXpDlPJJnrIjAJXRx2p8R7uq+t3lLwR/Qy94jVPiLDju/G?=
- =?us-ascii?Q?TOX3dIcxCi3YqdwZKilHSZIzdwHYhoqDzh/E+yXXrZot2Vk03JIH+wO5cYOB?=
- =?us-ascii?Q?XlFOA7aoHbBWsQmT3/1PhCZiLwD2BiEf4E5DHQVSgk70wNpUt+qxIR9VjKgK?=
- =?us-ascii?Q?M0isgdtmKk7nHaVgCp1HzsEKASCGfArZhEiay7CDgZ2ArwZX79mUgzxEVR17?=
- =?us-ascii?Q?OB2pCEkEzr5Y+MWvRy+OzDf8RGYZNbkggH0ViD9HiXIr9KX/9ySQEBL+5j/V?=
- =?us-ascii?Q?uCH7q5xuP7ATibj6DGrOgZEdmE0TH7bOAa6pKsfUv29tGouwLk4XwjwCr2qR?=
- =?us-ascii?Q?wshWjrAZ2vQjcygF/q6pLyawvpx6S7QFN+JpB/2i8gCfEqWWar2Mp32OgcGD?=
- =?us-ascii?Q?WFUJ/r7AWf5Q3q4RJMoZwfJcxctxoisj0bQYmISY9Xil9tTeeXoAEEHQcMMR?=
- =?us-ascii?Q?z6lYAK/EwBkmv1wsyJ8L82qOT5LCNm7h4ba8qJ4B+XVt1shtiapItro3C+IM?=
- =?us-ascii?Q?CmExtr2psW7oGkDwlt5CKtRpuk4t2wqT/SWHPGdka8hxJL7b77QVxtLFUGZX?=
- =?us-ascii?Q?aJzEq0fZhf5oO9+BGjoWJXCKtfSZuy5MxwSpIiyxpwQRCaJqFgMbs5OhJM8l?=
- =?us-ascii?Q?oWq/nECgtz4VHXiQy4fWiADw/NrJI0Os+bIP1IgLp1ktA2jia5LpuMCuZerR?=
- =?us-ascii?Q?i5K6JAEUA1EYsSjqw2/wwxFefUy1tCMPRedoLePrhgjvdROrFTQSRTONrVll?=
- =?us-ascii?Q?WJFtuZXbiHx/DW0bJPojT57eLoAKGHcYMEWJ1F+FnvgE9z1NsgusZg+aJxQ5?=
- =?us-ascii?Q?WwRoMhoyWi//fn3mqcamWwpV3LRUSmg=3D?=
-X-Exchange-RoutingPolicyChecked: C3EfbxcYwLSk5myf4yJhFW+6qXiLhBTPWTLzThJuMRRHMolboJDUljWT3COLPhNbD6WTyD2mUR8UGsAx8tTkBcVuztNhGd43mEw03kc7X4Qq/VBW02pvCPzzANDXG+DZUJFR1JUY1Om46pJznDw9VJUYLqW+STaJz1O0i7Tc+tl7oQwKM1atNkVa31B7mLmYAQV64j52Cvo5jhhmeIsM75xaWhUYdGMJh2wb8aIKgGLVqn4phl8gXkFYPOCtncjU1I/AvO9znF8VstoqG6CQj2bAxTxJV6fUImdM+ADn4BhjmAw0WCC/SgkVp2HVp5YFIVwkUJl3mNJB6qGJ0G9fZg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b982442-c7e8-4776-2f2b-08defd6c8373
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?VRoS+3caR24uRqZPnb0wVM58CWuxwROFQo82+vBysTbftkBGdf1gAIpeHz?=
+ =?iso-8859-1?Q?BqUEVF2KM3mWAYw19wd29iENrKLmKdd/6HBi9igwQZt6Y8QReegB/65i5G?=
+ =?iso-8859-1?Q?Nl8lElMlzh35GcdSKPRaCdAL09pwJMBkKcpixLwXTb8LmC6DyGLhdZu9GB?=
+ =?iso-8859-1?Q?wnIASVotANwFphYcHytQzfjA52947UBNG5dD1GiiuZxBGTWySI7gCsLKJ2?=
+ =?iso-8859-1?Q?JmZAeSWFe4nETfs+NrkErIu3JCS3CS+RRiL1N5EwmlZIY532P6sYl44mHG?=
+ =?iso-8859-1?Q?HQ/pA5ZgeZ6+5LFR62yv3rzY2cSao47C3HXhN5ApdVoqrY1Hu1rOaWJFeZ?=
+ =?iso-8859-1?Q?vQIii/ubGcIwP3ZnYN/Rd2ZEcWBE0KGm4yuqLw2OyaaJX6ZvNM+XinG/9P?=
+ =?iso-8859-1?Q?pfn8IGiMD0IDIakfH7K5KP/XKUekVMJbxireUnloI3bc60eKRS/ji10zwa?=
+ =?iso-8859-1?Q?Vf3Vk0W+TYVW1l00AgBlkHUwLszivaWylb0t341eODNVQctOPuTwzFmh5B?=
+ =?iso-8859-1?Q?kzF9mud8BBkYx+plX3WIIOHQc0Iegnsjh50rxr8D5kJ7Dbr2d0KcQ+j6tG?=
+ =?iso-8859-1?Q?UIjeR/WXCDFWoRgO8Ciuz7zWRqgO8iCUzAeN4ca7wv7S3GEO1nQ34wDS0v?=
+ =?iso-8859-1?Q?9gDDcfl43jS9gFowdbspYjQfCl8OUSHFnit2o+tk7K58lvkHq3wsT386KW?=
+ =?iso-8859-1?Q?j0+tyloUVx7SVVpNY1ADO1wl/9E3FODkILhrkzAYsX5Rs19q8Ny9wgIbtO?=
+ =?iso-8859-1?Q?ltsFWrDdSDcSAKSAbGqSvfKqgDZczRaGpNnWrQ3JI1nbZM3JsHYJDT2HKe?=
+ =?iso-8859-1?Q?JKpmxAXMUi63JYqYZku2+qH30rKY9jNJLTk0xI8rmsQDLf+7JrS38fPDFi?=
+ =?iso-8859-1?Q?YkEOAasNgWcqNsGLVyag0IerabHLJjfps/GcoKCcUPHboYYx9vyv7pkFbK?=
+ =?iso-8859-1?Q?nQkEvlKt1jhBFzLZleBUh992aXddDnzbtw7TTz3U82vbrt1gyY/JICgIg3?=
+ =?iso-8859-1?Q?xi6HCvIwpJ743xHXTquEBbvz64KHYe1Na7sHOpX4AOKDYFQ0k9p3la5oz9?=
+ =?iso-8859-1?Q?W8+9kvbasCkzZYZc1a9JOxSD2Ih/35rvUxrpLF0fRS/Fm329A9X1VaqDta?=
+ =?iso-8859-1?Q?WgHORO1XT8DD11Fk3wchWYy9fMhIRlGcAYsBjCHuih5BITfOkxVdtWgKuO?=
+ =?iso-8859-1?Q?bhPOjfBiijKAgGLnLmP1A4iYBn2QKuyHm7JUZokR9gbEDoBUK6wPhcBbm+?=
+ =?iso-8859-1?Q?l1qZaQwb4PscNz1F3aqg7qITGHRmbdfQbsNKYm5qYNAexRQss3pR2lOniW?=
+ =?iso-8859-1?Q?cNRxIo0Cus8LtGa+1gYE8cEnKFPnxgsGMNQGmUO8SVGMytqsO57ZlU4vks?=
+ =?iso-8859-1?Q?UUuVevj4LhEwXAiqxrCviVL2356u2XbePPPPGWnEp8DyIw05vzrIBgw/at?=
+ =?iso-8859-1?Q?TlN/fCTCG2e9485IdD90RKwv4r68GDNJt9XYjmA3dYNFj/qfeOzzoLfDAU?=
+ =?iso-8859-1?Q?B8o04saPlm381WE2/ldowmkSu2PIC82Ayzc56XLK/FYj4WcJPc7Jr8DPHK?=
+ =?iso-8859-1?Q?LYuoLXlHTCvHoJXHMkxdlJMIMHg27WmEE306dXG0pAGi/kYktkw6meLI+z?=
+ =?iso-8859-1?Q?UKZf0xszxv+KFLf3n8dgR7k6UI9VG+kT6pm6uE6Or4MmRICr8e/It60Zl2?=
+ =?iso-8859-1?Q?XVIs2c0qaoZG83xuI24jW0NtksT+yxTMRTYt4zoh0UvHENLZJ4HIKQKa7M?=
+ =?iso-8859-1?Q?jYd05XbkOyr9zTYcF+dHM4ypXxUohOm7jL5dXqMBXipTdxyZne/5BPhxCO?=
+ =?iso-8859-1?Q?g+73GuGu7kdRkzBFzHypsZxZECH4+Ig=3D?=
+X-Exchange-RoutingPolicyChecked: MrU/k6cWENtt4WuJuAPTgAld2ywVblgLbL+VJLmeMog9StvxP3Gaq7MV0cGyczqN4P5AltLpTOkTn5eovqa3eqJ0d+c4T0zfURQFPwUbzpkPVXkNGBbvQ9iQp9ZlBCOdkpBA6Kb7KlIpkMBsfyeW2ZoSMN3bdtMk3x5Wn+4iiCvqbg/M8zn9u9U+soyllHwY1944s+bAmoqwipTKvWnD73b7wHoYdCQoJ/mJy7LfFEQoi8nTB4Mr5Twdoc2jsTV009iDfZEl8tzBZcmjupwSKe9W3V+3DeMk+MNw4JlUIhksmx6Nw6ROT9iqg+N6ui3TkTHGyiyaCPS6ftajS/URMw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01aa8bca-d9bd-4f8f-3484-08defd7026bd
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2026 21:06:03.8168 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2026 21:32:06.3438 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vf3gkTnlIBa2akK267x5CBuXoi9CoQTXXKawR9mSv3P5jty6LmAL5AHYi8dKuv804fOzBuS3WelhaHqYp/7oJQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB925731
+X-MS-Exchange-CrossTenant-UserPrincipalName: E/HJECC3fht2r91r5eCwIgViFMwtWuL8DuL0xI+02gkQteOrnejvp5NUASWPljaPcRDJgmkADeMnAaobJZ6Mfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA7PR11MB9594
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,161 +163,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 18, 2026 at 01:53:15PM -0700, Niranjana Vishwanathapura wrote:
-> On Wed, Aug 19, 2026 at 02:38:39AM +0800, Jagmeet Randhawa wrote:
-> > q->guc->suspend_pending is accessed without any common lock.
-> > __suspend_fence_signal(), called from guc_exec_queue_kill() and the
-> > suspend-timeout ban path, clears the flag asynchronously. Meanwhile
-> > handle_sched_done(), guc_exec_queue_stop() and
-> > __guc_exec_queue_process_msg_suspend() check the flag and then call
-> > suspend_fence_signal(), which asserts that it is still set.
+On Tue, Aug 18, 2026 at 02:10:35PM +0200, Thomas Hellström wrote:
+> On Fri, 2026-08-14 at 16:24 -0700, Matthew Brost wrote:
+> > On Fri, Aug 14, 2026 at 04:37:37PM +0200, Thomas Hellström wrote:
+> > > Update our preferred vmscan batch size on each count pass to avoid
+> > > invoking scan_objects for requests too small to free even a single
+> > > average-sized GEM object. Our rough estimate for an effective batch
+> > > is twice the average number of pages per populated ttm_tt across
+> > > all
+> > > shrinkable and purgeable objects. The factor of two provides
+> > > headroom
+> > > so that most scan invocations can free at least one GEM object
+> > > despite
+> > > variability in object sizes.
+> > > 
+> > > The batch value is updated as an exponential moving average,
+> > > (old_batch + avg) / 2, to smooth out sudden changes in the
+> > > object population. It is floored at 128 pages, the kernel default
+> > > SHRINK_BATCH, to ensure the shrinker remains responsive when there
+> > > are very few objects.
+> > > 
+> > > The populated_tts counter introduced in the previous commit
+> > > provides
+> > > the object count needed for the average. We inherit the same
+> > > justification as the analogous mechanism in i915: shrinking a GEM
+> > > object has non-trivial locking overhead, so firing the shrinker for
+> > > requests smaller than a single object is wasteful.
+> > > 
+> > > v2:
+> > > - Fix the average object size estimate to account for the full
+> > >   shrinkable and purgeable population.
+> > > 
+> > > Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+> > > Assisted-by: GitHub_Copilot:claude-sonnet-5
 > > 
-> > As the check and suspend_fence_signal() are not atomic, the clear can
-> > land in between and trip the xe_gt_assert(q->guc->suspend_pending).
-> > 
-> > The flag is already set and read under the per-queue msg_lock
-> > (xe_sched_msg_lock()) on the suspend and resume paths. Extend that same
-> > lock to the clear paths (kill and ban) and to the three check-then-act
-> > sites so the check and the signal are atomic with respect to the clear.
-> > In __guc_exec_queue_process_msg_suspend() only the non-sleeping branch is
-> > wrapped, since the other branch waits. In handle_sched_done() the flag is
-> > snapshotted under the lock and deregister_exec_queue() is kept outside it.
-> > 
-> > v2: Document that sched->msg_lock also protects
-> >    guc->suspend_pending, which indicates a suspend message is in
-> >    flight, in addition to the sched->msgs list (Niranjana)
-> > 
-> > Signed-off-by: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
+> > This is probably the right direction given what we currently have in
+> > terms of shrinker control, but the core heuristic is still a pretty
+> > poor
+> > one. My understanding is that it combines batch and seek values using
+> > some odd math to determine whether a scan is worthwhile at a given
+> > priority level. We probably want to avoid shrinking at the initial
+> > scan
+> > priorities, and I believe this change accomplishes that.
 > 
-> LGTM
-> Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Yes, but I think that's a side-effect not to be fully relied upon.
+> 
+> The meaning of this value IMO is to tell the core how many objects to
+> expect for a scan request, so that the core can hold off shrinking
+> until that many objects is actually this shrinker's fair share of its
+> available objects. So the side effect would be that this shrinker's
+> fair share of shrinking may not trigger a scan request if shrinking is
+> triggered by compacting?
 > 
 
-So my latest reply, I don't think patch is needed in its current form.
+I think you mean higher order allocations, not compaction. Reclaim is
+the input to compaction - see compaction_ready, compact_gap usage in
+vmscan.c
+
+So I think a side affect could be higher order allocation never enter
+our shrinker if compaction_ready flips to true before our batch size /
+seek values are asked for (total_scan math in do_shrink_slab).
+
+> > 
+> > That said, I think we really want two shrinkers instead: one with the
+> > default settings (or perhaps even a reduced seek value) for purgeable
+> > BOs, and another for BOs that we legitimately need to back up. The
+> > purgeable one should be favored to run eariler, likewise the TTM pool
+> > shrinker should be favored run before our shrinker too.
+> 
+> I don't think we can or should use the batch size to decide which
+> shrinker should be prioritized. IIRC one of the comments to previous
+
+It probably isn't the right approach, but my concern is that our shrinker
+won't run at higher orders when there are cheap reclaimable pages (i.e.,
+we have purged BOs that can immediately make higher-order pages available
+or allow compaction to do its job of forming higher-order pages). I have
+already seen shrinker backoff being too aggressive when compaction_ready()
+returns true, resulting in virtually zero THP availability because
+shrinkers hold onto enough non-movable pages scattered throughout memory
+to prevent successful compaction (I have a local core MM patch that fixes
+this issue).
+
+Purgable and non-purgable pages have fundamentally different shrinking
+costs, and that distinction needs to be expressed somehow. The
+opportunistic compaction (wrongly named) shrinker series attempts to
+capture this.
+
+> series what that shrinkers should appear similar to the core, unless
+> some form of differentiation is implemented in the core. If we were to
+> add two shrinkers it would mean that purgeable objects would get its
+> fair share of shrinking and so would also active / live objects. With
+> the current design we prioritize internally to make sure we target
+> purgeable objects first.
+> 
+
+One shrinker could scan only purgable pages, while the other could scan
+both purgable pages and those in the working set. But maybe that isn't
+the right answer either.
+
+So I'm torn on this. I think this series will help with the higher-order
+eviction feedback loop but, at the same time, may make higher-order
+availability worse in certain cases. I think the proper solution for
+both issues is core shrinker work, but it has been hard to gain any
+traction there.
 
 Matt
 
-> > ---
-> > drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |  5 +++-
-> > drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  5 +++-
-> > drivers/gpu/drm/xe/xe_guc_submit.c           | 29 ++++++++++++++++----
-> > 3 files changed, 32 insertions(+), 7 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> > index 63d9bf92583c..78ef2e8ded4f 100644
-> > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> > @@ -47,7 +47,10 @@ struct xe_gpu_scheduler {
-> > 	const struct xe_sched_backend_ops	*ops;
-> > 	/** @msgs: list of messages to be processed in @work_process_msg */
-> > 	struct list_head			msgs;
-> > -	/** @msg_lock: Message lock */
-> > +	/**
-> > +	 * @msg_lock: Protects @msgs and guc->suspend_pending (indicates a
-> > +	 * suspend message is in flight) of exec queues on this scheduler.
-> > +	 */
-> > 	spinlock_t				msg_lock;
-> > 	/** @work_process_msg: processes messages */
-> > 	struct work_struct		work_process_msg;
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> > index d27826b36649..74b711abe257 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> > @@ -52,7 +52,10 @@ struct xe_guc_exec_queue {
-> > 	u16 id;
-> > 	/** @suspend_wait: wait queue used to wait on pending suspends */
-> > 	wait_queue_head_t suspend_wait;
-> > -	/** @suspend_pending: a suspend of the exec_queue is pending */
-> > +	/**
-> > +	 * @suspend_pending: a suspend of the exec_queue is pending.
-> > +	 * Protected by @sched.msg_lock.
-> > +	 */
-> > 	bool suspend_pending;
-> > 	/**
-> > 	 * @suspend_count: Reference count of active suspend requests. The
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index 9036f89dff7d..c565c1d32d3a 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -1928,9 +1928,13 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
-> > 			set_exec_queue_suspended(q);
-> > 			disable_scheduling(q, false);
-> > 		}
-> > -	} else if (q->guc->suspend_pending) {
-> > -		set_exec_queue_suspended(q);
-> > -		suspend_fence_signal(q);
-> > +	} else {
-> > +		xe_sched_msg_lock(&q->guc->sched);
-> > +		if (q->guc->suspend_pending) {
-> > +			set_exec_queue_suspended(q);
-> > +			suspend_fence_signal(q);
-> > +		}
-> > +		xe_sched_msg_unlock(&q->guc->sched);
-> > 	}
-> > }
+> > Also we really should look at getting priority based shrinking in
+> > too, I
+> > have follow up there too which disconnects purgable / not in working
+> > set
+> > from shared VM dma-resv also, further prioritizing though shrinks.
 > > 
-> > @@ -2130,7 +2134,9 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
-> > {
-> > 	trace_xe_exec_queue_kill(q);
-> > 	set_exec_queue_killed(q);
-> > +	xe_sched_msg_lock(&q->guc->sched);
-> > 	__suspend_fence_signal(q);
-> > +	xe_sched_msg_unlock(&q->guc->sched);
-> > 	xe_guc_exec_queue_trigger_cleanup(q);
-> > }
+> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_shrinker.c | 26 ++++++++++++++++++++++++++
+> > >  1 file changed, 26 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
+> > > b/drivers/gpu/drm/xe/xe_shrinker.c
+> > > index cded230f5459..284fce207705 100644
+> > > --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> > > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
+> > > @@ -146,6 +146,8 @@ xe_shrinker_count(struct shrinker *shrink,
+> > > struct shrink_control *sc)
+> > >  {
+> > >  	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
+> > >  	unsigned long num_pages;
+> > > +	unsigned long total_pages;
+> > > +	unsigned long populated_tts;
+> > >  	bool can_backup = !!(sc->gfp_mask & __GFP_FS);
+> > >  
+> > >  	num_pages = ttm_backup_bytes_avail() >> PAGE_SHIFT;
+> > > @@ -157,8 +159,32 @@ xe_shrinker_count(struct shrinker *shrink,
+> > > struct shrink_control *sc)
+> > >  		num_pages = 0;
+> > >  
+> > >  	num_pages += shrinker->purgeable_pages;
+> > > +	total_pages = shrinker->shrinkable_pages + shrinker-
+> > > >purgeable_pages;
+> > > +	populated_tts = shrinker->populated_tts;
+> > >  	read_unlock(&shrinker->lock);
+> > >  
+> > > +	/*
+> > > +	 * Update our preferred vmscan batch size for the next
+> > > pass.
+> > > +	 * Our rough guess for an effective batch size is twice
+> > > the average
+> > > +	 * number of pages per GEM object. That is, we don't want
+> > > the
+> > > +	 * shrinker to fire until the request is large enough to
+> > > justify
+> > > +	 * the overhead of freeing at least one GEM object.
+> > > +	 *
+> > > +	 * Base the average on the full shrinkable + purgeable
+> > > population
+> > > +	 * (total_pages), not on num_pages, which is reduced to
+> > > just the
+> > > +	 * purgeable pages whenever the gfp mask disallows backup
+> > > (can_backup
+> > > +	 * false). Otherwise the estimate would systematically
+> > > undershoot in
+> > > +	 * exactly the GFP_NOFS / GFP_NOIO reclaim paths where
+> > > avoiding
+> > > +	 * excessive scan_objects() calls matters most.
+> > > +	 */
+> > > +	if (populated_tts) {
+> > > +		unsigned long avg = 2 * total_pages /
+> > > populated_tts;
+> > > +
+> > > +		shrinker->shrink->batch =
+> > > +			max((shrinker->shrink->batch + avg) >> 1,
+> > > +			    128UL /* default SHRINK_BATCH */);
 > > 
-> > @@ -2392,11 +2398,15 @@ static void guc_exec_queue_suspend_timeout_ban(struct xe_exec_queue *q)
-> > 	 */
-> > 	if (xe_exec_queue_is_multi_queue(q)) {
-> > 		set_exec_queue_group_banned(q);
-> > +		xe_sched_msg_lock(&q->guc->sched);
-> > 		__suspend_fence_signal(q);
-> > +		xe_sched_msg_unlock(&q->guc->sched);
-> > 		xe_guc_exec_queue_group_trigger_cleanup(q);
-> > 	} else {
-> > 		set_exec_queue_banned(q);
-> > +		xe_sched_msg_lock(&q->guc->sched);
-> > 		__suspend_fence_signal(q);
-> > +		xe_sched_msg_unlock(&q->guc->sched);
-> > 		xe_guc_exec_queue_trigger_cleanup(q);
-> > 	}
-> > }
-> > @@ -2614,10 +2624,12 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
-> > 		if (exec_queue_destroyed(q))
-> > 			do_destroy = true;
-> > 	}
-> > +	xe_sched_msg_lock(sched);
-> > 	if (q->guc->suspend_pending) {
-> > 		set_exec_queue_suspended(q);
-> > 		suspend_fence_signal(q);
-> > 	}
-> > +	xe_sched_msg_unlock(sched);
-> > 	atomic_and(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_BANNED |
-> > 		   EXEC_QUEUE_STATE_KILLED | EXEC_QUEUE_STATE_DESTROYED |
-> > 		   EXEC_QUEUE_STATE_SUSPENDED,
-> > @@ -3222,13 +3234,20 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
-> > 		smp_wmb();
-> > 		wake_up_all(&guc->ct.wq);
-> > 	} else {
-> > +		bool was_pending;
-> > +
-> > 		xe_gt_assert(guc_to_gt(guc), runnable_state == 0);
-> > 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_disable(q));
+> > I think 128UL should be at least whatever TTM pool batch is?
+> 
+> Again, we should not use this to attempt to prioritize between
+> shrinkers. Just to ensure that we give a fair estimate of the actual
+> batch size.
+> 
+> Thanks,
+> Thomas
+> 
+> 
 > > 
-> > -		if (q->guc->suspend_pending) {
-> > +		xe_sched_msg_lock(&q->guc->sched);
-> > +		was_pending = q->guc->suspend_pending;
-> > +		if (was_pending) {
-> > 			clear_exec_queue_pending_disable(q);
-> > 			suspend_fence_signal(q);
-> > -		} else {
-> > +		}
-> > +		xe_sched_msg_unlock(&q->guc->sched);
-> > +
-> > +		if (!was_pending) {
-> > 			if (exec_queue_banned(q)) {
-> > 				smp_wmb();
-> > 				wake_up_all(&guc->ct.wq);
-> > -- 
-> > 2.53.0
+> > Matt
 > > 
+> > > +	}
+> > > +
+> > >  	return num_pages ? num_pages : SHRINK_EMPTY;
+> > >  }
+> > >  
+> > > -- 
+> > > 2.55.0
+> > > 
