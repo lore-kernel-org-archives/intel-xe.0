@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BA84C5DF81
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 08:47:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D9E1C5DF81
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 08:47:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DAF610E4DC;
-	Tue, 18 Aug 2026 08:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B05D10EA4A;
+	Tue, 18 Aug 2026 08:47:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y7L9brmK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m7w1lpYk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 912BC10E29C;
- Tue, 18 Aug 2026 08:47:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39D3E10EA4A;
+ Tue, 18 Aug 2026 08:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787042827; x=1818578827;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vl12PkdrN/rLhxz+bvAcv3mvoswb/CWQ/XrMn78Y18o=;
- b=Y7L9brmKqVoDnA8TyQ04QecVse7KIONFc3J/cviPzXJ2bQRK9865e/mx
- u+rvnuLyQdw4YNqhQjNP7TN7AHzZiyjzocluu2WwrxLtNnfNdcszgAzyF
- JIWEyqFN0yU9HEOxF9Gg02B/0lNTZtfUZ255JARXKiXa4HzHwPv3Y9lIX
- LTdXm7vU21HjOUzMN4x+Cob7PaQglHfd7mhSZOM4rUtaf1CBJA1SM6fR/
- d+FJQ/d2DG8fkRFQ+w5VKxRJeB/FlfbFnkeVQ6e0uvEi4H+lX5LwOjDBR
- k0B2zEMKu5G5uDMfM2OryuL5ECMqWeA/d7DDcvAn27YKNcHnfLP1JilCj Q==;
-X-CSE-ConnectionGUID: 3BgZcZcFTleLuaG63pzn1Q==
-X-CSE-MsgGUID: rR/OFmdiRyeBiZ40VtBf6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="87403705"
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="87403705"
+ t=1787042835; x=1818578835;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9ffSuTjFM2G5PyGFMU+xBIKb16VvauRgBOogrDcZzCk=;
+ b=m7w1lpYkaQzpAe8C7BYeecpI/SgQM8AB7FB+HlGEpOZSrS0V8718DlmS
+ 0TteI82DCtcJjoZMschTFZtMN1vEL/p5XB+zQ+hjymHKipTDFHGYExDCm
+ vtBJcIeoQ06d88Pwwsh1dmF4V7HbyulNUtwcguamag146DHOOWa9lStwV
+ ev1E7Rhr6EWwsCtxJCCwMQDSVrnw5T7ptKhvbXiPrf0Cp0Es1vhTicYfH
+ 32nryehK3vhqr9dK02M9alFSiRBvVB4AO0EpecrZNpihWqM+gRN9X1jBa
+ JKaQa4a2KIDUNVQq8fhm5/YqftkrYCCAnsIL1R6qIXyqyRl01UeS/mLpL A==;
+X-CSE-ConnectionGUID: WftbhrLhSTC8YPYbhtVy2Q==
+X-CSE-MsgGUID: kssQN8vIQ2qBXSsijVfcrg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="87403723"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="87403723"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 01:47:06 -0700
-X-CSE-ConnectionGUID: dw+sDVdLRIG/J70yAH2tbg==
-X-CSE-MsgGUID: l2FYgzksRxqZ/PWL4wMEmA==
+ 18 Aug 2026 01:47:15 -0700
+X-CSE-ConnectionGUID: NFIpwmJFT+qLE+/e5TjHcA==
+X-CSE-MsgGUID: /TB14pBqRjSiEeVKNuDsng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="267136503"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="267136568"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa004.fm.intel.com with ESMTP; 18 Aug 2026 01:47:05 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 18 Aug 2026 01:47:13 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: chaitanya.kumar.borah@intel.com,
 	Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 0/6]  Enable joiner cursor fast updates
-Date: Tue, 18 Aug 2026 14:12:30 +0530
-Message-Id: <20260818084236.2168580-1-nemesa.garg@intel.com>
+Subject: [PATCH 1/6] drm/i915/cursor: Check joiner cursor commit status
+Date: Tue, 18 Aug 2026 14:12:31 +0530
+Message-Id: <20260818084236.2168580-2-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260818084236.2168580-1-nemesa.garg@intel.com>
+References: <20260818084236.2168580-1-nemesa.garg@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,21 +67,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
- This series enables the cursor fast path for joiner mode
-and adds the missing secondary-plane handling to keep updates
-correct and synchronized.
+In joiner mode, secondary cursor commits may still be running
+even when the primary cursor commit is done. Walking the secondary
+pipes also requires holding the secondary planes modeset locks.
+Add intel_cursor_lock_joined_planes() to acquire modeset locks
+for all secondary cursor planes. Check all joined cursor commit
+status before taking the fast path. If any commit is still pending,
+fallback to slow path.
 
-Nemesa Garg (6):
-  drm/i915/cursor: Check joiner cursor commit status
-  drm/i915/cursor: Add helper to update cursor plane
-  drm/i915/cursor: Handle secondary cursor state
-  drm/i915/cursor: Program secondary cursor planes
-  drm/i915/cursor: Schedule cursor unpin per joined pipe
-  drm/i915/cursor: Allow joiner cursor fast path update
+v2: Use intel_crtc_joined_pipe_mask(). [Ville]
+v3: Lock secondary cursor CRTCs and planes. [sashiko]
+v4: Iterate the full joined mask uniformly in both helpers, no
+    primary special-case.
+    Move the parameter-change check above the lock acquisition so
+    we don't grab secondary locks just to fall to slow path. [Chaitanya]
+v5: Remove extra header declerartion. [Chaitanya]
 
- drivers/gpu/drm/i915/display/intel_cursor.c | 274 +++++++++++++++-----
- 1 file changed, 205 insertions(+), 69 deletions(-)
+Assisted-by: Claude:claude-sonnet-4.6
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cursor.c | 68 ++++++++++++++++++---
+ 1 file changed, 59 insertions(+), 9 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 0673f16f6fd0..bc1e58d5c4c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -796,6 +796,50 @@ void intel_cursor_unpin_work(struct kthread_work *base)
+ 	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
+ }
+ 
++static int intel_cursor_lock_joined_planes(struct intel_display *display,
++					   const struct intel_crtc_state *crtc_state,
++					   struct drm_modeset_acquire_ctx *ctx)
++{
++	struct intel_crtc *pipe_crtc;
++	int ret;
++
++	for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
++					 intel_crtc_joined_pipe_mask(crtc_state)) {
++		struct intel_plane *pipe_plane =
++			intel_crtc_get_plane(pipe_crtc, PLANE_CURSOR);
++
++		ret = drm_modeset_lock(&pipe_crtc->base.mutex, ctx);
++		if (ret)
++			return ret;
++
++		ret = drm_modeset_lock(&pipe_plane->base.mutex, ctx);
++		if (ret)
++			return ret;
++	}
++	return 0;
++}
++
++static bool
++intel_cursor_joiner_commits_idle(struct intel_display *display,
++				 const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *pipe_crtc;
++
++	for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
++					 intel_crtc_joined_pipe_mask(crtc_state)) {
++		struct intel_plane *pipe_plane =
++			intel_crtc_get_plane(pipe_crtc, PLANE_CURSOR);
++		struct intel_plane_state *pipe_plane_state =
++			to_intel_plane_state(pipe_plane->base.state);
++
++		if (pipe_plane_state->uapi.commit &&
++		    !try_wait_for_completion(&pipe_plane_state->uapi.commit->hw_done))
++			return false;
++	}
++
++	return true;
++}
++
+ static int
+ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 			   struct drm_crtc *_crtc,
+@@ -833,15 +877,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	    crtc_state->joiner_pipes)
+ 		goto slow;
+ 
+-	/*
+-	 * Don't do an async update if there is an outstanding commit modifying
+-	 * the plane.  This prevents our async update's changes from getting
+-	 * overridden by a previous synchronous update's state.
+-	 */
+-	if (old_plane_state->uapi.commit &&
+-	    !try_wait_for_completion(&old_plane_state->uapi.commit->hw_done))
+-		goto slow;
+-
+ 	/*
+ 	 * If any parameters change that may affect watermarks,
+ 	 * take the slowpath. Only changing fb or position should be
+@@ -855,6 +890,21 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	    !old_plane_state->uapi.fb != !fb)
+ 		goto slow;
+ 
++	ret = intel_cursor_lock_joined_planes(display, crtc_state, ctx);
++	if (ret == -EDEADLK)
++		return ret;
++	if (ret)
++		goto slow;
++
++	/*
++	 * Don't do an async update if there is an outstanding commit modifying
++	 * any of the joined cursor planes. This prevents our async update's
++	 * changes from getting overridden by a previous synchronous update's
++	 * state.
++	 */
++	if (!intel_cursor_joiner_commits_idle(display, crtc_state))
++		goto slow;
++
+ 	new_plane_state = to_intel_plane_state(intel_plane_duplicate_state(&plane->base));
+ 	if (!new_plane_state)
+ 		return -ENOMEM;
 -- 
 2.25.1
 
