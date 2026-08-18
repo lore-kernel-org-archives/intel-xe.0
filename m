@@ -4,144 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46F18C5DF7D
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 17:03:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBB13C5DF7D
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 17:08:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03CBA10E081;
-	Tue, 18 Aug 2026 17:03:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 842D110E081;
+	Tue, 18 Aug 2026 17:08:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LoKB1Okg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ye4vkdeJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F19410E081
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 17:03:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A32EC10E081
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 17:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787072591; x=1818608591;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ISN/dtprNm7JaSLmM7TlRLQYcmfSxiiKCv/CdUWnv8k=;
- b=LoKB1OkghgwKgd6oq6UduJ6rHZNyP+0PutQAsFGyP/m1PgArKXzj8xPe
- hk5D/u6EfKBXs039HiY+QQlUd5SWdbvv7CgHEc9cxhE+TGk/LUJN9x+/p
- mIXAlRX6EPq37UgLStVFWBhWkVMacdf2bbulY3UM3EGatxp25+RxI+djx
- yo7z0/PNLUJjhN7RmmRknvR4q3A88Kf1/QMm8RTYpGMOrsMENR7ecC2BP
- ucCdaB6lcP0RmS6aWRYR2BEcr+JZ1VAp4P2TXbs9xwQ5JA3gjZaUT88TZ
- 3FxZ1mCnVnD/dhvwoZL92DEYa0OGSfSLuOU48E3vo274zAgJZT4zS1mRd g==;
-X-CSE-ConnectionGUID: lxDd+ohwTJO32jG3r8/ykA==
-X-CSE-MsgGUID: 6MJDrDlFQFmNT7UKV4JiZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="87589792"
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="87589792"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 10:03:08 -0700
-X-CSE-ConnectionGUID: RDJZcVI7Ql2/GrVb/b75hg==
-X-CSE-MsgGUID: dz59lRvFR56Vb2tGoHIcEA==
+ t=1787072936; x=1818608936;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=+dFiw1JbQ7UHg/LKsQQhHDeRwKQiER2tgVBVFWrxLn0=;
+ b=Ye4vkdeJ7Xun7MqjFox8Q5lpgL/fa4fwypzYic4zi7J9xzD55KqdUbOR
+ PCpxj53bqvsV/A59MqGe64Dr1UQ6qQ16ANTWOq8HcFUsFGSmRw1pmgtcp
+ NPu/ZbDpsyT9INSoFtx1H5WB5xnkiH3EVcJ74nZ/4QqDshSdb0qKUZY/M
+ gonQ8VT3hRBgKMX7wlkDz2hovF+JFJ0jZ91qoLl0maE5RV9s+sm0ExYZg
+ LH3mYOPh0Yk7dMy2fX1296KeoRowz0E83iWDpcLj99meXW2x0Ut+Tzl/d
+ ePQN9GOhlL5ODxSHR0P8/2BnNeKSio8fUH9KGcr2fO6FPEXS6s570JDsb g==;
+X-CSE-ConnectionGUID: ulRKrWeSQc+gy87asDKhcg==
+X-CSE-MsgGUID: diFNx3udQ/+EMF/RJQUOfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="91256683"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="91256683"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 10:08:56 -0700
+X-CSE-ConnectionGUID: RB4TNBSiRzSsGcE0sCh+Yg==
+X-CSE-MsgGUID: ldhcbcAgQ16NFR+hM8ZXIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="264841435"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 10:03:08 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 18 Aug 2026 10:03:07 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Tue, 18 Aug 2026 10:03:07 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.33) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 18 Aug 2026 10:03:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g5hfeeMw9FGDMXSQbfAKNK1KBJv3eveMZPyfzNtBC7CSGdm2tJNPSMx1ZwSg5lIyhacUCfUi453FF9JE8v8IyMBgpfoN+ZNyaQMKoM2a77TsaxvnYIUdWAfm2qSADXXGDwLl5fCTm4GlCCNCW52nKzSACebRsBZkqShLE3zMyuT5cmaLIdsHKIRNkQxFCRkTk7do2CiXyrDJ5dDt7RjQ7V1djeTLq/AgF2JGsxsGf8XSVqVfoqx/M9LUofPThyxi5dDZ2f+14gUsFy/2d3w4bzy0KQNADbmxhydoytndMPP2mRipxf2teVDQ1h0jd9jqMDzkeNyc5CN2hUENPJ33dQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h7sqQYKlWHn6TvomRAVasrmcygH4jr6X2bgwnqU09sI=;
- b=a9UHPxSGrpmRbJ6lPrKUM1bwUsUhijMXnP7pcLq0Ga5eXZHPjKOABN9wR3NqvxZYNYesnL60T3jOv9lLxK8FWkYQ5oB7qqaNH2I1InZFCX0EjuzM94QEIZbMqzT2M7Uwe28le36oPaC0RfvKEPfmZVC9kHY+huZJUvvXuM5OTis5fHw3zwxmtjZNDvNpPalgmtlDTE74HRfbLTb7EE8efX6f4EtniainZ459Uu4ecE9lFzXj3lAkwwzKnlLpEXSDGGg43px9rdoutH54pAURoyY0sBP83wOSO3oRSMzhn2i/j4dSZfOcrILea5hSp17AjSAOSMcbl1t80LVZ3CzPkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SN7PR11MB6725.namprd11.prod.outlook.com (2603:10b6:806:267::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.25; Tue, 18 Aug
- 2026 17:03:01 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.21.0339.007; Tue, 18 Aug 2026
- 17:03:01 +0000
-Date: Tue, 18 Aug 2026 10:02:58 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <sk.anirban@intel.com>
-Subject: Re: [PATCH] drm/xe/xe3p_hpm: Remove WA 14025883347
-Message-ID: <20260818170258.GK8279@mdroper-desk1.amr.corp.intel.com>
-References: <20260818095748.1512800-2-balasubramani.vivekanandan@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260818095748.1512800-2-balasubramani.vivekanandan@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0125.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::10) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="263967208"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.14])
+ ([10.245.244.14])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 10:08:54 -0700
+Message-ID: <ad03c8234917a8b8e1d1777a0518231a650d1619.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Add force_p2p module/configfs parameter
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Nathan Ciobanu <nathan.d.ciobanu@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>
+Date: Tue, 18 Aug 2026 19:08:51 +0200
+In-Reply-To: <20260818154042.301638-1-nathan.d.ciobanu@linux.intel.com>
+References: <20260818154042.301638-1-nathan.d.ciobanu@linux.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SN7PR11MB6725:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40a980b3-e655-42f5-5756-08defd4a8f63
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|10067099003|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: ezVCDqelXZEIsQMYdDnp1SjDP2uF8CA98PB1LJhlrysg0t8mmKp/CDEL5FYvJgi+rgpRbsCClwVksphkmmBrgP3JLhdS9huNwVOXkX9YdZ2e+OJBKIPV6yYffSI7F9TJxN1NXqlf8ZX6WDSaJdKQ/+tt1hTmCtZEre98L9CwiZnpEWplT5TRf8MhtyxgmtFGMD/SGMBrxJSQoES/uABCEf+Hcg4FkyReLSi0TQxKbxAdeKOXz/VS6GhYVYoXzahKkQVIQlbelUkBT1QnLzHhy1YQSb247EgH4XJpzv1h3Km7WNLuD+Zt8LL87Ve7bIZ++zZh161jLCfP5yGOAwJK93I2ECN5cyPmtkPMHn/U6Qxrmi9PCAwzp70n1m+nekPDO0vnT3xljmLJHVZuu8ZVfxmGUNVNzTUmgooCrQrraUdzw0n5CeG6jzy7NZwXkJOdlgYCwG3ZYcvOYABWDaZ/TAssVituOMaNdxC09yxyl+2VQUuolWQIc2UhrmigTckWqYB/Tkdak42yo+EQaB63Q7lpQPxIaYabs24ZsQIwMXQ45WDv7Set3iwNm1axfhuDt6104PO0ppqXDcjf3JBfUgcx4ZKvhppkPkEiD+exvy0SAOPA0UeLhKrxnaFw4M3OqKnaCojCl4CW9PPvYXWbF+lCWCW9PrH5V+qMB3HWkMI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(10067099003)(56012099006)(11063799006)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6Ba+uXq7u8Zxz4Kmr9Yg0IGoYilnuzy1PsH/ElQs9jVs3hPawV8ELIlmnDzW?=
- =?us-ascii?Q?297kNHDUcNvB+IKKFk6WyOrUU16gtQ92HddynUg24OAnHNL3z3WxV67pOYG/?=
- =?us-ascii?Q?Q7OVfBZQ066QauKBiQojFvadoFcsGrrsRZrOWQ7a1ZpSxkb1G2thcchg0ttO?=
- =?us-ascii?Q?GTAo5xl9iOXeM6EjxNx8MPVPw61ZFj7YKIHyZ/zB2/mjiDDYWz6UYHP4rWLa?=
- =?us-ascii?Q?BTY/TOpEqNw5u3rWeeLNah4KO1eXeRynCyxXFeso0HwtHqBsSRSMmcEMpRwE?=
- =?us-ascii?Q?p24n07QSoKbbh/paV6pR1bZPx9vc8Jy5X1bVo6eTUBpLeMKDJ0CX+CYJxmov?=
- =?us-ascii?Q?AnnNYGhOUADCaxj81oIDWh4Z8j7Rzb3p9JIVUvKotJw2fMR7VR6wWZEBPNFx?=
- =?us-ascii?Q?55FGIZ7y1XaRgcW8XaY+agtWe01bncJgVsZ9Abw02Xkm0AgXb0bjGatPPeBi?=
- =?us-ascii?Q?kUcxjL/HALPr7VMjjGYSy7K1V8kin2YTV6K9gfHa0/XKOWTArr2WaVwy4rVp?=
- =?us-ascii?Q?JrxU88FFJ5sGn0vMbMKZY7IR+hhjN5Jv5cuoOp1nG6BKJim4r4sxmWOa18x8?=
- =?us-ascii?Q?wlF0gwuFutshLngJ+JKTn7Ners1k8EQQn7gQVZ/IE5JY7VfGdodXHdcCIXVX?=
- =?us-ascii?Q?GxLipCDBMLR6v39sY7PlMbzoMOh54U/FYiDjMIYWlhjePfLnT4Kk5RFBs4ZR?=
- =?us-ascii?Q?gxnX3yFTFHALpl71xPySqXBwJ33thUMnQ439kxBf1ULHlkrEvS24EzNf4gtt?=
- =?us-ascii?Q?aXoMlwvgq19GVMYXCRLKsFk9GPUK63XS/aXPIVS77t3jHZ+sb8MAeAZZbAWy?=
- =?us-ascii?Q?iN65cod3lq1pYbUjLpx3XeSsZXF0LqFy+fk5mkhrXwzmyEGbizcyUkmYsERJ?=
- =?us-ascii?Q?uk2ncJ8KNLsO8/Fl9RGglcY6lMBP94UDvvMF01osKzSgXYfn4yqJw60RNbsE?=
- =?us-ascii?Q?1UCzxhr2kc3gKV11gKEp56v+gE5vEA1q3nCjqneubY52FfCrten5j78jNM1b?=
- =?us-ascii?Q?au7p8A62WQJarCMIvemVZPMNgBbc22F8BzZjq8dlnGVLeIFD0bIcBhiSH0n6?=
- =?us-ascii?Q?NkmAwe43lXYyZ+B5QS2EaYh2qmRTQPaWmSQJplb3ZqGFQ3KdXt7tTFTCUg2z?=
- =?us-ascii?Q?lPl5c80BTpDyqhQZ35DBfdg0m9bvu6PhXle2+TvbSAwMqLeR7Nd6v2G6rTeF?=
- =?us-ascii?Q?Wuw22+V7Kq1zZrd+GHJNLzBDTDT+qN81vz+IOLuwChd+gdZJZvCmkGxaJK5m?=
- =?us-ascii?Q?MzrggkyIFOjQUTs5s0eJE6965PSI0CjRvIcSTYXBz/2oQBl6L1XF54njYqaH?=
- =?us-ascii?Q?snF83yoVMZLw06xl6vY3Pqe4KahZ1e+euR0XJLL1yhLRR+QZ3SeWTMN0dtQ6?=
- =?us-ascii?Q?nZTkVQe1ShtwtwqNC6RtO/q2T6b2JEsvllE2T7iyAPP048OLj3d5U6mnZB0a?=
- =?us-ascii?Q?kIv19hOp09mUr6TnWH1X2760va0Kqkz+BlFqReK6N34mnJ5crP619jElavaX?=
- =?us-ascii?Q?9vVpoRX+WwHOMU9+WjIcvuWn+jP/qqKVbJKgNY0lTbch9ts02+9KRLNJIKqV?=
- =?us-ascii?Q?4KpqssgC89EsiJrui/o+bVfHxvm6KXHGAiXplQoFawJGBilGsa4orUPqZwI7?=
- =?us-ascii?Q?mcuHL09accNas2isQLTxlE/BOAf2XTvWmBWEnwydPCv+/wth/4FnSe0w+4Up?=
- =?us-ascii?Q?g0CPTgbGfwysMbfO4iTWX3yA2mA5IKphfkCz8LH4chqyYKOv3QFleUz2Tem5?=
- =?us-ascii?Q?Q67VTvfWe5LAoHIVpHh+omkL/CETpvQ=3D?=
-X-Exchange-RoutingPolicyChecked: pXBfE8cUKc05pjBIzQzg7CG4k6LjT7488wHsaswiAS4A3w993yTEVhvnSfc+nwfSKaQ1X6XTjJH078YyOuJmUym4GPexo1oMjv6q3oOA5wuSTJXEZXwzZzuThwFoep9AeqY0DRujaaMAQ2+B0jpy1+jxF28JGQHiz3FEF2OV8Oe6fJJPCGVOdqEl5950g1beOXmoeVWXt9CXQYNBr2a9ajRUW93g9EmIQQG1qfKQujJl4+JAZyu9FCXZmLCpRwMPUzzqOhtfPj+D4ZXs6RHl/f/E2lTqjrVIpnXccc/Mr1WHXe5jxKvp/bSTQCwltDygLtuzoCdUovsci7rZ2eHX+w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40a980b3-e655-42f5-5756-08defd4a8f63
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2026 17:03:01.0428 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OSjBrxED794Pk6a2pExhTenFvwIJOvWffP13HlEZ6ArQXOREuwYJC1oHBZJktfQW5MRcqxHZ4NAQwdCc1/b8Cn4x2qAQlTNdwbV96bzaui4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6725
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,45 +71,373 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 18, 2026 at 03:27:49PM +0530, Balasubramani Vivekanandan wrote:
-> WA 14025883347 is not applicable for xe3p_hpm. It was added by mistake.
+On Tue, 2026-08-18 at 08:40 -0700, Nathan Ciobanu wrote:
+> Add force_p2p module and configfs parameter to give users an option
+> to
+> allow P2P DMA between GPU cards that are connected off of the root
+> bus
+> with no switch/bridge in between, as seen in some virtual machine
+> topologies (Q35/QEMU, VMware):
+>=20
+> =C2=A0\-[0000:03]-+-00.0=C2=A0 Intel Corporation [Intel Graphics]
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+\-01.0=C2=A0 Intel Corporation [Intel Graphics]
+>=20
+> or
+>=20
+> =C2=A0-[0000:00]-+-01.6-[07]----00.0=C2=A0 Intel Graphics
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \-01.7=
+-[08]----00.0=C2=A0 Intel Graphics
+>=20
+> In these situations the p2pdma distance calculation API would fail
+> the
+> host-bridge case
 
-Daniele already submitted this at
-
-https://lore.kernel.org/all/20260812223915.273611-1-daniele.ceraolospurio@intel.com/
-
-Note that media versions 35.01 and 35.02 don't exist [yet?] so Daniele's
-version that changes the upper bound to 3500 is slightly better.
+Why does it fail. Typically there is a very good reason, like the host
+bridge is not whitelisted?
 
 
-Matt
+>  and not give a chance to users to take advantage of P2P
+> DMA.
+>=20
+> This module/config parameter should be used with caution after
+> proving
+> that the memory mapped between the two devices is not getting
+> corrupted.
+> Users need to verify that the platform's physical topology
+> allows/facilitates P2P and tests such as the IGT xe_peer2peer pass.
+>=20
+> Assisted-by: Claude:claude-3.5-sonnet
+> Signed-off-by: Nathan Ciobanu <nathan.d.ciobanu@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-> 
-> Fixes: c57db41b8d2cd ("drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset")
-> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_wa_oob.rules | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> index f02ac9bf74243..a2d093ee6505a 100644
-> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> @@ -63,7 +63,7 @@
->  16026007364    MEDIA_VERSION(3000)
->  14020316580    MEDIA_VERSION(1301)
->  
-> -14025883347	MEDIA_VERSION_RANGE(1301, 3503)
-> +14025883347	MEDIA_VERSION_RANGE(1301, 3502)
->  		GRAPHICS_VERSION_RANGE(2004, 3005)
->  16029380221	MEDIA_VERSION(3500)
->  22022079272	MEDIA_VERSION(3503)
-> -- 
-> 2.43.0
-> 
+I don't think we should do this, but rather fix upstream the cases that
+should work (probably by whitelisting the host bridges?)
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+Thanks,
+Thomas
+
+
+
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_configfs.c
+> b/drivers/gpu/drm/xe/xe_configfs.c
+> index 052cce962161..187352a8b419 100644
+> --- a/drivers/gpu/drm/xe/xe_configfs.c
+> +++ b/drivers/gpu/drm/xe/xe_configfs.c
+> @@ -255,6 +255,39 @@
+> =C2=A0 * The created device directories can be removed using ``rmdir``::
+> =C2=A0 *
+> =C2=A0 *	# rmdir /sys/kernel/config/xe/0000:03:00.0/
+> + *
+> + * Force P2P DMA
+> + * -------------
+> + *
+> + * This option is useful in virtual machines when the PCIe emulated
+> topology
+> + * doesn't mimic the physical one and the p2pdma API fails to
+> calculate a
+> + * distance between nodes due to whitelist checks. In such cases,
+> the user can
+> + * set the force_p2p module parameter globally or through configfs,
+> if needed,
+> + * have the option to granularly control that setting on a per-
+> device basis.
+> + *
+> + * By default, force_p2p will have the same value as the
+> xe_modparam.force_p2p
+> + * which by default is 0.
+> + *
+> + * The symptoms that point to the P2P issue that this option is
+> trying to
+> + * address is:
+> + * - dmesg errors such as "xe 0000:03:01.0: cannot be used for peer-
+> to-peer DMA
+> + *=C2=A0=C2=A0 as the client and provider (0000:03:00.0) do not share an
+> upstream bridge
+> + *=C2=A0=C2=A0 or whitelisted host bridge"
+> + * - Running the IGT xe_peer2peer tests result in skips.
+> + * - UMD libraries fail with p2p related errors.
+> + *
+> + * Use these steps if the global xe.force_p2p parameter is
+> inconvenient
+> + * for some GPU devices in your system. NOTE that this option needs
+> to be
+> + * set on both endpoints of a pair to take effect.
+> + *
+> + * 1. Unbind the driver from device:
+> + *	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/unbind
+> + *
+> + * 2. Set the force_p2p option on/off:
+> + *	# echo [0|1] >
+> /sys/kernel/config/xe/0000\:03\:00.0/force_p2p
+> + *
+> + * 3. Rebind the driver to device:
+> + *	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind
+> =C2=A0 */
+> =C2=A0
+> =C2=A0/* Similar to struct xe_bb, but not tied to HW (yet) */
+> @@ -275,6 +308,7 @@ struct xe_config_group_device {
+> =C2=A0		bool survivability_mode;
+> =C2=A0		bool enable_psmi;
+> =C2=A0		bool enable_multi_queue;
+> +		bool force_p2p;
+> =C2=A0		struct {
+> =C2=A0			unsigned int max_vfs;
+> =C2=A0			bool admin_only_pf;
+> @@ -295,6 +329,7 @@ static const struct xe_config_device
+> device_defaults =3D {
+> =C2=A0	.survivability_mode =3D false,
+> =C2=A0	.enable_psmi =3D false,
+> =C2=A0	.enable_multi_queue =3D true,
+> +	.force_p2p =3D XE_DEFAULT_FORCE_P2P,
+> =C2=A0	.sriov =3D {
+> =C2=A0		.max_vfs =3D XE_DEFAULT_MAX_VFS,
+> =C2=A0		.admin_only_pf =3D XE_DEFAULT_ADMIN_ONLY_PF,
+> @@ -304,6 +339,7 @@ static const struct xe_config_device
+> device_defaults =3D {
+> =C2=A0static void set_device_defaults(struct xe_config_device *config)
+> =C2=A0{
+> =C2=A0	*config =3D device_defaults;
+> +	config->force_p2p =3D xe_modparam.force_p2p;
+> =C2=A0#ifdef CONFIG_PCI_IOV
+> =C2=A0	config->sriov.max_vfs =3D xe_modparam.max_vfs;
+> =C2=A0#endif
+> @@ -563,6 +599,37 @@ static ssize_t engines_allowed_store(struct
+> config_item *item, const char *page,
+> =C2=A0	return len;
+> =C2=A0}
+> =C2=A0
+> +static ssize_t force_p2p_show(struct config_item *item, char *page)
+> +{
+> +	struct xe_config_group_device *dev =3D
+> to_xe_config_group_device(item);
+> +
+> +	guard(mutex)(&dev->lock);
+> +
+> +	return sprintf(page, "%d\n", dev->config.force_p2p);
+> +}
+> +
+> +static ssize_t force_p2p_store(struct config_item *item, const char
+> *page, size_t len)
+> +{
+> +	struct xe_config_group_device *dev =3D
+> to_xe_config_group_device(item);
+> +	bool force_p2p;
+> +	int ret;
+> +
+> +	guard(mutex)(&dev->lock);
+> +
+> +	if (is_bound(dev))
+> +		return -EBUSY;
+> +
+> +	ret =3D kstrtobool(page, &force_p2p);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev->config.force_p2p =3D force_p2p;
+> +
+> +	add_taint(TAINT_USER, LOCKDEP_STILL_OK);
+> +
+> +	return len;
+> +}
+> +
+> =C2=A0static ssize_t enable_psmi_show(struct config_item *item, char
+> *page)
+> =C2=A0{
+> =C2=A0	struct xe_config_device *dev =3D to_xe_config_device(item);
+> @@ -856,6 +923,7 @@ CONFIGFS_ATTR(, ctx_restore_post_bb);
+> =C2=A0CONFIGFS_ATTR(, enable_multi_queue);
+> =C2=A0CONFIGFS_ATTR(, enable_psmi);
+> =C2=A0CONFIGFS_ATTR(, engines_allowed);
+> +CONFIGFS_ATTR(, force_p2p);
+> =C2=A0CONFIGFS_ATTR(, gt_types_allowed);
+> =C2=A0CONFIGFS_ATTR(, survivability_mode);
+> =C2=A0
+> @@ -865,6 +933,7 @@ static struct configfs_attribute
+> *xe_config_device_attrs[] =3D {
+> =C2=A0	&attr_enable_multi_queue,
+> =C2=A0	&attr_enable_psmi,
+> =C2=A0	&attr_engines_allowed,
+> +	&attr_force_p2p,
+> =C2=A0	&attr_gt_types_allowed,
+> =C2=A0	&attr_survivability_mode,
+> =C2=A0	NULL,
+> @@ -1269,6 +1338,25 @@ bool xe_configfs_get_psmi_enabled(struct
+> pci_dev *pdev)
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> +/** xe_configfs_get_force_p2p - get configfs force_p2p setting
+> + * @pdev: pci device
+> + *
+> + * Return: force_p2p setting in configfs
+> + */
+> +bool xe_configfs_get_force_p2p(struct pci_dev *pdev)
+> +{
+> +	struct xe_config_group_device *dev =3D
+> find_xe_config_group_device(pdev);
+> +	bool ret;
+> +
+> +	if (!dev)
+> +		return xe_modparam.force_p2p;
+> +
+> +	ret =3D dev->config.force_p2p;
+> +
+> +	config_group_put(&dev->group);
+> +	return ret;
+> +}
+> +
+> =C2=A0/**
+> =C2=A0 * xe_configfs_get_enable_multi_queue - get configfs
+> enable_multi_queue setting
+> =C2=A0 * @pdev: pci device
+> diff --git a/drivers/gpu/drm/xe/xe_configfs.h
+> b/drivers/gpu/drm/xe/xe_configfs.h
+> index 4fbbeafba473..45af69cb74b1 100644
+> --- a/drivers/gpu/drm/xe/xe_configfs.h
+> +++ b/drivers/gpu/drm/xe/xe_configfs.h
+> @@ -30,6 +30,7 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct
+> pci_dev *pdev,
+> =C2=A0u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+> =C2=A0					enum xe_engine_class class,
+> =C2=A0					const u32 **cs);
+> +bool xe_configfs_get_force_p2p(struct pci_dev *pdev);
+> =C2=A0#ifdef CONFIG_PCI_IOV
+> =C2=A0unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
+> =C2=A0bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+> @@ -50,6 +51,7 @@ static inline u32
+> xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+> =C2=A0static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_de=
+v
+> *pdev,
+> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum
+> xe_engine_class class,
+> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const u32
+> **cs) { return 0; }
+> +static inline bool xe_configfs_get_force_p2p(struct pci_dev *pdev) {
+> return xe_modparam.force_p2p; }
+> =C2=A0#ifdef CONFIG_PCI_IOV
+> =C2=A0static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev
+> *pdev)
+> =C2=A0{
+> diff --git a/drivers/gpu/drm/xe/xe_defaults.h
+> b/drivers/gpu/drm/xe/xe_defaults.h
+> index 0884224ef7c7..3881e832566a 100644
+> --- a/drivers/gpu/drm/xe/xe_defaults.h
+> +++ b/drivers/gpu/drm/xe/xe_defaults.h
+> @@ -13,6 +13,7 @@
+> =C2=A0#define XE_DEFAULT_GUC_LOG_LEVEL		1
+> =C2=A0#endif
+> =C2=A0
+> +#define XE_DEFAULT_FORCE_P2P			0
+> =C2=A0#define
+> XE_DEFAULT_PROBE_DISPLAY		IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> =C2=A0#define XE_DEFAULT_VRAM_BAR_SIZE		0
+> =C2=A0#define
+> XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index bf0728838ead..bd8f8ad70bcd 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -15,6 +15,7 @@
+> =C2=A0
+> =C2=A0#include "tests/xe_test.h"
+> =C2=A0#include "xe_bo.h"
+> +#include "xe_configfs.h"
+> =C2=A0#include "xe_device.h"
+> =C2=A0#include "xe_pm.h"
+> =C2=A0#include "xe_ttm_vram_mgr.h"
+> @@ -26,9 +27,14 @@ static int xe_dma_buf_attach(struct dma_buf
+> *dmabuf,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct dma_buf_attachment *attach)
+> =C2=A0{
+> =C2=A0	struct drm_gem_object *obj =3D attach->dmabuf->priv;
+> +	struct pci_dev *a_pdev =3D to_pci_dev(obj->dev->dev);
+> +	struct pci_dev *b_pdev =3D dev_is_pci(attach->dev) ?
+> +				 to_pci_dev(attach->dev) : NULL;
+> =C2=A0
+> =C2=A0	if (attach->peer2peer &&
+> -	=C2=A0=C2=A0=C2=A0 pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attac=
+h-
+> >dev, false) < 0)
+> +	=C2=A0=C2=A0=C2=A0 !(b_pdev && xe_configfs_get_force_p2p(a_pdev) &&
+> +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_configfs_get_force_p2p(b_pdev)) &&
+> +	=C2=A0=C2=A0=C2=A0 pci_p2pdma_distance(a_pdev, attach->dev, false) < 0)
+> =C2=A0		attach->peer2peer =3D false;
+> =C2=A0
+> =C2=A0	if (!attach->peer2peer &&
+> !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
+> diff --git a/drivers/gpu/drm/xe/xe_module.c
+> b/drivers/gpu/drm/xe/xe_module.c
+> index 4bc28dfc1992..99cb2a455c6e 100644
+> --- a/drivers/gpu/drm/xe/xe_module.c
+> +++ b/drivers/gpu/drm/xe/xe_module.c
+> @@ -22,6 +22,7 @@
+> =C2=A0#include "xe_sched_job.h"
+> =C2=A0
+> =C2=A0struct xe_modparam xe_modparam =3D {
+> +	.force_p2p =3D		XE_DEFAULT_FORCE_P2P,
+> =C2=A0	.probe_display =3D	XE_DEFAULT_PROBE_DISPLAY,
+> =C2=A0	.guc_log_level =3D	XE_DEFAULT_GUC_LOG_LEVEL,
+> =C2=A0	.force_probe =3D		XE_DEFAULT_FORCE_PROBE,
+> @@ -38,6 +39,10 @@ module_param_named(svm_notifier_size,
+> xe_modparam.svm_notifier_size, uint, 0600)
+> =C2=A0MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size in
+> MiB, must be power of 2 "
+> =C2=A0		 "[default=3D"
+> __stringify(XE_DEFAULT_SVM_NOTIFIER_SIZE) "]");
+> =C2=A0
+> +module_param_named_unsafe(force_p2p, xe_modparam.force_p2p, bool,
+> 0400);
+> +MODULE_PARM_DESC(force_p2p, "Force P2P DMA between GPUs (useful in
+> virtual machines), bypassing p2pdma checks. "
+> +		 "[default=3D" __stringify(XE_DEFAULT_FORCE_P2P) "]");
+> +
+> =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> =C2=A0module_param_named(probe_display, xe_modparam.probe_display, bool,
+> 0444);
+> =C2=A0MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's
+> left untouched "
+> diff --git a/drivers/gpu/drm/xe/xe_module.h
+> b/drivers/gpu/drm/xe/xe_module.h
+> index 6272d9e41207..bb154c7b095a 100644
+> --- a/drivers/gpu/drm/xe/xe_module.h
+> +++ b/drivers/gpu/drm/xe/xe_module.h
+> @@ -12,6 +12,7 @@ struct work_struct;
+> =C2=A0
+> =C2=A0/* Module modprobe variables */
+> =C2=A0struct xe_modparam {
+> +	bool force_p2p;
+> =C2=A0	bool probe_display;
+> =C2=A0	int force_vram_bar_size;
+> =C2=A0	int guc_log_level;
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index 627a741293d5..3cd53bb166af 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -12,6 +12,7 @@
+> =C2=A0
+> =C2=A0#include "xe_bo.h"
+> =C2=A0#include "xe_exec_queue_types.h"
+> +#include "xe_configfs.h"
+> =C2=A0#include "xe_gt_stats.h"
+> =C2=A0#include "xe_migrate.h"
+> =C2=A0#include "xe_module.h"
+> @@ -892,6 +893,10 @@ static bool xe_has_interconnect(struct
+> drm_pagemap_peer *peer1,
+> =C2=A0	if (dev1 =3D=3D dev2)
+> =C2=A0		return true;
+> =C2=A0
+> +	if (xe_configfs_get_force_p2p(to_pci_dev(dev1)) &&
+> +	=C2=A0=C2=A0=C2=A0 xe_configfs_get_force_p2p(to_pci_dev(dev2)))
+> +		return true;
+> +
+> =C2=A0	return pci_p2pdma_distance(to_pci_dev(dev1), dev2, true) >=3D
+> 0;
+> =C2=A0}
+> =C2=A0
