@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F67DC5DF70
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 09:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8236C5DF7D
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 09:54:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B369B10EA7A;
-	Tue, 18 Aug 2026 09:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7958910EA72;
+	Tue, 18 Aug 2026 09:54:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e3pN03fb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mP9FOvkG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABB9E10EA7A;
- Tue, 18 Aug 2026 09:52:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997DF10E009;
+ Tue, 18 Aug 2026 09:54:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787046745; x=1818582745;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=V+D/8GWaVoFr6lP9vCYb9JERaqL8Hy7u1uNy8umu5HQ=;
- b=e3pN03fbk7W7QrDpd0/yZHWbmSQ65k6cvITmJDeNLdD8keBescQSV77m
- L1ZmSWlrK/Ofn3HCda5qBPDcRTXY2Wj98Vf9duWQJRh7a7aO2CA9F7+Uc
- hOQPmMfyOw4giGSZ1NeAAiFXbhi34mZyoUFsdflssDE1xHKfMfa7oluBV
- zj4EbIKFuenikHd/2PGxV+pMjbvRLxh8vMXnrXznMez8oEkxd3qfO0xvI
- JF6vGXjxuEqKoOLgH+U9uaYjiOgPuMnblgOdmZfi1zvgMqPaiTH2lI9V9
- Y3x2WiCzD4iEW9jAoXCfo2Q/ZXYd4zKFcAlX7iVFN8aD4LnQaeJW+ocV3 w==;
-X-CSE-ConnectionGUID: xXrQWakBRZqnKQvUX4xtsg==
-X-CSE-MsgGUID: IxdZRpeCSeeb7a7vbwGsqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="87409528"
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="87409528"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 02:51:53 -0700
-X-CSE-ConnectionGUID: a/kComlGTwu9KQTR8YbPGA==
-X-CSE-MsgGUID: 5WDSmiQaTGuKOTIR8p5TwA==
+ t=1787046876; x=1818582876;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eQdundHtOY51wdTr7Ni2XtC8nt5oRh+LaXG2U17ENVo=;
+ b=mP9FOvkG//ZnG+sMC6SY8LVvdbCKOUrU/Kt7sRsPtBDYjHmjtCQhn4Ub
+ nZDYl3L4r0/hK8ccIbO+Y/o+V3Jq/djlpGJfFBH46ExY+O3J74I+RGBwz
+ ZFR/1wcW7bvHdklwOc40GMGbvUaZ5U1BECVEwWWvF6NjcrjT/d4wHgtTx
+ yqrv+hnvUZFnoQ8FtDbun5ZjSedc3eTTTOQ4zIkZiscxPDG2/7SgkwEz9
+ 2NLjkv+yMGldPeDNEByA5Yk4y5onZICGtiR2831MLj0TprhjU++fJmlHw
+ pgvxCfHowtbm+TdthoTWd8VggBm2KdznK4/A4lMX40NRssYtGZid86JOY g==;
+X-CSE-ConnectionGUID: 9RfsZ2GnT9WbCU4r1/568g==
+X-CSE-MsgGUID: yNHJT8NTREm+iVyuyH/VAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="99054067"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="99054067"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2026 02:54:36 -0700
+X-CSE-ConnectionGUID: 3VtCvtQQRzOL5SL5uaojRg==
+X-CSE-MsgGUID: RKlLkF6kSbWTeX/kV1OLUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="270398236"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.14])
- ([10.245.244.14])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 02:51:50 -0700
-Message-ID: <66ff58b7b0396106898cfc54c73240a0dcaaf049.camel@linux.intel.com>
-Subject: Re: [RFC] dmisc cgroups controller
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Tejun Heo <tj@kernel.org>
-Cc: maarten.lankhorst@linux.intel.com, intel-xe@lists.freedesktop.org, 
- cgroups@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- pallavi.mishra@intel.com
-Date: Tue, 18 Aug 2026 11:51:48 +0200
-In-Reply-To: <aoILQuck_EuxQgVh@slm.duckdns.org>
-References: <894f9d44eae62aee5762495b4f90f9bdd2b5585d.camel@linux.intel.com>
- <aoILQuck_EuxQgVh@slm.duckdns.org>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="261442457"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa010.fm.intel.com with ESMTP; 18 Aug 2026 02:54:34 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, jouni.hogander@intel.com,
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH] drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable
+Date: Tue, 18 Aug 2026 15:21:49 +0530
+Message-Id: <20260818095149.2172935-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,37 +65,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, 2026-08-16 at 09:10 -1000, Tejun Heo wrote:
-> On Fri, Aug 14, 2026 at 11:32:54AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > Hi!
-> >=20
-> > We (drm/xe GPU driver) have a use-case where we have a very limited
-> > number of a particular device resource (CLOS slots) that we
-> > potentially
-> > want to expose to unprivlieged processes for reservation /
-> > allocation.
-> > We want to be able to restrict per cgroups the number of CLOS slots
-> > that are available for reservation / allocation.
-> >=20
-> > This is not a good fit for the misc controller since these resource
-> > types may be added and removed similar to dmem regions. Neither is
-> > it a
-> > good fit for the dmem controller.
-> >=20
-> > Would a dmisc controller be suitable here? It would be similar to
-> > the
-> > misc countroller but with dynamic addition and removal of resource
-> > types similar to the dmem controller.
-> >=20
-> > Any input greatly appreciated.
->=20
-> Would extending the existing misc controller be an option?
+icl_plane_disable_sel_fetch_arm() wrote SEL_FETCH_PLANE_CTL = 0 only when
+crtc_state->enable_psr2_sel_fetch was set. If a plane was disabled after
+selective fetch had been turned off, the guard fired early and left the
+register's enable bit set in hardware.
 
-Certainly. I think a main concern though would be testing of the
-existing use-cases. But anyway I'll take a look in that direction.
+The bit is harmless until selective fetch is re-enabled.  When it is, the
+hardware resumes fetching for the now-disabled plane and keeps its old DDB
+range reserved.
 
-Thanks,
-Thomas
+i9xx_cursor_disable_sel_fetch_arm() has the same guard on SEL_FETCH_CUR_CTL
+and is fixed the same way.
 
->=20
-> Thanks.
+v2: Add same check for cursor also. [sashiko]
+
+Fixes: b1f5279b5981 ("drm/i915/psr: Move plane sel fetch configuration into plane source files")
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8739
+Assisted-by: GitHub-Copilot:claude-opus-4.6
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cursor.c       | 15 ++++++++++-----
+ .../gpu/drm/i915/display/skl_universal_plane.c    | 15 ++++++++++-----
+ 2 files changed, 20 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 0673f16f6fd0..86bb96ac449b 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -530,13 +530,18 @@ static int i9xx_check_cursor(struct intel_crtc_state *crtc_state,
+ }
+ 
+ static void i9xx_cursor_disable_sel_fetch_arm(struct intel_dsb *dsb,
+-					      struct intel_plane *plane,
+-					      const struct intel_crtc_state *crtc_state)
++					      struct intel_plane *plane)
+ {
+ 	struct intel_display *display = to_intel_display(plane);
+ 	enum pipe pipe = plane->pipe;
+ 
+-	if (!crtc_state->enable_psr2_sel_fetch)
++	/*
++	 * Clear this whenever the hardware has selective fetch, not just when
++	 * the current state uses it. The cursor may have been enabled with
++	 * selective fetch earlier and had its enable bit orphaned when the
++	 * feature was switched off.
++	 */
++	if (!HAS_PSR2_SEL_FETCH(display))
+ 		return;
+ 
+ 	intel_de_write_dsb(display, dsb, SEL_FETCH_CUR_CTL(pipe), 0);
+@@ -586,7 +591,7 @@ static void i9xx_cursor_update_sel_fetch_arm(struct intel_dsb *dsb,
+ 		if (crtc_state->enable_psr2_su_region_et)
+ 			wa_16021440873(dsb, plane, crtc_state, plane_state);
+ 		else
+-			i9xx_cursor_disable_sel_fetch_arm(dsb, plane, crtc_state);
++			i9xx_cursor_disable_sel_fetch_arm(dsb, plane);
+ 	}
+ }
+ 
+@@ -695,7 +700,7 @@ static void i9xx_cursor_update_arm(struct intel_dsb *dsb,
+ 	if (plane_state)
+ 		i9xx_cursor_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
+ 	else
+-		i9xx_cursor_disable_sel_fetch_arm(dsb, plane, crtc_state);
++		i9xx_cursor_disable_sel_fetch_arm(dsb, plane);
+ 
+ 	if (plane->cursor.base != base ||
+ 	    plane->cursor.size != fbc_ctl ||
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 07a683293352..5cda1ab90e40 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -879,13 +879,18 @@ skl_plane_disable_arm(struct intel_dsb *dsb,
+ }
+ 
+ static void icl_plane_disable_sel_fetch_arm(struct intel_dsb *dsb,
+-					    struct intel_plane *plane,
+-					    const struct intel_crtc_state *crtc_state)
++					    struct intel_plane *plane)
+ {
+ 	struct intel_display *display = to_intel_display(plane);
+ 	enum pipe pipe = plane->pipe;
+ 
+-	if (!crtc_state->enable_psr2_sel_fetch)
++	/*
++	 * Clear this whenever the hardware has selective fetch, not just when
++	 * the current state uses it. The plane may have been enabled with
++	 * selective fetch earlier and had its enable bit orphaned when the
++	 * feature was switched off.
++	 */
++	if (!HAS_PSR2_SEL_FETCH(display))
+ 		return;
+ 
+ 	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), 0);
+@@ -921,7 +926,7 @@ icl_plane_disable_arm(struct intel_dsb *dsb,
+ 
+ 	skl_write_plane_wm(dsb, plane, crtc_state);
+ 
+-	icl_plane_disable_sel_fetch_arm(dsb, plane, crtc_state);
++	icl_plane_disable_sel_fetch_arm(dsb, plane);
+ 
+ 	if (plane_has_normalizer(plane))
+ 		intel_de_write_dsb(display, dsb,
+@@ -1641,7 +1646,7 @@ static void icl_plane_update_sel_fetch_arm(struct intel_dsb *dsb,
+ 		intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id),
+ 				   SEL_FETCH_PLANE_CTL_ENABLE);
+ 	else
+-		icl_plane_disable_sel_fetch_arm(dsb, plane, crtc_state);
++		icl_plane_disable_sel_fetch_arm(dsb, plane);
+ }
+ 
+ static void
+-- 
+2.25.1
+
