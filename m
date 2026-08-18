@@ -4,42 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0562C5DF74
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 04:26:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C243C5DF67
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 04:38:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 358AD10E50C;
-	Tue, 18 Aug 2026 04:26:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B285210E9E2;
+	Tue, 18 Aug 2026 04:38:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZswAPABn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hEiBZSuN";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA5F10E50C
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 04:26:21 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 40C9942155;
- Tue, 18 Aug 2026 04:26:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 024E11F000E9;
- Tue, 18 Aug 2026 04:26:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787027181;
- bh=82wbx97pKoe2sA4HXyzrFwwJfKgPIjZIHzY5pFb9yvo=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=ZswAPABnOtt0Zb5diq+8V91qLtlMK+Z8pPVq6vr4EbZb0FQ22HBcWHcv84Y1mm71A
- CYH2f7Gq8jsxs9hiq3BsYm43SElVvbrnATJXIqyskB4B7Mj2kPTgJOcT5aVm8lpbmF
- +1VvjTbC1uvy4HSlVFLfgzcHHKYtiJ+JI6N1ZLmJhJT8mjYgLvwodvnblwGxs06s1C
- zB5hTckSnJwW8IY/iBWzz8abzN5C/dFphD6N0J9HkmnV22Z7b2/ydyzLD2oy0AD603
- w9P8ysiWV0/xkgGI6y60O5QACxohbd4aM9DkKAz/xLTpYJ2UM2Jc1/bvehon0oKhKw
- a3grIGotoBCtQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/xe/guc: Skip CLEANUP message when GuC is stopped
-To: "Varun Gupta" <varun.gupta@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260818040733.135964-1-varun.gupta@intel.com>
-References: <20260818040733.135964-1-varun.gupta@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 18 Aug 2026 04:26:20 +0000
-Message-Id: <20260818042621.024E11F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50C9010E9E2
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 04:38:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787027913; x=1818563913;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=4OSEcG3ls50GbCWHXZqjAAIpy4pbQwiMBW98wOql40k=;
+ b=hEiBZSuNnhn+/0JzOlLv4n2UD2jl73ZmCNZ31hNe805WwLc4ffmE8jFK
+ jXqUxI16pg/lhVRQSZAaA51UDhRE+/R8cWjLki/JOe/YDG8Z3fF/pROiX
+ KOjFo27WhytoK5oALqDa6Ymj/T6v6W3ybRwJhSFcnEZ4AkUoxA7cywf3l
+ EZeTx+GAmUPEK0QCC47THy1lG6Vl8SiAbXTd/vdGJct5nRB7l1TSC0hig
+ SPPzPuFDzUeOKKivLYEa/OgcxviLp9G5l3ahogvOSkyhkah14gBvAH8et
+ KVDIH5ku2TfStFTMpDYh8e9l65G/HYmlpyKLUgUB7nNkcs2HtljrAZ/Hy g==;
+X-CSE-ConnectionGUID: 93wKxlq8TQ28EBOoaiyWtw==
+X-CSE-MsgGUID: IYkfmy57TbioQrGF0kAeug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="98175422"
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="98175422"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2026 21:38:32 -0700
+X-CSE-ConnectionGUID: 0tCfzQp+SQu8pWQN7OKmDA==
+X-CSE-MsgGUID: QEt7oZhsTfK2fYQVlxo3hg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="269416906"
+Received: from pmotwani-mobl.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.36.125])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2026 21:38:33 -0700
+Date: Mon, 17 Aug 2026 21:38:31 -0700
+Message-ID: <87fr0cgi0o.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 3/3] drm/xe/xe_oa: Add a lag to the reports that is
+ exported to user
+In-Reply-To: <an9mHmSelbjvwPyq@soc-5CG1426VCC.clients.intel.com>
+References: <20260806224702.3563031-5-umesh.nerlige.ramappa@intel.com>	<20260806224702.3563031-8-umesh.nerlige.ramappa@intel.com>	<87bjb4hfo8.wl-ashutosh.dixit@intel.com>	<an9mHmSelbjvwPyq@soc-5CG1426VCC.clients.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,103 +67,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+On Fri, 14 Aug 2026 12:01:50 -0700, Umesh Nerlige Ramappa wrote:
+>
+> On Fri, Aug 14, 2026 at 08:42:31AM -0700, Dixit, Ashutosh wrote:
+> > On Thu, 06 Aug 2026 15:47:06 -0700, Umesh Nerlige Ramappa wrote:
+> >>
+> >
+> > Hi Umesh,
+> >
+> >> When running heavy workloads, reading the OA reports too soon does not
+> >> guarantee that the report has landed in memory. To make sure correct
+> >> reports are copied to user buffer, only return reports that lag the
+> >> current HW_TAIL register by 32 reports. This is an empirical number
+> >> based on a heavy render workload and several test iterations.
+> >
+> > Looks good overall, but I want to discuss a couple of further points:
+> >
+> > 1. I know you are doing some verification of OA data in IGT, but I am
+> >   thinking it would be good to have some verification of OA data (of the
+> >   sort that is removed in Patch 2) also in the kernel. So e.g. after a
+> >   report is read, we could set the timestamp field in the report to
+> >   0. Then when we advance the SW tail pointer, we could check if the
+> >   timestamp fields for new reports are non-zero. If we see a 0 timestamp
+> >   value, this would mean that the 32 report delay is not sufficient (for
+> >   who knows what will happen in future platforms). An error in dmesg if we
+> >   see a 0 timestamp should suffise.
+>
+> I am hesitant to write to the OA buffer at all, especially due to the
+> different coherence behavior between discrete and integrated.
+> We should just address it as an issue/bug at that point. Let me think
+> about it a bit and see what we can do if we see an error in future.
 
-New issues:
-- [High] An unprotected Time-of-Check to Time-of-Use (TOCTOU) race conditio=
-n exists between checking the GuC stopped state and adding the CLEANUP mess=
-age, leading to suspended hardware access.
+OK, we can leave the validation in IGT, instead of the kernel, but we
+should do it for a long enough time, like several passes through the OA
+buffer, to catch any out of order cache lines, if the 32 report delay is
+too short. Thanks.
 
-Pre-existing issues:
-- [High] Bypassing the CLEANUP message abandons pending messages in the sch=
-eduler queue, causing memory and runtime PM reference leaks.
---
-
---- Patch [1]: [PATCH] drm/xe/guc: Skip CLEANUP message when GuC is stopped=
- ---
-commit 3774f2ff22deecb1f1aaf595a02f4bc19900b790
-Author: Varun Gupta <varun.gupta@intel.com>
-
-drm/xe/guc: Skip CLEANUP message when GuC is stopped
-
-Attempting to enqueue a CLEANUP message while the GuC is stopped
-(during a device reset or suspend) triggers a missing outer runtime
-PM protection warning in xe_pm_runtime_get_noresume().
-
-Since the GuC cannot service Command Transport (CT) requests while
-stopped, skip the message and route directly to local teardown.
-
-Cc: stable@vger.kernel.org
-
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -2180,12 +2180,14 @@ static bool guc_exec_queue_try_add_msg(struct xe_=
-exec_queue *q,
->  #define STATIC_MSG_CGP_SYNC	3
->  static void guc_exec_queue_destroy(struct xe_exec_queue *q)
->  {
-> +	struct xe_guc *guc =3D exec_queue_to_guc(q);
->  	struct xe_sched_msg *msg =3D q->guc->static_msgs + STATIC_MSG_CLEANUP;
-> =20
-> -	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && !exec_queue_wedged(q))
-> +	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && !exec_queue_wedged(q) &&
-> +	    !xe_guc_read_stopped(guc))
-
-[Severity: High]
-Could this regression introduce a race condition between checking the GuC
-stopped state and adding the CLEANUP message?
-
-The lockless check of xe_guc_read_stopped(guc) creates a window before
-xe_pm_runtime_get_noresume() is called inside guc_exec_queue_add_msg().
-If a thread evaluates the check as true, but concurrently the device perfor=
-ms
-a runtime PM suspend and reaches RPM_SUSPENDED, the thread will still proce=
-ed
-to add the CLEANUP message.
-
-This would increment the PM reference without waking the device, leading
-to the worker executing hardware instructions against powered-down registers
-when it processes the message.
-
->  		guc_exec_queue_add_msg(q, msg, CLEANUP);
->  	else
-> -		__guc_exec_queue_destroy(exec_queue_to_guc(q), q);
-> +		__guc_exec_queue_destroy(guc, q);
->  }
-
-[Severity: High]
-This is a pre-existing issue, but does bypassing the CLEANUP message abandon
-pending messages in the scheduler queue?
-
-By moving straight to local teardown without draining pending messages,
-the queue is destroyed immediately. Later, xe_sched_fini() unconditionally
-cancels the work_process_msg worker:
-
-drivers/gpu/drm/xe/xe_gpu_scheduler.c:xe_sched_submission_stop() {
-    ...
-    drm_sched_wqueue_stop(&sched->base);
-    cancel_work_sync(&sched->work_process_msg);
-}
-
-Any prior messages (like SUSPEND or SET_SCHED_PROPS) still pending in
-sched->msgs would be stranded and never processed. This permanently leaks
-the dynamically allocated messages and their associated runtime PM
-references.=20
-
-A leaked PM reference permanently prevents the GPU from entering runtime
-suspend (D3 states), resulting in continuous power drain until the system
-is rebooted.
-
-Will the CLEANUP message still be needed to act as a barrier to ensure
-the queue is drained properly?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260818040733.1359=
-64-1-varun.gupta@intel.com?part=3D1
+> >
+> >   I understand that, because cachelines are landing out of order, a
+> >   non-zero timestamp value doesn't absolutely guarantee that all data is
+> >   correct. But I am thinking statistially we should see 0 timestamp
+> >   values, once in a while, if the 32 report delay were insufficient. So at
+> >   least we'll have some indication from the kernel if that were to happen.
+>
+>
+> >
+> > 2. The second point is about "what happens in the end", the UMD never sees
+> >   the last 32 reports? Maybe we could do the following to address this:
+> >   when OA stream is disabled, we advance the SW tail pointer to the HW
+> >   tail (overriding the 32 report delay). Then when UMD reads the last bit
+> >   of data, after disabling the stream, they will get all data. Though all
+> >   cachelines might still not have landed, but at least we will have
+> >   advanced the SW tail pointer.
+>
+> oh, I missed that part. Yeah, if the stream is disabled, I would need to
+> drain the data. I think that would just add a delay for 32 reports, based
+> on the timer period before updating the tail to the latest.
+>
+> Thanks,
+> Umesh
+>
+> >
+> > Thoughts?
+> >
+> > Thanks.
+> > --
+> > Ashutosh
+> >
+> >
+> >>
+> >> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> >> ---
+> >> v2: Fix the LAG logic by using sliding window (Sashiko)
+> >> v3: Fix checkpatch warning
+> >> ---
+> >>  drivers/gpu/drm/xe/xe_oa.c | 12 ++++++++----
+> >>  1 file changed, 8 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> >> index 5952010e8f51..dc8b402d059a 100644
+> >> --- a/drivers/gpu/drm/xe/xe_oa.c
+> >> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> >> @@ -224,7 +224,7 @@ static bool mert_wa_14026633728(struct xe_oa_stream *s)
+> >>  static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+> >>  {
+> >>	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+> >> -	u32 hw_tail, partial_report_size, available;
+> >> +	u32 hw_tail, partial_report_size, available, lag;
+> >>	int report_size = stream->oa_buffer.format->size;
+> >>	unsigned long flags;
+> >>
+> >> @@ -234,17 +234,21 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+> >>	hw_tail -= gtt_offset;
+> >>
+> >>	/*
+> >> -	 * The tail pointer increases in 64 byte (cacheline size), not in report_size
+> >> +	 * The hw_tail pointer increases in 64 byte (cacheline size), not in report_size
+> >>	 * increments. Also report size may not be a power of 2. Compute potential
+> >>	 * partially landed report in OA buffer.
+> >>	 */
+> >>	partial_report_size = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
+> >>	partial_report_size %= report_size;
+> >>
+> >> -	/* Subtract partial amount off the tail */
+> >> +	/* Subtract partial amount off the hw_tail */
+> >>	hw_tail = xe_oa_circ_diff(stream, hw_tail, partial_report_size);
+> >>
+> >> -	stream->oa_buffer.tail = hw_tail;
+> >> +#define LAG_REPORTS 32
+> >> +	lag = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
+> >> +	if (lag > LAG_REPORTS * report_size)
+> >> +		stream->oa_buffer.tail = xe_oa_circ_diff(stream, hw_tail,
+> >> +							 LAG_REPORTS * report_size);
+> >>
+> >>	available = xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->oa_buffer.head);
+> >>	stream->pollin = available >= stream->wait_num_reports * report_size;
+> >> --
+> >> 2.51.0
+> >>
