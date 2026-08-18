@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B334BC5DF7D
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 12:10:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF378C5DF7E
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Aug 2026 12:28:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53C8710E02E;
-	Tue, 18 Aug 2026 12:10:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YpNoFA7M";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E98A210E02E
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Aug 2026 12:10:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787055040; x=1818591040;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=6UQSf51y4MrSMDM0ZgSjRgVC5OQpxJ5eewEyzpthDHw=;
- b=YpNoFA7MUBK7mlcJO36ICzIw0LSZ9zwYFQo7baOhOOI8/3R2YphH8Z0a
- PwA8ueXJF9tQ6f9wM3UazbiCELJ/JOQfpV1IJyI/8VPwzGa/mEZvNdi7q
- ppXK5J+Q8RBQFhs6zgeSR8KDVC8E9YrtDeLP49iXdDQ617Kr1d2V65Asj
- xkzYL1aI8dgY2DcXlCODlYmxlQDm51TxqJBuP4cViG9/VSjw+m/rnsK1T
- USoQPFliFaLk3M+v9s2uRyaftXGkz2v+a/0O11mUZVbln/IFQRIFqZF/T
- oVvDD1K/LgpNXGEJuQ7eogW4cjB6fBPEDGbvfEpAYMdCL6LvFKVUlvVLC w==;
-X-CSE-ConnectionGUID: zPJcB8RnSwWJONKdw5tfHA==
-X-CSE-MsgGUID: 72URf69vSnGjrgrjddmB2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11878"; a="97882260"
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="97882260"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 05:10:39 -0700
-X-CSE-ConnectionGUID: 5rTRN8OwTzGqMougYBO5iw==
-X-CSE-MsgGUID: WWF8p4lxQx6KIdNHnCR4Zw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,230,1779174000"; d="scan'208";a="290019699"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.14])
- ([10.245.244.14])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2026 05:10:37 -0700
-Message-ID: <723431d70f8cdc1534a040416fe93b4f9bdab529.camel@linux.intel.com>
-Subject: Re: [PATCH v2 2/2] drm/xe: Update shrinker batch size based on
- average BO size
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date: Tue, 18 Aug 2026 14:10:35 +0200
-In-Reply-To: <an+jlUmNfwnh44Pl@gsse-cloud1.jf.intel.com>
-References: <20260814143737.49684-1-thomas.hellstrom@linux.intel.com>
- <20260814143737.49684-3-thomas.hellstrom@linux.intel.com>
- <an+jlUmNfwnh44Pl@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F19110EAFF;
+	Tue, 18 Aug 2026 12:28:38 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3713310EAFF;
+ Tue, 18 Aug 2026 12:28:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4234877793320702448=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_memory_page_offlining_s?=
+ =?utf-8?q?upport_=28rev20=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Aug 2026 12:28:37 -0000
+Message-ID: <178705611721.62563.8624451978849539927@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260818104055.3833974-14-tejas.upadhyay@intel.com>
+In-Reply-To: <20260818104055.3833974-14-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,162 +36,290 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-08-14 at 16:24 -0700, Matthew Brost wrote:
-> On Fri, Aug 14, 2026 at 04:37:37PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > Update our preferred vmscan batch size on each count pass to avoid
-> > invoking scan_objects for requests too small to free even a single
-> > average-sized GEM object. Our rough estimate for an effective batch
-> > is twice the average number of pages per populated ttm_tt across
-> > all
-> > shrinkable and purgeable objects. The factor of two provides
-> > headroom
-> > so that most scan invocations can free at least one GEM object
-> > despite
-> > variability in object sizes.
-> >=20
-> > The batch value is updated as an exponential moving average,
-> > (old_batch + avg) / 2, to smooth out sudden changes in the
-> > object population. It is floored at 128 pages, the kernel default
-> > SHRINK_BATCH, to ensure the shrinker remains responsive when there
-> > are very few objects.
-> >=20
-> > The populated_tts counter introduced in the previous commit
-> > provides
-> > the object count needed for the average. We inherit the same
-> > justification as the analogous mechanism in i915: shrinking a GEM
-> > object has non-trivial locking overhead, so firing the shrinker for
-> > requests smaller than a single object is wasteful.
-> >=20
-> > v2:
-> > - Fix the average object size estimate to account for the full
-> > =C2=A0 shrinkable and purgeable population.
-> >=20
-> > Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-> > Assisted-by: GitHub_Copilot:claude-sonnet-5
->=20
-> This is probably the right direction given what we currently have in
-> terms of shrinker control, but the core heuristic is still a pretty
-> poor
-> one. My understanding is that it combines batch and seek values using
-> some odd math to determine whether a scan is worthwhile at a given
-> priority level. We probably want to avoid shrinking at the initial
-> scan
-> priorities, and I believe this change accomplishes that.
+--===============4234877793320702448==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, but I think that's a side-effect not to be fully relied upon.
+== Series Details ==
 
-The meaning of this value IMO is to tell the core how many objects to
-expect for a scan request, so that the core can hold off shrinking
-until that many objects is actually this shrinker's fair share of its
-available objects. So the side effect would be that this shrinker's
-fair share of shrinking may not trigger a scan request if shrinking is
-triggered by compacting?
+Series: Add memory page offlining support (rev20)
+URL   : https://patchwork.freedesktop.org/series/161473/
+State : failure
 
->=20
-> That said, I think we really want two shrinkers instead: one with the
-> default settings (or perhaps even a reduced seek value) for purgeable
-> BOs, and another for BOs that we legitimately need to back up. The
-> purgeable one should be favored to run eariler, likewise the TTM pool
-> shrinker should be favored run before our shrinker too.
+== Summary ==
 
-I don't think we can or should use the batch size to decide which
-shrinker should be prioritized. IIRC one of the comments to previous
-series what that shrinkers should appear similar to the core, unless
-some form of differentiation is implemented in the core. If we were to
-add two shrinkers it would mean that purgeable objects would get its
-fair share of shrinking and so would also active / live objects. With
-the current design we prioritize internally to make sure we target
-purgeable objects first.
+CI Bug Log - changes from xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef_BAT -> xe-pw-161473v20_BAT
+====================================================
 
->=20
-> Also we really should look at getting priority based shrinking in
-> too, I
-> have follow up there too which disconnects purgable / not in working
-> set
-> from shared VM dma-resv also, further prioritizing though shrinks.
->=20
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_shrinker.c | 26 ++++++++++++++++++++++++++
-> > =C2=A01 file changed, 26 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
-> > b/drivers/gpu/drm/xe/xe_shrinker.c
-> > index cded230f5459..284fce207705 100644
-> > --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> > @@ -146,6 +146,8 @@ xe_shrinker_count(struct shrinker *shrink,
-> > struct shrink_control *sc)
-> > =C2=A0{
-> > =C2=A0	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
-> > =C2=A0	unsigned long num_pages;
-> > +	unsigned long total_pages;
-> > +	unsigned long populated_tts;
-> > =C2=A0	bool can_backup =3D !!(sc->gfp_mask & __GFP_FS);
-> > =C2=A0
-> > =C2=A0	num_pages =3D ttm_backup_bytes_avail() >> PAGE_SHIFT;
-> > @@ -157,8 +159,32 @@ xe_shrinker_count(struct shrinker *shrink,
-> > struct shrink_control *sc)
-> > =C2=A0		num_pages =3D 0;
-> > =C2=A0
-> > =C2=A0	num_pages +=3D shrinker->purgeable_pages;
-> > +	total_pages =3D shrinker->shrinkable_pages + shrinker-
-> > >purgeable_pages;
-> > +	populated_tts =3D shrinker->populated_tts;
-> > =C2=A0	read_unlock(&shrinker->lock);
-> > =C2=A0
-> > +	/*
-> > +	 * Update our preferred vmscan batch size for the next
-> > pass.
-> > +	 * Our rough guess for an effective batch size is twice
-> > the average
-> > +	 * number of pages per GEM object. That is, we don't want
-> > the
-> > +	 * shrinker to fire until the request is large enough to
-> > justify
-> > +	 * the overhead of freeing at least one GEM object.
-> > +	 *
-> > +	 * Base the average on the full shrinkable + purgeable
-> > population
-> > +	 * (total_pages), not on num_pages, which is reduced to
-> > just the
-> > +	 * purgeable pages whenever the gfp mask disallows backup
-> > (can_backup
-> > +	 * false). Otherwise the estimate would systematically
-> > undershoot in
-> > +	 * exactly the GFP_NOFS / GFP_NOIO reclaim paths where
-> > avoiding
-> > +	 * excessive scan_objects() calls matters most.
-> > +	 */
-> > +	if (populated_tts) {
-> > +		unsigned long avg =3D 2 * total_pages /
-> > populated_tts;
-> > +
-> > +		shrinker->shrink->batch =3D
-> > +			max((shrinker->shrink->batch + avg) >> 1,
-> > +			=C2=A0=C2=A0=C2=A0 128UL /* default SHRINK_BATCH */);
->=20
-> I think 128UL should be at least whatever TTM pool batch is?
+Summary
+-------
 
-Again, we should not use this to attempt to prioritize between
-shrinkers. Just to ensure that we give a fair estimate of the actual
-batch size.
+  **FAILURE**
 
-Thanks,
-Thomas
+  Serious unknown changes coming with xe-pw-161473v20_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-161473v20_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (12 -> 11)
+------------------------------
+
+  Additional (1): bat-bmg-2 
+  Missing    (2): bat-nvls-2 bat-wcl-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-161473v20_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - bat-ptl-2:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-ptl-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-ptl-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-lnl-1:          [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-bmg-1:          [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-bmg-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-nvls-1:         [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-nvls-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-nvls-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-adlp-7:         [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - bat-ptl-1:          [PASS][11] -> [ABORT][12] +1 other test abort
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-wcl-2:          [PASS][13] -> [ABORT][14] +1 other test abort
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-bmg-2:          NOTRUN -> [ABORT][15] +1 other test abort
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - bat-atsm-2:         [PASS][16] -> [ABORT][17] +1 other test abort
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  * igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-system:
+    - bat-lnl-2:          [PASS][18] -> [ABORT][19] +1 other test abort
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-lnl-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-system.html
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-lnl-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-system.html
+
+  * igt@xe_create@multigpu-create-massive-size:
+    - bat-bmg-3:          [PASS][20] -> [ABORT][21]
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161473v20_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@nullptr:
+    - bat-bmg-2:          NOTRUN -> [SKIP][22] ([Intel XE#2134]) +4 other tests skip
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@fbdev@nullptr.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][23] ([Intel XE#2233])
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][24] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][25] ([Intel XE#2482]) +3 other tests skip
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][26] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-2:          NOTRUN -> [SKIP][27] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
 
 
->=20
-> Matt
->=20
-> > +	}
-> > +
-> > =C2=A0	return num_pages ? num_pages : SHRINK_EMPTY;
-> > =C2=A0}
-> > =C2=A0
-> > --=20
-> > 2.55.0
-> >=20
+Build changes
+-------------
+
+  * Linux: xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef -> xe-pw-161473v20
+
+  IGT_9059: f5a4ff79434df36db1d6b13deb37c90a6602565e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef: 275df33dcf4c5d018717867a0b29ed1d3b62c1ef
+  xe-pw-161473v20: 161473v20
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/index.html
+
+--===============4234877793320702448==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add memory page offlining support (rev20)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161473/">https://patchwork.freedesktop.org/series/161473/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef_BAT -&gt; xe-pw-161473v20_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-161473v20_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-161473v20_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 11)</h2>
+<p>Additional (1): bat-bmg-2 <br />
+  Missing    (2): bat-nvls-2 bat-wcl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-161473v20_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-ptl-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-ptl-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">ABORT</a></li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-bmg-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">ABORT</a></li>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-nvls-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-nvls-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">ABORT</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-system:</p>
+<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-lnl-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-system.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-lnl-2/igt@xe_ccs@block-copy-compressed@linear-compressed-compfmt0-system-system.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_create@multigpu-create-massive-size:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161473v20_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@fbdev@nullptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v20/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef -&gt; xe-pw-161473v20</li>
+</ul>
+<p>IGT_9059: f5a4ff79434df36db1d6b13deb37c90a6602565e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5610-275df33dcf4c5d018717867a0b29ed1d3b62c1ef: 275df33dcf4c5d018717867a0b29ed1d3b62c1ef<br />
+  xe-pw-161473v20: 161473v20</p>
+
+</body>
+</html>
+
+--===============4234877793320702448==--
