@@ -4,149 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3877C5DF81
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 19:35:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59CEEC5B572
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 20:37:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FAC810E02D;
-	Wed, 19 Aug 2026 19:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12A7710E0E7;
+	Wed, 19 Aug 2026 20:37:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZYWJiJUZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MBMJX9QJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8690210E02D
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 19:35:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F5A610E0E7
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 20:37:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787168156; x=1818704156;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=881EoJn/pit+IW1U5ruVGSP62mQ9BLlmk/dAn/kq43U=;
- b=ZYWJiJUZypc63itidle248u7mwbvYdNPirwuTQKslfZye+NsnVzVrqpf
- phbVVIAwsDvSv31llR2N6mNwY7rMLbYxaaUhUPQj8eHabV3VV8DqyZs/K
- 69MobqKDHAACKKio+Tcu3PwleM07OM/zfIQv7XnIZ8hfhoUFIogncQl+q
- i6b4U0Xte7DSVnzjv0xq7JiVZIZ5vSG/U2RaOMkXQ3dJyD2MP8X/HzzMM
- DKhRPHDrgmf4ae50mFubtArFaYIVBfIPoR8RncLHkhf0YVhmBc3PaO4y9
- dZMnqB4vQrb+QySLwNCnohYlViwsY1v9p90chQWe4naog4MBD2gecNj0r Q==;
-X-CSE-ConnectionGUID: dyb9LpBFQGeNLnRL+uoTZQ==
-X-CSE-MsgGUID: Xlo1x9rPQ1yqW9BI5SGDYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="87814493"
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="87814493"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 12:35:56 -0700
-X-CSE-ConnectionGUID: Uk/9V3ToSwOUvwJwxGpfgQ==
-X-CSE-MsgGUID: Acf4ENtCQM2RjdAJdMhiFQ==
+ t=1787171875; x=1818707875;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=sscXyArjM0mPVWVmrRdlbY5pMuHfqRd30YB12vR64dQ=;
+ b=MBMJX9QJzYGeiW0s6cxVOWt1/3wt8ynBkZSNbYrF+B0fyJjMmAra8pKm
+ vp+hK3jySwfAA+fkrWsyzjuhedCc7WnBo7wEpKbemjhNB+h3DZW/Rd9NP
+ mjW7WYX560FrqaWX49Y7n0QEzPGBTZ8pT8sS4HarTl7RaukzcBZ8emw1y
+ Z2LAbYj0FK4x1+VSh/rZdnAnSIEZUho7wEQK2dVBYs+PMQF/egbaMUdT1
+ g4PnJf0jLGNT+vukfjQmkl+IILtCwlrH1Ulque+Olu+m9vUJnSpN2v+nA
+ BeoAnu6GPSnSOYWzwwTjhOp/IF736NsJXxglR6leGArjoZKP1OX+cCGOY g==;
+X-CSE-ConnectionGUID: frq/HqI3Sti+QpYP7cs/Zg==
+X-CSE-MsgGUID: XIxXN9WHTUOY8w+bcGCsUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="99226722"
+X-IronPort-AV: E=Sophos;i="6.25,232,1779174000"; d="scan'208";a="99226722"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 13:37:49 -0700
+X-CSE-ConnectionGUID: pGgsuauWSEKBMHh3CSF/aQ==
+X-CSE-MsgGUID: NfH06ENIRzib9w7HuZ/NUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="269500951"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 12:35:56 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,232,1779174000"; d="scan'208";a="264345845"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 13:37:48 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 19 Aug 2026 12:35:55 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.45; Wed, 19 Aug 2026 13:37:47 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Wed, 19 Aug 2026 12:35:55 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.3) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Wed, 19 Aug 2026 13:37:47 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.66) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 19 Aug 2026 12:35:55 -0700
+ 15.2.2562.45; Wed, 19 Aug 2026 13:37:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bWt8Cf/mkCjM50wIRZrCPJ3H+D+UAecHv+N9SBPtCXrtxYhdGvdlAXqniOzkI826PAjPa9Vk+x/UCFCIHKzhgZkwidDD6tapRU2nn5SWtgzifG4b7taI+z9VyC2GjtCBYXby3PGAmOTF7jdKtnjS+RURY33Pr/ztGe8St9hZd5kBPmMzqry77KJH3J8ojN9EkulpnnnaLor9olIfetU/wRpAVaMaaHNSlm0Z5l6wx7nhOGF8WCPgydB4JV9REAWhQR4SUry82SKB1amg1Di6JCQACRzQbR1IHR1v8km9HbBUV0WWl0eQoHMSHc+jMv/ds7gRasoYo9GT1mgYaFXKzg==
+ b=kM0LqjbOpYEpuJm5z8sEWILxS6CZodjGSl/XwI2QeW5KU7vgU+mDXW0AB/sXIRwf/aNRkr5tCqnD3enr9Y2QCcG/Dvv4PRIrSanS16OtPSdU5ETAZ+h1FZlBrWhXRcRMOknWxRgxcQC0K5maRktkL9gInnEKlOKGsdlf+r7qFWB3+4FoEFvrMeVJlTxE/Sgi1cxFo8J3eANKJhUmWRiYKU827v1pDmfnoyxF7TOC+MmKNWkQi03fU01ef7xRmO55o2MhXYEvK1yLghFTjoU8mpudXLb31bGjKahnv9y8i8WVpRPEkA2LPin+fvjrJhV6IYTdQUEKvC09v5nZXMQJUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mf4oRCInuUakmD6LZQCejxIDV4uD3qRvzY7w2VYH2Ik=;
- b=eGiUZtv1+57OQca05WrlIKEV/DTYo8L2rl0Wefkip7DY0SaCthLclARsqPQexNyKi9SyV3QuTniwFHXzPtPxcE2wyuyFYMrLneUm5q2LnweNocvK9zQ10Vi7vBoF1JfmnpatopLcewwa0pGhiij3P5TKBX7HivHwuFUa4E9xafiBSjLCNLTkUFbeWHtX44zUWO4yLzmEa62KppYiCW7nQqQmSx3pykkyAgqk4rz/aJW/XpSXIQy+HIlBbTJEDPM5fZwTlyquJF8mSmrYLPJiiYEkO8sHG1hH+zmSgd6VpPxXho8CNNOr9XwWorNZch1mtQe2RJCL8x02B0FnFhBiSg==
+ bh=zc0Oa1eyLIfpCBhb+dumBjQtxlF1++FI9dcvvM13WIs=;
+ b=Bvt8KacteB2vXmRYnP+E0n60TyNOYLQ6CCJnsLuBGqqfU9BE29Gza4S/CPKeJznADdj4mAmHoYkIuHz5K/Nc2i3IdJ6e9W8JUozcI0msuwtD+UKMC/jneEE0s5WRyx7gafY04NArU7hNmnSWzOsv5/PSX6ygsojZy/b0p3sPeBuzHr9kV4DYRnz9gMXWZJ9gWoRjEZqDULaHxGCRGGRbNvKRr0J7nXOThdW+LT7yV7/Efja7QXKqF8360bulBUpK8pLoBGNBbnG/9DZYYk5rsIfl2VNO0SkEN5BpaSts9YgKCNY7UmYSsUY+Lnham3TTvAxZR1j5m1TRLZ2+X+iWJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA1PR11MB9849.namprd11.prod.outlook.com (2603:10b6:806:4d7::8)
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by PH7PR11MB6882.namprd11.prod.outlook.com (2603:10b6:510:201::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Wed, 19 Aug
- 2026 19:35:53 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0339.007; Wed, 19 Aug 2026
- 19:35:46 +0000
-Date: Wed, 19 Aug 2026 12:35:43 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-CC: Jagmeet Randhawa <jagmeet.randhawa@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2] drm/xe/guc: Fix race around q->guc->suspend_pending
- access
-Message-ID: <aoYFjxHK4fcQ52Xf@gsse-cloud1.jf.intel.com>
-References: <20260818183838.273486-2-jagmeet.randhawa@intel.com>
- <aoTJBly70vnRnrwK@gsse-cloud1.jf.intel.com>
- <aoTqUiIq8DMoT1dK@nvishwa1-desk>
- <aoUAYKkua2E065zU@gsse-cloud1.jf.intel.com>
- <aoUoOdNmsUHLt1p9@nvishwa1-desk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <aoUoOdNmsUHLt1p9@nvishwa1-desk>
-X-ClientProxiedBy: MW3PR06CA0016.namprd06.prod.outlook.com
- (2603:10b6:303:2a::21) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ 2026 20:37:44 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.21.0292.024; Wed, 19 Aug 2026
+ 20:37:44 +0000
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 3/3] drm/xe: Add up-to-date implementation for
+ Wa_14026539277
+In-Reply-To: <af024235-94b6-4fcf-8453-2e88f296348f@intel.com>
+References: <20260724-wa_14026539277-v2-0-ad786cc6ba1e@intel.com>
+ <20260724-wa_14026539277-v2-3-ad786cc6ba1e@intel.com>
+ <af024235-94b6-4fcf-8453-2e88f296348f@intel.com>
+Date: Wed, 19 Aug 2026 17:37:41 -0300
+Message-ID: <878q61c0dm.fsf@intel.com>
+Content-Type: text/plain
+X-ClientProxiedBy: BY1P220CA0008.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:59d::16) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB9849:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef766e75-99b9-4eea-5b65-08defe2910f4
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH7PR11MB6882:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a76906f-be12-40e0-5b63-08defe31b8dd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|18002099003|22082099003|6133799003|10067099003|56012099006|4143699003|5023799004|11063799006;
-X-Microsoft-Antispam-Message-Info: nHQ1w231qSQg74Zq3vCvIMZyDgDu7qtYzNtPS4zhWTi0djox1KZuZMzx16+aAv9Tp3PAKQzPyUG9HCHIcGz5YNRCKBLPe63OSjuThudPE8yTL58Q3vTXUo3xFTxXLoUyxlmEdh7U6lyXwRc4aP9uE+40oDvlLgUoqJ3nCYLUsAzmEv8xVvHkLLglfio1GrtKH+H1Yl9CSFu5C6Tg4V1beUKSxY0FcJJVdq9hXI70rmuRiAzz+bGmCJ2+bumSvvs40FnEhbWGVqWa/oSj1wjYZTVU8gMuZdZu4wnY+5MWE3WNGPNa+Kd9WeRCtwxWpLeuo1rEle4boldqBPJVZv2URVrF1OY7WjAvKKtO1eGgDIPWuWbUFv/xnLRVWBqB5SQSupvz4mbqd1frf1J62gFn4C8LTanv5wAhTaeROMXDfulWyNWEATDYcqufg1HOwqzITJ/WEHJw6qdXgo1kKvPlhgh18Mq6Ovz0Z5NC7Jq8UYkD+nUp59Y+5ozgaEix/9sqa1/wI1D+8Yata2n2Qu3sqP+JHI0CIXApq7pnAW4FxaymwJzswmqM0OYz7qdjcgR58ftjNiqtdDc1UAZ/bfBzH9+RpnEiuZKMiKvXtZbEBBk=
+ ARA:13230040|376014|366016|1800799024|23010399003|6133799003|3023799007|56012099006|10067099003|4143699003|11063799006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: GtQPzEnoqfG74uJTb3Khz67Iecdij4bpjaJmzug7FZpEXVgnCSPXNHxl0ORYnJt2G3Pzp4MO1+icB3JjSrUMrWy7Nq9aS90XBWeLLgnsg4hf+iRf/ocFhbuynfTUncpHx/xfTDjGvCoso7v1czy/Iw155vm2t3/A2NMsR3ZQXrcIRIxBzEJfEAAu14h6kLfKCDBjJhdobU3JHknK2wQnKaOIhAKNQwV0vAf74s4yLN2PQ+qRF4YOk2ObwSvzRsbU4osWn3JUZHNUFLBdY55aMAlxzkzeLf1I84t8SWp2usN5aSudl7sSxtC6XAaj81y5iFs2p+m0+8zAay4yCGx1bhbl8jU+kcA7XWKnChg2ql8X/O4Eu+8ybbn6ZiL9Xkr2Vl1wvQWkI9J01tsVxqpFCzEIYzpGihHyJCoaVC92GpWPKbm+rog94HHsIFpNWDLLDgR4SBv9/1RZSxmfk/Q9MfUFwYevnsa0peeG8S3wi3B3FIddKS4cNDXtp10Z4vhCrHV5ZnfoxHnqUbQ/MjLvtbLpkDEYLoc+lKC00DW6McxP2L1Ck0T3hUHR7WC1GNQ6QKOPUYKFnzU+z/GMyIntqnrtPnUaIxx9GaeX37xjZ3JF8m/9/gCzAFouyplyrgaH+CqWIln3JXBFX/RhYCSRRgHJDnST1QsTuYcT0mMAyxc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(18002099003)(22082099003)(6133799003)(10067099003)(56012099006)(4143699003)(5023799004)(11063799006);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(6133799003)(3023799007)(56012099006)(10067099003)(4143699003)(11063799006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q//2zKcA+49ynYsXBGOm8xf6tBZwqncSf0j7DJ0O+8VWZoMvWuqinqsXrpWu?=
- =?us-ascii?Q?2WWJ+0MKHf6jofbvhRPRyYDH/Noq8M6/ZCtztQO4OZuTYEo1AVURCIGV2cug?=
- =?us-ascii?Q?C3MpbpHv2/M4PsJ2mYncaJsGLDj2/H3t8T+eNYAXtmbAghHNjrxkVhb9GIQo?=
- =?us-ascii?Q?I3mYzqIAjj6tl/bO3bvA/e3Pu1I2pffQUuyGeFdS011CehOuGk13qx1ZGSRj?=
- =?us-ascii?Q?P8Un8yn8KWoUzB4XmSdegDMnJuUntqODkOGYC8aoBmanX4b0vKU5gNpQb9sa?=
- =?us-ascii?Q?hJ3UJ+wmKmLVrZjdS7Q4poGrO/GiGWXd9exJr0xewRnXAtysfcQ1yDZ1I2yR?=
- =?us-ascii?Q?LrrDD7nOb59aeQJHxKnABACBTqr0iZUkBKcviH5279CA1eV9Ey+NxS//l9i2?=
- =?us-ascii?Q?82fLvIgj5IwOEFohN8qZGr6NRimFhEkuCGwB+MdAZgzvJxfm4dD8uI1aWZjn?=
- =?us-ascii?Q?sHr+ZrDMj9K2JZiyY0xFAvPIydvw2YNZaUAiS5LbVXFQ2wU7/aAosKLIbYhe?=
- =?us-ascii?Q?ovgz6BFvSWCQ8jdyhvAPGvcUPj0AWtsX2fmjxP01qXyynvh7a6CfPAgAkraq?=
- =?us-ascii?Q?pekfSIE3LfRCOxbpPhVguAQ+gtLSXzbdaFQ8eIX6h7Aw6hFdZnF0mWU8U9y1?=
- =?us-ascii?Q?owe/QRSBqCYWzsjDvU8RD5LwMrNB0qO84mLILSk6kSVCze8WrqAEybP7nzCk?=
- =?us-ascii?Q?nzhtGNXN58QyvwXSFXnnTEx6JlxaIfrfVM1cc2gqSuNQEfLyuDaJAkKIlYMJ?=
- =?us-ascii?Q?a3elqapw4QhZn/WGLPD9n3UEiJ61ooMLxqaOL2Pk7SlCqsQ4Vh7HA2Y4OjeE?=
- =?us-ascii?Q?gd17/RAV9/EtVRYV4TD/t55I0RcbZSY2KdB7NBAP1xFrSEQNxFZqe1k2GZQg?=
- =?us-ascii?Q?mUII4bOupLMBSgAfwjFjNg0xcRscoqAUKW6T0pFsSO8tABsN7XkfDi9Mx36w?=
- =?us-ascii?Q?uWSA0GcFOQ2M3eM5Pf2/Ti2I4/LcKnS+nOm33HBj7h1qVoSjrdRZRJGJDvSM?=
- =?us-ascii?Q?8ga57a+GGH7Z/J7dTY+VQMTLsppjMqcBV6qcFBr27b49y78nH3nyLIdw9Uyn?=
- =?us-ascii?Q?DzQ5FwnCyCgCRTXA/oAkrwJZofH3TqLWREedHMSck8YN2iIi/PwXj9ySNkoH?=
- =?us-ascii?Q?ekr8IBVHEKmgSnzcjvCLjyZFiMTbx0Esasff4ZkI/MClulRcuSBAIlJQ09y7?=
- =?us-ascii?Q?EbrQL6lQx8gbPuvZ0PyUpTxUC9RnkHj8OW4VW8vvJughsZdEl3CQyvCcHXar?=
- =?us-ascii?Q?sTHrTd0votyS0RKzVfnQETrLNudfcJrLpxGC61QCG1dCcX6+oGQq0wAyFdac?=
- =?us-ascii?Q?MRCH5yHUl68t/z1h9NVtl4j1mBEl0SOVu6ujnavR98SkEEh1hVqCRfwQ8Nwt?=
- =?us-ascii?Q?Ge5JFh0oGltxjhP32VH9SEWlL9oWhApRlSKQ93E2yg+OfYjKvesQoH+nuWPV?=
- =?us-ascii?Q?hBxiUDEwlte74b8S+H7hcX71n4hE9nKBy0Rt+I7AjZsxiY2heZ1OFr6fk5s9?=
- =?us-ascii?Q?w5DdhUOiEyjFprtSfV76BSAwOAyHsMTvHeXwkx2GmjkqGeIBn4hd6rB92C9A?=
- =?us-ascii?Q?3Kg4KKHMvmTCZhOYVSp5wqu/eITmQ0j5gJxQBDQeQX/hVYAc5lMdefAgwIzM?=
- =?us-ascii?Q?kQ5L3uW6PABnEr3m5O2fhs+zOdfrBcUrEJLzwWPjh7YTRjVg3+oHd7ybXnB5?=
- =?us-ascii?Q?T7a7Bt7yLVsxqAHH4F39N4kmNt39pvJzyL5VtsQT5fPVGjHX8GhREU9wBEX4?=
- =?us-ascii?Q?Khz73xaKhLTM5Z5w+vGOYmRY+vU07Ik=3D?=
-X-Exchange-RoutingPolicyChecked: AZCDG1TgYtoCZBiIggHdIcj3voOoJlkJ5Uv+rv1gGXpwhW1ZmlD9RndjaA1AHZEKyCHMoe9DoKSPKyPcXq9Mu0NUdhrLMOXE/a8zMIgsVi3N6DzauiBU0Yi38xCiXEXz7QtCGNLp6AIVkc5QvHka3GZolYQYirdnJXiL2FjrMjpsWrpDOISfQG6rbYkMwqwxQEBrDZoLzVj9xbpz9hLakyPC4la+k97oXAypaajfsRoi8QTZV8eYF43Y0GnSUxu3CJRTClL2ntUJ1gKxcj3x47AnUEvUPXQYzHzm+fOyJs680R7LvapHO7CvVnDGShZ1jbt0EAxsaVGM+M/3EJ9OBw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef766e75-99b9-4eea-5b65-08defe2910f4
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LxfHFodva7rJE5xvrCXHT2Z8wcz63gAcB0H//9YI2L0bUS4TlBil/VeC2eOL?=
+ =?us-ascii?Q?w5/AakhYafyGfGpNKPe9XVDrWGFRQGDpcIwrixr0scrq/XyqniEvoB0h6/UJ?=
+ =?us-ascii?Q?UCDqgKEQ9scs+4DA+SmCXg4wbO02rg2Wgfu7sNjK3XmBdVMQPwm+zW5PsmEV?=
+ =?us-ascii?Q?8+XiYJbNfszTwbDKuddTtgq+ujcn3qwQTpSgU8IeMvbLEMn+EhM+AXsXEs/c?=
+ =?us-ascii?Q?RQY8hyLbTq/lzllGeCHbwUcF9aTVARQJb3HD0HEByPBp0rhyjGddda3J2IDF?=
+ =?us-ascii?Q?Ft28TMTTqKXvMEAsp86hucAmNYNOKH8oEspKvcU6IRUEs1LNPC0I1l75lbhg?=
+ =?us-ascii?Q?X7HfKScU4blzqLB1bLWyJmmgeGZVMylFgVlnZTja2CMc60GCGyf1O3CVJFMG?=
+ =?us-ascii?Q?aMfownmEQug7ETXj1RI6Cs8VUlL73n/rhE9RzeAn7sqWRt47x+PFGgr7xGgu?=
+ =?us-ascii?Q?RjnZN1BauGDLbhJM21nLEfbeIgo3tuvuq7JtSoLc/ODqpUilhdTUhdvsyV4y?=
+ =?us-ascii?Q?fq61ReGIHnmspZqvAU2GcVyT/Rj/x+29rEx72ji1/jyUyipRp+6oJrwVNErb?=
+ =?us-ascii?Q?5nUKopma6et6M5V28MnjsF++FqMUAlp6EL1nPzStwige73qAK/9G1UqYrobx?=
+ =?us-ascii?Q?bIUCJ/txxxLEN2Bv/Z2zpMvnAQmHCqaAtjUE0CnvYGjmuQErkOOWR46fqZ5l?=
+ =?us-ascii?Q?XsHVDvIUzgPrZBGRIxyagm2bVM96Deab7+HekcqKio75TDCf4+t8IFRA9p+Y?=
+ =?us-ascii?Q?lo8CWr3g59W/blBKP1orwFK0NYZGyqafz/vMZ5SvOJz6qj5+CI7/mJ5l0b4X?=
+ =?us-ascii?Q?PX+8Ay10U01bvJ44vFn6+EV/TSV0zIha6zE3f8K9vQb7YeqIJeB4AaajGt9s?=
+ =?us-ascii?Q?cfdFmI/smD4nwOzCIvF5jnZwXKwDAQ9DsmDM/UUoZtugHzgidHYONqe7ot8L?=
+ =?us-ascii?Q?ad3r7RpS6lGLWQKA4FAuj3znRns5cSZ8hIO9feieuOthU5AaVKO73TPbqa8w?=
+ =?us-ascii?Q?IYUC0eFHCdaRRKzuf5rFmPnCmqaNzc7bpYLdNFjIpo/kW6FVcktzT4DiYPm2?=
+ =?us-ascii?Q?hkGmLvRBthzIgNYhxWZJSH+h9kPCL0k2LoKHOmcDkgAF4cILIWSgdYDcglQl?=
+ =?us-ascii?Q?g2qczpl/w+s5rKuc1K/adcKLJkaBwzUSTRursM3OrtwrmdGLeWvweTYTHH9P?=
+ =?us-ascii?Q?2jITZtoQmWoA8p2qQt1uWSmYO92p3m5zsfmdYq95ElVq+dgAKO9RNuhofNXF?=
+ =?us-ascii?Q?2rCgsYZMFi28PRSR3sZcPwuSikHa4TVooIsiCTNIwwm/+twlv8/vVKTDDKCq?=
+ =?us-ascii?Q?Jl5uniPMi4YSFU8Kt84bgtgsNWfsODA0N1FzwkzaSJfAHvLguDs7nf1WAofC?=
+ =?us-ascii?Q?pd5oSe9DDMpYPQFQjfTmCIMlO0SC5dYp1nZVNy7l9yrwnLrG7EWs0JFVTFgA?=
+ =?us-ascii?Q?porIoUTZJZkAUIWaJUE1z8/ISGZr0eUK5y46a/RJJIFMPRsjlco9t/jk35IS?=
+ =?us-ascii?Q?oH2zqeTFQnfyWcdR2gCV/2iJ/GM634PCmee/5WLEL5yKc7KEL9UYf86s11Nw?=
+ =?us-ascii?Q?va5ZrNmywlKlzqKYR2b8ZkcgpzM399DXpFSD/mww33Z1tx62mUJBymMaeARz?=
+ =?us-ascii?Q?wWwCEmz/tPeGl490hjCLud/6EwHG6d48mR9rMEtUGU6XFX0PwItn2pGKUKWo?=
+ =?us-ascii?Q?kej6H7p0fRAtqL8rKn4H7Dej98i4DuaHgQNn7qtUOoH411n9+N7Vwbf/sWAT?=
+ =?us-ascii?Q?wm6HXV4MIg=3D=3D?=
+X-Exchange-RoutingPolicyChecked: pm11DEeTEFvL/ygc2dzGduZtV3hVqqcvFjaLFfSZXtOhuB47MhFXHygQIY+CAGjFuzFYGPvq9SipaFTrQhj00u1qi1/CjLD8XwGpzQfWWUTdbuRpiuv2ZU1jwszfIpQbriVB7welK6aNP1lhDsqfclGTU65bPD5tu8IvkpwQP1lK2cIBtlisW+ySv5uYgIoYAymDdVrpfBM81BsLiMwJF18JLImm2YJf+W8IRnAX0+oaIGPpNswncISXspyI20qZAkqLD5jRq9ICnMgp8fgMmkxuEdehGkmviPbdYJhtI2PoF3UrVRfcJpgdVtl85FbPLJ4ARwPey8JUuc+v/uWyFQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a76906f-be12-40e0-5b63-08defe31b8dd
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2026 19:35:46.6244 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2026 20:37:44.3090 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +BfyW90jcgE3C8R8r7790XLP7ZbbbEBXy5YZZXE8Gw9TYOXzbLbYRdpnO4SQKiiAJVqvY/zci1RZIkt30P3Q9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB9849
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9+yha0X/vjJYycsh5V83/qn30adhA6nt2vfvX01VPnK52MqGpw8ZxBTLo1BNluw8cs/ccn0Rok4QmUafmMuD0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6882
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,288 +156,273 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 18, 2026 at 08:51:21PM -0700, Niranjana Vishwanathapura wrote:
-> On Tue, Aug 18, 2026 at 06:01:20PM -0700, Matthew Brost wrote:
-> > On Tue, Aug 18, 2026 at 04:27:14PM -0700, Niranjana Vishwanathapura wrote:
-> > > On Tue, Aug 18, 2026 at 02:05:10PM -0700, Matthew Brost wrote:
-> > > > On Wed, Aug 19, 2026 at 02:38:39AM +0800, Jagmeet Randhawa wrote:
-> > > >
-> > > > This is designed to be lockless.
-> > > >
-> > > > > q->guc->suspend_pending is accessed without any common lock.
-> > > > > __suspend_fence_signal(), called from guc_exec_queue_kill() and the
-> > > >
-> > > > This is actually the problem. __suspend_fence_signal shouldn't be called
-> > > > from guc_exec_queue_kill(). This can prematurely signal a suspend fence
-> > > > while the hardware is still executing.
-> > > >
-> > > > __suspend_fence_signal should be called in two possible places:
-> > > >
-> > > > - Naturally in G2H handler (handle_sched_done)
-> > > > - Or in global event that takes down the GuC firmware
-> > > >  (guc_exec_queue_stop)
-> > > >
-> > > > With that, a lock isn't need because the state machine / firmware
-> > > > interaction ensures everything is race free.
-> > > >
-> > > > So I think the solution is ensure __suspend_fence_signal is called in
-> > > > the correct places rather than adding protection via a lock.
-> > > >
-> > > 
-> > > Matt,
-> > > 
-> > > I think it is probably not as trivial as dropping __suspend_fence_signal()
-> > > from guc_exec_queue_kill() for following reasons.
-> > 
-> > Let's take a step back, has existing code been linked to any bugs?
-> > 
-> 
-> Below Sashiko report brought it up as a pre-existing issue.
-> https://sashiko.dev/#/patchset/20260713202317.2187787-8-niranjana.vishwanathapura%40intel.com
-> 
+Matthew Auld <matthew.auld@intel.com> writes:
 
-Ok.
-
-> > > 
-> > > 1. __suspend_fence_signal() is also called from
-> > >    guc_exec_queue_suspend_timeout_ban() if suspend_wait times out.
-> > > 
-> > 
-> > Yes, this is another example of where this should not be called.
-> > 
-> 
-> If we do not call it, then it will leave queue as suspended forever, which
-> can result in some other asserts down the line. Clearing it is part of the
-> error handling recovery it looks like. As I mentioned, it will likely hit
-> the !suspend_pending assert in guc_exec_queue_resume() under current code.
+> On 24/07/2026 22:44, Gustavo Sousa wrote:
+>> Wa_14026539277 is a temporary workaround that targets only A*
+>> steppings of graphics version 35.10 and requires that we avoid using
+>> 2-way coherency for device-cacheable memory accesses.  For
+>> driver-internal usage, we convert those configurations to be
+>> device-uncached and 1-way-coherent; on the UAPI side, we reject
+>> VM_BIND/MADVISE calls that are 2-way-coherent and leave it up to
+>> userspace to select the alternative option that is most appropriate to
+>> their usage.
+>> 
+>> v2:
+>>    - Add missing bits to convert the PAT value to device-uncacheable in
+>>      wa_14026539277_fixup_pat_value(). (Sashiko)
+>>    - Also validate the PAT index in the DRM_XE_VM_MADVISE
+>>      ioctl. (Sashiko)
+>>    - Match against the graphics IP instead of the platform.
+>> 
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_pat.h        | 10 +++++++
+>>   drivers/gpu/drm/xe/xe_device.c     | 16 ++++++----
+>>   drivers/gpu/drm/xe/xe_pat.c        | 61 ++++++++++++++++++++++++++++++++++----
+>>   drivers/gpu/drm/xe/xe_vm.c         |  5 ++++
+>>   drivers/gpu/drm/xe/xe_vm_madvise.c |  3 ++
+>>   drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+>>   6 files changed, 84 insertions(+), 12 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+>> index 7060f66e1d63..10374022f1d2 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.h
+>> +++ b/drivers/gpu/drm/xe/xe_pat.h
+>> @@ -82,6 +82,16 @@ bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
+>>    */
+>>   u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index);
+>>   
+>> +/**
+>> + * xe_pat_wa_14026539277_reserved - Is this PAT index reserved from
+>> + * use due to Wa_14026539277?
+>> + * @xe: xe device
+>> + * @pat_index: The pat_index to query
+>> + *
+>> + * Return: a boolean indicating whether the PAT index is reserved or not.
+>> + */
+>> +bool xe_pat_wa_14026539277_reserved(struct xe_device *xe, u16 pat_index);
+>> +
+>>   #define xe_cache_pat_idx(xe, cache_mode) ({					\
+>>   	const struct xe_device *__xedev = (xe);					\
+>>   	enum xe_cache_level __mode = (cache_mode);				\
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>> index 5189419a0593..c4b8023cb8a2 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -836,14 +836,18 @@ static void override_has_cached_pt(struct xe_device *xe)
+>>   	struct xe_gt *gt;
+>>   	u8 id;
+>>   
+>> -	/*
+>> -	 * Wa_16029380221: The affected GT will always use non-coherent
+>> -	 * access to page tables, so we must do uncached writes from the
+>> -	 * CPU.
+>> -	 */
+>> -	for_each_gt(gt, xe, id)
+>> +	for_each_gt(gt, xe, id) {
+>> +		/*
+>> +		 * Wa_16029380221: The affected GT will always use
+>> +		 * non-coherent access to page tables, so we must do
+>> +		 * uncached writes from the CPU.
+>> +		 */
+>>   		if (XE_GT_WA(gt, 16029380221))
+>>   			xe->info.has_cached_pt = false;
+>> +
+>> +		if (XE_GT_WA(gt, 14026539277))
+>> +			xe->info.has_cached_pt = false;
+>> +	}
+>>   }
+>>   
+>>   static int probe_has_flat_ccs(struct xe_device *xe)
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+>> index a5fe1beec652..a9cde12eba70 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.c
+>> +++ b/drivers/gpu/drm/xe/xe_pat.c
+>> @@ -313,6 +313,37 @@ u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index)
+>>   	return REG_FIELD_GET(XE2_L3_POLICY, xe->pat.table[pat_index].value);
+>>   }
+>>   
+>> +bool xe_pat_wa_14026539277_reserved(struct xe_device *xe, u16 pat_index)
+>> +{
+>> +	struct xe_gt *gt;
+>> +	u8 id;
+>> +	bool has_wa = false;
+>> +
+>> +	for_each_gt(gt, xe, id) {
+>> +		if (XE_GT_WA(gt, 14026539277)) {
+>> +			has_wa = true;
+>> +			break;
+>> +		}
+>> +	}
+>> +
+>> +	return has_wa && xe_pat_index_get_l3_policy(xe, pat_index) != XE_L3_POLICY_UC &&
 >
+> Just to make sure I understand. Why do we bother to check the l3 policy 
+> here? Do we not just want to ban all 2WAY from uapi pov? The l3/l4 
+> policy can often be promoted via the per MOCS setting, so even if UC 
+> here it can be made WB via MOCS. Is this OK?
 
-But the upper layers shouldn't call resume if suspend_wait fails, hence
-we shouldn't hit that assert.
+That's a good point.
 
-> > > 2. Calling __suspend_fence_signal() wakes up any suspend_wait(),
-> > >    which otherwise will have to wait 5 seconds before timing out.
-> > >    If in guc_exec_queue_kill(), if we just try to wake up suspend_wait,
-> > >    without clearing suspend_pending, then a resume() might run before
-> > >    TDR kicks in and hits the !suspend_pending assert.
-> > > 
-> > 
-> > Don't do a wake here.
-> > 
-> 
-> If we do not wake here, then every kill happended during a suspend can
-> leave the suspend_wait() wait for 5 seconds to see the queue has been killed.
-> 
+The workaround instructions were to avoid using GT-cacheable
+2-way-coherent configurations, that's why I was allowing 2-way coherency
+for XE_L3_POLICY_UC, but I did not think of the scenario of the cache
+policy being overridden by MOCS.  Thanks for pointing it out!
 
-The suspend message should either issue a H2G that will result the
-suspend fence signaling in the G2H or signal it directly *after* the
-queue is off the hardware.
+Yeah, it seems we should use a bigger hammer and disallow any 2-way
+coherency then.  I'll change this on the next version.
 
-But I do see a potenial race. The kill really needs to be ordered behind
-any suspends too.
+--
+Gustavo Sousa
 
-We probably want a version of this patch which only sets the kill bit
-inside the KILL message:
-
-https://patchwork.freedesktop.org/patch/732703/?series=168398&rev=4
-
-> > > 3. Even if we drop __suspend_pending_signal() from guc_exec_queue_kill()
-> > >    and guc_exec_queue_suspend_timeout_ban(), we still have
-> > >    handle_sched_done() and guc_exec_queue_stop() which can race against
-> > >    each other in accessing suspend_pending and clearing it.
-> > 
-> > I don't think this part can race.
-> > 
-> > - __guc_exec_queue_process_msg_suspend, this is only there for GT
-> >   resets racing (I think). This should be executed before or after
-> >   guc_exec_queue_stop() but not in parallel.
-> > - guc_exec_queue_wait_suspend_done(), this on wait queue and we don't
-> >   have lock upon reading, at least in this patch. So if justification
-> >   is all readers need a lock, then this is missing in this patch.
-> 
-> The locking in this patch is more of a write side serialization lock
-> (where supend_pending is written and where test-and-clear cases). So,
-> I don't think we need locking here for reading suspend_pending.
-> 
-> > - guc_exec_queue_stop() touch this but this code is only reachable
-> >   when GuC exec queue is stopped and CTs are down. I guess a new
-> >   suspend could come in and race, so maybe in a lock is needed here.
-> > 
-> > > 
-> > > So, probably this locking extention patch here might be simpler and
-> > > effective.
-> > 
-> > I'm thinking this need a bit more rework and would like to get this
-> > right in single patch. I'm fine with a lock, but let's at least make
-> > guc_exec_queue_wait_suspend_done() consistent in using a lock and remove
-> > the two places we should not be calling __suspend_pending_signal().
-> > 
-> 
-> Dropping __suspend_fence_signal() in those places will lead to above
-> mentioned issues with current state of the driver. I am worried that
-> fixing those might be beyond the scope of this patch. What do you suggest?
-> 
-
-My opinion is that this patch is trying to work around broken code in
-the state machine, which we have to fix anyway. I'd rather audit
-everything related to kill and suspend fences and get it right, rather
-than adding locking on top that we'd have to unwind later anyway. If
-this were a band-aid for a reported crash, then maybe. However, this is
-a Sashiko report suggesting a fix for what I see as already broken code.
-
-Matt
-
-> Niranjana
-> 
-> > Matt
-> > 
-> > > 
-> > > Niranjana
-> > > 
-> > > > Matt
-> > > >
-> > > > > suspend-timeout ban path, clears the flag asynchronously. Meanwhile
-> > > > > handle_sched_done(), guc_exec_queue_stop() and
-> > > > > __guc_exec_queue_process_msg_suspend() check the flag and then call
-> > > > > suspend_fence_signal(), which asserts that it is still set.
-> > > > >
-> > > > > As the check and suspend_fence_signal() are not atomic, the clear can
-> > > > > land in between and trip the xe_gt_assert(q->guc->suspend_pending).
-> > > > >
-> > > > > The flag is already set and read under the per-queue msg_lock
-> > > > > (xe_sched_msg_lock()) on the suspend and resume paths. Extend that same
-> > > > > lock to the clear paths (kill and ban) and to the three check-then-act
-> > > > > sites so the check and the signal are atomic with respect to the clear.
-> > > > > In __guc_exec_queue_process_msg_suspend() only the non-sleeping branch is
-> > > > > wrapped, since the other branch waits. In handle_sched_done() the flag is
-> > > > > snapshotted under the lock and deregister_exec_queue() is kept outside it.
-> > > > >
-> > > > > v2: Document that sched->msg_lock also protects
-> > > > >     guc->suspend_pending, which indicates a suspend message is in
-> > > > >     flight, in addition to the sched->msgs list (Niranjana)
-> > > > >
-> > > > > Signed-off-by: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |  5 +++-
-> > > > >  drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  5 +++-
-> > > > >  drivers/gpu/drm/xe/xe_guc_submit.c           | 29 ++++++++++++++++----
-> > > > >  3 files changed, 32 insertions(+), 7 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> > > > > index 63d9bf92583c..78ef2e8ded4f 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> > > > > @@ -47,7 +47,10 @@ struct xe_gpu_scheduler {
-> > > > >  	const struct xe_sched_backend_ops	*ops;
-> > > > >  	/** @msgs: list of messages to be processed in @work_process_msg */
-> > > > >  	struct list_head			msgs;
-> > > > > -	/** @msg_lock: Message lock */
-> > > > > +	/**
-> > > > > +	 * @msg_lock: Protects @msgs and guc->suspend_pending (indicates a
-> > > > > +	 * suspend message is in flight) of exec queues on this scheduler.
-> > > > > +	 */
-> > > > >  	spinlock_t				msg_lock;
-> > > > >  	/** @work_process_msg: processes messages */
-> > > > >  	struct work_struct		work_process_msg;
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> > > > > index d27826b36649..74b711abe257 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-> > > > > @@ -52,7 +52,10 @@ struct xe_guc_exec_queue {
-> > > > >  	u16 id;
-> > > > >  	/** @suspend_wait: wait queue used to wait on pending suspends */
-> > > > >  	wait_queue_head_t suspend_wait;
-> > > > > -	/** @suspend_pending: a suspend of the exec_queue is pending */
-> > > > > +	/**
-> > > > > +	 * @suspend_pending: a suspend of the exec_queue is pending.
-> > > > > +	 * Protected by @sched.msg_lock.
-> > > > > +	 */
-> > > > >  	bool suspend_pending;
-> > > > >  	/**
-> > > > >  	 * @suspend_count: Reference count of active suspend requests. The
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > index 9036f89dff7d..c565c1d32d3a 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > @@ -1928,9 +1928,13 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
-> > > > >  			set_exec_queue_suspended(q);
-> > > > >  			disable_scheduling(q, false);
-> > > > >  		}
-> > > > > -	} else if (q->guc->suspend_pending) {
-> > > > > -		set_exec_queue_suspended(q);
-> > > > > -		suspend_fence_signal(q);
-> > > > > +	} else {
-> > > > > +		xe_sched_msg_lock(&q->guc->sched);
-> > > > > +		if (q->guc->suspend_pending) {
-> > > > > +			set_exec_queue_suspended(q);
-> > > > > +			suspend_fence_signal(q);
-> > > > > +		}
-> > > > > +		xe_sched_msg_unlock(&q->guc->sched);
-> > > > >  	}
-> > > > >  }
-> > > > >
-> > > > > @@ -2130,7 +2134,9 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
-> > > > >  {
-> > > > >  	trace_xe_exec_queue_kill(q);
-> > > > >  	set_exec_queue_killed(q);
-> > > > > +	xe_sched_msg_lock(&q->guc->sched);
-> > > > >  	__suspend_fence_signal(q);
-> > > > > +	xe_sched_msg_unlock(&q->guc->sched);
-> > > > >  	xe_guc_exec_queue_trigger_cleanup(q);
-> > > > >  }
-> > > > >
-> > > > > @@ -2392,11 +2398,15 @@ static void guc_exec_queue_suspend_timeout_ban(struct xe_exec_queue *q)
-> > > > >  	 */
-> > > > >  	if (xe_exec_queue_is_multi_queue(q)) {
-> > > > >  		set_exec_queue_group_banned(q);
-> > > > > +		xe_sched_msg_lock(&q->guc->sched);
-> > > > >  		__suspend_fence_signal(q);
-> > > > > +		xe_sched_msg_unlock(&q->guc->sched);
-> > > > >  		xe_guc_exec_queue_group_trigger_cleanup(q);
-> > > > >  	} else {
-> > > > >  		set_exec_queue_banned(q);
-> > > > > +		xe_sched_msg_lock(&q->guc->sched);
-> > > > >  		__suspend_fence_signal(q);
-> > > > > +		xe_sched_msg_unlock(&q->guc->sched);
-> > > > >  		xe_guc_exec_queue_trigger_cleanup(q);
-> > > > >  	}
-> > > > >  }
-> > > > > @@ -2614,10 +2624,12 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
-> > > > >  		if (exec_queue_destroyed(q))
-> > > > >  			do_destroy = true;
-> > > > >  	}
-> > > > > +	xe_sched_msg_lock(sched);
-> > > > >  	if (q->guc->suspend_pending) {
-> > > > >  		set_exec_queue_suspended(q);
-> > > > >  		suspend_fence_signal(q);
-> > > > >  	}
-> > > > > +	xe_sched_msg_unlock(sched);
-> > > > >  	atomic_and(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_BANNED |
-> > > > >  		   EXEC_QUEUE_STATE_KILLED | EXEC_QUEUE_STATE_DESTROYED |
-> > > > >  		   EXEC_QUEUE_STATE_SUSPENDED,
-> > > > > @@ -3222,13 +3234,20 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
-> > > > >  		smp_wmb();
-> > > > >  		wake_up_all(&guc->ct.wq);
-> > > > >  	} else {
-> > > > > +		bool was_pending;
-> > > > > +
-> > > > >  		xe_gt_assert(guc_to_gt(guc), runnable_state == 0);
-> > > > >  		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_disable(q));
-> > > > >
-> > > > > -		if (q->guc->suspend_pending) {
-> > > > > +		xe_sched_msg_lock(&q->guc->sched);
-> > > > > +		was_pending = q->guc->suspend_pending;
-> > > > > +		if (was_pending) {
-> > > > >  			clear_exec_queue_pending_disable(q);
-> > > > >  			suspend_fence_signal(q);
-> > > > > -		} else {
-> > > > > +		}
-> > > > > +		xe_sched_msg_unlock(&q->guc->sched);
-> > > > > +
-> > > > > +		if (!was_pending) {
-> > > > >  			if (exec_queue_banned(q)) {
-> > > > >  				smp_wmb();
-> > > > >  				wake_up_all(&guc->ct.wq);
-> > > > > --
-> > > > > 2.53.0
-> > > > >
+>
+>> +	       xe_pat_index_get_coh_mode(xe, pat_index) == XE_COH_2WAY;
+>> +}
+>> +
+>> +static u32 wa_14026539277_fixup_pat_value(struct xe_gt *gt, u32 value)
+>> +{
+>> +	if (XE_GT_WA(gt, 14026539277)) {
+>> +		if (REG_FIELD_GET(XE2_L3_POLICY, value) != XE_L3_POLICY_UC &&
+>> +		    REG_FIELD_GET(XE2_COH_MODE, value) == XE_COH_2WAY) {
+>> +			value &= ~(XE2_L3_POLICY | XE2_COH_MODE);
+>> +			value |= REG_FIELD_PREP(XE2_L3_POLICY, XE_L3_POLICY_UC) |
+>> +				 REG_FIELD_PREP(XE2_COH_MODE, XE_COH_1WAY);
+>> +		}
+>> +	}
+>> +
+>> +	return value;
+>> +}
+>> +
+>>   static const struct xe_pat_table_entry *gt_pta_entry(struct xe_gt *gt)
+>>   {
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>> @@ -373,18 +404,22 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
+>>   
+>>   	for (int i = 0; i < n_entries; i++) {
+>>   		struct xe_reg_mcr reg_mcr = XE_REG_MCR(_PAT_INDEX(i));
+>> +		u32 pat = wa_14026539277_fixup_pat_value(gt, table[i].value);
+>>   
+>> -		xe_gt_mcr_multicast_write(gt, reg_mcr, table[i].value);
+>> +		xe_gt_mcr_multicast_write(gt, reg_mcr, pat);
+>>   	}
+>>   
+>>   	if (xe->pat.pat_ats)
+>> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe->pat.pat_ats->value);
+>> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS),
+>> +					  wa_14026539277_fixup_pat_value(gt, xe->pat.pat_ats->value));
+>>   
+>>   	if (pta_entry)
+>> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), pta_entry->value);
+>> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA),
+>> +					  wa_14026539277_fixup_pat_value(gt, pta_entry->value));
+>>   
+>>   	if (tr_pta_entry)
+>> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_TR_PTA), tr_pta_entry->value);
+>> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_TR_PTA),
+>> +					  wa_14026539277_fixup_pat_value(gt, tr_pta_entry->value));
+>>   }
+>>   
+>>   static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+>> @@ -534,13 +569,16 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+>>   	drm_printf(p, "PAT table: (* = reserved entry)\n");
+>>   
+>>   	for (i = 0; i < xe->pat.n_entries; i++) {
+>> +		bool rsvd = !xe->pat.table[i].valid ||
+>> +			    xe_pat_wa_14026539277_reserved(xe, i);
+>> +
+>>   		if (xe_gt_is_media_type(gt))
+>>   			pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_INDEX(i)));
+>>   		else
+>>   			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+>>   
+>>   		xe_pat_index_label(label, sizeof(label), i);
+>> -		xe->pat.ops->entry_dump(p, label, pat, !xe->pat.table[i].valid);
+>> +		xe->pat.ops->entry_dump(p, label, pat, rsvd);
+>>   	}
+>>   
+>>   	/*
+>> @@ -747,9 +785,14 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>>   	for (u32 i = 0; i < xe->pat.n_entries; i++) {
+>>   		u32 pat = xe->pat.table[i].value;
+>>   
+>> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+>> +
+>>   		if (GRAPHICS_VER(xe) >= 20) {
+>> +			bool rsvd = !xe->pat.table[i].valid ||
+>> +				    xe_pat_wa_14026539277_reserved(xe, i);
+>> +
+>>   			xe_pat_index_label(label, sizeof(label), i);
+>> -			xe->pat.ops->entry_dump(p, label, pat, !xe->pat.table[i].valid);
+>> +			xe->pat.ops->entry_dump(p, label, pat, rsvd);
+>>   		} else if (xe->info.platform == XE_METEORLAKE) {
+>>   			xelpg_pat_entry_dump(p, i, pat);
+>>   		} else if (xe->info.platform == XE_PVC) {
+>> @@ -764,6 +807,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>>   	if (pta_entry) {
+>>   		u32 pat = pta_entry->value;
+>>   
+>> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+>> +
+>>   		drm_printf(p, "Page Table Access:\n");
+>>   		xe->pat.ops->entry_dump(p, "PTA_MODE", pat, false);
+>>   	}
+>> @@ -771,6 +816,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>>   	if (tr_pta_entry) {
+>>   		u32 pat = tr_pta_entry->value;
+>>   
+>> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+>> +
+>>   		drm_printf(p, "TRTT Page Table Access:\n");
+>>   		xe->pat.ops->entry_dump(p, "TR_PTA_MODE", pat, false);
+>>   	}
+>> @@ -778,6 +825,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>>   	if (xe->pat.pat_ats) {
+>>   		u32 pat = xe->pat.pat_ats->value;
+>>   
+>> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+>> +
+>>   		drm_printf(p, "PCIe ATS/PASID:\n");
+>>   		xe->pat.ops->entry_dump(p, "PAT_ATS ", pat, false);
+>>   	}
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index 9e0176861cb6..64c03c669630 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -3697,6 +3697,11 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>>   			goto free_bind_ops;
+>>   		}
+>>   
+>> +		if (XE_IOCTL_DBG(xe, xe_pat_wa_14026539277_reserved(xe, pat_index))) {
+>> +			err = -EINVAL;
+>> +			goto free_bind_ops;
+>> +		}
+>> +
+>>   		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
+>>   		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
+>>   		    XE_IOCTL_DBG(xe, obj && (is_null || is_cpu_addr_mirror)) ||
+>> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>> index 0474768a38aa..265273294756 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>> @@ -500,6 +500,9 @@ static bool check_pat_args_are_sane(struct xe_device *xe,
+>>   	u16 coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
+>>   	int i;
+>>   
+>> +	if (XE_IOCTL_DBG(xe, xe_pat_wa_14026539277_reserved(xe, pat_index)))
+>> +		return false;
+>> +
+>>   	/*
+>>   	 * Using coh_none with CPU cached buffers is not allowed on iGPU.
+>>   	 * On iGPU the GPU shares the LLC with the CPU, so with coh_none
+>> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+>> index f02ac9bf7424..d53e7f75814b 100644
+>> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+>> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+>> @@ -71,4 +71,5 @@
+>>   		GRAPHICS_VERSION(3511)
+>>   16029897822	MEDIA_VERSION(3500)
+>>   		GRAPHICS_VERSION(3510)
+>> +14026539277	GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)
+>>   14027054324	GRAPHICS_VERSION(3511)
+>> 
