@@ -4,87 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2764C5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 08:22:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E039AC5DF6D
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 09:02:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7677810ED64;
-	Wed, 19 Aug 2026 08:22:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88E6510E554;
+	Wed, 19 Aug 2026 09:02:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="uspJcNY7";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QYyCurve";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="cxMhb+EN";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ammhfTDM";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="e/GaAJJl";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PBCXYqmL";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="y07gBOrv";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="TKspYuzE";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 321FC10E104;
- Wed, 19 Aug 2026 08:22:19 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFF0110E541;
+ Wed, 19 Aug 2026 09:02:52 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 9476F3EAC;
- Wed, 19 Aug 2026 08:22:09 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 4440884A46;
+ Wed, 19 Aug 2026 09:02:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1787127733; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1787130167; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=eLXsUmxS6VoLACyx0soPwmhAAfleZCRYNeF80jfiiCA=;
- b=uspJcNY7c9ScFhsddZ44oWHV+xMi/zjwP4R2mQnGTWcxilDz5jEZfWBmeOxBOILGFAa9wW
- /5+7WVg2IXDn6l+h1TwEGLaN3hWbmwauv4qRuq7EOVpU8n95/izctCBRGBQl4t3QDLyAOD
- 7w69eey4f0igmVL5fwdPo00yYBg5F8g=
+ bh=I2kdm9/KB4f0uakkMYi5OaEfL3aR00uc57x10GnpoMo=;
+ b=e/GaAJJl9rKMTEZgRRdA72r2zB5/k6n0oVYabEgQgrLbC0A9zTL0NTI+iB3DMjviafq9UI
+ W078KGzQ44wIVLRNhlrsvThPtYrtm9F5aCMBTCAqLbyum5jMNlVhvEMcFPTLF8VzwYt+lh
+ sQdiCjfU5p1IpnoFVUbRIsI86OWUIXs=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1787127733;
+ s=susede2_ed25519; t=1787130167;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=eLXsUmxS6VoLACyx0soPwmhAAfleZCRYNeF80jfiiCA=;
- b=QYyCurvefr/vDZ3jHFmn3udlyUHIvxnPvbZYDczOgu2oxAcAlOgejtt+XnJfOTc1yaBQLX
- TUNEwxcdPm/07fCw==
-Authentication-Results: smtp-out2.suse.de;
+ bh=I2kdm9/KB4f0uakkMYi5OaEfL3aR00uc57x10GnpoMo=;
+ b=PBCXYqmL+PpD0kP9dfdrg0qOa3wodnJNbfowwlEVEVZWiEc9+LRgbnaXUN/ApgfdsWEtls
+ VFHgXArZtMLMtICA==
+Authentication-Results: smtp-out1.suse.de;
 	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1787127729; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1787130163; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=eLXsUmxS6VoLACyx0soPwmhAAfleZCRYNeF80jfiiCA=;
- b=cxMhb+ENMJi1yKIIbwgBwGJGqeBoKUANYOqtHjgtcqhyFwt7FXVeFmQTaKS6agsm9WNUvO
- n/F7jyaXnLSebFap4432uhXTqP0Nn42zmmr89K7FoGaaxZU74ctC4MIzi6Zj7aZeET0IsK
- gFP9/lCCX0kTlF6Pic0RGHDHfZzUvg4=
+ bh=I2kdm9/KB4f0uakkMYi5OaEfL3aR00uc57x10GnpoMo=;
+ b=y07gBOrvzogxVxJ4+dnEhH6yUnqrcM9IsfOEo9m7Q6xvIsE8I4/SG+72+Mh+zDwI8tB/bd
+ xs86vrV1uXIkkdL5dIcbwzcETXEDEnsCLtwGpc9+vakX7BN8TbGVsuKuaVP77As885lYEK
+ p9Kc1gqR1F4gBkG5xuVZcSBN7T/8CKk=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1787127729;
+ s=susede2_ed25519; t=1787130163;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=eLXsUmxS6VoLACyx0soPwmhAAfleZCRYNeF80jfiiCA=;
- b=ammhfTDMuV55xX/s1kxJXE1cm4jogUxu1ZCRSeOh5tCVUxrqHUf7FqHPRI4qKZZ1BerIse
- av8G2pPFXvRfFeDw==
+ bh=I2kdm9/KB4f0uakkMYi5OaEfL3aR00uc57x10GnpoMo=;
+ b=TKspYuzEzY14ZdjPaUtFZPDk99lFK+oADgXA5poKvzKjhPNvScITARf6NU4E8NZBPfsxIx
+ XfpHdYc8xAOU/LBw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5E804779BE;
- Wed, 19 Aug 2026 08:22:09 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 09DE577A30;
+ Wed, 19 Aug 2026 09:02:43 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id p5/jFbFnhWobbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 19 Aug 2026 08:22:09 +0000
-Message-ID: <b5f0a822-a343-45b2-94de-aeefd870427e@suse.de>
-Date: Wed, 19 Aug 2026 10:22:08 +0200
+ by imap1.dmz-prg2.suse.org with ESMTPSA id TtX+ADNxhWr2FgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 19 Aug 2026 09:02:43 +0000
+Message-ID: <2011cebd-7e7e-4087-a445-fb2579861ef6@suse.de>
+Date: Wed, 19 Aug 2026 11:02:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/12] drm/panic: Retry in dispatch function if panic
- output fails
+Subject: Re: [PATCH 09/12] drm/panic: Display panic screen via per-plane
+ callback
 To: sashiko-reviews@lists.linux.dev
-Cc: linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Frank.Li@kernel.org, imx@lists.linux.dev, intel-xe@lists.freedesktop.org,
- ojeda@kernel.org, dri-devel@lists.freedesktop.org,
- wsa+renesas@sang-engineering.com
+Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Frank.Li@kernel.org, linux-hyperv@vger.kernel.org,
+ wsa+renesas@sang-engineering.com, ojeda@kernel.org
 References: <20260818125012.468092-1-tzimmermann@suse.de>
- <20260818125012.468092-8-tzimmermann@suse.de>
- <20260818130547.4FEDF1F00A3A@smtp.kernel.org>
+ <20260818125012.468092-10-tzimmermann@suse.de>
+ <20260818131951.154171F000E9@smtp.kernel.org>
 Content-Language: en-US
 From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
@@ -111,12 +111,12 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
  Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
  4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260818130547.4FEDF1F00A3A@smtp.kernel.org>
+In-Reply-To: <20260818131951.154171F000E9@smtp.kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ NEURAL_HAM_SHORT(-0.20)[-0.994]; MIME_GOOD(-0.10)[text/plain];
  RCPT_COUNT_SEVEN(0.00)[9]; TAGGED_RCPT(0.00)[renesas];
  RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
  MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
@@ -124,8 +124,8 @@ X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_HAS_DN(0.00)[];
  MIME_TRACE(0.00)[0:+]; FROM_EQ_ENVFROM(0.00)[];
  TO_DN_NONE(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email, suse.de:mid, suse.com:url,
- imap1.dmz-prg2.suse.org:helo]
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid, suse.de:email,
+ imap1.dmz-prg2.suse.org:helo, suse.com:url]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,60 +142,100 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-Am 18.08.26 um 15:05 schrieb sashiko-bot@kernel.org:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] Removing the internal fallback from `draw_panic_screen_qr_code` breaks the `drm_panic` KUnit tests.
+Am 18.08.26 um 15:19 schrieb sashiko-bot@kernel.org:
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> - [High] The `drm_plane_helper_display_panic_screen` helper unconditionally dereferences `plane->helper_private` and `plane->helper_private->get_scanout_buffer`. However, by adding `DRM_PANIC_PLANE_FUNCS` to shared plane function tables (like `skl_plane_funcs` in i915 and `dm_plane_funcs` in amdgpu), the `display_panic_screen` callback is now applied to all planes (including cursors and overlays). These non-primary planes use different helper functions (e.g., `intel_plane_helper_funcs` or `dm_plane_helper_funcs`) that do not implement `get_scanout_buffer`. This causes `drm_panic_register` to mistakenly register panic dumpers for these planes, and upon a panic, the handler executes a NULL pointer dereference, triggering a nested panic.
 
-I think that's exactly the right thing to do. When we unit-test 
-draw_panic_screen_qr_code() , we better not fallback silently to 
-something that works; thus masking the error.
+Will be fixed by testing for get_scanout_buffer from 
+drm_plane_helper_display_panic_screen().  I'll also add a check to only 
+register panic screens for primary planes.
+
+> - [Medium] The patch replaces `get_scanout_buffer` with `display_panic_screen` as the signal for panic support. However, it fails to add `DRM_PANIC_PLANE_FUNCS` to the legacy fallback `primary_plane_funcs` in `drm_modeset_helper.c`. Older AMDGPU DCE drivers (e.g., DCE 6.0, 8.0, 10.0) use `drm_crtc_init()` which implicitly relies on this legacy structure for their primary planes. Although these drivers implement `get_scanout_buffer` in their helper functions (`dce_v10_0_drm_primary_plane_helper_funcs`), their planes now lack the `display_panic_screen` callback. Consequently, `drm_panic_is_enabled()` returns false and their panic dumpers are never registered, silently breaking panic screen support on these hardware generations.
+
+Will be added.
+
+
+> - [Low] `drm_plane_helper_display_panic_screen` accepts a `panic_type` parameter (an `enum drm_panic_type`). However, when it calls `draw_panic_dispatch()`, it passes the global module parameter `drm_panic_type` instead of the passed-in `panic_type`. This logic bug prevents drivers from tailoring the panic screen implementation via the helper as intended.
+
+Fixed in an earlier patch.
+
+
 > --
 >
-> --- Patch [7]: [PATCH 07/12] drm/panic: Retry in dispatch function if panic output fails ---
-> commit 23392eb57457ad383d9c4741f6fc2f3c107aabb3
+> --- Patch [9]: [PATCH 09/12] drm/panic: Display panic screen via per-plane callback ---
+> commit 69fa8c39afc844867e193df3659c6f6f1fb762f3
 > Author: Thomas Zimmermann <tzimmermann@suse.de>
 >
-> drm/panic: Retry in dispatch function if panic output fails
+> drm/panic: Display panic screen via per-plane callback
 >
-> On failed output of QR codes and kmsg buffers, fall back to a user
-> message. QR-code output already did this internally, but now formally
-> support it in drm_panic_dispatch(). Streamlines the existing logic.
+> This commit adds display_panic_screen to struct drm_plane_funcs to replace
+> get_scanout_buffer as the signal for panic support. It provides the helper
+> drm_plane_helper_display_panic_screen() and the DRM_PANIC_PLANE_FUNCS macro
+> to update drivers that implement panic support.
 >
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+>> index 824ef3ce5de0a..eadc22a255bb5 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> [ ... ]
+>> @@ -2177,6 +2178,7 @@ static const struct drm_plane_funcs dm_plane_funcs = {
+>>   	.atomic_set_property = dm_atomic_plane_set_property,
+>>   	.atomic_get_property = dm_atomic_plane_get_property,
+>>   #endif
+>> +	DRM_PANIC_PLANE_FUNCS,
+>>   };
+> [Severity: High]
+> Does adding this macro to shared plane function tables (like dm_plane_funcs
+> or skl_plane_funcs) apply the panic screen callback to all planes, including
+> cursors and overlays?
+>
+> Non-primary planes use different helper functions that do not implement
+> get_scanout_buffer. Since drm_plane_helper_display_panic_screen()
+> unconditionally dereferences plane->helper_private->get_scanout_buffer,
+> could this cause a NULL pointer dereference in the panic handler for these
+> planes and trigger a nested panic?
+>
+>> diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+>> index 2263a11efdf63..2ecb4d1f6d470 100644
 >> --- a/drivers/gpu/drm/drm_panic.c
 >> +++ b/drivers/gpu/drm/drm_panic.c
 > [ ... ]
->> @@ -816,15 +816,6 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb,
->>   	drm_panic_blit(sb, &r_qr, qr_image, qr_pitch, scale, fg_color);
->>   	return 0;
->>   }
->> -
->> -static int draw_panic_screen_qr_code(struct drm_scanout_buffer *sb,
->> -				     u32 fg_color, u32 bg_color,
->> -				     unsigned int qr_version)
->> -{
->> -	if (_draw_panic_screen_qr_code(sb, fg_color, bg_color, qr_version))
->> -		draw_panic_screen_user(sb, fg_color, bg_color);
->> -	return 0;
->> -}
+>> +void drm_plane_helper_display_panic_screen(struct drm_plane *plane, const char *description,
+>> +					   enum drm_panic_type panic_type,
+>> +					   u32 fg_color, u32 bg_color, unsigned int qr_version)
+>>   {
+>>   	struct drm_scanout_buffer sb = { };
+>>   	int ret;
+> [Severity: Low]
+> Is the panic_type parameter correctly passed to the dispatch function?
+>
+> The function accepts a panic_type argument, but the implementation appears
+> to pass the global module parameter drm_panic_type to draw_panic_dispatch()
+> instead of the passed-in argument. Does this discard the caller's requested
+> panic type?
+>
+>> diff --git a/include/drm/drm_panic_helper.h b/include/drm/drm_panic_helper.h
+>> new file mode 100644
+>> index 0000000000000..e296620bbe34b
+>> --- /dev/null
+>> +++ b/include/drm/drm_panic_helper.h
+> [ ... ]
+>> +#if IS_ENABLED(CONFIG_DRM_PANIC)
+>> +#define DRM_PANIC_PLANE_FUNCS \
+>> +	.display_panic_screen = drm_plane_helper_display_panic_screen
+>> +#else
+>> +#define DRM_PANIC_PLANE_FUNCS \
+>> +	.display_panic_screen = NULL
+>> +#endif
 > [Severity: Medium]
-> Does removing this fallback cause the drm_panic KUnit tests to fail?
+> Does the legacy fallback primary_plane_funcs in drm_modeset_helper.c also
+> need to be updated with DRM_PANIC_PLANE_FUNCS?
 >
-> Looking at the test suite in drivers/gpu/drm/tests/drm_panic_test.c, it
-> calls this function directly without going through the new dispatch logic:
->
-> static int draw_panic_screen_qr_code_default(struct drm_scanout_buffer *sb)
-> {
-> 	return draw_panic_screen_qr_code(sb, 0x00ffffff, 0x00000000, 40);
-> }
->
-> When tested with a small resolution like 300x200, the scale evaluates to 0
-> and returns -ENOSPC. Previously, this wrapper caught the error, fell back
-> to draw_panic_screen_user, and safely returned 0, satisfying the KUnit
-> check.
->
-> Since the fallback was moved to draw_panic_dispatch and the test calls
-> the lower-level function directly, will this now propagate the -ENOSPC
-> error and spuriously fail the test?
+> Older AMDGPU DCE drivers use drm_crtc_init(), which implicitly relies on
+> this legacy structure for their primary planes. Although these drivers
+> implement get_scanout_buffer() in their helper functions, lacking this
+> macro in the fallback could cause drm_panic_is_enabled() to return false
+> and silently drop panic screen support on these hardware generations.
 >
 
 -- 
