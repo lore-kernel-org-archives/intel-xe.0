@@ -4,69 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14347C5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 13:50:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2C01C5DF6D
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 13:53:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B84E410E464;
-	Wed, 19 Aug 2026 13:50:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B96010E576;
+	Wed, 19 Aug 2026 13:53:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XD02VL23";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCWPezVg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61BA710E464
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 13:50:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 332BF10E14A
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 13:53:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787147436; x=1818683436;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bnba+PiP9tLi6YIZaL6Y3rwvD+JWadJdw7/wXrtl/qc=;
- b=XD02VL231XnHT+SB2hW307eN4IaYXQbXUvTx+7GTyfGkPBDwATScXhw/
- sVoupUZxD7FkTgnlS3DRkkWgFitZpRXkyU/cmLm5G+Blwkkp2swQfexke
- ceIbt+alsyiCukX1oJV368JCHgRwmgh1cOr/My9GaEVa3nd6sluaR3wdz
- 6PqQ545FDYSpMuEBXjjp3YS1tXRdehaoEx+pIEp6sXT0G6namJTpXjkc8
- zEmsZBxB6p7T2NPm8ozY/KHNwY6E4zh77cqFFDuFnFkaCMlu6r368ALbT
- h16GH3fLpRC+cwqvWJ1LPtVRRLDcls33OIca5GML3ij1i8zUsyUSHPb41 g==;
-X-CSE-ConnectionGUID: D44jlqUoRSmOcV3YM3pWMQ==
-X-CSE-MsgGUID: fJuwNV9MR7S1b8L+0n0Eww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="98255139"
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="98255139"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 06:50:35 -0700
-X-CSE-ConnectionGUID: TTgAV1e4S+6ZNXENerzslQ==
-X-CSE-MsgGUID: JrSI9d31Q/udY+sac7Y4EA==
+ t=1787147629; x=1818683629;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=sGrqq5WkXtXhr76VeoFDS1wvu2pziynxF+PzVX5HTQ8=;
+ b=eCWPezVgu3w4rLegdhqQUWk81YbDmadqPsSUetMr7YHxfpJZvKM+XiLw
+ OAe7zhkAQY0K4rNRM5Pa/UlEpvnCj4eVuLeBEuAqxAgAoqSDo24hGvPmR
+ y970lSvJxZ7wYUxQ3uOXN6I04GmHvp0pWjjVcAdBzcLiL5wORgMGYEPul
+ Komrszz/u0sBdOukwScXr3tT3Xf1WtYpvJc1hcG91gFmzWg7402CLsrrk
+ pkIu/pBQdlrBgVmxBQrdhTPjL62pAKCTo2oqJLd6IsrVNxXjh/BWFVMLs
+ zP2RDDw//iZUxa+XILBrPl1ixrBhc3vNf28VyWUpZ19o45t96gK7MXZ+E A==;
+X-CSE-ConnectionGUID: DjSWxB+ETCOUYqN8Tzv7rA==
+X-CSE-MsgGUID: T54drW1ISkO+ECehSqDHFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="99023124"
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="99023124"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 06:53:48 -0700
+X-CSE-ConnectionGUID: h5qo9b99Tz28nJ8ZP4f75w==
+X-CSE-MsgGUID: qjNKzQzrQEqZ8fBntCQRxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="269848810"
-Received: from aiddamse-mobl3.gar.corp.intel.com (HELO [10.247.209.5])
- ([10.247.209.5])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 06:50:33 -0700
-Message-ID: <8ceaee0e-cd24-4382-bb45-c59f9444e6ca@linux.intel.com>
-Date: Wed, 19 Aug 2026 19:20:30 +0530
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="265103917"
+Received: from inaky-mobl1.amr.corp.intel.com (HELO [10.245.244.176])
+ ([10.245.244.176])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 06:53:48 -0700
+Message-ID: <af024235-94b6-4fcf-8453-2e88f296348f@intel.com>
+Date: Wed, 19 Aug 2026 14:53:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V16 10/12] drm/xe: Add sysfs interface for bad gpu vram
- pages
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Cc: "Wajdeczko, Michal" <michal.wajdeczko@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-References: <20260817065055.3734576-14-tejas.upadhyay@intel.com>
- <20260817065055.3734576-24-tejas.upadhyay@intel.com>
- <a670328d-b5dc-48b4-bb02-ed7dfa2d48f1@intel.com>
- <DS0PR11MB871812022E070C0052F5AF3F81A72@DS0PR11MB8718.namprd11.prod.outlook.com>
- <aoMxh3bh1WEf8SF6@intel.com> <60960fcb-7aeb-4642-bd6f-ad1b6ffd2a2b@intel.com>
- <aoNhZwRGQC2uh95n@intel.com>
- <DS0PR11MB8718B926A3C9AAD8770AB89681A62@DS0PR11MB8718.namprd11.prod.outlook.com>
- <aoRWO88_jtfv1V-g@intel.com>
-Content-Language: en-US
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <aoRWO88_jtfv1V-g@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 3/3] drm/xe: Add up-to-date implementation for
+ Wa_14026539277
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
+References: <20260724-wa_14026539277-v2-0-ad786cc6ba1e@intel.com>
+ <20260724-wa_14026539277-v2-3-ad786cc6ba1e@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260724-wa_14026539277-v2-3-ad786cc6ba1e@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,197 +70,258 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 24/07/2026 22:44, Gustavo Sousa wrote:
+> Wa_14026539277 is a temporary workaround that targets only A*
+> steppings of graphics version 35.10 and requires that we avoid using
+> 2-way coherency for device-cacheable memory accesses.  For
+> driver-internal usage, we convert those configurations to be
+> device-uncached and 1-way-coherent; on the UAPI side, we reject
+> VM_BIND/MADVISE calls that are 2-way-coherent and leave it up to
+> userspace to select the alternative option that is most appropriate to
+> their usage.
+> 
+> v2:
+>    - Add missing bits to convert the PAT value to device-uncacheable in
+>      wa_14026539277_fixup_pat_value(). (Sashiko)
+>    - Also validate the PAT index in the DRM_XE_VM_MADVISE
+>      ioctl. (Sashiko)
+>    - Match against the graphics IP instead of the platform.
+> 
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_pat.h        | 10 +++++++
+>   drivers/gpu/drm/xe/xe_device.c     | 16 ++++++----
+>   drivers/gpu/drm/xe/xe_pat.c        | 61 ++++++++++++++++++++++++++++++++++----
+>   drivers/gpu/drm/xe/xe_vm.c         |  5 ++++
+>   drivers/gpu/drm/xe/xe_vm_madvise.c |  3 ++
+>   drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+>   6 files changed, 84 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+> index 7060f66e1d63..10374022f1d2 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.h
+> +++ b/drivers/gpu/drm/xe/xe_pat.h
+> @@ -82,6 +82,16 @@ bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
+>    */
+>   u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index);
+>   
+> +/**
+> + * xe_pat_wa_14026539277_reserved - Is this PAT index reserved from
+> + * use due to Wa_14026539277?
+> + * @xe: xe device
+> + * @pat_index: The pat_index to query
+> + *
+> + * Return: a boolean indicating whether the PAT index is reserved or not.
+> + */
+> +bool xe_pat_wa_14026539277_reserved(struct xe_device *xe, u16 pat_index);
+> +
+>   #define xe_cache_pat_idx(xe, cache_mode) ({					\
+>   	const struct xe_device *__xedev = (xe);					\
+>   	enum xe_cache_level __mode = (cache_mode);				\
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 5189419a0593..c4b8023cb8a2 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -836,14 +836,18 @@ static void override_has_cached_pt(struct xe_device *xe)
+>   	struct xe_gt *gt;
+>   	u8 id;
+>   
+> -	/*
+> -	 * Wa_16029380221: The affected GT will always use non-coherent
+> -	 * access to page tables, so we must do uncached writes from the
+> -	 * CPU.
+> -	 */
+> -	for_each_gt(gt, xe, id)
+> +	for_each_gt(gt, xe, id) {
+> +		/*
+> +		 * Wa_16029380221: The affected GT will always use
+> +		 * non-coherent access to page tables, so we must do
+> +		 * uncached writes from the CPU.
+> +		 */
+>   		if (XE_GT_WA(gt, 16029380221))
+>   			xe->info.has_cached_pt = false;
+> +
+> +		if (XE_GT_WA(gt, 14026539277))
+> +			xe->info.has_cached_pt = false;
+> +	}
+>   }
+>   
+>   static int probe_has_flat_ccs(struct xe_device *xe)
+> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+> index a5fe1beec652..a9cde12eba70 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.c
+> +++ b/drivers/gpu/drm/xe/xe_pat.c
+> @@ -313,6 +313,37 @@ u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index)
+>   	return REG_FIELD_GET(XE2_L3_POLICY, xe->pat.table[pat_index].value);
+>   }
+>   
+> +bool xe_pat_wa_14026539277_reserved(struct xe_device *xe, u16 pat_index)
+> +{
+> +	struct xe_gt *gt;
+> +	u8 id;
+> +	bool has_wa = false;
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		if (XE_GT_WA(gt, 14026539277)) {
+> +			has_wa = true;
+> +			break;
+> +		}
+> +	}
+> +
+> +	return has_wa && xe_pat_index_get_l3_policy(xe, pat_index) != XE_L3_POLICY_UC &&
 
-On 18-08-2026 18:25, Rodrigo Vivi wrote:
-> On Tue, Aug 18, 2026 at 09:08:46AM +0000, Upadhyay, Tejas wrote:
->>
->>> -----Original Message-----
->>> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
->>> Sent: 18 August 2026 01:01
->>> To: Wajdeczko, Michal <michal.wajdeczko@intel.com>
->>> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->>> xe@lists.freedesktop.org; Thomas Hellström
->>> <thomas.hellstrom@linux.intel.com>; Ghimiray, Himal Prasad
->>> <himal.prasad.ghimiray@intel.com>
->>> Subject: Re: [PATCH V16 10/12] drm/xe: Add sysfs interface for bad gpu vram
->>> pages
->>>
->>> On Mon, Aug 17, 2026 at 07:09:46PM +0200, Michal Wajdeczko wrote:
->>>>
->>>> On 8/17/2026 6:06 PM, Rodrigo Vivi wrote:
->>>>> On Mon, Aug 17, 2026 at 02:58:31PM +0000, Upadhyay, Tejas wrote:
->>>>>>
->>>>>>> -----Original Message-----
->>>>>>> From: Wajdeczko, Michal <michal.wajdeczko@intel.com>
->>>>>>> Sent: 17 August 2026 16:57
->>>>>>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->>>>>>> xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
->>>>>>> Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>>>>> Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
->>>>>>> Subject: Re: [PATCH V16 10/12] drm/xe: Add sysfs interface for bad
->>>>>>> gpu vram pages
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> On 8/17/2026 8:51 AM, Tejas Upadhyay wrote:
->>>>>>>> Include a sysfs interface designed to expose information about
->>>>>>>> bad VRAM pages — those identified as having hardware faults
->>>>>>>> (e.g., ECC errors). This interface allows userspace tools and
->>>>>>>> administrators to monitor the health of the GPU's local memory
->>>>>>>> and track the status of page retirement. Details on bad gpu vram
->>>>>>>> pages can be found under
->>> /sys/bus/pci/devices/<bdf>/vram_bad_pages.
->>>>>>> since those new files are xe driver specific, shouldn't we refer
->>>>>>> to them using
->>>>>>>
->>>>>>> 	/sys/bus/pci/drivers/xe/<bdf>/vram...
->>>>>>>
->>>>>>>> The format is: pfn : gpu_page_size : flags
->>>>>>> kernel documentation [1] says
->>>>>>>
->>>>>>> 	"Mixing types, expressing multiple lines of data, and doing
->>>>>>> 	fancy formatting of data is heavily frowned upon"
->>>>>>>
->>>>>>> [1] https://docs.kernel.org/filesystems/sysfs.html#attributes
->>>>>>>
->>>>>>> so to follow the guidelines maybe we expose the separate files:
->>>>>>>
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_page_size		u64
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_count	u64
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_reserved	u64[]
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending	u64[]
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_failed	u64[]
->>>>>>>
->>>>>>> or
->>>>>>>
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>
->>>>>>> |
->>>>>>> +-- vram/
->>>>>>>     +-- page_size	u64
->>>>>>>     +-- bad_pages/
->>>>>>>         +-- count	u64
->>>>>>>         +-- reserved	u64[]
->>>>>>>         +-- pending	u64[]
->>>>>>>         +-- failed	u64[]
->>>>>>>
->>>>>>> then
->>>>>>>
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_page_size:0x1000
->>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_count:5
->>>>>>>
->>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_reserved:0x0000000000
->>>>>>> 00
->>>>>>> 0000
->>>>>>>
->>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
->>>>>>> 34
->>>>>>> 000
->>>>>>>
->>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
->>>>>>> 35
->>>>>>> 000
->>>>>>>
->>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
->>>>>>> 36
->>>>>>> 000
->>>>>>>
->>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
->>>>>>> 37
->>>>>>> 000
->>>>>> Thanks for comment, this is documented format by design doc. Sysman
->>> also depending on this format. So I don’t see this can be done without design
->>> being changed for everyone.
->>>>> Internal design docs don't superseed upstream documentation.
->>>>> It is the other way around.
->>>>>
->>>>> But also, the files will be there one way or another. Both paths are
->>>>> valid, so I don't believe that change in here force changes in the
->>>>> userspace. Although, yes consistency is good...
->>>>>
->>>>> That said, I don't have a strong feeling for one way or the other.
->>>>>
->>>>> Since we are adding to the device level anyway, I believe it should
->>>>> be okay. But Michal, do you know any doc or any precedence that kind
->>>>> of force us to go the other way?
->>>> hmm, are we talking here about the attribute format or folder layout?
->>>>
->>>> if about the latter, no strong feeling either ("files will be there
->>>> one way or another")
->>>>
->>>> but if about the former, then the same documentation [1] earlier says:
->>>>
->>>> 	"Attributes should be ASCII text files, preferably with only
->>>> 	"one value per file. It is noted that it may not be efficient
->>>> 	"to contain only one value per file, so it is socially acceptable
->>>> 	"to express an array of values of the same type.
->>>>
->>>> and my proposal with separate files meets that expectations (there
->>>> will be either single value in the file or array of values of the same
->>>> type), opposed to original idea of array of offset:page_size:flag
->>>> tuples
->>> doh! I'm sorry... my comment was purely driven by the other sentence above:
->>> "since those new files are xe driver specific, shouldn't we refer to them using"
->>>
->>> But now I looked at the content o the patch itself. This patch as is is a BIG NO!
->>> It is against the sysfs rules. Period. Internal spec and other components need
->>> to adjust.
->>>
->>> Also please do not repeat the same PVC mistakes with tenths of lingering sysfs
->>> entries. Organize this per directory as Michal told.
->>>
->>> Another thing, make a design that is future ready, use 'vram0/' as the name of
->>> the directory with vram0 stuff. Like we have freq0/ for instance.
->>>
->>> Perhaps even
->>>
->>> +-- vram0/
->>>   +-- pages/
->>>      +-- size u64
->>>      +-- bad_pages/
->>>          +-- count u64
->>>          +-- reserved      u64[]
->>>          +-- pending       u64[]
->>>          +-- failed        u64[]
->> Currently information shown under vram_bad_pages(looks similar to what other competitor's  bad pages info shows), actual gives data which consumer can extract directly meaningful info out of it. With above approach, consumer need to make one, which we need to discuss with other folks. Lets discuss in a group.
-> 2 wrongs don't make 1 right!
->
-> If you don't believe in the reviewers check the documentation yourself:
->
-> https://www.kernel.org/doc/html/latest/filesystems/sysfs.html
->
-> "Mixing types, expressing multiple lines of data, and doing fancy formatting
-> of data is heavily frowned upon. Doing these things may get you publicly
-> humiliated and your code rewritten without notice."
+Just to make sure I understand. Why do we bother to check the l3 policy 
+here? Do we not just want to ban all 2WAY from uapi pov? The l3/l4 
+policy can often be promoted via the per MOCS setting, so even if UC 
+here it can be made WB via MOCS. Is this OK?
 
-Is my understanding correct that the PAGE_SIZE limit and the "one value
-per file" guidance apply to regular attributes only, and that a
-bin_attribute is the sanctioned mechanism for streaming output larger
-than one page (via the off/count arguments)?
+> +	       xe_pat_index_get_coh_mode(xe, pat_index) == XE_COH_2WAY;
+> +}
+> +
+> +static u32 wa_14026539277_fixup_pat_value(struct xe_gt *gt, u32 value)
+> +{
+> +	if (XE_GT_WA(gt, 14026539277)) {
+> +		if (REG_FIELD_GET(XE2_L3_POLICY, value) != XE_L3_POLICY_UC &&
+> +		    REG_FIELD_GET(XE2_COH_MODE, value) == XE_COH_2WAY) {
+> +			value &= ~(XE2_L3_POLICY | XE2_COH_MODE);
+> +			value |= REG_FIELD_PREP(XE2_L3_POLICY, XE_L3_POLICY_UC) |
+> +				 REG_FIELD_PREP(XE2_COH_MODE, XE_COH_1WAY);
+> +		}
+> +	}
+> +
+> +	return value;
+> +}
+> +
+>   static const struct xe_pat_table_entry *gt_pta_entry(struct xe_gt *gt)
+>   {
+>   	struct xe_device *xe = gt_to_xe(gt);
+> @@ -373,18 +404,22 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
+>   
+>   	for (int i = 0; i < n_entries; i++) {
+>   		struct xe_reg_mcr reg_mcr = XE_REG_MCR(_PAT_INDEX(i));
+> +		u32 pat = wa_14026539277_fixup_pat_value(gt, table[i].value);
+>   
+> -		xe_gt_mcr_multicast_write(gt, reg_mcr, table[i].value);
+> +		xe_gt_mcr_multicast_write(gt, reg_mcr, pat);
+>   	}
+>   
+>   	if (xe->pat.pat_ats)
+> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe->pat.pat_ats->value);
+> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS),
+> +					  wa_14026539277_fixup_pat_value(gt, xe->pat.pat_ats->value));
+>   
+>   	if (pta_entry)
+> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), pta_entry->value);
+> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA),
+> +					  wa_14026539277_fixup_pat_value(gt, pta_entry->value));
+>   
+>   	if (tr_pta_entry)
+> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_TR_PTA), tr_pta_entry->value);
+> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_TR_PTA),
+> +					  wa_14026539277_fixup_pat_value(gt, tr_pta_entry->value));
+>   }
+>   
+>   static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+> @@ -534,13 +569,16 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+>   	drm_printf(p, "PAT table: (* = reserved entry)\n");
+>   
+>   	for (i = 0; i < xe->pat.n_entries; i++) {
+> +		bool rsvd = !xe->pat.table[i].valid ||
+> +			    xe_pat_wa_14026539277_reserved(xe, i);
+> +
+>   		if (xe_gt_is_media_type(gt))
+>   			pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_INDEX(i)));
+>   		else
+>   			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+>   
+>   		xe_pat_index_label(label, sizeof(label), i);
+> -		xe->pat.ops->entry_dump(p, label, pat, !xe->pat.table[i].valid);
+> +		xe->pat.ops->entry_dump(p, label, pat, rsvd);
+>   	}
+>   
+>   	/*
+> @@ -747,9 +785,14 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>   	for (u32 i = 0; i < xe->pat.n_entries; i++) {
+>   		u32 pat = xe->pat.table[i].value;
+>   
+> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+> +
+>   		if (GRAPHICS_VER(xe) >= 20) {
+> +			bool rsvd = !xe->pat.table[i].valid ||
+> +				    xe_pat_wa_14026539277_reserved(xe, i);
+> +
+>   			xe_pat_index_label(label, sizeof(label), i);
+> -			xe->pat.ops->entry_dump(p, label, pat, !xe->pat.table[i].valid);
+> +			xe->pat.ops->entry_dump(p, label, pat, rsvd);
+>   		} else if (xe->info.platform == XE_METEORLAKE) {
+>   			xelpg_pat_entry_dump(p, i, pat);
+>   		} else if (xe->info.platform == XE_PVC) {
+> @@ -764,6 +807,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>   	if (pta_entry) {
+>   		u32 pat = pta_entry->value;
+>   
+> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+> +
+>   		drm_printf(p, "Page Table Access:\n");
+>   		xe->pat.ops->entry_dump(p, "PTA_MODE", pat, false);
+>   	}
+> @@ -771,6 +816,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>   	if (tr_pta_entry) {
+>   		u32 pat = tr_pta_entry->value;
+>   
+> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+> +
+>   		drm_printf(p, "TRTT Page Table Access:\n");
+>   		xe->pat.ops->entry_dump(p, "TR_PTA_MODE", pat, false);
+>   	}
+> @@ -778,6 +825,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+>   	if (xe->pat.pat_ats) {
+>   		u32 pat = xe->pat.pat_ats->value;
+>   
+> +		pat = wa_14026539277_fixup_pat_value(gt, pat);
+> +
+>   		drm_printf(p, "PCIe ATS/PASID:\n");
+>   		xe->pat.ops->entry_dump(p, "PAT_ATS ", pat, false);
+>   	}
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 9e0176861cb6..64c03c669630 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -3697,6 +3697,11 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   			goto free_bind_ops;
+>   		}
+>   
+> +		if (XE_IOCTL_DBG(xe, xe_pat_wa_14026539277_reserved(xe, pat_index))) {
+> +			err = -EINVAL;
+> +			goto free_bind_ops;
+> +		}
+> +
+>   		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
+>   		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
+>   		    XE_IOCTL_DBG(xe, obj && (is_null || is_cpu_addr_mirror)) ||
+> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> index 0474768a38aa..265273294756 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> @@ -500,6 +500,9 @@ static bool check_pat_args_are_sane(struct xe_device *xe,
+>   	u16 coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
+>   	int i;
+>   
+> +	if (XE_IOCTL_DBG(xe, xe_pat_wa_14026539277_reserved(xe, pat_index)))
+> +		return false;
+> +
+>   	/*
+>   	 * Using coh_none with CPU cached buffers is not allowed on iGPU.
+>   	 * On iGPU the GPU shares the LLC with the CPU, so with coh_none
+> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> index f02ac9bf7424..d53e7f75814b 100644
+> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> @@ -71,4 +71,5 @@
+>   		GRAPHICS_VERSION(3511)
+>   16029897822	MEDIA_VERSION(3500)
+>   		GRAPHICS_VERSION(3510)
+> +14026539277	GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)
+>   14027054324	GRAPHICS_VERSION(3511)
+> 
 
-Thanks,
-Aravind.
-
-
->
->> Tejas
->>> Thanks,
->>> Rodrigo.
->>>
->>>>>> Tejas
->>>>>>>> flags:
->>>>>>>>   R: reserved, this gpu page is reserved.
->>>>>>>>   P: pending for reserve, this gpu page is marked as bad, will be
->>>>>>>>      reserved in next window of page_reserve.
->>>>>>>>   F: unable to reserve, this gpu page can't be reserved due to some
->>>>>>>>      reasons.
->>>>>>>>
->>>>>>>> For example, cat /sys/bus/pci/devices/<bdf>/vram_bad_pages:
->>>>>>>>   max_pages : 10000
->>>>>>>>   0x0000000000000000 : 0x0000000000001000 : R
->>>>>>>>   0x0000000000001234 : 0x0000000000001000 : P
->>>>>>>>
->>>>>>>> The sysfs binary attribute is created under the PCI device
->>>>>>>> kobject when the platform supports it and the configfs
->>>>>>>> bad_page_reservation policy is enabled. Uses RCU-protected list
->>>>>>>> traversal so reads never block normal VRAM allocation operations.
->>>>>>>>
