@@ -4,27 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 925DFC5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 08:10:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D770C5B572
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 08:20:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 454E010E0BB;
-	Wed, 19 Aug 2026 08:10:03 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0C210ED54;
- Wed, 19 Aug 2026 08:10:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8978854026622263325=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED41D10E104;
+	Wed, 19 Aug 2026 08:20:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ovtBMPFe";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="OLCjMxRK";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TTbq1g0N";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5BKZ5yqq";
+	dkim-atps=neutral
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ECDE10E104;
+ Wed, 19 Aug 2026 08:20:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 804703EAC;
+ Wed, 19 Aug 2026 08:19:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1787127595; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=T9GnN3rAoGpYO3vjH23hNjM1l2JRoLE1XiBBXLMKyqs=;
+ b=ovtBMPFeqr8k1j/i0grRpHq6DPHJFiiTC8snRK0fCDyav4/FBVVuWo2QqtZs+hS/dq0nsu
+ 3/KAEP0FVpLw28IB9+WV1UCnc6zUofJ3WF/8xDW4sxwgaxKGGRR/szXja0DO4SFQPbXQI1
+ tq7vteUceI3GDnxUN8FHOfxSiX4rX8M=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1787127595;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=T9GnN3rAoGpYO3vjH23hNjM1l2JRoLE1XiBBXLMKyqs=;
+ b=OLCjMxRKl/OALMDCOPesk9Tez9TmPlVmjt/NNsv01xxV8W5JU8qbbuPe+wYqaVmTIl+wOW
+ BylcTuIwHhAVGSDQ==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=TTbq1g0N;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=5BKZ5yqq
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1787127591; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=T9GnN3rAoGpYO3vjH23hNjM1l2JRoLE1XiBBXLMKyqs=;
+ b=TTbq1g0Nl1OwfJF+pdbIOnpH0eQf5d90Y38JQGsX3GsXVI83AK5xSZMHpajrZjmk2yW/J3
+ zZfIDpH+uhtSrYJsxwbzT5GxDNcqXEzU0EXTyk6eWIiNXYzE9F5M8dZxQlmCEV5cvtbUH+
+ dWEpdCSBd3/SQ/tZ3wdBLY6BsfxvAoA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1787127591;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=T9GnN3rAoGpYO3vjH23hNjM1l2JRoLE1XiBBXLMKyqs=;
+ b=5BKZ5yqqFVmo0J6a7W8dVqSOIXB999m7uAmRNNHrXNOLlingAOTwkScnqxBPCxphBHBLyS
+ snH1HSVHt8GhveCg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 416BD779BE;
+ Wed, 19 Aug 2026 08:19:51 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id tb24DidnhWrpawAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 19 Aug 2026 08:19:51 +0000
+Message-ID: <c4bbf710-2b9a-4922-91fe-70fb104808ad@suse.de>
+Date: Wed, 19 Aug 2026 10:19:50 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fgt=5Fidle=3A_Ad?=
- =?utf-8?q?d_CCS_to_the_powergating_info_print?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Aug 2026 08:10:01 -0000
-Message-ID: <178712700149.65710.2719581187370883358@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260819073457.1812722-2-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20260819073457.1812722-2-balasubramani.vivekanandan@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/12] drm/panic: Pass global module parameters to
+ drm_panic_dispatch()
+To: sashiko-reviews@lists.linux.dev
+Cc: intel-xe@lists.freedesktop.org, ojeda@kernel.org,
+ linux-hyperv@vger.kernel.org, Frank.Li@kernel.org,
+ intel-gfx@lists.freedesktop.org, wsa+renesas@sang-engineering.com,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev
+References: <20260818125012.468092-1-tzimmermann@suse.de>
+ <20260818125012.468092-7-tzimmermann@suse.de>
+ <20260818130916.110771F000E9@smtp.kernel.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20260818130916.110771F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,suse.de:email,suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; TAGGED_RCPT(0.00)[renesas];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ RCPT_COUNT_SEVEN(0.00)[9];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; TO_DN_NONE(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Queue-Id: 804703EAC
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +146,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8978854026622263325==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/xe/xe_gt_idle: Add CCS to the powergating info print
-URL   : https://patchwork.freedesktop.org/series/172437/
-State : failure
-
-== Summary ==
-
-ERROR: The runconfig 'xe-pw-172437v1_BAT' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172437v1/index.html
-
---===============8978854026622263325==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Am 18.08.26 um 15:09 schrieb sashiko-bot@kernel.org:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+>
+> Pre-existing issues:
+> - [High] Concurrent debugfs writes or KUnit tests across multiple DRM devices race on global static buffers without adequate synchronization.
+
+A fix would be nice, but is beyond this series. As it affects debugfs 
+and kunit test there's no urgency.
+
+> --
+>
+> --- Patch [6]: [PATCH 06/12] drm/panic: Pass global module parameters to drm_panic_dispatch() ---
+> commit 9f2a1b5158feac614c09a17c83f387591642e034
+> Author: Thomas Zimmermann <tzimmermann@suse.de>
+>
+> drm/panic: Pass global module parameters to drm_panic_dispatch()
+>
+> This patch sets the panic type and QR version in draw_panic_plane() as a single
+> point of truth, passing these values into the individual drawing functions.
+> In the test case, it always creates a QR code with version 40.
+>
+>> diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+>> index ede620b27515a..12c39217cbcb5 100644
+>> --- a/drivers/gpu/drm/drm_panic.c
+>> +++ b/drivers/gpu/drm/drm_panic.c
+> [ ... ]
+>> @@ -951,6 +955,11 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
+>>   #else
+>>   	u32 bg_color = 0x00000000;
+>>   #endif
+>> +#if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
+>> +	unsigned int qr_version = panic_qr_version;
+>> +#else
+>> +	unsigned int qr_version = 0;
+>> +#endif
+>>   
+>>   	if (!drm_panic_trylock(plane->dev, flags))
+>>   		return;
+>> @@ -966,7 +975,7 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
+>>   
+>>   	drm_panic_set_description(description);
+>>   
+>> -	ret = draw_panic_dispatch(&sb, fg_color, bg_color);
+>> +	ret = draw_panic_dispatch(&sb, drm_panic_type, fg_color, bg_color, qr_version);
+> [Severity: High]
+> This is a pre-existing issue, but does the per-device locking in
+> drm_panic_trylock() adequately protect the global buffers?
+>
+> Since the lock is per-device (plane->dev->mode_config.panic_lock), concurrent
+> debugfs writes across multiple DRM devices can still race and mutate global
+> static variables, such as the zlib stream workspace (struct z_stream_s stream)
+> or qrbuf1 and qrbuf2.
+>
+> If a real kernel panic occurs while a debugfs write is concurrently using these
+> buffers, the true panic handler could inherit a corrupted zlib workspace state,
+> which might lead to a recursive fault and failure to display the panic screen.
+>
+> Could this be protected by a global lock for non-panic paths?
+>
+> [ ... ]
+>> diff --git a/drivers/gpu/drm/tests/drm_panic_test.c b/drivers/gpu/drm/tests/drm_panic_test.c
+>> index 969a096ec840f..196496238d231 100644
+>> --- a/drivers/gpu/drm/tests/drm_panic_test.c
+>> +++ b/drivers/gpu/drm/tests/drm_panic_test.c
+>> @@ -58,7 +58,7 @@ static int draw_panic_screen_kmsg_default(struct drm_scanout_buffer *sb)
+>>   #if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
+>>   static int draw_panic_screen_qr_code_default(struct drm_scanout_buffer *sb)
+>>   {
+>> -	return draw_panic_screen_qr_code(sb, 0x00ffffff, 0x00000000);
+>> +	return draw_panic_screen_qr_code(sb, 0x00ffffff, 0x00000000, 40);
+>>   }
+>>   #endif
+> [Severity: High]
+> This isn't a bug introduced by this patch, but do the KUnit tests safely access
+> the global drawing state?
+>
+> It appears the KUnit tests bypass draw_panic_plane() entirely and directly call
+> drawing functions like draw_panic_screen_qr_code() without acquiring any locks.
+> Could running the tests race on the global buffers and corrupt the zlib
+> workspace?
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_gt_idle: Add CCS to the powergating info print</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172437/">https://patchwork.freedesktop.org/series/172437/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172437v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172437v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-pw-172437v1_BAT' does not exist in the database</p>
-
-</body>
-</html>
-
---===============8978854026622263325==--
