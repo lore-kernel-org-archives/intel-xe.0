@@ -4,62 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4BFCC5DF81
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 14:05:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB7EBC5B572
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 14:08:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 635B010E592;
-	Wed, 19 Aug 2026 14:05:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93BC910E564;
+	Wed, 19 Aug 2026 14:08:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OkNyRPeW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GcW9EarK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA1FD10E592;
- Wed, 19 Aug 2026 14:05:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2A6110E559;
+ Wed, 19 Aug 2026 14:08:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787148336; x=1818684336;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KPrMRj4jmndcMBddGUdz25DhZ6EEVvOGleuu5znp/Ro=;
- b=OkNyRPeW+s4p69h+SVbQODpxUOrfLLSm+8ZKZnB7uUiQsu0IWvA/ZKcW
- Vxd1kQH+WeeI/HGO22Dg1bV8cfotJuE1/ZIV0+OrM/exoOQQAYVQvwFjy
- XUsAR2z0AOXnZKw2iQ0VJO3Nx/61DFPREwb2wl0grwhpfe6PdYkTg/OwD
- wy8hakH2fKZAIjmtyIZJZXleOA7JUdA7MW2LLiKq5HINymkVCSl6nc/Ha
- 5wduOWN6XOchIjYXr5kA6JiJa8sHJvIsMPDaupg2S4bh80rfSh35F2ISe
- fyzm6ortgtmR7OgTJtakD2+Yqn+QpeMAxr3c/9+uYwqzQFpX8W20HUXku Q==;
-X-CSE-ConnectionGUID: mgyxysWhTqqqBg40gsxGUw==
-X-CSE-MsgGUID: AqQkuRHySBuLAUodDwFUhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="86781891"
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="86781891"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 07:05:35 -0700
-X-CSE-ConnectionGUID: TtTtDrJPROi4D0skq/sstA==
-X-CSE-MsgGUID: hc7xx2LlTaa6f4xSZpCPxA==
+ t=1787148503; x=1818684503;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=Q0FhilOd3XmEr38yshmXJnU9ZUXGg51f4SY/WRET1UY=;
+ b=GcW9EarKBu4i9iKL1hW2/shbD2Rm0FYWzuMp7j1x90qw9vR/0JpUT/WB
+ +92phQ6tWyq7XXae1izoXepKwL7C7JWA6Nh7siPH1B9aVnAluCG/BLaS7
+ DQcmcnrVIrYTLiKYVRcgk6VkkP/XYldGsxMgvi5WcBU/P8qZonMoaIVHZ
+ bN/nii8ySmWP1euFhyKIk/l2ambe+iCpfokcEPrC/2cftaTaFfFb7MELr
+ Rupd3OhFVwZF0KNjNs/GsFLH3m+Hs7OTFcCiSqodGdU/OFL3NZUcWBkNA
+ lOvw3FS0T5XXRhqVeFD8YQyL0r/AH1bIKGK4ymvZEkKds+M70bOlQr0WC w==;
+X-CSE-ConnectionGUID: NKJRKwTDTGGTKtSGwnyk2w==
+X-CSE-MsgGUID: ExpCjYRiT8yH3fmxju3ZCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="87686969"
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="87686969"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 07:08:22 -0700
+X-CSE-ConnectionGUID: XyOdFZSaRh2IhzU37JaGUA==
+X-CSE-MsgGUID: Sh+TUQGkTDSca3GwXD4UWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="290368359"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.152])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 07:05:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, maarten.lankhorst@linux.intel.com,
- ville.syrjala@linux.intel.com,
- Maarten Lankhorst <maarten.lankhorst@intel.com>
-Subject: [PATCH 4/4] drm/i915/display: use fixed 10 second timeout for fence
- wait
-Date: Wed, 19 Aug 2026 17:05:13 +0300
-Message-ID: <f61a3a828b0c0159d63d132f8f557a546a6f9ced.1787148235.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1787148235.git.jani.nikula@intel.com>
-References: <cover.1787148235.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="263817167"
+Received: from dev-417.igk.intel.com (HELO devbox) ([10.91.214.181])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 07:08:20 -0700
+Date: Wed, 19 Aug 2026 16:08:18 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+cc: intel-gfx@lists.freedesktop.org, alex.zuo@intel.com, imre.deak@intel.com, 
+ michal.grzelak@intel.com, jani.nikula@linux.intel.com, 
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3] drm/i915/kunit: DP Link: Use if statements instead
+ of for loops
+In-Reply-To: <20260812141300.184053-1-jonathan.cavitt@intel.com>
+Message-ID: <1e26e6db-58ce-4f2a-37ee-f51394b4e041@intel.com>
+References: <20260812141300.184053-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed;
+ boundary="8323329-1769235966-1787148501=:1253732"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,82 +69,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915 has a configurable fence wait timeout, defaulting to 10 seconds,
-and xe uses MAX_SCHEDULE_TIMEOUT i.e. it has no timeout.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Use a fixed 10 second timeout for both drivers instead of having them do
-different things. Ditch the now unused compat header from xe.
+--8323329-1769235966-1787148501=:1253732
+Content-Type: text/plain; charset=ISO-8859-2; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-i915 actually needs the timeout to deal with CI reset tests, but there
-shouldn't be any harm in having a 10 second timeout in xe either.
+On Wed, 12 Aug 2026, Jonathan Cavitt wrote:
+> The static functions get_target_config and get_fallback_config in
+> intel_dp_link_test.c use for loops to determine if the requested index of
+> the config set is in the bounds of the config set entry list.
+>
+> Reconfigure these functions to use if statements instead, as these for
+> loops are only run for a single iteration.
+>
+> Issue caught by static analysis.
+>
+> v2: (Michal)
+> - Change i <= 0 check to i == 0, as i cannot be negative by assertion
+> - Remove unnecessary newlines
+>
+> v3:
+> - Misc. checkpatch fixes
+> - Resubmit to exercise target kunit test
+>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Michal Grzelak <michal.grzelak@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
 
-Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+CI on intel-xe@ doesn't run i915's KUnit tests so it is absent from CI's
+report. Nevertheless, here's the report from running it manually on the
+series:
 
----
+[16:06:01] =============== intel_dp_link (17 subtests) ================
+[16:06:01] [PASSED] intel_dp_link_caps_test_baseline
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_reset
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_rates_shrink
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_rates_shrink_disable
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_rates_expand
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_rates_expand_disable
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_lanes_shrink
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_lanes_shrink_disable
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_lanes_expand
+[16:06:01] [PASSED] intel_dp_link_caps_test_update_lanes_expand_disable
+[16:06:02] [PASSED] intel_dp_link_caps_test_update_params_shrink_random
+[16:06:02] [PASSED] intel_dp_link_caps_test_update_params_shrink_disable_random
+[16:06:02] [PASSED] intel_dp_link_caps_test_update_params_expand_random
+[16:06:02] [PASSED] intel_dp_link_caps_test_update_params_expand_disable_random
+[16:06:02] [PASSED] intel_dp_link_test_fallback_for_edp
+[16:06:02] [PASSED] intel_dp_link_test_fallback_for_sst
+[16:06:02] [PASSED] intel_dp_link_test_fallback_for_mst
+[16:06:02] ================== [PASSED] intel_dp_link ==================
+[16:06:02] ============================================================
+[16:06:02] Testing complete. Ran 17 tests: passed: 17
+[16:06:02] Elapsed time: 3.599s total, 0.001s configuring, 2.128s building, 1.440s running
 
-There have been a number of stabs at this in the past (see links below),
-and all of them have been rejected with one reason or another.
+Looks reasonable.
 
-My primary goal here is just to remove the annoying i915_fence_timeout()
-usage and i915 vs. xe difference. Further cleanup can come later (or
-never, as it usually is).
+Reviewed-by: Micha≥ Grzelak <michal.grzelak@intel.com>
+Tested-by: Micha≥ Grzelak <michal.grzelak@intel.com>
 
-https://lore.kernel.org/r/20251112155612.8320-1-jani.nikula@intel.com
-https://lore.kernel.org/r/20251113155332.789554-1-jani.nikula@intel.com
-https://lore.kernel.org/r/8cde57236982fc3ca1a5608332943d3b9274a45a.1775661609.git.jani.nikula@intel.com
-https://lore.kernel.org/r/20260408233458.22666-6-ville.syrjala@linux.intel.com
----
- drivers/gpu/drm/i915/display/intel_display.c     |  4 +---
- .../gpu/drm/xe/compat-i915-headers/i915_config.h | 16 ----------------
- 2 files changed, 1 insertion(+), 19 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
+BR,
+Micha≥
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index aa5d41dac8a9..c3a11e9e69e2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -50,7 +50,6 @@
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
- #include "hsw_ips.h"
--#include "i915_config.h"
- #include "i9xx_plane.h"
- #include "i9xx_plane_regs.h"
- #include "i9xx_wm.h"
-@@ -7284,8 +7283,7 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *state)
- 		if (!new_plane_state->fence)
- 			continue;
- 
--		ret = dma_fence_wait_timeout(new_plane_state->fence, false,
--					     i915_fence_timeout());
-+		ret = dma_fence_wait_timeout(new_plane_state->fence, false, 10 * HZ);
- 		if (!ret)
- 			ret = -ETIMEDOUT;
- 		if (ret < 0) {
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-deleted file mode 100644
-index d4522203e2dd..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-+++ /dev/null
-@@ -1,16 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright ¬© 2023 Intel Corporation
-- */
--
--#ifndef __I915_CONFIG_H__
--#define __I915_CONFIG_H__
--
--#include <linux/sched.h>
--
--static inline unsigned long i915_fence_timeout(void)
--{
--	return MAX_SCHEDULE_TIMEOUT;
--}
--
--#endif /* __I915_CONFIG_H__ */
--- 
-2.47.3
-
+> ---
+> .../i915/display/tests/intel_dp_link_test.c   | 34 ++++++++-----------
+> 1 file changed, 15 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+> index 67c6fe9f1812..608b7a9d60bf 100644
+> --- a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+> +++ b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+> @@ -1215,22 +1215,20 @@ static bool get_fallback_config(const struct test_config_table *expected_table,
+> 	struct kunit *test = expected_table->test;
+> 	const struct link_config_set *config_set =
+> 		get_fallback_configs_for_output_type(test, output_type);
+> +	const struct intel_dp_link_config *config;
+> 	int i;
+>
+> 	i = lookup_config(config_set, target_config);
+> 	KUNIT_ASSERT_GE(test, i, 0);
+>
+> -	for (i--; i >= 0; i--) {
+> -		const struct intel_dp_link_config *config =
+> -			&config_set->entries[i];
+> +	if (!i)
+> +		return false;
+>
+> -		assert_config_is_supported(expected_table, config);
+> -		*fallback_config = *config;
+> +	config = &config_set->entries[i - 1];
+> +	assert_config_is_supported(expected_table, config);
+> +	*fallback_config = *config;
+>
+> -		return true;
+> -	}
+> -
+> -	return false;
+> +	return true;
+> }
+>
+> static bool get_target_config(const struct test_config_table *expected_table,
+> @@ -1240,19 +1238,17 @@ static bool get_target_config(const struct test_config_table *expected_table,
+> 	struct kunit *test = expected_table->test;
+> 	const struct link_config_set *config_set =
+> 		get_target_configs_for_output_type(test, output_type);
+> -	int i;
+> +	const struct intel_dp_link_config *config;
+> +	int i = config_set->size - 1;
+>
+> -	for (i = config_set->size - 1; i >= 0; i--) {
+> -		const struct intel_dp_link_config *config =
+> -			&config_set->entries[i];
+> +	if (i < 0)
+> +		return false;
+>
+> -		assert_config_is_supported(expected_table, config);
+> -		*target = *config;
+> +	config = &config_set->entries[i];
+> +	assert_config_is_supported(expected_table, config);
+> +	*target = *config;
+>
+> -		return true;
+> -	}
+> -
+> -	return false;
+> +	return true;
+> }
+>
+> static void test_fallback_seq(struct kunit *test,
+> -- 
+> 2.53.0
+>
+>
+--8323329-1769235966-1787148501=:1253732--
