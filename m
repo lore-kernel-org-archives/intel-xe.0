@@ -4,60 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AF52C5DF89
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 10:57:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E464C5DF6D
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 11:35:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F91410EB7E;
-	Wed, 19 Aug 2026 10:57:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F69C10E544;
+	Wed, 19 Aug 2026 11:35:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mBX2NcrZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bB0bzxFA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4D610E54E;
- Wed, 19 Aug 2026 10:57:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B95A310E544
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 11:35:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787137052; x=1818673052;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=sP01/4b7FuKKARMPlkNw6ESfAzF7voEyqpTp2DPD5Rg=;
- b=mBX2NcrZLwy37Cw4IAngQJwy0W6o/OlSFAkUU+6dAG37km0EofQaFZq4
- 7VwPR1Ylh4IIRqA2EvPJepFwCfZvVO2rBqwwgS8nMlXUqpK1fv/6P/DSM
- TvSXTySMYInmAUlyCGWS6BbHKVX63WgzpLKnorH2UF8K4iF5M1FwWwyX7
- df4ffcq/tZ8XaHRQnQz99Vd/oHYbzd3JqxHNqs693V9zCoFOIZnG58G5j
- HLMo+014AI0052KELf7xAw2YKrv/xU9O+0rKqF71E4oTMf3nxNXoRxpVK
- 7GDaOtPgRvDllBoTsZBtccwocX4mRvu08uYlhyMiK+K/hP93NnQTw0mSv w==;
-X-CSE-ConnectionGUID: kJm/5G+FTuOf8QjpeuoYsw==
-X-CSE-MsgGUID: hRGsjC2yQiWFZoz2Q2yrUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="87566245"
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="87566245"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 03:57:32 -0700
-X-CSE-ConnectionGUID: I1w3rCl1QLCPkHiHK3b8qw==
-X-CSE-MsgGUID: fkGxM+IYT5OVICvZaLKCiQ==
+ t=1787139352; x=1818675352;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6v3zMLhtD2AyjC649pkekmdRu2KVvDQ5DMZBFGjHtm8=;
+ b=bB0bzxFAiIfoYTCrSitjWfkWjWA7OjLaGArk1TK/rdx98HaWXjL1D1tQ
+ pklKHXYbyE2fuUewDNGcp2gqoUTEUM5b2X69MF9lvq3lmIWVF5xPL+dz9
+ 2utkX+tWMchi2fARlsIjVp2yiWXybiotpEK1aZq1rPB95zBv8AeaA0+XS
+ FGjoETnz2LmAeV0u3ZjJg2bs1HD/rc3/lYsaOHPaHiNNC2hTtRf2M++PY
+ g55iRJByT/FZfR3hsU7c6L/z+xYc2Xb5D4nDV9Flbb8dEah0qqPCupwz5
+ tASMNMp1Zh9H1OvP7UvX/NYUxN7zCN/E8PyiiZZPbTKiVrDUsq26ilTia g==;
+X-CSE-ConnectionGUID: 1Tj7ua/QTGK8Re1VBICzSg==
+X-CSE-MsgGUID: S8kD2jTCRdqrF/+EGrEn0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="105181808"
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="105181808"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 04:35:51 -0700
+X-CSE-ConnectionGUID: Um53rs8nSiqMwFWzL6imjQ==
+X-CSE-MsgGUID: ufDPYj0ORZS7lfFnyEiVyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="265058901"
-Received: from inaky-mobl1.amr.corp.intel.com (HELO [10.245.244.176])
- ([10.245.244.176])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 03:57:30 -0700
-Message-ID: <90e47436-3fe9-473c-8350-31ab5c1800d0@intel.com>
-Date: Wed, 19 Aug 2026 11:57:27 +0100
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="262258938"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa007.fm.intel.com with ESMTP; 19 Aug 2026 04:35:49 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com,
+ matthew.d.roper@intel.com, mallesh.koujalagi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v3] drm/xe/pci_error: Allow debugging PCI errors
+Date: Wed, 19 Aug 2026 17:05:19 +0530
+Message-ID: <20260819113519.510853-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/2] gpu/buddy: replace dual-tree/force_merge with
- decoupled dirty tracker
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com
-References: <20260819104242.10703-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260819104242.10703-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,186 +65,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 19/08/2026 11:42, Arunpravin Paneer Selvam wrote:
-> The current buddy allocator maintains separate clear_tree[] and
-> dirty_tree[] rbtrees per order, preventing coalescing between cleared
-> and dirty buddies. Under mixed workloads, this creates a merge barrier:
-> adjacent buddies frequently end up split across trees, forcing reliance
-> on __force_merge() during allocation.
-> 
-> __force_merge() performs an O(N x max_order) scan under the VRAM manager
-> lock, leading to allocation stalls and failures for large contiguous
-> requests even when sufficient total free memory is available.
-> 
-> Solution
-> 
-> Replace the dual-tree design with:
-> - A single free_tree[order] rbtree for dirty and mixed free blocks
->    (fully cleared free blocks float outside this tree)
-> - A lightweight out-of-band dirty tracker (gpu_dirty_tracker)
-> 
-> Fully cleared free blocks are tracked outside the buddy trees using an
-> augmented interval rbtree, enabling O(log E) lookup of the largest
-> cleared extents.
-> 
-> Buddy coalescing is now unconditional in __gpu_buddy_free(), regardless
-> of clear/dirty state. This removes the merge barrier and eliminates the
-> need for __force_merge().
-> 
-> Benefits
-> 
-> - Correct high-order allocations after mixed clear/dirty workloads
-> - Elimination of O(N x max_order) merge cost from the allocation path
-> - O(log E) cleared-extent lookup replacing O(N) scans
-> - Predictable allocation latency under fragmentation
-> - Reduced complexity with a single tree per order
-> 
-> Test:
-> dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000
-> 
-> Below data is from /sys/kernel/debug/dri/1/amdgpu_vram_mm:
-> 
-> Base (dual-tree), before VKCTS test:
->    order- 6 free:   6 MiB,  blocks: 26
->    order- 5 free:   1 MiB,  blocks: 15
->    order- 4 free: 960 KiB,  blocks: 15
->    order- 3 free:   5 MiB,  blocks: 171
->    order- 2 free:   2 MiB,  blocks: 176
->    order- 1 free:   1 MiB,  blocks: 165
->    order- 0 free:  16 KiB,  blocks: 4
-> 
-> Base (dual-tree), after VKCTS test:
->    order- 6 free: 768 KiB,  blocks: 3
->    order- 5 free: 499 MiB,  blocks: 3999
->    order- 4 free: 250 MiB,  blocks: 4001
->    order- 3 free: 129 MiB,  blocks: 4157
->    order- 2 free:  65 MiB,  blocks: 4161
->    order- 1 free:  63 MiB,  blocks: 8138
->    order- 0 free:  20 KiB,  blocks: 5
-> 
-> Dirty tracker, before VKCTS test:
->    order- 6 free:   4 MiB,  blocks: 19
->    order- 5 free:   2 MiB,  blocks: 18
->    order- 4 free: 704 KiB,  blocks: 11
->    order- 3 free:   5 MiB,  blocks: 168
->    order- 2 free:   2 MiB,  blocks: 174
->    order- 1 free:   1 MiB,  blocks: 167
->    order- 0 free:  32 KiB,  blocks: 8
-> 
-> Dirty tracker, after VKCTS test:
->    order- 6 free:   4 MiB,  blocks: 19
->    order- 5 free:   2 MiB,  blocks: 18
->    order- 4 free: 704 KiB,  blocks: 11
->    order- 3 free:   5 MiB,  blocks: 168
->    order- 2 free:   2 MiB,  blocks: 174
->    order- 1 free:   1 MiB,  blocks: 167
->    order- 0 free:  28 KiB,  blocks: 7
-> 
-> v2:
->   - Code-style cleanup and minor refactoring
->   - Renamed locals for clarity
-> 
-> v3:
->   - Keep cleared blocks inside free_tree[] instead of floating them.
->   - Add subtree_has_dirty rbtree augment for O(log N) dirty-first walk.
-> 
-> v4:
->   - Fixed checkpatch warnings.
->   - Optimized gpu_buddy_reset_clear() to a single post-order walk that
->     flips block headers and recomputes the rbtree augment in one pass.
->   - Propagate subtree_max_size top-down in insert_extent() so ancestors
->     are not left with stale values on no-rotation inserts. (sashiko)
->   - Drop the whole extent in gpu_dirty_tracker_mark_dirty() when the
->     inside-split allocation fails, avoiding a stale clear claim. (sashiko)
->   - Make gpu_dirty_tracker_find() alignment-aware and fall back to the
->     dirty tree on steered failure to avoid spurious -ENOSPC. (sashiko)
-> 
-> v5:
->   - Track dirty extents instead of cleared ones: steer dirty allocs onto
->     tracked dirty windows and pick clear allocs via a free-tree augment,
->     avoiding clear-memory wastage by keeping cleared free blocks untouched
->     during dirty allocation.
-> 
-> v6:
->   - Make __alloc_range_bias() return the highest/right-most address by
->     default, establishing top-down as the intended placement for
->     range-biased allocations.
->   - Honour GPU_BUDDY_CLEAR_ALLOCATION in __alloc_range_bias() by steering
->     the descent towards clear subtrees for non-top-down clear
->     requests. (sashiko)
->   - Skip dirty-tracker steering for offset-aligned requests so they keep
->     their min_block_size alignment. (sashiko)
->   - sashiko reported that the __GFP_NOFAIL dirty-extent allocations on
->     the free path could deadlock during memory reclaim, since that is a
->     GFP_KERNEL allocation on the free path; move to a per-tracker
->     mempool so extent nodes are guaranteed without __GFP_NOFAIL.
->     (sashiko)
->   - Derive each free block's clear/dirty class from the blocks already
->     in hand on split, free, alloc, trim and init instead of querying the
->     dirty tracker, removing the tracker lookups from the hot paths.
-> 
-> v7:
->   - Preserve mixed-block clear state in __gpu_buddy_free() when a mixed
->     split child is re-merged after an undone split. (sashiko)
->   - Prefer a fully-clear block over a mixed one of the same order via a
->     single ordered clear-state max augment on free_tree[].
-> 
-> v8:
->   - Coalesce contiguous dirty blocks in __gpu_buddy_free_list() into one
->     dirty extent update instead of one mark_dirty() per block. (Matthew)
-> 
-> v9:
->   - Reset has_clear on allocation so a mixed block taken whole and later
->     freed fully dirty is not re-tracked as mixed. (sashiko)
-> 
-> v10:
->   - Use a plain slab allocation for dirty extents; skip and log once on
->     failure. (Matthew)
->   - Assert a non-zero size in the dirty-tracker range helpers. (Matthew)
->   - Drop the cached clear_avail member; derive it on demand. (Matthew)
->   - Collapse the two dirty branches of gpu_buddy_reset_clear(). (Matthew)
->   - Move the gpu_block_state enum above the gpu_buddy_block kernel-doc
->     so the doc directly precedes its struct. (Matthew)
->   - Mark the gpu_dirty_tracker struct private. (Matthew)
->   - Preserve a block's clear state on non-clear allocation instead of
->     force-dirtying it. (Matthew)
->   - Drop the redundant header clear in gpu_buddy_block_trim(). (Matthew)
-> 
-> Assisted-by: Claude:claude-opus-4-8
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> ---
+Update PCI error handling path to disconnect the device when
+XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is set. This prevents bus
+reset and preserves the device state so that it is available to
+the user for debugging.
 
-<snip>
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+---
+v2: Process errors before wedging (Riana)
+v3: Rephrase commit message (Riana)
+---
+ drivers/gpu/drm/xe/xe_pci_error.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
->   
-> +/**
-> + * gpu_buddy_clear_avail - free space that is clear (zeroed), in bytes
-> + * @mm: gpu buddy allocator
-> + *
-> + * A subset of @mm->avail. Derived on demand as @mm->avail minus the bytes
-> + * the dirty tracker records as dirty, so it is always consistent with the
-> + * tracker without a cached field to keep in sync. Zero for a fresh pool,
-> + * which is fully dirty.
-> + */
-> +static inline u64 gpu_buddy_clear_avail(const struct gpu_buddy *mm)
-> +{
-
-gpu_buddy_driver_lock_held(mm);
-
-Just to make it clear that avail & total_dirty need to be in-sync to 
-always get something sane here?
-
-Can be tweaked when merging.
-
-> +	return mm->avail - mm->dirty.total_dirty;
-> +}
-> +
->   #ifdef CONFIG_LOCKDEP
->   /**
->    * gpu_buddy_driver_set_lock() - Set the lock protecting accesses to GPU BUDDY
-> 
-> base-commit: 063019ac51afffda4ab3d658701b086caa0c8e9e
+diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
+index fb965f52be5e..79ce0c671549 100644
+--- a/drivers/gpu/drm/xe/xe_pci_error.c
++++ b/drivers/gpu/drm/xe/xe_pci_error.c
+@@ -84,6 +84,12 @@ static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev *pdev)
+ 	xe_info(xe, "PCI error: MMIO enabled\n");
+ 	action = xe_ras_process_errors(xe);
+ 
++	/* User wants to debug the error, prevent reset */
++	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
++		xe_device_declare_wedged(xe);
++		return PCI_ERS_RESULT_DISCONNECT;
++	}
++
+ 	return ras_action_to_pci_result(pdev, action);
+ }
+ 
+-- 
+2.43.0
 
