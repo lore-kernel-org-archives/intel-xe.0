@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C1D9C5DF81
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 19:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E158C5DF81
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 19:28:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBF4410EEAA;
-	Wed, 19 Aug 2026 19:27:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD37210E02D;
+	Wed, 19 Aug 2026 19:28:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Eivw9VJo";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ke8/yxtQ";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5324010EEA9
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 19:27:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E89BE10E02D
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 19:28:42 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1FAF543B8E;
- Wed, 19 Aug 2026 19:27:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D853D1F000E9;
- Wed, 19 Aug 2026 19:27:21 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id B21CE401CB;
+ Wed, 19 Aug 2026 19:28:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 773EC1F000E9;
+ Wed, 19 Aug 2026 19:28:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787167642;
- bh=C9oh9HqdLraCE3zzXWnZbPfa4NcKkDlrej5NmG/25a4=;
+ s=k20260515; t=1787167722;
+ bh=/p7f0AMZ1NhEVRN4uNe3eodlprOqq5k8Vb6rZtsN6Eg=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Eivw9VJo87TYKJc58EfcYEK5AzbqeYHHKq20/Vi0IOai0L7mmjwQB4HJjqjBKc0/K
- PaUr3iJANB+EXkU5fJG1RMHeGXcdXJp9AD8SzkDXDm3gxP4F66QhnqMqVxmHY1fLkk
- MGNYVK/Np4aUJMS0NUNoDLlcn6kRJtY5A4MUUCKF2pw6/YnILlrOdElGVvqq1o9R+e
- mZliLtX9pheZknP01g0L4Tt6axjDLKLNnyLtIHbzR6EKoOeAHMf6z8ixrFbNiahY1B
- MSSK4Y1YSD6/+PSWJj3FPRdziqwKL6HUla0R2NTsUdyFT8wciZOaXAjO+YgcdCvAvW
- gM8zS8mgAN5NA==
+ b=Ke8/yxtQE7dUU3Ef7vYrydruWXkuFBMuP/JqzyIcfh78++GGZDNVfsxMYNc7eAzku
+ FLXMd2Rs/ZGrLP2l25/JofsTer43FUl6PoK39LBjCZdnV3o7DmIcwC0gKWR629tzHM
+ twX5/ZB/M2SCL1H4o0jyskjv9XslGDiSqIxVZHR7dQMGvU7ZaaJFcS/rXZlhG29gN9
+ DclKAl4/rpTTEwWkPTN/LzrzhK08mBRYWjym+3ZbisCSaFr7g1MI5xRDOvAV4XAjg6
+ h0ys+zhtPfCIoyCQntr0TChRbA/mt3SNVDDSOZjWFMFiaHjJtMMb5+XSmJDxNnPpwD
+ OCTrS0H3Esvuw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 10/12] drm/xe/pci: Report unknown GMDID versions using
+Subject: Re: [PATCH 11/12] drm/xe/lmtt: Report invalidation errors using
  structured xe_log API
 To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260819191442.1957986-11-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20260819191442.1957986-12-dnyaneshwar.bhadane@intel.com>
 References: <20260819191442.1957986-1-dnyaneshwar.bhadane@intel.com>
- <20260819191442.1957986-11-dnyaneshwar.bhadane@intel.com>
+ <20260819191442.1957986-12-dnyaneshwar.bhadane@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 19 Aug 2026 19:27:21 +0000
-Message-Id: <20260819192721.D853D1F000E9@smtp.kernel.org>
+Date: Wed, 19 Aug 2026 19:28:42 +0000
+Message-Id: <20260819192842.773EC1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,70 +59,60 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] The `xe_log_err()` macro is called with the `GT` component tag, =
-which incorrectly evaluates to the `XE_SIGID_GT_TDR` (Engine hang / timeout=
- recovery) signature identifier. A probe-time failure due to an unknown har=
-dware IP version will be wrongly logged as a GPU engine hang, breaking tele=
-metry categorization.
+- [Medium] Incorrect error code passed to structured logging and redundant =
+error formatting.
 --
 
---- Patch [10]: [PATCH 10/12] drm/xe/pci: Report unknown GMDID versions usi=
-ng structured xe_log API ---
-commit 77b6855242b927765ae4947e2d18fd4b7082f834
+--- Patch [11]: [PATCH 11/12] drm/xe/lmtt: Report invalidation errors using=
+ structured xe_log API ---
+commit 923aca6a5a5574864c744c6654055fb24cc4ad4d
 Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-drm/xe/pci: Report unknown GMDID versions using structured xe_log API
+drm/xe/lmtt: Report invalidation errors using structured xe_log API
 
-This commit replaces drm_err() with xe_log_err() using the GT component tag
-when hardware reports unrecognized graphics or media IP versions during GMD=
-ID
-handling.
+This commit replaces xe_tile_sriov_err() with xe_log_err() using the LMTT
+component tag for LMTT and MERT invalidation failures. It attempts to
+preserve the SR-IOV prefix in the log messages.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 1e04e8ef2611f..392c9e12e6535 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -718,8 +718,9 @@ static int handle_gmdid(struct xe_device *xe,
+> diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
+> --- a/drivers/gpu/drm/xe/xe_lmtt.c
+> +++ b/drivers/gpu/drm/xe/xe_lmtt.c
+[ ... ]
+> @@ -302,14 +303,16 @@ void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt)
 > =20
->  	*graphics_ip =3D find_graphics_ip(ver);
->  	if (!*graphics_ip) {
-> -		drm_err(&xe->drm, "Hardware reports unknown graphics version %u.%02u\n=
-",
-> -			ver / 100, ver % 100);
-> +		xe_log_err(xe, GT, -EINVAL,
-> +			   "Hardware reports unknown graphics version %u.%02u\n",
+>  	err =3D lmtt_invalidate_hw(lmtt);
+>  	if (err)
+> -		xe_tile_sriov_err(tile, "LMTT invalidation failed (%pe)",
+> -				  ERR_PTR(err));
+> +		xe_log_err(tile, LMTT, -EIO,  "%s invalidation failed (%pe)",
+> +			   xe_sriov_printk_prefix(xe),
+> +			   ERR_PTR(err));
 
 [Severity: Medium]
-Does the GT component tag in xe_log_err() evaluate to the XE_SIGID_GT_TDR
-(Engine hang / timeout recovery) signature identifier?
+Since err holds the actual error code returned by lmtt_invalidate_hw(),
+should this pass err to xe_log_err instead of hardcoding -EIO?
 
-If so, an early initialization failure in handle_gmdid() due to an unknown
-graphics IP version will be wrongly logged as a GPU engine hang, breaking
-telemetry categorization.
+Additionally, does explicitly including (%pe) in the format string here
+result in redundant and conflicting error codes in the log output, since
+xe_log_err() automatically records the passed error code?
 
-> +			   ver / 100, ver % 100);
->  	}
 > =20
->  	ret =3D read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
-> @@ -732,8 +733,9 @@ static int handle_gmdid(struct xe_device *xe,
-> =20
->  	*media_ip =3D find_media_ip(ver);
->  	if (!*media_ip) {
-> -		drm_err(&xe->drm, "Hardware reports unknown media version %u.%02u\n",
-> -			ver / 100, ver % 100);
-> +		xe_log_err(xe, GT, -EINVAL,
-> +			   "Hardware reports unknown media version %u.%02u\n",
+>  	if (xe_device_has_mert(xe) && xe_tile_is_root(tile)) {
+>  		err =3D xe_mert_invalidate_lmtt(xe);
+>  		if (err)
+> -			xe_tile_sriov_err(tile, "MERT LMTT invalidation failed (%pe)",
+> -					  ERR_PTR(err));
+> +			xe_log_err(tile, LMTT, -EIO,  "%s MERT invalidation failed (%pe)",
+> +				   xe_sriov_printk_prefix(xe),
+> +				   ERR_PTR(err));
 
 [Severity: Medium]
-Like the graphics IP check above, will using the GT tag here also wrongly l=
-og
-an unknown media IP version as an engine hang?
+Similar to the above, xe_mert_invalidate_lmtt() can return -ETIMEDOUT. Does
+hardcoding -EIO here result in incorrect structured telemetry logs?
 
-> +			   ver / 100, ver % 100);
->  	}
-> =20
->  	return 0;
+Also, would removing the (%pe) simplify the format string and avoid
+redundant logging?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260819191442.1957=
-986-1-dnyaneshwar.bhadane@intel.com?part=3D10
+986-1-dnyaneshwar.bhadane@intel.com?part=3D11
