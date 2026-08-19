@@ -4,89 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1749C5DF85
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 18:05:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60740C5DF81
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 18:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 184A310E126;
-	Wed, 19 Aug 2026 18:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07A7A10E12C;
+	Wed, 19 Aug 2026 18:29:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zq/TkTop";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rze2QAqQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57AFA10E126
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 18:05:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ED6510E12C
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 18:29:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787162717; x=1818698717;
+ t=1787164159; x=1818700159;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=2JeRhFMFF0gNPsx0LNz8U/ltxhpPsuGnMji8Zeqeqek=;
- b=Zq/TkTopQMD7sB2kO6HX0wWT9aDiVVWQwUZjamLnI6fERUbIyt6M3hJ8
- Zm4Wp6GUvJ77u8nXl8WefgCL27exo8KvDS1l23+TNYMfNbhQsb2Dfy6G2
- 8szKEAeICxt6lZKhMy2O5MHjvU6PFOKvkhxkcbQR45h25xfthacYu4l6H
- AYDsLCzm0wgcYgvoF2huAZ+xLDmd6LzZT196/NhiAba6EBdkSLyatie0k
- 25l03SUNuf9hNUTXQes0UmGJ4QedPGRLm2Zihubatw1vDQ9ZbTHOufPXA
- OZNtaPnz84vzSAmnCyiBP+u/XBd2LGDV8/w1jCNCmywjnwD3PhOqBV+8q g==;
-X-CSE-ConnectionGUID: 42uAlJxFQYeuMkW0XmkSTw==
-X-CSE-MsgGUID: iVs75GMCQCafX06h0kXiBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="98282480"
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="98282480"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 11:05:16 -0700
-X-CSE-ConnectionGUID: jY8tUSbSTCi9FBRioEgYWA==
-X-CSE-MsgGUID: cHo+gQvzSRevdcARU5UtPw==
+ bh=kzkUTzmgcu3hhIubCr3MxpzIUrCEdAWRu9XZMKB3+7U=;
+ b=Rze2QAqQWQPzH5/Sq0/TQPZZygBAqRNrdaX9LeYkTfcs6WZ+AL6iC6P0
+ hxe4AmMLmyIapw+kRdEaEYww7mHjDJfZK4dJPm7mud1/S0R7BGzdyJUIP
+ 5EMYJXkHjFcoODpg5FDMnarqg6MxWB2cAGCRV/14ACCXCcyaY4t4jraLB
+ 5hpS0CCW+Aq4PWyLu85vCRJCxX6HwUyrR6hJx7eennqaX7VWLNglMvOWA
+ kK3dBx8ErO0ZlknSjwyWqw6D5bZg0eTq3KINkiOquG1X35IC05BW6kr4z
+ GdSmNZz0bzO/Y1JRW+Twjk5kavJjBQICgRU5wcptwEdwCrd3R351In/eV w==;
+X-CSE-ConnectionGUID: MM9LB5oNT6uc4air+JJwug==
+X-CSE-MsgGUID: OJpHCLZ7RPeU3WxXEEsbDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="99216133"
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="99216133"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 11:29:18 -0700
+X-CSE-ConnectionGUID: eIQzI8+NR/WQJGl+q4LsrA==
+X-CSE-MsgGUID: CwG9Yl8JQyCg5cQl9UZHag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="262985055"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 11:05:17 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="266242914"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 11:29:19 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 19 Aug 2026 11:05:16 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.45; Wed, 19 Aug 2026 11:29:17 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Wed, 19 Aug 2026 11:05:16 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.62) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Wed, 19 Aug 2026 11:29:17 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.5) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 19 Aug 2026 11:05:15 -0700
+ 15.2.2562.45; Wed, 19 Aug 2026 11:29:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wKRcVJu7X/PgHI1JwTjWDdAn3z3Ya05Ls/2VfarWPb480DpS1+JpPYumGoTZd9vIqwr/C/avkwdS2Vd1DU6c7oYhjN+JgXEDFml89SJ0lmzftPYDINgq1cHD1C1T6B1CW6P38dv6Kmn2VPHeG1H3Nzpc2RzgyKUTfQZEjQd6lA2PkHTjsEiQZ6FgjhTpvm2W1rKBB5+cz0jq/hDVBof73Bbd88T0wSyVj5JHXQzl0ZcY1zGcDP0xub+d82bayhXm8dkvX7x4RtcL3AeN4MXiRh3mQ7CcvNxLjOp+w83D5PtHji6mggCxCpTwOfh/hmAX1pkqc7zzFUxbCexyrOQFoA==
+ b=RS9CAaZArftVpqaSE9gUh77Smu3UpLCQP+tLTgzn50MuGvXGk4GhdWpelcUm2c/5oQiDX4bMaYsV8yYvM1GGK+neqtE7IlP6wAWgW/wQMvSGhRvQo42hOW3aUBFV5LYu61+dWG2/RVgESopKVt3DUWBUy2+C76i58JHuYpBvxptmo4PIn5FIkfrr9zfThKdEriaTY7JDGOQuZ3A+4DKwjYfNgq/EzYzwqBsMifBPhuU08Qc8tW5Vg0/E6lGrtNSuJczrUP5NOBuLW9zFnql3YkpxL4cNsZQtsSADgLIruDfuvwBJRkR0gvrrkFkDXC3Kj/T2VennDlGkbWYaVTUoWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F8WFL/3VJXy507j/ouOHxM87hFlPWnhcdzyOts7SyXs=;
- b=qmNUCTenSW4kknM2ZKwjgKyD3aNnI/1hFGYiSHQWMR1mPBcdS1apz+t7lXFy1eb4AFEVsInppz+R/lLrOf2mew7e3ncQshcTbyuFcyXb30RP4SvpkWu53PudG9MvVUD8gdo8kBsLIWCIHPrbHXbzt4BFdA5J2vFBbtEn18Itbf2zOca74jUYZ70umTY9xOkDGGv3QQvh17qvYqXRMJaVuHflOGF1rSaanHfC+uS5Moig71LW6qJT38TiTOVVH2lUDMYHwlP0NgmEYWdDhi4H9BiLJq/rfnB7vYPMs6Qkl66BNqzlPjqMNSX8E6ZLfL+0Srb1NMBSwuKvPvJiMFBQdw==
+ bh=5Nd9DqKr8lOaA+OJdC5LC3N89RrH4kqn4UnJGiKVXpk=;
+ b=vE0iuIuh5CNS559JIVwyeXPTXWfI6kX7nwigLcjBUu7SmsaCYY2IqQmeAfDc/fUJWrskkT4rQPtJOETniQuV3/y9ROa0nEVo4JEEY7NL1DY+UdbmUOzfHgT5hdfwUg8OoYQUu9gMU3LDWjr9PAW3s3dI7R7kyD9Xqy0VK8JyWFv67JKhGNj0rABwa0IAl2qMHH9TlbuTgbLv6fBOwPAwlMmdtpLn2HE5mpkkd/2XE0ooJ3OxaNG2lEwHLrPr9KIB7fIXYCm169ykuEnVYD/+tKQbgh7i9L9AAXZhDA6Z2WlbBHGFK9zHXHrfSIyPEKxu5ai0A4/BpvoK77DewkmJQA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from PH8PR11MB8040.namprd11.prod.outlook.com (2603:10b6:510:238::11)
- by DS4PR11MB084795.namprd11.prod.outlook.com (2603:10b6:8:4bf::19)
+ by PH8PR11MB7141.namprd11.prod.outlook.com (2603:10b6:510:22f::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Wed, 19 Aug
- 2026 18:05:13 +0000
+ 2026 18:29:11 +0000
 Received: from PH8PR11MB8040.namprd11.prod.outlook.com
  ([fe80::89bf:2274:1371:50c5]) by PH8PR11MB8040.namprd11.prod.outlook.com
  ([fe80::89bf:2274:1371:50c5%3]) with mapi id 15.21.0339.007; Wed, 19 Aug 2026
- 18:05:13 +0000
+ 18:29:04 +0000
 From: "Yao, Jia" <jia.yao@intel.com>
 To: "Bai, Zongyao" <zongyao.bai@intel.com>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
 CC: "Brost, Matthew" <matthew.brost@intel.com>
-Subject: RE: [PATCH v5 4/4] drm/xe/forcewake: enable configurable delayed
- forcewake release
-Thread-Topic: [PATCH v5 4/4] drm/xe/forcewake: enable configurable delayed
- forcewake release
-Thread-Index: AQHdKrexd58xq8t6hUaLnuU7izpoTLaltD9w
-Date: Wed, 19 Aug 2026 18:05:13 +0000
-Message-ID: <PH8PR11MB80403E3E37A283FF5540668CF4A52@PH8PR11MB8040.namprd11.prod.outlook.com>
+Subject: RE: [PATCH v5 1/4] drm/xe/forcewake: synchronize engine-cycle access
+ with unplug
+Thread-Topic: [PATCH v5 1/4] drm/xe/forcewake: synchronize engine-cycle access
+ with unplug
+Thread-Index: AQHdKreyJouxSVdE00SVnPaUSGAe57alu6mg
+Date: Wed, 19 Aug 2026 18:29:03 +0000
+Message-ID: <PH8PR11MB8040D32B1161E482F064C06FF4A52@PH8PR11MB8040.namprd11.prod.outlook.com>
 References: <20260601213804.707256-1-zongyao.bai@intel.com>
  <20260813000654.2712317-1-zongyao.bai@intel.com>
- <20260813000654.2712317-5-zongyao.bai@intel.com>
-In-Reply-To: <20260813000654.2712317-5-zongyao.bai@intel.com>
+ <20260813000654.2712317-2-zongyao.bai@intel.com>
+In-Reply-To: <20260813000654.2712317-2-zongyao.bai@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -94,60 +94,60 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH8PR11MB8040:EE_|DS4PR11MB084795:EE_
-x-ms-office365-filtering-correlation-id: c195ec2d-78fa-42d9-356c-08defe1c6ab5
+x-ms-traffictypediagnostic: PH8PR11MB8040:EE_|PH8PR11MB7141:EE_
+x-ms-office365-filtering-correlation-id: 1d6175d0-425e-4713-2277-08defe1fbf46
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|42112799006|1800799024|23010399003|376014|56012099006|10067099003|6133799003|18002099003|22082099003|11063799006|4143699003|38070700021;
-x-microsoft-antispam-message-info: e/ckZw3cvgtxdz+pqT7snx9qhbGt/Ku7tWXXvSZLeQkdP87/MGdeHz5dgLz7QoUVQjKz79secJEWfJIL0yNKzAmrx4ImL4MaA1DQSv9qZkMtp9/Y9Rz6tEgMqewexOEjXQJ3Dviv/160zlHqHcyXcWkGwwDz9w2FOzcH08Y9WY3zVGoUFWDh5KT6uxIIUFpPxzqDhIqR5NxOZNbW9+QFDVKqleBRBTDODqWFsiUQsDDWaN1TuwfxhYXnuRTMQxc2FJKuLHbaS734InQISQeuQr/WyKeE9Vy8Vf6NMsQhNIfvQyzpoo5J9d+Pmcky8iiyuZ2mvTi7fPpK4anohqgAexHgWeAxyrDwtMjzT+1E3SoXRiXgDwFF/aWEZhtTab5QQ8LnV+vm3hZ+H66wBX55FkwwRcufn9VW0QC6OyHjK1eTPiqc1n1BdJIpgA6EhrOG7KzL0YcJdKndAAgfvIDWVJdYWTNyTxpBX9kzFJeDSVD1nYGAkHmTrtVfEL6pwNHqSEclAMW/EC80r1N4Tdiuw3Uuw5DEnyVY+/M97rMx+McjdareQK/KVALeXJD23m52FW9lONIT83IsW3c9wGvMx+Rx4e1fzF2AJv7x5khApJSDMa2NggEpNl9SaQzmgHLJQ6Jd/bNquTwD5EDgsucnvtLt+dDD/ijkk5seiFI587S8G06Ydh6JXD3qv1KmsC4z/lRZYyZzySPdOab8VoKGd26yb/P37PMp95PgaN2RfpE=
+ ARA:13230040|1800799024|376014|23010399003|366016|42112799006|38070700021|56012099006|10067099003|4143699003|22082099003|11063799006|18002099003;
+x-microsoft-antispam-message-info: j3iY0ixroPjMQciCHZzvOOxp9zs1rV7G4BnboGZj5ZbxeO60jRqmB01SiuwwJJhs3wL7QHsKJ+EEmQx8wTh9LOVIpSQcSa576XNQAdUdGG5HXHprGKJ8Wnv0c0NDEsr+o2IH+wgMQFceY3PSEd55SkyQP4AwYuNilsDymnEKXNUWJXYE1PE+GXbNfK/9d5hbAS+Wq5BKFr3IQPvhPizOWDaxCNfg3M1wQMWGoTASch8kLBOwwyHoLnNfSLZGiBYoZJ6S64W0KnYeDjvIWo8Fl9TD+x7rGw02BszrnWonO4TYOhzxzDrpfqzof8HCecHtO0RQ3sLJfADBhjDnVppqD/yerkijtL4Y9qMwmNUtoD785/EuVsfeuLWpgdnwXQLoQSdaTEKdltv/xgyrfPm2KGLRUUKh18ACFLFxp1jO1xRE1JDHPW1nJ96Ce6ImXFBu6GkwbYyBlknzvKel9rpNhhiCeSJx5stQfmY5LNsuWTP0fzfDPohNftjXnP3DgDnCt//mUC31BBczCyZ10tKS/jK0l07bZECh0rLJULZrIyNGWpm0AAYd59W7cYRy7xjBFMGQsL1fA8pTqaRwxcK+3/R5B5vYruYCU4YTRMkXOEwB0SitIVohpYjPIkmo5dpfAWUUFWyL0iiit0zso6WNdxvKGoJaxQJ5IvEy6fyC5xMI/rcQaL5+zvqnSKjCDQoWtkjQiZ9GUfG96OtW1BJH56ROp9Lt6PXJSTO1c8YGjEM=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8040.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(42112799006)(1800799024)(23010399003)(376014)(56012099006)(10067099003)(6133799003)(18002099003)(22082099003)(11063799006)(4143699003)(38070700021);
+ SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(42112799006)(38070700021)(56012099006)(10067099003)(4143699003)(22082099003)(11063799006)(18002099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eyfzrcQ+22ybhxE/YKZdrnxKsGbLbQfCmlPVgsovYul1/bm0OlCFtIye8DJM?=
- =?us-ascii?Q?VimJFJ+j14awIkqEFioo4UmEA0XF/5jhdCzuVIaCKPgSK4JcBe8pCPo8W9ke?=
- =?us-ascii?Q?Gox6JgGlX9lirGvMPu5BWZ7FoQ4p8YJz1ccq1EOUXNOyYW03kpILDajKyhm2?=
- =?us-ascii?Q?Xfy0WoDhTaox87ETNqoUu6+o/pbkbRUtLz6LyPfeq0c8J9y4UsJB8jehVFZ+?=
- =?us-ascii?Q?87sL92ZV1PiB36FNfdMNSUIiYNti6hbTJVWRPzeH4syY0QP0fvuLQRAUSRzs?=
- =?us-ascii?Q?2THIwhFGZwc1faR/h3ldSFcAGUmJ2u2EJ/yGIQYp8uKWZJ8wm94Vh0Sb4UlA?=
- =?us-ascii?Q?noRzNmFeGLRjhjHCwfEM8KcNsnggfKPRjk5iZ8a3Dasi9M+X4wCWgzIv/nEP?=
- =?us-ascii?Q?OzB8JK15C63lUynZ1OKwU1VsJwa0sXE4pg3ihAZxY9ha3EHXLZQBjtF6EEkN?=
- =?us-ascii?Q?joZUGfIeXt2XTsaW9SdpiszElh9LYqXYfgaLpoF3AbDqaFkKMnwb2oot27KA?=
- =?us-ascii?Q?yst3awdKsSRSC3k7G5y01o55NTsUpSFufNqV2Z8ng6dujhJY7I1MmUloiepx?=
- =?us-ascii?Q?NNR0d9vnoMC08LIhDoL5QGF74SigCJ2Rmmo92zqZUKEGqv6pO1sPWkDcnCoO?=
- =?us-ascii?Q?w+yMvYo0Q+NbflTEai/RFI1BlRJcNdW+Y0N5yXP3kzayDSE1sm054Jskl5cu?=
- =?us-ascii?Q?vXNAsAP9u1S+atRcWzvNN6CzH4Y7Ys3z/NAtuL7Mbeo2cx4aLA5arILeheKW?=
- =?us-ascii?Q?xyB4P5p0nN74XaOE7RiLwSOtnZuUtReSY75P4iQ2orG53rvv14d6KolQMfQZ?=
- =?us-ascii?Q?DXa2y8/tBydOXzpnq+T4ccsw08KKRvMRanBdlQ69oz2JozvDQJ8XJ5sS4wCN?=
- =?us-ascii?Q?ZOJKR9zUu2GAN45RCHsvWHQ9AC8fcEcQffkIOTdIPxTT+DuVx2J/WZGZxVAx?=
- =?us-ascii?Q?vMMbu8gR8J/fxblN2VuuSrywaneHzZDAPrr6iOxTKp+L58Bkn3YbcSHV/yGQ?=
- =?us-ascii?Q?lgNK08/dg5jy3pLLMWmrizwS0QO28ZJ5YUfHFhFarCq+H8rdt9DfIYK3kDJ5?=
- =?us-ascii?Q?SBdAuvvAyII3tXcGknSUDyNjdb0rQMidcFPnu5p+Xo95FJa62QtEaL+lcMy/?=
- =?us-ascii?Q?NdMRmtxBpe4KReL4JmFR4exb2/HwrBBH7gpCLKQR8KCZGXQAjKNsa7DKN426?=
- =?us-ascii?Q?vmMUgxhdSdRkbQA+e8VApqCAv8ODWwUBQoQgqqnDxgYVtR+9ug6DOcC9/d32?=
- =?us-ascii?Q?Kt+96vH3hyCM+dnJrD3utIN82hmkDZPCus7Dx5oQrjX3B6A4pLu4UysxUlfV?=
- =?us-ascii?Q?0raUzQzOfHF+vcqL1wePgikrfG2UI3ItZuq+6NIE/wL1fwMXVMz25X63Qfby?=
- =?us-ascii?Q?MJ6Xq6aDJnk4eX2QiMC8d2IKVLsrvONsYxeEqpRpAMcpRKD5Fd4irzHgP5qz?=
- =?us-ascii?Q?F89ZExVm2MyUpip8Hn6X/upg839dhmlYCFdXztCfiJ5e2dmR7lcLCLZO3eZ/?=
- =?us-ascii?Q?otMvvRX0kUaLRVmPbaPdJ7E+0YfBeDl4pALSqcfNij2nc+xLyewvGqa86ZpZ?=
- =?us-ascii?Q?uR0HMj8jzvtKZpgaVXIqLWWeLo65kUmc24J1yN/EKZnwGWtA5JgVxGcnuziI?=
- =?us-ascii?Q?dpHyUkqtSpghoiW2edtJ/hruaUuDxoWocgRmAfzP4Hk3OC+NBRHHZeeTryMe?=
- =?us-ascii?Q?SMa6ryw8ckVWWl7RrQbFj/gVFTuDIGx4WBHrUeAzHwIYwcn1?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UQVNqd3B8iR5nJwjCUWA+yA7nMo+Tech1suKV1EN+pQhfFIg5ABrDlifm72e?=
+ =?us-ascii?Q?hS0pPQPD75FnJez6flG7ObUMDmtscpKStZJ52Ke0tiyz4OqZ3vjS3rMVe9Q8?=
+ =?us-ascii?Q?TvePqMM+q8ZuXqGAsL5pY1HaPB9SVdEa7oK8CKgLSqlFO73uYedTpd6SNkMw?=
+ =?us-ascii?Q?EUyMHYsWmwhoY5TvkVH0HV59tidOrct29TXZfqXW/OymjZ1G0Hlec8ECub6D?=
+ =?us-ascii?Q?sESVxME8oeyWB/QfU1qKMgRiDv/8bk9DHQkqxH0J+WKo9pzKjVhUbeYkUBS/?=
+ =?us-ascii?Q?tMqU7zEWs7NjUHOQUjTF79NOPtais23tNNiR/g+d+FhZKLzye2fTM1ZaGxuR?=
+ =?us-ascii?Q?AZ1WIvwXFuCTJdPQ4UIP3uhdRZQU+RKyKfSe+BbO82TyLK1v3CyPG71DFlHU?=
+ =?us-ascii?Q?Pl4SfvFq+aJxJ9MtoIH5+0mqqa78zzkpC1eVgQVy2DldR531JTjJQPb6mIhy?=
+ =?us-ascii?Q?dKgf0YD/VUMj6Lbi0SSOFzcWpMdE10FNS+ppkKP4XdyqvkwQD5+mdkz2w0Vk?=
+ =?us-ascii?Q?pKSpt6KoM5yTRMsT10ZdP0lJ2m9Z1cMRcBkBqLyFQ4tfCX8TFRZ4/HPe+/Wh?=
+ =?us-ascii?Q?tBq1aYSa9ePi/994KDsf1hsUWOUve65n0gwKaKymgf5zxfJFuHoWfNAKEl2O?=
+ =?us-ascii?Q?PLLSxErojwuHKmOKO8qii1kr08VOJMMZQpD/Aksx+0PhqA0ivIFAnZ3h0xg9?=
+ =?us-ascii?Q?UHGaF5JSb9ayK589F5Mx7cquBPrhhjKCYIm0TyqAqp2GD4YbpqYbxBKRJcIV?=
+ =?us-ascii?Q?1BQ57+6qm3UFiaf9w4YD799SqZbNNyrVS1+Ky40EGSLaUQPnbLledo99gwDU?=
+ =?us-ascii?Q?je7nI1eJ69zOb8ZotCmnBadxLGoUtsjVhLv9yZQMYLyJXS9AiNa1a3cAYLz8?=
+ =?us-ascii?Q?6rznzE5qR0CEJiOAIdAejotNAr2oU8liVKibR+bjZnjUb3KeeVdsN7ndggkz?=
+ =?us-ascii?Q?Q5X1/CSPmgxw9Cq3RjV20NJ2ooS+mBt80NNMW2sLG76DJDO5x9P3w3vOhVQg?=
+ =?us-ascii?Q?nYt9CBiclGQVwOEIAJf3nm4avtJX6KHE58nfsD3sYNuZViTjrWdPNJb8BrdY?=
+ =?us-ascii?Q?guJjen0AKCc8MRuDTWd3ZC6hZ5WOlItPjSb7U1eCMSeHK4ZOyJkwDCTBOTG9?=
+ =?us-ascii?Q?mkp9aS1VyuWuVZSQJ4TzbK/XZXz5C8F2pqhfOhNb78ggUq+5L0cl3aJ/XvMU?=
+ =?us-ascii?Q?RXVCiKZ55kuG7mO8a93crpGzh9XZ57dqAPcGYqeArqMhbPjyuWWK8iVkuDOe?=
+ =?us-ascii?Q?aaYfuvI/43M8kf1xRtolGTpfZSaqdOn+o5pxTK2//rPS8xhGmul5RDjI9uGL?=
+ =?us-ascii?Q?riS35dbhQhL2obozIf6eEBnGvQDZ7r/4Ix/3GyRNa0Ns8ea5wLBta6VAqMsG?=
+ =?us-ascii?Q?IB4DDYexAG5dIGVifNCEn4vDwfjmXHbPH0fmA5kYDSxynAeGdkdX25EUucot?=
+ =?us-ascii?Q?9aHF1yBHiIsp20tfP8bueQGB9HN/G7xKAciU0ePt509SjtBsOUazmVfaJvQw?=
+ =?us-ascii?Q?hoUxjr2yAOFGbblnKOUO7iwGA8blopG9Z8/gJmXf1OqI7XbY+y/qzacJILe8?=
+ =?us-ascii?Q?anQNXlxZQoJxamRlJTbukGq4fv+lAXSk9lL1xIYoqaHwgj7F3WxIjbcwYHCq?=
+ =?us-ascii?Q?qZOHWqxoWH1JPUeCdYltEC6TTMElyq48tAu9JrLN1B8viC0ju4C/qDl3QAaO?=
+ =?us-ascii?Q?/M39i8+pg6RblE7gWx7aqGcVgPSTEva4XcosucrNHiXR1Gcq?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: eBaNcEYwRPzIlFKz8/cRyenQIh49MNfVuLJLas6hVELeezAAZGgUrKhln+hrOBGwTeiJLK/+aNBNDSwq+/wxTgYYWnWUBtDUJeA4uc4Op6C9TA0PrH8rS0jWujglU7zRWnwm0GwbQVZlMFTQdI9pxXpMv0CAzyQv8cyw+jX7u49RNqDyLVzGrWCzvWj00mkGjoqDIKav7S5nmhbvf8uJwo0jJCO+bdCOH+sAp0J3XSMj2zojNpsN4WgKHWE+sIdv/Czl0KmSW4UaYpNlaGC40IPLg/cpRxrUFVtDp5P2esr7FzzAovbG/EB83iWEJMqXRw77wvkKvOD3Z2DqSzAJig==
+X-Exchange-RoutingPolicyChecked: ZMjZQqTT2+mu+/bfCqFGq7cxDgVkBxv6SPOnbIjfc3m+K+JDa2tqP9LMx1uNH3Ele6mv4EDcxipen6X2bk9F40lCYd/Wfhzz1O8971pDi1fKVg8ITZzyoZHEdqpwVa7ooP/SIrTPL/SAoG/ldYBgoM8R6SXUxSv3qdET3564rEX0u3yxciOB5SWYZslTTDps54d4ZxyMvjf6G2eY2I0mrmrGWosHYwJVSzwNs6EpecINK4TFGo3NPf4a2EIiDHl3Ph6SrGWVW8QZZS1/XgEuYfZv9tH320As4tE5iEOnXfNuMKdubcloBI8P7UUTVDdGQMbtkGgyheaq6r6fSbzUOg==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8040.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c195ec2d-78fa-42d9-356c-08defe1c6ab5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2026 18:05:13.5407 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d6175d0-425e-4713-2277-08defe1fbf46
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2026 18:29:03.9635 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WtCPvTjjr0G96nDGVFA84R8/KdLJgBNjACVYp9xpc7Llv5e+rd4AhXH0/HYQtwi0BtfWR1WvCvgafCl3/PDy3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR11MB084795
+X-MS-Exchange-CrossTenant-userprincipalname: 1c5WhQZlzqLw13h6bA/n/GjeLxDpwm1QM3Ja1jzuwx+vLcxkrue33YUUBgucb0K/YupMN5Me8123BCojPSpG7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7141
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,272 +163,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LGTM
-
 Reviewed-by: Jia Yao <jia.yao@intel.com>
+
 > -----Original Message-----
 > From: Bai, Zongyao <zongyao.bai@intel.com>
 > Sent: Wednesday, August 12, 2026 5:07 PM
 > To: intel-xe@lists.freedesktop.org
 > Cc: Yao, Jia <jia.yao@intel.com>; Brost, Matthew
 > <matthew.brost@intel.com>; Bai, Zongyao <zongyao.bai@intel.com>
-> Subject: [PATCH v5 4/4] drm/xe/forcewake: enable configurable delayed
-> forcewake release
+> Subject: [PATCH v5 1/4] drm/xe/forcewake: synchronize engine-cycle access
+> with unplug
 >=20
-> Enable delayed forcewake release for engine-cycle queries used by tools s=
-uch
-> as VTune and PTI. Bursts of queries can reuse an already awake domain,
-> avoiding another wake request and ACK wait. Only engine-cycle queries
-> request delayed release; all other forcewake users continue to request
-> immediate release.
+> Prepare engine-cycle queries for delayed forcewake release by protecting =
+their
+> forcewake and MMIO section with drm_dev_enter(). This lets unplug wait fo=
+r
+> admitted queries before flushing delayed-release timers.
 >=20
-> Add the bind-time configfs forcewake_hold_delay_us attribute to control t=
-he
-> hold interval. It defaults to 100 us and accepts values from 1 to U32_MAX
-> microseconds. Runtime and system suspend cancel and settle outstanding
-> delayed releases before power-off. Longer intervals trade higher power us=
-e for
-> more opportunities to reuse an awake domain.
+> Use drm_dev_unplug() on post-registration probe failure to provide the sa=
+me
+> synchronization before teardown.
 >=20
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 > Assisted-by: GitHub-Copilot:gpt-5.6-sol
-> Assisted-by: GitHub-Copilot:claude-opus-4.8
 > Signed-off-by: Zongyao Bai <zongyao.bai@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_configfs.c   | 72
-> ++++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_configfs.h   |  5 +++
->  drivers/gpu/drm/xe/xe_device.c     |  3 +-
->  drivers/gpu/drm/xe/xe_force_wake.c |  2 +-
->  drivers/gpu/drm/xe/xe_query.c      |  2 +-
->  5 files changed, 81 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/xe/xe_device.c |  2 +-
+>  drivers/gpu/drm/xe/xe_query.c  | 34 ++++++++++++++++++++++++++-------
+> -
+>  2 files changed, 27 insertions(+), 9 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.c
-> b/drivers/gpu/drm/xe/xe_configfs.c
-> index 052cce962161..3d8cd6fb165e 100644
-> --- a/drivers/gpu/drm/xe/xe_configfs.c
-> +++ b/drivers/gpu/drm/xe/xe_configfs.c
-> @@ -249,6 +249,23 @@
->   *
->   * This attribute can only be set before binding to the device.
->   *
-> + * Force wake hold delay
-> + * ---------------------
-> + *
-> + * Delay in microseconds before an idle forcewake domain is put to
-> + sleep after
-> + * an opt-in delayed release. Currently, only engine-cycle queries use
-> + this
-> + * interval; normal forcewake puts remain immediate. Keeping the domain
-> + awake
-> + * for this short window lets rapid back-to-back accesses reuse it
-> + without
-> + * paying for another wake + ACK cycle. The default is 100
-> + microseconds. Valid
-> + * values range from 1 through U32_MAX microseconds; zero is rejected
-> + with
-> + * -EINVAL. Runtime and system suspend cancel outstanding hold
-> + intervals before
-> + * power-off. Large values may increase power use while the device
-> + remains
-> + * active. Example::
-> + *
-> + *	# echo 100 >
-> /sys/kernel/config/xe/0000:03:00.0/forcewake_hold_delay_us
-> + *
-> + * This attribute can only be set before binding to the device.
-> + *
->   * Remove devices
->   * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->   *
-> @@ -275,6 +292,7 @@ struct xe_config_group_device {
->  		bool survivability_mode;
->  		bool enable_psmi;
->  		bool enable_multi_queue;
-> +		u32 forcewake_hold_delay_us;
->  		struct {
->  			unsigned int max_vfs;
->  			bool admin_only_pf;
-> @@ -295,6 +313,7 @@ static const struct xe_config_device device_defaults =
-=3D
-> {
->  	.survivability_mode =3D false,
->  	.enable_psmi =3D false,
->  	.enable_multi_queue =3D true,
-> +	.forcewake_hold_delay_us =3D
-> XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US,
->  	.sriov =3D {
->  		.max_vfs =3D XE_DEFAULT_MAX_VFS,
->  		.admin_only_pf =3D XE_DEFAULT_ADMIN_ONLY_PF, @@ -616,6
-> +635,36 @@ static ssize_t enable_multi_queue_store(struct config_item
-> *item, const char *pa
->  	return len;
->  }
->=20
-> +static ssize_t forcewake_hold_delay_us_show(struct config_item *item,
-> +char *page) {
-> +	struct xe_config_device *dev =3D to_xe_config_device(item);
-> +
-> +	return sprintf(page, "%u\n", dev->forcewake_hold_delay_us); }
-> +
-> +static ssize_t forcewake_hold_delay_us_store(struct config_item *item,
-> +					     const char *page, size_t len) {
-> +	struct xe_config_group_device *dev =3D
-> to_xe_config_group_device(item);
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret =3D kstrtouint(page, 0, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!val)
-> +		return -EINVAL;
-> +
-> +	guard(mutex)(&dev->lock);
-> +	if (is_bound(dev))
-> +		return -EBUSY;
-> +
-> +	dev->config.forcewake_hold_delay_us =3D val;
-> +
-> +	return len;
-> +}
-> +
->  static bool wa_bb_read_advance(bool dereference, char **p,
->  			       const char *append, size_t len,
->  			       size_t *max_size)
-> @@ -856,6 +905,7 @@ CONFIGFS_ATTR(, ctx_restore_post_bb);
-> CONFIGFS_ATTR(, enable_multi_queue);  CONFIGFS_ATTR(, enable_psmi);
-> CONFIGFS_ATTR(, engines_allowed);
-> +CONFIGFS_ATTR(, forcewake_hold_delay_us);
->  CONFIGFS_ATTR(, gt_types_allowed);
->  CONFIGFS_ATTR(, survivability_mode);
->=20
-> @@ -865,6 +915,7 @@ static struct configfs_attribute
-> *xe_config_device_attrs[] =3D {
->  	&attr_enable_multi_queue,
->  	&attr_enable_psmi,
->  	&attr_engines_allowed,
-> +	&attr_forcewake_hold_delay_us,
->  	&attr_gt_types_allowed,
->  	&attr_survivability_mode,
->  	NULL,
-> @@ -1143,6 +1194,7 @@ static void dump_custom_dev_config(struct
-> pci_dev *pdev,
->  	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
->  	PRI_CUSTOM_ATTR("%d", enable_psmi);
->  	PRI_CUSTOM_ATTR("%d", survivability_mode);
-> +	PRI_CUSTOM_ATTR("%u", forcewake_hold_delay_us);
->  	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
->=20
->  #undef PRI_CUSTOM_ATTR
-> @@ -1290,6 +1342,26 @@ bool xe_configfs_get_enable_multi_queue(struct
-> pci_dev *pdev)
->  	return ret;
->  }
->=20
-> +/**
-> + * xe_configfs_get_forcewake_hold_delay_us - get configfs
-> +forcewake_hold_delay_us setting
-> + * @pdev: pci device
-> + *
-> + * Return: forcewake_hold_delay_us setting in configfs  */
-> +u32 xe_configfs_get_forcewake_hold_delay_us(struct pci_dev *pdev) {
-> +	struct xe_config_group_device *dev =3D
-> find_xe_config_group_device(pdev);
-> +	u32 ret;
-> +
-> +	if (!dev)
-> +		return device_defaults.forcewake_hold_delay_us;
-> +
-> +	ret =3D dev->config.forcewake_hold_delay_us;
-> +	config_group_put(&dev->group);
-> +
-> +	return ret;
-> +}
-> +
->  /**
->   * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb
-> setting
->   * @pdev: pci device
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.h
-> b/drivers/gpu/drm/xe/xe_configfs.h
-> index 4fbbeafba473..77abc83a6f70 100644
-> --- a/drivers/gpu/drm/xe/xe_configfs.h
-> +++ b/drivers/gpu/drm/xe/xe_configfs.h
-> @@ -24,6 +24,7 @@ bool xe_configfs_media_gt_allowed(struct pci_dev
-> *pdev);
->  u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);  bool
-> xe_configfs_get_psmi_enabled(struct pci_dev *pdev);  bool
-> xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
-> +u32 xe_configfs_get_forcewake_hold_delay_us(struct pci_dev *pdev);
->  u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
->  				       enum xe_engine_class class,
->  				       const u32 **cs);
-> @@ -44,6 +45,10 @@ static inline bool xe_configfs_media_gt_allowed(struct
-> pci_dev *pdev) { return t  static inline u64
-> xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
-> static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { r=
-eturn
-> false; }  static inline bool xe_configfs_get_enable_multi_queue(struct pc=
-i_dev
-> *pdev) { return true; }
-> +static inline u32 xe_configfs_get_forcewake_hold_delay_us(struct
-> +pci_dev *pdev) {
-> +	return XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US;
-> +}
->  static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pde=
-v,
->  						     enum xe_engine_class
-> class,
->  						     const u32 **cs) { return 0; }
 > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
 e.c
-> index d69fd8236b0f..196eaa3973e9 100644
+> index 71111ad32465..81b31325e581 100644
 > --- a/drivers/gpu/drm/xe/xe_device.c
 > +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -552,7 +552,8 @@ int xe_device_init_early(struct xe_device *xe)
+> @@ -1166,7 +1166,7 @@ int xe_device_probe(struct xe_device *xe)
 >=20
->  	xe_device_parse_modparam(xe);
+>  err_unregister_display:
+>  	xe_display_unregister(xe);
+> -	drm_dev_unregister(&xe->drm);
+> +	drm_dev_unplug(&xe->drm);
 >=20
-> -	xe->forcewake_hold_delay_us =3D
-> XE_DEFAULT_FORCE_WAKE_HOLD_DELAY_US;
-> +	xe->forcewake_hold_delay_us =3D
-> +		xe_configfs_get_forcewake_hold_delay_us(to_pci_dev(xe-
-> >drm.dev));
->=20
->  	err =3D xe_irq_init(xe);
->  	if (err)
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c
-> b/drivers/gpu/drm/xe/xe_force_wake.c
-> index ef43899e1f7d..dc25f77d5f83 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.c
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
-> @@ -375,7 +375,7 @@ void xe_force_wake_put(struct xe_force_wake *fw,
-> unsigned int fw_ref)  }
->=20
->  /**
-> - * xe_force_wake_put_delay - Release forcewake after a delay
-> + * xe_force_wake_put_delay - Release forcewake after a configurable
-> + delay
->   * @fw: Pointer to the force wake structure
->   * @fw_ref: Result from xe_force_wake_get()
->   *
+>  	return err;
+>  }
 > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.=
 c
-> index 3c356bc48e2a..628d587e79e1 100644
+> index dc975f595368..3c356bc48e2a 100644
 > --- a/drivers/gpu/drm/xe/xe_query.c
 > +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -168,7 +168,7 @@ query_engine_cycles(struct xe_device *xe,
+> @@ -8,6 +8,7 @@
+>  #include <linux/nospec.h>
+>  #include <linux/sched/clock.h>
+>=20
+> +#include <drm/drm_drv.h>
+>  #include <drm/ttm/ttm_placement.h>
+>  #include <generated/xe_wa_oob.h>
+>  #include <uapi/drm/xe_drm.h>
+> @@ -123,6 +124,7 @@ query_engine_cycles(struct xe_device *xe,
+>  	__ktime_func_t cpu_clock;
+>  	struct xe_hw_engine *hwe;
+>  	struct xe_gt *gt;
+> +	int dev_idx, err =3D 0;
+>=20
+>  	if (IS_SRIOV_VF(xe))
+>  		return -EOPNOTSUPP;
+> @@ -143,28 +145,44 @@ query_engine_cycles(struct xe_device *xe,
+>  		return -EINVAL;
+>=20
+>  	eci =3D &resp.eci;
+> +	if (!drm_dev_enter(&xe->drm, &dev_idx))
+> +		return -ENODEV;
+> +
+>  	gt =3D xe_device_get_gt(xe, eci->gt_id);
+> -	if (!gt)
+> -		return -EINVAL;
+> +	if (!gt) {
+> +		err =3D -EINVAL;
+> +		goto out;
+> +	}
+>=20
+> -	if (eci->engine_class >=3D ARRAY_SIZE(user_to_xe_engine_class))
+> -		return -EINVAL;
+> +	if (eci->engine_class >=3D ARRAY_SIZE(user_to_xe_engine_class)) {
+> +		err =3D -EINVAL;
+> +		goto out;
+> +	}
+>=20
+>  	hwe =3D xe_gt_hw_engine(gt, user_to_xe_engine_class[eci-
+> >engine_class],
+>  			      eci->engine_instance, true);
+> -	if (!hwe)
+> -		return -EINVAL;
+> +	if (!hwe) {
+> +		err =3D -EINVAL;
+> +		goto out;
+> +	}
 >=20
 >  	fw_domain =3D xe_hw_engine_to_fw_domain(hwe);
 >=20
-> -	xe_with_force_wake(fw_ref, gt_to_fw(gt), fw_domain) {
-> +	xe_with_force_wake_delay(fw_ref, gt_to_fw(gt), fw_domain) {
->  		if (!xe_force_wake_ref_has_domain(fw_ref.domains,
+>  	xe_with_force_wake(fw_ref, gt_to_fw(gt), fw_domain) {
+> -		if (!xe_force_wake_ref_has_domain(fw_ref.domains,
+> fw_domain))
+> -			return -EIO;
+> +		if (!xe_force_wake_ref_has_domain(fw_ref.domains,
 > fw_domain)) {
->  			err =3D -EIO;
->  			goto out;
+> +			err =3D -EIO;
+> +			goto out;
+> +		}
+>=20
+>  		hwe_read_timestamp(hwe, &resp.engine_cycles,
+> &resp.cpu_timestamp,
+>  				   &resp.cpu_delta, cpu_clock);
+>  	}
+>=20
+> +out:
+> +	drm_dev_exit(dev_idx);
+> +	if (err)
+> +		return err;
+> +
+>  	if (GRAPHICS_VER(xe) >=3D 20)
+>  		resp.width =3D 64;
+>  	else
 > --
 > 2.43.0
 
