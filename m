@@ -4,97 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3C37C5B572
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 14:46:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72258C5B572
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 14:49:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81D2E10E142;
-	Wed, 19 Aug 2026 14:46:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33BC410E142;
+	Wed, 19 Aug 2026 14:49:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="I0aykMg7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RSWsktFP";
 	dkim-atps=neutral
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
- [209.85.218.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08ECB10E130
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 14:46:48 +0000 (UTC)
-Received: by mail-ej1-f48.google.com with SMTP id
- a640c23a62f3a-c20e70a0962so155527066b.2
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 07:46:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1787150807; x=1787755607;
- darn=lists.freedesktop.org; 
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=OSCot2pCSk3hHSz91wsSuI86JXqDJ2hDA18HgPNG+K0=;
- b=I0aykMg7B1kX7dGil9XKw1fWb1Vx7fXVSoA1SbyWg780TxM+tdY/p1F0cpP3vqCcLZ
- AX3SU588uySUcKdf8cRfpa2MnvqnfGahEuhuQQc7uG6XZfWvffRbznSD2X1TDwpzYi+r
- qF5SzN9IdkdPpIQUjh0fL4wdcu+Mb161Pf7tA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1787150807; x=1787755607;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=OSCot2pCSk3hHSz91wsSuI86JXqDJ2hDA18HgPNG+K0=;
- b=qRdlgx4f3YflV5iOGcHpka1NioKEh6RDGRweIrknBAg6MZUCoiXwx74bI3iDYvjHDo
- rJzoBUR3x5iY4p/6gLNTifM2v9cvOLwL72sR+55LsHXag0NC2ZrC49cvBPDUoq+PWFXt
- hOKzeqP4qSty8AyvxbpKHZ9e+zdJ+w2I8gMkrKpCzsmBsqdv0oaHyWDqxrHP0GuLMxCg
- t1v2q2+ELKR1G7X1kKdm6L705cZ1x24axICHX2pYwgPdJemLat2nnLuT8nrhu7d2eNL7
- i17M1o5XkkECpsR9QhHCwXgfq85xDFKdLYmOcyrbaFYducBypS+MO79MBYnhXUNBWfpD
- VaWw==
-X-Forwarded-Encrypted: i=1;
- AHgh+RrHsC+uDmT944U3tRsSUbtoDhEdg1T44s1LOAen6C71xrBqPgx1wO2mO0fDx8EDfHHdHGTGtsRLKQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwkmgboiQKP4r3zOzhu2K2IGB5kQdTXNtPgsnwlmTo9+gksVSIK
- DyOjgqV+5ZsfrjvXspBAHNplN6vyWhmjpZvGrgvRM49wyU3K/2+VlLJgN8xXhuSxBqrg4H0LBEt
- d/u617Ws=
-X-Gm-Gg: AR+sD137tujmeLZd1idtlqOxbq2+D4T/U2P426QAxX4L2NvLEtPtrHYx2SlUgX6H4jW
- HOFpS/8KJLHwfBbFdbQF9E9t/uCIsAOrTvKxSEdX77JZfe+VpGTCani1A6ywedC9HiInphM45Y+
- VBI6f7f0K/bI2wS0rTaJgCUfVajCISeLo1u59xagvTVoCqYHURwDTjvpxbiYu8DXOj90c7vtq78
- A5zTVF3g/PZj+OuFIxBradH4gcOJTr13MxllRij+ZjNyaLj+dAW/ofUW2E3nCBtyuKw4chHbX2+
- w2MvpIyee5s8TAzQ+zE0QqSdslgtUZlAnQTf2hK16ZNi78Mw+ApH+qL7MpcswDWGOW+LbmOZ+nC
- 4X26N9pjtnYrYGn/y5XL3ucnsb461W364E52rIIriMmgd/nTobFk7ioQtkdjBXprpt0YEwghoiO
- 12DQmbXA2epUEJx6XEAEZzeV+Fh7kwTFG1tCdK82hwe9tQqBTD+e14tzdObNvkFtp//EHm8ku2j
- /3zyvZm4iLRfmnl5YxLtKoEaO+q8dLEA8KMfA==
-X-Received: by 2002:a17:907:6d1c:b0:c21:34a3:4d9c with SMTP id
- a640c23a62f3a-c242e255affmr370853066b.21.1787150806967; 
- Wed, 19 Aug 2026 07:46:46 -0700 (PDT)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com.
- [209.85.208.54]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c243c7c40edsm93079066b.11.2026.08.19.07.46.46
- for <intel-xe@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Aug 2026 07:46:46 -0700 (PDT)
-Received: by mail-ed1-f54.google.com with SMTP id
- 4fb4d7f45d1cf-6a36982a875so1777636a12.0
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 07:46:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AHgh+Rp0jn1khC29QEh4fNgEyh9M0NZ3Iezfi3JcBDLbNyLg/G/bFj9W/K4oVSAwLe4A2CMHSL12AM+AxQ==@lists.freedesktop.org
-X-Received: by 2002:a05:6402:2403:b0:6a3:e813:8457 with SMTP id
- 4fb4d7f45d1cf-6a4032f9c61mr3585093a12.12.1787150806331; Wed, 19 Aug 2026
- 07:46:46 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1912110E142
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 14:49:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787150983; x=1818686983;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=VwWJ0e0smnovUEkV9v533y7scOyeadXWKs1gDdLhVTI=;
+ b=RSWsktFPOfUJoFnWclrvdOroVoibEqacprK4YgQtIt2ocwLElWuDHcV4
+ Y18TTGbLH/vVhbbSV76uE/UwWAPf4XjH664644+NxcSw5PAyrshXqamDi
+ Si9QQOk7r8H+phn3tID9RVIoF4Ca5uG+W3950yO3dGr/eS4Sm7z1RQLi8
+ Xs+ZPppo2fQPOhVxc9v/oKRRP3N9zUWO1C7CxPCn6Em9/k8wAZmMOCgJa
+ SkoYj6/NsYIpIIBer2xTFlE7mZSKzVwJnqrLYkl4qXI8VumioJg9bZS7z
+ zqRkjVNKYj1RUz6I/PbXSJajh9NtshpQaFTsXV3bLVyb0G59OY0/hxx2U g==;
+X-CSE-ConnectionGUID: dNX6YaqlRjG2T0b/Dc2c/Q==
+X-CSE-MsgGUID: KUjEADJAQuSg0FKn0ETJKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="105051531"
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="105051531"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 07:49:43 -0700
+X-CSE-ConnectionGUID: j/meHtF/SQqfvWuGL0NY2A==
+X-CSE-MsgGUID: gdX564I8QMmatEJBS0TThA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="303790808"
+Received: from aiddamse-mobl3.gar.corp.intel.com (HELO [10.247.209.5])
+ ([10.247.209.5])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 07:49:41 -0700
+Message-ID: <f358965f-e801-4152-b82b-3228022a353e@linux.intel.com>
+Date: Wed, 19 Aug 2026 20:19:38 +0530
 MIME-Version: 1.0
-References: <CAHk-=whiv=b+dAvjaZDsZkfUEzjZMSSLExDOWVcbJ0exsCj6_Q@mail.gmail.com>
- <6874536d-ab1a-4dd7-a23f-2a071bda145e@lankhorst.se>
- <CAHk-=wj5aE1yVMb8RM2AuNUHSMnQDaGT+Vy+At5ds1vxBA+Kng@mail.gmail.com>
- <ahDAErDSE-SFA0oM@intel.com>
- <CAHk-=whX59mtUnU2ayMWoDQX6Ee2NXLK2NxQ+dZnb-Qc_mF1hw@mail.gmail.com>
- <af9278d3-4002-4e09-9bcf-bc75d1cf8145@lankhorst.se>
- <CAADWXX-pfvA3mKWSjdahnihAXHQB2VP9BOJDCXonG3Q_nxurLg@mail.gmail.com>
- <anYZ8nUFP5dnRy/h@gsse-cloud1.jf.intel.com>
- <CAHk-=whyk2-u_1bTh5ZTeX6jW3HgAtjJh0mV_oWtgsqCe=3w7g@mail.gmail.com>
- <aoWHKmz17HQo2uy5@gsse-cloud1.jf.intel.com>
-In-Reply-To: <aoWHKmz17HQo2uy5@gsse-cloud1.jf.intel.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 19 Aug 2026 07:46:28 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjv7SCjtg6JGDabGMXdqobx+WHogHfQeMPF2g_HmAU5qg@mail.gmail.com>
-X-Gm-Features: AcwNN1XSfxuGhCEkqbxxdrVDPc4dzGAfkF59OcVsFeLb7hasE9yujONmHOn6O7Y
-Message-ID: <CAHk-=wjv7SCjtg6JGDabGMXdqobx+WHogHfQeMPF2g_HmAU5qg@mail.gmail.com>
-Subject: Re: drm: xe: Kernel-submitted job timed out
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, 
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V16 10/12] drm/xe: Add sysfs interface for bad gpu vram
+ pages
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "Wajdeczko, Michal" <michal.wajdeczko@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+References: <20260817065055.3734576-14-tejas.upadhyay@intel.com>
+ <20260817065055.3734576-24-tejas.upadhyay@intel.com>
+ <a670328d-b5dc-48b4-bb02-ed7dfa2d48f1@intel.com>
+ <DS0PR11MB871812022E070C0052F5AF3F81A72@DS0PR11MB8718.namprd11.prod.outlook.com>
+ <aoMxh3bh1WEf8SF6@intel.com> <60960fcb-7aeb-4642-bd6f-ad1b6ffd2a2b@intel.com>
+ <aoNhZwRGQC2uh95n@intel.com>
+ <DS0PR11MB8718B926A3C9AAD8770AB89681A62@DS0PR11MB8718.namprd11.prod.outlook.com>
+ <aoRWO88_jtfv1V-g@intel.com>
+ <8ceaee0e-cd24-4382-bb45-c59f9444e6ca@linux.intel.com>
+ <aoW6dfdEwGLgJPzj@intel.com>
+Content-Language: en-US
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <aoW6dfdEwGLgJPzj@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,34 +83,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 19 Aug 2026 at 03:36, Matthew Brost <matthew.brost@intel.com> wrote:
+
+On 19-08-2026 19:45, Rodrigo Vivi wrote:
+> On Wed, Aug 19, 2026 at 07:20:30PM +0530, Aravind Iddamsetty wrote:
+>> On 18-08-2026 18:25, Rodrigo Vivi wrote:
+>>> On Tue, Aug 18, 2026 at 09:08:46AM +0000, Upadhyay, Tejas wrote:
+>>>>> -----Original Message-----
+>>>>> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+>>>>> Sent: 18 August 2026 01:01
+>>>>> To: Wajdeczko, Michal <michal.wajdeczko@intel.com>
+>>>>> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>>>>> xe@lists.freedesktop.org; Thomas Hellström
+>>>>> <thomas.hellstrom@linux.intel.com>; Ghimiray, Himal Prasad
+>>>>> <himal.prasad.ghimiray@intel.com>
+>>>>> Subject: Re: [PATCH V16 10/12] drm/xe: Add sysfs interface for bad gpu vram
+>>>>> pages
+>>>>>
+>>>>> On Mon, Aug 17, 2026 at 07:09:46PM +0200, Michal Wajdeczko wrote:
+>>>>>> On 8/17/2026 6:06 PM, Rodrigo Vivi wrote:
+>>>>>>> On Mon, Aug 17, 2026 at 02:58:31PM +0000, Upadhyay, Tejas wrote:
+>>>>>>>>> -----Original Message-----
+>>>>>>>>> From: Wajdeczko, Michal <michal.wajdeczko@intel.com>
+>>>>>>>>> Sent: 17 August 2026 16:57
+>>>>>>>>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>>>>>>>>> xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+>>>>>>>>> Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>>>>>>> Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
+>>>>>>>>> Subject: Re: [PATCH V16 10/12] drm/xe: Add sysfs interface for bad
+>>>>>>>>> gpu vram pages
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> On 8/17/2026 8:51 AM, Tejas Upadhyay wrote:
+>>>>>>>>>> Include a sysfs interface designed to expose information about
+>>>>>>>>>> bad VRAM pages — those identified as having hardware faults
+>>>>>>>>>> (e.g., ECC errors). This interface allows userspace tools and
+>>>>>>>>>> administrators to monitor the health of the GPU's local memory
+>>>>>>>>>> and track the status of page retirement. Details on bad gpu vram
+>>>>>>>>>> pages can be found under
+>>>>> /sys/bus/pci/devices/<bdf>/vram_bad_pages.
+>>>>>>>>> since those new files are xe driver specific, shouldn't we refer
+>>>>>>>>> to them using
+>>>>>>>>>
+>>>>>>>>> 	/sys/bus/pci/drivers/xe/<bdf>/vram...
+>>>>>>>>>
+>>>>>>>>>> The format is: pfn : gpu_page_size : flags
+>>>>>>>>> kernel documentation [1] says
+>>>>>>>>>
+>>>>>>>>> 	"Mixing types, expressing multiple lines of data, and doing
+>>>>>>>>> 	fancy formatting of data is heavily frowned upon"
+>>>>>>>>>
+>>>>>>>>> [1] https://docs.kernel.org/filesystems/sysfs.html#attributes
+>>>>>>>>>
+>>>>>>>>> so to follow the guidelines maybe we expose the separate files:
+>>>>>>>>>
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_page_size		u64
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_count	u64
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_reserved	u64[]
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending	u64[]
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_failed	u64[]
+>>>>>>>>>
+>>>>>>>>> or
+>>>>>>>>>
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>
+>>>>>>>>> |
+>>>>>>>>> +-- vram/
+>>>>>>>>>     +-- page_size	u64
+>>>>>>>>>     +-- bad_pages/
+>>>>>>>>>         +-- count	u64
+>>>>>>>>>         +-- reserved	u64[]
+>>>>>>>>>         +-- pending	u64[]
+>>>>>>>>>         +-- failed	u64[]
+>>>>>>>>>
+>>>>>>>>> then
+>>>>>>>>>
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_page_size:0x1000
+>>>>>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_count:5
+>>>>>>>>>
+>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_reserved:0x0000000000
+>>>>>>>>> 00
+>>>>>>>>> 0000
+>>>>>>>>>
+>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
+>>>>>>>>> 34
+>>>>>>>>> 000
+>>>>>>>>>
+>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
+>>>>>>>>> 35
+>>>>>>>>> 000
+>>>>>>>>>
+>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
+>>>>>>>>> 36
+>>>>>>>>> 000
+>>>>>>>>>
+>>>>> /sys/bus/pci/drivers/xe/<bdf>/vram_bad_pages_pending:0x00000000012
+>>>>>>>>> 37
+>>>>>>>>> 000
+>>>>>>>> Thanks for comment, this is documented format by design doc. Sysman
+>>>>> also depending on this format. So I don’t see this can be done without design
+>>>>> being changed for everyone.
+>>>>>>> Internal design docs don't superseed upstream documentation.
+>>>>>>> It is the other way around.
+>>>>>>>
+>>>>>>> But also, the files will be there one way or another. Both paths are
+>>>>>>> valid, so I don't believe that change in here force changes in the
+>>>>>>> userspace. Although, yes consistency is good...
+>>>>>>>
+>>>>>>> That said, I don't have a strong feeling for one way or the other.
+>>>>>>>
+>>>>>>> Since we are adding to the device level anyway, I believe it should
+>>>>>>> be okay. But Michal, do you know any doc or any precedence that kind
+>>>>>>> of force us to go the other way?
+>>>>>> hmm, are we talking here about the attribute format or folder layout?
+>>>>>>
+>>>>>> if about the latter, no strong feeling either ("files will be there
+>>>>>> one way or another")
+>>>>>>
+>>>>>> but if about the former, then the same documentation [1] earlier says:
+>>>>>>
+>>>>>> 	"Attributes should be ASCII text files, preferably with only
+>>>>>> 	"one value per file. It is noted that it may not be efficient
+>>>>>> 	"to contain only one value per file, so it is socially acceptable
+>>>>>> 	"to express an array of values of the same type.
+>>>>>>
+>>>>>> and my proposal with separate files meets that expectations (there
+>>>>>> will be either single value in the file or array of values of the same
+>>>>>> type), opposed to original idea of array of offset:page_size:flag
+>>>>>> tuples
+>>>>> doh! I'm sorry... my comment was purely driven by the other sentence above:
+>>>>> "since those new files are xe driver specific, shouldn't we refer to them using"
+>>>>>
+>>>>> But now I looked at the content o the patch itself. This patch as is is a BIG NO!
+>>>>> It is against the sysfs rules. Period. Internal spec and other components need
+>>>>> to adjust.
+>>>>>
+>>>>> Also please do not repeat the same PVC mistakes with tenths of lingering sysfs
+>>>>> entries. Organize this per directory as Michal told.
+>>>>>
+>>>>> Another thing, make a design that is future ready, use 'vram0/' as the name of
+>>>>> the directory with vram0 stuff. Like we have freq0/ for instance.
+>>>>>
+>>>>> Perhaps even
+>>>>>
+>>>>> +-- vram0/
+>>>>>   +-- pages/
+>>>>>      +-- size u64
+>>>>>      +-- bad_pages/
+>>>>>          +-- count u64
+>>>>>          +-- reserved      u64[]
+>>>>>          +-- pending       u64[]
+>>>>>          +-- failed        u64[]
+>>>> Currently information shown under vram_bad_pages(looks similar to what other competitor's  bad pages info shows), actual gives data which consumer can extract directly meaningful info out of it. With above approach, consumer need to make one, which we need to discuss with other folks. Lets discuss in a group.
+>>> 2 wrongs don't make 1 right!
+>>>
+>>> If you don't believe in the reviewers check the documentation yourself:
+>>>
+>>> https://www.kernel.org/doc/html/latest/filesystems/sysfs.html
+>>>
+>>> "Mixing types, expressing multiple lines of data, and doing fancy formatting
+>>> of data is heavily frowned upon. Doing these things may get you publicly
+>>> humiliated and your code rewritten without notice."
+>> Is my understanding correct that the PAGE_SIZE limit and the "one value
+>> per file" guidance apply to regular attributes only, and that a
+>> bin_attribute is the sanctioned mechanism for streaming output larger
+>> than one page (via the off/count arguments)?
+> my comments were based on this below:
 >
-> What is the kernel verison here? Is it trying to integrate all the PRs
-> for 7.3 into an RC release? Or is this the released 7.2?
+>                |>>>>>>>> For example, cat /sys/bus/pci/devices/<bdf>/vram_bad_pages:
+>                |>>>>>>>>   max_pages : 10000
+>                |>>>>>>>>   0x0000000000000000 : 0x0000000000001000 : R
+>                |>>>>>>>>   0x0000000000001234 : 0x0000000000001000 : P
 
-That was just tip-of-tree as of yesterday evening - it just has two
-small commits on top that are due to how I do my local builds, which
-clean up some generated assembly and switch to using clang by default
-(because I'm too lazy to use the proper way).
+My comment is about this format itself, as i understand one value per
+file  recommendation is for normal sysfs attributes but binary attribute
+can emit multi line as I see  error_state_read attribute in
+i915_gpu_error.c and gpu_vram_bad_pages in amdgpu_ras.c are using it to
+emit multi line output. Kindly let me if my understanding is wrong.
 
-So it was commit
-
-  bd5f485f3f02 ("Merge tag 'soc-arm-7.3' of
-git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc")
-
-from this merge window, with no drm merges done yet.
-
-No, the reason it stopped working was just user space doing something
-new when I did an update. Plain Fedora 44.
-
-> I'm looking into it now, and based on the dmesg output, it seems to hang
-> fairly after boot, so something is going wrong very quickly. I'll
-> analyze the devcoredump and see if the problem is obvious.
-
-Yes, it hangs basically when logging in the first time. It shows the
-login screen, I can type my password, but then it's done.
-
-With the standard Fedora 44 kernel, it also hung, although at a
-slightly different point.
-
-               Linus
+Thanks,
+Aravind.
+>
+>
+> But if we are talking about the /sys/bus/pci/drivers/xe/<bdf>/ flood as above, then
+> it is a big no from maintainership side. We are not doing that. Let's not repeat
+> PVC mistakes!
+>
+>> Thanks,
+>> Aravind.
+>>
+>>
+>>>> Tejas
+>>>>> Thanks,
+>>>>> Rodrigo.
+>>>>>
+>>>>>>>> Tejas
+>>>>>>>>>> flags:
+>>>>>>>>>>   R: reserved, this gpu page is reserved.
+>>>>>>>>>>   P: pending for reserve, this gpu page is marked as bad, will be
+>>>>>>>>>>      reserved in next window of page_reserve.
+>>>>>>>>>>   F: unable to reserve, this gpu page can't be reserved due to some
+>>>>>>>>>>      reasons.
+>>>>>>>>>>
+>>>>>>>>>> For example, cat /sys/bus/pci/devices/<bdf>/vram_bad_pages:
+>>>>>>>>>>   max_pages : 10000
+>>>>>>>>>>   0x0000000000000000 : 0x0000000000001000 : R
+>>>>>>>>>>   0x0000000000001234 : 0x0000000000001000 : P
+>>>>>>>>>>
+>>>>>>>>>> The sysfs binary attribute is created under the PCI device
+>>>>>>>>>> kobject when the platform supports it and the configfs
+>>>>>>>>>> bad_page_reservation policy is enabled. Uses RCU-protected list
+>>>>>>>>>> traversal so reads never block normal VRAM allocation operations.
+>>>>>>>>>>
