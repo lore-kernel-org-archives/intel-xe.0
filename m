@@ -4,158 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D36EDC5DF85
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 09:10:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94DAAC5DF85
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 09:22:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76C5E10E93E;
-	Wed, 19 Aug 2026 09:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9FC10ED62;
+	Wed, 19 Aug 2026 09:22:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bcWYLFRh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J5F7T+Xd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F9CC10E93E
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 09:10:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B351010E55C
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 09:22:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787130626; x=1818666626;
- h=message-id:date:subject:to:references:from:in-reply-to:
- mime-version; bh=eTXHHYzY+TM4xe5Hkv0D952UDJJvvqKJDXeIriv4rOQ=;
- b=bcWYLFRhqOnTX5UnWkEG2bIpLYiK0duRyzOiB4RmJIWaT4MOA3C2PRXe
- rM603AyM0RHKAFAQ3mxFrCjz1wIW45dxFvRWbwbVsbMRT5y4nTBR2crr5
- J9/m5Vl5LVmwymQQG5LJvaKe8fHVxWiZRiNyl7FTd93IN4p4wM3ORGUsl
- dQ8rb1XdPkiluzDdk5HQuV9ck5kK6raLuLElqVlL7EB7nHXaD1hQd04Su
- Abo10ZIFwBcxiq1oSyZQQYifS6LZ6h13/AZRsYnuDnmaSARGowUUtuFI7
- 8LyFxz8hoLnNeRC0cnqn3PqY5cY2+sTg2UDuZ3qmeuwsXhzZL5pFLBSFM g==;
-X-CSE-ConnectionGUID: SvNkWC/PTROToJrbNebqYQ==
-X-CSE-MsgGUID: hA/1am3HS5m7lzfQEjeenA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="87495297"
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208,217";a="87495297"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 02:10:26 -0700
-X-CSE-ConnectionGUID: zcyvNp5oTn+IvpMmDq9Y8A==
-X-CSE-MsgGUID: wra2XXIFT26rdie/R/7I6w==
+ t=1787131348; x=1818667348;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=sE6grFHg7/Pm9m0QH9kVyhEdrMxEJuE4rcwj4RBZbNw=;
+ b=J5F7T+XdhOY+iQ15lc6klvkPSACVCtiKCxV6wf50ZLDanET0TyuCpEln
+ 59gpBNoJiwT5hFlMuZMv/hoZag4POv7TG5EdrAhSR1edZhePcaTEDXSla
+ 65pROMJgI3pZQzVfH7o2+01zUFbh2LqpMfRJuO4iv4kvjH+UFoQq9/Wxz
+ GKTh3wySkLoBvIJxd/FyMaXrRPeeomEBm/9HgkKnwqM2MxxPyuE5EgAxA
+ l0fQ2cZqlQDZK3pdBRlrScmLf4NHzh8sj6LWdSxEh5VSnveFYiKV45F3G
+ TK+6UgpFhrCHz7RdghW+81cUEc33Cu1XueAdX0QPaOBfV6SVtD0CceDOR w==;
+X-CSE-ConnectionGUID: nIUPFDD+SKmaIgoGgTwOjQ==
+X-CSE-MsgGUID: 0JZ1yZkxSHyryL2P6ttNzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11879"; a="98233692"
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="98233692"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 02:22:27 -0700
+X-CSE-ConnectionGUID: wb+uU8WWQHWS4ybfi7q+NA==
+X-CSE-MsgGUID: vByu+AVkQym/HuEcudjQhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; 
- d="scan'208,217";a="267442891"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 02:10:26 -0700
+X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="264166489"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2026 02:22:27 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 19 Aug 2026 02:10:25 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ 15.2.2562.45; Wed, 19 Aug 2026 02:22:26 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Wed, 19 Aug 2026 02:10:25 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.30) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Wed, 19 Aug 2026 02:22:26 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.66) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 19 Aug 2026 02:10:25 -0700
+ 15.2.2562.45; Wed, 19 Aug 2026 02:22:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AYYzp7aob251RkRnuFa1BHE6D//m11VEx8ymqae5em7F9e0LH2cw6wAXSJKPuqZz+f5LJQzYmzwROo+YePmxdzd+14+ctmM7UY3ZRj0jxzCq8E6OfB4WA2NXuzirAQwYXUBQmwAiYjH9jZcjW5SfqrtgEuLcU70GdCr50Y6a50Eieid696bUrcC+PPJs0KltlsfA59U2XFegNSxs6qZbxVxQd+GzwzNlbAdLorLo4lVvjJq6/0Hp/eV7rHQi/2JOt+k/vAI4xAifqVBlePHsFvWOzzk4DsiZc1Z77yaeLfan+l4IVHs+HzvVcNvdAEZCLF/pUIGNOg1dGrcW2p1tXQ==
+ b=hn4caV1oyHKiMuORvZXsBYRm6NvmzHkzwHOe8jihZDiJ9wtv4idZzIM7V/YHqwXKFQ3Wic/12XsoR+8PRUXL3Y2plOEgn7N6UrPHSPHCCKf9tY/JCM5UN1XtUne16N6gjPYGnOlEq36ggtqwshimrR45MDCoDLZzDu0WWoZIcB9THmxz5nBcuynkNiF22FyWFRazqeW2agdoV6goVfL/y11ubtqTB1CjoFJkI9kWbQu4QZLQ9mCEsiuCK/sb6f/CKGdG05jv47+zX0m52LR3LL8SrxWZOb9l6eygprVBQ6G7n5hGeIUU16fPp8hP9qkynJiA0H0bfZ0/84UYiA5izw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t3i5X4QpT9Hh5vNFAuUoax5j/CukN/NIXNswSJs8Rjo=;
- b=FQa1Lu7Sml5CHt0eyAYLq4pxIQVoxpO8eijCvU0deQblc608Iaz7FwHdTWjiR1y8cFxAzl8MOiBQbC3Bq9u6UBgPI6e0Xlikrv0ZNVlbnm5heW2MBj/GzcOSh8foS8jfUZgEmOg9WtcJcH91g1X5+fk+mMqsCF56WXTFS5owZ/RxvyVBzKdjRP/gn3i2pFampXkeZJLVhjKdDvlFHBlVvqnAowGiRAhv/ZwbnbWB0cXF/HpSWfUfVreUADYNoIbBB8lNEGXZ5ySWZ4bQsbaqPBbercn08VtYQ8kVcoX4e5GO0GlynWKub9eElY0MMrzxGRnifh7tOzV4qgCHVmagcQ==
+ bh=r5PZS2r6inESxMA9gGxgXHqxc6G9r5OjyBvdxbHF09o=;
+ b=ZLmHf3mJMaPJpNJi3szDfOZ2HUXQd1Y8V7XgVsEFMK3V7wd4bfoecvOr74mGlsWQD5/QezOGev1SY4QU9qSEIZsmS9yFIZ1uMbzGxdOa5amftcKgiCpT9Hued20G3VZlJ4KMpytZqf1rIHeCa6YMli3Knd4IRFqd6O+6J7XLZ/c5Ka0mwmFFNxWAV0ByevVRiS8DUy36SHSJqSClrrfOAlDeBV0jo2YTaDr+5fS6hM5mgJyoOTfHcNbgHlXT190eWT3YzaS5gxsBhN+lfrRYvpvqa/G8cwwISCadrFewWN+p/aptQL53CvnMZEnDKcA+nokBLPdqIX24t5I0Jlq+qw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by SJ0PR11MB6622.namprd11.prod.outlook.com (2603:10b6:a03:478::6)
+Received: from SA3PR11MB7556.namprd11.prod.outlook.com (2603:10b6:806:31f::21)
+ by DS4PPFC77662F02.namprd11.prod.outlook.com (2603:10b6:f:fc02::4c)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Wed, 19 Aug
- 2026 09:10:23 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%4]) with mapi id 15.21.0339.007; Wed, 19 Aug 2026
- 09:10:23 +0000
-Content-Type: multipart/alternative;
- boundary="------------nHBNUCMgmUi6uxAzKzK3jWdu"
-Message-ID: <6e04a328-06ec-4d32-82b5-e8c408b83ba1@intel.com>
-Date: Wed, 19 Aug 2026 14:40:15 +0530
+ 2026 09:22:22 +0000
+Received: from SA3PR11MB7556.namprd11.prod.outlook.com
+ ([fe80::3b95:cfb:be21:788c]) by SA3PR11MB7556.namprd11.prod.outlook.com
+ ([fe80::3b95:cfb:be21:788c%6]) with mapi id 15.21.0339.007; Wed, 19 Aug 2026
+ 09:22:22 +0000
+Message-ID: <627680f4-dc4f-41f0-87e2-ec7d0a5fe285@intel.com>
+Date: Wed, 19 Aug 2026 14:52:11 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/ras: Report internal HW errors from PUNIT
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
- <michal.wajdeczko@intel.com>, <aravind.iddamsetty@linux.intel.com>
-References: <20260818231716.731788-4-umesh.nerlige.ramappa@intel.com>
- <20260818231716.731788-6-umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH v3 4/4] drm/xe/sysctrl: Add RAS error injection debugfs
+ interface
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>, "Nilawar, Badal"
+ <badal.nilawar@intel.com>, "Iddamsetty, Aravind"
+ <aravind.iddamsetty@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>, "Ruhl, Michael J"
+ <michael.j.ruhl@intel.com>, "Luse, Paul E" <paul.e.luse@intel.com>, "V,
+ Mohamed Mansoor" <mohamed.mansoor.v@intel.com>, "Nasim, Kam"
+ <kam.nasim@intel.com>, "Usyskin, Alexander" <alexander.usyskin@intel.com>
+References: <20260807145621.2938848-6-anoop.c.vijay@intel.com>
+ <20260807145621.2938848-10-anoop.c.vijay@intel.com>
+ <BN9PR11MB5242AF76995E0453ABF7878A95D12@BN9PR11MB5242.namprd11.prod.outlook.com>
+ <anYovbHoP7LbRIuw@intel.com> <890923d9-f26f-41dd-9f5e-ca0e5716c533@intel.com>
+ <BN9PR11MB52423EA5B03C63013DDA57A095A52@BN9PR11MB5242.namprd11.prod.outlook.com>
 Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <20260818231716.731788-6-umesh.nerlige.ramappa@intel.com>
-X-ClientProxiedBy: MA5PR01CA0110.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d1::9) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+From: Anoop Vijay <anoop.c.vijay@intel.com>
+In-Reply-To: <BN9PR11MB52423EA5B03C63013DDA57A095A52@BN9PR11MB5242.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0286.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:21b::12) To SA3PR11MB7556.namprd11.prod.outlook.com
+ (2603:10b6:806:31f::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|SJ0PR11MB6622:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d6279ab-2e44-4669-57ae-08defdd1b32a
+X-MS-TrafficTypeDiagnostic: SA3PR11MB7556:EE_|DS4PPFC77662F02:EE_
+X-MS-Office365-Filtering-Correlation-Id: 914bc664-31bb-42f0-9110-08defdd35faa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|23010399003|10067099003|56012099006|8096899003|11063799006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: m6BCrnBVNMavlBegcuR7UTsBDUCj5gvKdW2jnaWxNdnan1e2FM3toAL3dqa4+qOvVcnMszfNxDNb788OvzsjXth6AIb00cQ7OCDopzYmFLS+D4THCNfp5NTqBduX0gmF0GdnauE5Fz/uo5b2QPc1aa8YFJ3/atcqQJ+jyv6b+PNjMY+YE1zHsTH1YwjS7Aeoul0GUBJr4dsnSnHZPIBwoTafGO93dHhCZmGj+WtkYZ8029ZTGa71zlNEAbUgxCM65onwFQZkoCAifpm/dpsyocMFMk6GhTxJ2+6LOaEJXJDs2Th92Pchcw5bO5qTsI4JC/QNnqbNS4sBezd1waf8ARmkke2F138huHDG2VnO/pr/5GypU56HPIGRbM+Q9zFsl7yjyn7euvoVHqnqrteUP6VBU8bNpdq9Nvheei0HyihINSIiwvsmR9jTuGNvKaGEyk3dt0Kl6o13cmhuW0j3pL1nMQtAt+WEOaJ2Of3CjgfnlSGpzFKw9cKEh74VLFpd4FaHgh4lKKob3GXZ/KGvGIZNzbVbCrNrw1FnC0LkPe5m/IKJRTeHWXmZOnJqz9gCxe2vWKTcyvGlK4Hm7AJKQQwi6Svh9GIvW9wWXKJE8DDq3KgS2nOQc30zphTwJisjeXHBcHbB4HI7AnVuCiu/hRHa6R4rAUAKUu1T870mY+U=
+ ARA:13230040|366016|376014|1800799024|23010399003|10067099003|56012099006|6133799003|4143699003|3023799007|22082099003|18002099003|11063799006|5023799004;
+X-Microsoft-Antispam-Message-Info: b5JmJD9SNe/XCYQQnjvutgjyk0qhMvsVSwys48e2fKNiRHw6DHiu1Ar/sEjWiXTK2l+8ICGqWbyDdLhMhWXCtSz50WtxQYsRDMzZeeERz4LwaR60DG5s3+9leezh0H5NYR2aQqUKIIgEStLDlLFC+dK/28sEFylxnz9eJpLl3eYbx7hTl16lT+2BWXyAnP99rEjP6A3yEHYQZ/uXeUeqDVHAwvcEUPqH3s+9cDuJevmdxcKviBpblroSC+2E9KJR7jmI02SzAzORN8jA6gWvixX9Z5bORpZg1337pMc3T4OUTpI4Dv4T9DEXKLm1nCDJ3GQkTQy1KEX7wbbcxgfB7y3OgSiPiHwijgJsrv79EtwAsba8gnr0LiWGVG4ACvIzpOXfvMCMw5RfRcMKvfuqnxW433+l9CS9P7mCJrt9iB9R9wEeq9FUw/9YAxsDiOqIY4zQalqibbRNHL4XB0hH/qt2XG8EeUwGjmV+bMp4D4lBI/OmoljhwMKsD/JcRznvbRTd2Qi46LKZ8iBwKEjSXK3lpKqOqGXhHrGO1lPYwqoGxt3dPVhJ+kRLQs9EKDswTovruRhOPKyJmqogw+BUsV1ogES3s7CzNESFfDIDp8dQa9BHgqpF5kXXcm4T03x6k3LxhVvYNJ05+QPFWm7l+oMxoMHnyXw3PXDWc2XF//Q=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(10067099003)(56012099006)(8096899003)(11063799006)(4143699003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:SA3PR11MB7556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(56012099006)(6133799003)(4143699003)(3023799007)(22082099003)(18002099003)(11063799006)(5023799004);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHZmaHc4cDB3OWxTYW9Pck56QWdjTEE4S3JUYUlVeUc4Tk9JTGJPK0ZqTm54?=
- =?utf-8?B?akxGcnVLSzhvaEFWc1N4aWpOYmpzaXVyUzR5UnY3TDNZNWFlSVJ0TThtczRi?=
- =?utf-8?B?aCsyQklOb09KaUMwb0QreEcvMzFtalNEd0MzbzljUkxWM0JWR1RNdkwxMVlX?=
- =?utf-8?B?Q3lIS3FMcExqc0RFUW1EVkhIVFVRVkw3TU5TQld2d3d3eU9pU2UxK1ZQUHVq?=
- =?utf-8?B?QWw0OGYyMXFyZjdaYzdUTXcrbjNPSHJBajg4STlBK0V3VE9XeHV6ekdBQWJP?=
- =?utf-8?B?elJOUy9ZU2QzZjZMU1ArUzQ4cjVKejlqSlQ4eUw2S2hoNVB1SFUyakt6RHZF?=
- =?utf-8?B?cURZTEpNL29NSXdMMnVQVWxiMDhkbVU2aXRuamJxZGJHOWZtYnBiTE8ySHpi?=
- =?utf-8?B?TEZ6Nk0ybTFCaHIvYU1mTVlPOTg2ZzUvNHlTN014RmRNMXZGRlJ3Nyt5MElu?=
- =?utf-8?B?QXROcGFnczhxOUVrbVFoalByWitKdGlacSt1UTRHQ01kbTVEWTA5VHQ4VW90?=
- =?utf-8?B?Vm16dStuSVZPUWVnSTYvdXVjTkozdHdoeGZMUmhQbldjcHpoUllYWDdaNk80?=
- =?utf-8?B?ZnFGOXc0R2FHRS9EL08vdzFnNUM0bkZYU2dWL1F5RFVhdVBFaGVoR3ZXb1d4?=
- =?utf-8?B?cC81L2kvalZhZGlta1pXVFdzSy9EU2U5dHhrd0t6ZktVOUhKV1VxQ01NRFVX?=
- =?utf-8?B?a0N0OVpzYWoyZE5zZFBKT2ZXMGluSWlvbTFvbWFCcWFjZ2dmUnROYmRuZUNl?=
- =?utf-8?B?L0pCNTRpK09KM0RYY3lZWE92Yk1WWHVxbnJrM0JyUk84czhwMTBrT1U0c2RC?=
- =?utf-8?B?NStzNXNLbjhKTVY1Q21iTCsrb1ozclhnemEranJFaE5JanMweXZESnBTODB6?=
- =?utf-8?B?elhPSC9NWHo0ZS9zVEkvWTdiaHd3Wmx6dWNheFROMUU5eHdEcXZJOElEWVdN?=
- =?utf-8?B?UGlBRjlMSEVSUS9jZ1YwTnByRm9pVEdKTTU4ZWxSdUM3ZDRqQ2U5NStPZXhl?=
- =?utf-8?B?VmRHUENBbVo2SHRBMm1uUVRZNHczSTZENkhhVGpKVWJRMSt2ZGJtOEJJdzI5?=
- =?utf-8?B?VTZNRGRuZW5xUFFJWng2WFlDMVhRb0tHS0NjOVRkZUNRYlNEWm5CTWF6TWE5?=
- =?utf-8?B?cTNESzNwZ0hHYmxDT0x4ZEdETTFlN3ZvMHNsdHNpNFErOERkR3d4aE84dzBO?=
- =?utf-8?B?ODB3SzZEUmR3VG5qckh0MVlzSHVWZW9nN3BKbk8rNjlQb2kyMStrMHgwL0Y2?=
- =?utf-8?B?Q0dwTUQwZ3E2blN2bnRxNEJvZEREenVNZDBIZkRyODY3cGRIWmI3cU9nNzMr?=
- =?utf-8?B?bzRIMDd4SmQvVmhQVUViRmtCeDQvbFUvUDgxUU9STUZQdlRHZFJ2TXd2SHdk?=
- =?utf-8?B?VDRKMThyR0NZVXdIMWlYaG1LTmRGVkdFYWVqQXZvekEvNzZaM2lHazBDQW1Y?=
- =?utf-8?B?cUxKSG1wdGx0VDdoTTdqMWlpWFBRYW1kTGJDL1FNbzV1cVhEcUtjeDFYOG1R?=
- =?utf-8?B?emEzQlpXT253bEJJbFJtUjFtcE1sNC8wVDI1czlLRDBib3duQW51UmtoSEdV?=
- =?utf-8?B?RzdiQTJQL3Z6L3FacjZuSEpOT3F2VEh4d2lYSmp5Nm84M2FDYzQ2ZWZKMUlK?=
- =?utf-8?B?NXlyb2hhZE5lNkd1L1VvL0l2RlV2U2puVEJJaXFXcllWYVplS1dDZkJISnVu?=
- =?utf-8?B?NEpYb1Jva0VQRVlnMGVsZHVSWVN4b3ZsMWJ0VVhEbytoQlAwWUNMNVZ0ZFlJ?=
- =?utf-8?B?RFdsVlNrUU5rODBHWVhwODBpdVhFTmhERE8vUmpOMXAvRnIxUEFTZVBSUlNI?=
- =?utf-8?B?VlZVaWFMRXBvR3pNcFJzd2pPMHg5alIzOUF1NVFoUVY0Mk9DTXhhbDFCQWtQ?=
- =?utf-8?B?NVJiYWFHdFZwaThwcStwZUFYWk5aUG16NmMzUVlYUUhMcVlKYkt4Rmd2VVd4?=
- =?utf-8?B?dkFqaUNuTUMzNkRxQld0QisvekdNZ010SFQyZ0VsLzBDSmpGMWtuVUtTYkd6?=
- =?utf-8?B?b2FSbzJ2bW9pSjE0SXFzQU1OS1J1NU5uTVJBa1dXcnNFNWdxZ0Jpckljd0d1?=
- =?utf-8?B?RzFMK292ZDdidStLVFArN2gvN21yYVlzYi9waE04c1A2L1I4RGF3eExPWnZk?=
- =?utf-8?B?RGh2R1NMTk5TcDY2T0JwMW5jdUJsZXRWdmRONjFjNm1lSWJOUUJaWlA2L21D?=
- =?utf-8?B?ajRhWFVMczBWYncvQ2d2RnRkcnYrcFNYR09OY3pCTHM3T3MwRVRlVzYxTUFu?=
- =?utf-8?B?Sk95eEVKUTJOdHordVNhalVoeGZxZkh3OWNITmo0ZkIrekhHZk1aOVAxT2p3?=
- =?utf-8?B?R0h5SGNQVkhpK2svWjBQRWM4UWRHdnBpeWRCdGRyZ2tscEQxSnNSdHdwcmJB?=
- =?utf-8?Q?G/hY1gqkJKqr8pvA=3D?=
-X-Exchange-RoutingPolicyChecked: KeESdZxM/cnRjRQeTbhiswByZVnReZ2m92OgHB+hVg3VoSGIHZm4QCvIgkwE0iZFKBEbAOSRIMty8ZFz60OgRIVEz3Obu5INaI46w8heCYFPoK/kRw6PyDlYxOYhGcYIefENjjjEhaA+ZLGpDkt4TZFCqjd4hIPXvg0NbSZbu2AOQ2igpbJ1yWhxivx45mFVsSx51LGucJcSWeSKX+bJKiwLsG6uOozhlzoHc0q4YDo1tUwAWqPrI9QqL5OOgEgrL+R9nU397/NFqjC9Jv+AAv6D6vu3Kbetz3FxsgJo2CLCYYntpCDfAa3orujzrmA2uGlpeDvDYk9P73EzbNkZ1Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d6279ab-2e44-4669-57ae-08defdd1b32a
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cG9lbE1JOHJ3dDRyWllHTGJMMzd0Q1R2dkxoaHdtUW9IOW1HbmQ1ejRHYmVJ?=
+ =?utf-8?B?R0E2ME9zZis0VXNzYnpKUURoZVUrN1oyeWMzeW5WeDhWQVJFZkoyR2ZDMExY?=
+ =?utf-8?B?TnBCdCtDNzQxcDFIZnl0NFhpMFhJTUdmMnY5ci9UV0NJZS9nUTJiTE5zbU05?=
+ =?utf-8?B?VTlHM3RTd3lyOW02R2JWZVVXS3pnb1V2dVIzZUIzVWxMN2ZsWk9rdmxwVWox?=
+ =?utf-8?B?emM4SUZSTklESTE4S0F2ZmNQd1pwNWtxNmtBQkhLckdqNSs4dTR0Z3JCcFNT?=
+ =?utf-8?B?bCtESzQwWVJYTXBiUXhFc0wreXdFV0p0REgvWklJaHFScDA5cFEwTUhnQTNC?=
+ =?utf-8?B?WjRNWTJ4QXdMajhCTzQ4cGdsdGwxakVsRUlBeGlEejZ0dnloVXFaRHR2T3g2?=
+ =?utf-8?B?NEIvRk9aeVVJc1Nkemw4Zm02aFZBdDhvdWY3YzFVcVJlQjN2T05FU3FrdS8w?=
+ =?utf-8?B?WW5SWVE5VC9aSVVYbWRMQklOSEFHRDhVSGxZc3FwZjZSTE1lREE4dVdncG5j?=
+ =?utf-8?B?ZFFQTEUweERYTXJWaExNcnladWFibUY4d3lPVEEzakdlZnZka3ljRExmMXhI?=
+ =?utf-8?B?UmhIOFJxV2ZFeUFHUEhUS3Rva3dUd1A1cnlkMVVEWFYrMEFlcVZRaEZSNU5v?=
+ =?utf-8?B?d3lCT2p5T2hjUUE2NEM4NkF0c2dRa2RaMDZ2blhpd0QvcGFIM1dHWEJPaTZG?=
+ =?utf-8?B?SGVESnFYUFJtSkc4V3RUT3NOdkxwZWIxdHhUVTNPcW9kWVEwQkFUck5xRmpI?=
+ =?utf-8?B?NEQzNVlHN3FEam9wN2xsL1l0bmpFbWZrMFdWWGdaSHRxeUJwV3IycGV0V2ln?=
+ =?utf-8?B?QW0rSTkzMEN5QVBqdXVEemVjNHBGbzJzeGIyeHVvMW11MWJ2allJdFRBQ2xG?=
+ =?utf-8?B?eXBSd3dXZWRHekw0d0tpaUNzZFMxRld6dTNWL0hORjV3d2RqTmxYZjhtcEhW?=
+ =?utf-8?B?K2ZwbjY3amtIellzTWVPTzVsMlQ0eXI3c2hVYVRDaGtaTEFmZXl2Unc0NTZl?=
+ =?utf-8?B?QzJWNjB2eGdzaWRMT3kyWGJSWi91ajk2S3E3ODFEbisvM0dWMWVkWmdwNDlC?=
+ =?utf-8?B?RmZaRXE2VFZ3a28wTEhGYndhcWxOUzRyaEEzb3ZHWmFtWFJtWUUrQ280V3hU?=
+ =?utf-8?B?SGpPd0JyRHEyblkzeGh4alJXbGN2cXJqMkVZNk4rL3g1Smt2NmpESmNBTmNw?=
+ =?utf-8?B?ZXA2MldKbkxHSk9OR1ZZWnNIU3ROV1lNTDlUbkZMaXg5QjBZam9wZzBCWEdo?=
+ =?utf-8?B?ZGVJZDRwWmxxOEtJQllyb2lLV2JGNElNQTVYbEN5cXVYWm0wVmltMk9RMmg1?=
+ =?utf-8?B?engzTyt5elZYL3ZPR2VmQjhQVWdVQ0NEaGZjYXBpYUQ2a2VRL25PQitBek9O?=
+ =?utf-8?B?YnhhU09yZkYvek5ybThKd2YrMDR2UFdHQ1U1NWVQbW50UVJmSkQ3bXVjeGlP?=
+ =?utf-8?B?T2JyUWd4RThTbHFmcEpDVlZGTVJoNUcrRzkvTkdZYzNNN29wTUxCWmNFZkZQ?=
+ =?utf-8?B?bkx3RFlMMDhKMkdUTW42UkxISjlXSjZTdjA5Qi9ZOVUvampTN1JsNko0WGto?=
+ =?utf-8?B?dnlYdTA4Z2FveGpTSEZ1SlU5bzZMMFNZODg3RTUxRTRwRzNCTEdXSXQ1VEFU?=
+ =?utf-8?B?dEhrTDlXcGJPZjlYWW1acHl0Z3JPd29GRE04Q3pjeEREOWV3U2EyelZjWTdF?=
+ =?utf-8?B?ZndicVpMNWg4ZFpnZnBJSi95d2tMT1hRQWR0ck1MbXlsZFNYTiszSTB0MGJY?=
+ =?utf-8?B?RWpLMWxyWVJHSHRZQVhIN0Mwd1F0eGRyb3g1RGNsbGFueEMwbHBRNFF2eEt3?=
+ =?utf-8?B?UE4zcFMzK1FlWTVGdnhMc0xiNHg0blI1NWFBTnBnRUMwS3I1VnZxN25RaktK?=
+ =?utf-8?B?THdJdXRDamZSc282OFk4QWlFRFVKaHB3bHUyK3ovVmpjQW9IMTVWWkpJY2cr?=
+ =?utf-8?B?dVlsc1lBdElvZXBRNzhDZjR1dlNUc2JGUkVMdlZKS0pENzd5bW9ub3N1aWtr?=
+ =?utf-8?B?OUc1UmFXdTJuWEpxNzQ1TGdwOW9xbmhjc2xVN2FLYWVaQ0pGREVjby9VRDN5?=
+ =?utf-8?B?T0NsNFphdGdEdklieVJFZVJsM1ArYTRkcThGZUh3YXRiN2tVZE5MT3N2UXcv?=
+ =?utf-8?B?djhxUFoyNk1HV1djNU1IeDBreWRvaVVkWktMbWo1cnJSbytnei9MU0hUaUxq?=
+ =?utf-8?B?SGVBemNVZm9IUFVuSkRWRXFaYTJqdFE1UDVOYjFMUmo0SzR4bE9iQmF4TXph?=
+ =?utf-8?B?SzF5dGlqQ1JSZWdQMmt3bko1ZHNUMjQ1SlFTZTdPeVBXdzFUTVJDbmJ6V2pz?=
+ =?utf-8?B?OHcvS0d1Unk3OFVVdlNmUE9JREY2MkZoMnppTUFsRFZZK1dhOFEzdz09?=
+X-Exchange-RoutingPolicyChecked: HU6DfbISnevTQSDAXuNvFj5rfYFff+giuY5w0WfNBJZsNFX6JRgqV6toOCn1BgV9xLHHklcOiCsDJMJ4fJTQ+rIpadH0yAwZcSBmvV1lsDpEedTsRDs5zNMNO9ds1WpCXb62hpfqpyDEHvy+guxg58pJ2RJE2B180zPzpYjUssdONqFLLi+o/v2iDje28H0XC7DEspnNGpw7PPKxK48yAH4FdtildgwuPPIZR//i7minQ1FajyyFGpicVrhfurRFE79DOyORhRWPrRho6lQVXAXQcg59wHtnB2o2yeGf2lTRYcoSDEE7niJqG04Osq06BA7zb2N/BiIRBGxQhxzm5w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 914bc664-31bb-42f0-9110-08defdd35faa
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7556.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2026 09:10:23.0290 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2026 09:22:21.9829 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jyy3h1QFV2HfHZpBswREq/LfBv1yGc1K2M95KYkuEmr7T6LQYP0CDbCc6kvAMQULa33KLoouVoqPJPOEYVdTaV5XB2Fj18HOsG9SYAUUhSI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6622
+X-MS-Exchange-CrossTenant-UserPrincipalName: tz4wt8qhGH+3ILVIItYx6dF8LKNJsy97RTF/BxCJLCZAcoVI44JXEX1tB+W1mYE+lSmR3f4kFl367CSa1iIKWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFC77662F02
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,105 +180,353 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------nHBNUCMgmUi6uxAzKzK3jWdu
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 
-
-On 19-08-2026 04:47 am, Umesh Nerlige Ramappa wrote:
-> Report internal HW errors from PUNIT using the xe_log_comp() helper. Since
-> the error results in a wedge, use CPER_SEV_FATAL as the severity.
+On 19-08-2026 09:16, Gupta, Anshuman wrote:
 >
-> Signed-off-by: Umesh Nerlige Ramappa<umesh.nerlige.ramappa@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_ras.c | 7 ++++---
->   1 file changed, 4 insertions(+), 3 deletions(-)
+>> -----Original Message-----
+>> From: Vijay, Anoop C <anoop.c.vijay@intel.com>
+>> Sent: Wednesday, August 19, 2026 12:15 AM
+>> To: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Gupta, Anshuman
+>> <anshuman.gupta@intel.com>
+>> Cc: intel-xe@lists.freedesktop.org; Nerlige Ramappa, Umesh
+>> <umesh.nerlige.ramappa@intel.com>; Nilawar, Badal
+>> <badal.nilawar@intel.com>; Iddamsetty, Aravind
+>> <aravind.iddamsetty@intel.com>; Tauro, Riana <riana.tauro@intel.com>;
+>> Roper, Matthew D <matthew.d.roper@intel.com>; Ruhl, Michael J
+>> <michael.j.ruhl@intel.com>; Luse, Paul E <paul.e.luse@intel.com>; V,
+>> Mohamed Mansoor <mohamed.mansoor.v@intel.com>; Nasim, Kam
+>> <kam.nasim@intel.com>
+>> Subject: Re: [PATCH v3 4/4] drm/xe/sysctrl: Add RAS error injection debugfs
+>> interface
+>>
+>>
+>> On 08-08-2026 00:19, Rodrigo Vivi wrote:
+>>> On Fri, Aug 07, 2026 at 11:15:59AM -0400, Gupta, Anshuman wrote:
+>>>>> -----Original Message-----
+>>>>> From: Vijay, Anoop C <anoop.c.vijay@intel.com>
+>>>>> Sent: Friday, August 7, 2026 8:26 PM
+>>>>> To: intel-xe@lists.freedesktop.org
+>>>>> Cc: Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>;
+>>>>> Nilawar, Badal <badal.nilawar@intel.com>; Vivi, Rodrigo
+>>>>> <rodrigo.vivi@intel.com>; Iddamsetty, Aravind
+>>>>> <aravind.iddamsetty@intel.com>; Tauro, Riana
+>>>>> <riana.tauro@intel.com>; Gupta, Anshuman
+>> <anshuman.gupta@intel.com>;
+>>>>> Roper, Matthew D <matthew.d.roper@intel.com>; Ruhl, Michael J
+>>>>> <michael.j.ruhl@intel.com>; Luse, Paul E <paul.e.luse@intel.com>; V,
+>>>>> Mohamed Mansoor <mohamed.mansoor.v@intel.com>; Nasim, Kam
+>>>>> <kam.nasim@intel.com>; Vijay, Anoop C <anoop.c.vijay@intel.com>
+>>>>> Subject: [PATCH v3 4/4] drm/xe/sysctrl: Add RAS error injection
+>>>>> debugfs interface
+>>>>>
+>>>>> From: Anoop Vijay <anoop.c.vijay@intel.com>
+>>>>>
+>>>>> Add debugfs interface for exercising System Controller's RAS error
+>>>>> injection command, used to validate RAS error detection and recovery
+>> paths.
+>>>>> Command details:
+>>>>> - Group ID: 0x02 (diag group)
+>>>>> - Command ID: 0x7E (XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT)
+>>>>> - Usage: echo "<ras_block_id> <ras_sub_block_id> <err_type> [params]"
+>> \
+>>>>>                > /sys/kernel/debug/dri/0/sc/ras_error_inject
+>>>>>            cat /sys/kernel/debug/dri/0/sc/ras_error_inject
+>>>>>
+>>>>> This command requires the diag application to have completed
+>>>>> firmware boot and initialization (late-bind loaded); writes are
+>>>>> rejected with -ENODEV until xe_sysctrl_is_diag_fw_ready() reports the
+>> diag firmware as ready.
+>>>>> Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 123
+>> ++++++++++++++++++
+>>>>>    drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  31 +++++
+>>>>>    drivers/gpu/drm/xe/xe_sysctrl_types.h         |   3 +
+>>>>>    3 files changed, 157 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+>>>>> b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+>>>>> index 2144d9d43fba..7b8846d739cb 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+>>>>> @@ -10,6 +10,7 @@
+>>>>>    #include <linux/seq_file.h>
+>>>>>    #include <linux/slab.h>
+>>>>>    #include <linux/string.h>
+>>>>> +#include <linux/string_choices.h>
+>>>>>    #include <linux/uaccess.h>
+>>>>>
+>>>>>    #include "xe_device.h"
+>>>>> @@ -122,6 +123,124 @@ static const struct file_operations
+>>>>> xe_sysctrl_loopback_fops = {
+>>>>>    	.release = single_release,
+>>>>>    };
+>>>>>
+>>>>> +static ssize_t xe_sysctrl_ras_error_inject_write(struct file *file,
+>>>>> +const char
+>>>>> __user *ubuf,
+>>>>> +						 size_t len, loff_t *offp)
+>>>>> +{
+>>>>> +	char *kbuf __free(kfree) = NULL;
+>>>>> +	struct seq_file *m = file->private_data;
+>>>>> +	struct xe_sysctrl_debugfs_entry *entry = m->private;
+>>>>> +	struct xe_device *xe = sc_to_xe(entry->sc);
+>>>>> +	struct xe_sysctrl_diag_ras_err_inj_req req = {};
+>>>>> +	struct xe_sysctrl_mailbox_command cmd = {};
+>>>>> +	u8 resp_hdr_only[sizeof(u32)];
+>>>>> +	unsigned int nfields = 0;
+>>>>> +	char *token, *tmp;
+>>>>> +	unsigned long val;
+>>>>> +	size_t out_len = 0;
+>>>>> +
+>>>>> +	if (!xe_sysctrl_is_diag_fw_ready(xe)) {
+>>>>> +		xe_err(xe, "sysctrl: diag firmware not ready, cannot inject RAS
+>>>>> error\n");
+>>>> Wild thought,
+>>>> How it would be register the debugfs only if  diag firmware is loaded ?
+>>>> That way nobody will be having access to these debugfs ?
+>>> I agree with this. It is better not even register the file if the
+>>> firmware is not loaded. So it doesn't even appear in the filesystem.
+>> Unlike oCode, diag firmware initialization is not driven by KMD and can
+>> complete asynchronously. We don't have a notification from SysCtrl when
+>> diag firmware app becomes ready.
+>> Since xe_sysctrl_check_app_status() is a lightweight synchronous query that
+>> always reflects current firmware state, a possible middle ground would be to
+>> move the readiness check to .open() rather than .write().
+>> This would cause both cat and echo to fail with -ENODEV until diag firmware
+>> is initialized.
+>>
+>> The file would remain visible under sc/, but would be inaccessible until the
+>> firmware is ready.
+>>
+>> Would that be an acceptable compromise, or would you still prefer the entry
+>> to remain hidden until diag firmware is loaded?
+> @Vijay, Anoop C, AFAIU, we have a similar issue with the diag fwctl interface. I think we should register it only after the diag firmware is loaded.
 >
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 13ae54afedf7..aa790571f716 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -353,9 +353,10 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
->   		struct xe_ras_ieh_error *ieh_error = (void *)info->details;
->   
->   		if (ieh_error->global_error_status & XE_RAS_SOC_IEH_PUNIT) {
-> -			xe_err(xe, "[RAS]: PUNIT %s detected: 0x%x\n",
-> -			       sev_to_str(counter->common.severity),
-> -			       ieh_error->global_error_status);
-> +			xe_log_comp(xe, CPER_SEV_FATAL, SOC_INTERNAL, counter, sizeof(*counter),
+> Since the diag firmware is loaded by CSC, there may be a way to address this. If the MEI lb driver can be notified when the firmware is loaded, we could use intel_lb_component_ops() to notify XeKMD. XeKMD could then use xe_sysctrl_check_app_status() to verify the application status and register the debugfs entries and fwctl interface accordingly.
+>
+> Thanks,
+> Anshuman
 
-Please do n't hardcore severity, use counter->common.severityone.
+Hi Anshuman,
 
-For cper preparation, we need counter+response, need to confirm from @ 
-Badal.
+Thanks for the suggestion. I looked into this proposal. Although diag 
+late-binding uses the same ME firmware client GUIDs as mei_lb, it is 
+loaded through a separate userspace MEI connection (/dev/mei). As a 
+result, mei_lb has no direct visibility into user space late binding 
+flow. We also do not have a firmware-defined 'ready' notification in CSC.
 
-> +				    "PUNIT %s detected: 0x%x\n",
-> +				    sev_to_str(counter->common.severity),
+Supporting dynamic registration using this approach would require CSC 
+firmware and MEI driver component changes.
 
-drop severity.
+Given that, I think the practical approach is to query readiness via 
+xe_sysctrl_check_app_status() through Sysctrl at the point of use.
+
+We can revisit dynamic registration if CSC firmware/MEI driver provides 
+a readiness event in the future.
 
 Thanks,
-
--/Mallesh
-
-> +				    ieh_error->global_error_status);
->   			punit_error_handler(xe);
->   			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
->   		}
---------------nHBNUCMgmUi6uxAzKzK3jWdu
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 19-08-2026 04:47 am, Umesh Nerlige
-      Ramappa wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20260818231716.731788-6-umesh.nerlige.ramappa@intel.com">
-      <pre wrap="" class="moz-quote-pre">Report internal HW errors from PUNIT using the xe_log_comp() helper. Since
-the error results in a wedge, use CPER_SEV_FATAL as the severity.
-
-Signed-off-by: Umesh Nerlige Ramappa <a class="moz-txt-link-rfc2396E" href="mailto:umesh.nerlige.ramappa@intel.com">&lt;umesh.nerlige.ramappa@intel.com&gt;</a>
----
- drivers/gpu/drm/xe/xe_ras.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 13ae54afedf7..aa790571f716 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -353,9 +353,10 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
- 		struct xe_ras_ieh_error *ieh_error = (void *)info-&gt;details;
- 
- 		if (ieh_error-&gt;global_error_status &amp; XE_RAS_SOC_IEH_PUNIT) {
--			xe_err(xe, &quot;[RAS]: PUNIT %s detected: 0x%x\n&quot;,
--			       sev_to_str(counter-&gt;common.severity),
--			       ieh_error-&gt;global_error_status);
-+			xe_log_comp(xe, CPER_SEV_FATAL, SOC_INTERNAL, counter, sizeof(*counter),</pre>
-    </blockquote>
-    <p>Please do n't hardcore severity, use&nbsp;<span style="white-space: pre-wrap">counter-&gt;common.severity</span>one.</p>
-    <p>For cper preparation, we need&nbsp;<span style="white-space: pre-wrap">counter+response, need to confirm from @ Badal.</span></p>
-    <blockquote type="cite" cite="mid:20260818231716.731788-6-umesh.nerlige.ramappa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+				    &quot;PUNIT %s detected: 0x%x\n&quot;,
-+				    sev_to_str(counter-&gt;common.severity),</pre>
-    </blockquote>
-    <p>drop severity.</p>
-    <p>Thanks,</p>
-    <p>-/Mallesh</p>
-    <blockquote type="cite" cite="mid:20260818231716.731788-6-umesh.nerlige.ramappa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+				    ieh_error-&gt;global_error_status);
- 			punit_error_handler(xe);
- 			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
- 		}
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------nHBNUCMgmUi6uxAzKzK3jWdu--
+Anoop
+>>>> Thanks,
+>>>> Anshuman.
+>>>>
+>>>>> +		return -ENODEV;
+>>>>> +	}
+>>>>> +
+>>>>> +	if (len == 0 || len >= PAGE_SIZE)
+>>>>> +		return -EINVAL;
+>>>>> +
+>>>>> +	kbuf = kmalloc(len + 1, GFP_KERNEL);
+>>>>> +	if (!kbuf)
+>>>>> +		return -ENOMEM;
+>>>>> +
+>>>>> +	if (copy_from_user(kbuf, ubuf, len))
+>>>>> +		return -EFAULT;
+>>>>> +	kbuf[len] = '\0';
+>>>>> +
+>>>>> +	tmp = kbuf;
+>>>>> +	while ((token = strsep(&tmp, " \t\n")) != NULL) {
+>>>>> +		if (*token == '\0')
+>>>>> +			continue;
+>>>>> +
+>>>>> +		if (kstrtoul(token, 0, &val))
+>>>>> +			goto inval;
+>>>>> +
+>>>>> +		switch (nfields) {
+>>>>> +		case 0:
+>>>>> +			if (val > U16_MAX)
+>>>>> +				goto inval;
+>>>>> +			req.ras_block_id = val;
+>>>>> +			break;
+>>>>> +		case 1:
+>>>>> +			if (val > U16_MAX)
+>>>>> +				goto inval;
+>>>>> +			req.ras_sub_block_id = val;
+>>>>> +			break;
+>>>>> +		case 2:
+>>>>> +			if (val > U16_MAX)
+>>>>> +				goto inval;
+>>>>> +			req.err_type = val;
+>>>>> +			break;
+>>>>> +		case 3:
+>>>>> +			if (val > U32_MAX)
+>>>>> +				goto inval;
+>>>>> +			req.params = val;
+>>>>> +			break;
+>>>>> +		default:
+>>>>> +			xe_err(xe, "sysctrl: too many ras_error_inject
+>>>>> arguments\n");
+>>>>> +			return -EINVAL;
+>>>>> +		}
+>>>>> +		nfields++;
+>>>>> +	}
+>>>>> +
+>>>>> +	if (nfields < 3) {
+>>>>> +		xe_err(xe,
+>>>>> +		       "sysctrl: usage: <ras_block_id> <ras_sub_block_id>
+>>>>> <err_type> [params]\n");
+>>>>> +		return -EINVAL;
+>>>>> +	}
+>>>>> +
+>>>>> +	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
+>>>>> +				  &req, sizeof(req), resp_hdr_only,
+>>>>> +				  sizeof(resp_hdr_only));
+>>>>> +
+>>>>> +	guard(xe_pm_runtime)(xe);
+>>>>> +	entry->status = xe_sysctrl_send_command(entry->sc, &cmd,
+>>>>> &out_len);
+>>>>> +
+>>>>> +	return entry->status ? entry->status : len;
+>>>>> +
+>>>>> +inval:
+>>>>> +	xe_err(xe, "sysctrl: invalid ras_error_inject token '%s'\n", token);
+>>>>> +	return -EINVAL;
+>>>>> +}
+>>>>> +
+>>>>> +static int xe_sysctrl_ras_error_inject_show(struct seq_file *m,
+>>>>> +void
+>>>>> +*data) {
+>>>>> +	struct xe_sysctrl_debugfs_entry *entry = m->private;
+>>>>> +	struct xe_device *xe = sc_to_xe(entry->sc);
+>>>>> +
+>>>>> +	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n", entry-
+>>>>>> group, entry->command);
+>>>>> +	seq_printf(m, "Diag firmware ready: %s\n",
+>>>>> +		   str_yes_no(xe_sysctrl_is_diag_fw_ready(xe)));
+>>>>> +	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ?
+>>>>> +"FAILED" : "SUCCESS");
+>>>>> +
+>>>>> +	seq_puts(m, "\nUsage:\n");
+>>>>> +	seq_puts(m, "  echo \"<ras_block_id> <ras_sub_block_id>
+>>>>> <err_type> [params]\" > ras_error_inject\n");
+>>>>> +	seq_puts(m, "  cat ras_error_inject\n");
+>>>>> +
+>>>>> +	return 0;
+>>>>> +}
+>>>>> +
+>>>>> +static int xe_sysctrl_ras_error_inject_open(struct inode *inode,
+>>>>> +struct file *file) {
+>>>>> +	return single_open(file, xe_sysctrl_ras_error_inject_show,
+>>>>> +inode->i_private); }
+>>>>> +
+>>>>> +static const struct file_operations xe_sysctrl_ras_error_inject_fops = {
+>>>>> +	.owner = THIS_MODULE,
+>>>>> +	.open = xe_sysctrl_ras_error_inject_open,
+>>>>> +	.read = seq_read,
+>>>>> +	.write = xe_sysctrl_ras_error_inject_write,
+>>>>> +	.llseek = seq_lseek,
+>>>>> +	.release = single_release,
+>>>>> +};
+>>>>> +
+>>>>>    static void xe_sysctrl_register_entry(struct dentry *root, struct
+>>>>> xe_sysctrl_debugfs_entry *entry,
+>>>>>    				      struct xe_sysctrl *sc, const char *name,
+>>>>>    				      u8 group, u8 command,
+>>>>> @@ -154,4 +273,8 @@ void xe_sysctrl_debugfs_register(struct
+>>>>> xe_sysctrl *sc, struct dentry *parent)
+>>>>>    	xe_sysctrl_register_entry(root, &sc->debugfs.loopback, sc,
+>>>>> "loopback",
+>>>>>    				  XE_SYSCTRL_GROUP_CORE,
+>>>>> XE_SYSCTRL_CMD_LOOPBACK,
+>>>>>    				  &xe_sysctrl_loopback_fops);
+>>>>> +
+>>>>> +	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc,
+>>>>> "ras_error_inject",
+>>>>> +				  XE_SYSCTRL_GROUP_DIAG,
+>>>>> XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
+>>>>> +				  &xe_sysctrl_ras_error_inject_fops);
+>>>>>    }
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>>>> b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>>>> index ed80fe63e1c4..43ae0049b316 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>>>> @@ -14,10 +14,12 @@
+>>>>>     * enum xe_sysctrl_group - System Controller command groups
+>>>>>     *
+>>>>>     * @XE_SYSCTRL_GROUP_GFSP: GFSP group
+>>>>> + * @XE_SYSCTRL_GROUP_DIAG: Diag group
+>>>>>     * @XE_SYSCTRL_GROUP_CORE: Core group
+>>>>>     */
+>>>>>    enum xe_sysctrl_group {
+>>>>>    	XE_SYSCTRL_GROUP_GFSP			= 0x01,
+>>>>> +	XE_SYSCTRL_GROUP_DIAG			= 0x02,
+>>>>>    	XE_SYSCTRL_GROUP_CORE			= 0xFF,
+>>>>>    };
+>>>>>
+>>>>> @@ -51,6 +53,35 @@ enum xe_sysctrl_core_cmd {
+>>>>>    	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
+>>>>>    };
+>>>>>
+>>>>> +/**
+>>>>> + * enum xe_sysctrl_diag_cmd - Commands supported by Diag group
+>>>>> + *
+>>>>> + * @XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT: RAS error injection  */
+>>>>> enum
+>>>>> +xe_sysctrl_diag_cmd {
+>>>>> +	XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT		= 0x7E,
+>>>>> +};
+>>>>> +
+>>>>> +/**
+>>>>> + * struct xe_sysctrl_diag_ras_err_inj_req - DIAG_RAS_ERR_INJECT
+>>>>> +request payload
+>>>>> + *
+>>>>> + * Request payload for XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT. The
+>>>>> mailbox
+>>>>> +layer
+>>>>> + * prepends the application message header before sending.
+>>>>> + *
+>>>>> + * @ras_block_id: RAS block (subsystem) to inject the error into
+>>>>> + * @ras_sub_block_id: RAS sub-block (IP) within @ras_block_id
+>>>>> + * @err_type: Type of test error to inject
+>>>>> + * @reserved: Must be zero
+>>>>> + * @params: Optional injection parameters (default 0)  */ struct
+>>>>> +xe_sysctrl_diag_ras_err_inj_req {
+>>>>> +	u16 ras_block_id;
+>>>>> +	u16 ras_sub_block_id;
+>>>>> +	u16 err_type;
+>>>>> +	u16 reserved;
+>>>>> +	u32 params;
+>>>>> +} __packed;
+>>>>> +
+>>>>>    /**
+>>>>>     * struct xe_sysctrl_app_status_req - Get application status request
+>>>>>     *
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h
+>>>>> b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+>>>>> index 53d82e61383a..3a97a10d1b7d 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+>>>>> @@ -68,6 +68,9 @@ struct xe_sysctrl {
+>>>>>
+>>>>>    		/** @debugfs.loopback: Loopback test entry */
+>>>>>    		struct xe_sysctrl_debugfs_entry loopback;
+>>>>> +
+>>>>> +		/** @debugfs.ras_error_inject: RAS error injection test entry
+>>>>> */
+>>>>> +		struct xe_sysctrl_debugfs_entry ras_error_inject;
+>>>>>    	} debugfs;
+>>>>>    };
+>>>>>
+>>>>> --
+>>>>> 2.43.0
