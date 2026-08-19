@@ -4,55 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C785FC5DF87
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 19:15:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E0B6C5DF81
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 19:22:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 892E310EEA9;
-	Wed, 19 Aug 2026 19:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03B1510E02D;
+	Wed, 19 Aug 2026 19:22:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="StVBo2PE";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="g/30mbfS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 382F610EEAA
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 19:15:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787166904; x=1818702904;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XjLkT8YX2Du6zdrPSGpHmzzb5JEOgUr8XSYd1DAMfxU=;
- b=StVBo2PE0qjhPCqJFQNfnHyTeNHBPz6NL/PvsUWQn4y2aZHeCZ3CUSc+
- HLsjK8NHSYM7xRFpNxqKf08t3JeJuZekhBW4mnuikk3QY88RxspFWMVAN
- Cnk83OiFSLb0AEMMT5FXFxNN04HSqfTmWwpONiogM5ZN7f6LitQSq5aIW
- 3UT769q7AqP806h3vhDVhgMrI4op8gXAaLpC/RYi8nKqPnonqkqqMKFUO
- kkyc2r+ZlucRmcM6WQ3lZpEEle64AwpJJNcOVqOBX2TnFEPel5uOv4GTP
- C3IlpqS14RhzgkwLnY/NRBjdWGcf7zb4DQgm+0mv51xX8Vqc6OVZplt/i A==;
-X-CSE-ConnectionGUID: DwpcxO+7SU2pUvXnR/ixcQ==
-X-CSE-MsgGUID: vwTtSFRtSm++oX/ARWUt+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="86647303"
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="86647303"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2026 12:15:04 -0700
-X-CSE-ConnectionGUID: hQJoiKMuTMauqk5vyu3FMA==
-X-CSE-MsgGUID: fN+QRiGsTTWFPydwYVjbyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,231,1779174000"; d="scan'208";a="295556786"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa002.jf.intel.com with ESMTP; 19 Aug 2026 12:15:03 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: mallesh.koujalagi@intel.com, michal.wajdeczko@intel.com,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH 12/12] drm/xe/vram: Report VRAM errors using structured xe_log
- API
-Date: Thu, 20 Aug 2026 00:44:41 +0530
-Message-ID: <20260819191442.1957986-13-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260819191442.1957986-1-dnyaneshwar.bhadane@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5337A10E02D
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 19:22:12 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id CFB30439EF;
+ Wed, 19 Aug 2026 19:22:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 957481F000E9;
+ Wed, 19 Aug 2026 19:22:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1787167331;
+ bh=koJB6jVxUMa9jtpXbj+ixgrd1dGa/dnDGDaegl6qBfQ=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=g/30mbfSUyVaCdssSNMSgpuOeVbRrMtwaUpFTx5J7J8uHGyYJfnfc9zeA+/m6LmDL
+ /I1wrCHSnaqSCPEJK1hljZGVZK00I6Xh85eO6FJC5d5ee3IvxDP6WfANoHdEeb2kUf
+ tT6AxS+tv2Zg9mFGU+BpV/s7fzoxgBsYv1PU+ypBgqUiF8x87MVCHclV3pMFyNAEku
+ 9h8Jz45gBGEJYRjj1TqQrGzDdI5KzET6tQd/RnUW5QocDuL497tMuXN3IHJZzAPs9p
+ L2Uc8mHY6j+PJQvWzH9wA0m7q5zCr4GN5Ulxj/KR3toKWPgATdAXuLhUt3yOi23Eev
+ MZ5mxrGcc0nuw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 06/12] drm/xe/reg_whitelist: Report whitelist overflow
+ using structured xe_log API
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260819191442.1957986-7-dnyaneshwar.bhadane@intel.com>
 References: <20260819191442.1957986-1-dnyaneshwar.bhadane@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20260819191442.1957986-7-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 19 Aug 2026 19:22:11 +0000
+Message-Id: <20260819192211.957481F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,101 +53,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace drm_err()/drm_info() with xe_log_err_fatal()/xe_log_info()
-using the VRAM component tag.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Passing the positive error code `EPERM` instead of a negative er=
+ror code (`-EPERM`) to `xe_log_err()` causes the error code to be silently =
+dropped from the log output.
+--
 
-Move the "no CPU visible VRAM" error out of vram_region_init() into its
-callers so that tile-based usage logs with the tile as location while
-device-level usage logs with the device. This gives better diagnostics
-by identifying which tile has no visible VRAM.
+--- Patch [6]: [PATCH 06/12] drm/xe/reg_whitelist: Report whitelist overflo=
+w using structured xe_log API ---
+commit f104144be2febf4b75435938d8bb0126a65964c3
+Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/xe/xe_vram.c | 27 +++++++++++++++++----------
- 1 file changed, 17 insertions(+), 10 deletions(-)
+drm/xe/reg_whitelist: Report whitelist overflow using structured xe_log API
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 23eb7edbdd57..9fae593b0741 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -17,6 +17,7 @@
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt_mcr.h"
-+#include "xe_log.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
- #include "xe_tile_sriov_vf.h"
-@@ -43,7 +44,7 @@ static int determine_lmem_bar_size(struct xe_device *xe, struct xe_vram_region *
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
- 	if (!resource_is_valid(pdev, LMEM_BAR)) {
--		drm_err(&xe->drm, "pci resource is not valid\n");
-+		xe_log_err_fatal(xe, VRAM, -ENXIO, "pci resource is not valid\n");
- 		return -ENXIO;
- 	}
- 
-@@ -236,10 +237,8 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
- 	vram->io_start = lmem_bar->io_start + offset;
- 	vram->io_size = min_t(u64, usable_size, remain_io_size);
- 
--	if (!vram->io_size) {
--		drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-+	if (!vram->io_size)
- 		return -ENODEV;
--	}
- 
- 	vram->dpa_base = lmem_bar->dpa_base + offset;
- 	vram->mapping = lmem_bar->mapping + offset;
-@@ -295,7 +294,8 @@ int xe_vram_probe(struct xe_device *xe)
- 	err = determine_lmem_bar_size(xe, &lmem_bar);
- 	if (err)
- 		return err;
--	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &lmem_bar.io_start, &lmem_bar.io_size);
-+	xe_log_info(xe, VRAM, "VISIBLE VRAM: %pa, %pa\n",
-+		    &lmem_bar.io_start, &lmem_bar.io_size);
- 
- 	remain_io_size = lmem_bar.io_size;
- 
-@@ -311,14 +311,18 @@ int xe_vram_probe(struct xe_device *xe)
- 		total_size += region_size;
- 		available_size += usable_size;
- 
--		err = vram_region_init(xe, tile->mem.vram, &lmem_bar, tile_offset, usable_size,
-+		err = vram_region_init(xe, tile->mem.vram, &lmem_bar,
-+				       tile_offset, usable_size,
- 				       region_size, remain_io_size);
--		if (err)
-+		if (err) {
-+			xe_log_err_fatal(tile, VRAM, -ENODEV,
-+					 "without any CPU visible VRAM. Aborting.\n");
- 			return err;
-+		}
- 
- 		if (total_size > lmem_bar.io_size) {
--			drm_info(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
--				 &total_size, &lmem_bar.io_size);
-+			xe_log_info(xe, VRAM, "%pa is larger than resource %pa\n",
-+				    &total_size, &lmem_bar.io_size);
- 		}
- 
- 		remain_io_size -= min_t(u64, tile->mem.vram->actual_physical_size, remain_io_size);
-@@ -326,8 +330,11 @@ int xe_vram_probe(struct xe_device *xe)
- 
- 	err = vram_region_init(xe, xe->mem.vram, &lmem_bar, 0, available_size, total_size,
- 			       lmem_bar.io_size);
--	if (err)
-+	if (err) {
-+		xe_log_err_fatal(xe, VRAM, -ENODEV,
-+				 "without any CPU visible VRAM. Aborting.\n");
- 		return err;
-+	}
- 
- 	return devm_add_action_or_reset(xe->drm.dev, vram_fini, xe);
- }
--- 
-2.54.0
+This commit replaces xe_gt_err() with the structured xe_log_err() API
+when the maximum register whitelist slots are exhausted. It introduces the
+REGS component tag to these log messages.
 
+> diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/x=
+e_reg_whitelist.c
+> index cab1b578ca0ef..d58c31b301991 100644
+> --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+[ ... ]
+> @@ -186,9 +187,9 @@ static int whitelist_apply_to_hwe(struct xe_hw_engine=
+ *hwe, struct xe_reg_sr *in
+>  		};
+> =20
+>  		if (slot =3D=3D RING_MAX_NONPRIV_SLOTS) {
+> -			xe_gt_err(hwe->gt,
+> -				  "hwe %s: maximum register whitelist slots (%d) reached, refusing t=
+o add more\n",
+> -				  hwe->name, RING_MAX_NONPRIV_SLOTS);
+> +			xe_log_err(hwe->gt, REGS, EPERM,
+
+[Severity: Medium]
+Will this drop the error code from the log message?
+
+Looking at the xe_log_err macro definition:
+
+#define xe_log_err(any, TAG, err, fmt, args...) \
+	xe_log_comp_recoverable((any), TAG, ERR_PTR(err), 0, fmt, ##args)
+
+The macro passes the error code wrapped in ERR_PTR(). If we pass a positive
+value like EPERM, ERR_PTR(EPERM) will evaluate to false under the kernel's
+IS_ERR() check, since only values in the [-MAX_ERRNO, -1] range are conside=
+red
+valid errors.
+
+This can cause the logging infrastructure to completely drop the error code
+from the structured output.
+
+Should this be passed as -EPERM instead?
+
+> +				   "hwe %s: maximum register whitelist slots (%d) reached, refusing =
+to add more\n",
+> +				   hwe->name, RING_MAX_NONPRIV_SLOTS);
+>  			break;
+>  		}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260819191442.1957=
+986-1-dnyaneshwar.bhadane@intel.com?part=3D6
