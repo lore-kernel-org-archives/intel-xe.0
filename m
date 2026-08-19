@@ -4,44 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D759C5DF85
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 19:29:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32167C5DF81
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Aug 2026 19:31:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE8410E02D;
-	Wed, 19 Aug 2026 19:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E437D10E02D;
+	Wed, 19 Aug 2026 19:31:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="emEM4JNv";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="NL257vv3";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7546310E02D
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 19:29:28 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5A42C44850;
- Wed, 19 Aug 2026 19:29:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 202C21F000E9;
- Wed, 19 Aug 2026 19:29:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787167768;
- bh=cG5yxwm/MKWXjA2GvKwrf2++AICFrCF4igARLlVxTIA=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=emEM4JNvnOaqXetU0sciFNF0KB6XhWIFF5V76UXheFll03BgTgeTNj1/xLFIBewsc
- xrfmF+EsFKiYQgMt0YOyDIulLHoKc0K3vDakPrZh2Ne8G46CirZXP9BeRydUTCAoEY
- +KeKo7cHX+/P/FMQjuWdc3I+Y816/rqdkg0GZ/rVUxyv0Ku4bQ05BLpgpigqu+br8f
- cc8vH+FbhvXadDAH0los3/Y4mbWVYWAKwZIa+vQZmek3gfLYdL+rvx+O+OozogB+Xw
- y5jK2yLY192CjtT/lMNAZhvc4BHx1hxTlJvmq6J4r/1euRqWfPwbskmLIXSgZ3eRIZ
- 02pFThd5wLJ0w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 12/12] drm/xe/vram: Report VRAM errors using structured
- xe_log API
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260819191442.1957986-13-dnyaneshwar.bhadane@intel.com>
-References: <20260819191442.1957986-1-dnyaneshwar.bhadane@intel.com>
- <20260819191442.1957986-13-dnyaneshwar.bhadane@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 19 Aug 2026 19:29:27 +0000
-Message-Id: <20260819192928.202C21F000E9@smtp.kernel.org>
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42D3110E094
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 19:31:26 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-69c108fee7fso2233151a12.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 12:31:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1787167884; x=1787772684;
+ darn=lists.freedesktop.org; 
+ h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+ :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=ZvM++zWE35JZ0EuwwCczeFEIRqyaMO3WW3zX3kGMupw=;
+ b=NL257vv3d+DlH6HvTJhp0JpyT65mbPA+TTdXCgMCCGCiX19omuKD+k+AZwlBdSkMFD
+ pY5IlsW2yU8YE0q7ZhfGuWBmEt/+RxwzgFJIoG7U2fCAHp7rpHVBdgh+Guh3r25NMCXA
+ KVp2F/xi3ttuLjbjTEn3WmNPaSZo+uPPpfHrE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1787167884; x=1787772684;
+ h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+ :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=ZvM++zWE35JZ0EuwwCczeFEIRqyaMO3WW3zX3kGMupw=;
+ b=KwFBeIRDZPS+3eK4gJ8ED9GfalKE+Elg/meSl2abU8Xlt7ht4iHSCSgeyvufUzxqdM
+ jqf4KQJlyRWSRtK3Y3tx0ePKyVv1w1+b1+LmEB5R23tpn/1k9QYnfqr0RLRcUEHa3V6d
+ ImtrqGh75RDZkjG5zKp4snIrQfXAuZ6uCwrirD2KVSupxKruC9rX/0pf3FnXiYxuKGJ2
+ rKBmrPUEC9M3WN3+Y1bYJK/dpFTV+25jl8uKWreAOHG9ZUMXlOF4xA8ox0eNiOfQvkK/
+ te2YBTJ5HHFhO/ocTkw03jOlmInhRCJujVEfhIB6lyH0TrX/SMdEB2/50tbhkgZrhyvu
+ pkxA==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rpa1p2w8I4FOosz2Qrjle5G6271mhbrlWtmyJnduicPsfyl9BQH+zhCF0lf9CzBizbQRv2Nee1yww==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyENqm4Oa6tr1iendRmgtCSuIlxpqah1xssiylOWq34ADBJVFA+
+ uMAQpwIn/pa8MBQGV6ozDLeqHQ9Tt7bp1yFSeQRnu45wLSVGsEWtAANEX+GS2MYyylrOIdcGfcc
+ t0iQTQpk=
+X-Gm-Gg: AR+sD10VgtOH7RO0Q1SF83EA3YDimmtJy1tI7FvwdJGsT9bfZlvqZOSKYXGE6lCjMvy
+ p/Bgc0HBrL30VHQO7e0K//TCNY5Ssc8AZgQXTNso8CcVJ3aT0pYQ0FFKtlhEHBiNK8j2X1DCUxe
+ ldr+JBqVmEWxNkwRM4CENwMHa6ZqvzpHIVroWkUgH8/EToVJ7DJrhTFyXAhz+9+dVT8WuPkQFuU
+ 5XTuv23V4vBfniKiSW/ZHN1ZwXRgphGkIyslJ6JKXURpkyf9puUM8JeDDYx2DkNLXExcXrsdUdZ
+ LeGKgq5BJf3ZCBhPvwR85bA4w2yG47qV4R0vRPvBA601rwRu/kjTNqZsUatiYauXnjMW4pGIWBx
+ z3+3FUO1XZo0Xo9b3b98hoBbYXqJRaC8iqo7yvxuy14Jy6yONWBbXcbno8DFgVZ690ykHMdn3z2
+ Trgt2hJ+Q7qrSurXEJmF7FdrshuRXzWbe130KdJXDDkCVJCUSFyPpq4pR0UoQAAVByySCCZvYzV
+ 1KO7tJomV22DQ5BVXSxVSeFV6dFGLT0iJiQ3w==
+X-Received: by 2002:a17:907:c789:b0:c1f:29ce:76a1 with SMTP id
+ a640c23a62f3a-c23f93018a9mr533003866b.19.1787167884331; 
+ Wed, 19 Aug 2026 12:31:24 -0700 (PDT)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com.
+ [209.85.218.48]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-c243c78a484sm119616266b.26.2026.08.19.12.31.23
+ for <intel-xe@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 19 Aug 2026 12:31:24 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id
+ a640c23a62f3a-c15cd3fd760so193489666b.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Aug 2026 12:31:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqT9cgtLjletpMj4IIrkA79FrzZhHdseiCZWHju3hwMjuU/NI5BoML+JVZjRwAR6Ybmw8ftkaBLdw==@lists.freedesktop.org
+X-Received: by 2002:a17:906:ef0e:b0:c1c:5aa1:de57 with SMTP id
+ a640c23a62f3a-c23f92c35edmr510964966b.13.1787167882929; Wed, 19 Aug 2026
+ 12:31:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHk-=whiv=b+dAvjaZDsZkfUEzjZMSSLExDOWVcbJ0exsCj6_Q@mail.gmail.com>
+ <6874536d-ab1a-4dd7-a23f-2a071bda145e@lankhorst.se>
+ <CAHk-=wj5aE1yVMb8RM2AuNUHSMnQDaGT+Vy+At5ds1vxBA+Kng@mail.gmail.com>
+ <ahDAErDSE-SFA0oM@intel.com>
+ <CAHk-=whX59mtUnU2ayMWoDQX6Ee2NXLK2NxQ+dZnb-Qc_mF1hw@mail.gmail.com>
+ <af9278d3-4002-4e09-9bcf-bc75d1cf8145@lankhorst.se>
+ <CAADWXX-pfvA3mKWSjdahnihAXHQB2VP9BOJDCXonG3Q_nxurLg@mail.gmail.com>
+ <anYZ8nUFP5dnRy/h@gsse-cloud1.jf.intel.com>
+ <CAHk-=whyk2-u_1bTh5ZTeX6jW3HgAtjJh0mV_oWtgsqCe=3w7g@mail.gmail.com>
+ <aoWHKmz17HQo2uy5@gsse-cloud1.jf.intel.com>
+ <CAHk-=wjv7SCjtg6JGDabGMXdqobx+WHogHfQeMPF2g_HmAU5qg@mail.gmail.com>
+ <CAHk-=whskfzdWdUs3NwYm+e9py91xdiG5mLfYf=g_6QLpdaP4g@mail.gmail.com>
+ <CAHk-=wjr-6qT89G6TLAPPYpzPbq-JYS0C5e4i_KAUXwNzeStzQ@mail.gmail.com>
+In-Reply-To: <CAHk-=wjr-6qT89G6TLAPPYpzPbq-JYS0C5e4i_KAUXwNzeStzQ@mail.gmail.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Wed, 19 Aug 2026 12:31:05 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wij8MOxRrWqeCWzAaFr=zcDxOiXu_2jwAwagBxyN35Ekw@mail.gmail.com>
+X-Gm-Features: AcwNN1XhQOXFxxzSI0Z1whZuW1PyyMF-vSEMPXVZhrPSBP5oHt9tD_ds6YZfnMo
+Message-ID: <CAHk-=wij8MOxRrWqeCWzAaFr=zcDxOiXu_2jwAwagBxyN35Ekw@mail.gmail.com>
+Subject: Re: drm: xe: Kernel-submitted job timed out
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-xe@lists.freedesktop.org, 
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,105 +109,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Low] Incomplete replacement of drm_info() with xe_log_info() for VRAM re=
-porting.
-- [Low] Brittle error handling by hardcoding -ENODEV instead of using the r=
-eturned error variable.
---
+On Wed, 19 Aug 2026 at 10:25, Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
+>
+> Update: with a single 6k monitor and no rotation, it works.
+>
+> In fact, it seems to work ok with a single 6k monitor and rotation
+> (orientation: "Portrait left").
 
---- Patch [12]: [PATCH 12/12] drm/xe/vram: Report VRAM errors using structu=
-red xe_log API ---
-commit 0430f39e6a6ab1de29f7a59722a6a22038b4d848
-Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Ok, that was not true.
 
-drm/xe/vram: Report VRAM errors using structured xe_log API
+It's the rotation. I can change the rotation dynamically, but then
+gnome - or gdm, or whatever - remembers it, and the next time I log in
+it will hang at login.
 
-Replace drm_err()/drm_info() with xe_log_err_fatal()/xe_log_info()
-using the VRAM component tag.
+So even a single-monitor setup breaks in the landscape left setting.
 
-Move the "no CPU visible VRAM" error out of vram_region_init() into its
-callers so that tile-based usage logs with the tile as location while
-device-level usage logs with the device. This gives better diagnostics
-by identifying which tile has no visible VRAM.
-
-> Replace drm_err()/drm_info() with xe_log_err_fatal()/xe_log_info()
-> using the VRAM component tag.
-
-[Severity: Low]
-Were the drm_info() calls in print_vram_region_info() intentionally skipped?
-
-The commit message mentions replacing drm_info(), but print_vram_region_inf=
-o()
-in drivers/gpu/drm/xe/xe_vram.c still uses drm_info(). This leaves the VRAM
-logging inconsistent.
-
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index 23eb7edbdd572..9fae593b07413 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
-
-[ ... ]
-
-> @@ -311,14 +311,18 @@ int xe_vram_probe(struct xe_device *xe)
->  		total_size +=3D region_size;
->  		available_size +=3D usable_size;
-> =20
-> -		err =3D vram_region_init(xe, tile->mem.vram, &lmem_bar, tile_offset, u=
-sable_size,
-> +		err =3D vram_region_init(xe, tile->mem.vram, &lmem_bar,
-> +				       tile_offset, usable_size,
->  				       region_size, remain_io_size);
-> -		if (err)
-> +		if (err) {
-> +			xe_log_err_fatal(tile, VRAM, -ENODEV,
-> +					 "without any CPU visible VRAM. Aborting.\n");
-
-[Severity: Low]
-Would it be better to pass the 'err' variable here instead of hardcoding
--ENODEV?
-
-If vram_region_init() is modified in the future to return other error
-codes (like -ENOMEM), this log message will incorrectly report -ENODEV inst=
-ead
-of the actual error code.
-
->  			return err;
-> +		}
-> =20
->  		if (total_size > lmem_bar.io_size) {
-> -			drm_info(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
-> -				 &total_size, &lmem_bar.io_size);
-> +			xe_log_info(xe, VRAM, "%pa is larger than resource %pa\n",
-> +				    &total_size, &lmem_bar.io_size);
->  		}
-> =20
->  		remain_io_size -=3D min_t(u64, tile->mem.vram->actual_physical_size, r=
-emain_io_size);
-> @@ -326,8 +330,11 @@ int xe_vram_probe(struct xe_device *xe)
-> =20
->  	err =3D vram_region_init(xe, xe->mem.vram, &lmem_bar, 0, available_size=
-, total_size,
->  			       lmem_bar.io_size);
-> -	if (err)
-> +	if (err) {
-> +		xe_log_err_fatal(xe, VRAM, -ENODEV,
-> +				 "without any CPU visible VRAM. Aborting.\n");
-
-[Severity: Low]
-Should this also use the 'err' variable instead of hardcoding -ENODEV?
-
->  		return err;
-> +	}
-> =20
->  	return devm_add_action_or_reset(xe->drm.dev, vram_fini, xe);
->  }
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260819191442.1957=
-986-1-dnyaneshwar.bhadane@intel.com?part=3D12
+                      Linus
