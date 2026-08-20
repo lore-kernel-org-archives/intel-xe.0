@@ -4,158 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74285C5DF82
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 18:51:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9EDFC5DF81
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 20:03:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26B0E10E22A;
-	Thu, 20 Aug 2026 18:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 860EA10F18A;
+	Thu, 20 Aug 2026 20:03:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gc1v/DBF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KcWNWn6o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68F1810E22A
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 18:51:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7B4E10E3B5;
+ Thu, 20 Aug 2026 20:03:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787251869; x=1818787869;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=qzSqRZxiYFifjpmeUXDo6LczW8/gc6UGi8BWyve60Rc=;
- b=Gc1v/DBFMBLOkrQKPTdG95VOqzB9rcczn7zD/gAWQp6AKXWjlzpMgBud
- 97FFIzj0z+7HHJ46ZUxyzSMNo/g3he9YW4/MdL8KiLwaCrGB7MjY5myBZ
- SBaTHq6F+J9kmKamzwgqm0OcmYee4hocqvf0V2zmSDp31OaeelY08whxs
- GS0OmsUnGIXytSYNjOHzCT3QsV95qakIptK8sOWkwFE4AkKHTW29MV8os
- 1RjLHjH9Ynl0LYDyRXHsnlCd+BYGqxmB9BnY08Lhmi6qbiKAI5P5LceoP
- Pyh4lAc6oQ/4qaNyAlp0wtICf/qEY2VEVZRE21CJ8o2h3/BECS1Xw1TZ8 Q==;
-X-CSE-ConnectionGUID: pDwGXl7/QtqwxuNFFreNzg==
-X-CSE-MsgGUID: KoQ4GWfPS16CM73dp0+L4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="98133942"
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="98133942"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 11:51:08 -0700
-X-CSE-ConnectionGUID: nIFEwco1ScCBYcw3bfQtyA==
-X-CSE-MsgGUID: s0VmMEjpRXqGideqOgr35g==
+ t=1787256216; x=1818792216;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=LHCc224nGAOTHCPvyYHQPXYvbYwbaBBUIN+G8M5gyUg=;
+ b=KcWNWn6oWJO+AUyzOZXyrqf8cZxfHgto6gLEkl3kQkKvoWPmK9jD0b3Q
+ QW4EvpJLduUm7l+t13rQWMHyuRigJhte8aCpwfmOS+Q4iKkZ7uvMGy9G/
+ +iNyUU/NIPaC6ehNrhIYsuhfgMJ8x0FGIolArWAHKvUOA1zgJKhBQ/eIo
+ HJ+g+zWImsBQnZz5w+Qjba9yUfboT5flIhKVLYNT2Eenjjn075aZtV8tc
+ Gww1C4pHgKohFy+pnlHv3TP2pAh1JIGfBhsH0AuSyzotN93x4rJaPtmSl
+ MXOQJprCl9NyE5IdXYTgpIIn+m/rGQKEW/sH/vBB6uh9fjb4th8UHY0JH w==;
+X-CSE-ConnectionGUID: lK/H05SpRDKMRtgiczS7KA==
+X-CSE-MsgGUID: L70/mRbISr2J+KbinQRywg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="86751759"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="86751759"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 13:03:35 -0700
+X-CSE-ConnectionGUID: ygiIvzfSQ8WdTOkYK4ghlg==
+X-CSE-MsgGUID: xW0Lr8tlSpKXv0xNwTihug==
 X-ExtLoop1: 1
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 11:51:08 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 20 Aug 2026 11:51:07 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 20 Aug 2026 11:51:07 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.54)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 20 Aug 2026 11:51:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=slFMOD7OvJj8HjCA2d3Jh7g2Jx4unRSL0KUcKkPGWs9czthSxlFfm2U/XNwZjBMVS4z74X7S/iIpuNFTTVUelUZeZKqP1dE/GAJ1NHkyyudLolrHXp9HJ8IuvDJBRinksrxUP5yqzB0yM4G0a6Hh1PMJQ/ABMqSVKMWmT31vDChNycfa8alrHtyibY5i7LNST8diETvUIQMampk5zaFXhewacshE7XaWYchftAGctpWYoPDWcy1XpscZrzjGulA9C9YAZQmGYtizrfowAtSpFZjDvOlpbkYU65TtQtJIWuHllaBG9QLTFZJJreB6jRGvMcIs908Yx8zmSFa55kQsHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oVosGKyErsLOczs65tpxEaaAWiZ92k9+Q4ABENhZ5NQ=;
- b=y7NvoLqweLVTSkUVZeHc9UUUdWxAS+8yk67pYOu9m3VmkF759eROachdRSUDKjFpICN2si4a3DBkpHPMmjAgrU18bTKcEE8nkocFMwbfhy22pFA0xErwhSMWfF2CjSIIfBUNHNE9BvjcQu+3ae5ceePluI/+IblP6sXTOFo1U0lTThO0iPv5oPthtKjNlxmUnt/N+Hgye4IcYvfoiApm59R0hL+W+hZ71IHdLbeYgipifZLvoQjzJPiakLmeFv1YBW/fzzmkxdyc8S5wdMRRMjhMspPQNnb5Jbfz4fDSK7f9cNIL70+D1vO9ZXKjqP+Y5nP9WIz1MIpm1wEgAdW7+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7821.namprd11.prod.outlook.com (2603:10b6:208:3f0::22)
- by DM4PR11MB8092.namprd11.prod.outlook.com (2603:10b6:8:184::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Thu, 20 Aug
- 2026 18:51:01 +0000
-Received: from IA1PR11MB7821.namprd11.prod.outlook.com
- ([fe80::6518:db96:947d:6203]) by IA1PR11MB7821.namprd11.prod.outlook.com
- ([fe80::6518:db96:947d:6203%5]) with mapi id 15.21.0339.007; Thu, 20 Aug 2026
- 18:51:01 +0000
-Message-ID: <43ca4e82-8439-4a85-bd3e-a4cfc529df40@intel.com>
-Date: Thu, 20 Aug 2026 11:50:59 -0700
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_start?=
- =?UTF-8?Q?ing_with_=5B1/2=5D_drm/xe/guc=3A_Test_GuC_v70=2E74=2E0_for_BMG=2C?=
- =?UTF-8?Q?_LNL=2C_PTL=2C_NVL-S/U/H_=28rev2=29?=
-To: <intel-xe@lists.freedesktop.org>
-References: <20260814210758.2779837-3-julia.filipchuk@intel.com>
- <178700286166.60193.12856761750857981244@61270ab9df2a>
-Content-Language: en-US
-From: Julia Filipchuk <julia.filipchuk@intel.com>
-Organization: Intel
-In-Reply-To: <178700286166.60193.12856761750857981244@61270ab9df2a>
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="269957186"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.82])
+ ([10.245.245.82])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 13:03:32 -0700
+Message-ID: <8b7001c68c94491095f41d2a3dff45090c0a95cf.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Fix unnecessary host-side population of ttm_tt
+ on non-TT resources
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Nathan Bourgeois <iridescentrosesfall@gmail.com>, Matthew Brost
+ <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Christian =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Matthew
+ Auld <matthew.auld@intel.com>, David Airlie	 <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>
+Date: Thu, 20 Aug 2026 22:03:30 +0200
+In-Reply-To: <CAMpTW2fxFRrpn1b5WGYBrtLLMfUo_fmx9s2D0b552GJp-sF5qg@mail.gmail.com>
+References: <20260820031901.1018324-1-iridescentrosesfall@gmail.com>
+ <aoczaCuoaZfUkfm5@gsse-cloud1.jf.intel.com>
+ <CAMpTW2cxRrG4oJ0HrRoKhHrVHxWO01-L+QDoWMLCAUaSfw75sA@mail.gmail.com>
+ <CAMpTW2fxFRrpn1b5WGYBrtLLMfUo_fmx9s2D0b552GJp-sF5qg@mail.gmail.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR03CA0284.namprd03.prod.outlook.com
- (2603:10b6:303:b5::19) To IA1PR11MB7821.namprd11.prod.outlook.com
- (2603:10b6:208:3f0::22)
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7821:EE_|DM4PR11MB8092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6acd5dfd-a192-4631-d409-08defeebfaee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|10067099003|11063799006|4143699003|22082099003|18002099003|56012099006;
-X-Microsoft-Antispam-Message-Info: toeBd6O3lafxwgdzLWvqbcLd8/rPQC5CCwj5xvJOUW6/EKfUQ+WDXRnUBM7/YijKFsbTcWIXih6ibrbX6QqXJkuoJTP6w7v+z9NukhFDDhAcWSwxbchA6qAGq0hqwEBDaf48GOdN2GNvf/vq6jsx62ZEYW8DZGBAZAVtFO8ZMOfi0CXVplKtjtVrI+Q/xKRBvxD9GChrgsrxSWHp16RLeNKj9hwcO0PqeF1MFPDOkTEhqzX4+sEBEucEKLqCs81AN+8wCgSBYOgcEmXDaiMx4zyxOhaauRkU8fdrSyk43VYClmfvOSYc7QTBXPAUA7VYWw0aPiXKnqOQ1Wx0vLGrucThG5j+D4gH+YXD4JEaUB+45eMz4WGVP49o9PcuYCRPJd2GLxz0Sk44DozaHROHJ0o1Iu6oH4b82N1uXNhXIL9MFqQxodqmHaIoH4++h1VB/sPmjU8ed7Z1C5VrZaIR4+VLhFPHtq2XON6Ojg4WUDZbfh0e17I2TcGuQXTK/Z15ojvrpHuZfkSb4cRXn09tQSfSaedxbMgHQOWMypxuYHPEgHHQhXergrbdCV6HvmOM+VPmRvyUZWtWLEJlk5df3YszVmESMBvS7WcN/JBYsKCiyDUp2p6kzto9IRqrt2Oh
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB7821.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(10067099003)(11063799006)(4143699003)(22082099003)(18002099003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDV0VWhKWGpZTTh6T3A3aDB4cmlDVmVLZG1ZT0JFaVl6V2tsS0gyQ3cwSEdW?=
- =?utf-8?B?a3pCUFlPSFlQdkQvWWtNaFJ4L25ZVWg4M2NYcHpOMFBmdUN0MFcyWjFPdjVu?=
- =?utf-8?B?VFh5dkdTSERMWXdNU01BV1FhVUtqY1h2UHpaOEYvOTZzdHFYMUtPVEpCYjcr?=
- =?utf-8?B?aml1ODBycGgxcWRPcmhYMkNWSkF1OHdrQU96VmRqTnp0K3RPV1JsSGtkVTNk?=
- =?utf-8?B?ZDREWVJkMU5RMGRDeFN6TUFSUjhqQzNxcHlmeTI3VVRsRVB4SUhnQVBtUUhC?=
- =?utf-8?B?TkoyUFRjRHFJSnRsKzZ0cGZCMkt3Q2xrdGVOSFZ5WXVncWQycGNBaVJHazF4?=
- =?utf-8?B?WHdldDRzVFdoY3NmMVI2L05RaDQyeHNOL2N5LzkycG1BVmNxWXJ5ZHlJYjNz?=
- =?utf-8?B?N1BjSXljbmZEWTJ0ejZHYTdoUXk4RW1JSTZXcEpXdVJrVWV2Y3NjTnhPZ0FE?=
- =?utf-8?B?bEFuYm5qV25jb3hMT216WXNLU0J4NlQ4ZGhaSUVCdklGZytqSjhqRTl3czJC?=
- =?utf-8?B?OFhwY3lDTjk3bXdlcnRQUXFVZ0NuMG83WmRoU0xXRmpqbG11WTZnZjRMdTQ0?=
- =?utf-8?B?WHVFRW9oUVppcEZJVVJwcDZ6bURPVU9mRjQwY2ZFbnZzVVI5ZFNsQzc1Z1oz?=
- =?utf-8?B?MWhtVUxwWEd5eTN2dk5JMVY0aHQ1bzVPMjBOQkVQeTh0eVlwNHVJaWNLZjVo?=
- =?utf-8?B?OG52ckcvTWdDUmIyZHk1R1FLeXpUeWNHc2FLT25lSkpJbDZzaTdheDJFUXh6?=
- =?utf-8?B?ODU5V3dJaWIvVTZHV2JlS2J3em9OOGNwY3dnVFoyK3JhNlhlSDhHRVJuajZw?=
- =?utf-8?B?V3gwTUdVUm43QnVwdWs1ZmlpcmVyZDBiMy9LRkp5Wi9hcTYyZTlHRENOQ1dF?=
- =?utf-8?B?Z3kxRzJhZ1krNzhENnlVNXZsY2oyZXNzTWpjNEFUc1o1MzRBL0d4enY2YjlV?=
- =?utf-8?B?c2RteC9rcFJWdERtclhWT3BnOGR1bm1uL1ROVjZkY3V4Zms1Mm5VUzM4RG1v?=
- =?utf-8?B?b0p4SnYrUnZpRHlUNVBMaUQ5MDVxOGVlTmFZdmtPLzJLMUowK1FOODFiSnpH?=
- =?utf-8?B?RjlONmhEL0x3N3R2a0xWTjV0bkQyRGFQTXI0NXA2OHFNU3dRNVFTWDNaMEZk?=
- =?utf-8?B?Sk16UEJBbmpydGVvWWdsVWVWQ0J2aytaZXFnQ1Ntb0lnTjBYNWozcUJPdUVx?=
- =?utf-8?B?clJkZHRmQU5DbUhLVFpUMnZmcDhRVWc3QWV1SkdZYU1kQmU5SXcrNnp6WVFP?=
- =?utf-8?B?TjdFWjN5d0VWNUZOTVhWV0RPZzk1TWhqbG1DbEZMQXh1QjExZ2QyZmFSME1P?=
- =?utf-8?B?aWNCbDNaZTJnaW5jTmJmc2ZVaHY1aHdLcVFBOEowWnR3N1ExOE9jdkd6Yzl4?=
- =?utf-8?B?RHZCa0RRQkpLZ1puaStsLzZJVWNkY1JrSU9GSEZxV3MzNlQ0dVZZWlNiT1M0?=
- =?utf-8?B?SEdhaDl6aEtBaXRwNk1qTy9ySU5pYTNaWGZucE1YMkJjanNRUG8xSTR1MGRN?=
- =?utf-8?B?dlZKNU04MEdBNXBIZ0Q5clJUZ0dtUWZEaTBpajlDMEkyRnI1cFBGRDZLb3Rl?=
- =?utf-8?B?RUV3dFZOMDk5Yk1qTDljUzc4MHZFZURuV3plZmVNMXhobEhmRWNTQXdwVmVV?=
- =?utf-8?B?OEtZRlVGTWU5Wno2NmhxK3NiNFRGbTFRQzVXVCthckpCelJTOUlLSFVJQzNR?=
- =?utf-8?B?SFI2M29RYWZzMTFLNXB0S0dld08xaU5xalBrK2FNdm1Qb3gzZ0ZKTkllM29j?=
- =?utf-8?B?TFJNY2RoZGtnTW9WUHE2YWQ2VlRVREdYWnkwT05LdnJ5eTRtZmxkZk0xZElS?=
- =?utf-8?B?cEFQTXBTQ3pvS3MrSzQvS0dQemg0SWlua0hoN3pCUWRQdzVWVmJxQnVhRzFn?=
- =?utf-8?B?dEZCblFaZHJKdDVKYUdrTFY5WE14SmJPS1ZxSnkrNExZcUZIMEkxaW1Pc3BY?=
- =?utf-8?B?dTdEOFBmVjA0R0p3aXRaK2xHTy93dmVMZithS09neldaMkltUDNic2RUVTY0?=
- =?utf-8?B?WEdDUGd2dmRYTjZDS0o3a3k1TnVreFZzRUYxbVlkT1JUQ3VPS1hFVnpBSUlo?=
- =?utf-8?B?eEdMaHdnMHpLNFVseGd1aW80UUFDYU5lV0lSTzZhdk0zbVlSbjVHTytjUEZu?=
- =?utf-8?B?cTgxditmWEFDVGloN250MVBWNlFmY1d3NjlyeG1wTU5yM0MvWUZGR0RTRENO?=
- =?utf-8?B?QW5HcHNiUm1vaFluOHhZeTVOT3dydFZLZWJFd05xVzI3VXkzWlhENWFBN3hu?=
- =?utf-8?B?Y3JPd2l3ampaYWkxTzkwa09zV3d1THhnU01GbmVUWXJ0TVRKSldsZEZCcThV?=
- =?utf-8?B?VWxNNHRkcktpNW54enhVWFhwcENaMTVmRWQ4dUhuNGNQWi9VeHJGdjlsL05S?=
- =?utf-8?Q?zfD2KU2azbh2mpt4=3D?=
-X-Exchange-RoutingPolicyChecked: HDpdOYFV+E+cQc0o5/hTd2s0LQb8t61Q32Aje/vHpTNc6n2utYsaovDrKXe2vsB35qbrcsrZ/egRrChspnCiQPUK4Ujp8gtNNf5M3a2sFrZL40t57KSTNC50U7D5wDA7oZgR2QKzUP2ODyrZqrVg+vBYf30iX/K6uazxQEgRFAO8IoLQgrO3BjvpFU/1jnMcdH81/L7vjID4GKoJoZ1RddnEpdD/UqEmaJZjXYbsplXMjVv6HdCRTEoxXZ2VOSCtFNcjeThxITEnklj1oFopQzJn+xduAWMMn5XSzT2cwktWudK8z9s+JsNymb1p/u2eOgzU64W5DCnHzYb4ylwamg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6acd5dfd-a192-4631-d409-08defeebfaee
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7821.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2026 18:51:01.5976 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hg5j99L6bFhhzEtGdWmahFFxvA0O92hIKGOcoHj7phB26gK+lNmnvw3wdvel58y4pcY5zsoZI1uhwTXru1Z/t82uhoERM9q6wehPqii5PAQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8092
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,15 +78,522 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 2026-08-20 at 14:56 -0400, Nathan Bourgeois wrote:
+> Hi,
+> Sorry, I replied only to Matt by mistake earlier and didn't realize
+> it
+> was text-only. Here's the same reply for the list:
+>=20
+> Hi Matt,
+>=20
+> Thank you so much for reviewing this!
+>=20
+> > Reading the commit which added ttm_bo_setup_export, to me this
+> > looks
+> > like a bug in ttm_bo_setup_export() or in general TTM.
+>=20
+> > 'This only applies currently to TTM_PL_SYSTEM objects, because
+> > GTT objects get populated on first validate, and VRAM doesn't
+> > use TT.'
+>=20
+> > I'd probably move this fix into ttm_bo_setup_export() and post it
+> > for
+> > discussion.
+>=20
+> I agree that this is a much cleaner and smaller fix, I initially
+> wanted to keep
+> the change scoped only to xe where it was causing an observable
+> issue,
+> but I will move it into ttm_bo_setup_export() given your
+> recommendation.
+>=20
+> > It may also be the case that the ttm_tt preallocated with
+> > XE_BO_FLAG_DEFER_BACKING should be dropped once the BO moves to
+> > VRAM, as
+> > that dangling ttm_tt could cause other issues. I'll need to take a
+> > closer look at that angle.
+>=20
+> Yes, considering that this is essentially the source of this
+> particular behavior
+> it stands to reason that there may be other latent correctness issues
+> caused
+> by the dangling ttm_tt.
+>=20
+> > This part looks good as different patch from what I'm assuming will
+> > be a
+> > TTM fix.
+>=20
+> Yes, I'll submit a patch with RFC for discussing the
+> ttm_bo_setup_export()
+> changes and a second patch for the unit test.
+>=20
+> Best Regards,
+> Nathan Bourgeois
+>=20
+>=20
+> On Thu, Aug 20, 2026 at 2:01=E2=80=AFPM Nathan Bourgeois
+> <iridescentrosesfall@gmail.com> wrote:
+> >=20
+> > Hi,
+> >=20
+> > Sorry, I replied only to Matt by mistake earlier. Here's the same
+> > reply for the list:
+> >=20
+> > Hi Matt, Thank you so much for reviewing this! > Reading the commit
+> > which added ttm_bo_setup_export, to me this looks
+> > > like a bug in ttm_bo_setup_export() or in general TTM.
+> >=20
+> > > 'This only applies currently to TTM_PL_SYSTEM objects, because
+> > > GTT objects get populated on first validate, and VRAM doesn't
+> > > use TT.'
+> >=20
+> > > I'd probably move this fix into ttm_bo_setup_export() and post it
+> > > for
+> > > discussion.
+> >=20
+> > I agree that this is a much cleaner and smaller fix, I initially
+> > wanted to keep
+> > the change scoped only to xe where it was causing an observable
+> > issue,
+> > but I will move it into ttm_bo_setup_export() given your
+> > recommendation.
+> >=20
+> > > It may also be the case that the ttm_tt preallocated with
+> > > XE_BO_FLAG_DEFER_BACKING should be dropped once the BO moves to
+> > > VRAM, as
+> > > that dangling ttm_tt could cause other issues. I'll need to take
+> > > a
+> > > closer look at that angle.
+> >=20
+> > Yes, considering that this is essentially the source of this
+> > particular behavior
+> > it stands to reason that there may be other latent correctness
+> > issues caused
+> > by the dangling ttm_tt.
+> >=20
+> > > This part looks good as different patch from what I'm assuming
+> > > will be a
+> > > TTM fix.
+> >=20
+> > Yes, I'll submit a patch with RFC for discussing the
+> > ttm_bo_setup_export()
+> > changes and a second patch for the unit test.
+> >=20
+> > Best Regards,
+> > Nathan Bourgeois
 
-This failure is unrelated to this patch set or new firmware.
+When I read the purpose of the original commit, I wonder if this is the
+correct solution.
 
-On 8/17/2026 2:41 PM, Patchwork wrote:
-> #### Possible regressions ####
-> 
->   * igt@xe_waitfence@engine:
->     - bat-wcl-2:          [PASS][1] -> [FAIL][2]
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5607-24a2127c5f2bce93dbb33cbbee84666272a5e716/bat-wcl-2/igt@xe_waitfence@engine.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172255v2/bat-wcl-2/igt@xe_waitfence@engine.html
-Relates to exiting issue.
-https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8820
+Regardless of whether the bo will eventually be attached as a VRAM
+(p2p) dma-buf or a system dma-buf, we essentially want to charge
+upfront.
+
+Shouldn't we just be calling xe_bo_validate() here instead of
+ttm_tt_populate? (With the correct xe_validation_guard() wrapping).
+
+ If it's a system bo, ttm_tt_populate would eventually be called. If
+it's a VRAM bo, we'd correctly charge dmemcg, and if the bo gets
+migrated to system as part of attach, whatever cgroup controller will
+be used for system memory will most likely charge the same cgroup that
+got charged for the VRAM.
+
+/Thomas
+
+> >=20
+> > On Thu, Aug 20, 2026 at 1:03=E2=80=AFPM Matthew Brost
+> > <matthew.brost@intel.com> wrote:
+> > >=20
+> > > On Wed, Aug 19, 2026 at 11:19:01PM -0400, Nathan Bourgeois wrote:
+> > >=20
+> > > Thanks the patch.
+> > >=20
+> > > > When a buffer object (BO) has a created but unpopulated ttm_tt
+> > > > and is
+> > > > exported, the default behavior populates the ttm_tt, even if
+> > > > the manager
+> > > > does not require a TT. This unnecessary host-side population
+> > > > reduces
+> > > > host memory available to the user.
+> > > >=20
+> > > > This occurs when a BO is created with XE_BO_FLAG_DEFER_BACKING
+> > > > and
+> > > > migration places the BO into a resource whose manager does not
+> > > > use the
+> > > > TT backing. The retained ttm_tt is not authoritative for
+> > > > storage, yet
+> > > > the default ttm_bo_setup_export() treats the existence of the
+> > > > ttm_tt as
+> > > > requiring population.
+> > > >=20
+> > >=20
+> > > Thanks for explaining this, I see the problem.
+> > >=20
+> > > > The issue was reproduced with vLLM 0.27.1 loading
+> > > > 0xSer0/DeepSeek-V4-Flash-180B (d3c704b) on a system with 128 GB
+> > > > of RAM
+> > > > and six Intel Arc Pro B70 GPUs providing 192 GB of VRAM.
+> > > > Loading the
+> > > > weights (100.61 GB) triggered host-memory exhaustion and OOM
+> > > > events on
+> > > > the baseline kernel.
+> > > >=20
+> > > > On Ubuntu 24.04 with 7.0-12-generic, the vLLM service cgroup
+> > > > grew by
+> > > > 115.84 GB on the instrumented baseline and by 15.34 GB with
+> > > > this change,
+> > > > a reduction of 100.50 GB. Diagnostic instrumentation counting
+> > > > cumulative
+> > > > TT pages across all six GPUs recorded 109.22 GB on baseline and
+> > > > 8.72 GB
+> > > > with this change. The reduction is 0.11 GB less than the model
+> > > > weight
+> > > > size.
+> > > >=20
+> > > > The change creates an Xe-local export setup helper which skips
+> > > > ttm_bo_populate() when the BO has a current resource manager
+> > > > and if that
+> > > > manager has use_tt =3D=3D false. If the manager does not use TT,
+> > > > then
+> > > > population is skipped, while an absent manager conservatively
+> > > > calls
+> > > > ttm_bo_populate(). Behavior for a manager which requires a TT
+> > > > backing
+> > > > remains unchanged. Keep this policy local to Xe so other TTM
+> > > > drivers
+> > > > retain their existing export behavior.
+> > > >=20
+> > >=20
+> > > Reading the commit which added ttm_bo_setup_export, to me this
+> > > looks
+> > > like a bug in ttm_bo_setup_export() or in general TTM.
+> > >=20
+> > > git format-patch -1 50243079865ae
+> > >=20
+> > > 'This only applies currently to TTM_PL_SYSTEM objects, because
+> > > GTT objects get populated on first validate, and VRAM doesn't
+> > > use TT.'
+> > >=20
+> > > I'd probably move this fix into ttm_bo_setup_export() and post it
+> > > for
+> > > discussion.
+> > >=20
+> > > It may also be the case that the ttm_tt preallocated with
+> > > XE_BO_FLAG_DEFER_BACKING should be dropped once the BO moves to
+> > > VRAM, as
+> > > that dangling ttm_tt could cause other issues. I'll need to take
+> > > a
+> > > closer look at that angle.
+> > >=20
+> > > > The regression test creates both the control case and the VRAM
+> > > > migration
+> > > > case. The control case creates the deferred BO in system RAM
+> > > > and leaves
+> > > > it there, which requires a TT and population when
+> > > > xe_gem_prime_export() is
+> > > > called. The VRAM migration case creates the deferred BO in
+> > > > system RAM
+> > > > and then migrates it to VRAM, which does not require a TT and
+> > > > thus, when
+> > > > xe_gem_prime_export() is called, no population occurs.
+> > > >=20
+> > >=20
+> > > This part looks good as different patch from what I'm assuming
+> > > will be a
+> > > TTM fix.
+> > >=20
+> > > Matt
+> > >=20
+> > > > Fixes: 91494dee1091 ("xe: populate buffers before exporting
+> > > > them.")
+> > > > Cc: stable@vger.kernel.org
+> > > > Assisted-by: Codex:gpt-5.6-sol
+> > > > Signed-off-by: Nathan Bourgeois <iridescentrosesfall@gmail.com>
+> > > > ---
+> > > > Newer Testing:
+> > > > - Built and booted b4f95affc66ef76342c1f6bf3849f6c8ade6b9d6
+> > > > plus this patch on EPYC 7352 with six Intel Arc Pro B70.
+> > > > - KUnit xe_live_test: xe_dma_buf_kunit: pass:6 fail:0 skip:0
+> > > > total:6 PASS
+> > > > - vLLM 0.27.1 loading DeepSeek-V4-Flash-0731 (full model
+> > > > compared to REAP) on six Intel Arc Pro B70 GPUs: No OOM error,
+> > > > 17.82 GB delta.
+> > > > =C2=A0drivers/gpu/drm/xe/tests/xe_dma_buf.c | 105
+> > > > ++++++++++++++++++++++++++
+> > > > =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 28 ++++++-
+> > > > =C2=A02 files changed, 132 insertions(+), 1 deletion(-)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> > > > b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> > > > index 0be8440b3976..bff803ab7a57 100644
+> > > > --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> > > > +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> > > > @@ -260,12 +260,117 @@ static const struct dma_buf_test_params
+> > > > test_params[] =3D {
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {}
+> > > > =C2=A0};
+> > > >=20
+> > > > +static void xe_test_dmabuf_export_deferred(struct xe_device
+> > > > *xe, u32 bo_flags,
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 u32 mem_type, bool
+> > > > expect_populated)
+> > > > +{
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_exec *exec =3D XE_VALIDATION_O=
+PT_OUT;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 struct kunit *test =3D kunit_get_current_=
+test();
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource_manager *man;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 struct dma_buf *dmabuf;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_bo *bo;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 size_t size =3D PAGE_SIZE;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 int err;
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /* No VRAM on device? */
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (!ttm_manager_type(&xe->ttm, mem_type)=
+)
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 return;
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (mem_type =3D=3D XE_PL_VRAM0 &&
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe->info.vram_fla=
+gs & XE_VRAM_FLAGS_NEED64K)
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 size =3D SZ_64K;
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /*
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * DEFER_BACKING places the BO in SY=
+STEM and creates a
+> > > > ttm_tt which
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * is unpopulated. In the case of VR=
+AM, migrating leaves
+> > > > the ttm_tt
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * retained and unpopulated while VR=
+AM becomes the real
+> > > > backing.
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 bo =3D xe_bo_create_user(xe, NULL, size,
+> > > > DRM_XE_GEM_CPU_CACHING_WC,
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 bo_flags |
+> > > > XE_BO_FLAG_DEFER_BACKING, NULL);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (IS_ERR(bo)) {
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 KUNIT_FAIL(test, "BO creation failed: %pe\n",
+> > > > bo);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 return;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 err =3D xe_bo_lock(bo, false);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (err) {
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 KUNIT_FAIL(test, "BO lock failed: %d\n", err);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 goto out_put_bo;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (bo->ttm.resource->mem_type !=3D mem_t=
+ype)
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 err =3D xe_bo_migrate(bo, mem_type, NULL, exec);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (err) {
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 KUNIT_FAIL(test, "BO migration to %u failed:
+> > > > %d\n", mem_type,
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 er=
+r);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 goto out_unlock;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 man =3D ttm_manager_type(bo->ttm.bdev, bo=
+->ttm.resource-
+> > > > >mem_type);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (!man || !bo->ttm.ttm) {
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 KUNIT_FAIL(test, "Expected a retained unpopulated
+> > > > TT\n");
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 goto out_unlock;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /* Precondition: ttm_tt starts unpopulate=
+d after
+> > > > migration */
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 KUNIT_EXPECT_EQ(test, man->use_tt, expect=
+_populated);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 KUNIT_EXPECT_FALSE(test, ttm_tt_is_popula=
+ted(bo-
+> > > > >ttm.ttm));
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_unlock(bo);
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 dmabuf =3D xe_gem_prime_export(&bo->ttm.b=
+ase, 0);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (IS_ERR(dmabuf)) {
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 KUNIT_FAIL(test, "dma-buf export failed: %pe\n",
+> > > > dmabuf);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 goto out_put_bo;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 err =3D xe_bo_lock(bo, false);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (err) {
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 KUNIT_FAIL(test, "post-export BO lock failed:
+> > > > %d\n", err);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 goto out_put_dmabuf;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /* Postcondition: if VRAM, ttm_tt remains=
+ unpopulated, if
+> > > > SYSTEM ttm_tt is populated */
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 KUNIT_EXPECT_EQ(test, bo->ttm.resource->m=
+em_type,
+> > > > mem_type);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 KUNIT_EXPECT_NOT_NULL(test, bo->ttm.ttm);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (bo->ttm.ttm)
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 KUNIT_EXPECT_EQ(test, ttm_tt_is_populated(bo-
+> > > > >ttm.ttm),
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 expect_populated);
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_unlock(bo);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 dma_buf_put(dmabuf);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 drm_gem_object_put(&bo->ttm.base);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 return;
+> > > > +
+> > > > +out_unlock:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_unlock(bo);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 goto out_put_bo;
+> > > > +out_put_dmabuf:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 dma_buf_put(dmabuf);
+> > > > +out_put_bo:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 drm_gem_object_put(&bo->ttm.base);
+> > > > +}
+> > > > +
+> > > > =C2=A0static int dma_buf_run_device(struct xe_device *xe)
+> > > > =C2=A0{
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct dma_buf_test_params *pa=
+rams;
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct kunit *test =3D kunit_get_cur=
+rent_test();
+> > > >=20
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 guard(xe_pm_runtime)(xe);
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /*
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * A retained TT must not be populat=
+ed when VRAM is the
+> > > > backing
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * resource.
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 xe_test_dmabuf_export_deferred(xe, XE_BO_=
+FLAG_VRAM0,
+> > > > XE_PL_VRAM0,
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 false=
+);
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /*
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Control case: deferred SYSTEM bac=
+king must still be
+> > > > populated
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * before export.
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 xe_test_dmabuf_export_deferred(xe, XE_BO_=
+FLAG_SYSTEM,
+> > > > XE_PL_SYSTEM,
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 true)=
+;
+> > > > +
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (params =3D test_params; params-=
+>mem_mask; ++params) {
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 struct dma_buf_test_params p =3D *params;
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > > > b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > > > index bf0728838ead..0c4e4e2e1a81 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > > > @@ -219,6 +219,32 @@ static const struct dma_buf_ops
+> > > > xe_dmabuf_ops =3D {
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .vunmap =3D drm_gem_dmabuf_vunmap,
+> > > > =C2=A0};
+> > > >=20
+> > > > +static int xe_dma_bo_setup_export(struct ttm_buffer_object
+> > > > *tbo,
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx)
+> > > > +{
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource_manager *man =3D NULL=
+;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 int ret;
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D ttm_bo_reserve(tbo, false, false,=
+ NULL);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 return ret;
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (tbo->resource)
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 man =3D ttm_manager_type(tbo->bdev, tbo->resource-
+> > > > >mem_type);
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /*
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Do not populate BO-sized system p=
+ages when backed by a
+> > > > non-TT resource.
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * This is Xe-specific; the generic =
+ttm_bo_setup_export()
+> > > > always populates.
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (man && !man->use_tt)
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 ret =3D 0;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 else
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 ret =3D ttm_bo_populate(tbo, ctx);
+> > > > +
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_unreserve(tbo);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 return ret;
+> > > > +}
+> > > > +
+> > > > =C2=A0struct dma_buf *xe_gem_prime_export(struct drm_gem_object
+> > > > *obj, int flags)
+> > > > =C2=A0{
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_bo *bo =3D gem_to_xe_bo(ob=
+j);
+> > > > @@ -257,7 +283,7 @@ struct dma_buf *xe_gem_prime_export(struct
+> > > > drm_gem_object *obj, int flags)
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_willneed_get_locked(bo);
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_unlock(bo);
+> > > >=20
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D ttm_bo_setup_export(&bo->ttm, &ct=
+x);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D xe_dma_bo_setup_export(&bo->ttm, =
+&ctx);
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 goto out_put;
+> > > >=20
+> > > >=20
+> > > > base-commit: b4f95affc66ef76342c1f6bf3849f6c8ade6b9d6
+> > > > --
+> > > > 2.55.0
+> > > >=20
