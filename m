@@ -4,150 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A783C5DF81
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 15:22:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63248C5DF85
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 16:37:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94B5E10F0A7;
-	Thu, 20 Aug 2026 15:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07A6710E20A;
+	Thu, 20 Aug 2026 16:37:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eU0v765X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGbQVDMv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D4D310F0A7
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 15:22:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B8DC10E20A
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 16:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787239340; x=1818775340;
+ t=1787243856; x=1818779856;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=UNco5vqOSSsqGqUPArkxSNYMDoiG6cE8IkW/iJO7nT8=;
- b=eU0v765X60kl4KyrHISYgQfCUU2H7v1W2yAWTCQ5J34jYs12lRWbLC/z
- skacC5hXQjVcE9tHHu8kpAbRcYkLV4j5fqhk+dJmGSuFs9iBlrQhi6l8q
- yDPNwP02cHtWCOs2PHpU9XeDavmdIv1viEj+yO1xV7AfBj6U/0Z1bMlEg
- HLxT+yu7lG2qekV9L67cefcP2jR1MC5/vDqGKPCO4sQemOc5ME4UhYowJ
- NBpfOIft55n35iFUZPZ8vUjg5uTCCNZRiKt9uSygMmwWtWi2c/YjhwMBh
- cdK15dPeCKMFmkJeAaZTyQkUcMhWBXJGIrERpn8n+raO2tWwoZerAw0/z Q==;
-X-CSE-ConnectionGUID: 3OyivW2bSzSaL8cHe1aloA==
-X-CSE-MsgGUID: 5W2Cx7V8QJqxhgy4HeBmCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="86727433"
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="86727433"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 08:22:19 -0700
-X-CSE-ConnectionGUID: r6LI3Ml5T3iCtQ3yS8axRw==
-X-CSE-MsgGUID: qbmGGTjTTeajzN1QDyB+cQ==
+ in-reply-to:mime-version;
+ bh=JvzPfA0NW+ovMRYPX+orRDViDQEVBYzh8OzNfSTXrBw=;
+ b=ZGbQVDMvpZGL6//tPgwVOfZ48Sblj+uq/lrDhLpFT+qIuWNtStzvz0wF
+ Y8kQfvJ9ib8J8ed6kQ7ybVO2w6N9tkxuzu9vVWFm3W69vTcQHlleQqLe3
+ iYlzGXPoCUfESu7YhljzianaFkdXZMrvZks1LLt+7lB5ahFmY4mBEUjPr
+ ki7l7a8P3H57ocJBwMV+1mYTd0mkaR7bLm+GUccJBBLIcEr9sUy5DCg2n
+ sspWENta4a52MJ/i+ElPTGv9uEsZHMoMLUQ3hGQA8h3r/0yOqDYU2Job7
+ xF3MLki2eWSI+Vz9dMt0ETRe4CzsST1pKJtcSp5JzC2nsxGLzuX343EEy g==;
+X-CSE-ConnectionGUID: nTHA64EXQnOrhSdaUHFetA==
+X-CSE-MsgGUID: ZSCoy63uRxGq0goTFI2Xog==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="86905869"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="86905869"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 09:37:34 -0700
+X-CSE-ConnectionGUID: PWxjCvbbSPqFRe2PUPMuFQ==
+X-CSE-MsgGUID: doQzP7v2TXaz0Igwij2Fgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="270310633"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 08:22:19 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="269572630"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 09:37:34 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 20 Aug 2026 08:22:19 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.45; Thu, 20 Aug 2026 09:37:32 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 20 Aug 2026 08:22:19 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.33)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.45 via Frontend Transport; Thu, 20 Aug 2026 09:37:32 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.1) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 20 Aug 2026 08:22:18 -0700
+ 15.2.2562.45; Thu, 20 Aug 2026 09:37:32 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hpigTyK5eDiKZVlYxHlY2OrsWc/t8wLmS2FJo9Q9PtITJcpN1v+3dTUjUFKqWbV83v96cJseLY9mwfMOOeoUY8rdZVAjiOiCHBwms/gDsTeMmgegBRe97CbhuAA/MtJa7I6w2Ao/STRoh5oTbTvcJs4BrinfxAFelBUkMYq5FkHTZwJzw9ScgyTXnjxwkXBW4AWDS2nPNoNiv10IX2itQcNJ8Zf3YsjMLNTRZA7VkbgRuyM18KSckkxcVmKECitOQkMwT1cyfi2NH93gkO7jN7fJ47W4+ckrZztr6g/dCgn24G/oNWaNYw5acq4XDqTCwpzy5vJuUHqNqnKIj/p2Mg==
+ b=wsK4zYUjZb91URx8VMJQd3f8dJTkxnQb4EP7NJPdN0wsR3A2MfDunisSTjAgzQwRessZXL8RjqmHJseei+nT3LmncIo8MgskF+tZ449optf9Zk7ohewcTPZK+eVk0g/oE2U8mRXCHg4WhPBzaDqIjkh22NFzGQSRn4Wzm8XOqAOxH74zi7c8d95x38eH3aW2VyPi94mHwSwS9ASROax0oL32SJ+iFUCc7AXvc0KWTPH4F1W83N8Sy+xESBG+U/RP2pBWYSus0NQFmKnMbIwe/vE8FjoBopyPo0MYxdZezauRy7ebkz8haJPWTom28B6Vjkvwo3AQZmDZXKzjxjiyCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bcxX/IZgzsgqsSfurxIlV74nUPpEQseKhwtiiCfC30s=;
- b=nDmm04VEOsH7HO8eLJP8rFv0KnM5vr6wzOmoxOY9hGsjZqLCSYLa4KCCrFcla5lFfSL/koB6SHqtOSF1e2BENIt44TiO2nlJj/BbqqcayG/0koKHU58qj3WadFF7AryMzZ16Ng1Ot+uWf0uXoCpQm9m93BfAdTjlTcd33gVQuYwss7g2Bic1cHwdHbmKtmu7++g7B5s0IzVC3xvRwVecPBovLfXMLL5VkIGaeQt/ua35oeZpuUv2fr10ub1rWrNWjOxuegckDXT8tkpT5EPB/95doqhgNqSr5m/RxS70Jcz1KdWc5imKVSUHMdPCaxK5DlLjSuDqsUMJ5QPVYWk/Xg==
+ bh=CX7ojZPEyt28l6fU5itq2Ln7Sg19+TKNgkbiIHZamBo=;
+ b=oao9rOd2ZhAwqgZ9mLquX3D4XxtsGZ5lbcvEbyMrvRlcclA+bGKOqiiWXXO4ME2JZSxyNyqdx/mtbOQbmNiXSpdwqRhLQyJquKwOkS6fbsJnMtV+L8zL1vrVu0hXcfEzAMVKSwDLt+6lKcvmGMzVsXZhn/50knf/y8QBan86EJ8xBvinCaFeaHEjEkdXkeuK8/QwpUBPWAl//QmNWUFmb+srY0VStjROVj/ioG+bMj5q+8xp1HXfuH/jJgqD6Hb5DCMyubPwqLOeyB23DkHugRb56AvUSqCdtjmaKZtOkpVClaRBxx4nfW1GHKGSbT+5Jb47m3moKJatvkrX0bNc+A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CH0PR11MB8086.namprd11.prod.outlook.com (2603:10b6:610:190::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.10; Thu, 20 Aug
- 2026 15:22:15 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0339.008; Thu, 20 Aug 2026
- 15:22:14 +0000
-Date: Thu, 20 Aug 2026 08:22:12 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v3 6/6] drm/pagemap: Add fault injection for higher-order
- RAM folio allocation
-Message-ID: <aocbpOKlZaYVzXms@gsse-cloud1.jf.intel.com>
-References: <20260805231041.3791771-1-matthew.brost@intel.com>
- <20260805231041.3791771-7-matthew.brost@intel.com>
- <bc7357ee-e7f2-442b-a367-b3be2be6559e@intel.com>
- <aoam2CCqmye2vWxF@gsse-cloud1.jf.intel.com>
- <3a0fd8de-6e2e-45d0-803f-a0274d4630ce@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by CH8PR11MB9506.namprd11.prod.outlook.com (2603:10b6:610:2bf::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Thu, 20 Aug
+ 2026 16:37:31 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.21.0339.008; Thu, 20 Aug 2026
+ 16:37:30 +0000
+Date: Thu, 20 Aug 2026 09:37:23 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Anoop Vijay <anoop.c.vijay@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <badal.nilawar@intel.com>,
+ <rodrigo.vivi@intel.com>, <aravind.iddamsetty@intel.com>,
+ <riana.tauro@intel.com>, <anshuman.gupta@intel.com>,
+ <matthew.d.roper@intel.com>, <michael.j.ruhl@intel.com>,
+ <paul.e.luse@intel.com>, <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
+Subject: Re: [PATCH v7 1/2] drm/xe/sysctrl: Add helper to query application
+ status
+Message-ID: <aoctQ2m314GQeaih@soc-5CG1426VCC.clients.intel.com>
+References: <20260814095306.2482289-4-anoop.c.vijay@intel.com>
+ <20260814095306.2482289-5-anoop.c.vijay@intel.com>
+ <an+G21kQjK+AUI9K@soc-5CG1426VCC.clients.intel.com>
+ <026e7bf1-080f-4d95-965b-83c2afaf6660@intel.com>
+ <aoYZY8fMaqT8NNFk@soc-5CG1426VCC.clients.intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3a0fd8de-6e2e-45d0-803f-a0274d4630ce@intel.com>
-X-ClientProxiedBy: MW4PR04CA0261.namprd04.prod.outlook.com
- (2603:10b6:303:88::26) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <aoYZY8fMaqT8NNFk@soc-5CG1426VCC.clients.intel.com>
+X-ClientProxiedBy: MW4P221CA0024.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:303:8b::29) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH0PR11MB8086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 91071b8a-865f-4b9e-a569-08defeced042
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|CH8PR11MB9506:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe84f3de-a52b-411e-3691-08defed953f0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|10067099003|56012099006|6133799003|22082099003|18002099003|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: Wev+6WHGmgzF6xopeXQ/GsoZZWyt+hmFPoFsX5yF1cGH2Sse97DBnEnJt58ANUOOgtgTW/WyrtmB+OFSv8tUTVr8LOsoPeX//bTfI/VaRykW+ydgQhVdWPBOLJptokNeOh5UIuKPxoYz8VKQJlHyy/n9idZ/A/NuCAS0gXPCVSLI3RG0s4mrcDOG3Ex7pAJC0TT6WldUDi4kjObfb8QV6vB0EQ1M5CoiYI/4eJjiaVzzGyaiqgCf29BY+qSDxYv1MeVvO2S+VQN/uLaK5fSqbiYDyahIlfQY0hVEEKNNfNDgS/Hk8UBUv+VBazMTVXoYOdN1AKt0cZ8omzEg4DPaaVabJc/gJGwmh9qhYQQfnFSfgpEbwYRMt14Byt7PIx4ZVPDtnhpWJbADjd4YiEQLeJhmCkxsxkJaC6kHXdpLeXlqBi7ibeKDrDHFbS40oemmtNKWJUCStPRHr+YKrfy7ZkPBVG2rRqdC2MB67vq4ZOhb/tBp6BnFNZxXNvwW6kNF//UFbDZ9fx0GwPxrYAL8wNP8OgvBUhcqDzRVK6oTG40TvRY+LLGMrRFZeESGW04O8IKhbYVKQBhXQuMzaovRInDmzuxK4TQxDqCqpUU3EAwJYjIXdZ8mT/hFrerBWgP+eZwtzHzjzZUXAEO0rYhqyeX4Yj0SlTbov7i36Intehk=
+ ARA:13230040|23010399003|376014|1800799024|366016|11063799006|6133799003|10067099003|4143699003|56012099006|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: ew9acA6Apgp0fOMnHTMBN3lUYnoKj+LVAEdUi9kl+oQrDvOXZaVVTDhrhUceY8L/YkfyADGz1XhRHDJQ29u+oTblEZ3dz8JnvQ8oWTYx68QyMTZ2FV/CDEv6SorHAWQpX76QNexJlzixnf2PZEcmzAvc7/sHQDOZRLr9ubNxZ+p88KfsENdwpwog1+aa/NJLh4moDWVLxj0B/6TTOeKXx3QKjiPpph8ui86PCR+mcG3xUijpyTRMa4QQxVlE35iySezTgjc8WCNBJrDrhITz0v5uIO1FoCnnUPau85hjgvfVdPmG3J1fOkiDNWdMk3LsZu2wAkLttQRFp84+lOFQJ/+q1K1rlDUn1twGfAfqazK/99cAxIY3VOU4KgHzyEwlQKiJ2f+TZHFoycD7mgtAM8QbGD/K0Ytg+kS4H+zsSn6zlZdhi56uXy4exwjxssGfgVnwI5uwYZrte/cTDVitnwWVxREe57oNob2aekP7wGJZ8SmaGBI5PLjr+eYkr4DzwACjhS1nZuRLQ0B0SphuwScwgNg5Wf0jQRIh3sMVfFNmwwHzW586jZFe1lP4oDdz3FvV7j2xc0ZdYc+3D9KGUPWOrT7/bc2VV/YnnW2mI20tSiJ2OY/bGFdZ1RJaByBm
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(10067099003)(56012099006)(6133799003)(22082099003)(18002099003)(4143699003)(11063799006);
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(11063799006)(6133799003)(10067099003)(4143699003)(56012099006)(22082099003)(18002099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?t6GEUwximjp+7yZqUP4tMS2XdKJPIOSBEdk1tP0gAxpPp431Nvyy4Pzrbd?=
- =?iso-8859-1?Q?8Mk0qGe3rEFBfQAYaKuO+uvSis1fcsq9wYb1dHtuxzn6dR4qQ2LXKTbo+P?=
- =?iso-8859-1?Q?VVuidls3EVm1rI/gcpGRC3Co7DvIta+AnGdLhtBd0qKDVAZJYsVQRrulqN?=
- =?iso-8859-1?Q?KCiTPGHeVGlDu77+OymnqBi6ee98jTy6jVm8pl9yRtifc93URPg4C7/2/w?=
- =?iso-8859-1?Q?5bjR2LOu8aS31qARKRI/dMuaQpOlupFbMmQyTqn4y1nZ78DOCtdV8H443T?=
- =?iso-8859-1?Q?poQ+77a9ORwK/dPvC/d63brLBWme5J29Mgd6X9ljI2CpaSNaZSbjE7CtYf?=
- =?iso-8859-1?Q?tBl6SXeoMFcrTqCpL2u01haZ4HnUIngRDyR/Oky7pw3D005DQwqp2x5VL1?=
- =?iso-8859-1?Q?dHVJFDWks8+/wv0pRgmtNd2uA+v/eGgMjNrdLlLEbmcbmbncaq9bmVpHRP?=
- =?iso-8859-1?Q?t2IM4IckiIFKZZ504EylHLH3VljRKfmca7GgFJiXTSa8DxjQruwZownniw?=
- =?iso-8859-1?Q?BovFdTRc8jJ2ldort2vSByQb+M2ueKHWkMc9wv9LNuqs3El93IGjZVxI/r?=
- =?iso-8859-1?Q?7Hv9YLyVnWJcXsg+oIADzjNvC/jslgOwW4m8BqC8/zb0rNRWbmNHafRDzs?=
- =?iso-8859-1?Q?nS6FCDvGVQsBLZf2/8F6QVM/sOXGFseledA8R01CS3E+exkjaBsmW6l/gF?=
- =?iso-8859-1?Q?6lBATg23XYKkV2pWhPdVoH6grlEkgR9Rp8eSA0brlwEtrKFq5T0KbSxbt5?=
- =?iso-8859-1?Q?EtA2RrYitkVpEWzYGrAiHomH3zsa3aNcwYYWxtnA2Xxa+vToxbkdQK4HAD?=
- =?iso-8859-1?Q?ud+mfMlKyrrgvlTAQQhRbqMr2ztl1J3drIOalYj6vhVUmTJ0D7jivvMEsr?=
- =?iso-8859-1?Q?s5IeftFg6BSBtAeaw6ZPL8GcbYQnen1jM6pxbTBCR37iBlELK9zfNSWVOz?=
- =?iso-8859-1?Q?Wu9h2eygS7cvgY4za3I+warStdfgKEbJbxkgpeZfoWt7BiJBGy2XPq3AYl?=
- =?iso-8859-1?Q?iuarrUaI59wMFixY0KvwhY9nLd8UUGSZdL07OJWouTJYZzH17BRoNdRUd2?=
- =?iso-8859-1?Q?TTvtSR8uFDR3yIYMobKIlz41yZVJ+YzMrVp5/3BvVwj99uDVYGTUzud1yG?=
- =?iso-8859-1?Q?ciAQe7a303Ejbtmi9bt7ud6LrKiO1TMnX47q1MZZBin7Athohg2JSQaT+k?=
- =?iso-8859-1?Q?UFQdyf8c/IC6rm2jev1k/BCIMVBzj/xjXg1RHGKdUivxFave6MDv8MRMlh?=
- =?iso-8859-1?Q?MYNlbIXpT3B1Q93m+Q2Irev5lLrvl1VdmO1GfHK0+RPqCGp14Dpty3RZmE?=
- =?iso-8859-1?Q?ZDJuyNO5K08RzA5JJVs2UdIXAjZBQNiy+w3hP7CL4wJAAKiO7HJX2anCVI?=
- =?iso-8859-1?Q?y2cSRds6S8FAF7ozEYZI+Nf4bbGvYhG+SxgvdDYahrTDuDSLi2QZGB0/hG?=
- =?iso-8859-1?Q?xE/3q/JelqbATGwRZWyKpFrSFLOxU++xl42IKYNt+dokbnXDZZNFHtIzch?=
- =?iso-8859-1?Q?ELXLUMFbIjrd8PbaqfWIgS5BmdsFfigUm0tx9ww1v88i0IcZTmsE4LMQjx?=
- =?iso-8859-1?Q?xL2asmAJBqogTLlQOnHrnMc8x+hBg9StL4gMSoExCDajzO8CTsMdhtJRi0?=
- =?iso-8859-1?Q?jSmG/emHLEBZBEHd5X9oi+kFoBjU/CSuK1a7pOSgW42jk3Ci4ViJPV4eHu?=
- =?iso-8859-1?Q?5mw7zdXC5MZ/VvMPvL8zsbRpiwP07h93LQovHkgbk7bILg4F3/0rbC89r/?=
- =?iso-8859-1?Q?53wCIQvAjwQZPj5DRbQ6jwfOvcuToaScCVi/SrTgMLOl/XiawoqVBW1Ich?=
- =?iso-8859-1?Q?vEkiG3F752NUmLNSrUyaP8lqTaz+4j0=3D?=
-X-Exchange-RoutingPolicyChecked: HeFL6XlciywfoqcxXvSfcsQNzp0+xD8hRh5v9ZXPWEo0mZni2+igicCYkpCt0fascP44SBc6p3R60uuEyugIpPD23IVebpHkFGCis8lsnPQvLEhPpiEmYYL8nZPct0rr4JQrdH1MEjjOWluA95br8xQQ3JuyooNzkMHAC3IMcBGCX1AgpA5BN/dFfuYzBmNmHGbZUElhzwB+teW7RwoUPrNcF/Vt+ff3DlphmRaGH+k2XLKcEonuwGKneQqjK8LObjoEz6+69Div7Eqaayy70e12LBZZUJzG9wAT5zgquvnMOqpjEMdv3S35jRjGswsIriA8cB3yldav1xBTgri6Dw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91071b8a-865f-4b9e-a569-08defeced042
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NDVXT1hvem1FSG1ud2ZBMkp0Yy9YQ1hac3NwMGc3N3MyUlBGWXUrTGdneEtz?=
+ =?utf-8?B?bGgzM0I3d3JIaDF0NEh4TUFKb282OHR4T3NMaUlYci9MaUV3N0RuL2NhRDJh?=
+ =?utf-8?B?dVdZRkdJbTdlVkRwT3J2ODVMSVlURUN3N01ZcENVZ1VNenhoektkZTluR3Mr?=
+ =?utf-8?B?SGlzMStWeUdoZlozK3lka0xYRHJ6WVU5SGN4ZWxHSW43TVlqMmFYMFlVeGpK?=
+ =?utf-8?B?SXJNMUhQV3dhenlyZlVETngvRGVWeWFOaTFteS9EVTFqQ1NLUTRxZTdMSFdm?=
+ =?utf-8?B?UEx5V3laUDBpTUwrTkptbDhPNnV6Z3NrZWhobmhGUWRKRFZlRzluRmJuZURI?=
+ =?utf-8?B?Z0tPak5NWDl4OTEvUHJ4QUNSR1EyM3MzYmViS2owVlJDNGd1WVYxQzNmRVFa?=
+ =?utf-8?B?WENvTERrWWJrK1lTSzdwRGxMMVhRaG9RUXNvZHRsZGQ1S2hVQitTeFE2aWx0?=
+ =?utf-8?B?ZzhaVk04ZXJTdW5CdjdWNFFGcVRMZHYxRTBHUmxLSjFFcGxSU1BqbXNEZjd5?=
+ =?utf-8?B?ZFNxbXhTbGc1VDJ0bnF4Snp3dkJucWFlTnNqSVBublhSUjZkT2xILzhTMzZ2?=
+ =?utf-8?B?MzdaZnVoNmJXcDFFQW5jM0hGQU81Q28rYVJnelFQUXpONjFHZVB5bVVRbmps?=
+ =?utf-8?B?NzVBdmowRFZYalNFcUFDZ0o1UDVZRHpxSUZwWmFYSlV0akVtUDdZRzBwbTVq?=
+ =?utf-8?B?N3p1U0ttQ1ByWmdGcWkwdkNWUzNpeFh5d1RpRGwrNEN3ZjNydGRkTjQ4ZVZ1?=
+ =?utf-8?B?a3E1cDdTTHVKcnVCMkw1RlVRb1I2cG1JNEtncGlia0pmVzdkRUtrL3RaWnNi?=
+ =?utf-8?B?V1RRZEpiMDllL2Q3bmZISStPdko4ajZLY2hsK1hRMzQ1bzNkWFRHZ1g3RFRP?=
+ =?utf-8?B?d2M1VjBPZW1uM1lZQkgzdUx3aWNMcURtQVdITld0RDJCWVFxeUIyUXY3QkZ6?=
+ =?utf-8?B?eTNUd2krWkE5TktrZXFjTkR4Qi9oaGJMTTdrS1NWOXpTUUpGdmhqU2Ixd0h2?=
+ =?utf-8?B?Q3dLT2loendLbkMzejVvdUtRdmhOTDFvNG81SGpyaUZQT01tV1FFSCs1TUlB?=
+ =?utf-8?B?dnY1UnhHUlRkZGZpWklsL2lIWXJYMU9oREJFcTJHNnhtODJqeHZGTTVkd1Jz?=
+ =?utf-8?B?Wk5PZnJrMEZTMCsxb1dKVGVjN1FpZ3BUaWVRUWRKOHBrNERRWWRzZXVjRThq?=
+ =?utf-8?B?QnROV0VzWEkrdG44TDRhVjlRcEtZQ0pOUnpwQ3VYbXc5QzJ6U2VleU5lU3pD?=
+ =?utf-8?B?ZGNvb3RwdXZwbG9aZGc0L2FJWW03VzVnSDhKdFU4enM0aTEzR3Jxdy93ZzRq?=
+ =?utf-8?B?dTA1NjNlTHFwS1FPSVBhNmlWSncxc1BwUGduSWNFbVlmeE5vbGxxeFF4UmJP?=
+ =?utf-8?B?Vlh6a0phRnpzbHNEY0NHTlpzWlpCR3dLd2V6UlMxZ0Q5M1ppMFRQZnRLaC9F?=
+ =?utf-8?B?RHhGdW5LR2RDQS9nMCtkZ0lMNUpHelQ0ZURPK2xaa2NNWDhXNU4yOVZrZGJC?=
+ =?utf-8?B?bCtLMHUyZTZxVDRXSzgxSSt3QUZWL0VTOHJZTEZvenFxLzZ6OXJlRkc4cVV4?=
+ =?utf-8?B?dXlEOFBFc0o1Z0NDVXR6SmVBdjYwZDUrN3djK3Y4VVJEQzgwL0VmK0FKeDBh?=
+ =?utf-8?B?TnkxZEZURnU4VmdtcldxRWN5UGd0UjBVN2k0VmRYM1kxOFVpQnNxUjlsSFZW?=
+ =?utf-8?B?V0RTSVY1ei8wclY3UEZtMEZVUCt2Mys0WitqOW1DRnlEWjZrS1RBanRhWWNR?=
+ =?utf-8?B?dlVtZ0M1cXRjSGNhT2RPRWcrMVFaQmd4ejFHTEFkTmhMak9ZNVl6L3Zod3Mw?=
+ =?utf-8?B?aFRFbTZhV2c3OVFHZDNhNjFrTzFvK240b0l1UW8xYlFLSUpYV3FDclUyVlFr?=
+ =?utf-8?B?MTBxdHJScVdkVkZKZDlwZXkvZHh0d1piVUpOaXBRb25oN0xrUWd6YVJDT0RM?=
+ =?utf-8?B?eGl6UHVQQUNWQ3FJTlZmejl0aHZEVko2dmgwa1p5akRoQ1RtbWZ0OXI3d0lh?=
+ =?utf-8?B?QUllcW9KYTV0TmRncmdWT3Vac3dwMkNSY3ZoYUxYQzRiYi9UTEhic0NJNkxu?=
+ =?utf-8?B?QituQlNWb2ZQbE9Uc1kzcmdQczE3YkJadFo0SXYwNlFveU1Tdno4RUZLN3Rp?=
+ =?utf-8?B?Rm9VZzBLRkNqNG9uejM1LytHbHk2SEVtTXNwTVg4Z254R0VUdXF6ZlR2SDlL?=
+ =?utf-8?B?TUVUZVUzT0RsQ2k3RjdjM2ZBc0s0c3paZGJoN29YU0swMEYrZW1rSk5vbzg3?=
+ =?utf-8?B?UW9KRVR2SVNsQ09BakRjRHFWeitrZDE2Z211VytXakZMaHlsK3BDTTFJMlRr?=
+ =?utf-8?B?N3ltQUtOdWt4UVFlanNTUVRsd0xuVkpqSXFCRUZaQ2pxZUxVcSs1V2pLSWdZ?=
+ =?utf-8?Q?OAq8KS4Kfb1OgpgM=3D?=
+X-Exchange-RoutingPolicyChecked: UycgDGyW8B/iO7VLVXeIkKGjdnPkBZmjOzXNCvxr+nPWmP1wCb/1X4vr4SubOooknv06YEBEVjaWJhNxFXa8Xl7qO94vjXvXY8o6xRief+aG27vctlBjyhGmRDM98tetHUIuN0HKnYdCPbESkiUzjETrgJf1gg5bj19ZB12+9JvGOUaQ+HxrgkeKbelZlitlURmtFdRi4kOrUiaCMQ3iY+W/dem0mCy7ySvbEYnjI3IbNZ3lsrWxFX1O7A2L8f0SMn6Aa25JwmTgbsNxq91c84t6RHtxV8TdPy0P6wTldJqS5DT77QFS5I1YslOM4rXkSmsaRoxlRuOHEXDHe/T+rQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe84f3de-a52b-411e-3691-08defed953f0
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2026 15:22:14.6553 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2026 16:37:30.6261 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dQf1b5nC0eCeLFrPZ5L3dxN4WH3oyl8WL8g9jGEnwdMAX8Dv8zw97NBosnSocGNS84b+zt2cO3ysHd9CXr/klA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8086
+X-MS-Exchange-CrossTenant-UserPrincipalName: /CWAoxMH/LWXzlJ4gpW83b3m1PtIWhXfs3XCejYO4eCTjiwgudHE75rpk9FhehQSQbX0lqxPVPE51DwYsgOx4WcXzU8J2rGWuAMmLNjO8KE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH8PR11MB9506
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,168 +175,338 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 20, 2026 at 03:58:16PM +0530, Ghimiray, Himal Prasad wrote:
-> 
-> 
-> On 20-08-2026 12:33, Matthew Brost wrote:
-> > On Sun, Aug 16, 2026 at 08:44:21PM +0530, Ghimiray, Himal Prasad wrote:
-> > > 
-> > > 
-> > > On 06-08-2026 04:40, Matthew Brost wrote:
-> > > > Migrating a device-private THP back to system memory has two distinct
-> > > > paths in __migrate_device_pages(): the fast path where both source and
-> > > > destination carry MIGRATE_PFN_COMPOUND, and the fallback path where the
-> > > > destination could only be satisfied with order-0 folios and the source
-> > > > THP therefore has to be split via migrate_vma_split_unmapped_folio().
-> > > > 
-> > > > The fallback path only triggers under genuine memory pressure, which
-> > > > makes it both rare and awkward to reproduce, yet it is the path where
-> > > > the interesting refcounting happens (the CPU fault holds an extra
-> > > > reference on the device folio taken by do_huge_pmd_device_private()).
-> > > > 
-> > > > Add a fault_attr, modelled on backup_fault_inject in ttm_pool.c, that
-> > > > forces the higher-order allocation in
-> > > > drm_pagemap_migrate_populate_ram_pfn() to fail so the existing order-0
-> > > > fallback is taken deterministically.
-> > > > 
-> > > > The attribute is exposed at /sys/kernel/debug/drm_pagemap_fault_inject
-> > > > and requires CONFIG_FAULT_INJECTION_DEBUG_FS. With
-> > > > CONFIG_FAULT_INJECTION disabled the helper compiles out to a constant
-> > > > false and the injection has no cost.
-> > > > 
-> > > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > > Cc: David Hildenbrand <david@kernel.org>
-> > > > Cc: Lorenzo Stoakes <ljs@kernel.org>
-> > > > Cc: Zi Yan <ziy@nvidia.com>
-> > > > Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
-> > > > Cc: Liam R. Howlett <liam@infradead.org>
-> > > > Cc: Nico Pache <nico.pache@linux.dev>
-> > > > Cc: Ryan Roberts <ryan.roberts@arm.com>
-> > > > Cc: Dev Jain <dev.jain@arm.com>
-> > > > Cc: Barry Song <baohua@kernel.org>
-> > > > Cc: Lance Yang <lance.yang@linux.dev>
-> > > > Cc: Usama Arif <usama.arif@linux.dev>
-> > > > Cc: Joshua Hahn <joshua.hahnjy@gmail.com>
-> > > > Cc: Rakie Kim <rakie.kim@sk.com>
-> > > > Cc: Byungchul Park <byungchul@sk.com>
-> > > > Cc: Gregory Price <gourry@gourry.net>
-> > > > Cc: Ying Huang <ying.huang@linux.alibaba.com>
-> > > > Cc: Alistair Popple <apopple@nvidia.com>
-> > > > Cc: Balbir Singh <balbirs@nvidia.com>
-> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > Cc: Maxime Ripard <mripard@kernel.org>
-> > > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > > > Cc: David Airlie <airlied@gmail.com>
-> > > > Cc: Simona Vetter <simona@ffwll.ch>
-> > > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > > Cc: Francois Dugast <francois.dugast@intel.com>
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Cc: linux-mm@kvack.org
-> > > > Cc: linux-kernel@vger.kernel.org
-> > > > Assisted-by: GitHub_Copilot:claude-opus-5
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/drm_pagemap.c | 36 ++++++++++++++++++++++++++++++++++-
-> > > >    1 file changed, 35 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> > > > index 51c6f12e4256..6ae8c9aa36cc 100644
-> > > > --- a/drivers/gpu/drm/drm_pagemap.c
-> > > > +++ b/drivers/gpu/drm/drm_pagemap.c
-> > > > @@ -3,6 +3,7 @@
-> > > >     * Copyright © 2024-2025 Intel Corporation
-> > > >     */
-> > > > +#include <linux/debugfs.h>
-> > > >    #include <linux/dma-fence.h>
-> > > >    #include <linux/dma-mapping.h>
-> > > >    #include <linux/migrate.h>
-> > > > @@ -12,6 +13,27 @@
-> > > >    #include <drm/drm_pagemap_util.h>
-> > > >    #include <drm/drm_print.h>
-> > > > +#ifdef CONFIG_FAULT_INJECTION
-> > > > +#include <linux/fault-inject.h>
-> > > > +static DECLARE_FAULT_ATTR(migrate_to_ram_fault_inject);
-> > > > +
-> > > > +/*
-> > > > + * Force a higher-order destination folio allocation to fail in
-> > > > + * drm_pagemap_migrate_populate_ram_pfn(), exercising the order-0 fallback
-> > > > + * (and, in turn, the THP split path in __migrate_device_pages()) without
-> > > > + * having to drive the system into actual memory pressure.
-> > > > + */
-> > > > +static bool drm_pagemap_fault_inject_folio(void)
-> > > > +{
-> > > > +	return should_fail(&migrate_to_ram_fault_inject, 1);
-> > > > +}
-> > > > +#else
-> > > > +static bool drm_pagemap_fault_inject_folio(void)
-> > > > +{
-> > > > +	return false;
-> > > > +}
-> > > > +#endif
-> > > > +
-> > > >    /**
-> > > >     * DOC: Overview
-> > > >     *
-> > > > @@ -960,7 +982,9 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
-> > > >    		if (order)
-> > > >    			gfp |= __GFP_NOWARN;
-> > > > -		if (vas)
-> > > > +		if (order && drm_pagemap_fault_inject_folio())
-> > > > +			folio = NULL;
-> > > > +		else if (vas)
-> > > >    			folio = vma_alloc_folio(gfp, order, vas, addr);
-> > > >    		else
-> > > >    			folio = folio_alloc(gfp, order);
-> > > > @@ -1554,6 +1578,16 @@ void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim
-> > > >    		kfree(dpagemap);
-> > > >    }
-> > > > +static int __init drm_pagemap_module_init(void)
-> > > > +{
-> > > > +#if defined(CONFIG_DEBUG_FS) && defined(CONFIG_FAULT_INJECTION)
-> > > > +	fault_create_debugfs_attr("drm_pagemap_fault_inject", NULL,
-> > > > +				  &migrate_to_ram_fault_inject);
-> > > > +#endif
-> > > > +	return 0;
-> > > > +}
-> > > > +module_init(drm_pagemap_module_init);
-> > > > +
-> > > >    static void drm_pagemap_exit(void)
-> > > >    {
-> > > 
-> > > Missed fault injection debugfs removal ?
-> > > 
-> > > Sashiko flags it and looks valid concern.
-> > 
-> > I checked on this and kernel wide no code seems to undo
-> > fault_create_debugfs_attr on module unload, nor is there a function in
-> > linux/fault-inject.h to undo all debugfs entries setup.
-> 
-> I believe the cleanup is done via standard debugfs_remove_recursive via
-> passing the fault_create_debugfs_attr dir or parent. Here we have no parent
-> so
-> 
-> dir = fault_create_debugfs_attr at init
-> 
-> and debugfs_remove_recursive(dir) should be sufficient during
-> drm_pagemap_exit
-> 
-> I assume not cleaning it exit might leave the debugfs entries incase of
-> module unload.
+On Wed, Aug 19, 2026 at 02:00:19PM -0700, Umesh Nerlige Ramappa wrote:
+>On Tue, Aug 18, 2026 at 11:11:13PM +0530, Anoop Vijay wrote:
+>>  On 15-08-2026 02:51, Umesh Nerlige Ramappa wrote:
+>>
+>>    On Fri, Aug 14, 2026 at 02:53:06AM -0700, Anoop, Vijay wrote:
+>>
+>>      From: Anoop Vijay <anoop.c.vijay@intel.com>
+>>
+>>      Add xe_sysctrl_check_app_status() to query the state of a System
+>>      Controller application using get_app_status_by_id mailbox command.
+>>
+>>      The helper maps xe_sysctrl_app_id values to firmware application
+>>      IDs and returns the reported application state. Add a convenience
+>>      wrapper to check diag firmware application readiness.
+>>
+>>      Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+>>      ---
+>>      v2: (Badal)
+>>      - Return SysCtrl firmware application states instead of errno for
+>>       application lifecycle conditions
+>>
+>>      v3: (Riana, Badal)
+>>      - Replace string-based app identifiers with enum xe_sysctrl_app_id
+>>      - Use get_app_status_by_id (opcode 0x05)
+>>      - Move mailbox definitions to xe_sysctrl_mailbox_types.h
+>>      - Return enum xe_sysctrl_fw_status consistently
+>>      - Map communication failures to COMM_FAILURE
+>>      - Add INITIALIZED state and status helpers
+>>      - Fix Diagnostics typo
+>>
+>>      v4: (Anshuman)
+>>      - Make xe_sysctrl_check_app_status() internal
+>>      - Remove unused app identifier
+>>
+>>      v5: (Anshuman)
+>>      - Rename OOBMSM status helper to use xe_sysctrl_* prefix
+>>      - Remove xe_is_diag_fw_ready() helper
+>>
+>>      v6: (Riana)
+>>      - Use xe_sysctrl_create_command() helper instead of manual FIELD_PREP
+>>       header packing
+>>      - Rename xe_sysctrl_get_app_status_by_id_{req,resp} to shorter names
+>>      - Use hex constant for application ID
+>>      - Move oCode application readiness helper to a separate patch
+>>      - Add xe_sysctrl_is_diag_fw_ready() helper.
+>>
+>>      v7: (Umesh)
+>>      - Clarify xe_sysctrl_is_diag_fw_ready() comment for sysctrl-less
+>>      platforms
+>>      - Move XE_SYSCTRL_APP_RESP_* flags and enum xe_sysctrl_app_id to
+>>      xe_sysctrl.c
+>>      ---
+>>      drivers/gpu/drm/xe/xe_sysctrl.c               | 80 +++++++++++++++++++
+>>      drivers/gpu/drm/xe/xe_sysctrl.h               |  1 +
+>>      drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 47 +++++++++++
+>>      3 files changed, 128 insertions(+)
+>>
+>>      diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c
+>>      b/drivers/gpu/drm/xe/xe_sysctrl.c
+>>      index 1db20be8158b..c53a26af3189 100644
+>>      --- a/drivers/gpu/drm/xe/xe_sysctrl.c
+>>      +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+>>      @@ -13,9 +13,11 @@
+>>      #include "xe_device.h"
+>>      #include "xe_mmio.h"
+>>      #include "xe_pm.h"
+>>      +#include "xe_printk.h"
+>>      #include "xe_soc_remapper.h"
+>>      #include "xe_sysctrl.h"
+>>      #include "xe_sysctrl_mailbox.h"
+>>      +#include "xe_sysctrl_mailbox_types.h"
+>>      #include "xe_sysctrl_types.h"
+>>
+>>      /**
+>>      @@ -29,6 +31,20 @@
+>>       * This module provides initialization and support code for
+>>      interacting
+>>       * with System Controller through the mailbox interface.
+>>       */
+>>      +
+>>      +/* Application status flags reported in
+>>      xe_sysctrl_app_status_resp.flags */
+>>      +#define XE_SYSCTRL_APP_RESP_VALID    BIT(0)
+>>      +#define XE_SYSCTRL_APP_RESP_BOOTED    BIT(1)
+>>      +#define XE_SYSCTRL_APP_RESP_INITIALIZED    BIT(2)
+>>      +
+>>      +/*
+>>      + * Known System Controller application identifiers, keyed by firmware
+>>      + * application ID.
+>>      + */
+>>      +enum xe_sysctrl_app_id {
+>>      +    XE_SYSCTRL_APP_DIAG    = 0x0D,
+>>      +};
+>>      +
+>>      static void sysctrl_fini(void *arg)
+>>      {
+>>          struct xe_device *xe = arg;
+>>      @@ -130,3 +146,67 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
+>>
+>>          xe_sysctrl_mailbox_init(sc);
+>>      }
+>>      +
+>>      +static enum xe_sysctrl_fw_status
+>>      +xe_sysctrl_check_app_status(struct xe_device *xe, enum
+>>      xe_sysctrl_app_id app_id)
+>>      +{
+>>      +    struct xe_sysctrl_app_status_req req = {};
+>>      +    struct xe_sysctrl_app_status_resp resp = {};
+>>      +    struct xe_sysctrl_mailbox_command cmd = {};
+>>      +    size_t out_len = 0;
+>>      +    u32 flags;
+>>      +    int ret;
+>>      +
+>>      +    if (!xe->info.has_sysctrl)
+>>      +        return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+>>      +
+>>      +    req.app_id = (u8)app_id;
+>>      +
+>>      +    xe_sysctrl_create_command(&cmd, XE_SYSCTRL_GROUP_CORE,
+>>      XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID,
+>>      +                  &req, sizeof(req), &resp, sizeof(resp));
+>>      +
+>>      +    ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
+>>      +    if (ret)
+>>      +        return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
+>>      +
+>>      +    if (out_len != sizeof(resp)) {
+>>      +        xe_err(xe, "sysctrl: unexpected get app status response
+>>      length %zu (expected %zu)\n",
+>>      +               out_len, sizeof(resp));
+>>      +        return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
+>>      +    }
+>>      +
+>>      +    flags = resp.flags;
+>>      +
+>>      +    if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
+>>      +        return XE_SYSCTRL_FIRMWARE_APP_INVALID;
+>>      +
+>>      +    if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
+>>      +        return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
+>>      +
+>>      +    if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
+>>      +        return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
+>>      +
+>>      +    return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
+>>      +}
+>>      +
+>>      +/**
+>>      + * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is fully
+>>      initialized
+>>      + * @xe: xe device instance
+>>      + *
+>>      + * Returns true if diag firmware has reached the initialized state,
+>>      indicating
+>>      + * it is ready to handle requests. On platforms without System
+>>      Controller
+>>      + * support there is no System Controller mailbox to gate on, so diag
+>>      firmware
+>>      + * readiness is not tracked through this path; the function
+>>      unconditionally
+>>      + * returns true so callers are not blocked by this check on such
+>>      platforms.
+>>
+>>    I am still not clear how the caller will handle the 2 scenarios - (1) SC
+>>    is present, but diag app is not initialized vs (2) SC and mailbox are
+>>    not available and hence Diag App is not supported. The caller will just
+>>    see true in both cases.
+>>
+>>    Instead I would see this as 2 helpers:
+>>
+>>    xe_sysctrl_is_diag_fw_supported() that returns
+>>    status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+>>
+>>    and
+>>
+>>    xe_sysctrl_is_diag_fw_ready() that returns
+>>    status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
+>>
+>>    That would be clearer to the caller.
+>>
+>>    Thanks,
+>>    Umesh
+>>
+>>  All current/planned callers of xe_sysctrl_is_oobmsm_fw_ready() /
+>>  xe_sysctrl_is_diag_fw_ready() (xe_vsec.c retry/gate logic,
+>>  xe_sysctrl_debugfs.c RAS injection gate, xe_sysctrl_fwctl.c capability
+>>  gate) only need a yes/no answer to "Can this functionality be used now?"
+>>   and treat NOTSUPP and 'not yet initialized' the same way.
+>
+>Looking at all these callers in [1] and [2], I don't see a need for 
+>NOTSUPP. Both fwctl and debugfs callers seem to gate init/registration 
+>using has_sysctrl already.
+>
+>I dont' know about xe_vsec, but looking at the code, it has specific 
+>implementation for different platforms, so it will not call the _ready 
+>helper on unsupported platforms. @Michael for comments.
+>
+>We can just drop the XE_SYSCTRL_FIRMWARE_APP_NOTSUPP check in the 
+>ready helpers.
 
-I think you are right here - realised this after typing this.
+Based on the xe_vsec patch - 
+https://patchwork.freedesktop.org/patch/746022/
 
-Will fix.
+even xe_vsec has a platform specific implementation, so it would not 
+result in the NOTSUPP case. We should be able to drop that in the 
+helper.
 
-Matt
-
->  >
-> > So IMO this is either everyone is kernel is doing this wrong or this is
-> > a non-issue. debugfs_create_file kernel doc seems to indicate all
-> > debugfs enteries should be removed with debugfs_remove though (?).
-> > Either way I'd say this out of scope for this series.
-> > 
-> > Matt
-> > 
-> > > >    	flush_work(&drm_pagemap_work);
-> > > 
-> 
+>
+>Thanks,
+>Umesh
+>
+>[1] https://patchwork.freedesktop.org/series/171728/
+>[2] https://patchwork.freedesktop.org/series/161655/
+>>
+>>  Folding NOTSUPP into 'ready' is intentional. It lets sysctrl-less
+>>  platforms skip straight through.
+>>
+>>  Splitting into is_supported() + is_ready() wouldn't change any caller's
+>>  behavior, but would require every caller to do '!supported() || ready()'
+>>  check. This risks a caller checking only is_ready(), resulting in
+>>  unnecessary retries or failures on a NOTSUPP platform.
+>>
+>>  Given the current usage, I'd prefer to keep the combined helper and add a
+>>  more granular status/support helper in the future if a real consumer
+>>  requires that distinction.
+>>
+>>  Thanks,
+>>  Anoop
+>>
+>>      + *
+>>      + * Return: true if diag firmware is initialized, or if System
+>>      Controller is
+>>      + * not present on this platform; false otherwise
+>>      + */
+>>      +bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe)
+>>      +{
+>>      +    enum xe_sysctrl_fw_status status =
+>>      +        xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
+>>      +
+>>      +    return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
+>>      +           status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
+>>      +}
+>>      diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h
+>>      b/drivers/gpu/drm/xe/xe_sysctrl.h
+>>      index 090dffb6d55f..8dc576796890 100644
+>>      --- a/drivers/gpu/drm/xe/xe_sysctrl.h
+>>      +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+>>      @@ -20,5 +20,6 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
+>>      int xe_sysctrl_init(struct xe_device *xe);
+>>      void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
+>>      void xe_sysctrl_pm_resume(struct xe_device *xe);
+>>      +bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
+>>
+>>      #endif
+>>      diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>      b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>      index d0341538ad05..f1e4253fda4b 100644
+>>      --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>      +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>>      @@ -14,9 +14,11 @@
+>>       * enum xe_sysctrl_group - System Controller command groups
+>>       *
+>>       * @XE_SYSCTRL_GROUP_GFSP: GFSP group
+>>      + * @XE_SYSCTRL_GROUP_CORE: Core group
+>>       */
+>>      enum xe_sysctrl_group {
+>>          XE_SYSCTRL_GROUP_GFSP            = 0x01,
+>>      +    XE_SYSCTRL_GROUP_CORE            = 0xFF,
+>>      };
+>>
+>>      /**
+>>      @@ -38,6 +40,51 @@ enum xe_sysctrl_gfsp_cmd {
+>>          XE_SYSCTRL_CMD_SET_HEALTH        = 0x0C,
+>>      };
+>>
+>>      +/**
+>>      + * enum xe_sysctrl_core_cmd - Commands supported by Core group
+>>      + *
+>>      + * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status
+>>      by ID
+>>      + */
+>>      +enum xe_sysctrl_core_cmd {
+>>      +    XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID        = 0x05,
+>>      +};
+>>      +
+>>      +/**
+>>      + * struct xe_sysctrl_app_status_req - Get application status request
+>>      + *
+>>      + * @app_id: Application ID for which to retrieve status
+>>      + */
+>>      +struct xe_sysctrl_app_status_req {
+>>      +    u8 app_id;
+>>      +} __packed;
+>>      +
+>>      +/**
+>>      + * struct xe_sysctrl_app_status_resp - Get application status
+>>      response
+>>      + * @flags: Application status flags interpreted by
+>>      xe_sysctrl_check_app_status()
+>>      + */
+>>      +struct xe_sysctrl_app_status_resp {
+>>      +    u32 flags;
+>>      +} __packed;
+>>      +
+>>      +/**
+>>      + * enum xe_sysctrl_fw_status - System Controller firmware application
+>>      lifecycle states
+>>      + *
+>>      + * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by
+>>      firmware
+>>      + * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has
+>>      not yet booted
+>>      + * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed,
+>>      post-boot init pending
+>>      + * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully
+>>      operational
+>>      + * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available
+>>      on this device
+>>      + * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System
+>>      Controller firmware failed
+>>      + */
+>>      +enum xe_sysctrl_fw_status {
+>>      +    XE_SYSCTRL_FIRMWARE_APP_INVALID,
+>>      +    XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
+>>      +    XE_SYSCTRL_FIRMWARE_APP_BOOTED,
+>>      +    XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
+>>      +    XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
+>>      +    XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
+>>      +};
+>>      +
+>>      /**
+>>       * struct xe_sysctrl_mailbox_command - System Controller mailbox
+>>      command
+>>       */
+>>      --       2.43.0
