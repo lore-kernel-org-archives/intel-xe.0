@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E221C5DF88
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3A01C5DF8E
 	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 21:06:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5021D10E60F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A116010EF32;
 	Thu, 20 Aug 2026 21:06:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KzzIwr8Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nfuj3gWC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE3C210E60F
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 21:06:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A08DD10E60F
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 21:06:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787260005; x=1818796005;
+ t=1787260003; x=1818796003;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jOHA5W6zlObD+gVaI8+ypR3aNkh+VJ9c7oevLQMff5U=;
- b=KzzIwr8Zw/o5UIDh/YTRteFREZ+bhCyw0TeOcM7LZ8OT3bsrC0NLYb1h
- YCKtvrTPTlPsAUfAx9IWHsVk0g5lauNCf0b0Xvaa1OH/HSyCYD3J1/ziN
- U+1y7fpyckGcbNOTgQ9rkKWjx/mN8L/pcdetBcBUCeJRwVBNvlvL71j0A
- u23aU2xjp319OLdviElxktg7AtiEpSCcAGAfZj+tU6v2fr8i0qrBAoBCt
- +WgovANRsdhe2RtftcdxjQJW/5b/rvovzDo03hRq4WMO6zAOfikI6lWrk
- a9XH2f1sqOCGUIR9HP6KMka4KI3FRYIVdkC58l27OhAvxzuI6PMeG+sVI Q==;
-X-CSE-ConnectionGUID: OoroeSABRReu3oeBmEUHyQ==
-X-CSE-MsgGUID: vqQLwlUHT3+jCWnWiZ2Dgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="98965321"
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="98965321"
+ bh=dq7oskvSkw5mVDEOlEBRDzazw4GdH7q01OQNdPb/fhk=;
+ b=Nfuj3gWCIQON4qX0m1ZNGALK6utYLlX8rK2Oly9m3oJzFaXU+rozoALx
+ GCjj1C/DfPwi1xA/Ph7BBrJ1tCFIh8KB17rox9NVZv9Hw3b3o0kyHVW2v
+ 0HRBYh+xaWD/I0YliByiaKhEtfoRNO2AWmbJU1oJrdS7jiE8tUeApBxb4
+ 0T15oSn7QdOg3df+y+y1OS0iPzhLLeCY1+g462WE0PtxwH+rQwM87AypF
+ d5ZIIQ1KTRbWFsr5mrAajhLM1/sYKiQqDrvuxuEM6olM5ZH0WfwJVJh0C
+ wQcivMcjzNLY3343FpRC+pD5F51zOZ+Rm9MPo0zz7n/gVURAp7RgxnmHD g==;
+X-CSE-ConnectionGUID: 5mbQITaZRo6OOUpGqjmVaQ==
+X-CSE-MsgGUID: xCI+XuJeSD+1yGNFANubdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="98965314"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="98965314"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 14:06:45 -0700
-X-CSE-ConnectionGUID: GQ6evTJYRZi+UB00JFvYLA==
-X-CSE-MsgGUID: VjzIKbHKSgeNrnNlgY7pnw==
+ 20 Aug 2026 14:06:43 -0700
+X-CSE-ConnectionGUID: 7DUr5S8kTmGVbcQTAYiX9Q==
+X-CSE-MsgGUID: 860IP4QmRXSc7vM+SrriKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="304342480"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="304342461"
 Received: from dut4475arls.fm.intel.com ([10.105.8.198])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 14:06:44 -0700
+ 20 Aug 2026 14:06:42 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
@@ -48,14 +48,13 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  Michal.Wajdeczko@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 06/10] drm/xe/guc: Add configfs support for guc_log_level
-Date: Thu, 20 Aug 2026 21:06:45 +0000
-Message-ID: <20260820210639.107524-18-stuart.summers@intel.com>
+Subject: [PATCH 01/10] drm/xe: Guard configfs attribute reads in getters
+Date: Thu, 20 Aug 2026 21:06:40 +0000
+Message-ID: <20260820210639.107524-13-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260820210639.107524-12-stuart.summers@intel.com>
 References: <20260820210639.107524-12-stuart.summers@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,264 +70,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow the GuC log level to be selected per-device via configfs in
-addition to the existing 'guc_log_level' module parameter. The configfs
-attribute lives under the new 'debug' configfs subdirectory:
-
-  /sys/kernel/config/xe/<bdf>/debug/guc_log_level
-
-When the configfs attribute is set to a valid level (0-5), it overrides
-the module parameter for that device. The default value is -1
-(XE_GUC_LOG_LEVEL_UNSET), which means 'unset' and falls back to the
-'guc_log_level' module parameter, ensuring existing users that rely
-solely on the module parameter are unaffected by this change.
-
-The module parameter implementation itself is untouched.
-
-Note that the expectation is a user will only set the log level when
-CONFIG_DRM_XE_DEBUG is set.
+The configfs getters read dev->config members without holding dev->lock,
+so a concurrent store can tear the value being returned. The store paths
+and a few of the getters already take the lock; make it consistent by
+wrapping every read of dev->config in the getters with a scoped_guard(),
+covering the surrounding checks that consume those values as well.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Assisted-by: Copilot:claude-sonnet-4.6,claude-opus-4.7,claude-sonnet-5,claude-opus-5
+Assisted-by: Copilot:claude-opus-5
 ---
- drivers/gpu/drm/xe/xe_configfs.c       |  2 +
- drivers/gpu/drm/xe/xe_configfs_debug.c | 84 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs_debug.h |  7 +++
- drivers/gpu/drm/xe/xe_configfs_types.h |  1 +
- drivers/gpu/drm/xe/xe_defaults.h       |  3 +
- drivers/gpu/drm/xe/xe_guc_log.c        |  3 +-
- 6 files changed, 99 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 29 +++++++++++++++++++----------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 111aacce8a84..ea09d5f9e925 100644
+index 052cce962161..0a85043a9dd0 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -100,6 +100,7 @@ const struct xe_config_device xe_configfs_device_defaults = {
- 	.debug = {
- 		.engines_allowed = U64_MAX,
- 		.gt_types_allowed = U64_MAX,
-+		.guc_log_level = XE_GUC_LOG_LEVEL_UNSET,
- 		.enable_multi_queue = true,
- 		.enable_psmi = false,
- 		.survivability_mode = false,
-@@ -418,6 +419,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- 	PRI_CUSTOM_ATTR("%llx", debug.engines_allowed);
- 	PRI_CUSTOM_ATTR("%llx", debug.gt_types_allowed);
-+	PRI_CUSTOM_ATTR("%d", debug.guc_log_level);
- 	PRI_CUSTOM_ATTR("%d", debug.enable_multi_queue);
- 	PRI_CUSTOM_ATTR("%d", debug.enable_psmi);
- 	PRI_CUSTOM_ATTR("%d", debug.survivability_mode);
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
-index b2667573efbe..cbd4e3c124a4 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.c
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
-@@ -17,6 +17,7 @@
- #include "xe_configfs_debug.h"
- #include "xe_configfs_types.h"
- #include "xe_gt_types.h"
-+#include "xe_guc_log.h"
- #include "xe_hw_engine_types.h"
- #include "xe_pci_types.h"
+@@ -1185,7 +1185,8 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return device_defaults.survivability_mode;
  
-@@ -44,6 +45,7 @@
-  *	        ├── ctx_restore_post_bb
-  *	        ├── engines_allowed
-  *	        ├── gt_types_allowed
-+ *	        ├── guc_log_level
-  *	        ├── enable_multi_queue
-  *	        ├── enable_psmi
-  *	        └── survivability_mode
-@@ -167,6 +169,27 @@
-  *
-  *	# echo '' > /sys/kernel/config/xe/0000:03:00.0/debug/gt_types_allowed
-  *
-+ * GuC log level:
-+ * --------------
-+ *
-+ * Set the GuC firmware logging verbosity for this device. Accepted values
-+ * match the ``guc_log_level`` module parameter:
-+ *
-+ *   - 0: disable
-+ *   - 1: normal (non-verbose)
-+ *   - 2..%GUC_LOG_LEVEL_MAX: verbose levels
-+ *
-+ * Example::
-+ *
-+ *	# echo 3 > /sys/kernel/config/xe/0000:03:00.0/debug/guc_log_level
-+ *
-+ * The default value is %XE_GUC_LOG_LEVEL_UNSET (-1), which means the value
-+ * of the ``guc_log_level`` module parameter is used. Any value greater
-+ * than -1 written to this attribute overrides the module parameter for
-+ * this device.
-+ *
-+ * This attribute can only be set before binding to the device.
-+ *
-  * Enable multi-queue
-  * ------------------
-  *
-@@ -758,6 +781,65 @@ static ssize_t gt_types_allowed_store(struct config_item *item, const char *page
- 	return len;
- }
- 
-+/**
-+ * xe_configfs_get_guc_log_level - get configfs guc_log_level setting
-+ * @pdev: pci device
-+ *
-+ * Returns the guc_log_level value configured via configfs. If the configfs
-+ * value is negative (the default is %XE_GUC_LOG_LEVEL_UNSET, -1), the value
-+ * of the ``guc_log_level`` module parameter is returned instead, allowing
-+ * the configfs entry to override the module parameter without affecting
-+ * users that rely solely on the module parameter.
-+ *
-+ * Return: GuC log level to use for this device.
-+ */
-+int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_device(pdev);
-+	int level = xe_modparam.guc_log_level;
-+
-+	if (!dev)
-+		return level;
-+
+-	mode = dev->config.survivability_mode;
 +	scoped_guard(mutex, &dev->lock)
-+		if (dev->config.debug.guc_log_level >= 0)
-+			level = dev->config.debug.guc_log_level;
-+
-+	config_group_put(&dev->group);
-+
-+	return level;
-+}
-+
-+static ssize_t guc_log_level_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
-+
-+	return sprintf(page, "%d\n", dev->debug.guc_log_level);
-+}
-+
-+static ssize_t guc_log_level_store(struct config_item *item, const char *page, size_t len)
-+{
-+	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
-+	int val;
-+	int ret;
-+
-+	ret = kstrtoint(page, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val != XE_GUC_LOG_LEVEL_UNSET &&
-+	    (val < 0 || val > GUC_LOG_LEVEL_MAX))
-+		return -EINVAL;
-+
-+	guard(mutex)(&dev->lock);
-+	if (xe_configfs_is_bound(dev))
-+		return -EBUSY;
-+
-+	dev->config.debug.guc_log_level = val;
-+
-+	return len;
-+}
-+
- /**
-  * xe_configfs_get_enable_multi_queue - get configfs enable_multi_queue setting
-  * @pdev: pci device
-@@ -904,6 +986,7 @@ CONFIGFS_ATTR(, ctx_restore_mid_bb);
- CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
-+CONFIGFS_ATTR(, guc_log_level);
- CONFIGFS_ATTR(, enable_multi_queue);
- CONFIGFS_ATTR(, enable_psmi);
- CONFIGFS_ATTR(, survivability_mode);
-@@ -913,6 +996,7 @@ static struct configfs_attribute *xe_configfs_debug_attrs[] = {
- 	&attr_ctx_restore_post_bb,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
-+	&attr_guc_log_level,
- 	&attr_enable_multi_queue,
- 	&attr_enable_psmi,
- 	&attr_survivability_mode,
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
-index 4a027ea2082d..5fe39bb72f00 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
-@@ -7,7 +7,9 @@
++		mode = dev->config.survivability_mode;
+ 	config_group_put(&dev->group);
  
- #include <linux/types.h>
+ 	return mode;
+@@ -1199,7 +1200,8 @@ static u64 get_gt_types_allowed(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return device_defaults.gt_types_allowed;
  
-+#include "xe_defaults.h"
- #include "xe_hw_engine_types.h"
-+#include "xe_module.h"
+-	mask = dev->config.gt_types_allowed;
++	scoped_guard(mutex, &dev->lock)
++		mask = dev->config.gt_types_allowed;
+ 	config_group_put(&dev->group);
  
- struct pci_dev;
- struct xe_config_device;
-@@ -24,6 +26,7 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
- bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
-+int xe_configfs_get_guc_log_level(struct pci_dev *pdev);
- bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
-@@ -42,6 +45,10 @@ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
- static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
-+static inline int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
-+{
-+	return xe_modparam.guc_log_level;
-+}
- static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
- static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
- static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
-diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
-index 6e8ba6f85fad..e9460c3de891 100644
---- a/drivers/gpu/drm/xe/xe_configfs_types.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_types.h
-@@ -38,6 +38,7 @@ struct xe_config_group_device {
- 			struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
- 			u64 engines_allowed;
- 			u64 gt_types_allowed;
-+			int guc_log_level;
- 			bool enable_multi_queue;
- 			bool enable_psmi;
- 			bool survivability_mode;
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index 0884224ef7c7..a9467b77fabd 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -13,6 +13,9 @@
- #define XE_DEFAULT_GUC_LOG_LEVEL		1
- #endif
+ 	return mask;
+@@ -1243,7 +1245,8 @@ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return device_defaults.engines_allowed;
  
-+/* Sentinel value for guc_log_level configfs: not set, fall back to module param */
-+#define XE_GUC_LOG_LEVEL_UNSET			-1
-+
- #define XE_DEFAULT_PROBE_DISPLAY		IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #define XE_DEFAULT_VRAM_BAR_SIZE		0
- #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 538d4df0f7aa..531b9759d520 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -13,6 +13,7 @@
- #include "abi/guc_lfd_abi.h"
- #include "regs/xe_guc_regs.h"
- #include "xe_bo.h"
-+#include "xe_configfs_debug.h"
- #include "xe_devcoredump.h"
- #include "xe_force_wake.h"
- #include "xe_gt_printk.h"
-@@ -637,7 +638,7 @@ int xe_guc_log_init(struct xe_guc_log *log)
+-	engines_allowed = dev->config.engines_allowed;
++	scoped_guard(mutex, &dev->lock)
++		engines_allowed = dev->config.engines_allowed;
+ 	config_group_put(&dev->group);
  
- 	xe_map_memset(xe, &bo->vmap, 0, 0, xe_bo_size(bo));
- 	log->bo = bo;
--	log->level = xe_modparam.guc_log_level;
-+	log->level = xe_configfs_get_guc_log_level(to_pci_dev(xe->drm.dev));
+ 	return engines_allowed;
+@@ -1263,7 +1266,8 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return false;
  
- 	return 0;
- }
+-	ret = dev->config.enable_psmi;
++	scoped_guard(mutex, &dev->lock)
++		ret = dev->config.enable_psmi;
+ 	config_group_put(&dev->group);
+ 
+ 	return ret;
+@@ -1284,7 +1288,8 @@ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return true;
+ 
+-	ret = dev->config.enable_multi_queue;
++	scoped_guard(mutex, &dev->lock)
++		ret = dev->config.enable_multi_queue;
+ 	config_group_put(&dev->group);
+ 
+ 	return ret;
+@@ -1308,10 +1313,12 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 	if (!dev)
+ 		return 0;
+ 
+-	if (cs)
+-		*cs = dev->config.ctx_restore_mid_bb[class].cs;
++	scoped_guard(mutex, &dev->lock) {
++		if (cs)
++			*cs = dev->config.ctx_restore_mid_bb[class].cs;
+ 
+-	len = dev->config.ctx_restore_mid_bb[class].len;
++		len = dev->config.ctx_restore_mid_bb[class].len;
++	}
+ 	config_group_put(&dev->group);
+ 
+ 	return len;
+@@ -1335,8 +1342,10 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ 	if (!dev)
+ 		return 0;
+ 
+-	*cs = dev->config.ctx_restore_post_bb[class].cs;
+-	len = dev->config.ctx_restore_post_bb[class].len;
++	scoped_guard(mutex, &dev->lock) {
++		*cs = dev->config.ctx_restore_post_bb[class].cs;
++		len = dev->config.ctx_restore_post_bb[class].len;
++	}
+ 	config_group_put(&dev->group);
+ 
+ 	return len;
 -- 
 2.43.0
 
