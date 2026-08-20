@@ -4,99 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BE6FC5DF81
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 17:26:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E3B1C5DF81
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 17:41:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB01610F148;
-	Thu, 20 Aug 2026 17:25:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47D7210E234;
+	Thu, 20 Aug 2026 17:41:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NIHaw+7W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RSvoMETt";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02F3910F147
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 17:25:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1787246756;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=uaqd7WkU+EW7h5S2++0RngfynnNZHWf+0zvKQIG7YdI=;
- b=NIHaw+7WsF/8GdhIbtnhL7GZQ/o/o2o96CN873uWSazde8JRNvJ6Swft3KmsDFUM3jOgd6
- zU2iUmjzUgsxEmLGQCY4Q/FY3e99b3QQfBP43Y0OWhmLbdUK4Ln0dCcTrgDoM1iinPx11X
- HXVmJNhx/drmOcJexoVFHEhrP7NGQ78=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-577-x_WwN2XcNhaSaBwuDYYMLA-1; Thu, 20 Aug 2026 13:25:51 -0400
-X-MC-Unique: x_WwN2XcNhaSaBwuDYYMLA-1
-X-Mimecast-MFC-AGG-ID: x_WwN2XcNhaSaBwuDYYMLA_1787246750
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-490a767c7dcso516425e9.2
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 10:25:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1787246750; x=1787851550;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=uaqd7WkU+EW7h5S2++0RngfynnNZHWf+0zvKQIG7YdI=;
- b=J5k+8K33CU6U38WnBMAn4usgIf7PZXRhmNKY5uFaFYo4+fPtV275mOtpiEw5I1eNPB
- E8e/T1PMUpqkGHdIYoyhxbjzg+RgNcgKylZ2AByMD82xaVvoA7KfBC1xchKxVcKfQYne
- d25YW9vviTYgX2XVFe94Zrh1ROHAihGyP7WUD1kjrT4cYjBZfc4a/3uh03kAf96eER/U
- aCIZEao8FZyYmCuJTZwoa0wInr4soC2gEEbT9DxH/j1yE9Oyr5CuNR/h341muuJkveZn
- h/YyilqXQaPwuZ1GGiXmyZf5FAsGP3TGkFVNmjfypWgJ0HVKHrq0fcHGSXN0huPkxd05
- /1oA==
-X-Forwarded-Encrypted: i=1;
- AHgh+RpRg9JB9GoaVNbJoeH4uvdCyHYoXi63iD3aaVj4Ejj+6asS1mq5celMQTho251skaE9PxP6YKr/7Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxTAhbCAPuFYf0wKW5FGGb5MxKCCWG2wzQR8axh8Gtx1wir+a35
- lm1Gj/SNntyDqt0XpBzDq96zLnbivxrsv/tWt+gFLy+g0Cz3BGTU33hUD8suRjSm+n0hYRqUEPG
- Rtvrha0uzFazK9MZRQMT0GOm6veiJxIRNV1ThCjqHq0dbqasO4+XwA2WCdLJ6vgDVLzRI
-X-Gm-Gg: AR+sD12k253vYtlwJCn46/2y/dWe+Rdnwyf6NuDIgIAYm/o6L09EJY/KfGWWIcRAU0q
- XaIJTWekWVkVLXFtwj5sz/U2T84XVo79dzmXajApd+Nmq21OKpbUfT22QlKwF8mkUQb8XFDxWZT
- yns5M6Ed7+bcmNTs/SZyBoZQssGAUSEe6rufsNvlujYWilI9f6m3fqY/cJWBAIRVB/M2Rruh6x1
- FOVvYD6S4Z3LPmoND81paJjYqhSBl+pxq8sQWPRzhxogIj2TErKW4cxxHj1qI6cOn5MlRn3oQy4
- aVylRhWgd+nRi4dh8DFSCIUWTVfxR4Ni1iDKWbCbPKBMdyutiP64zkV+EX6Ny3bOgLZaWcx4/ga
- aXAUtmvV/K/jsUEOSaDu6PGV+hnl5a0+LoHKR0gkl58aBKg==
-X-Received: by 2002:a05:600c:1f85:b0:499:adb5:e7b2 with SMTP id
- 5b1f17b1804b1-499b8455863mr7320885e9.11.1787246750152; 
- Thu, 20 Aug 2026 10:25:50 -0700 (PDT)
-X-Received: by 2002:a05:600c:1f85:b0:499:adb5:e7b2 with SMTP id
- 5b1f17b1804b1-499b8455863mr7319825e9.11.1787246749496; 
- Thu, 20 Aug 2026 10:25:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:11aa:87f0:935:4f8e:b423:64eb?
- ([2a01:e0a:11aa:87f0:935:4f8e:b423:64eb])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-499aa074740sm165577655e9.7.2026.08.20.10.25.48
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Aug 2026 10:25:48 -0700 (PDT)
-Message-ID: <d7250fbf-9e22-44f1-9dc6-c879e62d7d1d@redhat.com>
-Date: Thu, 20 Aug 2026 19:25:45 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3255310F155
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 17:41:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787247700; x=1818783700;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=RQU1yAtjtKzJdaZjHenPy66d46ac/cq9hekqOjlwonU=;
+ b=RSvoMETtsDQ6YjzsaFzANH91hXD2eG6a+En63rgqC6pRskmnSOcijTSk
+ syIjdX/c0fc+1/a7m1Z1E9f8wY92klPrVHkMOjhDrp8mXgFQE9eBEdfN4
+ Vcixo2IvpLrkX5uvwCRHN/aKJC0rNHr+DzDowITIz61r3xCgn81VG500q
+ baLnWnADTLOR8y6pdVGpmy+CTAIQwliIibut5hInPbGwz3V1P5cCE5yn0
+ 4oTADGIL0v7xrcjmQICkWkFLYD6jWuJ8+9k7GiuiFUWsh2vIKZJ/cEIjX
+ C+45+pu6rI1UM586MtZJ2sikK1ZBQNWNnHH5FApRZg+jk5M9dYAM5sQgW A==;
+X-CSE-ConnectionGUID: f6QTwsTqQY6VcNWvxOrr7w==
+X-CSE-MsgGUID: n/eiOapdQcmk+Am9KgklJQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="98128344"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="98128344"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 10:41:40 -0700
+X-CSE-ConnectionGUID: lL8ZIg4UQpytJvyTB0B+LA==
+X-CSE-MsgGUID: wRCD7fEVQ4u9wOuRd8O5Rg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="269583480"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 10:41:40 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 20 Aug 2026 10:41:39 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Thu, 20 Aug 2026 10:41:39 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.3) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 20 Aug 2026 10:41:38 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=a7wRX6eT83zlqM61WhUv+oRtS5CheyTHUEAoLXKG0HcLKal19JhmsTcLb9mw4Mdri+RKl3J/UY5V4ujeLThAwXB4bV0lh3sSux1c4+Ara7WIE+JvutjB2p3eyt9zh1EoP7uPW/wtXrhNv19dP98uPYHtyU/4MuaLTaRdyYzfnp8yZTtCDkpWZjTt4d4IsVXW8D+3lpfOuFtzHP56JBxhKlrvhnzx//Y9HXAT493h0ZT6MpytFDXfOYbNJ0eGgCOXsbuWygyvgWt/dizNle/gC6gyvd6bbxwLOCGYuaXOP9a8RT8EUVOw5qilkGkhjsXnPXTe9TYJ1iOCHv3hZ4kosA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0TxqlUWqIG3+L6YeOisQbEqTUar5/jxdawJjkOPUw+E=;
+ b=w0PeHcam4dxjQJuVLIsdcWjVKJyNn9HWQr0i4mu4D7DShGa35Zf+Vl6X9lUdfmajjiU5Q7w+s79sCI+ckRY1vxZMW4EJ1QtsgeSZQz5phZEy+z5qd3oBoH9JP985gRP310fi9rBiC0QC846iBGMp6uc6NfPqhqst71/2FbnUny70Bn9wjEcJ2eRoZ2C65zVSwynRyvYFQqog3/pa4tig5mA9qmjTuhXogARR32573QwASdQXd2gY0PiDc+kWwdLUonJuT98jHxyq4mQK82Ykc+PFY1CHBgkUsSmJsNjWBZm4TQegcI4I7KOLQe22onMCu7+5Fwyls4eqEY7qsR4HfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CH3PR11MB8561.namprd11.prod.outlook.com (2603:10b6:610:1ad::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Thu, 20 Aug
+ 2026 17:41:36 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0339.008; Thu, 20 Aug 2026
+ 17:41:36 +0000
+Date: Thu, 20 Aug 2026 10:41:33 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: Re: [PATCH v3] drm/xe: Flush L2 asynchronously in
+ xe_bo_trigger_rebind()
+Message-ID: <aoc8TQl/LlHBWc2g@gsse-cloud1.jf.intel.com>
+References: <20260717193809.131394-1-matthew.brost@intel.com>
+ <de4e2add35cf2be46b99d2f15f8741fc9ef8270f.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <de4e2add35cf2be46b99d2f15f8741fc9ef8270f.camel@linux.intel.com>
+X-ClientProxiedBy: MW4P223CA0001.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::6) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/12] drm/panic: Display panic screen via per-plane
- callback
-To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
- sashiko-reviews@lists.linux.dev
-References: <20260818125012.468092-1-tzimmermann@suse.de>
- <20260818125012.468092-10-tzimmermann@suse.de>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <20260818125012.468092-10-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: nD0FhQKyyPHMHEJ4rI68m7MXVsn8t2T0jxh0TmQ6SRE_1787246750
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, fr
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH3PR11MB8561:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d949b36-7761-4183-1d65-08defee2481d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|6133799003|56012099006|10067099003|22082099003|4143699003|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: uznTnHI3KcXhL1f4M4bzLbR/xm6Vow/FYi0ts40whBqOB3/j3+bJPgRp+FSCfK08Vp5GuHS+i8EG0m1yRNgA5umqTziQLGj1gwuv9N2HKeERE/CebGgya9yWZlIxmuwAvMraeXpSi2xb8uFkgE1sPV7Q41lZ8W3LviLIea61ab64s3gMufpUxv59igE+JC2RIuRLUsFXgKa46QtvW9F0QOjulwDyjrXo0b8P5lNtsW90jRSAnfZXq/qk3xtlNT16SWstjtt35DK88ikNCJDBkdex03Um5xIhCfrlFrOpAgWtATRlNbWwzjnhTrPF/3uVpnLorScsSoeenwz7Fv3tlvsYX9owZXe3HB2iDkGR0uRcGaKIH6FSQFaOxCFrBTVUnRcfxdPATv7q3wWFlTUsPupGhX6R9zgkgDF720rww24n2s/I5r33VRtz7VbURQBoTW17JnTWT/BaJE6o0Mby2v+zRzrbc8Gdx0ArvS6OayoLD5hiQ16Es4HD4tv3txrjNYM5A1P5NaaEn66NKOGfCN0D8dXp40ohVvDJUhDgkzK44/KEbhQyrdQ7waR+kQ1s3XgOGf+BVS5TvkSUNFXH6iuKdYXNcjUgoTsJcMzglGBodiCH16KXyk+wXFkKqUQuTHSUo+pXYsfEkkpAOjgDWZmTKIEMxIjwUX+a0nNRXEw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(6133799003)(56012099006)(10067099003)(22082099003)(4143699003)(11063799006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?LZbI68SkOONnP5L81K0I/gKsPOnWIJI3bgy9MADwbahpbPfiWpU6kLYquV?=
+ =?iso-8859-1?Q?wQAD/po07tmF0lp3I+tsCP5PU6z3oLbvzXtPrHKNGd+Sb4hjmxaAbHicPZ?=
+ =?iso-8859-1?Q?FVwsxH0wfdTRf5E4CvCRhMuZdQ81iZbZl6SoXQ/dGpr5BwqIH3zg2B08g7?=
+ =?iso-8859-1?Q?xb5ccNRhPM7M6oBWtX9r8hHeTXcQq35YAxqD8W8BtMq4yXdzyPhRIofuQE?=
+ =?iso-8859-1?Q?Cxyna2kPmlvgGItCFBm7trmmuPXYGc0el8iV5FTT4Ot7o86uHL8WsboX3W?=
+ =?iso-8859-1?Q?pkkbYhwOADTCAv0+lFCuPlITUEs6UuLb+/rHTG7/eAjrjV+446jMsPuvaX?=
+ =?iso-8859-1?Q?vOyA+Vinw1Ak3IvHC5RptJollpstmcbo0apqS4FD8C+v4JifbgtgslkfTW?=
+ =?iso-8859-1?Q?v+CKbo8RcqDV+whj4fXIeMwgDvmeO2JNCQX9+wF+1XfKY90YeycDUBIKNN?=
+ =?iso-8859-1?Q?qLY0MAfL+U7N/f8wDgwF/ixIlorzL9LY38eKUG9UbVGwjAofbPis7Ycazh?=
+ =?iso-8859-1?Q?hzoBQuNqz/sWZqCqIDQJ6hb+9ul+SuLbuXUNFpofacUn2a/uoDQ1IlMIYu?=
+ =?iso-8859-1?Q?RZsihRfPDSWsn61GmvLj4P4EMkY/JQsiDgAfxEDdl+m3yi/+gqnNjWG5j6?=
+ =?iso-8859-1?Q?Nz/M3GZ+1u+nnoxl15BfNkjug3rA4zkJ2i2h8qXlo4XX7kg109EE8+YgoW?=
+ =?iso-8859-1?Q?o5otQW/cKvjcCHuH3faj3IfhmHIRTSeAMYnkuv7a3bOYr9S1lo4wAAbC31?=
+ =?iso-8859-1?Q?zaRNEin2Vf8CZvEIMuQrbGTx9WzB3y57uYGBcmQ7ZUMrRg4fc60SwbfFVA?=
+ =?iso-8859-1?Q?Y05OMZ+FrGyh/hil6865qV0Dd1FAfGL5o+VMKXtFObt0WJ7dMJjFDej+pI?=
+ =?iso-8859-1?Q?2DjSNNgUxGqQiA5b4VwcAzwcAdA5CXcZkFZ4sYZQ5UDN+TQcU99xwRsBkf?=
+ =?iso-8859-1?Q?5WYn5G+GsdHVWala3xGC+XEqgHmBBcKiwKtq5XtRzLbyUc9Nyb9zxLIz+a?=
+ =?iso-8859-1?Q?zf+VAQurMXDDqA/CZN/htN/rOfSiWq2+/3G27oa/1oVHoFmGJL6kfuBFcr?=
+ =?iso-8859-1?Q?NymFM/MgxFQVslSGA1uJtOSH9oFg3dOgjx9Ys+86NH1K3MfWq86uj1ZyMy?=
+ =?iso-8859-1?Q?GIHG/RDJdyZZoNYpLasDAApyxtkGub1AAw9S1HLwIyOIgj/FLn4wd0I7B8?=
+ =?iso-8859-1?Q?cf/8MQTfSe44ZP6AWPY7K5v6nYQJTnydCGEE8NzTSkwcThPQJuBeLp32Gc?=
+ =?iso-8859-1?Q?vbXFKvlUfU/mdESSMIMJQBkgku/uuRBnm2EZvJ9EpM5bk3SfqblbAfv8n4?=
+ =?iso-8859-1?Q?AZi9QouFaR3raEI8sQ9kyWdeZuEEuG+Dfk0fCLPiwIqBCXDaaERofkk2YT?=
+ =?iso-8859-1?Q?VvCiVaCITL5kdL4BePy3xD0lxr4INE3DC9lR9Xi+2ZSXAEIUKTcITO2i7/?=
+ =?iso-8859-1?Q?is+3/8BGujy8e8THTr7+78Ts/QOhgFCDw9YD5/OcygdGfXqTGJyd1IGIwR?=
+ =?iso-8859-1?Q?zfrS/gw4VXfImWUoNn4RP6F5lDRbwmVDn1kM3TtpHzj28rwbAtPyEjopaa?=
+ =?iso-8859-1?Q?uqs8dapywzhxzD21esu/QiE8AFtA3moqC2O6J4ZhSiplA6ewE7Uv+BQGgj?=
+ =?iso-8859-1?Q?26f7Q6CQ58fS+Z2QIIJQ/MGPNq2l3QSqvMiY7HM5u4ooS6uEFrJWr2Xak5?=
+ =?iso-8859-1?Q?D+5WKXxJ9Zxsq/rbgbnpvlk64g/w+fmuFTIwQoMt/1kVRRlCB/i3AS1NoZ?=
+ =?iso-8859-1?Q?dQ8f3jXvDRUTdNcXdyI2UEX2yVyxu6ay+gH94s4GOKCAIT8guZdIzS1Ct8?=
+ =?iso-8859-1?Q?LcMH/wNlmniwG9bgUEETzjipnTtaRUU=3D?=
+X-Exchange-RoutingPolicyChecked: mLZJpobFCtriOgI/P010DpNkjeG8fWFRUBo3d7es67PNpjLkx0RNagv57O7kOpHKfzaBqK8MiPcb/SnSqTa9R9dgtVY3ExDVEmwjdwTyxCDcqcwkJgan2gdFaPlYOMo8q3fxSWY4N7u8JtHOTPt/+jO+dFgo0+T2IxSOzEC5gmQ1dkOw9N8W5ZWoqcvTANGeEUamJTHzx0VIuiukF3Ncxgaltf9OAb7d20MQilSnaQ/Ey1h2ldI4kayzmfHlErwC84xXdv63wcHhdlkj09NW7Oqd/NwCCzkiHgS5nmVuvjrE61Q98zuNm6litBvvEJiBa+HYZ9IQBNijdMKvFr09JQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d949b36-7761-4183-1d65-08defee2481d
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2026 17:41:36.0571 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Yihfsg9tkkYhrZ/8GLA16XbqZJPCAACXD7Y4hlLi6ihxAQcneVuburDp8csYRj64jGKidg1UlJn75u1bs6W2og==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8561
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,784 +160,302 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/08/2026 14:28, Thomas Zimmermann wrote:
-> Add display_panic_screen to struct drm_plane_funcs. If set on a plane,
-> register a panic handler for the plane from the DRM core's panic
-> handling. Invoke this helper from the core to display a panic screen.
+On Thu, Aug 20, 2026 at 11:10:55AM +0200, Thomas Hellström wrote:
+> On Fri, 2026-07-17 at 12:38 -0700, Matthew Brost wrote:
+> > On L2-flush-optimized HW with a dma-resv (non-fault) VM, evicting a
+> > BO
+> > only needs to flush the L2 cache before the migration copy runs; the
+> > mappings themselves are torn down and rebuilt lazily via
+> > drm_gpuvm_bo_evict() and a subsequent rebind. Today this flush is
+> > done
+> > by waiting for the BO to go idle and then issuing a synchronous TLB
+> > invalidation per mapping VMA from inside xe_bo_trigger_rebind(). Both
+> > the idle wait and the synchronous invalidation stall the calling
+> > thread
+> > while holding the BO dma-resv lock, serializing the move behind all
+> > in-flight GPU work on the BO.
+> > 
+> > Replace this with an asynchronous flush. Add
+> > xe_vm_flush_vm_bo_tlb_async()
+> > which, for each VMA mapping the BO on each present tile, queues a TLB
+> > invalidation job on the tile migrate (kernel) exec queue. The jobs
+> > depend
+> > on the BO's in-flight GPU work, captured once as a singleton over
+> > DMA_RESV_USAGE_BOOKKEEP, so the flush only fires once the GPU is done
+> > with
+> > the current mapping. Each job's completion fence is installed into
+> > the
+> > BO's dma-resv as a DMA_RESV_USAGE_KERNEL fence, so the migration copy
+> > -
+> > which waits on the resv - waits on the flush without stalling this
+> > thread.
+> > 
+> > No PTEs are zapped and vma->tile_invalidated is left untouched: the
+> > mapping stays valid until the lazy rebind, and the only work
+> > performed
+> > here is the L2 flush. On any failure the caller falls back to the
+> > existing blocking wait-idle plus xe_vm_invalidate_vma() path.
+> > 
+> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > Assisted-by: GitHub_Copilot:claude-opus-4.8
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > 
+> > ---
+> > v2: Less verbose comment (Thomas)
+> > v3: Honor no_gpu_wait (Sashiko)
+> > ---
+> > ---
+> >  drivers/gpu/drm/xe/xe_bo.c |   8 +++
+> >  drivers/gpu/drm/xe/xe_vm.c | 125
+> > +++++++++++++++++++++++++++++++++++++
+> >  drivers/gpu/drm/xe/xe_vm.h |   5 ++
+> >  3 files changed, 138 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index c266fa6bade1..bb9dbc592941 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -686,6 +686,14 @@ static int xe_bo_trigger_rebind(struct xe_device
+> > *xe, struct xe_bo *bo,
+> >  			 */
+> >  			if (!xe_device_is_l2_flush_optimized(xe))
+> >  				continue;
+> > +
+> > +			/*
+> > +			 * Attempt to flush L2 async, fallback to
+> > sync flush on
+> > +			 * no_wait_gpu or faliure
+> > +			 */
+> > +			if (!ctx->no_wait_gpu &&
+> > +			    !xe_vm_flush_vm_bo_tlb_async(vm, bo,
+> > vm_bo))
+> > +				continue;
 > 
-> The new callback replaces get_scanout_buffer as signal for panic
-> support in a plane. Using get_scanout_buffer is now merely a detail
-> of the implementation. This will also free struct drm_scanout_buffer
-> for use cases besides panic handling.
-> 
-> With display_panic_screen in place, rename draw_panic_plane() to
-> drm_plane_helper_display_panic_screen() and make it available to DRM
-> drivers via drm_panic_helper.h. Do not change the implementation or
-> functionality of this code. drm_plane_helper_display_panic_screen()
-> still supports kernel messages, user messages and QR codes on various
-> color formats.
-> 
-> Then update all drivers that implement panic support. Provide the
-> initializer macro DRM_PANIC_PLANE_FUNCS that sets display_panic_screen
-> to drm_plane_helper_display_panic_screen(). If panic handling has
-> been disabled, it instead clears the callback. There's again no change
-> in functionality.
-> 
-> This logically splits panic handling into a set of entry points in the
-> DRM code and a set of helper functions provided by drivers. The core
-> invokes the driver's helper via callback, while the driver can tailor
-> the implementation to its needs. Panic handling now works like most
-> other interfaces in the DRM framework.
-> 
-> Locking and state-handling happens in the DRM core or helpers. Drivers
-> that receive a call to display_panic_screen can assume that no concurrent
-> modeset takes place on the plane or its CRTC.
-> 
-> Also update the documentation. Move information about locking and state
-> guarantees from drm_panic_trylock() to display_panic_screen, where
-> drivers authors can find it easily. Move information about the features
-> of the current implementation to drm_panic_helper_display_panic_screen().
+> To follow the no_wait_gpu semantics, Shouldn't this be
 > 
 
-Thanks, it looks good to me.
+After thinking about this, the original way I had this is correct.
 
-Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
+> if (!xe_vm_flush_vm_bo_tlb_async(vm, bo, vm_bo))
+> 	continue;
 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->   MAINTAINERS                                   |  3 +-
->   .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  2 +
->   drivers/gpu/drm/ast/ast_mode.c                |  2 +
->   drivers/gpu/drm/drm_panic.c                   | 78 ++++++++++---------
->   drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |  2 +
->   drivers/gpu/drm/i915/display/i9xx_plane.c     |  3 +
->   .../drm/i915/display/skl_universal_plane.c    |  4 +
->   drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c       |  2 +
->   drivers/gpu/drm/mgag200/mgag200_drv.h         |  4 +-
->   drivers/gpu/drm/nouveau/dispnv50/wndw.c       |  2 +
->   .../gpu/drm/renesas/rcar-du/rcar_du_plane.c   |  2 +
->   .../drm/renesas/shmobile/shmob_drm_plane.c    |  2 +
->   drivers/gpu/drm/sysfb/drm_sysfb_helper.h      |  4 +-
->   drivers/gpu/drm/sysfb/vesadrm.c               |  1 +
->   drivers/gpu/drm/tidss/tidss_plane.c           |  2 +
->   drivers/gpu/drm/tiny/bochs.c                  |  4 +-
->   drivers/gpu/drm/virtio/virtgpu_plane.c        |  2 +
->   include/drm/drm_mode_config.h                 |  4 +-
->   include/drm/drm_modeset_helper_vtables.h      | 11 ++-
->   include/drm/drm_panic.h                       | 49 +++---------
->   include/drm/drm_panic_helper.h                | 27 +++++++
->   include/drm/drm_plane.h                       | 57 ++++++++++++++
->   22 files changed, 180 insertions(+), 87 deletions(-)
->   create mode 100644 include/drm/drm_panic_helper.h
+Just the above if statement.
+
+> else if (ctx->no_wait_gpu)
+> 	return -EBUSY;
+
+Not needed because the if (!idle) statement will be popped into which
+honors no_wait_gpu.
+
+Let me revert to the prior version.
+
+Matt
+
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 928b3ba23a76..472c5c48729d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9020,7 +9020,8 @@ F:	drivers/gpu/drm/drm_draw.c
->   F:	drivers/gpu/drm/drm_draw_internal.h
->   F:	drivers/gpu/drm/drm_panic*.c
->   F:	drivers/gpu/drm/tests/drm_panic_test.c
-> -F:	include/drm/drm_panic*
-> +F:	include/drm/drm_panic.h
-> +F:	include/drm/drm_panic_helper.h
->   
->   DRM PANIC QR CODE
->   M:	Jocelyn Falempe <jfalempe@redhat.com>
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> index 824ef3ce5de0..eadc22a255bb 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> @@ -28,6 +28,7 @@
->   #include <drm/drm_blend.h>
->   #include "drm/drm_framebuffer.h"
->   #include <drm/drm_gem_atomic_helper.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_plane_helper.h>
->   #include <drm/drm_gem_framebuffer_helper.h>
->   #include <drm/drm_fourcc.h>
-> @@ -2177,6 +2178,7 @@ static const struct drm_plane_funcs dm_plane_funcs = {
->   	.atomic_set_property = dm_atomic_plane_set_property,
->   	.atomic_get_property = dm_atomic_plane_get_property,
->   #endif
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
-> diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ast_mode.c
-> index d5ed8c5c7925..ceebf9421100 100644
-> --- a/drivers/gpu/drm/ast/ast_mode.c
-> +++ b/drivers/gpu/drm/ast/ast_mode.c
-> @@ -43,6 +43,7 @@
->   #include <drm/drm_gem_shmem_helper.h>
->   #include <drm/drm_managed.h>
->   #include <drm/drm_panic.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_print.h>
->   #include <drm/drm_probe_helper.h>
->   
-> @@ -652,6 +653,7 @@ static const struct drm_plane_funcs ast_primary_plane_funcs = {
->   	.disable_plane = drm_atomic_helper_disable_plane,
->   	.destroy = drm_plane_cleanup,
->   	DRM_GEM_SHADOW_PLANE_FUNCS,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static int ast_primary_plane_init(struct ast_device *ast)
-> diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-> index 2263a11efdf6..2ecb4d1f6d47 100644
-> --- a/drivers/gpu/drm/drm_panic.c
-> +++ b/drivers/gpu/drm/drm_panic.c
-> @@ -28,6 +28,7 @@
->   #include <drm/drm_framebuffer.h>
->   #include <drm/drm_modeset_helper_vtables.h>
->   #include <drm/drm_panic.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_plane.h>
->   #include <drm/drm_print.h>
->   #include <drm/drm_rect.h>
-> @@ -42,32 +43,18 @@ MODULE_LICENSE("GPL");
->   /**
->    * DOC: overview
->    *
-> - * To enable DRM panic for a driver, the primary plane must implement a
-> - * &drm_plane_helper_funcs.get_scanout_buffer helper function. It is then
-> - * automatically registered to the drm panic handler.
-> - * When a panic occurs, the &drm_plane_helper_funcs.get_scanout_buffer will be
-> - * called, and the driver can provide a framebuffer so the panic handler can
-> - * draw the panic screen on it. Currently only linear buffer and a few color
-> - * formats are supported.
-> - * Optionally the driver can also provide a &drm_plane_helper_funcs.panic_flush
-> - * callback, that will be called after that, to send additional commands to the
-> - * hardware to make the scanout buffer visible.
-> - */
-> -
-> -/*
-> - * This module displays a user friendly message on screen when a kernel panic
-> - * occurs. This is conflicting with fbcon, so you can only enable it when fbcon
-> - * is disabled.
-> - * It's intended for end-user, so have minimal technical/debug information.
-> + * This module displays a user friendly message on screen when a kernel
-> + * panic occurs. This is conflicting with fbcon, so you can only enable
-> + * it when fbcon is disabled. It's intended for end users and therefore
-> + * have minimal technical/debug information.
->    *
-> - * Implementation details:
-> + * To enable DRM panic for a driver, the at least one primary plane must
-> + * implement struct &drm_plane_funcs.display_panic_screen. The plane is
-> + * then automatically registered to the drm panic handler.
->    *
-> - * It is a panic handler, so it can't take lock, allocate memory, run tasks/irq,
-> - * or attempt to sleep. It's a best effort, and it may not be able to display
-> - * the message in all situations (like if the panic occurs in the middle of a
-> - * modesetting).
-> - * It will display only one static frame, so performance optimizations are low
-> - * priority as the machine is already in an unusable state.
-> + * When a panic occurs, the DRM panic handler calls struct
-> + * &drm_plane_funcs.display_panic_screen. See
-> + * drm_plane_helper_display_panic_screen() for a generic implementation.
->    */
->   
->   struct drm_panic_line {
-> @@ -821,12 +808,6 @@ static void drm_panic_qr_init(void) {};
->   static void drm_panic_qr_exit(void) {};
->   #endif
->   
-> -enum drm_panic_type {
-> -	DRM_PANIC_TYPE_KMSG,
-> -	DRM_PANIC_TYPE_USER,
-> -	DRM_PANIC_TYPE_QR,
-> -};
-> -
->   static enum drm_panic_type drm_panic_type = -1;
->   
->   static const char *drm_panic_type_map[] = {
-> @@ -940,9 +921,29 @@ static void drm_panic_clear_description(void)
->   	desc_line->txt = NULL;
->   }
->   
-> -static void draw_panic_plane(struct drm_plane *plane, const char *description,
-> -			     enum drm_panic_type panic_type, u32 fg_color, u32 bg_color,
-> -			     unsigned int qr_version)
-> +/**
-> + * drm_plane_helper_display_panic_screen - Displays a panic screen according to the given settings
-> + * @plane: the DRM plane to display to
-> + * @description: error message to display
-> + * @panic_type: type of panic screen
-> + * @fg_color: text foreground color
-> + * @bg_color: text background color
-> + * @qr_version: version of the QR code, if any
-> + *
-> + * This helper display a panic screen on common primary planes. The panic
-> + * screen can either display a kernel message, a user message or a QR code.
-> + *
-> + * The helper uses struct drm_plane_helper_funcs.get_scanout_buffer, where
-> + * the plane can provide a scanout buffer that the panic handler can draw to.
-> + * Currently only linear buffer and a few color formats are supported.
-> + *
-> + * Optionally the plane can also provide a &drm_plane_helper_funcs.panic_flush
-> + * callback, which the DRM panic handler calls after drawing to send additional
-> + * commands to the hardware to make the scanout buffer visible.
-> + */
-> +void drm_plane_helper_display_panic_screen(struct drm_plane *plane, const char *description,
-> +					   enum drm_panic_type panic_type,
-> +					   u32 fg_color, u32 bg_color, unsigned int qr_version)
->   {
->   	struct drm_scanout_buffer sb = { };
->   	int ret;
-> @@ -970,6 +971,7 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description,
->   
->   	drm_panic_clear_description();
->   }
-> +EXPORT_SYMBOL(drm_plane_helper_display_panic_screen);
->   
->   static void drm_panic_display_panic_screen(struct drm_plane *plane, const char *description)
->   {
-> @@ -992,8 +994,8 @@ static void drm_panic_display_panic_screen(struct drm_plane *plane, const char *
->   	unsigned long flags;
->   
->   	if (drm_panic_trylock(dev, flags)) {
-> -		draw_panic_plane(plane, description, drm_panic_type,
-> -				 fg_color, bg_color, qr_version);
-> +		plane->funcs->display_panic_screen(plane, description, drm_panic_type,
-> +						   fg_color, bg_color, qr_version);
->   		drm_panic_unlock(dev, flags);
->   	}
->   }
-> @@ -1064,7 +1066,7 @@ bool drm_panic_is_enabled(struct drm_device *dev)
->   		return false;
->   
->   	drm_for_each_plane(plane, dev)
-> -		if (plane->helper_private && plane->helper_private->get_scanout_buffer)
-> +		if (plane->funcs && plane->funcs->display_panic_screen)
->   			return true;
->   	return false;
->   }
-> @@ -1083,7 +1085,7 @@ void drm_panic_register(struct drm_device *dev)
->   		return;
->   
->   	drm_for_each_plane(plane, dev) {
-> -		if (!plane->helper_private || !plane->helper_private->get_scanout_buffer)
-> +		if (!plane->funcs || !plane->funcs->display_panic_screen)
->   			continue;
->   		plane->kmsg_panic.dump = drm_panic;
->   		plane->kmsg_panic.max_reason = KMSG_DUMP_PANIC;
-> @@ -1110,7 +1112,7 @@ void drm_panic_unregister(struct drm_device *dev)
->   		return;
->   
->   	drm_for_each_plane(plane, dev) {
-> -		if (!plane->helper_private || !plane->helper_private->get_scanout_buffer)
-> +		if (!plane->funcs || !plane->funcs->display_panic_screen)
->   			continue;
->   		kmsg_dump_unregister(&plane->kmsg_panic);
->   	}
-> diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-> index 1855749c1e41..3bf228ef97ff 100644
-> --- a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-> +++ b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-> @@ -18,6 +18,7 @@
->   #include <drm/drm_gem_shmem_helper.h>
->   #include <drm/drm_probe_helper.h>
->   #include <drm/drm_panic.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_plane.h>
->   #include <drm/drm_print.h>
->   #include <drm/drm_vblank.h>
-> @@ -237,6 +238,7 @@ static const struct drm_plane_funcs hv_drm_plane_funcs = {
->   	.disable_plane		= drm_atomic_helper_disable_plane,
->   	.destroy		= drm_plane_cleanup,
->   	DRM_GEM_SHADOW_PLANE_FUNCS,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static const struct drm_encoder_funcs hv_drm_simple_encoder_funcs_cleanup = {
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> index df6da1c6a359..0902b17d0269 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -8,6 +8,7 @@
->   #include <drm/drm_atomic_helper.h>
->   #include <drm/drm_blend.h>
->   #include <drm/drm_fourcc.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_print.h>
->   
->   #include "i9xx_plane.h"
-> @@ -887,6 +888,7 @@ static const struct drm_plane_funcs i965_plane_funcs = {
->   	.atomic_destroy_state = intel_plane_destroy_state,
->   	.format_mod_supported = i965_plane_format_mod_supported,
->   	.format_mod_supported_async = intel_plane_format_mod_supported_async,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static const struct drm_plane_funcs i8xx_plane_funcs = {
-> @@ -897,6 +899,7 @@ static const struct drm_plane_funcs i8xx_plane_funcs = {
->   	.atomic_destroy_state = intel_plane_destroy_state,
->   	.format_mod_supported = i8xx_plane_format_mod_supported,
->   	.format_mod_supported_async = intel_plane_format_mod_supported_async,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static void i9xx_disable_tiling(struct intel_plane *plane)
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 07a683293352..45e8379d93d4 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -7,6 +7,7 @@
->   #include <drm/drm_blend.h>
->   #include <drm/drm_damage_helper.h>
->   #include <drm/drm_fourcc.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_print.h>
->   #include <drm/intel/step.h>
->   
-> @@ -2707,6 +2708,7 @@ static const struct drm_plane_funcs skl_plane_funcs = {
->   	.atomic_destroy_state = intel_plane_destroy_state,
->   	.format_mod_supported = skl_plane_format_mod_supported,
->   	.format_mod_supported_async = intel_plane_format_mod_supported_async,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static const struct drm_plane_funcs icl_plane_funcs = {
-> @@ -2717,6 +2719,7 @@ static const struct drm_plane_funcs icl_plane_funcs = {
->   	.atomic_destroy_state = intel_plane_destroy_state,
->   	.format_mod_supported = icl_plane_format_mod_supported,
->   	.format_mod_supported_async = intel_plane_format_mod_supported_async,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static const struct drm_plane_funcs tgl_plane_funcs = {
-> @@ -2727,6 +2730,7 @@ static const struct drm_plane_funcs tgl_plane_funcs = {
->   	.atomic_destroy_state = intel_plane_destroy_state,
->   	.format_mod_supported = tgl_plane_format_mod_supported,
->   	.format_mod_supported_async = intel_plane_format_mod_supported_async,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static void
-> diff --git a/drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c b/drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c
-> index c7ec09e557c1..377db7cea726 100644
-> --- a/drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c
-> +++ b/drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c
-> @@ -14,6 +14,7 @@
->   #include <drm/drm_gem_atomic_helper.h>
->   #include <drm/drm_gem_dma_helper.h>
->   #include <drm/drm_managed.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_print.h>
->   
->   #include <video/imx-ipu-v3.h>
-> @@ -362,6 +363,7 @@ static const struct drm_plane_funcs ipu_plane_funcs = {
->   	.atomic_duplicate_state	= ipu_plane_duplicate_state,
->   	.atomic_destroy_state	= ipu_plane_destroy_state,
->   	.format_mod_supported = ipu_plane_format_mod_supported,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static int ipu_plane_atomic_check(struct drm_plane *plane,
-> diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.h b/drivers/gpu/drm/mgag200/mgag200_drv.h
-> index 3732c62351bb..d3995ce876f4 100644
-> --- a/drivers/gpu/drm/mgag200/mgag200_drv.h
-> +++ b/drivers/gpu/drm/mgag200/mgag200_drv.h
-> @@ -17,6 +17,7 @@
->   #include <drm/drm_encoder.h>
->   #include <drm/drm_gem.h>
->   #include <drm/drm_gem_shmem_helper.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_plane.h>
->   
->   #include "mgag200_reg.h"
-> @@ -386,7 +387,8 @@ int mgag200_primary_plane_helper_get_scanout_buffer(struct drm_plane *plane,
->   	.update_plane = drm_atomic_helper_update_plane, \
->   	.disable_plane = drm_atomic_helper_disable_plane, \
->   	.destroy = drm_plane_cleanup, \
-> -	DRM_GEM_SHADOW_PLANE_FUNCS
-> +	DRM_GEM_SHADOW_PLANE_FUNCS, \
-> +	DRM_PANIC_PLANE_FUNCS
->   
->   void mgag200_crtc_fill_gamma(struct mga_device *mdev, const struct drm_format_info *format);
->   void mgag200_crtc_load_gamma(struct mga_device *mdev,
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-> index 15a322422f4e..fc29a291e96f 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-> @@ -39,6 +39,7 @@
->   #include <drm/drm_framebuffer.h>
->   #include <drm/drm_gem_atomic_helper.h>
->   #include <drm/drm_panic.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/ttm/ttm_bo.h>
->   
->   #include "nouveau_bo.h"
-> @@ -841,6 +842,7 @@ nv50_wndw = {
->   	.atomic_duplicate_state = nv50_wndw_atomic_duplicate_state,
->   	.atomic_destroy_state = nv50_wndw_atomic_destroy_state,
->   	.format_mod_supported = nv50_plane_format_mod_supported,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static const u64 nv50_cursor_format_modifiers[] = {
-> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_plane.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_plane.c
-> index 8870766b9e54..f4b0e5b70c7d 100644
-> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_plane.c
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_plane.c
-> @@ -16,6 +16,7 @@
->   #include <drm/drm_fourcc.h>
->   #include <drm/drm_framebuffer.h>
->   #include <drm/drm_gem_dma_helper.h>
-> +#include <drm/drm_panic_helper.h>
->   
->   #include "rcar_du_drv.h"
->   #include "rcar_du_group.h"
-> @@ -773,6 +774,7 @@ static const struct drm_plane_funcs rcar_du_plane_funcs = {
->   	.atomic_destroy_state = rcar_du_plane_atomic_destroy_state,
->   	.atomic_set_property = rcar_du_plane_atomic_set_property,
->   	.atomic_get_property = rcar_du_plane_atomic_get_property,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static const uint32_t formats[] = {
-> diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c b/drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c
-> index 148de34af785..907f85462fa0 100644
-> --- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c
-> +++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c
-> @@ -14,6 +14,7 @@
->   #include <drm/drm_fourcc.h>
->   #include <drm/drm_framebuffer.h>
->   #include <drm/drm_gem_dma_helper.h>
-> +#include <drm/drm_panic_helper.h>
->   
->   #include "shmob_drm_drv.h"
->   #include "shmob_drm_kms.h"
-> @@ -286,6 +287,7 @@ static const struct drm_plane_funcs shmob_drm_plane_funcs = {
->   	.reset = shmob_drm_plane_reset,
->   	.atomic_duplicate_state = shmob_drm_plane_atomic_duplicate_state,
->   	.atomic_destroy_state = shmob_drm_plane_atomic_destroy_state,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static const uint32_t formats[] = {
-> diff --git a/drivers/gpu/drm/sysfb/drm_sysfb_helper.h b/drivers/gpu/drm/sysfb/drm_sysfb_helper.h
-> index 547f2327af5e..232be339659e 100644
-> --- a/drivers/gpu/drm/sysfb/drm_sysfb_helper.h
-> +++ b/drivers/gpu/drm/sysfb/drm_sysfb_helper.h
-> @@ -12,6 +12,7 @@
->   #include <drm/drm_device.h>
->   #include <drm/drm_gem_atomic_helper.h>
->   #include <drm/drm_modes.h>
-> +#include <drm/drm_panic_helper.h>
->   
->   struct drm_format_info;
->   struct drm_scanout_buffer;
-> @@ -144,7 +145,8 @@ void drm_sysfb_plane_atomic_destroy_state(struct drm_plane *plane,
->   	.update_plane = drm_atomic_helper_update_plane, \
->   	.disable_plane = drm_atomic_helper_disable_plane, \
->   	.atomic_duplicate_state = drm_sysfb_plane_atomic_duplicate_state, \
-> -	.atomic_destroy_state = drm_sysfb_plane_atomic_destroy_state
-> +	.atomic_destroy_state = drm_sysfb_plane_atomic_destroy_state, \
-> +	DRM_PANIC_PLANE_FUNCS
->   
->   /*
->    * CRTC
-> diff --git a/drivers/gpu/drm/sysfb/vesadrm.c b/drivers/gpu/drm/sysfb/vesadrm.c
-> index 6a67b2d2e451..14d2e6ab88aa 100644
-> --- a/drivers/gpu/drm/sysfb/vesadrm.c
-> +++ b/drivers/gpu/drm/sysfb/vesadrm.c
-> @@ -24,6 +24,7 @@
->   #include <drm/drm_managed.h>
->   #include <drm/drm_modeset_helper.h>
->   #include <drm/drm_modeset_helper_vtables.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_print.h>
->   #include <drm/drm_probe_helper.h>
->   
-> diff --git a/drivers/gpu/drm/tidss/tidss_plane.c b/drivers/gpu/drm/tidss/tidss_plane.c
-> index 6d82976c2db1..b0d5d6959b88 100644
-> --- a/drivers/gpu/drm/tidss/tidss_plane.c
-> +++ b/drivers/gpu/drm/tidss/tidss_plane.c
-> @@ -12,6 +12,7 @@
->   #include <drm/drm_fourcc.h>
->   #include <drm/drm_framebuffer.h>
->   #include <drm/drm_gem_atomic_helper.h>
-> +#include <drm/drm_panic_helper.h>
->   
->   #include "tidss_crtc.h"
->   #include "tidss_dispc.h"
-> @@ -182,6 +183,7 @@ static const struct drm_plane_funcs tidss_plane_funcs = {
->   	.atomic_create_state = drm_atomic_helper_plane_create_state,
->   	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
->   	.atomic_destroy_state = drm_atomic_helper_plane_destroy_state,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   struct tidss_plane *tidss_plane_create(struct tidss_device *tidss,
-> diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.c
-> index e2d957e51505..076d19b26511 100644
-> --- a/drivers/gpu/drm/tiny/bochs.c
-> +++ b/drivers/gpu/drm/tiny/bochs.c
-> @@ -20,6 +20,7 @@
->   #include <drm/drm_managed.h>
->   #include <drm/drm_module.h>
->   #include <drm/drm_panic.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_plane_helper.h>
->   #include <drm/drm_print.h>
->   #include <drm/drm_probe_helper.h>
-> @@ -501,7 +502,8 @@ static const struct drm_plane_funcs bochs_primary_plane_funcs = {
->   	.update_plane = drm_atomic_helper_update_plane,
->   	.disable_plane = drm_atomic_helper_disable_plane,
->   	.destroy = drm_plane_cleanup,
-> -	DRM_GEM_SHADOW_PLANE_FUNCS
-> +	DRM_GEM_SHADOW_PLANE_FUNCS,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static void bochs_crtc_helper_mode_set_nofb(struct drm_crtc *crtc)
-> diff --git a/drivers/gpu/drm/virtio/virtgpu_plane.c b/drivers/gpu/drm/virtio/virtgpu_plane.c
-> index 1d1b27ece62a..108b5b93f130 100644
-> --- a/drivers/gpu/drm/virtio/virtgpu_plane.c
-> +++ b/drivers/gpu/drm/virtio/virtgpu_plane.c
-> @@ -30,6 +30,7 @@
->   #include <linux/virtio_dma_buf.h>
->   #include <drm/drm_managed.h>
->   #include <drm/drm_panic.h>
-> +#include <drm/drm_panic_helper.h>
->   #include <drm/drm_print.h>
->   
->   #include "virtgpu_drv.h"
-> @@ -94,6 +95,7 @@ static const struct drm_plane_funcs virtio_gpu_plane_funcs = {
->   	.reset			= drm_atomic_helper_plane_reset,
->   	.atomic_duplicate_state = virtio_gpu_plane_duplicate_state,
->   	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
-> +	DRM_PANIC_PLANE_FUNCS,
->   };
->   
->   static int virtio_gpu_plane_atomic_check(struct drm_plane *plane,
-> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-> index d8f5b7e9673e..084517beb924 100644
-> --- a/include/drm/drm_mode_config.h
-> +++ b/include/drm/drm_mode_config.h
-> @@ -495,8 +495,8 @@ struct drm_mode_config {
->   	 *
->   	 * Raw spinlock used to protect critical sections of code that access
->   	 * the display hardware or modeset software state, which the panic
-> -	 * printing code must be protected against. See drm_panic_trylock(),
-> -	 * drm_panic_lock() and drm_panic_unlock().
-> +	 * printing code must be protected against. See the documentation on
-> +	 * DRM panic handling for more information.
->   	 */
->   	struct raw_spinlock panic_lock;
->   
-> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
-> index ca6268945c28..614bdee0c1ed 100644
-> --- a/include/drm/drm_modeset_helper_vtables.h
-> +++ b/include/drm/drm_modeset_helper_vtables.h
-> @@ -1442,17 +1442,20 @@ struct drm_plane_helper_funcs {
->   	/**
->   	 * @get_scanout_buffer:
->   	 *
-> -	 * Get the current scanout buffer, to display a message with drm_panic.
-> +	 * Get the current scanout buffer to display a message with drm_panic.
->   	 * The driver should do the minimum changes to provide a buffer,
->   	 * that can be used to display the panic screen. Currently only linear
->   	 * buffers are supported. Non-linear buffer support is on the TODO list.
->   	 * The device &dev.mode_config.panic_lock is taken before calling this
->   	 * function, so you can safely access the &plane.state
->   	 * It is called from a panic callback, and must follow its restrictions.
-> -	 * Please look the documentation at drm_panic_trylock() for an in-depth
-> +	 * Please look the documentation on DRM panic handling for an in-depth
->   	 * discussions of what's safe and what is not allowed.
-> +	 *
->   	 * It's a best effort mode, so it's expected that in some complex cases
-> -	 * the panic screen won't be displayed.
-> +	 * the panic screen won't be displayed. Drivers must not make any
-> +	 * assumptions about the actual state of the hardware.
-> +	 *
->   	 * The returned &drm_scanout_buffer.map must be valid if no error code is
->   	 * returned.
->   	 *
-> @@ -1472,7 +1475,7 @@ struct drm_plane_helper_funcs {
->   	 * It is only called if get_scanout_buffer() returned successfully, and
->   	 * the &dev.mode_config.panic_lock is held during the entire sequence.
->   	 * It is called from a panic callback, and must follow its restrictions.
-> -	 * Please look the documentation at drm_panic_trylock() for an in-depth
-> +	 * Please look the documentation on DRM panic handling for an in-depth
->   	 * discussions of what's safe and what is not allowed.
->   	 */
->   	void (*panic_flush)(struct drm_plane *plane);
-> diff --git a/include/drm/drm_panic.h b/include/drm/drm_panic.h
-> index ac0e46b73436..430df536de14 100644
-> --- a/include/drm/drm_panic.h
-> +++ b/include/drm/drm_panic.h
-> @@ -15,6 +15,14 @@
->   #include <drm/drm_device.h>
->   #include <drm/drm_fourcc.h>
->   
-> +struct page;
-> +
-> +enum drm_panic_type {
-> +	DRM_PANIC_TYPE_KMSG,
-> +	DRM_PANIC_TYPE_USER,
-> +	DRM_PANIC_TYPE_QR,
-> +};
-> +
->   /**
->    * struct drm_scanout_buffer - DRM scanout buffer
->    *
-> @@ -87,45 +95,8 @@ struct drm_scanout_buffer {
->    * @dev: struct drm_device
->    * @flags: unsigned long irq flags you need to pass to the unlock() counterpart
->    *
-> - * This function must be called by any panic printing code. The panic printing
-> - * attempt must be aborted if the trylock fails.
-> - *
-> - * Panic printing code can make the following assumptions while holding the
-> - * panic lock:
-> - *
-> - * - Anything protected by drm_panic_lock() and drm_panic_unlock() pairs is safe
-> - *   to access.
-> - *
-> - * - Furthermore the panic printing code only registers in drm_dev_unregister()
-> - *   and gets removed in drm_dev_unregister(). This allows the panic code to
-> - *   safely access any state which is invariant in between these two function
-> - *   calls, like the list of planes &drm_mode_config.plane_list or most of the
-> - *   struct drm_plane structure.
-> - *
-> - * Specifically thanks to the protection around plane updates in
-> - * drm_atomic_helper_swap_state() the following additional guarantees hold:
-> - *
-> - * - It is safe to deference the drm_plane.state pointer.
-> - *
-> - * - Anything in struct drm_plane_state or the driver's subclass thereof which
-> - *   stays invariant after the atomic check code has finished is safe to access.
-> - *   Specifically this includes the reference counted pointers to framebuffer
-> - *   and buffer objects.
-> - *
-> - * - Anything set up by &drm_plane_helper_funcs.fb_prepare and cleaned up
-> - *   &drm_plane_helper_funcs.fb_cleanup is safe to access, as long as it stays
-> - *   invariant between these two calls. This also means that for drivers using
-> - *   dynamic buffer management the framebuffer is pinned, and therefer all
-> - *   relevant datastructures can be accessed without taking any further locks
-> - *   (which would be impossible in panic context anyway).
-> - *
-> - * - Importantly, software and hardware state set up by
-> - *   &drm_plane_helper_funcs.begin_fb_access and
-> - *   &drm_plane_helper_funcs.end_fb_access is not safe to access.
-> - *
-> - * Drivers must not make any assumptions about the actual state of the hardware,
-> - * unless they explicitly protected these hardware access with drm_panic_lock()
-> - * and drm_panic_unlock().
-> + * The panic-printing code calls this function. The panic printing attempt must
-> + * be aborted if the trylock fails.
->    *
->    * Return:
->    * %0 when failing to acquire the raw spinlock, nonzero on success.
-> diff --git a/include/drm/drm_panic_helper.h b/include/drm/drm_panic_helper.h
-> new file mode 100644
-> index 000000000000..e296620bbe34
-> --- /dev/null
-> +++ b/include/drm/drm_panic_helper.h
-> @@ -0,0 +1,27 @@
-> +/* SPDX-License-Identifier: GPL-2.0 or MIT */
-> +
-> +#ifndef __DRM_DRM_PANIC_HELPER_H_
-> +#define __DRM_DRM_PANIC_HELPER_H_
-> +
-> +#include <linux/types.h>
-> +
-> +enum drm_panic_type;
-> +
-> +struct drm_plane;
-> +
-> +/* drm_panic_helper.c */
-> +void drm_plane_helper_display_panic_screen(struct drm_plane *plane,
-> +					   const char *description,
-> +					   enum drm_panic_type panic_type,
-> +					   u32 fg_color, u32 bg_color,
-> +					   unsigned int qr_version);
-> +
-> +#if IS_ENABLED(CONFIG_DRM_PANIC)
-> +#define DRM_PANIC_PLANE_FUNCS \
-> +	.display_panic_screen = drm_plane_helper_display_panic_screen
-> +#else
-> +#define DRM_PANIC_PLANE_FUNCS \
-> +	.display_panic_screen = NULL
-> +#endif
-> +
-> +#endif
-> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
-> index 2c5a5a70a71b..317af17bac26 100644
-> --- a/include/drm/drm_plane.h
-> +++ b/include/drm/drm_plane.h
-> @@ -32,6 +32,8 @@
->   #include <drm/drm_modeset_lock.h>
->   #include <drm/drm_util.h>
->   
-> +enum drm_panic_type;
-> +
->   struct drm_crtc;
->   struct drm_plane_size_hint;
->   struct drm_printer;
-> @@ -590,6 +592,61 @@ struct drm_plane_funcs {
->   	bool (*format_mod_supported_async)(struct drm_plane *plane,
->   					   u32 format, u64 modifier);
->   
-> +	/**
-> +	 * @display_panic_screen:
-> +	 *
-> +	 * DRM panic handling invokes this callback on panics.
-> +	 *
-> +	 * It is a panic handler, so it can't take locks, allocate memory, run tasks/irq,
-> +	 * or attempt to sleep. It's a best effort, and it may not be able to display
-> +	 * the message in all situations (like if the panic occurs in the middle of a
-> +	 * modesetting).
-> +	 *
-> +	 * Panic-printing code must acquire the panic lock before interacting with the
-> +	 * scanout buffer. Such helpers can make the following assumptions while holding
-> +	 * the panic lock:
-> +	 *
-> +	 * - Anything protected by drm_panic_lock() and drm_panic_unlock() pairs is safe
-> +	 *   to access.
-> +	 *
-> +	 * - Furthermore the panic printing code only registers in drm_dev_unregister()
-> +	 *   and gets removed in drm_dev_unregister(). This allows the panic code to
-> +	 *   safely access any state which is invariant in between these two function
-> +	 *   calls, like the list of planes &drm_mode_config.plane_list or most of the
-> +	 *   struct drm_plane structure.
-> +	 *
-> +	 * Specifically thanks to the protection around plane updates in
-> +	 * drm_atomic_helper_swap_state() the following additional guarantees hold:
-> +	 *
-> +	 * - It is safe to deference the drm_plane.state pointer.
-> +	 *
-> +	 * - Anything in struct drm_plane_state or the driver's subclass thereof which
-> +	 *   stays invariant after the atomic check code has finished is safe to access.
-> +	 *   Specifically this includes the reference counted pointers to framebuffer
-> +	 *   and buffer objects.
-> +	 *
-> +	 * - Anything set up by &drm_plane_helper_funcs.fb_prepare and cleaned up
-> +	 *   &drm_plane_helper_funcs.fb_cleanup is safe to access, as long as it stays
-> +	 *   invariant between these two calls. This also means that for drivers using
-> +	 *   dynamic buffer management the framebuffer is pinned, and therefer all
-> +	 *   relevant datastructures can be accessed without taking any further locks
-> +	 *   (which would be impossible in panic context anyway).
-> +	 *
-> +	 * - Importantly, software and hardware state set up by
-> +	 *   &drm_plane_helper_funcs.begin_fb_access and
-> +	 *   &drm_plane_helper_funcs.end_fb_access is not safe to access.
-> +	 *
-> +	 * It will display only one static frame, so performance optimizations are
-> +	 * low priority as the machine is already in an unusable state.
-> +	 *
-> +	 * This callback is optional. Planes without will not be considered
-> +	 * for panic output.
-> +	 */
-> +	void (*display_panic_screen)(struct drm_plane *plane,
-> +				     const char *description,
-> +				     enum drm_panic_type panic_type,
-> +				     u32 fg_color, u32 bg_color,
-> +				     unsigned int qr_version);
->   };
->   
->   /**
-
+> 
+> >  		}
+> >  
+> >  		if (!idle) {
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index 57bcf0660eb8..28223e32fd26 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -39,6 +39,7 @@
+> >  #include "xe_sync.h"
+> >  #include "xe_tile.h"
+> >  #include "xe_tlb_inval.h"
+> > +#include "xe_tlb_inval_job.h"
+> >  #include "xe_trace_bo.h"
+> >  #include "xe_vm_madvise.h"
+> >  #include "xe_wa.h"
+> > @@ -4432,6 +4433,130 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+> >  	return ret;
+> >  }
+> >  
+> > +/*
+> > + * xe_vma_tlb_flush_client - Queue an async TLB flush for one VMA on
+> > one client
+> > + *
+> > + * Create and push a TLB invalidation job on the tile migrate
+> > (kernel) exec
+> > + * queue covering @vma's range, depending on @dep (the BO's in-
+> > flight GPU work)
+> > + * so the flush only fires once the GPU is done with the current
+> > mapping. The
+> > + * job's completion fence is installed into @resv as a KERNEL fence
+> > so the
+> > + * subsequent migration waits on the flush. No PTEs are zapped; this
+> > only
+> > + * flushes L2 via the TLB invalidation.
+> > + */
+> > +static int xe_vma_tlb_flush_client(struct xe_vm *vm, struct xe_vma
+> > *vma,
+> > +				   struct xe_tile *tile, struct
+> > xe_gt *gt,
+> > +				   struct dma_resv *resv, struct
+> > dma_fence *dep,
+> > +				   int type)
+> > +{
+> > +	struct xe_exec_queue *q = xe_migrate_exec_queue(tile-
+> > >migrate);
+> > +	struct xe_tlb_inval_job *job;
+> > +	struct dma_fence *fence;
+> > +	int err;
+> > +
+> > +	job = xe_tlb_inval_job_create(q, &gt->tlb_inval,
+> > +				      q-
+> > >tlb_inval[type].dep_scheduler, vm,
+> > +				      xe_vma_start(vma),
+> > xe_vma_end(vma), type);
+> > +	if (IS_ERR(job))
+> > +		return PTR_ERR(job);
+> > +
+> > +	err = xe_tlb_inval_job_alloc_dep(job);
+> > +	if (err)
+> > +		goto out_put;
+> > +
+> > +	err = dma_resv_reserve_fences(resv, 1);
+> > +	if (err)
+> > +		goto out_put;
+> > +
+> > +	/* Cannot fail; consumes a ref on @dep and returns a
+> > referenced fence. */
+> > +	fence = xe_tlb_inval_job_push(job, tile->migrate, dep);
+> > +	dma_resv_add_fence(resv, fence, DMA_RESV_USAGE_KERNEL);
+> > +	dma_fence_put(fence);
+> > +
+> > +out_put:
+> > +	/* Drop the creation reference (destroys the job if it was
+> > not pushed). */
+> > +	xe_tlb_inval_job_put(job);
+> > +	return err;
+> > +}
+> > +
+> > +/**
+> > + * xe_vm_flush_vm_bo_tlb_async - Asynchronously flush TLBs for a
+> > vm_bo's mappings
+> > + * @vm: The VM @vm_bo belongs to
+> > + * @bo: The buffer object being moved
+> > + * @vm_bo: The gpuvm_bo linking @bo into @vm
+> > + *
+> > + * On L2-flush-optimized HW a BO move only needs to flush L2 (via a
+> > TLB
+> > + * invalidation) for the BO's live mappings; the mappings themselves
+> > are torn
+> > + * down and rebuilt lazily via the eviction/rebind path, so no PTEs
+> > need to be
+> > + * zapped here. Rather than blocking the caller on a synchronous
+> > invalidation,
+> > + * issue a TLB invalidation job per VMA per TLB-invalidation client
+> > (per present
+> > + * tile, primary and media GT). Each job waits on the BO's in-flight
+> > GPU work
+> > + * (all dma-resv usages) and its completion fence is installed into
+> > the BO's
+> > + * dma-resv KERNEL slots, so the following migration waits on the
+> > flush without
+> > + * stalling this thread.
+> > + *
+> > + * The caller must hold the BO's dma-resv lock and @vm must not be
+> > in fault
+> > + * mode.
+> > + *
+> > + * Return: 0 on success, negative error code on failure. On failure
+> > the caller
+> > + * should fall back to the blocking xe_vm_invalidate_vma() path; any
+> > jobs
+> > + * already queued install harmless extra flush fences.
+> > + */
+> > +int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
+> > +				struct drm_gpuvm_bo *vm_bo)
+> > +{
+> > +	struct xe_device *xe = vm->xe;
+> > +	struct dma_resv *resv = bo->ttm.base.resv;
+> > +	struct dma_fence *dep = NULL;
+> > +	struct drm_gpuva *gpuva;
+> > +	int err;
+> > +
+> > +	dma_resv_assert_held(resv);
+> > +	xe_assert(xe, !xe_vm_in_fault_mode(vm));
+> > +
+> > +	/*
+> > +	 * Single fence capturing all in-flight GPU work on the BO;
+> > the TLB
+> > +	 * invalidation jobs depend on it so the flush fires only
+> > once the GPU
+> > +	 * is done with the current mapping.
+> > +	 */
+> > +	err = dma_resv_get_singleton(resv, DMA_RESV_USAGE_BOOKKEEP,
+> > &dep);
+> > +	if (err)
+> > +		return err;
+> > +	if (!dep)
+> > +		dep = dma_fence_get_stub();
+> > +
+> > +	drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
+> > +		struct xe_vma *vma = gpuva_to_vma(gpuva);
+> > +		struct xe_tile *tile;
+> > +		u8 id;
+> > +
+> > +		if (xe_vma_is_null(vma) ||
+> > xe_vma_is_cpu_addr_mirror(vma))
+> > +			continue;
+> > +
+> > +		for_each_tile(tile, xe, id) {
+> > +			if (!(vma->tile_present & BIT(id)))
+> > +				continue;
+> > +
+> > +			err = xe_vma_tlb_flush_client(vm, vma, tile,
+> > +						      tile-
+> > >primary_gt, resv, dep,
+> > +						     
+> > XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> > +			if (err)
+> > +				goto out;
+> > +
+> > +			if (tile->media_gt) {
+> > +				err = xe_vma_tlb_flush_client(vm,
+> > vma, tile,
+> > +							      tile-
+> > >media_gt, resv, dep,
+> > +							     
+> > XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT);
+> > +				if (err)
+> > +					goto out;
+> > +			}
+> > +		}
+> > +	}
+> > +
+> > +out:
+> > +	dma_fence_put(dep);
+> > +	return err;
+> > +}
+> > +
+> >  int xe_vm_validate_protected(struct xe_vm *vm)
+> >  {
+> >  	struct drm_gpuva *gpuva;
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> > index c5b900f38ded..dd5b070eaede 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm.h
+> > @@ -26,6 +26,8 @@ struct ttm_buffer_object;
+> >  
+> >  struct dma_fence;
+> >  
+> > +struct xe_bo;
+> > +struct drm_gpuvm_bo;
+> >  struct xe_exec_queue;
+> >  struct xe_file;
+> >  struct xe_pagefault;
+> > @@ -254,6 +256,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma);
+> >  
+> >  int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct
+> > xe_tlb_inval_batch *batch);
+> >  
+> > +int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
+> > +				struct drm_gpuvm_bo *vm_bo);
+> > +
+> >  int xe_vm_validate_protected(struct xe_vm *vm);
+> >  
+> >  static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
