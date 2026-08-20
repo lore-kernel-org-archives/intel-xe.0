@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3020C5DF81
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 20:19:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3C87C5DF86
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 20:20:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A8F10E220;
-	Thu, 20 Aug 2026 20:19:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 893B710E030;
+	Thu, 20 Aug 2026 20:20:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DgyQs1Lo";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TDFd8xyM";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50DE610E030
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 20:19:56 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84F2010E030
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 20:19:57 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id A291E40AA8;
- Thu, 20 Aug 2026 20:19:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AB791F000E9;
- Thu, 20 Aug 2026 20:19:55 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 6FEE060A58;
+ Thu, 20 Aug 2026 20:19:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A36F1F000E9;
+ Thu, 20 Aug 2026 20:19:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787257195;
- bh=1/sF3uIWs73VZrTGYowzRPbDAZ/bpjEhibirdZC83RA=;
+ s=k20260515; t=1787257196;
+ bh=kabKhR0O3IttHOctpI9j+kNk5Nud0i4vnCUF6tmAxpE=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=DgyQs1LoC+oYrn2OE7oIqLd+q9MFFMUs3lYiF2c/LOQlqhm7qLvosL5toRlkn4HgQ
- kxZDHkoif3uhwl/uNrPn00v9sMQM8nf2He1IJzF/JPV7cwKS0Z03inaeik91kkMxKa
- kq3iJJMiLH3fgCSHMjQQFMgL9Wfkf9JF8/LEtRHL+DMuDTHYuw59950rs1GewiE603
- JO0BY6R8dklz/MVpsi/9YFU/e5oq8g0IFLkTZghOm3g3P0TB4wRxg6zw6hYGvDzrK7
- xbikRv0PdPU8fNIRDytdDhvghskLCYJMXANLjhHpE1jqlAGIsteMckJ2Q/2rK9rit3
- bUTso8LShZGmQ==
+ b=TDFd8xyMFffoATo3MldghRZmR9tWyAFVzaRe12ep6dhuen0WAZ1wPLIl9qbowtrN3
+ DX6VrSxIpZOug4rOU0XvUFxf05qEgwrZ8haNvP1If8+b9ccGIAKqrECBlwL5TX9P3Z
+ Llb1Q4PRYCju3zKGdLl5NTW3XqkiVS6mP/amP6EwBX4iFzq8SUfhsOrODCnLdSmDwY
+ 968eFXWQwvEhJ2+KagIpxTPX5LiIWoraODYyn5W5s+k0Vq2NUUo2DcPRlSPAUsqWCq
+ YFh8casJ6MeuFoVJ4uZFfqRZMlDzllfXxlrkP+/uClJ92mH0jDuSaoVe8QoXenoOQn
+ 2v+FJVlHCFjQA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 01/10] drm/xe: Guard configfs attribute reads in getters
+Subject: Re: [PATCH 08/10] drm/xe: Add infrastructure for debug configfs
+ parameters
 To: "Stuart Summers" <stuart.summers@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260820200719.84681-13-stuart.summers@intel.com>
+In-Reply-To: <20260820200719.84681-20-stuart.summers@intel.com>
 References: <20260820200719.84681-12-stuart.summers@intel.com>
- <20260820200719.84681-13-stuart.summers@intel.com>
+ <20260820200719.84681-20-stuart.summers@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 20 Aug 2026 20:19:54 +0000
-Message-Id: <20260820201955.5AB791F000E9@smtp.kernel.org>
+Date: Thu, 20 Aug 2026 20:19:55 +0000
+Message-Id: <20260820201956.0A36F1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,107 +59,98 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] The getters for ctx_restore batch buffers return a pointer to conf=
-igfs-managed dynamically allocated memory that escapes the lock scope, lead=
-ing to a Use-After-Free when the caller dereferences it.
+- [Low] Global namespace pollution from generic attribute names
 --
 
---- Patch [1]: [PATCH 01/10] drm/xe: Guard configfs attribute reads in gett=
-ers ---
-commit 21ea5e4421c0b8eb92457fd7f08188c0ab0550d1
+--- Patch [8]: [PATCH 08/10] drm/xe: Add infrastructure for debug configfs =
+parameters ---
+commit c6663e692904c84b3875225b65be4210162f1f5e
 Author: Stuart Summers <stuart.summers@intel.com>
 
-drm/xe: Guard configfs attribute reads in getters
+drm/xe: Add infrastructure for debug configfs parameters
 
-The configfs getters read dev->config members without holding dev->lock,
-so a concurrent store can tear the value being returned. The store paths
-and a few of the getters already take the lock; make it consistent by
-wrapping every read of dev->config in the getters with a scoped_guard(),
-covering the surrounding checks that consume those values as well.
+This commit introduces an X-macro pattern for defining debug configfs param=
+eters
+in the Xe driver. It automatically generates backing structs, configuration
+attributes, and accessors from a single parameter list to simplify adding n=
+ew
+debug entries.
 
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_con=
-figfs.c
-> index 052cce9621611..0a85043a9dd01 100644
-> --- a/drivers/gpu/drm/xe/xe_configfs.c
-> +++ b/drivers/gpu/drm/xe/xe_configfs.c
+> diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.c b/drivers/gpu/=
+drm/xe/xe_configfs_debug_params.c
+> new file mode 100644
+> index 0000000000000..00e5ff175c0af
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
 
 [ ... ]
 
-> @@ -1308,10 +1313,12 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci=
-_dev *pdev,
->  	if (!dev)
->  		return 0;
-> =20
-> -	if (cs)
-> -		*cs =3D dev->config.ctx_restore_mid_bb[class].cs;
-> +	scoped_guard(mutex, &dev->lock) {
-> +		if (cs)
-> +			*cs =3D dev->config.ctx_restore_mid_bb[class].cs;
-> =20
-> -	len =3D dev->config.ctx_restore_mid_bb[class].len;
-> +		len =3D dev->config.ctx_restore_mid_bb[class].len;
-> +	}
->  	config_group_put(&dev->group);
-> =20
->  	return len;
+> +/*
+> + * Define the configfs_attribute objects. These are non-static so they
+> + * can be referenced from xe_configfs_debug.c.
+> + */
+> +#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallba=
+ck) \
+> +struct configfs_attribute attr_##_name =3D {                            =
+  \
 
-[Severity: High]
-This isn't a bug introduced by this patch, but does returning this pointer
-to the caller introduce a use-after-free risk?
+[Severity: Low]
+Could this naming convention cause global symbol collisions?=20
 
-The caller receives a pointer to configfs-managed memory, but the lock is
-released and config_group_put() drops the reference before the caller uses
-the pointer.
+Since these objects are non-static (defined in the global namespace), namin=
+g=20
+them attr_##_name could lead to link-time multiple definition errors if ano=
+ther=20
+subsystem happens to export a variable with a generic name like attr_timeou=
+t or=20
+attr_enable.
 
-For example, in drivers/gpu/drm/xe/xe_lrc.c:setup_configfs_mid_ctx_restore_=
-bb():
+Would it be safer to use a subsystem-specific prefix, such as=20
+xe_configfs_attr_##_name, to prevent namespace pollution?
 
-    count =3D xe_configfs_get_ctx_restore_mid_bb(to_pci_dev(xe->drm.dev), h=
-we->class, &user_batch);
-    if (!count)
-        return 0;
-    ...
-    memcpy(cmd, user_batch, count * sizeof(u32));
+> +	.ca_name	=3D __stringify(_name),                           \
+> +	.ca_owner	=3D THIS_MODULE,                                  \
+> +	.ca_mode	=3D 0644,                                         \
+> +	.show		=3D _name##_show,                                 \
+> +	.store		=3D _name##_store,                                \
+> +};
+> +
+> +XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DEFINE_ATTR)
 
-If a user concurrently removes the configfs directory, could config_group_p=
-ut()
-drop the final reference and free the batch buffer memory before the memcpy=
-()
-executes?
+[ ... ]
 
-> @@ -1335,8 +1342,10 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci=
-_dev *pdev,
->  	if (!dev)
->  		return 0;
-> =20
-> -	*cs =3D dev->config.ctx_restore_post_bb[class].cs;
-> -	len =3D dev->config.ctx_restore_post_bb[class].len;
-> +	scoped_guard(mutex, &dev->lock) {
-> +		*cs =3D dev->config.ctx_restore_post_bb[class].cs;
-> +		len =3D dev->config.ctx_restore_post_bb[class].len;
-> +	}
->  	config_group_put(&dev->group);
-> =20
->  	return len;
+> diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.h b/drivers/gpu/=
+drm/xe/xe_configfs_debug_params.h
+> new file mode 100644
+> index 0000000000000..954ca4343136d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
 
-[Severity: High]
-This is a pre-existing issue, but similar to the mid_bb function above,
-can this cause a use-after-free?
+[ ... ]
 
-The pointer escapes the lock scope and the caller uses it after the final
-reference might have been dropped:
+> +/*
+> + * Forward declarations of the per-parameter configfs_attribute objects.
+> + *
+> + * The objects themselves are defined in xe_configfs_debug_params.c (as
+> + * non-static so they can be referenced from xe_configfs_debug.c's
+> + * xe_configfs_debug_attrs[] array and is_visible() callback). They live
+> + * in the same translation unit as the X-macro-generated show/store
+> + * handlers; consumers should reference them via attr_<name>.
+> + */
+> +#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallb=
+ack) \
+> +	extern struct configfs_attribute attr_##_name;
 
-drivers/gpu/drm/xe/xe_lrc.c:setup_configfs_post_ctx_restore_bb():
+[Severity: Low]
+Similar to the definition above, this macro exposes attr_##_name in the glo=
+bal=20
+namespace. Adding a prefix like xe_configfs_attr_##_name here would align w=
+ith=20
+the definition change and ensure namespace safety.
 
-    count =3D xe_configfs_get_ctx_restore_post_bb(to_pci_dev(xe->drm.dev), =
-hwe->class, &user_batch);
-    if (!count)
-        return 0;
-    ...
-    memcpy(cmd, user_batch, count * sizeof(u32));
+> +XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DECLARE_ATTR)
+> +#undef _XE_PARAM_DECLARE_ATTR
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260820200719.8468=
-1-12-stuart.summers@intel.com?part=3D1
+1-12-stuart.summers@intel.com?part=3D8
