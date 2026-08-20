@@ -4,59 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F16C0C5DF86
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 21:07:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95338C5DF81
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 21:08:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB8F310E614;
-	Thu, 20 Aug 2026 21:07:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4913F10EC82;
+	Thu, 20 Aug 2026 21:08:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mm3YFh6H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BfidNo52";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 090E910E60F
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 21:06:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8F5E10E7A2
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 21:08:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787260007; x=1818796007;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wCJ+LSdyBVWf4UuzZEIPiQqXlY3vtakNVwjyQ3mMfnY=;
- b=Mm3YFh6H+02ACEhVX0WwIpluWrz+e9CfbLDtlkHo7IvlsexPOC3zzSaP
- b/+ie3r51labFQpWOR5AcxLMljWjxB7y1qB6kNdGg2R0gL1rwoF9GvC5R
- 2kZWce6De2+ZhhFMip5Ui9WDcXux25pzDQ2rKgRm7ndfOlg6bHazioheD
- 1F5z3AVq7c0Kvnq7j/5gThUFOVqaPUT2DVRFEE6Q9VX6xlNKDP1h51hKd
- fqK2SJm1kQAXYwHVc2zsfuxC2b8u+BoPMJmaGFxMutjlqCXr0Va4XERxl
- fHY2GQ8XnPuZoSWbpRWZfGb3cluMNBA6giBshjxlHVzogZddpGUdMRBzg Q==;
-X-CSE-ConnectionGUID: Uo++6LWaQp+usn2Z6Cb6gQ==
-X-CSE-MsgGUID: Z+g+aOviTJehrjplv6qhIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="98965324"
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="98965324"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 14:06:46 -0700
-X-CSE-ConnectionGUID: uoQoJ//WSviPWg+5tCrHig==
-X-CSE-MsgGUID: Lv4qebYbSE+6ZE2q6+TfIg==
+ t=1787260131; x=1818796131;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=jPlf768eURtkYipOJSiRN8MITrSFTmZeMTQYP1VfBDc=;
+ b=BfidNo52RciUlk2Tg1pJ8gpgHia4FenDdVnxP/fJM+0vjar8gZi3m/EN
+ pCuj2C0AVH8FdvM5EA6PfGvqg/XomrpmJfgrD7pUGzRODm5kbD5L6r2iG
+ c5yWU1fJ+ioarkvb531KEdeCdB3vfE/KW+JeQLA3petymaIbc1mA3kXI1
+ Qt/GitqYmiE+j8eTvIny/1FW0591DDkagIJt/820JfMAdjA7jSkmArXUN
+ G9OULuB4FLTW+QtxwOvAkwiNnwYcsroELbg5V6QWIxAqLlcXH0/bEPiNX
+ 0PeoOHV+FJ+fzJyT8WAScvvduZxeO/RZpXSJ1STiJgfUpv3E9+jlfmVa2 g==;
+X-CSE-ConnectionGUID: pyxzyHBwSgeIZ3ffPkq2eg==
+X-CSE-MsgGUID: Hf82YFOHRomwbm6gL0oFfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="87721282"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="87721282"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 14:08:51 -0700
+X-CSE-ConnectionGUID: wHPKdk1GQgSpKpxKoVZjIw==
+X-CSE-MsgGUID: +aIiYUHnSNudnPp9bA+azQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="304342496"
-Received: from dut4475arls.fm.intel.com ([10.105.8.198])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 14:06:45 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- matthew.brost@intel.com, umesh.nerlige.ramappa@intel.com,
- Michal.Wajdeczko@intel.com, matthew.d.roper@intel.com,
- daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 09/10] drm/xe: Migrate existing debug configfs entries to
- params infrastructure
-Date: Thu, 20 Aug 2026 21:06:48 +0000
-Message-ID: <20260820210639.107524-21-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260820210639.107524-12-stuart.summers@intel.com>
-References: <20260820210639.107524-12-stuart.summers@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="262425712"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 14:08:51 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 20 Aug 2026 14:08:49 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Thu, 20 Aug 2026 14:08:49 -0700
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.0) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 20 Aug 2026 14:08:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iL7L5hG5w/XbwrvL/dahvmJzgve2L8hAbjBk8Q5z360wITLVuMMvGVCJo7gi050RyiTeoa7ui/1A785kIiufmIk+7wZey+pUJHDKzgBUER9pYNtaOIhcg9bXTc6/FVJFcCwBYsNWEGcpnr5Uq3vJeqskLr4nimGrhaD72ZUmrRkim5g8VployJxdIE8ZIKZx5Ld+eLZnqFbdR0DzIlUX3OMNvdv7qE1iWvWNuGCY8zqBy1xrweNUQmhKE7au7wuEKsUKkp3nXQwloY7Ne7CaN2uXyHerbbRbUpnzsGelD91mtLnfOlUTnUn0UXc+NHeByotHBbj6PuUh+quuryxkwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jPlf768eURtkYipOJSiRN8MITrSFTmZeMTQYP1VfBDc=;
+ b=bUnJ05AdpWSFHv6zQ5hS4XO6iZENBqAT1ycgq3Tl2saRyAitBYtkHHTCx/GJTFdKCtUHQ3wTyqcc95pzqPKQSeVMU1CaXjUfV/3CW8BItFRwDTi8tBrGHggenTOdrhLK1QmoIl1lT3AY7h6uMmUWKweT4Hpu6c3JkxseWQkNhV++zGLcrS3MloF8M/zoDVLL4Gj+RoS8I+o5n1YSItccM/ECazv1ckmWSyko46DHP68fb33gWgKEIipLFkVA1jcGOQ/2wHMttbhRCFwza5dB94BvbTcqseLFsQZjFpcYy9iHsydemnt8507VLFSIduQAfgTa1bxhrC7e+NZ6Chn7KQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6320.namprd11.prod.outlook.com (2603:10b6:930:3c::9)
+ by LV0PR11MB9837.namprd11.prod.outlook.com (2603:10b6:408:385::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.10; Thu, 20 Aug
+ 2026 21:08:44 +0000
+Received: from CY5PR11MB6320.namprd11.prod.outlook.com
+ ([fe80::9cd7:94d5:90f:4d76]) by CY5PR11MB6320.namprd11.prod.outlook.com
+ ([fe80::9cd7:94d5:90f:4d76%3]) with mapi id 15.21.0339.007; Thu, 20 Aug 2026
+ 21:08:43 +0000
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "sashiko-reviews@lists.linux.dev" <sashiko-reviews@lists.linux.dev>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 08/10] drm/xe: Add infrastructure for debug configfs
+ parameters
+Thread-Topic: [PATCH 08/10] drm/xe: Add infrastructure for debug configfs
+ parameters
+Thread-Index: AQHdMN+Pb3tBZVvYN0iUMxDXk6EEebanYMeAgAANogA=
+Date: Thu, 20 Aug 2026 21:08:43 +0000
+Message-ID: <7a4c189b484d937b6924aabe0c0a588464eabe17.camel@intel.com>
+References: <20260820200719.84681-12-stuart.summers@intel.com>
+ <20260820200719.84681-20-stuart.summers@intel.com>
+ <20260820201956.0A36F1F000E9@smtp.kernel.org>
+In-Reply-To: <20260820201956.0A36F1F000E9@smtp.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4-0ubuntu2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6320:EE_|LV0PR11MB9837:EE_
+x-ms-office365-filtering-correlation-id: 580d7304-a611-475c-ffb0-08defeff37c5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|376014|366016|1800799024|6133799003|3023799007|10067099003|4143699003|11063799006|56012099006|22082099003|18002099003|38070700021;
+x-microsoft-antispam-message-info: NkWNNvmOcCOfax3TrydQonG22JPJc8AWFwQTkVxmYfeJz07RzMyQ19MrYw65izFiqJhDJT+2XSXh/Ww8UiLPumwjNBrhE1W7McG+ARW8MpsTJr2iaNl5+d2ebn28KvMmWRU3znJwLUaq+rDMc4SzXFNO8JrFiMT3lTM/zWVKvE23/Kla/vp43JNQcFzt7jAwH8/EzqglksfvhOZYWyW28CObwfAD56PDByU+sMEJQFWPD1JwRDFV4wa1Ld5LPsfLEm0uVI+/4F1nHqQJeMWHt6qNgiv+kkiD50gI9Kqd2BHQjfA1DkyfdD2Mwbajc00h3c6BNwprmNibfHyiBvyhuAymB/+HoGRin2QEbipjo1Fr6Q/vsEM1qDBYEqHUlAsyQh0NZ5fX7qzfsUWRvLRro6e0Uu/BVbscOdKrd8zc6/brzHhFHc8T3w1dX5Kyu6ubARChjqsu1VqmWHucp0Rzw/j0sl8AxRWj2vWXswvW3rmk04JE95jo8myPZXz378JUuyLoBcrNTmV8ai8Z/ROSaz+c6Z/Dc5n7Xjzjd/EBW9Pp9XpAbDaC3O5MwLmBOYEyJb7iDjPW9vHMQshTCnF0F0boKMUNv9Hb3a2A0kxTmpbN3rsnKkYKSJf3zpzaZdf2RR3Wh4lI4lGggFu0O+VGKgCmlbeJHRqzOyMJT5/OTURJAtCLOQpU+5q6rglv7kJ4Q+HOUwgFFWuAgRRwzYaoJglHqBbHNmIoBJ6QMvYnmDA=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6320.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(6133799003)(3023799007)(10067099003)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003)(38070700021);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Sm9BU1c0dmRNaFdzVmtaUUlCd1F4Tm0venRqS0tUVkZUMkFHSm04b1U5WEI1?=
+ =?utf-8?B?Rm54dWdHMFFJeGd2RDBHVGtSQlJOUnlYaVg1ZWpzMDZkZ0p3Q3BNc3F6U3lD?=
+ =?utf-8?B?Tld5TUxsUmtNNnl6VlNjUnl0Snl4U2dXMWo4aGZMZlU1KzFTTTBmNXd3eHRL?=
+ =?utf-8?B?cmJ4ZDV2SHBDeVpXUVlYQmIrOUptRDdvWXUrWmVpeWN5aDRINHF3TVhlMU5E?=
+ =?utf-8?B?ZVRLRHlHc28vREo5alprNnlkeXR2cDYwcy9SSHpuQllCamtyYVRTaWtxcVc5?=
+ =?utf-8?B?bS96QWVxUzJsVWhGTXY0Ykg3VEpDeU5QUVZjcldZUEYrb0dMWmYvY2tpV3Bo?=
+ =?utf-8?B?b3kvVGgxZjVEQ1hXVUh2RzVWanFuSW9JLzBJaEV6WGNQSE5tbW1ORmwwWGdK?=
+ =?utf-8?B?M0lCMVE5OHlBbVE0N3JhWFdPVmFVVmFGZFJpbVVIUEJldTE3ekoycHJMQ254?=
+ =?utf-8?B?WUdma012MGlWNG5BeWowWnVqa0txVmlYQ3NtdHk3b1hRSWlxSk55YkxZSzIx?=
+ =?utf-8?B?WFZkVXo4SktPa1JtRXNSQXZQekY4dlYyM2thSytHSTNNa0pNajByQ3hTTlUy?=
+ =?utf-8?B?eVBqdDM2dDdUV2NMdG1GN0tqbG56Yy9Ha1pjSVYxUm45QkNFS0svdWZ1Qnlh?=
+ =?utf-8?B?R1JraW9XU3NIdjh2L0M0VTkwTk9LUWtqZG1mQ3FBSTNWSzhHKzZONGYzMGlv?=
+ =?utf-8?B?bS9JcjlVOWpBdFU5TnQwNHRrSkN4L2s3NituRFV0U3NqUVV1Y2kzSkdQZVdK?=
+ =?utf-8?B?RUY0V2kzcTlUdDJNZGIyZG5rSmJWNE5aeVluaDF2V29hRE1BcmJhZHFQZjlE?=
+ =?utf-8?B?RENsclZwbENGTFNTazRocEljb1NvRjR6VFd4b0ZORHR4RCtoby8yb1R1Wmh5?=
+ =?utf-8?B?UXEyQk9YTExTNGliZ3pQTnpZcURIUUIxUEZzT0NWWEMwcTZEWVEzZWdHVUIz?=
+ =?utf-8?B?cXY5Z3B1UUNEMzJObEluMnVBVHZsK3dTUEtrbGl4RHVGbW11QlJuT3RQL2hU?=
+ =?utf-8?B?MDRTNkkzNFdGS1pqbWN2VTdzR1hLai92UU81eXJSZGRwTDk4eGh1UUtXZlJE?=
+ =?utf-8?B?RGhxTitnRE44Yzc0SDNwV2FWN3ZGOEw2R3BsVEZDTStFWGQ5UFpOTXA5L2ZS?=
+ =?utf-8?B?bW45NCtyQ1p1NEtQbmhpd2ZBTnNLMCtLbHp0RGNHNmh1Y3VzenJMTzdWNURj?=
+ =?utf-8?B?REN3aUxvczZ4SUVKWFJMSkJSRHlQbkRNOGxBUnZFUlVjTTZaczdjeWM1WjVy?=
+ =?utf-8?B?UXpmTjhld3BJd1UvL1ZZTU1GRnVKSU16eXVha1A4d3NiM1ZWelo0S1gvTUVn?=
+ =?utf-8?B?WVhSS2VsT1lqd3dVbzM3dStoWGZnNHZoMW1lTFFpdkhUYUp4MnZiZm9TQkgy?=
+ =?utf-8?B?bGJ3UkgxdzFrQnhOR3ZZcUIrbi96VUlIcnRkY0xzU3dCWmpvYnB1WUhQK05v?=
+ =?utf-8?B?a2RVMFdTaGJEME10a2d0cm5xNTRzejk4N3BxZGVrMkREazlGa1daVkhZZGtL?=
+ =?utf-8?B?cllUZWpWZFRYTzkycFF6LzhGUDZLbDN4d25QNmtWRG0yemExcmxSVVI1OW5y?=
+ =?utf-8?B?NEk3a1JZa2xOYWFuWGtzY3JBU3hZeUdLbHlXcU1DYzR6ZmxPRGV4WGJncGM5?=
+ =?utf-8?B?NkVXR0J3TUxpajRoZmpXWnBVYmlObjRLRC9lVVdCOERmQkdPME16Tk9Bd3ln?=
+ =?utf-8?B?dEF2ditnWHN1S3lpejVZbVc3YXRpVG5SRHVqekhrUlBHYVlaQW5adkwraHZl?=
+ =?utf-8?B?VVdqRWlNWEZybWNJMUdjbmk2TENFMURIS0Z3ZnNldWlDdFlRWGhnQWIrdGMv?=
+ =?utf-8?B?NDN6NlZManNZb0dtcVhodEdKS1dqYkprZnJGRm5LWThiVE16SXNJRkZFZGts?=
+ =?utf-8?B?UWZObkpIV1Y0QVdJNWJmcGN3enpYZk16c0RlWk9Vc3hMNEd2TmczU3NXeVpR?=
+ =?utf-8?B?U1pjTnZCWGlRS3BVTG9MVWlKWnFYU1hrNkJYTE0vU2tvKzRnV0FPZUdhdnVF?=
+ =?utf-8?B?dlUvL1lEUzJjUTB2VXBYelFlVFRkOXdRaDZRWjZaUDdObHNsK1lhYWt3bHM3?=
+ =?utf-8?B?YTY1UEJZbVdMWFViczhSUDBCREdFUXEvbHFUUzAyZGhWbWludDF2TEtuYWxI?=
+ =?utf-8?B?VXJqRXF2YXhya3YvN1FxS0pyM2d1dWlDK3g1NGhIOWhSQk82S1AvY0ljc2Nx?=
+ =?utf-8?B?cjVYU2YrVmNsMmJLeGVqZWtPQjNwNTRVTFVOMVczSjFGbGpGTWZBYTNiaDZv?=
+ =?utf-8?B?RkgwVkQwMElZeTNQQ2tCZ0N0RWcxc25XN3Z6SmlhT3dHcGVIV2M4bWVUdUFJ?=
+ =?utf-8?B?TkJFakxlbFA4VTltWXd1Q2RoUEY1dHZ2VEJ1Zmw0ak1YMk9aK2Vlb1hnZDIz?=
+ =?utf-8?Q?Lni+cIijtdD1axJQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F272BF45746D8147972B72DA42A39576@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: G+AWYfpGq8rER2TSrkuJnDSde98Wk22pO6YUCMahcyu1mmvfuVOzXWTKPlKQeNxWAFsv8hsDW1acwEfc0Qu5qVPg/Sz6My7PPNgiH+C+NEJuUARplN9rczY0gh9HGGaNtWoD9YgmWFdP9sUViQUjlo/5+ugeenS53AJXC6B0DyVnH1qzESDtSLp+J7uzgILqjsNtasVspb+A1WMwW8KbEHah/1eY5G0KPqxfpYhvAipikLhFD9yWk0zpWbqR5HIN9CXcbU6CaRhPLEEyG0UXym3IsPAdxEys5c/awYN6PTinZGODO9DSr1FcD87kSlXt3ydd67TBgRM/IoCRV5BABw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6320.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 580d7304-a611-475c-ffb0-08defeff37c5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Aug 2026 21:08:43.8899 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wYvkbMk5IjaEMeMD8aYuypdehJpo88yBjTMgWUP4EFOIn98F8L9FmCK43ydfeHT2ylhdUsnLNa/2MOsM1pdrm4LG8eF7jKDWLyvS3ccKplo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV0PR11MB9837
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,552 +176,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the existing debug configfs entries whose semantics fit the
-generic show/store template into the new parameter list.
-
-Add validators for the guc_log_level and guc_log_target.
-
-Add a custom getter for the guc_log_level to fall back to the modparam.
-
-The new parameters are intentionally longer than the normal 80
-character limit for readability.
-
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Assisted-by: Copilot:claude-sonnet-4.6,claude-opus-4.7,claude-sonnet-5
----
- drivers/gpu/drm/xe/xe_configfs.c              |  17 +-
- drivers/gpu/drm/xe/xe_configfs_debug.c        | 277 +-----------------
- drivers/gpu/drm/xe/xe_configfs_debug.h        |  20 +-
- drivers/gpu/drm/xe/xe_configfs_debug_params.c |   1 +
- drivers/gpu/drm/xe/xe_configfs_debug_params.h |  22 +-
- drivers/gpu/drm/xe/xe_configfs_types.h        |   7 +-
- drivers/gpu/drm/xe/xe_guc.c                   |   2 +-
- drivers/gpu/drm/xe/xe_psmi.c                  |   2 +-
- drivers/gpu/drm/xe/xe_rtp.c                   |   2 +-
- 9 files changed, 47 insertions(+), 303 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index c5d5017cd506..62d3406c61b6 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -100,11 +100,9 @@ const struct xe_config_device xe_configfs_device_defaults = {
- 	.debug = {
- 		.engines_allowed = U64_MAX,
- 		.gt_types_allowed = U64_MAX,
--		.guc_log_level = XE_GUC_LOG_LEVEL_UNSET,
--		.guc_log_target = XE_DEFAULT_GUC_LOG_TARGET,
--		.enable_multi_queue = true,
--		.enable_psmi = false,
--		.survivability_mode = false,
-+		.params = {
-+			XE_CONFIGFS_DEBUG_PARAMS_DEFAULTS
-+		},
- 	},
- #endif
- 	.sriov = {
-@@ -420,11 +418,10 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- 	PRI_CUSTOM_ATTR("%llx", debug.engines_allowed);
- 	PRI_CUSTOM_ATTR("%llx", debug.gt_types_allowed);
--	PRI_CUSTOM_ATTR("%d", debug.guc_log_level);
--	PRI_CUSTOM_ATTR("%d", debug.guc_log_target);
--	PRI_CUSTOM_ATTR("%d", debug.enable_multi_queue);
--	PRI_CUSTOM_ATTR("%d", debug.enable_psmi);
--	PRI_CUSTOM_ATTR("%d", debug.survivability_mode);
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-+	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DUMP)
-+#undef _XE_PARAM_DUMP
- #endif
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
- 
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
-index b6eb30249855..2429d11f27a7 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.c
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
-@@ -792,280 +792,21 @@ static ssize_t gt_types_allowed_store(struct config_item *item, const char *page
- 	return len;
- }
- 
--/**
-- * xe_configfs_get_guc_log_level - get configfs guc_log_level setting
-- * @pdev: pci device
-- *
-- * Returns the guc_log_level value configured via configfs. If the configfs
-- * value is negative (the default is %XE_GUC_LOG_LEVEL_UNSET, -1), the value
-- * of the ``guc_log_level`` module parameter is returned instead, allowing
-- * the configfs entry to override the module parameter without affecting
-- * users that rely solely on the module parameter.
-- *
-- * Return: GuC log level to use for this device.
-- */
--int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
--{
--	struct xe_config_group_device *dev = find_device(pdev);
--	int level = xe_modparam.guc_log_level;
--
--	if (!dev)
--		return level;
--
--	scoped_guard(mutex, &dev->lock)
--		if (dev->config.debug.guc_log_level >= 0)
--			level = dev->config.debug.guc_log_level;
--
--	config_group_put(&dev->group);
--
--	return level;
--}
--
--static ssize_t guc_log_level_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.guc_log_level);
--}
--
--static ssize_t guc_log_level_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	int val;
--	int ret;
--
--	ret = kstrtoint(page, 0, &val);
--	if (ret)
--		return ret;
--
--	if (val != XE_GUC_LOG_LEVEL_UNSET &&
--	    (val < 0 || val > GUC_LOG_LEVEL_MAX))
--		return -EINVAL;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.guc_log_level = val;
--
--	return len;
--}
--
--/**
-- * xe_configfs_get_guc_log_target - get configfs GuC log target attribute
-- * @pdev: pci device
-- *
-- * Return: guc_log_target attribute in configfs
-- */
--u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
--{
--	struct xe_config_group_device *dev = find_device(pdev);
--	u8 target;
--
--	if (!dev)
--		return xe_configfs_device_defaults.debug.guc_log_target;
--
--	scoped_guard(mutex, &dev->lock)
--		target = dev->config.debug.guc_log_target;
--	config_group_put(&dev->group);
--
--	return target;
--}
--
--static ssize_t guc_log_target_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.guc_log_target);
--}
--
--static ssize_t guc_log_target_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	u8 guc_log_target;
--	int ret;
--
--	ret = kstrtou8(page, 0, &guc_log_target);
--	if (ret)
--		return ret;
--
--	if (guc_log_target > GUC_LOG_TARGET_MAX)
--		return -EINVAL;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.guc_log_target = guc_log_target;
--
--	return len;
--}
--
--/**
-- * xe_configfs_get_enable_multi_queue - get configfs enable_multi_queue setting
-- * @pdev: pci device
-- *
-- * Return: true if multi-queue is enabled for this device (the default),
-- * false if it has been force-disabled via configfs.
-- */
--bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
--{
--	struct xe_config_group_device *dev = find_device(pdev);
--	bool ret;
--
--	if (!dev)
--		return xe_configfs_device_defaults.debug.enable_multi_queue;
--
--	scoped_guard(mutex, &dev->lock)
--		ret = dev->config.debug.enable_multi_queue;
--	config_group_put(&dev->group);
--
--	return ret;
--}
--
--static ssize_t enable_multi_queue_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.enable_multi_queue);
--}
--
--static ssize_t enable_multi_queue_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	bool val;
--	int ret;
--
--	ret = kstrtobool(page, &val);
--	if (ret)
--		return ret;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.enable_multi_queue = val;
--
--	return len;
--}
--
--/**
-- * xe_configfs_get_psmi_enabled - get configfs enable_psmi setting
-- * @pdev: pci device
-- *
-- * Return: enable_psmi setting in configfs
-- */
--bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
--{
--	struct xe_config_group_device *dev = find_device(pdev);
--	bool ret;
--
--	if (!dev)
--		return false;
--
--	scoped_guard(mutex, &dev->lock)
--		ret = dev->config.debug.enable_psmi;
--	config_group_put(&dev->group);
--
--	return ret;
--}
--
--static ssize_t enable_psmi_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.enable_psmi);
--}
--
--static ssize_t enable_psmi_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	bool val;
--	int ret;
--
--	ret = kstrtobool(page, &val);
--	if (ret)
--		return ret;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.enable_psmi = val;
--
--	return len;
--}
--
--/**
-- * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
-- * @pdev: pci device
-- *
-- * Return: survivability_mode attribute in configfs
-- */
--bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
--{
--	struct xe_config_group_device *dev = find_device(pdev);
--	bool mode;
--
--	if (!dev)
--		return xe_configfs_device_defaults.debug.survivability_mode;
--
--	scoped_guard(mutex, &dev->lock)
--		mode = dev->config.debug.survivability_mode;
--	config_group_put(&dev->group);
--
--	return mode;
--}
--
--static ssize_t survivability_mode_show(struct config_item *item, char *page)
--{
--	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
--
--	return sprintf(page, "%d\n", dev->debug.survivability_mode);
--}
--
--static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
--{
--	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
--	bool survivability_mode;
--	int ret;
--
--	ret = kstrtobool(page, &survivability_mode);
--	if (ret)
--		return ret;
--
--	guard(mutex)(&dev->lock);
--	if (xe_configfs_is_bound(dev))
--		return -EBUSY;
--
--	dev->config.debug.survivability_mode = survivability_mode;
--
--	return len;
--}
--
- CONFIGFS_ATTR(, ctx_restore_mid_bb);
- CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
--CONFIGFS_ATTR(, guc_log_level);
--CONFIGFS_ATTR(, guc_log_target);
--CONFIGFS_ATTR(, enable_multi_queue);
--CONFIGFS_ATTR(, enable_psmi);
--CONFIGFS_ATTR(, survivability_mode);
- 
- static struct configfs_attribute *xe_configfs_debug_attrs[] = {
- 	&attr_ctx_restore_mid_bb,
- 	&attr_ctx_restore_post_bb,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
--	&attr_guc_log_level,
--	&attr_guc_log_target,
--	&attr_enable_multi_queue,
--	&attr_enable_psmi,
--	&attr_survivability_mode,
-+	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_ATTR_PTR)
- 	NULL,
- };
- 
-+
- /*
-  * Per-parameter visibility predicates.
-  *
-@@ -1084,16 +825,18 @@ static struct configfs_attribute *xe_configfs_debug_attrs[] = {
- static bool xe_configfs_debug_is_visible(struct config_item *item,
- 					 struct configfs_attribute *attr, int n)
- {
--	if (attr == &attr_survivability_mode) {
--		struct xe_config_group_device *dev =
--			xe_configfs_to_group_device(item->ci_parent);
--
--		return dev->desc->is_dgfx && dev->desc->platform >= XE_BATTLEMAGE;
--	}
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-+	XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_VIS_CHECK)
-+#undef _XE_PARAM_VIS_CHECK
- 
- 	return true;
- }
- 
-+#undef XE_PARAM_VISIBLE_ALWAYS
-+#undef XE_PARAM_VISIBLE_SURVIVABILITY
-+
- static struct configfs_group_operations xe_configfs_debug_group_ops = {
- 	.is_visible	= xe_configfs_debug_is_visible,
- };
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
-index b97a7fff6652..375ddc17ba36 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
-@@ -7,7 +7,7 @@
- 
- #include <linux/types.h>
- 
--#include "xe_defaults.h"
-+#include "xe_configfs_debug_params.h"
- #include "xe_hw_engine_types.h"
- #include "xe_module.h"
- 
-@@ -26,11 +26,7 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
- bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
--int xe_configfs_get_guc_log_level(struct pci_dev *pdev);
--u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev);
--bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
--bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
--bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
-+XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_DECLARE_GETTER)
- #else
- /*
-  * Dummy values here are not used since these function accesses are always
-@@ -46,17 +42,7 @@ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
- static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
--static inline int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
--{
--	return xe_modparam.guc_log_level;
--}
--static inline u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
--{
--	return XE_DEFAULT_GUC_LOG_TARGET;
--}
--static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
--static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
--static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
-+XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(XE_PARAM_DECLARE_GETTER_STUB)
- #endif
- 
- #endif /* _XE_CONFIGFS_DEBUG_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.c b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-index c28d2e4693f8..b85bd82c8c94 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
-@@ -40,6 +40,7 @@
- 
- #include "xe_configfs_debug_params.h"
- #include "xe_configfs.h"
-+#include "xe_configfs_debug.h"
- 
- #define _XE_PARAM_DEFINE_OPS_NUMERIC(_T, _name, _kstrto, _fmt, _validator) \
- static ssize_t _name##_show(struct config_item *item, char *page) \
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.h b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
-index 3ed7ed22961f..d20c1f1250a1 100644
---- a/drivers/gpu/drm/xe/xe_configfs_debug_params.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.h
-@@ -10,6 +10,12 @@
- #include <linux/errno.h>
- #include <linux/types.h>
- 
-+#include "abi/guc_log_abi.h"
-+#include "xe_defaults.h"
-+#include "xe_guc_fwif.h"
-+#include "xe_guc_log.h"
-+#include "xe_module.h"
-+
- struct pci_dev;
- 
- /*
-@@ -49,6 +55,12 @@ struct pci_dev;
-  */
- #define XE_PARAM_VALIDATE_NONE(_v)		(0)
- 
-+#define XE_PARAM_VALIDATE_GUC_LOG_LEVEL(_v) \
-+	(((_v) == XE_GUC_LOG_LEVEL_UNSET || \
-+	  ((_v) >= 0 && (_v) <= GUC_LOG_LEVEL_MAX)) ? 0 : -EINVAL)
-+#define XE_PARAM_VALIDATE_GUC_LOG_TARGET(_v) \
-+	(((_v) <= GUC_LOG_TARGET_MAX) ? 0 : -EINVAL)
-+
- /*
-  * Per-parameter getter helpers.
-  *
-@@ -71,6 +83,10 @@ struct pci_dev;
-  */
- #define XE_PARAM_GETTER_READ(_dev, _name)	((_dev)->config.debug.params._name)
- 
-+#define XE_PARAM_GETTER_GUC_LOG_LEVEL(_dev, _name) \
-+	({ typeof((_dev)->config.debug.params._name) __v = (_dev)->config.debug.params._name; \
-+	   __v >= 0 ? __v : xe_modparam.guc_log_level; })
-+
- /**
-  * XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH - iterate over debug configfs params
-  * @param: function-like macro called as
-@@ -106,7 +122,11 @@ struct pci_dev;
-  * at runtime if needed.
-  */
- #define XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(param) \
--	/* No parameters yet - add entries above this line. */
-+	param(int,  guc_log_level,      XE_GUC_LOG_LEVEL_UNSET,    XE_PARAM_VALIDATE_GUC_LOG_LEVEL,  XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_GUC_LOG_LEVEL, xe_modparam.guc_log_level) \
-+	param(u8,   guc_log_target,     XE_DEFAULT_GUC_LOG_TARGET, XE_PARAM_VALIDATE_GUC_LOG_TARGET, XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          XE_DEFAULT_GUC_LOG_TARGET) \
-+	param(bool, enable_multi_queue, true,                      XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          true) \
-+	param(bool, enable_psmi,        false,                     XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_ALWAYS,        XE_PARAM_GETTER_READ,          false) \
-+	param(bool, survivability_mode, false,                     XE_PARAM_VALIDATE_NONE,           XE_PARAM_VISIBLE_SURVIVABILITY, XE_PARAM_GETTER_READ,          false)
- 
- /* Generate the struct that backs all debug params in xe_config_device. */
- #define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
-index 1123f6e2a668..c6eb90573866 100644
---- a/drivers/gpu/drm/xe/xe_configfs_types.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_types.h
-@@ -9,6 +9,7 @@
- #include <linux/mutex.h>
- #include <linux/types.h>
- 
-+#include "xe_configfs_debug_params.h"
- #include "xe_hw_engine_types.h"
- #include "xe_pci_types.h"
- #include "xe_sriov_types.h"
-@@ -38,11 +39,7 @@ struct xe_config_group_device {
- 			struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
- 			u64 engines_allowed;
- 			u64 gt_types_allowed;
--			int guc_log_level;
--			u8 guc_log_target;
--			bool enable_multi_queue;
--			bool enable_psmi;
--			bool survivability_mode;
-+			struct xe_configfs_debug_params params;
- 		} debug;
- #endif
- 		struct {
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index f463adff2737..1140f72406ee 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -100,7 +100,7 @@ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
- 	if (!xe->info.skip_guc_pc)
- 		flags |= GUC_CTL_ENABLE_SLPC;
- 
--	if (xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev)))
-+	if (xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev)))
- 		flags |= GUC_CTL_ENABLE_PSMI_LOGGING;
- 
- 	if (xe_guc_using_main_gamctrl_queues(guc))
-diff --git a/drivers/gpu/drm/xe/xe_psmi.c b/drivers/gpu/drm/xe/xe_psmi.c
-index 59af3d145418..ff9a14949339 100644
---- a/drivers/gpu/drm/xe/xe_psmi.c
-+++ b/drivers/gpu/drm/xe/xe_psmi.c
-@@ -34,7 +34,7 @@
- 
- static bool psmi_enabled(struct xe_device *xe)
- {
--	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
-+	return xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev));
- }
- 
- static void psmi_free_object(struct xe_bo *bo)
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 62068189320f..3ead1eac93f5 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -450,7 +450,7 @@ bool xe_rtp_match_psmi_enabled(const struct xe_device *xe,
- 			       const struct xe_gt *gt,
- 			       const struct xe_hw_engine *hwe)
- {
--	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
-+	return xe_configfs_get_enable_psmi(to_pci_dev(xe->drm.dev));
- }
- 
- bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
--- 
-2.43.0
-
+T24gVGh1LCAyMDI2LTA4LTIwIGF0IDIwOjE5ICswMDAwLCBzYXNoaWtvLWJvdEBrZXJuZWwub3Jn
+IHdyb3RlOg0KPiBUaGFuayB5b3UgZm9yIHlvdXIgY29udHJpYnV0aW9uISBTYXNoaWtvIEFJIHJl
+dmlldyBmb3VuZCAxIHBvdGVudGlhbA0KPiBpc3N1ZShzKSB0byBjb25zaWRlcjoNCj4gLSBbTG93
+XSBHbG9iYWwgbmFtZXNwYWNlIHBvbGx1dGlvbiBmcm9tIGdlbmVyaWMgYXR0cmlidXRlIG5hbWVz
+DQo+IC0tDQo+IA0KPiAtLS0gUGF0Y2ggWzhdOiBbUEFUQ0ggMDgvMTBdIGRybS94ZTogQWRkIGlu
+ZnJhc3RydWN0dXJlIGZvciBkZWJ1Zw0KPiBjb25maWdmcyBwYXJhbWV0ZXJzIC0tLQ0KPiBjb21t
+aXQgYzY2NjNlNjkyOTA0Yzg0YjM4NzUyMjViNjViZTQyMTAxNjJmMWY1ZQ0KPiBBdXRob3I6IFN0
+dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+DQo+IA0KPiBkcm0veGU6IEFk
+ZCBpbmZyYXN0cnVjdHVyZSBmb3IgZGVidWcgY29uZmlnZnMgcGFyYW1ldGVycw0KPiANCj4gVGhp
+cyBjb21taXQgaW50cm9kdWNlcyBhbiBYLW1hY3JvIHBhdHRlcm4gZm9yIGRlZmluaW5nIGRlYnVn
+IGNvbmZpZ2ZzDQo+IHBhcmFtZXRlcnMNCj4gaW4gdGhlIFhlIGRyaXZlci4gSXQgYXV0b21hdGlj
+YWxseSBnZW5lcmF0ZXMgYmFja2luZyBzdHJ1Y3RzLA0KPiBjb25maWd1cmF0aW9uDQo+IGF0dHJp
+YnV0ZXMsIGFuZCBhY2Nlc3NvcnMgZnJvbSBhIHNpbmdsZSBwYXJhbWV0ZXIgbGlzdCB0byBzaW1w
+bGlmeQ0KPiBhZGRpbmcgbmV3DQo+IGRlYnVnIGVudHJpZXMuDQo+IA0KPiA+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0veGUveGVfY29uZmlnZnNfZGVidWdfcGFyYW1zLmMNCj4gPiBiL2Ry
+aXZlcnMvZ3B1L2RybS94ZS94ZV9jb25maWdmc19kZWJ1Z19wYXJhbXMuYw0KPiA+IG5ldyBmaWxl
+IG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwMC4uMDBlNWZmMTc1YzBhZg0KPiA+
+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfY29uZmlnZnNf
+ZGVidWdfcGFyYW1zLmMNCj4gDQo+IFsgLi4uIF0NCj4gDQo+ID4gKy8qDQo+ID4gKyAqIERlZmlu
+ZSB0aGUgY29uZmlnZnNfYXR0cmlidXRlIG9iamVjdHMuIFRoZXNlIGFyZSBub24tc3RhdGljIHNv
+DQo+ID4gdGhleQ0KPiA+ICsgKiBjYW4gYmUgcmVmZXJlbmNlZCBmcm9tIHhlX2NvbmZpZ2ZzX2Rl
+YnVnLmMuDQo+ID4gKyAqLw0KPiA+ICsjZGVmaW5lIF9YRV9QQVJBTV9ERUZJTkVfQVRUUihfVCwg
+X25hbWUsIF9kZWYsIF92YWwsIF92aXMsIF9nZXQsDQo+ID4gX2ZhbGxiYWNrKSBcDQo+ID4gK3N0
+cnVjdCBjb25maWdmc19hdHRyaWJ1dGUgYXR0cl8jI19uYW1lID0NCj4gPiB7wqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBcDQo+IA0KPiBb
+U2V2ZXJpdHk6IExvd10NCj4gQ291bGQgdGhpcyBuYW1pbmcgY29udmVudGlvbiBjYXVzZSBnbG9i
+YWwgc3ltYm9sIGNvbGxpc2lvbnM/IA0KPiANCj4gU2luY2UgdGhlc2Ugb2JqZWN0cyBhcmUgbm9u
+LXN0YXRpYyAoZGVmaW5lZCBpbiB0aGUgZ2xvYmFsIG5hbWVzcGFjZSksDQo+IG5hbWluZyANCj4g
+dGhlbSBhdHRyXyMjX25hbWUgY291bGQgbGVhZCB0byBsaW5rLXRpbWUgbXVsdGlwbGUgZGVmaW5p
+dGlvbiBlcnJvcnMNCj4gaWYgYW5vdGhlciANCj4gc3Vic3lzdGVtIGhhcHBlbnMgdG8gZXhwb3J0
+IGEgdmFyaWFibGUgd2l0aCBhIGdlbmVyaWMgbmFtZSBsaWtlDQo+IGF0dHJfdGltZW91dCBvciAN
+Cj4gYXR0cl9lbmFibGUuDQo+IA0KPiBXb3VsZCBpdCBiZSBzYWZlciB0byB1c2UgYSBzdWJzeXN0
+ZW0tc3BlY2lmaWMgcHJlZml4LCBzdWNoIGFzIA0KPiB4ZV9jb25maWdmc19hdHRyXyMjX25hbWUs
+IHRvIHByZXZlbnQgbmFtZXNwYWNlIHBvbGx1dGlvbj8NCj4gDQo+ID4gK8KgwqDCoMKgwqDCoMKg
+LmNhX25hbWXCoMKgwqDCoMKgwqDCoMKgPQ0KPiA+IF9fc3RyaW5naWZ5KF9uYW1lKSzCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFwNCj4gPiArwqDC
+oMKgwqDCoMKgwqAuY2Ffb3duZXLCoMKgwqDCoMKgwqDCoD0NCj4gPiBUSElTX01PRFVMRSzCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgXA0KPiA+ICvCoMKgwqDCoMKgwqDCoC5jYV9tb2RlwqDCoMKgwqDCoMKgwqDCoD0NCj4g
+PiAwNjQ0LMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFwNCj4gPiArwqDCoMKgwqDCoMKgwqAuc2hv
+d8KgwqDCoMKgwqDCoMKgwqDCoMKgwqA9DQo+ID4gX25hbWUjI19zaG93LMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXA0KPiA+
+ICvCoMKgwqDCoMKgwqDCoC5zdG9yZcKgwqDCoMKgwqDCoMKgwqDCoMKgPQ0KPiA+IF9uYW1lIyNf
+c3RvcmUswqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgXA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArWEVfQ09ORklHRlNfREVCVUdfUEFS
+QU1TX0ZPUl9FQUNIKF9YRV9QQVJBTV9ERUZJTkVfQVRUUikNCj4gDQo+IFsgLi4uIF0NCj4gDQo+
+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9jb25maWdmc19kZWJ1Z19wYXJh
+bXMuaA0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2NvbmZpZ2ZzX2RlYnVnX3BhcmFtcy5o
+DQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAwLi45NTRj
+YTQzNDMxMzZkDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94
+ZS94ZV9jb25maWdmc19kZWJ1Z19wYXJhbXMuaA0KPiANCj4gWyAuLi4gXQ0KPiANCj4gPiArLyoN
+Cj4gPiArICogRm9yd2FyZCBkZWNsYXJhdGlvbnMgb2YgdGhlIHBlci1wYXJhbWV0ZXIgY29uZmln
+ZnNfYXR0cmlidXRlDQo+ID4gb2JqZWN0cy4NCj4gPiArICoNCj4gPiArICogVGhlIG9iamVjdHMg
+dGhlbXNlbHZlcyBhcmUgZGVmaW5lZCBpbg0KPiA+IHhlX2NvbmZpZ2ZzX2RlYnVnX3BhcmFtcy5j
+IChhcw0KPiA+ICsgKiBub24tc3RhdGljIHNvIHRoZXkgY2FuIGJlIHJlZmVyZW5jZWQgZnJvbSB4
+ZV9jb25maWdmc19kZWJ1Zy5jJ3MNCj4gPiArICogeGVfY29uZmlnZnNfZGVidWdfYXR0cnNbXSBh
+cnJheSBhbmQgaXNfdmlzaWJsZSgpIGNhbGxiYWNrKS4NCj4gPiBUaGV5IGxpdmUNCj4gPiArICog
+aW4gdGhlIHNhbWUgdHJhbnNsYXRpb24gdW5pdCBhcyB0aGUgWC1tYWNyby1nZW5lcmF0ZWQNCj4g
+PiBzaG93L3N0b3JlDQo+ID4gKyAqIGhhbmRsZXJzOyBjb25zdW1lcnMgc2hvdWxkIHJlZmVyZW5j
+ZSB0aGVtIHZpYSBhdHRyXzxuYW1lPi4NCj4gPiArICovDQo+ID4gKyNkZWZpbmUgX1hFX1BBUkFN
+X0RFQ0xBUkVfQVRUUihfVCwgX25hbWUsIF9kZWYsIF92YWwsIF92aXMsIF9nZXQsDQo+ID4gX2Zh
+bGxiYWNrKSBcDQo+ID4gK8KgwqDCoMKgwqDCoMKgZXh0ZXJuIHN0cnVjdCBjb25maWdmc19hdHRy
+aWJ1dGUgYXR0cl8jI19uYW1lOw0KPiANCj4gW1NldmVyaXR5OiBMb3ddDQo+IFNpbWlsYXIgdG8g
+dGhlIGRlZmluaXRpb24gYWJvdmUsIHRoaXMgbWFjcm8gZXhwb3NlcyBhdHRyXyMjX25hbWUgaW4N
+Cj4gdGhlIGdsb2JhbCANCj4gbmFtZXNwYWNlLiBBZGRpbmcgYSBwcmVmaXggbGlrZSB4ZV9jb25m
+aWdmc19hdHRyXyMjX25hbWUgaGVyZSB3b3VsZA0KPiBhbGlnbiB3aXRoIA0KPiB0aGUgZGVmaW5p
+dGlvbiBjaGFuZ2UgYW5kIGVuc3VyZSBuYW1lc3BhY2Ugc2FmZXR5Lg0KDQpUaGUgb3RoZXIgcmV2
+aWV3IGNvbW1lbnRzIGZyb20gU2FzaGlrbyB3ZXJlIGFsbCBwcmUtZXhpc3RpbmcgaXNzdWVzIEkn
+bQ0Kbm90IHBsYW5uaW5nIG9uIGFkZHJlc3NpbmcgaW4gdGhpcyBzZXJpZXMsIGJ1dCBJIGRlY2lk
+ZWQgdG8gYWRkcmVzcw0KdGhlc2UgbmFtaW5nIHN1Z2dlc3Rpb25zIGluIHRoZSBsYXRlc3Qgc2Vy
+aWVzLi4NCg0KSSBzdGlsbCBuZWVkIHRvIHVwZGF0ZSB0aGUgSUdULCBidXQgSSB0aGluayBvdGhl
+cndpc2UgdGhlc2Ugc2hvdWxkIGJlDQpyZWFkeSB0byByZXZpZXcuDQoNClRoYW5rcywNClN0dWFy
+dA0KDQo+IA0KPiA+ICtYRV9DT05GSUdGU19ERUJVR19QQVJBTVNfRk9SX0VBQ0goX1hFX1BBUkFN
+X0RFQ0xBUkVfQVRUUikNCj4gPiArI3VuZGVmIF9YRV9QQVJBTV9ERUNMQVJFX0FUVFINCj4gDQoN
+Cg==
