@@ -4,97 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B15A9C5DF85
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 17:49:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74285C5DF82
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 18:51:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 625C710F15A;
-	Thu, 20 Aug 2026 17:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26B0E10E22A;
+	Thu, 20 Aug 2026 18:51:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gK+dBYE9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gc1v/DBF";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0223210F155
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 17:49:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1787248184;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6+qiRA0Rr68w6luARuut3h/5z5IL9+5qPOnuZ1Bth1E=;
- b=gK+dBYE9eowgsgV3i9MLyrHWL3nXD7cm86gK65/I3DF1ni096WEozvuJSaKSYpIX1yHEFF
- iTd2c6nHaFZDLxaOoop0Y2y/pMpvHntNJ/p3l2Cfw3rGIPw0P4ZHC8RVFoXOe/agWrcetG
- pRsz2H6PVFYurN6SAK0IUPVM1Ml7qUI=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-643-ZFVWVib4P7Kejo88VBKU5A-1; Thu, 20 Aug 2026 13:49:41 -0400
-X-MC-Unique: ZFVWVib4P7Kejo88VBKU5A-1
-X-Mimecast-MFC-AGG-ID: ZFVWVib4P7Kejo88VBKU5A_1787248181
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-481558a96e2so90020f8f.3
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 10:49:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1787248181; x=1787852981;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=6+qiRA0Rr68w6luARuut3h/5z5IL9+5qPOnuZ1Bth1E=;
- b=Cm/reCe+VX8ecsHm4oJk/ws1guu73cpDWj9TecpgeZjFBFeChTI/sr6oTcuSKMgpbb
- kemg8pRAHmVtBV3nC5asj5tQIcNpqP/VxKDPb8fQAxXd/gQaIzSy8wrDc+cUJ0SgZrAO
- uOUzZRw9vBal2tLW1VuaUl7fRJTsLIpEgxvVZZa08A7px3J7xrU085pYyPylb1COe84M
- oGozuhWj86b7kHX/nnPoc3eV5AOWnCR/l3nwcvboG5IjJH4iPTufITKqEiHHDzU+shF9
- FPPSdKpMyMdB2PtfnnNP8kprJDqPJ9Ec6/sIEq2sU/FN7twSj4NspNpmTGMypwumS9wP
- ZtoA==
-X-Forwarded-Encrypted: i=1;
- AHgh+RopJ0QYgLqSjDn2k59rkOZN00kLcBUlxcETVifMqyUXaN7nJ69yNau/UCfPawmGutCVv4q46VGFVw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mIhPDRJxgUzIWJQ3FPMb6ARHF1jRnDmr0mMTtO6oMTh0bNTXQH
- XVw2rpymS7wP238pqBJ2hVry8uuAQV1LjoQf97buKY/+kjxyvD09EB/C4s9v3PLNhPi3jxfBI22
- NZZRz/hVUHxmrN93ZmpoKcq9X9sMvZNFD4UiahzmfjuYZy2m45Ko/4b+TyiXC+aSRu4iw
-X-Gm-Gg: AR+sD131Ntuv2L3a192saQuuPfKtrBGUyRGnfzhvs1PMqMztmiZQ159dtaDGVnOH8bh
- LUFx+6/ts5E3EHx7bdp209M6eP4/m9OzT9urQz1JSbklqwnXjYHODGC/UI/jcHD4NJ+oTPYbc+v
- o7rPjJ5chpHGjN9z6uNpOiNsK3Mvj3OKR2/9YkIeQJveoXMZ+4vJWSRDjfIjg/SbJH56sGjplXK
- VUu03dWNv1UEdNJNLuL+QObXQrDA/pFJ/zIEy2eHzX33C4JzJry1HWxbGOAvCKTnD0qz2Mf9ZY6
- I2FXiV9mrWseriSTSfzcFoOrFplimvtEOycxvFvdrTdgEO4hrH4poAhZ1BR3LcxX9CRlHJdb062
- W7i1xqme5UOTqHvLwXXHVeft29ob8iW1z6MmCOtLmt1zxAw==
-X-Received: by 2002:a05:6000:184e:b0:47f:f339:556c with SMTP id
- ffacd0b85a97d-482c0b4a40dmr705147f8f.2.1787248180681; 
- Thu, 20 Aug 2026 10:49:40 -0700 (PDT)
-X-Received: by 2002:a05:6000:184e:b0:47f:f339:556c with SMTP id
- ffacd0b85a97d-482c0b4a40dmr705081f8f.2.1787248180291; 
- Thu, 20 Aug 2026 10:49:40 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:11aa:87f0:935:4f8e:b423:64eb?
- ([2a01:e0a:11aa:87f0:935:4f8e:b423:64eb])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-482b145d31bsm13853815f8f.16.2026.08.20.10.49.39
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Aug 2026 10:49:39 -0700 (PDT)
-Message-ID: <e4da5ba4-9a02-4080-9a83-19d401017910@redhat.com>
-Date: Thu, 20 Aug 2026 19:49:36 +0200
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68F1810E22A
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 18:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787251869; x=1818787869;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=qzSqRZxiYFifjpmeUXDo6LczW8/gc6UGi8BWyve60Rc=;
+ b=Gc1v/DBFMBLOkrQKPTdG95VOqzB9rcczn7zD/gAWQp6AKXWjlzpMgBud
+ 97FFIzj0z+7HHJ46ZUxyzSMNo/g3he9YW4/MdL8KiLwaCrGB7MjY5myBZ
+ SBaTHq6F+J9kmKamzwgqm0OcmYee4hocqvf0V2zmSDp31OaeelY08whxs
+ GS0OmsUnGIXytSYNjOHzCT3QsV95qakIptK8sOWkwFE4AkKHTW29MV8os
+ 1RjLHjH9Ynl0LYDyRXHsnlCd+BYGqxmB9BnY08Lhmi6qbiKAI5P5LceoP
+ Pyh4lAc6oQ/4qaNyAlp0wtICf/qEY2VEVZRE21CJ8o2h3/BECS1Xw1TZ8 Q==;
+X-CSE-ConnectionGUID: pDwGXl7/QtqwxuNFFreNzg==
+X-CSE-MsgGUID: KoQ4GWfPS16CM73dp0+L4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="98133942"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="98133942"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 11:51:08 -0700
+X-CSE-ConnectionGUID: nIFEwco1ScCBYcw3bfQtyA==
+X-CSE-MsgGUID: s0VmMEjpRXqGideqOgr35g==
+X-ExtLoop1: 1
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2026 11:51:08 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 20 Aug 2026 11:51:07 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Thu, 20 Aug 2026 11:51:07 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.54)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 20 Aug 2026 11:51:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=slFMOD7OvJj8HjCA2d3Jh7g2Jx4unRSL0KUcKkPGWs9czthSxlFfm2U/XNwZjBMVS4z74X7S/iIpuNFTTVUelUZeZKqP1dE/GAJ1NHkyyudLolrHXp9HJ8IuvDJBRinksrxUP5yqzB0yM4G0a6Hh1PMJQ/ABMqSVKMWmT31vDChNycfa8alrHtyibY5i7LNST8diETvUIQMampk5zaFXhewacshE7XaWYchftAGctpWYoPDWcy1XpscZrzjGulA9C9YAZQmGYtizrfowAtSpFZjDvOlpbkYU65TtQtJIWuHllaBG9QLTFZJJreB6jRGvMcIs908Yx8zmSFa55kQsHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oVosGKyErsLOczs65tpxEaaAWiZ92k9+Q4ABENhZ5NQ=;
+ b=y7NvoLqweLVTSkUVZeHc9UUUdWxAS+8yk67pYOu9m3VmkF759eROachdRSUDKjFpICN2si4a3DBkpHPMmjAgrU18bTKcEE8nkocFMwbfhy22pFA0xErwhSMWfF2CjSIIfBUNHNE9BvjcQu+3ae5ceePluI/+IblP6sXTOFo1U0lTThO0iPv5oPthtKjNlxmUnt/N+Hgye4IcYvfoiApm59R0hL+W+hZ71IHdLbeYgipifZLvoQjzJPiakLmeFv1YBW/fzzmkxdyc8S5wdMRRMjhMspPQNnb5Jbfz4fDSK7f9cNIL70+D1vO9ZXKjqP+Y5nP9WIz1MIpm1wEgAdW7+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA1PR11MB7821.namprd11.prod.outlook.com (2603:10b6:208:3f0::22)
+ by DM4PR11MB8092.namprd11.prod.outlook.com (2603:10b6:8:184::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.8; Thu, 20 Aug
+ 2026 18:51:01 +0000
+Received: from IA1PR11MB7821.namprd11.prod.outlook.com
+ ([fe80::6518:db96:947d:6203]) by IA1PR11MB7821.namprd11.prod.outlook.com
+ ([fe80::6518:db96:947d:6203%5]) with mapi id 15.21.0339.007; Thu, 20 Aug 2026
+ 18:51:01 +0000
+Message-ID: <43ca4e82-8439-4a85-bd3e-a4cfc529df40@intel.com>
+Date: Thu, 20 Aug 2026 11:50:59 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] drm/panic: Split into core and helpers
-To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
- sashiko-reviews@lists.linux.dev
-References: <20260818125012.468092-1-tzimmermann@suse.de>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <20260818125012.468092-1-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 3EUWJgq9Lnvhblm723RQNSvQ73rEycINHatEGENrbzs_1787248181
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, fr
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_start?=
+ =?UTF-8?Q?ing_with_=5B1/2=5D_drm/xe/guc=3A_Test_GuC_v70=2E74=2E0_for_BMG=2C?=
+ =?UTF-8?Q?_LNL=2C_PTL=2C_NVL-S/U/H_=28rev2=29?=
+To: <intel-xe@lists.freedesktop.org>
+References: <20260814210758.2779837-3-julia.filipchuk@intel.com>
+ <178700286166.60193.12856761750857981244@61270ab9df2a>
+Content-Language: en-US
+From: Julia Filipchuk <julia.filipchuk@intel.com>
+Organization: Intel
+In-Reply-To: <178700286166.60193.12856761750857981244@61270ab9df2a>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4PR03CA0284.namprd03.prod.outlook.com
+ (2603:10b6:303:b5::19) To IA1PR11MB7821.namprd11.prod.outlook.com
+ (2603:10b6:208:3f0::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR11MB7821:EE_|DM4PR11MB8092:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6acd5dfd-a192-4631-d409-08defeebfaee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|10067099003|11063799006|4143699003|22082099003|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info: toeBd6O3lafxwgdzLWvqbcLd8/rPQC5CCwj5xvJOUW6/EKfUQ+WDXRnUBM7/YijKFsbTcWIXih6ibrbX6QqXJkuoJTP6w7v+z9NukhFDDhAcWSwxbchA6qAGq0hqwEBDaf48GOdN2GNvf/vq6jsx62ZEYW8DZGBAZAVtFO8ZMOfi0CXVplKtjtVrI+Q/xKRBvxD9GChrgsrxSWHp16RLeNKj9hwcO0PqeF1MFPDOkTEhqzX4+sEBEucEKLqCs81AN+8wCgSBYOgcEmXDaiMx4zyxOhaauRkU8fdrSyk43VYClmfvOSYc7QTBXPAUA7VYWw0aPiXKnqOQ1Wx0vLGrucThG5j+D4gH+YXD4JEaUB+45eMz4WGVP49o9PcuYCRPJd2GLxz0Sk44DozaHROHJ0o1Iu6oH4b82N1uXNhXIL9MFqQxodqmHaIoH4++h1VB/sPmjU8ed7Z1C5VrZaIR4+VLhFPHtq2XON6Ojg4WUDZbfh0e17I2TcGuQXTK/Z15ojvrpHuZfkSb4cRXn09tQSfSaedxbMgHQOWMypxuYHPEgHHQhXergrbdCV6HvmOM+VPmRvyUZWtWLEJlk5df3YszVmESMBvS7WcN/JBYsKCiyDUp2p6kzto9IRqrt2Oh
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB7821.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(10067099003)(11063799006)(4143699003)(22082099003)(18002099003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDV0VWhKWGpZTTh6T3A3aDB4cmlDVmVLZG1ZT0JFaVl6V2tsS0gyQ3cwSEdW?=
+ =?utf-8?B?a3pCUFlPSFlQdkQvWWtNaFJ4L25ZVWg4M2NYcHpOMFBmdUN0MFcyWjFPdjVu?=
+ =?utf-8?B?VFh5dkdTSERMWXdNU01BV1FhVUtqY1h2UHpaOEYvOTZzdHFYMUtPVEpCYjcr?=
+ =?utf-8?B?aml1ODBycGgxcWRPcmhYMkNWSkF1OHdrQU96VmRqTnp0K3RPV1JsSGtkVTNk?=
+ =?utf-8?B?ZDREWVJkMU5RMGRDeFN6TUFSUjhqQzNxcHlmeTI3VVRsRVB4SUhnQVBtUUhC?=
+ =?utf-8?B?TkoyUFRjRHFJSnRsKzZ0cGZCMkt3Q2xrdGVOSFZ5WXVncWQycGNBaVJHazF4?=
+ =?utf-8?B?WHdldDRzVFdoY3NmMVI2L05RaDQyeHNOL2N5LzkycG1BVmNxWXJ5ZHlJYjNz?=
+ =?utf-8?B?N1BjSXljbmZEWTJ0ejZHYTdoUXk4RW1JSTZXcEpXdVJrVWV2Y3NjTnhPZ0FE?=
+ =?utf-8?B?bEFuYm5qV25jb3hMT216WXNLU0J4NlQ4ZGhaSUVCdklGZytqSjhqRTl3czJC?=
+ =?utf-8?B?OFhwY3lDTjk3bXdlcnRQUXFVZ0NuMG83WmRoU0xXRmpqbG11WTZnZjRMdTQ0?=
+ =?utf-8?B?WHVFRW9oUVppcEZJVVJwcDZ6bURPVU9mRjQwY2ZFbnZzVVI5ZFNsQzc1Z1oz?=
+ =?utf-8?B?MWhtVUxwWEd5eTN2dk5JMVY0aHQ1bzVPMjBOQkVQeTh0eVlwNHVJaWNLZjVo?=
+ =?utf-8?B?OG52ckcvTWdDUmIyZHk1R1FLeXpUeWNHc2FLT25lSkpJbDZzaTdheDJFUXh6?=
+ =?utf-8?B?ODU5V3dJaWIvVTZHV2JlS2J3em9OOGNwY3dnVFoyK3JhNlhlSDhHRVJuajZw?=
+ =?utf-8?B?V3gwTUdVUm43QnVwdWs1ZmlpcmVyZDBiMy9LRkp5Wi9hcTYyZTlHRENOQ1dF?=
+ =?utf-8?B?Z3kxRzJhZ1krNzhENnlVNXZsY2oyZXNzTWpjNEFUc1o1MzRBL0d4enY2YjlV?=
+ =?utf-8?B?c2RteC9rcFJWdERtclhWT3BnOGR1bm1uL1ROVjZkY3V4Zms1Mm5VUzM4RG1v?=
+ =?utf-8?B?b0p4SnYrUnZpRHlUNVBMaUQ5MDVxOGVlTmFZdmtPLzJLMUowK1FOODFiSnpH?=
+ =?utf-8?B?RjlONmhEL0x3N3R2a0xWTjV0bkQyRGFQTXI0NXA2OHFNU3dRNVFTWDNaMEZk?=
+ =?utf-8?B?Sk16UEJBbmpydGVvWWdsVWVWQ0J2aytaZXFnQ1Ntb0lnTjBYNWozcUJPdUVx?=
+ =?utf-8?B?clJkZHRmQU5DbUhLVFpUMnZmcDhRVWc3QWV1SkdZYU1kQmU5SXcrNnp6WVFP?=
+ =?utf-8?B?TjdFWjN5d0VWNUZOTVhWV0RPZzk1TWhqbG1DbEZMQXh1QjExZ2QyZmFSME1P?=
+ =?utf-8?B?aWNCbDNaZTJnaW5jTmJmc2ZVaHY1aHdLcVFBOEowWnR3N1ExOE9jdkd6Yzl4?=
+ =?utf-8?B?RHZCa0RRQkpLZ1puaStsLzZJVWNkY1JrSU9GSEZxV3MzNlQ0dVZZWlNiT1M0?=
+ =?utf-8?B?SEdhaDl6aEtBaXRwNk1qTy9ySU5pYTNaWGZucE1YMkJjanNRUG8xSTR1MGRN?=
+ =?utf-8?B?dlZKNU04MEdBNXBIZ0Q5clJUZ0dtUWZEaTBpajlDMEkyRnI1cFBGRDZLb3Rl?=
+ =?utf-8?B?RUV3dFZOMDk5Yk1qTDljUzc4MHZFZURuV3plZmVNMXhobEhmRWNTQXdwVmVV?=
+ =?utf-8?B?OEtZRlVGTWU5Wno2NmhxK3NiNFRGbTFRQzVXVCthckpCelJTOUlLSFVJQzNR?=
+ =?utf-8?B?SFI2M29RYWZzMTFLNXB0S0dld08xaU5xalBrK2FNdm1Qb3gzZ0ZKTkllM29j?=
+ =?utf-8?B?TFJNY2RoZGtnTW9WUHE2YWQ2VlRVREdYWnkwT05LdnJ5eTRtZmxkZk0xZElS?=
+ =?utf-8?B?cEFQTXBTQ3pvS3MrSzQvS0dQemg0SWlua0hoN3pCUWRQdzVWVmJxQnVhRzFn?=
+ =?utf-8?B?dEZCblFaZHJKdDVKYUdrTFY5WE14SmJPS1ZxSnkrNExZcUZIMEkxaW1Pc3BY?=
+ =?utf-8?B?dTdEOFBmVjA0R0p3aXRaK2xHTy93dmVMZithS09neldaMkltUDNic2RUVTY0?=
+ =?utf-8?B?WEdDUGd2dmRYTjZDS0o3a3k1TnVreFZzRUYxbVlkT1JUQ3VPS1hFVnpBSUlo?=
+ =?utf-8?B?eEdMaHdnMHpLNFVseGd1aW80UUFDYU5lV0lSTzZhdk0zbVlSbjVHTytjUEZu?=
+ =?utf-8?B?cTgxditmWEFDVGloN250MVBWNlFmY1d3NjlyeG1wTU5yM0MvWUZGR0RTRENO?=
+ =?utf-8?B?QW5HcHNiUm1vaFluOHhZeTVOT3dydFZLZWJFd05xVzI3VXkzWlhENWFBN3hu?=
+ =?utf-8?B?Y3JPd2l3ampaYWkxTzkwa09zV3d1THhnU01GbmVUWXJ0TVRKSldsZEZCcThV?=
+ =?utf-8?B?VWxNNHRkcktpNW54enhVWFhwcENaMTVmRWQ4dUhuNGNQWi9VeHJGdjlsL05S?=
+ =?utf-8?Q?zfD2KU2azbh2mpt4=3D?=
+X-Exchange-RoutingPolicyChecked: HDpdOYFV+E+cQc0o5/hTd2s0LQb8t61Q32Aje/vHpTNc6n2utYsaovDrKXe2vsB35qbrcsrZ/egRrChspnCiQPUK4Ujp8gtNNf5M3a2sFrZL40t57KSTNC50U7D5wDA7oZgR2QKzUP2ODyrZqrVg+vBYf30iX/K6uazxQEgRFAO8IoLQgrO3BjvpFU/1jnMcdH81/L7vjID4GKoJoZ1RddnEpdD/UqEmaJZjXYbsplXMjVv6HdCRTEoxXZ2VOSCtFNcjeThxITEnklj1oFopQzJn+xduAWMMn5XSzT2cwktWudK8z9s+JsNymb1p/u2eOgzU64W5DCnHzYb4ylwamg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6acd5dfd-a192-4631-d409-08defeebfaee
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7821.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2026 18:51:01.5976 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hg5j99L6bFhhzEtGdWmahFFxvA0O92hIKGOcoHj7phB26gK+lNmnvw3wdvel58y4pcY5zsoZI1uhwTXru1Z/t82uhoERM9q6wehPqii5PAQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8092
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,133 +170,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/08/2026 14:27, Thomas Zimmermann wrote:
-> Split DRM's current panic handling into a core and a helper module.
-> The core is still part of DRM's core library. The panic helpers are
-> part of DRM's KMS helper module (for now).
-> 
-> The motivation behind this series is to get panic handling's drawing
-> code out of the DRM core. At some point it should share a single
-> module with DRM's other drawing and format conversion.
-> 
-> With the series applied, panic hanlding follows DRM's established
-> design pattern of having a DRM core interface with an dedicated
-> implementation in each driver. Drivers share common code in helper
-> modules. For panic handling, the DRM core still contains the panic
-> entry points, the parameters and the debugfs interface. All drawing
-> is now located in the panic helpers.
-> 
-> Patches 1 to 4 improve several issues in the current panic code. It
-> makes sense to fix them before moving the core around.
-> 
-> Patches 5 to 8 put handling of all panic state and locking into a
-> single place, drm_panic_display_panic_screen(). It is maintained by
-> panic handling's DRM core code. This also enables the test cases to
-> work more independently from the kernel's configuration.
-> 
-> Patches 9 to 11 split the panic-handling code into the core and panic
-> helpers. The former maintain all state, locking and public interfaces.
-> The latter handles drawing and details of the involved framebuffers.
-> 
-> DRM devices that offer panic handling provide a single callback, struct
-> drm_plane_funcs.display_panic_screen. A new initializer macro makes it
-> point to the existing panic-drawing implementation. Hence there's no
-> change in features or functionality. If panic handling is configured
-> off, it all clears out to NULL.
-> 
-> Patch 12 reworks the test cases slighly, so that they can be build as
-> a separate module. Do 'modprobe drm_panic_helper_test' to run them.
-> 
-> Tested under bochs with debugfs and test cases.
 
-Overall the series looks good to me, and I like the split between the 
-helper and the core.
-I would just drop the first two patches, as I don't see much difference 
-between static allocation or kmalloc() at init, and I think that 
-memset() the buffers to 0 is not useful in this case.
+This failure is unrelated to this patch set or new firmware.
 
-Best regards,
-
--- 
-
-Jocelyn
+On 8/17/2026 2:41 PM, Patchwork wrote:
+> #### Possible regressions ####
 > 
-> Future directions:
-> 
-> - Panic handling shares some drawing code with format conversion and
-> clients. There's even more drawing code in vkms. Later series' can
-> attempt to unify and harmonize all these implementations in a single
-> draw module.
-> 
-> - The drawing helper drm_plane_helper_display_panic_screen() still
-> implements various access schemes (map, set_pixel, memcpy) in a single
-> function. It could be split up into specifialized helpers.
-> 
-> - If we ever need a driver-specific helper, it is now possible to
-> implement a custom version of display_panic_screen.
-> 
-> Thomas Zimmermann (12):
->    drm/panic: Allocate QR-code buffers statically
->    drm/panic: Make allocation of zlib workspace more robust
->    drm/panic: Return -EINVAL if font is not available
->    drm/panic: Return errno codes if panic output fails
->    drm/panic: Pass colors to draw_panic_dispatch()
->    drm/panic: Pass global module parameters to drm_panic_dispatch()
->    drm/panic: Retry in dispatch function if panic output fails
->    drm/panic: Split draw_panic_plane()
->    drm/panic: Display panic screen via per-plane callback
->    drm/panic: Internalize panic locking in DRM core and helpers
->    drm/panic: Move panic display code into helper library
->    drm/panic: Compile KUnit tests as module
-> 
->   Documentation/gpu/drm-kms-helpers.rst         |  11 +-
->   Documentation/gpu/drm-kms.rst                 |   3 +
->   MAINTAINERS                                   |  11 +-
->   drivers/gpu/drm/Kconfig                       |   5 +
->   drivers/gpu/drm/Kconfig.debug                 |   1 +
->   drivers/gpu/drm/Makefile                      |   3 +-
->   .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |   2 +
->   drivers/gpu/drm/ast/ast_mode.c                |   2 +
->   drivers/gpu/drm/drm_atomic_helper.c           |   2 +-
->   drivers/gpu/drm/drm_crtc_internal.h           |   2 -
->   drivers/gpu/drm/drm_drv.c                     |   3 +-
->   drivers/gpu/drm/drm_kms_helper_common.c       |  14 +
->   drivers/gpu/drm/drm_panic.c                   | 914 +----------------
->   drivers/gpu/drm/drm_panic_helper.c            | 915 ++++++++++++++++++
->   ...drm_panic_qr.rs => drm_panic_helper_qr.rs} |   4 +-
->   drivers/gpu/drm/drm_panic_internal.h          |  59 ++
->   drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |   2 +
->   drivers/gpu/drm/i915/display/i9xx_plane.c     |   3 +
->   .../drm/i915/display/skl_universal_plane.c    |   4 +
->   drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c       |   2 +
->   drivers/gpu/drm/mgag200/mgag200_drv.h         |   4 +-
->   drivers/gpu/drm/nouveau/dispnv50/wndw.c       |   2 +
->   .../gpu/drm/renesas/rcar-du/rcar_du_plane.c   |   2 +
->   .../drm/renesas/shmobile/shmob_drm_plane.c    |   2 +
->   drivers/gpu/drm/sysfb/drm_sysfb_helper.h      |   4 +-
->   drivers/gpu/drm/sysfb/vesadrm.c               |   1 +
->   drivers/gpu/drm/tests/Makefile                |   1 +
->   ...m_panic_test.c => drm_panic_helper_test.c} |  65 +-
->   drivers/gpu/drm/tidss/tidss_plane.c           |   2 +
->   drivers/gpu/drm/tiny/bochs.c                  |   4 +-
->   drivers/gpu/drm/virtio/virtgpu_plane.c        |   2 +
->   include/drm/drm_mode_config.h                 |   4 +-
->   include/drm/drm_modeset_helper_vtables.h      |  11 +-
->   include/drm/drm_panic.h                       | 117 +--
->   include/drm/drm_panic_helper.h                |  40 +
->   include/drm/drm_plane.h                       |  57 ++
->   rust/bindings/bindings_helper.h               |   4 +-
->   37 files changed, 1253 insertions(+), 1031 deletions(-)
->   create mode 100644 drivers/gpu/drm/drm_panic_helper.c
->   rename drivers/gpu/drm/{drm_panic_qr.rs => drm_panic_helper_qr.rs} (99%)
->   create mode 100644 drivers/gpu/drm/drm_panic_internal.h
->   rename drivers/gpu/drm/tests/{drm_panic_test.c => drm_panic_helper_test.c} (80%)
->   create mode 100644 include/drm/drm_panic_helper.h
-> 
-> 
-> base-commit: dc462ab791b686c48545c160ecc81be64f77a846
-> prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
-> prerequisite-patch-id: a5a973e527c88a5b47053d7a72aefe0b550197cb
-> prerequisite-patch-id: b9adc9622920a3e70168e672c2c92795b3e3a106
-> prerequisite-patch-id: 5030de433a01c2e99056cadb676a8e2ba35f055a
-
+>   * igt@xe_waitfence@engine:
+>     - bat-wcl-2:          [PASS][1] -> [FAIL][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5607-24a2127c5f2bce93dbb33cbbee84666272a5e716/bat-wcl-2/igt@xe_waitfence@engine.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172255v2/bat-wcl-2/igt@xe_waitfence@engine.html
+Relates to exiting issue.
+https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8820
