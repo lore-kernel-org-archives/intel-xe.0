@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57DA9C5DF85
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 13:31:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787E7C5DF81
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 13:31:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AEEB10F025;
-	Thu, 20 Aug 2026 13:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33E8F10F025;
+	Thu, 20 Aug 2026 13:31:27 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C941A10F025;
- Thu, 20 Aug 2026 13:31:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D36510F025;
+ Thu, 20 Aug 2026 13:31:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_Fix_u?=
- =?utf-8?q?nnecessary_host-side_population_of_ttm=5Ftt_on_non-TT_resources?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_Limit?=
+ =?utf-8?q?_sg_segment_size_to_PAGE=5FSIZE_on_Xen_PV?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nathan Bourgeois" <iridescentrosesfall@gmail.com>
+To: =?utf-8?q?Szymon_Aceda=C5=84ski?= <accek@invisiblethingslab.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Aug 2026 13:31:10 -0000
-Message-ID: <178723267081.70680.17759976674365692269@61270ab9df2a>
+Date: Thu, 20 Aug 2026 13:31:25 -0000
+Message-ID: <178723268524.70679.5948570638360644907@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260820031901.1018324-1-iridescentrosesfall@gmail.com>
-In-Reply-To: <20260820031901.1018324-1-iridescentrosesfall@gmail.com>
+References: <20260820101212.1608543-1-accek@invisiblethingslab.com>
+In-Reply-To: <20260820101212.1608543-1-accek@invisiblethingslab.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,15 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Fix unnecessary host-side population of ttm_tt on non-TT resources
-URL   : https://patchwork.freedesktop.org/series/172524/
+Series: drm/xe: Limit sg segment size to PAGE_SIZE on Xen PV
+URL   : https://patchwork.freedesktop.org/series/172525/
 State : failure
 
 == Summary ==
 
-Series author address 'iridescentrosesfall@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+Series author address 'accek@invisiblethingslab.com' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1254980/ (on master)
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1254981/ (on master)
 
 
