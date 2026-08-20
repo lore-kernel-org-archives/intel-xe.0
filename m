@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1418C5DF8A
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 10:17:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A916C5DF81
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Aug 2026 10:17:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B28BC10EFBD;
-	Thu, 20 Aug 2026 10:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB13610EFC1;
+	Thu, 20 Aug 2026 10:17:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I6Cja9bq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="moarlYQt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5784810EFBD
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 10:17:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80ED610EFC1
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Aug 2026 10:17:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787221020; x=1818757020;
+ t=1787221024; x=1818757024;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/ypiZ2+yeA8B3BjvzMDkdsgsaXXZVILoPIToO54q8ps=;
- b=I6Cja9bqocylz8gxc7yc6gq2PjhOapJA48+xOm0DEChvdo5RPdtosJZT
- SnmSg9/8CbWVwhQLTuM4I10XAOK2WOkOF3pUbIXzOdwe3n2FBwxKTdH5j
- WP0Dcco1SDVISMU5W2cBvXKKgez+2PhSzD3kVj96DGriPWgZjwryI8Dpt
- P4YPZkeG8v8mZj23sNv6itY/EAgbmesccS3UIq2w3Ou6Yl/GiHEbb26Jn
- 6OnDtszKd4OOs66CZt0PElFEYO1B54DsayBJUP2aTN+HrW1Cm/g/jBE2i
- FhK40jF25yjgVgJWV7wQa+koiC1v4TZ8K63qON/l5TmRI2ysogDgkV6F5 g==;
-X-CSE-ConnectionGUID: j7ocpUx+TLGbRWIkpfvfsg==
-X-CSE-MsgGUID: VRpBMQk1SByf8PB4C1fyiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="113290932"
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="113290932"
+ bh=RlFPGTbbJjZQ9MkO49BnjH4jPf810bJQ+B1g2z5AFZw=;
+ b=moarlYQt2/b0E8mkJUTxhZhWg1sp+Eu3vHAOiAe+aWejDkaNJo6LOkwZ
+ qrFFVwWaRMuXPDLrr4nmKzC3OU8sWOJpSymW1nLINkqJAsOiNc0J7YHF6
+ ZGN5ERnoiklgGOPmxcWD/52WSx6NBBDMWlUdwgQVm8WCTbnn+QjTHPxJ8
+ 8mY/lDqm7/KNxjzoo4m2LtAUFYMqE3Azw97BS2ANaQQgdNtkedxVVW9Dq
+ HbBM7f89+k/1xCeeb8/ZmaqIFtyGhkPuFaHx73VicHM96aUyImzmwXmgh
+ I2aEvJbuSZlRsRBzYPjsoFssUsLW390xTKlxDK1VEqOL6V8S0TQrPC1Kg g==;
+X-CSE-ConnectionGUID: d6r87SBOQ4iyqz6qUv1y/w==
+X-CSE-MsgGUID: 8Pd9EYXFTqWzCBUrGw3H8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11880"; a="113290938"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="113290938"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 03:17:00 -0700
-X-CSE-ConnectionGUID: jpLTR1x8Q+WNfFz5TxDbtw==
-X-CSE-MsgGUID: o5djbTyUTQmstAHQMXmoKQ==
+ 20 Aug 2026 03:17:04 -0700
+X-CSE-ConnectionGUID: bcqU9GqfSGyqOQx/RhLubA==
+X-CSE-MsgGUID: +zCCp6/bTXy/iHMX7EirWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="271176431"
+X-IronPort-AV: E=Sophos;i="6.25,233,1779174000"; d="scan'208";a="271176444"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa005.fm.intel.com with ESMTP; 20 Aug 2026 03:16:56 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 20 Aug 2026 03:17:00 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -49,10 +49,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
  dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 4/7] drm/xe/sysctrl: Use xe_assert() for payload size
- validation
-Date: Thu, 20 Aug 2026 15:46:37 +0530
-Message-ID: <20260820101632.527214-13-mallesh.koujalagi@intel.com>
+Subject: [PATCH v4 5/7] drm/xe/sysctrl: Improve firmware response error logging
+Date: Thu, 20 Aug 2026 15:46:38 +0530
+Message-ID: <20260820101632.527214-14-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260820101632.527214-9-mallesh.koujalagi@intel.com>
 References: <20260820101632.527214-9-mallesh.koujalagi@intel.com>
@@ -72,29 +71,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the runtime payload length check with xe_assert(),
-as oversized messages should never reach code path.
+Use xe_log_err() helper and include additional
+details when a response header mismatch occurs.
 
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index ac58571f2a43..c043b51cacc8 100644
+index c043b51cacc8..9d7915c9d4ae 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -105,10 +105,7 @@ static int sysctrl_prepare_command(struct xe_device *xe,
+@@ -237,13 +237,17 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
+ 	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
+ 	    XE_SYSCTRL_HDR_GROUP_ID(hdr) != XE_SYSCTRL_HDR_GROUP_ID(req) ||
+ 	    XE_SYSCTRL_HDR_COMMAND(hdr) != XE_SYSCTRL_HDR_COMMAND(req)) {
+-		xe_err(xe, "sysctrl: Response header mismatch\n");
++		xe_log_err(xe, SYSCTRL, -EPROTO,
++			   "Response header mismatch: got group=0x%02lx cmd=0x%02lx is_resp=%lu, expected group=0x%02lx cmd=0x%02lx\n",
++			   XE_SYSCTRL_HDR_GROUP_ID(hdr), XE_SYSCTRL_HDR_COMMAND(hdr),
++			   XE_SYSCTRL_HDR_IS_RESPONSE(hdr),
++			   XE_SYSCTRL_HDR_GROUP_ID(req), XE_SYSCTRL_HDR_COMMAND(req));
+ 		return -EPROTO;
+ 	}
  
- 	xe_assert(xe, command <= SYSCTRL_HDR_COMMAND_MAX);
- 
--	if (data_in_len > XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr)) {
--		xe_err(xe, "sysctrl: Input data too large: %zu bytes\n", data_in_len);
--		return -EINVAL;
--	}
-+	xe_assert(xe, data_in_len <= XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr));
- 
- 	size = sizeof(*hdr) + data_in_len;
+ 	if (XE_SYSCTRL_HDR_RESULT(hdr) != 0) {
+-		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
+-		       XE_SYSCTRL_HDR_RESULT(hdr));
++		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: 0x%02lx\n",
++			   XE_SYSCTRL_HDR_RESULT(hdr));
+ 		return -EIO;
+ 	}
  
 -- 
 2.48.1
