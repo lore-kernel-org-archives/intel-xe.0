@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73369C5DF7D
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 04:51:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB002C5DF8F
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 04:51:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A21810F20C;
-	Fri, 21 Aug 2026 04:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7880F10F215;
+	Fri, 21 Aug 2026 04:51:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cF23fPML";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iULid19z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7819E10F1FC;
- Fri, 21 Aug 2026 04:51:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C61F110F209;
+ Fri, 21 Aug 2026 04:51:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787287866; x=1818823866;
+ t=1787287869; x=1818823869;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dtj4wY2ZcoQ1Pl/NJofh4GMtZnh5qzWbl6NmZQLgRps=;
- b=cF23fPMLkLC9MCDJYejKm8/KjzQcPvXGsPm51jDmIOPzftOakgpQP5Gk
- ylJwmqsFVPa7Oq4tI2tB3GaCazgJ3hL5ABVh7aMkrg+xhJEIIofS5sbFx
- h9hkXcZOz9VsLHqZmei00p/ZZG8wYmYIVc9mOBKhPJkMjBFIT3V+NhJO+
- 98WsKaY0xqEoKw3ZK/oVajstHvTkU1XaLEJRbgiLiFZP31ecYC6/lwfTx
- wENGshzIBW1s9b/GHrfjpAlk7GSnrIpVUzgGL469OLC9PF07wCn3BW5RN
- g2UcDBu8nu+P2yswoVq3WkSQPO1aexy/rqP7apCe6M3NG8ajeJBGbv+I9 g==;
-X-CSE-ConnectionGUID: 6sRCwgZQRqWhInaH0n+RuA==
-X-CSE-MsgGUID: C3ciguSdRD6yBuQxIj7RMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="87893830"
-X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="87893830"
+ bh=L3WW4vepZvydCMNHOaQVOP7sTmE7IuyNQOiKH6i02n0=;
+ b=iULid19zHeWaI9KjiozGkh2+2PEZiZH0lkCUWxAiLsp/lPa+/GWQiFpY
+ UDeCcTt4UOBRjZ3+j2Zcd0jS5JQCOU5dTxTuE8lKKNTSbmIZprt3sdgOM
+ AwEC7NV6VupYBkLi5Om6n5mKa7t44BwI2JzAgTp9AvXKhQfbMN/wL9c1v
+ w5VWaX32VI5frR14Rnka3KlMb+P/jhjgNkyO0LItXO2r6Os2rky/5Jr9s
+ WUTeWCGuPoLhQ53V6+YhfE7ZQunkApKV7utrNoRtfNmj0seD6a73onW9y
+ kNCNvzLOWfs729qoci5/aKW708AXCnLfO+KMbEwK9rHWGee6z8dNO0Cy1 w==;
+X-CSE-ConnectionGUID: dNIhVbv1S5yDNuympNN6zA==
+X-CSE-MsgGUID: TuzbMUiPT2GMM2t/ZWUSXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="87893833"
+X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="87893833"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 21:51:05 -0700
-X-CSE-ConnectionGUID: f0KrkRIwTCq7jUt2m7+tMw==
-X-CSE-MsgGUID: 0WFZ+ekURZ2phv63/VlD0g==
+ 20 Aug 2026 21:51:09 -0700
+X-CSE-ConnectionGUID: 1GeSozfzQC2MSVSpJzmThQ==
+X-CSE-MsgGUID: H4Bd/wFMT8y2bONpxAzocg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="266291099"
+X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="266291112"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa007.jf.intel.com with ESMTP; 20 Aug 2026 21:51:04 -0700
+ by orviesa007.jf.intel.com with ESMTP; 20 Aug 2026 21:51:07 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: chaitanya.kumar.borah@intel.com,
 	Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 2/6] drm/i915/cursor: Add helper to update cursor plane
-Date: Fri, 21 Aug 2026 10:17:51 +0530
-Message-Id: <20260821044755.2234490-3-nemesa.garg@intel.com>
+Subject: [PATCH 4/6] drm/i915/cursor: Program secondary cursor planes
+Date: Fri, 21 Aug 2026 10:17:53 +0530
+Message-Id: <20260821044755.2234490-5-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260821044755.2234490-1-nemesa.garg@intel.com>
 References: <20260821044755.2234490-1-nemesa.garg@intel.com>
@@ -67,77 +67,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move cursor fast path plane state update into helper
-function. The target hw.crtc is passed as a parameter
-so a later patch can reuse the helper for joiner
-secondary pipes, where hw.crtc points at the secondary
-being programmed while uapi.crtc stays on the primary.
+Iterate over all joined pipes when arming/disabling the cursor plane so
+secondary pipes are updated together with the primary. The pin, check
+and state duplication for secondary pipes was already prepared in the
+previous commit; this converts the update_arm pass to a loop over the
+joined_pipe_state[] array.
 
-v4: Drop uapi.crtc assignment from the helper. [Chaitanya]
+Because the whole loop runs inside a single primary vblank-evade,
+sample intel_crtc_get_vblank_counter() per pipe around each arm and
+emit a drm_err() if the counter ticks during that pipe's own
+programming.
+
+v2: Check primary and secondary pipe together. [Ville]
+v3: Use struct intel_cursor_joiner_state. [Ville]
+v4: Add per-pipe vblank straddle detection around the arm loop. [Chaitanya]
+v5: Move straddle check outside the loop to cover all pipes together.
+    Sample vblank counter from primary pipe only.
+    Move drm_err() after local_irq_enable(). [Chaitnaya]
 
 Assisted-by: Claude:claude-sonnet-4.6
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 39 ++++++++++++++-------
- 1 file changed, 27 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 33 +++++++++++++++++----
+ 1 file changed, 28 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index bc1e58d5c4c5..db4eaa74fc58 100644
+index 9cb8b0a8537c..f5625dabc8f6 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -840,6 +840,29 @@ intel_cursor_joiner_commits_idle(struct intel_display *display,
- 	return true;
- }
+@@ -13,6 +13,7 @@
+ #include <drm/drm_vblank.h>
  
-+static void
-+intel_cursor_fastpath_update_plane_state(struct intel_plane_state *plane_state,
-+					 struct drm_framebuffer *fb,
-+					 struct intel_crtc *hw_crtc,
-+					 int crtc_x, int crtc_y,
-+					 unsigned int crtc_w, unsigned int crtc_h,
-+					 u32 src_x, u32 src_y,
-+					 u32 src_w, u32 src_h)
-+{
-+	drm_atomic_set_fb_for_plane(&plane_state->uapi, fb);
-+
-+	plane_state->uapi.src_x = src_x;
-+	plane_state->uapi.src_y = src_y;
-+	plane_state->uapi.src_w = src_w;
-+	plane_state->uapi.src_h = src_h;
-+	plane_state->uapi.crtc_x = crtc_x;
-+	plane_state->uapi.crtc_y = crtc_y;
-+	plane_state->uapi.crtc_w = crtc_w;
-+	plane_state->uapi.crtc_h = crtc_h;
-+
-+	intel_plane_copy_uapi_to_hw_state(NULL, plane_state, plane_state, hw_crtc);
-+}
-+
- static int
- intel_legacy_cursor_update(struct drm_plane *_plane,
- 			   struct drm_crtc *_crtc,
-@@ -915,18 +938,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		goto out_free;
+ #include "intel_atomic.h"
++#include "intel_crtc.h"
+ #include "intel_cursor.h"
+ #include "intel_cursor_regs.h"
+ #include "intel_de.h"
+@@ -900,6 +901,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	struct intel_cursor_joiner_state joined_pipe_state[I915_MAX_PIPES] = {};
+ 	struct intel_crtc *pipe_crtc;
+ 	int num_pipes = 0;
++	u32 start_vbl_count, end_vbl_count;
+ 	int ret;
+ 
+ 	/*
+@@ -1040,15 +1042,36 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		local_irq_disable();
  	}
  
--	drm_atomic_set_fb_for_plane(&new_plane_state->uapi, fb);
--
--	new_plane_state->uapi.src_x = src_x;
--	new_plane_state->uapi.src_y = src_y;
--	new_plane_state->uapi.src_w = src_w;
--	new_plane_state->uapi.src_h = src_h;
--	new_plane_state->uapi.crtc_x = crtc_x;
--	new_plane_state->uapi.crtc_y = crtc_y;
--	new_plane_state->uapi.crtc_w = crtc_w;
--	new_plane_state->uapi.crtc_h = crtc_h;
--
--	intel_plane_copy_uapi_to_hw_state(NULL, new_plane_state, new_plane_state, crtc);
-+	intel_cursor_fastpath_update_plane_state(new_plane_state, fb,
-+						 crtc,
-+						 crtc_x, crtc_y, crtc_w, crtc_h,
-+						 src_x, src_y, src_w, src_h);
+-	if (new_plane_state->uapi.visible) {
+-		intel_plane_update_noarm(NULL, plane, crtc_state, new_plane_state);
+-		intel_plane_update_arm(NULL, plane, crtc_state, new_plane_state);
+-	} else {
+-		intel_plane_disable_arm(NULL, plane, crtc_state);
++	/*
++	 * Joiner pipes are vblank-synchronized, so sampling only the primary
++	 * pipe is sufficient to detect a straddle across all joined pipes.
++	 * The vblank evasion above also operates on the primary pipe only.
++	 */
++	start_vbl_count = intel_crtc_get_vblank_counter(joined_pipe_state[0].crtc);
++
++	for (int i = 0; i < num_pipes; i++) {
++		if (joined_pipe_state[i].new_plane_state->uapi.visible) {
++			intel_plane_update_noarm(NULL, joined_pipe_state[i].plane,
++						 joined_pipe_state[i].crtc_state,
++						 joined_pipe_state[i].new_plane_state);
++			intel_plane_update_arm(NULL, joined_pipe_state[i].plane,
++					       joined_pipe_state[i].crtc_state,
++					       joined_pipe_state[i].new_plane_state);
++		} else {
++			intel_plane_disable_arm(NULL, joined_pipe_state[i].plane, joined_pipe_state[i].crtc_state);
++		}
+ 	}
  
- 	ret = intel_plane_atomic_check_with_state(crtc_state, new_crtc_state,
- 						  old_plane_state, new_plane_state);
++	end_vbl_count = intel_crtc_get_vblank_counter(joined_pipe_state[0].crtc);
++
+ 	local_irq_enable();
+ 
++	if (start_vbl_count != end_vbl_count)
++		drm_err(display->drm,
++			"Atomic update failure on pipe %c (start=%u end=%u)\n",
++			pipe_name(joined_pipe_state[0].crtc->pipe),
++			start_vbl_count, end_vbl_count);
++
+ 	intel_psr_unlock(crtc_state);
+ 
+ 	/*
 -- 
 2.25.1
 
