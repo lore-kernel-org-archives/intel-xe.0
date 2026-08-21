@@ -4,27 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 701C2C5DF87
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 09:38:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29ABBC5DF87
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 09:46:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0480A10F294;
-	Fri, 21 Aug 2026 09:38:17 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C12C10F28D;
- Fri, 21 Aug 2026 09:38:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5864812308960564683=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0E4010F296;
+	Fri, 21 Aug 2026 09:46:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XULkn2Wf";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAB9C10F296
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 09:46:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787305578; x=1818841578;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=6q5dUASAO/waE3Pyx50TLFshSw2EBsAQxBxrqysVULo=;
+ b=XULkn2WfX7jBL8EH/HrWpRNMFN/kKoCP5/kLAbSAjl1pywoUDamiH/as
+ Gfli6l4BFJD9QpLN8mw3lCaSo8zMonchbr8h0zsnW8XOu8mfzxXoSVDJR
+ 8FhFygde+14LcmYxcik0TDpHImXYPNGwXaHw8W3VrZtWTw2jeRojXWcpE
+ LmCyaaghOlhXEJ6VWU+TrNCqx/U0kL37JPfEzogdZNmuwbyH+uciWtboz
+ Mity68BjYeidSB4+qoxDVD7Vhz5eDKWvyArKyCItKi58PWlYjbKmnm/qf
+ Wxv2IoSRhTt8gBRgXk4EXNM3l7wfiBob+rFgVcuTSHb7w314kQAqgDqPc g==;
+X-CSE-ConnectionGUID: ooZ6KQ9ZSY+GQwMtJHVzBw==
+X-CSE-MsgGUID: KDMAWRjwR/Om4DBk0JOMDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="87770385"
+X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="87770385"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2026 02:46:17 -0700
+X-CSE-ConnectionGUID: fd7pcYUDSpaNrCJ7uq6uZQ==
+X-CSE-MsgGUID: 6GUDx3NTRm6RdAnSqrJd3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="270521594"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2026 02:46:17 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Fri, 21 Aug 2026 02:46:16 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Fri, 21 Aug 2026 02:46:16 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.12) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Fri, 21 Aug 2026 02:46:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JCn3kWUkHSQu/jeqe6HohTmpfsTVodVM5Bmm9ofdeEUMU5+jTVwhOcWOALyHNpqn1Z7+ElF9iIm83Pl02E5+reyKM9zed9slGuh3BVU7bHrtXgQtrcxX9w3BMBhBs/sU9NH3lLJm7UpWkP6hDwuKjM02ekwwa/mmww7TbdqSEeaJEz53gS5SLfC4JVwOByX96uxini6PV/l/5LkSwVNlP5Z17oiDlcPlTPiQhP3QnT38CZWkj5TTZiuyraFdYfVhRE9AG7GmLxswqQVZLhLHTXrYkukButafMsUojm7h0hGgqaIjp0KT4+lEDnisoVq0xLZc972RnHbGk6n+6ey8PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kEo9vheV3JxEMLlFrk2ZGXgeiLokzsrwB5p3cG7AyO8=;
+ b=PWJaerAfx3Op5zMgrSSKGDtku1sVW7eBlPmbpviM+/cDH8z6VN+NJ/SDmyTf4HLK3FspbIkG4a1sLFJ+d4Fst8Boq4dDKWI0k0tqRTsPgq0VsbYJzzX3QvJ2svdOuUEVoTvUnyXMi9SZ3CdEf0nxvEngyg4LVDs/IXIiLfGk9rACZVOf6ykqlHRy/dLufi+gJlBJxDEq7wTK56LGhVL7nH0+VSAaOt5Zu8x5oLmM/ke+WPtKZ6ITySat0I/L3KZvfQQIobYRiGc3L5kEcOM1EnoFcQtKLtyqoye/qS2i1ALqCZ0dxuXMAI44HvZbPEkDkrfOjmtmm+1Ri8F1E4gPrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
+ by PH7PR11MB8454.namprd11.prod.outlook.com (2603:10b6:510:30c::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.11; Fri, 21 Aug
+ 2026 09:46:13 +0000
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0339.008; Fri, 21 Aug 2026
+ 09:46:12 +0000
+From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 0/4] Introduce PF-mem VRAM regions
+Date: Fri, 21 Aug 2026 11:45:57 +0200
+Message-ID: <20260821094601.607060-1-piotr.piorkowski@intel.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: TL2P290CA0006.ISRP290.PROD.OUTLOOK.COM (2603:1096:950:2::6)
+ To PH8PR11MB8039.namprd11.prod.outlook.com
+ (2603:10b6:510:25f::18)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/xe/ggtt=3A_fix_stale_G?=
- =?utf-8?q?GTT_mappings_on_unmap?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: tilak.tirumalesh.tangudu@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Aug 2026 09:38:15 -0000
-Message-ID: <178730509523.72788.17027081696963513155@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260821074238.3000501-1-tilak.tirumalesh.tangudu@intel.com>
-In-Reply-To: <20260821074238.3000501-1-tilak.tirumalesh.tangudu@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|PH7PR11MB8454:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c992ad6-9f5b-4d4b-f0d4-08deff690967
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|18002099003|56012099006|10067099003|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info: QMfkhlq3pPkrE/D2jPYQWIRHECU/QjRXzcmwSO/3h5UqmgR/PkQL0w5J2TX37dbZ1Pd/dlgKDSqiKqeDhktmxcAEKgy9WfS5O7d06whWzKtRvXSC2CVclJ7TQzDls0BZyqXVBXAkpBjRlX0shCv2OE97OqagwJjMrezEg+E9rDQQMB8NIVpMG5rCYwWWMomzVA+KHvOM4cS/w5w09kwIWV1GOSfMQZQZOuBmMZIr1sTRnXwVjhY8w6d0CDW1CjguqIxlo6WX3/c4FRivv4JReiE6csBDR1FKzT9Grc90RmqIScDXB64xzr2dQZZ42aat2HDZ2/bC8fAd/vg4Nd0mlcTYYmof8Q84XGTe10AiubJyB4e7AHPhwAKNRcY6KO/favk6IdZRP2S5TjWJiz3n8JZ4RtWieryvOwnsTDpO7bXrC9kYJKBh8QgABbhL7GYKpcKyZWo71VnzQkc5NGJZUAh0vYhNj9zXjAVIC/mIsA0jM0zozuBvD0vnXWAAmmRV5HneQEintNprOnEnUClBRpsSYC2JIqCF7AxNT6WoJ9Z2+YkAWLqG6w1hFOoaNDPLF5s72I0WrfSt/zdc4iStQO6sDl6gWk4HHfUoI+noMYyaf/lmq6hM3d5FmMmruBEiLG39raoQNWGOALM7qBjefemvg7LdaOmmMcfehP2mblg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(18002099003)(56012099006)(10067099003)(11063799006)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NUJhWXlDL0hJNzM3Nm80N1cvNDVpaytpSkMwbUtZbW96YXR4UGl4YzdSL0Rv?=
+ =?utf-8?B?dUlYSFBESERyaW9taURuRkVjb3NjYW1kYk5heHp4aTVOaU51MTN4aUw2ZGd0?=
+ =?utf-8?B?M0k4TUgvZ0lFTU12WDRQVmF0YTFsanJqck9MU3A1QVQ4V25tUUZHWm9BazJM?=
+ =?utf-8?B?R3FGZUdwTnlGc2cxejlqem5NSVFpZGFlTE14VEFqWm14bDhuNTNBQXZHYnlY?=
+ =?utf-8?B?RG43UVFxTVpEenZrQmJEbmdicnpWVXk1eHFKVUE5K0daZllOeFpnR0VHN2ta?=
+ =?utf-8?B?YlFTZXVTbXFtcFVjYjlvaUtpQTNuV0x6ZUsycnNpeG92ZWJUeE9RMTMrelAw?=
+ =?utf-8?B?TytSSTEycEFESTdTNnFIZ2Y5dk5wTGhEL245dFNpQVdneEtob25GcVVoeFFU?=
+ =?utf-8?B?UlVLb01lK0RSMG1ZOHRPVFJyV3FVQXlhNzBlUTZrSFBuK2VpMXZLQTlrYUpz?=
+ =?utf-8?B?VHJ5YkVuZHFtaFJnSTZBazJIUmtHOGRneTM0MlRuQ2tBcGN3T21SZWpGRUpi?=
+ =?utf-8?B?dGdUR04ySjBxa1FOMTRqWER6dER0Q3YwNWJJVFBseVg1cjRlSU1jMDN1djZy?=
+ =?utf-8?B?UUFvWEN3emJqY2JaWWtNR29yVCtjVXJOZWZsVno2SUZlMjhFM3U5K3V1VmNr?=
+ =?utf-8?B?WmRlSjFkbDdlNnJCbTgrMUhabVZjZVZNa0M3bmJiR0Z4TkpoYWVGTTJrWlA0?=
+ =?utf-8?B?MFFDc2FxbHBwWDJrMmV4TUh0VThYd3JtTTYzNkNIbm5EK1dLN1drK1NXaDFE?=
+ =?utf-8?B?OVJRZVF5NkhxbGUvamRIajB0N2lRUXFYbTE1NVhzaDRxS3ZpbFlRZU80a05k?=
+ =?utf-8?B?TWE3OWF5dm4wQUhseUtMcXRyREhObTdaRHVUdy96eUVnNzhZKzZOWjFQbFhl?=
+ =?utf-8?B?K2J2TFpPb3VzdStuNWYyb3RVaEVQcmhOSjZmMlhkdGtuWS9vaHRmR0V4b2Z2?=
+ =?utf-8?B?dkFiY3FIZTl6R2Y3YmlCNzNUejUyTG9JNVZHRVZBRGNZV0FGdFQ3N0JpSFkx?=
+ =?utf-8?B?K0d2NmJObkRaeUk0d0xPY1pKWmFpMDA4Q3ZaeHc0TG1RcXZUZ1RCTitWNGVR?=
+ =?utf-8?B?YUVyR1Nhc29WaWYxUkVzMzFlNUlJUUNvS2F4amNzT3Ura3ZaekdnMmIwakIz?=
+ =?utf-8?B?cjErN2dFZGV2cnBycTNkWUlJdW5iMW5QUmpwTFg4U0dOUGc0RzJlZ2o4UERW?=
+ =?utf-8?B?WUR6bGdzSUYxVmUxNTdWbzFmUmxsOG9xR1VaaEF0K09vN2VwSnp6cnhpSUlw?=
+ =?utf-8?B?ZnJYRzRjUWhscVdoZElTWWc1VHZaTWpKUEFqczRoUVVKd2NvQ2ZxQzBhNHBO?=
+ =?utf-8?B?NXc5Y3N4eTV4dVplWk5aL0VVNVFNc24wd2lBaElCaG5ZakxEK1QvTDJ4WWVO?=
+ =?utf-8?B?Mnd5dWVPdlVyVzdtd3VLLzcyL1hPYXRzWS9BczR3WXZ5dDNvKzR5OFVPUm92?=
+ =?utf-8?B?cW1uTFZXb2hjOUVNMENkZWFRQ05YVFFPZDRMQVpLN0NQcGtRK25SVmpLUFA3?=
+ =?utf-8?B?QTJIdFpyNHhITVZWYkFhSlY4VGpzMmNzRjBQcUxYTFBKZEtLeno1RmJGYmdm?=
+ =?utf-8?B?bXlsZmpoSkNkeXR4ZWdPQ1VBbzRGRmJXa0RPd3M3QnBXeWE3TE9QNFNwK1hZ?=
+ =?utf-8?B?NS9OS2NiQ0UwM1ZPMGlWZ0diZ3JKem5RcmltUlZuN0xZN2NLWHFseHlKN29V?=
+ =?utf-8?B?NjJjL2l5b0NZTVE3b2dqdkNlSmZUbDZHSlhxM3N1WFFIRmxZeTYvemt0NEY4?=
+ =?utf-8?B?NGRQUitFNGhwNVNwWTVPdkdTMThYaGN5cERGQ1dzY0l4YkV0eEF6WUVaQ2Vr?=
+ =?utf-8?B?UVEyZ2diVzBCRzBHRkViWEI4ZEtZWE9jZitQd0dyRG5zc2xqcHJpVHVtcmE5?=
+ =?utf-8?B?TGJ1MUgrMzRiNVVnYVMwVXhyRVNQUzNjOGxEQ0dFZ1Q0ZW1MSTF0eDMrTGFG?=
+ =?utf-8?B?OHV3QVhCcUd0ZHJoRzV2aHAvMDVnY2xSZUsvNE9oU2NxY3BSYlh5UVRHVFhR?=
+ =?utf-8?B?a1hEMi9yNlRZaitEdnJUV2M4L3MxUGFGUzI1TUl1UTIzcjhCbWtCK05IOFdN?=
+ =?utf-8?B?ZzBYMnVMenlsSEZUMGRpSEdnZHJrRW94T2lLUXpPaWQ4MmpmVVBRdkpRNkNk?=
+ =?utf-8?B?cVVyVENBMmVnaGszSzQ4YjZLVEUvUldzVzN4NTBjdnR3ajdNclpNbXBPNmdR?=
+ =?utf-8?B?Y0doWEpZeUwybm5xcTJPLzZWV3FLbitjRmNtaExZVlRjYzRmWUNZZ1pZbEpm?=
+ =?utf-8?B?NHRrSmhaSnByTU1OazBhREpGTWtnekc0TzdLOWFuT2FBZ21JajViU0R1dWJE?=
+ =?utf-8?B?LzZFU0dYeTR3bVVhRURBUm1BQkRzWGc3RXBOeXBRNEJ2Z1RUTjVZQkhmR2tO?=
+ =?utf-8?Q?BJ+OsCEQs4KPV8H0=3D?=
+X-Exchange-RoutingPolicyChecked: L3JMyRxmj2ZUVelNDHieE5TyNZDU/qRpb1eE563uAxcCtEqGqS/KVXiVgas2xN7OinvDus011VBTK/Uu+FJANyOuvdIBf16+i6M05oPGr09r94BTKzuGvc4/lZdaJe1It+EtanWayK8b3uzx6jAhF+1yJR3IGDhcJzBmPKHhN+iviUTRVUS09WW9IeFe3Zh0/jUpXl8iqY9VsITALEjfysrLefPssFjhfN7FGQDZMOpCEVRD85jqTFZ2Yj+b+kZQmXz/sF+0InBnL35KPchvzoGiJGjtQlezTWGGDDkvmavN1WHDM58Z1TQmqygj6w+ngIjiSFoo5LblsP8Pgz4p+Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c992ad6-9f5b-4d4b-f0d4-08deff690967
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2026 09:46:12.8836 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IFTBWZk6INBM3NRfTMmovazxy5AVIEuefCBDZiH/gGqYI5xVFReYoJ5e8t370PFZXmmir5l69QPNJQtZcapI8AWF+i1iYok/4/wITn3QTpo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8454
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,827 +162,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5864812308960564683==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Piotr Piórkowski <piotr.piorkowski@intel.com>
+
+This series lays the groundwork for PF-mem regions: VRAM regions
+dedicated to kernel-only allocations, where buffers are allocated
+exclusively by the kernel driver and are never exposed to userspace
+workloads.
+
+Today a tile exposes a single VRAM region shared by both kernel and
+userspace allocations. Some use cases need a separate VRAM region
+carved out of a tile and reserved for the kernel driver only. For
+example, on an SR-IOV PF most of the tile VRAM is provisioned to VFs;
+the kernel driver still needs its own allocations, which must come from
+a region reserved for the kernel and kept apart from the VRAM handed
+out to VFs. That reserved kernel region is what PF-mem provides.
+
+To support this, the VRAM region abstraction needs a way to distinguish
+regions by purpose, dedicated TTM placements so the BO paths can route
+and evict such buffers correctly, and helpers to create a region from a
+caller-provided parent, offset, and size.
+
+v1 -> v2:
+ - Add comments explaining why PF-mem is excluded from user BO eviction
+   (Sashiko).
+ - Resolve xe_ttm_vram_mgr_alloc_sgt() physical address via
+   xe_map_resource_to_region() instead of the tile's
+   VRAM region (Sashiko).
+ - Enforce page alignment on offset/size and guard against a NULL
+   parent BAR mapping (Sashiko)
+
+Piotr Piórkowski (4):
+  drm/xe/vram: Add binding information to VRAM regions
+  drm/xe/ttm: Add PF-mem VRAM placement types for TTM
+  drm/xe/vram: Add initial support for PF-mem regions
+  drm/xe/kunit: Add tests for PF-mem regions
+
+ drivers/gpu/drm/xe/tests/xe_vram.c   | 115 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.c           |  16 +++-
+ drivers/gpu/drm/xe/xe_bo.h           |  17 ++++
+ drivers/gpu/drm/xe/xe_bo_evict.c     |   7 +-
+ drivers/gpu/drm/xe/xe_pm.c           |   4 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h   |   9 ++-
+ drivers/gpu/drm/xe/xe_tile.c         |  10 ++-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |   9 +--
+ drivers/gpu/drm/xe/xe_vram.c         |  90 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vram.h         |  10 ++-
+ drivers/gpu/drm/xe/xe_vram_types.h   |  14 +++-
+ 11 files changed, 275 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_vram.c
+
+-- 
+2.34.1
 
-== Series Details ==
-
-Series: drm/xe/ggtt: fix stale GGTT mappings on unmap
-URL   : https://patchwork.freedesktop.org/series/172559/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012_FULL -> xe-pw-172559v1_FULL
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172559v1_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@intel_hwmon@hwmon-write:
-    - shard-bmg:          [PASS][1] -> [FAIL][2] ([Intel XE#8583])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-5/igt@intel_hwmon@hwmon-write.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@intel_hwmon@hwmon-write.html
-
-  * igt@kms_async_flips@async-flip-suspend-resume:
-    - shard-bmg:          [PASS][3] -> [INCOMPLETE][4] ([Intel XE#8587]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-10/igt@kms_async_flips@async-flip-suspend-resume.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-5/igt@kms_async_flips@async-flip-suspend-resume.html
-
-  * igt@kms_big_fb@x-tiled-64bpp-rotate-270:
-    - shard-bmg:          NOTRUN -> [SKIP][5] ([Intel XE#2327])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-4/igt@kms_big_fb@x-tiled-64bpp-rotate-270.html
-
-  * igt@kms_big_fb@yf-tiled-16bpp-rotate-180:
-    - shard-bmg:          NOTRUN -> [SKIP][6] ([Intel XE#1124]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_big_fb@yf-tiled-16bpp-rotate-180.html
-
-  * igt@kms_bw@connected-linear-tiling-3-displays-target-2160x1440p:
-    - shard-lnl:          NOTRUN -> [SKIP][7] ([Intel XE#7679])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_bw@connected-linear-tiling-3-displays-target-2160x1440p.html
-    - shard-bmg:          NOTRUN -> [SKIP][8] ([Intel XE#7679])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@kms_bw@connected-linear-tiling-3-displays-target-2160x1440p.html
-
-  * igt@kms_ccs@bad-pixel-format-y-tiled-ccs:
-    - shard-lnl:          NOTRUN -> [SKIP][9] ([Intel XE#2887])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_ccs@bad-pixel-format-y-tiled-ccs.html
-
-  * igt@kms_ccs@crc-primary-basic-4-tiled-dg2-rc-ccs:
-    - shard-bmg:          NOTRUN -> [SKIP][10] ([Intel XE#2887]) +6 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_ccs@crc-primary-basic-4-tiled-dg2-rc-ccs.html
-
-  * igt@kms_chamelium_color_pipeline@plane-lut1d:
-    - shard-bmg:          NOTRUN -> [SKIP][11] ([Intel XE#7358]) +1 other test skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-2/igt@kms_chamelium_color_pipeline@plane-lut1d.html
-
-  * igt@kms_chamelium_color_pipeline@plane-lut1d-post-ctm3x4:
-    - shard-lnl:          NOTRUN -> [SKIP][12] ([Intel XE#7358])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_chamelium_color_pipeline@plane-lut1d-post-ctm3x4.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-single:
-    - shard-bmg:          NOTRUN -> [SKIP][13] ([Intel XE#2252]) +1 other test skip
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_chamelium_frames@hdmi-crc-single.html
-
-  * igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-2:
-    - shard-bmg:          NOTRUN -> [FAIL][14] ([Intel XE#1178] / [Intel XE#3304] / [Intel XE#7374]) +1 other test fail
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-2/igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-2.html
-
-  * igt@kms_content_protection@uevent-hdcp14:
-    - shard-bmg:          NOTRUN -> [FAIL][15] ([Intel XE#6707] / [Intel XE#7439]) +1 other test fail
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@kms_content_protection@uevent-hdcp14.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-legacy:
-    - shard-bmg:          [PASS][16] -> [FAIL][17] ([Intel XE#7571])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-4/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions:
-    - shard-lnl:          NOTRUN -> [SKIP][18] ([Intel XE#323] / [Intel XE#6035])
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-5/igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions.html
-    - shard-bmg:          NOTRUN -> [SKIP][19] ([Intel XE#2286] / [Intel XE#6035])
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions.html
-
-  * igt@kms_dp_linktrain_fallback@uhbr-to-hbr-fallback:
-    - shard-bmg:          NOTRUN -> [SKIP][20] ([Intel XE#9009])
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_dp_linktrain_fallback@uhbr-to-hbr-fallback.html
-    - shard-lnl:          NOTRUN -> [SKIP][21] ([Intel XE#9009])
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_dp_linktrain_fallback@uhbr-to-hbr-fallback.html
-
-  * igt@kms_dsc@dsc-basic-ultrajoiner:
-    - shard-bmg:          NOTRUN -> [SKIP][22] ([Intel XE#8265]) +1 other test skip
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-7/igt@kms_dsc@dsc-basic-ultrajoiner.html
-
-  * igt@kms_fbcon_fbt@psr:
-    - shard-bmg:          NOTRUN -> [SKIP][23] ([Intel XE#8680])
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_fbcon_fbt@psr.html
-
-  * igt@kms_flip@2x-plain-flip-fb-recreate-interruptible:
-    - shard-bmg:          [PASS][24] -> [FAIL][25] ([Intel XE#5408] / [Intel XE#6266]) +1 other test fail
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-9/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3:
-    - shard-bmg:          [PASS][26] -> [FAIL][27] ([Intel XE#3098]) +1 other test fail
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-2/igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3.html
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:
-    - shard-lnl:          [PASS][28] -> [FAIL][29] ([Intel XE#301])
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@c-edp1:
-    - shard-lnl:          [PASS][30] -> [FAIL][31] ([Intel XE#301] / [Intel XE#3149])
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling:
-    - shard-bmg:          NOTRUN -> [SKIP][32] ([Intel XE#7178] / [Intel XE#7351]) +1 other test skip
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling.html
-
-  * igt@kms_frontbuffer_tracking@drrs-1p-primscrn-pri-indfb-draw-blt:
-    - shard-lnl:          NOTRUN -> [SKIP][33] ([Intel XE#6312] / [Intel XE#651])
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-3/igt@kms_frontbuffer_tracking@drrs-1p-primscrn-pri-indfb-draw-blt.html
-
-  * igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-render:
-    - shard-bmg:          NOTRUN -> [SKIP][34] ([Intel XE#2311]) +15 other tests skip
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@drrshdr-2p-primscrn-spr-indfb-draw-render:
-    - shard-lnl:          NOTRUN -> [SKIP][35] ([Intel XE#7905])
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-7/igt@kms_frontbuffer_tracking@drrshdr-2p-primscrn-spr-indfb-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-pri-indfb-multidraw:
-    - shard-bmg:          NOTRUN -> [SKIP][36] ([Intel XE#4141]) +2 other tests skip
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_frontbuffer_tracking@fbc-1p-pri-indfb-multidraw.html
-
-  * igt@kms_frontbuffer_tracking@fbc-tiling-y:
-    - shard-bmg:          NOTRUN -> [SKIP][37] ([Intel XE#2352] / [Intel XE#7399])
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@kms_frontbuffer_tracking@fbc-tiling-y.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-abgr161616f-draw-mmap-wc:
-    - shard-bmg:          NOTRUN -> [SKIP][38] ([Intel XE#7061] / [Intel XE#7356])
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_frontbuffer_tracking@fbcdrrs-abgr161616f-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@fbchdr-suspend:
-    - shard-lnl:          NOTRUN -> [SKIP][39] ([Intel XE#7865])
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_frontbuffer_tracking@fbchdr-suspend.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsrhdr-abgr161616f-draw-blt:
-    - shard-bmg:          NOTRUN -> [SKIP][40] ([Intel XE#7061]) +1 other test skip
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_frontbuffer_tracking@fbcpsrhdr-abgr161616f-draw-blt.html
-    - shard-lnl:          NOTRUN -> [SKIP][41] ([Intel XE#7061])
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-5/igt@kms_frontbuffer_tracking@fbcpsrhdr-abgr161616f-draw-blt.html
-
-  * igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:
-    - shard-bmg:          NOTRUN -> [SKIP][42] ([Intel XE#2313]) +15 other tests skip
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-6/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html
-    - shard-lnl:          NOTRUN -> [SKIP][43] ([Intel XE#656] / [Intel XE#7905]) +2 other tests skip
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-2/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html
-
-  * igt@kms_joiner@basic-max-non-joiner:
-    - shard-bmg:          NOTRUN -> [SKIP][44] ([Intel XE#4298] / [Intel XE#5873])
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-5/igt@kms_joiner@basic-max-non-joiner.html
-
-  * igt@kms_plane@pixel-format-y-tiled-gen12-rc-ccs-cc-modifier:
-    - shard-bmg:          NOTRUN -> [SKIP][45] ([Intel XE#7283])
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-4/igt@kms_plane@pixel-format-y-tiled-gen12-rc-ccs-cc-modifier.html
-    - shard-lnl:          NOTRUN -> [SKIP][46] ([Intel XE#7283])
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-3/igt@kms_plane@pixel-format-y-tiled-gen12-rc-ccs-cc-modifier.html
-
-  * igt@kms_pm_dc@dc5-psr:
-    - shard-lnl:          [PASS][47] -> [FAIL][48] ([Intel XE#8399])
-   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-7/igt@kms_pm_dc@dc5-psr.html
-   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-7/igt@kms_pm_dc@dc5-psr.html
-
-  * igt@kms_psr2_sf@fbc-pr-cursor-plane-move-continuous-sf:
-    - shard-bmg:          NOTRUN -> [SKIP][49] ([Intel XE#1489]) +3 other tests skip
-   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-2/igt@kms_psr2_sf@fbc-pr-cursor-plane-move-continuous-sf.html
-
-  * igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area:
-    - shard-lnl:          NOTRUN -> [SKIP][50] ([Intel XE#2893] / [Intel XE#4608] / [Intel XE#7304])
-   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area.html
-
-  * igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-a-edp-1:
-    - shard-lnl:          NOTRUN -> [SKIP][51] ([Intel XE#4608])
-   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-a-edp-1.html
-
-  * igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-b-edp-1:
-    - shard-lnl:          NOTRUN -> [SKIP][52] ([Intel XE#4608] / [Intel XE#7304])
-   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-b-edp-1.html
-
-  * igt@kms_psr@pr-no-drrs:
-    - shard-lnl:          NOTRUN -> [SKIP][53] ([Intel XE#1406])
-   [53]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr@pr-no-drrs.html
-
-  * igt@kms_psr@pr-sprite-plane-onoff:
-    - shard-bmg:          NOTRUN -> [SKIP][54] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [54]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_psr@pr-sprite-plane-onoff.html
-
-  * igt@kms_sharpness_filter@filter-tap:
-    - shard-bmg:          NOTRUN -> [SKIP][55] ([Intel XE#6503])
-   [55]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@kms_sharpness_filter@filter-tap.html
-
-  * igt@kms_tiled_display@basic-test-pattern:
-    - shard-bmg:          NOTRUN -> [SKIP][56] ([Intel XE#2426] / [Intel XE#5848])
-   [56]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-7/igt@kms_tiled_display@basic-test-pattern.html
-
-  * igt@sriov_basic@pf-unbind-with-vfs-enabled-numvfs-all:
-    - shard-bmg:          NOTRUN -> [ABORT][57] ([Intel XE#8868]) +1 other test abort
-   [57]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@sriov_basic@pf-unbind-with-vfs-enabled-numvfs-all.html
-
-  * igt@xe_exec_basic@multigpu-no-exec-null-defer-mmap:
-    - shard-bmg:          NOTRUN -> [SKIP][58] ([Intel XE#2322] / [Intel XE#7372]) +2 other tests skip
-   [58]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@xe_exec_basic@multigpu-no-exec-null-defer-mmap.html
-
-  * igt@xe_exec_fault_mode@many-multi-queue-rebind-prefetch:
-    - shard-bmg:          NOTRUN -> [SKIP][59] ([Intel XE#8374]) +2 other tests skip
-   [59]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@xe_exec_fault_mode@many-multi-queue-rebind-prefetch.html
-
-  * igt@xe_exec_multi_queue@one-queue-preempt-mode-close-fd-smem:
-    - shard-bmg:          NOTRUN -> [SKIP][60] ([Intel XE#8364]) +7 other tests skip
-   [60]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@xe_exec_multi_queue@one-queue-preempt-mode-close-fd-smem.html
-
-  * igt@xe_exec_multi_queue@two-queues-close-fd-smem:
-    - shard-lnl:          NOTRUN -> [SKIP][61] ([Intel XE#8364]) +3 other tests skip
-   [61]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-2/igt@xe_exec_multi_queue@two-queues-close-fd-smem.html
-
-  * igt@xe_exec_threads@threads-multi-queue-cm-userptr-invalidate-race:
-    - shard-lnl:          NOTRUN -> [SKIP][62] ([Intel XE#8378])
-   [62]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-8/igt@xe_exec_threads@threads-multi-queue-cm-userptr-invalidate-race.html
-
-  * igt@xe_exec_threads@threads-multi-queue-fd-userptr-rebind:
-    - shard-bmg:          NOTRUN -> [SKIP][63] ([Intel XE#8378]) +2 other tests skip
-   [63]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@xe_exec_threads@threads-multi-queue-fd-userptr-rebind.html
-
-  * igt@xe_multigpu_svm@mgpu-atomic-op-prefetch:
-    - shard-bmg:          NOTRUN -> [SKIP][64] ([Intel XE#6964])
-   [64]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-4/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - shard-bmg:          NOTRUN -> [SKIP][65] ([Intel XE#1420] / [Intel XE#7590])
-   [65]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-7/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pm@d3cold-basic-exec:
-    - shard-bmg:          NOTRUN -> [SKIP][66] ([Intel XE#2284] / [Intel XE#7370])
-   [66]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@xe_pm@d3cold-basic-exec.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs:
-    - shard-bmg:          [INCOMPLETE][67] ([Intel XE#7084] / [Intel XE#8150]) -> [PASS][68] +1 other test pass
-   [67]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-6/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html
-   [68]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-5/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:
-    - shard-lnl:          [FAIL][69] ([Intel XE#301]) -> [PASS][70] +1 other test pass
-   [69]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-   [70]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-
-  * igt@kms_plane_scaling@intel-max-src-size:
-    - shard-bmg:          [SKIP][71] ([Intel XE#2685] / [Intel XE#3307]) -> [PASS][72]
-   [71]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-3/igt@kms_plane_scaling@intel-max-src-size.html
-   [72]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@kms_plane_scaling@intel-max-src-size.html
-
-  * igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb@pipe-a-edp-1:
-    - shard-lnl:          [INCOMPLETE][73] ([Intel XE#9008]) -> [PASS][74] +1 other test pass
-   [73]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-1/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb@pipe-a-edp-1.html
-   [74]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-7/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb@pipe-a-edp-1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_big_fb@linear-8bpp-rotate-270:
-    - shard-lnl:          [SKIP][75] ([Intel XE#1407]) -> [ABORT][76] ([Intel XE#4760])
-   [75]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-1/igt@kms_big_fb@linear-8bpp-rotate-270.html
-   [76]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_big_fb@linear-8bpp-rotate-270.html
-
-  * igt@kms_dp_linktrain_fallback@dp-fallback:
-    - shard-lnl:          [SKIP][77] ([Intel XE#4294] / [Intel XE#7477]) -> [SKIP][78] ([Intel XE#9009])
-   [77]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-6/igt@kms_dp_linktrain_fallback@dp-fallback.html
-   [78]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_dp_linktrain_fallback@dp-fallback.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-lnl:          [FAIL][79] ([Intel XE#301]) -> [FAIL][80] ([Intel XE#301] / [Intel XE#3149])
-   [79]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank.html
-   [80]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank.html
-
-  
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#1178]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178
-  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
-  [Intel XE#1407]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1407
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#1489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
-  [Intel XE#2284]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284
-  [Intel XE#2286]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2286
-  [Intel XE#2311]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311
-  [Intel XE#2313]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313
-  [Intel XE#2322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322
-  [Intel XE#2327]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327
-  [Intel XE#2352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2352
-  [Intel XE#2426]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426
-  [Intel XE#2685]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2685
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#2887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887
-  [Intel XE#2893]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2893
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#3098]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3098
-  [Intel XE#3149]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149
-  [Intel XE#323]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/323
-  [Intel XE#3304]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3304
-  [Intel XE#3307]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3307
-  [Intel XE#4141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141
-  [Intel XE#4294]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4294
-  [Intel XE#4298]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4298
-  [Intel XE#4608]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4608
-  [Intel XE#4760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760
-  [Intel XE#5408]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5408
-  [Intel XE#5848]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5848
-  [Intel XE#5873]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5873
-  [Intel XE#6035]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6035
-  [Intel XE#6266]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6266
-  [Intel XE#6312]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6312
-  [Intel XE#6503]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503
-  [Intel XE#651]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/651
-  [Intel XE#656]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/656
-  [Intel XE#6707]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6707
-  [Intel XE#6964]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964
-  [Intel XE#7061]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061
-  [Intel XE#7084]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7084
-  [Intel XE#7178]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7178
-  [Intel XE#7283]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7283
-  [Intel XE#7304]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7304
-  [Intel XE#7351]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7351
-  [Intel XE#7356]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356
-  [Intel XE#7358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7358
-  [Intel XE#7370]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7370
-  [Intel XE#7372]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7372
-  [Intel XE#7374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7374
-  [Intel XE#7399]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7399
-  [Intel XE#7439]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7439
-  [Intel XE#7477]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7477
-  [Intel XE#7571]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7571
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#7679]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7679
-  [Intel XE#7865]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7865
-  [Intel XE#7905]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7905
-  [Intel XE#8150]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8150
-  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-  [Intel XE#8374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8374
-  [Intel XE#8378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8378
-  [Intel XE#8399]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8399
-  [Intel XE#8583]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8583
-  [Intel XE#8587]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8587
-  [Intel XE#8680]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8680
-  [Intel XE#8868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8868
-  [Intel XE#9008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9008
-  [Intel XE#9009]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9009
-
-
-Build changes
--------------
-
-  * IGT: IGT_9066 -> IGT_9067
-  * Linux: xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012 -> xe-pw-172559v1
-
-  IGT_9066: 9066
-  IGT_9067: 9067
-  xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012: 75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012
-  xe-pw-172559v1: 172559v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/index.html
-
---===============5864812308960564683==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/ggtt: fix stale GGTT mappings on unmap</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172559/">https://patchwork.freedesktop.org/series/172559/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012_FULL -&gt; xe-pw-172559v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172559v1_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@intel_hwmon@hwmon-write:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-5/igt@intel_hwmon@hwmon-write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@intel_hwmon@hwmon-write.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8583">Intel XE#8583</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_async_flips@async-flip-suspend-resume:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-10/igt@kms_async_flips@async-flip-suspend-resume.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-5/igt@kms_async_flips@async-flip-suspend-resume.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8587">Intel XE#8587</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-64bpp-rotate-270:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-4/igt@kms_big_fb@x-tiled-64bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327">Intel XE#2327</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-16bpp-rotate-180:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_big_fb@yf-tiled-16bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@connected-linear-tiling-3-displays-target-2160x1440p:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_bw@connected-linear-tiling-3-displays-target-2160x1440p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7679">Intel XE#7679</a>)</li>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@kms_bw@connected-linear-tiling-3-displays-target-2160x1440p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7679">Intel XE#7679</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@bad-pixel-format-y-tiled-ccs:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_ccs@bad-pixel-format-y-tiled-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887">Intel XE#2887</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-basic-4-tiled-dg2-rc-ccs:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_ccs@crc-primary-basic-4-tiled-dg2-rc-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887">Intel XE#2887</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_color_pipeline@plane-lut1d:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-2/igt@kms_chamelium_color_pipeline@plane-lut1d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7358">Intel XE#7358</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_color_pipeline@plane-lut1d-post-ctm3x4:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_chamelium_color_pipeline@plane-lut1d-post-ctm3x4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7358">Intel XE#7358</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-single:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_chamelium_frames@hdmi-crc-single.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252">Intel XE#2252</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-2:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-2/igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178">Intel XE#1178</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3304">Intel XE#3304</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7374">Intel XE#7374</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@uevent-hdcp14:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@kms_content_protection@uevent-hdcp14.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6707">Intel XE#6707</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7439">Intel XE#7439</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-legacy:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-4/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7571">Intel XE#7571</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-5/igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/323">Intel XE#323</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6035">Intel XE#6035</a>)</li>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2286">Intel XE#2286</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6035">Intel XE#6035</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_linktrain_fallback@uhbr-to-hbr-fallback:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_dp_linktrain_fallback@uhbr-to-hbr-fallback.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9009">Intel XE#9009</a>)</li>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_dp_linktrain_fallback@uhbr-to-hbr-fallback.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9009">Intel XE#9009</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic-ultrajoiner:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-7/igt@kms_dsc@dsc-basic-ultrajoiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbcon_fbt@psr:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_fbcon_fbt@psr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8680">Intel XE#8680</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-plain-flip-fb-recreate-interruptible:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-9/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5408">Intel XE#5408</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6266">Intel XE#6266</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-2/igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3098">Intel XE#3098</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@c-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7178">Intel XE#7178</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7351">Intel XE#7351</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-1p-primscrn-pri-indfb-draw-blt:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-3/igt@kms_frontbuffer_tracking@drrs-1p-primscrn-pri-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6312">Intel XE#6312</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/651">Intel XE#651</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-render:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_frontbuffer_tracking@drrs-rgb101010-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrshdr-2p-primscrn-spr-indfb-draw-render:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-7/igt@kms_frontbuffer_tracking@drrshdr-2p-primscrn-spr-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7905">Intel XE#7905</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-1p-pri-indfb-multidraw:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@kms_frontbuffer_tracking@fbc-1p-pri-indfb-multidraw.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-tiling-y:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@kms_frontbuffer_tracking@fbc-tiling-y.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2352">Intel XE#2352</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7399">Intel XE#7399</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-abgr161616f-draw-mmap-wc:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@kms_frontbuffer_tracking@fbcdrrs-abgr161616f-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356">Intel XE#7356</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbchdr-suspend:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_frontbuffer_tracking@fbchdr-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7865">Intel XE#7865</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsrhdr-abgr161616f-draw-blt:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_frontbuffer_tracking@fbcpsrhdr-abgr161616f-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a>) +1 other test skip</li>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-5/igt@kms_frontbuffer_tracking@fbcpsrhdr-abgr161616f-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-6/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) +15 other tests skip</li>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-2/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/656">Intel XE#656</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7905">Intel XE#7905</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_joiner@basic-max-non-joiner:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-5/igt@kms_joiner@basic-max-non-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4298">Intel XE#4298</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5873">Intel XE#5873</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane@pixel-format-y-tiled-gen12-rc-ccs-cc-modifier:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-4/igt@kms_plane@pixel-format-y-tiled-gen12-rc-ccs-cc-modifier.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7283">Intel XE#7283</a>)</li>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-3/igt@kms_plane@pixel-format-y-tiled-gen12-rc-ccs-cc-modifier.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7283">Intel XE#7283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc5-psr:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-7/igt@kms_pm_dc@dc5-psr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-7/igt@kms_pm_dc@dc5-psr.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8399">Intel XE#8399</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-pr-cursor-plane-move-continuous-sf:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-2/igt@kms_psr2_sf@fbc-pr-cursor-plane-move-continuous-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2893">Intel XE#2893</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4608">Intel XE#4608</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7304">Intel XE#7304</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-a-edp-1:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-a-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4608">Intel XE#4608</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-b-edp-1:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-b-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4608">Intel XE#4608</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7304">Intel XE#7304</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@pr-no-drrs:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_psr@pr-no-drrs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@pr-sprite-plane-onoff:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-3/igt@kms_psr@pr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_sharpness_filter@filter-tap:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@kms_sharpness_filter@filter-tap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503">Intel XE#6503</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_tiled_display@basic-test-pattern:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-7/igt@kms_tiled_display@basic-test-pattern.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426">Intel XE#2426</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5848">Intel XE#5848</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@pf-unbind-with-vfs-enabled-numvfs-all:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@sriov_basic@pf-unbind-with-vfs-enabled-numvfs-all.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8868">Intel XE#8868</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-no-exec-null-defer-mmap:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-1/igt@xe_exec_basic@multigpu-no-exec-null-defer-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322">Intel XE#2322</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7372">Intel XE#7372</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@many-multi-queue-rebind-prefetch:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@xe_exec_fault_mode@many-multi-queue-rebind-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8374">Intel XE#8374</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@one-queue-preempt-mode-close-fd-smem:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-10/igt@xe_exec_multi_queue@one-queue-preempt-mode-close-fd-smem.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@two-queues-close-fd-smem:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-2/igt@xe_exec_multi_queue@two-queues-close-fd-smem.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-multi-queue-cm-userptr-invalidate-race:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-8/igt@xe_exec_threads@threads-multi-queue-cm-userptr-invalidate-race.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8378">Intel XE#8378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-multi-queue-fd-userptr-rebind:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@xe_exec_threads@threads-multi-queue-fd-userptr-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8378">Intel XE#8378</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-atomic-op-prefetch:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-4/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964">Intel XE#6964</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@d3cold-basic-exec:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-9/igt@xe_pm@d3cold-basic-exec.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284">Intel XE#2284</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7370">Intel XE#7370</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-6/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7084">Intel XE#7084</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8150">Intel XE#8150</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-5/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@intel-max-src-size:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-bmg-3/igt@kms_plane_scaling@intel-max-src-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2685">Intel XE#2685</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3307">Intel XE#3307</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-bmg-8/igt@kms_plane_scaling@intel-max-src-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb@pipe-a-edp-1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-1/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb@pipe-a-edp-1.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9008">Intel XE#9008</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-7/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb@pipe-a-edp-1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@linear-8bpp-rotate-270:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-1/igt@kms_big_fb@linear-8bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1407">Intel XE#1407</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-4/igt@kms_big_fb@linear-8bpp-rotate-270.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_linktrain_fallback@dp-fallback:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-6/igt@kms_dp_linktrain_fallback@dp-fallback.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4294">Intel XE#4294</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7477">Intel XE#7477</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-6/igt@kms_dp_linktrain_fallback@dp-fallback.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9009">Intel XE#9009</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172559v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9066 -&gt; IGT_9067</li>
-<li>Linux: xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012 -&gt; xe-pw-172559v1</li>
-</ul>
-<p>IGT_9066: 9066<br />
-  IGT_9067: 9067<br />
-  xe-5628-75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012: 75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012<br />
-  xe-pw-172559v1: 172559v1</p>
-
-</body>
-</html>
-
---===============5864812308960564683==--
