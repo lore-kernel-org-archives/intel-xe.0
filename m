@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A95BC5DF94
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 22:38:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A694C5DF94
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 22:42:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFA4810F3E1;
-	Fri, 21 Aug 2026 22:38:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TrCr2M7h";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A776710F3E1
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 22:38:07 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 6203361126;
- Fri, 21 Aug 2026 22:37:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B74EE1F000E9;
- Fri, 21 Aug 2026 22:37:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787351869;
- bh=PNeWNsCjkz2WRaPVGSyuA5lzz/KwHi9TRe7xi7nuHyw=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=TrCr2M7hL5EYHyjTwMKMTcCREwNYizKll2UOCmduaPCZBZMPwfNszpP/vSr1y/ODj
- BqO3N4gj9S8snV9w69iQBjHEydiGdWUJ6wZbcQhM2peA6EWAxIreqzgcLjuclnbcuR
- WZOpdstdpJlkuNmn4k1Dxx2bgu0zYMo3z1M9ZstpAD6H4/lb8iDzeP0Ex8CpqN2Xjk
- WBBuo2DoiRAbPnFElZd4r9WtQYMdBu0JC/OLS5h9uHbZ2bVEGHsSkkSE0NWouTJCop
- ZJuytsVb9uBCQJleWoy3C2e8J3W+QiiDoyb8ueWuiV3mfsziEm8G3i1wBSJFyPeQHp
- 2p6CRqAtNWHHQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] drm/xe/xe_oa: Add a lag to the reports that is
- exported to user
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D94510E383;
+	Fri, 21 Aug 2026 22:42:42 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 087F310E371;
+ Fri, 21 Aug 2026 22:42:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4439350681318190776=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Update_Wa=5F14026?=
+ =?utf-8?q?539277?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260821222338.1053887-8-umesh.nerlige.ramappa@intel.com>
-References: <20260821222338.1053887-5-umesh.nerlige.ramappa@intel.com>
- <20260821222338.1053887-8-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 21 Aug 2026 22:37:49 +0000
-Message-Id: <20260821223749.B74EE1F000E9@smtp.kernel.org>
+Date: Fri, 21 Aug 2026 22:42:41 -0000
+Message-ID: <178735216101.76811.13524419177209614291@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260821-wa_14026539277-v3-0-1f98c2af12f6@intel.com>
+In-Reply-To: <20260821-wa_14026539277-v3-0-1f98c2af12f6@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,141 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+--===============4439350681318190776==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-New issues:
-- [High] The newly introduced 32-report lag reduces the maximum possible av=
-ailable reports, but `wait_num_reports` validation still allows values up t=
-o full buffer capacity, causing a permanent hang and `-EIO` on overflow.
+== Series Details ==
 
-Pre-existing issues:
-- [High] Readers blocked in `read()` or `poll()` will hang indefinitely whe=
-n the OA stream is disabled due to conditional wakeups and incomplete wait =
-conditions.
---
+Series: drm/xe: Update Wa_14026539277
+URL   : https://patchwork.freedesktop.org/series/172611/
+State : success
 
---- Patch [3]: [PATCH 3/3] drm/xe/xe_oa: Add a lag to the reports that is e=
-xported to user ---
-commit 73d1f6a4433c8e56a02c188bad978ed299d6d4b6
-Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+== Summary ==
 
-drm/xe/xe_oa: Add a lag to the reports that is exported to user
+CI Bug Log - changes from xe-5631-58d59a40e2a041d3c159fab8bf5d5dc19d28da6c_BAT -> xe-pw-172611v1_BAT
+====================================================
 
-This commit adds a 32-report lag to the OA stream reports exposed to the us=
-er.
-It updates the buffer check logic to ensure the software tail stays behind =
-the
-hardware tail unless the stream is disabled, in which case all remaining re=
-ports
-can be read.
+Summary
+-------
 
-> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> index 020b27c642268..a025e6c2753f2 100644
-> --- a/drivers/gpu/drm/xe/xe_oa.c
-> +++ b/drivers/gpu/drm/xe/xe_oa.c
-[ ... ]
-> @@ -234,17 +234,23 @@ static bool xe_oa_buffer_check_unlocked(struct xe_o=
-a_stream *stream)
->  	hw_tail -=3D gtt_offset;
-> =20
->  	/*
-> -	 * The tail pointer increases in 64 byte (cacheline size), not in repor=
-t_size
-> +	 * The hw_tail pointer increases in 64 byte (cacheline size), not in re=
-port_size
->  	 * increments. Also report size may not be a power of 2. Compute potent=
-ial
->  	 * partially landed report in OA buffer.
->  	 */
->  	partial_report_size =3D xe_oa_circ_diff(stream, hw_tail, stream->oa_buf=
-fer.tail);
->  	partial_report_size %=3D report_size;
-> =20
-> -	/* Subtract partial amount off the tail */
-> +	/* Subtract partial amount off the hw_tail */
->  	hw_tail =3D xe_oa_circ_diff(stream, hw_tail, partial_report_size);
-> =20
-> -	stream->oa_buffer.tail =3D hw_tail;
-> +#define LAG_REPORTS 32
-> +	lag =3D xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
-> +	if (!stream->enabled)
-> +		stream->oa_buffer.tail =3D hw_tail;
-> +	else if (lag > LAG_REPORTS * report_size)
-> +		stream->oa_buffer.tail =3D xe_oa_circ_diff(stream, hw_tail,
-> +							 LAG_REPORTS * report_size);
+  **SUCCESS**
 
-[Severity: High]
-Does this logic effectively reduce the maximum number of available reports
-in the buffer by 32?
+  No regressions found.
 
-If so, userspace could now specify a wait_num_reports in
-xe_oa_stream_open_ioctl() that is impossible to satisfy. The ioctl validati=
-on
-still allows values up to the full buffer capacity:
+  
 
-drivers/gpu/drm/xe/xe_oa.c:xe_oa_stream_open_ioctl() {
-    if (param.wait_num_reports > param.oa_buffer_size / f->size) {
-        ...
-        ret =3D -EINVAL;
-    }
-}
+Participating hosts (13 -> 13)
+------------------------------
 
-If userspace requests a wait amount greater than (capacity - 32),
-the available amount will never reach wait_num_reports. The hardware
-tail will wrap around and overwrite unread data, causing read() or poll()
-to hang indefinitely until the overflow is processed and returns -EIO.
+  No changes in participating hosts
 
-Should the validation limit in xe_oa_stream_open_ioctl() be updated to
-subtract LAG_REPORTS?
 
-> =20
->  	available =3D xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->o=
-a_buffer.head);
->  	stream->pollin =3D available >=3D stream->wait_num_reports * report_siz=
-e;
-[ ... ]
-> @@ -1490,6 +1492,11 @@ static int xe_oa_disable_locked(struct xe_oa_strea=
-m *stream)
->  		ret =3D xe_oa_enable_preempt_timeslice(stream);
-> =20
->  	stream->enabled =3D false;
-> +
-> +	/* Update stream->oa_buffer.tail to allow any final reports to be read =
-*/
-> +	if (xe_oa_buffer_check_unlocked(stream))
-> +		wake_up(&stream->poll_wq);
-> +
+Changes
+-------
 
-[Severity: High]
-This is a pre-existing issue, but can readers blocked in read() or poll() h=
-ang
-indefinitely when the OA stream is disabled here?
+  No changes found
 
-Because xe_oa_buffer_check_unlocked() returns true only when
-available >=3D wait_num_reports, the wakeup is skipped entirely if there are
-fewer pending reports than the wait threshold.
 
-Furthermore, looking at xe_oa_wait_unlocked(), it doesn't check
-!stream->enabled in its wait condition:
+Build changes
+-------------
 
-drivers/gpu/drm/xe/xe_oa.c:xe_oa_wait_unlocked() {
-    return wait_event_interruptible(stream->poll_wq,
-                                    xe_oa_buffer_check_unlocked(stream));
-}
+  * Linux: xe-5631-58d59a40e2a041d3c159fab8bf5d5dc19d28da6c -> xe-pw-172611v1
 
-Even if an unconditional wakeup was performed here, wouldn't the thread
-re-evaluate the condition and go back to sleep forever since the hardware
-is stopped and timers are canceled?
+  IGT_9070: 80b6e4c9b9cb853c63a9bcaa4784e0306d1f7fca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5631-58d59a40e2a041d3c159fab8bf5d5dc19d28da6c: 58d59a40e2a041d3c159fab8bf5d5dc19d28da6c
+  xe-pw-172611v1: 172611v1
 
->  	return ret;
->  }
->
+== Logs ==
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260821222338.1053=
-887-5-umesh.nerlige.ramappa@intel.com?part=3D3
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172611v1/index.html
+
+--===============4439350681318190776==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Update Wa_14026539277</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172611/">https://patchwork.freedesktop.org/series/172611/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172611v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172611v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5631-58d59a40e2a041d3c159fab8bf5d5dc19d28da6c_BAT -&gt; xe-pw-172611v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5631-58d59a40e2a041d3c159fab8bf5d5dc19d28da6c -&gt; xe-pw-172611v1</li>
+</ul>
+<p>IGT_9070: 80b6e4c9b9cb853c63a9bcaa4784e0306d1f7fca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5631-58d59a40e2a041d3c159fab8bf5d5dc19d28da6c: 58d59a40e2a041d3c159fab8bf5d5dc19d28da6c<br />
+  xe-pw-172611v1: 172611v1</p>
+
+</body>
+</html>
+
+--===============4439350681318190776==--
