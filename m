@@ -4,157 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25800C5DF8E
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 10:04:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 754B5C5DF7D
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 10:16:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA08510F109;
-	Fri, 21 Aug 2026 10:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37D9A10E2B3;
+	Fri, 21 Aug 2026 10:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WySgzNHF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DPinQBlV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06D3010F107
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 10:04:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 098F210E2B3
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 10:16:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787306682; x=1818842682;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=ixv+pyKBRktm6lnVAaV7f4cHe3oaOtPzLpBCPnspBFQ=;
- b=WySgzNHFf79hKSKFJ9bpbb1H5cidN8Xdnx80WvEkUPYYVXWOIJMr6GCH
- f4cFlK9+KljLhUeeAp4pnt50d4GN6d97eeKbYZKPkaSnyfLmuYLqmVX81
- A9Q+F/NcaUYsMstU3AtWlDq6K/UOumiAKjA9WWXGyCNb0CegpPGPYJAkF
- 8l+DQz8a4HSsKD7PiMfvQPE9uYqBMdYgS5UxvmKf+iehyv9xVWNyMHghc
- FgUWmtEnMGNr1W3OM4NH40BGBugx34ypXKQWbAyMPFE4waKtG0m8f9o45
- /sJHgZmYpzH6E0eyArRKiq+eQ/EhlU925yPWg2vAUzabbeAS74P/m7FXr Q==;
-X-CSE-ConnectionGUID: WyE3dIdGTaOW/xlexVA3oQ==
-X-CSE-MsgGUID: C9cNx0nfTsuLN29WyYu+mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="113392551"
-X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="113392551"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2026 03:04:41 -0700
-X-CSE-ConnectionGUID: q9ZtGeXKQQGq+4fna2InEw==
-X-CSE-MsgGUID: MXrnQOioTFKbIMKMQqc/yg==
+ t=1787307416; x=1818843416;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=oAM5WdeUceryzynugDTvPRG3XM5PBns+RyxXU/q4LDo=;
+ b=DPinQBlV5gK3ldhhDCPC8E7ZHWe028rR40capibtOM42sSgquy05IeSv
+ UbBLXEtu1izG/bwM8KJFXR41PY+wPO6LywcOz3zrVjGSH6jL32A3H4A/F
+ sJNHosXnncits1wRUSlSo2Y3N+wfIKLuZw9L1WOYIfLYtdlzjgBBnXYX0
+ TRG6nvMI4SPQQlelOqGBkM9XuYJZnBOTyfbOEmP4hGyN3DiXp/YIg4Phk
+ PxPmOmvSoEmspMkIFPA5a9NHQS51DEwCdyHUFabL8afhx+kmF1G/YYV33
+ Hn4De5PRBT0T8DyOy7CM55R59nWQEnE3AP/AGsolS9ec/d25I4FvVtJmk g==;
+X-CSE-ConnectionGUID: FHmv3h6WS86aZpsvi5tOhw==
+X-CSE-MsgGUID: M+aWJ31uS2OVfO6woMmSkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="98449183"
+X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="98449183"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2026 03:16:55 -0700
+X-CSE-ConnectionGUID: +GuuWwtkSQG1y6jdmLqMjg==
+X-CSE-MsgGUID: C+EiDeGiTB2CifmG0NDdYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="268232256"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2026 03:04:41 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Fri, 21 Aug 2026 03:04:37 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Fri, 21 Aug 2026 03:04:37 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.46) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Fri, 21 Aug 2026 03:04:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Vjc3HXRH30DmsOrfREyqBnALJBAXV59IqJAwbqMJMmb1x46SswJ/K58RcM/vcGjJC/A61M/sbCQ3H0HKVF2vDMlBExLtG52AgDOaulM2vbHkQ+dRFhidbIBl13++U5Q65g8DK9WRGxFrUB6JwwBwp6vlorNJVkk/8fczcBWIWTLDpgzCJwy0tgaAoJHOAtwUo4VMq3HNO4hFdj+SYDGinYm10vzfgQv3pqZtE+D85pFxJ2KpIRaKlYy35+LtGeG6VXqLjKS8n6sTx5e3/G2Iph9f2nKuGY7E6ahfXlrvLte/c2V0gN9zGQ+zhTmpQ+lFdUZz3XJfOqH3Y7sW7VSFmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bTjBDeqo/ZojFNtWAxQIBCszWWsPblV3Z2vaRKH3a4Q=;
- b=ilsM/Dc9f7dR+CCljcqQUVDmCBIK4JZaT9E93pBXIoO+3UjcvxfSCfNOXmU3uK7puNV5jx3XJW5GIwW+cQUV8arknCEQKXUpQ84QZJSvmf0oQP5Bmu4hGHCdkUCaNtjdU+BGT0qtZSz5HWVipYT1oaWIqZrOPrRE2o/MDifJjCNWjLPuK8pq04SBWFyvUjjkFeNeMO3Syw0qjW68/5JObgcOkScF7mzHuoMFXLjkwMdPRNDAgqadABTe8xgqm8U9s7hXJWQVzrUwSHTlGzKKZXJaLpEJj8CkAhKn9+Agz82NMqU56uTKj3KUA95oqKiIz4To4UVrTd/F9+EGbKfxIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by CY8PR11MB7170.namprd11.prod.outlook.com (2603:10b6:930:91::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.9; Fri, 21 Aug
- 2026 10:04:11 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0339.008; Fri, 21 Aug 2026
- 10:04:11 +0000
-Message-ID: <c38eea74-aae4-444b-a0f1-d5a6ac9dd946@intel.com>
-Date: Fri, 21 Aug 2026 12:04:07 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/7] drm/xe: Introduce helpers for xe_vram size
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20260812124313.1377582-9-satyanarayana.k.v.p@intel.com>
- <20260812124313.1377582-13-satyanarayana.k.v.p@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260812124313.1377582-13-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR09CA0174.eurprd09.prod.outlook.com
- (2603:10a6:800:120::28) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="262026098"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.237])
+ ([10.245.245.237])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2026 03:16:54 -0700
+Message-ID: <424ed868-d0af-4593-9c93-53cbe5ac1be6@intel.com>
+Date: Fri, 21 Aug 2026 11:16:52 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|CY8PR11MB7170:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8177c347-fa25-491b-562d-08deff6b8c2d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|10067099003|11063799006|56012099006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: weQPD7qOydi2+A498QsQwvy80wXHM1Ca6MgF/rDb0/PgiKORmPvNmWZb7kAFwV8m/ZpBMdplF3mezye9KNTE1aZNj1q2Y18rbbIhGhTfgxXXL2+dBaR9H7Fj/+MOoapW5AgWJkoU7OjYYRlHezBxcz3WJo+8siVN8x80+7+t2itckKFdQxqqfhiF7NpPblmUsu0+9Fw9pM5umNYDs+Fm4N+YS1VV6Bh+3CfmblIZGT2GU7QBJMmD6G7FmbOnk1xhZKKxk9JprCMKIPn0yuERA+VW8pJYD6ruW+YJ1ZuG2hfcAl3PuFRZ5at/udstdVBY+Z2oyQw/bwn9tUvdwzWoACUhq8yyHkR0tUiyaHdbUgk7NPf+zif+cEbmHky0rNvsx0fm3DPJkoY/5Na4XmBqSLffOe4uaf6RVlkQxAC9VvQMVYT1dmlrCoo8HkXOntb6gJxKnW8iggld53fWoVlGzICak9tqHvuPMOtEn1lOjXwRXCz/KRxBunPygIqgvjD/J/HJhnEfo8R5rDSuTCk7pghPnm/dKa15IruNMTjKNGcYMrJWumWexyw84thrOLMLu7ko1rHTYD93SKeKFGZWqepuMSs7S+8VJLy97365mBczOE9FHWTew4/w3IKL1HJYA1abGA0QvJwLatLmqPXokcZh2YwmRaNRDQNfVQX5sfM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGtQcTFPWmZ4SVQ5aFlNVUlmK2pSYkljenlCM3p1OGI2SmY2N085NzQ1Tmoy?=
- =?utf-8?B?WDlDNVBlRC9TTmx1UjRleDY1TVQ3WnppY3N1S1NNWk9HZ2pjZnhDUlNKcy9l?=
- =?utf-8?B?SEMxUGdmUWt4TmVONjZ6MjlmYnlkZU1mQ04zUG56OWIxUDE3Qm5tVEpFV2Q4?=
- =?utf-8?B?TmVBM0M1OFVxdDBuNzJ6SXUxckpUbXJ2b29DckdxZXNrU0hxL2p2Y0w3eVZE?=
- =?utf-8?B?MTdsdWlaNlMvNXF1QnpmTmhoZEk5ZU1zWEdaelRQMWVDUkFMRTlSWkFwZjRS?=
- =?utf-8?B?bWhkQnkzZUxiSVNZTWZNTFpMelZWT0grUzFOTm5EUWEzV3dFUEIzK25mWjQ0?=
- =?utf-8?B?NUFPUDhueVVWQ2w0QUdPamMrQ0MrQ2MwOEllTm1qTVUzanhWN1NmUmN2WlpC?=
- =?utf-8?B?V2NjTWZXV3UzWEp4NGZFblZWMUYxMEVpUW1CVnNrOFg3WlNPZVZkeWhQd0pk?=
- =?utf-8?B?NHEyT3U5TTJ2SjhmZjM0bzZCdS9vRGdoTlRCVXFjdDNUdGtjYXhOc1RvSXky?=
- =?utf-8?B?K3U0MUc4V1pFREZNTGQvZlJOTkFURlRxQ1hHWFI1UnRZT2tjTE9ydzZTaGU5?=
- =?utf-8?B?dXBQNWFhSktRNS94WkVaODNyZEd4Tk9rMjNMQmhEQjN4b1RqaGhySVRCSHVI?=
- =?utf-8?B?cjVuazkzVHFaZVZ6U2lDa2w1b3QvcXVRcGRJTXpBb3M1TndQZ3lXTHRiMnow?=
- =?utf-8?B?UGRPSzNobUh5VHovUlJIN0NhcDY1SjVqVUJJV2dmVjB2dFRUL1NhQ3VkU3Nt?=
- =?utf-8?B?WVZGOXh6UVgyYzVUMnZBd2JJSWt4U2hMZm0vUE4wdHRIUU1CQmNOVGJWU3ZD?=
- =?utf-8?B?dkxXbkVHV3lsZUpURW9nUGhMK3dQRjFwOTViZUt5NXFXQkhZN2M2SGpLMExE?=
- =?utf-8?B?STl4OW42M0tMWkNNNFlCR2ZFeWRieTY0UTBVVlpybEVzZDYvUkJoNmVkQW9z?=
- =?utf-8?B?V2kzNHpXYlBZWXZXdWVVZ002b2RvRW9RKzJxVEhFYkdzSDF4NmdRYWJsZG9t?=
- =?utf-8?B?MFFMVkZjam5aRTYxWVk0VDduZ1lOYm1ZMlplNkRZK1lMYzdQRzVGNW9UbFBE?=
- =?utf-8?B?K0lxcHJhRUtKQUdDaWxKckpleHZrWloraUZ3L1RLVkdhU1JnaUZoZnJTYnFa?=
- =?utf-8?B?YzlXU2haa3BDQUxETWp4bTBtY0YyamhIQVN3OWJsMFhMeTUrb3BHKzdpZ0lD?=
- =?utf-8?B?UXRuTHpDazF6UHZTeFlIZW40TEpIQnpFdGtadGxJL1piQXhMMnpGcFU1MmxG?=
- =?utf-8?B?bDNXZlNZSVZQZUtRdnZzejJoVldUaGNuSHRWamFsSjUrckFheGxKM214bFA2?=
- =?utf-8?B?YzhvTTR0UzBvSWlUQTZDZVhGT3NlL0xiWitBREZ4bHRMeGh6SklaWGhrS0lU?=
- =?utf-8?B?eGNMblZKR25PZ0FONXJhNUt5U1hPUXVGTE15Lzdqb2I4LzBHQXZqTDRBUERY?=
- =?utf-8?B?OVZhajdCeWpFUi9lQS9PZ085M2NTNHlCOVpSU0xIVWZFcTRob1lCNEFVZWpi?=
- =?utf-8?B?Ly9VRjBtbmttaXNJN2VCQnJhTzJwVWhGL0hBbjNMR1BXZzdua0VxQkx6dDJr?=
- =?utf-8?B?a092QytMdStxeDJZbE9UcG5VMUhZWnk5NFFrek9semlrRHVXMmNHbHU3ZnQv?=
- =?utf-8?B?c3pRSkQwK2xKNzR0VjZsUkI5OUUrWUFUVTRZUWJBK2JDTUR4dHZNY0ZWc0lm?=
- =?utf-8?B?TGZ1MVp3UUJyUmlZSXltbUJxN1JvVUJtQnoxOFdqeHJET1pOajdMMXdyZThi?=
- =?utf-8?B?Qm5vb0ZUc0RmVmMzS0FHYjZqc1NIWFVnK3dvaEZ5bFFMMFYxMHQzU2hhZGpm?=
- =?utf-8?B?QTlZSTlBSlBHajMzQXExZTFTaUFqVkdhSDZ2TWVuU1YycUpEZzEra09rNkVY?=
- =?utf-8?B?M3pzdFZPWnQzK25zQlNNeFIzSklmUkliQzAwUS80SkFCeGRaNmlwTjFLbG5M?=
- =?utf-8?B?S25NbmNsMG5EQ1diUkdaN2syYTFRTmszcFBGd1hMVFJaMGIzV3IyZEdKVTUz?=
- =?utf-8?B?M0RvajU0WWNCUmFhcG1vOFZxaHdhaWQwaG9TcFNUdCswblphRTVvQ3NoZnZ6?=
- =?utf-8?B?MDBFSTBNZUFQYTlZUEpsaGc2QlBDcEtmTXIxOS9rdGtPWWNIMHU3YVNEWThY?=
- =?utf-8?B?WnYzSVhWeXNpS0syZFptMzZQaG9paUdDOW0wem5ZN1ZrTzRKQ05sbms0bWtK?=
- =?utf-8?B?UEVzSlhHOHZueTBwZWJxUFZYeEUzYjFldDFvcjFVaDE3N0x5aEh1bTlwRWFn?=
- =?utf-8?B?ZFBsb3R1RXdKcC8zTDJkeVNVTVgwVTBIU3BFSXpPSFlBU0laWnc4NnNWSG5k?=
- =?utf-8?B?dGlLcnRtT2xGWVVvM0cxQXZ0ZWJUVm9qbDNFNTg3NFBDRi8yOFY2dWJTMTRy?=
- =?utf-8?Q?0+Zu5mvFS/dVVRDI=3D?=
-X-Exchange-RoutingPolicyChecked: j7GAub0NS4lgBJNDZhwhMitC6DZ2E7DXX8fZh0bGNHtKfMpdCN4ZiiKz1NfTtC5wZUSJFybxRHRVrZFnCy8L8c8nZp+Kc8MsqmB4yX6eZZ5mmnGePhham7D1JyvavYySEMulnqxAH0sgUrdw2Q7c2nPGQ4fxB9MJ2Jfk3aMSJdVf3NVeKk3+C4TyS46VKdR83IgsKJseaUiJncH12YSDcAwEu4wLTIb2ObqqCPggiPNQYL38nwxCb5RefyBvrlz3rOpLjmS5xtvIB7gxjvGwAq1bGmFOTBH1Ac3pQgNEBh9QOwu3wTptrdrXyJlTS5DrK+wy+SN0cgz7TCrFrOT41g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8177c347-fa25-491b-562d-08deff6b8c2d
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2026 10:04:11.4048 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mtbOGNcu/bTMfxkXtNDnvBcD/dK8kXPfJU84UI6kVJkre8OkuEqNmPV/LIocgwIkZ6FmgpivH8ZL8u9hKvzX9EpxBRTKsbYSk5Q8QG00jMs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7170
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] Introduce PF-mem VRAM regions
+To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260821094601.607060-1-piotr.piorkowski@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260821094601.607060-1-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,37 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 8/12/2026 2:43 PM, Satyanarayana K V P wrote:
-> Add a new xe_vram_alignment() and xe_vram_needs_64k() helpers to get the
-> VRAM minimum alignment (4K vs 64K).
+On 21/08/2026 10:45, Piórkowski, Piotr wrote:
+> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 > 
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
-> V5 -> V6:
-> - New commit.
-> ---
+> This series lays the groundwork for PF-mem regions: VRAM regions
+> dedicated to kernel-only allocations, where buffers are allocated
+> exclusively by the kernel driver and are never exposed to userspace
+> workloads.
+> 
+> Today a tile exposes a single VRAM region shared by both kernel and
+> userspace allocations. Some use cases need a separate VRAM region
+> carved out of a tile and reserved for the kernel driver only. For
 
-...
+Do you have a sketch in mind for how this will look? Do you take the 
+normal VRAM region and reserve a contig piece of it using the allocator, 
+forming your kernel-only region? Or do you partition VRAM into two 
+different regions?  How do you choose the offset and size? Does this 
+come from the KMD or is this fw/hw?
 
->  static u64 pf_get_min_spare_ggtt(struct xe_gt *gt)
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index dc975f595368..9af98f08b0e5 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -289,8 +289,7 @@ static int query_mem_regions(struct xe_device *xe,
->  			mem_regions->mem_regions[mem_regions->num_mem_regions].instance =
->  				mem_regions->num_mem_regions;
->  			mem_regions->mem_regions[mem_regions->num_mem_regions].min_page_size =
-> -				xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ?
-> -				SZ_64K : PAGE_SIZE;
+> example, on an SR-IOV PF most of the tile VRAM is provisioned to VFs;
+> the kernel driver still needs its own allocations, which must come from
+> a region reserved for the kernel and kept apart from the VRAM handed
+> out to VFs. That reserved kernel region is what PF-mem provides.
+> 
+> To support this, the VRAM region abstraction needs a way to distinguish
+> regions by purpose, dedicated TTM placements so the BO paths can route
+> and evict such buffers correctly, and helpers to create a region from a
+> caller-provided parent, offset, and size.
+> 
+> v1 -> v2:
+>   - Add comments explaining why PF-mem is excluded from user BO eviction
+>     (Sashiko).
+>   - Resolve xe_ttm_vram_mgr_alloc_sgt() physical address via
+>     xe_map_resource_to_region() instead of the tile's
+>     VRAM region (Sashiko).
+>   - Enforce page alignment on offset/size and guard against a NULL
+>     parent BAR mapping (Sashiko)
+> 
+> Piotr Piórkowski (4):
+>    drm/xe/vram: Add binding information to VRAM regions
+>    drm/xe/ttm: Add PF-mem VRAM placement types for TTM
+>    drm/xe/vram: Add initial support for PF-mem regions
+>    drm/xe/kunit: Add tests for PF-mem regions
+> 
+>   drivers/gpu/drm/xe/tests/xe_vram.c   | 115 +++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_bo.c           |  16 +++-
+>   drivers/gpu/drm/xe/xe_bo.h           |  17 ++++
+>   drivers/gpu/drm/xe/xe_bo_evict.c     |   7 +-
+>   drivers/gpu/drm/xe/xe_pm.c           |   4 +-
+>   drivers/gpu/drm/xe/xe_res_cursor.h   |   9 ++-
+>   drivers/gpu/drm/xe/xe_tile.c         |  10 ++-
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |   9 +--
+>   drivers/gpu/drm/xe/xe_vram.c         |  90 +++++++++++++++++++--
+>   drivers/gpu/drm/xe/xe_vram.h         |  10 ++-
+>   drivers/gpu/drm/xe/xe_vram_types.h   |  14 +++-
+>   11 files changed, 275 insertions(+), 26 deletions(-)
+>   create mode 100644 drivers/gpu/drm/xe/tests/xe_vram.c
+> 
 
-it would be cleaner to post s/PAGE_SIZE/SZ_4K change separately
-(to collect right acks) and then convert that into a helper 
-
-> +				xe_vram_alignment(xe);
->  			mem_regions->mem_regions[mem_regions->num_mem_regions].total_size =
->  				man->size;
->  
