@@ -4,162 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F4004C5DF88
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 06:10:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18743C5DF88
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 06:39:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A24C310F220;
-	Fri, 21 Aug 2026 06:10:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C05E410F233;
+	Fri, 21 Aug 2026 06:39:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZxY1TU99";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="bwcBwS0+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6Z4vcbQC";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mL9/9Iir";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xbk2DB96";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E35510F220
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 06:10:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787292641; x=1818828641;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=tJQXyt4FtQHyi3q/6/Ssu2wVmxNwR8vnOsUbbAT7fKM=;
- b=ZxY1TU99agt294gesa8C4ZPfeg2IMuln9Pdj4aRQcrXCy1RHGCs5ujVL
- /5V4SK7cdSCpO6byUHbYqR+j60rEWQhM1bBhPX0x+su2IP14iZ/KWze33
- ws6HIODT4xNW7chGFubIDdKIkInYCz+ttdi8sxHzv6uo5nJbRiiGpyCW5
- 4FNoEOGkHkAs94zEBuS60MWX24Pngyi9xzhGqnPp/fzjIkTvXMzd3ypqL
- mk958t8ymiT2mGKFihi8LT0cVDy+Uag5ccrAZIXhSXXljDBBhPpDuvXyw
- tDy33CWKNXZ6IB/R5aO0xTyBQfbdoFhqSnV0jAb/z3uRQ8CkpPRFZ8IiO Q==;
-X-CSE-ConnectionGUID: zw6NzM5vSOqJeR4uV+wBWQ==
-X-CSE-MsgGUID: 7ltqSkm4RoeABoj1ENorfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="87693940"
-X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="87693940"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 23:10:40 -0700
-X-CSE-ConnectionGUID: Fy5HBG0sRUCSsnH/r9kQUg==
-X-CSE-MsgGUID: fvXHeatcRoWo7SYWwcnubQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,234,1779174000"; d="scan'208";a="304440442"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2026 23:10:41 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 20 Aug 2026 23:10:40 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Thu, 20 Aug 2026 23:10:40 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.18) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Thu, 20 Aug 2026 23:10:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OvUaPfWa+jLpQSTuYpVA+wJr3XjGn1STCFpw5q0s2nE/nf0K7gufBF3AK0/gCemYK0pBaE9Ez/VDrNcmzpKzkymMoAHBo9fxCzdN0yOLg3KSEhsL5mPS9VSGVubsVmWoo18V+IFfLs8kNKe6sNAjtZWoktc9jmRxnS8KNd0JrXZ3obqfpO7e66vwvHPcHO+p8VkG4W+tk4VYD2D8/OpLcQkIHuUMlX73KDWFy11F1Hl3RZ2u6oNVVxuRwIXmxgBWeeTwPCFKW/apQSM9JePMoPPfbr/UaCCOgYGky+vIooyXmAOtILxWBToOon1EtOhqqtUEfijy+iR4YPK2jQ1jYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GRhzt4yyxFBNhqHgm8yslt5AjzQDGl+AypfpWHWyYaM=;
- b=bnPAjOJCLm47A2EHQP/W0FXPBTSNZzZk4jcgO+xD27FwqMAfjJUO0zKuyaCy5pNhAjenTjBpFSH5YNjvFsC3GJ+j0xGWHfpxwuKVo0MgCHVTWgTurUbRmyGI17ZToO95TkDhUuv7liXFVNMo60rxnMLkTfWuu7kOS4ZItGkrIo1G3D0vOfY35utfH0kejhClR7J/QNgSitCe6X6sPbpa3AgkHEZU6QUWh92gdXpEueclTfaMCjozWgZ99gZYcLjBbWE8usSiZPYJEtpwwhr3YIFUMv/ROBJbRU8VyjqYPcsCxaflnsWo9b+BCaeLzpXj0AUdF7S/iVKyf7GWTY6dgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com (2603:10b6:408:148::6)
- by CO1PR11MB5076.namprd11.prod.outlook.com (2603:10b6:303:90::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.315.17; Fri, 21 Aug
- 2026 06:10:30 +0000
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c]) by BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c%4]) with mapi id 15.21.0339.008; Fri, 21 Aug 2026
- 06:10:30 +0000
-Message-ID: <d277b95e-da9a-482f-93c9-96785965def8@intel.com>
-Date: Fri, 21 Aug 2026 11:40:20 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] drm/xe: Report GT TDR and VM rebind faults using
- SIGID
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
- <rodrigo.vivi@intel.com>, "Iddamsetty, Aravind"
- <aravind.iddamsetty@intel.com>
-CC: <badal.nilawar@intel.com>, <himal.prasad.ghimiray@intel.com>,
- <dnyaneshwar.bhadane@intel.com>, <mallesh.koujalagi@intel.com>
-References: <20260804093648.609728-1-arvind.yadav@intel.com>
- <20260804093648.609728-2-arvind.yadav@intel.com>
- <2fe86f6c-a51a-4f93-8905-82fda0fa2254@intel.com>
-Content-Language: en-US
-From: "Yadav, Arvind" <arvind.yadav@intel.com>
-In-Reply-To: <2fe86f6c-a51a-4f93-8905-82fda0fa2254@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0120.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d0::6) To BN0PR11MB5709.namprd11.prod.outlook.com
- (2603:10b6:408:148::6)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 429A510F232;
+ Fri, 21 Aug 2026 06:39:31 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 3284B3EAF;
+ Fri, 21 Aug 2026 06:38:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1787294328; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+ b=bwcBwS0+RC4EqtR9XE60Dr7YThswkD9m/wJHGl0tYz+b+jnsCbHokMe2hGq/Uqk4uzT50A
+ eo3102wp6SGIjVNcjni9XRheTPpNywHtnve3o/8JTxEV7f0KyAXhdofQzz/9ZLDSC0zYU4
+ Y6GN1+Rph/uZtJg+IxXU5IT21JaHaQE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1787294328;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+ b=6Z4vcbQCxluqvDsyVW5JOdb+VetFkKQe/E/aiunFRyGnD0F+w7Vd66aAq33oo/wFBvKlfS
+ DD681hcQkd6gUCBw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b="mL9/9Iir";
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=xbk2DB96
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1787294324; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+ b=mL9/9IirJ/hFuHoEJ9tqN6Gyj/BzCxbBnS8Vhpd9olYi8cAzb5Q7wleR0jkMWFnb6EQXj4
+ MbELBsuGxlTEhOXwdoUh5C2t3dHRphQ2taTyOQWKik5ErjYPYnJRZqA4MOEXeGdv8z+pmE
+ DnM6e+TO6hELLfr5XGJHojqd0ilrLZA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1787294324;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+ b=xbk2DB96M/yt8An1/BaVXFIB/WVgjEWwzS3BFmfjzbloxDMaBSaA5lj+zU3stDKov/MLO3
+ gePOA+Nf5lkyeWCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BBCDE3329;
+ Fri, 21 Aug 2026 06:38:43 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id us1oLHPyh2pUAgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 21 Aug 2026 06:38:43 +0000
+Message-ID: <3d0d14e6-05d2-4fc4-befe-e1d0cafc91db@suse.de>
+Date: Fri, 21 Aug 2026 08:38:43 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN0PR11MB5709:EE_|CO1PR11MB5076:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef22504a-6313-4890-1cac-08deff4ae69e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|22082099003|18002099003|6133799003|56012099006|10067099003|5023799004|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: 0tFEdGwB4XXfLoOVMZbY7e2+kU2f51GHbZXd15DzesLNvF3LaBPZBMwrRGbzIewo3ZBtsihrKmNU0VOwzQluMGv8bmmVwwS4v+Z7026uijE6JWya1QhwlnEAhLjSb+e410Q+OKjEh0WdSb+VzrApSoxU6WUpA5bYdwWVFA7R4DkX7SWcAQCpg4O8tyhhR9Se9mD8G49SGslXOo0DLLGepTag4Thl6Oe5lVWqMiRwCaoh1mFJ8krjTSQo0sueI0nQSNt9DP4csshZVouO9E3UvxidD6DoA2z0kBN28qtBP4ntyHFc+vgQrgv5/Z4O6Cmi3vQJoXLYGvSfVyPdqDqlmq3REEvAwRt+mOxKDPHWyFojF7K+Hun4Os/QA7yGmoQECs/iz0RprCN1NMNDOpvKT+Y3HLE18DdcY0Yf9KR+mOkOnFuiFdC00CZoldDUIWsnpXFj7txWocNjjPLmX95k+J9aqQSZjfd8+EYCyLTX50cTsvcid27NaNkxZ1dx5f6VP9dwrwIxWre0OuxaTpX1VgCdbdgX8EhUCh2VIpE2khFXzv4rsYQ6ByggXM+LaEsFpQ9w/KOm2K4rsEY7xGI3oyyuWPCc1pd2mT75kQg2gJa1du7fnOP5rMvurNX3BZvsZsafS938whYFCJxvVv2pFv6t06deHBGXT8M+Vw68p6Q=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN0PR11MB5709.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(22082099003)(18002099003)(6133799003)(56012099006)(10067099003)(5023799004)(11063799006)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXJYK2dETTMxVHQ5aVIxUWtJZ2pUMzFPV1pjb2tsZytyZmJwU2xDTUtrcEhF?=
- =?utf-8?B?bU4vdFA4N1hreTdENnlDWUd3Z09IeERQN0ZVM3JKYmNQOGJicXhvcis0MGRW?=
- =?utf-8?B?VmpuYS9Wdi9DTExFcWlrbmE2VjAraFZEc2tuK1g4VVNLUks0cUUwbThMNTVV?=
- =?utf-8?B?dEVaTlBpWUxNaFdVOXl2UnhITUhEYkkxa0hiN3g1dFlYWDZXOXpyZ2dsVWNF?=
- =?utf-8?B?RXJxVzIzYi9wODA1N2Ixai8ydW1QSG81RVI5VVdQallyMWROS2dacDBoeDdD?=
- =?utf-8?B?YWFjRUEwMWxQRlBwcWVHL1I0S1FVc2wweUVsTHIwSEkrZ3I2cTBjUWhCcDRi?=
- =?utf-8?B?TXEzWDUrcEowVlUwcWpOUm9HSHRRNU5zNTVtMzJPdnF2SERuQjRaV051K2Va?=
- =?utf-8?B?M1RFNnVKaUhpWGNvdk1OOEhPcGZUQnhqL1BISXZ5alJQVHhOMEsycFpCSGdj?=
- =?utf-8?B?dm5EZkNmL1JUR052ZS9NY3FlY0RIL09YWldzTXY2aU9CcHBWQng3NHlIM3dO?=
- =?utf-8?B?US9nTExpZnR1TGZRT3NUc2lyUlZ6aFE1YXdrMDgwYk1CS25WbnBZTjB6eTNL?=
- =?utf-8?B?TEd2UVhQN1pDVzJsV0lDcUJYc2JjQzdOVXN0UlQyOElqOFBNMUJnNEw1OG8y?=
- =?utf-8?B?amtoN3FBV3RKdXI2U290Zk9uK1E3UG5PSHVnNjgrU1MzMS9adTkwMGp0QmFh?=
- =?utf-8?B?YUtlTFRDME9QeUExQjNDMmVoZnZZb3dkYjFEcWxDWmNDTDV4blNJM09kUkM1?=
- =?utf-8?B?OW5Qd1Zqc0JBVnZHSW9UWXZ1Lzc1Q3VuUlVKVkpOSS9iSXpLRU5TWis4Yzkw?=
- =?utf-8?B?dVQzR3pnZ2p3YXR6V3BoekNSc1FZSWlKRVJ2cDRtdmd2SEkya3NrZ2ErM1JI?=
- =?utf-8?B?Zi9KTy8rMlpoUHlBVVFpUlVRQ0tmbWZDN2N6QlZCemFTVVdOTTBqVzhlYzdV?=
- =?utf-8?B?TTVwQW9zY3hYcmZUTnBudkFBL2lOSjM1Z0VuRHBUbmpVdUxKaEdpZW5PVzE1?=
- =?utf-8?B?MnR0Q2E5UGUzTXBLMC8zQzk5QVVRNE9UR1EyYUxSblREbzBGckV4WFpmbSt3?=
- =?utf-8?B?M2ZwREUzYjJ6eDRKbldRaVZZK2FwdTI5cERIQ3FmTjJETHRkS0lIWUZZektV?=
- =?utf-8?B?T0ZMNGtGTkdkdVpXckdmcXZkSFU5MGEzTmxHQVFaN1IyZkNoVGRuTDNIMkFS?=
- =?utf-8?B?VWdRcTc5VWx1L29LYVpEM0JCV3ZUK1JpeWVjL3gwQyt0eHRyc1gwMHl2aUNp?=
- =?utf-8?B?MGo0R0xJVnY3R1hQSjh3U3FhbkNTblZNaCtOQ0hGM1BETnpEbjdRYUhaZXg5?=
- =?utf-8?B?QVcvYzBzT3RaQmhNdHZpaXFqdTkwbXFVT2w1K28xUEpFbkI1T01xN1l1K0p1?=
- =?utf-8?B?MWlacW81cHhRNk84Skc3T0R2aXpDSHFTdUhHN2hXMjdIdTIwZUtNVXpGSjF5?=
- =?utf-8?B?c1phNU5BdEx0TURhNko3dm15aFdDa1h5VmMxOXFJblFxR3VTK2t2akJWY0Rt?=
- =?utf-8?B?b3BjTXQ4K25qbk9yL3ZXS0pka2s2SEdHNThwemlMbGdqY1p5MGFLZDJVWjVh?=
- =?utf-8?B?VlZvWk1pTlloS2htVmVUTG95M1FYOGpZcWZCNm5kYmpXS1lWRlVObVJiZWZI?=
- =?utf-8?B?ZHlKc2dIWS92eE9kZGdIVnIvYkJGNDlYL3NBVDJLdFVSRytYQWtwY3FZTWRt?=
- =?utf-8?B?OXB1aGZ4MXNzNVBESTBCb3RPbERRWE5nR3hqdmlmN0hUUDBvUGxJRFRoWG1u?=
- =?utf-8?B?d1RxT2IwTVQ1NW41VEEvYlZPWUt0M0FsTnE2RXZQanU5dzdiTmNqWjJLM2J1?=
- =?utf-8?B?cFpSYzVGdktRbG9BV2kxS2N1SFhOeExKWlNDNGhZczI1S0owVURXOGJLOFl5?=
- =?utf-8?B?RDdpeWd1ZDRLRzZtTk53cHNrK05NOVJhYjVoWDFqOWJub2JkYllqSzJTdGRx?=
- =?utf-8?B?eEVTblFNVkR3ZjBuTmdSakh3OTczVVFySWJRSUxGUkYvRjRIZ25pWXlXMDR4?=
- =?utf-8?B?TTNsTU9SL0dYdWx6cVVqTjF2NDVqUUlwSWhHdWlTMVdjNUdqRGljZllQZ2Jj?=
- =?utf-8?B?bEN0WU1adTIvUXlHby9uZTZOemt4bE1neVJnMlBWTldjc1FjSWxMSHdlVVQ2?=
- =?utf-8?B?cEcrc2FRZElRNVRFTmMvcCtyZzZlQWJlM1IxQXQ0d1ZZVmVuOEh0Z1dhNjdG?=
- =?utf-8?B?R2hCWG1qWWNpMTVhTSsxQ05aRUJ6MUFOWk90eUQrS1liSVFXU2p2YlYweWgw?=
- =?utf-8?B?WDd6ZHNGSXc1cU16R0pnVGd0NWx1Nk1iY2VIaElCVmo3K0FaSXlYOUc4dFhQ?=
- =?utf-8?B?cDBUKzMrb3h1c0VURFlVN0xkQXVURFpTRVQyYzNFb1hEZkhKemN0dz09?=
-X-Exchange-RoutingPolicyChecked: Qd1jf8jMO0ZCZTyURlPXBtZOzLANFuCvdInRw5xs9XJGTyD3SKEyPnT2/y6lo8e62o4HZrXklYa/aSn0HVCQpJFtWPttSqyOcLMNBA+Z9SUk/ZWSU9srlCeOExyK5mzQ64gxD4XSag3jmacBUnE2z8l70giPqYYS/JCP5twW6NL9tFz6k06N4zsq3zALKXpCgIGL05Qh6Ba+wPiqB6j9XvxySocJXYoP+nVpny70F1EY+qTOglUtcCCmfnYt2iLR4s87Rf5KjKe2S1hp0BqwtXH5cAQV+eNZvRcDN8paHnaJXh7Wujs/pt/qsIY0Of4RnVtHIC0rf4SuQgxIFKsHCA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef22504a-6313-4890-1cac-08deff4ae69e
-X-MS-Exchange-CrossTenant-AuthSource: BN0PR11MB5709.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2026 06:10:29.8967 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 89AJfOrNvtsYx84Robn6Dntr7a4U63nhGffn6o1mxB9Mzw/b5koyojkpnVvfGE4qXW8ArYBfV32TwMZKKz1iwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5076
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] drm/panic: Split into core and helpers
+To: Jocelyn Falempe <jfalempe@redhat.com>, javierm@redhat.com,
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org
+Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
+ sashiko-reviews@lists.linux.dev
+References: <20260818125012.468092-1-tzimmermann@suse.de>
+ <e4da5ba4-9a02-4080-9a83-19d401017910@redhat.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <e4da5ba4-9a02-4080-9a83-19d401017910@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 3284B3EAF
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[19]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url, imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns, suse.de:mid, suse.de:dkim]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,172 +153,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Jocelyn
 
-On 17-08-2026 15:50, Michal Wajdeczko wrote:
->
-> On 8/4/2026 11:36 AM, Arvind Yadav wrote:
->> Route a few existing GT TDR and VM rebind failure logs through the
->> structured SIGID logging helpers.
-> above is a good candidate for the cover-letter
-> then IMO there should be separate patches per each new SIGID usage (see
-> examples in SIGID introduction series)
-
-
-Agree. I will move the high-level text to the cover letter and and split 
-this into smaller patches.
-
->> Use the GT component for GuC job-timeout checks and engine reset-request
->> failure, which reports them with XE_SIGID_GT_TDR. Use XE_SIGID_MEM_FAULT
->> for the terminal preempt rebind worker failure, since the VM is killed
->> immediately afterwards.
+Am 20.08.26 um 19:49 schrieb Jocelyn Falempe:
+> On 18/08/2026 14:27, Thomas Zimmermann wrote:
+>> Split DRM's current panic handling into a core and a helper module.
+>> The core is still part of DRM's core library. The panic helpers are
+>> part of DRM's KMS helper module (for now).
 >>
->> v2:
->>   - Rebased on the latest structured SIGID logging series.
->>   - Switched from the old xe_ras_log_() helpers to the new xe_log_()
->>     helpers.
->>   - Dropped paths already covered by the base SIGID series.
-> you can keep change log under ---
-
-
-Noted,
-
->
->> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
->> Cc: Badal Nilawar <badal.nilawar@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_guc_submit.c | 12 ++++++++----
->>   drivers/gpu/drm/xe/xe_vm.c         |  5 ++++-
->>   2 files changed, 12 insertions(+), 5 deletions(-)
+>> The motivation behind this series is to get panic handling's drawing
+>> code out of the DRM core. At some point it should share a single
+>> module with DRM's other drawing and format conversion.
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->> index 8aaed4fd13ea..79bd0e46640f 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->> @@ -34,6 +34,7 @@
->>   #include "xe_guc_klv_helpers.h"
->>   #include "xe_guc_submit_types.h"
->>   #include "xe_hw_engine.h"
->> +#include "xe_log.h"
->>   #include "xe_lrc.h"
->>   #include "xe_macros.h"
->>   #include "xe_map.h"
->> @@ -1375,7 +1376,8 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
->>   	u64 running_time_ms;
->>   
->>   	if (!xe_sched_job_started(job)) {
->> -		xe_gt_warn(gt, "Check job timeout: seqno=%u, lrc_seqno=%u, guc_id=%d, not started",
->> +		xe_log_err(gt, GT, -ETIMEDOUT,
->> +			   "Check job timeout: seqno=%u, lrc_seqno=%u, guc_id=%d, not started\n",
->>   			   xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
->>   			   q->guc->id);
->>   
->> @@ -1390,7 +1392,8 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
->>   				     xe_sched_job_seqno(job),
->>   				     xe_sched_job_lrc_seqno(job), q->guc->id);
->>   		else
->> -			xe_gt_warn(gt, "Check job timeout: seqno=%u, lrc_seqno=%u, guc_id=%d, timestamp stuck",
->> +			xe_log_err(gt, GT, -ETIMEDOUT,
->> +				   "Check job timeout: seqno=%u, lrc_seqno=%u, guc_id=%d, timestamp stuck\n",
->>   				   xe_sched_job_seqno(job),
->>   				   xe_sched_job_lrc_seqno(job), q->guc->id);
-> in both above cases you are promoting from warn to err level
-> is this expected/required ?
+>> With the series applied, panic hanlding follows DRM's established
+>> design pattern of having a DRM core interface with an dedicated
+>> implementation in each driver. Drivers share common code in helper
+>> modules. For panic handling, the DRM core still contains the panic
+>> entry points, the parameters and the debugfs interface. All drawing
+>> is now located in the panic helpers.
+>>
+>> Patches 1 to 4 improve several issues in the current panic code. It
+>> makes sense to fix them before moving the core around.
+>>
+>> Patches 5 to 8 put handling of all panic state and locking into a
+>> single place, drm_panic_display_panic_screen(). It is maintained by
+>> panic handling's DRM core code. This also enables the test cases to
+>> work more independently from the kernel's configuration.
+>>
+>> Patches 9 to 11 split the panic-handling code into the core and panic
+>> helpers. The former maintain all state, locking and public interfaces.
+>> The latter handles drawing and details of the involved framebuffers.
+>>
+>> DRM devices that offer panic handling provide a single callback, struct
+>> drm_plane_funcs.display_panic_screen. A new initializer macro makes it
+>> point to the existing panic-drawing implementation. Hence there's no
+>> change in features or functionality. If panic handling is configured
+>> off, it all clears out to NULL.
+>>
+>> Patch 12 reworks the test cases slighly, so that they can be build as
+>> a separate module. Do 'modprobe drm_panic_helper_test' to run them.
+>>
+>> Tested under bochs with debugfs and test cases.
 >
-> if we want to log them with SIGID but not with an error level,
-> we can use xe_log_err_info() instead
->
-> @Matthew, @Rodrigo ?
+> Overall the series looks good to me, and I like the split between the 
+> helper and the core.
+> I would just drop the first two patches, as I don't see much 
+> difference between static allocation or kmalloc() at init, and I think 
+> that memset() the buffers to 0 is not useful in this case.
 
+Ok. Geert also expressed a dislike for these changes.
 
-Good point. I did not intend to silently change the log level. Since 
-these two paths were xe_gt_warn(), I will drop these conversions from 
-the next revision.
+I have a number of changes done from the Sashiko review and will post an 
+update to the series early next week.
 
->
-> also, early documentation was suggesting that each SIGID should
-> be selected based on the source file; now since we have components
-> are are more relaxed, but still we have to follow some guidelines
->
-> @Aravind, @Rodrigo :
->
-> is it ok to use GT in the GuC file?
-> or maybe we should introduce GUCSUBMIT/SUBMISSION component with
-> associated GT_TDR instead of RUNTIME_FW ?
+Thanks for reviewing.
 
+Best regards
+Thomas
 
-My intent was to classify the fault, not just the source file. Since 
-these are timeout and reset recovery paths, GT_TDR seemed more suitable.
-I agree we should follow the existing guidelines, so I will avoid adding 
-a new component in this patch.
-
->>   
->> @@ -3354,8 +3357,9 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
->>   	reason = msg[2];
->>   
->>   	/* Unexpected failure of a hardware feature, log an actual error */
->> -	xe_gt_err(gt, "GuC engine reset request failed on %d:%d because 0x%08X",
->> -		  guc_class, instance, reason);
->> +	xe_log_err(gt, GT, -EIO,
->> +		   "GuC engine reset request failed on %d:%d because 0x%08X\n",
->> +		   guc_class, instance, reason);
-> separate patch ?
-
-
-Noted,
-
->>   
->>   	xe_gt_reset_async(gt);
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index 9e0176861cb6..7c70ea23045a 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -28,6 +28,7 @@
->>   #include "xe_drm_client.h"
->>   #include "xe_exec_queue.h"
->>   #include "xe_gt.h"
->> +#include "xe_log.h"
->>   #include "xe_migrate.h"
->>   #include "xe_pat.h"
->>   #include "xe_pm.h"
->> @@ -591,7 +592,9 @@ static void preempt_rebind_work_func(struct work_struct *w)
->>   	}
->>   
->>   	if (err) {
->> -		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
->> +		xe_log_from_recoverable(vm->xe, XE_SIGID_MEM_FAULT,
->> +					XE_LOG_COMPONENT_NONE, ERR_PTR(err), 0,
->> +					"Preempt rebind worker failed\n");
-> separate patch ?
->
-> maybe we should just introduce new Xe component named VM *)
-> and assign it the SIGID MEM_FAULT ?
-
-
-Agree. I will split the preempt rebind worker conversion into a 
-separate patch.
-A VM/VMA component mapped to MEM_FAULT would be cleaner than using 
-XE_LOG_COMPONENT_NONE, but that looks like an infrastructure change.
-I will do the changes accordingly.
 
 >
-> *) or maybe better VMA to avoid clash with Virtual Machine?
+> Best regards,
 >
-> btw, there is also other existing warn that we may want
-> promote to SIGID:
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
 
 
-Yes, that looks like a good follow-up candidate. But I will follow the 
-current guideline.
-
->
-> 	"Could not allocate memory for fault!\n"
->
->>   		xe_vm_kill(vm, true);
->>   	}
->>   	up_write(&vm->lock);
