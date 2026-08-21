@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ADE7C5DF7D
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 09:54:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29EF3C5DF7D
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 09:54:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E227B10F2BB;
-	Fri, 21 Aug 2026 09:54:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D894C10E290;
+	Fri, 21 Aug 2026 09:54:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RnWQInQD";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hncVQnvG";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5773610F2CE
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 09:54:28 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DC1F10F2BC
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 09:54:33 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 355D4600AA;
- Fri, 21 Aug 2026 09:54:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6F161F000E9;
- Fri, 21 Aug 2026 09:54:26 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id C0D4643903;
+ Fri, 21 Aug 2026 09:54:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780921F000E9;
+ Fri, 21 Aug 2026 09:54:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787306066;
- bh=IAXknRH1nPzgcEGwRkVLFRuJM3lPguFLnVl3lF+jZt4=;
+ s=k20260515; t=1787306072;
+ bh=7UfoxhIHup2BzLyGr7/8u5poKSkNTT6LO9FYmTQElj4=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=RnWQInQDdYQ058VmIl3ke0vSIowtTxP3wrmpiSfC2TwLEEwNWVc8z+ipSpEJYKDN9
- 6bmRhfaWIy4nG3Drl+q/wXeTQl9hLYCb6U60hx0SZEuAfnHOaAgqOx5oXgITP683h8
- VwFOMgfZKNTI/yPsp/y5I4OGjkVuFj9Txs9cFd6SBgT0BCfmyW47pzIMPN2IjvguH5
- 3EJXU50upy/ccEzaMjGITcpCfYhPFntzwOTYSczcJKV9KV5JXISAGFwz86WnHD131+
- BiLqiR2ifn3G6TDaeO7wtdwuIs15lurBC8oIwykqM03k/ExKiFdOd7+7r8lS/3Jkm7
- xzc49CuJ3l3Iw==
+ b=hncVQnvG/W7VRCtGzWoOQXt5qy8ufi3NNjzBEj3Em+JFn7m4v69fA+6Qwl5jyffzO
+ ChseHYdcA3xTNRXcI1uy7CdeL2MbKxDH3/V0+KOpKSL+2Z5uSRw5WhR5jqlmhZw6ZY
+ AiF0IBAnn3P2yNmf6cUmilKop5hF1jBXcCp2aJ3ENtvLnUYlow4iXJprLBgASOs1o9
+ rr3ypzLcvcU5ZJbRVK3l2jSOYcwDVwkkp2C3qkSGkyC4ESpSzViMtmv2jvW8sZ1Pov
+ O8hQ1Kef3nq3Prbao4j5bF2W8J0CDTPzT1Qlfkc3GXcvQrqeg1J6ZllxYQgRYkRsh/
+ PcAtNP8dyCTDg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/4] drm/xe/vram: Add binding information to VRAM
- regions
+Subject: Re: [PATCH v2 4/4] drm/xe/kunit: Add tests for PF-mem regions
 To: =?utf-8?b?UGnDs3Jrb3dza2ksIFBpb3Ry?= <piotr.piorkowski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260821094601.607060-2-piotr.piorkowski@intel.com>
+In-Reply-To: <20260821094601.607060-5-piotr.piorkowski@intel.com>
 References: <20260821094601.607060-1-piotr.piorkowski@intel.com>
- <20260821094601.607060-2-piotr.piorkowski@intel.com>
+ <20260821094601.607060-5-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 21 Aug 2026 09:54:26 +0000
-Message-Id: <20260821095426.B6F161F000E9@smtp.kernel.org>
+Date: Fri, 21 Aug 2026 09:54:32 +0000
+Message-Id: <20260821095432.780921F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,92 +56,86 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] The device-level aggregate VRAM region (`xe->mem.vram`) is left =
-with an implicitly zeroed `binding` field, causing it to incorrectly identi=
-fy as a tile-bound region for tile 0 and violating uniqueness constraints.
+- [Medium] The hardcoded mock pointer `SZ_4G` truncates to `NULL` on 32-bit=
+ architectures, breaking KUnit tests.
+- [Low] The out-of-bounds offset test case is shadowed by a page alignment =
+check.
 --
 
---- Patch [1]: [PATCH v2 1/4] drm/xe/vram: Add binding information to VRAM =
-regions ---
-commit c73dc6ee289feb3d1e22f53db84480b8a5bc094f
+--- Patch [4]: [PATCH v2 4/4] drm/xe/kunit: Add tests for PF-mem regions ---
+commit def1e04af372e808abcf812a9ee0ac48e736b86c
 Author: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
-Subject: drm/xe/vram: Add binding information to VRAM regions
 
-Add a binding field to VRAM regions and pass it at allocation time.
-This allows distinguishing VRAM regions serving different purposes. It is
-needed for future patches where different VRAM regions serve different
-purposes, such as dedicated VRAM for kernel allocations.
+drm/xe/kunit: Add tests for PF-mem regions
 
-> diff --git a/drivers/gpu/drm/xe/xe_vram_types.h b/drivers/gpu/drm/xe/xe_v=
-ram_types.h
-> index 646e3c12ae9f7..51884e7a679d1 100644
-> --- a/drivers/gpu/drm/xe/xe_vram_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vram_types.h
+Add KUnit tests for PF-mem VRAM regions to provide coverage for region
+metadata, bounds checking, and CPU visibility constraints.
+
+> diff --git a/drivers/gpu/drm/xe/tests/xe_vram.c b/drivers/gpu/drm/xe/test=
+s/xe_vram.c
+> new file mode 100644
+> index 0000000000000..36a49fbef2206
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/tests/xe_vram.c
+> @@ -0,0 +1,115 @@
+
 [ ... ]
-> @@ -26,9 +34,11 @@ struct xe_vram_region {
->  	/**
->  	 * @id: VRAM region instance id
->  	 *
-> -	 * The value should be unique for VRAM region.
-> +	 * The value should be unique within a given binding.
->  	 */
->  	u8 id;
-> +	/** @binding: VRAM region instance binding */
-> +	enum xe_vram_binding binding;
+
+> +static struct xe_vram_region pfmem_parent(struct xe_device *xe, u64 io_s=
+ize)
+> +{
+> +	struct xe_vram_region parent =3D {
+> +		.xe =3D xe,
+> +		.id =3D 0,
+> +		.io_start =3D SZ_1G,
+> +		.io_size =3D io_size,
+> +		.dpa_base =3D SZ_2G,
+> +		.mapping =3D (__force void __iomem *)SZ_4G,
 
 [Severity: Medium]
-Will this default initialization cause duplicate IDs for the aggregate devi=
-ce
-VRAM region?
+Will this cast truncate to NULL on 32-bit architectures?
 
-The aggregate VRAM region is allocated in
-drivers/gpu/drm/xe/xe_device.c:xe_device_vram_alloc() using drmm_kzalloc(),
-which zeroes the memory but doesn't explicitly initialize the binding or id
-fields. Because XE_VRAM_BINDING_TILE is 0, xe->mem.vram implicitly defaults
-to XE_VRAM_BINDING_TILE with an id of 0.
+If this code is built on 32-bit architectures (for example, via COMPILE_TES=
+T),
+SZ_4G (0x100000000ULL) won't fit in a 32-bit pointer and truncates to NULL.
 
-This appears to violate the new struct documentation stating that id should=
- be
-unique within a given binding, since both the aggregate region and the actu=
-al
-tile 0 region will have id 0 and XE_VRAM_BINDING_TILE.
+When xe_vram_region_init_pfmem() later delegates to vram_region_init(), it
+checks if the mapping is NULL and fails with -ENOMEM instead of 0.
 
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index 23eb7edbdd572..e5f83df988263 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
+Could this cause the KUnit tests to unexpectedly fail on 32-bit builds?
+
+> +		.usable_size =3D SZ_64M,
+> +	};
+> +
+> +	return parent;
+> +}
+
 [ ... ]
-> @@ -217,11 +241,13 @@ static void print_vram_region_info(struct xe_device=
- *xe, struct xe_vram_region *
->  		drm_info(drm, "Small BAR device\n");
-> =20
->  	drm_info(drm,
-> -		 "VRAM[%u]: Actual physical size %pa, usable size exclude stolen %pa, =
-CPU accessible size %pa\n",
-> -		 vram->id, &vram->actual_physical_size, &vram->usable_size, &vram->io_=
-size);
-> -	drm_info(drm, "VRAM[%u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
-> -		 vram->id, &vram->dpa_base, vram->dpa_base + (u64)vram->actual_physica=
-l_size,
-> -		 &vram->io_start, vram->io_start + (u64)vram->io_size);
-> +		 "%s[%u] VRAM region: Actual physical size %pa, usable size exclude st=
-olen %pa, CPU accessible size %pa\n",
-> +		 stringify_vram_binding(vram->binding), vram->id, &vram->actual_physic=
-al_size,
-> +		 &vram->usable_size, &vram->io_size);
 
-[Severity: Medium]
-Will this cause print_vram_region_info() to print two identical
-"Tile[0] VRAM region:" messages?
+> +static void pfmem_invalid_range(struct kunit *test)
+> +{
+> +	struct xe_device *xe =3D test->priv;
+> +	struct xe_vram_region parent =3D pfmem_parent(xe, SZ_64M);
+> +	struct xe_vram_region *vram;
+> +
+> +	vram =3D xe_vram_region_alloc_pfmem(xe, 0);
+> +	KUNIT_ASSERT_NOT_NULL(test, vram);
+> +	KUNIT_EXPECT_EQ(test, xe_vram_region_init_pfmem(vram, &parent, 0, 0), -=
+EINVAL);
+> +	KUNIT_EXPECT_EQ(test, xe_vram_region_init_pfmem(vram, &parent, SZ_64M +=
+ 1, SZ_4M), -EINVAL);
 
-Since xe->mem.vram defaults to XE_VRAM_BINDING_TILE and id 0, it seems like=
- we
-would get one log for the actual tile and one for the device-level aggregat=
-ed
-sizes, both labeled as "Tile[0]".
+[Severity: Low]
+Does this actually test the bounds check?
+
+Since SZ_64M + 1 is not page-aligned, xe_vram_region_init_pfmem() will
+evaluate the alignment check first and short-circuit to return -EINVAL.
+
+It seems the offset > parent->usable_size bounds check would remain
+completely untested here.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260821094601.6070=
-60-1-piotr.piorkowski@intel.com?part=3D1
+60-1-piotr.piorkowski@intel.com?part=3D4
