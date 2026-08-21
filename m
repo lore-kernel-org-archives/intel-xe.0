@@ -4,44 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B5F8C5DF87
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 11:52:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C211C5DF87
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 12:21:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D923310E284;
-	Fri, 21 Aug 2026 11:52:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326D210E289;
+	Fri, 21 Aug 2026 12:21:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Xz1MozGK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JeRWtMdE";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE2510E284
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 11:52:02 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 38A1C60A5D;
- Fri, 21 Aug 2026 11:52:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB4601F000E9;
- Fri, 21 Aug 2026 11:52:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787313120;
- bh=ju+xVPlrsjSKzT9DsjqQEja5oCG9ZvF6KBWllBH/1eM=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Xz1MozGKkP4bOqDYaAKkih8STan8ahSJH973N7Yq7beCTNm5IOcd21CFL5JH+3A5R
- AIAalpj8E0B/kYY7BtZseWNDfMopp1vbO7eD8I0Hynl2sfNcGorUM4VFWCJaXZsHbU
- XAwWFCw/FLuX7Io8+t3hXfMqIJjE6i+Cpn/DfoGSg/ori1ZydNxvloD1ug33U7UY8/
- ETv9bYgto1rpTjb8OZHCwjWWdixiuhk97cthgIWbtyyrmd2fouKqZ8wrnDDO5/siDK
- edKMVfaC6v9JRhCulVSHEFJyv4s3nCyyORWG0o2tnh0wEEUe7UEXnSykruwqEKjo6e
- y5xriyz/oZR3g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 02/10] drm/xe/guc_submit: Introduce
- guc_exec_queue_reinit_kernel()
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260821112436.545405-3-raag.jadav@intel.com>
-References: <20260821112436.545405-1-raag.jadav@intel.com>
- <20260821112436.545405-3-raag.jadav@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 21 Aug 2026 11:52:00 +0000
-Message-Id: <20260821115200.BB4601F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0B010E289
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 12:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787314909; x=1818850909;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2iYvBK5ZrTl3e6+xbcau9K2I/uVtEWy0ROa5v3EllcE=;
+ b=JeRWtMdEcOEdqzA2+Ll/5EXB8U9ue83iTYY0YMHfAslWeRtJxJtnCNI/
+ vSiTp5b5sy6Qmd91BrSHnJJ7XtAO89b4YzFUcqPhy6FZeKz3Z40MXOYVq
+ VessVZWnBLtK0rFjE6G6mhu9tb/rVnA71JL8uspnlzSTUxLe2/QK+P1UB
+ QXQTzFxOlO/+rhAqpEG0ecPOZW1WoqT/XZj9DJDu+5v9OFa8h8qgNffBz
+ Sx8FC5TecI7BmH8YcmF2DomGVbThz7diYbtr5sOgQ9zx85ARcW5skm0Rp
+ mu4SBLIL47QQvO6ttkcqCOte6RBj6pe9LrBv38WdBq400WvrXujhybEqi Q==;
+X-CSE-ConnectionGUID: HSDT28dAQSOW5jJLC93NkQ==
+X-CSE-MsgGUID: TQaYap9uQZqitbgpH3ZVFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="113400402"
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="113400402"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2026 05:21:49 -0700
+X-CSE-ConnectionGUID: hdjM2lXASC2Vx5K+RgdnJw==
+X-CSE-MsgGUID: kDgiJFf3RwmCLQzGBWj63g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="270560543"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa005.jf.intel.com with ESMTP; 21 Aug 2026 05:21:46 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, michal.wajdeczko@intel.com,
+ lukasz.laguna@intel.com, daniele.ceraolospurio@intel.com,
+ sk.anirban@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe/guc: Allow GuC CT for wedged device
+Date: Fri, 21 Aug 2026 17:51:14 +0530
+Message-ID: <20260821122114.567725-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,85 +62,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Unprotected modification of scheduler timeout in xe_sched_reinit()=
- races with active TDR work, and drm_sched_is_stopped() assert will falsely=
- trigger.
-- [Medium] Layering violation: generic `xe_gpu_scheduler` component directl=
-y references GuC-specific `xe_guc_exec_queue` via downcast.
---
+Commit 50fa9acac26f ("drm/xe/guc: distinguish wedged from recoverable
+cancellation") introduced distinguishable error codes for g2h failure
+cases, but also blocked GuC CT for wedged device. This is problematic
+in cases where we want to prevent user from accessing the device but
+also keep GuC CT functioning on temporarily wedged device. First user
+of such requirement is PCIe FLR handling where we require uC firmware
+loading while the device is temporarily wedged.
 
---- Patch [2]: [PATCH v10 02/10] drm/xe/guc_submit: Introduce guc_exec_queu=
-e_reinit_kernel() ---
-commit 9c5abd285bbf057d5cc8df0e74c9cc1e73a4d283
-Author: Raag Jadav <raag.jadav@intel.com>
+Fixes: 50fa9acac26f ("drm/xe/guc: distinguish wedged from recoverable cancellation")
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
-drm/xe/guc_submit: Introduce guc_exec_queue_reinit_kernel()
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 5c4733da385c..97e38147effd 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1062,11 +1062,6 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 	xe_gt_assert(gt, g2h_len || !num_g2h);
+ 	lockdep_assert_held(&ct->lock);
+ 
+-	if (xe_device_wedged(ct_to_xe(ct))) {
+-		ret = -ENOTRECOVERABLE;
+-		goto out;
+-	}
+-
+ 	if (unlikely(ct->ctbs.h2g.info.broken)) {
+ 		ret = -EPIPE;
+ 		goto out;
+@@ -1813,9 +1808,6 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 	xe_gt_assert(gt, xe_guc_ct_initialized(ct));
+ 	lockdep_assert_held(&ct->fast_lock);
+ 
+-	if (xe_device_wedged(xe))
+-		return -ENOTRECOVERABLE;
+-
+ 	if (ct->state == XE_GUC_CT_STATE_DISABLED)
+ 		return -ENODEV;
+ 
+-- 
+2.43.0
 
-In preparation of usecases which require re-initializing GuC submission
-after PCIe FLR, introduce guc_exec_queue_reinit_kernel() helper. This will
-restore kernel queues which might have been killed before PCIe FLR.
-
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/x=
-e_gpu_scheduler.c
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-
-[ ... ]
-
-> @@ -84,6 +88,19 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
->  	return drm_sched_init(&sched->base, &args);
->  }
-> =20
-> +void xe_sched_reinit(struct xe_gpu_scheduler *sched)
-> +{
-> +	struct xe_guc_exec_queue *ge =3D container_of(sched, struct xe_guc_exec=
-_queue, sched);
-
-[Severity: Medium]
-Is it safe for the generic xe_gpu_scheduler component to directly downcast =
-to
-the GuC-specific xe_guc_exec_queue structure?
-
-If xe_sched_reinit() is ever called by another submission backend (such as
-execlists), couldn't this result in an invalid downcast and potential
-memory corruption?
-
-> +
-> +	xe_gt_assert(ge->q->gt, drm_sched_is_stopped(&sched->base));
-> +
-> +	/*
-> +	 * TODO: Implement drm_sched_reinit() instead of requiring the
-> +	 * driver to restore individual fields.
-> +	 */
-> +	sched->base.timeout =3D sched->timeout;
-
-[Severity: High]
-Will the drm_sched_is_stopped() assert falsely trigger during PCIe FLR?
-
-During hardware resets like PCIe FLR, xe_guc_submit_pause_abort() executes =
-on
-kernel queues, calling xe_sched_submission_start() (which sets pause_submit=
- to
-false) and queuing TDR via guc_exec_queue_kill(). If xe_sched_reinit() is
-later called on the same queue, the scheduler is no longer stopped, causing
-this assert to fail.
-
-Additionally, does modifying sched->base.timeout here race with the concurr=
-ent
-TDR work (work_tdr)? Modifying it without calling cancel_delayed_work_sync()
-might leave the TDR work executing with an inconsistent timeout state on a
-re-initialized kernel queue.
-
-> +}
-> +
->  void xe_sched_fini(struct xe_gpu_scheduler *sched)
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260821112436.5454=
-05-1-raag.jadav@intel.com?part=3D2
