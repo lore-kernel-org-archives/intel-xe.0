@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73733C5DF97
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 22:23:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34076C5DF94
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 22:23:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 965E410F3D6;
-	Fri, 21 Aug 2026 22:23:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39E910F3E0;
+	Fri, 21 Aug 2026 22:23:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z+0Ei63b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FYW6NqWC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A2C410E283
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 22:23:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED88210E283
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 22:23:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1787351025; x=1818887025;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=xeXjw0s0LLgqB2VAy58CxungCuPduinknsiviMMKUIA=;
- b=Z+0Ei63bt/drU3ocdfgkH5PhIwlSq/RTy+ytNYp6LhrZP+8iUuMicV7S
- tX4TLo3QuGxcTflV0In2Cyia5hOApP++OZJAs3uH3AvFC3aD82XNb2ekb
- zSC522A8taLJY6SCqG1YiuBZRBrLf5co58zj2YusEi74Ewfcy4XPNjmt0
- eVQR/npXvx1/sSRhaDSzBkVdWf2eYnF60UW6xDMkeREzaqreCKBH0WL6V
- YQuBzd6WLjdQqdDCdvRDE6OTxe2f8iMwaU2d3wsoaCI6oFzSEgCY36nLO
- kLbmHNi4hIY+iG+U7KguhnvgyUXGuse5mo23TJBLucEbeUW2l5E7jQI/y w==;
-X-CSE-ConnectionGUID: 1yr91GvtR0yhORWNmrHUcA==
-X-CSE-MsgGUID: fzzz8aG+TUOza0ry60QEtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11882"; a="90420770"
-X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="90420770"
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ve5Y0tRY5b4HyQzrTQVKNpFnSEXA/qSIiJymXGVe9Zs=;
+ b=FYW6NqWCoE0I8kO74JzOMa98RCfn2fYpzkhIUlhvgMsZwYLd8sB3bXGD
+ wy1Inf01IxWIM49jBDsmgm9wjecqfXjEgL3A2XPORjHFHXjDK+IB4dOBN
+ fNBOUMJk42XvRRc+uOp2En5j4AjfNh+/LFiRsgH/cu11Yg/xzkosqPdc6
+ gmABKz6z7s6sj9iWZqC2lIs3O0BhV6Z196/NIDsTtv9Rkf0J3NKt5hnJH
+ I7giDCFNPxbj2bhBkIt//n3o8f0iQeT/iZ/BFyXMp0UUZsz51M9G+xLF6
+ iYPUSdmQtkbPYMrGpbGFwkh5QcvZm4lJmofI2VoomPDS3uxXLx4YyzlRZ A==;
+X-CSE-ConnectionGUID: j98wi8QQRceoxV9R75iNRQ==
+X-CSE-MsgGUID: SCrljbxdTaO7WMFNEJHuzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11882"; a="90420767"
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="90420767"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Aug 2026 15:23:45 -0700
-X-CSE-ConnectionGUID: 6DWt7jtbTlip+7HLuyqB2g==
-X-CSE-MsgGUID: 85QhVrq7StCyapoQt45YbQ==
+X-CSE-ConnectionGUID: q8OiBHzARt+NMRBz5edW+g==
+X-CSE-MsgGUID: wN7IDo8zS3OuZ3/Y2YuAqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="263198176"
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="263198167"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2026 15:23:45 -0700
+ 21 Aug 2026 15:23:44 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 3/3] drm/xe/xe_oa: Add a lag to the reports that is exported
- to user
-Date: Fri, 21 Aug 2026 15:23:42 -0700
-Message-ID: <20260821222338.1053887-8-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 0/3] Modify the SW tail logic in OA
+Date: Fri, 21 Aug 2026 15:23:39 -0700
+Message-ID: <20260821222338.1053887-5-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260821222338.1053887-5-umesh.nerlige.ramappa@intel.com>
-References: <20260821222338.1053887-5-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,90 +63,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When running heavy workloads, reading the OA reports too soon does not
-guarantee that the report has landed in memory. To make sure correct
-reports are copied to user buffer, only return reports that lag the
-current HW_TAIL register by 32 reports. This is an empirical number
-based on a heavy render workload and several test iterations.
+OA unit updates the HW TAIL register to indicate that a new report is
+available, although it does not guarantee that the report is visible in
+memory. Also the currently running workload contributes to some latency
+in seeing this report in memory. In the past we would set some fields in
+the OA report and check if the fields are populated to non-zero values
+by the HW, but this is no longer sufficient since some parts of the
+report may land out of order under heavy workloads. Drop this WA and add
+a new logic that just waits for a fixed number of HW TAIL report
+increments before returning data to the user. User will always see the
+reports lagging by this fixed number, however we do not have realtime
+use cases for OAG since OAG reports are mainly post processed.
 
-The reports that user reads will always lag the HW tail by 32 reports,
-however since OA is used for post processing analysis, this should not
-affect any current use cases. When the stream is closed or disabled, we
-let the user read the remaining reports up until HW tail.
+v2: Rebase
+v3: Add Sashiko's review comments
+v4: Rebase, checkpatch fixes
+v5: Add Ashutosh's review comments
+v6: Add Sashiko's review comment
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
-v2: Fix the LAG logic by using sliding window (Sashiko)
-v3: Fix checkpatch warning
-v4: Update sw tail on stream disable (Ashutosh)
-v5: Ensure read is not blocked forever (Sashiko)
----
- drivers/gpu/drm/xe/xe_oa.c | 23 +++++++++++++++--------
- 1 file changed, 15 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index d7647f37ab02..c8f2d7de1396 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -224,7 +224,7 @@ static bool mert_wa_14026633728(struct xe_oa_stream *s)
- static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- {
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
--	u32 hw_tail, partial_report_size, available;
-+	u32 hw_tail, partial_report_size, available, lag;
- 	int report_size = stream->oa_buffer.format->size;
- 	unsigned long flags;
- 
-@@ -234,17 +234,23 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- 	hw_tail -= gtt_offset;
- 
- 	/*
--	 * The tail pointer increases in 64 byte (cacheline size), not in report_size
-+	 * The hw_tail pointer increases in 64 byte (cacheline size), not in report_size
- 	 * increments. Also report size may not be a power of 2. Compute potential
- 	 * partially landed report in OA buffer.
- 	 */
- 	partial_report_size = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
- 	partial_report_size %= report_size;
- 
--	/* Subtract partial amount off the tail */
-+	/* Subtract partial amount off the hw_tail */
- 	hw_tail = xe_oa_circ_diff(stream, hw_tail, partial_report_size);
- 
--	stream->oa_buffer.tail = hw_tail;
-+#define LAG_REPORTS 32
-+	lag = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
-+	if (!stream->enabled)
-+		stream->oa_buffer.tail = hw_tail;
-+	else if (lag > LAG_REPORTS * report_size)
-+		stream->oa_buffer.tail = xe_oa_circ_diff(stream, hw_tail,
-+							 LAG_REPORTS * report_size);
- 
- 	available = xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->oa_buffer.head);
- 	stream->pollin = available >= stream->wait_num_reports * report_size;
-@@ -1416,10 +1422,6 @@ static void xe_oa_stream_disable(struct xe_oa_stream *stream)
- 
- 	if (stream->sample)
- 		hrtimer_cancel(&stream->poll_check_timer);
--
--	/* Update stream->oa_buffer.tail to allow any final reports to be read */
--	if (xe_oa_buffer_check_unlocked(stream))
--		wake_up(&stream->poll_wq);
- }
- 
- static int xe_oa_enable_preempt_timeslice(struct xe_oa_stream *stream)
-@@ -1490,6 +1492,11 @@ static int xe_oa_disable_locked(struct xe_oa_stream *stream)
- 		ret = xe_oa_enable_preempt_timeslice(stream);
- 
- 	stream->enabled = false;
-+
-+	/* Update stream->oa_buffer.tail to allow any final reports to be read */
-+	if (xe_oa_buffer_check_unlocked(stream))
-+		wake_up(&stream->poll_wq);
-+
- 	return ret;
- }
- 
+Umesh Nerlige Ramappa (3):
+  drm/xe/xe_oa: Clear status only if relevant bits are set
+  drm/xe/xe_oa: Avoid checking and setting fields in the OA report
+  drm/xe/xe_oa: Add a lag to the reports that is exported to user
+
+ drivers/gpu/drm/xe/xe_oa.c | 108 ++++++++-----------------------------
+ 1 file changed, 21 insertions(+), 87 deletions(-)
+
 -- 
 2.51.0
 
