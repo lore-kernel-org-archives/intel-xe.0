@@ -4,53 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C211C5DF87
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 12:21:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08CB4C5DF87
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 12:27:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 326D210E289;
-	Fri, 21 Aug 2026 12:21:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD39E10E704;
+	Fri, 21 Aug 2026 12:27:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JeRWtMdE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bVzTicNI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0B010E289
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 12:21:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE0E10E6E2
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 12:27:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787314909; x=1818850909;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2iYvBK5ZrTl3e6+xbcau9K2I/uVtEWy0ROa5v3EllcE=;
- b=JeRWtMdEcOEdqzA2+Ll/5EXB8U9ue83iTYY0YMHfAslWeRtJxJtnCNI/
- vSiTp5b5sy6Qmd91BrSHnJJ7XtAO89b4YzFUcqPhy6FZeKz3Z40MXOYVq
- VessVZWnBLtK0rFjE6G6mhu9tb/rVnA71JL8uspnlzSTUxLe2/QK+P1UB
- QXQTzFxOlO/+rhAqpEG0ecPOZW1WoqT/XZj9DJDu+5v9OFa8h8qgNffBz
- Sx8FC5TecI7BmH8YcmF2DomGVbThz7diYbtr5sOgQ9zx85ARcW5skm0Rp
- mu4SBLIL47QQvO6ttkcqCOte6RBj6pe9LrBv38WdBq400WvrXujhybEqi Q==;
-X-CSE-ConnectionGUID: HSDT28dAQSOW5jJLC93NkQ==
-X-CSE-MsgGUID: TQaYap9uQZqitbgpH3ZVFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="113400402"
-X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="113400402"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2026 05:21:49 -0700
-X-CSE-ConnectionGUID: hdjM2lXASC2Vx5K+RgdnJw==
-X-CSE-MsgGUID: kDgiJFf3RwmCLQzGBWj63g==
+ t=1787315227; x=1818851227;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=xo2LCxNl0c27eZVdffOMpnxqMCxFvGcBF+Dlx8P3K3g=;
+ b=bVzTicNI10Zs1l3nYg/Xanl3fadQlW+B5O+jr8/JsuSV62xD4Nc1qvLg
+ T/rz3/R6N+JpYfCoGCIox4AZmdyle+MMzsxsHmShN1kjWV1eLoNdIlRf6
+ escs67wtaBOa3edNer7Czd6m1OdDS5oWn92TQd8FPLNgu1Qx2i6ZjVjh9
+ 5x1Nr5g4eSe/c4Ke3J8uEzL7BQ7en7CzeD8RjPN3Y3TyLdMEXEEY6z9Sm
+ HwKuug22UGNfE+6hEnDKvwYTtzNWe7wWw3u1m1fcoUaygEvzcitlTWlTU
+ rjkd4NAD/LofGPnnal15F2SSPnfq30UMaRRn5/tcT47c+1kerv1sZFP5K Q==;
+X-CSE-ConnectionGUID: FmWgpB0VS+eUmWxgacC1ig==
+X-CSE-MsgGUID: f8Kg8OKRRPiR3XZAMsvXdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11881"; a="75399012"
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="75399012"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2026 05:27:07 -0700
+X-CSE-ConnectionGUID: RXOHsWAkQTWlH99ucPgp8g==
+X-CSE-MsgGUID: nGOOwZ1aQeCKU45BwsD4nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="270560543"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa005.jf.intel.com with ESMTP; 21 Aug 2026 05:21:46 -0700
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="291183397"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2026 05:27:03 -0700
+Date: Fri, 21 Aug 2026 14:27:01 +0200
 From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, michal.wajdeczko@intel.com,
- lukasz.laguna@intel.com, daniele.ceraolospurio@intel.com,
- sk.anirban@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v1] drm/xe/guc: Allow GuC CT for wedged device
-Date: Fri, 21 Aug 2026 17:51:14 +0530
-Message-ID: <20260821122114.567725-1-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+To: "Laguna, Lukasz" <lukasz.laguna@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ riana.tauro@intel.com, michal.wajdeczko@intel.com,
+ matthew.d.roper@intel.com, michal.winiarski@intel.com,
+ matthew.auld@intel.com, dev@lankhorst.se, jani.nikula@intel.com,
+ zhanjun.dong@intel.com, lukas@wunner.de,
+ daniele.ceraolospurio@intel.com, badal.nilawar@intel.com
+Subject: Re: [PATCH v9 08/10] drm/xe: Improve wedged state management
+Message-ID: <aohEFbWxak1-vNBD@black.igk.intel.com>
+References: <20260701083051.450259-1-raag.jadav@intel.com>
+ <20260701083051.450259-9-raag.jadav@intel.com>
+ <alASTH5nHedKPPP8@gsse-cloud1.jf.intel.com>
+ <alB8ubrXvqWSTOQL@black.igk.intel.com>
+ <363aea8d-10ee-4b44-abdc-be759aec822f@intel.com>
+ <aogaeU6a5i1kyaMg@black.igk.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aogaeU6a5i1kyaMg@black.igk.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,46 +77,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 50fa9acac26f ("drm/xe/guc: distinguish wedged from recoverable
-cancellation") introduced distinguishable error codes for g2h failure
-cases, but also blocked GuC CT for wedged device. This is problematic
-in cases where we want to prevent user from accessing the device but
-also keep GuC CT functioning on temporarily wedged device. First user
-of such requirement is PCIe FLR handling where we require uC firmware
-loading while the device is temporarily wedged.
+On Fri, Aug 21, 2026 at 11:29:35AM +0200, Raag Jadav wrote:
+> On Fri, Aug 21, 2026 at 10:26:58AM +0200, Laguna, Lukasz wrote:
+> > On 7/10/2026 07:01, Raag Jadav wrote:
+> 
+> ...
+> 
+> > > +bool xe_device_wedged(struct xe_device *xe)
+> > > +{
+> > > +	return atomic_read(&xe->wedged.ref);
+> > > +}
+> > 
+> > __guc_ct_send_locked() and g2h_read() return -ENOTRECOVERABLE when
+> > xe_device_wedged() is true, but with the new refcount approach device may
+> > only be temporarily wedged.
+> 
+> Good catch. I was expecting this path to not be hit during FLR as we're
+> tearing down exec queues and disabling interrupts, but fully agree that
+> there's a whole lot of TODOs we need to revisit as a follow up. I'll add
+> this one too.
 
-Fixes: 50fa9acac26f ("drm/xe/guc: distinguish wedged from recoverable cancellation")
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 8 --------
- 1 file changed, 8 deletions(-)
+I've sent a standalone fix[1] for this. However, I'm unsure about it's
+correctness, so please weigh in.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 5c4733da385c..97e38147effd 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1062,11 +1062,6 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 	xe_gt_assert(gt, g2h_len || !num_g2h);
- 	lockdep_assert_held(&ct->lock);
- 
--	if (xe_device_wedged(ct_to_xe(ct))) {
--		ret = -ENOTRECOVERABLE;
--		goto out;
--	}
--
- 	if (unlikely(ct->ctbs.h2g.info.broken)) {
- 		ret = -EPIPE;
- 		goto out;
-@@ -1813,9 +1808,6 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 	xe_gt_assert(gt, xe_guc_ct_initialized(ct));
- 	lockdep_assert_held(&ct->fast_lock);
- 
--	if (xe_device_wedged(xe))
--		return -ENOTRECOVERABLE;
--
- 	if (ct->state == XE_GUC_CT_STATE_DISABLED)
- 		return -ENODEV;
- 
--- 
-2.43.0
+Raag
 
+[1] https://lore.kernel.org/intel-xe/20260821122114.567725-1-raag.jadav@intel.com
