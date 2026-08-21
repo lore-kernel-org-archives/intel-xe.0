@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CAADC5DF7D
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 11:41:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD431C5DF87
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 11:43:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B81610E1D3;
-	Fri, 21 Aug 2026 11:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EBDF10E27D;
+	Fri, 21 Aug 2026 11:43:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Gora8r4d";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S/AyFNas";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94A0010E1D3
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 11:41:41 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8093D10E27D
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 11:43:07 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id CF9BE60008;
- Fri, 21 Aug 2026 11:41:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67AF61F000E9;
- Fri, 21 Aug 2026 11:41:40 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6100143F72;
+ Fri, 21 Aug 2026 11:43:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23BEF1F000E9;
+ Fri, 21 Aug 2026 11:43:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787312500;
- bh=AvsMg+y+3GCyBXZiDnqp1Y/aH4wj/pG6YfmzFKPsySA=;
+ s=k20260515; t=1787312586;
+ bh=9t+5Wq4xvFUeklGYygVXT4KZifxvrty7VkhKTdX3CBA=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Gora8r4dBrf58+dFXb/MvEW7SNQszrUnbBXKuKsYQ+Ua2CqCFwfCf4umwt9NC3YUC
- JTE5RVmydSQgSPKyPrKm8tV3t/hIUbnEYhmJsQvhtwdMqj0/iojzzrdU+QQl1yQTCH
- XuTfieF7QYQtraHr6LmOPPCdJjo4jXfQ1Xv8RUb+V7Ih5zOXF085eD+L+6oNifPCVw
- 8zIaydstIGIJj+OSqz1DiMPau0sl8rRGOvsIdwv8RxblQHVSgorcAERpuhXTKEXmGA
- m8vIOTXmRlrf7yTOJaMDH3+JmkKyKm71CvU2P8Qj+p3HpMfaBcdCUbz4Hqs/h7+SQq
- zdvctQSqUKoTQ==
+ b=S/AyFNasjrdw7OUOOjI8R/0D1g0dSR6C/SNGttauzwSkMfzv+GbX50ZcvbYydVw9U
+ RA6v+pf1hZExKWXKrZldIMVG5POdi0rXZ/ZZlmyb6E4Ctjo2qlARzths8ubYKVs2Om
+ GSKcvlh5aIjiNt0zMmXMRBNIOTdhauDGjXlQZSBbtjya++ZLtroNW/zYFyd5x3jCn0
+ skdP53nDhqS36fI1yC36s+TSRESZlrp7tVY02+nxOgoPGJs0acKq5OVJC6z25YrZFz
+ Y3RoqzJ0Y6Xiu9DFjLSWn1ndqKzPYEvp6f34D0awuoSVZlmuIO2X/jM2qECt38n6yY
+ 3/fQC07Q2GbwA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 01/10] drm/xe/uc_fw: Allow re-initializing firmware
+Subject: Re: [PATCH v10 07/10] drm/xe/pm: Introduce xe_device_suspend/resume()
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260821112436.545405-2-raag.jadav@intel.com>
+In-Reply-To: <20260821112436.545405-8-raag.jadav@intel.com>
 References: <20260821112436.545405-1-raag.jadav@intel.com>
- <20260821112436.545405-2-raag.jadav@intel.com>
+ <20260821112436.545405-8-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 21 Aug 2026 11:41:39 +0000
-Message-Id: <20260821114140.67AF61F000E9@smtp.kernel.org>
+Date: Fri, 21 Aug 2026 11:43:05 +0000
+Message-Id: <20260821114306.23BEF1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,118 +56,175 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
 
 New issues:
-- [High] xe_uc_fw_reinit() lacks an IS_SRIOV_VF() check, causing VF firmwar=
-e state corruption and potential NULL pointer dereference.
+- [Critical] External pinned BOs lose their DMA mappings during FLR suspend=
+ but are not unbound from GPU VMs and not restored on FLR resume, leading t=
+o an exploitable DMA UAF.
+- [High] Deadlock in FLR prepare path due to waiting for migration jobs aft=
+er disabling interrupts and stopping GuC.
 
 Pre-existing issues:
-- [High] Integer overflow in parse_gsc_layout() leads to out-of-bounds read=
- and potential kernel panic.
+- [High] Incomplete rollback on GT suspend failure leaves device in an inco=
+nsistent state.
 --
 
---- Patch [1]: [PATCH v10 01/10] drm/xe/uc_fw: Allow re-initializing firmwa=
-re ---
-commit 0789aa0c08f22f9ec32c3de1bbde4b80f0984ba2
+--- Patch [7]: [PATCH v10 07/10] drm/xe/pm: Introduce xe_device_suspend/res=
+ume() ---
+commit ee6e16bf1e226eef6a606f3d7137d9fbf63f7e82
 Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/xe/uc_fw: Allow re-initializing firmware
+drm/xe/pm: Introduce xe_device_suspend/resume()
+   =20
+PCIe FLR prepare/re-initialization flows pretty much reflect system
+suspend/resume flows with a few notable exceptions. Repurpose existing
+helpers for PCIe FLR with an explicit flag to distinguish between both
+flows.
 
-This commit introduces xe_uc_fw_reinit() to support re-initializing
-firmware without reloading the driver. It copies the firmware back
-to its buffer object and marks it as loadable after events like
-PCIe FLR.
-
-> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 396d02eb2af83..012ba47660982 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
 [ ... ]
-> +/**
-> + * xe_uc_fw_reinit() - Re-initialize uC firmware into its bo
-> + * @uc_fw: uC firmware
-> + *
-> + * Returns: 0 on success, negative error code otherwise.
-> + */
-> +int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw)
+> +int xe_device_suspend(struct xe_device *xe, bool flr)
 > +{
-> +	struct xe_device *xe =3D uc_fw_to_xe(uc_fw);
-> +	struct xe_uc_fw_version old_fw, new_fw;
-> +	const struct firmware *fw =3D NULL;
+> +	struct xe_gt *gt;
+> +	u8 id;
 > +	int err;
 > +
-> +	/* Make sure the status was cleared the last time we reset the uc */
-> +	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
+> +	err =3D xe_pxp_pm_suspend(xe->pxp);
+> +	if (err)
+> +		return err;
 > +
-> +	/* We shouldn't be here for the firmware which wasn't available */
-> +	if (!xe_uc_fw_is_available(uc_fw))
-> +		return -ENOEXEC;
+> +	xe_late_bind_wait_for_worker_completion(&xe->late_bind);
+> +
+> +	for_each_gt(gt, xe, id)
+> +		xe_gt_suspend_prepare(gt);
+> +
+> +	if (flr) {
+> +		for_each_gt(gt, xe, id)
+> +			xe_gt_flr_prepare(gt);
+> +	} else {
+> +		xe_display_pm_suspend(xe);
+> +
+> +		/* FIXME: Super racey... */
+> +		err =3D xe_bo_evict_all(xe);
+> +		if (err)
+> +			goto err_display;
+> +
+> +		for_each_gt(gt, xe, id) {
+> +			err =3D xe_gt_suspend(gt);
+> +			if (err)
+> +				goto err_display;
+> +		}
+> +	}
+> +
+> +	xe_irq_suspend(xe);
+> +
+> +	if (flr) {
+> +		/* TODO: Drop all user bos */
+> +		xe_bo_pci_dev_remove_pinned(xe);
 
 [Severity: High]
-Does this code safely handle SR-IOV Virtual Functions (VFs)?
+Can this cause a deadlock during the PCIe FLR prepare sequence?
 
-On VFs, firmware loading is handled by the PF, so the VF initializes its
-firmware state with the dummy path "Loaded by PF" and skips allocating
-uc_fw->bo. Since the VF reaches the XE_UC_FIRMWARE_PRELOADED status, the
-xe_uc_fw_is_available() check above will pass.
+When flr is true, xe_gt_flr_prepare() stops GuC scheduling. The
+guc_exec_queue_stop() function explicitly skips banning and triggering
+cleanup for kernel queues like the migrate engine, leaving pending migration
+jobs in the scheduler.
 
-Because there is no IS_SRIOV_VF() check here, this proceeds to request
-the dummy firmware path. If that request fails, the VF's status is
-incorrectly overwritten to XE_UC_FIRMWARE_INIT_FAIL.
+Later we call xe_irq_suspend() which disables hardware interrupts. Then
+xe_bo_pci_dev_remove_pinned() calls xe_tile_migrate_wait(), performing a
+blocking dma_fence_wait() on the migrate engine's last job fence.
 
-If a file named "Loaded by PF" actually exists, the code proceeds to call
-uc_fw_reinit():
-
-drivers/gpu/drm/xe/xe_uc_fw.c:uc_fw_reinit() {
-    ...
-    xe_map_memcpy_to(xe, &uc_fw->bo->vmap, 0, data, uc_fw->size);
-    ...
-}
-
-Since uc_fw->bo is NULL on VFs, will this lead to a NULL pointer
-dereference?
+Since GuC is stopped, interrupts are disabled, and TDR wasn't queued, will
+the fence ever signal?
 
 > +
-> +	old_fw =3D uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+> +		unmap_mapping_range(xe->drm.anon_inode->i_mapping, 0, 0, 1);
+> +	} else {
+> +		xe_display_pm_suspend_late(xe);
 > +
-> +	err =3D firmware_request_nowarn(&fw, uc_fw->path, xe->drm.dev);
-> +	if (err)
-> +		goto init_fail;
+> +		xe_i2c_pm_suspend(xe);
+> +	}
 > +
-> +	err =3D parse_headers(uc_fw, fw);
+> +	return 0;
+> +
+> +err_display:
+> +	xe_display_pm_resume(xe);
+> +	xe_pxp_pm_resume(xe->pxp);
+> +	return err;
+> +}
 
 [Severity: High]
-This isn't a bug introduced by this patch, but could the firmware parsing
-called here be vulnerable to an integer overflow?
+This is a pre-existing issue, but does this error path leave the system in =
+an
+inconsistent state if we fail during system suspend?
 
-Inside parse_headers(), when handling GSC firmware, it calls
-parse_gsc_layout() which performs the following bounds check:
+If xe_bo_evict_all() fails (e.g., due to system memory pressure), or
+xe_gt_suspend() fails on a subsequent GT, we jump to err_display.
 
-drivers/gpu/drm/xe/xe_uc_fw.c:parse_gsc_layout() {
-    ...
-    min_size =3D layout->boot1.offset + layout->boot1.size;
-    if (size < min_size) {
-        ...
-        return -ENODATA;
-    }
-    ...
-    bpdt_header =3D data + layout->boot1.offset;
-    if (bpdt_header->signature !=3D GSC_BPDT_HEADER_SIGNATURE) {
-    ...
-}
+The error path only resumes the display and PXP, but doesn't resume the alr=
+eady
+suspended GTs, undo xe_gt_suspend_prepare(), or restore the evicted BOs. Co=
+uld
+this leave the device permanently broken until a reboot?
 
-Since both layout->boot1.offset and layout->boot1.size are 32-bit
-unsigned integers, can a crafted firmware cause their sum to wrap around?
-
-If they wrap before being assigned to the 64-bit min_size, the bounds
-check would be bypassed, potentially resulting in an out-of-bounds read
-when dereferencing bpdt_header->signature.
-
-> +	if (err)
-> +		goto restore_old;
 [ ... ]
+> +int xe_device_resume(struct xe_device *xe, bool flr)
+> +{
+[ ... ]
+> +	if (flr) {
+> +		if (err)
+> +			return err;
+> +	} else {
+> +		/*
+> +		 * Try to bring up display before bailing from GT resume failure,
+> +		 * so we don't leave the user clueless with a blank screen.
+> +		 */
+> +		xe_display_pm_resume(xe);
+> +		if (err)
+> +			return err;
+> +
+> +		err =3D xe_bo_restore_late(xe);
+
+[Severity: Critical]
+Does skipping xe_bo_restore_late() during FLR resume create an IOMMU bypass=
+ or
+Use-After-Free risk?
+
+During FLR suspend, xe_bo_pci_dev_remove_pinned() unmaps DMA for external B=
+Os
+(dma-bufs), but the GPU page tables (which may reside in system memory and
+survive FLR) are not updated to remove the old IOVAs.
+
+When resuming from FLR, we take the "flr =3D=3D true" branch above and skip
+xe_bo_restore_late(). Since we skip remapping the external BOs, are those B=
+Os
+left unmapped while their old IOVAs remain in the surviving GPU VMs?
+
+If userspace submits jobs to the old GPU VMs, and the GPU accesses the unma=
+pped
+IOVAs, could the GPU silently corrupt or exfiltrate memory if the IOMMU has
+reallocated those IOVAs to another device or process?
+
+> +		if (err)
+> +			return err;
+> +
+> +		if (IS_VF_CCS_READY(xe))
+> +			xe_sriov_vf_ccs_register_context(xe);
+> +	}
+> +
+> +	xe_pxp_pm_resume(xe->pxp);
+> +
+> +	xe_late_bind_fw_load(&xe->late_bind);
+> +
+> +	return 0;
+> +}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260821112436.5454=
-05-1-raag.jadav@intel.com?part=3D1
+05-1-raag.jadav@intel.com?part=3D7
