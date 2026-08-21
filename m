@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2121DC5DF8C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69E65C5DF7D
 	for <intel-xe@archiver.kernel.org>; Fri, 21 Aug 2026 20:07:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4A6C10E34F;
-	Fri, 21 Aug 2026 20:07:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F7A110F3BF;
+	Fri, 21 Aug 2026 20:07:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQbdoAV6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQqewQFl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB6510F3BA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59CE010E34F
  for <intel-xe@lists.freedesktop.org>; Fri, 21 Aug 2026 20:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1787342858; x=1818878858;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qGf01sVL7H38UY65rVgW8OKfyOSW9a3399ykIlgBrzo=;
- b=AQbdoAV6X9u8/i6eeSIPFJex4kVDNM5XJFOkLImxRrfM26xSOsjkBOm0
- w6rbYfdfkUCq/ggjrdC2guNwFGDc17Wc+z2Q2eIOnRiTiu9Tfpr1oJjKK
- gY2Lc536Um5i92oiL6Nnc7rBX08GBe8DQoJMgMCyj9g9RkMCo6Oy8qppm
- Qoe9I7cNm5mP0zvtgCqojc6XauL5kI+TDKUDwXCOq7mCVteXDt5oLVMry
- XMHfZmTkrO/YWc0FM7WDQn3KzAdW0kWnRNPkQyJtG6HSfNO6g5S1N0GT0
- AXBeW65nGNqtZQj3RnjRd7KXgRrJAXU7QFJnpE3kKqMSJcYPBjUB7NJQd g==;
-X-CSE-ConnectionGUID: jdbt5jD0SeCgvTkdQQ3Tag==
-X-CSE-MsgGUID: CZ54eqp5T02v6o7J0KsOeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11882"; a="87957214"
-X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="87957214"
+ bh=v6MI65bDN4t3gvXgr2BIb8fDhXYWBqx061zRItjJn20=;
+ b=XQqewQFlp+sZtwZjZoxwXeKM7gBdgUf33MHyA3nah4FkwVnZtAH5MClb
+ VQ8KAA9WUJoONZNg7V16blKlvL/4iGBOCxfXnEu8PDG++eJjLMsaaR7LQ
+ mpQ59lQsSJhw78apZq4FJcTMNvz9y70hDp+QIH5pgAm05iwv0Kdh2Y4vy
+ Mvyq9qMsKepe2jAEr+1IovwpgY5tIBuUlKhtTLVBJqzXLqUCIwE/s7Iof
+ 0z7dfYwFVE8watjUlSyTDms6X9V3CjLLPkTLAEk1vWgXUMJSKwm/vu9SS
+ ZT/qRXwzq3V7XktlkoZz8r1kpRZoCEMVBRdrLreOSLnlWZNKRjwr7i0OS Q==;
+X-CSE-ConnectionGUID: IBQzqM05QIyYLrcZkh4zEw==
+X-CSE-MsgGUID: g4XRsuyYRi+f8rWPPo0Ywg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11882"; a="87957215"
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="87957215"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Aug 2026 13:07:37 -0700
-X-CSE-ConnectionGUID: 2VZiyJqISyWIchB0H/18fQ==
-X-CSE-MsgGUID: rZJ8m6e3SAmS6tCpiiYa1w==
+X-CSE-ConnectionGUID: 4r/bo8TySkmSX13y3yLDQg==
+X-CSE-MsgGUID: Gq1eVsdnSUSRRmGuqsQMQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="266491044"
+X-IronPort-AV: E=Sophos;i="6.25,235,1779174000"; d="scan'208";a="266491047"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Aug 2026 13:07:38 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 1/3] drm/xe/xe_oa: Clear status only if relevant bits are set
-Date: Fri, 21 Aug 2026 13:07:30 -0700
-Message-ID: <20260821200728.1048699-6-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 2/3] drm/xe/xe_oa: Avoid checking and setting fields in the OA
+ report
+Date: Fri, 21 Aug 2026 13:07:31 -0700
+Message-ID: <20260821200728.1048699-7-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260821200728.1048699-5-umesh.nerlige.ramappa@intel.com>
 References: <20260821200728.1048699-5-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,44 +67,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-OA monitors only a few bits in the status field. The current
-read-modify-write will write to the MMIO even if none of the relevant
-bits are set. Clear the status only if relevant bits are set.
+OA unit updates the HW TAIL register to indicate that a new report is
+available, although it does not guarantee that the report is visible in
+memory. Also the currently running workload contributes to some latency
+in seeing this report in memory. In the past we would set some fields in
+the OA report and check if the fields are populated to non-zero values
+by the HW, but this is no longer sufficient since some parts of the
+report may land out of order under heavy workloads. Drop this WA and add
+a new logic in subsequent patches to return updated reports to the user.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
-v2: Move comment (Ashutosh)
----
- drivers/gpu/drm/xe/xe_oa.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 79 +-------------------------------------
+ 1 file changed, 2 insertions(+), 77 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index b460fcdfca15..024940478c06 100644
+index 024940478c06..d7647f37ab02 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -542,15 +542,17 @@ static int xe_oa_wait_unlocked(struct xe_oa_stream *stream)
- static int __xe_oa_read(struct xe_oa_stream *stream, char __user *buf,
- 			size_t count, size_t *offset)
- {
--	/* Only clear our bits to avoid side-effects */
--	stream->oa_status = xe_mmio_rmw32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
--					  OASTATUS_RELEVANT_BITS, 0);
-+	stream->oa_status = xe_mmio_read32(&stream->gt->mmio, __oa_regs(stream)->oa_status);
- 	/*
- 	 * Signal to userspace that there is non-zero OA status to read via
- 	 * @DRM_XE_OBSERVATION_IOCTL_STATUS observation stream fd ioctl
- 	 */
--	if (stream->oa_status & OASTATUS_RELEVANT_BITS)
-+	if (stream->oa_status & OASTATUS_RELEVANT_BITS) {
-+		/* Only clear our bits to avoid side-effects */
-+		xe_mmio_write32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
-+				stream->oa_status & ~OASTATUS_RELEVANT_BITS);
- 		return -EIO;
-+	}
+@@ -216,42 +216,6 @@ static u32 xe_oa_hw_tail_read(struct xe_oa_stream *stream)
+ #define oa_report_header_64bit(__s) \
+ 	((__s)->oa_buffer.format->header == HDR_64_BIT)
  
- 	return xe_oa_append_reports(stream, buf, count, offset);
- }
+-static u64 oa_report_id(struct xe_oa_stream *stream, u32 report_offset)
+-{
+-	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+-
+-	return oa_report_header_64bit(stream) ?
+-		xe_map_rd(stream->oa->xe, map, report_offset, u64) :
+-		xe_map_rd(stream->oa->xe, map, report_offset, u32);
+-}
+-
+-static void oa_report_id_clear(struct xe_oa_stream *stream, u32 report_offset)
+-{
+-	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+-
+-	oa_report_header_64bit(stream) ?
+-		xe_map_wr(stream->oa->xe, map, report_offset, u64, 0) :
+-		xe_map_wr(stream->oa->xe, map, report_offset, u32, 0);
+-}
+-
+-static u64 oa_timestamp(struct xe_oa_stream *stream, u32 report_offset)
+-{
+-	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+-
+-	return oa_report_header_64bit(stream) ?
+-		xe_map_rd(stream->oa->xe, map, report_offset + 8, u64) :
+-		xe_map_rd(stream->oa->xe, map, report_offset + 4, u32);
+-}
+-
+-static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 report_offset)
+-{
+-	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+-
+-	oa_report_header_64bit(stream) ?
+-		xe_map_wr(stream->oa->xe, map, report_offset + 8, u64, 0) :
+-		xe_map_wr(stream->oa->xe, map, report_offset + 4, u32, 0);
+-}
+-
+ static bool mert_wa_14026633728(struct xe_oa_stream *s)
+ {
+ 	return s->oa_unit->type == DRM_XE_OA_UNIT_TYPE_MERT && XE_DEVICE_WA(s->oa->xe, 14026633728);
+@@ -260,7 +224,7 @@ static bool mert_wa_14026633728(struct xe_oa_stream *s)
+ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+ {
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+-	u32 tail, hw_tail, partial_report_size, available;
++	u32 hw_tail, partial_report_size, available;
+ 	int report_size = stream->oa_buffer.format->size;
+ 	unsigned long flags;
+ 
+@@ -280,29 +244,7 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+ 	/* Subtract partial amount off the tail */
+ 	hw_tail = xe_oa_circ_diff(stream, hw_tail, partial_report_size);
+ 
+-	tail = hw_tail;
+-
+-	/*
+-	 * Walk the stream backward until we find a report with report id and timestamp
+-	 * not 0. We can't tell whether a report has fully landed in memory before the
+-	 * report id and timestamp of the following report have landed.
+-	 *
+-	 * This is assuming that the writes of the OA unit land in memory in the order
+-	 * they were written.  If not : (╯°□°）╯︵ ┻━┻
+-	 */
+-	while (xe_oa_circ_diff(stream, tail, stream->oa_buffer.tail) >= report_size) {
+-		if (oa_report_id(stream, tail) || oa_timestamp(stream, tail))
+-			break;
+-
+-		tail = xe_oa_circ_diff(stream, tail, report_size);
+-	}
+-
+-	if (xe_oa_circ_diff(stream, hw_tail, tail) > report_size)
+-		drm_dbg(&stream->oa->xe->drm,
+-			"unlanded report(s) head=0x%x tail=0x%x hw_tail=0x%x\n",
+-			stream->oa_buffer.head, tail, hw_tail);
+-
+-	stream->oa_buffer.tail = tail;
++	stream->oa_buffer.tail = hw_tail;
+ 
+ 	available = xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->oa_buffer.head);
+ 	stream->pollin = available >= stream->wait_num_reports * report_size;
+@@ -387,23 +329,6 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 		ret = xe_oa_append_report(stream, buf, count, offset, head);
+ 		if (ret)
+ 			break;
+-
+-		if (!(stream->oa_buffer.circ_size % report_size)) {
+-			/* Clear out report id and timestamp to detect unlanded reports */
+-			oa_report_id_clear(stream, head);
+-			oa_timestamp_clear(stream, head);
+-		} else {
+-			struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+-			u32 part = stream->oa_buffer.circ_size - head;
+-
+-			/* Zero out the entire report */
+-			if (report_size <= part) {
+-				xe_map_memset(stream->oa->xe, map, head, 0, report_size);
+-			} else {
+-				xe_map_memset(stream->oa->xe, map, head, 0, part);
+-				xe_map_memset(stream->oa->xe, map, 0, 0, report_size - part);
+-			}
+-		}
+ 	}
+ 
+ 	if (start_offset != *offset) {
 -- 
 2.51.0
 
