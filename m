@@ -4,64 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E246BC5DF97
-	for <intel-xe@archiver.kernel.org>; Sat, 22 Aug 2026 13:06:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59E4EC5DF8C
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Aug 2026 13:06:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B36F10E3FE;
-	Sat, 22 Aug 2026 13:06:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11DF610E3F9;
+	Sat, 22 Aug 2026 13:06:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q/xmcby1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ni98Z3hU";
 	dkim-atps=neutral
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42A5B10E3C9
- for <intel-xe@lists.freedesktop.org>; Sat, 22 Aug 2026 08:54:11 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-2d032846c95so22385335ad.1
- for <intel-xe@lists.freedesktop.org>; Sat, 22 Aug 2026 01:54:11 -0700 (PDT)
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
+ [209.85.214.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2933E10E3C9
+ for <intel-xe@lists.freedesktop.org>; Sat, 22 Aug 2026 08:53:16 +0000 (UTC)
+Received: by mail-pl1-f174.google.com with SMTP id
+ d9443c01a7336-2caea3f742bso29295595ad.0
+ for <intel-xe@lists.freedesktop.org>; Sat, 22 Aug 2026 01:53:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1787388851; x=1787993651; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=XSAtM60aX5eEvOcf6pdX1RWdmcuk2ZJPzvzzbZMEPQw=;
- b=Q/xmcby1Rci6tpYcv/xHgEvaQGnL4EbtGO94rQYeSp6hzQA5G4E44+Z6gUtBtPY1lD
- yW2Mh6nA+/A0ILm7PoEIuh+CXpW3NHwCDBDxyNhqKzbq9BLaLUAo3CMAAPPeU8bhYKc6
- oYiX6n2Be3MI03JQ3Wa2RGSZk2IHknzdWxUzouX+KKwpXnPPwSCz8WosXcB6RJ8WqvtQ
- DYore1NzXF3xf+IqO0OKBk8B64EHCbEz2TWDd/9SlIem0g5X0XVvhlB3L+Q5lt5+x3Y6
- +g4IdZ925Fwaz+Uobi4/pXF1jY9eK9KhfCJKJfHKNacxCccr3f14h0KARX20ikk3Euh0
- dMYw==
+ d=gmail.com; s=20251104; t=1787388795; x=1787993595; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=bR7LrEDWYTPsnuOnqVtcGLotVp78B6n1a5iwn0JbEJk=;
+ b=Ni98Z3hUL2S7vC+MoNYCwvw4fc9g5QNP/dpsMgwZ01nYscudyfX7itnx4fLl7a8wwJ
+ wEkMztBxLiHhqW0bkW1zLsHEfVWZGjKP/+U3jiffyeOyy/bR+FuEE8W67Oj2RXwHq3cM
+ +qgKi4uI3/opBXbApcAcPxjb7hKGte02JjcE57ZZPQwC4toKhYbo/qwH8pWW2P1GvcUf
+ BGgdJR7bcBBPMiE8o3lxARp99lJGtGcbhHG1U4pYVRgg2DpOaRweJRvmr1reVrVhy5XS
+ qiC7wQL1icq7gknWB7VO989grHKTCfX+yRZKYE7T/YcFpdw3PmvEd+WRQmaeH46muGrE
+ rJ3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1787388851; x=1787993651;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=XSAtM60aX5eEvOcf6pdX1RWdmcuk2ZJPzvzzbZMEPQw=;
- b=d3Zan09lGYRbSxdQ3Iv1GVKYF6BZH+4fYnMh0bddl7z1nDvRvcAJMS/MehvSg+2IyB
- rmEoo7lk2JgJcIZVcVd62ZD6UhY0uhhLc+T1B8McZVPoWC+lPqBiq62mR7rg143zUQJf
- YyqV25yW/fPZDjLgRPKmZ2ZoC8tsQopkQ1bGHU3Mw5wJzwwzWlTH4y2j5YBynBzTEO4h
- lsnKQUzOP1k2EaHwrHk5QpqliL5QMd5Xo32D2/PGhHxW+n9yHYgfQYw9DKhtips2Cv2C
- uipT7SJGeCvpbL82UiPiRMeNlo8umBg3YEFemvOnOjIRgJXWIvzPbW7E0r0k0+5GsBOq
- jIxQ==
-X-Gm-Message-State: AFuF++lt7dAda55+AB6iEcWYXnuIEHaqUKXBANPJBPHDAJQ2KhfAbhBu
- +GOj10tJAfGb49UaWhUyJ1NCoVNeWev2qZrY1zWB3c9TSSdfHwdEl6rlg2SCg15G
-X-Gm-Gg: AR+sD13zOWMSUpY89+h84xL/i16saT6GnM/Vou4GJf0K8oDrGmU09jUO1eyFSRdj2DJ
- O4FToPG/PzoePS2qUuAZ0wACjzuJnLbj87NlU7huod/aAlDiADn6OaDw/uS6e2rlwcZdnzql0zy
- BPuH7TTY193MOH6DgYXcxXai87j/GO9F+2ibXTG2GXQV4Y/Qc0/B3wR2jZv3hqU/1dc3Vzs8uAg
- 6NbfTH0pfr1j1HJEkHgLQhNIEyicT5QAeGOecgi7pWZHWfpqt8EchbCFxz5XYOLfpNGtee+278S
- iWIuehFmDKgM9oliZRGF2kMH9Zc75+IoTsnUy3r80o0WysrNDrY6WU5Ci1iwUSweRTDixBoRFo0
- 9r01kDwzkThE1iKYP/UgVte5S89AnslL5ElAkkxNyw/k+asM1MoeNibuzmqKCZChKgVNwt29Yhv
- ZR4srxalAh5Db2EMiTbjlf1U0CHjmba3aDcArV5j37+xE5v6rbma7wzk/7/7MhHrbJOMu5LzbCS
- Yrgmhz3q4PAsQ==
-X-Received: by 2002:a17:903:1a6f:b0:2cc:aa38:4df3 with SMTP id
- d9443c01a7336-2d64b1851fdmr202120735ad.13.1787388850676; 
- Sat, 22 Aug 2026 01:54:10 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1787388795; x=1787993595;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=bR7LrEDWYTPsnuOnqVtcGLotVp78B6n1a5iwn0JbEJk=;
+ b=DCzkmcg6Rsp77h/vAOlJuTFBPdsM+xFlXG9CL4wWD1u0xZUjC3/9y6K+IHpaCPxvM9
+ xLppPqk4h+M4exjeEkPcAOkGaIIIzMWXC1VWC+Wwgr9pkbwgruScFS2r2CcHeBNO1mvH
+ jgB4stfSgeV2lG6e0mpEy2Q5/3kCYPqKZXhiVDTIFMQcOI6ngUUZZtiHHmk40bIVX2ra
+ DXjKrDch7iJR2bclh9bP15xTTU3AWbd1fJQSoT2dHIZhHzOYOMph8Ilk4e4p6JPrQrKm
+ PhxboRATQtdq4GcmEPuMpoFZ6bQMFJA+TRKHugjshQCrqTBoaA9qcwte3SQs/6VAby3R
+ 0uVA==
+X-Gm-Message-State: AFuF++lv7+iC1XWfuUmROCx1IaGxH0YIXQrxrx3ZwTotk/neLoRr/MRP
+ DQiGHZW/Qx6D6m8k6uV2bZ5f6WtTfRwvUSoLNBLScXRFydNnAEbZDc6yP9FQud59
+X-Gm-Gg: AR+sD13HjfdwBs6OaEfa2Xf87rYqDNtYgofU8IPRQfsH5wtYvSqWmUBvEW5R2WGtq7x
+ 5mbyJXFBz04ioetCs8dPJaVcZDFnd9mVA1cC69V/LU0YbY0CaILaol1DcIP/e3QdiVRhhXeXyX7
+ +acefXwpzm4JIqn1mqnztfTwwJG1rRbMaGwP/TtpKviuNGlAj1aE9l8kZouQDDVImVMuLIM1/OL
+ 0onlZnsP8MJzFT5ravp/8ya0AfqjtHLN1HI/RnUncYKQhgmWd2SvhjL9gfi1x2DpAc01V8YwZgd
+ pHowVn7YcA/S8oxD+3K9NK4cVaxONAVeU6NRPtiUNj6JRM9oVlruJxZqsEUZDtpoFpTXiACmNg+
+ zbXzkivygVYaIflibU1871YGI8CCAyJM5UJscMtKAkYQGv4gL2UWKm+HpOHX6G7LB8IFSiP18n5
+ ZuF4buip3xcQuFsogYM+lkv5bCzFsxeBtLK2kYtxvzv8sscd0DUceDgIvYQyJB1en0JukCWHPul
+ a68RpF3kONxOGs=
+X-Received: by 2002:a17:902:ec86:b0:2c6:9f66:d573 with SMTP id
+ d9443c01a7336-2d64ae3ac9emr225062945ad.2.1787388795383; 
+ Sat, 22 Aug 2026 01:53:15 -0700 (PDT)
 Received: from mcp-node.. ([240d:f:fe4:c00:e9d:92ff:fe83:dbda])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2d67676170fsm2982575ad.6.2026.08.22.01.54.08
+ d9443c01a7336-2d67676170fsm2982575ad.6.2026.08.22.01.53.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 22 Aug 2026 01:54:10 -0700 (PDT)
+ Sat, 22 Aug 2026 01:53:14 -0700 (PDT)
 From: Yuta Higuchi <avablaba@gmail.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
@@ -69,15 +67,12 @@ Cc: Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 1/1] drm/xe/hwmon: wake render domain for BMG package
+Subject: [RFC PATCH 0/1] drm/xe/hwmon: wake render domain for BMG package
  temperature
-Date: Sat, 22 Aug 2026 17:52:03 +0900
-Message-ID: <8215b921cf29322ee2a434b3a772756e56c8d03e.1787385860.git.avablaba@gmail.com>
+Date: Sat, 22 Aug 2026 17:52:02 +0900
+Message-ID: <cover.1787385860.git.avablaba@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1787385860.git.avablaba@gmail.com>
-References: <cover.1787385860.git.avablaba@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 22 Aug 2026 13:06:44 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -94,138 +89,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On one Arc Pro B70 (8086:e223), the BMG package-temperature value
-exposed as temp2_input updates continuously while the GPU is active. After
-the final workload closes, it emits a short snapshot burst and then remains
-stale for more than 200 seconds while VRAM, mctrl, PCIe, fan, energy, and
-runtime state continue to change. An independent PID reading the same sysfs
-node sees the same result, excluding the collector as the source of the
-staleness.
+Hello,
 
-The package-temperature read currently reaches BMG_PACKAGE_TEMPERATURE
-(0x138434) through xe_mmio_read32() without an explicit forcewake
-reference. Experiments on this Arc Pro B70 isolated the observable
-dependency as follows:
+This RFC addresses a reproducible stale package-temperature value on one In=
+tel
+Arc Pro B70 (8086:e223). During GPU activity, temp2_input changes continuou=
+sly.
+After the workload exits, it changes for only a short lifecycle burst and t=
+hen
+remains fixed for more than 200 seconds during idle cooldown. Other telemet=
+ry,
+including VRAM, mctrl, PCIe, fan, energy, and runtime state, continues to m=
+ove.
+An independent PID reading the same sysfs node sees the same result.
+
+The symptom reproduces after cold boot, without OpenVINO, with a standard
+clpeak workload, and on Linux 6.17, 7.0, 7.1.5, and 7.2-rc7 using the same
+official BMG firmware. Holding runtime PM active alone did not restore idle
+updates, and a controlled Xe reprobe did not restore continuous updates.
+
+The tested firmware is byte-identical after decompression to official
+linux-firmware main:
+
+- DMC 2.6, content SHA-256
+  76e3ec6ea3a53ce727e43b84f5ea14c55400a2d118dac356d4e12a3cfac06b4d;
+- GuC 70.72.1, content SHA-256
+  de81c75f46a127c33cd59f604d800e9ffc7ed3495967ba0d8767cd6985ab398b;
+- HuC 8.2.10, content SHA-256
+  747452aa8c4ed7760c68a80f3d913eafde9304d6f4db481e3f2aebb0a818bf15.
+
+Source path and causal isolation
+--------------------------------
+
+For BMG, temp2_input reaches BMG_PACKAGE_TEMPERATURE (0x138434) through
+xe_mmio_read32(). On the tested B70:
 
 - stock forcewake_all kept package temperature updating;
-- a persistent main-GT XE_FW_RENDER reference kept it updating in three of
-  three independent rounds;
-- releasing that reference was followed by renewed staleness in all three
-  rounds;
+- main-GT XE_FW_RENDER alone was sufficient in 3/3 independent persistent
+  holder rounds;
+- releasing the RENDER holder was followed immediately by renewed staleness=
+ in
+  3/3 rounds;
 - main-GT XE_FW_GT alone was negative in the single persistent-holder round
   tested;
-- transient XE_FW_RENDER acquisition produced a fresh value in 1.17 to
-  2.172 ms; and
-- a 20 ms RENDER hold with no sysfs reads yielded a fresh first read.
+- a transient RENDER acquisition produced the first fresh publication after
+  1.17 to 2.172 ms; and
+- after a 20 ms RENDER hold with no sysfs reads, the first package-temperat=
+ure
+  read was already fresh.
 
-Acquire the main GT render forcewake domain around BMG package-temperature
-reads, allow 3.0 to 3.5 ms for the observed publication to settle, read the
-register, and release the reference automatically. The delay is empirical,
-not an architectural contract. FORCEWAKE_ACK_RENDER only acknowledges the
-wake domain; no public temperature-producer-ready indication was found.
-These experiments do not establish that register 0x138434 architecturally
-belongs to XE_FW_RENDER or identify whether PCODE, GuC, or other firmware
-produces the value.
+These observations support a wake/publication dependency rather than a
+collector or sysfs-reader problem. They do not establish that register
+0x138434 architecturally belongs to XE_FW_RENDER, nor whether PCODE, GuC, or
+other firmware produces a shadow value.
 
-Keep the change limited to the BMG package-temperature channel. Runtime
-validation was performed on one Arc Pro B70. XE_FW_RENDER was
-single-domain sufficient among the directly compared states, but media,
-GSC, and other individual forcewake domains were not tested after that
-positive result. This does not claim that RENDER is the unique minimum for
-all BMG devices or steppings.
+Proposed RFC behavior
+---------------------
 
-The equivalent Ubuntu 7.0 diagnostic implementation passed three
-independent 180-second cooldown rounds; 1, 5, 10, and 30 second read
-cadences; four concurrent readers; a 30-minute run; OpenVINO workloads;
-suspend/resume; and Xe unbind/rebind. The directly tested drm-tip
-submission candidate, based on 75140c4ee9ad, additionally passed one
-clpeak/dual-reader/180-second-cooldown smoke and one bounded OpenVINO
-two-model smoke. No GPU hang, reset, fault, wedge, or kernel taint
-occurred.
+For the BMG package-temperature channel only, acquire the main GT
+XE_FW_RENDER domain, wait 3.0 to 3.5 ms, read the mapped package-temperature
+register, and release the reference automatically. Forcewake acquisition
+failure is returned as -ETIMEDOUT, following existing Xe forcewake-ACK time=
+out
+precedent.
 
-Fixes: dac328dea701 ("drm/xe/hwmon: expose package and vram temperature")
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7805
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4560
-Assisted-by: OpenAI Codex:gpt-5.6-sol
-Assisted-by: Claude Code:claude-fable-5
-Assisted-by: ChatGPT:GPT-5.6 Sol Pro
-Signed-off-by: Yuta Higuchi <avablaba@gmail.com>
----
+The 3.0 to 3.5 ms settling interval is empirical. The maximum fresh transit=
+ion
+latency observed in the transient tests was 2.172 ms. FORCEWAKE_ACK_RENDER =
+is a
+wake-domain acknowledgement; it has not been shown to be a temperature
+producer-ready acknowledgement. The fixed delay is not presented as an
+architectural contract.
+
+Scope and known limitations
+---------------------------
+
+Runtime validation was performed on one Arc Pro B70 (8086:e223). The RFC is
+scoped to Battlemage because the affected package-temperature path is
+BMG-specific; guidance on applicability to other BMG devices and steppings =
+is
+welcome.
+
+XE_FW_RENDER was single-domain sufficient among the directly compared state=
+s.
+XE_FW_GT alone was tested once and was negative. Media, GSC, and other
+individual forcewake domains were not tested after the RENDER-only positive=
+ was
+established. This RFC does not claim that RENDER is the unique minimum among
+every possible domain combination.
+
+Validation
+----------
+
+Extensive runtime validation was performed with the equivalent diagnostic
+implementation on Ubuntu 7.0:
+
+- three independent 180-second cooldown rounds;
+- 1, 5, 10, and 30 second read cadences;
+- four concurrent readers (240/240 successful reads);
+- 30 minutes of continuous operation;
+- OpenVINO ruri-v3 and bge-m3 requests;
+- suspend/resume; and
+- controlled Xe unbind/rebind.
+
+No GPU hang, reset, fault, or wedge occurred. Persistent RENDER forcewake h=
+ad a
+large power cost, whereas read-scoped references allowed GT idle residency =
+to
+advance. The displayed cur_freq remained 2800 MHz while act_freq was zero a=
+nd
+GT C6/idle residency progressed, so cur_freq was classified as telemetry st=
+ate
+rather than evidence of a physically busy GT.
+
+The rebased current-tree candidate was additionally smoke-tested directly as
+7.2.0-b70rfc2+, based on drm-tip 75140c4ee9ad. With the standard clpeak
+workload, both a main reader and an independent PID observed package
+temperature continue from 46 C down to 44 C during a 180-second cooldown.
+act_freq was zero, GT entered C6, and idle residency advanced by 178.25
+seconds. A separate bounded candidate-kernel test returned HTTP 200 for
+OpenVINO ruri-v3 and bge-m3. No hang, reset, fault, wedge, or taint occurre=
+d.
+This direct smoke does not include the 30-minute, suspend/resume, or reprobe
+tests listed above; those were run only with the equivalent Ubuntu 7.0
+diagnostic implementation.
+
+On stock kernels, a separate operational workaround submits one warmed Intel
+ICD work-item / one Xe job every 30 seconds and reads temp2_input 50 ms lat=
+er.
+That workaround refreshes snapshots but is not the proposed kernel behavior.
+
+Related issues
+--------------
+
+Primary: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7805
+Secondary: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4560
+
+Questions for maintainers
+-------------------------
+
+1. Is 0x138434 a live sensor register, or a shadow value published by PCODE,
+   GuC, or other firmware?
+2. Is there a documented producer-ready indication after XE_FW_RENDER is
+   acquired?
+3. If not, what is the official minimum delay or refresh sequence for this
+   register?
+
+If an existing mechanism is available to trigger or wait for
+package-temperature publication, I would prefer that over the empirical
+settling delay used by this RFC.
+
+Coding-assistant disclosure
+---------------------------
+
+AI coding assistants were used during this investigation and RFC preparatio=
+n:
+Claude Code for the initial investigation and independent review of the pat=
+ch
+against the current tree, OpenAI Codex for implementation, evidence collect=
+ion
+and test orchestration, and ChatGPT GPT-5.6 Sol Pro for investigation plann=
+ing,
+submission workflow design and review. The human submitter reviewed the
+resulting code and evidence and takes responsibility for the submission.
+
+Thanks,
+Yuta Higuchi
+
+Yuta Higuchi (1):
+  drm/xe/hwmon: wake render domain for BMG package temperature
+
  drivers/gpu/drm/xe/xe_hwmon.c | 35 +++++++++++++++++++++++++++++++++++
  1 file changed, 35 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 5284cab67..1c0c6d3ab 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -3,6 +3,7 @@
-  * Copyright =C2=A9 2023 Intel Corporation
-  */
-=20
-+#include <linux/delay.h>
- #include <linux/hwmon-sysfs.h>
- #include <linux/hwmon.h>
- #include <linux/jiffies.h>
-@@ -14,6 +15,7 @@
- #include "regs/xe_mchbar_regs.h"
- #include "regs/xe_pcode_regs.h"
- #include "xe_device.h"
-+#include "xe_force_wake.h"
- #include "xe_hwmon.h"
- #include "xe_mmio.h"
- #include "xe_pcode.h"
-@@ -330,6 +332,28 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon =
-*hwmon, enum xe_hwmon_reg
- 	return XE_REG(0);
- }
-=20
-+/*
-+ * Experiments on Arc Pro B70 show that package-temperature updates resume
-+ * after acquiring the main GT render forcewake domain. Allow time for a f=
-resh
-+ * value before reading. FORCEWAKE_ACK_RENDER acknowledges the forcewake
-+ * domain; it is not known to indicate temperature-producer readiness.
-+ */
-+static int xe_hwmon_bmg_pkg_temp_read(struct xe_hwmon *hwmon, u64 *reg_val)
-+{
-+	struct xe_force_wake *fw =3D gt_to_fw(xe_root_mmio_gt(hwmon->xe));
-+	struct xe_mmio *mmio =3D xe_root_tile_mmio(hwmon->xe);
-+
-+	CLASS(xe_force_wake, fw_ref)(fw, XE_FW_RENDER);
-+
-+	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_RENDER))
-+		return -ETIMEDOUT;
-+
-+	usleep_range(3000, 3500);
-+	*reg_val =3D xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, CHANN=
-EL_PKG));
-+
-+	return 0;
-+}
-+
- #define PL_DISABLE 0
-=20
- /*
-@@ -1037,6 +1061,17 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr,=
- int channel, long *val)
- 	case hwmon_temp_input:
- 		switch (channel) {
- 		case CHANNEL_PKG:
-+			if (hwmon->xe->info.platform =3D=3D XE_BATTLEMAGE) {
-+				int ret =3D xe_hwmon_bmg_pkg_temp_read(hwmon, &reg_val);
-+
-+				if (ret)
-+					return ret;
-+
-+				*val =3D REG_FIELD_GET(TEMP_MASK, reg_val) *
-+				       MILLIDEGREE_PER_DEGREE;
-+				return 0;
-+			}
-+			fallthrough;
- 		case CHANNEL_VRAM:
- 			reg_val =3D xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, chan=
-nel));
-=20
+
+base-commit: 75140c4ee9ad250b2524ff5bfffd7f9fe4bb6012
 --=20
 2.43.0
 
