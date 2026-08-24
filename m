@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DEE0C5DF9C
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 16:08:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75AD6C5DF9C
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 16:23:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFB5C10E57B;
-	Mon, 24 Aug 2026 16:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E7B10E158;
+	Mon, 24 Aug 2026 16:23:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N63c+7uZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zufj/6bE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4798610E57B
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 16:08:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7297210E158
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 16:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787587727; x=1819123727;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Wuj3p3MT8J4IciJ3DEAn7NumzaK3EjJYqrOdQxYpsFQ=;
- b=N63c+7uZoB+nQiP93ddZFaE2+nk4siqeqX9hZhppswBYUGUIHGZ0KSiM
- Apk7itBHTkNI9E21XKnT4G6XTe5OtC+3Mj5jP5NkfpbVbuvGR3z33hwNk
- RaN6T5JB6au+ofUlz8dRNJXjImK8LPioHeiUb26bifBB4WegjpWEMRZkj
- RG85NGyxmbtVdPLRE9PZQOUDZIEsu9wU1waMcgCC3Bn6KzqPeMHmAo3Z2
- qyzUlYRBE73pXDYKwlcc16md6jyfqYmJnwVdTGquWWRZ+a5CHyDIrlCva
- yY8VYwzz7MqPungTc6KJyUQunOud8LVwsG3o8B8oQXPIiyjPOOwvTTHMJ g==;
-X-CSE-ConnectionGUID: o4aum5xFR42RujxWOY3JrA==
-X-CSE-MsgGUID: RfKXxTOEQFayo+zLZ4bNmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="105421131"
-X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="105421131"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 09:08:37 -0700
-X-CSE-ConnectionGUID: ENRoVwL1TMC38GiF2/hjxA==
-X-CSE-MsgGUID: UWP15+/qTyq2l6PUTOJz2Q==
+ t=1787588608; x=1819124608;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=h+XjnIB9qyjCiNKiaKwh4C5hfVDLAKuIBwNYo5HuUn0=;
+ b=Zufj/6bEh0CAsKELtG5KDtCqYsbCSS//wvrkKuW/qQ9X/GL6nfx603k/
+ 4dKNi6UHzGc+jtxRoEkflpyZ6ydmhqf9xMl5UOmL4ZbRF2aa0tfDBrdQw
+ 3I4B3AegwN7/rxpox41DjqZD9bD+ZjK7nkKk8N1EzFU+nqFCitrELNwdF
+ ubii9xMoOR1LrF7DZqWsS5pWV0i+xf+ouasGtid6H9VsPIF3fqv7CVM9j
+ 5hnGDPXpCve8wxBlMB0tahcJC+MeTRUhV2+qRPabHVG42jafoaTQHDPWI
+ wO9dkgNPqcTzh8w/kK2mOdZ6jqetz6wCgZdJ9z+5APKR+RQosQCfT+fVY w==;
+X-CSE-ConnectionGUID: zNwa63MkTQStu4Th7F/0fA==
+X-CSE-MsgGUID: lO7F4+B3SqCYJyDuqhIfJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="91858055"
+X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="91858055"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 09:23:28 -0700
+X-CSE-ConnectionGUID: fKmTkFxXTfqXUhhH+qjwVg==
+X-CSE-MsgGUID: hFH6nvrURkWo6zfMYEqkwA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="264425244"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 09:08:36 -0700
-Date: Mon, 24 Aug 2026 18:08:33 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Laguna, Lukasz" <lukasz.laguna@intel.com>
-Cc: sashiko-reviews@lists.linux.dev, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v10 08/10] drm/xe: Introduce temporary device wedging
-Message-ID: <aoxsgT0tRuJecTbp@black.igk.intel.com>
-References: <20260821112436.545405-1-raag.jadav@intel.com>
- <20260821112436.545405-9-raag.jadav@intel.com>
- <20260821113758.006681F000E9@smtp.kernel.org>
- <45efbcf8-b598-463e-b415-dfee2a3afe66@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="267088124"
+Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 09:23:29 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
+ anoop.c.vijay@intel.com, badal.nilawar@intel.com,
+ matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
+Subject: [PATCH v3 01/10] platform/x86/intel/pmt: complete pcidev to device
+ update
+Date: Mon, 24 Aug 2026 09:23:17 -0700
+Message-ID: <20260824162317.2450380-13-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260824162317.2450380-12-michael.j.ruhl@intel.com>
+References: <20260824162317.2450380-12-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <45efbcf8-b598-463e-b415-dfee2a3afe66@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,22 +71,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 24, 2026 at 04:30:25PM +0200, Laguna, Lukasz wrote:
-> On 8/21/2026 13:37, sashiko-bot@kernel.org wrote:
+Previously the pcidev usage was moved to the struct device.
+The struct device is set for only the telemetry endpoints.
 
-...
+This usage prevents other PMT features (crashlog) from using
+the callback mechanism.
 
-> > - [High] Unprotected state modification and double-increment of `wedged.ref` in `prepare_device_for_reset()`.
-> 
-> Valid. It should be enough to just take the lock and check xe->wedged.perm
-> before taking the reference.
+Use struct device in the intel_pmt_entry.
+Update callback usage to os the pmt entry rather than the
+telemetry endpoint.
 
-We have a xe_device_wedged() sanity check before landing here, so ideally
-we shouldn't be at this point with an active ref. But as mentioned in the
-comment, the plan is to drop the whole prepare_device_for_reset() once we
-land this series.
+Fixes: 353042d54d82 ("platform/x86/intel/vsec: Switch exported helpers from pci_dev to device")
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ drivers/platform/x86/intel/pmt/class.c     | 5 ++---
+ drivers/platform/x86/intel/pmt/class.h     | 3 +--
+ drivers/platform/x86/intel/pmt/discovery.c | 2 +-
+ 3 files changed, 4 insertions(+), 6 deletions(-)
 
-Raag
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
+index d0ab8e33c62a..402d51df834a 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -100,7 +100,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
+ 	if (count > entry->size - off)
+ 		count = entry->size - off;
+ 
+-	count = pmt_telem_read_mmio(entry->ep->dev, entry->cb, entry->header.guid, buf,
++	count = pmt_telem_read_mmio(entry->dev, entry->cb, entry->header.guid, buf,
+ 				    entry->base, off, count);
+ 
+ 	return count;
+@@ -286,8 +286,6 @@ static int pmt_resolve_access_pci(struct intel_pmt_entry *entry,
+ 		return -EINVAL;
+ 	}
+ 
+-	entry->pcidev = pci_dev;
+-
+ 	return 0;
+ }
+ 
+@@ -365,6 +363,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
+ 	entry->guid = header->guid;
+ 	entry->size = header->size;
+ 	entry->cb = ivdev->priv_data;
++	entry->dev = ivdev->dev;
+ 
+ 	return 0;
+ }
+diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
+index a0ece4fc3837..258cb460e61c 100644
+--- a/drivers/platform/x86/intel/pmt/class.h
++++ b/drivers/platform/x86/intel/pmt/class.h
+@@ -20,7 +20,6 @@
+ #define GET_ADDRESS(v)		((v) & GENMASK(31, 3))
+ 
+ struct device;
+-struct pci_dev;
+ extern struct class intel_pmt_class;
+ 
+ struct telem_endpoint {
+@@ -42,7 +41,7 @@ struct intel_pmt_header {
+ 
+ struct intel_pmt_entry {
+ 	struct telem_endpoint	*ep;
+-	struct pci_dev		*pcidev;
++	struct device		*dev;
+ 	struct intel_pmt_header	header;
+ 	u32			disc_header[PMT_DISC_DWORDS];
+ 	struct bin_attribute	pmt_bin_attr;
+diff --git a/drivers/platform/x86/intel/pmt/discovery.c b/drivers/platform/x86/intel/pmt/discovery.c
+index c482368bfaae..f4203d240f54 100644
+--- a/drivers/platform/x86/intel/pmt/discovery.c
++++ b/drivers/platform/x86/intel/pmt/discovery.c
+@@ -609,7 +609,7 @@ void intel_pmt_get_features(struct intel_pmt_entry *entry)
+ 
+ 	mutex_lock(&feature_list_lock);
+ 	list_for_each_entry(feature, &pmt_feature_list, list) {
+-		if (feature->priv->parent != entry->ep->dev)
++		if (feature->priv->parent != entry->dev)
+ 			continue;
+ 
+ 		pmt_get_features(entry, feature);
+-- 
+2.43.0
 
-> > > +	/* TODO: We shouldn't be doing such ugly hacks, reuse FLR helpers and drop this. */
-> > > +	xe->wedged.perm = true;
