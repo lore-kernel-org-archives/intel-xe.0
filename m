@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBB6CC5DF81
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 22:06:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86FCFC5DF81
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 22:16:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B2A10E321;
-	Mon, 24 Aug 2026 22:06:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Id4mMJFe";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5028710E321
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 22:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787609181; x=1819145181;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6ozynUwvTABXNnkesSH3PJpY/IjytksHUh6YGvXrCUI=;
- b=Id4mMJFeqm+GCGZrZCoCGuDxZmqJ7hFFa7hqL4qSI+cbcTTgFX5LKcHh
- N1mpY/Wk4WmnlRUEORO3OTmlY1Y7KnMPMf8655juoVV1jRlGCKHAlBkD3
- U7F4gVGrLnGJlolL3nU/XsiGtWcAqUJSzJE3hRw2U3bpaeRhthO6Ir2aY
- 4uEGhG7BOWboNewwUS1dBcFsOE3QS/av295S8sP3ZbCZfZ5muPmGkUXlg
- OHiWpM1A8xNxC+OxLDpWINo5kWJmFzcsBB9MbdqORO5htSfHMFQ9a5wtB
- SMt7jdzsMWzvxh1VjBrOnsoFpVQh7qRUDMYntXpIZzF2h1MeUjdQZ2F0X A==;
-X-CSE-ConnectionGUID: iCvjbRJgREiVkPY7xgcwwg==
-X-CSE-MsgGUID: e3rwx7HZTNurww+uH464ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="87836396"
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="87836396"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 15:06:21 -0700
-X-CSE-ConnectionGUID: 5HdX+ijDSee1VLqpQhAmzA==
-X-CSE-MsgGUID: sBGxuG9gTpOeFsUXCDFzUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="297024659"
-Received: from lstrano-mobl6.amr.corp.intel.com (HELO josouza-mobl7.intel.com)
- ([10.124.222.31])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 15:06:19 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH] drm/xe/xe3p: Restore sampler fault for uninitialized surface
- state
-Date: Mon, 24 Aug 2026 15:04:58 -0700
-Message-ID: <20260824220458.520358-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.55.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3473110E880;
+	Mon, 24 Aug 2026 22:16:53 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ED2310E86F;
+ Mon, 24 Aug 2026 22:16:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6911940174583438695=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/ras=3A_Enable_SGUnit?=
+ =?utf-8?q?_PCIe_error_reporting?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 24 Aug 2026 22:16:52 -0000
+Message-ID: <178760981211.80945.17480611429383442722@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260824164850.607937-1-raag.jadav@intel.com>
+In-Reply-To: <20260824164850.607937-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,65 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe3p changed the default behavior of a fault in sampler when surface state
-address is 0x0.
-With the default behavior some default values are used instead of trigger the
-fault, what would make pretty hard to debug bugs.
+--===============6911940174583438695==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-So here programing SAMPLER_MODE to change back to the default and expected
-behavior.
+== Series Details ==
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 15 ++++++++-------
- drivers/gpu/drm/xe/xe_wa.c           |  5 +++++
- 2 files changed, 13 insertions(+), 7 deletions(-)
+Series: drm/xe/ras: Enable SGUnit PCIe error reporting
+URL   : https://patchwork.freedesktop.org/series/172684/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 48c515d91882..e6e51d04ca57 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -503,13 +503,14 @@
- #define SAMPLER_INSTDONE			XE_REG_MCR(0xe160)
- #define ROW_INSTDONE				XE_REG_MCR(0xe164)
- 
--#define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
--#define   ENABLE_SMALLPL			REG_BIT(15)
--#define   SMP_WAIT_FETCH_MERGING_COUNTER	REG_GENMASK(11, 10)
--#define   SMP_FORCE_128B_OVERFETCH		REG_FIELD_PREP(SMP_WAIT_FETCH_MERGING_COUNTER, 1)
--#define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
--#define   SAMPLER_ENABLE_HEADLESS_MSG		REG_BIT(5)
--#define   INDIRECT_STATE_BASE_ADDR_OVERRIDE	REG_BIT(0)
-+#define SAMPLER_MODE					XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
-+#define   ENABLE_SMALLPL				REG_BIT(15)
-+#define   SMP_WAIT_FETCH_MERGING_COUNTER		REG_GENMASK(11, 10)
-+#define   SMP_FORCE_128B_OVERFETCH			REG_FIELD_PREP(SMP_WAIT_FETCH_MERGING_COUNTER, 1)
-+#define   SC_DISABLE_POWER_OPTIMIZATION_EBB		REG_BIT(9)
-+#define   SAMPLER_ENABLE_HEADLESS_MSG			REG_BIT(5)
-+#define   FORCE_FAULT_FOR_UNINITIALIZED_SURFACE_STATE	REG_BIT(4)
-+#define   INDIRECT_STATE_BASE_ADDR_OVERRIDE		REG_BIT(0)
- 
- #define HALF_SLICE_CHICKEN7				XE_REG_MCR(0xe194, XE_REG_OPTION_MASKED)
- #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 139434946f8f..5273dea83df6 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -602,6 +602,11 @@ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN5, CPSS_AWARE_DIS))
- 	},
-+	{ XE_RTP_NAME("Force fault for uninitialized surface state"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3500, XE_RTP_END_VERSION_UNDEFINED),
-+				              FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, FORCE_FAULT_FOR_UNINITIALIZED_SURFACE_STATE))
-+	},
- 
- 	/* Xe3p_XPC */
- 
--- 
-2.55.0
+== Summary ==
 
+CI Bug Log - changes from xe-5640-b830d7b865d1dcc0c199feef72cbe7bf7b208762_BAT -> xe-pw-172684v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9070 -> IGT_9071
+  * Linux: xe-5640-b830d7b865d1dcc0c199feef72cbe7bf7b208762 -> xe-pw-172684v1
+
+  IGT_9070: 80b6e4c9b9cb853c63a9bcaa4784e0306d1f7fca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9071: 9071
+  xe-5640-b830d7b865d1dcc0c199feef72cbe7bf7b208762: b830d7b865d1dcc0c199feef72cbe7bf7b208762
+  xe-pw-172684v1: 172684v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172684v1/index.html
+
+--===============6911940174583438695==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/ras: Enable SGUnit PCIe error reporting</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172684/">https://patchwork.freedesktop.org/series/172684/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172684v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172684v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5640-b830d7b865d1dcc0c199feef72cbe7bf7b208762_BAT -&gt; xe-pw-172684v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9070 -&gt; IGT_9071</li>
+<li>Linux: xe-5640-b830d7b865d1dcc0c199feef72cbe7bf7b208762 -&gt; xe-pw-172684v1</li>
+</ul>
+<p>IGT_9070: 80b6e4c9b9cb853c63a9bcaa4784e0306d1f7fca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9071: 9071<br />
+  xe-5640-b830d7b865d1dcc0c199feef72cbe7bf7b208762: b830d7b865d1dcc0c199feef72cbe7bf7b208762<br />
+  xe-pw-172684v1: 172684v1</p>
+
+</body>
+</html>
+
+--===============6911940174583438695==--
