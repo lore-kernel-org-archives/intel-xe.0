@@ -4,145 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F18DC5DF9C
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 18:25:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9487C5DF9C
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 18:29:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5796110E584;
-	Mon, 24 Aug 2026 18:25:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6120810E584;
+	Mon, 24 Aug 2026 18:29:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JtrTTHCk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NmfEPwGl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 916DC10E584
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 18:25:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 847FE10E584
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 18:29:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787595909; x=1819131909;
+ t=1787596191; x=1819132191;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=WGgJkIs9SmMlQlG3C9lDZKGzenma7yl5U/dxgBrHx5A=;
- b=JtrTTHCkil+zv4E2shUcoFOKEUQvl3OzWtHaGucwEC13l0SkTzVW8VBi
- IxvDdYCZoDFapZh8fGuzL4oPEFHFALQSysGPbJsNZ9GD6NBNWhSUry2Vr
- 6VP/dV08+nzjRysJvS2hHgZxufCkLYKL/1UVHcEvuYrrKRhLDI16PmWgA
- yJf7F5g+CZ1NfxoMb4yr8EiM2w9+x5Cxv77a4YqWwIhDyv0KvV1lV1VK3
- MUfjLczGveelr5jKkkOoP8hIsBo30kzfmUTUV2JUQK1huyUSHFUC9hEjt
- jc0Bk/+PY5XElrHS1yvEez9U6ESoK8wulqFTOPqh+bY4Sgk7fTm+Vtg5z Q==;
-X-CSE-ConnectionGUID: 3mXB51aCRJic4HgglrHaWw==
-X-CSE-MsgGUID: O4vYLIYnR+uBROLRwFKGSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="99403394"
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="99403394"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 11:25:08 -0700
-X-CSE-ConnectionGUID: W4oWiSwOQtmINRBW+zcrIg==
-X-CSE-MsgGUID: jcb67aaOR6uqAD1I+824jQ==
+ bh=0i5FeNkLhDkwwx4FdfxAM4SsibhaZQ2EzsO1qkh7r2g=;
+ b=NmfEPwGlA3JBPs7mufQRMQauoY6mi8FGBTT4ZuxddM73QkYlc2dB+sBh
+ ySsn28LZNjgx8Hww/9huHlMbvY6PPWTXLT3NRsWiqPJNwiEKH1JLhnfel
+ 9jZYzJS+OH4ydc3ljoh4exU5co8fuAEDBQbLprZdIC2hLBI6iEncmIDYB
+ FFadbgzOCG0yVwLMevZqW1k0jSupsVoVflsAJPcrt9/8uTrFMuKjXhDe6
+ Yv8XSLMcIiYC7hXJ9X4jzLXzAjaervE4dvFJRJlmMmg3awWWv3u9cFWNx
+ F5yo09gL9JhmtZxyk6QnmaxMGxxh1NnnEVDpC4I3BUYQTcKHMp7xoNZJe g==;
+X-CSE-ConnectionGUID: gDljKEkeTBuUfakRZ8VJag==
+X-CSE-MsgGUID: ayRC27zpRYGI3VIOo5Xy7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="113594129"
+X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="113594129"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 11:29:50 -0700
+X-CSE-ConnectionGUID: 5EjAKM8CRMGIeeNYoyrgvA==
+X-CSE-MsgGUID: 7ZJ6DMJlQy6L4FH7KnoyrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="271273868"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 11:25:08 -0700
+X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="267110950"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 11:29:49 -0700
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 24 Aug 2026 11:25:07 -0700
+ 15.2.2562.45; Mon, 24 Aug 2026 11:29:49 -0700
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Mon, 24 Aug 2026 11:25:07 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.71) by
+ 15.2.2562.45 via Frontend Transport; Mon, 24 Aug 2026 11:29:49 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.41) by
  edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 24 Aug 2026 11:25:07 -0700
+ 15.2.2562.45; Mon, 24 Aug 2026 11:29:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U8DvnsmqHzQ5UYNF2hO6ai/k08r4MHDGNUFSYw5R3/2bWAU5Wda7A/T66HGYnrO//mvprPRLT+9wYq3Tm65WX8IlVcLkG/+A9ngg/lm6/lbXalxfEi6clyszFNYE8cxe6lZYkUV8ChksFEKkPTk3FCPNLyXVi17l7UsXSHIcIeFXsd/c4vq/qwf/C5/E+3s4jFpFw1iyg8cubatF0WDY1woPPhF9BPkHPUGjxZ0PQpMoGW+pfGi1fVPa7d0LPa67WZEsDFgMrG+WeqXZdpQkDTUCm7tGJauldB7aWwWrVhiT6jlgFG7W2UdOd00ntcOjccBL+9uhMfXC9m5cI6R1Dg==
+ b=cHXZhFXhuxsEfmlU1g/oHpVWNiMyZB0IxEetoZzSJYNSr+NMSn81gx06rX4lGuyLtPkKxftz4zg6/gblreETo8aoA0tbjQKnBfRd0uNb9yAp6+6C9tNR7qsNREcNCo3xXX9Yi+EeFyMhf1huTHntr5vsuPqY48lOB3bXhdYZ/pDbzTuUPeuSqomppRN0l6p0CFUjSvMgC+DnwGyyUvs396L2BoOAAg+2b8JSFsRT93bP6DWoTU42X+97un05xUBX52kp88zqRI5Moh9y08X98mTzmtwLkz3jw7rDaGKfs1nHaVrPTjWx0sEM8p+/lS288zG2zt97IdehM3WzOCBCpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mp/5vVDUUOa4M4LFpiMXiIxv6jqUlYdVTHIWzxT598E=;
- b=WeTy00GKtXmQmpn2opmBgqxaWhqL3Rt4ZqnnV+c3D2qkEATIrY4oJdmbUl+rnz5LH8NRDyglkCAPlrhEVT9NOroeS0fPF+a6JVijAGHFqFY4aUPKJXXPsTvaoHK/2umF6Ww4PN1TThJ5GC018ReVE1J8umSHG81B6uSsljSA3thRxY8NnK45K7pnrImhfkOKq/U6WgWB7PLZ7+VzAjSXSUT+wG5Pgv5fXutgkBT3Si3tpl9BdaiGUiNv8iQTPngCoEXikyQVLNPwqpmB4v/851kHDTKEnPtrzeoINor0PR+GhjsrvOQ75ykTM5ZqoRS2T5/VUjqm5Q4I3oVydgjwEQ==
+ bh=kkjhQZji0XBPSSvycbp98Fu3IwxVQAa3jmBJ/eguuJ0=;
+ b=tcRzVHg5+sFy2GHP1FHi3efm4WKgpAXbrikMjCR0cGjFXydUr4LW6Eu1JLatRMs5tncCKSc0/AHFnncCKdNdbFqXIltIF8ET7zkPzf0pY1nyyNT8W5JM/PYPu+JbemWO3MZVuJ7iX7TKOyHzZ63G8B5jQK6e8+QQ0WYYcRzf5G7gsCnmBlvovJ8jyloEQIFHv6mD3fJeRsUwnwDZqIOoZLk++vKQmZSBMUxXCwm7zUYH8It8pWsIj/90K97+OYhBVf7R70GXiPcnWa4/rANNiojRzCfASPF+Gea5ns20yQ+FX33od71L0UBmGYeVyiTyeS0cyhKrNFEqWFjqgIuZbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
- by DSWPR11MB9738.namprd11.prod.outlook.com (2603:10b6:8:353::6) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from IA0PR11MB7752.namprd11.prod.outlook.com (2603:10b6:208:442::20)
+ by IA1PR11MB8175.namprd11.prod.outlook.com (2603:10b6:208:44f::12)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.12; Mon, 24 Aug
- 2026 18:25:06 +0000
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc%4]) with mapi id 15.21.0339.012; Mon, 24 Aug 2026
- 18:25:05 +0000
-Date: Mon, 24 Aug 2026 11:25:03 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: <tilak.tirumalesh.tangudu@intel.com>
-CC: <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 3/3] drm/xe/ggtt: invalidate engine GGTT TLBs for
- multi-queue GTs
-Message-ID: <aoyMf_amy6DwjvOi@nvishwa1-desk>
-References: <20260824163458.3129935-1-tilak.tirumalesh.tangudu@intel.com>
- <20260824163458.3129935-4-tilak.tirumalesh.tangudu@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ 2026 18:29:44 +0000
+Received: from IA0PR11MB7752.namprd11.prod.outlook.com
+ ([fe80::848a:3e54:c19b:11ce]) by IA0PR11MB7752.namprd11.prod.outlook.com
+ ([fe80::848a:3e54:c19b:11ce%7]) with mapi id 15.21.0339.012; Mon, 24 Aug 2026
+ 18:29:44 +0000
+Date: Mon, 24 Aug 2026 14:29:39 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Laguna, Lukasz" <lukasz.laguna@intel.com>
+CC: <sashiko-reviews@lists.linux.dev>, Raag Jadav <raag.jadav@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v10 08/10] drm/xe: Introduce temporary device wedging
+Message-ID: <aoyNk9wmOpdyUXgY@intel.com>
+References: <20260821112436.545405-1-raag.jadav@intel.com>
+ <20260821112436.545405-9-raag.jadav@intel.com>
+ <20260821113758.006681F000E9@smtp.kernel.org>
+ <45efbcf8-b598-463e-b415-dfee2a3afe66@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260824163458.3129935-4-tilak.tirumalesh.tangudu@intel.com>
-X-ClientProxiedBy: BYAPR21CA0030.namprd21.prod.outlook.com
- (2603:10b6:a03:114::40) To BL3PR11MB6410.namprd11.prod.outlook.com
- (2603:10b6:208:3b9::15)
+In-Reply-To: <45efbcf8-b598-463e-b415-dfee2a3afe66@intel.com>
+X-ClientProxiedBy: BY3PR05CA0029.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::34) To IA0PR11MB7752.namprd11.prod.outlook.com
+ (2603:10b6:208:442::20)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|DSWPR11MB9738:EE_
-X-MS-Office365-Filtering-Correlation-Id: 494a9461-f383-41f7-1a21-08df020d0545
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7752:EE_|IA1PR11MB8175:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3e2ac1fd-ea74-4ab9-8d85-08df020dab50
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|10067099003|56012099006|11063799006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: Rp6tfCAjzFmC6sE7zHQDyO2+Pr+VEwN4gA+oswVj7VIW2M6xcYqCFXiFr3UiegZS0mcef1mKm7buY7iyUW6bBEIsAL52f95AAm9RyBZCBG2RwkM4AN/kfQu9Wbe4Rcx4q9Y/MmfDLzpDaLvEFEUWu2R6FfMihBMmgqGW5T86V07fcLzioGEKguGBsgKUTF75deh0lcRVIA9DhwjvRkcWxuKVABxdoyBUZmekdGerKbS/ZQwJCRssa/zIeSEs3PX/ZiiZ0vbeGVEdigvPO5ntmAHC5pc6zverzCQJRuD8xCI51Ov258EtvlQah0XVZF7uz4MYEJQFG0HSu3/LF/oLmI8yOotfrpJ5UfrVw5uETkxJd0DO0slW/rNG+HgAwZI4hGRYouslUNimKB9TCHWqjXOSNqHu0Bd3uXfOnMgRwCwGIHLKzUE78WiXTqGiskJyXDa/SCcbsLGlvdOWI5e11pwBuh/o5ZqrzBWskO+JmJu9nghWpIwg7u3tknsZSnS6+9CG1qJkRhXjfcEtevtA3Z/t/IrTasGA5mw+rnfY93kWx6uyhdnkfs/mRuAyuvH1mWhALGrPHsQmpGoFKRUfAK9iuMgqTMyhycDY9o61p3YESGj+oMPe9An2SmUrn7ICM1VYaONFGTLvWjA8npYJxFw7VIw1v4zg26KpFahaF6U=
+ ARA:13230040|23010399003|376014|366016|1800799024|10067099003|11063799006|4143699003|56012099006|6133799003|3023799007|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: UrWmnRsjqNrmZyAn1CxeXXfxrACWM96HrHTh3/dcMf3KwSQGDxPeQmDsksn+CoLqEfw+5AP9e7qcaZys1ZpTQBixQqLnaL2+SFtg5RwxYPkFSINN4YwuvgC3Zqj5hq5NrfCJWrJLbtkMVTNOwDLQhEVeeQ3OuNndKbhtBpxLBO4RPZYEdwUaIzQr+IW/IGgQQVgJNl8CKl22pk5z1FpSioPRnOrZ91ATc3B8tnahMUDx7n2DOLpzhCT/T6BF8esl+0J9gfmHryS6PljZQVx9AbEk5hzyHkMio4fmZvnuXe0OiPUApKS8LP7u6GpWagaajmzX4SWy02B4TVY1urSOLLY2LWKltdIawbeBJGonJvkIyokfJmB2owHBKk3lacy1FPm90KTtZMBU/B6AQG6JlMN0VRqGT5KbnL7cBJ9NgrI47SEvEcRbXLarqdbFtsgBMrpz4Vr4O0MmiebFykKBbbvQRwHhVy1eJXBxUOUl/PK+abBp5VNZuf8OD7tVtqnXWFH/K7iw1Pe5AcX+cotucQ0ljEeCsWBOoo1tldJ38knUbI3lmrw2iddxILfv/XL5tUSbn5dH2zsZ2bUuQVuLe1gwHFB0IqvhdH5pi199Um7owtBDBy9vfbdz2EBoMh/59wOxuUZOgc8pBgLOV0AZOF9MYpjYKKNZeY2KnmwCAug=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(10067099003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7752.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(10067099003)(11063799006)(4143699003)(56012099006)(6133799003)(3023799007)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yZZtanwEsPb763bC+dPr/9l9qh/7Flg0LXcTbHrEWcamYpW2K0HqXIWbQuGy?=
- =?us-ascii?Q?T+qEz8wGYf7cK2ntvqOOY/Xwmltc5AcD3A2ngXLZNdNqAD+T1IIIjt5blwtx?=
- =?us-ascii?Q?2rw/TLA91jVGBeEcWR2c+gMjU0Ic74fFrixITTkhClq2FwXOpWyAb06IjJUh?=
- =?us-ascii?Q?Ttu5Oq4Lvaw8S8aHOSS/R2Es1yYy4v8gTlPuU+k9Cn1QGnrhl/391cnIwm1u?=
- =?us-ascii?Q?P2oNy8XUCEfIvA/G2dQEU67h0WRAecJxhnMiW6K3fy90gwkhJmWnhxGOwRQb?=
- =?us-ascii?Q?mbpmBB8zmc6jtDUTv4Naa7p1SwZ76EOLXqQMYcprvQXN4CiKRUMBkJG4EdsN?=
- =?us-ascii?Q?luSNBr2bZzbNnuXk/3EKhwWEO+j7PZCoIBhnUiISdROomq9nADeoJgSbQLAW?=
- =?us-ascii?Q?U/IWt1/W8pnn32eA4pz5T53J0mQNTsTcMmKayPwRDfLj9QwIZVI9J5zm7/zi?=
- =?us-ascii?Q?+MITvEhXRqZzP+ilIeGLB8UQmiCCGshoNWU8vJxH5p9cFfo5lTUt08FIpLDL?=
- =?us-ascii?Q?RIfxxvNtX12Xr1JBZ3Ocxh7rwJXcP3VGi07lYVHFnZnkY5AB9t0wVHr0yu41?=
- =?us-ascii?Q?YpZ19S/TNJo3W5KoDlcbTZafGFk7pDXaM+XbVMcc/DD2/2aWfBlzLz9fZEEp?=
- =?us-ascii?Q?VRq8pepliTJ3CDSUn91fhxPQDI2eEoEYtbauFa8NmVmEXPl0NcME55RYMhTi?=
- =?us-ascii?Q?OXtFgD/KEmGKKk83xh2pKpheg7Clv7FzcetOFF+JHa1N2qpL+gHj4c7Px5LW?=
- =?us-ascii?Q?YFMY/lX43ZT1MODA6qmHqQ1JA2cXOK5gw8TMkvgQ4ayi1NfQxuia9by0+axS?=
- =?us-ascii?Q?X0lJI+fmRW0gmxf/or8smI7TnaPEgNQ8k6z9igZ8Cp1g2k7e81NNtOeO2rmj?=
- =?us-ascii?Q?SRxHPmEtSH1Ew8t1XvyuMBXLUMj12fO0t8+Ov9VgztaLsc55Qi92SYUBSEn3?=
- =?us-ascii?Q?E0ELDttW0Qahf/Y00pJaf2dtIQ68kMljuaML9FD389L/zXDaBo2MUHRtzRFd?=
- =?us-ascii?Q?y0UtePKlK2wypRLKU9sjQxyar+rH4TbgAeTBvdi2CozQx+T1KTvOpoa9Tq9M?=
- =?us-ascii?Q?uLiUNyg+lfPTC4cozUiXO8K8kLZAZdIPkz3td92GzOjKfv7WMI8tkOlTynGG?=
- =?us-ascii?Q?R7g6Bzij0D4mj8hAVExabX/a/r0VkFeoqtuDqCYVKBjLfF36+brTDsRi1VKf?=
- =?us-ascii?Q?lwK6gJSg7OiSkSGiw9i37Z0zTiGyrYNf4INFSMYF0z8UyoIv2u1W4KaJ7KVQ?=
- =?us-ascii?Q?csB/Zd2c4vwrECRmZ8PuqsEVO9NKY9AhOnEsMNCsN6BfIIZSPhgKzr7V9FeQ?=
- =?us-ascii?Q?oCXJbwVCM7ZKSKCmnufBqrJsAW+YbF3FEmWy42BtfamQE5jyKvVQAuNFr3a6?=
- =?us-ascii?Q?X32nRG5dJqvhUQ4YBVrddZQAbZJn4OT2LaEJeFXrQT2GC9jQqnWZCrqAmGPI?=
- =?us-ascii?Q?9oysCmUgfXFaaEfBCIounfc5JMK1xdfTQnx6pfTP2nv+tqvVDVf+o/6apkp9?=
- =?us-ascii?Q?FJbof2MTHzBKiHZN7Pqmis8v8E1c6/bzrX/Nh7XXnGpNDoNL8VVmR+9ARoj3?=
- =?us-ascii?Q?xbaPnoUS5uDQL/Z5vUpXivDUNiViclUfnwlq1v5oz/S6GruyWVb3s6+4Q9TQ?=
- =?us-ascii?Q?EVIV6Rjb6iPp6Rcewl/LqbTE5vM6997t6CKb8TXYiE8wGwfuhpW1tymZmjCI?=
- =?us-ascii?Q?wZBc5h0NCjhNNzJx2o5LocP9Pisd0gsmIzgiChy/CgbyYx2OrTCnNBVYKO4K?=
- =?us-ascii?Q?M0PAOxBi+x4Gigh8Ww5TPUgAknZv8Nmrm0+OTLMKjJXkv22On7ZG?=
-X-Exchange-RoutingPolicyChecked: zkEihKREEJo7QHG3lUbfQcf6NQBUe45MAi6iammZi9Vbyd3M+nN+hAUWq1DAjkfxlW+1kQk1AavcwZ0GaFlkKSbB4hSqR9RXzAryielAiLl0Esy6lbEkUnuopVmOeRGxxLwF+j3DSAbVv/XyajO/YEbLxDzlFiWnFawIbplXgrc1NR8/n7TiGcDroz+93zhNPgRJZM15/za4xO7xa5HY0hO/kRLqdN+7mKAg3GpQzKb8qZqEL5B/emttSxvyIi/DJmOro0yQ7NsEC7EzQ/BMQw5oh/KRiqIttWEZaFTsukQFar5YEvt7zgJxmCOR5BeVPUiVXRSzE6Td6A7S4hAkvg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 494a9461-f383-41f7-1a21-08df020d0545
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uFqZoUJM6bLpHlYJbwRdWqcva6MdesGzcQqNRygkh50lZBzbuyFsNQU73zpV?=
+ =?us-ascii?Q?xn4FlAnxuGzXu2BsRZ/AjqnLSm84cMlSvf69qu5ozSvxPOc0/SwFyC0xZXeh?=
+ =?us-ascii?Q?TWeC7eVLl2Y0Ujp25ISSyvadjiS0FMc3sjDmXK3YDdNy9dnFIglSLVBHZkNl?=
+ =?us-ascii?Q?q9jq9/K/TXu3t0YawGVbgi/D1BK5LZvDCrtMfQwx+pvtwDy+6Dwu2TTdR27X?=
+ =?us-ascii?Q?yNibMu/Z5wr3Lql2LvDAvORtKy/rW6MaLRoNX7WvJXHTUpp/dD+0vIIBoZ4W?=
+ =?us-ascii?Q?thBdQ+rfUmX7vrFFfoMcrujM5jiCsAWPTLTdSnKEPFbRavvDUCFKavagMuVw?=
+ =?us-ascii?Q?LF5V4iZ0lqXqEdZa54r8xppCilce5RvYpyhglHsmyRv3UtcZ1BAqaod9YFf7?=
+ =?us-ascii?Q?WxrRznesT+pUcv7cawY49WMvvhkxldFW5yemHdomhkNAlIcaveoPSY0QfZ/p?=
+ =?us-ascii?Q?vR+JvGb7KoGWr4m9hUokj0owEGod1TQxfB2a0rkdlWdD1zt5S1XF19sb6i35?=
+ =?us-ascii?Q?pHZHmMgxN8EvPKdVY7J8F4plhICS87xYdgXXS2mYj9+1dPfJn3U63uF5fkyC?=
+ =?us-ascii?Q?qPvicOP7QoD8wNfi9v4tudyX1Dj0B6togV1nEXzCdzZjQq7bLNI74akzUwdR?=
+ =?us-ascii?Q?+M0fssW1TeZ708Vx4ODUr/t1F9WW9i9UJl5wAD7qHViyKbIEuGA7L60ZjIQc?=
+ =?us-ascii?Q?KPiNkda2bPb0crGh4PDMxDNXHFxouFYTGWBrJPCgWNfsDmFpAk2aoBWBmr6Z?=
+ =?us-ascii?Q?bhL04P297t/p+wtB+es9ODWdq9O4W9wBwMzhGL7aR5irimyceX/h6S8tkYVX?=
+ =?us-ascii?Q?0zu23th8K1JEvg/JrRV3gLqzoUVlNyBLf3L6jDBXIkd04j6Mw+MGHcasx2/0?=
+ =?us-ascii?Q?wmBN9uy4+B6lcEeXWx4e6+FI3iwNxYe8uC6pZJIzhhXgSNV8lwlO18cPNb5G?=
+ =?us-ascii?Q?lmD/esXCci7X/3M0oPygA52xrTnbLLvQ5ewimH6kheMKXJD2umSJhyoU+7m3?=
+ =?us-ascii?Q?z6tYQB6QiEbtr6uhTVlm6V+vJeuT/6gaTSpD1M2Ajq3CSMgC/AxWwzL5/KWk?=
+ =?us-ascii?Q?Ax4NQgVdpgj1LqPNW7t0RhvntMcFFJ7ogtPtn50xrcI98PdEAlngYKBQ/W+Q?=
+ =?us-ascii?Q?yKuNf4J96Tp6TdmiGegDKEhV28lYJtdaH5nOyE5g1jsioehm05/SpS6PTRJk?=
+ =?us-ascii?Q?b3I7VBEtdZZQJqYzNtp0y+9QmOwFFd5OncFcaYXRtz2+SQqAXDkrXt2xo43L?=
+ =?us-ascii?Q?9Dbr877gBQ2x8/aulwRIvAb7xCQ6Q4NGqA9EFAy7wadEQB71u/PUU1cj5kIC?=
+ =?us-ascii?Q?oZiZneh9j6vf8maaDYg+B2KvRHJA0HlkjXfAnAYicXVr+T/hOCoNrIn65jZn?=
+ =?us-ascii?Q?pogd0Sezp+dajiY3vTKMxYEYo0egqT4PkO64blGPO+5wv0GQfXSYFJi2BNvd?=
+ =?us-ascii?Q?sVFnk0F3lXHeTuW+WVFYY5bsiZSQ8jZQGhWWsZUEJh/euO40iueloQ9mPWY7?=
+ =?us-ascii?Q?ljrCjjt3mpand/bny4A5H4djeEFbIvtz2JJlePLJy2ecFnu9Za4ux/J4QZTU?=
+ =?us-ascii?Q?oTK+NDBufTrmsWiqi/DnOKQAe+q4VEjHhWpbBeDuxYsx23yXjn8p7+Csy0Se?=
+ =?us-ascii?Q?kHoWvDW13p04Za22CPO5axfQe9XzP9vGpYSkn3aHJYrHZ00Esh6rQQr2+uZf?=
+ =?us-ascii?Q?tgUqSBNQVgWY1ygTc0UJIP3RDKXHL5flFb640FlBwgEulkIUE3FOXhDrgjgv?=
+ =?us-ascii?Q?nyEjwojtrQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: hhnZSzrHogqCBSQoN34Ye7zahWTNeRvlS1JVeg6LV1bWUxv4tdxzFts/xLvoajm7B1gAfYJHzkjBbfTACoLpItz/1SjpiyvKX9sueKLT4MMw/iW7YBcQcEOurs0auEYoW+C6d44dx/qHB7dERbYwL+nGilyzpuk2Nx9v3LqgDhr3CJvgpm6l5jKUlE1Tnlls+LsUdl+CxkYjVj1Exe0QM2Kl/CXWON2XvG+lnE9Nap5Gfb0UDSoOYaLQ+uenqgT3OVbBCgqr3FvG1UXbc4Kf/57ZtKWQk8XdLLKLPsEVGZgQ5vcE/fHmnRetT/MM04Cuj7/qZVe6BYr9kZEwrtibuw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e2ac1fd-ea74-4ab9-8d85-08df020dab50
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7752.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2026 18:25:05.8213 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2026 18:29:44.3714 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vPfU8fGK/2UzTqxZTE7ZgIBMERlq8TuaZOFy6VJh2BM/q9LsmIlHur5yxakq0Q4/WqvbgPKh/IdgrdwJ7xwbru4413g0ixSXlEGIvM4Nvq3U0qgLQQz7fxKbLFtbBEoI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSWPR11MB9738
+X-MS-Exchange-CrossTenant-UserPrincipalName: kUvd+orPJbqrZJ22cBaZwGUtAsc3CTg7cCGqOQ80zscoHGWhIu1naEuAVTwvEB79zuO1Zs5M7hbXIqiJfFvOGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8175
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,87 +160,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 24, 2026 at 10:04:58PM +0530, tilak.tirumalesh.tangudu@intel.com wrote:
->From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
->
->Engines cache GGTT translations in their own TLBs, which the
->xe_tlb_inval_ggtt() does not touch.
->After a GGTT unmap the engines can still hit the stale translation and
->read the old page.
->
->Issue an INVAL_FULL (intra vf) invalidation on GGTT unmap, gated on the
->GT having any multi-queue engine class.
->
->v2: Use xe_gt_has_multi_queue() helper and other knits. - Niranjana
->
->Assisted-by: Claude:claude-opus-4-8
->Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
->---
-> drivers/gpu/drm/xe/xe_ggtt.c | 23 ++++++++++++++++++++++-
-> 1 file changed, 22 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->index 4cddd69f0e99..0f8946fddbaa 100644
->--- a/drivers/gpu/drm/xe/xe_ggtt.c
->+++ b/drivers/gpu/drm/xe/xe_ggtt.c
->@@ -464,6 +464,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
-> ALLOW_ERROR_INJECTION(xe_ggtt_init_early, ERRNO); /* See xe_pci_probe() */
->
-> static void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
->+static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt);
->
-> static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
-> {
->@@ -502,8 +503,11 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
-> 			      xe_ggtt_node_size(node), use_scratch);
-> 	drm_mm_remove_node(&node->base);
-> 	node->base.size = 0;
->-	if (bound && node->invalidate_on_remove)
->+	if (bound && node->invalidate_on_remove) {
-> 		xe_ggtt_invalidate(ggtt);
->+		/* Drain engine TLBs so a recycled range can't hit a stale entry. */
+On Mon, Aug 24, 2026 at 04:30:25PM +0200, Laguna, Lukasz wrote:
+> 
+> On 8/21/2026 13:37, sashiko-bot@kernel.org wrote:
+> > Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> > - [Critical] Sleeping in atomic context due to `mutex_lock()` in `xe_device_declare_wedged()`.
+> 
+> Already discussed, can be addressed in a follow-up series.
 
-NIT...may be here or in xe_ggtt_invalidate_engine(), it is good to add a note
-that for simplicity, flush the full TLB instead of context based invalidation?
+Why can't this be addressed in this series? I believe this is worse then the
+below case. But I really dislike that we are going further with the mutex
+inside an atomic context only with a promise of fixing this later without
+seeing the code...
 
->+		xe_ggtt_invalidate_engine(ggtt);
->+	}
-> 	mutex_unlock(&ggtt->lock);
->
-> 	ggtt_node_fini(node);
->@@ -612,6 +616,23 @@ static void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
-> 	ggtt_invalidate_gt_tlb(ggtt->tile->media_gt);
-> }
->
->+/*
->+ * Drain engine-side GGTT TLBs on teardown so a recycled range's next
->+ * occupant can't hit a predecessor's cached translation.
->+ */
-
-NIT...Given we have a has_multi_queue check in this function, perhaps add
-"It is needed in multi-queue case because, ..."?
-
-Anyway, LGTM
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-
-Niranjana
-
->+static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
->+{
->+	struct xe_gt *gt = ggtt->tile->primary_gt;
->+	int err;
->+
->+	if (!xe_gt_has_multi_queue(gt))
->+		return;
->+
->+	err = xe_tlb_inval_ggtt_full(&gt->tlb_inval);
->+	xe_gt_WARN(gt, err, "Failed to invalidate engine GGTT TLBs (%pe)",
->+		   ERR_PTR(err));
->+}
->+
-> /**
->  * xe_ggtt_shift_nodes() - Shift GGTT nodes to adjust for a change in usable address range.
->  * @ggtt: the &xe_ggtt struct instance
->-- 
->2.46.0
->
+> 
+> > - [High] Unprotected state modification and double-increment of `wedged.ref` in `prepare_device_for_reset()`.
+> 
+> Valid. It should be enough to just take the lock and check xe->wedged.perm
+> before taking the reference.
+> 
+> > - [High] Temporary wedged state from PCI error recovery leaks PM reference and triggers teardown assert if recovery aborts.
+> 
+> It seems to be a false report. Reference is taken just before
+> RESULT_RECOVERED.
+> 
+> Lukasz
+> 
+> > --
+> > 
+> > --- Patch [8]: [PATCH v10 08/10] drm/xe: Introduce temporary device wedging ---
+> > commit 102094142d418b8de53397ac8e1fbe1c7ca46ae9
+> > Author: Raag Jadav <raag.jadav@intel.com>
+> > 
+> > drm/xe: Introduce temporary device wedging
+> > 
+> > This commit converts the boolean wedged flag to a reference count to allow
+> > temporary wedged states. It also introduces a perm flag for permanent
+> > wedging and a mutex to protect the wedged state transitions.
+> > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > [ ... ]
+> > > @@ -1476,36 +1526,40 @@ void xe_device_declare_wedged(struct xe_device *xe)
+> > >   		return;
+> > >   	}
+> > > -	if (!atomic_xchg(&xe->wedged.flag, 1)) {
+> > > -		xe->needs_flr_on_fini = true;
+> > > -		xe_pm_runtime_get_noresume(xe);
+> > > +	mutex_lock(&xe->wedged.lock);
+> > [Severity: Critical]
+> > Can this cause a sleeping in atomic context panic?
+> > 
+> > xe_device_declare_wedged() can be called from hard IRQ contexts, for
+> > example:
+> > 
+> > xe_mert_irq_handler()
+> >    mert_handle_cat_error()
+> >      xe_device_declare_wedged()
+> > 
+> > Since mutex_lock() can sleep, taking it here from an interrupt handler
+> > would lead to a scheduling while atomic regression.
+> > 
+> > [ ... ]
+> > > diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
+> > > --- a/drivers/gpu/drm/xe/xe_pci_error.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pci_error.c
+> > > @@ -25,8 +25,10 @@ static void prepare_device_for_reset(struct pci_dev *pdev)
+> > >   	 * xe_device_wedged_fini() releases runtime pm if wedged flag is set, so acquire a runtime
+> > >   	 * pm reference to avoid underflow.
+> > >   	 */
+> > > -	if (!atomic_xchg(&xe->wedged.flag, 1))
+> > > -		xe_pm_runtime_get_noresume(xe);
+> > > +	xe_device_wedged_get(xe);
+> > > +
+> > > +	/* TODO: We shouldn't be doing such ugly hacks, reuse FLR helpers and drop this. */
+> > > +	xe->wedged.perm = true;
+> > [Severity: High]
+> > Could this leak a reference and cause an assertion failure during device
+> > teardown if the device is already wedged?
+> > 
+> > Unlike the old atomic_xchg code which checked if the device was already
+> > wedged, xe_device_wedged_get() increments the reference count unconditionally.
+> > If the device is already wedged from a previous event, the reference count
+> > will be incremented twice.
+> > 
+> > During teardown, xe_device_wedged_fini() only drops a single reference
+> > when wedged.perm is true:
+> > 
+> > drivers/gpu/drm/xe/xe_device.c:xe_device_wedged_fini() {
+> >      if (xe->wedged.perm)
+> >          xe_device_wedged_put(xe);
+> > 
+> >      xe_assert(xe, !xe_device_wedged(xe));
+> > }
+> > 
+> > Will the second reference be left behind and trip the xe_assert() check?
+> > Also, should the state modification here be protected by xe->wedged.lock?
+> > 
+> > [ ... ]
+> > > @@ -126,7 +128,7 @@ static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
+> > >   	xe = pdev_to_xe_device(pdev);
+> > >   	/* Wedge the device to prevent I/O operations till the resume callback */
+> > > -	atomic_set(&xe->wedged.flag, 1);
+> > > +	xe_device_wedged_get(xe);
+> > [Severity: High]
+> > If the PCI error recovery aborts or fails here, and the device is subsequently
+> > unbound, will this leak the runtime PM reference?
+> > 
+> > This code acquires a temporary wedged reference but does not set
+> > xe->wedged.perm to true. If the expected xe_pci_error_resume() is never
+> > called due to a recovery failure, xe_device_wedged_fini() will see
+> > xe->wedged.perm as false and skip dropping the reference, which would
+> > ultimately trigger the xe_assert(xe, !xe_device_wedged(xe)) on teardown.
+> > 
