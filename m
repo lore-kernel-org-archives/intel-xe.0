@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2306C5DF9C
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 18:42:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95A13C5DF9C
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 18:43:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4289210E820;
-	Mon, 24 Aug 2026 18:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 526D110E818;
+	Mon, 24 Aug 2026 18:43:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TuqPCidE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NeHxnd1g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1437B10E820
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 18:42:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E650110E818
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 18:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787596973; x=1819132973;
+ t=1787596983; x=1819132983;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uIA36EaawSYjMME/bKb/mRfYLWeIuWeMHch3w30pzUY=;
- b=TuqPCidEgDok8iP3Yc48jtF2a53YPWTeOMOmF99fflZYqZAyZ9AWsO49
- stCdomxW2z7aGKoiOswIfb9QKfcTn8LBKtXyWpHfdV8GUNKvhRF7E+voT
- kdWTHTGhp6mYYIVVCPISBRsmofZrPh1qXmX4KfCy6P8uHQ10vp3B2WN/5
- 76gTjlWzLol1KJ5slb/2WQqMK9Z1cypMk2GVwJ/ZOyFhVkkqIKVoCu9Uy
- f6+SjKvHHdFBQ13QOp0YfYsvoRBs9U4vsM3Nbc4SrtcSnuNWQ5vKYmXT7
- LJ7SeNo4InYJ8X3kUf1EvLrCFHx8k96PTUlX+laX8xb1B5dv2/etMwUV8 g==;
-X-CSE-ConnectionGUID: 6oSjt0q7R/OjZ7tAfI2ltw==
-X-CSE-MsgGUID: izUQYUt8TDW1p70GO0Pi8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="110840999"
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="110840999"
+ bh=8pHnZT/JD/aNpPdVJWvuAQoWw69y2Pn6iMfQ+WvVios=;
+ b=NeHxnd1grwDQ7vZtNYTxVImyawZJfCF37XIPSJ++UPTcFczH0Si3b6Tv
+ Nvvq02axHNkBiVgfKk3A9gyYVQqzF/rPrBHJOJuXWmXezFlQ1N6se15rc
+ PFhXPkSM4qOw5v2NC6yfMe04IV2wuBIGQu4qHnlc1qA0fpXLeY4lZI8cR
+ d3UbExeDQKBLFS7vOh5KACJtWfNHqgm3xUlHq0GgT5o1xkLltOXMfMKmd
+ e9j44v6r7H9tWNl9m2ySAWxKOcPnxoJWAQ42YSMa+FLBbnNcGZMunzUCs
+ XwJtT07QZYF6Mpf8Qd6vHpoVpW3Wna5ZcUDdaG9NrRcUf9EsCxfQ9yhA5 Q==;
+X-CSE-ConnectionGUID: 2utA76qFRtu80m8WJSEfKQ==
+X-CSE-MsgGUID: xncmZmObTjufyIHLJMa1lQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="110841004"
+X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="110841004"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 11:42:53 -0700
-X-CSE-ConnectionGUID: ikI2RqCCSOKtRvaALljagA==
-X-CSE-MsgGUID: vdIi65fUTaCUXvYFYWsHHQ==
+ 24 Aug 2026 11:43:03 -0700
+X-CSE-ConnectionGUID: msQbKwk7QgOTYp8kSzmNzQ==
+X-CSE-MsgGUID: 9k17P0IqTwO/O+nN99esRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="262776557"
+X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="262776588"
 Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
  ([10.190.239.39])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 11:42:50 -0700
+ 24 Aug 2026 11:42:59 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH 3/3] drm/xe/hwmon: Correct group selection for memory
- controller temperature
-Date: Tue, 25 Aug 2026 00:11:33 +0530
-Message-Id: <20260824184137.2164727-4-karthik.poosa@intel.com>
+Subject: [PATCH 0/3] drm/xe/hwmon: Update hwmon thermal mailbox handling
+Date: Tue, 25 Aug 2026 00:11:34 +0530
+Message-Id: <20260824184137.2164727-5-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260824184137.2164727-1-karthik.poosa@intel.com>
 References: <20260824184137.2164727-1-karthik.poosa@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,28 +71,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Read all the necessary groups when reading memory controller
-temperature in get_mc_temp().
+This series adds CRI-specific temperature sensor handling to the Xe
+hwmon implementation.
+ 
+CRI platforms may report unavailable temperature sensors and support
+a variable number of VRAM temperature channels depending on platform
+configuration. This series adds the required sensor presence checks and
+uses platform-reported thermal configuration data to expose only valid
+temperature-related hwmon attributes.
+ 
+The series also corrects the telemetry group selection used for memory
+controller temperature reporting.
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Fixes: 3a0cb885e111 ("drm/xe/hwmon: Expose memory controller temperature")
----
- drivers/gpu/drm/xe/xe_hwmon.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Karthik Poosa (3):
+  drm/xe/hwmon: Detect unavailable temperature sensors
+  drm/xe/hwmon: Use VRAM temperature sensor count from thermal config on
+    CRI
+  drm/xe/hwmon: Correct group selection for memory controller
+    temperature
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 6e7cb250e628..286f43320ce0 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -844,7 +844,7 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
- 	int ret, i, count = 0;
- 	s32 average = 0;
- 
--	for (i = 0; i < DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32)); i++) {
-+	for (i = 0; i < DIV_ROUND_UP(hwmon->temp.count, sizeof(u32)); i++) {
- 		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
- 				    (dword + i), NULL);
- 		if (ret)
+ drivers/gpu/drm/xe/xe_hwmon.c     | 116 +++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_pcode_api.h |   1 +
+ 2 files changed, 98 insertions(+), 19 deletions(-)
+
 -- 
 2.25.1
 
