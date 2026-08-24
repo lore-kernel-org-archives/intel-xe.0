@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A006C5DF94
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 15:39:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEC84C5DF81
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 15:57:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09CC210E7EC;
-	Mon, 24 Aug 2026 15:39:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9317C10E144;
+	Mon, 24 Aug 2026 15:57:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WGfOK36V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQtxRrU1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC9D910E558
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 15:39:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A591010E144
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 15:57:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787585954; x=1819121954;
+ t=1787587041; x=1819123041;
  h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OJ3qOFc6MAndY7wnSVhRrtzUEJizXWWsnkVIdz7Qff4=;
- b=WGfOK36V8VuvW+sp4YayKUQQSV0B3ze5FQjw9BjcNTurpsQqSrkwQULe
- VxFQsLU4pefFIgtlHN4YIeUX/ziwEI2VjC86Ls64cmzwG6LhafcTgkX4f
- VHYsK3Aw0wNGU7+fH3/9FcYN7LKVByPcl2eJm6hvzGI/yPqs+q28k0Bby
- DRwgImGSGB96F2ZUYxTfx4rBq5PWLvZOpTBVk5btBjhmTX4+MRti7TgXu
- LMUFsgqJfAkBO/js7hDod7lw0ZEUL/6YiZTLoKYWT+DkzXgmXHJlctk4I
- /Z9AHAHRBL53XmJvgcDTkncH5fxLKCp4q7ENSpJFLacWUITZ8zulSa8v1 A==;
-X-CSE-ConnectionGUID: HLt62P1dQ62TfPFASA/Zlg==
-X-CSE-MsgGUID: +ve+pjPFRCG4wro8ImqdWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="87807860"
-X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="87807860"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 08:39:13 -0700
-X-CSE-ConnectionGUID: nmlpinCiQJG9qt+TensRog==
-X-CSE-MsgGUID: ZTSyhCIQTlO9JSADb5JjpQ==
+ references:mime-version;
+ bh=DTQnjMOr2FL7KnNwtrqlU8w3Tsja/2Yp7pbDqU/EekY=;
+ b=OQtxRrU1EXTcuV/cpo9QFlj1CtDBI6xp00HCq2mLHSqb01248aVDtl/A
+ lGRsgJZUTlTNKow4mR/k4LO4oOEzYQ7AROqSBlPaVu5HSZz//Vp3/Ldcs
+ a5yrpwf55M47goDKwA5epJkK0s02ohGnUiqFoVaTeVO+JLFC3wIscJql0
+ zpkUGzq6Nq5sPUqKMaZgMRGT80oy9DujAmv2jJUEax7N7+Bjxyf53v8Nl
+ btIyn4JOK7NaTas4IMw/beYeYrC12r/G3lA8AQJpbsTKRBw9AsIrWTNFX
+ 55Koj5zdsiE9YkNUQxF0BatyHYVCyWS0rqdpvXZoyu3+5bGJjxNTQM1ES Q==;
+X-CSE-ConnectionGUID: Mz6Nu6j7S3+RXevEq66dHQ==
+X-CSE-MsgGUID: DVg4Mk4bRJWEO9Hlrk75pQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="113577152"
+X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="113577152"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 08:57:07 -0700
+X-CSE-ConnectionGUID: 8eyaNjgcSLGvt3v8BXyMAw==
+X-CSE-MsgGUID: j4V8uGx1R3STwlUQY8hSuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="305255252"
+X-IronPort-AV: E=Sophos;i="6.25,240,1779174000"; d="scan'208";a="296934747"
 Received: from kjfische-mobl2.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
  ([10.125.69.157])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 08:39:14 -0700
-Date: Mon, 24 Aug 2026 08:39:12 -0700
-Message-ID: <87ecfnh6jj.wl-ashutosh.dixit@intel.com>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 08:57:07 -0700
+Date: Mon, 24 Aug 2026 08:57:06 -0700
+Message-ID: <87cxv7h5pp.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/3] drm/xe/xe_oa: Avoid checking and setting fields in
- the OA report
-In-Reply-To: <20260821222338.1053887-7-umesh.nerlige.ramappa@intel.com>
-References: <20260821222338.1053887-5-umesh.nerlige.ramappa@intel.com>	<20260821222338.1053887-7-umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH 3/3] drm/xe/xe_oa: Add a lag to the reports that is
+ exported to user
+In-Reply-To: <20260821222338.1053887-8-umesh.nerlige.ramappa@intel.com>
+References: <20260821222338.1053887-5-umesh.nerlige.ramappa@intel.com>	<20260821222338.1053887-8-umesh.nerlige.ramappa@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,62 +70,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 21 Aug 2026 15:23:41 -0700, Umesh Nerlige Ramappa wrote:
+On Fri, 21 Aug 2026 15:23:42 -0700, Umesh Nerlige Ramappa wrote:
 >
-> @@ -260,7 +224,7 @@ static bool mert_wa_14026633728(struct xe_oa_stream *=
-s)
+
+Hi Umesh,
+
+> When running heavy workloads, reading the OA reports too soon does not
+> guarantee that the report has landed in memory. To make sure correct
+> reports are copied to user buffer, only return reports that lag the
+> current HW_TAIL register by 32 reports. This is an empirical number
+> based on a heavy render workload and several test iterations.
+>
+> The reports that user reads will always lag the HW tail by 32 reports,
+> however since OA is used for post processing analysis, this should not
+> affect any current use cases. When the stream is closed or disabled, we
+> let the user read the remaining reports up until HW tail.
+>
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> ---
+> v2: Fix the LAG logic by using sliding window (Sashiko)
+> v3: Fix checkpatch warning
+> v4: Update sw tail on stream disable (Ashutosh)
+> v5: Ensure read is not blocked forever (Sashiko)
+> ---
+>  drivers/gpu/drm/xe/xe_oa.c | 23 +++++++++++++++--------
+>  1 file changed, 15 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index d7647f37ab02..c8f2d7de1396 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> @@ -224,7 +224,7 @@ static bool mert_wa_14026633728(struct xe_oa_stream *s)
 >  static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
 >  {
->	u32 gtt_offset =3D xe_bo_ggtt_addr(stream->oa_buffer.bo);
-> -	u32 tail, hw_tail, partial_report_size, available;
-> +	u32 hw_tail, partial_report_size, available;
->	int report_size =3D stream->oa_buffer.format->size;
+>	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+> -	u32 hw_tail, partial_report_size, available;
+> +	u32 hw_tail, partial_report_size, available, lag;
+>	int report_size = stream->oa_buffer.format->size;
 >	unsigned long flags;
 >
-> @@ -280,29 +244,7 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa=
-_stream *stream)
->	/* Subtract partial amount off the tail */
->	hw_tail =3D xe_oa_circ_diff(stream, hw_tail, partial_report_size);
+> @@ -234,17 +234,23 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+>	hw_tail -= gtt_offset;
 >
-> -	tail =3D hw_tail;
+>	/*
+> -	 * The tail pointer increases in 64 byte (cacheline size), not in report_size
+> +	 * The hw_tail pointer increases in 64 byte (cacheline size), not in report_size
+>	 * increments. Also report size may not be a power of 2. Compute potential
+>	 * partially landed report in OA buffer.
+>	 */
+>	partial_report_size = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
+>	partial_report_size %= report_size;
+>
+> -	/* Subtract partial amount off the tail */
+> +	/* Subtract partial amount off the hw_tail */
+>	hw_tail = xe_oa_circ_diff(stream, hw_tail, partial_report_size);
+>
+> -	stream->oa_buffer.tail = hw_tail;
+> +#define LAG_REPORTS 32
+> +	lag = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
+> +	if (!stream->enabled)
+> +		stream->oa_buffer.tail = hw_tail;
+
+I was originally thinking we would do this in the disable code path
+(xe_oa_disable_locked etc.), but who knows where hw_tail is going to be
+(whether it will be multiple of report_size etc.), so instead of
+replicating that code, it seems good to do it here and call
+xe_oa_buffer_check_unlocked() from xe_oa_disable_locked() as is being done
+below.
+
+Also, because xe_oa_buffer_check_unlocked() is called from the read() code paths,
+I considered the following situations:
+
+* xe_oa_buffer_check_unlocked() called multiple times after stream disable
+* xe_oa_buffer_check_unlocked() called before enabling the stream
+
+And all this seems fine to me. We would just be setting
+'stream->oa_buffer.tail' multiple times unnecessarily, but looks like we
+will always set it to the correct value. So all seems ok.
+
+> +	else if (lag > LAG_REPORTS * report_size)
+> +		stream->oa_buffer.tail = xe_oa_circ_diff(stream, hw_tail,
+> +							 LAG_REPORTS * report_size);
+>
+>	available = xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->oa_buffer.head);
+>	stream->pollin = available >= stream->wait_num_reports * report_size;
+> @@ -1416,10 +1422,6 @@ static void xe_oa_stream_disable(struct xe_oa_stream *stream)
+>
+>	if (stream->sample)
+>		hrtimer_cancel(&stream->poll_check_timer);
 > -
-> -	/*
-> -	 * Walk the stream backward until we find a report with report id and t=
-imestamp
-> -	 * not 0. We can't tell whether a report has fully landed in memory bef=
-ore the
-> -	 * report id and timestamp of the following report have landed.
-> -	 *
-> -	 * This is assuming that the writes of the OA unit land in memory in th=
-e order
-> -	 * they were written.  If not : (=E2=95=AF=C2=B0=E2=96=A1=C2=B0=EF=BC=
-=89=E2=95=AF=EF=B8=B5 =E2=94=BB=E2=94=81=E2=94=BB
-> -	 */
-> -	while (xe_oa_circ_diff(stream, tail, stream->oa_buffer.tail) >=3D repor=
-t_size) {
-> -		if (oa_report_id(stream, tail) || oa_timestamp(stream, tail))
-> -			break;
-> -
-> -		tail =3D xe_oa_circ_diff(stream, tail, report_size);
-> -	}
-> -
-> -	if (xe_oa_circ_diff(stream, hw_tail, tail) > report_size)
-> -		drm_dbg(&stream->oa->xe->drm,
-> -			"unlanded report(s) head=3D0x%x tail=3D0x%x hw_tail=3D0x%x\n",
-> -			stream->oa_buffer.head, tail, hw_tail);
-> -
-> -	stream->oa_buffer.tail =3D tail;
-> +	stream->oa_buffer.tail =3D hw_tail;
+> -	/* Update stream->oa_buffer.tail to allow any final reports to be read */
+> -	if (xe_oa_buffer_check_unlocked(stream))
+> -		wake_up(&stream->poll_wq);
+>  }
+>
+>  static int xe_oa_enable_preempt_timeslice(struct xe_oa_stream *stream)
+> @@ -1490,6 +1492,11 @@ static int xe_oa_disable_locked(struct xe_oa_stream *stream)
+>		ret = xe_oa_enable_preempt_timeslice(stream);
+>
+>	stream->enabled = false;
+> +
+> +	/* Update stream->oa_buffer.tail to allow any final reports to be read */
+> +	if (xe_oa_buffer_check_unlocked(stream))
+> +		wake_up(&stream->poll_wq);
+> +
+>	return ret;
+>  }
 
-This line is added here and then is modified in Patch 3. So maybe we should
-not add this line here, just add the line in Patch 3? And just delete line
-in this patch? So this patch will only contain code deletion.
+Just a few more things to consider and maybe add to this or a new patch:
 
-Also take care of the issue reported by sashiko:
+1. Address this saskhiko comment:
 
-- [Low] The macro `oa_report_header_64bit` is left defined but is completel=
-y unused after its only callers were removed.
+   [High] The newly introduced 32-report lag reduces the maximum possible
+   available reports, but `wait_num_reports` validation still allows values
+   up to full buffer capacity, causing a permanent hang and `-EIO` on
+   overflow.
 
-Apart from these nits, this is:
+   Looks like wait_num_reports check here
 
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+	if (param.wait_num_reports > param.oa_buffer_size / f->size)
+
+   should be reduced by LAG_REPORTS (maybe make LAG_REPORTS a xe_oa_stream
+   property if needed?)
+
+2. Should we do this:
+
+   if (!stream->enabled)
+	stream->pollin = available;
+   else
+	stream->pollin = available >= stream->wait_num_reports * report_size;
+
+   So after stream is disabled, pollin is set even if less than
+   wait_num_reports are available (pre-existing issue I think), to unblock
+   and enable reading all remaining reports after stream disable?
+
+3. Does the OA buffer now need to be zero'd out in xe_oa_init_oa_buffer(),
+   at least we need to remove the comment there:
+
+        /* Zero out the OA buffer since we rely on zero report id and timestamp fields */
+        xe_map_memset(stream->oa->xe, &stream->oa_buffer.bo->vmap, 0, 0,
+                      xe_bo_size(stream->oa_buffer.bo));
+
+   If we remove the zero'ing out, not sure if any IGT's will need to
+   change. Also zero'ing out might have to be re-introduced in the future
+   when reading OA registers is removed.
+
+Thanks.
+--
+Ashutosh
