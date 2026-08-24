@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EB60C5DF81
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 18:57:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58E0CC5DF9C
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Aug 2026 18:57:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E54810E0F5;
-	Mon, 24 Aug 2026 18:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12EF910E589;
+	Mon, 24 Aug 2026 18:57:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="APWDKS0r";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CpArdByo";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3501910E126
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 18:57:56 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F7210E126
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Aug 2026 18:57:57 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 05358417D9;
+ by tor.source.kernel.org (Postfix) with ESMTP id CEA636011F;
  Mon, 24 Aug 2026 18:57:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB8A11F000E9;
- Mon, 24 Aug 2026 18:57:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 659FC1F000E9;
+ Mon, 24 Aug 2026 18:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787597875;
- bh=lUsiOvTWSvwn9U9iqb4zp/gQtWTNHPiYLF2dfpqOjls=;
+ s=k20260515; t=1787597876;
+ bh=IGuxQj4Zqiyj5TqQ5onyJ7bXzuZCNf9m7hGgnYVLagA=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=APWDKS0rr48N45PGlf+2/nsWICvjw+Z+a4/gbfDRhShF95du09vZRmuVfQjDwnYlK
- ksHVviBdXfTD3bLDZDp+YMvSolLGtu4L5M4n/seAQA6Ir/WPl1AVS5sEx8q5WYsjhN
- l83JaQwAKeBC3OrT3QUSPkcYgGMetaB/CZEtgQrVudlmKfLeDwJgBzzgZ+XMKiF5N8
- Fok7Bh2BPqVU5FrAg0pSjY0IFRcrnD+XhVeYB0TFNdirUHvOEK4aqX1g6RgU91P0r+
- gcnMPS6oRF3MlSI3uVYwkdiQ7F0XmiVIZpU3GO/irn8o8efTlYHpurBwZ0yYlVw8/C
- l+A5Dg0xGG/DA==
+ b=CpArdByoL8R9xyh+qOnPIeyM4FzYPefUqG9qmxdxAFY6FmYckjr329LleEGhAVPq6
+ 0AgHgcaj0N+efFd73shHBl9LlBkm5gj2SDY7q/JTwyM9HW29/nolCNefaJviZnXY2e
+ 9+Cw1Qt5tbhnOPNBGJtjlFZrKAjP+Q7IADltIgheYYcudr+AjPfnYvgKKfRKtI+Ed5
+ XYiJrVIzDhMvK+vl8tJXSIErAjzk5EPoI7WSWcw5iAqS80cvQ9l7JOLUN+fsQP+B0o
+ XYk9NhyyQfMQOBqvp5FfF5g95b/Pt22jFcW2CcN64KCY1BdFY2tLAYlJbVz1EHGrzK
+ 3uK+DKQhUYE6w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] drm/xe/hwmon: Correct group selection for memory
- controller temperature
-To: "Karthik Poosa" <karthik.poosa@intel.com>
+Subject: Re: [PATCH v2 1/7] drm/xe/devcoredump: Capture GT fuse registers in
+ devcoredump
+To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260824184137.2164727-8-karthik.poosa@intel.com>
-References: <20260824184137.2164727-1-karthik.poosa@intel.com>
- <20260824184137.2164727-8-karthik.poosa@intel.com>
+In-Reply-To: <20260824184356.1960708-2-naresh.kumar.g@intel.com>
+References: <20260824184356.1960708-1-naresh.kumar.g@intel.com>
+ <20260824184356.1960708-2-naresh.kumar.g@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 24 Aug 2026 18:57:55 +0000
-Message-Id: <20260824185755.BB8A11F000E9@smtp.kernel.org>
+Date: Mon, 24 Aug 2026 18:57:56 +0000
+Message-Id: <20260824185756.659FC1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,50 +59,57 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Buffer overflow in memory controller temperature read loop due to =
-unsafe loop upper bound.
+- [Medium] Incorrect register and bitmask used to determine render awake st=
+atus in devcoredump.
 --
 
---- Patch [3]: [PATCH 3/3] drm/xe/hwmon: Correct group selection for memory=
- controller temperature ---
-commit 06143d547f9d92b56105a4e1bd787aaee0504176
-Author: Karthik Poosa <karthik.poosa@intel.com>
+--- Patch [1]: [PATCH v2 1/7] drm/xe/devcoredump: Capture GT fuse registers=
+ in devcoredump ---
+commit 963c6786cf6616eea5a69f2bd77da1dc93b6d6ff
+Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 
-drm/xe/hwmon: Correct group selection for memory controller temperature
+drm/xe/devcoredump: Capture GT fuse registers in devcoredump
+   =20
+Capture fuse-related GT register state in the Xe devcoredump to preserve
+additional hardware configuration information for postmortem debugging.
 
-This commit updates get_mc_temp() to read all necessary groups based on
-hwmon->temp.count instead of the TEMP_LIMIT_MAX macro.
-
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -820,7 +820,7 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *=
-val)
->  	int ret, i, count =3D 0;
->  	s32 average =3D 0;
+> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_=
+devcoredump.c
+> index 5f2b90b18f97b..e5c33bc941030 100644
+> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
+> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+[ ... ]
+> @@ -69,6 +71,232 @@
+>  /* 1 hour timeout */
+>  #define XE_COREDUMP_TIMEOUT_JIFFIES (60 * 60 * HZ)
 > =20
-> -	for (i =3D 0; i < DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32)); i++) {
-> +	for (i =3D 0; i < DIV_ROUND_UP(hwmon->temp.count, sizeof(u32)); i++) {
->  		ret =3D xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_T=
-HERMAL_DATA, i),
->  				    (dword + i), NULL);
+[ ... ]
+> +static const struct xe_reg_desc xe3p_gt_rpm_reglist[] =3D {
+> +	XE_REG_DESC(RPM_GCD, "RPM_GCD"),
+> +	XE_REG_DESC(POWERGATE_ENABLE, "POWERGATE_ENABLE"),
+> +};
+[ ... ]
+> +static void xe_gt_rpm_snapshot_print(struct drm_printer *p,
+> +				     const struct xe_dbg_reg_snapshot *snap)
+> +{
+> +	xe_dbg_reg_snapshot_print(p, snap);
+> +
+> +	if (snap && snap->num_regs >=3D 2 && !(snap->regs[1].value & 0x2))
+> +		drm_puts(p, "render is not awake\n");
+> +}
 
-[Severity: High]
-If hwmon->temp.count is populated directly from a hardware register field
-without validation, could it take values up to 255?
+[Severity: Medium]
+Are we checking the correct register and bit for the render awake status he=
+re?
 
-If hwmon->temp.count is between 253 and 255, DIV_ROUND_UP will evaluate to =
-64.
-The loop would execute 64 times, reading 4 bytes per iteration and writing a
-total of 256 bytes into the dword array, which aliases hwmon->temp.value.
+It looks like xe3p_gt_rpm_reglist captures POWERGATE_ENABLE at index 1,
+instead of POWERGATE_DOMAIN_STATUS. If so, evaluating
+!(snap->regs[1].value & 0x2) would check the media powergate enable status
+(bit 0x2 of POWERGATE_ENABLE) rather than the actual render awake status.
 
-Since hwmon->temp.value is defined as s8 value[U8_MAX] (exactly 255 bytes),
-does this cause a 1-byte out-of-bounds write past the end of the array?
-
-While this overflow might currently land in struct padding due to alignment
-requirements of subsequent fields, could it corrupt adjacent data if the
-struct layout changes in the future?
+This could result in incorrect diagnostic information being printed in the
+devcoredump.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260824184137.2164=
-727-1-karthik.poosa@intel.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260824184356.1960=
+708-1-naresh.kumar.g@intel.com?part=3D1
