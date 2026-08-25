@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C659C61DB6
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 09:40:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EA01C61CE2
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 09:57:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 327B110E9A0;
-	Tue, 25 Aug 2026 09:40:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GMDRcV7U";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8CE210E9A2
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 09:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787650837; x=1819186837;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=MjVAwUpJloncCacwzAgNaqJzZMMQO3GSHdI0cZdJvbo=;
- b=GMDRcV7UJ8RjrD7Y81j6HK7sSL9l9PAVwvEFO4kGtPlcogGCgKx0E/0b
- uxoJiWENn2SSxzFH+gQ7uqBzmOFmb74mb7UtO+0bvlFnNe27bJhP5Rc1S
- Vl7HqDFVoEScAbnUmG8SoMg7aWHPxHIP0KL3NCKKWWbAReBDj0Tlzcelt
- in4MosATKAL44nQ2srvW04ePegDQJLSRORv/9Ygx4l9NGfffoTwcvRkPa
- FnRCA4x52BdvvE2oJzwZRtd/m7WFhmJbnoFIwEBaUQa9eSf3naP9cufoC
- WtQrE7e2RonaxU7mcIEP+3oLdGoNfmJ6s/psn84oAICMgcNAOizksQQAh A==;
-X-CSE-ConnectionGUID: 6r1b+atNSoKESZ9pshdqcA==
-X-CSE-MsgGUID: x5+UANkwT1i+KJAJrnANEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88130280"
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88130280"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 02:40:36 -0700
-X-CSE-ConnectionGUID: SSgD+Z8sTA6JkcCBWK/nXQ==
-X-CSE-MsgGUID: jy1G40gLQMOa6KfG1+mvsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="265465394"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.99])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 02:40:31 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 25 Aug 2026 12:40:26 +0300 (EEST)
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, david.e.box@linux.intel.com
-cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>, 
- platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- Hans de Goede <hansg@kernel.org>, matthew.brost@intel.com, 
- thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch, 
- anoop.c.vijay@intel.com, badal.nilawar@intel.com, 
- matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: Re: [PATCH v3 01/10] platform/x86/intel/pmt: complete pcidev to
- device update
-In-Reply-To: <aoyT-PnfaSgo9Kp5@intel.com>
-Message-ID: <de9020a6-6363-3c4e-164e-f0a1ceef4535@linux.intel.com>
-References: <20260824162317.2450380-12-michael.j.ruhl@intel.com>
- <20260824162317.2450380-13-michael.j.ruhl@intel.com>
- <aoyT-PnfaSgo9Kp5@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB8A10E182;
+	Tue, 25 Aug 2026 09:57:30 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0157910E182;
+ Tue, 25 Aug 2026 09:57:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3973055583736002881=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_support_to_handle_memor?=
+ =?utf-8?q?y_double-bit_ecc_errors?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tauro, Riana" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Aug 2026 09:57:28 -0000
+Message-ID: <178765184898.82308.8527167631623355590@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260825063615.3697317-7-riana.tauro@intel.com>
+In-Reply-To: <20260825063615.3697317-7-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,114 +36,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 24 Aug 2026, Rodrigo Vivi wrote:
+--===============3973055583736002881==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> On Mon, Aug 24, 2026 at 09:23:17AM -0700, Michael J. Ruhl wrote:
-> > Previously the pcidev usage was moved to the struct device.
-> > The struct device is set for only the telemetry endpoints.
-> > 
-> > This usage prevents other PMT features (crashlog) from using
-> > the callback mechanism.
-> > 
-> > Use struct device in the intel_pmt_entry.
-> > Update callback usage to os the pmt entry rather than the
-> > telemetry endpoint.
-> > 
-> > Fixes: 353042d54d82 ("platform/x86/intel/vsec: Switch exported helpers from pci_dev to device")
-> > Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> 
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Dave, Hans, Ilpo, ack on getting this through the drm-xe-next tree?
+== Series Details ==
 
-Does David have anything in the horizon for the upcoming for-next cycle 
-that could potentially conflict with this?
+Series: Add support to handle memory double-bit ecc errors
+URL   : https://patchwork.freedesktop.org/series/172710/
+State : failure
 
-If not, then it would be fine for me to merge this through the drm-xe-next 
-tree (the second patch needs some work though).
+== Summary ==
 
-> Thanks,
-> Rodrigo.
-> 
-> > ---
-> >  drivers/platform/x86/intel/pmt/class.c     | 5 ++---
-> >  drivers/platform/x86/intel/pmt/class.h     | 3 +--
-> >  drivers/platform/x86/intel/pmt/discovery.c | 2 +-
-> >  3 files changed, 4 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-> > index d0ab8e33c62a..402d51df834a 100644
-> > --- a/drivers/platform/x86/intel/pmt/class.c
-> > +++ b/drivers/platform/x86/intel/pmt/class.c
-> > @@ -100,7 +100,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
-> >  	if (count > entry->size - off)
-> >  		count = entry->size - off;
-> >  
-> > -	count = pmt_telem_read_mmio(entry->ep->dev, entry->cb, entry->header.guid, buf,
-> > +	count = pmt_telem_read_mmio(entry->dev, entry->cb, entry->header.guid, buf,
-> >  				    entry->base, off, count);
-> >  
-> >  	return count;
-> > @@ -286,8 +286,6 @@ static int pmt_resolve_access_pci(struct intel_pmt_entry *entry,
-> >  		return -EINVAL;
-> >  	}
-> >  
-> > -	entry->pcidev = pci_dev;
-> > -
-> >  	return 0;
-> >  }
-> >  
-> > @@ -365,6 +363,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
-> >  	entry->guid = header->guid;
-> >  	entry->size = header->size;
-> >  	entry->cb = ivdev->priv_data;
-> > +	entry->dev = ivdev->dev;
-> >  
-> >  	return 0;
-> >  }
-> > diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-> > index a0ece4fc3837..258cb460e61c 100644
-> > --- a/drivers/platform/x86/intel/pmt/class.h
-> > +++ b/drivers/platform/x86/intel/pmt/class.h
-> > @@ -20,7 +20,6 @@
-> >  #define GET_ADDRESS(v)		((v) & GENMASK(31, 3))
-> >  
-> >  struct device;
-> > -struct pci_dev;
-> >  extern struct class intel_pmt_class;
-> >  
-> >  struct telem_endpoint {
-> > @@ -42,7 +41,7 @@ struct intel_pmt_header {
-> >  
-> >  struct intel_pmt_entry {
-> >  	struct telem_endpoint	*ep;
-> > -	struct pci_dev		*pcidev;
-> > +	struct device		*dev;
-> >  	struct intel_pmt_header	header;
-> >  	u32			disc_header[PMT_DISC_DWORDS];
-> >  	struct bin_attribute	pmt_bin_attr;
-> > diff --git a/drivers/platform/x86/intel/pmt/discovery.c b/drivers/platform/x86/intel/pmt/discovery.c
-> > index c482368bfaae..f4203d240f54 100644
-> > --- a/drivers/platform/x86/intel/pmt/discovery.c
-> > +++ b/drivers/platform/x86/intel/pmt/discovery.c
-> > @@ -609,7 +609,7 @@ void intel_pmt_get_features(struct intel_pmt_entry *entry)
-> >  
-> >  	mutex_lock(&feature_list_lock);
-> >  	list_for_each_entry(feature, &pmt_feature_list, list) {
-> > -		if (feature->priv->parent != entry->ep->dev)
-> > +		if (feature->priv->parent != entry->dev)
-> >  			continue;
-> >  
-> >  		pmt_get_features(entry, feature);
-> > -- 
-> > 2.43.0
-> > 
-> 
+CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -> xe-pw-172710v1_BAT
+====================================================
 
--- 
- i.
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-172710v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-172710v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-172710v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172710v1/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9071 -> IGT_9072
+  * Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -> xe-pw-172710v1
+
+  IGT_9071: 9071
+  IGT_9072: 9072
+  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad
+  xe-pw-172710v1: 172710v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172710v1/index.html
+
+--===============3973055583736002881==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add support to handle memory double-bit ecc errors</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172710/">https://patchwork.freedesktop.org/series/172710/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172710v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172710v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -&gt; xe-pw-172710v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-172710v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-172710v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-172710v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172710v1/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9071 -&gt; IGT_9072</li>
+<li>Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -&gt; xe-pw-172710v1</li>
+</ul>
+<p>IGT_9071: 9071<br />
+  IGT_9072: 9072<br />
+  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad<br />
+  xe-pw-172710v1: 172710v1</p>
+
+</body>
+</html>
+
+--===============3973055583736002881==--
