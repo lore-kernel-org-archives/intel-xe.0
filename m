@@ -4,44 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCC06C5DF94
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:35:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62C1CC5DF94
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:36:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D95D10E924;
-	Tue, 25 Aug 2026 06:35:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21A7B10E8D9;
+	Tue, 25 Aug 2026 06:36:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OXCv52gI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A5+MsLA6";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C077810E91E;
- Tue, 25 Aug 2026 06:35:42 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id AF4A56011F;
- Tue, 25 Aug 2026 06:35:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3151B1F00A3A;
- Tue, 25 Aug 2026 06:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787639741;
- bh=oP09JjzTGpWI5zKQzdF30MaSZ1zhBanqsiLSxj0dl6w=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=OXCv52gI8GYZnv/e0VsWiFlU/f+KGH5nolfqwFM0NtcOQ/hkbpcQqHCz4JT0UuW10
- 1NRI2TNiy+7iIvkq+Xg0kW9uRcHo+yo4PMZwdnDr3uho7TB8+TSm4IlKkT+0plIP2Y
- eC+hDvAJ8euwJlLFKzwZeRMIiY4JEkBwRE8EHcpqw3o8DOcgdLrKr4Iku4qg7X3jwc
- HNXbOxu0XeAfD2jFYMHNZpPOx9E2kGfTUpZrrggnl2Yc5IF7k2V7RZh3W+DtFVrhsK
- Ju25SL84Q6553VJoP2zZo+Vbn3z5KFYp7Qq0eCF80QNQlyhHPeV9dRg2T93wKROd79
- wUU5RgSORV5Fw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 13/15] drm/i915/alpm: Introduce has_alpm to decouple
- from pr/psr2/lobf
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825054536.3455704-14-animesh.manna@intel.com>
-References: <20260825054536.3455704-1-animesh.manna@intel.com>
- <20260825054536.3455704-14-animesh.manna@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 06:35:40 +0000
-Message-Id: <20260825063541.3151B1F00A3A@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 019DF10E8F0
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 06:36:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787639798; x=1819175798;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DJW+0GSV/eFL6WYGlHuAlrpwrAMtuiGLmq52sFWRXcE=;
+ b=A5+MsLA6fmMr3FbXe2gzZ0lphc9SP0S7UXQphkF3xWIgz+93YA6sdm4K
+ Q7IiTPzpLSUqi+CLzDAfXQQdT5bOpq2EN5LAOSLoUL7CAJABoYjnyySvm
+ /KieMsR1Tun7ImDZeE1U2LzPVvXmgsGHPhJshFU7t+SEPnH2r1+lmmU6J
+ W9/k58BelC1ltGcJg3FjLi5ziHxzzUv0u8KpFB5kk0bpj2bZfLreOeGER
+ emOuw2ywwuO3Y4XcLmJqGu/aBNwaU2LOW+goKBDi6Mot+8wByoNqjCMWb
+ NO+1KKQzOiGxHNPJIqx1u9i9iIjkKJQgDI4ociP2vGVCAUrlg3ITdoK/Z A==;
+X-CSE-ConnectionGUID: qpOvbYSvTHeA+ra3DLZ5wg==
+X-CSE-MsgGUID: d0LeEfCiTnajJwnjg0JgCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="87226087"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="87226087"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 23:36:37 -0700
+X-CSE-ConnectionGUID: lShb5qpsQLGIWhYa/gW61A==
+X-CSE-MsgGUID: oSST/oGgTKqWbSj2O9bCCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="265428922"
+Received: from unknown (HELO rtauro-desk.iind.intel.com) ([10.190.238.50])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 23:36:34 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ tejas.upadhyay@intel.com, himal.prasad.ghimiray@intel.com
+Subject: [PATCH 0/5] Add support to handle memory double-bit ecc errors
+Date: Tue, 25 Aug 2026 12:06:15 +0530
+Message-ID: <20260825063615.3697317-7-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,163 +65,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] Source/sink protocol mismatch for PSR2 panels with AUX-less capabi=
-lity.
-- [High] State leakage of the `has_alpm` flag forces ALPM on unsupported PS=
-R1 fallbacks.
-- [High] Inconsistent ALPM wake line validation causes unsafe late atomic s=
-tate downgrades.
---
+This series introduces the firmware commands required to handle
+uncorrectable memory double-bit ecc errors.
 
---- Patch [13]: [PATCH v5 13/15] drm/i915/alpm: Introduce has_alpm to decou=
-ple from pr/psr2/lobf ---
-commit dd0c0bc3be20db88d8488b6083be9663dc32cc6d
-Author: Animesh Manna <animesh.manna@intel.com>
-Subject: drm/i915/alpm: Introduce has_alpm to decouple from pr/psr2/lobf
+When a error is detected, the driver determines whether the affected
+page can be offlined and sends an offline/decline request to firmware
+via sysctrl interface. Pages belonging to critical Bos or stolen memory
+require a Secondary Bus Reset(SBR) to recover.
+Pages configured for log-only handling are declined.
 
-For DP2.1, ALPM is optional and there can be scenario where panel replay
-will be supported without ALPM. So decouple ALPM feature by has_alpm flag
-from related display features.
+For the rest of the valid pages, the first error is a poison error and a
+decline is sent to firmware to avoid marking the page as bad. On the
+second occurence at the same address, we request the firmware to offline
+the page as this would indicate a Double-bit ECC error. Any subsequent
+errors at the same address should be because of memory scrubber and a
+decline is sent to firmware to remove the page from queue. This is done
+by tracking the firmware offlined pages by Xe KMD.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/=
-i915/display/intel_alpm.c
-> index f3f6f40f96244..8c17da9883d6d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+At module load, the driver queries firmware for both the offline list
+and the queue and processes them accordingly.
 
-[ ... ]
+This series is sent as RFC because it depends on the address fault
+handling function which is still in review
 
-> @@ -575,8 +569,7 @@ static void lnl_alpm_configure(struct intel_dp *intel=
-_dp,
->  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
->  	u32 alpm_ctl, alpm_ctl2, lttpr_count;
-> =20
-> -	if (DISPLAY_VER(display) < 20 || (!intel_psr_needs_alpm(intel_dp, crtc_=
-state) &&
-> -					  !crtc_state->has_lobf))
-> +	if (DISPLAY_VER(display) < 20 || !crtc_state->has_alpm)
->  		return;
-> =20
->  	mutex_lock(&intel_dp->alpm.lock);
-> @@ -584,7 +577,7 @@ static void lnl_alpm_configure(struct intel_dp *intel=
-_dp,
->  	 * Panel Replay on eDP is always using ALPM aux less. I.e. no need to
->  	 * check panel support at this point.
->  	 */
-> -	if (intel_alpm_is_alpm_aux_less(intel_dp, crtc_state)) {
-> +	if (intel_alpm_aux_less_wake_supported(intel_dp)) {
->  		alpm_ctl =3D ALPM_CTL_ALPM_ENABLE |
->  			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
->  			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS;
+https://lore.kernel.org/intel-xe/20260818104055.3833974-14-tejas.upadhyay@intel.com/
 
-[Severity: High]
-Does this create a protocol mismatch between the source and the sink?
+Riana Tauro (5):
+  drm/xe/xe_drm_ras: Rename ras to drm_ras in xe_device
+  drm/xe/xe_ras: Handle page offline requests for device memory ECC
+    errors
+  drm/xe/xe_ras: Add support to query page offline queue and list
+  drm/xe/xe_ras: Add function to get maximum pages firmware can store
+  drm/xe/xe_ras: Track offlined pages by firmware to avoid duplicates
 
-By changing this to rely on intel_alpm_aux_less_wake_supported(), the source
-is now programmed for AUX-less ALPM (ALPM_CTL_ALPM_AUX_LESS_ENABLE) for PSR2
-panels that advertise DP_ALPM_AUX_LESS_CAP.
+ drivers/gpu/drm/xe/xe_device.c                |   4 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +-
+ drivers/gpu/drm/xe/xe_drm_ras.c               |  12 +-
+ drivers/gpu/drm/xe/xe_hw_error.c              |   6 +-
+ drivers/gpu/drm/xe/xe_ras.c                   | 269 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_ras.h                   |   3 +-
+ drivers/gpu/drm/xe/xe_ras_types.h             |  94 ++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   6 +
+ 8 files changed, 381 insertions(+), 19 deletions(-)
 
-However, intel_alpm_enable_sink() still requires Panel Replay or LOBF to
-enable AUX-less mode on the sink. Because neither is true for PSR2, the sink
-will be expecting fast-wake ALPM, which conflicts with how the source is
-now programmed here.
+-- 
+2.47.1
 
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index 40e3d70959965..8c6aa4e948894 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-
-[ ... ]
-
-> @@ -1729,11 +1731,17 @@ static bool _panel_replay_compute_config(struct i=
-ntel_crtc_state *crtc_state,
->  	crtc_state->link_off_after_as_sdp_when_pr_active =3D compute_link_off_a=
-fter_as_sdp_when_pr_active(connector);
->  	crtc_state->disable_as_sdp_when_pr_active =3D compute_disable_as_sdp_wh=
-en_pr_active(connector);
-> =20
-> +	if (intel_alpm_is_possible(intel_dp))
-> +		crtc_state->has_alpm =3D alpm_config_valid(intel_dp, crtc_state, true,=
- true, false);
-> +
->  	if (!intel_dp_is_edp(intel_dp))
->  		return true;
-> =20
->  	/* Remaining checks are for eDP only */
-> =20
-> +	if (!crtc_state->has_alpm)
-> +		return false;
-> +
->  	if (to_intel_crtc(crtc_state->uapi.crtc)->pipe !=3D PIPE_A &&
->  	    to_intel_crtc(crtc_state->uapi.crtc)->pipe !=3D PIPE_B)
->  		return false;
-
-[Severity: High]
-Can this leak the has_alpm state if the panel replay config is aborted?
-
-If alpm_config_valid() succeeds, crtc_state->has_alpm is set to true.
-However, if a subsequent check in _panel_replay_compute_config() returns
-false (such as the PIPE_A/B check or a later HDCP check), has_alpm remains
-set to true.
-
-When the driver then falls back to computing PSR1, has_alpm stays true and
-bypasses the previous protections that prevented ALPM from being enabled
-on PSR1. This forces ALPM on for PSR1 fallbacks where it is not supported.
-
-[ ... ]
-
-> @@ -4547,15 +4542,17 @@ void intel_psr_compute_config_late(struct intel_d=
-p *intel_dp,
->  	int vblank =3D intel_crtc_vblank_length(crtc_state);
->  	int wake_lines;
-> =20
-> -	if (intel_psr_needs_alpm_aux_less(intel_dp, crtc_state))
-> -		wake_lines =3D crtc_state->alpm_state.aux_less_wake_lines;
-> -	else if (intel_psr_needs_alpm(intel_dp, crtc_state))
-> -		wake_lines =3D DISPLAY_VER(display) < 20 ?
-> -			     psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
-> -						    crtc_state->alpm_state.fast_wake_lines) :
-> -			     crtc_state->alpm_state.io_wake_lines;
-> -	else
-> +	if (crtc_state->has_alpm) {
-> +		if (intel_alpm_aux_less_wake_supported(intel_dp))
-> +			wake_lines =3D crtc_state->alpm_state.aux_less_wake_lines;
-> +		else
-> +			wake_lines =3D DISPLAY_VER(display) < 20 ?
-> +				     psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
-> +							    crtc_state->alpm_state.fast_wake_lines) :
-> +				     crtc_state->alpm_state.io_wake_lines;
-> +	} else {
->  		wake_lines =3D 0;
-> +	}
-> =20
->  	/*
->  	 * Disable the PSR features if wake lines exceed the available vblank.
-
-[Severity: High]
-Does this late selection of aux_less_wake_lines conflict with the early
-validation performed for PSR2?
-
-During early validation, intel_psr2_config_valid() hardcodes the aux_less
-parameter to false when calling alpm_config_valid(), so it validates
-against the smaller io_wake_lines.
-
-If intel_alpm_aux_less_wake_supported() evaluates to true here in late
-compute, it will dynamically select the larger aux_less_wake_lines instead.=
-=20
-This mismatch can cause the subsequent _wake_lines_fit_into_vblank() check
-to fail, triggering a late teardown of has_sel_update after watermarks and
-DDB allocations have already been computed assuming PSR/SU was active.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825054536.3455=
-704-1-animesh.manna@intel.com?part=3D13
