@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFF40C61DBD
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:51:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53FB6C61DBC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:53:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 787F189CCE;
-	Tue, 25 Aug 2026 17:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E3AC10E205;
+	Tue, 25 Aug 2026 17:53:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="F74Rbz4F";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LbfRuGTZ";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2683C89CCE
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:51:08 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFD810E205
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:53:18 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id D05A740B86;
- Tue, 25 Aug 2026 17:51:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93D371F000E9;
- Tue, 25 Aug 2026 17:51:07 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id D746760053;
+ Tue, 25 Aug 2026 17:53:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C7271F000E9;
+ Tue, 25 Aug 2026 17:53:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787680267;
- bh=0eYwYnsFgwc6s+dGiBShVGAaitR3Xd8gJO54wNhQ73U=;
+ s=k20260515; t=1787680397;
+ bh=GoifAGu6OXmSut9RFckKb9qZA+vVuni5DElK/Mbohzs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=F74Rbz4F5EcSWpytjwKxxHp96PtP2PBxsm77iNUMEbOB5nTRUJK3Nq1uC4AR3Kg7e
- eWE0epFEOUOlvQemAKWgxL6pB7ro2VVK781H/0EhvGMrpXPdWDirqJonHh9AkJGG+e
- JjR316puzwNLurfYaYYHzLZOjynyB0pjtDDskULkkR4nfW/DJN+xWasByaBFywmMze
- pW9HZM1mUrB077DjvaKb045NJbAGFlL827IsXXXEBJm5awoPCUgDi/0QKKk7xooVVV
- 0Ovhzx/2onXXx/xpjF631WfUBAw/WwpyTHhaN9F9bgfsVF61Y9IvJgzvfDeSELI3sy
- sfY554ye18i/Q==
+ b=LbfRuGTZpRmo2B339Q0hzH7vSSGSODKTk83euZ2J4B8bEO3iE6fvPS2LXEUcztK6g
+ xNK8eRpk/uewwGn8fSSPGy37D6TEeU7cbH+eFKMEZVkn4iCZ0Bqz1T9Bkc5tpNL3dx
+ 101rdeV3BsQG1GiloT7sKa8S6lo/UQgkxlo/n2lGtsTuZdvcXKd335Rp73nhNaXOOa
+ ALaiwRBaH/qJPtn8vS35oMQAb2H/KGbHTQfQJQ0Uixj3wwY8AZTZTXeddemXM0Y+m6
+ wFR0SDYRBfPDRIZo8qdsznOZXssTvXyUcigz+bMmB7Hsetg+od5DU6inGlnNdmv0Xc
+ mvSZzoJgnnzmg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 03/11] drm/xe/cper: Add CPER structures and trace event
+Subject: Re: [PATCH v2 01/11] drm/xe/xe_ras: Add support to retrieve info
+ queue data for CRI
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825175916.1103841-16-badal.nilawar@intel.com>
+In-Reply-To: <20260825175916.1103841-14-badal.nilawar@intel.com>
 References: <20260825175916.1103841-13-badal.nilawar@intel.com>
- <20260825175916.1103841-16-badal.nilawar@intel.com>
+ <20260825175916.1103841-14-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 17:51:07 +0000
-Message-Id: <20260825175107.93D371F000E9@smtp.kernel.org>
+Date: Tue, 25 Aug 2026 17:53:16 +0000
+Message-Id: <20260825175317.6C7271F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,117 +59,110 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] CPER structures use native integer types and C bitfields for a s=
-tandardized external binary format, causing ABI corruption on non-little-en=
-dian architectures.
-- [Medium] Tracepoint uses `%pU` to print `guid_t` fields, incorrectly form=
-atting them as big-endian.
+- [Medium] Unportable use of C bitfields inside a packed structure for a fi=
+rmware message interface.
+- [Low] The patch introduces a static function `get_info_queue_data` withou=
+t any callers, causing a `-Wunused-function` compiler warning that breaks t=
+he build.
 --
 
-commit ad510a6c4b7008ac7d33a168936259e5f8400da7
+commit 82a6804e91047f9e3f922cd878001d1bc3e9d8ed
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/cper: Add CPER structures and trace event
+drm/xe/xe_ras: Add support to retrieve info queue data for CRI
 
-Define packed data structures and Intel-specific GUID macros needed
-to build Intel GPU CPER (Common Platform Error Record) non-standard
-records.
+This commit adds support to retrieve info queue data. It introduces
+various structures for the info queue data request and response, and adds
+a function to send the command to the system controller.
 
-> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_c=
-per_types.h
-> new file mode 100644
-> index 0000000000000..82167ea4eb161
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index d25d25f775310..6830872354825 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
 [ ... ]
-> +struct xe_cper_sec_intel_err_hdr {
-> +	/** @error_class: Error classification (type, component, location, caus=
-e) */
-> +	union {
-> +		struct {
-> +			/** @error_class.error_type: RAS error severity */
-> +			u8  error_type;
-> +			/** @error_class.error_component: IP block that raised the error */
-> +			u8  error_component;
-> +			/** @error_class.tile: Tile number */
-> +			u8  tile;
-> +			/** @error_class.instance: Instance within the tile */
-> +			u32 instance;
-> +			/** @error_class.cause: Error cause code */
-> +			u32 cause;
-> +			/** @error_class.reserved: Reserved, must be zero */
-> +			u8  reserved;
-> +		} error_class;
-> +		/** @class: Raw byte view of the error class */
-> +		u8 class[12];
-> +	};
-> +	/** @first_timestamp: Timestamp of the first occurrence of this error c=
-lass */
-> +	u64 first_timestamp;
+> @@ -661,6 +661,40 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 se=
+verity, u8 component)
+>  	return 0;
+>  }
+> =20
+> +static int get_info_queue_data(struct xe_device *xe,
+> +			       const struct xe_ras_get_info_queue_data_request *req,
+> +			       struct xe_ras_get_info_queue_data_response *out)
+
+[Severity: Low]
+Does this function have any callers in this patch?
+
+Adding a static function without using it in the same patch will cause a
+-Wunused-function compiler warning, which breaks the build when compiling
+with -Werror. To maintain git bisect functionality, every intermediate patch
+should compile independently.
+
+Could get_info_queue_data() be introduced in the patch that first uses it,
+or temporarily marked with __maybe_unused?
+
+> +{
+> +	struct xe_ras_get_info_queue_data_response response =3D {0};
+> +	struct xe_sysctrl_mailbox_command command =3D {0};
+> +	size_t rlen;
+> +	int ret;
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ra=
+s_types.h
+> index 99b2466e2062c..d87db9f5174a2 100644
+> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+[ ... ]
+> @@ -95,6 +99,109 @@ struct xe_ras_threshold_crossed {
+>  	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
+>  } __packed;
+> =20
+> +/**
+> + * struct xe_ras_info_queue_header - Metadata for large info queue data =
+transfers
+> + *
+> + * Provides chunk metadata for commands that support extended info queue
+> + * functionality. Used when the total data exceeds a single mailbox resp=
+onse.
+> + */
+> +struct xe_ras_info_queue_header {
+> +	/** @total_size: Total size of the complete info queue data in bytes */
+> +	u32 total_size;
+> +	/** @chunk_offset: Offset of this chunk within the total data in bytes =
+*/
+> +	u32 chunk_offset;
+> +	/** @chunk_size: Size of the data in this chunk in bytes */
+> +	u32 chunk_size;
+> +	/** @sequence_number: Sequence number for this chunk, starts at 0 */
+> +	u32 sequence_number;
+> +	/** @flags: Info queue control flags (RAS_INFO_QUEUE_FLAG_*) */
+> +	u32 flags:8;
+> +	/** @compression_type: Compression algorithm used; 0 =3D none */
+> +	u32 compression_type:4;
+> +	/** @num_headers: Number of detailed counter headers at start of queue_=
+data */
+> +	u32 num_headers:5;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved:15;
 
 [Severity: Medium]
-Can this native u64 type break the CPER binary layout on big-endian=20
-architectures?
+Are these C bitfields safe to use for a firmware message interface?
 
-The CPER standard dictates a strict binary layout and requires multi-byte f=
-ields
-to be little-endian. Using architecture-dependent native integer types like=
- u64
-causes the struct's binary representation to vary based on host endianness,
-which can produce corrupted CPER records on big-endian architectures.
+When the driver communicates with the firmware on a big-endian architecture
+or using a compiler with different bitfield ordering rules, the bitfields
+in xe_ras_info_queue_header will map to the wrong bits in the underlying
+32-bit word.
 
-Should this use explicitly sized and endian-specific types like __le64?
+Using C bitfields inside a __packed struct for a hardware/firmware ABI is
+generally avoided because their memory layout is compiler-dependent and
+endian-dependent. Would it be safer to use fixed-width types like u32
+along with FIELD_GET() and FIELD_PREP() macros?
 
-> +	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
-> +	u32 sig_id;
-> +	/** @error_count: Number of times this error has been observed */
-> +	u32 error_count;
-> +	/** @valid_bits: Bitmask indicating which header fields are populated */
-> +	union {
-> +		struct {
-> +			/** @valid_bits.location: @error_class field is valid */
-> +			u16 location		: 1;
-
-[Severity: Medium]
-Will this compiler-dependent bitfield cause ABI corruption?
-
-Since bitfield layout is compiler- and architecture-dependent, it breaks the
-exact bit-level binary layout required for the CPER standard.=20
-
-Should this be handled with standard bitwise operations instead?
-
+> +	/** @checksum: CRC32 checksum of this chunk data */
+> +	u32 checksum;
+> +} __packed;
+> +
 [ ... ]
-> diff --git a/drivers/gpu/drm/xe/xe_trace_cper.h b/drivers/gpu/drm/xe/xe_t=
-race_cper.h
-> new file mode 100644
-> index 0000000000000..6d2dbf5048884
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_trace_cper.h
-[ ... ]
-> +	TP_printk("dev=3D%s severity=3D%d platform_id=3D%pU fru_id=3D%pU "
-
-[Severity: Medium]
-Does this tracepoint format guid_t fields incorrectly?
-
-The printk format specifier %pU defaults to %pUb, which formats UUIDs in
-big-endian byte order (RFC 4122). However, guid_t represents little-endian
-UUIDs.
-
-Using %pU instead of %pUl causes the first three components of the GUID to =
-be
-incorrectly byte-swapped in the trace output, presenting a corrupted GUID to
-userspace consumers.
-
-> +		"intel_err_hdr_raw=3D%s cper_len=3D%u cper_raw=3D%s",
-> +		__get_str(dev), __entry->sev,
-> +		__entry->platform_id, __entry->fru_id,
-> +		__print_hex(__entry->ihdr_raw,
-> +		    sizeof(struct xe_cper_sec_intel_err_hdr)),
-> +		__entry->cper_len,
-> +		__print_hex(__get_dynamic_array(cper),
-> +		    __entry->cper_len))
-> +);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825175916.1103=
-841-13-badal.nilawar@intel.com?part=3D3
+841-13-badal.nilawar@intel.com?part=3D1
