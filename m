@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9676C61DB6
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:19:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6696BC5DF94
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:19:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E95B10E8F3;
-	Tue, 25 Aug 2026 06:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 268AC10E8FC;
+	Tue, 25 Aug 2026 06:19:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ce075+vn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A2HuWYPj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 217CD10E8CE;
- Tue, 25 Aug 2026 06:19:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE58110E8F6;
+ Tue, 25 Aug 2026 06:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787638781; x=1819174781;
+ t=1787638783; x=1819174783;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kAQnLpkE5e14hYotzzBAjGAOmOrKUi0UNxepiLtb36Y=;
- b=ce075+vnaVvPJwH8PJUqo2CsHJ4E8HCPQsZmTyipK9iPxDJCCiZp1cSV
- Xdu/HZbin+mk5l8SU2lu9WuTLKh1dw0GQIhSQaSYNR7S0vFbDgAJNgLIM
- Rz5459+yDVKpoV3CvVsXovmY3vqh3s9msl5jLyttK02/qRG1dldIid2Fv
- IUPgJ+rZLqo8OjCy2TI9cjrIWd9B3XFeXt9KE501p3lGXgTZ5g5qR/T2+
- T7OKu7quHW+4HTKtLEQcjBkAyIZv1+cDWRa0PRwpswEsZ04xDGzYMNNfK
- 9Ew2iUq1NzFHx0Q/FWE/QTWNv6po7vTt5Rpoptwggj5qp4//xpE35Ny66 Q==;
-X-CSE-ConnectionGUID: hn523SYXQ1GOzWV0M3jEmQ==
-X-CSE-MsgGUID: b4s4VL5ZQUavP/LGTg4z0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88112698"
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88112698"
+ bh=gZMMp7/PZYfecyttCqJRJbT4bdxbQ7kuMvrpCBXSKs8=;
+ b=A2HuWYPjuatc/ged1rlpqVv1DS5U2ndS5EShttDgbVdb3mx3itOexY+U
+ /n9F29eEH942upKoSD0eXvgxwvSHg1R58LVVE/c8ga8jAyzs60VA6SdNC
+ trhKeN1D+Sn0V9zGPHiojEKUbdGzK7AktmAzzx8h/Sy3dvLocztX7Y2H+
+ MIitn/eggvQ2L8ZOdWD5UQSX1Rhv+yhLk8qZ+8zWlJoq2J1z5rbO2wAnj
+ CNM63CxHvAyHuv1HnsKU4pIjzdm7GjcOSBcLgoIvxD2V7ePOBsZB8brzJ
+ 3tuWreHNMlQTyENosj80av/jcZerDcy//f64wkjfiGBPEfWoZtGXb4nuB A==;
+X-CSE-ConnectionGUID: j6hoIfjjQYS/5Gg801EHzA==
+X-CSE-MsgGUID: Fx9aI6VfR9+BYtqFkGqaCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88112702"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88112702"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 23:19:41 -0700
-X-CSE-ConnectionGUID: kJMPAx3hQq+4sZpM0b3URg==
-X-CSE-MsgGUID: ZE7OD/EFTF6N9CNZEu4rxg==
+ 24 Aug 2026 23:19:43 -0700
+X-CSE-ConnectionGUID: alwXDLsyT327hFcNAMD+TQ==
+X-CSE-MsgGUID: cUuwZqr4RQqd1xk5k1aYyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="263913006"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="263913016"
 Received: from unknown (HELO SRR4-3-Linux-101-amanna.iind.intel.com)
  ([10.190.238.88])
- by fmviesa007.fm.intel.com with ESMTP; 24 Aug 2026 23:19:38 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 24 Aug 2026 23:19:41 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, jani.nikula@intel.com, suraj.kandpal@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v5 13/15] drm/i915/alpm: Introduce has_alpm to decouple from
- pr/psr2/lobf
-Date: Tue, 25 Aug 2026 11:15:34 +0530
-Message-Id: <20260825054536.3455704-14-animesh.manna@intel.com>
+Subject: [PATCH v5 14/15] drm/i915/alpm: Compute and program switch to active
+ latency
+Date: Tue, 25 Aug 2026 11:15:35 +0530
+Message-Id: <20260825054536.3455704-15-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260825054536.3455704-1-animesh.manna@intel.com>
 References: <20260825054536.3455704-1-animesh.manna@intel.com>
@@ -70,240 +70,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For DP2.1, ALPM is optional and there can be scenario where panel replay
-will be supported without ALPM. So decouple ALPM feature by has_alpm flag
-from related display features.
+Program the ALPM switch to active latency into ALPM_CTL2. For UHBR link
+rates the latency is derived from the link symbol clock and converted to
+scanlines, for non-UHBR rates it is zero.
 
 Cc: Jouni Högander <jouni.hogander@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 19 +++------
- drivers/gpu/drm/i915/display/intel_alpm.h     |  2 -
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  6 ++-
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 32 +++++++++++++++++--
  .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 39 +++++++++----------
- drivers/gpu/drm/i915/display/intel_psr.h      |  1 -
- 7 files changed, 30 insertions(+), 40 deletions(-)
+ 2 files changed, 31 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index f3f6f40f9624..8c17da9883d6 100644
+index 8c17da9883d6..5d2ac7561567 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -37,13 +37,6 @@ bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp)
- 	return intel_dp->alpm_dpcd & DP_ALPM_AUX_LESS_CAP;
+@@ -270,6 +270,31 @@ static int get_establishment_period(struct intel_dp *intel_dp,
+ 	return establishment_period;
  }
  
--bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
--				 const struct intel_crtc_state *crtc_state)
--{
--	return intel_psr_needs_alpm_aux_less(intel_dp, crtc_state) ||
--		(crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp));
--}
--
- bool intel_alpm_source_supported(struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(connector);
-@@ -513,6 +506,7 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
- 
- 	crtc_state->has_lobf = (crtc_state->set_context_latency + crtc_state->vrr.guardband) >
- 			       (first_sdp_position + waketime_in_lines);
-+	crtc_state->has_alpm = crtc_state->has_lobf;
- }
- 
- void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
-@@ -575,8 +569,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	u32 alpm_ctl, alpm_ctl2, lttpr_count;
- 
--	if (DISPLAY_VER(display) < 20 || (!intel_psr_needs_alpm(intel_dp, crtc_state) &&
--					  !crtc_state->has_lobf))
-+	if (DISPLAY_VER(display) < 20 || !crtc_state->has_alpm)
- 		return;
- 
- 	mutex_lock(&intel_dp->alpm.lock);
-@@ -584,7 +577,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 	 * Panel Replay on eDP is always using ALPM aux less. I.e. no need to
- 	 * check panel support at this point.
- 	 */
--	if (intel_alpm_is_alpm_aux_less(intel_dp, crtc_state)) {
-+	if (intel_alpm_aux_less_wake_supported(intel_dp)) {
- 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
- 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
- 			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS;
-@@ -648,10 +641,10 @@ void intel_alpm_port_configure(struct intel_dp *intel_dp,
- 	enum port port = dp_to_dig_port(intel_dp)->base.port;
- 	u32 alpm_ctl_val = 0, lfps_ctl_val = 0;
- 
--	if (DISPLAY_VER(display) < 20)
-+	if (DISPLAY_VER(display) < 20 || !crtc_state->has_alpm)
- 		return;
- 
--	if (intel_alpm_is_alpm_aux_less(intel_dp, crtc_state)) {
-+	if (intel_alpm_aux_less_wake_supported(intel_dp)) {
- 		int lfps_cycle = get_lfps_cycle_count(crtc_state);
- 		u32 lfps_cycle_val;
- 
-@@ -710,7 +703,7 @@ void intel_alpm_enable_sink(struct intel_dp *intel_dp,
- {
- 	u8 val;
- 
--	if (!intel_psr_needs_alpm(intel_dp, crtc_state) && !crtc_state->has_lobf)
-+	if (!crtc_state->has_alpm)
- 		return;
- 
- 	val = DP_ALPM_ENABLE | DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE;
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index b0f6e2a9eede..bca746d88da3 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -35,8 +35,6 @@ void intel_alpm_lobf_enable(const struct intel_crtc_state *new_crtc_state);
- void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
- bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
- bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
--bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
--				 const struct intel_crtc_state *crtc_state);
- void intel_alpm_disable(struct intel_dp *intel_dp);
- bool intel_alpm_get_error(struct intel_dp *intel_dp);
- void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index dbebd7210848..4ad09a894eb2 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3449,8 +3449,10 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
- 	int i;
- 	u8 owned_lane_mask;
- 
--	if (DISPLAY_VER(display) < 20 ||
--	    !intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder), crtc_state))
-+	if (DISPLAY_VER(display) < 20 || !crtc_state->has_alpm)
-+		return;
 +
-+	if (!intel_alpm_aux_less_wake_supported(enc_to_intel_dp(encoder)))
- 		return;
++static int get_switch_to_active(const struct intel_crtc_state *crtc_state)
++{
++	int port_clock = crtc_state->port_clock;
++	int switch_to_active;
++
++	if (intel_dp_is_uhbr(crtc_state)) {
++		/* symbol_clock (fLink) in MHz */
++		int symbol_clock = port_clock / intel_dp_link_symbol_size(port_clock) / 100;
++
++		/*
++		 * tSwitch to Active = 32 * (ML_PHY_LOCK Length + 3 + 64) / fLink
++		 *
++		 * The "+ 3" term is the trailing zero padding after the
++		 * POST_LT_SCRAMBLER_RESET, the "+ 64" term represents the MTP
++		 * time slots. The result is in microseconds.
++		 */
++		switch_to_active = 32 * ((396 + 3 + 64) / symbol_clock);
++	} else {
++		switch_to_active = 0;
++	}
++
++	return switch_to_active;
++}
++
+ /*
+  * AUX-Less Wake Time = CEILING( ((PHY P2 to P0) + tLFPS_Period, Max+
+  * tSilence, Max+ tPHY Establishment + tCDS) / tline)
+@@ -329,7 +354,8 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ 	crtc_state->alpm_state.aux_less_wake_lines = aux_less_wake_lines;
+ 	crtc_state->alpm_state.silence_period_sym_clocks = silence_period;
+ 	crtc_state->alpm_state.lfps_half_cycle_num_of_syms = lfps_half_cycle;
+-
++	crtc_state->alpm_state.switch_to_active = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
++									   get_switch_to_active(crtc_state));
+ 	return true;
+ }
  
- 	owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
+@@ -619,8 +645,10 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+ 
+ 	alpm_ctl2 = intel_de_read(display, ALPM_CTL2(display, cpu_transcoder));
+-	alpm_ctl2 &= ~ALPM_CTL2_NUMBER_OF_LTTPR_MASK;
++	alpm_ctl2 &= ~(ALPM_CTL2_NUMBER_OF_LTTPR_MASK |
++		       ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK);
+ 	alpm_ctl2 |= ALPM_CTL2_NUMBER_OF_LTTPR(lttpr_count);
++	alpm_ctl2 |= ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY(crtc_state->alpm_state.switch_to_active);
+ 
+ 	intel_de_write(display, ALPM_CTL2(display, cpu_transcoder), alpm_ctl2);
+ 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 20a07ea06b5e..f8ac98ff8a87 100644
+index f8ac98ff8a87..4cbf56a9195f 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1442,6 +1442,7 @@ struct intel_crtc_state {
+@@ -1441,6 +1441,7 @@ struct intel_crtc_state {
+ 		u8 aux_less_wake_lines;
  		u8 silence_period_sym_clocks;
  		u8 lfps_half_cycle_num_of_syms;
++		int switch_to_active;
  	} alpm_state;
-+	bool has_alpm;
+ 	bool has_alpm;
  
- 	/* to track changes in plane color blocks */
- 	bool plane_color_changed;
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 4fe010df20be..62607284c350 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -2371,7 +2371,7 @@ void intel_xe3plpd_mac_transmit_lfps(struct intel_encoder *encoder,
- 	struct ref_tracker *wakeref;
- 	u8 owned_lane_mask;
- 
--	if (!intel_alpm_is_alpm_aux_less(intel_dp, crtc_state))
-+	if (!crtc_state->has_alpm || !intel_alpm_aux_less_wake_supported(intel_dp))
- 		return;
- 
- 	wakeref = intel_lt_phy_transaction_begin(encoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 52836496040f..6a03bc624108 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1648,6 +1648,8 @@ static bool intel_sel_update_config_valid(struct intel_crtc_state *crtc_state,
- 	crtc_state->enable_psr2_su_region_et = psr2_su_region_et_valid(connector,
- 								       crtc_state->has_panel_replay);
- 
-+	crtc_state->has_alpm = intel_alpm_is_possible(intel_dp);
-+
- 	return true;
- 
- unsupported:
-@@ -1735,11 +1737,17 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
- 	crtc_state->link_off_after_as_sdp_when_pr_active = compute_link_off_after_as_sdp_when_pr_active(connector);
- 	crtc_state->disable_as_sdp_when_pr_active = compute_disable_as_sdp_when_pr_active(connector);
- 
-+	if (intel_alpm_is_possible(intel_dp))
-+		crtc_state->has_alpm = alpm_config_valid(intel_dp, crtc_state, true, true, false);
-+
- 	if (!intel_dp_is_edp(intel_dp))
- 		return true;
- 
- 	/* Remaining checks are for eDP only */
- 
-+	if (!crtc_state->has_alpm)
-+		return false;
-+
- 	if (to_intel_crtc(crtc_state->uapi.crtc)->pipe != PIPE_A &&
- 	    to_intel_crtc(crtc_state->uapi.crtc)->pipe != PIPE_B)
- 		return false;
-@@ -1762,9 +1770,6 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
- 		return false;
- 	}
- 
--	if (!alpm_config_valid(intel_dp, crtc_state, true, true, false))
--		return false;
--
- 	return true;
- }
- 
-@@ -4530,16 +4535,6 @@ void intel_psr_connector_debugfs_add(struct intel_connector *connector)
- 				    connector, &i915_psr_status_fops);
- }
- 
--bool intel_psr_needs_alpm(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state)
--{
--	/*
--	 * eDP Panel Replay uses always ALPM
--	 * PSR2 uses ALPM but PSR1 doesn't
--	 */
--	return intel_dp_is_edp(intel_dp) && (crtc_state->has_sel_update ||
--					     crtc_state->has_panel_replay);
--}
--
- bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
- 				   const struct intel_crtc_state *crtc_state)
- {
-@@ -4553,15 +4548,17 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
- 	int vblank = intel_crtc_vblank_length(crtc_state);
- 	int wake_lines;
- 
--	if (intel_psr_needs_alpm_aux_less(intel_dp, crtc_state))
--		wake_lines = crtc_state->alpm_state.aux_less_wake_lines;
--	else if (intel_psr_needs_alpm(intel_dp, crtc_state))
--		wake_lines = DISPLAY_VER(display) < 20 ?
--			     psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
--						    crtc_state->alpm_state.fast_wake_lines) :
--			     crtc_state->alpm_state.io_wake_lines;
--	else
-+	if (crtc_state->has_alpm) {
-+		if (intel_alpm_aux_less_wake_supported(intel_dp))
-+			wake_lines = crtc_state->alpm_state.aux_less_wake_lines;
-+		else
-+			wake_lines = DISPLAY_VER(display) < 20 ?
-+				     psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
-+							    crtc_state->alpm_state.fast_wake_lines) :
-+				     crtc_state->alpm_state.io_wake_lines;
-+	} else {
- 		wake_lines = 0;
-+	}
- 
- 	/*
- 	 * Disable the PSR features if wake lines exceed the available vblank.
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index d545fdaa0de7..4905ba4da4b8 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -79,7 +79,6 @@ void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
- int intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state);
- void intel_psr_connector_debugfs_add(struct intel_connector *connector);
- void intel_psr_debugfs_register(struct intel_display *display);
--bool intel_psr_needs_alpm(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state);
- bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
- 				   const struct intel_crtc_state *crtc_state);
- void intel_psr_compute_config_late(struct intel_dp *intel_dp,
 -- 
 2.29.0
 
