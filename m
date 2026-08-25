@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EDB1C61DBD
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 11:21:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23652C61DBE
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 11:22:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF6310E033;
-	Tue, 25 Aug 2026 11:21:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D8810E033;
+	Tue, 25 Aug 2026 11:22:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="l0DVE/vw";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TYYea52c";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4244F10E033
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 11:21:35 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1246410E033
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 11:22:47 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1A4A140608;
- Tue, 25 Aug 2026 11:21:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4C3C1F000E9;
- Tue, 25 Aug 2026 11:21:34 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 1BC5C6011F;
+ Tue, 25 Aug 2026 11:22:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B11A81F000E9;
+ Tue, 25 Aug 2026 11:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787656895;
- bh=ZsujHulqV8ZzNoyH2tJccIEtWCjtXFTgmF2xmZpY7M0=;
+ s=k20260515; t=1787656965;
+ bh=PUXEEvQ5HpWR5wy5Bj3BUkpc9W1hKvFOdOe2CNtEcfM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=l0DVE/vw1l3aLq1NiPz+GuMtyzXYyXXmVYoOjuQyDAXuFkqC2bMOXojHb7HEbS7M5
- DotvCsgu2Qp65TQXDJgBk/nenv2+Kn0KYtTe1TJS4GA82hmUue49zts80OmuU107Jg
- /uWBQ+3ETuPHRLKpvPdbzv+i80xO5aYRdXRADWOtnhKOmD1ye4yg2hj0BkibkWheuD
- giF1OnHDmC+S3V99b987W/KUOprcj0IlUMYcuKPyP9M8H7AU1r0zq5MdxsxCHTOPEg
- Cq3XJkeyTrkVyGo/dA8rJ1ZsRVpYYn9lEIOLNYYcBlKqX3mDrTjcdOXDA0b/lie6JN
- QiTlN4g0LRZdA==
+ b=TYYea52cZlFGnKJiBLZvyB4J0GADjy0l2M9cFo/ud+b6gCWpRYKe0RK6k51JXBgDp
+ GpfaY0vwVDKbzVOW1lMiGfHePbahbApSMytgRul9mMLbiui6ybjXiYw59oSuaBWN1k
+ IajKt09A7agk+1451znmX2e2m3mwyD5WUQIkyf0HwKhabOn0GgEJ6xdwViCQwfCTki
+ Vp4xVu8eOEh+KARMcpNbqLfNixXziAtjXstePU0Hmz5znldAbSRUO3luFP3vG27YDu
+ UZ1BRE1TCwj/a4anbEe65CXNNouvPQTmT0SqsI7oUvsReUWsIU3KmlbNd2ks5RvJfC
+ SMKZhqHwVdL8g==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 6/7] drm/xe/sysctrl: Log group and command ID on
- mailbox failure
+Subject: Re: [PATCH v5 5/7] drm/xe/sysctrl: Improve firmware response error
+ logging
 To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825110542.1359776-15-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260825110542.1359776-14-mallesh.koujalagi@intel.com>
 References: <20260825110542.1359776-9-mallesh.koujalagi@intel.com>
- <20260825110542.1359776-15-mallesh.koujalagi@intel.com>
+ <20260825110542.1359776-14-mallesh.koujalagi@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 11:21:34 +0000
-Message-Id: <20260825112134.C4C3C1F000E9@smtp.kernel.org>
+Date: Tue, 25 Aug 2026 11:22:45 +0000
+Message-Id: <20260825112245.B11A81F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,93 +61,121 @@ Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
 
 New issues:
-- [Low] Undeclared macro xe_log_err and missing xe_log.h cause a build fail=
-ure.
-- [Low] Missing include for REG_FIELD_GET in header file.
+- [Low] Build failure due to missing `xe_log.h` and undeclared `xe_log_err`=
+ function.
 
 Pre-existing issues:
-- [High] Incorrect endianness conversion in mailbox frame read and write fu=
-nctions on big-endian architectures.
+- [High] Endianness bug in MMIO data transfer causes hardware state machine=
+ corruption on big-endian hosts.
+- [High] Mailbox response reader truncates oversized responses without drai=
+ning the mailbox, leading to hardware state machine corruption.
 --
 
---- Patch [6]: [PATCH v5 6/7] drm/xe/sysctrl: Log group and command ID on m=
-ailbox failure ---
-commit 1b3f6de8bafa26d44086972155e85f862cc56e97
+--- Patch [5]: [PATCH v5 5/7] drm/xe/sysctrl: Improve firmware response err=
+or logging ---
+commit aca0eba486b26ff6a9ae8a95c07e0dfce167281d
 Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 
-drm/xe/sysctrl: Log group and command ID on mailbox failure
+drm/xe/sysctrl: Improve firmware response error logging
 
-Include the mailbox group ID and command code in error logs
-for command preparation and execution failures.
+Use xe_log_err() helper and include additional details when a
+response header mismatch occurs.
 
 > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe=
 /xe_sysctrl_mailbox.c
-> index 5032d766b3142..f55f72fce9946 100644
+> index f8b518dcafa24..5032d766b3142 100644
 > --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> @@ -373,7 +373,8 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
->  				      cmd->data_in, cmd->data_in_len,
->  				      &mbox_cmd, &cmd_size);
->  	if (ret) {
-> -		xe_err(xe, "sysctrl: Failed to prepare command: %pe\n", ERR_PTR(ret));
-> +		xe_log_err(xe, SYSCTRL, ret, "Failed to prepare command %#x.%#x\n",
-> +			   group_id, command_code);
+[ ... ]
+> @@ -237,13 +237,17 @@ static int sysctrl_receive_frames(struct xe_sysctrl=
+ *sc,
+>  	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
+>  	    XE_SYSCTRL_HDR_GROUP_ID(hdr) !=3D XE_SYSCTRL_HDR_GROUP_ID(req) ||
+>  	    XE_SYSCTRL_HDR_COMMAND(hdr) !=3D XE_SYSCTRL_HDR_COMMAND(req)) {
+> -		xe_err(xe, "sysctrl: Response header mismatch\n");
+> +		xe_log_err(xe, SYSCTRL, -EPROTO,
+> +			   "Response header mismatch: got group=3D%#x cmd=3D%#x is_resp=3D%u,=
+ expected group=3D%#x cmd=3D%#x\n",
+> +			   XE_SYSCTRL_HDR_GROUP_ID(hdr), XE_SYSCTRL_HDR_COMMAND(hdr),
+> +			   XE_SYSCTRL_HDR_IS_RESPONSE(hdr),
+> +			   XE_SYSCTRL_HDR_GROUP_ID(req), XE_SYSCTRL_HDR_COMMAND(req));
 
 [Severity: Low]
-Does this cause a build failure? I couldn't find the definition for the
-xe_log_err macro or the xe_log.h header in the tree.
+Does this code fail to compile? It looks like xe_log.h is missing from the
+source tree, meaning xe_log_err and SYSCTRL might be undeclared identifiers.
 
->  		return ret;
+>  		return -EPROTO;
 >  	}
 > =20
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe=
-/xe_sysctrl_mailbox.h
-> index fb434cc165b2a..df7dfe3b39e24 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-> @@ -15,13 +15,13 @@ struct xe_sysctrl;
->  struct xe_sysctrl_mailbox_command;
-> =20
->  #define XE_SYSCTRL_APP_HDR_GROUP_ID(hdr) \
-> -	FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
-> +	REG_FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
-
-[Severity: Low]
-Is a #include <drm/intel/reg_bits.h> missing here? Any file including this
-header might fail to build if it doesn't already include the definition
-for REG_FIELD_GET.
-
-[ ... ]
+>  	if (XE_SYSCTRL_HDR_RESULT(hdr) !=3D 0) {
+> -		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
+> -		       XE_SYSCTRL_HDR_RESULT(hdr));
+> +		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: %#04x\n",
+> +			   XE_SYSCTRL_HDR_RESULT(hdr));
+>  		return -EIO;
+>  	}
 
 [Severity: High]
-This isn't a bug introduced by this patch, but does the endianness conversi=
-on
-in the mailbox frame read and write functions work correctly on big-endian
-architectures?
+This is a pre-existing issue, but does this loop truncate oversized respons=
+es
+without draining the mailbox?
 
-In sysctrl_write_frame(), the byte stream is copied into a host-endian u32
-array and then written to the little-endian MMIO register:
+drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:sysctrl_receive_frames() {
+	...
+	while (!done && remain) {
+		frame_size =3D min_t(size_t, remain, XE_SYSCTRL_MB_FRAME_SIZE);
 
+		ret =3D sysctrl_process_frame(sc, out, frame_size, timeout_ms,
+					    &done);
+		if (ret)
+			return ret;
+
+		remain -=3D frame_size;
+		out +=3D frame_size;
+	}
+	...
+}
+
+If the firmware sends more frames than expected by data_out_len, remain
+becomes 0 before done is set to true. The loop exits silently and returns
+success, leaving the unread frames in the mailbox.=20
+
+Will subsequent mailbox commands write to the control register while it is
+still busy, potentially corrupting the hardware state machine?
+
+[Severity: High]
+This is a pre-existing issue, but is there an endianness mismatch in the MM=
+IO
+data transfers here?
+
+drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:sysctrl_write_frame() {
+	...
 	memcpy(val, frame, len);
 
 	for (i =3D 0; i < dw; i++)
 		xe_mmio_write32(sc->mmio, regs[i], val[i]);
+	...
+}
 
-Similarly, in sysctrl_read_frame(), the register is read as little-endian
-into a host-endian u32 array and then copied to a byte stream:
+And similarly:
 
+drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:sysctrl_read_frame() {
+	...
 	for (i =3D 0; i < dw; i++)
 		val[i] =3D xe_mmio_read32(sc->mmio, regs[i]);
 
 	memcpy(frame, val, len);
+	...
+}
 
-This might cause the bytes to be reversed again by xe_mmio_write32() and
-xe_mmio_read32() on big-endian systems, potentially leading to firmware
-communication failures.
+When little-endian bytes are copied into native CPU-endian u32 arrays, won't
+this result in an incorrect byte order on big-endian hosts?=20
+
+The bytes could be placed in the wrong order inside the CPU-endian u32
+values, and when the MMIO accessors byte-swap these values again, the
+resulting byte stream on the wire might be reversed compared to the
+intended payload.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825110542.1359=
-776-9-mallesh.koujalagi@intel.com?part=3D6
+776-9-mallesh.koujalagi@intel.com?part=3D5
