@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0EEFC61DBD
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 19:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8091C61DBD
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 20:11:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86B0B10E16F;
-	Tue, 25 Aug 2026 19:25:20 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B00E10E16F;
- Tue, 25 Aug 2026 19:25:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5795948158287891790=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9484610E1BF;
+	Tue, 25 Aug 2026 20:11:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XFmnjNri";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E118910E1BF
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 20:11:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787688714; x=1819224714;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=i/dXAVx3WxDT0tnm3ArYkZEmNuWQobDX6E1YP4Ojg1s=;
+ b=XFmnjNripdBneER1h/MF2l9vRqabgYYJv/anFf7QMOvqmIDO+aKUPTXR
+ XAlYBm7dZrlLe+LnKIsLEfBAi1phgoQo4JfneD8ARIzzUy1My7/nqfSWv
+ P+9nQ/fze0+NPixbyxCywt6qCkqNUkGGzuDoPS5rDe6UDRSbidOdc6g2u
+ DuYnRqq/ga+okKqzPWc8ci5ev2dlvPYgni6JW3Of6BTUhdpzLWXo9BI48
+ 5XXTg0jvK0gpIkT0/uhuzfnQ2cL64eI7lCwH/7WJ5yIk6fTqGGjuaMQb/
+ 8bB/to1QrJHD3EnvijuVTQSro8Z68E+0LoAc5VbzLGE5IXMzVZnvQG8mT w==;
+X-CSE-ConnectionGUID: 7IXv89svR9G3InJqS3xy5A==
+X-CSE-MsgGUID: fQl0GRSNRvCakD6YIa1qsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="99689360"
+X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="99689360"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2026 13:11:54 -0700
+X-CSE-ConnectionGUID: 4jKTRKl0R7urdDX0bvocwQ==
+X-CSE-MsgGUID: 4q2dk+U2StuaGcPXvps5XQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="263640769"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2026 13:11:54 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Wang Xin <x.wang@intel.com>, Jia Yao <jia.yao@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [CI] drm/xe: Disable scheduling early on FD close to avoid CAT error
+ cascade
+Date: Tue, 25 Aug 2026 13:11:48 -0700
+Message-Id: <20260825201148.1780176-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_CPER_logging_support_fo?=
- =?utf-8?q?r_CRI_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Aug 2026 19:25:19 -0000
-Message-ID: <178768591910.84238.928714068718555760@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260825175916.1103841-13-badal.nilawar@intel.com>
-In-Reply-To: <20260825175916.1103841-13-badal.nilawar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +63,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5795948158287891790==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When an FD is closed with many exec queues, teardown relies on the TDR
+path to clean up scheduling. However, the TDR handling is serialized
+(i.e., only one exec queue is processed at a time), which can make it
+too slow compared to GuC scheduling activity.
 
-== Series Details ==
+In this window, GuC may continue to schedule contexts backed by
+invalid page tables, leading to a cascade of CAT errors and repeated
+engine resets. This significantly increases recovery time and can
+degrade system stability.
 
-Series: Add CPER logging support for CRI (rev2)
-URL   : https://patchwork.freedesktop.org/series/169692/
-State : success
+To mitigate this, eagerly disable scheduling by sending a self-message
+outside of the TDR path. This prevents further scheduling of invalid
+contexts and avoids the CAT error/reset cascade.
 
-== Summary ==
+This change improves robustness and reduces recovery latency in
+multiple queue teardown scenarios.
 
-CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -> xe-pw-169692v2_BAT
-====================================================
+Cc: Wang Xin <x.wang@intel.com>
+Cc: Jia Yao <jia.yao@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Tested-by: Jia Yao <jia.yao@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 45 ++++++++++++++++++--
+ 2 files changed, 42 insertions(+), 5 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index d27826b36649..a46cde5ed81f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -36,7 +36,7 @@ struct xe_guc_exec_queue {
+ 	 * a message needs to sent through the GPU scheduler but memory
+ 	 * allocations are not allowed.
+ 	 */
+-#define MAX_STATIC_MSG_TYPE	4
++#define MAX_STATIC_MSG_TYPE	5
+ 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+ 	/** @destroy_async: do final destroy async from this worker */
+ 	struct work_struct destroy_async;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 99d8c807ff05..8b8972b2ebea 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1969,12 +1969,22 @@ static void __guc_exec_queue_process_msg_cgp_sync(struct xe_sched_msg *msg,
+ 		guc_exec_queue_send_cgp_sync(q, 0);
+ }
+ 
++static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg)
++{
++	struct xe_exec_queue *q = msg->private_data;
++	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
++
++	if (exec_queue_enabled(primary))
++		disable_scheduling(primary, true);
++}
++
+ #define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
+ #define SET_SCHED_PROPS			2
+ #define SUSPEND				3
+ #define RESUME				4
+ #define SET_MULTI_QUEUE_PRIORITY	5
+ #define CGP_SYNC_MSG			6
++#define KILL				7
+ #define OPCODE_MASK	0xf
+ #define MSG_LOCKED	BIT(8)
+ #define MSG_HEAD	BIT(9)
+@@ -2008,6 +2018,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+ 	case CGP_SYNC_MSG:
+ 		__guc_exec_queue_process_msg_cgp_sync(msg, bound);
+ 		break;
++	case KILL:
++		__guc_exec_queue_process_msg_kill(msg);
++		break;
+ 	default:
+ 		XE_WARN_ON("Unknown message type");
+ 	}
+@@ -2130,11 +2143,39 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	return err;
+ }
+ 
++static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
++				       struct xe_sched_msg *msg,
++				       u32 opcode);
++
++#define STATIC_MSG_CLEANUP	0
++#define STATIC_MSG_SUSPEND	1
++#define STATIC_MSG_RESUME	2
++#define STATIC_MSG_CGP_SYNC	3
++#define STATIC_MSG_KILL		4
+ static void guc_exec_queue_kill(struct xe_exec_queue *q)
+ {
++	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_KILL;
++
+ 	trace_xe_exec_queue_kill(q);
+ 	set_exec_queue_killed(q);
+ 	__suspend_fence_signal(q);
++
++	/*
++	 * We eagerly send a message to ourselves to disable scheduling, as the
++	 * TDR is serialized (i.e., only one exec queue is processed at a time).
++	 * If an FD is closed with many exec queues, the TDR can be slower than
++	 * the GuC scheduling contexts with invalid page tables, creating a
++	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
++	 * this by immediately disabling scheduling outside of the TDR.
++	 */
++	if (kref_read(&q->refcount) && !exec_queue_wedged(q)) {
++		struct xe_gpu_scheduler *sched = &q->guc->sched;
++
++		xe_sched_msg_lock(sched);
++		guc_exec_queue_try_add_msg(q, msg, KILL);
++		xe_sched_msg_unlock(sched);
++	}
++
+ 	xe_guc_exec_queue_trigger_cleanup(q);
+ }
+ 
+@@ -2187,10 +2228,6 @@ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+ 	return true;
+ }
+ 
+-#define STATIC_MSG_CLEANUP	0
+-#define STATIC_MSG_SUSPEND	1
+-#define STATIC_MSG_RESUME	2
+-#define STATIC_MSG_CGP_SYNC	3
+ static void guc_exec_queue_destroy(struct xe_exec_queue *q)
+ {
+ 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 11)
-------------------------------
-
-  Missing    (2): bat-bmg-2 bat-nvls-1 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9071 -> IGT_9074
-  * Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -> xe-pw-169692v2
-
-  IGT_9071: 9071
-  IGT_9074: 9074
-  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad
-  xe-pw-169692v2: 169692v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v2/index.html
-
---===============5795948158287891790==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add CPER logging support for CRI (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169692/">https://patchwork.freedesktop.org/series/169692/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -&gt; xe-pw-169692v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 11)</h2>
-<p>Missing    (2): bat-bmg-2 bat-nvls-1 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9071 -&gt; IGT_9074</li>
-<li>Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -&gt; xe-pw-169692v2</li>
-</ul>
-<p>IGT_9071: 9071<br />
-  IGT_9074: 9074<br />
-  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad<br />
-  xe-pw-169692v2: 169692v2</p>
-
-</body>
-</html>
-
---===============5795948158287891790==--
