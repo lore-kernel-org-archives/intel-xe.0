@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE93C5DF9C
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 00:39:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DF40C5DF81
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 00:40:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D092810E895;
-	Tue, 25 Aug 2026 00:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC3910E895;
+	Tue, 25 Aug 2026 00:40:35 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA5C10E895;
- Tue, 25 Aug 2026 00:39:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E78E10E89C;
+ Tue, 25 Aug 2026 00:40:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5518908748577237577=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe3p=3A_Restore_sa?=
- =?utf-8?q?mpler_fault_for_uninitialized_surface_state?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Capture_additiona?=
+ =?utf-8?q?l_HW_register_state_in_devcoredump_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Aug 2026 00:39:55 -0000
-Message-ID: <178761839517.80981.7640947341174608568@61270ab9df2a>
+Date: Tue, 25 Aug 2026 00:40:34 -0000
+Message-ID: <178761843444.80933.4866612843078727935@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260824220458.520358-1-jose.souza@intel.com>
-In-Reply-To: <20260824220458.520358-1-jose.souza@intel.com>
+References: <20260824184356.1960708-1-naresh.kumar.g@intel.com>
+In-Reply-To: <20260824184356.1960708-1-naresh.kumar.g@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,57 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5518908748577237577==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/xe3p: Restore sampler fault for uninitialized surface state
-URL   : https://patchwork.freedesktop.org/series/172697/
-State : warning
+Series: drm/xe: Capture additional HW register state in devcoredump (rev2)
+URL   : https://patchwork.freedesktop.org/series/172150/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 735724e9bc7c0a96cbd2cb7f0e896d60f797eb4e
-Author: José Roberto de Souza <jose.souza@intel.com>
-Date:   Mon Aug 24 15:04:58 2026 -0700
+CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -> xe-pw-172150v2_BAT
+====================================================
 
-    drm/xe/xe3p: Restore sampler fault for uninitialized surface state
-    
-    Xe3p changed the default behavior of a fault in sampler when surface state
-    address is 0x0.
-    With the default behavior some default values are used instead of trigger the
-    fault, what would make pretty hard to debug bugs.
-    
-    So here programing SAMPLER_MODE to change back to the default and expected
-    behavior.
-    
-    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-+ /mt/dim checkpatch 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad drm-intel
-735724e9bc7c drm/xe/xe3p: Restore sampler fault for uninitialized surface state
--:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#12: 
-With the default behavior some default values are used instead of trigger the
+Summary
+-------
 
--:38: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#38: FILE: drivers/gpu/drm/xe/regs/xe_gt_regs.h:509:
-+#define   SMP_FORCE_128B_OVERFETCH			REG_FIELD_PREP(SMP_WAIT_FETCH_MERGING_COUNTER, 1)
+  **SUCCESS**
 
--:56: ERROR:CODE_INDENT: code indent should use tabs where possible
-#56: FILE: drivers/gpu/drm/xe/xe_wa.c:607:
-+^I^I^I^I              FUNC(xe_rtp_match_first_render_or_compute)),$
+  No regressions found.
 
--:56: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#56: FILE: drivers/gpu/drm/xe/xe_wa.c:607:
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3500, XE_RTP_END_VERSION_UNDEFINED),
-+				              FUNC(xe_rtp_match_first_render_or_compute)),
+  
 
-total: 1 errors, 2 warnings, 1 checks, 32 lines checked
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-nvls-1 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -> xe-pw-172150v2
+
+  IGT_9071: 9071
+  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad
+  xe-pw-172150v2: 172150v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172150v2/index.html
+
+--===============5518908748577237577==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Capture additional HW register state in devcoredump (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172150/">https://patchwork.freedesktop.org/series/172150/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172150v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172150v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -&gt; xe-pw-172150v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-nvls-1 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -&gt; xe-pw-172150v2</li>
+</ul>
+<p>IGT_9071: 9071<br />
+  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad<br />
+  xe-pw-172150v2: 172150v2</p>
+
+</body>
+</html>
+
+--===============5518908748577237577==--
