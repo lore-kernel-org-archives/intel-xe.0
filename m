@@ -4,59 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE7B0C61DBC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 07:41:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40DA1C5DF94
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 07:42:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 876E410E8F0;
-	Tue, 25 Aug 2026 07:41:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFCA510E8F9;
+	Tue, 25 Aug 2026 07:42:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0XQpMjr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXSmFRUM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA3C010E8F0
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 07:41:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA34410E8F7;
+ Tue, 25 Aug 2026 07:41:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787643693; x=1819179693;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pqrup3IFBPNsy52D6KGNlh2U2xD769wP546ycJAeeiw=;
- b=B0XQpMjrn8nXxbD2k5Z69JLP9yeSbZdKFFZeJQWNx28HbufOTx/UcbU0
- bZLsiD5Wj2kU4KhA/o/TEa4DoG3m+xQaOh+2GjfhxIK3c/+tjv77Ihxpc
- 2s4SRWg1oOc10Pq7rRlI8hlQGHj4vUsvA4Ow8Xm+VusEMGX9AUx+NGPRV
- qLn2KMksSZpqchA34tNfpzyNikKKccet9vN4NsCZe//nVg4EEERooIa7P
- RobOnzZPWX1ysZt1IYofHFtxhUWY5wc+bPp5rJygCels4gPVqifGHDLv8
- NLSsjnxWFLjPijBPCKrB0ybdiSE5Ejwd01qd8bVpUL/hv1ynnhDktWvQs Q==;
-X-CSE-ConnectionGUID: ZmoWuDyQT5CBjUZ992rUdQ==
-X-CSE-MsgGUID: vmqF38dnTJKarSmQH1mmdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88306543"
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88306543"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 00:41:32 -0700
-X-CSE-ConnectionGUID: dRyIzPsrS9azPB3OjlEZLg==
-X-CSE-MsgGUID: gmfhvveFTiCbOKNVsb5U9w==
+ t=1787643720; x=1819179720;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OIBBQKrGzEJuenjyewQOvPqi7fv2ui1KKjbv4G1tqh0=;
+ b=kXSmFRUM7WX1dgfUq6I7ZwKe8Mdo8PzOUk4AzmWm8VSNX5mAdk6K21tp
+ otYtRIc43JNC81XjwtBUzUJPw49xsjL66eq9bUf8YbWtPpbI1z0vH+A4R
+ ZumbuEDt+hm2nJCA+Md04tdsJ1Iw/jFiQfSyskEbbtc2Av4hgHSuAnME6
+ JIrs4uMOW1VftSVJ4ImthdoLUPbo5wZU2iYzbbsTOia/77/dVa6pTiIPe
+ 3QuFSlD6Wb9yOMgFCsq7tzIDBTk8GDU+71AnFC7C5NWR9y/z015JsCBQQ
+ 25v7eTXpimcldvOjFbBLZ6+QNB+UfMgZoYPalkoKHE1ZmD3aCAKHOZcfs w==;
+X-CSE-ConnectionGUID: 7NsC5+FgQAa/k/8OqzlzaA==
+X-CSE-MsgGUID: izUr9Lz4R3e1fYn+X9yXEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="110888440"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="110888440"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2026 00:42:00 -0700
+X-CSE-ConnectionGUID: VVVCfowWSG2NcrsgsvaXrw==
+X-CSE-MsgGUID: gLWUk56kQdyP0gkT0AjT3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="263479748"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 00:41:31 -0700
-Date: Tue, 25 Aug 2026 09:41:28 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: "Laguna, Lukasz" <lukasz.laguna@intel.com>,
- sashiko-reviews@lists.linux.dev, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v10 08/10] drm/xe: Introduce temporary device wedging
-Message-ID: <ao1HKIZjbV8Z6rZR@black.igk.intel.com>
-References: <20260821112436.545405-1-raag.jadav@intel.com>
- <20260821112436.545405-9-raag.jadav@intel.com>
- <20260821113758.006681F000E9@smtp.kernel.org>
- <45efbcf8-b598-463e-b415-dfee2a3afe66@intel.com>
- <aoyNk9wmOpdyUXgY@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="270687406"
+Received: from unknown (HELO mgolanimitul-X299-UD4-Pro.iind.intel.com)
+ ([10.190.239.114])
+ by orviesa003.jf.intel.com with ESMTP; 25 Aug 2026 00:41:59 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	suraj.kandpal@intel.com
+Subject: [PATCH v3] drm/i915/dp: Gate UHBR SST SDP splitting on sink capability
+Date: Tue, 25 Aug 2026 13:02:04 +0530
+Message-ID: <20260825073204.872441-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aoyNk9wmOpdyUXgY@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,21 +65,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 24, 2026 at 02:29:39PM -0400, Rodrigo Vivi wrote:
-> On Mon, Aug 24, 2026 at 04:30:25PM +0200, Laguna, Lukasz wrote:
-> > On 8/21/2026 13:37, sashiko-bot@kernel.org wrote:
-> > > Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
-> > > - [Critical] Sleeping in atomic context due to `mutex_lock()` in `xe_device_declare_wedged()`.
-> > 
-> > Already discussed, can be addressed in a follow-up series.
-> 
-> Why can't this be addressed in this series? I believe this is worse then the
-> below case. But I really dislike that we are going further with the mutex
-> inside an atomic context only with a promise of fixing this later without
-> seeing the code...
+SDP splitting for 128b/132b (UHBR) SST audio must only be enabled when
+the sink advertises support for it. Previously sdp_split_enable
+was set for every UHBR SST stream carrying audio, regardless of sink
+capability.
 
-Because this is pre-existing issue and we don't sneak in fixes as part of
-unrelated features. They need to be sent separately so that they are easier
-to backport.
+In MST mode SDP splitting is inherently supported, so the sink
+capability check (DP_SST_SPLIT_SDP_CAP) is applied only to the SST path.
 
-Raag
+Fixes: 8853750dbad8 ("drm/i915: Enable SDP split for DP2.0")
+Assisted-by: Claude:claude-opus-4-8
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+--v2:
+- Correct the name in the intel_dp struct. (Suraj)
+- Add the Fixes tag. (Suraj)
+- Explain the reasoning for guarding SST separately from MST. (Suraj)
+- Add a separate helper to read capabilities. (Suraj)
+
+--v3:
+- Use drm_dp_dpcd_read instead of drm_dp_dpcd_readb. (Suraj)
+- Move Assisted-by above Signed-off-by. (Suraj)
+- Add the versioning diff. (Suraj)
+---
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 44 ++++++++++++++++---
+ 2 files changed, 40 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 20a07ea06b5e..5f0fe18c0614 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1951,6 +1951,8 @@ struct intel_dp {
+ 
+ 	bool colorimetry_support;
+ 
++	bool sst_split_sdp_support;
++
+ 	struct {
+ 		enum transcoder transcoder;
+ 		struct mutex lock;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 6b60e0a1c8ee..0cd5e6b5034c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3409,12 +3409,22 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
+ 			      struct intel_crtc_state *pipe_config,
+ 			      struct drm_connector_state *conn_state)
+ {
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
+ 	pipe_config->has_audio =
+ 		intel_dp_has_audio(encoder, conn_state) &&
+ 		intel_audio_compute_config(encoder, pipe_config, conn_state);
+ 
+ 	pipe_config->sdp_split_enable = pipe_config->has_audio &&
+ 					intel_dp_is_uhbr(pipe_config);
++
++	/*
++	 * SDP splitting for UHBR audio requires explicit sink capability in
++	 * SST mode, whereas in MST mode it is inherently supported.
++	 */
++	if (pipe_config->sdp_split_enable &&
++	    !intel_crtc_has_type(pipe_config, INTEL_OUTPUT_DP_MST))
++		pipe_config->sdp_split_enable = intel_dp->sst_split_sdp_support;
+ }
+ 
+ void
+@@ -4456,16 +4466,25 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
+ 			    str_enable_disable(tmp));
+ }
+ 
+-static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
++static u8 intel_dp_read_dprx_feature_enum(struct intel_dp *intel_dp)
+ {
+ 	u8 dprx = 0;
+ 
+-	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST,
+-			      &dprx) != 1)
+-		return false;
++	drm_dp_dpcd_read_data(&intel_dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST,
++			      &dprx, sizeof(dprx));
++	return dprx;
++}
++
++static bool intel_dp_get_colorimetry_status(u8 dprx)
++{
+ 	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
+ }
+ 
++static bool intel_dp_get_sst_split_sdp_status(u8 dprx)
++{
++	return dprx & DP_SST_SPLIT_SDP_CAP;
++}
++
+ static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+ 				  u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+ {
+@@ -4765,6 +4784,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	int ret;
++	u8 dprx;
+ 
+ 	/* this function is meant to be called only once */
+ 	drm_WARN_ON(display->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
+@@ -4776,8 +4796,13 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+ 			 drm_dp_is_branch(intel_dp->dpcd));
+ 	intel_init_dpcd_quirks(intel_dp, &intel_dp->desc.ident);
+ 
++	dprx = intel_dp_read_dprx_feature_enum(intel_dp);
++
+ 	intel_dp->colorimetry_support =
+-		intel_dp_get_colorimetry_status(intel_dp);
++		intel_dp_get_colorimetry_status(dprx);
++
++	intel_dp->sst_split_sdp_support =
++		intel_dp_get_sst_split_sdp_status(dprx);
+ 
+ 	/*
+ 	 * Read the eDP display control registers.
+@@ -4868,13 +4893,20 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+ 	 * the OUI/ID since we know it won't change.
+ 	 */
+ 	if (!intel_dp_is_edp(intel_dp)) {
++		u8 dprx;
++
+ 		drm_dp_read_desc(&intel_dp->aux, &intel_dp->desc,
+ 				 drm_dp_is_branch(intel_dp->dpcd));
+ 
+ 		intel_init_dpcd_quirks(intel_dp, &intel_dp->desc.ident);
+ 
++		dprx = intel_dp_read_dprx_feature_enum(intel_dp);
++
+ 		intel_dp->colorimetry_support =
+-			intel_dp_get_colorimetry_status(intel_dp);
++			intel_dp_get_colorimetry_status(dprx);
++
++		intel_dp->sst_split_sdp_support =
++			intel_dp_get_sst_split_sdp_status(dprx);
+ 
+ 		intel_dp_update_sink_caps(intel_dp);
+ 	}
+-- 
+2.48.1
+
