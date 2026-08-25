@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B8BCC5DF94
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F565C61CE3
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:32:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 352FD10E91E;
-	Tue, 25 Aug 2026 06:31:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 223C110E920;
+	Tue, 25 Aug 2026 06:32:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Maswu0WK";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ods28EK4";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F28E10E916;
- Tue, 25 Aug 2026 06:31:54 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D4CC10E920;
+ Tue, 25 Aug 2026 06:32:04 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id A5925601DE;
- Tue, 25 Aug 2026 06:31:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27B491F000E9;
- Tue, 25 Aug 2026 06:31:53 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 1555F436D2;
+ Tue, 25 Aug 2026 06:32:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C73D01F000E9;
+ Tue, 25 Aug 2026 06:32:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787639513;
- bh=3TV+/bICgXt5ksruFGdP9eR3uhIcInISdtS/PwJVTmk=;
+ s=k20260515; t=1787639524;
+ bh=P5Ir+dOtORH5a79whAXQL/IVYqZqlgVAuuD3rgTmi64=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Maswu0WK/aWBcJfkCZVfx7+OrrIvN44yrTCFPY9w7TEYZCvrkx5oRlwuSksIZt8ze
- zNsAMYtSeuy0xvwp3FJN1HlagGIMK6EPyq2cGYMiKm6aY2J77P7jaPRZaXGoJGSlvs
- YkkY5Ma5UQfN+yoU2t7cHOojRhGoxgX3RQsWl0A9ECxR27Gd0feMu2216tlIwRIExR
- Jza8rcHCYvMujdIzTQ3u8VmGhTknBvof4EC6uZIMtjEHKeHk0UrkE3PBSA3h3xiaoy
- YCB8yAvdYMbia/ggixFqImrNCi6jPOCYwwY/ZnvO6W10/UL9CjFd8Ppx7B40wEUhg6
- 5GsychmzrLqcA==
+ b=Ods28EK4mfsYxMqgI6Wn2qMF6YyyV3BtwjUFLZvlElk1zUNG97+5hNh0DyOkd6VPW
+ JJG8VzEn2DdNrtEjqYxAzTHsq3G4vGup6DRAqX26Z2AH2SwTgOfIK6A+2jGAd8VOfZ
+ L3HrMXiBiFsbq8vV9BuVf2SMn8+cyPx6s68L9c6qXVwqYWWYkOXAOfChPfxer01NHS
+ rkj1O8uRvT37iKpLaykxOHi+hWFrjePoqqCjpmFnStfoutpuB3kkFPSD+l+NGC8ZMV
+ 2wiQODxXhwViDIxD3S+tlAlbrrWjP0FOVGUoBNT/ih7+4rUGXD0LYHAYUcEgoT7o5V
+ TtuGUysHdVoYQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 08/15] drm/i915/alpm: Half LFPS cycle calculation
+Subject: Re: [PATCH v5 10/15] drm/i915/alpm: Program LTTPR count for DP 2.1
+ ALPM
 To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825054536.3455704-9-animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20260825054536.3455704-11-animesh.manna@intel.com>
 References: <20260825054536.3455704-1-animesh.manna@intel.com>
- <20260825054536.3455704-9-animesh.manna@intel.com>
+ <20260825054536.3455704-11-animesh.manna@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 06:31:52 +0000
-Message-Id: <20260825063153.27B491F000E9@smtp.kernel.org>
+Date: Tue, 25 Aug 2026 06:32:03 +0000
+Message-Id: <20260825063203.C73D01F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,82 +57,75 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] `get_lfps_half_cycle_clocks()` incorrectly uses the DP port clock =
-(link rate) instead of the symbol clock, which inflates the cycle count and=
- causes it to exceed the 5-bit register mask for DP 2.1 UHBR rates, complet=
-ely breaking ALPM.
+- [High] Logical inversion in the early return condition causes `intel_dp_u=
+pdate_lttpr_count` to unconditionally return for all display types, renderi=
+ng the new feature completely inactive.
+- [Medium] Mismatch between comment and code for LTTPR revision check.
 --
 
---- Patch [8]: [PATCH v5 08/15] drm/i915/alpm: Half LFPS cycle calculation =
----
-commit 3b44d7e9f6ce14c0e3f4bb3319784906c402099b
+--- Patch [10]: [PATCH v5 10/15] drm/i915/alpm: Program LTTPR count for DP =
+2.1 ALPM ---
+commit 2590778ff6f9e6755fe0231710bcb90018b982c4
 Author: Animesh Manna <animesh.manna@intel.com>
 
-drm/i915/alpm: Half LFPS cycle calculation
+drm/i915/alpm: Program LTTPR count for DP 2.1 ALPM
 
-Add support for half LFPS cycle calculation for DP2.1 ALPM as dependent
-parameters got changed.
+This commit adds an AUX write transaction to DP_TOTAL_LTTPR_CNT (0xf000a)
+with the total number of LTTPRs before link training for DP 2.1 ALPM.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/=
-i915/display/intel_alpm.c
-> index 078e04bb69d29..98aa418a6ff77 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -80,12 +80,18 @@ static int get_silence_period_symbols(const struct in=
-tel_crtc_state *crtc_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index cb92cff906146..1d5873cb64f55 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+[ ... ]
+> @@ -2265,6 +2265,20 @@ intel_dp_128b132b_link_train(struct intel_dp *inte=
+l_dp,
+>  	return passed;
+>  }
+> =20
+> +static void intel_dp_update_lttpr_count(struct intel_dp *intel_dp,
+> +					int lttpr_count)
+> +{
+> +	/*
+> +	 * Program only for DP2.1 and return if LTTPR revison is less than 0x20
+> +	 * where 0:3 represents minor rev and 4:7 represent major rev
+> +	 */
+
+[Severity: Medium]
+Does this comment contradict the logic implemented below?=20
+
+The comment states the function should return if the revision is "less
+than 0x20", while the code correctly checks for less than or equal to 0x20
+to filter out DP 2.0.
+
+> +	if (!intel_dp_is_edp(intel_dp) ||
+> +	    intel_dp->lttpr_common_caps[0] <=3D 0x20)
+> +		return;
 
 [Severity: High]
-This isn't a bug introduced by this patch, but since this patch series
-enables DP 2.1 ALPM, it exposes an issue in get_lfps_half_cycle_clocks()
-(which is located nearby in this file).
+Does this logic inadvertently cause an unconditional early return for all
+display types?
 
-Does get_lfps_half_cycle_clocks() incorrectly use the DP port clock
-(link rate) instead of the symbol clock?
+For external DP displays where LTTPRs are used, !intel_dp_is_edp(intel_dp)
+evaluates to true, triggering the early return immediately.
 
-For legacy 8b/10b encoding, the link rate in 10 kbps is numerically equal
-to the symbol clock in kHz. However, for 128b/132b (UHBR) rates introduced
-in DP 2.1, the link rate is 3.2x the symbol clock. This inflates the symbol
-count calculation by a factor of 3.2.
+For eDP displays, !intel_dp_is_edp(intel_dp) evaluates to false, but since
+eDP bypasses LTTPR initialization in intel_dp_init_lttpr_and_dprx_caps(),
+intel_dp->lttpr_common_caps remains zero-initialized.=20
 
-When this inflated value is checked against the 5-bit mask
-(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK) in
-_lnl_compute_aux_less_alpm_params(), it unconditionally fails because it
-exceeds the maximum value of 31. This causes ALPM configuration to abort for
-any DP 2.1 UHBR display.
+This causes intel_dp->lttpr_common_caps[0] <=3D 0x20 to evaluate to true
+(since 0 is less than 0x20), which also triggers the early return.
 
-Other ALPM functions like get_silence_period_symbols() correctly use
-intel_dp_link_symbol_clock(crtc_state->port_clock). Should
-get_lfps_half_cycle_clocks() also be updated to use the symbol clock?
+Was the intention to check intel_dp_is_edp(intel_dp) without the logical
+inversion to properly bypass eDP?
 
->  static void get_lfps_cycle_min_max_time(const struct intel_crtc_state *c=
-rtc_state,
->  					int *min, int *max)
->  {
-> -	if (crtc_state->port_clock < 540000) {
-> -		*min =3D 65 * LFPS_CYCLE_COUNT;
-> -		*max =3D 75 * LFPS_CYCLE_COUNT;
-> -	} else {
-> -		*min =3D 140;
-> -		*max =3D 800;
-> +	struct intel_display *display =3D to_intel_display(crtc_state);
 > +
-> +	*min =3D 320;
-> +	*max =3D 1600;
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
-> +		if (crtc_state->port_clock < 540000 && DISPLAY_VER(display) < 35) {
-> +			*min =3D 65 * LFPS_CYCLE_COUNT;
-> +			*max =3D 75 * LFPS_CYCLE_COUNT;
-> +		} else {
-> +			*min =3D 140;
-> +			*max =3D 800;
-> +		}
->  	}
->  }
+> +	drm_dp_dpcd_writeb(&intel_dp->aux, DP_TOTAL_LTTPR_CNT, lttpr_count);
+> +}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825054536.3455=
-704-1-animesh.manna@intel.com?part=3D8
+704-1-animesh.manna@intel.com?part=3D10
