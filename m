@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 759B2C61DBE
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 11:06:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D0AAC61DBE
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 11:06:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2817E10E1A4;
-	Tue, 25 Aug 2026 11:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C66810E132;
+	Tue, 25 Aug 2026 11:06:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C07e2GlU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkB02X43";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4C210E1A4
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 11:06:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B81ED10E132
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 11:06:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787655963; x=1819191963;
+ t=1787655968; x=1819191968;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rElESuUQ7urCxxO0OqEf117lR9yZ3a4eywDXoZ3qwVg=;
- b=C07e2GlUcnP6Qk+0UIe+Fhr+zl/dp/SELTV9+Whm4HIof5wQQRxRy1sq
- ke6VUdtABft1GHHXhQVpny9E3cN+fPqsveITxA9m/IDAfJiu0FFfut+fo
- QNGpsD4XLLSfutQnO5IfZsqZHDGEUAdbuT8ZwBvGqr9D+rdn+gRBjPzQa
- nFMECHO+fPZ7A8dEBpOQ3YhfGZTcp7HtIA+zv95NFGOhxinhK7rl+UG74
- /z29/nU3FPLWfZxM3x8QuHBCmR1+SftMZMNprY1OD0S7x1TaEBWwAi/TD
- R2b0YK/t1Ck7IhTYqJJjgSSnNPtTef6uY/vVu/JX9L6cHhzhjSnmqRwHl Q==;
-X-CSE-ConnectionGUID: OXkq1XruTtGuWseOY9OjEQ==
-X-CSE-MsgGUID: sUs7jLcrSDSzVMP+/rGx2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88248246"
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88248246"
+ bh=486ctWf+QNuuRA3p0JTh0pdt+okDteXC2ceZ1K/L/yQ=;
+ b=PkB02X43+K6UX6wjYIT2mX++3ZifB5ekM8MfHlrjYqmtp4hxe5ib1mum
+ /4bojGuaJOgQIlNodTzSRu4wbjZtXIsmEtoQHW+a27DEclEmupZqDX5yu
+ dCFEidKeAeGF2ZBqOAipK09dyn3eNEoGX7p2CcJT7/HfjFKHsHvOQW1OE
+ k/HGjVUZ6AI7cT5xlSm3HD1Tx+b1UjCLrRMiOkiFIHcADbAaaF1UYWb+E
+ WU98szTFvGoj6q+ccyOhfcgGrOHJGeKM/wyT1uPzpb2QwsmyZdQTzj7dE
+ Uf2/EEJ+UgFdcFeHO7et3ecFeJuxR7Kh5y7nr8M5zjfGzeGWQRaq/nGs4 A==;
+X-CSE-ConnectionGUID: LdOKse2MRiGo2GbLyU7kBQ==
+X-CSE-MsgGUID: UQL8oKLkSGiF7ECkOEJp1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88248256"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88248256"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 04:06:03 -0700
-X-CSE-ConnectionGUID: wUO35sZuQJ6pWfQPTrWobA==
-X-CSE-MsgGUID: Vj8Nbpl6TsKXAF6r3FOSOw==
+ 25 Aug 2026 04:06:08 -0700
+X-CSE-ConnectionGUID: AYKwgPt7Q+GOX7CdmMUxMA==
+X-CSE-MsgGUID: kQPYzvSaSQ6fJXhcplmNgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="261131346"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="261131354"
 Received: from unknown (HELO jraag-Z790M-ITX-WiFi.iind.intel.com)
  ([10.190.239.23])
- by fmviesa009.fm.intel.com with ESMTP; 25 Aug 2026 04:05:59 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 25 Aug 2026 04:06:03 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -50,10 +50,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
  dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v5 2/7] drm/xe/sysctrl: Return error codes from
- sysctrl_wait_bit_set()
-Date: Tue, 25 Aug 2026 16:35:45 +0530
-Message-ID: <20260825110542.1359776-11-mallesh.koujalagi@intel.com>
+Subject: [PATCH v5 3/7] drm/xe/sysctrl: Make sysctrl_write_frame() void
+Date: Tue, 25 Aug 2026 16:35:46 +0530
+Message-ID: <20260825110542.1359776-12-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260825110542.1359776-9-mallesh.koujalagi@intel.com>
 References: <20260825110542.1359776-9-mallesh.koujalagi@intel.com>
@@ -73,56 +72,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make sysctrl_wait_bit_set() return an error code rather than a bool
-and update callers to use xe_log_err() with the propagated error code.
+The function always returned 0, so the int return type is misleading.
+Convert to void and drop the error handling in the caller.
 
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v5:
-- Fix align issue. (Michal)
----
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index f97dec375efe..b5412ca42bb8 100644
+index b5412ca42bb8..81a88da2bbfb 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -42,15 +42,11 @@ static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
- 				  timeout_ms * 1000, NULL, false);
+@@ -49,8 +49,8 @@ static int sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
+ 			      timeout_ms * 1000, NULL, false);
  }
  
--static bool sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
--				 unsigned int timeout_ms)
-+static int sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
-+				unsigned int timeout_ms)
+-static int sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
+-			       size_t len)
++static void sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
++				size_t len)
  {
--	int ret;
+ 	static const struct xe_reg regs[] = {
+ 		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
+@@ -66,8 +66,6 @@ static int sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
+ 
+ 	for (i = 0; i < dw; i++)
+ 		xe_mmio_write32(sc->mmio, regs[i], val[i]);
 -
--	ret = xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
--			     timeout_ms * 1000, NULL, false);
--
--	return ret == 0;
-+	return xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
-+			      timeout_ms * 1000, NULL, false);
+-	return 0;
  }
  
- static int sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
-@@ -193,9 +189,10 @@ static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
- 	struct xe_device *xe = sc_to_xe(sc);
- 	int ret;
+ static int sysctrl_read_frame(struct xe_sysctrl *sc, void *frame,
+@@ -154,11 +152,7 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+ 	for (frame = 0; frame < total_frames; frame++) {
+ 		frame_size = min_t(size_t, cmd_size - bytes_sent, XE_SYSCTRL_MB_FRAME_SIZE);
  
--	if (!sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
--		xe_err(xe, "sysctrl: Response frame timeout\n");
--		return -ETIMEDOUT;
-+	ret = sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms);
-+	if (ret) {
-+		xe_log_err(xe, SYSCTRL, ret, "Response frame timeout\n");
-+		return ret;
- 	}
+-		if (sysctrl_write_frame(sc, mbox_cmd + bytes_sent, frame_size)) {
+-			xe_err(xe, "sysctrl: Failed to write frame %u\n", frame);
+-			sc->phase_bit = 0;
+-			return -EIO;
+-		}
++		sysctrl_write_frame(sc, mbox_cmd + bytes_sent, frame_size);
  
- 	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
+ 		ctrl_reg = SYSCTRL_MB_CTRL_RUN_BUSY |
+ 			   REG_FIELD_PREP(SYSCTRL_FRAME_CURRENT_MASK, frame) |
 -- 
 2.48.1
 
